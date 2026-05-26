@@ -7,11 +7,11 @@ import {
 import buildLens from "../../../src/optics/buildLens.js";
 import { computeElementShapes } from "../../../src/optics/diagramGeometry.js";
 import { foldedHitOrderLabelsForDisplay } from "../../../src/optics/foldedPathDisplay.js";
-import { traceExactSurfaceStack } from "../../../src/optics/internal/exactSurfaceTrace.js";
-import { doLayout, SVG_PATH_SUBDIVISIONS, traceRay } from "../../../src/optics/optics.js";
+import { traceExactSurfaceStack, traceToStopViaGeneralized } from "../../../src/optics/internal/exactSurfaceTrace.js";
+import { doLayout, solveChiefRay, SVG_PATH_SUBDIVISIONS, traceRay } from "../../../src/optics/optics.js";
 import { obstructionAwareRayFractionsForDensity } from "../../../src/optics/raySampling.js";
 import validateLensData from "../../../src/optics/validateLensData.js";
-import type { LensData } from "../../../src/types/optics.js";
+import type { LensData, RuntimeLens } from "../../../src/types/optics.js";
 import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 
 const mirrorData = LENS_CATALOG["reference-spherical-primary-mirror"] as LensData;
@@ -22,6 +22,7 @@ const cassegrainData = LENS_CATALOG["reference-cassegrain-back-focus"] as LensDa
 const maksutovData = LENS_CATALOG["reference-maksutov-cassegrain-meniscus"] as LensData;
 const gregorianData = LENS_CATALOG["reference-gregorian-secondary"] as LensData;
 const ringBlockerData = LENS_CATALOG["reference-annular-ring-blocker"] as LensData;
+const planarData = LENS_CATALOG["zeiss-planar-t-50f14"] as LensData;
 
 function reflectYz(incidentY: number, incidentZ: number, normalY: number, normalZ: number): [number, number] {
   const dot = incidentY * normalY + incidentZ * normalZ;
@@ -33,6 +34,13 @@ function reflectYz(incidentY: number, incidentZ: number, normalY: number, normal
 
 function pathCoords(pathD: string): [number, number][] {
   return [...pathD.matchAll(/[ML]([\d.e+-]+),([\d.e+-]+)/g)].map((match) => [Number(match[1]), Number(match[2])]);
+}
+
+function imagePlaneCoordinateFromTrace(result: { pts: number[][] }, L: RuntimeLens): number {
+  const point = result.pts[result.pts.length - 1]!;
+  const tangentZ = -L.imagePlane.normal.y;
+  const tangentY = L.imagePlane.normal.z;
+  return (point[0] - L.imagePlane.z) * tangentZ + (point[1] - L.imagePlane.y) * tangentY;
 }
 
 describe("mirror optics support", () => {
@@ -60,6 +68,26 @@ describe("mirror optics support", () => {
       ),
     });
     expect(badBackingNormal.some((error) => error.includes("tilted mirror backing plane"))).toBe(true);
+
+    const badMaxInteractions = validateLensData({
+      ...mirrorData,
+      opticalPath: { ...mirrorData.opticalPath, maxInteractions: 2 },
+    });
+    expect(badMaxInteractions.some((error) => error.includes("opticalPath.maxInteractions"))).toBe(true);
+
+    const badInnerPair = validateLensData({
+      ...annularData,
+      surfaces: annularData.surfaces.map((surface) =>
+        surface.label === "M1B" ? { ...surface, innerSd: undefined } : surface,
+      ),
+    });
+    expect(badInnerPair.some((error) => error.includes("matching innerSd"))).toBe(true);
+
+    const unreachableImagePlane = validateLensData({
+      ...mirrorData,
+      opticalPath: { ...mirrorData.opticalPath, imagePlane: { z: 500, label: "IMG" } },
+    });
+    expect(unreachableImagePlane.some((error) => error.includes("imagePlane"))).toBe(true);
   });
 
   it("builds the hidden spherical mirror fixture as folded optics", () => {
@@ -100,6 +128,37 @@ describe("mirror optics support", () => {
     expect(result.y).toBeCloseTo(0, 2);
     expect(lastPoint[0]).toBeCloseTo(L.imagePlane.z, 10);
     expect(lastPoint[1]).toBeCloseTo(result.y, 10);
+  });
+
+  it("anchors the spherical primary fixture to the closed-form R/2 focal plane", () => {
+    const L = buildLens(mirrorData);
+    const layout = doLayout(0, 0, L);
+    const mirror = L.S[L.labelIdx.M1];
+    const expectedFocusZ = layout.z[L.labelIdx.M1] + mirror.R / 2;
+
+    expect(L.imagePlane.z).toBeCloseTo(expectedFocusZ, 10);
+  });
+
+  it("traces off-axis spherical-mirror chief rays to the rectilinear image height", () => {
+    const L = buildLens(mirrorData);
+    const layout = doLayout(0, 0, L);
+    const fieldDeg = 2;
+    const expected = L.EFL * Math.tan((fieldDeg * Math.PI) / 180);
+
+    const positiveSolve = solveChiefRay(fieldDeg, 0, 0, L);
+    const negativeSolve = solveChiefRay(-fieldDeg, 0, 0, L);
+    const positive = traceRay(positiveSolve.yLaunch, positiveSolve.uField, layout.z, 0, 0, L.stopPhysSD, true, L);
+    const negative = traceRay(negativeSolve.yLaunch, negativeSolve.uField, layout.z, 0, 0, L.stopPhysSD, true, L);
+    const positiveHeight = imagePlaneCoordinateFromTrace(positive, L);
+    const negativeHeight = imagePlaneCoordinateFromTrace(negative, L);
+
+    expect(positiveSolve.status).toBe("converged");
+    expect(positive.reachedImagePlane).toBe(true);
+    expect(negative.reachedImagePlane).toBe(true);
+    expect(positive.clipped).toBe(false);
+    expect(negative.clipped).toBe(false);
+    expect(Math.abs(positiveHeight)).toBeCloseTo(expected, 2);
+    expect(positiveHeight).toBeCloseTo(-negativeHeight, 8);
   });
 
   it("clips central rays on an obstruction while sampling the usable annular pupil", () => {
@@ -168,6 +227,28 @@ describe("mirror optics support", () => {
     expect(result.clipped).toBe(false);
     expect(result.terminalPoint[1]).toBeCloseTo(25, 10);
     expect(Number.isFinite(result.terminalPoint[2])).toBe(true);
+  });
+
+  it("traces off-axis Newtonian chief rays to the side image-plane coordinate", () => {
+    const L = buildLens(newtonianData);
+    const layout = doLayout(0, 0, L);
+    const fieldDeg = 2;
+    const expected = L.EFL * Math.tan((fieldDeg * Math.PI) / 180);
+
+    const positiveSolve = solveChiefRay(fieldDeg, 0, 0, L);
+    const negativeSolve = solveChiefRay(-fieldDeg, 0, 0, L);
+    const positive = traceRay(positiveSolve.yLaunch, positiveSolve.uField, layout.z, 0, 0, L.stopPhysSD, true, L);
+    const negative = traceRay(negativeSolve.yLaunch, negativeSolve.uField, layout.z, 0, 0, L.stopPhysSD, true, L);
+    const positiveCoordinate = imagePlaneCoordinateFromTrace(positive, L);
+    const negativeCoordinate = imagePlaneCoordinateFromTrace(negative, L);
+
+    expect(positiveSolve.status).toBe("converged");
+    expect(positive.reachedImagePlane).toBe(true);
+    expect(negative.reachedImagePlane).toBe(true);
+    expect(positive.clipped).toBe(false);
+    expect(negative.clipped).toBe(false);
+    expect(Math.abs(positiveCoordinate)).toBeCloseTo(expected, 2);
+    expect(positiveCoordinate).toBeCloseTo(-negativeCoordinate, 8);
   });
 
   it("keeps auto folded hit order stable under small ray-height and aperture perturbations", () => {
@@ -257,6 +338,10 @@ describe("mirror optics support", () => {
     const layout = doLayout(0, 0, L);
     const central = traceExactSurfaceStack(L, { y0: 0, uy0: 0 }, { zPos: layout.z, leadDistance: 0 });
     const marginal = traceExactSurfaceStack(L, { y0: 12, uy0: 0 }, { zPos: layout.z, leadDistance: 0 });
+    const offAxisStop = traceToStopViaGeneralized(L, { y0: 0, uy0: -Math.tan((2 * Math.PI) / 180) }, L.stopIdx, {
+      zPos: layout.z,
+      leadDistance: 0,
+    });
     const centralSecondary = central.hits.find((hit) => hit.surfaceIdx === L.labelIdx.SEC);
     const marginalHitLabels = marginal.hits.map((hit) => L.S[hit.surfaceIdx].label);
     const samples = obstructionAwareRayFractionsForDensity(L, L.rayFractions, "normal", L.EP.epSD);
@@ -269,6 +354,9 @@ describe("mirror optics support", () => {
     expect(marginal.reachedImagePlane).toBe(true);
     expect(marginal.clipped).toBe(false);
     expect(marginal.terminalPoint[2]).toBeCloseTo(L.imagePlane.z, 10);
+    expect(offAxisStop.found).toBe(true);
+    expect(offAxisStop.hitIndex).toBe(-1);
+    expect(offAxisStop.y).toBeCloseTo(0, 12);
     expect(samples.every((fraction) => Math.abs(fraction) >= blockedFraction - 1e-9)).toBe(true);
   });
 
@@ -366,6 +454,7 @@ describe("mirror optics support", () => {
     expect(marginal.diagnostics?.hitSurfaceLabels).toEqual(["M1", "SEC"]);
     expect(marginal.reachedImagePlane).toBe(true);
     expect(marginal.clipped).toBe(false);
+    expect(marginal.pts[marginal.pts.length - 1]![0]).toBeCloseTo(L.imagePlane.z, 10);
   });
 
   it("supports an annular blocker that clips a ring while allowing the center through", () => {
@@ -384,6 +473,72 @@ describe("mirror optics support", () => {
       reason: "block-surface",
       failureReason: null,
     });
+  });
+
+  it("selects repeated stop-surface occurrences in generalized stop traces", () => {
+    const L = buildLens({
+      ...mirrorData,
+      key: "reference-repeated-stop-primary",
+      opticalPath: {
+        surfaceOrder: ["STO", "M1", "STO"],
+        imagePlane: { z: 0, label: "IMG" },
+        maxInteractions: 4,
+      },
+    } satisfies LensData);
+    const layout = doLayout(0, 0, L);
+    const firstStop = traceToStopViaGeneralized(L, { y0: 5, uy0: 0 }, L.stopIdx, {
+      zPos: layout.z,
+      leadDistance: 0,
+    });
+    const secondStop = traceToStopViaGeneralized(L, { y0: 5, uy0: 0 }, L.stopIdx, {
+      zPos: layout.z,
+      leadDistance: 0,
+      stopOccurrence: 1,
+    });
+
+    expect(firstStop.found).toBe(true);
+    expect(secondStop.found).toBe(true);
+    expect(firstStop.hitIndex).toBe(0);
+    expect(secondStop.hitIndex).toBeGreaterThan(firstStop.hitIndex);
+    expect(secondStop.point![2]).toBeCloseTo(layout.z[L.stopIdx], 10);
+  });
+
+  it("infers enough launch lead for a tilted flat first surface", () => {
+    const result = traceExactSurfaceStack(
+      {
+        S: [
+          {
+            label: "M1",
+            R: 1e15,
+            d: 0,
+            nd: 1,
+            sd: 10,
+            interaction: { type: "reflect", mirrorKind: "first-surface", normal: { z: 1, y: 1 } },
+          },
+        ],
+        asphByIdx: {},
+        opticalPath: { mode: "sequential", surfaceOrder: [0], surfaceLabels: ["M1"], maxInteractions: 2 },
+        isFoldedOptics: true,
+      },
+      { y0: 10, uy0: 0 },
+    );
+
+    expect(result.failureReason).toBeNull();
+    expect(result.hits).toHaveLength(1);
+    expect(result.hits[0]!.point[2]).toBeCloseTo(-10, 8);
+  });
+
+  it("preserves representative refractive lens build constants", () => {
+    const L = buildLens(planarData);
+
+    expect(L.EP.epSD).toBeCloseTo(17.856823466425105, 12);
+    expect(L.EP.yRatio).toBeCloseTo(0.6960409629659625, 12);
+    expect(L.B).toBeCloseTo(16.79046967193117, 12);
+    expect(L.halfField).toBeCloseTo(25.81431950150305, 12);
+    expect(L.tracingHalfField).toBeCloseTo(25.81431950150305, 12);
+    expect(L.epZRelStop).toBeCloseTo(4.204818318081482, 12);
+    expect(L.xpZRelLastSurf).toBeCloseTo(-29.615117987357305, 12);
+    expect(L.xpSD).toBeCloseTo(23.254328038906696, 12);
   });
 
   it("computes mirror-safe on-axis spherical aberration against the explicit image plane", () => {

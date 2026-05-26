@@ -44,10 +44,40 @@ export function imagePlaneIntercept(y: number, u: number, lastSurfZ: number, ima
   return isFinite(imageHeight) ? imageHeight : null;
 }
 
-export function meridionalImagePlaneCoordinate(z: number, y: number, L: RuntimeLens): number {
-  const tangentZ = -L.imagePlane.normal.y;
-  const tangentY = L.imagePlane.normal.z;
-  return (z - L.imagePlane.z) * tangentZ + (y - L.imagePlane.y) * tangentY;
+export function meridionalImagePlaneCoordinate(
+  z: number,
+  y: number,
+  L: RuntimeLens,
+  planeZ = L.imagePlane?.z ?? z,
+): number {
+  const normal = L.imagePlane?.normal ?? { z: 1, y: 0 };
+  const imageY = L.imagePlane?.y ?? 0;
+  const tangentZ = -normal.y;
+  const tangentY = normal.z;
+  return (z - planeZ) * tangentZ + (y - imageY) * tangentY;
+}
+
+export function imagePlaneCoordinate(
+  y: number,
+  u: number,
+  referenceZ: number,
+  L: RuntimeLens,
+  planeZ = L.imagePlane?.z ?? referenceZ,
+): number | null {
+  const normal = L.imagePlane?.normal ?? { z: 1, y: 0 };
+  const imageY = L.imagePlane?.y ?? 0;
+  const normalY = normal.y;
+  const normalZ = normal.z;
+  const numer = normalY * (y - imageY) + normalZ * (referenceZ - planeZ);
+  const denom = normalY * u + normalZ;
+  if (Math.abs(denom) <= 1e-12) {
+    return Math.abs(numer) <= 1e-9 ? meridionalImagePlaneCoordinate(referenceZ, y, L, planeZ) : null;
+  }
+  const dz = -numer / denom;
+  const zHit = referenceZ + dz;
+  const yHit = y + u * dz;
+  if (!isFinite(zHit) || !isFinite(yHit)) return null;
+  return meridionalImagePlaneCoordinate(zHit, yHit, L, planeZ);
 }
 
 export function generalizedImagePlaneIntercept(
@@ -56,18 +86,7 @@ export function generalizedImagePlaneIntercept(
   referenceZ: number,
   L: RuntimeLens,
 ): number | null {
-  const normalY = L.imagePlane.normal.y;
-  const normalZ = L.imagePlane.normal.z;
-  const numer = normalY * (y - L.imagePlane.y) + normalZ * (referenceZ - L.imagePlane.z);
-  const denom = normalY * u + normalZ;
-  if (Math.abs(denom) <= 1e-12) {
-    return Math.abs(numer) <= 1e-9 ? meridionalImagePlaneCoordinate(referenceZ, y, L) : null;
-  }
-  const dz = -numer / denom;
-  const zHit = referenceZ + dz;
-  const yHit = y + u * dz;
-  if (!isFinite(zHit) || !isFinite(yHit)) return null;
-  return meridionalImagePlaneCoordinate(zHit, yHit, L);
+  return imagePlaneCoordinate(y, u, referenceZ, L, L.imagePlane?.z ?? referenceZ);
 }
 
 export function computeRealRayHit(
@@ -90,9 +109,7 @@ export function computeRealRayHit(
   const referenceZ = terminalPoint ? terminalPoint[0] : lastSurfZ;
   const referenceY = terminalPoint ? terminalPoint[1] : ray.y;
   const intercept = axialIntercept(referenceY, ray.u, referenceZ);
-  const imageHeight = L.isFoldedOptics
-    ? generalizedImagePlaneIntercept(referenceY, ray.u, referenceZ, L)
-    : imagePlaneIntercept(referenceY, ray.u, referenceZ, imagePlaneZ);
+  const imageHeight = imagePlaneCoordinate(referenceY, ray.u, referenceZ, L, imagePlaneZ);
   if (intercept === null || imageHeight === null) return null;
 
   return {

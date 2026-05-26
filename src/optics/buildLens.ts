@@ -25,7 +25,8 @@ import {
   type ParaxialSurfaceTraceOptions,
   type RealSurfaceTraceResult,
 } from "./internal/traceSurfaces.js";
-import { traceExactSurfaceStack } from "./internal/exactSurfaceTrace.js";
+import { traceExactSurfaceStack, traceToStopViaGeneralized } from "./internal/exactSurfaceTrace.js";
+import type { ExactTraceLens, ExactSurfaceTraceResult } from "./internal/exactSurfaceTrace.js";
 import {
   fisheyeProjectionFocalLengthAtZoom,
   fisheyeProjectionMaxTraceFieldAtZoom,
@@ -122,6 +123,82 @@ function realTraceToStop(
 interface RealTraceFullResult extends RealTraceToStopResult {
   heights: number[];
   clipped: boolean; /* true if |y| exceeded any surface SD */
+}
+
+interface PupilBasisRay {
+  y: number;
+  u: number;
+  z: number;
+}
+
+interface PupilGeometryFallback {
+  xpZRelLastSurf: number;
+  xpSD: number;
+}
+
+interface PupilGeometryResult {
+  epZRelStop: number;
+  xpZRelLastSurf: number;
+  xpSD: number;
+}
+
+function finitePupilBasisRay(ray: PupilBasisRay): boolean {
+  return isFinite(ray.y) && isFinite(ray.u) && isFinite(ray.z);
+}
+
+function pupilBasisAtZ(ray: PupilBasisRay, scale: number, z: number): { y: number; u: number } {
+  return {
+    y: (ray.y + ray.u * (z - ray.z)) / scale,
+    u: ray.u / scale,
+  };
+}
+
+function computePupilGeometry({
+  realYRatio,
+  realB,
+  margFull,
+  chiefFull,
+  epSD,
+  delta,
+  zStop,
+  zLast,
+  fallback,
+}: {
+  realYRatio: number;
+  realB: number;
+  margFull: PupilBasisRay;
+  chiefFull: PupilBasisRay;
+  epSD: number;
+  delta: number;
+  zStop: number;
+  zLast: number;
+  fallback: PupilGeometryFallback;
+}): PupilGeometryResult {
+  const epZRelStop = Math.abs(realYRatio) > 1e-9 ? realB / realYRatio - zStop : 0;
+  if (!finitePupilBasisRay(margFull) || !finitePupilBasisRay(chiefFull) || !isFinite(zLast)) {
+    return { epZRelStop, ...fallback };
+  }
+
+  const marginal = pupilBasisAtZ(margFull, delta, zLast);
+  const chief = pupilBasisAtZ(chiefFull, delta, zLast);
+  const xpY = realYRatio * chief.y - realB * marginal.y;
+  const xpU = realYRatio * chief.u - realB * marginal.u;
+  const xpZRelLastSurf = Math.abs(xpU) > 1e-9 ? -xpY / xpU : Infinity;
+  const xpSD = isFinite(xpZRelLastSurf) ? Math.abs(marginal.y + marginal.u * xpZRelLastSurf) * epSD : Infinity;
+  return { epZRelStop, xpZRelLastSurf, xpSD };
+}
+
+function foldedPupilBasisRay(result: ExactSurfaceTraceResult): PupilBasisRay {
+  if (result.failureReason !== null || result.clipped) return { y: NaN, u: NaN, z: NaN };
+  const lastHit = [...result.hits].reverse().find((hit) => !hit.fallback && hit.failureReason === null);
+  if (!lastHit) return { y: NaN, u: NaN, z: NaN };
+  const direction = lastHit.outgoingDirection ?? result.terminalDirection;
+  if (Math.abs(direction[2]) <= 1e-12) return { y: NaN, u: NaN, z: NaN };
+  return {
+    y: lastHit.point[1],
+    u: direction[1] / direction[2],
+    z: lastHit.point[2],
+  };
 }
 
 /**
@@ -332,10 +409,71 @@ export default function buildLens(data: LensData): RuntimeLens {
       firstFiniteScalar(data.focalLengthDesign) ?? firstFiniteScalar(data.focalLengthMarketing) ?? axialExtent;
     const baseNomFno = Array.isArray(data.nominalFno) ? data.nominalFno[0] : data.nominalFno!;
     const stopPhysSD = S[stopIdx].sd;
-    const EP: EntrancePupil = {
-      epSD: referenceFocalLength / (2 * baseNomFno),
-      yRatio: stopPhysSD > 0 ? stopPhysSD / Math.max(referenceFocalLength / (2 * baseNomFno), 1e-12) : 1,
+    const nominalEPSD = referenceFocalLength / (2 * baseNomFno);
+    const fallbackYRatio = stopPhysSD > 0 ? stopPhysSD / Math.max(nominalEPSD, 1e-12) : 1;
+    const foldedTraceLens: ExactTraceLens = {
+      S,
+      asphByIdx,
+      stopIdx,
+      clipMargin: data.clipMargin,
+      opticalPath,
+      imagePlane,
+      isFoldedOptics: true,
     };
+    let EP: EntrancePupil = { epSD: nominalEPSD, yRatio: fallbackYRatio };
+    let B = 0;
+    let epZRelStop = 0;
+    let xpZRelLastSurf = 0;
+    let xpSD = EP.epSD;
+    const realEpDelta = 1e-4;
+    const foldedMarginalStop = traceToStopViaGeneralized(foldedTraceLens, { y0: realEpDelta, uy0: 0 }, stopIdx, {
+      zPos: z,
+      leadDistance: 0,
+    });
+    const foldedChiefStop = traceToStopViaGeneralized(foldedTraceLens, { y0: 0, uy0: realEpDelta }, stopIdx, {
+      zPos: z,
+      leadDistance: 0,
+    });
+    if (
+      foldedMarginalStop.found &&
+      foldedChiefStop.found &&
+      isFinite(foldedMarginalStop.y) &&
+      isFinite(foldedChiefStop.y) &&
+      Math.abs(foldedMarginalStop.y) > 1e-15
+    ) {
+      const realYRatio = foldedMarginalStop.y / realEpDelta;
+      const realB = foldedChiefStop.y / realEpDelta;
+      const foldedMarginalFull = foldedPupilBasisRay(
+        traceExactSurfaceStack(foldedTraceLens, { y0: realEpDelta, uy0: 0 }, { zPos: z, leadDistance: 0 }),
+      );
+      const foldedChiefFull = foldedPupilBasisRay(
+        traceExactSurfaceStack(foldedTraceLens, { y0: 0, uy0: realEpDelta }, { zPos: z, leadDistance: 0 }),
+      );
+      const foldedLastZ = finitePupilBasisRay(foldedMarginalFull)
+        ? foldedMarginalFull.z
+        : finitePupilBasisRay(foldedChiefFull)
+          ? foldedChiefFull.z
+          : z[N - 1];
+      const pupilGeometry = computePupilGeometry({
+        realYRatio,
+        realB,
+        margFull: foldedMarginalFull,
+        chiefFull: foldedChiefFull,
+        epSD: EP.epSD,
+        delta: realEpDelta,
+        zStop: foldedMarginalStop.point?.[2] ?? z[stopIdx] ?? 0,
+        zLast: foldedLastZ,
+        fallback: {
+          xpZRelLastSurf: 0,
+          xpSD: EP.epSD,
+        },
+      });
+      EP = { epSD: nominalEPSD, yRatio: realYRatio };
+      B = realB;
+      epZRelStop = pupilGeometry.epZRelStop;
+      xpZRelLastSurf = pupilGeometry.xpZRelLastSurf;
+      xpSD = pupilGeometry.xpSD;
+    }
     const FOPEN = baseNomFno;
     const halfField =
       rectilinearProjectionMaxTraceField(projection) ??
@@ -402,7 +540,7 @@ export default function buildLens(data: LensData): RuntimeLens {
       EFL: referenceFocalLength,
       apertureReferenceFocalLength: referenceFocalLength,
       EP,
-      B: 0,
+      B,
       FOPEN,
       halfField,
       tracingHalfField,
@@ -450,9 +588,9 @@ export default function buildLens(data: LensData): RuntimeLens {
       zoomTracingHalfFields: null,
       zoomYRatios: null,
       zoomBs: null,
-      epZRelStop: 0,
-      xpZRelLastSurf: 0,
-      xpSD: EP.epSD,
+      epZRelStop,
+      xpZRelLastSurf,
+      xpSD,
       zoomEpZRelStops: null,
       zoomXpZRelLastSurfs: null,
       zoomXpSDs: null,
@@ -525,7 +663,6 @@ export default function buildLens(data: LensData): RuntimeLens {
   const realChief = realTraceToStopFull(S, asphByIdx, 0, realEpDelta, stopIdx);
   const realYRatio = isFinite(realMarginal.y) ? realMarginal.y / realEpDelta : epTrace.y;
   const realB = isFinite(realChief.y) ? realChief.y / realEpDelta : B;
-  const epZRelStop = Math.abs(realYRatio) > 1e-9 ? realB / realYRatio - zStopBaseline : 0;
 
   /* Exit pupil: use real (Snell's law) two-ray decomposition through the
    * full system.  Trace small marginal (y=δ, u=0) and chief (y=0, u=δ)
@@ -534,28 +671,27 @@ export default function buildLens(data: LensData): RuntimeLens {
    * to find XP position and size.  Falls back to paraxial on TIR. */
   const realMargFull = realTraceFullSystem(S, asphByIdx, realEpDelta, 0);
   const realChiefFull = realTraceFullSystem(S, asphByIdx, 0, realEpDelta);
-  let xpZRelLastSurf: number;
-  let xpSD: number;
-  if (isFinite(realMargFull.y) && isFinite(realChiefFull.y)) {
-    /* Normalize to unit-input basis rays (divide out δ) */
-    const mY = realMargFull.y / realEpDelta,
-      mU = realMargFull.u / realEpDelta;
-    const cY = realChiefFull.y / realEpDelta,
-      cU = realChiefFull.u / realEpDelta;
-    /* Two-ray decomposition: stop-center chief = yRatio·chief − B·marginal
-     * (using real yRatio and B from the front-group traces above) */
-    const xpY = realYRatio * cY - realB * mY;
-    const xpU = realYRatio * cU - realB * mU;
-    xpZRelLastSurf = Math.abs(xpU) > 1e-9 ? -xpY / xpU : Infinity;
-    xpSD = isFinite(xpZRelLastSurf) ? Math.abs(mY + mU * xpZRelLastSurf) * EP.epSD : Infinity;
-  } else {
-    /* Fallback: paraxial exit pupil */
-    const chiefFull = paraxialTrace(S, 0, 1, { skipLastTransfer: true });
-    const xpNumer = -(epTrace.y * chiefFull.y - eflTrace.y * B);
-    const xpDenom = epTrace.y * chiefFull.u - eflTrace.u * B;
-    xpZRelLastSurf = Math.abs(xpDenom) > 1e-9 ? xpNumer / xpDenom : Infinity;
-    xpSD = isFinite(xpZRelLastSurf) ? Math.abs(eflTrace.y + eflTrace.u * xpZRelLastSurf) * EP.epSD : Infinity;
-  }
+  const chiefFull = paraxialTrace(S, 0, 1, { skipLastTransfer: true });
+  const xpNumer = -(epTrace.y * chiefFull.y - eflTrace.y * B);
+  const xpDenom = epTrace.y * chiefFull.u - eflTrace.u * B;
+  const fallbackXpZRelLastSurf = Math.abs(xpDenom) > 1e-9 ? xpNumer / xpDenom : Infinity;
+  const lastSurfaceZ = sumSurfaceThicknesses(S, N - 1);
+  const { epZRelStop, xpZRelLastSurf, xpSD } = computePupilGeometry({
+    realYRatio,
+    realB,
+    margFull: { ...realMargFull, z: lastSurfaceZ },
+    chiefFull: { ...realChiefFull, z: lastSurfaceZ },
+    epSD: EP.epSD,
+    delta: realEpDelta,
+    zStop: zStopBaseline,
+    zLast: lastSurfaceZ,
+    fallback: {
+      xpZRelLastSurf: fallbackXpZRelLastSurf,
+      xpSD: isFinite(fallbackXpZRelLastSurf)
+        ? Math.abs(eflTrace.y + eflTrace.u * fallbackXpZRelLastSurf) * EP.epSD
+        : Infinity,
+    },
+  });
 
   const stopPhysSD = S[stopIdx].sd;
   const FOPEN = apertureReferenceFocalLength / (2 * EP.epSD); /* wide-open f-number */

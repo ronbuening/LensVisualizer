@@ -90,6 +90,8 @@ export interface ExactSurfaceTraceHit {
   surfaceIdx: number;
   point: Vector3;
   normal: Vector3;
+  incidentDirection?: Vector3;
+  outgoingDirection?: Vector3;
   radius: number;
   clipped: boolean;
   fallback: boolean;
@@ -121,6 +123,24 @@ export interface ExactSurfaceTraceResult {
 }
 
 const TRACE_CLIP_ABS_TOLERANCE = 1e-9;
+
+export type GeneralizedStopTraceInput = ExactSurfaceTraceInput | VectorRayInput;
+
+export interface TraceToStopViaGeneralizedOptions extends Omit<ExactSurfaceTraceOptions, "stopAt"> {
+  stopOccurrence?: number;
+}
+
+export interface TraceToStopViaGeneralizedResult {
+  found: boolean;
+  x: number;
+  y: number;
+  ux: number;
+  uy: number;
+  n: number;
+  point: Vector3 | null;
+  hitIndex: number;
+  trace: ExactSurfaceTraceResult;
+}
 
 export function buildSurfaceZPositions(surfaces: readonly Pick<ExactTraceSurface, "d">[]): number[] {
   const z = [0];
@@ -263,6 +283,7 @@ export function traceExactSurfaceStackVector(
       heights!.push(projectCoordinateToZ(point[1], point[2], direction[1], direction[2], vertexZ));
     }
 
+    const incidentDirection: Vector3 = [direction[0], direction[1], direction[2]];
     const apertureClip = apertureSemiDiameter(i, surface, lens, stopSemiDiameter);
     let clipReason: FoldedPathClipReason | undefined;
     if (checkSemiDiameter && apertureClip !== null && !radiusWithinTraceAperture(radius, surface, apertureClip)) {
@@ -276,6 +297,7 @@ export function traceExactSurfaceStackVector(
       surfaceIdx: i,
       point,
       normal,
+      incidentDirection,
       radius,
       clipped: hitClipped,
       fallback,
@@ -309,6 +331,10 @@ export function traceExactSurfaceStackVector(
     }
 
     n = nn;
+    hits[hits.length - 1] = {
+      ...hits[hits.length - 1],
+      outgoingDirection: [direction[0], direction[1], direction[2]],
+    };
     origin = point;
   }
 
@@ -346,6 +372,73 @@ export function traceExactSurfaceStackVector(
       autoSteps: [],
       loopKey: null,
     }),
+  };
+}
+
+export function traceToStopViaGeneralized(
+  lens: ExactTraceLens,
+  input: GeneralizedStopTraceInput,
+  stopIdx: number,
+  {
+    zPos = buildSurfaceZPositions(lens.S),
+    stopOccurrence = 0,
+    recordHeights = false,
+    checkSemiDiameter = false,
+    stopSemiDiameter,
+    ghost = false,
+    stopOnClip = false,
+    leadDistance,
+    launchBoundT,
+    indexAtSurface,
+  }: TraceToStopViaGeneralizedOptions = {},
+): TraceToStopViaGeneralizedResult {
+  const ray = vectorRayFromStopTraceInput(lens, input, zPos, leadDistance);
+  const trace = traceExactSurfaceStackVector(lens, ray, {
+    zPos,
+    recordHeights,
+    checkSemiDiameter,
+    stopSemiDiameter,
+    ghost,
+    stopOnClip,
+    launchBoundT,
+    indexAtSurface,
+  });
+
+  let occurrence = 0;
+  for (let hitIndex = 0; hitIndex < trace.hits.length; hitIndex++) {
+    const hit = trace.hits[hitIndex];
+    if (hit.surfaceIdx !== stopIdx || hit.clipped || hit.fallback || hit.failureReason !== null) continue;
+    if (occurrence === stopOccurrence) {
+      const direction = hit.incidentDirection ?? trace.terminalDirection;
+      return stopTraceResult(true, hit.point, direction, trace.n, hitIndex, trace);
+    }
+    occurrence++;
+  }
+
+  const launchPlaneStop = stopTraceLaunchPlaneCandidate(
+    lens,
+    ray.origin,
+    ray.direction,
+    zPos,
+    stopIdx,
+    trace,
+    checkSemiDiameter,
+    stopSemiDiameter,
+  );
+  if (stopOccurrence === 0 && launchPlaneStop !== null) {
+    return stopTraceResult(true, launchPlaneStop, ray.direction, trace.n, -1, trace);
+  }
+
+  return {
+    found: false,
+    x: NaN,
+    y: NaN,
+    ux: NaN,
+    uy: NaN,
+    n: trace.n,
+    point: null,
+    hitIndex: -1,
+    trace,
   };
 }
 
@@ -488,6 +581,7 @@ function traceGeneralizedSurfaceStackVector(
         surfaceIdx: nextSurfaceIdx,
         point: fallbackPoint.point,
         normal: fallbackPoint.normal,
+        incidentDirection: [direction[0], direction[1], direction[2]],
         radius,
         clipped: true,
         fallback: true,
@@ -504,6 +598,7 @@ function traceGeneralizedSurfaceStackVector(
     const point = nextSurfaceHit.point;
     const normal = nextSurfaceHit.normal;
     const radius = nextSurfaceHit.radius;
+    const incidentDirection: Vector3 = [direction[0], direction[1], direction[2]];
     terminalPoint = point;
     terminalSurfaceIdx = nextSurfaceIdx;
     if (recordHeights) {
@@ -529,6 +624,7 @@ function traceGeneralizedSurfaceStackVector(
           surfaceIdx: nextSurfaceIdx,
           point,
           normal,
+          incidentDirection,
           radius,
           clipped: true,
           fallback: false,
@@ -550,6 +646,7 @@ function traceGeneralizedSurfaceStackVector(
           surfaceIdx: nextSurfaceIdx,
           point,
           normal,
+          incidentDirection,
           radius,
           clipped: true,
           fallback: false,
@@ -572,6 +669,7 @@ function traceGeneralizedSurfaceStackVector(
           surfaceIdx: nextSurfaceIdx,
           point,
           normal,
+          incidentDirection,
           radius,
           clipped: true,
           fallback: false,
@@ -589,6 +687,7 @@ function traceGeneralizedSurfaceStackVector(
       surfaceIdx: nextSurfaceIdx,
       point,
       normal,
+      incidentDirection,
       radius,
       clipped,
       fallback: false,
@@ -621,6 +720,11 @@ function traceGeneralizedSurfaceStackVector(
       }
       n = nn;
     }
+
+    hits[hits.length - 1] = {
+      ...hits[hits.length - 1],
+      outgoingDirection: [direction[0], direction[1], direction[2]],
+    };
 
     if (path?.mode === "auto") {
       const stateKey = autoLoopStateKey(nextSurfaceIdx, point, direction, n);
@@ -738,9 +842,115 @@ function exceedsTraceAperture(radius: number, semiDiameter: number): boolean {
   return radius > semiDiameter + tolerance;
 }
 
+function vectorRayFromStopTraceInput(
+  lens: ExactTraceLens,
+  input: GeneralizedStopTraceInput,
+  zPos: readonly number[],
+  leadDistance: number | undefined,
+): VectorRayInput {
+  if ("origin" in input) {
+    return {
+      origin: [input.origin[0], input.origin[1], input.origin[2]],
+      direction: [input.direction[0], input.direction[1], input.direction[2]],
+    };
+  }
+
+  const { x0 = 0, y0, ux0 = 0, uy0 } = input;
+  const lead = Math.max(0, leadDistance ?? inferLeadDistance(lens));
+  return {
+    origin: [x0 - ux0 * lead, y0 - uy0 * lead, (zPos[0] ?? 0) - lead],
+    direction: normalizeDirection(ux0, uy0),
+  };
+}
+
+function stopTraceResult(
+  found: boolean,
+  point: Vector3,
+  direction: Vector3,
+  n: number,
+  hitIndex: number,
+  trace: ExactSurfaceTraceResult,
+): TraceToStopViaGeneralizedResult {
+  const invDz = Math.abs(direction[2]) > 1e-12 ? 1 / direction[2] : Infinity;
+  return {
+    found,
+    x: point[0],
+    y: point[1],
+    ux: direction[0] * invDz,
+    uy: direction[1] * invDz,
+    n,
+    point,
+    hitIndex,
+    trace,
+  };
+}
+
+function rayParameterAtPoint(origin: Vector3, direction: Vector3, point: Vector3): number {
+  return (
+    (point[0] - origin[0]) * direction[0] +
+    (point[1] - origin[1]) * direction[1] +
+    (point[2] - origin[2]) * direction[2]
+  );
+}
+
+function stopTraceLaunchPlaneCandidate(
+  lens: ExactTraceLens,
+  origin: Vector3,
+  direction: Vector3,
+  zPos: readonly number[],
+  stopIdx: number,
+  trace: ExactSurfaceTraceResult,
+  checkSemiDiameter: boolean,
+  stopSemiDiameter: number | undefined,
+): Vector3 | null {
+  const surface = lens.S[stopIdx];
+  if (!surface) return null;
+
+  const configuredNormal = surface.interaction?.normal;
+  const normal: Vector3 = [0, configuredNormal?.y ?? 0, configuredNormal?.z ?? 1];
+  const normalLength = Math.hypot(normal[0], normal[1], normal[2]);
+  if (!isFinite(normalLength) || normalLength <= 1e-12) return null;
+  normal[0] /= normalLength;
+  normal[1] /= normalLength;
+  normal[2] /= normalLength;
+
+  const vertex: Vector3 = [0, 0, zPos[stopIdx] ?? 0];
+  const denom = direction[0] * normal[0] + direction[1] * normal[1] + direction[2] * normal[2];
+  if (Math.abs(denom) <= 1e-12) return null;
+  const t =
+    ((vertex[0] - origin[0]) * normal[0] + (vertex[1] - origin[1]) * normal[1] + (vertex[2] - origin[2]) * normal[2]) /
+    denom;
+  if (!isFinite(t) || t < -1e-7) return null;
+
+  const firstHit = trace.hits[0];
+  if (firstHit) {
+    const firstHitT = rayParameterAtPoint(origin, direction, firstHit.point);
+    if (isFinite(firstHitT) && t > firstHitT + generalizedHitTolerance(firstHitT)) return null;
+  }
+
+  const point: Vector3 = [origin[0] + direction[0] * t, origin[1] + direction[1] * t, origin[2] + direction[2] * t];
+  if (!point.every(Number.isFinite)) return null;
+
+  if (checkSemiDiameter) {
+    const radius = Math.hypot(point[0], point[1]);
+    const aperture = apertureSemiDiameter(stopIdx, surface, lens, stopSemiDiameter);
+    if (traceApertureState(radius, surface, aperture) !== "inside") return null;
+  }
+
+  return point;
+}
+
 function inferLeadDistance(lens: ExactTraceLens): number {
   const first = lens.S[0];
   if (!first) return 0;
+  const tiltedNormal = first.interaction?.normal;
+  if (tiltedNormal) {
+    const sd = first.sd ?? 0;
+    if (Math.abs(tiltedNormal.z) > 1e-12) {
+      return Math.max(1, Math.abs((sd * tiltedNormal.y) / tiltedNormal.z) + 1);
+    }
+    return Math.max(1, 2 * sd + 1);
+  }
   const firstSag = Math.abs(conicPolySag(first.sd ?? 0, first.R, lens.asphByIdx[0]));
   return Math.max(1, firstSag + 1);
 }

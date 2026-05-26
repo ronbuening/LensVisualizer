@@ -40,7 +40,8 @@ import {
 import type { FieldGeometryState } from "./optics.js";
 import { stateSurfaces } from "./layout.js";
 import { type RealSurfaceTraceOptions, type RealSurfaceTraceResult } from "./internal/traceSurfaces.js";
-import { traceExactSurfaceStack } from "./internal/exactSurfaceTrace.js";
+import { traceExactSurfaceStack, traceToStopViaGeneralized } from "./internal/exactSurfaceTrace.js";
+import type { ExactTraceLens } from "./internal/exactSurfaceTrace.js";
 import { projectionLaunchSlopeForField } from "./projection.js";
 import type { RuntimeLens } from "../types/optics.js";
 
@@ -141,6 +142,20 @@ export interface ExitPupilAberrationProfile {
 
 /** Default number of field samples (0° through halfField). */
 export const PUPIL_ABERRATION_SAMPLE_COUNT = 17;
+
+function exactTraceLensForState(S: ReturnType<typeof stateSurfaces>, L: RuntimeLens): ExactTraceLens {
+  return L.isFoldedOptics
+    ? {
+        S,
+        asphByIdx: L.asphByIdx,
+        stopIdx: L.stopIdx,
+        clipMargin: L.clipMargin,
+        opticalPath: L.opticalPath,
+        imagePlane: L.imagePlane,
+        isFoldedOptics: true,
+      }
+    : { S, asphByIdx: L.asphByIdx, stopIdx: L.stopIdx, clipMargin: L.clipMargin };
+}
 
 function computeStatePupilBaselines(
   focusT: number,
@@ -477,8 +492,22 @@ function traceStateSurfacesReal(
   u0: number,
   traceOptions: RealSurfaceTraceOptions = {},
 ): RealSurfaceTraceResult {
+  const traceLens = exactTraceLensForState(S, L);
+  if (L.isFoldedOptics && traceOptions.stopAt !== undefined) {
+    const stopResult = traceToStopViaGeneralized(traceLens, { y0, uy0: u0 }, traceOptions.stopAt, {
+      checkSemiDiameter: traceOptions.checkSemiDiameter,
+    });
+    return {
+      y: stopResult.found ? stopResult.y : NaN,
+      u: stopResult.found ? stopResult.uy : NaN,
+      n: stopResult.n,
+      clipped: !stopResult.found,
+      heights: null,
+    };
+  }
+
   const result = traceExactSurfaceStack(
-    { S, asphByIdx: L.asphByIdx, stopIdx: L.stopIdx },
+    traceLens,
     { y0, uy0: u0 },
     {
       stopAt: traceOptions.stopAt,

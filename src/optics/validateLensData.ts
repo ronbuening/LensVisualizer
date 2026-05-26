@@ -13,6 +13,8 @@ import type { AsphericCoefficients, ImagePlaneData, PerspectiveControlConfig, Su
 import { isImageFormatId, isLensMountId } from "../utils/catalog/lensTaxonomy.js";
 import { buildAsphereIndex, buildLabelIndex, firstInfinityThickness } from "./internal/lensState.js";
 import { conicPolySag, FLAT_R_THRESHOLD, MAX_RIM_SLOPE_TAN, sagSlopeRaw } from "./internal/surfaceMath.js";
+import { traceExactSurfaceStack } from "./internal/exactSurfaceTrace.js";
+import type { ExactTraceLens } from "./internal/exactSurfaceTrace.js";
 
 /* Validation operates on untrusted data — use a permissive record type
  * so dynamic-key checks compile without casts on every property access. */
@@ -215,6 +217,20 @@ function validateOpticalPath(value: unknown, surfaceLabels: Set<string>, errors:
   ) {
     errors.push(`"opticalPath.maxInteractions" must be a positive integer when provided`);
   }
+
+  if (
+    Array.isArray(path.surfaceOrder) &&
+    typeof path.maxInteractions === "number" &&
+    isFinite(path.maxInteractions) &&
+    Math.round(path.maxInteractions) === path.maxInteractions
+  ) {
+    const requiredInteractions = path.surfaceOrder.length + (path.imagePlane !== undefined ? 1 : 0);
+    if (path.maxInteractions < requiredInteractions) {
+      errors.push(
+        `"opticalPath.maxInteractions" must be at least surfaceOrder length plus image-plane termination (${requiredInteractions})`,
+      );
+    }
+  }
 }
 
 function validateLensMounts(value: unknown, errors: string[]): void {
@@ -312,6 +328,99 @@ function validateTiltedMirrorBackingNormals(
     errors.push(
       `surfaces[${backingIdx}] ("${backing.label}"): tilted mirror backing plane should repeat interaction.normal from reflective surface "${surface.label}"`,
     );
+  }
+}
+
+function validatePairedInnerSdConsistency(
+  S: UntrustedLensData[],
+  explicitSpans: Map<number, { from: number; to: number; element: UntrustedLensData }>,
+  errors: string[],
+): void {
+  const pairs = new Map<string, [number, number]>();
+  const addPair = (a: number, b: number): void => {
+    if (a === b || a < 0 || b < 0 || a >= S.length || b >= S.length) return;
+    const lo = Math.min(a, b);
+    const hi = Math.max(a, b);
+    pairs.set(`${lo}:${hi}`, [lo, hi]);
+  };
+
+  for (const span of explicitSpans.values()) addPair(span.from, span.to);
+  for (let i = 0; i < S.length - 1; i++) {
+    if (typeof S[i]?.label === "string" && S[i + 1]?.label === `${S[i].label}B`) addPair(i, i + 1);
+  }
+
+  for (const [aIdx, bIdx] of pairs.values()) {
+    const a = S[aIdx];
+    const b = S[bIdx];
+    const aInner = typeof a.innerSd === "number" && isFinite(a.innerSd) ? a.innerSd : null;
+    const bInner = typeof b.innerSd === "number" && isFinite(b.innerSd) ? b.innerSd : null;
+    if (aInner === null && bInner === null) continue;
+    if (aInner !== null && bInner !== null && Math.abs(aInner - bInner) <= 1e-9) continue;
+    errors.push(
+      `surfaces[${aIdx}] ("${a.label}") and surfaces[${bIdx}] ("${b.label}"): paired annular surfaces must use matching innerSd values`,
+    );
+  }
+}
+
+function validateFoldedImagePlaneReachability(
+  data: UntrustedLensData,
+  S: UntrustedLensData[],
+  labelToIdx: Record<string, number>,
+  errors: string[],
+): void {
+  const pathData = data.opticalPath as Record<string, unknown> | undefined;
+  const imagePlaneData = pathData?.imagePlane as ImagePlaneData | undefined;
+  if (!pathData || !imagePlaneData || typeof imagePlaneData.z !== "number" || !isFinite(imagePlaneData.z)) return;
+  if (pathData.mode === "auto") return;
+  if (typeof labelToIdx.STO !== "number") return;
+
+  const surfaceLabels = Array.isArray(pathData.surfaceOrder) ? pathData.surfaceOrder : null;
+  if (surfaceLabels && new Set(surfaceLabels).size !== surfaceLabels.length) return;
+  const surfaceOrder =
+    surfaceLabels && surfaceLabels.every((label) => typeof label === "string" && typeof labelToIdx[label] === "number")
+      ? surfaceLabels.map((label) => labelToIdx[label])
+      : null;
+  const normal = normalizedNormal(imagePlaneData.normal) ?? { z: 1, y: 0 };
+  const maxInteractions =
+    typeof pathData.maxInteractions === "number" && isFinite(pathData.maxInteractions)
+      ? pathData.maxInteractions
+      : Math.max(S.length + 1, 1);
+
+  let asphByIdx: ExactTraceLens["asphByIdx"];
+  try {
+    asphByIdx = buildAsphereIndex(data.asph, labelToIdx);
+  } catch {
+    return;
+  }
+
+  const lens: ExactTraceLens = {
+    S: S as unknown as ExactTraceLens["S"],
+    asphByIdx,
+    stopIdx: labelToIdx.STO,
+    opticalPath: {
+      mode: pathData.mode === "auto" ? "auto" : "sequential",
+      surfaceOrder,
+      surfaceLabels: surfaceLabels as string[] | null,
+      maxInteractions,
+    },
+    imagePlane: {
+      z: imagePlaneData.z,
+      y: typeof imagePlaneData.y === "number" && isFinite(imagePlaneData.y) ? imagePlaneData.y : 0,
+      normal,
+      label: typeof imagePlaneData.label === "string" ? imagePlaneData.label : "IMG",
+    },
+    isFoldedOptics: true,
+  };
+
+  const stopSd = typeof S[labelToIdx.STO]?.sd === "number" && isFinite(S[labelToIdx.STO].sd) ? S[labelToIdx.STO].sd : 1;
+  const probeHeights = [...new Set([0, 0.2 * stopSd, -0.2 * stopSd, 0.4 * stopSd, -0.4 * stopSd])];
+  const reachesImagePlane = probeHeights.some((y0) => {
+    const result = traceExactSurfaceStack(lens, { y0, uy0: 0 }, { leadDistance: 0, checkSemiDiameter: true });
+    return result.reachedImagePlane === true && result.failureReason === null && !result.clipped;
+  });
+
+  if (!reachesImagePlane) {
+    errors.push(`"opticalPath.imagePlane" is not reached by any conservative folded-path probe ray`);
   }
 }
 
@@ -615,6 +724,8 @@ export default function validateLensData(data: UntrustedLensData): string[] {
   }
 
   validateTiltedMirrorBackingNormals(S, explicitSpans, errors);
+  validatePairedInnerSdConsistency(S, explicitSpans, errors);
+  validateFoldedImagePlaneReachability(data, S, labelToIdx, errors);
 
   const stopIdx = typeof labelToIdx.STO === "number" ? labelToIdx.STO : -1;
   if (stopIdx >= 0) {
