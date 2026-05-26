@@ -1,5 +1,10 @@
 # Optics 2 Engine Migration Plan
 
+> **Status (2026-05-26):** Historical — the staged migration is complete. The promoted engine now lives in
+> `src/optics/`, old engine selectors and parity-only harnesses have been removed, and
+> `agent_docs/architecture/optics-engine.md` is the current source of truth. The stage briefs below are retained only
+> for implementation archaeology.
+
 This is the source index for the optics engine rewrite. The original long-form plan has been split into sequential stage
 briefs so coding agents can work one stage at a time with clear `/goal` prompts, scoped deliverables, and exit gates.
 
@@ -100,4 +105,3 @@ The final migration belongs only to Stage 05. It may begin only after:
 - Benchmarks show no unacceptable regression in ordinary rendering or settled analysis.
 - Folded unsupported-tab gating remains correct.
 - Docs identify the authoritative engine and updated public import boundaries.
-

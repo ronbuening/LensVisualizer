@@ -1,6 +1,8 @@
 # Trace Model Improvement Plan
 
-> **Status (2026-05-22):** Complete — legacy vertex-plane tracer removed. Retained as historical record of the rollout.
+> **Status (2026-05-26):** Historical/current-status hybrid — the projection-aware launch and bounding-sphere trace work
+> described here has shipped into `src/optics/`. Use `agent_docs/architecture/optics-engine.md` for current engine
+> boundaries; keep this file for the rationale behind fisheye/vector launch behavior.
 
 Status: revised after the PR 8 follow-ups and PR #506 landed, 2026-05-21.
 
@@ -14,9 +16,8 @@ clamp respects the declared `maxTraceFieldDeg` (Nikon Fisheye-Nikkor 6mm now rep
 a zone where slope-launched bundles still reach the image plane. PR #506 then widened the diagram path: visible
 off-axis and chromatic off-axis rays promote to bounding-sphere vector launch when the declared fisheye field
 exceeds `tracingHalfField`, while vignetting, pupil-aberration, distortion-grid, and image-height solves consume
-`solve.vectorLaunch` where the scalar slope domain is exceeded. The remaining work is visual/browser smoke,
-catalog classification audit, diagnostics/performance triage, and any future shared bundle abstraction if the
-current module-specific vector launches begin to duplicate too much policy.
+`solve.vectorLaunch` where the scalar slope domain is exceeded. Follow-up work should be tracked in a current
+agent record or backlog doc rather than treating the original rollout checklist below as active.
 
 This document explains why heavy ultra-wide and fisheye lenses stress the current optics engine, what parts of the
 trace model need to change, and how to stage the work without destabilizing ordinary rectilinear lenses.
