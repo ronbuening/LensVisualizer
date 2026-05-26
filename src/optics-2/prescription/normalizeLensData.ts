@@ -1,4 +1,4 @@
-import buildLens from "../../optics/buildLens.js";
+import buildLensLegacy from "../../optics/buildLensLegacy.js";
 import LENS_DEFAULTS from "../../lens-data/defaults.js";
 import type { LensData, RuntimeLens, SurfaceData } from "../../types/optics.js";
 import type {
@@ -26,7 +26,7 @@ export function withLensDefaults(data: LensData): LensData {
 }
 
 export function normalizeLensData(data: LensData): EngineLens {
-  return normalizeRuntimeLens(buildLens(withLensDefaults(data)));
+  return normalizeRuntimeLens(buildLensLegacy(withLensDefaults(data)));
 }
 
 export function normalizeRuntimeLens(runtime: RuntimeLens): EngineLens {

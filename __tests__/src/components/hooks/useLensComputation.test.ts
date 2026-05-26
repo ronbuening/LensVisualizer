@@ -1,10 +1,9 @@
 // @vitest-environment jsdom
 
-import { afterEach, describe, it, expect, vi } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { renderHook } from "@testing-library/react";
 import useLensComputation from "../../../../src/components/hooks/useLensComputation.js";
 import buildLens from "../../../../src/optics/buildLens.js";
-import { selectedOpticsEngineId, setOpticsEngineForTests } from "../../../../src/optics/engineSelector.js";
 import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
 
 /* This test uses a real lens key from the catalog. The LENS_CATALOG is populated
@@ -13,10 +12,6 @@ import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
 describe("useLensComputation", () => {
   const baseLensKey = "sonnar-50f15";
   const focusLensKey = "sony-fe-14mm-f18-gm";
-
-  afterEach(() => {
-    setOpticsEngineForTests(null);
-  });
 
   it("returns a valid RuntimeLens and geometry for a known lens key", () => {
     const { result } = renderHook(() =>
@@ -43,10 +38,7 @@ describe("useLensComputation", () => {
     expect(r.fieldGeometry?.halfFieldDeg).toBeGreaterThan(0);
   });
 
-  it("can render through the internal optics-2 selector without changing hook props", () => {
-    setOpticsEngineForTests("optics-2");
-    expect(selectedOpticsEngineId()).toBe("optics-2");
-
+  it("renders through the stable Optics 2 imports without changing hook props", () => {
     const { result } = renderHook(() =>
       useLensComputation({
         lensKey: baseLensKey,

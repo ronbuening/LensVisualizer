@@ -21,6 +21,7 @@ export interface SurfaceIntersectionOptions {
   maxIterations?: number;
   bracketSamples?: number;
   refractiveIndex?: number;
+  directionNormalized?: boolean;
 }
 
 export interface SurfaceIntersectionSuccess {
@@ -63,9 +64,10 @@ export function intersectSurfaceProfile(
     maxIterations = INTERSECTION_MAX_ITERATIONS,
     bracketSamples = INTERSECTION_BRACKET_SAMPLES,
     refractiveIndex,
+    directionNormalized = false,
   }: SurfaceIntersectionOptions = {},
 ): SurfaceIntersectionResult {
-  const direction = normalize(ray.direction);
+  const direction = directionNormalized ? ray.direction : normalize(ray.direction);
   if (!direction) return failure("invalidDirection", null, 0);
   if (!isValidBounds(minT, maxT)) return failure("invalidBounds", null, 0);
 

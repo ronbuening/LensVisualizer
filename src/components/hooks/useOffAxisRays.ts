@@ -7,7 +7,7 @@
  *   "edge"      — project to the paraxial image height on the image plane
  */
 import { useMemo } from "react";
-import { getSelectedOpticsEngine } from "../../optics/engineSelector.js";
+import { offsetVectorFieldRay, traceRay, traceRayVector } from "../../optics/optics.js";
 import { obstructionAwareRayFractionsForDensity } from "../../optics/raySampling.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { LensMovementTransform } from "../../optics/lensMovement.js";
@@ -60,8 +60,6 @@ export default function useOffAxisRays({
   showOffAxis,
   lensKey,
 }: UseOffAxisRaysParams): UseOffAxisRaysResult {
-  const opticsEngine = getSelectedOpticsEngine();
-
   return useMemo((): UseOffAxisRaysResult => {
     if (!L || showOffAxis === "off") return { segments: [], error: null };
     try {
@@ -83,14 +81,14 @@ export default function useOffAxisRays({
         const uConverge = rayTracksF ? h * focusK : 0;
         const rawResult =
           geometry.kind === "vector"
-            ? opticsEngine.traceRayVector(
-                opticsEngine.offsetVectorFieldRay(geometry.vectorLaunch, 0, h, uConverge),
+            ? traceRayVector(
+                offsetVectorFieldRay(geometry.vectorLaunch, 0, h, uConverge),
                 zPos,
                 currentPhysStopSD,
                 true,
                 L,
               )
-            : opticsEngine.traceRay(
+            : traceRay(
                 geometry.yChief + h,
                 geometry.uField + uConverge,
                 zPos,
@@ -140,6 +138,5 @@ export default function useOffAxisRays({
     clampedRayEnd,
     movementTransform,
     zoomT,
-    opticsEngine,
   ]);
 }

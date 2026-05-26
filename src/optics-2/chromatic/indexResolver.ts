@@ -1,6 +1,5 @@
 import type { ChromaticChannel, RuntimeLens } from "../../types/optics.js";
 import { LINE_NM } from "../../optics/glassCatalog.js";
-import { wavelengthNd } from "../../optics/optics.js";
 import type { PreparedOpticalState } from "../types.js";
 import { normalizeRuntimeLens } from "../prescription/normalizeLensData.js";
 
@@ -18,7 +17,15 @@ export type SurfaceIndexResolver2 = (surfaceIndex: number, dLineIndex: number) =
 const ENGINE_LENS_BY_RUNTIME = new WeakMap<RuntimeLens, ReturnType<typeof normalizeRuntimeLens>>();
 
 export function wavelengthNd2(nd: number, vd: number | undefined, channel: ChromaticChannel): number {
-  return wavelengthNd(nd, vd, channel);
+  if (nd === 1.0) return 1.0;
+  if (!vd || channel === "G") return nd;
+  const delta = (nd - 1) / (2 * vd);
+  if (channel === "R") return nd - delta;
+  if (channel === "B") return nd + delta;
+  const nC = nd - delta;
+  const nF = nd + delta;
+  const PgF = 0.6438 - 0.001682 * vd;
+  return nF + PgF * (nF - nC);
 }
 
 export function indexAtPreparedSurface2(
@@ -46,7 +53,7 @@ export function indexAtRuntimeSurface2(
     ENGINE_LENS_BY_RUNTIME.set(L, engineLens);
   }
   return (
-    engineLens.dispersion[surfaceIndex]?.indexAt(channel) ?? wavelengthNd(surface.nd, L.vdByIdx[surfaceIndex], channel)
+    engineLens.dispersion[surfaceIndex]?.indexAt(channel) ?? wavelengthNd2(surface.nd, L.vdByIdx[surfaceIndex], channel)
   );
 }
 

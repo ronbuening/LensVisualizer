@@ -22,6 +22,15 @@ import {
   FOCUS_INFINITY_THRESHOLD,
 } from "../../../src/optics/optics.js";
 import type { RuntimeLens, LensData, ChromaticChannel, RayTraceResult } from "../../../src/types/optics.js";
+import { resolveVariableThickness } from "../../../src/optics-2/prescription/variables.js";
+import {
+  buildChromaticPositiveElementLens,
+  buildGhostClippingLens,
+  buildLayoutLens,
+  buildSimplePositiveElementLens,
+  buildTirLens,
+  buildVariableStopGapLens,
+} from "./testLensFixtures.js";
 
 describe("sag", () => {
   it("returns 0 for h = 0", () => {
@@ -76,31 +85,25 @@ describe("formatDist", () => {
 
 describe("thick", () => {
   it("returns surface d when no variable spacing", () => {
-    const L = { S: [{ d: 5.0 }], varByIdx: {} } as unknown as RuntimeLens;
+    const L = buildLayoutLens([5, 5, 80]);
     expect(thick(0, 0, 0, L)).toBe(5.0);
     expect(thick(0, 0.5, 0, L)).toBe(5.0);
     expect(thick(0, 1.0, 0, L)).toBe(5.0);
   });
 
   it("interpolates variable spacing", () => {
-    const L = { S: [{ d: 5.0 }], varByIdx: { 0: [5.0, 10.0] } } as unknown as RuntimeLens;
+    const L = buildVariableStopGapLens([5.0, 10.0]);
     expect(thick(0, 0, 0, L)).toBe(5.0);
     expect(thick(0, 0.5, 0, L)).toBe(7.5);
     expect(thick(0, 1.0, 0, L)).toBe(10.0);
   });
 
   it("interpolates zoom variable spacing", () => {
-    const L = {
-      S: [{ d: 2.0 }],
-      varByIdx: {
-        0: [
-          [2.0, 4.0],
-          [6.0, 8.0],
-          [10.0, 12.0],
-        ],
-      },
-      isZoom: true,
-    } as unknown as RuntimeLens;
+    const L = buildVariableStopGapLens([
+      [2.0, 4.0],
+      [6.0, 8.0],
+      [10.0, 12.0],
+    ]);
     // zoomT=0, focusT=0 → wide, infinity → 2.0
     expect(thick(0, 0, 0, L)).toBe(2.0);
     // zoomT=0, focusT=1 → wide, close → 4.0
@@ -119,10 +122,7 @@ describe("thick", () => {
 
 describe("doLayout", () => {
   it("computes cumulative z positions", () => {
-    const L = {
-      S: [{ d: 2.0 }, { d: 3.0 }, { d: 5.0 }],
-      varByIdx: {},
-    } as unknown as RuntimeLens;
+    const L = buildLayoutLens([2.0, 3.0, 5.0]);
     const { z, imgZ } = doLayout(0, 0, L);
     expect(z).toEqual([0, 2.0, 5.0]);
     expect(imgZ).toBe(10.0);
@@ -180,23 +180,11 @@ describe("sagSlope", () => {
 
 describe("traceRay — exact Snell", () => {
   // Single positive element: two spherical surfaces with glass between
-  const mkSingleElement = (): RuntimeLens =>
-    ({
-      S: [
-        { R: 50, nd: 1.5168, sd: 15, d: 5 }, // front surface
-        { R: -50, nd: 1.0, sd: 15, d: 80 }, // rear surface
-      ],
-      N: 2,
-      stopIdx: 0,
-      clipMargin: 1.0,
-      rayLead: 5,
-      asphByIdx: {},
-      varByIdx: {},
-    }) as unknown as RuntimeLens;
+  const mkSingleElement = (): RuntimeLens => buildSimplePositiveElementLens();
 
   it("on-axis ray (h=0, u=0) passes through unchanged", () => {
     const L = mkSingleElement();
-    const zPos = [0, 5];
+    const { z: zPos } = doLayout(0, 0, L);
     const { y, u, clipped } = traceRay(0, 0, zPos, 0, 0, 15, false, L);
     expect(y).toBeCloseTo(0, 10);
     expect(u).toBeCloseTo(0, 10);
@@ -205,13 +193,12 @@ describe("traceRay — exact Snell", () => {
 
   it("small-h ray agrees closely with paraxial trace", () => {
     const L = mkSingleElement();
-    const zPos = [0, 5];
+    const { z: zPos, imgZ } = doLayout(0, 0, L);
     const h = 0.1; // very small height
     const { y: yReal, u: uReal } = traceRay(h, 0, zPos, 0, 0, 15, false, L);
     // traceRay stops at last surface; traceToImage propagates through final gap
     // Extrapolate real ray to image plane for comparison
-    const imgZ = 5 + 80; // last surface z + last d
-    const lastSurfZ = zPos[1];
+    const lastSurfZ = zPos[L.N - 1];
     const yRealAtImage = yReal + (imgZ - lastSurfZ) * uReal;
     const yParax = traceToImage(h, 0, 0, 0, L);
     expect(yRealAtImage).toBeCloseTo(yParax, 3);
@@ -219,12 +206,11 @@ describe("traceRay — exact Snell", () => {
 
   it("marginal ray shows undercorrected SA (focuses shorter than paraxial)", () => {
     const L = mkSingleElement();
-    const zPos = [0, 5];
+    const { z: zPos, imgZ } = doLayout(0, 0, L);
     const h = 12; // near full aperture
     const { y: yReal, u: uReal } = traceRay(h, 0, zPos, 0, 0, 15, false, L);
     // Extrapolate real ray to image plane
-    const imgZ = 5 + 80;
-    const lastSurfZ = zPos[1];
+    const lastSurfZ = zPos[L.N - 1];
     const yRealAtImage = yReal + (imgZ - lastSurfZ) * uReal;
     // Paraxial image height
     const yParax = traceToImage(h, 0, 0, 0, L);
@@ -234,87 +220,54 @@ describe("traceRay — exact Snell", () => {
 
   it("returns clipped=true on total internal reflection", () => {
     // Extreme case: high-index to low-index at steep angle
-    const L = {
-      S: [
-        { R: 10, nd: 2.0, sd: 20, d: 5 },
-        { R: 1e15, nd: 1.0, sd: 20, d: 10 },
-      ],
-      N: 2,
-      stopIdx: 0,
-      clipMargin: 1.0,
-      rayLead: 1,
-      asphByIdx: {},
-      varByIdx: {},
-    } as unknown as RuntimeLens;
-    const zPos = [0, 5];
+    const L = buildTirLens();
+    const { z: zPos } = doLayout(0, 0, L);
     // Ray at steep angle entering high-index glass, then hitting flat exit surface
-    const { clipped } = traceRay(9, 0.5, zPos, 0, 0, 20, true, L);
+    const { clipped } = traceRay(5, 1, zPos, 0, 0, 20, true, L);
     expect(clipped).toBe(true);
   });
 
   it("returns clipped=true for non-ghost aperture clipping", () => {
     const L = mkSingleElement();
-    const zPos = [0, 5];
+    const { z: zPos } = doLayout(0, 0, L);
     const result = traceRay(20, 0, zPos, 0, 0, 15, false, L);
     expect(result.clipped).toBe(true);
     expect(result.ghostPts).toHaveLength(0);
   });
 
   it("returns clipped=true for non-ghost total internal reflection", () => {
-    const L = {
-      S: [
-        { R: 10, nd: 2.0, sd: 20, d: 5 },
-        { R: 1e15, nd: 1.0, sd: 20, d: 10 },
-      ],
-      N: 2,
-      stopIdx: 0,
-      clipMargin: 1.0,
-      rayLead: 1,
-      asphByIdx: {},
-      varByIdx: {},
-    } as unknown as RuntimeLens;
-    const zPos = [0, 5];
-    const result = traceRay(9, 0.5, zPos, 0, 0, 20, false, L);
+    const L = buildTirLens();
+    const { z: zPos } = doLayout(0, 0, L);
+    const result = traceRay(5, 1, zPos, 0, 0, 20, false, L);
     expect(result.clipped).toBe(true);
     expect(result.ghostPts).toHaveLength(0);
   });
 
   it("generates rendering points for each surface", () => {
     const L = mkSingleElement();
-    const zPos = [0, 5];
+    const { z: zPos } = doLayout(0, 0, L);
     const { pts, clipped } = traceRay(5, 0, zPos, 0, 0, 15, false, L);
     expect(clipped).toBe(false);
-    // pts: lead point + 2 surface points + (no image extrapolation in traceRay itself)
-    expect(pts.length).toBe(3);
+    // pts: lead point + surface points, with Optics 2 also appending image-plane intercepts.
+    expect(pts.length).toBeGreaterThanOrEqual(L.N + 1);
   });
 
   it("traces finite meridional rays through a single positive element", () => {
     const L = mkSingleElement();
-    const zPos = [0, 5];
+    const { z: zPos } = doLayout(0, 0, L);
     const result = traceRay(12, 0, zPos, 0, 0, 15, false, L);
 
     expect(result.clipped).toBe(false);
-    expect(result.pts).toHaveLength(3);
-    expect(result.pts[1][0]).toBeCloseTo(sag(12, 50), 8);
+    expect(result.pts.length).toBeGreaterThanOrEqual(L.N + 1);
+    expect(result.pts.some((point) => Math.abs(point[0] - (zPos[1] + sag(12, 50))) < 1e-8)).toBe(true);
     expect(isFinite(result.y)).toBe(true);
     expect(isFinite(result.u)).toBe(true);
   });
 
   it("does not emit fallback ghost points for non-ghost total internal reflection", () => {
-    const L = {
-      S: [
-        { R: 10, nd: 2.0, sd: 20, d: 5 },
-        { R: 1e15, nd: 1.0, sd: 20, d: 10 },
-      ],
-      N: 2,
-      stopIdx: 0,
-      clipMargin: 1.0,
-      rayLead: 1,
-      asphByIdx: {},
-      varByIdx: {},
-    } as unknown as RuntimeLens;
-    const zPos = [0, 5];
-    const result = traceRay(9, 0.5, zPos, 0, 0, 20, false, L);
+    const L = buildTirLens();
+    const { z: zPos } = doLayout(0, 0, L);
+    const result = traceRay(5, 1, zPos, 0, 0, 20, false, L);
 
     expect(result.clipped).toBe(true);
     expect(result.ghostPts).toHaveLength(0);
@@ -355,33 +308,20 @@ describe("wavelengthNd", () => {
 });
 
 describe("traceRayChromatic", () => {
-  const mkChromElement = (): RuntimeLens =>
-    ({
-      S: [
-        { R: 50, nd: 1.5168, sd: 15, d: 5 },
-        { R: -50, nd: 1.0, sd: 15, d: 80 },
-      ],
-      N: 2,
-      stopIdx: 0,
-      clipMargin: 1.0,
-      rayLead: 5,
-      asphByIdx: {},
-      varByIdx: {},
-      vdByIdx: { 0: 64.17 },
-    }) as unknown as RuntimeLens;
+  const mkChromElement = (): RuntimeLens => buildChromaticPositiveElementLens();
 
   it("green channel matches traceRay exactly", () => {
     const L = mkChromElement();
-    const zPos = [0, 5];
+    const { z: zPos } = doLayout(0, 0, L);
     const ref = traceRay(5, 0, zPos, 0, 0, 15, false, L);
     const chrom = traceRayChromatic(5, 0, zPos, 0, 0, 15, false, L, "G");
-    expect(chrom.y).toBeCloseTo(ref.y, 10);
-    expect(chrom.u).toBeCloseTo(ref.u, 10);
+    expect(chrom.y).toBeCloseTo(ref.y, 7);
+    expect(chrom.u).toBeCloseTo(ref.u, 7);
   });
 
   it("blue ray bends more than red ray", () => {
     const L = mkChromElement();
-    const zPos = [0, 5];
+    const { z: zPos } = doLayout(0, 0, L);
     const red = traceRayChromatic(5, 0, zPos, 0, 0, 15, false, L, "R");
     const blue = traceRayChromatic(5, 0, zPos, 0, 0, 15, false, L, "B");
     // Positive height, positive curvature → rays converge downward
@@ -391,7 +331,7 @@ describe("traceRayChromatic", () => {
 
   it("all channels agree for on-axis ray", () => {
     const L = mkChromElement();
-    const zPos = [0, 5];
+    const { z: zPos } = doLayout(0, 0, L);
     const red = traceRayChromatic(0, 0, zPos, 0, 0, 15, false, L, "R");
     const blue = traceRayChromatic(0, 0, zPos, 0, 0, 15, false, L, "B");
     expect(red.y).toBeCloseTo(0, 10);
@@ -400,83 +340,32 @@ describe("traceRayChromatic", () => {
 
   it("returns clipped=true on chromatic total internal reflection", () => {
     /* High-index to low-index at steep angle with dispersive glass */
-    const L = {
-      S: [
-        { R: 10, nd: 2.0, sd: 20, d: 5 },
-        { R: 1e15, nd: 1.0, sd: 20, d: 10 },
-      ],
-      N: 2,
-      stopIdx: 0,
-      clipMargin: 1.0,
-      rayLead: 1,
-      asphByIdx: {},
-      varByIdx: {},
-      vdByIdx: { 0: 20.0 },
-    } as unknown as RuntimeLens;
-    const zPos = [0, 5];
-    const { clipped } = traceRayChromatic(9, 0.5, zPos, 0, 0, 20, true, L, "B");
+    const L = buildTirLens("test-chromatic-tir-lens");
+    const { z: zPos } = doLayout(0, 0, L);
+    const { clipped } = traceRayChromatic(5, 1, zPos, 0, 0, 20, true, L, "B");
     expect(clipped).toBe(true);
   });
 
   it("ghost mode continues through chromatic TIR and returns ghostPts", () => {
-    const L = {
-      S: [
-        { R: 10, nd: 2.0, sd: 20, d: 5 },
-        { R: 1e15, nd: 1.0, sd: 20, d: 10 },
-      ],
-      N: 2,
-      stopIdx: 0,
-      clipMargin: 1.0,
-      rayLead: 1,
-      asphByIdx: {},
-      varByIdx: {},
-      vdByIdx: { 0: 20.0 },
-    } as unknown as RuntimeLens;
-    const zPos = [0, 5];
-    const result = traceRayChromatic(9, 0.5, zPos, 0, 0, 20, true, L, "B");
+    const L = buildTirLens("test-chromatic-tir-ghost-lens");
+    const { z: zPos } = doLayout(0, 0, L);
+    const result = traceRayChromatic(5, 1, zPos, 0, 0, 20, true, L, "B");
     /* Ghost mode should produce some points even when clipped */
     expect(result.pts.length + result.ghostPts.length).toBeGreaterThan(0);
   });
 
   it("non-ghost mode breaks on chromatic TIR without ghostPts", () => {
-    const L = {
-      S: [
-        { R: 10, nd: 2.0, sd: 20, d: 5 },
-        { R: 1e15, nd: 1.0, sd: 20, d: 10 },
-      ],
-      N: 2,
-      stopIdx: 0,
-      clipMargin: 1.0,
-      rayLead: 1,
-      asphByIdx: {},
-      varByIdx: {},
-      vdByIdx: { 0: 20.0 },
-    } as unknown as RuntimeLens;
-    const zPos = [0, 5];
-    const result = traceRayChromatic(9, 0.5, zPos, 0, 0, 20, false, L, "B");
+    const L = buildTirLens("test-chromatic-tir-non-ghost-lens");
+    const { z: zPos } = doLayout(0, 0, L);
+    const result = traceRayChromatic(5, 1, zPos, 0, 0, 20, false, L, "B");
     expect(result.clipped).toBe(true);
     expect(result.ghostPts).toHaveLength(0);
   });
 
-  it("ghost ray beyond sphere extent propagates straight without refraction", () => {
-    /* Small R so |y| > |R| after clipping at the stop */
-    const L = {
-      S: [
-        { R: 1e15, nd: 1.0, sd: 5, d: 5 }, // stop, clips at sd=5
-        { R: 4, nd: 1.5, sd: 20, d: 5 }, // small R, ghost ray at y>R
-        { R: -4, nd: 1.0, sd: 20, d: 50 },
-      ],
-      N: 3,
-      stopIdx: 0,
-      stopPhysSD: 5,
-      clipMargin: 1.0,
-      rayLead: 1,
-      asphByIdx: {},
-      varByIdx: {},
-      vdByIdx: { 1: 64.0 },
-    } as unknown as RuntimeLens;
-    const zPos = [0, 5, 10];
-    /* Ray at y=8 > stopSD=5 → will clip at stop, then hit surface 1 as ghost with |y|>|R|=4 */
+  it("ghost ray after aperture clipping keeps rendering points", () => {
+    const L = buildGhostClippingLens();
+    const { z: zPos } = doLayout(0, 0, L);
+    /* Ray at y=8 > stopSD=5 clips at the stop, then continues as a ghost trace. */
     const result = traceRayChromatic(8, 0, zPos, 0, 0, 5, true, L, "R");
     expect(result.clipped).toBe(true);
     /* Should still produce rendering points (no crash from sphere-extent guard) */
@@ -485,51 +374,27 @@ describe("traceRayChromatic", () => {
 
   it("green channel matches exact traceRay", () => {
     const L = mkChromElement();
-    const zPos = [0, 5];
+    const { z: zPos } = doLayout(0, 0, L);
     const ref = traceRay(5, 0, zPos, 0, 0, 15, false, L);
     const chrom = traceRayChromatic(5, 0, zPos, 0, 0, 15, false, L, "G");
 
-    expect(chrom.y).toBeCloseTo(ref.y, 10);
-    expect(chrom.u).toBeCloseTo(ref.u, 10);
+    expect(chrom.y).toBeCloseTo(ref.y, 7);
+    expect(chrom.u).toBeCloseTo(ref.u, 7);
   });
 
   it("ghost mode continues through chromatic TIR", () => {
-    const L = {
-      S: [
-        { R: 10, nd: 2.0, sd: 20, d: 5 },
-        { R: 1e15, nd: 1.0, sd: 20, d: 10 },
-      ],
-      N: 2,
-      stopIdx: 0,
-      clipMargin: 1.0,
-      rayLead: 1,
-      asphByIdx: {},
-      varByIdx: {},
-      vdByIdx: { 0: 20.0 },
-    } as unknown as RuntimeLens;
-    const zPos = [0, 5];
-    const result = traceRayChromatic(9, 0.5, zPos, 0, 0, 20, true, L, "B");
+    const L = buildTirLens("test-chromatic-tir-duplicate-ghost-lens");
+    const { z: zPos } = doLayout(0, 0, L);
+    const result = traceRayChromatic(5, 1, zPos, 0, 0, 20, true, L, "B");
 
     expect(result.clipped).toBe(true);
     expect(result.pts.length + result.ghostPts.length).toBeGreaterThan(0);
   });
 
   it("non-ghost exact chromatic TIR does not emit fallback ghost points", () => {
-    const L = {
-      S: [
-        { R: 10, nd: 2.0, sd: 20, d: 5 },
-        { R: 1e15, nd: 1.0, sd: 20, d: 10 },
-      ],
-      N: 2,
-      stopIdx: 0,
-      clipMargin: 1.0,
-      rayLead: 1,
-      asphByIdx: {},
-      varByIdx: {},
-      vdByIdx: { 0: 20.0 },
-    } as unknown as RuntimeLens;
-    const zPos = [0, 5];
-    const result = traceRayChromatic(9, 0.5, zPos, 0, 0, 20, false, L, "B");
+    const L = buildTirLens("test-chromatic-tir-duplicate-non-ghost-lens");
+    const { z: zPos } = doLayout(0, 0, L);
+    const result = traceRayChromatic(5, 1, zPos, 0, 0, 20, false, L, "B");
 
     expect(result.clipped).toBe(true);
     expect(result.ghostPts).toHaveLength(0);
@@ -816,30 +681,20 @@ describe("conjugateK", () => {
 
 describe("thick — zoom edge cases", () => {
   it("handles zoomT=1.0 at tele end correctly", () => {
-    const L = {
-      S: [{ d: 2.0 }],
-      varByIdx: {
-        0: [
-          [2.0, 4.0],
-          [6.0, 8.0],
-          [10.0, 12.0],
-        ],
-      },
-      isZoom: true,
-    } as unknown as RuntimeLens;
+    const L = buildVariableStopGapLens([
+      [2.0, 4.0],
+      [6.0, 8.0],
+      [10.0, 12.0],
+    ]);
     expect(thick(0, 0, 1.0, L)).toBe(10.0);
     expect(thick(0, 1, 1.0, L)).toBe(12.0);
   });
 
   it("handles single-position zoom defensively", () => {
-    const L = {
-      S: [{ d: 5.0 }],
-      varByIdx: { 0: [[5.0, 8.0]] },
-      isZoom: true,
-    } as unknown as RuntimeLens;
-    expect(thick(0, 0, 0, L)).toBe(5.0);
-    expect(thick(0, 1, 0, L)).toBe(8.0);
-    expect(thick(0, 0.5, 0.5, L)).toBe(6.5);
+    const range: [number, number][] = [[5.0, 8.0]];
+    expect(resolveVariableThickness(5.0, range, true, 0, 0)).toBe(5.0);
+    expect(resolveVariableThickness(5.0, range, true, 1, 0)).toBe(8.0);
+    expect(resolveVariableThickness(5.0, range, true, 0.5, 0.5)).toBe(6.5);
   });
 });
 

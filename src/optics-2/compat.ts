@@ -1,4 +1,4 @@
-import buildLens from "../optics/buildLens.js";
+import buildLensLegacy from "../optics/buildLensLegacy.js";
 import type { LayoutResult, LensData, RuntimeLens } from "../types/optics.js";
 import type { EngineLens, PreparedOpticalState } from "./types.js";
 import { normalizeRuntimeLens, withLensDefaults } from "./prescription/normalizeLensData.js";
@@ -7,7 +7,7 @@ import { prepareState } from "./state/prepareState.js";
 const ENGINE_LENS_BY_RUNTIME = new WeakMap<RuntimeLens, EngineLens>();
 
 export function buildLens2(data: LensData): RuntimeLens {
-  const runtime = buildLens(withLensDefaults(data));
+  const runtime = buildLensLegacy(withLensDefaults(data));
   ENGINE_LENS_BY_RUNTIME.set(runtime, normalizeRuntimeLens(runtime));
   return runtime;
 }
@@ -90,6 +90,7 @@ export {
   entrancePupilAtState2,
   offsetVectorFieldRay2,
   solveChiefRay2,
+  solveChiefRayBoundingSphere2,
   solveFieldAngleForImageHeight2,
   solveFieldAngleForImageHeightAccurate2,
   traceChiefRayAtAngle2,
@@ -111,6 +112,7 @@ export {
   isFisheyeProjection2,
   launchSurfaceForFieldDeg2,
   projectionFieldAngleForImageHeight2,
+  projectionFieldSlopesForImagePoint2,
   projectionImageHeightForAngle2,
   projectionImageHeightForLensAngle2,
   projectionLaunchSlopeForField2,
@@ -128,11 +130,14 @@ export {
   getChiefRayDiagnostics2,
   resetChiefRayDiagnostics2,
   type ChiefRayDiagnostics2,
+  type ChiefRayStatus2,
 } from "./field/chiefRayCache.js";
 export {
   computeCardinalElements2,
   computeCardinalElementsAtState2,
+  type CardinalDistance2,
   type CardinalElements2,
+  type CardinalPoint2,
 } from "./first-order/cardinals.js";
 export { effectiveFNumber2 } from "./first-order/fNumber.js";
 export { eflAtFocus2 } from "./first-order/focusBreathing.js";

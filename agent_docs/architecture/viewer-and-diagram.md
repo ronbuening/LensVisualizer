@@ -39,8 +39,9 @@ selection state plus structural wiring.
 
 Key responsibilities:
 
-- Builds or receives a `RuntimeLens`. In comparison mode, `ComparisonLayout` passes prebuilt runtime lenses to avoid
-  rebuilding the same lens inside each panel.
+- Builds or receives a `RuntimeLens` through the stable `src/optics/buildLens.ts` bridge, which now selects Optics 2.
+  In comparison mode, `ComparisonLayout` passes prebuilt runtime lenses to avoid rebuilding the same lens inside each
+  panel.
 - Wires computation hooks for layout, density-controlled rays, chromatic spread, overlays, and slider feedback.
 - Applies optional perspective-control movement for supported lenses, including transformed geometry/rays and fixed
   image-plane reference behavior.
@@ -54,8 +55,8 @@ Key responsibilities:
 
 | Hook | Purpose |
 | --- | --- |
-| `useLensComputation.ts` | Lens building/reuse, layout, transforms, element shapes, aperture, current-state field geometry, and optional perspective-control movement. Stabilizes `zPos` by element-wise comparison. |
-| `useRayTracing.ts` | Orchestrates on-axis, off-axis, and chromatic ray hooks, applies ray density and optional movement transforms, and reports the first ray error. Folded systems receive generalized trace results terminating on `L.imagePlane`. |
+| `useLensComputation.ts` | Lens building/reuse, layout, transforms, element shapes, aperture, current-state field geometry, and optional perspective-control movement. It imports the stable optics bridges directly; there is no old-vs-new selector. Stabilizes `zPos` by element-wise comparison. |
+| `useRayTracing.ts` | Orchestrates on-axis, off-axis, and chromatic ray hooks, applies ray density and optional movement transforms, and reports the first ray error. Folded systems receive generalized Optics 2 trace results terminating on `L.imagePlane`. |
 | `useOnAxisRays.ts` | Computes density-derived on-axis ray fan segments, using obstruction-aware sampling for folded mirror systems. |
 | `useOffAxisRays.ts` | Computes density-derived visible off-axis rays using state-aware field geometry and folded image-plane termination where applicable. |
 | `offAxisRayUtils.ts` | Shared off-axis tracing geometry and optional edge-projection endpoint logic for monochrome and chromatic fans. |

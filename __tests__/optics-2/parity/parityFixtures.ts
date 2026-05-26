@@ -1,11 +1,11 @@
 export type Optics2MigrationRuleId =
-  | "additive-optics-2"
-  | "legacy-reference"
+  | "authoritative-optics-2"
+  | "legacy-rollback-reference"
   | "lens-data-input-contract"
   | "exact-tracing-only"
   | "no-trace-mode-rollout"
-  | "temporary-internal-selector-only"
-  | "compare-before-callers-move";
+  | "no-production-engine-selector"
+  | "rollback-coverage";
 
 export interface Optics2MigrationRule {
   id: Optics2MigrationRuleId;
@@ -13,13 +13,13 @@ export interface Optics2MigrationRule {
 }
 
 export const OPTICS_2_STAGE_01_MIGRATION_RULES: readonly Optics2MigrationRule[] = [
-  { id: "additive-optics-2", rule: "src/optics-2 is additive until final migration." },
-  { id: "legacy-reference", rule: "src/optics remains the parity reference and production engine." },
+  { id: "authoritative-optics-2", rule: "src/optics-2 is the authoritative optics implementation." },
+  { id: "legacy-rollback-reference", rule: "Legacy optics files are retained only as rollback/parity references." },
   { id: "lens-data-input-contract", rule: "The lens-data authoring contract remains LensDataInput." },
   { id: "exact-tracing-only", rule: "Exact surface tracing remains the only trace path." },
   { id: "no-trace-mode-rollout", rule: "Do not introduce mode, traceMode, or per-lens rollout fields." },
-  { id: "temporary-internal-selector-only", rule: "Any engine selector is internal and temporary." },
-  { id: "compare-before-callers-move", rule: "Tests compare behavior before app callers move." },
+  { id: "no-production-engine-selector", rule: "Do not keep an old-vs-new production engine selector." },
+  { id: "rollback-coverage", rule: "Retain focused parity coverage against legacy rollback references." },
 ];
 
 export type ParityFixtureRole =

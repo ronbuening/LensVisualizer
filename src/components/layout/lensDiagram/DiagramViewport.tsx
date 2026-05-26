@@ -6,7 +6,7 @@ import PetzvalOverlayContent from "../../diagram/PetzvalOverlayContent.js";
 import AnalysisDrawer from "../AnalysisDrawer.js";
 import PanelOverlay from "../PanelOverlay.js";
 import { ANALYSIS_TABS } from "./analysisTabs.js";
-import { getSelectedOpticsEngine } from "../../../optics/engineSelector.js";
+import { summarizeDispersionQuality } from "../../../optics/dispersion.js";
 import type { AnalysisTabId } from "../../../types/state.js";
 import type { ChromaticSpreadByAxis } from "../../../types/optics.js";
 
@@ -142,8 +142,7 @@ export default function DiagramViewport({
 }: DiagramViewportProps) {
   /* Aggregate per-surface dispersion quality across the lens (worst-link tier).
      Cheap to recompute on every render — walks indexByIdx once. */
-  const opticsEngine = getSelectedOpticsEngine();
-  const dispersionQuality = useMemo(() => opticsEngine.summarizeDispersionQuality(L), [L, opticsEngine]);
+  const dispersionQuality = useMemo(() => summarizeDispersionQuality(L), [L]);
 
   /* Keyboard shortcuts when zoom mode is active */
   useEffect(() => {

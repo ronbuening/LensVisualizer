@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import buildLens from "../../../src/optics/buildLens.js";
+import buildLensLegacy from "../../../src/optics/buildLensLegacy.js";
 import { buildLens2, engineLensFromRuntime } from "../../../src/optics-2/compat.js";
 import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 import {
@@ -66,21 +67,30 @@ function tagsForFixture(key: string): Set<ParityStateTag> {
 describe("Optics 2 staged migration policy", () => {
   it("locks the Stage 01 migration rules in an importable place", () => {
     expect(OPTICS_2_STAGE_01_MIGRATION_RULES.map((rule) => rule.id)).toEqual([
-      "additive-optics-2",
-      "legacy-reference",
+      "authoritative-optics-2",
+      "legacy-rollback-reference",
       "lens-data-input-contract",
       "exact-tracing-only",
       "no-trace-mode-rollout",
-      "temporary-internal-selector-only",
-      "compare-before-callers-move",
+      "no-production-engine-selector",
+      "rollback-coverage",
     ]);
   });
 
-  it("keeps production source imports off src/optics-2 except the internal selector bridge", () => {
+  it("keeps Optics 2 imports restricted to stable public bridge modules", () => {
+    const allowedBridgeFiles = new Set([
+      "../../../src/optics/buildLens.ts",
+      "../../../src/optics/cardinalElements.ts",
+      "../../../src/optics/chiefRayDiagnostics.ts",
+      "../../../src/optics/diagramGeometry.ts",
+      "../../../src/optics/fieldGeometry.ts",
+      "../../../src/optics/optics.ts",
+      "../../../src/optics/projection.ts",
+    ]);
     const offenders = Object.entries(SRC_MODULES)
       .filter(([file]) => !file.includes("/src/optics-2/"))
       .filter(([, source]) => /from\s+["'][^"']*optics-2|import\s*\([^)]*optics-2/.test(source))
-      .filter(([file]) => file !== "../../../src/optics/engineSelector.ts")
+      .filter(([file]) => !allowedBridgeFiles.has(file))
       .map(([file]) => file);
 
     expect(offenders).toEqual([]);
@@ -143,7 +153,7 @@ describe("Optics 2 parity fixture matrix", () => {
     }
   });
 
-  it("builds every fixture through the current src/optics reference engine", () => {
+  it("builds every fixture through the stable src/optics entry point", () => {
     for (const fixture of OPTICS_2_PARITY_FIXTURES) {
       const lens = buildLens(LENS_CATALOG[fixture.key]);
       expect(lens.data.key).toBe(fixture.key);
@@ -205,6 +215,12 @@ describe("Optics 2 benchmark harness scaffold", () => {
         oldMedianTimeMs: 1,
         newMedianTimeMs: null,
         worstTimeMs: 1,
+        oldSuccessfulTraceCount: 1000,
+        oldClippedTraceCount: 0,
+        oldFailedTraceCount: 0,
+        newSuccessfulTraceCount: null,
+        newClippedTraceCount: null,
+        newFailedTraceCount: null,
         successfulTraceCount: 1000,
         clippedTraceCount: 0,
         failedTraceCount: 0,
@@ -215,9 +231,9 @@ describe("Optics 2 benchmark harness scaffold", () => {
 });
 
 describe("Optics 2 buildLens parity", () => {
-  it("compares buildLens against the buildLens2 compatibility facade", () => {
+  it("compares the retained legacy builder against the buildLens2 compatibility facade", () => {
     for (const fixture of OPTICS_2_PARITY_FIXTURES) {
-      const legacy = buildLens(LENS_CATALOG[fixture.key]);
+      const legacy = buildLensLegacy(LENS_CATALOG[fixture.key]);
       const optics2 = buildLens2(LENS_CATALOG[fixture.key]);
       const engine = engineLensFromRuntime(optics2);
 

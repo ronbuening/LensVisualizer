@@ -5,8 +5,13 @@ validation, and diagram geometry.
 
 ## Core Rule
 
-`src/optics/` has no React dependencies. Helpers accept the runtime lens object `L` and slider-derived state explicitly.
-Do not introduce hidden module-level optical state.
+`src/optics-2/` is the authoritative optics engine after the Stage 05 migration. Stable app and test imports still use
+`src/optics/*` where practical, but those public files are now compatibility bridges into `src/optics-2`. Legacy
+implementations are retained under explicit `*Legacy.ts` filenames only for rollback, benchmark comparison, and parity
+debugging during the post-migration safe window.
+
+Pure optics modules have no React dependencies. Helpers accept the runtime lens object `L` or a
+`PreparedOpticalState` plus slider-derived state explicitly. Do not introduce hidden module-level optical state.
 
 State-dependent analysis must remain outside `buildLens()`. `buildLens()` constructs build-time/runtime constants from
 lens data; analysis tabs use current focus, zoom, and aperture state.
@@ -15,9 +20,16 @@ lens data; analysis tabs use current focus, zoom, and aperture state.
 
 | Module | Purpose |
 | --- | --- |
-| `buildLens.ts` | Validates lens data and constructs frozen `RuntimeLens` objects. |
-| `optics.ts` | Ray tracing, sag curves, layout, zoom interpolation, pupil geometry, chromatic tracing, chief ray solver. |
-| `diagramGeometry.ts` | SVG coordinate transforms, element shape/render diagnostics, aspheric overlay paths, and second-surface mirror coating accent paths. |
+| `src/optics-2/prescription/` | Lens-data normalization, runtime-lens conversion, labels, variables, aspheres, interactions, groups, and dispersion descriptors. |
+| `src/optics-2/state/` | `PreparedOpticalState` compilation and caches for current focus/zoom/aberration state. Caches must include every optical input that changes results. |
+| `src/optics-2/math/` | Vector math, paraxial stepping, surface profiles, and surface intersection routines. Engine-native failures use typed statuses. |
+| `src/optics-2/trace/` | Sequential and generalized/folded exact tracing, aperture checks, stop tracing, legacy result adapters, and folded diagnostics. |
+| `src/optics-2/field/` | Projection-aware field launch, chief-ray solving, entrance-pupil state, field/image-height inversion, and chief-ray diagnostics. |
+| `src/optics-2/first-order/` | System matrix, cardinal elements, focus breathing, effective f-number, and first-order pupil helpers. |
+| `src/optics-2/chromatic/` | Wavelength/index resolution, chromatic tracing, dispersion adapters, and quality summaries. |
+| `src/optics-2/diagram/` | SVG coordinate transforms, element shape/render diagnostics, aspheric overlay paths, and second-surface mirror coating accent paths. |
+| `src/optics-2/analysis/` | Analysis facades and state-aware wrappers for aberration, distortion, vignetting, pupil, bokeh, group movement, and LCA display helpers. |
+| `src/optics/buildLens.ts`, `src/optics/optics.ts`, focused `src/optics/*.ts` bridges | Stable import paths for app code and tests. These delegate to `src/optics-2` where migrated; `*Legacy.ts` siblings are rollback references. |
 | `lensMovement.ts` | Pure 2D perspective-control movement helpers for clamping shift/tilt and transforming rendered points/rays. |
 | `groupMovement.ts` | Pure inferred lens-group axial movement profiles for focus, zoom, and combined overlay views. Uses fixed-image-plane anchoring and group-center positions relative to the focus plane. |
 | `validateLensData.ts` | Runtime lens-data validation. |
@@ -37,7 +49,12 @@ lens data; analysis tabs use current focus, zoom, and aperture state.
 
 ## buildLens.ts
 
-`buildLens(data)` validates lens data and constructs a frozen `RuntimeLens` with:
+`buildLens(data)` is the stable public constructor and delegates to `buildLens2` in `src/optics-2/compat.ts`.
+`buildLensLegacy.ts` is retained as the rollback/parity reference. The returned compatibility `RuntimeLens` keeps the
+existing UI and lens-data contract while `engineLensFromRuntime()`/`prepareLegacyState()` recover the Optics 2
+`EngineLens` and `PreparedOpticalState` for native tracing and analysis.
+
+The constructor validates lens data and constructs a frozen `RuntimeLens` with:
 
 - Effective focal length, entrance pupil, field angle, total track, Petzval sum, and scale constants.
 - Zoom metadata: positions, EFLs, EPs, half-fields, tracing half-fields, y-ratios, and back focal distances.
@@ -64,6 +81,10 @@ value so rendered ray bundles stay safely within what real surfaces can carry.
 `paraxialTrace()` is exported for low-level first-order tracing tests.
 
 ## optics.ts
+
+`src/optics/optics.ts` is now a compatibility barrel into Optics 2 for the migrated runtime helpers. Continue importing
+from this stable path in app code unless working inside the engine itself. Import from `src/optics-2/**` only for
+engine-native work, parity tests, or benchmarks that need prepared-state APIs.
 
 Major public helpers:
 
@@ -193,6 +214,18 @@ avoid central blockers and annular mirror holes automatically. Do not work aroun
 uses it to downgrade interactive diagram ray density during slider drag; analysis modules use it to halve
 pupil sweep / pupil-correction sample counts on heavy lenses regardless of interaction state. Reuse this
 helper instead of reimplementing the criteria.
+
+## Performance And Rollback
+
+Stage 05 benchmark results live in `agent_docs/records/optics-2-stage-05-performance.md`. The benchmark compares retained
+legacy public barrels against the Optics 2 facades in one process, with warmups, median/worst timings, and
+successful/clipped/failed counts. The current accepted tradeoff is a small absolute sequential display-ray adapter
+overhead during the safe window; counts match, folded and distortion paths are not slower, and follow-up work should
+reduce legacy-result projection overhead before deleting the legacy references.
+
+Rollback should only revert stable bridge files such as `src/optics/optics.ts`, `src/optics/buildLens.ts`, or focused
+bridge modules to their `*Legacy.ts` counterparts. Keep `src/optics-2` and its tests in place, then add a failing
+Optics 2 regression before attempting another flip.
 
 ## Cardinal Elements
 

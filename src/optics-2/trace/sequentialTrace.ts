@@ -95,7 +95,7 @@ export function traceSequential(
     }
 
     const hitClipped = clipped;
-    hits.push({
+    const traceHit: TraceHit = {
       surfaceIndex: i,
       surfaceLabel: surfaceLabel(state, i),
       point,
@@ -106,11 +106,15 @@ export function traceSequential(
       fallback,
       failureReason: hitFailure,
       clipReason,
-    });
+    };
 
-    if (hitClipped && stopOnClip && !ghost) break;
+    if (hitClipped && stopOnClip && !ghost) {
+      hits.push(traceHit);
+      break;
+    }
 
     const nn = indexAtSurface ? indexAtSurface(i, surface.nd) : surface.nd === 1 ? 1 : surface.nd;
+    let stopAfterHit = false;
     if (nn !== n) {
       if (hitClipped && Math.abs(surface.R) < FLAT_R_THRESHOLD && radius * radius > surface.R * surface.R) {
         // Ghost ray beyond the mathematical sphere extent: preserve legacy straight propagation.
@@ -120,13 +124,10 @@ export function traceSequential(
           clipped = true;
           failureReason = "totalInternalReflection";
           pushClipEvent(clipEvents, state, i, "total-internal-reflection", failureReason);
-          hits[hits.length - 1] = {
-            ...hits[hits.length - 1],
-            clipped: true,
-            failureReason,
-            clipReason: "total-internal-reflection",
-          };
-          if (!ghost) break;
+          traceHit.clipped = true;
+          traceHit.failureReason = failureReason;
+          traceHit.clipReason = "total-internal-reflection";
+          stopAfterHit = !ghost;
         } else {
           direction = refracted;
         }
@@ -134,10 +135,9 @@ export function traceSequential(
     }
 
     n = nn;
-    hits[hits.length - 1] = {
-      ...hits[hits.length - 1],
-      outgoingDirection: [direction[0], direction[1], direction[2]],
-    };
+    traceHit.outgoingDirection = [direction[0], direction[1], direction[2]];
+    hits.push(traceHit);
+    if (stopAfterHit) break;
     origin = point;
   }
 

@@ -7,7 +7,7 @@
  */
 
 import { useMemo } from "react";
-import { getSelectedOpticsEngine } from "../../../optics/engineSelector.js";
+import { analysisJobs } from "../../../optics/analysisJobs.js";
 import { probe } from "../../../utils/perfProbe.js";
 import VignettingChart from "./VignettingChart.js";
 import { AnalysisMetricRow } from "./analysisUi.js";
@@ -38,11 +38,10 @@ export default function VignettingTab({
   currentPhysStopSD,
   fieldGeometry,
 }: VignettingTabProps) {
-  const opticsEngine = getSelectedOpticsEngine();
   const samples = useMemo(
     () =>
       probe("computeVignettingCurve", () =>
-        opticsEngine.analysisJobs.computeVignettingCurve(
+        analysisJobs.computeVignettingCurve(
           L,
           zPos,
           focusT,
@@ -53,7 +52,7 @@ export default function VignettingTab({
           aberrationT,
         ),
       ),
-    [L, zPos, focusT, zoomT, aberrationT, currentEPSD, currentPhysStopSD, fieldGeometry, opticsEngine],
+    [L, zPos, focusT, zoomT, aberrationT, currentEPSD, currentPhysStopSD, fieldGeometry],
   );
 
   if (samples.length < 2) {

@@ -263,3 +263,25 @@ export function projectionLaunchVectorForFieldAngles2(
     status: "ok",
   };
 }
+
+export function projectionFieldSlopesForImagePoint2(
+  reference: ProjectionReference2,
+  imageX: number,
+  imageY: number,
+): ProjectionFieldSlopes2 | null {
+  const radius = Math.hypot(imageX, imageY);
+  if (!Number.isFinite(radius)) return null;
+  if (radius < 1e-12) {
+    return { fieldSlopeX: 0, fieldSlopeY: 0, equivalentAngleDeg: 0 };
+  }
+
+  const theta = projectionFieldAngleForImageHeight2(reference, radius);
+  if (!Number.isFinite(theta) || theta < 0 || theta >= Math.PI / 2) return null;
+
+  const slopeMagnitude = Math.tan(theta);
+  return {
+    fieldSlopeX: (imageX / radius) * slopeMagnitude,
+    fieldSlopeY: (-imageY / radius) * slopeMagnitude,
+    equivalentAngleDeg: (theta * 180) / Math.PI,
+  };
+}

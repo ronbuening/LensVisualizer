@@ -43,6 +43,12 @@ export interface OpticsBenchmarkResult {
   oldMedianTimeMs: number;
   newMedianTimeMs: number | null;
   worstTimeMs: number;
+  oldSuccessfulTraceCount: number;
+  oldClippedTraceCount: number;
+  oldFailedTraceCount: number;
+  newSuccessfulTraceCount: number | null;
+  newClippedTraceCount: number | null;
+  newFailedTraceCount: number | null;
   successfulTraceCount: number;
   clippedTraceCount: number;
   failedTraceCount: number;
@@ -139,6 +145,12 @@ export function runOpticsBenchmarkSuite<TOldContext, TNewContext = TOldContext>(
       oldMedianTimeMs: median(oldRun.samples),
       newMedianTimeMs: newRun ? median(newRun.samples) : null,
       worstTimeMs: Math.max(...allSamples, 0),
+      oldSuccessfulTraceCount: oldRun.counts.successfulTraceCount,
+      oldClippedTraceCount: oldRun.counts.clippedTraceCount,
+      oldFailedTraceCount: oldRun.counts.failedTraceCount,
+      newSuccessfulTraceCount: newRun?.counts.successfulTraceCount ?? null,
+      newClippedTraceCount: newRun?.counts.clippedTraceCount ?? null,
+      newFailedTraceCount: newRun?.counts.failedTraceCount ?? null,
       successfulTraceCount: (newRun ?? oldRun).counts.successfulTraceCount,
       clippedTraceCount: (newRun ?? oldRun).counts.clippedTraceCount,
       failedTraceCount: (newRun ?? oldRun).counts.failedTraceCount,

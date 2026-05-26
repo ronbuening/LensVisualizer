@@ -71,7 +71,7 @@ export function intersectStateSurface(
   } = {},
 ): SurfaceIntersectionResult {
   const surface = state.surfaces[surfaceIndex];
-  return intersectSurfaceProfile(ray, surface.profile, surface.z, options);
+  return intersectSurfaceProfile(ray, surface.profile, surface.z, { ...options, directionNormalized: true });
 }
 
 export function intersectImagePlane(

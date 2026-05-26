@@ -9,9 +9,19 @@
 
 import { useMemo, useRef } from "react";
 import { LENS_CATALOG } from "../../utils/catalog/lensCatalog.js";
-import { type CardinalElements } from "../../optics/cardinalElements.js";
-import { getSelectedOpticsEngine } from "../../optics/engineSelector.js";
+import buildLens from "../../optics/buildLens.js";
+import { computeCardinalElementsAtState, type CardinalElements } from "../../optics/cardinalElements.js";
+import { computeElementShapes, createCoordinateTransforms } from "../../optics/diagramGeometry.js";
 import { clampLensMovement, createLensMovementTransform } from "../../optics/lensMovement.js";
+import {
+  computeAnalysisFieldGeometryAtState,
+  doLayout,
+  effectiveFNumber,
+  eflAtFocus,
+  entrancePupilAtState,
+  fopenAtZoom,
+  thick,
+} from "../../optics/optics.js";
 import type { RuntimeLens, ElementShape, CoordinateTransforms } from "../../types/optics.js";
 import type { LensMovementTransform, ResolvedLensMovement } from "../../optics/lensMovement.js";
 import type { FieldGeometryState } from "../../optics/optics.js";
@@ -79,17 +89,15 @@ export default function useLensComputation({
   panelId,
   includeCardinalExtents = false,
 }: UseLensComputationParams): UseLensComputationResult {
-  const opticsEngine = getSelectedOpticsEngine();
-
   /* ── Build lens from catalog ── */
   const buildResult = useMemo((): { L: RuntimeLens; error?: undefined } | { L?: undefined; error: unknown } => {
     if (runtimeLens) return { L: runtimeLens };
     try {
-      return { L: opticsEngine.buildLens(LENS_CATALOG[lensKey]) };
+      return { L: buildLens(LENS_CATALOG[lensKey]) };
     } catch (e) {
       return { error: e };
     }
-  }, [lensKey, runtimeLens, opticsEngine]);
+  }, [lensKey, runtimeLens]);
 
   const L = buildResult.L;
   const buildError = buildResult.error;
@@ -99,12 +107,9 @@ export default function useLensComputation({
    * wide-end zoom position (focusT=0, zoomT=0). The difference `dz` shifts
    * the current layout so the image plane stays at a fixed SVG position
    * regardless of focus or zoom changes. */
-  const ref = useMemo(() => (L ? opticsEngine.doLayout(0, 0, L) : null), [L, opticsEngine]);
+  const ref = useMemo(() => (L ? doLayout(0, 0, L) : null), [L]);
   const IMG_MM = ref ? ref.imgZ : 0;
-  const cur = useMemo(
-    () => (L ? opticsEngine.doLayout(focusT, zoomT, L, aberrationT) : null),
-    [focusT, zoomT, aberrationT, L, opticsEngine],
-  );
+  const cur = useMemo(() => (L ? doLayout(focusT, zoomT, L, aberrationT) : null), [focusT, zoomT, aberrationT, L]);
   const dz = ref && cur ? IMG_MM - cur.imgZ : 0;
   const zPosRef = useRef<number[]>([]);
   const zPos = useMemo((): number[] => {
@@ -125,13 +130,13 @@ export default function useLensComputation({
   );
 
   const fieldGeometry = useMemo(
-    () => (L ? opticsEngine.computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT) : null),
-    [L, focusT, zoomT, aberrationT, opticsEngine],
+    () => (L ? computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT) : null),
+    [L, focusT, zoomT, aberrationT],
   );
 
   const cardinalElements = useMemo(
-    () => (L ? opticsEngine.computeCardinalElementsAtState(L, focusT, zoomT, zPos, IMG_MM, aberrationT) : null),
-    [L, focusT, zoomT, zPos, IMG_MM, aberrationT, opticsEngine],
+    () => (L ? computeCardinalElementsAtState(L, focusT, zoomT, zPos, IMG_MM, aberrationT) : null),
+    [L, focusT, zoomT, zPos, IMG_MM, aberrationT],
   );
 
   const cardinalZExtent = useMemo(() => {
@@ -152,7 +157,7 @@ export default function useLensComputation({
   const { sx, sy, clampedRayEnd, CX, IX, effectiveSC } = useMemo(
     (): CoordinateTransforms =>
       L
-        ? opticsEngine.createCoordinateTransforms({
+        ? createCoordinateTransforms({
             svgW: L.svgW,
             svgH: L.svgH,
             SC: L.SC,
@@ -171,19 +176,19 @@ export default function useLensComputation({
             IX: 0,
             effectiveSC: 1,
           },
-    [L, IMG_MM, scaleRatio, cardinalZExtent, opticsEngine],
+    [L, IMG_MM, scaleRatio, cardinalZExtent],
   );
 
   /* ── Element shapes ── */
   const shapesResult = useMemo((): { shapes: ElementShape[]; error: unknown } => {
     if (!L) return { shapes: [], error: null };
     try {
-      return { shapes: opticsEngine.computeElementShapes(L, zPos, sx, sy, movementTransform.point), error: null };
+      return { shapes: computeElementShapes(L, zPos, sx, sy, movementTransform.point), error: null };
     } catch (e) {
       console.error(`[useLensComputation] Element shape computation failed for "${lensKey}":`, e);
       return { shapes: [], error: e };
     }
-  }, [L, zPos, sx, sy, movementTransform, lensKey, opticsEngine]);
+  }, [L, zPos, sx, sy, movementTransform, lensKey]);
 
   const shapes = shapesResult.shapes;
   const shapeError = shapesResult.error;
@@ -194,7 +199,7 @@ export default function useLensComputation({
    * equal slider increments produce equal f-stop steps. */
   const stopZ = L ? zPos[L.stopIdx] : 0;
   /* Zoom-aware wide-open f-number (varies for variable-aperture zooms) */
-  const currentFOPEN = L ? opticsEngine.fopenAtZoom(zoomT, L) : 1;
+  const currentFOPEN = L ? fopenAtZoom(zoomT, L) : 1;
   /* Base formula uses L.FOPEN (widest across zoom range) so that a set
    * f-number stays constant when zooming.  Clamp to currentFOPEN — the
    * lens can't open wider than the zoom position allows. */
@@ -203,35 +208,33 @@ export default function useLensComputation({
   const currentPhysStopSD = L ? (L.stopPhysSD * L.FOPEN) / fNumber : 0;
   /* Use the current focus/zoom front-group magnification for pupil-dependent analyses. */
   const baseEPSD =
-    L && fieldGeometry
-      ? opticsEngine.entrancePupilAtState(L.stopPhysSD, focusT, zoomT, L, fieldGeometry, aberrationT).epSD
-      : 0;
+    L && fieldGeometry ? entrancePupilAtState(L.stopPhysSD, focusT, zoomT, L, fieldGeometry, aberrationT).epSD : 0;
   const currentEPSD = L ? (baseEPSD * L.FOPEN) / fNumber : 0;
 
   /* ── Variable gap readouts ── */
   const varReadouts: VarReadout[] = L
     ? L.varLabels.map(([idx, label]) => {
-        const val = opticsEngine.thick(idx, focusT, zoomT, L, aberrationT).toFixed(2);
+        const val = thick(idx, focusT, zoomT, L, aberrationT).toFixed(2);
         return { label, val };
       })
     : [];
   const aberrationReadouts: VarReadout[] = L?.aberrationControl
     ? L.aberrationControl.varLabels.map(([idx, label]) => {
-        const val = opticsEngine.thick(idx, focusT, zoomT, L, aberrationT).toFixed(2);
+        const val = thick(idx, focusT, zoomT, L, aberrationT).toFixed(2);
         return { label, val };
       })
     : [];
 
   /* ── Dynamic EFL (changes with focus for internal-focusing lenses) ── */
   const dynamicEFL = useMemo(
-    () => (L ? opticsEngine.eflAtFocus(focusT, zoomT, L, aberrationT) : 0),
-    [L, focusT, zoomT, aberrationT, opticsEngine],
+    () => (L ? eflAtFocus(focusT, zoomT, L, aberrationT) : 0),
+    [L, focusT, zoomT, aberrationT],
   );
 
   /* ── Effective f-number (bellows factor correction at close focus) ── */
   const effectiveFNum = useMemo(
-    () => (L ? opticsEngine.effectiveFNumber(fNumber, focusT, zoomT, L, aberrationT) : fNumber),
-    [L, fNumber, focusT, zoomT, aberrationT, opticsEngine],
+    () => (L ? effectiveFNumber(fNumber, focusT, zoomT, L, aberrationT) : fNumber),
+    [L, fNumber, focusT, zoomT, aberrationT],
   );
 
   const filterId = `gl-${panelId}`;

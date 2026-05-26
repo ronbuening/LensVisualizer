@@ -7,7 +7,12 @@
  * monochrome off-axis fan.
  */
 import { useMemo } from "react";
-import { getSelectedOpticsEngine } from "../../optics/engineSelector.js";
+import {
+  computeChromaticSpread,
+  offsetVectorFieldRay,
+  traceRayChromatic,
+  traceRayVectorChromatic,
+} from "../../optics/optics.js";
 import { obstructionAwareRayFractionsForDensity } from "../../optics/raySampling.js";
 import type { RuntimeLens, ChromaticChannel, ChromaticSpread, ChromaticSpreadByAxis } from "../../types/optics.js";
 import type { LensMovementTransform } from "../../optics/lensMovement.js";
@@ -63,7 +68,6 @@ function spreadForAxis(
   axis: ChromaticRaySegment["axis"],
   IMG_MM: number,
   lastSurfaceZ: number,
-  computeChromaticSpread: ReturnType<typeof getSelectedOpticsEngine>["computeChromaticSpread"],
 ): ChromaticSpread | null {
   const axisRays = chromaticRays.filter((r) => r.axis === axis);
   if (axisRays.length === 0) return null;
@@ -113,8 +117,6 @@ export default function useChromaticRays({
   chromV,
   lensKey,
 }: UseChromaticRaysParams): UseChromaticRaysResult {
-  const opticsEngine = getSelectedOpticsEngine();
-
   /* Separate ref to surface a caught error from the chromatic useMemo to the
    * combined return value (useMemo cannot return a tuple with a separate
    * error field without restructuring, so we pair the error here). */
@@ -129,7 +131,7 @@ export default function useChromaticRays({
           const h = f * currentEPSD;
           const uIn = rayTracksF ? h * focusK : 0;
           for (const ch of channels) {
-            const rawResult = opticsEngine.traceRayChromatic(
+            const rawResult = traceRayChromatic(
               h,
               uIn,
               zPos,
@@ -186,15 +188,15 @@ export default function useChromaticRays({
             for (const ch of channels) {
               const rawResult =
                 geometry.kind === "vector"
-                  ? opticsEngine.traceRayVectorChromatic(
-                      opticsEngine.offsetVectorFieldRay(geometry.vectorLaunch, 0, h, uConverge),
+                  ? traceRayVectorChromatic(
+                      offsetVectorFieldRay(geometry.vectorLaunch, 0, h, uConverge),
                       zPos,
                       currentPhysStopSD,
                       true,
                       L,
                       ch,
                     )
-                  : opticsEngine.traceRayChromatic(
+                  : traceRayChromatic(
                       geometry.yChief + h,
                       geometry.uField + uConverge,
                       zPos,
@@ -261,7 +263,6 @@ export default function useChromaticRays({
     zoomT,
     showOnAxis,
     showOffAxis,
-    opticsEngine,
   ]);
 
   const chromaticRays = chromaticResult.segments;
@@ -275,10 +276,10 @@ export default function useChromaticRays({
     if (channels.length < 2) return empty;
     const lastSurfaceZ = movementTransform ? movementTransform.point(zPos[L.N - 1], 0)[0] : zPos[L.N - 1];
     return {
-      onAxis: spreadForAxis(chromaticRays, "onAxis", IMG_MM, lastSurfaceZ, opticsEngine.computeChromaticSpread),
-      offAxis: spreadForAxis(chromaticRays, "offAxis", IMG_MM, lastSurfaceZ, opticsEngine.computeChromaticSpread),
+      onAxis: spreadForAxis(chromaticRays, "onAxis", IMG_MM, lastSurfaceZ),
+      offAxis: spreadForAxis(chromaticRays, "offAxis", IMG_MM, lastSurfaceZ),
     };
-  }, [showChromatic, chromR, chromG, chromB, chromV, chromaticRays, IMG_MM, zPos, L, movementTransform, opticsEngine]);
+  }, [showChromatic, chromR, chromG, chromB, chromV, chromaticRays, IMG_MM, zPos, L, movementTransform]);
 
   const chromSpread = chromaticSpreads.onAxis ?? chromaticSpreads.offAxis;
 

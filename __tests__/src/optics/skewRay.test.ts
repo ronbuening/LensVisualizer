@@ -16,31 +16,16 @@ import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
 import ApoLantharRaw from "../../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.js";
 import Sonnar50f15Raw from "../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
 import type { LensData, RuntimeLens } from "../../../src/types/optics.js";
+import { buildSimplePositiveElementLens } from "./testLensFixtures.js";
 
 function build(raw: object): RuntimeLens {
   return buildLens({ ...LENS_DEFAULTS, ...raw } as LensData);
 }
 
-function mkSingleElement(): RuntimeLens {
-  return {
-    S: [
-      { label: "1", R: 50, nd: 1.5168, sd: 15, d: 5, elemId: 1 },
-      { label: "2", R: -50, nd: 1.0, sd: 15, d: 80, elemId: 1 },
-    ],
-    N: 2,
-    stopIdx: 0,
-    clipMargin: 1.0,
-    rayLead: 5,
-    asphByIdx: {},
-    varByIdx: {},
-  } as unknown as RuntimeLens;
-}
-
 describe("traceSkewRay", () => {
-  const L = mkSingleElement();
-  const zPos = [0, 5];
-  const imagePlaneZ = 85;
-  const lastSurfZ = 5;
+  const L = buildSimplePositiveElementLens("test-skew-single-element");
+  const { z: zPos, imgZ: imagePlaneZ } = doLayout(0, 0, L);
+  const lastSurfZ = zPos[L.N - 1];
 
   it("matches the on-axis meridional trace", () => {
     const skew = traceSkewRay(0, 0, 0, 0, 0, 0, 15, false, L);
@@ -172,7 +157,7 @@ describe("skewImagePlaneIntercept edge cases", () => {
 });
 
 describe("traceChiefRelativeSkewRay", () => {
-  const L = mkSingleElement();
+  const L = buildSimplePositiveElementLens("test-chief-relative-skew-single-element");
 
   it("launches the ray at the correct pupil coordinates", () => {
     const epSD = 10;
@@ -206,7 +191,7 @@ describe("traceChiefRelativeSkewRay", () => {
 });
 
 describe("traceSkewRay with non-trivial initial x-slope", () => {
-  const L = mkSingleElement();
+  const L = buildSimplePositiveElementLens("test-skew-x-slope-single-element");
 
   it("produces different x output when launched with nonzero ux", () => {
     const withUx = traceSkewRay(3, 0, 0.05, 0, 0, 0, 15, false, L);

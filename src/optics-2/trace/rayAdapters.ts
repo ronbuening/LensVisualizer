@@ -20,6 +20,8 @@ export interface VectorRayTraceInput2 {
 }
 
 const ENGINE_LENS_BY_RUNTIME = new WeakMap<RuntimeLens, ReturnType<typeof normalizeRuntimeLens>>();
+const PREPARED_STATE_BY_RUNTIME = new WeakMap<RuntimeLens, Map<string, PreparedOpticalState>>();
+const LEGACY_Z_STATE_BY_BASE = new WeakMap<PreparedOpticalState, WeakMap<readonly number[], PreparedOpticalState>>();
 
 export function traceEngineRay2(
   state: PreparedOpticalState,
@@ -228,20 +230,39 @@ function stateForLegacyLens(L: RuntimeLens, focusT: number, zoomT: number, aberr
     engineLens = normalizeRuntimeLens(L);
     ENGINE_LENS_BY_RUNTIME.set(L, engineLens);
   }
-  return prepareState(engineLens, focusT, zoomT, aberrationT);
+  let stateCache = PREPARED_STATE_BY_RUNTIME.get(L);
+  if (!stateCache) {
+    stateCache = new Map();
+    PREPARED_STATE_BY_RUNTIME.set(L, stateCache);
+  }
+  const key = `${focusT}|${zoomT}|${aberrationT}`;
+  const cached = stateCache.get(key);
+  if (cached) return cached;
+  const state = prepareState(engineLens, focusT, zoomT, aberrationT);
+  stateCache.set(key, state);
+  return state;
 }
 
 function stateWithLegacyZ(state: PreparedOpticalState, zPos: readonly number[]): PreparedOpticalState {
   if (zPos.length === 0 || zPos.every((z, index) => z === state.z[index])) return state;
+  let byZ = LEGACY_Z_STATE_BY_BASE.get(state);
+  if (!byZ) {
+    byZ = new WeakMap();
+    LEGACY_Z_STATE_BY_BASE.set(state, byZ);
+  }
+  const cached = byZ.get(zPos);
+  if (cached) return cached;
   const surfaces = state.surfaces.map((surface, index) => {
     const z = zPos[index] ?? surface.z;
     const d = index < state.surfaces.length - 1 && zPos[index + 1] !== undefined ? zPos[index + 1] - z : surface.d;
     return Object.freeze({ ...surface, z, d }) as CompiledStateSurface;
   });
-  return Object.freeze({
+  const shiftedState = Object.freeze({
     ...state,
     surfaces: Object.freeze(surfaces),
     z: Object.freeze([...zPos]),
     imgZ: state.lens.flags.isFoldedOptics ? state.imgZ : state.imgZ,
   });
+  byZ.set(zPos, shiftedState);
+  return shiftedState;
 }
