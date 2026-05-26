@@ -6,8 +6,12 @@ import {
   type RealSurfaceTraceOptions,
   type RealSurfaceTraceResult,
 } from "./internal/traceSurfaces.js";
-import { traceExactSurfaceStack, traceExactSurfaceStackVector } from "./internal/exactSurfaceTrace.js";
-import type { Vector3 } from "./internal/exactSurfaceTrace.js";
+import {
+  traceExactSurfaceStack,
+  traceExactSurfaceStackVector,
+  traceToStopViaGeneralized,
+} from "./internal/exactSurfaceTrace.js";
+import type { ExactTraceLens, Vector3 } from "./internal/exactSurfaceTrace.js";
 import {
   ABSOLUTE_HALF_FIELD_CEILING,
   boundingSphereLaunchVector,
@@ -73,6 +77,29 @@ const OBJECT_PLANE_BRACKET_SCAN_SAMPLES = 96;
 const BOUNDING_SPHERE_BRACKET_SCAN_SAMPLES = 96;
 
 const chiefRaySolveCache: WeakMap<RuntimeLens, Map<string, ChiefRaySolveResult>> = new WeakMap();
+
+function exactTraceLensForState(S: ReturnType<typeof stateSurfaces>, L: RuntimeLens): ExactTraceLens {
+  return L.isFoldedOptics
+    ? {
+        S,
+        asphByIdx: L.asphByIdx,
+        stopIdx: L.stopIdx,
+        clipMargin: L.clipMargin,
+        opticalPath: L.opticalPath,
+        imagePlane: L.imagePlane,
+        isFoldedOptics: true,
+      }
+    : { S, asphByIdx: L.asphByIdx, stopIdx: L.stopIdx, clipMargin: L.clipMargin };
+}
+
+function foldedRayImagePlaneCoordinate(trace: RayTraceResult, L: RuntimeLens): number {
+  const point = trace.pts[trace.pts.length - 1];
+  if (!point) return NaN;
+  const [z, y] = point;
+  const tangentZ = -L.imagePlane.normal.y;
+  const tangentY = L.imagePlane.normal.z;
+  return (z - L.imagePlane.z) * tangentZ + (y - L.imagePlane.y) * tangentY;
+}
 
 function chiefRaySolveCacheKey(
   L: RuntimeLens,
@@ -263,6 +290,7 @@ export function chiefRayImageHeight(
   aberrationT = 0,
 ): number {
   const trace = traceChiefRayAtAngle(fieldAngleDeg, zPos, focusT, zoomT, L, geometry, aberrationT);
+  if (L.isFoldedOptics && trace.reachedImagePlane) return foldedRayImagePlaneCoordinate(trace, L);
   return trace.y + trace.u * thick(L.N - 1, focusT, zoomT, L, aberrationT);
 }
 
@@ -562,8 +590,16 @@ export function solveChiefRayBoundingSphere(
 
   const heightAtStop = (yEP: number): number | null => {
     const origin: Vector3 = [baseOrigin[0], baseOrigin[1] + yEP * perpY, baseOrigin[2] + yEP * perpZ];
+    if (L.isFoldedOptics) {
+      const result = traceToStopViaGeneralized(exactTraceLensForState(S, L), { origin, direction }, stopIdx, {
+        launchBoundT,
+        checkSemiDiameter: true,
+      });
+      if (!result.found) return null;
+      return result.y;
+    }
     const result = traceExactSurfaceStackVector(
-      { S, asphByIdx: L.asphByIdx, stopIdx: L.stopIdx },
+      exactTraceLensForState(S, L),
       { origin, direction },
       { stopAt: stopIdx, launchBoundT, checkSemiDiameter: true },
     );
@@ -715,11 +751,13 @@ export function chiefRayImageHeightAccurate(
   if (solve.vectorLaunch) {
     const trace = traceRayVector(solve.vectorLaunch, zPos, undefined, false, L);
     if (trace.clipped) return NaN;
+    if (L.isFoldedOptics && trace.reachedImagePlane) return foldedRayImagePlaneCoordinate(trace, L);
     return trace.y + trace.u * thick(L.N - 1, focusT, zoomT, L, aberrationT);
   }
   const uField = launch.uField;
   const yChief = solve.yLaunch;
   const trace = traceRay(yChief, uField, zPos, focusT, zoomT, undefined, true, L, aberrationT);
+  if (L.isFoldedOptics && trace.reachedImagePlane) return foldedRayImagePlaneCoordinate(trace, L);
   return trace.y + trace.u * thick(L.N - 1, focusT, zoomT, L, aberrationT);
 }
 
@@ -875,8 +913,22 @@ function traceStateSurfacesReal(
   u0: number,
   traceOptions: RealSurfaceTraceOptions = {},
 ): RealSurfaceTraceResult {
+  const traceLens = exactTraceLensForState(S, L);
+  if (L.isFoldedOptics && traceOptions.stopAt !== undefined) {
+    const stopResult = traceToStopViaGeneralized(traceLens, { y0, uy0: u0 }, traceOptions.stopAt, {
+      checkSemiDiameter: traceOptions.checkSemiDiameter,
+    });
+    return {
+      y: stopResult.found ? stopResult.y : NaN,
+      u: stopResult.found ? stopResult.uy : NaN,
+      n: stopResult.n,
+      clipped: !stopResult.found,
+      heights: null,
+    };
+  }
+
   const result = traceExactSurfaceStack(
-    { S, asphByIdx: L.asphByIdx, stopIdx: L.stopIdx },
+    traceLens,
     { y0, uy0: u0 },
     {
       stopAt: traceOptions.stopAt,

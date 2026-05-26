@@ -41,6 +41,8 @@ vi.mock("../../../../../src/optics/aberrationAnalysis.js", () => ({
 const theme = {
   panelBg: "#111",
   panelBorder: "#222",
+  panelDivider: "#333",
+  desc: "#aaa",
   muted: "#999",
   axis: "#666",
   value: "#0f0",
@@ -450,6 +452,17 @@ describe("AberrationsPanel", () => {
     expect(screen.getAllByText("EDGE T / S").length).toBeGreaterThan(0);
     expect(screen.getByText("T -0.45 mm / S -0.21 mm")).toBeTruthy();
     expect(screen.getAllByText("5/5").length).toBeGreaterThan(0);
+  });
+
+  it("keeps folded optics on spherical aberration and hides field-model sections", () => {
+    mockComputeSphericalAberration.mockReturnValue(makeSaResult(-0.012));
+
+    render(<AberrationsPanel {...baseProps} L={{ ...baseProps.L, isFoldedOptics: true }} />);
+
+    expect(screen.getAllByText("BEST-FOCUS SPREAD").length).toBeGreaterThan(0);
+    expect(screen.getByText(/Field curvature and astigmatism remain hidden for folded mirror systems/i)).toBeTruthy();
+    expect(screen.queryByText("Field Curves")).toBeNull();
+    expect(screen.queryByText("Astigmatism")).toBeNull();
   });
 
   it("forwards aberration-control state into spherical and field-curvature calculations", () => {

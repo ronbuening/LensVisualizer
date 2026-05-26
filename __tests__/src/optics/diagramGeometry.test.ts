@@ -4,8 +4,10 @@ import {
   computeElementRenderDiagnostics,
   computeElementShapes,
 } from "../../../src/optics/diagramGeometry.js";
-import { SVG_PATH_SUBDIVISIONS } from "../../../src/optics/optics.js";
+import buildLens from "../../../src/optics/buildLens.js";
+import { doLayout, SVG_PATH_SUBDIVISIONS } from "../../../src/optics/optics.js";
 import type { RuntimeLens, AsphericCoefficients } from "../../../src/types/optics.js";
+import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 
 /* ═══════════════════════════════════════════════════════════════════
  * §1  createCoordinateTransforms
@@ -187,6 +189,7 @@ describe("computeElementShapes", () => {
     expect(shapes[0].z2).toBe(5);
     expect(shapes[0].d).toMatch(/^M.*Z$/); // starts with M, ends with Z (closed)
     expect(shapes[0].asphPaths).toEqual([]);
+    expect(shapes[0].surfaceAccentPaths).toEqual([]);
   });
 
   it("zero point transform preserves element shape coordinates", () => {
@@ -541,5 +544,41 @@ describe("computeElementShapes", () => {
     expect(rearTop[1]).toBeCloseTo(-12);
     expect(frontBottom[1]).toBeCloseTo(18);
     expect(rearBottom[1]).toBeCloseTo(12);
+  });
+
+  it("renders a tilted fold mirror and its passive backing plane with matching meridional normals", () => {
+    const L = buildLens(LENS_CATALOG["reference-newtonian-side-focus"]);
+    const layout = doLayout(0, 0, L);
+    const shapes = computeElementShapes(L, layout.z, sx, sy);
+    const secondaryShape = shapes.find((shape) => shape.eid === 2);
+    const coords = pathCoords(secondaryShape?.d ?? "");
+    const frontTop = coords[0];
+    const frontBottom = coords[SVG_PATH_SUBDIVISIONS];
+    const rearBottom = coords[SVG_PATH_SUBDIVISIONS + 1];
+    const rearTop = coords[coords.length - 1];
+
+    expect(secondaryShape).toBeDefined();
+    expect(frontTop[1]).toBeCloseTo(-10, 10);
+    expect(frontTop[0]).toBeCloseTo(layout.z[L.labelIdx.SEC] + 10, 10);
+    expect(frontBottom[1]).toBeCloseTo(10, 10);
+    expect(frontBottom[0]).toBeCloseTo(layout.z[L.labelIdx.SEC] - 10, 10);
+    expect(rearTop[1]).toBeCloseTo(-10, 10);
+    expect(rearTop[0]).toBeCloseTo(layout.z[L.labelIdx.SECB] + 10, 10);
+    expect(rearBottom[1]).toBeCloseTo(10, 10);
+    expect(rearBottom[0]).toBeCloseTo(layout.z[L.labelIdx.SECB] - 10, 10);
+  });
+
+  it("emits a coating accent path for second-surface mirror fixtures", () => {
+    const L = buildLens(LENS_CATALOG["reference-mangin-second-surface-mirror"]);
+    const layout = doLayout(0, 0, L);
+    const shapes = computeElementShapes(L, layout.z, sx, sy);
+    const manginShape = shapes.find((shape) => shape.eid === 1);
+    const coating = manginShape?.surfaceAccentPaths.find(
+      (path) => path.kind === "second-surface-coating" && path.surfIdx === L.labelIdx.MG2,
+    );
+
+    expect(coating).toBeDefined();
+    expect(coating?.pathD).toMatch(/^M/);
+    expect(pathCoords(coating?.pathD ?? "")).toHaveLength(SVG_PATH_SUBDIVISIONS + 1);
   });
 });

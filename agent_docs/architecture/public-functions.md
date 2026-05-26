@@ -20,8 +20,11 @@ implementation details.
 | --- | --- | --- |
 | `src/types/optics.ts` | `LensDataInput`, `LensData`, `RuntimeLens` | Raw lens files, defaulted lens data, and the frozen runtime object returned by `buildLens()`. |
 | `src/types/optics.ts` | `SurfaceData`, `ElementData`, `AsphericCoefficients`, `VarRange` | Prescription structure, element metadata, aspheric terms, and focus/zoom variable gaps. |
+| `src/types/optics.ts` | `SurfaceInteraction`, `SurfaceIncidentSide`, `SurfaceInactiveSideBehavior`, `MirrorKind` | Folded-path surface behavior for refract/reflect/block surfaces, side-specific activation, and first/second-surface mirrors. |
+| `src/types/optics.ts` | `OpticalPathData`, `ResolvedOpticalPath`, `ImagePlaneData`, `ResolvedImagePlane`, `ImagePlaneNormal` | Generalized optical path metadata, explicit/repeated surface hit order, automatic path mode, and arbitrary meridional image-plane placement. |
 | `src/types/optics.ts` | `LensProjectionConfig`, `PerspectiveControlConfig` | Fisheye/rectilinear projection metadata and shift/tilt capability metadata. |
 | `src/types/optics.ts` | `RayTraceResult`, `ParaxialTraceResult`, `LayoutResult`, `ChromaticChannel` | Shared optics result shapes. |
+| `src/types/optics.ts` | `ElementShape`, `AsphPathData`, `SurfaceAccentPathData` | SVG-ready element outline, aspheric overlay, and mirror-coating accent path data returned by `computeElementShapes()`. |
 | `src/types/state.ts` | `LensState`, `LensAction`, `Preferences`, `URLState` | Reducer state, actions, persisted preferences, and shareable URL state. |
 | `src/types/state.ts` | `OffAxisMode`, `RayDensity`, `MobileView`, `DesktopView`, `AnalysisTabId` | UI state unions plus `is*` guards for parsing external values. |
 | `src/types/groupMovement.ts` | `GroupMovementMode`, `isGroupMovementMode` | Shared group-movement mode ids and guard. |
@@ -36,6 +39,12 @@ implementation details.
 
 Use `buildLens()` once per lens/session state boundary, then pass the returned `RuntimeLens` (`L`) explicitly into pure
 optics helpers. Do not store runtime lens state in module globals.
+
+For mirror or telescope data, inspect `L.opticalPath`, `L.imagePlane`, and `L.isFoldedOptics` instead of inferring behavior
+from surface order. Public `traceRay*` helpers report folded termination through `reachedImagePlane`; targeted optics
+tests may import the exact tracer to assert generalized-path `hits`, `terminalPoint`, `terminalDirection`, and repeated
+stop behavior. Folded callers that need an intermediate stop hit should use the generalized stop helper internally
+rather than relying on sequential partial tracing.
 
 ## Optics Engine
 

@@ -45,6 +45,7 @@ interface DiagramOverlayLayerProps {
   showCardinalHiatus?: boolean;
   showCardinalTotalTrack?: boolean;
   cardinalElements?: CardinalElements | null;
+  foldedHitOrderLabels?: string[];
   zoomT: number;
   act: number | null;
   flashVisible: boolean;
@@ -83,6 +84,7 @@ export default function DiagramOverlayLayer({
   showCardinalHiatus = true,
   showCardinalTotalTrack = true,
   cardinalElements,
+  foldedHitOrderLabels = [],
   zoomT,
   act,
   flashVisible,
@@ -95,6 +97,20 @@ export default function DiagramOverlayLayer({
     const [zz, yy] = pointTransform ? pointTransform(z, y) : [z, y];
     return [sx(zz), sy(yy)];
   };
+  const imageNormal = L.imagePlane.normal;
+  const imageTangent = { z: imageNormal.y, y: -imageNormal.z };
+  const imageLineStart = screenPoint(
+    L.imagePlane.z - imageTangent.z * L.lyImgLine,
+    L.imagePlane.y - imageTangent.y * L.lyImgLine,
+  );
+  const imageLineEnd = screenPoint(
+    L.imagePlane.z + imageTangent.z * L.lyImgLine,
+    L.imagePlane.y + imageTangent.y * L.lyImgLine,
+  );
+  const imageLabel = screenPoint(
+    L.imagePlane.z + imageTangent.z * L.lyImgLabel,
+    L.imagePlane.y + imageTangent.y * L.lyImgLabel,
+  );
 
   return (
     <>
@@ -112,24 +128,24 @@ export default function DiagramOverlayLayer({
       />
 
       <line
-        x1={IX}
-        y1={sy(-L.lyImgLine)}
-        x2={IX}
-        y2={sy(L.lyImgLine)}
+        x1={imageLineStart[0]}
+        y1={imageLineStart[1]}
+        x2={imageLineEnd[0]}
+        y2={imageLineEnd[1]}
         stroke={t.imgLine}
         strokeWidth={t.imgLineWidth}
         strokeDasharray="4,3"
       />
       <text
-        x={IX}
-        y={sy(L.lyImgLabel)}
+        x={imageLabel[0]}
+        y={imageLabel[1]}
         textAnchor="middle"
         fill={t.imgLabel}
         fontSize={9.5}
         fontFamily="inherit"
         style={{ letterSpacing: "0.12em" }}
       >
-        IMG
+        {L.imagePlane.label}
       </text>
 
       {showChromatic && chromSpread && Object.keys(chromSpread.intercepts).length >= 2 && (
@@ -157,6 +173,36 @@ export default function DiagramOverlayLayer({
         act={act}
         showChromatic={showChromatic}
       />
+
+      {foldedHitOrderLabels.length > 0 &&
+        (() => {
+          const seen = new Map<string, number>();
+          return foldedHitOrderLabels.map((label, index) => {
+            const surfaceIdx = L.labelIdx[label];
+            if (surfaceIdx === undefined) return null;
+            const previousCount = seen.get(label) ?? 0;
+            seen.set(label, previousCount + 1);
+            const surface = L.S[surfaceIdx];
+            const labelOffset = previousCount * 8;
+            const [x, y] = screenPoint(zPos[surfaceIdx], -(surface.sd + 8 + labelOffset));
+            return (
+              <text
+                key={`folded-hit-${index}-${label}`}
+                x={x}
+                y={y}
+                textAnchor="middle"
+                fill={t.groupLabel}
+                fontSize={8.5}
+                fontFamily="inherit"
+                fontWeight={600}
+                opacity={0.92}
+                style={{ pointerEvents: "none", letterSpacing: "0.06em" }}
+              >
+                {index + 1} {label}
+              </text>
+            );
+          });
+        })()}
 
       {showPupils && (
         <>

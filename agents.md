@@ -4,8 +4,9 @@
 
 LensVisualizer (public site: Surface & Stop) is an interactive React + TypeScript optical lens cross-section visualizer.
 It renders patent-derived camera lens sections as inline SVG, traces rays in real time, and exposes analysis tools for
-aberrations, pupils, distortion, vignetting, bokeh, chromatic behavior, glass, lens comparison, and perspective-control
-movement, including projection-aware fisheye tracing. The site is prerendered for SEO and deployed to Cloudflare Pages.
+aberrations, pupils, distortion, vignetting, bokeh, chromatic behavior, glass, lens comparison, perspective-control
+movement, folded mirror paths, annular apertures/obstructions, arbitrary image planes, and projection-aware fisheye
+tracing. The site is prerendered for SEO and deployed to Cloudflare Pages.
 
 ## Tech Stack
 
@@ -56,6 +57,8 @@ npm run organize:lens-data # Move stray root-level lens files into maker folders
 npm run preview
 npm run test
 npm run test:coverage
+npm run generate:glass-reports
+npm run generate:mirror-reports
 npm run typecheck
 npm run lint
 npm run lint:fix
@@ -82,9 +85,11 @@ Read only the relevant focused doc before changing that area:
 - `agent_docs/glass-catalog-buildout.md` - chromatic dispersion catalog, resolver, and how to add Sellmeier entries safely
 - `agent_docs/glass-relabel-followup.md` - per-lens catalog mismatch relabel queue and audit workflow pointers
 - `agent_docs/proprietary-glass-backfill.md` - patent line-index backfill workflow for unresolved proprietary glasses
-- `agent_docs/generated/` - generated glass reports and queues; refresh all with `npm run generate:glass-reports`
+- `agent_docs/generated/` - generated glass and mirror fixture reports; refresh glass reports with
+  `npm run generate:glass-reports` and hidden mirror fixture reports with `npm run generate:mirror-reports`
 - `agent_docs/records/exact-surface-trace.md` - historical staged implementation notes for the exact trace rollout
 - `TRACE_MODEL_IMPROVEMENT_PLAN.md` - current/historical fisheye projection, vector launch, and bounding-sphere trace status
+- `MIRROR_LENS_FUTURE_ENHANCEMENTS.md` - follow-up backlog for mirror-lens analysis, tracing, UI, and authoring improvements
 - `agent_docs/adding_a_lens.md` - lens data workflow and validation troubleshooting
 - `agent_docs/lens-mount-format-backfill.md` - mount/format metadata backfill status and review queue
 - `agent_docs/lens-patent-audit.md` - standard procedure for re-checking a lens against its patent and logging the result
@@ -109,6 +114,12 @@ Read only the relevant focused doc before changing that area:
   or thread `mode` / `traceMode` options through new helpers.
 - Fisheye and ultra-wide field launch must go through `src/optics/projection.ts` and `solveChiefRay`; do not inline
   `Math.tan(field)` or bypass the bounding-sphere vector path.
+- Mirror/folded systems opt into `LensData.opticalPath` and per-surface `interaction` / `innerSd`. Preserve ordinary
+  sequential defaults for refractive lenses, use explicit `surfaceOrder` when hit order is known, and route folded
+  stop/chief-ray solves through the generalized tracer instead of sequential `stopAt` partial traces.
+- Keep folded-system complex analysis tabs guarded until the specific tab is mirror-safe. Axial cardinal overlays and
+  mirror-safe spherical/blur paths are adapted; do not assume that for coma, distortion, vignetting, field curvature, or
+  pupil tabs without fixture-backed validation.
 - Keep slider-state-dependent analysis out of `buildLens()`; analysis tabs compute from current focus/zoom/aperture state.
 - Use existing shared utilities/components before adding new abstractions.
 - Use `src/components/markdown/ThemedMarkdown.tsx` for article and lens-description markdown.
@@ -123,9 +134,12 @@ Read only the relevant focused doc before changing that area:
 ## Adding Content
 
 For a lens: start from `src/lens-data/TEMPLATE.data.ts.template`, use `satisfies LensDataInput`, optionally add a matching
-`*.analysis.md`, and populate `lensMounts` / `imageFormat` when the mount and format are unambiguous. Track backfill
-status in `agent_docs/lens-mount-format-backfill.md`. `npm run generate:metadata` or `npm run build` will move
-root-level draft lens files into maker folders and fix nested imports.
+`*.analysis.md`, and populate `lensMounts` / `imageFormat` when the mount and format are unambiguous. For mirror or
+telescope designs, use the hidden fixtures under `src/lens-data/reference/` and the folded-path section of
+`src/lens-data/LENS_DATA_SPEC.md` as examples, then run `npm run generate:mirror-reports` if a hidden mirror fixture
+changed. Track backfill status in `agent_docs/lens-mount-format-backfill.md`.
+`npm run generate:metadata` or `npm run build` will move root-level draft lens files into maker folders and fix nested
+imports.
 
 For an article: create `src/content/**/*.md` with required `slug` and `title` frontmatter. Use `series` and
 `seriesOrder` for article series, and `toc: true` for long pieces. Run `npm run build` when route metadata should be

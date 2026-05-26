@@ -35,7 +35,7 @@ const DiagramElementLayer = memo(function DiagramElementLayer({
 }: DiagramElementLayerProps) {
   return (
     <>
-      {shapes.map(({ eid, d: path }) => {
+      {shapes.map(({ eid, d: path, fillRule }) => {
         const element = L.elements.find((candidate) => candidate.id === eid)!;
         const highlighted = act === eid;
         return (
@@ -43,6 +43,7 @@ const DiagramElementLayer = memo(function DiagramElementLayer({
             key={eid}
             d={path}
             fill={t.elemFill(element, highlighted)}
+            fillRule={fillRule}
             stroke={t.elemStroke(element, highlighted)}
             strokeWidth={highlighted ? t.elemStrokeActive : t.elemStrokeIdle}
             style={{
@@ -79,6 +80,22 @@ const DiagramElementLayer = memo(function DiagramElementLayer({
             fill="none"
             stroke={t.asphStroke}
             strokeWidth={t.asphStrokeWidth}
+            strokeLinecap="round"
+            style={{ pointerEvents: "none" }}
+          />
+        )),
+      )}
+
+      {shapes.flatMap(({ surfaceAccentPaths }) =>
+        (surfaceAccentPaths || []).map(({ surfIdx, pathD, kind }) => (
+          <path
+            key={`surface-accent-${kind}-${surfIdx}`}
+            data-testid={`surface-accent-${kind}-${surfIdx}`}
+            d={pathD}
+            fill="none"
+            stroke={t.imgLine}
+            strokeWidth={Math.max(t.asphStrokeWidth, t.imgLineWidth + 0.4)}
+            strokeDasharray="3,2"
             strokeLinecap="round"
             style={{ pointerEvents: "none" }}
           />

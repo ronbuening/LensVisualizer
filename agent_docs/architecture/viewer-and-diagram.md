@@ -44,6 +44,8 @@ Key responsibilities:
 - Wires computation hooks for layout, density-controlled rays, chromatic spread, overlays, and slider feedback.
 - Applies optional perspective-control movement for supported lenses, including transformed geometry/rays and fixed
   image-plane reference behavior.
+- Supports folded mirror runtime lenses by consuming `L.imagePlane`, `L.isFoldedOptics`, generalized ray endpoints, and
+  obstruction-aware ray sampling instead of assuming the final surface's right-hand BFD is the only imaging plane.
 - Passes memoized field geometry into analysis drawer tabs.
 - Tracks slider interaction so heavy analysis can defer/freeze inputs while the user drags.
 - Surfaces build, shape, ray, and render errors through the panel error tiers.
@@ -53,9 +55,9 @@ Key responsibilities:
 | Hook | Purpose |
 | --- | --- |
 | `useLensComputation.ts` | Lens building/reuse, layout, transforms, element shapes, aperture, current-state field geometry, and optional perspective-control movement. Stabilizes `zPos` by element-wise comparison. |
-| `useRayTracing.ts` | Orchestrates on-axis, off-axis, and chromatic ray hooks, applies ray density and optional movement transforms, and reports the first ray error. |
-| `useOnAxisRays.ts` | Computes density-derived on-axis ray fan segments. |
-| `useOffAxisRays.ts` | Computes density-derived visible off-axis rays using state-aware field geometry. |
+| `useRayTracing.ts` | Orchestrates on-axis, off-axis, and chromatic ray hooks, applies ray density and optional movement transforms, and reports the first ray error. Folded systems receive generalized trace results terminating on `L.imagePlane`. |
+| `useOnAxisRays.ts` | Computes density-derived on-axis ray fan segments, using obstruction-aware sampling for folded mirror systems. |
+| `useOffAxisRays.ts` | Computes density-derived visible off-axis rays using state-aware field geometry and folded image-plane termination where applicable. |
 | `offAxisRayUtils.ts` | Shared off-axis tracing geometry and optional edge-projection endpoint logic for monochrome and chromatic fans. |
 | `useChromaticRays.ts` | Computes density-derived axial and off-axis chromatic R/G/B tracing plus axial LCA/TCA spread. |
 | `useFlashOverlay.ts` | Sticky-slider flash animation state. |
@@ -72,7 +74,7 @@ Key responsibilities:
 | `LensDiagramLoadedState.tsx` | Loaded panel composition after build/layout succeeds. |
 | `LensDiagramErrorState.tsx` | Build/shape/ray error presentation. |
 | `DiagramViewport.tsx` | SVG viewport wrapper with LCA/Petzval/group-movement overlay gating, zoom/pan toggle, and keyboard shortcut handling. |
-| `AnalysisDrawerContent.tsx` | Tab-to-panel router for analysis drawer content. Defers slider-derived inputs and freezes last settled analysis inputs during active slider interaction. Shows a notice when PC movement is active because v1 analysis tabs remain centered-lens diagnostics. |
+| `AnalysisDrawerContent.tsx` | Tab-to-panel router for analysis drawer content. Defers slider-derived inputs and freezes last settled analysis inputs during active slider interaction. Shows notices when PC movement is active or folded mirror optics are detected; folded systems gate tabs that still assume sequential front-to-rear paraxial math. |
 | `DiagramControlPanel.tsx` | Sliders, inspector, legend, and analysis launch button. |
 | `analysisTabs.ts` | Typed analysis tab metadata shared by trigger and drawer. |
 
@@ -82,9 +84,9 @@ Key responsibilities:
 | --- | --- |
 | `DiagramSVG.tsx` | Top-level SVG renderer. Accepts viewBox override, zoom handlers, optional movement transforms, and the subtle moved-lens axis; wrapped in `React.memo`. |
 | `DiagramDefs.tsx` | Shared SVG defs, gradients, filters, and markers. |
-| `DiagramGridAxisLayer.tsx` | Grid, axis, and image-plane reference elements. |
-| `DiagramElementLayer.tsx` | Lens element paths and aspheric overlays. |
-| `DiagramRayLayers.tsx` | On-axis, off-axis, and chromatic ray layers. When chromatic mode is active, it hides monochrome layers and lets ON-AXIS/OFF-AXIS gate the chromatic axial/off-axis groups. |
+| `DiagramGridAxisLayer.tsx` | Grid, axis, and image-plane reference elements, including explicit folded-system image planes that may be in front of, behind, or above the axial layout. |
+| `DiagramElementLayer.tsx` | Lens element paths, aspheric overlays, and surface accents. Annular elements use even-odd fill, tilted flat mirrors render from `interaction.normal`, and second-surface mirror coatings render as dashed substrate accents. |
+| `DiagramRayLayers.tsx` | On-axis, off-axis, and chromatic ray layers. When chromatic mode is active, it hides monochrome layers and lets ON-AXIS/OFF-AXIS gate the chromatic axial/off-axis groups. Folded ray polylines follow the generalized tracer rather than surface-list order. |
 | `RayPolylines.tsx` | Consolidated ray segment polyline rendering. |
 | `ApertureStop.tsx` | Aperture stop blades and STO label. |
 | `CardinalElementsOverlay.tsx` | Feature-flagged F/F′, H/H′, N/N′ and axial span overlay. |

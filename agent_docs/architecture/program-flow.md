@@ -114,11 +114,13 @@ flowchart TD
   BuildLens --> Validate[src/optics/validateLensData.ts]
   BuildLens --> Glass[src/optics/glassCatalog.ts and dispersion.ts]
   BuildLens --> Runtime[RuntimeLens]
+  Runtime --> Path[opticalPath imagePlane folded metadata]
   Runtime --> Layout[src/optics/layout.ts]
   Layout --> Geometry[src/optics/diagramGeometry.ts]
   Geometry --> Shapes[SVG-ready lens shapes and scales]
 
   Runtime --> Trace
+  Path --> Trace
   Trace --> OnAxis[src/components/hooks/useOnAxisRays.ts]
   Trace --> OffAxis[src/components/hooks/useOffAxisRays.ts]
   Trace --> Chromatic[src/components/hooks/useChromaticRays.ts]
@@ -152,6 +154,8 @@ flowchart TD
   Runtime --> TraceCore
   TraceCore --> Exact[src/optics/internal exact surface tracing]
   Exact --> Intersections[src/optics/internal surface intersection]
+  Runtime --> Folded[folded optical path image plane annular masks]
+  Folded --> Exact
   Intersections --> RayResults[Ray paths statuses pupils focal data]
 
   Runtime --> AnalysisJobs[src/optics/analysisJobs.ts]

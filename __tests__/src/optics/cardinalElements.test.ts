@@ -66,6 +66,22 @@ describe("computeCardinalElementsAtState", () => {
     expect(close.points.rearPrincipal.z).not.toBeCloseTo(infinity.points.rearPrincipal.z, 3);
   });
 
+  it("computes reflective cardinal elements for an axial folded primary mirror", () => {
+    const L = buildLens(LENS_CATALOG["reference-spherical-primary-mirror"]);
+    const result = cardinalsFor(L);
+
+    expect(result).not.toBeNull();
+    expect(result!.points.rearFocal.z).toBeCloseTo(L.imagePlane.z, 8);
+    expect(Math.abs(result!.distances.efl.valueMm)).toBeCloseTo(L.EFL, 8);
+    expect(result!.distances.efl.valueMm).toBeLessThan(0);
+  });
+
+  it("keeps tilted image-plane folded systems out of first-order cardinal reporting", () => {
+    const L = buildLens(LENS_CATALOG["reference-newtonian-side-focus"]);
+
+    expect(cardinalsFor(L)).toBeNull();
+  });
+
   it("returns null for afocal or zero-power systems", () => {
     const L = {
       S: [{ label: "1", R: 1e15, d: 0, nd: 1, elemId: 1, sd: 10 }],

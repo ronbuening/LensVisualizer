@@ -3,6 +3,8 @@
 import { describe, it, expect, afterEach, vi } from "vitest";
 import { render, screen, cleanup } from "@testing-library/react";
 import ElementInspector from "../../../../src/components/display/ElementInspector.js";
+import buildLens from "../../../../src/optics/buildLens.js";
+import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
 
 afterEach(() => cleanup());
 import type { RuntimeLens, ElementData } from "../../../../src/types/optics.js";
@@ -23,6 +25,7 @@ const mockTheme = {
   apdNote: "#f80",
   role: "#8af",
   elemType: "#ccc",
+  panelBorder: "#333",
 } as unknown as Theme;
 
 const basicElement: ElementData = {
@@ -91,6 +94,20 @@ describe("ElementInspector", () => {
   it("renders focal length when available", () => {
     render(<ElementInspector info={basicElement} L={mockLens} t={mockTheme} showChromatic={false} />);
     expect(screen.getByText(/85\.3 mm/)).toBeTruthy();
+  });
+
+  it("renders folded surface metadata and explicit image-plane geometry", () => {
+    const L = buildLens(LENS_CATALOG["reference-newtonian-side-focus"]);
+    const info = L.elements.find((element) => element.id === 2)!;
+
+    render(<ElementInspector info={info} L={L} t={mockTheme} showChromatic={false} />);
+
+    expect(screen.getByText("SEC:")).toBeTruthy();
+    expect(screen.getByText(/reflect, first-surface, active rear, inactive block, normal z=1 y=1/)).toBeTruthy();
+    expect(screen.getByText("SECB:")).toBeTruthy();
+    expect(screen.getByText(/refract, active both, normal z=1 y=1/)).toBeTruthy();
+    expect(screen.getByText("Image plane IMG:")).toBeTruthy();
+    expect(screen.getByText(/z=35 mm y=25 mm normal z=0 y=1/)).toBeTruthy();
   });
 });
 

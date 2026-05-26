@@ -8,7 +8,7 @@
  */
 import { useMemo } from "react";
 import { traceRay } from "../../optics/optics.js";
-import { rayFractionsForDensity } from "../../optics/raySampling.js";
+import { obstructionAwareRayFractionsForDensity } from "../../optics/raySampling.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { RayDensity } from "../../types/state.js";
 import type { LensMovementTransform } from "../../optics/lensMovement.js";
@@ -65,13 +65,24 @@ export default function useOnAxisRays({
     if (!L) return { segments: [], error: null };
     try {
       const out: RaySegment[] = [];
-      for (const f of rayFractionsForDensity(L.rayFractions, rayDensity)) {
+      for (const f of obstructionAwareRayFractionsForDensity(L, L.rayFractions, rayDensity, currentEPSD)) {
         const h = f * currentEPSD;
         const uIn = rayTracksF ? h * focusK : 0;
         const rawResult = traceRay(h, uIn, zPos, focusT, zoomT, currentPhysStopSD, true, L, aberrationT);
         const result = movementTransform ? movementTransform.trace(rawResult) : rawResult;
         out.push(
-          compileRaySegment(result.pts, result.ghostPts, result.u, result.clipped, sx, sy, clampedRayEnd, IMG_MM),
+          compileRaySegment(
+            result.pts,
+            result.ghostPts,
+            result.u,
+            result.clipped,
+            sx,
+            sy,
+            clampedRayEnd,
+            IMG_MM,
+            undefined,
+            result.reachedImagePlane,
+          ),
         );
       }
       return { segments: out, error: null };

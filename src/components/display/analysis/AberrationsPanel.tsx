@@ -87,19 +87,37 @@ export default function AberrationsPanel({
           theme={t}
         />
 
-        <FieldCurvatureSection
-          result={chromaticFieldCurvatureResult ?? fieldCurvatureResult}
-          expanded={fieldCurvatureExpanded}
-          onToggle={() => setFieldCurvatureExpanded((value) => !value)}
-          theme={t}
-        />
+        {L.isFoldedOptics ? (
+          <div
+            style={{
+              padding: "8px 10px",
+              border: `1px solid ${t.panelDivider}`,
+              borderRadius: 6,
+              color: t.desc,
+              background: t.panelBg,
+              lineHeight: 1.5,
+            }}
+          >
+            Field curvature and astigmatism remain hidden for folded mirror systems because those sections still assume
+            a sequential paraxial field model.
+          </div>
+        ) : (
+          <>
+            <FieldCurvatureSection
+              result={chromaticFieldCurvatureResult ?? fieldCurvatureResult}
+              expanded={fieldCurvatureExpanded}
+              onToggle={() => setFieldCurvatureExpanded((value) => !value)}
+              theme={t}
+            />
 
-        <AstigmatismSection
-          result={chromaticFieldCurvatureResult ?? fieldCurvatureResult}
-          expanded={astigmatismExpanded}
-          onToggle={() => setAstigmatismExpanded((value) => !value)}
-          theme={t}
-        />
+            <AstigmatismSection
+              result={chromaticFieldCurvatureResult ?? fieldCurvatureResult}
+              expanded={astigmatismExpanded}
+              onToggle={() => setAstigmatismExpanded((value) => !value)}
+              theme={t}
+            />
+          </>
+        )}
       </div>
     </div>
   );

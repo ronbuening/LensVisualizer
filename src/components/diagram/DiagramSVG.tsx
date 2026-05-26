@@ -61,6 +61,7 @@ interface DiagramSVGProps {
   showCardinalHiatus?: boolean;
   showCardinalTotalTrack?: boolean;
   cardinalElements?: CardinalElements | null;
+  foldedHitOrderLabels?: string[];
   zoomT: number;
   act: number | null;
   onHover: (eid: number | null) => void;
@@ -128,6 +129,7 @@ const DiagramSVG = memo(function DiagramSVG({
   showCardinalHiatus = true,
   showCardinalTotalTrack = true,
   cardinalElements,
+  foldedHitOrderLabels = [],
   zoomT,
   act,
   onHover,
@@ -242,6 +244,7 @@ const DiagramSVG = memo(function DiagramSVG({
         showCardinalHiatus={showCardinalHiatus}
         showCardinalTotalTrack={showCardinalTotalTrack}
         cardinalElements={cardinalElements}
+        foldedHitOrderLabels={foldedHitOrderLabels}
         zoomT={zoomT}
         act={act}
         flashVisible={flashVisible}

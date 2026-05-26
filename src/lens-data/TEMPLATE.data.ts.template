@@ -24,9 +24,15 @@ import type { LensDataInput } from "../types/optics.js";
  * ║    [Describe how SDs were determined — patent-listed, estimated    ║
  * ║    from EP geometry, etc.]                                         ║
  * ║                                                                    ║
+ * ║  NOTE ON MIRROR/FOLDED PATHS (if applicable):                       ║
+ * ║    [Document first/second-surface mirrors, annular apertures,       ║
+ * ║    central obstructions, opticalPath.surfaceOrder or auto mode,     ║
+ * ║    tilted mirror normals, and explicit image-plane placement.]      ║
+ * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
  * ║    ✓ Aperture stop and variable focus/zoom gaps                   ║
+ * ║    ✓ Optical mirror/blocking surfaces that rays can hit           ║
  * ║    ✗ DO NOT include: sensor glass, filters, mechanical parts      ║
  * ║    ✗ DO NOT include: parent/donor designs (use final design only) ║
  * ╚══════════════════════════════════════════════════════════════════════╝
@@ -71,6 +77,8 @@ const LENS_DATA = {
    *                        when the published focal length is a projection constant, or for
    *                        unusual rectilinear ultrawides whose published coverage should
    *                        override the paraxial field estimate.
+   *  opticalPath           Optional generalized path metadata for folded/mirror systems.
+   *                        Omit for ordinary front-to-rear refractive lenses.
    */
   focalLengthMarketing: 50,             // or [70, 200] for zooms
   focalLengthDesign:    51.2,           // omit if same as focalLengthMarketing
@@ -104,6 +112,20 @@ const LENS_DATA = {
   //   maxTraceFieldDeg: 80,
   // },
 
+  // Optional: folded/mirror optical path support.
+  // Omit this entire block for ordinary sequential refractive lenses.
+  // Use surfaceOrder for known hit sequences, including repeated labels.
+  // Use mode: "auto" when the nearest valid next surface should be determined
+  // geometrically. imagePlane is a point plus meridional normal; default is the
+  // ordinary right-hand IMG plane at the final axial track. Do not set only
+  // imagePlane without either surfaceOrder or mode: "auto".
+  // opticalPath: {
+  //   mode: "auto",                                      // "sequential" (default) or "auto"
+  //   surfaceOrder: ["STO", "MG1", "MG2", "MG1"],       // optional; labels may repeat
+  //   imagePlane: { z: 35, y: 25, normal: { z: 0, y: 1 }, label: "IMG" },
+  //   maxInteractions: 8,
+  // },
+
   /* ── Elements ──
    *  One entry per physical glass element, front to rear.
    *  Each element must have a unique `id` and be referenced by at least one surface.
@@ -135,8 +157,9 @@ const LENS_DATA = {
   ],
 
   /* ── Surface prescription ──
-   *  One entry per optical surface, in strict front-to-rear order.
-   *  Includes glass surfaces AND air gaps.
+   *  One entry per optical surface, in physical front-to-rear axial order.
+   *  Folded systems still keep this physical order; opticalPath controls hit order.
+   *  Includes glass surfaces, mirror surfaces, blocker surfaces, AND air gaps.
    *  Exactly one surface must have label "STO" (the aperture stop).
    *
    *  Fields:
@@ -146,7 +169,14 @@ const LENS_DATA = {
    *    nd      (number, REQUIRED)  Refractive index of the medium FOLLOWING this surface
    *                                (1.0 for air, glass nd for entering a glass element)
    *    elemId  (number, REQUIRED)  Element ID this surface belongs to — 0 for air interfaces
-   *    sd      (number, REQUIRED)  Semi-diameter (half clear aperture) in mm
+   *    sd      (number, REQUIRED)  Outer semi-diameter (half clear aperture) in mm
+   *    innerSd (number, optional)  Inner inactive radius for annular apertures/holes; must be < sd
+   *    interaction (object, optional)  Folded-path behavior:
+   *      type: "refract" | "reflect" | "block"   (default "refract")
+   *      incidentSide?: "front" | "rear" | "both"  (default both)
+   *      inactiveSide?: "ignore" | "block"         (reference mirrors should use "block")
+   *      mirrorKind?: "first-surface" | "second-surface"
+   *      normal?: { z: number, y: number }          tilted meridional plane normal
    *
    *  Semi-diameter constraints (1–5 validated automatically, 6–8 are guidance):
    *    1. Edge thickness: For each element, sag(sd, R_front) − sag(sd, R_rear) must
@@ -186,6 +216,10 @@ const LENS_DATA = {
    *    9. Hidden render trim: If `computeElementRenderDiagnostics()` reports >0.25 mm
    *       trim for a production lens, reduce the relevant SD or document and test an
    *       intentional exception.  Renderer-only clipping can create artificial "wings".
+   *   10. Annular surfaces: `innerSd` defines the central hole. Rays interact only in
+   *       the radial band [innerSd, sd]. Use `innerSd` for mirror holes or annular
+   *       stops, and a separate `interaction: { type: "block" }` surface for solid
+   *       central obstructions.
    *
    *  Sign conventions:
    *    R > 0  →  center of curvature to the RIGHT of the surface
@@ -201,6 +235,14 @@ const LENS_DATA = {
    *    - The last surface's d is the back focal distance (BFD) to the image plane.
    *    - Embedded glass stop exception: use stopPlacement: "inside-element" on STO, set STO.nd
    *      and STO.elemId to the containing glass, and add fromSurface/toSurface to that element.
+   *    - Mirror elements: tag the reflective face with the mirror element's elemId and
+   *      use a passive backing surface with elemId: 0 unless modeling a distinct physical
+   *      element. A reflective face blocks inactive-side hits by default; set
+   *      inactiveSide: "block" explicitly on reference mirrors so back-side opacity is
+   *      clear in the data. For tilted flat mirrors, put the same interaction.normal on
+   *      the backing surface so the SVG element renders at the correct angle.
+   *    - Blocker surfaces normally use elemId: 0. Give them an element only when they
+   *      should draw as a physical rendered part.
    *
    *  Standalone element pattern:
    *    { label: "1",  R: ..., d: ..., nd: 1.xxxxx, elemId: 1, sd: ... },  // L1 front — elemId: 1
@@ -232,6 +274,21 @@ const LENS_DATA = {
    *  Why: buildLens.ts finds the FIRST surface with each elemId and uses (index, index+1)
    *  as the element's front/rear pair for rendering. Tagging rear or air surfaces with
    *  non-zero elemId will cause rendering errors or crashes.
+   *
+   *  Folded mirror examples:
+   *    First-surface mirror:
+   *      { label: "M1", R: -200, d: 0, nd: 1.0, elemId: 1, sd: 25,
+   *        interaction: { type: "reflect", incidentSide: "front", inactiveSide: "block", mirrorKind: "first-surface" } }
+   *
+   *    Annular mirror:
+   *      { label: "M1", R: -200, d: 0, nd: 1.0, elemId: 1, sd: 30, innerSd: 8,
+   *        interaction: { type: "reflect", inactiveSide: "block", mirrorKind: "first-surface" } }
+   *
+   *    Tilted Newtonian secondary (mirror face + passive backing):
+   *      { label: "SEC", R: 1e15, d: 0.5, nd: 1.0, elemId: 2, sd: 10,
+   *        interaction: { type: "reflect", incidentSide: "rear", inactiveSide: "block", mirrorKind: "first-surface", normal: { z: 1, y: 1 } } }
+   *      { label: "SECB", R: 1e15, d: 64.5, nd: 1.0, elemId: 0, sd: 10,
+   *        interaction: { type: "refract", normal: { z: 1, y: 1 } } }
    */
   surfaces: [
     { label: "1",   R:   00.000, d: 0.00, nd: 1.00000, elemId: 1, sd: 00.0 },

@@ -1,10 +1,14 @@
 import { describe, expect, it } from "vitest";
 import {
+  ALL_CATALOG_ENTRIES,
   defaultCustomFilter,
+  DEBUG_CATALOG_ENTRIES,
+  catalogEntriesForView,
   groupByImageFormat,
   groupByMount,
   matchesCustomFilter,
 } from "../../../../src/pages/lensIndex/catalog.js";
+import { CATALOG_KEYS } from "../../../../src/utils/catalog/lensCatalog.js";
 import type { CatalogLensEntry, FilterBounds } from "../../../../src/pages/lensIndex/types.js";
 import type { LensData } from "../../../../src/types/optics.js";
 import { IMAGE_FORMAT_BY_ID, LENS_MOUNT_BY_ID } from "../../../../src/utils/catalog/lensTaxonomy.js";
@@ -36,6 +40,15 @@ function entry(
 }
 
 describe("lens index catalog metadata filters", () => {
+  it("exposes visible, all, and debug catalog entry sets", () => {
+    expect(catalogEntriesForView("visible").map((entry) => entry.key)).toEqual(CATALOG_KEYS);
+    expect(catalogEntriesForView("all").length).toBe(ALL_CATALOG_ENTRIES.length);
+    expect(catalogEntriesForView("debug").map((entry) => entry.key)).toEqual(
+      DEBUG_CATALOG_ENTRIES.map((entry) => entry.key),
+    );
+    expect(catalogEntriesForView("debug").some((entry) => entry.key === "reference-newtonian-side-focus")).toBe(true);
+  });
+
   it("matches a multi-mount lens when any selected mount matches", () => {
     const multiMount = entry("multi", {
       lensMounts: [LENS_MOUNT_BY_ID["nikon-z"], LENS_MOUNT_BY_ID["sony-fe"]],

@@ -11,6 +11,8 @@ Reference for creating new `*.data.ts` files in `lens-data/`.
 
 File naming: `lens-data/**/*.data.ts` (glob pattern used for auto-discovery). Each file imports and uses `satisfies LensDataInput` for compile-time type checking. Optional analysis files use the same relative stem path with a `.analysis.md` suffix.
 
+Ordinary photographic lenses still use the historical front-to-rear sequential prescription by default. Mirror lenses and telescope-style reference fixtures opt into the generalized optical-path model with `opticalPath` and per-surface `interaction` fields, described below.
+
 Per-lens patent audit logs use `*.audit.md` alongside the data file. They are not consumed by any build script, runtime catalog, or test scanner — all of those filter strictly on `.data.ts` and `.analysis.md`. See [../../agent_docs/lens-patent-audit.md](../../agent_docs/lens-patent-audit.md) for the audit procedure and log format.
 
 ## Scope: What to Include
@@ -20,12 +22,16 @@ Per-lens patent audit logs use `*.audit.md` alongside the data file. They are no
 - All optical surfaces from front lens element to final image plane
 - Aperture stop (diaphragm)
 - Variable air gaps for focus and zoom
+- Mirror or blocking surfaces that participate in a folded path
+- Annular clear apertures or central obstructions when they are optically meaningful
 
 **Do NOT include:**
 - **Sensor glass / cover glass** — the protective or thermal compensation glass plate on the camera sensor (rear of the assembly)
 - **Filters** — UV, ND, polarizing, or other filters mounted on the lens or in front of the sensor
 - **Mechanical components** — focus motors, aperture blades (mechanical detail), barrel, mounts
 - **Parent/donor designs** — if the lens is a descendant of another design, transcribe only the final production or patent design shown, not intermediate parent elements
+
+For telescope and mirror-lens fixtures, include the optical surfaces that rays can hit, not the full mechanical tube. A secondary baffle or obstruction that clips rays belongs in `surfaces`; a spider vane, cell, barrel, or mount detail does not.
 
 ---
 
@@ -92,6 +98,7 @@ These must be specified in every lens file — they have no defaults.
 | `groupCount` | `number` | | Total number of air-separated groups in the design. |
 | `perspectiveControl` | `object` | | Optional tilt/shift movement limits for perspective-control lenses. Omit for all ordinary lenses. |
 | `projection` | `object` | `{ kind: "rectilinear" }` | Optional projection metadata. Use for non-rectilinear lenses, or for rare rectilinear designs whose published coverage should override the paraxial field estimate. |
+| `opticalPath` | `object` | | Optional generalized path metadata for mirror, folded, annular, or non-right-side image-plane systems. Omit for ordinary front-to-rear refractive lenses. |
 | `focusDescription` | `string` | | Human-readable focus mechanism description |
 | `asph` | `object` | | Aspherical coefficients (see below) |
 | `var` | `object` | | Variable air gaps for focus (see below) |
@@ -166,6 +173,187 @@ projection: {
 - Zoom fisheyes may provide arrays for `focalLengthMm`, `fullFieldDeg`, `imageCircleMm`, and `maxTraceFieldDeg`; values are interpolated across the zoom range just like `zoomPositions`.
 - `fullFieldDeg` and `imageCircleMm` describe the published circular fisheye projection.
 - `maxTraceFieldDeg` sets the lens's authoritative half-field for fisheyes. The validator accepts values up to (but not including) 180°; chief rays past `MAX_FIELD_LAUNCH_DEG = 89°` route through the bounding-sphere launch arm. The diagram's off-axis ray rendering respects a separate, bisected `tracingHalfField` so bundle rays land safely on the image plane regardless of the declared coverage.
+
+---
+
+## Folded And Mirror Optical Paths (`opticalPath`)
+
+Use `opticalPath` only when the default sequential model is insufficient: first-surface mirrors, second-surface mirrors, repeated surface hits, annular mirrors, central obstructions, automatically resolved folded paths, or image planes that are not the ordinary right-hand `IMG` plane.
+
+If `opticalPath` is omitted, the lens remains an ordinary sequential refractive system. Existing refractive lenses should not add `opticalPath`, `interaction`, or `innerSd` unless the physical design needs those fields.
+
+When `opticalPath` is present, provide either a non-empty `surfaceOrder` or `mode: "auto"`. Do not set only `imagePlane` on an otherwise ordinary lens; that opts into the generalized tracer without telling it which surfaces to visit.
+
+```javascript
+opticalPath: {
+  mode: "auto",                         // optional: "sequential" (default) or "auto"
+  surfaceOrder: ["STO", "MG1", "MG2", "MG1"], // optional explicit hit order; repeated labels are allowed
+  imagePlane: {
+    z: 35,                              // point on the plane, in lens-data millimeters
+    y: 25,                              // optional; defaults to 0
+    normal: { z: 0, y: 1 },             // optional; defaults to { z: 1, y: 0 }
+    label: "IMG",                      // optional; defaults to "IMG"
+  },
+  maxInteractions: 8,                   // optional safety cap; defaults to surfaces.length + 1
+},
+```
+
+### Path Modes
+
+- `mode: "sequential"` preserves the historical behavior unless `surfaceOrder` is present. With a `surfaceOrder`, the generalized tracer follows that label list exactly and then intersects the configured image plane. This is the safest choice for Mangin mirrors and other designs where the physical surface order is not the optical hit order.
+- `mode: "auto"` asks the generalized tracer to choose the nearest valid optical surface at each step. It skips passive same-index refractive surfaces, respects side-specific reflection/blocking behavior, avoids immediate self-hits, stops at the image plane when it is the next intersection, and stops at `maxInteractions` if a path does not terminate.
+- `surfaceOrder` entries are surface labels, not indices. Labels must exist, and labels may repeat when a ray intentionally re-enters or exits through the same physical surface.
+- `maxInteractions` should be high enough for the expected path plus the image plane, but not so high that an invalid folded system can loop for many interactions. For an explicit `surfaceOrder`, validation requires enough interactions to cover every listed surface hit plus image-plane termination.
+
+### Image Plane
+
+`opticalPath.imagePlane` defines the imaging plane for folded systems. It is a point plus a meridional normal vector:
+
+- Default image plane: `{ z: totalTrack, y: 0, normal: { z: 1, y: 0 }, label: "IMG" }`, the ordinary vertical right-hand plane.
+- Front-focus mirror: set `z` in front of the mirror, usually near or before the aperture stop.
+- Side-focus Newtonian: use a horizontal plane such as `normal: { z: 0, y: 1 }` with `y` above or below the optical axis.
+- The normal is normalized by `buildLens()`. `{ z: 1, y: 0 }` means a vertical plane of constant z. `{ z: 0, y: 1 }` means a horizontal side plane of constant y.
+
+Diagram layout, ray termination, off-axis folded pupil/chief-ray geometry, and mirror-safe spherical aberration use this explicit plane for folded systems. Complex analysis tabs that still assume a sequential right-hand image plane remain guarded in the UI instead of showing misleading results.
+
+### Surface Interactions
+
+Surfaces default to `interaction: { type: "refract" }`. Add `interaction` only when the surface does something other than ordinary refraction, has side-specific behavior, or is a tilted meridional plane.
+
+```javascript
+{
+  label: "SEC",
+  R: 1e15,
+  d: 0.5,
+  nd: 1.0,
+  elemId: 2,
+  sd: 10,
+  interaction: {
+    type: "reflect",                   // "refract" | "reflect" | "block"
+    incidentSide: "rear",              // optional: "front" | "rear" | "both"; default both
+    inactiveSide: "block",             // reference mirrors should block inactive-side hits
+    mirrorKind: "first-surface",       // optional: "first-surface" | "second-surface"
+    normal: { z: 1, y: 1 },             // optional tilted meridional plane normal
+  },
+}
+```
+
+Field meanings:
+
+- `type: "refract"` applies normal Snell refraction. It is also useful for a passive backing plane that needs the same tilted visual geometry as a mirror face.
+- `type: "reflect"` reflects the ray using the solved surface normal. Use `mirrorKind: "first-surface"` for front-coated mirrors and `mirrorKind: "second-surface"` for substrate-backed reflective surfaces.
+- `mirrorKind: "second-surface"` also tells the SVG renderer to draw a dashed coating accent on that surface so the coating is visible apart from the glass substrate. The accent is display-only; tracing follows `type`, `incidentSide`, `inactiveSide`, and the optical path.
+- `type: "block"` clips rays within the surface's active aperture. It is intended for central obstructions, baffles, and synthetic regression fixtures.
+- `incidentSide` limits which side of the surface is active. The side is relative to the solved surface normal, not the list position in `surfaces`. If a ray hits a reflective surface from its inactive side, it blocks by default inside the active disk or annulus. Reference mirror fixtures should declare `inactiveSide: "block"` explicitly so back-side opacity is clear in the data. Refractive and blocker surfaces keep the historical inactive-side default of ignore unless `inactiveSide: "block"` is explicit.
+- `normal` converts the surface into a tilted meridional plane for both tracing and SVG element rendering. Use this for flat fold mirrors. Curved mirrors should normally omit `normal` so the spherical/aspherical sag and local normal come from `R` and `asph`.
+
+Choosing `incidentSide`:
+
+- For an incoming beam traveling left-to-right into a concave primary whose sag-derived normal faces the object side,
+  start with `incidentSide: "front"`. This is the usual first-surface primary case.
+- For a beam returning right-to-left toward a diagonal flat after the primary reflection, use `incidentSide: "rear"` and
+  `inactiveSide: "block"` on the diagonal so the incoming beam is obstructed inside the secondary aperture and the
+  returning beam reflects from the active side.
+- For a Mangin or other second-surface mirror, set `incidentSide` on the reflective coating side reached after the ray
+  enters the substrate. Keep the refractive front surface ordinary, then repeat that front label in `surfaceOrder` for
+  the exit path.
+- When the SVG looks correct but every ray is blocked or ignored, flip only `incidentSide` first. If the design then
+  works, leave the surface normal alone unless it is a flat fold plane whose visual tilt is wrong.
+
+### Annular Apertures And Obstructions
+
+Any surface may declare `innerSd` to define an annular active aperture:
+
+```javascript
+{ label: "M1", R: -200, d: 0, nd: 1.0, elemId: 1, sd: 30, innerSd: 8, interaction: { type: "reflect" } }
+```
+
+The active radial band is `[innerSd, sd]`. Rays below `innerSd` pass through the central hole without interacting with that surface, including from an inactive mirror side that would otherwise block. Rays above `sd` clip when semi-diameter checking is active. This supports annular primary mirrors, annular stops, and ring-shaped blockers.
+
+For a solid central obstruction, omit `innerSd` and use a `block` surface:
+
+```javascript
+{ label: "OBS", R: 1e15, d: 10, nd: 1.0, elemId: 0, sd: 6, interaction: { type: "block" } }
+```
+
+For an annular blocker, combine `innerSd` with `type: "block"`; only the ring clips and the hole passes.
+
+Visible on-axis and off-axis ray sampling is obstruction-aware for folded systems. The sampler scans the usable pupil bands and avoids the central blocked region automatically, so mirror fixtures should not hand-tune `rayFractions` just to route around a secondary obstruction.
+
+If a tilted or paired backing surface belongs to the same annular mirror element, keep `innerSd` consistent between the reflective face and its backing plane. Validation rejects mismatched paired annular faces because the SVG element and active optical aperture would otherwise disagree.
+
+### Authoring Patterns
+
+First-surface concave primary with an image plane in front:
+
+```javascript
+surfaces: [
+  { label: "STO", R: 1e15, d: 100, nd: 1.0, elemId: 0, sd: 25 },
+  { label: "M1", R: -200, d: 0, nd: 1.0, elemId: 1, sd: 25, interaction: { type: "reflect", incidentSide: "front", inactiveSide: "block", mirrorKind: "first-surface" } },
+],
+opticalPath: {
+  surfaceOrder: ["STO", "M1"],
+  imagePlane: { z: 0, label: "IMG" },
+},
+```
+
+Second-surface Mangin-style path through a glass front surface, reflective rear surface, then back out the front:
+
+```javascript
+surfaces: [
+  { label: "MG1", R: 120, d: 8, nd: 1.5168, elemId: 1, sd: 22 },
+  { label: "MG2", R: -100, d: 0, nd: 1.0, elemId: 0, sd: 22, interaction: { type: "reflect", incidentSide: "front", inactiveSide: "block", mirrorKind: "second-surface" } },
+],
+opticalPath: {
+  surfaceOrder: ["MG1", "MG2", "MG1"],
+  imagePlane: { z: 30 },
+},
+```
+
+Newtonian-style automatic folded path with a diagonal secondary and side image plane:
+
+```javascript
+opticalPath: {
+  mode: "auto",
+  imagePlane: { z: 35, y: 25, normal: { z: 0, y: 1 }, label: "IMG" },
+  maxInteractions: 8,
+},
+surfaces: [
+  { label: "STO", R: 1e15, d: 35, nd: 1.0, elemId: 0, sd: 30 },
+  {
+    label: "SEC",
+    R: 1e15,
+    d: 0.5,
+    nd: 1.0,
+    elemId: 2,
+    sd: 10,
+    interaction: { type: "reflect", incidentSide: "rear", inactiveSide: "block", mirrorKind: "first-surface", normal: { z: 1, y: 1 } },
+  },
+  { label: "SECB", R: 1e15, d: 64.5, nd: 1.0, elemId: 0, sd: 10, interaction: { type: "refract", normal: { z: 1, y: 1 } } },
+  { label: "M1", R: -200, d: 2, nd: 1.0, elemId: 1, sd: 30, interaction: { type: "reflect", incidentSide: "front", inactiveSide: "block", mirrorKind: "first-surface" } },
+  { label: "M1B", R: 1e15, d: 0, nd: 1.0, elemId: 0, sd: 30 },
+],
+```
+
+The backing plane (`SECB`) is optically passive but carries the same `normal` as the reflective face so the SVG element shape renders as a tilted flat mirror instead of a vertical plate.
+
+### Reference Fixtures
+
+Mirror/telescope regression fixtures live under `src/lens-data/reference/`. They are normally hidden with `visible: false` unless temporarily exposed for visual testing:
+
+- `ReferenceSphericalPrimaryMirror.data.ts` — first-surface mirror and front image plane.
+- `ReferenceAnnularObscuredMirror.data.ts` — annular primary plus central obstruction-aware sampling.
+- `ReferenceManginSecondSurfaceMirror.data.ts` — repeated front-surface hit around a second-surface mirror.
+- `ReferenceNewtonianSideFocus.data.ts` — auto path selection, tilted secondary, and side image plane.
+- `ReferenceCassegrainBackFocus.data.ts` — obstruction plus folded back-focus behavior.
+- `ReferenceGregorianSecondary.data.ts` — Gregorian-style secondary and declared back focus.
+- `ReferenceMaksutovCassegrainMeniscus.data.ts` — refractive meniscus plus folded mirror path.
+- `ReferenceAnnularRingBlocker.data.ts` — annular blocker behavior that clips the ring while passing the center.
+
+Use these as authoring examples and regression anchors, not as polished public catalog entries.
+
+For a compact audit of hidden mirror fixture metadata, run `npm run generate:mirror-reports` and review
+`agent_docs/generated/mirror-fixtures.generated.md`.
 
 ---
 
@@ -312,7 +500,7 @@ When a patent does not specify the vendor, prefer the vendor whose name matches 
 
 ## Surface Object
 
-Each entry in the `surfaces` array describes one optical surface, in strict front-to-rear order.
+Each entry in the `surfaces` array describes one optical surface, in physical front-to-rear axial order. Folded systems still keep this physical order; `opticalPath` controls the ray hit order.
 
 ```javascript
 {
@@ -321,8 +509,10 @@ Each entry in the `surfaces` array describes one optical surface, in strict fron
   d:      3.46,       // REQUIRED: axial thickness to next surface in mm
   nd:     1.85249,    // REQUIRED: refractive index of medium AFTER this surface
   elemId: 2,          // REQUIRED: element ID (0 = air interface)
-  sd:     14.5,       // REQUIRED: semi-diameter (half clear aperture) in mm
+  sd:     14.5,       // REQUIRED: outer semi-diameter (half clear aperture) in mm
+  innerSd: 4.0,       // optional: inner semi-diameter for annular active apertures
   stopPlacement: "inside-element", // optional: only valid on an embedded STO surface
+  interaction: { type: "reflect", inactiveSide: "block", mirrorKind: "first-surface" }, // optional folded-path behavior
 }
 ```
 
@@ -336,12 +526,14 @@ Each entry in the `surfaces` array describes one optical surface, in strict fron
 | `d > 0` | Always positive (distance to next surface) |
 | `nd = 1.0` | Air gap |
 | `nd > 1.0` | Glass medium (use the glass's refractive index) |
+| `innerSd` | Inner inactive radius for annular surfaces; must be non-negative and smaller than `sd` |
 
 ### Surface Label Convention
 
 - Sequential numbers: `"1"`, `"2"`, `"3"`, ...
 - Append `"A"` for aspherical surfaces: `"1A"`, `"3A"`, `"18A"`
 - The aperture stop MUST be labeled `"STO"` (exactly one required)
+- Mirror fixtures may use descriptive labels such as `"M1"`, `"SEC"`, `"MG1"`, or `"OBS"` when those labels make explicit `surfaceOrder` easier to read. Keep labels unique and stable.
 
 ### Pairing Rules
 
@@ -364,6 +556,9 @@ Each entry in the `surfaces` array describes one optical surface, in strict fron
   { label: "11A", R: -16.276, d: ...,  nd: 1.0,     elemId: 0, sd: ... },  // Resin rear (asph) → air
   ```
 - **Embedded stop inside glass:** Rare designs may put the aperture stop inside a glass element. In that case the `STO` surface stays optically neutral and flat, uses the same `nd` and `elemId` as the containing element, and sets `stopPlacement: "inside-element"`. The containing element must declare `fromSurface` and `toSurface` so the renderer uses the real outer glass surfaces as the element silhouette.
+- **Mirror element:** A first-surface mirror can use one reflective face with a passive backing surface for SVG thickness. The reflective face carries the mirror element's `elemId`; the backing surface typically uses `elemId: 0` unless it is needed as the first surface of a distinct physical element. A tilted flat fold mirror should put the same `interaction.normal` on both the reflective face and backing plane so the rendered element is visibly tilted.
+- **Annular mirror or aperture:** Add `innerSd` to the active surface. For a physical mirror element with a central hole, add `innerSd` to both front/back surfaces if both surfaces should render as annular; the element path will use even-odd fill.
+- **Blocker:** Use `interaction: { type: "block" }` and `elemId: 0` for a pure aperture obstruction. Use a non-zero `elemId` only if the blocker should be rendered as a physical element with a front/back surface span.
 - **Last surface:** `d` = back focal distance to image plane
 
 ### Aperture Stop
@@ -374,6 +569,7 @@ Exactly one surface must have `label: "STO"`. This is typically a flat surface (
 - **Patent specifies stop:** Use the exact surface index or gap from the patent table.
 - **Patent does not specify (common in older patents):** Estimate from the patent figure drawing. Split the air gap at the inferred iris location — the preceding surface's `d` is the distance from that surface to the stop, and the STO surface's `d` is the remaining distance to the next surface. Document the estimate in a code comment (e.g., "STO position inferred from Fig. 1 iris placement").
 - **Patent places stop inside a glass element:** Use `stopPlacement: "inside-element"` on `STO`, keep the stop flat, set `STO.nd` to the containing glass index, set `STO.elemId` to the containing element id, and add `fromSurface`/`toSurface` to that element. Do not use this flag for ordinary air stops.
+- **Annular or obstructed stop:** Use `innerSd` only when the stop itself has a real central hole. For a separate secondary obstruction, prefer a distinct `block` surface so ray clipping and sampling can identify the obstruction independently.
 
 ---
 
@@ -610,6 +806,9 @@ doublets: [
 13. Cross-gap surface overlap: combined sag intrusion from the two boundary surfaces that face each other doesn't exceed `gapSagFrac × gap` — checked at all zoom positions for zoom lenses
 14. Conic height limit: for aspherical surfaces with K > 0, sd ≤ 0.98 × |R| / √(1+K)
 15. Element render diagnostics: production lenses must not require material hidden trim (>0.25 mm) from slope, conic, or cross-gap limits
+16. `innerSd` must be finite, non-negative, and smaller than `sd`
+17. `interaction.type` must be `"refract"`, `"reflect"`, or `"block"`; side fields must be valid enum values; `normal` vectors must have finite `z` and `y` components; tilted flat mirror backing planes must repeat the reflective face normal
+18. `opticalPath.mode` must be `"sequential"` or `"auto"`; `surfaceOrder` labels must exist; `imagePlane` point/normal fields must be finite; `maxInteractions` must be a positive integer
 
 On failure, `buildLens()` throws with all errors listed.
 

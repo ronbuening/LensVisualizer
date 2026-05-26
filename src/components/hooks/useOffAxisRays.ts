@@ -8,7 +8,7 @@
  */
 import { useMemo } from "react";
 import { offsetVectorFieldRay, traceRay, traceRayVector } from "../../optics/optics.js";
-import { rayFractionsForDensity } from "../../optics/raySampling.js";
+import { obstructionAwareRayFractionsForDensity } from "../../optics/raySampling.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { LensMovementTransform } from "../../optics/lensMovement.js";
 import type { RaySegment } from "./useOnAxisRays.js";
@@ -76,7 +76,7 @@ export default function useOffAxisRays({
         showOffAxis,
       });
       if (geometry === null) return { segments: [], error: null };
-      for (const f of rayFractionsForDensity(L.offAxisFractions, rayDensity)) {
+      for (const f of obstructionAwareRayFractionsForDensity(L, L.offAxisFractions, rayDensity, currentEPSD)) {
         const h = f * currentEPSD;
         const uConverge = rayTracksF ? h * focusK : 0;
         const rawResult =
@@ -111,6 +111,7 @@ export default function useOffAxisRays({
             clampedRayEnd,
             IMG_MM,
             geometry.useEdge ? geometry.edgeEnd : undefined,
+            result.reachedImagePlane,
           ),
         );
       }

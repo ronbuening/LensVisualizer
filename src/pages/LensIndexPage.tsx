@@ -16,11 +16,12 @@ import { usePageThemeToggle } from "../utils/theme/usePageThemeToggle.js";
 import LensIndexFilterPanel from "./lensIndex/LensIndexFilterPanel.js";
 import LensIndexResults from "./lensIndex/LensIndexResults.js";
 import {
-  CATALOG_ENTRIES,
   FILTER_BOUNDS,
-  IMAGE_FORMAT_OPTIONS,
-  MAKER_OPTIONS,
-  MOUNT_OPTIONS,
+  buildFilterBounds,
+  buildImageFormatOptions,
+  buildMakerOptions,
+  buildMountOptions,
+  catalogEntriesForView,
   groupByFocalLength,
   groupByImageFormat,
   groupByMaker,
@@ -32,17 +33,35 @@ import type { GroupMode } from "./lensIndex/types.js";
 import useLensIndexFilters from "./lensIndex/useLensIndexFilters.js";
 import { lensLinkFromLibrary } from "./lensIndex/clusterLinks.js";
 import type { LensLibraryBreadcrumbContext } from "./lensIndex/clusterLinks.js";
-import { parseLensIndexUrlState, serializeLensIndexUrlState } from "./lensIndex/urlState.js";
+import { parseLensIndexUrlState, parseLensIndexViewMode, serializeLensIndexUrlState } from "./lensIndex/urlState.js";
 
 export default function LensIndexPage() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const parsedUrlState = useMemo(() => parseLensIndexUrlState(searchParams.toString(), FILTER_BOUNDS), [searchParams]);
+  const requestedViewMode = useMemo(() => parseLensIndexViewMode(searchParams.toString()), [searchParams]);
+  const catalogEntries = useMemo(() => catalogEntriesForView(requestedViewMode), [requestedViewMode]);
+  const filterBounds = useMemo(
+    () => (requestedViewMode === "visible" ? FILTER_BOUNDS : buildFilterBounds(catalogEntries)),
+    [catalogEntries, requestedViewMode],
+  );
+  const makerOptions = useMemo(() => buildMakerOptions(catalogEntries), [catalogEntries]);
+  const mountOptions = useMemo(() => buildMountOptions(catalogEntries), [catalogEntries]);
+  const imageFormatOptions = useMemo(() => buildImageFormatOptions(catalogEntries), [catalogEntries]);
+  const parsedUrlState = useMemo(
+    () =>
+      parseLensIndexUrlState(
+        searchParams.toString(),
+        filterBounds,
+        makerOptions.map((option) => option.slug),
+      ),
+    [filterBounds, makerOptions, searchParams],
+  );
   const [groupMode, setGroupMode] = useState<GroupMode>(parsedUrlState.groupMode);
   const [filterOpen, setFilterOpen] = useState(parsedUrlState.filterOpen);
   const yearDir: "asc" | "desc" = groupMode === "year-desc" ? "desc" : "asc";
-  const totalLenses = CATALOG_KEYS.length;
+  const totalLenses = catalogEntries.length;
+  const publicLensCount = CATALOG_KEYS.length;
   const { theme: t, themeMode, highContrast, toggleTheme, toggleHC } = usePageThemeToggle();
-  const seoDescription = `Browse ${totalLenses} patent-derived lens cross-section diagrams from Nikon, Carl Zeiss, Ricoh, Voigtländer, and more, with ray tracing and optical analysis.`;
+  const seoDescription = `Browse ${publicLensCount} patent-derived lens cross-section diagrams from Nikon, Carl Zeiss, Ricoh, Voigtländer, and more, with ray tracing and optical analysis.`;
   const {
     customFilter,
     filterInputValues,
@@ -60,8 +79,8 @@ export default function LensIndexPage() {
     commitNumericInput,
     handleNumericInputKeyDown,
   } = useLensIndexFilters({
-    entries: CATALOG_ENTRIES,
-    bounds: FILTER_BOUNDS,
+    entries: catalogEntries,
+    bounds: filterBounds,
     initialFilter: parsedUrlState.customFilter,
   });
   const makerGroups = useMemo(() => groupByMaker(filteredEntries), [filteredEntries]);
@@ -70,10 +89,11 @@ export default function LensIndexPage() {
   const mountGroups = useMemo(() => groupByMount(filteredEntries), [filteredEntries]);
   const imageFormatGroups = useMemo(() => groupByImageFormat(filteredEntries), [filteredEntries]);
   const currentLensIndexSearch = serializeLensIndexUrlState({
+    viewMode: parsedUrlState.viewMode,
     groupMode,
     filterOpen,
     customFilter,
-    bounds: FILTER_BOUNDS,
+    bounds: filterBounds,
   });
   const returnTo = currentLensIndexSearch ? `/lenses?${currentLensIndexSearch}` : "/lenses";
   const hrefForLens = useCallback(
@@ -108,7 +128,7 @@ export default function LensIndexPage() {
   return (
     <div style={{ backgroundColor: t.bg, color: t.body, minHeight: "100vh" }}>
       <SEOHead
-        title={`Lens Patent Cross-Section Library — ${totalLenses} Diagrams | ${SITE_NAME}`}
+        title={`Lens Patent Cross-Section Library — ${publicLensCount} Diagrams | ${SITE_NAME}`}
         description={seoDescription}
         canonicalURL={`${SITE_URL}/lenses`}
         jsonLd={[
@@ -269,10 +289,10 @@ export default function LensIndexPage() {
           <LensIndexFilterPanel
             theme={t}
             customFilter={customFilter}
-            bounds={FILTER_BOUNDS}
-            makerOptions={MAKER_OPTIONS}
-            mountOptions={MOUNT_OPTIONS}
-            imageFormatOptions={IMAGE_FORMAT_OPTIONS}
+            bounds={filterBounds}
+            makerOptions={makerOptions}
+            mountOptions={mountOptions}
+            imageFormatOptions={imageFormatOptions}
             filterInputValues={filterInputValues}
             activeFilters={activeFilters}
             onClearFilters={clearFilters}

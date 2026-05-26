@@ -19,7 +19,7 @@
 import { useMemo, useCallback } from "react";
 import { useNavigate } from "react-router";
 
-import { LENS_CATALOG, CATALOG_KEYS, mdForKey } from "../../utils/catalog/lensCatalog.js";
+import { ALL_CATALOG_KEYS, LENS_CATALOG, CATALOG_KEYS, mdForKey } from "../../utils/catalog/lensCatalog.js";
 import usePreferences from "../../utils/state/usePreferences.js";
 import useURLSync from "../../utils/state/useURLSync.js";
 import { LensStateContext, LensDispatchContext, PanelStateContext } from "../../utils/state/LensContext.js";
@@ -70,7 +70,13 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
   const navigate = useNavigate();
   const isComparePage = !!initialLensKey && !!initialLensKeyB;
   const isLensPage = !!initialLensKey && !initialLensKeyB;
-  const [state, dispatch, isWide] = useLensState(CATALOG_KEYS, initialLensKey, initialLensKeyB);
+  const viewerCatalogKeys = useMemo(() => {
+    const needsHiddenCatalog =
+      (initialLensKey !== undefined && !CATALOG_KEYS.includes(initialLensKey)) ||
+      (initialLensKeyB !== undefined && !CATALOG_KEYS.includes(initialLensKeyB));
+    return needsHiddenCatalog ? ALL_CATALOG_KEYS : CATALOG_KEYS;
+  }, [initialLensKey, initialLensKeyB]);
+  const [state, dispatch, isWide] = useLensState(viewerCatalogKeys, initialLensKey, initialLensKeyB);
 
   /* ── Destructure state slices for convenient access ── */
   const { lens, display, rays, sharedSliders, panels, overlays } = state;
@@ -119,7 +125,7 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
     handleFocusPointerDown,
     handleAperturePointerDown,
     toggleCompare,
-  } = useComparisonOrchestration({ state, dispatch, navigate, catalogKeys: CATALOG_KEYS });
+  } = useComparisonOrchestration({ state, dispatch, navigate, catalogKeys: viewerCatalogKeys });
 
   /* ── Overlay management: primer level, escape key, open/close callbacks ── */
   const {
@@ -169,7 +175,10 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
   const t = resolveTheme(resolvedDark, highContrast);
 
   /* ── Catalog names map for TopBar (avoids passing full LENS_CATALOG) ── */
-  const catalogNames = useMemo(() => Object.fromEntries(CATALOG_KEYS.map((k) => [k, LENS_CATALOG[k].name])), []);
+  const catalogNames = useMemo(
+    () => Object.fromEntries(viewerCatalogKeys.map((k) => [k, LENS_CATALOG[k].name])),
+    [viewerCatalogKeys],
+  );
 
   /* ── Lens switching (single-lens mode resets sliders, comparison mode does not) ── */
   const switchLensA = useCallback(
@@ -271,7 +280,7 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
               onOpenAboutAuthor={openAboutAuthor}
               onOpenOpticsPrimer={openOpticsPrimer}
               onOpenAberrationsPrimer={openAberrationsPrimer}
-              catalogKeys={CATALOG_KEYS}
+              catalogKeys={viewerCatalogKeys}
               catalogNames={catalogNames}
               controlsBarProps={controlsBarProps}
               mobileView={mobileView}

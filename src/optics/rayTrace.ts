@@ -96,7 +96,16 @@ function traceRayExactCore(
   );
 
   appendExactTracePoints(result.hits, pts, ghostPts, ghost);
-  return { pts, ghostPts, y: result.y, u: result.uy, clipped: result.clipped };
+  appendImagePlanePoint(result, pts);
+  return {
+    pts,
+    ghostPts,
+    y: result.y,
+    u: result.uy,
+    clipped: result.clipped,
+    reachedImagePlane: result.reachedImagePlane,
+    diagnostics: result.diagnostics,
+  };
 }
 
 function appendExactTracePoints(
@@ -114,6 +123,18 @@ function appendExactTracePoints(
       pts.push(pt);
     }
   }
+}
+
+function appendImagePlanePoint(
+  result: { reachedImagePlane?: boolean; terminalPoint: Vector3; clipped: boolean },
+  pts: number[][],
+): void {
+  if (!result.reachedImagePlane || result.clipped) return;
+  const point = [result.terminalPoint[2], result.terminalPoint[1]];
+  if (!isFinite(point[0]) || !isFinite(point[1])) return;
+  const last = pts[pts.length - 1];
+  if (last && Math.hypot(last[0] - point[0], last[1] - point[1]) < 1e-9) return;
+  pts.push(point);
 }
 
 function vectorLeadPoint(
@@ -443,7 +464,16 @@ function traceRayVectorExactCore(
   const lead = L.rayLead ?? 0;
   pts.push(vectorLeadPoint(input, result.hits[0], lead));
   appendExactTracePoints(result.hits, pts, ghostPts, ghost);
-  return { pts, ghostPts, y: result.y, u: result.uy, clipped: result.clipped };
+  appendImagePlanePoint(result, pts);
+  return {
+    pts,
+    ghostPts,
+    y: result.y,
+    u: result.uy,
+    clipped: result.clipped,
+    reachedImagePlane: result.reachedImagePlane,
+    diagnostics: result.diagnostics,
+  };
 }
 
 export function traceRayVector(

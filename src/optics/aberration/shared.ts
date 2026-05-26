@@ -21,6 +21,7 @@ export interface SymmetricRealSample {
 export interface TransverseFocusHit {
   coordinate: number;
   slope: number;
+  referenceZ?: number;
 }
 
 export interface RealRayHit extends TransverseFocusHit {
@@ -43,6 +44,51 @@ export function imagePlaneIntercept(y: number, u: number, lastSurfZ: number, ima
   return isFinite(imageHeight) ? imageHeight : null;
 }
 
+export function meridionalImagePlaneCoordinate(
+  z: number,
+  y: number,
+  L: RuntimeLens,
+  planeZ = L.imagePlane?.z ?? z,
+): number {
+  const normal = L.imagePlane?.normal ?? { z: 1, y: 0 };
+  const imageY = L.imagePlane?.y ?? 0;
+  const tangentZ = -normal.y;
+  const tangentY = normal.z;
+  return (z - planeZ) * tangentZ + (y - imageY) * tangentY;
+}
+
+export function imagePlaneCoordinate(
+  y: number,
+  u: number,
+  referenceZ: number,
+  L: RuntimeLens,
+  planeZ = L.imagePlane?.z ?? referenceZ,
+): number | null {
+  const normal = L.imagePlane?.normal ?? { z: 1, y: 0 };
+  const imageY = L.imagePlane?.y ?? 0;
+  const normalY = normal.y;
+  const normalZ = normal.z;
+  const numer = normalY * (y - imageY) + normalZ * (referenceZ - planeZ);
+  const denom = normalY * u + normalZ;
+  if (Math.abs(denom) <= 1e-12) {
+    return Math.abs(numer) <= 1e-9 ? meridionalImagePlaneCoordinate(referenceZ, y, L, planeZ) : null;
+  }
+  const dz = -numer / denom;
+  const zHit = referenceZ + dz;
+  const yHit = y + u * dz;
+  if (!isFinite(zHit) || !isFinite(yHit)) return null;
+  return meridionalImagePlaneCoordinate(zHit, yHit, L, planeZ);
+}
+
+export function generalizedImagePlaneIntercept(
+  y: number,
+  u: number,
+  referenceZ: number,
+  L: RuntimeLens,
+): number | null {
+  return imagePlaneCoordinate(y, u, referenceZ, L, L.imagePlane?.z ?? referenceZ);
+}
+
 export function computeRealRayHit(
   L: RuntimeLens,
   zPos: number[],
@@ -59,16 +105,20 @@ export function computeRealRayHit(
   const ray = traceRay(h, 0, zPos, focusT, zoomT, currentPhysStopSD, true, L, aberrationT);
   if (ray.clipped) return null;
 
-  const intercept = axialIntercept(ray.y, ray.u, lastSurfZ);
-  const imageHeight = imagePlaneIntercept(ray.y, ray.u, lastSurfZ, imagePlaneZ);
+  const terminalPoint = ray.reachedImagePlane ? ray.pts[ray.pts.length - 1] : undefined;
+  const referenceZ = terminalPoint ? terminalPoint[0] : lastSurfZ;
+  const referenceY = terminalPoint ? terminalPoint[1] : ray.y;
+  const intercept = axialIntercept(referenceY, ray.u, referenceZ);
+  const imageHeight = imagePlaneCoordinate(referenceY, ray.u, referenceZ, L, imagePlaneZ);
   if (intercept === null || imageHeight === null) return null;
 
   return {
-    coordinate: ray.y,
+    coordinate: referenceY,
     fraction: Math.abs(signedFraction),
     signedFraction,
     slope: ray.u,
-    y: ray.y,
+    referenceZ,
+    y: referenceY,
     u: ray.u,
     intercept,
     imageHeight,
@@ -121,7 +171,7 @@ export function computeSymmetricRealSample(
 }
 
 export function transverseCoordinateAtPlane(hit: TransverseFocusHit, lastSurfZ: number, planeZ: number): number {
-  return hit.coordinate + hit.slope * (planeZ - lastSurfZ);
+  return hit.coordinate + hit.slope * (planeZ - (hit.referenceZ ?? lastSurfZ));
 }
 
 export function rmsAtPlane(hits: TransverseFocusHit[], lastSurfZ: number, planeZ: number): number {
@@ -140,8 +190,11 @@ export function peakAtPlane(hits: TransverseFocusHit[], lastSurfZ: number, plane
 export function bestFocusPlane(hits: TransverseFocusHit[], lastSurfZ: number): number {
   const denom = hits.reduce((sum, hit) => sum + hit.slope * hit.slope, 0);
   if (denom <= 1e-12) return lastSurfZ;
-  const numer = hits.reduce((sum, hit) => sum + hit.coordinate * hit.slope, 0);
-  return lastSurfZ - numer / denom;
+  const numer = hits.reduce((sum, hit) => {
+    const referenceZ = hit.referenceZ ?? lastSurfZ;
+    return sum + hit.slope * hit.slope * referenceZ - hit.coordinate * hit.slope;
+  }, 0);
+  return numer / denom;
 }
 
 export function bestRelativeFocusPlane(
@@ -156,10 +209,13 @@ export function bestRelativeFocusPlane(
   if (denom <= 1e-12) return lastSurfZ;
 
   const numer = hits.reduce((sum, hit) => {
-    const dy = hit.coordinate - referenceHit.coordinate;
     const du = hit.slope - referenceHit.slope;
-    return sum + dy * du;
+    const referenceZ = hit.referenceZ ?? lastSurfZ;
+    const referenceHitZ = referenceHit.referenceZ ?? lastSurfZ;
+    const offset =
+      hit.coordinate - hit.slope * referenceZ - referenceHit.coordinate + referenceHit.slope * referenceHitZ;
+    return sum + offset * du;
   }, 0);
 
-  return lastSurfZ - numer / denom;
+  return -numer / denom;
 }

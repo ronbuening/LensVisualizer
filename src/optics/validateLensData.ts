@@ -9,10 +9,12 @@
  * rather than throwing on the first problem.
  */
 
-import type { AsphericCoefficients, PerspectiveControlConfig, SurfaceData } from "../types/optics.js";
+import type { AsphericCoefficients, ImagePlaneData, PerspectiveControlConfig, SurfaceData } from "../types/optics.js";
 import { isImageFormatId, isLensMountId } from "../utils/catalog/lensTaxonomy.js";
 import { buildAsphereIndex, buildLabelIndex, firstInfinityThickness } from "./internal/lensState.js";
 import { conicPolySag, FLAT_R_THRESHOLD, MAX_RIM_SLOPE_TAN, sagSlopeRaw } from "./internal/surfaceMath.js";
+import { traceExactSurfaceStack } from "./internal/exactSurfaceTrace.js";
+import type { ExactTraceLens } from "./internal/exactSurfaceTrace.js";
 
 /* Validation operates on untrusted data — use a permissive record type
  * so dynamic-key checks compile without casts on every property access. */
@@ -162,6 +164,75 @@ function validateProjection(value: unknown, errors: string[]): void {
   );
 }
 
+function validateImagePlane(value: unknown, errors: string[]): void {
+  if (!value || typeof value !== "object" || Array.isArray(value)) {
+    errors.push(`"opticalPath.imagePlane" must be an object when provided`);
+    return;
+  }
+
+  const imagePlane = value as ImagePlaneData;
+  if (typeof imagePlane.z !== "number" || !isFinite(imagePlane.z)) {
+    errors.push(`"opticalPath.imagePlane.z" must be a finite number`);
+  }
+  if (imagePlane.y !== undefined && (typeof imagePlane.y !== "number" || !isFinite(imagePlane.y))) {
+    errors.push(`"opticalPath.imagePlane.y" must be a finite number when provided`);
+  }
+  if (imagePlane.label !== undefined && typeof imagePlane.label !== "string") {
+    errors.push(`"opticalPath.imagePlane.label" must be a string when provided`);
+  }
+  validateYzNormal(imagePlane.normal, `"opticalPath.imagePlane.normal"`, errors);
+}
+
+function validateOpticalPath(value: unknown, surfaceLabels: Set<string>, errors: string[]): void {
+  if (!value || typeof value !== "object" || Array.isArray(value)) {
+    errors.push(`"opticalPath" must be an object when provided`);
+    return;
+  }
+
+  const path = value as Record<string, unknown>;
+  if (path.mode !== undefined && path.mode !== "sequential" && path.mode !== "auto") {
+    errors.push(`"opticalPath.mode" must be "sequential" or "auto" when provided`);
+  }
+
+  if (path.surfaceOrder !== undefined) {
+    if (!Array.isArray(path.surfaceOrder) || path.surfaceOrder.length === 0) {
+      errors.push(`"opticalPath.surfaceOrder" must be a non-empty array of surface labels when provided`);
+    } else {
+      path.surfaceOrder.forEach((label, index) => {
+        if (typeof label !== "string" || !surfaceLabels.has(label)) {
+          errors.push(`"opticalPath.surfaceOrder[${index}]" must match a surface label`);
+        }
+      });
+    }
+  }
+
+  if (path.imagePlane !== undefined) validateImagePlane(path.imagePlane, errors);
+
+  if (
+    path.maxInteractions !== undefined &&
+    (typeof path.maxInteractions !== "number" ||
+      !isFinite(path.maxInteractions) ||
+      path.maxInteractions < 1 ||
+      Math.round(path.maxInteractions) !== path.maxInteractions)
+  ) {
+    errors.push(`"opticalPath.maxInteractions" must be a positive integer when provided`);
+  }
+
+  if (
+    Array.isArray(path.surfaceOrder) &&
+    typeof path.maxInteractions === "number" &&
+    isFinite(path.maxInteractions) &&
+    Math.round(path.maxInteractions) === path.maxInteractions
+  ) {
+    const requiredInteractions = path.surfaceOrder.length + (path.imagePlane !== undefined ? 1 : 0);
+    if (path.maxInteractions < requiredInteractions) {
+      errors.push(
+        `"opticalPath.maxInteractions" must be at least surfaceOrder length plus image-plane termination (${requiredInteractions})`,
+      );
+    }
+  }
+}
+
 function validateLensMounts(value: unknown, errors: string[]): void {
   if (!Array.isArray(value)) {
     errors.push(`"lensMounts" must be a non-empty array of canonical mount ids when provided`);
@@ -183,6 +254,173 @@ function validateLensMounts(value: unknown, errors: string[]): void {
       errors.push(`"lensMounts" must not contain duplicate mount id "${mount}"`);
     }
     seen.add(mount);
+  }
+}
+
+function validateYzNormal(value: unknown, label: string, errors: string[]): void {
+  if (value === undefined) return;
+  if (
+    !value ||
+    typeof value !== "object" ||
+    Array.isArray(value) ||
+    typeof (value as Record<string, unknown>).z !== "number" ||
+    typeof (value as Record<string, unknown>).y !== "number" ||
+    !isFinite((value as { z: number }).z) ||
+    !isFinite((value as { y: number }).y)
+  ) {
+    errors.push(`${label} must contain finite z and y numbers`);
+    return;
+  }
+  const normal = value as { z: number; y: number };
+  if (Math.hypot(normal.z, normal.y) <= 1e-12) {
+    errors.push(`${label} must not be the zero vector`);
+  }
+}
+
+function normalizedNormal(value: unknown): { z: number; y: number } | null {
+  if (
+    !value ||
+    typeof value !== "object" ||
+    typeof (value as Record<string, unknown>).z !== "number" ||
+    typeof (value as Record<string, unknown>).y !== "number"
+  ) {
+    return null;
+  }
+  const normal = value as { z: number; y: number };
+  const len = Math.hypot(normal.z, normal.y);
+  if (!isFinite(len) || len <= 1e-12) return null;
+  return { z: normal.z / len, y: normal.y / len };
+}
+
+function samePlaneNormal(a: unknown, b: unknown): boolean {
+  const na = normalizedNormal(a);
+  const nb = normalizedNormal(b);
+  if (!na || !nb) return false;
+  return Math.abs(Math.abs(na.z * nb.z + na.y * nb.y) - 1) < 1e-6;
+}
+
+function validateTiltedMirrorBackingNormals(
+  S: UntrustedLensData[],
+  explicitSpans: Map<number, { from: number; to: number; element: UntrustedLensData }>,
+  errors: string[],
+): void {
+  const spanForElement = (elemId: number): { from: number; to: number } | null => {
+    const explicit = explicitSpans.get(elemId);
+    if (explicit) return explicit;
+    const from = S.findIndex((surface) => surface.elemId === elemId);
+    if (from < 0 || from + 1 >= S.length) return null;
+    return { from, to: from + 1 };
+  };
+
+  for (let i = 0; i < S.length; i++) {
+    const surface = S[i];
+    if (surface.elemId === 0 || surface.interaction?.type !== "reflect" || !surface.interaction.normal) continue;
+    if (typeof surface.R !== "number" || Math.abs(surface.R) <= FLAT_R_THRESHOLD) continue;
+
+    const span = spanForElement(surface.elemId);
+    if (!span || i < span.from || i > span.to) continue;
+    const backingIdx = i === span.from ? span.to : span.from;
+    if (backingIdx === i || backingIdx < 0 || backingIdx >= S.length) continue;
+    const backing = S[backingIdx];
+    if (typeof backing.R !== "number" || Math.abs(backing.R) <= FLAT_R_THRESHOLD) continue;
+    if (samePlaneNormal(surface.interaction.normal, backing.interaction?.normal)) continue;
+
+    errors.push(
+      `surfaces[${backingIdx}] ("${backing.label}"): tilted mirror backing plane should repeat interaction.normal from reflective surface "${surface.label}"`,
+    );
+  }
+}
+
+function validatePairedInnerSdConsistency(
+  S: UntrustedLensData[],
+  explicitSpans: Map<number, { from: number; to: number; element: UntrustedLensData }>,
+  errors: string[],
+): void {
+  const pairs = new Map<string, [number, number]>();
+  const addPair = (a: number, b: number): void => {
+    if (a === b || a < 0 || b < 0 || a >= S.length || b >= S.length) return;
+    const lo = Math.min(a, b);
+    const hi = Math.max(a, b);
+    pairs.set(`${lo}:${hi}`, [lo, hi]);
+  };
+
+  for (const span of explicitSpans.values()) addPair(span.from, span.to);
+  for (let i = 0; i < S.length - 1; i++) {
+    if (typeof S[i]?.label === "string" && S[i + 1]?.label === `${S[i].label}B`) addPair(i, i + 1);
+  }
+
+  for (const [aIdx, bIdx] of pairs.values()) {
+    const a = S[aIdx];
+    const b = S[bIdx];
+    const aInner = typeof a.innerSd === "number" && isFinite(a.innerSd) ? a.innerSd : null;
+    const bInner = typeof b.innerSd === "number" && isFinite(b.innerSd) ? b.innerSd : null;
+    if (aInner === null && bInner === null) continue;
+    if (aInner !== null && bInner !== null && Math.abs(aInner - bInner) <= 1e-9) continue;
+    errors.push(
+      `surfaces[${aIdx}] ("${a.label}") and surfaces[${bIdx}] ("${b.label}"): paired annular surfaces must use matching innerSd values`,
+    );
+  }
+}
+
+function validateFoldedImagePlaneReachability(
+  data: UntrustedLensData,
+  S: UntrustedLensData[],
+  labelToIdx: Record<string, number>,
+  errors: string[],
+): void {
+  const pathData = data.opticalPath as Record<string, unknown> | undefined;
+  const imagePlaneData = pathData?.imagePlane as ImagePlaneData | undefined;
+  if (!pathData || !imagePlaneData || typeof imagePlaneData.z !== "number" || !isFinite(imagePlaneData.z)) return;
+  if (pathData.mode === "auto") return;
+  if (typeof labelToIdx.STO !== "number") return;
+
+  const surfaceLabels = Array.isArray(pathData.surfaceOrder) ? pathData.surfaceOrder : null;
+  if (surfaceLabels && new Set(surfaceLabels).size !== surfaceLabels.length) return;
+  const surfaceOrder =
+    surfaceLabels && surfaceLabels.every((label) => typeof label === "string" && typeof labelToIdx[label] === "number")
+      ? surfaceLabels.map((label) => labelToIdx[label])
+      : null;
+  const normal = normalizedNormal(imagePlaneData.normal) ?? { z: 1, y: 0 };
+  const maxInteractions =
+    typeof pathData.maxInteractions === "number" && isFinite(pathData.maxInteractions)
+      ? pathData.maxInteractions
+      : Math.max(S.length + 1, 1);
+
+  let asphByIdx: ExactTraceLens["asphByIdx"];
+  try {
+    asphByIdx = buildAsphereIndex(data.asph, labelToIdx);
+  } catch {
+    return;
+  }
+
+  const lens: ExactTraceLens = {
+    S: S as unknown as ExactTraceLens["S"],
+    asphByIdx,
+    stopIdx: labelToIdx.STO,
+    opticalPath: {
+      mode: pathData.mode === "auto" ? "auto" : "sequential",
+      surfaceOrder,
+      surfaceLabels: surfaceLabels as string[] | null,
+      maxInteractions,
+    },
+    imagePlane: {
+      z: imagePlaneData.z,
+      y: typeof imagePlaneData.y === "number" && isFinite(imagePlaneData.y) ? imagePlaneData.y : 0,
+      normal,
+      label: typeof imagePlaneData.label === "string" ? imagePlaneData.label : "IMG",
+    },
+    isFoldedOptics: true,
+  };
+
+  const stopSd = typeof S[labelToIdx.STO]?.sd === "number" && isFinite(S[labelToIdx.STO].sd) ? S[labelToIdx.STO].sd : 1;
+  const probeHeights = [...new Set([0, 0.2 * stopSd, -0.2 * stopSd, 0.4 * stopSd, -0.4 * stopSd])];
+  const reachesImagePlane = probeHeights.some((y0) => {
+    const result = traceExactSurfaceStack(lens, { y0, uy0: 0 }, { leadDistance: 0, checkSemiDiameter: true });
+    return result.reachedImagePlane === true && result.failureReason === null && !result.clipped;
+  });
+
+  if (!reachesImagePlane) {
+    errors.push(`"opticalPath.imagePlane" is not reached by any conservative folded-path probe ray`);
   }
 }
 
@@ -290,6 +528,48 @@ export default function validateLensData(data: UntrustedLensData): string[] {
     if (typeof s.d !== "number") errors.push(`surfaces[${i}] ("${s.label}"): missing or invalid d`);
     if (typeof s.nd !== "number") errors.push(`surfaces[${i}] ("${s.label}"): missing or invalid nd`);
     if (typeof s.sd !== "number") errors.push(`surfaces[${i}] ("${s.label}"): missing or invalid sd`);
+    if (s.innerSd !== undefined) {
+      if (typeof s.innerSd !== "number" || !isFinite(s.innerSd) || s.innerSd < 0) {
+        errors.push(`surfaces[${i}] ("${s.label}"): innerSd must be a finite non-negative number when provided`);
+      } else if (typeof s.sd === "number" && isFinite(s.sd) && s.innerSd >= s.sd) {
+        errors.push(`surfaces[${i}] ("${s.label}"): innerSd must be smaller than sd`);
+      }
+    }
+    if (s.interaction !== undefined) {
+      if (!s.interaction || typeof s.interaction !== "object" || Array.isArray(s.interaction)) {
+        errors.push(`surfaces[${i}] ("${s.label}"): interaction must be an object when provided`);
+      } else {
+        const interaction = s.interaction as Record<string, unknown>;
+        if (interaction.type !== "refract" && interaction.type !== "reflect" && interaction.type !== "block") {
+          errors.push(`surfaces[${i}] ("${s.label}"): interaction.type must be "refract", "reflect", or "block"`);
+        }
+        if (
+          interaction.incidentSide !== undefined &&
+          interaction.incidentSide !== "front" &&
+          interaction.incidentSide !== "rear" &&
+          interaction.incidentSide !== "both"
+        ) {
+          errors.push(`surfaces[${i}] ("${s.label}"): interaction.incidentSide must be "front", "rear", or "both"`);
+        }
+        if (
+          interaction.inactiveSide !== undefined &&
+          interaction.inactiveSide !== "ignore" &&
+          interaction.inactiveSide !== "block"
+        ) {
+          errors.push(`surfaces[${i}] ("${s.label}"): interaction.inactiveSide must be "ignore" or "block"`);
+        }
+        if (
+          interaction.mirrorKind !== undefined &&
+          interaction.mirrorKind !== "first-surface" &&
+          interaction.mirrorKind !== "second-surface"
+        ) {
+          errors.push(
+            `surfaces[${i}] ("${s.label}"): interaction.mirrorKind must be "first-surface" or "second-surface"`,
+          );
+        }
+        validateYzNormal(interaction.normal, `surfaces[${i}] ("${s.label}"): interaction.normal`, errors);
+      }
+    }
     if (s.stopPlacement !== undefined && s.stopPlacement !== "inside-element") {
       errors.push(`surfaces[${i}] ("${s.label}"): stopPlacement must be "inside-element" when provided`);
     }
@@ -299,6 +579,7 @@ export default function validateLensData(data: UntrustedLensData): string[] {
   }
   if (stoCount === 0) errors.push('No surface with label "STO" found');
   if (stoCount > 1) errors.push(`Multiple surfaces with label "STO" found (${stoCount})`);
+  if (data.opticalPath !== undefined) validateOpticalPath(data.opticalPath, surfaceLabels, errors);
 
   /* ── Element IDs: unique ── */
   const elemIds = new Set<number>();
@@ -441,6 +722,10 @@ export default function validateLensData(data: UntrustedLensData): string[] {
       }
     }
   }
+
+  validateTiltedMirrorBackingNormals(S, explicitSpans, errors);
+  validatePairedInnerSdConsistency(S, explicitSpans, errors);
+  validateFoldedImagePlaneReachability(data, S, labelToIdx, errors);
 
   const stopIdx = typeof labelToIdx.STO === "number" ? labelToIdx.STO : -1;
   if (stopIdx >= 0) {

@@ -11,6 +11,10 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import DiagramSVG from "../../../../src/components/diagram/DiagramSVG.js";
+import buildLens from "../../../../src/optics/buildLens.js";
+import { computeElementShapes } from "../../../../src/optics/diagramGeometry.js";
+import { doLayout } from "../../../../src/optics/optics.js";
+import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
 import themes from "../../../../src/utils/theme/themes.js";
 import type { RuntimeLens, ElementShape } from "../../../../src/types/optics.js";
 
@@ -61,6 +65,7 @@ const baseLens = {
   lyStoPad: 4,
   lyImgLine: 40,
   lyImgLabel: 55,
+  imagePlane: { z: 43, y: 0, normal: { z: 1, y: 0 }, label: "IMG" },
   stopIdx: 0,
   epZRelStop: 0,
   N: 1,
@@ -189,6 +194,224 @@ describe("DiagramSVG", () => {
     expect(onSelect).toHaveBeenCalledWith(1);
     expect(onLcaInsetClick).toHaveBeenCalledTimes(1);
     expect(onPetzvalBadgeClick).toHaveBeenCalledTimes(1);
+  });
+
+  it("renders a side image plane using its resolved normal", () => {
+    const sideLens = {
+      ...baseLens,
+      lyImgLine: 10,
+      lyImgLabel: 12,
+      imagePlane: { z: 35, y: 25, normal: { z: 0, y: 1 }, label: "SIDE" },
+    } as RuntimeLens;
+    const { container } = render(
+      <DiagramSVG
+        L={sideLens}
+        t={themes.dark}
+        dark={true}
+        sx={(z) => z + 100}
+        sy={(y) => 300 + y}
+        CX={220}
+        IX={950}
+        effectiveSC={1}
+        zPos={[120]}
+        IMG_MM={43}
+        shapes={[]}
+        filterId="diagram-side-image-plane"
+        stopZ={220}
+        currentPhysStopSD={8}
+        rays={[]}
+        offAxisRays={[]}
+        chromaticRays={[]}
+        chromSpread={null}
+        showOnAxis={false}
+        showOffAxis="off"
+        showChromatic={false}
+        showPupils={false}
+        zoomT={0}
+        act={null}
+        onHover={onHover}
+        onSelect={onSelect}
+        sel={null}
+        maxSvgHeight="500px"
+        useSideLayout={false}
+        headerHeight={40}
+        compact={false}
+        flashVisible={false}
+        flashKey={1}
+        flashFading={false}
+      />,
+    );
+
+    const imageLine = Array.from(container.querySelectorAll('line[stroke-dasharray="4,3"]')).find(
+      (line) => line.getAttribute("stroke") === themes.dark.imgLine,
+    );
+    const label = Array.from(container.querySelectorAll("text")).find((text) => text.textContent === "SIDE");
+
+    expect(imageLine?.getAttribute("x1")).toBe("125");
+    expect(imageLine?.getAttribute("y1")).toBe("325");
+    expect(imageLine?.getAttribute("x2")).toBe("145");
+    expect(imageLine?.getAttribute("y2")).toBe("325");
+    expect(label?.getAttribute("x")).toBe("147");
+    expect(label?.getAttribute("y")).toBe("325");
+  });
+
+  it("renders the hidden Newtonian fixture image plane from its side-focus metadata", () => {
+    const L = buildLens(LENS_CATALOG["reference-newtonian-side-focus"]);
+    const layout = doLayout(0, 0, L);
+    const { container } = render(
+      <DiagramSVG
+        L={L}
+        t={themes.dark}
+        dark={true}
+        sx={(z) => z + 100}
+        sy={(y) => 300 + y}
+        CX={220}
+        IX={950}
+        effectiveSC={1}
+        zPos={layout.z}
+        IMG_MM={layout.imgZ}
+        shapes={[]}
+        filterId="diagram-newtonian-side-image-plane"
+        stopZ={220}
+        currentPhysStopSD={L.stopPhysSD}
+        rays={[]}
+        offAxisRays={[]}
+        chromaticRays={[]}
+        chromSpread={null}
+        showOnAxis={false}
+        showOffAxis="off"
+        showChromatic={false}
+        showPupils={false}
+        zoomT={0}
+        act={null}
+        onHover={onHover}
+        onSelect={onSelect}
+        sel={null}
+        maxSvgHeight="500px"
+        useSideLayout={false}
+        headerHeight={40}
+        compact={false}
+        flashVisible={false}
+        flashKey={1}
+        flashFading={false}
+      />,
+    );
+
+    const imageLine = Array.from(container.querySelectorAll('line[stroke-dasharray="4,3"]')).find(
+      (line) => line.getAttribute("stroke") === themes.dark.imgLine,
+    );
+    const label = Array.from(container.querySelectorAll("text")).find((text) => text.textContent === "IMG");
+
+    expect(imageLine).toBeDefined();
+    expect(label).toBeDefined();
+    expect(Number(imageLine!.getAttribute("y1"))).toBeCloseTo(325, 10);
+    expect(Number(imageLine!.getAttribute("y2"))).toBeCloseTo(325, 10);
+    expect(Number(imageLine!.getAttribute("x1"))).toBeCloseTo(100 + L.imagePlane.z - L.lyImgLine, 10);
+    expect(Number(imageLine!.getAttribute("x2"))).toBeCloseTo(100 + L.imagePlane.z + L.lyImgLine, 10);
+    expect(Number(label!.getAttribute("x"))).toBeCloseTo(100 + L.imagePlane.z + L.lyImgLabel, 10);
+    expect(Number(label!.getAttribute("y"))).toBeCloseTo(325, 10);
+  });
+
+  it("renders folded hit-order labels for debug fixtures", () => {
+    const L = buildLens(LENS_CATALOG["reference-newtonian-side-focus"]);
+    const layout = doLayout(0, 0, L);
+
+    render(
+      <DiagramSVG
+        L={L}
+        t={themes.dark}
+        dark={true}
+        sx={(z) => z + 100}
+        sy={(y) => 300 + y}
+        CX={220}
+        IX={950}
+        effectiveSC={1}
+        zPos={layout.z}
+        IMG_MM={layout.imgZ}
+        shapes={[]}
+        filterId="diagram-folded-hit-order"
+        stopZ={220}
+        currentPhysStopSD={L.stopPhysSD}
+        rays={[]}
+        offAxisRays={[]}
+        chromaticRays={[]}
+        chromSpread={null}
+        showOnAxis={false}
+        showOffAxis="off"
+        showChromatic={false}
+        showPupils={false}
+        foldedHitOrderLabels={["M1", "SEC"]}
+        zoomT={0}
+        act={null}
+        onHover={onHover}
+        onSelect={onSelect}
+        sel={null}
+        maxSvgHeight="500px"
+        useSideLayout={false}
+        headerHeight={40}
+        compact={false}
+        flashVisible={false}
+        flashKey={1}
+        flashFading={false}
+      />,
+    );
+
+    expect(screen.getByText("1 M1")).toBeTruthy();
+    expect(screen.getByText("2 SEC")).toBeTruthy();
+  });
+
+  it("renders second-surface mirror coating accents from element shapes", () => {
+    const L = buildLens(LENS_CATALOG["reference-mangin-second-surface-mirror"]);
+    const layout = doLayout(0, 0, L);
+    const shapes = computeElementShapes(
+      L,
+      layout.z,
+      (z) => z + 100,
+      (y) => 300 + y,
+    );
+    const { container } = render(
+      <DiagramSVG
+        L={L}
+        t={themes.dark}
+        dark={true}
+        sx={(z) => z + 100}
+        sy={(y) => 300 + y}
+        CX={220}
+        IX={950}
+        effectiveSC={1}
+        zPos={layout.z}
+        IMG_MM={layout.imgZ}
+        shapes={shapes}
+        filterId="diagram-mangin-second-surface"
+        stopZ={220}
+        currentPhysStopSD={L.stopPhysSD}
+        rays={[]}
+        offAxisRays={[]}
+        chromaticRays={[]}
+        chromSpread={null}
+        showOnAxis={false}
+        showOffAxis="off"
+        showChromatic={false}
+        showPupils={false}
+        zoomT={0}
+        act={null}
+        onHover={onHover}
+        onSelect={onSelect}
+        sel={null}
+        maxSvgHeight="500px"
+        useSideLayout={false}
+        headerHeight={40}
+        compact={false}
+        flashVisible={false}
+        flashKey={1}
+        flashFading={false}
+      />,
+    );
+
+    const coating = container.querySelector(`[data-testid="surface-accent-second-surface-coating-${L.labelIdx.MG2}"]`);
+    expect(coating).toBeTruthy();
+    expect(coating?.getAttribute("stroke")).toBe(themes.dark.imgLine);
+    expect(coating?.getAttribute("stroke-dasharray")).toBe("3,2");
   });
 
   it("switches into grab-mode event wiring when zoom-pan is active", () => {

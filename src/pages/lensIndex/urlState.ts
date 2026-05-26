@@ -13,15 +13,17 @@ import {
 } from "../../utils/catalog/lensTaxonomy.js";
 import { allMakerSlugs } from "../../utils/catalog/lensMetadata.js";
 import { clampNumericFilterValue, defaultCustomFilter, hasActiveCustomFilters } from "./catalog.js";
-import type { CustomFilterState, FilterBounds, GroupMode, NumericFilterField } from "./types.js";
+import type { CustomFilterState, FilterBounds, GroupMode, LensIndexViewMode, NumericFilterField } from "./types.js";
 
 export interface LensIndexUrlState {
+  viewMode: LensIndexViewMode;
   groupMode: GroupMode;
   filterOpen: boolean;
   customFilter: CustomFilterState;
 }
 
 const GROUP_MODES = new Set<GroupMode>(["maker", "focal", "year-asc", "year-desc", "mount", "format"]);
+const VIEW_MODES = new Set<LensIndexViewMode>(["visible", "all", "debug"]);
 const NUMERIC_PARAMS: ReadonlyArray<{ param: string; field: NumericFilterField; step: number }> = [
   { param: "focalMin", field: "focalMin", step: 0.1 },
   { param: "focalMax", field: "focalMax", step: 0.1 },
@@ -39,8 +41,15 @@ function parseListParam(value: string | null): string[] {
     .filter(Boolean);
 }
 
-function sortedKnownMakers(values: string[]): string[] {
-  const makerSlugs = new Set(allMakerSlugs());
+export function parseLensIndexViewMode(search: string): LensIndexViewMode {
+  const requestedView = new URLSearchParams(search).get("view");
+  return requestedView && VIEW_MODES.has(requestedView as LensIndexViewMode)
+    ? (requestedView as LensIndexViewMode)
+    : "visible";
+}
+
+function sortedKnownMakers(values: string[], knownMakerSlugs = allMakerSlugs()): string[] {
+  const makerSlugs = new Set(knownMakerSlugs);
   return [...new Set(values.filter((slug) => makerSlugs.has(slug)))].sort((a, b) => a.localeCompare(b));
 }
 
@@ -73,8 +82,13 @@ function parseNumericParam(
   return clampNumericFilterValue(parsed, min, max, step);
 }
 
-export function parseLensIndexUrlState(search: string, bounds: FilterBounds): LensIndexUrlState {
+export function parseLensIndexUrlState(
+  search: string,
+  bounds: FilterBounds,
+  knownMakerSlugs = allMakerSlugs(),
+): LensIndexUrlState {
   const params = new URLSearchParams(search);
+  const viewMode = parseLensIndexViewMode(search);
   const defaultFilter = defaultCustomFilter(bounds);
   const requestedGroup = params.get("group");
   const groupMode =
@@ -82,7 +96,7 @@ export function parseLensIndexUrlState(search: string, bounds: FilterBounds): Le
 
   const customFilter: CustomFilterState = {
     ...defaultFilter,
-    makerSlugs: sortedKnownMakers(parseListParam(params.get("makers"))),
+    makerSlugs: sortedKnownMakers(parseListParam(params.get("makers")), knownMakerSlugs),
     lensMountIds: sortedKnownMounts(parseListParam(params.get("mounts"))),
     imageFormatIds: sortedKnownFormats(parseListParam(params.get("formats"))),
   };
@@ -105,10 +119,11 @@ export function parseLensIndexUrlState(search: string, bounds: FilterBounds): Le
   customFilter.patentYearMax = Math.max(patentYearMin, patentYearMax);
 
   const filterOpen = params.get("filters") === "open" || hasActiveCustomFilters(customFilter, bounds);
-  return { groupMode, filterOpen, customFilter };
+  return { viewMode, groupMode, filterOpen, customFilter };
 }
 
 export function serializeLensIndexUrlState({
+  viewMode,
   groupMode,
   filterOpen,
   customFilter,
@@ -117,6 +132,7 @@ export function serializeLensIndexUrlState({
   const params = new URLSearchParams();
 
   if (groupMode !== "maker") params.set("group", groupMode);
+  if (viewMode !== "visible") params.set("view", viewMode);
   if (customFilter.makerSlugs.length > 0) params.set("makers", customFilter.makerSlugs.join(","));
   if (customFilter.lensMountIds.length > 0) params.set("mounts", customFilter.lensMountIds.join(","));
   if (customFilter.imageFormatIds.length > 0) params.set("formats", customFilter.imageFormatIds.join(","));

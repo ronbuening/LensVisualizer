@@ -12,7 +12,9 @@ import { cleanup, fireEvent, screen, waitFor } from "@testing-library/react";
 import { HelmetProvider } from "react-helmet-async";
 import LensIndexPage from "../../../src/pages/LensIndexPage.js";
 import {
+  ALL_CATALOG_ENTRIES,
   CATALOG_ENTRIES,
+  DEBUG_CATALOG_ENTRIES,
   FILTER_BOUNDS,
   defaultCustomFilter,
   matchesCustomFilter,
@@ -136,6 +138,38 @@ describe("LensIndexPage", () => {
     expect(href).toContain("context=mount");
     expect(href).toContain("id=nikon-z");
     expect(href).toContain("returnTo=%2Flenses%3Fgroup%3Dmount%26mounts%3Dnikon-z");
+  });
+
+  it("shows hidden reference fixtures in the debug URL view", async () => {
+    renderLensIndexPage("/lenses?view=debug");
+
+    await waitFor(() => {
+      expect(
+        screen.getByText(
+          new RegExp(`Showing ${DEBUG_CATALOG_ENTRIES.length} of ${DEBUG_CATALOG_ENTRIES.length} interactive`, "i"),
+        ),
+      ).toBeTruthy();
+    });
+
+    expect(screen.getByRole("link", { name: /REFERENCE Newtonian Side Focus/i })).toBeTruthy();
+    expect(screen.queryByRole("link", { name: /NIKON NIKKOR Z 26mm f\/2.8/i })).toBeNull();
+  });
+
+  it("preserves the all-files library view in hidden fixture links", async () => {
+    renderLensIndexPage("/lenses?view=all");
+
+    await waitFor(() => {
+      expect(
+        screen.getByText(
+          new RegExp(`Showing ${ALL_CATALOG_ENTRIES.length} of ${ALL_CATALOG_ENTRIES.length} interactive`, "i"),
+        ),
+      ).toBeTruthy();
+    });
+
+    const fixtureLink = screen.getByRole("link", { name: /REFERENCE Newtonian Side Focus/i });
+    const href = fixtureLink.getAttribute("href") ?? "";
+    expect(href).toContain("/lens/reference-newtonian-side-focus");
+    expect(href).toContain("returnTo=%2Flenses%3Fview%3Dall");
   });
 
   it("filters by lens mount and image format", () => {

@@ -58,6 +58,7 @@ export default function LensDiagramLoadedState({
     act,
     sel,
     cardinalElements,
+    foldedHitOrderLabels,
   } = computed;
   const { chromSpread, chromaticSpreads, rays, offAxisRays, chromaticRays } = rayData;
   const {
@@ -147,6 +148,7 @@ export default function LensDiagramLoadedState({
             showCardinalHiatus={showCardinalHiatus}
             showCardinalTotalTrack={showCardinalTotalTrack}
             cardinalElements={cardinalElements}
+            foldedHitOrderLabels={foldedHitOrderLabels}
             zoomT={zoomT}
             act={act}
             onHover={onHover}

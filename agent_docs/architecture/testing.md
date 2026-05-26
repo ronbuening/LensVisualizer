@@ -50,11 +50,16 @@ Existing tests cover:
 
 - Pure optics functions and edge cases.
 - Lens build and data validation.
+- Mirror/folded optics fixtures: first-surface reflection, annular clipping/rendering, second-surface repeated hit order,
+  automatic Newtonian path resolution, side/front/back image-plane termination, second-surface coating accents, folded
+  analysis guardrails, off-axis chief-ray/image-plane accuracy, meridional symmetry, and analytic focal/back-focus
+  anchors.
 - Aberration, distortion, vignetting, pupil aberration, bokeh, and diagram geometry.
 - Catalog/metadata utilities.
 - Reducer, preferences, URL sync, feature flags, and page-theme hooks.
 - Component smoke tests for pages, controls, display panels, analysis drawer, and comparison layout.
 - Script regressions for metadata, route sync, lens-data helpers, sitemap/prerender support.
+- Generated authoring reports, including glass queues and the hidden mirror fixture report.
 
 ## Refactor Test Expectations
 
@@ -65,6 +70,12 @@ When refactoring:
 - Add equality tests when adding optional precomputed inputs to optics helpers.
 - Add reducer guard tests when tightening string state into literal unions.
 - Add script helper tests when changing metadata generation, route expansion, or git freshness lookup.
+- Add fixture-backed optics tests whenever changing `SurfaceData.interaction`, `innerSd`, `opticalPath`, generalized
+  stop tracing, generalized image-plane intersection, obstruction-aware sampling, or folded analysis gating. Prefer
+  hidden reference fixtures under `src/lens-data/reference/` for canonical mirror/telescope behavior.
+- For folded off-axis changes, include chief-ray reachability, image-height magnitude against the expected small-field
+  reference, positive/negative field symmetry, and a representative non-folded refractive snapshot so ordinary
+  sequential behavior does not drift.
 
 Run the normal gate before committing:
 

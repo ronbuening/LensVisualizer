@@ -7,7 +7,7 @@
  */
 
 import type { CSSProperties } from "react";
-import type { RuntimeLens, ElementData } from "../../types/optics.js";
+import type { RuntimeLens, ElementData, ImagePlaneNormal, SurfaceData } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
 
 interface ElementInspectorProps {
@@ -26,7 +26,57 @@ const INSPECTOR_GRID: CSSProperties = {
   lineHeight: 1.8,
 };
 
+function fmtNumber(value: number): string {
+  if (Math.abs(value) < 1e-9) return "0";
+  return Number(value.toFixed(3)).toString();
+}
+
+function fmtMm(value: number): string {
+  return `${fmtNumber(value)} mm`;
+}
+
+function fmtNormal(normal: ImagePlaneNormal): string {
+  return `z=${fmtNumber(normal.z)} y=${fmtNumber(normal.y)}`;
+}
+
+function surfaceIndexesForElement(info: ElementData, L: RuntimeLens): number[] {
+  if (!L.S) return [];
+  const indexes = new Set<number>();
+  const span = L.ES?.find(([id]) => id === info.id);
+  if (span) {
+    for (let idx = span[1]; idx <= span[2]; idx++) {
+      if (L.S[idx]) indexes.add(idx);
+    }
+  }
+  L.S.forEach((surface, idx) => {
+    if (surface.elemId === info.id) indexes.add(idx);
+  });
+  return [...indexes].sort((a, b) => a - b);
+}
+
+function surfaceSummary(surface: SurfaceData): string | null {
+  const interaction = surface.interaction;
+  const pieces: string[] = [];
+  if (interaction) {
+    pieces.push(interaction.type);
+    if (interaction.mirrorKind) pieces.push(interaction.mirrorKind);
+    pieces.push(`active ${interaction.incidentSide ?? "both"}`);
+    if ((interaction.incidentSide ?? "both") !== "both") {
+      pieces.push(`inactive ${interaction.inactiveSide ?? "ignore"}`);
+    }
+    if (interaction.normal) pieces.push(`normal ${fmtNormal(interaction.normal)}`);
+  }
+  if (surface.innerSd !== undefined) pieces.push(`innerSd ${fmtMm(surface.innerSd)}`);
+  if (pieces.length === 0) return null;
+  return pieces.join(", ");
+}
+
 export default function ElementInspector({ info, L, t, showChromatic, onOpenAsphericCompare }: ElementInspectorProps) {
+  const foldedSurfaceRows = surfaceIndexesForElement(info, L)
+    .map((idx) => ({ surface: L.S[idx], summary: surfaceSummary(L.S[idx]) }))
+    .filter((row): row is { surface: SurfaceData; summary: string } => Boolean(row.summary));
+  const imagePlane = L.isFoldedOptics && L.data.opticalPath?.imagePlane ? L.imagePlane : null;
+
   return (
     <div>
       <div style={{ display: "flex", alignItems: "baseline", gap: 8, marginBottom: 6, flexWrap: "wrap" }}>
@@ -160,6 +210,24 @@ export default function ElementInspector({ info, L, t, showChromatic, onOpenAsph
           ));
         })()}
       </div>
+      {(foldedSurfaceRows.length > 0 || imagePlane) && (
+        <div style={{ ...INSPECTOR_GRID, marginTop: 6, paddingTop: 5, borderTop: `1px solid ${t.panelBorder}` }}>
+          {foldedSurfaceRows.map(({ surface, summary }) => (
+            <div key={surface.label} style={{ gridColumn: "1 / -1" }}>
+              <span style={{ color: t.propLabel }}>{surface.label}: </span>
+              <span style={{ color: t.value }}>{summary}</span>
+            </div>
+          ))}
+          {imagePlane && (
+            <div style={{ gridColumn: "1 / -1" }}>
+              <span style={{ color: t.propLabel }}>Image plane {imagePlane.label}: </span>
+              <span style={{ color: t.value }}>
+                z={fmtMm(imagePlane.z)} y={fmtMm(imagePlane.y)} normal {fmtNormal(imagePlane.normal)}
+              </span>
+            </div>
+          )}
+        </div>
+      )}
       {showChromatic && info.vd && (
         <div style={{ ...INSPECTOR_GRID, marginTop: 4 }}>
           <div>

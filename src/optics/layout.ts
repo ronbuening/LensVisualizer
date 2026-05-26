@@ -60,7 +60,8 @@ export function doLayout(focusT: number, zoomT: number, L: RuntimeLens, aberrati
   const th = L.S.map((_: unknown, i: number) => thick(i, focusT, zoomT, L, aberrationT));
   const z = [0];
   for (let i = 0; i < th.length - 1; i++) z.push(z[i] + th[i]);
-  return { z, th, imgZ: z[z.length - 1] + th[th.length - 1] };
+  const defaultImgZ = z[z.length - 1] + th[th.length - 1];
+  return { z, th, imgZ: L.isFoldedOptics ? L.imagePlane.z : defaultImgZ };
 }
 
 export function stateSurfaces(focusT: number, zoomT: number, L: RuntimeLens, aberrationT = 0) {

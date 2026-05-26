@@ -13,8 +13,118 @@ export interface SurfaceData {
   d: number;
   nd: number;
   sd: number;
+  innerSd?: number;
   elemId: number;
   stopPlacement?: "inside-element";
+  interaction?: SurfaceInteraction;
+}
+
+export type SurfaceIncidentSide = "front" | "rear" | "both";
+export type SurfaceInactiveSideBehavior = "ignore" | "block";
+export type SurfaceInteractionType = "refract" | "reflect" | "block";
+export type MirrorKind = "first-surface" | "second-surface";
+
+export interface SurfaceInteraction {
+  type: SurfaceInteractionType;
+  incidentSide?: SurfaceIncidentSide;
+  inactiveSide?: SurfaceInactiveSideBehavior;
+  mirrorKind?: MirrorKind;
+  normal?: ImagePlaneNormal;
+}
+
+export interface ImagePlaneNormal {
+  z: number;
+  y: number;
+}
+
+export interface ImagePlaneData {
+  z: number;
+  y?: number;
+  normal?: ImagePlaneNormal;
+  label?: string;
+}
+
+export interface ResolvedImagePlane {
+  z: number;
+  y: number;
+  normal: ImagePlaneNormal;
+  label: string;
+}
+
+export interface OpticalPathData {
+  mode?: "sequential" | "auto";
+  surfaceOrder?: string[];
+  imagePlane?: ImagePlaneData;
+  maxInteractions?: number;
+}
+
+export interface ResolvedOpticalPath {
+  mode: "sequential" | "auto";
+  surfaceOrder: number[] | null;
+  surfaceLabels: string[] | null;
+  maxInteractions: number;
+}
+
+export type FoldedPathTraceTermination =
+  | "image-plane"
+  | "explicit-path-complete"
+  | "no-next-surface"
+  | "trace-failure"
+  | "clipped"
+  | "loop-detected"
+  | "max-interactions"
+  | "sequential-return";
+
+export type FoldedPathClipReason =
+  | "semi-diameter"
+  | "inner-hole"
+  | "block-surface"
+  | "inactive-side-block"
+  | "intersection-failure"
+  | "total-internal-reflection"
+  | "loop-detected"
+  | "max-interactions";
+
+export type FoldedPathAutoSkipReason = "intersection-failed" | "passive-same-index" | "self-hit" | "non-forward-hit";
+
+export interface FoldedPathAutoCandidateSkip {
+  surfaceIdx: number;
+  surfaceLabel: string;
+  reason: FoldedPathAutoSkipReason;
+  failureReason?: string | null;
+  t?: number;
+}
+
+export interface FoldedPathAutoStepDiagnostics {
+  step: number;
+  skippedCandidates: FoldedPathAutoCandidateSkip[];
+}
+
+export interface FoldedPathClipEvent {
+  surfaceIdx: number | null;
+  surfaceLabel: string | null;
+  reason: FoldedPathClipReason;
+  failureReason?: string | null;
+}
+
+export interface FoldedPathTraceDiagnostics {
+  expectedPathMode: ResolvedOpticalPath["mode"];
+  expectedSurfaceLabels: string[] | null;
+  maxInteractions: number;
+  hitSurfaceIndexes: number[];
+  hitSurfaceLabels: string[];
+  finalMedium: number;
+  reachedImagePlane: boolean;
+  imagePlaneLabel: string | null;
+  terminalSurfaceIndex: number;
+  terminalSurfaceLabel: string | null;
+  clipped: boolean;
+  failureReason: string | null;
+  terminationReason: FoldedPathTraceTermination;
+  clipEvents: FoldedPathClipEvent[];
+  autoSteps: FoldedPathAutoStepDiagnostics[];
+  loopDetected: boolean;
+  loopKey: string | null;
 }
 
 export interface AsphericCoefficients {
@@ -147,6 +257,7 @@ export interface LensData {
   visible?: boolean;
   perspectiveControl?: PerspectiveControlConfig;
   projection?: LensProjectionConfig;
+  opticalPath?: OpticalPathData;
   aberrationControl?: AberrationControlConfig;
   nominalFno?: number | number[];
   closeFocusM: number;
@@ -243,6 +354,9 @@ export interface RuntimeLens {
   readonly perspectiveControl: PerspectiveControlConfig | null;
   readonly aberrationControl: ResolvedAberrationControlConfig | null;
   readonly projection: LensProjectionConfig;
+  readonly opticalPath: ResolvedOpticalPath;
+  readonly imagePlane: ResolvedImagePlane;
+  readonly isFoldedOptics: boolean;
   readonly stopIdx: number;
   readonly stopPhysSD: number;
   readonly EFL: number;
@@ -324,6 +438,8 @@ export interface RayTraceResult {
   y: number;
   u: number;
   clipped: boolean;
+  reachedImagePlane?: boolean;
+  diagnostics?: FoldedPathTraceDiagnostics;
 }
 
 export interface ParaxialTraceResult {
@@ -373,12 +489,20 @@ export interface AsphPathData {
   labelY: number;
 }
 
+export interface SurfaceAccentPathData {
+  surfIdx: number;
+  pathD: string;
+  kind: "second-surface-coating";
+}
+
 export interface ElementShape {
   eid: number;
   d: string;
   z1: number;
   z2: number;
+  fillRule?: "evenodd";
   asphPaths: AsphPathData[];
+  surfaceAccentPaths: SurfaceAccentPathData[];
 }
 
 export type ElementRenderTrimCause = "none" | "slope" | "gap" | "conic-limit";

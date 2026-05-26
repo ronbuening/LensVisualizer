@@ -17,7 +17,7 @@ lens data; analysis tabs use current focus, zoom, and aperture state.
 | --- | --- |
 | `buildLens.ts` | Validates lens data and constructs frozen `RuntimeLens` objects. |
 | `optics.ts` | Ray tracing, sag curves, layout, zoom interpolation, pupil geometry, chromatic tracing, chief ray solver. |
-| `diagramGeometry.ts` | SVG coordinate transforms and element shape/render diagnostics. |
+| `diagramGeometry.ts` | SVG coordinate transforms, element shape/render diagnostics, aspheric overlay paths, and second-surface mirror coating accent paths. |
 | `lensMovement.ts` | Pure 2D perspective-control movement helpers for clamping shift/tilt and transforming rendered points/rays. |
 | `groupMovement.ts` | Pure inferred lens-group axial movement profiles for focus, zoom, and combined overlay views. Uses fixed-image-plane anchoring and group-center positions relative to the focus plane. |
 | `validateLensData.ts` | Runtime lens-data validation. |
@@ -43,6 +43,10 @@ lens data; analysis tabs use current focus, zoom, and aperture state.
 - Zoom metadata: positions, EFLs, EPs, half-fields, tracing half-fields, y-ratios, and back focal distances.
 - Stop data: physical stop SD, blade stub fraction, stop housing SD, and f-stop series.
 - Element/group/doublet/aspheric/variable maps for runtime lookup.
+- Folded-path metadata: resolved `opticalPath`, explicit `imagePlane`, `isFoldedOptics`, and normalized surface/image-plane
+  normals when mirror data opts into the generalized model.
+- Folded entrance/exit pupil geometry derived from generalized real-ray stop and full-system basis traces, with finite
+  geometric fallbacks when a folded path cannot produce reliable stop/full traces.
 
 **`halfField` vs `tracingHalfField`.** Rectilinear lenses set both to the same slope-launch-bisected value
 (real chief ray vignetting check) by default. Fisheye lenses set `halfField = projection.maxTraceFieldDeg`
@@ -103,6 +107,9 @@ The exact tracer in `internal/exactSurfaceTrace.ts` exposes two entry points:
   per-surface bracket bound is z-projected; for grazing or backward rays the caller must supply
   `launchBoundT` so the intersection search has a finite parametric bound (typically `2 × launchRadiusMm`
   for bounding-sphere launches). The slope entry is a thin adapter that calls into this core.
+- `traceToStopViaGeneralized(lens, input, stopIdx, options)` — helper for folded callers that need a stop hit.
+  It runs a full generalized trace, scans `hits` for the first unclipped requested stop occurrence by default, and
+  can select a later repeated stop occurrence when the optical path intentionally crosses the same stop more than once.
 
 Both solve each ray/sag intersection via `internal/surfaceIntersection.ts` and project the outgoing ray back
 to the current surface vertex plane before returning `y`/`u` or `x`/`y`/`ux`/`uy`. `surfaceIntersection.ts`
@@ -110,6 +117,42 @@ splits its finiteness predicate into `isFiniteValueEvaluation` (used by `findBra
 and `isFiniteEvaluation` (additionally requires non-zero derivative, used inside Newton iteration) so a
 grazing meridional ray whose derivative collapses to zero at the optical axis can still anchor a bracket.
 The Newton seed falls back to the bracket midpoint when the z-projected guess is non-finite.
+
+## Mirror And Folded Optical Paths
+
+Folded systems opt into the generalized exact tracer through lens data, not through a trace-mode flag:
+
+- `SurfaceData.innerSd` defines an annular active aperture. Rays interact only inside `[innerSd, sd]`; central holes pass
+  without reflecting, refracting, or blocking.
+- `SurfaceData.interaction.type` selects `"refract"`, `"reflect"`, or `"block"`. Side-specific `incidentSide` /
+  `inactiveSide` controls whether a surface is active from the front, rear, both sides, ignored from the inactive side,
+  or treated as a blocker from the inactive side. Reflective reference fixtures annotate inactive-side blocking
+  explicitly so mirror back-side opacity is visible in the data.
+- `interaction.mirrorKind` documents first-surface vs second-surface mirrors. Refractive-index transitions still come
+  from the physical `nd` sequence so explicit repeated orders can enter a Mangin body, reflect, and exit through the
+  same front surface.
+- Second-surface mirrors also emit a diagram surface accent from `computeElementShapes()` so the SVG can draw the
+  coating separately from the glass substrate. This is visual-only; tracing behavior still comes from
+  `SurfaceData.interaction`.
+- `interaction.normal` turns a surface into a tilted meridional plane for both intersection and SVG element rendering.
+  Use it for flat fold mirrors and their passive backing planes; omit it for curved mirrors so sag-derived normals are
+  used.
+- `LensData.opticalPath.surfaceOrder` is an explicit label sequence and may repeat labels. This is the preferred path
+  for known Mangin or Cassegrain hit orders.
+- `LensData.opticalPath.mode: "auto"` uses nearest-valid-surface selection with self-hit tolerance, passive same-index
+  refractive-surface skipping, image-plane termination, and `maxInteractions` protection.
+- `LensData.opticalPath.imagePlane` supplies arbitrary meridional image planes. `doLayout()` reports `imgZ` from this
+  plane for folded systems, and ray traces terminate at the plane rather than assuming the final right-hand BFD.
+
+`traceRay*` remains the public caller surface for diagram rays. Focused optics tests can import
+`internal/exactSurfaceTrace.ts` to inspect generalized-path details such as hit labels, terminal direction, final medium,
+and whether the explicit image plane was reached.
+
+Analysis support is deliberately incremental. Spherical aberration and mirror-safe blur/bokeh helpers use generalized
+image-plane intersections where valid, folded visible off-axis geometry uses generalized stop/chief-ray solves, and
+axial folded reflective systems can report first-order cardinal overlays. Complex tabs that still need a settled folded
+interpretation, such as coma, distortion, vignetting, field curvature, and pupils, remain guarded in the UI until each
+tab has fixture-backed validation.
 
 ## Field-Launch Convention
 
@@ -142,6 +185,10 @@ those arrays exactly for `normal`, then derives symmetric denser viewport-only s
 `diagnostic`. Use the helper from display/tracing hooks instead of mutating runtime lens data or adding
 density-specific arrays to lens files.
 
+For folded systems, `obstructionAwareRayFractionsForDensity()` scans usable pupil bands so visible on-axis/off-axis rays
+avoid central blockers and annular mirror holes automatically. Do not work around a secondary obstruction by hand-editing
+`rayFractions`; fix the physical blocker or `innerSd` data instead.
+
 `raySampling.ts` also exports `isHeavyLensForRayWork(L)` — the shared heaviness heuristic. `LensDiagramPanel`
 uses it to downgrade interactive diagram ray density during slider drag; analysis modules use it to halve
 pupil sweep / pupil-correction sample counts on heavy lenses regardless of interaction state. Reuse this
@@ -153,7 +200,9 @@ helper instead of reimplementing the criteria.
 surface spacings, receives the visible `zPos`/image-plane positions from the diagram computation pipeline, and returns
 all six cardinal points atomically plus EFL, BFD, FFD, Hiatus, and Total track spans. For ordinary same-index
 photographic lenses, H/N and H′/N′ are marked coincident explicitly; non-unity image-side systems compute N/N′
-independently.
+independently. Axial folded reflective systems share the same paraxial transfer/interaction stepper with an enabled
+reflect branch; folded systems with tilted image planes still return no cardinal result until a rotated-frame reporting
+convention exists.
 
 ## Off-Axis Geometry Policy
 
@@ -164,8 +213,10 @@ Use explicit naming:
 - `computeOffAxisFieldGeometry` remains as a legacy compatibility alias for paraxial geometry.
 
 Visible off-axis rays, chromatic off-axis rays, distortion, vignetting, pupil aberration, coma, and bokeh use the
-state-aware solved-chief-ray path where current focus/zoom can move pupil geometry. Keep legacy paraxial behavior only
-where the UI or test explicitly needs first-order comparison.
+state-aware solved-chief-ray path where current focus/zoom can move pupil geometry. Folded callers that need the stop
+height use generalized stop tracing rather than sequential `stopAt`, and folded image-plane coordinates use the same
+plane-normal intersection helper as sequential callers. Keep legacy paraxial behavior only where the UI or test
+explicitly needs first-order comparison.
 
 ## Perspective-Control Movement
 
