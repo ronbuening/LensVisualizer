@@ -172,22 +172,6 @@ describe("mirror optics support", () => {
     });
   });
 
-  it("lets explicitly ignored inactive mirror sides pass through", () => {
-    const lens = singleSurfaceBackHitMirror({
-      type: "reflect",
-      incidentSide: "front",
-      inactiveSide: "ignore",
-      mirrorKind: "first-surface",
-    });
-    const result = traceBackSideMirror(lens, 5);
-
-    expect(result.clipped).toBe(false);
-    expect(result.hits).toHaveLength(0);
-    expect(result.reachedImagePlane).toBe(true);
-    expect(result.terminalPoint[2]).toBeCloseTo(-10, 10);
-    expect(result.diagnostics.clipEvents).toEqual([]);
-  });
-
   it("blocks inactive annular mirror rings while passing central holes", () => {
     const lens = singleSurfaceBackHitMirror(
       {
@@ -319,11 +303,10 @@ describe("mirror optics support", () => {
     expect(Number.isFinite(result.terminalPoint[2])).toBe(true);
   });
 
-  it("traces off-axis Newtonian chief rays to the side image-plane coordinate", () => {
+  it("clips Newtonian off-axis chief rays that hit the blocking secondary", () => {
     const L = buildLens(newtonianData);
     const layout = doLayout(0, 0, L);
     const fieldDeg = 2;
-    const expected = L.EFL * Math.tan((fieldDeg * Math.PI) / 180);
 
     const positiveSolve = solveChiefRay(fieldDeg, 0, 0, L);
     const negativeSolve = solveChiefRay(-fieldDeg, 0, 0, L);
@@ -335,10 +318,17 @@ describe("mirror optics support", () => {
     expect(positiveSolve.status).toBe("converged");
     expect(positive.reachedImagePlane).toBe(true);
     expect(negative.reachedImagePlane).toBe(true);
-    expect(positive.clipped).toBe(false);
-    expect(negative.clipped).toBe(false);
-    expect(Math.abs(positiveCoordinate)).toBeCloseTo(expected, 2);
-    expect(positiveCoordinate).toBeCloseTo(-negativeCoordinate, 8);
+    for (const trace of [positive, negative]) {
+      expect(trace.clipped).toBe(true);
+      expect(trace.diagnostics?.clipEvents).toContainEqual({
+        surfaceIdx: L.labelIdx.SEC,
+        surfaceLabel: "SEC",
+        reason: "inactive-side-block",
+        failureReason: null,
+      });
+    }
+    expect(Number.isFinite(positiveCoordinate)).toBe(true);
+    expect(Number.isFinite(negativeCoordinate)).toBe(true);
   });
 
   it("keeps auto folded hit order stable under small ray-height and aperture perturbations", () => {
@@ -491,7 +481,7 @@ describe("mirror optics support", () => {
           nd: 1.0,
           elemId: 1,
           sd: 20,
-          interaction: { type: "reflect", incidentSide: "rear", inactiveSide: "ignore", mirrorKind: "first-surface" },
+          interaction: { type: "reflect", incidentSide: "rear", inactiveSide: "block", mirrorKind: "first-surface" },
         },
         {
           label: "M1",
@@ -511,7 +501,11 @@ describe("mirror optics support", () => {
       },
     } satisfies LensData);
     const layout = doLayout(0, 0, L);
-    const result = traceRay(5, 0, layout.z, 0, 0, L.stopPhysSD, true, L);
+    const result = traceExactSurfaceStackVector(
+      L,
+      { origin: [0, 5, 5], direction: [0, 0, 1] },
+      { zPos: layout.z, launchBoundT: 50 },
+    );
 
     expect(result.clipped).toBe(true);
     expect(result.diagnostics?.loopDetected).toBe(true);

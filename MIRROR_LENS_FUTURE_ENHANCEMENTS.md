@@ -4,7 +4,7 @@ This is the working backlog for mirror-lens, telescope, annular-aperture, and fo
 
 ## Current Baseline
 
-- Lens data can describe `SurfaceData.innerSd`, side-aware `SurfaceData.interaction`, first-surface and second-surface mirrors, inactive-side mirror blocking by default, explicit pass-through mirrors, blockers, tilted meridional planes, explicit/repeated `opticalPath.surfaceOrder`, `mode: "auto"` next-surface resolution, and arbitrary meridional `opticalPath.imagePlane`.
+- Lens data can describe `SurfaceData.innerSd`, side-aware `SurfaceData.interaction`, first-surface and second-surface mirrors, inactive-side mirror blocking, blockers, tilted meridional planes, explicit/repeated `opticalPath.surfaceOrder`, `mode: "auto"` next-surface resolution, and arbitrary meridional `opticalPath.imagePlane`.
 - Hidden reference fixtures under `src/lens-data/reference/` exercise first-surface primary mirrors, annular obstructions, Mangin-style second-surface mirrors, Newtonian side focus, and Cassegrain-style folded paths.
 - Diagram rendering supports annular element paths, tilted flat fold mirrors, second-surface coating accents, and
   non-default image planes.

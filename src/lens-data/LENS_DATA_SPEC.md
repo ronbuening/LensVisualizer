@@ -231,7 +231,7 @@ Surfaces default to `interaction: { type: "refract" }`. Add `interaction` only w
   interaction: {
     type: "reflect",                   // "refract" | "reflect" | "block"
     incidentSide: "rear",              // optional: "front" | "rear" | "both"; default both
-    inactiveSide: "ignore",            // optional override: reflect defaults block, others ignore
+    inactiveSide: "block",             // reference mirrors should block inactive-side hits
     mirrorKind: "first-surface",       // optional: "first-surface" | "second-surface"
     normal: { z: 1, y: 1 },             // optional tilted meridional plane normal
   },
@@ -244,7 +244,7 @@ Field meanings:
 - `type: "reflect"` reflects the ray using the solved surface normal. Use `mirrorKind: "first-surface"` for front-coated mirrors and `mirrorKind: "second-surface"` for substrate-backed reflective surfaces.
 - `mirrorKind: "second-surface"` also tells the SVG renderer to draw a dashed coating accent on that surface so the coating is visible apart from the glass substrate. The accent is display-only; tracing follows `type`, `incidentSide`, `inactiveSide`, and the optical path.
 - `type: "block"` clips rays within the surface's active aperture. It is intended for central obstructions, baffles, and synthetic regression fixtures.
-- `incidentSide` limits which side of the surface is active. The side is relative to the solved surface normal, not the list position in `surfaces`. If a ray hits a reflective surface from its inactive side, it blocks by default inside the active disk or annulus. Set `inactiveSide: "ignore"` only for intentional pass-through cases such as a Newtonian diagonal's first pass. Refractive and blocker surfaces keep the historical inactive-side default of ignore unless `inactiveSide: "block"` is explicit.
+- `incidentSide` limits which side of the surface is active. The side is relative to the solved surface normal, not the list position in `surfaces`. If a ray hits a reflective surface from its inactive side, it blocks by default inside the active disk or annulus. Reference mirror fixtures should declare `inactiveSide: "block"` explicitly so back-side opacity is clear in the data. Refractive and blocker surfaces keep the historical inactive-side default of ignore unless `inactiveSide: "block"` is explicit.
 - `normal` converts the surface into a tilted meridional plane for both tracing and SVG element rendering. Use this for flat fold mirrors. Curved mirrors should normally omit `normal` so the spherical/aspherical sag and local normal come from `R` and `asph`.
 
 Choosing `incidentSide`:
@@ -252,7 +252,8 @@ Choosing `incidentSide`:
 - For an incoming beam traveling left-to-right into a concave primary whose sag-derived normal faces the object side,
   start with `incidentSide: "front"`. This is the usual first-surface primary case.
 - For a beam returning right-to-left toward a diagonal flat after the primary reflection, use `incidentSide: "rear"` and
-  `inactiveSide: "ignore"` on the diagonal so the first pass goes through and the return pass reflects.
+  `inactiveSide: "block"` on the diagonal so the incoming beam is obstructed inside the secondary aperture and the
+  returning beam reflects from the active side.
 - For a Mangin or other second-surface mirror, set `incidentSide` on the reflective coating side reached after the ray
   enters the substrate. Keep the refractive front surface ordinary, then repeat that front label in `surfaceOrder` for
   the exit path.
@@ -288,7 +289,7 @@ First-surface concave primary with an image plane in front:
 ```javascript
 surfaces: [
   { label: "STO", R: 1e15, d: 100, nd: 1.0, elemId: 0, sd: 25 },
-  { label: "M1", R: -200, d: 0, nd: 1.0, elemId: 1, sd: 25, interaction: { type: "reflect", incidentSide: "front", mirrorKind: "first-surface" } },
+  { label: "M1", R: -200, d: 0, nd: 1.0, elemId: 1, sd: 25, interaction: { type: "reflect", incidentSide: "front", inactiveSide: "block", mirrorKind: "first-surface" } },
 ],
 opticalPath: {
   surfaceOrder: ["STO", "M1"],
@@ -301,7 +302,7 @@ Second-surface Mangin-style path through a glass front surface, reflective rear 
 ```javascript
 surfaces: [
   { label: "MG1", R: 120, d: 8, nd: 1.5168, elemId: 1, sd: 22 },
-  { label: "MG2", R: -100, d: 0, nd: 1.0, elemId: 0, sd: 22, interaction: { type: "reflect", incidentSide: "front", mirrorKind: "second-surface" } },
+  { label: "MG2", R: -100, d: 0, nd: 1.0, elemId: 0, sd: 22, interaction: { type: "reflect", incidentSide: "front", inactiveSide: "block", mirrorKind: "second-surface" } },
 ],
 opticalPath: {
   surfaceOrder: ["MG1", "MG2", "MG1"],
@@ -326,10 +327,10 @@ surfaces: [
     nd: 1.0,
     elemId: 2,
     sd: 10,
-    interaction: { type: "reflect", incidentSide: "rear", inactiveSide: "ignore", mirrorKind: "first-surface", normal: { z: 1, y: 1 } },
+    interaction: { type: "reflect", incidentSide: "rear", inactiveSide: "block", mirrorKind: "first-surface", normal: { z: 1, y: 1 } },
   },
   { label: "SECB", R: 1e15, d: 64.5, nd: 1.0, elemId: 0, sd: 10, interaction: { type: "refract", normal: { z: 1, y: 1 } } },
-  { label: "M1", R: -200, d: 2, nd: 1.0, elemId: 1, sd: 30, interaction: { type: "reflect", incidentSide: "front", mirrorKind: "first-surface" } },
+  { label: "M1", R: -200, d: 2, nd: 1.0, elemId: 1, sd: 30, interaction: { type: "reflect", incidentSide: "front", inactiveSide: "block", mirrorKind: "first-surface" } },
   { label: "M1B", R: 1e15, d: 0, nd: 1.0, elemId: 0, sd: 30 },
 ],
 ```
@@ -511,7 +512,7 @@ Each entry in the `surfaces` array describes one optical surface, in physical fr
   sd:     14.5,       // REQUIRED: outer semi-diameter (half clear aperture) in mm
   innerSd: 4.0,       // optional: inner semi-diameter for annular active apertures
   stopPlacement: "inside-element", // optional: only valid on an embedded STO surface
-  interaction: { type: "reflect", mirrorKind: "first-surface" }, // optional folded-path behavior
+  interaction: { type: "reflect", inactiveSide: "block", mirrorKind: "first-surface" }, // optional folded-path behavior
 }
 ```
 

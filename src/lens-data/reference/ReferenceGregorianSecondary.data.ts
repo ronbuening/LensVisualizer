@@ -79,7 +79,7 @@ const LENS_DATA = {
       elemId: 1,
       sd: 30,
       innerSd: 7,
-      interaction: { type: "reflect", incidentSide: "front", mirrorKind: "first-surface" },
+      interaction: { type: "reflect", incidentSide: "front", inactiveSide: "block", mirrorKind: "first-surface" },
     },
     { label: "M1B", R: 1e15, d: -127, nd: 1.0, elemId: 1, sd: 30, innerSd: 7 },
     {
@@ -89,7 +89,7 @@ const LENS_DATA = {
       nd: 1.0,
       elemId: 2,
       sd: 12,
-      interaction: { type: "reflect", incidentSide: "rear", mirrorKind: "first-surface" },
+      interaction: { type: "reflect", incidentSide: "rear", inactiveSide: "block", mirrorKind: "first-surface" },
     },
     { label: "SECB", R: 1e15, d: 159, nd: 1.0, elemId: 2, sd: 12 },
   ],

@@ -66,7 +66,7 @@ const LENS_DATA = {
       nd: 1.0,
       elemId: 0,
       sd: 25,
-      interaction: { type: "reflect", incidentSide: "front", mirrorKind: "second-surface" },
+      interaction: { type: "reflect", incidentSide: "front", inactiveSide: "block", mirrorKind: "second-surface" },
     },
   ],
 

@@ -174,7 +174,7 @@ const LENS_DATA = {
    *    interaction (object, optional)  Folded-path behavior:
    *      type: "refract" | "reflect" | "block"   (default "refract")
    *      incidentSide?: "front" | "rear" | "both"  (default both)
-   *      inactiveSide?: "ignore" | "block"         (reflect defaults block, others ignore)
+   *      inactiveSide?: "ignore" | "block"         (reference mirrors should use "block")
    *      mirrorKind?: "first-surface" | "second-surface"
    *      normal?: { z: number, y: number }          tilted meridional plane normal
    *
@@ -238,9 +238,9 @@ const LENS_DATA = {
    *    - Mirror elements: tag the reflective face with the mirror element's elemId and
    *      use a passive backing surface with elemId: 0 unless modeling a distinct physical
    *      element. A reflective face blocks inactive-side hits by default; set
-   *      inactiveSide: "ignore" only when an intentional first pass must go through it.
-   *      For tilted flat mirrors, put the same interaction.normal on the backing surface
-   *      so the SVG element renders at the correct angle.
+   *      inactiveSide: "block" explicitly on reference mirrors so back-side opacity is
+   *      clear in the data. For tilted flat mirrors, put the same interaction.normal on
+   *      the backing surface so the SVG element renders at the correct angle.
    *    - Blocker surfaces normally use elemId: 0. Give them an element only when they
    *      should draw as a physical rendered part.
    *
@@ -278,15 +278,15 @@ const LENS_DATA = {
    *  Folded mirror examples:
    *    First-surface mirror:
    *      { label: "M1", R: -200, d: 0, nd: 1.0, elemId: 1, sd: 25,
-   *        interaction: { type: "reflect", incidentSide: "front", mirrorKind: "first-surface" } }
+   *        interaction: { type: "reflect", incidentSide: "front", inactiveSide: "block", mirrorKind: "first-surface" } }
    *
    *    Annular mirror:
    *      { label: "M1", R: -200, d: 0, nd: 1.0, elemId: 1, sd: 30, innerSd: 8,
-   *        interaction: { type: "reflect", mirrorKind: "first-surface" } }
+   *        interaction: { type: "reflect", inactiveSide: "block", mirrorKind: "first-surface" } }
    *
    *    Tilted Newtonian secondary (mirror face + passive backing):
    *      { label: "SEC", R: 1e15, d: 0.5, nd: 1.0, elemId: 2, sd: 10,
-   *        interaction: { type: "reflect", incidentSide: "rear", inactiveSide: "ignore", mirrorKind: "first-surface", normal: { z: 1, y: 1 } } }
+   *        interaction: { type: "reflect", incidentSide: "rear", inactiveSide: "block", mirrorKind: "first-surface", normal: { z: 1, y: 1 } } }
    *      { label: "SECB", R: 1e15, d: 64.5, nd: 1.0, elemId: 0, sd: 10,
    *        interaction: { type: "refract", normal: { z: 1, y: 1 } } }
    */

@@ -84,7 +84,7 @@ const LENS_DATA = {
       interaction: {
         type: "reflect",
         incidentSide: "rear",
-        inactiveSide: "ignore",
+        inactiveSide: "block",
         mirrorKind: "first-surface",
         normal: { z: 1, y: 1 },
       },
@@ -97,7 +97,7 @@ const LENS_DATA = {
       nd: 1.0,
       elemId: 1,
       sd: 30,
-      interaction: { type: "reflect", incidentSide: "front", mirrorKind: "first-surface" },
+      interaction: { type: "reflect", incidentSide: "front", inactiveSide: "block", mirrorKind: "first-surface" },
     },
     { label: "M1B", R: 1e15, d: 0, nd: 1.0, elemId: 0, sd: 30 },
   ],
