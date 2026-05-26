@@ -11,15 +11,18 @@ import type {
 import type { RuntimeLens } from "../../../../../src/types/optics.js";
 import type { Theme } from "../../../../../src/types/theme.js";
 
-const { mockComputeBokehPreviewPair } = vi.hoisted(() => ({
+const { mockComputeBokehPreviewPair, mockPreparedState, mockPrepareRuntimeState } = vi.hoisted(() => ({
   mockComputeBokehPreviewPair: vi.fn(),
+  mockPreparedState: { cacheKey: "bokeh-test" },
+  mockPrepareRuntimeState: vi.fn(),
 }));
 
-vi.mock("../../../../../src/optics/aberrationAnalysis.js", async () => {
-  const actual = await vi.importActual("../../../../../src/optics/aberrationAnalysis.js");
+vi.mock("../../../../../src/optics/compat.js", async () => {
+  const actual = await vi.importActual("../../../../../src/optics/compat.js");
   return {
     ...actual,
-    computeBokehPreviewPair: mockComputeBokehPreviewPair,
+    computeBokehPreviewPairForState2: mockComputeBokehPreviewPair,
+    prepareRuntimeState: mockPrepareRuntimeState,
   };
 });
 
@@ -102,6 +105,8 @@ function makeResult(
 describe("BokehPreviewOverlay", () => {
   beforeEach(() => {
     mockComputeBokehPreviewPair.mockReset();
+    mockPrepareRuntimeState.mockReset();
+    mockPrepareRuntimeState.mockReturnValue(mockPreparedState);
   });
 
   afterEach(() => {
@@ -173,6 +178,7 @@ describe("BokehPreviewOverlay", () => {
       />,
     );
 
-    expect(mockComputeBokehPreviewPair).toHaveBeenCalledWith(L, 0.5, 0, 10, 5, 0.64);
+    expect(mockPrepareRuntimeState).toHaveBeenCalledWith(L, 0.5, 0, 0.64);
+    expect(mockComputeBokehPreviewPair).toHaveBeenCalledWith(mockPreparedState, 10, 5);
   });
 });

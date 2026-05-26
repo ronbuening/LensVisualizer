@@ -1,5 +1,6 @@
 import { useDeferredValue, useEffect, useMemo, useRef, type ReactNode } from "react";
 import { ANALYSIS_TAB_RENDERERS } from "./analysisTabRenderers.js";
+import usePreparedAnalysisState from "../../display/analysis/usePreparedAnalysisState.js";
 import type { RuntimeLens } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";
 import type { FieldGeometryState } from "../../../optics/optics.js";
@@ -73,6 +74,12 @@ export default function AnalysisDrawerContent({
   }, [sliderInteracting, deferredInputs]);
 
   const analysisInputs = sliderInteracting ? lastSettledInputsRef.current : deferredInputs;
+  const preparedState = usePreparedAnalysisState({
+    L,
+    focusT: analysisInputs.focusT,
+    zoomT: analysisInputs.zoomT,
+    aberrationT: analysisInputs.aberrationT,
+  });
   const projection = L.projection ?? { kind: "rectilinear" };
   const noticeStyle = {
     margin: "0 0 12px",
@@ -153,6 +160,7 @@ export default function AnalysisDrawerContent({
           L,
           t,
           zPos,
+          preparedState,
           inputs: analysisInputs,
           aberrationsExpanded,
           onAberrationsExpandedChange,

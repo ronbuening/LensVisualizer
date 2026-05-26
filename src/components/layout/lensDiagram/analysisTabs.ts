@@ -3,6 +3,7 @@ import type { AnalysisTab } from "../AnalysisDrawer.js";
 export const ANALYSIS_TABS = [
   { id: "aberrations", label: "ABERRATIONS" },
   { id: "coma", label: "COMA" },
+  { id: "bokeh", label: "BOKEH" },
   { id: "distortion", label: "DISTORTION" },
   { id: "breathing", label: "BREATHING" },
   { id: "vignetting", label: "VIGNETTING" },

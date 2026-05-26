@@ -10,24 +10,45 @@ import type { Theme } from "../../../../../src/types/theme.js";
 
 const {
   mockAberrationsPanel,
+  mockBokehTab,
   mockComaTab,
   mockDistortionTab,
   mockFocusBreathingTab,
   mockPupilAberrationTab,
+  mockPrepareRuntimeState,
+  mockPreparedState,
   mockVignettingTab,
 } = vi.hoisted(() => ({
   mockAberrationsPanel: vi.fn(),
+  mockBokehTab: vi.fn(),
   mockComaTab: vi.fn(),
   mockDistortionTab: vi.fn(),
   mockFocusBreathingTab: vi.fn(),
   mockPupilAberrationTab: vi.fn(),
+  mockPreparedState: { cacheKey: "test:0:0:0" },
+  mockPrepareRuntimeState: vi.fn(),
   mockVignettingTab: vi.fn(),
 }));
+
+vi.mock("../../../../../src/optics/compat.js", async () => {
+  const actual = await vi.importActual("../../../../../src/optics/compat.js");
+  return {
+    ...actual,
+    prepareRuntimeState: mockPrepareRuntimeState,
+  };
+});
 
 vi.mock("../../../../../src/components/display/analysis/AberrationsPanel.js", () => ({
   default: (props: Record<string, unknown>) => {
     mockAberrationsPanel(props);
     return <div>{`Aberrations:${String(props.expanded)}`}</div>;
+  },
+}));
+
+vi.mock("../../../../../src/components/display/analysis/BokehTab.js", () => ({
+  default: (props: Record<string, unknown>) => {
+    mockBokehTab(props);
+    return <div>Bokeh</div>;
   },
 }));
 
@@ -87,10 +108,13 @@ describe("AnalysisDrawerContent", () => {
 
   beforeEach(() => {
     mockAberrationsPanel.mockReset();
+    mockBokehTab.mockReset();
     mockComaTab.mockReset();
     mockDistortionTab.mockReset();
     mockFocusBreathingTab.mockReset();
     mockPupilAberrationTab.mockReset();
+    mockPrepareRuntimeState.mockReset();
+    mockPrepareRuntimeState.mockReturnValue(mockPreparedState);
     mockVignettingTab.mockReset();
   });
 
@@ -101,6 +125,7 @@ describe("AnalysisDrawerContent", () => {
     expect(mockAberrationsPanel).toHaveBeenCalledTimes(1);
     expect(mockAberrationsPanel.mock.calls[0][0].expanded).toBe(true);
     expect(mockAberrationsPanel.mock.calls[0][0].onExpandedChange).toBe(baseProps.onAberrationsExpandedChange);
+    expect(mockAberrationsPanel.mock.calls[0][0].preparedState).toBe(mockPreparedState);
   });
 
   it("maps the distortion tab to DistortionTab", () => {
@@ -111,12 +136,22 @@ describe("AnalysisDrawerContent", () => {
     expect(mockAberrationsPanel).not.toHaveBeenCalled();
   });
 
+  it("maps the bokeh tab to BokehTab", () => {
+    render(<AnalysisDrawerContent {...baseProps} activeTab="bokeh" />);
+
+    expect(screen.getByText("Bokeh")).toBeTruthy();
+    expect(mockBokehTab).toHaveBeenCalledTimes(1);
+    expect(mockBokehTab.mock.calls[0][0].preparedState).toBe(mockPreparedState);
+    expect(mockAberrationsPanel).not.toHaveBeenCalled();
+  });
+
   it("maps the coma tab to ComaTab", () => {
     render(<AnalysisDrawerContent {...baseProps} activeTab="coma" aberrationT={0.37} />);
 
     expect(screen.getByText("Coma")).toBeTruthy();
     expect(mockComaTab).toHaveBeenCalledTimes(1);
     expect(mockComaTab.mock.calls[0][0].aberrationT).toBe(0.37);
+    expect(mockComaTab.mock.calls[0][0].preparedState).toBe(mockPreparedState);
     expect(mockAberrationsPanel).not.toHaveBeenCalled();
   });
 
