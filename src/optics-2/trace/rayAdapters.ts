@@ -20,8 +20,30 @@ export interface VectorRayTraceInput2 {
 }
 
 const ENGINE_LENS_BY_RUNTIME = new WeakMap<RuntimeLens, ReturnType<typeof normalizeRuntimeLens>>();
-const PREPARED_STATE_BY_RUNTIME = new WeakMap<RuntimeLens, Map<string, PreparedOpticalState>>();
+interface PreparedStateCache {
+  byKey: Map<string, PreparedOpticalState>;
+  lastFocusT?: number;
+  lastZoomT?: number;
+  lastAberrationT?: number;
+  lastState?: PreparedOpticalState;
+}
+
+interface TraceOptionsCache {
+  byKey: Map<string, TraceOptions>;
+  lastStopSD?: number;
+  lastGhost?: boolean;
+  lastChannel?: ChromaticChannel;
+  lastDirectionNormalized?: boolean;
+  lastOptions?: TraceOptions;
+}
+
+const DIRECTION_CACHE_LIMIT = 4096;
+const PREPARED_STATE_BY_RUNTIME = new WeakMap<RuntimeLens, PreparedStateCache>();
 const LEGACY_Z_STATE_BY_BASE = new WeakMap<PreparedOpticalState, WeakMap<readonly number[], PreparedOpticalState>>();
+const TRACE_OPTIONS_BY_STATE = new WeakMap<PreparedOpticalState, TraceOptionsCache>();
+const MERIDIONAL_DIRECTION_BY_SLOPE = new Map<number, Vec3>([[0, [0, 0, 1]]]);
+const SKEW_DIRECTION_BY_UX = new Map<number, Map<number, Vec3>>();
+let skewDirectionCacheSize = 0;
 
 export function traceEngineRay2(
   state: PreparedOpticalState,
@@ -147,10 +169,10 @@ function traceRayExactCore2(
   aberrationT: number,
 ): RayTraceResult {
   const state = stateWithLegacyZ(stateForLegacyLens(L, focusT, zoomT, aberrationT), zPos);
-  const direction = directionFromMeridionalSlope(u0) ?? ([0, 0, 1] as Vec3);
+  const direction = meridionalDirectionForSlope(u0);
   const rayLead = L.rayLead ?? 0;
   const origin: Vec3 = [0, y0 - u0 * rayLead, (zPos[0] ?? state.z[0] ?? 0) - rayLead];
-  const result = traceEngineRay2(state, { origin, direction }, traceOptions(stopSD, ghost, channel, state));
+  const result = traceEngineRay2(state, { origin, direction }, traceOptions(stopSD, ghost, channel, state, true));
   return engineTraceToLegacyRayResult(result, [origin[2], origin[1]], ghost);
 }
 
@@ -168,10 +190,10 @@ function traceSkewRayExactCore2(
   aberrationT: number,
 ): LegacySkewRayTraceResult {
   const state = stateForLegacyLens(L, focusT, zoomT, aberrationT);
-  const direction = directionFromSkewSlope(ux0, uy0) ?? ([0, 0, 1] as Vec3);
+  const direction = skewDirectionForSlopes(ux0, uy0);
   const lead = L.rayLead ?? 0;
   const origin: Vec3 = [x0 - ux0 * lead, y0 - uy0 * lead, (state.z[0] ?? 0) - lead];
-  const result = traceEngineRay2(state, { origin, direction }, traceOptions(stopSD, ghost, channel, state));
+  const result = traceEngineRay2(state, { origin, direction }, traceOptions(stopSD, ghost, channel, state, true));
   return engineTraceToLegacySkewResult(result);
 }
 
@@ -184,10 +206,11 @@ function traceRayVectorExactCore2(
   channel: ChromaticChannel | undefined,
 ): RayTraceResult {
   const state = stateWithLegacyZ(stateForLegacyLens(L, 0, 0, 0), _zPos);
+  const options = traceOptions(stopSD, ghost, channel, state, false);
   const result = traceEngineRay2(
     state,
     { origin: input.origin, direction: input.direction },
-    { ...traceOptions(stopSD, ghost, channel, state), launchBoundT: input.launchBoundT },
+    input.launchBoundT === undefined ? options : { ...options, launchBoundT: input.launchBoundT },
   );
   return engineTraceToLegacyRayResult(result, vectorLeadPoint(input, result, L.rayLead ?? 0), ghost);
 }
@@ -201,10 +224,11 @@ function traceSkewRayVectorExactCore2(
   channel: ChromaticChannel | undefined,
 ): LegacySkewRayTraceResult {
   const state = stateWithLegacyZ(stateForLegacyLens(L, 0, 0, 0), _zPos);
+  const options = traceOptions(stopSD, ghost, channel, state, false);
   const result = traceEngineRay2(
     state,
     { origin: input.origin, direction: input.direction },
-    { ...traceOptions(stopSD, ghost, channel, state), launchBoundT: input.launchBoundT },
+    input.launchBoundT === undefined ? options : { ...options, launchBoundT: input.launchBoundT },
   );
   return engineTraceToLegacySkewResult(result);
 }
@@ -214,14 +238,82 @@ function traceOptions(
   ghost: boolean,
   channel: ChromaticChannel | undefined,
   state: PreparedOpticalState,
+  directionNormalized: boolean,
 ): TraceOptions {
-  return {
+  let optionsCache = TRACE_OPTIONS_BY_STATE.get(state);
+  if (!optionsCache) {
+    optionsCache = { byKey: new Map() };
+    TRACE_OPTIONS_BY_STATE.set(state, optionsCache);
+  }
+  if (
+    optionsCache.lastOptions &&
+    Object.is(optionsCache.lastStopSD, stopSD) &&
+    optionsCache.lastGhost === ghost &&
+    optionsCache.lastChannel === channel &&
+    optionsCache.lastDirectionNormalized === directionNormalized
+  ) {
+    return optionsCache.lastOptions;
+  }
+
+  const key = `${stopSD ?? ""}|${ghost ? 1 : 0}|${channel ?? ""}|${directionNormalized ? 1 : 0}`;
+  const cached = optionsCache.byKey.get(key);
+  if (cached) {
+    optionsCache.lastStopSD = stopSD;
+    optionsCache.lastGhost = ghost;
+    optionsCache.lastChannel = channel;
+    optionsCache.lastDirectionNormalized = directionNormalized;
+    optionsCache.lastOptions = cached;
+    return cached;
+  }
+
+  const options: TraceOptions = {
     checkSemiDiameter: true,
     stopSemiDiameter: stopSD,
     ghost,
     stopOnClip: true,
+    directionNormalized,
     indexAtSurface: channel ? (i, nd) => state.lens.dispersion[i]?.indexAt(channel) ?? nd : undefined,
   };
+  optionsCache.byKey.set(key, options);
+  optionsCache.lastStopSD = stopSD;
+  optionsCache.lastGhost = ghost;
+  optionsCache.lastChannel = channel;
+  optionsCache.lastDirectionNormalized = directionNormalized;
+  optionsCache.lastOptions = options;
+  return options;
+}
+
+function meridionalDirectionForSlope(u: number): Vec3 {
+  const cached = MERIDIONAL_DIRECTION_BY_SLOPE.get(u);
+  if (cached) return cached;
+  const direction = directionFromMeridionalSlope(u) ?? ([0, 0, 1] as Vec3);
+  if (MERIDIONAL_DIRECTION_BY_SLOPE.size >= DIRECTION_CACHE_LIMIT) {
+    MERIDIONAL_DIRECTION_BY_SLOPE.clear();
+    MERIDIONAL_DIRECTION_BY_SLOPE.set(0, [0, 0, 1]);
+  }
+  MERIDIONAL_DIRECTION_BY_SLOPE.set(u, direction);
+  return direction;
+}
+
+function skewDirectionForSlopes(ux: number, uy: number): Vec3 {
+  let byUy = SKEW_DIRECTION_BY_UX.get(ux);
+  const cached = byUy?.get(uy);
+  if (cached) return cached;
+
+  if (!byUy) {
+    byUy = new Map();
+    SKEW_DIRECTION_BY_UX.set(ux, byUy);
+  }
+  const direction = directionFromSkewSlope(ux, uy) ?? ([0, 0, 1] as Vec3);
+  if (skewDirectionCacheSize >= DIRECTION_CACHE_LIMIT) {
+    SKEW_DIRECTION_BY_UX.clear();
+    skewDirectionCacheSize = 0;
+    byUy = new Map();
+    SKEW_DIRECTION_BY_UX.set(ux, byUy);
+  }
+  byUy.set(uy, direction);
+  skewDirectionCacheSize += 1;
+  return direction;
 }
 
 function stateForLegacyLens(L: RuntimeLens, focusT: number, zoomT: number, aberrationT: number): PreparedOpticalState {
@@ -232,19 +324,38 @@ function stateForLegacyLens(L: RuntimeLens, focusT: number, zoomT: number, aberr
   }
   let stateCache = PREPARED_STATE_BY_RUNTIME.get(L);
   if (!stateCache) {
-    stateCache = new Map();
+    stateCache = { byKey: new Map() };
     PREPARED_STATE_BY_RUNTIME.set(L, stateCache);
   }
+  if (
+    stateCache.lastState &&
+    Object.is(stateCache.lastFocusT, focusT) &&
+    Object.is(stateCache.lastZoomT, zoomT) &&
+    Object.is(stateCache.lastAberrationT, aberrationT)
+  ) {
+    return stateCache.lastState;
+  }
+
   const key = `${focusT}|${zoomT}|${aberrationT}`;
-  const cached = stateCache.get(key);
-  if (cached) return cached;
+  const cached = stateCache.byKey.get(key);
+  if (cached) {
+    stateCache.lastFocusT = focusT;
+    stateCache.lastZoomT = zoomT;
+    stateCache.lastAberrationT = aberrationT;
+    stateCache.lastState = cached;
+    return cached;
+  }
+
   const state = prepareState(engineLens, focusT, zoomT, aberrationT);
-  stateCache.set(key, state);
+  stateCache.byKey.set(key, state);
+  stateCache.lastFocusT = focusT;
+  stateCache.lastZoomT = zoomT;
+  stateCache.lastAberrationT = aberrationT;
+  stateCache.lastState = state;
   return state;
 }
 
 function stateWithLegacyZ(state: PreparedOpticalState, zPos: readonly number[]): PreparedOpticalState {
-  if (zPos.length === 0 || zPos.every((z, index) => z === state.z[index])) return state;
   let byZ = LEGACY_Z_STATE_BY_BASE.get(state);
   if (!byZ) {
     byZ = new WeakMap();
@@ -252,6 +363,11 @@ function stateWithLegacyZ(state: PreparedOpticalState, zPos: readonly number[]):
   }
   const cached = byZ.get(zPos);
   if (cached) return cached;
+  if (zPos.length === 0 || zPos.every((z, index) => z === state.z[index])) {
+    byZ.set(zPos, state);
+    return state;
+  }
+
   const surfaces = state.surfaces.map((surface, index) => {
     const z = zPos[index] ?? surface.z;
     const d = index < state.surfaces.length - 1 && zPos[index + 1] !== undefined ? zPos[index + 1] - z : surface.d;

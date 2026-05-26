@@ -2,7 +2,7 @@ import type { FoldedPathClipEvent } from "../../types/optics.js";
 import { FLAT_R_THRESHOLD } from "../constants.js";
 import type { PreparedOpticalState, Ray3, Vec3 } from "../types.js";
 import { evaluateAperture } from "./aperture.js";
-import { pushClipEvent, surfaceLabel } from "./foldedDiagnostics.js";
+import { pushClipEvent } from "./foldedDiagnostics.js";
 import { refractedDirection } from "./interactions.js";
 import { fallbackSurfacePoint, intersectStateSurface, sequentialSurfaceMaxT } from "./pathPlanner.js";
 import type { EngineTraceResult, TraceFailureReason, TraceHit, TraceOptions } from "./types.js";
@@ -19,8 +19,13 @@ export function traceSequential(
   input: Ray3,
   options: TraceOptions = {},
 ): EngineTraceResult {
-  const direction0 = normalizeTraceDirection(input.direction);
-  if (!direction0) {
+  const direction0 = options.directionNormalized ? input.direction : normalizeTraceDirection(input.direction);
+  if (
+    !direction0 ||
+    !Number.isFinite(direction0[0]) ||
+    !Number.isFinite(direction0[1]) ||
+    !Number.isFinite(direction0[2])
+  ) {
     return failedBeforeHit(state, input, "invalidDirection");
   }
 
@@ -97,7 +102,7 @@ export function traceSequential(
     const hitClipped = clipped;
     const traceHit: TraceHit = {
       surfaceIndex: i,
-      surfaceLabel: surfaceLabel(state, i),
+      surfaceLabel: surface.label,
       point,
       normal,
       incidentDirection,

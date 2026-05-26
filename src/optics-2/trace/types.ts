@@ -55,6 +55,7 @@ export interface TraceOptions {
   stopOnClip?: boolean;
   launchBoundT?: number;
   indexAtSurface?: (surfaceIndex: number, nd: number) => number;
+  directionNormalized?: boolean;
 }
 
 export interface TraceDiagnosticsInput {

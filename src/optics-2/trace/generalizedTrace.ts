@@ -42,8 +42,13 @@ export function traceGeneralized(
   input: Ray3,
   options: TraceOptions = {},
 ): EngineTraceResult {
-  const direction0 = normalizeTraceDirection(input.direction);
-  if (!direction0) {
+  const direction0 = options.directionNormalized ? input.direction : normalizeTraceDirection(input.direction);
+  if (
+    !direction0 ||
+    !Number.isFinite(direction0[0]) ||
+    !Number.isFinite(direction0[1]) ||
+    !Number.isFinite(direction0[2])
+  ) {
     return finalizeTraceResult({
       state,
       input,
