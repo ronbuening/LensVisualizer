@@ -126,8 +126,11 @@ export function traceRayVector2(
   stopSD: number | undefined,
   ghost: boolean,
   L: RuntimeLens,
+  focusT = 0,
+  zoomT = 0,
+  aberrationT = 0,
 ): RayTraceResult {
-  return traceRayVectorExactCore2(input, zPos, stopSD, ghost, L, undefined);
+  return traceRayVectorExactCore2(input, zPos, stopSD, ghost, L, undefined, focusT, zoomT, aberrationT);
 }
 
 export function traceRayVectorChromatic2(
@@ -137,8 +140,11 @@ export function traceRayVectorChromatic2(
   ghost: boolean,
   L: RuntimeLens,
   channel: ChromaticChannel,
+  focusT = 0,
+  zoomT = 0,
+  aberrationT = 0,
 ): RayTraceResult {
-  return traceRayVectorExactCore2(input, zPos, stopSD, ghost, L, channel);
+  return traceRayVectorExactCore2(input, zPos, stopSD, ghost, L, channel, focusT, zoomT, aberrationT);
 }
 
 export function traceSkewRayVector2(
@@ -147,8 +153,11 @@ export function traceSkewRayVector2(
   stopSD: number | undefined,
   ghost: boolean,
   L: RuntimeLens,
+  focusT = 0,
+  zoomT = 0,
+  aberrationT = 0,
 ): RuntimeSkewRayTraceResult {
-  return traceSkewRayVectorExactCore2(input, zPos, stopSD, ghost, L, undefined);
+  return traceSkewRayVectorExactCore2(input, zPos, stopSD, ghost, L, undefined, focusT, zoomT, aberrationT);
 }
 
 export function traceSkewRayVectorChromatic2(
@@ -158,8 +167,11 @@ export function traceSkewRayVectorChromatic2(
   ghost: boolean,
   L: RuntimeLens,
   channel: ChromaticChannel,
+  focusT = 0,
+  zoomT = 0,
+  aberrationT = 0,
 ): RuntimeSkewRayTraceResult {
-  return traceSkewRayVectorExactCore2(input, zPos, stopSD, ghost, L, channel);
+  return traceSkewRayVectorExactCore2(input, zPos, stopSD, ghost, L, channel, focusT, zoomT, aberrationT);
 }
 
 function traceRayExactCore2(
@@ -210,8 +222,11 @@ function traceRayVectorExactCore2(
   ghost: boolean,
   L: RuntimeLens,
   channel: ChromaticChannel | undefined,
+  focusT: number,
+  zoomT: number,
+  aberrationT: number,
 ): RayTraceResult {
-  const state = stateWithRuntimeZ(stateForRuntimeLens(L, 0, 0, 0), _zPos);
+  const state = stateWithRuntimeZ(stateForRuntimeLens(L, focusT, zoomT, aberrationT), _zPos);
   const options = traceOptions(stopSD, ghost, channel, state, false);
   const result = traceEngineRay2(
     state,
@@ -228,8 +243,11 @@ function traceSkewRayVectorExactCore2(
   ghost: boolean,
   L: RuntimeLens,
   channel: ChromaticChannel | undefined,
+  focusT: number,
+  zoomT: number,
+  aberrationT: number,
 ): RuntimeSkewRayTraceResult {
-  const state = stateWithRuntimeZ(stateForRuntimeLens(L, 0, 0, 0), _zPos);
+  const state = stateWithRuntimeZ(stateForRuntimeLens(L, focusT, zoomT, aberrationT), _zPos);
   const options = traceOptions(stopSD, ghost, channel, state, false);
   const result = traceEngineRay2(
     state,

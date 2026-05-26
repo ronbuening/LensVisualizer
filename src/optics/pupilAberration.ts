@@ -317,7 +317,7 @@ export function computeExitPupilAberrationProfile(
     if (Math.abs(fieldDeg) > 1e-9) {
       const yChief = solve.yLaunch;
       const result = solve.vectorLaunch
-        ? traceRayVector(solve.vectorLaunch, zPos, undefined, true, L)
+        ? traceRayVector(solve.vectorLaunch, zPos, undefined, true, L, focusT, zoomT, aberrationT)
         : traceRay(yChief, uField, zPos, focusT, zoomT, undefined, true, L, aberrationT);
 
       // Back-project: XP z = −y_last / u_last (relative to last surface).
@@ -454,7 +454,7 @@ export function computeBothPupilAberrationProfiles(
 
       // XP fields — trace the same solved chief ray through the full system
       const result = solve.vectorLaunch
-        ? traceRayVector(solve.vectorLaunch, zPos, undefined, true, L)
+        ? traceRayVector(solve.vectorLaunch, zPos, undefined, true, L, focusT, zoomT, aberrationT)
         : traceRay(yChief, uField, zPos, focusT, zoomT, undefined, true, L, aberrationT);
       if (isFinite(result.y) && isFinite(result.u) && Math.abs(result.u) > 1e-9) {
         xpZRelLastSurf = -result.y / result.u;

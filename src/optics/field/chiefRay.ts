@@ -513,7 +513,7 @@ export function chiefRayImageHeightAccurate2(
   const launch = projectionLaunchSlopeForField2(L, fieldAngleDeg);
   const solve = solveChiefRay2(fieldAngleDeg, focusT, zoomT, L, geometry, aberrationT);
   if (solve.vectorLaunch) {
-    const trace = traceRayVector2(solve.vectorLaunch, zPos, undefined, false, L);
+    const trace = traceRayVector2(solve.vectorLaunch, zPos, undefined, false, L, focusT, zoomT, aberrationT);
     if (trace.clipped) return NaN;
     if (L.isFoldedOptics && trace.reachedImagePlane) return foldedRayImagePlaneCoordinate2(trace, L);
     return trace.y + trace.u * lastThicknessAtState(focusT, zoomT, L, aberrationT);

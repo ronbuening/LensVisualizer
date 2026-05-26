@@ -75,7 +75,7 @@ export function computeOffAxisTraceGeometry({
     const idealEdgeImgH = idealOffAxisImageHeight(L, zoomT, declaredOffAxisDeg);
     let edgeImgH = idealEdgeImgH;
     if (useEdge) {
-      const chiefTrace = traceRayVector(solve.vectorLaunch, zPos, undefined, false, L);
+      const chiefTrace = traceRayVector(solve.vectorLaunch, zPos, undefined, false, L, focusT, zoomT, aberrationT);
       const chiefEndY = chiefTrace.y + chiefTrace.u * (IMG_MM - zPos[L.N - 1]);
       if (isFinite(chiefEndY)) edgeImgH = chiefEndY;
     }
