@@ -8,6 +8,7 @@ import OpticalSummaryTab from "../../display/analysis/OpticalSummaryTab.js";
 import PupilAberrationTab from "../../display/analysis/PupilAberrationTab.js";
 import VignettingTab from "../../display/analysis/VignettingTab.js";
 import type { PreparedOpticalState } from "../../../optics/types.js";
+import type { AnalysisComputationContext } from "../../../optics/compat.js";
 import type { FieldGeometryState } from "../../../optics/optics.js";
 import type { RuntimeLens } from "../../../types/optics.js";
 import type { AnalysisTabId } from "../../../types/state.js";
@@ -28,6 +29,7 @@ export interface AnalysisTabRendererContext {
   t: Theme;
   zPos: number[];
   preparedState: PreparedOpticalState;
+  analysisContext?: AnalysisComputationContext;
   inputs: AnalysisDrawerInputs;
   aberrationsExpanded: boolean;
   onAberrationsExpandedChange: (expanded: boolean) => void;
@@ -36,7 +38,7 @@ export interface AnalysisTabRendererContext {
 type AnalysisTabRenderer = (context: AnalysisTabRendererContext) => ReactNode;
 
 export const ANALYSIS_TAB_RENDERERS: Record<AnalysisTabId, AnalysisTabRenderer> = {
-  summary: ({ L, t, preparedState, inputs }) => (
+  summary: ({ L, t, preparedState, analysisContext, inputs }) => (
     <OpticalSummaryTab
       L={L}
       t={t}
@@ -48,9 +50,19 @@ export const ANALYSIS_TAB_RENDERERS: Record<AnalysisTabId, AnalysisTabRenderer> 
       currentPhysStopSD={inputs.currentPhysStopSD}
       fieldGeometry={inputs.fieldGeometry}
       preparedState={preparedState}
+      analysisContext={analysisContext}
     />
   ),
-  aberrations: ({ L, t, zPos, preparedState, inputs, aberrationsExpanded, onAberrationsExpandedChange }) => (
+  aberrations: ({
+    L,
+    t,
+    zPos,
+    preparedState,
+    analysisContext,
+    inputs,
+    aberrationsExpanded,
+    onAberrationsExpandedChange,
+  }) => (
     <AberrationsPanel
       L={L}
       t={t}
@@ -62,11 +74,12 @@ export const ANALYSIS_TAB_RENDERERS: Record<AnalysisTabId, AnalysisTabRenderer> 
       currentPhysStopSD={inputs.currentPhysStopSD}
       fieldGeometry={inputs.fieldGeometry}
       preparedState={preparedState}
+      analysisContext={analysisContext}
       expanded={aberrationsExpanded}
       onExpandedChange={onAberrationsExpandedChange}
     />
   ),
-  coma: ({ L, t, zPos, preparedState, inputs }) => (
+  coma: ({ L, t, zPos, preparedState, analysisContext, inputs }) => (
     <ComaTab
       L={L}
       t={t}
@@ -78,9 +91,10 @@ export const ANALYSIS_TAB_RENDERERS: Record<AnalysisTabId, AnalysisTabRenderer> 
       currentPhysStopSD={inputs.currentPhysStopSD}
       fieldGeometry={inputs.fieldGeometry}
       preparedState={preparedState}
+      analysisContext={analysisContext}
     />
   ),
-  bokeh: ({ L, t, preparedState, inputs }) => (
+  bokeh: ({ L, t, preparedState, analysisContext, inputs }) => (
     <BokehTab
       L={L}
       t={t}
@@ -90,9 +104,10 @@ export const ANALYSIS_TAB_RENDERERS: Record<AnalysisTabId, AnalysisTabRenderer> 
       currentEPSD={inputs.currentEPSD}
       currentPhysStopSD={inputs.currentPhysStopSD}
       preparedState={preparedState}
+      analysisContext={analysisContext}
     />
   ),
-  distortion: ({ L, t, preparedState, inputs }) => (
+  distortion: ({ L, t, preparedState, analysisContext, inputs }) => (
     <DistortionTab
       L={L}
       t={t}
@@ -103,12 +118,13 @@ export const ANALYSIS_TAB_RENDERERS: Record<AnalysisTabId, AnalysisTabRenderer> 
       currentPhysStopSD={inputs.currentPhysStopSD}
       fieldGeometry={inputs.fieldGeometry}
       preparedState={preparedState}
+      analysisContext={analysisContext}
     />
   ),
   breathing: ({ L, t, inputs }) => (
     <FocusBreathingTab L={L} t={t} focusT={inputs.focusT} zoomT={inputs.zoomT} dynamicEFL={inputs.dynamicEFL} />
   ),
-  vignetting: ({ L, t, preparedState, inputs }) => (
+  vignetting: ({ L, t, preparedState, analysisContext, inputs }) => (
     <VignettingTab
       L={L}
       t={t}
@@ -119,9 +135,10 @@ export const ANALYSIS_TAB_RENDERERS: Record<AnalysisTabId, AnalysisTabRenderer> 
       currentPhysStopSD={inputs.currentPhysStopSD}
       fieldGeometry={inputs.fieldGeometry}
       preparedState={preparedState}
+      analysisContext={analysisContext}
     />
   ),
-  pupils: ({ L, t, preparedState, inputs }) => (
+  pupils: ({ L, t, preparedState, analysisContext, inputs }) => (
     <PupilAberrationTab
       L={L}
       t={t}
@@ -130,6 +147,7 @@ export const ANALYSIS_TAB_RENDERERS: Record<AnalysisTabId, AnalysisTabRenderer> 
       aberrationT={inputs.aberrationT}
       fieldGeometry={inputs.fieldGeometry}
       preparedState={preparedState}
+      analysisContext={analysisContext}
     />
   ),
 };

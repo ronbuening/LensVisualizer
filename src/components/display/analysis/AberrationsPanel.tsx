@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import type { RuntimeLens } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";
 import type { PreparedOpticalState } from "../../../optics/types.js";
+import type { AnalysisComputationContext } from "../../../optics/compat.js";
 import type { FieldGeometryState } from "../../../optics/optics.js";
 import AstigmatismSection from "./aberrations/AstigmatismSection.js";
 import FieldCurvatureSection from "./aberrations/FieldCurvatureSection.js";
@@ -28,6 +29,7 @@ interface AberrationsPanelProps {
   currentPhysStopSD: number;
   fieldGeometry?: FieldGeometryState | null;
   preparedState?: PreparedOpticalState | null;
+  analysisContext?: AnalysisComputationContext;
   expanded: boolean;
   onExpandedChange?: (expanded: boolean) => void;
 }
@@ -43,6 +45,7 @@ export default function AberrationsPanel({
   currentPhysStopSD,
   fieldGeometry,
   preparedState,
+  analysisContext,
   expanded,
   onExpandedChange,
 }: AberrationsPanelProps) {
@@ -55,6 +58,7 @@ export default function AberrationsPanel({
     currentEPSD,
     currentPhysStopSD,
     preparedState,
+    analysisContext,
   });
   const { fieldCurvatureResult, chromaticFieldCurvatureResult } = useFieldCurvatureData({
     L,
@@ -66,6 +70,7 @@ export default function AberrationsPanel({
     currentPhysStopSD,
     fieldGeometry,
     preparedState,
+    analysisContext,
   });
 
   const [saChartExpanded, setSaChartExpanded] = useState(expanded);

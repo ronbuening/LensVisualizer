@@ -3,6 +3,7 @@ import { analysisJobsForState2 } from "../../../../optics/compat.js";
 import { computeComaAnalysis } from "../../../../optics/aberrationAnalysis.js";
 import { probe } from "../../../../utils/perfProbe.js";
 import type { PreparedOpticalState } from "../../../../optics/types.js";
+import type { AnalysisComputationContext } from "../../../../optics/compat.js";
 import type { RuntimeLens } from "../../../../types/optics.js";
 import type { FieldGeometryState } from "../../../../optics/optics.js";
 
@@ -16,6 +17,7 @@ interface Params {
   currentPhysStopSD: number;
   fieldGeometry?: FieldGeometryState | null;
   preparedState?: PreparedOpticalState | null;
+  analysisContext?: AnalysisComputationContext;
 }
 
 export default function useComaData({
@@ -28,33 +30,47 @@ export default function useComaData({
   currentPhysStopSD,
   fieldGeometry,
   preparedState,
+  analysisContext,
 }: Params) {
   return useMemo(() => {
     const {
       meridionalComa: comaResult,
       sagittalComa: sagittalComaResult,
       pointCloudPreview: comaPreviewResult,
-    } = preparedState
-      ? probe("computeComaAnalysis", () =>
-          analysisJobsForState2.computeComaAnalysis(
-            preparedState,
-            currentEPSD,
-            currentPhysStopSD,
-            fieldGeometry ?? undefined,
-          ),
-        )
-      : probe("computeComaAnalysis", () =>
-          computeComaAnalysis(
-            L,
-            zPos,
-            focusT,
-            zoomT,
-            currentEPSD,
-            currentPhysStopSD,
-            aberrationT,
-            fieldGeometry ?? undefined,
-          ),
-        );
+    } = analysisContext
+      ? probe("computeComaAnalysis", () => analysisContext.computeComaAnalysis())
+      : preparedState
+        ? probe("computeComaAnalysis", () =>
+            analysisJobsForState2.computeComaAnalysis(
+              preparedState,
+              currentEPSD,
+              currentPhysStopSD,
+              fieldGeometry ?? undefined,
+            ),
+          )
+        : probe("computeComaAnalysis", () =>
+            computeComaAnalysis(
+              L,
+              zPos,
+              focusT,
+              zoomT,
+              currentEPSD,
+              currentPhysStopSD,
+              aberrationT,
+              fieldGeometry ?? undefined,
+            ),
+          );
     return { comaResult, sagittalComaResult, comaPreviewResult };
-  }, [L, zPos, focusT, zoomT, aberrationT, currentEPSD, currentPhysStopSD, fieldGeometry, preparedState]);
+  }, [
+    L,
+    zPos,
+    focusT,
+    zoomT,
+    aberrationT,
+    currentEPSD,
+    currentPhysStopSD,
+    fieldGeometry,
+    preparedState,
+    analysisContext,
+  ]);
 }
