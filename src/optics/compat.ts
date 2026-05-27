@@ -180,6 +180,8 @@ export {
   computeComaPointCloudPreview2,
   computeComaPreview2,
   computeFieldCurvature2,
+  computeFieldCurvatureBundle2,
+  computeFieldCurvatureBundleForState2,
   computeFieldCurvatureForState2,
   computeMeridionalComa2,
   computeSAProfile2,

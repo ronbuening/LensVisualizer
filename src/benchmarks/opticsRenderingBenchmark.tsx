@@ -688,7 +688,7 @@ function measureAberrationPanels(
   });
 
   if (snapshot.L.isFoldedOptics) {
-    for (const category of ["fieldCurvature", "chromaticFieldCurvature", "coma", "comaTab"]) {
+    for (const category of ["fieldCurvature", "chromaticFieldCurvature", "fieldCurvatureBundle", "coma", "comaTab"]) {
       skips.push({ lensKey, scenarioId: scenario.id, category, reason: "Folded optics guard" });
     }
   } else {
@@ -710,6 +710,16 @@ function measureAberrationPanels(
           snapshot.currentEPSD,
           snapshot.currentPhysStopSD,
           true,
+          snapshot.fieldGeometry ?? undefined,
+        ),
+      ),
+    );
+    data.fieldCurvatureBundle = measure("data", "fieldCurvatureBundle", () =>
+      describeComputationOutput(
+        analysisJobsForState2.computeFieldCurvatureBundle(
+          snapshot.preparedState,
+          snapshot.currentEPSD,
+          snapshot.currentPhysStopSD,
           snapshot.fieldGeometry ?? undefined,
         ),
       ),
@@ -772,20 +782,14 @@ function computeAberrationDataValues(snapshot: ScenarioSnapshot): AberrationData
   if (snapshot.L.isFoldedOptics) {
     return { sphericalAberration, saProfile, saBlurCharacter };
   }
-  const fieldCurvature = analysisJobsForState2.computeFieldCurvature(
+  const fieldCurvatureBundle = analysisJobsForState2.computeFieldCurvatureBundle(
     snapshot.preparedState,
     snapshot.currentEPSD,
     snapshot.currentPhysStopSD,
-    false,
     snapshot.fieldGeometry ?? undefined,
   );
-  const chromaticFieldCurvature = analysisJobsForState2.computeFieldCurvature(
-    snapshot.preparedState,
-    snapshot.currentEPSD,
-    snapshot.currentPhysStopSD,
-    true,
-    snapshot.fieldGeometry ?? undefined,
-  );
+  const fieldCurvature = fieldCurvatureBundle.fieldCurvature;
+  const chromaticFieldCurvature = fieldCurvatureBundle.chromaticFieldCurvature;
   const coma = analysisJobsForState2.computeComaAnalysis(
     snapshot.preparedState,
     snapshot.currentEPSD,

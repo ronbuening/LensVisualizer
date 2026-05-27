@@ -10,6 +10,8 @@ import type { RuntimeLens } from "../../types/optics.js";
 import type { PreparedOpticalState } from "../types.js";
 import {
   computeComaAnalysisForState2,
+  computeFieldCurvatureBundle2,
+  computeFieldCurvatureBundleForState2,
   computeFieldCurvatureForState2,
   computeSAProfileForState2,
   computeSphericalAberrationBlurCharacterForState2,
@@ -74,6 +76,28 @@ export const analysisJobs2 = {
     return computeVignettingCurve2(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, fieldGeometry, aberrationT);
   },
 
+  computeFieldCurvatureBundle(
+    L: RuntimeLens,
+    zPos: number[],
+    focusT: number,
+    zoomT: number,
+    currentEPSD: number,
+    currentPhysStopSD: number,
+    aberrationT = 0,
+    fieldGeometry?: FieldGeometryState,
+  ) {
+    return computeFieldCurvatureBundle2(
+      L,
+      zPos,
+      focusT,
+      zoomT,
+      currentEPSD,
+      currentPhysStopSD,
+      aberrationT,
+      fieldGeometry,
+    );
+  },
+
   computeBestFocusZ(
     L: RuntimeLens,
     focusT: number,
@@ -134,6 +158,15 @@ export const analysisJobsForState2 = {
     fieldGeometry?: FieldGeometryState,
   ) {
     return computeFieldCurvatureForState2(state, currentEPSD, currentPhysStopSD, chromatic, fieldGeometry);
+  },
+
+  computeFieldCurvatureBundle(
+    state: PreparedOpticalState,
+    currentEPSD: number,
+    currentPhysStopSD: number,
+    fieldGeometry?: FieldGeometryState,
+  ) {
+    return computeFieldCurvatureBundleForState2(state, currentEPSD, currentPhysStopSD, fieldGeometry);
   },
 
   computeComaAnalysis(
