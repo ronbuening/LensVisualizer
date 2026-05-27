@@ -1,5 +1,6 @@
 import { useDeferredValue, useEffect, useMemo, useRef, type ReactNode } from "react";
 import { ANALYSIS_TAB_RENDERERS } from "./analysisTabRenderers.js";
+import usePreparedAnalysisState from "../../display/analysis/usePreparedAnalysisState.js";
 import type { RuntimeLens } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";
 import type { FieldGeometryState } from "../../../optics/optics.js";
@@ -25,7 +26,7 @@ interface AnalysisDrawerContentProps {
   onAberrationsExpandedChange: (expanded: boolean) => void;
 }
 
-const FOLDED_OPTICS_UNSUPPORTED_TABS = new Set<AnalysisTabId>(["coma", "distortion", "vignetting", "pupils"]);
+const FOLDED_OPTICS_UNSUPPORTED_TABS = new Set<AnalysisTabId>(["coma", "distortion", "vignetting"]);
 
 export default function AnalysisDrawerContent({
   activeTab,
@@ -73,6 +74,12 @@ export default function AnalysisDrawerContent({
   }, [sliderInteracting, deferredInputs]);
 
   const analysisInputs = sliderInteracting ? lastSettledInputsRef.current : deferredInputs;
+  const preparedState = usePreparedAnalysisState({
+    L,
+    focusT: analysisInputs.focusT,
+    zoomT: analysisInputs.zoomT,
+    aberrationT: analysisInputs.aberrationT,
+  });
   const projection = L.projection ?? { kind: "rectilinear" };
   const noticeStyle = {
     margin: "0 0 12px",
@@ -90,7 +97,7 @@ export default function AnalysisDrawerContent({
     const imageCircleMm = projectionValueAtZoom(projection.imageCircleMm, analysisInputs.zoomT);
     return `Circular fisheye projection (${projection.kind === "fisheye-equisolid" ? "equisolid" : "equidistant"}): ${fullFieldDeg?.toFixed(0) ?? "unknown"}° field${
       imageCircleMm ? ` over a ${imageCircleMm.toFixed(1)} mm image circle` : ""
-    }. Analysis tabs use the central forward-traced cone; the full field is projection metadata, not a rectilinear trace.`;
+    }. Projection-aware tabs use vector field launch beyond the slope-safe cone; scalar-only sections stay within their validated tracing range.`;
   })();
   const foldedOpticsText = L.isFoldedOptics
     ? "Folded mirror optical path detected. Ray drawing uses the generalized folded tracer; sequential paraxial diagnostics are guarded until mirror-safe analysis is enabled for each tab."
@@ -153,6 +160,7 @@ export default function AnalysisDrawerContent({
           L,
           t,
           zPos,
+          preparedState,
           inputs: analysisInputs,
           aberrationsExpanded,
           onAberrationsExpandedChange,

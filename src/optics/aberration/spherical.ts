@@ -1,3 +1,9 @@
+/**
+ * Spherical aberration analysis — axial real-ray focus shift and blur-character calculations.
+ *
+ * Samples pupil zones against the current image plane to describe longitudinal error, RMS blur, and edge/center bias.
+ */
+
 import { computeAnalysisFieldGeometryAtState, sampleCircularPupil, skewImagePlaneIntercept, thick } from "../optics.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type {

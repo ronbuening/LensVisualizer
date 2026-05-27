@@ -38,6 +38,25 @@ describe("useLensComputation", () => {
     expect(r.fieldGeometry?.halfFieldDeg).toBeGreaterThan(0);
   });
 
+  it("renders through the stable optics imports without changing hook props", () => {
+    const { result } = renderHook(() =>
+      useLensComputation({
+        lensKey: baseLensKey,
+        focusT: 0,
+        zoomT: 0,
+        stopdownT: 0,
+        scaleRatio: null,
+        panelId: "test",
+      }),
+    );
+
+    expect(result.current.L).toBeDefined();
+    expect(result.current.buildError).toBeUndefined();
+    expect(result.current.zPos.length).toBe(result.current.L!.N);
+    expect(result.current.shapes.length).toBeGreaterThan(0);
+    expect(result.current.fieldGeometry?.halfFieldDeg).toBeGreaterThan(0);
+  });
+
   it("uses a supplied runtime lens instead of rebuilding from the catalog", () => {
     const runtimeLens = buildLens(LENS_CATALOG[baseLensKey]);
     const { result } = renderHook(() =>

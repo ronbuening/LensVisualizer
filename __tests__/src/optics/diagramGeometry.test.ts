@@ -6,7 +6,7 @@ import {
 } from "../../../src/optics/diagramGeometry.js";
 import buildLens from "../../../src/optics/buildLens.js";
 import { doLayout, SVG_PATH_SUBDIVISIONS } from "../../../src/optics/optics.js";
-import type { RuntimeLens, AsphericCoefficients } from "../../../src/types/optics.js";
+import type { RuntimeLens, AsphericCoefficients, ElementSpan, SurfaceData } from "../../../src/types/optics.js";
 import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -129,8 +129,127 @@ describe("computeElementShapes", () => {
   const sy = (y: number): number => y;
   const maxRimTan = 0.9 / Math.sqrt(1 - 0.9 ** 2);
 
+  type DiagramSurfaceFixture = Omit<SurfaceData, "elemId"> & Partial<Pick<SurfaceData, "elemId">>;
+
+  interface DiagramLensFixture extends Partial<Omit<RuntimeLens, "S" | "ES" | "asphByIdx">> {
+    S: DiagramSurfaceFixture[];
+    ES: ElementSpan[];
+    asphByIdx?: Record<number, AsphericCoefficients | null>;
+    maxRimSin?: number;
+    maxRimTan?: number;
+    gapSagFrac?: number;
+    N?: number;
+    stopIdx?: number;
+    stopPhysSD?: number;
+  }
+
   function pathCoords(pathD: string): [number, number][] {
     return [...pathD.matchAll(/[ML]([\d.e+-]+),([\d.e+-]+)/g)].map((match) => [Number(match[1]), Number(match[2])]);
+  }
+
+  function hydrateDiagramLens(partial: DiagramLensFixture): RuntimeLens {
+    const surfaces = partial.S.map((surface, index) => {
+      const span = partial.ES.find(([, s1, s2]) => index >= s1 && index <= s2);
+      return {
+        label: surface.label ?? `${index + 1}`,
+        R: surface.R,
+        d: surface.d,
+        nd: surface.nd,
+        sd: surface.sd,
+        innerSd: surface.innerSd,
+        elemId: surface.elemId ?? span?.[0] ?? 0,
+        stopPlacement: surface.stopPlacement,
+        interaction: surface.interaction,
+      } satisfies SurfaceData;
+    });
+    const asph: Record<string, AsphericCoefficients> = {};
+    const asphByIdx: Record<number, AsphericCoefficients> = {};
+    for (const [indexText, coefficients] of Object.entries(partial.asphByIdx ?? {})) {
+      if (coefficients === null) continue;
+      const index = Number(indexText);
+      asph[surfaces[index].label] = coefficients;
+      asphByIdx[index] = coefficients;
+    }
+    const elements = partial.ES.map(([eid, s1, s2]: ElementSpan) => ({
+      id: eid,
+      name: `Element ${eid}`,
+      label: `E${eid}`,
+      type: "fixture",
+      nd: surfaces[s1].nd,
+      fromSurface: surfaces[s1].label,
+      toSurface: surfaces[s2].label,
+    }));
+    const imageZ = surfaces.reduce((sum, surface) => sum + surface.d, 0);
+    return {
+      ...partial,
+      data: {
+        key: "diagram-geometry-fixture",
+        name: "Diagram geometry fixture",
+        closeFocusM: 0.5,
+        focusStep: 0.004,
+        maxFstop: 16,
+        apertureStep: 0.004,
+        fstopSeries: [2, 2.8, 4, 5.6, 8, 11, 16],
+        elements,
+        surfaces,
+        asph,
+        svgW: 800,
+        svgH: 400,
+        scFill: 0.55,
+        yScFill: 0.55,
+        clipMargin: 1,
+        maxRimAngleDeg: 64,
+        gapSagFrac: partial.gapSagFrac ?? 0.9,
+        maxAspectRatio: 1.6,
+        rayFractions: [-0.5, 0, 0.5],
+        rayLeadFrac: 0.35,
+        offAxisFieldFrac: 0.6,
+        offAxisFractions: [-0.5, 0, 0.5],
+        nominalFno: 2,
+      },
+      S: surfaces,
+      N: partial.N ?? surfaces.length,
+      ES: partial.ES,
+      elements,
+      asphByIdx,
+      varByIdx: partial.varByIdx ?? {},
+      vdByIdx: partial.vdByIdx ?? {},
+      spectralByIdx: partial.spectralByIdx ?? {},
+      indexByIdx: partial.indexByIdx ?? {},
+      varLabels: partial.varLabels ?? [],
+      groups: partial.groups ?? [],
+      doublets: partial.doublets ?? [],
+      perspectiveControl: partial.perspectiveControl ?? null,
+      aberrationControl: partial.aberrationControl ?? null,
+      projection: partial.projection ?? { kind: "rectilinear" },
+      opticalPath: partial.opticalPath ?? {
+        mode: "sequential",
+        surfaceOrder: null,
+        surfaceLabels: null,
+        maxInteractions: surfaces.length + 1,
+      },
+      imagePlane: partial.imagePlane ?? { z: imageZ, y: 0, normal: { z: 1, y: 0 }, label: "IMG" },
+      isFoldedOptics: partial.isFoldedOptics ?? false,
+      stopIdx: partial.stopIdx ?? 0,
+      stopPhysSD: partial.stopPhysSD ?? surfaces[partial.stopIdx ?? 0]?.sd ?? 1,
+      isZoom: partial.isZoom ?? false,
+      zoomPositions: partial.zoomPositions ?? null,
+      zoomLabels: partial.zoomLabels ?? null,
+      zoomStep: partial.zoomStep ?? 0.01,
+      rayFractions: partial.rayFractions ?? [-0.5, 0, 0.5],
+      offAxisFractions: partial.offAxisFractions ?? [-0.5, 0, 0.5],
+      offAxisFieldFrac: partial.offAxisFieldFrac ?? 0.6,
+      svgW: 800,
+      svgH: 400,
+      scFill: 0.55,
+      yScFill: 0.55,
+      clipMargin: 1,
+      maxRimTan: partial.maxRimTan ?? maxRimTan,
+      gapSagFrac: partial.gapSagFrac ?? 0.9,
+      maxAspectRatio: 1.6,
+      lensShiftFrac: 0,
+      rayLeadFrac: 0.35,
+    } as RuntimeLens;
   }
 
   /**
@@ -159,18 +278,18 @@ describe("computeElementShapes", () => {
   } = {}): RuntimeLens {
     const frontSD = sd1 ?? sd;
     const rearSD = sd2 ?? sd;
-    return {
+    return hydrateDiagramLens({
       ES: [[0, 0, 1]],
       S: [
-        { label: "1", R: R1, sd: frontSD, nd, d: 5 },
-        { label: "2", R: R2, sd: rearSD, nd: 1.0, d: 10 },
+        { label: "1", R: R1, sd: frontSD, nd, d: 5, elemId: 0 },
+        { label: "2", R: R2, sd: rearSD, nd: 1.0, d: 10, elemId: 0 },
       ],
       asphByIdx: { 0: asph1, 1: asph2 },
       maxRimSin: 0.95,
       maxRimTan,
       gapSagFrac: 0.9,
       N: 2,
-    } as unknown as RuntimeLens;
+    });
   }
 
   it("returns empty array for empty ES", () => {
@@ -288,7 +407,7 @@ describe("computeElementShapes", () => {
   });
 
   it("multi-element system returns one shape per element", () => {
-    const L = {
+    const L = hydrateDiagramLens({
       ES: [
         [0, 0, 1],
         [1, 2, 3],
@@ -307,7 +426,7 @@ describe("computeElementShapes", () => {
       maxRimTan,
       gapSagFrac: 0.9,
       N: 6,
-    } as unknown as RuntimeLens;
+    });
     const zPos = [0, 3, 5, 9, 11, 14];
     const shapes = computeElementShapes(L, zPos, sx, sy);
 
@@ -318,7 +437,7 @@ describe("computeElementShapes", () => {
   });
 
   it("uses explicit span endpoints when a stop sits inside an element", () => {
-    const L = {
+    const L = hydrateDiagramLens({
       ES: [[1, 0, 2]],
       S: [
         { label: "1", R: 80, sd: 8, nd: 1.5, d: 4 },
@@ -330,7 +449,7 @@ describe("computeElementShapes", () => {
       maxRimTan,
       gapSagFrac: 0.9,
       N: 3,
-    } as unknown as RuntimeLens;
+    });
     const zPos = [0, 4, 8];
     const diagnostics = computeElementRenderDiagnostics(L, zPos);
     const shapes = computeElementShapes(L, zPos, sx, sy);
@@ -346,7 +465,7 @@ describe("computeElementShapes", () => {
     // Element 0: front flat, rear with R=15 (positive sag curves forward)
     // Element 1: front flat, rear flat
     // Gap between them is only 0.5mm — should trigger rear trim on element 0
-    const L = {
+    const L = hydrateDiagramLens({
       ES: [
         [0, 0, 1],
         [1, 2, 3],
@@ -362,7 +481,7 @@ describe("computeElementShapes", () => {
       maxRimTan,
       gapSagFrac: 0.9,
       N: 4,
-    } as unknown as RuntimeLens;
+    });
     const zPos = [0, 3, 3.5, 6.5];
     const shapes = computeElementShapes(L, zPos, sx, sy);
     expect(shapes).toHaveLength(2);
@@ -373,7 +492,7 @@ describe("computeElementShapes", () => {
   it("gap trimming: front surface with negative sag into narrow preceding gap", () => {
     // Element 0: flat front, flat rear, followed by narrow gap
     // Element 1: front with R=-15 (negative sag curves backward into gap), flat rear
-    const L = {
+    const L = hydrateDiagramLens({
       ES: [
         [0, 0, 1],
         [1, 2, 3],
@@ -389,7 +508,7 @@ describe("computeElementShapes", () => {
       maxRimTan,
       gapSagFrac: 0.9,
       N: 4,
-    } as unknown as RuntimeLens;
+    });
     const zPos = [0, 3, 3.5, 6.5];
     const shapes = computeElementShapes(L, zPos, sx, sy);
     expect(shapes).toHaveLength(2);
@@ -400,7 +519,7 @@ describe("computeElementShapes", () => {
     /* Three elements: E0 → air gap → E1 (front curves backward) → air gap → E2
      * E1's front surface has negative renderSag, and a prevES exists (E0).
      * This exercises the prevES branch at lines 104-117 of diagramGeometry.ts. */
-    const L = {
+    const L = hydrateDiagramLens({
       ES: [
         [0, 0, 1],
         [1, 2, 3],
@@ -419,7 +538,7 @@ describe("computeElementShapes", () => {
       maxRimTan,
       gapSagFrac: 0.9,
       N: 6,
-    } as unknown as RuntimeLens;
+    });
     const zPos = [0, 3, 3.3, 7.3, 9.3, 12.3];
     const shapes = computeElementShapes(L, zPos, sx, sy);
     expect(shapes).toHaveLength(3);
@@ -433,7 +552,7 @@ describe("computeElementShapes", () => {
     /* Two elements: E0 (rear curves forward into gap) → narrow air gap → E1
      * E0's rear surface has nd=1.0 and positive renderSag, and nextES exists (E1).
      * This exercises the nextES branch at lines 124-136 of diagramGeometry.ts. */
-    const L = {
+    const L = hydrateDiagramLens({
       ES: [
         [0, 0, 1],
         [1, 2, 3],
@@ -449,7 +568,7 @@ describe("computeElementShapes", () => {
       maxRimTan,
       gapSagFrac: 0.9,
       N: 4,
-    } as unknown as RuntimeLens;
+    });
     const zPos = [0, 3, 3.3, 7.3];
     const shapes = computeElementShapes(L, zPos, sx, sy);
     expect(shapes).toHaveLength(2);
@@ -460,7 +579,7 @@ describe("computeElementShapes", () => {
 
   it("no trim when gapSagFrac is 0", () => {
     /* Same geometry as rear trim test but gapSagFrac=0 disables trimming */
-    const L = {
+    const L = hydrateDiagramLens({
       ES: [
         [0, 0, 1],
         [1, 2, 3],
@@ -476,7 +595,7 @@ describe("computeElementShapes", () => {
       maxRimTan,
       gapSagFrac: 0,
       N: 4,
-    } as unknown as RuntimeLens;
+    });
     const zPos = [0, 3, 3.3, 7.3];
     const shapes = computeElementShapes(L, zPos, sx, sy);
     expect(shapes).toHaveLength(2);
@@ -489,7 +608,7 @@ describe("computeElementShapes", () => {
     const L = {
       ...makeSingleElementLens({ R1: 32.975, sd1: 24, R2: 84.15, sd2: 20 }),
       maxRimTan: 0.95,
-    } as unknown as RuntimeLens;
+    } as RuntimeLens;
     const zPos = [0, 8.01];
     const diagnostics = computeElementRenderDiagnostics(L, zPos);
     const shape = computeElementShapes(L, zPos, sx, sy)[0];
@@ -502,7 +621,7 @@ describe("computeElementShapes", () => {
   });
 
   it("samples gap-trimmed surfaces only to the diagnostic render SD", () => {
-    const L = {
+    const L = hydrateDiagramLens({
       ES: [
         [1, 0, 1],
         [2, 2, 3],
@@ -518,7 +637,7 @@ describe("computeElementShapes", () => {
       maxRimTan,
       gapSagFrac: 0.9,
       N: 4,
-    } as unknown as RuntimeLens;
+    });
     const zPos = [0, 4.319, 4.519, 6.747];
     const diagnostics = computeElementRenderDiagnostics(L, zPos);
     const shape = computeElementShapes(L, zPos, sx, sy)[0];

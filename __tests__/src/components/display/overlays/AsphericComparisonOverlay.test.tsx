@@ -68,6 +68,15 @@ describe("AsphericComparisonOverlay — single aspheric surface", () => {
     expect(container.querySelector("svg")).toBeTruthy();
   });
 
+  it("uses a fluid root container for narrow modal widths", () => {
+    const { container } = render(<AsphericComparisonOverlay L={L} info={elementInfo} theme={mockTheme} />);
+    const root = container.firstElementChild as HTMLElement;
+
+    expect(root.style.width).toBe("100%");
+    expect(root.style.minWidth).toBe("0px");
+    expect(root.style.boxSizing).toBe("border-box");
+  });
+
   it("renders the element label in the header", () => {
     render(<AsphericComparisonOverlay L={L} info={elementInfo} theme={mockTheme} />);
     expect(screen.getByText(/E1.*Aspheric departure/)).toBeTruthy();

@@ -4,7 +4,14 @@ This document captures the performance bottlenecks identified in LensVisualizer 
 
 ## Context
 
-Slider interactions (focus, aperture, zoom) feel sluggish because every slider tick fires a complete re-computation cascade: main ray traces, off-axis ray traces, chromatic ray traces, SVG shape generation, and — when open — analysis drawer tabs (aberrations / coma / distortion / breathing / vignetting / pupils) and the bokeh overlay.
+Slider interactions (focus, aperture, zoom) originally felt sluggish because every slider tick fired a complete re-computation cascade: main ray traces, off-axis ray traces, chromatic ray traces, SVG shape generation, and — when open — analysis drawer tabs (summary / aberrations / coma / bokeh / distortion / breathing / vignetting / pupils).
+
+Current status: closed drawer work is gated, drawer inputs are deferred during slider interaction, and heavy analysis tabs share a prepared-state job facade so current focus/zoom/aberration state is prepared once per settled analysis state.
+
+Manual benchmark infrastructure now lives in `agent_docs/benchmarks/`. Run `npm run benchmark:optics-rendering` to add a
+permanent JSON record for optics, rendering, and aberration-panel performance; run
+`npm run benchmark:optics-rendering -- --report-only` to regenerate the Markdown report from existing records without
+creating a new measurement.
 
 The goal is a dramatically smoother interactive experience while preserving final accuracy. Only *transient* (mid-drag) results may use reduced-resolution proxies, and they must converge to full resolution on pointer release.
 
@@ -36,16 +43,16 @@ Legend: ⬜ Not started · 🟨 In progress · ✅ Shipped
 - The JSX for `analysisContent` is constructed unconditionally in [LensDiagramPanel.tsx:288-301](src/components/layout/LensDiagramPanel.tsx#L288-L301).
 
 ### B3 — Per-tab analysis computations are heavy and run every slider tick
-- [useAberrationsPanelData](src/components/display/aberrations/useAberrationsPanelData.ts) wraps six analyses (SA, SA profile, SA blur character, coma, field curvature, chromatic field curvature) in a single `useMemo` — if **any** dependency changes (every drag, because `zPos` changes), all six recompute.
-- The same hook is called from both [AberrationsPanel.tsx](src/components/display/AberrationsPanel.tsx) and [ComaTab.tsx](src/components/display/ComaTab.tsx) — switching tabs recomputes independently.
-- [DistortionTab.tsx](src/components/display/DistortionTab.tsx) invokes `computeDistortionCurve` + `computeDistortionFieldGrid` (~170+ chief-ray bisection solves per update).
-- [VignettingTab.tsx](src/components/display/VignettingTab.tsx) invokes `computeVignettingCurve` — 192-ray pupil sweeps at ~21 field angles.
+- The old monolithic aberration data hook was split into focused hooks under [src/components/display/analysis/aberrations/](src/components/display/analysis/aberrations/), so the Aberrations and Coma tabs compute only the sections they render.
+- Distortion, vignetting, bokeh, pupil, coma, and summary UI paths now call through `analysisJobsForState2` with the drawer's shared `PreparedOpticalState`, avoiding repeated state preparation across visible analysis work.
+- [DistortionTab.tsx](src/components/display/analysis/DistortionTab.tsx) invokes `computeDistortionCurve` + `computeDistortionFieldGrid` (~170+ chief-ray bisection solves per update).
+- [VignettingTab.tsx](src/components/display/analysis/VignettingTab.tsx) invokes `computeVignettingCurve` — 192-ray pupil sweeps at ~21 field angles.
 - [PupilAberrationTab.tsx](src/components/display/PupilAberrationTab.tsx) — 17-sample bisection-solved chief rays (EP + XP combined API already shares the bisection so this is the cheapest tab).
 - [FocusBreathingTab.tsx](src/components/display/FocusBreathingTab.tsx) — 21-point EFL sweep across focus range.
 
-### B4 — Bokeh overlay recomputes on every slider tick when open
-- [BokehPreviewOverlay.tsx](src/components/display/BokehPreviewOverlay.tsx) — `computeBokehPreviewPair` (337-ray bundles × 4 field positions × 2 focus distances) recomputes every tick.
-- Conditionally mounted in [DiagramViewport.tsx](src/components/layout/lensDiagram/DiagramViewport.tsx), so only affects users who opened it, but major cost when open.
+### B4 — Bokeh tab recomputes on every slider tick when open
+- [BokehTab.tsx](src/components/display/analysis/BokehTab.tsx) — `computeBokehPreviewPair` (337-ray bundles × 4 field positions × 2 focus distances) recomputes for the visible bokeh drawer tab.
+- Conditionally mounted through [AnalysisDrawerContent.tsx](src/components/layout/lensDiagram/AnalysisDrawerContent.tsx), so only affects users who open the drawer to the bokeh tab, but remains a major cost when visible.
 
 ### B5 — `zPos` is the cascade trigger
 - [useLensComputation.ts](src/components/hooks/useLensComputation.ts) — `cur` layout recomputes on `[focusT, zoomT, L]`, then `zPos` is a fresh array every tick. Every downstream `useMemo` that lists `zPos` in its deps re-runs, even when array values are numerically identical.
@@ -77,15 +84,18 @@ Legend: ⬜ Not started · 🟨 In progress · ✅ Shipped
 **Goal:** land a perf probe so every subsequent PR posts before/after numbers rather than "feels faster," and so we catch regressions.
 
 - ✅ `src/utils/perfProbe.ts` — exports `probe(name, fn)` (wraps with `performance.now()`) and `resetPerfProbe()`. No-ops in production via `import.meta.env.DEV` guard. Logs a `console.table` summary every 10 calls.
-- ✅ Six entry points wrapped at their `useMemo` call sites:
-  - `computeSphericalAberration` — `useAberrationsPanelData.ts`
-  - `computeComaAnalysis` — `useAberrationsPanelData.ts`
+- ✅ `npm run benchmark:optics-rendering` — manual Vite SSR benchmark for build/layout/rays/analysis/SVG render and
+  aberration-panel data/rendering categories. Results are stored as one JSON file per run in
+  `agent_docs/benchmarks/runs/`; `agent_docs/benchmarks/benchmark-report.md` summarizes the newest 10 records.
+- ✅ Core entry points wrapped at their `useMemo` call sites:
+  - `computeSphericalAberration` — `useSphericalAberrationData.ts`
+  - `computeComaAnalysis` — `useComaData.ts`
   - `computeDistortionCurve` — `DistortionTab.tsx`
   - `computeDistortionFieldGrid` — `DistortionTab.tsx`
   - `computeVignettingCurve` — `VignettingTab.tsx`
-  - `computeBokehPreviewPair` — `BokehPreviewOverlay.tsx`
+  - `computeBokehPreviewPair` — `BokehTab.tsx`
 - ✅ `__tests__/perfProbe.test.ts` — covers return value passthrough, logging cadence, multi-name tracking, and reset.
-- ⬜ **Baselines not yet recorded** — open the app in dev mode (`npm run dev`), load a lens, open each analysis tab in turn, scrub the focus slider for ~10 moves, and read the `console.table` output. Record results in the Baselines section below.
+- ✅ Baseline benchmark records added under `agent_docs/benchmarks/runs/` for the current optics/rendering state.
 
 ---
 
@@ -104,13 +114,13 @@ Legend: ⬜ Not started · 🟨 In progress · ✅ Shipped
 - File: [LensDiagramPanel.tsx:288-301](src/components/layout/LensDiagramPanel.tsx#L288-L301)
 - Change `analysisContent={<AnalysisDrawerContent … />}` to `analysisContent={analysisDrawerOpen ? <AnalysisDrawerContent … /> : null}`.
 
-### 1.3 — Split `useAberrationsPanelData` into per-visualization hooks
-- Files: [useAberrationsPanelData.ts](src/components/display/aberrations/useAberrationsPanelData.ts), [AberrationsPanel.tsx](src/components/display/AberrationsPanel.tsx), [ComaTab.tsx](src/components/display/ComaTab.tsx)
-- Break the monolithic `useMemo` into separate hooks per analysis. Each tab imports only the ones it needs.
+### 1.3 — Split aberration data into per-visualization hooks
+- Files: [src/components/display/analysis/aberrations/](src/components/display/analysis/aberrations/), [AberrationsPanel.tsx](src/components/display/analysis/AberrationsPanel.tsx), [ComaTab.tsx](src/components/display/analysis/ComaTab.tsx)
+- Shipped: separate hooks now back spherical aberration, field curvature, and coma work. Each tab imports only the analysis it needs.
 
-### 1.4 — Lazy bokeh overlay JSX construction
-- File: [LensDiagramPanel.tsx:278-286](src/components/layout/LensDiagramPanel.tsx#L278-L286)
-- `bokehPreviewContent={bokehPreviewOpen ? <BokehPreviewOverlay … /> : null}`.
+### 1.4 — Remove duplicate bokeh overlay surface
+- Shipped: the old diagram-corner beta bokeh overlay/button was removed after the drawer bokeh tab became the single supported bokeh surface.
+- The drawer continues to lazy-mount the bokeh tab only when the drawer is open and `analysisDrawerTab` is `bokeh`.
 
 ### 1.5 — Apply closed-drawer gating to both comparison panels
 - File: [ComparisonLayout.tsx](src/comparison/ComparisonLayout.tsx)
@@ -139,12 +149,12 @@ Legend: ⬜ Not started · 🟨 In progress · ✅ Shipped
 - File: [AnalysisDrawerContent.tsx](src/components/layout/lensDiagram/AnalysisDrawerContent.tsx) (or per-tab)
 - Wrap `focusT`, `zoomT`, `currentEPSD`, `currentPhysStopSD` with `useDeferredValue` before passing to computations. React prioritizes the main viewport and lets analyses fall back to the last-computed result until idle.
 
-### 2.3 — Defer bokeh overlay recompute
-- File: [BokehPreviewOverlay.tsx:26-37](src/components/display/BokehPreviewOverlay.tsx#L26-L37)
+### 2.3 — Defer bokeh tab recompute
+- File: [BokehTab.tsx](src/components/display/analysis/BokehTab.tsx)
 - Wrap inputs with `useDeferredValue`; optionally dim the preview while `focusT !== deferredFocusT` as a visual cue.
 
 ### 2.4 — Apply to distortion, vignetting, breathing tabs
-- Same pattern for [VignettingTab.tsx](src/components/display/VignettingTab.tsx), [DistortionTab.tsx](src/components/display/DistortionTab.tsx), [FocusBreathingTab.tsx](src/components/display/FocusBreathingTab.tsx).
+- Same pattern for [VignettingTab.tsx](src/components/display/analysis/VignettingTab.tsx), [DistortionTab.tsx](src/components/display/analysis/DistortionTab.tsx), [FocusBreathingTab.tsx](src/components/display/analysis/FocusBreathingTab.tsx), and [OpticalSummaryTab.tsx](src/components/display/analysis/OpticalSummaryTab.tsx).
 
 ### Verification
 - Open vignetting tab, scrub focus; confirm chart "freezes" during drag and snaps to correct final value within ~1 frame of release.
@@ -243,7 +253,7 @@ New `__tests__/performance/sliderInteraction.test.ts`:
 
 - [ ] With drawer closed, scrubbing focus/aperture/zoom feels immediate on a 6-year-old laptop.
 - [ ] With vignetting tab open, chart updates within one frame of releasing the slider.
-- [ ] With bokeh overlay open, preview updates on release and holds last value during drag.
+- [ ] With the bokeh tab open, preview updates on release and holds last value during drag.
 - [ ] Comparison mode ≤ 2× single-lens mode in compute cost.
 - [ ] Prerendered pages contain final (not interactive-LOD) visuals — verify one route in `dist/` manually.
 
@@ -253,9 +263,13 @@ New `__tests__/performance/sliderInteraction.test.ts`:
 
 Record before/after measurements here as each stage ships.
 
-### Baseline (pre-optimization)
-_Lens:_ TBD · _Scenario:_ scrub focus 0→1 over 2 seconds, drawer closed · _Date:_ TBD
-_Measurements:_ TBD
+### Current Optics/Rendering Benchmark Baseline
+
+- Command: `npm run benchmark:optics-rendering`
+- Report: `agent_docs/benchmarks/benchmark-report.md`
+- Records: `agent_docs/benchmarks/runs/`
+- Scope: 12 representative lenses, three scenarios, main pipeline categories, and aberration-panel data/rendering
+  categories.
 
 _Lens:_ TBD · _Scenario:_ scrub focus 0→1 over 2 seconds, vignetting tab open · _Date:_ TBD
 _Measurements:_ TBD

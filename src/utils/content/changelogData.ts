@@ -19,6 +19,27 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-05-27 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-05-27",
+    type: "improvement",
+    summary: "Modernized the optics engine for state-aware ray tracing and analysis",
+  },
+  {
+    date: "2026-05-27",
+    type: "feature",
+    summary: "Added optical summary and bokeh tabs to the analysis drawer",
+  },
+  {
+    date: "2026-05-27",
+    type: "fix",
+    summary: "Removed the duplicate beta bokeh panel from the diagram overlay controls",
+  },
+  {
+    date: "2026-05-27",
+    type: "improvement",
+    summary: "Improved fisheye bokeh and folded-mirror pupil analysis",
+  },
   // ── 2026-05-26 ──────────────────────────────────────────────────────────
   {
     date: "2026-05-26",

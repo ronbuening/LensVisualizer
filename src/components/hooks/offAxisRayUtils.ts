@@ -1,9 +1,10 @@
-import { computeStateAwareOffAxisFieldGeometry } from "../../optics/aberration/offAxis.js";
 import {
-  computeFieldGeometryAtState,
+  computeProjectionAwareOffAxisFieldGeometry,
+  isOffAxisVectorFieldGeometry,
+} from "../../optics/aberration/offAxis.js";
+import {
   eflAtZoom,
   halfFieldAtZoom,
-  solveChiefRay,
   traceRay,
   traceRayVector,
   tracingHalfFieldAtZoom,
@@ -62,37 +63,38 @@ export function computeOffAxisTraceGeometry({
   const useEdge = ENABLE_EDGE_PROJECTION && showOffAxis === "edge";
   const isFisheye = isFisheyeProjection(L.projection);
 
-  // Promote to vector-launch only when the declared off-axis field exceeds the
-  // slope-valid tracing half-field, and only for fisheye projections. Below the
-  // cap the slope path is sufficient and cheaper; rectilinear lenses keep the
-  // pre-existing safe-zone clamp.
-  const declaredOffAxisDeg = halfDeg * L.offAxisFieldFrac;
-  if (isFisheye && declaredOffAxisDeg > tracingDeg) {
-    const stateGeometry = computeFieldGeometryAtState(focusT, zoomT, L, aberrationT);
-    const solve = solveChiefRay(declaredOffAxisDeg, focusT, zoomT, L, stateGeometry, aberrationT);
-    if (!solve.vectorLaunch) return null;
+  // Fisheye lenses launch at the declared field and let the optics helper
+  // promote to vector geometry when the field exceeds the slope-safe cone.
+  // Rectilinear lenses keep the pre-existing safe-zone clamp.
+  const fieldFrac = isFisheye || halfDeg <= 0 ? L.offAxisFieldFrac : L.offAxisFieldFrac * (tracingDeg / halfDeg);
+  const geometry = computeProjectionAwareOffAxisFieldGeometry(
+    L,
+    zPos,
+    focusT,
+    zoomT,
+    fieldFrac,
+    undefined,
+    aberrationT,
+  );
+  if (geometry === null) return null;
 
-    const idealEdgeImgH = idealOffAxisImageHeight(L, zoomT, declaredOffAxisDeg);
+  if (isOffAxisVectorFieldGeometry(geometry)) {
+    const idealEdgeImgH = idealOffAxisImageHeight(L, zoomT, geometry.fieldAngleDeg);
     let edgeImgH = idealEdgeImgH;
     if (useEdge) {
-      const chiefTrace = traceRayVector(solve.vectorLaunch, zPos, undefined, false, L);
+      const chiefTrace = traceRayVector(geometry.vectorLaunch, zPos, undefined, false, L, focusT, zoomT, aberrationT);
       const chiefEndY = chiefTrace.y + chiefTrace.u * (IMG_MM - zPos[L.N - 1]);
       if (isFinite(chiefEndY)) edgeImgH = chiefEndY;
     }
     return {
       kind: "vector",
-      fieldAngleDeg: declaredOffAxisDeg,
-      vectorLaunch: solve.vectorLaunch,
+      fieldAngleDeg: geometry.fieldAngleDeg,
+      vectorLaunch: geometry.vectorLaunch,
       edgeEnd: [sx(IMG_MM), sy(edgeImgH)],
       useEdge,
     };
   }
 
-  // Slope path. Fisheye lenses within the slope-safe zone launch at the
-  // declared field directly; rectilinear lenses keep the safe-zone clamp.
-  const fieldFrac = isFisheye || halfDeg <= 0 ? L.offAxisFieldFrac : L.offAxisFieldFrac * (tracingDeg / halfDeg);
-  const geometry = computeStateAwareOffAxisFieldGeometry(L, zPos, focusT, zoomT, fieldFrac, undefined, aberrationT);
-  if (geometry === null) return null;
   const { uField, yChief, fieldAngleDeg } = geometry;
 
   const idealEdgeImgH = idealOffAxisImageHeight(L, zoomT, fieldAngleDeg);

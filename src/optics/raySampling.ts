@@ -1,3 +1,10 @@
+/**
+ * Ray sampling policy — viewport density and obstruction-aware pupil-fan helpers.
+ *
+ * Preserves authored lens ray fractions for normal mode while deriving dense/diagnostic
+ * samples for display and analysis workloads.
+ */
+
 import type { RayDensity } from "../types/state.js";
 import type { RuntimeLens } from "../types/optics.js";
 

@@ -1,3 +1,10 @@
+/**
+ * Runtime lens-state utilities — label, asphere, group, dispersion, and variable-thickness helpers.
+ *
+ * Shared by validation and runtime-lens construction to keep authored data resolution consistent before
+ * the normalized EngineLens layer is prepared.
+ */
+
 import type {
   AnnotationData,
   AsphericCoefficients,

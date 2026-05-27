@@ -34,8 +34,11 @@ LensVisualizer is a React + TypeScript app with an SVG-first optical diagram and
 - `src/components/display/` owns inspector, legend, display-domain UI, analysis modules under `analysis/`, and diagram
   overlays under `overlays/`.
 - `src/components/content/` owns article/archive/changelog cards, lists, and table-of-contents components.
+- `src/components/errors/` owns page/panel error boundaries and shared error displays.
 - `src/components/hooks/` owns viewer computation hooks and interaction-state helpers.
-- `src/optics/` owns all optical calculations and has no React dependencies.
+- `src/optics/` owns all optical calculations and has no React dependencies. See
+  [`architecture/optics-engine.md`](architecture/optics-engine.md) for the `math/`, `trace/`, `field/`, `state/`,
+  `prescription/`, `analysis/`, and diagram-geometry submodule boundaries.
 - `src/utils/` owns shared helpers, partitioned by domain: `catalog/`, `content/`, `seo/`, `state/`, `style/`, and
   `theme/`, plus root-level general utilities.
 - `src/comparison/` owns comparison-mode state, layout, sliders, and URL synchronization.
@@ -52,6 +55,10 @@ LensVisualizer is a React + TypeScript app with an SVG-first optical diagram and
   `SurfaceData.interaction` controls refract/reflect/block behavior, `innerSd` controls annular apertures, and ordinary
   lenses must retain their no-`opticalPath` sequential defaults. Folded stop/chief-ray solves must use generalized
   tracing and path-aware image-plane math rather than sequential `stopAt` shortcuts.
+- Keep folded-system complex analysis guarded until the specific path is mirror-safe. Axial cardinal overlays and
+  mirror-safe spherical/blur/pupil paths are adapted; the drawer guards coma, distortion, and vignetting, while
+  folded field curvature/astigmatism remains section-guarded inside the Aberrations tab until fixture-backed validation
+  says otherwise.
 - Keep analysis computations slider-state-aware. Do not move state-dependent analysis into `buildLens()`, which is build-time
   and infinity/default-state oriented.
 - Keep perspective-control movement in the dedicated 2D movement layer (`src/optics/lensMovement.ts`) unless the analysis

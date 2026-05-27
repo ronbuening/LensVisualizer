@@ -22,7 +22,7 @@ import {
   type SkewImagePlaneIntercept,
 } from "../optics.js";
 import type { LayoutResult, RuntimeLens } from "../../types/optics.js";
-import { computeStateAwareOffAxisFieldGeometry, traceOffAxisBundleFromSamples } from "./offAxis.js";
+import { computeProjectionAwareOffAxisFieldGeometry, traceOffAxisBundleFromSamples } from "./offAxis.js";
 import { bestFocusPlane, computeRealRayHit, PROFILE_FRACS } from "./shared.js";
 import {
   BOKEH_CIRCULAR_PUPIL_RING_SAMPLES,
@@ -359,7 +359,7 @@ function computeBokehFieldFootprintFromContext(
 ): BokehFieldResult | null {
   if (currentEPSD <= 0 || L.N < 1) return null;
 
-  const geometry = computeStateAwareOffAxisFieldGeometry(
+  const geometry = computeProjectionAwareOffAxisFieldGeometry(
     L,
     context.layout.z,
     context.focusT,

@@ -8,6 +8,7 @@
 import { useState } from "react";
 import type { RuntimeLens } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";
+import type { PreparedOpticalState } from "../../../optics/types.js";
 import type { FieldGeometryState } from "../../../optics/optics.js";
 import ComaPreviewSection from "./aberrations/ComaPreviewSection.js";
 import MeridionalComaSection from "./aberrations/MeridionalComaSection.js";
@@ -24,6 +25,7 @@ interface ComaTabProps {
   currentEPSD: number;
   currentPhysStopSD: number;
   fieldGeometry?: FieldGeometryState | null;
+  preparedState?: PreparedOpticalState | null;
 }
 
 export default function ComaTab({
@@ -36,6 +38,7 @@ export default function ComaTab({
   currentEPSD,
   currentPhysStopSD,
   fieldGeometry,
+  preparedState,
 }: ComaTabProps) {
   const { comaResult, sagittalComaResult, comaPreviewResult } = useComaData({
     L,
@@ -46,6 +49,7 @@ export default function ComaTab({
     currentEPSD,
     currentPhysStopSD,
     fieldGeometry,
+    preparedState,
   });
 
   const [comaPreviewExpanded, setComaPreviewExpanded] = useState(true);

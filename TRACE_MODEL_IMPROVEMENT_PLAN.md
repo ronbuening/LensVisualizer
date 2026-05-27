@@ -1,6 +1,8 @@
 # Trace Model Improvement Plan
 
-> **Status (2026-05-22):** Complete — legacy vertex-plane tracer removed. Retained as historical record of the rollout.
+> **Status (2026-05-26):** Historical/current-status hybrid — the projection-aware launch and bounding-sphere trace work
+> described here has shipped into `src/optics/`. Use `agent_docs/architecture/optics-engine.md` for current engine
+> boundaries; keep this file for the rationale behind fisheye/vector launch behavior.
 
 Status: revised after the PR 8 follow-ups and PR #506 landed, 2026-05-21.
 
@@ -14,9 +16,8 @@ clamp respects the declared `maxTraceFieldDeg` (Nikon Fisheye-Nikkor 6mm now rep
 a zone where slope-launched bundles still reach the image plane. PR #506 then widened the diagram path: visible
 off-axis and chromatic off-axis rays promote to bounding-sphere vector launch when the declared fisheye field
 exceeds `tracingHalfField`, while vignetting, pupil-aberration, distortion-grid, and image-height solves consume
-`solve.vectorLaunch` where the scalar slope domain is exceeded. The remaining work is visual/browser smoke,
-catalog classification audit, diagnostics/performance triage, and any future shared bundle abstraction if the
-current module-specific vector launches begin to duplicate too much policy.
+`solve.vectorLaunch` where the scalar slope domain is exceeded. Follow-up work should be tracked in a current
+agent record or backlog doc rather than treating the original rollout checklist below as active.
 
 This document explains why heavy ultra-wide and fisheye lenses stress the current optics engine, what parts of the
 trace model need to change, and how to stage the work without destabilizing ordinary rectilinear lenses.
@@ -291,7 +292,8 @@ That distinction matters per analysis view:
 - Off-axis aberrations: should sample object field angles directly or through projection-aware image positions.
 - Vignetting: should launch chief and pupil rays for the selected object angle without assuming a finite tangent slope.
 - Pupil aberration: should solve entrance/exit pupil mapping using vector rays, especially off axis.
-- Bokeh: should sample bundles around a chief ray defined in vector space, not around a meridional slope only.
+- Bokeh: samples off-axis bundles around projection-aware chief rays and promotes to vector launch when the scalar
+  meridional slope is out of domain.
 - Diagram rendering: should be allowed to show a safe representative subset when the real full field exceeds the
   displayable forward trace domain.
 
@@ -579,7 +581,7 @@ c707fe9  Restrict tracingHalfField safety margin to fisheyes only           (rec
   [exactSurfaceTrace.ts](src/optics/internal/exactSurfaceTrace.ts) still rejects rays with
   `|direction[2]| <= 1e-12`. Only reached via `ghost: true` visualization (not used by chief-ray
   solving); it remains a polish task for diagnostic/ghost visualization edge cases.
-- **Vector-launch policy is still module-specific.** Vignetting, pupil-aberration, distortion-grid, image-height,
+- **Vector-launch policy is still module-specific.** Bokeh, vignetting, pupil-aberration, distortion-grid, image-height,
   visible off-axis, and chromatic off-axis paths all consume vector launches where needed, but there is no shared
   `buildRayBundleForField()` abstraction yet. Keep that deferred until duplication becomes painful.
 - **Catalog audit.** Walk every catalog lens; any with `fullFieldDeg ≥ 100` and missing
@@ -948,6 +950,8 @@ Already covered by tests in tree (post commits `be230d1`, `7ca5706`, `0a2442c`):
   ([exactSurfaceTraceVector.test.ts](__tests__/src/optics/exactSurfaceTraceVector.test.ts)).
 - Fisheye off-axis diagram geometry promoting to vector launch
   ([useOffAxisRays.test.ts](__tests__/src/components/hooks/useOffAxisRays.test.ts)).
+- Projection-aware off-axis bokeh footprint coverage
+  ([bokeh.test.ts](__tests__/src/optics/aberration/bokeh.test.ts)).
 
 Still useful to add:
 

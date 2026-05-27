@@ -1,19 +1,21 @@
 # Exact Surface Ray-Tracing Migration State
 
-> **Status (2026-05-22):** Complete — legacy vertex-plane tracer removed. Retained as historical record of the rollout.
+> **Status (2026-05-26):** Historical — exact surface tracing is now the only runtime trace path. The legacy
+> vertex-plane tracer, trace-mode switch, and per-lens rollout controls described below were removed after the rollout.
+> Use `agent_docs/architecture/optics-engine.md` as the current source of truth.
 
 ## Summary
 
-Exact surface tracing is now the default production path for public runtime tracing and real-ray-derived optical
-geometry. The central rollout switch remains in `src/optics/traceMode.ts`:
+Exact surface tracing is now the production path for public runtime tracing and real-ray-derived optical geometry.
+During the rollout, the temporary central switch lived in `src/optics/traceMode.ts`:
 
 - `SURFACE_TRACE_ROLLOUT_MODE: "legacy" | "exact" | "per-lens"`.
 - `EXACT_SURFACE_TRACE_LENS_KEYS` for controlled per-lens rollout if the mode is changed back to `"per-lens"`.
 - `resolveSurfaceTraceMode(L, requestedMode?)`, where explicit `{ mode: "legacy" | "exact" }` test/comparison requests
   override the rollout config.
 
-Current working-tree note: `SURFACE_TRACE_ROLLOUT_MODE` is set to `"exact"`, so default public trace calls and migrated
-real-ray geometry helpers resolve to exact mode. Legacy and per-lens modes remain available for comparison and rollback.
+Current working-tree note: `src/optics/traceMode.ts` no longer exists. Legacy and per-lens modes are not available for
+comparison or rollback; rollback is now a normal git-level revert or focused current-engine fix.
 
 ## Implemented State
 

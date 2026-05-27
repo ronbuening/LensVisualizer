@@ -22,7 +22,6 @@ export default function LensDiagramLoadedState({
   adapters,
   interactions,
   analysisContent,
-  bokehPreviewContent,
   groupMovementContent,
   header,
 }: LensDiagramLoadedStateProps) {
@@ -96,7 +95,6 @@ export default function LensDiagramLoadedState({
     flashFading,
     analysisDrawerOpen,
     analysisDrawerTab,
-    bokehPreviewOpen,
     groupMovementOpen,
     focusExpanded,
     apertureExpanded,
@@ -188,13 +186,11 @@ export default function LensDiagramLoadedState({
             onSvgTouchStart={zoomHook.handleTouchStart}
             onSvgTouchMove={zoomHook.handleTouchMove}
             onSvgTouchEnd={zoomHook.handleTouchEnd}
-            showBokehPreview={bokehPreviewOpen}
-            onBokehPreviewToggle={adapters.onBokehPreviewToggle}
-            bokehPreviewContent={bokehPreviewContent}
             showGroupMovement={groupMovementOpen}
             onGroupMovementClose={adapters.onGroupMovementClose}
             groupMovementContent={groupMovementContent}
             analysisContent={analysisContent}
+            onOpenAsphericCompare={overlays.openAsphCompare}
           />
 
           {showControls && !zoomPanActive && (

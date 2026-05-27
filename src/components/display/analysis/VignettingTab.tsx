@@ -7,10 +7,12 @@
  */
 
 import { useMemo } from "react";
-import { analysisJobs } from "../../../optics/analysisJobs.js";
+import { analysisJobsForState2 } from "../../../optics/compat.js";
 import { probe } from "../../../utils/perfProbe.js";
 import VignettingChart from "./VignettingChart.js";
 import { AnalysisMetricRow } from "./analysisUi.js";
+import usePreparedAnalysisState from "./usePreparedAnalysisState.js";
+import type { PreparedOpticalState } from "../../../optics/types.js";
 import type { RuntimeLens } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";
 import type { FieldGeometryState } from "../../../optics/optics.js";
@@ -18,41 +20,38 @@ import type { FieldGeometryState } from "../../../optics/optics.js";
 interface VignettingTabProps {
   L: RuntimeLens;
   t: Theme;
-  zPos: number[];
   focusT: number;
   zoomT: number;
   aberrationT?: number;
   currentEPSD: number;
   currentPhysStopSD: number;
   fieldGeometry?: FieldGeometryState | null;
+  preparedState?: PreparedOpticalState | null;
 }
 
 export default function VignettingTab({
   L,
   t,
-  zPos,
   focusT,
   zoomT,
   aberrationT = 0,
   currentEPSD,
   currentPhysStopSD,
   fieldGeometry,
+  preparedState: preparedStateProp,
 }: VignettingTabProps) {
+  const preparedState = usePreparedAnalysisState({ L, focusT, zoomT, aberrationT, preparedState: preparedStateProp });
   const samples = useMemo(
     () =>
       probe("computeVignettingCurve", () =>
-        analysisJobs.computeVignettingCurve(
-          L,
-          zPos,
-          focusT,
-          zoomT,
+        analysisJobsForState2.computeVignettingCurve(
+          preparedState,
           currentEPSD,
           currentPhysStopSD,
           fieldGeometry ?? undefined,
-          aberrationT,
         ),
       ),
-    [L, zPos, focusT, zoomT, aberrationT, currentEPSD, currentPhysStopSD, fieldGeometry],
+    [preparedState, currentEPSD, currentPhysStopSD, fieldGeometry],
   );
 
   if (samples.length < 2) {

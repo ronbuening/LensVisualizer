@@ -127,7 +127,16 @@ export function computeVignettingCurve(
       const pupilFrac = -1 + (2 * j) / (nPupil - 1);
       const pupilOffset = pupilFrac * currentEPSD;
       const trace = solve.vectorLaunch
-        ? traceRayVector(offsetVectorFieldRay(solve.vectorLaunch, 0, pupilOffset), zPos, currentPhysStopSD, true, L)
+        ? traceRayVector(
+            offsetVectorFieldRay(solve.vectorLaunch, 0, pupilOffset),
+            zPos,
+            currentPhysStopSD,
+            true,
+            L,
+            focusT,
+            zoomT,
+            aberrationT,
+          )
         : traceRay(yChief + pupilOffset, uField, zPos, focusT, zoomT, currentPhysStopSD, true, L, aberrationT);
       if (!trace.clipped) surviving++;
     }

@@ -60,6 +60,8 @@ Existing tests cover:
 - Component smoke tests for pages, controls, display panels, analysis drawer, and comparison layout.
 - Script regressions for metadata, route sync, lens-data helpers, sitemap/prerender support.
 - Generated authoring reports, including glass queues and the hidden mirror fixture report.
+- Benchmark report aggregation helpers. The expensive optics/rendering benchmark itself is manual-only and is not part of
+  the normal Vitest suite.
 
 ## Refactor Test Expectations
 
@@ -85,3 +87,15 @@ npm run format:check
 npm run lint
 npm run test
 ```
+
+## Benchmark Verification
+
+The optics/rendering benchmark command is intentionally opt-in:
+
+```bash
+npm run benchmark:optics-rendering
+```
+
+Use `npm run benchmark:optics-rendering -- --dry-run` when changing benchmark code and you only need to validate module
+loading, schema construction, and default lens keys. Use `--report-only` after changing report formatting so the
+Markdown report is regenerated from existing run JSON without creating another benchmark record.

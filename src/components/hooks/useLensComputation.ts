@@ -10,18 +10,18 @@
 import { useMemo, useRef } from "react";
 import { LENS_CATALOG } from "../../utils/catalog/lensCatalog.js";
 import buildLens from "../../optics/buildLens.js";
+import { computeCardinalElementsAtState, type CardinalElements } from "../../optics/cardinalElements.js";
+import { computeElementShapes, createCoordinateTransforms } from "../../optics/diagramGeometry.js";
+import { clampLensMovement, createLensMovementTransform } from "../../optics/lensMovement.js";
 import {
-  thick,
+  computeAnalysisFieldGeometryAtState,
   doLayout,
+  effectiveFNumber,
+  eflAtFocus,
   entrancePupilAtState,
   fopenAtZoom,
-  eflAtFocus,
-  effectiveFNumber,
-  computeAnalysisFieldGeometryAtState,
+  thick,
 } from "../../optics/optics.js";
-import { computeCardinalElementsAtState, type CardinalElements } from "../../optics/cardinalElements.js";
-import { createCoordinateTransforms, computeElementShapes } from "../../optics/diagramGeometry.js";
-import { clampLensMovement, createLensMovementTransform } from "../../optics/lensMovement.js";
 import type { RuntimeLens, ElementShape, CoordinateTransforms } from "../../types/optics.js";
 import type { LensMovementTransform, ResolvedLensMovement } from "../../optics/lensMovement.js";
 import type { FieldGeometryState } from "../../optics/optics.js";

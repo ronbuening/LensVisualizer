@@ -42,6 +42,7 @@ import NikonAF28f14DRaw from "../../../src/lens-data/nikon/NikonAF28f14D.data.js
 import type { RuntimeLens, LensData } from "../../../src/types/optics.js";
 import type { OffAxisFieldGeometry } from "../../../src/optics/aberration/offAxis.js";
 import { bestRelativeFocusPlane } from "../../../src/optics/aberration/shared.js";
+import { buildSimplePositiveElementLens } from "./testLensFixtures.js";
 
 /* ── Helpers ── */
 
@@ -161,18 +162,7 @@ function standardizedFieldFocusAt(
 }
 
 function mkSingleElement(): RuntimeLens {
-  return {
-    S: [
-      { label: "1", R: 50, nd: 1.5168, sd: 15, d: 5, elemId: 1 },
-      { label: "2", R: -50, nd: 1.0, sd: 15, d: 80, elemId: 1 },
-    ],
-    N: 2,
-    stopIdx: 0,
-    clipMargin: 1.0,
-    rayLead: 5,
-    asphByIdx: {},
-    varByIdx: {},
-  } as unknown as RuntimeLens;
+  return buildSimplePositiveElementLens("test-aberration-single-element");
 }
 
 describe("computeSphericalAberration", () => {
@@ -251,7 +241,7 @@ describe("computeSphericalAberration", () => {
 
   it("simple positive element reports negative SA for undercorrected spherical aberration", () => {
     const L = mkSingleElement();
-    const zPos = [0, 5];
+    const { z: zPos } = doLayout(0, 0, L);
 
     const result = computeSphericalAberration(L, zPos, 0, 0, 12, 15);
     expect(result).not.toBeNull();
@@ -492,7 +482,7 @@ describe("computeSAProfile", () => {
 
   it("simple positive element profile goes negative toward the margin", () => {
     const L = mkSingleElement();
-    const zPos = [0, 5];
+    const { z: zPos } = doLayout(0, 0, L);
 
     const profile = computeSAProfile(L, zPos, 0, 0, 12, 15);
     expect(profile.length).toBeGreaterThan(1);
@@ -534,7 +524,7 @@ describe("computeSAProfile", () => {
 
   it("returns empty array when fewer than two zone samples survive clipping", () => {
     const L = mkSingleElement();
-    const zPos = [0, 5];
+    const { z: zPos } = doLayout(0, 0, L);
 
     const profile = computeSAProfile(L, zPos, 0, 0, 12, 0.5);
     expect(profile).toEqual([]);
@@ -575,7 +565,7 @@ describe("computeSAProfile", () => {
 describe("computeSphericalAberrationBlurCharacter", () => {
   it("derives opposite front/rear blur bias for an undercorrected simple positive element", () => {
     const L = mkSingleElement();
-    const zPos = [0, 5];
+    const { z: zPos } = doLayout(0, 0, L);
     const baseResult = computeSphericalAberration(L, zPos, 0, 0, 12, 15);
     const blurCharacter = computeSphericalAberrationBlurCharacter(L, zPos, 0, 0, 12, 15, baseResult, 0);
 
@@ -644,9 +634,9 @@ describe("computeMeridionalComa", () => {
 
   it("returns null when clipping removes one side of the pupil fan", () => {
     const L = mkSingleElement();
-    const zPos = [0, 5];
+    const { z: zPos } = doLayout(0, 0, L);
 
-    const result = computeMeridionalComa(L, zPos, 0, 0, 12, 1);
+    const result = computeMeridionalComa(L, zPos, 0, 0, 12, 0.05);
     expect(result).toBeNull();
   });
 
@@ -811,7 +801,7 @@ describe("computeComaPreview", () => {
 
   it("returns null when fewer than two preview tiles are usable", () => {
     const L = mkSingleElement();
-    const zPos = [0, 5];
+    const { z: zPos } = doLayout(0, 0, L);
 
     const result = computeComaPreview(L, zPos, 0, 0, 12, 0.2);
     expect(result).toBeNull();
@@ -921,7 +911,7 @@ describe("computeComaPointCloudPreview", () => {
 
   it("returns null when fewer than two point-cloud preview tiles are usable", () => {
     const L = mkSingleElement();
-    const zPos = [0, 5];
+    const { z: zPos } = doLayout(0, 0, L);
 
     const result = computeComaPointCloudPreview(L, zPos, 0, 0, 12, 0.2);
     expect(result).toBeNull();

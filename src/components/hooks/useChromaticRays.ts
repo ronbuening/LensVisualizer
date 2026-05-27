@@ -195,6 +195,9 @@ export default function useChromaticRays({
                       true,
                       L,
                       ch,
+                      focusT,
+                      zoomT,
+                      aberrationT,
                     )
                   : traceRayChromatic(
                       geometry.yChief + h,

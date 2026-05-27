@@ -386,6 +386,8 @@ type DistortionGridLaunchSlope = Extract<DistortionGridLaunch, { kind: "slope" }
 function traceDistortionGridPointVector(
   launch: DistortionGridLaunchVector,
   reference: DistortionReference,
+  focusT: number,
+  zoomT: number,
   currentPhysStopSD: number,
   L: RuntimeLens,
   aberrationT: number,
@@ -398,7 +400,7 @@ function traceDistortionGridPointVector(
     aberrationT,
   );
   if (vectorLaunch === null) return null;
-  return traceSkewRayVector(vectorLaunch, reference.zPos, currentPhysStopSD, true, L);
+  return traceSkewRayVector(vectorLaunch, reference.zPos, currentPhysStopSD, true, L, focusT, zoomT, aberrationT);
 }
 
 // The slope launch starts from the paraxial EP; pupil aberration is applied
@@ -478,7 +480,7 @@ function traceDistortionGridPoint(
 
   const trace =
     launch.kind === "vector"
-      ? traceDistortionGridPointVector(launch, reference, currentPhysStopSD, L, aberrationT)
+      ? traceDistortionGridPointVector(launch, reference, focusT, zoomT, currentPhysStopSD, L, aberrationT)
       : traceDistortionGridPointSlope(
           launch,
           reference,

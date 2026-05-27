@@ -1,3 +1,10 @@
+/**
+ * Runtime layout helpers — state-aware surface positions, sag, zoom, and first-order values.
+ *
+ * Adapts the prepared optics-engine state back to the legacy RuntimeLens helper names used by
+ * diagram rendering and analysis panels.
+ */
+
 import type { LayoutResult, RuntimeLens } from "../types/optics.js";
 import { buildStateSurfaces, resolveControlledThickness } from "./internal/lensState.js";
 import { conicPolySag, sag, sagSlopeRaw } from "./internal/surfaceMath.js";

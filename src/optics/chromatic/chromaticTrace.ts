@@ -1,0 +1,73 @@
+/**
+ * Chromatic trace adapter — exact tracing with wavelength-specific refractive indices.
+ *
+ * Converts prepared-state dispersion resolvers into RGB/V ray traces and channel spread summaries for UI displays.
+ */
+
+import type { ChromaticChannel, ChromaticSpread, RayTraceResult, RuntimeLens } from "../../types/optics.js";
+import type { Ray3, PreparedOpticalState } from "../types.js";
+import {
+  traceEngineRay2,
+  traceRayChromatic2,
+  traceRayVectorChromatic2,
+  traceSkewRayChromatic2,
+  traceSkewRayVectorChromatic2,
+} from "../trace/rayAdapters.js";
+import type { TraceOptions, EngineTraceResult } from "../trace/types.js";
+import type { VectorRayTraceInput2 } from "../trace/rayAdapters.js";
+import { channelIndexResolverForState2 } from "./indexResolver.js";
+
+interface MarginalRayData {
+  y: number;
+  u: number;
+  clipped: boolean;
+}
+
+function spanOf(values: number[]): number {
+  if (values.length < 2) return 0;
+  return Math.max(...values) - Math.min(...values);
+}
+
+export function traceEngineRayChromatic2(
+  state: PreparedOpticalState,
+  input: Ray3,
+  channel: ChromaticChannel,
+  options: TraceOptions = {},
+): EngineTraceResult {
+  return traceEngineRay2(state, input, {
+    ...options,
+    indexAtSurface: channelIndexResolverForState2(state, channel),
+  });
+}
+
+export function computeChromaticSpread2(
+  marginalRays: Partial<Record<ChromaticChannel, MarginalRayData>>,
+  imgZ: number,
+  lastSurfZ: number,
+): ChromaticSpread {
+  const intercepts: Partial<Record<ChromaticChannel, number>> = {};
+  const imgHeights: Partial<Record<ChromaticChannel, number>> = {};
+  for (const ch of ["R", "G", "B", "V"] as ChromaticChannel[]) {
+    const ray = marginalRays[ch];
+    if (!ray || ray.clipped) continue;
+    if (Math.abs(ray.u) > 1e-15) {
+      intercepts[ch] = lastSurfZ - ray.y / ray.u;
+    }
+    const dz = imgZ - lastSurfZ;
+    imgHeights[ch] = ray.y + dz * ray.u;
+  }
+
+  const lcaMm = spanOf(Object.values(intercepts));
+  const tcaMm = spanOf(Object.values(imgHeights));
+  return { lcaMm, tcaMm, intercepts, imgHeights };
+}
+
+export {
+  traceRayChromatic2,
+  traceRayVectorChromatic2,
+  traceSkewRayChromatic2,
+  traceSkewRayVectorChromatic2,
+  type VectorRayTraceInput2,
+};
+
+export type { ChromaticChannel, ChromaticSpread, RayTraceResult, RuntimeLens };

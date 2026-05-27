@@ -5,8 +5,13 @@ validation, and diagram geometry.
 
 ## Core Rule
 
-`src/optics/` has no React dependencies. Helpers accept the runtime lens object `L` and slider-derived state explicitly.
-Do not introduce hidden module-level optical state.
+`src/optics/` is the authoritative optics engine. Stable app and test imports should use the public files in
+`src/optics/*` where practical, while engine-native work can import focused submodules such as `src/optics/trace/`,
+`src/optics/field/`, and `src/optics/state/`. The Stage 05 rollback/parity safe window is closed: old engine files,
+parity-only tests, and the old-vs-new benchmark harness have been removed.
+
+Pure optics modules have no React dependencies. Helpers accept the runtime lens object `L` or a
+`PreparedOpticalState` plus slider-derived state explicitly. Do not introduce hidden module-level optical state.
 
 State-dependent analysis must remain outside `buildLens()`. `buildLens()` constructs build-time/runtime constants from
 lens data; analysis tabs use current focus, zoom, and aperture state.
@@ -15,9 +20,16 @@ lens data; analysis tabs use current focus, zoom, and aperture state.
 
 | Module | Purpose |
 | --- | --- |
-| `buildLens.ts` | Validates lens data and constructs frozen `RuntimeLens` objects. |
-| `optics.ts` | Ray tracing, sag curves, layout, zoom interpolation, pupil geometry, chromatic tracing, chief ray solver. |
-| `diagramGeometry.ts` | SVG coordinate transforms, element shape/render diagnostics, aspheric overlay paths, and second-surface mirror coating accent paths. |
+| `src/optics/prescription/` | Lens-data normalization, runtime-lens conversion, labels, variables, aspheres, interactions, groups, and dispersion descriptors. |
+| `src/optics/state/` | `PreparedOpticalState` compilation and caches for current focus/zoom/aberration state. Caches must include every optical input that changes results. |
+| `src/optics/math/` | Vector math, paraxial stepping, surface profiles, and surface intersection routines. Engine-native failures use typed statuses. |
+| `src/optics/trace/` | Sequential and generalized/folded exact tracing, aperture checks, stop tracing, runtime result adapters, and folded diagnostics. |
+| `src/optics/field/` | Projection-aware field launch, chief-ray solving, entrance-pupil state, field/image-height inversion, and chief-ray diagnostics. |
+| `src/optics/first-order/` | System matrix, cardinal elements, focus breathing, effective f-number, and first-order pupil helpers. |
+| `src/optics/chromatic/` | Wavelength/index resolution, chromatic tracing, dispersion adapters, and quality summaries. |
+| `src/optics/diagram/` | SVG coordinate transforms, element shape/render diagnostics, aspheric overlay paths, and second-surface mirror coating accent paths. |
+| `src/optics/analysis/` | Analysis facades and state-aware wrappers for summary metrics, aberration, distortion, vignetting, pupil, bokeh, group movement, and LCA display helpers. |
+| `src/optics/buildLens.ts`, `src/optics/optics.ts`, focused `src/optics/*.ts` public modules | Stable import paths for app code and tests over the engine implementation. |
 | `lensMovement.ts` | Pure 2D perspective-control movement helpers for clamping shift/tilt and transforming rendered points/rays. |
 | `groupMovement.ts` | Pure inferred lens-group axial movement profiles for focus, zoom, and combined overlay views. Uses fixed-image-plane anchoring and group-center positions relative to the focus plane. |
 | `validateLensData.ts` | Runtime lens-data validation. |
@@ -25,7 +37,7 @@ lens data; analysis tabs use current focus, zoom, and aperture state.
 | `chiefRayDiagnostics.ts` | Structured counter for chief-ray solve outcomes. `recordChiefRayStatus(lensKey, status)` is wired into `solveChiefRay`; `getChiefRayDiagnostics()` returns a `Map<lensKey, { converged, paraxial-fallback, bracket-failed, out-of-domain }>` snapshot for audit scripts. Dev-only `console.warn` for fallbacks is preserved. |
 | `raySampling.ts` | Viewport ray-density sampling for normal/dense/diagnostic ray fans, plus `isHeavyLensForRayWork(L)` — the shared heuristic for heavy-lens density downgrades (fisheye OR `N ≥ 32` OR `maxSD ≥ 50 mm` OR `halfField ≥ 40°`). |
 | `lcaScaling.ts` | Fixed-reference LCA bar offset scaling. |
-| `analysisJobs.ts` | Analysis facade. Currently synchronous; prepared for module-worker migration. |
+| `analysisJobs.ts` | Runtime and prepared-state analysis job facades. Currently synchronous; prepared for module-worker migration. |
 | `cardinalElements.ts` | State-aware first-order/cardinal element calculations for F/F′, H/H′, N/N′ and axial spans. |
 | `distortionAnalysis.ts` | Rectilinear distortion curve and traced 2D field grid. |
 | `vignetteAnalysis.ts` | Vignetting / relative illumination curve. |
@@ -37,7 +49,12 @@ lens data; analysis tabs use current focus, zoom, and aperture state.
 
 ## buildLens.ts
 
-`buildLens(data)` validates lens data and constructs a frozen `RuntimeLens` with:
+`buildLens(data)` is the stable public constructor and delegates to `buildLens2` in `src/optics/compat.ts`.
+The promoted runtime builder lives in `src/optics/runtimeLens.ts`. The returned `RuntimeLens` keeps the existing UI and
+lens-data contract, while `engineLensFromRuntime()` and `prepareRuntimeState()` recover the engine-native `EngineLens`
+and `PreparedOpticalState` for tracing and analysis.
+
+The constructor validates lens data and constructs a frozen `RuntimeLens` with:
 
 - Effective focal length, entrance pupil, field angle, total track, Petzval sum, and scale constants.
 - Zoom metadata: positions, EFLs, EPs, half-fields, tracing half-fields, y-ratios, and back focal distances.
@@ -65,6 +82,10 @@ value so rendered ray bundles stay safely within what real surfaces can carry.
 
 ## optics.ts
 
+`src/optics/optics.ts` is the stable barrel for commonly consumed pure optics helpers. Continue importing from this
+stable path in app code unless working inside the engine itself. Import from deeper `src/optics/**` engine modules only
+for engine-native work or focused tests that need prepared-state APIs.
+
 Major public helpers:
 
 - Sag curves: `sag()`, `renderSag()`, `sagSlope()`, `sagSlopeRaw()`.
@@ -80,8 +101,8 @@ Major public helpers:
   / `bracket-failed` / `out-of-domain` + iteration count + `launchSurface: "object-plane" \| "bounding-sphere"`),
   memoized per-lens via `WeakMap` keyed on focusT / zoomT / aberrationT / fieldAngleDeg / launchSurface. The solver dispatches on `launchSurfaceForFieldDeg(fieldDeg, projection)`:
   **fisheye projections always route through `solveChiefRayBoundingSphere`** regardless of angle, exercising
-  the bounding-sphere code on every fisheye solve in the catalog (parity tests prove bit-identical results
-  vs object-plane at θ < 89°). Rectilinear projections keep cap-based dispatch: object-plane below
+  the bounding-sphere code on every fisheye solve in the catalog. Rectilinear projections keep cap-based dispatch:
+  object-plane below
   `MAX_FIELD_LAUNCH_DEG` (89°), bounding-sphere at/above. The bounding-sphere bisection varies the
   EP-crossing y `yEP` and traces directly via `traceExactSurfaceStackVector`; both paths return `yLaunch`
   projected to z=0 for semantic consistency. Callers that only need a scalar launch height should read
@@ -148,11 +169,11 @@ Folded systems opt into the generalized exact tracer through lens data, not thro
 `internal/exactSurfaceTrace.ts` to inspect generalized-path details such as hit labels, terminal direction, final medium,
 and whether the explicit image plane was reached.
 
-Analysis support is deliberately incremental. Spherical aberration and mirror-safe blur/bokeh helpers use generalized
-image-plane intersections where valid, folded visible off-axis geometry uses generalized stop/chief-ray solves, and
-axial folded reflective systems can report first-order cardinal overlays. Complex tabs that still need a settled folded
-interpretation, such as coma, distortion, vignetting, field curvature, and pupils, remain guarded in the UI until each
-tab has fixture-backed validation.
+Analysis support is deliberately incremental. Spherical aberration, pupil aberration, and mirror-safe blur/bokeh helpers
+use generalized image-plane intersections where valid, folded visible off-axis geometry uses generalized stop/chief-ray
+solves, and axial folded reflective systems can report first-order cardinal overlays. Complex tabs that still need a
+settled folded interpretation, such as coma, distortion, vignetting, and field curvature, remain guarded in the UI until
+each tab has fixture-backed validation.
 
 ## Field-Launch Convention
 
@@ -174,9 +195,9 @@ from a bounding sphere centered near the entrance pupil. The chief-ray solver au
 via `launchSurfaceForFieldDeg(fieldDeg, projection)`, and fisheye projections use the bounding-sphere path at
 every field angle. Vector-aware callers consume `solve.vectorLaunch` directly: visible off-axis and chromatic
 diagram rays promote to vector launch when the declared fisheye off-axis field exceeds `tracingHalfField`;
-vignetting and pupil-aberration loops trace vector rays when the scalar slope is out of domain; the distortion
-field grid traces vector skew rays for fisheye angular cells beyond the slope cap. Scalar-only logic must still
-check `projectionLaunchSlopeForField(...).status` before using `uField`.
+bokeh footprint sampling, vignetting, and pupil-aberration loops trace vector rays when the scalar slope is out of
+domain; the distortion field grid traces vector skew rays for fisheye angular cells beyond the slope cap.
+Scalar-only logic must still check `projectionLaunchSlopeForField(...).status` before using `uField`.
 
 ## Ray Sampling Policy
 
@@ -194,6 +215,22 @@ uses it to downgrade interactive diagram ray density during slider drag; analysi
 pupil sweep / pupil-correction sample counts on heavy lenses regardless of interaction state. Reuse this
 helper instead of reimplementing the criteria.
 
+## Performance And Rollback
+
+Stage 05 benchmark results remain as a historical record in
+`agent_docs/records/optics-2-stage-05-performance.md`. The comparison harness and old engine references were removed
+when the migration safe window closed. Future performance work should use focused benchmarks or production profiling
+against the current `src/optics` engine; do not reintroduce an in-tree old-vs-new selector.
+
+Current focused benchmarks live under `agent_docs/benchmarks/` and are run manually with
+`npm run benchmark:optics-rendering`. Each real run writes one permanent JSON record under
+`agent_docs/benchmarks/runs/`, and `agent_docs/benchmarks/benchmark-report.md` summarizes the latest 10 records. The
+benchmark covers lens building, current-state layout, ray tracing, generic analysis work, static SVG rendering, and
+aberration-panel data/rendering categories.
+
+Rollback is now a normal git-level revert of the migration commit or a focused fix to the current engine with regression
+coverage. There are no retained `*Legacy.ts` engine files to switch back to.
+
 ## Cardinal Elements
 
 `cardinalElements.ts` computes the Tier 1 first-order overlay from the current focus and zoom state. It uses current
@@ -210,13 +247,13 @@ Use explicit naming:
 
 - `computeParaxialOffAxisFieldGeometry()` - first-order/paraxial geometry for compatibility and comparisons.
 - `computeStateAwareOffAxisFieldGeometry()` - current focus/zoom-aware geometry using solved chief-ray behavior.
-- `computeOffAxisFieldGeometry` remains as a legacy compatibility alias for paraxial geometry.
+- `computeOffAxisFieldGeometry` remains as a backward-compatible alias for paraxial geometry.
 
 Visible off-axis rays, chromatic off-axis rays, distortion, vignetting, pupil aberration, coma, and bokeh use the
 state-aware solved-chief-ray path where current focus/zoom can move pupil geometry. Folded callers that need the stop
 height use generalized stop tracing rather than sequential `stopAt`, and folded image-plane coordinates use the same
-plane-normal intersection helper as sequential callers. Keep legacy paraxial behavior only where the UI or test
-explicitly needs first-order comparison.
+  plane-normal intersection helper as sequential callers. Keep paraxial behavior only where the UI or test explicitly
+  needs first-order comparison.
 
 ## Perspective-Control Movement
 
@@ -304,7 +341,8 @@ to finite slope launches and fall back to neutral correction when no scalar refe
 - `buildBokehRadialProfile()` - annular brightness profile.
 - `buildBokehDensityGrid()` - retained for future full-density/PSF visualizations.
 
-The traced image-plane point cloud is the source of truth; radial profiles are derived summaries.
+The traced image-plane point cloud is the source of truth; radial profiles are derived summaries. Off-axis bokeh
+footprints use projection-aware field geometry and vector launches for fisheye/past-cap fields when available.
 
 ## Aspheric Comparison
 

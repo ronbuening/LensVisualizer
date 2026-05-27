@@ -46,7 +46,7 @@ in comparison orchestration and passed into diagram panels as explicit per-panel
 
 Compare routes use `/compare/:slugA/:slugB`; lens identity does not move into query params. Shared sliders use the
 stable `focus`, `aperture`, `zoom`, `shift`, and `tilt` params. Shared overlay/view state uses the v1 params from
-`lensViewUrlState.ts`: `gm`, `lca`, `ptz`, `bo`, `ad`, and `tab` apply to both panes, while selected elements are
+`lensViewUrlState.ts`: `gm`, `lca`, `ptz`, `ad`, and `tab` apply to both panes, while selected elements are
 pane-specific via `a_el` and `b_el`. URL helpers live in `comparisonURLSync.ts`,
 `src/utils/state/parseComparisonParams.ts`, and `src/utils/state/lensViewUrlState.ts`. All URL writes flow through one
 100 ms-debounced callback in `src/utils/state/useURLSync.ts`.

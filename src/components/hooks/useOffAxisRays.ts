@@ -87,6 +87,9 @@ export default function useOffAxisRays({
                 currentPhysStopSD,
                 true,
                 L,
+                focusT,
+                zoomT,
+                aberrationT,
               )
             : traceRay(
                 geometry.yChief + h,

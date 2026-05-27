@@ -1,3 +1,10 @@
+/**
+ * Legacy sag-surface intersection — exact ray/surface solver over RuntimeLens-shaped data.
+ *
+ * Supports the internal exact trace path that predates EngineLens profiles while preserving detailed
+ * failure reasons for regression tests and diagnostics.
+ */
+
 import type { AsphericCoefficients } from "../../types/optics.js";
 import { FLAT_R_THRESHOLD, conicPolySag, sagSlopeRaw } from "./surfaceMath.js";
 
@@ -68,12 +75,30 @@ interface SurfaceEvaluation {
   derivative: number;
 }
 
+/**
+ * Normalize a 3D direction vector for the legacy exact tracer.
+ *
+ * @param vector - x/y/z direction components
+ * @returns unit vector, or null when the input has no finite direction
+ */
 export function normalizeVector3([x, y, z]: Vector3): Vector3 | null {
   const length = Math.hypot(x, y, z);
   if (!isFinite(length) || length <= 0) return null;
   return [x / length, y / length, z / length];
 }
 
+/**
+ * Compute the outward normal for a sag-surface hit.
+ *
+ * The normal is built from dz/dx and dz/dy so spherical and aspheric surfaces
+ * share the same sign convention used by vector Snell/reflection.
+ *
+ * @param x - sagittal hit coordinate in mm
+ * @param y - meridional hit coordinate in mm
+ * @param surfaceIdx - zero-based surface index
+ * @param L - RuntimeLens-shaped surface/asphere lookup
+ * @returns normalized surface normal
+ */
 export function surfaceNormalAtHit(x: number, y: number, surfaceIdx: number, L: SurfaceIntersectionLens): Vector3 {
   const radius = Math.hypot(x, y);
   if (radius < 1e-12) return [0, 0, 1];
@@ -86,6 +111,19 @@ export function surfaceNormalAtHit(x: number, y: number, surfaceIdx: number, L: 
   return [-dzdx * invMag, -dzdy * invMag, invMag];
 }
 
+/**
+ * Intersect a ray with one spherical or aspheric sag surface.
+ *
+ * Solves f(t) = z_ray(t) - (vertexZ + sag(r(t))) with bracketed Newton
+ * iteration; flat surfaces fall back to an analytic plane intersection.
+ *
+ * @param ray - origin and direction in engine coordinates
+ * @param surfaceIdx - zero-based surface index
+ * @param vertexZ - surface vertex position in mm
+ * @param L - RuntimeLens-shaped surface/asphere lookup
+ * @param options - search bounds, tolerances, and optional optical-path index
+ * @returns hit geometry or typed failure diagnostics
+ */
 export function intersectSagSurface(
   ray: SurfaceIntersectionRay,
   surfaceIdx: number,
@@ -213,6 +251,8 @@ function evaluateSurface(
   const radius = Math.hypot(x, y);
   const sag = conicPolySag(radius, L.S[surfaceIdx].R, L.asphByIdx[surfaceIdx]);
   const slope = sagSlopeRaw(radius, L.S[surfaceIdx].R, L.asphByIdx[surfaceIdx]);
+  /* Chain rule for the sag equation:
+   * f(t) = z_ray - z_surface, df/dt = dz/dt - (dz/dr)*(dr/dt). */
   const drdt = radius > 1e-12 ? (x * direction[0] + y * direction[1]) / radius : 0;
   const value = z - (vertexZ + sag);
   const derivative = direction[2] - slope * drdt;

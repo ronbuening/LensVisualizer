@@ -4,7 +4,16 @@ import {
   traceExactSurfaceStack,
   traceExactSurfaceStackVector,
 } from "../../../src/optics/internal/exactSurfaceTrace.js";
-import { doLayout, solveChiefRay, traceRay, traceRayVector } from "../../../src/optics/optics.js";
+import {
+  doLayout,
+  solveChiefRay,
+  traceRay,
+  traceRayChromatic,
+  traceRayVector,
+  traceRayVectorChromatic,
+  traceSkewRay,
+  traceSkewRayVector,
+} from "../../../src/optics/optics.js";
 import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 import type { RuntimeLens } from "../../../src/types/optics.js";
 
@@ -111,6 +120,59 @@ describe("traceExactSurfaceStackVector", () => {
     expect(vector.u).toBeCloseTo(slope.u, 10);
     expect(vector.clipped).toBe(slope.clipped);
     expect(vector.pts.length).toBeGreaterThan(0);
+  });
+
+  it("public vector adapters honor non-default focus and zoom state", () => {
+    const L = lensFor("nikon-z-24-70f4s");
+    const focusT = 0.72;
+    const zoomT = 0.65;
+    const { z: zPos } = doLayout(focusT, zoomT, L);
+    const fieldDeg = 4;
+    const thetaRad = (fieldDeg * Math.PI) / 180;
+    const uy = -Math.tan(thetaRad);
+    const direction: [number, number, number] = [0, -Math.sin(thetaRad), Math.cos(thetaRad)];
+    const y0 = 0.3;
+
+    const slope = traceRay(y0, uy, zPos, focusT, zoomT, L.stopPhysSD, true, L);
+    const vector = traceRayVector({ origin: [0, y0, zPos[0]], direction }, zPos, L.stopPhysSD, true, L, focusT, zoomT);
+
+    expect(vector.y).toBeCloseTo(slope.y, 10);
+    expect(vector.u).toBeCloseTo(slope.u, 10);
+    expect(vector.clipped).toBe(slope.clipped);
+
+    const chromaticSlope = traceRayChromatic(y0, uy, zPos, focusT, zoomT, L.stopPhysSD, true, L, "R");
+    const chromaticVector = traceRayVectorChromatic(
+      { origin: [0, y0, zPos[0]], direction },
+      zPos,
+      L.stopPhysSD,
+      true,
+      L,
+      "R",
+      focusT,
+      zoomT,
+    );
+    expect(chromaticVector.y).toBeCloseTo(chromaticSlope.y, 10);
+    expect(chromaticVector.u).toBeCloseTo(chromaticSlope.u, 10);
+
+    const ux = 0.01;
+    const skewLength = Math.hypot(ux, uy, 1);
+    const skewDirection: [number, number, number] = [ux / skewLength, uy / skewLength, 1 / skewLength];
+    const skewSlope = traceSkewRay(0.2, y0, ux, uy, focusT, zoomT, L.stopPhysSD, true, L);
+    const skewVector = traceSkewRayVector(
+      { origin: [0.2, y0, zPos[0]], direction: skewDirection },
+      zPos,
+      L.stopPhysSD,
+      true,
+      L,
+      focusT,
+      zoomT,
+    );
+
+    expect(skewVector.x).toBeCloseTo(skewSlope.x, 10);
+    expect(skewVector.y).toBeCloseTo(skewSlope.y, 10);
+    expect(skewVector.ux).toBeCloseTo(skewSlope.ux, 10);
+    expect(skewVector.uy).toBeCloseTo(skewSlope.uy, 10);
+    expect(skewVector.clipped).toBe(skewSlope.clipped);
   });
 
   it("public traceRayVector draws finite ghost points for past-cap fisheye launches", () => {

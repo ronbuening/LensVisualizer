@@ -1,3 +1,9 @@
+/**
+ * Aberration analysis types — shared result shapes and sampling constants for display tabs.
+ *
+ * Defines the stable data contract between pure aberration calculations and React analysis components.
+ */
+
 import { DEFAULT_ORTHOGONAL_PUPIL_FAN_SAMPLE_COUNT } from "../optics.js";
 
 /** One sample point on the real-ray transverse SA profile curve. */

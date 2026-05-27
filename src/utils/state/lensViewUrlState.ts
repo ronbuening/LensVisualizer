@@ -24,7 +24,6 @@ type LensViewQueryKey =
   | "glassMapOpen"
   | "lcaOverlayOpen"
   | "petzvalOverlayOpen"
-  | "bokehPreviewOpen"
   | "analysisDrawerOpen"
   | "analysisDrawerTab"
   | "groupMovementOpen"
@@ -53,7 +52,6 @@ export const VIEW_STATE_FIELDS = [
   { key: "glassMapOpen", default: false },
   { key: "lcaOverlayOpen", default: false },
   { key: "petzvalOverlayOpen", default: false },
-  { key: "bokehPreviewOpen", default: false },
   { key: "analysisDrawerOpen", default: false },
   { key: "groupMovementOpen", default: false },
 ] as const;
@@ -74,7 +72,6 @@ const DEFAULT_URL_STATE: Partial<URLState> = {
   glassMapOpen: false,
   lcaOverlayOpen: false,
   petzvalOverlayOpen: false,
-  bokehPreviewOpen: false,
   analysisDrawerOpen: false,
   analysisDrawerTab: "aberrations",
   groupMovementOpen: false,
@@ -134,7 +131,6 @@ export function parseLensViewQuery(search: string): LensViewQueryState {
   const glassMapOpen = parseBooleanParam(params, "gm");
   const lcaOverlayOpen = parseBooleanParam(params, "lca");
   const petzvalOverlayOpen = parseBooleanParam(params, "ptz");
-  const bokehPreviewOpen = parseBooleanParam(params, "bo");
   const analysisDrawerOpen = parseBooleanParam(params, "ad");
   const movementMode = params.get("mv");
   const tab = params.get("tab");
@@ -145,7 +141,6 @@ export function parseLensViewQuery(search: string): LensViewQueryState {
   if (glassMapOpen !== undefined) state.glassMapOpen = glassMapOpen;
   if (lcaOverlayOpen !== undefined) state.lcaOverlayOpen = lcaOverlayOpen;
   if (petzvalOverlayOpen !== undefined) state.petzvalOverlayOpen = petzvalOverlayOpen;
-  if (bokehPreviewOpen !== undefined) state.bokehPreviewOpen = bokehPreviewOpen;
   if (analysisDrawerOpen !== undefined) state.analysisDrawerOpen = analysisDrawerOpen;
   if (isAnalysisTabId(tab)) state.analysisDrawerTab = tab;
   if (isGroupMovementMode(movementMode)) {
@@ -170,7 +165,6 @@ export function buildLensViewQuery({
   glassMapOpen,
   lcaOverlayOpen,
   petzvalOverlayOpen,
-  bokehPreviewOpen,
   analysisDrawerOpen,
   analysisDrawerTab,
   groupMovementOpen,
@@ -181,7 +175,6 @@ export function buildLensViewQuery({
     Boolean(glassMapOpen) ||
     Boolean(lcaOverlayOpen) ||
     Boolean(petzvalOverlayOpen) ||
-    Boolean(bokehPreviewOpen) ||
     Boolean(analysisDrawerOpen) ||
     Boolean(groupMovementOpen);
 
@@ -204,7 +197,6 @@ export function buildLensViewQuery({
   if (glassMapOpen) params.set("gm", "1");
   if (lcaOverlayOpen) params.set("lca", "1");
   if (petzvalOverlayOpen) params.set("ptz", "1");
-  if (bokehPreviewOpen) params.set("bo", "1");
   if (analysisDrawerOpen) params.set("ad", "1");
   if (analysisDrawerOpen && analysisDrawerTab && analysisDrawerTab !== "aberrations") {
     params.set("tab", analysisDrawerTab);
@@ -241,7 +233,6 @@ export function buildLensViewQueryFromState(state: LensState, zoom: number | nul
     glassMapOpen: state.panels.glassMapOpen,
     lcaOverlayOpen: state.panels.lcaOverlayOpen,
     petzvalOverlayOpen: state.panels.petzvalOverlayOpen,
-    bokehPreviewOpen: state.panels.bokehPreviewOpen,
     analysisDrawerOpen: state.panels.analysisDrawerOpen,
     analysisDrawerTab: state.panels.analysisDrawerTab,
     groupMovementOpen: state.panels.groupMovementOpen,

@@ -35,7 +35,6 @@ import { resolveDarkPreference } from "../../utils/theme/themePreferences.js";
 import { SET_SELECTED_ELEMENT } from "../../utils/state/lensReducer.js";
 import { ENABLE_CARDINAL_ELEMENTS } from "../../utils/featureFlags.js";
 import AnalysisDrawerContent from "./lensDiagram/AnalysisDrawerContent.js";
-import BokehPreviewOverlay from "../display/overlays/BokehPreviewOverlay.js";
 import LensGroupMovementOverlay from "../display/overlays/LensGroupMovementOverlay.js";
 import LensDiagramErrorState from "./lensDiagram/LensDiagramErrorState.js";
 import LensDiagramLoadedState from "./lensDiagram/LensDiagramLoadedState.js";
@@ -128,7 +127,6 @@ export default function LensDiagramPanel({
     analysisDrawerOpen,
     analysisDrawerTab,
     zoomPanActive,
-    bokehPreviewOpen,
     groupMovementOpen,
     groupMovementMode,
   } = panels;
@@ -423,7 +421,6 @@ export default function LensDiagramPanel({
             flashFading,
             analysisDrawerOpen,
             analysisDrawerTab,
-            bokehPreviewOpen,
             groupMovementOpen,
             groupMovementMode,
             focusExpanded,
@@ -441,19 +438,6 @@ export default function LensDiagramPanel({
             onZoomPanToggle: handleZoomPanToggle,
             onSliderInteractionChange: setSliderInteracting,
           }}
-          bokehPreviewContent={
-            bokehPreviewOpen ? (
-              <BokehPreviewOverlay
-                L={L}
-                focusT={focusT}
-                zoomT={zoomT}
-                aberrationT={aberrationT}
-                currentEPSD={currentEPSD}
-                currentPhysStopSD={currentPhysStopSD}
-                t={t}
-              />
-            ) : null
-          }
           groupMovementContent={
             groupMovementOpen ? (
               <LensGroupMovementOverlay

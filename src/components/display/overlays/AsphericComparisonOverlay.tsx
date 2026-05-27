@@ -289,7 +289,14 @@ export default function AsphericComparisonOverlay({ L, info, theme: t }: Aspheri
   };
 
   return (
-    <div style={{ minWidth: 360, padding: "20px 24px" }}>
+    <div
+      style={{
+        width: "100%",
+        minWidth: 0,
+        boxSizing: "border-box",
+        padding: "clamp(14px, 4vw, 20px) clamp(14px, 5vw, 24px)",
+      }}
+    >
       <div style={headerStyle}>
         <span style={{ fontSize: 14, fontWeight: 700, color: t.title }}>{info.label} · Aspheric departure</span>
         <span style={{ fontSize: 11, color: t.muted }}>{surfaces.map((s) => `S${s.label}`).join(" · ")}</span>

@@ -28,8 +28,8 @@ State modules live under `src/utils/state/`.
 | `useLensState.ts` | `useReducer` wrapper with preference and URL initialization. Calls `parseLensViewQuery` once and `parseLensKeysFromSearch` for catalog-validated lens-key resolution. |
 | `preferences.ts` | localStorage load/save with runtime fallback guards. |
 | `usePreferences.ts` | Persists reducer state back to localStorage. |
-| `useURLSync.ts` | Single 100 ms-debounced URL writer plus `popstate` hydration and one-time zoom init. All slider and view-state changes flow through the same callback. |
-| `lensViewUrlState.ts` | Pure parser/builder for shareable route query state. Owns the canonical `VIEW_STATE_FIELDS` table; adding a shareable field is a one-line table edit plus the matching `URLState` and `PanelsSlice` additions. |
+| `useURLSync.ts` | Single 100 ms-debounced URL writer plus `popstate` hydration, route/legacy identity handling, and one-time zoom init. Route pages preserve `/lens/:slug` and `/compare/:slugA/:slugB`; legacy homepage query URLs are kept for backward compatibility. |
+| `lensViewUrlState.ts` | Pure parser/builder for shareable route query state. Owns the canonical `VIEW_STATE_FIELDS` table for reducer-hydrated panel booleans/selection; adding a shareable field also requires parser/build keys plus matching `URLState` and `PanelsSlice` additions. |
 | `lensViewUrlSync.ts` | Bridges reducer `LensState` to the URL surface and converts focal length ↔ `zoomT` against the loaded lens(es). |
 | `parseComparisonParams.ts` | Legacy comparison query parsing (kept for backward compat). Also exports `parseLensKeysFromSearch` for callers that have already parsed view state. |
 | `zoomConversion.ts` | Focal length to/from zoom slider conversion. |
@@ -44,11 +44,11 @@ Canonical lens identity stays in route paths: `/lens/:slug` and `/compare/:slugA
 shareable view state:
 
 - Stable slider params remain unversioned: `focus`, `aberration`, `aperture`, `zoom`, `shift`, and `tilt`.
-- Versioned v1 view params are `v=1`, `el`, `a_el`, `b_el`, `gm`, `lca`, `ptz`, `bo`, `mv`, `ad`, and `tab`.
+- Versioned v1 view params are `v=1`, `el`, `a_el`, `b_el`, `gm`, `lca`, `ptz`, `mv`, `ad`, and `tab`.
 - Single-lens selection uses `el`; comparison selection uses `a_el` and `b_el`.
 - Overlay flags: `gm` (Abbe/glass-map modal), `lca` (chromatic-aberration overlay), `ptz` (Petzval-curvature overlay),
-  `bo` (bokeh preview), `mv` (lens-group movement overlay mode: `focus`, `zoom`, or `combined`), `ad` (analysis
-  drawer); `tab` names the active analysis drawer tab.
+  `mv` (lens-group movement overlay mode: `focus`, `zoom`, or `combined`), `ad` (analysis drawer); `tab` names the
+  active analysis drawer tab.
 - Boolean params decode strictly as `1` for true and `0` or omitted for false. Invalid values fall back to defaults.
 - Unknown `v` values ignore v1-only params while continuing to honor stable slider params.
 - `shift` and `tilt` are clamped against each lens' `perspectiveControl` config at render time; lenses without that

@@ -8,7 +8,9 @@ import {
   buildBokehRadialProfile,
   classifyBokehBrightnessCharacter,
   computeBokehPreviewPair,
+  computeProjectionAwareOffAxisFieldGeometry,
   computeStateAwareOffAxisFieldGeometry,
+  isOffAxisVectorFieldGeometry,
 } from "../../../../src/optics/aberrationAnalysis.js";
 import {
   computeBokehPreview,
@@ -31,6 +33,7 @@ import ApoLantharRaw from "../../../../src/lens-data/voigtlander/VoigtlanderApoL
 import NikkorZ70200Raw from "../../../../src/lens-data/nikon/NikonNikkorZ70200f28.data.js";
 import NikonZ135Raw from "../../../../src/lens-data/nikon/NikonZ135f18.data.js";
 import NikonAF28f14DRaw from "../../../../src/lens-data/nikon/NikonAF28f14D.data.js";
+import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
 import type { RuntimeLens, LensData } from "../../../../src/types/optics.js";
 import type { BokehPoint } from "../../../../src/optics/aberration/types.js";
 
@@ -170,6 +173,16 @@ describe("state-aware off-axis geometry", () => {
     expect(solved).not.toBeNull();
     expect(Math.abs(solved!.yChief - paraxial!.yChief)).toBeGreaterThan(1e-3);
   });
+
+  it("promotes a Nikon 6mm fisheye off-axis field to vector bokeh geometry", () => {
+    const fisheye = buildLens(LENS_CATALOG["nikon-fisheye-nikkor-6mm-f28"]);
+    const fisheyeLayout = doLayout(0, 0, fisheye);
+    const geometry = computeProjectionAwareOffAxisFieldGeometry(fisheye, fisheyeLayout.z, 0, 0, 0.4);
+
+    expect(geometry).not.toBeNull();
+    expect(isOffAxisVectorFieldGeometry(geometry!)).toBe(true);
+    expect(geometry!.fieldAngleDeg).toBeCloseTo(44, 8);
+  });
 });
 
 describe("analysis field geometry", () => {
@@ -223,6 +236,27 @@ describe("computeBokehFieldFootprint", () => {
       expect(sagExtent / tanExtent).toBeGreaterThan(0.5);
       expect(sagExtent / tanExtent).toBeLessThan(2.0);
     }
+  });
+
+  it("traces fisheye bokeh footprints through vector off-axis launch", () => {
+    const fisheye = buildLens(LENS_CATALOG["nikon-fisheye-nikkor-6mm-f28"]);
+    const fisheyeLayout = doLayout(0, 0, fisheye);
+    const fisheyeAperture = apertureAt(fisheye, 0, 0);
+    const result = computeBokehFieldFootprint(
+      fisheye,
+      fisheyeLayout.z,
+      0,
+      0,
+      fisheyeAperture.currentEPSD * 0.05,
+      fisheyeAperture.currentPhysStopSD,
+      0.4,
+      fisheyeLayout.imgZ + 0.5,
+    );
+
+    expect(result).not.toBeNull();
+    expect(result!.fieldAngleDeg).toBeCloseTo(44, 8);
+    expect(result!.totalRays).toBe(BOKEH_POINT_COUNT);
+    expect(result!.passedRays).toBeGreaterThan(0);
   });
 
   it("off-axis (75%) has lower transmission (cat's eye vignetting)", () => {

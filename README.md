@@ -68,7 +68,7 @@ The catalog is auto-registered from `src/lens-data/**/*.data.ts`, so the README 
 - **Perspective-control movement**: supported PC lenses expose signed SHIFT and TILT sliders that move the 2D lens/ray trace relative to a fixed image plane and round-trip through shared URLs
 - **Mirror and folded-path fixtures**: hidden reference prescriptions exercise first-surface mirrors, Mangin-style second-surface mirrors, annular obstructions, tilted fold mirrors, automatic folded path selection, and non-default image planes; off-axis ray bundles solve against the generalized folded stop and image plane instead of using sequential refractive approximations, and the lens library can expose the fixtures with `?view=debug`
 - **Lens-group movement**: focus and zoom sliders can open a URL-shareable overlay that stacks inferred lens groups vertically and charts each group center against the fixed focus plane
-- **Analysis drawer**: dedicated tabs for aberrations, coma, distortion, breathing, vignetting, and pupils, including spherical aberration, a real 2D coma point cloud, meridional and sagittal coma fan plots, separate parabasal and real-ray field curvature charts, isolated astigmatism split, optional chromatic (R/G/B) focus shifts inside the Aberrations tab, and entrance/exit pupil position shift vs field in the Pupils tab
+- **Analysis drawer**: dedicated tabs for summary, aberrations, coma, bokeh, distortion, breathing, vignetting, and pupils, including prepared-state first-order/current-aperture readouts, spherical aberration, a real 2D coma point cloud, meridional and sagittal coma fan plots, projection-aware bokeh footprints, separate parabasal and real-ray field curvature charts, isolated astigmatism split, optional chromatic (R/G/B) focus shifts inside the Aberrations tab, and entrance/exit pupil position shift vs field in the Pupils tab
 - **Aspheric deviation inspector**: click any aspheric element to compare its surface profile against the base sphere or a least-squares best-fit sphere, with adjustable exaggeration and click-to-measure Δsag (mm or μm)
 - **Spherical aberration model**: combines a dense real-ray transverse fan (22 pupil zones with finer sampling near the edge) at the solved best-focus plane with a true near-axis reference for the headline longitudinal SA diagnostic; symmetric +/- ray pairing prevents asymmetric clipping from biasing metrics
 - **Distortion model**: iteratively solved chief rays correct for pupil aberration at wide field angles; 21-point sampling resolves moustache distortion transitions; 2D field grid uses a pre-computed pupil correction table; multi-bracket search handles non-monotonic image-height curves
@@ -84,7 +84,7 @@ The catalog is auto-registered from `src/lens-data/**/*.data.ts`, so the README 
 - **Share previews**: reusable Open Graph/Twitter social card with `summary_large_image` metadata defaults
 - **Freshness-aware sitemap**: build metadata tracks published and last-modified dates, and `sitemap.xml` emits per-route `lastmod` values
 - **Zoom and pan**: infinite-resolution SVG zoom via viewBox manipulation, with mouse wheel, pointer drag, touch pinch-to-zoom, and keyboard shortcuts (+/- zoom, arrows pan, Escape cancel)
-- **Responsive UI**: desktop side-by-side layouts, mobile view toggles, persistent preferences, and shareable deep links — URLs encode the selected element, glass map, LCA and Petzval overlays, bokeh preview, lens-group movement overlay, analysis drawer + tab, and slider state including PC lens movement
+- **Responsive UI**: desktop side-by-side layouts, mobile view toggles, persistent preferences, and shareable deep links — URLs encode the selected element, glass map, LCA and Petzval overlays, lens-group movement overlay, analysis drawer + tab, and slider state including PC lens movement
 - **Catalog metadata**: lens data can declare canonical mount ids and image-format ids for library filtering and future field-aware analysis
 
 ## Tech Stack
@@ -112,6 +112,7 @@ The dev server runs at `http://localhost:5173`.
 
 ```bash
 npm run dev           # Vite dev server with build metadata generation
+npm run generate:metadata # Organize lens data and refresh generated route metadata
 npm run organize:lens-data # Move stray root-level lens files into maker folders
 npm run build         # Production build + prerender + sitemap
 npm run preview       # Preview built output
@@ -141,20 +142,24 @@ Requires Node.js 24.15.0 or newer within the Node 24 LTS line.
 
 ```text
 src/
+  comparison/  # Comparison mode state, shared sliders, layout, and URLs
   components/
+    content/    # Article, archive, changelog, and TOC UI
     controls/   # Headers, toggles, sliders, shared control widgets
     diagram/    # SVG rendering, overlays, badges, annotations
-    display/    # Analysis tabs, charts, inspectors, legends
+    display/    # Analysis tabs, overlays, charts, inspectors, legends
+    errors/     # Error boundaries and shared error display
     homepage/   # Hero section, recent lenses, nav cards, reusable home sections
     hooks/      # Computation and UI orchestration hooks
-    layout/     # LensViewer, LensDiagramPanel, drawers, wrappers
+    layout/     # LensViewer, LensDiagramPanel, drawer, viewport, page chrome
     markdown/   # Shared article/description Markdown renderer
   content/      # About pages and optics primers
   generated/    # Build-generated metadata and maker-prefix JSON
   lens-data/    # Lens prescriptions and accompanying analysis markdown
-  optics/       # Ray tracing, lens construction, and analysis math
+  optics/       # Pure ray tracing, lens construction, projection, and analysis math
   pages/        # Route-level page components
   routes/       # Shared React Router manifest
+  types/        # Shared optics, state, and theme types
   utils/        # Themes, URL sync, reducer state, catalog helpers
 __tests__/      # Vitest coverage for optics, UI, routing, and state
 scripts/        # Build metadata, prerender, sitemap, SEO audit
@@ -187,17 +192,28 @@ See [`src/lens-data/LENS_DATA_SPEC.md`](src/lens-data/LENS_DATA_SPEC.md) for the
 
 ## Documentation
 
+- [Agent docs index](agent_docs/README.md)
 - [Architecture notes](agent_docs/architecture.md)
 - [Program flow diagram](agent_docs/architecture/program-flow.md)
 - [Public functions](agent_docs/architecture/public-functions.md)
+- [Routing/content architecture](agent_docs/architecture/routing-and-content.md)
+- [Viewer/diagram architecture](agent_docs/architecture/viewer-and-diagram.md)
+- [UI components architecture](agent_docs/architecture/ui-components.md)
+- [Optics engine architecture](agent_docs/architecture/optics-engine.md)
+- [State/utilities architecture](agent_docs/architecture/state-and-utilities.md)
+- [Comparison architecture](agent_docs/architecture/comparison.md)
+- [Testing architecture](agent_docs/architecture/testing.md)
 - [Workflow guide](agent_docs/workflow.md)
 - [Adding a lens](agent_docs/adding_a_lens.md)
+- [Adding an article](agent_docs/adding_an_article.md)
 - [Mount/format backfill](agent_docs/lens-mount-format-backfill.md)
 - [Trace model and fisheye launch status](TRACE_MODEL_IMPROVEMENT_PLAN.md)
 - [Mirror/folded optics accuracy status](MIRROR_OPTICS_ACCURACY_PLAN.md)
 - [Mirror-lens follow-up backlog](MIRROR_LENS_FUTURE_ENHANCEMENTS.md)
 - [Glass catalog buildout](agent_docs/glass-catalog-buildout.md)
 - [Chromatic dispersion notes](CHROMATIC_DISPERSION_NOTES.md)
+- [Commenting guide](agent_docs/commenting_guide.md)
+- [Gotchas](agent_docs/gotchas.md)
 - [Lens data format](src/lens-data/LENS_DATA_SPEC.md)
 - [Lens mount/format options](src/lens-data/LENS_MOUNT_FORMAT_OPTIONS.md)
 - [Lens analysis format](src/lens-data/LENS_ANALYSIS_SPEC.md)

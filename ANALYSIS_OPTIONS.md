@@ -15,14 +15,14 @@ SVG rendering, SSR-friendly route/content plumbing, and a growing library of edu
 The app already has these analysis surfaces and should treat them as shipped baseline rather than future work:
 
 - On-axis, off-axis, chromatic, and pupil-overlay ray rendering in the diagram.
-- Analysis drawer tabs for aberrations, coma, distortion, focus breathing, vignetting, and pupils.
+- Analysis drawer tabs for current-state summary, aberrations, coma, distortion, focus breathing, vignetting, and pupils.
 - Spherical aberration scalar metrics, transverse SA profile, and front/rear blur-character readouts.
 - Real 2D coma point-cloud previews, idealized coma sketches, tangential and sagittal ray fans.
 - Parabasal and dense real-ray field-curvature charts, isolated astigmatism chart, Petzval reference, and chromatic
   field curvature.
 - Rectilinear distortion curve plus traced 2D chief-ray distortion field grid.
 - Focus-breathing readouts, vignetting/relative-illumination curves, and EP/XP pupil-aberration curves.
-- Abbe glass map, Petzval overlay, LCA inset/overlay, element inspector, and bokeh preview beta overlay.
+- Abbe glass map, Petzval overlay, LCA inset/overlay, element inspector, and bokeh analysis tab.
 - Side-by-side comparison mode with shared focus, aperture, zoom, and scale controls.
 
 This leaves several good opportunities: surfacing more of the scalar data users need for comparison, turning hidden
@@ -42,12 +42,10 @@ diagnostics.
 
 ## Recommended Order
 
-1. **Analysis Summary tab and current-state metric helper** - fast, high-leverage, and reusable by compare mode.
-2. **Compare-mode optical scorecard** - turns existing analysis into a decision tool.
-3. **Bokeh beta promotion** - significant value already exists in code but is not integrated with the drawer.
-4. **Pupil/sensor diagnostics** - matches the existing pupil-geometry articles and existing pupil-aberration math.
-5. **Prescription/power ledger** - strong educational payoff and useful for lens-data authoring.
-6. **2D vignetting, PSF, and catalog metric cache** - valuable, but heavier and more performance-sensitive.
+1. **Compare-mode optical scorecard** - turns existing analysis into a decision tool.
+2. **Pupil/sensor diagnostics** - matches the existing pupil-geometry articles and existing pupil-aberration math.
+3. **Prescription/power ledger** - strong educational payoff and useful for lens-data authoring.
+4. **2D vignetting, PSF, and catalog metric cache** - valuable, but heavier and more performance-sensitive.
 
 ---
 
@@ -55,12 +53,16 @@ diagnostics.
 
 ### 1. Analysis Summary Tab
 
-**Why it helps:** The drawer has excellent individual diagnostics, but there is no single "what is this lens doing right
-now?" view. A summary tab would reduce tab-hunting and give users an immediate state-aware overview.
+**Status:** Shipped. The drawer now has a `summary` tab backed by `src/optics/analysis/summary.ts` and
+`OpticalSummaryTab.tsx`. It reports current EFL, infinity EFL, focus breathing, working f-number, pupil/stop diameters,
+field angle, image-plane position, total track, and cardinal distances from the prepared optical state.
+
+**Why it helps:** The drawer has excellent individual diagnostics, and the summary tab gives users an immediate
+state-aware overview before they drill into individual charts.
 
 **Effort:** M
 
-**Implementation outline:**
+**Original implementation outline:**
 
 - Add a pure `src/optics/analysisSummary.ts` helper that aggregates already-computed scalar metrics for the current
   focus, aperture, and zoom state.
@@ -325,17 +327,19 @@ mechanical constraints.
 
 ### 18. Promote Bokeh Preview From Beta Overlay To Analysis Tab
 
-**Why it helps:** Bokeh preview already has a real computation pipeline, tests, and UI, but it is a separate beta overlay
-button. Promoting it to the drawer would make it discoverable and easier to compare with SA/coma/vignetting.
+**Status:** Shipped. The analysis drawer now includes the single supported `bokeh` surface, reusing the prepared-state
+bokeh preview pipeline, and projection-aware off-axis footprint sampling uses vector launch when scalar slope launch is
+out of domain. The duplicate floating beta button was removed after the drawer version stabilized.
+
+**Why it helps:** Bokeh preview already has a real computation pipeline, tests, and UI. Keeping it in the drawer makes
+it discoverable and easier to compare with SA/coma/vignetting without maintaining a duplicate beta overlay.
 
 **Effort:** M
 
-**Implementation outline:**
+**Remaining follow-up ideas:**
 
-- Add a `bokeh` analysis tab and route the existing `BokehPreviewOverlay` content through drawer conventions.
 - Add controls for source plane, field positions, scale lock, and optional density-vs-circularized display.
-- Keep or remove the floating beta button after the drawer version is stable.
-- Add tests to `analysisDisplayTabs.test.ts` and `BokehPreviewOverlay.test.tsx`.
+- Add shareable item-level bokeh settings only if the drawer gains user-adjustable bokeh controls.
 
 ### 19. Aperture Blade Shape In Bokeh
 
@@ -501,4 +505,3 @@ are not part of the current data.
 
 **Possible limited version:** A qualitative "sensitivity risk" heuristic based on large asphere departure, high powers,
 thin air gaps, and fast apertures.
-

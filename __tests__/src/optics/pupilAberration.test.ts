@@ -11,6 +11,11 @@ import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
 import Sonnar50f15Raw from "../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
 import NikkorZ70200Raw from "../../../src/lens-data/nikon/NikonNikkorZ70200f28.data.js";
 import MinoltaAF100MacroRaw from "../../../src/lens-data/minolta/MinoltaAF100mmf28Macro.data.js";
+import ReferenceAnnularObscuredMirrorRaw from "../../../src/lens-data/reference/ReferenceAnnularObscuredMirror.data.js";
+import ReferenceCassegrainBackFocusRaw from "../../../src/lens-data/reference/ReferenceCassegrainBackFocus.data.js";
+import ReferenceGregorianSecondaryRaw from "../../../src/lens-data/reference/ReferenceGregorianSecondary.data.js";
+import ReferenceMaksutovCassegrainMeniscusRaw from "../../../src/lens-data/reference/ReferenceMaksutovCassegrainMeniscus.data.js";
+import ReferenceNewtonianSideFocusRaw from "../../../src/lens-data/reference/ReferenceNewtonianSideFocus.data.js";
 import type { LensData } from "../../../src/types/optics.js";
 
 function build(raw: object) {
@@ -449,5 +454,38 @@ describe("computeBothPupilAberrationProfiles — current-state pupil baselines",
     expect(infinity.xp.paraxialXpZRelLastSurf).toBeCloseTo(L.xpZRelLastSurf, 10);
     expect(close.ep.paraxialEpZRelStop).not.toBeCloseTo(infinity.ep.paraxialEpZRelStop, 3);
     expect(close.xp.paraxialXpZRelLastSurf).not.toBeCloseTo(infinity.xp.paraxialXpZRelLastSurf, 3);
+  });
+});
+
+describe("computeBothPupilAberrationProfiles — folded fixtures", () => {
+  const foldedFixtures = [
+    ["annular obscured mirror", ReferenceAnnularObscuredMirrorRaw],
+    ["cassegrain back focus", ReferenceCassegrainBackFocusRaw],
+    ["gregorian secondary", ReferenceGregorianSecondaryRaw],
+    ["maksutov cassegrain meniscus", ReferenceMaksutovCassegrainMeniscusRaw],
+    ["newtonian side focus", ReferenceNewtonianSideFocusRaw],
+  ] as const;
+
+  it.each(foldedFixtures)("computes finite folded pupil profiles for %s", (_label, raw) => {
+    const L = build(raw);
+    expect(L.isFoldedOptics).toBe(true);
+
+    const profiles = computeBothPupilAberrationProfiles(0, 0, L, 5);
+
+    expect(profiles.ep.samples).toHaveLength(5);
+    expect(profiles.xp.samples).toHaveLength(5);
+    expect(profiles.halfFieldDeg).toBeGreaterThan(0);
+    expect(Number.isFinite(profiles.maxAbsEpShiftMm)).toBe(true);
+    expect(Number.isFinite(profiles.maxAbsXpShiftMm)).toBe(true);
+
+    for (const sample of profiles.ep.samples) {
+      expect(Number.isFinite(sample.fieldDeg)).toBe(true);
+      expect(Number.isFinite(sample.chiefRayCorrection)).toBe(true);
+      expect(Number.isFinite(sample.epShiftMm)).toBe(true);
+    }
+    for (const sample of profiles.xp.samples) {
+      expect(Number.isFinite(sample.fieldDeg)).toBe(true);
+      expect(Number.isFinite(sample.xpShiftMm)).toBe(true);
+    }
   });
 });

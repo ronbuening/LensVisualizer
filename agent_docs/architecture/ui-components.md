@@ -7,12 +7,16 @@ and homepage UI.
 
 | Module | Purpose |
 | --- | --- |
+| `lensViewer/ViewerChrome.tsx` | Viewer breadcrumb, selectors, comparison buttons, ray/cardinal controls, and view toggles. |
+| `lensViewer/ViewerContent.tsx` | Switches between `SingleLensContent` and comparison-mode content. |
+| `lensViewer/ViewerOverlays.tsx` | Site/author/primer modals and mobile about footer. |
 | `TopBar.tsx` | Lens selectors, compare button, and about buttons. |
 | `ControlsBar.tsx` | Theme/ray/ray-density/chromatic/scale toggles with compact and full modes. |
 | `ViewToggleBar.tsx` | Generic view-mode toggle used by mobile and desktop layouts. |
 | `OverlayModal.tsx` | Generic backdrop/modal/close button. |
 | `DropdownPanel.tsx` | Portal-based dropdown panel for settings/theme overlays. |
 | `PageNavBar.tsx` | Shared navigation bar for static pages. |
+| `StaticPageShell.tsx` | Shared shell for static pages with breadcrumbs, theme toggles, and page base layout. |
 | `BreadcrumbBar.tsx` | Lens page breadcrumb navigation. |
 | `SingleLensContent.tsx` | Single-lens diagram and description composition. |
 
@@ -72,6 +76,9 @@ panels slice.
 Desktop uses vertical tabs on the left; mobile uses horizontal tabs on top. Tab content unmounts when the drawer is
 closed, preventing hidden analysis work during slider drag.
 
+Analysis tabs use stable `src/optics/*` imports only. The temporary engine selector has been removed; do not add a
+user-facing or developer-only old-vs-new selector back to analysis components.
+
 `AnalysisDrawerContent` owns global analysis notices. It shows a folded-optics notice for `L.isFoldedOptics`, allows the
 mirror-safe aberrations path, and replaces complex tabs that still assume a sequential front-to-rear paraxial model with
 an explicit unsupported message. When adapting a tab for mirror systems, remove it from the folded unsupported set only
@@ -82,7 +89,7 @@ New analysis tabs require:
 
 1. Add tab metadata in `src/components/layout/lensDiagram/analysisTabs.ts`.
 2. Create tab content under `src/components/display/analysis/`.
-3. Add the conditional render in `AnalysisDrawerContent.tsx`.
+3. Add the renderer mapping in `src/components/layout/lensDiagram/analysisTabRenderers.tsx`.
 4. Add reducer/URL/persistence typing only if the tab can be externally addressed.
 
 ## Analysis Display Modules
@@ -91,11 +98,13 @@ New analysis tabs require:
 | --- | --- |
 | `analysis/AberrationsPanel.tsx` | Thin container wiring shared data hooks into spherical, field-curve, astigmatism, and coma sections. |
 | `analysis/aberrations/` | Presentational aberration sections and focused data hooks. |
+| `analysis/OpticalSummaryTab.tsx` | Current-state summary tab for prepared-state first-order, aperture, field, and image-plane metrics. |
 | `analysis/ComaTab.tsx` | Coma drawer tab. |
-| `analysis/DistortionTab.tsx` | Distortion tab; consumes deferred/frozen analysis inputs and `analysisJobs`. |
+| `analysis/BokehTab.tsx` | Bokeh drawer tab using the prepared-state preview pair and shared preview content. |
+| `analysis/DistortionTab.tsx` | Distortion tab; consumes deferred/frozen analysis inputs through `analysisJobsForState2`. |
 | `analysis/DistortionFieldGrid.tsx` | Traced chief-ray field grid against ideal rectilinear grid. |
 | `analysis/FocusBreathingTab.tsx` | Dynamic focal-length/focus breathing readouts. |
-| `analysis/VignettingTab.tsx` | Vignetting/relative illumination tab; consumes deferred/frozen inputs and `analysisJobs`. |
+| `analysis/VignettingTab.tsx` | Vignetting/relative illumination tab; consumes deferred/frozen inputs through `analysisJobsForState2`. |
 | `analysis/PupilAberrationTab.tsx` | Entrance/exit pupil shift tab. |
 | `analysis/BokehPreviewGrid.tsx` | SVG blur-brightness and surviving-pupil grid. |
 
@@ -106,7 +115,6 @@ New analysis tabs require:
 | Module | Purpose |
 | --- | --- |
 | `AsphericComparisonOverlay.tsx` | Modal content for aspheric deviation analysis. Renders the element with aspheric (solid) and spherical-replacement (dashed) profiles overlaid, with an exaggeration slider, zoom/pan, and click-to-measure sag delta. Opened from `ElementInspector`; state managed in `useOverlayState` - the only overlay that lives outside the URL-shareable panels slice. |
-| `BokehPreviewOverlay.tsx` | Deferred bokeh preview overlay. |
 | `LensGroupMovementOverlay.tsx` | Diagram overlay for inferred focus/zoom/combined lens-group movement. It stacks groups vertically, uses the fixed focus plane as x=0, and keeps unavailable modes visible but disabled in the side radio rail. |
 
 ## Shared Chart Primitives

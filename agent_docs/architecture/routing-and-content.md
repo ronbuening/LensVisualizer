@@ -7,11 +7,11 @@ build metadata.
 
 | Module | Location | Purpose |
 | --- | --- | --- |
-| `router.tsx` | `src/` | React Router route definitions via `routeManifest.tsx`. |
-| `routeManifest.tsx` | `src/routes/` | Shared route manifest used by client routing and build scripts. |
-| `entry-server.tsx` | `src/` | SSR render function for static prerendering. |
-| `HomePage.tsx` | `src/pages/` | Interactive `LensViewer`; handles legacy `?lens=KEY` redirects. |
-| `LensPage.tsx` | `src/pages/` | Individual lens page at `/lens/:slug` with SEO shell + interactive visualizer. |
+| `router.tsx` | `src/` | Browser router created from `routeManifest.tsx`. |
+| `routeManifest.tsx` | `src/routes/` | Shared React route patterns used by the client router and SSR entry. |
+| `entry-server.tsx` | `src/` | SSR render function and manifest path export for static prerendering. |
+| `HomePage.tsx` | `src/pages/` | Homepage shell with hero, navigation cards, articles, recent lenses, and legacy redirect handling. |
+| `LensPage.tsx` | `src/pages/` | Individual lens page at `/lens/:slug` with SEO fallback content plus client-only `LensViewer`. |
 | `LensIndexPage.tsx` | `src/pages/` | Browsable lens library at `/lenses`. |
 | `MakerPage.tsx` | `src/pages/` | Maker page at `/makers/:maker`, lists maker lenses. |
 | `MakersIndexPage.tsx` | `src/pages/` | Maker index at `/makers`, lists makers with counts. |
@@ -19,7 +19,7 @@ build metadata.
 | `MountsIndexPage.tsx` | `src/pages/` | Mount index at `/mounts`, lists represented mounts with counts. |
 | `FormatPage.tsx` | `src/pages/` | Image-format page at `/formats/:formatId`, lists lenses for one format. |
 | `FormatsIndexPage.tsx` | `src/pages/` | Image-format index at `/formats`, lists represented formats with counts. |
-| `ComparePage.tsx` | `src/pages/` | Comparison page at `/compare/:slugA/:slugB`. |
+| `ComparePage.tsx` | `src/pages/` | Comparison page at `/compare/:slugA/:slugB` with SEO fallback content plus client-only `LensViewer`. |
 | `ArticlesPage.tsx` | `src/pages/` | Article archive at `/articles`. |
 | `ArticlePage.tsx` | `src/pages/` | Article page at `/articles/:slug`. |
 | `UpdatesPage.tsx` | `src/pages/` | Recently added lens/update page. |
@@ -28,6 +28,7 @@ build metadata.
 ## Static Page Shells
 
 - `PageNavBar.tsx` provides themed static-page navigation with theme and high-contrast toggles.
+- `StaticPageShell.tsx` wraps static pages that need shared breadcrumbs, page theme state, and `PAGE_BASE_STYLE`.
 - `src/utils/style/pageStyles.ts` exports shared static page base styles and fallback link styles.
 - Lens index-specific filter/results styles live under `src/pages/lensIndex/`, but reuse shared base styles where possible.
 
@@ -37,13 +38,18 @@ The app uses React Router 7 with client-side routing plus static prerendering fo
 
 - `main.tsx` mounts `RouterProvider` with the browser router.
 - `entry-server.tsx` exports `render(url): { html, helmet }` using `StaticRouter` and `react-helmet-async`.
-- `scripts/prerender.mjs` expands routes from generated metadata and validates them against `routeManifest.tsx`.
-- `scripts/generate-sitemap.mjs` consumes the same route list from `src/generated/build-metadata.json`, including lens,
-  maker, mount, format, and article detail routes.
+- `scripts/generate-build-metadata.mjs` expands the concrete prerender route list into
+  `src/generated/build-metadata.json`, including homepage, lens, maker, mount, format, article, and update routes.
+- `scripts/prerender.mjs` reads that concrete route list, builds the SSR entry, validates it against
+  `manifestPaths` exported from `entry-server.tsx`, and writes each route plus `404.html` into `dist/`.
+- `/compare/:slugA/:slugB` is routeable and SSR-capable, but it is intentionally excluded from the generated concrete
+  route list and prerender coverage check because arbitrary comparison pairs are noindex client/deep-link pages.
+- `scripts/generate-sitemap.mjs` consumes the same route list and route freshness map from
+  `src/generated/build-metadata.json`.
 - `scripts/seo-audit.mjs` audits the built/prerendered output.
 
-`ClientOnly.tsx` wraps browser-only interactive components, including the lens visualizer, and renders nothing until after
-hydration.
+`ClientOnly.tsx` wraps browser-only interactive components. `LensPage` and `ComparePage` pass crawlable fallback content
+for SSR and replace it with `LensViewer` after hydration.
 
 ## SEO Metadata
 
@@ -67,8 +73,8 @@ The shared renderer preserves:
 - Description-panel compact typography and safe external links.
 
 Article markdown files live in `src/content/**/*.md`. Their frontmatter flows through
-`scripts/generate-build-metadata.mjs` into generated homepage/article registries in
-`src/utils/content/homepageContent.ts`.
+`scripts/generate-build-metadata.mjs`; raw markdown is loaded by `import.meta.glob` in
+`src/utils/content/homepageContent.ts` and joined to the generated metadata there.
 
 Lens description markdown files live beside lens data files as `*.analysis.md` and render in `DescriptionPanel.tsx`.
 
@@ -85,8 +91,10 @@ Metadata generation is split across:
 
 - `scripts/lens-data-lib.mjs` - lens data scanning, root-file organization helpers, maker slug derivation.
 - `scripts/build-metadata-lib.mjs` - git freshness helpers, bounded concurrency, route freshness aggregation.
-- `scripts/generate-build-metadata.mjs` - top-level metadata orchestration.
-- `scripts/maker-prefixes.mjs` - single source of truth for maker prefixes.
+- `scripts/generate-build-metadata.mjs` - top-level metadata orchestration, concrete route enumeration, generated route
+  freshness, generated maker-prefix JSON, and README lens-count refresh.
+- `scripts/maker-prefixes.mjs` - single source of truth for maker prefixes, emitted to
+  `src/generated/maker-prefixes.json`.
 
 Freshness collection uses `execFile`/`execFileSync` argument arrays rather than shell strings and bounded async
 concurrency for the git calls. Keep generated route and freshness artifacts stable unless a content change intentionally
@@ -97,6 +105,7 @@ updates them.
 When adding a route pattern:
 
 1. Add the React route in `src/routes/routeManifest.tsx`.
-2. Update metadata route expansion in `scripts/generate-build-metadata.mjs`.
-3. Ensure prerender validation and sitemap generation see the new route.
-4. Add page smoke tests and any SEO/structured-data tests that apply.
+2. Update concrete route expansion in `scripts/generate-build-metadata.mjs`, or add the pattern to
+   `CLIENT_ONLY_PATTERNS` in `scripts/prerender.mjs` if it is intentionally not prerendered.
+3. Update `buildRouteFreshness()` and sitemap priority logic if the route should appear in generated SEO artifacts.
+4. Add page smoke tests plus route-sync, SEO, and structured-data tests that apply.

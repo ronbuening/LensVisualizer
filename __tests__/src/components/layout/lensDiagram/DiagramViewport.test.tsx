@@ -48,6 +48,8 @@ const baseProps = {
     toggleBg: "#000",
     toggleBorder: "#333",
     muted: "#999",
+    asphStroke: "#5af",
+    asphLabel: "#8af",
   } as Theme,
   dark: false,
   sx: (value: number) => value,
@@ -100,9 +102,6 @@ const baseProps = {
   onZoomIn: vi.fn(),
   onZoomOut: vi.fn(),
   onPanBy: vi.fn(),
-  showBokehPreview: false,
-  onBokehPreviewToggle: vi.fn(),
-  bokehPreviewContent: null,
   showGroupMovement: false,
   onGroupMovementClose: vi.fn(),
   groupMovementContent: <div>Movement Overlay</div>,
@@ -129,6 +128,7 @@ describe("DiagramViewport", () => {
 
     expect(baseProps.onAnalysisDrawerToggle).toHaveBeenCalledWith(true);
     expect(screen.queryByTestId("analysis-drawer")).toBeNull();
+    expect(screen.queryByRole("button", { name: /open bokeh preview/i })).toBeNull();
   });
 
   it("forwards cardinal overlay props into the SVG", () => {
@@ -181,6 +181,35 @@ describe("DiagramViewport", () => {
     expect(screen.getByText("Drawer Body")).toBeTruthy();
     expect(screen.queryByRole("button", { name: /ABERRATIONS & DISTORTIONS/i })).toBeNull();
     expect(mockAnalysisDrawer.mock.calls[0][0].activeTab).toBe("aberrations");
+  });
+
+  it("shows a mobile aspheric compare button for a selected aspheric element", () => {
+    const onOpenAsphericCompare = vi.fn();
+    const L = {
+      ...baseProps.L,
+      ES: [[4, 0, 1]],
+      asphByIdx: { 0: { K: 0, A4: 1e-7, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0 } },
+    } as unknown as RuntimeLens;
+
+    render(
+      <DiagramViewport {...baseProps} L={L} isWide={false} sel={4} onOpenAsphericCompare={onOpenAsphericCompare} />,
+    );
+
+    fireEvent.click(screen.getByRole("button", { name: /compare selected aspheric element/i }));
+
+    expect(onOpenAsphericCompare).toHaveBeenCalledWith(4);
+  });
+
+  it("does not show the mobile aspheric compare button for spherical selections", () => {
+    const L = {
+      ...baseProps.L,
+      ES: [[4, 0, 1]],
+      asphByIdx: {},
+    } as unknown as RuntimeLens;
+
+    render(<DiagramViewport {...baseProps} L={L} isWide={false} sel={4} onOpenAsphericCompare={vi.fn()} />);
+
+    expect(screen.queryByRole("button", { name: /compare selected aspheric element/i })).toBeNull();
   });
 
   it("gates the LCA overlay on chromatic mode and available data", () => {

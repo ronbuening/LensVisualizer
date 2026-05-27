@@ -1,3 +1,10 @@
+/**
+ * Internal paraxial tracing — low-level first-order stepping over authored surface arrays.
+ *
+ * Used by runtime-lens construction to derive focal length, pupils, and stop behavior before the
+ * exact trace facade is available.
+ */
+
 import type { ParaxialTraceResult } from "../../types/optics.js";
 import { FLAT_R_THRESHOLD } from "./surfaceMath.js";
 
@@ -33,10 +40,25 @@ export interface RealSurfaceTraceResult {
   heights: number[] | null;
 }
 
+/**
+ * Transfer a paraxial ray by one axial gap.
+ *
+ * @param state - current height, slope, and medium index
+ * @param distance - axial distance in mm
+ * @returns state at the next surface vertex plane
+ */
 export function transferParaxialRay({ y, u, n }: ParaxialRayState, distance: number): ParaxialRayState {
   return { y: y + distance * u, u, n };
 }
 
+/**
+ * Apply paraxial refraction, reflection, or blocking at an authored surface.
+ *
+ * @param state - incoming paraxial ray
+ * @param surface - authored surface radius/index/interaction data
+ * @param options - optional mirror and same-index guards
+ * @returns outgoing state, or null when the surface blocks this first-order path
+ */
 export function interactParaxialSurface(
   { y, u, n }: ParaxialRayState,
   surface: TraceSurface,
@@ -63,6 +85,15 @@ export function interactParaxialSurface(
   return { y, u: refractedU, n: nextN };
 }
 
+/**
+ * Trace a paraxial ray through authored surfaces during runtime-lens construction.
+ *
+ * @param surfaces - authored surface array
+ * @param y0 - launch height in mm
+ * @param u0 - small-angle launch slope
+ * @param options - stop and height-recording controls
+ * @returns final paraxial state and optional per-surface heights
+ */
 export function traceSurfacesParaxial(
   surfaces: TraceSurface[],
   y0: number,

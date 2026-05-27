@@ -4,6 +4,7 @@ import { afterEach, describe, it, expect, beforeEach, vi } from "vitest";
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import AberrationsPanel from "../../../../../src/components/display/analysis/AberrationsPanel.js";
 import ComaTab from "../../../../../src/components/display/analysis/ComaTab.js";
+import type { PreparedOpticalState } from "../../../../../src/optics/types.js";
 import type { RuntimeLens } from "../../../../../src/types/optics.js";
 import type { Theme } from "../../../../../src/types/theme.js";
 
@@ -67,6 +68,17 @@ const baseProps = {
   currentPhysStopSD: 5,
   expanded: true,
 };
+
+function makePreparedState(overrides: Partial<PreparedOpticalState> = {}): PreparedOpticalState {
+  return {
+    lens: { runtime: { N: 2, key: "prepared-runtime" } as unknown as RuntimeLens },
+    z: [0, 7],
+    focusT: 0.23,
+    zoomT: 0.11,
+    aberrationT: 0.58,
+    ...overrides,
+  } as PreparedOpticalState;
+}
 
 function withCurveFields<T extends { fieldFractions: readonly number[]; fields: Array<Record<string, unknown>> }>(
   result: T,
@@ -524,6 +536,46 @@ describe("AberrationsPanel", () => {
     );
   });
 
+  it("uses the prepared analysis state when supplied to aberration sections", () => {
+    mockComputeSphericalAberration.mockReturnValue(makeSaResult(-0.012));
+    const preparedState = makePreparedState();
+    const preparedRuntime = preparedState.lens.runtime;
+    const preparedZ = [...preparedState.z];
+
+    render(<AberrationsPanel {...baseProps} aberrationT={0.42} preparedState={preparedState} />);
+
+    expect(mockComputeSphericalAberration).toHaveBeenCalledWith(
+      preparedRuntime,
+      preparedZ,
+      preparedState.focusT,
+      preparedState.zoomT,
+      baseProps.currentEPSD,
+      baseProps.currentPhysStopSD,
+      preparedState.aberrationT,
+    );
+    expect(mockComputeSAProfile).toHaveBeenCalledWith(
+      preparedRuntime,
+      preparedZ,
+      preparedState.focusT,
+      preparedState.zoomT,
+      baseProps.currentEPSD,
+      baseProps.currentPhysStopSD,
+      preparedState.aberrationT,
+    );
+    expect(mockComputeFieldCurvature).toHaveBeenNthCalledWith(
+      1,
+      preparedRuntime,
+      preparedZ,
+      preparedState.focusT,
+      preparedState.zoomT,
+      baseProps.currentEPSD,
+      baseProps.currentPhysStopSD,
+      false,
+      preparedState.aberrationT,
+      undefined,
+    );
+  });
+
   it("forwards aberration-control state into coma calculations", () => {
     render(
       <ComaTab
@@ -546,6 +598,36 @@ describe("AberrationsPanel", () => {
       baseProps.currentEPSD,
       baseProps.currentPhysStopSD,
       0.42,
+      undefined,
+    );
+  });
+
+  it("uses the prepared analysis state when supplied to coma sections", () => {
+    const preparedState = makePreparedState();
+    const preparedRuntime = preparedState.lens.runtime;
+
+    render(
+      <ComaTab
+        L={baseProps.L}
+        t={baseProps.t}
+        zPos={baseProps.zPos}
+        focusT={baseProps.focusT}
+        zoomT={baseProps.zoomT}
+        aberrationT={0.42}
+        currentEPSD={baseProps.currentEPSD}
+        currentPhysStopSD={baseProps.currentPhysStopSD}
+        preparedState={preparedState}
+      />,
+    );
+
+    expect(mockComputeComaAnalysis).toHaveBeenCalledWith(
+      preparedRuntime,
+      [...preparedState.z],
+      preparedState.focusT,
+      preparedState.zoomT,
+      baseProps.currentEPSD,
+      baseProps.currentPhysStopSD,
+      preparedState.aberrationT,
       undefined,
     );
   });

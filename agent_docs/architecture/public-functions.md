@@ -7,6 +7,8 @@ implementation details.
 ## Import Boundaries
 
 - Prefer the barrel or focused module listed here before importing from a deeper file.
+- `src/optics/` is the authoritative optics implementation. App code should prefer the stable `src/optics/*` public
+  paths; deeper engine modules are for optics internals and focused tests.
 - Do not import from `src/optics/internal/` unless the work is inside the optics implementation or a targeted optics test.
 - Treat `src/generated/` as read-only build output. Regenerate metadata instead of editing it.
 - Lens data modules are auto-discovered through `import.meta.glob`; do not manually import individual lens files for
@@ -34,7 +36,8 @@ implementation details.
 
 | Module | Public Function Or Surface | Use |
 | --- | --- | --- |
-| `src/optics/buildLens.ts` | `buildLens(data)` | Validate a defaulted `LensData` object, resolve labels/glass/state indices, compute default optical constants, and return a frozen `RuntimeLens`. |
+| `src/optics/buildLens.ts` | `buildLens(data)` | Stable constructor backed by `buildLens2`; validates/defaults lens data, resolves labels/glass/state indices, computes optical constants, returns a frozen `RuntimeLens`, and registers an engine lens for prepared-state work. |
+| `src/optics/runtimeLens.ts` | `paraxialTrace`, `realTraceToStop` | Runtime-lens construction internals and low-level first-order helpers used by focused optics tests. |
 | `src/optics/validateLensData.ts` | `validateLensData(data)` | Return validation error strings for untrusted lens data; callers decide whether to throw or show errors. |
 
 Use `buildLens()` once per lens/session state boundary, then pass the returned `RuntimeLens` (`L`) explicitly into pure
@@ -48,7 +51,8 @@ rather than relying on sequential partial tracing.
 
 ## Optics Engine
 
-`src/optics/optics.ts` is the compatibility barrel for the most commonly consumed pure optics helpers.
+`src/optics/optics.ts` is the stable barrel for the most commonly consumed pure optics helpers. It preserves app-facing
+import paths over the engine implementation.
 
 | Module | Public Function Or Surface | Use |
 | --- | --- | --- |
@@ -60,6 +64,13 @@ rather than relying on sequential partial tracing.
 | `src/optics/optics.ts` | `traceRay`, `traceRayChromatic`, `traceRayVector`, `traceRayVectorChromatic`, `traceToImage` | Meridional and vector ray tracing through the runtime lens. |
 | `src/optics/optics.ts` | `traceSkewRay`, `traceSkewRayVector`, `sampleOrthogonalPupilFan`, `sampleCircularPupil`, `computeChromaticSpread` | Skew-ray and pupil-sampling utilities for aberration and bokeh analysis. |
 | `src/optics/opticsFormat.ts` | `formatDist`, `formatPetzvalRadius` | Display formatting for optics values. |
+
+Engine-native modules are public only to engine work and focused tests:
+
+| Module | Public Function Or Surface | Use |
+| --- | --- | --- |
+| `src/optics/compat.ts` | `buildLens2`, `prepareRuntimeState`, `engineLensFromRuntime`, `traceRay2`, `solveChiefRay2`, analysis `*2` facades | Runtime-lens adapters for stable `RuntimeLens` callers and engine-native prepared-state work. |
+| `src/optics/state/prepareState.ts` | `prepareState(engineLens, focusT, zoomT, aberrationT)` | Compile current optical state for engine-native callers. Use caches when repeated state preparation is measured as overhead. |
 
 Specialized optics modules are also public when work is in that domain:
 
@@ -80,7 +91,7 @@ state. Keep slider-dependent analysis out of `buildLens()`.
 
 | Module | Public Function Or Surface | Use |
 | --- | --- | --- |
-| `src/optics/analysisJobs.ts` | `analysisJobs` | Small facade for distortion/vignetting jobs used where the UI wants a grouped analysis entry point. |
+| `src/optics/analysisJobs.ts` and `src/optics/compat.ts` | `analysisJobs`, `analysisJobsForState2` | Grouped analysis job facades for runtime callers and prepared-state UI work across summary, aberration, bokeh, distortion, vignetting, and pupil analyses. |
 | `src/optics/aberrationAnalysis.ts` | `computeSphericalAberration`, `computeSAProfile`, `computeSphericalAberrationBlurCharacter` | Longitudinal spherical aberration and blur character. |
 | `src/optics/aberrationAnalysis.ts` | `computeComaAnalysis`, `computeMeridionalComa`, `computeSagittalComa`, `computeComaPreview`, `computeComaPointCloudPreview` | Coma analysis and preview point clouds. |
 | `src/optics/aberrationAnalysis.ts` | `computeFieldCurvature` | Tangential/sagittal field-curvature analysis. |
@@ -116,9 +127,9 @@ state. Keep slider-dependent analysis out of `buildLens()`.
 
 | Module | Public Function Or Surface | Use |
 | --- | --- | --- |
-| `src/routes/routeManifest.tsx` | `RouteManifestEntry`, default `routeManifest` | Single source of truth for client routes and prerender route patterns. |
+| `src/routes/routeManifest.tsx` | `RouteManifestEntry`, default `routeManifest` | Single source of truth for React route patterns used by the browser router and SSR renderer. Concrete prerender paths are generated separately in build metadata. |
 | `src/router.tsx` | default `router` | Browser router used by the React entry point. |
-| `src/entry-server.tsx` | `manifestPaths`, `render(url)` | Static prerender entry used by `scripts/prerender.mjs`. |
+| `src/entry-server.tsx` | `manifestPaths`, `render(url)` | Static prerender entry and manifest-coverage surface used by `scripts/prerender.mjs`. |
 
 ## State, URL, And Comparison APIs
 

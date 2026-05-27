@@ -14,7 +14,16 @@ export const OFF_AXIS_MODES = ["off", "trueAngle", "edge"] as const;
 export const RAY_DENSITIES = ["normal", "dense", "diagnostic"] as const;
 export const MOBILE_VIEWS = ["diagram", "description"] as const;
 export const DESKTOP_VIEWS = ["diagram", "both", "analysis"] as const;
-export const ANALYSIS_TAB_IDS = ["aberrations", "coma", "distortion", "breathing", "vignetting", "pupils"] as const;
+export const ANALYSIS_TAB_IDS = [
+  "summary",
+  "aberrations",
+  "coma",
+  "bokeh",
+  "distortion",
+  "breathing",
+  "vignetting",
+  "pupils",
+] as const;
 
 export type OffAxisMode = (typeof OFF_AXIS_MODES)[number];
 export type RayDensity = (typeof RAY_DENSITIES)[number];
@@ -125,7 +134,6 @@ export type PanelField =
   | "aberrationsExpanded"
   | "analysisDrawerOpen"
   | "zoomPanActive"
-  | "bokehPreviewOpen"
   | "groupMovementOpen";
 
 export interface PanelsSlice {
@@ -143,7 +151,6 @@ export interface PanelsSlice {
   analysisDrawerOpen: boolean;
   analysisDrawerTab: AnalysisTabId;
   zoomPanActive: boolean;
-  bokehPreviewOpen: boolean;
   groupMovementOpen: boolean;
   groupMovementMode: GroupMovementMode;
   selectedElementId: number | null;
@@ -258,7 +265,6 @@ export interface URLState {
   glassMapOpen?: boolean;
   lcaOverlayOpen?: boolean;
   petzvalOverlayOpen?: boolean;
-  bokehPreviewOpen?: boolean;
   analysisDrawerOpen?: boolean;
   analysisDrawerTab?: AnalysisTabId;
   groupMovementOpen?: boolean;

@@ -19,7 +19,11 @@ export {
   computeSagittalComa,
 } from "./aberration/coma.js";
 export { computeFieldCurvature } from "./aberration/fieldCurvature.js";
-export { computeStateAwareOffAxisFieldGeometry } from "./aberration/offAxis.js";
+export {
+  computeProjectionAwareOffAxisFieldGeometry,
+  computeStateAwareOffAxisFieldGeometry,
+  isOffAxisVectorFieldGeometry,
+} from "./aberration/offAxis.js";
 export {
   buildBokehDensityGrid,
   buildBokehRadialProfile,

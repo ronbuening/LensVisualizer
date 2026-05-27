@@ -182,8 +182,8 @@ describe("loadPrefs", () => {
   });
 
   it("loads analysisDrawerTab preference", () => {
-    mockLocalStorage.setItem(PREFS_KEY, JSON.stringify({ analysisDrawerTab: "distortion" }));
-    expect(loadPrefs().analysisDrawerTab).toBe("distortion");
+    mockLocalStorage.setItem(PREFS_KEY, JSON.stringify({ analysisDrawerTab: "summary" }));
+    expect(loadPrefs().analysisDrawerTab).toBe("summary");
   });
 
   it("ignores non-string analysisDrawerTab", () => {

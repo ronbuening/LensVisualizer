@@ -183,7 +183,6 @@ describe("useURLSync — updateURLWithSliders (debounced)", () => {
         ...makeState().panels,
         selectedElementId: 3,
         glassMapOpen: true,
-        bokehPreviewOpen: true,
         analysisDrawerOpen: true,
         analysisDrawerTab: "coma",
       },
@@ -197,7 +196,7 @@ describe("useURLSync — updateURLWithSliders (debounced)", () => {
     });
 
     const lastCall = replaceStateSpy.mock.calls[replaceStateSpy.mock.calls.length - 1];
-    expect(lastCall[2]).toBe(`/lens/${CATALOG_KEYS[0]}?v=1&el=3&gm=1&bo=1&ad=1&tab=coma`);
+    expect(lastCall[2]).toBe(`/lens/${CATALOG_KEYS[0]}?v=1&el=3&gm=1&ad=1&tab=coma`);
   });
 
   it("uses shared overlay params and per-pane element params on compare pages", () => {
@@ -243,7 +242,6 @@ describe("useURLSync — updateURLWithSliders (debounced)", () => {
       state: expect.objectContaining({
         selectedElementId: 5,
         glassMapOpen: true,
-        bokehPreviewOpen: true,
         analysisDrawerOpen: true,
         analysisDrawerTab: "pupils",
       }),

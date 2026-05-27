@@ -28,15 +28,24 @@ src/generated/            - Build-generated metadata and maker-prefix JSON (giti
 src/pages/                - Route-level page components
 src/pages/lensIndex/      - Lens library filtering/results module
 src/components/           - React UI components and hooks
+  content/                - Article/archive/changelog cards, lists, and TOC
   controls/               - Sliders, toggles, shared controls
   diagram/                - SVG diagram rendering layers
   display/                - Inspectors, charts, analysis tabs, overlays
+    analysis/             - Analysis drawer tabs, charts, and section components
+    overlays/             - Diagram/modal overlays such as bokeh and aspheric compare
+  errors/                 - Error boundaries and shared error display
   homepage/               - Home page sections
   hooks/                  - Viewer computation and interaction hooks
   layout/                 - LensViewer, diagram panels, page chrome
+    lensDiagram/          - Per-panel diagram viewport, drawer, and control wiring
+    lensViewer/           - Viewer-level chrome, content layout, and header helpers
   markdown/               - Shared markdown renderer
 src/comparison/           - Comparison mode feature module
 src/optics/               - Pure optical engine and analysis helpers
+  math/ trace/ field/     - Vector math, exact tracing, projection-aware field launch
+  prescription/ state/    - Lens normalization and prepared optical state
+  analysis/ aberration/   - State-aware analysis adapters and aberration helpers
 src/types/                - Shared TypeScript types
 src/utils/                - State, URL sync, themes, catalog, SEO, metadata utilities
 src/lens-data/            - Auto-registered `*.data.ts` prescriptions and `*.analysis.md` notes
@@ -89,7 +98,12 @@ Read only the relevant focused doc before changing that area:
   `npm run generate:glass-reports` and hidden mirror fixture reports with `npm run generate:mirror-reports`
 - `agent_docs/records/exact-surface-trace.md` - historical staged implementation notes for the exact trace rollout
 - `TRACE_MODEL_IMPROVEMENT_PLAN.md` - current/historical fisheye projection, vector launch, and bounding-sphere trace status
+- `MIRROR_OPTICS_ACCURACY_PLAN.md` - completed mirror/folded accuracy implementation and verification status
 - `MIRROR_LENS_FUTURE_ENHANCEMENTS.md` - follow-up backlog for mirror-lens analysis, tracing, UI, and authoring improvements
+- `CHROMATIC_DISPERSION_NOTES.md` - current chromatic dispersion cascade and catalog status
+- `ANALYSIS_OPTIONS.md` - forward-looking analysis feature roadmap
+- `PERFORMANCE.md` - performance roadmap and shipped slider-responsiveness stages
+- `SEO_OFFSITE_ACTIONS.md` - post-deploy search/social preview checklist
 - `agent_docs/adding_a_lens.md` - lens data workflow and validation troubleshooting
 - `agent_docs/lens-mount-format-backfill.md` - mount/format metadata backfill status and review queue
 - `agent_docs/lens-patent-audit.md` - standard procedure for re-checking a lens against its patent and logging the result
@@ -117,9 +131,10 @@ Read only the relevant focused doc before changing that area:
 - Mirror/folded systems opt into `LensData.opticalPath` and per-surface `interaction` / `innerSd`. Preserve ordinary
   sequential defaults for refractive lenses, use explicit `surfaceOrder` when hit order is known, and route folded
   stop/chief-ray solves through the generalized tracer instead of sequential `stopAt` partial traces.
-- Keep folded-system complex analysis tabs guarded until the specific tab is mirror-safe. Axial cardinal overlays and
-  mirror-safe spherical/blur paths are adapted; do not assume that for coma, distortion, vignetting, field curvature, or
-  pupil tabs without fixture-backed validation.
+- Keep folded-system complex analysis guarded until the specific path is mirror-safe. Axial cardinal overlays and
+  mirror-safe spherical/blur paths are adapted; the drawer guards coma, distortion, vignetting, and pupils, while
+  folded field curvature/astigmatism remains section-guarded inside the Aberrations tab until fixture-backed validation
+  says otherwise.
 - Keep slider-state-dependent analysis out of `buildLens()`; analysis tabs compute from current focus/zoom/aperture state.
 - Use existing shared utilities/components before adding new abstractions.
 - Use `src/components/markdown/ThemedMarkdown.tsx` for article and lens-description markdown.

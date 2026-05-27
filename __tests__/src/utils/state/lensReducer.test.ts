@@ -88,7 +88,6 @@ describe("createInitialState", () => {
     const urlState = {
       selectedElementId: 2,
       glassMapOpen: true,
-      bokehPreviewOpen: true,
       analysisDrawerOpen: true,
       analysisDrawerTab: "distortion" as const,
       groupMovementOpen: true,
@@ -97,7 +96,6 @@ describe("createInitialState", () => {
     const state = createInitialState({}, urlState, true, CATALOG_KEYS);
     expect(state.panels.selectedElementId).toBe(2);
     expect(state.panels.glassMapOpen).toBe(true);
-    expect(state.panels.bokehPreviewOpen).toBe(true);
     expect(state.panels.analysisDrawerOpen).toBe(true);
     expect(state.panels.analysisDrawerTab).toBe("distortion");
     expect(state.panels.groupMovementOpen).toBe(true);
@@ -200,7 +198,6 @@ describe("lensReducer", () => {
         glassMapOpen: true,
         lcaOverlayOpen: true,
         petzvalOverlayOpen: true,
-        bokehPreviewOpen: true,
         groupMovementOpen: true,
         selectedElementId: 2,
       };
@@ -208,7 +205,6 @@ describe("lensReducer", () => {
       expect(next.panels.glassMapOpen).toBe(false);
       expect(next.panels.lcaOverlayOpen).toBe(false);
       expect(next.panels.petzvalOverlayOpen).toBe(false);
-      expect(next.panels.bokehPreviewOpen).toBe(false);
       expect(next.panels.groupMovementOpen).toBe(false);
       expect(next.panels.selectedElementId).toBeNull();
     });
@@ -477,6 +473,11 @@ describe("lensReducer", () => {
       const next = lensReducer(state, { type: SET_ANALYSIS_TAB, tab: "breathing" });
       expect(next.panels.analysisDrawerTab).toBe("breathing");
     });
+
+    it("accepts the summary analysis tab", () => {
+      const next = lensReducer(state, { type: SET_ANALYSIS_TAB, tab: "summary" });
+      expect(next.panels.analysisDrawerTab).toBe("summary");
+    });
   });
 
   describe("SET_GROUP_MOVEMENT", () => {
@@ -527,7 +528,6 @@ describe("lensReducer", () => {
           tilt: 6,
           selectedElementId: 5,
           glassMapOpen: true,
-          bokehPreviewOpen: true,
           analysisDrawerOpen: true,
           analysisDrawerTab: "pupils",
           groupMovementOpen: true,
@@ -541,7 +541,6 @@ describe("lensReducer", () => {
       expect(next.sliders.tiltDeg).toBe(6);
       expect(next.panels.selectedElementId).toBe(5);
       expect(next.panels.glassMapOpen).toBe(true);
-      expect(next.panels.bokehPreviewOpen).toBe(true);
       expect(next.panels.analysisDrawerOpen).toBe(true);
       expect(next.panels.analysisDrawerTab).toBe("pupils");
       expect(next.panels.groupMovementOpen).toBe(true);

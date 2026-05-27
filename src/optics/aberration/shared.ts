@@ -1,3 +1,9 @@
+/**
+ * Aberration shared math — image-plane intercepts, focus scoring, and symmetric real-ray samples.
+ *
+ * Centralizes the coordinate and best-focus conventions reused by spherical, coma, field-curvature, and bokeh modules.
+ */
+
 import { traceRay } from "../optics.js";
 import type { RuntimeLens } from "../../types/optics.js";
 
