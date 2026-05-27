@@ -24,11 +24,14 @@ npm run benchmark:optics-rendering -- --iterations=5 --warmups=2
 
 ## Output Policy
 
-Each real benchmark run writes exactly one permanent machine-readable record:
+Each real benchmark run writes one machine-readable record:
 
 ```text
 agent_docs/benchmarks/runs/<timestamp>-<short-sha>.json
 ```
+
+When the run directory contains 15 or more JSON records, the runner removes the oldest records until 14 remain. Dry runs
+do not write or prune files.
 
 The human-readable report is regenerated from the newest 10 run records:
 

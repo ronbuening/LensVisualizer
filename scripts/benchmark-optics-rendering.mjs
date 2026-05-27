@@ -18,6 +18,7 @@ const ROOT = join(import.meta.dirname, "..");
 const BENCHMARK_DIR = join(ROOT, "agent_docs", "benchmarks");
 const RUNS_DIR = join(BENCHMARK_DIR, "runs");
 const REPORT_PATH = join(BENCHMARK_DIR, "benchmark-report.md");
+export const BENCHMARK_RUN_RETENTION_TRIGGER = 15;
 
 function parseArgs(argv) {
   const options = {
@@ -88,14 +89,35 @@ function environmentInfo() {
   };
 }
 
+function runFileNames(runsDir) {
+  if (!existsSync(runsDir)) return [];
+  return readdirSync(runsDir, { withFileTypes: true })
+    .filter((entry) => entry.isFile() && entry.name.endsWith(".json"))
+    .map((entry) => entry.name)
+    .sort();
+}
+
+export function pruneOldBenchmarkRunFiles(runsDir, trigger = BENCHMARK_RUN_RETENTION_TRIGGER) {
+  const names = runFileNames(runsDir);
+  const retainedCount = trigger - 1;
+  if (names.length < trigger || retainedCount < 0) return [];
+
+  const removeCount = names.length - retainedCount;
+  const removedPaths = [];
+  for (const name of names.slice(0, removeCount)) {
+    const path = join(runsDir, name);
+    rmSync(path, { force: true });
+    removedPaths.push(path);
+  }
+  return removedPaths;
+}
+
 function readRunRecords() {
   if (!existsSync(RUNS_DIR)) return [];
-  return readdirSync(RUNS_DIR)
-    .filter((name) => name.endsWith(".json"))
-    .map((name) => {
-      const path = join(RUNS_DIR, name);
-      return JSON.parse(readFileSync(path, "utf8"));
-    });
+  return runFileNames(RUNS_DIR).map((name) => {
+    const path = join(RUNS_DIR, name);
+    return JSON.parse(readFileSync(path, "utf8"));
+  });
 }
 
 async function main() {
@@ -125,10 +147,14 @@ async function main() {
 
     const benchmarkModule = await import(pathToFileURL(join(outDir, "opticsRenderingBenchmark.js")).href);
     if (args.reportOnly) {
+      const removedRunPaths = pruneOldBenchmarkRunFiles(RUNS_DIR);
       const records = readRunRecords();
       const report = benchmarkModule.buildBenchmarkReport(records, 10);
       mkdirSync(BENCHMARK_DIR, { recursive: true });
       writeFileSync(REPORT_PATH, report, "utf8");
+      for (const removedPath of removedRunPaths) {
+        console.log(`Removed stale benchmark ${removedPath}`);
+      }
       console.log(`Updated ${REPORT_PATH}`);
       return;
     }
@@ -152,18 +178,24 @@ async function main() {
     const runPath = join(RUNS_DIR, runFileName);
     writeFileSync(runPath, `${JSON.stringify(record, null, 2)}\n`, "utf8");
 
+    const removedRunPaths = pruneOldBenchmarkRunFiles(RUNS_DIR);
     const records = readRunRecords();
     const report = benchmarkModule.buildBenchmarkReport(records, 10);
     writeFileSync(REPORT_PATH, report, "utf8");
 
     console.log(`Wrote ${runPath}`);
+    for (const removedPath of removedRunPaths) {
+      console.log(`Removed stale benchmark ${removedPath}`);
+    }
     console.log(`Updated ${REPORT_PATH}`);
   } finally {
     rmSync(outDir, { recursive: true, force: true });
   }
 }
 
-main().catch((error) => {
-  console.error(error instanceof Error ? error.message : error);
-  process.exit(1);
-});
+if (process.argv[1] && pathToFileURL(process.argv[1]).href === import.meta.url) {
+  main().catch((error) => {
+    console.error(error instanceof Error ? error.message : error);
+    process.exit(1);
+  });
+}
