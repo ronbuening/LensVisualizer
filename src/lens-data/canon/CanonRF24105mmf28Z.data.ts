@@ -372,7 +372,7 @@ const LENS_DATA = {
     { label: "8", R: -880.3, d: 0.8, nd: 1.0, elemId: 0, sd: 26.4 }, // E4 rear → air [var d8]
 
     // ── L2: Negative variator ──
-    { label: "9", R: 915.083, d: 1.2, nd: 1.883, elemId: 5, sd: 22.0 }, // E5 front
+    { label: "9", R: 915.083, d: 1.2, nd: 1.883, elemId: 5, sd: 17.5 }, // E5 front
     { label: "10", R: 29.841, d: 5.73, nd: 1.0, elemId: 0, sd: 15.8 }, // E5 rear → air
     { label: "11", R: -218.33, d: 1.0, nd: 1.59522, elemId: 6, sd: 15.8 }, // E6 front
     { label: "12", R: 63.389, d: 3.69, nd: 1.0, elemId: 0, sd: 14.9 }, // E6 rear → air

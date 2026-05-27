@@ -201,7 +201,7 @@ const LENS_DATA = {
     { label: "9", R: 194.674, d: 4.02685, nd: 1.85896, elemId: 5, sd: 13.7 },
     { label: "10", R: -30.645, d: 0.01263, nd: 1.56732, elemId: 0, sd: 13.7 }, // L5–L6 cement
     { label: "11", R: -30.645, d: 0.8081, nd: 1.91082, elemId: 6, sd: 13.7 },
-    { label: "12", R: 37.409, d: 15.28214, nd: 1.0, elemId: 0, sd: 18.0 },
+    { label: "12", R: 37.409, d: 15.28214, nd: 1.0, elemId: 0, sd: 15.2 },
 
     // ── G3: Rear relay (L7–L8 cemented, L9 aspherical) ──
     { label: "13", R: 56.176, d: 8.6344, nd: 1.6968, elemId: 7, sd: 17.3 },

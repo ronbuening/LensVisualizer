@@ -396,7 +396,7 @@ const LENS_DATA = {
     // Group 2 — Variator / Focus Group (f₂ = −12.8 mm)
     { label: "6A", R: 74.29, d: 0.05, nd: 1.5164, elemId: 4, sd: 14.0 }, // Resin1 front (asph)
     { label: "7", R: 59.996, d: 1.2, nd: 1.804, elemId: 5, sd: 13.5 }, // Resin1→L4g junction
-    { label: "8", R: 12.277, d: 6.81, nd: 1.0, elemId: 0, sd: 8.5 }, // L4g rear → air
+    { label: "8", R: 12.277, d: 6.81, nd: 1.0, elemId: 0, sd: 11.0 }, // L4g rear → air
     { label: "9", R: -37.4, d: 1.0, nd: 1.83481, elemId: 6, sd: 8.0 }, // L5 front
     { label: "10", R: 37.4, d: 0.15, nd: 1.0, elemId: 0, sd: 8.3 }, // L5 rear → air
     { label: "11", R: 27.209, d: 4.93, nd: 1.834, elemId: 7, sd: 9.0 }, // L6 front

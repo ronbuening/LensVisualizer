@@ -214,7 +214,7 @@ const LENS_DATA = {
   /* ── Surface prescription ── */
   surfaces: [
     // ── G1: Negative front group (f₁ = −32.86 mm) ──
-    { label: "1", R: 71.885, d: 1.2, nd: 1.6968, elemId: 1, sd: 22.5 }, // L1a front
+    { label: "1", R: 71.885, d: 1.2, nd: 1.6968, elemId: 1, sd: 15.5 }, // L1a front
     { label: "2", R: 15.312, d: 7.8, nd: 1.0, elemId: 0, sd: 13.5 }, // L1a rear → air
     { label: "3A", R: -298.152, d: 1.57, nd: 1.53048, elemId: 2, sd: 12.7 }, // L1b front (asph)
     { label: "4A", R: 93.305, d: 1.78, nd: 1.0, elemId: 0, sd: 13.0 }, // L1b rear (asph) → air

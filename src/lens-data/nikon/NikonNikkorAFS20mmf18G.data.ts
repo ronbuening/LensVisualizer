@@ -252,7 +252,7 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1", R: 44.748, d: 2.05, nd: 1.72916, elemId: 1, sd: 34.0 },
+    { label: "1", R: 44.748, d: 2.05, nd: 1.72916, elemId: 1, sd: 16.0 },
     { label: "2", R: 21.684, d: 6.42, nd: 1.0, elemId: 0, sd: 13.8 },
     { label: "3", R: 37.165, d: 1.7, nd: 1.72916, elemId: 2, sd: 20.0 },
     { label: "4", R: 21.292, d: 0.08, nd: 1.5138, elemId: 3, sd: 16.5 },
@@ -265,7 +265,7 @@ const LENS_DATA = {
     { label: "11", R: -217.291, d: 0.15, nd: 1.0, elemId: 0, sd: 14.0 },
     { label: "12", R: 55.437, d: 9.28, nd: 1.80518, elemId: 8, sd: 20.0 },
     { label: "13", R: 508.643, d: 7.51, nd: 1.0, elemId: 0, sd: 20.0 },
-    { label: "14", R: 173.481, d: 1.0, nd: 1.8042, elemId: 9, sd: 10.8 },
+    { label: "14", R: 173.481, d: 1.0, nd: 1.8042, elemId: 9, sd: 4.5 },
     { label: "15", R: 40.958, d: 0.2, nd: 1.0, elemId: 0, sd: 3.8 },
     { label: "16", R: 26.018, d: 6.47, nd: 1.63854, elemId: 10, sd: 11.0 },
     { label: "17", R: -45.032, d: 0.15, nd: 1.0, elemId: 0, sd: 6.3 },

@@ -315,7 +315,7 @@ const LENS_DATA = {
     { label: "6", R: 390.1369, d: 1.5, nd: 1.0, elemId: 0, sd: 28.0 }, // D1 — zoom only
 
     /* ── G2: Negative Variator (L21, L22, L23, L24) ── */
-    { label: "7", R: 236.0277, d: 1.25, nd: 1.95375, elemId: 4, sd: 17.5 },
+    { label: "7", R: 236.0277, d: 1.25, nd: 1.95375, elemId: 4, sd: 13.0 },
     { label: "8", R: 19.0394, d: 5.0675, nd: 1.0, elemId: 0, sd: 11.6 },
     { label: "9", R: -46.67, d: 1.1, nd: 1.755, elemId: 5, sd: 10.7 },
     { label: "10", R: 68.1612, d: 0.4169, nd: 1.0, elemId: 0, sd: 11.4 },

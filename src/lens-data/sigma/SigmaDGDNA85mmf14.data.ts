@@ -278,7 +278,7 @@ const LENS_DATA = {
     { label: "15", R: 36.8904, d: 0.9, nd: 1.85451, elemId: 8, sd: 18.9 }, // L8 front (D2)
     { label: "16", R: 22.7958, d: 4.3626, nd: 1.59282, elemId: 9, sd: 18.9 }, // L8/L9 junction (D2)
     { label: "17", R: 58.0454, d: 3.5976, nd: 1.0, elemId: 0, sd: 12.8 }, // L9 → air
-    { label: "18", R: -46.5475, d: 0.95, nd: 1.85451, elemId: 10, sd: 12.8 }, // L10 front (D3)
+    { label: "18", R: -46.5475, d: 0.95, nd: 1.85451, elemId: 10, sd: 15.0 }, // L10 front (D3)
     { label: "19", R: 55.7591, d: 3.9558, nd: 2.001, elemId: 11, sd: 16.8 }, // L10/L11 junction (D3)
     { label: "20", R: -136.9656, d: 0.2, nd: 1.0, elemId: 0, sd: 16.8 }, // L11 → air
     { label: "21", R: 100.8457, d: 4.9452, nd: 2.0509, elemId: 12, sd: 18.7 }, // L12 front

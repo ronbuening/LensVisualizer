@@ -255,7 +255,7 @@ const LENS_DATA = {
     { label: "3", R: 207.849, d: 0.8433, nd: 1.0, elemId: 0, sd: 24.2 }, // L2 rear → air (d3 zoom var)
 
     // ─── G2: L3 / L4+L5 / L6 ───
-    { label: "4A", R: 159.5696, d: 1.5, nd: 1.7432, elemId: 3, sd: 18.5 }, // L3 front (DSA asph)
+    { label: "4A", R: 159.5696, d: 1.5, nd: 1.7432, elemId: 3, sd: 11.0 }, // L3 front (DSA asph)
     { label: "5A", R: 12.8384, d: 7.332, nd: 1.0, elemId: 0, sd: 9.6 }, // L3 rear (DSA asph) → air
     { label: "6", R: -22.1355, d: 1.2, nd: 1.497, elemId: 4, sd: 15.0 }, // L4 front (ED)
     { label: "7", R: 22.1355, d: 4.241, nd: 1.7552, elemId: 5, sd: 15.0 }, // L4→L5 junction
