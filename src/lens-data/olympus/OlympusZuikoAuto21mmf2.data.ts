@@ -204,9 +204,9 @@ const LENS_DATA = {
   surfaces: [
     { label: "1", R: 43.1907, d: 3.906, nd: 1.639, elemId: 1, sd: 19.0 }, // L1 front
     { label: "2", R: 111.153, d: 0.126, nd: 1.0, elemId: 0, sd: 19.0 }, // L1 rear → air
-    { label: "3", R: 21.3213, d: 1.3188, nd: 1.734, elemId: 2, sd: 16.0 }, // L2 front
+    { label: "3", R: 21.3213, d: 1.3188, nd: 1.734, elemId: 2, sd: 10.5 }, // L2 front
     { label: "4", R: 11.1252, d: 4.8846, nd: 1.0, elemId: 0, sd: 9.5 }, // L2 rear → air
-    { label: "5", R: 47.8695, d: 1.1823, nd: 1.7725, elemId: 3, sd: 14.0 }, // L3 front
+    { label: "5", R: 47.8695, d: 1.1823, nd: 1.7725, elemId: 3, sd: 8.2 }, // L3 front
     { label: "6", R: 13.0689, d: 2.247, nd: 1.0, elemId: 0, sd: 7.2 }, // L3 rear → air
     { label: "7", R: 134.4987, d: 3.3306, nd: 1.61659, elemId: 4, sd: 13.0 }, // L4a front
     { label: "8", R: 1e15, d: 0.6846, nd: 1.0, elemId: 0, sd: 12.5 }, // L4a rear (flat) → air [flare stop E gap]

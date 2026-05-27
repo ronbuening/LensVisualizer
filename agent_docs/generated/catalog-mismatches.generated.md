@@ -13,12 +13,12 @@ with words like "probable" or "approx").
 
 ## Summary
 
-- **269** lenses scanned
-- **3000** glass surfaces examined
-- **2994** surfaces with non-empty `glass` strings
-- **2326** of those resolved to a catalog entry
-- **49** mismatches found (2.1% of resolved surfaces)
-- **22** distinct lens files affected
+- **272** lenses scanned
+- **3019** glass surfaces examined
+- **3013** surfaces with non-empty `glass` strings
+- **2334** of those resolved to a catalog entry
+- **51** mismatches found (2.2% of resolved surfaces)
+- **23** distinct lens files affected
 
 ## Most-frequent mismatched catalog targets
 
@@ -40,6 +40,8 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-LAH58 | 2 | |
 | S-NBH5 | 1 | |
 | S-LAL8 | 1 | |
+| SF10 | 1 | |
+| SF11 | 1 | |
 | S-LAL14 | 1 | |
 | S-TIH4 | 1 | |
 | S-TIH11 | 1 | |
@@ -139,6 +141,13 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 |---|---|---|---|---|---|
 | 11 | `S-TIM2 (OHARA; titanium flint)` | S-TIM2 | 1.59270 | 1.62004 | +0.0273 |
 | 23 | `S-NBH5 (OHARA; niobium flint / KZFS-family equivalent)` | S-NBH5 | 1.72047 | 1.65412 | -0.0664 |
+
+### [Leica Summicron-R 50mm f/2](../../src/lens-data/leica/LeicaSummicronR50mmf2.data.ts) — US 4,123,144
+
+| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
+|---|---|---|---|---|---|
+| 1 | `SF10 (Schott; patent ne/νe values stored as nd/vd)` | SF10 | 1.73430 | 1.72825 | -0.0060 |
+| 4 | `SF11 (Schott; patent ne/νe values stored as nd/vd)` | SF11 | 1.79190 | 1.78472 | -0.0072 |
 
 ### [NIKON AF-S MICRO-NIKKOR 60mm f/2.8G ED](../../src/lens-data/nikon/NikonAFSMicroNikkor60f28G.data.ts) — US 7,898,744 B2
 

@@ -9,10 +9,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **269** lenses scanned
-- **264** total code-only elements found
-- **264** elements in this report
-- **95** distinct lens files affected
+- **272** lenses scanned
+- **266** total code-only elements found
+- **266** elements in this report
+- **96** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -120,6 +120,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 682366 | 1 | 1 |
 | 683447 | 1 | 1 |
 | 683548 | 1 | 1 |
+| 693495 | 1 | 1 |
 | 694532 | 1 | 1 |
 | 697485 | 1 | 1 |
 | 700555 | 1 | 1 |
@@ -134,6 +135,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 728403 | 1 | 1 |
 | 731405 | 1 | 1 |
 | 738493 | 1 | 1 |
+| 741262 | 1 | 1 |
 | 741278 | 1 | 1 |
 | 741527 | 1 | 1 |
 | 747274 | 1 | 1 |
@@ -408,6 +410,13 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---|---|---|---|---|
 | L4 (Element 4) | 6 | `813252 - high-index flint (patent nd=1.81265, vd=25.24; no exact public catalog match)` | 1.81265 / 25.24 | No catalog entry | abbe |
 | L7 (Element 7) | 11 | `813252 - high-index flint (patent nd=1.81265, vd=25.24; no exact public catalog match)` | 1.81265 / 25.24 | No catalog entry | abbe |
+
+### [Leica Macro-Elmarit-R 60mm f/2.8](../../src/lens-data/leica/LeicaMacroElmaritR60mmf28.data.ts) - US 3,552,833
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
+|---|---|---|---|---|---|
+| L2 (Element 2) | 3 | `Unmatched (693/495 e-line; positive member of front cemented doublet)` | 1.69282 / 49.50 | No catalog entry | abbe |
+| L4 (Element 4) | 6 | `Unmatched dense flint (741/262 e-line; no close current HOYA/OHARA match)` | 1.74070 / 26.20 | No catalog entry | abbe |
 
 ### [LEICA SUMMILUX 28 mm f/1.7 ASPH. (Q, Q2, Q3)](../../src/lens-data/leica/Leica28mmf17.data.ts) - US 2016/0266350 A1
 

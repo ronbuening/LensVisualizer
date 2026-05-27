@@ -20,12 +20,15 @@ The candidate scan splits mismatches into two buckets:
 
 This file tracks the second bucket plus any cases from the first bucket that need authorial judgment (multiple candidates, or relabeling would change the lens-data file's narrative — e.g. the analysis.md companion file says "S-LAH79" and the candidate suggestion would invalidate that).
 
-## Current Status (May 2026, Phase 12 catalog)
+## Current Status (May 2026, Phase 18 catalog)
 
-- Catalog: **185 verified entries** in `src/optics/glassCatalogData.ts`.
-- `catalogMismatchScan`: **223** lenses scanned, **2567** non-empty glass strings, **1815** resolved catalog hits, **338** rejected mismatches across **117** lens files.
-- `glassRelabelCandidatesScan`: **338** mismatched surfaces across **230** unique `(stored nd, stored vd, label)` groups.
-- `unresolvedGlassScan`: **648** non-explicit-unmatched annotations still do not resolve, covering **204** distinct glass-like tokens.
+- Catalog: **247 verified entries** in `src/optics/glassCatalogData.ts`.
+- `catalogMismatchScan`: **272** lenses scanned, **3013** non-empty glass strings, **2334** resolved catalog hits,
+  **51** rejected mismatches across **23** lens files.
+- `glassRelabelCandidatesScan`: **51** mismatched surfaces across **42** unique
+  `(stored nd, stored vd, label)` groups.
+- `unresolvedGlassScan`: **603** non-explicit-unmatched annotations still do not resolve, covering **218** distinct
+  glass-like tokens.
 - The Phase 2/3 resolved tables below are historical audit trail. Use the generated reports above for the current queue before starting new relabel work; for patent-by-patent execution, start from [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md).
 
 ## Resolved Phase 3 — high-confidence relabels (audit trail)

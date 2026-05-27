@@ -186,7 +186,7 @@ const LENS_DATA = {
     { label: "STO", R: 1e15, d: 3.21, nd: 1.0, elemId: 0, sd: 4.116 },
     { label: "5", R: 51.9089, d: 1.71, nd: 1.755, elemId: 3, sd: 6.8 },
     { label: "6", R: -51.9089, d: 1.0124, nd: 1.0, elemId: 0, sd: 4.8 },
-    { label: "7", R: -11.4182, d: 0.55, nd: 1.62004, elemId: 4, sd: 4.9 },
+    { label: "7", R: -11.4182, d: 0.55, nd: 1.62004, elemId: 4, sd: 7.2 },
     { label: "8", R: 28.7482, d: 4.37, nd: 1.61997, elemId: 5, sd: 7.9 },
     { label: "9", R: -14.217, d: 0.1, nd: 1.0, elemId: 0, sd: 8.9 },
     { label: "10", R: -45.1189, d: 0.64, nd: 1.56732, elemId: 6, sd: 9.3 },

@@ -19,7 +19,7 @@ both match the stored values within tolerance (nd ±0.005, vd ±3).
 - **No candidate**: relabel as `Unmatched (...reason)` and add a row to
   [glass-relabel-followup.md](../glass-relabel-followup.md) for per-lens patent verification.
 
-**Scope**: 49 mismatched surfaces across 40 unique groups.
+**Scope**: 51 mismatched surfaces across 42 unique groups.
 
 ## stored (nd=1.49782, vd=82.56) [PgF=0.5379 (dPgF=0.0330)]  — 1 surface, current label resolves to S-FPM4
 
@@ -180,6 +180,13 @@ Candidates:
 Surfaces:
 - [NIKON AF-S NIKKOR 58mm f/1.4G](../../src/lens-data/nikon/Nikon58f14GDesignCandidate.data.ts) `9`: `S-TIH11 / N-SF10 (dense flint)`
 
+## stored (nd=1.73430, vd=28.19)  — 1 surface, current label resolves to SF10
+
+**No catalog candidate within tolerance** — needs per-lens follow-up.
+
+Surfaces:
+- [Leica Summicron-R 50mm f/2](../../src/lens-data/leica/LeicaSummicronR50mmf2.data.ts) `1`: `SF10 (Schott; patent ne/νe values stored as nd/vd)`
+
 ## stored (nd=1.73800, vd=32.30)  — 1 surface, current label resolves to S-NBH52V
 
 Candidates:
@@ -272,6 +279,14 @@ Candidates:
 
 Surfaces:
 - [NIKON NIKKOR Z 135mm f/1.8 S Plena](../../src/lens-data/nikon/NikonZ135f18.data.ts) `26`: `Lanthanum flint (near S-LAM55)`
+
+## stored (nd=1.79190, vd=25.55)  — 1 surface, current label resolves to SF11
+
+Candidates:
+- **S-NBH58** (nd=1.78880, vd=28.43, Δnd=-0.0031, Δvd=+2.88)
+
+Surfaces:
+- [Leica Summicron-R 50mm f/2](../../src/lens-data/leica/LeicaSummicronR50mmf2.data.ts) `4`: `SF11 (Schott; patent ne/νe values stored as nd/vd)`
 
 ## stored (nd=1.79631, vd=40.90)  — 1 surface, current label resolves to NBFD15
 
@@ -399,5 +414,5 @@ Surfaces:
 
 ## Summary
 
-- **34** (nd, vd) groups have at least one candidate (42 surfaces) — actionable relabels.
-- **6** (nd, vd) groups have NO candidate (7 surfaces) — needs patent verification or Unmatched relabeling.
+- **35** (nd, vd) groups have at least one candidate (43 surfaces) — actionable relabels.
+- **7** (nd, vd) groups have NO candidate (8 surfaces) — needs patent verification or Unmatched relabeling.

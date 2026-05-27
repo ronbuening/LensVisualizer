@@ -164,7 +164,7 @@ const LENS_DATA = {
 
   /* ── Surface prescription ── */
   surfaces: [
-    { label: "1", R: -130.0, d: 1.0, nd: 1.517417, elemId: 1, sd: 11.0 },
+    { label: "1", R: -130.0, d: 1.0, nd: 1.517417, elemId: 1, sd: 7.6 },
     { label: "2", R: 8.9033, d: 2.2, nd: 1.0, elemId: 0, sd: 6.8 },
     { label: "3", R: 20.1515, d: 2.2, nd: 1.834, elemId: 2, sd: 6.8 },
     { label: "4", R: 296.1613, d: 1.5, nd: 1.0, elemId: 0, sd: 6.5 },

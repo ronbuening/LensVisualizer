@@ -9,10 +9,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **49** mismatched surfaces across **22** lens files
-- **42** surfaces have at least one candidate
+- **51** mismatched surfaces across **23** lens files
+- **43** surfaces have at least one candidate
 - **8** surfaces have high-confidence candidate ranking
-- **7** surfaces have no catalog candidate and need patent review
+- **8** surfaces have no catalog candidate and need patent review
 
 ## Relabels by Lens
 
@@ -119,6 +119,13 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 6 | `770297 — S-TIH18 family (OHARA)` | 1.77047 / 29.70 | S-TIH18 (Δnd=-0.0490) | No catalog candidate | Patent review | Yes - no catalog match |
 | 9 | `770297 — S-TIH18 family (OHARA)` | 1.77047 / 29.70 | S-TIH18 (Δnd=-0.0490) | No catalog candidate | Patent review | Yes - no catalog match |
 | 26 | `S-LAL8 (OHARA)` | 1.65844 / 50.90 | S-LAL8 (Δnd=+0.0546) | N-SSK5 (Δnd=+0.0000, Δvd=-0.02) | High | Check lens notes |
+
+### [Leica Summicron-R 50mm f/2](../../src/lens-data/leica/LeicaSummicronR50mmf2.data.ts) - US 4,123,144
+
+| Surface | Current label | Stored nd/vd | Rejected as | Best candidate(s) | Confidence | Patent review |
+|---|---|---|---|---|---|---|
+| 1 | `SF10 (Schott; patent ne/νe values stored as nd/vd)` | 1.73430 / 28.19 | SF10 (Δnd=-0.0060) | No catalog candidate | Patent review | Yes - no catalog match |
+| 4 | `SF11 (Schott; patent ne/νe values stored as nd/vd)` | 1.79190 / 25.55 | SF11 (Δnd=-0.0072) | S-NBH58 (Δnd=-0.0031, Δvd=+2.88) | Medium | Yes - choose candidate |
 
 ### [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) - JP2022-92388A
 

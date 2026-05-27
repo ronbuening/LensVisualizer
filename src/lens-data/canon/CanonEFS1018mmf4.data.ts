@@ -221,7 +221,7 @@ const LENS_DATA = {
   /* ── Surface prescription ── */
   surfaces: [
     /* ── Group 1: Front negative group (L1–L5, surfaces 1–10) ── */
-    { label: "1", R: 55.999, d: 1.2, nd: 1.7725, elemId: 1, sd: 24.4 },
+    { label: "1", R: 55.999, d: 1.2, nd: 1.7725, elemId: 1, sd: 18.5 },
     { label: "2", R: 18.939, d: 0.21, nd: 1.0, elemId: 0, sd: 16.9 },
     { label: "3", R: 18.794, d: 3.0, nd: 1.52996, elemId: 2, sd: 16.7 },
     { label: "4A", R: 12.302, d: 13.97, nd: 1.0, elemId: 0, sd: 10.9 },

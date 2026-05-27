@@ -82,7 +82,8 @@ LensVisualizer is a React + TypeScript app with an SVG-first optical diagram and
   `npm run generate:glass-reports` and hidden mirror fixture reports with `npm run generate:mirror-reports`.
 - [`adding_an_article.md`](adding_an_article.md) - content authoring, frontmatter, TOC, and series behavior.
 - [`workflow.md`](workflow.md) - checks, CI, deployment, and commit flow.
-- [`../MIRROR_OPTICS_ACCURACY_PLAN.md`](../MIRROR_OPTICS_ACCURACY_PLAN.md) - completed folded off-axis accuracy plan and verification status.
+- [`records/mirror-lens-tracing-and-authoring.md`](records/mirror-lens-tracing-and-authoring.md) - historical
+  mirror/folded implementation notes.
 - [`../MIRROR_LENS_FUTURE_ENHANCEMENTS.md`](../MIRROR_LENS_FUTURE_ENHANCEMENTS.md) - root backlog for future mirror-lens hardening.
 - [`architecture/program-flow.md`](architecture/program-flow.md) - high-level Mermaid program flow.
 - [`architecture/public-functions.md`](architecture/public-functions.md) - stable project-internal functions, types, and import boundaries.
