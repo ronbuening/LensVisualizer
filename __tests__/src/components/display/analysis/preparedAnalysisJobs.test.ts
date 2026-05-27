@@ -2,6 +2,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import DistortionTab from "../../../../../src/components/display/analysis/DistortionTab.js";
+import OpticalSummaryTab from "../../../../../src/components/display/analysis/OpticalSummaryTab.js";
 import PupilAberrationTab from "../../../../../src/components/display/analysis/PupilAberrationTab.js";
 import VignettingTab from "../../../../../src/components/display/analysis/VignettingTab.js";
 import themes from "../../../../../src/utils/theme/themes.js";
@@ -12,6 +13,7 @@ const {
   mockComputeBothPupilAberrationProfiles,
   mockComputeDistortionCurve,
   mockComputeDistortionFieldGrid,
+  mockComputeOpticalSummary,
   mockComputeVignettingCurve,
   mockPreparedState,
   mockPrepareRuntimeState,
@@ -19,6 +21,7 @@ const {
   mockComputeBothPupilAberrationProfiles: vi.fn(),
   mockComputeDistortionCurve: vi.fn(),
   mockComputeDistortionFieldGrid: vi.fn(),
+  mockComputeOpticalSummary: vi.fn(),
   mockComputeVignettingCurve: vi.fn(),
   mockPreparedState: { cacheKey: "prepared-analysis-test" },
   mockPrepareRuntimeState: vi.fn(),
@@ -33,6 +36,7 @@ vi.mock("../../../../../src/optics/compat.js", async () => {
       computeBothPupilAberrationProfiles: mockComputeBothPupilAberrationProfiles,
       computeDistortionCurve: mockComputeDistortionCurve,
       computeDistortionFieldGrid: mockComputeDistortionFieldGrid,
+      computeOpticalSummary: mockComputeOpticalSummary,
       computeVignettingCurve: mockComputeVignettingCurve,
     },
     prepareRuntimeState: mockPrepareRuntimeState,
@@ -129,6 +133,29 @@ const pupilProfiles = {
   maxAbsXpShiftMm: 0.3,
 };
 
+const opticalSummary = {
+  currentEFLMm: 51,
+  infinityEFLMm: 50,
+  breathingPercent: 2,
+  effectiveFNumber: 2.55,
+  entrancePupilDiameterMm: 20,
+  physicalStopDiameterMm: 10,
+  halfFieldDeg: 12,
+  fullFieldDeg: 24,
+  focusDistanceM: 2.5,
+  zoomT: 0.3,
+  focusT: 0.2,
+  aberrationT: 0.4,
+  imagePlaneZMm: 60,
+  totalTrackMm: 60,
+  surfaceCount: 2,
+  opticalPath: "sequential",
+  cardinalEFLMm: 50.9,
+  bfdMm: 40,
+  ffdMm: 45,
+  principalHiatusMm: -2,
+};
+
 describe("prepared-state analysis tabs", () => {
   beforeEach(() => {
     mockComputeBothPupilAberrationProfiles.mockReset();
@@ -137,6 +164,8 @@ describe("prepared-state analysis tabs", () => {
     mockComputeDistortionCurve.mockReturnValue(distortionSamples);
     mockComputeDistortionFieldGrid.mockReset();
     mockComputeDistortionFieldGrid.mockReturnValue(distortionFieldGrid);
+    mockComputeOpticalSummary.mockReset();
+    mockComputeOpticalSummary.mockReturnValue(opticalSummary);
     mockComputeVignettingCurve.mockReset();
     mockComputeVignettingCurve.mockReturnValue(vignettingSamples);
     mockPrepareRuntimeState.mockReset();
@@ -161,6 +190,27 @@ describe("prepared-state analysis tabs", () => {
     expect(mockPrepareRuntimeState).not.toHaveBeenCalled();
     expect(mockComputeDistortionCurve).toHaveBeenCalledWith(preparedState, 51, 5, fieldGeometry);
     expect(mockComputeDistortionFieldGrid).toHaveBeenCalledWith(preparedState, 5, fieldGeometry);
+  });
+
+  it("routes optical summary work through the prepared-state job facade", () => {
+    const html = renderToStaticMarkup(
+      React.createElement(OpticalSummaryTab, {
+        L: lens,
+        t: themes.dark,
+        focusT: 0.2,
+        zoomT: 0.3,
+        aberrationT: 0.4,
+        dynamicEFL: 51,
+        currentEPSD: 10,
+        currentPhysStopSD: 5,
+        fieldGeometry,
+        preparedState,
+      }),
+    );
+
+    expect(html).toContain("Optical State");
+    expect(mockPrepareRuntimeState).not.toHaveBeenCalled();
+    expect(mockComputeOpticalSummary).toHaveBeenCalledWith(preparedState, 51, 10, 5, fieldGeometry);
   });
 
   it("routes vignetting work through the prepared-state job facade", () => {

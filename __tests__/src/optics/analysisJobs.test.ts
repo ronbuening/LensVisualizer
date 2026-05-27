@@ -60,5 +60,9 @@ describe("analysis job facade", () => {
     const bokehPair = analysisJobsForState2.computeBokehPreviewPair(state, currentEPSD, currentPhysStopSD);
     expect(bokehPair).toEqual(analysisJobs2.computeBokehPreviewPair(L, focusT, zoomT, currentEPSD, currentPhysStopSD));
     expect(bokehPair.infinity || bokehPair.nearFocus).toBeTruthy();
+
+    const summary = analysisJobsForState2.computeOpticalSummary(state, L.EFL, currentEPSD, currentPhysStopSD);
+    expect(summary.currentEFLMm).toBeCloseTo(L.EFL, 6);
+    expect(summary.entrancePupilDiameterMm).toBeCloseTo(currentEPSD * 2, 6);
   });
 });

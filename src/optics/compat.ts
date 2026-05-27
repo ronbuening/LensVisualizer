@@ -215,6 +215,7 @@ export {
   computePupilAberrationProfile2,
   PUPIL_ABERRATION_SAMPLE_COUNT_2,
 } from "./analysis/pupilAberration.js";
+export { computeOpticalSummaryForState2, type OpticalSummaryMetrics2 } from "./analysis/summary.js";
 export {
   computeGroupMovementProfile2,
   computeGroupMovementProfileForState2,

@@ -3,12 +3,19 @@ import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import buildLens from "../../../../../src/optics/buildLens.js";
 import LENS_DEFAULTS from "../../../../../src/lens-data/defaults.js";
-import { doLayout, eflAtFocus, epAtZoom, fopenAtZoom } from "../../../../../src/optics/optics.js";
+import {
+  computeAnalysisFieldGeometryAtState,
+  doLayout,
+  eflAtFocus,
+  epAtZoom,
+  fopenAtZoom,
+} from "../../../../../src/optics/optics.js";
 import AberrationsPanel from "../../../../../src/components/display/analysis/AberrationsPanel.js";
 import ComaTab from "../../../../../src/components/display/analysis/ComaTab.js";
 import DistortionChart from "../../../../../src/components/display/analysis/DistortionChart.js";
 import DistortionTab from "../../../../../src/components/display/analysis/DistortionTab.js";
 import FocusBreathingTab from "../../../../../src/components/display/analysis/FocusBreathingTab.js";
+import OpticalSummaryTab from "../../../../../src/components/display/analysis/OpticalSummaryTab.js";
 import PupilAberrationTab from "../../../../../src/components/display/analysis/PupilAberrationTab.js";
 import themes from "../../../../../src/utils/theme/themes.js";
 import Sonnar50f15Raw from "../../../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
@@ -30,6 +37,37 @@ function apertureAt(L: RuntimeLens, zoomT: number, stopdownT: number) {
 }
 
 describe("analysis display tabs", () => {
+  it("OpticalSummaryTab renders current-state first-order, aperture, and field metrics", () => {
+    const L = build(Sonnar50f15Raw);
+    const focusT = 0.5;
+    const zoomT = 0;
+    const dynamicEFL = eflAtFocus(focusT, zoomT, L);
+    const { currentPhysStopSD, currentEPSD } = apertureAt(L, zoomT, 0);
+    const fieldGeometry = computeAnalysisFieldGeometryAtState(focusT, zoomT, L);
+
+    const html = renderToStaticMarkup(
+      React.createElement(OpticalSummaryTab, {
+        L,
+        t: themes.dark,
+        focusT,
+        zoomT,
+        dynamicEFL,
+        currentEPSD,
+        currentPhysStopSD,
+        fieldGeometry,
+      }),
+    );
+
+    expect(html).toContain("Optical State");
+    expect(html).toContain("First Order");
+    expect(html).toContain("Aperture And Field");
+    expect(html).toContain("CURRENT EFL");
+    expect(html).toContain("WORKING F/#");
+    expect(html).toContain("HALF FIELD");
+    expect(html).toContain("Image Plane");
+    expect(html).toContain("CARDINAL EFL");
+  });
+
   it("DistortionChart labels the x-axis as image height percentage", async () => {
     const samples: DistortionSample[] = [
       {

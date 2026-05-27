@@ -477,6 +477,11 @@ describe("lensReducer", () => {
       const next = lensReducer(state, { type: SET_ANALYSIS_TAB, tab: "breathing" });
       expect(next.panels.analysisDrawerTab).toBe("breathing");
     });
+
+    it("accepts the summary analysis tab", () => {
+      const next = lensReducer(state, { type: SET_ANALYSIS_TAB, tab: "summary" });
+      expect(next.panels.analysisDrawerTab).toBe("summary");
+    });
   });
 
   describe("SET_GROUP_MOVEMENT", () => {

@@ -15,6 +15,7 @@ export const RAY_DENSITIES = ["normal", "dense", "diagnostic"] as const;
 export const MOBILE_VIEWS = ["diagram", "description"] as const;
 export const DESKTOP_VIEWS = ["diagram", "both", "analysis"] as const;
 export const ANALYSIS_TAB_IDS = [
+  "summary",
   "aberrations",
   "coma",
   "bokeh",

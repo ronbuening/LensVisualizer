@@ -4,6 +4,7 @@ import BokehTab from "../../display/analysis/BokehTab.js";
 import ComaTab from "../../display/analysis/ComaTab.js";
 import DistortionTab from "../../display/analysis/DistortionTab.js";
 import FocusBreathingTab from "../../display/analysis/FocusBreathingTab.js";
+import OpticalSummaryTab from "../../display/analysis/OpticalSummaryTab.js";
 import PupilAberrationTab from "../../display/analysis/PupilAberrationTab.js";
 import VignettingTab from "../../display/analysis/VignettingTab.js";
 import type { PreparedOpticalState } from "../../../optics/types.js";
@@ -35,6 +36,20 @@ export interface AnalysisTabRendererContext {
 type AnalysisTabRenderer = (context: AnalysisTabRendererContext) => ReactNode;
 
 export const ANALYSIS_TAB_RENDERERS: Record<AnalysisTabId, AnalysisTabRenderer> = {
+  summary: ({ L, t, preparedState, inputs }) => (
+    <OpticalSummaryTab
+      L={L}
+      t={t}
+      focusT={inputs.focusT}
+      zoomT={inputs.zoomT}
+      aberrationT={inputs.aberrationT}
+      dynamicEFL={inputs.dynamicEFL}
+      currentEPSD={inputs.currentEPSD}
+      currentPhysStopSD={inputs.currentPhysStopSD}
+      fieldGeometry={inputs.fieldGeometry}
+      preparedState={preparedState}
+    />
+  ),
   aberrations: ({ L, t, zPos, preparedState, inputs, aberrationsExpanded, onAberrationsExpandedChange }) => (
     <AberrationsPanel
       L={L}

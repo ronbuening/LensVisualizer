@@ -94,6 +94,7 @@ New analysis tabs require:
 | --- | --- |
 | `analysis/AberrationsPanel.tsx` | Thin container wiring shared data hooks into spherical, field-curve, astigmatism, and coma sections. |
 | `analysis/aberrations/` | Presentational aberration sections and focused data hooks. |
+| `analysis/OpticalSummaryTab.tsx` | Current-state summary tab for prepared-state first-order, aperture, field, and image-plane metrics. |
 | `analysis/ComaTab.tsx` | Coma drawer tab. |
 | `analysis/DistortionTab.tsx` | Distortion tab; consumes deferred/frozen analysis inputs and `analysisJobs`. |
 | `analysis/DistortionFieldGrid.tsx` | Traced chief-ray field grid against ideal rectilinear grid. |

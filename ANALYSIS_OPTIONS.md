@@ -15,7 +15,7 @@ SVG rendering, SSR-friendly route/content plumbing, and a growing library of edu
 The app already has these analysis surfaces and should treat them as shipped baseline rather than future work:
 
 - On-axis, off-axis, chromatic, and pupil-overlay ray rendering in the diagram.
-- Analysis drawer tabs for aberrations, coma, distortion, focus breathing, vignetting, and pupils.
+- Analysis drawer tabs for current-state summary, aberrations, coma, distortion, focus breathing, vignetting, and pupils.
 - Spherical aberration scalar metrics, transverse SA profile, and front/rear blur-character readouts.
 - Real 2D coma point-cloud previews, idealized coma sketches, tangential and sagittal ray fans.
 - Parabasal and dense real-ray field-curvature charts, isolated astigmatism chart, Petzval reference, and chromatic
@@ -501,4 +501,3 @@ are not part of the current data.
 
 **Possible limited version:** A qualitative "sensitivity risk" heuristic based on large asphere departure, high powers,
 thin air gaps, and fast apertures.
-

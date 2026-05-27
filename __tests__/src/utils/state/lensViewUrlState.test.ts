@@ -74,6 +74,15 @@ describe("lensViewUrlState", () => {
     expect(params.toString()).toBe("v=1&focus=0.250&aberration=0.750&el=4&gm=1&ad=1&tab=coma");
   });
 
+  it("round-trips the summary analysis tab", () => {
+    const parsed = parseLensViewQuery("?v=1&ad=1&tab=summary");
+    expect(parsed.analysisDrawerOpen).toBe(true);
+    expect(parsed.analysisDrawerTab).toBe("summary");
+
+    const params = buildLensViewQuery({ analysisDrawerOpen: true, analysisDrawerTab: "summary" });
+    expect(params.toString()).toBe("v=1&ad=1&tab=summary");
+  });
+
   it("builds minimal comparison query params", () => {
     const params = buildLensViewQuery({
       comparing: true,

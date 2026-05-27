@@ -32,6 +32,7 @@ import {
   computeBothPupilAberrationProfilesForState2,
   PUPIL_ABERRATION_SAMPLE_COUNT_2,
 } from "./pupilAberration.js";
+import { computeOpticalSummaryForState2 } from "./summary.js";
 import { computeVignettingCurve2, computeVignettingCurveForState2 } from "./vignetting.js";
 
 export const analysisJobs2 = {
@@ -150,6 +151,16 @@ export const analysisJobsForState2 = {
 
   computeBokehPreviewPair(state: PreparedOpticalState, currentEPSD: number, currentPhysStopSD: number) {
     return computeBokehPreviewPairForState2(state, currentEPSD, currentPhysStopSD);
+  },
+
+  computeOpticalSummary(
+    state: PreparedOpticalState,
+    dynamicEFL: number,
+    currentEPSD: number,
+    currentPhysStopSD: number,
+    fieldGeometry?: FieldGeometryState,
+  ) {
+    return computeOpticalSummaryForState2(state, dynamicEFL, currentEPSD, currentPhysStopSD, fieldGeometry);
   },
 
   computeDistortionCurve(

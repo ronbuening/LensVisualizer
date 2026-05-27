@@ -1,6 +1,7 @@
 import type { AnalysisTab } from "../AnalysisDrawer.js";
 
 export const ANALYSIS_TABS = [
+  { id: "summary", label: "SUMMARY" },
   { id: "aberrations", label: "ABERRATIONS" },
   { id: "coma", label: "COMA" },
   { id: "bokeh", label: "BOKEH" },

@@ -17,6 +17,7 @@ const {
   mockPupilAberrationTab,
   mockPrepareRuntimeState,
   mockPreparedState,
+  mockOpticalSummaryTab,
   mockVignettingTab,
 } = vi.hoisted(() => ({
   mockAberrationsPanel: vi.fn(),
@@ -25,6 +26,7 @@ const {
   mockDistortionTab: vi.fn(),
   mockFocusBreathingTab: vi.fn(),
   mockPupilAberrationTab: vi.fn(),
+  mockOpticalSummaryTab: vi.fn(),
   mockPreparedState: { cacheKey: "test:0:0:0" },
   mockPrepareRuntimeState: vi.fn(),
   mockVignettingTab: vi.fn(),
@@ -73,6 +75,13 @@ vi.mock("../../../../../src/components/display/analysis/FocusBreathingTab.js", (
   },
 }));
 
+vi.mock("../../../../../src/components/display/analysis/OpticalSummaryTab.js", () => ({
+  default: (props: Record<string, unknown>) => {
+    mockOpticalSummaryTab(props);
+    return <div>Summary</div>;
+  },
+}));
+
 vi.mock("../../../../../src/components/display/analysis/PupilAberrationTab.js", () => ({
   default: (props: Record<string, unknown>) => {
     mockPupilAberrationTab(props);
@@ -113,6 +122,7 @@ describe("AnalysisDrawerContent", () => {
     mockDistortionTab.mockReset();
     mockFocusBreathingTab.mockReset();
     mockPupilAberrationTab.mockReset();
+    mockOpticalSummaryTab.mockReset();
     mockPrepareRuntimeState.mockReset();
     mockPrepareRuntimeState.mockReturnValue(mockPreparedState);
     mockVignettingTab.mockReset();
@@ -126,6 +136,15 @@ describe("AnalysisDrawerContent", () => {
     expect(mockAberrationsPanel.mock.calls[0][0].expanded).toBe(true);
     expect(mockAberrationsPanel.mock.calls[0][0].onExpandedChange).toBe(baseProps.onAberrationsExpandedChange);
     expect(mockAberrationsPanel.mock.calls[0][0].preparedState).toBe(mockPreparedState);
+  });
+
+  it("maps the summary tab to OpticalSummaryTab", () => {
+    render(<AnalysisDrawerContent {...baseProps} activeTab="summary" />);
+
+    expect(screen.getByText("Summary")).toBeTruthy();
+    expect(mockOpticalSummaryTab).toHaveBeenCalledTimes(1);
+    expect(mockOpticalSummaryTab.mock.calls[0][0].preparedState).toBe(mockPreparedState);
+    expect(mockAberrationsPanel).not.toHaveBeenCalled();
   });
 
   it("maps the distortion tab to DistortionTab", () => {
