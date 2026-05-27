@@ -91,7 +91,7 @@ state. Keep slider-dependent analysis out of `buildLens()`.
 
 | Module | Public Function Or Surface | Use |
 | --- | --- | --- |
-| `src/optics/analysisJobs.ts` | `analysisJobs` | Small facade for distortion/vignetting jobs used where the UI wants a grouped analysis entry point. |
+| `src/optics/analysisJobs.ts` and `src/optics/compat.ts` | `analysisJobs`, `analysisJobsForState2` | Grouped analysis job facades for runtime callers and prepared-state UI work across summary, aberration, bokeh, distortion, vignetting, and pupil analyses. |
 | `src/optics/aberrationAnalysis.ts` | `computeSphericalAberration`, `computeSAProfile`, `computeSphericalAberrationBlurCharacter` | Longitudinal spherical aberration and blur character. |
 | `src/optics/aberrationAnalysis.ts` | `computeComaAnalysis`, `computeMeridionalComa`, `computeSagittalComa`, `computeComaPreview`, `computeComaPointCloudPreview` | Coma analysis and preview point clouds. |
 | `src/optics/aberrationAnalysis.ts` | `computeFieldCurvature` | Tangential/sagittal field-curvature analysis. |

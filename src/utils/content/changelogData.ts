@@ -19,6 +19,17 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-05-27 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-05-27",
+    type: "feature",
+    summary: "Added optical summary and bokeh tabs to the analysis drawer",
+  },
+  {
+    date: "2026-05-27",
+    type: "improvement",
+    summary: "Improved fisheye bokeh and folded-mirror pupil analysis",
+  },
   // ── 2026-05-26 ──────────────────────────────────────────────────────────
   {
     date: "2026-05-26",

@@ -37,7 +37,7 @@ lens data; analysis tabs use current focus, zoom, and aperture state.
 | `chiefRayDiagnostics.ts` | Structured counter for chief-ray solve outcomes. `recordChiefRayStatus(lensKey, status)` is wired into `solveChiefRay`; `getChiefRayDiagnostics()` returns a `Map<lensKey, { converged, paraxial-fallback, bracket-failed, out-of-domain }>` snapshot for audit scripts. Dev-only `console.warn` for fallbacks is preserved. |
 | `raySampling.ts` | Viewport ray-density sampling for normal/dense/diagnostic ray fans, plus `isHeavyLensForRayWork(L)` — the shared heuristic for heavy-lens density downgrades (fisheye OR `N ≥ 32` OR `maxSD ≥ 50 mm` OR `halfField ≥ 40°`). |
 | `lcaScaling.ts` | Fixed-reference LCA bar offset scaling. |
-| `analysisJobs.ts` | Analysis facade. Currently synchronous; prepared for module-worker migration. |
+| `analysisJobs.ts` | Runtime and prepared-state analysis job facades. Currently synchronous; prepared for module-worker migration. |
 | `cardinalElements.ts` | State-aware first-order/cardinal element calculations for F/F′, H/H′, N/N′ and axial spans. |
 | `distortionAnalysis.ts` | Rectilinear distortion curve and traced 2D field grid. |
 | `vignetteAnalysis.ts` | Vignetting / relative illumination curve. |
@@ -195,9 +195,9 @@ from a bounding sphere centered near the entrance pupil. The chief-ray solver au
 via `launchSurfaceForFieldDeg(fieldDeg, projection)`, and fisheye projections use the bounding-sphere path at
 every field angle. Vector-aware callers consume `solve.vectorLaunch` directly: visible off-axis and chromatic
 diagram rays promote to vector launch when the declared fisheye off-axis field exceeds `tracingHalfField`;
-vignetting and pupil-aberration loops trace vector rays when the scalar slope is out of domain; the distortion
-field grid traces vector skew rays for fisheye angular cells beyond the slope cap. Scalar-only logic must still
-check `projectionLaunchSlopeForField(...).status` before using `uField`.
+bokeh footprint sampling, vignetting, and pupil-aberration loops trace vector rays when the scalar slope is out of
+domain; the distortion field grid traces vector skew rays for fisheye angular cells beyond the slope cap.
+Scalar-only logic must still check `projectionLaunchSlopeForField(...).status` before using `uField`.
 
 ## Ray Sampling Policy
 
@@ -335,7 +335,8 @@ to finite slope launches and fall back to neutral correction when no scalar refe
 - `buildBokehRadialProfile()` - annular brightness profile.
 - `buildBokehDensityGrid()` - retained for future full-density/PSF visualizations.
 
-The traced image-plane point cloud is the source of truth; radial profiles are derived summaries.
+The traced image-plane point cloud is the source of truth; radial profiles are derived summaries. Off-axis bokeh
+footprints use projection-aware field geometry and vector launches for fisheye/past-cap fields when available.
 
 ## Aspheric Comparison
 

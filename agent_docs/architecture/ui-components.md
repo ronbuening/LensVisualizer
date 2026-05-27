@@ -96,10 +96,11 @@ New analysis tabs require:
 | `analysis/aberrations/` | Presentational aberration sections and focused data hooks. |
 | `analysis/OpticalSummaryTab.tsx` | Current-state summary tab for prepared-state first-order, aperture, field, and image-plane metrics. |
 | `analysis/ComaTab.tsx` | Coma drawer tab. |
-| `analysis/DistortionTab.tsx` | Distortion tab; consumes deferred/frozen analysis inputs and `analysisJobs`. |
+| `analysis/BokehTab.tsx` | Bokeh drawer tab using the prepared-state preview pair and shared preview content. |
+| `analysis/DistortionTab.tsx` | Distortion tab; consumes deferred/frozen analysis inputs through `analysisJobsForState2`. |
 | `analysis/DistortionFieldGrid.tsx` | Traced chief-ray field grid against ideal rectilinear grid. |
 | `analysis/FocusBreathingTab.tsx` | Dynamic focal-length/focus breathing readouts. |
-| `analysis/VignettingTab.tsx` | Vignetting/relative illumination tab; consumes deferred/frozen inputs and `analysisJobs`. |
+| `analysis/VignettingTab.tsx` | Vignetting/relative illumination tab; consumes deferred/frozen inputs through `analysisJobsForState2`. |
 | `analysis/PupilAberrationTab.tsx` | Entrance/exit pupil shift tab. |
 | `analysis/BokehPreviewGrid.tsx` | SVG blur-brightness and surviving-pupil grid. |
 

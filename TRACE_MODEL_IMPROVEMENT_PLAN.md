@@ -292,7 +292,8 @@ That distinction matters per analysis view:
 - Off-axis aberrations: should sample object field angles directly or through projection-aware image positions.
 - Vignetting: should launch chief and pupil rays for the selected object angle without assuming a finite tangent slope.
 - Pupil aberration: should solve entrance/exit pupil mapping using vector rays, especially off axis.
-- Bokeh: should sample bundles around a chief ray defined in vector space, not around a meridional slope only.
+- Bokeh: samples off-axis bundles around projection-aware chief rays and promotes to vector launch when the scalar
+  meridional slope is out of domain.
 - Diagram rendering: should be allowed to show a safe representative subset when the real full field exceeds the
   displayable forward trace domain.
 
@@ -580,7 +581,7 @@ c707fe9  Restrict tracingHalfField safety margin to fisheyes only           (rec
   [exactSurfaceTrace.ts](src/optics/internal/exactSurfaceTrace.ts) still rejects rays with
   `|direction[2]| <= 1e-12`. Only reached via `ghost: true` visualization (not used by chief-ray
   solving); it remains a polish task for diagnostic/ghost visualization edge cases.
-- **Vector-launch policy is still module-specific.** Vignetting, pupil-aberration, distortion-grid, image-height,
+- **Vector-launch policy is still module-specific.** Bokeh, vignetting, pupil-aberration, distortion-grid, image-height,
   visible off-axis, and chromatic off-axis paths all consume vector launches where needed, but there is no shared
   `buildRayBundleForField()` abstraction yet. Keep that deferred until duplication becomes painful.
 - **Catalog audit.** Walk every catalog lens; any with `fullFieldDeg ≥ 100` and missing
@@ -949,6 +950,8 @@ Already covered by tests in tree (post commits `be230d1`, `7ca5706`, `0a2442c`):
   ([exactSurfaceTraceVector.test.ts](__tests__/src/optics/exactSurfaceTraceVector.test.ts)).
 - Fisheye off-axis diagram geometry promoting to vector launch
   ([useOffAxisRays.test.ts](__tests__/src/components/hooks/useOffAxisRays.test.ts)).
+- Projection-aware off-axis bokeh footprint coverage
+  ([bokeh.test.ts](__tests__/src/optics/aberration/bokeh.test.ts)).
 
 Still useful to add:
 
