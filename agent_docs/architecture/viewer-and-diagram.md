@@ -8,14 +8,12 @@ handling.
 `src/components/layout/LensViewer.tsx` owns state management, context provision, and high-level layout composition. It
 delegates rendering to children:
 
-- `BreadcrumbBar` - lens-page breadcrumb navigation.
-- `TopBar` - lens selectors, compare button, about buttons.
-- `ControlsBar` - theme, ray, ray-density, chromatic, and scale toggles.
-- `ViewToggleBar` - generic view-mode toggle used for mobile and desktop.
-- `SingleLensContent` - single-lens diagram plus description layout.
-- `ComparisonLayout` - two `LensDiagramPanel` instances for comparison mode.
-- `OverlayModal` - site, author, and optics primer modals.
-- `AboutButtonRow`, `AboutFooter`, `PrimerToggleButton` - shared about/primer controls.
+- `lensViewer/ViewerChrome.tsx` - breadcrumb, selectors, compare controls, ray/cardinal controls, and mobile/desktop view
+  toggles.
+- `lensViewer/ViewerContent.tsx` - switch between single-lens and comparison layouts.
+- `lensViewer/ViewerOverlays.tsx` - site, author, optics primer, aberrations primer, and mobile about-footer overlays.
+- `SingleLensContent.tsx` - single-lens diagram plus description layout.
+- `ComparisonContent.tsx` - comparison-mode error display, `ComparisonLayout`, and `SharedSlidersBar`.
 
 State is managed through `useLensState`, a reducer wrapper. The state is split into lens, display, rays, sliders,
 sharedSliders, panels, and overlays slices. Shared hooks handle persistence, URL sync, comparison orchestration, and
@@ -40,7 +38,8 @@ selection state plus structural wiring.
 Key responsibilities:
 
 - Builds or receives a `RuntimeLens` through the stable `src/optics/buildLens.ts` entry point. In comparison mode,
-  `ComparisonLayout` passes prebuilt runtime lenses to avoid rebuilding the same lens inside each panel.
+  `ComparisonContent` / `ComparisonLayout` pass prebuilt runtime lenses to avoid rebuilding the same lens inside each
+  panel.
 - Wires computation hooks for layout, density-controlled rays, chromatic spread, overlays, and slider feedback.
 - Applies optional perspective-control movement for supported lenses, including transformed geometry/rays and fixed
   image-plane reference behavior.
@@ -74,7 +73,8 @@ Key responsibilities:
 | `LensDiagramLoadedState.tsx` | Loaded panel composition after build/layout succeeds. |
 | `LensDiagramErrorState.tsx` | Build/shape/ray error presentation. |
 | `DiagramViewport.tsx` | SVG viewport wrapper with LCA/Petzval/group-movement overlay gating, zoom/pan toggle, and keyboard shortcut handling. |
-| `AnalysisDrawerContent.tsx` | Tab-to-panel router for analysis drawer content. Defers slider-derived inputs and freezes last settled analysis inputs during active slider interaction. Shows notices when PC movement is active or folded mirror optics are detected; folded systems gate tabs that still assume sequential front-to-rear paraxial math. |
+| `AnalysisDrawerContent.tsx` | Prepares/defer-freezes slider-derived analysis inputs, owns global notices, and delegates tab rendering through `analysisTabRenderers.tsx`. Shows notices when PC movement is active or folded mirror optics are detected; folded systems gate tabs that still assume sequential front-to-rear paraxial math. |
+| `analysisTabRenderers.tsx` | Maps analysis tab ids to concrete tab components and passes the prepared optical state plus shared inputs. |
 | `DiagramControlPanel.tsx` | Sliders, inspector, legend, and analysis launch button. |
 | `analysisTabs.ts` | Typed analysis tab metadata shared by trigger and drawer. |
 

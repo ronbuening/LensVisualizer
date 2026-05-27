@@ -7,12 +7,16 @@ and homepage UI.
 
 | Module | Purpose |
 | --- | --- |
+| `lensViewer/ViewerChrome.tsx` | Viewer breadcrumb, selectors, comparison buttons, ray/cardinal controls, and view toggles. |
+| `lensViewer/ViewerContent.tsx` | Switches between `SingleLensContent` and comparison-mode content. |
+| `lensViewer/ViewerOverlays.tsx` | Site/author/primer modals and mobile about footer. |
 | `TopBar.tsx` | Lens selectors, compare button, and about buttons. |
 | `ControlsBar.tsx` | Theme/ray/ray-density/chromatic/scale toggles with compact and full modes. |
 | `ViewToggleBar.tsx` | Generic view-mode toggle used by mobile and desktop layouts. |
 | `OverlayModal.tsx` | Generic backdrop/modal/close button. |
 | `DropdownPanel.tsx` | Portal-based dropdown panel for settings/theme overlays. |
 | `PageNavBar.tsx` | Shared navigation bar for static pages. |
+| `StaticPageShell.tsx` | Shared shell for static pages with breadcrumbs, theme toggles, and page base layout. |
 | `BreadcrumbBar.tsx` | Lens page breadcrumb navigation. |
 | `SingleLensContent.tsx` | Single-lens diagram and description composition. |
 
@@ -85,7 +89,7 @@ New analysis tabs require:
 
 1. Add tab metadata in `src/components/layout/lensDiagram/analysisTabs.ts`.
 2. Create tab content under `src/components/display/analysis/`.
-3. Add the conditional render in `AnalysisDrawerContent.tsx`.
+3. Add the renderer mapping in `src/components/layout/lensDiagram/analysisTabRenderers.tsx`.
 4. Add reducer/URL/persistence typing only if the tab can be externally addressed.
 
 ## Analysis Display Modules

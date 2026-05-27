@@ -28,8 +28,8 @@ State modules live under `src/utils/state/`.
 | `useLensState.ts` | `useReducer` wrapper with preference and URL initialization. Calls `parseLensViewQuery` once and `parseLensKeysFromSearch` for catalog-validated lens-key resolution. |
 | `preferences.ts` | localStorage load/save with runtime fallback guards. |
 | `usePreferences.ts` | Persists reducer state back to localStorage. |
-| `useURLSync.ts` | Single 100 ms-debounced URL writer plus `popstate` hydration and one-time zoom init. All slider and view-state changes flow through the same callback. |
-| `lensViewUrlState.ts` | Pure parser/builder for shareable route query state. Owns the canonical `VIEW_STATE_FIELDS` table; adding a shareable field is a one-line table edit plus the matching `URLState` and `PanelsSlice` additions. |
+| `useURLSync.ts` | Single 100 ms-debounced URL writer plus `popstate` hydration, route/legacy identity handling, and one-time zoom init. Route pages preserve `/lens/:slug` and `/compare/:slugA/:slugB`; legacy homepage query URLs are kept for backward compatibility. |
+| `lensViewUrlState.ts` | Pure parser/builder for shareable route query state. Owns the canonical `VIEW_STATE_FIELDS` table for reducer-hydrated panel booleans/selection; adding a shareable field also requires parser/build keys plus matching `URLState` and `PanelsSlice` additions. |
 | `lensViewUrlSync.ts` | Bridges reducer `LensState` to the URL surface and converts focal length ↔ `zoomT` against the loaded lens(es). |
 | `parseComparisonParams.ts` | Legacy comparison query parsing (kept for backward compat). Also exports `parseLensKeysFromSearch` for callers that have already parsed view state. |
 | `zoomConversion.ts` | Focal length to/from zoom slider conversion. |

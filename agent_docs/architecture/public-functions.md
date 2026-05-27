@@ -127,9 +127,9 @@ state. Keep slider-dependent analysis out of `buildLens()`.
 
 | Module | Public Function Or Surface | Use |
 | --- | --- | --- |
-| `src/routes/routeManifest.tsx` | `RouteManifestEntry`, default `routeManifest` | Single source of truth for client routes and prerender route patterns. |
+| `src/routes/routeManifest.tsx` | `RouteManifestEntry`, default `routeManifest` | Single source of truth for React route patterns used by the browser router and SSR renderer. Concrete prerender paths are generated separately in build metadata. |
 | `src/router.tsx` | default `router` | Browser router used by the React entry point. |
-| `src/entry-server.tsx` | `manifestPaths`, `render(url)` | Static prerender entry used by `scripts/prerender.mjs`. |
+| `src/entry-server.tsx` | `manifestPaths`, `render(url)` | Static prerender entry and manifest-coverage surface used by `scripts/prerender.mjs`. |
 
 ## State, URL, And Comparison APIs
 
