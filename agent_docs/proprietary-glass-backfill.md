@@ -1,6 +1,10 @@
 # Proprietary Glass Patent Backfill
 
-A focused follow-up to the chromatic dispersion overhaul (see [CHROMATIC_DISPERSION_NOTES.md](../CHROMATIC_DISPERSION_NOTES.md)). The chromatic engine now has a four-tier preference cascade — Sellmeier → measured `nC`/`nF`/`ng` line indices → Abbe + dPgF → plain Abbe — and a 180-entry vendor catalog covers most catalog-resolvable glass declarations. What remains is a per-lens queue of proprietary, unidentified, or inconsistently annotated glasses that no public catalog can safely resolve by name alone.
+A focused follow-up to the chromatic dispersion overhaul. Current architecture is summarized in
+[architecture/optics-engine.md](architecture/optics-engine.md). The chromatic engine now has a four-tier preference
+cascade — Sellmeier → measured `nC`/`nF`/`ng` line indices → Abbe + dPgF → plain Abbe — and a 247-entry vendor catalog
+covers most catalog-resolvable glass declarations. What remains is a per-lens queue of proprietary, unidentified, or
+inconsistently annotated glasses that no public catalog can safely resolve by name alone.
 
 ## Companion report: catalog mismatches
 
@@ -46,7 +50,7 @@ If the patent only lists `nd`/`vd` and `dPgF` without explicit `ng`, populate `d
 
 | Lens file | Patent reference | Elements needing backfill | Notes |
 |---|---|---|---|
-| [voigtlander/VoigtlanderApoLanthar50f2.data.ts](../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.ts) | JP2021-43376A | 4 (3 Sumita unmatched + 1 KZFS-adjacent) | **Highest priority** — the marquee regression case named in the chromatic notes |
+| [voigtlander/VoigtlanderApoLanthar50f2.data.ts](../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.ts) | JP2021-43376A | 4 (3 Sumita unmatched + 1 KZFS-adjacent) | **Highest priority** — the marquee APO-Lanthar regression case from the chromatic overhaul |
 | [nikon/Nikon58f14GDesignCandidate.data.ts](../src/lens-data/nikon/Nikon58f14GDesignCandidate.data.ts) | (verify) | 1 (S-NBM51 / KZFS2-type short flint) | |
 | [nikon/NikonNikkorAFS2470mmf28E.data.ts](../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) | (verify) | Several fluorophosphate crown placeholders | |
 | [nikon/NikonZ28f28.data.ts](../src/lens-data/nikon/NikonZ28f28.data.ts) | (verify) | 1 UV-curing resin (proprietary) | Resin may not have line indices in patents |
@@ -62,7 +66,8 @@ If the patent only lists `nd`/`vd` and `dPgF` without explicit `ng`, populate `d
 | [fujifilm/FujifilmXF35mmf14R.data.ts](../src/lens-data/fujifilm/FujifilmXF35mmf14R.data.ts) | (verify) | Unmatched proprietary | |
 | [fujifilm/FujifilmXF50140mmf28R.data.ts](../src/lens-data/fujifilm/FujifilmXF50140mmf28R.data.ts) | (verify) | Unmatched proprietary | |
 
-Status column intentionally omitted — when you complete a backfill, delete the row from this table and update [CHROMATIC_DISPERSION_NOTES.md](../CHROMATIC_DISPERSION_NOTES.md) if the lens was on the regression watchlist.
+Status column intentionally omitted — when you complete a backfill, delete the row from this table, regenerate the glass
+reports, and add a changelog entry if the user-visible chromatic result changed materially.
 
 ## Tier B — likely infeasible (vintage proprietary)
 
@@ -77,7 +82,8 @@ These remain on the Abbe path. The LCA inset's quality badge will read "Abbe app
 
 Run the four-phase procedure in [lens-patent-audit.md](lens-patent-audit.md). Phase 3 (spectral enrichment) is the active phase for this queue — populate `dPgF`, `nC`, `nF`, and `ng` on the matching element from the patent's prescription tables. The audit guide also covers the `*.audit.md` log convention so the change is traceable.
 
-After verifying the LCA inset's quality badge upgrades from "Abbe approx" to "Measured (C/F)" or "Sellmeier", delete the row from the Tier A table above and update [CHROMATIC_DISPERSION_NOTES.md](../CHROMATIC_DISPERSION_NOTES.md) if the lens was a named regression case.
+After verifying the LCA inset's quality badge upgrades from "Abbe approx" to "Measured (C/F)" or "Sellmeier", delete the
+row from the Tier A table above and regenerate the glass reports.
 
 ## Why this is per-lens authoring work, not a one-shot migration
 

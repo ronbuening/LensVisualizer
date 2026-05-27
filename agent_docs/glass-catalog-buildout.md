@@ -1,6 +1,10 @@
 # Glass Catalog Buildout
 
-A focused follow-up to Phase 2 of the chromatic dispersion overhaul ([CHROMATIC_DISPERSION_NOTES.md](../CHROMATIC_DISPERSION_NOTES.md)). The chromatic ray-trace now consults a Sellmeier glass catalog at [src/optics/glassCatalog.ts](../src/optics/glassCatalog.ts) when an element's `glass` string resolves to a known entry; otherwise it falls back to dPgF-corrected indices, measured `nC`/`nF`/`ng` line indices, or the legacy Abbe approximation.
+A focused follow-up to the chromatic dispersion overhaul. The chromatic ray-trace now consults a Sellmeier glass catalog
+at [src/optics/glassCatalog.ts](../src/optics/glassCatalog.ts) when an element's `glass` string resolves to a known
+entry; otherwise it falls back to dPgF-corrected indices, measured `nC`/`nF`/`ng` line indices, or the legacy Abbe
+approximation. Current optics-engine boundaries are summarized in
+[architecture/optics-engine.md](architecture/optics-engine.md).
 
 The catalog currently has **247 verified entries** as of Phase 18 (May 2026). This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of vendor-published dispersion coefficients.
 
@@ -25,7 +29,7 @@ The conclusion drove the design: **every entry must round-trip through `assertCa
 ## Prioritized Glasses to Add
 
 This original priority table was derived from `glass:` declarations when the catalog was much smaller. Keep it as a
-historical prioritization aid; use the generated reports above for the current 178-lens queue. Asterisks mark entries
+historical prioritization aid; use the generated reports above for the current 272-lens queue. Asterisks mark entries
 already in the catalog.
 
 | Glass | Lens-element occurrences | Vendor | Notes |
@@ -413,7 +417,8 @@ The 1e-4 round-trip test will catch any transcription error — never relax the 
 
 6. **If the glass has a common informal alias** (`BSC7` for `S-BSL7`, `BK7` for `N-BK7`) add it to the `ALIASES` map.
 
-7. **If you've added enough entries** that the LCA readout for the target lens has visibly changed, update [CHROMATIC_DISPERSION_NOTES.md](../CHROMATIC_DISPERSION_NOTES.md) with the new state and add a changelog entry per [agent_docs/changelog.md](changelog.md).
+7. **If you've added enough entries** that the LCA readout for the target lens has visibly changed, regenerate the glass
+   reports and add a changelog entry per [agent_docs/changelog.md](changelog.md).
 
 ## Pitfalls and Edge Cases
 
