@@ -40,6 +40,13 @@ const FIELD_CURVATURE_FIELD_LABELS: Record<(typeof FIELD_CURVATURE_FIELD_FRACTIO
   1: "100%",
 };
 
+const EMPTY_FIELD_GEOMETRY: FieldGeometryState = {
+  halfFieldDeg: 0,
+  yRatio: 0,
+  b: 0,
+  epRatio: 0,
+};
+
 interface FieldCurvatureFieldMeta {
   fieldFraction: number;
   label: string;
@@ -68,6 +75,11 @@ interface DiagnosticFieldFocus {
   sagittalShiftMm: number;
   astigmaticDifferenceMm: number;
   astigmaticDifferenceUm: number;
+}
+
+export interface FieldCurvatureBundleResult {
+  fieldCurvature: FieldCurvatureResult | null;
+  chromaticFieldCurvature: FieldCurvatureResult | null;
 }
 
 function labelForFieldFraction(fieldFraction: number): string {
@@ -413,52 +425,12 @@ function computeFieldCurvatureField(
   };
 }
 
-export function computeFieldCurvature(
-  L: RuntimeLens,
-  zPos: number[],
-  focusT: number,
-  zoomT: number,
-  currentEPSD: number,
-  currentPhysStopSD: number,
-  chromatic = false,
-  aberrationT = 0,
-  fieldGeometry?: FieldGeometryState,
+function buildFieldCurvatureResult(
+  fields: FieldCurvatureFieldResult[],
+  curveFields: FieldCurvatureFieldResult[],
+  imagePlaneZ: number,
+  chromatic: boolean,
 ): FieldCurvatureResult | null {
-  if (currentEPSD <= 0 || L.N < 1) return null;
-
-  const lastSurfZ = zPos[L.N - 1];
-  const imagePlaneZ = lastSurfZ + thick(L.N - 1, focusT, zoomT, L, aberrationT);
-  if (!isFinite(imagePlaneZ)) return null;
-
-  const stateGeometry = fieldGeometry ?? computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT);
-  const fields = fieldCurvatureFieldMeta(FIELD_CURVATURE_FIELD_FRACTIONS).map((meta) =>
-    computeFieldCurvatureField(
-      L,
-      zPos,
-      focusT,
-      zoomT,
-      currentEPSD,
-      currentPhysStopSD,
-      meta,
-      chromatic,
-      stateGeometry,
-      aberrationT,
-    ),
-  );
-  const curveFields = fieldCurvatureFieldMeta(FIELD_CURVATURE_CURVE_FIELD_FRACTIONS).map((meta) =>
-    computeFieldCurvatureField(
-      L,
-      zPos,
-      focusT,
-      zoomT,
-      currentEPSD,
-      currentPhysStopSD,
-      meta,
-      chromatic,
-      stateGeometry,
-      aberrationT,
-    ),
-  );
   const usableFields = fields.filter((field) => field.usable);
   const usableCurveFields = curveFields.filter((field) => field.usable);
   if (usableFields.length < 2) return null;
@@ -513,4 +485,207 @@ export function computeFieldCurvature(
     edgeSagittalShiftMm: edgeField?.sagittalShiftMm ?? 0,
     chromaticFocusSpreadMm,
   };
+}
+
+function computeFieldCurvatureBase(
+  L: RuntimeLens,
+  zPos: number[],
+  focusT: number,
+  zoomT: number,
+  currentEPSD: number,
+  currentPhysStopSD: number,
+  aberrationT = 0,
+  fieldGeometry?: FieldGeometryState,
+): { result: FieldCurvatureResult | null; stateGeometry: FieldGeometryState; imagePlaneZ: number } {
+  if (currentEPSD <= 0 || L.N < 1) {
+    return {
+      result: null,
+      stateGeometry: fieldGeometry ?? EMPTY_FIELD_GEOMETRY,
+      imagePlaneZ: 0,
+    };
+  }
+
+  const lastSurfZ = zPos[L.N - 1];
+  const imagePlaneZ = lastSurfZ + thick(L.N - 1, focusT, zoomT, L, aberrationT);
+  const stateGeometry = fieldGeometry ?? computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT);
+  if (!isFinite(imagePlaneZ)) return { result: null, stateGeometry, imagePlaneZ };
+
+  const fields = fieldCurvatureFieldMeta(FIELD_CURVATURE_FIELD_FRACTIONS).map((meta) =>
+    computeFieldCurvatureField(
+      L,
+      zPos,
+      focusT,
+      zoomT,
+      currentEPSD,
+      currentPhysStopSD,
+      meta,
+      false,
+      stateGeometry,
+      aberrationT,
+    ),
+  );
+  const curveFields = fieldCurvatureFieldMeta(FIELD_CURVATURE_CURVE_FIELD_FRACTIONS).map((meta) =>
+    computeFieldCurvatureField(
+      L,
+      zPos,
+      focusT,
+      zoomT,
+      currentEPSD,
+      currentPhysStopSD,
+      meta,
+      false,
+      stateGeometry,
+      aberrationT,
+    ),
+  );
+
+  return {
+    result: buildFieldCurvatureResult(fields, curveFields, imagePlaneZ, false),
+    stateGeometry,
+    imagePlaneZ,
+  };
+}
+
+function addChromaticShiftsToField(
+  field: FieldCurvatureFieldResult,
+  L: RuntimeLens,
+  zPos: number[],
+  focusT: number,
+  zoomT: number,
+  currentEPSD: number,
+  currentPhysStopSD: number,
+  stateGeometry: FieldGeometryState,
+  aberrationT = 0,
+): FieldCurvatureFieldResult {
+  if (!field.usable) return { ...field, chromaticFieldShifts: null };
+  const geometry = computeStateAwareOffAxisFieldGeometry(
+    L,
+    zPos,
+    focusT,
+    zoomT,
+    field.fieldFraction,
+    stateGeometry,
+    aberrationT,
+  );
+  return {
+    ...field,
+    chromaticFieldShifts:
+      geometry === null
+        ? null
+        : computeChromaticFieldShifts(L, geometry, focusT, zoomT, currentEPSD, currentPhysStopSD, aberrationT),
+  };
+}
+
+function buildChromaticFieldCurvatureFromBase(
+  base: FieldCurvatureResult | null,
+  L: RuntimeLens,
+  zPos: number[],
+  focusT: number,
+  zoomT: number,
+  currentEPSD: number,
+  currentPhysStopSD: number,
+  stateGeometry: FieldGeometryState,
+  aberrationT = 0,
+): FieldCurvatureResult | null {
+  if (base === null) return null;
+
+  const fields = base.fields.map((field) =>
+    addChromaticShiftsToField(
+      field,
+      L,
+      zPos,
+      focusT,
+      zoomT,
+      currentEPSD,
+      currentPhysStopSD,
+      stateGeometry,
+      aberrationT,
+    ),
+  );
+  const curveFields = base.curveFields.map((field) =>
+    addChromaticShiftsToField(
+      field,
+      L,
+      zPos,
+      focusT,
+      zoomT,
+      currentEPSD,
+      currentPhysStopSD,
+      stateGeometry,
+      aberrationT,
+    ),
+  );
+
+  return buildFieldCurvatureResult(fields, curveFields, base.imagePlaneZ, true);
+}
+
+export function computeFieldCurvatureBundle(
+  L: RuntimeLens,
+  zPos: number[],
+  focusT: number,
+  zoomT: number,
+  currentEPSD: number,
+  currentPhysStopSD: number,
+  aberrationT = 0,
+  fieldGeometry?: FieldGeometryState,
+): FieldCurvatureBundleResult {
+  const base = computeFieldCurvatureBase(
+    L,
+    zPos,
+    focusT,
+    zoomT,
+    currentEPSD,
+    currentPhysStopSD,
+    aberrationT,
+    fieldGeometry,
+  );
+  return {
+    fieldCurvature: base.result,
+    chromaticFieldCurvature: buildChromaticFieldCurvatureFromBase(
+      base.result,
+      L,
+      zPos,
+      focusT,
+      zoomT,
+      currentEPSD,
+      currentPhysStopSD,
+      base.stateGeometry,
+      aberrationT,
+    ),
+  };
+}
+
+export function computeFieldCurvature(
+  L: RuntimeLens,
+  zPos: number[],
+  focusT: number,
+  zoomT: number,
+  currentEPSD: number,
+  currentPhysStopSD: number,
+  chromatic = false,
+  aberrationT = 0,
+  fieldGeometry?: FieldGeometryState,
+): FieldCurvatureResult | null {
+  const base = computeFieldCurvatureBase(
+    L,
+    zPos,
+    focusT,
+    zoomT,
+    currentEPSD,
+    currentPhysStopSD,
+    aberrationT,
+    fieldGeometry,
+  );
+  if (!chromatic) return base.result;
+  return buildChromaticFieldCurvatureFromBase(
+    base.result,
+    L,
+    zPos,
+    focusT,
+    zoomT,
+    currentEPSD,
+    currentPhysStopSD,
+    base.stateGeometry,
+    aberrationT,
+  );
 }

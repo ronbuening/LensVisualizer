@@ -9,12 +9,13 @@ import {
   type BenchmarkScenarioResults,
   type BenchmarkSkip,
   type BenchmarkStats,
+  type AnalysisBenchmarkCategory,
   type MainBenchmarkCategory,
   type NumericSummary,
 } from "./benchmarkReport.js";
 export { buildBenchmarkReport, formatRunFileName } from "./benchmarkReport.js";
 import buildLens from "../optics/buildLens.js";
-import { analysisJobsForState2, prepareRuntimeState } from "../optics/compat.js";
+import { analysisJobsForState2, createAnalysisComputationContext, prepareRuntimeState } from "../optics/compat.js";
 import {
   computeAnalysisFieldGeometryAtState,
   computeChromaticSpread,
@@ -51,6 +52,7 @@ import type { ChromaticRaySegment } from "../components/hooks/useChromaticRays.j
 import type { RaySegment } from "../components/hooks/useOnAxisRays.js";
 import type { FieldGeometryState } from "../optics/optics.js";
 import type { PreparedOpticalState } from "../optics/types.js";
+import type { AnalysisComputationContext } from "../optics/compat.js";
 import type { ChromaticChannel, ChromaticSpread, ChromaticSpreadByAxis, RuntimeLens } from "../types/optics.js";
 import type { OffAxisMode, RayDensity } from "../types/state.js";
 
@@ -152,6 +154,7 @@ interface ScenarioSnapshot {
   dynamicEFL: number;
   fieldGeometry: FieldGeometryState | null;
   preparedState: PreparedOpticalState;
+  analysisContext: AnalysisComputationContext;
 }
 
 interface RayWorkOutput extends BenchmarkOutput {
@@ -178,6 +181,8 @@ interface AberrationDataValues {
   chromaticFieldCurvature?: unknown;
   coma?: ReturnType<typeof analysisJobsForState2.computeComaAnalysis>;
 }
+
+type AnalysisBenchmarkResults = Record<AnalysisBenchmarkCategory, BenchmarkEntry>;
 
 export async function runOpticsRenderingBenchmark(
   options: OpticsRenderingBenchmarkOptions,
@@ -268,8 +273,9 @@ function measureMainScenario(
     }),
     rays: measure("rays", () => computeRayWork(snapshot).output),
     analysis: measure("analysis", () => computeAnalysisWork(snapshot)),
+    analysisBreakdown: measureAnalysisBreakdown(lensKey, scenario, snapshot, options),
     svgRender: measure("svgRender", () => renderDiagram(snapshot, rayWork)),
-    total: measure("total", () => {
+    totalCold: measure("totalCold", () => {
       const built = buildLens(LENS_CATALOG[lensKey]);
       const nextSnapshot = buildScenarioSnapshot(built, scenario);
       const nextRayWork = computeRayWork(nextSnapshot);
@@ -277,6 +283,15 @@ function measureMainScenario(
       renderDiagram(nextSnapshot, nextRayWork);
       return {
         surfaces: nextSnapshot.L.N,
+        rays: nextRayWork.output.onAxisRays + nextRayWork.output.offAxisRays + nextRayWork.output.chromaticRays,
+      };
+    }),
+    totalWarm: measure("totalWarm", () => {
+      const nextRayWork = computeRayWork(snapshot);
+      computeAnalysisWork(snapshot);
+      renderDiagram(snapshot, nextRayWork);
+      return {
+        surfaces: snapshot.L.N,
         rays: nextRayWork.output.onAxisRays + nextRayWork.output.offAxisRays + nextRayWork.output.chromaticRays,
       };
     }),
@@ -316,6 +331,15 @@ function buildScenarioSnapshot(L: RuntimeLens, scenario: ScenarioConfig): Scenar
   effectiveFNumber(fNumber, focusT, zoomT, L, aberrationT);
   computeCardinalElementsAtState(L, focusT, zoomT, zPos, IMG_MM, aberrationT);
 
+  const preparedState = prepareRuntimeState(L, focusT, zoomT, aberrationT);
+  const analysisContext = createAnalysisComputationContext({
+    preparedState,
+    dynamicEFL,
+    currentEPSD,
+    currentPhysStopSD,
+    fieldGeometry,
+  });
+
   return {
     L,
     scenario,
@@ -337,7 +361,8 @@ function buildScenarioSnapshot(L: RuntimeLens, scenario: ScenarioConfig): Scenar
     currentEPSD,
     dynamicEFL,
     fieldGeometry,
-    preparedState: prepareRuntimeState(L, focusT, zoomT, aberrationT),
+    preparedState,
+    analysisContext,
   };
 }
 
@@ -485,50 +510,125 @@ function computeRayWork(snapshot: ScenarioSnapshot): RayWorkResult {
 }
 
 function computeAnalysisWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
-  const { L, preparedState, dynamicEFL, currentEPSD, currentPhysStopSD, fieldGeometry } = snapshot;
+  const { L, analysisContext } = snapshot;
   const output: BenchmarkOutput = {};
-  const summary = analysisJobsForState2.computeOpticalSummary(
-    preparedState,
-    dynamicEFL,
-    currentEPSD,
-    currentPhysStopSD,
-    fieldGeometry ?? undefined,
-  );
+  const summary = analysisContext.computeOpticalSummary();
   output.summarySurfaceCount = summary.surfaceCount;
 
   if (!L.isFoldedOptics) {
-    output.distortionSamples = analysisJobsForState2.computeDistortionCurve(
-      preparedState,
-      dynamicEFL,
-      currentPhysStopSD,
-      fieldGeometry ?? undefined,
-    ).length;
-    output.distortionGridLines = analysisJobsForState2.computeDistortionFieldGrid(
-      preparedState,
-      currentPhysStopSD,
-      fieldGeometry ?? undefined,
-    ).lines.length;
-    output.vignettingSamples = analysisJobsForState2.computeVignettingCurve(
-      preparedState,
-      currentEPSD,
-      currentPhysStopSD,
-      fieldGeometry ?? undefined,
-    ).length;
+    output.distortionSamples = analysisContext.computeDistortionCurve().length;
+    output.distortionGridLines = analysisContext.computeDistortionFieldGrid().lines.length;
+    output.vignettingSamples = analysisContext.computeVignettingCurve().length;
   } else {
     output.foldedSequentialAnalysisSkipped = true;
   }
 
-  const pupilProfiles = analysisJobsForState2.computeBothPupilAberrationProfiles(
-    preparedState,
-    undefined,
-    fieldGeometry ?? undefined,
-  );
+  const pupilProfiles = analysisContext.computeBothPupilAberrationProfiles();
   output.pupilSamples = pupilProfiles.ep.samples.length + pupilProfiles.xp.samples.length;
-  const bokehPair = analysisJobsForState2.computeBokehPreviewPair(preparedState, currentEPSD, currentPhysStopSD);
+  const bokehPair = analysisContext.computeBokehPreviewPair();
   output.bokehInfinityFields = bokehPair.infinity?.fields.length ?? 0;
   output.bokehNearFocusFields = bokehPair.nearFocus?.fields.length ?? 0;
-  output.bestFocusZ = analysisJobsForState2.computeBestFocusZ(preparedState, currentEPSD, currentPhysStopSD);
+  output.bestFocusZ = analysisContext.computeBestFocusZ();
   return output;
+}
+
+function measureAnalysisBreakdown(
+  lensKey: string,
+  scenario: ScenarioConfig,
+  snapshot: ScenarioSnapshot,
+  options: Required<Pick<OpticsRenderingBenchmarkOptions, "warmups" | "iterations">>,
+): AnalysisBenchmarkResults {
+  const measure = (category: AnalysisBenchmarkCategory, fn: () => BenchmarkOutput): BenchmarkEntry =>
+    measureEntry(`${lensKey}:${scenario.id}:analysis.${category}`, fn, options);
+  const foldedSkip = (category: AnalysisBenchmarkCategory): BenchmarkEntry =>
+    skippedEntry(`${category} uses sequential field analysis guarded for folded optics`);
+
+  return {
+    summary: measure("summary", () => computeAnalysisSummaryWork(snapshot)),
+    distortionCurve: snapshot.L.isFoldedOptics
+      ? foldedSkip("distortionCurve")
+      : measure("distortionCurve", () => computeAnalysisDistortionCurveWork(snapshot)),
+    distortionGrid: snapshot.L.isFoldedOptics
+      ? foldedSkip("distortionGrid")
+      : measure("distortionGrid", () => computeAnalysisDistortionGridWork(snapshot)),
+    vignetting: snapshot.L.isFoldedOptics
+      ? foldedSkip("vignetting")
+      : measure("vignetting", () => computeAnalysisVignettingWork(snapshot)),
+    pupils: measure("pupils", () => computeAnalysisPupilsWork(snapshot)),
+    bokehPair: measure("bokehPair", () => computeAnalysisBokehPairWork(snapshot)),
+    bestFocus: measure("bestFocus", () => computeAnalysisBestFocusWork(snapshot)),
+  };
+}
+
+function computeAnalysisSummaryWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
+  const summary = analysisJobsForState2.computeOpticalSummary(
+    snapshot.preparedState,
+    snapshot.dynamicEFL,
+    snapshot.currentEPSD,
+    snapshot.currentPhysStopSD,
+    snapshot.fieldGeometry ?? undefined,
+  );
+  return { summarySurfaceCount: summary.surfaceCount };
+}
+
+function computeAnalysisDistortionCurveWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
+  const samples = analysisJobsForState2.computeDistortionCurve(
+    snapshot.preparedState,
+    snapshot.dynamicEFL,
+    snapshot.currentPhysStopSD,
+    snapshot.fieldGeometry ?? undefined,
+  );
+  return { distortionSamples: samples.length };
+}
+
+function computeAnalysisDistortionGridWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
+  const grid = analysisJobsForState2.computeDistortionFieldGrid(
+    snapshot.preparedState,
+    snapshot.currentPhysStopSD,
+    snapshot.fieldGeometry ?? undefined,
+  );
+  return { distortionGridLines: grid.lines.length };
+}
+
+function computeAnalysisVignettingWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
+  const samples = analysisJobsForState2.computeVignettingCurve(
+    snapshot.preparedState,
+    snapshot.currentEPSD,
+    snapshot.currentPhysStopSD,
+    snapshot.fieldGeometry ?? undefined,
+  );
+  return { vignettingSamples: samples.length };
+}
+
+function computeAnalysisPupilsWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
+  const pupilProfiles = analysisJobsForState2.computeBothPupilAberrationProfiles(
+    snapshot.preparedState,
+    undefined,
+    snapshot.fieldGeometry ?? undefined,
+  );
+  return { pupilSamples: pupilProfiles.ep.samples.length + pupilProfiles.xp.samples.length };
+}
+
+function computeAnalysisBokehPairWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
+  const bokehPair = analysisJobsForState2.computeBokehPreviewPair(
+    snapshot.preparedState,
+    snapshot.currentEPSD,
+    snapshot.currentPhysStopSD,
+  );
+  return {
+    bokehInfinityFields: bokehPair.infinity?.fields.length ?? 0,
+    bokehNearFocusFields: bokehPair.nearFocus?.fields.length ?? 0,
+  };
+}
+
+function computeAnalysisBestFocusWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
+  return {
+    bestFocusZ: analysisJobsForState2.computeBestFocusZ(
+      snapshot.preparedState,
+      snapshot.currentEPSD,
+      snapshot.currentPhysStopSD,
+    ),
+  };
 }
 
 function measureAberrationPanels(
@@ -575,7 +675,7 @@ function measureAberrationPanels(
   });
 
   if (snapshot.L.isFoldedOptics) {
-    for (const category of ["fieldCurvature", "chromaticFieldCurvature", "coma", "comaTab"]) {
+    for (const category of ["fieldCurvature", "chromaticFieldCurvature", "fieldCurvatureBundle", "coma", "comaTab"]) {
       skips.push({ lensKey, scenarioId: scenario.id, category, reason: "Folded optics guard" });
     }
   } else {
@@ -597,6 +697,16 @@ function measureAberrationPanels(
           snapshot.currentEPSD,
           snapshot.currentPhysStopSD,
           true,
+          snapshot.fieldGeometry ?? undefined,
+        ),
+      ),
+    );
+    data.fieldCurvatureBundle = measure("data", "fieldCurvatureBundle", () =>
+      describeComputationOutput(
+        analysisJobsForState2.computeFieldCurvatureBundle(
+          snapshot.preparedState,
+          snapshot.currentEPSD,
+          snapshot.currentPhysStopSD,
           snapshot.fieldGeometry ?? undefined,
         ),
       ),
@@ -659,20 +769,14 @@ function computeAberrationDataValues(snapshot: ScenarioSnapshot): AberrationData
   if (snapshot.L.isFoldedOptics) {
     return { sphericalAberration, saProfile, saBlurCharacter };
   }
-  const fieldCurvature = analysisJobsForState2.computeFieldCurvature(
+  const fieldCurvatureBundle = analysisJobsForState2.computeFieldCurvatureBundle(
     snapshot.preparedState,
     snapshot.currentEPSD,
     snapshot.currentPhysStopSD,
-    false,
     snapshot.fieldGeometry ?? undefined,
   );
-  const chromaticFieldCurvature = analysisJobsForState2.computeFieldCurvature(
-    snapshot.preparedState,
-    snapshot.currentEPSD,
-    snapshot.currentPhysStopSD,
-    true,
-    snapshot.fieldGeometry ?? undefined,
-  );
+  const fieldCurvature = fieldCurvatureBundle.fieldCurvature;
+  const chromaticFieldCurvature = fieldCurvatureBundle.chromaticFieldCurvature;
   const coma = analysisJobsForState2.computeComaAnalysis(
     snapshot.preparedState,
     snapshot.currentEPSD,
@@ -737,6 +841,7 @@ function renderAberrationsTab(snapshot: ScenarioSnapshot): BenchmarkOutput {
       currentPhysStopSD={snapshot.currentPhysStopSD}
       fieldGeometry={snapshot.fieldGeometry}
       preparedState={snapshot.preparedState}
+      analysisContext={snapshot.analysisContext}
       expanded={true}
       onExpandedChange={noop}
     />,
@@ -757,6 +862,7 @@ function renderComaTab(snapshot: ScenarioSnapshot): BenchmarkOutput {
       currentPhysStopSD={snapshot.currentPhysStopSD}
       fieldGeometry={snapshot.fieldGeometry}
       preparedState={snapshot.preparedState}
+      analysisContext={snapshot.analysisContext}
     />,
   );
   return { markupLength: html.length };
@@ -949,6 +1055,10 @@ function measureEntry(
     ...(heapStats ? { heapDeltaBytes: heapStats } : {}),
   };
   return { status: "ok", stats, output };
+}
+
+function skippedEntry(reason: string): BenchmarkEntry {
+  return { status: "skipped", reason };
 }
 
 function summarizeSamples(values: readonly number[]): NumericSummary | null {

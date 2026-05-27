@@ -1,7 +1,16 @@
-export const BENCHMARK_SCHEMA_VERSION = 1;
+export const BENCHMARK_SCHEMA_VERSION = 2;
 
 export type BenchmarkStatus = "ok" | "skipped" | "error";
-export type MainBenchmarkCategory = "build" | "layout" | "rays" | "analysis" | "svgRender" | "total";
+export type MainBenchmarkCategory = "build" | "layout" | "rays" | "analysis" | "svgRender" | "totalCold" | "totalWarm";
+export type LegacyMainBenchmarkCategory = "total";
+export type AnalysisBenchmarkCategory =
+  | "summary"
+  | "distortionCurve"
+  | "distortionGrid"
+  | "vignetting"
+  | "pupils"
+  | "bokehPair"
+  | "bestFocus";
 
 export interface NumericSummary {
   min: number;
@@ -37,8 +46,12 @@ export interface BenchmarkScenarioResults {
   layout: BenchmarkEntry;
   rays: BenchmarkEntry;
   analysis: BenchmarkEntry;
+  analysisBreakdown?: Record<AnalysisBenchmarkCategory, BenchmarkEntry>;
   svgRender: BenchmarkEntry;
-  total: BenchmarkEntry;
+  totalCold?: BenchmarkEntry;
+  totalWarm?: BenchmarkEntry;
+  /** Schema 1 compatibility. New records write totalCold/totalWarm instead. */
+  total?: BenchmarkEntry;
 }
 
 export interface AberrationPanelScenarioResults {
@@ -75,6 +88,7 @@ export interface BenchmarkRunRecord {
   aberrationPanels: Record<string, Record<string, AberrationPanelScenarioResults>>;
   summary: {
     main: Record<string, NumericSummary | null>;
+    analysis?: Record<string, NumericSummary | null>;
     aberrationPanels: Record<string, NumericSummary | null>;
   };
   warnings: string[];
@@ -89,7 +103,24 @@ interface CategoryPoint {
   reason?: string;
 }
 
-const MAIN_CATEGORIES: MainBenchmarkCategory[] = ["build", "layout", "rays", "analysis", "svgRender", "total"];
+const MAIN_CATEGORIES: MainBenchmarkCategory[] = [
+  "build",
+  "layout",
+  "rays",
+  "analysis",
+  "svgRender",
+  "totalCold",
+  "totalWarm",
+];
+const ANALYSIS_CATEGORIES: AnalysisBenchmarkCategory[] = [
+  "summary",
+  "distortionCurve",
+  "distortionGrid",
+  "vignetting",
+  "pupils",
+  "bokehPair",
+  "bestFocus",
+];
 
 export function formatRunFileName(createdAt: string, shortCommit: string | null = null): string {
   const stamp = createdAt.replace(/\.\d{3}Z$/, "Z").replace(/:/g, "-");
@@ -122,6 +153,13 @@ export function summarizeRun(record: BenchmarkRunRecord): BenchmarkRunRecord["su
     main[category] = summarizeNumbers(collectMainCategoryPoints(record, category).map((point) => point.medianMs));
   }
 
+  const analysis: Record<string, NumericSummary | null> = {};
+  for (const category of ANALYSIS_CATEGORIES) {
+    analysis[category] = summarizeNumbers(
+      collectAnalysisCategoryPoints(record, category).map((point) => point.medianMs),
+    );
+  }
+
   const aberrationPanels: Record<string, NumericSummary | null> = {};
   for (const category of collectAberrationCategoryNames(record)) {
     aberrationPanels[category] = summarizeNumbers(
@@ -129,7 +167,7 @@ export function summarizeRun(record: BenchmarkRunRecord): BenchmarkRunRecord["su
     );
   }
 
-  return { main, aberrationPanels };
+  return { main, analysis, aberrationPanels };
 }
 
 export function buildBenchmarkReport(recordsInput: readonly BenchmarkRunRecord[], limit = 10): string {
@@ -162,6 +200,7 @@ export function buildBenchmarkReport(recordsInput: readonly BenchmarkRunRecord[]
   lines.push("");
 
   appendMainTrendTable(lines, latest, previous, records);
+  appendAnalysisTrendTable(lines, latest, previous, records);
   appendAberrationTrendTable(lines, latest, previous, records);
   appendSlowestTable(lines, latest);
   appendSkipAndWarningSummary(lines, latest);
@@ -198,11 +237,38 @@ function appendMainTrendTable(
   lines.push("|---|---:|---:|---:|");
 
   for (const category of MAIN_CATEGORIES) {
-    const current = latest.summary.main[category]?.median ?? null;
-    const previousValue = previous?.summary.main[category]?.median ?? null;
+    const current = mainSummaryMedian(latest, category);
+    const previousValue = previous ? mainSummaryMedian(previous, category) : null;
     const seriesMedian =
       records.length >= 2
-        ? summarizeNumbers(records.map((record) => record.summary.main[category]?.median).filter(isFiniteNumber))
+        ? summarizeNumbers(records.map((record) => mainSummaryMedian(record, category)).filter(isFiniteNumber))?.median
+        : null;
+    lines.push(
+      `| ${category} | ${formatMs(current)} | ${formatPercent(percentChange(current, previousValue))} | ${formatPercent(
+        percentChange(current, seriesMedian ?? null),
+      )} |`,
+    );
+  }
+  lines.push("");
+}
+
+function appendAnalysisTrendTable(
+  lines: string[],
+  latest: BenchmarkRunRecord,
+  previous: BenchmarkRunRecord | null,
+  records: readonly BenchmarkRunRecord[],
+): void {
+  lines.push("## Analysis Work Trends");
+  lines.push("");
+  lines.push("| Analysis category | Current median ms | vs previous | vs 10-run median |");
+  lines.push("|---|---:|---:|---:|");
+
+  for (const category of ANALYSIS_CATEGORIES) {
+    const current = latest.summary.analysis?.[category]?.median ?? null;
+    const previousValue = previous?.summary.analysis?.[category]?.median ?? null;
+    const seriesMedian =
+      records.length >= 2
+        ? summarizeNumbers(records.map((record) => record.summary.analysis?.[category]?.median).filter(isFiniteNumber))
             ?.median
         : null;
     lines.push(
@@ -251,11 +317,12 @@ function appendAberrationTrendTable(
 
 function appendSlowestTable(lines: string[], latest: BenchmarkRunRecord): void {
   const mainPoints = MAIN_CATEGORIES.flatMap((category) => collectMainCategoryPoints(latest, category));
+  const analysisPoints = ANALYSIS_CATEGORIES.flatMap((category) => collectAnalysisCategoryPoints(latest, category));
   const aberrationPoints = collectAberrationCategoryNames(latest).flatMap((category) =>
     collectAberrationCategoryPoints(latest, category),
   );
   const slowestByCategory = new Map<string, CategoryPoint>();
-  for (const point of [...mainPoints, ...aberrationPoints]) {
+  for (const point of [...mainPoints, ...analysisPoints, ...aberrationPoints]) {
     const current = slowestByCategory.get(point.category);
     if (!current || point.medianMs > current.medianMs) slowestByCategory.set(point.category, point);
   }
@@ -295,13 +362,48 @@ function collectMainCategoryPoints(record: BenchmarkRunRecord, category: MainBen
   const points: CategoryPoint[] = [];
   for (const [lensKey, byScenario] of Object.entries(record.results)) {
     for (const [scenarioId, scenario] of Object.entries(byScenario)) {
-      const entry = scenario[category];
+      const entry = mainEntryForCategory(scenario, category);
       if (entry.status === "ok" && entry.stats) {
         points.push({ lensKey, scenarioId, category, medianMs: entry.stats.median, status: entry.status });
       }
     }
   }
   return points;
+}
+
+function collectAnalysisCategoryPoints(
+  record: BenchmarkRunRecord,
+  category: AnalysisBenchmarkCategory,
+): CategoryPoint[] {
+  const points: CategoryPoint[] = [];
+  for (const [lensKey, byScenario] of Object.entries(record.results)) {
+    for (const [scenarioId, scenario] of Object.entries(byScenario)) {
+      const entry = scenario.analysisBreakdown?.[category];
+      if (entry?.status === "ok" && entry.stats) {
+        points.push({
+          lensKey,
+          scenarioId,
+          category: `analysis.${category}`,
+          medianMs: entry.stats.median,
+          status: entry.status,
+        });
+      }
+    }
+  }
+  return points;
+}
+
+function mainEntryForCategory(scenario: BenchmarkScenarioResults, category: MainBenchmarkCategory): BenchmarkEntry {
+  if (category === "totalCold") return scenario.totalCold ?? scenario.total ?? { status: "skipped", reason: "missing" };
+  if (category === "totalWarm") return scenario.totalWarm ?? { status: "skipped", reason: "missing" };
+  return scenario[category];
+}
+
+function mainSummaryMedian(record: BenchmarkRunRecord, category: MainBenchmarkCategory): number | null {
+  if (category === "totalCold") {
+    return record.summary.main.totalCold?.median ?? record.summary.main.total?.median ?? null;
+  }
+  return record.summary.main[category]?.median ?? null;
 }
 
 function collectAberrationCategoryPoints(record: BenchmarkRunRecord, category: string): CategoryPoint[] {

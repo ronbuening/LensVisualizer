@@ -24,11 +24,14 @@ npm run benchmark:optics-rendering -- --iterations=5 --warmups=2
 
 ## Output Policy
 
-Each real benchmark run writes exactly one permanent machine-readable record:
+Each real benchmark run writes one machine-readable record:
 
 ```text
 agent_docs/benchmarks/runs/<timestamp>-<short-sha>.json
 ```
+
+When the run directory contains 15 or more JSON records, the runner removes the oldest records until 14 remain. Dry runs
+do not write or prune files.
 
 The human-readable report is regenerated from the newest 10 run records:
 
@@ -57,7 +60,9 @@ The benchmark suite currently measures 12 representative lenses across three sce
 
 Each run records:
 
-- main pipeline categories: `build`, `layout`, `rays`, `analysis`, `svgRender`, and `total`
+- main pipeline categories: `build`, `layout`, `rays`, `analysis`, `svgRender`, `totalCold`, and `totalWarm`
+- analysis subcategories: optical summary, distortion curve, distortion field grid, vignetting, pupil aberration,
+  bokeh pair, and best focus
 - aberration-panel data categories: spherical aberration, SA profile, SA blur character, field curvature, chromatic field
   curvature, and coma
 - aberration-panel render categories: full tabs plus section-level spherical, field curvature, astigmatism, meridional

@@ -9,6 +9,7 @@ import {
   computeComaPointCloudPreview,
   computeComaPreview,
   computeFieldCurvature,
+  computeFieldCurvatureBundle,
   computeMeridionalComa,
   computeSAProfile,
   computeSagittalComa,
@@ -90,6 +91,24 @@ export function computeFieldCurvatureForState2(
   );
 }
 
+export function computeFieldCurvatureBundleForState2(
+  state: PreparedOpticalState,
+  currentEPSD: number,
+  currentPhysStopSD: number,
+  fieldGeometry?: FieldGeometryState,
+) {
+  return computeFieldCurvatureBundle(
+    state.lens.runtime,
+    zPosFromState(state),
+    state.focusT,
+    state.zoomT,
+    currentEPSD,
+    currentPhysStopSD,
+    state.aberrationT,
+    fieldGeometry,
+  );
+}
+
 export function computeComaAnalysisForState2(
   state: PreparedOpticalState,
   currentEPSD: number,
@@ -140,6 +159,10 @@ export function computeSphericalAberrationBlurCharacter2(
 
 export function computeFieldCurvature2(...args: Parameters<typeof computeFieldCurvature>) {
   return computeFieldCurvature(...args);
+}
+
+export function computeFieldCurvatureBundle2(...args: Parameters<typeof computeFieldCurvatureBundle>) {
+  return computeFieldCurvatureBundle(...args);
 }
 
 export function computeComaAnalysis2(...args: Parameters<typeof computeComaAnalysis>) {

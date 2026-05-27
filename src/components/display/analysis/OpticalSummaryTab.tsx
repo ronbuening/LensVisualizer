@@ -3,6 +3,7 @@ import { analysisJobsForState2 } from "../../../optics/compat.js";
 import { AnalysisMetricRow } from "./analysisUi.js";
 import usePreparedAnalysisState from "./usePreparedAnalysisState.js";
 import type { PreparedOpticalState } from "../../../optics/types.js";
+import type { AnalysisComputationContext } from "../../../optics/compat.js";
 import type { FieldGeometryState } from "../../../optics/optics.js";
 import type { RuntimeLens } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";
@@ -18,6 +19,7 @@ interface OpticalSummaryTabProps {
   currentPhysStopSD: number;
   fieldGeometry?: FieldGeometryState | null;
   preparedState?: PreparedOpticalState | null;
+  analysisContext?: AnalysisComputationContext;
 }
 
 export default function OpticalSummaryTab({
@@ -31,10 +33,12 @@ export default function OpticalSummaryTab({
   currentPhysStopSD,
   fieldGeometry,
   preparedState: preparedStateProp,
+  analysisContext,
 }: OpticalSummaryTabProps) {
   const preparedState = usePreparedAnalysisState({ L, focusT, zoomT, aberrationT, preparedState: preparedStateProp });
   const summary = useMemo(
     () =>
+      analysisContext?.computeOpticalSummary() ??
       analysisJobsForState2.computeOpticalSummary(
         preparedState,
         dynamicEFL,
@@ -42,7 +46,7 @@ export default function OpticalSummaryTab({
         currentPhysStopSD,
         fieldGeometry ?? undefined,
       ),
-    [preparedState, dynamicEFL, currentEPSD, currentPhysStopSD, fieldGeometry],
+    [analysisContext, preparedState, dynamicEFL, currentEPSD, currentPhysStopSD, fieldGeometry],
   );
 
   return (

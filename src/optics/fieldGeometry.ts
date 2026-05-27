@@ -18,6 +18,7 @@ export {
   solveChiefRayBoundingSphere2 as solveChiefRayBoundingSphere,
   solveFieldAngleForImageHeight2 as solveFieldAngleForImageHeight,
   solveFieldAngleForImageHeightAccurate2 as solveFieldAngleForImageHeightAccurate,
+  solveFieldAnglesForImageHeightsAccurate2 as solveFieldAnglesForImageHeightsAccurate,
   traceChiefRayAtAngle2 as traceChiefRayAtAngle,
   traceParaxialRay2 as traceParaxialRay,
   type ChiefRaySolveResult2 as ChiefRaySolveResult,

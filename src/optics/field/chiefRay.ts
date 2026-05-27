@@ -510,17 +510,39 @@ export function chiefRayImageHeightAccurate2(
   geometry?: FieldGeometryState2,
   aberrationT = 0,
 ): number {
+  return chiefRayImageHeightAccurateWithTransfer2(
+    fieldAngleDeg,
+    zPos,
+    focusT,
+    zoomT,
+    L,
+    geometry,
+    aberrationT,
+    lastThicknessAtState(focusT, zoomT, L, aberrationT),
+  );
+}
+
+function chiefRayImageHeightAccurateWithTransfer2(
+  fieldAngleDeg: number,
+  zPos: number[],
+  focusT: number,
+  zoomT: number,
+  L: RuntimeLens,
+  geometry: FieldGeometryState2 | undefined,
+  aberrationT: number,
+  imagePlaneTransfer: number,
+): number {
   const launch = projectionLaunchSlopeForField2(L, fieldAngleDeg);
   const solve = solveChiefRay2(fieldAngleDeg, focusT, zoomT, L, geometry, aberrationT);
   if (solve.vectorLaunch) {
     const trace = traceRayVector2(solve.vectorLaunch, zPos, undefined, false, L, focusT, zoomT, aberrationT);
     if (trace.clipped) return NaN;
     if (L.isFoldedOptics && trace.reachedImagePlane) return foldedRayImagePlaneCoordinate2(trace, L);
-    return trace.y + trace.u * lastThicknessAtState(focusT, zoomT, L, aberrationT);
+    return trace.y + trace.u * imagePlaneTransfer;
   }
   const trace = traceRay2(solve.yLaunch, launch.uField, zPos, focusT, zoomT, undefined, true, L, aberrationT);
   if (L.isFoldedOptics && trace.reachedImagePlane) return foldedRayImagePlaneCoordinate2(trace, L);
-  return trace.y + trace.u * lastThicknessAtState(focusT, zoomT, L, aberrationT);
+  return trace.y + trace.u * imagePlaneTransfer;
 }
 
 /**
@@ -589,6 +611,114 @@ export function solveFieldAngleForImageHeightAccurate2(
     }
   }
   return (loAngle + hiAngle) / 2;
+}
+
+/**
+ * Invert several traced image heights against one shared accurate chief-ray field table.
+ *
+ * This preserves the `solveFieldAngleForImageHeightAccurate2` bisection path
+ * but avoids rebuilding the same bracket scan for every target height.
+ */
+export function solveFieldAnglesForImageHeightsAccurate2(
+  targetImageHeights: readonly number[],
+  zPos: number[],
+  focusT: number,
+  zoomT: number,
+  L: RuntimeLens,
+  geometry?: FieldGeometryState2,
+  aberrationT = 0,
+): Array<number | null> {
+  const geom = geometry ?? computeFieldGeometryAtState2(focusT, zoomT, L, aberrationT);
+  if (!Number.isFinite(geom.halfFieldDeg) || geom.halfFieldDeg <= 0) {
+    return targetImageHeights.map(solveTrivialImageHeightTarget2);
+  }
+
+  const lookup = buildAccurateFieldHeightLookup2(zPos, focusT, zoomT, L, geom, aberrationT);
+  return targetImageHeights.map((targetImageHeight) => solveFieldAngleForImageHeightLookup2(targetImageHeight, lookup));
+}
+
+interface AccurateFieldHeightLookup2 {
+  segmentAngles: number[];
+  segmentHeights: number[];
+  imageHeightAt: (fieldAngleDeg: number) => number;
+}
+
+function buildAccurateFieldHeightLookup2(
+  zPos: number[],
+  focusT: number,
+  zoomT: number,
+  L: RuntimeLens,
+  geometry: FieldGeometryState2,
+  aberrationT: number,
+): AccurateFieldHeightLookup2 {
+  const imagePlaneTransfer = lastThicknessAtState(focusT, zoomT, L, aberrationT);
+  const imageHeightAt = (fieldAngleDeg: number): number =>
+    chiefRayImageHeightAccurateWithTransfer2(
+      fieldAngleDeg,
+      zPos,
+      focusT,
+      zoomT,
+      L,
+      geometry,
+      aberrationT,
+      imagePlaneTransfer,
+    );
+  const bracketSegments = Math.max(Math.ceil(geometry.halfFieldDeg), 20);
+  const segmentAngles: number[] = [];
+  const segmentHeights: number[] = [];
+
+  for (let i = 0; i <= bracketSegments; i++) {
+    const angleDeg = (i / bracketSegments) * geometry.halfFieldDeg;
+    const height = imageHeightAt(angleDeg);
+    if (!Number.isFinite(height)) continue;
+    segmentAngles.push(angleDeg);
+    segmentHeights.push(height);
+  }
+
+  return { segmentAngles, segmentHeights, imageHeightAt };
+}
+
+function solveFieldAngleForImageHeightLookup2(
+  targetImageHeight: number,
+  lookup: AccurateFieldHeightLookup2,
+): number | null {
+  const trivial = solveTrivialImageHeightTarget2(targetImageHeight);
+  if (trivial !== null) return trivial;
+
+  const target = -Math.abs(targetImageHeight);
+  let lo = -1;
+  let hi = -1;
+  for (let i = 0; i < lookup.segmentAngles.length - 1; i++) {
+    const hLo = lookup.segmentHeights[i];
+    const hHi = lookup.segmentHeights[i + 1];
+    if ((hLo >= target && hHi <= target) || (hLo <= target && hHi >= target)) {
+      lo = i;
+      hi = i + 1;
+      break;
+    }
+  }
+  if (lo < 0) return null;
+
+  let loAngle = lookup.segmentAngles[lo];
+  let hiAngle = lookup.segmentAngles[hi];
+  let loHeight = lookup.segmentHeights[lo];
+  for (let i = 0; i < 40; i++) {
+    const mid = (loAngle + hiAngle) / 2;
+    const yMid = lookup.imageHeightAt(mid);
+    if (!Number.isFinite(yMid)) return null;
+    if (Math.abs(yMid - target) < 1e-4) return mid;
+    if ((loHeight >= target && yMid <= target) || (loHeight <= target && yMid >= target)) {
+      hiAngle = mid;
+    } else {
+      loAngle = mid;
+      loHeight = yMid;
+    }
+  }
+  return (loAngle + hiAngle) / 2;
+}
+
+function solveTrivialImageHeightTarget2(targetImageHeight: number): number | null {
+  return !Number.isFinite(targetImageHeight) || Math.abs(targetImageHeight) < 1e-12 ? 0 : null;
 }
 
 /**

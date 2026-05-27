@@ -100,6 +100,7 @@ export {
   solveChiefRayBoundingSphere2,
   solveFieldAngleForImageHeight2,
   solveFieldAngleForImageHeightAccurate2,
+  solveFieldAnglesForImageHeightsAccurate2,
   traceChiefRayAtAngle2,
   traceParaxialRay2,
   type ChiefRaySolveResult2,
@@ -175,11 +176,18 @@ export { computeElementShapesForState2 } from "./diagram/elementShapes.js";
 export { surfacePathD2, SVG_PATH_SUBDIVISIONS_2, type DiagramPointTransform2 } from "./diagram/surfaceOutline.js";
 export { analysisJobs2, analysisJobsForState2 } from "./analysis/analysisJobs.js";
 export {
+  createAnalysisComputationContext,
+  type AnalysisComputationContext,
+  type AnalysisComputationContextParams,
+} from "./analysis/analysisContext.js";
+export {
   computeComaAnalysis2,
   computeComaAnalysisForState2,
   computeComaPointCloudPreview2,
   computeComaPreview2,
   computeFieldCurvature2,
+  computeFieldCurvatureBundle2,
+  computeFieldCurvatureBundleForState2,
   computeFieldCurvatureForState2,
   computeMeridionalComa2,
   computeSAProfile2,

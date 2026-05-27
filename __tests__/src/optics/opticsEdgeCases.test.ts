@@ -14,6 +14,7 @@ import {
   solveChiefRay,
   solveFieldAngleForImageHeight,
   solveFieldAngleForImageHeightAccurate,
+  solveFieldAnglesForImageHeightsAccurate,
   chiefRayImageHeight,
   chiefRayImageHeightAccurate,
   doLayout,
@@ -182,6 +183,19 @@ describe("solveFieldAngleForImageHeightAccurate", () => {
     const solved = solveFieldAngleForImageHeightAccurate(Math.abs(h10), layout.z, 0, 0, L);
     expect(solved).not.toBeNull();
     expect(solved!).toBeCloseTo(10, 0);
+  });
+
+  it("batch inversion matches individual accurate solves", () => {
+    const targets = [0, 5, 10, 15].map((angleDeg) =>
+      Math.abs(chiefRayImageHeightAccurate(angleDeg, layout.z, 0, 0, L)),
+    );
+    const batch = solveFieldAnglesForImageHeightsAccurate(targets, layout.z, 0, 0, L);
+
+    targets.forEach((target, index) => {
+      const individual = solveFieldAngleForImageHeightAccurate(target, layout.z, 0, 0, L);
+      expect(batch[index]).not.toBeNull();
+      expect(batch[index]!).toBeCloseTo(individual!, 8);
+    });
   });
 });
 

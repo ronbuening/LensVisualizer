@@ -14,6 +14,7 @@ import DistortionFieldGrid from "./DistortionFieldGrid.js";
 import { AnalysisMetricRow } from "./analysisUi.js";
 import usePreparedAnalysisState from "./usePreparedAnalysisState.js";
 import type { PreparedOpticalState } from "../../../optics/types.js";
+import type { AnalysisComputationContext } from "../../../optics/compat.js";
 import type { RuntimeLens } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";
 import type { FieldGeometryState } from "../../../optics/optics.js";
@@ -28,6 +29,7 @@ interface DistortionTabProps {
   currentPhysStopSD: number;
   fieldGeometry?: FieldGeometryState | null;
   preparedState?: PreparedOpticalState | null;
+  analysisContext?: AnalysisComputationContext;
 }
 
 export default function DistortionTab({
@@ -40,26 +42,37 @@ export default function DistortionTab({
   currentPhysStopSD,
   fieldGeometry,
   preparedState: preparedStateProp,
+  analysisContext,
 }: DistortionTabProps) {
   const preparedState = usePreparedAnalysisState({ L, focusT, zoomT, aberrationT, preparedState: preparedStateProp });
   const samples = useMemo(
     () =>
-      probe("computeDistortionCurve", () =>
-        analysisJobsForState2.computeDistortionCurve(
-          preparedState,
-          dynamicEFL,
-          currentPhysStopSD,
-          fieldGeometry ?? undefined,
-        ),
+      probe(
+        "computeDistortionCurve",
+        () =>
+          analysisContext?.computeDistortionCurve() ??
+          analysisJobsForState2.computeDistortionCurve(
+            preparedState,
+            dynamicEFL,
+            currentPhysStopSD,
+            fieldGeometry ?? undefined,
+          ),
       ),
-    [preparedState, dynamicEFL, currentPhysStopSD, fieldGeometry],
+    [analysisContext, preparedState, dynamicEFL, currentPhysStopSD, fieldGeometry],
   );
   const fieldGrid = useMemo(
     () =>
-      probe("computeDistortionFieldGrid", () =>
-        analysisJobsForState2.computeDistortionFieldGrid(preparedState, currentPhysStopSD, fieldGeometry ?? undefined),
+      probe(
+        "computeDistortionFieldGrid",
+        () =>
+          analysisContext?.computeDistortionFieldGrid() ??
+          analysisJobsForState2.computeDistortionFieldGrid(
+            preparedState,
+            currentPhysStopSD,
+            fieldGeometry ?? undefined,
+          ),
       ),
-    [preparedState, currentPhysStopSD, fieldGeometry],
+    [analysisContext, preparedState, currentPhysStopSD, fieldGeometry],
   );
 
   if (samples.length < 2) {

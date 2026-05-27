@@ -1,4 +1,5 @@
 import type { PreparedOpticalState } from "../../../optics/types.js";
+import type { AnalysisComputationContext } from "../../../optics/compat.js";
 import type { RuntimeLens } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";
 import BokehPreviewContent from "./BokehPreviewContent.js";
@@ -14,6 +15,7 @@ interface BokehTabProps {
   currentEPSD: number;
   currentPhysStopSD: number;
   preparedState?: PreparedOpticalState | null;
+  analysisContext?: AnalysisComputationContext;
 }
 
 export default function BokehTab({
@@ -25,9 +27,10 @@ export default function BokehTab({
   currentEPSD,
   currentPhysStopSD,
   preparedState: preparedStateProp,
+  analysisContext,
 }: BokehTabProps) {
   const preparedState = usePreparedAnalysisState({ L, focusT, zoomT, aberrationT, preparedState: preparedStateProp });
-  const pair = useBokehPreviewData(preparedState, currentEPSD, currentPhysStopSD);
+  const pair = useBokehPreviewData(preparedState, currentEPSD, currentPhysStopSD, analysisContext);
 
   return (
     <div style={{ padding: "8px 0" }}>

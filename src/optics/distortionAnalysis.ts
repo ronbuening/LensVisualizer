@@ -18,7 +18,7 @@ import {
   computeFieldGeometryAtState,
   skewImagePlaneIntercept,
   solveChiefRay,
-  solveFieldAngleForImageHeightAccurate,
+  solveFieldAnglesForImageHeightsAccurate,
   thick,
   traceSkewRay,
   traceSkewRayVector,
@@ -212,6 +212,19 @@ export function computeDistortionCurve(
 
   const samples: DistortionSample[] = [];
   const edgeAbsHeight = Math.abs(reference.edgeImageHeight);
+  const targetImageHeights = Array.from(
+    { length: SAMPLE_COUNT - 1 },
+    (_, index) => -edgeAbsHeight * ((index + 1) / (SAMPLE_COUNT - 1)),
+  );
+  const solvedFieldAngles = solveFieldAnglesForImageHeightsAccurate(
+    targetImageHeights,
+    zPos,
+    focusT,
+    zoomT,
+    L,
+    reference.geometry,
+    aberrationT,
+  );
 
   for (let i = 0; i < SAMPLE_COUNT; i++) {
     const normalizedImageHeight = i / (SAMPLE_COUNT - 1);
@@ -230,16 +243,9 @@ export function computeDistortionCurve(
       continue;
     }
 
-    const realHeight = -edgeAbsHeight * normalizedImageHeight;
-    const fieldAngleDeg = solveFieldAngleForImageHeightAccurate(
-      realHeight,
-      zPos,
-      focusT,
-      zoomT,
-      L,
-      reference.geometry,
-      aberrationT,
-    );
+    const targetIndex = i - 1;
+    const realHeight = targetImageHeights[targetIndex];
+    const fieldAngleDeg = solvedFieldAngles[targetIndex];
     if (fieldAngleDeg == null || !isFinite(fieldAngleDeg)) continue;
 
     const thetaRad = (fieldAngleDeg * Math.PI) / 180;

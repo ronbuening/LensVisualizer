@@ -11,6 +11,7 @@ import {
   computeComaPreview,
   computeComaAnalysis,
   computeFieldCurvature,
+  computeFieldCurvatureBundle,
   computeMeridionalComa,
   computeSagittalComa,
   computeSphericalAberration as computeSphericalAberrationBase,
@@ -1179,6 +1180,24 @@ describe("computeFieldCurvature", () => {
     );
     expect(computeFieldCurvature(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, true, 0, geometry)).toEqual(
       computeFieldCurvature(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, true),
+    );
+  });
+
+  it("computes a bundled monochrome and chromatic result equal to separate calls", () => {
+    const L = build(NikkorZ70200Raw);
+    const focusT = 0.25;
+    const zoomT = 1;
+    const { z: zPos } = doLayout(focusT, zoomT, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, zoomT, 0);
+    const geometry = computeAnalysisFieldGeometryAtState(focusT, zoomT, L);
+
+    const bundle = computeFieldCurvatureBundle(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, 0, geometry);
+
+    expect(bundle.fieldCurvature).toEqual(
+      computeFieldCurvature(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, false, 0, geometry),
+    );
+    expect(bundle.chromaticFieldCurvature).toEqual(
+      computeFieldCurvature(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, true, 0, geometry),
     );
   });
 

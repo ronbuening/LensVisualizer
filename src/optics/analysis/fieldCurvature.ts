@@ -4,4 +4,8 @@
  * Maintains a stable analysis-module path over the shared aberrations adapter.
  */
 
-export { computeFieldCurvature2, computeFieldCurvatureForState2 } from "./aberrations.js";
+export {
+  computeFieldCurvature2,
+  computeFieldCurvatureBundleForState2,
+  computeFieldCurvatureForState2,
+} from "./aberrations.js";

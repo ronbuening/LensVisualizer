@@ -13,6 +13,7 @@ import PupilAberrationChart from "./PupilAberrationChart.js";
 import { AnalysisMetricRow } from "./analysisUi.js";
 import usePreparedAnalysisState from "./usePreparedAnalysisState.js";
 import type { PreparedOpticalState } from "../../../optics/types.js";
+import type { AnalysisComputationContext } from "../../../optics/compat.js";
 import type { RuntimeLens } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";
 import type { FieldGeometryState } from "../../../optics/optics.js";
@@ -25,6 +26,7 @@ interface PupilAberrationTabProps {
   aberrationT?: number;
   fieldGeometry?: FieldGeometryState | null;
   preparedState?: PreparedOpticalState | null;
+  analysisContext?: AnalysisComputationContext;
 }
 
 export default function PupilAberrationTab({
@@ -35,12 +37,14 @@ export default function PupilAberrationTab({
   aberrationT = 0,
   fieldGeometry,
   preparedState: preparedStateProp,
+  analysisContext,
 }: PupilAberrationTabProps) {
   const preparedState = usePreparedAnalysisState({ L, focusT, zoomT, aberrationT, preparedState: preparedStateProp });
   const profiles = useMemo(
     () =>
+      analysisContext?.computeBothPupilAberrationProfiles() ??
       analysisJobsForState2.computeBothPupilAberrationProfiles(preparedState, undefined, fieldGeometry ?? undefined),
-    [preparedState, fieldGeometry],
+    [analysisContext, preparedState, fieldGeometry],
   );
 
   if (profiles.ep.samples.length < 2) {
