@@ -22,6 +22,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-05-27 ──────────────────────────────────────────────────────────
   {
     date: "2026-05-27",
+    type: "improvement",
+    summary: "Modernized the optics engine for state-aware ray tracing and analysis",
+  },
+  {
+    date: "2026-05-27",
     type: "feature",
     summary: "Added optical summary and bokeh tabs to the analysis drawer",
   },
