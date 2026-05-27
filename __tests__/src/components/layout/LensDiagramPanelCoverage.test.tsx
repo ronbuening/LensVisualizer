@@ -20,7 +20,6 @@ const mocks = vi.hoisted(() => {
   const adapters = {
     onAnalysisDrawerToggle: vi.fn(),
     onAnalysisTabChange: vi.fn(),
-    onBokehPreviewToggle: vi.fn(),
     onAberrationsExpandedChange: vi.fn(),
     onEffectiveApertureChange: vi.fn(),
     onZoomChange: vi.fn(),
@@ -114,10 +113,6 @@ vi.mock("../../../../src/components/controls/DiagramHeader.js", () => ({
   default: () => <div data-testid="diagram-header">Header</div>,
 }));
 
-vi.mock("../../../../src/components/display/overlays/BokehPreviewOverlay.js", () => ({
-  default: () => <div data-testid="bokeh-preview">Bokeh preview</div>,
-}));
-
 vi.mock("../../../../src/components/layout/lensDiagram/AnalysisDrawerContent.js", () => ({
   default: ({ activeTab }: { activeTab: string }) => <div data-testid="analysis-content">{activeTab}</div>,
 }));
@@ -140,7 +135,6 @@ vi.mock("../../../../src/components/layout/lensDiagram/LensDiagramLoadedState.js
           computed.sel ?? "none",
         )}`}</div>
         <div data-testid="analysis-slot">{props.analysisContent as ReactNode}</div>
-        <div data-testid="bokeh-slot">{props.bokehPreviewContent as ReactNode}</div>
         <div data-testid="header-slot">{props.header as ReactNode}</div>
         <button type="button" onClick={() => (interactions.onHover as (eid: number | null) => void)(1)}>
           hover-one
@@ -284,20 +278,18 @@ describe("LensDiagramPanel orchestration", () => {
     expect(screen.getByText("Ray tracing failed")).toBeTruthy();
   });
 
-  it("wires loaded state, optional analysis and bokeh content, and zoom reset", () => {
+  it("wires loaded state, optional analysis content, and zoom reset", () => {
     const state = makeState({
       panels: {
         ...makeState().panels,
         analysisDrawerOpen: true,
         analysisDrawerTab: "vignetting",
-        bokehPreviewOpen: true,
         zoomPanActive: true,
       },
     });
     renderPanel(state);
 
     expect(screen.getByTestId("analysis-content").textContent).toBe("vignetting");
-    expect(screen.getByTestId("bokeh-preview")).toBeTruthy();
     expect(screen.queryByTestId("diagram-header")).toBeNull();
 
     fireEvent.click(screen.getByText("zoom-off"));

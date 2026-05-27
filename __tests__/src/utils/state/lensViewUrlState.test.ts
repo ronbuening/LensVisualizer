@@ -8,7 +8,7 @@ import {
 describe("lensViewUrlState", () => {
   it("parses v1 single-lens view params", () => {
     const state = parseLensViewQuery(
-      "?v=1&focus=0.25&aberration=0.75&aperture=0.5&zoom=70&el=12&gm=1&bo=1&ad=1&tab=distortion&mv=zoom",
+      "?v=1&focus=0.25&aberration=0.75&aperture=0.5&zoom=70&el=12&gm=1&ad=1&tab=distortion&mv=zoom",
     );
 
     expect(state).toMatchObject({
@@ -18,7 +18,6 @@ describe("lensViewUrlState", () => {
       zoom: 70,
       selectedElementId: 12,
       glassMapOpen: true,
-      bokehPreviewOpen: true,
       analysisDrawerOpen: true,
       analysisDrawerTab: "distortion",
       groupMovementOpen: true,
@@ -45,7 +44,7 @@ describe("lensViewUrlState", () => {
     expect(state.selectedElementId).toBeUndefined();
     expect(state.selectedElementIdA).toBeUndefined();
     expect(state.glassMapOpen).toBeUndefined();
-    expect(state.bokehPreviewOpen).toBeUndefined();
+    expect(state).not.toHaveProperty("bokehPreviewOpen");
     expect(state.analysisDrawerOpen).toBeUndefined();
     expect(state.analysisDrawerTab).toBeUndefined();
     expect(state.groupMovementOpen).toBeUndefined();
@@ -66,7 +65,6 @@ describe("lensViewUrlState", () => {
       aperture: 0,
       selectedElementId: 4,
       glassMapOpen: true,
-      bokehPreviewOpen: false,
       analysisDrawerOpen: true,
       analysisDrawerTab: "coma",
     });
@@ -89,10 +87,9 @@ describe("lensViewUrlState", () => {
       selectedElementId: 4,
       selectedElementIdA: 2,
       selectedElementIdB: 9,
-      bokehPreviewOpen: true,
     });
 
-    expect(params.toString()).toBe("v=1&a_el=2&b_el=9&bo=1");
+    expect(params.toString()).toBe("v=1&a_el=2&b_el=9");
   });
 
   it("omits defaults and unimplemented ai state", () => {
@@ -102,7 +99,6 @@ describe("lensViewUrlState", () => {
       aperture: 0,
       zoom: null,
       glassMapOpen: false,
-      bokehPreviewOpen: false,
       analysisDrawerOpen: false,
       analysisDrawerTab: "distortion",
     });
@@ -152,11 +148,18 @@ describe("lensViewUrlState", () => {
       glassMapOpen: false,
       lcaOverlayOpen: false,
       petzvalOverlayOpen: false,
-      bokehPreviewOpen: false,
       analysisDrawerOpen: false,
       analysisDrawerTab: "aberrations",
       groupMovementOpen: false,
       groupMovementMode: "focus",
     });
+  });
+
+  it("ignores the removed beta bokeh overlay URL flag", () => {
+    const state = parseLensViewQuery("?v=1&bo=1&ad=1&tab=bokeh");
+
+    expect(state).not.toHaveProperty("bokehPreviewOpen");
+    expect(state.analysisDrawerOpen).toBe(true);
+    expect(state.analysisDrawerTab).toBe("bokeh");
   });
 });

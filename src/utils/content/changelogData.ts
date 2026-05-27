@@ -27,6 +27,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   },
   {
     date: "2026-05-27",
+    type: "fix",
+    summary: "Removed the duplicate beta bokeh panel from the diagram overlay controls",
+  },
+  {
+    date: "2026-05-27",
     type: "improvement",
     summary: "Improved fisheye bokeh and folded-mirror pupil analysis",
   },

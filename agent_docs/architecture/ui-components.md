@@ -111,7 +111,6 @@ New analysis tabs require:
 | Module | Purpose |
 | --- | --- |
 | `AsphericComparisonOverlay.tsx` | Modal content for aspheric deviation analysis. Renders the element with aspheric (solid) and spherical-replacement (dashed) profiles overlaid, with an exaggeration slider, zoom/pan, and click-to-measure sag delta. Opened from `ElementInspector`; state managed in `useOverlayState` - the only overlay that lives outside the URL-shareable panels slice. |
-| `BokehPreviewOverlay.tsx` | Deferred bokeh preview overlay. |
 | `LensGroupMovementOverlay.tsx` | Diagram overlay for inferred focus/zoom/combined lens-group movement. It stacks groups vertically, uses the fixed focus plane as x=0, and keeps unavailable modes visible but disabled in the side radio rail. |
 
 ## Shared Chart Primitives

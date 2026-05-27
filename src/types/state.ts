@@ -134,7 +134,6 @@ export type PanelField =
   | "aberrationsExpanded"
   | "analysisDrawerOpen"
   | "zoomPanActive"
-  | "bokehPreviewOpen"
   | "groupMovementOpen";
 
 export interface PanelsSlice {
@@ -152,7 +151,6 @@ export interface PanelsSlice {
   analysisDrawerOpen: boolean;
   analysisDrawerTab: AnalysisTabId;
   zoomPanActive: boolean;
-  bokehPreviewOpen: boolean;
   groupMovementOpen: boolean;
   groupMovementMode: GroupMovementMode;
   selectedElementId: number | null;
@@ -267,7 +265,6 @@ export interface URLState {
   glassMapOpen?: boolean;
   lcaOverlayOpen?: boolean;
   petzvalOverlayOpen?: boolean;
-  bokehPreviewOpen?: boolean;
   analysisDrawerOpen?: boolean;
   analysisDrawerTab?: AnalysisTabId;
   groupMovementOpen?: boolean;

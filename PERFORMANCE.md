@@ -4,9 +4,9 @@ This document captures the performance bottlenecks identified in LensVisualizer 
 
 ## Context
 
-Slider interactions (focus, aperture, zoom) originally felt sluggish because every slider tick fired a complete re-computation cascade: main ray traces, off-axis ray traces, chromatic ray traces, SVG shape generation, and — when open — analysis drawer tabs (summary / aberrations / coma / bokeh / distortion / breathing / vignetting / pupils) and the bokeh overlay.
+Slider interactions (focus, aperture, zoom) originally felt sluggish because every slider tick fired a complete re-computation cascade: main ray traces, off-axis ray traces, chromatic ray traces, SVG shape generation, and — when open — analysis drawer tabs (summary / aberrations / coma / bokeh / distortion / breathing / vignetting / pupils).
 
-Current status: closed drawer/overlay work is gated, drawer inputs are deferred during slider interaction, and heavy analysis tabs share a prepared-state job facade so current focus/zoom/aberration state is prepared once per settled analysis state.
+Current status: closed drawer work is gated, drawer inputs are deferred during slider interaction, and heavy analysis tabs share a prepared-state job facade so current focus/zoom/aberration state is prepared once per settled analysis state.
 
 The goal is a dramatically smoother interactive experience while preserving final accuracy. Only *transient* (mid-drag) results may use reduced-resolution proxies, and they must converge to full resolution on pointer release.
 
@@ -45,9 +45,9 @@ Legend: ⬜ Not started · 🟨 In progress · ✅ Shipped
 - [PupilAberrationTab.tsx](src/components/display/PupilAberrationTab.tsx) — 17-sample bisection-solved chief rays (EP + XP combined API already shares the bisection so this is the cheapest tab).
 - [FocusBreathingTab.tsx](src/components/display/FocusBreathingTab.tsx) — 21-point EFL sweep across focus range.
 
-### B4 — Bokeh overlay recomputes on every slider tick when open
-- [BokehPreviewOverlay.tsx](src/components/display/overlays/BokehPreviewOverlay.tsx) and [BokehTab.tsx](src/components/display/analysis/BokehTab.tsx) — `computeBokehPreviewPair` (337-ray bundles × 4 field positions × 2 focus distances) recomputes for the visible bokeh surface.
-- Conditionally mounted in [DiagramViewport.tsx](src/components/layout/lensDiagram/DiagramViewport.tsx), so only affects users who opened it, but major cost when open.
+### B4 — Bokeh tab recomputes on every slider tick when open
+- [BokehTab.tsx](src/components/display/analysis/BokehTab.tsx) — `computeBokehPreviewPair` (337-ray bundles × 4 field positions × 2 focus distances) recomputes for the visible bokeh drawer tab.
+- Conditionally mounted through [AnalysisDrawerContent.tsx](src/components/layout/lensDiagram/AnalysisDrawerContent.tsx), so only affects users who open the drawer to the bokeh tab, but remains a major cost when visible.
 
 ### B5 — `zPos` is the cascade trigger
 - [useLensComputation.ts](src/components/hooks/useLensComputation.ts) — `cur` layout recomputes on `[focusT, zoomT, L]`, then `zPos` is a fresh array every tick. Every downstream `useMemo` that lists `zPos` in its deps re-runs, even when array values are numerically identical.
@@ -85,7 +85,7 @@ Legend: ⬜ Not started · 🟨 In progress · ✅ Shipped
   - `computeDistortionCurve` — `DistortionTab.tsx`
   - `computeDistortionFieldGrid` — `DistortionTab.tsx`
   - `computeVignettingCurve` — `VignettingTab.tsx`
-  - `computeBokehPreviewPair` — `BokehTab.tsx` and `BokehPreviewOverlay.tsx`
+  - `computeBokehPreviewPair` — `BokehTab.tsx`
 - ✅ `__tests__/perfProbe.test.ts` — covers return value passthrough, logging cadence, multi-name tracking, and reset.
 - ⬜ **Baselines not yet recorded** — open the app in dev mode (`npm run dev`), load a lens, open each analysis tab in turn, scrub the focus slider for ~10 moves, and read the `console.table` output. Record results in the Baselines section below.
 
@@ -110,9 +110,9 @@ Legend: ⬜ Not started · 🟨 In progress · ✅ Shipped
 - Files: [src/components/display/analysis/aberrations/](src/components/display/analysis/aberrations/), [AberrationsPanel.tsx](src/components/display/analysis/AberrationsPanel.tsx), [ComaTab.tsx](src/components/display/analysis/ComaTab.tsx)
 - Shipped: separate hooks now back spherical aberration, field curvature, and coma work. Each tab imports only the analysis it needs.
 
-### 1.4 — Lazy bokeh overlay JSX construction
-- File: [LensDiagramPanel.tsx:278-286](src/components/layout/LensDiagramPanel.tsx#L278-L286)
-- `bokehPreviewContent={bokehPreviewOpen ? <BokehPreviewOverlay … /> : null}`.
+### 1.4 — Remove duplicate bokeh overlay surface
+- Shipped: the old diagram-corner beta bokeh overlay/button was removed after the drawer bokeh tab became the single supported bokeh surface.
+- The drawer continues to lazy-mount the bokeh tab only when the drawer is open and `analysisDrawerTab` is `bokeh`.
 
 ### 1.5 — Apply closed-drawer gating to both comparison panels
 - File: [ComparisonLayout.tsx](src/comparison/ComparisonLayout.tsx)
@@ -141,8 +141,8 @@ Legend: ⬜ Not started · 🟨 In progress · ✅ Shipped
 - File: [AnalysisDrawerContent.tsx](src/components/layout/lensDiagram/AnalysisDrawerContent.tsx) (or per-tab)
 - Wrap `focusT`, `zoomT`, `currentEPSD`, `currentPhysStopSD` with `useDeferredValue` before passing to computations. React prioritizes the main viewport and lets analyses fall back to the last-computed result until idle.
 
-### 2.3 — Defer bokeh overlay recompute
-- File: [BokehPreviewOverlay.tsx](src/components/display/overlays/BokehPreviewOverlay.tsx)
+### 2.3 — Defer bokeh tab recompute
+- File: [BokehTab.tsx](src/components/display/analysis/BokehTab.tsx)
 - Wrap inputs with `useDeferredValue`; optionally dim the preview while `focusT !== deferredFocusT` as a visual cue.
 
 ### 2.4 — Apply to distortion, vignetting, breathing tabs
@@ -245,7 +245,7 @@ New `__tests__/performance/sliderInteraction.test.ts`:
 
 - [ ] With drawer closed, scrubbing focus/aperture/zoom feels immediate on a 6-year-old laptop.
 - [ ] With vignetting tab open, chart updates within one frame of releasing the slider.
-- [ ] With bokeh overlay open, preview updates on release and holds last value during drag.
+- [ ] With the bokeh tab open, preview updates on release and holds last value during drag.
 - [ ] Comparison mode ≤ 2× single-lens mode in compute cost.
 - [ ] Prerendered pages contain final (not interactive-LOD) visuals — verify one route in `dist/` manually.
 

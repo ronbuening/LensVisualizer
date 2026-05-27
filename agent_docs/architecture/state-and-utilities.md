@@ -44,11 +44,11 @@ Canonical lens identity stays in route paths: `/lens/:slug` and `/compare/:slugA
 shareable view state:
 
 - Stable slider params remain unversioned: `focus`, `aberration`, `aperture`, `zoom`, `shift`, and `tilt`.
-- Versioned v1 view params are `v=1`, `el`, `a_el`, `b_el`, `gm`, `lca`, `ptz`, `bo`, `mv`, `ad`, and `tab`.
+- Versioned v1 view params are `v=1`, `el`, `a_el`, `b_el`, `gm`, `lca`, `ptz`, `mv`, `ad`, and `tab`.
 - Single-lens selection uses `el`; comparison selection uses `a_el` and `b_el`.
 - Overlay flags: `gm` (Abbe/glass-map modal), `lca` (chromatic-aberration overlay), `ptz` (Petzval-curvature overlay),
-  `bo` (bokeh preview), `mv` (lens-group movement overlay mode: `focus`, `zoom`, or `combined`), `ad` (analysis
-  drawer); `tab` names the active analysis drawer tab.
+  `mv` (lens-group movement overlay mode: `focus`, `zoom`, or `combined`), `ad` (analysis drawer); `tab` names the
+  active analysis drawer tab.
 - Boolean params decode strictly as `1` for true and `0` or omitted for false. Invalid values fall back to defaults.
 - Unknown `v` values ignore v1-only params while continuing to honor stable slider params.
 - `shift` and `tilt` are clamped against each lens' `perspectiveControl` config at render time; lenses without that

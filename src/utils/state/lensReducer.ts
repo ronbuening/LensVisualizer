@@ -98,7 +98,6 @@ const PANEL_FIELDS = new Set([
   "aberrationsExpanded",
   "analysisDrawerOpen",
   "zoomPanActive",
-  "bokehPreviewOpen",
   "groupMovementOpen",
 ]);
 const OVERLAY_FIELDS = new Set(["showAbout", "showAboutSite", "showOpticsPrimer", "showAberrationsPrimer"]);
@@ -185,7 +184,6 @@ export function createInitialState(
         urlState.analysisDrawerTab ??
         (isAnalysisTabId(prefs.analysisDrawerTab) ? prefs.analysisDrawerTab : "aberrations"),
       zoomPanActive: false,
-      bokehPreviewOpen: urlState.bokehPreviewOpen ?? false,
       groupMovementOpen: urlState.groupMovementOpen ?? false,
       groupMovementMode: urlState.groupMovementMode ?? "focus",
       selectedElementId: urlState.selectedElementId ?? null,
@@ -222,7 +220,6 @@ export default function lensReducer(state: LensState, action: LensAction): LensS
           ...state.panels,
           analysisDrawerOpen: false,
           zoomPanActive: false,
-          bokehPreviewOpen: false,
           groupMovementOpen: false,
           glassMapOpen: false,
           lcaOverlayOpen: false,

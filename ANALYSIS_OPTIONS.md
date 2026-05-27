@@ -22,7 +22,7 @@ The app already has these analysis surfaces and should treat them as shipped bas
   field curvature.
 - Rectilinear distortion curve plus traced 2D chief-ray distortion field grid.
 - Focus-breathing readouts, vignetting/relative-illumination curves, and EP/XP pupil-aberration curves.
-- Abbe glass map, Petzval overlay, LCA inset/overlay, element inspector, bokeh analysis tab, and bokeh preview overlay.
+- Abbe glass map, Petzval overlay, LCA inset/overlay, element inspector, and bokeh analysis tab.
 - Side-by-side comparison mode with shared focus, aperture, zoom, and scale controls.
 
 This leaves several good opportunities: surfacing more of the scalar data users need for comparison, turning hidden
@@ -327,19 +327,19 @@ mechanical constraints.
 
 ### 18. Promote Bokeh Preview From Beta Overlay To Analysis Tab
 
-**Status:** Shipped for the drawer surface. The analysis drawer now includes a `bokeh` tab reusing the prepared-state
+**Status:** Shipped. The analysis drawer now includes the single supported `bokeh` surface, reusing the prepared-state
 bokeh preview pipeline, and projection-aware off-axis footprint sampling uses vector launch when scalar slope launch is
-out of domain.
+out of domain. The duplicate floating beta button was removed after the drawer version stabilized.
 
-**Why it helps:** Bokeh preview already has a real computation pipeline, tests, and UI, but it is a separate beta overlay
-button. Promoting it to the drawer would make it discoverable and easier to compare with SA/coma/vignetting.
+**Why it helps:** Bokeh preview already has a real computation pipeline, tests, and UI. Keeping it in the drawer makes
+it discoverable and easier to compare with SA/coma/vignetting without maintaining a duplicate beta overlay.
 
 **Effort:** M
 
 **Remaining follow-up ideas:**
 
 - Add controls for source plane, field positions, scale lock, and optional density-vs-circularized display.
-- Keep or remove the floating beta button after the drawer version is stable.
+- Add shareable item-level bokeh settings only if the drawer gains user-adjustable bokeh controls.
 
 ### 19. Aperture Blade Shape In Bokeh
 

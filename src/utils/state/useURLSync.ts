@@ -3,7 +3,7 @@
  *
  * 1. Immediate URL update on lens-identity change (legacy ?a=/?b=/?lens= surface).
  * 2. Single 100 ms-debounced URL writer for all v1 view state — sliders,
- *    selected element(s), glass map, bokeh, analysis drawer, tab.
+ *    selected element(s), glass map, analysis drawer, tab.
  * 3. One-time zoom initialization from the URL after the lens(es) build.
  * 4. `popstate` hydration: parses the search string and dispatches
  *    APPLY_URL_VIEW_STATE so back/forward navigation restores view state.
@@ -120,7 +120,6 @@ export default function useURLSync(
     panels.selectedElementIdA,
     panels.selectedElementIdB,
     panels.glassMapOpen,
-    panels.bokehPreviewOpen,
     panels.analysisDrawerOpen,
     panels.analysisDrawerTab,
     panels.groupMovementOpen,

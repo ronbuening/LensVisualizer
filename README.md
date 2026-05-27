@@ -84,7 +84,7 @@ The catalog is auto-registered from `src/lens-data/**/*.data.ts`, so the README 
 - **Share previews**: reusable Open Graph/Twitter social card with `summary_large_image` metadata defaults
 - **Freshness-aware sitemap**: build metadata tracks published and last-modified dates, and `sitemap.xml` emits per-route `lastmod` values
 - **Zoom and pan**: infinite-resolution SVG zoom via viewBox manipulation, with mouse wheel, pointer drag, touch pinch-to-zoom, and keyboard shortcuts (+/- zoom, arrows pan, Escape cancel)
-- **Responsive UI**: desktop side-by-side layouts, mobile view toggles, persistent preferences, and shareable deep links — URLs encode the selected element, glass map, LCA and Petzval overlays, bokeh preview, lens-group movement overlay, analysis drawer + tab, and slider state including PC lens movement
+- **Responsive UI**: desktop side-by-side layouts, mobile view toggles, persistent preferences, and shareable deep links — URLs encode the selected element, glass map, LCA and Petzval overlays, lens-group movement overlay, analysis drawer + tab, and slider state including PC lens movement
 - **Catalog metadata**: lens data can declare canonical mount ids and image-format ids for library filtering and future field-aware analysis
 
 ## Tech Stack

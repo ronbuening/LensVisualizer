@@ -97,7 +97,6 @@ export interface PanelDisplayFlagsModel {
   flashFading: boolean;
   analysisDrawerOpen: boolean;
   analysisDrawerTab: AnalysisTabId;
-  bokehPreviewOpen: boolean;
   groupMovementOpen: boolean;
   groupMovementMode: GroupMovementMode;
   focusExpanded: boolean;
@@ -128,7 +127,6 @@ export interface PanelAdaptersModel {
   onGroupMovementOpen: (mode: GroupMovementMode) => void;
   onGroupMovementClose: () => void;
   onGroupMovementModeChange: (mode: GroupMovementMode) => void;
-  onBokehPreviewToggle: (open: boolean) => void;
   onAberrationsExpandedChange: (expanded: boolean) => void;
   onEffectiveApertureChange: (expanded: boolean) => void;
   onZoomChange: (value: number) => void;
@@ -179,7 +177,6 @@ export interface LensDiagramLoadedStateProps {
   adapters: PanelAdaptersModel;
   interactions: PanelInteractionsModel;
   analysisContent: ReactNode;
-  bokehPreviewContent: ReactNode;
   groupMovementContent: ReactNode;
   header: ReactNode;
 }

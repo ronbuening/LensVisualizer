@@ -41,12 +41,6 @@ interface DiagramViewportProps extends Omit<
   onZoomOut: () => void;
   /** Pan by delta in SVG units (keyboard arrows) */
   onPanBy: (dx: number, dy: number) => void;
-  /** Whether the bokeh preview overlay is visible */
-  showBokehPreview: boolean;
-  /** Toggle bokeh preview on/off */
-  onBokehPreviewToggle: (open: boolean) => void;
-  /** Pre-rendered bokeh preview content (ReactNode) */
-  bokehPreviewContent: ReactNode;
   /** Whether the group movement overlay is visible */
   showGroupMovement: boolean;
   /** Close group movement overlay */
@@ -133,9 +127,6 @@ export default function DiagramViewport({
   onSvgTouchMove,
   onSvgTouchEnd,
   zoomT,
-  showBokehPreview,
-  onBokehPreviewToggle,
-  bokehPreviewContent,
   showGroupMovement,
   onGroupMovementClose,
   groupMovementContent,
@@ -275,45 +266,10 @@ export default function DiagramViewport({
         </PanelOverlay>
       ) : null}
 
-      {!zoomPanActive && showBokehPreview ? (
-        <PanelOverlay onClose={() => onBokehPreviewToggle(false)} theme={t}>
-          {bokehPreviewContent}
-        </PanelOverlay>
-      ) : null}
-
       {!zoomPanActive && showGroupMovement ? (
         <PanelOverlay onClose={onGroupMovementClose} theme={t}>
           {groupMovementContent}
         </PanelOverlay>
-      ) : null}
-
-      {/* Bokeh preview button — upper-right, hidden in zoom/pan mode */}
-      {!zoomPanActive ? (
-        <button
-          aria-label="Open bokeh preview"
-          onClick={() => onBokehPreviewToggle(true)}
-          style={{
-            position: "absolute",
-            top: 10,
-            right: 10,
-            zIndex: 5,
-            borderRadius: 10,
-            cursor: "pointer",
-            padding: "4px 10px",
-            display: "flex",
-            alignItems: "center",
-            gap: 5,
-            fontSize: 9,
-            fontFamily: "inherit",
-            letterSpacing: "0.08em",
-            transition: "all 0.25s",
-            background: t.toggleBg,
-            border: `1px solid ${t.toggleBorder}`,
-            color: t.muted,
-          }}
-        >
-          <span>BOKEH (BETA)</span>
-        </button>
       ) : null}
 
       {/* Analysis drawer toggle — hidden in zoom/pan mode */}

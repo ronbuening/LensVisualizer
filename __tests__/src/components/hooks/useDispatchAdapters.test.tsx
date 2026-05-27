@@ -67,7 +67,6 @@ describe("useDispatchAdapters", () => {
       "onGroupMovementClose",
       "onGroupMovementModeChange",
       "onZoomPanToggle",
-      "onBokehPreviewToggle",
     ];
     for (const key of expectedKeys) {
       expect(typeof adapters[key as keyof typeof adapters]).toBe("function");
@@ -255,12 +254,6 @@ describe("useDispatchAdapters", () => {
     const { adapters, dispatch } = renderAdapters();
     adapters.onZoomPanToggle(true);
     expect(dispatch).toHaveBeenCalledWith({ type: SET_PANEL_EXPANDED, panel: "zoomPanActive", expanded: true });
-  });
-
-  it("onBokehPreviewToggle dispatches SET_PANEL_EXPANDED for bokehPreviewOpen", () => {
-    const { adapters, dispatch } = renderAdapters();
-    adapters.onBokehPreviewToggle(true);
-    expect(dispatch).toHaveBeenCalledWith({ type: SET_PANEL_EXPANDED, panel: "bokehPreviewOpen", expanded: true });
   });
 
   it("group movement adapters dispatch SET_GROUP_MOVEMENT", () => {

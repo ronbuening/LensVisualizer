@@ -100,9 +100,6 @@ const baseProps = {
   onZoomIn: vi.fn(),
   onZoomOut: vi.fn(),
   onPanBy: vi.fn(),
-  showBokehPreview: false,
-  onBokehPreviewToggle: vi.fn(),
-  bokehPreviewContent: null,
   showGroupMovement: false,
   onGroupMovementClose: vi.fn(),
   groupMovementContent: <div>Movement Overlay</div>,
@@ -129,6 +126,7 @@ describe("DiagramViewport", () => {
 
     expect(baseProps.onAnalysisDrawerToggle).toHaveBeenCalledWith(true);
     expect(screen.queryByTestId("analysis-drawer")).toBeNull();
+    expect(screen.queryByRole("button", { name: /open bokeh preview/i })).toBeNull();
   });
 
   it("forwards cardinal overlay props into the SVG", () => {

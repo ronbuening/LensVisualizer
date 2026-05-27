@@ -95,7 +95,7 @@ Key responsibilities:
 | `LCAOverlayContent.tsx` | Enlarged LCA overlay content. |
 | `PetzvalOverlayContent.tsx` | Enlarged Petzval overlay content. |
 | `PetzvalSumBadge.tsx` | Diagram badge for Petzval sum and field radius. |
-| `PanelOverlay.tsx` | Panel-scoped absolute overlay for diagram-level measure overlays, including LCA, Petzval, bokeh preview, and lens-group movement. |
+| `PanelOverlay.tsx` | Panel-scoped absolute overlay for diagram-level measure overlays, including LCA, Petzval, and lens-group movement. |
 
 ## Error Display Tiers
 
