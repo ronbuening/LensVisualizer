@@ -7,6 +7,7 @@ import AnalysisDrawer from "../AnalysisDrawer.js";
 import PanelOverlay from "../PanelOverlay.js";
 import { ANALYSIS_TABS } from "./analysisTabs.js";
 import { summarizeDispersionQuality } from "../../../optics/dispersion.js";
+import { elementHasAsphericSurface } from "../../display/asphericElementUtils.js";
 import type { AnalysisTabId } from "../../../types/state.js";
 import type { ChromaticSpreadByAxis } from "../../../types/optics.js";
 
@@ -47,6 +48,7 @@ interface DiagramViewportProps extends Omit<
   onGroupMovementClose: () => void;
   /** Pre-rendered group movement overlay content */
   groupMovementContent: ReactNode;
+  onOpenAsphericCompare?: (eid: number) => void;
 }
 
 export default function DiagramViewport({
@@ -130,10 +132,15 @@ export default function DiagramViewport({
   showGroupMovement,
   onGroupMovementClose,
   groupMovementContent,
+  onOpenAsphericCompare,
 }: DiagramViewportProps) {
   /* Aggregate per-surface dispersion quality across the lens (worst-link tier).
      Cheap to recompute on every render — walks indexByIdx once. */
   const dispersionQuality = useMemo(() => summarizeDispersionQuality(L), [L]);
+  const selectedAsphericElementId = useMemo(() => {
+    if (isWide || sel == null || !onOpenAsphericCompare) return null;
+    return elementHasAsphericSurface(L, sel) ? sel : null;
+  }, [L, isWide, onOpenAsphericCompare, sel]);
 
   /* Keyboard shortcuts when zoom mode is active */
   useEffect(() => {
@@ -298,6 +305,35 @@ export default function DiagramViewport({
         >
           <span>ABERRATIONS &amp; DISTORTIONS</span>
           <span style={{ fontSize: 11, lineHeight: 1 }}>{"\u25B8"}</span>
+        </button>
+      ) : null}
+
+      {!zoomPanActive && selectedAsphericElementId !== null ? (
+        <button
+          aria-label="Compare selected aspheric element to sphere"
+          onClick={() => onOpenAsphericCompare?.(selectedAsphericElementId)}
+          style={{
+            position: "absolute",
+            top: 10,
+            right: 10,
+            zIndex: 5,
+            borderRadius: 10,
+            cursor: "pointer",
+            padding: "4px 10px",
+            display: "flex",
+            alignItems: "center",
+            gap: 5,
+            fontSize: 9,
+            fontFamily: "inherit",
+            letterSpacing: "0.08em",
+            transition: "all 0.25s",
+            background: t.toggleBg,
+            border: `1px solid ${t.asphStroke}`,
+            color: t.asphLabel,
+          }}
+        >
+          <span>ASPH COMPARE</span>
+          <span style={{ fontSize: 11, lineHeight: 1 }}>{"\u2197"}</span>
         </button>
       ) : null}
 

@@ -9,6 +9,7 @@
 import type { CSSProperties } from "react";
 import type { RuntimeLens, ElementData, ImagePlaneNormal, SurfaceData } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
+import { getAsphericEntriesForElement } from "./asphericElementUtils.js";
 
 interface ElementInspectorProps {
   info: ElementData;
@@ -124,13 +125,9 @@ export default function ElementInspector({ info, L, t, showChromatic, onOpenAsph
           </span>
         )}
         {(() => {
-          const es = L.ES.find(([id]) => id === info.id);
-          if (!es) return null;
-          const [, s1, s2] = es;
-          const a1 = L.asphByIdx[s1],
-            a2 = L.asphByIdx[s2];
-          if (!a1 && !a2) return null;
-          const count = (a1 ? 1 : 0) + (a2 ? 1 : 0);
+          const asphericEntries = getAsphericEntriesForElement(L, info.id);
+          if (asphericEntries.length === 0) return null;
+          const count = asphericEntries.length;
           return (
             <>
               <span
@@ -191,12 +188,7 @@ export default function ElementInspector({ info, L, t, showChromatic, onOpenAsph
           <span style={{ color: t.value }}>{info.glass}</span>
         </div>
         {(() => {
-          const es = L.ES.find(([id]) => id === info.id);
-          if (!es) return null;
-          const [, s1, s2] = es;
-          const entries = [];
-          if (L.asphByIdx[s1]) entries.push({ label: "front", coeffs: L.asphByIdx[s1] });
-          if (L.asphByIdx[s2]) entries.push({ label: "rear", coeffs: L.asphByIdx[s2] });
+          const entries = getAsphericEntriesForElement(L, info.id);
           if (entries.length === 0) return null;
           return entries.map(({ label, coeffs }) => (
             <div key={label} style={{ gridColumn: "1 / -1" }}>

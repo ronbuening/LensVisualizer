@@ -190,6 +190,7 @@ export default function LensDiagramLoadedState({
             onGroupMovementClose={adapters.onGroupMovementClose}
             groupMovementContent={groupMovementContent}
             analysisContent={analysisContent}
+            onOpenAsphericCompare={overlays.openAsphCompare}
           />
 
           {showControls && !zoomPanActive && (
