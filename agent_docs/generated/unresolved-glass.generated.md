@@ -8,10 +8,10 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **269** lenses scanned
-- **3000** non-air surfaces examined
-- **3004** element glass declarations examined
-- **598** non-explicit-unmatched annotations did not resolve
+- **272** lenses scanned
+- **3019** non-air surfaces examined
+- **3023** element glass declarations examined
+- **603** non-explicit-unmatched annotations did not resolve
 - **218** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
@@ -42,6 +42,7 @@ or per-lens patent backfills.
 | 813252 | 2 | 1 | |
 | 856401 | 2 | 1 | |
 | 863252 | 2 | 1 | |
+| BACD4 | 2 | 2 | |
 | BSC3 | 2 | 2 | |
 | E-FDS3HT | 2 | 1 | |
 | F7 | 2 | 2 | |
@@ -50,6 +51,7 @@ or per-lens patent backfills.
 | L-LAM69 | 2 | 2 | |
 | N-BAF4 | 2 | 2 | |
 | N-LAF2 | 2 | 1 | |
+| N-LAK9 | 2 | 2 | |
 | S-APL1 | 2 | 1 | |
 | S-BAH10 | 2 | 2 | |
 | S-BSM10 | 2 | 2 | |
@@ -151,7 +153,6 @@ or per-lens patent backfills.
 | 933209 | 1 | 1 | |
 | 986165 | 1 | 1 | |
 | BACD14 | 1 | 1 | |
-| BACD4 | 1 | 1 | |
 | BK3 | 1 | 1 | |
 | E-FD7 | 1 | 1 | |
 | E-FEL6 | 1 | 1 | |
@@ -190,7 +191,6 @@ or per-lens patent backfills.
 | N-LAF7 | 1 | 1 | |
 | N-LAK10 | 1 | 1 | |
 | N-LAK7 | 1 | 1 | |
-| N-LAK9 | 1 | 1 | |
 | N-LASF43 | 1 | 1 | |
 | N-LASF44 | 1 | 1 | |
 | N-PK51 | 1 | 1 | |
@@ -373,6 +373,11 @@ or per-lens patent backfills.
 - [SONY FE 28-70mm F2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 23: `863252 — dense flint (patent nd=1.86252, νd=25.2)`
 - [SONY FE 28-70mm F2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 32: `863252 — dense flint (patent nd=1.86252, νd=25.2)`
 
+### BACD4 — 2 occurrences
+
+- [Leica Macro-Elmarit-R 60mm f/2.8](../../src/lens-data/leica/LeicaMacroElmaritR60mmf28.data.ts) 10: `BACD4 class (e-line catalog match; patent vendor not named)`
+- [Nikon Fisheye-Nikkor 6mm f/5.6](../../src/lens-data/nikon/NikonFisheyeNikkor6mmf56.data.ts) 1: `BACD4 / N-SK4 class (613/586)`
+
 ### BSC3 — 2 occurrences
 
 - [CANON EF-S 24mm f/2.8 STM](../../src/lens-data/canon/CanonEFS24mmf28STM.data.ts) 10A: `E-C3 / BSC3 class (HOYA)`
@@ -412,6 +417,11 @@ or per-lens patent backfills.
 
 - [CARL ZEISS Distagon T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) 5: `LAF2 / N-LAF2 class (Schott, 744448; patent values retained)`
 - [CARL ZEISS Distagon T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) 7: `LAF2 / N-LAF2 class (Schott, 744448; patent values retained)`
+
+### N-LAK9 — 2 occurrences
+
+- [CARL ZEISS B-Distagon 35mm f/4 (Contarex)](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon35mmf4.data.ts) 10: `N-LAK9 / LAK9 (Schott)`
+- [Leica Elmarit-R 35mm f/2.8](../../src/lens-data/leica/LeicaElmaritR35mmf28.data.ts) 11: `LAK9 / N-LAK9 class (Schott legacy lanthanum crown; patent n_e)`
 
 ### S-APL1 — 2 occurrences
 
@@ -825,10 +835,6 @@ or per-lens patent backfills.
 
 - [PENTAX-F 85mm f/2.8 Soft](../../src/lens-data/pentax/PentaxF85mmf28Soft.data.ts) 1: `BACD14 (HOYA)`
 
-### BACD4 — 1 occurrence
-
-- [Nikon Fisheye-Nikkor 6mm f/5.6](../../src/lens-data/nikon/NikonFisheyeNikkor6mmf56.data.ts) 1: `BACD4 / N-SK4 class (613/586)`
-
 ### BK3 — 1 occurrence
 
 - [VIVITAR SERIES 1 35–85mm f/2.8 VMC](../../src/lens-data/vivitar/VivitarSeries13585mmf28.data.ts) 10: `BK3 (Schott)`
@@ -980,10 +986,6 @@ or per-lens patent backfills.
 ### N-LAK7 — 1 occurrence
 
 - [CARL ZEISS B-Distagon 35mm f/4 (Contarex)](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon35mmf4.data.ts) 6: `N-LAK7 / LAK7 (Schott)`
-
-### N-LAK9 — 1 occurrence
-
-- [CARL ZEISS B-Distagon 35mm f/4 (Contarex)](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon35mmf4.data.ts) 10: `N-LAK9 / LAK9 (Schott)`
 
 ### N-LASF43 — 1 occurrence
 
