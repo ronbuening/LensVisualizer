@@ -57,7 +57,9 @@ The benchmark suite currently measures 12 representative lenses across three sce
 
 Each run records:
 
-- main pipeline categories: `build`, `layout`, `rays`, `analysis`, `svgRender`, and `total`
+- main pipeline categories: `build`, `layout`, `rays`, `analysis`, `svgRender`, `totalCold`, and `totalWarm`
+- analysis subcategories: optical summary, distortion curve, distortion field grid, vignetting, pupil aberration,
+  bokeh pair, and best focus
 - aberration-panel data categories: spherical aberration, SA profile, SA blur character, field curvature, chromatic field
   curvature, and coma
 - aberration-panel render categories: full tabs plus section-level spherical, field curvature, astigmatism, meridional

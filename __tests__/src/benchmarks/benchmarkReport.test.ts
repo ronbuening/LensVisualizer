@@ -58,8 +58,18 @@ function makeRecord(createdAt: string, buildMedian: number, aberrationMedian: nu
           layout: okEntry(2),
           rays: okEntry(3),
           analysis: okEntry(4),
+          analysisBreakdown: {
+            summary: okEntry(aberrationMedian / 10),
+            distortionCurve: okEntry(aberrationMedian / 5),
+            distortionGrid: okEntry(aberrationMedian / 4),
+            vignetting: okEntry(aberrationMedian / 3),
+            pupils: okEntry(aberrationMedian / 2),
+            bokehPair: okEntry(aberrationMedian),
+            bestFocus: okEntry(aberrationMedian / 6),
+          },
           svgRender: okEntry(5),
-          total: okEntry(6),
+          totalCold: okEntry(6),
+          totalWarm: okEntry(5.5),
         },
       },
     },
@@ -114,6 +124,8 @@ describe("benchmark report helpers", () => {
     const records = [makeRecord("2026-05-27T12:00:00.000Z", 10, 20), makeRecord("2026-05-27T13:00:00.000Z", 12, 24)];
     const report = buildBenchmarkReport(records);
     expect(report).toContain("## Main Pipeline Trends");
+    expect(report).toContain("## Analysis Work Trends");
+    expect(report).toContain("bokehPair");
     expect(report).toContain("## Aberration Panel Trends");
     expect(report).toContain("data.sphericalAberration");
     expect(report).toContain("Aberration panel skips: 1");

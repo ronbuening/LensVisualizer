@@ -9,6 +9,7 @@ import {
   type BenchmarkScenarioResults,
   type BenchmarkSkip,
   type BenchmarkStats,
+  type AnalysisBenchmarkCategory,
   type MainBenchmarkCategory,
   type NumericSummary,
 } from "./benchmarkReport.js";
@@ -179,6 +180,8 @@ interface AberrationDataValues {
   coma?: ReturnType<typeof analysisJobsForState2.computeComaAnalysis>;
 }
 
+type AnalysisBenchmarkResults = Record<AnalysisBenchmarkCategory, BenchmarkEntry>;
+
 export async function runOpticsRenderingBenchmark(
   options: OpticsRenderingBenchmarkOptions,
 ): Promise<BenchmarkRunRecord> {
@@ -268,10 +271,21 @@ function measureMainScenario(
     }),
     rays: measure("rays", () => computeRayWork(snapshot).output),
     analysis: measure("analysis", () => computeAnalysisWork(snapshot)),
+    analysisBreakdown: measureAnalysisBreakdown(lensKey, scenario, snapshot, options),
     svgRender: measure("svgRender", () => renderDiagram(snapshot, rayWork)),
-    total: measure("total", () => {
+    totalCold: measure("totalCold", () => {
       const built = buildLens(LENS_CATALOG[lensKey]);
       const nextSnapshot = buildScenarioSnapshot(built, scenario);
+      const nextRayWork = computeRayWork(nextSnapshot);
+      computeAnalysisWork(nextSnapshot);
+      renderDiagram(nextSnapshot, nextRayWork);
+      return {
+        surfaces: nextSnapshot.L.N,
+        rays: nextRayWork.output.onAxisRays + nextRayWork.output.offAxisRays + nextRayWork.output.chromaticRays,
+      };
+    }),
+    totalWarm: measure("totalWarm", () => {
+      const nextSnapshot = buildScenarioSnapshot(L, scenario);
       const nextRayWork = computeRayWork(nextSnapshot);
       computeAnalysisWork(nextSnapshot);
       renderDiagram(nextSnapshot, nextRayWork);
@@ -529,6 +543,105 @@ function computeAnalysisWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
   output.bokehNearFocusFields = bokehPair.nearFocus?.fields.length ?? 0;
   output.bestFocusZ = analysisJobsForState2.computeBestFocusZ(preparedState, currentEPSD, currentPhysStopSD);
   return output;
+}
+
+function measureAnalysisBreakdown(
+  lensKey: string,
+  scenario: ScenarioConfig,
+  snapshot: ScenarioSnapshot,
+  options: Required<Pick<OpticsRenderingBenchmarkOptions, "warmups" | "iterations">>,
+): AnalysisBenchmarkResults {
+  const measure = (category: AnalysisBenchmarkCategory, fn: () => BenchmarkOutput): BenchmarkEntry =>
+    measureEntry(`${lensKey}:${scenario.id}:analysis.${category}`, fn, options);
+  const foldedSkip = (category: AnalysisBenchmarkCategory): BenchmarkEntry =>
+    skippedEntry(`${category} uses sequential field analysis guarded for folded optics`);
+
+  return {
+    summary: measure("summary", () => computeAnalysisSummaryWork(snapshot)),
+    distortionCurve: snapshot.L.isFoldedOptics
+      ? foldedSkip("distortionCurve")
+      : measure("distortionCurve", () => computeAnalysisDistortionCurveWork(snapshot)),
+    distortionGrid: snapshot.L.isFoldedOptics
+      ? foldedSkip("distortionGrid")
+      : measure("distortionGrid", () => computeAnalysisDistortionGridWork(snapshot)),
+    vignetting: snapshot.L.isFoldedOptics
+      ? foldedSkip("vignetting")
+      : measure("vignetting", () => computeAnalysisVignettingWork(snapshot)),
+    pupils: measure("pupils", () => computeAnalysisPupilsWork(snapshot)),
+    bokehPair: measure("bokehPair", () => computeAnalysisBokehPairWork(snapshot)),
+    bestFocus: measure("bestFocus", () => computeAnalysisBestFocusWork(snapshot)),
+  };
+}
+
+function computeAnalysisSummaryWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
+  const summary = analysisJobsForState2.computeOpticalSummary(
+    snapshot.preparedState,
+    snapshot.dynamicEFL,
+    snapshot.currentEPSD,
+    snapshot.currentPhysStopSD,
+    snapshot.fieldGeometry ?? undefined,
+  );
+  return { summarySurfaceCount: summary.surfaceCount };
+}
+
+function computeAnalysisDistortionCurveWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
+  const samples = analysisJobsForState2.computeDistortionCurve(
+    snapshot.preparedState,
+    snapshot.dynamicEFL,
+    snapshot.currentPhysStopSD,
+    snapshot.fieldGeometry ?? undefined,
+  );
+  return { distortionSamples: samples.length };
+}
+
+function computeAnalysisDistortionGridWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
+  const grid = analysisJobsForState2.computeDistortionFieldGrid(
+    snapshot.preparedState,
+    snapshot.currentPhysStopSD,
+    snapshot.fieldGeometry ?? undefined,
+  );
+  return { distortionGridLines: grid.lines.length };
+}
+
+function computeAnalysisVignettingWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
+  const samples = analysisJobsForState2.computeVignettingCurve(
+    snapshot.preparedState,
+    snapshot.currentEPSD,
+    snapshot.currentPhysStopSD,
+    snapshot.fieldGeometry ?? undefined,
+  );
+  return { vignettingSamples: samples.length };
+}
+
+function computeAnalysisPupilsWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
+  const pupilProfiles = analysisJobsForState2.computeBothPupilAberrationProfiles(
+    snapshot.preparedState,
+    undefined,
+    snapshot.fieldGeometry ?? undefined,
+  );
+  return { pupilSamples: pupilProfiles.ep.samples.length + pupilProfiles.xp.samples.length };
+}
+
+function computeAnalysisBokehPairWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
+  const bokehPair = analysisJobsForState2.computeBokehPreviewPair(
+    snapshot.preparedState,
+    snapshot.currentEPSD,
+    snapshot.currentPhysStopSD,
+  );
+  return {
+    bokehInfinityFields: bokehPair.infinity?.fields.length ?? 0,
+    bokehNearFocusFields: bokehPair.nearFocus?.fields.length ?? 0,
+  };
+}
+
+function computeAnalysisBestFocusWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
+  return {
+    bestFocusZ: analysisJobsForState2.computeBestFocusZ(
+      snapshot.preparedState,
+      snapshot.currentEPSD,
+      snapshot.currentPhysStopSD,
+    ),
+  };
 }
 
 function measureAberrationPanels(
@@ -949,6 +1062,10 @@ function measureEntry(
     ...(heapStats ? { heapDeltaBytes: heapStats } : {}),
   };
   return { status: "ok", stats, output };
+}
+
+function skippedEntry(reason: string): BenchmarkEntry {
+  return { status: "skipped", reason };
 }
 
 function summarizeSamples(values: readonly number[]): NumericSummary | null {
