@@ -22,6 +22,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-05-27 ──────────────────────────────────────────────────────────
   {
     date: "2026-05-27",
+    type: "lens",
+    summary: "Added three Leica R-mount lenses",
+  },
+  {
+    date: "2026-05-27",
     type: "improvement",
     summary: "Modernized the optics engine for state-aware ray tracing and analysis",
   },
