@@ -18,6 +18,9 @@ links outward only when the task crosses boundaries.
 - Historical root folders such as [`../engine-migration/`](../engine-migration/) are retained for context only. If they
   conflict with `CLAUDE.md`, `agents.md`, or the architecture docs here, treat the current docs as authoritative.
 - [`generated/`](generated/) — auto-generated reports and work queues; regenerate these instead of hand-editing them.
+- [`benchmarks/`](benchmarks/) — on-demand optics/rendering benchmark history and the latest human-readable benchmark
+  report. Run `npm run benchmark:optics-rendering` manually; this command is intentionally not part of normal tests or
+  build scripts.
 - [`records/`](records/) — historical branch/task notes. Treat these as context, not current source of truth.
 
 ## Generated Reports
@@ -44,3 +47,17 @@ Individual report commands:
 - [`generated/six-digit-glass-codes-missing-sellmeier.generated.md`](generated/six-digit-glass-codes-missing-sellmeier.generated.md) — `npm test -- sixDigitGlassCodeScan`
 - [`generated/sellmeier-coverage.generated.md`](generated/sellmeier-coverage.generated.md) — `npm test -- sellmeierCoverageScan`
 - [`generated/mirror-fixtures.generated.md`](generated/mirror-fixtures.generated.md) — `npm test -- mirrorFixtureAuthoringReport`
+
+## Benchmarks
+
+Optics/rendering benchmark records live outside `generated/` because each run is a permanent historical measurement:
+
+- [`benchmarks/README.md`](benchmarks/README.md) — command, options, output policy, and benchmark coverage.
+- [`benchmarks/benchmark-report.md`](benchmarks/benchmark-report.md) — latest report regenerated from the newest 10 run JSON files.
+- [`benchmarks/runs/`](benchmarks/runs/) — one JSON file per real benchmark run.
+
+Regenerate only the human-readable report without creating another run:
+
+```bash
+npm run benchmark:optics-rendering -- --report-only
+```

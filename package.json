@@ -16,6 +16,7 @@
     "test:coverage": "vitest run --coverage --testTimeout 30000",
     "generate:glass-reports": "vitest run --testTimeout 30000 unresolvedGlassScan catalogMismatchScan glassRelabelCandidatesScan glassRelabelByLensScan sixDigitGlassCodeScan sellmeierCoverageScan",
     "generate:mirror-reports": "vitest run --testTimeout 30000 mirrorFixtureAuthoringReport",
+    "benchmark:optics-rendering": "node scripts/benchmark-optics-rendering.mjs",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",

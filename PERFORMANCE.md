@@ -8,6 +8,11 @@ Slider interactions (focus, aperture, zoom) originally felt sluggish because eve
 
 Current status: closed drawer work is gated, drawer inputs are deferred during slider interaction, and heavy analysis tabs share a prepared-state job facade so current focus/zoom/aberration state is prepared once per settled analysis state.
 
+Manual benchmark infrastructure now lives in `agent_docs/benchmarks/`. Run `npm run benchmark:optics-rendering` to add a
+permanent JSON record for optics, rendering, and aberration-panel performance; run
+`npm run benchmark:optics-rendering -- --report-only` to regenerate the Markdown report from existing records without
+creating a new measurement.
+
 The goal is a dramatically smoother interactive experience while preserving final accuracy. Only *transient* (mid-drag) results may use reduced-resolution proxies, and they must converge to full resolution on pointer release.
 
 ## Status Summary
@@ -79,6 +84,9 @@ Legend: ⬜ Not started · 🟨 In progress · ✅ Shipped
 **Goal:** land a perf probe so every subsequent PR posts before/after numbers rather than "feels faster," and so we catch regressions.
 
 - ✅ `src/utils/perfProbe.ts` — exports `probe(name, fn)` (wraps with `performance.now()`) and `resetPerfProbe()`. No-ops in production via `import.meta.env.DEV` guard. Logs a `console.table` summary every 10 calls.
+- ✅ `npm run benchmark:optics-rendering` — manual Vite SSR benchmark for build/layout/rays/analysis/SVG render and
+  aberration-panel data/rendering categories. Results are stored as one JSON file per run in
+  `agent_docs/benchmarks/runs/`; `agent_docs/benchmarks/benchmark-report.md` summarizes the newest 10 records.
 - ✅ Core entry points wrapped at their `useMemo` call sites:
   - `computeSphericalAberration` — `useSphericalAberrationData.ts`
   - `computeComaAnalysis` — `useComaData.ts`
@@ -87,7 +95,7 @@ Legend: ⬜ Not started · 🟨 In progress · ✅ Shipped
   - `computeVignettingCurve` — `VignettingTab.tsx`
   - `computeBokehPreviewPair` — `BokehTab.tsx`
 - ✅ `__tests__/perfProbe.test.ts` — covers return value passthrough, logging cadence, multi-name tracking, and reset.
-- ⬜ **Baselines not yet recorded** — open the app in dev mode (`npm run dev`), load a lens, open each analysis tab in turn, scrub the focus slider for ~10 moves, and read the `console.table` output. Record results in the Baselines section below.
+- ✅ Baseline benchmark records added under `agent_docs/benchmarks/runs/` for the current optics/rendering state.
 
 ---
 
@@ -255,9 +263,13 @@ New `__tests__/performance/sliderInteraction.test.ts`:
 
 Record before/after measurements here as each stage ships.
 
-### Baseline (pre-optimization)
-_Lens:_ TBD · _Scenario:_ scrub focus 0→1 over 2 seconds, drawer closed · _Date:_ TBD
-_Measurements:_ TBD
+### Current Optics/Rendering Benchmark Baseline
+
+- Command: `npm run benchmark:optics-rendering`
+- Report: `agent_docs/benchmarks/benchmark-report.md`
+- Records: `agent_docs/benchmarks/runs/`
+- Scope: 12 representative lenses, three scenarios, main pipeline categories, and aberration-panel data/rendering
+  categories.
 
 _Lens:_ TBD · _Scenario:_ scrub focus 0→1 over 2 seconds, vignetting tab open · _Date:_ TBD
 _Measurements:_ TBD

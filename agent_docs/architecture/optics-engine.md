@@ -222,6 +222,12 @@ Stage 05 benchmark results remain as a historical record in
 when the migration safe window closed. Future performance work should use focused benchmarks or production profiling
 against the current `src/optics` engine; do not reintroduce an in-tree old-vs-new selector.
 
+Current focused benchmarks live under `agent_docs/benchmarks/` and are run manually with
+`npm run benchmark:optics-rendering`. Each real run writes one permanent JSON record under
+`agent_docs/benchmarks/runs/`, and `agent_docs/benchmarks/benchmark-report.md` summarizes the latest 10 records. The
+benchmark covers lens building, current-state layout, ray tracing, generic analysis work, static SVG rendering, and
+aberration-panel data/rendering categories.
+
 Rollback is now a normal git-level revert of the migration commit or a focused fix to the current engine with regression
 coverage. There are no retained `*Legacy.ts` engine files to switch back to.
 
