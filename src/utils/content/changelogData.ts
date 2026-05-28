@@ -19,6 +19,12 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-05-28 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-05-28",
+    type: "lens",
+    summary: "Added three Sony E-mount APS-C lenses: 18-55mm, 30mm Macro, and 35mm OSS",
+  },
   // ── 2026-05-27 ──────────────────────────────────────────────────────────
   {
     date: "2026-05-27",

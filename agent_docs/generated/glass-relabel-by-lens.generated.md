@@ -9,8 +9,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **51** mismatched surfaces across **23** lens files
-- **43** surfaces have at least one candidate
+- **52** mismatched surfaces across **24** lens files
+- **44** surfaces have at least one candidate
 - **8** surfaces have high-confidence candidate ranking
 - **8** surfaces have no catalog candidate and need patent review
 
@@ -163,6 +163,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | Surface | Current label | Stored nd/vd | Rejected as | Best candidate(s) | Confidence | Patent review |
 |---|---|---|---|---|---|---|
 | 4 | `H-ZF52 (CDGM) — exact match, unconfirmed in Ohara/Hoya/Schott` | 1.80610 / 33.27 | H-ZF52 (Δnd=+0.0406) | NBFD15 (Δnd=-0.0000, Δvd=+0.00) | High | Check lens notes |
+
+### [Sony E 18-55mm f/3.5-5.6 OSS](../../src/lens-data/sony/SonyE1855mmf3556.data.ts) - US 2011/0273780 A1
+
+| Surface | Current label | Stored nd/vd | Rejected as | Best candidate(s) | Confidence | Patent review |
+|---|---|---|---|---|---|---|
+| 20 | `S-NBM51 (OHARA)` | 1.58144 / 40.89 | S-NBM51 (Δnd=+0.0320) | E-FL5 (Δnd=-0.0000, Δvd=+0.00)<br>PBL25 (Δnd=-0.0000, Δvd=-0.14)<br>S-TIL25 (Δnd=-0.0000, Δvd=-0.14) | Choose by context | Yes - choose candidate |
 
 ### [SONY FE 28-70mm F2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) - WO 2025/263124 A1
 

@@ -19,7 +19,7 @@ both match the stored values within tolerance (nd ±0.005, vd ±3).
 - **No candidate**: relabel as `Unmatched (...reason)` and add a row to
   [glass-relabel-followup.md](../glass-relabel-followup.md) for per-lens patent verification.
 
-**Scope**: 51 mismatched surfaces across 42 unique groups.
+**Scope**: 52 mismatched surfaces across 43 unique groups.
 
 ## stored (nd=1.49782, vd=82.56) [PgF=0.5379 (dPgF=0.0330)]  — 1 surface, current label resolves to S-FPM4
 
@@ -46,6 +46,16 @@ Surfaces:
 
 Surfaces:
 - [NIKON NIKKOR Z 50mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ50f12.data.ts) `5`: `S-TIL25 (OHARA)`
+
+## stored (nd=1.58144, vd=40.89)  — 1 surface, current label resolves to S-NBM51
+
+Candidates:
+- **E-FL5** (nd=1.58144, vd=40.89, Δnd=-0.0000, Δvd=+0.00)
+- **PBL25** (nd=1.58144, vd=40.75, Δnd=-0.0000, Δvd=-0.14)
+- **S-TIL25** (nd=1.58144, vd=40.75, Δnd=-0.0000, Δvd=-0.14)
+
+Surfaces:
+- [Sony E 18-55mm f/3.5-5.6 OSS](../../src/lens-data/sony/SonyE1855mmf3556.data.ts) `20`: `S-NBM51 (OHARA)`
 
 ## stored (nd=1.59270, vd=35.30)  — 2 surfaces, current label resolves to S-TIM2
 
@@ -414,5 +424,5 @@ Surfaces:
 
 ## Summary
 
-- **35** (nd, vd) groups have at least one candidate (43 surfaces) — actionable relabels.
+- **36** (nd, vd) groups have at least one candidate (44 surfaces) — actionable relabels.
 - **7** (nd, vd) groups have NO candidate (8 surfaces) — needs patent verification or Unmatched relabeling.

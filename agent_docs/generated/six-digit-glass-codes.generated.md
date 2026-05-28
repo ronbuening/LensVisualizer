@@ -9,10 +9,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **272** lenses scanned
-- **266** total code-only elements found
-- **266** elements in this report
-- **96** distinct lens files affected
+- **275** lenses scanned
+- **267** total code-only elements found
+- **267** elements in this report
+- **97** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -133,6 +133,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 728284 | 1 | 1 |
 | 728285 | 1 | 1 |
 | 728403 | 1 | 1 |
+| 729540 | 1 | 1 |
 | 731405 | 1 | 1 |
 | 738493 | 1 | 1 |
 | 741262 | 1 | 1 |
@@ -820,6 +821,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L9 (Element 9) | 17 | `Lanthanum crown (755/523)` | 1.75500 / 52.32 | No catalog entry | abbe |
 | L10 (Element 10) | 18 | `Dense flint (855/252)` | 1.85451 / 25.15 | No catalog entry | abbe |
 | L12 (Element 12) | 22 | `Ultra-dispersive flint (946/180)` | 1.94595 / 17.98 | No catalog entry | abbe |
+
+### [Sony E 18-55mm f/3.5-5.6 OSS](../../src/lens-data/sony/SonyE1855mmf3556.data.ts) - US 2011/0273780 A1
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
+|---|---|---|---|---|---|
+| L9 (Element 9) | 16A | `Unmatched (729/540 lanthanum-crown-class moldable glass)` | 1.72903 / 54.04 | No catalog entry | abbe |
 
 ### [SONY FE 135mm F1.8 GM](../../src/lens-data/sony/SonyFE135mmf18GM.data.ts) - WO 2019/187633
 
