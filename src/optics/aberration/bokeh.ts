@@ -235,6 +235,19 @@ function buildPupilFootprint(samples: readonly BokehPupilSample[], totalRays: nu
   };
 }
 
+/**
+ * Build an annular radial density profile for a bokeh point cloud.
+ *
+ * Densities are normalized to the densest annulus so center/rim comparison is
+ * independent of absolute transmission. Offsets are measured relative to the
+ * supplied footprint centroid.
+ *
+ * @param points - bokeh points with sagittal/tangential offsets in mm
+ * @param centroidSagittal - sagittal centroid in mm
+ * @param centroidTangential - tangential centroid in mm
+ * @param binCount - number of radial bins
+ * @returns normalized radial profile with center/rim density summaries
+ */
 export function buildBokehRadialProfile(
   points: readonly BokehPoint[],
   centroidSagittal: number,
@@ -310,6 +323,12 @@ export function buildBokehRadialProfile(
   };
 }
 
+/**
+ * Classify bokeh brightness from the center-to-rim radial density ratio.
+ *
+ * @param radialProfile - normalized annular density profile
+ * @returns brightness class and numeric center/rim density ratio
+ */
 export function classifyBokehBrightnessCharacter(radialProfile: BokehRadialProfile): {
   brightnessCharacter: BokehBrightnessCharacter;
   centerToRimRatio: number;
@@ -475,6 +494,24 @@ function computeBokehFieldFootprintFromContext(
   };
 }
 
+/**
+ * Compute one field tile of a defocused bokeh footprint.
+ *
+ * Rays are traced at `traceFocusT` and intercepted at `sensorZ`. The returned
+ * offsets are chief-ray centered in sagittal/tangential millimeters, with pupil
+ * footprint data preserving transmission/clipping shape.
+ *
+ * @param L - runtime lens object
+ * @param _zPos - compatibility layout argument; context recomputes state internally
+ * @param traceFocusT - normalized focus state used for tracing
+ * @param zoomT - normalized zoom slider
+ * @param currentEPSD - entrance-pupil semi-diameter in mm
+ * @param currentPhysStopSD - physical stop semi-diameter in mm
+ * @param fieldFraction - fraction of half field in `[0, 1]`
+ * @param sensorZ - defocused intercept plane z coordinate in mm
+ * @param aberrationT - normalized aberration spacing slider
+ * @returns bokeh footprint for the field, or null when tracing is unusable
+ */
 export function computeBokehFieldFootprint(
   L: RuntimeLens,
   _zPos: number[],
@@ -582,6 +619,12 @@ function computeBokehPreviewFromContext(
   };
 }
 
+/**
+ * Label a defocus offset relative to the nominal focus plane.
+ *
+ * @param defocusDeltaMm - intercept plane offset from focus plane in mm
+ * @returns human-readable side label for analysis display
+ */
 export function describeBokehDefocusSide(defocusDeltaMm: number): string {
   if (Math.abs(defocusDeltaMm) < 1e-9) return "Near focus plane";
   return defocusDeltaMm > 0 ? "Rear defocus" : "Front defocus";

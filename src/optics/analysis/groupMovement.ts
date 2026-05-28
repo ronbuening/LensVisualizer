@@ -15,6 +15,16 @@ import type { GroupMovementMode } from "../../types/groupMovement.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { PreparedOpticalState } from "../types.js";
 
+/**
+ * Compute inferred group movement for the prepared state's RuntimeLens.
+ *
+ * The calculation intentionally reuses RuntimeLens layout helpers because movement
+ * profiles describe displayed group centers, not a separate engine-native trace path.
+ *
+ * @param state - prepared optical state supplying current focus/zoom/aberration sliders
+ * @param mode - focus, zoom, or combined movement profile mode
+ * @returns sampled group-position series in image-plane-anchored millimeters
+ */
 export function computeGroupMovementProfileForState2(state: PreparedOpticalState, mode: GroupMovementMode) {
   return computeGroupMovementProfile(state.lens.runtime, mode, {
     focusT: state.focusT,
@@ -23,6 +33,14 @@ export function computeGroupMovementProfileForState2(state: PreparedOpticalState
   });
 }
 
+/**
+ * Compatibility wrapper for RuntimeLens group-movement profiles.
+ *
+ * @param L - runtime lens object
+ * @param mode - focus, zoom, or combined movement profile mode
+ * @param options - current normalized slider values used to mark the active sample
+ * @returns sampled group-position series in image-plane-anchored millimeters
+ */
 export function computeGroupMovementProfile2(
   L: RuntimeLens,
   mode: GroupMovementMode,

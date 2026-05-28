@@ -8,16 +8,19 @@
 
 import type { PerspectiveControlConfig, RayTraceResult, RuntimeLens } from "../types/optics.js";
 
+/** User-facing movement controls in physical shift millimeters and tilt degrees. */
 export interface LensMovementState {
   shiftMm: number;
   tiltDeg: number;
 }
 
+/** Movement state after clamping against a lens perspective-control capability. */
 export interface ResolvedLensMovement extends LensMovementState {
   active: boolean;
   config: PerspectiveControlConfig | null;
 }
 
+/** Display transform callbacks for the 2D perspective-control movement layer. */
 export interface LensMovementTransform extends ResolvedLensMovement {
   point: (z: number, y: number) => [number, number];
   slope: (u: number) => number;
@@ -31,6 +34,7 @@ const DEFAULT_TILT_STEP_DEG = 0.1;
 const IDENTITY_EPSILON = 1e-9;
 const DEG_TO_RAD = Math.PI / 180;
 
+/** Canonical zero shift/tilt movement state. */
 export const ZERO_LENS_MOVEMENT: LensMovementState = Object.freeze({ shiftMm: 0, tiltDeg: 0 });
 
 function finiteOrZero(value: number | undefined): number {
@@ -41,6 +45,12 @@ function clampToRange(value: number, [min, max]: [number, number]): number {
   return Math.min(max, Math.max(min, value));
 }
 
+/**
+ * Resolve slider step sizes for a perspective-control lens.
+ *
+ * @param config - lens-authored shift/tilt capability metadata
+ * @returns positive shift and tilt step sizes, falling back to project defaults
+ */
 export function perspectiveControlSteps(
   config: PerspectiveControlConfig,
 ): Required<Pick<PerspectiveControlConfig, "shiftStepMm" | "tiltStepDeg">> {
@@ -50,10 +60,23 @@ export function perspectiveControlSteps(
   };
 }
 
+/**
+ * Test whether movement is visually/optically identity within tolerance.
+ *
+ * @param movement - shift/tilt movement state
+ * @returns true when both shift and tilt are effectively zero
+ */
 export function isIdentityLensMovement(movement: LensMovementState): boolean {
   return Math.abs(movement.shiftMm) < IDENTITY_EPSILON && Math.abs(movement.tiltDeg) < IDENTITY_EPSILON;
 }
 
+/**
+ * Clamp a requested movement to the lens's declared perspective-control ranges.
+ *
+ * @param lens - lens object or partial lens with movement capability metadata
+ * @param movement - optional requested movement
+ * @returns clamped movement plus active/config flags
+ */
 export function clampLensMovement(
   lens: Pick<RuntimeLens, "perspectiveControl"> | undefined,
   movement: Partial<LensMovementState> | undefined,
@@ -67,6 +90,18 @@ export function clampLensMovement(
   return { ...resolved, active: !isIdentityLensMovement(resolved), config };
 }
 
+/**
+ * Transform an optical point into the shifted/tilted display frame.
+ *
+ * The image plane is the rotation pivot and remains fixed. Positive z is toward
+ * image space; positive y renders downward, so positive lens shift is displayed upward.
+ *
+ * @param z - optical z coordinate in mm
+ * @param y - optical y coordinate in mm
+ * @param imagePlaneZ - fixed image-plane z coordinate in mm
+ * @param movement - shift/tilt movement state
+ * @returns transformed z/y point in display optical coordinates
+ */
 export function transformMovedPoint(
   z: number,
   y: number,
@@ -83,6 +118,13 @@ export function transformMovedPoint(
   return [imagePlaneZ + dz * cos - y * sin, displayShiftY + dz * sin + y * cos];
 }
 
+/**
+ * Transform a meridional ray slope through the display-frame rotation.
+ *
+ * @param u - original slope dy/dz
+ * @param movement - shift/tilt movement state
+ * @returns rotated slope dy/dz, or signed Infinity for vertical display rays
+ */
 export function transformMovedSlope(u: number, movement: LensMovementState): number {
   if (isIdentityLensMovement(movement)) return u;
   const theta = movement.tiltDeg * DEG_TO_RAD;
@@ -97,6 +139,18 @@ function dySign(value: number): 1 | -1 {
   return value < 0 ? -1 : 1;
 }
 
+/**
+ * Project a transformed ray endpoint back to the fixed image plane.
+ *
+ * Movement is a display layer; the rendered ray must still terminate on the same
+ * image-plane z coordinate used by the centered optical trace.
+ *
+ * @param lastZ - last transformed ray z coordinate in mm
+ * @param lastY - last transformed ray y coordinate in mm
+ * @param u - transformed meridional slope dy/dz
+ * @param imagePlaneZ - fixed image-plane z coordinate in mm
+ * @returns endpoint on the fixed image plane
+ */
 export function projectMovedRayToFixedImagePlane(
   lastZ: number,
   lastY: number,
@@ -111,6 +165,17 @@ function mapPointArray(points: number[][], imagePlaneZ: number, movement: LensMo
   return points.map(([z, y]) => transformMovedPoint(z, y, imagePlaneZ, movement));
 }
 
+/**
+ * Transform an entire ray trace into the moved display frame.
+ *
+ * The original trace remains centered-lens physics. Points and final slope are
+ * rotated/shifted for display, and the final image height follows the moved ray.
+ *
+ * @param result - centered-lens ray trace result
+ * @param imagePlaneZ - fixed image-plane z coordinate in mm
+ * @param movement - shift/tilt movement state
+ * @returns display-transformed trace result
+ */
 export function transformRayTraceResult(
   result: RayTraceResult,
   imagePlaneZ: number,
@@ -129,6 +194,13 @@ export function transformRayTraceResult(
   };
 }
 
+/**
+ * Create movement transform callbacks bound to one fixed image plane.
+ *
+ * @param imagePlaneZ - fixed image-plane z coordinate in mm
+ * @param resolved - clamped movement state and capability metadata
+ * @returns point, slope, ray-end, trace, and axis transform helpers
+ */
 export function createLensMovementTransform(
   imagePlaneZ: number,
   resolved: ResolvedLensMovement,

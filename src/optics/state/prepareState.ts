@@ -12,14 +12,38 @@ import type { CompiledStateSurface, EngineLens, Plane3, PreparedOpticalState } f
 import { Optics2PreparationError } from "../types.js";
 import { resolveControlledThickness } from "../prescription/variables.js";
 
+/** Optional prepared-state cache owned by the caller. */
 export interface PrepareStateOptions {
   cache?: PreparedStateCache | null;
 }
 
+/**
+ * Build a deterministic cache key for a prepared state.
+ *
+ * @param lens - normalized engine lens
+ * @param focusT - normalized focus control
+ * @param zoomT - normalized zoom control
+ * @param aberrationT - normalized aberration-spacing control
+ * @returns stable cache key containing lens identity and controls
+ */
 export function preparedStateCacheKey(lens: EngineLens, focusT: number, zoomT: number, aberrationT: number): string {
   return [lens.key, formatCacheNumber(focusT), formatCacheNumber(zoomT), formatCacheNumber(aberrationT)].join(":");
 }
 
+/**
+ * Compile current optical state for tracing, diagram geometry, and analysis.
+ *
+ * Focus, zoom, and aberration controls are validated/clamped to `[0, 1]`, then
+ * applied to variable surface gaps. Ordinary lenses require non-negative axial
+ * thicknesses; folded systems may use negative z deltas because the path can turn.
+ *
+ * @param lens - normalized engine lens
+ * @param focusTInput - proposed normalized focus slider
+ * @param zoomTInput - proposed normalized zoom slider
+ * @param aberrationTInput - proposed normalized aberration spacing slider
+ * @param options - optional caller-owned cache
+ * @returns immutable prepared optical state for the requested controls
+ */
 export function prepareState(
   lens: EngineLens,
   focusTInput: number,

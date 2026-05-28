@@ -17,6 +17,16 @@ interface CoordTransformParams {
   zExtent?: { min: number; max: number } | null;
 }
 
+/**
+ * Create optical-space to SVG-space coordinate transforms for a diagram viewport.
+ *
+ * Optical coordinates are millimeters with z increasing toward the image plane and
+ * y positive downward in the rendered SVG convention. The returned scale may be
+ * reduced from `SC` so the requested z extent stays inside horizontal margins.
+ *
+ * @param params - viewport dimensions, optical scale, image-plane span, and optional z extent
+ * @returns SVG transform callbacks plus effective scale and viewport anchors
+ */
 export function createCoordinateTransforms2({
   svgW,
   svgH,

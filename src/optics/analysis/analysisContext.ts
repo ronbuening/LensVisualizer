@@ -1,7 +1,24 @@
+/**
+ * Analysis computation context — lazy, per-state accessors for expensive optical diagnostics.
+ *
+ * The analysis drawer often needs several metrics from the same PreparedOpticalState. This
+ * context stores the shared slider-derived aperture, EFL, and field geometry inputs, then
+ * memoizes each analysis result on first read so sibling panels do not repeat ray sweeps.
+ */
+
 import { analysisJobsForState2 } from "./analysisJobs.js";
 import type { FieldGeometryState } from "../optics.js";
 import type { PreparedOpticalState } from "../types.js";
 
+/**
+ * Shared inputs for a set of analysis computations at one focus/zoom/aperture state.
+ *
+ * @param preparedState - compiled optical state for the current RuntimeLens and sliders
+ * @param dynamicEFL - current effective focal length in mm, including focus/zoom state
+ * @param currentEPSD - entrance-pupil semi-diameter in mm after stopdown
+ * @param currentPhysStopSD - physical stop semi-diameter in mm after stopdown
+ * @param fieldGeometry - optional solved-chief-ray field geometry for the same state
+ */
 export interface AnalysisComputationContextParams {
   preparedState: PreparedOpticalState;
   dynamicEFL: number;
@@ -10,6 +27,12 @@ export interface AnalysisComputationContextParams {
   fieldGeometry?: FieldGeometryState | null;
 }
 
+/**
+ * Lazy analysis facade for one immutable prepared state.
+ *
+ * Accessors return cached results after their first call. They have no side effects outside
+ * the closure, but the retained results intentionally share the exact same optical inputs.
+ */
 export interface AnalysisComputationContext extends AnalysisComputationContextParams {
   computeOpticalSummary: () => ReturnType<typeof analysisJobsForState2.computeOpticalSummary>;
   computeDistortionCurve: () => ReturnType<typeof analysisJobsForState2.computeDistortionCurve>;
@@ -27,6 +50,16 @@ export interface AnalysisComputationContext extends AnalysisComputationContextPa
   computeComaAnalysis: () => ReturnType<typeof analysisJobsForState2.computeComaAnalysis>;
 }
 
+/**
+ * Build a lazy analysis context for drawer/render code.
+ *
+ * `fieldGeometry: null` is normalized to `undefined` before dispatch so callers can
+ * distinguish "not precomputed" from a concrete solved geometry without changing the
+ * existing analysis helper signatures.
+ *
+ * @param params - prepared state plus aperture, EFL, and optional field geometry inputs
+ * @returns memoizing analysis accessors bound to the provided state
+ */
 export function createAnalysisComputationContext({
   preparedState,
   dynamicEFL,

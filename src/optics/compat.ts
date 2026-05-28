@@ -13,12 +13,27 @@ import { prepareState } from "./state/prepareState.js";
 
 const ENGINE_LENS_BY_RUNTIME = new WeakMap<RuntimeLens, EngineLens>();
 
+/**
+ * Build and register a RuntimeLens from defaulted lens data.
+ *
+ * @param data - lens prescription after catalog defaults are acceptable
+ * @returns frozen RuntimeLens plus a cached normalized EngineLens for state work
+ */
 export function buildLens2(data: LensData): RuntimeLens {
   const runtime = buildRuntimeLens(withLensDefaults(data));
   ENGINE_LENS_BY_RUNTIME.set(runtime, normalizeRuntimeLens(runtime));
   return runtime;
 }
 
+/**
+ * Retrieve or create the normalized engine lens for a RuntimeLens.
+ *
+ * The cache is keyed by object identity; callers must not mutate a RuntimeLens in
+ * place because prepared-state caches assume a fresh object for changed optics.
+ *
+ * @param L - runtime lens object returned by buildLens
+ * @returns normalized engine lens used by prepared-state modules
+ */
 export function engineLensFromRuntime(L: RuntimeLens): EngineLens {
   const cached = ENGINE_LENS_BY_RUNTIME.get(L);
   if (cached) return cached;
@@ -27,6 +42,15 @@ export function engineLensFromRuntime(L: RuntimeLens): EngineLens {
   return engineLens;
 }
 
+/**
+ * Compile current focus/zoom/aberration state for a RuntimeLens.
+ *
+ * @param L - runtime lens object
+ * @param focusT - normalized focus slider, 0=infinity and 1=close focus
+ * @param zoomT - normalized zoom slider, ignored by prime lenses
+ * @param aberrationT - normalized aberration spacing slider
+ * @returns prepared optical state with current surface spacings and image plane
+ */
 export function prepareRuntimeState(
   L: RuntimeLens,
   focusT: number,
@@ -36,6 +60,15 @@ export function prepareRuntimeState(
   return prepareState(engineLensFromRuntime(L), focusT, zoomT, aberrationT);
 }
 
+/**
+ * Compute current surface layout in RuntimeLens-compatible shape.
+ *
+ * @param focusT - normalized focus slider, 0=infinity and 1=close focus
+ * @param zoomT - normalized zoom slider, ignored by prime lenses
+ * @param L - runtime lens object
+ * @param aberrationT - normalized aberration spacing slider
+ * @returns vertex positions, current thicknesses, and image-plane z in mm
+ */
 export function doLayout2(focusT: number, zoomT: number, L: RuntimeLens, aberrationT = 0): LayoutResult {
   const state = prepareRuntimeState(L, focusT, zoomT, aberrationT);
   return {
@@ -45,20 +78,51 @@ export function doLayout2(focusT: number, zoomT: number, L: RuntimeLens, aberrat
   };
 }
 
+/**
+ * Return current axial thickness after surface `i`.
+ *
+ * @param i - physical surface index
+ * @param focusT - normalized focus slider, 0=infinity and 1=close focus
+ * @param zoomT - normalized zoom slider, ignored by prime lenses
+ * @param L - runtime lens object
+ * @param aberrationT - normalized aberration spacing slider
+ * @returns current distance to the next surface in mm, or 0 for invalid indices
+ */
 export function thick2(i: number, focusT: number, zoomT: number, L: RuntimeLens, aberrationT = 0): number {
   return prepareRuntimeState(L, focusT, zoomT, aberrationT).surfaces[i]?.d ?? 0;
 }
 
+/**
+ * Interpolate effective focal length for the current zoom position.
+ *
+ * @param zoomT - normalized zoom slider, 0=wide and 1=tele
+ * @param L - runtime lens object
+ * @returns effective focal length in mm
+ */
 export function eflAtZoom2(zoomT: number, L: RuntimeLens): number {
   if (!L.isZoom) return L.EFL;
   return interpolateZoomArray2(zoomT, L.zoomEFLs!);
 }
 
+/**
+ * Interpolate entrance-pupil semi-diameter for the current zoom position.
+ *
+ * @param zoomT - normalized zoom slider, 0=wide and 1=tele
+ * @param L - runtime lens object
+ * @returns entrance-pupil semi-diameter in mm
+ */
 export function epAtZoom2(zoomT: number, L: RuntimeLens): number {
   if (!L.isZoom) return L.EP.epSD;
   return interpolateZoomArray2(zoomT, L.zoomEPs!);
 }
 
+/**
+ * Interpolate wide-open f-number for the current zoom position.
+ *
+ * @param zoomT - normalized zoom slider, 0=wide and 1=tele
+ * @param L - runtime lens object
+ * @returns wide-open f-number for the selected zoom state
+ */
 export function fopenAtZoom2(zoomT: number, L: RuntimeLens): number {
   if (!L.isZoom || !L.zoomFOPENs) return L.FOPEN;
   return interpolateZoomArray2(zoomT, L.zoomFOPENs);

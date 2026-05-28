@@ -45,6 +45,7 @@ const BOUNDING_SPHERE_BRACKET_SCAN_SAMPLES = 96;
 const CONJUGATE_REFERENCE_PUPIL_FRACTION = 0.1;
 const FOCUS_INFINITY_THRESHOLD = 0.0001;
 
+/** Entrance-pupil geometry for current focus/zoom state. */
 export interface EntrancePupilState2 {
   epSD: number;
   yRatio: number;
@@ -52,6 +53,12 @@ export interface EntrancePupilState2 {
   epRatio: number;
 }
 
+/**
+ * Chief-ray solve result for one signed field angle.
+ *
+ * `yLaunch` is kept for scalar compatibility at z=0. Vector-aware callers should
+ * prefer `vectorLaunch` when present, especially for fisheye/bounding-sphere fields.
+ */
 export interface ChiefRaySolveResult2 {
   yLaunch: number;
   uField: number;

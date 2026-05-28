@@ -15,6 +15,19 @@ import {
 } from "./surfaceOutline.js";
 import { computeElementRenderDiagnosticsForState2 } from "./renderDiagnostics.js";
 
+/**
+ * Build SVG-ready element outlines from current prepared surface positions.
+ *
+ * The generated paths describe visual glass boundaries only. Trace behavior still
+ * comes from surface profiles and interactions in the prepared state, including
+ * folded second-surface mirror coating accents.
+ *
+ * @param state - prepared optical state with current surface positions
+ * @param sx - optical z-mm to SVG x-coordinate mapper
+ * @param sy - optical y-mm to SVG y-coordinate mapper
+ * @param pointTransform - optional display transform for perspective-control movement
+ * @returns element shapes with glass paths, asphere highlights, and coating accents
+ */
 export function computeElementShapesForState2(
   state: PreparedOpticalState,
   sx: (z: number) => number,
@@ -57,6 +70,7 @@ export function computeElementShapesForState2(
     const inner = Math.min(Math.min(trim1, trim2), Math.max(front.innerSd ?? 0, rear.innerSd ?? 0));
     const fillRule = inner > 0 ? "evenodd" : undefined;
     if (inner > 0) {
+      /* Annular elements use an inner counter-path so central mirror holes remain transparent. */
       d += "Z ";
       for (let i = 0; i <= NN; i++) {
         const y = -inner + (2 * inner * i) / NN;
@@ -104,6 +118,7 @@ export function computeElementShapesForState2(
     for (const surfaceIndex of [s1, s2]) {
       const surface = state.surfaces[surfaceIndex];
       if (surface.interaction.type === "reflect" && surface.interaction.mirrorKind === "second-surface") {
+        /* The coating accent is visual only; reflection/refraction behavior stays in interaction data. */
         surfaceAccentPaths.push({
           surfIdx: surfaceIndex,
           pathD: surfacePath(surfaceIndex, surfaceIndex === s1 ? trim1 : trim2),

@@ -15,6 +15,7 @@ import {
 import { traceSurfacesParaxial } from "./internal/traceSurfaces.js";
 import { stateSurfaces, thick } from "./layout.js";
 
+/** Public skew-ray result at the return/image plane. */
 export interface SkewRayTraceResult {
   x: number;
   y: number;
@@ -23,17 +24,20 @@ export interface SkewRayTraceResult {
   clipped: boolean;
 }
 
+/** Vector-native ray launch input for fisheye and wide-field tracing. */
 export interface VectorRayTraceInput {
   origin: Vector3;
   direction: Vector3;
   launchBoundT?: number;
 }
 
+/** Image-plane intercept for a skew ray in sagittal/meridional millimeters. */
 export interface SkewImagePlaneIntercept {
   x: number;
   y: number;
 }
 
+/** One sample in a tangential or sagittal orthogonal pupil fan. */
 export interface OrthogonalPupilSample {
   index: number;
   pupilFraction: number;
@@ -41,6 +45,7 @@ export interface OrthogonalPupilSample {
   yFraction: number;
 }
 
+/** One area-weighted sample in a circular pupil pattern. */
 export interface CircularPupilSample {
   index: number;
   xFraction: number;
@@ -50,9 +55,23 @@ export interface CircularPupilSample {
   weight: number;
 }
 
+/** Default odd sample count for tangential/sagittal pupil fans. */
 export const DEFAULT_ORTHOGONAL_PUPIL_FAN_SAMPLE_COUNT = 51;
+/** Default circular point-cloud ring population from center to rim. */
 export const DEFAULT_CIRCULAR_PUPIL_RING_SAMPLES = [1, 6, 12, 18, 24] as const;
 
+/**
+ * Approximate refractive index for a chromatic channel from nd/Vd data.
+ *
+ * Used as the fallback when no Sellmeier or patent line-index data exists. The
+ * violet channel uses the same partial-dispersion approximation as the chromatic
+ * index resolver.
+ *
+ * @param nd - d-line refractive index
+ * @param vd - Abbe Vd number, if available
+ * @param channel - chromatic channel to evaluate
+ * @returns estimated channel refractive index
+ */
 export function wavelengthNd(nd: number, vd: number | undefined, channel: ChromaticChannel): number {
   if (nd === 1.0) return 1.0;
   if (!vd || channel === "G") return nd;
@@ -234,6 +253,21 @@ function traceSkewRayVectorExactCore(
   };
 }
 
+/**
+ * Trace a skew ray through the exact RuntimeLens surface stack.
+ *
+ * @param x0 - sagittal launch coordinate in mm
+ * @param y0 - meridional launch coordinate in mm
+ * @param ux0 - sagittal slope dx/dz
+ * @param uy0 - meridional slope dy/dz
+ * @param focusT - normalized focus slider
+ * @param zoomT - normalized zoom slider
+ * @param stopSD - current physical stop semi-diameter in mm
+ * @param ghost - whether clipped hits should be retained
+ * @param L - runtime lens object
+ * @param aberrationT - normalized aberration spacing slider
+ * @returns final skew-ray position, slopes, and clipping state
+ */
 export function traceSkewRay(
   x0: number,
   y0: number,
@@ -249,6 +283,22 @@ export function traceSkewRay(
   return traceSkewRayExactCore(x0, y0, ux0, uy0, focusT, zoomT, stopSD, ghost, L, undefined, aberrationT);
 }
 
+/**
+ * Trace a chromatic skew ray through the exact RuntimeLens surface stack.
+ *
+ * @param x0 - sagittal launch coordinate in mm
+ * @param y0 - meridional launch coordinate in mm
+ * @param ux0 - sagittal slope dx/dz
+ * @param uy0 - meridional slope dy/dz
+ * @param focusT - normalized focus slider
+ * @param zoomT - normalized zoom slider
+ * @param stopSD - current physical stop semi-diameter in mm
+ * @param ghost - whether clipped hits should be retained
+ * @param L - runtime lens object
+ * @param channel - chromatic channel selecting per-surface indices
+ * @param aberrationT - normalized aberration spacing slider
+ * @returns final skew-ray position, slopes, and clipping state
+ */
 export function traceSkewRayChromatic(
   x0: number,
   y0: number,
@@ -265,6 +315,16 @@ export function traceSkewRayChromatic(
   return traceSkewRayExactCore(x0, y0, ux0, uy0, focusT, zoomT, stopSD, ghost, L, channel, aberrationT);
 }
 
+/**
+ * Trace a vector-launched skew ray.
+ *
+ * @param input - vector origin/direction and optional launch bound
+ * @param zPos - current surface vertex positions in mm
+ * @param stopSD - current physical stop semi-diameter in mm
+ * @param ghost - whether clipped hits should be retained
+ * @param L - runtime lens object
+ * @returns final skew-ray position, slopes, and clipping state
+ */
 export function traceSkewRayVector(
   input: VectorRayTraceInput,
   zPos: number[],
@@ -275,6 +335,17 @@ export function traceSkewRayVector(
   return traceSkewRayVectorExactCore(input, zPos, stopSD, ghost, L, undefined);
 }
 
+/**
+ * Trace a chromatic vector-launched skew ray.
+ *
+ * @param input - vector origin/direction and optional launch bound
+ * @param zPos - current surface vertex positions in mm
+ * @param stopSD - current physical stop semi-diameter in mm
+ * @param ghost - whether clipped hits should be retained
+ * @param L - runtime lens object
+ * @param channel - chromatic channel selecting per-surface indices
+ * @returns final skew-ray position, slopes, and clipping state
+ */
 export function traceSkewRayVectorChromatic(
   input: VectorRayTraceInput,
   zPos: number[],
@@ -286,6 +357,17 @@ export function traceSkewRayVectorChromatic(
   return traceSkewRayVectorExactCore(input, zPos, stopSD, ghost, L, channel);
 }
 
+/**
+ * Project a skew ray from the last surface to the image plane.
+ *
+ * @param x - sagittal coordinate at the last surface in mm
+ * @param y - meridional coordinate at the last surface in mm
+ * @param ux - sagittal slope dx/dz
+ * @param uy - meridional slope dy/dz
+ * @param lastSurfZ - last surface vertex z coordinate in mm
+ * @param imagePlaneZ - image-plane z coordinate in mm
+ * @returns image-plane intercept, or null for non-finite projection
+ */
 export function skewImagePlaneIntercept(
   x: number,
   y: number,
@@ -302,6 +384,13 @@ export function skewImagePlaneIntercept(
   return isFinite(imagePoint.x) && isFinite(imagePoint.y) ? imagePoint : null;
 }
 
+/**
+ * Build an odd tangential or sagittal pupil fan.
+ *
+ * @param sampleCount - requested number of pupil samples
+ * @param orientation - fan direction across the pupil
+ * @returns samples with normalized pupil fractions in `[-1, 1]`
+ */
 export function sampleOrthogonalPupilFan(
   sampleCount: number = DEFAULT_ORTHOGONAL_PUPIL_FAN_SAMPLE_COUNT,
   orientation: "tangential" | "sagittal",
@@ -320,6 +409,15 @@ export function sampleOrthogonalPupilFan(
   });
 }
 
+/**
+ * Build an area-weighted circular pupil sample pattern.
+ *
+ * Ring populations approximate equal-area annuli. Weights sum to one when all
+ * samples survive clipping.
+ *
+ * @param ringSamples - number of angular samples per radial ring
+ * @returns circular pupil samples with normalized x/y fractions and weights
+ */
 export function sampleCircularPupil(
   ringSamples: readonly number[] = DEFAULT_CIRCULAR_PUPIL_RING_SAMPLES,
 ): CircularPupilSample[] {
@@ -357,6 +455,22 @@ export function sampleCircularPupil(
   return samples;
 }
 
+/**
+ * Trace a skew ray launched relative to the solved chief ray.
+ *
+ * @param xFraction - sagittal pupil fraction
+ * @param yFraction - meridional pupil fraction
+ * @param chiefLaunchHeight - chief-ray launch height in mm
+ * @param fieldSlope - field slope dy/dz
+ * @param entrancePupilSemiDiameter - entrance-pupil semi-diameter in mm
+ * @param focusT - normalized focus slider
+ * @param zoomT - normalized zoom slider
+ * @param stopSD - current physical stop semi-diameter in mm
+ * @param ghost - whether clipped hits should be retained
+ * @param L - runtime lens object
+ * @param aberrationT - normalized aberration spacing slider
+ * @returns final skew ray relative to the selected off-axis field
+ */
 export function traceChiefRelativeSkewRay(
   xFraction: number,
   yFraction: number,
@@ -384,6 +498,23 @@ export function traceChiefRelativeSkewRay(
   );
 }
 
+/**
+ * Trace a chromatic skew ray launched relative to the solved chief ray.
+ *
+ * @param xFraction - sagittal pupil fraction
+ * @param yFraction - meridional pupil fraction
+ * @param chiefLaunchHeight - chief-ray launch height in mm
+ * @param fieldSlope - field slope dy/dz
+ * @param entrancePupilSemiDiameter - entrance-pupil semi-diameter in mm
+ * @param focusT - normalized focus slider
+ * @param zoomT - normalized zoom slider
+ * @param stopSD - current physical stop semi-diameter in mm
+ * @param ghost - whether clipped hits should be retained
+ * @param L - runtime lens object
+ * @param channel - chromatic channel selecting per-surface indices
+ * @param aberrationT - normalized aberration spacing slider
+ * @returns final skew ray relative to the selected off-axis field
+ */
 export function traceChiefRelativeSkewRayChromatic(
   xFraction: number,
   yFraction: number,
@@ -413,6 +544,20 @@ export function traceChiefRelativeSkewRayChromatic(
   );
 }
 
+/**
+ * Trace a meridional ray through the exact RuntimeLens surface stack.
+ *
+ * @param y0 - launch height in mm
+ * @param u0 - meridional slope dy/dz
+ * @param zPos - current surface vertex positions in mm
+ * @param focusT - normalized focus slider
+ * @param zoomT - normalized zoom slider
+ * @param stopSD - current physical stop semi-diameter in mm
+ * @param ghost - whether clipped hits should be retained as ghost points
+ * @param L - runtime lens object
+ * @param aberrationT - normalized aberration spacing slider
+ * @returns public meridional ray trace result
+ */
 export function traceRay(
   y0: number,
   u0: number,
@@ -427,6 +572,21 @@ export function traceRay(
   return traceRayExactCore(y0, u0, zPos, focusT, zoomT, stopSD, ghost, L, undefined, aberrationT);
 }
 
+/**
+ * Trace a chromatic meridional ray through the exact RuntimeLens surface stack.
+ *
+ * @param y0 - launch height in mm
+ * @param u0 - meridional slope dy/dz
+ * @param zPos - current surface vertex positions in mm
+ * @param focusT - normalized focus slider
+ * @param zoomT - normalized zoom slider
+ * @param stopSD - current physical stop semi-diameter in mm
+ * @param ghost - whether clipped hits should be retained as ghost points
+ * @param L - runtime lens object
+ * @param channel - chromatic channel selecting per-surface indices
+ * @param aberrationT - normalized aberration spacing slider
+ * @returns public meridional ray trace result
+ */
 export function traceRayChromatic(
   y0: number,
   u0: number,
@@ -483,6 +643,16 @@ function traceRayVectorExactCore(
   };
 }
 
+/**
+ * Trace a vector-launched meridional ray.
+ *
+ * @param input - vector origin/direction and optional launch bound
+ * @param zPos - current surface vertex positions in mm
+ * @param stopSD - current physical stop semi-diameter in mm
+ * @param ghost - whether clipped hits should be retained as ghost points
+ * @param L - runtime lens object
+ * @returns public meridional ray trace result
+ */
 export function traceRayVector(
   input: VectorRayTraceInput,
   zPos: number[],
@@ -493,6 +663,17 @@ export function traceRayVector(
   return traceRayVectorExactCore(input, zPos, stopSD, ghost, L, undefined);
 }
 
+/**
+ * Trace a chromatic vector-launched meridional ray.
+ *
+ * @param input - vector origin/direction and optional launch bound
+ * @param zPos - current surface vertex positions in mm
+ * @param stopSD - current physical stop semi-diameter in mm
+ * @param ghost - whether clipped hits should be retained as ghost points
+ * @param L - runtime lens object
+ * @param channel - chromatic channel selecting per-surface indices
+ * @returns public meridional ray trace result
+ */
 export function traceRayVectorChromatic(
   input: VectorRayTraceInput,
   zPos: number[],
@@ -515,6 +696,17 @@ function spanOf(values: number[]): number {
   return Math.max(...values) - Math.min(...values);
 }
 
+/**
+ * Measure longitudinal and transverse chromatic spread from marginal rays.
+ *
+ * Longitudinal spread is the span of axial intercepts; transverse spread is the
+ * span of image heights at `imgZ`. Clipped channels are omitted.
+ *
+ * @param marginalRays - per-channel marginal ray state after the last surface
+ * @param imgZ - image-plane z coordinate in mm
+ * @param lastSurfZ - final surface vertex z coordinate in mm
+ * @returns LCA/TCA spans plus per-channel intercepts and image heights in mm
+ */
 export function computeChromaticSpread(
   marginalRays: Partial<Record<ChromaticChannel, MarginalRayData>>,
   imgZ: number,
@@ -537,6 +729,17 @@ export function computeChromaticSpread(
   return { lcaMm, tcaMm, intercepts, imgHeights };
 }
 
+/**
+ * Trace a paraxial ray to the current image plane.
+ *
+ * @param y0 - launch height in mm
+ * @param u0 - paraxial slope
+ * @param focusT - normalized focus slider
+ * @param zoomT - normalized zoom slider
+ * @param L - runtime lens object
+ * @param aberrationT - normalized aberration spacing slider
+ * @returns paraxial image height in mm
+ */
 export function traceToImage(
   y0: number,
   u0: number,

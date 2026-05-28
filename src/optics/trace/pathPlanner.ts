@@ -12,12 +12,14 @@ import { evaluateAperture } from "./aperture.js";
 import { incidentSideFor, resolvedNextIndex } from "./interactions.js";
 import { surfaceLabel } from "./foldedDiagnostics.js";
 
+/** Candidate hit selected or skipped during generalized surface search. */
 export interface SurfaceHitCandidate {
   surfaceIndex: number | null;
   hit: SurfaceIntersectionResult | null;
   skippedCandidates: FoldedPathAutoCandidateSkip[];
 }
 
+/** Intersection of a ray with the current image plane. */
 export interface ImagePlaneIntersection {
   point: Vec3;
   t: number;

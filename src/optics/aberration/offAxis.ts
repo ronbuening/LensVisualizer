@@ -32,11 +32,14 @@ import { isFisheyeProjection, projectionLaunchSlopeForField } from "../projectio
 import type { ChromaticChannel, RuntimeLens } from "../../types/optics.js";
 import { bestRelativeFocusPlane, type TransverseFocusHit } from "./shared.js";
 
+/** Orientation of an orthogonal off-axis pupil fan. */
 export type OffAxisFanOrientation = "tangential" | "sagittal";
+/** Image-coordinate direction whose best focus is being evaluated. */
 export type OffAxisDirection = "tangential" | "sagittal";
 
 type SkewBundleSourceSample = OrthogonalPupilSample | CircularPupilSample;
 
+/** Scalar off-axis field geometry using object-plane slope launch. */
 export interface OffAxisFieldGeometry {
   fieldFraction: number;
   fieldAngleDeg: number;
@@ -46,6 +49,7 @@ export interface OffAxisFieldGeometry {
   imagePlaneZ: number;
 }
 
+/** Vector off-axis field geometry for fisheye/past-cap bounding-sphere launches. */
 export interface OffAxisVectorFieldGeometry {
   kind: "vector";
   fieldFraction: number;
@@ -56,13 +60,16 @@ export interface OffAxisVectorFieldGeometry {
   imagePlaneZ: number;
 }
 
+/** Off-axis geometry that may be scalar or vector depending on projection domain. */
 export type ProjectionAwareOffAxisFieldGeometry = OffAxisFieldGeometry | OffAxisVectorFieldGeometry;
 
+/** Traced chief-ray sample and its image-plane intercept. */
 export interface OffAxisChiefRaySample {
   trace: SkewRayTraceResult;
   imagePoint: SkewImagePlaneIntercept;
 }
 
+/** One traced pupil sample relative to an off-axis chief ray. */
 export interface OffAxisTracedSample {
   index: number;
   sourceSampleIndex: number;
@@ -78,6 +85,7 @@ export interface OffAxisTracedSample {
   imagePoint: SkewImagePlaneIntercept;
 }
 
+/** Complete off-axis bundle with chief ray and surviving pupil samples. */
 export interface OffAxisBundle {
   geometry: ProjectionAwareOffAxisFieldGeometry;
   chiefRay: OffAxisChiefRaySample;
@@ -112,12 +120,30 @@ function mapTracedSample(
   };
 }
 
+/**
+ * Type guard for projection-aware vector off-axis geometry.
+ *
+ * @param geometry - scalar or vector off-axis geometry
+ * @returns true when the geometry uses a bounding-sphere vector launch
+ */
 export function isOffAxisVectorFieldGeometry(
   geometry: ProjectionAwareOffAxisFieldGeometry,
 ): geometry is OffAxisVectorFieldGeometry {
   return "kind" in geometry && geometry.kind === "vector";
 }
 
+/**
+ * Compute first-order off-axis field geometry from cached RuntimeLens zoom values.
+ *
+ * This compatibility helper ignores focus-dependent pupil aberration. New analysis
+ * paths should prefer the state-aware/projection-aware helpers below.
+ *
+ * @param L - runtime lens object
+ * @param zPos - current surface vertex positions in mm
+ * @param zoomT - normalized zoom slider
+ * @param fieldFraction - fraction of half field in `[0, 1]`
+ * @returns scalar off-axis launch geometry, or null outside the numeric domain
+ */
 export function computeParaxialOffAxisFieldGeometry(
   L: RuntimeLens,
   zPos: number[],
@@ -154,8 +180,24 @@ export function computeParaxialOffAxisFieldGeometry(
   };
 }
 
+/** Backward-compatible alias for the paraxial off-axis geometry helper. */
 export const computeOffAxisFieldGeometry = computeParaxialOffAxisFieldGeometry;
 
+/**
+ * Compute current-state scalar off-axis field geometry.
+ *
+ * Uses solved chief-ray launch height so pupil aberration, focus, zoom, and
+ * aberration-control spacing match the visible off-axis ray convention.
+ *
+ * @param L - runtime lens object
+ * @param zPos - current surface vertex positions in mm
+ * @param focusT - normalized focus slider
+ * @param zoomT - normalized zoom slider
+ * @param fieldFraction - fraction of half field in `[0, 1]`
+ * @param stateGeometry - optional precomputed field-geometry state
+ * @param aberrationT - normalized aberration spacing slider
+ * @returns scalar off-axis launch geometry, or null outside the numeric domain
+ */
 export function computeStateAwareOffAxisFieldGeometry(
   L: RuntimeLens,
   zPos: number[],
@@ -201,6 +243,21 @@ function shouldUseVectorOffAxisGeometry(L: RuntimeLens, zoomT: number, fieldAngl
   return false;
 }
 
+/**
+ * Compute scalar or vector off-axis field geometry for the current projection.
+ *
+ * Fisheye fields beyond the trace-safe scalar half field promote to vector
+ * bounding-sphere launch using the chief-ray solver's vector result.
+ *
+ * @param L - runtime lens object
+ * @param zPos - current surface vertex positions in mm
+ * @param focusT - normalized focus slider
+ * @param zoomT - normalized zoom slider
+ * @param fieldFraction - fraction of half field in `[0, 1]`
+ * @param stateGeometry - optional precomputed field-geometry state
+ * @param aberrationT - normalized aberration spacing slider
+ * @returns projection-aware off-axis launch geometry, or null when unsupported
+ */
 export function computeProjectionAwareOffAxisFieldGeometry(
   L: RuntimeLens,
   zPos: number[],
@@ -255,6 +312,19 @@ export function computeProjectionAwareOffAxisFieldGeometry(
   };
 }
 
+/**
+ * Trace the chief ray for a scalar or vector off-axis geometry.
+ *
+ * @param geometry - off-axis field geometry
+ * @param L - runtime lens object
+ * @param focusT - normalized focus slider
+ * @param zoomT - normalized zoom slider
+ * @param entrancePupilSemiDiameter - entrance-pupil semi-diameter in mm
+ * @param stopSemiDiameter - physical stop semi-diameter in mm
+ * @param channel - optional chromatic channel
+ * @param aberrationT - normalized aberration spacing slider
+ * @returns traced chief ray and image point, or null when clipped
+ */
 export function traceOffAxisChiefRay(
   geometry: ProjectionAwareOffAxisFieldGeometry,
   L: RuntimeLens,
@@ -343,6 +413,24 @@ export function traceOffAxisChiefRay(
   };
 }
 
+/**
+ * Trace an arbitrary set of pupil samples around an off-axis chief ray.
+ *
+ * Scalar geometry launches chief-relative skew rays from the entrance pupil.
+ * Vector geometry offsets the bounding-sphere launch using radial/sagittal pupil
+ * axes so fisheye fields stay in a consistent 3D launch convention.
+ *
+ * @param samples - orthogonal or circular pupil samples
+ * @param geometry - scalar or vector off-axis field geometry
+ * @param L - runtime lens object
+ * @param focusT - normalized focus slider
+ * @param zoomT - normalized zoom slider
+ * @param entrancePupilSemiDiameter - entrance-pupil semi-diameter in mm
+ * @param stopSemiDiameter - physical stop semi-diameter in mm
+ * @param channel - optional chromatic channel
+ * @param aberrationT - normalized aberration spacing slider
+ * @returns chief ray plus surviving traced samples, or null when chief ray fails
+ */
 export function traceOffAxisBundleFromSamples(
   samples: readonly SkewBundleSourceSample[],
   geometry: ProjectionAwareOffAxisFieldGeometry,
@@ -466,6 +554,21 @@ export function traceOffAxisBundleFromSamples(
   };
 }
 
+/**
+ * Trace a tangential or sagittal off-axis pupil fan.
+ *
+ * @param orientation - tangential or sagittal fan direction
+ * @param sampleCount - requested fan sample count
+ * @param geometry - scalar or vector off-axis field geometry
+ * @param L - runtime lens object
+ * @param focusT - normalized focus slider
+ * @param zoomT - normalized zoom slider
+ * @param entrancePupilSemiDiameter - entrance-pupil semi-diameter in mm
+ * @param stopSemiDiameter - physical stop semi-diameter in mm
+ * @param channel - optional chromatic channel
+ * @param aberrationT - normalized aberration spacing slider
+ * @returns traced off-axis bundle, or null when chief ray fails
+ */
 export function traceOrthogonalOffAxisBundle(
   orientation: OffAxisFanOrientation,
   sampleCount: number,
@@ -491,6 +594,20 @@ export function traceOrthogonalOffAxisBundle(
   );
 }
 
+/**
+ * Trace a circular off-axis pupil bundle.
+ *
+ * @param ringSamples - number of samples per circular-pupil ring
+ * @param geometry - scalar or vector off-axis field geometry
+ * @param L - runtime lens object
+ * @param focusT - normalized focus slider
+ * @param zoomT - normalized zoom slider
+ * @param entrancePupilSemiDiameter - entrance-pupil semi-diameter in mm
+ * @param stopSemiDiameter - physical stop semi-diameter in mm
+ * @param channel - optional chromatic channel
+ * @param aberrationT - normalized aberration spacing slider
+ * @returns traced off-axis bundle, or null when chief ray fails
+ */
 export function traceCircularOffAxisBundle(
   ringSamples: readonly number[],
   geometry: ProjectionAwareOffAxisFieldGeometry,
@@ -515,6 +632,13 @@ export function traceCircularOffAxisBundle(
   );
 }
 
+/**
+ * Extract transverse focus hits in tangential or sagittal direction.
+ *
+ * @param bundle - traced off-axis bundle
+ * @param direction - image coordinate to analyze
+ * @returns sample hits and chief-ray reference hit
+ */
 export function transverseFocusHitsForDirection(
   bundle: OffAxisBundle,
   direction: OffAxisDirection,
@@ -531,6 +655,13 @@ export function transverseFocusHitsForDirection(
   return { hits, referenceHit };
 }
 
+/**
+ * Compute best-focus plane for an off-axis bundle direction.
+ *
+ * @param bundle - traced off-axis bundle
+ * @param direction - tangential or sagittal focus direction
+ * @returns least-squares best-focus z coordinate in mm
+ */
 export function bestFocusPlaneForDirection(bundle: OffAxisBundle, direction: OffAxisDirection): number {
   const { hits, referenceHit } = transverseFocusHitsForDirection(bundle, direction);
   return bestRelativeFocusPlane(hits, referenceHit, bundle.geometry.lastSurfZ);

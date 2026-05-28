@@ -15,12 +15,19 @@ import type { Ray3, SurfaceProfile, Vec3 } from "../types.js";
 import { clamp } from "./numerics.js";
 import { dot, normalize, subtract } from "./vector.js";
 
+/** Typed reason for an exact surface-intersection failure. */
 export type SurfaceIntersectionFailureReason =
   | "invalidDirection"
   | "invalidBounds"
   | "noBracket"
   | "noConvergedIntersection";
 
+/**
+ * Search and reporting options for intersecting a ray with one surface profile.
+ *
+ * Bounds are parametric ray distances in millimeters because ray directions are
+ * normalized. `refractiveIndex`, when supplied, also reports optical path length.
+ */
 export interface SurfaceIntersectionOptions {
   minT?: number;
   maxT?: number;
@@ -31,6 +38,7 @@ export interface SurfaceIntersectionOptions {
   directionNormalized?: boolean;
 }
 
+/** Successful ray/surface intersection with geometry at the hit point. */
 export interface SurfaceIntersectionSuccess {
   ok: true;
   t: number;
@@ -43,6 +51,7 @@ export interface SurfaceIntersectionSuccess {
   opticalPathLength: number | null;
 }
 
+/** Failed ray/surface intersection with the best residual when available. */
 export interface SurfaceIntersectionFailure {
   ok: false;
   failureReason: SurfaceIntersectionFailureReason;
@@ -50,6 +59,7 @@ export interface SurfaceIntersectionFailure {
   iterations: number;
 }
 
+/** Union result for exact surface-profile intersection. */
 export type SurfaceIntersectionResult = SurfaceIntersectionSuccess | SurfaceIntersectionFailure;
 
 interface SurfaceEvaluation {

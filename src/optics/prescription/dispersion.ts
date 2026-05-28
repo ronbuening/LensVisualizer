@@ -9,6 +9,17 @@ import type { ElementData, SurfaceData, SurfaceSpectral } from "../../types/opti
 import { makeSurfaceDispersion } from "../dispersion.js";
 import type { SurfaceDispersion } from "../types.js";
 
+/**
+ * Compile one chromatic dispersion descriptor per physical surface.
+ *
+ * Element metadata owns glass names and line indices; the compiled table stores
+ * surface-index callbacks so chromatic tracing can ask for `n(lambda)` directly.
+ *
+ * @param surfaces - authored/runtime physical surfaces
+ * @param elements - element metadata used to resolve glass and spectral hints
+ * @param spectralByIdx - per-surface patent line-index metadata
+ * @returns frozen dispersion descriptors aligned with surface indices
+ */
 export function compileSurfaceDispersions(
   surfaces: readonly SurfaceData[],
   elements: readonly ElementData[],

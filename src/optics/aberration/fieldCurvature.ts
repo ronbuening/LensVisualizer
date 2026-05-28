@@ -77,6 +77,7 @@ interface DiagnosticFieldFocus {
   astigmaticDifferenceUm: number;
 }
 
+/** Paired monochrome and chromatic field-curvature results for one current state. */
 export interface FieldCurvatureBundleResult {
   fieldCurvature: FieldCurvatureResult | null;
   chromaticFieldCurvature: FieldCurvatureResult | null;
@@ -619,6 +620,22 @@ function buildChromaticFieldCurvatureFromBase(
   return buildFieldCurvatureResult(fields, curveFields, base.imagePlaneZ, true);
 }
 
+/**
+ * Compute monochrome and chromatic field-curvature results together.
+ *
+ * The monochrome result uses d-line tracing. The chromatic result reuses the
+ * same base fields and adds R/G/B tangential and sagittal focus shifts.
+ *
+ * @param L - runtime lens object
+ * @param zPos - current surface vertex positions in mm
+ * @param focusT - normalized focus slider
+ * @param zoomT - normalized zoom slider
+ * @param currentEPSD - entrance-pupil semi-diameter in mm
+ * @param currentPhysStopSD - physical stop semi-diameter in mm
+ * @param aberrationT - normalized aberration spacing slider
+ * @param fieldGeometry - optional precomputed field geometry for the same state
+ * @returns paired field-curvature results, each nullable when tracing is unusable
+ */
 export function computeFieldCurvatureBundle(
   L: RuntimeLens,
   zPos: number[],
@@ -655,6 +672,23 @@ export function computeFieldCurvatureBundle(
   };
 }
 
+/**
+ * Compute tangential/sagittal field curvature and astigmatism across the field.
+ *
+ * Positive shift is aft/toward the sensor; negative shift is fore/toward the lens.
+ * Petzval shift is signed to match the tangential/sagittal longitudinal convention.
+ *
+ * @param L - runtime lens object
+ * @param zPos - current surface vertex positions in mm
+ * @param focusT - normalized focus slider
+ * @param zoomT - normalized zoom slider
+ * @param currentEPSD - entrance-pupil semi-diameter in mm
+ * @param currentPhysStopSD - physical stop semi-diameter in mm
+ * @param chromatic - when true, return the chromatic R/G/B variant
+ * @param aberrationT - normalized aberration spacing slider
+ * @param fieldGeometry - optional precomputed field geometry for the same state
+ * @returns field-curvature result, or null when off-axis tracing is unusable
+ */
 export function computeFieldCurvature(
   L: RuntimeLens,
   zPos: number[],

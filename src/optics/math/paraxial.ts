@@ -8,12 +8,19 @@
 import { FLAT_R_THRESHOLD } from "../constants.js";
 import type { CompiledStateSurface } from "../types.js";
 
+/**
+ * First-order ray state at a surface vertex plane.
+ *
+ * `y` is meridional height in mm, `u` is the small-angle slope/radian value,
+ * and `n` is the current medium refractive index.
+ */
 export interface ParaxialState {
   y: number;
   u: number;
   n: number;
 }
 
+/** Controls for first-order tracing through a prepared surface sequence. */
 export interface ParaxialTraceOptions {
   stopAt?: number;
   skipLastTransfer?: boolean;
@@ -22,6 +29,7 @@ export interface ParaxialTraceOptions {
   requireSameIndexRefraction?: boolean;
 }
 
+/** Final first-order ray state plus optional per-surface heights in mm. */
 export interface ParaxialTraceResult extends ParaxialState {
   heights: number[] | null;
 }

@@ -12,12 +12,14 @@ import type {
 import type { SurfaceIntersectionFailureReason } from "../math/intersection.js";
 import type { Ray3, Vec3 } from "../types.js";
 
+/** Failure reason emitted by exact tracing after intersection and interaction steps. */
 export type TraceFailureReason =
   | SurfaceIntersectionFailureReason
   | "totalInternalReflection"
   | "loopDetected"
   | "maxInteractions";
 
+/** One surface interaction or attempted hit recorded by an engine trace. */
 export interface TraceHit {
   surfaceIndex: number;
   surfaceLabel: string;
@@ -32,6 +34,7 @@ export interface TraceHit {
   clipReason?: FoldedPathClipReason;
 }
 
+/** Full engine trace result before conversion to RuntimeLens-compatible ray shapes. */
 export interface EngineTraceResult {
   input: Ray3;
   hits: readonly TraceHit[];
@@ -51,6 +54,12 @@ export interface EngineTraceResult {
   uy: number;
 }
 
+/**
+ * Options controlling exact trace termination, aperture checks, and chromatic indices.
+ *
+ * Distances and `launchBoundT` are in millimeters because vector directions are
+ * normalized. `stopAt` is a physical surface index for sequential-style partial traces.
+ */
 export interface TraceOptions {
   stopAt?: number;
   skipLastTransfer?: boolean;
@@ -64,6 +73,7 @@ export interface TraceOptions {
   directionNormalized?: boolean;
 }
 
+/** Input used to build folded-path diagnostics from a trace result. */
 export interface TraceDiagnosticsInput {
   hits: readonly TraceHit[];
   finalMedium: number;

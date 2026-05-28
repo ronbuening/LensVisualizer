@@ -9,8 +9,10 @@ import { LINE_NM } from "../glassCatalog.js";
 import type { PreparedOpticalState } from "../types.js";
 import { normalizeRuntimeLens } from "../prescription/normalizeLensData.js";
 
+/** Chromatic channels traced by the engine: C, d, F, and g spectral lines. */
 export const CHROMATIC_CHANNELS_2 = Object.freeze(["R", "G", "B", "V"] as const);
 
+/** Per-channel wavelength in nanometers, keyed to standard Fraunhofer lines. */
 export const CHANNEL_WAVELENGTH_NM_2: Readonly<Record<ChromaticChannel, number>> = Object.freeze({
   R: LINE_NM.C,
   G: LINE_NM.d,
@@ -18,10 +20,29 @@ export const CHANNEL_WAVELENGTH_NM_2: Readonly<Record<ChromaticChannel, number>>
   V: LINE_NM.g,
 });
 
+/**
+ * Surface-index callback used by exact tracers when a channel changes refraction.
+ *
+ * @param surfaceIndex - physical surface index
+ * @param dLineIndex - default d-line refractive index for the current surface
+ * @returns refractive index to use for this trace step
+ */
 export type SurfaceIndexResolver2 = (surfaceIndex: number, dLineIndex: number) => number;
 
 const ENGINE_LENS_BY_RUNTIME = new WeakMap<RuntimeLens, ReturnType<typeof normalizeRuntimeLens>>();
 
+/**
+ * Approximate channel refractive index from d-line index and Abbe number.
+ *
+ * This is the fallback when no catalog Sellmeier or patent line-index data is
+ * available. Red and blue use a symmetric C/F estimate; violet uses the standard
+ * partial-dispersion approximation for P_gF.
+ *
+ * @param nd - d-line refractive index
+ * @param vd - Abbe Vd number, if known
+ * @param channel - requested chromatic channel
+ * @returns estimated refractive index for the channel
+ */
 export function wavelengthNd2(nd: number, vd: number | undefined, channel: ChromaticChannel): number {
   if (nd === 1.0) return 1.0;
   if (!vd || channel === "G") return nd;
@@ -34,6 +55,14 @@ export function wavelengthNd2(nd: number, vd: number | undefined, channel: Chrom
   return nF + PgF * (nF - nC);
 }
 
+/**
+ * Resolve a prepared surface index for a chromatic channel.
+ *
+ * @param state - prepared optical state with compiled dispersion table
+ * @param surfaceIndex - physical surface index
+ * @param channel - requested channel, or undefined for d-line tracing
+ * @returns refractive index for the surface/channel, defaulting to air for invalid indices
+ */
 export function indexAtPreparedSurface2(
   state: PreparedOpticalState,
   surfaceIndex: number,
@@ -45,6 +74,17 @@ export function indexAtPreparedSurface2(
   return state.lens.dispersion[surfaceIndex]?.indexAt(channel) ?? surface.nd;
 }
 
+/**
+ * Resolve a RuntimeLens surface index for a chromatic channel.
+ *
+ * Runtime lenses are normalized and cached in a WeakMap so repeated chromatic
+ * traces reuse the same dispersion descriptors without mutating `L`.
+ *
+ * @param L - runtime lens object
+ * @param surfaceIndex - physical surface index
+ * @param channel - requested channel, or undefined for d-line tracing
+ * @returns refractive index for the surface/channel, defaulting to air for invalid indices
+ */
 export function indexAtRuntimeSurface2(
   L: RuntimeLens,
   surfaceIndex: number,
@@ -63,6 +103,13 @@ export function indexAtRuntimeSurface2(
   );
 }
 
+/**
+ * Create a trace callback for the requested prepared-state channel.
+ *
+ * @param state - prepared optical state with compiled dispersion table
+ * @param channel - requested channel, or undefined for d-line tracing
+ * @returns index resolver for exact tracing, or undefined for unchanged d-line indices
+ */
 export function channelIndexResolverForState2(
   state: PreparedOpticalState,
   channel: ChromaticChannel | undefined,

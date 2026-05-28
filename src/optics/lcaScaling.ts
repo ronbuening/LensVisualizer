@@ -14,6 +14,7 @@ import type { ChromaticChannel } from "../types/optics.js";
 /** Typical moderate LCA in mm — sets the "full width" reference point. */
 export const REFERENCE_LCA_MM = 0.15;
 
+/** Pixel offsets and applied magnification for one LCA bar visualization. */
 export interface LcaBarResult {
   /** Pixel offset from centre for each active channel. */
   barOffsets: Partial<Record<ChromaticChannel, number>>;
@@ -31,6 +32,7 @@ export interface LcaBarResult {
  * @param referenceIntercept  G-line intercept (or IMG_MM fallback).
  * @param viewWidthPx      Total pixel width available for bars.
  * @param effectiveSC      Horizontal scale factor (px / mm).
+ * @returns per-channel pixel offsets, magnification, and clamp flag
  */
 export function computeLcaBarOffsets(
   intercepts: Partial<Record<ChromaticChannel, number>>,
@@ -57,7 +59,7 @@ export function computeLcaBarOffsets(
   let mag = baseMag;
 
   if (maxAbsPx > halfWidth && maxAbsPx > 0) {
-    // Scale all bars proportionally so the widest just fits.
+    /* Preserve chromatic ordering while compressing the widest bar to the viewport. */
     const scale = halfWidth / maxAbsPx;
     for (const ch of Object.keys(barOffsets) as ChromaticChannel[]) {
       barOffsets[ch] = barOffsets[ch]! * scale;

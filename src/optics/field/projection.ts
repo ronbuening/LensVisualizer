@@ -7,8 +7,10 @@
 
 import type { LensProjectionConfig, RuntimeLens } from "../../types/optics.js";
 
+/** Projection families with distinct ideal image-height formulas. */
 export type ProjectionReferenceKind = "rectilinear" | "fisheye-equidistant" | "fisheye-equisolid";
 
+/** Projection reference used to compare traced image height against an ideal model. */
 export interface ProjectionReference2 {
   kind: ProjectionReferenceKind;
   label: string;
@@ -16,17 +18,20 @@ export interface ProjectionReference2 {
   focalScaleMm: number;
 }
 
+/** Scalar skew slopes derived from an ideal image point. */
 export interface ProjectionFieldSlopes2 {
   fieldSlopeX: number;
   fieldSlopeY: number;
   equivalentAngleDeg: number;
 }
 
+/** Meridional scalar launch slope for one field angle. */
 export interface ProjectionLaunchSlope2 {
   uField: number;
   status: "ok" | "out-of-domain";
 }
 
+/** 2D angular field launch plus ideal projection coordinates. */
 export interface ProjectionAngularLaunch2 {
   fieldSlopeX: number;
   fieldSlopeY: number;
@@ -36,6 +41,7 @@ export interface ProjectionAngularLaunch2 {
   status: "ok" | "on-axis" | "out-of-domain";
 }
 
+/** Vector launch ray starting on a bounding sphere around the entrance pupil. */
 export interface BoundingSphereLaunch2 {
   origin: [number, number, number];
   direction: [number, number, number];
@@ -43,10 +49,14 @@ export interface BoundingSphereLaunch2 {
   status: "ok" | "invalid";
 }
 
+/** Tangent-based scalar launches are rejected at and beyond this absolute field angle. */
 export const MAX_FIELD_LAUNCH_DEG = 89;
+/** Absolute authored half-field ceiling used to reject impossible projection metadata. */
 export const ABSOLUTE_HALF_FIELD_CEILING = 175;
+/** Safety margin applied to traceable half-field estimates for rendered ray bundles. */
 export const TRACING_SAFETY_FACTOR = 0.9;
 
+/** Launch strategy discriminator for chief-ray and wide-field tracing. */
 export type LaunchSurface2 = "object-plane" | "bounding-sphere";
 
 type FisheyeProjectionConfig = Extract<LensProjectionConfig, { kind: `fisheye-${string}` }>;

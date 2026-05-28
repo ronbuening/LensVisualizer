@@ -30,6 +30,7 @@ import {
 
 export type { Vector3 } from "./surfaceIntersection.js";
 
+/** RuntimeLens-shaped surface record consumed by the exact tracer. */
 export interface ExactTraceSurface {
   label?: string;
   R: number;
@@ -40,6 +41,7 @@ export interface ExactTraceSurface {
   interaction?: SurfaceInteraction;
 }
 
+/** Minimal RuntimeLens-shaped lens object needed by exact surface tracing. */
 export interface ExactTraceLens {
   S: readonly ExactTraceSurface[];
   asphByIdx: Record<number, AsphericCoefficients>;
@@ -50,6 +52,7 @@ export interface ExactTraceLens {
   isFoldedOptics?: boolean;
 }
 
+/** Slope-launch input for meridional or skew exact tracing. */
 export interface ExactSurfaceTraceInput {
   x0?: number;
   y0: number;
@@ -72,6 +75,7 @@ export interface VectorRayInput {
   direction: Vector3;
 }
 
+/** Trace controls for sequential and generalized RuntimeLens-shaped exact tracing. */
 export interface ExactSurfaceTraceOptions {
   zPos?: readonly number[];
   stopAt?: number;
@@ -93,6 +97,7 @@ export interface ExactSurfaceTraceOptions {
   indexAtSurface?: (surfaceIdx: number, nd: number) => number;
 }
 
+/** One exact surface hit recorded by the RuntimeLens-shaped tracer. */
 export interface ExactSurfaceTraceHit {
   surfaceIdx: number;
   point: Vector3;
@@ -106,6 +111,7 @@ export interface ExactSurfaceTraceHit {
   clipReason?: FoldedPathClipReason;
 }
 
+/** Exact trace result projected back to the requested return vertex or image plane. */
 export interface ExactSurfaceTraceResult {
   x: number;
   y: number;
@@ -131,12 +137,15 @@ export interface ExactSurfaceTraceResult {
 
 const TRACE_CLIP_ABS_TOLERANCE = 1e-9;
 
+/** Input accepted by generalized stop tracing: slope launch or vector-native launch. */
 export type GeneralizedStopTraceInput = ExactSurfaceTraceInput | VectorRayInput;
 
+/** Generalized stop-trace options with support for repeated stop occurrences. */
 export interface TraceToStopViaGeneralizedOptions extends Omit<ExactSurfaceTraceOptions, "stopAt"> {
   stopOccurrence?: number;
 }
 
+/** Result of locating a stop hit through the generalized RuntimeLens-shaped tracer. */
 export interface TraceToStopViaGeneralizedResult {
   found: boolean;
   x: number;
@@ -149,17 +158,40 @@ export interface TraceToStopViaGeneralizedResult {
   trace: ExactSurfaceTraceResult;
 }
 
+/**
+ * Build sequential vertex z positions from surface thicknesses.
+ *
+ * @param surfaces - surfaces with axial thickness `d` in mm
+ * @returns vertex positions in mm starting at zero
+ */
 export function buildSurfaceZPositions(surfaces: readonly Pick<ExactTraceSurface, "d">[]): number[] {
   const z = [0];
   for (let i = 0; i < surfaces.length - 1; i++) z.push(z[i] + surfaces[i].d);
   return z;
 }
 
+/**
+ * Convert skew slopes into a normalized 3D direction.
+ *
+ * @param ux - sagittal slope dx/dz
+ * @param uy - meridional slope dy/dz
+ * @returns normalized `[ux, uy, 1]` direction
+ */
 export function normalizeDirection(ux: number, uy: number): Vector3 {
   const invMag = 1 / Math.hypot(ux, uy, 1);
   return [ux * invMag, uy * invMag, invMag];
 }
 
+/**
+ * Project one coordinate of a ray to a target z plane.
+ *
+ * @param coordinate - x or y coordinate at `pointZ`
+ * @param pointZ - current z coordinate in mm
+ * @param directionCoordinate - matching x/y direction component
+ * @param directionZ - z direction component
+ * @param z - target z plane in mm
+ * @returns projected coordinate, or the original coordinate for z-parallel rays
+ */
 export function projectCoordinateToZ(
   coordinate: number,
   pointZ: number,
@@ -171,6 +203,15 @@ export function projectCoordinateToZ(
   return coordinate + ((z - pointZ) * directionCoordinate) / directionZ;
 }
 
+/**
+ * Refract a normalized 3D direction using vector Snell's law.
+ *
+ * @param direction - incoming normalized ray direction
+ * @param normal - normal oriented toward the outgoing medium
+ * @param n - incident refractive index
+ * @param nn - transmitted refractive index
+ * @returns normalized transmitted direction, or null for total internal reflection
+ */
 export function refractDirection(direction: Vector3, normal: Vector3, n: number, nn: number): Vector3 | null {
   const eta = n / nn;
   const cosIncident = direction[0] * normal[0] + direction[1] * normal[1] + direction[2] * normal[2];
@@ -191,6 +232,17 @@ export function refractDirection(direction: Vector3, normal: Vector3, n: number,
   return [transmitted[0] * invMag, transmitted[1] * invMag, transmitted[2] * invMag];
 }
 
+/**
+ * Trace a slope-launched ray through a RuntimeLens-shaped surface stack.
+ *
+ * The launch starts `leadDistance` before the first vertex and is converted to a
+ * normalized vector direction, then delegated to the vector-native exact tracer.
+ *
+ * @param lens - RuntimeLens-shaped exact-trace lens data
+ * @param input - launch height and slopes
+ * @param options - trace controls and optional current z positions
+ * @returns exact trace result projected to the requested return plane
+ */
 export function traceExactSurfaceStack(
   lens: ExactTraceLens,
   { x0 = 0, y0, ux0 = 0, uy0 }: ExactSurfaceTraceInput,
@@ -203,6 +255,18 @@ export function traceExactSurfaceStack(
   return traceExactSurfaceStackVector(lens, { origin, direction }, { ...options, zPos, leadDistance: 0 });
 }
 
+/**
+ * Trace a vector-launched ray through sequential or generalized exact tracing.
+ *
+ * Sequential lenses visit surfaces in physical order. Folded, mirrored, blocking,
+ * annular, or explicit optical-path systems route to the generalized path so the
+ * data model, not a trace-mode flag, controls hit order and image-plane termination.
+ *
+ * @param lens - RuntimeLens-shaped exact-trace lens data
+ * @param input - vector ray origin and normalized direction
+ * @param options - trace controls, current z positions, aperture, and chromatic index callback
+ * @returns exact trace result with hits, terminal state, and folded diagnostics
+ */
 export function traceExactSurfaceStackVector(
   lens: ExactTraceLens,
   { origin: originIn, direction: directionIn }: VectorRayInput,
@@ -382,6 +446,19 @@ export function traceExactSurfaceStackVector(
   };
 }
 
+/**
+ * Trace to an aperture stop using the generalized path model.
+ *
+ * This helper is used when folded systems can encounter the same stop multiple
+ * times. It scans successful hit records for the requested occurrence and falls
+ * back to a launch-plane stop candidate only for the first occurrence.
+ *
+ * @param lens - RuntimeLens-shaped exact-trace lens data
+ * @param input - slope or vector launch
+ * @param stopIdx - physical stop surface index
+ * @param options - generalized trace options plus stop occurrence
+ * @returns stop-hit coordinates/slopes and the full exact trace
+ */
 export function traceToStopViaGeneralized(
   lens: ExactTraceLens,
   input: GeneralizedStopTraceInput,

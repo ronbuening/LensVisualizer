@@ -46,6 +46,13 @@ export interface GlassEntry {
  * agent_docs/glass-catalog-buildout.md.
  * ────────────────────────────────────────────────────────────────────────── */
 
+/**
+ * Raw vendor glass catalog entries consumed by glassCatalog.ts.
+ *
+ * Entries are immutable data: Sellmeier wavelengths use micrometers internally,
+ * reference `nd` is the d line, and `vd` is the vendor Abbe number used for
+ * sanity checks and fallback dispersion.
+ */
 export const RAW_CATALOG: readonly GlassEntry[] = [
   /* ────── Universal crowns (BK7-class) ──────
    * N-BK7 is the universal reference crown; S-BSL7 is Ohara's near-equivalent.

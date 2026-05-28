@@ -7,6 +7,12 @@
 import type { PreparedOpticalState } from "../types.js";
 import { traceParaxialSurfaces2 } from "../math/paraxial.js";
 
+/**
+ * First-order entrance-pupil geometry relative to the stop.
+ *
+ * `yRatio` maps entrance-pupil marginal height to stop height; `b` maps chief-ray
+ * input angle to stop height; `epRatio = b / yRatio` is used for chief-ray launches.
+ */
 export interface FirstOrderPupilState {
   epSD: number;
   yRatio: number;
@@ -14,6 +20,13 @@ export interface FirstOrderPupilState {
   epRatio: number;
 }
 
+/**
+ * Convert stop semi-diameter and pupil transfer coefficients into EP geometry.
+ *
+ * @param stopSemiDiameter - current physical stop semi-diameter in mm
+ * @param geometry - paraxial transfer coefficients excluding the derived EP size
+ * @returns entrance-pupil semi-diameter and transfer ratios
+ */
 export function entrancePupilFromStop2(
   stopSemiDiameter: number,
   geometry: Omit<FirstOrderPupilState, "epSD">,
@@ -22,6 +35,16 @@ export function entrancePupilFromStop2(
   return { epSD, ...geometry };
 }
 
+/**
+ * Compute paraxial pupil transfer coefficients for a prepared state.
+ *
+ * The stop is traced from the object side using both normalized basis rays and a
+ * small finite delta; the finite basis avoids pathological zero-height behavior
+ * while preserving the paraxial interpretation.
+ *
+ * @param state - prepared optical state with stop surface index
+ * @returns paraxial stop-transfer ratios used for entrance-pupil estimates
+ */
 export function paraxialPupilGeometry2(state: PreparedOpticalState): Omit<FirstOrderPupilState, "epSD"> {
   const stopIndex = state.lens.stop.surfaceIndex;
   const delta = 1e-4;

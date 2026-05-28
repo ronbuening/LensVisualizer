@@ -8,6 +8,7 @@ import type { RayTraceResult } from "../../types/optics.js";
 import type { Vec3 } from "../types.js";
 import type { EngineTraceResult } from "./types.js";
 
+/** Runtime-compatible skew ray result using image-plane coordinates and slopes. */
 export interface RuntimeSkewRayTraceResult {
   x: number;
   y: number;
@@ -16,6 +17,14 @@ export interface RuntimeSkewRayTraceResult {
   clipped: boolean;
 }
 
+/**
+ * Convert an engine trace into the public meridional RayTraceResult shape.
+ *
+ * @param result - engine exact trace result
+ * @param leadPoint - diagram lead point `[z, y]` before the first surface
+ * @param ghost - whether clipped hits should be emitted as ghost points
+ * @returns RuntimeLens-compatible ray trace with diagram point arrays
+ */
 export function engineTraceToRuntimeRayResult(
   result: EngineTraceResult,
   leadPoint: [number, number],
@@ -36,6 +45,12 @@ export function engineTraceToRuntimeRayResult(
   };
 }
 
+/**
+ * Convert an engine trace into the public skew-ray result shape.
+ *
+ * @param result - engine exact trace result
+ * @returns final x/y coordinates, slopes, and clipping state
+ */
 export function engineTraceToRuntimeSkewResult(result: EngineTraceResult): RuntimeSkewRayTraceResult {
   return {
     x: result.x,
@@ -46,6 +61,14 @@ export function engineTraceToRuntimeSkewResult(result: EngineTraceResult): Runti
   };
 }
 
+/**
+ * Compute the diagram lead point for a vector-launched trace.
+ *
+ * @param input - original vector ray
+ * @param result - engine exact trace result
+ * @param leadDistance - distance in mm to extend backward from first hit
+ * @returns `[z, y]` lead point for meridional diagram rendering
+ */
 export function vectorLeadPoint(
   input: { origin: Vec3; direction: Vec3 },
   result: EngineTraceResult,

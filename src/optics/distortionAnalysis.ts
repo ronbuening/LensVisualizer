@@ -542,6 +542,22 @@ function traceDistortionGridPoint(
   };
 }
 
+/**
+ * Compute a traced 2D distortion grid over the ideal image circle.
+ *
+ * Grid coordinates are sampled in projection-reference image space, then inverted
+ * to field launches. Rectilinear cells use scalar slopes; fisheye/out-of-domain
+ * cells use vector launches when available so past-cap fields can still trace.
+ *
+ * @param L - runtime lens object
+ * @param zPos - current surface vertex positions in mm
+ * @param focusT - normalized focus slider
+ * @param zoomT - normalized zoom slider
+ * @param currentPhysStopSD - physical stop semi-diameter in mm
+ * @param fieldGeometry - optional precomputed field geometry for the same state
+ * @param aberrationT - normalized aberration spacing slider
+ * @returns traced horizontal/vertical distortion grid lines
+ */
 export function computeDistortionFieldGrid(
   L: RuntimeLens,
   zPos: number[],
