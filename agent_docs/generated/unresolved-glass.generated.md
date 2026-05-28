@@ -8,10 +8,10 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **272** lenses scanned
-- **3019** non-air surfaces examined
-- **3023** element glass declarations examined
-- **603** non-explicit-unmatched annotations did not resolve
+- **275** lenses scanned
+- **3048** non-air surfaces examined
+- **3052** element glass declarations examined
+- **609** non-explicit-unmatched annotations did not resolve
 - **218** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
@@ -59,6 +59,7 @@ or per-lens patent backfills.
 | S-LAL61 | 2 | 2 | |
 | S-LAM7 | 2 | 2 | |
 | S-LAM73 | 2 | 1 | |
+| S-NBH53 | 2 | 2 | |
 | SK18 | 2 | 1 | |
 | 157957 | 1 | 1 | |
 | 182080 | 1 | 1 | |
@@ -212,7 +213,6 @@ or per-lens patent backfills.
 | S-LAH75 | 1 | 1 | |
 | S-LAH85V | 1 | 1 | |
 | S-LAL52 | 1 | 1 | |
-| S-NBH53 | 1 | 1 | |
 | S-NBM52 | 1 | 1 | |
 | S-NPH85 | 1 | 1 | |
 | S-PHM51 | 1 | 1 | |
@@ -457,6 +457,11 @@ or per-lens patent backfills.
 
 - [SONY FE 28-70mm F2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 27A: `S-LAM73 (OHARA)`
 - [SONY FE 28-70mm F2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 34: `S-LAM73 (OHARA)`
+
+### S-NBH53 — 2 occurrences
+
+- [FUJIFILM FUJINON XF 90mm f/2 R LM WR](../../src/lens-data/fujifilm/FujifilmXF90mmf2.data.ts) 6: `S-NBH53 (OHARA)`
+- [Sony E 18-55mm f/3.5-5.6 OSS](../../src/lens-data/sony/SonyE1855mmf3556.data.ts) 4: `S-NBH53 (OHARA)`
 
 ### SK18 — 2 occurrences
 
@@ -1070,10 +1075,6 @@ or per-lens patent backfills.
 ### S-LAL52 — 1 occurrence
 
 - [OLYMPUS OM J. ZUIKO AUTO-W 24mm f/2](../../src/lens-data/olympus/OlympusZuiko24mmf2J.data.ts) 7: `S-LAL52 class (OHARA) / E-LAK02 (HIKARI), 670573`
-
-### S-NBH53 — 1 occurrence
-
-- [FUJIFILM FUJINON XF 90mm f/2 R LM WR](../../src/lens-data/fujifilm/FujifilmXF90mmf2.data.ts) 6: `S-NBH53 (OHARA)`
 
 ### S-NBM52 — 1 occurrence
 

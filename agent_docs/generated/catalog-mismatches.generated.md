@@ -13,12 +13,12 @@ with words like "probable" or "approx").
 
 ## Summary
 
-- **272** lenses scanned
-- **3019** glass surfaces examined
-- **3013** surfaces with non-empty `glass` strings
-- **2334** of those resolved to a catalog entry
-- **51** mismatches found (2.2% of resolved surfaces)
-- **23** distinct lens files affected
+- **275** lenses scanned
+- **3048** glass surfaces examined
+- **3042** surfaces with non-empty `glass` strings
+- **2354** of those resolved to a catalog entry
+- **52** mismatches found (2.2% of resolved surfaces)
+- **24** distinct lens files affected
 
 ## Most-frequent mismatched catalog targets
 
@@ -59,6 +59,7 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | TAFD5F | 1 | |
 | S-TIM35 | 1 | |
 | H-ZF52 | 1 | |
+| S-NBM51 | 1 | |
 | S-TIM28 | 1 | |
 | S-LAH95 | 1 | |
 | E-F3 | 1 | |
@@ -225,6 +226,12 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
 |---|---|---|---|---|---|
 | 4 | `H-ZF52 (CDGM) — exact match, unconfirmed in Ohara/Hoya/Schott` | H-ZF52 | 1.80610 | 1.84666 | +0.0406 |
+
+### [Sony E 18-55mm f/3.5-5.6 OSS](../../src/lens-data/sony/SonyE1855mmf3556.data.ts) — US 2011/0273780 A1
+
+| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
+|---|---|---|---|---|---|
+| 20 | `S-NBM51 (OHARA)` | S-NBM51 | 1.58144 | 1.61340 | +0.0320 |
 
 ### [SONY FE 28-70mm F2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) — WO 2025/263124 A1
 
