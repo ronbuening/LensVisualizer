@@ -1,3 +1,13 @@
+/**
+ * Manual optics/rendering benchmark harness.
+ *
+ * This module is loaded by `scripts/benchmark-optics-rendering.mjs` through a Vite
+ * SSR build so TSX, React server rendering, and catalog `import.meta.glob` behavior
+ * match the application. The benchmark records representative pipeline costs rather
+ * than correctness assertions: lens building, current-state layout, ray tracing,
+ * analysis jobs, static SVG rendering, and aberration-panel rendering.
+ */
+
 import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import {
@@ -62,6 +72,13 @@ declare const process:
     }
   | undefined;
 
+/**
+ * Representative lens set for performance tracking.
+ *
+ * The list deliberately spans simple primes, aspheric/modern lenses, zooms, macro and
+ * focus-heavy optics, perspective-control movement, fisheye projection launch, a large
+ * format wide zoom, a fully Sellmeier-covered APO zoom, and a folded mirror fixture.
+ */
 const DEFAULT_LENS_KEYS = [
   "canon-serenar-50f18",
   "apo-lanthar-50f2",
@@ -77,6 +94,13 @@ const DEFAULT_LENS_KEYS = [
   "reference-maksutov-cassegrain-meniscus",
 ] as const;
 
+/**
+ * Fixed runtime states exercised for every lens.
+ *
+ * `focusT`, `zoomT`, `aberrationT`, and `stopdownT` are normalized slider positions
+ * in the same 0..1 ranges used by the viewer. The scenarios intentionally keep the
+ * matrix small because each benchmark run renders many React trees and traces many rays.
+ */
 const SCENARIOS = [
   {
     id: "default",
@@ -116,22 +140,39 @@ const SCENARIOS = [
   },
 ] as const;
 
+/** Union of the static scenario objects above. */
 type ScenarioConfig = (typeof SCENARIOS)[number];
+
+/** Small serializable facts attached to a measured entry to prove the callback did real work. */
 type BenchmarkOutput = Record<string, number | string | boolean | null>;
 
+/** Metadata captured by the script wrapper before this SSR module is invoked. */
 interface BenchmarkMetadata {
   createdAt: string;
   git: BenchmarkRunRecord["git"];
   environment: BenchmarkRunRecord["environment"];
 }
 
+/** Options accepted by the manual benchmark runner. */
 export interface OpticsRenderingBenchmarkOptions extends BenchmarkMetadata {
+  /** Number of unrecorded calls made before measured samples. Defaults to 1. */
   warmups?: number;
+  /** Number of measured samples per category. Defaults to 3. */
   iterations?: number;
+  /** Validate schema and lens keys without measuring or writing records. */
   dryRun?: boolean;
+  /** Optional subset of catalog lens keys; primarily useful for local diagnosis. */
   lensKeys?: string[];
 }
 
+/**
+ * Reusable state for one lens/scenario pair.
+ *
+ * Values mirror the viewer's current optical state: `zPos` is the shifted surface
+ * coordinate array in millimeters, `IMG_MM` is the reference image plane, and the
+ * coordinate transforms map millimeter coordinates into SVG pixels. Precomputing this
+ * snapshot lets warm-path categories avoid rebuilding unrelated state.
+ */
 interface ScenarioSnapshot {
   L: RuntimeLens;
   scenario: ScenarioConfig;
@@ -157,6 +198,7 @@ interface ScenarioSnapshot {
   analysisContext: AnalysisComputationContext;
 }
 
+/** Counts returned from ray work measurement. */
 interface RayWorkOutput extends BenchmarkOutput {
   onAxisRays: number;
   offAxisRays: number;
@@ -164,6 +206,7 @@ interface RayWorkOutput extends BenchmarkOutput {
   hasChromaticSpread: boolean;
 }
 
+/** Full ray outputs reused by SVG rendering so trace cost is not counted twice there. */
 interface RayWorkResult {
   rays: RaySegment[];
   offAxisRays: RaySegment[];
@@ -173,6 +216,7 @@ interface RayWorkResult {
   output: RayWorkOutput;
 }
 
+/** Precomputed aberration values shared by section-level render benchmarks. */
 interface AberrationDataValues {
   sphericalAberration?: unknown;
   saProfile?: unknown;
@@ -182,8 +226,16 @@ interface AberrationDataValues {
   coma?: ReturnType<typeof analysisJobsForState2.computeComaAnalysis>;
 }
 
+/** Analysis breakdown results keyed by category id. */
 type AnalysisBenchmarkResults = Record<AnalysisBenchmarkCategory, BenchmarkEntry>;
 
+/**
+ * Runs the manual optics/rendering benchmark and returns a persisted record object.
+ *
+ * The function is side-effect-free with respect to the filesystem. The script wrapper
+ * owns writing run JSON, pruning old records, and regenerating the Markdown report.
+ * With `dryRun`, only lens-key validation and schema construction are performed.
+ */
 export async function runOpticsRenderingBenchmark(
   options: OpticsRenderingBenchmarkOptions,
 ): Promise<BenchmarkRunRecord> {
@@ -239,6 +291,7 @@ export async function runOpticsRenderingBenchmark(
   return record;
 }
 
+/** Throws early when a requested benchmark lens is not present in the runtime catalog. */
 function validateLensKeys(lensKeys: readonly string[]): void {
   const missing = lensKeys.filter((key) => !LENS_CATALOG[key]);
   if (missing.length > 0) {
@@ -246,6 +299,13 @@ function validateLensKeys(lensKeys: readonly string[]): void {
   }
 }
 
+/**
+ * Measures the main pipeline categories for one lens/scenario cell.
+ *
+ * Cold total rebuilds the lens and all derived work to approximate first-use cost.
+ * Warm total reuses the prepared snapshot and measures repeated viewer work after the
+ * catalog lens has already been normalized.
+ */
 function measureMainScenario(
   lensKey: string,
   scenario: ScenarioConfig,
@@ -298,6 +358,15 @@ function measureMainScenario(
   };
 }
 
+/**
+ * Builds the viewer-equivalent optical state for one scenario.
+ *
+ * The benchmark mirrors `LensViewer` conventions: layout is anchored to the reference
+ * image plane, focus/zoom/aberration sliders are normalized, and stop-down scales both
+ * physical stop semi-diameter and entrance-pupil semi-diameter from the open-aperture
+ * values. Cardinal and effective f-number calls are included to keep layout work close
+ * to the visible viewer path even when their return values are not serialized.
+ */
 function buildScenarioSnapshot(L: RuntimeLens, scenario: ScenarioConfig): ScenarioSnapshot {
   const focusT = scenario.focusT;
   const zoomT = L.isZoom ? scenario.zoomT : 0;
@@ -366,6 +435,15 @@ function buildScenarioSnapshot(L: RuntimeLens, scenario: ScenarioConfig): Scenar
   };
 }
 
+/**
+ * Traces all viewer ray families enabled by a scenario.
+ *
+ * Off-axis rays use the same projection-aware branch as the UI: ultra-wide/fisheye
+ * cases launch vector rays, while ordinary fields use paraxial chief-ray slope/height.
+ * Chromatic spread is computed from the largest unclipped matching ray fraction with at
+ * least two wavelength channels, avoiding clipped marginal samples that would overstate
+ * longitudinal color.
+ */
 function computeRayWork(snapshot: ScenarioSnapshot): RayWorkResult {
   const { L, scenario, zPos, IMG_MM, focusT, zoomT, aberrationT, currentPhysStopSD, currentEPSD } = snapshot;
   const focusK = scenario.rayTracksF ? conjugateK(focusT, zoomT, L, aberrationT) : 0;
@@ -509,6 +587,13 @@ function computeRayWork(snapshot: ScenarioSnapshot): RayWorkResult {
   };
 }
 
+/**
+ * Measures the coarse analysis workload used by the main `analysis` category.
+ *
+ * Folded optics intentionally skip the sequential field-analysis jobs that the UI also
+ * guards. Mirror-safe pupil, bokeh, and best-focus work still runs so folded fixtures
+ * remain represented in the benchmark record.
+ */
 function computeAnalysisWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
   const { L, analysisContext } = snapshot;
   const output: BenchmarkOutput = {};
@@ -532,6 +617,11 @@ function computeAnalysisWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
   return output;
 }
 
+/**
+ * Measures individual analysis jobs so regressions can be attributed below the coarse
+ * `analysis` category. Categories that are guarded for folded systems are recorded as
+ * skips instead of errors to keep reports honest about coverage.
+ */
 function measureAnalysisBreakdown(
   lensKey: string,
   scenario: ScenarioConfig,
@@ -560,6 +650,7 @@ function measureAnalysisBreakdown(
   };
 }
 
+/** Measures the optical summary path through the prepared-state analysis API. */
 function computeAnalysisSummaryWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
   const summary = analysisJobsForState2.computeOpticalSummary(
     snapshot.preparedState,
@@ -571,6 +662,7 @@ function computeAnalysisSummaryWork(snapshot: ScenarioSnapshot): BenchmarkOutput
   return { summarySurfaceCount: summary.surfaceCount };
 }
 
+/** Measures distortion-curve sampling for non-folded systems. */
 function computeAnalysisDistortionCurveWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
   const samples = analysisJobsForState2.computeDistortionCurve(
     snapshot.preparedState,
@@ -581,6 +673,7 @@ function computeAnalysisDistortionCurveWork(snapshot: ScenarioSnapshot): Benchma
   return { distortionSamples: samples.length };
 }
 
+/** Measures the distortion field-grid helper used by the analysis drawer. */
 function computeAnalysisDistortionGridWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
   const grid = analysisJobsForState2.computeDistortionFieldGrid(
     snapshot.preparedState,
@@ -590,6 +683,7 @@ function computeAnalysisDistortionGridWork(snapshot: ScenarioSnapshot): Benchmar
   return { distortionGridLines: grid.lines.length };
 }
 
+/** Measures vignetting sampling for non-folded sequential systems. */
 function computeAnalysisVignettingWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
   const samples = analysisJobsForState2.computeVignettingCurve(
     snapshot.preparedState,
@@ -600,6 +694,7 @@ function computeAnalysisVignettingWork(snapshot: ScenarioSnapshot): BenchmarkOut
   return { vignettingSamples: samples.length };
 }
 
+/** Measures entrance/exit pupil aberration profile generation. */
 function computeAnalysisPupilsWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
   const pupilProfiles = analysisJobsForState2.computeBothPupilAberrationProfiles(
     snapshot.preparedState,
@@ -609,6 +704,7 @@ function computeAnalysisPupilsWork(snapshot: ScenarioSnapshot): BenchmarkOutput 
   return { pupilSamples: pupilProfiles.ep.samples.length + pupilProfiles.xp.samples.length };
 }
 
+/** Measures paired infinity/near-focus bokeh preview data generation. */
 function computeAnalysisBokehPairWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
   const bokehPair = analysisJobsForState2.computeBokehPreviewPair(
     snapshot.preparedState,
@@ -621,6 +717,7 @@ function computeAnalysisBokehPairWork(snapshot: ScenarioSnapshot): BenchmarkOutp
   };
 }
 
+/** Measures best-focus solve cost for the current stop and entrance-pupil scale. */
 function computeAnalysisBestFocusWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
   return {
     bestFocusZ: analysisJobsForState2.computeBestFocusZ(
@@ -631,6 +728,13 @@ function computeAnalysisBestFocusWork(snapshot: ScenarioSnapshot): BenchmarkOutp
   };
 }
 
+/**
+ * Measures aberration drawer data jobs and server-rendered panel/section trees.
+ *
+ * Data and render categories are kept separate because analysis cost and React markup
+ * cost regress for different reasons. Folded systems record explicit skips for field
+ * curvature/coma paths that are still guarded in the UI.
+ */
 function measureAberrationPanels(
   lensKey: string,
   scenario: ScenarioConfig,
@@ -749,6 +853,13 @@ function measureAberrationPanels(
   return { data, render, skips };
 }
 
+/**
+ * Precomputes data shared by section render benchmarks.
+ *
+ * Field-curvature and coma data are omitted for folded optics for the same reason the
+ * corresponding render sections are skipped: those analysis paths are intentionally
+ * guarded until fixture-backed validation says they are mirror-safe.
+ */
 function computeAberrationDataValues(snapshot: ScenarioSnapshot): AberrationDataValues {
   const sphericalAberration = analysisJobsForState2.computeSphericalAberration(
     snapshot.preparedState,
@@ -786,6 +897,12 @@ function computeAberrationDataValues(snapshot: ScenarioSnapshot): AberrationData
   return { sphericalAberration, saProfile, saBlurCharacter, fieldCurvature, chromaticFieldCurvature, coma };
 }
 
+/**
+ * Server-renders the full SVG diagram using already traced rays.
+ *
+ * Passing precomputed ray work isolates React/SVG rendering cost from ray-tracing cost,
+ * while still exercising the same diagram props used by the viewer.
+ */
 function renderDiagram(snapshot: ScenarioSnapshot, rayWork: RayWorkResult): BenchmarkOutput {
   const html = renderToStaticMarkup(
     <DiagramSVG
@@ -828,6 +945,7 @@ function renderDiagram(snapshot: ScenarioSnapshot, rayWork: RayWorkResult): Benc
   return { markupLength: html.length, shapes: snapshot.shapes.length };
 }
 
+/** Server-renders the complete aberrations panel with the prepared analysis context. */
 function renderAberrationsTab(snapshot: ScenarioSnapshot): BenchmarkOutput {
   const html = renderToStaticMarkup(
     <AberrationsPanel
@@ -849,6 +967,7 @@ function renderAberrationsTab(snapshot: ScenarioSnapshot): BenchmarkOutput {
   return { markupLength: html.length };
 }
 
+/** Server-renders the standalone coma tab for non-folded systems. */
 function renderComaTab(snapshot: ScenarioSnapshot): BenchmarkOutput {
   const html = renderToStaticMarkup(
     <ComaTab
@@ -868,6 +987,7 @@ function renderComaTab(snapshot: ScenarioSnapshot): BenchmarkOutput {
   return { markupLength: html.length };
 }
 
+/** Server-renders the spherical-aberration section using precomputed section data. */
 function renderSphericalSection(snapshot: ScenarioSnapshot, values: AberrationDataValues): BenchmarkOutput {
   const html = renderToStaticMarkup(
     <SphericalAberrationSection
@@ -882,6 +1002,7 @@ function renderSphericalSection(snapshot: ScenarioSnapshot, values: AberrationDa
   return { markupLength: html.length, folded: snapshot.L.isFoldedOptics };
 }
 
+/** Server-renders field-curvature output, preferring chromatic data when available. */
 function renderFieldCurvatureSection(snapshot: ScenarioSnapshot, values: AberrationDataValues): BenchmarkOutput {
   const html = renderToStaticMarkup(
     <FieldCurvatureSection
@@ -898,6 +1019,7 @@ function renderFieldCurvatureSection(snapshot: ScenarioSnapshot, values: Aberrat
   return { markupLength: html.length, folded: snapshot.L.isFoldedOptics };
 }
 
+/** Server-renders the astigmatism section from the same field-curvature bundle. */
 function renderAstigmatismSection(snapshot: ScenarioSnapshot, values: AberrationDataValues): BenchmarkOutput {
   const html = renderToStaticMarkup(
     <AstigmatismSection
@@ -912,6 +1034,7 @@ function renderAstigmatismSection(snapshot: ScenarioSnapshot, values: Aberration
   return { markupLength: html.length, folded: snapshot.L.isFoldedOptics };
 }
 
+/** Server-renders the coma point-cloud preview section. */
 function renderComaPreviewSection(snapshot: ScenarioSnapshot, values: AberrationDataValues): BenchmarkOutput {
   const html = renderToStaticMarkup(
     <ComaPreviewSection
@@ -924,6 +1047,7 @@ function renderComaPreviewSection(snapshot: ScenarioSnapshot, values: Aberration
   return { markupLength: html.length, folded: snapshot.L.isFoldedOptics };
 }
 
+/** Server-renders the meridional coma plot section. */
 function renderMeridionalComaSection(snapshot: ScenarioSnapshot, values: AberrationDataValues): BenchmarkOutput {
   const html = renderToStaticMarkup(
     <MeridionalComaSection
@@ -936,6 +1060,7 @@ function renderMeridionalComaSection(snapshot: ScenarioSnapshot, values: Aberrat
   return { markupLength: html.length, folded: snapshot.L.isFoldedOptics };
 }
 
+/** Server-renders the sagittal coma plot section. */
 function renderSagittalComaSection(snapshot: ScenarioSnapshot, values: AberrationDataValues): BenchmarkOutput {
   const html = renderToStaticMarkup(
     <SagittalComaSection
@@ -948,6 +1073,12 @@ function renderSagittalComaSection(snapshot: ScenarioSnapshot, values: Aberratio
   return { markupLength: html.length, folded: snapshot.L.isFoldedOptics };
 }
 
+/**
+ * Converts raw trace points into the same SVG segment structure used by diagram hooks.
+ *
+ * `endOverride` lets off-axis edge rays terminate at the UI-computed field edge instead
+ * of extrapolating to the reference image plane.
+ */
 function compileTraceSegment(
   snapshot: ScenarioSnapshot,
   result: ReturnType<typeof traceRay>,
@@ -967,6 +1098,7 @@ function compileTraceSegment(
   );
 }
 
+/** Adds wavelength, axis, and aperture-fraction metadata to a compiled trace segment. */
 function compileChromaticTraceSegment(
   snapshot: ScenarioSnapshot,
   result: ReturnType<typeof traceRayChromatic>,
@@ -987,6 +1119,13 @@ function compileChromaticTraceSegment(
   };
 }
 
+/**
+ * Computes chromatic spread for the largest available unclipped ray fraction on one axis.
+ *
+ * The UI spread annotation needs at least two wavelength channels at a shared aperture
+ * fraction. Fractions are searched from the marginal rays inward so the reported spread
+ * reflects the broadest valid aperture sample without using clipped rays.
+ */
 function spreadForAxis(
   chromaticRays: ChromaticRaySegment[],
   axis: ChromaticRaySegment["axis"],
@@ -1014,6 +1153,13 @@ function spreadForAxis(
   return null;
 }
 
+/**
+ * Times one benchmark callback with warmups, optional forced GC, and heap deltas.
+ *
+ * The measured callback must return a compact serializable output object. Errors are
+ * captured into the benchmark entry rather than thrown, allowing one failing category
+ * to appear in the report without aborting the full run.
+ */
 function measureEntry(
   _label: string,
   fn: () => BenchmarkOutput,
@@ -1057,10 +1203,12 @@ function measureEntry(
   return { status: "ok", stats, output };
 }
 
+/** Creates a skipped benchmark entry with a stable human-readable reason. */
 function skippedEntry(reason: string): BenchmarkEntry {
   return { status: "skipped", reason };
 }
 
+/** Summarizes measured samples after dropping non-finite values. */
 function summarizeSamples(values: readonly number[]): NumericSummary | null {
   const finite = values.filter(Number.isFinite).sort((a, b) => a - b);
   if (finite.length === 0) return null;
@@ -1073,6 +1221,7 @@ function summarizeSamples(values: readonly number[]): NumericSummary | null {
   };
 }
 
+/** Returns a linearly interpolated quantile from an already sorted finite sample array. */
 function quantileSorted(values: readonly number[], q: number): number {
   if (values.length === 1) return values[0];
   const pos = (values.length - 1) * q;
@@ -1082,15 +1231,23 @@ function quantileSorted(values: readonly number[], q: number): number {
   return values[lower] + (values[upper] - values[lower]) * (pos - lower);
 }
 
+/** Reads Node heap usage when the benchmark runtime exposes `process.memoryUsage`. */
 function heapUsed(): number | null {
   return process?.memoryUsage?.().heapUsed ?? null;
 }
 
+/** Invokes `globalThis.gc` when Node was launched with explicit garbage collection enabled. */
 function collectGarbage(): void {
   const gc = (globalThis as { gc?: () => void }).gc;
   if (typeof gc === "function") gc();
 }
 
+/**
+ * Reduces arbitrary analysis results to compact record metadata.
+ *
+ * Benchmark records should prove work was performed without embedding large arrays,
+ * React markup, or optical data structures in every JSON run file.
+ */
 function describeComputationOutput(value: unknown): BenchmarkOutput {
   if (Array.isArray(value)) return { items: value.length };
   if (value && typeof value === "object") return { keys: Object.keys(value).length };
@@ -1099,4 +1256,5 @@ function describeComputationOutput(value: unknown): BenchmarkOutput {
   return { result: value === null ? "null" : typeof value };
 }
 
+/** Stable no-op callback used for server-rendered interactive components. */
 const noop = () => {};
