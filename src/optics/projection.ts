@@ -30,4 +30,5 @@ export {
   type ProjectionReference2 as ProjectionReference,
 } from "./compat.js";
 
+/** Supported projection-reference families for distortion and image-height mapping. */
 export type ProjectionReferenceKind = "rectilinear" | "fisheye-equidistant" | "fisheye-equisolid";

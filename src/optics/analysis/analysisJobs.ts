@@ -37,6 +37,14 @@ import {
 import { computeOpticalSummaryForState2 } from "./summary.js";
 import { computeVignettingCurve2, computeVignettingCurveForState2 } from "./vignetting.js";
 
+/**
+ * RuntimeLens analysis job registry for compatibility callers.
+ *
+ * Each method forwards all state explicitly: `zPos` is in mm, `focusT`/`zoomT`
+ * are normalized sliders, and aperture values are semi-diameters in mm.
+ *
+ * @returns grouped synchronous functions for RuntimeLens analysis work
+ */
 export const analysisJobs2 = {
   computeDistortionCurve(
     L: RuntimeLens,
@@ -132,6 +140,14 @@ export const analysisJobs2 = {
   },
 };
 
+/**
+ * Prepared-state analysis job registry for engine-native callers.
+ *
+ * Prepared-state jobs recover RuntimeLens-compatible z positions only at the boundary,
+ * keeping all analysis state tied to the same compiled focus/zoom/aberration snapshot.
+ *
+ * @returns grouped synchronous functions bound by explicit PreparedOpticalState inputs
+ */
 export const analysisJobsForState2 = {
   computeSphericalAberration(state: PreparedOpticalState, currentEPSD: number, currentPhysStopSD: number) {
     return computeSphericalAberrationForState2(state, currentEPSD, currentPhysStopSD);

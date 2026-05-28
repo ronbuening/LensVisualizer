@@ -32,6 +32,22 @@ const SA_BLUR_CHARACTER_MIN_VALID_SAMPLES = 5;
 const SA_BLUR_CHARACTER_MIN_LONGITUDINAL_MM = 5e-4;
 const SA_BLUR_CHARACTER_DEFOCUS_SCALE = 0.5;
 
+/**
+ * Compute on-axis longitudinal and transverse spherical aberration.
+ *
+ * Uses symmetric real-ray pairs at near-axis and marginal pupil fractions. The
+ * headline longitudinal SA is marginal intercept minus near-axis intercept; the
+ * blur metrics are measured at the current and least-squares best-focus planes.
+ *
+ * @param L - runtime lens object
+ * @param zPos - current surface vertex positions in mm
+ * @param focusT - normalized focus slider
+ * @param zoomT - normalized zoom slider
+ * @param currentEPSD - entrance-pupil semi-diameter in mm
+ * @param currentPhysStopSD - physical stop semi-diameter in mm
+ * @param aberrationT - normalized aberration spacing slider
+ * @returns spherical-aberration metrics, or null when rays clip/degenerate
+ */
 export function computeSphericalAberration(
   L: RuntimeLens,
   zPos: number[],
@@ -140,6 +156,21 @@ export function computeSphericalAberration(
   };
 }
 
+/**
+ * Build the transverse spherical-aberration profile curve.
+ *
+ * Points are evaluated at the real-ray best-focus plane and expressed relative
+ * to the near-axis ray height at that same plane.
+ *
+ * @param L - runtime lens object
+ * @param zPos - current surface vertex positions in mm
+ * @param focusT - normalized focus slider
+ * @param zoomT - normalized zoom slider
+ * @param currentEPSD - entrance-pupil semi-diameter in mm
+ * @param currentPhysStopSD - physical stop semi-diameter in mm
+ * @param aberrationT - normalized aberration spacing slider
+ * @returns sampled pupil fraction versus transverse SA in mm
+ */
 export function computeSAProfile(
   L: RuntimeLens,
   zPos: number[],
@@ -262,6 +293,23 @@ function computeOnAxisBlurCharacterAtPlane(
   };
 }
 
+/**
+ * Classify foreground/background blur character implied by spherical aberration.
+ *
+ * The defocus planes are placed symmetrically around best focus by half the
+ * absolute longitudinal SA. On-axis circular pupil samples are traced as a bokeh
+ * footprint and reduced to center/rim brightness character.
+ *
+ * @param L - runtime lens object
+ * @param zPos - current surface vertex positions in mm
+ * @param focusT - normalized focus slider
+ * @param zoomT - normalized zoom slider
+ * @param currentEPSD - entrance-pupil semi-diameter in mm
+ * @param currentPhysStopSD - physical stop semi-diameter in mm
+ * @param baseResult - optional matching spherical-aberration result
+ * @param aberrationT - normalized aberration spacing slider
+ * @returns front/rear blur character, or null when the SA signal is too small
+ */
 export function computeSphericalAberrationBlurCharacter(
   L: RuntimeLens,
   zPos: number[],

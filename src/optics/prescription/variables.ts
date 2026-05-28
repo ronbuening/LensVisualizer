@@ -9,6 +9,14 @@ import type { VarRange } from "../../types/optics.js";
 import { lerp } from "../math/numerics.js";
 import { resolveLabel } from "./labels.js";
 
+/**
+ * Compile authored variable gaps from label keys to surface-index keys.
+ *
+ * @param variableGaps - optional label-keyed focus/zoom/aberration ranges
+ * @param labelToSurfaceIndex - normalized label lookup for the lens
+ * @param context - field name used in label-resolution errors
+ * @returns frozen surface-index keyed variable ranges
+ */
 export function compileVariableGaps(
   variableGaps: Record<string, VarRange> | undefined,
   labelToSurfaceIndex: Readonly<Record<string, number>>,
@@ -21,6 +29,14 @@ export function compileVariableGaps(
   return Object.freeze(out);
 }
 
+/**
+ * Compile authored variable-gap labels from surface labels to indices.
+ *
+ * @param labels - optional label/text pairs for movement UI
+ * @param labelToSurfaceIndex - normalized label lookup for the lens
+ * @param context - field name used in label-resolution errors
+ * @returns frozen surface-index/text pairs
+ */
 export function compileVariableLabels(
   labels: readonly (readonly [string, string])[] | undefined,
   labelToSurfaceIndex: Readonly<Record<string, number>>,
@@ -33,6 +49,16 @@ export function compileVariableLabels(
   );
 }
 
+/**
+ * Resolve a variable gap at a normalized focus/aberration and zoom control.
+ *
+ * @param baseThickness - authored default thickness in mm
+ * @param range - optional variable range
+ * @param isZoom - whether the lens uses zoom-indexed ranges
+ * @param controlT - normalized focus or aberration control
+ * @param zoomT - normalized zoom control
+ * @returns current axial thickness in mm
+ */
 export function resolveVariableThickness(
   baseThickness: number,
   range: VarRange | undefined,
@@ -61,6 +87,21 @@ export function resolveVariableThickness(
   return lerp(dInfinity, dClose, controlT);
 }
 
+/**
+ * Combine focus and aberration variable ranges for one surface gap.
+ *
+ * Aberration control is applied as a delta from the base thickness after focus
+ * movement, matching the RuntimeLens compatibility behavior.
+ *
+ * @param baseThickness - authored default thickness in mm
+ * @param focusRange - optional focus/zoom range
+ * @param aberrationRange - optional aberration-control range
+ * @param isZoom - whether the lens uses zoom-indexed ranges
+ * @param focusT - normalized focus slider
+ * @param zoomT - normalized zoom slider
+ * @param aberrationT - normalized aberration spacing slider
+ * @returns current axial thickness in mm
+ */
 export function resolveControlledThickness(
   baseThickness: number,
   focusRange: VarRange | undefined,

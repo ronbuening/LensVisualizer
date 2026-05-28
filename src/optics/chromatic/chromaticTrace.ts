@@ -28,6 +28,19 @@ function spanOf(values: number[]): number {
   return Math.max(...values) - Math.min(...values);
 }
 
+/**
+ * Trace one engine ray with wavelength-specific refractive indices.
+ *
+ * The input ray is in optical millimeters with a normalized 3D direction. The
+ * supplied channel replaces each surface's d-line index with its resolved index
+ * for C/d/F/g spectral lines before exact surface tracing.
+ *
+ * @param state - prepared optical state for the current lens controls
+ * @param input - 3D ray origin/direction in optical coordinates
+ * @param channel - chromatic channel to trace
+ * @param options - trace limits such as stop/image-plane termination
+ * @returns exact engine trace result for the selected wavelength
+ */
 export function traceEngineRayChromatic2(
   state: PreparedOpticalState,
   input: Ray3,
@@ -40,6 +53,18 @@ export function traceEngineRayChromatic2(
   });
 }
 
+/**
+ * Measure longitudinal and transverse chromatic spread from traced marginal rays.
+ *
+ * Longitudinal chromatic aberration is the span of per-channel axial intercepts;
+ * transverse chromatic aberration is the span of per-channel heights at `imgZ`.
+ * Clipped channels are ignored so a failed color does not bias the spread.
+ *
+ * @param marginalRays - per-channel marginal ray state after the last surface
+ * @param imgZ - image-plane z coordinate in mm
+ * @param lastSurfZ - final surface vertex z coordinate in mm
+ * @returns LCA/TCA spans plus per-channel intercepts and image heights in mm
+ */
 export function computeChromaticSpread2(
   marginalRays: Partial<Record<ChromaticChannel, MarginalRayData>>,
   imgZ: number,

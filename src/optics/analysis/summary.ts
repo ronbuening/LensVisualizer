@@ -7,6 +7,12 @@ import { FOCUS_INFINITY_THRESHOLD, eflAtZoom } from "../layout.js";
 import { computeCardinalElements2 } from "../first-order/cardinals.js";
 import type { PreparedOpticalState } from "../types.js";
 
+/**
+ * Scalar metrics shown by the Summary analysis tab for one current optical state.
+ *
+ * Distances are in millimeters unless the property name says meters. Nullable values
+ * indicate unavailable or non-finite optics results rather than zero-valued measurements.
+ */
 export interface OpticalSummaryMetrics2 {
   currentEFLMm: number | null;
   infinityEFLMm: number | null;
@@ -30,6 +36,20 @@ export interface OpticalSummaryMetrics2 {
   principalHiatusMm: number | null;
 }
 
+/**
+ * Compute headline current-state optical metrics from prepared engine data.
+ *
+ * This is intentionally a read-only summary: it does not rebuild the RuntimeLens or
+ * change any trace state. `dynamicEFL` and aperture values are supplied by the caller
+ * because they depend on UI state that lives outside the prepared lens prescription.
+ *
+ * @param state - prepared optical state for current focus/zoom/aberration sliders
+ * @param dynamicEFL - current effective focal length in mm
+ * @param currentEPSD - entrance-pupil semi-diameter in mm
+ * @param currentPhysStopSD - physical stop semi-diameter in mm
+ * @param fieldGeometry - optional solved field geometry for current half-field reporting
+ * @returns finite/null summary metrics for the analysis drawer
+ */
 export function computeOpticalSummaryForState2(
   state: PreparedOpticalState,
   dynamicEFL: number,

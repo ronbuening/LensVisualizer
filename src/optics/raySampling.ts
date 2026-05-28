@@ -56,6 +56,10 @@ function sampleCountForDensity(fractions: readonly number[], density: RayDensity
 /**
  * Derive viewport ray samples from the lens's normal ray fan. Lens data keeps
  * owning the normal baseline; denser modes only affect interactive rendering.
+ *
+ * @param fractions - authored normalized pupil fractions
+ * @param density - requested viewport ray density
+ * @returns normalized pupil fractions for rendering
  */
 export function rayFractionsForDensity(fractions: readonly number[], density: RayDensity): number[] {
   if (density === "normal") return [...fractions];
@@ -70,6 +74,19 @@ export function rayFractionsForDensity(fractions: readonly number[], density: Ra
   return Array.from({ length: count }, (_, i) => -maxAbs + i * step).map((f) => (Math.abs(f) < 1e-12 ? 0 : f));
 }
 
+/**
+ * Derive ray samples while avoiding central folded-system obstructions.
+ *
+ * For annular mirror paths, pupil fractions whose physical height falls inside
+ * a central blocker or mirror hole are removed so visible normal/dense rays stay
+ * in transmissive pupil bands.
+ *
+ * @param L - lens fields needed to inspect folded obstructions
+ * @param fractions - authored normalized pupil fractions
+ * @param density - requested viewport ray density
+ * @param entrancePupilSemiDiameter - current entrance-pupil semi-diameter in mm
+ * @returns normalized pupil fractions that should survive obstruction clipping
+ */
 export function obstructionAwareRayFractionsForDensity(
   L: Pick<RuntimeLens, "isFoldedOptics" | "S">,
   fractions: readonly number[],
@@ -97,6 +114,13 @@ export function obstructionAwareRayFractionsForDensity(
   return maxAbs > 0 ? [-maxAbs, maxAbs] : [];
 }
 
+/**
+ * Count samples produced for a density without materializing caller-specific state.
+ *
+ * @param fractions - authored normalized pupil fractions
+ * @param density - requested viewport ray density
+ * @returns number of generated ray samples
+ */
 export function raySampleCountForDensity(fractions: readonly number[], density: RayDensity): number {
   return rayFractionsForDensity(fractions, density).length;
 }

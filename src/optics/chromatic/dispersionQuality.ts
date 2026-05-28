@@ -12,6 +12,16 @@ import type { EngineLens, PreparedOpticalState } from "../types.js";
 const QUALITY_ORDER: DispersionQuality[] = ["sellmeier", "lineIndices", "abbe", "constant"];
 const ENGINE_LENS_BY_RUNTIME = new WeakMap<RuntimeLens, EngineLens>();
 
+/**
+ * Report the weakest dispersion data quality used by a normalized engine lens.
+ *
+ * Air surfaces are ignored. The returned quality is a conservative summary for
+ * user-facing badges: if any glass falls back to Abbe or constant index, that
+ * weaker level represents the whole lens.
+ *
+ * @param lens - normalized engine lens with compiled surface dispersions
+ * @returns worst non-air dispersion quality in the lens
+ */
 export function summarizeDispersionQualityForLens2(lens: EngineLens): DispersionQuality {
   let worst: DispersionQuality = "sellmeier";
   for (const entry of lens.dispersion) {
@@ -21,10 +31,22 @@ export function summarizeDispersionQualityForLens2(lens: EngineLens): Dispersion
   return worst;
 }
 
+/**
+ * Report dispersion quality for an already prepared optical state.
+ *
+ * @param state - prepared optical state whose lens contains compiled dispersion data
+ * @returns worst non-air dispersion quality in the lens
+ */
 export function summarizeDispersionQualityForState2(state: PreparedOpticalState): DispersionQuality {
   return summarizeDispersionQualityForLens2(state.lens);
 }
 
+/**
+ * Report dispersion quality for a RuntimeLens, normalizing once per lens object.
+ *
+ * @param L - runtime lens object
+ * @returns worst non-air dispersion quality in the lens
+ */
 export function summarizeDispersionQuality2(L: RuntimeLens): DispersionQuality {
   let engineLens = ENGINE_LENS_BY_RUNTIME.get(L);
   if (!engineLens) {

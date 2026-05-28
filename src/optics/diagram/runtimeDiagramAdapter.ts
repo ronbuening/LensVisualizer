@@ -17,10 +17,27 @@ const ENGINE_LENS_BY_RUNTIME = new WeakMap<RuntimeLens, EngineLens>();
 
 export { createCoordinateTransforms2 };
 
+/**
+ * Compute display-only element trimming diagnostics for a RuntimeLens diagram.
+ *
+ * @param L - runtime lens object
+ * @param zPos - current surface vertex positions in mm
+ * @returns per-element render semi-diameter diagnostics
+ */
 export function computeElementRenderDiagnostics2(L: RuntimeLens, zPos: number[]): ElementRenderDiagnostics[] {
   return computeElementRenderDiagnosticsForState2(stateForRuntimeDiagram2(L, zPos));
 }
 
+/**
+ * Build SVG-ready element shapes for RuntimeLens diagram rendering.
+ *
+ * @param L - runtime lens object
+ * @param zPos - current surface vertex positions in mm
+ * @param sx - optical z-mm to SVG x-coordinate mapper
+ * @param sy - optical y-mm to SVG y-coordinate mapper
+ * @param pointTransform - optional display transform for lens movement overlays
+ * @returns SVG path data for elements, aspheres, and mirror-coating accents
+ */
 export function computeElementShapes2(
   L: RuntimeLens,
   zPos: number[],
@@ -31,6 +48,17 @@ export function computeElementShapes2(
   return computeElementShapesForState2(stateForRuntimeDiagram2(L, zPos), sx, sy, pointTransform);
 }
 
+/**
+ * Create a prepared diagram state from RuntimeLens data and caller-provided z positions.
+ *
+ * The z positions usually come from the legacy layout pipeline. They replace only the
+ * display-space vertex positions and adjacent thicknesses, leaving optical metadata
+ * and surface profiles unchanged.
+ *
+ * @param L - runtime lens object
+ * @param zPos - current surface vertex positions in mm
+ * @returns prepared optical state suitable for diagram geometry helpers
+ */
 export function stateForRuntimeDiagram2(L: RuntimeLens, zPos: readonly number[]): PreparedOpticalState {
   let engineLens = ENGINE_LENS_BY_RUNTIME.get(L);
   if (!engineLens) {

@@ -11,6 +11,7 @@ import type { AsphericCoefficients } from "../../types/optics.js";
 export const FLAT_R_THRESHOLD = 1e10;
 /** tan(64.16 deg): default rim-slope cap for rejecting unrealistic authored apertures. */
 export const MAX_RIM_SLOPE_TAN = 0.9 / Math.sqrt(1 - 0.9 ** 2);
+/** Default maximum rim slope expressed as an angle in degrees for validation messages. */
 export const DEFAULT_MAX_RIM_ANGLE_DEG = (Math.atan(MAX_RIM_SLOPE_TAN) * 180) / Math.PI;
 
 /**

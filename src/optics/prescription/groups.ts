@@ -9,6 +9,14 @@ import type { AnnotationData, ElementData, ResolvedAnnotation, SurfaceData } fro
 import type { CompiledElement } from "../types.js";
 import { resolveLabel } from "./labels.js";
 
+/**
+ * Compile authored element metadata into normalized engine element spans.
+ *
+ * @param surfaces - authored physical surfaces
+ * @param elements - authored element metadata
+ * @param labelToSurfaceIndex - normalized label lookup for the lens
+ * @returns frozen compiled element records with surface-index spans
+ */
 export function compileElements(
   surfaces: readonly SurfaceData[],
   elements: readonly ElementData[],
@@ -32,6 +40,13 @@ export function compileElements(
   );
 }
 
+/**
+ * Compile annotation label ranges into index ranges.
+ *
+ * @param annotations - optional authored annotation records
+ * @param labelToSurfaceIndex - normalized label lookup for the lens
+ * @returns frozen annotation records with zero-based surface indices
+ */
 export function compileAnnotations(
   annotations: readonly AnnotationData[] | undefined,
   labelToSurfaceIndex: Readonly<Record<string, number>>,

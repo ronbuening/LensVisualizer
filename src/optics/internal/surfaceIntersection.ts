@@ -8,19 +8,23 @@
 import type { AsphericCoefficients } from "../../types/optics.js";
 import { FLAT_R_THRESHOLD, conicPolySag, sagSlopeRaw } from "./surfaceMath.js";
 
+/** Typed failure reason from the RuntimeLens-shaped sag-surface intersection solver. */
 export type SurfaceIntersectionFailureReason =
   | "invalidRayDirection"
   | "invalidBounds"
   | "noBracket"
   | "noConvergedIntersection";
 
+/** 3D vector tuple in engine coordinates: x sagittal, y meridional, z axial millimeters. */
 export type Vector3 = [number, number, number];
 
+/** Ray input for the legacy exact tracer; direction is normalized by the solver. */
 export interface SurfaceIntersectionRay {
   origin: Vector3;
   direction: Vector3;
 }
 
+/** Search controls for intersecting a ray with one RuntimeLens sag surface. */
 export interface SurfaceIntersectionOptions {
   minT?: number;
   maxT?: number;
@@ -30,11 +34,13 @@ export interface SurfaceIntersectionOptions {
   refractiveIndex?: number;
 }
 
+/** Minimal RuntimeLens-shaped surface/asphere lookup needed by the solver. */
 export interface SurfaceIntersectionLens {
   S: readonly { R: number }[];
   asphByIdx: Record<number, AsphericCoefficients>;
 }
 
+/** Successful RuntimeLens sag-surface hit with geometry and residual diagnostics. */
 export interface SurfaceIntersectionSuccess {
   ok: true;
   surfaceIdx: number;
@@ -48,6 +54,7 @@ export interface SurfaceIntersectionSuccess {
   opticalPathLength: number | null;
 }
 
+/** Failed RuntimeLens sag-surface hit with a typed reason and optional residual. */
 export interface SurfaceIntersectionFailure {
   ok: false;
   surfaceIdx: number;
@@ -56,6 +63,7 @@ export interface SurfaceIntersectionFailure {
   iterations: number;
 }
 
+/** Union result for RuntimeLens sag-surface intersection. */
 export type SurfaceIntersectionResult = SurfaceIntersectionSuccess | SurfaceIntersectionFailure;
 
 const DEFAULT_TOLERANCE = 1e-9;

@@ -9,6 +9,7 @@ import type { RuntimeLens } from "../../types/optics.js";
 import type { Vec3 } from "../types.js";
 import { boundingSphereLaunchVector2 } from "./projection.js";
 
+/** Current field-geometry ratios used to seed chief-ray and vector field launches. */
 export interface FieldGeometryState2 {
   halfFieldDeg: number;
   yRatio: number;
@@ -16,6 +17,7 @@ export interface FieldGeometryState2 {
   epRatio: number;
 }
 
+/** Bounding-sphere vector launch plus pupil basis vectors for off-axis sampling. */
 export interface VectorFieldRayLaunch2 {
   origin: Vec3;
   direction: Vec3;
@@ -29,6 +31,7 @@ export interface VectorFieldRayLaunch2 {
   launchSurface: "bounding-sphere";
 }
 
+/** A pupil-offset vector ray derived from a field launch. */
 export interface OffsetVectorFieldRay2 {
   origin: Vec3;
   direction: Vec3;

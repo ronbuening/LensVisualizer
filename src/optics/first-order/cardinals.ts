@@ -15,11 +15,13 @@ import { computeSystemMatrix2 } from "./systemMatrix.js";
 const CARDINAL_EPSILON = 1e-12;
 const FOLDED_PARAXIAL_SAMPLE_FRACTIONS = [0.04, 0.08, 0.16, 0.32, 0.5, 0.7, 0.9] as const;
 
+/** One axial cardinal point in optical coordinates, measured in mm along z. */
 export interface CardinalPoint2 {
   id: "F" | "F'" | "H" | "H'" | "N" | "N'";
   z: number;
 }
 
+/** One signed axial distance annotation between two cardinal/vertex/image points. */
 export interface CardinalDistance2 {
   id: "EFL" | "BFD" | "FFD" | "Hiatus" | "Total track";
   fromZ: number;
@@ -27,6 +29,13 @@ export interface CardinalDistance2 {
   valueMm: number;
 }
 
+/**
+ * Complete first-order cardinal-element result for the current optical state.
+ *
+ * Points and spans share the diagram's z coordinate convention: z increases from
+ * object side toward the nominal image side, with folded axial reflective fixtures
+ * reported only when their final image plane can be represented on that same axis.
+ */
 export interface CardinalElements2 {
   points: {
     frontFocal: CardinalPoint2;
@@ -51,6 +60,16 @@ export interface CardinalElements2 {
   nodalPrincipalCoincident: boolean;
 }
 
+/**
+ * Compute cardinal elements from a prepared state.
+ *
+ * Ordinary lenses use the paraxial ABCD system matrix. Folded reflective systems
+ * use a restricted axial path that supports untilted refractive/reflective surfaces
+ * and returns null when a stable first-order reporting convention is unavailable.
+ *
+ * @param state - prepared optical state for current focus/zoom/aberration sliders
+ * @returns cardinal points/distances in mm, or null when the matrix is degenerate
+ */
 export function computeCardinalElements2(state: PreparedOpticalState): CardinalElements2 | null {
   if (state.lens.flags.isFoldedOptics) return computeFoldedReflectiveCardinals2(state);
   if (state.z.length < state.surfaces.length) return null;
@@ -64,6 +83,15 @@ export function computeCardinalElements2(state: PreparedOpticalState): CardinalE
   });
 }
 
+/**
+ * Convert an ABCD matrix into axial cardinal points and distances.
+ *
+ * Uses the standard reduced-angle matrix convention where `C` is optical power.
+ * A near-zero `C` means afocal behavior, so focal/principal points are undefined.
+ *
+ * @param matrix - ABCD coefficients, vertex positions, image plane, and end media indices
+ * @returns cardinal-element result in millimeters, or null for afocal/degenerate systems
+ */
 export function buildCardinalElementsFromMatrix2({
   A,
   B,
@@ -127,6 +155,20 @@ export function buildCardinalElementsFromMatrix2({
   };
 }
 
+/**
+ * Compute cardinal elements through the RuntimeLens compatibility path.
+ *
+ * `zPos` and `imagePlaneZ` let diagram callers pass their current layout positions,
+ * including focused/zoomed or display-adjusted image planes, without rebuilding the lens.
+ *
+ * @param L - runtime lens object
+ * @param focusT - normalized focus slider, 0=infinity and 1=close focus
+ * @param zoomT - normalized zoom slider, ignored by prime lenses
+ * @param zPos - current surface vertex positions in mm
+ * @param imagePlaneZ - current image-plane z coordinate in mm
+ * @param aberrationT - normalized aberration spacing slider
+ * @returns cardinal-element result in millimeters, or null when unsupported
+ */
 export function computeCardinalElementsAtState2(
   L: RuntimeLens,
   focusT: number,
@@ -177,6 +219,7 @@ function computeFoldedReflectiveCardinals2(state: PreparedOpticalState): Cardina
 function resolveFoldedParaxialSurfaceOrder2(state: PreparedOpticalState): number[] {
   if (state.lens.opticalPath.surfaceOrder?.length) return [...state.lens.opticalPath.surfaceOrder];
 
+  /* Auto folded fixtures need a real trace to discover the actual reflective hit order. */
   const runtime = state.lens.runtime;
   const candidateFractions = new Set<number>([
     0,
@@ -221,6 +264,7 @@ function isFoldedParaxialSurfaceSupported2(state: PreparedOpticalState, surfaceI
   if (surface.interaction.type === "block") return false;
   if (surface.interaction.type === "reflect") return true;
 
+  /* The folded paraxial approximation currently accepts only same-index refractive passes. */
   const nextIndex = surface.nd === 1 ? 1 : surface.nd;
   return Math.abs(nextIndex - 1) <= 1e-12;
 }

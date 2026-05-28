@@ -10,10 +10,12 @@ import { traceGeneralized } from "./generalizedTrace.js";
 import type { EngineTraceResult, TraceOptions } from "./types.js";
 import { directionSlopes } from "./utils.js";
 
+/** Options for locating a stop occurrence through generalized tracing. */
 export interface StopTraceOptions extends Omit<TraceOptions, "stopAt"> {
   stopOccurrence?: number;
 }
 
+/** Result of tracing to an aperture stop occurrence. */
 export interface TraceToStopResult {
   found: boolean;
   x: number;
@@ -26,6 +28,18 @@ export interface TraceToStopResult {
   trace: EngineTraceResult;
 }
 
+/**
+ * Locate a stop hit by running the generalized tracer and scanning recorded hits.
+ *
+ * This handles folded systems where the same stop can be crossed multiple times
+ * and ordinary sequential `stopAt` tracing does not describe the physical path.
+ *
+ * @param state - prepared optical state
+ * @param input - vector ray input
+ * @param stopIndex - physical stop surface index
+ * @param options - trace controls plus desired stop occurrence
+ * @returns stop hit coordinates/slopes and the full trace diagnostics
+ */
 export function traceToStopViaGeneralized2(
   state: PreparedOpticalState,
   input: Ray3,

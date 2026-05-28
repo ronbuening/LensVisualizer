@@ -13,6 +13,7 @@ const MOVEMENT_EPSILON_MM = 1e-6;
 const FOCUS_SAMPLE_COUNT = 21;
 const ZOOM_SAMPLE_COUNT = 25;
 
+/** Inferred display group spanning inclusive physical surface indices. */
 export interface LensMovementGroup {
   id: string;
   label: string;
@@ -20,6 +21,7 @@ export interface LensMovementGroup {
   toSurface: number;
 }
 
+/** One sampled group-center position for a focus/zoom movement profile. */
 export interface GroupMovementPoint {
   x: number;
   shiftMm: number;
@@ -29,6 +31,7 @@ export interface GroupMovementPoint {
   focalLengthMm: number | null;
 }
 
+/** Movement samples for one group, plus the current slider point. */
 export interface GroupMovementSeries {
   group: LensMovementGroup;
   samples: GroupMovementPoint[];
@@ -36,12 +39,14 @@ export interface GroupMovementSeries {
   currentPoint: GroupMovementPoint;
 }
 
+/** Availability of focus, zoom, and combined group movement modes. */
 export interface GroupMovementAvailability {
   focus: boolean;
   zoom: boolean;
   combined: boolean;
 }
 
+/** Complete group-movement profile returned to analysis/display layers. */
 export interface GroupMovementProfile {
   mode: GroupMovementMode;
   availability: GroupMovementAvailability;
@@ -82,6 +87,12 @@ function rangeHasZoomTravel(range: VarRange, isZoom: boolean): boolean {
   );
 }
 
+/**
+ * Detect which group-movement modes have non-zero variable-gap travel.
+ *
+ * @param L - runtime lens object
+ * @returns boolean availability for focus, zoom, and combined movement modes
+ */
 export function getGroupMovementAvailability(L: RuntimeLens): GroupMovementAvailability {
   const ranges = Object.values(L.varByIdx ?? {});
   const focus = ranges.some((range) => rangeHasFocusTravel(range, L.isZoom));
@@ -93,6 +104,13 @@ export function getGroupMovementAvailability(L: RuntimeLens): GroupMovementAvail
   };
 }
 
+/**
+ * Check whether a movement mode is available.
+ *
+ * @param availability - mode availability flags
+ * @param mode - requested movement mode
+ * @returns true when the mode has variable-gap data
+ */
 export function isGroupMovementModeAvailable(
   availability: GroupMovementAvailability,
   mode: GroupMovementMode,
@@ -100,6 +118,12 @@ export function isGroupMovementModeAvailable(
   return availability[mode];
 }
 
+/**
+ * Select the first available group movement mode in UI order.
+ *
+ * @param availability - mode availability flags
+ * @returns focus, zoom, combined, or null when no mode is available
+ */
 export function firstAvailableGroupMovementMode(availability: GroupMovementAvailability): GroupMovementMode | null {
   return GROUP_MOVEMENT_MODES.find((mode) => availability[mode]) ?? null;
 }
@@ -157,6 +181,16 @@ function fallbackConstructionGroups(L: RuntimeLens): LensMovementGroup[] {
   return groups;
 }
 
+/**
+ * Infer lens movement groups from authored group annotations or element spans.
+ *
+ * Authored `groups` annotations win because they describe mechanical groupings.
+ * The fallback merges contiguous element spans into construction groups so every
+ * lens can still produce a best-effort movement overlay.
+ *
+ * @param L - runtime lens object
+ * @returns ordered display groups with inclusive surface spans
+ */
 export function inferLensMovementGroups(L: RuntimeLens): LensMovementGroup[] {
   const annotated = (L.groups ?? [])
     .map((annotation, index) => normalizeGroup(annotation, index, L.N))
@@ -177,6 +211,7 @@ function anchoredSurfacePositions(
 ): AnchoredSurfacePositions {
   const ref = doLayout(0, 0, L);
   const cur = doLayout(focusT, zoomT, L, aberrationT);
+  /* Anchor to the infinity/default image plane so group positions show mechanical motion, not sensor drift. */
   const dz = ref.imgZ - cur.imgZ;
   return {
     z: cur.z.map((z) => z + dz),
@@ -265,6 +300,19 @@ function profilePositionDomain(series: readonly GroupMovementSeries[]): [number,
   return [minPosition - padding, maxPosition > 0 ? maxPosition + padding : 0];
 }
 
+/**
+ * Compute sampled lens-group movement relative to a fixed image plane.
+ *
+ * The profile uses group center positions in millimeters, with `positionMm = 0`
+ * at the fixed image plane and negative values toward the object side. Focus
+ * and zoom samples include the current slider position so the display can mark it
+ * exactly even when it falls between regular sample ticks.
+ *
+ * @param L - runtime lens object
+ * @param mode - focus, zoom, or combined profile mode
+ * @param options - current focus/zoom/aberration controls
+ * @returns sampled group movement series and axis domains
+ */
 export function computeGroupMovementProfile(
   L: RuntimeLens,
   mode: GroupMovementMode,

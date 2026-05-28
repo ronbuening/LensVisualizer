@@ -7,6 +7,7 @@
 import type { CompiledStateSurface, Vec3 } from "../types.js";
 import { dot, normalize, reflect, refract, scale } from "../math/vector.js";
 
+/** Side of a surface reached by an incoming ray relative to the compiled normal. */
 export type IncidentSide = "front" | "rear";
 
 /**

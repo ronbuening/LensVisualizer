@@ -726,6 +726,22 @@ function computeComaPointCloudPreviewFromContext(
   };
 }
 
+/**
+ * Compute meridional coma at the lens-authored representative off-axis field.
+ *
+ * The fan samples across the meridional pupil and reports image-height spread
+ * relative to the chief ray for the current focus, zoom, and aperture state.
+ *
+ * @param L - runtime lens object
+ * @param zPos - current surface vertex positions in mm
+ * @param focusT - normalized focus slider
+ * @param zoomT - normalized zoom slider
+ * @param currentEPSD - entrance-pupil semi-diameter in mm
+ * @param currentPhysStopSD - physical stop semi-diameter in mm
+ * @param aberrationT - normalized aberration spacing slider
+ * @param fieldGeometry - optional precomputed field geometry for the same state
+ * @returns meridional coma fan metrics, or null when off-axis field is unusable
+ */
 export function computeMeridionalComa(
   L: RuntimeLens,
   zPos: number[],
@@ -765,6 +781,19 @@ export function computeMeridionalComa(
   };
 }
 
+/**
+ * Compute compact multi-field meridional coma preview data.
+ *
+ * @param L - runtime lens object
+ * @param zPos - current surface vertex positions in mm
+ * @param focusT - normalized focus slider
+ * @param zoomT - normalized zoom slider
+ * @param currentEPSD - entrance-pupil semi-diameter in mm
+ * @param currentPhysStopSD - physical stop semi-diameter in mm
+ * @param aberrationT - normalized aberration spacing slider
+ * @param fieldGeometry - optional precomputed field geometry for the same state
+ * @returns coma preview fields, or null when insufficient fields trace
+ */
 export function computeComaPreview(
   L: RuntimeLens,
   zPos: number[],
@@ -786,6 +815,19 @@ export function computeComaPreview(
   );
 }
 
+/**
+ * Compute sagittal coma at the lens-authored representative off-axis field.
+ *
+ * @param L - runtime lens object
+ * @param zPos - current surface vertex positions in mm
+ * @param focusT - normalized focus slider
+ * @param zoomT - normalized zoom slider
+ * @param currentEPSD - entrance-pupil semi-diameter in mm
+ * @param currentPhysStopSD - physical stop semi-diameter in mm
+ * @param aberrationT - normalized aberration spacing slider
+ * @param fieldGeometry - optional precomputed field geometry for the same state
+ * @returns sagittal coma fan metrics, or null when off-axis field is unusable
+ */
 export function computeSagittalComa(
   L: RuntimeLens,
   zPos: number[],
@@ -808,6 +850,22 @@ export function computeSagittalComa(
   );
 }
 
+/**
+ * Compute real 2D coma point-cloud previews across representative fields.
+ *
+ * Points are chief-ray centered with sagittal on x and tangential on y, matching
+ * the display convention for industry coma spot diagrams.
+ *
+ * @param L - runtime lens object
+ * @param zPos - current surface vertex positions in mm
+ * @param focusT - normalized focus slider
+ * @param zoomT - normalized zoom slider
+ * @param currentEPSD - entrance-pupil semi-diameter in mm
+ * @param currentPhysStopSD - physical stop semi-diameter in mm
+ * @param aberrationT - normalized aberration spacing slider
+ * @param fieldGeometry - optional precomputed field geometry for the same state
+ * @returns point-cloud preview, or null when insufficient fields trace
+ */
 export function computeComaPointCloudPreview(
   L: RuntimeLens,
   zPos: number[],
@@ -829,6 +887,22 @@ export function computeComaPointCloudPreview(
   );
 }
 
+/**
+ * Compute all coma diagnostics for the current state.
+ *
+ * Shares field geometry and trace context across meridional, sagittal, and
+ * point-cloud outputs so the diagnostics agree on chief-ray centering.
+ *
+ * @param L - runtime lens object
+ * @param zPos - current surface vertex positions in mm
+ * @param focusT - normalized focus slider
+ * @param zoomT - normalized zoom slider
+ * @param currentEPSD - entrance-pupil semi-diameter in mm
+ * @param currentPhysStopSD - physical stop semi-diameter in mm
+ * @param aberrationT - normalized aberration spacing slider
+ * @param fieldGeometry - optional precomputed field geometry for the same state
+ * @returns combined coma analysis result with nullable subdiagnostics
+ */
 export function computeComaAnalysis(
   L: RuntimeLens,
   zPos: number[],

@@ -28,14 +28,39 @@ import { compileSurfaceInteraction, resolvedImagePlaneToPlane3 } from "./interac
 import { buildSurfaceLabelMap } from "./labels.js";
 import { compileVariableGaps, compileVariableLabels } from "./variables.js";
 
+/**
+ * Apply project lens defaults to a lens data object.
+ *
+ * @param data - authored lens data
+ * @returns cloned lens data with default fields filled
+ */
 export function withLensDefaults(data: LensData): LensData {
   return structuredClone({ ...LENS_DEFAULTS, ...data }) as LensData;
 }
 
+/**
+ * Build a normalized EngineLens from authored lens data.
+ *
+ * This path goes through RuntimeLens construction so validation/defaulting and
+ * compatibility fields remain identical to the public `buildLens()` surface.
+ *
+ * @param data - authored lens data
+ * @returns normalized engine lens ready for prepared-state work
+ */
 export function normalizeLensData(data: LensData): EngineLens {
   return normalizeRuntimeLens(buildRuntimeLens(withLensDefaults(data)));
 }
 
+/**
+ * Normalize an existing RuntimeLens into immutable engine structures.
+ *
+ * The resulting EngineLens keeps the original RuntimeLens reference for adapter
+ * calls, but compiles labels, interactions, profiles, dispersion, and variable
+ * gaps into index-keyed structures used by trace and analysis modules.
+ *
+ * @param runtime - runtime lens object returned by the public builder
+ * @returns frozen normalized engine lens
+ */
 export function normalizeRuntimeLens(runtime: RuntimeLens): EngineLens {
   const source = structuredClone(runtime.data);
   const labelToSurfaceIndex = buildSurfaceLabelMap(source.surfaces);

@@ -51,6 +51,7 @@ export type DispersionQuality = "air" | "sellmeier" | "lineIndices" | "abbe" | "
 /** A pre-resolved per-surface index lookup. */
 export type SurfaceIndexFn = (channel: ChromaticChannel) => number;
 
+/** Per-surface chromatic index resolver and provenance quality. */
 export interface SurfaceDispersion {
   readonly fn: SurfaceIndexFn;
   readonly quality: DispersionQuality;

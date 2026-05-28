@@ -19,6 +19,7 @@ import {
 import { traceSequential } from "./sequentialTrace.js";
 import type { EngineTraceResult, TraceOptions } from "./types.js";
 
+/** Vector ray input for RuntimeLens adapters, with optional finite launch search bound. */
 export interface VectorRayTraceInput2 {
   origin: Vec3;
   direction: Vec3;
@@ -51,6 +52,14 @@ const MERIDIONAL_DIRECTION_BY_SLOPE = new Map<number, Vec3>([[0, [0, 0, 1]]]);
 const SKEW_DIRECTION_BY_UX = new Map<number, Map<number, Vec3>>();
 let skewDirectionCacheSize = 0;
 
+/**
+ * Trace an engine-native ray through either sequential or generalized exact tracing.
+ *
+ * @param state - prepared optical state
+ * @param input - ray origin and normalized direction in optical coordinates
+ * @param options - trace termination, aperture, and chromatic controls
+ * @returns engine trace result with hits and diagnostics
+ */
 export function traceEngineRay2(
   state: PreparedOpticalState,
   input: Ray3,
@@ -60,6 +69,20 @@ export function traceEngineRay2(
   return traceSequential(state, input, options);
 }
 
+/**
+ * Trace a meridional RuntimeLens ray using exact surface intersections.
+ *
+ * @param y0 - launch height in mm at the first surface plane
+ * @param u0 - meridional slope dy/dz
+ * @param zPos - current surface vertex positions in mm
+ * @param focusT - normalized focus slider
+ * @param zoomT - normalized zoom slider
+ * @param stopSD - current physical stop semi-diameter in mm
+ * @param ghost - whether clipped hits should be retained as ghost points
+ * @param L - runtime lens object
+ * @param aberrationT - normalized aberration spacing slider
+ * @returns public meridional ray trace result
+ */
 export function traceRay2(
   y0: number,
   u0: number,
@@ -74,6 +97,21 @@ export function traceRay2(
   return traceRayExactCore2(y0, u0, zPos, focusT, zoomT, stopSD, ghost, L, undefined, aberrationT);
 }
 
+/**
+ * Trace a chromatic meridional RuntimeLens ray.
+ *
+ * @param y0 - launch height in mm at the first surface plane
+ * @param u0 - meridional slope dy/dz
+ * @param zPos - current surface vertex positions in mm
+ * @param focusT - normalized focus slider
+ * @param zoomT - normalized zoom slider
+ * @param stopSD - current physical stop semi-diameter in mm
+ * @param ghost - whether clipped hits should be retained as ghost points
+ * @param L - runtime lens object
+ * @param channel - chromatic channel selecting per-surface refractive indices
+ * @param aberrationT - normalized aberration spacing slider
+ * @returns public meridional ray trace result for the selected wavelength
+ */
 export function traceRayChromatic2(
   y0: number,
   u0: number,
@@ -89,6 +127,21 @@ export function traceRayChromatic2(
   return traceRayExactCore2(y0, u0, zPos, focusT, zoomT, stopSD, ghost, L, channel, aberrationT);
 }
 
+/**
+ * Trace a skew RuntimeLens ray using exact surface intersections.
+ *
+ * @param x0 - sagittal launch coordinate in mm
+ * @param y0 - meridional launch coordinate in mm
+ * @param ux0 - sagittal slope dx/dz
+ * @param uy0 - meridional slope dy/dz
+ * @param focusT - normalized focus slider
+ * @param zoomT - normalized zoom slider
+ * @param stopSD - current physical stop semi-diameter in mm
+ * @param ghost - whether clipped hits should be retained
+ * @param L - runtime lens object
+ * @param aberrationT - normalized aberration spacing slider
+ * @returns public skew ray trace result
+ */
 export function traceSkewRay2(
   x0: number,
   y0: number,
@@ -104,6 +157,22 @@ export function traceSkewRay2(
   return traceSkewRayExactCore2(x0, y0, ux0, uy0, focusT, zoomT, stopSD, ghost, L, undefined, aberrationT);
 }
 
+/**
+ * Trace a chromatic skew RuntimeLens ray.
+ *
+ * @param x0 - sagittal launch coordinate in mm
+ * @param y0 - meridional launch coordinate in mm
+ * @param ux0 - sagittal slope dx/dz
+ * @param uy0 - meridional slope dy/dz
+ * @param focusT - normalized focus slider
+ * @param zoomT - normalized zoom slider
+ * @param stopSD - current physical stop semi-diameter in mm
+ * @param ghost - whether clipped hits should be retained
+ * @param L - runtime lens object
+ * @param channel - chromatic channel selecting per-surface refractive indices
+ * @param aberrationT - normalized aberration spacing slider
+ * @returns public skew ray trace result for the selected wavelength
+ */
 export function traceSkewRayChromatic2(
   x0: number,
   y0: number,
@@ -120,6 +189,22 @@ export function traceSkewRayChromatic2(
   return traceSkewRayExactCore2(x0, y0, ux0, uy0, focusT, zoomT, stopSD, ghost, L, channel, aberrationT);
 }
 
+/**
+ * Trace a vector-launched meridional RuntimeLens ray.
+ *
+ * Vector launch is used for fisheye and grazing fields where a scalar slope is
+ * outside the safe tangent domain.
+ *
+ * @param input - vector origin/direction and optional launch bound
+ * @param zPos - current surface vertex positions in mm
+ * @param stopSD - current physical stop semi-diameter in mm
+ * @param ghost - whether clipped hits should be retained as ghost points
+ * @param L - runtime lens object
+ * @param focusT - normalized focus slider
+ * @param zoomT - normalized zoom slider
+ * @param aberrationT - normalized aberration spacing slider
+ * @returns public meridional ray trace result
+ */
 export function traceRayVector2(
   input: VectorRayTraceInput2,
   zPos: number[],
@@ -133,6 +218,20 @@ export function traceRayVector2(
   return traceRayVectorExactCore2(input, zPos, stopSD, ghost, L, undefined, focusT, zoomT, aberrationT);
 }
 
+/**
+ * Trace a chromatic vector-launched meridional RuntimeLens ray.
+ *
+ * @param input - vector origin/direction and optional launch bound
+ * @param zPos - current surface vertex positions in mm
+ * @param stopSD - current physical stop semi-diameter in mm
+ * @param ghost - whether clipped hits should be retained as ghost points
+ * @param L - runtime lens object
+ * @param channel - chromatic channel selecting per-surface refractive indices
+ * @param focusT - normalized focus slider
+ * @param zoomT - normalized zoom slider
+ * @param aberrationT - normalized aberration spacing slider
+ * @returns public meridional ray trace result for the selected wavelength
+ */
 export function traceRayVectorChromatic2(
   input: VectorRayTraceInput2,
   zPos: number[],
@@ -147,6 +246,19 @@ export function traceRayVectorChromatic2(
   return traceRayVectorExactCore2(input, zPos, stopSD, ghost, L, channel, focusT, zoomT, aberrationT);
 }
 
+/**
+ * Trace a vector-launched skew RuntimeLens ray.
+ *
+ * @param input - vector origin/direction and optional launch bound
+ * @param zPos - current surface vertex positions in mm
+ * @param stopSD - current physical stop semi-diameter in mm
+ * @param ghost - whether clipped hits should be retained
+ * @param L - runtime lens object
+ * @param focusT - normalized focus slider
+ * @param zoomT - normalized zoom slider
+ * @param aberrationT - normalized aberration spacing slider
+ * @returns public skew ray trace result
+ */
 export function traceSkewRayVector2(
   input: VectorRayTraceInput2,
   zPos: number[],
@@ -160,6 +272,20 @@ export function traceSkewRayVector2(
   return traceSkewRayVectorExactCore2(input, zPos, stopSD, ghost, L, undefined, focusT, zoomT, aberrationT);
 }
 
+/**
+ * Trace a chromatic vector-launched skew RuntimeLens ray.
+ *
+ * @param input - vector origin/direction and optional launch bound
+ * @param zPos - current surface vertex positions in mm
+ * @param stopSD - current physical stop semi-diameter in mm
+ * @param ghost - whether clipped hits should be retained
+ * @param L - runtime lens object
+ * @param channel - chromatic channel selecting per-surface refractive indices
+ * @param focusT - normalized focus slider
+ * @param zoomT - normalized zoom slider
+ * @param aberrationT - normalized aberration spacing slider
+ * @returns public skew ray trace result for the selected wavelength
+ */
 export function traceSkewRayVectorChromatic2(
   input: VectorRayTraceInput2,
   zPos: number[],

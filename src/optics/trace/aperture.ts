@@ -6,8 +6,10 @@
 
 import type { CompiledStateSurface, PreparedOpticalState } from "../types.js";
 
+/** Radial relationship between a ray hit and a surface's active aperture band. */
 export type ApertureState = "inside" | "inside-hole" | "outside";
 
+/** Aperture classification plus effective outer and inner semi-diameters in mm. */
 export interface ApertureEvaluation {
   state: ApertureState;
   radius: number;

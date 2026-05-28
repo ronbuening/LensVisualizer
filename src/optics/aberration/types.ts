@@ -131,6 +131,7 @@ export interface ComaPointCloudPoint {
   weight: number;
 }
 
+/** Coarse direction of asymmetric coma energy relative to the field edge. */
 export type ComaTailDirection = "toward-edge" | "toward-center" | "balanced";
 
 /** One field tile in the real 2D coma point-cloud preview grid. */
@@ -229,10 +230,12 @@ export const NEAR_AXIS_REAL_FRAC = 0.1;
 
 /** Dense pupil sweep count for the meridional coma view. Must remain odd to include the chief ray sample. */
 export const ORTHOGONAL_PUPIL_FAN_SAMPLE_COUNT = DEFAULT_ORTHOGONAL_PUPIL_FAN_SAMPLE_COUNT;
+/** Meridional coma fan sample count, kept equal to the orthogonal fan count for chart symmetry. */
 export const MERIDIONAL_COMA_SAMPLE_COUNT = ORTHOGONAL_PUPIL_FAN_SAMPLE_COUNT;
 
 /** Fixed equal-area circular pupil pattern reused by real 2D coma preview sampling. */
 export const COMA_PREVIEW_CIRCULAR_PUPIL_RING_SAMPLES = [1, 8, 16, 24, 32, 40] as const;
+/** Total number of circular-pupil samples in the coma point-cloud preview. */
 export const COMA_PREVIEW_POINT_CLOUD_SAMPLE_COUNT = COMA_PREVIEW_CIRCULAR_PUPIL_RING_SAMPLES.reduce(
   (sum, count) => sum + count,
   0,
@@ -243,6 +246,7 @@ export const COMA_PREVIEW_FIELD_FRACTIONS = [0, 0.25, 0.5, 0.75] as const;
 
 /** Fixed field positions shown in the field-curvature / astigmatism chart. */
 export const FIELD_CURVATURE_FIELD_FRACTIONS = [0, 0.25, 0.5, 0.75, 1] as const;
+/** Dense field fractions used for smooth field-curvature curve rendering. */
 export const FIELD_CURVATURE_CURVE_FIELD_FRACTIONS = Array.from({ length: 17 }, (_, index) => index / 16);
 
 /* ── Bokeh preview constants & types ── */
@@ -252,12 +256,15 @@ export const BOKEH_PREVIEW_FIELD_FRACTIONS = [0, 0.25, 0.5, 0.75] as const;
 
 /** Dense circular pupil ring pattern for bokeh tracing (~3× denser than coma). */
 export const BOKEH_CIRCULAR_PUPIL_RING_SAMPLES = [1, 12, 24, 36, 48, 60, 72, 84] as const;
+/** Total number of circular-pupil samples in a bokeh footprint trace. */
 export const BOKEH_POINT_COUNT = BOKEH_CIRCULAR_PUPIL_RING_SAMPLES.reduce((sum, count) => sum + count, 0);
 
 /** Resolution of the 2D density heatmap grid per bokeh tile. */
 export const BOKEH_DENSITY_GRID_SIZE = 64;
+/** Number of annular bins used for center/rim bokeh brightness classification. */
 export const BOKEH_RADIAL_PROFILE_BIN_COUNT = 12;
 
+/** Coarse center-to-rim brightness character for a bokeh footprint. */
 export type BokehBrightnessCharacter = "edge-bright" | "center-bright" | "neutral";
 
 /** One traced ray sample in the bokeh point cloud, relative to the chief ray. */

@@ -16,22 +16,26 @@ interface TraceSurface {
   interaction?: { type?: "refract" | "reflect" | "block" };
 }
 
+/** Paraxial ray state used during runtime-lens construction. */
 export interface ParaxialRayState {
   y: number;
   u: number;
   n: number;
 }
 
+/** Options for low-level paraxial surface tracing over authored surfaces. */
 export interface ParaxialSurfaceTraceOptions {
   stopAt?: number;
   skipLastTransfer?: boolean;
   recordHeights?: boolean;
 }
 
+/** Real-ray construction options layered over paraxial stop/height controls. */
 export interface RealSurfaceTraceOptions extends ParaxialSurfaceTraceOptions {
   checkSemiDiameter?: boolean;
 }
 
+/** Real-ray construction result with clipping state and optional surface heights. */
 export interface RealSurfaceTraceResult {
   y: number;
   u: number;

@@ -31,6 +31,17 @@ function uniqueHeightsByMagnitude(heights: number[]): number[] {
     });
 }
 
+/**
+ * Resolve folded hit-order labels for UI display.
+ *
+ * Authored `opticalPath.surfaceLabels` are used when present. Auto-mode folded
+ * systems are probed with obstruction-aware on-axis rays, preferring the first
+ * unclipped ray that reaches the image plane and falling back to any diagnostic
+ * hit order when all probes clip.
+ *
+ * @param params - current lens, layout, aperture, and slider state
+ * @returns ordered surface labels hit by a representative folded path
+ */
 export function foldedHitOrderLabelsForDisplay({
   L,
   zPos,
