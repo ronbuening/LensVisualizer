@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 
 import { describe, it, expect, afterEach } from "vitest";
-import { render, screen, cleanup } from "@testing-library/react";
+import { render, screen, cleanup, fireEvent } from "@testing-library/react";
 import AsphericComparisonOverlay from "../../../../../src/components/display/overlays/AsphericComparisonOverlay.js";
 import type { RuntimeLens, ElementData, SurfaceData, AsphericCoefficients } from "../../../../../src/types/optics.js";
 import type { Theme } from "../../../../../src/types/theme.js";
@@ -93,6 +93,46 @@ describe("AsphericComparisonOverlay — single aspheric surface", () => {
     expect(screen.getByLabelText("zoom in")).toBeTruthy();
     expect(screen.getByLabelText("zoom out")).toBeTruthy();
     expect(screen.getByLabelText("reset zoom")).toBeTruthy();
+  });
+
+  it("switches to best-fit mode and updates the reported sphere radius", () => {
+    const { container } = render(<AsphericComparisonOverlay L={L} info={elementInfo} theme={mockTheme} />);
+    const before = container.textContent;
+
+    fireEvent.click(screen.getByText("Best-fit sphere"));
+
+    expect(container.textContent).not.toBe(before);
+    expect(container.textContent).toContain("Rsphere");
+  });
+
+  it("updates the departure exaggeration from the slider", () => {
+    render(<AsphericComparisonOverlay L={L} info={elementInfo} theme={mockTheme} />);
+    const slider = screen.getByRole("slider");
+
+    fireEvent.change(slider, { target: { value: "1" } });
+
+    expect(screen.getAllByText("1000×").length).toBeGreaterThan(0);
+  });
+
+  it("shows a true sag readout after clicking the SVG", () => {
+    const { container } = render(<AsphericComparisonOverlay L={L} info={elementInfo} theme={mockTheme} />);
+    const svg = container.querySelector("svg") as SVGSVGElement;
+    svg.getBoundingClientRect = () =>
+      ({
+        left: 0,
+        top: 0,
+        width: 720,
+        height: 420,
+        right: 720,
+        bottom: 420,
+        x: 0,
+        y: 0,
+        toJSON: () => ({}),
+      }) as DOMRect;
+
+    fireEvent.click(svg, { clientX: 360, clientY: 210 });
+
+    expect(screen.getByText(/sag =/)).toBeTruthy();
   });
 });
 

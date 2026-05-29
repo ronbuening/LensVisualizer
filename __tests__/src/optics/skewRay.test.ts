@@ -1,22 +1,34 @@
 import { describe, expect, it } from "vitest";
 import {
+  computeChromaticSpread,
   doLayout,
   sampleCircularPupil,
   sampleOrthogonalPupilFan,
   skewImagePlaneIntercept,
   traceChiefRelativeSkewRay,
+  traceChiefRelativeSkewRayChromatic,
   traceRay,
   traceRayChromatic,
   traceSkewRay,
   traceSkewRayChromatic,
 } from "../../../src/optics/optics.js";
+import {
+  traceRay as traceRayFacade,
+  traceRayChromatic as traceRayChromaticFacade,
+  traceRayVector as traceRayVectorFacade,
+  traceRayVectorChromatic as traceRayVectorChromaticFacade,
+  traceSkewRay as traceSkewRayFacade,
+  traceSkewRayVector as traceSkewRayVectorFacade,
+  traceSkewRayVectorChromatic as traceSkewRayVectorChromaticFacade,
+  wavelengthNd,
+} from "../../../src/optics/rayTrace.js";
 import { computeOffAxisFieldGeometry, traceOrthogonalOffAxisBundle } from "../../../src/optics/aberration/offAxis.js";
 import buildLens from "../../../src/optics/buildLens.js";
 import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
 import ApoLantharRaw from "../../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.js";
 import Sonnar50f15Raw from "../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
 import type { LensData, RuntimeLens } from "../../../src/types/optics.js";
-import { buildSimplePositiveElementLens } from "./testLensFixtures.js";
+import { buildChromaticPositiveElementLens, buildSimplePositiveElementLens } from "./testLensFixtures.js";
 
 function build(raw: object): RuntimeLens {
   return buildLens({ ...LENS_DEFAULTS, ...raw } as LensData);
@@ -142,6 +154,15 @@ describe("skew pupil sampling helpers", () => {
     expect(samples[0].yFraction).toBe(0);
     expect(samples[0].weight).toBeCloseTo(1, 10);
   });
+
+  it("normalizes invalid circular pupil ring counts before weighting", () => {
+    const samples = sampleCircularPupil([0, -2, Number.NaN, 4.6]);
+    const totalWeight = samples.reduce((sum, sample) => sum + sample.weight, 0);
+
+    expect(samples).toHaveLength(7);
+    expect(totalWeight).toBeCloseTo(1, 10);
+    expect(samples.every((sample) => Number.isFinite(sample.xFraction))).toBe(true);
+  });
 });
 
 describe("skewImagePlaneIntercept edge cases", () => {
@@ -187,6 +208,101 @@ describe("traceChiefRelativeSkewRay", () => {
     expect(viaWrapper.y).toBeCloseTo(viaDirect.y, 12);
     expect(viaWrapper.ux).toBeCloseTo(viaDirect.ux, 12);
     expect(viaWrapper.uy).toBeCloseTo(viaDirect.uy, 12);
+  });
+
+  it("routes chromatic chief-relative launches through the channel adapter", () => {
+    const Lchrom = buildChromaticPositiveElementLens("test-chief-relative-skew-chromatic");
+    const viaWrapper = traceChiefRelativeSkewRayChromatic(0.25, -0.2, 1.5, -0.02, 8, 0, 0, 15, false, Lchrom, "B");
+    const viaDirect = traceSkewRayChromatic(2, -0.1, 0, -0.02, 0, 0, 15, false, Lchrom, "B");
+
+    expect(viaWrapper.x).toBeCloseTo(viaDirect.x, 12);
+    expect(viaWrapper.y).toBeCloseTo(viaDirect.y, 12);
+    expect(viaWrapper.ux).toBeCloseTo(viaDirect.ux, 12);
+    expect(viaWrapper.uy).toBeCloseTo(viaDirect.uy, 12);
+  });
+});
+
+describe("rayTrace facade adapters", () => {
+  const L = buildChromaticPositiveElementLens("test-ray-trace-facade-adapters");
+  const { z: zPos } = doLayout(0, 0, L);
+
+  it("keeps direct meridional facade results aligned with the public optics wrapper", () => {
+    const viaFacade = traceRayFacade(2, -0.01, zPos, 0, 0, L.stopPhysSD, true, L);
+    const viaPublic = traceRay(2, -0.01, zPos, 0, 0, L.stopPhysSD, true, L);
+
+    expect(viaFacade.y).toBeCloseTo(viaPublic.y, 12);
+    expect(viaFacade.u).toBeCloseTo(viaPublic.u, 12);
+    expect(viaFacade.clipped).toBe(viaPublic.clipped);
+    expect(viaFacade.pts.length).toBeGreaterThan(1);
+  });
+
+  it("traces chromatic and vector launches through the direct facade", () => {
+    const theta = (3 * Math.PI) / 180;
+    const direction: [number, number, number] = [0, -Math.sin(theta), Math.cos(theta)];
+    const origin: [number, number, number] = [0, 0.5, zPos[0]];
+
+    const chromatic = traceRayChromaticFacade(0.5, -Math.tan(theta), zPos, 0, 0, L.stopPhysSD, true, L, "R");
+    const vector = traceRayVectorFacade({ origin, direction }, zPos, L.stopPhysSD, true, L);
+    const vectorChromatic = traceRayVectorChromaticFacade({ origin, direction }, zPos, L.stopPhysSD, true, L, "R");
+
+    expect(chromatic.clipped).toBe(false);
+    expect(vector.y).toBeCloseTo(traceRayFacade(0.5, -Math.tan(theta), zPos, 0, 0, L.stopPhysSD, true, L).y, 10);
+    expect(vectorChromatic.y).toBeCloseTo(chromatic.y, 10);
+    expect(vectorChromatic.pts.length).toBeGreaterThan(1);
+  });
+
+  it("traces skew vector launches and chromatic skew vector launches", () => {
+    const ux = 0.015;
+    const uy = -0.02;
+    const length = Math.hypot(ux, uy, 1);
+    const direction: [number, number, number] = [ux / length, uy / length, 1 / length];
+    const origin: [number, number, number] = [0.3, 0.4, zPos[0]];
+
+    const skew = traceSkewRayFacade(0.3, 0.4, ux, uy, 0, 0, L.stopPhysSD, false, L);
+    const vector = traceSkewRayVectorFacade({ origin, direction }, zPos, L.stopPhysSD, false, L);
+    const chromaticVector = traceSkewRayVectorChromaticFacade({ origin, direction }, zPos, L.stopPhysSD, false, L, "B");
+
+    expect(vector.x).toBeCloseTo(skew.x, 10);
+    expect(vector.y).toBeCloseTo(skew.y, 10);
+    expect(vector.ux).toBeCloseTo(skew.ux, 10);
+    expect(vector.uy).toBeCloseTo(skew.uy, 10);
+    expect(chromaticVector.clipped).toBe(false);
+    expect(Number.isFinite(chromaticVector.x)).toBe(true);
+  });
+});
+
+describe("chromatic fallback helpers", () => {
+  it("orders fallback refractive indices by wavelength channel", () => {
+    const red = wavelengthNd(1.5, 50, "R");
+    const green = wavelengthNd(1.5, 50, "G");
+    const blue = wavelengthNd(1.5, 50, "B");
+    const violet = wavelengthNd(1.5, 50, "V");
+
+    expect(wavelengthNd(1, 50, "B")).toBe(1);
+    expect(wavelengthNd(1.5, undefined, "R")).toBe(1.5);
+    expect(red).toBeLessThan(green);
+    expect(green).toBeLessThan(blue);
+    expect(blue).toBeLessThan(violet);
+  });
+
+  it("measures chromatic spread while omitting clipped and zero-slope intercepts", () => {
+    const spread = computeChromaticSpread(
+      {
+        R: { y: 1, u: -0.1, clipped: false },
+        G: { y: 0.5, u: 0, clipped: false },
+        B: { y: 5, u: -0.2, clipped: true },
+        V: { y: -0.2, u: 0.1, clipped: false },
+      },
+      20,
+      10,
+    );
+
+    expect(spread.intercepts.R).toBeCloseTo(20, 10);
+    expect(spread.intercepts.G).toBeUndefined();
+    expect(spread.intercepts.B).toBeUndefined();
+    expect(spread.intercepts.V).toBeCloseTo(12, 10);
+    expect(spread.lcaMm).toBeCloseTo(8, 10);
+    expect(spread.tcaMm).toBeCloseTo(0.8, 10);
   });
 });
 
