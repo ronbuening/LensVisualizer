@@ -24,6 +24,8 @@ interface SliderControlProps {
   onPointerUp?: () => void;
   minLabel: string;
   maxLabel: string;
+  disabled?: boolean;
+  disabledReason?: string;
   /** Flex basis for horizontal (non-side) layout */
   flexBasis?: string;
   /** Whether to show the collapsible toggle */
@@ -52,6 +54,8 @@ export default function SliderControl({
   onPointerUp,
   minLabel,
   maxLabel,
+  disabled = false,
+  disabledReason,
   flexBasis = "200px",
   collapsible,
   expanded,
@@ -59,6 +63,20 @@ export default function SliderControl({
   action,
   children,
 }: SliderControlProps) {
+  const sliderRowStyle: React.CSSProperties = {
+    display: "flex",
+    alignItems: "center",
+    gap: 8,
+    opacity: disabled ? 0.42 : 1,
+    filter: disabled ? "grayscale(1)" : undefined,
+    transition: "opacity 0.2s, filter 0.2s",
+  };
+  const sliderStyle: React.CSSProperties = {
+    ...sliderInput(t),
+    cursor: disabled ? "not-allowed" : "pointer",
+    accentColor: disabled ? t.focusEndpoint : t.sliderAccent,
+  };
+
   return (
     <div
       style={
@@ -84,18 +102,22 @@ export default function SliderControl({
           />
         )}
       </div>
-      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+      <div style={sliderRowStyle} title={disabled ? disabledReason : undefined}>
         <span style={{ fontSize: 9, color: t.focusEndpoint }}>{minLabel}</span>
         <input
+          aria-label={label}
           type="range"
           min={min}
           max={max}
           step={step}
           value={value}
-          onPointerDown={onPointerDown}
-          onChange={(e) => onChange?.(parseFloat(e.target.value))}
-          onPointerUp={onPointerUp}
-          style={sliderInput(t)}
+          disabled={disabled}
+          onPointerDown={disabled ? undefined : onPointerDown}
+          onChange={(e) => {
+            if (!disabled) onChange?.(parseFloat(e.target.value));
+          }}
+          onPointerUp={disabled ? undefined : onPointerUp}
+          style={sliderStyle}
         />
         <span style={{ fontSize: 9, color: t.focusEndpoint }}>{maxLabel}</span>
       </div>
