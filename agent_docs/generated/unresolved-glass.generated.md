@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **275** lenses scanned
-- **3048** non-air surfaces examined
-- **3052** element glass declarations examined
-- **609** non-explicit-unmatched annotations did not resolve
-- **218** distinct unresolved glass-like tokens found
+- **278** lenses scanned
+- **3101** non-air surfaces examined
+- **3105** element glass declarations examined
+- **611** non-explicit-unmatched annotations did not resolve
+- **220** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -47,6 +47,7 @@ or per-lens patent backfills.
 | E-FDS3HT | 2 | 1 | |
 | F7 | 2 | 2 | |
 | H-LAF3 | 2 | 2 | |
+| H-LAF4 | 2 | 2 | |
 | H-ZLAF4A | 2 | 1 | |
 | L-LAM69 | 2 | 2 | |
 | N-BAF4 | 2 | 2 | |
@@ -108,11 +109,13 @@ or per-lens patent backfills.
 | 741527 | 1 | 1 | |
 | 747274 | 1 | 1 | |
 | 749547 | 1 | 1 | |
+| 750350 | 1 | 1 | |
 | 754260 | 1 | 1 | |
 | 757316 | 1 | 1 | |
 | 757479 | 1 | 1 | |
 | 764491 | 1 | 1 | |
 | 768465 | 1 | 1 | |
+| 768492 | 1 | 1 | |
 | 769497 | 1 | 1 | |
 | 770479 | 1 | 1 | |
 | 770494 | 1 | 1 | |
@@ -163,7 +166,6 @@ or per-lens patent backfills.
 | FCD10A | 1 | 1 | |
 | H-K8 | 1 | 1 | |
 | H-K9L | 1 | 1 | |
-| H-LAF4 | 1 | 1 | |
 | H-LAF51 | 1 | 1 | |
 | H-LAF6L | 1 | 1 | |
 | H-LAK3 | 1 | 1 | |
@@ -397,6 +399,11 @@ or per-lens patent backfills.
 
 - [LAOWA 15mm f/4 Wide Angle 1:1 Macro](../../src/lens-data/laowa/Laowa15mmf4Macro.data.ts) 16: `H-LAF3 (CDGM)`
 - [NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) 32: `Lanthanum flint (182080/4251, uncertain — possibly CDGM H-LAF3)`
+
+### H-LAF4 — 2 occurrences
+
+- [Laowa 58 mm f/2.8 2× Ultra-Macro APO](../../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts) 18: `H-LAF4 (CDGM)`
+- [Sony FE 28-70mm f/3.5-5.6 OSS](../../src/lens-data/sony/SonyFE2870mmf3556.data.ts) 17: `E-LAF7 (HOYA) / H-LaF4 class, 750350`
 
 ### H-ZLAF4A — 2 occurrences
 
@@ -656,6 +663,10 @@ or per-lens patent backfills.
 
 - [Laowa 12mm f/2.8 Zero-D](../../src/lens-data/laowa/Laowa12mmf28ZeroD.data.ts) 1: `749547 - high-index crown class (patent nd=1.74916, vd=54.67; unresolved)`
 
+### 750350 — 1 occurrence
+
+- [Sony FE 28-70mm f/3.5-5.6 OSS](../../src/lens-data/sony/SonyFE2870mmf3556.data.ts) 17: `E-LAF7 (HOYA) / H-LaF4 class, 750350`
+
 ### 754260 — 1 occurrence
 
 - [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) 6: `754260 — dense flint (patent nd=1.75409, nu_d=26.0)`
@@ -675,6 +686,10 @@ or per-lens patent backfills.
 ### 768465 — 1 occurrence
 
 - [Nikon Fisheye-Nikkor 6mm f/5.6](../../src/lens-data/nikon/NikonFisheyeNikkor6mmf56.data.ts) 11: `768465 — lanthanum flint patent melt (nd=1.76764, νd=46.5; no exact public catalog match)`
+
+### 768492 — 1 occurrence
+
+- [Sony FE 70-200mm F4 G OSS](../../src/lens-data/sony/SonyFE70200mmf4G.data.ts) 27: `M-TAF101 / LAM55-class moldable glass (768492)`
 
 ### 769497 — 1 occurrence
 
@@ -875,10 +890,6 @@ or per-lens patent backfills.
 ### H-K9L — 1 occurrence
 
 - [LAOWA 15mm f/4 Wide Angle 1:1 Macro](../../src/lens-data/laowa/Laowa15mmf4Macro.data.ts) 15: `H-K9L (CDGM)`
-
-### H-LAF4 — 1 occurrence
-
-- [Laowa 58 mm f/2.8 2× Ultra-Macro APO](../../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts) 18: `H-LAF4 (CDGM)`
 
 ### H-LAF51 — 1 occurrence
 
