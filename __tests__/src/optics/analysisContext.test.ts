@@ -43,6 +43,12 @@ describe("analysis computation context", () => {
     expect(context.computeDistortionCurve()).toEqual(
       analysisJobsForState2.computeDistortionCurve(state, dynamicEFL, currentPhysStopSD, fieldGeometry),
     );
+    expect(context.computeOpticalSummary()).toEqual(
+      analysisJobsForState2.computeOpticalSummary(state, dynamicEFL, currentEPSD, currentPhysStopSD, fieldGeometry),
+    );
+    expect(context.computeDistortionFieldGrid()).toEqual(
+      analysisJobsForState2.computeDistortionFieldGrid(state, currentPhysStopSD, fieldGeometry),
+    );
     expect(context.computeVignettingCurve()).toEqual(
       analysisJobsForState2.computeVignettingCurve(state, currentEPSD, currentPhysStopSD, fieldGeometry),
     );
@@ -52,6 +58,23 @@ describe("analysis computation context", () => {
     expect(context.computeBokehPreviewPair()).toEqual(
       analysisJobsForState2.computeBokehPreviewPair(state, currentEPSD, currentPhysStopSD),
     );
+    expect(context.computeBestFocusZ()).toEqual(
+      analysisJobsForState2.computeBestFocusZ(state, currentEPSD, currentPhysStopSD),
+    );
+    expect(context.computeSphericalAberration()).toEqual(
+      analysisJobsForState2.computeSphericalAberration(state, currentEPSD, currentPhysStopSD),
+    );
+    expect(context.computeSAProfile()).toEqual(
+      analysisJobsForState2.computeSAProfile(state, currentEPSD, currentPhysStopSD),
+    );
+    expect(context.computeSphericalAberrationBlurCharacter()).toEqual(
+      analysisJobsForState2.computeSphericalAberrationBlurCharacter(
+        state,
+        currentEPSD,
+        currentPhysStopSD,
+        context.computeSphericalAberration(),
+      ),
+    );
     expect(context.computeComaAnalysis()).toEqual(
       analysisJobsForState2.computeComaAnalysis(state, currentEPSD, currentPhysStopSD, fieldGeometry),
     );
@@ -60,7 +83,31 @@ describe("analysis computation context", () => {
     );
 
     expect(context.computeDistortionCurve()).toBe(context.computeDistortionCurve());
+    expect(context.computeOpticalSummary()).toBe(context.computeOpticalSummary());
+    expect(context.computeSphericalAberration()).toBe(context.computeSphericalAberration());
+    expect(context.computeSphericalAberrationBlurCharacter()).toBe(context.computeSphericalAberrationBlurCharacter());
     expect(context.computeBokehPreviewPair()).toBe(context.computeBokehPreviewPair());
     expect(context.computeFieldCurvatureBundle()).toBe(context.computeFieldCurvatureBundle());
+  });
+
+  it("normalizes null field geometry to undefined for job calls", () => {
+    const L = build(Sonnar50f15Raw);
+    const focusT = 0;
+    const zoomT = 0;
+    const state = prepareRuntimeState(L, focusT, zoomT);
+    const dynamicEFL = eflAtFocus(focusT, zoomT, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, zoomT);
+    const context = createAnalysisComputationContext({
+      preparedState: state,
+      dynamicEFL,
+      currentEPSD,
+      currentPhysStopSD,
+      fieldGeometry: null,
+    });
+
+    expect(context.fieldGeometry).toBeNull();
+    expect(context.computeDistortionCurve()).toEqual(
+      analysisJobsForState2.computeDistortionCurve(state, dynamicEFL, currentPhysStopSD, undefined),
+    );
   });
 });
