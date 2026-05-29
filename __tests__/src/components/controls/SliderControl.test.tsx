@@ -56,6 +56,19 @@ describe("SliderControl", () => {
     expect(onChange).toHaveBeenCalledWith(0.75);
   });
 
+  it("disables the range input without hiding slider context", () => {
+    const onChange = vi.fn();
+    render(<SliderControl {...baseProps} disabled disabledReason="No modeled data" onChange={onChange} />);
+    const input = screen.getByRole("slider") as HTMLInputElement;
+
+    expect(input.disabled).toBe(true);
+    expect(input.parentElement?.style.opacity).toBe("0.42");
+    expect(input.parentElement?.title).toBe("No modeled data");
+
+    fireEvent.change(input, { target: { value: "0.75" } });
+    expect(onChange).not.toHaveBeenCalled();
+  });
+
   it("calls onPointerUp when pointer is released", () => {
     const onPointerUp = vi.fn();
     render(<SliderControl {...baseProps} onPointerUp={onPointerUp} />);

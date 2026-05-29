@@ -10,9 +10,10 @@ import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
 
 afterEach(() => cleanup());
 
-function renderControls(L: RuntimeLens) {
+function renderControls(L: RuntimeLens, options: { focusExpanded?: boolean } = {}) {
   const callbacks = {
     onAberrationChange: vi.fn(),
+    onFocusChange: vi.fn(),
     onShiftChange: vi.fn(),
     onTiltChange: vi.fn(),
     onOpenGroupMovement: vi.fn(),
@@ -29,12 +30,12 @@ function renderControls(L: RuntimeLens) {
         aberrationT={0}
         onAberrationChange={callbacks.onAberrationChange}
         focusT={0}
-        onFocusChange={vi.fn()}
+        onFocusChange={callbacks.onFocusChange}
         shiftMm={0}
         tiltDeg={0}
         onShiftChange={callbacks.onShiftChange}
         onTiltChange={callbacks.onTiltChange}
-        focusExpanded={false}
+        focusExpanded={options.focusExpanded ?? false}
         onFocusExpandedChange={vi.fn()}
         varReadouts={[]}
         aberrationReadouts={[]}
@@ -112,6 +113,18 @@ describe("DiagramControls", () => {
     fireEvent.click(screen.getByRole("button", { name: /open focus group motion chart/i }));
 
     expect(callbacks.onOpenGroupMovement).toHaveBeenCalledWith("focus");
+  });
+
+  it("disables the focus slider while keeping focus details visible when focus travel data is absent", () => {
+    const { callbacks } = renderControls(buildLens(LENS_CATALOG["canon-rf-28-70-f2"]), { focusExpanded: true });
+    const focusSlider = screen.getByRole("slider", { name: "FOCUS" }) as HTMLInputElement;
+
+    expect(focusSlider.disabled).toBe(true);
+    expect(screen.getByText("FOCUS")).toBeTruthy();
+    expect(screen.getByText(/No close-focus data in patent/i)).toBeTruthy();
+
+    fireEvent.change(focusSlider, { target: { value: "0.75" } });
+    expect(callbacks.onFocusChange).not.toHaveBeenCalled();
   });
 
   it("opens the zoom motion overlay from a zoom slider action", () => {
