@@ -14,6 +14,7 @@ import {
   describeBokehDefocusSide,
 } from "../aberration/bokeh.js";
 import type { PreparedOpticalState } from "../types.js";
+import type { AnalysisSamplingOptions } from "./analysisQuality.js";
 
 /**
  * Compute the best-focus image plane for bokeh sampling from a prepared state.
@@ -50,6 +51,7 @@ export function computeBokehPreviewPairForState2(
   state: PreparedOpticalState,
   currentEPSD: number,
   currentPhysStopSD: number,
+  sampling?: AnalysisSamplingOptions,
 ) {
   return computeBokehPreviewPair(
     state.lens.runtime,
@@ -58,6 +60,7 @@ export function computeBokehPreviewPairForState2(
     currentEPSD,
     currentPhysStopSD,
     state.aberrationT,
+    sampling,
   );
 }
 

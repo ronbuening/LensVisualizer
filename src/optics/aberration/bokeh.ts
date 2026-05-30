@@ -39,6 +39,7 @@ import {
   type BokehRadialProfile,
   type BokehRadialProfileBin,
 } from "./types.js";
+import type { AnalysisSamplingOptions } from "../analysis/analysisQuality.js";
 
 /* ── Constants ── */
 
@@ -151,6 +152,7 @@ function buildBokehTraceContext(
   currentEPSD: number,
   currentPhysStopSD: number,
   aberrationT = 0,
+  sampling: AnalysisSamplingOptions = {},
 ): BokehTraceContext {
   const layout = doLayout(focusT, zoomT, L, aberrationT);
   return {
@@ -160,7 +162,7 @@ function buildBokehTraceContext(
     layout,
     bestFocusZ: computeBestFocusZFromLayout(L, layout, focusT, zoomT, currentEPSD, currentPhysStopSD, aberrationT),
     fieldGeometryState: computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT),
-    circularPupilSamples: sampleCircularPupil(BOKEH_CIRCULAR_PUPIL_RING_SAMPLES),
+    circularPupilSamples: sampleCircularPupil(sampling.bokehRingSamples ?? BOKEH_CIRCULAR_PUPIL_RING_SAMPLES),
   };
 }
 
@@ -591,10 +593,12 @@ function computeBokehPreviewFromContext(
   currentEPSD: number,
   currentPhysStopSD: number,
   label: string,
+  sampling: AnalysisSamplingOptions = {},
 ): BokehPreviewResult | null {
   const defocusDelta = sensorZ - context.layout.imgZ;
+  const fieldFractions = sampling.bokehFieldFractions ?? BOKEH_PREVIEW_FIELD_FRACTIONS;
 
-  const fields: BokehFieldResult[] = BOKEH_PREVIEW_FIELD_FRACTIONS.map((fieldFraction) => {
+  const fields: BokehFieldResult[] = fieldFractions.map((fieldFraction) => {
     const result = computeBokehFieldFootprintFromContext(
       L,
       context,
@@ -651,14 +655,16 @@ export function computeBokehPreview(
   currentPhysStopSD: number,
   label: string,
   aberrationT = 0,
+  sampling: AnalysisSamplingOptions = {},
 ): BokehPreviewResult | null {
   return computeBokehPreviewFromContext(
     L,
-    buildBokehTraceContext(L, traceFocusT, zoomT, currentEPSD, currentPhysStopSD, aberrationT),
+    buildBokehTraceContext(L, traceFocusT, zoomT, currentEPSD, currentPhysStopSD, aberrationT, sampling),
     sensorZ,
     currentEPSD,
     currentPhysStopSD,
     label,
+    sampling,
   );
 }
 
@@ -690,12 +696,13 @@ export function computeBokehPreviewPair(
   currentEPSD: number,
   currentPhysStopSD: number,
   aberrationT = 0,
+  sampling: AnalysisSamplingOptions = {},
 ): BokehPreviewPair {
   const contextCache = new Map<number, BokehTraceContext>();
   const getContext = (contextFocusT: number): BokehTraceContext => {
     const cached = contextCache.get(contextFocusT);
     if (cached) return cached;
-    const next = buildBokehTraceContext(L, contextFocusT, zoomT, currentEPSD, currentPhysStopSD, aberrationT);
+    const next = buildBokehTraceContext(L, contextFocusT, zoomT, currentEPSD, currentPhysStopSD, aberrationT, sampling);
     contextCache.set(contextFocusT, next);
     return next;
   };
@@ -724,6 +731,7 @@ export function computeBokehPreviewPair(
     currentEPSD,
     currentPhysStopSD,
     "Infinity",
+    sampling,
   );
 
   /*
@@ -746,6 +754,7 @@ export function computeBokehPreviewPair(
     currentEPSD,
     currentPhysStopSD,
     "Near Focus",
+    sampling,
   );
 
   return { infinity, nearFocus };

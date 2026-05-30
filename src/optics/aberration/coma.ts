@@ -39,6 +39,7 @@ import {
   type OffAxisBundle,
   type OffAxisFieldGeometry,
 } from "./offAxis.js";
+import type { AnalysisSamplingOptions } from "../analysis/analysisQuality.js";
 
 const COMA_PREVIEW_MIN_SHARED_HALF_RANGE_MM = 0.01;
 const COMA_POINT_CLOUD_MIN_VALID_SAMPLES = 5;
@@ -57,10 +58,11 @@ interface ComaTraceContext {
   tangentialPupilSamples: OrthogonalPupilSample[];
   sagittalPupilSamples: OrthogonalPupilSample[];
   circularPupilSamples: CircularPupilSample[];
+  fieldFractions: readonly number[];
 }
 
 interface ComaPreviewFieldMeta {
-  fieldFraction: (typeof COMA_PREVIEW_FIELD_FRACTIONS)[number];
+  fieldFraction: number;
   label: string;
 }
 
@@ -87,7 +89,7 @@ interface MeridionalComaFieldFootprint {
 }
 
 interface FixedComaPreviewFootprint {
-  fieldFraction: (typeof COMA_PREVIEW_FIELD_FRACTIONS)[number];
+  fieldFraction: number;
   label: string;
   footprint: MeridionalComaFieldFootprint | null;
 }
@@ -114,7 +116,7 @@ interface ComaPointCloudFieldFootprint {
 }
 
 interface FixedComaPointCloudPreviewFootprint {
-  fieldFraction: (typeof COMA_PREVIEW_FIELD_FRACTIONS)[number];
+  fieldFraction: number;
   label: string;
   footprint: ComaPointCloudFieldFootprint | null;
 }
@@ -125,20 +127,28 @@ function buildComaTraceContext(
   zoomT: number,
   aberrationT = 0,
   fieldGeometry?: FieldGeometryState,
+  sampling: AnalysisSamplingOptions = {},
 ): ComaTraceContext {
+  const meridionalSampleCount = Math.max(3, Math.round(sampling.comaFanSampleCount ?? MERIDIONAL_COMA_SAMPLE_COUNT));
+  const circularPupilSamples = sampleCircularPupil(
+    sampling.comaRingSamples ?? COMA_PREVIEW_CIRCULAR_PUPIL_RING_SAMPLES,
+  );
   return {
     aberrationT,
     fieldGeometryState: fieldGeometry ?? computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT),
-    tangentialPupilSamples: sampleOrthogonalPupilFan(MERIDIONAL_COMA_SAMPLE_COUNT, "tangential"),
-    sagittalPupilSamples: sampleOrthogonalPupilFan(MERIDIONAL_COMA_SAMPLE_COUNT, "sagittal"),
-    circularPupilSamples: sampleCircularPupil(COMA_PREVIEW_CIRCULAR_PUPIL_RING_SAMPLES),
+    tangentialPupilSamples: sampleOrthogonalPupilFan(meridionalSampleCount, "tangential"),
+    sagittalPupilSamples: sampleOrthogonalPupilFan(meridionalSampleCount, "sagittal"),
+    circularPupilSamples,
+    fieldFractions: sampling.comaFieldFractions ?? COMA_PREVIEW_FIELD_FRACTIONS,
   };
 }
 
-function fixedComaPreviewFieldMeta(): ComaPreviewFieldMeta[] {
-  return COMA_PREVIEW_FIELD_FRACTIONS.map((fieldFraction) => ({
+function fixedComaPreviewFieldMeta(fieldFractions: readonly number[]): ComaPreviewFieldMeta[] {
+  return fieldFractions.map((fieldFraction) => ({
     fieldFraction,
-    label: COMA_PREVIEW_FIELD_LABELS[fieldFraction],
+    label:
+      COMA_PREVIEW_FIELD_LABELS[fieldFraction as (typeof COMA_PREVIEW_FIELD_FRACTIONS)[number]] ??
+      `${(fieldFraction * 100).toFixed(0)}%`,
   }));
 }
 
@@ -397,20 +407,23 @@ function buildComaPointCloudFieldFootprintFromBundle(
   };
 }
 
-function emptyComaPreviewFieldResult({ fieldFraction, label }: ComaPreviewFieldMeta): ComaPreviewFieldResult {
+function emptyComaPreviewFieldResult(
+  { fieldFraction, label }: ComaPreviewFieldMeta,
+  sampleCount = MERIDIONAL_COMA_SAMPLE_COUNT,
+): ComaPreviewFieldResult {
   return {
     fieldFraction,
     label,
     fieldAngleDeg: 0,
-    sampleCount: MERIDIONAL_COMA_SAMPLE_COUNT,
+    sampleCount,
     validSampleCount: 0,
-    clippedSampleCount: MERIDIONAL_COMA_SAMPLE_COUNT,
+    clippedSampleCount: sampleCount,
     chiefIntercept: 0,
     minRelativeIntercept: 0,
     maxRelativeIntercept: 0,
-    samples: Array.from({ length: MERIDIONAL_COMA_SAMPLE_COUNT }, (_, index) => ({
+    samples: Array.from({ length: sampleCount }, (_, index) => ({
       index,
-      pupilFraction: -1 + (2 * index) / (MERIDIONAL_COMA_SAMPLE_COUNT - 1),
+      pupilFraction: sampleCount > 1 ? -1 + (2 * index) / (sampleCount - 1) : 0,
       launchHeight: 0,
       imageHeight: null,
       relativeImageHeight: null,
@@ -444,17 +457,17 @@ function comaPreviewFieldResultFromFootprint({
   };
 }
 
-function emptyComaPointCloudPreviewFieldResult({
-  fieldFraction,
-  label,
-}: ComaPreviewFieldMeta): ComaPointCloudPreviewFieldResult {
+function emptyComaPointCloudPreviewFieldResult(
+  { fieldFraction, label }: ComaPreviewFieldMeta,
+  sampleCount = COMA_PREVIEW_POINT_CLOUD_SAMPLE_COUNT,
+): ComaPointCloudPreviewFieldResult {
   return {
     fieldFraction,
     label,
     fieldAngleDeg: 0,
-    sampleCount: COMA_PREVIEW_POINT_CLOUD_SAMPLE_COUNT,
+    sampleCount,
     validSampleCount: 0,
-    clippedSampleCount: COMA_PREVIEW_POINT_CLOUD_SAMPLE_COUNT,
+    clippedSampleCount: sampleCount,
     chiefIntercept: 0,
     minRelativeTangentialImageHeight: 0,
     maxRelativeTangentialImageHeight: 0,
@@ -602,7 +615,7 @@ function buildFixedComaPreviewFootprints(
   currentPhysStopSD: number,
   traceContext: ComaTraceContext,
 ): FixedComaPreviewFootprint[] {
-  return fixedComaPreviewFieldMeta().map(({ fieldFraction, label }) => ({
+  return fixedComaPreviewFieldMeta(traceContext.fieldFractions).map(({ fieldFraction, label }) => ({
     fieldFraction,
     label,
     footprint: computeMeridionalComaFieldFootprint(
@@ -627,7 +640,7 @@ function buildFixedComaPointCloudPreviewFootprints(
   currentPhysStopSD: number,
   traceContext: ComaTraceContext,
 ): FixedComaPointCloudPreviewFootprint[] {
-  return fixedComaPreviewFieldMeta().map(({ fieldFraction, label }) => ({
+  return fixedComaPreviewFieldMeta(traceContext.fieldFractions).map(({ fieldFraction, label }) => ({
     fieldFraction,
     label,
     footprint: computeComaPointCloudFieldFootprint(
@@ -673,7 +686,7 @@ function computeComaPreviewFromContext(
   );
 
   return {
-    fieldFractions: COMA_PREVIEW_FIELD_FRACTIONS,
+    fieldFractions: traceContext.fieldFractions,
     fields,
     sharedRelativeHalfRangeMm,
     usableFieldCount: usableFields.length,
@@ -717,7 +730,7 @@ function computeComaPointCloudPreviewFromContext(
   const sharedSpotHalfRangeMm = Math.max(sharedTangentialHalfRangeMm, sharedSagittalHalfRangeMm);
 
   return {
-    fieldFractions: COMA_PREVIEW_FIELD_FRACTIONS,
+    fieldFractions: traceContext.fieldFractions,
     fields,
     sharedTangentialHalfRangeMm,
     sharedSagittalHalfRangeMm,
@@ -751,8 +764,9 @@ export function computeMeridionalComa(
   currentPhysStopSD: number,
   aberrationT = 0,
   fieldGeometry?: FieldGeometryState,
+  sampling: AnalysisSamplingOptions = {},
 ): MeridionalComaResult | null {
-  const traceContext = buildComaTraceContext(L, focusT, zoomT, aberrationT, fieldGeometry);
+  const traceContext = buildComaTraceContext(L, focusT, zoomT, aberrationT, fieldGeometry, sampling);
   const footprint = computeMeridionalComaFieldFootprint(
     L,
     zPos,
@@ -803,6 +817,7 @@ export function computeComaPreview(
   currentPhysStopSD: number,
   aberrationT = 0,
   fieldGeometry?: FieldGeometryState,
+  sampling: AnalysisSamplingOptions = {},
 ): ComaPreviewResult | null {
   return computeComaPreviewFromContext(
     L,
@@ -811,7 +826,7 @@ export function computeComaPreview(
     zoomT,
     currentEPSD,
     currentPhysStopSD,
-    buildComaTraceContext(L, focusT, zoomT, aberrationT, fieldGeometry),
+    buildComaTraceContext(L, focusT, zoomT, aberrationT, fieldGeometry, sampling),
   );
 }
 
@@ -837,6 +852,7 @@ export function computeSagittalComa(
   currentPhysStopSD: number,
   aberrationT = 0,
   fieldGeometry?: FieldGeometryState,
+  sampling: AnalysisSamplingOptions = {},
 ): SagittalComaResult | null {
   return computeSagittalComaResultAtField(
     L,
@@ -846,7 +862,7 @@ export function computeSagittalComa(
     currentEPSD,
     currentPhysStopSD,
     L.offAxisFieldFrac,
-    buildComaTraceContext(L, focusT, zoomT, aberrationT, fieldGeometry),
+    buildComaTraceContext(L, focusT, zoomT, aberrationT, fieldGeometry, sampling),
   );
 }
 
@@ -875,6 +891,7 @@ export function computeComaPointCloudPreview(
   currentPhysStopSD: number,
   aberrationT = 0,
   fieldGeometry?: FieldGeometryState,
+  sampling: AnalysisSamplingOptions = {},
 ): ComaPointCloudPreviewResult | null {
   return computeComaPointCloudPreviewFromContext(
     L,
@@ -883,7 +900,7 @@ export function computeComaPointCloudPreview(
     zoomT,
     currentEPSD,
     currentPhysStopSD,
-    buildComaTraceContext(L, focusT, zoomT, aberrationT, fieldGeometry),
+    buildComaTraceContext(L, focusT, zoomT, aberrationT, fieldGeometry, sampling),
   );
 }
 
@@ -912,8 +929,9 @@ export function computeComaAnalysis(
   currentPhysStopSD: number,
   aberrationT = 0,
   fieldGeometry?: FieldGeometryState,
+  sampling: AnalysisSamplingOptions = {},
 ): ComaAnalysisResult {
-  const traceContext = buildComaTraceContext(L, focusT, zoomT, aberrationT, fieldGeometry);
+  const traceContext = buildComaTraceContext(L, focusT, zoomT, aberrationT, fieldGeometry, sampling);
   const meridionalFootprint = computeMeridionalComaFieldFootprint(
     L,
     zPos,

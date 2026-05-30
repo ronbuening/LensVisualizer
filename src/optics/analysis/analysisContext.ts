@@ -9,6 +9,7 @@
 import { analysisJobsForState2 } from "./analysisJobs.js";
 import type { FieldGeometryState } from "../optics.js";
 import type { PreparedOpticalState } from "../types.js";
+import type { AnalysisSamplingOptions } from "./analysisQuality.js";
 
 /**
  * Shared inputs for a set of analysis computations at one focus/zoom/aperture state.
@@ -25,6 +26,7 @@ export interface AnalysisComputationContextParams {
   currentEPSD: number;
   currentPhysStopSD: number;
   fieldGeometry?: FieldGeometryState | null;
+  sampling?: AnalysisSamplingOptions;
 }
 
 /**
@@ -66,6 +68,7 @@ export function createAnalysisComputationContext({
   currentEPSD,
   currentPhysStopSD,
   fieldGeometry = null,
+  sampling = {},
 }: AnalysisComputationContextParams): AnalysisComputationContext {
   const resolvedFieldGeometry = fieldGeometry ?? undefined;
   let opticalSummary: ReturnType<typeof analysisJobsForState2.computeOpticalSummary> | undefined;
@@ -103,6 +106,7 @@ export function createAnalysisComputationContext({
         dynamicEFL,
         currentPhysStopSD,
         resolvedFieldGeometry,
+        sampling,
       )),
     computeDistortionFieldGrid: () =>
       (distortionFieldGrid ??= analysisJobsForState2.computeDistortionFieldGrid(
@@ -116,11 +120,12 @@ export function createAnalysisComputationContext({
         currentEPSD,
         currentPhysStopSD,
         resolvedFieldGeometry,
+        sampling,
       )),
     computeBothPupilAberrationProfiles: () =>
       (pupilProfiles ??= analysisJobsForState2.computeBothPupilAberrationProfiles(
         preparedState,
-        undefined,
+        sampling.pupilAberrationSampleCount ?? undefined,
         resolvedFieldGeometry,
       )),
     computeBokehPreviewPair: () =>
@@ -128,6 +133,7 @@ export function createAnalysisComputationContext({
         preparedState,
         currentEPSD,
         currentPhysStopSD,
+        sampling,
       )),
     computeBestFocusZ: () =>
       (bestFocusZ ??= analysisJobsForState2.computeBestFocusZ(preparedState, currentEPSD, currentPhysStopSD)),
@@ -151,6 +157,7 @@ export function createAnalysisComputationContext({
           currentEPSD,
           currentPhysStopSD,
           sphericalAberration,
+          sampling,
         );
       }
       return sphericalAberrationBlurCharacter;
@@ -161,6 +168,7 @@ export function createAnalysisComputationContext({
         currentEPSD,
         currentPhysStopSD,
         resolvedFieldGeometry,
+        sampling,
       )),
     computeComaAnalysis: () =>
       (comaAnalysis ??= analysisJobsForState2.computeComaAnalysis(
@@ -168,6 +176,7 @@ export function createAnalysisComputationContext({
         currentEPSD,
         currentPhysStopSD,
         resolvedFieldGeometry,
+        sampling,
       )),
   };
 }

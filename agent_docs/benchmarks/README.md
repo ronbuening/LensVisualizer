@@ -44,7 +44,7 @@ instead of creating another benchmark record.
 
 ## Coverage
 
-The benchmark suite currently measures 12 representative lenses across three scenarios:
+The benchmark suite currently measures 14 representative lenses across four scenarios:
 
 - simple classic prime
 - Voigtlander APO-Lanthar 50mm f/2
@@ -56,7 +56,9 @@ The benchmark suite currently measures 12 representative lenses across three sce
 - fisheye/projection path
 - large-format wide zoom
 - fully Sellmeier-covered complex APO zoom
+- Sigma APO Macro 180mm f/2.8 and 150mm f/2.8 heavy macro lenses
 - folded mirror/reference path
+- an `interactive-drag` scenario that uses reduced analysis sampling to represent slider-drag responsiveness
 
 Each run records:
 

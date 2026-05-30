@@ -8,6 +8,7 @@
 import type { FieldGeometryState } from "../optics.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { PreparedOpticalState } from "../types.js";
+import type { AnalysisSamplingOptions } from "./analysisQuality.js";
 import {
   computeComaAnalysisForState2,
   computeFieldCurvatureBundle2,
@@ -55,8 +56,19 @@ export const analysisJobs2 = {
     currentPhysStopSD: number,
     fieldGeometry?: FieldGeometryState,
     aberrationT = 0,
+    sampling?: AnalysisSamplingOptions,
   ) {
-    return computeDistortionCurve2(L, zPos, focusT, zoomT, dynamicEFL, currentPhysStopSD, fieldGeometry, aberrationT);
+    return computeDistortionCurve2(
+      L,
+      zPos,
+      focusT,
+      zoomT,
+      dynamicEFL,
+      currentPhysStopSD,
+      fieldGeometry,
+      aberrationT,
+      sampling,
+    );
   },
 
   computeDistortionFieldGrid(
@@ -67,8 +79,9 @@ export const analysisJobs2 = {
     currentPhysStopSD: number,
     fieldGeometry?: FieldGeometryState,
     aberrationT = 0,
+    sampling?: AnalysisSamplingOptions,
   ) {
-    return computeDistortionFieldGrid2(L, zPos, focusT, zoomT, currentPhysStopSD, fieldGeometry, aberrationT);
+    return computeDistortionFieldGrid2(L, zPos, focusT, zoomT, currentPhysStopSD, fieldGeometry, aberrationT, sampling);
   },
 
   computeVignettingCurve(
@@ -80,8 +93,19 @@ export const analysisJobs2 = {
     currentPhysStopSD: number,
     fieldGeometry?: FieldGeometryState,
     aberrationT = 0,
+    sampling?: AnalysisSamplingOptions,
   ) {
-    return computeVignettingCurve2(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, fieldGeometry, aberrationT);
+    return computeVignettingCurve2(
+      L,
+      zPos,
+      focusT,
+      zoomT,
+      currentEPSD,
+      currentPhysStopSD,
+      fieldGeometry,
+      aberrationT,
+      sampling,
+    );
   },
 
   computeFieldCurvatureBundle(
@@ -93,6 +117,7 @@ export const analysisJobs2 = {
     currentPhysStopSD: number,
     aberrationT = 0,
     fieldGeometry?: FieldGeometryState,
+    sampling?: AnalysisSamplingOptions,
   ) {
     return computeFieldCurvatureBundle2(
       L,
@@ -103,6 +128,7 @@ export const analysisJobs2 = {
       currentPhysStopSD,
       aberrationT,
       fieldGeometry,
+      sampling,
     );
   },
 
@@ -124,8 +150,9 @@ export const analysisJobs2 = {
     currentEPSD: number,
     currentPhysStopSD: number,
     aberrationT = 0,
+    sampling?: AnalysisSamplingOptions,
   ) {
-    return computeBokehPreviewPair2(L, focusT, zoomT, currentEPSD, currentPhysStopSD, aberrationT);
+    return computeBokehPreviewPair2(L, focusT, zoomT, currentEPSD, currentPhysStopSD, aberrationT, sampling);
   },
 
   computeBothPupilAberrationProfiles(
@@ -162,8 +189,15 @@ export const analysisJobsForState2 = {
     currentEPSD: number,
     currentPhysStopSD: number,
     baseResult: Parameters<typeof computeSphericalAberrationBlurCharacterForState2>[3] = null,
+    sampling?: AnalysisSamplingOptions,
   ) {
-    return computeSphericalAberrationBlurCharacterForState2(state, currentEPSD, currentPhysStopSD, baseResult);
+    return computeSphericalAberrationBlurCharacterForState2(
+      state,
+      currentEPSD,
+      currentPhysStopSD,
+      baseResult,
+      sampling,
+    );
   },
 
   computeFieldCurvature(
@@ -172,8 +206,9 @@ export const analysisJobsForState2 = {
     currentPhysStopSD: number,
     chromatic = false,
     fieldGeometry?: FieldGeometryState,
+    sampling?: AnalysisSamplingOptions,
   ) {
-    return computeFieldCurvatureForState2(state, currentEPSD, currentPhysStopSD, chromatic, fieldGeometry);
+    return computeFieldCurvatureForState2(state, currentEPSD, currentPhysStopSD, chromatic, fieldGeometry, sampling);
   },
 
   computeFieldCurvatureBundle(
@@ -181,8 +216,9 @@ export const analysisJobsForState2 = {
     currentEPSD: number,
     currentPhysStopSD: number,
     fieldGeometry?: FieldGeometryState,
+    sampling?: AnalysisSamplingOptions,
   ) {
-    return computeFieldCurvatureBundleForState2(state, currentEPSD, currentPhysStopSD, fieldGeometry);
+    return computeFieldCurvatureBundleForState2(state, currentEPSD, currentPhysStopSD, fieldGeometry, sampling);
   },
 
   computeComaAnalysis(
@@ -190,16 +226,22 @@ export const analysisJobsForState2 = {
     currentEPSD: number,
     currentPhysStopSD: number,
     fieldGeometry?: FieldGeometryState,
+    sampling?: AnalysisSamplingOptions,
   ) {
-    return computeComaAnalysisForState2(state, currentEPSD, currentPhysStopSD, fieldGeometry);
+    return computeComaAnalysisForState2(state, currentEPSD, currentPhysStopSD, fieldGeometry, sampling);
   },
 
   computeBestFocusZ(state: PreparedOpticalState, currentEPSD: number, currentPhysStopSD: number) {
     return computeBestFocusZForState2(state, currentEPSD, currentPhysStopSD);
   },
 
-  computeBokehPreviewPair(state: PreparedOpticalState, currentEPSD: number, currentPhysStopSD: number) {
-    return computeBokehPreviewPairForState2(state, currentEPSD, currentPhysStopSD);
+  computeBokehPreviewPair(
+    state: PreparedOpticalState,
+    currentEPSD: number,
+    currentPhysStopSD: number,
+    sampling?: AnalysisSamplingOptions,
+  ) {
+    return computeBokehPreviewPairForState2(state, currentEPSD, currentPhysStopSD, sampling);
   },
 
   computeOpticalSummary(
@@ -217,16 +259,18 @@ export const analysisJobsForState2 = {
     dynamicEFL: number,
     currentPhysStopSD: number,
     fieldGeometry?: FieldGeometryState,
+    sampling?: AnalysisSamplingOptions,
   ) {
-    return computeDistortionCurveForState2(state, dynamicEFL, currentPhysStopSD, fieldGeometry);
+    return computeDistortionCurveForState2(state, dynamicEFL, currentPhysStopSD, fieldGeometry, sampling);
   },
 
   computeDistortionFieldGrid(
     state: PreparedOpticalState,
     currentPhysStopSD: number,
     fieldGeometry?: FieldGeometryState,
+    sampling?: AnalysisSamplingOptions,
   ) {
-    return computeDistortionFieldGridForState2(state, currentPhysStopSD, fieldGeometry);
+    return computeDistortionFieldGridForState2(state, currentPhysStopSD, fieldGeometry, sampling);
   },
 
   computeVignettingCurve(
@@ -234,8 +278,9 @@ export const analysisJobsForState2 = {
     currentEPSD: number,
     currentPhysStopSD: number,
     fieldGeometry?: FieldGeometryState,
+    sampling?: AnalysisSamplingOptions,
   ) {
-    return computeVignettingCurveForState2(state, currentEPSD, currentPhysStopSD, fieldGeometry);
+    return computeVignettingCurveForState2(state, currentEPSD, currentPhysStopSD, fieldGeometry, sampling);
   },
 
   computeBothPupilAberrationProfiles(
