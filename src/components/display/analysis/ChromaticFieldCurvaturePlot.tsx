@@ -34,15 +34,15 @@ const PW = VB_W - ML - MR;
 const PH = VB_H - MT - MB;
 
 export default function ChromaticFieldCurvaturePlot({ result, t }: ChromaticFieldCurvaturePlotProps) {
-  const markerFields = result.fields.filter((field) => field.usable && field.chromaticFieldShifts !== null);
-  const curveFields = result.curveFields.filter((field) => field.usable && field.chromaticFieldShifts !== null);
+  const markerFields = result.fields.filter(hasUsableChromaticShifts);
+  const curveFields = result.curveFields.filter(hasUsableChromaticShifts);
   const plotFields = curveFields.length > 0 ? curveFields : markerFields;
   if (plotFields.length < 2) return null;
 
   // Compute y-range from all chromatic shifts
   let maxShift = 0.1;
   for (const field of plotFields) {
-    for (const shift of field.chromaticFieldShifts!) {
+    for (const shift of finiteChromaticShifts(field)) {
       maxShift = Math.max(maxShift, Math.abs(shift.tangentialShiftMm), Math.abs(shift.sagittalShiftMm));
     }
   }
@@ -67,7 +67,7 @@ export default function ChromaticFieldCurvaturePlot({ result, t }: ChromaticFiel
   ) {
     return plotFields
       .map((field) => {
-        const shift = field.chromaticFieldShifts!.find((s) => s.channel === channel);
+        const shift = finiteChromaticShifts(field).find((s) => s.channel === channel);
         if (!shift) return null;
         return `${xScale(field.fieldFraction).toFixed(1)},${yScale(accessor(shift)).toFixed(1)}`;
       })
@@ -167,7 +167,7 @@ export default function ChromaticFieldCurvaturePlot({ result, t }: ChromaticFiel
       {channels.map((channel) => {
         const color = channelColors[channel];
         return markerFields.map((field) => {
-          const shift = field.chromaticFieldShifts!.find((s) => s.channel === channel);
+          const shift = finiteChromaticShifts(field).find((s) => s.channel === channel);
           if (!shift) return null;
           return (
             <g key={`${channel}-${field.fieldFraction}`}>
@@ -213,5 +213,19 @@ export default function ChromaticFieldCurvaturePlot({ result, t }: ChromaticFiel
         </text>
       </g>
     </svg>
+  );
+}
+
+function hasUsableChromaticShifts(field: FieldCurvatureResult["fields"][number]): boolean {
+  return field.usable && finiteChromaticShifts(field).length >= 2;
+}
+
+function finiteChromaticShifts(
+  field: FieldCurvatureResult["fields"][number],
+): NonNullable<FieldCurvatureResult["fields"][number]["chromaticFieldShifts"]> {
+  return (
+    field.chromaticFieldShifts?.filter(
+      (shift) => isFinite(shift.tangentialShiftMm) && isFinite(shift.sagittalShiftMm),
+    ) ?? []
   );
 }

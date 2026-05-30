@@ -29,6 +29,7 @@ import {
   computeChromaticAnalysisForState2,
   computeChromaticRayTraceAnalysis2,
   computeChromaticRayTraceAnalysisForState2,
+  type ChromaticRayTraceAnalysisOptions2,
 } from "./chromatic.js";
 import {
   computeDistortionCurve2,
@@ -172,8 +173,18 @@ export const analysisJobs2 = {
     currentEPSD: number,
     currentPhysStopSD: number,
     aberrationT = 0,
+    options?: ChromaticRayTraceAnalysisOptions2,
   ) {
-    return computeChromaticRayTraceAnalysis2(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, aberrationT);
+    return computeChromaticRayTraceAnalysis2(
+      L,
+      zPos,
+      focusT,
+      zoomT,
+      currentEPSD,
+      currentPhysStopSD,
+      aberrationT,
+      options,
+    );
   },
 
   computeBestFocusZ(
@@ -282,8 +293,9 @@ export const analysisJobsForState2 = {
     currentEPSD: number,
     currentPhysStopSD: number,
     _fieldGeometry?: FieldGeometryState,
+    options?: ChromaticRayTraceAnalysisOptions2,
   ) {
-    return computeChromaticRayTraceAnalysisForState2(state, currentEPSD, currentPhysStopSD);
+    return computeChromaticRayTraceAnalysisForState2(state, currentEPSD, currentPhysStopSD, options);
   },
 
   computeComaAnalysis(

@@ -11,6 +11,7 @@ import {
   fopenAtZoom,
 } from "../../../../../src/optics/optics.js";
 import AberrationsPanel from "../../../../../src/components/display/analysis/AberrationsPanel.js";
+import ChromaticTab from "../../../../../src/components/display/analysis/ChromaticTab.js";
 import ComaTab from "../../../../../src/components/display/analysis/ComaTab.js";
 import DistortionChart from "../../../../../src/components/display/analysis/DistortionChart.js";
 import DistortionTab from "../../../../../src/components/display/analysis/DistortionTab.js";
@@ -222,6 +223,43 @@ describe("analysis display tabs", () => {
     expect(html).toContain("COMA SPAN");
     expect(html).not.toContain("Spherical Aberration");
     expect(html).not.toContain("Field Curves &amp; Astigmatism");
+  });
+
+  it("ChromaticTab renders axial, lateral, and field-focus chromatic diagnostics", () => {
+    const L = build(Sonnar50f15Raw);
+    const focusT = 0;
+    const zoomT = 0;
+    const { currentPhysStopSD, currentEPSD } = apertureAt(L, zoomT, 0.25);
+    const fieldGeometry = computeAnalysisFieldGeometryAtState(focusT, zoomT, L);
+
+    const html = renderToStaticMarkup(
+      React.createElement(ChromaticTab, {
+        L,
+        t: themes.dark,
+        focusT,
+        zoomT,
+        currentEPSD,
+        currentPhysStopSD,
+        fieldGeometry,
+      }),
+    );
+
+    expect(html).toContain("Chromatic Analysis");
+    expect(html).toContain("Geometric traces at C, d, F, and g spectral lines");
+    expect(html).toContain("do not classify apochromatic correction");
+    expect(html).toContain("AXIAL LCA");
+    expect(html).toContain("MAX LATERAL COLOR");
+    expect(html).toContain("OFF-AXIS MARGINAL TCA");
+    expect(html).toContain("Longitudinal Color");
+    expect(html).toContain("Lateral Color");
+    expect(html).toContain("Field-Focus Color");
+    expect(html).toContain("Focus from G nd (um)");
+    expect(html).toContain("Height from G nd (um)");
+    expect(html).toContain("C-line 656.3 nm");
+    expect(html).toContain("d-line 587.6 nm");
+    expect(html).toContain("F-line 486.1 nm");
+    expect(html).toContain("g-line 435.8 nm");
+    expect(html).toContain("MAX FOCUS");
   });
 
   it("FocusBreathingTab renders the breathing chart and summary metrics", () => {

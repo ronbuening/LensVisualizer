@@ -17,6 +17,7 @@ export const DESKTOP_VIEWS = ["diagram", "both", "analysis"] as const;
 export const ANALYSIS_TAB_IDS = [
   "summary",
   "aberrations",
+  "chromatic",
   "coma",
   "bokeh",
   "distortion",

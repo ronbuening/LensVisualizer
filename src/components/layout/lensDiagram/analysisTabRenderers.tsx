@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import AberrationsPanel from "../../display/analysis/AberrationsPanel.js";
 import BokehTab from "../../display/analysis/BokehTab.js";
+import ChromaticTab from "../../display/analysis/ChromaticTab.js";
 import ComaTab from "../../display/analysis/ComaTab.js";
 import DistortionTab from "../../display/analysis/DistortionTab.js";
 import FocusBreathingTab from "../../display/analysis/FocusBreathingTab.js";
@@ -77,6 +78,20 @@ export const ANALYSIS_TAB_RENDERERS: Record<AnalysisTabId, AnalysisTabRenderer> 
       analysisContext={analysisContext}
       expanded={aberrationsExpanded}
       onExpandedChange={onAberrationsExpandedChange}
+    />
+  ),
+  chromatic: ({ L, t, preparedState, analysisContext, inputs }) => (
+    <ChromaticTab
+      L={L}
+      t={t}
+      focusT={inputs.focusT}
+      zoomT={inputs.zoomT}
+      aberrationT={inputs.aberrationT}
+      currentEPSD={inputs.currentEPSD}
+      currentPhysStopSD={inputs.currentPhysStopSD}
+      fieldGeometry={inputs.fieldGeometry}
+      preparedState={preparedState}
+      analysisContext={analysisContext}
     />
   ),
   coma: ({ L, t, zPos, preparedState, analysisContext, inputs }) => (

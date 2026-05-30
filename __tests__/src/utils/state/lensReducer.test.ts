@@ -478,6 +478,11 @@ describe("lensReducer", () => {
       const next = lensReducer(state, { type: SET_ANALYSIS_TAB, tab: "summary" });
       expect(next.panels.analysisDrawerTab).toBe("summary");
     });
+
+    it("accepts the chromatic analysis tab", () => {
+      const next = lensReducer(state, { type: SET_ANALYSIS_TAB, tab: "chromatic" });
+      expect(next.panels.analysisDrawerTab).toBe("chromatic");
+    });
   });
 
   describe("SET_GROUP_MOVEMENT", () => {

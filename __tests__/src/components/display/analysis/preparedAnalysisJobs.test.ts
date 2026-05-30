@@ -1,6 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
+import ChromaticTab from "../../../../../src/components/display/analysis/ChromaticTab.js";
 import DistortionTab from "../../../../../src/components/display/analysis/DistortionTab.js";
 import OpticalSummaryTab from "../../../../../src/components/display/analysis/OpticalSummaryTab.js";
 import PupilAberrationTab from "../../../../../src/components/display/analysis/PupilAberrationTab.js";
@@ -11,16 +12,22 @@ import type { RuntimeLens } from "../../../../../src/types/optics.js";
 
 const {
   mockComputeBothPupilAberrationProfiles,
+  mockComputeChromaticAnalysis,
+  mockComputeChromaticRayTraceAnalysis,
   mockComputeDistortionCurve,
   mockComputeDistortionFieldGrid,
+  mockComputeFieldCurvatureBundle,
   mockComputeOpticalSummary,
   mockComputeVignettingCurve,
   mockPreparedState,
   mockPrepareRuntimeState,
 } = vi.hoisted(() => ({
   mockComputeBothPupilAberrationProfiles: vi.fn(),
+  mockComputeChromaticAnalysis: vi.fn(),
+  mockComputeChromaticRayTraceAnalysis: vi.fn(),
   mockComputeDistortionCurve: vi.fn(),
   mockComputeDistortionFieldGrid: vi.fn(),
+  mockComputeFieldCurvatureBundle: vi.fn(),
   mockComputeOpticalSummary: vi.fn(),
   mockComputeVignettingCurve: vi.fn(),
   mockPreparedState: { cacheKey: "prepared-analysis-test" },
@@ -34,8 +41,11 @@ vi.mock("../../../../../src/optics/compat.js", async () => {
     analysisJobsForState2: {
       ...(actual as { analysisJobsForState2: Record<string, unknown> }).analysisJobsForState2,
       computeBothPupilAberrationProfiles: mockComputeBothPupilAberrationProfiles,
+      computeChromaticAnalysis: mockComputeChromaticAnalysis,
+      computeChromaticRayTraceAnalysis: mockComputeChromaticRayTraceAnalysis,
       computeDistortionCurve: mockComputeDistortionCurve,
       computeDistortionFieldGrid: mockComputeDistortionFieldGrid,
+      computeFieldCurvatureBundle: mockComputeFieldCurvatureBundle,
       computeOpticalSummary: mockComputeOpticalSummary,
       computeVignettingCurve: mockComputeVignettingCurve,
     },
@@ -109,6 +119,125 @@ const vignettingSamples = [
   { fieldAngleDeg: 12, geometricTransmission: 0.82, relativeIllumination: 0.75 },
 ];
 
+const chromaticAnalysis = {
+  longitudinalFocus: {
+    channels: ["R", "G", "B"],
+    referenceChannel: "G",
+    marginalFraction: 0.95,
+    imagePlaneZ: 60,
+    lastSurfaceZ: 20,
+    longitudinalSpreadMm: 0.03,
+    longitudinalSpreadUm: 30,
+    transverseSpreadMm: 0.005,
+    transverseSpreadUm: 5,
+    spread: {
+      lcaMm: 0.03,
+      tcaMm: 0.005,
+      intercepts: { R: 59.99, G: 60, B: 60.02 },
+      imgHeights: { R: -0.002, G: 0, B: 0.003 },
+      axis: "onAxis",
+      fraction: 0.95,
+      channels: ["R", "G", "B"],
+    },
+    samples: [
+      {
+        channel: "R",
+        focusZ: 59.99,
+        focusShiftMm: -0.01,
+        relativeFocusShiftMm: -0.01,
+        imageHeightMm: -0.002,
+        relativeImageHeightMm: -0.002,
+        usable: true,
+        clipped: false,
+      },
+      {
+        channel: "G",
+        focusZ: 60,
+        focusShiftMm: 0,
+        relativeFocusShiftMm: 0,
+        imageHeightMm: 0,
+        relativeImageHeightMm: 0,
+        usable: true,
+        clipped: false,
+      },
+      {
+        channel: "B",
+        focusZ: 60.02,
+        focusShiftMm: 0.02,
+        relativeFocusShiftMm: 0.02,
+        imageHeightMm: 0.003,
+        relativeImageHeightMm: 0.003,
+        usable: true,
+        clipped: false,
+      },
+    ],
+    validChannelCount: 3,
+  },
+  lateralColor: {
+    channels: ["R", "G", "B"],
+    referenceChannel: "G",
+    fieldFractions: [0, 1],
+    fields: [
+      {
+        fieldFraction: 0,
+        label: "0%",
+        fieldAngleDeg: 0,
+        referenceChannel: "G",
+        referenceImageHeightMm: 0,
+        lateralSpreadMm: 0,
+        lateralSpreadUm: 0,
+        samples: [
+          { channel: "R", imageHeightMm: 0, relativeHeightMm: 0, usable: true, clipped: false },
+          { channel: "G", imageHeightMm: 0, relativeHeightMm: 0, usable: true, clipped: false },
+          { channel: "B", imageHeightMm: 0, relativeHeightMm: 0, usable: true, clipped: false },
+        ],
+        validChannelCount: 3,
+        usable: true,
+      },
+      {
+        fieldFraction: 1,
+        label: "100%",
+        fieldAngleDeg: 12,
+        referenceChannel: "G",
+        referenceImageHeightMm: 10,
+        lateralSpreadMm: 0.012,
+        lateralSpreadUm: 12,
+        samples: [
+          { channel: "R", imageHeightMm: 9.995, relativeHeightMm: -0.005, usable: true, clipped: false },
+          { channel: "G", imageHeightMm: 10, relativeHeightMm: 0, usable: true, clipped: false },
+          { channel: "B", imageHeightMm: 10.007, relativeHeightMm: 0.007, usable: true, clipped: false },
+        ],
+        validChannelCount: 3,
+        usable: true,
+      },
+    ],
+    usableFieldCount: 2,
+    maxLateralSpreadMm: 0.012,
+    maxLateralSpreadUm: 12,
+    imagePlaneZ: 60,
+    halfFieldDeg: 12,
+  },
+};
+
+const chromaticRayTraceAnalysis = {
+  channels: ["R", "G", "B", "V"],
+  spreads: {
+    onAxis: chromaticAnalysis.longitudinalFocus.spread,
+    offAxis: {
+      lcaMm: 0.018,
+      tcaMm: 0.009,
+      intercepts: { R: 59.98, G: 60, B: 60.01, V: 60.015 },
+      imgHeights: { R: 9.99, G: 10, B: 10.006, V: 10.009 },
+      axis: "offAxis",
+      fraction: 0.75,
+      channels: ["R", "G", "B", "V"],
+    },
+  },
+  offAxisFieldAngleDeg: 12,
+  onAxisAttemptedRayCount: 4,
+  offAxisAttemptedRayCount: 4,
+};
+
 const pupilProfiles = {
   ep: {
     samples: [
@@ -160,10 +289,16 @@ describe("prepared-state analysis tabs", () => {
   beforeEach(() => {
     mockComputeBothPupilAberrationProfiles.mockReset();
     mockComputeBothPupilAberrationProfiles.mockReturnValue(pupilProfiles);
+    mockComputeChromaticAnalysis.mockReset();
+    mockComputeChromaticAnalysis.mockReturnValue(chromaticAnalysis);
+    mockComputeChromaticRayTraceAnalysis.mockReset();
+    mockComputeChromaticRayTraceAnalysis.mockReturnValue(chromaticRayTraceAnalysis);
     mockComputeDistortionCurve.mockReset();
     mockComputeDistortionCurve.mockReturnValue(distortionSamples);
     mockComputeDistortionFieldGrid.mockReset();
     mockComputeDistortionFieldGrid.mockReturnValue(distortionFieldGrid);
+    mockComputeFieldCurvatureBundle.mockReset();
+    mockComputeFieldCurvatureBundle.mockReturnValue({ fieldCurvature: null, chromaticFieldCurvature: null });
     mockComputeOpticalSummary.mockReset();
     mockComputeOpticalSummary.mockReturnValue(opticalSummary);
     mockComputeVignettingCurve.mockReset();
@@ -211,6 +346,30 @@ describe("prepared-state analysis tabs", () => {
     expect(html).toContain("Optical State");
     expect(mockPrepareRuntimeState).not.toHaveBeenCalled();
     expect(mockComputeOpticalSummary).toHaveBeenCalledWith(preparedState, 51, 10, 5, fieldGeometry);
+  });
+
+  it("routes chromatic work through the prepared-state job facade", () => {
+    const html = renderToStaticMarkup(
+      React.createElement(ChromaticTab, {
+        L: lens,
+        t: themes.dark,
+        focusT: 0.2,
+        zoomT: 0.3,
+        aberrationT: 0.4,
+        currentEPSD: 10,
+        currentPhysStopSD: 5,
+        fieldGeometry,
+        preparedState,
+      }),
+    );
+
+    expect(html).toContain("Longitudinal Color");
+    expect(mockPrepareRuntimeState).not.toHaveBeenCalled();
+    expect(mockComputeChromaticAnalysis).toHaveBeenCalledWith(preparedState, 10, 5, fieldGeometry);
+    expect(mockComputeChromaticRayTraceAnalysis).toHaveBeenCalledWith(preparedState, 10, 5, fieldGeometry, {
+      channels: ["R", "G", "B", "V"],
+    });
+    expect(mockComputeFieldCurvatureBundle).toHaveBeenCalledWith(preparedState, 10, 5, fieldGeometry);
   });
 
   it("routes vignetting work through the prepared-state job facade", () => {

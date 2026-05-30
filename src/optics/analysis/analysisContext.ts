@@ -7,6 +7,7 @@
  */
 
 import { analysisJobsForState2 } from "./analysisJobs.js";
+import { CHROMATIC_CHANNEL_ORDER } from "../chromatic/channels.js";
 import type { FieldGeometryState } from "../optics.js";
 import type { PreparedOpticalState } from "../types.js";
 import type { AnalysisSamplingOptions } from "./analysisQuality.js";
@@ -50,6 +51,7 @@ export interface AnalysisComputationContext extends AnalysisComputationContextPa
   >;
   computeFieldCurvatureBundle: () => ReturnType<typeof analysisJobsForState2.computeFieldCurvatureBundle>;
   computeChromaticAnalysis: () => ReturnType<typeof analysisJobsForState2.computeChromaticAnalysis>;
+  computeChromaticRayTraceAnalysis: () => ReturnType<typeof analysisJobsForState2.computeChromaticRayTraceAnalysis>;
   computeComaAnalysis: () => ReturnType<typeof analysisJobsForState2.computeComaAnalysis>;
 }
 
@@ -86,6 +88,7 @@ export function createAnalysisComputationContext({
     | undefined;
   let fieldCurvatureBundle: ReturnType<typeof analysisJobsForState2.computeFieldCurvatureBundle> | undefined;
   let chromaticAnalysis: ReturnType<typeof analysisJobsForState2.computeChromaticAnalysis> | undefined;
+  let chromaticRayTraceAnalysis: ReturnType<typeof analysisJobsForState2.computeChromaticRayTraceAnalysis> | undefined;
   let comaAnalysis: ReturnType<typeof analysisJobsForState2.computeComaAnalysis> | undefined;
 
   return {
@@ -179,6 +182,14 @@ export function createAnalysisComputationContext({
         currentPhysStopSD,
         resolvedFieldGeometry,
         sampling,
+      )),
+    computeChromaticRayTraceAnalysis: () =>
+      (chromaticRayTraceAnalysis ??= analysisJobsForState2.computeChromaticRayTraceAnalysis(
+        preparedState,
+        currentEPSD,
+        currentPhysStopSD,
+        resolvedFieldGeometry,
+        { channels: CHROMATIC_CHANNEL_ORDER },
       )),
     computeComaAnalysis: () =>
       (comaAnalysis ??= analysisJobsForState2.computeComaAnalysis(

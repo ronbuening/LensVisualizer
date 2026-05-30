@@ -321,7 +321,9 @@ function channelSpan(
 }
 
 function chromaticFieldSummary(field: FieldCurvatureFieldResult): ChromaticFieldFocusFieldSummary2 | null {
-  const shifts = field.chromaticFieldShifts;
+  const shifts = field.chromaticFieldShifts?.filter(
+    (shift) => isFinite(shift.tangentialShiftMm) && isFinite(shift.sagittalShiftMm),
+  );
   if (!field.usable || !shifts || shifts.length < 2) return null;
   const tangential = channelSpan(shifts, "tangentialShiftMm");
   const sagittal = channelSpan(shifts, "sagittalShiftMm");

@@ -184,6 +184,9 @@ describe("loadPrefs", () => {
   it("loads analysisDrawerTab preference", () => {
     mockLocalStorage.setItem(PREFS_KEY, JSON.stringify({ analysisDrawerTab: "summary" }));
     expect(loadPrefs().analysisDrawerTab).toBe("summary");
+
+    mockLocalStorage.setItem(PREFS_KEY, JSON.stringify({ analysisDrawerTab: "chromatic" }));
+    expect(loadPrefs().analysisDrawerTab).toBe("chromatic");
   });
 
   it("ignores non-string analysisDrawerTab", () => {
