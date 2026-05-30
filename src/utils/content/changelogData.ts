@@ -22,6 +22,16 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-05-30 ──────────────────────────────────────────────────────────
   {
     date: "2026-05-30",
+    type: "feature",
+    summary: "Added chromatic analysis charts for LCA, lateral color, and field-focus color",
+  },
+  {
+    date: "2026-05-30",
+    type: "fix",
+    summary: "Fixed LCA and TCA displays to use matching charts with violet-channel traces",
+  },
+  {
+    date: "2026-05-30",
     type: "lens",
     summary: "Added three Sigma macro lenses",
   },
