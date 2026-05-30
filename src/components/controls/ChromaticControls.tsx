@@ -5,6 +5,8 @@
  * individual R/G/B channel buttons for selective wavelength display.
  */
 import { toggleGroup, toggleBtn, chromChannelBtn } from "../../utils/style/styles.js";
+import { CHROMATIC_CHANNEL_METADATA } from "../../optics/chromatic/channels.js";
+import type { ChromaticChannel } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
 
 interface ChromaticControlsProps {
@@ -77,13 +79,25 @@ export default function ChromaticControls({
         <span>COLOR</span>
       </button>
       {showChromatic &&
-        [
-          { ch: "R", active: chromR, set: onChromRChange, color: t.rayChromR },
-          { ch: "G", active: chromG, set: onChromGChange, color: t.rayChromG },
-          { ch: "B", active: chromB, set: onChromBChange, color: t.rayChromB },
-          { ch: "V", active: chromV, set: onChromVChange, color: t.rayChromV },
-        ].map(({ ch, active, set, color }, idx) => (
-          <button key={ch} onClick={() => set?.(!active)} style={chromChannelBtn(t, active, idx < 3)}>
+        (
+          [
+            { ch: "R", active: chromR, set: onChromRChange, color: t.rayChromR },
+            { ch: "G", active: chromG, set: onChromGChange, color: t.rayChromG },
+            { ch: "B", active: chromB, set: onChromBChange, color: t.rayChromB },
+            { ch: "V", active: chromV, set: onChromVChange, color: t.rayChromV },
+          ] satisfies Array<{
+            ch: ChromaticChannel;
+            active: boolean;
+            set?: (value: boolean) => void;
+            color: string;
+          }>
+        ).map(({ ch, active, set, color }, idx) => (
+          <button
+            key={ch}
+            onClick={() => set?.(!active)}
+            style={chromChannelBtn(t, active, idx < 3)}
+            title={CHROMATIC_CHANNEL_METADATA[ch].wavelengthLabel}
+          >
             <span
               style={{
                 width: 6,

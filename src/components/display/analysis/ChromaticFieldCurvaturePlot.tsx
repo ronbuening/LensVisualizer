@@ -3,8 +3,9 @@
  * tangential and sagittal parabasal field-curve shifts across the field.
  *
  * Renders three pairs of tangential (solid) + sagittal (dashed) traces,
- * one per chromatic channel, to visualize how lateral color shifts the
- * focal surface at each field position.
+ * one per chromatic channel, to visualize wavelength-dependent best-focus
+ * shift at each field position. Lateral color is a separate image-height
+ * metric and should not be inferred from this focus-shift chart.
  */
 
 import type { FieldCurvatureResult } from "../../../optics/aberrationAnalysis.js";
@@ -78,7 +79,7 @@ export default function ChromaticFieldCurvaturePlot({ result, t }: ChromaticFiel
     <svg viewBox={`0 0 ${VB_W} ${VB_H}`} style={{ display: "block", width: "100%", maxWidth: VB_W, height: "auto" }}>
       <title>
         Chromatic field curvature. R, G, and B tangential (solid) and sagittal (dashed) parabasal field curves show how
-        dispersion shifts the focal surface per wavelength across the field.
+        dispersion shifts the best-focus surface per wavelength across the field.
       </title>
       <rect x={ML} y={MT} width={PW} height={PH} rx={3} fill={t.panelBg} stroke={t.panelBorder} strokeWidth={0.75} />
 

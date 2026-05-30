@@ -5,19 +5,19 @@
  */
 
 import type { ChromaticChannel, RuntimeLens } from "../../types/optics.js";
-import { LINE_NM } from "../glassCatalog.js";
 import type { PreparedOpticalState } from "../types.js";
 import { normalizeRuntimeLens } from "../prescription/normalizeLensData.js";
+import { CHROMATIC_CHANNEL_METADATA, CHROMATIC_CHANNEL_ORDER } from "./channels.js";
 
 /** Chromatic channels traced by the engine: C, d, F, and g spectral lines. */
-export const CHROMATIC_CHANNELS_2 = Object.freeze(["R", "G", "B", "V"] as const);
+export const CHROMATIC_CHANNELS_2 = CHROMATIC_CHANNEL_ORDER;
 
 /** Per-channel wavelength in nanometers, keyed to standard Fraunhofer lines. */
 export const CHANNEL_WAVELENGTH_NM_2: Readonly<Record<ChromaticChannel, number>> = Object.freeze({
-  R: LINE_NM.C,
-  G: LINE_NM.d,
-  B: LINE_NM.F,
-  V: LINE_NM.g,
+  R: CHROMATIC_CHANNEL_METADATA.R.wavelengthNm,
+  G: CHROMATIC_CHANNEL_METADATA.G.wavelengthNm,
+  B: CHROMATIC_CHANNEL_METADATA.B.wavelengthNm,
+  V: CHROMATIC_CHANNEL_METADATA.V.wavelengthNm,
 });
 
 /**

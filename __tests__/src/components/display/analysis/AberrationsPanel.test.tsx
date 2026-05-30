@@ -566,6 +566,7 @@ describe("AberrationsPanel", () => {
       baseProps.currentPhysStopSD,
       preparedState.aberrationT,
       undefined,
+      undefined,
     );
   });
 
@@ -621,6 +622,7 @@ describe("AberrationsPanel", () => {
       baseProps.currentEPSD,
       baseProps.currentPhysStopSD,
       preparedState.aberrationT,
+      undefined,
       undefined,
     );
   });

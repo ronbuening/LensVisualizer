@@ -8,6 +8,7 @@
 import type { ChromaticSpread, ChromaticSpreadByAxis } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
 import type { DispersionQuality } from "../../optics/dispersion.js";
+import { CHROMATIC_CHANNEL_METADATA } from "../../optics/chromatic/channels.js";
 import LCAInsetWidget from "./LCAInsetWidget.js";
 
 interface LCAOverlayContentProps {
@@ -103,10 +104,13 @@ export default function LCAOverlayContent({
         }}
       >
         <strong>Longitudinal Chromatic Aberration (LCA)</strong> measures how different wavelengths of light focus at
-        different distances along the optical axis. The colored bars show where red (C-line, 656 nm), green (d-line, 588
-        nm), blue (F-line, 486 nm), and — when enabled — violet (g-line, 436 nm) marginal rays cross the axis relative
-        to the reference focus. Apochromatic designs aim to bring three wavelengths to a common focus; the violet bar
-        reveals the residual <em>secondary spectrum</em> that distinguishes a true APO from an achromat.
+        different distances along the optical axis. The colored bars show where{" "}
+        {CHROMATIC_CHANNEL_METADATA.R.description} ({CHROMATIC_CHANNEL_METADATA.R.wavelengthLabel}),{" "}
+        {CHROMATIC_CHANNEL_METADATA.G.description} ({CHROMATIC_CHANNEL_METADATA.G.wavelengthLabel}),{" "}
+        {CHROMATIC_CHANNEL_METADATA.B.description} ({CHROMATIC_CHANNEL_METADATA.B.wavelengthLabel}), and, when enabled,{" "}
+        {CHROMATIC_CHANNEL_METADATA.V.description} ({CHROMATIC_CHANNEL_METADATA.V.wavelengthLabel}) marginal rays cross
+        the axis relative to the reference focus. This is a geometric spectral-line trace; it is useful for comparing
+        correction strategy, but it is not a full-spectrum diffraction, sensor-stack, or production APO certification.
       </p>
     </div>
   );

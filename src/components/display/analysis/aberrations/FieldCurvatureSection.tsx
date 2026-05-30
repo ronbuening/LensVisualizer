@@ -55,8 +55,8 @@ export default function FieldCurvatureSection({ result, expanded, onToggle, them
                 <>
                   <ChromaticFieldCurvaturePlot result={result} t={theme} />
                   <span style={{ fontSize: 8.5, color: theme.muted, lineHeight: 1.4, transition: "color 0.3s" }}>
-                    Per-wavelength field curves. Each color shows tangential (solid) and sagittal (dashed) shift. Wider
-                    R/B separation indicates stronger chromatic field curvature.
+                    Per-wavelength best-focus curves. Each color shows tangential (solid) and sagittal (dashed) focus
+                    shift. Wider R/B separation indicates stronger chromatic focus variation across the field.
                   </span>
                 </>
               ) : null}
