@@ -6,6 +6,7 @@
  * Used inside PanelOverlay.
  */
 
+import type { CSSProperties } from "react";
 import type { ChromaticSpread, ChromaticSpreadByAxis } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
 import type { DispersionQuality } from "../../optics/dispersion.js";
@@ -27,6 +28,7 @@ const SINGLE_SVG_H = 280;
 const MARGIN = 12;
 const CHART_COLUMN_STYLE = { flex: `0 1 ${SINGLE_SVG_W}px`, width: SINGLE_SVG_W, maxWidth: "100%", minWidth: 0 };
 const CHART_SVG_STYLE = { width: "100%", height: "auto", display: "block" };
+const CHART_CAPTION_STYLE: CSSProperties = { fontSize: 11, lineHeight: 1.45, marginTop: 8, textAlign: "center" };
 
 function formatUm(mm: number): string {
   if (Math.abs(mm * 1000) >= 1) return `${Math.abs(mm * 1000).toFixed(0)} µm`;
@@ -82,6 +84,10 @@ export default function LCAOverlayContent({
                 dispersionQuality={dispersionQuality}
               />
             </svg>
+            <div style={{ ...CHART_CAPTION_STYLE, color: t.muted }}>
+              Longitudinal color is the wavelength focus spread along the optical axis for the active on-axis marginal
+              trace.
+            </div>
           </div>
         ) : (
           <div style={{ color: t.muted, fontSize: 12, lineHeight: 1.5, textAlign: "center", maxWidth: 320 }}>
@@ -102,7 +108,7 @@ export default function LCAOverlayContent({
                 fontScale={2.8}
               />
             </svg>
-            <div style={{ color: t.muted, fontSize: 11, lineHeight: 1.45, marginTop: 8, textAlign: "center" }}>
+            <div style={{ ...CHART_CAPTION_STYLE, color: t.muted }}>
               Transverse color is the surviving wavelength spread at the image plane for the displayed off-axis fan.
             </div>
           </div>
@@ -136,14 +142,15 @@ export default function LCAOverlayContent({
       >
         <strong>Longitudinal Chromatic Aberration (LCA)</strong> measures how different wavelengths of light focus at
         different distances along the optical axis. The axial LCA chart uses the outermost usable on-axis marginal trace
-        for the active channel set. Off-axis TCA reports the color separation that remains at the image plane for the
-        displayed off-axis fan. The colored bars show where {CHROMATIC_CHANNEL_METADATA.R.description} (
+        for the active channel set. <strong>Transverse Chromatic Aberration (TCA)</strong> measures how far those
+        wavelengths separate across image height at the current image plane; the off-axis TCA chart uses the displayed
+        off-axis fan. The colored bars show where {CHROMATIC_CHANNEL_METADATA.R.description} (
         {CHROMATIC_CHANNEL_METADATA.R.wavelengthLabel}), {CHROMATIC_CHANNEL_METADATA.G.description} (
         {CHROMATIC_CHANNEL_METADATA.G.wavelengthLabel}), {CHROMATIC_CHANNEL_METADATA.B.description} (
         {CHROMATIC_CHANNEL_METADATA.B.wavelengthLabel}), and, when enabled, {CHROMATIC_CHANNEL_METADATA.V.description} (
-        {CHROMATIC_CHANNEL_METADATA.V.wavelengthLabel}) marginal rays cross the axis in the LCA chart and land at the
-        image plane in the TCA chart. This is a geometric spectral-line trace; it is useful for comparing correction
-        strategy, but it is not a full-spectrum diffraction, sensor-stack, or production APO certification.
+        {CHROMATIC_CHANNEL_METADATA.V.wavelengthLabel}) marginal rays cross the axis in the LCA chart and where they
+        land at the image plane in the TCA chart. This is a geometric spectral-line trace; it is useful for comparing
+        correction strategy, but it is not a full-spectrum diffraction, sensor-stack, or production APO certification.
       </p>
     </div>
   );

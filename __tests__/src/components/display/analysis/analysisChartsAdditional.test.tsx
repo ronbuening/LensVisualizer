@@ -199,6 +199,9 @@ describe("analysis chart coverage", () => {
     expect(screen.getByText("LCA")).toBeTruthy();
     expect(screen.getByText("TCA")).toBeTruthy();
     expect(screen.getByText(/OFF-AXIS TCA/)).toBeTruthy();
+    expect(screen.getByText(/Longitudinal color is the wavelength focus spread/)).toBeTruthy();
+    expect(screen.getByText(/Transverse color is the surviving wavelength spread/)).toBeTruthy();
+    expect(screen.getByText("Transverse Chromatic Aberration (TCA)")).toBeTruthy();
     expect(screen.getByText("0.4 µm")).toBeTruthy();
     expect(screen.getAllByText("0.5 µm").length).toBeGreaterThan(0);
     expect(screen.queryByText("0.8 µm")).toBeNull();
