@@ -170,6 +170,12 @@ function pointCloudResult(): ComaPointCloudPreviewResult {
         centroidSagittalImageHeight: 0,
         rmsRadiusMm: 0.03,
         rmsRadiusUm: 30,
+        tangentialSpanMm: 0.2,
+        tangentialSpanUm: 200,
+        sagittalSpanMm: 0.08,
+        sagittalSpanUm: 80,
+        centroidOffsetMm: 0,
+        centroidOffsetUm: 0,
         tailDirection: "balanced",
         tailSkewRatio: 1,
         sagittalToTangentialRatio: 0.4,
@@ -192,6 +198,12 @@ function pointCloudResult(): ComaPointCloudPreviewResult {
         centroidSagittalImageHeight: 0.01,
         rmsRadiusMm: 0.05,
         rmsRadiusUm: 50,
+        tangentialSpanMm: 0.4,
+        tangentialSpanUm: 400,
+        sagittalSpanMm: 0.1,
+        sagittalSpanUm: 100,
+        centroidOffsetMm: 0.0608276253029822,
+        centroidOffsetUm: 60.8276253029822,
         tailDirection: "toward-center",
         tailSkewRatio: 1.6,
         sagittalToTangentialRatio: 0.25,
@@ -214,6 +226,12 @@ function pointCloudResult(): ComaPointCloudPreviewResult {
         centroidSagittalImageHeight: 0,
         rmsRadiusMm: 0,
         rmsRadiusUm: 0,
+        tangentialSpanMm: 0,
+        tangentialSpanUm: 0,
+        sagittalSpanMm: 0,
+        sagittalSpanUm: 0,
+        centroidOffsetMm: 0,
+        centroidOffsetUm: 0,
         tailDirection: "balanced",
         tailSkewRatio: 1,
         sagittalToTangentialRatio: 0,
@@ -236,6 +254,12 @@ function pointCloudResult(): ComaPointCloudPreviewResult {
         centroidSagittalImageHeight: 0.01,
         rmsRadiusMm: 0.04,
         rmsRadiusUm: 40,
+        tangentialSpanMm: 0.1,
+        tangentialSpanUm: 100,
+        sagittalSpanMm: 0.2,
+        sagittalSpanUm: 200,
+        centroidOffsetMm: 0.022360679774997897,
+        centroidOffsetUm: 22.360679774997898,
         tailDirection: "toward-edge",
         tailSkewRatio: 1.4,
         sagittalToTangentialRatio: 2,
@@ -272,7 +296,7 @@ describe("ComaPreviewGrid", () => {
     render(<ComaPreviewGrid result={pointCloudResult()} t={theme} mode="pointCloud" />);
 
     expect(screen.getAllByText("Traced real-ray").length).toBeGreaterThan(0);
-    expect(screen.getAllByText("spot plot").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("spot footprint").length).toBeGreaterThan(0);
     expect(screen.getByText("Sagittal (horiz.) / tangential (vert.)")).toBeTruthy();
     expect(screen.getByText("scale relative to chief ray (mm)")).toBeTruthy();
     expect(screen.getByText("Crosshair")).toBeTruthy();
@@ -288,10 +312,10 @@ describe("ComaPreviewGrid", () => {
   it("renders an idealized comparison view for point-cloud previews", () => {
     render(<ComaPreviewGrid result={pointCloudResult()} t={theme} mode="pointCloud" pointCloudStyle="idealized" />);
 
-    expect(screen.getAllByText("Idealized").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("Schematic").length).toBeGreaterThan(0);
     expect(screen.getAllByText("coma sketch").length).toBeGreaterThan(0);
     expect(screen.getByText("Outline")).toBeTruthy();
-    expect(screen.getByText("idealized footprint")).toBeTruthy();
+    expect(screen.getByText("schematic footprint")).toBeTruthy();
     expect(screen.getByText("Diamond")).toBeTruthy();
     expect(screen.getByText("centroid")).toBeTruthy();
   });

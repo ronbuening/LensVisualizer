@@ -204,9 +204,9 @@ describe("analysis display tabs", () => {
       }),
     );
 
-    expect(html).toContain("Spot Diagram (Real-Ray)");
-    expect(html).toContain("higher-resolution chief-ray-referenced real-ray spot grid");
-    expect(html).toContain("Idealized coma comparison");
+    expect(html).toContain("Chief-Ray Spot Footprints");
+    expect(html).toContain("chief-ray-referenced real-ray spot footprints");
+    expect(html).toContain("Schematic coma comparison");
     expect(html).toContain("Crosshair");
     expect(html).toContain("chief-ray ref.");
     expect(html).toContain("Diamond");
@@ -220,7 +220,7 @@ describe("analysis display tabs", () => {
     expect(html).toContain("Tangential Ray Fan");
     expect(html).toContain("Tangential ray fan using a dense off-axis meridional pupil sweep");
     expect(html).toContain("Chief ray");
-    expect(html).toContain("COMA SPAN");
+    expect(html).toContain("FAN SPAN");
     expect(html).not.toContain("Spherical Aberration");
     expect(html).not.toContain("Field Curves &amp; Astigmatism");
   });

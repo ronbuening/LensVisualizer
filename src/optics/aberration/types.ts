@@ -55,11 +55,13 @@ export interface MeridionalComaSample {
   pupilFraction: number;
   launchHeight: number;
   imageHeight: number | null;
+  relativeImageHeight: number | null;
   clipped: boolean;
 }
 
 /** Dense meridional coma analysis result for the current lens state. */
 export interface MeridionalComaResult {
+  fieldFraction: number;
   fieldAngleDeg: number;
   sampleCount: number;
   validSampleCount: number;
@@ -67,10 +69,16 @@ export interface MeridionalComaResult {
   centerIntercept: number;
   minIntercept: number;
   maxIntercept: number;
+  minRelativeIntercept: number;
+  maxRelativeIntercept: number;
   spanMm: number;
   spanUm: number;
+  signedOuterDeltaMm: number;
+  signedOuterDeltaUm: number;
   lowerIntercept: number;
   upperIntercept: number;
+  lowerRelativeIntercept: number;
+  upperRelativeIntercept: number;
   samples: MeridionalComaSample[];
 }
 
@@ -80,11 +88,13 @@ export interface SagittalComaSample {
   pupilFraction: number;
   launchX: number;
   imageX: number | null;
+  relativeImageX: number | null;
   clipped: boolean;
 }
 
 /** Dense sagittal coma analysis result for the current lens state. */
 export interface SagittalComaResult {
+  fieldFraction: number;
   fieldAngleDeg: number;
   sampleCount: number;
   validSampleCount: number;
@@ -92,10 +102,16 @@ export interface SagittalComaResult {
   centerIntercept: number;
   minIntercept: number;
   maxIntercept: number;
+  minRelativeIntercept: number;
+  maxRelativeIntercept: number;
   spanMm: number;
   spanUm: number;
+  signedOuterDeltaMm: number;
+  signedOuterDeltaUm: number;
   lowerIntercept: number;
   upperIntercept: number;
+  lowerRelativeIntercept: number;
+  upperRelativeIntercept: number;
   samples: SagittalComaSample[];
 }
 
@@ -151,6 +167,12 @@ export interface ComaPointCloudPreviewFieldResult {
   centroidSagittalImageHeight: number;
   rmsRadiusMm: number;
   rmsRadiusUm: number;
+  tangentialSpanMm: number;
+  tangentialSpanUm: number;
+  sagittalSpanMm: number;
+  sagittalSpanUm: number;
+  centroidOffsetMm: number;
+  centroidOffsetUm: number;
   tailDirection: ComaTailDirection;
   tailSkewRatio: number;
   sagittalToTangentialRatio: number;

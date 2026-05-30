@@ -10,6 +10,7 @@ export interface AnalysisSamplingOptions {
   pupilAberrationSampleCount?: number;
   bokehFieldFractions?: readonly number[];
   bokehRingSamples?: readonly number[];
+  comaDetailFieldFraction?: number;
   comaFieldFractions?: readonly number[];
   comaRingSamples?: readonly number[];
   comaFanSampleCount?: number;

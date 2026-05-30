@@ -62,7 +62,7 @@ const theme = {
 } as unknown as Theme;
 
 const baseProps = {
-  L: { N: 2 } as RuntimeLens,
+  L: { N: 2, offAxisFieldFrac: 0.6 } as RuntimeLens,
   t: theme,
   zPos: [0, 5],
   focusT: 0,
@@ -148,6 +148,12 @@ describe("AberrationsPanel", () => {
           centroidSagittalImageHeight: 0,
           rmsRadiusMm: 0.005,
           rmsRadiusUm: 5,
+          tangentialSpanMm: 0.02,
+          tangentialSpanUm: 20,
+          sagittalSpanMm: 0.02,
+          sagittalSpanUm: 20,
+          centroidOffsetMm: 0,
+          centroidOffsetUm: 0,
           tailDirection: "balanced",
           tailSkewRatio: 1,
           sagittalToTangentialRatio: 1,
@@ -174,6 +180,12 @@ describe("AberrationsPanel", () => {
           centroidSagittalImageHeight: 0.002,
           rmsRadiusMm: 0.012,
           rmsRadiusUm: 12,
+          tangentialSpanMm: 0.07,
+          tangentialSpanUm: 70,
+          sagittalSpanMm: 0.03,
+          sagittalSpanUm: 30,
+          centroidOffsetMm: 0.0102,
+          centroidOffsetUm: 10.2,
           tailDirection: "toward-center",
           tailSkewRatio: 1.35,
           sagittalToTangentialRatio: 0.43,
@@ -198,6 +210,12 @@ describe("AberrationsPanel", () => {
           centroidSagittalImageHeight: 0.003,
           rmsRadiusMm: 0.018,
           rmsRadiusUm: 18,
+          tangentialSpanMm: 0.11,
+          tangentialSpanUm: 110,
+          sagittalSpanMm: 0.04,
+          sagittalSpanUm: 40,
+          centroidOffsetMm: 0.0182,
+          centroidOffsetUm: 18.2,
           tailDirection: "toward-center",
           tailSkewRatio: 1.42,
           sagittalToTangentialRatio: 0.36,
@@ -222,6 +240,12 @@ describe("AberrationsPanel", () => {
           centroidSagittalImageHeight: 0.004,
           rmsRadiusMm: 0.02,
           rmsRadiusUm: 20,
+          tangentialSpanMm: 0.11,
+          tangentialSpanUm: 110,
+          sagittalSpanMm: 0.06,
+          sagittalSpanUm: 60,
+          centroidOffsetMm: 0.0126,
+          centroidOffsetUm: 12.6,
           tailDirection: "toward-edge",
           tailSkewRatio: 1.28,
           sagittalToTangentialRatio: 0.55,
@@ -233,6 +257,7 @@ describe("AberrationsPanel", () => {
       ],
     };
     const meridionalComaResult = {
+      fieldFraction: 0.6,
       fieldAngleDeg: 12.5,
       sampleCount: 51,
       validSampleCount: 47,
@@ -240,17 +265,24 @@ describe("AberrationsPanel", () => {
       centerIntercept: -0.02,
       minIntercept: -0.12,
       maxIntercept: 0.18,
+      minRelativeIntercept: -0.1,
+      maxRelativeIntercept: 0.2,
       spanMm: 0.3,
       spanUm: 300,
+      signedOuterDeltaMm: 0.3,
+      signedOuterDeltaUm: 300,
       lowerIntercept: -0.12,
       upperIntercept: 0.18,
+      lowerRelativeIntercept: -0.1,
+      upperRelativeIntercept: 0.2,
       samples: [
-        { index: 0, pupilFraction: -1, launchHeight: -10, imageHeight: null, clipped: true },
-        { index: 25, pupilFraction: 0, launchHeight: 0, imageHeight: -0.02, clipped: false },
-        { index: 50, pupilFraction: 1, launchHeight: 10, imageHeight: null, clipped: true },
+        { index: 0, pupilFraction: -1, launchHeight: -10, imageHeight: null, relativeImageHeight: null, clipped: true },
+        { index: 25, pupilFraction: 0, launchHeight: 0, imageHeight: -0.02, relativeImageHeight: 0, clipped: false },
+        { index: 50, pupilFraction: 1, launchHeight: 10, imageHeight: null, relativeImageHeight: null, clipped: true },
       ],
     };
     const sagittalComaResult = {
+      fieldFraction: 0.6,
       fieldAngleDeg: 12.5,
       sampleCount: 51,
       validSampleCount: 43,
@@ -258,14 +290,20 @@ describe("AberrationsPanel", () => {
       centerIntercept: 0.002,
       minIntercept: -0.06,
       maxIntercept: 0.07,
+      minRelativeIntercept: -0.062,
+      maxRelativeIntercept: 0.068,
       spanMm: 0.13,
       spanUm: 130,
+      signedOuterDeltaMm: 0.13,
+      signedOuterDeltaUm: 130,
       lowerIntercept: -0.06,
       upperIntercept: 0.07,
+      lowerRelativeIntercept: -0.062,
+      upperRelativeIntercept: 0.068,
       samples: [
-        { index: 0, pupilFraction: -1, launchX: -10, imageX: null, clipped: true },
-        { index: 25, pupilFraction: 0, launchX: 0, imageX: 0.002, clipped: false },
-        { index: 50, pupilFraction: 1, launchX: 10, imageX: null, clipped: true },
+        { index: 0, pupilFraction: -1, launchX: -10, imageX: null, relativeImageX: null, clipped: true },
+        { index: 25, pupilFraction: 0, launchX: 0, imageX: 0.002, relativeImageX: 0, clipped: false },
+        { index: 50, pupilFraction: 1, launchX: 10, imageX: null, relativeImageX: null, clipped: true },
       ],
     };
     mockComputeMeridionalComa.mockReturnValue(meridionalComaResult);
@@ -667,6 +705,35 @@ describe("AberrationsPanel", () => {
       baseProps.currentPhysStopSD,
       0,
       fieldGeometry,
+    );
+  });
+
+  it("passes the selected detailed coma field fraction into calculations", () => {
+    render(
+      <ComaTab
+        L={baseProps.L}
+        t={baseProps.t}
+        zPos={baseProps.zPos}
+        focusT={baseProps.focusT}
+        zoomT={baseProps.zoomT}
+        currentEPSD={baseProps.currentEPSD}
+        currentPhysStopSD={baseProps.currentPhysStopSD}
+      />,
+    );
+
+    mockComputeComaAnalysis.mockClear();
+    fireEvent.click(screen.getByRole("button", { name: "100%" }));
+
+    expect(mockComputeComaAnalysis).toHaveBeenLastCalledWith(
+      baseProps.L,
+      baseProps.zPos,
+      baseProps.focusT,
+      baseProps.zoomT,
+      baseProps.currentEPSD,
+      baseProps.currentPhysStopSD,
+      0,
+      undefined,
+      { comaDetailFieldFraction: 1 },
     );
   });
 

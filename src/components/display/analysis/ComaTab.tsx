@@ -16,6 +16,16 @@ import MeridionalComaSection from "./aberrations/MeridionalComaSection.js";
 import SagittalComaSection from "./aberrations/SagittalComaSection.js";
 import useComaData from "./aberrations/useComaData.js";
 
+type ComaDetailFieldSelection = "default" | 0.25 | 0.5 | 0.75 | 1;
+
+const COMA_DETAIL_FIELD_OPTIONS: Array<{ value: ComaDetailFieldSelection; label: string }> = [
+  { value: "default", label: "Default" },
+  { value: 0.25, label: "25%" },
+  { value: 0.5, label: "50%" },
+  { value: 0.75, label: "75%" },
+  { value: 1, label: "100%" },
+];
+
 interface ComaTabProps {
   L: RuntimeLens;
   t: Theme;
@@ -43,6 +53,8 @@ export default function ComaTab({
   preparedState,
   analysisContext,
 }: ComaTabProps) {
+  const [detailFieldSelection, setDetailFieldSelection] = useState<ComaDetailFieldSelection>("default");
+  const detailFieldFraction = detailFieldSelection === "default" ? undefined : detailFieldSelection;
   const { comaResult, sagittalComaResult, comaPreviewResult } = useComaData({
     L,
     zPos,
@@ -51,6 +63,7 @@ export default function ComaTab({
     aberrationT,
     currentEPSD,
     currentPhysStopSD,
+    detailFieldFraction,
     fieldGeometry,
     preparedState,
     analysisContext,
@@ -59,10 +72,64 @@ export default function ComaTab({
   const [comaPreviewExpanded, setComaPreviewExpanded] = useState(true);
   const [comaExpanded, setComaExpanded] = useState(true);
   const [sagittalComaExpanded, setSagittalComaExpanded] = useState(true);
+  const defaultFieldLabel = `${Math.round(L.offAxisFieldFrac * 100)}%`;
 
   return (
     <div style={{ padding: "8px 0" }}>
       <div style={{ display: "flex", flexDirection: "column", gap: 16, fontSize: 9.5 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
+          <span style={{ color: t.muted, fontSize: 10, letterSpacing: "0.1em", textTransform: "uppercase" }}>
+            Detailed fan field
+          </span>
+          <div
+            role="group"
+            aria-label="Detailed coma fan field"
+            style={{
+              display: "inline-flex",
+              flexWrap: "wrap",
+              gap: 4,
+              padding: 3,
+              border: `1px solid ${t.panelBorder}`,
+              borderRadius: 6,
+              background: t.panelBg,
+            }}
+          >
+            {COMA_DETAIL_FIELD_OPTIONS.map((option) => {
+              const active = detailFieldSelection === option.value;
+              return (
+                <button
+                  key={String(option.value)}
+                  type="button"
+                  aria-pressed={active}
+                  onClick={() => setDetailFieldSelection(option.value)}
+                  style={{
+                    minWidth: option.value === "default" ? 68 : 44,
+                    border: `1px solid ${active ? t.value : "transparent"}`,
+                    borderRadius: 4,
+                    padding: "4px 7px",
+                    background: active ? t.value : "transparent",
+                    color: active ? t.panelBg : t.label,
+                    fontSize: 9,
+                    fontWeight: active ? 700 : 500,
+                    cursor: "pointer",
+                    fontVariantNumeric: "tabular-nums",
+                  }}
+                  title={
+                    option.value === "default"
+                      ? `Use this lens's authored off-axis field (${defaultFieldLabel})`
+                      : `Use ${option.label} of the current half-field`
+                  }
+                >
+                  {option.label}
+                </button>
+              );
+            })}
+          </div>
+          <span style={{ color: t.muted, fontSize: 9, fontVariantNumeric: "tabular-nums" }}>
+            default {defaultFieldLabel}
+          </span>
+        </div>
+
         <ComaPreviewSection
           result={comaPreviewResult}
           expanded={comaPreviewExpanded}

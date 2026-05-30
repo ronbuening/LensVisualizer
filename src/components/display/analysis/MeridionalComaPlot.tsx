@@ -2,10 +2,9 @@
  * MeridionalComaPlot — Compact 2D meridional coma visualization for the
  * Aberrations drawer.
  *
- * Plots dense image-plane intercept heights against pupil sample position and
- * marks the image-plane axis so the top/bottom asymmetry is immediately
- * visible. This is intentionally a meridional-only diagnostic, not a full
- * 2D spot diagram.
+ * Plots dense chief-ray-relative image-plane intercept heights against pupil
+ * sample position. This is intentionally a tangential/meridional 1D
+ * diagnostic, not a full 2D spot diagram.
  */
 
 import type { MeridionalComaResult } from "../../../optics/aberrationAnalysis.js";
@@ -38,7 +37,7 @@ export function formatComaSpan(spanUm: number): string {
 export default function MeridionalComaPlot({ result, t }: MeridionalComaPlotProps) {
   const yHalfRange = Math.max(
     MIN_Y_RANGE_MM,
-    Math.max(Math.abs(result.minIntercept), Math.abs(result.maxIntercept)) * 1.1,
+    Math.max(Math.abs(result.minRelativeIntercept), Math.abs(result.maxRelativeIntercept)) * 1.1,
   );
   const zeroY = MT + PH / 2;
 
@@ -46,11 +45,12 @@ export default function MeridionalComaPlot({ result, t }: MeridionalComaPlotProp
   const yScale = centeredMmScale(MT, PH, yHalfRange);
 
   const validSamples = result.samples.filter(
-    (sample): sample is typeof sample & { imageHeight: number } => sample.imageHeight !== null && !sample.clipped,
+    (sample): sample is typeof sample & { imageHeight: number; relativeImageHeight: number } =>
+      sample.imageHeight !== null && sample.relativeImageHeight !== null && !sample.clipped,
   );
 
   const polylinePoints = validSamples
-    .map((sample) => `${xScale(sample.pupilFraction).toFixed(1)},${yScale(sample.imageHeight).toFixed(1)}`)
+    .map((sample) => `${xScale(sample.pupilFraction).toFixed(1)},${yScale(sample.relativeImageHeight).toFixed(1)}`)
     .join(" ");
 
   const tickValues = symmetricMmTicks(yHalfRange).filter((tick) => Math.abs(tick) < yHalfRange);
@@ -58,8 +58,8 @@ export default function MeridionalComaPlot({ result, t }: MeridionalComaPlotProp
   return (
     <svg viewBox={`0 0 ${VB_W} ${VB_H}`} style={{ display: "block", width: "100%", maxWidth: VB_W, height: "auto" }}>
       <title>
-        Tangential ray fan. Dense off-axis pupil samples are projected onto the image plane relative to the chief ray to
-        show asymmetric spread, not a full 2D spot diagram.
+        Tangential ray fan. Dense off-axis pupil samples are projected onto the image plane and plotted relative to the
+        chief ray to show asymmetric spread, not a full 2D spot diagram.
       </title>
       <rect x={ML} y={MT} width={PW} height={PH} rx={3} fill={t.panelBg} stroke={t.panelBorder} strokeWidth={0.75} />
 
@@ -110,7 +110,7 @@ export default function MeridionalComaPlot({ result, t }: MeridionalComaPlotProp
         <circle
           key={sample.index}
           cx={xScale(sample.pupilFraction)}
-          cy={yScale(sample.imageHeight)}
+          cy={yScale(sample.relativeImageHeight)}
           r={2.2}
           fill={Math.abs(sample.pupilFraction) < 1e-9 ? t.label : t.value}
         />
