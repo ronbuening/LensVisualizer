@@ -13,12 +13,12 @@ with words like "probable" or "approx").
 
 ## Summary
 
-- **278** lenses scanned
-- **3101** glass surfaces examined
-- **3095** surfaces with non-empty `glass` strings
-- **2405** of those resolved to a catalog entry
-- **52** mismatches found (2.2% of resolved surfaces)
-- **24** distinct lens files affected
+- **281** lenses scanned
+- **3155** glass surfaces examined
+- **3149** surfaces with non-empty `glass` strings
+- **2443** of those resolved to a catalog entry
+- **53** mismatches found (2.2% of resolved surfaces)
+- **25** distinct lens files affected
 
 ## Most-frequent mismatched catalog targets
 
@@ -58,6 +58,7 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | H-ZLAF68C | 1 | |
 | TAFD5F | 1 | |
 | S-TIM35 | 1 | |
+| N-SK16 | 1 | |
 | H-ZF52 | 1 | |
 | S-NBM51 | 1 | |
 | S-TIM28 | 1 | |
@@ -220,6 +221,12 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
 |---|---|---|---|---|---|
 | 4 | `S-TIM35 (OHARA) / FD110 (HOYA)` | S-TIM35 | 1.68893 | 1.69895 | +0.0100 |
+
+### [Sigma APO Macro 105mm F2.8 EX DG OS HSM](../../src/lens-data/sigma/SigmaAPOMacro105mmf28OSHSM.data.ts) — JP 2012-58682 A
+
+| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
+|---|---|---|---|---|---|
+| 27 | `BACD5 (HOYA) / S-BAL35 class` | N-SK16 | 1.58913 | 1.62041 | +0.0313 |
 
 ### [SIGMA DP3 MERRILL 50mm f/2.8](../../src/lens-data/sigma/SigmaDP3M50mmf28.data.ts) — JP 2014-126652 A
 

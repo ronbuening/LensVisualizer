@@ -9,8 +9,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **52** mismatched surfaces across **24** lens files
-- **44** surfaces have at least one candidate
+- **53** mismatched surfaces across **25** lens files
+- **45** surfaces have at least one candidate
 - **8** surfaces have high-confidence candidate ranking
 - **8** surfaces have no catalog candidate and need patent review
 
@@ -157,6 +157,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | Surface | Current label | Stored nd/vd | Rejected as | Best candidate(s) | Confidence | Patent review |
 |---|---|---|---|---|---|---|
 | 4 | `S-TIM35 (OHARA) / FD110 (HOYA)` | 1.68893 / 31.20 | S-TIM35 (Δnd=+0.0100) | E-FD8 (Δnd=-0.0000, Δvd=-0.04)<br>S-TIM28 (Δnd=+0.0000, Δvd=-0.12) | Medium | Yes - choose candidate |
+
+### [Sigma APO Macro 105mm F2.8 EX DG OS HSM](../../src/lens-data/sigma/SigmaAPOMacro105mmf28OSHSM.data.ts) - JP 2012-58682 A
+
+| Surface | Current label | Stored nd/vd | Rejected as | Best candidate(s) | Confidence | Patent review |
+|---|---|---|---|---|---|---|
+| 27 | `BACD5 (HOYA) / S-BAL35 class` | 1.58913 / 61.25 | N-SK16 (Δnd=+0.0313) | S-BAL35 (Δnd=-0.0000, Δvd=-0.11)<br>N-SK5 (Δnd=+0.0000, Δvd=+0.02)<br>K-SKLD200 (Δnd=-0.0025, Δvd=-2.25) | Choose by context | Yes - choose candidate |
 
 ### [SIGMA DP3 MERRILL 50mm f/2.8](../../src/lens-data/sigma/SigmaDP3M50mmf28.data.ts) - JP 2014-126652 A
 
