@@ -4,7 +4,12 @@ import { describe, it, expect, vi } from "vitest";
 import { renderHook } from "@testing-library/react";
 import useChromaticRays from "../../../../src/components/hooks/useChromaticRays.js";
 import buildLens from "../../../../src/optics/buildLens.js";
-import { doLayout, entrancePupilAtState, fopenAtZoom } from "../../../../src/optics/optics.js";
+import {
+  computeLongitudinalChromaticFocus,
+  doLayout,
+  entrancePupilAtState,
+  fopenAtZoom,
+} from "../../../../src/optics/optics.js";
 import { createCoordinateTransforms } from "../../../../src/optics/diagramGeometry.js";
 import { raySampleCountForDensity } from "../../../../src/optics/raySampling.js";
 import LENS_DEFAULTS from "../../../../src/lens-data/defaults.js";
@@ -14,6 +19,7 @@ import ApoLantharRaw from "../../../../src/lens-data/voigtlander/VoigtlanderApoL
 
 const Sonnar = { ...LENS_DEFAULTS, ...SonnarRaw } as LensData;
 const ApoLanthar = { ...LENS_DEFAULTS, ...ApoLantharRaw } as LensData;
+const displayLcaFallbackFractions = [0.97, 0.95, 0.9, 0.85, 0.8] as const;
 
 function buildTestFixture(focusT = 0, zoomT = 0, data: LensData = Sonnar) {
   const L = buildLens(data);
@@ -37,6 +43,17 @@ function buildTestFixture(focusT = 0, zoomT = 0, data: LensData = Sonnar) {
   const baseEPSD = entrancePupilAtState(L.stopPhysSD, focusT, zoomT, L).epSD;
   const currentEPSD = (baseEPSD * L.FOPEN) / fNumber;
   return { L, zPos, IMG_MM, sx, sy, clampedRayEnd, currentPhysStopSD, currentEPSD };
+}
+
+function expectedDisplayLcaFractions(L: RuntimeLens): number[] {
+  const fractions: number[] = [...displayLcaFallbackFractions];
+  for (const fraction of L.rayFractions) {
+    const absolute = Math.abs(fraction);
+    if (absolute > 1e-12 && !fractions.some((value) => Math.abs(value - absolute) < 1e-12)) {
+      fractions.push(absolute);
+    }
+  }
+  return fractions.sort((a, b) => b - a);
 }
 
 describe("useChromaticRays", () => {
@@ -308,6 +325,13 @@ describe("useChromaticRays", () => {
     expect(result.current.chromSpread!.axis).toBe("onAxis");
     expect(result.current.chromSpread!.channels).toEqual(["R", "G", "B"]);
     expect(typeof result.current.chromSpread!.fraction).toBe("number");
+
+    const expected = computeLongitudinalChromaticFocus(L, zPos, 0, 0, currentEPSD, currentPhysStopSD, 0, {
+      channels: ["R", "G", "B"],
+      longitudinalFractions: expectedDisplayLcaFractions(L),
+    })!.spread;
+    expect(result.current.chromSpread!.lcaMm).toBeCloseTo(expected.lcaMm, 12);
+    expect(result.current.chromSpread!.fraction).toBe(expected.fraction);
   });
 
   it("does not report a larger LCA when a selected RGB channel is hidden", () => {

@@ -1,8 +1,8 @@
 /**
  * LCAOverlayContent — Enlarged chromatic aberration visualization.
  *
- * Renders a standalone SVG with the axial LCAInsetWidget at a larger size,
- * plus a compact off-axis transverse color readout when that fan is present.
+ * Renders standalone SVG charts for axial LCA and, when the off-axis fan is
+ * present, image-plane TCA.
  * Used inside PanelOverlay.
  */
 
@@ -11,6 +11,7 @@ import type { Theme } from "../../types/theme.js";
 import type { DispersionQuality } from "../../optics/dispersion.js";
 import { CHROMATIC_CHANNEL_METADATA } from "../../optics/chromatic/channels.js";
 import LCAInsetWidget from "./LCAInsetWidget.js";
+import TCAInsetWidget from "./TCAInsetWidget.js";
 
 interface LCAOverlayContentProps {
   chromSpread: ChromaticSpread;
@@ -89,21 +90,22 @@ export default function LCAOverlayContent({
           </div>
         )}
         {offAxisSpread && (
-          <div style={{ minWidth: 150, color: t.value, fontFamily: "inherit" }}>
-            <div
-              style={{
-                color: t.muted,
-                fontSize: 11,
-                letterSpacing: "0.12em",
-                marginBottom: 6,
-                textAlign: "center",
-              }}
+          <div style={{ flex: "0 1 auto", maxWidth: svgW, minWidth: 0 }}>
+            <svg
+              viewBox={`0 0 ${svgW} ${svgH}`}
+              style={{ width: "100%", maxWidth: svgW, maxHeight: "100%", display: "block" }}
             >
-              OFF-AXIS TCA
-            </div>
-            <div style={{ fontSize: 22, fontWeight: 700, textAlign: "center", fontVariantNumeric: "tabular-nums" }}>
-              {formatSpreadUm(offAxisSpread.tcaMm)}
-            </div>
+              <TCAInsetWidget
+                chromSpread={offAxisSpread}
+                effectiveSC={effectiveSC}
+                t={t}
+                width={svgW - MARGIN * 2}
+                height={svgH - MARGIN * 2}
+                originX={MARGIN}
+                originY={MARGIN}
+                fontScale={2.8}
+              />
+            </svg>
             <div style={{ color: t.muted, fontSize: 11, lineHeight: 1.45, marginTop: 8, textAlign: "center" }}>
               Transverse color is the surviving wavelength spread at the image plane for the displayed off-axis fan.
             </div>
@@ -137,14 +139,15 @@ export default function LCAOverlayContent({
         }}
       >
         <strong>Longitudinal Chromatic Aberration (LCA)</strong> measures how different wavelengths of light focus at
-        different distances along the optical axis. Off-axis TCA reports the color separation that remains at the image
-        plane for the displayed off-axis fan. The colored bars show where {CHROMATIC_CHANNEL_METADATA.R.description} (
+        different distances along the optical axis. The axial LCA chart uses the outermost usable on-axis marginal trace
+        for the active channel set. Off-axis TCA reports the color separation that remains at the image plane for the
+        displayed off-axis fan. The colored bars show where {CHROMATIC_CHANNEL_METADATA.R.description} (
         {CHROMATIC_CHANNEL_METADATA.R.wavelengthLabel}), {CHROMATIC_CHANNEL_METADATA.G.description} (
         {CHROMATIC_CHANNEL_METADATA.G.wavelengthLabel}), {CHROMATIC_CHANNEL_METADATA.B.description} (
         {CHROMATIC_CHANNEL_METADATA.B.wavelengthLabel}), and, when enabled, {CHROMATIC_CHANNEL_METADATA.V.description} (
-        {CHROMATIC_CHANNEL_METADATA.V.wavelengthLabel}) marginal rays cross the axis relative to the reference focus.
-        This is a geometric spectral-line trace; it is useful for comparing correction strategy, but it is not a
-        full-spectrum diffraction, sensor-stack, or production APO certification.
+        {CHROMATIC_CHANNEL_METADATA.V.wavelengthLabel}) marginal rays cross the axis in the LCA chart and land at the
+        image plane in the TCA chart. This is a geometric spectral-line trace; it is useful for comparing correction
+        strategy, but it is not a full-spectrum diffraction, sensor-stack, or production APO certification.
       </p>
     </div>
   );

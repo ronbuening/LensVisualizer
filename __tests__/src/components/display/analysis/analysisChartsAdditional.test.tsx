@@ -6,6 +6,7 @@ import FieldCurvatureMeanPlot from "../../../../../src/components/display/analys
 import VignettingChart from "../../../../../src/components/display/analysis/VignettingChart.js";
 import LCAInsetWidget from "../../../../../src/components/diagram/LCAInsetWidget.js";
 import LCAOverlayContent from "../../../../../src/components/diagram/LCAOverlayContent.js";
+import TCAInsetWidget from "../../../../../src/components/diagram/TCAInsetWidget.js";
 import {
   angleTicks,
   formatSignedCompactTick,
@@ -152,13 +153,42 @@ describe("analysis chart coverage", () => {
     expect(onClick).toHaveBeenCalledTimes(1);
   });
 
-  it("renders axial LCA with a separate off-axis TCA summary when both spreads are available", () => {
+  it("renders TCA inset channels and image-plane formatting", () => {
+    render(
+      <svg>
+        <TCAInsetWidget
+          chromSpread={{ lcaMm: 0, tcaMm: 0.0005, intercepts: {}, imgHeights: { R: -0.00025, G: 0, B: 0.00025 } }}
+          effectiveSC={1}
+          t={themes.dark}
+          width={160}
+          height={140}
+          originX={12}
+          originY={18}
+          fontScale={1.4}
+        />
+      </svg>,
+    );
+
+    expect(screen.getByText("TCA")).toBeTruthy();
+    expect(screen.getByText("IMAGE HEIGHT")).toBeTruthy();
+    expect(screen.getByText("R")).toBeTruthy();
+    expect(screen.getByText("G")).toBeTruthy();
+    expect(screen.getByText("B")).toBeTruthy();
+    expect(screen.getByText("0.5 µm")).toBeTruthy();
+  });
+
+  it("renders axial LCA with a matching off-axis TCA chart when both spreads are available", () => {
     render(
       <LCAOverlayContent
         chromSpread={{ lcaMm: 0.0004, tcaMm: 0, intercepts: { R: -0.02, G: 0, B: 0.03 }, imgHeights: {} }}
         chromaticSpreads={{
           onAxis: { lcaMm: 0.0004, tcaMm: 0, intercepts: { R: -0.02, G: 0, B: 0.03 }, imgHeights: {} },
-          offAxis: { lcaMm: 0.0008, tcaMm: 0.0005, intercepts: { R: -0.04, G: 0, B: 0.04 }, imgHeights: {} },
+          offAxis: {
+            lcaMm: 0.0008,
+            tcaMm: 0.0005,
+            intercepts: { R: -0.04, G: 0, B: 0.04 },
+            imgHeights: { R: -0.00025, G: 0, B: 0.00025 },
+          },
         }}
         effectiveSC={1}
         IMG_MM={0}
@@ -167,7 +197,8 @@ describe("analysis chart coverage", () => {
     );
 
     expect(screen.getByText("LCA")).toBeTruthy();
-    expect(screen.getByText("OFF-AXIS TCA")).toBeTruthy();
+    expect(screen.getByText("TCA")).toBeTruthy();
+    expect(screen.getByText(/OFF-AXIS TCA/)).toBeTruthy();
     expect(screen.getByText("0.4 µm")).toBeTruthy();
     expect(screen.getAllByText("0.5 µm").length).toBeGreaterThan(0);
     expect(screen.queryByText("0.8 µm")).toBeNull();
