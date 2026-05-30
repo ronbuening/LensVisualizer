@@ -49,6 +49,7 @@ export interface AnalysisComputationContext extends AnalysisComputationContextPa
     typeof analysisJobsForState2.computeSphericalAberrationBlurCharacter
   >;
   computeFieldCurvatureBundle: () => ReturnType<typeof analysisJobsForState2.computeFieldCurvatureBundle>;
+  computeChromaticAnalysis: () => ReturnType<typeof analysisJobsForState2.computeChromaticAnalysis>;
   computeComaAnalysis: () => ReturnType<typeof analysisJobsForState2.computeComaAnalysis>;
 }
 
@@ -84,6 +85,7 @@ export function createAnalysisComputationContext({
     | ReturnType<typeof analysisJobsForState2.computeSphericalAberrationBlurCharacter>
     | undefined;
   let fieldCurvatureBundle: ReturnType<typeof analysisJobsForState2.computeFieldCurvatureBundle> | undefined;
+  let chromaticAnalysis: ReturnType<typeof analysisJobsForState2.computeChromaticAnalysis> | undefined;
   let comaAnalysis: ReturnType<typeof analysisJobsForState2.computeComaAnalysis> | undefined;
 
   return {
@@ -164,6 +166,14 @@ export function createAnalysisComputationContext({
     },
     computeFieldCurvatureBundle: () =>
       (fieldCurvatureBundle ??= analysisJobsForState2.computeFieldCurvatureBundle(
+        preparedState,
+        currentEPSD,
+        currentPhysStopSD,
+        resolvedFieldGeometry,
+        sampling,
+      )),
+    computeChromaticAnalysis: () =>
+      (chromaticAnalysis ??= analysisJobsForState2.computeChromaticAnalysis(
         preparedState,
         currentEPSD,
         currentPhysStopSD,

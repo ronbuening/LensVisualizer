@@ -299,6 +299,27 @@ export {
   computeSphericalAberrationForState2,
 } from "./analysis/aberrations.js";
 export {
+  computeChromaticAnalysis2,
+  computeChromaticAnalysisForState2,
+  computeChromaticRayTraceAnalysis2,
+  computeChromaticRayTraceAnalysisForState2,
+  computeLateralColorCurve2,
+  computeLongitudinalChromaticFocus2,
+  summarizeChromaticFieldFocus2,
+  type ChromaticAnalysisOptions,
+  type ChromaticAnalysisResult,
+  type ChromaticChannelSpan2,
+  type ChromaticFieldFocusFieldSummary2,
+  type ChromaticFieldFocusSummary2,
+  type ChromaticRayTraceAnalysis2,
+  type ChromaticRayTraceAnalysisOptions2,
+  type LateralColorChannelSample,
+  type LateralColorCurveResult,
+  type LateralColorFieldSample,
+  type LongitudinalChromaticFocusResult,
+  type LongitudinalChromaticFocusSample,
+} from "./analysis/chromatic.js";
+export {
   buildBokehDensityGrid2,
   buildBokehRadialProfile2,
   classifyBokehBrightnessCharacter2,

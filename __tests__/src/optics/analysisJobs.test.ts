@@ -46,6 +46,12 @@ describe("analysis job facade", () => {
     expect(analysisJobsForState2.computeFieldCurvatureBundle(state, currentEPSD, currentPhysStopSD)).toEqual(
       analysisJobs2.computeFieldCurvatureBundle(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD),
     );
+    expect(analysisJobsForState2.computeChromaticRayTraceAnalysis(state, currentEPSD, currentPhysStopSD)).toEqual(
+      analysisJobs2.computeChromaticRayTraceAnalysis(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD),
+    );
+    expect(analysisJobsForState2.computeChromaticAnalysis(state, currentEPSD, currentPhysStopSD)).toEqual(
+      analysisJobs2.computeChromaticAnalysis(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD),
+    );
   });
 
   it("exposes bokeh and pupil work through the same prepared-state facade", () => {

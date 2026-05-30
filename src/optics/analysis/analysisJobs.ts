@@ -25,6 +25,12 @@ import {
   computeBokehPreviewPairForState2,
 } from "./bokeh.js";
 import {
+  computeChromaticAnalysis2,
+  computeChromaticAnalysisForState2,
+  computeChromaticRayTraceAnalysis2,
+  computeChromaticRayTraceAnalysisForState2,
+} from "./chromatic.js";
+import {
   computeDistortionCurve2,
   computeDistortionCurveForState2,
   computeDistortionFieldGrid2,
@@ -132,6 +138,44 @@ export const analysisJobs2 = {
     );
   },
 
+  computeChromaticAnalysis(
+    L: RuntimeLens,
+    zPos: number[],
+    focusT: number,
+    zoomT: number,
+    currentEPSD: number,
+    currentPhysStopSD: number,
+    aberrationT = 0,
+    fieldGeometry?: FieldGeometryState,
+    sampling?: AnalysisSamplingOptions,
+  ) {
+    return computeChromaticAnalysis2(
+      L,
+      zPos,
+      focusT,
+      zoomT,
+      currentEPSD,
+      currentPhysStopSD,
+      aberrationT,
+      fieldGeometry,
+      {
+        fieldFractions: sampling?.fieldCurvatureFieldFractions,
+      },
+    );
+  },
+
+  computeChromaticRayTraceAnalysis(
+    L: RuntimeLens,
+    zPos: number[],
+    focusT: number,
+    zoomT: number,
+    currentEPSD: number,
+    currentPhysStopSD: number,
+    aberrationT = 0,
+  ) {
+    return computeChromaticRayTraceAnalysis2(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, aberrationT);
+  },
+
   computeBestFocusZ(
     L: RuntimeLens,
     focusT: number,
@@ -219,6 +263,27 @@ export const analysisJobsForState2 = {
     sampling?: AnalysisSamplingOptions,
   ) {
     return computeFieldCurvatureBundleForState2(state, currentEPSD, currentPhysStopSD, fieldGeometry, sampling);
+  },
+
+  computeChromaticAnalysis(
+    state: PreparedOpticalState,
+    currentEPSD: number,
+    currentPhysStopSD: number,
+    fieldGeometry?: FieldGeometryState,
+    sampling?: AnalysisSamplingOptions,
+  ) {
+    return computeChromaticAnalysisForState2(state, currentEPSD, currentPhysStopSD, fieldGeometry, {
+      fieldFractions: sampling?.fieldCurvatureFieldFractions,
+    });
+  },
+
+  computeChromaticRayTraceAnalysis(
+    state: PreparedOpticalState,
+    currentEPSD: number,
+    currentPhysStopSD: number,
+    _fieldGeometry?: FieldGeometryState,
+  ) {
+    return computeChromaticRayTraceAnalysisForState2(state, currentEPSD, currentPhysStopSD);
   },
 
   computeComaAnalysis(

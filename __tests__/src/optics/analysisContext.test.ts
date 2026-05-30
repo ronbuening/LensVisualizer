@@ -58,6 +58,9 @@ describe("analysis computation context", () => {
     expect(context.computeBokehPreviewPair()).toEqual(
       analysisJobsForState2.computeBokehPreviewPair(state, currentEPSD, currentPhysStopSD),
     );
+    expect(context.computeChromaticAnalysis()).toEqual(
+      analysisJobsForState2.computeChromaticAnalysis(state, currentEPSD, currentPhysStopSD, fieldGeometry),
+    );
     expect(context.computeBestFocusZ()).toEqual(
       analysisJobsForState2.computeBestFocusZ(state, currentEPSD, currentPhysStopSD),
     );
@@ -87,6 +90,7 @@ describe("analysis computation context", () => {
     expect(context.computeSphericalAberration()).toBe(context.computeSphericalAberration());
     expect(context.computeSphericalAberrationBlurCharacter()).toBe(context.computeSphericalAberrationBlurCharacter());
     expect(context.computeBokehPreviewPair()).toBe(context.computeBokehPreviewPair());
+    expect(context.computeChromaticAnalysis()).toBe(context.computeChromaticAnalysis());
     expect(context.computeFieldCurvatureBundle()).toBe(context.computeFieldCurvatureBundle());
   });
 
