@@ -5,6 +5,7 @@ import buildLens from "../../../src/optics/buildLens.js";
 import { analysisJobs2, analysisJobsForState2, prepareRuntimeState } from "../../../src/optics/compat.js";
 import { eflAtFocus, epAtZoom, fopenAtZoom } from "../../../src/optics/optics.js";
 import { zPosForPreparedAnalysis2 } from "../../../src/optics/analysis/preparedStateAdapters.js";
+import { buildChromaticPositiveElementLens } from "./testLensFixtures.js";
 import type { LensData } from "../../../src/types/optics.js";
 
 function build(raw: object) {
@@ -46,6 +47,53 @@ describe("analysis job facade", () => {
     expect(analysisJobsForState2.computeFieldCurvatureBundle(state, currentEPSD, currentPhysStopSD)).toEqual(
       analysisJobs2.computeFieldCurvatureBundle(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD),
     );
+    expect(analysisJobsForState2.computeChromaticRayTraceAnalysis(state, currentEPSD, currentPhysStopSD)).toEqual(
+      analysisJobs2.computeChromaticRayTraceAnalysis(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD),
+    );
+    expect(analysisJobsForState2.computeChromaticAnalysis(state, currentEPSD, currentPhysStopSD)).toEqual(
+      analysisJobs2.computeChromaticAnalysis(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD),
+    );
+  });
+
+  it("applies reduced chromatic sampling through the job facade", () => {
+    const L = buildChromaticPositiveElementLens("analysis-jobs-chromatic-sampling");
+    const focusT = 0;
+    const zoomT = 0;
+    const state = prepareRuntimeState(L, focusT, zoomT);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, zoomT);
+    const sampling = {
+      chromaticLongitudinalFractions: [0.5],
+      chromaticLateralFieldFractions: [0, 1],
+      chromaticRayTraceOnAxisFractions: [0.5],
+      chromaticRayTraceOffAxisFractions: [0.5],
+    };
+
+    const analysis = analysisJobsForState2.computeChromaticAnalysis(
+      state,
+      currentEPSD,
+      currentPhysStopSD,
+      undefined,
+      sampling,
+    );
+    const rayTrace = analysisJobsForState2.computeChromaticRayTraceAnalysis(
+      state,
+      currentEPSD,
+      currentPhysStopSD,
+      undefined,
+      {
+        channels: ["R", "G", "B", "V"],
+        onAxisFractions: sampling.chromaticRayTraceOnAxisFractions,
+        offAxisFractions: sampling.chromaticRayTraceOffAxisFractions,
+      },
+    );
+
+    expect(analysis.longitudinalFocus?.marginalFraction).toBe(0.5);
+    expect(analysis.longitudinalFocus?.channels).toEqual(["R", "G", "B", "V"]);
+    expect(analysis.lateralColor?.fieldFractions).toEqual([0, 1]);
+    expect(analysis.lateralColor?.channels).toEqual(["R", "G", "B", "V"]);
+    expect(rayTrace.channels).toEqual(["R", "G", "B", "V"]);
+    expect(rayTrace.onAxisAttemptedRayCount).toBeLessThanOrEqual(4);
+    expect(rayTrace.offAxisAttemptedRayCount).toBeLessThanOrEqual(4);
   });
 
   it("exposes bokeh and pupil work through the same prepared-state facade", () => {

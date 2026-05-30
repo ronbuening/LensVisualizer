@@ -39,9 +39,9 @@ export default function ComaPreviewSection({ result, expanded, onToggle, theme }
       }}
     >
       <SectionHeader
-        title="Spot Diagram (Real-Ray)"
-        helpLabel="Spot diagram help"
-        helpText="This spot-diagram section now works in two panes. The left pane traces a denser fixed circular pupil pattern at the center and at 25%, 50%, and 75% of the current half-field on a shared square spot scale, then overlays centroid and RMS spot-radius cues. The right pane converts the same measured footprint extents into an idealized textbook-style coma sketch so users can compare the traced spot against the standard schematic view. The summary row also reports the outer-field tail bias and sagittal-to-tangential span ratio derived directly from the traced point cloud."
+        title="Chief-Ray Spot Footprints"
+        helpLabel="Spot footprint help"
+        helpText="The traced pane samples a fixed circular pupil pattern at representative fields and plots each image-plane hit relative to the chief ray. These real-ray footprints include coma plus defocus, astigmatism, clipping, and higher-order aberrations. The schematic pane is not another trace; it converts the measured footprint extents into a textbook-style coma sketch for visual comparison."
         expanded={expanded}
         onToggle={onToggle}
         theme={theme}
@@ -50,9 +50,8 @@ export default function ComaPreviewSection({ result, expanded, onToggle, theme }
       {expanded ? (
         <>
           <span style={{ fontSize: 9, color: theme.muted, lineHeight: 1.4, transition: "color 0.3s" }}>
-            Left: a higher-resolution chief-ray-referenced real-ray spot grid with equal tangential / sagittal scale,
-            centroid, and RMS radius cues. Right: an idealized textbook-style coma sketch normalized to that same
-            measured scale so the traced footprint can be compared against the standard schematic shape.
+            Left: chief-ray-referenced real-ray spot footprints with equal tangential / sagittal scale, centroid, and
+            RMS radius cues. Right: a schematic coma comparison normalized to that same measured scale.
           </span>
 
           {result ? (
@@ -66,13 +65,13 @@ export default function ComaPreviewSection({ result, expanded, onToggle, theme }
               >
                 <div style={{ flex: "1 1 320px", minWidth: 0, display: "flex", flexDirection: "column", gap: 6 }}>
                   <span style={{ fontSize: 8.5, color: theme.muted, lineHeight: 1.4, transition: "color 0.3s" }}>
-                    Traced real-ray spot diagram
+                    Traced real-ray spot footprints
                   </span>
                   <ComaPreviewGrid result={result} t={theme} mode="pointCloud" pointCloudStyle="traced" />
                 </div>
                 <div style={{ flex: "1 1 320px", minWidth: 0, display: "flex", flexDirection: "column", gap: 6 }}>
                   <span style={{ fontSize: 8.5, color: theme.muted, lineHeight: 1.4, transition: "color 0.3s" }}>
-                    Idealized coma comparison
+                    Schematic coma comparison
                   </span>
                   <ComaPreviewGrid result={result} t={theme} mode="pointCloud" pointCloudStyle="idealized" />
                 </div>
@@ -103,7 +102,7 @@ export default function ComaPreviewSection({ result, expanded, onToggle, theme }
                 </div>
                 <div
                   style={{ display: "flex", alignItems: "center", gap: 8 }}
-                  title="Shared square spot half-range used to normalize all four traced and idealized coma tiles."
+                  title="Shared square spot half-range used to normalize all representative traced and schematic tiles."
                 >
                   <span style={{ fontSize: 10, color: theme.label, letterSpacing: "0.1em", transition: "color 0.3s" }}>
                     RANGE
@@ -120,6 +119,75 @@ export default function ComaPreviewSection({ result, expanded, onToggle, theme }
                     ±{formatComaSpan(result.sharedSpotHalfRangeMm * 1000)}
                   </span>
                 </div>
+                {outerField ? (
+                  <div
+                    style={{ display: "flex", alignItems: "center", gap: 8 }}
+                    title="Outermost usable field weighted RMS radius around the traced spot centroid."
+                  >
+                    <span
+                      style={{ fontSize: 10, color: theme.label, letterSpacing: "0.1em", transition: "color 0.3s" }}
+                    >
+                      OUTER RMS
+                    </span>
+                    <span
+                      style={{
+                        fontSize: 13,
+                        fontWeight: 600,
+                        color: theme.value,
+                        fontVariantNumeric: "tabular-nums",
+                        transition: "color 0.3s",
+                      }}
+                    >
+                      {formatComaSpan(outerField.rmsRadiusUm)}
+                    </span>
+                  </div>
+                ) : null}
+                {outerField ? (
+                  <div
+                    style={{ display: "flex", alignItems: "center", gap: 8 }}
+                    title="Outermost usable field tangential span from the chief-ray-referenced point cloud."
+                  >
+                    <span
+                      style={{ fontSize: 10, color: theme.label, letterSpacing: "0.1em", transition: "color 0.3s" }}
+                    >
+                      T SPAN
+                    </span>
+                    <span
+                      style={{
+                        fontSize: 13,
+                        fontWeight: 600,
+                        color: theme.value,
+                        fontVariantNumeric: "tabular-nums",
+                        transition: "color 0.3s",
+                      }}
+                    >
+                      {formatComaSpan(outerField.tangentialSpanUm)}
+                    </span>
+                  </div>
+                ) : null}
+                {outerField ? (
+                  <div
+                    style={{ display: "flex", alignItems: "center", gap: 8 }}
+                    title="Outermost usable field sagittal span from the chief-ray-referenced point cloud."
+                  >
+                    <span
+                      style={{ fontSize: 10, color: theme.label, letterSpacing: "0.1em", transition: "color 0.3s" }}
+                    >
+                      S SPAN
+                    </span>
+                    <span
+                      style={{
+                        fontSize: 13,
+                        fontWeight: 600,
+                        color: theme.value,
+                        fontVariantNumeric: "tabular-nums",
+                        transition: "color 0.3s",
+                      }}
+                    >
+                      {formatComaSpan(outerField.sagittalSpanUm)}
+                    </span>
+                  </div>
+                ) : null}
                 {outerField ? (
                   <div
                     style={{ display: "flex", alignItems: "center", gap: 8 }}

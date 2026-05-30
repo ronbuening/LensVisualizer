@@ -13,7 +13,7 @@ import { computeLcaBarOffsets } from "../../optics/lcaScaling.js";
 
 const QUALITY_LABEL: Record<DispersionQuality, string> = {
   sellmeier: "Sellmeier",
-  lineIndices: "Measured (C/F)",
+  lineIndices: "Line indices",
   abbe: "Abbe approx",
   constant: "No dispersion",
   air: "",

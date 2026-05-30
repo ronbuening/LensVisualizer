@@ -10,6 +10,10 @@ interface SagittalComaSectionProps {
   theme: Theme;
 }
 
+function formatField(result: SagittalComaResult): string {
+  return `${Math.round(result.fieldFraction * 100)}% / ${result.fieldAngleDeg.toFixed(1)}°`;
+}
+
 export default function SagittalComaSection({ result, expanded, onToggle, theme }: SagittalComaSectionProps) {
   return (
     <div
@@ -24,7 +28,7 @@ export default function SagittalComaSection({ result, expanded, onToggle, theme 
       <SectionHeader
         title="Sagittal Ray Fan"
         helpLabel="Sagittal ray fan help"
-        helpText="Sagittal ray fan at the configured off-axis field. This is the sagittal ray-aberration view: chief-ray-referenced image x versus sagittal pupil coordinate. Compare it with the tangential ray fan above to see directional asymmetry."
+        helpText="Sagittal ray fan at the selected off-axis field. This is a 1D transverse ray-aberration view: chief-ray-relative image x versus sagittal pupil coordinate. Compare it with the tangential fan to see directional asymmetry."
         expanded={expanded}
         onToggle={onToggle}
         theme={theme}
@@ -33,8 +37,8 @@ export default function SagittalComaSection({ result, expanded, onToggle, theme 
       {expanded ? (
         <>
           <span style={{ fontSize: 9, color: theme.muted, lineHeight: 1.4, transition: "color 0.3s" }}>
-            Sagittal ray fan using a dense off-axis sagittal pupil sweep. This is a 1D chief-ray-referenced
-            ray-aberration plot orthogonal to the tangential plane.
+            Sagittal ray fan using a dense off-axis sagittal pupil sweep at the selected field. Values are plotted
+            relative to the traced chief ray, orthogonal to the tangential plane.
           </span>
 
           {result ? (
@@ -50,10 +54,10 @@ export default function SagittalComaSection({ result, expanded, onToggle, theme 
               >
                 <div
                   style={{ display: "flex", alignItems: "center", gap: 8 }}
-                  title="Sagittal coma span: right outer valid x-intercept minus left outer valid x-intercept."
+                  title="Sagittal fan span: maximum minus minimum chief-ray-relative x-intercept across valid samples."
                 >
                   <span style={{ fontSize: 10, color: theme.label, letterSpacing: "0.1em", transition: "color 0.3s" }}>
-                    COMA SPAN
+                    FAN SPAN
                   </span>
                   <span
                     style={{
@@ -65,6 +69,25 @@ export default function SagittalComaSection({ result, expanded, onToggle, theme 
                     }}
                   >
                     {formatSagittalComaSpan(result.spanUm)}
+                  </span>
+                </div>
+                <div
+                  style={{ display: "flex", alignItems: "center", gap: 8 }}
+                  title="Signed right-minus-left outer ray delta, still measured relative to the chief ray."
+                >
+                  <span style={{ fontSize: 10, color: theme.label, letterSpacing: "0.1em", transition: "color 0.3s" }}>
+                    OUTER DELTA
+                  </span>
+                  <span
+                    style={{
+                      fontSize: 13,
+                      fontWeight: 600,
+                      color: theme.value,
+                      fontVariantNumeric: "tabular-nums",
+                      transition: "color 0.3s",
+                    }}
+                  >
+                    {formatSagittalComaSpan(result.signedOuterDeltaUm)}
                   </span>
                 </div>
                 <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
@@ -80,7 +103,7 @@ export default function SagittalComaSection({ result, expanded, onToggle, theme 
                       transition: "color 0.3s",
                     }}
                   >
-                    {result.fieldAngleDeg.toFixed(1)}°
+                    {formatField(result)}
                   </span>
                 </div>
                 <div style={{ display: "flex", alignItems: "center", gap: 8 }}>

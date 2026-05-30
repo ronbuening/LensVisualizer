@@ -32,6 +32,7 @@ import {
 import { projectionLaunchSlopeForField } from "./projection.js";
 import type { FieldGeometryState } from "./optics.js";
 import { isHeavyLensForRayWork } from "./raySampling.js";
+import type { AnalysisSamplingOptions } from "./analysis/analysisQuality.js";
 import type { RuntimeLens } from "../types/optics.js";
 
 /** A single sample on the vignetting / relative-illumination curve. */
@@ -90,6 +91,7 @@ export function computeVignettingCurve(
   currentPhysStopSD: number,
   fieldGeometry?: FieldGeometryState,
   aberrationT = 0,
+  sampling: AnalysisSamplingOptions = {},
 ): VignettingSample[] {
   if (currentEPSD <= 0 || L.N < 1) return [];
 
@@ -103,8 +105,18 @@ export function computeVignettingCurve(
   /* Adaptive field sampling: ~3° spacing, min 7 samples.  Ultra-wide lenses
    * (>50° half-field) get denser sampling to capture rapid vignetting onset
    * near the field edge. */
-  const fieldSamples = Math.max(Math.ceil(halfFieldDeg / 3) + 1, 7);
-  const nPupil = isHeavyLensForRayWork(L) ? N_PUPIL_HEAVY : N_PUPIL_FULL;
+  const fieldSamples =
+    sampling.vignettingFieldSampleCount !== undefined
+      ? Math.max(Math.round(sampling.vignettingFieldSampleCount), 3)
+      : Math.max(Math.ceil(halfFieldDeg / 3) + 1, 7);
+  const nPupil = Math.max(
+    sampling.vignettingPupilSampleCount !== undefined
+      ? Math.round(sampling.vignettingPupilSampleCount)
+      : isHeavyLensForRayWork(L)
+        ? N_PUPIL_HEAVY
+        : N_PUPIL_FULL,
+    3,
+  );
 
   /* ── Raw geometric transmission per field sample ── */
   const rawGT: number[] = [];

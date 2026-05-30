@@ -1,14 +1,18 @@
 /**
- * LCAOverlayContent — Enlarged longitudinal chromatic aberration visualization.
+ * LCAOverlayContent — Enlarged chromatic aberration visualization.
  *
- * Renders a standalone SVG with the LCAInsetWidget at a larger size, plus a
- * short description explaining what LCA represents. Used inside PanelOverlay.
+ * Renders standalone SVG charts for axial LCA and, when the off-axis fan is
+ * present, image-plane TCA.
+ * Used inside PanelOverlay.
  */
 
+import type { CSSProperties } from "react";
 import type { ChromaticSpread, ChromaticSpreadByAxis } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
 import type { DispersionQuality } from "../../optics/dispersion.js";
+import { CHROMATIC_CHANNEL_METADATA } from "../../optics/chromatic/channels.js";
 import LCAInsetWidget from "./LCAInsetWidget.js";
+import TCAInsetWidget from "./TCAInsetWidget.js";
 
 interface LCAOverlayContentProps {
   chromSpread: ChromaticSpread;
@@ -21,9 +25,19 @@ interface LCAOverlayContentProps {
 
 const SINGLE_SVG_W = 340;
 const SINGLE_SVG_H = 280;
-const DUAL_SVG_W = 220;
-const DUAL_SVG_H = 220;
 const MARGIN = 12;
+const CHART_COLUMN_STYLE = { flex: `0 1 ${SINGLE_SVG_W}px`, width: SINGLE_SVG_W, maxWidth: "100%", minWidth: 0 };
+const CHART_SVG_STYLE = { width: "100%", height: "auto", display: "block" };
+const CHART_CAPTION_STYLE: CSSProperties = { fontSize: 11, lineHeight: 1.45, marginTop: 8, textAlign: "center" };
+
+function formatUm(mm: number): string {
+  if (Math.abs(mm * 1000) >= 1) return `${Math.abs(mm * 1000).toFixed(0)} µm`;
+  return `${Math.abs(mm * 1000).toFixed(1)} µm`;
+}
+
+function formatSpreadUm(mm: number): string {
+  return mm !== 0 ? formatUm(mm) : "< 0.1 µm";
+}
 
 export default function LCAOverlayContent({
   chromSpread,
@@ -33,14 +47,10 @@ export default function LCAOverlayContent({
   t,
   dispersionQuality,
 }: LCAOverlayContentProps) {
-  const spreads = [
-    { label: "ON-AXIS", spread: chromaticSpreads?.onAxis ?? null },
-    { label: "OFF-AXIS", spread: chromaticSpreads?.offAxis ?? null },
-  ].filter((item): item is { label: string; spread: ChromaticSpread } => item.spread !== null);
-  const visibleSpreads = spreads.length > 0 ? spreads : [{ label: "ON-AXIS", spread: chromSpread }];
-  const dual = visibleSpreads.length > 1;
-  const svgW = dual ? DUAL_SVG_W : SINGLE_SVG_W;
-  const svgH = dual ? DUAL_SVG_H : SINGLE_SVG_H;
+  const onAxisSpread = chromaticSpreads ? chromaticSpreads.onAxis : chromSpread;
+  const offAxisSpread = chromaticSpreads?.offAxis ?? null;
+  const svgW = SINGLE_SVG_W;
+  const svgH = SINGLE_SVG_H;
 
   return (
     <div style={{ flex: 1, display: "flex", flexDirection: "column", padding: "8px 20px 20px" }}>
@@ -52,30 +62,14 @@ export default function LCAOverlayContent({
           justifyContent: "center",
           gap: 14,
           minHeight: 0,
+          flexWrap: "wrap",
         }}
       >
-        {visibleSpreads.map(({ label, spread }) => (
-          <div key={label} style={{ flex: dual ? "1 1 0" : "0 1 auto", maxWidth: svgW, minWidth: 0 }}>
-            {dual && (
-              <div
-                style={{
-                  textAlign: "center",
-                  color: t.muted,
-                  fontSize: 11,
-                  letterSpacing: "0.12em",
-                  marginBottom: 4,
-                  fontFamily: "inherit",
-                }}
-              >
-                {label}
-              </div>
-            )}
-            <svg
-              viewBox={`0 0 ${svgW} ${svgH}`}
-              style={{ width: "100%", maxWidth: svgW, maxHeight: "100%", display: "block" }}
-            >
+        {onAxisSpread ? (
+          <div style={CHART_COLUMN_STYLE}>
+            <svg width={svgW} height={svgH} viewBox={`0 0 ${svgW} ${svgH}`} style={CHART_SVG_STYLE}>
               <LCAInsetWidget
-                chromSpread={spread}
+                chromSpread={onAxisSpread}
                 effectiveSC={effectiveSC}
                 IMG_MM={IMG_MM}
                 IX={0}
@@ -86,13 +80,57 @@ export default function LCAOverlayContent({
                 height={svgH - MARGIN * 2}
                 originX={MARGIN}
                 originY={MARGIN}
-                fontScale={dual ? 2.0 : 2.8}
+                fontScale={2.8}
                 dispersionQuality={dispersionQuality}
               />
             </svg>
+            <div style={{ ...CHART_CAPTION_STYLE, color: t.muted }}>
+              Longitudinal color is the wavelength focus spread along the optical axis for the active on-axis marginal
+              trace.
+            </div>
           </div>
-        ))}
+        ) : (
+          <div style={{ color: t.muted, fontSize: 12, lineHeight: 1.5, textAlign: "center", maxWidth: 320 }}>
+            Axial LCA is unavailable for the active channel set or current ray state.
+          </div>
+        )}
+        {offAxisSpread && (
+          <div style={CHART_COLUMN_STYLE}>
+            <svg width={svgW} height={svgH} viewBox={`0 0 ${svgW} ${svgH}`} style={CHART_SVG_STYLE}>
+              <TCAInsetWidget
+                chromSpread={offAxisSpread}
+                effectiveSC={effectiveSC}
+                t={t}
+                width={svgW - MARGIN * 2}
+                height={svgH - MARGIN * 2}
+                originX={MARGIN}
+                originY={MARGIN}
+                fontScale={2.8}
+              />
+            </svg>
+            <div style={{ ...CHART_CAPTION_STYLE, color: t.muted }}>
+              Transverse color is the surviving wavelength spread at the image plane for the displayed off-axis fan.
+            </div>
+          </div>
+        )}
       </div>
+      {chromaticSpreads?.onAxis && chromaticSpreads?.offAxis && (
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 14,
+            marginTop: 6,
+            color: t.muted,
+            fontSize: 10,
+            letterSpacing: "0.08em",
+          }}
+        >
+          <span>AXIAL LCA {formatSpreadUm(chromaticSpreads.onAxis.lcaMm)}</span>
+          <span>OFF-AXIS TCA {formatSpreadUm(chromaticSpreads.offAxis.tcaMm)}</span>
+        </div>
+      )}
       <p
         style={{
           margin: "12px 0 0",
@@ -103,10 +141,16 @@ export default function LCAOverlayContent({
         }}
       >
         <strong>Longitudinal Chromatic Aberration (LCA)</strong> measures how different wavelengths of light focus at
-        different distances along the optical axis. The colored bars show where red (C-line, 656 nm), green (d-line, 588
-        nm), blue (F-line, 486 nm), and — when enabled — violet (g-line, 436 nm) marginal rays cross the axis relative
-        to the reference focus. Apochromatic designs aim to bring three wavelengths to a common focus; the violet bar
-        reveals the residual <em>secondary spectrum</em> that distinguishes a true APO from an achromat.
+        different distances along the optical axis. The axial LCA chart uses the outermost usable on-axis marginal trace
+        for the active channel set. <strong>Transverse Chromatic Aberration (TCA)</strong> measures how far those
+        wavelengths separate across image height at the current image plane; the off-axis TCA chart uses the displayed
+        off-axis fan. The colored bars show where {CHROMATIC_CHANNEL_METADATA.R.description} (
+        {CHROMATIC_CHANNEL_METADATA.R.wavelengthLabel}), {CHROMATIC_CHANNEL_METADATA.G.description} (
+        {CHROMATIC_CHANNEL_METADATA.G.wavelengthLabel}), {CHROMATIC_CHANNEL_METADATA.B.description} (
+        {CHROMATIC_CHANNEL_METADATA.B.wavelengthLabel}), and, when enabled, {CHROMATIC_CHANNEL_METADATA.V.description} (
+        {CHROMATIC_CHANNEL_METADATA.V.wavelengthLabel}) marginal rays cross the axis in the LCA chart and where they
+        land at the image plane in the TCA chart. This is a geometric spectral-line trace; it is useful for comparing
+        correction strategy, but it is not a full-spectrum diffraction, sensor-stack, or production APO certification.
       </p>
     </div>
   );

@@ -44,6 +44,11 @@ import {
 import { computeCardinalElementsAtState } from "../optics/cardinalElements.js";
 import { computeElementShapes, createCoordinateTransforms } from "../optics/diagramGeometry.js";
 import { obstructionAwareRayFractionsForDensity } from "../optics/raySampling.js";
+import {
+  analysisSamplingForQuality,
+  type AnalysisQuality,
+  type AnalysisSamplingOptions,
+} from "../optics/analysis/analysisQuality.js";
 import { resetPerfProbe } from "../utils/perfProbe.js";
 import { LENS_CATALOG } from "../utils/catalog/lensCatalog.js";
 import themes from "../utils/theme/themes.js";
@@ -91,6 +96,8 @@ const DEFAULT_LENS_KEYS = [
   "canon-ef-8-15mm-f4l-fisheye-usm",
   "fujifilm-gf-20-35mm-f4-r-wr",
   "leica-apo-vario-elmarit-sl-90-280-f28-4",
+  "sigma-apo-macro-180mm-f28-os-hsm",
+  "sigma-apo-macro-150mm-f28-os-hsm",
   "reference-maksutov-cassegrain-meniscus",
 ] as const;
 
@@ -113,6 +120,7 @@ const SCENARIOS = [
     showOnAxis: true,
     showOffAxis: "trueAngle" as OffAxisMode,
     showChromatic: false,
+    analysisQuality: "settled" as AnalysisQuality,
   },
   {
     id: "stopped-close",
@@ -125,6 +133,7 @@ const SCENARIOS = [
     showOnAxis: true,
     showOffAxis: "trueAngle" as OffAxisMode,
     showChromatic: false,
+    analysisQuality: "settled" as AnalysisQuality,
   },
   {
     id: "tele-dense-chromatic",
@@ -137,6 +146,20 @@ const SCENARIOS = [
     showOnAxis: true,
     showOffAxis: "trueAngle" as OffAxisMode,
     showChromatic: true,
+    analysisQuality: "settled" as AnalysisQuality,
+  },
+  {
+    id: "interactive-drag",
+    focusT: 0.63,
+    zoomT: 0.75,
+    aberrationT: 0,
+    stopdownT: 0.2,
+    rayDensity: "dense" as RayDensity,
+    rayTracksF: false,
+    showOnAxis: true,
+    showOffAxis: "trueAngle" as OffAxisMode,
+    showChromatic: true,
+    analysisQuality: "interactive" as AnalysisQuality,
   },
 ] as const;
 
@@ -196,6 +219,7 @@ interface ScenarioSnapshot {
   fieldGeometry: FieldGeometryState | null;
   preparedState: PreparedOpticalState;
   analysisContext: AnalysisComputationContext;
+  analysisSampling?: AnalysisSamplingOptions;
 }
 
 /** Counts returned from ray work measurement. */
@@ -332,7 +356,7 @@ function measureMainScenario(
       };
     }),
     rays: measure("rays", () => computeRayWork(snapshot).output),
-    analysis: measure("analysis", () => computeAnalysisWork(snapshot)),
+    analysis: measure("analysis", () => computeAnalysisWork(buildScenarioSnapshot(L, scenario))),
     analysisBreakdown: measureAnalysisBreakdown(lensKey, scenario, snapshot, options),
     svgRender: measure("svgRender", () => renderDiagram(snapshot, rayWork)),
     totalCold: measure("totalCold", () => {
@@ -347,11 +371,12 @@ function measureMainScenario(
       };
     }),
     totalWarm: measure("totalWarm", () => {
-      const nextRayWork = computeRayWork(snapshot);
-      computeAnalysisWork(snapshot);
-      renderDiagram(snapshot, nextRayWork);
+      const nextSnapshot = buildScenarioSnapshot(L, scenario);
+      const nextRayWork = computeRayWork(nextSnapshot);
+      computeAnalysisWork(nextSnapshot);
+      renderDiagram(nextSnapshot, nextRayWork);
       return {
-        surfaces: snapshot.L.N,
+        surfaces: nextSnapshot.L.N,
         rays: nextRayWork.output.onAxisRays + nextRayWork.output.offAxisRays + nextRayWork.output.chromaticRays,
       };
     }),
@@ -401,12 +426,14 @@ function buildScenarioSnapshot(L: RuntimeLens, scenario: ScenarioConfig): Scenar
   computeCardinalElementsAtState(L, focusT, zoomT, zPos, IMG_MM, aberrationT);
 
   const preparedState = prepareRuntimeState(L, focusT, zoomT, aberrationT);
+  const analysisSampling = analysisSamplingForQuality(scenario.analysisQuality ?? "settled");
   const analysisContext = createAnalysisComputationContext({
     preparedState,
     dynamicEFL,
     currentEPSD,
     currentPhysStopSD,
     fieldGeometry,
+    sampling: analysisSampling,
   });
 
   return {
@@ -432,6 +459,7 @@ function buildScenarioSnapshot(L: RuntimeLens, scenario: ScenarioConfig): Scenar
     fieldGeometry,
     preparedState,
     analysisContext,
+    analysisSampling,
   };
 }
 
@@ -669,6 +697,7 @@ function computeAnalysisDistortionCurveWork(snapshot: ScenarioSnapshot): Benchma
     snapshot.dynamicEFL,
     snapshot.currentPhysStopSD,
     snapshot.fieldGeometry ?? undefined,
+    snapshot.analysisSampling,
   );
   return { distortionSamples: samples.length };
 }
@@ -679,6 +708,7 @@ function computeAnalysisDistortionGridWork(snapshot: ScenarioSnapshot): Benchmar
     snapshot.preparedState,
     snapshot.currentPhysStopSD,
     snapshot.fieldGeometry ?? undefined,
+    snapshot.analysisSampling,
   );
   return { distortionGridLines: grid.lines.length };
 }
@@ -690,6 +720,7 @@ function computeAnalysisVignettingWork(snapshot: ScenarioSnapshot): BenchmarkOut
     snapshot.currentEPSD,
     snapshot.currentPhysStopSD,
     snapshot.fieldGeometry ?? undefined,
+    snapshot.analysisSampling,
   );
   return { vignettingSamples: samples.length };
 }
@@ -698,7 +729,7 @@ function computeAnalysisVignettingWork(snapshot: ScenarioSnapshot): BenchmarkOut
 function computeAnalysisPupilsWork(snapshot: ScenarioSnapshot): BenchmarkOutput {
   const pupilProfiles = analysisJobsForState2.computeBothPupilAberrationProfiles(
     snapshot.preparedState,
-    undefined,
+    snapshot.analysisSampling?.pupilAberrationSampleCount ?? undefined,
     snapshot.fieldGeometry ?? undefined,
   );
   return { pupilSamples: pupilProfiles.ep.samples.length + pupilProfiles.xp.samples.length };
@@ -710,6 +741,7 @@ function computeAnalysisBokehPairWork(snapshot: ScenarioSnapshot): BenchmarkOutp
     snapshot.preparedState,
     snapshot.currentEPSD,
     snapshot.currentPhysStopSD,
+    snapshot.analysisSampling,
   );
   return {
     bokehInfinityFields: bokehPair.infinity?.fields.length ?? 0,
@@ -774,6 +806,7 @@ function measureAberrationPanels(
       snapshot.currentEPSD,
       snapshot.currentPhysStopSD,
       base,
+      snapshot.analysisSampling,
     );
     return describeComputationOutput(result);
   });
@@ -791,6 +824,7 @@ function measureAberrationPanels(
           snapshot.currentPhysStopSD,
           false,
           snapshot.fieldGeometry ?? undefined,
+          snapshot.analysisSampling,
         ),
       ),
     );
@@ -802,6 +836,7 @@ function measureAberrationPanels(
           snapshot.currentPhysStopSD,
           true,
           snapshot.fieldGeometry ?? undefined,
+          snapshot.analysisSampling,
         ),
       ),
     );
@@ -812,6 +847,7 @@ function measureAberrationPanels(
           snapshot.currentEPSD,
           snapshot.currentPhysStopSD,
           snapshot.fieldGeometry ?? undefined,
+          snapshot.analysisSampling,
         ),
       ),
     );
@@ -822,6 +858,7 @@ function measureAberrationPanels(
           snapshot.currentEPSD,
           snapshot.currentPhysStopSD,
           snapshot.fieldGeometry ?? undefined,
+          snapshot.analysisSampling,
         ),
       ),
     );
@@ -876,6 +913,7 @@ function computeAberrationDataValues(snapshot: ScenarioSnapshot): AberrationData
     snapshot.currentEPSD,
     snapshot.currentPhysStopSD,
     sphericalAberration,
+    snapshot.analysisSampling,
   );
   if (snapshot.L.isFoldedOptics) {
     return { sphericalAberration, saProfile, saBlurCharacter };
@@ -885,6 +923,7 @@ function computeAberrationDataValues(snapshot: ScenarioSnapshot): AberrationData
     snapshot.currentEPSD,
     snapshot.currentPhysStopSD,
     snapshot.fieldGeometry ?? undefined,
+    snapshot.analysisSampling,
   );
   const fieldCurvature = fieldCurvatureBundle.fieldCurvature;
   const chromaticFieldCurvature = fieldCurvatureBundle.chromaticFieldCurvature;
@@ -893,6 +932,7 @@ function computeAberrationDataValues(snapshot: ScenarioSnapshot): AberrationData
     snapshot.currentEPSD,
     snapshot.currentPhysStopSD,
     snapshot.fieldGeometry ?? undefined,
+    snapshot.analysisSampling,
   );
   return { sphericalAberration, saProfile, saBlurCharacter, fieldCurvature, chromaticFieldCurvature, coma };
 }
@@ -1147,7 +1187,10 @@ function spreadForAxis(
         marginalRays[ray.channel] = { y: ray.y, u: ray.u, clipped: false };
       }
     }
-    if (Object.keys(marginalRays).length >= 2) return computeChromaticSpread(marginalRays, IMG_MM, lastSurfaceZ);
+    const channels = Object.keys(marginalRays) as ChromaticChannel[];
+    if (channels.length >= 2) {
+      return { ...computeChromaticSpread(marginalRays, IMG_MM, lastSurfaceZ), axis, fraction, channels };
+    }
   }
 
   return null;

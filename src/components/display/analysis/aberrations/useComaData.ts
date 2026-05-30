@@ -15,6 +15,7 @@ interface Params {
   aberrationT?: number;
   currentEPSD: number;
   currentPhysStopSD: number;
+  detailFieldFraction?: number;
   fieldGeometry?: FieldGeometryState | null;
   preparedState?: PreparedOpticalState | null;
   analysisContext?: AnalysisComputationContext;
@@ -28,37 +29,61 @@ export default function useComaData({
   aberrationT = 0,
   currentEPSD,
   currentPhysStopSD,
+  detailFieldFraction,
   fieldGeometry,
   preparedState,
   analysisContext,
 }: Params) {
   return useMemo(() => {
+    const comaSampling =
+      detailFieldFraction === undefined ? undefined : { comaDetailFieldFraction: detailFieldFraction };
+    const contextState = analysisContext?.preparedState ?? preparedState;
     const {
       meridionalComa: comaResult,
       sagittalComa: sagittalComaResult,
       pointCloudPreview: comaPreviewResult,
-    } = analysisContext
+    } = analysisContext && comaSampling === undefined
       ? probe("computeComaAnalysis", () => analysisContext.computeComaAnalysis())
-      : preparedState
+      : contextState
         ? probe("computeComaAnalysis", () =>
-            analysisJobsForState2.computeComaAnalysis(
-              preparedState,
-              currentEPSD,
-              currentPhysStopSD,
-              fieldGeometry ?? undefined,
-            ),
+            comaSampling === undefined
+              ? analysisJobsForState2.computeComaAnalysis(
+                  contextState,
+                  currentEPSD,
+                  currentPhysStopSD,
+                  fieldGeometry ?? undefined,
+                )
+              : analysisJobsForState2.computeComaAnalysis(
+                  contextState,
+                  currentEPSD,
+                  currentPhysStopSD,
+                  fieldGeometry ?? undefined,
+                  comaSampling,
+                ),
           )
         : probe("computeComaAnalysis", () =>
-            computeComaAnalysis(
-              L,
-              zPos,
-              focusT,
-              zoomT,
-              currentEPSD,
-              currentPhysStopSD,
-              aberrationT,
-              fieldGeometry ?? undefined,
-            ),
+            comaSampling === undefined
+              ? computeComaAnalysis(
+                  L,
+                  zPos,
+                  focusT,
+                  zoomT,
+                  currentEPSD,
+                  currentPhysStopSD,
+                  aberrationT,
+                  fieldGeometry ?? undefined,
+                )
+              : computeComaAnalysis(
+                  L,
+                  zPos,
+                  focusT,
+                  zoomT,
+                  currentEPSD,
+                  currentPhysStopSD,
+                  aberrationT,
+                  fieldGeometry ?? undefined,
+                  comaSampling,
+                ),
           );
     return { comaResult, sagittalComaResult, comaPreviewResult };
   }, [
@@ -69,6 +94,7 @@ export default function useComaData({
     aberrationT,
     currentEPSD,
     currentPhysStopSD,
+    detailFieldFraction,
     fieldGeometry,
     preparedState,
     analysisContext,

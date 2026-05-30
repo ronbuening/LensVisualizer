@@ -81,6 +81,15 @@ describe("lensViewUrlState", () => {
     expect(params.toString()).toBe("v=1&ad=1&tab=summary");
   });
 
+  it("round-trips the chromatic analysis tab", () => {
+    const parsed = parseLensViewQuery("?v=1&ad=1&tab=chromatic");
+    expect(parsed.analysisDrawerOpen).toBe(true);
+    expect(parsed.analysisDrawerTab).toBe("chromatic");
+
+    const params = buildLensViewQuery({ analysisDrawerOpen: true, analysisDrawerTab: "chromatic" });
+    expect(params.toString()).toBe("v=1&ad=1&tab=chromatic");
+  });
+
   it("builds minimal comparison query params", () => {
     const params = buildLensViewQuery({
       comparing: true,

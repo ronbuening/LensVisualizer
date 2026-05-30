@@ -8,6 +8,7 @@ import type { FieldGeometryState } from "../optics.js";
 import { computeVignettingCurve } from "../vignetteAnalysis.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { PreparedOpticalState } from "../types.js";
+import type { AnalysisSamplingOptions } from "./analysisQuality.js";
 import { zPosForPreparedAnalysis2 } from "./preparedStateAdapters.js";
 
 /**
@@ -27,6 +28,7 @@ export function computeVignettingCurveForState2(
   currentEPSD: number,
   currentPhysStopSD: number,
   fieldGeometry?: FieldGeometryState,
+  sampling?: AnalysisSamplingOptions,
 ) {
   return computeVignettingCurve(
     state.lens.runtime,
@@ -37,6 +39,7 @@ export function computeVignettingCurveForState2(
     currentPhysStopSD,
     fieldGeometry,
     state.aberrationT,
+    sampling,
   );
 }
 
@@ -62,6 +65,17 @@ export function computeVignettingCurve2(
   currentPhysStopSD: number,
   fieldGeometry?: FieldGeometryState,
   aberrationT = 0,
+  sampling?: AnalysisSamplingOptions,
 ) {
-  return computeVignettingCurve(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, fieldGeometry, aberrationT);
+  return computeVignettingCurve(
+    L,
+    zPos,
+    focusT,
+    zoomT,
+    currentEPSD,
+    currentPhysStopSD,
+    fieldGeometry,
+    aberrationT,
+    sampling,
+  );
 }

@@ -1,9 +1,9 @@
 /**
  * SagittalComaPlot — Compact sagittal coma visualization for the Aberrations drawer.
  *
- * Plots x-coordinate image-plane intercepts against pupil fraction for the
- * sagittal fan. Mirrors the structure of MeridionalComaPlot but uses sagittal
- * (x-axis) data instead of tangential (y-axis).
+ * Plots chief-ray-relative x-coordinate image-plane intercepts against pupil
+ * fraction for the sagittal fan. Mirrors the structure of MeridionalComaPlot
+ * but uses sagittal (x-axis) data instead of tangential (y-axis).
  */
 
 import type { SagittalComaResult } from "../../../optics/aberrationAnalysis.js";
@@ -36,7 +36,7 @@ export function formatSagittalComaSpan(spanUm: number): string {
 export default function SagittalComaPlot({ result, t }: SagittalComaPlotProps) {
   const yHalfRange = Math.max(
     MIN_Y_RANGE_MM,
-    Math.max(Math.abs(result.minIntercept), Math.abs(result.maxIntercept)) * 1.1,
+    Math.max(Math.abs(result.minRelativeIntercept), Math.abs(result.maxRelativeIntercept)) * 1.1,
   );
   const zeroY = MT + PH / 2;
 
@@ -44,11 +44,12 @@ export default function SagittalComaPlot({ result, t }: SagittalComaPlotProps) {
   const yScale = centeredMmScale(MT, PH, yHalfRange);
 
   const validSamples = result.samples.filter(
-    (sample): sample is typeof sample & { imageX: number } => sample.imageX !== null && !sample.clipped,
+    (sample): sample is typeof sample & { imageX: number; relativeImageX: number } =>
+      sample.imageX !== null && sample.relativeImageX !== null && !sample.clipped,
   );
 
   const polylinePoints = validSamples
-    .map((sample) => `${xScale(sample.pupilFraction).toFixed(1)},${yScale(sample.imageX).toFixed(1)}`)
+    .map((sample) => `${xScale(sample.pupilFraction).toFixed(1)},${yScale(sample.relativeImageX).toFixed(1)}`)
     .join(" ");
 
   const tickValues = symmetricMmTicks(yHalfRange).filter((tick) => Math.abs(tick) < yHalfRange);
@@ -117,7 +118,7 @@ export default function SagittalComaPlot({ result, t }: SagittalComaPlotProps) {
         <rect
           key={sample.index}
           x={xScale(sample.pupilFraction) - 2.2}
-          y={yScale(sample.imageX) - 2.2}
+          y={yScale(sample.relativeImageX) - 2.2}
           width={4.4}
           height={4.4}
           rx={0.8}

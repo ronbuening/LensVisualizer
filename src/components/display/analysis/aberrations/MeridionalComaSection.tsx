@@ -10,6 +10,10 @@ interface MeridionalComaSectionProps {
   theme: Theme;
 }
 
+function formatField(result: MeridionalComaResult): string {
+  return `${Math.round(result.fieldFraction * 100)}% / ${result.fieldAngleDeg.toFixed(1)}°`;
+}
+
 export default function MeridionalComaSection({ result, expanded, onToggle, theme }: MeridionalComaSectionProps) {
   return (
     <div
@@ -24,7 +28,7 @@ export default function MeridionalComaSection({ result, expanded, onToggle, them
       <SectionHeader
         title="Tangential Ray Fan"
         helpLabel="Tangential ray fan help"
-        helpText="Tangential ray fan at the configured off-axis field. This is the tangential or meridional ray-aberration view: chief-ray-referenced image height versus tangential pupil coordinate. It is useful for reading coma-like asymmetry, but it is not a full 2D spot diagram."
+        helpText="Tangential ray fan at the selected off-axis field. This is a 1D transverse ray-aberration view: chief-ray-relative image y versus tangential pupil coordinate. It helps reveal coma-like asymmetry, but it is not a full 2D spot diagram or a pure Seidel coma coefficient."
         expanded={expanded}
         onToggle={onToggle}
         theme={theme}
@@ -33,8 +37,9 @@ export default function MeridionalComaSection({ result, expanded, onToggle, them
       {expanded ? (
         <>
           <span style={{ fontSize: 9, color: theme.muted, lineHeight: 1.4, transition: "color 0.3s" }}>
-            Tangential ray fan using a dense off-axis meridional pupil sweep. This is a 1D chief-ray-referenced
-            ray-aberration plot, not a full 2D spot diagram.
+            Tangential ray fan using a dense off-axis meridional pupil sweep at the selected field. Values are plotted
+            relative to the traced chief ray, so the zero line is the chief-ray intercept rather than absolute frame
+            height.
           </span>
 
           {result ? (
@@ -50,10 +55,10 @@ export default function MeridionalComaSection({ result, expanded, onToggle, them
               >
                 <div
                   style={{ display: "flex", alignItems: "center", gap: 8 }}
-                  title="Meridional coma span: upper outer valid image-plane intercept minus lower outer valid intercept."
+                  title="Tangential fan span: maximum minus minimum chief-ray-relative y-intercept across valid samples."
                 >
                   <span style={{ fontSize: 10, color: theme.label, letterSpacing: "0.1em", transition: "color 0.3s" }}>
-                    COMA SPAN
+                    FAN SPAN
                   </span>
                   <span
                     style={{
@@ -65,6 +70,25 @@ export default function MeridionalComaSection({ result, expanded, onToggle, them
                     }}
                   >
                     {formatComaSpan(result.spanUm)}
+                  </span>
+                </div>
+                <div
+                  style={{ display: "flex", alignItems: "center", gap: 8 }}
+                  title="Signed upper-minus-lower outer ray delta, still measured relative to the chief ray."
+                >
+                  <span style={{ fontSize: 10, color: theme.label, letterSpacing: "0.1em", transition: "color 0.3s" }}>
+                    OUTER DELTA
+                  </span>
+                  <span
+                    style={{
+                      fontSize: 13,
+                      fontWeight: 600,
+                      color: theme.value,
+                      fontVariantNumeric: "tabular-nums",
+                      transition: "color 0.3s",
+                    }}
+                  >
+                    {formatComaSpan(result.signedOuterDeltaUm)}
                   </span>
                 </div>
                 <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
@@ -80,7 +104,7 @@ export default function MeridionalComaSection({ result, expanded, onToggle, them
                       transition: "color 0.3s",
                     }}
                   >
-                    {result.fieldAngleDeg.toFixed(1)}°
+                    {formatField(result)}
                   </span>
                 </div>
                 <div style={{ display: "flex", alignItems: "center", gap: 8 }}>

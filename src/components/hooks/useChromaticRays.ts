@@ -2,13 +2,15 @@
  * useChromaticRays — Computes chromatic ray fan segments and aberration spread.
  *
  * Traces density-derived axial and off-axis ray fans through wavelength-dependent
- * refractive indices (R/G/B channels). Axial rays feed the LCA/TCA spread metric;
- * off-axis chromatic rays share the same state-aware field geometry as the
- * monochrome off-axis fan.
+ * refractive indices for the selected spectral-line channels. Axial rays draw
+ * the on-axis fan while a dedicated marginal-focus search feeds the LCA readout;
+ * off-axis rays feed the transverse color readout using the same state-aware
+ * field geometry as the monochrome off-axis fan.
  */
 import { useMemo } from "react";
 import {
   computeChromaticSpread,
+  computeLongitudinalChromaticFocus,
   offsetVectorFieldRay,
   traceRayChromatic,
   traceRayVectorChromatic,
@@ -63,6 +65,19 @@ interface UseChromaticRaysResult {
   error: unknown;
 }
 
+const DISPLAY_LCA_FALLBACK_FRACTIONS = [0.97, 0.95, 0.9, 0.85, 0.8] as const;
+
+function longitudinalFractionsForDisplay(L: RuntimeLens, currentEPSD: number): number[] {
+  const fractions: number[] = [...DISPLAY_LCA_FALLBACK_FRACTIONS];
+  for (const fraction of obstructionAwareRayFractionsForDensity(L, L.rayFractions, "normal", currentEPSD)) {
+    const absolute = Math.abs(fraction);
+    if (absolute > 1e-12 && !fractions.some((value) => Math.abs(value - absolute) < 1e-12)) {
+      fractions.push(absolute);
+    }
+  }
+  return fractions.sort((a, b) => b - a);
+}
+
 function spreadForAxis(
   chromaticRays: ChromaticRaySegment[],
   axis: ChromaticRaySegment["axis"],
@@ -84,8 +99,9 @@ function spreadForAxis(
         marginalRays[r.channel] = { y: r.y, u: r.u, clipped: false };
       }
     }
-    if (Object.keys(marginalRays).length >= 2) {
-      return computeChromaticSpread(marginalRays, IMG_MM, lastSurfaceZ);
+    const channels = Object.keys(marginalRays) as ChromaticChannel[];
+    if (channels.length >= 2) {
+      return { ...computeChromaticSpread(marginalRays, IMG_MM, lastSurfaceZ), axis, fraction, channels };
     }
   }
 
@@ -270,19 +286,57 @@ export default function useChromaticRays({
 
   const chromaticRays = chromaticResult.segments;
 
-  /* Compute LCA (longitudinal chromatic aberration) and TCA (transverse)
-   * from each visible marginal chromatic ray fan. Requires at least 2 active channels. */
-  const chromaticSpreads = useMemo((): ChromaticSpreadByAxis => {
-    const empty = { onAxis: null, offAxis: null };
-    if (!L || !showChromatic || chromaticRays.length === 0) return empty;
+  const onAxisChromSpread = useMemo((): ChromaticSpread | null => {
+    if (!L || !showChromatic || !showOnAxis || chromaticResult.error) return null;
     const channels = filterChannels(chromR, chromG, chromB, chromV);
-    if (channels.length < 2) return empty;
+    if (channels.length < 2) return null;
+    return (
+      computeLongitudinalChromaticFocus(L, zPos, focusT, zoomT, currentEPSD, currentPhysStopSD, aberrationT, {
+        channels,
+        longitudinalFractions: longitudinalFractionsForDisplay(L, currentEPSD),
+      })?.spread ?? null
+    );
+  }, [
+    showChromatic,
+    showOnAxis,
+    chromR,
+    chromG,
+    chromB,
+    chromV,
+    chromaticResult.error,
+    L,
+    zPos,
+    focusT,
+    zoomT,
+    currentEPSD,
+    currentPhysStopSD,
+    aberrationT,
+  ]);
+
+  const offAxisChromSpread = useMemo((): ChromaticSpread | null => {
+    if (!L || !showChromatic || chromaticResult.error) return null;
+    const channels = filterChannels(chromR, chromG, chromB, chromV);
+    if (channels.length < 2) return null;
     const lastSurfaceZ = movementTransform ? movementTransform.point(zPos[L.N - 1], 0)[0] : zPos[L.N - 1];
-    return {
-      onAxis: spreadForAxis(chromaticRays, "onAxis", IMG_MM, lastSurfaceZ),
-      offAxis: spreadForAxis(chromaticRays, "offAxis", IMG_MM, lastSurfaceZ),
-    };
-  }, [showChromatic, chromR, chromG, chromB, chromV, chromaticRays, IMG_MM, zPos, L, movementTransform]);
+    return spreadForAxis(chromaticRays, "offAxis", IMG_MM, lastSurfaceZ);
+  }, [
+    showChromatic,
+    chromR,
+    chromG,
+    chromB,
+    chromV,
+    chromaticRays,
+    chromaticResult.error,
+    IMG_MM,
+    zPos,
+    L,
+    movementTransform,
+  ]);
+
+  const chromaticSpreads = useMemo(
+    (): ChromaticSpreadByAxis => ({ onAxis: onAxisChromSpread, offAxis: offAxisChromSpread }),
+    [onAxisChromSpread, offAxisChromSpread],
+  );
 
   const chromSpread = chromaticSpreads.onAxis ?? chromaticSpreads.offAxis;
 

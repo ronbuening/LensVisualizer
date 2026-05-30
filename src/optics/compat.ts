@@ -10,8 +10,42 @@ import type { LayoutResult, LensData, RuntimeLens } from "../types/optics.js";
 import type { EngineLens, PreparedOpticalState } from "./types.js";
 import { normalizeRuntimeLens, withLensDefaults } from "./prescription/normalizeLensData.js";
 import { prepareState } from "./state/prepareState.js";
+import type { PreparedStateCache } from "./state/cache.js";
 
 const ENGINE_LENS_BY_RUNTIME = new WeakMap<RuntimeLens, EngineLens>();
+const PREPARED_STATE_CACHE_BY_RUNTIME = new WeakMap<RuntimeLens, PreparedStateCache>();
+const PREPARED_STATE_CACHE_LIMIT = 96;
+
+function preparedStateCacheForRuntime(L: RuntimeLens): PreparedStateCache {
+  const cached = PREPARED_STATE_CACHE_BY_RUNTIME.get(L);
+  if (cached) return cached;
+
+  const byKey = new Map<string, PreparedOpticalState>();
+  const cache: PreparedStateCache = {
+    get(cacheKey) {
+      const state = byKey.get(cacheKey);
+      if (state) {
+        byKey.delete(cacheKey);
+        byKey.set(cacheKey, state);
+      }
+      return state;
+    },
+    set(cacheKey, state) {
+      if (byKey.has(cacheKey)) byKey.delete(cacheKey);
+      byKey.set(cacheKey, state);
+      while (byKey.size > PREPARED_STATE_CACHE_LIMIT) {
+        const oldestKey = byKey.keys().next().value;
+        if (oldestKey === undefined) break;
+        byKey.delete(oldestKey);
+      }
+    },
+    clear() {
+      byKey.clear();
+    },
+  };
+  PREPARED_STATE_CACHE_BY_RUNTIME.set(L, cache);
+  return cache;
+}
 
 /**
  * Build and register a RuntimeLens from defaulted lens data.
@@ -57,7 +91,9 @@ export function prepareRuntimeState(
   zoomT: number,
   aberrationT = 0,
 ): PreparedOpticalState {
-  return prepareState(engineLensFromRuntime(L), focusT, zoomT, aberrationT);
+  return prepareState(engineLensFromRuntime(L), focusT, zoomT, aberrationT, {
+    cache: preparedStateCacheForRuntime(L),
+  });
 }
 
 /**
@@ -262,6 +298,27 @@ export {
   computeSphericalAberrationBlurCharacterForState2,
   computeSphericalAberrationForState2,
 } from "./analysis/aberrations.js";
+export {
+  computeChromaticAnalysis2,
+  computeChromaticAnalysisForState2,
+  computeChromaticRayTraceAnalysis2,
+  computeChromaticRayTraceAnalysisForState2,
+  computeLateralColorCurve2,
+  computeLongitudinalChromaticFocus2,
+  summarizeChromaticFieldFocus2,
+  type ChromaticAnalysisOptions,
+  type ChromaticAnalysisResult,
+  type ChromaticChannelSpan2,
+  type ChromaticFieldFocusFieldSummary2,
+  type ChromaticFieldFocusSummary2,
+  type ChromaticRayTraceAnalysis2,
+  type ChromaticRayTraceAnalysisOptions2,
+  type LateralColorChannelSample,
+  type LateralColorCurveResult,
+  type LateralColorFieldSample,
+  type LongitudinalChromaticFocusResult,
+  type LongitudinalChromaticFocusSample,
+} from "./analysis/chromatic.js";
 export {
   buildBokehDensityGrid2,
   buildBokehRadialProfile2,

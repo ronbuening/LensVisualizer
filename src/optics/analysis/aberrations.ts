@@ -19,6 +19,7 @@ import {
 import type { FieldGeometryState } from "../optics.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { PreparedOpticalState } from "../types.js";
+import type { AnalysisSamplingOptions } from "./analysisQuality.js";
 import { zPosForPreparedAnalysis2 } from "./preparedStateAdapters.js";
 
 function zPosFromState(state: PreparedOpticalState): number[] {
@@ -90,6 +91,7 @@ export function computeSphericalAberrationBlurCharacterForState2(
   currentEPSD: number,
   currentPhysStopSD: number,
   baseResult: Parameters<typeof computeSphericalAberrationBlurCharacter>[6] = null,
+  sampling?: AnalysisSamplingOptions,
 ) {
   return computeSphericalAberrationBlurCharacter(
     state.lens.runtime,
@@ -100,6 +102,7 @@ export function computeSphericalAberrationBlurCharacterForState2(
     currentPhysStopSD,
     baseResult,
     state.aberrationT,
+    sampling,
   );
 }
 
@@ -122,6 +125,7 @@ export function computeFieldCurvatureForState2(
   currentPhysStopSD: number,
   chromatic = false,
   fieldGeometry?: FieldGeometryState,
+  sampling?: AnalysisSamplingOptions,
 ) {
   return computeFieldCurvature(
     state.lens.runtime,
@@ -133,6 +137,7 @@ export function computeFieldCurvatureForState2(
     chromatic,
     state.aberrationT,
     fieldGeometry,
+    sampling,
   );
 }
 
@@ -153,6 +158,7 @@ export function computeFieldCurvatureBundleForState2(
   currentEPSD: number,
   currentPhysStopSD: number,
   fieldGeometry?: FieldGeometryState,
+  sampling?: AnalysisSamplingOptions,
 ) {
   return computeFieldCurvatureBundle(
     state.lens.runtime,
@@ -163,6 +169,7 @@ export function computeFieldCurvatureBundleForState2(
     currentPhysStopSD,
     state.aberrationT,
     fieldGeometry,
+    sampling,
   );
 }
 
@@ -183,6 +190,7 @@ export function computeComaAnalysisForState2(
   currentEPSD: number,
   currentPhysStopSD: number,
   fieldGeometry?: FieldGeometryState,
+  sampling?: AnalysisSamplingOptions,
 ) {
   return computeComaAnalysis(
     state.lens.runtime,
@@ -193,6 +201,7 @@ export function computeComaAnalysisForState2(
     currentPhysStopSD,
     state.aberrationT,
     fieldGeometry,
+    sampling,
   );
 }
 

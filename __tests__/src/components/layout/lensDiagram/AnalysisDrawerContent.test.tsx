@@ -11,6 +11,7 @@ import type { Theme } from "../../../../../src/types/theme.js";
 const {
   mockAberrationsPanel,
   mockBokehTab,
+  mockChromaticTab,
   mockComaTab,
   mockDistortionTab,
   mockFocusBreathingTab,
@@ -22,6 +23,7 @@ const {
 } = vi.hoisted(() => ({
   mockAberrationsPanel: vi.fn(),
   mockBokehTab: vi.fn(),
+  mockChromaticTab: vi.fn(),
   mockComaTab: vi.fn(),
   mockDistortionTab: vi.fn(),
   mockFocusBreathingTab: vi.fn(),
@@ -51,6 +53,13 @@ vi.mock("../../../../../src/components/display/analysis/BokehTab.js", () => ({
   default: (props: Record<string, unknown>) => {
     mockBokehTab(props);
     return <div>Bokeh</div>;
+  },
+}));
+
+vi.mock("../../../../../src/components/display/analysis/ChromaticTab.js", () => ({
+  default: (props: Record<string, unknown>) => {
+    mockChromaticTab(props);
+    return <div>Chromatic</div>;
   },
 }));
 
@@ -118,6 +127,7 @@ describe("AnalysisDrawerContent", () => {
   beforeEach(() => {
     mockAberrationsPanel.mockReset();
     mockBokehTab.mockReset();
+    mockChromaticTab.mockReset();
     mockComaTab.mockReset();
     mockDistortionTab.mockReset();
     mockFocusBreathingTab.mockReset();
@@ -165,6 +175,15 @@ describe("AnalysisDrawerContent", () => {
     expect(mockAberrationsPanel).not.toHaveBeenCalled();
   });
 
+  it("maps the chromatic tab to ChromaticTab", () => {
+    render(<AnalysisDrawerContent {...baseProps} activeTab="chromatic" />);
+
+    expect(screen.getByText("Chromatic")).toBeTruthy();
+    expect(mockChromaticTab).toHaveBeenCalledTimes(1);
+    expect(mockChromaticTab.mock.calls[0][0].preparedState).toBe(mockPreparedState);
+    expect(mockAberrationsPanel).not.toHaveBeenCalled();
+  });
+
   it("maps the coma tab to ComaTab", () => {
     render(<AnalysisDrawerContent {...baseProps} activeTab="coma" aberrationT={0.37} />);
 
@@ -208,6 +227,14 @@ describe("AnalysisDrawerContent", () => {
     expect(screen.getByText(/Folded mirror optical path detected/)).toBeTruthy();
     expect(screen.getByText(/not available for folded mirror systems yet/)).toBeTruthy();
     expect(mockVignettingTab).not.toHaveBeenCalled();
+  });
+
+  it("guards the chromatic tab for folded optics until mirror validation is added", () => {
+    render(<AnalysisDrawerContent {...baseProps} L={{ ...baseProps.L, isFoldedOptics: true }} activeTab="chromatic" />);
+
+    expect(screen.getByText(/Folded mirror optical path detected/)).toBeTruthy();
+    expect(screen.getByText(/not available for folded mirror systems yet/)).toBeTruthy();
+    expect(mockChromaticTab).not.toHaveBeenCalled();
   });
 
   it("allows folded optics to use the mirror-safe aberrations tab", () => {

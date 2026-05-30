@@ -8,6 +8,7 @@ import { computeDistortionCurve, computeDistortionFieldGrid } from "../distortio
 import type { FieldGeometryState } from "../optics.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { PreparedOpticalState } from "../types.js";
+import type { AnalysisSamplingOptions } from "./analysisQuality.js";
 import { zPosForPreparedAnalysis2 } from "./preparedStateAdapters.js";
 
 /**
@@ -28,6 +29,7 @@ export function computeDistortionCurveForState2(
   dynamicEFL: number,
   currentPhysStopSD: number,
   fieldGeometry?: FieldGeometryState,
+  sampling?: AnalysisSamplingOptions,
 ) {
   return computeDistortionCurve(
     state.lens.runtime,
@@ -38,6 +40,7 @@ export function computeDistortionCurveForState2(
     currentPhysStopSD,
     fieldGeometry,
     state.aberrationT,
+    sampling,
   );
 }
 
@@ -53,6 +56,7 @@ export function computeDistortionFieldGridForState2(
   state: PreparedOpticalState,
   currentPhysStopSD: number,
   fieldGeometry?: FieldGeometryState,
+  sampling?: AnalysisSamplingOptions,
 ) {
   return computeDistortionFieldGrid(
     state.lens.runtime,
@@ -62,6 +66,7 @@ export function computeDistortionFieldGridForState2(
     currentPhysStopSD,
     fieldGeometry,
     state.aberrationT,
+    sampling,
   );
 }
 
@@ -87,8 +92,19 @@ export function computeDistortionCurve2(
   currentPhysStopSD: number,
   fieldGeometry?: FieldGeometryState,
   aberrationT = 0,
+  sampling?: AnalysisSamplingOptions,
 ) {
-  return computeDistortionCurve(L, zPos, focusT, zoomT, dynamicEFL, currentPhysStopSD, fieldGeometry, aberrationT);
+  return computeDistortionCurve(
+    L,
+    zPos,
+    focusT,
+    zoomT,
+    dynamicEFL,
+    currentPhysStopSD,
+    fieldGeometry,
+    aberrationT,
+    sampling,
+  );
 }
 
 /**
@@ -111,6 +127,7 @@ export function computeDistortionFieldGrid2(
   currentPhysStopSD: number,
   fieldGeometry?: FieldGeometryState,
   aberrationT = 0,
+  sampling?: AnalysisSamplingOptions,
 ) {
-  return computeDistortionFieldGrid(L, zPos, focusT, zoomT, currentPhysStopSD, fieldGeometry, aberrationT);
+  return computeDistortionFieldGrid(L, zPos, focusT, zoomT, currentPhysStopSD, fieldGeometry, aberrationT, sampling);
 }

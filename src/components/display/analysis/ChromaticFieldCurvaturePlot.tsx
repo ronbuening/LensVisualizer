@@ -1,13 +1,16 @@
 /**
- * ChromaticFieldCurvaturePlot — SVG chart showing per-wavelength (R/G/B)
+ * ChromaticFieldCurvaturePlot — SVG chart showing per-wavelength chromatic
  * tangential and sagittal parabasal field-curve shifts across the field.
  *
- * Renders three pairs of tangential (solid) + sagittal (dashed) traces,
- * one per chromatic channel, to visualize how lateral color shifts the
- * focal surface at each field position.
+ * Renders tangential (solid) + sagittal (dashed) traces for each available
+ * chromatic channel to visualize wavelength-dependent best-focus
+ * shift at each field position. Lateral color is a separate image-height
+ * metric and should not be inferred from this focus-shift chart.
  */
 
 import type { FieldCurvatureResult } from "../../../optics/aberrationAnalysis.js";
+import { CHROMATIC_CHANNEL_ORDER } from "../../../optics/chromatic/channels.js";
+import type { ChromaticChannel } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";
 import {
   centeredMmScale,
@@ -17,6 +20,7 @@ import {
   formatMmTick,
   symmetricMmTicks,
 } from "./charts/chartMath.js";
+import { chromaticChannelColor } from "./chromaticChartUtils.js";
 
 interface ChromaticFieldCurvaturePlotProps {
   result: FieldCurvatureResult;
@@ -33,15 +37,15 @@ const PW = VB_W - ML - MR;
 const PH = VB_H - MT - MB;
 
 export default function ChromaticFieldCurvaturePlot({ result, t }: ChromaticFieldCurvaturePlotProps) {
-  const markerFields = result.fields.filter((field) => field.usable && field.chromaticFieldShifts !== null);
-  const curveFields = result.curveFields.filter((field) => field.usable && field.chromaticFieldShifts !== null);
+  const markerFields = result.fields.filter(hasUsableChromaticShifts);
+  const curveFields = result.curveFields.filter(hasUsableChromaticShifts);
   const plotFields = curveFields.length > 0 ? curveFields : markerFields;
   if (plotFields.length < 2) return null;
 
   // Compute y-range from all chromatic shifts
   let maxShift = 0.1;
   for (const field of plotFields) {
-    for (const shift of field.chromaticFieldShifts!) {
+    for (const shift of finiteChromaticShifts(field)) {
       maxShift = Math.max(maxShift, Math.abs(shift.tangentialShiftMm), Math.abs(shift.sagittalShiftMm));
     }
   }
@@ -52,21 +56,16 @@ export default function ChromaticFieldCurvaturePlot({ result, t }: ChromaticFiel
   const zeroY = yScale(0);
   const tickValues = symmetricMmTicks(yHalfRange);
 
-  const channelColors: Record<string, string> = {
-    R: t.rayChromR,
-    G: t.rayChromG,
-    B: t.rayChromB,
-  };
-
-  const channels = ["R", "G", "B"] as const;
+  const channels = CHROMATIC_CHANNEL_ORDER.filter((channel) => hasChannelShift(plotFields, channel));
+  if (channels.length < 2) return null;
 
   function buildPolyline(
-    channel: string,
+    channel: ChromaticChannel,
     accessor: (s: { tangentialShiftMm: number; sagittalShiftMm: number }) => number,
   ) {
     return plotFields
       .map((field) => {
-        const shift = field.chromaticFieldShifts!.find((s) => s.channel === channel);
+        const shift = finiteChromaticShifts(field).find((s) => s.channel === channel);
         if (!shift) return null;
         return `${xScale(field.fieldFraction).toFixed(1)},${yScale(accessor(shift)).toFixed(1)}`;
       })
@@ -77,8 +76,8 @@ export default function ChromaticFieldCurvaturePlot({ result, t }: ChromaticFiel
   return (
     <svg viewBox={`0 0 ${VB_W} ${VB_H}`} style={{ display: "block", width: "100%", maxWidth: VB_W, height: "auto" }}>
       <title>
-        Chromatic field curvature. R, G, and B tangential (solid) and sagittal (dashed) parabasal field curves show how
-        dispersion shifts the focal surface per wavelength across the field.
+        Chromatic field curvature. {channels.join(", ")} tangential (solid) and sagittal (dashed) parabasal field curves
+        show how dispersion shifts the best-focus surface per wavelength across the field.
       </title>
       <rect x={ML} y={MT} width={PW} height={PH} rx={3} fill={t.panelBg} stroke={t.panelBorder} strokeWidth={0.75} />
 
@@ -132,7 +131,7 @@ export default function ChromaticFieldCurvaturePlot({ result, t }: ChromaticFiel
 
       {/* Tangential traces (solid) and sagittal traces (dashed) per channel */}
       {channels.map((channel) => {
-        const color = channelColors[channel];
+        const color = chromaticChannelColor(t, channel);
         const tangentialPts = buildPolyline(channel, (s) => s.tangentialShiftMm);
         const sagittalPts = buildPolyline(channel, (s) => s.sagittalShiftMm);
         return (
@@ -164,9 +163,9 @@ export default function ChromaticFieldCurvaturePlot({ result, t }: ChromaticFiel
 
       {/* Data point markers per channel */}
       {channels.map((channel) => {
-        const color = channelColors[channel];
+        const color = chromaticChannelColor(t, channel);
         return markerFields.map((field) => {
-          const shift = field.chromaticFieldShifts!.find((s) => s.channel === channel);
+          const shift = finiteChromaticShifts(field).find((s) => s.channel === channel);
           if (!shift) return null;
           return (
             <g key={`${channel}-${field.fieldFraction}`}>
@@ -187,8 +186,8 @@ export default function ChromaticFieldCurvaturePlot({ result, t }: ChromaticFiel
       {/* Legend */}
       <g transform={`translate(${ML + 6}, ${MT + 12})`}>
         {channels.map((channel, i) => {
-          const color = channelColors[channel];
-          const xOff = i * 72;
+          const color = chromaticChannelColor(t, channel);
+          const xOff = i * 62;
           return (
             <g key={channel} transform={`translate(${xOff}, 0)`}>
               <line x1={0} y1={0} x2={12} y2={0} stroke={color} strokeWidth={1.8} />
@@ -212,5 +211,23 @@ export default function ChromaticFieldCurvaturePlot({ result, t }: ChromaticFiel
         </text>
       </g>
     </svg>
+  );
+}
+
+function hasUsableChromaticShifts(field: FieldCurvatureResult["fields"][number]): boolean {
+  return field.usable && finiteChromaticShifts(field).length >= 2;
+}
+
+function hasChannelShift(fields: FieldCurvatureResult["fields"], channel: ChromaticChannel): boolean {
+  return fields.some((field) => finiteChromaticShifts(field).some((shift) => shift.channel === channel));
+}
+
+function finiteChromaticShifts(
+  field: FieldCurvatureResult["fields"][number],
+): NonNullable<FieldCurvatureResult["fields"][number]["chromaticFieldShifts"]> {
+  return (
+    field.chromaticFieldShifts?.filter(
+      (shift) => isFinite(shift.tangentialShiftMm) && isFinite(shift.sagittalShiftMm),
+    ) ?? []
   );
 }

@@ -1,6 +1,6 @@
 /**
- * ComaPreviewGrid — Representative meridional coma previsualization shown as
- * a 2×2 SVG grid across the field.
+ * ComaPreviewGrid — Representative chief-ray-centered coma/spot footprint
+ * previsualization shown as a 2×2 SVG grid across the field.
  *
  * Each tile is centered on the chief-ray intercept for that field position so
  * users can compare the asymmetric footprint growth without conflating it with
@@ -311,7 +311,7 @@ function renderPointCloudTile(
       geometry={geometry}
       label={field.label}
       angleLabel={field.usable ? `${field.fieldAngleDeg.toFixed(1)}°` : "Unavailable"}
-      footerLines={style === "traced" ? ["Traced real-ray", "spot plot"] : ["Idealized", "coma sketch"]}
+      footerLines={style === "traced" ? ["Traced real-ray", "spot footprint"] : ["Schematic", "coma sketch"]}
       t={t}
     >
       <line
@@ -411,8 +411,8 @@ export default function ComaPreviewGrid({
       <svg viewBox={`0 0 ${VB_W} ${VB_H}`} style={{ display: "block", width: "100%", maxWidth: VB_W, height: "auto" }}>
         <title>
           {pointCloudStyle === "traced"
-            ? "Chief-ray-referenced real-ray spot grid. Each tile traces a fixed circular pupil pattern and plots tangential and sagittal image heights relative to the chief ray on a shared square spot scale."
-            : "Idealized coma comparison grid. Each tile converts the traced spot extent into a normalized textbook-style coma sketch on the same shared square spot scale."}
+            ? "Chief-ray-referenced real-ray spot footprint grid. Each tile traces a fixed circular pupil pattern and plots tangential and sagittal image heights relative to the chief ray on a shared square spot scale."
+            : "Schematic coma comparison grid. Each tile converts the traced spot extent into a normalized textbook-style coma sketch on the same shared square spot scale."}
         </title>
         {pointCloudResult.fields.map((field, index) =>
           renderPointCloudTile(field, index, pointCloudResult.sharedSpotHalfRangeMm, t, pointCloudStyle),
@@ -442,7 +442,7 @@ export default function ComaPreviewGrid({
               stroke={t.value}
               strokeWidth={1.1}
             />
-            <MultiLineText x={28} y={-2} lines={["Outline", "idealized footprint"]} fill={t.muted} fontSize={7.5} />
+            <MultiLineText x={28} y={-2} lines={["Outline", "schematic footprint"]} fill={t.muted} fontSize={7.5} />
           </g>
         )}
         <MultiLineText

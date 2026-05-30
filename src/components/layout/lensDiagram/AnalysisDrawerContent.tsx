@@ -1,7 +1,8 @@
-import { useDeferredValue, useEffect, useMemo, useRef, type ReactNode } from "react";
+import { useDeferredValue, useMemo, type ReactNode } from "react";
 import { ANALYSIS_TAB_RENDERERS } from "./analysisTabRenderers.js";
 import usePreparedAnalysisState from "../../display/analysis/usePreparedAnalysisState.js";
 import { createAnalysisComputationContext } from "../../../optics/compat.js";
+import { analysisSamplingForQuality, type AnalysisQuality } from "../../../optics/analysis/analysisQuality.js";
 import type { RuntimeLens } from "../../../types/optics.js";
 import type { Theme } from "../../../types/theme.js";
 import type { FieldGeometryState } from "../../../optics/optics.js";
@@ -27,7 +28,7 @@ interface AnalysisDrawerContentProps {
   onAberrationsExpandedChange: (expanded: boolean) => void;
 }
 
-const FOLDED_OPTICS_UNSUPPORTED_TABS = new Set<AnalysisTabId>(["coma", "distortion", "vignetting"]);
+const FOLDED_OPTICS_UNSUPPORTED_TABS = new Set<AnalysisTabId>(["chromatic", "coma", "distortion", "vignetting"]);
 
 export default function AnalysisDrawerContent({
   activeTab,
@@ -67,14 +68,9 @@ export default function AnalysisDrawerContent({
     }),
     [dFocusT, dZoomT, dAberrationT, dEPSD, dStopSD, dDynamicEFL, dFieldGeometry],
   );
-  const lastSettledInputsRef = useRef(deferredInputs);
-
-  useEffect(() => {
-    if (sliderInteracting) return;
-    lastSettledInputsRef.current = deferredInputs;
-  }, [sliderInteracting, deferredInputs]);
-
-  const analysisInputs = sliderInteracting ? lastSettledInputsRef.current : deferredInputs;
+  const analysisInputs = deferredInputs;
+  const analysisQuality: AnalysisQuality = sliderInteracting ? "interactive" : "settled";
+  const analysisSampling = useMemo(() => analysisSamplingForQuality(analysisQuality), [analysisQuality]);
   const preparedState = usePreparedAnalysisState({
     L,
     focusT: analysisInputs.focusT,
@@ -89,8 +85,9 @@ export default function AnalysisDrawerContent({
         currentEPSD: analysisInputs.currentEPSD,
         currentPhysStopSD: analysisInputs.currentPhysStopSD,
         fieldGeometry: analysisInputs.fieldGeometry,
+        sampling: analysisSampling,
       }),
-    [preparedState, analysisInputs],
+    [preparedState, analysisInputs, analysisSampling],
   );
   const projection = L.projection ?? { kind: "rectilinear" };
   const noticeStyle = {

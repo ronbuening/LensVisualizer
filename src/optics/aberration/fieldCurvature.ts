@@ -13,6 +13,7 @@ import {
 } from "./types.js";
 import {
   computeAnalysisFieldGeometryAtState,
+  sampleOrthogonalPupilFan,
   thick,
   traceChiefRelativeSkewRay,
   traceChiefRelativeSkewRayChromatic,
@@ -22,10 +23,12 @@ import {
   bestFocusPlaneForDirection,
   computeStateAwareOffAxisFieldGeometry,
   traceOffAxisChiefRay,
-  traceOrthogonalOffAxisBundle,
+  traceOffAxisBundleFromSamples,
   type OffAxisFieldGeometry,
 } from "./offAxis.js";
 import { bestRelativeFocusPlane, type TransverseFocusHit } from "./shared.js";
+import { CHROMATIC_CHANNEL_ORDER } from "../chromatic/channels.js";
+import type { AnalysisSamplingOptions } from "../analysis/analysisQuality.js";
 
 const FIELD_CURVATURE_MIN_SHARED_HALF_RANGE_MM = 0.1;
 const FIELD_CURVATURE_PARABASAL_RAY_HEIGHT_MM = 0.01;
@@ -135,9 +138,7 @@ function petzvalShiftAtImageHeight(imageHeight: number, petzvalSum: number): num
   return -(radius - Math.sign(radius) * Math.sqrt(underRoot));
 }
 
-// Field-curvature shift is a longitudinal-focus metric on the C/d/F triplet only;
-// g-line (V) tracing is supported by the engine but not analyzed here.
-const CHROMATIC_CHANNELS: ("R" | "G" | "B")[] = ["R", "G", "B"];
+const CHROMATIC_FIELD_CHANNELS: readonly ChromaticChannel[] = CHROMATIC_CHANNEL_ORDER;
 
 function parabasalPupilFraction(entrancePupilSemiDiameter: number): number {
   if (!isFinite(entrancePupilSemiDiameter) || entrancePupilSemiDiameter <= 0) {
@@ -265,10 +266,10 @@ function computeDiagnosticFieldFocus(
   currentEPSD: number,
   currentPhysStopSD: number,
   aberrationT = 0,
+  sampleCount = MERIDIONAL_COMA_SAMPLE_COUNT,
 ): DiagnosticFieldFocus | null {
-  const tangentialBundle = traceOrthogonalOffAxisBundle(
-    "tangential",
-    MERIDIONAL_COMA_SAMPLE_COUNT,
+  const tangentialBundle = traceOffAxisBundleFromSamples(
+    sampleOrthogonalPupilFan(sampleCount, "tangential"),
     geometry,
     L,
     focusT,
@@ -278,9 +279,8 @@ function computeDiagnosticFieldFocus(
     undefined,
     aberrationT,
   );
-  const sagittalBundle = traceOrthogonalOffAxisBundle(
-    "sagittal",
-    MERIDIONAL_COMA_SAMPLE_COUNT,
+  const sagittalBundle = traceOffAxisBundleFromSamples(
+    sampleOrthogonalPupilFan(sampleCount, "sagittal"),
     geometry,
     L,
     focusT,
@@ -301,9 +301,9 @@ function computeDiagnosticFieldFocus(
   const validSampleCount = Math.min(tangentialBundle.validSampleCount, sagittalBundle.validSampleCount);
 
   return {
-    sampleCount: MERIDIONAL_COMA_SAMPLE_COUNT,
+    sampleCount,
     validSampleCount,
-    clippedSampleCount: MERIDIONAL_COMA_SAMPLE_COUNT - validSampleCount,
+    clippedSampleCount: sampleCount - validSampleCount,
     tangentialBestFocusZ,
     sagittalBestFocusZ,
     tangentialShiftMm,
@@ -324,7 +324,7 @@ function computeChromaticFieldShifts(
 ): ChromaticFieldShift[] | null {
   const shifts: ChromaticFieldShift[] = [];
 
-  for (const channel of CHROMATIC_CHANNELS) {
+  for (const channel of CHROMATIC_FIELD_CHANNELS) {
     const fieldFocus = computeStandardizedFieldFocus(
       L,
       geometry,
@@ -358,6 +358,7 @@ function computeFieldCurvatureField(
   chromatic: boolean,
   stateGeometry: FieldGeometryState,
   aberrationT = 0,
+  sampling: AnalysisSamplingOptions = {},
 ): FieldCurvatureFieldResult {
   if (currentEPSD <= 0 || L.N < 1) return emptyFieldCurvatureFieldResult(meta);
 
@@ -392,6 +393,7 @@ function computeFieldCurvatureField(
     currentEPSD,
     currentPhysStopSD,
     aberrationT,
+    sampling.fieldCurvatureDiagnosticSampleCount,
   );
   const chiefImageHeight = standardizedFieldFocus.chiefImageHeight;
   const petzvalShiftMm = petzvalShiftAtImageHeight(chiefImageHeight, L.petzvalSum) ?? 0;
@@ -473,8 +475,8 @@ function buildFieldCurvatureResult(
   }
 
   return {
-    fieldFractions: FIELD_CURVATURE_FIELD_FRACTIONS,
-    curveFieldFractions: FIELD_CURVATURE_CURVE_FIELD_FRACTIONS,
+    fieldFractions: fields.map((field) => field.fieldFraction),
+    curveFieldFractions: curveFields.map((field) => field.fieldFraction),
     fields,
     curveFields,
     usableFieldCount: usableFields.length,
@@ -497,6 +499,7 @@ function computeFieldCurvatureBase(
   currentPhysStopSD: number,
   aberrationT = 0,
   fieldGeometry?: FieldGeometryState,
+  sampling: AnalysisSamplingOptions = {},
 ): { result: FieldCurvatureResult | null; stateGeometry: FieldGeometryState; imagePlaneZ: number } {
   if (currentEPSD <= 0 || L.N < 1) {
     return {
@@ -511,7 +514,9 @@ function computeFieldCurvatureBase(
   const stateGeometry = fieldGeometry ?? computeAnalysisFieldGeometryAtState(focusT, zoomT, L, aberrationT);
   if (!isFinite(imagePlaneZ)) return { result: null, stateGeometry, imagePlaneZ };
 
-  const fields = fieldCurvatureFieldMeta(FIELD_CURVATURE_FIELD_FRACTIONS).map((meta) =>
+  const fieldFractions = sampling.fieldCurvatureFieldFractions ?? FIELD_CURVATURE_FIELD_FRACTIONS;
+  const curveFieldFractions = sampling.fieldCurvatureCurveFieldFractions ?? FIELD_CURVATURE_CURVE_FIELD_FRACTIONS;
+  const fields = fieldCurvatureFieldMeta(fieldFractions).map((meta) =>
     computeFieldCurvatureField(
       L,
       zPos,
@@ -523,9 +528,10 @@ function computeFieldCurvatureBase(
       false,
       stateGeometry,
       aberrationT,
+      sampling,
     ),
   );
-  const curveFields = fieldCurvatureFieldMeta(FIELD_CURVATURE_CURVE_FIELD_FRACTIONS).map((meta) =>
+  const curveFields = fieldCurvatureFieldMeta(curveFieldFractions).map((meta) =>
     computeFieldCurvatureField(
       L,
       zPos,
@@ -537,6 +543,7 @@ function computeFieldCurvatureBase(
       false,
       stateGeometry,
       aberrationT,
+      sampling,
     ),
   );
 
@@ -645,6 +652,7 @@ export function computeFieldCurvatureBundle(
   currentPhysStopSD: number,
   aberrationT = 0,
   fieldGeometry?: FieldGeometryState,
+  sampling: AnalysisSamplingOptions = {},
 ): FieldCurvatureBundleResult {
   const base = computeFieldCurvatureBase(
     L,
@@ -655,6 +663,7 @@ export function computeFieldCurvatureBundle(
     currentPhysStopSD,
     aberrationT,
     fieldGeometry,
+    sampling,
   );
   return {
     fieldCurvature: base.result,
@@ -699,6 +708,7 @@ export function computeFieldCurvature(
   chromatic = false,
   aberrationT = 0,
   fieldGeometry?: FieldGeometryState,
+  sampling: AnalysisSamplingOptions = {},
 ): FieldCurvatureResult | null {
   const base = computeFieldCurvatureBase(
     L,
@@ -709,6 +719,7 @@ export function computeFieldCurvature(
     currentPhysStopSD,
     aberrationT,
     fieldGeometry,
+    sampling,
   );
   if (!chromatic) return base.result;
   return buildChromaticFieldCurvatureFromBase(

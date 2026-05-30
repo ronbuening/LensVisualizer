@@ -36,6 +36,7 @@ import {
 } from "./projection.js";
 import type { FieldGeometryState, SkewRayTraceResult } from "./optics.js";
 import { isHeavyLensForRayWork } from "./raySampling.js";
+import type { AnalysisSamplingOptions } from "./analysis/analysisQuality.js";
 import type { RuntimeLens } from "../types/optics.js";
 
 /** A single sample point on the distortion curve. */
@@ -90,6 +91,11 @@ export interface DistortionFieldGridResult {
 const SAMPLE_COUNT = 21;
 const DISTORTION_GRID_LINE_COORDINATES = [-1, -0.5, 0, 0.5, 1] as const;
 const DISTORTION_GRID_SEGMENT_COUNT = 17;
+
+function clampedSampleCount(value: number | undefined, fallback: number, minimum: number): number {
+  if (value === undefined) return fallback;
+  return Math.max(minimum, Math.round(value));
+}
 
 interface DistortionReference {
   geometry: ReturnType<typeof computeFieldGeometryAtState>;
@@ -206,15 +212,17 @@ export function computeDistortionCurve(
   _currentPhysStopSD: number,
   fieldGeometry?: FieldGeometryState,
   aberrationT = 0,
+  sampling: AnalysisSamplingOptions = {},
 ): DistortionSample[] {
   const reference = computeDistortionReference(L, zPos, focusT, zoomT, fieldGeometry, aberrationT);
   if (reference === null) return [];
 
   const samples: DistortionSample[] = [];
+  const sampleCount = clampedSampleCount(sampling.distortionCurveSampleCount, SAMPLE_COUNT, 3);
   const edgeAbsHeight = Math.abs(reference.edgeImageHeight);
   const targetImageHeights = Array.from(
-    { length: SAMPLE_COUNT - 1 },
-    (_, index) => -edgeAbsHeight * ((index + 1) / (SAMPLE_COUNT - 1)),
+    { length: sampleCount - 1 },
+    (_, index) => -edgeAbsHeight * ((index + 1) / (sampleCount - 1)),
   );
   const solvedFieldAngles = solveFieldAnglesForImageHeightsAccurate(
     targetImageHeights,
@@ -226,8 +234,8 @@ export function computeDistortionCurve(
     aberrationT,
   );
 
-  for (let i = 0; i < SAMPLE_COUNT; i++) {
-    const normalizedImageHeight = i / (SAMPLE_COUNT - 1);
+  for (let i = 0; i < sampleCount; i++) {
+    const normalizedImageHeight = i / (sampleCount - 1);
     if (i === 0) {
       samples.push({
         fieldAngleDeg: 0,
@@ -292,11 +300,14 @@ function buildPupilCorrectionTable(
   zoomT: number,
   L: RuntimeLens,
   aberrationT = 0,
+  sampleCountOverride?: number,
 ): PupilCorrectionEntry[] {
   const table: PupilCorrectionEntry[] = [];
-  const sampleCount = isHeavyLensForRayWork(L)
-    ? PUPIL_CORRECTION_SAMPLE_COUNT_HEAVY
-    : PUPIL_CORRECTION_SAMPLE_COUNT_FULL;
+  const sampleCount = clampedSampleCount(
+    sampleCountOverride,
+    isHeavyLensForRayWork(L) ? PUPIL_CORRECTION_SAMPLE_COUNT_HEAVY : PUPIL_CORRECTION_SAMPLE_COUNT_FULL,
+    2,
+  );
   for (let i = 0; i < sampleCount; i++) {
     const angleDeg = (i / (sampleCount - 1)) * reference.geometry.halfFieldDeg;
     const launch = projectionLaunchSlopeForField(L, angleDeg);
@@ -566,6 +577,7 @@ export function computeDistortionFieldGrid(
   currentPhysStopSD: number,
   fieldGeometry?: FieldGeometryState,
   aberrationT = 0,
+  sampling: AnalysisSamplingOptions = {},
 ): DistortionFieldGridResult {
   const reference = computeDistortionReference(L, zPos, focusT, zoomT, fieldGeometry, aberrationT);
   if (reference === null) {
@@ -577,18 +589,24 @@ export function computeDistortionFieldGrid(
     };
   }
 
-  const axisSamples = Array.from(
-    { length: DISTORTION_GRID_SEGMENT_COUNT },
-    (_, index) => -1 + (2 * index) / (DISTORTION_GRID_SEGMENT_COUNT - 1),
-  );
+  const segmentCount = clampedSampleCount(sampling.distortionGridSegmentCount, DISTORTION_GRID_SEGMENT_COUNT, 3);
+  const axisSamples = Array.from({ length: segmentCount }, (_, index) => -1 + (2 * index) / (segmentCount - 1));
 
-  const pupilCorrection = buildPupilCorrectionTable(reference, focusT, zoomT, L, aberrationT);
+  const pupilCorrection = buildPupilCorrectionTable(
+    reference,
+    focusT,
+    zoomT,
+    L,
+    aberrationT,
+    sampling.distortionPupilCorrectionSampleCount,
+  );
+  const gridLineCoordinates = sampling.distortionGridLineCoordinates ?? DISTORTION_GRID_LINE_COORDINATES;
 
   return {
     idealFieldRadius: reference.idealFieldRadius,
     referenceKind: reference.projectionReference.kind,
     referenceLabel: reference.projectionReference.label,
-    lines: DISTORTION_GRID_LINE_COORDINATES.flatMap((coordinate) => {
+    lines: gridLineCoordinates.flatMap((coordinate) => {
       const vertical: DistortionGridLine = {
         orientation: "vertical",
         idealCoordinate: coordinate,

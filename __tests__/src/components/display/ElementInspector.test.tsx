@@ -7,7 +7,7 @@ import buildLens from "../../../../src/optics/buildLens.js";
 import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
 
 afterEach(() => cleanup());
-import type { RuntimeLens, ElementData } from "../../../../src/types/optics.js";
+import type { ChromaticChannel, RuntimeLens, ElementData } from "../../../../src/types/optics.js";
 import type { Theme } from "../../../../src/types/theme.js";
 
 const mockTheme = {
@@ -26,6 +26,13 @@ const mockTheme = {
   role: "#8af",
   elemType: "#ccc",
   panelBorder: "#333",
+  rayChromR: "#f00",
+  rayChromG: "#0f0",
+  rayChromB: "#00f",
+  rayChromV: "#80f",
+  chromDispHigh: "#f30",
+  chromDispMid: "#cc0",
+  chromDispLow: "#0c0",
 } as unknown as Theme;
 
 const basicElement: ElementData = {
@@ -108,6 +115,37 @@ describe("ElementInspector", () => {
     expect(screen.getByText(/refract, active both, normal z=1 y=1/)).toBeTruthy();
     expect(screen.getByText("Image plane IMG:")).toBeTruthy();
     expect(screen.getByText(/z=35 mm y=25 mm normal z=0 y=1/)).toBeTruthy();
+  });
+
+  it("shows resolved chromatic indices and quality instead of recomputing an Abbe-only fallback", () => {
+    const chromaticLens = {
+      ...mockLens,
+      S: [{ label: "1", R: 100, d: 5, nd: 1.5, sd: 10, elemId: basicElement.id }],
+      ES: [[basicElement.id, 0, 0] as [number, number, number]],
+      indexByIdx: {
+        0: {
+          quality: "sellmeier",
+          glassEntry: { name: "N-BK7" },
+          fn: (channel: ChromaticChannel) => ({ R: 1.49, G: 1.5, B: 1.51, V: 1.515 })[channel],
+        },
+      },
+    } as unknown as RuntimeLens;
+
+    render(
+      <ElementInspector
+        info={{ ...basicElement, nd: 1.5, glass: "N-BK7" }}
+        L={chromaticLens}
+        t={mockTheme}
+        showChromatic={true}
+      />,
+    );
+
+    expect(screen.getByText("Sellmeier (N-BK7)")).toBeTruthy();
+    expect(screen.getByText("0.02000")).toBeTruthy();
+    expect(screen.getByText("1.49000").getAttribute("title")).toBe("C-line 656.3 nm");
+    expect(screen.getByText("1.50000").getAttribute("title")).toBe("d-line 587.6 nm");
+    expect(screen.getByText("1.51000").getAttribute("title")).toBe("F-line 486.1 nm");
+    expect(screen.getByText("1.51500").getAttribute("title")).toBe("g-line 435.8 nm");
   });
 });
 

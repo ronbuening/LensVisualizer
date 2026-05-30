@@ -7,8 +7,10 @@
  */
 
 import { analysisJobsForState2 } from "./analysisJobs.js";
+import { CHROMATIC_CHANNEL_ORDER } from "../chromatic/channels.js";
 import type { FieldGeometryState } from "../optics.js";
 import type { PreparedOpticalState } from "../types.js";
+import type { AnalysisSamplingOptions } from "./analysisQuality.js";
 
 /**
  * Shared inputs for a set of analysis computations at one focus/zoom/aperture state.
@@ -25,6 +27,7 @@ export interface AnalysisComputationContextParams {
   currentEPSD: number;
   currentPhysStopSD: number;
   fieldGeometry?: FieldGeometryState | null;
+  sampling?: AnalysisSamplingOptions;
 }
 
 /**
@@ -47,6 +50,8 @@ export interface AnalysisComputationContext extends AnalysisComputationContextPa
     typeof analysisJobsForState2.computeSphericalAberrationBlurCharacter
   >;
   computeFieldCurvatureBundle: () => ReturnType<typeof analysisJobsForState2.computeFieldCurvatureBundle>;
+  computeChromaticAnalysis: () => ReturnType<typeof analysisJobsForState2.computeChromaticAnalysis>;
+  computeChromaticRayTraceAnalysis: () => ReturnType<typeof analysisJobsForState2.computeChromaticRayTraceAnalysis>;
   computeComaAnalysis: () => ReturnType<typeof analysisJobsForState2.computeComaAnalysis>;
 }
 
@@ -66,6 +71,7 @@ export function createAnalysisComputationContext({
   currentEPSD,
   currentPhysStopSD,
   fieldGeometry = null,
+  sampling = {},
 }: AnalysisComputationContextParams): AnalysisComputationContext {
   const resolvedFieldGeometry = fieldGeometry ?? undefined;
   let opticalSummary: ReturnType<typeof analysisJobsForState2.computeOpticalSummary> | undefined;
@@ -81,6 +87,8 @@ export function createAnalysisComputationContext({
     | ReturnType<typeof analysisJobsForState2.computeSphericalAberrationBlurCharacter>
     | undefined;
   let fieldCurvatureBundle: ReturnType<typeof analysisJobsForState2.computeFieldCurvatureBundle> | undefined;
+  let chromaticAnalysis: ReturnType<typeof analysisJobsForState2.computeChromaticAnalysis> | undefined;
+  let chromaticRayTraceAnalysis: ReturnType<typeof analysisJobsForState2.computeChromaticRayTraceAnalysis> | undefined;
   let comaAnalysis: ReturnType<typeof analysisJobsForState2.computeComaAnalysis> | undefined;
 
   return {
@@ -103,6 +111,7 @@ export function createAnalysisComputationContext({
         dynamicEFL,
         currentPhysStopSD,
         resolvedFieldGeometry,
+        sampling,
       )),
     computeDistortionFieldGrid: () =>
       (distortionFieldGrid ??= analysisJobsForState2.computeDistortionFieldGrid(
@@ -116,11 +125,12 @@ export function createAnalysisComputationContext({
         currentEPSD,
         currentPhysStopSD,
         resolvedFieldGeometry,
+        sampling,
       )),
     computeBothPupilAberrationProfiles: () =>
       (pupilProfiles ??= analysisJobsForState2.computeBothPupilAberrationProfiles(
         preparedState,
-        undefined,
+        sampling.pupilAberrationSampleCount ?? undefined,
         resolvedFieldGeometry,
       )),
     computeBokehPreviewPair: () =>
@@ -128,6 +138,7 @@ export function createAnalysisComputationContext({
         preparedState,
         currentEPSD,
         currentPhysStopSD,
+        sampling,
       )),
     computeBestFocusZ: () =>
       (bestFocusZ ??= analysisJobsForState2.computeBestFocusZ(preparedState, currentEPSD, currentPhysStopSD)),
@@ -151,6 +162,7 @@ export function createAnalysisComputationContext({
           currentEPSD,
           currentPhysStopSD,
           sphericalAberration,
+          sampling,
         );
       }
       return sphericalAberrationBlurCharacter;
@@ -161,6 +173,27 @@ export function createAnalysisComputationContext({
         currentEPSD,
         currentPhysStopSD,
         resolvedFieldGeometry,
+        sampling,
+      )),
+    computeChromaticAnalysis: () =>
+      (chromaticAnalysis ??= analysisJobsForState2.computeChromaticAnalysis(
+        preparedState,
+        currentEPSD,
+        currentPhysStopSD,
+        resolvedFieldGeometry,
+        sampling,
+      )),
+    computeChromaticRayTraceAnalysis: () =>
+      (chromaticRayTraceAnalysis ??= analysisJobsForState2.computeChromaticRayTraceAnalysis(
+        preparedState,
+        currentEPSD,
+        currentPhysStopSD,
+        resolvedFieldGeometry,
+        {
+          channels: CHROMATIC_CHANNEL_ORDER,
+          onAxisFractions: sampling.chromaticRayTraceOnAxisFractions,
+          offAxisFractions: sampling.chromaticRayTraceOffAxisFractions,
+        },
       )),
     computeComaAnalysis: () =>
       (comaAnalysis ??= analysisJobsForState2.computeComaAnalysis(
@@ -168,6 +201,7 @@ export function createAnalysisComputationContext({
         currentEPSD,
         currentPhysStopSD,
         resolvedFieldGeometry,
+        sampling,
       )),
   };
 }

@@ -630,7 +630,8 @@ describe("computeMeridionalComa", () => {
     expect(result!.samples[result!.samples.length - 1].clipped).toBe(true);
     expect(result!.lowerIntercept).toBeGreaterThanOrEqual(result!.minIntercept);
     expect(result!.upperIntercept).toBeLessThanOrEqual(result!.maxIntercept);
-    expect(result!.spanMm).toBeCloseTo(result!.upperIntercept - result!.lowerIntercept, 8);
+    expect(result!.signedOuterDeltaMm).toBeCloseTo(result!.upperRelativeIntercept - result!.lowerRelativeIntercept, 8);
+    expect(result!.spanMm).toBeCloseTo(result!.maxRelativeIntercept - result!.minRelativeIntercept, 8);
   });
 
   it("returns null when clipping removes one side of the pupil fan", () => {
@@ -682,6 +683,24 @@ describe("computeMeridionalComa", () => {
     const geometry = computeStateAwareOffAxisFieldGeometry(L, zPos, 0, 0, L.offAxisFieldFrac, fieldGeometry);
     expect(geometry).not.toBeNull();
     expect(result!.fieldAngleDeg).toBeCloseTo(geometry!.fieldAngleDeg, 8);
+    expect(result!.fieldFraction).toBeCloseTo(L.offAxisFieldFrac, 8);
+  });
+
+  it("allows the detailed coma fan field fraction to be selected", () => {
+    const L = build(Sonnar50f15Raw);
+    const { z: zPos } = doLayout(0, 0, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
+    const fieldGeometry = computeAnalysisFieldGeometryAtState(0, 0, L);
+
+    const result = computeComaAnalysis(L, zPos, 0, 0, currentEPSD, currentPhysStopSD, 0, fieldGeometry, {
+      comaDetailFieldFraction: 1,
+    });
+
+    expect(result.meridionalComa).not.toBeNull();
+    expect(result.sagittalComa).not.toBeNull();
+    expect(result.meridionalComa!.fieldFraction).toBe(1);
+    expect(result.sagittalComa!.fieldFraction).toBe(1);
+    expect(result.meridionalComa!.fieldAngleDeg).toBeCloseTo(fieldGeometry.halfFieldDeg, 8);
   });
 
   it("matches the shared tangential bundle trace at the configured field", () => {
@@ -1576,7 +1595,7 @@ describe("computeFieldCurvature", () => {
     }
   });
 
-  it("includes all three channels (R, G, B) in chromatic shifts", () => {
+  it("includes all four spectral channels (R, G, B, V) in chromatic shifts", () => {
     const L = build(ApoLantharRaw);
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
@@ -1587,7 +1606,7 @@ describe("computeFieldCurvature", () => {
     const usableFields = result!.fields.filter((f) => f.usable && f.chromaticFieldShifts !== null);
     for (const field of usableFields) {
       const channels = field.chromaticFieldShifts!.map((s) => s.channel);
-      expect(channels).toEqual(["R", "G", "B"]);
+      expect(channels).toEqual(["R", "G", "B", "V"]);
     }
   });
 });

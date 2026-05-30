@@ -14,6 +14,7 @@ import type {
   SphericalAberrationResult,
 } from "./types.js";
 import { BOKEH_CIRCULAR_PUPIL_RING_SAMPLES } from "./types.js";
+import type { AnalysisSamplingOptions } from "../analysis/analysisQuality.js";
 import { buildBokehRadialProfile, classifyBokehBrightnessCharacter } from "./bokeh.js";
 import { computeStateAwareOffAxisFieldGeometry, traceOffAxisBundleFromSamples, type OffAxisBundle } from "./offAxis.js";
 import { NEAR_AXIS_REAL_FRAC } from "./types.js";
@@ -319,6 +320,7 @@ export function computeSphericalAberrationBlurCharacter(
   currentPhysStopSD: number,
   baseResult: Pick<SphericalAberrationResult, "bestFocusZ" | "longitudinalSaMm"> | null = null,
   aberrationT = 0,
+  sampling: AnalysisSamplingOptions = {},
 ): SphericalAberrationBlurCharacterResult | null {
   if (currentEPSD <= 0 || L.N < 1) return null;
 
@@ -334,7 +336,7 @@ export function computeSphericalAberrationBlurCharacter(
   if (geometry === null) return null;
 
   const bundle = traceOffAxisBundleFromSamples(
-    sampleCircularPupil(BOKEH_CIRCULAR_PUPIL_RING_SAMPLES),
+    sampleCircularPupil(sampling.sphericalBlurRingSamples ?? BOKEH_CIRCULAR_PUPIL_RING_SAMPLES),
     geometry,
     L,
     focusT,

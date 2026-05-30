@@ -7,8 +7,14 @@
  */
 
 import type { CSSProperties } from "react";
-import type { RuntimeLens, ElementData, ImagePlaneNormal, SurfaceData } from "../../types/optics.js";
+import type { RuntimeLens, ElementData, ImagePlaneNormal, SurfaceData, ChromaticChannel } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
+import type { DispersionQuality } from "../../optics/dispersion.js";
+import {
+  CHROMATIC_CHANNEL_METADATA,
+  CHROMATIC_CHANNEL_ORDER,
+  chromaticChannelIndexLabel,
+} from "../../optics/chromatic/channels.js";
 import { getAsphericEntriesForElement } from "./asphericElementUtils.js";
 
 interface ElementInspectorProps {
@@ -25,6 +31,14 @@ const INSPECTOR_GRID: CSSProperties = {
   gap: "3px 18px",
   fontSize: 10.5,
   lineHeight: 1.8,
+};
+
+const DISPERSION_QUALITY_LABEL: Record<DispersionQuality, string> = {
+  air: "Air",
+  sellmeier: "Sellmeier",
+  lineIndices: "Measured line indices",
+  abbe: "Abbe estimate",
+  constant: "No dispersion data",
 };
 
 function fmtNumber(value: number): string {
@@ -72,11 +86,39 @@ function surfaceSummary(surface: SurfaceData): string | null {
   return pieces.join(", ");
 }
 
+interface ElementDispersionRow {
+  surfaceLabel: string;
+  quality: DispersionQuality;
+  glassName: string | null;
+  indices: Record<ChromaticChannel, number>;
+}
+
+function elementDispersionRows(info: ElementData, L: RuntimeLens): ElementDispersionRow[] {
+  const rows: ElementDispersionRow[] = [];
+  for (const idx of surfaceIndexesForElement(info, L)) {
+    const entry = L.indexByIdx?.[idx];
+    if (!entry || entry.quality === "air") continue;
+    rows.push({
+      surfaceLabel: L.S[idx]?.label ?? String(idx + 1),
+      quality: entry.quality,
+      glassName: entry.glassEntry?.name ?? null,
+      indices: {
+        R: entry.fn("R"),
+        G: entry.fn("G"),
+        B: entry.fn("B"),
+        V: entry.fn("V"),
+      },
+    });
+  }
+  return rows;
+}
+
 export default function ElementInspector({ info, L, t, showChromatic, onOpenAsphericCompare }: ElementInspectorProps) {
   const foldedSurfaceRows = surfaceIndexesForElement(info, L)
     .map((idx) => ({ surface: L.S[idx], summary: surfaceSummary(L.S[idx]) }))
     .filter((row): row is { surface: SurfaceData; summary: string } => Boolean(row.summary));
   const imagePlane = L.isFoldedOptics && L.data.opticalPath?.imagePlane ? L.imagePlane : null;
+  const dispersionRows = showChromatic ? elementDispersionRows(info, L) : [];
 
   return (
     <div>
@@ -220,42 +262,61 @@ export default function ElementInspector({ info, L, t, showChromatic, onOpenAsph
           )}
         </div>
       )}
-      {showChromatic && info.vd && (
+      {showChromatic && dispersionRows.length > 0 && (
         <div style={{ ...INSPECTOR_GRID, marginTop: 4 }}>
-          <div>
-            <span style={{ color: t.propLabel }}>nF{"\u2212"}nC = </span>
-            <span style={{ color: t.value }}>{((info.nd - 1) / info.vd).toFixed(5)}</span>
-          </div>
-          <div>
-            <span style={{ color: t.propLabel }}>n</span>
-            <span style={{ color: t.rayChromR }}>R</span>
-            <span style={{ color: t.propLabel }}> = </span>
-            <span style={{ color: t.rayChromR }}>{(info.nd - (info.nd - 1) / (2 * info.vd)).toFixed(5)}</span>
-            <span style={{ color: t.propLabel, marginLeft: 8 }}> n</span>
-            <span style={{ color: t.rayChromB }}>B</span>
-            <span style={{ color: t.propLabel }}> = </span>
-            <span style={{ color: t.rayChromB }}>{(info.nd + (info.nd - 1) / (2 * info.vd)).toFixed(5)}</span>
-          </div>
-          <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
-            <span
-              style={{
-                width: 7,
-                height: 7,
-                borderRadius: "50%",
-                background: info.vd >= 55 ? t.chromDispLow : info.vd >= 35 ? t.chromDispMid : t.chromDispHigh,
-                display: "inline-block",
-                flexShrink: 0,
-              }}
-            />
-            <span
-              style={{
-                color: info.vd >= 55 ? t.chromDispLow : info.vd >= 35 ? t.chromDispMid : t.chromDispHigh,
-              }}
-            >
-              {info.vd >= 55 ? "Low dispersion" : info.vd >= 35 ? "Normal dispersion" : "High dispersion"}
-              {info.vd >= 65 ? " (ED)" : ""}
-            </span>
-          </div>
+          {dispersionRows.map((row) => (
+            <div key={row.surfaceLabel} style={{ display: "contents" }}>
+              <div>
+                <span style={{ color: t.propLabel }}>
+                  Dispersion{dispersionRows.length > 1 ? ` ${row.surfaceLabel}` : ""}:{" "}
+                </span>
+                <span style={{ color: t.value }}>
+                  {DISPERSION_QUALITY_LABEL[row.quality]}
+                  {row.glassName ? ` (${row.glassName})` : ""}
+                </span>
+              </div>
+              <div>
+                <span style={{ color: t.propLabel }}>nF{"\u2212"}nC = </span>
+                <span style={{ color: t.value }}>{(row.indices.B - row.indices.R).toFixed(5)}</span>
+              </div>
+              <div style={{ gridColumn: "1 / -1" }}>
+                {CHROMATIC_CHANNEL_ORDER.map((ch, idx) => {
+                  const color =
+                    ch === "R" ? t.rayChromR : ch === "G" ? t.rayChromG : ch === "B" ? t.rayChromB : t.rayChromV;
+                  return (
+                    <span key={ch} style={{ marginLeft: idx === 0 ? 0 : 10, whiteSpace: "nowrap" }}>
+                      <span style={{ color: t.propLabel }}>{chromaticChannelIndexLabel(ch)} </span>
+                      <span style={{ color }} title={CHROMATIC_CHANNEL_METADATA[ch].wavelengthLabel}>
+                        {row.indices[ch].toFixed(5)}
+                      </span>
+                    </span>
+                  );
+                })}
+              </div>
+            </div>
+          ))}
+          {info.vd && (
+            <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
+              <span
+                style={{
+                  width: 7,
+                  height: 7,
+                  borderRadius: "50%",
+                  background: info.vd >= 55 ? t.chromDispLow : info.vd >= 35 ? t.chromDispMid : t.chromDispHigh,
+                  display: "inline-block",
+                  flexShrink: 0,
+                }}
+              />
+              <span
+                style={{
+                  color: info.vd >= 55 ? t.chromDispLow : info.vd >= 35 ? t.chromDispMid : t.chromDispHigh,
+                }}
+              >
+                {info.vd >= 55 ? "Low dispersion" : info.vd >= 35 ? "Normal dispersion" : "High dispersion"}
+                {info.vd >= 65 ? " (ED)" : ""}
+              </span>
+            </div>
+          )}
         </div>
       )}
       {info.apdNote && (
