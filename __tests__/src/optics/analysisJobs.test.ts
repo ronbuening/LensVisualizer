@@ -62,9 +62,9 @@ describe("analysis job facade", () => {
     const state = prepareRuntimeState(L, focusT, zoomT);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, zoomT);
     const sampling = {
-      chromaticLongitudinalFractions: [0.95],
+      chromaticLongitudinalFractions: [0.5],
       chromaticLateralFieldFractions: [0, 1],
-      chromaticRayTraceOnAxisFractions: [0.95],
+      chromaticRayTraceOnAxisFractions: [0.5],
       chromaticRayTraceOffAxisFractions: [0.5],
     };
 
@@ -87,7 +87,7 @@ describe("analysis job facade", () => {
       },
     );
 
-    expect(analysis.longitudinalFocus?.marginalFraction).toBe(0.95);
+    expect(analysis.longitudinalFocus?.marginalFraction).toBe(0.5);
     expect(analysis.lateralColor?.fieldFractions).toEqual([0, 1]);
     expect(rayTrace.channels).toEqual(["R", "G", "B", "V"]);
     expect(rayTrace.onAxisAttemptedRayCount).toBeLessThanOrEqual(4);

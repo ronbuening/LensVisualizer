@@ -114,14 +114,14 @@ describe("analysis computation context", () => {
       currentEPSD,
       currentPhysStopSD,
       sampling: {
-        chromaticLongitudinalFractions: [0.95],
+        chromaticLongitudinalFractions: [0.5],
         chromaticLateralFieldFractions: [0, 1],
-        chromaticRayTraceOnAxisFractions: [0.95],
+        chromaticRayTraceOnAxisFractions: [0.5],
         chromaticRayTraceOffAxisFractions: [0.5],
       },
     });
 
-    expect(context.computeChromaticAnalysis().longitudinalFocus?.marginalFraction).toBe(0.95);
+    expect(context.computeChromaticAnalysis().longitudinalFocus?.marginalFraction).toBe(0.5);
     expect(context.computeChromaticAnalysis().lateralColor?.fieldFractions).toEqual([0, 1]);
     expect(context.computeChromaticRayTraceAnalysis().onAxisAttemptedRayCount).toBeLessThanOrEqual(4);
     expect(context.computeChromaticRayTraceAnalysis().offAxisAttemptedRayCount).toBeLessThanOrEqual(4);
