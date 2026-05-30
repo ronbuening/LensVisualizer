@@ -8,10 +8,10 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **278** lenses scanned
-- **3101** non-air surfaces examined
-- **3105** element glass declarations examined
-- **611** non-explicit-unmatched annotations did not resolve
+- **281** lenses scanned
+- **3155** non-air surfaces examined
+- **3159** element glass declarations examined
+- **627** non-explicit-unmatched annotations did not resolve
 - **220** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
@@ -53,6 +53,7 @@ or per-lens patent backfills.
 | N-BAF4 | 2 | 2 | |
 | N-LAF2 | 2 | 1 | |
 | N-LAK9 | 2 | 2 | |
+| NBFD10 | 2 | 2 | |
 | S-APL1 | 2 | 1 | |
 | S-BAH10 | 2 | 2 | |
 | S-BSM10 | 2 | 2 | |
@@ -62,6 +63,7 @@ or per-lens patent backfills.
 | S-LAM73 | 2 | 1 | |
 | S-NBH53 | 2 | 2 | |
 | SK18 | 2 | 1 | |
+| TAF1 | 2 | 2 | |
 | 157957 | 1 | 1 | |
 | 182080 | 1 | 1 | |
 | 487698 | 1 | 1 | |
@@ -202,7 +204,6 @@ or per-lens patent backfills.
 | N-SF8 | 1 | 1 | |
 | N-SK18 | 1 | 1 | |
 | N-SK4 | 1 | 1 | |
-| NBFD10 | 1 | 1 | |
 | NBFD12 | 1 | 1 | |
 | NBFD25 | 1 | 1 | |
 | S-BAH32 | 1 | 1 | |
@@ -232,7 +233,6 @@ or per-lens patent backfills.
 | SK18A | 1 | 1 | |
 | SK4 | 1 | 1 | |
 | SK7 | 1 | 1 | |
-| TAF1 | 1 | 1 | |
 | TAF105 | 1 | 1 | |
 | TAF2 | 1 | 1 | |
 | TAFD5 | 1 | 1 | |
@@ -430,6 +430,11 @@ or per-lens patent backfills.
 - [CARL ZEISS B-Distagon 35mm f/4 (Contarex)](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon35mmf4.data.ts) 10: `N-LAK9 / LAK9 (Schott)`
 - [Leica Elmarit-R 35mm f/2.8](../../src/lens-data/leica/LeicaElmaritR35mmf28.data.ts) 11: `LAK9 / N-LAK9 class (Schott legacy lanthanum crown; patent n_e)`
 
+### NBFD10 — 2 occurrences
+
+- [HASSELBLAD HC MACRO 4/120](../../src/lens-data/hasselblad/HasselbladHC120mmf4Macro.data.ts) 16: `NBFD10 (HOYA)`
+- [SIGMA APO MACRO 150mm F2.8 EX DG OS HSM](../../src/lens-data/sigma/SigmaAPOMacro150mmf28OSHSM.data.ts) 32: `NBFD10 (Hoya; dense niobium flint)`
+
 ### S-APL1 — 2 occurrences
 
 - [OLYMPUS OM Zuiko 16mm f/3.5 Fisheye](../../src/lens-data/olympus/OlympusZuiko16mmf35.data.ts) 13: `S-APL1 (OHARA)`
@@ -474,6 +479,11 @@ or per-lens patent backfills.
 
 - [CANON SERENAR 50mm f/1.8](../../src/lens-data/canon/CanonSerenar50mmf18.data.ts) 7: `SK18 (Schott)`
 - [CANON SERENAR 50mm f/1.8](../../src/lens-data/canon/CanonSerenar50mmf18.data.ts) 9: `SK18 (Schott)`
+
+### TAF1 — 2 occurrences
+
+- [SIGMA APO MACRO 150mm F2.8 EX DG OS HSM](../../src/lens-data/sigma/SigmaAPOMacro150mmf28OSHSM.data.ts) 7: `TAF1 (Hoya; tantalum/lanthanum flint)`
+- [Sony FE 28mm F2](../../src/lens-data/sony/SonyFE28mmf2.data.ts) 8A: `M-TAF1 / TAF1 class (HOYA, 773/495)`
 
 ### 157957 — 1 occurrence
 
@@ -1035,10 +1045,6 @@ or per-lens patent backfills.
 
 - [Nikon Fisheye-Nikkor 6mm f/5.6](../../src/lens-data/nikon/NikonFisheyeNikkor6mmf56.data.ts) 1: `BACD4 / N-SK4 class (613/586)`
 
-### NBFD10 — 1 occurrence
-
-- [HASSELBLAD HC MACRO 4/120](../../src/lens-data/hasselblad/HasselbladHC120mmf4Macro.data.ts) 16: `NBFD10 (HOYA)`
-
 ### NBFD12 — 1 occurrence
 
 - [NIKON NIKKOR Z 24-50mm f/4-6.3](../../src/lens-data/nikon/NikonNikkorZ2450mmf463.data.ts) 11: `NBFD12 (HOYA)`
@@ -1154,10 +1160,6 @@ or per-lens patent backfills.
 ### SK7 — 1 occurrence
 
 - [CANON SERENAR 35mm f/3.2](../../src/lens-data/canon/CanonSerenar35mmf32.data.ts) 3: `SK7 (Schott)`
-
-### TAF1 — 1 occurrence
-
-- [Sony FE 28mm F2](../../src/lens-data/sony/SonyFE28mmf2.data.ts) 8A: `M-TAF1 / TAF1 class (HOYA, 773/495)`
 
 ### TAF105 — 1 occurrence
 
