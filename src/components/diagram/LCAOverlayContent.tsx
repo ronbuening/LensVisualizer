@@ -25,6 +25,8 @@ interface LCAOverlayContentProps {
 const SINGLE_SVG_W = 340;
 const SINGLE_SVG_H = 280;
 const MARGIN = 12;
+const CHART_COLUMN_STYLE = { flex: `0 1 ${SINGLE_SVG_W}px`, width: SINGLE_SVG_W, maxWidth: "100%", minWidth: 0 };
+const CHART_SVG_STYLE = { width: "100%", height: "auto", display: "block" };
 
 function formatUm(mm: number): string {
   if (Math.abs(mm * 1000) >= 1) return `${Math.abs(mm * 1000).toFixed(0)} µm`;
@@ -62,11 +64,8 @@ export default function LCAOverlayContent({
         }}
       >
         {onAxisSpread ? (
-          <div style={{ flex: "0 1 auto", maxWidth: svgW, minWidth: 0 }}>
-            <svg
-              viewBox={`0 0 ${svgW} ${svgH}`}
-              style={{ width: "100%", maxWidth: svgW, maxHeight: "100%", display: "block" }}
-            >
+          <div style={CHART_COLUMN_STYLE}>
+            <svg width={svgW} height={svgH} viewBox={`0 0 ${svgW} ${svgH}`} style={CHART_SVG_STYLE}>
               <LCAInsetWidget
                 chromSpread={onAxisSpread}
                 effectiveSC={effectiveSC}
@@ -90,11 +89,8 @@ export default function LCAOverlayContent({
           </div>
         )}
         {offAxisSpread && (
-          <div style={{ flex: "0 1 auto", maxWidth: svgW, minWidth: 0 }}>
-            <svg
-              viewBox={`0 0 ${svgW} ${svgH}`}
-              style={{ width: "100%", maxWidth: svgW, maxHeight: "100%", display: "block" }}
-            >
+          <div style={CHART_COLUMN_STYLE}>
+            <svg width={svgW} height={svgH} viewBox={`0 0 ${svgW} ${svgH}`} style={CHART_SVG_STYLE}>
               <TCAInsetWidget
                 chromSpread={offAxisSpread}
                 effectiveSC={effectiveSC}

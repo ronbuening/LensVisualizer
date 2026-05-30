@@ -178,7 +178,7 @@ describe("analysis chart coverage", () => {
   });
 
   it("renders axial LCA with a matching off-axis TCA chart when both spreads are available", () => {
-    render(
+    const { container } = render(
       <LCAOverlayContent
         chromSpread={{ lcaMm: 0.0004, tcaMm: 0, intercepts: { R: -0.02, G: 0, B: 0.03 }, imgHeights: {} }}
         chromaticSpreads={{
@@ -202,6 +202,11 @@ describe("analysis chart coverage", () => {
     expect(screen.getByText("0.4 µm")).toBeTruthy();
     expect(screen.getAllByText("0.5 µm").length).toBeGreaterThan(0);
     expect(screen.queryByText("0.8 µm")).toBeNull();
+
+    const charts = Array.from(container.querySelectorAll("svg"));
+    expect(charts).toHaveLength(2);
+    expect(charts.map((chart) => chart.getAttribute("width"))).toEqual(["340", "340"]);
+    expect(charts.map((chart) => chart.getAttribute("height"))).toEqual(["280", "280"]);
   });
 
   it("shares chart math helpers for scales, domains, ticks, and SVG paths", () => {
