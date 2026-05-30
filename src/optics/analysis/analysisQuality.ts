@@ -16,6 +16,10 @@ export interface AnalysisSamplingOptions {
   fieldCurvatureFieldFractions?: readonly number[];
   fieldCurvatureCurveFieldFractions?: readonly number[];
   fieldCurvatureDiagnosticSampleCount?: number;
+  chromaticLongitudinalFractions?: readonly number[];
+  chromaticLateralFieldFractions?: readonly number[];
+  chromaticRayTraceOnAxisFractions?: readonly number[];
+  chromaticRayTraceOffAxisFractions?: readonly number[];
   sphericalBlurRingSamples?: readonly number[];
 }
 
@@ -35,6 +39,10 @@ export const INTERACTIVE_ANALYSIS_SAMPLING: AnalysisSamplingOptions = {
   fieldCurvatureFieldFractions: [0, 0.5, 1],
   fieldCurvatureCurveFieldFractions: [0, 0.25, 0.5, 0.75, 1],
   fieldCurvatureDiagnosticSampleCount: 9,
+  chromaticLongitudinalFractions: [0.95, 0.85, 0.75],
+  chromaticLateralFieldFractions: [0, 0.5, 1],
+  chromaticRayTraceOnAxisFractions: [0.95, 0.85],
+  chromaticRayTraceOffAxisFractions: [0.75, -0.75, 0.5, -0.5],
   sphericalBlurRingSamples: [1, 8, 16, 24],
 };
 

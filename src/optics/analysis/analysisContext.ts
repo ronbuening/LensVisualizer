@@ -189,7 +189,11 @@ export function createAnalysisComputationContext({
         currentEPSD,
         currentPhysStopSD,
         resolvedFieldGeometry,
-        { channels: CHROMATIC_CHANNEL_ORDER },
+        {
+          channels: CHROMATIC_CHANNEL_ORDER,
+          onAxisFractions: sampling.chromaticRayTraceOnAxisFractions,
+          offAxisFractions: sampling.chromaticRayTraceOffAxisFractions,
+        },
       )),
     computeComaAnalysis: () =>
       (comaAnalysis ??= analysisJobsForState2.computeComaAnalysis(

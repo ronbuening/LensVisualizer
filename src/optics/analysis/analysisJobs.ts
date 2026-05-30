@@ -160,7 +160,8 @@ export const analysisJobs2 = {
       aberrationT,
       fieldGeometry,
       {
-        fieldFractions: sampling?.fieldCurvatureFieldFractions,
+        longitudinalFractions: sampling?.chromaticLongitudinalFractions,
+        fieldFractions: sampling?.chromaticLateralFieldFractions ?? sampling?.fieldCurvatureFieldFractions,
       },
     );
   },
@@ -284,7 +285,8 @@ export const analysisJobsForState2 = {
     sampling?: AnalysisSamplingOptions,
   ) {
     return computeChromaticAnalysisForState2(state, currentEPSD, currentPhysStopSD, fieldGeometry, {
-      fieldFractions: sampling?.fieldCurvatureFieldFractions,
+      longitudinalFractions: sampling?.chromaticLongitudinalFractions,
+      fieldFractions: sampling?.chromaticLateralFieldFractions ?? sampling?.fieldCurvatureFieldFractions,
     });
   },
 

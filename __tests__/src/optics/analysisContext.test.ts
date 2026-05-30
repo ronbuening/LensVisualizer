@@ -8,6 +8,7 @@ import {
   prepareRuntimeState,
 } from "../../../src/optics/compat.js";
 import { computeAnalysisFieldGeometryAtState, eflAtFocus, epAtZoom, fopenAtZoom } from "../../../src/optics/optics.js";
+import { buildChromaticPositiveElementLens } from "./testLensFixtures.js";
 import type { LensData } from "../../../src/types/optics.js";
 
 function build(raw: object) {
@@ -61,6 +62,11 @@ describe("analysis computation context", () => {
     expect(context.computeChromaticAnalysis()).toEqual(
       analysisJobsForState2.computeChromaticAnalysis(state, currentEPSD, currentPhysStopSD, fieldGeometry),
     );
+    expect(context.computeChromaticRayTraceAnalysis()).toEqual(
+      analysisJobsForState2.computeChromaticRayTraceAnalysis(state, currentEPSD, currentPhysStopSD, fieldGeometry, {
+        channels: ["R", "G", "B", "V"],
+      }),
+    );
     expect(context.computeBestFocusZ()).toEqual(
       analysisJobsForState2.computeBestFocusZ(state, currentEPSD, currentPhysStopSD),
     );
@@ -91,7 +97,34 @@ describe("analysis computation context", () => {
     expect(context.computeSphericalAberrationBlurCharacter()).toBe(context.computeSphericalAberrationBlurCharacter());
     expect(context.computeBokehPreviewPair()).toBe(context.computeBokehPreviewPair());
     expect(context.computeChromaticAnalysis()).toBe(context.computeChromaticAnalysis());
+    expect(context.computeChromaticRayTraceAnalysis()).toBe(context.computeChromaticRayTraceAnalysis());
     expect(context.computeFieldCurvatureBundle()).toBe(context.computeFieldCurvatureBundle());
+  });
+
+  it("applies interactive chromatic sampling through the cached context", () => {
+    const L = buildChromaticPositiveElementLens("analysis-context-chromatic-sampling");
+    const focusT = 0;
+    const zoomT = 0;
+    const state = prepareRuntimeState(L, focusT, zoomT);
+    const dynamicEFL = eflAtFocus(focusT, zoomT, L);
+    const { currentEPSD, currentPhysStopSD } = apertureAt(L, zoomT);
+    const context = createAnalysisComputationContext({
+      preparedState: state,
+      dynamicEFL,
+      currentEPSD,
+      currentPhysStopSD,
+      sampling: {
+        chromaticLongitudinalFractions: [0.95],
+        chromaticLateralFieldFractions: [0, 1],
+        chromaticRayTraceOnAxisFractions: [0.95],
+        chromaticRayTraceOffAxisFractions: [0.5],
+      },
+    });
+
+    expect(context.computeChromaticAnalysis().longitudinalFocus?.marginalFraction).toBe(0.95);
+    expect(context.computeChromaticAnalysis().lateralColor?.fieldFractions).toEqual([0, 1]);
+    expect(context.computeChromaticRayTraceAnalysis().onAxisAttemptedRayCount).toBeLessThanOrEqual(4);
+    expect(context.computeChromaticRayTraceAnalysis().offAxisAttemptedRayCount).toBeLessThanOrEqual(4);
   });
 
   it("normalizes null field geometry to undefined for job calls", () => {
