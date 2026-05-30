@@ -88,7 +88,7 @@ function zPosFromState(state: PreparedOpticalState): number[] {
 }
 
 function normalizeChannels(channels: readonly ChromaticChannel[] | undefined): ChromaticChannel[] {
-  const requested = new Set(channels ?? ["R", "G", "B"]);
+  const requested = new Set(channels ?? CHROMATIC_CHANNEL_ORDER);
   return CHROMATIC_CHANNEL_ORDER.filter((channel) => requested.has(channel));
 }
 

@@ -24,6 +24,7 @@ describe("chromatic analysis helpers", () => {
 
     const result = computeChromaticRayTraceAnalysis2(L, z, 0, 0, currentEPSD, currentPhysStopSD);
 
+    expect(result.channels).toEqual(["R", "G", "B", "V"]);
     expect(result.spreads.onAxis?.axis).toBe("onAxis");
     expect(result.spreads.offAxis?.axis).toBe("offAxis");
     expect(result.spreads.onAxis?.lcaMm).toBeGreaterThan(0);

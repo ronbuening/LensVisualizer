@@ -31,6 +31,7 @@ import {
   computeChromaticRayTraceAnalysisForState2,
   type ChromaticRayTraceAnalysisOptions2,
 } from "./chromatic.js";
+import { CHROMATIC_CHANNEL_ORDER } from "../chromatic/channels.js";
 import {
   computeDistortionCurve2,
   computeDistortionCurveForState2,
@@ -160,6 +161,7 @@ export const analysisJobs2 = {
       aberrationT,
       fieldGeometry,
       {
+        channels: CHROMATIC_CHANNEL_ORDER,
         longitudinalFractions: sampling?.chromaticLongitudinalFractions,
         fieldFractions: sampling?.chromaticLateralFieldFractions ?? sampling?.fieldCurvatureFieldFractions,
       },
@@ -285,6 +287,7 @@ export const analysisJobsForState2 = {
     sampling?: AnalysisSamplingOptions,
   ) {
     return computeChromaticAnalysisForState2(state, currentEPSD, currentPhysStopSD, fieldGeometry, {
+      channels: CHROMATIC_CHANNEL_ORDER,
       longitudinalFractions: sampling?.chromaticLongitudinalFractions,
       fieldFractions: sampling?.chromaticLateralFieldFractions ?? sampling?.fieldCurvatureFieldFractions,
     });

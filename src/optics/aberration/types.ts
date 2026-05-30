@@ -5,6 +5,7 @@
  */
 
 import { DEFAULT_ORTHOGONAL_PUPIL_FAN_SAMPLE_COUNT } from "../optics.js";
+import type { ChromaticChannel } from "../../types/optics.js";
 
 /** One sample point on the real-ray transverse SA profile curve. */
 export interface SAProfilePoint {
@@ -199,7 +200,7 @@ export interface ComaAnalysisResult {
 
 /** Per-channel chromatic focus shift at a single field position. */
 export interface ChromaticFieldShift {
-  channel: "R" | "G" | "B";
+  channel: ChromaticChannel;
   tangentialShiftMm: number;
   sagittalShiftMm: number;
 }

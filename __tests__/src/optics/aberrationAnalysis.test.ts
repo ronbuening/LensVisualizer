@@ -1595,7 +1595,7 @@ describe("computeFieldCurvature", () => {
     }
   });
 
-  it("includes all three channels (R, G, B) in chromatic shifts", () => {
+  it("includes all four spectral channels (R, G, B, V) in chromatic shifts", () => {
     const L = build(ApoLantharRaw);
     const { z: zPos } = doLayout(0, 0, L);
     const { currentEPSD, currentPhysStopSD } = apertureAt(L, 0, 0);
@@ -1606,7 +1606,7 @@ describe("computeFieldCurvature", () => {
     const usableFields = result!.fields.filter((f) => f.usable && f.chromaticFieldShifts !== null);
     for (const field of usableFields) {
       const channels = field.chromaticFieldShifts!.map((s) => s.channel);
-      expect(channels).toEqual(["R", "G", "B"]);
+      expect(channels).toEqual(["R", "G", "B", "V"]);
     }
   });
 });

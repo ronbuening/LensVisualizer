@@ -27,6 +27,7 @@ import {
   type OffAxisFieldGeometry,
 } from "./offAxis.js";
 import { bestRelativeFocusPlane, type TransverseFocusHit } from "./shared.js";
+import { CHROMATIC_CHANNEL_ORDER } from "../chromatic/channels.js";
 import type { AnalysisSamplingOptions } from "../analysis/analysisQuality.js";
 
 const FIELD_CURVATURE_MIN_SHARED_HALF_RANGE_MM = 0.1;
@@ -137,9 +138,7 @@ function petzvalShiftAtImageHeight(imageHeight: number, petzvalSum: number): num
   return -(radius - Math.sign(radius) * Math.sqrt(underRoot));
 }
 
-// Field-curvature shift is a longitudinal-focus metric on the C/d/F triplet only;
-// g-line (V) tracing is supported by the engine but not analyzed here.
-const CHROMATIC_CHANNELS: ("R" | "G" | "B")[] = ["R", "G", "B"];
+const CHROMATIC_FIELD_CHANNELS: readonly ChromaticChannel[] = CHROMATIC_CHANNEL_ORDER;
 
 function parabasalPupilFraction(entrancePupilSemiDiameter: number): number {
   if (!isFinite(entrancePupilSemiDiameter) || entrancePupilSemiDiameter <= 0) {
@@ -325,7 +324,7 @@ function computeChromaticFieldShifts(
 ): ChromaticFieldShift[] | null {
   const shifts: ChromaticFieldShift[] = [];
 
-  for (const channel of CHROMATIC_CHANNELS) {
+  for (const channel of CHROMATIC_FIELD_CHANNELS) {
     const fieldFocus = computeStandardizedFieldFocus(
       L,
       geometry,

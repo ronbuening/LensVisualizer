@@ -121,23 +121,23 @@ const vignettingSamples = [
 
 const chromaticAnalysis = {
   longitudinalFocus: {
-    channels: ["R", "G", "B"],
+    channels: ["R", "G", "B", "V"],
     referenceChannel: "G",
     marginalFraction: 0.95,
     imagePlaneZ: 60,
     lastSurfaceZ: 20,
-    longitudinalSpreadMm: 0.03,
-    longitudinalSpreadUm: 30,
-    transverseSpreadMm: 0.005,
-    transverseSpreadUm: 5,
+    longitudinalSpreadMm: 0.035,
+    longitudinalSpreadUm: 35,
+    transverseSpreadMm: 0.007,
+    transverseSpreadUm: 7,
     spread: {
-      lcaMm: 0.03,
-      tcaMm: 0.005,
-      intercepts: { R: 59.99, G: 60, B: 60.02 },
-      imgHeights: { R: -0.002, G: 0, B: 0.003 },
+      lcaMm: 0.035,
+      tcaMm: 0.007,
+      intercepts: { R: 59.99, G: 60, B: 60.02, V: 60.025 },
+      imgHeights: { R: -0.002, G: 0, B: 0.003, V: 0.005 },
       axis: "onAxis",
       fraction: 0.95,
-      channels: ["R", "G", "B"],
+      channels: ["R", "G", "B", "V"],
     },
     samples: [
       {
@@ -170,11 +170,21 @@ const chromaticAnalysis = {
         usable: true,
         clipped: false,
       },
+      {
+        channel: "V",
+        focusZ: 60.025,
+        focusShiftMm: 0.025,
+        relativeFocusShiftMm: 0.025,
+        imageHeightMm: 0.005,
+        relativeImageHeightMm: 0.005,
+        usable: true,
+        clipped: false,
+      },
     ],
-    validChannelCount: 3,
+    validChannelCount: 4,
   },
   lateralColor: {
-    channels: ["R", "G", "B"],
+    channels: ["R", "G", "B", "V"],
     referenceChannel: "G",
     fieldFractions: [0, 1],
     fields: [
@@ -190,8 +200,9 @@ const chromaticAnalysis = {
           { channel: "R", imageHeightMm: 0, relativeHeightMm: 0, usable: true, clipped: false },
           { channel: "G", imageHeightMm: 0, relativeHeightMm: 0, usable: true, clipped: false },
           { channel: "B", imageHeightMm: 0, relativeHeightMm: 0, usable: true, clipped: false },
+          { channel: "V", imageHeightMm: 0, relativeHeightMm: 0, usable: true, clipped: false },
         ],
-        validChannelCount: 3,
+        validChannelCount: 4,
         usable: true,
       },
       {
@@ -200,20 +211,21 @@ const chromaticAnalysis = {
         fieldAngleDeg: 12,
         referenceChannel: "G",
         referenceImageHeightMm: 10,
-        lateralSpreadMm: 0.012,
-        lateralSpreadUm: 12,
+        lateralSpreadMm: 0.017,
+        lateralSpreadUm: 17,
         samples: [
           { channel: "R", imageHeightMm: 9.995, relativeHeightMm: -0.005, usable: true, clipped: false },
           { channel: "G", imageHeightMm: 10, relativeHeightMm: 0, usable: true, clipped: false },
           { channel: "B", imageHeightMm: 10.007, relativeHeightMm: 0.007, usable: true, clipped: false },
+          { channel: "V", imageHeightMm: 10.012, relativeHeightMm: 0.012, usable: true, clipped: false },
         ],
-        validChannelCount: 3,
+        validChannelCount: 4,
         usable: true,
       },
     ],
     usableFieldCount: 2,
-    maxLateralSpreadMm: 0.012,
-    maxLateralSpreadUm: 12,
+    maxLateralSpreadMm: 0.017,
+    maxLateralSpreadUm: 17,
     imagePlaneZ: 60,
     halfFieldDeg: 12,
   },
@@ -364,6 +376,7 @@ describe("prepared-state analysis tabs", () => {
     );
 
     expect(html).toContain("Longitudinal Color");
+    expect(html).toContain("V ng");
     expect(mockPrepareRuntimeState).not.toHaveBeenCalled();
     expect(mockComputeChromaticAnalysis).toHaveBeenCalledWith(preparedState, 10, 5, fieldGeometry);
     expect(mockComputeChromaticRayTraceAnalysis).toHaveBeenCalledWith(preparedState, 10, 5, fieldGeometry, {

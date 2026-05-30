@@ -88,7 +88,9 @@ describe("analysis job facade", () => {
     );
 
     expect(analysis.longitudinalFocus?.marginalFraction).toBe(0.5);
+    expect(analysis.longitudinalFocus?.channels).toEqual(["R", "G", "B", "V"]);
     expect(analysis.lateralColor?.fieldFractions).toEqual([0, 1]);
+    expect(analysis.lateralColor?.channels).toEqual(["R", "G", "B", "V"]);
     expect(rayTrace.channels).toEqual(["R", "G", "B", "V"]);
     expect(rayTrace.onAxisAttemptedRayCount).toBeLessThanOrEqual(4);
     expect(rayTrace.offAxisAttemptedRayCount).toBeLessThanOrEqual(4);

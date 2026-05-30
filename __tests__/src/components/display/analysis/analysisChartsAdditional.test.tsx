@@ -2,6 +2,7 @@
 
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
+import ChromaticFieldCurvaturePlot from "../../../../../src/components/display/analysis/ChromaticFieldCurvaturePlot.js";
 import FieldCurvatureMeanPlot from "../../../../../src/components/display/analysis/FieldCurvatureMeanPlot.js";
 import VignettingChart from "../../../../../src/components/display/analysis/VignettingChart.js";
 import LCAInsetWidget from "../../../../../src/components/diagram/LCAInsetWidget.js";
@@ -25,6 +26,7 @@ function field(
   petzvalShiftMm: number,
   chiefImageHeight: number,
   usable = true,
+  chromaticFieldShifts: FieldCurvatureFieldResult["chromaticFieldShifts"] = null,
 ): FieldCurvatureFieldResult {
   return {
     fieldFraction,
@@ -42,7 +44,7 @@ function field(
     petzvalShiftMm,
     astigmaticDifferenceMm: 0,
     astigmaticDifferenceUm: 0,
-    chromaticFieldShifts: null,
+    chromaticFieldShifts,
     usable,
   };
 }
@@ -98,6 +100,25 @@ describe("analysis chart coverage", () => {
     expect(screen.getByText("Current image plane")).toBeTruthy();
     expect(container.querySelector("polyline")).toBeNull();
     expect(container.querySelector("polygon")).toBeNull();
+  });
+
+  it("renders violet values in chromatic field-curvature traces", () => {
+    const shifts = (base: number): FieldCurvatureFieldResult["chromaticFieldShifts"] => [
+      { channel: "R", tangentialShiftMm: base - 0.03, sagittalShiftMm: base - 0.02 },
+      { channel: "G", tangentialShiftMm: base, sagittalShiftMm: base + 0.01 },
+      { channel: "B", tangentialShiftMm: base + 0.02, sagittalShiftMm: base + 0.03 },
+      { channel: "V", tangentialShiftMm: base + 0.04, sagittalShiftMm: base + 0.05 },
+    ];
+    const result = fieldCurvatureResult([
+      field(0, 0, 0, true, shifts(0)),
+      field(0.5, 0, 0, true, shifts(0.03)),
+      field(1, 0, 0, true, shifts(0.06)),
+    ]);
+
+    const { container } = render(<ChromaticFieldCurvaturePlot result={result} t={themes.dark} />);
+
+    expect(screen.getByText("V T/S")).toBeTruthy();
+    expect(container.querySelectorAll("polyline")).toHaveLength(8);
   });
 
   it("renders vignetting fallback for insufficient samples", () => {
