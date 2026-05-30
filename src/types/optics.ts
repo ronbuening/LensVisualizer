@@ -462,6 +462,9 @@ export interface ChromaticSpread {
   tcaMm: number;
   intercepts: Partial<Record<ChromaticChannel, number>>;
   imgHeights: Partial<Record<ChromaticChannel, number>>;
+  axis?: "onAxis" | "offAxis";
+  fraction?: number;
+  channels?: ChromaticChannel[];
 }
 
 export interface ChromaticSpreadByAxis {

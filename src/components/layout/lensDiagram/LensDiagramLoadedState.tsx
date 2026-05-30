@@ -242,6 +242,7 @@ export default function LensDiagramLoadedState({
               chromB={chromB}
               chromV={chromV}
               chromSpread={chromSpread ?? null}
+              chromaticSpreads={chromaticSpreads}
               rayTracksF={rayTracksF}
               onOpenAbbeDiagram={overlays.openAbbeDiagram}
               onOpenAsphericCompare={overlays.openAsphCompare}

@@ -10,7 +10,7 @@ import { halfFieldAtZoom } from "../../optics/optics.js";
 import { ENABLE_ASPH_DIAMOND_FILL, ENABLE_EDGE_PROJECTION } from "../../utils/featureFlags.js";
 import { collapseBtn } from "../../utils/style/styles.js";
 import CollapseButton from "../controls/CollapseButton.js";
-import type { RuntimeLens, ChromaticSpread } from "../../types/optics.js";
+import type { RuntimeLens, ChromaticSpread, ChromaticSpreadByAxis } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
 import type { OffAxisMode } from "../../types/state.js";
 import type { CSSProperties } from "react";
@@ -28,6 +28,7 @@ interface DiagramLegendProps {
   chromB: boolean;
   chromV: boolean;
   chromSpread: ChromaticSpread | null;
+  chromaticSpreads?: ChromaticSpreadByAxis;
   rayTracksF: boolean;
   legendExpanded: boolean;
   onLegendExpandedChange?: (expanded: boolean) => void;
@@ -47,12 +48,19 @@ export default function DiagramLegend({
   chromB,
   chromV,
   chromSpread,
+  chromaticSpreads,
   rayTracksF,
   legendExpanded,
   onLegendExpandedChange,
   onOpenAbbeDiagram,
 }: DiagramLegendProps) {
   const hasAbbeData = L.elements.some((e) => e.vd != null);
+  const axisSpreads = chromaticSpreads ?? { onAxis: chromSpread, offAxis: null };
+  const activeChannelCount = [chromR, chromG, chromB, chromV].filter(Boolean).length;
+  const hasMetricAxis = showOnAxis || showOffAxis !== "off";
+  const formatUm = (mm: number) =>
+    Math.abs(mm * 1000) >= 1 ? `${Math.abs(mm * 1000).toFixed(0)} µm` : `${Math.abs(mm * 1000).toFixed(1)} µm`;
+  const formatSpreadUm = (mm: number) => (mm !== 0 ? formatUm(mm) : "< 0.1 µm");
   return (
     <div style={{ padding: "6px 0" }}>
       <div
@@ -179,10 +187,14 @@ export default function DiagramLegend({
             (() => {
               const activeCh = [chromR && "R", chromG && "G", chromB && "B", chromV && "V"].filter(Boolean);
               const chromLabel = activeCh.length > 0 ? `Chromatic (${activeCh.join("/")})` : "Chromatic (none)";
-              const lcaStr =
-                chromSpread && chromSpread.lcaMm !== 0
-                  ? ` · LCA ${Math.abs(chromSpread.lcaMm * 1000) >= 1 ? Math.abs(chromSpread.lcaMm * 1000).toFixed(0) : Math.abs(chromSpread.lcaMm * 1000).toFixed(1)} µm`
-                  : "";
+              const summaryParts: string[] = [];
+              if (showOnAxis && axisSpreads.onAxis) {
+                summaryParts.push(`axial LCA ${formatSpreadUm(axisSpreads.onAxis.lcaMm)}`);
+              }
+              if (showOffAxis !== "off" && axisSpreads.offAxis) {
+                summaryParts.push(`off-axis TCA ${formatSpreadUm(axisSpreads.offAxis.tcaMm)}`);
+              }
+              const spreadSummary = summaryParts.length > 0 ? ` · ${summaryParts.join(" / ")}` : "";
               return (
                 <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
                   <svg width="22" height="17" viewBox="0 0 22 17">
@@ -193,7 +205,7 @@ export default function DiagramLegend({
                   </svg>
                   <span style={{ color: t.legendText }}>
                     {chromLabel}
-                    {lcaStr}
+                    {spreadSummary}
                   </span>
                 </div>
               );
@@ -207,7 +219,7 @@ export default function DiagramLegend({
               Abbe ↗
             </button>
           )}
-          {showChromatic && chromSpread && (
+          {showChromatic && hasMetricAxis && (
             <div
               style={{
                 display: "flex",
@@ -215,26 +227,12 @@ export default function DiagramLegend({
                 gap: 10,
                 marginTop: 4,
                 flexBasis: "100%",
+                flexWrap: "wrap",
               }}
             >
-              <span style={{ fontSize: 10, color: t.label, letterSpacing: "0.1em" }}>LCA</span>
-              <span
-                style={{
-                  fontSize: 13,
-                  fontWeight: 600,
-                  color: t.value,
-                  fontVariantNumeric: "tabular-nums",
-                }}
-              >
-                {chromSpread.lcaMm !== 0
-                  ? Math.abs(chromSpread.lcaMm * 1000) >= 1
-                    ? `${Math.abs(chromSpread.lcaMm * 1000).toFixed(0)} µm`
-                    : `${Math.abs(chromSpread.lcaMm * 1000).toFixed(1)} µm`
-                  : "< 0.1 µm"}
-              </span>
-              {chromSpread.tcaMm !== 0 && (
+              {showOnAxis && (
                 <>
-                  <span style={{ fontSize: 10, color: t.label, letterSpacing: "0.1em", marginLeft: 6 }}>TCA</span>
+                  <span style={{ fontSize: 10, color: t.label, letterSpacing: "0.1em" }}>AXIAL LCA</span>
                   <span
                     style={{
                       fontSize: 13,
@@ -243,9 +241,32 @@ export default function DiagramLegend({
                       fontVariantNumeric: "tabular-nums",
                     }}
                   >
-                    {Math.abs(chromSpread.tcaMm * 1000) >= 1
-                      ? `${Math.abs(chromSpread.tcaMm * 1000).toFixed(0)} µm`
-                      : `${Math.abs(chromSpread.tcaMm * 1000).toFixed(1)} µm`}
+                    {axisSpreads.onAxis
+                      ? formatSpreadUm(axisSpreads.onAxis.lcaMm)
+                      : activeChannelCount >= 2
+                        ? "unavailable"
+                        : "need 2 channels"}
+                  </span>
+                </>
+              )}
+              {showOffAxis !== "off" && (
+                <>
+                  <span style={{ fontSize: 10, color: t.label, letterSpacing: "0.1em", marginLeft: 6 }}>
+                    OFF-AXIS TCA
+                  </span>
+                  <span
+                    style={{
+                      fontSize: 13,
+                      fontWeight: 600,
+                      color: t.value,
+                      fontVariantNumeric: "tabular-nums",
+                    }}
+                  >
+                    {axisSpreads.offAxis
+                      ? formatSpreadUm(axisSpreads.offAxis.tcaMm)
+                      : activeChannelCount >= 2
+                        ? "unavailable"
+                        : "need 2 channels"}
                   </span>
                 </>
               )}

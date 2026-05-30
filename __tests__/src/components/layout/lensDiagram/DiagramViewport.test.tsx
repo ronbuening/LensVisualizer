@@ -224,6 +224,34 @@ describe("DiagramViewport", () => {
     expect(screen.queryByText("LCA Overlay")).toBeNull();
   });
 
+  it("uses axial spread data for the LCA inset and overlay when per-axis spreads are available", () => {
+    const offAxisSpread = { lcaMm: 0.4, tcaMm: 0.8, intercepts: {}, imgHeights: {} };
+    const onAxisSpread = { lcaMm: 0.1, tcaMm: 0.2, intercepts: {}, imgHeights: {} };
+    const { rerender } = render(
+      <DiagramViewport
+        {...baseProps}
+        showLcaOverlay
+        chromSpread={offAxisSpread}
+        chromaticSpreads={{ onAxis: null, offAxis: offAxisSpread }}
+      />,
+    );
+
+    expect(screen.queryByText("LCA Overlay")).toBeNull();
+    expect(mockDiagramSVG).toHaveBeenLastCalledWith(expect.objectContaining({ chromSpread: null }));
+
+    rerender(
+      <DiagramViewport
+        {...baseProps}
+        showLcaOverlay
+        chromSpread={offAxisSpread}
+        chromaticSpreads={{ onAxis: onAxisSpread, offAxis: offAxisSpread }}
+      />,
+    );
+
+    expect(screen.getByText("LCA Overlay")).toBeTruthy();
+    expect(mockDiagramSVG).toHaveBeenLastCalledWith(expect.objectContaining({ chromSpread: onAxisSpread }));
+  });
+
   it("shows the Petzval overlay independently of chromatic gating", () => {
     render(<DiagramViewport {...baseProps} showPetzvalOverlay showChromatic={false} chromSpread={null} />);
 

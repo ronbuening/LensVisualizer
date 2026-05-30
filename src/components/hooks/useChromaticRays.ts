@@ -2,9 +2,9 @@
  * useChromaticRays — Computes chromatic ray fan segments and aberration spread.
  *
  * Traces density-derived axial and off-axis ray fans through wavelength-dependent
- * refractive indices (R/G/B channels). Axial rays feed the LCA/TCA spread metric;
- * off-axis chromatic rays share the same state-aware field geometry as the
- * monochrome off-axis fan.
+ * refractive indices for the selected spectral-line channels. Axial rays feed
+ * the LCA readout; off-axis rays feed the transverse color readout using the
+ * same state-aware field geometry as the monochrome off-axis fan.
  */
 import { useMemo } from "react";
 import {
@@ -84,8 +84,9 @@ function spreadForAxis(
         marginalRays[r.channel] = { y: r.y, u: r.u, clipped: false };
       }
     }
-    if (Object.keys(marginalRays).length >= 2) {
-      return computeChromaticSpread(marginalRays, IMG_MM, lastSurfaceZ);
+    const channels = Object.keys(marginalRays) as ChromaticChannel[];
+    if (channels.length >= 2) {
+      return { ...computeChromaticSpread(marginalRays, IMG_MM, lastSurfaceZ), axis, fraction, channels };
     }
   }
 

@@ -268,6 +268,8 @@ describe("useChromaticRays", () => {
     expect(result.current.chromaticRays.every((r) => r.axis === "offAxis")).toBe(true);
     expect(result.current.chromaticSpreads.onAxis).toBeNull();
     expect(result.current.chromaticSpreads.offAxis).not.toBeNull();
+    expect(result.current.chromaticSpreads.offAxis?.axis).toBe("offAxis");
+    expect(result.current.chromaticSpreads.offAxis?.channels).toEqual(["R", "G"]);
     expect(result.current.chromSpread).toBe(result.current.chromaticSpreads.offAxis);
   });
 
@@ -303,6 +305,9 @@ describe("useChromaticRays", () => {
     expect(result.current.chromaticSpreads.offAxis).toBeNull();
     expect(typeof result.current.chromSpread!.lcaMm).toBe("number");
     expect(typeof result.current.chromSpread!.tcaMm).toBe("number");
+    expect(result.current.chromSpread!.axis).toBe("onAxis");
+    expect(result.current.chromSpread!.channels).toEqual(["R", "G", "B"]);
+    expect(typeof result.current.chromSpread!.fraction).toBe("number");
   });
 
   it("does not report a larger LCA when a selected RGB channel is hidden", () => {

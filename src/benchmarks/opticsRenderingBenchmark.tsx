@@ -1187,7 +1187,10 @@ function spreadForAxis(
         marginalRays[ray.channel] = { y: ray.y, u: ray.u, clipped: false };
       }
     }
-    if (Object.keys(marginalRays).length >= 2) return computeChromaticSpread(marginalRays, IMG_MM, lastSurfaceZ);
+    const channels = Object.keys(marginalRays) as ChromaticChannel[];
+    if (channels.length >= 2) {
+      return { ...computeChromaticSpread(marginalRays, IMG_MM, lastSurfaceZ), axis, fraction, channels };
+    }
   }
 
   return null;

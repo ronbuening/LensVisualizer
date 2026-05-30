@@ -137,6 +137,8 @@ export default function DiagramViewport({
   /* Aggregate per-surface dispersion quality across the lens (worst-link tier).
      Cheap to recompute on every render — walks indexByIdx once. */
   const dispersionQuality = useMemo(() => summarizeDispersionQuality(L), [L]);
+  const onAxisChromSpread = chromaticSpreads ? chromaticSpreads.onAxis : chromSpread;
+  const overlayChromSpread = chromaticSpreads ? chromaticSpreads.onAxis : chromSpread;
   const selectedAsphericElementId = useMemo(() => {
     if (isWide || sel == null || !onOpenAsphericCompare) return null;
     return elementHasAsphericSurface(L, sel) ? sel : null;
@@ -209,7 +211,7 @@ export default function DiagramViewport({
         rays={rays}
         offAxisRays={offAxisRays}
         chromaticRays={chromaticRays}
-        chromSpread={chromSpread}
+        chromSpread={onAxisChromSpread}
         dispersionQuality={dispersionQuality}
         showOnAxis={showOnAxis}
         showOffAxis={showOffAxis}
@@ -254,10 +256,10 @@ export default function DiagramViewport({
       />
 
       {/* Overlays — hidden in zoom/pan mode */}
-      {!zoomPanActive && showLcaOverlay && showChromatic && chromSpread ? (
+      {!zoomPanActive && showLcaOverlay && showChromatic && overlayChromSpread ? (
         <PanelOverlay onClose={onCloseLcaOverlay} theme={t}>
           <LCAOverlayContent
-            chromSpread={chromSpread}
+            chromSpread={overlayChromSpread}
             chromaticSpreads={chromaticSpreads}
             effectiveSC={effectiveSC}
             IMG_MM={IMG_MM}

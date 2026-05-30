@@ -15,6 +15,9 @@ function lens(hasAbbeData = true): RuntimeLens {
   } as unknown as RuntimeLens;
 }
 
+const defaultAxialSpread = { lcaMm: 0.0012, tcaMm: 0, intercepts: {}, imgHeights: {} };
+const defaultOffAxisSpread = { lcaMm: 0.0002, tcaMm: 0.0004, intercepts: {}, imgHeights: {} };
+
 function renderLegend({
   isWide = true,
   legendExpanded = true,
@@ -26,7 +29,13 @@ function renderLegend({
   chromB = true,
   chromV = false,
   rayTracksF = true,
-  chromSpread = { lcaMm: 0.0012, tcaMm: 0.0004, intercepts: {}, imgHeights: {} },
+  chromSpread = defaultAxialSpread,
+  chromaticSpreads = chromSpread
+    ? {
+        onAxis: chromSpread,
+        offAxis: defaultOffAxisSpread,
+      }
+    : { onAxis: null, offAxis: null },
   onLegendExpandedChange = vi.fn(),
   onOpenAbbeDiagram = vi.fn(),
   L = lens(),
@@ -46,6 +55,7 @@ function renderLegend({
         chromB={chromB}
         chromV={chromV}
         chromSpread={chromSpread}
+        chromaticSpreads={chromaticSpreads}
         rayTracksF={rayTracksF}
         legendExpanded={legendExpanded}
         onLegendExpandedChange={onLegendExpandedChange}
@@ -78,8 +88,27 @@ describe("DiagramLegend", () => {
     expect(screen.getByText(/Off-axis rays \(15\.4°/)).toBeTruthy();
     expect(screen.getByText("Vignetted (ghost)")).toBeTruthy();
     expect(screen.getByText(/Chromatic \(R\/B\)/)).toBeTruthy();
+    expect(screen.getByText("AXIAL LCA")).toBeTruthy();
+    expect(screen.getByText("OFF-AXIS TCA")).toBeTruthy();
     expect(screen.getAllByText("1 µm").length).toBeGreaterThan(0);
     expect(screen.getByText("0.4 µm")).toBeTruthy();
+  });
+
+  it("keeps axial LCA and off-axis TCA readouts on their own axis spreads", () => {
+    renderLegend({
+      chromSpread: { lcaMm: 0.099, tcaMm: 0.088, intercepts: {}, imgHeights: {} },
+      chromaticSpreads: {
+        onAxis: { lcaMm: 0.0012, tcaMm: 0.077, intercepts: {}, imgHeights: {} },
+        offAxis: { lcaMm: 0.066, tcaMm: 0.0004, intercepts: {}, imgHeights: {} },
+      },
+    });
+
+    expect(screen.getByText("AXIAL LCA")).toBeTruthy();
+    expect(screen.getByText("OFF-AXIS TCA")).toBeTruthy();
+    expect(screen.getAllByText("1 µm").length).toBeGreaterThan(0);
+    expect(screen.getByText("0.4 µm")).toBeTruthy();
+    expect(screen.queryByText("99 µm")).toBeNull();
+    expect(screen.queryByText("88 µm")).toBeNull();
   });
 
   it("renders the Abbe button only when data and a callback are available", () => {

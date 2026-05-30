@@ -152,7 +152,7 @@ describe("analysis chart coverage", () => {
     expect(onClick).toHaveBeenCalledTimes(1);
   });
 
-  it("renders on-axis and off-axis LCA overlay panels side by side when both spreads are available", () => {
+  it("renders axial LCA with a separate off-axis TCA summary when both spreads are available", () => {
     render(
       <LCAOverlayContent
         chromSpread={{ lcaMm: 0.0004, tcaMm: 0, intercepts: { R: -0.02, G: 0, B: 0.03 }, imgHeights: {} }}
@@ -166,10 +166,11 @@ describe("analysis chart coverage", () => {
       />,
     );
 
-    expect(screen.getByText("ON-AXIS")).toBeTruthy();
-    expect(screen.getByText("OFF-AXIS")).toBeTruthy();
+    expect(screen.getByText("LCA")).toBeTruthy();
+    expect(screen.getByText("OFF-AXIS TCA")).toBeTruthy();
     expect(screen.getByText("0.4 µm")).toBeTruthy();
-    expect(screen.getByText("0.8 µm")).toBeTruthy();
+    expect(screen.getAllByText("0.5 µm").length).toBeGreaterThan(0);
+    expect(screen.queryByText("0.8 µm")).toBeNull();
   });
 
   it("shares chart math helpers for scales, domains, ticks, and SVG paths", () => {

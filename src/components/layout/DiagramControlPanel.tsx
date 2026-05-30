@@ -8,7 +8,7 @@
 import DiagramControls from "../controls/DiagramControls.js";
 import ElementInspector from "../display/ElementInspector.js";
 import DiagramLegend from "../display/DiagramLegend.js";
-import type { RuntimeLens, ElementData, ChromaticSpread } from "../../types/optics.js";
+import type { RuntimeLens, ElementData, ChromaticSpread, ChromaticSpreadByAxis } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
 import type { OffAxisMode } from "../../types/state.js";
 import type { GroupMovementMode } from "../../types/groupMovement.js";
@@ -66,6 +66,7 @@ interface DiagramControlPanelProps {
   chromB: boolean;
   chromV: boolean;
   chromSpread: ChromaticSpread | null;
+  chromaticSpreads?: ChromaticSpreadByAxis;
   rayTracksF: boolean;
   onOpenAbbeDiagram: () => void;
   onOpenAsphericCompare?: (eid: number) => void;
@@ -119,6 +120,7 @@ export default function DiagramControlPanel({
   chromB,
   chromV,
   chromSpread,
+  chromaticSpreads,
   rayTracksF,
   onOpenAbbeDiagram,
   onOpenAsphericCompare,
@@ -214,6 +216,7 @@ export default function DiagramControlPanel({
             chromB={chromB}
             chromV={chromV}
             chromSpread={chromSpread}
+            chromaticSpreads={chromaticSpreads}
             rayTracksF={rayTracksF}
             legendExpanded={legendExpanded}
             onLegendExpandedChange={onLegendExpandedChange}
