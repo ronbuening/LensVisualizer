@@ -86,6 +86,42 @@ already in the catalog.
 | ★ **N-KZFS5** | (used in Leica APO designs) | Schott | KZFS family — **APO-relevant**, negative ΔPgF |
 | ★ **K-GFK68** | 1 (Voigtländer L4) | Sumita | Patent-listed, **APO-relevant** |
 
+**Phase 20 additions** (May 2026 — high-value sellmeier-coverage queue pass; all entries round-trip through `assertCatalogConsistent`; sourced from refractiveindex.info mirrors of Ohara 2017, Hoya 2017, and Schott 2017 AGF rows. This pass raises strict surface coverage from 76.4% to 77.6%; the remaining 80%+ gap is dominated by code-only/proprietary rows such as `670571`, `770297`, `516565`, `855252`, and named rows with no public coefficient source found yet, so they remain unresolved rather than being assigned speculative equivalents):
+
+| Glass | Vendor | Code | Notes |
+|---|---|---:|---|
+| ★ S-LAL12 | Ohara | 678553 | Highest-frequency sourceable named token in the current unresolved report |
+| ★ S-LAM7 | Ohara | 750353 | Lanthanum crown token spanning multiple unresolved rows |
+| ★ S-BAH10 | Ohara | 670473 | Barium high-index crown named-token backfill |
+| ★ S-BSM10 | Ohara | 623570 | Barium crown named-token backfill |
+| ★ S-BSM15 | Ohara | 623582 | Barium crown named-token backfill |
+| ★ S-APL1 | Ohara | 517696 | PGM/low-dispersion crown named-token backfill |
+| ★ S-LAL61 | Ohara | 741527 | Lanthanum light crown named-token/code-family backfill |
+| ★ S-NBH53 | Ohara | — | NBH dense-flint named-token backfill |
+| ★ S-LAM73 | Ohara | — | Lanthanum crown named-token backfill |
+| ★ S-BAM12 | Ohara | 639449 | Barium middle-index named-token backfill |
+| ★ S-BSM2 | Ohara | 607568 | Barium crown named-token backfill |
+| ★ S-BSM25 | Ohara | 658509 | Barium crown code-family backfill |
+| ★ S-LAL52 | Ohara | 670573 | Lanthanum light crown code-family backfill |
+| ★ S-PHM51 | Ohara | 617628 | Phosphate crown named-token backfill |
+| ★ S-BAH32 | Ohara | 670393 | Barium high-index crown named-token backfill |
+| ★ M-TAF101 | Hoya | 768492 | Molded lanthanum glass clears Sony GM II / FE 70-200 F4 rows |
+| ★ M-TAC80 | Hoya | 729540 | Molded barium crown clears Sigma dp0 Quattro row |
+| ★ TAF1 | Hoya | 773496 | TAF family named-token backfill |
+| ★ NBFD10 | Hoya | 834373 | NBFD family named-token backfill |
+| ★ NBFD12 | Hoya | 800423 | NBFD family named-token backfill |
+| ★ BACD4 | Hoya | 613586 | Barium crown named-token backfill |
+| ★ E-FD7 | Hoya | 640346 | Dense flint named-token backfill |
+| ★ E-FEL6 | Hoya | 532488 | Lightweight flint named-token backfill |
+| ★ FCD10A | Hoya | 459902 | ED crown named-token backfill |
+| ★ N-BAF4 | Schott | 606437 | Schott barium flint named-token backfill |
+| ★ N-LAK9 | Schott | 691547 | Schott lanthanum crown named-token backfill |
+| ★ N-LAF2 | Schott | 744449 | Schott lanthanum flint named-token backfill |
+| ★ N-BAK4 | Schott | 569560 | Schott barium crown named-token backfill |
+| ★ N-BASF2 | Schott | 664360 | Schott barium short-flint named-token backfill |
+| ★ N-LAF7 | Schott | 749348 | Schott lanthanum flint named-token backfill |
+| ★ N-LAK10 | Schott | 720506 | Schott lanthanum crown named-token backfill |
+
 **Phase 18 additions** (May 2026 — Nikon six-digit missing-Sellmeier audit; Hikari entries use vendor-published formula-3 power-series coefficients from 2023 Hikari/Nikon catalog data, and N-SSK5 uses Schott Sellmeier constants; all entries round-trip through `assertCatalogConsistent`):
 
 | Glass | Vendor | Code | Notes |

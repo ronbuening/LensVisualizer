@@ -19,7 +19,7 @@ both match the stored values within tolerance (nd ±0.005, vd ±3).
 - **No candidate**: relabel as `Unmatched (...reason)` and add a row to
   [glass-relabel-followup.md](../glass-relabel-followup.md) for per-lens patent verification.
 
-**Scope**: 53 mismatched surfaces across 44 unique groups.
+**Scope**: 70 mismatched surfaces across 58 unique groups.
 
 ## stored (nd=1.49782, vd=82.56) [PgF=0.5379 (dPgF=0.0330)]  — 1 surface, current label resolves to S-FPM4
 
@@ -46,6 +46,22 @@ Surfaces:
 
 Surfaces:
 - [NIKON NIKKOR Z 50mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ50f12.data.ts) `5`: `S-TIL25 (OHARA)`
+
+## stored (nd=1.56873, vd=63.10)  — 1 surface, current label resolves to S-PHM51
+
+Candidates:
+- **N-SK11** (nd=1.56384, vd=60.80, Δnd=-0.0049, Δvd=-2.30)
+- **S-BAL41** (nd=1.56384, vd=60.67, Δnd=-0.0049, Δvd=-2.43)
+
+Surfaces:
+- [VIVITAR SERIES 1 200mm f/3.0 VMC](../../src/lens-data/vivitar/VivitarSeries1200mmf3.data.ts) `1`: `PSK2 (Schott) / S-PHM51 (OHARA)`
+
+## stored (nd=1.57957, vd=53.74)  — 1 surface, current label resolves to N-BAF4
+
+**No catalog candidate within tolerance** — needs per-lens follow-up.
+
+Surfaces:
+- [NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) `19`: `N-BAF4 equiv. (157957/5374)`
 
 ## stored (nd=1.58144, vd=40.89)  — 1 surface, current label resolves to S-NBM51
 
@@ -77,6 +93,18 @@ Surfaces:
 - [Canon EF 24-70mm f/2.8L II USM](../../src/lens-data/canon/CanonEF2470mmf28LII.data.ts) `11`: `S-TIM2 (OHARA; titanium flint)`
 - [NIKON NIKKOR Z 26mm f/2.8](../../src/lens-data/nikon/NikonZ26f28.data.ts) `4`: `S-TIM2 (OHARA)`
 
+## stored (nd=1.59282, vd=68.62)  — 1 surface, current label resolves to M-TAC80
+
+Candidates:
+- **FCD515** (nd=1.59282, vd=68.63, Δnd=+0.0000, Δvd=+0.01)
+- **FCD505** (nd=1.59283, vd=68.63, Δnd=+0.0000, Δvd=+0.01)
+- **J-PSKH1** (nd=1.59319, vd=67.90, Δnd=+0.0004, Δvd=-0.72)
+- **K-GFK68** (nd=1.59240, vd=68.30, Δnd=-0.0004, Δvd=-0.32)
+- **J-PSKH4** (nd=1.59349, vd=67.00, Δnd=+0.0007, Δvd=-1.62)
+
+Surfaces:
+- [SIGMA dp0 Quattro 14mm f/4](../../src/lens-data/sigma/SigmaDp0Quattro14mmf4.data.ts) `7`: `M-TAC80 (HOYA)`
+
 ## stored (nd=1.59319, vd=67.90)  — 3 surfaces, current label resolves to S-FPM3
 
 Candidates:
@@ -102,6 +130,32 @@ Candidates:
 
 Surfaces:
 - [SONY FE 28-70mm F2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) `4`: `S-FPM4 (OHARA)`
+
+## stored (nd=1.61272, vd=58.75)  — 1 surface, current label resolves to S-BSM2
+
+Candidates:
+- **BACD4** (nd=1.61272, vd=58.58, Δnd=-0.0000, Δvd=-0.17)
+
+Surfaces:
+- [NIKON AF-S VR Micro-NIKKOR 105mm f/2.8G IF-ED](../../src/lens-data/nikon/NikonAFS105f28G.data.ts) `3`: `S-BSM2 (OHARA)`
+
+## stored (nd=1.61293, vd=37.00) [code=613/370]  — 1 surface, current label resolves to E-FD7
+
+Candidates:
+- **S-TIM3** (nd=1.61293, vd=37.01, Δnd=-0.0000, Δvd=+0.01, codeΔ=0.1)
+- **E-F3** (nd=1.61293, vd=36.96, Δnd=-0.0000, Δvd=-0.04, codeΔ=0.5)
+
+Surfaces:
+- [SONY PLANAR T* 50mm F1.4 ZA SSM](../../src/lens-data/sony/SonyPlanarT50mmf14ZA.data.ts) `6`: `E-FD7 class (HOYA/HIKARI equivalent, 613/370)`
+
+## stored (nd=1.61669, vd=44.30)  — 1 surface, current label resolves to E-FEL6
+
+Candidates:
+- **S-NBM51** (nd=1.61340, vd=44.27, Δnd=-0.0033, Δvd=-0.03)
+- **N-KZFS4** (nd=1.61336, vd=44.49, Δnd=-0.0033, Δvd=+0.19)
+
+Surfaces:
+- [SONY FE 70-200mm F2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) `27`: `E-FEL6 class (HOYA) — eco flint`
 
 ## stored (nd=1.63854, vd=55.48)  — 1 surface, current label resolves to H-LAK6A
 
@@ -131,17 +185,20 @@ Candidates:
 Surfaces:
 - [CANON RF 50mm f/1.2 L USM](../../src/lens-data/canon/CanonRF50mmf12L.data.ts) `6`: `S-TIL27 (OHARA)`
 
-## stored (nd=1.65844, vd=50.90)  — 1 surface, current label resolves to S-LAL8
+## stored (nd=1.65844, vd=50.90)  — 2 surfaces, current label resolves to S-LAL8
 
 Candidates:
 - **N-SSK5** (nd=1.65844, vd=50.88, Δnd=+0.0000, Δvd=-0.02)
+- **S-BSM25** (nd=1.65844, vd=50.88, Δnd=+0.0000, Δvd=-0.02)
 
 Surfaces:
 - [CANON RF 135mm f/1.8 L IS USM](../../src/lens-data/canon/CanonRF135f18.data.ts) `26`: `S-LAL8 (OHARA)`
+- [PENTAX-DA★ 50-135mm F2.8 ED [IF] SDM](../../src/lens-data/pentax/PentaxDA50135mmf28.data.ts) `25`: `S-LAL12 (OHARA)`
 
 ## stored (nd=1.67003, vd=57.20) [code=670/572]  — 1 surface, current label resolves to H-LAK6A
 
-**No catalog candidate within tolerance** — needs per-lens follow-up.
+Candidates:
+- **S-LAL52** (nd=1.67000, vd=57.33, Δnd=-0.0000, Δvd=+0.13, codeΔ=1.3)
 
 Surfaces:
 - [HASSELBLAD HC 150mm f/3.2](../../src/lens-data/hasselblad/HasselbladHC150mmf32.data.ts) `9`: `Lanthanum crown (670/572 code, uncertain; cf. H-LAK6A, CDGM)`
@@ -173,6 +230,30 @@ Candidates:
 Surfaces:
 - [Sony FE 14mm f/1.8 GM](../../src/lens-data/sony/SonyFE14mmf18GM.data.ts) `7`: `S-TIM28-class short flint (OHARA; patent index aligns with catalog ne, 694/312)`
 
+## stored (nd=1.69680, vd=55.50)  — 1 surface, current label resolves to S-LAL61
+
+Candidates:
+- **N-LAK14** (nd=1.69680, vd=55.41, Δnd=+0.0000, Δvd=-0.09)
+- **H-LAK12** (nd=1.69680, vd=56.18, Δnd=-0.0000, Δvd=+0.68)
+- **S-LAL14** (nd=1.69680, vd=55.53, Δnd=-0.0000, Δvd=+0.03)
+- **LAC13** (nd=1.69350, vd=53.34, Δnd=-0.0033, Δvd=-2.16)
+- **S-LAL13** (nd=1.69350, vd=53.21, Δnd=-0.0033, Δvd=-2.29)
+
+Surfaces:
+- [NIKON AF-S NIKKOR 28mm f/1.4E ED](../../src/lens-data/nikon/NikonAFS28f14E.data.ts) `15`: `S-LAL61 (OHARA)`
+
+## stored (nd=1.69680, vd=55.46)  — 1 surface, current label resolves to S-BSM10
+
+Candidates:
+- **N-LAK14** (nd=1.69680, vd=55.41, Δnd=+0.0000, Δvd=-0.05)
+- **H-LAK12** (nd=1.69680, vd=56.18, Δnd=-0.0000, Δvd=+0.72)
+- **S-LAL14** (nd=1.69680, vd=55.53, Δnd=-0.0000, Δvd=+0.07)
+- **LAC13** (nd=1.69350, vd=53.34, Δnd=-0.0033, Δvd=-2.12)
+- **S-LAL13** (nd=1.69350, vd=53.21, Δnd=-0.0033, Δvd=-2.25)
+
+Surfaces:
+- [NIKON NIKKOR Z 24-50mm f/4-6.3](../../src/lens-data/nikon/NikonNikkorZ2450mmf463.data.ts) `1`: `S-BSM10 (OHARA)`
+
 ## stored (nd=1.69895, vd=30.13)  — 1 surface, current label resolves to S-NBH52V
 
 Candidates:
@@ -181,6 +262,24 @@ Candidates:
 
 Surfaces:
 - [NIKON NIKKOR Z 58mm f/0.95 S Noct](../../src/lens-data/nikon/NikonZ58f095SNoct.data.ts) `24`: `Dense flint (near S-NBH52V)`
+
+## stored (nd=1.70154, vd=41.10) [code=702/411]  — 1 surface, current label resolves to S-BAH10
+
+Candidates:
+- **BAFD7** (nd=1.70154, vd=41.15, Δnd=+0.0000, Δvd=+0.05, codeΔ=1.0)
+- **S-BAH27** (nd=1.70154, vd=41.24, Δnd=-0.0000, Δvd=+0.14, codeΔ=1.9)
+
+Surfaces:
+- [CANON FD 35mm f/2 S.S.C. (I)](../../src/lens-data/canon/CanonFD35mmf2.data.ts) `5`: `BaF (702411, S-BAH10 family)`
+
+## stored (nd=1.70154, vd=41.24)  — 1 surface, current label resolves to NBFD12
+
+Candidates:
+- **BAFD7** (nd=1.70154, vd=41.15, Δnd=+0.0000, Δvd=-0.09)
+- **S-BAH27** (nd=1.70154, vd=41.24, Δnd=-0.0000, Δvd=-0.00)
+
+Surfaces:
+- [NIKON NIKKOR Z 24-50mm f/4-6.3](../../src/lens-data/nikon/NikonNikkorZ2450mmf463.data.ts) `11`: `NBFD12 (HOYA)`
 
 ## stored (nd=1.72047, vd=34.70)  — 1 surface, current label resolves to S-NBH5
 
@@ -212,6 +311,7 @@ Surfaces:
 
 Candidates:
 - **J-KZFH9** (nd=1.73800, vd=32.26, Δnd=+0.0000, Δvd=-0.04)
+- **S-NBH53** (nd=1.73800, vd=32.26, Δnd=-0.0000, Δvd=-0.04)
 - **S-NBH53V** (nd=1.73800, vd=32.33, Δnd=-0.0000, Δvd=+0.03)
 - **BPH50** (nd=1.74000, vd=31.71, Δnd=+0.0020, Δvd=-0.59)
 
@@ -220,7 +320,8 @@ Surfaces:
 
 ## stored (nd=1.74100, vd=52.60)  — 1 surface, current label resolves to S-LAM3
 
-**No catalog candidate within tolerance** — needs per-lens follow-up.
+Candidates:
+- **S-LAL61** (nd=1.74100, vd=52.64, Δnd=-0.0000, Δvd=+0.04)
 
 Surfaces:
 - [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) `13`: `S-LAM3 (OHARA)`
@@ -232,6 +333,16 @@ Candidates:
 
 Surfaces:
 - [NIKON AF NIKKOR 85mm f/1.4D IF](../../src/lens-data/nikon/Nikon85f14D.data.ts) `19`: `Lanthanum Crown (S-LAM66)`
+
+## stored (nd=1.74950, vd=35.33)  — 1 surface, current label resolves to S-NBH53
+
+Candidates:
+- **N-LAF7** (nd=1.74950, vd=34.82, Δnd=-0.0000, Δvd=-0.51)
+- **S-LAM7** (nd=1.74950, vd=35.28, Δnd=-0.0000, Δvd=-0.05)
+- **S-NBH51** (nd=1.74950, vd=35.33, Δnd=+0.0000, Δvd=+0.00)
+
+Surfaces:
+- [FUJIFILM FUJINON XF 90mm f/2 R LM WR](../../src/lens-data/fujifilm/FujifilmXF90mmf2.data.ts) `6`: `S-NBH53 (OHARA)`
 
 ## stored (nd=1.75500, vd=52.34)  — 1 surface, current label resolves to S-LAL14
 
@@ -256,6 +367,7 @@ Surfaces:
 Candidates:
 - **S-LAH96** (nd=1.76385, vd=48.49, Δnd=-0.0006, Δvd=-0.61)
 - **Q-LASFPH2S** (nd=1.76544, vd=46.75, Δnd=+0.0009, Δvd=-2.35)
+- **M-TAF101** (nd=1.76802, vd=49.24, Δnd=+0.0035, Δvd=+0.14)
 - **MC-TAF101-100** (nd=1.76902, vd=49.29, Δnd=+0.0045, Δvd=+0.19)
 
 Surfaces:
@@ -266,6 +378,7 @@ Surfaces:
 Candidates:
 - **Q-LASFPH2S** (nd=1.76544, vd=46.75, Δnd=-0.0001, Δvd=-0.01)
 - **S-LAH96** (nd=1.76385, vd=48.49, Δnd=-0.0017, Δvd=+1.73)
+- **M-TAF101** (nd=1.76802, vd=49.24, Δnd=+0.0025, Δvd=+2.48)
 - **MC-TAF101-100** (nd=1.76902, vd=49.29, Δnd=+0.0035, Δvd=+2.53)
 
 Surfaces:
@@ -312,11 +425,35 @@ Surfaces:
 ## stored (nd=1.79631, vd=40.90)  — 1 surface, current label resolves to NBFD15
 
 Candidates:
+- **NBFD12** (nd=1.79950, vd=42.34, Δnd=+0.0032, Δvd=+1.44)
 - **S-LAH52** (nd=1.79952, vd=42.23, Δnd=+0.0032, Δvd=+1.33)
 - **S-LAH52Q** (nd=1.79952, vd=42.24, Δnd=+0.0032, Δvd=+1.34)
 
 Surfaces:
 - [NIKON AF NIKKOR 85mm f/1.4D IF](../../src/lens-data/nikon/Nikon85f14D.data.ts) `5`: `Dense Lanthanum Flint (LaSF3 / NBFD15)`
+
+## stored (nd=1.80139, vd=45.45)  — 1 surface, current label resolves to M-TAF101
+
+Candidates:
+- **S-LAH65V** (nd=1.80400, vd=46.58, Δnd=+0.0026, Δvd=+1.13)
+- **S-LAH65VS** (nd=1.80400, vd=46.53, Δnd=+0.0026, Δvd=+1.08)
+- **S-LAH65** (nd=1.80400, vd=46.57, Δnd=+0.0026, Δvd=+1.12)
+- **H-ZLAF50D** (nd=1.80400, vd=46.58, Δnd=+0.0026, Δvd=+1.13)
+
+Surfaces:
+- [RICOH GR IV 18.3mm f/2.8](../../src/lens-data/ricoh/RicohGR428f28.data.ts) `12A`: `M-TAF101 (HOYA)`
+
+## stored (nd=1.80440, vd=39.60)  — 1 surface, current label resolves to NBFD10
+
+Candidates:
+- **S-LAH63Q** (nd=1.80440, vd=39.58, Δnd=+0.0000, Δvd=-0.02)
+- **S-LAH63** (nd=1.80440, vd=39.59, Δnd=-0.0000, Δvd=-0.01)
+- **NBFD3** (nd=1.80450, vd=39.63, Δnd=+0.0001, Δvd=+0.03)
+- **S-LAH53** (nd=1.80610, vd=40.93, Δnd=+0.0017, Δvd=+1.33)
+- **H-ZLAF52A** (nd=1.80610, vd=41.02, Δnd=+0.0017, Δvd=+1.42)
+
+Surfaces:
+- [HASSELBLAD HC MACRO 4/120](../../src/lens-data/hasselblad/HasselbladHC120mmf4Macro.data.ts) `16`: `NBFD10 (HOYA)`
 
 ## stored (nd=1.80518, vd=25.45)  — 1 surface, current label resolves to S-TIH14
 
@@ -345,6 +482,15 @@ Candidates:
 
 Surfaces:
 - [NIKON NIKKOR Z 58mm f/0.95 S Noct](../../src/lens-data/nikon/NikonZ58f095SNoct.data.ts) `7`: `Lanthanum dense flint (near E-LASF013 / H-ZLaF68C)`
+
+## stored (nd=1.85659, vd=40.10)  — 2 surfaces, current label resolves to S-LAM73
+
+Candidates:
+- **L-LAH85V** (nd=1.85400, vd=40.38, Δnd=-0.0026, Δvd=+0.28)
+
+Surfaces:
+- [SONY FE 28-70mm F2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) `27A`: `S-LAM73 (OHARA)`
+- [SONY FE 28-70mm F2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) `34`: `S-LAM73 (OHARA)`
 
 ## stored (nd=1.86252, vd=25.20) [code=862/252]  — 2 surfaces, current label resolves to S-NBH56
 
@@ -381,12 +527,13 @@ Surfaces:
 Surfaces:
 - [Sony FE 14mm f/1.8 GM](../../src/lens-data/sony/SonyFE14mmf18GM.data.ts) `9`: `S-LAH95-class dense lanthanum flint (OHARA; patent index aligns with catalog ne, 910/313)`
 
-## stored (nd=1.91082, vd=35.25)  — 2 surfaces, current label resolves to S-LAH58
+## stored (nd=1.91082, vd=35.25)  — 3 surfaces, current label resolves to S-NBH53
 
 Candidates:
-- **TAFD35** (nd=1.91082, vd=35.25, Δnd=+0.0000, Δvd=+0.00)
+- **TAFD35** (nd=1.91082, vd=35.25, Δnd=-0.0000, Δvd=+0.00)
 
 Surfaces:
+- [Sony E 18-55mm f/3.5-5.6 OSS](../../src/lens-data/sony/SonyE1855mmf3556.data.ts) `4`: `S-NBH53 (OHARA)`
 - [VOIGTLÄNDER ULTRON Vintage Line 28mm F2 Aspherical](../../src/lens-data/voigtlander/VoigtlanderUltron28f2.data.ts) `4`: `S-LAH58 (OHARA) / N-LASF46A (Schott)`
 - [VOIGTLÄNDER ULTRON Vintage Line 28mm F2 Aspherical](../../src/lens-data/voigtlander/VoigtlanderUltron28f2.data.ts) `6`: `S-LAH58 (OHARA)`
 
@@ -435,5 +582,5 @@ Surfaces:
 
 ## Summary
 
-- **37** (nd, vd) groups have at least one candidate (45 surfaces) — actionable relabels.
-- **7** (nd, vd) groups have NO candidate (8 surfaces) — needs patent verification or Unmatched relabeling.
+- **52** (nd, vd) groups have at least one candidate (63 surfaces) — actionable relabels.
+- **6** (nd, vd) groups have NO candidate (7 surfaces) — needs patent verification or Unmatched relabeling.
