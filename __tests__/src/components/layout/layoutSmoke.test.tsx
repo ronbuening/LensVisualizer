@@ -23,8 +23,18 @@ import type { LensState } from "../../../../src/types/state.js";
 
 /* Mock heavy child components of SingleLensContent */
 vi.mock("../../../../src/components/layout/LensDiagramPanel.js", () => ({
-  default: ({ lensKey, panelId }: { lensKey: string; panelId: string }) => (
-    <div data-testid={`diagram-panel-${panelId}`}>DiagramPanel:{lensKey}</div>
+  default: ({
+    lensKey,
+    panelId,
+    fillAvailableHeight,
+  }: {
+    lensKey: string;
+    panelId: string;
+    fillAvailableHeight?: boolean;
+  }) => (
+    <div data-testid={`diagram-panel-${panelId}`} data-fill-height={String(fillAvailableHeight ?? false)}>
+      DiagramPanel:{lensKey}
+    </div>
   ),
 }));
 
@@ -142,7 +152,10 @@ describe("SingleLensContent", () => {
     const state = makeState();
     renderWithLensContext(<SingleLensContent {...baseProps} />, { state });
 
-    expect(screen.getByTestId("diagram-panel-main")).toBeDefined();
+    const diagram = screen.getByTestId("diagram-panel-main");
+    expect(diagram).toBeDefined();
+    expect(diagram.getAttribute("data-fill-height")).toBe("true");
+    expect(diagram.parentElement?.style.minHeight).toBe("0px");
     expect(screen.getByTestId("description-panel")).toBeDefined();
     expect(screen.getByText("# Test Analysis")).toBeDefined();
   });
@@ -151,7 +164,11 @@ describe("SingleLensContent", () => {
     const state = makeState();
     renderWithLensContext(<SingleLensContent {...baseProps} effectiveDesktopView="diagram" />, { state });
 
-    expect(screen.getByTestId("diagram-panel-main")).toBeDefined();
+    const diagram = screen.getByTestId("diagram-panel-main");
+    expect(diagram).toBeDefined();
+    expect(diagram.getAttribute("data-fill-height")).toBe("true");
+    expect(diagram.parentElement?.style.height).toBe("100%");
+    expect(diagram.parentElement?.style.overflow).toBe("hidden");
     expect(screen.queryByTestId("description-panel")).toBeNull();
   });
 
@@ -169,7 +186,9 @@ describe("SingleLensContent", () => {
     const state = makeState();
     renderWithLensContext(<SingleLensContent {...baseProps} isWide={false} mobileView="diagram" />, { state });
 
-    expect(screen.getByTestId("diagram-panel-main")).toBeDefined();
+    const diagram = screen.getByTestId("diagram-panel-main");
+    expect(diagram).toBeDefined();
+    expect(diagram.getAttribute("data-fill-height")).toBe("false");
     expect(screen.queryByTestId("description-panel")).toBeNull();
   });
 

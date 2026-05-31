@@ -93,6 +93,24 @@ describe("DiagramControlPanel", () => {
     expect(panelProps.onOpenAbbeDiagram).toHaveBeenCalledTimes(1);
   });
 
+  it("keeps bottom controls internally scrollable in fixed-height desktop mode", () => {
+    const { container } = render(<DiagramControlPanel {...props()} fillAvailableHeight />);
+
+    const panel = container.firstElementChild as HTMLElement | null;
+    expect(panel?.style.flex).toBe("0 0 auto");
+    expect(panel?.style.maxHeight).toBe("42%");
+    expect(panel?.style.overflowY).toBe("auto");
+  });
+
+  it("lets side controls fill the fixed-height body without viewport math", () => {
+    const { container } = render(<DiagramControlPanel {...props()} useSideLayout fillAvailableHeight />);
+
+    const panel = container.firstElementChild as HTMLElement | null;
+    expect(panel?.style.height).toBe("100%");
+    expect(panel?.style.maxHeight).toBe("none");
+    expect(panel?.style.minHeight).toBe("0px");
+  });
+
   it("renders the element inspector for selected element info", () => {
     render(<DiagramControlPanel {...props({ id: 1, name: "L1", label: "L1", type: "positive", nd: 1.5 })} />);
     expect(screen.getByTestId("element-inspector").textContent).toBe("L1");

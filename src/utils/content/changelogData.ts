@@ -19,6 +19,12 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-05-31 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-05-31",
+    type: "improvement",
+    summary: "Improved desktop viewer stability during focus, zoom, and aberration analysis",
+  },
   // ── 2026-05-30 ──────────────────────────────────────────────────────────
   {
     date: "2026-05-30",

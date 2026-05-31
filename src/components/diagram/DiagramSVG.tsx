@@ -69,6 +69,7 @@ interface DiagramSVGProps {
   sel: number | null;
   maxSvgHeight: string;
   useSideLayout: boolean;
+  fillAvailableHeight?: boolean;
   headerHeight: number;
   compact: boolean;
   flashVisible: boolean;
@@ -137,6 +138,7 @@ const DiagramSVG = memo(function DiagramSVG({
   sel,
   maxSvgHeight,
   useSideLayout,
+  fillAvailableHeight = false,
   headerHeight,
   compact,
   flashVisible,
@@ -163,8 +165,13 @@ const DiagramSVG = memo(function DiagramSVG({
       width="100%"
       style={{
         display: "block",
-        maxHeight: useSideLayout ? `calc(100vh - ${headerHeight}px - 20px)` : maxSvgHeight,
-        minHeight: compact ? 200 : 290,
+        height: fillAvailableHeight ? "100%" : undefined,
+        maxHeight: fillAvailableHeight
+          ? "none"
+          : useSideLayout
+            ? `calc(100vh - ${headerHeight}px - 20px)`
+            : maxSvgHeight,
+        minHeight: fillAvailableHeight ? 0 : compact ? 200 : 290,
         background: t.bg,
         transition: "background 0.3s",
         cursor: zoomCursor,

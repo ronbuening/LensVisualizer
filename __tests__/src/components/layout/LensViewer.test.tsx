@@ -226,6 +226,22 @@ describe("LensViewer", () => {
     expect(mocks.updateURLWithSliders).toHaveBeenCalledTimes(1);
   });
 
+  it("uses a fixed-height desktop app shell with a scroll-contained content slot", () => {
+    render(<LensViewer initialLensKey="apo-lanthar-50f2" />);
+
+    const chromeSlot = screen.getByTestId("viewer-chrome").parentElement;
+    const contentSlot = screen.getByTestId("viewer-content").parentElement;
+    const root = chromeSlot?.parentElement;
+
+    expect(root?.style.height).toBe("100vh");
+    expect(root?.style.display).toBe("flex");
+    expect(root?.style.overflow).toBe("hidden");
+    expect(chromeSlot?.style.flex).toBe("0 0 auto");
+    expect(contentSlot?.style.flex).toBe("1 1 auto");
+    expect(contentSlot?.style.minHeight).toBe("0px");
+    expect(contentSlot?.style.overflow).toBe("hidden");
+  });
+
   it("navigates lens switches on lens routes", () => {
     render(<LensViewer initialLensKey="apo-lanthar-50f2" />);
 
@@ -280,6 +296,9 @@ describe("LensViewer", () => {
 
     render(<LensViewer initialLensKey="apo-lanthar-50f2" />);
 
+    const root = screen.getByTestId("viewer-chrome").parentElement?.parentElement;
+    expect(root?.style.height).toBe("");
+    expect(root?.style.display).toBe("");
     expect(screen.getByTestId("desktop-toggle").textContent).toBe("hidden");
     fireEvent.click(screen.getByText("mobile description"));
     expect(mocks.dispatch).toHaveBeenCalledWith({ type: "SET_MOBILE_VIEW", mobileView: "description" });

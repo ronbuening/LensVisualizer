@@ -1,10 +1,9 @@
 /**
- * useSideLayoutDetection — Detects when the panel content overflows the
- * viewport and switches to side-by-side layout with hysteresis.
+ * useSideLayoutDetection — Detects when a panel is wide enough to place
+ * controls beside the diagram, with width hysteresis.
  *
- * Uses ResizeObserver to monitor the panel container. Switches to side
- * layout when content overflows by >10px, switches back when there's
- * >200px of spare room.
+ * Uses ResizeObserver to monitor the panel container. The decision is based
+ * only on width so focus/zoom changes cannot cause vertical reflow loops.
  */
 import { useState, useLayoutEffect, useRef } from "react";
 import type { RefObject } from "react";
@@ -12,9 +11,12 @@ import type { RefObject } from "react";
 interface UseSideLayoutDetectionParams {
   enabled: boolean;
   containerRef: RefObject<HTMLDivElement | null>;
-  /** Dependencies that may change the content height */
+  /** Dependencies that may change available control/layout affordances. */
   deps: unknown[];
 }
+
+const SIDE_LAYOUT_ENTER_WIDTH = 860;
+const SIDE_LAYOUT_EXIT_WIDTH = 760;
 
 export default function useSideLayoutDetection({ enabled, containerRef, deps }: UseSideLayoutDetectionParams): boolean {
   const [useSideLayout, setUseSideLayout] = useState(false);
@@ -32,11 +34,10 @@ export default function useSideLayoutDetection({ enabled, containerRef, deps }: 
     const el = containerRef.current;
     const check = () => {
       const rect = el.getBoundingClientRect();
-      const available = window.innerHeight - rect.top;
       if (!sideLayoutRef.current) {
-        if (el.scrollHeight > available + 10) setUseSideLayout(true);
+        if (rect.width >= SIDE_LAYOUT_ENTER_WIDTH) setUseSideLayout(true);
       } else {
-        if (available > el.scrollHeight + 200) setUseSideLayout(false);
+        if (rect.width <= SIDE_LAYOUT_EXIT_WIDTH) setUseSideLayout(false);
       }
     };
     check();

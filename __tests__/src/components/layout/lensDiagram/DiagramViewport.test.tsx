@@ -16,7 +16,11 @@ const { mockAnalysisDrawer, mockDiagramSVG, mockPanelOverlay } = vi.hoisted(() =
 vi.mock("../../../../../src/components/diagram/DiagramSVG.js", () => ({
   default: (props: Record<string, any>) => {
     mockDiagramSVG(props);
-    return <div>Diagram SVG</div>;
+    return (
+      <div data-testid="diagram-svg" data-fill-height={String(props.fillAvailableHeight ?? false)}>
+        Diagram SVG
+      </div>
+    );
   },
 }));
 
@@ -172,6 +176,19 @@ describe("DiagramViewport", () => {
         cardinalElements,
       }),
     );
+  });
+
+  it("fills available height and forwards the fill-height flag to the SVG", () => {
+    render(<DiagramViewport {...baseProps} fillAvailableHeight />);
+
+    const svg = screen.getByTestId("diagram-svg");
+    const viewport = svg.parentElement;
+
+    expect(svg.getAttribute("data-fill-height")).toBe("true");
+    expect(viewport?.style.flex).toBe("1 1 auto");
+    expect(viewport?.style.minHeight).toBe("0px");
+    expect(viewport?.style.overflow).toBe("hidden");
+    expect(mockDiagramSVG).toHaveBeenLastCalledWith(expect.objectContaining({ fillAvailableHeight: true }));
   });
 
   it("renders the analysis drawer content and hides the launch button when open", () => {

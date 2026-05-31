@@ -28,12 +28,18 @@ vi.mock("../../../../../src/components/layout/DiagramControlPanel.js", () => ({
 vi.mock("../../../../../src/components/layout/lensDiagram/DiagramViewport.js", () => ({
   default: ({
     viewBoxOverride,
+    fillAvailableHeight,
     onOpenAsphericCompare,
   }: {
     viewBoxOverride?: string;
+    fillAvailableHeight?: boolean;
     onOpenAsphericCompare: (eid: number) => void;
   }) => (
-    <div data-testid="diagram-viewport" data-view-box={viewBoxOverride ?? ""}>
+    <div
+      data-testid="diagram-viewport"
+      data-view-box={viewBoxOverride ?? ""}
+      data-fill-height={String(fillAvailableHeight ?? false)}
+    >
       <button onClick={() => onOpenAsphericCompare(1)}>Open asphere</button>
     </div>
   ),
@@ -127,6 +133,7 @@ function baseProps(overrides: Partial<LensDiagramLoadedStateProps> = {}): LensDi
       showSliders: true,
       maxSvgHeight: "60vh",
       useSideLayout: false,
+      fillAvailableHeight: false,
       headerHeight: 0,
       zoomPanActive: false,
       showOnAxis: true,
@@ -219,6 +226,27 @@ describe("LensDiagramLoadedState", () => {
 
     expect(screen.getByTestId("diagram-viewport").getAttribute("data-view-box")).toBe("0 0 20 20");
     expect(screen.queryByTestId("diagram-control-panel")).toBeNull();
+  });
+
+  it("uses fixed-height flex containment when requested", () => {
+    render(
+      <LensDiagramLoadedState
+        {...baseProps({
+          displayFlags: { ...baseProps().displayFlags, fillAvailableHeight: true },
+        })}
+      />,
+    );
+
+    const viewport = screen.getByTestId("diagram-viewport");
+    const body = viewport.parentElement;
+    const root = body?.parentElement;
+
+    expect(viewport.getAttribute("data-fill-height")).toBe("true");
+    expect(root?.style.height).toBe("100%");
+    expect(root?.style.overflow).toBe("hidden");
+    expect(body?.style.flex).toBe("1 1 auto");
+    expect(body?.style.minHeight).toBe("0px");
+    expect(body?.style.flexDirection).toBe("column");
   });
 
   it("renders controls and wires effective-aperture toggling", () => {

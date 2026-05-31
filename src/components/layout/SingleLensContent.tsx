@@ -24,7 +24,6 @@ export default function SingleLensContent({
   theme: t,
   isWide,
   effectiveDesktopView,
-  showDesktopToggle,
   mobileView,
   lensKeyA,
   markdown,
@@ -37,34 +36,40 @@ export default function SingleLensContent({
       compact={false}
       showControls={true}
       sideLayoutEnabled={isWide && effectiveDesktopView === "diagram"}
+      fillAvailableHeight={isWide}
     />
   );
 
   const descriptionContent = (
-    <div style={{ background: t.descBg, overflowY: "auto", transition: "background 0.3s" }}>
+    <div
+      style={{
+        height: isWide ? "100%" : undefined,
+        background: t.descBg,
+        overflowY: "auto",
+        transition: "background 0.3s",
+      }}
+    >
       <DescriptionPanel markdown={markdown} theme={t} />
     </div>
   );
 
-  const topOffset = showDesktopToggle ? 82 : 45;
-
   if (isWide) {
     if (effectiveDesktopView === "diagram") {
-      return <div style={{ minHeight: `calc(100vh - ${topOffset}px)` }}>{singleDiagramContent}</div>;
+      return <div style={{ height: "100%", minHeight: 0, overflow: "hidden" }}>{singleDiagramContent}</div>;
     }
     if (effectiveDesktopView === "analysis") {
-      return <div style={{ overflowY: "auto", maxHeight: `calc(100vh - ${topOffset}px)` }}>{descriptionContent}</div>;
+      return <div style={{ height: "100%", minHeight: 0, overflowY: "auto" }}>{descriptionContent}</div>;
     }
     /* Both — side-by-side */
     return (
-      <div style={{ display: "flex", minHeight: `calc(100vh - ${topOffset}px)` }}>
-        <div style={{ flex: "0 0 65%", minWidth: 0, overflow: "hidden" }}>{singleDiagramContent}</div>
+      <div style={{ display: "flex", height: "100%", minHeight: 0, overflow: "hidden" }}>
+        <div style={{ flex: "0 0 65%", minWidth: 0, minHeight: 0, overflow: "hidden" }}>{singleDiagramContent}</div>
         <div
           style={{
             flex: "0 0 35%",
+            minHeight: 0,
             borderLeft: `1px solid ${t.descBorder}`,
             overflowY: "auto",
-            maxHeight: `calc(100vh - ${topOffset}px)`,
           }}
         >
           {descriptionContent}
