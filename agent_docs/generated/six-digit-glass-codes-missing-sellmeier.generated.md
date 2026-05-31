@@ -10,18 +10,19 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **284** lenses scanned
-- **268** total code-only elements found
-- **197** elements in this report
-- **80** distinct lens files affected
+- **274** total code-only elements found
+- **203** elements in this report
+- **81** distinct lens files affected
 
 ## Codes by Frequency
 
 | Code | Elements | Lens files |
 |---|---:|---:|
+| 770297 | 8 | 6 |
 | 670571 | 7 | 4 |
-| 770297 | 6 | 5 |
 | 855252 | 5 | 4 |
 | 662561 | 4 | 1 |
+| 863252 | 4 | 2 |
 | 516565 | 3 | 1 |
 | 585587 | 3 | 1 |
 | 672472 | 3 | 1 |
@@ -44,7 +45,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 808409 | 2 | 2 |
 | 813252 | 2 | 1 |
 | 856401 | 2 | 1 |
-| 863252 | 2 | 1 |
 | 870200 | 2 | 2 |
 | 911352 | 2 | 2 |
 | 933209 | 2 | 2 |
@@ -96,6 +96,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 683447 | 1 | 1 |
 | 683548 | 1 | 1 |
 | 693495 | 1 | 1 |
+| 694312 | 1 | 1 |
 | 694532 | 1 | 1 |
 | 700555 | 1 | 1 |
 | 702411 | 1 | 1 |
@@ -158,6 +159,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 893204 | 1 | 1 |
 | 903354 | 1 | 1 |
 | 904293 | 1 | 1 |
+| 910313 | 1 | 1 |
 | 916364 | 1 | 1 |
 | 930240 | 1 | 1 |
 | 946179 | 1 | 1 |
@@ -180,6 +182,13 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---|---|---|---|---|
 | L5 (Element 5) | 9 | `LaK (774492, probable thoriated)` | 1.77370 / 49.20 | No catalog entry | abbe |
 | L8 (Element 8) | 14 | `LaK (774492, probable thoriated)` | 1.77370 / 49.20 | No catalog entry | abbe |
+
+### [CANON RF 135mm f/1.8 L IS USM](../../src/lens-data/canon/CanonRF135f18.data.ts) - US 2023/0213745 A1
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
+|---|---|---|---|---|---|
+| L4 (Element 4) | 6 | `770297 - dense titanium flint (patent nd=1.77047, vd=29.7; no exact public catalog match)` | 1.77047 / 29.70 | No catalog entry | abbe |
+| L6 (Element 6) | 9 | `770297 - dense titanium flint (patent nd=1.77047, vd=29.7; no exact public catalog match)` | 1.77047 / 29.70 | No catalog entry | abbe |
 
 ### [CANON RF 24-240mm F4-6.3 IS USM](../../src/lens-data/canon/CanonRF24240mmf463.data.ts) - US 2020/0142167 A1
 
@@ -663,8 +672,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
+| L4 (Positive contact partner) | 7 | `694312 - short flint (Sony patent nd=1.69416, vd=31.2; no exact public catalog match)` | 1.69416 / 31.20 | No catalog entry | abbe |
+| L5 (LN front element) | 9 | `910313 - dense lanthanum flint (Sony patent nd=1.91048, vd=31.3; no exact public catalog match)` | 1.91048 / 31.30 | No catalog entry | abbe |
 | L6 (LN rear element) | 10 | `Unmatched (777/297 dense short flint; no close OHARA public-catalog match)` | 1.77660 / 29.70 | No catalog entry | abbe |
+| L10 (Rear doublet flint) | 18 | `863252 - dense flint (Sony patent nd=1.86252, vd=25.2; no exact public catalog match)` | 1.86252 / 25.20 | No catalog entry | abbe |
 | L11 (High-index relay positive) | 20 | `Unmatched (933/209 ultra-high-index short flint)` | 1.93323 / 20.90 | No catalog entry | abbe |
+| L12 (Negative Petzval element) | 22 | `863252 - dense flint (Sony patent nd=1.86252, vd=25.2; no exact public catalog match)` | 1.86252 / 25.20 | No catalog entry | abbe |
 
 ### [SONY FE 20–70 mm F4 G](../../src/lens-data/sony/SonyFE2070mmf4G.data.ts) - WO 2023/153076 A1
 

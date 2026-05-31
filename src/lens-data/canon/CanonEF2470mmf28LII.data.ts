@@ -139,7 +139,7 @@ const LENS_DATA = {
       nd: 1.5927,
       vd: 35.3,
       fl: 60.8,
-      glass: "S-TIM2 (OHARA; titanium flint)",
+      glass: "S-FTM16 (OHARA; titanium flint, code 593353)",
       role: "Positive lp component immediately behind the Unit 2 cemented doublet; moderates Petzval curvature of the negative variator.",
     },
     {
@@ -209,7 +209,7 @@ const LENS_DATA = {
       nd: 1.72047,
       vd: 34.7,
       fl: -89.3,
-      glass: "S-NBH5 (OHARA; niobium flint / KZFS-family equivalent)",
+      glass: "N-KZFS8 (Schott; S-NBH8-equivalent KZFS-family glass, code 720347)",
       role: "Unit 3 negative field-correction element; helps balance Petzval curvature and lateral color.",
     },
     {

@@ -9,10 +9,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **53** mismatched surfaces across **25** lens files
-- **45** surfaces have at least one candidate
-- **8** surfaces have high-confidence candidate ranking
-- **8** surfaces have no catalog candidate and need patent review
+- **42** mismatched surfaces across **21** lens files
+- **38** surfaces have at least one candidate
+- **6** surfaces have high-confidence candidate ranking
+- **4** surfaces have no catalog candidate and need patent review
 
 ## Relabels by Lens
 
@@ -44,15 +44,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 6 | `S-LAH58 (OHARA)` | 1.91082 / 35.25 | S-LAH58 (Δnd=-0.0278) | TAFD35 (Δnd=+0.0000, Δvd=+0.00) | High | Check lens notes |
 | 7 | `E-FD15 (HOYA) / N-SF14 (Schott)` | 1.76182 / 26.61 | E-FD15 (Δnd=-0.0629) | S-TIH14 (Δnd=+0.0000, Δvd=-0.09) | High | Check lens notes |
 
-### [Sony FE 14mm f/1.8 GM](../../src/lens-data/sony/SonyFE14mmf18GM.data.ts) - WO 2021/199923 A1
-
-| Surface | Current label | Stored nd/vd | Rejected as | Best candidate(s) | Confidence | Patent review |
-|---|---|---|---|---|---|---|
-| 7 | `S-TIM28-class short flint (OHARA; patent index aligns with catalog ne, 694/312)` | 1.69416 / 31.20 | S-TIM28 (Δnd=-0.0052) | S-TIM35 (Δnd=+0.0048, Δvd=-1.07, codeΔ=15.7)<br>E-FD15 (Δnd=+0.0048, Δvd=-1.15, codeΔ=16.4) | Medium | Yes - choose candidate |
-| 9 | `S-LAH95-class dense lanthanum flint (OHARA; patent index aligns with catalog ne, 910/313)` | 1.91048 / 31.30 | S-LAH95 (Δnd=-0.0068) | No catalog candidate | Patent review | Yes - no catalog match |
-| 18 | `S-NBH56-class dense flint (OHARA; soft match to ne, 862/252)` | 1.86252 / 25.20 | S-NBH56 (Δnd=-0.0077) | S-NPH5 (Δnd=-0.0036, Δvd=-2.47, codeΔ=27.8) | Medium | Yes - choose candidate |
-| 22 | `S-NBH56-class dense flint (OHARA; soft match to ne, 862/252)` | 1.86252 / 25.20 | S-NBH56 (Δnd=-0.0077) | S-NPH5 (Δnd=-0.0036, Δvd=-2.47, codeΔ=27.8) | Medium | Yes - choose candidate |
-
 ### [NIKON AF NIKKOR 85mm f/1.4D IF](../../src/lens-data/nikon/Nikon85f14D.data.ts) - US 5,640,277
 
 | Surface | Current label | Stored nd/vd | Rejected as | Best candidate(s) | Confidence | Patent review |
@@ -76,13 +67,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 7 | `Lanthanum dense flint (near E-LASF013 / H-ZLaF68C)` | 1.84850 / 43.79 | H-ZLAF68C (Δnd=+0.0345) | J-LASFH22 (Δnd=+0.0000, Δvd=+0.00) | High | Check lens notes |
 | 24 | `Dense flint (near S-NBH52V)` | 1.69895 / 30.13 | S-NBH52V (Δnd=-0.0260) | E-FD15 (Δnd=-0.0000, Δvd=-0.08)<br>S-TIM35 (Δnd=-0.0000, Δvd=-0.00) | Medium | Yes - choose candidate |
 | 27 | `Lanthanum crown (no confirmed catalog match; near TAFD5F)` | 1.76554 / 46.76 | TAFD5F (Δnd=+0.0693) | Q-LASFPH2S (Δnd=-0.0001, Δvd=-0.01)<br>S-LAH96 (Δnd=-0.0017, Δvd=+1.73)<br>MC-TAF101-100 (Δnd=+0.0035, Δvd=+2.53) | Choose by context | Yes - choose candidate |
-
-### [Canon EF 24-70mm f/2.8L II USM](../../src/lens-data/canon/CanonEF2470mmf28LII.data.ts) - US 8,736,971 B2
-
-| Surface | Current label | Stored nd/vd | Rejected as | Best candidate(s) | Confidence | Patent review |
-|---|---|---|---|---|---|---|
-| 11 | `S-TIM2 (OHARA; titanium flint)` | 1.59270 / 35.30 | S-TIM2 (Δnd=+0.0273) | S-FTM16 (Δnd=+0.0000, Δvd=+0.01) | High | Check lens notes |
-| 23 | `S-NBH5 (OHARA; niobium flint / KZFS-family equivalent)` | 1.72047 / 34.70 | S-NBH5 (Δnd=-0.0664) | N-KZFS8 (Δnd=-0.0000, Δvd=+0.00)<br>S-NBH8 (Δnd=-0.0000, Δvd=+0.01) | Medium | Yes - choose candidate |
 
 ### [NIKON AF-S MICRO-NIKKOR 60mm f/2.8G ED](../../src/lens-data/nikon/NikonAFSMicroNikkor60f28G.data.ts) - US 7,898,744 B2
 
@@ -111,21 +95,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---|---|---|---|---|---|
 | 10 | `SF56A (Schott) / S-TIH6 (Ohara)` | 1.78470 / 26.10 | S-TIH6 (Δnd=+0.0205) | S-TIH23 (Δnd=-0.0000, Δvd=+0.19)<br>SF11 (Δnd=+0.0000, Δvd=-0.34)<br>H-ZF13 (Δnd=+0.0000, Δvd=-0.38) | Choose by context | Yes - choose candidate |
 | 12 | `SF56A (Schott) / S-TIH6 (Ohara)` | 1.78470 / 26.10 | S-TIH6 (Δnd=+0.0205) | S-TIH23 (Δnd=-0.0000, Δvd=+0.19)<br>SF11 (Δnd=+0.0000, Δvd=-0.34)<br>H-ZF13 (Δnd=+0.0000, Δvd=-0.38) | Choose by context | Yes - choose candidate |
-
-### [CANON RF 135mm f/1.8 L IS USM](../../src/lens-data/canon/CanonRF135f18.data.ts) - US 2023/0213745 A1
-
-| Surface | Current label | Stored nd/vd | Rejected as | Best candidate(s) | Confidence | Patent review |
-|---|---|---|---|---|---|---|
-| 6 | `770297 — S-TIH18 family (OHARA)` | 1.77047 / 29.70 | S-TIH18 (Δnd=-0.0490) | No catalog candidate | Patent review | Yes - no catalog match |
-| 9 | `770297 — S-TIH18 family (OHARA)` | 1.77047 / 29.70 | S-TIH18 (Δnd=-0.0490) | No catalog candidate | Patent review | Yes - no catalog match |
-| 26 | `S-LAL8 (OHARA)` | 1.65844 / 50.90 | S-LAL8 (Δnd=+0.0546) | N-SSK5 (Δnd=+0.0000, Δvd=-0.02) | High | Check lens notes |
-
-### [Leica Summicron-R 50mm f/2](../../src/lens-data/leica/LeicaSummicronR50mmf2.data.ts) - US 4,123,144
-
-| Surface | Current label | Stored nd/vd | Rejected as | Best candidate(s) | Confidence | Patent review |
-|---|---|---|---|---|---|---|
-| 1 | `SF10 (Schott; patent ne/νe values stored as nd/vd)` | 1.73430 / 28.19 | SF10 (Δnd=-0.0060) | No catalog candidate | Patent review | Yes - no catalog match |
-| 4 | `SF11 (Schott; patent ne/νe values stored as nd/vd)` | 1.79190 / 25.55 | SF11 (Δnd=-0.0072) | S-NBH58 (Δnd=-0.0031, Δvd=+2.88) | Medium | Yes - choose candidate |
 
 ### [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) - JP2022-92388A
 

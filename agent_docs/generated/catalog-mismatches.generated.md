@@ -16,9 +16,9 @@ with words like "probable" or "approx").
 - **284** lenses scanned
 - **3204** glass surfaces examined
 - **3198** surfaces with non-empty `glass` strings
-- **2502** of those resolved to a catalog entry
-- **53** mismatches found (2.1% of resolved surfaces)
-- **25** distinct lens files affected
+- **2493** of those resolved to a catalog entry
+- **42** mismatches found (1.7% of resolved surfaces)
+- **21** distinct lens files affected
 
 ## Most-frequent mismatched catalog targets
 
@@ -28,20 +28,13 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | Catalog entry | Rejected surfaces | Notes |
 |---|---|---|
 | S-LAH79 | 4 | |
-| S-NBH56 | 3 | |
 | S-FPM3 | 3 | |
-| S-TIM2 | 2 | |
-| S-TIH18 | 2 | |
 | S-TIL27 | 2 | |
 | H-LAK6A | 2 | |
 | S-FPM4 | 2 | |
 | S-TIH6 | 2 | |
 | S-NBH52V | 2 | |
 | S-LAH58 | 2 | |
-| S-NBH5 | 1 | |
-| S-LAL8 | 1 | |
-| SF10 | 1 | |
-| SF11 | 1 | |
 | S-LAL14 | 1 | |
 | S-TIH4 | 1 | |
 | S-TIH11 | 1 | |
@@ -52,7 +45,9 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-LAH99 | 1 | |
 | E-FDS1 | 1 | |
 | S-TIL25 | 1 | |
+| S-NBH56 | 1 | |
 | S-LAM55 | 1 | |
+| S-TIM2 | 1 | |
 | S-NPH1 | 1 | |
 | S-TIH14 | 1 | |
 | H-ZLAF68C | 1 | |
@@ -61,8 +56,6 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | N-SK16 | 1 | |
 | H-ZF52 | 1 | |
 | S-NBM51 | 1 | |
-| S-TIM28 | 1 | |
-| S-LAH95 | 1 | |
 | E-F3 | 1 | |
 | E-FD15 | 1 | |
 
@@ -87,15 +80,6 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | 17 | `S-FPM3 (OHARA)` | S-FPM3 | 1.59319 | 1.53775 | -0.0554 |
 | 19 | `S-LAH79 (OHARA)` | S-LAH79 | 1.95375 | 2.00330 | +0.0496 |
 
-### [Sony FE 14mm f/1.8 GM](../../src/lens-data/sony/SonyFE14mmf18GM.data.ts) — WO 2021/199923 A1
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 7 | `S-TIM28-class short flint (OHARA; patent index aligns with catalog ne, 694/312)` | S-TIM28 | 1.69416 | 1.68893 | -0.0052 |
-| 9 | `S-LAH95-class dense lanthanum flint (OHARA; patent index aligns with catalog ne, 910/313)` | S-LAH95 | 1.91048 | 1.90366 | -0.0068 |
-| 18 | `S-NBH56-class dense flint (OHARA; soft match to ne, 862/252)` | S-NBH56 | 1.86252 | 1.85478 | -0.0077 |
-| 22 | `S-NBH56-class dense flint (OHARA; soft match to ne, 862/252)` | S-NBH56 | 1.86252 | 1.85478 | -0.0077 |
-
 ### [VOIGTLÄNDER ULTRON Vintage Line 28mm F2 Aspherical](../../src/lens-data/voigtlander/VoigtlanderUltron28f2.data.ts) — JP2022-100641A
 
 | Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
@@ -104,14 +88,6 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | 4 | `S-LAH58 (OHARA) / N-LASF46A (Schott)` | S-LAH58 | 1.91082 | 1.88300 | -0.0278 |
 | 6 | `S-LAH58 (OHARA)` | S-LAH58 | 1.91082 | 1.88300 | -0.0278 |
 | 7 | `E-FD15 (HOYA) / N-SF14 (Schott)` | E-FD15 | 1.76182 | 1.69895 | -0.0629 |
-
-### [CANON RF 135mm f/1.8 L IS USM](../../src/lens-data/canon/CanonRF135f18.data.ts) — US 2023/0213745 A1
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 6 | `770297 — S-TIH18 family (OHARA)` | S-TIH18 | 1.77047 | 1.72151 | -0.0490 |
-| 9 | `770297 — S-TIH18 family (OHARA)` | S-TIH18 | 1.77047 | 1.72151 | -0.0490 |
-| 26 | `S-LAL8 (OHARA)` | S-LAL8 | 1.65844 | 1.71299 | +0.0546 |
 
 ### [NIKON AF NIKKOR 85mm f/1.4D IF](../../src/lens-data/nikon/Nikon85f14D.data.ts) — US 5,640,277
 
@@ -136,20 +112,6 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | 7 | `Lanthanum dense flint (near E-LASF013 / H-ZLaF68C)` | H-ZLAF68C | 1.84850 | 1.88300 | +0.0345 |
 | 24 | `Dense flint (near S-NBH52V)` | S-NBH52V | 1.69895 | 1.67300 | -0.0260 |
 | 27 | `Lanthanum crown (no confirmed catalog match; near TAFD5F)` | TAFD5F | 1.76554 | 1.83481 | +0.0693 |
-
-### [Canon EF 24-70mm f/2.8L II USM](../../src/lens-data/canon/CanonEF2470mmf28LII.data.ts) — US 8,736,971 B2
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 11 | `S-TIM2 (OHARA; titanium flint)` | S-TIM2 | 1.59270 | 1.62004 | +0.0273 |
-| 23 | `S-NBH5 (OHARA; niobium flint / KZFS-family equivalent)` | S-NBH5 | 1.72047 | 1.65412 | -0.0664 |
-
-### [Leica Summicron-R 50mm f/2](../../src/lens-data/leica/LeicaSummicronR50mmf2.data.ts) — US 4,123,144
-
-| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
-|---|---|---|---|---|---|
-| 1 | `SF10 (Schott; patent ne/νe values stored as nd/vd)` | SF10 | 1.73430 | 1.72825 | -0.0060 |
-| 4 | `SF11 (Schott; patent ne/νe values stored as nd/vd)` | SF11 | 1.79190 | 1.78472 | -0.0072 |
 
 ### [NIKON AF-S MICRO-NIKKOR 60mm f/2.8G ED](../../src/lens-data/nikon/NikonAFSMicroNikkor60f28G.data.ts) — US 7,898,744 B2
 

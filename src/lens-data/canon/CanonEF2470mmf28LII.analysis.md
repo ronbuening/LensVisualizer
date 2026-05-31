@@ -95,7 +95,7 @@ The L5-L6 cemented doublet has a combined focal length of about -79.2 mm. It is 
 
 #### L7 — Biconvex positive element
 
-$n_d=1.59270$, $\nu_d=35.3$. Glass: S-TIM2 (OHARA) — titanium flint. Standalone $f=+60.8$ mm.
+$n_d=1.59270$, $\nu_d=35.3$. Glass: S-FTM16 (OHARA) — titanium flint, code 593353. Standalone $f=+60.8$ mm.
 
 L7 is the positive component designated $l_p$ by the patent. It sits immediately behind the L5-L6 cemented doublet. The patent uses this component to moderate the Petzval sum of Unit 2, which would otherwise become strongly negative because of the high-index, high-power cemented pair.
 
@@ -137,7 +137,7 @@ L12 is a weak positive element whose rear surface, S22A, is aspherical. Its weak
 
 #### L13 — Negative meniscus, concave to object
 
-$n_d=1.72047$, $\nu_d=34.7$. Glass: S-NBH5 (OHARA) — niobium flint. Standalone $f=-89.3$ mm.
+$n_d=1.72047$, $\nu_d=34.7$. Glass: Schott N-KZFS8 / OHARA S-NBH8-equivalent KZFS-family glass, code 720347. Standalone $f=-89.3$ mm.
 
 L13 closes Unit 3 as a negative field-correction element. Its low Abbe number and niobium-flint class make it useful for balancing residual lateral color after the ED glass in L11. Its negative power also offsets the positive Petzval contribution of the preceding positive elements.
 
@@ -187,17 +187,17 @@ The prescription uses a mostly OHARA glass palette, with one unresolved moldable
 | L2, L3      | S-LAH66 (OHARA)                                              | 1.77250 |    49.6 | High-index lanthanum flint, front positive power      |
 | L4, L6, L10 | S-LAH58 (OHARA)                                              | 1.88300 |    40.8 | Highest-index dense lanthanum flint in the design     |
 | L5          | S-FPM2 (OHARA)                                               | 1.59522 |    67.7 | Anomalous low-dispersion negative component in Unit 2 |
-| L7          | S-TIM2 (OHARA)                                               | 1.59270 |    35.3 | Positive Petzval-control component $l_p$              |
+| L7          | S-FTM16 (OHARA)                                              | 1.59270 |    35.3 | Positive Petzval-control component $l_p$              |
 | L8          | S-LAL18 (OHARA)                                              | 1.72916 |    54.7 | Rear Unit 2 negative doublet member                   |
 | L11, L15    | S-FPL51 (OHARA)                                              | 1.49700 |    81.5 | UD-class ED positive elements                         |
 | L12         | S-BAL42 (OHARA)                                              | 1.58313 |    59.4 | Weak aspherical barium-crown corrector                |
-| L13         | S-NBH5 (OHARA)                                               | 1.72047 |    34.7 | Niobium-flint field and lateral-color corrector       |
+| L13         | N-KZFS8 / S-NBH8 equivalent                                  | 1.72047 |    34.7 | KZFS-family field and lateral-color corrector         |
 | L14         | S-FPL53 (OHARA)                                              | 1.43875 |    94.9 | Super-UD-class ED relay element                       |
 | L16         | M-TAFD305-class / MC-TAFD315-family (HOYA class, unresolved) | 1.85006 |    40.2 | High-index doubly aspherical rear corrector           |
 | L17         | S-LAH60 (OHARA)                                              | 1.83400 |    37.2 | Dense lanthanum flint in final doublet                |
 | L18         | S-BSL7 (OHARA)                                               | 1.51633 |    64.1 | Borosilicate crown in final doublet                   |
 
-The chromatic strategy is distributed. Primary C-F correction is handled by five cemented doublets: L1-L2, L5-L6, L8-L9, L10-L11, and L17-L18. Secondary-spectrum and lateral-color correction are handled by the anomalous and low-dispersion glasses: S-FPM2 in the second unit, S-FPL51 and S-FPL53 in the rear positive units, and S-NBH5 in Unit 3.
+The chromatic strategy is distributed. Primary C-F correction is handled by five cemented doublets: L1-L2, L5-L6, L8-L9, L10-L11, and L17-L18. Secondary-spectrum and lateral-color correction are handled by the anomalous and low-dispersion glasses: S-FPM2 in the second unit, S-FPL51 and S-FPL53 in the rear positive units, and N-KZFS8 / S-NBH8-equivalent glass in Unit 3.
 
 The most important patent-specific glass choice is the L5-L6 pair in Unit 2. Conditional Expression (2) requires a large positive-to-negative index ratio at the cemented interface, while Conditional Expressions (3) and (4) constrain the partial-dispersion deviations of the negative and positive members. This is the mechanism the patent uses to keep a strong negative variator from producing excessive chromatic spherical aberration and lateral color variation during zooming.
 
@@ -349,5 +349,5 @@ The aperture stop semi-diameter used in the renderer is 12.94 mm. This correspon
 - US 8,736,971 B2, Takahiro Hatada / Canon Kabushiki Kaisha, _Zoom Lens and Image Pickup Apparatus Including the Same_, granted May 27, 2014. Primary source for prescription data, zoom spacings, focal lengths, conditional expressions, and FIG. 5 layout.
 - Canon Camera Museum, _EF24-70mm f/2.8L II USM_. Source for production element/group count, special-element count, closest focusing distance, magnification, blade count, filter size, weight, and market release data.
 - Canon U.S.A., _EF 24-70mm f/2.8L II USM_ specifications. Source for marketed focal length, aperture, angle of view, inner-focus/ring-USM description, and production specifications.
-- OHARA optical glass catalog. Source for catalog matches to S-TIH53, S-LAH66, S-LAH58, S-FPM2, S-TIM2, S-LAL18, S-FPL51, S-BAL42, S-NBH5, S-FPL53, S-LAH60, and S-BSL7.
+- OHARA and Schott optical glass catalogs. Source for catalog matches to S-TIH53, S-LAH66, S-LAH58, S-FPM2, S-FTM16, S-LAL18, S-FPL51, S-BAL42, N-KZFS8 / S-NBH8, S-FPL53, S-LAH60, and S-BSL7.
 - HOYA optical glass cross-reference and molded-glass catalog material. Source for distinguishing S-LAH58 / TAFD30 from the unresolved L16 850/402 molded-glass-class entry.

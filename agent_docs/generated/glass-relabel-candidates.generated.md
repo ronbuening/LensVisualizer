@@ -19,7 +19,7 @@ both match the stored values within tolerance (nd ±0.005, vd ±3).
 - **No candidate**: relabel as `Unmatched (...reason)` and add a row to
   [glass-relabel-followup.md](../glass-relabel-followup.md) for per-lens patent verification.
 
-**Scope**: 53 mismatched surfaces across 44 unique groups.
+**Scope**: 42 mismatched surfaces across 36 unique groups.
 
 ## stored (nd=1.49782, vd=82.56) [PgF=0.5379 (dPgF=0.0330)]  — 1 surface, current label resolves to S-FPM4
 
@@ -68,13 +68,12 @@ Candidates:
 Surfaces:
 - [Sigma APO Macro 105mm F2.8 EX DG OS HSM](../../src/lens-data/sigma/SigmaAPOMacro105mmf28OSHSM.data.ts) `27`: `BACD5 (HOYA) / S-BAL35 class`
 
-## stored (nd=1.59270, vd=35.30)  — 2 surfaces, current label resolves to S-TIM2
+## stored (nd=1.59270, vd=35.30)  — 1 surface, current label resolves to S-TIM2
 
 Candidates:
 - **S-FTM16** (nd=1.59270, vd=35.31, Δnd=+0.0000, Δvd=+0.01)
 
 Surfaces:
-- [Canon EF 24-70mm f/2.8L II USM](../../src/lens-data/canon/CanonEF2470mmf28LII.data.ts) `11`: `S-TIM2 (OHARA; titanium flint)`
 - [NIKON NIKKOR Z 26mm f/2.8](../../src/lens-data/nikon/NikonZ26f28.data.ts) `4`: `S-TIM2 (OHARA)`
 
 ## stored (nd=1.59319, vd=67.90)  — 3 surfaces, current label resolves to S-FPM3
@@ -131,14 +130,6 @@ Candidates:
 Surfaces:
 - [CANON RF 50mm f/1.2 L USM](../../src/lens-data/canon/CanonRF50mmf12L.data.ts) `6`: `S-TIL27 (OHARA)`
 
-## stored (nd=1.65844, vd=50.90)  — 1 surface, current label resolves to S-LAL8
-
-Candidates:
-- **N-SSK5** (nd=1.65844, vd=50.88, Δnd=+0.0000, Δvd=-0.02)
-
-Surfaces:
-- [CANON RF 135mm f/1.8 L IS USM](../../src/lens-data/canon/CanonRF135f18.data.ts) `26`: `S-LAL8 (OHARA)`
-
 ## stored (nd=1.67003, vd=57.20) [code=670/572]  — 1 surface, current label resolves to H-LAK6A
 
 **No catalog candidate within tolerance** — needs per-lens follow-up.
@@ -164,15 +155,6 @@ Candidates:
 Surfaces:
 - [RICOH GR 28mm f/2.8](../../src/lens-data/ricoh/RicohGR28f28.data.ts) `4`: `S-TIM35 (OHARA) / FD110 (HOYA)`
 
-## stored (nd=1.69416, vd=31.20) [code=694/312]  — 1 surface, current label resolves to S-TIM28
-
-Candidates:
-- **S-TIM35** (nd=1.69895, vd=30.13, Δnd=+0.0048, Δvd=-1.07, codeΔ=15.7)
-- **E-FD15** (nd=1.69895, vd=30.05, Δnd=+0.0048, Δvd=-1.15, codeΔ=16.4)
-
-Surfaces:
-- [Sony FE 14mm f/1.8 GM](../../src/lens-data/sony/SonyFE14mmf18GM.data.ts) `7`: `S-TIM28-class short flint (OHARA; patent index aligns with catalog ne, 694/312)`
-
 ## stored (nd=1.69895, vd=30.13)  — 1 surface, current label resolves to S-NBH52V
 
 Candidates:
@@ -181,15 +163,6 @@ Candidates:
 
 Surfaces:
 - [NIKON NIKKOR Z 58mm f/0.95 S Noct](../../src/lens-data/nikon/NikonZ58f095SNoct.data.ts) `24`: `Dense flint (near S-NBH52V)`
-
-## stored (nd=1.72047, vd=34.70)  — 1 surface, current label resolves to S-NBH5
-
-Candidates:
-- **N-KZFS8** (nd=1.72047, vd=34.70, Δnd=-0.0000, Δvd=+0.00)
-- **S-NBH8** (nd=1.72047, vd=34.71, Δnd=-0.0000, Δvd=+0.01)
-
-Surfaces:
-- [Canon EF 24-70mm f/2.8L II USM](../../src/lens-data/canon/CanonEF2470mmf28LII.data.ts) `23`: `S-NBH5 (OHARA; niobium flint / KZFS-family equivalent)`
 
 ## stored (nd=1.72825, vd=28.46)  — 1 surface, current label resolves to S-TIH11
 
@@ -200,13 +173,6 @@ Candidates:
 
 Surfaces:
 - [NIKON AF-S NIKKOR 58mm f/1.4G](../../src/lens-data/nikon/Nikon58f14GDesignCandidate.data.ts) `9`: `S-TIH11 / N-SF10 (dense flint)`
-
-## stored (nd=1.73430, vd=28.19)  — 1 surface, current label resolves to SF10
-
-**No catalog candidate within tolerance** — needs per-lens follow-up.
-
-Surfaces:
-- [Leica Summicron-R 50mm f/2](../../src/lens-data/leica/LeicaSummicronR50mmf2.data.ts) `1`: `SF10 (Schott; patent ne/νe values stored as nd/vd)`
 
 ## stored (nd=1.73800, vd=32.30)  — 1 surface, current label resolves to S-NBH52V
 
@@ -271,14 +237,6 @@ Candidates:
 Surfaces:
 - [NIKON NIKKOR Z 58mm f/0.95 S Noct](../../src/lens-data/nikon/NikonZ58f095SNoct.data.ts) `27`: `Lanthanum crown (no confirmed catalog match; near TAFD5F)`
 
-## stored (nd=1.77047, vd=29.70) [code=770/297]  — 2 surfaces, current label resolves to S-TIH18
-
-**No catalog candidate within tolerance** — needs per-lens follow-up.
-
-Surfaces:
-- [CANON RF 135mm f/1.8 L IS USM](../../src/lens-data/canon/CanonRF135f18.data.ts) `6`: `770297 — S-TIH18 family (OHARA)`
-- [CANON RF 135mm f/1.8 L IS USM](../../src/lens-data/canon/CanonRF135f18.data.ts) `9`: `770297 — S-TIH18 family (OHARA)`
-
 ## stored (nd=1.78470, vd=26.10)  — 2 surfaces, current label resolves to S-TIH6
 
 Candidates:
@@ -300,14 +258,6 @@ Candidates:
 
 Surfaces:
 - [NIKON NIKKOR Z 135mm f/1.8 S Plena](../../src/lens-data/nikon/NikonZ135f18.data.ts) `26`: `Lanthanum flint (near S-LAM55)`
-
-## stored (nd=1.79190, vd=25.55)  — 1 surface, current label resolves to SF11
-
-Candidates:
-- **S-NBH58** (nd=1.78880, vd=28.43, Δnd=-0.0031, Δvd=+2.88)
-
-Surfaces:
-- [Leica Summicron-R 50mm f/2](../../src/lens-data/leica/LeicaSummicronR50mmf2.data.ts) `4`: `SF11 (Schott; patent ne/νe values stored as nd/vd)`
 
 ## stored (nd=1.79631, vd=40.90)  — 1 surface, current label resolves to NBFD15
 
@@ -346,15 +296,6 @@ Candidates:
 Surfaces:
 - [NIKON NIKKOR Z 58mm f/0.95 S Noct](../../src/lens-data/nikon/NikonZ58f095SNoct.data.ts) `7`: `Lanthanum dense flint (near E-LASF013 / H-ZLaF68C)`
 
-## stored (nd=1.86252, vd=25.20) [code=862/252]  — 2 surfaces, current label resolves to S-NBH56
-
-Candidates:
-- **S-NPH5** (nd=1.85896, vd=22.73, Δnd=-0.0036, Δvd=-2.47, codeΔ=27.8)
-
-Surfaces:
-- [Sony FE 14mm f/1.8 GM](../../src/lens-data/sony/SonyFE14mmf18GM.data.ts) `18`: `S-NBH56-class dense flint (OHARA; soft match to ne, 862/252)`
-- [Sony FE 14mm f/1.8 GM](../../src/lens-data/sony/SonyFE14mmf18GM.data.ts) `22`: `S-NBH56-class dense flint (OHARA; soft match to ne, 862/252)`
-
 ## stored (nd=1.86994, vd=39.82)  — 1 surface, current label resolves to TAFD30
 
 Candidates:
@@ -373,13 +314,6 @@ Candidates:
 
 Surfaces:
 - [NIKON NIKKOR Z 50mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ50f12.data.ts) `29`: `S-LAH79 (OHARA)`
-
-## stored (nd=1.91048, vd=31.30) [code=910/313]  — 1 surface, current label resolves to S-LAH95
-
-**No catalog candidate within tolerance** — needs per-lens follow-up.
-
-Surfaces:
-- [Sony FE 14mm f/1.8 GM](../../src/lens-data/sony/SonyFE14mmf18GM.data.ts) `9`: `S-LAH95-class dense lanthanum flint (OHARA; patent index aligns with catalog ne, 910/313)`
 
 ## stored (nd=1.91082, vd=35.25)  — 2 surfaces, current label resolves to S-LAH58
 
@@ -435,5 +369,5 @@ Surfaces:
 
 ## Summary
 
-- **37** (nd, vd) groups have at least one candidate (45 surfaces) — actionable relabels.
-- **7** (nd, vd) groups have NO candidate (8 surfaces) — needs patent verification or Unmatched relabeling.
+- **32** (nd, vd) groups have at least one candidate (38 surfaces) — actionable relabels.
+- **4** (nd, vd) groups have NO candidate (4 surfaces) — needs patent verification or Unmatched relabeling.
