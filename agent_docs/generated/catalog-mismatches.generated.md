@@ -13,12 +13,12 @@ with words like "probable" or "approx").
 
 ## Summary
 
-- **281** lenses scanned
-- **3155** glass surfaces examined
-- **3149** surfaces with non-empty `glass` strings
-- **2443** of those resolved to a catalog entry
-- **53** mismatches found (2.2% of resolved surfaces)
-- **25** distinct lens files affected
+- **284** lenses scanned
+- **3204** glass surfaces examined
+- **3198** surfaces with non-empty `glass` strings
+- **2484** of those resolved to a catalog entry
+- **54** mismatches found (2.2% of resolved surfaces)
+- **26** distinct lens files affected
 
 ## Most-frequent mismatched catalog targets
 
@@ -37,6 +37,7 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | S-FPM4 | 2 | |
 | S-TIH6 | 2 | |
 | S-NBH52V | 2 | |
+| N-SK16 | 2 | |
 | S-LAH58 | 2 | |
 | S-NBH5 | 1 | |
 | S-LAL8 | 1 | |
@@ -58,7 +59,6 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | H-ZLAF68C | 1 | |
 | TAFD5F | 1 | |
 | S-TIM35 | 1 | |
-| N-SK16 | 1 | |
 | H-ZF52 | 1 | |
 | S-NBM51 | 1 | |
 | S-TIM28 | 1 | |
@@ -221,6 +221,12 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
 |---|---|---|---|---|---|
 | 4 | `S-TIM35 (OHARA) / FD110 (HOYA)` | S-TIM35 | 1.68893 | 1.69895 | +0.0100 |
+
+### [Sigma 14-24mm F2.8 DG HSM | Art](../../src/lens-data/sigma/Sigma1424mmf28DGHSM.data.ts) — JP 2018-189733 A
+
+| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
+|---|---|---|---|---|---|
+| 5A | `M-BACD5N / BACD5 class (HOYA, 589/613 moldable crown)` | N-SK16 | 1.58913 | 1.62041 | +0.0313 |
 
 ### [Sigma APO Macro 105mm F2.8 EX DG OS HSM](../../src/lens-data/sigma/SigmaAPOMacro105mmf28OSHSM.data.ts) — JP 2012-58682 A
 

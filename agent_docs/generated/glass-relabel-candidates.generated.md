@@ -19,7 +19,7 @@ both match the stored values within tolerance (nd ±0.005, vd ±3).
 - **No candidate**: relabel as `Unmatched (...reason)` and add a row to
   [glass-relabel-followup.md](../glass-relabel-followup.md) for per-lens patent verification.
 
-**Scope**: 53 mismatched surfaces across 44 unique groups.
+**Scope**: 54 mismatched surfaces across 45 unique groups.
 
 ## stored (nd=1.49782, vd=82.56) [PgF=0.5379 (dPgF=0.0330)]  — 1 surface, current label resolves to S-FPM4
 
@@ -56,6 +56,16 @@ Candidates:
 
 Surfaces:
 - [Sony E 18-55mm f/3.5-5.6 OSS](../../src/lens-data/sony/SonyE1855mmf3556.data.ts) `20`: `S-NBM51 (OHARA)`
+
+## stored (nd=1.58913, vd=61.25) [code=589/613, PgF=0.5401 (dPgF=-0.0007)]  — 1 surface, current label resolves to N-SK16
+
+Candidates:
+- **N-SK5** (nd=1.58913, vd=61.27, Δnd=+0.0000, Δvd=+0.02, ΔPgF=-0.0001, codeΔ=0.4)
+- **S-BAL35** (nd=1.58913, vd=61.14, Δnd=-0.0000, Δvd=-0.11, ΔPgF=-0.0009, codeΔ=1.8)
+- **K-SKLD200** (nd=1.58660, vd=59.00, Δnd=-0.0025, Δvd=-2.25, ΔPgF=+0.0009, codeΔ=25.4)
+
+Surfaces:
+- [Sigma 14-24mm F2.8 DG HSM | Art](../../src/lens-data/sigma/Sigma1424mmf28DGHSM.data.ts) `5A`: `M-BACD5N / BACD5 class (HOYA, 589/613 moldable crown)`
 
 ## stored (nd=1.58913, vd=61.25)  — 1 surface, current label resolves to N-SK16
 
@@ -434,5 +444,5 @@ Surfaces:
 
 ## Summary
 
-- **37** (nd, vd) groups have at least one candidate (45 surfaces) — actionable relabels.
+- **38** (nd, vd) groups have at least one candidate (46 surfaces) — actionable relabels.
 - **7** (nd, vd) groups have NO candidate (8 surfaces) — needs patent verification or Unmatched relabeling.

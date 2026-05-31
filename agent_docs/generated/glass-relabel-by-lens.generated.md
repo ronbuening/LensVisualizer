@@ -9,9 +9,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **53** mismatched surfaces across **25** lens files
-- **45** surfaces have at least one candidate
-- **8** surfaces have high-confidence candidate ranking
+- **54** mismatched surfaces across **26** lens files
+- **46** surfaces have at least one candidate
+- **9** surfaces have high-confidence candidate ranking
 - **8** surfaces have no catalog candidate and need patent review
 
 ## Relabels by Lens
@@ -157,6 +157,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | Surface | Current label | Stored nd/vd | Rejected as | Best candidate(s) | Confidence | Patent review |
 |---|---|---|---|---|---|---|
 | 4 | `S-TIM35 (OHARA) / FD110 (HOYA)` | 1.68893 / 31.20 | S-TIM35 (Δnd=+0.0100) | E-FD8 (Δnd=-0.0000, Δvd=-0.04)<br>S-TIM28 (Δnd=+0.0000, Δvd=-0.12) | Medium | Yes - choose candidate |
+
+### [Sigma 14-24mm F2.8 DG HSM | Art](../../src/lens-data/sigma/Sigma1424mmf28DGHSM.data.ts) - JP 2018-189733 A
+
+| Surface | Current label | Stored nd/vd | Rejected as | Best candidate(s) | Confidence | Patent review |
+|---|---|---|---|---|---|---|
+| 5A | `M-BACD5N / BACD5 class (HOYA, 589/613 moldable crown)` | 1.58913 / 61.25 | N-SK16 (Δnd=+0.0313) | N-SK5 (Δnd=+0.0000, Δvd=+0.02, codeΔ=0.4)<br>S-BAL35 (Δnd=-0.0000, Δvd=-0.11, codeΔ=1.8)<br>K-SKLD200 (Δnd=-0.0025, Δvd=-2.25, codeΔ=25.4) | High | Check lens notes |
 
 ### [Sigma APO Macro 105mm F2.8 EX DG OS HSM](../../src/lens-data/sigma/SigmaAPOMacro105mmf28OSHSM.data.ts) - JP 2012-58682 A
 

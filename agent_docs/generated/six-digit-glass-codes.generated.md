@@ -9,10 +9,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **281** lenses scanned
-- **267** total code-only elements found
-- **267** elements in this report
-- **97** distinct lens files affected
+- **284** lenses scanned
+- **270** total code-only elements found
+- **270** elements in this report
+- **98** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -33,6 +33,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 516565 | 3 | 1 |
 | 585587 | 3 | 1 |
 | 672472 | 3 | 1 |
+| 720347 | 3 | 3 |
 | 720503 | 3 | 1 |
 | 744495 | 3 | 3 |
 | 777297 | 3 | 3 |
@@ -45,6 +46,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 514428 | 2 | 1 |
 | 519699 | 2 | 1 |
 | 531559 | 2 | 2 |
+| 553717 | 2 | 2 |
 | 561453 | 2 | 2 |
 | 585594 | 2 | 1 |
 | 586609 | 2 | 1 |
@@ -52,7 +54,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 654339 | 2 | 1 |
 | 666356 | 2 | 1 |
 | 694508 | 2 | 1 |
-| 720347 | 2 | 2 |
 | 755516 | 2 | 1 |
 | 774492 | 2 | 1 |
 | 807316 | 2 | 2 |
@@ -81,7 +82,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 541468 | 1 | 1 |
 | 545486 | 1 | 1 |
 | 553555 | 1 | 1 |
-| 553717 | 1 | 1 |
 | 554381 | 1 | 1 |
 | 561575 | 1 | 1 |
 | 567428 | 1 | 1 |
@@ -179,6 +179,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 851401 | 1 | 1 |
 | 852402 | 1 | 1 |
 | 854404 | 1 | 1 |
+| 855248 | 1 | 1 |
 | 855399 | 1 | 1 |
 | 859300 | 1 | 1 |
 | 866450 | 1 | 1 |
@@ -805,6 +806,14 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L6 (Element 6) | 8 | `SSK class (614/563, Schott — probable discontinued formulation)` | 1.61375 / 56.30 | No catalog entry | abbe |
 | L7 (Element 7) | 9 | `BaSF class (702/411, Schott — probable discontinued formulation)` | 1.70181 / 41.10 | No catalog entry | abbe |
 | L8 (Element 8) | 11 | `K/BK class (520/636, Schott — uncertain identification)` | 1.52015 / 63.60 | No catalog entry | abbe |
+
+### [Sigma 14-24mm F2.8 DG HSM | Art](../../src/lens-data/sigma/Sigma1424mmf28DGHSM.data.ts) - JP 2018-189733 A
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
+|---|---|---|---|---|---|
+| L8 (Element 8) | 13 | `Dense flint class, 720/347` | 1.72047 / 34.71 | No catalog entry | abbe |
+| L9 (Element 9) | 15 | `High-index high-dispersion glass, 855/248` | 1.85478 / 24.80 | No catalog entry | abbe |
+| L17 (Element 17) | 28A | `Moldable low-dispersion glass, 553/717` | 1.55332 / 71.68 | No catalog entry | abbe |
 
 ### [SIGMA 35mm F1.4 DG DN | Art](../../src/lens-data/sigma/SigmaDGDNA35mmf14.data.ts) - JP 2022-33487 A
 
