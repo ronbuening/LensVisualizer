@@ -43,3 +43,21 @@ Changes made:
 - Added Hikari J-SFH5 to `glassCatalogData.ts`.
 - Relabeled L25 in `NikonNikkorAFS120300mmf28.data.ts` to `J-SFH5 (Hikari) — anomalous-dispersion niobium flint (756247)`.
 - Updated `NikonNikkorAFS120300mmf28.analysis.md` so the G2 secondary-spectrum discussion no longer treats L25 as an unresolved code fallback.
+
+## 2026-05-31 — M-TAFD305 catalog side-effect cleanup
+
+### Context
+
+- The Sigma patent audit added coefficient-backed HOYA `M-TAFD305` to the glass catalog.
+- `M-TAFD305` is the 851/401 moldable-glass row. These Nikon rows are 871/407 and match HOYA `TAFD32`.
+
+### Glass corrections
+
+| Element / surface | Before | After | Disposition |
+|---|---|---|---|
+| L26 / S14 | `HOYA M-TAFD305 type (1871/407)` | `TAFD32 (HOYA, 871407)` | Exact catalog match for nd = 1.870705, vd = 40.73. |
+| L53 / S34 | `HOYA M-TAFD305 type (1871/407)` | `TAFD32 (HOYA, 871407)` | Same patent glass as L26. |
+
+### Analysis sync
+
+- Updated the glass table and shared L26/L53 note to remove the stale M-TAFD305 identification.

@@ -87,9 +87,9 @@ This is the front compound meniscus, concave toward the image side. The overall 
 | Glass | nd = 1.6261, νd = 39.1 |
 | Thickness | d = 0.145 |
 | Element focal length | +27.8 mm (at 50 mm scale) |
-| Glass match | **HOYA BAFD7** (nd = 1.6261, νd = 39.2) — excellent match (barium dense flint); nearest Schott type is F2 (nd = 1.620, νd = 36.4), but with significant νd discrepancy |
+| Glass match | Vintage barium dense flint, code 626/391; no current coefficient-backed catalog row matches this pair. Do not resolve it to modern HOYA BAFD7, which is a different 702/412 glass. |
 
-L2 is the convex component of the front cemented doublet. Its front surface r₃ has the strongest converging power of any surface in the entire system (φ₃ = +1.754), making it the primary bending surface for the incoming beam. The glass has a moderate refractive index with relatively low Abbe number (νd = 39.1), placing it in the barium dense flint family. The nd/νd combination matches the HOYA BAFD7 glass type almost exactly (Δnd < 0.001, Δνd = +0.1), though the modern catalog designation may not reflect the specific glass available to Canon in 1950. No standard Schott glass matches closely — F2 has a νd discrepancy of about 2.7.
+L2 is the convex component of the front cemented doublet. Its front surface r₃ has the strongest converging power of any surface in the entire system (φ₃ = +1.754), making it the primary bending surface for the incoming beam. The glass has a moderate refractive index with relatively low Abbe number (νd = 39.1), placing it in the barium dense flint family. The current HOYA BAFD7 catalog row is not this material; it is nd = 1.70154, νd = 41.15. No standard Schott glass matches closely, and F2 has a νd discrepancy of about 2.7.
 
 #### L3: Biconcave Negative
 
@@ -180,13 +180,13 @@ The Canon Serenar 50mm f/1.8 uses **unit focusing**: the entire optical assembly
 | Element | nd | νd | 6-Digit Code | Best Catalog Match | Match Quality |
 |---|---|---|---|---|---|
 | L1 | 1.6204 | 60.3 | 620/603 | Schott SK16 | Exact |
-| L2 | 1.6261 | 39.1 | 626/391 | HOYA BAFD7 (1.6261/39.2) | Excellent (Δνd = +0.1) |
+| L2 | 1.6261 | 39.1 | 626/391 | Unmatched vintage barium dense flint; not modern HOYA BAFD7 | Code-family only |
 | L3 | 1.7400 | 28.2 | 740/282 | OHARA S-TIH3 | Exact |
 | L4 | 1.5014 | 56.5 | 501/565 | Schott K10 (1.5014/56.4) | Excellent |
 | L5 | 1.6385 | 55.5 | 639/555 | Schott SK18/SK18A (1.6385/55.4) | Excellent |
 | L6 | 1.6385 | 55.5 | 639/555 | Schott SK18/SK18A (1.6385/55.4) | Excellent |
 
-Four of the six elements match Schott catalog glasses with high confidence. The two most optically critical elements — L2 and L3, which carry the Ito innovation — match modern catalog types with excellent to exact precision; L3 now uses the coefficient-backed OHARA S-TIH3 label. These are modern catalog designations; the specific glass names available in 1950 would have differed, but the nd/νd values identify equivalent compositions within the barium dense flint and dense flint families.
+Four of the six elements match Schott catalog glasses with high confidence. L3 now uses the coefficient-backed OHARA S-TIH3 label. L2 remains a code-family barium dense flint assignment because no current public catalog row round-trips 1.6261 / 39.1, and modern HOYA BAFD7 is a different 702/412 glass. These are modern catalog designations; the specific glass names available in 1950 would have differed.
 
 It is worth noting that L5 and L6 share the same glass type. This is a practical simplification: using a single glass for two elements reduces procurement complexity and melt-lot variability — an important consideration for a lens produced in large volume. Third-party estimates place total production of the Serenar 50mm f/1.8 at approximately 90,000 to over 100,000 units (Kitchingman, 2008; klassik-cameras.de).
 
