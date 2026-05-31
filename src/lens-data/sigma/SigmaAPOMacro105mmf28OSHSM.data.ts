@@ -250,7 +250,7 @@ const LENS_DATA = {
       nd: 1.58913,
       vd: 61.25,
       fl: 81.8,
-      glass: "BACD5 (HOYA) / S-BAL35 class",
+      glass: "M-BACD5N (HOYA)",
       apd: false,
       role: "Low-index rear positive; sets the minimum positive index term in condition (4).",
     },

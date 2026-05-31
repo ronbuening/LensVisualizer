@@ -95,11 +95,11 @@ The stop position is explicitly specified in the patent Table 1 as surface 8 wit
 | Shape | Biconcave negative | Positive meniscus |
 | Surfaces | S9 (R = −317.321) | S10 junction (R = +17.180) / S11 (R = +52.440) |
 | nd / νd | 1.51742 / 48.8† | 1.49700 / 81.5 |
-| Glass | S-TIL27 (OHARA) — probable (νd corrected to ≈52.2) | **S-FPL51** (OHARA) — exact match, **ED glass** |
+| Glass | Unmatched; listed 517/488, with corrected νd likely near 52.4 | **S-FPL51** (OHARA) — exact match, **ED glass** |
 | Standalone fl | −31.5 mm | +50.1 mm |
 | Combined fl | −80.9 mm (net negative) |
 
-†*Note: Patent Table 17 gives νd6 − νd5 = 29.1 for Example 1, which implies νd5 ≈ 52.4 rather than the 48.8 listed in Table 1. A cross-check of all six numerical examples confirms this is a Table 1 typographical error: Examples 2–6 all produce νd6 − νd5 values that match Table 17 exactly when computed from their respective surface tables, while Example 1 alone fails (computing 32.7 instead of 29.1). With the corrected νd5 ≈ 52.4, the glass matches OHARA S-TIL27 (nd = 1.51742, νd = 52.15) — a titanate light flint. See §4 for further discussion.*
+†*Note: Patent Table 17 gives νd6 − νd5 = 29.1 for Example 1, which implies νd5 ≈ 52.4 rather than the 48.8 listed in Table 1. A cross-check of all six numerical examples confirms this is a Table 1 typographical error: Examples 2–6 all produce νd6 − νd5 values that match Table 17 exactly when computed from their respective surface tables, while Example 1 alone fails (computing 32.7 instead of 29.1). The corrected value places L15 near the 517/524 light-flint region, but the data file leaves the glass unmatched because the stored Table 1 row and current catalog labels do not provide a resolver-safe exact catalog assignment. See §4 for further discussion.*
 
 This doublet is the chromatic correction workhorse for the rear half of G1. L16 is the sole ED (extra-low dispersion) glass element in the entire lens — confirmed by Fujifilm's product literature as S-FPL51, a calcium fluoride equivalent phosphate crown with anomalous partial dispersion. Its extremely high Abbe number (νd = 81.5) paired against L15's moderate dispersion creates a strong achromatic correction. The Abbe difference νd6 − νd5 falls well within conditional expression 4 (20.0 < νd6 − νd5 < 70.0).
 
@@ -173,7 +173,7 @@ Glass matches were determined by comparing nd/νd pairs against the OHARA, HOYA,
 | L12 | 1.58913 | 61.1 | 589/611 | **S-BAL35** (OHARA) | Exact |
 | L13 | 1.72916 | 54.7 | 729/547 | **S-LAL18** (OHARA) | Exact |
 | L14 | 1.66680 | 31.1 | 667311 | Dense flint family; no exact catalog match found | Unresolved |
-| L15 | 1.51742 | 48.8† | 517/522‡ | **S-TIL27** (OHARA) — probable (νd corrected to ≈52.2) | High confidence |
+| L15 | 1.51742 | 48.8† | 517488 listed; 517/524 implied‡ | Unmatched; probable Table 1 νd typo, no resolver-safe catalog match | Patent erratum |
 | L16 | 1.49700 | 81.5 | 497/815 | **S-FPL51** (OHARA) — **ED glass** | Exact |
 | L17 | 1.80348 | 40.4 | 803404 | Lanthanum heavy flint (PGM-suitable); no exact catalog match found | Unresolved |
 | L21 | 1.72916 | 54.7 | 729/547 | **S-LAL18** (OHARA) | Exact (same as L13) |
@@ -184,7 +184,7 @@ Glass matches were determined by comparing nd/νd pairs against the OHARA, HOYA,
 
 L14 (nd = 1.66680, νd = 31.1): No exact match found in current OHARA, HOYA, or Schott catalogs. The nearest OHARA glass by refractive index is S-TIH14 (nd = 1.76182) — far too high. HOYA E-FD2 (nd = 1.66680) has νd = 33.05, not 31.1. This may be a proprietary melt, a discontinued glass type, or the νd value may contain a patent transcription error.
 
-L15 (nd = 1.51742, νd = 48.8 as listed): The νd value listed in Table 1 is almost certainly a typographical error. The conditional expression cross-check (§7) shows that all five other examples in the patent produce νd6 − νd5 values matching Table 17 exactly, while Example 1 alone fails — requiring νd5 ≈ 52.4 to produce the Table 17 value of 29.1. OHARA S-TIL27 (nd = 1.51742, νd = 52.15) is the most likely intended glass, with a residual of only 0.25 in νd attributable to rounding. The six-digit code with corrected νd would be 517/522. (†Listed value; ‡corrected code.)
+L15 (nd = 1.51742, νd = 48.8 as listed): The νd value listed in Table 1 is almost certainly a typographical error. The conditional expression cross-check (§7) shows that all five other examples in the patent produce νd6 − νd5 values matching Table 17 exactly, while Example 1 alone fails — requiring νd5 ≈ 52.4 to produce the Table 17 value of 29.1. The corrected six-digit region would be 517/524, but the current data file intentionally uses an unmatched label rather than forcing a catalog name that does not round-trip the stored patent row. (†Listed value; ‡corrected code.)
 
 L17 (nd = 1.80348, νd = 40.4): This glass is in the lanthanum heavy flint region (LaF/LaSF boundary). No exact catalog match was found. The closest candidates are S-LAH53 (nd = 1.80610, νd = 40.93) and HOYA NBFD3, but neither is an exact match. As a glass-molded aspherical element, L17 likely uses a low-softening-temperature (L-) variant or a proprietary PGM glass optimized for molding at the nd/νd required by the design.
 
@@ -372,7 +372,7 @@ The XF60mm F2.4 R Macro is a two-group medium telephoto with a positive front gr
 ## 10. Open Questions and Patent Errata
 
 **Confirmed patent error:**
-- **L15 Abbe number (Table 1, surface 9):** Listed as νd = 48.8, but cross-checking all six numerical examples against Table 17's conditional expression values proves this is a typographical error. The intended value is νd ≈ 52.2, consistent with OHARA S-TIL27 (nd = 1.51742, νd = 52.15). See §3 footnote and §4 for full analysis. The nd value (1.51742) is used in the surface prescription and is unaffected by this erratum.
+- **L15 Abbe number (Table 1, surface 9):** Listed as νd = 48.8, but cross-checking all six numerical examples against Table 17's conditional expression values proves this is a typographical error. The intended value is likely near νd ≈ 52.4, but the current data file leaves the glass unmatched because no resolver-safe catalog label is available for the stored patent row. See §3 footnote and §4 for full analysis. The nd value (1.51742) is used in the surface prescription and is unaffected by this erratum.
 
 **Unresolved items:**
 - **L14 glass identity:** The nd = 1.66680 / νd = 31.1 combination has no confirmed catalog match in OHARA, HOYA, or Schott catalogs. This may be a proprietary melt, a discontinued type, or the νd value may contain an additional transcription error.

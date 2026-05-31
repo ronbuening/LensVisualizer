@@ -46,3 +46,21 @@ The patent prescription table [Table 1], PDF page 24, publishes refractive index
 - `npm run format:check` — passed.
 - `npm run lint` — passed.
 - `npm run test` — passed, 129 files / 1664 tests.
+
+## 2026-05-31 - Catalog mismatch remainder audit
+
+### Phase 1 - Glass correction
+
+| Element / surface | Field | Before | After | Justification |
+|---|---|---|---|---|
+| L13 / 4 | `glass` | `S-FPM4 (OHARA)` | `596670 - fluorophosphate crown (patent nd=1.59561, vd=67.0; no exact public catalog match)` | Patent Table 1 row 4 lists nd=1.59561, vd=67.0. Project S-FPM4 is the 1.52841 catalog row, and the nearby S-FPM2 / Hikari J-PSKH entries do not exactly match both nd and vd. A code-only label preserves the patent values without forcing an unsupported catalog Sellmeier entry. |
+
+### Phase 2 - Patent and SD review
+
+- Rechecked the image-only local `patents/WO_2025263124_A1.pdf` by rendering Table 1. Row 4 gives R=56.538, d=7.81, nd=1.59561, vd=67.0, and phi=60.82; the data file stores `sd=30.41`, correctly using half the listed diameter.
+- Rendered Figure 1 on the patent cover sheet. The seven-group zoom layout and L13 position in G1 match the data file.
+- No surface radii, thickness, or SD edits were needed.
+
+### Phase 3 - Analysis sync
+
+- Updated the L13 element prose and fluorophosphate-crown table to use the 596670 patent-code label instead of S-FPM4.

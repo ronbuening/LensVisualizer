@@ -114,7 +114,7 @@ const LENS_DATA = {
       nd: 1.65412,
       vd: 39.68,
       fl: -50.05,
-      glass: "S-TIL27 (OHARA)",
+      glass: "S-NBH5 (OHARA)",
       apd: false,
       apdNote: "",
       dPgF: -0.0036,

@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **284** lenses scanned
 - **3204** non-air surfaces examined
 - **3208** element glass declarations examined
-- **621** non-explicit-unmatched annotations did not resolve
-- **220** distinct unresolved glass-like tokens found
+- **624** non-explicit-unmatched annotations did not resolve
+- **223** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -84,6 +84,7 @@ or per-lens patent backfills.
 | 585417 | 1 | 1 | |
 | 586595 | 1 | 1 | |
 | 595686 | 1 | 1 | |
+| 596670 | 1 | 1 | |
 | 603564 | 1 | 1 | |
 | 606439 | 1 | 1 | |
 | 606637 | 1 | 1 | |
@@ -99,6 +100,7 @@ or per-lens patent backfills.
 | 667311 | 1 | 1 | |
 | 667330 | 1 | 1 | |
 | 670393 | 1 | 1 | |
+| 670572 | 1 | 1 | |
 | 670573 | 1 | 1 | |
 | 670575 | 1 | 1 | |
 | 680312 | 1 | 1 | |
@@ -110,6 +112,7 @@ or per-lens patent backfills.
 | 720504 | 1 | 1 | |
 | 731405 | 1 | 1 | |
 | 738493 | 1 | 1 | |
+| 741526 | 1 | 1 | |
 | 741527 | 1 | 1 | |
 | 747274 | 1 | 1 | |
 | 749547 | 1 | 1 | |
@@ -571,6 +574,10 @@ or per-lens patent backfills.
 
 - [SONY FE 28-70mm F2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 2: `595686 — fluorophosphate crown (patent nd=1.59489, νd=68.6)`
 
+### 596670 — 1 occurrence
+
+- [SONY FE 28-70mm F2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 4: `596670 - fluorophosphate crown (patent nd=1.59561, vd=67.0; no exact public catalog match)`
+
 ### 603564 — 1 occurrence
 
 - [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) 34: `603564 — medium crown (patent nd=1.60342, νd≈56.4; no exact public catalog match)`
@@ -631,6 +638,10 @@ or per-lens patent backfills.
 
 - [OLYMPUS E.ZUIKO AUTO-T 135mm f/3.5](../../src/lens-data/olympus/OlympusZuiko135mmf35.data.ts) 6: `S-BAH32 (OHARA) exact match (670393)`
 
+### 670572 — 1 occurrence
+
+- [HASSELBLAD HC 150mm f/3.2](../../src/lens-data/hasselblad/HasselbladHC150mmf32.data.ts) 9: `670572 - lanthanum crown (converted d-line estimate from patent e-line data; no exact public catalog match)`
+
 ### 670573 — 1 occurrence
 
 - [OLYMPUS OM J. ZUIKO AUTO-W 24mm f/2](../../src/lens-data/olympus/OlympusZuiko24mmf2J.data.ts) 7: `S-LAL52 class (OHARA) / E-LAK02 (HIKARI), 670573`
@@ -674,6 +685,10 @@ or per-lens patent backfills.
 ### 738493 — 1 occurrence
 
 - [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) 45: `738493 — lanthanum crown (patent nd=1.73800, νd≈49.3; no exact public catalog match)`
+
+### 741526 — 1 occurrence
+
+- [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) 13: `741526 - lanthanum crown (patent nd=1.74100, vd~52.6 inferred; no exact public catalog match)`
 
 ### 741527 — 1 occurrence
 

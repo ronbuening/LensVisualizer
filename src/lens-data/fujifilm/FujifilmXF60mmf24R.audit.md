@@ -33,3 +33,16 @@ Patent: US 2014/0247506 A1, Example 1
 - `npm run format:check` - passed.
 - `npm run lint` - passed.
 - `npm run test` - passed, 131 test files / 1666 tests.
+
+## 2026-05-31 - Catalog-mismatch second-batch recheck
+
+Reviewed the local untracked file `patents/US20140247506A1.pdf`, Example 1.
+
+| Element / surface | Field | Before | After | Justification |
+|---|---|---|---|---|
+| L15 / S9 | `glass` | `S-TIL27 (OHARA) - probable...` | `Unmatched (patent nd=1.51742, listed vd=48.8; Table 17 implies vd~52.4; no resolver-safe catalog match)` | Table 1 row 9 lists nd=1.51742 and vd=48.8. Table 17's Example 1 conditional value implies the listed vd is likely a typo near 52.4, but the stored patent row should not resolve to the current S-TIL27 catalog entry. The label is intentionally unmatched until a coefficient-backed exact row is available. |
+
+Figure / SD check:
+
+- Rendered Figure 1 from the local PDF, page 1. Figure 1 is the matching Example 1 cross-section at infinity and close-focus positions.
+- The patent does not publish semi-diameters. The stored SD profile visually matches the figure: moderate front group diameters, a stop neck before L15/L16, and a smaller rear group with the cover glass excluded as documented. No SD edits were made.

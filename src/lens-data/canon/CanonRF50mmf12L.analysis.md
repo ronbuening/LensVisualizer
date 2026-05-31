@@ -80,7 +80,7 @@ G2 forms the negative component of the front cemented doublet. Its lower refract
 G3 is optically the most remarkable element in the design. Its glass — S-NPH7 — is an ultra-high-index niobium phosphate heavy flint with nd = 2.001, one of the highest commercially available refractive indices. Both radii are positive (meniscus form, concave toward the image), but the rear surface is essentially flat (R2 ≈ 2511 mm), so the element functions as a near-plano-convex with all power concentrated at the front surface. The extremely high refractive index allows a relatively gentle curvature (R1 = 42.2 mm) to produce substantial power (f = +42.8 mm). This is the primary converging element of the front group. The high refractive index means that for a given surface power φ = (n−1)/R, the factor (n−1) = 1.001 is very large, so R can be proportionally larger, which reduces higher-order aberrations. The tradeoff is severe chromatic aberration (νd = 29.1 is very dispersive), which must be compensated elsewhere. The strong front curvature constrains the practical SD to approximately 23 mm due to edge thickness limits: at larger apertures, the front surface sag exceeds the center thickness.
 
 **G4 — Negative Meniscus**
-- Glass: S-TIL27 (OHARA), nd = 1.65412, νd = 39.68
+- Glass: S-NBH5 (OHARA), nd = 1.65412, νd = 39.68
 - Focal length: −50.05 mm
 - Radii: R1 = +99.979 mm, R2 = +24.508 mm (both positive, R1 > R2)
 - Center thickness: 1.60 mm

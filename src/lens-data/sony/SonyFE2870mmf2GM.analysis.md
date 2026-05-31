@@ -58,7 +58,7 @@ L12 is a fluorophosphate crown with anomalous partial dispersion (positive ΔP~g
 
 #### L13 — Positive Meniscus, Convex to Object
 
-nd = 1.59561, νd = 67.0. Glass: S-FPM4 (OHARA), provisional label from the patent's nd/νd pair. f = +136.6 mm.
+nd = 1.59561, νd = 67.0. Glass: 596670 fluorophosphate crown, from the patent's nd/νd pair. f = +136.6 mm.
 
 L13 is another fluorophosphate crown, providing the bulk of G1's positive power. Its meniscus shape (convex to object, R1 = 56.538 mm, R2 = 175.851 mm) bends the entering marginal ray bundle inward while maintaining a gentle angle of incidence on both surfaces, which limits spherical aberration and coma at full aperture. The air gap between L12 and L13 (d3 = 0.24 mm) is very small, making this nearly a close-spaced triplet with the cemented pair.
 
@@ -205,7 +205,7 @@ S-FPL55 (νd = 95.1, ΔP~g,F~ ≈ +0.035) is the workhorse ED glass of the desig
 | Glass | nd | νd | Elements | Role |
 |:---|---:|---:|:---|:---|
 | 595686 fluorophosphate crown | 1.59489 | 68.6 | L12 | G1 achromatization; probable ED element |
-| S-FPM4 (OHARA) | 1.59561 | 67.0 | L13 | G1 positive power |
+| 596670 fluorophosphate crown | 1.59561 | 67.0 | L13 | G1 positive power; no exact public catalog match |
 | S-FPM5 (OHARA) | 1.59456 | 66.9 | L61 | Focus group GMF2 |
 
 The fluorophosphate crowns (νd ≈ 67–69) have modest anomalous partial dispersion and contribute to secondary-spectrum correction, particularly in G1 (where the large aperture bundle demands careful chromatism management) and in the focus group G6. Sony's marketing specifies "one ED element"; the most likely candidate is L12 (595686, νd = 68.6), which is cemented to the ultra-dense flint L11 in a classic chromatic correction pair at the front of the lens. The identification is inferred — the patent does not explicitly designate which elements Sony classifies as "ED" versus "Super ED."

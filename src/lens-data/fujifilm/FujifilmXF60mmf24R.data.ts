@@ -29,9 +29,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    a typographical error (νd6 − νd5 computes to 32.7, not the    ║
  * ║    29.1 stated in Table 17). All five other examples match when   ║
  * ║    computed from their own tables; Example 1 alone fails. The     ║
- * ║    intended νd ≈ 52.4, consistent with OHARA S-TIL27 (nd =       ║
- * ║    1.51742, νd = 52.15). Value retained as-is (48.8) in surface  ║
- * ║    data since the renderer uses nd only.                           ║
+ * ║    intended νd ≈ 52.4, near the 517/524 light-flint region.       ║
+ * ║    The stored Table 1 value remains 48.8, and the glass label is  ║
+ * ║    intentionally left unmatched so no wrong catalog row resolves. ║
  * ║                                                                    ║
  * ║  COVER GLASS:                                                      ║
  * ║    Patent surfaces S20/S21 (parallel plate, d = 2.85 mm,         ║
@@ -124,7 +124,7 @@ const LENS_DATA = {
       nd: 1.51742,
       vd: 48.8,
       fl: -31.5,
-      glass: "S-TIL27 (OHARA) — probable (νd corrected to ≈52.2; see header note)",
+      glass: "Unmatched (patent nd=1.51742, listed vd=48.8; Table 17 implies vd~52.4; no resolver-safe catalog match)",
       apd: false,
       cemented: "D2",
       role: "Flint element of achromatic doublet D2 — paired with ED glass L16 for chromatic correction behind the stop.",

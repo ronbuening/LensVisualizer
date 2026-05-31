@@ -91,7 +91,7 @@ const LENS_DATA = {
       nd: 1.8061,
       vd: 33.27,
       fl: -17.0,
-      glass: "H-ZF52 (CDGM) — exact match, unconfirmed in Ohara/Hoya/Schott",
+      glass: "NBFD15 (HOYA)",
       apd: false,
       cemented: "DB1",
       role: "Negative element of doublet DB1 (L2+L3). The dominant power contributor within DB1: rear surface R5 = +15.34 mm (dense glass to air) contributes f_surface = −19.0 mm. Together with APD glass L2, corrects both primary and secondary chromatic aberration in G1A.",

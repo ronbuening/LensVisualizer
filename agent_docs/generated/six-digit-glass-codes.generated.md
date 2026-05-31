@@ -10,8 +10,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **284** lenses scanned
-- **274** total code-only elements found
-- **274** elements in this report
+- **277** total code-only elements found
+- **277** elements in this report
 - **97** distinct lens files affected
 
 ## Codes by Frequency
@@ -96,6 +96,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 593355 | 1 | 1 |
 | 593686 | 1 | 1 |
 | 595686 | 1 | 1 |
+| 596670 | 1 | 1 |
 | 602352 | 1 | 1 |
 | 603564 | 1 | 1 |
 | 612313 | 1 | 1 |
@@ -112,6 +113,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 642581 | 1 | 1 |
 | 658397 | 1 | 1 |
 | 667311 | 1 | 1 |
+| 670572 | 1 | 1 |
 | 670575 | 1 | 1 |
 | 672323 | 1 | 1 |
 | 673322 | 1 | 1 |
@@ -139,6 +141,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 738493 | 1 | 1 |
 | 741262 | 1 | 1 |
 | 741278 | 1 | 1 |
+| 741526 | 1 | 1 |
 | 741527 | 1 | 1 |
 | 747274 | 1 | 1 |
 | 749501 | 1 | 1 |
@@ -373,6 +376,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
+| L5 (Element 5) | 9 | `670572 - lanthanum crown (converted d-line estimate from patent e-line data; no exact public catalog match)` | 1.67003 / 57.20 | No catalog entry | abbe |
 | L7 (Element 7) | 12 | `561453 - barium light flint (patent e-line Ne=1.56433, vd=45.3; no exact public catalog match)` | 1.56093 / 45.30 | No catalog entry | abbe |
 
 ### [HASSELBLAD XCD 2,5/90V](../../src/lens-data/hasselblad/HasselbladXCD90mmf25V.data.ts) - JP 2022-99402 A
@@ -601,6 +605,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
 | L6 (Element 6) | 10 | `720502 - lanthanum crown (nd=1.720467, vd~50.2)` | 1.72047 / 50.20 | S-LAL10 (trusted Sellmeier) | sellmeier |
+| L8 (Element 8) | 13 | `741526 - lanthanum crown (patent nd=1.74100, vd~52.6 inferred; no exact public catalog match)` | 1.74100 / 52.60 | No catalog entry | abbe |
 | L9 (Element 9) | 14 | `855399 — high-index lanthanum (patent nd=1.854505, νd≈39.9; no exact public catalog match)` | 1.85451 / 39.90 | No catalog entry | abbe |
 | L16 (Element 16) | 29 | `001255 - ultra-high-index dense flint (nd=2.00069, vd~25.5)` | 2.00069 / 25.50 | TAFD40 (trusted Sellmeier) | sellmeier |
 | L17 (Element 17 (VR)) | 31 | `553555 — borosilicate crown (patent nd=1.552981, νd≈55.5; no exact public catalog match)` | 1.55298 / 55.50 | No catalog entry | abbe |
@@ -880,6 +885,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
 | L12 (Element 2) | 2 | `595686 — fluorophosphate crown (patent nd=1.59489, νd=68.6)` | 1.59489 / 68.60 | No catalog entry | abbe |
+| L13 (Element 3) | 4 | `596670 - fluorophosphate crown (patent nd=1.59561, vd=67.0; no exact public catalog match)` | 1.59561 / 67.00 | No catalog entry | abbe |
 | L21 (Element 4) | 6A | `774494 — lanthanum crown (patent nd=1.77373, νd=49.4)` | 1.77373 / 49.40 | No catalog entry | abbe |
 | L22 (Element 5) | 8 | `777297 — dense flint (patent nd=1.77660, νd=29.7)` | 1.77660 / 29.70 | No catalog entry | abbe |
 | L23 (Element 6) | 9 | `930240 — ultra-high-index dense flint (patent nd=1.93024, νd=24.0)` | 1.93024 / 24.00 | No catalog entry | abbe |

@@ -106,7 +106,7 @@ const LENS_DATA = {
       nd: 1.67003,
       vd: 57.2,
       fl: -36.5,
-      glass: "Lanthanum crown (670/572 code, uncertain; cf. H-LAK6A, CDGM)",
+      glass: "670572 - lanthanum crown (converted d-line estimate from patent e-line data; no exact public catalog match)",
       apd: false,
       cemented: "G2",
       role: "Negative element of the cemented G2 focusing doublet; nearly flat front minimizes positional sensitivity.",
