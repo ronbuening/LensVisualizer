@@ -95,6 +95,7 @@ export default function DiagramViewport({
   sel,
   maxSvgHeight,
   useSideLayout,
+  fillAvailableHeight,
   headerHeight,
   compact,
   flashVisible,
@@ -189,8 +190,20 @@ export default function DiagramViewport({
     return () => window.removeEventListener("keydown", handler);
   }, [zoomPanActive, onZoomPanToggle, onZoomReset, onZoomIn, onZoomOut, onPanBy]);
 
+  const viewportStyle = fillAvailableHeight
+    ? {
+        flex: "1 1 auto",
+        minWidth: 0,
+        minHeight: 0,
+        position: "relative" as const,
+        overflow: "hidden",
+      }
+    : useSideLayout
+      ? { flex: 1, minWidth: 0, position: "relative" as const }
+      : { position: "relative" as const };
+
   return (
-    <div style={useSideLayout ? { flex: 1, minWidth: 0, position: "relative" } : { position: "relative" }}>
+    <div style={viewportStyle}>
       <DiagramSVG
         L={L}
         t={t}
@@ -236,6 +249,7 @@ export default function DiagramViewport({
         sel={sel}
         maxSvgHeight={maxSvgHeight}
         useSideLayout={useSideLayout}
+        fillAvailableHeight={fillAvailableHeight}
         headerHeight={headerHeight}
         compact={compact}
         flashVisible={flashVisible}

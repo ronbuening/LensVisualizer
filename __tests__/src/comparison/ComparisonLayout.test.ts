@@ -78,6 +78,7 @@ describe("ComparisonLayout", () => {
       maxSvgHeight: "calc(100vh - 260px)",
       minHeaderHeight: 120,
       flashOverlay: false,
+      fillAvailableHeight: true,
     });
     expect(lensDiagramPanelMock.mock.calls[1]?.[0]).toMatchObject({
       lensKey: "lens-b",
@@ -89,9 +90,12 @@ describe("ComparisonLayout", () => {
       maxSvgHeight: "calc(100vh - 260px)",
       minHeaderHeight: 120,
       flashOverlay: true,
+      fillAvailableHeight: true,
     });
 
     expect(getByTestId("panel-a").parentElement?.style.borderRight).toContain("solid");
+    expect(getByTestId("panel-a").parentElement?.parentElement?.style.height).toBe("100%");
+    expect(getByTestId("panel-a").parentElement?.style.minHeight).toBe("0px");
   });
 
   it("stacks the panels vertically on narrow screens", () => {
@@ -126,6 +130,7 @@ describe("ComparisonLayout", () => {
       maxSvgHeight: "42vh",
       minHeaderHeight: undefined,
       scaleRatio: null,
+      fillAvailableHeight: false,
     });
     expect(getByTestId("panel-a").parentElement?.style.borderBottom).toContain("solid");
   });

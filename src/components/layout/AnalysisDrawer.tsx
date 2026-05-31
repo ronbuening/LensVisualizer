@@ -57,6 +57,7 @@ export default function AnalysisDrawer({
     zIndex: 200,
     display: "flex",
     flexDirection: isWide ? "row" : "column",
+    minHeight: 0,
     background: t.panelBg,
     border: `1px solid ${t.panelBorder}`,
     borderRadius: 8,
@@ -102,6 +103,7 @@ export default function AnalysisDrawer({
   /* ── Content area ── */
   const contentStyle: CSSProperties = {
     flex: 1,
+    minHeight: 0,
     overflow: "auto",
     padding: isWide ? "16px 20px" : "12px 16px",
     position: "relative",

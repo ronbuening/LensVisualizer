@@ -62,6 +62,7 @@ interface LensDiagramPanelProps {
   onHeaderHeight?: (panelId: string, height: number) => void;
   flashOverlay?: boolean;
   sideLayoutEnabled?: boolean;
+  fillAvailableHeight?: boolean;
 }
 
 export default function LensDiagramPanel({
@@ -83,6 +84,7 @@ export default function LensDiagramPanel({
   onHeaderHeight,
   flashOverlay = false,
   sideLayoutEnabled = false,
+  fillAvailableHeight = false,
 }: LensDiagramPanelProps) {
   /* ── Read shared state from context ── */
   const { state, theme: t, isWide } = useLensCtx();
@@ -396,6 +398,7 @@ export default function LensDiagramPanel({
             headerHeight,
             maxSvgHeight,
             useSideLayout,
+            fillAvailableHeight,
             zoomPanActive,
             showOnAxis,
             showOffAxis,

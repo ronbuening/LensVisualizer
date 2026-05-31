@@ -10,6 +10,7 @@
 
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
+import type { ComponentProps } from "react";
 import DiagramSVG from "../../../../src/components/diagram/DiagramSVG.js";
 import buildLens from "../../../../src/optics/buildLens.js";
 import { computeElementShapes } from "../../../../src/optics/diagramGeometry.js";
@@ -82,6 +83,48 @@ const baseShape = {
   asphPaths: [],
 } as unknown as ElementShape;
 
+function baseDiagramSvgProps(
+  overrides: Partial<ComponentProps<typeof DiagramSVG>> = {},
+): ComponentProps<typeof DiagramSVG> {
+  return {
+    L: baseLens,
+    t: themes.dark,
+    dark: true,
+    sx: (z) => z + 100,
+    sy: (y) => 300 + y,
+    CX: 220,
+    IX: 950,
+    effectiveSC: 1,
+    zPos: [120],
+    IMG_MM: 43,
+    shapes: [],
+    filterId: "diagram-style",
+    stopZ: 220,
+    currentPhysStopSD: 8,
+    rays: [],
+    offAxisRays: [],
+    chromaticRays: [],
+    chromSpread: null,
+    showOnAxis: false,
+    showOffAxis: "off",
+    showChromatic: false,
+    showPupils: false,
+    zoomT: 0,
+    act: null,
+    onHover: vi.fn(),
+    onSelect: vi.fn(),
+    sel: null,
+    maxSvgHeight: "500px",
+    useSideLayout: false,
+    headerHeight: 40,
+    compact: false,
+    flashVisible: false,
+    flashKey: 1,
+    flashFading: false,
+    ...overrides,
+  };
+}
+
 describe("DiagramSVG", () => {
   const onHover = vi.fn();
   const onSelect = vi.fn();
@@ -97,6 +140,28 @@ describe("DiagramSVG", () => {
 
   afterEach(() => {
     cleanup();
+  });
+
+  it("preserves intrinsic-height sizing by default", () => {
+    const { container } = render(<DiagramSVG {...baseDiagramSvgProps({ onHover, onSelect })} />);
+
+    const svg = container.querySelector("svg");
+
+    expect(svg?.style.height).toBe("");
+    expect(svg?.style.maxHeight).toBe("500px");
+    expect(svg?.style.minHeight).toBe("290px");
+  });
+
+  it("fills a fixed-height viewport without using the lens aspect ratio for CSS height", () => {
+    const { container } = render(
+      <DiagramSVG {...baseDiagramSvgProps({ fillAvailableHeight: true, onHover, onSelect })} />,
+    );
+
+    const svg = container.querySelector("svg");
+
+    expect(svg?.style.height).toBe("100%");
+    expect(svg?.style.maxHeight).toBe("none");
+    expect(svg?.style.minHeight).toBe("0px");
   });
 
   it("renders rays, overlays, and interactive element paths when enabled", () => {

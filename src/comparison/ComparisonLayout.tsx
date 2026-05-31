@@ -43,13 +43,22 @@ export default function ComparisonLayout({
   const minHeaderHeight = isWide && maxHeaderHeight > 0 ? maxHeaderHeight : undefined;
 
   return (
-    <div style={{ display: "flex", flexDirection: isWide ? "row" : "column" }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: isWide ? "row" : "column",
+        height: isWide ? "100%" : undefined,
+        minHeight: isWide ? 0 : undefined,
+        overflow: isWide ? "hidden" : undefined,
+      }}
+    >
       <div
         style={{
           flex: isWide ? "0 0 50%" : "none",
           borderRight: isWide ? `1px solid ${t.panelDivider}` : "none",
           borderBottom: !isWide ? `1px solid ${t.panelDivider}` : "none",
           minWidth: 0,
+          minHeight: isWide ? 0 : undefined,
           overflow: "hidden",
         }}
       >
@@ -70,9 +79,17 @@ export default function ComparisonLayout({
           onHeaderHeight={onHeaderHeight}
           minHeaderHeight={minHeaderHeight}
           flashOverlay={flashPanel === "a"}
+          fillAvailableHeight={isWide}
         />
       </div>
-      <div style={{ flex: isWide ? "0 0 50%" : "none", minWidth: 0, overflow: "hidden" }}>
+      <div
+        style={{
+          flex: isWide ? "0 0 50%" : "none",
+          minWidth: 0,
+          minHeight: isWide ? 0 : undefined,
+          overflow: "hidden",
+        }}
+      >
         <LensDiagramPanel
           lensKey={lensKeyB}
           runtimeLens={comparisonLenses?.LB}
@@ -90,6 +107,7 @@ export default function ComparisonLayout({
           onHeaderHeight={onHeaderHeight}
           minHeaderHeight={minHeaderHeight}
           flashOverlay={flashPanel === "b"}
+          fillAvailableHeight={isWide}
         />
       </div>
     </div>

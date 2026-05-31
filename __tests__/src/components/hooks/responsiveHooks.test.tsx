@@ -13,6 +13,7 @@ const originalGetBoundingClientRect = HTMLElement.prototype.getBoundingClientRec
 
 let scrollHeight = 120;
 let rectTop = 100;
+let rectWidth = 300;
 
 function installElementMeasurements() {
   Object.defineProperty(HTMLElement.prototype, "scrollHeight", {
@@ -27,8 +28,8 @@ function installElementMeasurements() {
         top: rectTop,
         bottom: rectTop + scrollHeight,
         left: 0,
-        right: 300,
-        width: 300,
+        right: rectWidth,
+        width: rectWidth,
         height: scrollHeight,
         x: 0,
         y: rectTop,
@@ -78,6 +79,7 @@ describe("responsive layout hooks", () => {
   beforeEach(() => {
     scrollHeight = 120;
     rectTop = 100;
+    rectWidth = 300;
     Object.defineProperty(window, "innerHeight", { configurable: true, writable: true, value: 400 });
     installElementMeasurements();
   });
@@ -124,15 +126,30 @@ describe("responsive layout hooks", () => {
     expect(screen.getByText("stacked")).toBeTruthy();
   });
 
-  it("enables side layout on overflow and disables after hysteresis spare room", () => {
+  it("enables side layout on wide panels and disables after width hysteresis", () => {
     const resizeObserver = installResizeObserverMock();
 
-    scrollHeight = 360;
+    rectWidth = 900;
     render(<SideLayoutProbe enabled={true} dep="a" />);
 
     expect(screen.getByText("side")).toBeTruthy();
 
-    scrollHeight = 80;
+    rectWidth = 740;
+    act(() => resizeObserver.trigger());
+
+    expect(screen.getByText("stacked")).toBeTruthy();
+  });
+
+  it("does not switch side layout because content height changes", () => {
+    const resizeObserver = installResizeObserverMock();
+
+    rectWidth = 820;
+    scrollHeight = 100;
+    render(<SideLayoutProbe enabled={true} dep="a" />);
+
+    expect(screen.getByText("stacked")).toBeTruthy();
+
+    scrollHeight = 2000;
     act(() => resizeObserver.trigger());
 
     expect(screen.getByText("stacked")).toBeTruthy();

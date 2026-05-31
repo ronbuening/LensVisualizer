@@ -262,69 +262,81 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
               color: t.body,
               fontFamily: "'JetBrains Mono','SF Mono','Fira Code',monospace",
               minHeight: "100vh",
+              ...(isWide
+                ? {
+                    height: "100vh",
+                    display: "flex",
+                    flexDirection: "column",
+                    overflow: "hidden",
+                  }
+                : {}),
               transition: "background 0.3s,color 0.3s",
             }}
           >
-            <ViewerChrome
-              theme={t}
-              isWide={isWide}
-              comparing={comparing}
-              lensKeyA={lensKeyA}
-              lensKeyB={lensKeyB}
-              showCompareBtn={showCompareBtn}
-              onSwitchLensA={switchLensA}
-              onSwitchLensB={switchLensB}
-              onSwapLenses={swapLenses}
-              onToggleCompare={toggleCompare}
-              onOpenAboutSite={openAboutSite}
-              onOpenAboutAuthor={openAboutAuthor}
-              onOpenOpticsPrimer={openOpticsPrimer}
-              onOpenAberrationsPrimer={openAberrationsPrimer}
-              catalogKeys={viewerCatalogKeys}
-              catalogNames={catalogNames}
-              controlsBarProps={controlsBarProps}
-              mobileView={mobileView}
-              onMobileViewChange={(val) => dispatch({ type: SET_MOBILE_VIEW, mobileView: val })}
-              showDesktopToggle={showDesktopToggle}
-              desktopViewOptions={desktopViewOptions}
-              effectiveDesktopView={effectiveDesktopView}
-              onDesktopViewChange={(val) => dispatch({ type: SET_DESKTOP_VIEW, desktopView: val })}
-            />
+            <div style={isWide ? { flex: "0 0 auto" } : undefined}>
+              <ViewerChrome
+                theme={t}
+                isWide={isWide}
+                comparing={comparing}
+                lensKeyA={lensKeyA}
+                lensKeyB={lensKeyB}
+                showCompareBtn={showCompareBtn}
+                onSwitchLensA={switchLensA}
+                onSwitchLensB={switchLensB}
+                onSwapLenses={swapLenses}
+                onToggleCompare={toggleCompare}
+                onOpenAboutSite={openAboutSite}
+                onOpenAboutAuthor={openAboutAuthor}
+                onOpenOpticsPrimer={openOpticsPrimer}
+                onOpenAberrationsPrimer={openAberrationsPrimer}
+                catalogKeys={viewerCatalogKeys}
+                catalogNames={catalogNames}
+                controlsBarProps={controlsBarProps}
+                mobileView={mobileView}
+                onMobileViewChange={(val) => dispatch({ type: SET_MOBILE_VIEW, mobileView: val })}
+                showDesktopToggle={showDesktopToggle}
+                desktopViewOptions={desktopViewOptions}
+                effectiveDesktopView={effectiveDesktopView}
+                onDesktopViewChange={(val) => dispatch({ type: SET_DESKTOP_VIEW, desktopView: val })}
+              />
+            </div>
 
-            <ViewerContent
-              theme={t}
-              isWide={isWide}
-              comparing={comparing}
-              lensKeyA={lensKeyA}
-              lensKeyB={lensKeyB}
-              comparisonLenses={comparisonLenses}
-              focusPair={focusPair}
-              aperturePair={aperturePair}
-              zoomPair={zoomPair}
-              movementPair={movementPair}
-              scaleRatios={scaleRatios}
-              maxHeaderHeight={maxHeaderHeight}
-              onHeaderHeight={handleHeaderHeight}
-              flashPanel={flashPanel}
-              sharedFocusT={sharedFocusT}
-              sharedStopdownT={sharedStopdownT}
-              sharedZoomT={sharedZoomT}
-              sharedShiftMm={sharedShiftMm}
-              sharedTiltDeg={sharedTiltDeg}
-              onSharedFocusChange={handleSharedFocusChange}
-              onSharedStopdownChange={handleSharedStopdownChange}
-              onSharedShiftChange={handleSharedShiftChange}
-              onSharedTiltChange={handleSharedTiltChange}
-              onFocusPointerDown={handleFocusPointerDown}
-              onAperturePointerDown={handleAperturePointerDown}
-              onSliderPointerUp={updateURLWithSliders}
-              dispatch={dispatch}
-              showEffectiveAperture={panels.showEffectiveAperture}
-              effectiveDesktopView={effectiveDesktopView}
-              showDesktopToggle={showDesktopToggle}
-              mobileView={mobileView}
-              markdown={markdown}
-            />
+            <div style={isWide ? { flex: "1 1 auto", minHeight: 0, overflow: "hidden" } : undefined}>
+              <ViewerContent
+                theme={t}
+                isWide={isWide}
+                comparing={comparing}
+                lensKeyA={lensKeyA}
+                lensKeyB={lensKeyB}
+                comparisonLenses={comparisonLenses}
+                focusPair={focusPair}
+                aperturePair={aperturePair}
+                zoomPair={zoomPair}
+                movementPair={movementPair}
+                scaleRatios={scaleRatios}
+                maxHeaderHeight={maxHeaderHeight}
+                onHeaderHeight={handleHeaderHeight}
+                flashPanel={flashPanel}
+                sharedFocusT={sharedFocusT}
+                sharedStopdownT={sharedStopdownT}
+                sharedZoomT={sharedZoomT}
+                sharedShiftMm={sharedShiftMm}
+                sharedTiltDeg={sharedTiltDeg}
+                onSharedFocusChange={handleSharedFocusChange}
+                onSharedStopdownChange={handleSharedStopdownChange}
+                onSharedShiftChange={handleSharedShiftChange}
+                onSharedTiltChange={handleSharedTiltChange}
+                onFocusPointerDown={handleFocusPointerDown}
+                onAperturePointerDown={handleAperturePointerDown}
+                onSliderPointerUp={updateURLWithSliders}
+                dispatch={dispatch}
+                showEffectiveAperture={panels.showEffectiveAperture}
+                effectiveDesktopView={effectiveDesktopView}
+                showDesktopToggle={showDesktopToggle}
+                mobileView={mobileView}
+                markdown={markdown}
+              />
+            </div>
 
             <ViewerOverlays
               theme={t}

@@ -24,6 +24,7 @@ interface DiagramControlPanelProps {
   compact: boolean;
   isWide: boolean;
   useSideLayout: boolean;
+  fillAvailableHeight?: boolean;
   headerHeight: number;
   showSliders: boolean;
   zoomT: number;
@@ -78,6 +79,7 @@ export default function DiagramControlPanel({
   compact,
   isWide,
   useSideLayout,
+  fillAvailableHeight = false,
   headerHeight,
   showSliders,
   zoomT,
@@ -133,7 +135,9 @@ export default function DiagramControlPanel({
               flex: "0 0 340px",
               borderLeft: `1px solid ${t.panelBorder}`,
               overflowY: "auto",
-              maxHeight: `calc(100vh - ${headerHeight}px - 20px)`,
+              height: fillAvailableHeight ? "100%" : undefined,
+              minHeight: fillAvailableHeight ? 0 : undefined,
+              maxHeight: fillAvailableHeight ? "none" : `calc(100vh - ${headerHeight}px - 20px)`,
               display: "flex",
               flexDirection: "column",
               background: t.panelBg,
@@ -141,9 +145,12 @@ export default function DiagramControlPanel({
             }
           : {
               display: "flex",
+              flex: fillAvailableHeight ? "0 0 auto" : undefined,
               borderTop: `1px solid ${t.panelBorder}`,
               background: t.panelBg,
               flexWrap: "wrap",
+              maxHeight: fillAvailableHeight ? "42%" : undefined,
+              overflowY: fillAvailableHeight ? "auto" : undefined,
               transition: "background 0.3s,border-color 0.3s",
             }
       }

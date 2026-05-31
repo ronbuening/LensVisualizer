@@ -85,9 +85,22 @@ export default function ComparisonContent({
   });
 
   return (
-    <>
+    <div
+      style={
+        isWide
+          ? { height: "100%", minHeight: 0, display: "flex", flexDirection: "column", overflow: "hidden" }
+          : undefined
+      }
+    >
       {comparisonLenses?.error ? (
-        <div style={{ display: "flex", justifyContent: "center", padding: 32 }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            padding: 32,
+            ...(isWide ? { flex: "1 1 auto", minHeight: 0, overflowY: "auto" } : {}),
+          }}
+        >
           <ErrorDisplay
             error={
               comparisonLenses.error instanceof Error
@@ -103,57 +116,61 @@ export default function ComparisonContent({
         focusPair &&
         aperturePair &&
         zoomPair && (
-          <ComparisonLayout
-            theme={t}
-            isWide={isWide}
-            lensKeyA={lensKeyA}
-            lensKeyB={lensKeyB}
+          <div style={isWide ? { flex: "1 1 auto", minHeight: 0, overflow: "hidden" } : undefined}>
+            <ComparisonLayout
+              theme={t}
+              isWide={isWide}
+              lensKeyA={lensKeyA}
+              lensKeyB={lensKeyB}
+              focusPair={focusPair}
+              aperturePair={aperturePair}
+              zoomPair={zoomPair}
+              movementPair={movementPair}
+              comparisonLenses={comparisonLenses}
+              scaleRatios={scaleRatios}
+              maxHeaderHeight={maxHeaderHeight}
+              onHeaderHeight={onHeaderHeight}
+              flashPanel={flashPanel}
+            />
+          </div>
+        )
+      )}
+      {isComparisonOk(comparisonLenses) && focusPair && aperturePair && (
+        <div style={isWide ? { flex: "0 0 auto", maxHeight: "34%", overflowY: "auto" } : undefined}>
+          <SharedSlidersBar
+            LA={comparisonLenses.LA}
+            LB={comparisonLenses.LB}
+            sharedFocusT={sharedFocusT}
+            sharedStopdownT={sharedStopdownT}
+            sharedZoomT={sharedZoomT}
+            sharedShiftMm={sharedShiftMm}
+            sharedTiltDeg={sharedTiltDeg}
+            onSharedFocusChange={onSharedFocusChange}
+            onSharedStopdownChange={onSharedStopdownChange}
+            onSharedZoomChange={(v) => dispatch({ type: SET_SHARED_ZOOM_T, value: v })}
+            onSharedShiftChange={onSharedShiftChange}
+            onSharedTiltChange={onSharedTiltChange}
+            onFocusPointerDown={onFocusPointerDown}
+            onAperturePointerDown={onAperturePointerDown}
             focusPair={focusPair}
             aperturePair={aperturePair}
             zoomPair={zoomPair}
             movementPair={movementPair}
-            comparisonLenses={comparisonLenses}
-            scaleRatios={scaleRatios}
-            maxHeaderHeight={maxHeaderHeight}
-            onHeaderHeight={onHeaderHeight}
-            flashPanel={flashPanel}
+            onSliderPointerUp={onSliderPointerUp}
+            dynamicEflA={dynamicEflA}
+            dynamicEflB={dynamicEflB}
+            effectiveFNumA={effectiveFNumA}
+            effectiveFNumB={effectiveFNumB}
+            showEffectiveAperture={showEffectiveAperture}
+            onToggleEffectiveAperture={() =>
+              dispatch({ type: "SET_PANEL_EXPANDED", panel: "showEffectiveAperture", expanded: !showEffectiveAperture })
+            }
+            onOpenGroupMovement={(mode) => dispatch({ type: SET_GROUP_MOVEMENT, open: true, mode })}
+            theme={t}
+            isWide={isWide}
           />
-        )
+        </div>
       )}
-      {isComparisonOk(comparisonLenses) && focusPair && aperturePair && (
-        <SharedSlidersBar
-          LA={comparisonLenses.LA}
-          LB={comparisonLenses.LB}
-          sharedFocusT={sharedFocusT}
-          sharedStopdownT={sharedStopdownT}
-          sharedZoomT={sharedZoomT}
-          sharedShiftMm={sharedShiftMm}
-          sharedTiltDeg={sharedTiltDeg}
-          onSharedFocusChange={onSharedFocusChange}
-          onSharedStopdownChange={onSharedStopdownChange}
-          onSharedZoomChange={(v) => dispatch({ type: SET_SHARED_ZOOM_T, value: v })}
-          onSharedShiftChange={onSharedShiftChange}
-          onSharedTiltChange={onSharedTiltChange}
-          onFocusPointerDown={onFocusPointerDown}
-          onAperturePointerDown={onAperturePointerDown}
-          focusPair={focusPair}
-          aperturePair={aperturePair}
-          zoomPair={zoomPair}
-          movementPair={movementPair}
-          onSliderPointerUp={onSliderPointerUp}
-          dynamicEflA={dynamicEflA}
-          dynamicEflB={dynamicEflB}
-          effectiveFNumA={effectiveFNumA}
-          effectiveFNumB={effectiveFNumB}
-          showEffectiveAperture={showEffectiveAperture}
-          onToggleEffectiveAperture={() =>
-            dispatch({ type: "SET_PANEL_EXPANDED", panel: "showEffectiveAperture", expanded: !showEffectiveAperture })
-          }
-          onOpenGroupMovement={(mode) => dispatch({ type: SET_GROUP_MOVEMENT, open: true, mode })}
-          theme={t}
-          isWide={isWide}
-        />
-      )}
-    </>
+    </div>
   );
 }
