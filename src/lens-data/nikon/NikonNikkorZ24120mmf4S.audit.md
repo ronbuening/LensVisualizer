@@ -32,3 +32,20 @@ Patent: WO 2022/259649 A1, Example 5 / Table 5
 ### Analysis sync
 
 - Updated the affected glass-selection rows and L12 narrative.
+
+## 2026-05-31 — M-TAFD305 catalog side-effect cleanup
+
+### Context
+
+- The Sigma patent audit added coefficient-backed HOYA `M-TAFD305` to the glass catalog.
+- L3's prior prose included `M-TAFD305` as a nearest-neighbor hint, but that token now resolves to a different 851/401 catalog row and fails the nd safety net for this 775/473 patent glass.
+
+### Glass corrections
+
+| Element / surface | Before | After | Disposition |
+|---|---|---|---|
+| L3 / S4A | `Moldable lanthanum crown (no exact catalog match; nearest HOYA M-TAFD305 1.77377/47.17)` | `Unmatched moldable lanthanum crown (775473; no exact public Sellmeier match)` | Keeps the row intentionally Abbe-based until a coefficient-backed exact catalog source is found. |
+
+### Analysis sync
+
+- Updated the glass-identification table to remove the stale M-TAFD305 nearest-neighbor wording.

@@ -62,7 +62,7 @@ const LENS_DATA = {
       nd: 1.6261,
       vd: 39.1,
       fl: 27.8,
-      glass: "BAFD7 (HOYA)",
+      glass: "Unmatched vintage barium dense flint (626391; not modern HOYA BAFD7 702412)",
       apd: false,
       cemented: "D1",
       role: "Front doublet convex — strongest converging surface in system",

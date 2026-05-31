@@ -162,7 +162,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Surface | Current label | Stored nd/vd | Rejected as | Best candidate(s) | Confidence | Patent review |
 |---|---|---|---|---|---|---|
-| 27 | `BACD5 (HOYA) / S-BAL35 class` | 1.58913 / 61.25 | N-SK16 (Δnd=+0.0313) | S-BAL35 (Δnd=-0.0000, Δvd=-0.11)<br>N-SK5 (Δnd=+0.0000, Δvd=+0.02)<br>K-SKLD200 (Δnd=-0.0025, Δvd=-2.25) | Choose by context | Yes - choose candidate |
+| 27 | `BACD5 (HOYA) / S-BAL35 class` | 1.58913 / 61.25 | N-SK16 (Δnd=+0.0313) | S-BAL35 (Δnd=-0.0000, Δvd=-0.11)<br>N-SK5 (Δnd=+0.0000, Δvd=+0.02)<br>M-BACD5N (Δnd=-0.0000, Δvd=+0.00) | Choose by context | Yes - choose candidate |
 
 ### [SIGMA DP3 MERRILL 50mm f/2.8](../../src/lens-data/sigma/SigmaDP3M50mmf28.data.ts) - JP 2014-126652 A
 

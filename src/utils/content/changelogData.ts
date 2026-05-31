@@ -25,6 +25,11 @@ export const CHANGELOG: ChangelogEntry[] = [
     type: "improvement",
     summary: "Improved desktop viewer stability during focus, zoom, and aberration analysis",
   },
+  {
+    date: "2026-05-31",
+    type: "lens",
+    summary: "Added three new Sigma lenses",
+  },
   // ── 2026-05-30 ──────────────────────────────────────────────────────────
   {
     date: "2026-05-30",

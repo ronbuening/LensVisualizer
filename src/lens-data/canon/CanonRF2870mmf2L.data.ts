@@ -123,7 +123,7 @@ const LENS_DATA = {
       nd: 1.76385,
       vd: 48.5,
       fl: -22.5,
-      glass: "M-TAFD305 (HOYA)",
+      glass: "S-LAH96 (OHARA, 764485)",
       apd: false as const,
       role: "Negative element in D2; variator divergence",
       cemented: "D2",

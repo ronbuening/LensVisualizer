@@ -9,9 +9,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **281** lenses scanned
-- **267** total code-only elements found
-- **267** elements in this report
+- **284** lenses scanned
+- **268** total code-only elements found
+- **268** elements in this report
 - **97** distinct lens files affected
 
 ## Codes by Frequency
@@ -156,6 +156,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 773498 | 1 | 1 |
 | 774472 | 1 | 1 |
 | 774494 | 1 | 1 |
+| 775473 | 1 | 1 |
 | 781446 | 1 | 1 |
 | 786275 | 1 | 1 |
 | 789284 | 1 | 1 |
@@ -622,6 +623,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
+| L3 (Element 3) | 4A | `Unmatched moldable lanthanum crown (775473; no exact public Sellmeier match)` | 1.77503 / 47.31 | No catalog entry | abbe |
 | L5 (Element 5) | 8 | `855252 — high-index flint (patent nd=1.85451, νd=25.15; no exact public catalog match)` | 1.85451 / 25.15 | No catalog entry | abbe |
 
 ### [NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) - JPWO2020/157904 A1

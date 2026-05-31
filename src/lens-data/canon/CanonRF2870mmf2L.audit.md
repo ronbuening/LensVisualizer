@@ -32,3 +32,20 @@ Patent: JP 2020-118807 A, Example A
 
 - `npm test -- dispersion`
 - `npm test -- glassRelabelByLensScan`
+
+## 2026-05-31 — M-TAFD305 catalog side-effect cleanup
+
+### Context
+
+- The Sigma patent audit added coefficient-backed HOYA `M-TAFD305` to the glass catalog.
+- This Canon L5 row is 764/485 and resolves exactly to OHARA `S-LAH96`; it is not the modern HOYA 851/401 `M-TAFD305` row.
+
+### Glass corrections
+
+| Element / surface | Before | After | Disposition |
+|---|---|---|---|
+| L5 / S8 | `M-TAFD305 (HOYA)` | `S-LAH96 (OHARA, 764485)` | Exact catalog match for nd = 1.76385, vd = 48.5. |
+
+### Analysis sync
+
+- Updated the glass summary, D2 discussion, and correction note to use `S-LAH96`.
