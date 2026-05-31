@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **284** lenses scanned
 - **3204** non-air surfaces examined
 - **3208** element glass declarations examined
-- **634** non-explicit-unmatched annotations did not resolve
-- **220** distinct unresolved glass-like tokens found
+- **615** non-explicit-unmatched annotations did not resolve
+- **218** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -27,6 +27,7 @@ or per-lens patent backfills.
 | 744495 | 3 | 3 | |
 | 855252 | 3 | 2 | |
 | 863248 | 3 | 1 | |
+| L-LAM69 | 3 | 3 | |
 | S-TIF6 | 3 | 3 | |
 | 514428 | 2 | 1 | |
 | 531559 | 2 | 2 | |
@@ -35,6 +36,7 @@ or per-lens patent backfills.
 | 694508 | 2 | 1 | |
 | 744448 | 2 | 1 | |
 | 755516 | 2 | 1 | |
+| 764491 | 2 | 2 | |
 | 774492 | 2 | 1 | |
 | 784438 | 2 | 1 | |
 | 807316 | 2 | 2 | |
@@ -49,7 +51,6 @@ or per-lens patent backfills.
 | H-LAF3 | 2 | 2 | |
 | H-LAF4 | 2 | 2 | |
 | H-ZLAF4A | 2 | 1 | |
-| L-LAM69 | 2 | 2 | |
 | N-BAF4 | 2 | 2 | |
 | N-LAF2 | 2 | 1 | |
 | N-LAK9 | 2 | 2 | |
@@ -115,7 +116,6 @@ or per-lens patent backfills.
 | 754260 | 1 | 1 | |
 | 757316 | 1 | 1 | |
 | 757479 | 1 | 1 | |
-| 764491 | 1 | 1 | |
 | 768465 | 1 | 1 | |
 | 768492 | 1 | 1 | |
 | 769497 | 1 | 1 | |
@@ -140,7 +140,6 @@ or per-lens patent backfills.
 | 834373 | 1 | 1 | |
 | 835447 | 1 | 1 | |
 | 840433 | 1 | 1 | |
-| 851401 | 1 | 1 | |
 | 852402 | 1 | 1 | |
 | 854505 | 1 | 1 | |
 | 855399 | 1 | 1 | |
@@ -174,7 +173,6 @@ or per-lens patent backfills.
 | H-LAK53A | 1 | 1 | |
 | H-LAK5A | 1 | 1 | |
 | H-LAK7 | 1 | 1 | |
-| H-PK65 | 1 | 1 | |
 | H-QF50 | 1 | 1 | |
 | H-ZF1 | 1 | 1 | |
 | H-ZF2 | 1 | 1 | |
@@ -299,6 +297,12 @@ or per-lens patent backfills.
 - [SONY FE 70-200mm F2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 17: `863248 — ultra-dense flint (patent nd=1.86290, nu_d=24.8)`
 - [SONY FE 70-200mm F2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 19: `863248 — ultra-dense flint (patent nd=1.86290, nu_d=24.8)`
 
+### L-LAM69 — 3 occurrences
+
+- [CANON RF 24-105mm f/4 L IS USM](../../src/lens-data/canon/CanonRF24105mmf4L.data.ts) 29A: `764491 — L-LAM69 PGM lanthanum crown (nd=1.76450, νd=49.1)`
+- [ZEISS ZX1 Distagon T* 35mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissZX1Distagon35mmf2.data.ts) 13A: `L-LAM69 (OHARA)`
+- [Sigma 20mm F1.4 DG HSM | Art](../../src/lens-data/sigma/Sigma20mmf14DGHSMArt.data.ts) 26A: `764491 - L-LAM69 / moldable lanthanum-crown class (patent nd=1.76450, vd=49.10; no public Sellmeier match)`
+
 ### S-TIF6 — 3 occurrences
 
 - [FUJIFILM FUJINON XF 56mm F1.2 R](../../src/lens-data/fujifilm/FujifilmXF56mmf12.data.ts) 16: `S-TIF6 (OHARA)`
@@ -339,6 +343,11 @@ or per-lens patent backfills.
 
 - [Minolta AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) 10: `755516 - high-index crown (unresolved)`
 - [Minolta AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) 17: `755516 - high-index crown (unresolved)`
+
+### 764491 — 2 occurrences
+
+- [CANON RF 24-105mm f/4 L IS USM](../../src/lens-data/canon/CanonRF24105mmf4L.data.ts) 29A: `764491 — L-LAM69 PGM lanthanum crown (nd=1.76450, νd=49.1)`
+- [Sigma 20mm F1.4 DG HSM | Art](../../src/lens-data/sigma/Sigma20mmf14DGHSMArt.data.ts) 26A: `764491 - L-LAM69 / moldable lanthanum-crown class (patent nd=1.76450, vd=49.10; no public Sellmeier match)`
 
 ### 774492 — 2 occurrences
 
@@ -409,11 +418,6 @@ or per-lens patent backfills.
 
 - [Laowa 24mm f/14 2× Macro Probe](../../src/lens-data/laowa/Laowa24mmf14Probe.data.ts) 1: `H-ZLaF4A (CDGM)`
 - [Laowa 24mm f/14 2× Macro Probe](../../src/lens-data/laowa/Laowa24mmf14Probe.data.ts) 46: `H-ZLaF4A (CDGM)`
-
-### L-LAM69 — 2 occurrences
-
-- [CANON RF 24-105mm f/4 L IS USM](../../src/lens-data/canon/CanonRF24105mmf4L.data.ts) 29A: `764491 — L-LAM69 PGM lanthanum crown (nd=1.76450, νd=49.1)`
-- [ZEISS ZX1 Distagon T* 35mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissZX1Distagon35mmf2.data.ts) 13A: `L-LAM69 (OHARA)`
 
 ### N-BAF4 — 2 occurrences
 
@@ -689,10 +693,6 @@ or per-lens patent backfills.
 
 - [OLYMPUS OM J. ZUIKO AUTO-W 24mm f/2](../../src/lens-data/olympus/OlympusZuiko24mmf2J.data.ts) 1: `J-LAF04 class (HIKARI), 757479`
 
-### 764491 — 1 occurrence
-
-- [CANON RF 24-105mm f/4 L IS USM](../../src/lens-data/canon/CanonRF24105mmf4L.data.ts) 29A: `764491 — L-LAM69 PGM lanthanum crown (nd=1.76450, νd=49.1)`
-
 ### 768465 — 1 occurrence
 
 - [Nikon Fisheye-Nikkor 6mm f/5.6](../../src/lens-data/nikon/NikonFisheyeNikkor6mmf56.data.ts) 11: `768465 — lanthanum flint patent melt (nd=1.76764, νd=46.5; no exact public catalog match)`
@@ -788,10 +788,6 @@ or per-lens patent backfills.
 ### 840433 — 1 occurrence
 
 - [NIKON NIKKOR 28mm f/2.8 (28Ti)](../../src/lens-data/nikon/Nikon28Ti28mmf28.data.ts) 3: `840433 - lanthanum flint (patent nd=1.84042, vd=43.30; no exact public catalog match)`
-
-### 851401 — 1 occurrence
-
-- [Canon EF-M 32mm f/1.4 STM](../../src/lens-data/canon/CanonEFM32mmf14STM.data.ts) 19: `MP-TAFD305 / MC-TAFD305 (HOYA, 851401)`
 
 ### 852402 — 1 occurrence
 
@@ -924,10 +920,6 @@ or per-lens patent backfills.
 ### H-LAK7 — 1 occurrence
 
 - [LAOWA 15mm f/4 Wide Angle 1:1 Macro](../../src/lens-data/laowa/Laowa15mmf4Macro.data.ts) 1: `H-LAK7 (CDGM)`
-
-### H-PK65 — 1 occurrence
-
-- [FUJIFILM FUJINON 35mm f/4 (GFX100RF)](../../src/lens-data/fujifilm/FujifilmGFX100RF35mmf4.data.ts) 8: `PCD40 (HOYA) / H-PK65 class`
 
 ### H-QF50 — 1 occurrence
 

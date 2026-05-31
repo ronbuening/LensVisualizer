@@ -139,7 +139,7 @@ The patent publishes refractive index, Abbe number, and partial dispersion ratio
 
 $$\nu_d = \frac{N_d - 1}{N_F - N_C}, \qquad P_{g,F} = \frac{N_g - N_F}{N_F - N_C}, \qquad \Delta P_{g,F} = P_{g,F} - 0.64833 + 0.00180\,\nu_d.$$
 
-This $\Delta P_{g,F}$ definition reproduces the patent's tabulated Example-1 anomalous-dispersion figures exactly and is used throughout this document. (Note the sign on the $\nu_d$ term: the patent writes $+0.00180\,\nu_d$, so glasses *above* the normal line carry positive $\Delta P_{g,F}$.)
+This $\Delta P_{g,F}$ definition reproduces the patent's tabulated Example-1 anomalous-dispersion figures exactly and is used throughout this document. (Note the sign on the $\nu_d$ term: the patent writes $+0.00180\,\nu_d$, so glasses *above* the normal line carry positive $\Delta P_{g,F}$.) The companion data file stores `dPgF` in the project engine's Schott-normal-line convention, so those structured values differ slightly from the patent-condition figures in this analysis.
 
 Confidence is **high** for twelve of the thirteen distinct glasses (catalog $n_d$ reproduced to $\le 5\times10^{-4}$ with small $\Delta P_{g,F}$ residuals). The exception is the aspherical element L17, which is a **soft** match.
 
@@ -151,7 +151,7 @@ Confidence is **high** for twelve of the thirteen distinct glasses (catalog $n_d
 | S-NBM51 (Ohara) / N-KZFS4 class | 1.61340 | 44.27 | $-0.005$ | L6, L8 | Short flint; negative-$\Delta P_{g,F}$ balancer |
 | S-LAH55V (Ohara) ≈ TAFD5G (Hoya) | 1.83481 | 42.72 | $-0.007$ | L7 | High-index dense lanthanum flint; power / low Petzval |
 | E-FDS1 (Hoya) ≈ N-SF66 (Schott) | 1.92286 | 20.88 | $+0.028$ | L9 | Dense flint; high-index positive + rear secondary spectrum |
-| PCD40 (Hoya) | 1.61997 | 63.88 | $+0.009$ | L10 | SLD — special low dispersion |
+| PCD40 (HOYA) | 1.61997 | 63.88 | $+0.009$ | L10 | SLD — special low dispersion |
 | FCD515 (Hoya) | 1.59282 | 68.63 | $+0.019$ | L11 | SLD — special low dispersion |
 | S-NBH56 (Ohara) | 1.85478 | 24.80 | $+0.009$ | L12 | Dense flint; pre-stop achromatizer |
 | S-NBH5 (Ohara) ≈ E-ADF50 (Hoya) | 1.65412 | 39.68 | $-0.003$ | L13 | Short flint; rear negative |
@@ -160,9 +160,11 @@ Confidence is **high** for twelve of the thirteen distinct glasses (catalog $n_d
 | E-FD2 (Hoya) ≈ N-SF2 (Schott) | 1.64769 | 33.84 | $+0.005$ | L16 | Flint; rear achromatizer |
 | M-TAFD305 (Hoya), *soft* | 1.84915 | 40.00 | $-0.007$ | L17 | Moldable lanthanum; aspherical singlet |
 
-**Uncertainty note on L17.** No catalog entry reproduces L17's stored $n_d = 1.84915$ to transcription tolerance. The closest match is Hoya's moldable lanthanum **M-TAFD305** ($n_d = 1.85135$, $\nu_d = 40.10$), with a residual of $\Delta n_d = +0.0022$ — outside the $5\times10^{-4}$ threshold used for the confident identifications but well within the spread expected for a molded melt, and the **M-** designation independently supports a moldable (hence aspherically formable) glass. The identification should be read as *probable class* (moldable lanthanum), not as a confirmed catalog part.
+**Uncertainty note on L17.** The project catalog now contains Hoya's moldable lanthanum **M-TAFD305** ($n_d = 1.85135$, $\nu_d = 40.10$), but it does not reproduce L17's stored $n_d = 1.84915$ to transcription tolerance. The residual is $\Delta n_d = +0.0022$ — outside the $5\times10^{-4}$ threshold used for the confident identifications but well within the spread expected for a molded melt, and the **M-** designation independently supports a moldable (hence aspherically formable) glass. The identification should be read as *probable class* (moldable lanthanum), not as a confirmed catalog part.
 
 **The FLD / SLD / aspherical census is an inference, and a well-supported one.** The patent names no glasses, but the optical constants force the assignment: exactly three elements (L2, L3, L5) carry the $\nu_d = 95.10$ fluorite-class index that defines Sigma's FLD grade; exactly two further positive elements (L10, L11) carry special-low-dispersion indices in the $\nu_d \approx 64$–69 band that defines SLD; and exactly one element (L17) is aspherical. This reproduces Sigma's published "three FLD, two SLD, one aspherical" construction with no ambiguity in the count.
+
+**Display-key note.** The patent publishes $P_{g,F}$ for every glass row, so the data file retains `dPgF` on all 17 elements for chromatic tracing. The `apd` display flag is intentionally narrower: the diagram visually keys the three FLD elements (L2, L3, L5), the two SLD elements (L10, L11), and the high-index positive APD flint L9 singled out by conditions 8–9. The ordinary crown, lanthanum, and flint partners retain their measured partial-dispersion data but are not colored as APD elements.
 
 **Chromatic strategy.** The design distributes anomalous-dispersion correction across both groups, following the logic the patent sets out in §0039–0044: positive elements carry glass of large positive anomalous dispersion to correct secondary spectrum, but relying on positive elements alone would force more of them, enlarging the system and worsening the Petzval sum, so the concave elements of G1 are given glass of large *negative* anomalous dispersion to correct secondary spectrum while minimizing the Petzval penalty. Concretely, in G1 the three fluorite-class FLD positives (strongly positive $\Delta P_{g,F}$) are balanced by the short-flint negatives L4, L6, and L8 (negative $\Delta P_{g,F}$); in the rear group the dense flint L9 contributes a large positive $\Delta P_{g,F}$ on a positive element, reinforced by the two SLD positives L10 and L11. The patent ties uncorrected secondary spectrum directly to color fringing at the edges of out-of-focus highlights and to purple fringing on high-contrast subjects (§0039) — the chromatic basis for the production lens's "bokeh master" positioning. The averaged-$\Delta P_{g,F}$ conditions 5–7 quantify this division of labor.
 

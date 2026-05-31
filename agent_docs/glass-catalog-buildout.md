@@ -6,7 +6,7 @@ entry; otherwise it falls back to dPgF-corrected indices, measured `nC`/`nF`/`ng
 approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **247 verified entries** as of Phase 18 (May 2026). This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of vendor-published dispersion coefficients.
+The catalog currently has **252 verified entries** as of Phase 19 (May 2026). This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of vendor-published dispersion coefficients.
 
 The generated reports in [`generated/`](generated/) are the current work queues:
 
@@ -106,6 +106,16 @@ already in the catalog.
 | ★ Q-LASFPH3S | Hikari | 795453 | Q-series lanthanum flint/phosphate backfill from Nikon code rows |
 | ★ J-LASF021 | Hikari | 850324 | Dense lanthanum short-flint backfill from Nikon code rows |
 | ★ J-LASFH23 | Hikari | 850270 | High-index dense lanthanum flint backfill from Nikon code rows |
+
+**Phase 19 additions** (May 2026 — Sigma 105/1.4, 20/1.4, and 14-24/2.8 patent audit; all entries round-trip through `assertCatalogConsistent`; sourced from refractiveindex.info mirrors of HOYA's 2017 Zemax AGF so the Sigma patent labels resolve without code-only fallbacks):
+
+| Glass | Vendor | Code | Notes |
+|---|---|---:|---|
+| ★ PCD40 | Hoya | 620639 | SLD glass used by Sigma 105/1.4 L10 |
+| ★ M-LAC130 | Hoya | 694532 | Moldable lanthanum crown used by Sigma 20/1.4 E2 |
+| ★ M-BACD5N | Hoya | 589613 | Moldable barium crown used by Sigma 14-24/2.8 L3 |
+| ★ M-TAFD305 | Hoya | 851401 | Moldable lanthanum flint class used by Sigma 105/1.4 L17 soft-match rows |
+| ★ BAFD7 | Hoya | 702412 | Barium dense flint used by Sigma 20/1.4 E14 |
 
 **Phase 17 additions** (May 2026 — Hasselblad/Laowa/Leica/Minolta/Nikon six-digit missing-Sellmeier queue pass; all entries round-trip through `assertCatalogConsistent`):
 

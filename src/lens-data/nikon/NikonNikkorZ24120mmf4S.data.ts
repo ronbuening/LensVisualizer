@@ -113,7 +113,7 @@ const LENS_DATA = {
       nd: 1.77503,
       vd: 47.31,
       fl: -27.8,
-      glass: "Moldable lanthanum crown (no exact catalog match; nearest HOYA M-TAFD305 1.77377/47.17)",
+      glass: "Unmatched moldable lanthanum crown (775473; no exact public Sellmeier match)",
       apd: false,
       role: "Aspherical corrector plate at G2 entrance; nearly flat base R with dominant polynomial departure (~4 mm at rim)",
     },

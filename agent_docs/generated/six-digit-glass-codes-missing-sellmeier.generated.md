@@ -10,9 +10,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **284** lenses scanned
-- **270** total code-only elements found
-- **199** elements in this report
-- **81** distinct lens files affected
+- **268** total code-only elements found
+- **197** elements in this report
+- **80** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -37,7 +37,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 654339 | 2 | 1 |
 | 666356 | 2 | 1 |
 | 694508 | 2 | 1 |
-| 720347 | 2 | 2 |
 | 755516 | 2 | 1 |
 | 774492 | 2 | 1 |
 | 806333 | 2 | 2 |
@@ -63,7 +62,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 541468 | 1 | 1 |
 | 545486 | 1 | 1 |
 | 553555 | 1 | 1 |
-| 553717 | 1 | 1 |
 | 554381 | 1 | 1 |
 | 561575 | 1 | 1 |
 | 571560 | 1 | 1 |
@@ -103,6 +101,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 702411 | 1 | 1 |
 | 713433 | 1 | 1 |
 | 717295 | 1 | 1 |
+| 720347 | 1 | 1 |
 | 720521 | 1 | 1 |
 | 721334 | 1 | 1 |
 | 728403 | 1 | 1 |
@@ -130,6 +129,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 773498 | 1 | 1 |
 | 774472 | 1 | 1 |
 | 774494 | 1 | 1 |
+| 775473 | 1 | 1 |
 | 781446 | 1 | 1 |
 | 786275 | 1 | 1 |
 | 792257 | 1 | 1 |
@@ -149,7 +149,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 850324 | 1 | 1 |
 | 851401 | 1 | 1 |
 | 852402 | 1 | 1 |
-| 855248 | 1 | 1 |
 | 855399 | 1 | 1 |
 | 859300 | 1 | 1 |
 | 866450 | 1 | 1 |
@@ -477,6 +476,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
+| L3 (Element 3) | 4A | `Unmatched moldable lanthanum crown (775473; no exact public Sellmeier match)` | 1.77503 / 47.31 | No catalog entry | abbe |
 | L5 (Element 5) | 8 | `855252 — high-index flint (patent nd=1.85451, νd=25.15; no exact public catalog match)` | 1.85451 / 25.15 | No catalog entry | abbe |
 
 ### [NIKON NIKKOR Z 24-70mm f/2.8 S](../../src/lens-data/nikon/NikonZ2470f28.data.ts) - WO2020/136749 A1
@@ -626,14 +626,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L6 (Element 6) | 8 | `SSK class (614/563, Schott — probable discontinued formulation)` | 1.61375 / 56.30 | No catalog entry | abbe |
 | L7 (Element 7) | 9 | `BaSF class (702/411, Schott — probable discontinued formulation)` | 1.70181 / 41.10 | No catalog entry | abbe |
 | L8 (Element 8) | 11 | `K/BK class (520/636, Schott — uncertain identification)` | 1.52015 / 63.60 | No catalog entry | abbe |
-
-### [Sigma 14-24mm F2.8 DG HSM | Art](../../src/lens-data/sigma/Sigma1424mmf28DGHSM.data.ts) - JP 2018-189733 A
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
-|---|---|---|---|---|---|
-| L8 (Element 8) | 13 | `Dense flint class, 720/347` | 1.72047 / 34.71 | No catalog entry | abbe |
-| L9 (Element 9) | 15 | `High-index high-dispersion glass, 855/248` | 1.85478 / 24.80 | No catalog entry | abbe |
-| L17 (Element 17) | 28A | `Moldable low-dispersion glass, 553/717` | 1.55332 / 71.68 | No catalog entry | abbe |
 
 ### [SIGMA 35mm F1.4 DG DN | Art](../../src/lens-data/sigma/SigmaDGDNA35mmf14.data.ts) - JP 2022-33487 A
 

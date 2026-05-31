@@ -68,7 +68,7 @@ const LENS_DATA = {
       nd: 1.6935,
       vd: 53.2,
       fl: -64.9,
-      glass: "M-LAC130 (Hoya)",
+      glass: "M-LAC130 (HOYA)",
       role: "Front molded asphere used for distortion and field-curvature correction in L1f.",
     },
     {
@@ -214,7 +214,7 @@ const LENS_DATA = {
       nd: 1.70154,
       vd: 41.15,
       fl: -58.7,
-      glass: "BAFD7 (Hoya)",
+      glass: "BAFD7 (HOYA)",
       role: "Rear negative field-balancing element before the final asphere.",
     },
     {
@@ -225,7 +225,7 @@ const LENS_DATA = {
       nd: 1.7645,
       vd: 49.1,
       fl: 30.9,
-      glass: "Unmatched (764/491; probable Hoya M-TAF101 moldable lanthanum, non-unique)",
+      glass: "764491 - L-LAM69 / moldable lanthanum-crown class (patent nd=1.76450, vd=49.10; no public Sellmeier match)",
       role: "Rear positive molded asphere and strongest individual positive element in the design.",
     },
   ],

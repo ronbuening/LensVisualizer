@@ -61,7 +61,7 @@ This is LS1 in the patent (¶0056), the high-index negative lens constrained by 
 
 #### L3 - Negative Meniscus, convex to object; both faces aspheric
 
-nd = 1.58913, νd = 61.25, θgF = 0.5373. Glass: **HOYA M-BACD5N/BACD5 class**, code 589/613. f = -100.9 mm.
+nd = 1.58913, νd = 61.25, θgF = 0.5373. Glass: **HOYA M-BACD5N**, code 589/613. f = -100.9 mm.
 
 L3 is the second molded aspherical element in the front group. The object-side face is SA2; both surfaces 5 and 6 are aspheric (¶0055-0056). SA2 is positioned far enough behind the entrance asphere that the off-axis bundle has separated in height, but not so far back that its effect on distortion is lost. This is the geometric purpose of condition (2), DSA2/DG1 < 0.525 (¶0027).
 
@@ -93,13 +93,13 @@ L7 is the negative flint member of the first G2 cemented doublet. The patent's �
 
 #### L8 - Positive Meniscus, convex to object
 
-nd = 1.72047, νd = 34.71, θgF = 0.5834. Glass: dense flint class, code 720/347. f = +33.9 mm.
+nd = 1.72047, νd = 34.71, θgF = 0.5834. Glass: **SCHOTT N-KZFS8**, code 720/347. f = +33.9 mm.
 
 L8 is cemented behind L7. The L7/L8 pair is a compact flint-forward achromat that begins reconverging the beam after the negative front group. Because G2 moves during focusing (¶0057), this pair must hold axial and lateral color tolerably as its air gaps to G1 and G3 change.
 
 #### L9 - Biconvex positive
 
-nd = 1.85478, νd = 24.80, θgF = 0.6122. Glass: high-index high-dispersion class, code 855/248. f = +22.8 mm.
+nd = 1.85478, νd = 24.80, θgF = 0.6122. Glass: **OHARA S-NBH56**, code 855/248. f = +22.8 mm.
 
 L9 is the stronger positive lens in G2 and carries most of the group's converging power. It is cemented to L10, producing a positive achromat rather than a simple singlet relay.
 
@@ -151,7 +151,7 @@ L16 is a low-dispersion positive element behind the stop. Its catalog numbers ar
 
 #### L17 - Positive Meniscus, convex to image; both faces aspheric
 
-nd = 1.55332, νd = 71.68, θgF = 0.5402. Glass: moldable low-dispersion class, code 553/717. f = +131.8 mm.
+nd = 1.55332, νd = 71.68, θgF = 0.5402. Glass: **HOYA M-FCD500**, code 553/717. f = +131.8 mm.
 
 L17 is the final element and carries aspherical surfaces 28 and 29. The patent favors an asphere on the most image-side lens of GR because the off-axis bundle is relatively large there while the on-axis bundle is small; the asphere can therefore act on coma and astigmatism with limited disturbance to spherical aberration (¶0050-0051).
 
@@ -163,13 +163,13 @@ The patent tabulates nd, νd, and θgF but does not name vendors. The table belo
 |---|---:|---:|---:|---:|---|---|---|
 | L1 | 1.69350 | 53.18 | 0.5482 | -0.0043 | OHARA L-LAL13, low-Tg molded asphere glass | Confident | asphere |
 | L2 | 2.00100 | 29.13 | 0.5994 | +0.0036 | HOYA TAFD55/TAFD55-W, 001/291 | Confident | - |
-| L3 | 1.58913 | 61.25 | 0.5373 | -0.0007 | HOYA M-BACD5N/BACD5 class, 589/613 | Class | asphere |
+| L3 | 1.58913 | 61.25 | 0.5373 | -0.0007 | HOYA M-BACD5N, 589/613 | Confident | asphere |
 | L4 | 1.55032 | 75.50 | 0.5400 | +0.0277 | HOYA FCD705, 550/755 | Confident | SLD inferred |
 | L5 | 1.43700 | 95.10 | 0.5334 | +0.0564 | HOYA FCD100 / S-FPL53 class | Confident | FLD |
 | L6 | 1.90043 | 37.37 | 0.5772 | -0.0038 | HOYA TAFD37A class, 900/374 | Confident/class | - |
 | L7 | 1.92286 | 20.88 | 0.6388 | +0.0281 | SCHOTT N-SF66 / HOYA E-FDS1-W class, 923/209 | Confident | - |
-| L8 | 1.72047 | 34.71 | 0.5834 | -0.0024 | dense flint class, 720/347 | Class | - |
-| L9 | 1.85478 | 24.80 | 0.6122 | +0.0086 | high-index high-dispersion class, 855/248 | Class | - |
+| L8 | 1.72047 | 34.71 | 0.5834 | -0.0024 | SCHOTT N-KZFS8, 720/347 | Confident | - |
+| L9 | 1.85478 | 24.80 | 0.6122 | +0.0086 | OHARA S-NBH56, 855/248 | Confident | - |
 | L10 | 1.87071 | 40.73 | 0.5682 | -0.0067 | HOYA TAFD32 class, 871/407 | Class | - |
 | L11 | 1.83481 | 42.72 | 0.5648 | -0.0065 | HOYA TAFD5G / S-LAH55V class | Confident | - |
 | L12 | 1.43700 | 95.10 | 0.5334 | +0.0564 | HOYA FCD100 / S-FPL53 class | Confident | FLD |
@@ -177,11 +177,13 @@ The patent tabulates nd, νd, and θgF but does not name vendors. The table belo
 | L14 | 1.43700 | 95.10 | 0.5334 | +0.0564 | HOYA FCD100 / S-FPL53 class | Confident | FLD |
 | L15 | 1.88300 | 40.80 | 0.5654 | -0.0094 | HOYA TAFD30 / S-LAH58 class | Confident | - |
 | L16 | 1.49700 | 81.61 | 0.5388 | +0.0375 | HOYA FCD1 / SCHOTT N-PK52A / S-FPL51-equivalent | Confident | SLD inferred |
-| L17 | 1.55332 | 71.68 | 0.5402 | +0.0210 | moldable low-dispersion class, 553/717 | Class | SLD inferred / asphere |
+| L17 | 1.55332 | 71.68 | 0.5402 | +0.0210 | HOYA M-FCD500, 553/717 | Confident | SLD inferred / asphere |
 
-Δθ follows the patent's definition: Δθ = θgF - (0.648285 - 0.00180123 × νd) (¶0012).
+Δθ follows the patent's definition: Δθ = θgF - (0.648285 - 0.00180123 × νd) (¶0012). The companion data file stores `dPgF` in the project engine's Schott-normal-line convention, so those structured values differ slightly from the patent-condition Δθ figures in this table.
 
 The three FLD elements are L5, L12, and L14. All three share nd = 1.43700, νd = 95.10, θgF = 0.5334, matching the FCD100/S-FPL53 fluorophosphate class. The most defensible SLD candidates are L4, L16, and L17, because they are the remaining high-Abbe low-dispersion glasses after the FLD trio. Sigma's public material confirms the count but does not assign the marketing grades to individual elements.
+
+**Display-key note.** The patent publishes θgF for every glass row, so the data file retains `dPgF` on all 17 elements for chromatic tracing. The `apd` display flag is intentionally narrower: the diagram visually keys L5, L12, and L14 as FLD; L4, L16, and L17 as SLD candidates; and L7 as the strong positive-APD high-index flint in the first G2 achromat. The remaining high-index, moldable, and achromat-partner glasses keep their measured partial-dispersion data but are not colored as APD elements.
 
 ## Focus Mechanism
 

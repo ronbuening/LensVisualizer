@@ -62,7 +62,7 @@ nd = 1.92286, νd = 20.88. Glass: E-FDS1 (Hoya), dense flint. f = -85.8 mm.
 E1 is the patent's frontmost component G1 (¶0055). It is a high-index, very low-Abbe dense flint, used not for color correction but for compact negative power at the front of a fast retrofocus system. Conditional expression (3) exists largely to keep this component's negative distortion contribution within a usable range.
 
 **E2 — Negative meniscus, convex to object, both surfaces aspherical.**  
-nd = 1.69350, νd = 53.20. Glass: M-LAC130 (Hoya), moldable lanthanum crown. f = -64.9 mm.
+nd = 1.69350, νd = 53.20. Glass: M-LAC130 (HOYA), moldable lanthanum crown. f = -64.9 mm.
 
 E2 is the front molded asphere. Its object-side surface is convex toward the object, satisfying the patent's preferred arrangement for correcting distortion and field curvature with fewer elements (¶0041). Both surfaces are aspherical, and the glass designation is consistent with a press-molded optical element.
 
@@ -117,16 +117,16 @@ nd = 1.59282, νd = 68.63. Glass: FCD515 (Hoya). f = +39.5 mm.
 E13 is one of the main positive-power elements of L3. Its ED glass limits the color penalty of placing a strong positive singlet close to the image side of a fast wide-angle system.
 
 **E14 — Biconcave negative.**  
-nd = 1.70154, νd = 41.15. Glass: BAFD7 (Hoya). f = -58.7 mm.
+nd = 1.70154, νd = 41.15. Glass: BAFD7 (HOYA). f = -58.7 mm.
 
 E14 supplies negative field-balancing power between the strong positive E13 and the rear asphere E15. It helps keep the final converging group from producing excessive positive Petzval curvature.
 
 **E15 — Biconvex positive, both surfaces aspherical.**  
-nd = 1.76450, νd = 49.10. Glass: unmatched 764/491; probable moldable Hoya M-TAF101 class, but non-unique. f = +30.9 mm.
+nd = 1.76450, νd = 49.10. Glass: 764491 L-LAM69 / moldable lanthanum-crown class, with no public Sellmeier match. f = +30.9 mm.
 
 E15 is the strongest individual positive element in the design and the rear molded asphere. Its two aspherical surfaces work close to the image, where they can control spherical aberration, coma, and residual field behavior after the triplet and rear singlets have set the basic convergence.
 
-The glass label is intentionally cautious. The stored nd/νd pair does not exactly match a single public catalog glass. Hoya M-TAF101 is construction-consistent because E15 is a molded asphere and the rest of the palette is overwhelmingly Hoya, but the residual is large enough that the data file labels the element as unmatched/probable rather than asserting an exact catalog identity.
+The glass label is intentionally cautious. The stored nd/νd pair does not exactly match a public coefficient-backed catalog glass, so the data file preserves the six-digit 764491 code and the low-softening lanthanum-crown class rather than asserting a specific catalog identity.
 
 ## Glass Identification and Selection
 
@@ -135,15 +135,15 @@ The prescription does not name glass vendors; it gives nd and νd values. The id
 | Elements | nd | νd | Code | Catalog identification | Optical role |
 |---|---:|---:|---|---|---|
 | E1 | 1.92286 | 20.88 | 923/209 | E-FDS1 (Hoya) | Dense flint front diverger |
-| E2 | 1.69350 | 53.20 | 694/532 | M-LAC130 (Hoya) | Moldable front asphere |
+| E2 | 1.69350 | 53.20 | 694/532 | M-LAC130 (HOYA) | Moldable front asphere |
 | E3 | 1.49700 | 81.61 | 497/816 | FCD1 (Hoya) / S-FPL51 class | SLD-class ED front meniscus |
 | E4 | 1.88300 | 40.80 | 883/408 | TAFD30 (Hoya) | High-index positive collector |
 | E5, E10 | 1.43700 | 95.10 | 437/951 | FCD100 (Hoya) / S-FPL53 class | FLD-class axial-color correction |
 | E6 | 2.00100 | 29.13 | 1001/291 | TAFD55 (Hoya) | Very-high-index flint partner |
 | E7, E8, E12, E13 | 1.59282 | 68.63 | 593/686 | FCD515 (Hoya) | SLD-class ED crowns |
 | E9, E11 | 1.80610 | 33.27 | 806/333 | NBFD15 (Hoya) | Dense-flint cemented partners |
-| E14 | 1.70154 | 41.15 | 702/412 | BAFD7 (Hoya) | Barium dense flint field balancer |
-| E15 | 1.76450 | 49.10 | 764/491 | Unmatched; probable M-TAF101 class | Rear molded asphere |
+| E14 | 1.70154 | 41.15 | 702/412 | BAFD7 (HOYA) | Barium dense flint field balancer |
+| E15 | 1.76450 | 49.10 | 764/491 | L-LAM69 / moldable lanthanum-crown class; no public Sellmeier match | Rear molded asphere |
 
 The FLD/SLD assignment is therefore straightforward. E5 and E10 are the two FLD elements. E3, E7, E8, E12, and E13 are the five SLD-class low-dispersion elements. This exactly matches Sigma's published special-glass count.
 

@@ -35,7 +35,7 @@ export interface GlassEntry {
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
- * GLASS CATALOG — 247 vendor-verified entries (Phase 18, May 2026)
+ * GLASS CATALOG — 252 vendor-verified entries (Phase 19, May 2026)
  *
  * Coefficients are taken from authoritative public vendor catalogs. Each
  * entry's `source` field cites the document or database used. To verify a
@@ -3113,5 +3113,61 @@ export const RAW_CATALOG: readonly GlassEntry[] = [
     PgF: 0.6093,
     code6: "850270",
     source: "Hikari Optical Glass Catalog 2023, J-LASFH23 page (formula 3 power series, d-code 850270).",
+  },
+
+  /* ────── Phase 19 Sigma patent-audit additions (May 2026) ──────
+   * Coefficient-backed HOYA rows needed by the Sigma 105/1.4, 20/1.4,
+   * and 14-24/2.8 patent audit. All are Zemax formula-3 polynomial rows
+   * from HOYA's 2017 public AGF as mirrored by refractiveindex.info.
+   */
+  {
+    name: "PCD40",
+    vendor: "Hoya",
+    polynomial: [2.5844463, -0.0090521858, 0.014301987, 0.0001705077, 0.000004964536, -0.00000012927479],
+    nd: 1.61997,
+    vd: 63.88,
+    PgF: 0.5457,
+    code6: "620639",
+    source: "Hoya Zemax catalog 2017-04-01 via refractiveindex.info; PCD40 page (formula 3 polynomial).",
+  },
+  {
+    name: "M-LAC130",
+    vendor: "Hoya",
+    polynomial: [2.813412, -0.01332448, 0.01927865, 0.0004124452, -0.000009940432, 0.0000009622024],
+    nd: 1.6935,
+    vd: 53.2,
+    PgF: 0.5484,
+    code6: "694532",
+    source: "Hoya Zemax catalog 2017-04-01 via refractiveindex.info; M-LAC130 page (formula 3 polynomial).",
+  },
+  {
+    name: "M-BACD5N",
+    vendor: "Hoya",
+    polynomial: [2.48951, -0.01224496, 0.01294262, 0.0003490449, -0.00001777228, 0.0000009113719],
+    nd: 1.58913,
+    vd: 61.25,
+    PgF: 0.5401,
+    code6: "589613",
+    source: "Hoya Zemax catalog 2017-04-01 via refractiveindex.info; M-BACD5N page (formula 3 polynomial).",
+  },
+  {
+    name: "M-TAFD305",
+    vendor: "Hoya",
+    polynomial: [3.327184, -0.01343242, 0.033398, 0.001006047, -0.00002136908, 0.000003972561],
+    nd: 1.85135,
+    vd: 40.1,
+    PgF: 0.5697,
+    code6: "851401",
+    source: "Hoya Zemax catalog 2017-04-01 via refractiveindex.info; M-TAFD305 page (formula 3 polynomial).",
+  },
+  {
+    name: "BAFD7",
+    vendor: "Hoya",
+    polynomial: [2.8217211, -0.0097265483, 0.024345979, 0.00078406305, -0.000022431497, 0.0000046726029],
+    nd: 1.70154,
+    vd: 41.15,
+    PgF: 0.5774,
+    code6: "702412",
+    source: "Hoya Zemax catalog 2017-04-01 via refractiveindex.info; BAFD7 page (formula 3 polynomial).",
   },
 ];

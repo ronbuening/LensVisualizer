@@ -152,7 +152,7 @@ Three elements in Example 1 use glasses from the KZFS ("short flint special") or
 | L23 | 1.696800 | 55.52 | — | OHARA S-TIM35 | exact | High |
 | L24 | 1.804000 | 46.60 | — | OHARA S-LAH52 | exact | High |
 | L25 | 1.755750 | 24.71 | 0.629 | Hikari J-SFH5 (756247) | catalog-backed | High (patent + Hikari catalog) |
-| L26 | 1.870705 | 40.73 | — | HOYA M-TAFD305 (PGM type) | Δnd ≈ 0.00001 | High (glass ID); uncertain (sourcing) |
+| L26 | 1.870705 | 40.73 | — | TAFD32 (HOYA) | Δnd ≈ 0.00001 | High |
 | L31 | 1.755000 | 52.34 | — | J-LASKH2 (Hikari) | exact | High |
 | L32 | 1.433843 | 95.27 | — | CaF₂ (**fluorite**) | Δnd < 0.00001 | High |
 | L33 | 1.654130 | 39.72 | — | Schott N-KZFS5 / OHARA S-LAM61 (SR candidate) | Δnd ≈ 0.00001 | High |
@@ -162,7 +162,7 @@ Three elements in Example 1 use glasses from the KZFS ("short flint special") or
 | L43 | 1.846660 | 23.82 | — | OHARA S-TIH53W | Δνd = 0.04 | High |
 | L51 | 2.001000 | 29.12 | — | S-LAH99 / TAFD55 (001291, HRI) | exact | High |
 | L52 | 1.729160 | 54.61 | — | S-LAL18 (OHARA) | exact | High |
-| L53 | 1.870705 | 40.73 | — | HOYA M-TAFD305 (PGM type) | Δnd ≈ 0.00001 | High (glass ID); uncertain (sourcing) |
+| L53 | 1.870705 | 40.73 | — | TAFD32 (HOYA) | Δnd ≈ 0.00001 | High |
 | L54 | 1.805180 | 25.41 | — | OHARA S-LAH63Q (≈S-TIH6) | Δνd = 0.05 | High |
 | L55 | 1.516800 | 64.14 | — | OHARA S-BSL7 | Δνd = 0.06 | High |
 | L56 | 2.001000 | 29.12 | — | S-LAH99 / TAFD55 (001291, HRI) | exact | High |
@@ -170,7 +170,7 @@ Three elements in Example 1 use glasses from the KZFS ("short flint special") or
 | L58 | 1.487490 | 70.31 | — | OHARA S-FSL5 / Schott N-FK5 family | Δνd ≈ 0.08–0.13 | High |
 | L59 | 1.900430 | 37.38 | — | OHARA S-LAH75 | exact | High |
 
-L26 and L53 share the same glass (nd = 1.870705, νd = 40.73). This glass code (1871/407) matches HOYA M-TAFD305 (nd = 1.87070, νd = 40.73) almost exactly, a precision glass mold (PGM) type. No conventional-polishing catalog glass from OHARA, Schott, or HOYA matches within normal tolerances — the nearest conventional glass is Schott N-LASF31A (nd = 1.88300, νd = 40.76), which differs by Δnd = 0.012. The glass may be a Nikon-specified melt, a HOYA special-order variant, or sourced from a supplier not checked (e.g., Sumita or HIKARI).
+L26 and L53 share the same glass (nd = 1.870705, νd = 40.73). This pair round-trips to HOYA TAFD32, code 871/407, in the project catalog. The earlier M-TAFD305 wording belonged to a different 851/401 HOYA moldable glass and is not the correct catalog identity for these Nikon rows.
 
 ---
 
