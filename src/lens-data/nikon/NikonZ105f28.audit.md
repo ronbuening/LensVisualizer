@@ -43,3 +43,8 @@ Patent: WO 2022/097401 A1, expected source for the current prescription
 
 - Public lookup was not used to override labels without the local patent table.
 - This lens remains unresolved until `WO2022097401A1` or an equivalent local patent source is available.
+
+## 2026-05-31 - First-10 mismatch queue recheck
+
+- Rechecked the local untracked `patents/` folder for WO 2022/097401 A1 / `097401`; no matching local PDF is present.
+- No glass or SD changes made. Patent figure/table review remains blocked until the source PDF or a verified local family equivalent is added.

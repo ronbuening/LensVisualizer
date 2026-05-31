@@ -191,7 +191,7 @@ const LENS_DATA = {
       nd: 1.58144,
       vd: 40.89,
       fl: 53.68,
-      glass: "S-NBM51 (OHARA)",
+      glass: "E-FL5 (HOYA)",
       role: "Final positive relay / field-flattening element.",
     },
   ],

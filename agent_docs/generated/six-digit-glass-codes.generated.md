@@ -10,23 +10,24 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **284** lenses scanned
-- **268** total code-only elements found
-- **268** elements in this report
+- **277** total code-only elements found
+- **277** elements in this report
 - **97** distinct lens files affected
 
 ## Codes by Frequency
 
 | Code | Elements | Lens files |
 |---|---:|---:|
+| 770297 | 8 | 6 |
 | 593670 | 7 | 4 |
 | 670571 | 7 | 4 |
 | 593679 | 6 | 4 |
-| 770297 | 6 | 5 |
 | 855252 | 5 | 4 |
 | 662561 | 4 | 1 |
 | 694533 | 4 | 3 |
 | 738323 | 4 | 4 |
 | 764485 | 4 | 4 |
+| 863252 | 4 | 2 |
 | 946180 | 4 | 4 |
 | 001255 | 3 | 3 |
 | 001291 | 3 | 2 |
@@ -60,7 +61,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 813252 | 2 | 1 |
 | 847238 | 2 | 1 |
 | 856401 | 2 | 1 |
-| 863252 | 2 | 1 |
 | 870200 | 2 | 2 |
 | 911352 | 2 | 2 |
 | 933209 | 2 | 2 |
@@ -96,6 +96,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 593355 | 1 | 1 |
 | 593686 | 1 | 1 |
 | 595686 | 1 | 1 |
+| 596670 | 1 | 1 |
 | 602352 | 1 | 1 |
 | 603564 | 1 | 1 |
 | 612313 | 1 | 1 |
@@ -112,6 +113,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 642581 | 1 | 1 |
 | 658397 | 1 | 1 |
 | 667311 | 1 | 1 |
+| 670572 | 1 | 1 |
 | 670575 | 1 | 1 |
 | 672323 | 1 | 1 |
 | 673322 | 1 | 1 |
@@ -121,6 +123,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 683447 | 1 | 1 |
 | 683548 | 1 | 1 |
 | 693495 | 1 | 1 |
+| 694312 | 1 | 1 |
 | 694532 | 1 | 1 |
 | 697485 | 1 | 1 |
 | 700555 | 1 | 1 |
@@ -138,6 +141,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 738493 | 1 | 1 |
 | 741262 | 1 | 1 |
 | 741278 | 1 | 1 |
+| 741526 | 1 | 1 |
 | 741527 | 1 | 1 |
 | 747274 | 1 | 1 |
 | 749501 | 1 | 1 |
@@ -189,6 +193,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 893204 | 1 | 1 |
 | 903354 | 1 | 1 |
 | 904293 | 1 | 1 |
+| 910313 | 1 | 1 |
 | 916364 | 1 | 1 |
 | 930240 | 1 | 1 |
 | 946179 | 1 | 1 |
@@ -223,6 +228,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
+| L4 (Element 4) | 6 | `770297 - dense titanium flint (patent nd=1.77047, vd=29.7; no exact public catalog match)` | 1.77047 / 29.70 | No catalog entry | abbe |
+| L6 (Element 6) | 9 | `770297 - dense titanium flint (patent nd=1.77047, vd=29.7; no exact public catalog match)` | 1.77047 / 29.70 | No catalog entry | abbe |
 | L11 (Element 11) | 19 | `911353 — lanthanum (nd=1.91082, νd=35.3)` | 1.91082 / 35.30 | TAFD35 (trusted Sellmeier) | sellmeier |
 
 ### [CANON RF 24-105mm f/4 L IS USM](../../src/lens-data/canon/CanonRF24105mmf4L.data.ts) - US 2019/0278068 A1
@@ -369,6 +376,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
+| L5 (Element 5) | 9 | `670572 - lanthanum crown (converted d-line estimate from patent e-line data; no exact public catalog match)` | 1.67003 / 57.20 | No catalog entry | abbe |
 | L7 (Element 7) | 12 | `561453 - barium light flint (patent e-line Ne=1.56433, vd=45.3; no exact public catalog match)` | 1.56093 / 45.30 | No catalog entry | abbe |
 
 ### [HASSELBLAD XCD 2,5/90V](../../src/lens-data/hasselblad/HasselbladXCD90mmf25V.data.ts) - JP 2022-99402 A
@@ -597,6 +605,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
 | L6 (Element 6) | 10 | `720502 - lanthanum crown (nd=1.720467, vd~50.2)` | 1.72047 / 50.20 | S-LAL10 (trusted Sellmeier) | sellmeier |
+| L8 (Element 8) | 13 | `741526 - lanthanum crown (patent nd=1.74100, vd~52.6 inferred; no exact public catalog match)` | 1.74100 / 52.60 | No catalog entry | abbe |
 | L9 (Element 9) | 14 | `855399 — high-index lanthanum (patent nd=1.854505, νd≈39.9; no exact public catalog match)` | 1.85451 / 39.90 | No catalog entry | abbe |
 | L16 (Element 16) | 29 | `001255 - ultra-high-index dense flint (nd=2.00069, vd~25.5)` | 2.00069 / 25.50 | TAFD40 (trusted Sellmeier) | sellmeier |
 | L17 (Element 17 (VR)) | 31 | `553555 — borosilicate crown (patent nd=1.552981, νd≈55.5; no exact public catalog match)` | 1.55298 / 55.50 | No catalog entry | abbe |
@@ -844,8 +853,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
+| L4 (Positive contact partner) | 7 | `694312 - short flint (Sony patent nd=1.69416, vd=31.2; no exact public catalog match)` | 1.69416 / 31.20 | No catalog entry | abbe |
+| L5 (LN front element) | 9 | `910313 - dense lanthanum flint (Sony patent nd=1.91048, vd=31.3; no exact public catalog match)` | 1.91048 / 31.30 | No catalog entry | abbe |
 | L6 (LN rear element) | 10 | `Unmatched (777/297 dense short flint; no close OHARA public-catalog match)` | 1.77660 / 29.70 | No catalog entry | abbe |
+| L10 (Rear doublet flint) | 18 | `863252 - dense flint (Sony patent nd=1.86252, vd=25.2; no exact public catalog match)` | 1.86252 / 25.20 | No catalog entry | abbe |
 | L11 (High-index relay positive) | 20 | `Unmatched (933/209 ultra-high-index short flint)` | 1.93323 / 20.90 | No catalog entry | abbe |
+| L12 (Negative Petzval element) | 22 | `863252 - dense flint (Sony patent nd=1.86252, vd=25.2; no exact public catalog match)` | 1.86252 / 25.20 | No catalog entry | abbe |
 
 ### [SONY FE 20–70 mm F4 G](../../src/lens-data/sony/SonyFE2070mmf4G.data.ts) - WO 2023/153076 A1
 
@@ -872,6 +885,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
 | L12 (Element 2) | 2 | `595686 — fluorophosphate crown (patent nd=1.59489, νd=68.6)` | 1.59489 / 68.60 | No catalog entry | abbe |
+| L13 (Element 3) | 4 | `596670 - fluorophosphate crown (patent nd=1.59561, vd=67.0; no exact public catalog match)` | 1.59561 / 67.00 | No catalog entry | abbe |
 | L21 (Element 4) | 6A | `774494 — lanthanum crown (patent nd=1.77373, νd=49.4)` | 1.77373 / 49.40 | No catalog entry | abbe |
 | L22 (Element 5) | 8 | `777297 — dense flint (patent nd=1.77660, νd=29.7)` | 1.77660 / 29.70 | No catalog entry | abbe |
 | L23 (Element 6) | 9 | `930240 — ultra-high-index dense flint (patent nd=1.93024, νd=24.0)` | 1.93024 / 24.00 | No catalog entry | abbe |

@@ -70,7 +70,7 @@ L4 is the rearmost element of G1 and the second ED element. Together with L2, it
 
 ### L5 — Biconcave Negative (cemented to L6)
 
-$N_e = 1.67380$, $\nu_d = 57.2$. Glass: **Lanthanum crown, 670/572 code** — plausible match to CDGM H-LAK6A ($n_d = 1.67003$, $\nu_d = 57.3$); no exact match in OHARA's current S-prefix catalog. $f = -36.5$ mm.
+$N_e = 1.67380$, $\nu_d = 57.2$. Glass: **670572 lanthanum crown** — d-line conversion estimate with no exact public coefficient-backed catalog match. $f = -36.5$ mm.
 
 L5 is the first element of the cemented focusing doublet G2. Its biconcave form ($R_1 = -1185.3$ mm, $R_2 = +25.0$ mm) places almost all of the diverging power on the rear surface, which serves as the cemented junction with L6. The lanthanum-crown-class glass ($\nu_d = 57.2$) combined with L6's higher-dispersion lanthanum crown creates an achromatic cemented pair with net negative power ($f_2 = -72.8$ mm). The near-flat front surface ($R = -1185$ mm) minimizes the sensitivity of the design to positional tolerances during focusing — a critical consideration since this group translates axially.
 
@@ -109,7 +109,7 @@ The design uses 6 distinct glass types across 9 elements. Two elements (L2, L4) 
 | L1, L9 | 1.77621 | 49.6 | S-LAH66 | OHARA | Lanthanum crown; high-$n$ meniscus for power and Petzval control |
 | L2, L4 | 1.49845 | 81.6 | S-FPL51 | OHARA | ED fluorophosphate crown; primary chromatic corrector |
 | L3 | 1.69416 | 31.2 | E-FD8 (689312) | HOYA | Achromatizing flint partner to L2 in G1 |
-| L5 | 1.67380 | 57.2 | Lanthanum crown (670/572); cf. H-LAK6A | CDGM (inferred) | Crown partner in G2 cemented doublet |
+| L5 | 1.67380 | 57.2 | 670572 lanthanum crown | Uncertain | Crown partner in G2 cemented doublet |
 | L6 | 1.83932 | 37.2 | S-LAH60 | OHARA | High-$n$ lanthanum crown in G2 cemented doublet |
 | L7 | 1.56433 | 45.3 | 561453 barium light flint | Uncertain | Biconvex positive; main relay power in G3 |
 | L8 | 1.72538 | 34.7 | S-NBH8 (≡ N-KZFS8) | OHARA | KZFS-class; anomalous $\Delta P_{gF}$ for secondary spectrum correction |
@@ -118,7 +118,7 @@ The chromatic strategy is layered. Primary achromatization in G1 uses the classi
 
 The patent's Condition 6 ($N_e + 0.015\nu_d > 2.58$) selects specifically for the ED glasses at L2 and L4 — it defines a curve in the $N_e$–$\nu_d$ diagram that excludes ordinary crowns and accepts only fluorophosphate or fluorite-class materials. S-FPL51 satisfies this comfortably at $1.498 + 0.015 \times 81.6 = 2.722$.
 
-For L5 and L7, where the patent's e-line indices do not match any single current catalog entry within tight tolerance, the glasses may be proprietary Fujinon melts, early-catalog designations since superseded, or glasses from vendors (HIKARI, Sumita, CDGM) whose catalog data was not publicly indexed at the time of filing. L5 at 670/572 is plausibly CDGM H-LAK6A ($n_d = 1.67003$, $\nu_d = 57.3$). L7 at 561453 remains unconfirmed, so the six-digit code is reported in lieu of a catalog name. L3 now uses the coefficient-backed HOYA E-FD8 entry because the stored d-line conversion matches the 689312 code family.
+For L5 and L7, where the patent's e-line indices do not match any single current catalog entry within tight tolerance, the glasses may be proprietary Fujinon melts, early-catalog designations since superseded, or glasses from vendors (HIKARI, Sumita, CDGM) whose catalog data was not publicly indexed at the time of filing. L5 is therefore kept as the unresolved 670572 code rather than a named catalog glass. L7 at 561453 remains unconfirmed, so the six-digit code is reported in lieu of a catalog name. L3 now uses the coefficient-backed HOYA E-FD8 entry because the stored d-line conversion matches the 689312 code family.
 
 ## Focus Mechanism
 

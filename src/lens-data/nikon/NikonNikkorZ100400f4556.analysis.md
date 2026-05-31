@@ -120,7 +120,7 @@ The production lens achieves minimum focus distances of 0.75 m at 100 mm and 0.9
 |---|---|---|---|---|---|
 | L4 | 1.804400 | S-LAH63 | 39.6 | Negative | G2 |
 | L6 | 1.720467 | 720502 code; no exact catalog match | 50.2 | Positive | G3 |
-| L8 | 1.741000 | S-LAM3 | 52.6 | Negative | G3 |
+| L8 | 1.741000 | 741526 code; no exact catalog match | 52.6 | Negative | G3 |
 | L9 | 1.854505 | 855399 code; no exact public catalog match | 39.9 | Positive | G3 |
 | L10 | 1.755000 | S-LAH97 | 52.3 | Negative | G3 |
 | L11 | 1.593190 | S-SK14 | 60.5 | Positive | G4 |
@@ -128,7 +128,7 @@ The production lens achieves minimum focus distances of 0.75 m at 100 mm and 0.9
 | L15 | 1.808090 | S-NPH1 | 22.8 | Positive | G4 |
 | L16 | 2.000690 | 001255 code; no exact catalog match | 25.5 | Negative | G4 |
 | L17 | 1.552981 | 553555 code; no exact public catalog match | 55.5 | Positive | G4 (VR) |
-| L18 | 1.953750 | S-LAH99 | 32.3 | Negative | G4 (VR) |
+| L18 | 1.953750 | S-LAH98 | 32.3 | Negative | G4 (VR) |
 | L19 | 1.603420 | 603564 code; no exact public catalog match | 56.4 | Positive | G4 |
 | L20 | 1.850260 | 850323 code; no exact catalog match | 32.3 | Positive | G5 |
 | L21 | 1.729160 | S-LAL18 | 54.7 | Negative | G5 |

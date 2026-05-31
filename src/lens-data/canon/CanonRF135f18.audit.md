@@ -4,11 +4,33 @@ Patent: US 2023/0213745 A1, Example 4 (Nakada / Canon)
 
 ---
 
+## 2026-05-31 — Catalog-mismatch follow-up
+
+### Phase 1 — Glass corrections
+
+| Element / surface | Before | After | Justification |
+|---|---|---|---|
+| L4 / S6 | `770297 — S-TIH18 family (OHARA)` | `770297 - dense titanium flint...` | Patent Example 4 row 6 gives nd=1.77047, vd=29.7. The current catalog has an actual `S-TIH18` row at nd=1.72151 / vd=29.23, so the old descriptive family token created a false resolver match. |
+| L6 / S9 | `770297 — S-TIH18 family (OHARA)` | `770297 - dense titanium flint...` | Same patent glass as L4; row 9 repeats nd=1.77047, vd=29.7. |
+| L15 / S26 | `S-LAL8 (OHARA)` | `N-SSK5 (Schott; catalog-equivalent 658509 extra-dense crown)` | Patent row 26 gives nd=1.65844, vd=50.9. Catalog S-LAL8 is nd=1.712995; Schott N-SSK5 round-trips the patent row. |
+
+No new catalog entries were added. N-SSK5 is already catalog-backed, and the local patent does not provide Sellmeier coefficients for the unresolved 770297 glass.
+
+### Phase 2 — Retained-information audit
+
+- Patent Fig. 5 was checked against the stored SD profile. The patent does not publish clear apertures; the existing SD estimates remain visually consistent with the large L1 group, compact L2 focus element, and rear L3 expansion.
+
+### Phase 4 — Analysis sync
+
+- Updated the analysis glass text and tables for 770297 and N-SSK5.
+
+---
+
 ## 2026-05-01 — L11 glass annotation fix: resolver short-circuit
 
 | Element / surface | Field | Before | After | Justification |
 |---|---|---|---|---|
-| L11 (surface 19) | `glass` | `"911/353 — S-LAH58 family (OHARA)"` | `"911353 — lanthanum (nd=1.91082, νd=35.3)"` | The prior string contained the token "S-LAH58" which the resolver matched to catalog S-LAH58 (nd=1.883), triggering a Δnd=0.028 mismatch in the scan. The 6-digit token "911353" (no slash) is not in CODE6_INDEX, so the resolver returns null and Abbe approximation uses the correct patent values. When a catalog entry for this glass is added with `code6: "911353"`, this annotation auto-upgrades to Sellmeier — same pattern as "770297 — S-TIH18 family (OHARA)" for L4/L6. Analysis file updated to remove the "S-LAH58 family" label from §7.2 and §8. |
+| L11 (surface 19) | `glass` | `"911/353 — S-LAH58 family (OHARA)"` | `"911353 — lanthanum (nd=1.91082, νd=35.3)"` | The prior string contained the token "S-LAH58" which the resolver matched to catalog S-LAH58 (nd=1.883), triggering a Δnd=0.028 mismatch in the scan. The 6-digit token "911353" (no slash) is not in CODE6_INDEX, so the resolver returns null and Abbe approximation uses the correct patent values. When a catalog entry for this glass is added with `code6: "911353"`, this annotation auto-upgrades to Sellmeier. Analysis file updated to remove the "S-LAH58 family" label from §7.2 and §8. |
 
 Verification: `npm test -- catalogMismatchScan` confirms surface 19 no longer appears in the canon-rf-135 mismatch table.
 
@@ -91,7 +113,7 @@ No APO language added or removed — no dPgF or line-index data available from t
 
 ### Outstanding follow-ups
 
-- **S-NPH7** (L14, nd = 2.00069, νd = 25.5) and **S-LAL8** (L15, nd = 1.65844, νd = 50.9) are not in the glass catalog. Both fall back to Abbe approximation. Consider adding to catalog if confirmed to appear in other lenses.
-- **S-TIH18 / 770297 glass:** Also appears in CanonRF2870mmf28. Not yet in catalog. Sellmeier data would allow Abbe → Sellmeier upgrade for both lenses.
+- **S-NPH7** (L14, nd = 2.00069, νd = 25.5) is not in the glass catalog and falls back to Abbe approximation. Consider adding it if coefficient-backed source data is found.
+- **770297 glass:** Also appears in CanonRF2870mmf28. Not yet in catalog. Sellmeier data would allow Abbe → Sellmeier upgrade for both lenses.
 - **N-SF66 / E-FDS1 (923/209):** Appears in multiple Canon and Nikon files. Schott N-SF66 Sellmeier is publicly available. Adding it to the catalog would upgrade L8 and L10 from Abbe approx to full Sellmeier.
 - **S-LAH58 family (911/353):** Appears in FujifilmXF200mmf2R and other lenses. Hoya TAFD35 (referenced in FujifilmXF50140mmf28R) may be the same glass. Sourcing Sellmeier for 911/353 glass would unlock a catalog entry.

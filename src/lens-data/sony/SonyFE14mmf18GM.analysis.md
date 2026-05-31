@@ -52,13 +52,13 @@ L3 is the front-group ED negative element. At this location the chief-ray height
 
 ### L4 — Biconvex Positive Contact Partner
 
-nd = 1.69416, νd = 31.2. Glass: S-TIM28-class short flint; the patent index aligns with catalog ne. f = +29.10 mm.
+nd = 1.69416, νd = 31.2. Glass: 694312 patent-code short flint; no exact public catalog match is confirmed. f = +29.10 mm.
 
 L4 is the first strong positive element in the front group. Its high dispersion complements the low-dispersion L3, and its positive power begins the recovery from the strongly negative front converter section. The L3/L4 zero spacing explains the difference between the patent's element-by-element prescription and the production 11-group specification.
 
 ### L5-L6 — Cemented Negative-Positive Doublet LN
 
-L5: nd = 1.91048, νd = 31.3. Glass: S-LAH95-class dense lanthanum flint; the patent index aligns with catalog ne. f = -12.50 mm.  
+L5: nd = 1.91048, νd = 31.3. Glass: 910313 patent-code dense lanthanum flint; no exact public catalog match is confirmed. f = -12.50 mm.
 L6: nd = 1.77660, νd = 29.7. Glass: unmatched 777/297 dense short flint. f = +22.14 mm.  
 Cemented unit LN: f = -31.20 mm.
 
@@ -83,7 +83,7 @@ L8 opens the moving focus subgroup G2F and is the Super-ED element corresponding
 ### L9-L10 — Cemented ED/Flint Doublet
 
 L9: nd = 1.49845, νd = 81.6. Glass: S-FPL51-class ED fluorophosphate; the patent index aligns with catalog ne. f = +31.19 mm.  
-L10: nd = 1.86252, νd = 25.2. Glass: S-NBH56-class dense flint, soft match. f = -15.55 mm.  
+L10: nd = 1.86252, νd = 25.2. Glass: 863252 patent-code dense flint; no exact public catalog match is confirmed. f = -15.55 mm.
 Cemented unit: f = -32.55 mm.
 
 This doublet is the main conventional chromatic pairing in the rear group. L9 supplies positive ED-crown power, while L10 supplies high-index, high-dispersion negative power. The cemented pair is net negative, which also helps reduce the positive Petzval burden of the relay.
@@ -96,7 +96,7 @@ L11 is the strongest positive element in G2 after L8 when judged by standalone f
 
 ### L12 — Biconcave Negative Element
 
-nd = 1.86252, νd = 25.2. Glass: S-NBH56-class dense flint, soft match. f = -36.19 mm.
+nd = 1.86252, νd = 25.2. Glass: 863252 patent-code dense flint; no exact public catalog match is confirmed. f = -36.19 mm.
 
 L12 is the negative element preceding the strongest negative air lens in G2. Its rear surface and L13's front surface form the air lens LA identified by the patent. L12 contributes directly to field flattening and to the control of higher-order residuals before the final aspherical correction stage.
 
@@ -121,19 +121,19 @@ The patent's refractive-index column is labeled nd, but several entries align ex
 | L1 | 1.58547 / 59.5 | S-BAL42-class OHARA equivalent, not S-BAL41 | High class match | Low-density front negative meniscus |
 | L2 | 1.73234 / 54.7 | S-LAL18-class OHARA equivalent | High class match | Second negative meniscus |
 | L3 | 1.59489 / 68.6 | S-FPM2-class ED fluorophosphate | Soft match | Front-group lateral-color correction |
-| L4 | 1.69416 / 31.2 | S-TIM28-class short flint | High class match | Positive contact partner to L3 |
-| L5 | 1.91048 / 31.3 | S-LAH95-class dense lanthanum flint, not S-LAH79 | High class match | Negative element of LN |
+| L4 | 1.69416 / 31.2 | 694312 short flint | Patent-code fallback | Positive contact partner to L3 |
+| L5 | 1.91048 / 31.3 | 910313 dense lanthanum flint, not S-LAH79 | Patent-code fallback | Negative element of LN |
 | L6 | 1.77660 / 29.7 | Unmatched 777/297 dense short flint | Unmatched | Positive element of LN |
 | L7 | 1.77173 / 49.2 | S-LAH66-class dense lanthanum flint | Soft match | Positive LP asphere |
 | L8 | 1.43810 / 95.1 | S-FPL53/S-FPL55-class super-ED fluorophosphate | Soft match | Super-ED axial-color corrector |
 | L9 | 1.49845 / 81.6 | S-FPL51-class ED fluorophosphate | High class match | ED crown in rear doublet |
-| L10 | 1.86252 / 25.2 | S-NBH56-class dense flint | Soft match | Flint in rear doublet |
+| L10 | 1.86252 / 25.2 | 863252 dense flint | Patent-code fallback | Flint in rear doublet |
 | L11 | 1.93323 / 20.9 | Unmatched 933/209 ultra-high-index short flint | Unmatched | Strong high-index positive relay |
-| L12 | 1.86252 / 25.2 | S-NBH56-class dense flint | Soft match | Negative Petzval element |
+| L12 | 1.86252 / 25.2 | 863252 dense flint | Patent-code fallback | Negative Petzval element |
 | L13 | 1.85639 / 40.1 | S-LAH89-class lanthanum flint | High class match | Rear aspherical field corrector |
 | L14 | 1.62228 / 63.9 | S-PHM52-class phosphate crown | Soft match | Rear field/chief-ray correction |
 
-Two superficially plausible identifiers should be avoided: S-BAL41 does not match L1's index/dispersion pair, and S-LAH79 is not the correct dense-lanthanum-flint neighbor for L5. L5 aligns with the S-LAH95 class when the patent index is compared to catalog ne.
+Several superficially plausible identifiers should be avoided: S-BAL41 does not match L1's index/dispersion pair, S-LAH79 is not the correct dense-lanthanum-flint neighbor for L5, and the S-TIM28 / S-LAH95 / S-NBH56 soft labels resolve to catalog d-line entries that do not round-trip these patent rows. The data file therefore keeps L4, L5, L10, and L12 as code-only patent glasses until a coefficient-backed exact match is available.
 
 The chromatic strategy uses three low-dispersion stations: L3 in the front group for lateral color, L8 as the Super-ED rear-group opener for axial color, and L9 as the ED crown in the cemented rear doublet. High-index flints L4, L5, L6, L10, L11, L12, and L13 supply complementary dispersion and compact power.
 

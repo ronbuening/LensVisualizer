@@ -34,3 +34,16 @@ Patent: US 2002/0075570 A1, Embodiment 1
 - `npm run format:check` - passed.
 - `npm run lint` - passed.
 - `npm run test` - passed, 131 test files / 1666 tests.
+
+## 2026-05-31 - Catalog-mismatch second-batch recheck
+
+Reviewed the local untracked file `patents/US20020075570A1.pdf`, Embodiment 1 / Table 1.
+
+| Element / surface | Field | Before | After | Justification |
+|---|---|---|---|---|
+| L5 / S9 | `glass` | `Lanthanum crown (670/572 code, uncertain; cf. H-LAK6A, CDGM)` | `670572 - lanthanum crown...` | Embodiment 1 row 9 gives e-line Ne=1.67380 and vd=57.2; the data file stores the d-line conversion nd=1.67003. No exact coefficient-backed public catalog match was found, and the H-LAK6A hint caused a false catalog resolution, so the row is code-only. |
+
+Figure / SD check:
+
+- Rendered Figure 1 from the local PDF, page 1. Figure 1 is the matching Embodiment 1 cross-section.
+- The patent does not publish semi-diameters. The stored SD profile visually matches the figure's medium-format telephoto envelope: large front group, smaller translating G2 doublet, stop gap, and a compact rear triplet. No SD edits were made.

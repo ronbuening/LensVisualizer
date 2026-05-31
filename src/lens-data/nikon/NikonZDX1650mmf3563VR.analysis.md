@@ -77,9 +77,9 @@ L22's relatively high index (1.755) keeps the cemented interface's angular refra
 
 ### L23 — Negative Meniscus (G2b, front element of cemented doublet / VR group)
 
-nd = 1.95375, νd = 32.33, ng = 1.99206. Glass: S-LAH79 (OHARA) — ultra-high-index dense lanthanum flint. f = −28.1 mm (standalone, in air).
+nd = 1.95375, νd = 32.33, ng = 1.99206. Glass: S-LAH98 (OHARA) — ultra-high-index dense lanthanum flint. f = −28.1 mm (standalone, in air).
 
-L23 is a negative meniscus with its convex surface facing the object, forming the flint component of the G2b cemented doublet (the VR group). The nd/νd pair of 1.95375/32.33 matches OHARA S-LAH79 (catalog: nd = 1.95375, νd = 32.32; Δνd = 0.01). At nd ≈ 1.954, S-LAH79 is among the densest commercially available optical glasses. The extreme refractive index serves two purposes: it minimizes the Petzval contribution of this high-power negative surface, and it provides strong chromatic contrast against its cemented partner L24 (νd = 81.61), yielding effective axial color correction near the stop.
+L23 is a negative meniscus with its convex surface facing the object, forming the flint component of the G2b cemented doublet (the VR group). The nd/νd pair of 1.95375/32.33 matches OHARA S-LAH98 (catalog: nd = 1.95375, νd = 32.32; Δνd = 0.01). At nd ≈ 1.954, S-LAH98 is among the densest commercially available optical glasses. The extreme refractive index serves two purposes: it minimizes the Petzval contribution of this high-power negative surface, and it provides strong chromatic contrast against its cemented partner L24 (νd = 81.61), yielding effective axial color correction near the stop.
 
 As part of the VR group, L23 moves perpendicular to the optical axis to correct image blur. The cemented construction ensures that the doublet moves as a rigid unit during decentering, maintaining the internal chromatic correction even under VR displacement. The patent notes that decentering-induced coma is corrected by the surrounding subgroups G2a and G2c (¶0009).
 
@@ -115,11 +115,11 @@ The dual-aspherical construction on the focus group is optically motivated: beca
 
 ### L41 — Positive Meniscus, Concave to Object (G4 — Field Flattener)
 
-nd = 1.95375, νd = 32.33, ng = 1.99206. Glass: S-LAH79 (OHARA) — same ultra-high-index dense lanthanum flint as L23. f = +37.7 mm.
+nd = 1.95375, νd = 32.33, ng = 1.99206. Glass: S-LAH98 (OHARA) — same ultra-high-index dense lanthanum flint as L23. f = +37.7 mm.
 
 L41 is a positive meniscus with its concave surface facing the object, forming the fixed rear group G4. Its primary role is Petzval field flattening: the positive meniscus, positioned close to the image plane with strongly curved surfaces (R17 = −345.38, R18 = −32.78), bends the field flat without introducing substantial spherical aberration because the marginal ray height is small at this position.
 
-The choice of S-LAH79 (nd ≈ 1.954) for this element is driven by Petzval optimization. A positive element's Petzval contribution is proportional to φ/(n·n'), and maximizing the refractive index minimizes this contribution per unit of optical power. This allows L41 to provide positive power for field flattening while adding minimal inward Petzval curvature — counteracting the outward Petzval tendency of the overall negative-led design.
+The choice of S-LAH98 (nd ≈ 1.954) for this element is driven by Petzval optimization. A positive element's Petzval contribution is proportional to φ/(n·n'), and maximizing the refractive index minimizes this contribution per unit of optical power. This allows L41 to provide positive power for field flattening while adding minimal inward Petzval curvature — counteracting the outward Petzval tendency of the overall negative-led design.
 
 The element's generous center thickness of 4.20 mm and relatively large radii ratio suggest that it also contributes to telecentricity at the image plane, directing chief rays toward near-normal incidence on the sensor — important for digital sensors where off-axis light falloff increases with chief ray angle.
 
@@ -134,15 +134,15 @@ The glass palette for this 9-element design uses 6 distinct glass types plus one
 | L12 | 1.92286 | 20.88 | 923/209 | S-NPH2 (OHARA) | High-index Petzval reducer in G1 |
 | L21 | 1.83441 | 37.28 | 834373 | Unresolved dense LaF class | Flint partner in G2a achromat |
 | L22 | 1.75500 | 52.34 | 755523 | J-LASKH2 (Hikari) | Crown partner in G2a achromat |
-| L23 | 1.95375 | 32.33 | 954/323 | S-LAH79 (OHARA) | High-index flint in G2b achromat + VR |
+| L23 | 1.95375 | 32.33 | 954/323 | S-LAH98 (OHARA) | High-index flint in G2b achromat + VR |
 | L24 | 1.49700 | 81.61 | 497/816 | S-FPL51 / FCD1 | ED crown in G2b achromat |
 | L25 | 1.79526 | 45.25 | 795453 | Q-LASFPH3S (Hikari) | G2c VR compensator |
 | L31 | 1.80139 | 45.46 | 801455 | Unresolved dense LaF class | Focus group (dual asphere) |
-| L41 | 1.95375 | 32.33 | 954/323 | S-LAH79 (OHARA) | Field flattener |
+| L41 | 1.95375 | 32.33 | 954/323 | S-LAH98 (OHARA) | Field flattener |
 
 The chromatic strategy centers on the G2b doublet (L23 + L24). The Abbe number contrast of Δνd ≈ 49.3 is the largest in the system, and the ED glass (L24) provides anomalous partial dispersion for secondary spectrum reduction. The G2a doublet (L21 + L22) provides a secondary achromatic correction site with a more modest Δνd ≈ 15.1. Together, these two cemented pairs — both positioned near the aperture stop where axial ray bundles are tallest — control longitudinal chromatic aberration across the full zoom range.
 
-The catalog-backed identifications now include OHARA S-LAH55 / Hikari J-LASF05 for L11, Hikari J-LASKH2 for L22, Hikari Q-LASFPH3S for L25, OHARA S-NPH2 for L12, and OHARA S-LAH79 for L23/L41. The ED element L24 matches both OHARA S-FPL51 (νd = 81.54) and HOYA FCD1 (νd = 81.61); the closer νd match favors FCD1, but both are standard ED fluorophosphate crowns with interchangeable optical behavior. L21 (834373) and L31 (801455) remain code-labeled dense lanthanum flints until a public coefficient-backed source is found.
+The catalog-backed identifications now include OHARA S-LAH55 / Hikari J-LASF05 for L11, Hikari J-LASKH2 for L22, Hikari Q-LASFPH3S for L25, OHARA S-NPH2 for L12, and OHARA S-LAH98 for L23/L41. The ED element L24 matches both OHARA S-FPL51 (νd = 81.54) and HOYA FCD1 (νd = 81.61); the closer νd match favors FCD1, but both are standard ED fluorophosphate crowns with interchangeable optical behavior. L21 (834373) and L31 (801455) remain code-labeled dense lanthanum flints until a public coefficient-backed source is found.
 
 ## Focus Mechanism
 
@@ -162,7 +162,7 @@ The patent (¶0173) notes that the G3 focusing group is suitable for autofocus d
 
 ## Image Stabilization (VR)
 
-Vibration reduction is achieved by decentering Group G2b — the cemented doublet comprising L23 (S-LAH79 flint) and L24 (S-FPL51/FCD1 ED crown) — perpendicular to the optical axis (¶0166). This is a standard lens-shift VR mechanism.
+Vibration reduction is achieved by decentering Group G2b — the cemented doublet comprising L23 (S-LAH98 flint) and L24 (S-FPL51/FCD1 ED crown) — perpendicular to the optical axis (¶0166). This is a standard lens-shift VR mechanism.
 
 The placement of the VR group between G2a and G2c within the positive G2 assembly is deliberate. The patent (¶0009) explains that G2a (in front of G2b) and G2c (behind it) together correct the decentering-induced coma and peripheral image plane tilt that would otherwise degrade image quality during VR operation. By sandwiching the VR group between two correction subgroups, the design maintains acceptable off-axis performance even at maximum decentering displacement.
 
@@ -281,7 +281,7 @@ Condition (6) is notable: f21/f22 = 1.029, indicating that the G2a and G2b subgr
 
 ## Petzval Field Curvature
 
-The surface-by-surface Petzval sum, computed via $\sum \varphi_i / (n_i \cdot n_i')$ at each refracting surface, is +0.00230 mm⁻¹, yielding a Petzval radius of approximately 435 mm. This was verified independently by paraxial ABCD ray trace. At the wide-end focal length of 16.46 mm, the Petzval radius-to-EFL ratio is about 26 — a moderate value indicating that the design relies on a combination of Petzval correction (high-index glasses, the negative G1/G3 groups) and aspherical field flattening (particularly L31's dual aspherical surfaces) to achieve a flat field. The fixed positive rear group G4, constructed from the ultra-high-index S-LAH79, contributes the final Petzval flattening near the image plane.
+The surface-by-surface Petzval sum, computed via $\sum \varphi_i / (n_i \cdot n_i')$ at each refracting surface, is +0.00230 mm⁻¹, yielding a Petzval radius of approximately 435 mm. This was verified independently by paraxial ABCD ray trace. At the wide-end focal length of 16.46 mm, the Petzval radius-to-EFL ratio is about 26 — a moderate value indicating that the design relies on a combination of Petzval correction (high-index glasses, the negative G1/G3 groups) and aspherical field flattening (particularly L31's dual aspherical surfaces) to achieve a flat field. The fixed positive rear group G4, constructed from the ultra-high-index S-LAH98, contributes the final Petzval flattening near the image plane.
 
 ## Verification Summary
 
@@ -306,5 +306,5 @@ All numerical quantities were independently verified by paraxial ABCD ray trace 
 
 1. WO 2020/012638 A1. "Variable magnification optical system, optical apparatus, and method for manufacturing variable magnification optical system." Nikon Corporation. Published 16 January 2020. Example 8, Table 8.
 2. Nikon USA product page, NIKKOR Z DX 16-50mm f/3.5-6.3 VR (product 20084). Accessed May 2026. https://www.nikonusa.com/p/nikkor-z-dx-16-50mm-f35-63-vr/20084/overview
-3. OHARA optical glass catalog. Reference entries: S-NPH2 (nd = 1.92286, νd = 20.88), S-LAH79 (nd = 1.95375, νd = 32.32), S-FPL51 (nd = 1.49700, νd = 81.54).
+3. OHARA optical glass catalog. Reference entries: S-NPH2 (nd = 1.92286, νd = 20.88), S-LAH98 (nd = 1.95375, νd = 32.32), S-FPL51 (nd = 1.49700, νd = 81.54).
 4. HOYA optical glass catalog. Reference entry: FCD1 (nd = 1.49700, νd = 81.61).

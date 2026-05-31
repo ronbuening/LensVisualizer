@@ -15,7 +15,7 @@ US 4,123,144 discloses a four-component, six-element Gauss objective with planar
 
 The production lens is published by Leica with a 52.5 mm focal length, 6 elements in 4 groups, a 0.5 m minimum focus distance, and a 1:7.5 maximum reproduction ratio. The patent Example 8 prescription is normalized to $f = 100$, so the data file scales all radii, axial thicknesses, and estimated clear apertures by $52.5/100 = 0.525$. The rounded patent prescription computes to $f = 100.012$, so the scaled prescription computes to $f = 52.506$ mm; this difference is a rounding residual, not a separate design.
 
-One significant correction to the prior analysis is the spectral line convention. The patent tables do not use ordinary d-line catalog values. Their refractive-index and Abbe-number pairs match e-line glass constants, for example Schott SF10 at $n_e = 1.73430$, $\nu_e = 28.19$ and Schott SF11 at $n_e = 1.79190$, $\nu_e = 25.55$. The accompanying `.data.ts` file preserves those patent values in the schema's `nd` and `vd` fields because the current LensData schema has no separate `ne` / `ve` fields. The analysis therefore writes the patent glass constants as $n_e$ and $\nu_e$.
+One significant correction to the prior analysis is the spectral line convention. The patent tables do not use ordinary d-line catalog values. Their refractive-index and Abbe-number pairs match e-line glass constants, for example Schott SF10 at $n_e = 1.73430$, $\nu_e = 28.19$ and Schott SF11 at $n_e = 1.79190$, $\nu_e = 25.55$. The accompanying `.data.ts` file preserves those patent values in the schema's `nd` and `vd` fields because the current LensData schema has no separate `ne` / `ve` fields. The e-line Schott rows are therefore marked as resolver-unmatched in the data file so the d-line catalog is not applied to e-line prescription constants. The analysis writes the patent glass constants as $n_e$ and $\nu_e$.
 
 ## Optical Architecture
 
@@ -98,10 +98,10 @@ The corrected glass table is:
 
 | Element | Patent $n_e$ | Patent $\nu_e$ | Corrected identification | Confidence |
 |---|---:|---:|---|---|
-| L1 | 1.73430 | 28.19 | SF10 (Schott) | High |
+| L1 | 1.73430 | 28.19 | Unmatched SF10 e-line constants | High source ID; intentionally not resolver-matched |
 | L2 | 1.67133 | 41.64 | ZBaF17 / BaSF6-class barium flint | High as class; vendor exactness depends on catalog generation |
-| L3 | 1.79190 | 25.55 | SF11 (Schott) | High |
-| L4 | 1.65222 | 33.60 | SF2 (Schott) | High |
+| L3 | 1.79190 | 25.55 | Unmatched SF11 e-line constants | High source ID; intentionally not resolver-matched |
+| L4 | 1.65222 | 33.60 | Unmatched SF2 e-line constants | High source ID; intentionally not resolver-matched |
 | L5 | 1.79227 | 47.15 | LaF21 / N-LAF21-class lanthanum flint | Close class match, not exact |
 | L6 | 1.79227 | 47.15 | LaF21 / N-LAF21-class lanthanum flint | Close class match, not exact |
 

@@ -30,3 +30,16 @@ Patent: JP WO 2020/012638 A1, Example 8
 - Searched Hikari, CDGM, OHARA/HOYA/SCHOTT/Sumita cross references, and refractiveindex.info-derived catalogs for `834373` and `801455`; no defensible coefficient-backed exact match was found.
 - Updated analysis notes and the glass-selection table for the resolved and unresolved rows.
 
+## 2026-05-31 - Catalog-mismatch second-batch recheck
+
+Reviewed the local untracked file `patents/JPWO2020012638A1.pdf`, Example 8 / Table 8.
+
+| Element / surface | Field | Before | After | Justification |
+|---|---|---|---|---|
+| L23 / S10 | `glass` | `S-LAH79 (OHARA)` | `S-LAH98 (OHARA)` | Table 8 row 10 gives nd=1.953750 and vd=32.33. S-LAH98 round-trips this pair in the current catalog; S-LAH79 resolves to nd=2.00330. |
+| L41 / S17 | `glass` | `S-LAH79 (OHARA)` | `S-LAH98 (OHARA)` | Table 8 row 17 repeats nd=1.953750 and vd=32.33. Same catalog-corrected 954323 disposition as L23. |
+
+Figure / SD check:
+
+- Rendered Figure 15 from the local PDF, page 41.
+- The patent does not publish semi-diameters. The stored SD profile visually matches the compact DX zoom figure: broad front hybrid element, tighter G2 stop/VR region, narrow focusing element, and larger rear field-flattener. No SD edits were made.

@@ -25,3 +25,8 @@ Patent: WO 2021/241230 A1
 
 - `npm run generate:glass-reports` — passed; this lens remains in `catalog-mismatches.generated.md` and `glass-relabel-by-lens.generated.md` pending patent review.
 - `npm run typecheck`, `npm run format:check`, `npm run lint`, and `npm run test` — passed.
+
+## 2026-05-31 — First-10 mismatch queue recheck
+
+- Rechecked the local untracked `patents/` folder for WO 2021/241230 A1 / `241230`; no matching local PDF is present.
+- No glass or SD changes made. Patent figure/table review remains blocked until the source PDF or a verified local family equivalent is added.

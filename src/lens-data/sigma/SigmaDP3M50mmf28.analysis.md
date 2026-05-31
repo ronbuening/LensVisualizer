@@ -242,7 +242,7 @@ The cemented interface (R₄ = −133.17 mm) contributes negligible power becaus
 
 **L2 glass:** nd = 1.59282, Vd = 68.62. This matches **Hoya FCD515** exactly. FCD515 is an **anomalous partial dispersion (APD)** glass: its Pg,F value lies above the standard glass line by roughly ΔPg,F ≈ +0.017 at Vd = 68.62. Positive anomalous partial dispersion means the glass refracts short wavelengths relatively more than expected for a glass of its Abbe number class. When used as the positive element of an achromatic doublet, this property reduces the secondary chromatic aberration (the residual color left uncorrected by a conventional achromat). L2 satisfies Condition (5): VdDB1 > 65 (Example 3: Vd = 68.62 ✓).
 
-**L3 glass:** nd = 1.80610, Vd = 33.27. No exact match has been confirmed in the Ohara, Hoya, or Schott catalog lines. The closest confirmed identification is **CDGM H-ZF52** (nd = 1.80610, Vd = 33.27; exact match on both parameters). Given that CDGM glasses appear in other Sigma designs, this is plausible but unconfirmed. The combination of L2 (APD crown, Vd = 68.62) and L3 (dense flint, Vd = 33.27) yields an Abbe difference ΔVd ≈ 35.4, sufficient for achromatic correction plus secondary-spectrum reduction via L2's APD property.
+**L3 glass:** nd = 1.80610, Vd = 33.27. This matches **Hoya NBFD15** exactly. The prior CDGM H-ZF52 label was not retained because the project's coefficient-backed H-ZF52 catalog entry is the 1.84666 / 23.78 dense-flint row, not the patent's 1.80610 / 33.27 pair. The combination of L2 (APD crown, Vd = 68.62) and L3 (dense flint, Vd = 33.27) yields an Abbe difference ΔVd ≈ 35.4, sufficient for achromatic correction plus secondary-spectrum reduction via L2's APD property.
 
 **Role:** DB1 provides the principal chromatic correction for the entire front group. The use of an APD glass (L2, FCD515) as the doublet's positive element, paired with a dense flint negative (L3), corrects primary color via the Abbe number difference and reduces secondary spectrum via L2's anomalous partial dispersion. Together with the positive L1 ahead of it, DB1 completes G1A as a compact telephoto sub-system: L1 (EFL +33.5 mm) followed by DB1 (EFL −58.0 mm) gives G1A a net EFL of +51.9 mm while keeping the physical length short.
 
@@ -365,7 +365,7 @@ For context, the uncorrected thin-lens Petzval sum for the same focal length is 
 |---|---|---|---|---|---|
 | L1 | 1.88300 | 40.80 | Ohara S-LAH58 | High | Exact catalog match |
 | L2 | 1.59282 | 68.62 | Hoya FCD515 | High | Exact; APD glass, ΔPg,F ≈ +0.017 |
-| L3 | 1.80610 | 33.27 | CDGM H-ZF52 | Moderate | No Ohara/Hoya/Schott exact match |
+| L3 | 1.80610 | 33.27 | Hoya NBFD15 | High | Exact public catalog match |
 | L4 | 1.90366 | 31.32 | Ohara S-LAH95 | High | Exact match |
 | L5 | 1.83481 | 42.72 | Ohara S-LAH55 | High | Exact match |
 | L6 | 1.83400 | 37.34 | CDGM H-LAF51 or Hikari J-LASF019 | Low | No confirmed major-catalog match |
@@ -374,7 +374,7 @@ For context, the uncorrected thin-lens Petzval sum for the same focal length is 
 | L9 | 1.80420 | 46.50 | Ohara S-LAH65 | Moderate | Δnd = +0.0002 |
 | L10 | 1.80834 | 40.92 | Uncertain; Hoya TACD5 possible | Low | No confirmed match |
 
-Glass identification is inferential: catalog nd/Vd pairs are compared against the patent values and residuals reported. For L3 and L6, no major Western catalog provides an exact match; CDGM or Hikari formulations are the most likely sources. L10's glass remains unconfirmed at catalog level. Sigma may also use proprietary or non-catalog glass formulations. Identifications marked "Low" confidence should not be cited as confirmed without additional sourcing.
+Glass identification is inferential: catalog nd/Vd pairs are compared against the patent values and residuals reported. L3 now uses the exact Hoya NBFD15 catalog row. For L6, no major Western catalog provides an exact match; CDGM or Hikari formulations are the most likely sources. L10's glass remains unconfirmed at catalog level. Sigma may also use proprietary or non-catalog glass formulations. Identifications marked "Low" confidence should not be cited as confirmed without additional sourcing.
 
 ---
 

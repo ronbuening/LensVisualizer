@@ -80,7 +80,7 @@ const LENS_DATA = {
       nd: 1.59561,
       vd: 67.0,
       fl: +136.6,
-      glass: "S-FPM4 (OHARA)",
+      glass: "596670 - fluorophosphate crown (patent nd=1.59561, vd=67.0; no exact public catalog match)",
       apd: false,
       role: "Fluorophosphate crown; bulk positive power of G1 front collector",
     },

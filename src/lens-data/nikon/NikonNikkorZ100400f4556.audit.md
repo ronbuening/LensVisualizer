@@ -64,3 +64,17 @@ Changes made:
 
 - Reworded the five unresolved labels in `NikonNikkorZ100400f4556.data.ts`.
 - Updated `NikonNikkorZ100400f4556.analysis.md` to use the same “no exact public catalog match” disposition.
+
+## 2026-05-31 - Catalog-mismatch second-batch recheck
+
+Reviewed the local untracked file `patents/JP2022092388A.pdf`, Example 1 / Table 1.
+
+| Element / surface | Field | Before | After | Justification |
+|---|---|---|---|---|
+| L8 / S13 | `glass` | `S-LAM3 (OHARA)` | `741526 - lanthanum crown...` | Table 1 row 13 gives nd=1.741000, but this patent table provides no vd column. The stored vd=52.6 is an inference, and no exact public catalog match was found, so the row is kept code-only instead of resolving to S-LAM3. |
+| L18 / S32 | `glass` | `S-LAH99 (OHARA)` | `S-LAH98 (OHARA)` | Table 1 row 32 gives nd=1.953750. The stored inferred vd=32.3 round-trips to the current S-LAH98 / 954323 catalog entry; S-LAH99 resolves to nd=2.00100. |
+
+Figure / SD check:
+
+- Rendered Figure 1 from the local PDF, page 26. Figure 1 shows the wide and tele Example 1 sections.
+- The patent does not publish semi-diameters. The stored SD profile visually follows the figure envelope: large front G1/G2 diameters, a narrower G3/G4 stop region, and a larger rear relay/cover-glass section. No SD edits were made.

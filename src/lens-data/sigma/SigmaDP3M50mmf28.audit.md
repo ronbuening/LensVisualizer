@@ -33,3 +33,21 @@ Patent: JP 2014-126652 A, Example 3
 - `npm test -- dispersion` — passed.
 - `npm run typecheck` — passed.
 - `npm run generate:glass-reports` — passed; lens removed from the relabel-by-lens queue.
+
+## 2026-05-31 - Catalog mismatch remainder audit
+
+### Phase 1 - Glass correction
+
+| Element / surface | Field | Before | After | Justification |
+|---|---|---|---|---|
+| L3 / 4 | `glass` | `H-ZF52 (CDGM) — exact match, unconfirmed in Ohara/Hoya/Schott` | `NBFD15 (HOYA)` | Patent Example 3 row 4 lists nd=1.80610, vd=33.27. The coefficient-backed H-ZF52 catalog entry in this project is the 1.84666 / 23.78 dense-flint row, so the label was resolving to the wrong glass. Hoya NBFD15 round-trips the patent pair. |
+
+### Phase 2 - Patent and SD review
+
+- Checked the local `patents/JP2014126652A.pdf` Example 3 table. Row 4 gives R=-133.1738, d=0.8000, nd=1.80610, and vd=33.27, matching the stored cemented L2/L3 junction surface and L3 element values.
+- Rendered Figure 11, the Example 3 lens-section figure. The figure matches the 10-element layout, internal stop, and rear aspherical L10 used by the data file.
+- The patent does not publish clear apertures or semi-diameters. Existing SDs are inferred from ray and gap constraints, so no SD edits were made.
+
+### Phase 3 - Analysis sync
+
+- Updated the L3 glass prose and glass-summary table from the erroneous H-ZF52 exact-match claim to Hoya NBFD15.

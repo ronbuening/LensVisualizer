@@ -79,3 +79,16 @@ Catalog version: fd7376b
 - `npm run generate:glass-reports` - passed; the unresolved 666356 rows remain in `six-digit-glass-codes-missing-sellmeier.generated.md` because no coefficient-backed public catalog match was found.
 - `npm run typecheck` - passed.
 - `npm run format:check` - passed.
+
+## 2026-05-31 - Catalog-mismatch second-batch recheck
+
+Reviewed the local untracked file `patents/US20190265441A1.pdf`, Numerical Data 2.
+
+| Element / surface | Field | Before | After | Justification |
+|---|---|---|---|---|
+| G4 / surface 6 | `glass` | `S-TIL27 (OHARA)` | `S-NBH5 (OHARA)` | Numerical Data 2 row 6 lists nd=1.65412 and vd=39.68. S-NBH5 round-trips this pair in the current catalog; S-TIL27 resolves to a different nd. |
+
+Figure / SD check:
+
+- Rendered Figure 3 from the local PDF, page 4. Figure 3 is the matching Example 2 cross-section.
+- The patent text does not publish effective diameters. The stored SD profile visually matches the f/1.2 figure envelope, with the largest front elements, a narrowed stop-adjacent front group, and a broad rear group. No SD edits were made.
