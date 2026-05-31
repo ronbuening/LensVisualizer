@@ -510,7 +510,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
-| L3 (Element 3) | 5 | `741527 — lanthanum crown (patent nd=1.74100, nu_d=52.67)` | 1.74100 / 52.67 | No catalog entry | abbe |
+| L3 (Element 3) | 5 | `741527 — lanthanum crown (patent nd=1.74100, nu_d=52.67)` | 1.74100 / 52.67 | S-LAL61 (trusted Sellmeier) | sellmeier |
 | L4 (Element 4) | 6 | `554381 — dense flint (patent nd=1.55389, nu_d=38.09)` | 1.55389 / 38.09 | No catalog entry | abbe |
 | L8 (Element 8) | 13 | `624470 — barium flint (patent nd=1.62374, nu_d=47.04)` | 1.62374 / 47.04 | No catalog entry | abbe |
 
@@ -688,7 +688,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
-| L21 (Element 3) | 6A | `834373 — dense lanthanum flint (patent nd=1.83441, νd=37.28; no exact public coefficient match)` | 1.83441 / 37.28 | No catalog entry | abbe |
+| L21 (Element 3) | 6A | `834373 — dense lanthanum flint (patent nd=1.83441, νd=37.28; no exact public coefficient match)` | 1.83441 / 37.28 | NBFD10 (trusted Sellmeier) | sellmeier |
 | L31 (Element 8) | 15A | `801455 — dense lanthanum flint (patent nd=1.80139, νd=45.46; no exact public coefficient match)` | 1.80139 / 45.46 | No catalog entry | abbe |
 
 ### [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../../src/lens-data/nikon/NikonZ105f28.data.ts) - WO 2022/097401 A1

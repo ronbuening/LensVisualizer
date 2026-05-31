@@ -11,7 +11,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 - **284** lenses scanned
 - **268** total code-only elements found
-- **197** elements in this report
+- **195** elements in this report
 - **80** distinct lens files affected
 
 ## Codes by Frequency
@@ -110,7 +110,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 738493 | 1 | 1 |
 | 741262 | 1 | 1 |
 | 741278 | 1 | 1 |
-| 741527 | 1 | 1 |
 | 747274 | 1 | 1 |
 | 749501 | 1 | 1 |
 | 749547 | 1 | 1 |
@@ -143,7 +142,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 804339 | 1 | 1 |
 | 805410 | 1 | 1 |
 | 821426 | 1 | 1 |
-| 834373 | 1 | 1 |
 | 835447 | 1 | 1 |
 | 840433 | 1 | 1 |
 | 850324 | 1 | 1 |
@@ -407,7 +405,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
-| L3 (Element 3) | 5 | `741527 — lanthanum crown (patent nd=1.74100, nu_d=52.67)` | 1.74100 / 52.67 | No catalog entry | abbe |
 | L4 (Element 4) | 6 | `554381 — dense flint (patent nd=1.55389, nu_d=38.09)` | 1.55389 / 38.09 | No catalog entry | abbe |
 | L8 (Element 8) | 13 | `624470 — barium flint (patent nd=1.62374, nu_d=47.04)` | 1.62374 / 47.04 | No catalog entry | abbe |
 
@@ -517,7 +514,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
-| L21 (Element 3) | 6A | `834373 — dense lanthanum flint (patent nd=1.83441, νd=37.28; no exact public coefficient match)` | 1.83441 / 37.28 | No catalog entry | abbe |
 | L31 (Element 8) | 15A | `801455 — dense lanthanum flint (patent nd=1.80139, νd=45.46; no exact public coefficient match)` | 1.80139 / 45.46 | No catalog entry | abbe |
 
 ### [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../../src/lens-data/nikon/NikonZ105f28.data.ts) - WO 2022/097401 A1
