@@ -71,6 +71,7 @@ describe("lensTaxonomy", () => {
         "nikon-1",
         "nikon-s",
         "nikonos",
+        "nikonos-rs",
         "olympus-pen-f",
         "pentax-645",
         "pentax-67",

@@ -59,6 +59,7 @@ catalog is being backfilled, but when present it must be a non-empty array of un
 | `nikon-1` | Nikon 1 | Nikon 1 mirrorless mount; usually pairs with `1-inch-type`. |
 | `nikon-f` | Nikon F | Nikon F SLR mount. |
 | `nikonos` | Nikonos | Nikon/Nikkor underwater camera mount; usually pairs with `135-full-frame`. |
+| `nikonos-rs` | Nikonos RS | Nikonos RS underwater AF SLR mount; usually pairs with `135-full-frame`. |
 | `nikon-s` | Nikon S | Nikon S rangefinder mount; usually pairs with `135-full-frame`. |
 | `nikon-z` | Nikon Z | Nikon Z mirrorless mount. |
 | `four-thirds` | Four Thirds | Four Thirds DSLR mount; usually pairs with `four-thirds`. |
