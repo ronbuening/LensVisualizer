@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **284** lenses scanned
-- **3204** non-air surfaces examined
-- **3208** element glass declarations examined
-- **624** non-explicit-unmatched annotations did not resolve
-- **223** distinct unresolved glass-like tokens found
+- **287** lenses scanned
+- **3258** non-air surfaces examined
+- **3262** element glass declarations examined
+- **626** non-explicit-unmatched annotations did not resolve
+- **225** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -170,6 +170,7 @@ or per-lens patent backfills.
 | F3 | 1 | 1 | |
 | F8 | 1 | 1 | |
 | FCD10A | 1 | 1 | |
+| H-BAF3 | 1 | 1 | |
 | H-K8 | 1 | 1 | |
 | H-K9L | 1 | 1 | |
 | H-LAF51 | 1 | 1 | |
@@ -195,6 +196,7 @@ or per-lens patent backfills.
 | L-LAH86 | 1 | 1 | |
 | L-PHL1 | 1 | 1 | |
 | N-BAK4 | 1 | 1 | |
+| N-BALF4 | 1 | 1 | |
 | N-BASF2 | 1 | 1 | |
 | N-LAF7 | 1 | 1 | |
 | N-LAK10 | 1 | 1 | |
@@ -918,6 +920,10 @@ or per-lens patent backfills.
 
 - [SIGMA 35mm F1.4 DG DN | Art](../../src/lens-data/sigma/SigmaDGDNA35mmf14.data.ts) 11: `HOYA FCD10A (459/902)`
 
+### H-BAF3 — 1 occurrence
+
+- [Nikon AF-S NIKKOR 70-200mm f/2.8G ED VR II](../../src/lens-data/nikon/NikonAFS70200mmf28GVRII.data.ts) 29: `H-BaF3 (CDGM) / N-BALF4 class`
+
 ### H-K8 — 1 occurrence
 
 - [Laowa 65mm f/2.8 2× Ultra Macro APO](../../src/lens-data/laowa/Laowa65mmf28MacroAPO.data.ts) 23: `H-K8 (CDGM)`
@@ -1017,6 +1023,10 @@ or per-lens patent backfills.
 ### N-BAK4 — 1 occurrence
 
 - [NIKON NIKKOR 35mm f/2.8 (35Ti)](../../src/lens-data/nikon/Nikon35Ti35mmf28.data.ts) 9: `Schott N-BAK4 (nd=1.56883 / νd=56.04; Δnd≈0, Δνd=−0.04)`
+
+### N-BALF4 — 1 occurrence
+
+- [Nikon AF-S NIKKOR 70-200mm f/2.8G ED VR II](../../src/lens-data/nikon/NikonAFS70200mmf28GVRII.data.ts) 29: `H-BaF3 (CDGM) / N-BALF4 class`
 
 ### N-BASF2 — 1 occurrence
 

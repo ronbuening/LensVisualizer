@@ -9,10 +9,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **284** lenses scanned
-- **277** total code-only elements found
-- **277** elements in this report
-- **97** distinct lens files affected
+- **287** lenses scanned
+- **279** total code-only elements found
+- **279** elements in this report
+- **98** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -26,6 +26,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 662561 | 4 | 1 |
 | 694533 | 4 | 3 |
 | 738323 | 4 | 4 |
+| 744495 | 4 | 4 |
 | 764485 | 4 | 4 |
 | 863252 | 4 | 2 |
 | 946180 | 4 | 4 |
@@ -35,7 +36,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 585587 | 3 | 1 |
 | 672472 | 3 | 1 |
 | 720503 | 3 | 1 |
-| 744495 | 3 | 3 |
 | 777297 | 3 | 3 |
 | 806333 | 3 | 3 |
 | 863248 | 3 | 1 |
@@ -80,6 +80,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 534556 | 1 | 1 |
 | 541468 | 1 | 1 |
 | 545486 | 1 | 1 |
+| 553381 | 1 | 1 |
 | 553555 | 1 | 1 |
 | 553717 | 1 | 1 |
 | 554381 | 1 | 1 |
@@ -548,6 +549,13 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L41 (Element 15) | 29A | `553717 - ASP/ED fluorophosphate crown (patent nd=1.55332, vd=71.70)` | 1.55332 / 71.70 | M-FCD500 (trusted Sellmeier) | sellmeier |
 | L43 (Element 17) | 32 | `593679 - fluorophosphate crown (patent nd=1.59319, vd=67.90)` | 1.59319 / 67.90 | J-PSKH1 (trusted Sellmeier) | sellmeier |
 | L46 (Element 20) | 36 | `694533 - lanthanum crown (patent nd=1.69350, vd=53.30)` | 1.69350 / 53.30 | LAC13 (trusted Sellmeier) | sellmeier |
+
+### [Nikon AF-S NIKKOR 24-70mm f/2.8G ED](../../src/lens-data/nikon/NikonAFS2470mmf28G.data.ts) - US 7,508,592 B2
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
+|---|---|---|---|---|---|
+| L1 (Element 1) | 1 | `Unmatched high-index lanthanum-crown class (744/495)` | 1.74443 / 49.52 | No catalog entry | abbe |
+| L4r (Element 4 resin layer) | 7A | `Unmatched UV-cure replicated resin (553/381)` | 1.55389 / 38.09 | No catalog entry | abbe |
 
 ### [Nikon AF-S NIKKOR 28-300mm f/3.5-5.6G ED VR](../../src/lens-data/nikon/NikonNikkorAFS28300mmf3556G.data.ts) - US 2010/0220400 A1
 
