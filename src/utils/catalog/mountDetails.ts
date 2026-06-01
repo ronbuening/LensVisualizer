@@ -343,6 +343,14 @@ export const MOUNT_DETAILS: Record<LensMountId, MountDetails> = {
     description:
       "Nikonos is the classic Nikon amphibious camera system derived from the Calypso design. Its lens mount was built for sealed, underwater-capable cameras rather than ordinary SLR or rangefinder bodies, and it is distinct from the later Nikonos RS SLR mount.\n\nThe lens family includes amphibious lenses usable in air and specialized underwater lenses corrected for water as part of the optical path. That makes the system unusually dependent on shooting environment: a lens that performs beautifully underwater may not be intended for ordinary aerial photography.\n\nFor catalog browsing, Nikonos entries should be treated as environmental optics, not just rugged 35 mm lenses. The mount is important because it shows optical design responding to water, pressure sealing, scale focusing, and underwater field curvature rather than to a conventional camera body alone.",
   },
+  "nikonos-rs": {
+    era: "Nikonos RS underwater autofocus SLR mount, 1990s",
+    formatNotes: "35 mm underwater autofocus SLR",
+    summary:
+      "Nikon's dedicated underwater autofocus SLR mount for the Nikonos RS system, distinct from classic Nikonos and Nikon F.",
+    description:
+      "Nikonos RS was Nikon's purpose-built underwater autofocus SLR system, introduced after the classic Nikonos amphibious cameras. Its RS bayonet supported dedicated R-UW AF Nikkor lenses and should be treated as a separate mount from both the older Nikonos system and ordinary Nikon F SLR lenses.\n\nThe RS system kept the 35 mm frame but changed the mechanical and electronic problem around it. Lens design, focusing, sealing, and handling all had to work in an underwater SLR body rather than a scale-focus amphibious camera or a conventional land camera in a housing.\n\nFor catalog browsing, Nikonos RS entries should stay separate because the mount represents a short-lived but highly specialized underwater SLR ecosystem. Its lenses are best compared with other environmental or underwater optics before being folded into ordinary 35 mm SLR assumptions.",
+  },
   "nikon-s": {
     era: "Nikon rangefinder mount, 1940s-1960s",
     formatNotes: "35 mm rangefinder",

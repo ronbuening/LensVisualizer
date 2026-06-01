@@ -48,6 +48,7 @@ export const LENS_MOUNTS = [
   { id: "nikon-1", label: "Nikon 1", sortOrder: 490 },
   { id: "nikon-f", label: "Nikon F", sortOrder: 500 },
   { id: "nikonos", label: "Nikonos", sortOrder: 503 },
+  { id: "nikonos-rs", label: "Nikonos RS", sortOrder: 504 },
   { id: "nikon-s", label: "Nikon S", sortOrder: 505 },
   { id: "nikon-z", label: "Nikon Z", sortOrder: 510 },
   { id: "four-thirds", label: "Four Thirds", sortOrder: 580 },
