@@ -9,10 +9,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **287** lenses scanned
-- **279** total code-only elements found
-- **279** elements in this report
-- **98** distinct lens files affected
+- **290** lenses scanned
+- **282** total code-only elements found
+- **282** elements in this report
+- **99** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -70,6 +70,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 487698 | 1 | 1 |
 | 504667 | 1 | 1 |
 | 514530 | 1 | 1 |
+| 515546 | 1 | 1 |
 | 517522 | 1 | 1 |
 | 517639 | 1 | 1 |
 | 518523 | 1 | 1 |
@@ -144,6 +145,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 741278 | 1 | 1 |
 | 741526 | 1 | 1 |
 | 741527 | 1 | 1 |
+| 744494 | 1 | 1 |
 | 747274 | 1 | 1 |
 | 749501 | 1 | 1 |
 | 749547 | 1 | 1 |
@@ -152,6 +154,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 757316 | 1 | 1 |
 | 760492 | 1 | 1 |
 | 764491 | 1 | 1 |
+| 767462 | 1 | 1 |
 | 768465 | 1 | 1 |
 | 769497 | 1 | 1 |
 | 770479 | 1 | 1 |
@@ -576,6 +579,14 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L53 (Element 19) | 34 | `720503 - lanthanum crown (patent nd=1.71999, vd=50.27)` | 1.71999 / 50.27 | J-LAK10 (trusted Sellmeier) | sellmeier |
 | L55 (Element 21) | 38 | `593679 - fluorophosphate crown (patent nd=1.59319, vd=67.90)` | 1.59319 / 67.90 | J-PSKH1 (trusted Sellmeier) | sellmeier |
 | L56 (Element 22) | 40 | `720503 - lanthanum crown (patent nd=1.71999, vd=50.27)` | 1.71999 / 50.27 | J-LAK10 (trusted Sellmeier) | sellmeier |
+
+### [Nikon AI Nikkor 35mm f/2](../../src/lens-data/nikon/NikonAINikkor35mmf2.data.ts) - US 3,507,558
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
+|---|---|---|---|---|---|
+| L4 (Element 4) | 6 | `Legacy 515/546 crown/light-flint class (exact melt uncertain)` | 1.51454 / 54.62 | No catalog entry | abbe |
+| L6 (Element 6) | 9 | `Legacy 744/494 lanthanum-flint class (exact melt uncertain)` | 1.74443 / 49.40 | No catalog entry | abbe |
+| L7 (Element 7) | 11 | `Legacy 767/462 dense lanthanum-flint class (exact melt uncertain)` | 1.76684 / 46.20 | No catalog entry | abbe |
 
 ### [Nikon Fisheye-Nikkor 6mm f/2.8](../../src/lens-data/nikon/NikonFisheyeNikkor6mmf28.data.ts) - US 3,737,214
 
