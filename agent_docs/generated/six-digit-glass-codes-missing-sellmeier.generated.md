@@ -9,10 +9,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **287** lenses scanned
-- **279** total code-only elements found
-- **208** elements in this report
-- **82** distinct lens files affected
+- **290** lenses scanned
+- **282** total code-only elements found
+- **211** elements in this report
+- **83** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -52,6 +52,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 487698 | 1 | 1 |
 | 504667 | 1 | 1 |
 | 514530 | 1 | 1 |
+| 515546 | 1 | 1 |
 | 517639 | 1 | 1 |
 | 518523 | 1 | 1 |
 | 520636 | 1 | 1 |
@@ -116,6 +117,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 741278 | 1 | 1 |
 | 741526 | 1 | 1 |
 | 741527 | 1 | 1 |
+| 744494 | 1 | 1 |
 | 747274 | 1 | 1 |
 | 749501 | 1 | 1 |
 | 749547 | 1 | 1 |
@@ -125,6 +127,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 760492 | 1 | 1 |
 | 764485 | 1 | 1 |
 | 764491 | 1 | 1 |
+| 767462 | 1 | 1 |
 | 768465 | 1 | 1 |
 | 769497 | 1 | 1 |
 | 770479 | 1 | 1 |
@@ -451,6 +454,14 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
 | L54 (G5 rear aspherical negative lens) | 34 | `821426 — patent dense flint (nd=1.82080, νd=42.64; no public HIKARI/OHARA match found)` | 1.82080 / 42.64 | No catalog entry | abbe |
+
+### [Nikon AI Nikkor 35mm f/2](../../src/lens-data/nikon/NikonAINikkor35mmf2.data.ts) - US 3,507,558
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
+|---|---|---|---|---|---|
+| L4 (Element 4) | 6 | `Legacy 515/546 crown/light-flint class (exact melt uncertain)` | 1.51454 / 54.62 | No catalog entry | abbe |
+| L6 (Element 6) | 9 | `Legacy 744/494 lanthanum-flint class (exact melt uncertain)` | 1.74443 / 49.40 | No catalog entry | abbe |
+| L7 (Element 7) | 11 | `Legacy 767/462 dense lanthanum-flint class (exact melt uncertain)` | 1.76684 / 46.20 | No catalog entry | abbe |
 
 ### [Nikon Fisheye-Nikkor 6mm f/2.8](../../src/lens-data/nikon/NikonFisheyeNikkor6mmf28.data.ts) - US 3,737,214
 
