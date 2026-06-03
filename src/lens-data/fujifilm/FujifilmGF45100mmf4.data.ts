@@ -25,7 +25,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "fujifilm-gf-45-100mm-f4-patent-example-1",
   maker: "Fujifilm",
-  name: "FUJINON GF 45-100mmF4 R LM OIS WR",
+  name: "FUJIFILM Fujinon GF 45-100mmF4 R LM OIS WR",
   subtitle: "US 2020/0379223 A1 Example 1 - FUJIFILM / Tomioka",
   specs: [
     "17 elements / 12 groups (patent)",
@@ -292,9 +292,9 @@ const LENS_DATA = {
     { label: "16", R: -197.3116, d: 1.21, nd: 1.64769, elemId: 9, sd: 15 },
     { label: "17", R: 22.42, d: 8.15, nd: 1.43875, elemId: 10, sd: 14.7 },
     { label: "18", R: -56.6881, d: 2.1, nd: 1, elemId: 0, sd: 14.7 },
-    { label: "19A", R: -94.342, d: 0.65, nd: 1.62426, elemId: 11, sd: 18.8 },
-    { label: "20", R: -68.2903, d: 1.7, nd: 1.48749, elemId: 12, sd: 18.8 },
-    { label: "21", R: 52.5621, d: 3.5, nd: 1, elemId: 0, sd: 18.8 },
+    { label: "19A", R: -94.342, d: 0.65, nd: 1.62426, elemId: 11, sd: 18.4 },
+    { label: "20", R: -68.2903, d: 1.7, nd: 1.48749, elemId: 12, sd: 18.0 },
+    { label: "21", R: 52.5621, d: 3.5, nd: 1, elemId: 0, sd: 17.4 },
     { label: "22", R: 33.2947, d: 9.1, nd: 1.497, elemId: 13, sd: 17 },
     { label: "23", R: -39.98, d: 1, nd: 1, elemId: 0, sd: 17 },
     { label: "24", R: -226.435, d: 1.31, nd: 1.67003, elemId: 14, sd: 17.6 },

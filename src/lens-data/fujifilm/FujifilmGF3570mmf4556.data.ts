@@ -38,7 +38,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "fujifilm-gf-35-70mm-f45-56-wr",
   maker: "Fujifilm",
-  name: "FUJINON GF 35-70mmF4.5-5.6 WR",
+  name: "FUJIFILM Fujinon GF 35-70mmF4.5-5.6 WR",
   subtitle: "US 2022/0236544 A1 Example 1 — FUJIFILM / Ryosuke Nagami",
   specs: [
     "11 elements / 9 groups",
@@ -194,7 +194,7 @@ const LENS_DATA = {
     { label: "1", R: 69.10435, d: 1.15, nd: 1.80518, elemId: 1, sd: 24.0 },
     { label: "2", R: 29.85137, d: 2.352, nd: 1.0, elemId: 0, sd: 23.0 },
     { label: "3", R: 52.09331, d: 1.0, nd: 1.58313, elemId: 2, sd: 15.8 },
-    { label: "4", R: 22.56329, d: 7.149, nd: 1.0, elemId: 0, sd: 20.0 },
+    { label: "4", R: 22.56329, d: 7.149, nd: 1.0, elemId: 0, sd: 15.5 },
     { label: "5", R: 1e15, d: 0.96, nd: 1.48749, elemId: 3, sd: 15.0 },
     { label: "6", R: 22.9374, d: 5.04, nd: 1.91083, elemId: 4, sd: 15.0 },
     { label: "7", R: 101.46452, d: 28.056, nd: 1.0, elemId: 0, sd: 14.8 },
