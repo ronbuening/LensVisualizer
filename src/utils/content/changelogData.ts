@@ -19,11 +19,23 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-06-03 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-06-03",
+    type: "lens",
+    summary: "Added three Fujifilm GFX medium-format zoom lenses",
+  },
+  // ── 2026-06-02 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-06-02",
+    type: "lens",
+    summary: "Added three Nikon AI F-mount lenses",
+  },
   // ── 2026-06-01 ──────────────────────────────────────────────────────────
   {
     date: "2026-06-01",
     type: "lens",
-    summary: "Added three Nikon AF-S F-mount zooms",
+    summary: "Added three Nikon AF-S F-mount zoom lenses",
   },
   // ── 2026-05-31 ──────────────────────────────────────────────────────────
   {

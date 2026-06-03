@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **290** lenses scanned
-- **3277** non-air surfaces examined
-- **3281** element glass declarations examined
-- **635** non-explicit-unmatched annotations did not resolve
-- **227** distinct unresolved glass-like tokens found
+- **293** lenses scanned
+- **3325** non-air surfaces examined
+- **3329** element glass declarations examined
+- **641** non-explicit-unmatched annotations did not resolve
+- **228** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -29,8 +29,10 @@ or per-lens patent backfills.
 | 744495 | 3 | 3 | |
 | 855252 | 3 | 2 | |
 | 863248 | 3 | 1 | |
+| H-LAF4 | 3 | 3 | |
 | L-LAM69 | 3 | 3 | |
 | N-LAF2 | 3 | 2 | |
+| S-LAM7 | 3 | 3 | |
 | S-TIF6 | 3 | 3 | |
 | 514428 | 2 | 1 | |
 | 531559 | 2 | 2 | |
@@ -38,6 +40,7 @@ or per-lens patent backfills.
 | 666356 | 2 | 1 | |
 | 694508 | 2 | 1 | |
 | 744448 | 2 | 1 | |
+| 750350 | 2 | 2 | |
 | 755516 | 2 | 1 | |
 | 764491 | 2 | 2 | |
 | 774492 | 2 | 1 | |
@@ -51,7 +54,6 @@ or per-lens patent backfills.
 | E-FDS3HT | 2 | 1 | |
 | F7 | 2 | 2 | |
 | H-LAF3 | 2 | 2 | |
-| H-LAF4 | 2 | 2 | |
 | H-ZLAF4A | 2 | 1 | |
 | N-BAF4 | 2 | 2 | |
 | N-LAK9 | 2 | 2 | |
@@ -61,7 +63,6 @@ or per-lens patent backfills.
 | S-BSM10 | 2 | 2 | |
 | S-BSM15 | 2 | 1 | |
 | S-LAL61 | 2 | 2 | |
-| S-LAM7 | 2 | 2 | |
 | S-LAM73 | 2 | 1 | |
 | S-NBH53 | 2 | 2 | |
 | SF56A | 2 | 2 | |
@@ -72,6 +73,7 @@ or per-lens patent backfills.
 | 514530 | 1 | 1 | |
 | 517639 | 1 | 1 | |
 | 518523 | 1 | 1 | |
+| 518635 | 1 | 1 | |
 | 534554 | 1 | 1 | |
 | 534556 | 1 | 1 | |
 | 545486 | 1 | 1 | |
@@ -117,7 +119,6 @@ or per-lens patent backfills.
 | 741527 | 1 | 1 | |
 | 747274 | 1 | 1 | |
 | 749547 | 1 | 1 | |
-| 750350 | 1 | 1 | |
 | 754260 | 1 | 1 | |
 | 757316 | 1 | 1 | |
 | 757479 | 1 | 1 | |
@@ -322,6 +323,12 @@ or per-lens patent backfills.
 - [SONY FE 70-200mm F2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 17: `863248 — ultra-dense flint (patent nd=1.86290, nu_d=24.8)`
 - [SONY FE 70-200mm F2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 19: `863248 — ultra-dense flint (patent nd=1.86290, nu_d=24.8)`
 
+### H-LAF4 — 3 occurrences
+
+- [FUJIFILM Fujinon GF100-200mm F5.6 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmGF100200mmf56.data.ts) 1: `HOYA E-LAF7 / CDGM H-LaF4 (750350; OHARA S-LAM7 class)`
+- [Laowa 58 mm f/2.8 2× Ultra-Macro APO](../../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts) 18: `H-LAF4 (CDGM)`
+- [Sony FE 28-70mm f/3.5-5.6 OSS](../../src/lens-data/sony/SonyFE2870mmf3556.data.ts) 17: `E-LAF7 (HOYA) / H-LaF4 class, 750350`
+
 ### L-LAM69 — 3 occurrences
 
 - [CANON RF 24-105mm f/4 L IS USM](../../src/lens-data/canon/CanonRF24105mmf4L.data.ts) 29A: `764491 — L-LAM69 PGM lanthanum crown (nd=1.76450, νd=49.1)`
@@ -333,6 +340,12 @@ or per-lens patent backfills.
 - [CARL ZEISS Distagon T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) 5: `LAF2 / N-LAF2 class (Schott, 744448; patent values retained)`
 - [CARL ZEISS Distagon T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) 7: `LAF2 / N-LAF2 class (Schott, 744448; patent values retained)`
 - [Nikon AI Nikkor 35mm f/2](../../src/lens-data/nikon/NikonAINikkor35mmf2.data.ts) 13: `LAF2 / N-LAF2 class (744/449 lanthanum flint)`
+
+### S-LAM7 — 3 occurrences
+
+- [FUJIFILM Fujinon GF100-200mm F5.6 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmGF100200mmf56.data.ts) 1: `HOYA E-LAF7 / CDGM H-LaF4 (750350; OHARA S-LAM7 class)`
+- [Nikon 1 NIKKOR 10mm f/2.8](../../src/lens-data/nikon/Nikon1Nikkor10mmf28.data.ts) 5: `S-LAM7 (OHARA)`
+- [NIKON AF NIKKOR 28mm f/1.4D](../../src/lens-data/nikon/NikonAF28f14D.data.ts) 12: `LaM type (near OHARA S-LAM7, nd=1.74950, νd=52.33)`
 
 ### S-TIF6 — 3 occurrences
 
@@ -369,6 +382,11 @@ or per-lens patent backfills.
 
 - [CARL ZEISS Distagon T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) 5: `LAF2 / N-LAF2 class (Schott, 744448; patent values retained)`
 - [CARL ZEISS Distagon T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) 7: `LAF2 / N-LAF2 class (Schott, 744448; patent values retained)`
+
+### 750350 — 2 occurrences
+
+- [FUJIFILM Fujinon GF100-200mm F5.6 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmGF100200mmf56.data.ts) 1: `HOYA E-LAF7 / CDGM H-LaF4 (750350; OHARA S-LAM7 class)`
+- [Sony FE 28-70mm f/3.5-5.6 OSS](../../src/lens-data/sony/SonyFE2870mmf3556.data.ts) 17: `E-LAF7 (HOYA) / H-LaF4 class, 750350`
 
 ### 755516 — 2 occurrences
 
@@ -435,11 +453,6 @@ or per-lens patent backfills.
 - [LAOWA 15mm f/4 Wide Angle 1:1 Macro](../../src/lens-data/laowa/Laowa15mmf4Macro.data.ts) 16: `H-LAF3 (CDGM)`
 - [NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) 32: `Lanthanum flint (182080/4251, uncertain — possibly CDGM H-LAF3)`
 
-### H-LAF4 — 2 occurrences
-
-- [Laowa 58 mm f/2.8 2× Ultra-Macro APO](../../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts) 18: `H-LAF4 (CDGM)`
-- [Sony FE 28-70mm f/3.5-5.6 OSS](../../src/lens-data/sony/SonyFE2870mmf3556.data.ts) 17: `E-LAF7 (HOYA) / H-LaF4 class, 750350`
-
 ### H-ZLAF4A — 2 occurrences
 
 - [Laowa 24mm f/14 2× Macro Probe](../../src/lens-data/laowa/Laowa24mmf14Probe.data.ts) 1: `H-ZLaF4A (CDGM)`
@@ -485,11 +498,6 @@ or per-lens patent backfills.
 - [NIKON AF-S NIKKOR 28mm f/1.4E ED](../../src/lens-data/nikon/NikonAFS28f14E.data.ts) 15: `S-LAL61 (OHARA)`
 - [Nikon AF-S DX NIKKOR 55-300mm f/4.5-5.6G ED VR](../../src/lens-data/nikon/NikonAFSDX55300mmf4556G.data.ts) 6: `S-LAL61 class (OHARA; patent vd rounded high)`
 
-### S-LAM7 — 2 occurrences
-
-- [Nikon 1 NIKKOR 10mm f/2.8](../../src/lens-data/nikon/Nikon1Nikkor10mmf28.data.ts) 5: `S-LAM7 (OHARA)`
-- [NIKON AF NIKKOR 28mm f/1.4D](../../src/lens-data/nikon/NikonAF28f14D.data.ts) 12: `LaM type (near OHARA S-LAM7, nd=1.74950, νd=52.33)`
-
 ### S-LAM73 — 2 occurrences
 
 - [SONY FE 28-70mm F2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 27A: `S-LAM73 (OHARA)`
@@ -533,6 +541,10 @@ or per-lens patent backfills.
 ### 518523 — 1 occurrence
 
 - [Minolta AF 35-105mm f/3.5-4.5 New (v2)](../../src/lens-data/minolta/MinoltaAF35105mmf3545v2.data.ts) 21A: `518523 - thin hybrid aspheric layer (unresolved)`
+
+### 518635 — 1 occurrence
+
+- [FUJIFILM Fujinon GF100-200mm F5.6 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmGF100200mmf56.data.ts) 31A: `CDGM D-K59 (518635)`
 
 ### 534554 — 1 occurrence
 
@@ -713,10 +725,6 @@ or per-lens patent backfills.
 ### 749547 — 1 occurrence
 
 - [Laowa 12mm f/2.8 Zero-D](../../src/lens-data/laowa/Laowa12mmf28ZeroD.data.ts) 1: `749547 - high-index crown class (patent nd=1.74916, vd=54.67; unresolved)`
-
-### 750350 — 1 occurrence
-
-- [Sony FE 28-70mm f/3.5-5.6 OSS](../../src/lens-data/sony/SonyFE2870mmf3556.data.ts) 17: `E-LAF7 (HOYA) / H-LaF4 class, 750350`
 
 ### 754260 — 1 occurrence
 
