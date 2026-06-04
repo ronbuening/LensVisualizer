@@ -97,7 +97,7 @@ L24 completes G2 with a final negative meniscus. Its high Abbe number (νd = 68.
 
 #### L31 — Positive Meniscus, convex to object (2× aspherical)
 
-nd = 1.69350, νd = 53.2. Glass: lanthanum crown class (694/532); no exact OHARA catalog match found — likely a mold-compatible crown optimized for aspherical manufacturing. f = +55.1 mm.
+nd = 1.69350, νd = 53.2. Glass: 694532 lanthanum crown class; S-LAL13 / M-LAC130 now provides a public code-backed catalog match. f = +55.1 mm.
 
 L31 is the sole element of G3, which functions as a zoom variator: it moves toward the object during zoom from wide to tele, working in concert with G4's movement to produce the focal-length change. Both surfaces are aspherical (surfaces 13 and 14), making L31 one of the two AA elements. The aspherical corrections on L31 are relatively mild (A4 ≈ 1.0 × 10⁻⁶ on S13 and 1.0 × 10⁻⁵ on S14), indicating fine-tuning of spherical aberration and coma rather than gross surface reshaping.
 
@@ -192,7 +192,7 @@ The design employs a glass palette spanning an exceptionally wide range of refra
 | L22     | 1.85155 | 40.1 | S-LAH89 (OHARA)                | Lanthanum flint  | G2 asph. aberration corrector |
 | L23     | 1.85478 | 24.8 | S-LAH98 (OHARA)                | Dense lanthanum flint | G2 internal chromatic balance |
 | L24     | 1.59282 | 68.6 | FCD515 (HOYA)                  | ED fluorophosphate    | G2 ED chromatic corrector     |
-| L31     | 1.69350 | 53.2 | Unmatched (694/532, mold-opt.) | Lanthanum crown  | G3 variator asph. element     |
+| L31     | 1.69350 | 53.2 | 694532 code match, S-LAL13 / M-LAC130 class | Lanthanum crown  | G3 variator asph. element     |
 | L41     | 1.95375 | 32.3 | S-LAH79 (OHARA)                | Ultra-high-index flint | G4 achromat flint partner   |
 | L42     | 1.49700 | 81.6 | S-FPL51 (OHARA) / FCD1 (HOYA) | ED fluorophosphate    | G4 primary ED crown          |
 | L43     | 1.60342 | 38.0 | S-TIM5 (OHARA)                 | Titanate flint   | G4 secondary achromat pos.    |

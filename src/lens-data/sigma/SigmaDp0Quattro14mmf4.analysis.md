@@ -85,9 +85,9 @@ L2a's weak negative power (f = −127.2 mm) means its contribution to the overal
 
 ### L3a — Negative Meniscus, Convex to Object (Cemented with L3b)
 
-nd = 1.59282, νd = 68.62. Glass: M-TAC80 (HOYA) — phosphate crown (SLD). f = −24.1 mm.
+nd = 1.59282, νd = 68.62. Glass: FCD515 (HOYA) — fluorophosphate SLD crown. f = −24.1 mm.
 
-L3a is the negative element of the first cemented doublet in G3 (Ja: L3a + L3b, combined f = +36.8 mm). It sits immediately behind the aperture stop, where the marginal ray height is near its maximum within the rear group. The M-TAC80 glass is a phosphate crown with moderately high index (nd = 1.593) and high Abbe number (νd = 68.62), and it exhibits positive anomalous partial dispersion. Sigma classifies this as SLD glass.
+L3a is the negative element of the first cemented doublet in G3 (Ja: L3a + L3b, combined f = +36.8 mm). It sits immediately behind the aperture stop, where the marginal ray height is near its maximum within the rear group. FCD515 is a fluorophosphate SLD crown with moderately high index (nd = 1.593) and high Abbe number (νd = 68.62), and it exhibits positive anomalous partial dispersion.
 
 The high Abbe number of L3a relative to its negative power means it acts as a weak spectral contributor while providing strong negative surface power at the cemented interface. Its concave rear surface (R = +9.90 mm, a steep convex junction as seen by the incoming light) creates the powerful refracting interface of the doublet.
 
@@ -150,7 +150,7 @@ The glass palette is dominated by HOYA FCD100 (super-ED fluoride crown, Sigma's 
 | L1a | 1.58313 | 59.46 | S-BAL42 / L-BAL42 | OHARA | Barium crown | — |
 | L1b | 1.49700 | 81.60 | S-FPL51 / FCD1 | OHARA / HOYA | ED fluorophosphate | SLD |
 | L2a | 1.43700 | 95.10 | FCD100 | HOYA | Super-ED fluoride | FLD |
-| L3a | 1.59282 | 68.62 | M-TAC80 | HOYA | Phosphate crown | SLD |
+| L3a | 1.59282 | 68.62 | FCD515 | HOYA | Fluorophosphate crown | SLD |
 | L3b | 1.51680 | 64.19 | BSC7 / S-BSL7 | HOYA / OHARA | Borosilicate (BK7) | — |
 | L3c | 1.43700 | 95.10 | FCD100 | HOYA | Super-ED fluoride | FLD |
 | L3d | 1.83481 | 42.72 | TAFD25 / S-LAH55 | HOYA / OHARA | Lanthanum dense flint | — |
@@ -297,5 +297,5 @@ Semi-diameters are not published in the patent. Values in the data file are esti
 1. JP 2016-139087 A, "結像光学系," Sigma Corporation, published 2016-08-04. Example 2 (¶0048–0052).
 2. Sigma Corporation product page, "dp0 Quattro — Specifications." sigma-global.com. Accessed 2026.
 3. Sigma Corporation of America press release, February 10, 2015. Announcement of the dp0 Quattro at CP+ 2015.
-4. HOYA Optical Glass Catalog (FCD100: nd = 1.43700, νd = 95.10; FCD1: nd = 1.49700, νd = 81.61; M-TAC80: nd = 1.59282, νd = 68.62; TAFD25: nd = 1.83481, νd = 42.72; TAFD30: nd = 1.88300, νd = 40.76; E-FDS1: nd = 1.80610, νd = 40.73; BSC7: nd = 1.51680, νd = 64.20).
+4. HOYA Optical Glass Catalog (FCD100: nd = 1.43700, νd = 95.10; FCD1: nd = 1.49700, νd = 81.61; FCD515: nd = 1.59282, νd = 68.63; TAFD25: nd = 1.83481, νd = 42.72; TAFD30: nd = 1.88300, νd = 40.76; E-FDS1: nd = 1.80610, νd = 40.73; BSC7: nd = 1.51680, νd = 64.20).
 5. OHARA Optical Glass Catalog (S-BAL42 / L-BAL42: nd = 1.58313, νd = 59.46; S-FPL51: nd = 1.49700, νd = 81.61; S-LAH55: nd = 1.83481, νd = 42.72; S-TIH6: nd = 1.80610, νd = 40.73).

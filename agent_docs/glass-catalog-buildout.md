@@ -6,7 +6,7 @@ entry; otherwise it falls back to dPgF-corrected indices, measured `nC`/`nF`/`ng
 approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **259 verified entries** in source as of June 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of vendor-published dispersion coefficients.
+The catalog currently has **279 verified entries** in source as of June 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of vendor-published dispersion coefficients.
 
 The generated reports in [`generated/`](generated/) are the current work queues:
 

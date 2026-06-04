@@ -104,7 +104,7 @@ const LENS_DATA = {
       nd: 1.89286,
       vd: 20.36,
       fl: 50.4,
-      glass: "893204 - ultra-high-dispersion flint (patent nd=1.89286, vd=20.36; unresolved)",
+      glass: "893204 - ultra-high-dispersion flint (S-NPH4 code match; patent nd=1.89286, vd=20.36)",
       apd: false,
       role: "Nearly plano-convex positive in fixed G3; front curvature R ≈ 17 km",
       cemented: "B2",

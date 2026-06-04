@@ -85,7 +85,7 @@ The very high refractive index (1.917) of L23 allows the meniscus to carry stron
 ### Cemented Doublet B2: L31 + L32 (G3)
 
 **L31 — Nearly Plano-Convex Positive (convex toward image).**
-nd = 1.89286, νd = 20.36. Glass: 893204 ultra-high-dispersion dense flint; no coefficient-backed public catalog match confirmed. $f = +50.4$ mm.
+nd = 1.89286, νd = 20.36. Glass: 893204 ultra-high-dispersion dense flint; S-NPH4 now provides the public code-backed catalog match. $f = +50.4$ mm.
 
 **L32 — Biconcave Negative.**
 nd = 1.67270, νd = 32.10. Glass: S-TIM25 (OHARA) / E-FD5 (HOYA) — dense flint. $f = -31.6$ mm.
@@ -148,14 +148,14 @@ The design uses nine distinct glass types across ten elements (L23 and L52 share
 | L21 | 1.53775 | 74.70 | 538/747 | S-FPM3 (OHARA) | High | ED fluorophosphate crown |
 | L22 | 1.74077 | 27.79 | 741/278 | S-TIH13 (OHARA) / E-FD13 (HOYA) | High | Dense flint |
 | L23 | 1.91650 | 31.60 | 917316 | S-LAH88 | OHARA | LaF |
-| L31 | 1.89286 | 20.36 | 893204 | Ultra-high-dispersion flint | Unresolved | Dense flint |
+| L31 | 1.89286 | 20.36 | 893204 / S-NPH4 code match | Ultra-high-dispersion flint | Code-backed | Dense flint |
 | L32 | 1.67270 | 32.10 | 673/321 | S-TIM25 (OHARA) / E-FD5 (HOYA) | High | Dense flint |
 | L41 | 1.48749 | 70.24 | 487/702 | S-FSL5 (OHARA) / N-FK5 (Schott) | Exact | Fluorine crown (ED) |
 | L51 | 1.80000 | 29.84 | 800298 | S-NBH55 | OHARA | Dense flint |
 | L52 | 1.91650 | 31.60 | 917316 | S-LAH88, same glass as L23 | OHARA | LaF |
 | L61 | 1.69895 | 30.13 | 699/301 | E-FD15L (HOYA) / S-TIM35 (OHARA) | High | Dense flint |
 
-The glass palette draws from multiple vendors — OHARA (S-LAH71, S-LAH88, S-NBH55, S-FPM3, S-FSL5, S-TIM25), HOYA (E-FD13, E-FD15L), and Schott (N-SF15 equivalent) — which is consistent with Nittoh Kogaku's multi-vendor sourcing practice. The 2026-05-19 catalog pass resolved L11, L23/L52, and L51 to coefficient-backed OHARA rows. L31 remains unresolved: no coefficient-backed public catalog row was found for 893204 / nd = 1.89286, νd = 20.36. Its ultra-high dispersion places it in the extreme short-flint region of the glass map, a sparsely populated zone in most vendor catalogs.
+The glass palette draws from multiple vendors — OHARA (S-LAH71, S-LAH88, S-NBH55, S-FPM3, S-FSL5, S-TIM25, S-NPH4), HOYA (E-FD13, E-FD15L), and Schott (N-SF15 equivalent) — which is consistent with Nittoh Kogaku's multi-vendor sourcing practice. The 2026-05-19 catalog pass resolved L11, L23/L52, and L51 to coefficient-backed OHARA rows. The Sweep 2 catalog pass added the missing 893204 code path via S-NPH4, so L31 now reaches trusted Sellmeier data without asserting a production supplier beyond the code match.
 
 ### Chromatic strategy
 

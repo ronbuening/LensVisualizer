@@ -99,7 +99,7 @@ const LENS_DATA = {
       nd: 1.65446,
       vd: 33.86,
       fl: -520.27,
-      glass: "Unmatched dense flint class (654/339)",
+      glass: "654339 - dense flint class (Hikari SF9 public code match)",
       role: "Concave leading element of rear subunit II-1; central surface-level aberration corrector in the patent claims.",
     },
     {
@@ -168,7 +168,7 @@ const LENS_DATA = {
       nd: 1.65446,
       vd: 33.86,
       fl: -137.58,
-      glass: "Unmatched dense flint class (654/339)",
+      glass: "654339 - dense flint class (Hikari SF9 public code match)",
       role: "Negative flint component of the final cemented doublet, correcting L9 chromatic power.",
       cemented: "D2",
     },

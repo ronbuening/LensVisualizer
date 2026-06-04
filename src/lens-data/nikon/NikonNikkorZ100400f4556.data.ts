@@ -160,7 +160,7 @@ const LENS_DATA = {
       nd: 1.741,
       vd: 52.6,
       fl: -42.0,
-      glass: "741526 - lanthanum crown (patent nd=1.74100, vd~52.6 inferred; no exact public catalog match)",
+      glass: "741526 - lanthanum crown (TAC2 code match; patent nd=1.74100, vd~52.6 inferred)",
       cemented: "D3",
       role: "Lanthanum negative in D3. Carries the majority of G3 diverging power.",
     },

@@ -90,7 +90,7 @@ const LENS_DATA = {
       nd: 1.433852,
       vd: 95.25,
       fl: 243.4,
-      glass: "Fluorite (CaF₂)",
+      glass: "CaF2 Fluorite",
       apd: "patent" as const,
       apdNote: "Fluorite — extreme anomalous partial dispersion, νd = 95.25",
       role: "Fluorite element for superior secondary-spectrum correction at maximum beam height",

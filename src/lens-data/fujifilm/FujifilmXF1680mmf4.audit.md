@@ -8,7 +8,7 @@ Patent: US 2020/0166735 A1, Example 11
 
 | Element / surface | Field | Before | After | Justification |
 |---|---|---|---|---|
-| L21 / S6A | `glass` | `PGM lanthanum dense flint (808409)` | `808409 - PGM lanthanum dense flint (patent nd=1.80780, vd=40.89; no exact public catalog match)` | Patent Example 11 / Table 31 gives nd=1.80780 and vd=40.89. No coefficient-backed public catalog row was found for the exact 808409 code, so the unbroken code is retained for future auto-upgrade. |
+| L21 / S6A | `glass` | `PGM lanthanum dense flint (808409)` | `808409 - PGM lanthanum dense flint (patent nd=1.80780, vd=40.89)` | Patent Example 11 / Table 31 gives nd=1.80780 and vd=40.89. Sweep 2 resolves the code through public HOYA MC-NBFD135 coefficients. |
 
 ### Phase 2 - Patent evidence
 
@@ -18,12 +18,12 @@ Patent: US 2020/0166735 A1, Example 11
 
 ### Phase 3 - Catalog-search disposition
 
-- Checked the current runtime catalog and public exact-code searches for 808409 / nd=1.80780 / vd=40.89.
+- Checked the current runtime catalog and public exact-code searches for 808409 / nd=1.80780 / vd=40.89. Sweep 2 later found the public HOYA MC-NBFD135 coefficient row for this code.
 - Nearby lanthanum dense-flint glasses do not round-trip the patent code with coefficient-backed evidence, so no catalog entry or alias was added.
 
 ### Phase 4 - Analysis sync
 
-- Updated the glass-identification table to mark L21 as unresolved with an explicit unbroken 808409 token.
+- Updated the glass-identification table to mark L21 with an explicit unbroken 808409 token. That token now resolves through the Sweep 2 catalog entry.
 
 ### Verification
 

@@ -86,7 +86,7 @@ const LENS_DATA = {
       nd: 1.75692,
       vd: 31.59,
       fl: 136.2,
-      glass: "757316 — high-dispersion lanthanum flint (patent nd=1.75692, νd=31.59; no exact public coefficient match)",
+      glass: "757316 - high-dispersion lanthanum flint (E-LAF11 code match; patent nd=1.75692, vd=31.59)",
       apd: false,
       role: "Rear positive element of G1 (neg). Partially compensates L11's negative power; high-dispersion glass provides chromatic near-doublet correction within G1.",
       cemented: undefined,

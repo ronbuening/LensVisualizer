@@ -151,7 +151,7 @@ const LENS_DATA = {
       nd: 1.6935,
       vd: 53.2,
       fl: 55.1,
-      glass: "Unmatched (694/532, mold-optimized lanthanum crown)",
+      glass: "694532 - mold-optimized lanthanum crown (S-LAL13 / M-LAC130 code match)",
       apd: false,
       role: "G3 zoom variator; AA aspherical element",
     },

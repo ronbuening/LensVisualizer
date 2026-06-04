@@ -104,7 +104,7 @@ The aperture stop is positioned between G1 and G2, at the waist of the beam. The
 
 ### L9 — Negative Meniscus, convex to object (Focus Element Fn)
 
-$n_d = 1.71736$, $\nu_d = 29.5$. Glass: 717/295 code — no exact match in public OHARA, Schott, Hoya, or Sumita catalogs; possibly a proprietary Panasonic melt or a less commonly documented glass. $f = -76.0\ \text{mm}$.
+$n_d = 1.71736$, $\nu_d = 29.5$. Glass: 717295 code, now backed by the existing SF1 / S-TIH1 catalog code path. $f = -76.0\ \text{mm}$.
 
 **Note on aspherical surfaces:** In Example 3, L9's surfaces (S17, S18) are *not* aspherical — the patent's aspherical data table (Table 3B) lists only surfaces 7, 8, 24, and 25 as aspherical. This differs from Example 1, where L9 (the Fn element) does carry aspherical surfaces. L9 in Example 3 is all-spherical.
 
@@ -112,7 +112,7 @@ L9 is the first of the two focus elements and constitutes G2 on its own. It is d
 
 The conditional expression (4) governs L9: $f_{Fn}/f_w = -76.0/49.0 = -1.551$, within the preferred range −1.7 to −1.3 (¶0121). If L9 were stronger (ratio closer to −0.5), focus sensitivity would be high but field curvature variation during focusing would be excessive. If weaker (ratio beyond −2.0), focus travel would become impractically long. At −1.55, L9 provides moderate focus sensitivity with manageable aberration variation.
 
-The unidentified glass (717/295) is a dense flint type with moderate refractive index and low Abbe number, suitable for a meniscus focus element where chromatic contribution should be minimized (the thin, weakly powered element contributes little chromatic aberration regardless of glass choice, so the designer had latitude to optimize for other properties — presumably thermal stability and moldability/machinability for the focus element assembly).
+The 717295 glass is a dense flint type with moderate refractive index and low Abbe number, suitable for a meniscus focus element where chromatic contribution should be minimized (the thin, weakly powered element contributes little chromatic aberration regardless of glass choice, so the designer had latitude to optimize for other properties — presumably thermal stability and moldability/machinability for the focus element assembly). The catalog match is code-backed; it does not assert the production supplier.
 
 ### L10 — Biconvex Positive (Focus Element Fp)
 
@@ -159,12 +159,12 @@ Given that both surfaces are aspherical, L13 is almost certainly manufactured by
 | L1 | 1.92286 | 20.9 | +0.028 | S-NPH2 | OHARA | Ultra-high-index short flint; front collector |
 | L2 | 1.51680 | 64.2 | — | S-BSL7 | OHARA | Borosilicate crown; achromatic partner to L1 |
 | L3 | 1.58144 | 40.9 | — | 581/409 | Uncertain | Light flint; beam divergence corrector |
-| L4 | 1.80755 | 40.9 | — | 808409 patent code | Uncertain (PGM) | Moldable La glass; aspherical SA corrector |
+| L4 | 1.80755 | 40.9 | — | 808409 / MC-NBFD135 code match | Code-backed (PGM) | Moldable La glass; aspherical SA corrector |
 | L5 | 1.59282 | 68.6 | +0.019 | FCD515 (ED) | Hoya | ED fluorophosphate crown; SA correction |
 | L6 | 1.59282 | 68.6 | +0.019 | FCD515 (ED) | Hoya | ED crown; achromatic in L6+L7 doublet |
 | L7 | 1.85478 | 24.8 | — | S-NBH56 | OHARA | Dense Ba short flint; chromatic corrector |
 | L8 | 1.80420 | 46.5 | — | S-LAH65VS | OHARA | LAH-type La glass; beam concentrator (LG1R) |
-| L9 | 1.71736 | 29.5 | — | 717/295 | Unknown | Focus element Fn; proprietary or uncommon |
+| L9 | 1.71736 | 29.5 | — | 717295 / SF1-S-TIH1 code path | Code-backed | Focus element Fn |
 | L10 | 1.94595 | 18.0 | +0.039 | FDS18 | HOYA | Ultra-high-index short flint; focus Fp |
 | L11 | 1.56732 | 42.8 | — | S-TIL26 | OHARA | Light flint; rear doublet negative component |
 | L12 | 1.55032 | 75.5 | +0.028 | FCD705 | HOYA | ED fluorophosphate crown; rear chromatic corrector |

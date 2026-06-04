@@ -15,6 +15,7 @@ Patent: JP 2016-139087 A, Example 2
 |---|---|---|---|
 | L3d / S12 | `TAFD25 (HOYA) / S-LAH55 (OHARA)` | `S-LAH55V (OHARA)` | Public OHARA catalog row matches the patent nd/vd pair. |
 | L3h / S18 | `E-FDS1 (HOYA) / S-TIH6 (OHARA)` | `NBFD13 (HOYA)` | Public HOYA catalog row matches the patent nd/vd pair. |
+| L3a / S7 | `M-TAC80 (HOYA)` | `FCD515 (HOYA)` | Local patent Example 2 row 8 lists nd=1.59282, vd=68.62. The real M-TAC80 catalog row is nd=1.72903, so the FCD515 code family is the resolver-safe SLD match. |
 
 ### Analysis sync
 

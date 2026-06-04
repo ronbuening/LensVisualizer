@@ -71,7 +71,7 @@ const LENS_DATA = {
       nd: 1.5168,
       vd: 63.88,
       fl: 150.7,
-      glass: "517639 — crown glass (patent nd=1.51680, νd=63.88; no exact public catalog match)",
+      glass: "517639 - crown glass (J-BK7 code match; patent nd=1.51680, vd=63.88)",
       apd: false,
       role: "Front positive collector in G1.",
     },

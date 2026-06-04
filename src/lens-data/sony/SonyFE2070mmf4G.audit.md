@@ -16,4 +16,4 @@ Patent: WO 2023/153076 A1, Example 8
 - Updated L11 and L51 from `S-NPH53 (OHARA)` to `FDS18 (HOYA)` for nd=1.94595, vd=18.00.
 - Updated L23 from `S-LAH98 (OHARA)` to `S-NBH56 (OHARA)` for nd=1.85478, vd=24.80.
 - Updated L41 from `S-LAH79 (OHARA)` to `S-LAH98 (OHARA)` for nd=1.95375, vd=32.30.
-- Remaining incomplete Sellmeier coverage was unrelated to this May relabel queue pass. The 2026-06-04 source pass resolved 855/252 as HOYA NBFD25 and enabled slash-code resolution for existing 593/670 and 720/347 catalog rows; 694/532 still lacks trusted Sellmeier coverage.
+- Remaining incomplete Sellmeier coverage was unrelated to this May relabel queue pass. The 2026-06-04 source pass resolved 855/252 as HOYA NBFD25 and enabled slash-code resolution for existing 593/670 and 720/347 catalog rows. The Sweep 2 catalog pass later lets 694/532 resolve through the existing S-LAL13 / M-LAC130 code path.

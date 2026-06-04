@@ -79,7 +79,7 @@ const LENS_DATA = {
       nd: 1.43385,
       vd: 95.25,
       fl: 244.3,
-      glass: "CaF₂ Fluorite (434-952)",
+      glass: "CaF2 Fluorite",
       apd: "inferred",
       apdNote: "Fluorite, strong +ΔPgF",
       role: "Positive power with minimal chromatic contribution; lightweight",
