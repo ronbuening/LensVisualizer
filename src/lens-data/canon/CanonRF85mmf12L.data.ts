@@ -89,6 +89,7 @@ const LENS_DATA = {
       fl: 134.4,
       glass: "S-NPH2 (OHARA)",
       apd: "patent",
+      dPgF: 0.008,
       apdNote:
         "ΔθgF₁ = 0.008 — ultra-high-index dense flint with anomalous partial dispersion for axial secondary spectrum correction",
       role: "First APD positive lens — on-axis chromatic correction",
@@ -167,6 +168,7 @@ const LENS_DATA = {
       fl: 375.2,
       glass: "BR optics (Canon proprietary organic)",
       apd: "patent",
+      dPgF: 0.092,
       apdNote: "ΔθgF₂ = 0.092 — Blue Spectrum Refractive element for lateral secondary spectrum correction",
       role: "Second APD positive lens — lateral chromatic aberration of magnification cancellation",
       cemented: "DL2",

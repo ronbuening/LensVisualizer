@@ -14,7 +14,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
 - **152** code-only missing-Sellmeier elements in Sweep 2
-- **15** Tier A proprietary backfill rows in Sweep 3
+- **3** Tier A proprietary backfill rows in Sweep 3
 
 ## Sweep 1 - Relabel Mismatches
 
@@ -160,19 +160,7 @@ Use local untracked patents first. Populate patent-listed `nC`, `nF`, `ng`, and 
 
 | Lens | Patent reference | Elements | localPatentPath | localPatentStatus | Notes |
 |---|---|---|---|---|---|
-| [voigtlander/VoigtlanderApoLanthar50f2.data.ts](../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.ts) | JP2021-43376A | 4 (3 Sumita unmatched + 1 KZFS-adjacent) | patents/JP2021043376A.pdf | Matched untracked local patent PDF | **Highest priority** — local `patents/JP2021043376A.pdf` rechecked 2026-06-04; existing patent-listed `dPgF` values are already captured, but extracted text did not expose `nC`, `nF`, or `ng` rows |
-| [nikon/Nikon58f14GDesignCandidate.data.ts](../../src/lens-data/nikon/Nikon58f14GDesignCandidate.data.ts) | (verify) | 1 (S-NBM51 / KZFS2-type short flint) |  | No patent number parsed from lens metadata/reference |  |
-| [nikon/NikonNikkorAFS2470mmf28E.data.ts](../../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) | (verify) | Several fluorophosphate crown placeholders |  | No patent number parsed from lens metadata/reference |  |
-| [nikon/NikonZ28f28.data.ts](../../src/lens-data/nikon/NikonZ28f28.data.ts) | (verify) | 1 UV-curing resin (proprietary) |  | No patent number parsed from lens metadata/reference | Resin may not have line indices in patents |
-| [nikon/NikonZ58f095SNoct.data.ts](../../src/lens-data/nikon/NikonZ58f095SNoct.data.ts) | JP2020-44305A (or similar) | Multiple ED phosphate elements |  | Missing from untracked local patents/ references (JP202044305A, JP202044305, 202044305, JP2020044305A, JP2020044305, 2020044305) |  |
-| [nikon/NikonNikkorZ35mmf12S.data.ts](../../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) | (verify) | Multiple phosphate crown ED elements |  | No patent number parsed from lens metadata/reference | Patent partial-dispersion data already in apdNote |
-| [nikon/NikonNikkorAFS80400mmf4556G.data.ts](../../src/lens-data/nikon/NikonNikkorAFS80400mmf4556G.data.ts) | (verify) | S-FPL51 class + FCD100 + phosphate crown placeholders |  | No patent number parsed from lens metadata/reference |  |
-| [nikon/NikonAFS105f28G.data.ts](../../src/lens-data/nikon/NikonAFS105f28G.data.ts) | (verify) | Unmatched proprietary |  | No patent number parsed from lens metadata/reference |  |
-| [nikon/NikonMicroNikkorPCE45mmf28D.data.ts](../../src/lens-data/nikon/NikonMicroNikkorPCE45mmf28D.data.ts) | (verify) | Unmatched proprietary |  | No patent number parsed from lens metadata/reference |  |
-| [nikon/NikonNikkorZ50f18S.data.ts](../../src/lens-data/nikon/NikonNikkorZ50f18S.data.ts) | (verify) | Unmatched proprietary |  | No patent number parsed from lens metadata/reference |  |
-| [nikon/NikonNikkorZ70200f28.data.ts](../../src/lens-data/nikon/NikonNikkorZ70200f28.data.ts) | (verify) | Unmatched proprietary |  | No patent number parsed from lens metadata/reference |  |
-| [nikon/NikonZ135f18.data.ts](../../src/lens-data/nikon/NikonZ135f18.data.ts) | (verify) | Unmatched proprietary |  | No patent number parsed from lens metadata/reference |  |
-| [canon/CanonRF85mmf12L.data.ts](../../src/lens-data/canon/CanonRF85mmf12L.data.ts) | (verify) | UD-class fluorophosphate |  | No patent number parsed from lens metadata/reference |  |
-| [fujifilm/FujifilmXF35mmf14R.data.ts](../../src/lens-data/fujifilm/FujifilmXF35mmf14R.data.ts) | (verify) | Unmatched proprietary |  | No patent number parsed from lens metadata/reference |  |
-| [fujifilm/FujifilmXF50140mmf28R.data.ts](../../src/lens-data/fujifilm/FujifilmXF50140mmf28R.data.ts) | (verify) | Unmatched proprietary |  | No patent number parsed from lens metadata/reference |  |
+| [nikon/NikonZ28f28.data.ts](../../src/lens-data/nikon/NikonZ28f28.data.ts) | WO2022/071249 A1 | 1 UV-curing resin (proprietary) | patents/WO2022071249A1.pdf | Matched untracked local patent PDF | Local `patents/WO2022071249A1.pdf` is present but extracted as image-only/empty under `pdftotext`; OCR or a text JP/US family member is needed. Resin may not have line indices in the patent. |
+| [nikon/NikonNikkorZ50f18S.data.ts](../../src/lens-data/nikon/NikonNikkorZ50f18S.data.ts) | WO2019/220618 A1 | 2 constant-quality resin/dummy surfaces | patents/WO2019220618A1.pdf | Matched untracked local patent PDF | Local `patents/WO2019220618A1.pdf` is present but extracted as image-only/empty under `pdftotext`; current missing surfaces have no glass annotation to enrich. |
+| [nikon/NikonNikkorZ70200f28.data.ts](../../src/lens-data/nikon/NikonNikkorZ70200f28.data.ts) | WO2020/105104 A1 | 1 proprietary SR element |  | Missing from untracked local patents/ references (WO2020105104A1, WO2020105104, 2020105104) | Correct local patent PDF is still missing. Local `patents/JPWO2020105107A1.pdf` was rechecked and is a different prescription, so it must not be used as evidence. |
 

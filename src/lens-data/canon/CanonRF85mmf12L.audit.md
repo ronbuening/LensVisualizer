@@ -63,3 +63,16 @@ Patent: US 2020/0012073 A1, Example 1
 - `npm run typecheck` — passed.
 - `npm run format:check` — passed.
 - `npm run test` — passed (131 files, 1666 tests; expected error-boundary console output only).
+
+## 2026-06-04 - Sweep 3 patent dPgF backfill
+
+Local patent source: `patents/US20200012073A1.pdf` (untracked local file).
+
+### Phase 3 - Spectral / metadata enrichment
+
+| Element / surface | Field | Before | After | Justification |
+|---|---|---|---|---|
+| L3 / 5 | `dPgF` | absent | `0.008` | Patent Table 1 lists anomalous partial dispersibility `ΔθgF1 = 0.008`; this is the project's `dPgF` quantity. |
+| L9 / 15 | `dPgF` | absent | `0.092` | Patent Table 1 lists anomalous partial dispersibility `ΔθgF2 = 0.092` for the BR positive element. |
+
+No `nC`, `nF`, or `ng` rows were found in the extracted local patent text.

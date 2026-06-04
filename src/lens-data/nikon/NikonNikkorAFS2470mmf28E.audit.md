@@ -63,3 +63,11 @@ Changes made:
 
 - Reworded the L11 glass label in `NikonNikkorAFS2470mmf28E.data.ts`.
 - Updated the L11 narrative in `NikonNikkorAFS2470mmf28E.analysis.md`.
+
+## 2026-06-04 — Sweep 3 local patent recheck
+
+Local patent source: `patents/US20200142168A1.pdf` (untracked local file).
+
+- Re-extracted Example 1 / Table 1 with `pdftotext -layout`.
+- The local patent text publishes `n(d)` and `νd` only for the lens prescription. No `nC`, `nF`, `ng`, `θgF`, or `dPgF` rows were found.
+- No data-file spectral backfill was made from this pass.

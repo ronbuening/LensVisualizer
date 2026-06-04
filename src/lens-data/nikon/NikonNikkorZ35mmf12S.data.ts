@@ -156,6 +156,7 @@ const LENS_DATA = {
       fl: -37.4,
       glass: "J-KZFH9 (Hikari)",
       apd: "patent",
+      dPgF: 0.0001,
       apdNote: "θgF = 0.5896 (patent-listed); condition (11) value = 0.657",
       cemented: "D1",
       role: "Patent Ln2: negative element at image side of front group. Cemented to L18 forming achromatic doublet (combined f = −98.6 mm). θgF anomalous partial dispersion corrects secondary spectrum.",
@@ -233,6 +234,7 @@ const LENS_DATA = {
       fl: +95.2,
       glass: "FDS18 / H-ZF75A family (946180)",
       apd: "patent",
+      dPgF: 0.041,
       apdNote:
         "θgF = 0.6546 (patent-listed); condition (14) value = 0.692; strong anomalous partial dispersion for secondary spectrum correction",
       cemented: "D2",
