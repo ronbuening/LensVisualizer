@@ -319,6 +319,10 @@ function annularNestedOpeningForSpan(
   from: number,
   to: number,
 ): number | null {
+  /* Mirror-only exception: a declared annular element span can contain central
+   * corrector surfaces when both span endpoints define the same physical hole
+   * and at least one endpoint is the reflective surface. Ordinary refractive
+   * explicit spans stay strict and only allow embedded stops. */
   if (data.opticalPath === undefined) return null;
   const front = S[from];
   const rear = S[to];
@@ -340,6 +344,9 @@ function isAllowedAnnularNestedSurface(span: ExplicitElementSpan, surface: Untru
 function isAllowedFoldedRadialSplitSurface(span: ExplicitElementSpan, surface: UntrustedLensData): boolean {
   if (!span.foldedMirrorLens) return false;
   if (centralOpeningSemiDiameter(surface) === null) return false;
+  /* Complementary surfaces can be interleaved only when their occupied radial
+   * material bands do not overlap. This models shared mirror blanks split into
+   * an annular silvered shell plus a clear central plug for rendering. */
   return !sharedMaterialBand(span.frontSurface, surface) && !sharedMaterialBand(span.rearSurface, surface);
 }
 
@@ -1114,6 +1121,9 @@ function _checkCrossGapOverlap(
     if (i === 0 || S[i - 1].elemId === 0) continue;
     const sharedBand = sharedMaterialBand(curr, next);
     if (!sharedBand) continue;
+    /* Annular systems compare sag only where both neighboring surfaces contain
+     * material. A central corrector inside a mirror hole has no shared band with
+     * the annular mirror shell, so it is not a physical cross-gap overlap. */
     const sdCheck = sharedBand.outer;
     const sagFwd = conicPolySag(sdCheck, curr.R, asphByIdx[i]);
     const sagBack = conicPolySag(sdCheck, next.R, asphByIdx[i + 1]);

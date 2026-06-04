@@ -242,7 +242,7 @@ Field meanings:
 
 - `type: "refract"` applies normal Snell refraction. It is also useful for a passive backing plane that needs the same tilted visual geometry as a mirror face.
 - `type: "reflect"` reflects the ray using the solved surface normal. Use `mirrorKind: "first-surface"` for front-coated mirrors and `mirrorKind: "second-surface"` for substrate-backed reflective surfaces.
-- `mirrorKind: "second-surface"` also tells the SVG renderer to draw a dashed coating accent on that surface so the coating is visible apart from the glass substrate. The accent is display-only; tracing follows `type`, `incidentSide`, `inactiveSide`, and the optical path.
+- `mirrorKind: "second-surface"` also tells the SVG renderer to draw a dashed, labeled silvered-surface accent on that surface so the coating is visible apart from the glass substrate. The accent is display-only; tracing follows `type`, `incidentSide`, `inactiveSide`, and the optical path. For annular mirrors the accent is split into the upper and lower material bands and leaves the clear center unmarked.
 - `type: "block"` clips rays within the surface's active aperture. It is intended for central obstructions, baffles, and synthetic regression fixtures.
 - `incidentSide` limits which side of the surface is active. The side is relative to the solved surface normal, not the list position in `surfaces`. If a ray hits a reflective surface from its inactive side, it blocks by default inside the active disk or annulus. Reference mirror fixtures should declare `inactiveSide: "block"` explicitly so back-side opacity is clear in the data. Refractive and blocker surfaces keep the historical inactive-side default of ignore unless `inactiveSide: "block"` is explicit.
 - `normal` converts the surface into a tilted meridional plane for both tracing and SVG element rendering. Use this for flat fold mirrors. Curved mirrors should normally omit `normal` so the spherical/aspherical sag and local normal come from `R` and `asph`.
@@ -270,6 +270,8 @@ Any surface may declare `innerSd` to define an annular active aperture:
 
 The active radial band is `[innerSd, sd]`. Rays below `innerSd` pass through the central hole without interacting with that surface, including from an inactive mirror side that would otherwise block. Rays above `sd` clip when semi-diameter checking is active. This supports annular primary mirrors, annular stops, and ring-shaped blockers.
 
+Validation and render diagnostics use the same radial-material interpretation. A solid surface occupies `[0, sd]`; an annular surface occupies `[innerSd, sd]`; cross-gap sag checks compare only the shared occupied band. This is important for folded reflex lenses: a rear corrector inside the primary's clear center should not fail or trim against the surrounding annular mirror shell when their radial material bands do not overlap.
+
 For a solid central obstruction, omit `innerSd` and use a `block` surface:
 
 ```javascript
@@ -281,6 +283,18 @@ For an annular blocker, combine `innerSd` with `type: "block"`; only the ring cl
 Visible on-axis and off-axis ray sampling is obstruction-aware for folded systems. The sampler scans the usable pupil bands and avoids the central blocked region automatically, so mirror fixtures should not hand-tune `rayFractions` just to route around a secondary obstruction.
 
 If a tilted or paired backing surface belongs to the same annular mirror element, keep `innerSd` consistent between the reflective face and its backing plane. Validation rejects mismatched paired annular faces because the SVG element and active optical aperture would otherwise disagree.
+
+### Annular Mirror Nesting And Shared Blanks
+
+Ordinary explicit element spans (`fromSurface` / `toSurface`) remain strict: the only internal surface normally allowed is an embedded `STO` with `stopPlacement: "inside-element"`. Mirror lenses get one narrow exception. When `opticalPath` is present, an explicit span whose endpoints have matching `innerSd` and at least one reflective endpoint may contain non-stop surfaces that fit wholly inside that central opening. Use this only for patent drawings where a corrector group physically occupies the empty center of an annular mirror.
+
+Some reflex patents also use one physical mirror blank in two radial roles: a silvered annular shell plus a clear central plug. Model that as complementary rendered elements, not by stretching a small corrector across the full primary diameter:
+
+- The annular mirror element keeps the reflective surface, `innerSd`, and the full outer `sd`.
+- The clear central plug gets its own element entry and unique surface labels at the same axial stations and curvatures, with `sd <= innerSd` and no reflective interaction.
+- Both entries should carry the same `nd`, `vd`, and glass identification when they are the same physical blank.
+- `elementCount` should report the physical patent element count. The `elements` array may include the extra plug entry required for rendering and tracing, so document the split in the file header and companion analysis.
+- Do not use `stopPlacement: "inside-element"` to hide these correctors. That field is only for an actual stop embedded in glass.
 
 ### Authoring Patterns
 

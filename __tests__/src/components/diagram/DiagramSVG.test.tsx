@@ -474,9 +474,20 @@ describe("DiagramSVG", () => {
     );
 
     const coating = container.querySelector(`[data-testid="surface-accent-second-surface-coating-${L.labelIdx.MG2}"]`);
+    const halo = container.querySelector(
+      `[data-testid="surface-accent-halo-second-surface-coating-${L.labelIdx.MG2}"]`,
+    );
+    const label = container.querySelector(
+      `[data-testid="surface-accent-label-second-surface-coating-${L.labelIdx.MG2}"]`,
+    );
     expect(coating).toBeTruthy();
-    expect(coating?.getAttribute("stroke")).toBe(themes.dark.imgLine);
+    expect(halo).toBeTruthy();
+    expect(label).toBeTruthy();
+    expect(coating?.getAttribute("stroke")).toBe(themes.dark.silveredSurfaceStroke);
+    expect(halo?.getAttribute("stroke")).toBe(themes.dark.silveredSurfaceHalo);
+    expect(Number(coating?.getAttribute("stroke-width"))).toBeGreaterThan(themes.dark.asphStrokeWidth);
     expect(coating?.getAttribute("stroke-dasharray")).toBe("3,2");
+    expect(label?.textContent).toBe("S");
   });
 
   it("switches into grab-mode event wiring when zoom-pan is active", () => {

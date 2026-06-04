@@ -60,6 +60,10 @@ Names the overall design type (modified Gaussian, double-Gauss, telephoto, retro
 
 When the design is a zoom or has tilt/shift, describe the kinematics here at a high level (which groups move, what direction, over what range).
 
+For folded or mirror systems, also state the optical encounter order separately from the physical front-to-rear surface order. Identify first-surface versus second-surface mirrors, annular apertures, central obstructions, and the explicit image-plane location when it is not the ordinary rear image plane. If a patent figure shows a rear corrector inside the clear center of an annular primary, say so here so future data edits do not "fix" the apparent nesting by stretching or moving the corrector.
+
+When one physical mirror blank is modeled as complementary rendered regions, describe both identities. Example: "M1 is the silvered annular primary shell; L4 is the clear central plug of the same blank." State the shared radii, axial stations, and glass identity, and note that the data file may have one more `elements` entry than the patent's physical `elementCount` because the SVG and tracer need separate radial regions.
+
 ### 3. Element-by-Element Analysis
 
 The bulk of the document. One subsection per element (or per cemented group) in front-to-rear order. For each element:
@@ -69,6 +73,8 @@ The bulk of the document. One subsection per element (or per cemented group) in 
 - **Body:** the optical role of the element. What aberration it controls, how its position interacts with neighbors, why this glass was chosen, what the patent says about it (cite paragraphs as `¶0054` or `§0024`). 1–4 short paragraphs.
 
 For cemented doublets and triplets, you may either give one heading per cemented group with sub-bullets per element, or one heading per element with a shared "interface" paragraph. Either is acceptable; pick the one that reads more naturally for the design.
+
+For mirror blanks, use headings that make the dual role explicit (`M1 / L4`, `Primary Mangin Mirror and clear central corrector`, etc.). The first line should still give `nd`, `νd`, glass identity, and focal length, but distinguish mirror focal power from refractive-pass focal power when both are relevant. If the patent's ray path revisits a surface, explain that the analysis follows optical encounter order rather than simple list order.
 
 ### 4. Glass Identification / Selection
 
@@ -118,8 +124,17 @@ Include only when the design or the patent provides meaningful content. Place af
 | SA / Coma / Distortion Control Mechanism | The patent identifies a specific mechanism (e.g. a floating SA-control group) that materially shapes the design. |
 | Air Lenses | The design contains a strongly curved air gap whose curvature pair functions as a "negative air lens" that the patent explicitly leverages. |
 | Verification Summary | The author cross-checked patent values against `buildLens()` outputs (EFL, FNO, MFD, half-field) and wants to record the match. |
+| Folded / Mirror Path Verification | A mirror, Mangin, Newtonian, Cassegrain, reflex, or other folded system uses `opticalPath`, `innerSd`, blockers, repeated surface hits, or an explicit nonstandard image plane. |
 | Design Heritage and Context | The lens is a notable descendant of an earlier patent or an industry-influencing original. Keep this historical, not promotional. |
 | Sources / References | Any analysis that cites external sources (vendor catalogs, archival catalog scans, retrospective interviews). Always include when claims rest on non-patent sources. |
+
+Folded / Mirror Path Verification sections should record enough implementation detail for an audit without turning the analysis into code comments:
+
+- `opticalPath.surfaceOrder` in prose, especially repeated labels for second-surface Mangin mirrors.
+- Which surfaces are silvered, which are merely refractive passes through a mirror substrate, and which are blockers or annular holes.
+- The radial model for annular primary mirrors: outer `sd`, clear-center `innerSd`, and whether any corrector surfaces are intentionally nested inside that clear center.
+- Any duplicated central-zone surfaces used to represent a shared mirror blank. State that these duplicate the curvature and axial station of the annular mirror surfaces but use unique labels and smaller semi-diameters.
+- How ray traces were checked: representative obstruction-aware rays should reach the explicit image plane; blocked central rays in reflex lenses are not evidence that the prescription is wrong.
 
 ## Voice and Conventions
 

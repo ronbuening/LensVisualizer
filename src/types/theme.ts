@@ -93,6 +93,11 @@ export interface ThemeColorTokens extends ThemeInternalTokens {
   asphLabel: string;
   asphStrokeWidth: number;
   asphDiamondFill: string;
+  silveredSurfaceStroke: string;
+  silveredSurfaceHalo: string;
+  silveredSurfaceLabel: string;
+  silveredSurfaceStrokeWidth: number;
+  silveredSurfaceHaloWidth: number;
   rayWidthScale: number;
   elemStrokeIdle: number;
   elemStrokeActive: number;

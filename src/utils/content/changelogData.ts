@@ -23,6 +23,17 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-06-04",
     type: "lens",
+    summary:
+      "Added three Nikon reflex lenses: Reflex-Nikkor·C 500mm f/8, Reflex-Nikkor 500mm f/8 New, and Reflex-Nikkor 1000mm f/11",
+  },
+  {
+    date: "2026-06-04",
+    type: "improvement",
+    summary: "Improved folded mirror-lens validation, ray sampling, and annular mirror rendering",
+  },
+  {
+    date: "2026-06-04",
+    type: "lens",
     summary: "Added three Leica lenses: Elmarit-TL 18mm f/2.8 ASPH, Elmarit-M 135mm f/2.8, and Elmar-M 135mm f/4",
   },
   // ── 2026-06-03 ──────────────────────────────────────────────────────────

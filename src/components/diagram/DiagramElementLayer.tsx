@@ -87,19 +87,33 @@ const DiagramElementLayer = memo(function DiagramElementLayer({
       )}
 
       {shapes.flatMap(({ surfaceAccentPaths }) =>
-        (surfaceAccentPaths || []).map(({ surfIdx, pathD, kind }) => (
+        (surfaceAccentPaths || []).flatMap(({ surfIdx, pathD, kind }) => [
+          <path
+            key={`surface-accent-halo-${kind}-${surfIdx}`}
+            data-testid={`surface-accent-halo-${kind}-${surfIdx}`}
+            d={pathD}
+            fill="none"
+            stroke={t.silveredSurfaceHalo}
+            strokeWidth={t.silveredSurfaceHaloWidth}
+            strokeDasharray="3,2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            opacity={0.95}
+            style={{ pointerEvents: "none" }}
+          />,
           <path
             key={`surface-accent-${kind}-${surfIdx}`}
             data-testid={`surface-accent-${kind}-${surfIdx}`}
             d={pathD}
             fill="none"
-            stroke={t.imgLine}
-            strokeWidth={Math.max(t.asphStrokeWidth, t.imgLineWidth + 0.4)}
+            stroke={t.silveredSurfaceStroke}
+            strokeWidth={t.silveredSurfaceStrokeWidth}
             strokeDasharray="3,2"
             strokeLinecap="round"
+            strokeLinejoin="round"
             style={{ pointerEvents: "none" }}
-          />
-        )),
+          />,
+        ]),
       )}
 
       {shapes.flatMap(({ asphPaths }) =>
@@ -116,6 +130,28 @@ const DiagramElementLayer = memo(function DiagramElementLayer({
             style={{ pointerEvents: "none", letterSpacing: "0.06em" }}
           >
             A
+          </text>
+        )),
+      )}
+
+      {shapes.flatMap(({ surfaceAccentPaths }) =>
+        (surfaceAccentPaths || []).map(({ surfIdx, kind, labelX, labelY }) => (
+          <text
+            key={`surface-accent-lbl-${kind}-${surfIdx}`}
+            data-testid={`surface-accent-label-${kind}-${surfIdx}`}
+            x={labelX}
+            y={labelY}
+            textAnchor="middle"
+            fill={t.silveredSurfaceLabel}
+            stroke={t.silveredSurfaceHalo}
+            strokeWidth={3}
+            paintOrder="stroke fill"
+            fontSize={9}
+            fontFamily="inherit"
+            fontWeight={700}
+            style={{ pointerEvents: "none", letterSpacing: 0 }}
+          >
+            S
           </text>
         )),
       )}

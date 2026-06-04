@@ -495,6 +495,8 @@ export interface AsphPathData {
 export interface SurfaceAccentPathData {
   surfIdx: number;
   pathD: string;
+  labelX: number;
+  labelY: number;
   kind: "second-surface-coating";
 }
 

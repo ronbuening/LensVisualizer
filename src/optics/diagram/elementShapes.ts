@@ -57,6 +57,27 @@ export function computeElementShapesForState2(
     const surfacePath = (surfaceIndex: number, trim: number): string =>
       surfacePathD2(state, surfaceIndex, trim, sx, sy, pointTransform);
 
+    const surfaceMaterialPath = (surfaceIndex: number, outerTrim: number, innerTrim = 0): string => {
+      const surface = state.surfaces[surfaceIndex];
+      if (!surface) return "";
+
+      const bandInner = Number.isFinite(innerTrim) ? Math.max(0, Math.min(innerTrim, outerTrim)) : 0;
+      if (bandInner <= 0) return surfacePath(surfaceIndex, outerTrim);
+
+      /* Annular coatings are two physical radial bands; split the SVG path so the clear center is not marked silvered. */
+      const segmentCount = Math.max(8, Math.round((SVG_PATH_SUBDIVISIONS_2 * (outerTrim - bandInner)) / outerTrim));
+      const segment = (from: number, to: number): string => {
+        let path = "";
+        for (let i = 0; i <= segmentCount; i++) {
+          const y = from + ((to - from) * i) / segmentCount;
+          path += `${i ? "L" : "M"}${pathPoint(renderedSurfaceZ2(surface, y), y)} `;
+        }
+        return path;
+      };
+
+      return `${segment(-outerTrim, -bandInner)}${segment(bandInner, outerTrim)}`;
+    };
+
     let d = "";
     for (let i = 0; i <= NN; i++) {
       const y = -trim1 + (2 * trim1 * i) / NN;
@@ -119,9 +140,14 @@ export function computeElementShapesForState2(
       const surface = state.surfaces[surfaceIndex];
       if (surface.interaction.type === "reflect" && surface.interaction.mirrorKind === "second-surface") {
         /* The coating accent is visual only; reflection/refraction behavior stays in interaction data. */
+        const trim = surfaceIndex === s1 ? trim1 : trim2;
+        const innerTrim = Math.min(trim, Math.max(0, surface.innerSd ?? 0));
+        const [labelX, labelY] = screenPoint(renderedSurfaceZ2(surface, trim), trim);
         surfaceAccentPaths.push({
           surfIdx: surfaceIndex,
-          pathD: surfacePath(surfaceIndex, surfaceIndex === s1 ? trim1 : trim2),
+          pathD: surfaceMaterialPath(surfaceIndex, trim, innerTrim),
+          labelX,
+          labelY: labelY + 10,
           kind: "second-surface-coating",
         });
       }

@@ -808,5 +808,38 @@ describe("computeElementShapes", () => {
     expect(coating).toBeDefined();
     expect(coating?.pathD).toMatch(/^M/);
     expect(pathCoords(coating?.pathD ?? "")).toHaveLength(SVG_PATH_SUBDIVISIONS + 1);
+    expect(Number.isFinite(coating?.labelX)).toBe(true);
+    expect(Number.isFinite(coating?.labelY)).toBe(true);
+  });
+
+  it("splits annular second-surface coating accents around the clear central opening", () => {
+    const L = hydrateDiagramLens({
+      ES: [[1, 0, 1]],
+      S: [
+        { label: "M1F", R: 1e15, d: 5, nd: 1.5, elemId: 1, sd: 20, innerSd: 8 },
+        {
+          label: "M1R",
+          R: 1e15,
+          d: 40,
+          nd: 1.0,
+          elemId: 0,
+          sd: 20,
+          innerSd: 8,
+          interaction: { type: "reflect", incidentSide: "front", mirrorKind: "second-surface" },
+        },
+      ],
+      asphByIdx: {},
+      maxRimSin: 0.95,
+      maxRimTan,
+      gapSagFrac: 0.9,
+      N: 2,
+    });
+    const shape = computeElementShapes(L, [0, 5], sx, sy)[0];
+    const coating = shape.surfaceAccentPaths[0];
+    const coords = pathCoords(coating.pathD);
+
+    /* Silvering is present only in the annular glass band, so the SVG accent must not cross |y| < innerSd. */
+    expect(coating.pathD.match(/M/g)).toHaveLength(2);
+    expect(coords.every(([, y]) => Math.abs(y) >= 8 - 1e-9)).toBe(true);
   });
 });

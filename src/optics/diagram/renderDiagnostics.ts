@@ -123,6 +123,9 @@ function hasInterveningAnnularSeparation2(
       { sd: intervening.sd, innerSd: intervening.innerSd },
       { sd: targetRenderSD, innerSd: target.innerSd },
     );
+    /* An intervening annular mirror separates the SVG gap only if the target
+     * lives entirely in the central hole. In that case trimming against the
+     * surrounding mirror shell would hide valid clear-aperture geometry. */
     if (!sharedBand) return true;
   }
   return false;
@@ -161,6 +164,9 @@ export function computeElementRenderDiagnosticsForState2(state: PreparedOpticalS
           { sd: prevSD, innerSd: state.surfaces[ps2].innerSd },
           { sd: renderSD1, innerSd: front.innerSd },
         );
+        /* Evaluate SVG gap trimming at the shared radial material band, not at
+         * min(sd). This prevents annular mirror shells from trimming correctors
+         * drawn inside their clear central openings. */
         if (
           sharedBand &&
           !hasInterveningAnnularSeparation2(state, ps2, s1, s1, renderSD1) &&
