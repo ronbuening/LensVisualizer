@@ -7,12 +7,18 @@ import SEOHead from "../components/SEOHead.js";
 import PageNavBar from "../components/layout/PageNavBar.js";
 import { LENS_MOUNT_BY_ID, isLensMountId } from "../utils/catalog/lensTaxonomy.js";
 import { mountCanonicalURL, SITE_NAME, SITE_URL } from "../utils/catalog/lensMetadata.js";
-import { breadcrumbJsonLd, collectionPageJsonLd } from "../utils/seo/structuredData.js";
+import { breadcrumbJsonLd, collectionPageJsonLd, imageObjectJsonLd } from "../utils/seo/structuredData.js";
 import { usePageThemeToggle } from "../utils/theme/usePageThemeToggle.js";
 import { getMountDetails } from "../utils/catalog/mountDetails.js";
 import { LENS_LINK_BASE_STYLE, PAGE_BASE_STYLE } from "../utils/style/pageStyles.js";
 import { lensLinkFromMount } from "./lensIndex/clusterLinks.js";
 import { lensesForMount } from "./lensIndex/catalog.js";
+import MountDiagramSet from "../components/mounts/MountDiagramSet.js";
+import { getMountSpec } from "../mount-data/index.js";
+import { mountSvgPublicUrl } from "../mount-data/svgAssetUrls.js";
+import type { MountSvgView } from "../mount-data/types.js";
+
+const MOUNT_SVG_VIEWS: MountSvgView[] = ["camera_side_front_view", "lens_side_rear_view", "axial_register_schematic"];
 
 export default function MountPage() {
   const { mountId } = useParams<{ mountId: string }>();
@@ -24,6 +30,7 @@ export default function MountPage() {
   const lenses = lensesForMount(mountId);
   if (lenses.length === 0) return <Navigate to="/mounts" replace />;
   const details = getMountDetails(mountId);
+  const mountSpec = getMountSpec(mountId);
 
   const seoDescription = details
     ? `${details.summary} Explore ${lenses.length} patent-derived ${mount.label} lens diagrams with optical analysis.`
@@ -47,6 +54,16 @@ export default function MountPage() {
             { name: "Mounts", url: `${SITE_URL}/mounts` },
             { name: mount.label, url: mountCanonicalURL(mountId) },
           ]),
+          ...(mountSpec
+            ? MOUNT_SVG_VIEWS.map((view) =>
+                imageObjectJsonLd({
+                  name: `${mount.label} mount ${view.replace(/_/g, " ")}`,
+                  description: `${mount.label} mount SVG reference diagram generated from LensVisualizer mount data.`,
+                  contentUrl: mountSvgPublicUrl(mountId, view),
+                  pageUrl: mountCanonicalURL(mountId),
+                }),
+              )
+            : []),
         ]}
       />
 
@@ -90,6 +107,8 @@ export default function MountPage() {
             ))}
           </section>
         )}
+
+        {mountSpec && <MountDiagramSet spec={mountSpec} theme={t} />}
 
         <div style={{ borderTop: `1px solid ${t.panelBorder}`, paddingTop: "1rem" }}>
           {lenses.map((entry) => (

@@ -1,0 +1,287 @@
+{
+  "schemaVersion": "1.3",
+  "mountId": "canon-ef",
+  "displayLabel": "Canon EF",
+  "projectNote": "Canon EF SLR mount; MVP profile uses the stable fully electronic EF interface.",
+  "researchStatus": "partial",
+  "mvpStatus": "renderable",
+  "mechanism": "bayonet",
+  "lockType": "sprung_detent",
+  "mvp": {
+    "requiredViews": ["camera_side_front_view", "lens_side_rear_view", "axial_register_schematic"],
+    "requirementLevels": {
+      "mvpRequired": [
+        "flangeFocalDistanceMm",
+        "nominalThroatDiameterMm",
+        "cameraMountOuterDiameterMm",
+        "lensMountOuterDiameterMm"
+      ],
+      "conditionalCoreRequired": ["bayonetLugs", "lockIndexGeometry"],
+      "variantRequired": ["electricalContactBlock"],
+      "mvpOptional": ["screwPattern", "gasket"],
+      "referenceGrade": ["lugUndercuts", "contactPitch", "screwPcd"]
+    },
+    "profileModel": {
+      "baseProfileId": "canon-ef/base",
+      "selectedMvpProfileId": "canon-ef/base",
+      "variantStrategy": "base_only",
+      "variantProfiles": [
+        {
+          "profileId": "canon-ef/base",
+          "profileType": "base",
+          "appliesTo": "Canon EF lenses and EOS SLR/DSLR bodies",
+          "requirementLayer": "mvp-required",
+          "adds": ["fully electronic lens-body interface", "EF bayonet foundation"],
+          "removes": ["mechanical aperture lever", "body screw-drive autofocus coupler"],
+          "changes": [],
+          "cameraSideOverlayLayers": ["camera-side-metal", "camera-side-core-interface", "camera-side-variant-electrical"],
+          "lensSideOverlayLayers": ["lens-side-metal", "lens-side-core-interface", "lens-side-variant-electrical"],
+          "status": "partial",
+          "sourceRefs": ["canon-eos30", "canon-ef-secondary"]
+        }
+      ]
+    }
+  },
+  "coordinateConvention": {
+    "units": "mm_deg",
+    "zDatum": "flange_datum",
+    "zPositive": "toward_lens",
+    "angleZero": "top_dead_center_camera_front_view",
+    "anglePositive": "clockwise_camera_front_view",
+    "storedAngleFrame": "camera_front_view",
+    "lensRearMirror": "theta_out = (360 - theta) mod 360",
+    "angleSpanRule": "clockwise_sweep_start_to_end_mod_360"
+  },
+  "render": {
+    "unitMapping": "1_user_unit_per_mm",
+    "marginFraction": 0.1,
+    "numericPrecision": 3,
+    "views": {
+      "cameraSideFront": { "viewBox": "-36 -36 72 72" },
+      "lensSideRear": { "viewBox": "-36 -36 72 72" },
+      "axialSection": { "viewBox": "-54 -30 72 60" }
+    }
+  },
+  "coreDimensions": {
+    "flangeFocalDistanceMm": { "value": 44, "status": "official", "sourceRefs": ["canon-eos30"] },
+    "nominalThroatDiameterMm": { "value": 54, "status": "official", "sourceRefs": ["canon-eos30"] },
+    "effectiveClearApertureMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+    "cameraMountOuterDiameterMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+    "lensMountOuterDiameterMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+    "contactCount": { "value": 8, "status": "secondary", "sourceRefs": ["canon-ef-secondary"] }
+  },
+  "lockGeometry": {
+    "insertionAngleDeg": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+    "lockAngleDeg": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+    "lockRotationDeg": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+    "lockRotationDirection": { "value": "unknown", "status": "unknown", "sourceRefs": [] }
+  },
+  "cameraSideFeatures": [
+    {
+      "featureId": "body-throat",
+      "featureType": "clear_opening",
+      "profileId": "canon-ef/base",
+      "count": 1,
+      "centerAngleDeg": { "value": 0, "status": "official", "sourceRefs": ["canon-eos30"] },
+      "startAngleDeg": { "value": 0, "status": "official", "sourceRefs": ["canon-eos30"] },
+      "endAngleDeg": { "value": 360, "status": "official", "sourceRefs": ["canon-eos30"] },
+      "innerRadiusMm": { "value": 0, "status": "official", "sourceRefs": ["canon-eos30"] },
+      "outerRadiusMm": { "value": 27, "status": "official", "sourceRefs": ["canon-eos30"] },
+      "depthMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "matesWith": "lens-throat",
+      "shapeNotes": "Drawn from Canon's published 54 mm mount diameter; effective clear aperture remains unresolved."
+    },
+    {
+      "featureId": "body-slot-set",
+      "featureType": "bayonet_receiving_slot",
+      "profileId": "canon-ef/base",
+      "count": 3,
+      "centerAngleDeg": { "value": 120, "status": "photo_scaled", "sourceRefs": ["canon-ef-secondary"] },
+      "startAngleDeg": { "value": 98, "status": "photo_scaled", "sourceRefs": ["canon-ef-secondary"] },
+      "endAngleDeg": { "value": 142, "status": "photo_scaled", "sourceRefs": ["canon-ef-secondary"] },
+      "innerRadiusMm": { "value": 27, "status": "official", "sourceRefs": ["canon-eos30"] },
+      "outerRadiusMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "depthMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "matesWith": "lens-lug-set",
+      "shapeNotes": "Schematic one-of-three slot marker; exact angular geometry is not yet sourced."
+    },
+    {
+      "featureId": "body-contact-block",
+      "featureType": "electrical_contact_carrier",
+      "profileId": "canon-ef/base",
+      "count": 1,
+      "centerAngleDeg": { "value": 42, "status": "photo_scaled", "sourceRefs": ["canon-ef-secondary"] },
+      "startAngleDeg": { "value": 22, "status": "photo_scaled", "sourceRefs": ["canon-ef-secondary"] },
+      "endAngleDeg": { "value": 62, "status": "photo_scaled", "sourceRefs": ["canon-ef-secondary"] },
+      "innerRadiusMm": { "value": 27, "status": "official", "sourceRefs": ["canon-eos30"] },
+      "outerRadiusMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "depthMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "matesWith": "lens-contact-block",
+      "shapeNotes": "Simplified contact block; individual pitch and pad dimensions are deferred."
+    },
+    {
+      "featureId": "body-lock-pin",
+      "featureType": "lock_pin",
+      "profileId": "canon-ef/base",
+      "count": 1,
+      "centerAngleDeg": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "startAngleDeg": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "endAngleDeg": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "innerRadiusMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "outerRadiusMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "depthMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "matesWith": "lens-lock-notch",
+      "shapeNotes": "Required bayonet locking feature; exact location open."
+    }
+  ],
+  "lensSideFeatures": [
+    {
+      "featureId": "lens-throat",
+      "featureType": "rear_opening",
+      "profileId": "canon-ef/base",
+      "count": 1,
+      "centerAngleDeg": { "value": 0, "status": "official", "sourceRefs": ["canon-eos30"] },
+      "startAngleDeg": { "value": 0, "status": "official", "sourceRefs": ["canon-eos30"] },
+      "endAngleDeg": { "value": 360, "status": "official", "sourceRefs": ["canon-eos30"] },
+      "innerRadiusMm": { "value": 0, "status": "official", "sourceRefs": ["canon-eos30"] },
+      "outerRadiusMm": { "value": 27, "status": "official", "sourceRefs": ["canon-eos30"] },
+      "thicknessMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "matesWith": "body-throat",
+      "shapeNotes": "Rear opening shown to the EF mount diameter; baffle details unresolved."
+    },
+    {
+      "featureId": "lens-lug-set",
+      "featureType": "bayonet_lug",
+      "profileId": "canon-ef/base",
+      "count": 3,
+      "centerAngleDeg": { "value": 120, "status": "photo_scaled", "sourceRefs": ["canon-ef-secondary"] },
+      "startAngleDeg": { "value": 98, "status": "photo_scaled", "sourceRefs": ["canon-ef-secondary"] },
+      "endAngleDeg": { "value": 142, "status": "photo_scaled", "sourceRefs": ["canon-ef-secondary"] },
+      "innerRadiusMm": { "value": 27, "status": "official", "sourceRefs": ["canon-eos30"] },
+      "outerRadiusMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "thicknessMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "matesWith": "body-slot-set",
+      "shapeNotes": "Schematic one-of-three lug marker."
+    },
+    {
+      "featureId": "lens-contact-block",
+      "featureType": "electrical_contact_carrier",
+      "profileId": "canon-ef/base",
+      "count": 1,
+      "centerAngleDeg": { "value": 42, "status": "photo_scaled", "sourceRefs": ["canon-ef-secondary"] },
+      "startAngleDeg": { "value": 22, "status": "photo_scaled", "sourceRefs": ["canon-ef-secondary"] },
+      "endAngleDeg": { "value": 62, "status": "photo_scaled", "sourceRefs": ["canon-ef-secondary"] },
+      "innerRadiusMm": { "value": 27, "status": "official", "sourceRefs": ["canon-eos30"] },
+      "outerRadiusMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "thicknessMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "matesWith": "body-contact-block",
+      "shapeNotes": "Simplified eight-contact EF block."
+    },
+    {
+      "featureId": "lens-lock-notch",
+      "featureType": "lock_notch",
+      "profileId": "canon-ef/base",
+      "count": 1,
+      "centerAngleDeg": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "startAngleDeg": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "endAngleDeg": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "innerRadiusMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "outerRadiusMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "thicknessMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "matesWith": "body-lock-pin",
+      "shapeNotes": "Required lock notch; exact geometry unresolved."
+    }
+  ],
+  "axialStack": [
+    {
+      "planeId": "flange_datum",
+      "zPositionMm": { "value": 0, "status": "official", "sourceRefs": ["canon-eos30"] },
+      "thicknessMm": { "value": 0, "status": "official", "sourceRefs": ["canon-eos30"] },
+      "diameterMm": { "value": 54, "status": "official", "sourceRefs": ["canon-eos30"] }
+    },
+    {
+      "planeId": "sensor_film_plane",
+      "zPositionMm": { "value": -44, "status": "official", "sourceRefs": ["canon-eos30"] },
+      "thicknessMm": { "value": 0, "status": "official", "sourceRefs": ["canon-eos30"] },
+      "diameterMm": { "value": 43.3, "status": "secondary", "sourceRefs": ["canon-ef-secondary"] }
+    }
+  ],
+  "contacts": [
+    {
+      "side": "body",
+      "contactNo": 1,
+      "profileId": "canon-ef/base",
+      "centerAngleDeg": { "value": 42, "status": "photo_scaled", "sourceRefs": ["canon-ef-secondary"] },
+      "centerRadiusMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "widthMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "heightMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "shape": "schematic contact pad group; coreDimensions.contactCount records eight contacts",
+      "protrusionMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "function": "lens-body communication"
+    },
+    {
+      "side": "lens",
+      "contactNo": 1,
+      "profileId": "canon-ef/base",
+      "centerAngleDeg": { "value": 42, "status": "photo_scaled", "sourceRefs": ["canon-ef-secondary"] },
+      "centerRadiusMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "widthMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "heightMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "shape": "schematic contact pad group; coreDimensions.contactCount records eight contacts",
+      "protrusionMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "function": "lens-body communication"
+    }
+  ],
+  "mechanicalCouplings": [],
+  "screwsGasketsBaffles": [],
+  "svgLayers": {
+    "mvpRequired": ["datum-axis", "camera-side-metal", "lens-side-metal", "axial-section", "uncertainty"],
+    "conditionalCoreRequired": ["clear-aperture", "camera-side-core-interface", "lens-side-core-interface"],
+    "variantRequired": ["camera-side-variant-electrical", "lens-side-variant-electrical"]
+  },
+  "metadata": {
+    "title": "Canon EF mount - renderable MVP",
+    "desc": "Canon EF mount reference SVG data with official 44 mm register and 54 mm mount diameter.",
+    "view": "unknown",
+    "profileId": "canon-ef/base"
+  },
+  "sourceRefs": [
+    {
+      "ref": "canon-eos30",
+      "sourceType": "official manufacturer history",
+      "citation": "Canon Camera Museum, The EOS System 30th Anniversary - Developers Look Back on the History of the EOS System, Part 1.",
+      "liveUrl": "https://global.canon/en/c-museum/history/eos30th-1.html",
+      "archiveUrl": "https://web.archive.org/web/20260604000000/https://global.canon/en/c-museum/history/eos30th-1.html",
+      "archiveDate": "2026-06-04",
+      "appliesTo": "EF flange back distance, mount diameter, and stable physical terminal-contact design",
+      "confidence": "high"
+    },
+    {
+      "ref": "canon-ef-secondary",
+      "sourceType": "secondary technical summary",
+      "citation": "Canon EF lens mount, Wikipedia contributors.",
+      "liveUrl": "https://en.wikipedia.org/wiki/Canon_EF_lens_mount",
+      "archiveUrl": "https://web.archive.org/web/20260604000000/https://en.wikipedia.org/wiki/Canon_EF_lens_mount",
+      "archiveDate": "2026-06-04",
+      "appliesTo": "electrical connector count and schematic feature placement",
+      "confidence": "medium"
+    }
+  ],
+  "openQuestions": [
+    {
+      "issue": "Canon EF exact lug/slot angular geometry, lock pin angle, and mount outer diameters need service or measured evidence.",
+      "affectedFields": [
+        "cameraMountOuterDiameterMm",
+        "lensMountOuterDiameterMm",
+        "lockGeometry",
+        "body-slot-set",
+        "lens-lug-set",
+        "body-lock-pin",
+        "lens-lock-notch"
+      ],
+      "candidateValues": [],
+      "resolution": "Measure representative EF body/lens mounts or locate official service drawings before promoting to mvp_complete."
+    }
+  ]
+}
+

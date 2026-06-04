@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="nikon-f-lens_side_rear_view-title nikon-f-lens_side_rear_view-desc" viewBox="-32 -32 64 64"><title id="nikon-f-lens_side_rear_view-title">Nikon F mount - lens-side rear view (nikon-f/ai-s)</title><desc id="nikon-f-lens_side_rear_view-desc">Nikon F lens-side rear view; flange focal distance 46.5 mm; nominal throat 44 mm.</desc><metadata>{"mountId":"nikon-f","profileId":"nikon-f/ai-s","view":"lens_side_rear_view","schemaVersion":"1.3"}</metadata><style>
+.datum-line{stroke:#7d8590;stroke-width:.35;fill:none}
+.datum-center{fill:#7d8590;stroke:none}
+.datum-label,.feature-label,.unknown-label,.legend-label{font-family:'JetBrains Mono','SF Mono','Fira Code',monospace;font-size:2.7px;fill:#5f6b76}
+.legend-label{font-size:2.4px}
+.status-official,.status-measured{stroke:#334155;stroke-width:.8;fill:none}
+.status-secondary,.status-service-manual{stroke:#64748b;stroke-width:.65;fill:none}
+.status-patent{stroke:#475569;stroke-width:.65;fill:none}
+.status-photo-scaled{stroke:#64748b;stroke-width:.65;stroke-dasharray:2.4 1.4;fill:none}
+.status-conflicting{stroke:#b45309;stroke-width:.75;stroke-dasharray:2.2 1 .5 1;fill:none}
+.status-unknown{stroke:#94a3b8;stroke-width:.55;stroke-dasharray:.7 1.5;fill:none}
+.status-not-applicable{display:none}
+rect.status-secondary,rect.status-photo-scaled,rect.status-unknown{fill:#e2e8f0;fill-opacity:.2}
+path.status-photo-scaled,path.status-secondary{fill:#cbd5e1;fill-opacity:.16}
+</style><line class="datum-line" x1="0" y1="-27" x2="0" y2="27"/><line class="datum-line" x1="-27" y1="0" x2="27" y2="0"/><circle class="datum-center" cx="0" cy="0" r="1"/><text class="datum-label" x="2" y="-23">0 deg</text><circle class="status-secondary" cx="0" cy="0" r="22" data-label="nominal throat"/><circle class="status-unknown" cx="0" cy="0" r="27" data-label="mount outer envelope"/><path class="status-photo-scaled" d="M -26.934 1.883 A 27 27 0 1 1 -18.756 19.422 L -15.282 15.825 A 22 22 0 1 0 -21.946 1.535 Z" data-label="lens-lug-set"/><rect class="status-photo-scaled" x="18.985" y="-13.8" width="3.6" height="3.6" data-label="ai-meter-coupling"/><circle class="status-unknown" cx="21.651" cy="-12.5" r="1.6" data-label="lens-ai-ridge"/><text class="unknown-label" x="23.651" y="-12.5">lens-ai-ridge: unknown</text><text class="feature-label" x="23.285" y="-11">ai-meter-coupling</text><text class="legend-label" x="-28" y="-25">solid: sourced</text><text class="legend-label" x="-28" y="-20">dash: inferred</text><text class="legend-label" x="-28" y="-15">dot: unknown</text></svg>

@@ -1,0 +1,278 @@
+{
+  "schemaVersion": "1.3",
+  "mountId": "nikon-f",
+  "displayLabel": "Nikon F",
+  "projectNote": "Nikon F SLR mount; MVP profile selects AI-S to exercise mechanical variant overlays without CPU contacts.",
+  "researchStatus": "partial",
+  "mvpStatus": "renderable",
+  "mechanism": "bayonet",
+  "lockType": "sprung_detent",
+  "mvp": {
+    "requiredViews": ["camera_side_front_view", "lens_side_rear_view", "axial_register_schematic"],
+    "requirementLevels": {
+      "mvpRequired": [
+        "flangeFocalDistanceMm",
+        "nominalThroatDiameterMm",
+        "cameraMountOuterDiameterMm",
+        "lensMountOuterDiameterMm"
+      ],
+      "conditionalCoreRequired": ["bayonetLugs", "lockIndexGeometry"],
+      "variantRequired": ["aiMeterCoupling", "aiSIndexing"],
+      "mvpOptional": ["screwPattern"],
+      "referenceGrade": ["lugUndercuts", "apertureLeverTravel", "meterCouplingDimensions"]
+    },
+    "profileModel": {
+      "baseProfileId": "nikon-f/base",
+      "selectedMvpProfileId": "nikon-f/ai-s",
+      "variantStrategy": "variant_profiles_defined",
+      "variantProfiles": [
+        {
+          "profileId": "nikon-f/base",
+          "profileType": "base",
+          "appliesTo": "F-mount bayonet foundation introduced with Nikon F",
+          "requirementLayer": "mvp-required",
+          "adds": ["three-lug bayonet foundation", "SLR flange/register relationship"],
+          "removes": [],
+          "changes": [],
+          "cameraSideOverlayLayers": ["camera-side-metal", "camera-side-core-interface"],
+          "lensSideOverlayLayers": ["lens-side-metal", "lens-side-core-interface"],
+          "status": "partial",
+          "sourceRefs": ["nikon-usa-fmount", "fdtimes-ibe"]
+        },
+        {
+          "profileId": "nikon-f/ai-s",
+          "profileType": "variant",
+          "appliesTo": "AI-S manual-focus Nikkor lenses introduced in 1981",
+          "requirementLayer": "variant-required",
+          "adds": ["AI meter coupling ridge", "AI-S bayonet cut-out", "mechanical aperture control behavior"],
+          "removes": ["non-AI prong-only metering dependency"],
+          "changes": ["aperture mechanism calibrated for camera-controlled increments"],
+          "cameraSideOverlayLayers": ["camera-side-variant-mechanical"],
+          "lensSideOverlayLayers": ["lens-side-variant-mechanical"],
+          "status": "partial",
+          "sourceRefs": ["nikon-support-types"]
+        }
+      ]
+    }
+  },
+  "coordinateConvention": {
+    "units": "mm_deg",
+    "zDatum": "flange_datum",
+    "zPositive": "toward_lens",
+    "angleZero": "top_dead_center_camera_front_view",
+    "anglePositive": "clockwise_camera_front_view",
+    "storedAngleFrame": "camera_front_view",
+    "lensRearMirror": "theta_out = (360 - theta) mod 360",
+    "angleSpanRule": "clockwise_sweep_start_to_end_mod_360"
+  },
+  "render": {
+    "unitMapping": "1_user_unit_per_mm",
+    "marginFraction": 0.1,
+    "numericPrecision": 3,
+    "views": {
+      "cameraSideFront": { "viewBox": "-32 -32 64 64" },
+      "lensSideRear": { "viewBox": "-32 -32 64 64" },
+      "axialSection": { "viewBox": "-58 -30 76 60" }
+    }
+  },
+  "coreDimensions": {
+    "flangeFocalDistanceMm": { "value": 46.5, "status": "secondary", "sourceRefs": ["fdtimes-ibe"] },
+    "nominalThroatDiameterMm": { "value": 44, "status": "secondary", "sourceRefs": ["fdtimes-ibe"] },
+    "effectiveClearApertureMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+    "cameraMountOuterDiameterMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+    "lensMountOuterDiameterMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+    "contactCount": { "value": 0, "status": "not_applicable", "sourceRefs": [] }
+  },
+  "lockGeometry": {
+    "insertionAngleDeg": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+    "lockAngleDeg": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+    "lockRotationDeg": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+    "lockRotationDirection": { "value": "counterclockwise", "status": "secondary", "sourceRefs": ["nikon-f-secondary"] }
+  },
+  "cameraSideFeatures": [
+    {
+      "featureId": "body-throat",
+      "featureType": "clear_opening",
+      "profileId": "nikon-f/base",
+      "count": 1,
+      "centerAngleDeg": { "value": 0, "status": "secondary", "sourceRefs": ["fdtimes-ibe"] },
+      "startAngleDeg": { "value": 0, "status": "secondary", "sourceRefs": ["fdtimes-ibe"] },
+      "endAngleDeg": { "value": 360, "status": "secondary", "sourceRefs": ["fdtimes-ibe"] },
+      "innerRadiusMm": { "value": 0, "status": "secondary", "sourceRefs": ["fdtimes-ibe"] },
+      "outerRadiusMm": { "value": 22, "status": "secondary", "sourceRefs": ["fdtimes-ibe"] },
+      "depthMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "matesWith": "lens-throat",
+      "shapeNotes": "MVP uses published 44 mm inside diameter as schematic throat."
+    },
+    {
+      "featureId": "body-slot-set",
+      "featureType": "bayonet_receiving_slot",
+      "profileId": "nikon-f/base",
+      "count": 3,
+      "centerAngleDeg": { "value": 115, "status": "photo_scaled", "sourceRefs": ["nikon-f-secondary"] },
+      "startAngleDeg": { "value": 94, "status": "photo_scaled", "sourceRefs": ["nikon-f-secondary"] },
+      "endAngleDeg": { "value": 136, "status": "photo_scaled", "sourceRefs": ["nikon-f-secondary"] },
+      "innerRadiusMm": { "value": 22, "status": "secondary", "sourceRefs": ["fdtimes-ibe"] },
+      "outerRadiusMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "depthMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "matesWith": "lens-lug-set",
+      "shapeNotes": "Schematic one-of-three slot marker."
+    },
+    {
+      "featureId": "body-ai-coupler",
+      "featureType": "aperture_indexing_coupling",
+      "profileId": "nikon-f/ai-s",
+      "count": 1,
+      "centerAngleDeg": { "value": 300, "status": "photo_scaled", "sourceRefs": ["nikon-support-types"] },
+      "startAngleDeg": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "endAngleDeg": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "innerRadiusMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "outerRadiusMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "depthMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "matesWith": "lens-ai-ridge",
+      "shapeNotes": "AI coupling lever/ring feature shown schematically."
+    }
+  ],
+  "lensSideFeatures": [
+    {
+      "featureId": "lens-throat",
+      "featureType": "rear_opening",
+      "profileId": "nikon-f/base",
+      "count": 1,
+      "centerAngleDeg": { "value": 0, "status": "secondary", "sourceRefs": ["fdtimes-ibe"] },
+      "startAngleDeg": { "value": 0, "status": "secondary", "sourceRefs": ["fdtimes-ibe"] },
+      "endAngleDeg": { "value": 360, "status": "secondary", "sourceRefs": ["fdtimes-ibe"] },
+      "innerRadiusMm": { "value": 0, "status": "secondary", "sourceRefs": ["fdtimes-ibe"] },
+      "outerRadiusMm": { "value": 22, "status": "secondary", "sourceRefs": ["fdtimes-ibe"] },
+      "thicknessMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "matesWith": "body-throat",
+      "shapeNotes": "Rear opening shown as schematic throat."
+    },
+    {
+      "featureId": "lens-lug-set",
+      "featureType": "bayonet_lug",
+      "profileId": "nikon-f/base",
+      "count": 3,
+      "centerAngleDeg": { "value": 115, "status": "photo_scaled", "sourceRefs": ["nikon-f-secondary"] },
+      "startAngleDeg": { "value": 94, "status": "photo_scaled", "sourceRefs": ["nikon-f-secondary"] },
+      "endAngleDeg": { "value": 136, "status": "photo_scaled", "sourceRefs": ["nikon-f-secondary"] },
+      "innerRadiusMm": { "value": 22, "status": "secondary", "sourceRefs": ["fdtimes-ibe"] },
+      "outerRadiusMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "thicknessMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "matesWith": "body-slot-set",
+      "shapeNotes": "Schematic one-of-three lug marker."
+    },
+    {
+      "featureId": "lens-ai-ridge",
+      "featureType": "aperture_indexing_ridge",
+      "profileId": "nikon-f/ai-s",
+      "count": 1,
+      "centerAngleDeg": { "value": 300, "status": "photo_scaled", "sourceRefs": ["nikon-support-types"] },
+      "startAngleDeg": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "endAngleDeg": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "innerRadiusMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "outerRadiusMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "thicknessMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "matesWith": "body-ai-coupler",
+      "shapeNotes": "AI-S rear ridge/cut-out location is schematic until measured."
+    }
+  ],
+  "axialStack": [
+    {
+      "planeId": "flange_datum",
+      "zPositionMm": { "value": 0, "status": "secondary", "sourceRefs": ["fdtimes-ibe"] },
+      "thicknessMm": { "value": 0, "status": "secondary", "sourceRefs": ["fdtimes-ibe"] },
+      "diameterMm": { "value": 44, "status": "secondary", "sourceRefs": ["fdtimes-ibe"] }
+    },
+    {
+      "planeId": "sensor_film_plane",
+      "zPositionMm": { "value": -46.5, "status": "secondary", "sourceRefs": ["fdtimes-ibe"] },
+      "thicknessMm": { "value": 0, "status": "secondary", "sourceRefs": ["fdtimes-ibe"] },
+      "diameterMm": { "value": 43.3, "status": "secondary", "sourceRefs": ["fdtimes-ibe"] }
+    }
+  ],
+  "contacts": [],
+  "mechanicalCouplings": [
+    {
+      "featureId": "ai-meter-coupling",
+      "side": "both",
+      "profileId": "nikon-f/ai-s",
+      "centerAngleDeg": { "value": 300, "status": "photo_scaled", "sourceRefs": ["nikon-support-types"] },
+      "radiusMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "sizeOrTravel": "unknown",
+      "function": "maximum-aperture indexing and meter coupling",
+      "compatibilityNotes": "AI-S selected as the MVP variant; CPU, AF-D, G, and E-type features remain separate future profiles."
+    }
+  ],
+  "screwsGasketsBaffles": [],
+  "svgLayers": {
+    "mvpRequired": ["datum-axis", "camera-side-metal", "lens-side-metal", "axial-section", "uncertainty"],
+    "conditionalCoreRequired": ["clear-aperture", "camera-side-core-interface", "lens-side-core-interface"],
+    "variantRequired": ["camera-side-variant-mechanical", "lens-side-variant-mechanical"]
+  },
+  "metadata": {
+    "title": "Nikon F mount - AI-S renderable MVP",
+    "desc": "Nikon F mount reference SVG data with secondary 46.5 mm register and 44 mm throat values.",
+    "view": "unknown",
+    "profileId": "nikon-f/ai-s"
+  },
+  "sourceRefs": [
+    {
+      "ref": "nikon-usa-fmount",
+      "sourceType": "official manufacturer article",
+      "citation": "Nikon USA, Nikon F-Mount.",
+      "liveUrl": "https://www.nikonusa.com/learn-and-explore/c/products-and-innovation/nikon-f-mount",
+      "archiveUrl": "https://web.archive.org/web/20260604000000/https://www.nikonusa.com/learn-and-explore/c/products-and-innovation/nikon-f-mount",
+      "archiveDate": "2026-06-04",
+      "appliesTo": "F-mount continuity, bayonet-type identity, and system context",
+      "confidence": "high"
+    },
+    {
+      "ref": "nikon-support-types",
+      "sourceType": "official manufacturer support article",
+      "citation": "Nikon Support, NIKKOR F-Mount Lens Types.",
+      "liveUrl": "https://www.nikonimgsupport.com/eu/BV_article?articleNo=000044851&configured=1&lang=en_GB",
+      "archiveUrl": "https://web.archive.org/web/20260604000000/https://www.nikonimgsupport.com/eu/BV_article?articleNo=000044851&configured=1&lang=en_GB",
+      "archiveDate": "2026-06-04",
+      "appliesTo": "AI, AI-S, non-AI, CPU, G, D, and E-type feature classification",
+      "confidence": "high"
+    },
+    {
+      "ref": "fdtimes-ibe",
+      "sourceType": "secondary technical chart",
+      "citation": "Film and Digital Times / IB/E Optics, Camera Lens Mount Charts, Apr-Jun 2017.",
+      "liveUrl": "https://www.fdtimes.com/wp-content/uploads/2017/05/81-82-FDTimes-IBE-Optics-Update.pdf",
+      "archiveUrl": "https://web.archive.org/web/20260604000000/https://www.fdtimes.com/wp-content/uploads/2017/05/81-82-FDTimes-IBE-Optics-Update.pdf",
+      "archiveDate": "2026-06-04",
+      "appliesTo": "Nikon F flange focal depth and inside diameter",
+      "confidence": "medium"
+    },
+    {
+      "ref": "nikon-f-secondary",
+      "sourceType": "secondary technical summary",
+      "citation": "Camera-wiki.org, Nikon F mount.",
+      "liveUrl": "https://camera-wiki.org/wiki/Nikon_F_mount",
+      "archiveUrl": "https://web.archive.org/web/20260604000000/https://camera-wiki.org/wiki/Nikon_F_mount",
+      "archiveDate": "2026-06-04",
+      "appliesTo": "mounting direction and schematic lug placement",
+      "confidence": "medium"
+    }
+  ],
+  "openQuestions": [
+    {
+      "issue": "Nikon F exact AI-S lug geometry, lock pin/notch angle, and mechanical coupling dimensions need measured or service evidence.",
+      "affectedFields": [
+        "cameraMountOuterDiameterMm",
+        "lensMountOuterDiameterMm",
+        "lockGeometry",
+        "body-slot-set",
+        "lens-lug-set",
+        "body-ai-coupler",
+        "lens-ai-ridge"
+      ],
+      "candidateValues": [],
+      "resolution": "Validate against an AI-S lens and body measurement set; use this mount to confirm lens-rear mirroring."
+    }
+  ]
+}
+

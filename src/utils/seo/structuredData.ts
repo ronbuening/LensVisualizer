@@ -169,6 +169,34 @@ export function itemListJsonLd({
   };
 }
 
+export function imageObjectJsonLd({
+  name,
+  description,
+  contentUrl,
+  pageUrl,
+}: {
+  name: string;
+  description: string;
+  contentUrl: string;
+  pageUrl: string;
+}): Record<string, unknown> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ImageObject",
+    name,
+    description,
+    contentUrl,
+    url: pageUrl,
+    creator: publisherRef(),
+    publisher: publisherRef(),
+    isPartOf: {
+      "@type": "WebSite",
+      name: SITE_NAME,
+      url: SITE_URL,
+    },
+  };
+}
+
 export function breadcrumbJsonLd(items: BreadcrumbEntry[]): Record<string, unknown> {
   return {
     "@context": "https://schema.org",

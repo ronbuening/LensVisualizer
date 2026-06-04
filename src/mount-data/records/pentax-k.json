@@ -1,0 +1,327 @@
+{
+  "schemaVersion": "1.3",
+  "mountId": "pentax-k",
+  "displayLabel": "Pentax K",
+  "projectNote": "Pentax K mount family; MVP profile selects KAF2 to exercise contacts, AF coupler, and power contacts.",
+  "researchStatus": "partial",
+  "mvpStatus": "renderable",
+  "mechanism": "bayonet",
+  "lockType": "sprung_detent",
+  "mvp": {
+    "requiredViews": ["camera_side_front_view", "lens_side_rear_view", "axial_register_schematic"],
+    "requirementLevels": {
+      "mvpRequired": [
+        "flangeFocalDistanceMm",
+        "nominalThroatDiameterMm",
+        "cameraMountOuterDiameterMm",
+        "lensMountOuterDiameterMm"
+      ],
+      "conditionalCoreRequired": ["bayonetLugs", "lockIndexGeometry"],
+      "variantRequired": ["lensInformationContacts", "afCoupler", "powerContacts", "apertureLever"],
+      "mvpOptional": ["screwPattern"],
+      "referenceGrade": ["contactPitch", "powerContactDimensions", "apertureLeverTravel"]
+    },
+    "profileModel": {
+      "baseProfileId": "pentax-k/base",
+      "selectedMvpProfileId": "pentax-k/kaf2",
+      "variantStrategy": "variant_profiles_defined",
+      "variantProfiles": [
+        {
+          "profileId": "pentax-k/base",
+          "profileType": "base",
+          "appliesTo": "original K bayonet foundation",
+          "requirementLayer": "mvp-required",
+          "adds": ["K bayonet foundation", "SLR flange/register relationship"],
+          "removes": [],
+          "changes": [],
+          "cameraSideOverlayLayers": ["camera-side-metal", "camera-side-core-interface"],
+          "lensSideOverlayLayers": ["lens-side-metal", "lens-side-core-interface"],
+          "status": "partial",
+          "sourceRefs": ["pentaxforums-evolution"]
+        },
+        {
+          "profileId": "pentax-k/kaf2",
+          "profileType": "variant",
+          "appliesTo": "KAF2 bodies/lenses with AF coupler, lens information contacts, and power contacts",
+          "requirementLayer": "variant-required",
+          "adds": ["lens information contacts", "AF drive coupler", "power contacts"],
+          "removes": [],
+          "changes": ["extends KAF with power-contact interface"],
+          "cameraSideOverlayLayers": ["camera-side-variant-electrical", "camera-side-variant-mechanical"],
+          "lensSideOverlayLayers": ["lens-side-variant-electrical", "lens-side-variant-mechanical"],
+          "status": "partial",
+          "sourceRefs": ["ricoh-kf-spec", "pentaxforums-evolution"]
+        }
+      ]
+    }
+  },
+  "coordinateConvention": {
+    "units": "mm_deg",
+    "zDatum": "flange_datum",
+    "zPositive": "toward_lens",
+    "angleZero": "top_dead_center_camera_front_view",
+    "anglePositive": "clockwise_camera_front_view",
+    "storedAngleFrame": "camera_front_view",
+    "lensRearMirror": "theta_out = (360 - theta) mod 360",
+    "angleSpanRule": "clockwise_sweep_start_to_end_mod_360"
+  },
+  "render": {
+    "unitMapping": "1_user_unit_per_mm",
+    "marginFraction": 0.1,
+    "numericPrecision": 3,
+    "views": {
+      "cameraSideFront": { "viewBox": "-32 -32 64 64" },
+      "lensSideRear": { "viewBox": "-32 -32 64 64" },
+      "axialSection": { "viewBox": "-57 -30 76 60" }
+    }
+  },
+  "coreDimensions": {
+    "flangeFocalDistanceMm": { "value": 45.46, "status": "secondary", "sourceRefs": ["pentaxforums-evolution"] },
+    "nominalThroatDiameterMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+    "effectiveClearApertureMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+    "cameraMountOuterDiameterMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+    "lensMountOuterDiameterMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+    "contactCount": { "value": 9, "status": "secondary", "sourceRefs": ["ricoh-kf-spec", "pentaxforums-evolution"] }
+  },
+  "lockGeometry": {
+    "insertionAngleDeg": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+    "lockAngleDeg": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+    "lockRotationDeg": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+    "lockRotationDirection": { "value": "unknown", "status": "unknown", "sourceRefs": [] }
+  },
+  "cameraSideFeatures": [
+    {
+      "featureId": "body-throat",
+      "featureType": "clear_opening",
+      "profileId": "pentax-k/base",
+      "count": 1,
+      "centerAngleDeg": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "startAngleDeg": { "value": 0, "status": "unknown", "sourceRefs": [] },
+      "endAngleDeg": { "value": 360, "status": "unknown", "sourceRefs": [] },
+      "innerRadiusMm": { "value": 0, "status": "unknown", "sourceRefs": [] },
+      "outerRadiusMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "depthMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "matesWith": "lens-throat",
+      "shapeNotes": "Nominal throat left unknown until a reliable dimensional source is selected."
+    },
+    {
+      "featureId": "body-slot-set",
+      "featureType": "bayonet_receiving_slot",
+      "profileId": "pentax-k/base",
+      "count": 3,
+      "centerAngleDeg": { "value": 118, "status": "photo_scaled", "sourceRefs": ["pentaxforums-evolution"] },
+      "startAngleDeg": { "value": 96, "status": "photo_scaled", "sourceRefs": ["pentaxforums-evolution"] },
+      "endAngleDeg": { "value": 140, "status": "photo_scaled", "sourceRefs": ["pentaxforums-evolution"] },
+      "innerRadiusMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "outerRadiusMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "depthMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "matesWith": "lens-lug-set",
+      "shapeNotes": "Schematic one-of-three slot marker."
+    },
+    {
+      "featureId": "body-kaf2-contact-block",
+      "featureType": "electrical_contact_carrier",
+      "profileId": "pentax-k/kaf2",
+      "count": 1,
+      "centerAngleDeg": { "value": 44, "status": "photo_scaled", "sourceRefs": ["pentaxforums-evolution"] },
+      "startAngleDeg": { "value": 20, "status": "photo_scaled", "sourceRefs": ["pentaxforums-evolution"] },
+      "endAngleDeg": { "value": 68, "status": "photo_scaled", "sourceRefs": ["pentaxforums-evolution"] },
+      "innerRadiusMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "outerRadiusMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "depthMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "matesWith": "lens-kaf2-contact-block",
+      "shapeNotes": "Schematic nine-contact KAF2 block: seven information contacts plus two power contacts."
+    },
+    {
+      "featureId": "body-af-coupler",
+      "featureType": "af_screw_drive_coupler",
+      "profileId": "pentax-k/kaf2",
+      "count": 1,
+      "centerAngleDeg": { "value": 180, "status": "photo_scaled", "sourceRefs": ["ricoh-kf-spec"] },
+      "startAngleDeg": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "endAngleDeg": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "innerRadiusMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "outerRadiusMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "depthMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "matesWith": "lens-af-coupler",
+      "shapeNotes": "AF coupler present on KAF2; exact geometry unresolved."
+    }
+  ],
+  "lensSideFeatures": [
+    {
+      "featureId": "lens-throat",
+      "featureType": "rear_opening",
+      "profileId": "pentax-k/base",
+      "count": 1,
+      "centerAngleDeg": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "startAngleDeg": { "value": 0, "status": "unknown", "sourceRefs": [] },
+      "endAngleDeg": { "value": 360, "status": "unknown", "sourceRefs": [] },
+      "innerRadiusMm": { "value": 0, "status": "unknown", "sourceRefs": [] },
+      "outerRadiusMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "thicknessMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "matesWith": "body-throat",
+      "shapeNotes": "Rear opening shown schematically."
+    },
+    {
+      "featureId": "lens-lug-set",
+      "featureType": "bayonet_lug",
+      "profileId": "pentax-k/base",
+      "count": 3,
+      "centerAngleDeg": { "value": 118, "status": "photo_scaled", "sourceRefs": ["pentaxforums-evolution"] },
+      "startAngleDeg": { "value": 96, "status": "photo_scaled", "sourceRefs": ["pentaxforums-evolution"] },
+      "endAngleDeg": { "value": 140, "status": "photo_scaled", "sourceRefs": ["pentaxforums-evolution"] },
+      "innerRadiusMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "outerRadiusMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "thicknessMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "matesWith": "body-slot-set",
+      "shapeNotes": "Schematic one-of-three lug marker."
+    },
+    {
+      "featureId": "lens-kaf2-contact-block",
+      "featureType": "electrical_contact_carrier",
+      "profileId": "pentax-k/kaf2",
+      "count": 1,
+      "centerAngleDeg": { "value": 44, "status": "photo_scaled", "sourceRefs": ["pentaxforums-evolution"] },
+      "startAngleDeg": { "value": 20, "status": "photo_scaled", "sourceRefs": ["pentaxforums-evolution"] },
+      "endAngleDeg": { "value": 68, "status": "photo_scaled", "sourceRefs": ["pentaxforums-evolution"] },
+      "innerRadiusMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "outerRadiusMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "thicknessMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "matesWith": "body-kaf2-contact-block",
+      "shapeNotes": "Schematic nine-contact KAF2 block."
+    },
+    {
+      "featureId": "lens-af-coupler",
+      "featureType": "af_screw_drive_coupler",
+      "profileId": "pentax-k/kaf2",
+      "count": 1,
+      "centerAngleDeg": { "value": 180, "status": "photo_scaled", "sourceRefs": ["ricoh-kf-spec"] },
+      "startAngleDeg": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "endAngleDeg": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "innerRadiusMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "outerRadiusMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "thicknessMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "matesWith": "body-af-coupler",
+      "shapeNotes": "AF screw-drive coupler shown schematically."
+    }
+  ],
+  "axialStack": [
+    {
+      "planeId": "flange_datum",
+      "zPositionMm": { "value": 0, "status": "secondary", "sourceRefs": ["pentaxforums-evolution"] },
+      "thicknessMm": { "value": 0, "status": "secondary", "sourceRefs": ["pentaxforums-evolution"] },
+      "diameterMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] }
+    },
+    {
+      "planeId": "sensor_film_plane",
+      "zPositionMm": { "value": -45.46, "status": "secondary", "sourceRefs": ["pentaxforums-evolution"] },
+      "thicknessMm": { "value": 0, "status": "secondary", "sourceRefs": ["pentaxforums-evolution"] },
+      "diameterMm": { "value": 43.3, "status": "secondary", "sourceRefs": ["pentaxforums-evolution"] }
+    }
+  ],
+  "contacts": [
+    {
+      "side": "body",
+      "contactNo": 1,
+      "profileId": "pentax-k/kaf2",
+      "centerAngleDeg": { "value": 44, "status": "photo_scaled", "sourceRefs": ["pentaxforums-evolution"] },
+      "centerRadiusMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "widthMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "heightMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "shape": "schematic contact group; coreDimensions.contactCount records nine contacts for KAF2 MVP",
+      "protrusionMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "function": "lens information and power contacts"
+    },
+    {
+      "side": "lens",
+      "contactNo": 1,
+      "profileId": "pentax-k/kaf2",
+      "centerAngleDeg": { "value": 44, "status": "photo_scaled", "sourceRefs": ["pentaxforums-evolution"] },
+      "centerRadiusMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "widthMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "heightMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "shape": "schematic contact group; coreDimensions.contactCount records nine contacts for KAF2 MVP",
+      "protrusionMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "function": "lens information and power contacts"
+    }
+  ],
+  "mechanicalCouplings": [
+    {
+      "featureId": "af-screw-drive",
+      "side": "both",
+      "profileId": "pentax-k/kaf2",
+      "centerAngleDeg": { "value": 180, "status": "photo_scaled", "sourceRefs": ["ricoh-kf-spec"] },
+      "radiusMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "sizeOrTravel": "unknown",
+      "function": "body-driven autofocus coupling",
+      "compatibilityNotes": "KAF2 selected for MVP; KAF3/KAF4 remove or alter some mechanical behavior."
+    },
+    {
+      "featureId": "aperture-lever",
+      "side": "both",
+      "profileId": "pentax-k/kaf2",
+      "centerAngleDeg": { "value": 235, "status": "photo_scaled", "sourceRefs": ["pentaxforums-evolution"] },
+      "radiusMm": { "value": "unknown", "status": "unknown", "sourceRefs": [] },
+      "sizeOrTravel": "unknown",
+      "function": "mechanical diaphragm actuation",
+      "compatibilityNotes": "KAF4 changes diaphragm control; keep it as a future profile."
+    }
+  ],
+  "screwsGasketsBaffles": [],
+  "svgLayers": {
+    "mvpRequired": ["datum-axis", "camera-side-metal", "lens-side-metal", "axial-section", "uncertainty"],
+    "conditionalCoreRequired": ["clear-aperture", "camera-side-core-interface", "lens-side-core-interface"],
+    "variantRequired": [
+      "camera-side-variant-electrical",
+      "camera-side-variant-mechanical",
+      "lens-side-variant-electrical",
+      "lens-side-variant-mechanical"
+    ]
+  },
+  "metadata": {
+    "title": "Pentax K mount - KAF2 renderable MVP",
+    "desc": "Pentax K mount reference SVG data with KAF2 electrical and mechanical overlays.",
+    "view": "unknown",
+    "profileId": "pentax-k/kaf2"
+  },
+  "sourceRefs": [
+    {
+      "ref": "ricoh-kf-spec",
+      "sourceType": "official manufacturer specification",
+      "citation": "RICOH IMAGING, PENTAX KF Specifications.",
+      "liveUrl": "https://www.ricoh-imaging.co.jp/english/products/kf/spec/",
+      "archiveUrl": "https://web.archive.org/web/20260604000000/https://www.ricoh-imaging.co.jp/english/products/kf/spec/",
+      "archiveDate": "2026-06-04",
+      "appliesTo": "KAF2 bayonet mount, AF coupler, lens information contacts, and power contacts",
+      "confidence": "high"
+    },
+    {
+      "ref": "pentaxforums-evolution",
+      "sourceType": "secondary technical article",
+      "citation": "PentaxForums.com, The Evolution of the Pentax K-mount.",
+      "liveUrl": "https://www.pentaxforums.com/articles/photo-articles/evolution-of-pentax-k-mount.html",
+      "archiveUrl": "https://web.archive.org/web/20260604000000/https://www.pentaxforums.com/articles/photo-articles/evolution-of-pentax-k-mount.html",
+      "archiveDate": "2026-06-04",
+      "appliesTo": "K/KA/KAF/KAF2 evolution, 45.46 mm register, contact-count interpretation, and schematic feature placement",
+      "confidence": "medium"
+    }
+  ],
+  "openQuestions": [
+    {
+      "issue": "Pentax K exact throat diameter, lug geometry, lock/index positions, and KAF2 contact dimensions need stronger dimensional evidence.",
+      "affectedFields": [
+        "nominalThroatDiameterMm",
+        "cameraMountOuterDiameterMm",
+        "lensMountOuterDiameterMm",
+        "lockGeometry",
+        "body-slot-set",
+        "lens-lug-set",
+        "body-kaf2-contact-block",
+        "lens-kaf2-contact-block"
+      ],
+      "candidateValues": [],
+      "resolution": "Locate service drawings or measure K/KAF2 body and lens samples before promoting to mvp_complete."
+    }
+  ]
+}
+

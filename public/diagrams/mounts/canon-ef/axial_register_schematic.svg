@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="canon-ef-axial_register_schematic-title canon-ef-axial_register_schematic-desc" viewBox="-54 -30 72 60"><title id="canon-ef-axial_register_schematic-title">Canon EF mount - axial register schematic (canon-ef/base)</title><desc id="canon-ef-axial_register_schematic-desc">Canon EF axial register schematic; flange focal distance 44 mm; nominal throat 54 mm.</desc><metadata>{"mountId":"canon-ef","profileId":"canon-ef/base","view":"axial_register_schematic","schemaVersion":"1.3"}</metadata><style>
+.datum-line{stroke:#7d8590;stroke-width:.35;fill:none}
+.datum-center{fill:#7d8590;stroke:none}
+.datum-label,.feature-label,.unknown-label,.legend-label{font-family:'JetBrains Mono','SF Mono','Fira Code',monospace;font-size:2.7px;fill:#5f6b76}
+.legend-label{font-size:2.4px}
+.status-official,.status-measured{stroke:#334155;stroke-width:.8;fill:none}
+.status-secondary,.status-service-manual{stroke:#64748b;stroke-width:.65;fill:none}
+.status-patent{stroke:#475569;stroke-width:.65;fill:none}
+.status-photo-scaled{stroke:#64748b;stroke-width:.65;stroke-dasharray:2.4 1.4;fill:none}
+.status-conflicting{stroke:#b45309;stroke-width:.75;stroke-dasharray:2.2 1 .5 1;fill:none}
+.status-unknown{stroke:#94a3b8;stroke-width:.55;stroke-dasharray:.7 1.5;fill:none}
+.status-not-applicable{display:none}
+rect.status-secondary,rect.status-photo-scaled,rect.status-unknown{fill:#e2e8f0;fill-opacity:.2}
+path.status-photo-scaled,path.status-secondary{fill:#cbd5e1;fill-opacity:.16}
+</style><line class="datum-line" x1="-48" y1="0" x2="12" y2="0"/><line class="status-official" x1="0" y1="-24" x2="0" y2="24"/><text class="feature-label" x="1.5" y="-21">flange datum</text><line class="status-official" x1="-44" y1="-21.65" x2="-44" y2="21.65"/><text class="feature-label" x="-42.5" y="25.65">sensor / film plane (44 mm)</text><rect class="status-secondary" x="-2" y="-16" width="4" height="32" data-label="mount stack schematic"/><rect class="status-unknown" x="-10" y="-20" width="10" height="40" data-label="body clearance unknown"/><text class="unknown-label" x="-9" y="-17">clearance envelope unknown</text><text class="legend-label" x="-50" y="-23">solid: sourced</text><text class="legend-label" x="-50" y="-18">dash: inferred</text><text class="legend-label" x="-50" y="-13">dot: unknown</text></svg>

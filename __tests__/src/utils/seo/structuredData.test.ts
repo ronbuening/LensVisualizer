@@ -7,6 +7,7 @@ import {
   breadcrumbJsonLd,
   collectionPageJsonLd,
   datasetJsonLd,
+  imageObjectJsonLd,
   itemListJsonLd,
   webApplicationJsonLd,
   websiteJsonLd,
@@ -55,6 +56,19 @@ describe("structuredData helpers", () => {
     expect(schema["@type"]).toBe("ItemList");
     expect(schema.numberOfItems).toBe(2);
     expect((schema.itemListElement as Array<Record<string, unknown>>)[0].position).toBe(1);
+  });
+
+  it("builds an ImageObject schema", () => {
+    const schema = imageObjectJsonLd({
+      name: "Nikon F mount camera-side front view",
+      description: "Nikon F mount SVG reference diagram.",
+      contentUrl: `${SITE_URL}/diagrams/mounts/nikon-f/camera_side_front_view.svg`,
+      pageUrl: `${SITE_URL}/mounts/nikon-f`,
+    });
+
+    expect(schema["@type"]).toBe("ImageObject");
+    expect(schema.contentUrl).toBe(`${SITE_URL}/diagrams/mounts/nikon-f/camera_side_front_view.svg`);
+    expect((schema.creator as Record<string, unknown>).name).toBe("Surface & Stop");
   });
 
   it("builds a Dataset schema with freshness", () => {
