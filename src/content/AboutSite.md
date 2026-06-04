@@ -19,7 +19,7 @@ Lens and comparison pages keep the current shareable view in the browser URL. Co
 
 This site is created by **[Ron Buening](https://ronbuening.com/)**. The optical prescriptions are translated from patent filings — a process that involves interpreting lens tables, converting between notation conventions, and validating the data against known optical properties.
 
-**Claude** (Anthropic) is used in the development of this project:
+LLMs are used in the development of this project to facilitate some parts, including:
 
 - **Patent translation** — Extracting and converting surface data, glass specifications, and aspherical coefficients from patent documents into structured lens prescriptions
 - **Optical math** — Paraxial ray tracing, sag curve computation, entrance pupil calculation, and chromatic dispersion modeling
