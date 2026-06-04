@@ -14,7 +14,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
 - **152** code-only missing-Sellmeier elements in Sweep 2
-- **3** Tier A proprietary backfill rows in Sweep 3
+- **2** Tier A proprietary backfill rows in Sweep 3
 
 ## Sweep 1 - Relabel Mismatches
 
@@ -162,5 +162,4 @@ Use local untracked patents first. Populate patent-listed `nC`, `nF`, `ng`, and 
 |---|---|---|---|---|---|
 | [nikon/NikonZ28f28.data.ts](../../src/lens-data/nikon/NikonZ28f28.data.ts) | WO2022/071249 A1 | 1 UV-curing resin (proprietary) | patents/WO2022071249A1.pdf | Matched untracked local patent PDF | Local `patents/WO2022071249A1.pdf` is present but extracted as image-only/empty under `pdftotext`; OCR or a text JP/US family member is needed. Resin may not have line indices in the patent. |
 | [nikon/NikonNikkorZ50f18S.data.ts](../../src/lens-data/nikon/NikonNikkorZ50f18S.data.ts) | WO2019/220618 A1 | 2 constant-quality resin/dummy surfaces | patents/WO2019220618A1.pdf | Matched untracked local patent PDF | Local `patents/WO2019220618A1.pdf` is present but extracted as image-only/empty under `pdftotext`; current missing surfaces have no glass annotation to enrich. |
-| [nikon/NikonNikkorZ70200f28.data.ts](../../src/lens-data/nikon/NikonNikkorZ70200f28.data.ts) | WO2020/105104 A1 | 1 proprietary SR element |  | Missing from untracked local patents/ references (WO2020105104A1, WO2020105104, 2020105104) | Correct local patent PDF is still missing. Local `patents/JPWO2020105107A1.pdf` was rechecked and is a different prescription, so it must not be used as evidence. |
 

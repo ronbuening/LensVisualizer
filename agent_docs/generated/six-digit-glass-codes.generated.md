@@ -10,9 +10,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **296** lenses scanned
-- **246** total code-only elements found
-- **246** elements in this report
-- **88** distinct lens files affected
+- **244** total code-only elements found
+- **244** elements in this report
+- **87** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -156,7 +156,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 792450 | 1 | 1 |
 | 797454 | 1 | 1 |
 | 800255 | 1 | 1 |
-| 801349 | 1 | 1 |
 | 801454 | 1 | 1 |
 | 803404 | 1 | 1 |
 | 804396 | 1 | 1 |
@@ -166,7 +165,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 835447 | 1 | 1 |
 | 840433 | 1 | 1 |
 | 850323 | 1 | 1 |
-| 850324 | 1 | 1 |
 | 851401 | 1 | 1 |
 | 852402 | 1 | 1 |
 | 854404 | 1 | 1 |
@@ -629,13 +627,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L17 (Element 7) | 13 | `Phosphate crown ED (593670, same as L16)` | 1.59349 / 67.00 | J-PSKH4 (trusted Sellmeier) | sellmeier |
 | L43 (Element 16) | 30 | `789284 - dense flint (no exact public catalog match)` | 1.78880 / 28.40 | S-NBH58 (trusted Sellmeier) | sellmeier |
 | L44 (Element 17) | 32A | `Barium crown / LaK family (624584, no exact catalog match)` | 1.62372 / 58.40 | No catalog entry | abbe |
-
-### [NIKON NIKKOR Z 70-200mm f/2.8 VR S](../../src/lens-data/nikon/NikonNikkorZ70200f28.data.ts) - WO2020/105104
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
-|---|---|---|---|---|---|
-| L61 (Element 13) | 24 | `Dense flint (850-324, no exact match)` | 1.85026 / 32.35 | J-LASF021 (trusted Sellmeier) | sellmeier |
-| L64 (Element 16) | 29 | `Dense flint (801-349, no exact match)` | 1.80100 / 34.92 | J-LAF016 (trusted Sellmeier) | sellmeier |
 
 ### [NIKON NIKKOR Z 85mm f/1.8 S](../../src/lens-data/nikon/NikonZ85f18S.data.ts) - JP2020-173366A
 
