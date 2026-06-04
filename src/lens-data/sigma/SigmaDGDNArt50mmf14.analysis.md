@@ -112,7 +112,7 @@ The use of a single lightweight element as the entire focus group is the core me
 
 **L9:** nd = 1.75500, νd = 52.32. Glass: Lanthanum crown (755/523 class). Biconvex positive. f = +25.2 mm.
 
-**L10:** nd = 1.85451, νd = 25.15. Glass: Dense flint (855/252, no exact catalog match confirmed) — nearest candidate S-TIH53 (OHARA, nd = 1.84666) disagrees by Δnd ≈ 0.008. Negative meniscus, concave to object. f = −27.6 mm.
+**L10:** nd = 1.85451, νd = 25.15. Glass: HOYA NBFD25 (855252), coefficient-backed by HOYA's optical-glass data. Negative meniscus, concave to object. f = −27.6 mm.
 
 Individual f: L9 = +25.2 mm, L10 = −27.6 mm. Combined doublet f = +223.7 mm.
 
@@ -157,7 +157,7 @@ The prescription uses 10 distinct glass types across 14 elements. The glass pale
 | L7 | 1.88300 | 40.80 | S-LAH58 (OHARA) | Lanthanum crown; final GF convergence |
 | L8 | 1.59201 | 67.02 | 592/670 mold glass (FCD505 class) | Low-dispersion aspheric focus element |
 | L9 | 1.75500 | 52.32 | Lanthanum crown (755/523) | Rear achromat crown |
-| L10 | 1.85451 | 25.15 | Dense flint (855/252, uncertain) | Rear achromat flint |
+| L10 | 1.85451 | 25.15 | HOYA NBFD25 | Rear achromat flint |
 | L11 | 2.00100 | 29.13 | TAFD55 (HOYA) | Ultra-high-index positive; minimized Petzval per φ |
 | L12 | 1.94595 | 17.98 | Ultra-dispersive flint (946/180, uncertain) | Lateral color correction |
 | L13 | 1.62004 | 36.30 | S-TIM2 (OHARA) | Medium flint; chromatic partner to L12 |

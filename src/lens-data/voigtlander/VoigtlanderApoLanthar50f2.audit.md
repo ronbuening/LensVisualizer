@@ -1,6 +1,7 @@
 # Audit Log — Voigtländer APO-LANTHAR 50mm f/2.0 Aspherical
 
 Patent: JP2021-43376A, Example 5 (Cosina / Sugano)
+Local patent source: patents/JP2021043376A.pdf (untracked local file)
 Catalog version: current branch
 
 ## 2026-04-30 — Phase 1–4 initial audit
@@ -61,3 +62,9 @@ Updated [VoigtlanderApoLanthar50f2.analysis.md](VoigtlanderApoLanthar50f2.analys
 - The codebase's K-GFK68 catalog entry (nd=1.5924 from 2017 Sumita AGF) disagrees with the current Sumita catalog (nd=1.59282). Consider updating K-GFK68 Sellmeier coefficients from the current Sumita AGF/datasheet if available. Until then, FCD505 (Hoya) serves as the round-trip-valid proxy.
 - Elements 7 (Lrc, nd=1.793) and 8 (Lrb, nd=1.803) remain unmatched. S-LAH64 and S-LAH65V could be added to the catalog if verified Sellmeier data is sourced (see glass-catalog-buildout.md). Neither glass appears in multiple lenses currently, so this defers to a future catalog expansion pass.
 - Element 2 (Lfa, nd=1.852, νd=42.08) is unmatched. If a Sumita proprietary glass is confirmed at these values in a future lens, adding it to the catalog at that time would resolve this surface.
+
+## 2026-06-04 — Sweep 3 local patent recheck
+
+- Local patent source: `patents/JP2021043376A.pdf` (untracked local file).
+- Re-extracted the PDF with `pdftotext -layout` for the proprietary backfill sweep. The patent text defines table fields for `nd`, `νd`, and `dPgF`; it does not expose separate `nC`, `nF`, or `ng` rows in the extracted text.
+- No data-file backfill was made in this sweep. Elements 3 and 4 already carry the patent-listed `dPgF` values, and the remaining proprietary elements do not have patent-listed line indices available from the local PDF text.

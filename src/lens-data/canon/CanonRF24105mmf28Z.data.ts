@@ -154,7 +154,7 @@ const LENS_DATA = {
       nd: 1.77047,
       vd: 29.7,
       fl: 44.8,
-      glass: "Heavy flint (770/297)",
+      glass: "NBFD29 (HOYA, 770297)",
       role: "Positive flint in reversed achromatic doublet; chromatic corrector for L2",
       cemented: "Da",
     },

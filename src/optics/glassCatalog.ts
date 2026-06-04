@@ -11,7 +11,7 @@
  *   n²(λ) = 1 + B1·λ²/(λ²−C1) + B2·λ²/(λ²−C2) + B3·λ²/(λ²−C3)
  *   where λ is in micrometres and C1..C3 are in micrometres².
  *
- * Coverage status: Phase 19 (252 entries). See agent_docs/glass-catalog-buildout.md
+ * Coverage status: current source count 259 entries. See agent_docs/glass-catalog-buildout.md
  * for the addition history and sourcing playbook.
  *
  * All coefficients are vendor-published physical measurements. Each entry
@@ -108,6 +108,7 @@ const CODE6_INDEX: ReadonlyMap<string, string> = (() => {
  *   "BK7 (Schott) / S-BSL7 (OHARA)"
  *   "851408 — S-LAH65V (OHARA)"
  *   "517642 — N-BK7 (Schott)"
+ *   "Dense flint (770/297)"
  *   "S-FPL51 / N-PK52A (universal)"
  *   "Unmatched (likely Sumita proprietary)"
  *
@@ -122,7 +123,10 @@ export function resolveGlass(glassString: string | undefined): GlassEntry | null
 
   // Pull out candidate tokens. We accept hyphenated catalog names like "S-FPL51"
   // and bare names like "BK7", plus 6-digit Schott codes.
-  const tokens = glassString.match(/[A-Za-z][A-Za-z0-9-]*\d[A-Za-z0-9]*|\d{6}/g) ?? [];
+  const tokens: string[] = [...(glassString.match(/[A-Za-z][A-Za-z0-9-]*\d[A-Za-z0-9]*|\d{6}/g) ?? [])];
+  for (const match of glassString.matchAll(/(^|[^\d])(\d{3})\s*[/-]\s*(\d{3})(?!\d)/g)) {
+    tokens.push(`${match[2]}${match[3]}`);
+  }
   for (const tokRaw of tokens) {
     const tok = tokRaw.toUpperCase();
     // Direct canonical match.

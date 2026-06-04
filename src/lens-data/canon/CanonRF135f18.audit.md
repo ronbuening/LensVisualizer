@@ -4,6 +4,14 @@ Patent: US 2023/0213745 A1, Example 4 (Nakada / Canon)
 
 ---
 
+## 2026-06-04 — Sweep 2 manufacturer catalog source pass
+
+- Added HOYA NBFD29 from HOYA's first-party optical-glass PDF (`NBFD29`, code 770-297, nd=1.77047, vd=29.74, PgF=0.5951, formula-3 A0-A5 constants) to the runtime catalog.
+- Relabeled L4 / S6 and L6 / S9 from code-only `770297` annotations to `NBFD29 (HOYA, 770297)`.
+- `npm test -- dispersion` and `npm run generate:glass-reports` passed; these rows now use trusted Sellmeier data.
+
+---
+
 ## 2026-05-31 — Catalog-mismatch follow-up
 
 ### Phase 1 — Glass corrections
@@ -114,6 +122,6 @@ No APO language added or removed — no dPgF or line-index data available from t
 ### Outstanding follow-ups
 
 - **S-NPH7** (L14, nd = 2.00069, νd = 25.5) is not in the glass catalog and falls back to Abbe approximation. Consider adding it if coefficient-backed source data is found.
-- **770297 glass:** Also appears in CanonRF2870mmf28. Not yet in catalog. Sellmeier data would allow Abbe → Sellmeier upgrade for both lenses.
+- **770297 glass:** Resolved in the 2026-06-04 source pass as HOYA NBFD29.
 - **N-SF66 / E-FDS1 (923/209):** Appears in multiple Canon and Nikon files. Schott N-SF66 Sellmeier is publicly available. Adding it to the catalog would upgrade L8 and L10 from Abbe approx to full Sellmeier.
-- **S-LAH58 family (911/353):** Appears in FujifilmXF200mmf2R and other lenses. Hoya TAFD35 (referenced in FujifilmXF50140mmf28R) may be the same glass. Sourcing Sellmeier for 911/353 glass would unlock a catalog entry.
+- **S-LAH58 family (911/353):** Resolved by existing HOYA TAFD35 catalog data where the stored nd/vd pair matches the TAFD35 row.

@@ -2,6 +2,13 @@
 
 Patent: WO 2022/097401 A1, expected source for the current prescription
 
+## 2026-06-04 — Sweep 2 manufacturer catalog source pass
+
+- Added HOYA NBFD25 from HOYA's first-party optical-glass PDF (`NBFD25`, code 855-252, nd=1.85451, vd=25.15, PgF=0.6103, formula-3 A0-A5 constants) to the runtime catalog.
+- Relabeled L12 and L32 from code-only `855252` annotations to `NBFD25 (HOYA, 855252)`.
+- The local patent PDF is still absent from `patents/`; this pass did not use it for geometry/table verification.
+- `npm test -- dispersion` and `npm run generate:glass-reports` passed; L12/L32 now use trusted Sellmeier data from the public manufacturer source.
+
 ## 2026-05-20 — Six-digit missing-Sellmeier code review
 
 ### Patent evidence
@@ -14,12 +21,12 @@ Patent: WO 2022/097401 A1, expected source for the current prescription
 
 | Element | Before | After | Disposition |
 |---|---|---|---|
-| L12 | `High-index APD flint (glass code 855252)` | `855252 — high-index APD flint...` | Kept unresolved; label now preserves the unbroken code and notes the source-patent blocker. |
-| L32 | `High-index APD flint (glass code 855252)` | `855252 — high-index APD flint...` | Same glass as L12; kept unresolved. |
+| L12 | `High-index APD flint (glass code 855252)` | `855252 — high-index APD flint...` | Kept unresolved in this May pass; resolved later as HOYA NBFD25 on 2026-06-04. |
+| L32 | `High-index APD flint (glass code 855252)` | `855252 — high-index APD flint...` | Same glass as L12; resolved later as HOYA NBFD25 on 2026-06-04. |
 
 ### Catalog-search disposition
 
-- Public catalog search did not produce a coefficient-backed exact `855252` match.
+- Public catalog search did not produce a coefficient-backed exact `855252` match during this May pass; the June source pass found first-party HOYA NBFD25 data.
 - Updated the analysis glass table to flag the local patent-source blocker rather than implying the row was reverified from the absent patent.
 
 ## 2026-05-20 - Catalog-mismatch queue audit

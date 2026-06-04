@@ -2,6 +2,12 @@
 
 Patent: WO 2019/187633, Example 1
 
+## 2026-06-04 — Sweep 2 catalog source pass
+
+- Resolver support for slash-form codes lets the existing HOYA NBFD15 catalog entry resolve the G11 / `806/333` row.
+- Relabeled G11 / S20 from `Lanthanum heavy flint (806/333, vendor uncertain)` to `NBFD15 (HOYA, 806333)`.
+- `npm test -- dispersion` and `npm run generate:glass-reports` passed.
+
 ## 2026-05-20 — Glass relabel follow-up
 
 ### Patent evidence

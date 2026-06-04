@@ -131,7 +131,7 @@ L43 is the positive element of the L43–L44 cemented doublet — the second ach
 
 #### L44 — Negative Meniscus, concave to object (cemented with L43)
 
-nd = 1.85451, νd = 25.2. Glass: high-index dense flint class (855/252). f = −48.8 mm.
+nd = 1.85451, νd = 25.2. Glass: HOYA NBFD25 (855252). f = −48.8 mm.
 
 L44 is the negative flint partner of the second cemented doublet. The low Abbe number (νd = 25.2) makes it an effective chromatic corrector, while its meniscus form (concave to object) contributes to field curvature correction. The two cemented doublets in G4 (L41+L42 and L43+L44) together provide robust chromatic correction across a wide zoom range — the dual-doublet architecture is necessary because G4's power contribution varies significantly between wide and tele positions.
 
@@ -196,7 +196,7 @@ The design employs a glass palette spanning an exceptionally wide range of refra
 | L41     | 1.95375 | 32.3 | S-LAH79 (OHARA)                | Ultra-high-index flint | G4 achromat flint partner   |
 | L42     | 1.49700 | 81.6 | S-FPL51 (OHARA) / FCD1 (HOYA) | ED fluorophosphate    | G4 primary ED crown          |
 | L43     | 1.60342 | 38.0 | S-TIM5 (OHARA)                 | Titanate flint   | G4 secondary achromat pos.    |
-| L44     | 1.85451 | 25.2 | Dense flint class (855/252)    | High-index flint | G4 secondary achromat neg.    |
+| L44     | 1.85451 | 25.2 | HOYA NBFD25                    | High-index flint | G4 secondary achromat neg.    |
 | L45     | 1.49700 | 81.5 | S-FPL51 (OHARA)                | ED fluorophosphate    | G4 ED asph. corrector (PL1)  |
 | L51     | 1.94595 | 18.0 | S-NPH53 (OHARA)                | Ultra-high-disp. flint | G5 focus group chrom. comp. |
 | L52     | 1.77002 | 49.4 | Near S-LAH66 (770/494 variant) | Lanthanum crown  | G5 focus group neg. power     |

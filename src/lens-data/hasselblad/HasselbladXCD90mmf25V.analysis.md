@@ -70,7 +70,7 @@ The biconvex shape concentrates positive power at the beam's widest cross-sectio
 
 ### L3 — Biconcave Negative (Cemented with L2)
 
-$n_d = 1.77047$, $\nu_d = 29.7$, $P_{g,F} = 0.5951$. Glass: 770297 dense flint; no coefficient-backed public catalog match confirmed. $f = −28.7\;\text{mm}$.
+$n_d = 1.77047$, $\nu_d = 29.7$, $P_{g,F} = 0.5951$. Glass: HOYA NBFD29 (770297). $f = −28.7\;\text{mm}$.
 
 L3 provides the negative power that achromatises L2's positive contribution. The cement interface with L2 shares the radius $R = −587.60\;\text{mm}$ (nearly flat), meaning the chromatic correction at this junction relies primarily on the $\Delta n$ across the cement rather than curvature. The strongly curved rear surface (R = +22.97) carries most of L3's diverging power. Because L3's negative power ($f = -28.7$) is substantially stronger than L2's positive power ($f = +55.2$), the cemented L2–L3 pair is a net-negative achromatic doublet ($f \approx -69\;\text{mm}$). G1 achieves its overall positive power through L1 and L4, which together overwhelm the negative core.
 
@@ -82,7 +82,7 @@ This value is almost exactly zero — meaning L3's glass falls very near the Sch
 
 ### L4 — Positive Meniscus, Convex to Object
 
-$n_d = 1.77047$, $\nu_d = 29.7$. Glass: same as L3, 770297 dense flint. $f = +60.5\;\text{mm}$.
+$n_d = 1.77047$, $\nu_d = 29.7$. Glass: same as L3, HOYA NBFD29. $f = +60.5\;\text{mm}$.
 
 L4 uses the same glass as L3, which is unusual for a positive element — dense flints are typically selected for negative elements where their high dispersion is leveraged for achromatisation. Here, L4 serves a different purpose: positioned as the last element before the aperture stop, it completes the convergence of the marginal ray bundle while introducing controlled higher-order spherical aberration to balance L1's contribution. Its meniscus form (R1 = +31.93, R2 = +97.67) keeps both surfaces at moderate incidence angles, limiting the amount of coma generated at this off-axis-sensitive position near the stop.
 
@@ -98,11 +98,11 @@ The rationale for this counter-intuitive glass selection is explained by patent 
 
 ### L6 — Biconcave Negative (Cemented with L5, Focus Group)
 
-$n_d = 1.91082$, $\nu_d = 35.2$. Glass: 911352 ultra-high-index glass; no coefficient-backed public catalog match confirmed. $f = −14.6\;\text{mm}$.
+$n_d = 1.91082$, $\nu_d = 35.2$. Glass: HOYA TAFD35 (catalog code 911353; patent rounds $\nu_d$ to 35.2). $f = −14.6\;\text{mm}$.
 
 L6 is the negative element of the focus doublet. Its ultra-high refractive index ($n_d = 1.911$) — among the highest in the prescription — allows strong negative power ($f = −14.6\;\text{mm}$) with a biconcave form (R1 = −24.27, R2 = +29.63) whose radii are moderate enough to control higher-order aberrations. The net power of the L5–L6 cemented pair is negative ($f_\text{G2} \approx -37\;\text{mm}$, estimated from paraxial group trace), which is the defining characteristic of G2 as stated in the patent.
 
-The glass does not match any current coefficient-backed public catalog entry found in the audit pass. The six-digit code 911352 places this glass in the ultra-high-index lanthanum region of the glass map. It may be a proprietary Panasonic formulation or a catalog glass from a vendor not fully indexed in public sources.
+The patent's rounded 911/352 code sits on HOYA TAFD35's coefficient-backed row: the d-line index matches exactly, and the catalog Abbe value is 35.25 versus the patent's rounded 35.2.
 
 Condition (3) constrains $1.70 < n_{d,\text{G2n}} < 2.1$: the negative focus element needs high index to maintain gentle curvatures that minimise aberration sensitivity to decentering during focus travel. A focus group that moves along the optical axis is susceptible to manufacturing tolerances, and elements with steep curvatures amplify tilt and decenter errors. The high-index glass in L6 is thus both an optical and a mechanical design choice.
 
@@ -138,17 +138,17 @@ The meniscus form (R1 = −16.52, R2 = −51.60) is convex toward the image, con
 |---------|-------|---------|-------|--------|------|
 | L1 | 1.72916 | 54.7 | S-LAH55V | OHARA | Lanthanum crown, front collector |
 | L2 | 1.49700 | 81.6 | S-FPL51 | OHARA | **ED fluorophosphate** — primary chromatic corrector |
-| L3 | 1.77047 | 29.7 | 770297 unresolved dense flint | — | Dense flint, achromatising partner to L2 |
-| L4 | 1.77047 | 29.7 | 770297 unresolved dense flint | — | Dense flint, positive pre-stop converger |
+| L3 | 1.77047 | 29.7 | HOYA NBFD29 | Hoya | Dense flint, achromatising partner to L2 |
+| L4 | 1.77047 | 29.7 | HOYA NBFD29 | Hoya | Dense flint, positive pre-stop converger |
 | L5 | 1.85896 | 22.7 | S-NPH4 | OHARA | Ultra-high-dispersion flint, focus group positive |
-| L6 | 1.91082 | 35.2 | 911352 unresolved ultra-high-index glass | — | Ultra-high-index glass, focus group negative |
+| L6 | 1.91082 | 35.2 | HOYA TAFD35 | Hoya | Ultra-high-index glass, focus group negative |
 | L7 | 1.69680 | 55.5 | S-LAL14 | OHARA | Lanthanum crown, relay positive |
 | L8 | 1.84666 | 23.8 | S-TIH53 | OHARA | Dense flint, relay achromatiser |
 | L9 | 1.68863 | 31.2 | L-BBH1 | OHARA | **PGM moldable** barium borate, aspherical field flattener |
 
-The glass palette divides naturally into three functional tiers. In G1, the ED crown S-FPL51 paired with the 770297 dense flint provides primary chromatic and secondary-spectrum correction. In G2, the reverse-dispersion pair (ultra-high-dispersion S-NPH4 positive + ultra-high-index 911352 negative) ensures chromatically stable inner focusing. In G3, the conventional S-LAL14/S-TIH53 achromatic pair handles relay colour correction, while the PGM-moldable L-BBH1 enables cost-effective aspherical field flattening.
+The glass palette divides naturally into three functional tiers. In G1, the ED crown S-FPL51 paired with HOYA NBFD29 provides primary chromatic and secondary-spectrum correction. In G2, the reverse-dispersion pair (ultra-high-dispersion S-NPH4 positive + HOYA TAFD35 negative) ensures chromatically stable inner focusing. In G3, the conventional S-LAL14/S-TIH53 achromatic pair handles relay colour correction, while the PGM-moldable L-BBH1 enables cost-effective aspherical field flattening.
 
-Five of the nine elements use confirmed OHARA catalog glasses; three elements use glasses with no exact public catalog match (marked with six-digit codes); and one element (L9) uses a confirmed OHARA PGM glass. The three cemented interfaces (L2–L3, L5–L6, L7–L8) are modelled in the patent as thin layers with $n_d = 1.56732$, $\nu_d = 42.8$, and $d = 0.01\;\text{mm}$, consistent with a UV-cure optical adhesive (¶0022, ¶0025, ¶0028).
+Five of the nine elements use confirmed OHARA catalog glasses, three use coefficient-backed HOYA catalog glasses, and one element (L9) uses a confirmed OHARA PGM glass. The three cemented interfaces (L2–L3, L5–L6, L7–L8) are modelled in the patent as thin layers with $n_d = 1.56732$, $\nu_d = 42.8$, and $d = 0.01\;\text{mm}$, consistent with a UV-cure optical adhesive (¶0022, ¶0025, ¶0028).
 
 ---
 

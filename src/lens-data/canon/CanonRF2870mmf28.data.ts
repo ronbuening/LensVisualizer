@@ -155,7 +155,7 @@ const LENS_DATA = {
       nd: 1.77047,
       vd: 29.7,
       fl: -45.2,
-      glass: "770297 - dense flint (patent nd=1.77047, vd=29.70; no exact public catalog match)",
+      glass: "NBFD29 (HOYA, 770297)",
       apd: false,
       role: "Chromatic corrector and Petzval flattener for B3.",
     },

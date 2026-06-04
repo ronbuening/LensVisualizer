@@ -35,7 +35,7 @@ export interface GlassEntry {
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
- * GLASS CATALOG — 252 vendor-verified entries (Phase 19, May 2026)
+ * GLASS CATALOG — 259 vendor-verified entries (current source count, June 2026)
  *
  * Coefficients are taken from authoritative public vendor catalogs. Each
  * entry's `source` field cites the document or database used. To verify a
@@ -1478,6 +1478,26 @@ export const RAW_CATALOG: readonly GlassEntry[] = [
     vd: 33.27,
     code6: "806333",
     source: "Hoya Zemax catalog 2017-04-01 via refractiveindex.info; NBFD15 page (formula 3 polynomial).",
+  },
+  {
+    name: "NBFD25",
+    vendor: "Hoya",
+    polynomial: [3.2879389, -0.015856356, 0.045638807, 0.0033027661, -0.00021690686, 0.000029625863],
+    nd: 1.85451,
+    vd: 25.15,
+    PgF: 0.6103,
+    code6: "855252",
+    source: "HOYA Optical Glass Catalogue NBFD25 PDF, HOYA20250701M.xlsm; formula-3 A0-A5 constants, d-code 855-252.",
+  },
+  {
+    name: "NBFD29",
+    vendor: "Hoya",
+    polynomial: [3.023484, -0.014446333, 0.034673303, 0.0020637437, -0.00011126222, 0.000014468973],
+    nd: 1.77047,
+    vd: 29.74,
+    PgF: 0.5951,
+    code6: "770297",
+    source: "HOYA Optical Glass Catalogue NBFD29 PDF, HOYA20250701M.xlsm; formula-3 A0-A5 constants, d-code 770-297.",
   },
   {
     name: "FDS24",

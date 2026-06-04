@@ -59,6 +59,15 @@ describe("glass catalog", () => {
     expect(evaluateSellmeier(tafd45!, LINE_NM.C)).toBeLessThan(evaluateSellmeier(tafd45!, LINE_NM.F));
   });
 
+  it("evaluates current HOYA NBFD source-sheet polynomial entries", () => {
+    const nbfd25 = resolveGlass("NBFD25 (HOYA)");
+    const nbfd29 = resolveGlass("NBFD29 (HOYA)");
+    expect(nbfd25).not.toBeNull();
+    expect(nbfd29).not.toBeNull();
+    expect(evaluateSellmeier(nbfd25!, LINE_NM.d)).toBeCloseTo(1.85451, 5);
+    expect(evaluateSellmeier(nbfd29!, LINE_NM.d)).toBeCloseTo(1.77047, 5);
+  });
+
   it("evaluates explicit power-series catalog entries", () => {
     const hikariPskh1 = resolveGlass("593679 - fluorophosphate crown");
     expect(hikariPskh1?.name).toBe("J-PSKH1");
@@ -97,6 +106,12 @@ describe("resolveGlass", () => {
 
   it("resolves a 6-digit Schott CID", () => {
     expect(resolveGlass("517642")?.name).toBe("N-BK7");
+  });
+
+  it("resolves slash and hyphen six-digit code annotations", () => {
+    expect(resolveGlass("Dense flint (855/252)")?.name).toBe("NBFD25");
+    expect(resolveGlass("Heavy flint (770/297)")?.name).toBe("NBFD29");
+    expect(resolveGlass("Dense flint (806-333, uncertain)")?.name).toBe("NBFD15");
   });
 
   it("returns null for unknown glasses", () => {

@@ -3,6 +3,12 @@
 Patent: US 2024/0192474 A1, Numerical Example 4
 Catalog version: local working tree, 2026-05-19
 
+## 2026-06-04 - Sweep 2 manufacturer catalog source pass
+
+- Added HOYA NBFD29 from HOYA's first-party optical-glass PDF (`NBFD29`, code 770-297, nd=1.77047, vd=29.74, PgF=0.5951, formula-3 A0-A5 constants) to the runtime catalog.
+- Relabeled L8 / S14 from `Heavy flint (770/297)` to `NBFD29 (HOYA, 770297)`.
+- `npm test -- dispersion` and `npm run generate:glass-reports` passed; L8 now uses trusted Sellmeier data.
+
 ## 2026-05-19 - Full patent audit and glass relabel
 
 ### Source Note
@@ -20,7 +26,7 @@ Catalog version: local working tree, 2026-05-19
 | L5 / 9 | `glass` | `Dense lanthanum flint (883/408)` | `S-LAH58 (OHARA)` | Example 4 row 9 lists nd=1.88300, vd=40.8; catalog S-LAH58 carries code 883408. |
 | L6 / 11 | `glass` | `Barium crown (595/677)` | `S-FPM2 (OHARA)` | Example 4 row 11 lists nd=1.59522, vd=67.7; catalog S-FPM2 carries code 595677. |
 | L7 / 13 | `glass` | `UD fluorophosphate crown (497/815)` | `S-FPL51 (OHARA)` | Example 4 row 13 lists nd=1.49700, vd=81.5. S-FPL51/FCD1-class public data matches within patent rounding; this is one of the four UD elements. |
-| L8 / 14 | `glass` | `Heavy flint (770/297)` | retained | Example 4 row 14 lists nd=1.77047, vd=29.7. Checked public catalog sources did not provide a coefficient-backed exact match for code 770297. |
+| L8 / 14 | `glass` | `Heavy flint (770/297)` | retained in this May pass | Example 4 row 14 lists nd=1.77047, vd=29.7. The 2026-06-04 source pass later resolved this row as HOYA NBFD29. |
 | L9 / 17 | `glass` | `Very heavy flint (847/238)` | `S-TIH53 (OHARA)` | Example 4 row 17 lists nd=1.84666, vd=23.8; catalog S-TIH53 carries code 847238. |
 | L10 / 19 | `glass` | `Extreme dense flint - OHARA S-NPH4 (001/291)` | `S-LAH99 (OHARA)` | Example 4 row 19 lists nd=2.00100, vd=29.1. The old label resolved to S-NPH4, whose catalog constants do not match; S-LAH99 carries code 001291. |
 | L11 / 20 | `glass` | `Borosilicate crown (517/524)` | `S-NSL36 (OHARA)` | Example 4 row 20 lists nd=1.51742, vd=52.4; catalog S-NSL36 carries code 517524. |
@@ -49,11 +55,11 @@ Catalog version: local working tree, 2026-05-19
 ### Phase 4 - Analysis sync
 
 - Updated the element narratives and glass-budget note for the newly resolved catalog labels.
-- Left the L8 / 770297 row code-only in both data and analysis because no coefficient-backed public match was found.
+- Left the L8 / 770297 row code-only in this May pass; the 2026-06-04 source pass later resolved it as HOYA NBFD29.
 
 ### Verification
 
-- `npm run generate:glass-reports` — passed; RF24-105 remains in the six-digit missing-Sellmeier report only for L8 / 770297, with the corrected catalog rows cleared.
+- `npm run generate:glass-reports` — passed; at the time RF24-105 remained in the six-digit missing-Sellmeier report only for L8 / 770297. The 2026-06-04 report run clears that row.
 - `npm run typecheck` — passed.
 - `npm run format:check` — passed.
 - `npm run test` — passed (131 files, 1666 tests; expected error-boundary console output only).

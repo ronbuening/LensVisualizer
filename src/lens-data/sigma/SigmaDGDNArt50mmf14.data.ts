@@ -173,7 +173,7 @@ const LENS_DATA = {
       nd: 1.85451,
       vd: 25.15,
       fl: -27.6,
-      glass: "Dense flint (855/252)",
+      glass: "NBFD25 (HOYA, 855252)",
       apd: false,
       role: "Flint partner in rear achromatic doublet (GR2F).",
       cemented: "D2",

@@ -108,9 +108,9 @@ The rear element of the GR3 doublet and the principal positive-power element of 
 
 ### G11 — Positive Meniscus, Concave to Object (Cemented with G12)
 
-nd = 1.80610, νd = 33.27. Glass: lanthanum heavy flint (806/333, vendor uncertain). f = +50.9 mm.
+nd = 1.80610, νd = 33.27. Glass: HOYA NBFD15 (806333). f = +50.9 mm.
 
-The front element of the GR4 doublet (final group). G11 is concave toward the object — its center of curvature for R = −692.7 mm faces to the left — giving it a meniscus shape that wraps around the diverging beam emerging from GR3. With f = +50.9 mm, it strongly converges the axial rays, separating them from the peripheral rays before the final correcting elements (¶0086). The six-digit glass code (806/333) does not match OHARA S-LAH64 (788/474) or any other standard OHARA entry in the May 2023 pocket catalog; the glass may be sourced from HOYA (TAFD30, 806/333 — exact match) or another vendor.
+The front element of the GR4 doublet (final group). G11 is concave toward the object — its center of curvature for R = −692.7 mm faces to the left — giving it a meniscus shape that wraps around the diverging beam emerging from GR3. With f = +50.9 mm, it strongly converges the axial rays, separating them from the peripheral rays before the final correcting elements (¶0086). The six-digit glass code resolves to HOYA NBFD15, a coefficient-backed dense flint match for 806333.
 
 ### G12 — Biconcave Negative (Cemented with G11)
 
@@ -143,7 +143,7 @@ The design uses 10 distinct glasses across 13 elements. The following table summ
 | G7 | 1.77250 | 49.62 | Lanthanum crown (772/496, class S-LAM) | Achromatizing partner to G6 |
 | G8 | 1.72916 | 54.67 | S-LAL18 (OHARA, 729/547) | Lanthanum crown; weak corrector in GR2 |
 | G9 | 1.74077 | 27.76 | Titanium flint (741/278, class S-TIH) | Achromatizing partner to G10 |
-| G11 | 1.80610 | 33.27 | Lanthanum heavy flint (806/333, vendor uncertain) | Strong converger in GR4; possible HOYA TAFD30 match |
+| G11 | 1.80610 | 33.27 | HOYA NBFD15 | Strong converger in GR4 |
 | G12 | 1.51742 | 52.15 | S-NSL36 (OHARA, 517/522) | Light flint; negative partner to G11 |
 | G13 | 1.89190 | 37.13 | Lanthanum heavy flint (892/371, class S-LAH) | Field-flattening / correcting element |
 
