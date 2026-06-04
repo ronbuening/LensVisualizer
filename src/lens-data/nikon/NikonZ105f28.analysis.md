@@ -111,11 +111,11 @@ The patent lists 10 distinct glass types across the 16 elements. The table below
 |-------|----|----|-----|---------|----------------------|--------|
 | A | 1.83481 | 42.73 | — | L11, L31 | OHARA S-LAH55V (nd=1.835, νd=42.73) | Lanthanum dense crown |
 | B | 1.85451 | 25.15 | 0.6103 | L12, L32 | HOYA NBFD25 (855252), coefficient-backed manufacturer source | High-index flint — anomalous partial dispersion |
-| C | 1.59319 | 67.90 | — | L13, L14, L33 | S-FPM3 (nd=1.593, νd=67.9) | Fluorophosphate crown |
+| C | 1.59319 | 67.90 | — | L13, L14, L33 | Hikari J-PSKH1 (nd=1.593, νd=67.9) | Phosphate crown |
 | D | 1.51860 | 69.89 | — | L21, L42 | No exact catalog match (glass code 519699) | Phosphate crown (FK/PK region) |
 | E | 1.72047 | 34.71 | — | L22 | Glass code 720347 — OHARA region (S-TIH or S-LAH family) | Lanthanum/titanium flint |
 | F | 1.94595 | 17.98 | — | L23, L43 | Hikari E-FDS3HT (nd=1.946, νd=18.0) or equivalent | Ultra-high-index dense flint |
-| G | 1.95375 | 32.33 | — | L41 | OHARA S-LAH79 (nd=1.954, νd=32.32) | Lanthanum dense crown (extreme index) |
+| G | 1.95375 | 32.33 | — | L41 | OHARA S-LAH98 (nd=1.954, νd=32.33) | Lanthanum dense crown (extreme index) |
 | H | 2.00069 | 25.46 | — | L44 | No exact catalog match (glass code 001255) | Ultra-high-index specialty glass (nd > 2.0) |
 | I | 1.80440 | 39.61 | — | L45 | OHARA S-LAH63 (nd=1.804, νd=39.58; Q variant available) | Lanthanum dense crown |
 | J | 1.51680 | 64.14 | — | L46 | Schott N-BK7 (nd=1.51680) / OHARA S-BSL7 (νd=64.14) | Borosilicate crown (BK7 equivalent) |
@@ -131,8 +131,8 @@ No glass in this patent has an Abbe number anywhere close to traditional ED terr
 **Hypothesis A — The anomalous-dispersion flints (Glass B) plus one more:**
 The patent explicitly identifies two elements (L12 and L32, both Glass B) as satisfying conditional expressions (4)–(6) and (17)–(19) for anomalous partial dispersion. Both use Glass B (nd = 1.85451, νd = 25.15, θgF = 0.6103), which has ΔθgF = +0.0095 above the normal line. Under a broadened definition of "ED" that encompasses any glass with significant anomalous partial dispersion — regardless of absolute dispersion level — these two would qualify. A third candidate would be Glass H (nd = 2.00069, νd = 25.46, L44) or Glass F (nd = 1.94595, νd = 17.98, L23/L43), both of which likely possess anomalous partial dispersion given their position on the glass map, though no θgF is listed for either.
 
-**Hypothesis B — The fluorophosphate crowns (Glass C):**
-Glass C (nd = 1.59319, νd = 67.90) matches OHARA S-FPM3, a **fluorophosphate** crown. Nikon has a history of designating fluorine-containing glasses as "ED" even at moderate Abbe numbers. Three elements use Glass C: L13, L14, and L33 — exactly matching the count. While νd = 67.9 is well below traditional ED territory, fluorophosphate glasses do possess some degree of anomalous partial dispersion (the "FP" in S-FPM denotes fluorophosphate), and Nikon's modern marketing may have relaxed the threshold.
+**Hypothesis B — The phosphate crowns (Glass C):**
+Glass C (nd = 1.59319, νd = 67.90) now resolves to Hikari J-PSKH1, a phosphate crown. Nikon has a history of designating low-dispersion phosphate-family glasses as "ED" even at moderate Abbe numbers. Three elements use Glass C: L13, L14, and L33 — exactly matching the count. While νd = 67.9 is well below traditional ED territory, phosphate glasses can possess useful anomalous partial dispersion, and Nikon's modern marketing may have relaxed the threshold.
 
 **A third possibility** is that the production lens uses slightly different glasses than the patent embodiment — production substitutions are common, and a glass swap in one or two positions could bring additional elements into ED territory under Nikon's criteria.
 

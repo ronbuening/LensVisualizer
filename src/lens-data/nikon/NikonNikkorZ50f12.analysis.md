@@ -101,10 +101,10 @@ L11 is a strongly negative meniscus that opens the lens. Its rear surface (R₂ 
 | R₁ / R₂ | +50.875 / +62.234 |
 | Center thickness | 4.190 mm |
 | nd / νd | 1.94595 / 18.0 |
-| Glass (inferred) | HIKARI E-FDS1-W or SUMITA K-PSFn214M |
+| Glass (catalog match) | HOYA FDS18 |
 | Thin-lens focal length | +294.7 mm |
 
-L12 is the most optically unusual element in the entire design. Its glass — nd = 1.94595, νd = 18.0 — is an ultra-high-index, ultra-high-dispersion dense flint, the most extreme glass type in commercial catalogs. It sits at the far lower-right corner of the glass map, in territory occupied by specialty glasses like HIKARI E-FDS1-W. Despite being a positive element, L12's primary role is chromatic: its enormous dispersion (νd = 18) combined with weak positive power (+294.7 mm focal length) allows it to contribute a large chromatic correction term relative to its power contribution. Paired with the preceding negative L11 and following negative L13, it forms part of a three-element corrector group that manages both lateral color and the Petzval sum contribution of the front divergent section. The 16.51 mm air gap following L12 is the largest in the entire front group, allowing the ray bundle to expand before entering L13.
+L12 is the most optically unusual element in the entire design. Its glass — nd = 1.94595, νd = 18.0 — is an ultra-high-index, ultra-high-dispersion dense flint, the most extreme glass type in commercial catalogs. It sits at the far lower-right corner of the glass map, in territory occupied by specialty glasses like HOYA FDS18. Despite being a positive element, L12's primary role is chromatic: its enormous dispersion (νd = 18) combined with weak positive power (+294.7 mm focal length) allows it to contribute a large chromatic correction term relative to its power contribution. Paired with the preceding negative L11 and following negative L13, it forms part of a three-element corrector group that manages both lateral color and the Petzval sum contribution of the front divergent section. The 16.51 mm air gap following L12 is the largest in the entire front group, allowing the ray bundle to expand before entering L13.
 
 **L13 — Negative Meniscus, Concave to Object**
 
@@ -114,12 +114,12 @@ L12 is the most optically unusual element in the entire design. Its glass — nd
 | R₁ / R₂ | −43.989 / −158.308 |
 | Center thickness | 3.200 mm |
 | nd / νd | 1.55298 / 55.1 |
-| Glass (inferred) | OHARA S-TIL25 or SUMITA K-BaFn1 |
+| Glass disposition | Unmatched — patent nd=1.55298, νd=55.1 has no public catalog candidate within tolerance |
 | Thin-lens focal length | −110.2 mm |
 
 L13 is a negative meniscus with its concave side facing the object. Together with L11, it forms one of the pair of opposing concave surfaces described in the patent's conditional expression (7): r1 is the image-side radius of L11 (surface 2, R = +46.02) and r2 is the object-side radius of L13 (surface 5, R = −43.99). The patent explicitly identifies these surfaces as "facing concave surfaces" (向かい合った凹面) and constrains their ratio: 0.500 < −r1/r2 < 2.000. For Example 1, −r1/r2 = −46.02/(−43.99) = 1.046. This Petzval-controlling pair keeps the sum of field-curving contributions from the front divergent section in check.
 
-L13's glass (nd = 1.55298, νd = 55.1) is a light barium flint in the traditional glass map — moderate index, moderate dispersion. Notably, L13 is the only negative lens in the design that the patent does *not* evaluate under conditional expression (6) (the anomalous partial dispersion condition), confirming that S-TIL25 has standard (normal-line) dispersion characteristics rather than the anomalous dispersion required for secondary spectrum correction.
+L13's glass (nd = 1.55298, νd = 55.1) is a light barium flint in the traditional glass map — moderate index, moderate dispersion. It remains unmatched in the public catalog set after the local patent pass. Notably, L13 is the only negative lens in the design that the patent does *not* evaluate under conditional expression (6) (the anomalous partial dispersion condition), indicating standard normal-line dispersion rather than the anomalous dispersion required for secondary spectrum correction.
 
 **L14 — Positive Meniscus, Concave to Object**
 
@@ -185,11 +185,11 @@ L17 is the final element of the four-element ED run and the strongest individual
 | R (own surfaces) | +290.135 / −109.110 | −109.110 / +40.041 |
 | Center thickness | 6.040 mm | 2.160 mm |
 | nd / νd | 1.59319 / 67.9 | 1.73800 / 32.3 |
-| Glass (inferred) | FCD505 variant or S-FPM2 (OHARA) | OHARA S-NBH52V or HOYA TAFD25 |
+| Glass (inferred) | FCD505 variant or S-FPM2 (OHARA) | OHARA S-NBH53V |
 | Thin-lens focal length | +133.7 mm | −39.7 mm |
 | **Doublet combined** | **−56.5 mm** | |
 
-The final group-A element is a cemented doublet consisting of a positive phosphate crown (L18) bonded to a strongly negative dense flint (L19). The doublet as a whole has net negative power (−56.5 mm), which may seem counterintuitive in a positive front group, but it serves a critical role: the junction surface (R = −109.11 mm) between the low-dispersion L18 and high-dispersion L19 creates a powerful chromatic-correcting interface. The L19 glass (nd = 1.73800, νd = 32.3) is identified as OHARA S-NBH52V or equivalent — a lanthanum-containing dense barium flint with controlled anomalous partial dispersion. The patent's conditional expression (6) evaluates L19's partial dispersion: θgF + 0.0021 × νd = 0.658, confirming it sits in the anomalous-dispersion corridor needed for effective secondary spectrum control.
+The final group-A element is a cemented doublet consisting of a positive phosphate crown (L18) bonded to a strongly negative dense flint (L19). The doublet as a whole has net negative power (−56.5 mm), which may seem counterintuitive in a positive front group, but it serves a critical role: the junction surface (R = −109.11 mm) between the low-dispersion L18 and high-dispersion L19 creates a powerful chromatic-correcting interface. The L19 glass (nd = 1.73800, νd = 32.3) is identified as OHARA S-NBH53V — a dense barium flint with controlled anomalous partial dispersion. The patent's conditional expression (6) evaluates L19's partial dispersion: θgF + 0.0021 × νd = 0.658, confirming it sits in the anomalous-dispersion corridor needed for effective secondary spectrum control.
 
 The 7.79 mm air gap following this doublet is the space to the aperture stop.
 
@@ -251,11 +251,11 @@ L31 is a gently biconvex positive element whose rear surface (25\*) carries the 
 | R₁ / R₂ | +71.000 / −430.726 |
 | Center thickness | 4.000 mm |
 | nd / νd | 1.76450 / 49.1 |
-| Glass (inferred) | OHARA S-NBH56 (exact match: nd=1.76450, νd=49.10) |
+| Glass (catalog match) | OHARA S-LAH96 (nd=1.76450, νd=49.10) |
 | Thin-lens focal length | +79.7 mm |
 | Aspherical surface | **Surface 26\*** (front) |
 
-L32 carries the second aspherical surface, this time on its front face. The base radius is R = +71.00 mm with a mild prolate conic (κ = −0.116). At ~14 mm semi-aperture, the departure is approximately −0.55 mm. Unlike L31's phosphate crown, L32 uses a substantially different glass — S-NBH56, a high-index (1.7645) new barium heavy glass in OHARA's classification. With νd = 49.1, it sits just below the conventional crown/flint boundary (νd ≈ 50), giving it moderate dispersion — higher than the ED phosphate crowns but lower than the dense flints used for chromatic correction. This higher index allows the element to carry more refractive power per unit curvature, and the different dispersion contributes to chromatic balance within the F2 group.
+L32 carries the second aspherical surface, this time on its front face. The base radius is R = +71.00 mm with a mild prolate conic (κ = −0.116). At ~14 mm semi-aperture, the departure is approximately −0.55 mm. Unlike L31's phosphate crown, L32 uses a substantially different glass — S-LAH96, a high-index lanthanum glass in OHARA's catalog. With νd = 49.1, it sits just below the conventional crown/flint boundary (νd ≈ 50), giving it moderate dispersion — higher than the ED phosphate crowns but lower than the dense flints used for chromatic correction. This higher index allows the element to carry more refractive power per unit curvature, and the different dispersion contributes to chromatic balance within the F2 group.
 
 The combined focal length of F2 is +57.73 mm — a strong positive group that is the primary power contributor in the rear half of the lens. Its movement during focus shifts the image plane position and corrects focus-dependent aberrations.
 
@@ -284,11 +284,11 @@ L41 is a weak positive meniscus providing gentle convergence as the rays enter t
 | R (own surfaces) | +87.924 / −127.680 | −127.680 / +40.898 |
 | Center thickness | 5.700 mm | 1.800 mm |
 | nd / νd | 1.90265 / 35.8 | 1.61266 / 44.5 |
-| Glass (inferred) | OHARA S-LAH79 | OHARA S-NBM52 or HIKARI E-CF6 |
+| Glass (catalog match) | Hikari J-LASFH9 | OHARA S-NBM52 or HIKARI E-CF6 |
 | Thin-lens focal length | +57.7 mm | −50.6 mm |
 | **Doublet combined** | **−409.4 mm** | |
 
-This cemented doublet is the primary chromatic corrector of the rear group. L42 uses the highest-index glass in the entire rear section (nd = 1.90265), identified as OHARA S-LAH79 — a lanthanum-containing ultra-high-index crown. L43 uses S-NBM52 or equivalent, a niobium barium flint with νd = 44.5. The patent's conditional expression (6) evaluates L43: θgF + 0.0021 × νd = 0.657, confirming its anomalous partial dispersion contributes to secondary spectrum correction.
+This cemented doublet is the primary chromatic corrector of the rear group. L42 uses the highest-index glass in the entire rear section (nd = 1.90265), identified as Hikari J-LASFH9 — a lanthanum-containing ultra-high-index crown. L43 uses S-NBM52 or equivalent, a niobium barium flint with νd = 44.5. The patent's conditional expression (6) evaluates L43: θgF + 0.0021 × νd = 0.657, confirming its anomalous partial dispersion contributes to secondary spectrum correction.
 
 The doublet's net power is weakly negative (−409.4 mm), so its primary contribution is chromatic rather than refractive — a classic achromatic corrector role.
 
@@ -322,17 +322,17 @@ The following table presents each unique glass type used in Example 1, the numbe
 
 | nd | νd | Elements | Best Catalog Match | Confidence | Category |
 |---|---|---|---|---|---|
-| 1.94595 | 18.0 | L12 | HIKARI E-FDS1-W | Exact | Ultra-dense flint |
+| 1.94595 | 18.0 | L12 | HOYA FDS18 | Exact | Ultra-dense flint |
 | 1.64000 | 60.1 | L11 | OHARA S-BSM81 / CDGM H-ZK6 | Exact | Dense barium crown |
-| 1.55298 | 55.1 | L13 | OHARA S-TIL25 / SUMITA K-BaFn1 | Exact | Light barium flint |
+| 1.55298 | 55.1 | L13 | Unmatched public catalog | — | Light barium flint |
 | 1.59349 | 67.0 | L14, L15, L16, L17 | HOYA FCD505 / HIKARI J-PSKH1 | Exact | **Phosphate crown (ED)** |
 | 1.59319 | 67.9 | L18, L22 | FCD505 variant / OHARA S-FPM2 | Approximate | **Phosphate crown (ED)** |
 | 1.59306 | 67.0 | L31 | FCD505 variant / HIKARI J-PSKH1 | Approximate | **Phosphate crown (ED)** |
-| 1.73800 | 32.3 | L19 | OHARA S-NBH52V / HOYA TAFD25 | Exact | Dense barium flint |
+| 1.73800 | 32.3 | L19 | OHARA S-NBH53V | Exact | Dense barium flint |
 | 1.72047 | 34.7 | L21 | OHARA S-NBH8 | Exact | Dense barium flint |
-| 1.76450 | 49.1 | L32 | OHARA S-NBH56 | Exact | New barium heavy glass |
+| 1.76450 | 49.1 | L32 | OHARA S-LAH96 | Exact | High-index lanthanum glass |
 | 1.61800 | 63.3 | L41 | OHARA S-PHM52 | Exact | Phosphate crown |
-| 1.90265 | 35.8 | L42 | OHARA S-LAH79 | Exact | Ultra-high-index lanthanum crown |
+| 1.90265 | 35.8 | L42 | Hikari J-LASFH9 | Exact | Ultra-high-index lanthanum crown |
 | 1.61266 | 44.5 | L43 | OHARA S-NBM52 / HIKARI E-CF6 | Exact | Niobium barium flint |
 | 1.51680 | 64.0 | L44 | OHARA S-NSL3 | Close | Standard crown |
 | 1.51680 | 63.9 | FL (filter) | OHARA S-NSL36 | Exact | Standard crown |
@@ -480,7 +480,7 @@ The design manages chromatic aberration through three complementary mechanisms:
 
 2. **Anomalous-dispersion negative elements** (L19, L21, L43): The patent's conditional expression (6) constrains the negative-lens partial dispersion to stay within a narrow corridor (θgF + 0.0021νd between 0.600 and 0.660), ensuring effective chromatic correction with minimal element count.
 
-3. **Ultra-high-dispersion corrector** (L12): The extraordinary E-FDS1-W glass (νd = 18.0) in the front group provides a powerful chromatic lever — its enormous dispersion relative to its weak power allows it to make large corrections to lateral color and longitudinal chromatic aberration with minimal impact on the monochromatic aberration balance.
+3. **Ultra-high-dispersion corrector** (L12): The extraordinary HOYA FDS18 glass (νd = 18.0) in the front group provides a powerful chromatic lever — its enormous dispersion relative to its weak power allows it to make large corrections to lateral color and longitudinal chromatic aberration with minimal impact on the monochromatic aberration balance.
 
 ### 8.4 Aberration Performance (Patent Figures 2–3)
 
@@ -501,4 +501,4 @@ At close focus (Fig. 3, β = −0.1), the aberration curves broaden modestly, wi
 - Cameralabs, "Nikon Z 50mm f1.2 S Review" (focus breathing measurement, close focus distance)
 - OHARA optical glass catalog (glass identification reference)
 - HOYA optical glass catalog (FCD505 identification)
-- HIKARI optical glass catalog (E-FDS1-W, J-PSKH1 identification)
+- HIKARI optical glass catalog (J-PSKH1, J-LASFH9 identification)

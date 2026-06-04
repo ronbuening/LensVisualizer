@@ -80,7 +80,7 @@ const LENS_DATA = {
       nd: 1.68893,
       vd: 31.2,
       fl: -36.3,
-      glass: "S-TIM35 (OHARA) / FD110 (HOYA)",
+      glass: "E-FD8 (HOYA, patent nd/vd match) / S-TIM28",
       apd: false,
       role: "Achromatic corrector for L2 doublet. Δν = 16.5 with L(2,1) drives effective achromatization on the object side of the stop.",
       cemented: "D1",

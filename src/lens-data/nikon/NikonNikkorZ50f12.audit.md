@@ -2,6 +2,21 @@
 
 Patent: WO 2021/241230 A1
 
+## 2026-06-04 — Sweep 1 local patent relabel
+
+- Local patent source: `patents/WO2021241230A1.pdf` (untracked local file).
+- The local PDF is image-based under `pdftotext -layout`; matching rows were cross-checked against Google Patents OCR for the same WO publication.
+
+| Element / row | Patent nd/vd | Before | After | Disposition |
+|---|---|---|---|---|
+| L12 / row 3 | 1.94595 / 18.0 | `E-FDS1-W (HIKARI)` | `FDS18 (HOYA, patent nd/vd match; E-FDS1-W relabel)` | HOYA FDS18 round-trips the stored patent pair. |
+| L13 / row 5 | 1.55298 / 55.1 | `S-TIL25 (OHARA)` | `Unmatched (patent nd=1.55298/vd=55.10; no public catalog candidate)` | No public catalog candidate clears the consistency threshold. |
+| L19 / row 17 | 1.73800 / 32.3 | `S-NBH52V (OHARA)` | `S-NBH53V (OHARA, patent nd/vd match)` | OHARA S-NBH53V clears the prior S-NBH52V mismatch. |
+| L32 / row 26 | 1.76450 / 49.1 | `S-NBH56 (OHARA)` | `S-LAH96 (OHARA, patent nd/vd match)` | OHARA S-LAH96 round-trips the stored patent pair. |
+| L42 / row 30 | 1.90265 / 35.8 | `S-LAH79 (OHARA)` | `J-LASFH9 (Hikari, patent nd/vd match)` | Hikari J-LASFH9 clears the prior S-LAH79 mismatch. |
+
+- `npm run generate:glass-reports` passed; this lens no longer appears in the catalog-mismatch reports.
+
 ## 2026-05-20 — Patent unavailable disposition
 
 ### Phase 1 — Glass corrections

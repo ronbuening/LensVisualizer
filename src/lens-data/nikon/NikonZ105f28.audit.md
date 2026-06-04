@@ -2,6 +2,20 @@
 
 Patent: WO 2022/097401 A1, expected source for the current prescription
 
+## 2026-06-04 — Sweep 1 local patent relabel
+
+- Local patent source: `patents/WO2022097401A1.pdf` (untracked local file).
+- The local PDF is image-based under `pdftotext -layout`; matching rows were cross-checked against Google Patents OCR for the same WO publication.
+
+| Element / surface | Patent nd/vd | Before | After | Disposition |
+|---|---|---|---|---|
+| L2 / S4 | 1.59319 / 67.90 | `S-FPM3 (OHARA)` | `J-PSKH1 (Hikari, patent nd/vd match)` | Hikari catalog entry round-trips the stored patent pair. |
+| L3 / S6 | 1.59319 / 67.90 | `S-FPM3 (OHARA)` | `J-PSKH1 (Hikari, patent nd/vd match)` | Same glass as L2. |
+| L8 / S17 | 1.59319 / 67.90 | `S-FPM3 (OHARA)` | `J-PSKH1 (Hikari, patent nd/vd match)` | Same glass as L2. |
+| L9 / S19 | 1.95375 / 32.33 | `S-LAH79 (OHARA)` | `S-LAH98 (OHARA, patent nd/vd match)` | OHARA S-LAH98 clears the prior S-LAH79 mismatch. |
+
+- `npm run generate:glass-reports` passed; this lens no longer appears in the catalog-mismatch reports.
+
 ## 2026-06-04 — Sweep 2 manufacturer catalog source pass
 
 - Added HOYA NBFD25 from HOYA's first-party optical-glass PDF (`NBFD25`, code 855-252, nd=1.85451, vd=25.15, PgF=0.6103, formula-3 A0-A5 constants) to the runtime catalog.

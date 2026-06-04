@@ -50,7 +50,7 @@ If the patent only lists `nd`/`vd` and `dPgF` without explicit `ng`, populate `d
 
 | Lens file | Patent reference | Elements needing backfill | Notes |
 |---|---|---|---|
-| [voigtlander/VoigtlanderApoLanthar50f2.data.ts](../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.ts) | JP2021-43376A | 4 (3 Sumita unmatched + 1 KZFS-adjacent) | **Highest priority** — the marquee APO-Lanthar regression case from the chromatic overhaul |
+| [voigtlander/VoigtlanderApoLanthar50f2.data.ts](../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.ts) | JP2021-43376A | 4 (3 Sumita unmatched + 1 KZFS-adjacent) | **Highest priority** — local `patents/JP2021043376A.pdf` rechecked 2026-06-04; existing patent-listed `dPgF` values are already captured, but extracted text did not expose `nC`, `nF`, or `ng` rows |
 | [nikon/Nikon58f14GDesignCandidate.data.ts](../src/lens-data/nikon/Nikon58f14GDesignCandidate.data.ts) | (verify) | 1 (S-NBM51 / KZFS2-type short flint) | |
 | [nikon/NikonNikkorAFS2470mmf28E.data.ts](../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) | (verify) | Several fluorophosphate crown placeholders | |
 | [nikon/NikonZ28f28.data.ts](../src/lens-data/nikon/NikonZ28f28.data.ts) | (verify) | 1 UV-curing resin (proprietary) | Resin may not have line indices in patents |

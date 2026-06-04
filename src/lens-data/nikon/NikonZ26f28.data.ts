@@ -68,7 +68,7 @@ const LENS_DATA = {
       nd: 1.5927,
       vd: 35.3,
       fl: -14.7,
-      glass: "S-TIM2 (OHARA)",
+      glass: "S-FTM16 (OHARA, patent nd/vd match)",
       apd: false,
       cemented: "D1",
       role: "Negative element of 1st cemented doublet; low-νd flint provides chromatic correction paired with L3",

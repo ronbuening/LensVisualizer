@@ -23,8 +23,9 @@ This file tracks the second bucket plus any cases from the first bucket that nee
 ## Current Status (June 2026, current catalog)
 
 - Catalog: **259 verified entries** in `src/optics/glassCatalogData.ts`.
-- Current mismatch and coverage counts live in the generated reports; the latest consolidated sweep baseline is
-  **296** lenses, **3345** non-air surfaces, and **2567** trusted Sellmeier surfaces.
+- Current mismatch and coverage counts live in the generated reports. After the 2026-06-04 local-patent sweep,
+  `catalog-mismatches.generated.md` reports **0** catalog mismatches, and `sellmeier-coverage.generated.md` reports
+  **296** lenses, **3345** non-air surfaces, and **2646** trusted Sellmeier surfaces (**79.1%**).
 - `unresolvedGlassScan`: **603** non-explicit-unmatched annotations still do not resolve, covering **218** distinct
   glass-like tokens.
 - The Phase 2/3 resolved tables below are historical audit trail. Use the generated reports above for the current queue before starting new relabel work; for patent-by-patent execution, start from [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md).

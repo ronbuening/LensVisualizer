@@ -121,7 +121,7 @@ from the stop and contributes primarily to Petzval sum correction and field curv
 | Focal length | −36.40 mm |
 | Type | Plano-concave negative |
 | Cemented | Doublet Jw with L3 |
-| Glass (catalog match) | **SF2-type** — Schott SF2 (Δνd = 0.01), HOYA E-F3 (exact) |
+| Glass (catalog match) | **SF2-type** — Schott SF2 (Δνd = 0.01), HOYA E-FD2 (exact) |
 
 #### L3 (Mpa) — Plano-convex positive (cemented to L2)
 
@@ -134,7 +134,7 @@ from the stop and contributes primarily to Petzval sum correction and field curv
 | Focal length | +40.40 mm |
 | Type | Plano-convex positive |
 | Cemented | Doublet Jw with L2 |
-| Glass (catalog match) | **S-LAH58** — OHARA S-LAH58 (exact), Schott N-LASF46A (exact) |
+| Glass (catalog match) | **TAFD35** — HOYA TAFD35 (catalog match) |
 
 **Optical role of doublet Jw (L2+L3):** This cemented pair functions primarily as a
 monochromatic aberration corrector in the front group. The flat junction surface (R = ∞)
@@ -159,7 +159,7 @@ the converging action that redirects the diverging bundle from L1 toward the sto
 | Focal length | +13.70 mm (patent; thin-lens: +12.95 mm) |
 | Type | Biconvex positive |
 | Cemented | Doublet Jy with L5 |
-| Glass (catalog match) | **S-LAH58** — OHARA S-LAH58 (exact) |
+| Glass (catalog match) | **TAFD35** — HOYA TAFD35 (catalog match) |
 
 #### L5 (Mnc) — Biconcave negative (cemented to L4)
 
@@ -172,7 +172,7 @@ the converging action that redirects the diverging bundle from L1 toward the sto
 | Focal length | −25.39 mm |
 | Type | Biconcave negative |
 | Cemented | Doublet Jy with L4 |
-| Glass (catalog match) | **SF14-type** — HOYA E-FD15 (exact), Schott N-SF14 (Δνd = 0.08) |
+| Glass (catalog match) | **S-TIH14** — OHARA S-TIH14 (catalog match) |
 
 **Optical role of doublet Jy (L4+L5):** This is the most powerful sub-assembly in the front
 group. L4 alone has a focal length of only +13.70 mm — by far the strongest element in the
@@ -424,15 +424,15 @@ they operate primarily on **field aberrations** rather than on-axis aberrations:
 
 ## 5. Glass Selection Summary
 
-The lens uses nine distinct glass types (by nd/νd), with one type (S-LAH58) shared between two
+The lens uses nine distinct glass types (by nd/νd), with one type (TAFD35) shared between two
 elements:
 
 | Glass type | nd | νd | Elements | Catalog match | Role |
 |------------|------|-------|----------|---------------|------|
 | BK7-type | 1.51680 | 64.20 | L1 | HOYA BSC7 / Schott N-BK7 | Low-cost crown for front meniscus |
-| SF2-type | 1.64769 | 33.84 | L2 | Schott SF2 / HOYA E-F3 | Dense flint for Jw doublet |
-| S-LAH58 | 1.91082 | 35.25 | L3, L4 | OHARA S-LAH58 | Ultra-high-index LaF for power elements |
-| SF14-type | 1.76182 | 26.61 | L5 | HOYA E-FD15 / Schott N-SF14 | Very dense flint for Jy doublet |
+| SF2-type | 1.64769 | 33.84 | L2 | Schott SF2 / HOYA E-FD2 | Dense flint for Jw doublet |
+| TAFD35 | 1.91082 | 35.25 | L3, L4 | HOYA TAFD35 | Ultra-high-index LaF for power elements |
+| S-TIH14 | 1.76182 | 26.61 | L5 | OHARA S-TIH14 | Very dense flint for Jy doublet |
 | SF1-type | 1.71736 | 29.50 | L6 | Schott SF1 / OHARA S-TIH1 | Dense flint for Jx achromat |
 | S-LAC14 (probable APD) | 1.69680 | 55.46 | L7 | OHARA S-LAC14 (Δνd=0.05) | LaC crown, probable anomalous dispersion |
 | S-LAH60MQ | 1.88300 | 40.81 | L8 | OHARA S-LAH60MQ / S-LAH64 | High-index LaF for rear positive |
@@ -445,7 +445,7 @@ Two features of the glass selection are noteworthy:
 nd > 1.88, and L10 uses nd = 1.806. These extreme refractive indices allow the designers to
 achieve the necessary optical power within a compact total track (LT/fa = 2.11) while keeping
 surface curvatures moderate enough to control higher-order aberrations at f/2. The trade-off is
-cost — S-LAH58 (nd = 1.91082) is among the most expensive optical glasses in current production.
+cost — TAFD35 (nd = 1.91082) is among the most expensive optical glasses in current production.
 
 **Two anomalous partial dispersion elements (L7, L9 — probable):** The manufacturer specifies
 two APD elements. L7 and L9 are the most likely candidates based on their glass-map positions
@@ -595,10 +595,10 @@ glasses and anomalous partial dispersion elements.
 - **Manufacturer:** Cosina Co., Ltd. product page for ULTRON Vintage Line 28mm F2 Aspherical
   (https://www.cosina.co.jp/voigtlander/en/vm-mount/ultron-vintage-line-28mm-f2-aspherical/).
 - **Retailer specifications:** B&H Photo (product #1637251), Amazon (ASIN B096QXNNWT).
-- **Glass catalogs:** OHARA optical glass catalog (S-LAH58, S-LAH60MQ, S-LAC14, S-TIH1,
+- **Glass catalogs:** OHARA optical glass catalog (S-LAH60MQ, S-LAC14, S-TIH1,
   S-TIH14, S-LAH63Q, S-BSL7); Schott optical glass catalog (N-BK7, SF1, SF2, N-SF14,
-  N-LASF46A, N-LaK14, N-LASF43); HOYA optical glass catalog (BSC7, E-F3, E-FD15, E-FD1,
-  TAFD30, NBFD3). OHARA pocket catalog (2023) used for cross-reference verification.
+  N-LASF46A, N-LaK14, N-LASF43); HOYA optical glass catalog (BSC7, E-FD2, E-FD1,
+  TAFD30, TAFD35, NBFD3). OHARA pocket catalog (2023) used for cross-reference verification.
 - **Computed values:** Thick-lens ABCD transfer matrix (EFL: 28.58 mm, BFL: 18.47 mm), paraxial
   marginal and chief ray traces (semi-diameter estimation), aspherical departure computations,
   and conditional expression verification performed independently using Python scripts.

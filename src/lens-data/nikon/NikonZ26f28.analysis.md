@@ -157,12 +157,12 @@ Glass identification was performed by matching the patent-listed nd and νd valu
 | Element | nd | νd | Best Catalog Match | Δnd | Δνd | Type |
 |---------|------|------|-------------------|-----|-----|------|
 | L1 | 1.58913 | 61.1 | **OHARA S-BAL35** | 0.00000 | 0.05 | Barium crown |
-| L2 | 1.59270 | 35.3 | **OHARA S-TIM2** | 0.00000 | 0.01 | Titanium flint |
+| L2 | 1.59270 | 35.3 | **OHARA S-FTM16** | 0.00000 | 0.01 | Fluorine/titanium flint |
 | L3 | 1.88300 | 40.7 | **OHARA S-LAH58** | 0.00000 | 0.06 | Lanthanum dense flint |
 | L4 | 1.81600 | 46.6 | **OHARA S-LAL18** | 0.00000 | 0.02 | Lanthanum crown |
 | L5 | 1.62004 | 36.4 | **Schott N-F2** | 0.00001 | 0.03 | Dense flint |
 | L6 | 1.58313 | 59.5 | **OHARA L-BAL42** | 0.00000 | 0.12 | PGM barium crown |
-| L7 | 1.75520 | 27.6 | **OHARA S-TIH6** | 0.00000 | 0.07 | Heavy flint |
+| L7 | 1.75520 | 27.6 | **Schott SF4** | 0.00000 | 0.02 | Heavy flint |
 | L8 resin | 1.56093 | 36.6 | UV-curing resin | — | — | Composite asphere |
 | L8 glass | 1.88300 | 40.7 | **OHARA S-LAH58** | 0.00000 | 0.06 | Lanthanum dense flint |
 
@@ -197,7 +197,7 @@ S-BAL35 is a barium crown glass commonly used in consumer optics. Its moderate i
 
 ### L2 — Negative Element of First Cemented Doublet (D1 / G2)
 
-**Glass:** S-TIM2 (nd = 1.593, νd = 35.3)
+**Glass:** S-FTM16 (nd = 1.593, νd = 35.3)
 **Shape:** Biconcave
 **Radii:** R₁ = −37.934 mm, R₂ = +11.354 mm (junction)
 **Thickness:** 0.700 mm
@@ -262,13 +262,13 @@ L-BAL42 is fabricated by precision glass molding — the "L-" prefix in OHARA's 
 
 ### L7 — Negative Meniscus (G3)
 
-**Glass:** S-TIH6 (nd = 1.755, νd = 27.6)
+**Glass:** Schott SF4 (nd = 1.755, νd = 27.6)
 **Shape:** Negative meniscus, concave toward the object
 **Radii:** R₁ = −9.362 mm, R₂ = −25.395 mm
 **Thickness:** 1.000 mm
 **Focal length:** −20.2 mm (strongly negative; equals the patent-listed G3 focal length)
 
-L7 is the sole element in G3 and serves as a field-flattener and Petzval corrector. It is fabricated from S-TIH6, a heavy flint glass with the highest dispersion in the design (νd = 27.6) and a moderately high index (1.755). The strong negative power (−20.2 mm focal length, nearly matching the system's +26.8 mm EFL in magnitude) makes L7 the primary Petzval sum corrector in the system.
+L7 is the sole element in G3 and serves as a field-flattener and Petzval corrector. It is fabricated from SF4, a heavy flint glass with the highest dispersion in the design (νd = 27.6) and a moderately high index (1.755). The strong negative power (−20.2 mm focal length, nearly matching the system's +26.8 mm EFL in magnitude) makes L7 the primary Petzval sum corrector in the system.
 
 The Petzval sum analysis (§8) confirms this role: L7's two surfaces contribute a combined Petzval shift of −0.029, the single largest negative contribution in the system, which offsets the accumulated positive Petzval contributions from L3, L4, and L8. L7's position — immediately after the corrector plate L6 and before the final positive element L8 — places it where the chief ray height is relatively large, maximizing its effectiveness for field curvature correction while minimizing its contribution to axial aberrations.
 
@@ -327,7 +327,7 @@ The Petzval sum was computed surface-by-surface using the standard formula Σ(n'
 
 The total Petzval sum of +0.00446 corresponds to a Petzval radius of −224 mm. This is a well-balanced result for a wide-angle design: the Petzval sum × f product is 0.119, indicating mild backward field curvature that is largely compensated by the astigmatism balance.
 
-The dominant negative Petzval contributor is L7 (S-TIH6, the high-dispersion field flattener), which alone contributes −0.029 — enough to offset the combined positive contributions of both cemented doublets and L8. This is consistent with L7's high index and strong negative power, which together produce a large negative φ/n contribution to the Petzval sum.
+The dominant negative Petzval contributor is L7 (SF4, the high-dispersion field flattener), which alone contributes −0.029 — enough to offset the combined positive contributions of both cemented doublets and L8. This is consistent with L7's high index and strong negative power, which together produce a large negative φ/n contribution to the Petzval sum.
 
 **Note on condition (12):** The patent's condition (12) defines a Petzval-ratio (ΣΔPzi)/ΔPz that relates the Petzval correction contributed by the cemented doublets to the system's total Petzval-plus-power quantity. The patent reports a value of 1.062 for Example 1. Independent reproduction of this value proved sensitive to the exact Petzval sum convention used. The standard Western surface-by-surface formula Σ(n'−n)/(R·n·n') yields a ratio of approximately 1.52, while alternative conventions (e.g., thin-lens per-element Σ(φⱼ/nⱼ), sometimes used in Japanese optical texts) give intermediate values. The discrepancy most likely arises from the patent's internal use of a specific Petzval definition combined with a particular treatment of the composite element L8 where the effective index is ambiguous. The patent value of 1.062 falls within the specified bounds (0.550–1.400) and is accepted on the basis of the patent's own computational framework.
 
@@ -339,7 +339,7 @@ The design achieves achromatization through two cemented doublets, each pairing 
 
 | Doublet | Positive glass | νd | Negative glass | νd | Δν |
 |---------|---------------|------|---------------|------|-----|
-| D1 (L2+L3) | S-LAH58 | 40.7 | S-TIM2 | 35.3 | 5.4 |
+| D1 (L2+L3) | S-LAH58 | 40.7 | S-FTM16 | 35.3 | 5.4 |
 | D2 (L4+L5) | S-LAL18 | 46.6 | N-F2 | 36.4 | 10.2 |
 
 Neither doublet uses a particularly large Abbe-number differential by classical achromatization standards (where Δν > 20 is common), nor do the positive elements use true crown glasses (typically νd > 55). Instead, both positive elements are high-index lanthanum types with moderate Abbe numbers (40.7 and 46.6). The design relies on their high refractive indices (nd = 1.883 and 1.816) to achieve strong power with moderate curvature, while distributing the chromatic correction workload across two doublets rather than concentrating it in one. The patent's condition (3), 0.050 < Np1 − Nn1 < 0.400, explicitly bounds the index differential at the cemented junction, balancing chromatic correction against monochromatic aberration generation at the junction surface.

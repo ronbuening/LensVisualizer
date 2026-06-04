@@ -10,8 +10,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **296** lenses scanned (**288** visible)
-- **2616 / 3345** non-air surfaces use trusted Sellmeier data (78.2%)
-- **31** mismatch surfaces in Sweep 1 across **12** lens files
+- **2646 / 3345** non-air surfaces use trusted Sellmeier data (79.1%)
+- **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
 - **180** code-only missing-Sellmeier elements in Sweep 2
 - **15** Tier A proprietary backfill rows in Sweep 3
@@ -22,37 +22,6 @@ Patent PDFs under `patents/` are untracked local references. A missing local pat
 
 | Lens | Patent | Surface | Current label | Stored nd/vd | Best candidate(s) | localPatentPath | localPatentStatus |
 |---|---|---|---|---|---|---|---|
-| [NIKON AF-S MICRO-NIKKOR 60mm f/2.8G ED](../../src/lens-data/nikon/NikonAFSMicroNikkor60f28G.data.ts) | US 7,898,744 B2 | 13 | `S-FPM4 (OHARA) — ED glass` | 1.49782 / 82.56 | J-FKH1 (Δnd=+0.0000, Δvd=+0.01)<br>J-FK01A (Δnd=-0.0008, Δvd=-0.91)<br>H-FK61 (Δnd=-0.0008, Δvd=-0.95) |  | Missing from untracked local patents/ references (US7898744B2, US7898744, 7898744) |
-| [NIKON NIKKOR Z 28mm f/2.8](../../src/lens-data/nikon/NikonZ28f28.data.ts) | WO 2022/071249 A1 | 7 | `S-TIH14 (OHARA)` | 1.80518 / 25.45 | H-ZF7LA (Δnd=-0.0000, Δvd=+0.01)<br>S-TIH6 (Δnd=+0.0000, Δvd=-0.02)<br>SF6 (Δnd=+0.0000, Δvd=-0.02) |  | Missing from untracked local patents/ references (WO2022071249A1, WO2022071249, 2022071249) |
-| [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../../src/lens-data/nikon/NikonZ105f28.data.ts) | WO 2022/097401 A1 | 4 | `S-FPM3 (OHARA)` | 1.59319 / 67.90 | J-PSKH1 (Δnd=+0.0000, Δvd=+0.00)<br>J-PSKH4 (Δnd=+0.0003, Δvd=-0.90)<br>FCD505 (Δnd=-0.0004, Δvd=+0.73) |  | Missing from untracked local patents/ references (WO2022097401A1, WO2022097401, 2022097401) |
-| [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../../src/lens-data/nikon/NikonZ105f28.data.ts) | WO 2022/097401 A1 | 6 | `S-FPM3 (OHARA)` | 1.59319 / 67.90 | J-PSKH1 (Δnd=+0.0000, Δvd=+0.00)<br>J-PSKH4 (Δnd=+0.0003, Δvd=-0.90)<br>FCD505 (Δnd=-0.0004, Δvd=+0.73) |  | Missing from untracked local patents/ references (WO2022097401A1, WO2022097401, 2022097401) |
-| [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../../src/lens-data/nikon/NikonZ105f28.data.ts) | WO 2022/097401 A1 | 17 | `S-FPM3 (OHARA)` | 1.59319 / 67.90 | J-PSKH1 (Δnd=+0.0000, Δvd=+0.00)<br>J-PSKH4 (Δnd=+0.0003, Δvd=-0.90)<br>FCD505 (Δnd=-0.0004, Δvd=+0.73) |  | Missing from untracked local patents/ references (WO2022097401A1, WO2022097401, 2022097401) |
-| [NIKON NIKKOR-N Auto 24mm f/2.8](../../src/lens-data/nikon/NikonNikkorAuto24f28.data.ts) | US 3,622,227 | 10 | `SF56A (Schott) / S-TIH6 (Ohara)` | 1.78470 / 26.10 | S-TIH23 (Δnd=-0.0000, Δvd=+0.19)<br>SF11 (Δnd=+0.0000, Δvd=-0.34)<br>H-ZF13 (Δnd=+0.0000, Δvd=-0.38) |  | Missing from untracked local patents/ references (US3622227, 3622227) |
-| [NIKON NIKKOR-N Auto 24mm f/2.8](../../src/lens-data/nikon/NikonNikkorAuto24f28.data.ts) | US 3,622,227 | 12 | `SF56A (Schott) / S-TIH6 (Ohara)` | 1.78470 / 26.10 | S-TIH23 (Δnd=-0.0000, Δvd=+0.19)<br>SF11 (Δnd=+0.0000, Δvd=-0.34)<br>H-ZF13 (Δnd=+0.0000, Δvd=-0.38) |  | Missing from untracked local patents/ references (US3622227, 3622227) |
-| [NIKON NIKKOR Z 50mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ50f12.data.ts) | WO 2021/241230 A1 | 29 | `S-LAH79 (OHARA)` | 1.90265 / 35.80 | J-LASFH9 (Δnd=+0.0000, Δvd=-0.07)<br>TAFD37 (Δnd=-0.0022, Δvd=+1.57)<br>TAFD37A (Δnd=-0.0022, Δvd=+1.57) |  | Missing from untracked local patents/ references (WO2021241230A1, WO2021241230, 2021241230) |
-| [NIKON AF-S NIKKOR 58mm f/1.4G](../../src/lens-data/nikon/Nikon58f14GDesignCandidate.data.ts) | JP2013-019993A | 3 | `S-LAL14 / N-LAK12 (lanthanum crown)` | 1.75500 / 52.34 | J-LASKH2 (Δnd=+0.0000, Δvd=+0.00)<br>N-LAK33B (Δnd=+0.0000, Δvd=-0.04)<br>S-LAH97 (Δnd=+0.0000, Δvd=-0.02) |  | Missing from untracked local patents/ references (JP2013019993A, JP2013019993, 2013019993) |
-| [NIKON AF-S NIKKOR 58mm f/1.4G](../../src/lens-data/nikon/Nikon58f14GDesignCandidate.data.ts) | JP2013-019993A | 9 | `S-TIH11 / N-SF10 (dense flint)` | 1.72825 / 28.46 | H-ZF4A (Δnd=+0.0000, Δvd=-0.14)<br>S-TIH10 (Δnd=-0.0000, Δvd=+0.00)<br>SF10 (Δnd=+0.0000, Δvd=-0.05) |  | Missing from untracked local patents/ references (JP2013019993A, JP2013019993, 2013019993) |
-| [NIKON NIKKOR Z 28mm f/2.8](../../src/lens-data/nikon/NikonZ28f28.data.ts) | WO 2022/071249 A1 | 6 | `S-NPH1 (OHARA)` | 2.00100 / 29.12 | S-LAH99 (Δnd=+0.0000, Δvd=+0.02)<br>TAFD55 (Δnd=+0.0000, Δvd=+0.01)<br>S-LAH79 (Δnd=+0.0023, Δvd=-0.85) |  | Missing from untracked local patents/ references (WO2022071249A1, WO2022071249, 2022071249) |
-| [NIKON NIKKOR Z 50mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ50f12.data.ts) | WO 2021/241230 A1 | 16 | `S-NBH52V (OHARA)` | 1.73800 / 32.30 | J-KZFH9 (Δnd=+0.0000, Δvd=-0.04)<br>S-NBH53V (Δnd=-0.0000, Δvd=+0.03)<br>BPH50 (Δnd=+0.0020, Δvd=-0.59) |  | Missing from untracked local patents/ references (WO2021241230A1, WO2021241230, 2021241230) |
-| [NIKON NIKKOR Z 50mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ50f12.data.ts) | WO 2021/241230 A1 | 25A | `S-NBH56 (OHARA)` | 1.76450 / 49.10 | S-LAH96 (Δnd=-0.0006, Δvd=-0.61)<br>Q-LASFPH2S (Δnd=+0.0009, Δvd=-2.35)<br>MC-TAF101-100 (Δnd=+0.0045, Δvd=+0.19) |  | Missing from untracked local patents/ references (WO2021241230A1, WO2021241230, 2021241230) |
-| [NIKON NIKKOR Z 58mm f/0.95 S Noct](../../src/lens-data/nikon/NikonZ58f095SNoct.data.ts) | WO2019/229849 A1 | 27 | `Lanthanum crown (no confirmed catalog match; near TAFD5F)` | 1.76554 / 46.76 | Q-LASFPH2S (Δnd=-0.0001, Δvd=-0.01)<br>S-LAH96 (Δnd=-0.0017, Δvd=+1.73)<br>MC-TAF101-100 (Δnd=+0.0035, Δvd=+2.53) |  | Missing from untracked local patents/ references (WO2019229849A1, WO2019229849, 2019229849) |
-| [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../../src/lens-data/nikon/NikonZ105f28.data.ts) | WO 2022/097401 A1 | 19 | `S-LAH79 (OHARA)` | 1.95375 / 32.33 | S-LAH98 (Δnd=-0.0000, Δvd=-0.01)<br>TAFD45 (Δnd=-0.0000, Δvd=-0.01)<br>J-LASFH15 (Δnd=-0.0037, Δvd=-2.96) |  | Missing from untracked local patents/ references (WO2022097401A1, WO2022097401, 2022097401) |
-| [VOIGTLÄNDER ULTRON Vintage Line 28mm F2 Aspherical](../../src/lens-data/voigtlander/VoigtlanderUltron28f2.data.ts) | JP2022-100641A | 3 | `E-F3 (HOYA) / SF2 (Schott)` | 1.64769 / 33.84 | E-FD2 (Δnd=-0.0000, Δvd=+0.00)<br>SF2 (Δnd=-0.0000, Δvd=+0.01)<br>S-TIM22 (Δnd=-0.0000, Δvd=-0.05) |  | Missing from untracked local patents/ references (JP2022100641A, JP2022100641, 2022100641) |
-| [NIKON AF NIKKOR 85mm f/1.4D IF](../../src/lens-data/nikon/Nikon85f14D.data.ts) | US 5,640,277 | 5 | `Dense Lanthanum Flint (LaSF3 / NBFD15)` | 1.79631 / 40.90 | S-LAH52 (Δnd=+0.0032, Δvd=+1.33)<br>S-LAH52Q (Δnd=+0.0032, Δvd=+1.34) |  | Missing from untracked local patents/ references (US5640277, 5640277) |
-| [NIKON AF-S MICRO-NIKKOR 60mm f/2.8G ED](../../src/lens-data/nikon/NikonAFSMicroNikkor60f28G.data.ts) | US 7,898,744 B2 | 3 | `H-LAK6A (CDGM) or Nikon melt` | 1.63854 / 55.48 | S-BSM18 (Δnd=-0.0000, Δvd=-0.10)<br>K-SK18 (Δnd=+0.0000, Δvd=+0.02) |  | Missing from untracked local patents/ references (US7898744B2, US7898744, 7898744) |
-| [NIKON AF-S NIKKOR 58mm f/1.4G](../../src/lens-data/nikon/Nikon58f14GDesignCandidate.data.ts) | JP2013-019993A | 6 | `S-TIH4 / N-SF8 (dense flint)` | 1.68893 / 31.16 | E-FD8 (Δnd=-0.0000, Δvd=+0.00)<br>S-TIM28 (Δnd=+0.0000, Δvd=-0.08) |  | Missing from untracked local patents/ references (JP2013019993A, JP2013019993, 2013019993) |
-| [NIKON NIKKOR Z 135mm f/1.8 S Plena](../../src/lens-data/nikon/NikonZ135f18.data.ts) | WO 2024/147268 A1 | 26 | `Lanthanum flint (near S-LAM55)` | 1.78590 / 44.17 | NBFD11 (Δnd=-0.0000, Δvd=-0.24)<br>S-LAH51 (Δnd=-0.0000, Δvd=+0.03) |  | Missing from untracked local patents/ references (WO2024147268A1, WO2024147268, 2024147268) |
-| [NIKON NIKKOR Z 50mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ50f12.data.ts) | WO 2021/241230 A1 | 3 | `E-FDS1-W (HIKARI)` | 1.94595 / 18.00 | H-ZF88 (Δnd=+0.0000, Δvd=-0.06)<br>FDS18 (Δnd=-0.0000, Δvd=-0.02) |  | Missing from untracked local patents/ references (WO2021241230A1, WO2021241230, 2021241230) |
-| [NIKON NIKKOR Z 58mm f/0.95 S Noct](../../src/lens-data/nikon/NikonZ58f095SNoct.data.ts) | WO2019/229849 A1 | 24 | `Dense flint (near S-NBH52V)` | 1.69895 / 30.13 | E-FD15 (Δnd=-0.0000, Δvd=-0.08)<br>S-TIM35 (Δnd=-0.0000, Δvd=-0.00) |  | Missing from untracked local patents/ references (WO2019229849A1, WO2019229849, 2019229849) |
-| [RICOH GR 28mm f/2.8](../../src/lens-data/ricoh/RicohGR28f28.data.ts) | US 5,760,973 | 4 | `S-TIM35 (OHARA) / FD110 (HOYA)` | 1.68893 / 31.20 | E-FD8 (Δnd=-0.0000, Δvd=-0.04)<br>S-TIM28 (Δnd=+0.0000, Δvd=-0.12) |  | Missing from untracked local patents/ references (US5760973, 5760973) |
-| [NIKON AF NIKKOR 85mm f/1.4D IF](../../src/lens-data/nikon/Nikon85f14D.data.ts) | US 5,640,277 | 15 | `Very Dense Lanthanum Flint (TAFD30)` | 1.86994 / 39.82 | TAFD32 (Δnd=+0.0008, Δvd=+0.91) |  | Missing from untracked local patents/ references (US5640277, 5640277) |
-| [NIKON AF NIKKOR 85mm f/1.4D IF](../../src/lens-data/nikon/Nikon85f14D.data.ts) | US 5,640,277 | 19 | `Lanthanum Crown (S-LAM66)` | 1.74810 / 52.30 | S-LAM60 (Δnd=-0.0049, Δvd=-2.96) |  | Missing from untracked local patents/ references (US5640277, 5640277) |
-| [NIKON NIKKOR Z 26mm f/2.8](../../src/lens-data/nikon/NikonZ26f28.data.ts) | WO 2023/190222 A1 | 4 | `S-TIM2 (OHARA)` | 1.59270 / 35.30 | S-FTM16 (Δnd=+0.0000, Δvd=+0.01) |  | Missing from untracked local patents/ references (WO2023190222A1, WO2023190222, 2023190222) |
-| [NIKON NIKKOR Z 58mm f/0.95 S Noct](../../src/lens-data/nikon/NikonZ58f095SNoct.data.ts) | WO2019/229849 A1 | 7 | `Lanthanum dense flint (near E-LASF013 / H-ZLaF68C)` | 1.84850 / 43.79 | J-LASFH22 (Δnd=+0.0000, Δvd=+0.00) |  | Missing from untracked local patents/ references (WO2019229849A1, WO2019229849, 2019229849) |
-| [VOIGTLÄNDER ULTRON Vintage Line 28mm F2 Aspherical](../../src/lens-data/voigtlander/VoigtlanderUltron28f2.data.ts) | JP2022-100641A | 4 | `S-LAH58 (OHARA) / N-LASF46A (Schott)` | 1.91082 / 35.25 | TAFD35 (Δnd=+0.0000, Δvd=+0.00) |  | Missing from untracked local patents/ references (JP2022100641A, JP2022100641, 2022100641) |
-| [VOIGTLÄNDER ULTRON Vintage Line 28mm F2 Aspherical](../../src/lens-data/voigtlander/VoigtlanderUltron28f2.data.ts) | JP2022-100641A | 6 | `S-LAH58 (OHARA)` | 1.91082 / 35.25 | TAFD35 (Δnd=+0.0000, Δvd=+0.00) |  | Missing from untracked local patents/ references (JP2022100641A, JP2022100641, 2022100641) |
-| [VOIGTLÄNDER ULTRON Vintage Line 28mm F2 Aspherical](../../src/lens-data/voigtlander/VoigtlanderUltron28f2.data.ts) | JP2022-100641A | 7 | `E-FD15 (HOYA) / N-SF14 (Schott)` | 1.76182 / 26.61 | S-TIH14 (Δnd=+0.0000, Δvd=-0.09) |  | Missing from untracked local patents/ references (JP2022100641A, JP2022100641, 2022100641) |
-| [NIKON NIKKOR Z 50mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ50f12.data.ts) | WO 2021/241230 A1 | 5 | `S-TIL25 (OHARA)` | 1.55298 / 55.10 | No catalog candidate |  | Missing from untracked local patents/ references (WO2021241230A1, WO2021241230, 2021241230) |
 
 ## Near-Complete Visible Lenses
 
@@ -83,6 +52,7 @@ These are efficient follow-up targets after mismatch blockers because one or two
 | [FUJIFILM FUJINON GF120mmF4 R LM OIS WR Macro](../../src/lens-data/fujifilm/FujifilmGF120mmf4RLM.data.ts) | 92.9% (13/14) | 1 | abbe: 1 |
 | [SIGMA 50mm F1.4 DG DN | Art](../../src/lens-data/sigma/SigmaDGDNArt50mmf14.data.ts) | 92.9% (13/14) | 1 | abbe: 1 |
 | [SONY FE 135mm F1.8 GM](../../src/lens-data/sony/SonyFE135mmf18GM.data.ts) | 92.3% (12/13) | 1 | abbe: 1 |
+| [NIKON AF-S MICRO-NIKKOR 60mm f/2.8G ED](../../src/lens-data/nikon/NikonAFSMicroNikkor60f28G.data.ts) | 91.7% (11/12) | 1 | abbe: 1 |
 | [NIKON NIKKOR Z 85mm f/1.8 S](../../src/lens-data/nikon/NikonZ85f18S.data.ts) | 91.7% (11/12) | 1 | abbe: 1 |
 | [SONY PLANAR T* FE 50mm F1.4 ZA](../../src/lens-data/sony/SonyPlanarFE50mmf14ZA.data.ts) | 91.7% (11/12) | 1 | abbe: 1 |
 | [CANON EF 50mm f/1.0L USM](../../src/lens-data/canon/CanonEF50mmf1L.data.ts) | 90.9% (10/11) | 1 | abbe: 1 |
@@ -104,6 +74,8 @@ These are efficient follow-up targets after mismatch blockers because one or two
 | [Nikon 1 NIKKOR 32mm f/1.2](../../src/lens-data/nikon/Nikon1Nikkor32mmf12.data.ts) | 88.9% (8/9) | 1 | abbe: 1 |
 | [NIKON PC-E MICRO-NIKKOR 45mm f/2.8D ED](../../src/lens-data/nikon/NikonMicroNikkorPCE45mmf28D.data.ts) | 88.9% (8/9) | 1 | abbe: 1 |
 | [NIKON NIKKOR-N 5cm f/1.1](../../src/lens-data/nikon/NikonN5cmf11.data.ts) | 88.9% (8/9) | 1 | abbe: 1 |
+| [NIKON NIKKOR-N Auto 24mm f/2.8](../../src/lens-data/nikon/NikonNikkorAuto24f28.data.ts) | 88.9% (8/9) | 1 | abbe: 1 |
+| [NIKON NIKKOR Z 26mm f/2.8](../../src/lens-data/nikon/NikonZ26f28.data.ts) | 88.9% (8/9) | 1 | abbe: 1 |
 | [PANASONIC LEICA DG SUMMILUX 25mm f/1.4 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG25mmf14.data.ts) | 88.9% (8/9) | 1 | abbe: 1 |
 | [smc PENTAX-FA645 120mm F4 Macro](../../src/lens-data/pentax/Pentax645FA120mmf4.data.ts) | 88.9% (8/9) | 1 | lineIndices: 1 |
 | [Sony E 35mm F1.8 OSS](../../src/lens-data/sony/SonyE35mmf18.data.ts) | 88.9% (8/9) | 1 | abbe: 1 |
@@ -111,18 +83,21 @@ These are efficient follow-up targets after mismatch blockers because one or two
 | [Sony FE 28mm F2](../../src/lens-data/sony/SonyFE28mmf2.data.ts) | 88.9% (8/9) | 1 | abbe: 1 |
 | [VOIGTLÄNDER NOKTON 50mm f/1.2 X-Mount](../../src/lens-data/voigtlander/VoigtlanderNoktonX50mmf12.data.ts) | 88.9% (8/9) | 1 | abbe: 1 |
 | [FUJIFILM Fujinon GF 45-100mmF4 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmGF45100mmf4.data.ts) | 88.2% (15/17) | 2 | abbe: 2 |
+| [NIKON NIKKOR Z 50mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ50f12.data.ts) | 88.2% (15/17) | 2 | abbe: 2 |
 | [ZEISS ZX1 Distagon T* 35mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissZX1Distagon35mmf2.data.ts) | 87.5% (7/8) | 1 | lineIndices: 1 |
 | [FUJIFILM FUJINON XF 35mmF1.4 R](../../src/lens-data/fujifilm/FujifilmXF35mmf14R.data.ts) | 87.5% (7/8) | 1 | abbe: 1 |
 | [Minolta AF 100mm f/2.8 Macro](../../src/lens-data/minolta/MinoltaAF100mmf28Macro.data.ts) | 87.5% (7/8) | 1 | abbe: 1 |
 | [RICOH GR LENS A12 28mm f/2.5](../../src/lens-data/ricoh/RicohGXRA1218mmf25.data.ts) | 87.5% (7/8) | 1 | abbe: 1 |
 | [SONY SONNAR T* E 24mm F1.8 ZA](../../src/lens-data/sony/SonyFE24mmf18ZA.data.ts) | 87.5% (7/8) | 1 | abbe: 1 |
 | [Nikon AF-S NIKKOR 24-70mm f/2.8G ED](../../src/lens-data/nikon/NikonAFS2470mmf28G.data.ts) | 87.5% (14/16) | 2 | abbe: 2 |
+| [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../../src/lens-data/nikon/NikonZ105f28.data.ts) | 87.5% (14/16) | 2 | abbe: 2 |
 | [SIGMA 40mm F1.4 DG HSM | Art](../../src/lens-data/sigma/SigmaArt40mmf14.data.ts) | 87.5% (14/16) | 2 | abbe: 2 |
 | [FUJIFILM FUJINON GF32-64mmF4 R LM WR](../../src/lens-data/fujifilm/FujifilmGF3264mmf4.data.ts) | 86.7% (13/15) | 2 | abbe: 2 |
 | [NIKON AF-S NIKKOR 28mm f/1.4E ED](../../src/lens-data/nikon/NikonAFS28f14E.data.ts) | 86.7% (13/15) | 2 | abbe: 2 |
 | [NIKON PC-E NIKKOR 24mm f/3.5D ED](../../src/lens-data/nikon/NikonPCENikkor24mmf35DED.data.ts) | 86.7% (13/15) | 2 | abbe: 2 |
 | [MINOLTA MD ROKKOR 50mm f/1.4](../../src/lens-data/minolta/MinoltaRokkor50mmf14MD.data.ts) | 85.7% (6/7) | 1 | abbe: 1 |
 | [OLYMPUS ZUIKO AUTO-S 50mm f/1.2](../../src/lens-data/olympus/OlympusZuikoAutoS50mmf12.data.ts) | 85.7% (6/7) | 1 | abbe: 1 |
+| [RICOH GR 28mm f/2.8](../../src/lens-data/ricoh/RicohGR28f28.data.ts) | 85.7% (6/7) | 1 | abbe: 1 |
 | [RICOH GR IIIx 26.1mm f/2.8](../../src/lens-data/ricoh/RicohGR3x.data.ts) | 85.7% (6/7) | 1 | abbe: 1 |
 | [RICOH GR IV 18.3mm f/2.8](../../src/lens-data/ricoh/RicohGR428f28.data.ts) | 85.7% (6/7) | 1 | abbe: 1 |
 | [CANON EF-S 10-22mm f/3.5-4.5 USM](../../src/lens-data/canon/CanonEFS1022mmf3545.data.ts) | 85.7% (12/14) | 2 | abbe: 2 |
@@ -146,6 +121,7 @@ These are efficient follow-up targets after mismatch blockers because one or two
 | [Leica Elmarit-TL 18mm f/2.8 ASPH.](../../src/lens-data/leica/LeicaElmaritTL18mmf28.data.ts) | 80.0% (8/10) | 2 | abbe: 2 |
 | [OLYMPUS OM Zuiko 16mm f/3.5 Fisheye](../../src/lens-data/olympus/OlympusZuiko16mmf35.data.ts) | 80.0% (8/10) | 2 | abbe: 2 |
 | [OLYMPUS OM J. ZUIKO AUTO-W 24mm f/2](../../src/lens-data/olympus/OlympusZuiko24mmf2J.data.ts) | 80.0% (8/10) | 2 | abbe: 2 |
+| [VOIGTLÄNDER ULTRON Vintage Line 28mm F2 Aspherical](../../src/lens-data/voigtlander/VoigtlanderUltron28f2.data.ts) | 80.0% (8/10) | 2 | abbe: 2 |
 
 ## Sweep 2 - Code-Only Missing Sellmeier
 
@@ -185,7 +161,7 @@ Use local untracked patents first. Populate patent-listed `nC`, `nF`, `ng`, and 
 
 | Lens | Patent reference | Elements | localPatentPath | localPatentStatus | Notes |
 |---|---|---|---|---|---|
-| [voigtlander/VoigtlanderApoLanthar50f2.data.ts](../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.ts) | JP2021-43376A | 4 (3 Sumita unmatched + 1 KZFS-adjacent) | patents/JP2021043376A.pdf | Matched untracked local patent PDF | **Highest priority** — the marquee APO-Lanthar regression case from the chromatic overhaul |
+| [voigtlander/VoigtlanderApoLanthar50f2.data.ts](../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.ts) | JP2021-43376A | 4 (3 Sumita unmatched + 1 KZFS-adjacent) | patents/JP2021043376A.pdf | Matched untracked local patent PDF | **Highest priority** — local `patents/JP2021043376A.pdf` rechecked 2026-06-04; existing patent-listed `dPgF` values are already captured, but extracted text did not expose `nC`, `nF`, or `ng` rows |
 | [nikon/Nikon58f14GDesignCandidate.data.ts](../../src/lens-data/nikon/Nikon58f14GDesignCandidate.data.ts) | (verify) | 1 (S-NBM51 / KZFS2-type short flint) |  | No patent number parsed from lens metadata/reference |  |
 | [nikon/NikonNikkorAFS2470mmf28E.data.ts](../../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) | (verify) | Several fluorophosphate crown placeholders |  | No patent number parsed from lens metadata/reference |  |
 | [nikon/NikonZ28f28.data.ts](../../src/lens-data/nikon/NikonZ28f28.data.ts) | (verify) | 1 UV-curing resin (proprietary) |  | No patent number parsed from lens metadata/reference | Resin may not have line indices in patents |
