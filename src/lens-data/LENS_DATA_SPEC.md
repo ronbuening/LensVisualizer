@@ -242,7 +242,7 @@ Field meanings:
 
 - `type: "refract"` applies normal Snell refraction. It is also useful for a passive backing plane that needs the same tilted visual geometry as a mirror face.
 - `type: "reflect"` reflects the ray using the solved surface normal. Use `mirrorKind: "first-surface"` for front-coated mirrors and `mirrorKind: "second-surface"` for substrate-backed reflective surfaces.
-- `mirrorKind: "second-surface"` also tells the SVG renderer to draw a dashed coating accent on that surface so the coating is visible apart from the glass substrate. The accent is display-only; tracing follows `type`, `incidentSide`, `inactiveSide`, and the optical path.
+- `mirrorKind: "second-surface"` also tells the SVG renderer to draw a dashed, labeled silvered-surface accent on that surface so the coating is visible apart from the glass substrate. The accent is display-only; tracing follows `type`, `incidentSide`, `inactiveSide`, and the optical path. For annular mirrors the accent is split into the upper and lower material bands and leaves the clear center unmarked.
 - `type: "block"` clips rays within the surface's active aperture. It is intended for central obstructions, baffles, and synthetic regression fixtures.
 - `incidentSide` limits which side of the surface is active. The side is relative to the solved surface normal, not the list position in `surfaces`. If a ray hits a reflective surface from its inactive side, it blocks by default inside the active disk or annulus. Reference mirror fixtures should declare `inactiveSide: "block"` explicitly so back-side opacity is clear in the data. Refractive and blocker surfaces keep the historical inactive-side default of ignore unless `inactiveSide: "block"` is explicit.
 - `normal` converts the surface into a tilted meridional plane for both tracing and SVG element rendering. Use this for flat fold mirrors. Curved mirrors should normally omit `normal` so the spherical/aspherical sag and local normal come from `R` and `asph`.
@@ -270,6 +270,8 @@ Any surface may declare `innerSd` to define an annular active aperture:
 
 The active radial band is `[innerSd, sd]`. Rays below `innerSd` pass through the central hole without interacting with that surface, including from an inactive mirror side that would otherwise block. Rays above `sd` clip when semi-diameter checking is active. This supports annular primary mirrors, annular stops, and ring-shaped blockers.
 
+Validation and render diagnostics use the same radial-material interpretation. A solid surface occupies `[0, sd]`; an annular surface occupies `[innerSd, sd]`; cross-gap sag checks compare only the shared occupied band. This is important for folded reflex lenses: a rear corrector inside the primary's clear center should not fail or trim against the surrounding annular mirror shell when their radial material bands do not overlap.
+
 For a solid central obstruction, omit `innerSd` and use a `block` surface:
 
 ```javascript
@@ -281,6 +283,18 @@ For an annular blocker, combine `innerSd` with `type: "block"`; only the ring cl
 Visible on-axis and off-axis ray sampling is obstruction-aware for folded systems. The sampler scans the usable pupil bands and avoids the central blocked region automatically, so mirror fixtures should not hand-tune `rayFractions` just to route around a secondary obstruction.
 
 If a tilted or paired backing surface belongs to the same annular mirror element, keep `innerSd` consistent between the reflective face and its backing plane. Validation rejects mismatched paired annular faces because the SVG element and active optical aperture would otherwise disagree.
+
+### Annular Mirror Nesting And Shared Blanks
+
+Ordinary explicit element spans (`fromSurface` / `toSurface`) remain strict: the only internal surface normally allowed is an embedded `STO` with `stopPlacement: "inside-element"`. Mirror lenses get one narrow exception. When `opticalPath` is present, an explicit span whose endpoints have matching `innerSd` and at least one reflective endpoint may contain non-stop surfaces that fit wholly inside that central opening. Use this only for patent drawings where a corrector group physically occupies the empty center of an annular mirror.
+
+Some reflex patents also use one physical mirror blank in two radial roles: a silvered annular shell plus a clear central plug. Model that as complementary rendered elements, not by stretching a small corrector across the full primary diameter:
+
+- The annular mirror element keeps the reflective surface, `innerSd`, and the full outer `sd`.
+- The clear central plug gets its own element entry and unique surface labels at the same axial stations and curvatures, with `sd <= innerSd` and no reflective interaction.
+- Both entries should carry the same `nd`, `vd`, and glass identification when they are the same physical blank.
+- `elementCount` should report the physical patent element count. The `elements` array may include the extra plug entry required for rendering and tracing, so document the split in the file header and companion analysis.
+- Do not use `stopPlacement: "inside-element"` to hide these correctors. That field is only for an actual stop embedded in glass.
 
 ### Authoring Patterns
 
@@ -558,6 +572,8 @@ Each entry in the `surfaces` array describes one optical surface, in physical fr
 - **Embedded stop inside glass:** Rare designs may put the aperture stop inside a glass element. In that case the `STO` surface stays optically neutral and flat, uses the same `nd` and `elemId` as the containing element, and sets `stopPlacement: "inside-element"`. The containing element must declare `fromSurface` and `toSurface` so the renderer uses the real outer glass surfaces as the element silhouette.
 - **Mirror element:** A first-surface mirror can use one reflective face with a passive backing surface for SVG thickness. The reflective face carries the mirror element's `elemId`; the backing surface typically uses `elemId: 0` unless it is needed as the first surface of a distinct physical element. A tilted flat fold mirror should put the same `interaction.normal` on both the reflective face and backing plane so the rendered element is visibly tilted.
 - **Annular mirror or aperture:** Add `innerSd` to the active surface. For a physical mirror element with a central hole, add `innerSd` to both front/back surfaces if both surfaces should render as annular; the element path will use even-odd fill.
+- **Nested correctors inside annular mirrors:** Folded mirror lenses may place a rear corrector group inside the empty central opening of an annular primary. This is valid only when `opticalPath` is present, the explicit mirror element span has matching `innerSd` on its front/back boundaries, at least one boundary is reflective, and every nested surface fits inside the central opening. Ordinary refractive element spans still reject non-stop internal surfaces.
+- **Shared annular/central mirror blanks:** Folded mirror lenses may split one physical blank into complementary rendered spans, such as a silvered annular primary shell plus a clear central L4 plug with the same axial depth and glass. This is valid only when `opticalPath` is present and the internal annular surfaces have no shared radial material band with the central span boundaries. Ordinary refractive element spans still reject non-stop internal surfaces.
 - **Blocker:** Use `interaction: { type: "block" }` and `elemId: 0` for a pure aperture obstruction. Use a non-zero `elemId` only if the blocker should be rendered as a physical element with a front/back surface span.
 - **Last surface:** `d` = back focal distance to image plane
 
@@ -803,7 +819,7 @@ doublets: [
 10. All `varLabels` reference valid surface labels
 11. `zoomPositions` (when present): array of ≥2 finite, monotonically increasing numbers; `zoomStep` must be finite positive; `zoomLabels` must be array of strings
 12. All `groups`/`doublets` reference valid surface labels
-13. Cross-gap surface overlap: combined sag intrusion from the two boundary surfaces that face each other doesn't exceed `gapSagFrac × gap` — checked at all zoom positions for zoom lenses
+13. Cross-gap surface overlap: combined sag intrusion from the shared radial material band of two boundary surfaces doesn't exceed `gapSagFrac × gap` — checked at all zoom positions for zoom lenses. For folded annular mirror lenses, surfaces fully inside a central hole do not overlap the annular mirror shell, and complementary central/annular spans in a shared mirror blank are validated by their shared material bands rather than their full semi-diameters.
 14. Conic height limit: for aspherical surfaces with K > 0, sd ≤ 0.98 × |R| / √(1+K)
 15. Element render diagnostics: production lenses must not require material hidden trim (>0.25 mm) from slope, conic, or cross-gap limits
 16. `innerSd` must be finite, non-negative, and smaller than `sd`
@@ -823,7 +839,7 @@ Glass-string mismatches are reported separately from the blocking validation abo
 When transcribing from an optical patent:
 
 1. **Surfaces** — Copy the prescription table exactly (R, d, nd). Watch sign conventions — some patents use opposite R sign convention
-2. **Semi-diameters** — Use patent values if listed; otherwise estimate from entrance pupil geometry with 8–12% mechanical clearance. If the manufacturer publishes a cross-section diagram, use it to refine front-group SDs: compute the average (front+rear)/2 SD per element, compare the ratios between elements against the diagram proportions, and adjust conservatively. The validator enforces a **slope-based rim check** (actual aspherical slope at the SD must be below ~64.2°), which is more permissive than the old sd/|R| ≤ 0.90 rule for aspherical surfaces (K < 0). Near-paraboloid surfaces (K ≈ −1) can have sd/|R| well above 0.9. Element front/rear SD ratio must be ≤ 3.0 (sanity check); per-surface slope validation handles the physics. The cross-gap overlap check compares the two boundary surfaces that face each other and requires sag intrusion ≤ `gapSagFrac × gap`; the default allows 90% of the air gap, preserving visible clearance instead of accepting mathematical rim contact. This is often the binding constraint for thin air gaps. The renderer uses the same rim and gap policy, and production tests fail when a lens would require material hidden render trim. If the render diagnostic reports >0.25 mm trim, reduce the relevant boundary SD or document and test an intentional exception. The front group is most likely to diverge — especially elements 2 and 3, which the marginal-ray method tends to over-size relative to the actual lens
+2. **Semi-diameters** — Use patent values if listed; otherwise estimate from entrance pupil geometry with 8–12% mechanical clearance. If the manufacturer publishes a cross-section diagram, use it to refine front-group SDs: compute the average (front+rear)/2 SD per element, compare the ratios between elements against the diagram proportions, and adjust conservatively. The validator enforces a **slope-based rim check** (actual aspherical slope at the SD must be below ~64.2°), which is more permissive than the old sd/|R| ≤ 0.90 rule for aspherical surfaces (K < 0). Near-paraboloid surfaces (K ≈ −1) can have sd/|R| well above 0.9. Element front/rear SD ratio must be ≤ 3.0 (sanity check); per-surface slope validation handles the physics. The cross-gap overlap check compares the shared radial material band of the two boundary surfaces and requires sag intrusion ≤ `gapSagFrac × gap`; the default allows 90% of the air gap, preserving visible clearance instead of accepting mathematical rim contact. This is often the binding constraint for thin air gaps, except for folded annular mirrors where a nested corrector lies entirely inside the mirror opening. The renderer uses the same rim and gap policy, and production tests fail when a lens would require material hidden render trim. If the render diagnostic reports >0.25 mm trim, reduce the relevant boundary SD or document and test an intentional exception. The front group is most likely to diverge — especially elements 2 and 3, which the marginal-ray method tends to over-size relative to the actual lens
 3. **Aspherical coefficients** — Copy from the asph table. Watch for scientific notation format differences between patents
 4. **Variable gaps** — Look for "variable spacing" tables showing values at different object distances
 5. **Elements** — Derive from the surface data: consecutive surfaces with the same glass (nd > 1) form one element. Cemented elements share a boundary surface

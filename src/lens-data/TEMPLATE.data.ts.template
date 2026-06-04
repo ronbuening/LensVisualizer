@@ -28,6 +28,9 @@ import type { LensDataInput } from "../types/optics.js";
  * ║    [Document first/second-surface mirrors, annular apertures,       ║
  * ║    central obstructions, opticalPath.surfaceOrder or auto mode,     ║
  * ║    tilted mirror normals, and explicit image-plane placement.]      ║
+ * ║    [If a mirror blank is split into annular silvered and clear      ║
+ * ║    central rendered regions, state the shared R/d/glass values and  ║
+ * ║    whether elementCount is the physical patent count.]              ║
  * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
@@ -67,7 +70,10 @@ const LENS_DATA = {
    *  imageFormat           Optional single canonical format id from src/utils/catalog/lensTaxonomy.ts.
    *                        Used by lens index filters now and future image-field analysis.
    *  patentYear            Year the patent was published or granted (e.g. 2019).
-   *  elementCount          Total number of glass elements.
+   *  elementCount          Total number of physical glass elements. For folded mirror lenses,
+   *                        keep the patent's physical count even if the `elements` array
+   *                        contains an extra complementary entry for a clear central plug
+   *                        in the same mirror blank; document that split in the header.
    *  groupCount            Total number of air-separated groups.
    *  perspectiveControl    Optional tilt/shift movement limits for real PC lenses only.
    *                        Omit for ordinary lenses; defaults are no tilt/shift controls.
@@ -118,7 +124,9 @@ const LENS_DATA = {
   // Use mode: "auto" when the nearest valid next surface should be determined
   // geometrically. imagePlane is a point plus meridional normal; default is the
   // ordinary right-hand IMG plane at the final axial track. Do not set only
-  // imagePlane without either surfaceOrder or mode: "auto".
+  // imagePlane without either surfaceOrder or mode: "auto". Second-surface
+  // Mangin mirrors usually repeat the refractive front label after the reflective
+  // rear coating so the ray exits back through the same glass face.
   // opticalPath: {
   //   mode: "auto",                                      // "sequential" (default) or "auto"
   //   surfaceOrder: ["STO", "MG1", "MG2", "MG1"],       // optional; labels may repeat
@@ -146,6 +154,9 @@ const LENS_DATA = {
    *    nF       (number, optional)  Measured refractive index at F line (486.1 nm), when published.
    *    ng       (number, optional)  Measured refractive index at g line (435.8 nm), when published.
    *    fromSurface/toSurface (string, optional) Explicit physical span for an element that contains an optically neutral internal surface.
+   *                                Mirror-only annular spans may also use this for the
+   *                                annular shell or clear plug of a shared mirror blank.
+   *                                Ordinary refractive spans still allow only embedded stops.
    *    role     (string, optional)  Description of the element's optical role/function
    *    cemented (string, optional)  Doublet/triplet group name if cemented, e.g. "Jb", "L4"
    */
@@ -194,14 +205,16 @@ const LENS_DATA = {
    *       under the 64° threshold.  (Validated via sagSlopeRaw)
    *    4. Cross-gap overlap: For each air gap, the validator computes:
    *         intrusion = sag(sdCheck, rearSurface.R) − sag(sdCheck, nextFront.R)
-   *       where sdCheck = min(rearSurface.sd, nextFront.sd), i.e. the two boundary
-   *       surfaces that actually face each other in the SVG.  Fails if intrusion >
+   *       where sdCheck is the outer edge of the two surfaces' shared radial material
+   *       band.  Solid surfaces occupy [0, sd]; annular surfaces occupy [innerSd, sd].
+   *       Fails if intrusion >
    *       gapSagFrac × gap; the default allows 90% of the air gap, preserving
    *       visible clearance instead of accepting mathematical rim contact.
    *       This is often the binding constraint for thin air gaps between strongly
-   *       curved surfaces.  The renderer uses the same combined-intrusion policy;
-   *       it should not need hidden trim for production lenses.  (Validated +
-   *       covered by production render diagnostics)
+   *       curved surfaces.  Annular mirror holes are not compared against central
+   *       correctors unless their material bands overlap.  The renderer uses the same
+   *       combined-intrusion policy; it should not need hidden trim for production
+   *       lenses.  (Validated + covered by production render diagnostics)
    *    5. Conic height limit: For aspherical surfaces with K > 0, sd must not exceed
    *       0.98 × |R| / √(1+K).  Beyond this height the conic sag discriminant goes
    *       negative, producing a sag curve discontinuity.  (Validated)
@@ -220,6 +233,10 @@ const LENS_DATA = {
    *       the radial band [innerSd, sd]. Use `innerSd` for mirror holes or annular
    *       stops, and a separate `interaction: { type: "block" }` surface for solid
    *       central obstructions.
+   *   11. Shared mirror blanks: If a patent uses one physical blank as both a silvered
+   *       annular mirror and an uncoated central corrector, split it into complementary
+   *       element entries with identical R/d/glass values and radially disjoint SDs.
+   *       Keep surface labels unique and document the physical count in `elementCount`.
    *
    *  Sign conventions:
    *    R > 0  →  center of curvature to the RIGHT of the surface
@@ -241,6 +258,9 @@ const LENS_DATA = {
    *      inactiveSide: "block" explicitly on reference mirrors so back-side opacity is
    *      clear in the data. For tilted flat mirrors, put the same interaction.normal on
    *      the backing surface so the SVG element renders at the correct angle.
+   *      Second-surface mirrors should use mirrorKind: "second-surface" on the coated
+   *      face so the SVG draws the silvered-surface accent. For annular second-surface
+   *      mirrors, keep matching innerSd on both explicit-span endpoints.
    *    - Blocker surfaces normally use elemId: 0. Give them an element only when they
    *      should draw as a physical rendered part.
    *
@@ -283,6 +303,19 @@ const LENS_DATA = {
    *    Annular mirror:
    *      { label: "M1", R: -200, d: 0, nd: 1.0, elemId: 1, sd: 30, innerSd: 8,
    *        interaction: { type: "reflect", inactiveSide: "block", mirrorKind: "first-surface" } }
+   *
+   *    Shared primary blank split into annular silvered shell + clear central plug:
+   *      elements: [
+   *        { id: 5, name: "M1", nd: 1.54, fromSurface: "M1F", toSurface: "M1R", ... },
+   *        { id: 6, name: "L4", nd: 1.54, fromSurface: "L4F", toSurface: "L4R", ... },
+   *      ]
+   *      surfaces: [
+   *        { label: "L4F", R: 120, d: 0, nd: 1.54, elemId: 6, sd: 8 },
+   *        { label: "M1F", R: 120, d: 5, nd: 1.54, elemId: 5, sd: 30, innerSd: 8 },
+   *        { label: "M1R", R: -180, d: 0, nd: 1.0, elemId: 0, sd: 30, innerSd: 8,
+   *          interaction: { type: "reflect", incidentSide: "front", mirrorKind: "second-surface" } },
+   *        { label: "L4R", R: -180, d: 40, nd: 1.0, elemId: 0, sd: 8 },
+   *      ]
    *
    *    Tilted Newtonian secondary (mirror face + passive backing):
    *      { label: "SEC", R: 1e15, d: 0.5, nd: 1.0, elemId: 2, sd: 10,

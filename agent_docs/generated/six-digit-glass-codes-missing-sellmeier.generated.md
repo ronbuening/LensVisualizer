@@ -9,10 +9,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **296** lenses scanned
-- **244** total code-only elements found
-- **152** elements in this report
-- **64** distinct lens files affected
+- **299** lenses scanned
+- **245** total code-only elements found
+- **153** elements in this report
+- **65** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -46,6 +46,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 514530 | 1 | 1 |
 | 515546 | 1 | 1 |
 | 518523 | 1 | 1 |
+| 525596 | 1 | 1 |
 | 531621 | 1 | 1 |
 | 533489 | 1 | 1 |
 | 534554 | 1 | 1 |
@@ -442,6 +443,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
 | L3 (Element 3) | 5 | `770479 — lanthanum crown/flint patent glass (nd=1.77000, νd=47.9; no exact public catalog match)` | 1.77000 / 47.90 | No catalog entry | abbe |
+
+### [Nikon Reflex-Nikkor·C 500mm f/8](../../src/lens-data/nikon/NikonReflexNikkorC500mmf8.data.ts) - US 3,632,190
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
+|---|---|---|---|---|---|
+| L1 (Front corrector) | 1 | `Unmatched light crown (525/596; K5-class nearest)` | 1.52450 / 59.60 | No catalog entry | abbe |
 
 ### [OLYMPUS E.ZUIKO AUTO-T 135mm f/3.5](../../src/lens-data/olympus/OlympusZuiko135mmf35.data.ts) - US 3,838,911
 

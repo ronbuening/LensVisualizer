@@ -12,6 +12,7 @@ import type {
   SurfaceRenderDiagnostics,
 } from "../../types/optics.js";
 import { FLAT_R_THRESHOLD } from "../constants.js";
+import { sharedMaterialBand } from "../internal/apertureBands.js";
 import type { CompiledStateSurface, PreparedOpticalState } from "../types.js";
 import { surfaceSag2 } from "./surfaceOutline.js";
 
@@ -107,6 +108,29 @@ function boundaryTrimHeight2(
   return (lo + hi) / 2;
 }
 
+function hasInterveningAnnularSeparation2(
+  state: PreparedOpticalState,
+  fromSurfaceIndex: number,
+  toSurfaceIndex: number,
+  targetSurfaceIndex: number,
+  targetRenderSD: number,
+): boolean {
+  const target = state.surfaces[targetSurfaceIndex];
+  for (let i = fromSurfaceIndex + 1; i < toSurfaceIndex; i++) {
+    const intervening = state.surfaces[i];
+    if (intervening.innerSd === null || intervening.innerSd === undefined) continue;
+    const sharedBand = sharedMaterialBand(
+      { sd: intervening.sd, innerSd: intervening.innerSd },
+      { sd: targetRenderSD, innerSd: target.innerSd },
+    );
+    /* An intervening annular mirror separates the SVG gap only if the target
+     * lives entirely in the central hole. In that case trimming against the
+     * surrounding mirror shell would hide valid clear-aperture geometry. */
+    if (!sharedBand) return true;
+  }
+  return false;
+}
+
 /**
  * Compute per-element render trims and warnings for the current prepared state.
  *
@@ -136,8 +160,18 @@ export function computeElementRenderDiagnosticsForState2(state: PreparedOpticalS
       if (prevES) {
         const ps2 = prevES[2];
         const [prevSD] = initialRenderSD2(state, ps2, state.surfaces[ps2].sd);
-        const sdCheck = Math.min(renderSD1, prevSD);
-        if (boundaryIntrusion2(state, ps2, s1, sdCheck) > maxIntrusion) {
+        const sharedBand = sharedMaterialBand(
+          { sd: prevSD, innerSd: state.surfaces[ps2].innerSd },
+          { sd: renderSD1, innerSd: front.innerSd },
+        );
+        /* Evaluate SVG gap trimming at the shared radial material band, not at
+         * min(sd). This prevents annular mirror shells from trimming correctors
+         * drawn inside their clear central openings. */
+        if (
+          sharedBand &&
+          !hasInterveningAnnularSeparation2(state, ps2, s1, s1, renderSD1) &&
+          boundaryIntrusion2(state, ps2, s1, sharedBand.outer) > maxIntrusion
+        ) {
           renderSD1 = boundaryTrimHeight2(state, ps2, s1, renderSD1, maxIntrusion);
           cause1 = "gap";
         }
@@ -153,8 +187,15 @@ export function computeElementRenderDiagnosticsForState2(state: PreparedOpticalS
       if (nextES) {
         const ns1 = nextES[1];
         const [nextSD] = initialRenderSD2(state, ns1, state.surfaces[ns1].sd);
-        const sdCheck = Math.min(renderSD2, nextSD);
-        if (boundaryIntrusion2(state, s2, ns1, sdCheck) > maxIntrusion) {
+        const sharedBand = sharedMaterialBand(
+          { sd: renderSD2, innerSd: rear.innerSd },
+          { sd: nextSD, innerSd: state.surfaces[ns1].innerSd },
+        );
+        if (
+          sharedBand &&
+          !hasInterveningAnnularSeparation2(state, s2, ns1, s2, renderSD2) &&
+          boundaryIntrusion2(state, s2, ns1, sharedBand.outer) > maxIntrusion
+        ) {
           renderSD2 = boundaryTrimHeight2(state, s2, ns1, renderSD2, maxIntrusion);
           cause2 = "gap";
         }

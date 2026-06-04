@@ -649,6 +649,115 @@ describe("computeElementShapes", () => {
     expect(Math.max(...rearCoords.map(([, y]) => Math.abs(y)))).toBeCloseTo(diagnostics[0].rear.renderSD);
   });
 
+  it("does not gap-trim a nested corrector that sits inside an annular mirror opening", () => {
+    const L = hydrateDiagramLens({
+      ES: [
+        [1, 2, 4],
+        [2, 0, 1],
+      ],
+      S: [
+        { label: "L2F", R: 1e15, d: 3, nd: 1.5, elemId: 2, sd: 8 },
+        { label: "L2R", R: 12, d: 0.3, nd: 1.0, elemId: 0, sd: 8 },
+        { label: "M1F", R: 1e15, d: 1, nd: 1.5, elemId: 1, sd: 20, innerSd: 10 },
+        { label: "BYPASS", R: 1e15, d: 1, nd: 1.0, elemId: 1, sd: 8 },
+        {
+          label: "M1R",
+          R: 1e15,
+          d: 40,
+          nd: 1.0,
+          elemId: 0,
+          sd: 20,
+          innerSd: 10,
+          interaction: { type: "reflect", incidentSide: "front", mirrorKind: "second-surface" },
+        },
+      ],
+      asphByIdx: {},
+      maxRimSin: 0.95,
+      maxRimTan,
+      gapSagFrac: 0.9,
+      N: 5,
+    });
+    const zPos = [0, 3, 3.3, 4.3, 5.3];
+    const diagnostics = computeElementRenderDiagnostics(L, zPos);
+    const nested = diagnostics.find((diagnostic) => diagnostic.eid === 2);
+
+    expect(nested?.rear.trimCause).toBe("none");
+    expect(nested?.rear.renderSD).toBeCloseTo(8);
+  });
+
+  it("does not front-gap-trim a nested corrector past an intervening annular mirror opening", () => {
+    const L = hydrateDiagramLens({
+      ES: [
+        [1, 0, 1],
+        [2, 2, 5],
+        [3, 3, 4],
+      ],
+      S: [
+        { label: "L1F", R: 1e15, d: 1, nd: 1.5, elemId: 1, sd: 8 },
+        { label: "L1R", R: 12, d: 6, nd: 1.0, elemId: 0, sd: 8 },
+        { label: "M1F", R: 1e15, d: 0.5, nd: 1.5, elemId: 2, sd: 20, innerSd: 10 },
+        { label: "L2F", R: -12, d: 1, nd: 1.5, elemId: 3, sd: 8 },
+        { label: "L2R", R: 1e15, d: 0.5, nd: 1.0, elemId: 0, sd: 8 },
+        {
+          label: "M1R",
+          R: 1e15,
+          d: 40,
+          nd: 1.0,
+          elemId: 0,
+          sd: 20,
+          innerSd: 10,
+          interaction: { type: "reflect", incidentSide: "front", mirrorKind: "second-surface" },
+        },
+      ],
+      asphByIdx: {},
+      maxRimSin: 0.95,
+      maxRimTan,
+      gapSagFrac: 0.9,
+      N: 6,
+    });
+    const zPos = [0, 1, 7, 7.5, 8.5, 9];
+    const diagnostics = computeElementRenderDiagnostics(L, zPos);
+    const nested = diagnostics.find((diagnostic) => diagnostic.eid === 3);
+
+    expect(nested?.front.trimCause).toBe("none");
+    expect(nested?.front.renderSD).toBeCloseTo(8);
+  });
+
+  it("still gap-trims the same neighboring surfaces when radial material overlaps", () => {
+    const L = hydrateDiagramLens({
+      ES: [
+        [1, 2, 4],
+        [2, 0, 1],
+      ],
+      S: [
+        { label: "L2F", R: 1e15, d: 3, nd: 1.5, elemId: 2, sd: 8 },
+        { label: "L2R", R: 12, d: 0.3, nd: 1.0, elemId: 0, sd: 8 },
+        { label: "M1F", R: 1e15, d: 1, nd: 1.5, elemId: 1, sd: 20 },
+        { label: "BYPASS", R: 1e15, d: 1, nd: 1.0, elemId: 1, sd: 8 },
+        {
+          label: "M1R",
+          R: 1e15,
+          d: 40,
+          nd: 1.0,
+          elemId: 0,
+          sd: 20,
+          interaction: { type: "reflect", incidentSide: "front", mirrorKind: "second-surface" },
+        },
+      ],
+      asphByIdx: {},
+      maxRimSin: 0.95,
+      maxRimTan,
+      gapSagFrac: 0.9,
+      N: 5,
+    });
+    const zPos = [0, 3, 3.3, 4.3, 5.3];
+    const diagnostics = computeElementRenderDiagnostics(L, zPos);
+    const nested = diagnostics.find((diagnostic) => diagnostic.eid === 2);
+
+    expect(nested?.rear.trimCause).toBe("gap");
+    expect(nested?.rear.renderSD).toBeLessThan(8);
+  });
+
   it("renders asymmetric front/rear SDs as clean connector edges", () => {
     const L = makeSingleElementLens({ R1: 80, R2: -120, sd1: 18, sd2: 12 });
     const zPos = [0, 5];
@@ -699,5 +808,38 @@ describe("computeElementShapes", () => {
     expect(coating).toBeDefined();
     expect(coating?.pathD).toMatch(/^M/);
     expect(pathCoords(coating?.pathD ?? "")).toHaveLength(SVG_PATH_SUBDIVISIONS + 1);
+    expect(Number.isFinite(coating?.labelX)).toBe(true);
+    expect(Number.isFinite(coating?.labelY)).toBe(true);
+  });
+
+  it("splits annular second-surface coating accents around the clear central opening", () => {
+    const L = hydrateDiagramLens({
+      ES: [[1, 0, 1]],
+      S: [
+        { label: "M1F", R: 1e15, d: 5, nd: 1.5, elemId: 1, sd: 20, innerSd: 8 },
+        {
+          label: "M1R",
+          R: 1e15,
+          d: 40,
+          nd: 1.0,
+          elemId: 0,
+          sd: 20,
+          innerSd: 8,
+          interaction: { type: "reflect", incidentSide: "front", mirrorKind: "second-surface" },
+        },
+      ],
+      asphByIdx: {},
+      maxRimSin: 0.95,
+      maxRimTan,
+      gapSagFrac: 0.9,
+      N: 2,
+    });
+    const shape = computeElementShapes(L, [0, 5], sx, sy)[0];
+    const coating = shape.surfaceAccentPaths[0];
+    const coords = pathCoords(coating.pathD);
+
+    /* Silvering is present only in the annular glass band, so the SVG accent must not cross |y| < innerSd. */
+    expect(coating.pathD.match(/M/g)).toHaveLength(2);
+    expect(coords.every(([, y]) => Math.abs(y) >= 8 - 1e-9)).toBe(true);
   });
 });

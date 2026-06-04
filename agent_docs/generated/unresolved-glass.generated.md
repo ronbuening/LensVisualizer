@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **296** lenses scanned
-- **3345** non-air surfaces examined
-- **3349** element glass declarations examined
-- **566** non-explicit-unmatched annotations did not resolve
-- **202** distinct unresolved glass-like tokens found
+- **299** lenses scanned
+- **3362** non-air surfaces examined
+- **3366** element glass declarations examined
+- **568** non-explicit-unmatched annotations did not resolve
+- **204** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -151,6 +151,7 @@ or per-lens patent backfills.
 | 933209 | 1 | 1 | |
 | BACD14 | 1 | 1 | |
 | BK3 | 1 | 1 | |
+| E-FD13 | 1 | 1 | |
 | E-FEL6 | 1 | 1 | |
 | E-FPL51 | 1 | 1 | |
 | F3 | 1 | 1 | |
@@ -211,6 +212,7 @@ or per-lens patent backfills.
 | S-TIF4 | 1 | 1 | |
 | S-TIF8 | 1 | 1 | |
 | S-TIM1 | 1 | 1 | |
+| SF13 | 1 | 1 | |
 | SF14 | 1 | 1 | |
 | SF19 | 1 | 1 | |
 | SF3 | 1 | 1 | |
@@ -821,6 +823,10 @@ or per-lens patent backfills.
 
 - [VIVITAR SERIES 1 35–85mm f/2.8 VMC](../../src/lens-data/vivitar/VivitarSeries13585mmf28.data.ts) 10: `BK3 (Schott)`
 
+### E-FD13 — 1 occurrence
+
+- [Nikon Reflex-Nikkor 1000mm f/11](../../src/lens-data/nikon/NikonReflexNikkor1000mmf11.data.ts) L3F: `SF13-family dense flint, 741/277 class (Hoya E-FD13 / Hikari J-SF13 equivalent)`
+
 ### E-FEL6 — 1 occurrence
 
 - [SONY FE 70-200mm F2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 27: `E-FEL6 class (HOYA) — eco flint`
@@ -1060,6 +1066,10 @@ or per-lens patent backfills.
 ### S-TIM1 — 1 occurrence
 
 - [CANON RF 50mm f/1.2 L USM](../../src/lens-data/canon/CanonRF50mmf12L.data.ts) 21: `S-TIM1 (OHARA)`
+
+### SF13 — 1 occurrence
+
+- [Nikon Reflex-Nikkor 1000mm f/11](../../src/lens-data/nikon/NikonReflexNikkor1000mmf11.data.ts) L3F: `SF13-family dense flint, 741/277 class (Hoya E-FD13 / Hikari J-SF13 equivalent)`
 
 ### SF14 — 1 occurrence
 

@@ -27,6 +27,9 @@ const cassegrainData = LENS_CATALOG["reference-cassegrain-back-focus"] as LensDa
 const maksutovData = LENS_CATALOG["reference-maksutov-cassegrain-meniscus"] as LensData;
 const gregorianData = LENS_CATALOG["reference-gregorian-secondary"] as LensData;
 const ringBlockerData = LENS_CATALOG["reference-annular-ring-blocker"] as LensData;
+const nikonReflex500NewData = LENS_CATALOG["nikon-reflex-nikkor-500mm-f8-new"] as LensData;
+const nikonReflex1000Data = LENS_CATALOG["nikon-reflex-nikkor-1000mm-f11"] as LensData;
+const nikonReflexC500Data = LENS_CATALOG["nikon-reflex-nikkor-c-500mm-f8"] as LensData;
 const planarData = LENS_CATALOG["zeiss-planar-t-50f14"] as LensData;
 
 function reflectYz(incidentY: number, incidentZ: number, normalY: number, normalZ: number): [number, number] {
@@ -266,6 +269,75 @@ describe("mirror optics support", () => {
     expect(mirrorShape).toBeDefined();
     expect(mirrorShape!.fillRule).toBe("evenodd");
     expect((mirrorShape!.d.match(/M/g) ?? []).length).toBeGreaterThan(1);
+  });
+
+  it("supports the Nikon 500mm New rear corrector nested inside the annular primary opening", () => {
+    const L = buildLens(nikonReflex500NewData);
+    const layout = doLayout(0, 0, L);
+    const samples = obstructionAwareRayFractionsForDensity(L, L.rayFractions, "normal", L.EP.epSD);
+    const sample = samples.find((fraction) => fraction > 0) ?? samples[0] ?? 0;
+    const result = traceRay(sample * L.EP.epSD, 0, layout.z, 0, 0, L.stopPhysSD, true, L);
+
+    expect(validateLensData(nikonReflex500NewData)).toEqual([]);
+    expect(L.isFoldedOptics).toBe(true);
+    expect(result.clipped).toBe(false);
+    expect(result.reachedImagePlane).toBe(true);
+    expect(result.diagnostics?.hitSurfaceLabels).toContain("4");
+    expect(result.diagnostics?.hitSurfaceLabels).toContain("14");
+    expect(result.diagnostics?.finalMedium).toBeCloseTo(1, 12);
+  });
+
+  it("keeps the Nikon 1000mm primary mirror thickness and folded intervals aligned to the patent", () => {
+    const L = buildLens(nikonReflex1000Data);
+    const layout = doLayout(0, 0, L);
+    const indexByLabel = new Map(L.S.map((surface, index) => [surface.label, index]));
+    const z = (label: string) => layout.z[indexByLabel.get(label)!]!;
+    const samples = obstructionAwareRayFractionsForDensity(L, L.rayFractions, "normal", L.EP.epSD);
+    const sample = samples.find((fraction) => fraction > 0) ?? samples[0] ?? 0;
+    const result = traceRay(sample * L.EP.epSD, 0, layout.z, 0, 0, L.stopPhysSD, true, L);
+    const hitLabels = result.diagnostics?.hitSurfaceLabels ?? [];
+
+    expect(validateLensData(nikonReflex1000Data)).toEqual([]);
+    expect(z("M1R") - z("M1F")).toBeCloseTo(10, 12);
+    expect(z("M1R") - z("M2F")).toBeCloseTo(147, 12);
+    expect(z("L2F") - z("M2F")).toBeCloseTo(150, 12);
+    expect(z("L2F")).toBeGreaterThan(z("M1R"));
+    expect(hitLabels.indexOf("M1R")).toBeGreaterThan(hitLabels.indexOf("M1F"));
+    expect(hitLabels.indexOf("L2F")).toBeGreaterThan(hitLabels.indexOf("M2F"));
+    expect(result.clipped).toBe(false);
+    expect(result.reachedImagePlane).toBe(true);
+  });
+
+  it("keeps the Nikon Reflex-Nikkor C 500mm L3 inside the primary clear center", () => {
+    const L = buildLens(nikonReflexC500Data);
+    const layout = doLayout(0, 0, L);
+    const indexByLabel = new Map(L.S.map((surface, index) => [surface.label, index]));
+    const z = (label: string) => layout.z[indexByLabel.get(label)!]!;
+    const shapes = computeElementShapes(
+      L,
+      layout.z,
+      (zValue) => zValue,
+      (yValue) => yValue,
+    );
+    const l3Shape = shapes.find((shape) => shape.eid === 4);
+    const primaryShape = shapes.find((shape) => shape.eid === 5);
+    const l4Shape = shapes.find((shape) => shape.eid === 6);
+    const samples = obstructionAwareRayFractionsForDensity(L, L.rayFractions, "normal", L.EP.epSD);
+    const sample = samples.find((fraction) => fraction > 0) ?? samples[0] ?? 0;
+    const result = traceRay(sample * L.EP.epSD, 0, layout.z, 0, 0, L.stopPhysSD, true, L);
+    const hitLabels = result.diagnostics?.hitSurfaceLabels ?? [];
+
+    expect(validateLensData(nikonReflexC500Data)).toEqual([]);
+    expect(z("9")).toBeCloseTo(z("3"), 12);
+    expect(z("10")).toBeCloseTo(z("4M"), 12);
+    expect(z("10") - z("9")).toBeCloseTo(8.800611, 6);
+    expect(z("4M") - z("3")).toBeCloseTo(z("10") - z("9"), 12);
+    expect(Math.max(...pathCoords(l3Shape!.d).map(([, y]) => Math.abs(y)))).toBeLessThanOrEqual(18.5 + 1e-9);
+    expect(Math.max(...pathCoords(l4Shape!.d).map(([, y]) => Math.abs(y)))).toBeLessThanOrEqual(18.5 + 1e-9);
+    expect(primaryShape?.fillRule).toBe("evenodd");
+    expect(hitLabels.slice(-4)).toEqual(["7", "8", "9", "10"]);
+    expect(result.clipped).toBe(false);
+    expect(result.reachedImagePlane).toBe(true);
   });
 
   it("supports second-surface mirrors that exit through a repeated front surface", () => {
