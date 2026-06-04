@@ -8,10 +8,10 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **293** lenses scanned
-- **3325** non-air surfaces examined
-- **3329** element glass declarations examined
-- **641** non-explicit-unmatched annotations did not resolve
+- **296** lenses scanned
+- **3345** non-air surfaces examined
+- **3349** element glass declarations examined
+- **648** non-explicit-unmatched annotations did not resolve
 - **228** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
@@ -34,6 +34,7 @@ or per-lens patent backfills.
 | N-LAF2 | 3 | 2 | |
 | S-LAM7 | 3 | 3 | |
 | S-TIF6 | 3 | 3 | |
+| SF8 | 3 | 3 | |
 | 514428 | 2 | 1 | |
 | 531559 | 2 | 2 | |
 | 585594 | 2 | 1 | |
@@ -56,7 +57,9 @@ or per-lens patent backfills.
 | H-LAF3 | 2 | 2 | |
 | H-ZLAF4A | 2 | 1 | |
 | N-BAF4 | 2 | 2 | |
+| N-BAK4 | 2 | 2 | |
 | N-LAK9 | 2 | 2 | |
+| N-SF8 | 2 | 2 | |
 | NBFD10 | 2 | 2 | |
 | S-APL1 | 2 | 1 | |
 | S-BAH10 | 2 | 2 | |
@@ -65,6 +68,7 @@ or per-lens patent backfills.
 | S-LAL61 | 2 | 2 | |
 | S-LAM73 | 2 | 1 | |
 | S-NBH53 | 2 | 2 | |
+| SF5 | 2 | 2 | |
 | SF56A | 2 | 2 | |
 | SK18 | 2 | 1 | |
 | 157957 | 1 | 1 | |
@@ -198,7 +202,6 @@ or per-lens patent backfills.
 | L-LAH85 | 1 | 1 | |
 | L-LAH86 | 1 | 1 | |
 | L-PHL1 | 1 | 1 | |
-| N-BAK4 | 1 | 1 | |
 | N-BALF4 | 1 | 1 | |
 | N-BASF2 | 1 | 1 | |
 | N-LAF7 | 1 | 1 | |
@@ -210,7 +213,6 @@ or per-lens patent backfills.
 | N-PSK53A | 1 | 1 | |
 | N-SF4 | 1 | 1 | |
 | N-SF5 | 1 | 1 | |
-| N-SF8 | 1 | 1 | |
 | N-SK18 | 1 | 1 | |
 | N-SK4 | 1 | 1 | |
 | NBFD12 | 1 | 1 | |
@@ -236,8 +238,6 @@ or per-lens patent backfills.
 | SF14 | 1 | 1 | |
 | SF19 | 1 | 1 | |
 | SF3 | 1 | 1 | |
-| SF5 | 1 | 1 | |
-| SF8 | 1 | 1 | |
 | SK18A | 1 | 1 | |
 | SK4 | 1 | 1 | |
 | SK7 | 1 | 1 | |
@@ -325,7 +325,7 @@ or per-lens patent backfills.
 
 ### H-LAF4 — 3 occurrences
 
-- [FUJIFILM Fujinon GF100-200mm F5.6 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmGF100200mmf56.data.ts) 1: `HOYA E-LAF7 / CDGM H-LaF4 (750350; OHARA S-LAM7 class)`
+- [FUJIFILM Fujinon GF 100-200mm F5.6 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmGF100200mmf56.data.ts) 1: `HOYA E-LAF7 / CDGM H-LaF4 (750350; OHARA S-LAM7 class)`
 - [Laowa 58 mm f/2.8 2× Ultra-Macro APO](../../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts) 18: `H-LAF4 (CDGM)`
 - [Sony FE 28-70mm f/3.5-5.6 OSS](../../src/lens-data/sony/SonyFE2870mmf3556.data.ts) 17: `E-LAF7 (HOYA) / H-LaF4 class, 750350`
 
@@ -343,7 +343,7 @@ or per-lens patent backfills.
 
 ### S-LAM7 — 3 occurrences
 
-- [FUJIFILM Fujinon GF100-200mm F5.6 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmGF100200mmf56.data.ts) 1: `HOYA E-LAF7 / CDGM H-LaF4 (750350; OHARA S-LAM7 class)`
+- [FUJIFILM Fujinon GF 100-200mm F5.6 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmGF100200mmf56.data.ts) 1: `HOYA E-LAF7 / CDGM H-LaF4 (750350; OHARA S-LAM7 class)`
 - [Nikon 1 NIKKOR 10mm f/2.8](../../src/lens-data/nikon/Nikon1Nikkor10mmf28.data.ts) 5: `S-LAM7 (OHARA)`
 - [NIKON AF NIKKOR 28mm f/1.4D](../../src/lens-data/nikon/NikonAF28f14D.data.ts) 12: `LaM type (near OHARA S-LAM7, nd=1.74950, νd=52.33)`
 
@@ -352,6 +352,12 @@ or per-lens patent backfills.
 - [FUJIFILM FUJINON XF 56mm F1.2 R](../../src/lens-data/fujifilm/FujifilmXF56mmf12.data.ts) 16: `S-TIF6 (OHARA)`
 - [NIKON AF-S NIKKOR 80-400mm f/4.5-5.6G ED VR](../../src/lens-data/nikon/NikonNikkorAFS80400mmf4556G.data.ts) 29: `S-TIF6 (OHARA)`
 - [RICOH GR LENS A12 28mm f/2.5](../../src/lens-data/ricoh/RicohGXRA1218mmf25.data.ts) 10: `S-TIF6 (OHARA) / N-SF5 (SCHOTT)`
+
+### SF8 — 3 occurrences
+
+- [CARL ZEISS Jena Biogon 3.5 cm f/2.8 (pre-war)](../../src/lens-data/carl-zeiss-jena/ZeissBiogon35mmf28Prewar.data.ts) 5: `SF8 / N-SF8 equivalent (Schott)`
+- [Leica Elmar-M 135mm f/4](../../src/lens-data/leica/LeicaElmarM135mmf4.data.ts) 7: `N-SF8 / SF8 class (Schott; patent e-line value stored)`
+- [Leica Elmarit-M 135mm f/2.8](../../src/lens-data/leica/LeicaElmaritM135mmf28.data.ts) 8: `SF8-class dense flint (Schott; e-line source values)`
 
 ### 514428 — 2 occurrences
 
@@ -385,7 +391,7 @@ or per-lens patent backfills.
 
 ### 750350 — 2 occurrences
 
-- [FUJIFILM Fujinon GF100-200mm F5.6 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmGF100200mmf56.data.ts) 1: `HOYA E-LAF7 / CDGM H-LaF4 (750350; OHARA S-LAM7 class)`
+- [FUJIFILM Fujinon GF 100-200mm F5.6 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmGF100200mmf56.data.ts) 1: `HOYA E-LAF7 / CDGM H-LaF4 (750350; OHARA S-LAM7 class)`
 - [Sony FE 28-70mm f/3.5-5.6 OSS](../../src/lens-data/sony/SonyFE2870mmf3556.data.ts) 17: `E-LAF7 (HOYA) / H-LaF4 class, 750350`
 
 ### 755516 — 2 occurrences
@@ -463,10 +469,20 @@ or per-lens patent backfills.
 - [CARL ZEISS Distagon T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) 8: `BAF4 / N-BAF4 class (Schott, 606439; patent values retained)`
 - [NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) 19: `N-BAF4 equiv. (157957/5374)`
 
+### N-BAK4 — 2 occurrences
+
+- [Leica Elmar-M 135mm f/4](../../src/lens-data/leica/LeicaElmarM135mmf4.data.ts) 1: `N-BAK4 / BaK4 class (Schott; patent e-line value stored)`
+- [NIKON NIKKOR 35mm f/2.8 (35Ti)](../../src/lens-data/nikon/Nikon35Ti35mmf28.data.ts) 9: `Schott N-BAK4 (nd=1.56883 / νd=56.04; Δnd≈0, Δνd=−0.04)`
+
 ### N-LAK9 — 2 occurrences
 
 - [CARL ZEISS B-Distagon 35mm f/4 (Contarex)](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon35mmf4.data.ts) 10: `N-LAK9 / LAK9 (Schott)`
 - [Leica Elmarit-R 35mm f/2.8](../../src/lens-data/leica/LeicaElmaritR35mmf28.data.ts) 11: `LAK9 / N-LAK9 class (Schott legacy lanthanum crown; patent n_e)`
+
+### N-SF8 — 2 occurrences
+
+- [CARL ZEISS Jena Biogon 3.5 cm f/2.8 (pre-war)](../../src/lens-data/carl-zeiss-jena/ZeissBiogon35mmf28Prewar.data.ts) 5: `SF8 / N-SF8 equivalent (Schott)`
+- [Leica Elmar-M 135mm f/4](../../src/lens-data/leica/LeicaElmarM135mmf4.data.ts) 7: `N-SF8 / SF8 class (Schott; patent e-line value stored)`
 
 ### NBFD10 — 2 occurrences
 
@@ -508,6 +524,11 @@ or per-lens patent backfills.
 - [FUJIFILM FUJINON XF 90mm f/2 R LM WR](../../src/lens-data/fujifilm/FujifilmXF90mmf2.data.ts) 6: `S-NBH53 (OHARA)`
 - [Sony E 18-55mm f/3.5-5.6 OSS](../../src/lens-data/sony/SonyE1855mmf3556.data.ts) 4: `S-NBH53 (OHARA)`
 
+### SF5 — 2 occurrences
+
+- [Leica Elmarit-M 135mm f/2.8](../../src/lens-data/leica/LeicaElmaritM135mmf28.data.ts) 6: `SF5-class dense flint (Schott; e-line source values)`
+- [VOIGTLÄNDER MACRO APO-LANTHAR 125mm f/2.5 SL](../../src/lens-data/voigtlander/VoigtlanderMacroApoLanthar125mmf25.data.ts) 7: `SF5 (Schott) / K-SFS5 (Sumita)`
+
 ### SF56A — 2 occurrences
 
 - [Nikon AI Nikkor 35mm f/2](../../src/lens-data/nikon/NikonAINikkor35mmf2.data.ts) 8: `SF56A class (785/261 dense flint)`
@@ -544,7 +565,7 @@ or per-lens patent backfills.
 
 ### 518635 — 1 occurrence
 
-- [FUJIFILM Fujinon GF100-200mm F5.6 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmGF100200mmf56.data.ts) 31A: `CDGM D-K59 (518635)`
+- [FUJIFILM Fujinon GF 100-200mm F5.6 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmGF100200mmf56.data.ts) 31A: `CDGM D-K59 (518635)`
 
 ### 534554 — 1 occurrence
 
@@ -1042,10 +1063,6 @@ or per-lens patent backfills.
 
 - [PANASONIC LUMIX S 20–60mm F3.5–5.6](../../src/lens-data/panasonic/PanasonicLumixS2060mmf3556.data.ts) 18A: `L-PHL1 (OHARA)`
 
-### N-BAK4 — 1 occurrence
-
-- [NIKON NIKKOR 35mm f/2.8 (35Ti)](../../src/lens-data/nikon/Nikon35Ti35mmf28.data.ts) 9: `Schott N-BAK4 (nd=1.56883 / νd=56.04; Δnd≈0, Δνd=−0.04)`
-
 ### N-BALF4 — 1 occurrence
 
 - [Nikon AF-S NIKKOR 70-200mm f/2.8G ED VR II](../../src/lens-data/nikon/NikonAFS70200mmf28GVRII.data.ts) 29: `H-BaF3 (CDGM) / N-BALF4 class`
@@ -1089,10 +1106,6 @@ or per-lens patent backfills.
 ### N-SF5 — 1 occurrence
 
 - [RICOH GR LENS A12 28mm f/2.5](../../src/lens-data/ricoh/RicohGXRA1218mmf25.data.ts) 10: `S-TIF6 (OHARA) / N-SF5 (SCHOTT)`
-
-### N-SF8 — 1 occurrence
-
-- [CARL ZEISS Jena Biogon 3.5 cm f/2.8 (pre-war)](../../src/lens-data/carl-zeiss-jena/ZeissBiogon35mmf28Prewar.data.ts) 5: `SF8 / N-SF8 equivalent (Schott)`
 
 ### N-SK18 — 1 occurrence
 
@@ -1193,14 +1206,6 @@ or per-lens patent backfills.
 ### SF3 — 1 occurrence
 
 - [CARL ZEISS PRO-TESSAR 35mm f/3.2](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissProTessar35mmf32.data.ts) 1: `SF3 (Schott)`
-
-### SF5 — 1 occurrence
-
-- [VOIGTLÄNDER MACRO APO-LANTHAR 125mm f/2.5 SL](../../src/lens-data/voigtlander/VoigtlanderMacroApoLanthar125mmf25.data.ts) 7: `SF5 (Schott) / K-SFS5 (Sumita)`
-
-### SF8 — 1 occurrence
-
-- [CARL ZEISS Jena Biogon 3.5 cm f/2.8 (pre-war)](../../src/lens-data/carl-zeiss-jena/ZeissBiogon35mmf28Prewar.data.ts) 5: `SF8 / N-SF8 equivalent (Schott)`
 
 ### SK18A — 1 occurrence
 

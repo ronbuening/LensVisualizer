@@ -19,6 +19,12 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-06-04 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-06-04",
+    type: "lens",
+    summary: "Added three Leica lenses: Elmarit-TL 18mm f/2.8 ASPH, Elmarit-M 135mm f/2.8, and Elmar-M 135mm f/4",
+  },
   // ── 2026-06-03 ──────────────────────────────────────────────────────────
   {
     date: "2026-06-03",
