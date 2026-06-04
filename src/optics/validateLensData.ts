@@ -11,6 +11,11 @@
 
 import type { AsphericCoefficients, ImagePlaneData, PerspectiveControlConfig, SurfaceData } from "../types/optics.js";
 import { isImageFormatId, isLensMountId } from "../utils/catalog/lensTaxonomy.js";
+import {
+  centralOpeningSemiDiameter,
+  sharedMaterialBand,
+  surfaceFitsInsideCentralOpening,
+} from "./internal/apertureBands.js";
 import { buildAsphereIndex, buildLabelIndex, firstInfinityThickness } from "./internal/lensState.js";
 import { conicPolySag, FLAT_R_THRESHOLD, MAX_RIM_SLOPE_TAN, sagSlopeRaw } from "./internal/surfaceMath.js";
 import { traceExactSurfaceStack } from "./internal/exactSurfaceTrace.js";
@@ -19,6 +24,15 @@ import type { ExactTraceLens } from "./internal/exactSurfaceTrace.js";
 /* Validation operates on untrusted data — use a permissive record type
  * so dynamic-key checks compile without casts on every property access. */
 type UntrustedLensData = Record<string, any>;
+type ExplicitElementSpan = {
+  from: number;
+  to: number;
+  element: UntrustedLensData;
+  nestedOpeningSd: number | null;
+  foldedMirrorLens: boolean;
+  frontSurface: UntrustedLensData;
+  rearSurface: UntrustedLensData;
+};
 
 const REQUIRED_ASPHERIC_COEFFICIENTS = ["K", "A4", "A6", "A8", "A10", "A12", "A14"] as const;
 const OPTIONAL_ASPHERIC_COEFFICIENTS = ["A16", "A18", "A20"] as const;
@@ -299,9 +313,43 @@ function samePlaneNormal(a: unknown, b: unknown): boolean {
   return Math.abs(Math.abs(na.z * nb.z + na.y * nb.y) - 1) < 1e-6;
 }
 
+function annularNestedOpeningForSpan(
+  data: UntrustedLensData,
+  S: UntrustedLensData[],
+  from: number,
+  to: number,
+): number | null {
+  if (data.opticalPath === undefined) return null;
+  const front = S[from];
+  const rear = S[to];
+  const frontOpening = centralOpeningSemiDiameter(front);
+  const rearOpening = centralOpeningSemiDiameter(rear);
+  if (frontOpening === null || rearOpening === null || Math.abs(frontOpening - rearOpening) > 1e-9) return null;
+  if (front.interaction?.type !== "reflect" && rear.interaction?.type !== "reflect") return null;
+  return frontOpening;
+}
+
+function isEmbeddedStop(surface: UntrustedLensData): boolean {
+  return surface.label === "STO" && surface.stopPlacement === "inside-element";
+}
+
+function isAllowedAnnularNestedSurface(span: ExplicitElementSpan, surface: UntrustedLensData): boolean {
+  return span.nestedOpeningSd !== null && surfaceFitsInsideCentralOpening(surface, span.nestedOpeningSd);
+}
+
+function isAllowedFoldedRadialSplitSurface(span: ExplicitElementSpan, surface: UntrustedLensData): boolean {
+  if (!span.foldedMirrorLens) return false;
+  if (centralOpeningSemiDiameter(surface) === null) return false;
+  return !sharedMaterialBand(span.frontSurface, surface) && !sharedMaterialBand(span.rearSurface, surface);
+}
+
+function isAllowedFoldedSpanInternalSurface(span: ExplicitElementSpan, surface: UntrustedLensData): boolean {
+  return isAllowedAnnularNestedSurface(span, surface) || isAllowedFoldedRadialSplitSurface(span, surface);
+}
+
 function validateTiltedMirrorBackingNormals(
   S: UntrustedLensData[],
-  explicitSpans: Map<number, { from: number; to: number; element: UntrustedLensData }>,
+  explicitSpans: Map<number, ExplicitElementSpan>,
   errors: string[],
 ): void {
   const spanForElement = (elemId: number): { from: number; to: number } | null => {
@@ -333,7 +381,7 @@ function validateTiltedMirrorBackingNormals(
 
 function validatePairedInnerSdConsistency(
   S: UntrustedLensData[],
-  explicitSpans: Map<number, { from: number; to: number; element: UntrustedLensData }>,
+  explicitSpans: Map<number, ExplicitElementSpan>,
   errors: string[],
 ): void {
   const pairs = new Map<string, [number, number]>();
@@ -663,8 +711,10 @@ export default function validateLensData(data: UntrustedLensData): string[] {
   );
   const S = data.surfaces;
   const nz = isZoom ? data.zoomPositions.length : 0;
+  const foldedMirrorLens =
+    data.opticalPath !== undefined && S.some((surface: SurfaceData) => surface.interaction?.type === "reflect");
 
-  const explicitSpans = new Map<number, { from: number; to: number; element: UntrustedLensData }>();
+  const explicitSpans = new Map<number, ExplicitElementSpan>();
   for (const elem of data.elements) {
     const hasFrom = elem.fromSurface !== undefined;
     const hasTo = elem.toSurface !== undefined;
@@ -694,7 +744,17 @@ export default function validateLensData(data: UntrustedLensData): string[] {
       );
       continue;
     }
-    explicitSpans.set(elem.id, { from, to, element: elem });
+    const nestedOpeningSd = annularNestedOpeningForSpan(data, S, from, to);
+    const explicitSpan: ExplicitElementSpan = {
+      from,
+      to,
+      element: elem,
+      nestedOpeningSd,
+      foldedMirrorLens,
+      frontSurface: S[from],
+      rearSurface: S[to],
+    };
+    explicitSpans.set(elem.id, explicitSpan);
 
     if (S[from]?.elemId !== elem.id) {
       errors.push(
@@ -704,7 +764,13 @@ export default function validateLensData(data: UntrustedLensData): string[] {
 
     for (let i = from + 1; i < to; i++) {
       const surface = S[i];
-      if (surface.label !== "STO" || surface.stopPlacement !== "inside-element") {
+      if (isEmbeddedStop(surface)) continue;
+      if (isAllowedFoldedSpanInternalSurface(explicitSpan, surface)) continue;
+      if (nestedOpeningSd !== null && !surfaceFitsInsideCentralOpening(surface, nestedOpeningSd)) {
+        errors.push(
+          `Element ${elem.id} ("${elem.name}"): internal surface "${surface.label}" must fit inside annular central opening sd=${nestedOpeningSd}`,
+        );
+      } else {
         errors.push(
           `Element ${elem.id} ("${elem.name}"): internal surface "${surface.label}" requires stopPlacement: "inside-element"`,
         );
@@ -714,6 +780,7 @@ export default function validateLensData(data: UntrustedLensData): string[] {
     if (typeof elem.nd === "number" && isFinite(elem.nd)) {
       for (let i = from; i < to; i++) {
         if (typeof S[i].nd !== "number") continue;
+        if (i > from && isAllowedFoldedSpanInternalSurface(explicitSpan, S[i])) continue;
         if (Math.abs(S[i].nd - elem.nd) > 1e-6) {
           errors.push(
             `Element ${elem.id} ("${elem.name}"): medium after surface "${S[i].label}" must match element nd=${elem.nd} within explicit span`,
@@ -1045,8 +1112,9 @@ function _checkCrossGapOverlap(
     if (typeof gapD !== "number" || gapD <= 0) continue;
     if (typeof next.elemId !== "number" || next.elemId === 0) continue;
     if (i === 0 || S[i - 1].elemId === 0) continue;
-    const sdCheck = Math.min(curr.sd || Infinity, next.sd || Infinity);
-    if (!isFinite(sdCheck) || sdCheck <= 0) continue;
+    const sharedBand = sharedMaterialBand(curr, next);
+    if (!sharedBand) continue;
+    const sdCheck = sharedBand.outer;
     const sagFwd = conicPolySag(sdCheck, curr.R, asphByIdx[i]);
     const sagBack = conicPolySag(sdCheck, next.R, asphByIdx[i + 1]);
     const intrusion = sagFwd - sagBack;

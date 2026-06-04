@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { computeElementRenderDiagnostics } from "../../../src/optics/diagramGeometry.js";
 import buildLens from "../../../src/optics/buildLens.js";
+import { sharedMaterialBand } from "../../../src/optics/internal/apertureBands.js";
 import { doLayout, renderSag } from "../../../src/optics/optics.js";
 import validateLensData from "../../../src/optics/validateLensData.js";
 import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
@@ -28,8 +29,13 @@ describe("element render diagnostics", () => {
       const front = surfaceDiagnostics.get(i + 1);
       if (!rear || !front) continue;
 
-      const sdCheck = Math.min(rear.renderSD, front.renderSD);
-      const intrusion = renderSag(sdCheck, i, L) - renderSag(sdCheck, i + 1, L);
+      const sharedBand = sharedMaterialBand(
+        { sd: rear.renderSD, innerSd: curr.innerSd },
+        { sd: front.renderSD, innerSd: next.innerSd },
+      );
+      if (!sharedBand) continue;
+
+      const intrusion = renderSag(sharedBand.outer, i, L) - renderSag(sharedBand.outer, i + 1, L);
       maxOverlap = Math.max(maxOverlap, intrusion - curr.d);
     }
 

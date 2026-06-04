@@ -3,6 +3,7 @@ import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
 import Sonnar50f15Raw from "../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
 import buildLens from "../../../src/optics/buildLens.js";
 import { doLayout, epAtZoom, traceRay, traceSkewRay } from "../../../src/optics/optics.js";
+import { obstructionAwareRayFractionsForDensity } from "../../../src/optics/raySampling.js";
 
 /**
  * Historical exact-trace fixtures — the first three lenses validated when the
@@ -77,6 +78,14 @@ function safeNearAxisHeight(L: RuntimeLens, zoomT: number): number {
   return Math.min(Math.max(ep * 0.05, 0.01), Math.max(L.stopPhysSD * 0.2, 0.01));
 }
 
+function catalogSmokeTraceHeight(L: RuntimeLens, zoomT: number): number {
+  if (!L.isFoldedOptics) return 0;
+  const ep = epAtZoom(zoomT, L);
+  const samples = obstructionAwareRayFractionsForDensity(L, L.rayFractions, "normal", ep);
+  const sample = samples.find((fraction) => Math.abs(fraction) > 1e-12) ?? 0;
+  return sample * ep;
+}
+
 function expectFiniteTraceResult(result: { x?: number; y: number; u?: number; ux?: number; uy?: number }) {
   expect(isFinite(result.y)).toBe(true);
   if (result.x !== undefined) expect(isFinite(result.x)).toBe(true);
@@ -121,15 +130,16 @@ describe("exact surface trace catalog smoke coverage", () => {
     }
   });
 
-  it("traces finite on-axis exact rays across every visible catalog lens", () => {
+  it("traces finite representative exact rays across every visible catalog lens", () => {
     expect(CATALOG_KEYS.length).toBeGreaterThan(0);
 
     for (const key of CATALOG_KEYS) {
       const L = buildCatalogLens(key);
       for (const zoomT of zoomSamples(L)) {
         const layout = doLayout(0, zoomT, L);
-        const meridional = traceRay(0, 0, layout.z, 0, zoomT, L.stopPhysSD, true, L);
-        const skew = traceSkewRay(0, 0, 0, 0, 0, zoomT, L.stopPhysSD, true, L);
+        const y0 = catalogSmokeTraceHeight(L, zoomT);
+        const meridional = traceRay(y0, 0, layout.z, 0, zoomT, L.stopPhysSD, true, L);
+        const skew = traceSkewRay(0, y0, 0, 0, 0, zoomT, L.stopPhysSD, true, L);
 
         expect(meridional.clipped, `${key} zoomT=${zoomT} meridional`).toBe(false);
         expect(skew.clipped, `${key} zoomT=${zoomT} skew`).toBe(false);

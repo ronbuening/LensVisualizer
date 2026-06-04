@@ -393,6 +393,157 @@ describe("validateLensData", () => {
     expect(errors.some((error) => error.includes('requires stopPlacement: "inside-element"'))).toBe(true);
   });
 
+  it("keeps ordinary explicit spans strict for non-stop internal surfaces", () => {
+    const data = makeValid({
+      elements: [
+        {
+          id: 1,
+          name: "L1",
+          label: "E1",
+          type: "test",
+          nd: 1.5,
+          fromSurface: "1",
+          toSurface: "2",
+        },
+      ],
+      surfaces: [
+        { label: "1", R: 1e15, d: 2, nd: 1.5, elemId: 1, sd: 8 },
+        { label: "A", R: 1e15, d: 2, nd: 1.0, elemId: 0, sd: 4 },
+        { label: "2", R: 1e15, d: 20, nd: 1.0, elemId: 0, sd: 8 },
+        { label: "STO", R: 1e15, d: 10, nd: 1.0, elemId: 0, sd: 5 },
+      ],
+    });
+
+    const errors = validateLensData(data);
+    expect(errors.some((error) => error.includes('internal surface "A" requires stopPlacement'))).toBe(true);
+  });
+
+  it("allows folded annular mirror spans to contain correctors inside the central opening", () => {
+    const data = makeValid({
+      opticalPath: {
+        surfaceOrder: ["STO", "M1F", "M1R"],
+        maxInteractions: 3,
+      },
+      elements: [
+        {
+          id: 1,
+          name: "M1",
+          label: "Primary",
+          type: "Annular second-surface mirror",
+          nd: 1.5,
+          fromSurface: "M1F",
+          toSurface: "M1R",
+        },
+        { id: 2, name: "L2", label: "Nested", type: "Corrector", nd: 1.6 },
+      ],
+      surfaces: [
+        { label: "STO", R: 1e15, d: 5, nd: 1.0, elemId: 0, sd: 20 },
+        { label: "M1F", R: 1e15, d: 1, nd: 1.5, elemId: 1, sd: 30, innerSd: 10 },
+        { label: "L2F", R: 1e15, d: 2, nd: 1.6, elemId: 2, sd: 8 },
+        { label: "L2R", R: 1e15, d: 1, nd: 1.0, elemId: 0, sd: 8 },
+        {
+          label: "M1R",
+          R: 1e15,
+          d: 40,
+          nd: 1.0,
+          elemId: 0,
+          sd: 30,
+          innerSd: 10,
+          interaction: { type: "reflect", incidentSide: "front", mirrorKind: "second-surface" },
+        },
+      ],
+    });
+
+    expect(validateLensData(data)).toEqual([]);
+  });
+
+  it("allows folded central spans to contain radially disjoint annular mirror shells", () => {
+    const data = makeValid({
+      opticalPath: {
+        surfaceOrder: ["STO", "M1F", "M1R", "L4F", "L4R"],
+        maxInteractions: 5,
+      },
+      elements: [
+        {
+          id: 1,
+          name: "M1",
+          label: "Annular primary",
+          type: "Annular second-surface mirror",
+          nd: 1.5,
+          fromSurface: "M1F",
+          toSurface: "M1R",
+        },
+        {
+          id: 2,
+          name: "L4",
+          label: "Clear center",
+          type: "Central corrector",
+          nd: 1.6,
+          fromSurface: "L4F",
+          toSurface: "L4R",
+        },
+      ],
+      surfaces: [
+        { label: "STO", R: 1e15, d: 5, nd: 1.0, elemId: 0, sd: 20 },
+        { label: "L4F", R: 1e15, d: 0, nd: 1.6, elemId: 2, sd: 10 },
+        { label: "M1F", R: 1e15, d: 5, nd: 1.5, elemId: 1, sd: 30, innerSd: 10 },
+        {
+          label: "M1R",
+          R: 1e15,
+          d: 0,
+          nd: 1.0,
+          elemId: 0,
+          sd: 30,
+          innerSd: 10,
+          interaction: { type: "reflect", incidentSide: "front", mirrorKind: "second-surface" },
+        },
+        { label: "L4R", R: 1e15, d: 40, nd: 1.0, elemId: 0, sd: 10 },
+      ],
+    });
+
+    expect(validateLensData(data)).toEqual([]);
+  });
+
+  it("rejects folded annular mirror internals that are too large for the central opening", () => {
+    const data = makeValid({
+      opticalPath: {
+        surfaceOrder: ["STO", "M1F", "M1R"],
+        maxInteractions: 3,
+      },
+      elements: [
+        {
+          id: 1,
+          name: "M1",
+          label: "Primary",
+          type: "Annular second-surface mirror",
+          nd: 1.5,
+          fromSurface: "M1F",
+          toSurface: "M1R",
+        },
+        { id: 2, name: "L2", label: "Nested", type: "Corrector", nd: 1.6 },
+      ],
+      surfaces: [
+        { label: "STO", R: 1e15, d: 5, nd: 1.0, elemId: 0, sd: 20 },
+        { label: "M1F", R: 1e15, d: 1, nd: 1.5, elemId: 1, sd: 30, innerSd: 10 },
+        { label: "L2F", R: 1e15, d: 2, nd: 1.6, elemId: 2, sd: 12 },
+        { label: "L2R", R: 1e15, d: 1, nd: 1.0, elemId: 0, sd: 12 },
+        {
+          label: "M1R",
+          R: 1e15,
+          d: 40,
+          nd: 1.0,
+          elemId: 0,
+          sd: 30,
+          innerSd: 10,
+          interaction: { type: "reflect", incidentSide: "front", mirrorKind: "second-surface" },
+        },
+      ],
+    });
+
+    const errors = validateLensData(data);
+    expect(errors.some((error) => error.includes("must fit inside annular central opening"))).toBe(true);
+  });
+
   it("rejects malformed explicit element spans", () => {
     const missing = validateLensData(
       makeValid({
