@@ -2,6 +2,13 @@
 
 Patent: WO 2023/181666 A1, Example 4
 
+## 2026-06-04 — Sweep 2 catalog source pass
+
+- Resolver support for slash-form codes lets the existing HOYA NBFD15 catalog entry resolve the L44 / `806/333` row.
+- Relabeled L44 to `NBFD15 (HOYA, 806333)`.
+- Relabeled L72 / `911/352` to existing coefficient-backed `TAFD35 (HOYA, 911353; patent rounds vd to 35.2)`, whose d-line index matches the stored nd=1.91082.
+- `npm test -- dispersion` and `npm run generate:glass-reports` passed.
+
 ## 2026-05-20 — Glass relabel audit
 
 ### Phase 1 — Glass corrections

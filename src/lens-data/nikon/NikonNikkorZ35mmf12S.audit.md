@@ -51,3 +51,16 @@ Patent: JP 2025-052870 A, Example 1
 
 - `npm test -- dispersion`
 - `npm test -- glassRelabelByLensScan`
+
+## 2026-06-04 - Sweep 3 patent dPgF backfill
+
+Local patent source: `patents/JP2025052870A.pdf` (untracked local file).
+
+### Phase 3 - Spectral / metadata enrichment
+
+| Element / surface | Field | Before | After | Justification |
+|---|---|---|---|---|
+| L19 / S16 | `dPgF` | absent | `0.0001` | Patent Example 1 row 16 lists `θgF = 0.5896`; subtracting the project normal line `0.6438 - 0.001682 * 32.3` gives `ΔPgF = +0.0001`. |
+| L42 / S29 | `dPgF` | absent | `0.041` | Patent Example 1 row 29 lists `θgF = 0.6546`; subtracting the project normal line `0.6438 - 0.001682 * 17.98` gives `ΔPgF = +0.0410`. |
+
+No `nC`, `nF`, or `ng` rows were found in the extracted local patent text. The remaining unresolved six-digit rows in this lens are catalog/source issues rather than patent line-index rows.

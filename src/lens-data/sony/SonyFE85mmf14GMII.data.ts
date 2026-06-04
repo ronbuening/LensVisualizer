@@ -170,7 +170,7 @@ const LENS_DATA = {
       nd: 1.77047,
       vd: 29.7,
       fl: -34.5,
-      glass: "770297 — dense titanium flint (patent nd=1.77047, νd=29.7)",
+      glass: "NBFD29 (HOYA, 770297)",
       apd: false,
       cemented: "D2",
       role: "Negative flint rear of doublet 2F; L8+L9 pair (f = −53.4 mm) provides local achromatization within the focus group, stabilizing chromatic correction across the focus range.",

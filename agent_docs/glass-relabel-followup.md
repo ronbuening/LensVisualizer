@@ -20,13 +20,12 @@ The candidate scan splits mismatches into two buckets:
 
 This file tracks the second bucket plus any cases from the first bucket that need authorial judgment (multiple candidates, or relabeling would change the lens-data file's narrative — e.g. the analysis.md companion file says "S-LAH79" and the candidate suggestion would invalidate that).
 
-## Current Status (May 2026, Phase 18 catalog)
+## Current Status (June 2026, current catalog)
 
-- Catalog: **247 verified entries** in `src/optics/glassCatalogData.ts`.
-- `catalogMismatchScan`: **272** lenses scanned, **3013** non-empty glass strings, **2334** resolved catalog hits,
-  **51** rejected mismatches across **23** lens files.
-- `glassRelabelCandidatesScan`: **51** mismatched surfaces across **42** unique
-  `(stored nd, stored vd, label)` groups.
+- Catalog: **259 verified entries** in `src/optics/glassCatalogData.ts`.
+- Current mismatch and coverage counts live in the generated reports. After the 2026-06-04 local-patent sweep,
+  `catalog-mismatches.generated.md` reports **0** catalog mismatches, and `sellmeier-coverage.generated.md` reports
+  **296** lenses, **3345** non-air surfaces, and **2646** trusted Sellmeier surfaces (**79.1%**).
 - `unresolvedGlassScan`: **603** non-explicit-unmatched annotations still do not resolve, covering **218** distinct
   glass-like tokens.
 - The Phase 2/3 resolved tables below are historical audit trail. Use the generated reports above for the current queue before starting new relabel work; for patent-by-patent execution, start from [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md).

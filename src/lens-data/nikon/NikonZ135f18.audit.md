@@ -2,6 +2,17 @@
 
 Patent: WO 2024/147268 A1
 
+## 2026-06-04 — Sweep 1 local patent relabel
+
+- Local patent source: `patents/WO2024147268A1.pdf` (untracked local file).
+- The local PDF is image-based under `pdftotext -layout`; row 26 was cross-checked against Google Patents OCR for the same WO publication.
+
+| Element / row | Patent nd/vd | Before | After | Disposition |
+|---|---|---|---|---|
+| L14 / row 26 | 1.78590 / 44.17 | `Lanthanum flint (near S-LAM55)` | `S-LAH51 (OHARA, patent nd/vd match)` | OHARA S-LAH51 round-trips the stored patent pair. |
+
+- `npm run generate:glass-reports` passed; this lens no longer appears in the catalog-mismatch reports.
+
 ## 2026-05-20 — Patent unavailable disposition
 
 - The requested local patent review could not be completed because the untracked `patents/` folder does not contain `WO 2024/147268 A1`.

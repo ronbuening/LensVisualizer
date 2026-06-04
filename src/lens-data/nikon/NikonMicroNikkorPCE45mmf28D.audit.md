@@ -24,3 +24,10 @@ Patent: US 7,656,591 B2, Example 1
 - `S-TIL26` is close enough to the rounded patent row to replace the previous generic proprietary label for L23.
 - Updated the analysis table to move L23 out of the unmatched set and leave L12 unresolved.
 
+## 2026-06-04 — Sweep 3 local patent recheck
+
+Local patent source: `patents/US7656591.pdf` (untracked local file).
+
+- Re-extracted the local PDF with `pdftotext -layout`.
+- The patent prescription publishes `nd` and `νd` for the glass rows, including L12 and the ED L21, but no `nC`, `nF`, `ng`, `θgF`, or `dPgF` rows were found in the extracted text.
+- No data-file spectral backfill was made from this pass.

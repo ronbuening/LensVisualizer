@@ -137,7 +137,7 @@ const LENS_DATA = {
       nd: 1.85451,
       vd: 25.15,
       fl: 35.2,
-      glass: "855252 — high-index flint (patent nd=1.85451, νd=25.15; no exact public catalog match)",
+      glass: "NBFD25 (HOYA, 855252)",
       apd: false,
       role: "High-dispersion positive in G2 (P1 element); forms air-spaced achromatic pair with L4 for Petzval/chromatic correction",
     },

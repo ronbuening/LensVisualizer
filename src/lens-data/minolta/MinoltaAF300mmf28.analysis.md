@@ -57,7 +57,7 @@ The glass was left as unmatched. Its refractive index and Abbe number place it i
 
 ### L4 — Negative Meniscus, Concave to Object
 
-nd = 1.65446, νd = 33.86. Glass: unmatched dense flint class, code 654/339. f = −520.27 mm.
+nd = 1.65446, νd = 33.86. Glass: 654339 dense flint class; public Hikari SF9 coefficients now provide the code match. f = −520.27 mm.
 
 L4 opens rear subunit II-1. The object-side surface is concave and is the surface singled out in the patent's claims and conditional expressions. In paraxial power it is not strong as an element, but as a surface it supplies the specified concave leading correction used to control the residual negative spherical aberration and off-axis flare described in the patent.
 
@@ -99,7 +99,7 @@ L9 supplies the strong positive power of the final subunit II-3. Its cemented re
 
 ### L10 — Negative Meniscus, Final Flint Component
 
-nd = 1.65446, νd = 33.86. Glass: unmatched dense flint class, code 654/339. f = −137.58 mm.
+nd = 1.65446, νd = 33.86. Glass: 654339 dense flint class; public Hikari SF9 coefficients now provide the code match. f = −137.58 mm.
 
 L10 is the negative flint component cemented to L9. It tempers L9's positive power and supplies chromatic correction for the final positive doublet. The exit surface at R18 = −79.965 has a verified refractive power of +0.008184 mm⁻¹ and is used in condition (3) against the power of moving subunit II-2.
 
@@ -111,7 +111,7 @@ The patent gives refractive index and Abbe number but no manufacturer glass name
 | ------: | --------: | --------: | ------------------------------------------------------------- | ---------- |
 | 495/797 |   1.49520 |     79.74 | Unmatched fluorophosphate ED-class glass; not current S-FPL51 | L1, L2     |
 | 682/366 |   1.68150 |     36.64 | Unmatched dense flint class                                   | L3         |
-| 654/339 |   1.65446 |     33.86 | Unmatched dense flint class                                   | L4, L10    |
+| 654339  |   1.65446 |     33.86 | Hikari SF9 public code match; production vendor not asserted  | L4, L10    |
 | 603/607 |   1.60311 |     60.74 | S-BSM14 class, close OHARA vintage match                      | L5, L7, L9 |
 | 717/294 |   1.71736 |     29.42 | S-TIH1 class, close OHARA vintage match                       | L6         |
 | 670/571 |   1.67000 |     57.07 | Unmatched high-index crown / lanthanum-crown class            | L8         |

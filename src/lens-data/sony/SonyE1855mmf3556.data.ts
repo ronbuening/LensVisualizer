@@ -112,7 +112,7 @@ const LENS_DATA = {
       nd: 1.851348,
       vd: 40.1,
       fl: -18.58,
-      glass: "Unmatched (851/401 high-index lanthanum-flint-class moldable glass; L-LAH85 attribution unconfirmed)",
+      glass: "851401 - high-index lanthanum-flint-class moldable glass (M-TAFD305 code match; L-LAH85 attribution unconfirmed)",
       role: "Aspherical negative variator element used for wide-angle off-axis correction.",
     },
     {
@@ -169,7 +169,7 @@ const LENS_DATA = {
       nd: 1.72903,
       vd: 54.04,
       fl: 32.62,
-      glass: "Unmatched (729/540 lanthanum-crown-class moldable glass)",
+      glass: "729540 - lanthanum-crown-class moldable glass (M-TAC80 code match)",
       role: "Aspherical positive field-correcting tail element of G3.",
     },
     {
@@ -180,7 +180,7 @@ const LENS_DATA = {
       nd: 1.851348,
       vd: 40.1,
       fl: -20.75,
-      glass: "Unmatched (851/401 high-index lanthanum-flint-class moldable glass; L-LAH85 attribution unconfirmed)",
+      glass: "851401 - high-index lanthanum-flint-class moldable glass (M-TAFD305 code match; L-LAH85 attribution unconfirmed)",
       role: "Single-element rear focus group; both surfaces are aspherical.",
     },
     {

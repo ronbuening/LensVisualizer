@@ -106,9 +106,9 @@ S-PHM52 is a phosphate crown with positive anomalous partial dispersion in the O
 
 ### L9 — Biconcave Negative (cemented rear of 2F)
 
-nd = 1.77047, νd = 29.7. Glass: 770297 — dense titanium flint (patent code only). f = −34.5 mm.
+nd = 1.77047, νd = 29.7. Glass: HOYA NBFD29 (770297). f = −34.5 mm.
 
-L9 completes the cemented doublet 2F. The L8+L9 pair has a combined focal length of −53.4 mm, making it the stronger of the two negative components in G2. The crown/flint pairing (S-PHM52 + 770297 patent-code dense flint) provides local achromatization within the focus group, which is essential because the entire G2 translates during focusing — uncorrected chromatic aberration would vary with focus position.
+L9 completes the cemented doublet 2F. The L8+L9 pair has a combined focal length of −53.4 mm, making it the stronger of the two negative components in G2. The crown/flint pairing (S-PHM52 + HOYA NBFD29) provides local achromatization within the focus group, which is essential because the entire G2 translates during focusing — uncorrected chromatic aberration would vary with focus position.
 
 ### L10 — Biconvex Positive (component 2R)
 
@@ -170,7 +170,7 @@ The design uses 13 distinct glass types across 14 elements (L6 and L11 share the
 | L6, L11 | 1.85108 | 40.1 | S-LAH89 class | OHARA | La heavy crown | XA asphere substrate (×2) |
 | L7 | 1.95375 | 32.3 | S-LAH98 | OHARA | Ultra-high-nd La crown | Main positive power in G2 |
 | L8 | 1.61800 | 63.4 | S-PHM52 | OHARA | Phosphate crown | Crown partner in 2F doublet; anomalous dispersion |
-| L9 | 1.77047 | 29.7 | 770297 | Patent code | Dense titanium flint | Flint partner in 2F doublet |
+| L9 | 1.77047 | 29.7 | HOYA NBFD29 | Catalog-backed | Dense flint | Flint partner in 2F doublet |
 | L10 | 1.80420 | 46.5 | S-LAH65V | OHARA | La crown | Rear positive in G2 |
 | L12 | 1.98613 | 16.5 | 986165 | Patent code | Ultra-high-index dense flint | Extreme-nd positive in rear doublet |
 | L13 | 1.59270 | 35.4 | S-FTM16 | OHARA | Ti flint | Negative partner in rear doublet |

@@ -191,7 +191,7 @@ The aspherical departure at the estimated full clear aperture (SD ≈ 34 mm) rea
 | nd / νd | 1.848500 / 43.79 |
 | Focal length | +83.2 mm |
 
-**Glass identification:** nd = 1.84850 with νd = 43.79 is a high-index lanthanum dense flint. The closest matches include Hikari E-LASF013 and CDGM H-ZLaF68C. This is a powerful converging element in a high-index glass that provides strong positive power while maintaining moderate dispersion.
+**Glass identification:** nd = 1.84850 with νd = 43.79 is a high-index lanthanum dense flint. The local patent row now resolves to Hikari J-LASFH22 in the catalog. This is a powerful converging element in a high-index glass that provides strong positive power while maintaining moderate dispersion.
 
 **Optical role:** L21 is the first element of the master group G2 and the first standalone (non-cemented) element encountered by the beam after leaving G1. Its strong positive power (f ≈ +83 mm) begins the primary convergence toward the focal point. The high refractive index (1.849) allows this convergence to be achieved with relatively gentle curvatures, which reduces the surface contributions to spherical aberration — essential when operating at f/0.95.
 
@@ -377,7 +377,7 @@ The aperture stop is positioned within the air lens La2, between the pre-stop do
 | Focal length | −47.5 mm |
 | Cemented with | L31 (doublet Df) |
 
-**Glass identification:** nd = 1.69895 with νd = 30.13 is a dense flint with very high dispersion. This glass does not appear elsewhere in the design. Possible matches include OHARA S-NBH52V or Hikari E-FD8. The very low Abbe number (30.13) provides the dispersion differential needed for achromatization within doublet Df.
+**Glass identification:** nd = 1.69895 with νd = 30.13 is a dense flint with very high dispersion. This glass does not appear elsewhere in the design. The local patent row now resolves to HOYA E-FD15. The very low Abbe number (30.13) provides the dispersion differential needed for achromatization within doublet Df.
 
 **Optical role:** L32's high dispersion paired with L31's moderate dispersion (νd = 40.69) provides achromatization in the rear group. Note that the patent lists θgF = 0.60210 for this glass in Example 3 but does not list it for Example 1 — the θgF value is only documented for glasses satisfying condition (4) in the front group. The L31+L32 doublet has net negative power, contributing to field flattening.
 
@@ -412,7 +412,7 @@ The aperture stop is positioned within the air lens La2, between the pre-stop do
 | Cemented with | L33 (doublet Dg) |
 | Aspherical | Surface 28 (rear, last optical surface) |
 
-**Glass identification:** nd = 1.76554 with νd = 46.76 places this glass in the lanthanum crown / dense phosphate crown region of the glass map. No standard catalog glass from OHARA, Schott, or HOYA matches both parameters precisely. The closest candidates include HOYA TAFD5F (nd = 1.76684, νd = 46.62 — Δnd = 0.0013, Δνd = 0.14), but the match is not exact. This is likely another special-melt or proprietary formulation. The moderate refractive index (1.766) places it within the feasible range for precision glass molding, unlike the two ultra-high-index aspherical elements.
+**Glass identification:** nd = 1.76554 with νd = 46.76 places this glass in the lanthanum crown / dense phosphate crown region of the glass map. The local patent row now resolves to Nikon/Hikari Q-LASFPH2S, clearing the previous no-confirmed-catalog-match status. The moderate refractive index (1.766) places it within the feasible range for precision glass molding, unlike the two ultra-high-index aspherical elements.
 
 **Aspherical surface:** Surface 28 is the last optical surface before the filter, and it carries the third and final aspherical correction. Uniquely among the three aspherics, it uses coefficients up to **A14** (14th order) — the most complex aspheric profile in the design. The departure at SD ≈ 18 mm reaches **+321 µm** (positive departure, meaning the surface bulges outward relative to the base sphere). This is the only aspheric with a positive A4 coefficient (+3.19×10⁻⁶), meaning the rim becomes steeper than the base sphere. The higher-order terms (A6 through A14) alternate in sign, creating an oscillatory correction profile that fine-tunes the wavefront across multiple zones.
 
@@ -597,10 +597,10 @@ The design employs **11 distinct glass types** across 17 elements, showing a hig
 | 1.552981 | 55.07 | 1 | L12 | Anomalous dispersion special |
 | 1.593190 | 67.90 | 3 | L14, L22, L23 | ED phosphate crown |
 | 1.612660 | 44.46 | 2 | L13, L25 | KZFS-type anomalous dispersion |
-| 1.698950 | 30.13 | 1 | L32 | Dense flint |
+| 1.698950 | 30.13 | 1 | L32 | Dense flint (HOYA E-FD15) |
 | 1.738000 | 32.33 | 2 | L24, L29 | High-dispersion flint |
-| 1.765538 | 46.76 | 1 | L34 | Lanthanum crown |
-| 1.848500 | 43.79 | 1 | L21 | Lanthanum dense flint |
+| 1.765538 | 46.76 | 1 | L34 | Lanthanum crown (Q-LASFPH2S) |
+| 1.848500 | 43.79 | 1 | L21 | Lanthanum dense flint (J-LASFH22) |
 | 1.883000 | 40.69 | 3 | L27, L31, L33 | Lanthanum dense flint (S-LAH58) |
 | 1.902650 | 35.77 | 1 | L11 | Ultra-high-index LaH (no confirmed catalog match) |
 | 1.953750 | 32.33 | 1 | L28 | Ultra-high-index LaH (S-LAH98 / TAFD45) |

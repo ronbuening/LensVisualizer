@@ -2,7 +2,7 @@
 
 A focused follow-up to the chromatic dispersion overhaul. Current architecture is summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md). The chromatic engine now has a four-tier preference
-cascade — Sellmeier → measured `nC`/`nF`/`ng` line indices → Abbe + dPgF → plain Abbe — and a 247-entry vendor catalog
+cascade — Sellmeier → measured `nC`/`nF`/`ng` line indices → Abbe + dPgF → plain Abbe — and a 279-entry vendor catalog
 covers most catalog-resolvable glass declarations. What remains is a per-lens queue of proprietary, unidentified, or
 inconsistently annotated glasses that no public catalog can safely resolve by name alone.
 
@@ -10,7 +10,7 @@ inconsistently annotated glasses that no public catalog can safely resolve by na
 
 Separate from the proprietary-glass list below, there is a second category of dispersion-quality issue: surfaces whose `glass` annotation **does** resolve to a vendor catalog entry but whose stored `surface.nd` disagrees with the catalog Sellmeier nd by more than the safety-net tolerance (5e-3) — typically because the annotation was a speculative guess (e.g. `"S-LAH79 (OHARA) probable"` when the real glass is something else).
 
-The dispersion engine rejects these mismatches and falls through to the Abbe path. The full per-surface list is auto-generated and lives in [catalog-mismatches.generated.md](generated/catalog-mismatches.generated.md). Regenerate it with `npm test -- catalogMismatchScan`. Candidate relabels live in [glass-relabel-candidates.generated.md](generated/glass-relabel-candidates.generated.md), regenerated with `npm test -- glassRelabelCandidatesScan`; unresolved non-matching tokens live in [unresolved-glass.generated.md](generated/unresolved-glass.generated.md), regenerated with `npm test -- unresolvedGlassScan`.
+The dispersion engine rejects these mismatches and falls through to the Abbe path. The full per-surface list is auto-generated and lives in [catalog-mismatches.generated.md](generated/catalog-mismatches.generated.md). Regenerate it with `npm test -- catalogMismatchScan`. Candidate relabels live in [glass-relabel-candidates.generated.md](generated/glass-relabel-candidates.generated.md), regenerated with `npm test -- glassRelabelCandidatesScan`; unresolved non-matching tokens live in [unresolved-glass.generated.md](generated/unresolved-glass.generated.md), regenerated with `npm test -- unresolvedGlassScan`. The consolidated three-sweep queue is [glass-coverage-opportunities.generated.md](generated/glass-coverage-opportunities.generated.md), regenerated with `npm test -- glassCoverageOpportunitiesScan`.
 
 The fix for a mismatch is one of:
 
@@ -46,25 +46,12 @@ The dispersion cascade in [src/optics/dispersion.ts](../src/optics/dispersion.ts
 
 If the patent only lists `nd`/`vd` and `dPgF` without explicit `ng`, populate `dPgF` alone — the V-channel cascade will use the Schott normal-line approximation plus your `dPgF` to estimate `ng`.
 
-## Tier A — feasible (modern Japanese/US patents typically list line indices)
+## Tier A — active source blockers
 
 | Lens file | Patent reference | Elements needing backfill | Notes |
 |---|---|---|---|
-| [voigtlander/VoigtlanderApoLanthar50f2.data.ts](../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.ts) | JP2021-43376A | 4 (3 Sumita unmatched + 1 KZFS-adjacent) | **Highest priority** — the marquee APO-Lanthar regression case from the chromatic overhaul |
-| [nikon/Nikon58f14GDesignCandidate.data.ts](../src/lens-data/nikon/Nikon58f14GDesignCandidate.data.ts) | (verify) | 1 (S-NBM51 / KZFS2-type short flint) | |
-| [nikon/NikonNikkorAFS2470mmf28E.data.ts](../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) | (verify) | Several fluorophosphate crown placeholders | |
-| [nikon/NikonZ28f28.data.ts](../src/lens-data/nikon/NikonZ28f28.data.ts) | (verify) | 1 UV-curing resin (proprietary) | Resin may not have line indices in patents |
-| [nikon/NikonZ58f095SNoct.data.ts](../src/lens-data/nikon/NikonZ58f095SNoct.data.ts) | JP2020-44305A (or similar) | Multiple ED phosphate elements | |
-| [nikon/NikonNikkorZ35mmf12S.data.ts](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) | (verify) | Multiple phosphate crown ED elements | Patent partial-dispersion data already in apdNote |
-| [nikon/NikonNikkorAFS80400mmf4556G.data.ts](../src/lens-data/nikon/NikonNikkorAFS80400mmf4556G.data.ts) | (verify) | S-FPL51 class + FCD100 + phosphate crown placeholders | |
-| [nikon/NikonAFS105f28G.data.ts](../src/lens-data/nikon/NikonAFS105f28G.data.ts) | (verify) | Unmatched proprietary | |
-| [nikon/NikonMicroNikkorPCE45mmf28D.data.ts](../src/lens-data/nikon/NikonMicroNikkorPCE45mmf28D.data.ts) | (verify) | Unmatched proprietary | |
-| [nikon/NikonNikkorZ50f18S.data.ts](../src/lens-data/nikon/NikonNikkorZ50f18S.data.ts) | (verify) | Unmatched proprietary | |
-| [nikon/NikonNikkorZ70200f28.data.ts](../src/lens-data/nikon/NikonNikkorZ70200f28.data.ts) | (verify) | Unmatched proprietary | |
-| [nikon/NikonZ135f18.data.ts](../src/lens-data/nikon/NikonZ135f18.data.ts) | (verify) | Unmatched proprietary | |
-| [canon/CanonRF85mmf12L.data.ts](../src/lens-data/canon/CanonRF85mmf12L.data.ts) | (verify) | UD-class fluorophosphate | |
-| [fujifilm/FujifilmXF35mmf14R.data.ts](../src/lens-data/fujifilm/FujifilmXF35mmf14R.data.ts) | (verify) | Unmatched proprietary | |
-| [fujifilm/FujifilmXF50140mmf28R.data.ts](../src/lens-data/fujifilm/FujifilmXF50140mmf28R.data.ts) | (verify) | Unmatched proprietary | |
+| [nikon/NikonZ28f28.data.ts](../src/lens-data/nikon/NikonZ28f28.data.ts) | WO2022/071249 A1 | 1 UV-curing resin (proprietary) | Local `patents/WO2022071249A1.pdf` is present but extracted as image-only/empty under `pdftotext`; OCR or a text JP/US family member is needed. Resin may not have line indices in the patent. |
+| [nikon/NikonNikkorZ50f18S.data.ts](../src/lens-data/nikon/NikonNikkorZ50f18S.data.ts) | WO2019/220618 A1 | 2 constant-quality resin/dummy surfaces | Local `patents/WO2019220618A1.pdf` is present but extracted as image-only/empty under `pdftotext`; current missing surfaces have no glass annotation to enrich. |
 
 Status column intentionally omitted — when you complete a backfill, delete the row from this table, regenerate the glass
 reports, and add a changelog entry if the user-visible chromatic result changed materially.
@@ -77,6 +64,26 @@ reports, and add a changelog entry if the user-visible chromatic result changed 
 | [leica/LeicaSummicronV550mmf2.data.ts](../src/lens-data/leica/LeicaSummicronV550mmf2.data.ts) | Leitz vintage with ThO₂-bearing melts; original recipes destroyed/undocumented. Defer indefinitely. |
 
 These remain on the Abbe path. The LCA inset's quality badge will read "Abbe approx" for these lenses, which is honest — there's no better data available.
+
+## Reviewed Sweep 3 Outcomes
+
+Rows removed from Tier A after local patent review:
+
+| Lens file | Patent reference | Local patent source | Outcome |
+|---|---|---|---|
+| [voigtlander/VoigtlanderApoLanthar50f2.data.ts](../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.ts) | JP2021-43376A | `patents/JP2021043376A.pdf` (untracked local file) | Rechecked 2026-06-04. Existing patent-listed `dPgF` values on L3 and L4 were already captured; extracted text did not expose `nC`, `nF`, or `ng`. |
+| [nikon/Nikon58f14GDesignCandidate.data.ts](../src/lens-data/nikon/Nikon58f14GDesignCandidate.data.ts) | JP2013-019993A | `patents/JP2013019993A.pdf` (untracked local file) | Rechecked 2026-06-04. Prescription tables list `nd`/`νd` only; no line-index or partial-dispersion rows found. |
+| [nikon/NikonNikkorAFS2470mmf28E.data.ts](../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) | US2020/0142168 A1 | `patents/US20200142168A1.pdf` (untracked local file) | Rechecked 2026-06-04. Example 1 publishes `n(d)`/`νd` only; no `nC`, `nF`, `ng`, `θgF`, or `dPgF` rows found. |
+| [nikon/NikonZ58f095SNoct.data.ts](../src/lens-data/nikon/NikonZ58f095SNoct.data.ts) | WO2019/229849 A1 | `patents/WO2019229849A1.pdf` (untracked local file) | Local PDF is present but extracts as image-only/empty. Existing structured `dPgF` values were already present from the authoring pass; no new text-backed values added. |
+| [nikon/NikonNikkorZ35mmf12S.data.ts](../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) | JP2025-52870A | `patents/JP2025052870A.pdf` (untracked local file) | Added structured `dPgF` for patent-listed `θgF` rows L19 and L42; no `nC`, `nF`, or `ng` rows found. |
+| [nikon/NikonNikkorAFS80400mmf4556G.data.ts](../src/lens-data/nikon/NikonNikkorAFS80400mmf4556G.data.ts) | US2020/0049962 A1 | `patents/US20200049962A1.pdf` (untracked local file) | Rechecked 2026-06-04. Extracted text lists prescription `nd`/`νd` and coating spectral data, but no glass line-index or partial-dispersion rows. |
+| [nikon/NikonAFS105f28G.data.ts](../src/lens-data/nikon/NikonAFS105f28G.data.ts) | US7,218,457 B2 | `patents/US7218457.pdf` (untracked local file) | Rechecked 2026-06-04. Patent tables list `nd`/`νd` only; no line-index or partial-dispersion rows found. |
+| [nikon/NikonMicroNikkorPCE45mmf28D.data.ts](../src/lens-data/nikon/NikonMicroNikkorPCE45mmf28D.data.ts) | US7,656,591 B2 | `patents/US7656591.pdf` (untracked local file) | Rechecked 2026-06-04. US7656591 is present and confirms `nd`/`νd`, but no `nC`, `nF`, `ng`, `θgF`, or `dPgF` rows were found. |
+| [nikon/NikonNikkorZ70200f28.data.ts](../src/lens-data/nikon/NikonNikkorZ70200f28.data.ts) | WO2020/105104 A1 | `patents/WO_2020105104_A1.pdf` (untracked local file) | Added structured `dPgF = 0.0341` for the SR L23 row from patent `θgF = 0.6319`; also confirmed L61/L64 and relabeled them to coefficient-backed Hikari `J-LASF021` / `J-LAF016`. The local PDF is image-only under `pdftotext`, so pages 22-23 were rendered and checked visually. |
+| [nikon/NikonZ135f18.data.ts](../src/lens-data/nikon/NikonZ135f18.data.ts) | WO2024/147268 A1 | `patents/WO2024147268A1.pdf` (untracked local file) | Local PDF is present but extracts as image-only/empty. Existing structured `dPgF` values were already present from the authoring pass; no new text-backed values added. |
+| [canon/CanonRF85mmf12L.data.ts](../src/lens-data/canon/CanonRF85mmf12L.data.ts) | US2020/0012073 A1 | `patents/US20200012073A1.pdf` (untracked local file) | Added structured patent `dPgF` values for L3 (`0.008`) and BR L9 (`0.092`); no `nC`, `nF`, or `ng` rows found. |
+| [fujifilm/FujifilmXF35mmf14R.data.ts](../src/lens-data/fujifilm/FujifilmXF35mmf14R.data.ts) | US2014/0285903 A1 | `patents/US20140285903A1.pdf` (untracked local file) | Rechecked 2026-06-04. Patent tables list `Nd`/`vd` only for the proprietary PGM row; no line-index or partial-dispersion rows found. |
+| [fujifilm/FujifilmXF50140mmf28R.data.ts](../src/lens-data/fujifilm/FujifilmXF50140mmf28R.data.ts) | US2017/0090163 A1 | `patents/US20170090163A1.pdf` (untracked local file) | Already cleared by Sweep 2 catalog work; current generated coverage is 23/23 Sellmeier surfaces, so no proprietary line-index backfill remains. |
 
 ## Workflow
 

@@ -2,6 +2,12 @@
 
 Patent: WO 2022/259649 A1, Example 5 / Table 5
 
+## 2026-06-04 - Sweep 2 manufacturer catalog source pass
+
+- Added HOYA NBFD25 from HOYA's first-party optical-glass PDF (`NBFD25`, code 855-252, nd=1.85451, vd=25.15, PgF=0.6103, formula-3 A0-A5 constants) to the runtime catalog.
+- Relabeled L5 / S8 from code-only `855252` to `NBFD25 (HOYA, 855252)`.
+- `npm test -- dispersion` and `npm run generate:glass-reports` passed; L5 now uses trusted Sellmeier data.
+
 ## 2026-05-20 - Catalog-mismatch queue audit
 
 ### Patent evidence
@@ -26,7 +32,7 @@ Patent: WO 2022/259649 A1, Example 5 / Table 5
 ### Catalog-search disposition
 
 - Checked public OHARA/HOYA catalog data and existing coefficient-backed catalog entries.
-- `855252` remains unresolved because public matches were not exact enough to promote.
+- `855252` was unresolved in this May pass; the 2026-06-04 source pass resolved it as HOYA NBFD25 from first-party coefficient data.
 - No new catalog entries were required.
 
 ### Analysis sync

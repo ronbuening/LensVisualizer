@@ -128,7 +128,7 @@ nd = 1.43700, νd = 95.1. Glass: FCD100 (HOYA) — fluorophosphate, Super ED cla
 L43 is the second Super ED element in the design and, like L32, satisfies condition (9) for Lmp (¶0061). The use of two Super ED elements — one in Gr3 and one in Gr4 — is characteristic of the most demanding high-aperture zoom designs, where a single ED element cannot sufficiently control the secondary spectrum at the system's extreme f/2.8 aperture across a nearly 3× zoom ratio.
 
 **L44 — Biconcave Negative (cemented to L43)**
-nd = 1.80610, νd = 33.3. Glass: dense flint (806/333 class, uncertain — no exact OHARA catalog match). f = −23.8 mm.
+nd = 1.80610, νd = 33.3. Glass: HOYA NBFD15 (806333). f = −23.8 mm.
 
 L44 is cemented to L43, forming the second achromatizing doublet in Gr4. The doublet L43+L44 has a combined focal length of approximately −35.0 mm — substantially negative. This negative doublet within the otherwise positive Gr4 is critical for Petzval sum correction: it reduces the field curvature that would otherwise result from Gr4's strong +26.64 mm power.
 
@@ -163,7 +163,7 @@ nd = 1.94595, νd = 18.0. Glass: FDS18 (HOYA) — ultra-high-dispersion dense fl
 L71 is a positive element made from the most dispersive glass in the system (νd = 18.0, nd = 1.94595). Its extreme dispersion makes it an effective lateral-color corrector when paired with the negative L72. The meniscus shape (both radii negative: R1 = −795.9, R2 = −50.2 mm) directs the converging beam toward the sensor while keeping the Petzval surface contribution under control.
 
 **L72 — Negative Meniscus (concave to object)**
-nd = 1.91082, νd = 35.2. Glass: lanthanum dense flint (911/352 class, uncertain — no exact OHARA catalog match). f = −40.5 mm.
+nd = 1.91082, νd = 35.2. Glass: HOYA TAFD35 (catalog code 911353; patent rounds νd to 35.2). f = −40.5 mm.
 
 L72 is designated Lrr in the patent (¶0064) and satisfies condition (10), the shape-factor criterion: 0.9 < (r2 + r1)/(r2 − r1) < 6.9, where r1 = −36.090 and r2 = −1674.853 mm (computed shape factor ≈ 1.04). This indicates a concave meniscus presenting its convex side (or nearly flat rear surface) toward the image. The patent explains (¶0065) that this shape allows the rearmost surface's effective light-path diameter to be large relative to the element diameter, ensuring that off-axis beams reach the sensor corners without vignetting even at the short back focal distance characteristic of mirrorless designs. The very long radius on the rear surface (R = −1674.9 mm, nearly flat) also minimizes the contribution of the final optical surface to astigmatism and coma.
 
@@ -189,12 +189,12 @@ The design uses 12 distinct glass types across its 20 elements. Glass identifica
 | L41 | 2.00100 | 29.1 | S-LAH99 (OHARA) | Ultra-high-index dense flint | Cemented flint |
 | L42 | 1.49700 | 81.6 | S-FPL51 (OHARA) | Fluorophosphate — ED | Cemented ED positive |
 | L43 | 1.43700 | 95.1 | FCD100 (HOYA) | Fluorophosphate — Super ED | Lmp chromatic corrector |
-| L44 | 1.80610 | 33.3 | Dense flint (806/333, uncertain) | Dense flint | Cemented flint partner |
+| L44 | 1.80610 | 33.3 | HOYA NBFD15 | Dense flint | Cemented flint partner |
 | L45 | 1.85108 | 40.1 | S-LAH89 (OHARA) | Lanthanum dense crown | XA aspheric biconvex |
 | L51 | 1.85155 | 40.1 | S-LAH89 class (OHARA) | Lanthanum dense crown | Negative focus singlet |
 | L61 | 1.61875 | 63.7 | S-PHM52 class (OHARA) | Phosphate crown | Positive focus singlet |
 | L71 | 1.94595 | 18.0 | FDS18 (HOYA) | Ultra-high-dispersion dense flint | Lateral color corrector |
-| L72 | 1.91082 | 35.2 | Lanthanum dense flint (911/352, uncertain) | Lanthanum dense flint | Lrr field corrector |
+| L72 | 1.91082 | 35.2 | HOYA TAFD35 | Lanthanum dense flint | Lrr field corrector |
 
 The chromatic correction strategy uses three distinct tiers. The first tier is primary achromatization via cemented doublets: L11+L12 in Gr1, L23+L24 in Gr2, L32+L33 in Gr3, L41+L42 in Gr4, and L43+L44 in Gr4. The second tier is secondary-spectrum correction via anomalous partial dispersion glasses. The patent identifies four elements satisfying its ΔPgF conditions: L12 (condition 7, ΔPgF > 0.005), L32 (condition 9, ΔPgF > 0.045), L43 (condition 9), and L42 (S-FPL51, which is known to have ΔPgF ≈ +0.038). These four elements are the production lens's "2 ED + 2 Super ED" special elements. The third tier is ultra-high-dispersion flints (L11 at νd = 20.0, L71 at νd = 18.0) in the front and rear groups, which act as chromatic levers at positions where beam diameters are large but ray heights are very different, providing independent control of axial and lateral color.
 

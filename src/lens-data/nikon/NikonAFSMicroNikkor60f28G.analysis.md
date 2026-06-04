@@ -55,12 +55,12 @@ The G1(+)–G2(−)–Stop–G3(+)–G4(−) power arrangement distributes posit
 | Elem | Group | Type | nd | vd | f (mm) | Glass (catalog match) |
 |---|---|---|---|---|---|---|
 | L1 | G1 | Neg. Meniscus (1× Asph) | 1.80440 | 39.57 | −50.0 | S-LAH63Q (OHARA) / TAF3 (HOYA) |
-| L2 | G1 | Positive Meniscus | 1.63854 | 55.48 | +85.0 | H-LAK6A (CDGM) or Nikon melt |
+| L2 | G1 | Positive Meniscus | 1.63854 | 55.48 | +85.0 | K-SK18 (Sumita) / S-BSM18 (OHARA) |
 | L3 | G1 | Biconvex Positive | 1.83481 | 42.71 | +57.6 | TAFD5 (HOYA) |
 | L4 | G2 | Neg. Meniscus (1× Asph) | 1.51612 | 64.03 | −51.5 | S-BSL7 (OHARA) / N-BK7 (Schott) |
 | L5 | G2 | Biconcave Negative | 1.62004 | 36.30 | −26.3 | S-TIM2 (OHARA) |
 | L6 | G2 | Biconvex Positive | 1.88300 | 40.77 | +21.9 | S-LAH58 (OHARA) |
-| L7 | G3 | Biconvex Positive (ED) | 1.49782 | 82.56 | +79.4 | S-FPM4 (OHARA) — **ED glass** |
+| L7 | G3 | Biconvex Positive (ED) | 1.49782 | 82.56 | +79.4 | J-FKH1 (Hikari) — **ED glass** |
 | L8 | G3 | Biconvex Positive | 1.60300 | 65.47 | +40.6 | S-PHM53 (OHARA) |
 | L9 | G3 | Negative Meniscus | 1.84666 | 23.78 | −66.7 | S-TIH53 (OHARA) / N-SF57 (Schott) |
 | L10 | G4 | Negative Meniscus | 1.80518 | 25.43 | −45.3 | S-TIH6 (OHARA) / SF6 (Schott) |
@@ -80,7 +80,7 @@ The negative meniscus form in front of a positive group is a classic strategy fo
 
 **L2 — Positive Meniscus (f = +85.0 mm)**
 
-L2 is a weak positive meniscus (convex to object). Its glass (nd = 1.63854, vd = 55.48) places it in the lanthanum crown / dense barium crown region of the glass map. No exact match was found in the major Japanese or German catalogs (OHARA, Schott, HOYA); the closest candidate from extended catalogs is CDGM H-LAK6A (nd ≈ 1.6385, vd ≈ 55.4). This may alternatively be a Nikon-specified melt optimized for specific partial dispersion characteristics. Its moderate power and meniscus form contribute to correcting the Petzval sum (field curvature) while introducing minimal additional spherical aberration.
+L2 is a weak positive meniscus (convex to object). Its glass (nd = 1.63854, vd = 55.48) places it in the lanthanum crown / dense barium crown region of the glass map. The local US 7,898,744 table row now resolves to Sumita K-SK18, with OHARA S-BSM18 as a close public equivalent. Its moderate power and meniscus form contribute to correcting the Petzval sum (field curvature) while introducing minimal additional spherical aberration.
 
 **L3 — Biconvex Positive (f = +57.6 mm)**
 
@@ -117,7 +117,7 @@ The aperture stop is located between G2 and G3, and is *fixed* with respect to t
 
 **L7 — Biconvex Positive / ED Glass (f = +79.4 mm)**
 
-L7 is the single ED (Extra-low Dispersion) glass element in the design. Its glass (nd = 1.49782, vd = 82.56) matches OHARA S-FPM4 — a fluorophosphate crown glass with anomalous partial dispersion. This is the element Nikon identifies in marketing materials as the "ED glass lens." With vd = 82.56, L7 has exceptionally low dispersion, meaning it contributes positive power with minimal chromatic aberration. The anomalous partial dispersion characteristic means L7 departs from the "normal line" on the PgF–vd diagram, enabling correction of secondary spectrum (residual longitudinal chromatic aberration) that cannot be eliminated with ordinary crown-flint doublets alone.
+L7 is the single ED (Extra-low Dispersion) glass element in the design. Its glass (nd = 1.49782, vd = 82.56) matches Hikari J-FKH1 — a fluorophosphate crown glass with anomalous partial dispersion. This is the element Nikon identifies in marketing materials as the "ED glass lens." With vd = 82.56, L7 has exceptionally low dispersion, meaning it contributes positive power with minimal chromatic aberration. The anomalous partial dispersion characteristic means L7 departs from the "normal line" on the PgF–vd diagram, enabling correction of secondary spectrum (residual longitudinal chromatic aberration) that cannot be eliminated with ordinary crown-flint doublets alone.
 
 Placing the ED element in the rear focusing group (G3) rather than the fixed front group is a deliberate design choice: as G3 moves during focusing, the ED element's chromatic contribution shifts, compensating for the changing chromatic balance that would otherwise degrade image quality at close focus distances.
 
@@ -278,14 +278,14 @@ The 12 elements use a range of glass types spanning from low-index fluorophospha
 
 **Primary chromatic correction** is handled by the classical achromatic doublet L8+L9 in G3, which provides a large Abbe number difference (Δvd = 41.69) for effective primary color correction.
 
-**Secondary spectrum correction** is provided by the ED glass element L7 (S-FPM4, vd = 82.56), whose anomalous partial dispersion (dPgF ≈ +0.033) enables correction beyond what ordinary crown-flint pairs can achieve. This is the element identified by Nikon's "ED" designation. S-FPM4 is a fluorophosphate crown with moderate anomalous dispersion — less extreme than the fluorite-substitute glasses used in Nikon's Super ED elements (such as S-FPL53, dPgF ≈ +0.048), but sufficient for effective secondary spectrum reduction in a 60 mm normal-focal-length design where the chromatic demands are less severe than in a long telephoto.
+**Secondary spectrum correction** is provided by the ED glass element L7 (J-FKH1, vd = 82.56), whose anomalous partial dispersion (dPgF ≈ +0.033) enables correction beyond what ordinary crown-flint pairs can achieve. This is the element identified by Nikon's "ED" designation. J-FKH1 is a fluorophosphate crown with moderate anomalous dispersion — less extreme than the fluorite-substitute glasses used in Nikon's Super ED elements (such as S-FPL53, dPgF ≈ +0.048), but sufficient for effective secondary spectrum reduction in a 60 mm normal-focal-length design where the chromatic demands are less severe than in a long telephoto.
 
 **Petzval sum control** drives the use of multiple high-index glasses (nd > 1.80) throughout the design. High refractive index allows strong positive or negative power with relatively weak surface curvatures, which contributes less Petzval curvature per unit of optical power. The negative G4 group with its high-index flint glasses (L10, L11, L12) is specifically positioned to flatten the field.
 
 
 ### 6.2 Glass Identification Confidence
 
-Glasses matched with Δnd < 0.001 and Δvd < 0.5 are considered high-confidence identifications. The following elements have effectively exact catalog matches: L1 (S-LAH63Q / TAF3), L3 (TAFD5), L4 (S-BSL7 / N-BK7), L5 (S-TIM2), L6 (S-LAH58), L7 (S-FPM4), L8 (S-PHM53), L9 (S-TIH53), L10 (S-TIH6), L11 (HOYA NBFD3), L12 (S-TIH53). One element — L2 (nd = 1.63854, vd = 55.48) — has no precise match in the standard OHARA, Schott, or HOYA catalogs. Its position on the glass map falls in the lanthanum crown / barium crown boundary region. The closest candidate from extended catalogs is CDGM H-LAK6A (nd ≈ 1.6385, vd ≈ 55.4), though this may also be a Nikon-specified melt.
+Glasses matched with Δnd < 0.001 and Δvd < 0.5 are considered high-confidence identifications. The following elements have effectively exact catalog matches: L1 (S-LAH63Q / TAF3), L2 (K-SK18 / S-BSM18), L3 (TAFD5), L4 (S-BSL7 / N-BK7), L5 (S-TIM2), L6 (S-LAH58), L7 (J-FKH1), L8 (S-PHM53), L9 (S-TIH53), L10 (S-TIH6), L11 (HOYA NBFD3), L12 (S-TIH53).
 
 ### 6.3 Nano Crystal Coat
 

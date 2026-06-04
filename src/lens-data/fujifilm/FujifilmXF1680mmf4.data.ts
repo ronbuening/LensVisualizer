@@ -130,7 +130,7 @@ const LENS_DATA = {
       nd: 1.8078,
       vd: 40.89,
       fl: -17.3,
-      glass: "808409 - PGM lanthanum dense flint (patent nd=1.80780, vd=40.89; no exact public catalog match)",
+      glass: "808409 - PGM lanthanum dense flint (MC-NBFD135 code match; patent nd=1.80780, vd=40.89)",
       apd: false,
       role: "Primary wide-end SA & distortion corrector; double-sided asphere",
     },

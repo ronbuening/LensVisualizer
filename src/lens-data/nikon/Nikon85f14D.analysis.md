@@ -121,14 +121,14 @@ Glass types were identified by matching patent nd/νd values against known optic
 |------|------------|------|------|-------------------|------------|-------|
 | 1 | L1a | 1.60300 | 65.42 | **OHARA S-PHM53** (nd=1.60300, νd=65.44) | High | Phosphate crown. Δνd=0.02 |
 | 2 | L1b | 1.59319 | 67.87 | Fluorophosphate crown (glass code 593679) | Low | No exact current-catalog match. Nearest: OHARA S-FPM2 (nd=1.59522, νd=67.73, Δnd=0.002). Likely a 1990s-era fluorophosphate crown, now discontinued or redesignated. Specific type uncertain |
-| 3 | L2 | 1.79631 | 40.90 | **HOYA NBFD15 / SCHOTT LaSF3** (nd=1.79631, νd=40.90) | Exact | Dense lanthanum flint (glass code 796409). SCHOTT LaSF3 is now discontinued; HOYA NBFD15 remains in production. No current OHARA exact equivalent |
+| 3 | L2 | 1.79631 | 40.90 | **OHARA S-LAH52** | Catalog-tolerance | Dense lanthanum flint; resolver-friendly current-catalog match for the patent row |
 | 4 | L3 | 1.71736 | 29.46 | **SCHOTT SF1 / OHARA S-TIH1** (nd=1.71736, νd=29.51) | High | Dense flint. Exact nd match |
 | 5 | L4 | 1.80454 | 39.61 | **HOYA NBFD3** (nd=1.80454, νd=39.61) | Exact | Dense niobium flint. OHARA S-LAH63 is near-equivalent |
 | 6 | L5 | 1.67270 | 32.17 | **HOYA E-FD5 / OHARA S-TIM25** (nd=1.67270, νd=32.17) | Exact | Flint glass |
 | 7 | L6 neg | 1.68893 | 31.08 | **OHARA S-TIM28** (nd=1.68893, νd=31.08) | Exact | Flint glass |
-| 8 | L6 pos | 1.86994 | 39.82 | **HOYA TAFD30** (nd=1.86994, νd=39.82) | Exact | Very dense lanthanum flint. Expensive high-index glass |
+| 8 | L6 pos | 1.86994 | 39.82 | **HOYA TAFD32** | Catalog-tolerance | Very dense lanthanum flint. Expensive high-index glass |
 | 9 | L7 | 1.78797 | 47.47 | **SCHOTT LaFN21** (nd=1.78797, νd=47.47) | Exact | Lanthanum flint. Modern equivalent: SCHOTT N-LAF21 |
-| 10 | L8 | 1.74810 | 52.30 | **OHARA S-LAM66** (nd=1.74810, νd=52.30) | Exact | Lanthanum crown (anomalous partial dispersion). This is one of the "expensive glass" types referenced in Nikon's historical account |
+| 10 | L8 | 1.74810 | 52.30 | **OHARA S-LAM60** | Catalog-tolerance | Lanthanum crown. This is one of the "expensive glass" types referenced in Nikon's historical account |
 
 Eight of the ten elements have exact catalog matches (Δnd = 0, Δνd < 0.1). Element L1a has a near-exact match (OHARA S-PHM53, Δνd = 0.02). Element L1b is the only element without a confident identification — its nd/νd combination falls in the fluorophosphate crown region of the glass map but does not match any current catalog entry precisely. Both L1a and L1b use relatively low-dispersion crown glasses in the front group to provide chromatic correction, while the remaining elements use progressively higher-index, higher-dispersion materials toward the center of the system — a classical dispersion-balancing strategy.
 
@@ -150,7 +150,7 @@ Eight of the ten elements have exact catalog matches (Δnd = 0, Δνd < 0.1). El
 - **Dispersion note:** The Abbe number difference v1−v2 = 65.42−40.90 = 24.52 (patent condition 15) is computed between L1a and L2, not within the L1 compound, confirming that the chromatic correction strategy uses the low-dispersion front pair against the higher-dispersion L2.
 
 #### Element 3 — L2 (Positive Meniscus, convex toward object)
-- **Glass:** Dense lanthanum flint (LaSF3 / NBFD15 type), nd=1.796, νd=40.9
+- **Glass:** Dense lanthanum flint (S-LAH52 type), nd=1.796, νd=40.9
 - **Thin-lens FL:** +371 mm (weakly positive)
 - **Shape:** Meniscus with both surfaces convex toward object (R5=43.25, R6=50.65), deeply curved
 - **Role:** Completes the positive power of G1. Its high refractive index (1.796) allows strong curvatures with less spherical aberration than would be possible with lower-index glass. The higher dispersion (νd=40.9) relative to L1a/L1b provides the Abbe number differential needed for lateral chromatic aberration and chromatic astigmatism correction within G1 (condition 15). The patent states that r3/f = 0.509, and this value — combined with r1/f — must satisfy conditions (6) and (12) simultaneously to control annular spherical aberration.
@@ -185,7 +185,7 @@ Eight of the ten elements have exact catalog matches (Δnd = 0, Δνd < 0.1). El
 
 #### Elements 7+8 — L6 (Cemented Doublet: Biconcave Negative + Biconvex Positive)
 - **L6 negative glass:** Flint (S-TIM28 type), nd=1.689, νd=31.1
-- **L6 positive glass:** Very dense lanthanum flint (TAFD30 type), nd=1.870, νd=39.8
+- **L6 positive glass:** Very dense lanthanum flint (TAFD32 type), nd=1.870, νd=39.8
 - **Individual thin-lens FLs:** L6 neg = −43.3 mm, L6 pos = +41.1 mm
 - **Combined cemented doublet FL:** +328 mm (thick-lens paraxial trace; weakly positive). Note: a thin-lens approximation gives +816 mm, but this substantially underestimates the combined power because the doublet is 9.8 mm thick — the thick-lens value is the appropriate one.
 - **Shape:** L6 neg is biconcave (R14=−36.69, junction R15=158.85); L6 pos is biconvex (junction R15=158.85, R16=−46.12)
@@ -200,7 +200,7 @@ Eight of the ten elements have exact catalog matches (Δnd = 0, Δνd < 0.1). El
 - **Group membership:** G2, rear sub-unit G22
 
 #### Element 10 — L8 (Positive Meniscus, concave toward object)
-- **Glass:** Lanthanum crown (S-LAM66 type), nd=1.748, νd=52.3
+- **Glass:** Lanthanum crown (S-LAM60 type), nd=1.748, νd=52.3
 - **Thin-lens FL:** +1342 mm; thick-lens FL: +1300 mm (very weakly positive, F3/f = 15.3)
 - **Shape:** Meniscus with both surfaces concave toward object (R19=−177.67, R20=−150.95)
 - **Role:** The fixed rear compensator group G3. This single weak-positive element is the patent's principal innovation. Its deliberate weakness is by design (condition 3: 9 < F3/f < 20) — if G3 were too strong, it would overcorrect the spherical aberration at close focus and undercorrect the field curvature; too weak and it would be ineffective. The meniscus shape is governed by condition (18): r17/r16 = 0.850 (where r16 and r17 are the object-side and image-side radii of L8, respectively). If this shape ratio falls outside the specified range (0.3 < r17/r16 < 0.9), the balance between spherical aberration and field curvature during focusing becomes untenable. As a fixed element behind the moving G2, L8 exploits the fact that when G2 moves forward for close focus, the marginal ray height in G3 decreases, producing an aberration correction that opposes the degradation in G2. Similarly, the chief ray height in G3 increases at close focus, compensating for the reduced chief ray height in G1. The Nikon "Thousand and One Nights" article describes this element's role as "the touch of a master craftsman specifically intended to curb fluctuations at close range due to upper coma aberration and field curvature." The lanthanum crown glass (νd=52.3) keeps this element's chromatic contribution minimal.
@@ -263,7 +263,7 @@ At close focus (β = −0.10), the aberration plots show that the spherical aber
 | Optical formula | 9 elements / 8 groups |
 | Aspherical surfaces | None |
 | ED / special glass | No ED, fluorite, or Super ED elements |
-| Anomalous partial dispersion | Present in L8 glass (S-LAM66, νd=52.3) but not optically significant — L8's very weak power (F3/f = 15.3) makes its chromatic contribution negligible |
+| Anomalous partial dispersion | Present in L8's lanthanum-crown glass but not optically significant — L8's very weak power (F3/f = 15.3) makes its chromatic contribution negligible |
 | Focus type | Inner focus (G2 only moves) |
 | Focus travel | 10.34 mm forward |
 | Minimum focus distance | 0.85 m (from film plane) |

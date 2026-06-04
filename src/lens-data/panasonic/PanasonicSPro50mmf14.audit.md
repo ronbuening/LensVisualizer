@@ -17,7 +17,7 @@ Patent: WO 2020/158622 A1, Example 3 / Table 3A
 
 | Element / surface | Before | After | Disposition |
 |---|---|---|---|
-| L4 / S7* | `LAH-type... S-LAH93 region` | `808409 - PGM-moldable lanthanum crown...` | Kept as patent code; no exact public catalog match. |
+| L4 / S7* | `LAH-type... S-LAH93 region` | `808409 - PGM-moldable lanthanum crown...` | Sweep 2 resolves the code through public HOYA MC-NBFD135 coefficients. |
 | L10 / S19 | `S-NPH5 (OHARA)` | `FDS18 (HOYA)` | Exact nd/vd catalog match. |
 | L11 / S21 | `S-BAH11 (OHARA)` | `S-TIL26 (OHARA)` | Exact nd/vd catalog match. |
 | L12 / S22 | `S-FPM4 (OHARA)` | `FCD705 (HOYA)` | Exact nd/vd catalog match. |
@@ -25,8 +25,8 @@ Patent: WO 2020/158622 A1, Example 3 / Table 3A
 ### Catalog-search disposition
 
 - Checked public OHARA/HOYA catalog data and existing coefficient-backed catalog entries.
-- L4 remains unresolved under a code-led label; the prior nearby `S-LAH93` wording was removed to avoid a false match.
-- No new catalog entries were required.
+- L4 now resolves through the Sweep 2 808409 / MC-NBFD135 catalog path; the prior nearby `S-LAH93` wording remains rejected to avoid a false match.
+- L9 now resolves through the existing 717295 SF1 / S-TIH1 code path after removing the `unknown vendor` blocker from the data label.
 
 ### Analysis sync
 

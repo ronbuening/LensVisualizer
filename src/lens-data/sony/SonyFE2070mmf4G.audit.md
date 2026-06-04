@@ -2,6 +2,13 @@
 
 Patent: WO 2023/153076 A1, Example 8
 
+## 2026-06-04 - Sweep 2 manufacturer catalog source pass
+
+- Added HOYA NBFD25 from HOYA's first-party optical-glass PDF (`NBFD25`, code 855-252, nd=1.85451, vd=25.15, PgF=0.6103, formula-3 A0-A5 constants) to the runtime catalog.
+- Relabeled L44 from `Dense flint class (855/252)` to `NBFD25 (HOYA, 855252)`.
+- Resolver support for slash-form codes also lets the existing catalog-backed `593/670` and `720/347` rows resolve from their current annotations.
+- `npm test -- dispersion` and `npm run generate:glass-reports` passed.
+
 ## 2026-05-20 - Glass relabel pass
 
 - Opened the local untracked patent PDF at `patents/WO2023153076A1.pdf`; it is present but image-only in local text extraction.
@@ -9,5 +16,4 @@ Patent: WO 2023/153076 A1, Example 8
 - Updated L11 and L51 from `S-NPH53 (OHARA)` to `FDS18 (HOYA)` for nd=1.94595, vd=18.00.
 - Updated L23 from `S-LAH98 (OHARA)` to `S-NBH56 (OHARA)` for nd=1.85478, vd=24.80.
 - Updated L41 from `S-LAH79 (OHARA)` to `S-LAH98 (OHARA)` for nd=1.95375, vd=32.30.
-- Remaining incomplete Sellmeier coverage is unrelated to this relabel queue pass: the 694/532, 855/252, 593/670, and 720/347 patent glasses still need coefficient-backed public catalog matches.
-
+- Remaining incomplete Sellmeier coverage was unrelated to this May relabel queue pass. The 2026-06-04 source pass resolved 855/252 as HOYA NBFD25 and enabled slash-code resolution for existing 593/670 and 720/347 catalog rows. The Sweep 2 catalog pass later lets 694/532 resolve through the existing S-LAL13 / M-LAC130 code path.

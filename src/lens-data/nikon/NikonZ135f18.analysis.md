@@ -204,7 +204,7 @@ The nd/νd pair (1.85883 / 30.00) does not match standard catalog glasses precis
 
 G5 is a three-element negative group (EFL = −71.11 mm) that serves as the final optical group before the sensor. Its negative power creates a divergent exit cone that enlarges the image circle beyond what the sensor requires, producing the Plena's signature characteristics: minimal vignetting and consistently circular bokeh to the frame corners.
 
-**L14** (nd = 1.78590, νd = 44.17) is a biconcave negative element (fl = −71.1 mm) that provides the primary negative power of G5. Its glass is a lanthanum flint, consistent with OHARA S-LAM55 or similar.
+**L14** (nd = 1.78590, νd = 44.17) is a biconcave negative element (fl = −71.1 mm) that provides the primary negative power of G5. Its glass now resolves to OHARA S-LAH51 from the local patent nd/vd row.
 
 **L15** (nd = 1.84666, νd = 23.78) is a positive meniscus convex to the object (fl = +88.8 mm). Its very low Abbe number (23.78) indicates a dense short flint, consistent with OHARA S-TIH53 (nd = 1.84666, νd = 23.78) — a near-exact catalog match. This element provides chromatic correction within G5, balancing L14's chromatic contribution.
 

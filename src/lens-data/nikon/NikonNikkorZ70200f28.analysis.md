@@ -137,14 +137,14 @@ The L51+L52 cemented doublet is located immediately behind the aperture stop. L5
 
 | Element | Shape | nd | νd | Glass (six-digit code) | f (thin lens) |
 |---------|-------|-------|-------|-------|------|
-| L61 | Neg. meniscus (convex to object) | 1.85026 | 32.35 | Dense flint (code 850-324, no exact catalog match) | −156 mm |
+| L61 | Neg. meniscus (convex to object) | 1.85026 | 32.35 | Hikari J-LASF021 (850324) | −156 mm |
 | L62 | Biconvex positive **[ASPH]** (cemented with L63) | 1.59306 | 66.97 | PCD51 (HOYA) / J-PSKH4 (Hikari) (593-670) | +48 mm |
 | L63 | Neg. meniscus (concave to object, cemented with L62) | 1.62004 | 36.40 | S-TIM2 (OHARA) / N-F2 (Schott) (620-364) | −216 mm |
-| L64 | Pos. meniscus (convex to object) | 1.80100 | 34.92 | Dense flint (code 801-349, no exact catalog match) | +127 mm |
+| L64 | Pos. meniscus (convex to object) | 1.80100 | 34.92 | Hikari J-LAF016 (801349) | +127 mm |
 
 G6 is the most complex fixed group and the optical heart of the rear relay. L62 carries the first aspherical surface (surface 26), which provides the primary correction of spherical aberration and coma for the full-aperture beam passing through the relay. L62's glass is identified as HOYA PCD51 or Hikari J-PSKH4 (code 593-670), a phosphate crown — notably, PCD51 is explicitly designated as a precision-glass-moldable (PGM) material in the HOYA catalog, confirming that this aspherical element is likely manufactured by glass pressing. L63 is S-TIM2 (OHARA) or Schott N-F2, a standard flint glass (code 620-364) that provides the chromatic correction partner for L62 within the cemented doublet.
 
-L61 (code 850-324) and L64 (code 801-349) have no exact matches in the HOYA/Schott/OHARA/Hikari cross-reference tables. Both are high-index, moderate-dispersion glasses in the dense flint or lanthanum flint region of the glass map. They may be proprietary Nikon formulations or sourced from suppliers (Sumita, CDGM, or others) whose catalog data is not fully represented in the available cross-references.
+The local WO2020/105104 A1 Example 1 table confirms L61 as code 850324 and L64 as code 801349. Both now resolve to coefficient-backed Hikari catalog entries: J-LASF021 for L61 and J-LAF016 for L64. These high-index, moderate-dispersion glasses anchor the rear relay around the molded aspherical doublet and keep G6 on the Sellmeier path.
 
 **G7 — Seventh Lens Group (negative, f = −87.3 mm, first focus group)**
 

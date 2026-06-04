@@ -87,7 +87,7 @@ The patent specifically identifies the front aspherical surface as important for
 ### Elements 2–3 — Lb1: Cemented Positive Doublet
 
 - **Surfaces:** 3 (R = +40.374), 4 (junction, R = +354.974), 5 (R = +42.413)
-- **Lb1p glass:** nd = 1.75500, νd = 52.34 → **OHARA S-LAL14** (exact match) or **Schott N-LAK14** (Δνd = 0.02)
+- **Lb1p glass:** nd = 1.75500, νd = 52.34 → **Hikari J-LASKH2** (exact match) or **Schott N-LAK33B**
 - **Lb1n glass:** nd = 1.48749, νd = 70.31 → **OHARA S-FSL5** (exact match) or **Schott FK5** (Δνd = 0.07)
 - **Shape:** Lb1p is a positive meniscus (convex to object); Lb1n is a negative meniscus
 - **Combined focal length:** +134.3 mm (net positive, as a cemented component)
@@ -99,7 +99,7 @@ As discussed in Section 1, the production lens likely separates these two elemen
 ### Element 4 — Lb2: Negative Meniscus
 
 - **Surfaces:** 6 (R = +290.847), 7 (R = +31.636)
-- **Glass:** nd = 1.68893, νd = 31.16 → **Schott N-SF8** (exact match) or **OHARA S-TIH4** (Δνd = 0.08)
+- **Glass:** nd = 1.68893, νd = 31.16 → **HOYA E-FD8** (exact match) or **OHARA S-TIM28**
 - **Shape:** Negative meniscus, convex to object, with a strongly curved rear surface
 - **Focal length:** −51.6 mm
 
@@ -108,7 +108,7 @@ As discussed in Section 1, the production lens likely separates these two elemen
 ### Elements 5–6 — Lc: Cemented Negative Doublet
 
 - **Surfaces:** 9 (R = −30.787), 10 (junction, R = +35.143), 11 (R = −131.141)
-- **Lcn glass:** nd = 1.72825, νd = 28.46 → **OHARA S-TIH11** or **Schott N-SF10** (both exact matches)
+- **Lcn glass:** nd = 1.72825, νd = 28.46 → **CDGM H-ZF4A** or **OHARA S-TIH10**
 - **Lcp glass:** nd = 1.88300, νd = 40.77 → **OHARA S-LAH58** (exact match) or **Schott N-LASF44** (Δνd = 0.01)
 - **Shape:** Lcn is a biconcave negative; Lcp is a biconvex positive
 - **Combined focal length:** −84.9 mm (net negative)
@@ -143,10 +143,10 @@ The nine elements use **seven distinct glass types** (corrected from the origina
 | Glass Type | Elements | nd | νd | Catalog Match | Role |
 |---|---|---|---|---|---|
 | Lanthanum dense flint | La, Ldp2 | 1.74443 | 49.53 | Sumita K-LaKn2 / HIKARI E-LAF7 | Aspherical substrates |
-| Lanthanum crown | Lb1p | 1.75500 | 52.34 | OHARA S-LAL14 | Low-aberration positive power |
+| Lanthanum crown | Lb1p | 1.75500 | 52.34 | Hikari J-LASKH2 / Schott N-LAK33B | Low-aberration positive power |
 | Fluorine crown | Lb1n | 1.48749 | 70.31 | OHARA S-FSL5 | Chromatic correction |
-| Dense flint | Lb2 | 1.68893 | 31.16 | Schott N-SF8 | Petzval field flattening |
-| Dense flint (high) | Lcn | 1.72825 | 28.46 | OHARA S-TIH11 / Schott N-SF10 | Chromatic balancing |
+| Dense flint | Lb2 | 1.68893 | 31.16 | HOYA E-FD8 / OHARA S-TIM28 | Petzval field flattening |
+| Dense flint (high) | Lcn | 1.72825 | 28.46 | CDGM H-ZF4A / OHARA S-TIH10 | Chromatic balancing |
 | High-index lanthanum | Lcp | 1.88300 | 40.77 | OHARA S-LAH58 | Petzval correction |
 | High-index lanthanum | Ldp1 | 1.88300 | 40.66 | OHARA S-LAH64 | Petzval correction |
 | Short flint (APD) | Ldn | 1.53172 | 48.78 | Unmatched KZFS2-type | Secondary spectrum control |
@@ -295,9 +295,9 @@ The inventor, Haruo Sato, is one of Nikon's optical designers associated with th
 6. **NikonForums** — "AF-S Nikkor 58mm F1.4G Review": "Focusing is not internal, so at the minimum focusing distance, the front element moves forward by about one centimeter."
 7. **Thom Hogan (DSLRBodies)** — "Nikon 58mm f/1.4G AF-S Lens Review."
 8. **Nikon "NIKKOR — The Thousand and One Nights"** — Tale 16 (Ai Noct-NIKKOR 58mm f/1.2), Tale 40 (Nikkor-S Auto 5.8cm f/1.4). imaging.nikon.com.
-9. **OHARA Optical Glass Catalog** — Glass identification reference (S-LAH58, S-LAH64, S-LAL14, S-FSL5, S-TIH11, S-TIH4).
-10. **Schott Optical Glass Catalog** — Glass identification reference (N-LAK14, FK5, N-SF8, N-SF10, N-LASF44, KZFS2).
-11. **Sumita Optical Glass Catalog** — Glass identification reference (K-LaKn2).
+9. **OHARA Optical Glass Catalog** — Glass identification reference (S-LAH58, S-LAH64, S-FSL5, S-TIH10, S-TIM28).
+10. **Schott Optical Glass Catalog** — Glass identification reference (N-LAK33B, FK5, N-LASF44, KZFS2).
+11. **Sumita, Hikari, HOYA, and CDGM optical glass catalogs** — Glass identification reference (K-LaKn2, J-LASKH2, E-FD8, H-ZF4A).
 
 ---
 

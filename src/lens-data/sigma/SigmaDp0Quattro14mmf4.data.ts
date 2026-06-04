@@ -94,7 +94,7 @@ const LENS_DATA = {
       nd: 1.59282,
       vd: 68.62,
       fl: -24.1,
-      glass: "M-TAC80 (HOYA)",
+      glass: "FCD515 (HOYA)",
       apd: "inferred",
       apdNote: "Phosphate crown (SLD); positive anomalous partial dispersion.",
       role: "Negative element of first cemented doublet Ja, immediately behind the stop. SLD glass with moderate Abbe number.",

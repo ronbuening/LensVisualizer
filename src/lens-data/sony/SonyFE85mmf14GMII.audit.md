@@ -3,6 +3,12 @@
 Patent: WO 2025/239028 A1, Example 2 (Sony Group Corp.; Tables 6-10, Figure 6)
 Catalog version: bb70259
 
+## 2026-06-04 — Sweep 2 manufacturer catalog source pass
+
+- Added HOYA NBFD29 from HOYA's first-party optical-glass PDF (`NBFD29`, code 770-297, nd=1.77047, vd=29.74, PgF=0.5951, formula-3 A0-A5 constants) to the runtime catalog.
+- Relabeled L9 / S16 from code-only `770297` to `NBFD29 (HOYA, 770297)`.
+- `npm test -- dispersion` and `npm run generate:glass-reports` passed; L9 now uses trusted Sellmeier data.
+
 ## 2026-05-10 — Patent prescription and glass-label audit
 
 ### Phase 1 — Glass corrections
@@ -62,4 +68,4 @@ Catalog version: bb70259
 
 ### Outstanding follow-ups
 
-- Patent-code glasses 770297, 986165, and 870200 intentionally remain catalog-unresolved until a public Sellmeier source is added.
+- Patent-code glasses 986165 and 870200 intentionally remain catalog-unresolved until a public Sellmeier source is added. The 2026-06-04 source pass resolved 770297 as HOYA NBFD29.

@@ -123,10 +123,10 @@ The patent lists nine distinct glass types. Five of the nine elements use the sa
 | L1, L2, L3, L8 | 1.62041 | 60.3 | **SK16** (Schott) / S-BSM16 (Ohara) | Dense barium crown | Exact match |
 | L4 | 1.62004 | 36.3 | **F2** (Schott) / S-TIM2 (Ohara) | Flint | Exact match |
 | L5 | 1.51823 | 59.0 | **BSC3** (Hoya) or historical crown equivalent | Borosilicate crown | Near-exact (Δν_d ≈ 0.1) |
-| L6, L7 | 1.78470 | 26.1 | **SF56A** (Schott) / S-TIH6 (Ohara) | Dense flint | Exact match |
+| L6, L7 | 1.78470 | 26.1 | **S-TIH23** (Ohara, SF11-family) | Dense flint | Catalog-tolerance match |
 | L9 | 1.74400 | 44.9 | **LAF2** (Schott) / S-LAM2 (Ohara) | Lanthanum flint | Exact match |
 
-**Note on ν_d for L6:** The patent lists n₆ = 1.78470 for L6 without an accompanying Abbe number. The Abbe number column in the patent prescription is blank for L6's entry (d₁₀ row). However, n₇ = 1.78470 with ν_d = 26.1 is listed for L7. Since the refractive indices are identical to five decimal places, the two elements share the same glass. This inference is further supported by the patent's notation convention, which omits redundant glass data when consecutive elements use the same material, and by the glass catalog match: nd = 1.78470 with νd = 26.1 corresponds exactly to SF56A / S-TIH6, a standard dense flint. The inferred ν_d₆ = 26.1 is treated as established throughout this analysis.
+**Note on ν_d for L6:** The patent lists n₆ = 1.78470 for L6 without an accompanying Abbe number. The Abbe number column in the patent prescription is blank for L6's entry (d₁₀ row). However, n₇ = 1.78470 with ν_d = 26.1 is listed for L7. Since the refractive indices are identical to five decimal places, the two elements share the same glass. This inference is further supported by the patent's notation convention, which omits redundant glass data when consecutive elements use the same material, and by the glass catalog match: nd = 1.78470 with νd = 26.1 corresponds to OHARA S-TIH23 in the current resolver catalog. The inferred ν_d₆ = 26.1 is treated as established throughout this analysis.
 
 **Note on L5 glass:** The n_d/ν_d pair (1.51823, 59.0) does not match any currently catalogued glass exactly. The closest match is HOYA BSC3 (n_d = 1.51823, ν_d = 58.90, Δν_d = 0.10), a borosilicate crown. This glass occupied the 518/590 position on the glass map — a region where several 1960s catalog types have since been reformulated or discontinued. Given that Nippon Kogaku sourced glass from both Hoya and Ohara in this era, HOYA BSC3 or an equivalent internal designation is the most probable identification.
 
@@ -137,7 +137,7 @@ The five glass types used in this design occupy distinct positions on the Abbe d
 - **SK16** (nd = 1.620, νd = 60.3) — dense barium crown, high in the crown region. Workhorse glass providing moderate refractive power with low dispersion. Used for four of nine elements.
 - **F2** (nd = 1.620, νd = 36.3) — classical flint glass. Notably, F2 has almost the same refractive index as SK16 (Δn_d = 0.00037) but far higher dispersion. This pairing enables strong chromatic correction at the L4–L5 cemented interface with minimal variation in Petzval contribution.
 - **BSC3** (nd = 1.518, νd = 59.0) — light crown. Low refractive power, used to balance the cemented doublet L4–L5.
-- **SF56A** (nd = 1.785, νd = 26.1) — dense flint. Very high refractive index and high dispersion. Provides strong negative power for L6 (the Tessar-type central corrector) and L7 (negative element of the cemented meniscus).
+- **S-TIH23** (nd = 1.785, νd = 26.1) — dense flint in the SF11 family. Very high refractive index and high dispersion. Provides strong negative power for L6 (the Tessar-type central corrector) and L7 (negative element of the cemented meniscus).
 - **LAF2** (nd = 1.744, νd = 44.9) — lanthanum flint. High refractive index with moderate dispersion. Used for L9, the rear field-flattening element, where high power is needed without excessive chromatic contribution.
 
 ---
@@ -236,7 +236,7 @@ Located in the air gap between L5 (rear of the first cemented doublet) and L6 (t
 
 ### L6 — Biconcave Negative
 
-**Glass:** SF56A (n_d = 1.78470, ν_d = 26.1)  
+**Glass:** S-TIH23 (n_d = 1.78470, ν_d = 26.1)
 **Surfaces:** r₁₀ = −3.542, r₁₁ = +1.350  
 **Thin-lens focal length:** −29.9 mm  
 **Shape:** Both surfaces concave (biconcave), with the rear surface significantly more strongly curved  
@@ -253,7 +253,7 @@ In operation, both the front section (L1–L6) and rear section (L7–L9) advanc
 
 ### L7 — Biconcave Negative (cemented with L8)
 
-**Glass:** SF56A (n_d = 1.78470, ν_d = 26.1)  
+**Glass:** S-TIH23 (n_d = 1.78470, ν_d = 26.1)
 **Surfaces:** r₁₂ = −5.000, r₁₃ = +1.173  
 **Thin-lens focal length:** −29.1 mm  
 **Cemented with:** L8 (doublet D2)  
@@ -277,7 +277,7 @@ L8 completes the second cemented doublet. The L7–L8 combination is a positive-
 **Thin-lens focal length:** +50.4 mm  
 **Shape:** Biconvex (R₁₅ > 0, R₁₆ < 0); front surface very weakly curved, rear surface strongly curved  
 
-L9 is the final element and serves as the field-flattening lens that the patent describes as providing "a predetermined focal length to constitute the whole lens system." Positioned after the reversed-Tessar subgroup (L4–L8), L9 contributes the final convergence needed to bring the system's composite EFL to 24 mm. Its lanthanum flint glass (LAF2, ν_d = 44.9) provides high refractive power without the severe dispersion of the SF56A used in L6–L7, making it effective for producing positive power with manageable chromatic contribution. The strongly curved rear surface (r₁₆ = −1.942) — the closest optical surface to the image plane — acts as the primary field-flattening corrector, adjusting the Petzval curvature and controlling residual astigmatism at the field edges.
+L9 is the final element and serves as the field-flattening lens that the patent describes as providing "a predetermined focal length to constitute the whole lens system." Positioned after the reversed-Tessar subgroup (L4–L8), L9 contributes the final convergence needed to bring the system's composite EFL to 24 mm. Its lanthanum flint glass (LAF2, ν_d = 44.9) provides high refractive power without the severe dispersion of the S-TIH23 pair used in L6–L7, making it effective for producing positive power with manageable chromatic contribution. The strongly curved rear surface (r₁₆ = −1.942) — the closest optical surface to the image plane — acts as the primary field-flattening corrector, adjusting the Petzval curvature and controlling residual astigmatism at the field edges.
 
 ---
 
@@ -327,6 +327,6 @@ No Seidel coefficient table or aberration plots are provided for Example II, and
 1. **US Patent 3,622,227** — Yoshiyuki Shimizu, "Retrofocus-Type Wide-Angle Camera Lens," filed Dec. 24, 1969, granted Nov. 23, 1971.
 2. **Nikon Corporation** — Kouichi Ohshita, "NIKKOR — The Thousand and One Nights, Tale No. 14: The first lens equipped with the close-range-correction mechanism — NIKKOR-N Auto 24mm f/2.8." Published at imaging.nikon.com/imaging/information/story/0014/.
 3. **Nikon Corporation** — Kouichi Ohshita, "NIKKOR — The Thousand and One Nights, Tale No. 27." Published at imaging.nikon.com/imaging/information/story/0027/. References the CRC system's origin and Shimizu's design work.
-4. **Schott AG** — Optical Glass Catalog (current edition). Glass designations SK16, F2, SF56A, LAF2.
-5. **Ohara Inc.** — Optical Glass Catalog. Equivalent designations S-BSM16, S-TIM2, S-TIH6, S-LAM2.
+4. **Schott AG** — Optical Glass Catalog (current edition). Glass designations SK16, F2, historical SF-family equivalents, LAF2.
+5. **Ohara Inc.** — Optical Glass Catalog. Equivalent designations S-BSM16, S-TIM2, S-TIH23, S-LAM2.
 6. **Hoya Corporation** — Optical Glass Catalog (historical). BSC3 glass identification (nd = 1.51823, νd = 58.90).

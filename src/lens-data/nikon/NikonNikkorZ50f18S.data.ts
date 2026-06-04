@@ -142,7 +142,7 @@ const LENS_DATA = {
       nd: 1.77377,
       vd: 47.2,
       fl: 32.84,
-      glass: "774472 — lanthanum dense flint (patent nd=1.77377, νd=47.2; no exact public catalog match)",
+      glass: "774472 - lanthanum dense flint (M-TAF401 code match; patent nd=1.77377, vd=47.2)",
       apd: false,
       role: "Second aspherical element — double asphere (both surfaces). Primary monochromatic aberration corrector in the focusing group. Image-side surface carries ~75× more aspherical departure than object side. Probable precision glass molded (PGM) element; high-index lanthanum glass minimises mass for fast AF response.",
     },

@@ -154,7 +154,7 @@ The following table summarizes the inferred glass identifications. Glasses label
 | L2 | 1.618000 | 63.34 | S-PHM52 (OHARA) | Confident | Phosphate crown |
 | L3 | 1.775030 | 47.31 | Moldable lanthanum crown | Uncertain | No exact public Sellmeier match; retained as 775/473 class |
 | L4 | 1.834000 | 37.18 | S-LAH60 (OHARA) | Confident | Dense lanthanum flint |
-| L5 | 1.854510 | 25.15 | 855252 patent code | Unresolved | Very high-dispersion flint; no exact public catalog match |
+| L5 | 1.854510 | 25.15 | HOYA NBFD25 | Catalog-backed | Very high-dispersion flint; HOYA code 855252 |
 | L6 | 1.497820 | 82.57 | **S-FPL53 (OHARA)** | Confident | Fluorophosphate ED glass |
 | L7 | 1.593060 | 66.97 | Moldable phosphate crown | Uncertain | No exact catalog match; aspherical, requires mold glass |
 | L8 | 1.618000 | 63.34 | S-PHM52 (OHARA) | Confident | Same glass as L2 |

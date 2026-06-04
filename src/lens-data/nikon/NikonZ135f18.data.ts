@@ -226,7 +226,7 @@ const LENS_DATA = {
       nd: 1.7859,
       vd: 44.17,
       fl: -71.1,
-      glass: "Lanthanum flint (near S-LAM55)",
+      glass: "S-LAH51 (OHARA, patent nd/vd match)",
       apd: false,
       role: "Primary negative power of G5. Creates divergent exit cone for oversized image circle — the core of the Plena's low-vignetting design.",
     },

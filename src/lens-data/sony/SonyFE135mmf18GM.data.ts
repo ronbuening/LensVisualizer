@@ -184,7 +184,7 @@ const LENS_DATA = {
       nd: 1.8061,
       vd: 33.27,
       fl: 50.9,
-      glass: "Lanthanum heavy flint (806/333, vendor uncertain)",
+      glass: "NBFD15 (HOYA, 806333)",
       apd: false,
       cemented: "D3",
       role: "Front element of GR4 doublet; strongly converges axial rays, separating them from peripheral rays for independent correction.",

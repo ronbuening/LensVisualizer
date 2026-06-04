@@ -2,6 +2,18 @@
 
 Patent: WO 2022/071249 A1
 
+## 2026-06-04 — Sweep 1 local patent relabel
+
+- Local patent source: `patents/WO2022071249A1.pdf` (untracked local file).
+- The local PDF is image-based under `pdftotext -layout`; matching rows were cross-checked against Google Patents OCR for the same WO publication.
+
+| Element / row | Patent nd/vd | Before | After | Disposition |
+|---|---|---|---|---|
+| L3 / row 5 | 2.00100 / 29.12 | `S-NPH1 (OHARA)` | `S-LAH99 (OHARA, patent nd/vd match)` | OHARA S-LAH99 clears the prior S-NPH1 mismatch. |
+| L4 / row 7 | 1.80518 / 25.45 | `S-TIH14 (OHARA)` | `S-TIH6 (OHARA, patent nd/vd match)` | OHARA S-TIH6 round-trips the stored patent pair. |
+
+- `npm run generate:glass-reports` passed; this lens no longer appears in the catalog-mismatch reports.
+
 ## 2026-05-20 — Patent unavailable disposition
 
 - The requested local patent review could not be completed because the untracked `patents/` folder does not contain `WO 2022/071249 A1`.

@@ -97,9 +97,9 @@ S-LAM54 is a lanthanum flint (LaF) type glass with an excellent combination of h
 
 ### Element 3 — L(2,2): nd = 1.68893, νd = 31.2
 
-**Best match: S-TIM35 (OHARA) / FD110 (HOYA)**
+**Best match: E-FD8 (HOYA) / S-TIM28 (OHARA)**
 
-S-TIM35 is a titanium flint glass with moderately high dispersion. Cemented to L(2,1), it forms the negative half of the L2 doublet. The Abbe number difference between L(2,1) and L(2,2) is 47.7 − 31.2 = 16.5, satisfying the patent's Condition (4) requiring this difference to exceed 7.0. This large Δν drives effective achromatization in the front group — the positive and negative elements focus different wavelengths at sufficiently similar points to control longitudinal chromatic aberration on the object side of the stop.
+E-FD8 / S-TIM28 is a dense flint glass with moderately high dispersion. Cemented to L(2,1), it forms the negative half of the L2 doublet. The Abbe number difference between L(2,1) and L(2,2) is 47.7 − 31.2 = 16.5, satisfying the patent's Condition (4) requiring this difference to exceed 7.0. This large Δν drives effective achromatization in the front group — the positive and negative elements focus different wavelengths at sufficiently similar points to control longitudinal chromatic aberration on the object side of the stop.
 
 ### Element 4 — L(3,1): nd = 1.48749, νd = 70.4
 
@@ -131,7 +131,7 @@ F5 is a medium-index flint glass with moderate dispersion. This element serves a
 |------|-------------|-------------------|--------------|----------------|
 | L1 | 1.64769 / 33.8 | SF2 (Schott) | Dense flint | Front negative, asph. |
 | L2 | 1.75700 / 47.7 | S-LAM54 (OHARA) | Lanthanum flint | Doublet positive |
-| L3 | 1.68893 / 31.2 | S-TIM35 (OHARA) | Titanium flint | Doublet negative |
+| L3 | 1.68893 / 31.2 | E-FD8 (HOYA) / S-TIM28 (OHARA) | Dense flint | Doublet negative |
 | L4 | 1.48749 / 70.4 | FK5 (Schott) | Fluorophosphate crown | Triplet front negative |
 | L5 | 1.83500 / 43.0 | S-LAH55 (OHARA) | Lanthanum crown | Triplet positive core |
 | L6 | 1.74077 / 27.8 | EFD4 (HOYA) | Extra-dense flint | Triplet rear negative |
@@ -265,7 +265,7 @@ In the compact camera implementation, this is the rearmost glass element, positi
 
 ### L2 — Cemented Doublet: L(2,1) + L(2,2)
 
-The L2 doublet (surfaces R3 through R5) cements a lanthanum positive element (S-LAM54) to a titanium flint negative (S-TIM35). The junction at R4 = −14.840 mm creates an internal refracting surface with index step Δn = 1.68893 − 1.75700 = −0.06807. This relatively small step (compared to the L3 junctions) indicates that the L2 doublet functions primarily as an achromatic pair where the chromatic correction derives from the Abbe number difference (Δν = 16.5) rather than from a large power contribution at the cemented surface itself.
+The L2 doublet (surfaces R3 through R5) cements a lanthanum positive element (S-LAM54) to a dense flint negative (E-FD8 / S-TIM28). The junction at R4 = −14.840 mm creates an internal refracting surface with index step Δn = 1.68893 − 1.75700 = −0.06807. This relatively small step (compared to the L3 junctions) indicates that the L2 doublet functions primarily as an achromatic pair where the chromatic correction derives from the Abbe number difference (Δν = 16.5) rather than from a large power contribution at the cemented surface itself.
 
 ### L3 — Cemented Triplet (Junction Lens): L(3,1) + L(3,2) + L(3,3)
 
@@ -329,5 +329,4 @@ The limited-edition L39 mount version (1997) placed the entire optical assembly 
 ---
 
 **Document prepared from US Patent 5,760,973. All numerical values and condition parameters verified by independent paraxial ray trace computation (EFL verified to within 0.02% of patent-stated value). Petzval sum computed surface-by-surface and verified against group contributions. Aspherical departures and local slopes computed numerically and cross-checked against patent descriptions. Glass identifications are inferred from catalog matching against OHARA, Schott, and HOYA databases and should be treated as best-fit identifications rather than confirmed production specifications.**
-
 
