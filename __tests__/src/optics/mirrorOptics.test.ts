@@ -19,6 +19,7 @@ import {
   doLayout,
   entrancePupilAtState,
   solveChiefRay,
+  stopInnerBlockedSemiDiameter,
   SVG_PATH_SUBDIVISIONS,
   traceRay,
 } from "../../../src/optics/optics.js";
@@ -261,6 +262,26 @@ describe("mirror optics support", () => {
     const blockedFraction = L.S[L.labelIdx.OBS].sd / L.EP.epSD;
     expect(samples.length).toBeGreaterThan(0);
     expect(samples.every((fraction) => Math.abs(fraction) >= blockedFraction - 1e-9)).toBe(true);
+  });
+
+  it("resolves central stop blockers from folded obstruction geometry", () => {
+    const annular = buildLens(annularData);
+    const nikon = buildLens(nikonReflex500NewData);
+    const ringBlocker = buildLens(ringBlockerData);
+
+    expect(stopInnerBlockedSemiDiameter(annular)).toBeCloseTo(6, 12);
+    expect(stopInnerBlockedSemiDiameter(nikon)).toBeCloseTo(20.35, 12);
+    expect(stopInnerBlockedSemiDiameter(ringBlocker)).toBe(0);
+  });
+
+  it("prefers an explicitly authored stop inner semi-diameter", () => {
+    const explicitStopData = {
+      ...annularData,
+      surfaces: annularData.surfaces.map((surface) => (surface.label === "STO" ? { ...surface, innerSd: 4 } : surface)),
+    } satisfies LensData;
+    const L = buildLens(explicitStopData);
+
+    expect(stopInnerBlockedSemiDiameter(L)).toBe(4);
   });
 
   it("renders annular mirror elements with an even-odd aperture hole", () => {

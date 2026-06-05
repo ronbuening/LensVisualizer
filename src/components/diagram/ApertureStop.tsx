@@ -13,6 +13,7 @@ interface ApertureStopProps {
   stopPhysSD: number;
   stopHousingSD: number;
   currentPhysStopSD: number;
+  innerBlockedSD?: number;
   bladeStubFrac: number;
   lyStoPad: number;
   pointTransform?: (z: number, y: number) => [number, number];
@@ -26,12 +27,17 @@ export default function ApertureStop({
   stopPhysSD,
   stopHousingSD,
   currentPhysStopSD,
+  innerBlockedSD,
   bladeStubFrac,
   lyStoPad,
   pointTransform,
   t,
 }: ApertureStopProps) {
   const bladeInner = Math.min(currentPhysStopSD, stopPhysSD * (1 - bladeStubFrac));
+  const centralBlocked =
+    typeof innerBlockedSD === "number" && Number.isFinite(innerBlockedSD) && innerBlockedSD > 0
+      ? Math.min(innerBlockedSD, bladeInner)
+      : 0;
   const screenPoint = (z: number, y: number): [number, number] => {
     const [zz, yy] = pointTransform ? pointTransform(z, y) : [z, y];
     return [sx(zz), sy(yy)];
@@ -40,6 +46,8 @@ export default function ApertureStop({
   const topBlade = screenPoint(stopZ, -bladeInner);
   const bottomHousing = screenPoint(stopZ, stopHousingSD);
   const bottomBlade = screenPoint(stopZ, bladeInner);
+  const centralTop = screenPoint(stopZ, -centralBlocked);
+  const centralBottom = screenPoint(stopZ, centralBlocked);
   const label = screenPoint(stopZ, -stopHousingSD - lyStoPad);
 
   return (
@@ -62,6 +70,17 @@ export default function ApertureStop({
         strokeWidth={2.2}
         strokeLinecap="round"
       />
+      {centralBlocked > 0 && (
+        <line
+          x1={centralTop[0]}
+          y1={centralTop[1]}
+          x2={centralBottom[0]}
+          y2={centralBottom[1]}
+          stroke={t.stop}
+          strokeWidth={2.2}
+          strokeLinecap="round"
+        />
+      )}
       <text
         x={label[0]}
         y={label[1]}

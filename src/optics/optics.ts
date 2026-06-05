@@ -89,4 +89,5 @@ export {
   type SkewImagePlaneIntercept,
   type SkewRayTraceResult,
 } from "./rayTrace.js";
+export { stopInnerBlockedSemiDiameter } from "./stopObstruction.js";
 export { formatDist, formatPetzvalRadius } from "./opticsFormat.js";
