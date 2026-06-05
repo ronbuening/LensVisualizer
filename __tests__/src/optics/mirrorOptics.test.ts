@@ -14,7 +14,14 @@ import {
   type ExactTraceLens,
 } from "../../../src/optics/internal/exactSurfaceTrace.js";
 import { computeGroupMovementProfile } from "../../../src/optics/groupMovement.js";
-import { doLayout, solveChiefRay, SVG_PATH_SUBDIVISIONS, traceRay } from "../../../src/optics/optics.js";
+import {
+  conjugateK,
+  doLayout,
+  entrancePupilAtState,
+  solveChiefRay,
+  SVG_PATH_SUBDIVISIONS,
+  traceRay,
+} from "../../../src/optics/optics.js";
 import { obstructionAwareRayFractionsForDensity } from "../../../src/optics/raySampling.js";
 import validateLensData from "../../../src/optics/validateLensData.js";
 import type { LensData, RuntimeLens } from "../../../src/types/optics.js";
@@ -298,6 +305,21 @@ describe("mirror optics support", () => {
     expect(shiftByGroup.get("M2")).toBeCloseTo(-8.05, 10);
     expect(shiftByGroup.get("L2")).toBeCloseTo(0, 10);
     expect(shiftByGroup.get("M1")).toBeCloseTo(0, 10);
+  });
+
+  it("tracks close-focus rays through the Nikon 500mm New annular pupil", () => {
+    const L = buildLens(nikonReflex500NewData);
+    const layout = doLayout(1, 0, L);
+    const ep = entrancePupilAtState(L.stopPhysSD, 1, 0, L).epSD;
+    const focusK = conjugateK(1, 0, L);
+    const rayHeight = 0.8 * ep;
+    const infinityRay = traceRay(rayHeight, 0, layout.z, 1, 0, L.stopPhysSD, true, L);
+    const trackedRay = traceRay(rayHeight, rayHeight * focusK, layout.z, 1, 0, L.stopPhysSD, true, L);
+
+    expect(focusK).toBeGreaterThan(0);
+    expect(infinityRay.clipped).toBe(false);
+    expect(trackedRay.clipped).toBe(false);
+    expect(Math.abs(trackedRay.y)).toBeLessThan(Math.abs(infinityRay.y) * 0.1);
   });
 
   it("keeps the Nikon 1000mm primary mirror thickness and folded intervals aligned to the patent", () => {
