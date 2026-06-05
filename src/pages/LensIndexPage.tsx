@@ -16,6 +16,7 @@ import { usePageThemeToggle } from "../utils/theme/usePageThemeToggle.js";
 import LensIndexFilterPanel from "./lensIndex/LensIndexFilterPanel.js";
 import LensIndexResults from "./lensIndex/LensIndexResults.js";
 import LinkListSidebar from "../components/content/LinkListSidebar.js";
+import SidebarLayout from "../components/content/SidebarLayout.js";
 import {
   focalSubGroupAnchorId,
   formatGroupAnchorId,
@@ -384,23 +385,29 @@ export default function LensIndexPage() {
           </div>
         )}
 
-        <LinkListSidebar
-          title={groupNav.title}
-          ariaLabel={`Jump to ${groupNav.title.toLowerCase()}`}
-          items={groupNav.items}
-          theme={t}
-        />
-
-        <LensIndexResults
-          groupMode={groupMode}
-          makerGroups={makerGroups}
-          focalSections={focalSections}
-          yearGroups={yearGroups}
-          mountGroups={mountGroups}
-          imageFormatGroups={imageFormatGroups}
-          theme={t}
-          hrefForLens={hrefForLens}
-        />
+        <SidebarLayout
+          sidebar={
+            groupNav.items.length > 0 ? (
+              <LinkListSidebar
+                title={groupNav.title}
+                ariaLabel={`Jump to ${groupNav.title.toLowerCase()}`}
+                items={groupNav.items}
+                theme={t}
+              />
+            ) : null
+          }
+        >
+          <LensIndexResults
+            groupMode={groupMode}
+            makerGroups={makerGroups}
+            focalSections={focalSections}
+            yearGroups={yearGroups}
+            mountGroups={mountGroups}
+            imageFormatGroups={imageFormatGroups}
+            theme={t}
+            hrefForLens={hrefForLens}
+          />
+        </SidebarLayout>
       </div>
     </div>
   );

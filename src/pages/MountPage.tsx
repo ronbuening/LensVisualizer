@@ -19,6 +19,7 @@ import { getMountDetails } from "../utils/catalog/mountDetails.js";
 import { MOUNT_SPECS } from "../mounts/index.js";
 import MountDiagramPanel from "../components/mount/MountDiagramPanel.js";
 import LinkListSidebar from "../components/content/LinkListSidebar.js";
+import SidebarLayout from "../components/content/SidebarLayout.js";
 import { LENS_LINK_BASE_STYLE, PAGE_BASE_STYLE } from "../utils/style/pageStyles.js";
 import { lensLinkFromMount } from "./lensIndex/clusterLinks.js";
 import { lensesForMount } from "./lensIndex/catalog.js";
@@ -119,29 +120,35 @@ export default function MountPage() {
           </section>
         )}
 
-        <LinkListSidebar
-          title="Makers"
-          ariaLabel="Makers with lenses for this mount"
-          items={mountMakers.map((m) => ({ id: m.slug, label: m.label, to: `/makers/${m.slug}` }))}
-          theme={t}
-        />
-
-        <div style={{ borderTop: `1px solid ${t.panelBorder}`, paddingTop: "1rem" }}>
-          {lenses.map((entry) => (
-            <Link
-              key={entry.key}
-              to={lensLinkFromMount(entry.key, mountId)}
-              style={{ ...LENS_LINK_BASE_STYLE, color: t.descLinkColor }}
-            >
-              {entry.data.name}
-              {entry.data.specs && entry.data.specs.length > 0 && (
-                <span style={{ color: t.label, fontSize: "0.75rem", marginLeft: "0.5rem" }}>
-                  — {entry.data.specs.slice(0, 3).join(", ")}
-                </span>
-              )}
-            </Link>
-          ))}
-        </div>
+        <SidebarLayout
+          sidebar={
+            mountMakers.length > 0 ? (
+              <LinkListSidebar
+                title="Makers"
+                ariaLabel="Makers with lenses for this mount"
+                items={mountMakers.map((m) => ({ id: m.slug, label: m.label, to: `/makers/${m.slug}` }))}
+                theme={t}
+              />
+            ) : null
+          }
+        >
+          <div style={{ borderTop: `1px solid ${t.panelBorder}`, paddingTop: "1rem" }}>
+            {lenses.map((entry) => (
+              <Link
+                key={entry.key}
+                to={lensLinkFromMount(entry.key, mountId)}
+                style={{ ...LENS_LINK_BASE_STYLE, color: t.descLinkColor }}
+              >
+                {entry.data.name}
+                {entry.data.specs && entry.data.specs.length > 0 && (
+                  <span style={{ color: t.label, fontSize: "0.75rem", marginLeft: "0.5rem" }}>
+                    — {entry.data.specs.slice(0, 3).join(", ")}
+                  </span>
+                )}
+              </Link>
+            ))}
+          </div>
+        </SidebarLayout>
       </div>
     </div>
   );

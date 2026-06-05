@@ -83,11 +83,12 @@ component, so the committed SVG and the on-page SVG match.
   base/variant profile selector, and the feature-category legend. It is rendered by
   `src/pages/MountPage.tsx` when `MOUNT_SPECS[mountId]` exists (graceful: pages without a spec show
   no panel). The axial view is computed by the engine but not shown on the page.
-- `src/components/content/LinkListSidebar.tsx` is a small cross-link sidebar reused on two pages:
+- `src/components/content/LinkListSidebar.tsx` is a small cross-link panel reused on two pages:
   `/makers/:maker` lists the mounts that maker's lenses use (deduplicated `lensMounts`), and
-  `/mounts/:id` lists the makers with lenses for that mount. It reuses the `ArticleTOC` panel format;
-  links are SSR-rendered/crawlable (in-flow on narrow/SSR, fixed top-right aside on screens wide enough
-  to clear the ~960 px content).
+  `/mounts/:id` lists the makers with lenses for that mount. It reuses the `ArticleTOC` panel format and
+  renders the panel only. `src/components/content/SidebarLayout.tsx` places it: a sticky column beside
+  the content on wide viewports (≥1200 px) and stacked above the content on narrow ones. The stacked
+  layout is the SSR/first-client-render default, so the links are always SSR-rendered and crawlable.
 
 ## Generator + serving
 

@@ -5,7 +5,8 @@ and homepage UI.
 
 > Mount interface diagram components are in `src/components/mount/` (`MountDiagram`, `MountDiagramPanel`); the maker
 > and mount pages cross-link via `src/components/content/LinkListSidebar.tsx` (also used, with `#anchor` items, for
-> the lens-library group-navigation sidebar). See [`mount-diagrams.md`](mount-diagrams.md).
+> the lens-library group-navigation sidebar), placed by `src/components/content/SidebarLayout.tsx`. See
+> [`mount-diagrams.md`](mount-diagrams.md).
 
 ## Layout And Navigation Components
 
@@ -71,6 +72,8 @@ present, using the data-provided label, endpoint labels, step, and readout label
 | `SeriesCard.tsx` | Archive card for article series. |
 | `ChangelogBox.tsx` | Compact changelog panel grouped by date/type. |
 | `ChangelogList.tsx` | Full changelog list for `/updates`. |
+| `LinkListSidebar.tsx` | Bordered navigational panel of router/`#anchor` links (maker↔mount cross-links, lens-library group nav). Renders the panel only. |
+| `SidebarLayout.tsx` | Places a sidebar beside the content as a sticky column on wide viewports (≥1200 px) and stacks it above the content on narrow ones; stacked layout is the SSR/first-render default for crawlable links. |
 
 ## Analysis Drawer
 

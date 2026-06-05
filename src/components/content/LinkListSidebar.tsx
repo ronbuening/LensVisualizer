@@ -1,5 +1,5 @@
 /**
- * LinkListSidebar — a small navigational sidebar listing related pages as links.
+ * LinkListSidebar — a small navigational panel listing related pages as links.
  *
  * Reuses the article table-of-contents panel format (`ArticleTOC`): a bordered panel with an
  * uppercase heading and a list of links with a left-border hover indicator. Items whose `to` starts
@@ -7,13 +7,12 @@
  * router paths. Used for the maker→mounts and mount→makers cross-links and the lens-library
  * group-navigation sidebar.
  *
- * The links are SSR-rendered and crawlable: the panel renders in-flow by default (and on narrower
- * screens), and only becomes the fixed top-right aside on wide screens where it clears the centered
- * page content (≈960 px) without overlapping the text. The first client render matches the SSR
- * output, so there is no hydration mismatch.
+ * This component renders only the panel; placement (sticky column on wide screens vs. stacked above
+ * the content on narrow ones) is owned by `SidebarLayout`. The panel and its links render in-flow and
+ * are crawlable in the prerendered HTML. Returns `null` when there are no items.
  */
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router";
 import type { Theme } from "../../types/theme.js";
 
@@ -21,7 +20,7 @@ export interface LinkListSidebarItem {
   /** Stable React key + hover id. */
   id: string;
   label: string;
-  /** Router path, e.g. `/mounts/nikon-f`. */
+  /** Router path (e.g. `/mounts/nikon-f`) or in-page anchor (e.g. `#group-maker-nikon`). */
   to: string;
 }
 
@@ -32,40 +31,11 @@ interface LinkListSidebarProps {
   theme: Theme;
   /** Accessible label for the nav region (defaults to `title`). */
   ariaLabel?: string;
-  /** Pixel offset from the viewport top for the fixed (wide) position; clears the site header. */
+  /** Pixel offset from the viewport top used when smooth-scrolling to an `#anchor` item. */
   offsetTop?: number;
-  /** Panel width on wide screens. */
-  width?: number;
-  /**
-   * Media query gating the fixed (wide) vs in-flow (narrow) layout. The default docks only when the
-   * viewport is wide enough for the panel to sit beside the ~960 px page content without overlap.
-   */
-  wideQuery?: string;
 }
 
-function useMediaQueryMatch(query: string): boolean {
-  const [matches, setMatches] = useState(false);
-  useEffect(() => {
-    if (typeof window === "undefined" || !window.matchMedia) return;
-    const mql = window.matchMedia(query);
-    const handler = () => setMatches(mql.matches);
-    handler();
-    mql.addEventListener("change", handler);
-    return () => mql.removeEventListener("change", handler);
-  }, [query]);
-  return matches;
-}
-
-export default function LinkListSidebar({
-  title,
-  items,
-  theme: t,
-  ariaLabel,
-  offsetTop = 88,
-  width = 200,
-  wideQuery = "(min-width: 1440px)",
-}: LinkListSidebarProps) {
-  const isWide = useMediaQueryMatch(wideQuery);
+export default function LinkListSidebar({ title, items, theme: t, ariaLabel, offsetTop = 88 }: LinkListSidebarProps) {
   const [hovered, setHovered] = useState<string | null>(null);
 
   if (items.length === 0) return null;
@@ -91,7 +61,7 @@ export default function LinkListSidebar({
     boxShadow: "0 4px 18px rgba(0,0,0,0.25)",
   };
 
-  const list = (
+  return (
     <nav aria-label={ariaLabel ?? title} style={panelStyle}>
       <div
         style={{
@@ -141,10 +111,4 @@ export default function LinkListSidebar({
       </ul>
     </nav>
   );
-
-  if (isWide) {
-    return <aside style={{ position: "fixed", top: offsetTop, right: 24, width, zIndex: 20 }}>{list}</aside>;
-  }
-
-  return <div style={{ marginBottom: "1.5rem", maxWidth: 360 }}>{list}</div>;
 }

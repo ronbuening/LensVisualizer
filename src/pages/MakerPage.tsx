@@ -22,6 +22,7 @@ import { LENS_LINK_BASE_STYLE, PAGE_BASE_STYLE } from "../utils/style/pageStyles
 import { LENS_MOUNT_BY_ID } from "../utils/catalog/lensTaxonomy.js";
 import type { LensMountId, LensMountMetadata } from "../utils/catalog/lensTaxonomy.js";
 import LinkListSidebar from "../components/content/LinkListSidebar.js";
+import SidebarLayout from "../components/content/SidebarLayout.js";
 import type { LensData } from "../types/optics.js";
 
 function lensesForMaker(makerSlug: string): { key: string; data: LensData }[] {
@@ -127,25 +128,31 @@ export default function MakerPage() {
           </p>
         )}
 
-        <LinkListSidebar
-          title="Mounts"
-          ariaLabel="Mounts used by this maker"
-          items={makerMounts.map((m) => ({ id: m.id, label: m.label, to: `/mounts/${m.id}` }))}
-          theme={t}
-        />
-
-        <div style={{ borderTop: `1px solid ${t.panelBorder}`, paddingTop: "1rem" }}>
-          {lenses.map(({ key, data }) => (
-            <Link key={key} to={`/lens/${key}`} style={{ ...LENS_LINK_BASE_STYLE, color: t.descLinkColor }}>
-              {data.name}
-              {data.specs && data.specs.length > 0 && (
-                <span style={{ color: t.label, fontSize: "0.75rem", marginLeft: "0.5rem" }}>
-                  — {data.specs.slice(0, 3).join(", ")}
-                </span>
-              )}
-            </Link>
-          ))}
-        </div>
+        <SidebarLayout
+          sidebar={
+            makerMounts.length > 0 ? (
+              <LinkListSidebar
+                title="Mounts"
+                ariaLabel="Mounts used by this maker"
+                items={makerMounts.map((m) => ({ id: m.id, label: m.label, to: `/mounts/${m.id}` }))}
+                theme={t}
+              />
+            ) : null
+          }
+        >
+          <div style={{ borderTop: `1px solid ${t.panelBorder}`, paddingTop: "1rem" }}>
+            {lenses.map(({ key, data }) => (
+              <Link key={key} to={`/lens/${key}`} style={{ ...LENS_LINK_BASE_STYLE, color: t.descLinkColor }}>
+                {data.name}
+                {data.specs && data.specs.length > 0 && (
+                  <span style={{ color: t.label, fontSize: "0.75rem", marginLeft: "0.5rem" }}>
+                    — {data.specs.slice(0, 3).join(", ")}
+                  </span>
+                )}
+              </Link>
+            ))}
+          </div>
+        </SidebarLayout>
       </div>
     </div>
   );
