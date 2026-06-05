@@ -20,9 +20,12 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
 | [`fujifilm-g`](#fujifilm-g--fujifilm-g) | bayonet | 26.7 mm | 65 mm | `mvp_complete` | 1 |
 | [`fujifilm-x`](#fujifilm-x--fujifilm-x) | bayonet | 17.7 mm | 44 mm | `mvp_complete` | 1 |
 | [`l-mount`](#l-mount--l-mount) | bayonet | 20 mm | 51.6 mm | `mvp_complete` | 1 |
+| [`leica-m`](#leica-m--leica-m) | bayonet | 27.8 mm | 38.5 mm | `mvp_complete` | 2 |
 | [`nikon-f`](#nikon-f--nikon-f) | bayonet | 46.5 mm | 44 mm | `mvp_complete` | 6 |
 | [`nikon-z`](#nikon-z--nikon-z) | bayonet | 16 mm | 55 mm | `mvp_complete` | 1 |
+| [`olympus-om`](#olympus-om--olympus-om) | bayonet | 46 mm | 47 mm | `mvp_complete` | 1 |
 | [`pentax-k`](#pentax-k--pentax-k) | bayonet | 45.46 mm | 44 mm | `mvp_complete` | 7 |
+| [`sony-a`](#sony-a--sony-a) | bayonet | 44.5 mm | 49.7 mm | `mvp_complete` | 1 |
 | [`sony-fe`](#sony-fe--sony-e) | bayonet | 18 mm | 46.1 mm | `mvp_complete` | 1 |
 
 ## Mount Sections
@@ -10479,6 +10482,1314 @@ None — fully electronic.
 
 - Lug angular spans, the mounting-index clock position, and the lock rotation angle/direction are photo-scaled or undocumented; per-contact clock positions are interpolated within the documented 11–1 o'clock (top) band. _(Upgrade to an official L-Mount drawing or measured sample.)_
 
+### `leica-m` — Leica M
+
+| Field | Value |
+|---|---|
+| Mount ID | `leica-m` |
+| Display label | Leica M |
+| Project note | Leica M bayonet rangefinder mount. |
+| Research status | `researched` |
+| MVP status | `mvp_complete` |
+| Mount mechanism | `bayonet` (lock `sprung_detent`) |
+| Base profile | `leica-m/base` |
+| Selected MVP profile | `leica-m/6-bit` |
+| Variant strategy | `variant_profiles_defined` |
+
+#### Base and variant profile matrix
+
+| Profile ID | Type | Applies to | Adds | Removes | Changes |
+|---|---|---|---|---|---|
+| `leica-m/base` | base | all Leica M lenses and bodies, 1954–present | four bayonet lugs; lock pin/notch; mounting index; rangefinder coupling cam | electrical contacts (rangefinder mechanical interface) | — |
+| `leica-m/6-bit` | variant | 6-bit-coded M lenses (digital M era) | 6-bit lens-identification coding (six white/black marks on the flange) | — | camera reads lens identity optically |
+
+#### Dimensional summary
+
+| Field | Value | Unit |
+|---|---|---|
+| Flange focal distance | 27.8 (`secondary`) | mm |
+| Nominal throat diameter | 38.5 (`photo_scaled`) | mm |
+| Effective clear aperture | 38.5 (`photo_scaled`) | mm |
+| Camera mount outer diameter | 44 (`secondary`) | mm |
+| Lens mount outer diameter | 42 (`photo_scaled`) | mm |
+| Contact count | not_applicable (`not_applicable`) | count |
+| Lock rotation | unknown (`unknown`) | deg |
+| Lock direction | unknown (`unknown`) | — |
+
+#### Figures (selected profile `leica-m/6-bit`)
+
+**Camera-side front view** — viewBox `-28 -28 56 56` ([standalone SVG](mounts/leica-m-camera-front.svg))
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-28 -28 56 56" role="img" aria-labelledby="leica-m-6-bit-camera_side_front-title leica-m-6-bit-camera_side_front-desc"><title id="leica-m-6-bit-camera_side_front-title">Leica M mount — camera-side front view (6-bit)</title><desc id="leica-m-6-bit-camera_side_front-desc">Leica M bayonet mount, camera-side front view. Flange focal distance 27.8 mm, nominal throat 38.5 mm. Profile leica-m/6-bit.</desc><metadata>{"mountId":"leica-m","profileId":"leica-m/6-bit","view":"camera_side_front","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.1" y1="0" x2="1.1" y2="0" stroke="#8a94a0" stroke-width="0.336" fill="none" /><line x1="0" y1="-1.1" x2="0" y2="1.1" stroke="#8a94a0" stroke-width="0.336" fill="none" /><line x1="0" y1="-22" x2="0" y2="-23.32" stroke="#8a94a0" stroke-width="0.336" fill="none" /></g><g data-layer="camera-side-metal"><path d="M0,-22 A22,22 0 1 1 0,22 A22,22 0 1 1 0,-22 Z M0,-19.25 A19.25,19.25 0 1 1 0,19.25 A19.25,19.25 0 1 1 0,-19.25 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-22 A22,22 0 1 1 0,22 A22,22 0 1 1 0,-22 Z M0,-19.25 A19.25,19.25 0 1 1 0,19.25 A19.25,19.25 0 1 1 0,-19.25 Z" stroke="#6b7a8f" stroke-width="0.336" fill="none" stroke-dasharray="4 2" /><path d="M0,-19.25 A19.25,19.25 0 1 1 0,19.25 A19.25,19.25 0 1 1 0,-19.25 Z" stroke="#2f80c4" stroke-width="0.336" fill="none" stroke-dasharray="4 2" /><circle cx="14.496" cy="-14.496" r="0.8" stroke="#7f8c3a" stroke-width="0.336" fill="none" stroke-dasharray="4 2" /><circle cx="14.496" cy="14.496" r="0.8" stroke="#7f8c3a" stroke-width="0.336" fill="none" stroke-dasharray="4 2" /><circle cx="-14.496" cy="14.496" r="0.8" stroke="#7f8c3a" stroke-width="0.336" fill="none" stroke-dasharray="4 2" /><circle cx="-14.496" cy="-14.496" r="0.8" stroke="#7f8c3a" stroke-width="0.336" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-core-interface"><path d="M0,-20.3 L-1.374,-22.458 L1.374,-22.458 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-20.3 L-1.374,-22.458 L1.374,-22.458 Z" stroke="#e8853a" stroke-width="0.336" fill="none" stroke-dasharray="0.6 1.6" /><path d="M9.037,-16.997 L10.094,-18.983 A21.5,21.5 0 0 1 18.983,-10.094 L16.997,-9.037 A19.25,19.25 0 0 0 9.037,-16.997 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M9.037,-16.997 L10.094,-18.983 A21.5,21.5 0 0 1 18.983,-10.094 L16.997,-9.037 A19.25,19.25 0 0 0 9.037,-16.997 Z" stroke="#2a9d8f" stroke-width="0.336" fill="none" stroke-dasharray="4 2" /><path d="M16.997,9.037 L18.983,10.094 A21.5,21.5 0 0 1 10.094,18.983 L9.037,16.997 A19.25,19.25 0 0 0 16.997,9.037 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M16.997,9.037 L18.983,10.094 A21.5,21.5 0 0 1 10.094,18.983 L9.037,16.997 A19.25,19.25 0 0 0 16.997,9.037 Z" stroke="#2a9d8f" stroke-width="0.336" fill="none" stroke-dasharray="4 2" /><circle cx="0" cy="20.5" r="0.77" fill="#d1495b" fill-opacity="0.12" /><circle cx="0" cy="20.5" r="0.77" stroke="#d1495b" stroke-width="0.336" fill="none" stroke-dasharray="0.6 1.6" /><path d="M-9.037,16.997 L-10.094,18.983 A21.5,21.5 0 0 1 -18.983,10.094 L-16.997,9.037 A19.25,19.25 0 0 0 -9.037,16.997 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-9.037,16.997 L-10.094,18.983 A21.5,21.5 0 0 1 -18.983,10.094 L-16.997,9.037 A19.25,19.25 0 0 0 -9.037,16.997 Z" stroke="#2a9d8f" stroke-width="0.336" fill="none" stroke-dasharray="4 2" /><path d="M-16.997,-9.037 L-18.983,-10.094 A21.5,21.5 0 0 1 -10.094,-18.983 L-9.037,-16.997 A19.25,19.25 0 0 0 -16.997,-9.037 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-16.997,-9.037 L-18.983,-10.094 A21.5,21.5 0 0 1 -10.094,-18.983 L-9.037,-16.997 A19.25,19.25 0 0 0 -16.997,-9.037 Z" stroke="#2a9d8f" stroke-width="0.336" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-variant-mechanical"><circle cx="0" cy="-18" r="0.8" stroke="#b5651d" stroke-width="0.336" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-26.88" y1="-25.2" x2="-22.88" y2="-25.2" stroke="#2f80c4" stroke-width="0.4" /><text x="-21.88" y="-24.5" font-size="2" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-26.88" y1="-22.2" x2="-22.88" y2="-22.2" stroke="#6b7a8f" stroke-width="0.4" /><text x="-21.88" y="-21.5" font-size="2" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-26.88" y1="-19.2" x2="-22.88" y2="-19.2" stroke="#2a9d8f" stroke-width="0.4" /><text x="-21.88" y="-18.5" font-size="2" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-26.88" y1="-16.2" x2="-22.88" y2="-16.2" stroke="#d1495b" stroke-width="0.4" /><text x="-21.88" y="-15.5" font-size="2" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-26.88" y1="-13.2" x2="-22.88" y2="-13.2" stroke="#e8853a" stroke-width="0.4" /><text x="-21.88" y="-12.5" font-size="2" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-26.88" y1="-10.2" x2="-22.88" y2="-10.2" stroke="#b5651d" stroke-width="0.4" /><text x="-21.88" y="-9.5" font-size="2" fill="#b5651d" font-family="sans-serif">Mechanical coupling</text><line x1="-26.88" y1="-7.2" x2="-22.88" y2="-7.2" stroke="#7f8c3a" stroke-width="0.4" /><text x="-21.88" y="-6.5" font-size="2" fill="#7f8c3a" font-family="sans-serif">Screws / seals</text><line x1="-26.88" y1="-4.2" x2="-22.88" y2="-4.2" stroke="#8a94a0" stroke-width="0.4" /><text x="-21.88" y="-3.5" font-size="2" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
+
+**Lens-side rear view** — viewBox `-27 -27 54 54` ([standalone SVG](mounts/leica-m-lens-rear.svg))
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-27 -27 54 54" role="img" aria-labelledby="leica-m-6-bit-lens_side_rear-title leica-m-6-bit-lens_side_rear-desc"><title id="leica-m-6-bit-lens_side_rear-title">Leica M mount — lens-side rear view (6-bit)</title><desc id="leica-m-6-bit-lens_side_rear-desc">Leica M bayonet mount, lens-side rear view. Flange focal distance 27.8 mm, nominal throat 38.5 mm. Profile leica-m/6-bit.</desc><metadata>{"mountId":"leica-m","profileId":"leica-m/6-bit","view":"lens_side_rear","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.05" y1="0" x2="1.05" y2="0" stroke="#8a94a0" stroke-width="0.324" fill="none" /><line x1="0" y1="-1.05" x2="0" y2="1.05" stroke="#8a94a0" stroke-width="0.324" fill="none" /><line x1="0" y1="-21" x2="0" y2="-22.26" stroke="#8a94a0" stroke-width="0.324" fill="none" /></g><g data-layer="lens-side-metal"><path d="M0,-21.5 A21.5,21.5 0 1 1 0,21.5 A21.5,21.5 0 1 1 0,-21.5 Z M0,-18.25 A18.25,18.25 0 1 1 0,18.25 A18.25,18.25 0 1 1 0,-18.25 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-21.5 A21.5,21.5 0 1 1 0,21.5 A21.5,21.5 0 1 1 0,-21.5 Z M0,-18.25 A18.25,18.25 0 1 1 0,18.25 A18.25,18.25 0 1 1 0,-18.25 Z" stroke="#6b7a8f" stroke-width="0.324" fill="none" stroke-dasharray="4 2" /><path d="M0,-18.25 A18.25,18.25 0 1 1 0,18.25 A18.25,18.25 0 1 1 0,-18.25 Z" stroke="#2f80c4" stroke-width="0.324" fill="none" stroke-dasharray="4 2" /></g><g data-layer="lens-side-core-interface"><path d="M0,-19.9 L-1.343,-21.959 L1.343,-21.959 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-19.9 L-1.343,-21.959 L1.343,-21.959 Z" stroke="#e8853a" stroke-width="0.324" fill="none" stroke-dasharray="0.6 1.6" /><path d="M9.037,-16.997 L10.094,-18.983 A21.5,21.5 0 0 1 18.983,-10.094 L16.997,-9.037 A19.25,19.25 0 0 0 9.037,-16.997 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M9.037,-16.997 L10.094,-18.983 A21.5,21.5 0 0 1 18.983,-10.094 L16.997,-9.037 A19.25,19.25 0 0 0 9.037,-16.997 Z" stroke="#2a9d8f" stroke-width="0.324" fill="none" stroke-dasharray="4 2" /><path d="M16.997,9.037 L18.983,10.094 A21.5,21.5 0 0 1 10.094,18.983 L9.037,16.997 A19.25,19.25 0 0 0 16.997,9.037 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M16.997,9.037 L18.983,10.094 A21.5,21.5 0 0 1 10.094,18.983 L9.037,16.997 A19.25,19.25 0 0 0 16.997,9.037 Z" stroke="#2a9d8f" stroke-width="0.324" fill="none" stroke-dasharray="4 2" /><circle cx="0" cy="20.5" r="0.735" fill="#d1495b" fill-opacity="0.12" /><circle cx="0" cy="20.5" r="0.735" stroke="#d1495b" stroke-width="0.324" fill="none" stroke-dasharray="0.6 1.6" /><path d="M-9.037,16.997 L-10.094,18.983 A21.5,21.5 0 0 1 -18.983,10.094 L-16.997,9.037 A19.25,19.25 0 0 0 -9.037,16.997 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-9.037,16.997 L-10.094,18.983 A21.5,21.5 0 0 1 -18.983,10.094 L-16.997,9.037 A19.25,19.25 0 0 0 -9.037,16.997 Z" stroke="#2a9d8f" stroke-width="0.324" fill="none" stroke-dasharray="4 2" /><path d="M-16.997,-9.037 L-18.983,-10.094 A21.5,21.5 0 0 1 -10.094,-18.983 L-9.037,-16.997 A19.25,19.25 0 0 0 -16.997,-9.037 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-16.997,-9.037 L-18.983,-10.094 A21.5,21.5 0 0 1 -10.094,-18.983 L-9.037,-16.997 A19.25,19.25 0 0 0 -16.997,-9.037 Z" stroke="#2a9d8f" stroke-width="0.324" fill="none" stroke-dasharray="4 2" /></g><g data-layer="lens-side-variant-mechanical"><circle cx="0" cy="-18" r="0.8" stroke="#b5651d" stroke-width="0.324" fill="none" stroke-dasharray="4 2" /><circle cx="7.182" cy="19.734" r="0.8" stroke="#b5651d" stroke-width="0.324" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-25.92" y1="-24.3" x2="-21.92" y2="-24.3" stroke="#2f80c4" stroke-width="0.4" /><text x="-20.92" y="-23.6" font-size="2" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-25.92" y1="-21.3" x2="-21.92" y2="-21.3" stroke="#6b7a8f" stroke-width="0.4" /><text x="-20.92" y="-20.6" font-size="2" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-25.92" y1="-18.3" x2="-21.92" y2="-18.3" stroke="#2a9d8f" stroke-width="0.4" /><text x="-20.92" y="-17.6" font-size="2" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-25.92" y1="-15.3" x2="-21.92" y2="-15.3" stroke="#d1495b" stroke-width="0.4" /><text x="-20.92" y="-14.6" font-size="2" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-25.92" y1="-12.3" x2="-21.92" y2="-12.3" stroke="#e8853a" stroke-width="0.4" /><text x="-20.92" y="-11.6" font-size="2" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-25.92" y1="-9.3" x2="-21.92" y2="-9.3" stroke="#b5651d" stroke-width="0.4" /><text x="-20.92" y="-8.6" font-size="2" fill="#b5651d" font-family="sans-serif">Mechanical coupling</text><line x1="-25.92" y1="-6.3" x2="-21.92" y2="-6.3" stroke="#8a94a0" stroke-width="0.4" /><text x="-20.92" y="-5.6" font-size="2" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
+
+**Axial / register schematic** — viewBox `-33 -31 39 58` ([standalone SVG](mounts/leica-m-axial.svg))
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-33 -31 39 58" role="img" aria-labelledby="leica-m-6-bit-axial_section-title leica-m-6-bit-axial_section-desc"><title id="leica-m-6-bit-axial_section-title">Leica M mount — axial / register schematic (6-bit)</title><desc id="leica-m-6-bit-axial_section-desc">Leica M bayonet mount, axial / register schematic. Flange focal distance 27.8 mm, nominal throat 38.5 mm. Profile leica-m/6-bit.</desc><metadata>{"mountId":"leica-m","profileId":"leica-m/6-bit","view":"axial_section","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-27.8" y1="0" x2="1" y2="0" stroke="#8a94a0" stroke-width="0.25" fill="none" /><line x1="0" y1="-22" x2="0" y2="22" stroke="#8a94a0" stroke-width="0.25" fill="none" /></g><g data-layer="axial-section"><text x="-27.8" y="-23.15" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">sensor film plane</text><line x1="-27.8" y1="-21.65" x2="-27.8" y2="21.65" stroke="#2bb0c4" stroke-width="0.188" fill="none" /><line x1="0" y1="-22" x2="0" y2="22" stroke="#2bb0c4" stroke-width="0.188" fill="none" /><text x="0" y="-23.5" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">flange datum</text><line x1="1" y1="-20" x2="1" y2="20" stroke="#2bb0c4" stroke-width="0.25" fill="none" stroke-dasharray="4 2" /><text x="1" y="-21.5" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">bayonet lug engagement</text></g><g aria-hidden="true"><line x1="-32.22" y1="-28.1" x2="-28.22" y2="-28.1" stroke="#8a94a0" stroke-width="0.406" /><text x="-27.22" y="-27.4" font-size="2" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text><line x1="-32.22" y1="-25.1" x2="-28.22" y2="-25.1" stroke="#2bb0c4" stroke-width="0.406" /><text x="-27.22" y="-24.4" font-size="2" fill="#2bb0c4" font-family="sans-serif">Register plane</text></g></svg>
+
+#### Camera-side front-view geometry
+
+| Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
+|---|---|---|---|---|---|---|---|
+| `body-throat` | body_throat | `leica-m/base` | 0° | 0° | 360° | 0 | 19.25 |
+| `body-mount-ring` | mount_ring | `leica-m/base` | 0° | 0° | 360° | 19.25 | 22 |
+| `body-slot-1` | bayonet_receiving_slot | `leica-m/base` | 45° | 28° | 62° | 19.25 | 21.5 |
+| `body-slot-2` | bayonet_receiving_slot | `leica-m/base` | 135° | 118° | 152° | 19.25 | 21.5 |
+| `body-slot-3` | bayonet_receiving_slot | `leica-m/base` | 225° | 208° | 242° | 19.25 | 21.5 |
+| `body-slot-4` | bayonet_receiving_slot | `leica-m/base` | 315° | 298° | 332° | 19.25 | 21.5 |
+| `body-index-mark` | index_mark | `leica-m/base` | 0° | unknown | unknown | unknown | 22.5 |
+| `body-lock-pin` | lock_pin | `leica-m/base` | 180° | unknown | unknown | unknown | 20.5 |
+
+#### Lens-side rear-view geometry
+
+| Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
+|---|---|---|---|---|---|---|---|
+| `lens-throat` | lens_throat | `leica-m/base` | 0° | 0° | 360° | 0 | 18.25 |
+| `lens-mount-ring` | lens_mount_ring | `leica-m/base` | 0° | 0° | 360° | 18.25 | 21.5 |
+| `lens-lug-1` | bayonet_lug | `leica-m/base` | 45° | 28° | 62° | 19.25 | 21.5 |
+| `lens-lug-2` | bayonet_lug | `leica-m/base` | 135° | 118° | 152° | 19.25 | 21.5 |
+| `lens-lug-3` | bayonet_lug | `leica-m/base` | 225° | 208° | 242° | 19.25 | 21.5 |
+| `lens-lug-4` | bayonet_lug | `leica-m/base` | 315° | 298° | 332° | 19.25 | 21.5 |
+| `lens-index-mark` | index_mark | `leica-m/base` | 0° | unknown | unknown | unknown | 22 |
+| `lens-lock-notch` | lock_notch | `leica-m/base` | 180° | unknown | unknown | unknown | 20.5 |
+
+#### Mechanical couplings
+
+| Feature | Side | Profile | Function |
+|---|---|---|---|
+| `rangefinder-coupling-cam` | both | `leica-m/base` | couples lens focus to the rangefinder |
+| `six-bit-coding` | lens | `leica-m/6-bit` | optical lens-identification coding |
+
+#### Axial stack
+
+| Plane | z (mm) | Diameter (mm) |
+|---|---|---|
+| `flange_datum` | 0 | 44 |
+| `bayonet_lug_engagement` | 1 | 40 |
+| `sensor_film_plane` | -27.8 | 43.3 |
+
+#### Machine-readable mount block
+
+```json
+{
+  "mountId": "leica-m",
+  "displayLabel": "Leica M",
+  "projectNote": "Leica M bayonet rangefinder mount.",
+  "researchStatus": "researched",
+  "mvpStatus": "mvp_complete",
+  "mechanism": "bayonet",
+  "lockType": "sprung_detent",
+  "mvp": {
+    "requiredViews": [
+      "camera_side_front_view",
+      "lens_side_rear_view",
+      "axial_register_schematic"
+    ],
+    "requirementLevels": {
+      "mvpRequired": [
+        "flange_focal_distance_mm",
+        "nominal_throat_diameter_mm",
+        "camera_mount_outer_diameter_mm"
+      ],
+      "conditionalCoreRequired": [
+        "bayonet_lugs",
+        "lock_pin",
+        "index_mark",
+        "rangefinder_cam"
+      ],
+      "variantRequired": [
+        "six_bit_coding"
+      ],
+      "mvpOptional": [
+        "mount_screws"
+      ],
+      "referenceGrade": [
+        "lug_ramp_undercut"
+      ]
+    },
+    "profileModel": {
+      "baseProfileId": "leica-m/base",
+      "selectedMvpProfileId": "leica-m/6-bit",
+      "variantStrategy": "variant_profiles_defined",
+      "variantProfiles": [
+        {
+          "profileId": "leica-m/base",
+          "profileType": "base",
+          "appliesTo": "all Leica M lenses and bodies, 1954–present",
+          "adds": [
+            "four bayonet lugs",
+            "lock pin/notch",
+            "mounting index",
+            "rangefinder coupling cam"
+          ],
+          "removes": [
+            "electrical contacts (rangefinder mechanical interface)"
+          ],
+          "changes": [],
+          "cameraSideOverlayLayers": [
+            "camera-side-variant-mechanical"
+          ],
+          "lensSideOverlayLayers": [
+            "lens-side-variant-mechanical"
+          ],
+          "status": "researched",
+          "sourceRefs": [
+            "leicam-1"
+          ]
+        },
+        {
+          "profileId": "leica-m/6-bit",
+          "profileType": "variant",
+          "appliesTo": "6-bit-coded M lenses (digital M era)",
+          "adds": [
+            "6-bit lens-identification coding (six white/black marks on the flange)"
+          ],
+          "removes": [],
+          "changes": [
+            "camera reads lens identity optically"
+          ],
+          "cameraSideOverlayLayers": [
+            "camera-side-variant-mechanical"
+          ],
+          "lensSideOverlayLayers": [
+            "lens-side-variant-mechanical"
+          ],
+          "status": "researched",
+          "sourceRefs": [
+            "leicam-2"
+          ]
+        }
+      ]
+    }
+  },
+  "coreDimensions": {
+    "flangeFocalDistanceMm": {
+      "value": 27.8,
+      "status": "secondary",
+      "sourceRefs": [
+        "leicam-1"
+      ]
+    },
+    "nominalThroatDiameterMm": {
+      "value": 38.5,
+      "status": "photo_scaled",
+      "sourceRefs": [
+        "leicam-1"
+      ]
+    },
+    "effectiveClearApertureMm": {
+      "value": 38.5,
+      "status": "photo_scaled",
+      "sourceRefs": [
+        "leicam-1"
+      ]
+    },
+    "cameraMountOuterDiameterMm": {
+      "value": 44,
+      "status": "secondary",
+      "sourceRefs": [
+        "leicam-1"
+      ]
+    },
+    "lensMountOuterDiameterMm": {
+      "value": 42,
+      "status": "photo_scaled",
+      "sourceRefs": [
+        "leicam-1"
+      ]
+    },
+    "contactCount": {
+      "value": "not_applicable",
+      "status": "not_applicable",
+      "sourceRefs": []
+    }
+  },
+  "lockGeometry": {
+    "insertionAngleDeg": {
+      "value": 0,
+      "status": "secondary",
+      "sourceRefs": [
+        "leicam-1"
+      ]
+    },
+    "lockAngleDeg": {
+      "value": "unknown",
+      "status": "unknown",
+      "sourceRefs": [
+        "leicam-1"
+      ]
+    },
+    "lockRotationDeg": {
+      "value": "unknown",
+      "status": "unknown",
+      "sourceRefs": [
+        "leicam-1"
+      ]
+    },
+    "lockRotationDirection": {
+      "value": "unknown",
+      "status": "unknown",
+      "sourceRefs": []
+    }
+  },
+  "cameraSideFeatures": [
+    {
+      "featureId": "body-throat",
+      "featureType": "body_throat",
+      "profileId": "leica-m/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 360,
+        "status": "secondary",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 19.25,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "depthMm": {
+        "value": "not_applicable",
+        "status": "not_applicable",
+        "sourceRefs": []
+      },
+      "matesWith": "",
+      "shapeNotes": "rangefinder mount opening"
+    },
+    {
+      "featureId": "body-mount-ring",
+      "featureType": "mount_ring",
+      "profileId": "leica-m/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 360,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 19.25,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 22,
+        "status": "secondary",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "depthMm": {
+        "value": "not_applicable",
+        "status": "not_applicable",
+        "sourceRefs": []
+      },
+      "matesWith": "",
+      "shapeNotes": "44 mm external diameter"
+    },
+    {
+      "featureId": "body-slot-1",
+      "featureType": "bayonet_receiving_slot",
+      "profileId": "leica-m/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 45,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 28,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 62,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 19.25,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 21.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "depthMm": {
+        "value": 1.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "matesWith": "lens-lug-1",
+      "shapeNotes": "four-lug bayonet [leicam-1]"
+    },
+    {
+      "featureId": "body-slot-2",
+      "featureType": "bayonet_receiving_slot",
+      "profileId": "leica-m/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 135,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 118,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 152,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 19.25,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 21.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "depthMm": {
+        "value": 1.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "matesWith": "lens-lug-2",
+      "shapeNotes": "four-lug bayonet [leicam-1]"
+    },
+    {
+      "featureId": "body-slot-3",
+      "featureType": "bayonet_receiving_slot",
+      "profileId": "leica-m/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 225,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 208,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 242,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 19.25,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 21.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "depthMm": {
+        "value": 1.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "matesWith": "lens-lug-3",
+      "shapeNotes": "four-lug bayonet [leicam-1]"
+    },
+    {
+      "featureId": "body-slot-4",
+      "featureType": "bayonet_receiving_slot",
+      "profileId": "leica-m/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 315,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 298,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 332,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 19.25,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 21.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "depthMm": {
+        "value": 1.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "matesWith": "lens-lug-4",
+      "shapeNotes": "four-lug bayonet [leicam-1]"
+    },
+    {
+      "featureId": "body-index-mark",
+      "featureType": "index_mark",
+      "profileId": "leica-m/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "startAngleDeg": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "endAngleDeg": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 22.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "depthMm": {
+        "value": "not_applicable",
+        "status": "not_applicable",
+        "sourceRefs": []
+      },
+      "matesWith": "lens-index-mark",
+      "shapeNotes": "mounting index"
+    },
+    {
+      "featureId": "body-lock-pin",
+      "featureType": "lock_pin",
+      "profileId": "leica-m/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 180,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "startAngleDeg": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "endAngleDeg": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 20.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "depthMm": {
+        "value": 2,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "matesWith": "lens-lock-notch",
+      "shapeNotes": "lock pin (position unconfirmed)"
+    }
+  ],
+  "lensSideFeatures": [
+    {
+      "featureId": "lens-throat",
+      "featureType": "lens_throat",
+      "profileId": "leica-m/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 360,
+        "status": "secondary",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 18.25,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "thicknessMm": {
+        "value": "not_applicable",
+        "status": "not_applicable",
+        "sourceRefs": []
+      },
+      "matesWith": "",
+      "shapeNotes": "rear opening"
+    },
+    {
+      "featureId": "lens-mount-ring",
+      "featureType": "lens_mount_ring",
+      "profileId": "leica-m/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 360,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 18.25,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 21.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "thicknessMm": {
+        "value": "not_applicable",
+        "status": "not_applicable",
+        "sourceRefs": []
+      },
+      "matesWith": "",
+      "shapeNotes": "lens flange ring"
+    },
+    {
+      "featureId": "lens-lug-1",
+      "featureType": "bayonet_lug",
+      "profileId": "leica-m/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 45,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 28,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 62,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 19.25,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 21.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "thicknessMm": {
+        "value": 1.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "matesWith": "body-slot-1",
+      "shapeNotes": "four-lug bayonet [leicam-1]"
+    },
+    {
+      "featureId": "lens-lug-2",
+      "featureType": "bayonet_lug",
+      "profileId": "leica-m/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 135,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 118,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 152,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 19.25,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 21.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "thicknessMm": {
+        "value": 1.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "matesWith": "body-slot-2",
+      "shapeNotes": "four-lug bayonet [leicam-1]"
+    },
+    {
+      "featureId": "lens-lug-3",
+      "featureType": "bayonet_lug",
+      "profileId": "leica-m/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 225,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 208,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 242,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 19.25,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 21.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "thicknessMm": {
+        "value": 1.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "matesWith": "body-slot-3",
+      "shapeNotes": "four-lug bayonet [leicam-1]"
+    },
+    {
+      "featureId": "lens-lug-4",
+      "featureType": "bayonet_lug",
+      "profileId": "leica-m/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 315,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 298,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 332,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 19.25,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 21.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "thicknessMm": {
+        "value": 1.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "matesWith": "body-slot-4",
+      "shapeNotes": "four-lug bayonet [leicam-1]"
+    },
+    {
+      "featureId": "lens-index-mark",
+      "featureType": "index_mark",
+      "profileId": "leica-m/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "startAngleDeg": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "endAngleDeg": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 22,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "thicknessMm": {
+        "value": "not_applicable",
+        "status": "not_applicable",
+        "sourceRefs": []
+      },
+      "matesWith": "body-index-mark",
+      "shapeNotes": "aligns with body index"
+    },
+    {
+      "featureId": "lens-lock-notch",
+      "featureType": "lock_notch",
+      "profileId": "leica-m/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 180,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "startAngleDeg": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "endAngleDeg": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 20.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "thicknessMm": {
+        "value": 2,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "matesWith": "body-lock-pin",
+      "shapeNotes": "receives body lock pin"
+    }
+  ],
+  "axialStack": [
+    {
+      "planeId": "flange_datum",
+      "zPositionMm": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "thicknessMm": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "diameterMm": {
+        "value": 44,
+        "status": "secondary",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      }
+    },
+    {
+      "planeId": "bayonet_lug_engagement",
+      "zPositionMm": {
+        "value": 1,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "thicknessMm": {
+        "value": 1.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "diameterMm": {
+        "value": 40,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      }
+    },
+    {
+      "planeId": "sensor_film_plane",
+      "zPositionMm": {
+        "value": -27.8,
+        "status": "secondary",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "thicknessMm": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "diameterMm": {
+        "value": 43.3,
+        "status": "secondary",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      }
+    }
+  ],
+  "contacts": [],
+  "mechanicalCouplings": [
+    {
+      "featureId": "rangefinder-coupling-cam",
+      "side": "both",
+      "profileId": "leica-m/base",
+      "centerAngleDeg": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "radiusMm": {
+        "value": 18,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "sizeOrTravel": "cam / roller arm",
+      "function": "couples lens focus to the rangefinder",
+      "compatibilityNotes": "body roller arm inside the top of the mount"
+    },
+    {
+      "featureId": "six-bit-coding",
+      "side": "lens",
+      "profileId": "leica-m/6-bit",
+      "centerAngleDeg": {
+        "value": 200,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-2"
+        ]
+      },
+      "radiusMm": {
+        "value": 21,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-2"
+        ]
+      },
+      "sizeOrTravel": "six white/black marks",
+      "function": "optical lens-identification coding",
+      "compatibilityNotes": "read by digital M bodies"
+    }
+  ],
+  "screwsGasketsBaffles": [
+    {
+      "featureId": "body-mount-screws",
+      "featureType": "mount_screws",
+      "side": "body",
+      "count": {
+        "value": 4,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "pcdMm": {
+        "value": 41,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "diameterMm": {
+        "value": 1.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "centerAnglesDeg": {
+        "value": [
+          45,
+          135,
+          225,
+          315
+        ],
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "leicam-1"
+        ]
+      },
+      "shape": "round"
+    }
+  ],
+  "svgLayers": {
+    "mvpRequired": [
+      "datum-axis",
+      "camera-side-metal",
+      "lens-side-metal",
+      "axial-section",
+      "uncertainty"
+    ],
+    "conditionalCoreRequired": [
+      "clear-aperture",
+      "camera-side-core-interface",
+      "lens-side-core-interface"
+    ],
+    "variantRequired": [
+      "camera-side-variant-mechanical",
+      "lens-side-variant-mechanical"
+    ]
+  },
+  "sourceRefs": [
+    {
+      "ref": "leicam-1",
+      "sourceType": "secondary",
+      "citation": "“Leica M mount,” Wikipedia. Accessed 2026-06-04.",
+      "liveUrl": "https://en.wikipedia.org/wiki/Leica_M_mount",
+      "archiveUrl": "http://web.archive.org/web/20221225162235/https://en.wikipedia.org/wiki/Leica_M_mount",
+      "archiveDate": "2022-12-25",
+      "appliesTo": "flange focal distance, 44 mm external diameter, four lugs, rangefinder cam, 6-bit coding",
+      "confidence": "medium"
+    },
+    {
+      "ref": "leicam-2",
+      "sourceType": "secondary",
+      "citation": "“Lens Mounts: Leica M,” JAPB (japb.net). Accessed 2026-06-04.",
+      "liveUrl": "https://japb.net/theory/lensmounts/leica-m/",
+      "archiveUrl": "http://web.archive.org/web/20250429113337/https://japb.net/theory/lensmounts/leica-m/",
+      "archiveDate": "2025-04-29",
+      "appliesTo": "bayonet type, focusing-distance coupling, 6-bit coding strip",
+      "confidence": "medium"
+    }
+  ],
+  "openQuestions": [
+    {
+      "issue": "Leica M lacks an archived teardown with clock positions: the throat diameter, the lug spans, the rangefinder-cam and 6-bit-coding positions, and the lock/index clock positions are photo-scaled.",
+      "affectedFields": [
+        "nominalThroatDiameterMm",
+        "cameraSideFeatures",
+        "lensSideFeatures",
+        "mechanicalCouplings",
+        "lockGeometry"
+      ],
+      "candidateValues": [],
+      "resolution": "Upgrade to an official Leica M mount drawing or measured sample."
+    }
+  ],
+  "schemaVersion": "1.3",
+  "coordinateConvention": {
+    "units": "mm_deg",
+    "zDatum": "flange_datum",
+    "zPositive": "toward_lens",
+    "angleZero": "top_dead_center_camera_front_view",
+    "anglePositive": "clockwise_camera_front_view",
+    "storedAngleFrame": "camera_front_view",
+    "lensRearMirror": "theta_out = (360 - theta) mod 360",
+    "angleSpanRule": "clockwise_sweep_start_to_end_mod_360"
+  },
+  "render": {
+    "unitMapping": "1_user_unit_per_mm",
+    "marginFraction": 0.1,
+    "numericPrecision": 3,
+    "views": {
+      "cameraSideFront": {
+        "viewBox": "-28 -28 56 56"
+      },
+      "lensSideRear": {
+        "viewBox": "-27 -27 54 54"
+      },
+      "axialSection": {
+        "viewBox": "-33 -31 39 58"
+      }
+    }
+  },
+  "metadata": {
+    "title": "Leica M mount",
+    "desc": "Leica M mount — flange focal distance 27.8 mm, nominal throat 38.5 mm.",
+    "view": "unknown",
+    "profileId": "leica-m/base"
+  }
+}
+```
+
+#### Sources
+
+| Ref | Type | Citation | Archive | Captured | Confidence |
+|---|---|---|---|---|---|
+| `leicam-1` | secondary | “Leica M mount,” Wikipedia. Accessed 2026-06-04. | [snapshot](http://web.archive.org/web/20221225162235/https://en.wikipedia.org/wiki/Leica_M_mount) | 2022-12-25 | medium |
+| `leicam-2` | secondary | “Lens Mounts: Leica M,” JAPB (japb.net). Accessed 2026-06-04. | [snapshot](http://web.archive.org/web/20250429113337/https://japb.net/theory/lensmounts/leica-m/) | 2025-04-29 | medium |
+
+#### Open questions
+
+- Leica M lacks an archived teardown with clock positions: the throat diameter, the lug spans, the rangefinder-cam and 6-bit-coding positions, and the lock/index clock positions are photo-scaled. _(Upgrade to an official Leica M mount drawing or measured sample.)_
+
 ### `nikon-f` — Nikon F
 
 | Field | Value |
@@ -15174,6 +16485,1157 @@ None — fully electronic.
 
 - Lug angular spans, the mounting-index clock position, and the lock rotation angle/direction are photo-scaled or undocumented; per-contact clock positions are interpolated within the documented 5–7 o'clock band. _(Upgrade to an official Nikon Z mount drawing or measured sample.)_
 
+### `olympus-om` — Olympus OM
+
+| Field | Value |
+|---|---|
+| Mount ID | `olympus-om` |
+| Display label | Olympus OM |
+| Project note | Olympus OM manual-focus SLR mount. |
+| Research status | `researched` |
+| MVP status | `mvp_complete` |
+| Mount mechanism | `bayonet` (lock `sprung_detent`) |
+| Base profile | `olympus-om/base` |
+| Selected MVP profile | `olympus-om/base` |
+| Variant strategy | `base_only` |
+
+#### Base and variant profile matrix
+
+| Profile ID | Type | Applies to | Adds | Removes | Changes |
+|---|---|---|---|---|---|
+| `olympus-om/base` | base | all Olympus OM manual-focus lenses and bodies, 1972–2002 | bayonet lugs; lock pin/notch; mounting index; automatic-diaphragm aperture coupling | electrical contacts (mechanical manual-focus interface) | — |
+
+#### Dimensional summary
+
+| Field | Value | Unit |
+|---|---|---|
+| Flange focal distance | 46 (`secondary`) | mm |
+| Nominal throat diameter | 47 (`photo_scaled`) | mm |
+| Effective clear aperture | 47 (`photo_scaled`) | mm |
+| Camera mount outer diameter | 51 (`photo_scaled`) | mm |
+| Lens mount outer diameter | 49 (`photo_scaled`) | mm |
+| Contact count | not_applicable (`not_applicable`) | count |
+| Lock rotation | unknown (`unknown`) | deg |
+| Lock direction | unknown (`unknown`) | — |
+
+#### Figures (selected profile `olympus-om/base`)
+
+**Camera-side front view** — viewBox `-32 -33 64 65` ([standalone SVG](mounts/olympus-om-camera-front.svg))
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 -33 64 65" role="img" aria-labelledby="olympus-om-base-camera_side_front-title olympus-om-base-camera_side_front-desc"><title id="olympus-om-base-camera_side_front-title">Olympus OM mount — camera-side front view (base)</title><desc id="olympus-om-base-camera_side_front-desc">Olympus OM bayonet mount, camera-side front view. Flange focal distance 46 mm, nominal throat 47 mm. Profile olympus-om/base.</desc><metadata>{"mountId":"olympus-om","profileId":"olympus-om/base","view":"camera_side_front","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.275" y1="0" x2="1.275" y2="0" stroke="#8a94a0" stroke-width="0.384" fill="none" /><line x1="0" y1="-1.275" x2="0" y2="1.275" stroke="#8a94a0" stroke-width="0.384" fill="none" /><line x1="0" y1="-25.5" x2="0" y2="-27.03" stroke="#8a94a0" stroke-width="0.384" fill="none" /></g><g data-layer="camera-side-metal"><path d="M0,-25.5 A25.5,25.5 0 1 1 0,25.5 A25.5,25.5 0 1 1 0,-25.5 Z M0,-23.5 A23.5,23.5 0 1 1 0,23.5 A23.5,23.5 0 1 1 0,-23.5 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-25.5 A25.5,25.5 0 1 1 0,25.5 A25.5,25.5 0 1 1 0,-25.5 Z M0,-23.5 A23.5,23.5 0 1 1 0,23.5 A23.5,23.5 0 1 1 0,-23.5 Z" stroke="#6b7a8f" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /><path d="M0,-23.5 A23.5,23.5 0 1 1 0,23.5 A23.5,23.5 0 1 1 0,-23.5 Z" stroke="#2f80c4" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /><circle cx="16.971" cy="-16.971" r="1" stroke="#7f8c3a" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /><circle cx="16.971" cy="16.971" r="1" stroke="#7f8c3a" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /><circle cx="-16.971" cy="16.971" r="1" stroke="#7f8c3a" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /><circle cx="-16.971" cy="-16.971" r="1" stroke="#7f8c3a" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-core-interface"><path d="M0,-23.45 L-1.587,-25.952 L1.587,-25.952 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-23.45 L-1.587,-25.952 L1.587,-25.952 Z" stroke="#e8853a" stroke-width="0.384" fill="none" stroke-dasharray="0.6 1.6" /><path d="M4.081,-23.143 L4.515,-25.605 A26,26 0 0 1 19.917,-16.712 L18.002,-15.106 A23.5,23.5 0 0 0 4.081,-23.143 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M4.081,-23.143 L4.515,-25.605 A26,26 0 0 1 19.917,-16.712 L18.002,-15.106 A23.5,23.5 0 0 0 4.081,-23.143 Z" stroke="#2a9d8f" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /><path d="M18.002,15.106 L19.917,16.712 A26,26 0 0 1 4.515,25.605 L4.081,23.143 A23.5,23.5 0 0 0 18.002,15.106 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M18.002,15.106 L19.917,16.712 A26,26 0 0 1 4.515,25.605 L4.081,23.143 A23.5,23.5 0 0 0 18.002,15.106 Z" stroke="#2a9d8f" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /><circle cx="-24.5" cy="0" r="0.893" fill="#d1495b" fill-opacity="0.12" /><circle cx="-24.5" cy="0" r="0.893" stroke="#d1495b" stroke-width="0.384" fill="none" stroke-dasharray="0.6 1.6" /><path d="M-23.5,0 L-26,0 A26,26 0 0 1 -19.917,-16.712 L-18.002,-15.106 A23.5,23.5 0 0 0 -23.5,0 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-23.5,0 L-26,0 A26,26 0 0 1 -19.917,-16.712 L-18.002,-15.106 A23.5,23.5 0 0 0 -23.5,0 Z" stroke="#2a9d8f" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-variant-mechanical"><circle cx="16.971" cy="-16.971" r="0.8" stroke="#b5651d" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-30.72" y1="-29.75" x2="-26.72" y2="-29.75" stroke="#2f80c4" stroke-width="0.455" /><text x="-25.68" y="-29.022" font-size="2.08" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-30.72" y1="-26.63" x2="-26.72" y2="-26.63" stroke="#6b7a8f" stroke-width="0.455" /><text x="-25.68" y="-25.902" font-size="2.08" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-30.72" y1="-23.51" x2="-26.72" y2="-23.51" stroke="#2a9d8f" stroke-width="0.455" /><text x="-25.68" y="-22.782" font-size="2.08" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-30.72" y1="-20.39" x2="-26.72" y2="-20.39" stroke="#d1495b" stroke-width="0.455" /><text x="-25.68" y="-19.662" font-size="2.08" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-30.72" y1="-17.27" x2="-26.72" y2="-17.27" stroke="#e8853a" stroke-width="0.455" /><text x="-25.68" y="-16.542" font-size="2.08" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-30.72" y1="-14.15" x2="-26.72" y2="-14.15" stroke="#b5651d" stroke-width="0.455" /><text x="-25.68" y="-13.422" font-size="2.08" fill="#b5651d" font-family="sans-serif">Mechanical coupling</text><line x1="-30.72" y1="-11.03" x2="-26.72" y2="-11.03" stroke="#7f8c3a" stroke-width="0.455" /><text x="-25.68" y="-10.302" font-size="2.08" fill="#7f8c3a" font-family="sans-serif">Screws / seals</text><line x1="-30.72" y1="-7.91" x2="-26.72" y2="-7.91" stroke="#8a94a0" stroke-width="0.455" /><text x="-25.68" y="-7.182" font-size="2.08" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
+
+**Lens-side rear view** — viewBox `-32 -32 64 64` ([standalone SVG](mounts/olympus-om-lens-rear.svg))
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 -32 64 64" role="img" aria-labelledby="olympus-om-base-lens_side_rear-title olympus-om-base-lens_side_rear-desc"><title id="olympus-om-base-lens_side_rear-title">Olympus OM mount — lens-side rear view (base)</title><desc id="olympus-om-base-lens_side_rear-desc">Olympus OM bayonet mount, lens-side rear view. Flange focal distance 46 mm, nominal throat 47 mm. Profile olympus-om/base.</desc><metadata>{"mountId":"olympus-om","profileId":"olympus-om/base","view":"lens_side_rear","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.225" y1="0" x2="1.225" y2="0" stroke="#8a94a0" stroke-width="0.384" fill="none" /><line x1="0" y1="-1.225" x2="0" y2="1.225" stroke="#8a94a0" stroke-width="0.384" fill="none" /><line x1="0" y1="-24.5" x2="0" y2="-25.97" stroke="#8a94a0" stroke-width="0.384" fill="none" /></g><g data-layer="lens-side-metal"><path d="M0,-24.5 A24.5,24.5 0 1 1 0,24.5 A24.5,24.5 0 1 1 0,-24.5 Z M0,-22.5 A22.5,22.5 0 1 1 0,22.5 A22.5,22.5 0 1 1 0,-22.5 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-24.5 A24.5,24.5 0 1 1 0,24.5 A24.5,24.5 0 1 1 0,-24.5 Z M0,-22.5 A22.5,22.5 0 1 1 0,22.5 A22.5,22.5 0 1 1 0,-22.5 Z" stroke="#6b7a8f" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /><path d="M0,-22.5 A22.5,22.5 0 1 1 0,22.5 A22.5,22.5 0 1 1 0,-22.5 Z" stroke="#2f80c4" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /></g><g data-layer="lens-side-core-interface"><path d="M0,-22.55 L-1.526,-24.953 L1.526,-24.953 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-22.55 L-1.526,-24.953 L1.526,-24.953 Z" stroke="#e8853a" stroke-width="0.384" fill="none" stroke-dasharray="0.6 1.6" /><path d="M18.002,-15.106 L19.917,-16.712 A26,26 0 0 1 26,0 L23.5,0 A23.5,23.5 0 0 0 18.002,-15.106 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M18.002,-15.106 L19.917,-16.712 A26,26 0 0 1 26,0 L23.5,0 A23.5,23.5 0 0 0 18.002,-15.106 Z" stroke="#2a9d8f" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /><circle cx="24.5" cy="0" r="0.858" fill="#d1495b" fill-opacity="0.12" /><circle cx="24.5" cy="0" r="0.858" stroke="#d1495b" stroke-width="0.384" fill="none" stroke-dasharray="0.6 1.6" /><path d="M-4.081,23.143 L-4.515,25.605 A26,26 0 0 1 -19.917,16.712 L-18.002,15.106 A23.5,23.5 0 0 0 -4.081,23.143 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-4.081,23.143 L-4.515,25.605 A26,26 0 0 1 -19.917,16.712 L-18.002,15.106 A23.5,23.5 0 0 0 -4.081,23.143 Z" stroke="#2a9d8f" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /><path d="M-18.002,-15.106 L-19.917,-16.712 A26,26 0 0 1 -4.515,-25.605 L-4.081,-23.143 A23.5,23.5 0 0 0 -18.002,-15.106 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-18.002,-15.106 L-19.917,-16.712 A26,26 0 0 1 -4.515,-25.605 L-4.081,-23.143 A23.5,23.5 0 0 0 -18.002,-15.106 Z" stroke="#2a9d8f" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /></g><g data-layer="lens-side-variant-mechanical"><circle cx="-16.971" cy="-16.971" r="0.8" stroke="#b5651d" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-30.72" y1="-28.8" x2="-26.72" y2="-28.8" stroke="#2f80c4" stroke-width="0.448" /><text x="-25.696" y="-28.083" font-size="2.048" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-30.72" y1="-25.728" x2="-26.72" y2="-25.728" stroke="#6b7a8f" stroke-width="0.448" /><text x="-25.696" y="-25.011" font-size="2.048" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-30.72" y1="-22.656" x2="-26.72" y2="-22.656" stroke="#2a9d8f" stroke-width="0.448" /><text x="-25.696" y="-21.939" font-size="2.048" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-30.72" y1="-19.584" x2="-26.72" y2="-19.584" stroke="#d1495b" stroke-width="0.448" /><text x="-25.696" y="-18.867" font-size="2.048" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-30.72" y1="-16.512" x2="-26.72" y2="-16.512" stroke="#e8853a" stroke-width="0.448" /><text x="-25.696" y="-15.795" font-size="2.048" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-30.72" y1="-13.44" x2="-26.72" y2="-13.44" stroke="#b5651d" stroke-width="0.448" /><text x="-25.696" y="-12.723" font-size="2.048" fill="#b5651d" font-family="sans-serif">Mechanical coupling</text><line x1="-30.72" y1="-10.368" x2="-26.72" y2="-10.368" stroke="#8a94a0" stroke-width="0.448" /><text x="-25.696" y="-9.651" font-size="2.048" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
+
+**Axial / register schematic** — viewBox `-52 -35 59 66` ([standalone SVG](mounts/olympus-om-axial.svg))
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-52 -35 59 66" role="img" aria-labelledby="olympus-om-base-axial_section-title olympus-om-base-axial_section-desc"><title id="olympus-om-base-axial_section-title">Olympus OM mount — axial / register schematic (base)</title><desc id="olympus-om-base-axial_section-desc">Olympus OM bayonet mount, axial / register schematic. Flange focal distance 46 mm, nominal throat 47 mm. Profile olympus-om/base.</desc><metadata>{"mountId":"olympus-om","profileId":"olympus-om/base","view":"axial_section","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-46" y1="0" x2="1.2" y2="0" stroke="#8a94a0" stroke-width="0.354" fill="none" /><line x1="0" y1="-25.5" x2="0" y2="25.5" stroke="#8a94a0" stroke-width="0.354" fill="none" /></g><g data-layer="axial-section"><text x="-46" y="-23.15" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">sensor film plane</text><line x1="-46" y1="-21.65" x2="-46" y2="21.65" stroke="#2bb0c4" stroke-width="0.265" fill="none" /><line x1="0" y1="-25.5" x2="0" y2="25.5" stroke="#2bb0c4" stroke-width="0.354" fill="none" stroke-dasharray="4 2" /><text x="0" y="-27" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">flange datum</text><line x1="1.2" y1="-23" x2="1.2" y2="23" stroke="#2bb0c4" stroke-width="0.354" fill="none" stroke-dasharray="4 2" /><text x="1.2" y="-24.5" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">bayonet lug engagement</text></g><g aria-hidden="true"><line x1="-50.82" y1="-31.7" x2="-46.82" y2="-31.7" stroke="#8a94a0" stroke-width="0.462" /><text x="-45.764" y="-30.961" font-size="2.112" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text><line x1="-50.82" y1="-28.532" x2="-46.82" y2="-28.532" stroke="#2bb0c4" stroke-width="0.462" /><text x="-45.764" y="-27.793" font-size="2.112" fill="#2bb0c4" font-family="sans-serif">Register plane</text></g></svg>
+
+#### Camera-side front-view geometry
+
+| Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
+|---|---|---|---|---|---|---|---|
+| `body-throat` | body_throat | `olympus-om/base` | 0° | 0° | 360° | 0 | 23.5 |
+| `body-mount-ring` | mount_ring | `olympus-om/base` | 0° | 0° | 360° | 23.5 | 25.5 |
+| `body-slot-1` | bayonet_receiving_slot | `olympus-om/base` | 30° | 10° | 50° | 23.5 | 26 |
+| `body-slot-2` | bayonet_receiving_slot | `olympus-om/base` | 150° | 130° | 170° | 23.5 | 26 |
+| `body-slot-3` | bayonet_receiving_slot | `olympus-om/base` | 290° | 270° | 310° | 23.5 | 26 |
+| `body-index-mark` | index_mark | `olympus-om/base` | 0° | unknown | unknown | unknown | 26 |
+| `body-lock-pin` | lock_pin | `olympus-om/base` | 270° | unknown | unknown | unknown | 24.5 |
+
+#### Lens-side rear-view geometry
+
+| Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
+|---|---|---|---|---|---|---|---|
+| `lens-throat` | lens_throat | `olympus-om/base` | 0° | 0° | 360° | 0 | 22.5 |
+| `lens-mount-ring` | lens_mount_ring | `olympus-om/base` | 0° | 0° | 360° | 22.5 | 24.5 |
+| `lens-lug-1` | bayonet_lug | `olympus-om/base` | 30° | 10° | 50° | 23.5 | 26 |
+| `lens-lug-2` | bayonet_lug | `olympus-om/base` | 150° | 130° | 170° | 23.5 | 26 |
+| `lens-lug-3` | bayonet_lug | `olympus-om/base` | 290° | 270° | 310° | 23.5 | 26 |
+| `lens-index-mark` | index_mark | `olympus-om/base` | 0° | unknown | unknown | unknown | 25 |
+| `lens-lock-notch` | lock_notch | `olympus-om/base` | 270° | unknown | unknown | unknown | 24.5 |
+
+#### Mechanical couplings
+
+| Feature | Side | Profile | Function |
+|---|---|---|---|
+| `aperture-coupling-lever` | both | `olympus-om/base` | automatic-diaphragm aperture actuation |
+
+#### Axial stack
+
+| Plane | z (mm) | Diameter (mm) |
+|---|---|---|
+| `flange_datum` | 0 | 51 |
+| `bayonet_lug_engagement` | 1.2 | 46 |
+| `sensor_film_plane` | -46 | 43.3 |
+
+#### Machine-readable mount block
+
+```json
+{
+  "mountId": "olympus-om",
+  "displayLabel": "Olympus OM",
+  "projectNote": "Olympus OM manual-focus SLR mount.",
+  "researchStatus": "researched",
+  "mvpStatus": "mvp_complete",
+  "mechanism": "bayonet",
+  "lockType": "sprung_detent",
+  "mvp": {
+    "requiredViews": [
+      "camera_side_front_view",
+      "lens_side_rear_view",
+      "axial_register_schematic"
+    ],
+    "requirementLevels": {
+      "mvpRequired": [
+        "flange_focal_distance_mm",
+        "nominal_throat_diameter_mm",
+        "camera_mount_outer_diameter_mm"
+      ],
+      "conditionalCoreRequired": [
+        "bayonet_lugs",
+        "lock_pin",
+        "index_mark"
+      ],
+      "variantRequired": [
+        "aperture_coupling"
+      ],
+      "mvpOptional": [
+        "mount_screws"
+      ],
+      "referenceGrade": [
+        "lug_ramp_undercut"
+      ]
+    },
+    "profileModel": {
+      "baseProfileId": "olympus-om/base",
+      "selectedMvpProfileId": "olympus-om/base",
+      "variantStrategy": "base_only",
+      "variantProfiles": [
+        {
+          "profileId": "olympus-om/base",
+          "profileType": "base",
+          "appliesTo": "all Olympus OM manual-focus lenses and bodies, 1972–2002",
+          "adds": [
+            "bayonet lugs",
+            "lock pin/notch",
+            "mounting index",
+            "automatic-diaphragm aperture coupling"
+          ],
+          "removes": [
+            "electrical contacts (mechanical manual-focus interface)"
+          ],
+          "changes": [],
+          "cameraSideOverlayLayers": [
+            "camera-side-variant-mechanical"
+          ],
+          "lensSideOverlayLayers": [
+            "lens-side-variant-mechanical"
+          ],
+          "status": "researched",
+          "sourceRefs": [
+            "om-1"
+          ]
+        }
+      ]
+    }
+  },
+  "coreDimensions": {
+    "flangeFocalDistanceMm": {
+      "value": 46,
+      "status": "secondary",
+      "sourceRefs": [
+        "om-1"
+      ]
+    },
+    "nominalThroatDiameterMm": {
+      "value": 47,
+      "status": "photo_scaled",
+      "sourceRefs": [
+        "om-1"
+      ]
+    },
+    "effectiveClearApertureMm": {
+      "value": 47,
+      "status": "photo_scaled",
+      "sourceRefs": [
+        "om-1"
+      ]
+    },
+    "cameraMountOuterDiameterMm": {
+      "value": 51,
+      "status": "photo_scaled",
+      "sourceRefs": [
+        "om-1"
+      ]
+    },
+    "lensMountOuterDiameterMm": {
+      "value": 49,
+      "status": "photo_scaled",
+      "sourceRefs": [
+        "om-1"
+      ]
+    },
+    "contactCount": {
+      "value": "not_applicable",
+      "status": "not_applicable",
+      "sourceRefs": []
+    }
+  },
+  "lockGeometry": {
+    "insertionAngleDeg": {
+      "value": 0,
+      "status": "secondary",
+      "sourceRefs": [
+        "om-1"
+      ]
+    },
+    "lockAngleDeg": {
+      "value": "unknown",
+      "status": "unknown",
+      "sourceRefs": [
+        "om-1"
+      ]
+    },
+    "lockRotationDeg": {
+      "value": "unknown",
+      "status": "unknown",
+      "sourceRefs": [
+        "om-1"
+      ]
+    },
+    "lockRotationDirection": {
+      "value": "unknown",
+      "status": "unknown",
+      "sourceRefs": []
+    }
+  },
+  "cameraSideFeatures": [
+    {
+      "featureId": "body-throat",
+      "featureType": "body_throat",
+      "profileId": "olympus-om/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 360,
+        "status": "secondary",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 23.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "depthMm": {
+        "value": "not_applicable",
+        "status": "not_applicable",
+        "sourceRefs": []
+      },
+      "matesWith": "",
+      "shapeNotes": "~47 mm throat opening"
+    },
+    {
+      "featureId": "body-mount-ring",
+      "featureType": "mount_ring",
+      "profileId": "olympus-om/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 360,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 23.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 25.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "depthMm": {
+        "value": "not_applicable",
+        "status": "not_applicable",
+        "sourceRefs": []
+      },
+      "matesWith": "",
+      "shapeNotes": "visible body mount ring"
+    },
+    {
+      "featureId": "body-slot-1",
+      "featureType": "bayonet_receiving_slot",
+      "profileId": "olympus-om/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 30,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 10,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 50,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 23.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 26,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "depthMm": {
+        "value": 1.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "matesWith": "lens-lug-1",
+      "shapeNotes": "representative lug (count unconfirmed)"
+    },
+    {
+      "featureId": "body-slot-2",
+      "featureType": "bayonet_receiving_slot",
+      "profileId": "olympus-om/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 150,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 130,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 170,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 23.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 26,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "depthMm": {
+        "value": 1.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "matesWith": "lens-lug-2",
+      "shapeNotes": "representative lug (count unconfirmed)"
+    },
+    {
+      "featureId": "body-slot-3",
+      "featureType": "bayonet_receiving_slot",
+      "profileId": "olympus-om/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 290,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 270,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 310,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 23.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 26,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "depthMm": {
+        "value": 1.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "matesWith": "lens-lug-3",
+      "shapeNotes": "representative lug (count unconfirmed)"
+    },
+    {
+      "featureId": "body-index-mark",
+      "featureType": "index_mark",
+      "profileId": "olympus-om/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "startAngleDeg": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "endAngleDeg": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 26,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "depthMm": {
+        "value": "not_applicable",
+        "status": "not_applicable",
+        "sourceRefs": []
+      },
+      "matesWith": "lens-index-mark",
+      "shapeNotes": "mounting index"
+    },
+    {
+      "featureId": "body-lock-pin",
+      "featureType": "lock_pin",
+      "profileId": "olympus-om/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 270,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "startAngleDeg": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "endAngleDeg": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 24.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "depthMm": {
+        "value": 2,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "matesWith": "lens-lock-notch",
+      "shapeNotes": "lock pin (position unconfirmed)"
+    }
+  ],
+  "lensSideFeatures": [
+    {
+      "featureId": "lens-throat",
+      "featureType": "lens_throat",
+      "profileId": "olympus-om/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 360,
+        "status": "secondary",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 22.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "thicknessMm": {
+        "value": "not_applicable",
+        "status": "not_applicable",
+        "sourceRefs": []
+      },
+      "matesWith": "",
+      "shapeNotes": "rear opening"
+    },
+    {
+      "featureId": "lens-mount-ring",
+      "featureType": "lens_mount_ring",
+      "profileId": "olympus-om/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 360,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 22.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 24.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "thicknessMm": {
+        "value": "not_applicable",
+        "status": "not_applicable",
+        "sourceRefs": []
+      },
+      "matesWith": "",
+      "shapeNotes": "lens flange ring"
+    },
+    {
+      "featureId": "lens-lug-1",
+      "featureType": "bayonet_lug",
+      "profileId": "olympus-om/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 30,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 10,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 50,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 23.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 26,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "thicknessMm": {
+        "value": 1.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "matesWith": "body-slot-1",
+      "shapeNotes": "representative lug (count unconfirmed)"
+    },
+    {
+      "featureId": "lens-lug-2",
+      "featureType": "bayonet_lug",
+      "profileId": "olympus-om/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 150,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 130,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 170,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 23.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 26,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "thicknessMm": {
+        "value": 1.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "matesWith": "body-slot-2",
+      "shapeNotes": "representative lug (count unconfirmed)"
+    },
+    {
+      "featureId": "lens-lug-3",
+      "featureType": "bayonet_lug",
+      "profileId": "olympus-om/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 290,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 270,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 310,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 23.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 26,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "thicknessMm": {
+        "value": 1.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "matesWith": "body-slot-3",
+      "shapeNotes": "representative lug (count unconfirmed)"
+    },
+    {
+      "featureId": "lens-index-mark",
+      "featureType": "index_mark",
+      "profileId": "olympus-om/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "startAngleDeg": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "endAngleDeg": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 25,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "thicknessMm": {
+        "value": "not_applicable",
+        "status": "not_applicable",
+        "sourceRefs": []
+      },
+      "matesWith": "body-index-mark",
+      "shapeNotes": "aligns with body index"
+    },
+    {
+      "featureId": "lens-lock-notch",
+      "featureType": "lock_notch",
+      "profileId": "olympus-om/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 270,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "startAngleDeg": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "endAngleDeg": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 24.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "thicknessMm": {
+        "value": 2,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "matesWith": "body-lock-pin",
+      "shapeNotes": "receives body lock pin"
+    }
+  ],
+  "axialStack": [
+    {
+      "planeId": "flange_datum",
+      "zPositionMm": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "thicknessMm": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "diameterMm": {
+        "value": 51,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      }
+    },
+    {
+      "planeId": "bayonet_lug_engagement",
+      "zPositionMm": {
+        "value": 1.2,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "thicknessMm": {
+        "value": 1.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "diameterMm": {
+        "value": 46,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      }
+    },
+    {
+      "planeId": "sensor_film_plane",
+      "zPositionMm": {
+        "value": -46,
+        "status": "secondary",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "thicknessMm": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "diameterMm": {
+        "value": 43.3,
+        "status": "secondary",
+        "sourceRefs": [
+          "om-1"
+        ]
+      }
+    }
+  ],
+  "contacts": [],
+  "mechanicalCouplings": [
+    {
+      "featureId": "aperture-coupling-lever",
+      "side": "both",
+      "profileId": "olympus-om/base",
+      "centerAngleDeg": {
+        "value": 45,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "radiusMm": {
+        "value": 24,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "sizeOrTravel": "lever",
+      "function": "automatic-diaphragm aperture actuation",
+      "compatibilityNotes": "stops the diaphragm down at exposure"
+    }
+  ],
+  "screwsGasketsBaffles": [
+    {
+      "featureId": "body-mount-screws",
+      "featureType": "mount_screws",
+      "side": "body",
+      "count": {
+        "value": 4,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "pcdMm": {
+        "value": 48,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "diameterMm": {
+        "value": 2,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "centerAnglesDeg": {
+        "value": [
+          45,
+          135,
+          225,
+          315
+        ],
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "om-1"
+        ]
+      },
+      "shape": "round"
+    }
+  ],
+  "svgLayers": {
+    "mvpRequired": [
+      "datum-axis",
+      "camera-side-metal",
+      "lens-side-metal",
+      "axial-section",
+      "uncertainty"
+    ],
+    "conditionalCoreRequired": [
+      "clear-aperture",
+      "camera-side-core-interface",
+      "lens-side-core-interface"
+    ],
+    "variantRequired": [
+      "camera-side-variant-mechanical",
+      "lens-side-variant-mechanical"
+    ]
+  },
+  "sourceRefs": [
+    {
+      "ref": "om-1",
+      "sourceType": "secondary",
+      "citation": "“Olympus OM system,” Wikipedia. Accessed 2026-06-04.",
+      "liveUrl": "https://en.wikipedia.org/wiki/Olympus_OM_system",
+      "archiveUrl": "http://web.archive.org/web/20221223144533/https://en.wikipedia.org/wiki/Olympus_OM_system",
+      "archiveDate": "2022-12-23",
+      "appliesTo": "flange focal distance, manual-focus mechanical interface",
+      "confidence": "medium"
+    }
+  ],
+  "openQuestions": [
+    {
+      "issue": "Olympus OM lacks an archived teardown with clock positions: the throat diameter, bayonet lug count, the aperture-coupling position, and the lock/index clock positions are photo-scaled.",
+      "affectedFields": [
+        "nominalThroatDiameterMm",
+        "cameraSideFeatures",
+        "lensSideFeatures",
+        "mechanicalCouplings",
+        "lockGeometry"
+      ],
+      "candidateValues": [
+        3,
+        4
+      ],
+      "resolution": "Upgrade to an official Olympus OM mount drawing or measured sample."
+    }
+  ],
+  "schemaVersion": "1.3",
+  "coordinateConvention": {
+    "units": "mm_deg",
+    "zDatum": "flange_datum",
+    "zPositive": "toward_lens",
+    "angleZero": "top_dead_center_camera_front_view",
+    "anglePositive": "clockwise_camera_front_view",
+    "storedAngleFrame": "camera_front_view",
+    "lensRearMirror": "theta_out = (360 - theta) mod 360",
+    "angleSpanRule": "clockwise_sweep_start_to_end_mod_360"
+  },
+  "render": {
+    "unitMapping": "1_user_unit_per_mm",
+    "marginFraction": 0.1,
+    "numericPrecision": 3,
+    "views": {
+      "cameraSideFront": {
+        "viewBox": "-32 -33 64 65"
+      },
+      "lensSideRear": {
+        "viewBox": "-32 -32 64 64"
+      },
+      "axialSection": {
+        "viewBox": "-52 -35 59 66"
+      }
+    }
+  },
+  "metadata": {
+    "title": "Olympus OM mount",
+    "desc": "Olympus OM mount — flange focal distance 46 mm, nominal throat 47 mm.",
+    "view": "unknown",
+    "profileId": "olympus-om/base"
+  }
+}
+```
+
+#### Sources
+
+| Ref | Type | Citation | Archive | Captured | Confidence |
+|---|---|---|---|---|---|
+| `om-1` | secondary | “Olympus OM system,” Wikipedia. Accessed 2026-06-04. | [snapshot](http://web.archive.org/web/20221223144533/https://en.wikipedia.org/wiki/Olympus_OM_system) | 2022-12-23 | medium |
+
+#### Open questions
+
+- Olympus OM lacks an archived teardown with clock positions: the throat diameter, bayonet lug count, the aperture-coupling position, and the lock/index clock positions are photo-scaled. _(Upgrade to an official Olympus OM mount drawing or measured sample.)_
+
 ### `pentax-k` — Pentax K
 
 | Field | Value |
@@ -17213,6 +19675,1923 @@ None — fully electronic.
 
 - Throat diameter, bayonet lug spans, and per-contact clock positions are photo-scaled; the lock groove is documented only as 'roughly 3:45'. _(Upgrade to an official Pentax/Ricoh K-mount drawing or measured sample.)_
 - Contact count grows across KA (6) → KAF (7) → KAF2 (9); contactCount records the KA baseline. _(Expose per-variant contact counts when variant selection drives the figure.)_
+
+### `sony-a` — Sony A
+
+| Field | Value |
+|---|---|
+| Mount ID | `sony-a` |
+| Display label | Sony A |
+| Project note | Minolta/Sony A SLR/SLT mount. |
+| Research status | `researched` |
+| MVP status | `mvp_complete` |
+| Mount mechanism | `bayonet` (lock `sprung_detent`) |
+| Base profile | `sony-a/base` |
+| Selected MVP profile | `sony-a/base` |
+| Variant strategy | `base_only` |
+
+#### Base and variant profile matrix
+
+| Profile ID | Type | Applies to | Adds | Removes | Changes |
+|---|---|---|---|---|---|
+| `sony-a/base` | base | all Minolta AF / Sony A lenses and bodies (full-frame and APS-C DT), 1985–present | bayonet lugs; lock pin/notch; mounting index; AF screw-drive coupler; mechanical aperture-control arm; electrical contact block | — | original Minolta 5-pin interface grew to eight contacts |
+
+#### Dimensional summary
+
+| Field | Value | Unit |
+|---|---|---|
+| Flange focal distance | 44.5 (`secondary`) | mm |
+| Nominal throat diameter | 49.7 (`secondary`) | mm |
+| Effective clear aperture | 49.7 (`secondary`) | mm |
+| Camera mount outer diameter | 57 (`photo_scaled`) | mm |
+| Lens mount outer diameter | 55 (`photo_scaled`) | mm |
+| Contact count | 8 (`secondary`) | count |
+| Lock rotation | unknown (`unknown`) | deg |
+| Lock direction | unknown (`unknown`) | — |
+
+#### Figures (selected profile `sony-a/base`)
+
+**Camera-side front view** — viewBox `-35 -37 70 72` ([standalone SVG](mounts/sony-a-camera-front.svg))
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-35 -37 70 72" role="img" aria-labelledby="sony-a-base-camera_side_front-title sony-a-base-camera_side_front-desc"><title id="sony-a-base-camera_side_front-title">Sony A mount — camera-side front view (base)</title><desc id="sony-a-base-camera_side_front-desc">Sony A bayonet mount, camera-side front view. Flange focal distance 44.5 mm, nominal throat 49.7 mm. Profile sony-a/base.</desc><metadata>{"mountId":"sony-a","profileId":"sony-a/base","view":"camera_side_front","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.425" y1="0" x2="1.425" y2="0" stroke="#8a94a0" stroke-width="0.42" fill="none" /><line x1="0" y1="-1.425" x2="0" y2="1.425" stroke="#8a94a0" stroke-width="0.42" fill="none" /><line x1="0" y1="-28.5" x2="0" y2="-30.21" stroke="#8a94a0" stroke-width="0.42" fill="none" /></g><g data-layer="camera-side-metal"><path d="M0,-28.5 A28.5,28.5 0 1 1 0,28.5 A28.5,28.5 0 1 1 0,-28.5 Z M0,-24.85 A24.85,24.85 0 1 1 0,24.85 A24.85,24.85 0 1 1 0,-24.85 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-28.5 A28.5,28.5 0 1 1 0,28.5 A28.5,28.5 0 1 1 0,-28.5 Z M0,-24.85 A24.85,24.85 0 1 1 0,24.85 A24.85,24.85 0 1 1 0,-24.85 Z" stroke="#6b7a8f" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M0,-24.85 A24.85,24.85 0 1 1 0,24.85 A24.85,24.85 0 1 1 0,-24.85 Z" stroke="#2f80c4" stroke-width="0.315" fill="none" /><circle cx="13.5" cy="-23.383" r="1" stroke="#7f8c3a" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><circle cx="26.41" cy="5.614" r="1" stroke="#7f8c3a" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><circle cx="2.822" cy="26.852" r="1" stroke="#7f8c3a" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><circle cx="-24.666" cy="10.982" r="1" stroke="#7f8c3a" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><circle cx="-18.067" cy="-20.065" r="1" stroke="#7f8c3a" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-core-interface"><path d="M0,-26.15 L-1.77,-28.946 L1.77,-28.946 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-26.15 L-1.77,-28.946 L1.77,-28.946 Z" stroke="#e8853a" stroke-width="0.42" fill="none" stroke-dasharray="0.6 1.6" /><path d="M4.315,-24.472 L4.775,-27.082 A27.5,27.5 0 0 1 21.066,-17.677 L19.036,-15.973 A24.85,24.85 0 0 0 4.315,-24.472 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M4.315,-24.472 L4.775,-27.082 A27.5,27.5 0 0 1 21.066,-17.677 L19.036,-15.973 A24.85,24.85 0 0 0 4.315,-24.472 Z" stroke="#2a9d8f" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M19.036,15.973 L21.066,17.677 A27.5,27.5 0 0 1 4.775,27.082 L4.315,24.472 A24.85,24.85 0 0 0 19.036,15.973 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M19.036,15.973 L21.066,17.677 A27.5,27.5 0 0 1 4.775,27.082 L4.315,24.472 A24.85,24.85 0 0 0 19.036,15.973 Z" stroke="#2a9d8f" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><circle cx="-25.5" cy="0" r="0.998" fill="#d1495b" fill-opacity="0.12" /><circle cx="-25.5" cy="0" r="0.998" stroke="#d1495b" stroke-width="0.42" fill="none" stroke-dasharray="0.6 1.6" /><path d="M-24.85,0 L-27.5,0 A27.5,27.5 0 0 1 -21.066,-17.677 L-19.036,-15.973 A24.85,24.85 0 0 0 -24.85,0 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-24.85,0 L-27.5,0 A27.5,27.5 0 0 1 -21.066,-17.677 L-19.036,-15.973 A24.85,24.85 0 0 0 -24.85,0 Z" stroke="#2a9d8f" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-variant-electrical"><path d="M10.489,18.423 L11.776,20.683 A23.8,23.8 0 0 1 10.562,21.328 L9.408,18.998 A21.2,21.2 0 0 0 10.489,18.423 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M10.489,18.423 L11.776,20.683 A23.8,23.8 0 0 1 10.562,21.328 L9.408,18.998 A21.2,21.2 0 0 0 10.489,18.423 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M7.823,19.704 L8.783,22.12 A23.8,23.8 0 0 1 7.491,22.59 L6.672,20.123 A21.2,21.2 0 0 0 7.823,19.704 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M7.823,19.704 L8.783,22.12 A23.8,23.8 0 0 1 7.491,22.59 L6.672,20.123 A21.2,21.2 0 0 0 7.823,19.704 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M5.005,20.601 L5.619,23.127 A23.8,23.8 0 0 1 4.274,23.413 L3.807,20.855 A21.2,21.2 0 0 0 5.005,20.601 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M5.005,20.601 L5.619,23.127 A23.8,23.8 0 0 1 4.274,23.413 L3.807,20.855 A21.2,21.2 0 0 0 5.005,20.601 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M2.089,21.097 L2.345,23.684 A23.8,23.8 0 0 1 0.974,23.78 L0.867,21.182 A21.2,21.2 0 0 0 2.089,21.097 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M2.089,21.097 L2.345,23.684 A23.8,23.8 0 0 1 0.974,23.78 L0.867,21.182 A21.2,21.2 0 0 0 2.089,21.097 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M-0.867,21.182 L-0.974,23.78 A23.8,23.8 0 0 1 -2.345,23.684 L-2.089,21.097 A21.2,21.2 0 0 0 -0.867,21.182 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-0.867,21.182 L-0.974,23.78 A23.8,23.8 0 0 1 -2.345,23.684 L-2.089,21.097 A21.2,21.2 0 0 0 -0.867,21.182 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M-3.807,20.855 L-4.274,23.413 A23.8,23.8 0 0 1 -5.619,23.127 L-5.005,20.601 A21.2,21.2 0 0 0 -3.807,20.855 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-3.807,20.855 L-4.274,23.413 A23.8,23.8 0 0 1 -5.619,23.127 L-5.005,20.601 A21.2,21.2 0 0 0 -3.807,20.855 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M-6.672,20.123 L-7.491,22.59 A23.8,23.8 0 0 1 -8.783,22.12 L-7.823,19.704 A21.2,21.2 0 0 0 -6.672,20.123 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-6.672,20.123 L-7.491,22.59 A23.8,23.8 0 0 1 -8.783,22.12 L-7.823,19.704 A21.2,21.2 0 0 0 -6.672,20.123 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M-9.408,18.998 L-10.562,21.328 A23.8,23.8 0 0 1 -11.776,20.683 L-10.489,18.423 A21.2,21.2 0 0 0 -9.408,18.998 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-9.408,18.998 L-10.562,21.328 A23.8,23.8 0 0 1 -11.776,20.683 L-10.489,18.423 A21.2,21.2 0 0 0 -9.408,18.998 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-variant-mechanical"><circle cx="-18.794" cy="6.84" r="0.855" stroke="#b5651d" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><circle cx="-20.785" cy="-12" r="0.855" stroke="#b5651d" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-33.6" y1="-33.4" x2="-29.4" y2="-33.4" stroke="#2f80c4" stroke-width="0.504" /><text x="-28.248" y="-32.594" font-size="2.304" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-33.6" y1="-29.944" x2="-29.4" y2="-29.944" stroke="#6b7a8f" stroke-width="0.504" /><text x="-28.248" y="-29.138" font-size="2.304" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-33.6" y1="-26.488" x2="-29.4" y2="-26.488" stroke="#2a9d8f" stroke-width="0.504" /><text x="-28.248" y="-25.682" font-size="2.304" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-33.6" y1="-23.032" x2="-29.4" y2="-23.032" stroke="#d1495b" stroke-width="0.504" /><text x="-28.248" y="-22.226" font-size="2.304" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-33.6" y1="-19.576" x2="-29.4" y2="-19.576" stroke="#e8853a" stroke-width="0.504" /><text x="-28.248" y="-18.77" font-size="2.304" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-33.6" y1="-16.12" x2="-29.4" y2="-16.12" stroke="#8a5cd1" stroke-width="0.504" /><text x="-28.248" y="-15.314" font-size="2.304" fill="#8a5cd1" font-family="sans-serif">Electrical contact</text><line x1="-33.6" y1="-12.664" x2="-29.4" y2="-12.664" stroke="#b5651d" stroke-width="0.504" /><text x="-28.248" y="-11.858" font-size="2.304" fill="#b5651d" font-family="sans-serif">Mechanical coupling</text><line x1="-33.6" y1="-9.208" x2="-29.4" y2="-9.208" stroke="#7f8c3a" stroke-width="0.504" /><text x="-28.248" y="-8.402" font-size="2.304" fill="#7f8c3a" font-family="sans-serif">Screws / seals</text><line x1="-33.6" y1="-5.752" x2="-29.4" y2="-5.752" stroke="#8a94a0" stroke-width="0.504" /><text x="-28.248" y="-4.946" font-size="2.304" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
+
+**Lens-side rear view** — viewBox `-35 -35 70 70` ([standalone SVG](mounts/sony-a-lens-rear.svg))
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-35 -35 70 70" role="img" aria-labelledby="sony-a-base-lens_side_rear-title sony-a-base-lens_side_rear-desc"><title id="sony-a-base-lens_side_rear-title">Sony A mount — lens-side rear view (base)</title><desc id="sony-a-base-lens_side_rear-desc">Sony A bayonet mount, lens-side rear view. Flange focal distance 44.5 mm, nominal throat 49.7 mm. Profile sony-a/base.</desc><metadata>{"mountId":"sony-a","profileId":"sony-a/base","view":"lens_side_rear","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.375" y1="0" x2="1.375" y2="0" stroke="#8a94a0" stroke-width="0.42" fill="none" /><line x1="0" y1="-1.375" x2="0" y2="1.375" stroke="#8a94a0" stroke-width="0.42" fill="none" /><line x1="0" y1="-27.5" x2="0" y2="-29.15" stroke="#8a94a0" stroke-width="0.42" fill="none" /></g><g data-layer="lens-side-metal"><path d="M0,-27.5 A27.5,27.5 0 1 1 0,27.5 A27.5,27.5 0 1 1 0,-27.5 Z M0,-23.85 A23.85,23.85 0 1 1 0,23.85 A23.85,23.85 0 1 1 0,-23.85 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-27.5 A27.5,27.5 0 1 1 0,27.5 A27.5,27.5 0 1 1 0,-27.5 Z M0,-23.85 A23.85,23.85 0 1 1 0,23.85 A23.85,23.85 0 1 1 0,-23.85 Z" stroke="#6b7a8f" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M0,-23.85 A23.85,23.85 0 1 1 0,23.85 A23.85,23.85 0 1 1 0,-23.85 Z" stroke="#2f80c4" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /></g><g data-layer="lens-side-core-interface"><path d="M0,-25.75 L-1.74,-28.447 L1.74,-28.447 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-25.75 L-1.74,-28.447 L1.74,-28.447 Z" stroke="#e8853a" stroke-width="0.42" fill="none" stroke-dasharray="0.6 1.6" /><path d="M19.036,-15.973 L21.066,-17.677 A27.5,27.5 0 0 1 27.5,0 L24.85,0 A24.85,24.85 0 0 0 19.036,-15.973 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M19.036,-15.973 L21.066,-17.677 A27.5,27.5 0 0 1 27.5,0 L24.85,0 A24.85,24.85 0 0 0 19.036,-15.973 Z" stroke="#2a9d8f" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><circle cx="25.5" cy="0" r="0.963" fill="#d1495b" fill-opacity="0.12" /><circle cx="25.5" cy="0" r="0.963" stroke="#d1495b" stroke-width="0.42" fill="none" stroke-dasharray="0.6 1.6" /><path d="M-4.315,24.472 L-4.775,27.082 A27.5,27.5 0 0 1 -21.066,17.677 L-19.036,15.973 A24.85,24.85 0 0 0 -4.315,24.472 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-4.315,24.472 L-4.775,27.082 A27.5,27.5 0 0 1 -21.066,17.677 L-19.036,15.973 A24.85,24.85 0 0 0 -4.315,24.472 Z" stroke="#2a9d8f" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M-19.036,-15.973 L-21.066,-17.677 A27.5,27.5 0 0 1 -4.775,-27.082 L-4.315,-24.472 A24.85,24.85 0 0 0 -19.036,-15.973 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-19.036,-15.973 L-21.066,-17.677 A27.5,27.5 0 0 1 -4.775,-27.082 L-4.315,-24.472 A24.85,24.85 0 0 0 -19.036,-15.973 Z" stroke="#2a9d8f" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /></g><g data-layer="lens-side-variant-electrical"><path d="M-9.408,18.998 L-10.562,21.328 A23.8,23.8 0 0 1 -11.776,20.683 L-10.489,18.423 A21.2,21.2 0 0 0 -9.408,18.998 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-9.408,18.998 L-10.562,21.328 A23.8,23.8 0 0 1 -11.776,20.683 L-10.489,18.423 A21.2,21.2 0 0 0 -9.408,18.998 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M-6.672,20.123 L-7.491,22.59 A23.8,23.8 0 0 1 -8.783,22.12 L-7.823,19.704 A21.2,21.2 0 0 0 -6.672,20.123 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-6.672,20.123 L-7.491,22.59 A23.8,23.8 0 0 1 -8.783,22.12 L-7.823,19.704 A21.2,21.2 0 0 0 -6.672,20.123 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M-3.807,20.855 L-4.274,23.413 A23.8,23.8 0 0 1 -5.619,23.127 L-5.005,20.601 A21.2,21.2 0 0 0 -3.807,20.855 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-3.807,20.855 L-4.274,23.413 A23.8,23.8 0 0 1 -5.619,23.127 L-5.005,20.601 A21.2,21.2 0 0 0 -3.807,20.855 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M-0.867,21.182 L-0.974,23.78 A23.8,23.8 0 0 1 -2.345,23.684 L-2.089,21.097 A21.2,21.2 0 0 0 -0.867,21.182 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-0.867,21.182 L-0.974,23.78 A23.8,23.8 0 0 1 -2.345,23.684 L-2.089,21.097 A21.2,21.2 0 0 0 -0.867,21.182 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M2.089,21.097 L2.345,23.684 A23.8,23.8 0 0 1 0.974,23.78 L0.867,21.182 A21.2,21.2 0 0 0 2.089,21.097 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M2.089,21.097 L2.345,23.684 A23.8,23.8 0 0 1 0.974,23.78 L0.867,21.182 A21.2,21.2 0 0 0 2.089,21.097 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M5.005,20.601 L5.619,23.127 A23.8,23.8 0 0 1 4.274,23.413 L3.807,20.855 A21.2,21.2 0 0 0 5.005,20.601 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M5.005,20.601 L5.619,23.127 A23.8,23.8 0 0 1 4.274,23.413 L3.807,20.855 A21.2,21.2 0 0 0 5.005,20.601 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M7.823,19.704 L8.783,22.12 A23.8,23.8 0 0 1 7.491,22.59 L6.672,20.123 A21.2,21.2 0 0 0 7.823,19.704 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M7.823,19.704 L8.783,22.12 A23.8,23.8 0 0 1 7.491,22.59 L6.672,20.123 A21.2,21.2 0 0 0 7.823,19.704 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M10.489,18.423 L11.776,20.683 A23.8,23.8 0 0 1 10.562,21.328 L9.408,18.998 A21.2,21.2 0 0 0 10.489,18.423 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M10.489,18.423 L11.776,20.683 A23.8,23.8 0 0 1 10.562,21.328 L9.408,18.998 A21.2,21.2 0 0 0 10.489,18.423 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-33.6" y1="-31.5" x2="-29.4" y2="-31.5" stroke="#2f80c4" stroke-width="0.49" /><text x="-28.28" y="-30.716" font-size="2.24" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-33.6" y1="-28.14" x2="-29.4" y2="-28.14" stroke="#6b7a8f" stroke-width="0.49" /><text x="-28.28" y="-27.356" font-size="2.24" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-33.6" y1="-24.78" x2="-29.4" y2="-24.78" stroke="#2a9d8f" stroke-width="0.49" /><text x="-28.28" y="-23.996" font-size="2.24" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-33.6" y1="-21.42" x2="-29.4" y2="-21.42" stroke="#d1495b" stroke-width="0.49" /><text x="-28.28" y="-20.636" font-size="2.24" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-33.6" y1="-18.06" x2="-29.4" y2="-18.06" stroke="#e8853a" stroke-width="0.49" /><text x="-28.28" y="-17.276" font-size="2.24" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-33.6" y1="-14.7" x2="-29.4" y2="-14.7" stroke="#8a5cd1" stroke-width="0.49" /><text x="-28.28" y="-13.916" font-size="2.24" fill="#8a5cd1" font-family="sans-serif">Electrical contact</text><line x1="-33.6" y1="-11.34" x2="-29.4" y2="-11.34" stroke="#8a94a0" stroke-width="0.49" /><text x="-28.28" y="-10.556" font-size="2.24" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
+
+**Axial / register schematic** — viewBox `-51 -39 59 74` ([standalone SVG](mounts/sony-a-axial.svg))
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-51 -39 59 74" role="img" aria-labelledby="sony-a-base-axial_section-title sony-a-base-axial_section-desc"><title id="sony-a-base-axial_section-title">Sony A mount — axial / register schematic (base)</title><desc id="sony-a-base-axial_section-desc">Sony A bayonet mount, axial / register schematic. Flange focal distance 44.5 mm, nominal throat 49.7 mm. Profile sony-a/base.</desc><metadata>{"mountId":"sony-a","profileId":"sony-a/base","view":"axial_section","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-44.5" y1="0" x2="1.2" y2="0" stroke="#8a94a0" stroke-width="0.354" fill="none" /><line x1="0" y1="-28.5" x2="0" y2="28.5" stroke="#8a94a0" stroke-width="0.354" fill="none" /></g><g data-layer="axial-section"><text x="-44.5" y="-23.15" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">sensor film plane</text><line x1="-44.5" y1="-21.65" x2="-44.5" y2="21.65" stroke="#2bb0c4" stroke-width="0.265" fill="none" /><line x1="0" y1="-28.5" x2="0" y2="28.5" stroke="#2bb0c4" stroke-width="0.354" fill="none" stroke-dasharray="4 2" /><text x="0" y="-30" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">flange datum</text><line x1="0.5" y1="-23" x2="0.5" y2="23" stroke="#2bb0c4" stroke-width="0.354" fill="none" stroke-dasharray="4 2" /><text x="0.5" y="-24.5" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">electrical contact plane</text><line x1="1.2" y1="-26" x2="1.2" y2="26" stroke="#2bb0c4" stroke-width="0.354" fill="none" stroke-dasharray="4 2" /><text x="1.2" y="-27.5" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">bayonet lug engagement</text></g><g aria-hidden="true"><line x1="-49.82" y1="-35.3" x2="-45.82" y2="-35.3" stroke="#8a94a0" stroke-width="0.518" /><text x="-44.636" y="-34.471" font-size="2.368" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text><line x1="-49.82" y1="-31.748" x2="-45.82" y2="-31.748" stroke="#2bb0c4" stroke-width="0.518" /><text x="-44.636" y="-30.919" font-size="2.368" fill="#2bb0c4" font-family="sans-serif">Register plane</text></g></svg>
+
+#### Camera-side front-view geometry
+
+| Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
+|---|---|---|---|---|---|---|---|
+| `body-throat` | body_throat | `sony-a/base` | 0° | 0° | 360° | 0 | 24.85 |
+| `body-mount-ring` | mount_ring | `sony-a/base` | 0° | 0° | 360° | 24.85 | 28.5 |
+| `body-slot-1` | bayonet_receiving_slot | `sony-a/base` | 30° | 10° | 50° | 24.85 | 27.5 |
+| `body-slot-2` | bayonet_receiving_slot | `sony-a/base` | 150° | 130° | 170° | 24.85 | 27.5 |
+| `body-slot-3` | bayonet_receiving_slot | `sony-a/base` | 290° | 270° | 310° | 24.85 | 27.5 |
+| `body-index-mark` | index_mark | `sony-a/base` | 0° | unknown | unknown | unknown | 29 |
+| `body-lock-pin` | lock_pin | `sony-a/base` | 270° | unknown | unknown | unknown | 25.5 |
+
+#### Lens-side rear-view geometry
+
+| Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
+|---|---|---|---|---|---|---|---|
+| `lens-throat` | lens_throat | `sony-a/base` | 0° | 0° | 360° | 0 | 23.85 |
+| `lens-mount-ring` | lens_mount_ring | `sony-a/base` | 0° | 0° | 360° | 23.85 | 27.5 |
+| `lens-lug-1` | bayonet_lug | `sony-a/base` | 30° | 10° | 50° | 24.85 | 27.5 |
+| `lens-lug-2` | bayonet_lug | `sony-a/base` | 150° | 130° | 170° | 24.85 | 27.5 |
+| `lens-lug-3` | bayonet_lug | `sony-a/base` | 290° | 270° | 310° | 24.85 | 27.5 |
+| `lens-index-mark` | index_mark | `sony-a/base` | 0° | unknown | unknown | unknown | 28.5 |
+| `lens-lock-notch` | lock_notch | `sony-a/base` | 270° | unknown | unknown | unknown | 25.5 |
+
+#### Electrical contacts
+
+| Side | No. | Profile | Center angle | Radius | Function |
+|---|---|---|---|---|---|
+| body | 1 | `sony-a/base` | 152° | 22.5 |  |
+| body | 2 | `sony-a/base` | 160° | 22.5 |  |
+| body | 3 | `sony-a/base` | 168° | 22.5 |  |
+| body | 4 | `sony-a/base` | 176° | 22.5 |  |
+| body | 5 | `sony-a/base` | 184° | 22.5 |  |
+| body | 6 | `sony-a/base` | 192° | 22.5 |  |
+| body | 7 | `sony-a/base` | 200° | 22.5 |  |
+| body | 8 | `sony-a/base` | 208° | 22.5 | 8th (original Minolta had 5) |
+| lens | 1 | `sony-a/base` | 152° | 22.5 |  |
+| lens | 2 | `sony-a/base` | 160° | 22.5 |  |
+| lens | 3 | `sony-a/base` | 168° | 22.5 |  |
+| lens | 4 | `sony-a/base` | 176° | 22.5 |  |
+| lens | 5 | `sony-a/base` | 184° | 22.5 |  |
+| lens | 6 | `sony-a/base` | 192° | 22.5 |  |
+| lens | 7 | `sony-a/base` | 200° | 22.5 |  |
+| lens | 8 | `sony-a/base` | 208° | 22.5 | 8th (original Minolta had 5) |
+
+#### Mechanical couplings
+
+| Feature | Side | Profile | Function |
+|---|---|---|---|
+| `af-screw-coupler` | body | `sony-a/base` | mechanical (screw-drive) AF |
+| `aperture-control-arm` | body | `sony-a/base` | mechanical aperture actuation |
+
+#### Axial stack
+
+| Plane | z (mm) | Diameter (mm) |
+|---|---|---|
+| `flange_datum` | 0 | 57 |
+| `bayonet_lug_engagement` | 1.2 | 52 |
+| `electrical_contact_plane` | 0.5 | 46 |
+| `sensor_film_plane` | -44.5 | 43.3 |
+
+#### Machine-readable mount block
+
+```json
+{
+  "mountId": "sony-a",
+  "displayLabel": "Sony A",
+  "projectNote": "Minolta/Sony A SLR/SLT mount.",
+  "researchStatus": "researched",
+  "mvpStatus": "mvp_complete",
+  "mechanism": "bayonet",
+  "lockType": "sprung_detent",
+  "mvp": {
+    "requiredViews": [
+      "camera_side_front_view",
+      "lens_side_rear_view",
+      "axial_register_schematic"
+    ],
+    "requirementLevels": {
+      "mvpRequired": [
+        "flange_focal_distance_mm",
+        "nominal_throat_diameter_mm",
+        "camera_mount_outer_diameter_mm"
+      ],
+      "conditionalCoreRequired": [
+        "bayonet_lugs",
+        "lock_pin",
+        "index_mark"
+      ],
+      "variantRequired": [
+        "electrical_contacts",
+        "af_screw_coupler",
+        "aperture_arm"
+      ],
+      "mvpOptional": [
+        "mount_screws"
+      ],
+      "referenceGrade": [
+        "lug_ramp_undercut",
+        "contact_pitch"
+      ]
+    },
+    "profileModel": {
+      "baseProfileId": "sony-a/base",
+      "selectedMvpProfileId": "sony-a/base",
+      "variantStrategy": "base_only",
+      "variantProfiles": [
+        {
+          "profileId": "sony-a/base",
+          "profileType": "base",
+          "appliesTo": "all Minolta AF / Sony A lenses and bodies (full-frame and APS-C DT), 1985–present",
+          "adds": [
+            "bayonet lugs",
+            "lock pin/notch",
+            "mounting index",
+            "AF screw-drive coupler",
+            "mechanical aperture-control arm",
+            "electrical contact block"
+          ],
+          "removes": [],
+          "changes": [
+            "original Minolta 5-pin interface grew to eight contacts"
+          ],
+          "cameraSideOverlayLayers": [
+            "camera-side-variant-electrical",
+            "camera-side-variant-mechanical"
+          ],
+          "lensSideOverlayLayers": [
+            "lens-side-variant-electrical"
+          ],
+          "status": "researched",
+          "sourceRefs": [
+            "sa-1"
+          ]
+        }
+      ]
+    }
+  },
+  "coreDimensions": {
+    "flangeFocalDistanceMm": {
+      "value": 44.5,
+      "status": "secondary",
+      "sourceRefs": [
+        "sa-1"
+      ]
+    },
+    "nominalThroatDiameterMm": {
+      "value": 49.7,
+      "status": "secondary",
+      "sourceRefs": [
+        "sa-1"
+      ]
+    },
+    "effectiveClearApertureMm": {
+      "value": 49.7,
+      "status": "secondary",
+      "sourceRefs": [
+        "sa-1"
+      ]
+    },
+    "cameraMountOuterDiameterMm": {
+      "value": 57,
+      "status": "photo_scaled",
+      "sourceRefs": [
+        "sa-1"
+      ]
+    },
+    "lensMountOuterDiameterMm": {
+      "value": 55,
+      "status": "photo_scaled",
+      "sourceRefs": [
+        "sa-1"
+      ]
+    },
+    "contactCount": {
+      "value": 8,
+      "status": "secondary",
+      "sourceRefs": [
+        "sa-1"
+      ]
+    }
+  },
+  "lockGeometry": {
+    "insertionAngleDeg": {
+      "value": 0,
+      "status": "secondary",
+      "sourceRefs": [
+        "sa-1"
+      ]
+    },
+    "lockAngleDeg": {
+      "value": "unknown",
+      "status": "unknown",
+      "sourceRefs": [
+        "sa-1"
+      ]
+    },
+    "lockRotationDeg": {
+      "value": "unknown",
+      "status": "unknown",
+      "sourceRefs": [
+        "sa-1"
+      ]
+    },
+    "lockRotationDirection": {
+      "value": "unknown",
+      "status": "unknown",
+      "sourceRefs": []
+    }
+  },
+  "cameraSideFeatures": [
+    {
+      "featureId": "body-throat",
+      "featureType": "body_throat",
+      "profileId": "sony-a/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 360,
+        "status": "secondary",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 24.85,
+        "status": "secondary",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "depthMm": {
+        "value": "not_applicable",
+        "status": "not_applicable",
+        "sourceRefs": []
+      },
+      "matesWith": "",
+      "shapeNotes": "49.7 mm mount opening"
+    },
+    {
+      "featureId": "body-mount-ring",
+      "featureType": "mount_ring",
+      "profileId": "sony-a/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 360,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 24.85,
+        "status": "secondary",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 28.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "depthMm": {
+        "value": "not_applicable",
+        "status": "not_applicable",
+        "sourceRefs": []
+      },
+      "matesWith": "",
+      "shapeNotes": "visible body mount ring"
+    },
+    {
+      "featureId": "body-slot-1",
+      "featureType": "bayonet_receiving_slot",
+      "profileId": "sony-a/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 30,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 10,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 50,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 24.85,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 27.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "depthMm": {
+        "value": 1.8,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "matesWith": "lens-lug-1",
+      "shapeNotes": "representative lug (count unconfirmed)"
+    },
+    {
+      "featureId": "body-slot-2",
+      "featureType": "bayonet_receiving_slot",
+      "profileId": "sony-a/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 150,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 130,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 170,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 24.85,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 27.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "depthMm": {
+        "value": 1.8,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "matesWith": "lens-lug-2",
+      "shapeNotes": "representative lug (count unconfirmed)"
+    },
+    {
+      "featureId": "body-slot-3",
+      "featureType": "bayonet_receiving_slot",
+      "profileId": "sony-a/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 290,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 270,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 310,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 24.85,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 27.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "depthMm": {
+        "value": 1.8,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "matesWith": "lens-lug-3",
+      "shapeNotes": "representative lug (count unconfirmed)"
+    },
+    {
+      "featureId": "body-index-mark",
+      "featureType": "index_mark",
+      "profileId": "sony-a/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "startAngleDeg": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "endAngleDeg": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 29,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "depthMm": {
+        "value": "not_applicable",
+        "status": "not_applicable",
+        "sourceRefs": []
+      },
+      "matesWith": "lens-index-mark",
+      "shapeNotes": "mounting index"
+    },
+    {
+      "featureId": "body-lock-pin",
+      "featureType": "lock_pin",
+      "profileId": "sony-a/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 270,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "startAngleDeg": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "endAngleDeg": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 25.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "depthMm": {
+        "value": 2,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "matesWith": "lens-lock-notch",
+      "shapeNotes": "lock pin (position unconfirmed)"
+    }
+  ],
+  "lensSideFeatures": [
+    {
+      "featureId": "lens-throat",
+      "featureType": "lens_throat",
+      "profileId": "sony-a/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 360,
+        "status": "secondary",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 23.85,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "thicknessMm": {
+        "value": "not_applicable",
+        "status": "not_applicable",
+        "sourceRefs": []
+      },
+      "matesWith": "",
+      "shapeNotes": "rear opening"
+    },
+    {
+      "featureId": "lens-mount-ring",
+      "featureType": "lens_mount_ring",
+      "profileId": "sony-a/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 360,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 23.85,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 27.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "thicknessMm": {
+        "value": "not_applicable",
+        "status": "not_applicable",
+        "sourceRefs": []
+      },
+      "matesWith": "",
+      "shapeNotes": "lens flange ring"
+    },
+    {
+      "featureId": "lens-lug-1",
+      "featureType": "bayonet_lug",
+      "profileId": "sony-a/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 30,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 10,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 50,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 24.85,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 27.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "thicknessMm": {
+        "value": 1.8,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "matesWith": "body-slot-1",
+      "shapeNotes": "representative lug (count unconfirmed)"
+    },
+    {
+      "featureId": "lens-lug-2",
+      "featureType": "bayonet_lug",
+      "profileId": "sony-a/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 150,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 130,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 170,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 24.85,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 27.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "thicknessMm": {
+        "value": 1.8,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "matesWith": "body-slot-2",
+      "shapeNotes": "representative lug (count unconfirmed)"
+    },
+    {
+      "featureId": "lens-lug-3",
+      "featureType": "bayonet_lug",
+      "profileId": "sony-a/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 290,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 270,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 310,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 24.85,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 27.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "thicknessMm": {
+        "value": 1.8,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "matesWith": "body-slot-3",
+      "shapeNotes": "representative lug (count unconfirmed)"
+    },
+    {
+      "featureId": "lens-index-mark",
+      "featureType": "index_mark",
+      "profileId": "sony-a/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "startAngleDeg": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "endAngleDeg": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 28.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "thicknessMm": {
+        "value": "not_applicable",
+        "status": "not_applicable",
+        "sourceRefs": []
+      },
+      "matesWith": "body-index-mark",
+      "shapeNotes": "aligns with body index"
+    },
+    {
+      "featureId": "lens-lock-notch",
+      "featureType": "lock_notch",
+      "profileId": "sony-a/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 270,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "startAngleDeg": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "endAngleDeg": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 25.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "thicknessMm": {
+        "value": 2,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "matesWith": "body-lock-pin",
+      "shapeNotes": "receives body lock pin"
+    }
+  ],
+  "axialStack": [
+    {
+      "planeId": "flange_datum",
+      "zPositionMm": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "thicknessMm": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "diameterMm": {
+        "value": 57,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      }
+    },
+    {
+      "planeId": "bayonet_lug_engagement",
+      "zPositionMm": {
+        "value": 1.2,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "thicknessMm": {
+        "value": 1.8,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "diameterMm": {
+        "value": 52,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      }
+    },
+    {
+      "planeId": "electrical_contact_plane",
+      "zPositionMm": {
+        "value": 0.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "thicknessMm": {
+        "value": 0.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "diameterMm": {
+        "value": 46,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      }
+    },
+    {
+      "planeId": "sensor_film_plane",
+      "zPositionMm": {
+        "value": -44.5,
+        "status": "secondary",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "thicknessMm": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "diameterMm": {
+        "value": 43.3,
+        "status": "secondary",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      }
+    }
+  ],
+  "contacts": [
+    {
+      "side": "body",
+      "contactNo": 1,
+      "profileId": "sony-a/base",
+      "centerAngleDeg": {
+        "value": 152,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 22.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "heightMm": {
+        "value": 2.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0.4,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "body",
+      "contactNo": 2,
+      "profileId": "sony-a/base",
+      "centerAngleDeg": {
+        "value": 160,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 22.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "heightMm": {
+        "value": 2.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0.4,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "body",
+      "contactNo": 3,
+      "profileId": "sony-a/base",
+      "centerAngleDeg": {
+        "value": 168,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 22.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "heightMm": {
+        "value": 2.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0.4,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "body",
+      "contactNo": 4,
+      "profileId": "sony-a/base",
+      "centerAngleDeg": {
+        "value": 176,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 22.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "heightMm": {
+        "value": 2.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0.4,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "body",
+      "contactNo": 5,
+      "profileId": "sony-a/base",
+      "centerAngleDeg": {
+        "value": 184,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 22.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "heightMm": {
+        "value": 2.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0.4,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "body",
+      "contactNo": 6,
+      "profileId": "sony-a/base",
+      "centerAngleDeg": {
+        "value": 192,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 22.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "heightMm": {
+        "value": 2.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0.4,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "body",
+      "contactNo": 7,
+      "profileId": "sony-a/base",
+      "centerAngleDeg": {
+        "value": 200,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 22.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "heightMm": {
+        "value": 2.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0.4,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "body",
+      "contactNo": 8,
+      "profileId": "sony-a/base",
+      "centerAngleDeg": {
+        "value": 208,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 22.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "heightMm": {
+        "value": 2.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0.4,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "function": "8th (original Minolta had 5)"
+    },
+    {
+      "side": "lens",
+      "contactNo": 1,
+      "profileId": "sony-a/base",
+      "centerAngleDeg": {
+        "value": 152,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 22.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "heightMm": {
+        "value": 2.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "lens",
+      "contactNo": 2,
+      "profileId": "sony-a/base",
+      "centerAngleDeg": {
+        "value": 160,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 22.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "heightMm": {
+        "value": 2.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "lens",
+      "contactNo": 3,
+      "profileId": "sony-a/base",
+      "centerAngleDeg": {
+        "value": 168,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 22.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "heightMm": {
+        "value": 2.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "lens",
+      "contactNo": 4,
+      "profileId": "sony-a/base",
+      "centerAngleDeg": {
+        "value": 176,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 22.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "heightMm": {
+        "value": 2.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "lens",
+      "contactNo": 5,
+      "profileId": "sony-a/base",
+      "centerAngleDeg": {
+        "value": 184,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 22.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "heightMm": {
+        "value": 2.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "lens",
+      "contactNo": 6,
+      "profileId": "sony-a/base",
+      "centerAngleDeg": {
+        "value": 192,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 22.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "heightMm": {
+        "value": 2.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "lens",
+      "contactNo": 7,
+      "profileId": "sony-a/base",
+      "centerAngleDeg": {
+        "value": 200,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 22.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "heightMm": {
+        "value": 2.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "lens",
+      "contactNo": 8,
+      "profileId": "sony-a/base",
+      "centerAngleDeg": {
+        "value": 208,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 22.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "heightMm": {
+        "value": 2.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "function": "8th (original Minolta had 5)"
+    }
+  ],
+  "mechanicalCouplings": [
+    {
+      "featureId": "af-screw-coupler",
+      "side": "body",
+      "profileId": "sony-a/base",
+      "centerAngleDeg": {
+        "value": 250,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "radiusMm": {
+        "value": 20,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "sizeOrTravel": "drive shaft",
+      "function": "mechanical (screw-drive) AF",
+      "compatibilityNotes": "non-SAM/SSM lenses"
+    },
+    {
+      "featureId": "aperture-control-arm",
+      "side": "body",
+      "profileId": "sony-a/base",
+      "centerAngleDeg": {
+        "value": 300,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "radiusMm": {
+        "value": 24,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "sizeOrTravel": "lever/arm",
+      "function": "mechanical aperture actuation",
+      "compatibilityNotes": ""
+    }
+  ],
+  "screwsGasketsBaffles": [
+    {
+      "featureId": "body-mount-screws",
+      "featureType": "mount_screws",
+      "side": "body",
+      "count": {
+        "value": 5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "pcdMm": {
+        "value": 54,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "diameterMm": {
+        "value": 2,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "centerAnglesDeg": {
+        "value": [
+          30,
+          102,
+          174,
+          246,
+          318
+        ],
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "sa-1"
+        ]
+      },
+      "shape": "round"
+    }
+  ],
+  "svgLayers": {
+    "mvpRequired": [
+      "datum-axis",
+      "camera-side-metal",
+      "lens-side-metal",
+      "axial-section",
+      "uncertainty"
+    ],
+    "conditionalCoreRequired": [
+      "clear-aperture",
+      "camera-side-core-interface",
+      "lens-side-core-interface"
+    ],
+    "variantRequired": [
+      "camera-side-variant-electrical",
+      "camera-side-variant-mechanical",
+      "lens-side-variant-electrical",
+      "lens-side-variant-mechanical"
+    ]
+  },
+  "sourceRefs": [
+    {
+      "ref": "sa-1",
+      "sourceType": "secondary",
+      "citation": "“Minolta A-mount system,” Wikipedia. Accessed 2026-06-04.",
+      "liveUrl": "https://en.wikipedia.org/wiki/Minolta_A-mount_system",
+      "archiveUrl": "http://web.archive.org/web/20221225232256/https://en.wikipedia.org/wiki/Minolta_A-mount_system",
+      "archiveDate": "2022-12-25",
+      "appliesTo": "flange focal distance, 49.7 mm mount diameter, AF screw drive, aperture arm, electronic contacts",
+      "confidence": "medium"
+    }
+  ],
+  "openQuestions": [
+    {
+      "issue": "Contact count grew from the original Minolta 5-pin to 8 pins; eight is modeled.",
+      "affectedFields": [
+        "contactCount",
+        "contacts"
+      ],
+      "candidateValues": [
+        5,
+        8
+      ],
+      "resolution": "Model per-era contact counts if a generation selector is added."
+    },
+    {
+      "issue": "Sony A lacks an archived teardown with clock positions: the bayonet lug count, the contact/coupling positions, and the lock/index clock positions are photo-scaled (contacts placed at the bottom by convention).",
+      "affectedFields": [
+        "cameraSideFeatures",
+        "lensSideFeatures",
+        "contacts",
+        "mechanicalCouplings",
+        "lockGeometry"
+      ],
+      "candidateValues": [
+        3,
+        4
+      ],
+      "resolution": "Upgrade to an official Minolta/Sony A mount drawing or measured sample."
+    }
+  ],
+  "schemaVersion": "1.3",
+  "coordinateConvention": {
+    "units": "mm_deg",
+    "zDatum": "flange_datum",
+    "zPositive": "toward_lens",
+    "angleZero": "top_dead_center_camera_front_view",
+    "anglePositive": "clockwise_camera_front_view",
+    "storedAngleFrame": "camera_front_view",
+    "lensRearMirror": "theta_out = (360 - theta) mod 360",
+    "angleSpanRule": "clockwise_sweep_start_to_end_mod_360"
+  },
+  "render": {
+    "unitMapping": "1_user_unit_per_mm",
+    "marginFraction": 0.1,
+    "numericPrecision": 3,
+    "views": {
+      "cameraSideFront": {
+        "viewBox": "-35 -37 70 72"
+      },
+      "lensSideRear": {
+        "viewBox": "-35 -35 70 70"
+      },
+      "axialSection": {
+        "viewBox": "-51 -39 59 74"
+      }
+    }
+  },
+  "metadata": {
+    "title": "Sony A mount",
+    "desc": "Sony A mount — flange focal distance 44.5 mm, nominal throat 49.7 mm.",
+    "view": "unknown",
+    "profileId": "sony-a/base"
+  }
+}
+```
+
+#### Sources
+
+| Ref | Type | Citation | Archive | Captured | Confidence |
+|---|---|---|---|---|---|
+| `sa-1` | secondary | “Minolta A-mount system,” Wikipedia. Accessed 2026-06-04. | [snapshot](http://web.archive.org/web/20221225232256/https://en.wikipedia.org/wiki/Minolta_A-mount_system) | 2022-12-25 | medium |
+
+#### Open questions
+
+- Contact count grew from the original Minolta 5-pin to 8 pins; eight is modeled. _(Model per-era contact counts if a generation selector is added.)_
+- Sony A lacks an archived teardown with clock positions: the bayonet lug count, the contact/coupling positions, and the lock/index clock positions are photo-scaled (contacts placed at the bottom by convention). _(Upgrade to an official Minolta/Sony A mount drawing or measured sample.)_
 
 ### `sony-fe` — Sony E
 

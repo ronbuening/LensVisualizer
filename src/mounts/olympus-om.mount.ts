@@ -1,0 +1,360 @@
+/**
+ * Olympus OM mount SVG specification.
+ *
+ * Olympus's compact manual-focus 35 mm SLR mount (OM-1, 1972): a 46 mm flange focal distance.
+ * Modeled `base-only` — a mechanical bayonet with an automatic-diaphragm aperture coupling and no
+ * electrical contacts on the classic manual-focus lenses.
+ *
+ * Sourced scalar: flange focal distance 46 mm [om-1]. JAPB has no Olympus OM teardown, so the throat
+ * diameter, bayonet lug count, the aperture-coupling position, and the lock/index clock positions are
+ * photo-scaled and flagged in openQuestions.
+ */
+
+import type { MountSpecInput } from "../types/mount.js";
+import { degListV, dirV, naV, unknownV, v } from "../optics/mount/authoring.js";
+
+const W = ["om-1"]; // Wikipedia
+
+const OLYMPUS_OM_MOUNT = {
+  mountId: "olympus-om",
+  displayLabel: "Olympus OM",
+  projectNote: "Olympus OM manual-focus SLR mount.",
+  researchStatus: "researched",
+  mvpStatus: "mvp_complete",
+  mechanism: "bayonet",
+  lockType: "sprung_detent",
+
+  mvp: {
+    requiredViews: ["camera_side_front_view", "lens_side_rear_view", "axial_register_schematic"],
+    requirementLevels: {
+      mvpRequired: ["flange_focal_distance_mm", "nominal_throat_diameter_mm", "camera_mount_outer_diameter_mm"],
+      conditionalCoreRequired: ["bayonet_lugs", "lock_pin", "index_mark"],
+      variantRequired: ["aperture_coupling"],
+      mvpOptional: ["mount_screws"],
+      referenceGrade: ["lug_ramp_undercut"],
+    },
+    profileModel: {
+      baseProfileId: "olympus-om/base",
+      selectedMvpProfileId: "olympus-om/base",
+      variantStrategy: "base_only",
+      variantProfiles: [
+        {
+          profileId: "olympus-om/base",
+          profileType: "base",
+          appliesTo: "all Olympus OM manual-focus lenses and bodies, 1972–2002",
+          adds: ["bayonet lugs", "lock pin/notch", "mounting index", "automatic-diaphragm aperture coupling"],
+          removes: ["electrical contacts (mechanical manual-focus interface)"],
+          changes: [],
+          cameraSideOverlayLayers: ["camera-side-variant-mechanical"],
+          lensSideOverlayLayers: ["lens-side-variant-mechanical"],
+          status: "researched",
+          sourceRefs: W,
+        },
+      ],
+    },
+  },
+
+  coreDimensions: {
+    flangeFocalDistanceMm: v(46, "secondary", W),
+    nominalThroatDiameterMm: v(47, "photo_scaled", W),
+    effectiveClearApertureMm: v(47, "photo_scaled", W),
+    cameraMountOuterDiameterMm: v(51, "photo_scaled", W),
+    lensMountOuterDiameterMm: v(49, "photo_scaled", W),
+    contactCount: naV(),
+  },
+
+  lockGeometry: {
+    insertionAngleDeg: v(0, "secondary", W),
+    lockAngleDeg: unknownV(W),
+    lockRotationDeg: unknownV(W),
+    lockRotationDirection: dirV("unknown", "unknown", []),
+  },
+
+  cameraSideFeatures: [
+    {
+      featureId: "body-throat",
+      featureType: "body_throat",
+      profileId: "olympus-om/base",
+      count: 1,
+      centerAngleDeg: v(0, "secondary", W),
+      startAngleDeg: v(0, "secondary", W),
+      endAngleDeg: v(360, "secondary", W),
+      innerRadiusMm: v(0, "secondary", W),
+      outerRadiusMm: v(23.5, "photo_scaled", W),
+      depthMm: naV(),
+      matesWith: "",
+      shapeNotes: "~47 mm throat opening",
+    },
+    {
+      featureId: "body-mount-ring",
+      featureType: "mount_ring",
+      profileId: "olympus-om/base",
+      count: 1,
+      centerAngleDeg: v(0, "photo_scaled", W),
+      startAngleDeg: v(0, "photo_scaled", W),
+      endAngleDeg: v(360, "photo_scaled", W),
+      innerRadiusMm: v(23.5, "photo_scaled", W),
+      outerRadiusMm: v(25.5, "photo_scaled", W),
+      depthMm: naV(),
+      matesWith: "",
+      shapeNotes: "visible body mount ring",
+    },
+    {
+      featureId: "body-slot-1",
+      featureType: "bayonet_receiving_slot",
+      profileId: "olympus-om/base",
+      count: 1,
+      centerAngleDeg: v(30, "photo_scaled", W),
+      startAngleDeg: v(10, "photo_scaled", W),
+      endAngleDeg: v(50, "photo_scaled", W),
+      innerRadiusMm: v(23.5, "photo_scaled", W),
+      outerRadiusMm: v(26, "photo_scaled", W),
+      depthMm: v(1.6, "photo_scaled", W),
+      matesWith: "lens-lug-1",
+      shapeNotes: "representative lug (count unconfirmed)",
+    },
+    {
+      featureId: "body-slot-2",
+      featureType: "bayonet_receiving_slot",
+      profileId: "olympus-om/base",
+      count: 1,
+      centerAngleDeg: v(150, "photo_scaled", W),
+      startAngleDeg: v(130, "photo_scaled", W),
+      endAngleDeg: v(170, "photo_scaled", W),
+      innerRadiusMm: v(23.5, "photo_scaled", W),
+      outerRadiusMm: v(26, "photo_scaled", W),
+      depthMm: v(1.6, "photo_scaled", W),
+      matesWith: "lens-lug-2",
+      shapeNotes: "representative lug (count unconfirmed)",
+    },
+    {
+      featureId: "body-slot-3",
+      featureType: "bayonet_receiving_slot",
+      profileId: "olympus-om/base",
+      count: 1,
+      centerAngleDeg: v(290, "photo_scaled", W),
+      startAngleDeg: v(270, "photo_scaled", W),
+      endAngleDeg: v(310, "photo_scaled", W),
+      innerRadiusMm: v(23.5, "photo_scaled", W),
+      outerRadiusMm: v(26, "photo_scaled", W),
+      depthMm: v(1.6, "photo_scaled", W),
+      matesWith: "lens-lug-3",
+      shapeNotes: "representative lug (count unconfirmed)",
+    },
+    {
+      featureId: "body-index-mark",
+      featureType: "index_mark",
+      profileId: "olympus-om/base",
+      count: 1,
+      centerAngleDeg: v(0, "photo_scaled", W),
+      startAngleDeg: unknownV(W),
+      endAngleDeg: unknownV(W),
+      innerRadiusMm: unknownV(W),
+      outerRadiusMm: v(26, "photo_scaled", W),
+      depthMm: naV(),
+      matesWith: "lens-index-mark",
+      shapeNotes: "mounting index",
+    },
+    {
+      featureId: "body-lock-pin",
+      featureType: "lock_pin",
+      profileId: "olympus-om/base",
+      count: 1,
+      centerAngleDeg: v(270, "photo_scaled", W),
+      startAngleDeg: unknownV(W),
+      endAngleDeg: unknownV(W),
+      innerRadiusMm: unknownV(W),
+      outerRadiusMm: v(24.5, "photo_scaled", W),
+      depthMm: v(2, "photo_scaled", W),
+      matesWith: "lens-lock-notch",
+      shapeNotes: "lock pin (position unconfirmed)",
+    },
+  ],
+
+  lensSideFeatures: [
+    {
+      featureId: "lens-throat",
+      featureType: "lens_throat",
+      profileId: "olympus-om/base",
+      count: 1,
+      centerAngleDeg: v(0, "secondary", W),
+      startAngleDeg: v(0, "secondary", W),
+      endAngleDeg: v(360, "secondary", W),
+      innerRadiusMm: v(0, "secondary", W),
+      outerRadiusMm: v(22.5, "photo_scaled", W),
+      thicknessMm: naV(),
+      matesWith: "",
+      shapeNotes: "rear opening",
+    },
+    {
+      featureId: "lens-mount-ring",
+      featureType: "lens_mount_ring",
+      profileId: "olympus-om/base",
+      count: 1,
+      centerAngleDeg: v(0, "photo_scaled", W),
+      startAngleDeg: v(0, "photo_scaled", W),
+      endAngleDeg: v(360, "photo_scaled", W),
+      innerRadiusMm: v(22.5, "photo_scaled", W),
+      outerRadiusMm: v(24.5, "photo_scaled", W),
+      thicknessMm: naV(),
+      matesWith: "",
+      shapeNotes: "lens flange ring",
+    },
+    {
+      featureId: "lens-lug-1",
+      featureType: "bayonet_lug",
+      profileId: "olympus-om/base",
+      count: 1,
+      centerAngleDeg: v(30, "photo_scaled", W),
+      startAngleDeg: v(10, "photo_scaled", W),
+      endAngleDeg: v(50, "photo_scaled", W),
+      innerRadiusMm: v(23.5, "photo_scaled", W),
+      outerRadiusMm: v(26, "photo_scaled", W),
+      thicknessMm: v(1.6, "photo_scaled", W),
+      matesWith: "body-slot-1",
+      shapeNotes: "representative lug (count unconfirmed)",
+    },
+    {
+      featureId: "lens-lug-2",
+      featureType: "bayonet_lug",
+      profileId: "olympus-om/base",
+      count: 1,
+      centerAngleDeg: v(150, "photo_scaled", W),
+      startAngleDeg: v(130, "photo_scaled", W),
+      endAngleDeg: v(170, "photo_scaled", W),
+      innerRadiusMm: v(23.5, "photo_scaled", W),
+      outerRadiusMm: v(26, "photo_scaled", W),
+      thicknessMm: v(1.6, "photo_scaled", W),
+      matesWith: "body-slot-2",
+      shapeNotes: "representative lug (count unconfirmed)",
+    },
+    {
+      featureId: "lens-lug-3",
+      featureType: "bayonet_lug",
+      profileId: "olympus-om/base",
+      count: 1,
+      centerAngleDeg: v(290, "photo_scaled", W),
+      startAngleDeg: v(270, "photo_scaled", W),
+      endAngleDeg: v(310, "photo_scaled", W),
+      innerRadiusMm: v(23.5, "photo_scaled", W),
+      outerRadiusMm: v(26, "photo_scaled", W),
+      thicknessMm: v(1.6, "photo_scaled", W),
+      matesWith: "body-slot-3",
+      shapeNotes: "representative lug (count unconfirmed)",
+    },
+    {
+      featureId: "lens-index-mark",
+      featureType: "index_mark",
+      profileId: "olympus-om/base",
+      count: 1,
+      centerAngleDeg: v(0, "photo_scaled", W),
+      startAngleDeg: unknownV(W),
+      endAngleDeg: unknownV(W),
+      innerRadiusMm: unknownV(W),
+      outerRadiusMm: v(25, "photo_scaled", W),
+      thicknessMm: naV(),
+      matesWith: "body-index-mark",
+      shapeNotes: "aligns with body index",
+    },
+    {
+      featureId: "lens-lock-notch",
+      featureType: "lock_notch",
+      profileId: "olympus-om/base",
+      count: 1,
+      centerAngleDeg: v(270, "photo_scaled", W),
+      startAngleDeg: unknownV(W),
+      endAngleDeg: unknownV(W),
+      innerRadiusMm: unknownV(W),
+      outerRadiusMm: v(24.5, "photo_scaled", W),
+      thicknessMm: v(2, "photo_scaled", W),
+      matesWith: "body-lock-pin",
+      shapeNotes: "receives body lock pin",
+    },
+  ],
+
+  axialStack: [
+    {
+      planeId: "flange_datum",
+      zPositionMm: v(0, "secondary", W),
+      thicknessMm: v(0, "secondary", W),
+      diameterMm: v(51, "photo_scaled", W),
+    },
+    {
+      planeId: "bayonet_lug_engagement",
+      zPositionMm: v(1.2, "photo_scaled", W),
+      thicknessMm: v(1.6, "photo_scaled", W),
+      diameterMm: v(46, "photo_scaled", W),
+    },
+    {
+      planeId: "sensor_film_plane",
+      zPositionMm: v(-46, "secondary", W),
+      thicknessMm: v(0, "secondary", W),
+      diameterMm: v(43.3, "secondary", W),
+    },
+  ],
+
+  contacts: [],
+
+  mechanicalCouplings: [
+    {
+      featureId: "aperture-coupling-lever",
+      side: "both",
+      profileId: "olympus-om/base",
+      centerAngleDeg: v(45, "photo_scaled", W),
+      radiusMm: v(24, "photo_scaled", W),
+      sizeOrTravel: "lever",
+      function: "automatic-diaphragm aperture actuation",
+      compatibilityNotes: "stops the diaphragm down at exposure",
+    },
+  ],
+
+  screwsGasketsBaffles: [
+    {
+      featureId: "body-mount-screws",
+      featureType: "mount_screws",
+      side: "body",
+      count: v(4, "photo_scaled", W),
+      pcdMm: v(48, "photo_scaled", W),
+      diameterMm: v(2, "photo_scaled", W),
+      centerAnglesDeg: degListV([45, 135, 225, 315], "photo_scaled", W),
+      shape: "round",
+    },
+  ],
+
+  svgLayers: {
+    mvpRequired: ["datum-axis", "camera-side-metal", "lens-side-metal", "axial-section", "uncertainty"],
+    conditionalCoreRequired: ["clear-aperture", "camera-side-core-interface", "lens-side-core-interface"],
+    variantRequired: ["camera-side-variant-mechanical", "lens-side-variant-mechanical"],
+  },
+
+  sourceRefs: [
+    {
+      ref: "om-1",
+      sourceType: "secondary",
+      citation: "“Olympus OM system,” Wikipedia. Accessed 2026-06-04.",
+      liveUrl: "https://en.wikipedia.org/wiki/Olympus_OM_system",
+      archiveUrl: "http://web.archive.org/web/20221223144533/https://en.wikipedia.org/wiki/Olympus_OM_system",
+      archiveDate: "2022-12-23",
+      appliesTo: "flange focal distance, manual-focus mechanical interface",
+      confidence: "medium",
+    },
+  ],
+
+  openQuestions: [
+    {
+      issue:
+        "Olympus OM lacks an archived teardown with clock positions: the throat diameter, bayonet lug count, the aperture-coupling position, and the lock/index clock positions are photo-scaled.",
+      affectedFields: [
+        "nominalThroatDiameterMm",
+        "cameraSideFeatures",
+        "lensSideFeatures",
+        "mechanicalCouplings",
+        "lockGeometry",
+      ],
+      candidateValues: [3, 4],
+      resolution: "Upgrade to an official Olympus OM mount drawing or measured sample.",
+    },
+  ],
+} satisfies MountSpecInput;
+
+export default OLYMPUS_OM_MOUNT;
