@@ -20,7 +20,7 @@ reference artifact. It implements the Lens Mount SVG Specification Package, sche
 | Authoring guide | `src/mounts/MOUNT_SVG_SPEC.md` |
 | Pure geometry + renderer | `src/optics/mount/` (no React) |
 | React components | `src/components/mount/` (`MountDiagram`, `MountDiagramPanel`) |
-| Maker-page sidebar | `src/components/content/MakerMountsSidebar.tsx` |
+| Page cross-link sidebars | `src/components/content/LinkListSidebar.tsx` (maker→mounts, mount→makers) |
 | Report generator | `__tests__/src/optics/mount/mountSvgSpecificationsReport.test.ts` |
 | Generated artifacts (committed) | `agent_docs/generated/lens-mount-svg-specifications.md`, `agent_docs/generated/mounts/*.svg` |
 
@@ -83,9 +83,11 @@ component, so the committed SVG and the on-page SVG match.
   base/variant profile selector, and the feature-category legend. It is rendered by
   `src/pages/MountPage.tsx` when `MOUNT_SPECS[mountId]` exists (graceful: pages without a spec show
   no panel). The axial view is computed by the engine but not shown on the page.
-- `src/components/content/MakerMountsSidebar.tsx` lists the mounts used by a maker's lenses
-  (deduplicated union of `lensMounts`) on each `/makers/:maker` page, reusing the `ArticleTOC` panel
-  format. Links are SSR-rendered/crawlable: in-flow on narrow/SSR, fixed top-right aside on wide.
+- `src/components/content/LinkListSidebar.tsx` is a small cross-link sidebar reused on two pages:
+  `/makers/:maker` lists the mounts that maker's lenses use (deduplicated `lensMounts`), and
+  `/mounts/:id` lists the makers with lenses for that mount. It reuses the `ArticleTOC` panel format;
+  links are SSR-rendered/crawlable (in-flow on narrow/SSR, fixed top-right aside on screens wide enough
+  to clear the ~960 px content).
 
 ## Generator + serving
 

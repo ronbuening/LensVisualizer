@@ -21,7 +21,7 @@ import { usePageThemeToggle } from "../utils/theme/usePageThemeToggle.js";
 import { LENS_LINK_BASE_STYLE, PAGE_BASE_STYLE } from "../utils/style/pageStyles.js";
 import { LENS_MOUNT_BY_ID } from "../utils/catalog/lensTaxonomy.js";
 import type { LensMountId, LensMountMetadata } from "../utils/catalog/lensTaxonomy.js";
-import MakerMountsSidebar from "../components/content/MakerMountsSidebar.js";
+import LinkListSidebar from "../components/content/LinkListSidebar.js";
 import type { LensData } from "../types/optics.js";
 
 function lensesForMaker(makerSlug: string): { key: string; data: LensData }[] {
@@ -127,7 +127,12 @@ export default function MakerPage() {
           </p>
         )}
 
-        <MakerMountsSidebar mounts={makerMounts} theme={t} />
+        <LinkListSidebar
+          title="Mounts"
+          ariaLabel="Mounts used by this maker"
+          items={makerMounts.map((m) => ({ id: m.id, label: m.label, to: `/mounts/${m.id}` }))}
+          theme={t}
+        />
 
         <div style={{ borderTop: `1px solid ${t.panelBorder}`, paddingTop: "1rem" }}>
           {lenses.map(({ key, data }) => (

@@ -1,27 +1,43 @@
 /**
- * MakerMountsSidebar — lists the camera mounts used by a maker, linking to each mount page.
+ * LinkListSidebar — a small navigational sidebar listing related pages as links.
  *
  * Reuses the article table-of-contents panel format (`ArticleTOC`): a bordered panel with an
- * uppercase heading and a list of links with a left-border hover indicator. Unlike the TOC it has no
- * scrollspy — the links navigate to other pages. To keep the maker↔mount links crawlable and
- * SSR-rendered, the panel renders in-flow by default (and on narrow screens) and only becomes the
- * fixed top-right aside on wide screens; the first client render matches the SSR output, so there is
- * no hydration mismatch.
+ * uppercase heading and a list of links with a left-border hover indicator. It has no scrollspy —
+ * the links navigate to other pages. Used for the maker→mounts and mount→makers cross-links.
+ *
+ * The links are SSR-rendered and crawlable: the panel renders in-flow by default (and on narrower
+ * screens), and only becomes the fixed top-right aside on wide screens where it clears the centered
+ * page content (≈960 px) without overlapping the text. The first client render matches the SSR
+ * output, so there is no hydration mismatch.
  */
 
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import type { Theme } from "../../types/theme.js";
-import type { LensMountMetadata } from "../../utils/catalog/lensTaxonomy.js";
 
-interface MakerMountsSidebarProps {
-  mounts: LensMountMetadata[];
+export interface LinkListSidebarItem {
+  /** Stable React key + hover id. */
+  id: string;
+  label: string;
+  /** Router path, e.g. `/mounts/nikon-f`. */
+  to: string;
+}
+
+interface LinkListSidebarProps {
+  /** Uppercase panel heading, e.g. "Mounts" or "Makers". */
+  title: string;
+  items: LinkListSidebarItem[];
   theme: Theme;
+  /** Accessible label for the nav region (defaults to `title`). */
+  ariaLabel?: string;
   /** Pixel offset from the viewport top for the fixed (wide) position; clears the site header. */
   offsetTop?: number;
   /** Panel width on wide screens. */
   width?: number;
-  /** Media query gating the fixed (wide) vs in-flow (narrow) layout. */
+  /**
+   * Media query gating the fixed (wide) vs in-flow (narrow) layout. The default docks only when the
+   * viewport is wide enough for the panel to sit beside the ~960 px page content without overlap.
+   */
   wideQuery?: string;
 }
 
@@ -38,17 +54,19 @@ function useMediaQueryMatch(query: string): boolean {
   return matches;
 }
 
-export default function MakerMountsSidebar({
-  mounts,
+export default function LinkListSidebar({
+  title,
+  items,
   theme: t,
+  ariaLabel,
   offsetTop = 88,
-  width = 220,
-  wideQuery = "(min-width: 1200px)",
-}: MakerMountsSidebarProps) {
+  width = 200,
+  wideQuery = "(min-width: 1440px)",
+}: LinkListSidebarProps) {
   const isWide = useMediaQueryMatch(wideQuery);
   const [hovered, setHovered] = useState<string | null>(null);
 
-  if (mounts.length === 0) return null;
+  if (items.length === 0) return null;
 
   const panelStyle: React.CSSProperties = {
     background: t.panelBg,
@@ -62,7 +80,7 @@ export default function MakerMountsSidebar({
   };
 
   const list = (
-    <nav aria-label="Mounts used by this maker" style={panelStyle}>
+    <nav aria-label={ariaLabel ?? title} style={panelStyle}>
       <div
         style={{
           fontSize: 10,
@@ -73,16 +91,16 @@ export default function MakerMountsSidebar({
           fontWeight: 600,
         }}
       >
-        Mounts
+        {title}
       </div>
       <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-        {mounts.map((m) => {
-          const active = hovered === m.id;
+        {items.map((item) => {
+          const active = hovered === item.id;
           return (
-            <li key={m.id} style={{ margin: "2px 0" }}>
+            <li key={item.id} style={{ margin: "2px 0" }}>
               <Link
-                to={`/mounts/${m.id}`}
-                onMouseEnter={() => setHovered(m.id)}
+                to={item.to}
+                onMouseEnter={() => setHovered(item.id)}
                 onMouseLeave={() => setHovered(null)}
                 style={{
                   display: "block",
@@ -96,7 +114,7 @@ export default function MakerMountsSidebar({
                   transition: "color 0.15s, border-color 0.15s",
                 }}
               >
-                {m.label}
+                {item.label}
               </Link>
             </li>
           );
