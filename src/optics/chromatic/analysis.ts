@@ -162,7 +162,7 @@ export function computeLongitudinalChromaticFocus(
   });
 
   for (const marginalFraction of fractions) {
-    const marginalRays: Partial<Record<ChromaticChannel, { y: number; u: number; clipped: boolean }>> = {};
+    const marginalRays: Partial<Record<ChromaticChannel, { y: number; u: number; z?: number; clipped: boolean }>> = {};
     const clippedByChannel: Partial<Record<ChromaticChannel, boolean>> = {};
 
     for (const channel of channels) {
@@ -180,7 +180,12 @@ export function computeLongitudinalChromaticFocus(
       );
       clippedByChannel[channel] = ray.clipped;
       if (!ray.clipped && Math.abs(ray.u) > 1e-15) {
-        marginalRays[channel] = { y: ray.y, u: ray.u, clipped: false };
+        marginalRays[channel] = {
+          y: ray.y,
+          u: ray.u,
+          z: ray.reachedImagePlane ? imagePlaneZ : lastSurfaceZ,
+          clipped: false,
+        };
       }
     }
 

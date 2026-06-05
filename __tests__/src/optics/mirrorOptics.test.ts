@@ -15,6 +15,7 @@ import {
 } from "../../../src/optics/internal/exactSurfaceTrace.js";
 import { computeGroupMovementProfile } from "../../../src/optics/groupMovement.js";
 import {
+  computeLongitudinalChromaticFocus,
   conjugateK,
   doLayout,
   entrancePupilAtState,
@@ -22,6 +23,7 @@ import {
   stopInnerBlockedSemiDiameter,
   SVG_PATH_SUBDIVISIONS,
   traceRay,
+  traceRayChromatic,
 } from "../../../src/optics/optics.js";
 import { obstructionAwareRayFractionsForDensity } from "../../../src/optics/raySampling.js";
 import validateLensData from "../../../src/optics/validateLensData.js";
@@ -341,6 +343,43 @@ describe("mirror optics support", () => {
     expect(infinityRay.clipped).toBe(false);
     expect(trackedRay.clipped).toBe(false);
     expect(Math.abs(trackedRay.y)).toBeLessThan(Math.abs(infinityRay.y) * 0.1);
+  });
+
+  it("keeps folded d-line chromatic tracing aligned with monochrome tracing", () => {
+    const dLineData = {
+      ...nikonReflex500NewData,
+      elements: nikonReflex500NewData.elements.map((element) => ({ ...element, glass: undefined })),
+    } satisfies LensData;
+    const L = buildLens(dLineData);
+    const layout = doLayout(0, 0, L);
+    const ep = entrancePupilAtState(L.stopPhysSD, 0, 0, L).epSD;
+    const rayHeight = 0.75 * ep;
+
+    const monochrome = traceRay(rayHeight, 0, layout.z, 0, 0, L.stopPhysSD, true, L);
+    const green = traceRayChromatic(rayHeight, 0, layout.z, 0, 0, L.stopPhysSD, true, L, "G");
+
+    expect(green.reachedImagePlane).toBe(true);
+    expect(green.y).toBeCloseTo(monochrome.y, 12);
+    expect(green.u).toBeCloseTo(monochrome.u, 12);
+  });
+
+  it("measures folded chromatic spread from the reached image plane", () => {
+    const dLineData = {
+      ...nikonReflex500NewData,
+      elements: nikonReflex500NewData.elements.map((element) => ({ ...element, glass: undefined })),
+    } satisfies LensData;
+    const L = buildLens(dLineData);
+    const layout = doLayout(0, 0, L);
+    const ep = entrancePupilAtState(L.stopPhysSD, 0, 0, L).epSD;
+    const fraction = 0.83;
+    const green = traceRayChromatic(fraction * ep, 0, layout.z, 0, 0, L.stopPhysSD, true, L, "G");
+    const result = computeLongitudinalChromaticFocus(L, layout.z, 0, 0, ep, L.stopPhysSD, 0, {
+      longitudinalFractions: [fraction],
+    });
+
+    expect(result).not.toBeNull();
+    expect(result!.spread.imgHeights.G).toBeCloseTo(green.y, 12);
+    expect(Math.abs(result!.samples.find((sample) => sample.channel === "G")!.focusShiftMm!)).toBeLessThan(1);
   });
 
   it("keeps the Nikon 1000mm primary mirror thickness and folded intervals aligned to the patent", () => {

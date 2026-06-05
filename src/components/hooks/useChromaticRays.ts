@@ -29,6 +29,7 @@ export interface ChromaticRaySegment extends RaySegment {
   fraction: number;
   y: number;
   u: number;
+  z?: number;
   clipped: boolean;
 }
 
@@ -93,10 +94,10 @@ function spreadForAxis(
   });
 
   for (const fraction of candidateFractions) {
-    const marginalRays: Partial<Record<ChromaticChannel, { y: number; u: number; clipped: boolean }>> = {};
+    const marginalRays: Partial<Record<ChromaticChannel, { y: number; u: number; z?: number; clipped: boolean }>> = {};
     for (const r of axisRays) {
       if (Math.abs(r.fraction - fraction) < 1e-12 && !r.clipped && Math.abs(r.u) > 1e-15) {
-        marginalRays[r.channel] = { y: r.y, u: r.u, clipped: false };
+        marginalRays[r.channel] = { y: r.y, u: r.u, z: r.z, clipped: false };
       }
     }
     const channels = Object.keys(marginalRays) as ChromaticChannel[];
@@ -179,6 +180,7 @@ export default function useChromaticRays({
               fraction: f,
               y: result.y,
               u: result.u,
+              z: result.reachedImagePlane ? IMG_MM : zPos[L.N - 1],
               clipped: result.clipped,
             });
           }
@@ -247,6 +249,7 @@ export default function useChromaticRays({
                 fraction: f,
                 y: result.y,
                 u: result.u,
+                z: result.reachedImagePlane ? IMG_MM : zPos[L.N - 1],
                 clipped: result.clipped,
               });
             }

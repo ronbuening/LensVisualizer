@@ -92,9 +92,11 @@ export function resolvedNextIndex(
   surfaces: readonly CompiledStateSurface[],
   indexAtSurface?: (surfaceIndex: number, nd: number) => number,
 ): number {
-  const physicalNextNd = incidentSide === "front" ? surface.nd : surfaceIndex > 0 ? surfaces[surfaceIndex - 1].nd : 1;
+  const mediumSurfaceIndex = incidentSide === "front" ? surfaceIndex : surfaceIndex > 0 ? surfaceIndex - 1 : null;
+  const physicalNextNd =
+    mediumSurfaceIndex === null ? 1 : incidentSide === "front" ? surface.nd : surfaces[mediumSurfaceIndex].nd;
   if (!indexAtSurface) return physicalNextNd === 1 ? 1 : physicalNextNd;
-  return physicalNextNd === 1 ? 1 : indexAtSurface(surfaceIndex, physicalNextNd);
+  return physicalNextNd === 1 || mediumSurfaceIndex === null ? 1 : indexAtSurface(mediumSurfaceIndex, physicalNextNd);
 }
 
 /**

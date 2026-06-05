@@ -21,6 +21,7 @@ interface MarginalRayData {
   y: number;
   u: number;
   clipped: boolean;
+  z?: number;
 }
 
 function spanOf(values: number[]): number {
@@ -75,10 +76,11 @@ export function computeChromaticSpread2(
   for (const ch of ["R", "G", "B", "V"] as ChromaticChannel[]) {
     const ray = marginalRays[ch];
     if (!ray || ray.clipped) continue;
+    const rayZ = Number.isFinite(ray.z) ? ray.z! : lastSurfZ;
     if (Math.abs(ray.u) > 1e-15) {
-      intercepts[ch] = lastSurfZ - ray.y / ray.u;
+      intercepts[ch] = rayZ - ray.y / ray.u;
     }
-    const dz = imgZ - lastSurfZ;
+    const dz = imgZ - rayZ;
     imgHeights[ch] = ray.y + dz * ray.u;
   }
 
