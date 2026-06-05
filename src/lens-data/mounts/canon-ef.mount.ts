@@ -3,20 +3,23 @@
  *
  * EF is honestly modeled as declared `base-only` (package Section 2.5): unlike Nikon F or Pentax K,
  * its physical interface never forked into incompatible generations, so one profile is the complete
- * MVP. It is the catalog's clean fully-electronic, coupling-free case — eight electrical contacts,
- * no mechanical aperture/AF levers — contrasting with the mechanically-coupled Nikon and Pentax
- * mounts.
+ * MVP. It is the catalog's clean fully-electronic, coupling-free case — no mechanical aperture/AF
+ * levers — contrasting with the mechanically-coupled Nikon and Pentax mounts.
  *
- * Headline dimensions (flange focal distance 44 mm, 54 mm throat, three unsymmetrical bayonet
- * prongs, eight electrical pins) are sourced from the Canon EF lens-mount reference [ef-1]; fine
- * angular geometry (lug spans, lock/index/contact clock positions) is photo-scaled and flagged in
- * openQuestions pending an official mount drawing.
+ * Sourced layout: flange focal distance 44 mm and a 54 mm throat [ef-1]; three unsymmetrical
+ * straight-edged bayonet prongs, a locking groove at 9 o'clock, and the electrical contacts grouped
+ * across 5–7 o'clock (i.e. centered at the bottom of the mount) per the JAPB teardown [ef-2]. The
+ * interface began with seven contacts; an eighth was added later, so contactCount records the modern
+ * eight-contact set. Exact prong angular spans and per-contact clock positions remain photo-scaled
+ * within the documented bands and are flagged in openQuestions.
  */
 
 import type { MountSpecInput } from "../../types/mount.js";
 import { degListV, dirV, naV, unknownV, v } from "../../optics/mount/authoring.js";
 
-const REF = ["ef-1"];
+const W = ["ef-1"]; // Wikipedia
+const J = ["ef-2"]; // JAPB teardown
+const WJ = ["ef-1", "ef-2"];
 
 const CANON_EF_MOUNT = {
   mountId: "canon-ef",
@@ -45,81 +48,89 @@ const CANON_EF_MOUNT = {
           profileId: "canon-ef/base",
           profileType: "base",
           appliesTo: "all Canon EF lenses and EOS bodies, 1987–present",
-          adds: ["three-prong bayonet", "lock pin/notch", "mounting index", "eight electrical contacts"],
-          removes: [],
-          changes: [],
-          sourceRefs: REF,
+          adds: [
+            "three unsymmetrical straight-edged bayonet prongs",
+            "locking pin/notch at 9 o'clock",
+            "red-dot mounting index",
+            "electrical contact block at the bottom (5–7 o'clock)",
+          ],
+          removes: ["all mechanical aperture/AF couplings (vs the prior FD breech-lock system)"],
+          changes: ["original seven contacts grew to eight on later lenses"],
+          cameraSideOverlayLayers: ["camera-side-variant-electrical"],
+          lensSideOverlayLayers: ["lens-side-variant-electrical"],
+          status: "researched",
+          sourceRefs: WJ,
         },
       ],
     },
   },
 
   coreDimensions: {
-    flangeFocalDistanceMm: v(44, "secondary", REF),
-    nominalThroatDiameterMm: v(54, "secondary", REF),
-    effectiveClearApertureMm: v(54, "secondary", REF),
-    cameraMountOuterDiameterMm: v(65, "photo_scaled", REF),
-    lensMountOuterDiameterMm: v(63, "photo_scaled", REF),
-    contactCount: v(8, "secondary", REF),
+    flangeFocalDistanceMm: v(44, "secondary", WJ),
+    nominalThroatDiameterMm: v(54, "secondary", W),
+    effectiveClearApertureMm: v(54, "secondary", W),
+    cameraMountOuterDiameterMm: v(65, "photo_scaled", J),
+    lensMountOuterDiameterMm: v(63, "photo_scaled", J),
+    contactCount: v(8, "secondary", W),
   },
 
   lockGeometry: {
-    insertionAngleDeg: v(0, "secondary", REF),
-    lockAngleDeg: v(60, "photo_scaled", REF),
-    lockRotationDeg: v(60, "photo_scaled", REF),
-    lockRotationDirection: dirV("clockwise", "secondary", REF),
+    insertionAngleDeg: v(0, "secondary", J),
+    lockAngleDeg: v(60, "photo_scaled", J),
+    lockRotationDeg: v(60, "photo_scaled", J),
+    lockRotationDirection: dirV("clockwise", "secondary", J),
   },
 
   cameraSideFeatures: [
-    { featureId: "body-throat", featureType: "body_throat", profileId: "canon-ef/base", count: 1, centerAngleDeg: v(0, "secondary", REF), startAngleDeg: v(0, "secondary", REF), endAngleDeg: v(360, "secondary", REF), innerRadiusMm: v(0, "secondary", REF), outerRadiusMm: v(27, "secondary", REF), depthMm: naV(), matesWith: "", shapeNotes: "54 mm throat opening" },
-    { featureId: "body-mount-ring", featureType: "mount_ring", profileId: "canon-ef/base", count: 1, centerAngleDeg: v(0, "photo_scaled", REF), startAngleDeg: v(0, "photo_scaled", REF), endAngleDeg: v(360, "photo_scaled", REF), innerRadiusMm: v(27, "secondary", REF), outerRadiusMm: v(32.5, "photo_scaled", REF), depthMm: naV(), matesWith: "", shapeNotes: "visible body mount ring" },
-    { featureId: "body-slot-1", featureType: "bayonet_receiving_slot", profileId: "canon-ef/base", count: 1, centerAngleDeg: v(30, "photo_scaled", REF), startAngleDeg: v(8, "photo_scaled", REF), endAngleDeg: v(52, "photo_scaled", REF), innerRadiusMm: v(27, "photo_scaled", REF), outerRadiusMm: v(30, "photo_scaled", REF), depthMm: v(2, "photo_scaled", REF), matesWith: "lens-lug-1", shapeNotes: "unsymmetrical prong" },
-    { featureId: "body-slot-2", featureType: "bayonet_receiving_slot", profileId: "canon-ef/base", count: 1, centerAngleDeg: v(150, "photo_scaled", REF), startAngleDeg: v(130, "photo_scaled", REF), endAngleDeg: v(170, "photo_scaled", REF), innerRadiusMm: v(27, "photo_scaled", REF), outerRadiusMm: v(30, "photo_scaled", REF), depthMm: v(2, "photo_scaled", REF), matesWith: "lens-lug-2", shapeNotes: "unsymmetrical prong" },
-    { featureId: "body-slot-3", featureType: "bayonet_receiving_slot", profileId: "canon-ef/base", count: 1, centerAngleDeg: v(290, "photo_scaled", REF), startAngleDeg: v(270, "photo_scaled", REF), endAngleDeg: v(310, "photo_scaled", REF), innerRadiusMm: v(27, "photo_scaled", REF), outerRadiusMm: v(30, "photo_scaled", REF), depthMm: v(2, "photo_scaled", REF), matesWith: "lens-lug-3", shapeNotes: "unsymmetrical prong" },
-    { featureId: "body-index-mark", featureType: "index_mark", profileId: "canon-ef/base", count: 1, centerAngleDeg: v(0, "photo_scaled", REF), startAngleDeg: unknownV(REF), endAngleDeg: unknownV(REF), innerRadiusMm: unknownV(REF), outerRadiusMm: v(33, "photo_scaled", REF), depthMm: naV(), matesWith: "lens-index-mark", shapeNotes: "red dot alignment index" },
-    { featureId: "body-lock-pin", featureType: "lock_pin", profileId: "canon-ef/base", count: 1, centerAngleDeg: v(270, "photo_scaled", REF), startAngleDeg: unknownV(REF), endAngleDeg: unknownV(REF), innerRadiusMm: unknownV(REF), outerRadiusMm: v(28, "photo_scaled", REF), depthMm: v(2, "photo_scaled", REF), matesWith: "lens-lock-notch", shapeNotes: "locking pin near 9 o'clock" },
+    { featureId: "body-throat", featureType: "body_throat", profileId: "canon-ef/base", count: 1, centerAngleDeg: v(0, "secondary", W), startAngleDeg: v(0, "secondary", W), endAngleDeg: v(360, "secondary", W), innerRadiusMm: v(0, "secondary", W), outerRadiusMm: v(27, "secondary", W), depthMm: naV(), matesWith: "", shapeNotes: "54 mm throat opening" },
+    { featureId: "body-mount-ring", featureType: "mount_ring", profileId: "canon-ef/base", count: 1, centerAngleDeg: v(0, "photo_scaled", J), startAngleDeg: v(0, "photo_scaled", J), endAngleDeg: v(360, "photo_scaled", J), innerRadiusMm: v(27, "secondary", W), outerRadiusMm: v(32.5, "photo_scaled", J), depthMm: naV(), matesWith: "", shapeNotes: "visible body mount ring" },
+    { featureId: "body-slot-1", featureType: "bayonet_receiving_slot", profileId: "canon-ef/base", count: 1, centerAngleDeg: v(30, "photo_scaled", J), startAngleDeg: v(6, "photo_scaled", J), endAngleDeg: v(54, "photo_scaled", J), innerRadiusMm: v(27, "photo_scaled", J), outerRadiusMm: v(30, "photo_scaled", J), depthMm: v(2, "photo_scaled", J), matesWith: "lens-lug-1", shapeNotes: "unsymmetrical, straight edges [ef-2]" },
+    { featureId: "body-slot-2", featureType: "bayonet_receiving_slot", profileId: "canon-ef/base", count: 1, centerAngleDeg: v(150, "photo_scaled", J), startAngleDeg: v(128, "photo_scaled", J), endAngleDeg: v(172, "photo_scaled", J), innerRadiusMm: v(27, "photo_scaled", J), outerRadiusMm: v(30, "photo_scaled", J), depthMm: v(2, "photo_scaled", J), matesWith: "lens-lug-2", shapeNotes: "unsymmetrical, straight edges [ef-2]" },
+    { featureId: "body-slot-3", featureType: "bayonet_receiving_slot", profileId: "canon-ef/base", count: 1, centerAngleDeg: v(292, "photo_scaled", J), startAngleDeg: v(272, "photo_scaled", J), endAngleDeg: v(312, "photo_scaled", J), innerRadiusMm: v(27, "photo_scaled", J), outerRadiusMm: v(30, "photo_scaled", J), depthMm: v(2, "photo_scaled", J), matesWith: "lens-lug-3", shapeNotes: "unsymmetrical, straight edges [ef-2]" },
+    { featureId: "body-index-mark", featureType: "index_mark", profileId: "canon-ef/base", count: 1, centerAngleDeg: v(0, "photo_scaled", J), startAngleDeg: unknownV(J), endAngleDeg: unknownV(J), innerRadiusMm: unknownV(J), outerRadiusMm: v(33, "photo_scaled", J), depthMm: naV(), matesWith: "lens-index-mark", shapeNotes: "red-dot alignment index (EF-S uses a white square at a different position) [ef-2]" },
+    { featureId: "body-lock-pin", featureType: "lock_pin", profileId: "canon-ef/base", count: 1, centerAngleDeg: v(270, "secondary", J), startAngleDeg: unknownV(J), endAngleDeg: unknownV(J), innerRadiusMm: unknownV(J), outerRadiusMm: v(28, "photo_scaled", J), depthMm: v(2, "photo_scaled", J), matesWith: "lens-lock-notch", shapeNotes: "locking groove at 9 o'clock [ef-2]" },
   ],
 
   lensSideFeatures: [
-    { featureId: "lens-throat", featureType: "lens_throat", profileId: "canon-ef/base", count: 1, centerAngleDeg: v(0, "secondary", REF), startAngleDeg: v(0, "secondary", REF), endAngleDeg: v(360, "secondary", REF), innerRadiusMm: v(0, "secondary", REF), outerRadiusMm: v(26, "photo_scaled", REF), thicknessMm: naV(), matesWith: "", shapeNotes: "rear opening" },
-    { featureId: "lens-mount-ring", featureType: "lens_mount_ring", profileId: "canon-ef/base", count: 1, centerAngleDeg: v(0, "photo_scaled", REF), startAngleDeg: v(0, "photo_scaled", REF), endAngleDeg: v(360, "photo_scaled", REF), innerRadiusMm: v(26, "photo_scaled", REF), outerRadiusMm: v(31.5, "photo_scaled", REF), thicknessMm: naV(), matesWith: "", shapeNotes: "lens flange ring" },
-    { featureId: "lens-lug-1", featureType: "bayonet_lug", profileId: "canon-ef/base", count: 1, centerAngleDeg: v(30, "photo_scaled", REF), startAngleDeg: v(8, "photo_scaled", REF), endAngleDeg: v(52, "photo_scaled", REF), innerRadiusMm: v(27, "photo_scaled", REF), outerRadiusMm: v(30, "photo_scaled", REF), thicknessMm: v(2, "photo_scaled", REF), matesWith: "body-slot-1", shapeNotes: "" },
-    { featureId: "lens-lug-2", featureType: "bayonet_lug", profileId: "canon-ef/base", count: 1, centerAngleDeg: v(150, "photo_scaled", REF), startAngleDeg: v(130, "photo_scaled", REF), endAngleDeg: v(170, "photo_scaled", REF), innerRadiusMm: v(27, "photo_scaled", REF), outerRadiusMm: v(30, "photo_scaled", REF), thicknessMm: v(2, "photo_scaled", REF), matesWith: "body-slot-2", shapeNotes: "" },
-    { featureId: "lens-lug-3", featureType: "bayonet_lug", profileId: "canon-ef/base", count: 1, centerAngleDeg: v(290, "photo_scaled", REF), startAngleDeg: v(270, "photo_scaled", REF), endAngleDeg: v(310, "photo_scaled", REF), innerRadiusMm: v(27, "photo_scaled", REF), outerRadiusMm: v(30, "photo_scaled", REF), thicknessMm: v(2, "photo_scaled", REF), matesWith: "body-slot-3", shapeNotes: "" },
-    { featureId: "lens-index-mark", featureType: "index_mark", profileId: "canon-ef/base", count: 1, centerAngleDeg: v(0, "photo_scaled", REF), startAngleDeg: unknownV(REF), endAngleDeg: unknownV(REF), innerRadiusMm: unknownV(REF), outerRadiusMm: v(30, "photo_scaled", REF), thicknessMm: naV(), matesWith: "body-index-mark", shapeNotes: "aligns with body red dot" },
-    { featureId: "lens-lock-notch", featureType: "lock_notch", profileId: "canon-ef/base", count: 1, centerAngleDeg: v(270, "photo_scaled", REF), startAngleDeg: unknownV(REF), endAngleDeg: unknownV(REF), innerRadiusMm: unknownV(REF), outerRadiusMm: v(28, "photo_scaled", REF), thicknessMm: v(2, "photo_scaled", REF), matesWith: "body-lock-pin", shapeNotes: "receives body lock pin" },
+    { featureId: "lens-throat", featureType: "lens_throat", profileId: "canon-ef/base", count: 1, centerAngleDeg: v(0, "secondary", W), startAngleDeg: v(0, "secondary", W), endAngleDeg: v(360, "secondary", W), innerRadiusMm: v(0, "secondary", W), outerRadiusMm: v(26, "photo_scaled", J), thicknessMm: naV(), matesWith: "", shapeNotes: "rear opening" },
+    { featureId: "lens-mount-ring", featureType: "lens_mount_ring", profileId: "canon-ef/base", count: 1, centerAngleDeg: v(0, "photo_scaled", J), startAngleDeg: v(0, "photo_scaled", J), endAngleDeg: v(360, "photo_scaled", J), innerRadiusMm: v(26, "photo_scaled", J), outerRadiusMm: v(31.5, "photo_scaled", J), thicknessMm: naV(), matesWith: "", shapeNotes: "lens flange ring" },
+    { featureId: "lens-lug-1", featureType: "bayonet_lug", profileId: "canon-ef/base", count: 1, centerAngleDeg: v(30, "photo_scaled", J), startAngleDeg: v(6, "photo_scaled", J), endAngleDeg: v(54, "photo_scaled", J), innerRadiusMm: v(27, "photo_scaled", J), outerRadiusMm: v(30, "photo_scaled", J), thicknessMm: v(2, "photo_scaled", J), matesWith: "body-slot-1", shapeNotes: "unsymmetrical, straight edges [ef-2]" },
+    { featureId: "lens-lug-2", featureType: "bayonet_lug", profileId: "canon-ef/base", count: 1, centerAngleDeg: v(150, "photo_scaled", J), startAngleDeg: v(128, "photo_scaled", J), endAngleDeg: v(172, "photo_scaled", J), innerRadiusMm: v(27, "photo_scaled", J), outerRadiusMm: v(30, "photo_scaled", J), thicknessMm: v(2, "photo_scaled", J), matesWith: "body-slot-2", shapeNotes: "unsymmetrical, straight edges [ef-2]" },
+    { featureId: "lens-lug-3", featureType: "bayonet_lug", profileId: "canon-ef/base", count: 1, centerAngleDeg: v(292, "photo_scaled", J), startAngleDeg: v(272, "photo_scaled", J), endAngleDeg: v(312, "photo_scaled", J), innerRadiusMm: v(27, "photo_scaled", J), outerRadiusMm: v(30, "photo_scaled", J), thicknessMm: v(2, "photo_scaled", J), matesWith: "body-slot-3", shapeNotes: "unsymmetrical, straight edges [ef-2]" },
+    { featureId: "lens-index-mark", featureType: "index_mark", profileId: "canon-ef/base", count: 1, centerAngleDeg: v(0, "photo_scaled", J), startAngleDeg: unknownV(J), endAngleDeg: unknownV(J), innerRadiusMm: unknownV(J), outerRadiusMm: v(30, "photo_scaled", J), thicknessMm: naV(), matesWith: "body-index-mark", shapeNotes: "aligns with body red dot" },
+    { featureId: "lens-lock-notch", featureType: "lock_notch", profileId: "canon-ef/base", count: 1, centerAngleDeg: v(270, "secondary", J), startAngleDeg: unknownV(J), endAngleDeg: unknownV(J), innerRadiusMm: unknownV(J), outerRadiusMm: v(28, "photo_scaled", J), thicknessMm: v(2, "photo_scaled", J), matesWith: "body-lock-pin", shapeNotes: "receives body lock pin at 9 o'clock" },
   ],
 
   axialStack: [
-    { planeId: "flange_datum", zPositionMm: v(0, "secondary", REF), thicknessMm: v(0, "secondary", REF), diameterMm: v(65, "photo_scaled", REF) },
-    { planeId: "bayonet_lug_engagement", zPositionMm: v(1.2, "photo_scaled", REF), thicknessMm: v(2, "photo_scaled", REF), diameterMm: v(60, "photo_scaled", REF) },
-    { planeId: "electrical_contact_plane", zPositionMm: v(0.5, "photo_scaled", REF), thicknessMm: v(0.5, "photo_scaled", REF), diameterMm: v(50, "photo_scaled", REF) },
-    { planeId: "sensor_film_plane", zPositionMm: v(-44, "secondary", REF), thicknessMm: v(0, "secondary", REF), diameterMm: v(43.3, "secondary", REF) },
+    { planeId: "flange_datum", zPositionMm: v(0, "secondary", W), thicknessMm: v(0, "secondary", W), diameterMm: v(65, "photo_scaled", J) },
+    { planeId: "bayonet_lug_engagement", zPositionMm: v(1.2, "photo_scaled", J), thicknessMm: v(2, "photo_scaled", J), diameterMm: v(60, "photo_scaled", J) },
+    { planeId: "electrical_contact_plane", zPositionMm: v(0.5, "photo_scaled", J), thicknessMm: v(0.5, "photo_scaled", J), diameterMm: v(50, "photo_scaled", J) },
+    { planeId: "sensor_film_plane", zPositionMm: v(-44, "secondary", W), thicknessMm: v(0, "secondary", W), diameterMm: v(43.3, "secondary", W) },
   ],
 
   contacts: [
-    { side: "body", contactNo: 1, profileId: "canon-ef/base", centerAngleDeg: v(204, "photo_scaled", REF), centerRadiusMm: v(25, "photo_scaled", REF), widthMm: v(1.4, "photo_scaled", REF), heightMm: v(3, "photo_scaled", REF), shape: "pad", protrusionMm: v(0.5, "photo_scaled", REF), function: "VBAT" },
-    { side: "body", contactNo: 2, profileId: "canon-ef/base", centerAngleDeg: v(212, "photo_scaled", REF), centerRadiusMm: v(25, "photo_scaled", REF), widthMm: v(1.4, "photo_scaled", REF), heightMm: v(3, "photo_scaled", REF), shape: "pad", protrusionMm: v(0.5, "photo_scaled", REF), function: "P-GND" },
-    { side: "body", contactNo: 3, profileId: "canon-ef/base", centerAngleDeg: v(220, "photo_scaled", REF), centerRadiusMm: v(25, "photo_scaled", REF), widthMm: v(1.4, "photo_scaled", REF), heightMm: v(3, "photo_scaled", REF), shape: "pad", protrusionMm: v(0.5, "photo_scaled", REF), function: "VDD" },
-    { side: "body", contactNo: 4, profileId: "canon-ef/base", centerAngleDeg: v(228, "photo_scaled", REF), centerRadiusMm: v(25, "photo_scaled", REF), widthMm: v(1.4, "photo_scaled", REF), heightMm: v(3, "photo_scaled", REF), shape: "pad", protrusionMm: v(0.5, "photo_scaled", REF), function: "DCL" },
-    { side: "body", contactNo: 5, profileId: "canon-ef/base", centerAngleDeg: v(236, "photo_scaled", REF), centerRadiusMm: v(25, "photo_scaled", REF), widthMm: v(1.4, "photo_scaled", REF), heightMm: v(3, "photo_scaled", REF), shape: "pad", protrusionMm: v(0.5, "photo_scaled", REF), function: "DLC" },
-    { side: "body", contactNo: 6, profileId: "canon-ef/base", centerAngleDeg: v(244, "photo_scaled", REF), centerRadiusMm: v(25, "photo_scaled", REF), widthMm: v(1.4, "photo_scaled", REF), heightMm: v(3, "photo_scaled", REF), shape: "pad", protrusionMm: v(0.5, "photo_scaled", REF), function: "LCLK" },
-    { side: "body", contactNo: 7, profileId: "canon-ef/base", centerAngleDeg: v(252, "photo_scaled", REF), centerRadiusMm: v(25, "photo_scaled", REF), widthMm: v(1.4, "photo_scaled", REF), heightMm: v(3, "photo_scaled", REF), shape: "pad", protrusionMm: v(0.5, "photo_scaled", REF), function: "D-GND" },
-    { side: "body", contactNo: 8, profileId: "canon-ef/base", centerAngleDeg: v(260, "photo_scaled", REF), centerRadiusMm: v(25, "photo_scaled", REF), widthMm: v(1.4, "photo_scaled", REF), heightMm: v(3, "photo_scaled", REF), shape: "pad", protrusionMm: v(0.5, "photo_scaled", REF), function: "COM" },
-    { side: "lens", contactNo: 1, profileId: "canon-ef/base", centerAngleDeg: v(204, "photo_scaled", REF), centerRadiusMm: v(25, "photo_scaled", REF), widthMm: v(1.4, "photo_scaled", REF), heightMm: v(3, "photo_scaled", REF), shape: "pad", protrusionMm: v(0, "photo_scaled", REF), function: "VBAT" },
-    { side: "lens", contactNo: 2, profileId: "canon-ef/base", centerAngleDeg: v(212, "photo_scaled", REF), centerRadiusMm: v(25, "photo_scaled", REF), widthMm: v(1.4, "photo_scaled", REF), heightMm: v(3, "photo_scaled", REF), shape: "pad", protrusionMm: v(0, "photo_scaled", REF), function: "P-GND" },
-    { side: "lens", contactNo: 3, profileId: "canon-ef/base", centerAngleDeg: v(220, "photo_scaled", REF), centerRadiusMm: v(25, "photo_scaled", REF), widthMm: v(1.4, "photo_scaled", REF), heightMm: v(3, "photo_scaled", REF), shape: "pad", protrusionMm: v(0, "photo_scaled", REF), function: "VDD" },
-    { side: "lens", contactNo: 4, profileId: "canon-ef/base", centerAngleDeg: v(228, "photo_scaled", REF), centerRadiusMm: v(25, "photo_scaled", REF), widthMm: v(1.4, "photo_scaled", REF), heightMm: v(3, "photo_scaled", REF), shape: "pad", protrusionMm: v(0, "photo_scaled", REF), function: "DCL" },
-    { side: "lens", contactNo: 5, profileId: "canon-ef/base", centerAngleDeg: v(236, "photo_scaled", REF), centerRadiusMm: v(25, "photo_scaled", REF), widthMm: v(1.4, "photo_scaled", REF), heightMm: v(3, "photo_scaled", REF), shape: "pad", protrusionMm: v(0, "photo_scaled", REF), function: "DLC" },
-    { side: "lens", contactNo: 6, profileId: "canon-ef/base", centerAngleDeg: v(244, "photo_scaled", REF), centerRadiusMm: v(25, "photo_scaled", REF), widthMm: v(1.4, "photo_scaled", REF), heightMm: v(3, "photo_scaled", REF), shape: "pad", protrusionMm: v(0, "photo_scaled", REF), function: "LCLK" },
-    { side: "lens", contactNo: 7, profileId: "canon-ef/base", centerAngleDeg: v(252, "photo_scaled", REF), centerRadiusMm: v(25, "photo_scaled", REF), widthMm: v(1.4, "photo_scaled", REF), heightMm: v(3, "photo_scaled", REF), shape: "pad", protrusionMm: v(0, "photo_scaled", REF), function: "D-GND" },
-    { side: "lens", contactNo: 8, profileId: "canon-ef/base", centerAngleDeg: v(260, "photo_scaled", REF), centerRadiusMm: v(25, "photo_scaled", REF), widthMm: v(1.4, "photo_scaled", REF), heightMm: v(3, "photo_scaled", REF), shape: "pad", protrusionMm: v(0, "photo_scaled", REF), function: "COM" },
+    { side: "body", contactNo: 1, profileId: "canon-ef/base", centerAngleDeg: v(152, "photo_scaled", J), centerRadiusMm: v(25, "photo_scaled", J), widthMm: v(1.4, "photo_scaled", J), heightMm: v(3, "photo_scaled", J), shape: "pad", protrusionMm: v(0.5, "photo_scaled", J), function: "VBAT" },
+    { side: "body", contactNo: 2, profileId: "canon-ef/base", centerAngleDeg: v(160, "photo_scaled", J), centerRadiusMm: v(25, "photo_scaled", J), widthMm: v(1.4, "photo_scaled", J), heightMm: v(3, "photo_scaled", J), shape: "pad", protrusionMm: v(0.5, "photo_scaled", J), function: "P-GND" },
+    { side: "body", contactNo: 3, profileId: "canon-ef/base", centerAngleDeg: v(168, "photo_scaled", J), centerRadiusMm: v(25, "photo_scaled", J), widthMm: v(1.4, "photo_scaled", J), heightMm: v(3, "photo_scaled", J), shape: "pad", protrusionMm: v(0.5, "photo_scaled", J), function: "VDD" },
+    { side: "body", contactNo: 4, profileId: "canon-ef/base", centerAngleDeg: v(176, "photo_scaled", J), centerRadiusMm: v(25, "photo_scaled", J), widthMm: v(1.4, "photo_scaled", J), heightMm: v(3, "photo_scaled", J), shape: "pad", protrusionMm: v(0.5, "photo_scaled", J), function: "DCL" },
+    { side: "body", contactNo: 5, profileId: "canon-ef/base", centerAngleDeg: v(184, "photo_scaled", J), centerRadiusMm: v(25, "photo_scaled", J), widthMm: v(1.4, "photo_scaled", J), heightMm: v(3, "photo_scaled", J), shape: "pad", protrusionMm: v(0.5, "photo_scaled", J), function: "DLC" },
+    { side: "body", contactNo: 6, profileId: "canon-ef/base", centerAngleDeg: v(192, "photo_scaled", J), centerRadiusMm: v(25, "photo_scaled", J), widthMm: v(1.4, "photo_scaled", J), heightMm: v(3, "photo_scaled", J), shape: "pad", protrusionMm: v(0.5, "photo_scaled", J), function: "LCLK" },
+    { side: "body", contactNo: 7, profileId: "canon-ef/base", centerAngleDeg: v(200, "photo_scaled", J), centerRadiusMm: v(25, "photo_scaled", J), widthMm: v(1.4, "photo_scaled", J), heightMm: v(3, "photo_scaled", J), shape: "pad", protrusionMm: v(0.5, "photo_scaled", J), function: "D-GND" },
+    { side: "body", contactNo: 8, profileId: "canon-ef/base", centerAngleDeg: v(208, "photo_scaled", J), centerRadiusMm: v(25, "photo_scaled", J), widthMm: v(1.4, "photo_scaled", J), heightMm: v(3, "photo_scaled", J), shape: "pad", protrusionMm: v(0.5, "photo_scaled", J), function: "COM (added on later lenses)" },
+    { side: "lens", contactNo: 1, profileId: "canon-ef/base", centerAngleDeg: v(152, "photo_scaled", J), centerRadiusMm: v(25, "photo_scaled", J), widthMm: v(1.4, "photo_scaled", J), heightMm: v(3, "photo_scaled", J), shape: "pad", protrusionMm: v(0, "photo_scaled", J), function: "VBAT" },
+    { side: "lens", contactNo: 2, profileId: "canon-ef/base", centerAngleDeg: v(160, "photo_scaled", J), centerRadiusMm: v(25, "photo_scaled", J), widthMm: v(1.4, "photo_scaled", J), heightMm: v(3, "photo_scaled", J), shape: "pad", protrusionMm: v(0, "photo_scaled", J), function: "P-GND" },
+    { side: "lens", contactNo: 3, profileId: "canon-ef/base", centerAngleDeg: v(168, "photo_scaled", J), centerRadiusMm: v(25, "photo_scaled", J), widthMm: v(1.4, "photo_scaled", J), heightMm: v(3, "photo_scaled", J), shape: "pad", protrusionMm: v(0, "photo_scaled", J), function: "VDD" },
+    { side: "lens", contactNo: 4, profileId: "canon-ef/base", centerAngleDeg: v(176, "photo_scaled", J), centerRadiusMm: v(25, "photo_scaled", J), widthMm: v(1.4, "photo_scaled", J), heightMm: v(3, "photo_scaled", J), shape: "pad", protrusionMm: v(0, "photo_scaled", J), function: "DCL" },
+    { side: "lens", contactNo: 5, profileId: "canon-ef/base", centerAngleDeg: v(184, "photo_scaled", J), centerRadiusMm: v(25, "photo_scaled", J), widthMm: v(1.4, "photo_scaled", J), heightMm: v(3, "photo_scaled", J), shape: "pad", protrusionMm: v(0, "photo_scaled", J), function: "DLC" },
+    { side: "lens", contactNo: 6, profileId: "canon-ef/base", centerAngleDeg: v(192, "photo_scaled", J), centerRadiusMm: v(25, "photo_scaled", J), widthMm: v(1.4, "photo_scaled", J), heightMm: v(3, "photo_scaled", J), shape: "pad", protrusionMm: v(0, "photo_scaled", J), function: "LCLK" },
+    { side: "lens", contactNo: 7, profileId: "canon-ef/base", centerAngleDeg: v(200, "photo_scaled", J), centerRadiusMm: v(25, "photo_scaled", J), widthMm: v(1.4, "photo_scaled", J), heightMm: v(3, "photo_scaled", J), shape: "pad", protrusionMm: v(0, "photo_scaled", J), function: "D-GND" },
+    { side: "lens", contactNo: 8, profileId: "canon-ef/base", centerAngleDeg: v(208, "photo_scaled", J), centerRadiusMm: v(25, "photo_scaled", J), widthMm: v(1.4, "photo_scaled", J), heightMm: v(3, "photo_scaled", J), shape: "pad", protrusionMm: v(0, "photo_scaled", J), function: "COM (added on later lenses)" },
   ],
 
   mechanicalCouplings: [],
 
   screwsGasketsBaffles: [
-    { featureId: "body-mount-screws", featureType: "mount_screws", side: "body", count: v(6, "photo_scaled", REF), pcdMm: v(62, "photo_scaled", REF), diameterMm: v(2, "photo_scaled", REF), centerAnglesDeg: degListV([15, 75, 135, 195, 255, 315], "photo_scaled", REF), shape: "round" },
+    { featureId: "body-mount-screws", featureType: "mount_screws", side: "body", count: v(6, "photo_scaled", J), pcdMm: v(62, "photo_scaled", J), diameterMm: v(2, "photo_scaled", J), centerAnglesDeg: degListV([15, 75, 135, 195, 255, 315], "photo_scaled", J), shape: "round" },
   ],
 
   svgLayers: {
@@ -136,15 +147,31 @@ const CANON_EF_MOUNT = {
       liveUrl: "https://en.wikipedia.org/wiki/Canon_EF_lens_mount",
       archiveUrl: "http://web.archive.org/web/20260604022746/https://en.wikipedia.org/wiki/Canon_EF_lens_mount",
       archiveDate: "2026-06-04",
-      appliesTo: "flange focal distance, throat, bayonet, eight electrical pins",
+      appliesTo: "flange focal distance, throat, eight electrical pins and functions",
       confidence: "high",
+    },
+    {
+      ref: "ef-2",
+      sourceType: "secondary",
+      citation: "“Lens Mounts: Canon EF,” JAPB (japb.net). Accessed 2026-06-04.",
+      liveUrl: "https://japb.net/theory/lensmounts/canon-ef/",
+      archiveUrl: "http://web.archive.org/web/20260521090927/https://japb.net/theory/lensmounts/canon-ef/",
+      archiveDate: "2026-05-21",
+      appliesTo: "locking groove at 9 o'clock, contacts across 5–7 o'clock, three straight-edged prongs",
+      confidence: "medium",
     },
   ],
 
   openQuestions: [
     {
-      issue: "Bayonet lug/slot angular spans and the lock-pin/index/contact clock positions are photo-scaled, not from an official drawing.",
-      affectedFields: ["cameraSideFeatures", "lensSideFeatures", "contacts", "body-lock-pin"],
+      issue: "The EF interface began with seven contacts; an eighth was added on later lenses. contactCount records the modern eight-contact set.",
+      affectedFields: ["contactCount", "contacts"],
+      candidateValues: [7, 8],
+      resolution: "Model per-lens contact counts if a generation selector is added.",
+    },
+    {
+      issue: "Per-prong angular spans and per-contact clock positions are photo-scaled within the documented bands (lock at 9 o'clock, contacts 5–7 o'clock); the mounting-index clock position is photo-scaled.",
+      affectedFields: ["cameraSideFeatures", "lensSideFeatures", "contacts", "body-index-mark"],
       candidateValues: [],
       resolution: "Upgrade to an official Canon EF mount drawing or measured sample.",
     },

@@ -1,22 +1,25 @@
 /**
  * Pentax K mount SVG specification.
  *
- * The original K bayonet foundation persisted while the electronic/AF/power interface evolved, so
- * the base profile holds only invariant geometry and named variants overlay each era: `pentax-k/ka`
- * (mechanical aperture coupling plus six information contacts), `pentax-k/kaf` (the AF screw-drive
- * coupler and a seventh contact), and `pentax-k/kaf2` (two power contacts inside the ring). Geometry
- * is never averaged across eras. The MVP figure renders the KA era.
+ * The original K bayonet foundation persisted while the electronic/AF/power/diaphragm interface
+ * evolved, so the base profile holds only invariant geometry and named variants overlay each era:
+ * `pentax-k/k` (original mechanical aperture coupling), `pentax-k/ka` (six information contacts),
+ * `pentax-k/kaf` (AF screw-drive coupler + seventh contact), `pentax-k/kaf2` (two power contacts),
+ * `pentax-k/kaf3` (body AF coupler removed; in-lens SDM/DC motor) and `pentax-k/kaf4` (electromagnetic
+ * diaphragm; aperture lever removed). Geometry is never averaged across eras. The MVP figure renders
+ * the KA era (which retains the original mechanical levers).
  *
- * Headline dimensions (flange focal distance 45.46 mm, ~44 mm throat, three-lug bayonet, lock by an
- * approx. 70° clockwise turn viewed from the camera front) are sourced from the Pentax K-mount
- * reference [pk-1]; fine angular geometry (lug spans, lock/index/contact clock positions) is
- * photo-scaled and flagged in openQuestions pending an official mount drawing.
+ * Sourced layout: flange focal distance 45.46 mm, lock by an approx. 70° clockwise turn [pk-1]; a
+ * three-pronged bayonet (two straight edges), a locking groove at roughly 3:45, and six KA contacts
+ * (m1, m2, r1, r2, r3, plus the recessed A-position contact) per the JAPB teardown [pk-2]. Throat,
+ * lug spans, and per-contact clock positions remain photo-scaled and are flagged in openQuestions.
  */
 
 import type { MountSpecInput } from "../../types/mount.js";
 import { degListV, dirV, naV, unknownV, v } from "../../optics/mount/authoring.js";
 
-const REF = ["pk-1"];
+const W = ["pk-1"]; // Wikipedia
+const J = ["pk-2"]; // JAPB teardown
 
 const PENTAX_K_MOUNT = {
   mountId: "pentax-k",
@@ -32,7 +35,7 @@ const PENTAX_K_MOUNT = {
     requirementLevels: {
       mvpRequired: ["flange_focal_distance_mm", "nominal_throat_diameter_mm", "camera_mount_outer_diameter_mm"],
       conditionalCoreRequired: ["bayonet_lugs", "lock_pin", "index_mark"],
-      variantRequired: ["ka_contacts", "aperture_coupling", "af_screw_coupler", "power_contacts"],
+      variantRequired: ["aperture_coupling", "ka_contacts", "af_screw_coupler", "power_contacts"],
       mvpOptional: ["mount_screws"],
       referenceGrade: ["lug_ramp_undercut", "contact_pitch"],
     },
@@ -45,22 +48,34 @@ const PENTAX_K_MOUNT = {
           profileId: "pentax-k/base",
           profileType: "base",
           appliesTo: "all Pentax K bodies and lenses, 1975–present",
-          adds: ["three-lug bayonet", "lock pin/notch", "mounting index"],
+          adds: ["three-lug bayonet (two straight edges)", "lock pin/notch", "mounting index"],
           removes: [],
           changes: [],
-          sourceRefs: REF,
+          sourceRefs: W,
+        },
+        {
+          profileId: "pentax-k/k",
+          profileType: "variant",
+          appliesTo: "original K (M-series era) lenses, 1975+",
+          adds: ["aperture stop-down coupler", "diaphragm release lever"],
+          removes: [],
+          changes: ["mechanical aperture interface; KA retains these levers (rendered under the KA figure)"],
+          cameraSideOverlayLayers: ["camera-side-variant-mechanical"],
+          lensSideOverlayLayers: ["lens-side-variant-mechanical"],
+          status: "researched",
+          sourceRefs: J,
         },
         {
           profileId: "pentax-k/ka",
           profileType: "variant",
           appliesTo: "KA (A-series) bodies and lenses, 1983+",
-          adds: ["A-position information contacts (6)", "aperture stop-down coupler", "diaphragm release lever"],
+          adds: ["six A-position information contacts (m1, m2, r1, r2, r3, *)"],
           removes: [],
-          changes: ["mechanical aperture simulation originates with the original K mount"],
+          changes: ["aperture automation via the contacts; retains the original mechanical levers"],
           cameraSideOverlayLayers: ["camera-side-variant-electrical", "camera-side-variant-mechanical"],
           lensSideOverlayLayers: ["lens-side-variant-electrical"],
           status: "researched",
-          sourceRefs: REF,
+          sourceRefs: J,
         },
         {
           profileId: "pentax-k/kaf",
@@ -72,7 +87,7 @@ const PENTAX_K_MOUNT = {
           cameraSideOverlayLayers: ["camera-side-variant-electrical", "camera-side-variant-mechanical"],
           lensSideOverlayLayers: ["lens-side-variant-electrical"],
           status: "researched",
-          sourceRefs: REF,
+          sourceRefs: J,
         },
         {
           profileId: "pentax-k/kaf2",
@@ -84,81 +99,101 @@ const PENTAX_K_MOUNT = {
           cameraSideOverlayLayers: ["camera-side-variant-electrical"],
           lensSideOverlayLayers: ["lens-side-variant-electrical"],
           status: "researched",
-          sourceRefs: REF,
+          sourceRefs: W,
+        },
+        {
+          profileId: "pentax-k/kaf3",
+          profileType: "variant",
+          appliesTo: "KAF3 lenses (SDM/DC in-lens motor)",
+          adds: [],
+          removes: ["body AF screw-drive coupler"],
+          changes: ["autofocus driven in the lens"],
+          status: "researched",
+          sourceRefs: W,
+        },
+        {
+          profileId: "pentax-k/kaf4",
+          profileType: "variant",
+          appliesTo: "KAF4 lenses (electromagnetic diaphragm)",
+          adds: ["electromagnetic diaphragm control"],
+          removes: ["mechanical aperture (diaphragm) lever"],
+          changes: ["aperture actuated electronically"],
+          status: "researched",
+          sourceRefs: W,
         },
       ],
     },
   },
 
   coreDimensions: {
-    flangeFocalDistanceMm: v(45.46, "secondary", REF),
-    nominalThroatDiameterMm: v(44, "secondary", REF),
-    effectiveClearApertureMm: v(44, "secondary", REF),
-    cameraMountOuterDiameterMm: v(56, "photo_scaled", REF),
-    lensMountOuterDiameterMm: v(52, "photo_scaled", REF),
-    contactCount: v(6, "secondary", REF),
+    flangeFocalDistanceMm: v(45.46, "secondary", W),
+    nominalThroatDiameterMm: v(44, "secondary", W),
+    effectiveClearApertureMm: v(44, "secondary", W),
+    cameraMountOuterDiameterMm: v(56, "photo_scaled", J),
+    lensMountOuterDiameterMm: v(52, "photo_scaled", J),
+    contactCount: v(6, "secondary", J),
   },
 
   lockGeometry: {
-    insertionAngleDeg: v(0, "secondary", REF),
-    lockAngleDeg: v(70, "secondary", REF),
-    lockRotationDeg: v(70, "secondary", REF),
-    lockRotationDirection: dirV("clockwise", "secondary", REF),
+    insertionAngleDeg: v(0, "secondary", W),
+    lockAngleDeg: v(70, "secondary", W),
+    lockRotationDeg: v(70, "secondary", W),
+    lockRotationDirection: dirV("clockwise", "secondary", W),
   },
 
   cameraSideFeatures: [
-    { featureId: "body-throat", featureType: "body_throat", profileId: "pentax-k/base", count: 1, centerAngleDeg: v(0, "secondary", REF), startAngleDeg: v(0, "secondary", REF), endAngleDeg: v(360, "secondary", REF), innerRadiusMm: v(0, "secondary", REF), outerRadiusMm: v(22, "secondary", REF), depthMm: naV(), matesWith: "", shapeNotes: "~44 mm throat opening" },
-    { featureId: "body-mount-ring", featureType: "mount_ring", profileId: "pentax-k/base", count: 1, centerAngleDeg: v(0, "photo_scaled", REF), startAngleDeg: v(0, "photo_scaled", REF), endAngleDeg: v(360, "photo_scaled", REF), innerRadiusMm: v(22, "secondary", REF), outerRadiusMm: v(28, "photo_scaled", REF), depthMm: naV(), matesWith: "", shapeNotes: "visible body mount ring" },
-    { featureId: "body-slot-1", featureType: "bayonet_receiving_slot", profileId: "pentax-k/base", count: 1, centerAngleDeg: v(30, "photo_scaled", REF), startAngleDeg: v(12, "photo_scaled", REF), endAngleDeg: v(48, "photo_scaled", REF), innerRadiusMm: v(22, "photo_scaled", REF), outerRadiusMm: v(24.5, "photo_scaled", REF), depthMm: v(1.6, "photo_scaled", REF), matesWith: "lens-lug-1", shapeNotes: "" },
-    { featureId: "body-slot-2", featureType: "bayonet_receiving_slot", profileId: "pentax-k/base", count: 1, centerAngleDeg: v(150, "photo_scaled", REF), startAngleDeg: v(132, "photo_scaled", REF), endAngleDeg: v(168, "photo_scaled", REF), innerRadiusMm: v(22, "photo_scaled", REF), outerRadiusMm: v(24.5, "photo_scaled", REF), depthMm: v(1.6, "photo_scaled", REF), matesWith: "lens-lug-2", shapeNotes: "" },
-    { featureId: "body-slot-3", featureType: "bayonet_receiving_slot", profileId: "pentax-k/base", count: 1, centerAngleDeg: v(270, "photo_scaled", REF), startAngleDeg: v(252, "photo_scaled", REF), endAngleDeg: v(288, "photo_scaled", REF), innerRadiusMm: v(22, "photo_scaled", REF), outerRadiusMm: v(24.5, "photo_scaled", REF), depthMm: v(1.6, "photo_scaled", REF), matesWith: "lens-lug-3", shapeNotes: "" },
-    { featureId: "body-index-mark", featureType: "index_mark", profileId: "pentax-k/base", count: 1, centerAngleDeg: v(0, "photo_scaled", REF), startAngleDeg: unknownV(REF), endAngleDeg: unknownV(REF), innerRadiusMm: unknownV(REF), outerRadiusMm: v(29, "photo_scaled", REF), depthMm: naV(), matesWith: "lens-index-mark", shapeNotes: "mounting index" },
-    { featureId: "body-lock-pin", featureType: "lock_pin", profileId: "pentax-k/base", count: 1, centerAngleDeg: v(330, "photo_scaled", REF), startAngleDeg: unknownV(REF), endAngleDeg: unknownV(REF), innerRadiusMm: unknownV(REF), outerRadiusMm: v(23, "photo_scaled", REF), depthMm: v(2, "photo_scaled", REF), matesWith: "lens-lock-notch", shapeNotes: "spring lock pin" },
+    { featureId: "body-throat", featureType: "body_throat", profileId: "pentax-k/base", count: 1, centerAngleDeg: v(0, "secondary", W), startAngleDeg: v(0, "secondary", W), endAngleDeg: v(360, "secondary", W), innerRadiusMm: v(0, "secondary", W), outerRadiusMm: v(22, "secondary", W), depthMm: naV(), matesWith: "", shapeNotes: "~44 mm throat opening" },
+    { featureId: "body-mount-ring", featureType: "mount_ring", profileId: "pentax-k/base", count: 1, centerAngleDeg: v(0, "photo_scaled", J), startAngleDeg: v(0, "photo_scaled", J), endAngleDeg: v(360, "photo_scaled", J), innerRadiusMm: v(22, "secondary", W), outerRadiusMm: v(28, "photo_scaled", J), depthMm: naV(), matesWith: "", shapeNotes: "visible body mount ring" },
+    { featureId: "body-slot-1", featureType: "bayonet_receiving_slot", profileId: "pentax-k/base", count: 1, centerAngleDeg: v(30, "photo_scaled", J), startAngleDeg: v(12, "photo_scaled", J), endAngleDeg: v(48, "photo_scaled", J), innerRadiusMm: v(22, "photo_scaled", J), outerRadiusMm: v(24.5, "photo_scaled", J), depthMm: v(1.6, "photo_scaled", J), matesWith: "lens-lug-1", shapeNotes: "three-prong, two straight edges [pk-2]" },
+    { featureId: "body-slot-2", featureType: "bayonet_receiving_slot", profileId: "pentax-k/base", count: 1, centerAngleDeg: v(150, "photo_scaled", J), startAngleDeg: v(132, "photo_scaled", J), endAngleDeg: v(168, "photo_scaled", J), innerRadiusMm: v(22, "photo_scaled", J), outerRadiusMm: v(24.5, "photo_scaled", J), depthMm: v(1.6, "photo_scaled", J), matesWith: "lens-lug-2", shapeNotes: "three-prong, two straight edges [pk-2]" },
+    { featureId: "body-slot-3", featureType: "bayonet_receiving_slot", profileId: "pentax-k/base", count: 1, centerAngleDeg: v(270, "photo_scaled", J), startAngleDeg: v(252, "photo_scaled", J), endAngleDeg: v(288, "photo_scaled", J), innerRadiusMm: v(22, "photo_scaled", J), outerRadiusMm: v(24.5, "photo_scaled", J), depthMm: v(1.6, "photo_scaled", J), matesWith: "lens-lug-3", shapeNotes: "three-prong, two straight edges [pk-2]" },
+    { featureId: "body-index-mark", featureType: "index_mark", profileId: "pentax-k/base", count: 1, centerAngleDeg: v(0, "photo_scaled", J), startAngleDeg: unknownV(J), endAngleDeg: unknownV(J), innerRadiusMm: unknownV(J), outerRadiusMm: v(29, "photo_scaled", J), depthMm: naV(), matesWith: "lens-index-mark", shapeNotes: "mounting index" },
+    { featureId: "body-lock-pin", featureType: "lock_pin", profileId: "pentax-k/base", count: 1, centerAngleDeg: v(112.5, "secondary", J), startAngleDeg: unknownV(J), endAngleDeg: unknownV(J), innerRadiusMm: unknownV(J), outerRadiusMm: v(23, "photo_scaled", J), depthMm: v(2, "photo_scaled", J), matesWith: "lens-lock-notch", shapeNotes: "locking groove at roughly 3:45 [pk-2]" },
   ],
 
   lensSideFeatures: [
-    { featureId: "lens-throat", featureType: "lens_throat", profileId: "pentax-k/base", count: 1, centerAngleDeg: v(0, "secondary", REF), startAngleDeg: v(0, "secondary", REF), endAngleDeg: v(360, "secondary", REF), innerRadiusMm: v(0, "secondary", REF), outerRadiusMm: v(21, "photo_scaled", REF), thicknessMm: naV(), matesWith: "", shapeNotes: "rear opening" },
-    { featureId: "lens-mount-ring", featureType: "lens_mount_ring", profileId: "pentax-k/base", count: 1, centerAngleDeg: v(0, "photo_scaled", REF), startAngleDeg: v(0, "photo_scaled", REF), endAngleDeg: v(360, "photo_scaled", REF), innerRadiusMm: v(21, "photo_scaled", REF), outerRadiusMm: v(26, "photo_scaled", REF), thicknessMm: naV(), matesWith: "", shapeNotes: "lens flange ring" },
-    { featureId: "lens-lug-1", featureType: "bayonet_lug", profileId: "pentax-k/base", count: 1, centerAngleDeg: v(30, "photo_scaled", REF), startAngleDeg: v(12, "photo_scaled", REF), endAngleDeg: v(48, "photo_scaled", REF), innerRadiusMm: v(22, "photo_scaled", REF), outerRadiusMm: v(24.5, "photo_scaled", REF), thicknessMm: v(1.6, "photo_scaled", REF), matesWith: "body-slot-1", shapeNotes: "" },
-    { featureId: "lens-lug-2", featureType: "bayonet_lug", profileId: "pentax-k/base", count: 1, centerAngleDeg: v(150, "photo_scaled", REF), startAngleDeg: v(132, "photo_scaled", REF), endAngleDeg: v(168, "photo_scaled", REF), innerRadiusMm: v(22, "photo_scaled", REF), outerRadiusMm: v(24.5, "photo_scaled", REF), thicknessMm: v(1.6, "photo_scaled", REF), matesWith: "body-slot-2", shapeNotes: "" },
-    { featureId: "lens-lug-3", featureType: "bayonet_lug", profileId: "pentax-k/base", count: 1, centerAngleDeg: v(270, "photo_scaled", REF), startAngleDeg: v(252, "photo_scaled", REF), endAngleDeg: v(288, "photo_scaled", REF), innerRadiusMm: v(22, "photo_scaled", REF), outerRadiusMm: v(24.5, "photo_scaled", REF), thicknessMm: v(1.6, "photo_scaled", REF), matesWith: "body-slot-3", shapeNotes: "" },
-    { featureId: "lens-index-mark", featureType: "index_mark", profileId: "pentax-k/base", count: 1, centerAngleDeg: v(0, "photo_scaled", REF), startAngleDeg: unknownV(REF), endAngleDeg: unknownV(REF), innerRadiusMm: unknownV(REF), outerRadiusMm: v(27, "photo_scaled", REF), thicknessMm: naV(), matesWith: "body-index-mark", shapeNotes: "aligns with body index" },
-    { featureId: "lens-lock-notch", featureType: "lock_notch", profileId: "pentax-k/base", count: 1, centerAngleDeg: v(330, "photo_scaled", REF), startAngleDeg: unknownV(REF), endAngleDeg: unknownV(REF), innerRadiusMm: unknownV(REF), outerRadiusMm: v(23, "photo_scaled", REF), thicknessMm: v(2, "photo_scaled", REF), matesWith: "body-lock-pin", shapeNotes: "receives body lock pin" },
+    { featureId: "lens-throat", featureType: "lens_throat", profileId: "pentax-k/base", count: 1, centerAngleDeg: v(0, "secondary", W), startAngleDeg: v(0, "secondary", W), endAngleDeg: v(360, "secondary", W), innerRadiusMm: v(0, "secondary", W), outerRadiusMm: v(21, "photo_scaled", J), thicknessMm: naV(), matesWith: "", shapeNotes: "rear opening" },
+    { featureId: "lens-mount-ring", featureType: "lens_mount_ring", profileId: "pentax-k/base", count: 1, centerAngleDeg: v(0, "photo_scaled", J), startAngleDeg: v(0, "photo_scaled", J), endAngleDeg: v(360, "photo_scaled", J), innerRadiusMm: v(21, "photo_scaled", J), outerRadiusMm: v(26, "photo_scaled", J), thicknessMm: naV(), matesWith: "", shapeNotes: "lens flange ring" },
+    { featureId: "lens-lug-1", featureType: "bayonet_lug", profileId: "pentax-k/base", count: 1, centerAngleDeg: v(30, "photo_scaled", J), startAngleDeg: v(12, "photo_scaled", J), endAngleDeg: v(48, "photo_scaled", J), innerRadiusMm: v(22, "photo_scaled", J), outerRadiusMm: v(24.5, "photo_scaled", J), thicknessMm: v(1.6, "photo_scaled", J), matesWith: "body-slot-1", shapeNotes: "three-prong, two straight edges [pk-2]" },
+    { featureId: "lens-lug-2", featureType: "bayonet_lug", profileId: "pentax-k/base", count: 1, centerAngleDeg: v(150, "photo_scaled", J), startAngleDeg: v(132, "photo_scaled", J), endAngleDeg: v(168, "photo_scaled", J), innerRadiusMm: v(22, "photo_scaled", J), outerRadiusMm: v(24.5, "photo_scaled", J), thicknessMm: v(1.6, "photo_scaled", J), matesWith: "body-slot-2", shapeNotes: "three-prong, two straight edges [pk-2]" },
+    { featureId: "lens-lug-3", featureType: "bayonet_lug", profileId: "pentax-k/base", count: 1, centerAngleDeg: v(270, "photo_scaled", J), startAngleDeg: v(252, "photo_scaled", J), endAngleDeg: v(288, "photo_scaled", J), innerRadiusMm: v(22, "photo_scaled", J), outerRadiusMm: v(24.5, "photo_scaled", J), thicknessMm: v(1.6, "photo_scaled", J), matesWith: "body-slot-3", shapeNotes: "three-prong, two straight edges [pk-2]" },
+    { featureId: "lens-index-mark", featureType: "index_mark", profileId: "pentax-k/base", count: 1, centerAngleDeg: v(0, "photo_scaled", J), startAngleDeg: unknownV(J), endAngleDeg: unknownV(J), innerRadiusMm: unknownV(J), outerRadiusMm: v(27, "photo_scaled", J), thicknessMm: naV(), matesWith: "body-index-mark", shapeNotes: "aligns with body index" },
+    { featureId: "lens-lock-notch", featureType: "lock_notch", profileId: "pentax-k/base", count: 1, centerAngleDeg: v(112.5, "secondary", J), startAngleDeg: unknownV(J), endAngleDeg: unknownV(J), innerRadiusMm: unknownV(J), outerRadiusMm: v(23, "photo_scaled", J), thicknessMm: v(2, "photo_scaled", J), matesWith: "body-lock-pin", shapeNotes: "receives body lock pin (roughly 3:45)" },
   ],
 
   axialStack: [
-    { planeId: "flange_datum", zPositionMm: v(0, "secondary", REF), thicknessMm: v(0, "secondary", REF), diameterMm: v(56, "photo_scaled", REF) },
-    { planeId: "bayonet_lug_engagement", zPositionMm: v(1.2, "photo_scaled", REF), thicknessMm: v(1.6, "photo_scaled", REF), diameterMm: v(49, "photo_scaled", REF) },
-    { planeId: "sensor_film_plane", zPositionMm: v(-45.46, "secondary", REF), thicknessMm: v(0, "secondary", REF), diameterMm: v(43.3, "secondary", REF) },
+    { planeId: "flange_datum", zPositionMm: v(0, "secondary", W), thicknessMm: v(0, "secondary", W), diameterMm: v(56, "photo_scaled", J) },
+    { planeId: "bayonet_lug_engagement", zPositionMm: v(1.2, "photo_scaled", J), thicknessMm: v(1.6, "photo_scaled", J), diameterMm: v(49, "photo_scaled", J) },
+    { planeId: "sensor_film_plane", zPositionMm: v(-45.46, "secondary", W), thicknessMm: v(0, "secondary", W), diameterMm: v(43.3, "secondary", W) },
   ],
 
   contacts: [
-    { side: "body", contactNo: 1, profileId: "pentax-k/ka", centerAngleDeg: v(215, "photo_scaled", REF), centerRadiusMm: v(20.5, "photo_scaled", REF), widthMm: v(1.3, "photo_scaled", REF), heightMm: v(2.4, "photo_scaled", REF), shape: "pad", protrusionMm: v(0.4, "photo_scaled", REF), function: "A-contact" },
-    { side: "body", contactNo: 2, profileId: "pentax-k/ka", centerAngleDeg: v(223, "photo_scaled", REF), centerRadiusMm: v(20.5, "photo_scaled", REF), widthMm: v(1.3, "photo_scaled", REF), heightMm: v(2.4, "photo_scaled", REF), shape: "pad", protrusionMm: v(0.4, "photo_scaled", REF), function: "aperture-range" },
-    { side: "body", contactNo: 3, profileId: "pentax-k/ka", centerAngleDeg: v(231, "photo_scaled", REF), centerRadiusMm: v(20.5, "photo_scaled", REF), widthMm: v(1.3, "photo_scaled", REF), heightMm: v(2.4, "photo_scaled", REF), shape: "pad", protrusionMm: v(0.4, "photo_scaled", REF), function: "aperture-range" },
-    { side: "body", contactNo: 4, profileId: "pentax-k/ka", centerAngleDeg: v(239, "photo_scaled", REF), centerRadiusMm: v(20.5, "photo_scaled", REF), widthMm: v(1.3, "photo_scaled", REF), heightMm: v(2.4, "photo_scaled", REF), shape: "pad", protrusionMm: v(0.4, "photo_scaled", REF), function: "aperture-range" },
-    { side: "body", contactNo: 5, profileId: "pentax-k/ka", centerAngleDeg: v(247, "photo_scaled", REF), centerRadiusMm: v(20.5, "photo_scaled", REF), widthMm: v(1.3, "photo_scaled", REF), heightMm: v(2.4, "photo_scaled", REF), shape: "pad", protrusionMm: v(0.4, "photo_scaled", REF), function: "aperture-range" },
-    { side: "body", contactNo: 6, profileId: "pentax-k/ka", centerAngleDeg: v(255, "photo_scaled", REF), centerRadiusMm: v(20.5, "photo_scaled", REF), widthMm: v(1.3, "photo_scaled", REF), heightMm: v(2.4, "photo_scaled", REF), shape: "pad", protrusionMm: v(0.4, "photo_scaled", REF), function: "aperture-range" },
-    { side: "lens", contactNo: 1, profileId: "pentax-k/ka", centerAngleDeg: v(215, "photo_scaled", REF), centerRadiusMm: v(20.5, "photo_scaled", REF), widthMm: v(1.3, "photo_scaled", REF), heightMm: v(2.4, "photo_scaled", REF), shape: "pad", protrusionMm: v(0, "photo_scaled", REF), function: "A-contact" },
-    { side: "lens", contactNo: 2, profileId: "pentax-k/ka", centerAngleDeg: v(223, "photo_scaled", REF), centerRadiusMm: v(20.5, "photo_scaled", REF), widthMm: v(1.3, "photo_scaled", REF), heightMm: v(2.4, "photo_scaled", REF), shape: "pad", protrusionMm: v(0, "photo_scaled", REF), function: "aperture-range" },
-    { side: "lens", contactNo: 3, profileId: "pentax-k/ka", centerAngleDeg: v(231, "photo_scaled", REF), centerRadiusMm: v(20.5, "photo_scaled", REF), widthMm: v(1.3, "photo_scaled", REF), heightMm: v(2.4, "photo_scaled", REF), shape: "pad", protrusionMm: v(0, "photo_scaled", REF), function: "aperture-range" },
-    { side: "lens", contactNo: 4, profileId: "pentax-k/ka", centerAngleDeg: v(239, "photo_scaled", REF), centerRadiusMm: v(20.5, "photo_scaled", REF), widthMm: v(1.3, "photo_scaled", REF), heightMm: v(2.4, "photo_scaled", REF), shape: "pad", protrusionMm: v(0, "photo_scaled", REF), function: "aperture-range" },
-    { side: "lens", contactNo: 5, profileId: "pentax-k/ka", centerAngleDeg: v(247, "photo_scaled", REF), centerRadiusMm: v(20.5, "photo_scaled", REF), widthMm: v(1.3, "photo_scaled", REF), heightMm: v(2.4, "photo_scaled", REF), shape: "pad", protrusionMm: v(0, "photo_scaled", REF), function: "aperture-range" },
-    { side: "lens", contactNo: 6, profileId: "pentax-k/ka", centerAngleDeg: v(255, "photo_scaled", REF), centerRadiusMm: v(20.5, "photo_scaled", REF), widthMm: v(1.3, "photo_scaled", REF), heightMm: v(2.4, "photo_scaled", REF), shape: "pad", protrusionMm: v(0, "photo_scaled", REF), function: "aperture-range" },
-    { side: "body", contactNo: 7, profileId: "pentax-k/kaf", centerAngleDeg: v(263, "photo_scaled", REF), centerRadiusMm: v(20.5, "photo_scaled", REF), widthMm: v(1.3, "photo_scaled", REF), heightMm: v(2.4, "photo_scaled", REF), shape: "pad", protrusionMm: v(0.4, "photo_scaled", REF), function: "digital info" },
-    { side: "lens", contactNo: 7, profileId: "pentax-k/kaf", centerAngleDeg: v(263, "photo_scaled", REF), centerRadiusMm: v(20.5, "photo_scaled", REF), widthMm: v(1.3, "photo_scaled", REF), heightMm: v(2.4, "photo_scaled", REF), shape: "pad", protrusionMm: v(0, "photo_scaled", REF), function: "digital info" },
-    { side: "body", contactNo: 8, profileId: "pentax-k/kaf2", centerAngleDeg: v(200, "photo_scaled", REF), centerRadiusMm: v(23.5, "photo_scaled", REF), widthMm: v(1.6, "photo_scaled", REF), heightMm: v(2.4, "photo_scaled", REF), shape: "pad", protrusionMm: v(0.4, "photo_scaled", REF), function: "power" },
-    { side: "body", contactNo: 9, profileId: "pentax-k/kaf2", centerAngleDeg: v(270, "photo_scaled", REF), centerRadiusMm: v(23.5, "photo_scaled", REF), widthMm: v(1.6, "photo_scaled", REF), heightMm: v(2.4, "photo_scaled", REF), shape: "pad", protrusionMm: v(0.4, "photo_scaled", REF), function: "power" },
+    { side: "body", contactNo: 1, profileId: "pentax-k/ka", centerAngleDeg: v(215, "photo_scaled", J), centerRadiusMm: v(20.5, "photo_scaled", J), widthMm: v(1.3, "photo_scaled", J), heightMm: v(2.4, "photo_scaled", J), shape: "pad", protrusionMm: v(0.4, "photo_scaled", J), function: "* (A-position, recessed)" },
+    { side: "body", contactNo: 2, profileId: "pentax-k/ka", centerAngleDeg: v(223, "photo_scaled", J), centerRadiusMm: v(20.5, "photo_scaled", J), widthMm: v(1.3, "photo_scaled", J), heightMm: v(2.4, "photo_scaled", J), shape: "pad", protrusionMm: v(0.4, "photo_scaled", J), function: "m1" },
+    { side: "body", contactNo: 3, profileId: "pentax-k/ka", centerAngleDeg: v(231, "photo_scaled", J), centerRadiusMm: v(20.5, "photo_scaled", J), widthMm: v(1.3, "photo_scaled", J), heightMm: v(2.4, "photo_scaled", J), shape: "pad", protrusionMm: v(0.4, "photo_scaled", J), function: "m2" },
+    { side: "body", contactNo: 4, profileId: "pentax-k/ka", centerAngleDeg: v(239, "photo_scaled", J), centerRadiusMm: v(20.5, "photo_scaled", J), widthMm: v(1.3, "photo_scaled", J), heightMm: v(2.4, "photo_scaled", J), shape: "pad", protrusionMm: v(0.4, "photo_scaled", J), function: "r1" },
+    { side: "body", contactNo: 5, profileId: "pentax-k/ka", centerAngleDeg: v(247, "photo_scaled", J), centerRadiusMm: v(20.5, "photo_scaled", J), widthMm: v(1.3, "photo_scaled", J), heightMm: v(2.4, "photo_scaled", J), shape: "pad", protrusionMm: v(0.4, "photo_scaled", J), function: "r2" },
+    { side: "body", contactNo: 6, profileId: "pentax-k/ka", centerAngleDeg: v(255, "photo_scaled", J), centerRadiusMm: v(20.5, "photo_scaled", J), widthMm: v(1.3, "photo_scaled", J), heightMm: v(2.4, "photo_scaled", J), shape: "pad", protrusionMm: v(0.4, "photo_scaled", J), function: "r3" },
+    { side: "lens", contactNo: 1, profileId: "pentax-k/ka", centerAngleDeg: v(215, "photo_scaled", J), centerRadiusMm: v(20.5, "photo_scaled", J), widthMm: v(1.3, "photo_scaled", J), heightMm: v(2.4, "photo_scaled", J), shape: "pad", protrusionMm: v(0, "photo_scaled", J), function: "* (A-position, recessed)" },
+    { side: "lens", contactNo: 2, profileId: "pentax-k/ka", centerAngleDeg: v(223, "photo_scaled", J), centerRadiusMm: v(20.5, "photo_scaled", J), widthMm: v(1.3, "photo_scaled", J), heightMm: v(2.4, "photo_scaled", J), shape: "pad", protrusionMm: v(0, "photo_scaled", J), function: "m1" },
+    { side: "lens", contactNo: 3, profileId: "pentax-k/ka", centerAngleDeg: v(231, "photo_scaled", J), centerRadiusMm: v(20.5, "photo_scaled", J), widthMm: v(1.3, "photo_scaled", J), heightMm: v(2.4, "photo_scaled", J), shape: "pad", protrusionMm: v(0, "photo_scaled", J), function: "m2" },
+    { side: "lens", contactNo: 4, profileId: "pentax-k/ka", centerAngleDeg: v(239, "photo_scaled", J), centerRadiusMm: v(20.5, "photo_scaled", J), widthMm: v(1.3, "photo_scaled", J), heightMm: v(2.4, "photo_scaled", J), shape: "pad", protrusionMm: v(0, "photo_scaled", J), function: "r1" },
+    { side: "lens", contactNo: 5, profileId: "pentax-k/ka", centerAngleDeg: v(247, "photo_scaled", J), centerRadiusMm: v(20.5, "photo_scaled", J), widthMm: v(1.3, "photo_scaled", J), heightMm: v(2.4, "photo_scaled", J), shape: "pad", protrusionMm: v(0, "photo_scaled", J), function: "r2" },
+    { side: "lens", contactNo: 6, profileId: "pentax-k/ka", centerAngleDeg: v(255, "photo_scaled", J), centerRadiusMm: v(20.5, "photo_scaled", J), widthMm: v(1.3, "photo_scaled", J), heightMm: v(2.4, "photo_scaled", J), shape: "pad", protrusionMm: v(0, "photo_scaled", J), function: "r3" },
+    { side: "body", contactNo: 7, profileId: "pentax-k/kaf", centerAngleDeg: v(263, "photo_scaled", J), centerRadiusMm: v(20.5, "photo_scaled", J), widthMm: v(1.3, "photo_scaled", J), heightMm: v(2.4, "photo_scaled", J), shape: "pad", protrusionMm: v(0.4, "photo_scaled", J), function: "digital info (KAF)" },
+    { side: "lens", contactNo: 7, profileId: "pentax-k/kaf", centerAngleDeg: v(263, "photo_scaled", J), centerRadiusMm: v(20.5, "photo_scaled", J), widthMm: v(1.3, "photo_scaled", J), heightMm: v(2.4, "photo_scaled", J), shape: "pad", protrusionMm: v(0, "photo_scaled", J), function: "digital info (KAF)" },
+    { side: "body", contactNo: 8, profileId: "pentax-k/kaf2", centerAngleDeg: v(200, "photo_scaled", W), centerRadiusMm: v(23.5, "photo_scaled", W), widthMm: v(1.6, "photo_scaled", W), heightMm: v(2.4, "photo_scaled", W), shape: "pad", protrusionMm: v(0.4, "photo_scaled", W), function: "power (KAF2)" },
+    { side: "body", contactNo: 9, profileId: "pentax-k/kaf2", centerAngleDeg: v(270, "photo_scaled", W), centerRadiusMm: v(23.5, "photo_scaled", W), widthMm: v(1.6, "photo_scaled", W), heightMm: v(2.4, "photo_scaled", W), shape: "pad", protrusionMm: v(0.4, "photo_scaled", W), function: "power (KAF2)" },
   ],
 
   mechanicalCouplings: [
-    { featureId: "aperture-stop-down-coupler", side: "body", profileId: "pentax-k/ka", centerAngleDeg: v(300, "photo_scaled", REF), radiusMm: v(24, "photo_scaled", REF), sizeOrTravel: "lever", function: "sense aperture-ring setting", compatibilityNotes: "" },
-    { featureId: "diaphragm-release-lever", side: "body", profileId: "pentax-k/ka", centerAngleDeg: v(285, "photo_scaled", REF), radiusMm: v(23, "photo_scaled", REF), sizeOrTravel: "lever", function: "hold open spring-loaded diaphragm", compatibilityNotes: "" },
-    { featureId: "af-screw-coupler", side: "body", profileId: "pentax-k/kaf", centerAngleDeg: v(250, "photo_scaled", REF), radiusMm: v(18, "photo_scaled", REF), sizeOrTravel: "drive shaft", function: "mechanical AF drive", compatibilityNotes: "body-driven AF lenses" },
+    { featureId: "aperture-stop-down-coupler", side: "body", profileId: "pentax-k/ka", centerAngleDeg: v(300, "photo_scaled", J), radiusMm: v(24, "photo_scaled", J), sizeOrTravel: "lever", function: "sense aperture-ring setting", compatibilityNotes: "original K mechanical interface, retained through KAF3" },
+    { featureId: "diaphragm-release-lever", side: "body", profileId: "pentax-k/ka", centerAngleDeg: v(285, "photo_scaled", J), radiusMm: v(23, "photo_scaled", J), sizeOrTravel: "lever", function: "hold open spring-loaded diaphragm", compatibilityNotes: "removed on KAF4 (electromagnetic diaphragm)" },
+    { featureId: "af-screw-coupler", side: "body", profileId: "pentax-k/kaf", centerAngleDeg: v(250, "photo_scaled", J), radiusMm: v(18, "photo_scaled", J), sizeOrTravel: "drive shaft", function: "mechanical AF drive", compatibilityNotes: "removed on KAF3 (in-lens SDM/DC motor)" },
   ],
 
   screwsGasketsBaffles: [
-    { featureId: "body-mount-screws", featureType: "mount_screws", side: "body", count: v(4, "photo_scaled", REF), pcdMm: v(50, "photo_scaled", REF), diameterMm: v(2, "photo_scaled", REF), centerAnglesDeg: degListV([45, 135, 225, 315], "photo_scaled", REF), shape: "round" },
+    { featureId: "body-mount-screws", featureType: "mount_screws", side: "body", count: v(4, "photo_scaled", J), pcdMm: v(50, "photo_scaled", J), diameterMm: v(2, "photo_scaled", J), centerAnglesDeg: degListV([45, 135, 225, 315], "photo_scaled", J), shape: "round" },
   ],
 
   svgLayers: {
@@ -180,15 +215,25 @@ const PENTAX_K_MOUNT = {
       liveUrl: "https://en.wikipedia.org/wiki/Pentax_K-mount",
       archiveUrl: "http://web.archive.org/web/20260512111817/https://en.wikipedia.org/wiki/Pentax_K-mount",
       archiveDate: "2026-05-12",
-      appliesTo: "flange focal distance, bayonet, lock angle, KA/KAF/KAF2 interface evolution",
+      appliesTo: "flange focal distance, 70° clockwise lock, KA/KAF/KAF2/KAF3/KAF4 interface evolution",
       confidence: "high",
+    },
+    {
+      ref: "pk-2",
+      sourceType: "secondary",
+      citation: "“Lens Mounts: Pentax K,” JAPB (japb.net). Accessed 2026-06-04.",
+      liveUrl: "https://japb.net/theory/lensmounts/pentax-k/",
+      archiveUrl: "http://web.archive.org/web/20260113064419/https://japb.net/theory/lensmounts/pentax-k/",
+      archiveDate: "2026-01-13",
+      appliesTo: "three-prong bayonet (two straight edges), locking groove at ~3:45, six KA contacts (m1/m2/r1/r2/r3/*)",
+      confidence: "medium",
     },
   ],
 
   openQuestions: [
     {
-      issue: "Throat diameter, bayonet lug spans, and lock/index/contact clock positions are photo-scaled, not from an official drawing.",
-      affectedFields: ["nominalThroatDiameterMm", "cameraSideFeatures", "lensSideFeatures", "contacts"],
+      issue: "Throat diameter, bayonet lug spans, and per-contact clock positions are photo-scaled; the lock groove is documented only as 'roughly 3:45'.",
+      affectedFields: ["nominalThroatDiameterMm", "cameraSideFeatures", "lensSideFeatures", "contacts", "body-lock-pin"],
       candidateValues: [],
       resolution: "Upgrade to an official Pentax/Ricoh K-mount drawing or measured sample.",
     },
