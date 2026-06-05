@@ -8,9 +8,12 @@ This is the working backlog for mirror-lens, telescope, annular-aperture, and fo
 - Hidden reference fixtures under `src/lens-data/reference/` exercise first-surface primary mirrors, annular obstructions, Mangin-style second-surface mirrors, Newtonian side focus, and Cassegrain-style folded paths.
 - Diagram rendering supports annular element paths, tilted flat fold mirrors, second-surface coating accents, and
   non-default image planes.
+- Annular stop display can show both the outer stop limit and the central blocked region for centrally obstructed
+  reflex lenses.
 - Visible ray sampling avoids central blocking geometry for folded systems.
 - Folded off-axis launch geometry now uses generalized stop/chief-ray traces and path-aware image-plane intersections
-  instead of sequential refractive approximations.
+  instead of sequential refractive approximations for supported paths. Centrally obstructed annular systems still need
+  an annular-aware off-axis/chief-ray solve so a blocked central chief ray cannot collapse the displayed field.
 - Analysis guardrails prevent folded systems from showing complex sequential analysis tabs until each tab is adapted.
   Axial cardinal overlays and mirror-safe spherical aberration/blur helpers have generalized folded paths.
 
@@ -58,7 +61,22 @@ This is the working backlog for mirror-lens, telescope, annular-aperture, and fo
    - Regression tests cover off-axis spherical primary, Cassegrain, and Newtonian chief-ray behavior, meridional
      symmetry, repeated stop selection, and a representative non-folded refractive snapshot.
 
-7. **Harden Folded Validation And Numerics** - Done.
+7. **Display Annular Stops For Central Obstructions** - Done.
+   - `stopInnerBlockedSemiDiameter()` resolves the stop's blocked center from authored `STO.innerSd`, folded central
+     blockers, or annular mirror holes while ignoring ring blockers whose center remains open.
+   - The diagram's stop overlay draws a central blocked marker in addition to the outer stop limits, so reflex lenses
+     such as the Nikon Reflex-Nikkor 500mm f/8 New display a usable annular aperture.
+   - Obstruction-aware ray sampling and stop display share the same obstruction rules instead of duplicating blocker
+     inference.
+
+8. **Correct Folded Chromatic Ray Tracing** - Done.
+   - Folded chromatic traces now resolve rear-side media from the previous physical surface, preserving the correct
+     glass on return passes through Mangin substrates.
+   - Chromatic spread calculations carry each ray's actual terminal z coordinate so explicit folded image planes and
+     ordinary last-surface extrapolation stay distinct.
+   - Regression tests cover Nikon folded mirror lenses and existing chromatic hook/analysis callers.
+
+9. **Harden Folded Validation And Numerics** - Done.
    - Validation rejects explicit paths whose `maxInteractions` cannot cover the declared hit order plus image plane.
    - Validation rejects mismatched paired `innerSd` values on annular mirror/backing surfaces.
    - Folded image-plane reachability now reports conservative errors only when probe traces clearly cannot reach the
@@ -76,11 +94,18 @@ This is the working backlog for mirror-lens, telescope, annular-aperture, and fo
   `agent_docs/generated/mirror-fixtures.generated.md`, regenerated with `npm run generate:mirror-reports`.
 - Done: `src/lens-data/LENS_DATA_SPEC.md` includes incident-side examples for curved mirrors, returning beams, and
   second-surface paths.
+- Done: Nikon Reflex-Nikkor 1000mm f/11 has a patent audit log confirming the published prescription and documenting
+  the remaining annular off-axis/chromatic analysis caveats.
 
 ## Physics And Rendering Improvements
 
 - Model reflectivity/transmission losses for mirror coatings, obstructions, and second-surface substrates when relative illumination or bokeh brightness needs it.
 - Done: second-surface mirrors render a dashed coating accent line distinct from the glass substrate.
+- Add an annular-aware off-axis/chief-ray solver for centrally obstructed systems. The current central-chief convention
+  can collapse the field estimate to zero on lenses such as the Nikon Reflex-Nikkor 1000mm f/11 because the true central
+  chief ray is physically blocked.
+- Revisit folded annular chromatic LCA/TCA analysis after the annular field solver lands, especially where rays already
+  terminate on an explicit folded image plane.
 - Support optional spider-vane diffraction or obstruction metadata as display annotations without letting mechanical details pollute optical tracing.
 - Consider 3D folded assemblies only after the 2D meridional model is exhausted; the current pass intentionally supports rotationally symmetric optics plus meridional fold mirrors.
 

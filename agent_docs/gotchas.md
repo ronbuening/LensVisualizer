@@ -20,6 +20,9 @@
   visual-only; reflection/refraction behavior still comes from `SurfaceData.interaction` and the resolved path
 - `innerSd` means a central hole in the active aperture; rays inside the hole pass through. Solid central obstructions
   should be separate `interaction: { type: "block" }` surfaces
+- Centrally obstructed reflex lenses need annular stop/field reasoning. `stopInnerBlockedSemiDiameter()` is the shared
+  helper for stop display and obstruction-aware sampling. Do not treat the blocked central chief ray as a valid off-axis
+  field solve; Nikon Reflex-Nikkor 1000mm f/11 is the current audit example where that collapses field geometry to zero.
 - Every analysis launch slope should flow through `projectionLaunchSlopeForField` in `src/optics/projection.ts` rather
   than inline `-Math.tan(θ)`. The helper applies the shared `MAX_FIELD_LAUNCH_DEG = 89` guard; fisheye chief-ray solves
   route through the bounding-sphere vector path via `solveChiefRay`, and vector-aware callers should consume

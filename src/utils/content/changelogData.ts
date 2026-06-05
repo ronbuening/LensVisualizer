@@ -22,6 +22,16 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-06-05 ──────────────────────────────────────────────────────────
   {
     date: "2026-06-05",
+    type: "fix",
+    summary: "Fixed annular stop rendering for centrally obstructed reflex lenses",
+  },
+  {
+    date: "2026-06-05",
+    type: "fix",
+    summary: "Fixed chromatic ray tracing through folded Mangin mirror lenses",
+  },
+  {
+    date: "2026-06-05",
     type: "lens",
     summary:
       "Added three Olympus Micro Four Thirds lenses: M.Zuiko Digital 12mm f/2.0, M.Zuiko Digital 17mm f/2.8, and M.Zuiko Digital 14-42mm f/3.5-5.6 II R",
