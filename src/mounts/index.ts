@@ -7,9 +7,9 @@
  * incremental as more mounts are authored.
  */
 
-import type { LensMountId } from "../../utils/catalog/lensTaxonomy.js";
-import type { MountSpec } from "../../types/mount.js";
-import { normalizeMountSpec } from "../../optics/mount/defaults.js";
+import type { LensMountId } from "../utils/catalog/lensTaxonomy.js";
+import type { MountSpec } from "../types/mount.js";
+import { normalizeMountSpec } from "../optics/mount/defaults.js";
 import CANON_EF_MOUNT from "./canon-ef.mount.js";
 import CANON_RF_MOUNT from "./canon-rf.mount.js";
 import FUJIFILM_G_MOUNT from "./fujifilm-g.mount.js";

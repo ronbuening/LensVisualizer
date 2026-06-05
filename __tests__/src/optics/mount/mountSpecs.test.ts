@@ -8,7 +8,7 @@
  * value-envelope shape is enough to catch drift between the types and the schema.
  */
 import { describe, expect, it } from "vitest";
-import { MOUNT_SPECS } from "../../../../src/lens-data/mounts/index.js";
+import { MOUNT_SPECS } from "../../../../src/mounts/index.js";
 import type { MountSpec, ValueStatus } from "../../../../src/types/mount.js";
 import validateMountSpec from "../../../../src/optics/mount/validateMountSpec.js";
 import { buildMountSvgDoc } from "../../../../src/optics/mount/renderMount.js";

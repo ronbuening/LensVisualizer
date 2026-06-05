@@ -10,7 +10,7 @@ import { mountCanonicalURL, SITE_NAME, SITE_URL } from "../utils/catalog/lensMet
 import { breadcrumbJsonLd, collectionPageJsonLd } from "../utils/seo/structuredData.js";
 import { usePageThemeToggle } from "../utils/theme/usePageThemeToggle.js";
 import { getMountDetails } from "../utils/catalog/mountDetails.js";
-import { MOUNT_SPECS } from "../lens-data/mounts/index.js";
+import { MOUNT_SPECS } from "../mounts/index.js";
 import MountDiagramPanel from "../components/mount/MountDiagramPanel.js";
 import { LENS_LINK_BASE_STYLE, PAGE_BASE_STYLE } from "../utils/style/pageStyles.js";
 import { lensLinkFromMount } from "./lensIndex/clusterLinks.js";

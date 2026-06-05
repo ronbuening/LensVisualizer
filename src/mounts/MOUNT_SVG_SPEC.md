@@ -1,7 +1,7 @@
 # Mount SVG Specification — authoring guide
 
 How to author a camera/lens **mount** SVG specification (`*.mount.ts`). This is the companion to
-[`LENS_DATA_SPEC.md`](./LENS_DATA_SPEC.md) for the mount-diagram system, which renders three views per
+[`LENS_DATA_SPEC.md`](../lens-data/LENS_DATA_SPEC.md) for the mount-diagram system, which renders three views per
 mount (camera-side front, lens-side rear, axial/register) from structured per-mount data. It implements
 the Lens Mount SVG Specification Package, schema version **1.3**.
 
@@ -35,7 +35,7 @@ Every numeric dimension is an envelope `{ value, status, sourceRefs }` where `va
 `"unknown"`, or `"not_applicable"`. Use the [`authoring.ts`](../optics/mount/authoring.ts) helpers:
 
 ```ts
-import { v, unknownV, naV, dirV, degListV } from "../../optics/mount/authoring.js";
+import { v, unknownV, naV, dirV, degListV } from "../optics/mount/authoring.js";
 flangeFocalDistanceMm: v(46.5, "secondary", ["nf-1"]),   // sourced number
 startAngleDeg: unknownV(["nf-1"]),                        // labeled placeholder
 depthMm: naV(),                                           // not applicable
@@ -60,8 +60,8 @@ For evolved mounts, the base profile (`<id>/base`) holds only **invariant** geom
 (`<id>/ai-s`, `<id>/kaf2`, …) overlay era-specific features. **Geometry is never averaged across eras.**
 Every feature carries a `profileId`; the renderer draws features whose `profileId` is the base or the
 selected variant. Declare a non-evolved mount `base_only` with `selectedMvpProfileId === baseProfileId`
-(e.g. Canon EF). See [`canon-ef.mount.ts`](./mounts/canon-ef.mount.ts) (base-only),
-[`nikon-f.mount.ts`](./mounts/nikon-f.mount.ts) and [`pentax-k.mount.ts`](./mounts/pentax-k.mount.ts)
+(e.g. Canon EF). See [`canon-ef.mount.ts`](./canon-ef.mount.ts) (base-only),
+[`nikon-f.mount.ts`](./nikon-f.mount.ts) and [`pentax-k.mount.ts`](./pentax-k.mount.ts)
 (base + variants).
 
 ## Sources
@@ -78,14 +78,14 @@ outward to whole mm. Coordinates are rounded to 3 decimals; layers emit in the f
 
 ## Authoring checklist
 
-1. Copy an existing `*.mount.ts` under [`mounts/`](./mounts/) and set `mountId` (must be a `LensMountId`).
+1. Copy an existing `*.mount.ts` in this folder ([`src/mounts/`](./)) and set `mountId` (must be a `LensMountId`).
 2. Fill `coreDimensions`, `lockGeometry`, `cameraSideFeatures`, `lensSideFeatures`, `axialStack`, and any
    `contacts` / `mechanicalCouplings` / `screwsGasketsBaffles`, each as value envelopes.
 3. Number bayonet instances clockwise from the one nearest 12 o'clock (`body-slot-1`, `lens-lug-1`, …) and
    set `matesWith` to the opposite-side feature id.
 4. Define the `mvp.profileModel` (base + variants) and set `selectedMvpProfileId`.
 5. Add `sourceRefs` (with archived snapshots) and `openQuestions` for any photo-scaled/unknown values.
-6. Register the spec in [`mounts/index.ts`](./mounts/index.ts).
+6. Register the spec in [`index.ts`](./index.ts).
 7. Run `npm run typecheck` and `npm run test` (the cross-mount suite validates every spec), then
    `npm run generate:mount-svgs` to refresh `agent_docs/generated/lens-mount-svg-specifications.md` and the
    per-view SVGs.

@@ -1,7 +1,7 @@
 /**
  * Camera/lens mount SVG specification types.
  *
- * This module is the in-repo TypeScript mirror of `src/lens-data/lens-mount.schema.json`
+ * This module is the in-repo TypeScript mirror of `src/mounts/lens-mount.schema.json`
  * (Lens Mount SVG Specification Package, schema version 1.3). The two files are the SAME
  * contract expressed twice: the JSON Schema is the published, external-facing artifact, and
  * these types are what the codebase compiles against. They MUST be edited together — there is

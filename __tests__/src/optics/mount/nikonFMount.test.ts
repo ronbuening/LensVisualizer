@@ -7,7 +7,7 @@
  * (θ → 180 − θ), and that the renderer never mutates the spec.
  */
 import { describe, expect, it } from "vitest";
-import NIKON_F_INPUT from "../../../../src/lens-data/mounts/nikon-f.mount.js";
+import NIKON_F_INPUT from "../../../../src/mounts/nikon-f.mount.js";
 import { normalizeMountSpec } from "../../../../src/optics/mount/defaults.js";
 import validateMountSpec from "../../../../src/optics/mount/validateMountSpec.js";
 import { buildMountSvgDoc } from "../../../../src/optics/mount/renderMount.js";
