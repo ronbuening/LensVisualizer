@@ -3,6 +3,9 @@
 Read this for pure optical calculations, lens building, ray tracing, aberration analysis, vignetting, distortion, bokeh,
 validation, and diagram geometry.
 
+> Mount-diagram geometry lives in `src/optics/mount/` (polar/annular path builders, deterministic SVG renderer),
+> separate from this lens cross-section engine. See [`mount-diagrams.md`](mount-diagrams.md).
+
 ## Core Rule
 
 `src/optics/` is the authoritative optics engine. Stable app and test imports should use the public files in

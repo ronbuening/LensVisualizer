@@ -13,6 +13,8 @@ links outward if the change crosses subsystem boundaries.
   [`architecture/ui-components.md`](architecture/ui-components.md).
 - For optical math, ray tracing, aberrations, vignetting, distortion, bokeh, validation, and diagram geometry, read
   [`architecture/optics-engine.md`](architecture/optics-engine.md).
+- For camera/lens mount interface diagrams (mount data, the polar geometry/renderer, the `/mounts` pages, the maker
+  mounts sidebar, and the SVG generator), read [`architecture/mount-diagrams.md`](architecture/mount-diagrams.md).
 - For reducer state, persisted preferences, URL sync, contexts, theme tokens, and shared utility modules, read
   [`architecture/state-and-utilities.md`](architecture/state-and-utilities.md).
 - For comparison mode, shared sliders, normalized scale, and compare-route synchronization, read
@@ -42,6 +44,9 @@ LensVisualizer is a React + TypeScript app with an SVG-first optical diagram and
 - `src/utils/` owns shared helpers, partitioned by domain: `catalog/`, `content/`, `seo/`, `state/`, `style/`, and
   `theme/`, plus root-level general utilities.
 - `src/comparison/` owns comparison-mode state, layout, sliders, and URL synchronization.
+- `src/mounts/` owns mount-diagram data (`*.mount.ts` specs + `lens-mount.schema.json`), rendered by the pure
+  `src/optics/mount/` engine and shown by `src/components/mount/`; see
+  [`architecture/mount-diagrams.md`](architecture/mount-diagrams.md).
 - `scripts/` owns prerender, sitemap, metadata, lens-data organization, and SEO audit build helpers.
 
 ## Cross-Cutting Rules
@@ -75,6 +80,7 @@ LensVisualizer is a React + TypeScript app with an SVG-first optical diagram and
 
 - [`adding_a_lens.md`](adding_a_lens.md) - lens data workflow and validation troubleshooting.
 - [`lens-mount-format-backfill.md`](lens-mount-format-backfill.md) - mount/format metadata backfill status.
+- [`architecture/mount-diagrams.md`](architecture/mount-diagrams.md) - mount interface diagram data, engine, pages, and generator.
 - [`glass-catalog-buildout.md`](glass-catalog-buildout.md) - glass catalog expansion and sourcing playbook.
 - [`glass-relabel-followup.md`](glass-relabel-followup.md) - per-lens glass mismatch relabel queue.
 - [`proprietary-glass-backfill.md`](proprietary-glass-backfill.md) - patent line-index backfill workflow.

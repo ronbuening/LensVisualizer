@@ -3,6 +3,10 @@
 Read this for shared controls, display components, content components, markdown rendering, analysis drawer tabs, charts,
 and homepage UI.
 
+> Mount interface diagram components are in `src/components/mount/` (`MountDiagram`, `MountDiagramPanel`), and the
+> maker-page mounts sidebar is `src/components/content/MakerMountsSidebar.tsx`. See
+> [`mount-diagrams.md`](mount-diagrams.md).
+
 ## Layout And Navigation Components
 
 | Module | Purpose |

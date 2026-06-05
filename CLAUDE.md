@@ -6,7 +6,8 @@ LensVisualizer (public site: Surface & Stop) is an interactive React + TypeScrip
 It renders patent-derived camera lens sections as inline SVG, traces rays in real time, and exposes analysis tools for
 aberrations, pupils, distortion, vignetting, bokeh, chromatic behavior, glass, lens comparison, perspective-control
 movement, folded mirror paths, annular apertures/obstructions, arbitrary image planes, and projection-aware fisheye
-tracing. The site is prerendered for SEO and deployed to Cloudflare Pages.
+tracing. It also renders programmatic camera/lens mount interface diagrams on the mount pages. The site is
+prerendered for SEO and deployed to Cloudflare Pages.
 
 ## Tech Stack
 
@@ -41,14 +42,17 @@ src/components/           - React UI components and hooks
     lensDiagram/          - Per-panel diagram viewport, drawer, and control wiring
     lensViewer/           - Viewer-level chrome, content layout, and header helpers
   markdown/               - Shared markdown renderer
+  mount/                  - Mount interface diagram components (MountDiagram, panel)
 src/comparison/           - Comparison mode feature module
 src/optics/               - Pure optical engine and analysis helpers
   math/ trace/ field/     - Vector math, exact tracing, projection-aware field launch
   prescription/ state/    - Lens normalization and prepared optical state
   analysis/ aberration/   - State-aware analysis adapters and aberration helpers
+  mount/                  - Mount diagram geometry + deterministic SVG renderer
 src/types/                - Shared TypeScript types
 src/utils/                - State, URL sync, themes, catalog, SEO, metadata utilities
 src/lens-data/            - Auto-registered `*.data.ts` prescriptions and `*.analysis.md` notes
+src/mounts/               - Mount diagram `*.mount.ts` specs, barrel, schema, and authoring guide
 src/content/              - Auto-registered markdown articles and static content
 scripts/                  - Metadata, prerender, sitemap, SEO, and lens-data build helpers
 __tests__/                - Vitest unit/component/script tests
@@ -89,14 +93,16 @@ Read only the relevant focused doc before changing that area:
 - `agent_docs/architecture/viewer-and-diagram.md` - LensViewer, diagram panels, zoom/pan, error tiers
 - `agent_docs/architecture/ui-components.md` - controls, display components, markdown renderer, analysis tabs
 - `agent_docs/architecture/optics-engine.md` - ray tracing, aberrations, validation, diagram geometry
+- `agent_docs/architecture/mount-diagrams.md` - mount interface diagrams: data (`src/mounts/`), engine, renderer, pages, generator
 - `agent_docs/architecture/state-and-utilities.md` - reducer state, preferences, URL sync, themes, metadata helpers
 - `agent_docs/architecture/comparison.md` - comparison mode, shared sliders, compare URLs
 - `agent_docs/architecture/testing.md` - test layout and regression expectations
 - `agent_docs/glass-catalog-buildout.md` - chromatic dispersion catalog, resolver, and how to add Sellmeier entries safely
 - `agent_docs/glass-relabel-followup.md` - per-lens catalog mismatch relabel queue and audit workflow pointers
 - `agent_docs/proprietary-glass-backfill.md` - patent line-index backfill workflow for unresolved proprietary glasses
-- `agent_docs/generated/` - generated glass and mirror fixture reports; refresh glass reports with
-  `npm run generate:glass-reports` and hidden mirror fixture reports with `npm run generate:mirror-reports`
+- `agent_docs/generated/` - generated glass, mirror fixture, and mount-SVG reports; refresh glass reports with
+  `npm run generate:glass-reports`, hidden mirror fixture reports with `npm run generate:mirror-reports`, and the
+  mount SVG specifications with `npm run generate:mount-svgs`
 - `agent_docs/records/exact-surface-trace.md` - historical staged implementation notes for the exact trace rollout
 - `TRACE_MODEL_IMPROVEMENT_PLAN.md` - current/historical fisheye projection, vector launch, and bounding-sphere trace status
 - `MIRROR_OPTICS_ACCURACY_PLAN.md` - completed mirror/folded accuracy implementation and verification status
@@ -147,6 +153,11 @@ Read only the relevant focused doc before changing that area:
 - Lens data and content are auto-discovered; avoid manual catalog/route edits unless changing the pipeline itself.
 - Lens mount and image-format metadata use canonical ids from `src/utils/catalog/lensTaxonomy.ts`; see
   `src/lens-data/LENS_MOUNT_FORMAT_OPTIONS.md` and do not free-type labels.
+- Mount interface diagrams are authored in `src/mounts/*.mount.ts` (`satisfies MountSpecInput`), rendered by the
+  pure engine in `src/optics/mount/`, and shown by `src/components/mount/`. Keep `src/types/mount.ts` and
+  `src/mounts/lens-mount.schema.json` in sync (no ajv; `satisfies` + `validateMountSpec.ts` enforce the contract),
+  register new mounts in `src/mounts/index.ts`, and run `npm run generate:mount-svgs` after changes. See
+  `agent_docs/architecture/mount-diagrams.md`.
 
 ## Adding Content
 
