@@ -4,8 +4,8 @@ Read this for shared controls, display components, content components, markdown 
 and homepage UI.
 
 > Mount interface diagram components are in `src/components/mount/` (`MountDiagram`, `MountDiagramPanel`); the maker
-> and mount pages cross-link via `src/components/content/LinkListSidebar.tsx`. See
-> [`mount-diagrams.md`](mount-diagrams.md).
+> and mount pages cross-link via `src/components/content/LinkListSidebar.tsx` (also used, with `#anchor` items, for
+> the lens-library group-navigation sidebar). See [`mount-diagrams.md`](mount-diagrams.md).
 
 ## Layout And Navigation Components
 

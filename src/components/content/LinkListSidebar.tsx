@@ -2,8 +2,10 @@
  * LinkListSidebar — a small navigational sidebar listing related pages as links.
  *
  * Reuses the article table-of-contents panel format (`ArticleTOC`): a bordered panel with an
- * uppercase heading and a list of links with a left-border hover indicator. It has no scrollspy —
- * the links navigate to other pages. Used for the maker→mounts and mount→makers cross-links.
+ * uppercase heading and a list of links with a left-border hover indicator. Items whose `to` starts
+ * with `#` are in-page anchors (smooth-scroll to the matching element id); all other `to` values are
+ * router paths. Used for the maker→mounts and mount→makers cross-links and the lens-library
+ * group-navigation sidebar.
  *
  * The links are SSR-rendered and crawlable: the panel renders in-flow by default (and on narrower
  * screens), and only becomes the fixed top-right aside on wide screens where it clears the centered
@@ -68,6 +70,16 @@ export default function LinkListSidebar({
 
   if (items.length === 0) return null;
 
+  // In-page `#anchor` items smooth-scroll to the target id (offset to clear the header); route items use Link.
+  const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, to: string) => {
+    const el = typeof document !== "undefined" ? document.getElementById(to.slice(1)) : null;
+    if (!el) return;
+    e.preventDefault();
+    const top = el.getBoundingClientRect().top + window.scrollY - offsetTop;
+    window.scrollTo({ top, behavior: "smooth" });
+    history.replaceState(null, "", to);
+  };
+
   const panelStyle: React.CSSProperties = {
     background: t.panelBg,
     border: `1px solid ${t.panelBorder}`,
@@ -96,26 +108,33 @@ export default function LinkListSidebar({
       <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
         {items.map((item) => {
           const active = hovered === item.id;
+          const isAnchor = item.to.startsWith("#");
+          const linkStyle: React.CSSProperties = {
+            display: "block",
+            fontSize: 12,
+            lineHeight: 1.45,
+            padding: "3px 6px",
+            borderLeft: `2px solid ${active ? t.descLinkColor : "transparent"}`,
+            color: active ? t.descLinkColor : t.descText,
+            textDecoration: "none",
+            fontWeight: active ? 600 : 400,
+            transition: "color 0.15s, border-color 0.15s",
+          };
+          const hoverHandlers = {
+            onMouseEnter: () => setHovered(item.id),
+            onMouseLeave: () => setHovered(null),
+          };
           return (
             <li key={item.id} style={{ margin: "2px 0" }}>
-              <Link
-                to={item.to}
-                onMouseEnter={() => setHovered(item.id)}
-                onMouseLeave={() => setHovered(null)}
-                style={{
-                  display: "block",
-                  fontSize: 12,
-                  lineHeight: 1.45,
-                  padding: "3px 6px",
-                  borderLeft: `2px solid ${active ? t.descLinkColor : "transparent"}`,
-                  color: active ? t.descLinkColor : t.descText,
-                  textDecoration: "none",
-                  fontWeight: active ? 600 : 400,
-                  transition: "color 0.15s, border-color 0.15s",
-                }}
-              >
-                {item.label}
-              </Link>
+              {isAnchor ? (
+                <a href={item.to} onClick={(e) => handleAnchorClick(e, item.to)} style={linkStyle} {...hoverHandlers}>
+                  {item.label}
+                </a>
+              ) : (
+                <Link to={item.to} style={linkStyle} {...hoverHandlers}>
+                  {item.label}
+                </Link>
+              )}
             </li>
           );
         })}
