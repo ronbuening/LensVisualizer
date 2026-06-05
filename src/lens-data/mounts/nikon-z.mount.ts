@@ -1,0 +1,181 @@
+/**
+ * Nikon Z mount SVG specification.
+ *
+ * Nikon's full-frame mirrorless mount (2018): a short 16 mm flange focal distance and the largest
+ * full-frame throat at 55 mm. Modeled `base-only` — it is a single fully-electronic interface (no
+ * mechanical couplings); FX (full-frame) and DX (APS-C) share the same mount, so format is not a
+ * mount variant. Distinctively it uses a FOUR-lug bayonet (vs three on the F-mount) and eleven
+ * electrical contacts.
+ *
+ * Sourced layout: flange focal distance 16 mm, 55 mm throat, eleven contacts, four straight-edged
+ * lugs [nz-1]; the locking groove at 3 o'clock and the contact bank across 5–7 o'clock (bottom of
+ * the mount) per the JAPB teardown [nz-2]. Lug spans, the index position, and the lock rotation
+ * angle/direction are photo-scaled or unknown and flagged in openQuestions.
+ */
+
+import type { MountSpecInput } from "../../types/mount.js";
+import { degListV, dirV, naV, unknownV, v } from "../../optics/mount/authoring.js";
+
+const W = ["nz-1"]; // Wikipedia
+const J = ["nz-2"]; // JAPB teardown
+
+const NIKON_Z_MOUNT = {
+  mountId: "nikon-z",
+  displayLabel: "Nikon Z",
+  projectNote: "Nikon Z mirrorless mount.",
+  researchStatus: "researched",
+  mvpStatus: "mvp_complete",
+  mechanism: "bayonet",
+  lockType: "sprung_detent",
+
+  mvp: {
+    requiredViews: ["camera_side_front_view", "lens_side_rear_view", "axial_register_schematic"],
+    requirementLevels: {
+      mvpRequired: ["flange_focal_distance_mm", "nominal_throat_diameter_mm", "camera_mount_outer_diameter_mm"],
+      conditionalCoreRequired: ["bayonet_lugs", "lock_pin", "index_mark"],
+      variantRequired: ["electrical_contacts"],
+      mvpOptional: ["mount_screws"],
+      referenceGrade: ["lug_ramp_undercut", "contact_pitch"],
+    },
+    profileModel: {
+      baseProfileId: "nikon-z/base",
+      selectedMvpProfileId: "nikon-z/base",
+      variantStrategy: "base_only",
+      variantProfiles: [
+        {
+          profileId: "nikon-z/base",
+          profileType: "base",
+          appliesTo: "all Nikon Z lenses and bodies (FX and DX), 2018–present",
+          adds: [
+            "four straight-edged bayonet lugs",
+            "locking pin/notch at 3 o'clock",
+            "mounting index",
+            "eleven-contact electrical block at the bottom (5–7 o'clock)",
+          ],
+          removes: ["all mechanical couplings (fully electronic)"],
+          changes: [],
+          cameraSideOverlayLayers: ["camera-side-variant-electrical"],
+          lensSideOverlayLayers: ["lens-side-variant-electrical"],
+          status: "researched",
+          sourceRefs: W,
+        },
+      ],
+    },
+  },
+
+  coreDimensions: {
+    flangeFocalDistanceMm: v(16, "secondary", W),
+    nominalThroatDiameterMm: v(55, "secondary", W),
+    effectiveClearApertureMm: v(55, "secondary", W),
+    cameraMountOuterDiameterMm: v(66, "photo_scaled", J),
+    lensMountOuterDiameterMm: v(64, "photo_scaled", J),
+    contactCount: v(11, "secondary", W),
+  },
+
+  lockGeometry: {
+    insertionAngleDeg: v(0, "secondary", W),
+    lockAngleDeg: unknownV(W),
+    lockRotationDeg: unknownV(W),
+    lockRotationDirection: dirV("unknown", "unknown", []),
+  },
+
+  cameraSideFeatures: [
+    { featureId: "body-throat", featureType: "body_throat", profileId: "nikon-z/base", count: 1, centerAngleDeg: v(0, "secondary", W), startAngleDeg: v(0, "secondary", W), endAngleDeg: v(360, "secondary", W), innerRadiusMm: v(0, "secondary", W), outerRadiusMm: v(27.5, "secondary", W), depthMm: naV(), matesWith: "", shapeNotes: "55 mm throat opening" },
+    { featureId: "body-mount-ring", featureType: "mount_ring", profileId: "nikon-z/base", count: 1, centerAngleDeg: v(0, "photo_scaled", J), startAngleDeg: v(0, "photo_scaled", J), endAngleDeg: v(360, "photo_scaled", J), innerRadiusMm: v(27.5, "secondary", W), outerRadiusMm: v(33, "photo_scaled", J), depthMm: naV(), matesWith: "", shapeNotes: "visible body mount ring" },
+    { featureId: "body-slot-1", featureType: "bayonet_receiving_slot", profileId: "nikon-z/base", count: 1, centerAngleDeg: v(45, "photo_scaled", J), startAngleDeg: v(28, "photo_scaled", J), endAngleDeg: v(62, "photo_scaled", J), innerRadiusMm: v(27.5, "photo_scaled", J), outerRadiusMm: v(30.5, "photo_scaled", J), depthMm: v(2, "photo_scaled", J), matesWith: "lens-lug-1", shapeNotes: "four-lug bayonet, straight edges [nz-1]" },
+    { featureId: "body-slot-2", featureType: "bayonet_receiving_slot", profileId: "nikon-z/base", count: 1, centerAngleDeg: v(135, "photo_scaled", J), startAngleDeg: v(118, "photo_scaled", J), endAngleDeg: v(152, "photo_scaled", J), innerRadiusMm: v(27.5, "photo_scaled", J), outerRadiusMm: v(30.5, "photo_scaled", J), depthMm: v(2, "photo_scaled", J), matesWith: "lens-lug-2", shapeNotes: "four-lug bayonet, straight edges [nz-1]" },
+    { featureId: "body-slot-3", featureType: "bayonet_receiving_slot", profileId: "nikon-z/base", count: 1, centerAngleDeg: v(225, "photo_scaled", J), startAngleDeg: v(208, "photo_scaled", J), endAngleDeg: v(242, "photo_scaled", J), innerRadiusMm: v(27.5, "photo_scaled", J), outerRadiusMm: v(30.5, "photo_scaled", J), depthMm: v(2, "photo_scaled", J), matesWith: "lens-lug-3", shapeNotes: "four-lug bayonet, straight edges [nz-1]" },
+    { featureId: "body-slot-4", featureType: "bayonet_receiving_slot", profileId: "nikon-z/base", count: 1, centerAngleDeg: v(315, "photo_scaled", J), startAngleDeg: v(298, "photo_scaled", J), endAngleDeg: v(332, "photo_scaled", J), innerRadiusMm: v(27.5, "photo_scaled", J), outerRadiusMm: v(30.5, "photo_scaled", J), depthMm: v(2, "photo_scaled", J), matesWith: "lens-lug-4", shapeNotes: "four-lug bayonet, straight edges [nz-1]" },
+    { featureId: "body-index-mark", featureType: "index_mark", profileId: "nikon-z/base", count: 1, centerAngleDeg: v(0, "photo_scaled", J), startAngleDeg: unknownV(J), endAngleDeg: unknownV(J), innerRadiusMm: unknownV(J), outerRadiusMm: v(33.5, "photo_scaled", J), depthMm: naV(), matesWith: "lens-index-mark", shapeNotes: "white-dot mounting index" },
+    { featureId: "body-lock-pin", featureType: "lock_pin", profileId: "nikon-z/base", count: 1, centerAngleDeg: v(90, "secondary", J), startAngleDeg: unknownV(J), endAngleDeg: unknownV(J), innerRadiusMm: unknownV(J), outerRadiusMm: v(28.5, "photo_scaled", J), depthMm: v(2, "photo_scaled", J), matesWith: "lens-lock-notch", shapeNotes: "locking groove at 3 o'clock [nz-2]" },
+  ],
+
+  lensSideFeatures: [
+    { featureId: "lens-throat", featureType: "lens_throat", profileId: "nikon-z/base", count: 1, centerAngleDeg: v(0, "secondary", W), startAngleDeg: v(0, "secondary", W), endAngleDeg: v(360, "secondary", W), innerRadiusMm: v(0, "secondary", W), outerRadiusMm: v(26.5, "photo_scaled", J), thicknessMm: naV(), matesWith: "", shapeNotes: "rear opening" },
+    { featureId: "lens-mount-ring", featureType: "lens_mount_ring", profileId: "nikon-z/base", count: 1, centerAngleDeg: v(0, "photo_scaled", J), startAngleDeg: v(0, "photo_scaled", J), endAngleDeg: v(360, "photo_scaled", J), innerRadiusMm: v(26.5, "photo_scaled", J), outerRadiusMm: v(32, "photo_scaled", J), thicknessMm: naV(), matesWith: "", shapeNotes: "lens flange ring" },
+    { featureId: "lens-lug-1", featureType: "bayonet_lug", profileId: "nikon-z/base", count: 1, centerAngleDeg: v(45, "photo_scaled", J), startAngleDeg: v(28, "photo_scaled", J), endAngleDeg: v(62, "photo_scaled", J), innerRadiusMm: v(27.5, "photo_scaled", J), outerRadiusMm: v(30.5, "photo_scaled", J), thicknessMm: v(2, "photo_scaled", J), matesWith: "body-slot-1", shapeNotes: "four-lug bayonet, straight edges [nz-1]" },
+    { featureId: "lens-lug-2", featureType: "bayonet_lug", profileId: "nikon-z/base", count: 1, centerAngleDeg: v(135, "photo_scaled", J), startAngleDeg: v(118, "photo_scaled", J), endAngleDeg: v(152, "photo_scaled", J), innerRadiusMm: v(27.5, "photo_scaled", J), outerRadiusMm: v(30.5, "photo_scaled", J), thicknessMm: v(2, "photo_scaled", J), matesWith: "body-slot-2", shapeNotes: "four-lug bayonet, straight edges [nz-1]" },
+    { featureId: "lens-lug-3", featureType: "bayonet_lug", profileId: "nikon-z/base", count: 1, centerAngleDeg: v(225, "photo_scaled", J), startAngleDeg: v(208, "photo_scaled", J), endAngleDeg: v(242, "photo_scaled", J), innerRadiusMm: v(27.5, "photo_scaled", J), outerRadiusMm: v(30.5, "photo_scaled", J), thicknessMm: v(2, "photo_scaled", J), matesWith: "body-slot-3", shapeNotes: "four-lug bayonet, straight edges [nz-1]" },
+    { featureId: "lens-lug-4", featureType: "bayonet_lug", profileId: "nikon-z/base", count: 1, centerAngleDeg: v(315, "photo_scaled", J), startAngleDeg: v(298, "photo_scaled", J), endAngleDeg: v(332, "photo_scaled", J), innerRadiusMm: v(27.5, "photo_scaled", J), outerRadiusMm: v(30.5, "photo_scaled", J), thicknessMm: v(2, "photo_scaled", J), matesWith: "body-slot-4", shapeNotes: "four-lug bayonet, straight edges [nz-1]" },
+    { featureId: "lens-index-mark", featureType: "index_mark", profileId: "nikon-z/base", count: 1, centerAngleDeg: v(0, "photo_scaled", J), startAngleDeg: unknownV(J), endAngleDeg: unknownV(J), innerRadiusMm: unknownV(J), outerRadiusMm: v(31, "photo_scaled", J), thicknessMm: naV(), matesWith: "body-index-mark", shapeNotes: "aligns with body index" },
+    { featureId: "lens-lock-notch", featureType: "lock_notch", profileId: "nikon-z/base", count: 1, centerAngleDeg: v(90, "secondary", J), startAngleDeg: unknownV(J), endAngleDeg: unknownV(J), innerRadiusMm: unknownV(J), outerRadiusMm: v(28.5, "photo_scaled", J), thicknessMm: v(2, "photo_scaled", J), matesWith: "body-lock-pin", shapeNotes: "receives body lock pin (3 o'clock)" },
+  ],
+
+  axialStack: [
+    { planeId: "flange_datum", zPositionMm: v(0, "secondary", W), thicknessMm: v(0, "secondary", W), diameterMm: v(66, "photo_scaled", J) },
+    { planeId: "bayonet_lug_engagement", zPositionMm: v(1, "photo_scaled", J), thicknessMm: v(2, "photo_scaled", J), diameterMm: v(58, "photo_scaled", J) },
+    { planeId: "electrical_contact_plane", zPositionMm: v(0.5, "photo_scaled", J), thicknessMm: v(0.5, "photo_scaled", J), diameterMm: v(52, "photo_scaled", J) },
+    { planeId: "sensor_film_plane", zPositionMm: v(-16, "secondary", W), thicknessMm: v(0, "secondary", W), diameterMm: v(43.3, "secondary", W) },
+  ],
+
+  contacts: [
+    { side: "body", contactNo: 1, profileId: "nikon-z/base", centerAngleDeg: v(150, "photo_scaled", J), centerRadiusMm: v(25.5, "photo_scaled", J), widthMm: v(1.3, "photo_scaled", J), heightMm: v(3, "photo_scaled", J), shape: "pad", protrusionMm: v(0.5, "photo_scaled", J), function: "" },
+    { side: "body", contactNo: 2, profileId: "nikon-z/base", centerAngleDeg: v(156, "photo_scaled", J), centerRadiusMm: v(25.5, "photo_scaled", J), widthMm: v(1.3, "photo_scaled", J), heightMm: v(3, "photo_scaled", J), shape: "pad", protrusionMm: v(0.5, "photo_scaled", J), function: "" },
+    { side: "body", contactNo: 3, profileId: "nikon-z/base", centerAngleDeg: v(162, "photo_scaled", J), centerRadiusMm: v(25.5, "photo_scaled", J), widthMm: v(1.3, "photo_scaled", J), heightMm: v(3, "photo_scaled", J), shape: "pad", protrusionMm: v(0.5, "photo_scaled", J), function: "" },
+    { side: "body", contactNo: 4, profileId: "nikon-z/base", centerAngleDeg: v(168, "photo_scaled", J), centerRadiusMm: v(25.5, "photo_scaled", J), widthMm: v(1.3, "photo_scaled", J), heightMm: v(3, "photo_scaled", J), shape: "pad", protrusionMm: v(0.5, "photo_scaled", J), function: "" },
+    { side: "body", contactNo: 5, profileId: "nikon-z/base", centerAngleDeg: v(174, "photo_scaled", J), centerRadiusMm: v(25.5, "photo_scaled", J), widthMm: v(1.3, "photo_scaled", J), heightMm: v(3, "photo_scaled", J), shape: "pad", protrusionMm: v(0.5, "photo_scaled", J), function: "" },
+    { side: "body", contactNo: 6, profileId: "nikon-z/base", centerAngleDeg: v(180, "photo_scaled", J), centerRadiusMm: v(25.5, "photo_scaled", J), widthMm: v(1.3, "photo_scaled", J), heightMm: v(3, "photo_scaled", J), shape: "pad", protrusionMm: v(0.5, "photo_scaled", J), function: "" },
+    { side: "body", contactNo: 7, profileId: "nikon-z/base", centerAngleDeg: v(186, "photo_scaled", J), centerRadiusMm: v(25.5, "photo_scaled", J), widthMm: v(1.3, "photo_scaled", J), heightMm: v(3, "photo_scaled", J), shape: "pad", protrusionMm: v(0.5, "photo_scaled", J), function: "" },
+    { side: "body", contactNo: 8, profileId: "nikon-z/base", centerAngleDeg: v(192, "photo_scaled", J), centerRadiusMm: v(25.5, "photo_scaled", J), widthMm: v(1.3, "photo_scaled", J), heightMm: v(3, "photo_scaled", J), shape: "pad", protrusionMm: v(0.5, "photo_scaled", J), function: "" },
+    { side: "body", contactNo: 9, profileId: "nikon-z/base", centerAngleDeg: v(198, "photo_scaled", J), centerRadiusMm: v(25.5, "photo_scaled", J), widthMm: v(1.3, "photo_scaled", J), heightMm: v(3, "photo_scaled", J), shape: "pad", protrusionMm: v(0.5, "photo_scaled", J), function: "" },
+    { side: "body", contactNo: 10, profileId: "nikon-z/base", centerAngleDeg: v(204, "photo_scaled", J), centerRadiusMm: v(25.5, "photo_scaled", J), widthMm: v(1.3, "photo_scaled", J), heightMm: v(3, "photo_scaled", J), shape: "pad", protrusionMm: v(0.5, "photo_scaled", J), function: "" },
+    { side: "body", contactNo: 11, profileId: "nikon-z/base", centerAngleDeg: v(210, "photo_scaled", J), centerRadiusMm: v(25.5, "photo_scaled", J), widthMm: v(1.3, "photo_scaled", J), heightMm: v(3, "photo_scaled", J), shape: "pad", protrusionMm: v(0.5, "photo_scaled", J), function: "" },
+    { side: "lens", contactNo: 1, profileId: "nikon-z/base", centerAngleDeg: v(150, "photo_scaled", J), centerRadiusMm: v(25.5, "photo_scaled", J), widthMm: v(1.3, "photo_scaled", J), heightMm: v(3, "photo_scaled", J), shape: "pad", protrusionMm: v(0, "photo_scaled", J), function: "" },
+    { side: "lens", contactNo: 2, profileId: "nikon-z/base", centerAngleDeg: v(156, "photo_scaled", J), centerRadiusMm: v(25.5, "photo_scaled", J), widthMm: v(1.3, "photo_scaled", J), heightMm: v(3, "photo_scaled", J), shape: "pad", protrusionMm: v(0, "photo_scaled", J), function: "" },
+    { side: "lens", contactNo: 3, profileId: "nikon-z/base", centerAngleDeg: v(162, "photo_scaled", J), centerRadiusMm: v(25.5, "photo_scaled", J), widthMm: v(1.3, "photo_scaled", J), heightMm: v(3, "photo_scaled", J), shape: "pad", protrusionMm: v(0, "photo_scaled", J), function: "" },
+    { side: "lens", contactNo: 4, profileId: "nikon-z/base", centerAngleDeg: v(168, "photo_scaled", J), centerRadiusMm: v(25.5, "photo_scaled", J), widthMm: v(1.3, "photo_scaled", J), heightMm: v(3, "photo_scaled", J), shape: "pad", protrusionMm: v(0, "photo_scaled", J), function: "" },
+    { side: "lens", contactNo: 5, profileId: "nikon-z/base", centerAngleDeg: v(174, "photo_scaled", J), centerRadiusMm: v(25.5, "photo_scaled", J), widthMm: v(1.3, "photo_scaled", J), heightMm: v(3, "photo_scaled", J), shape: "pad", protrusionMm: v(0, "photo_scaled", J), function: "" },
+    { side: "lens", contactNo: 6, profileId: "nikon-z/base", centerAngleDeg: v(180, "photo_scaled", J), centerRadiusMm: v(25.5, "photo_scaled", J), widthMm: v(1.3, "photo_scaled", J), heightMm: v(3, "photo_scaled", J), shape: "pad", protrusionMm: v(0, "photo_scaled", J), function: "" },
+    { side: "lens", contactNo: 7, profileId: "nikon-z/base", centerAngleDeg: v(186, "photo_scaled", J), centerRadiusMm: v(25.5, "photo_scaled", J), widthMm: v(1.3, "photo_scaled", J), heightMm: v(3, "photo_scaled", J), shape: "pad", protrusionMm: v(0, "photo_scaled", J), function: "" },
+    { side: "lens", contactNo: 8, profileId: "nikon-z/base", centerAngleDeg: v(192, "photo_scaled", J), centerRadiusMm: v(25.5, "photo_scaled", J), widthMm: v(1.3, "photo_scaled", J), heightMm: v(3, "photo_scaled", J), shape: "pad", protrusionMm: v(0, "photo_scaled", J), function: "" },
+    { side: "lens", contactNo: 9, profileId: "nikon-z/base", centerAngleDeg: v(198, "photo_scaled", J), centerRadiusMm: v(25.5, "photo_scaled", J), widthMm: v(1.3, "photo_scaled", J), heightMm: v(3, "photo_scaled", J), shape: "pad", protrusionMm: v(0, "photo_scaled", J), function: "" },
+    { side: "lens", contactNo: 10, profileId: "nikon-z/base", centerAngleDeg: v(204, "photo_scaled", J), centerRadiusMm: v(25.5, "photo_scaled", J), widthMm: v(1.3, "photo_scaled", J), heightMm: v(3, "photo_scaled", J), shape: "pad", protrusionMm: v(0, "photo_scaled", J), function: "" },
+    { side: "lens", contactNo: 11, profileId: "nikon-z/base", centerAngleDeg: v(210, "photo_scaled", J), centerRadiusMm: v(25.5, "photo_scaled", J), widthMm: v(1.3, "photo_scaled", J), heightMm: v(3, "photo_scaled", J), shape: "pad", protrusionMm: v(0, "photo_scaled", J), function: "" },
+  ],
+
+  mechanicalCouplings: [],
+
+  screwsGasketsBaffles: [
+    { featureId: "body-mount-screws", featureType: "mount_screws", side: "body", count: v(6, "photo_scaled", J), pcdMm: v(63, "photo_scaled", J), diameterMm: v(2, "photo_scaled", J), centerAnglesDeg: degListV([20, 80, 140, 200, 260, 320], "photo_scaled", J), shape: "round" },
+  ],
+
+  svgLayers: {
+    mvpRequired: ["datum-axis", "camera-side-metal", "lens-side-metal", "axial-section", "uncertainty"],
+    conditionalCoreRequired: ["clear-aperture", "camera-side-core-interface", "lens-side-core-interface"],
+    variantRequired: ["camera-side-variant-electrical", "lens-side-variant-electrical"],
+  },
+
+  sourceRefs: [
+    {
+      ref: "nz-1",
+      sourceType: "secondary",
+      citation: "“Nikon Z-mount,” Wikipedia. Accessed 2026-06-04.",
+      liveUrl: "https://en.wikipedia.org/wiki/Nikon_Z-mount",
+      archiveUrl: "http://web.archive.org/web/20260422214312/https://en.wikipedia.org/wiki/Nikon_Z-mount",
+      archiveDate: "2026-04-22",
+      appliesTo: "flange focal distance, 55 mm throat, eleven contacts, four lugs",
+      confidence: "high",
+    },
+    {
+      ref: "nz-2",
+      sourceType: "secondary",
+      citation: "“Lens Mounts: Nikon Z,” JAPB (japb.net). Accessed 2026-06-04.",
+      liveUrl: "https://japb.net/theory/lensmounts/nikon-z/",
+      archiveUrl: "http://web.archive.org/web/20251115002307/https://japb.net/theory/lensmounts/nikon-z/",
+      archiveDate: "2025-11-15",
+      appliesTo: "locking groove at 3 o'clock, eleven contacts across 5–7 o'clock, four straight-edged lugs",
+      confidence: "medium",
+    },
+  ],
+
+  openQuestions: [
+    {
+      issue: "Lug angular spans, the mounting-index clock position, and the lock rotation angle/direction are photo-scaled or undocumented; per-contact clock positions are interpolated within the documented 5–7 o'clock band.",
+      affectedFields: ["cameraSideFeatures", "lensSideFeatures", "contacts", "lockGeometry"],
+      candidateValues: [],
+      resolution: "Upgrade to an official Nikon Z mount drawing or measured sample.",
+    },
+  ],
+} satisfies MountSpecInput;
+
+export default NIKON_Z_MOUNT;

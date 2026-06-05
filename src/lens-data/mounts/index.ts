@@ -11,12 +11,18 @@ import type { LensMountId } from "../../utils/catalog/lensTaxonomy.js";
 import type { MountSpec } from "../../types/mount.js";
 import { normalizeMountSpec } from "../../optics/mount/defaults.js";
 import CANON_EF_MOUNT from "./canon-ef.mount.js";
+import CANON_RF_MOUNT from "./canon-rf.mount.js";
+import FUJIFILM_X_MOUNT from "./fujifilm-x.mount.js";
 import NIKON_F_MOUNT from "./nikon-f.mount.js";
+import NIKON_Z_MOUNT from "./nikon-z.mount.js";
 import PENTAX_K_MOUNT from "./pentax-k.mount.js";
 
 export const MOUNT_SPECS: Partial<Record<LensMountId, MountSpec>> = {
   "canon-ef": normalizeMountSpec(CANON_EF_MOUNT),
+  "canon-rf": normalizeMountSpec(CANON_RF_MOUNT),
+  "fujifilm-x": normalizeMountSpec(FUJIFILM_X_MOUNT),
   "nikon-f": normalizeMountSpec(NIKON_F_MOUNT),
+  "nikon-z": normalizeMountSpec(NIKON_Z_MOUNT),
   "pentax-k": normalizeMountSpec(PENTAX_K_MOUNT),
 };
 

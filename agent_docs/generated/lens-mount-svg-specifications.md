@@ -16,7 +16,10 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
 | Mount | Mechanism | Flange focal distance | Throat | MVP status | Profiles |
 |---|---|---|---|---|---|
 | [`canon-ef`](#canon-ef--canon-ef) | bayonet | 44 mm | 54 mm | `mvp_complete` | 1 |
+| [`canon-rf`](#canon-rf--canon-rf) | bayonet | 20 mm | 54 mm | `mvp_complete` | 1 |
+| [`fujifilm-x`](#fujifilm-x--fujifilm-x) | bayonet | 17.7 mm | 44 mm | `mvp_complete` | 1 |
 | [`nikon-f`](#nikon-f--nikon-f) | bayonet | 46.5 mm | 44 mm | `mvp_complete` | 6 |
+| [`nikon-z`](#nikon-z--nikon-z) | bayonet | 16 mm | 55 mm | `mvp_complete` | 1 |
 | [`pentax-k`](#pentax-k--pentax-k) | bayonet | 45.46 mm | 44 mm | `mvp_complete` | 7 |
 
 ## Mount Sections
@@ -1896,6 +1899,4236 @@ None — fully electronic.
 
 - The EF interface began with seven contacts; an eighth was added on later lenses. contactCount records the modern eight-contact set. _(Model per-lens contact counts if a generation selector is added.)_
 - Per-prong angular spans and per-contact clock positions are photo-scaled within the documented bands (lock at 9 o'clock, contacts 5–7 o'clock); the mounting-index clock position is photo-scaled. _(Upgrade to an official Canon EF mount drawing or measured sample.)_
+
+### `canon-rf` — Canon RF
+
+| Field | Value |
+|---|---|
+| Mount ID | `canon-rf` |
+| Display label | Canon RF |
+| Project note | Canon RF mirrorless mount. |
+| Research status | `researched` |
+| MVP status | `mvp_complete` |
+| Mount mechanism | `bayonet` (lock `sprung_detent`) |
+| Base profile | `canon-rf/base` |
+| Selected MVP profile | `canon-rf/base` |
+| Variant strategy | `base_only` |
+
+#### Base and variant profile matrix
+
+| Profile ID | Type | Applies to | Adds | Removes | Changes |
+|---|---|---|---|---|---|
+| `canon-rf/base` | base | all Canon RF lenses and EOS R bodies (full-frame and RF-S), 2018–present | three bayonet tabs; locking pin/notch at 9 o'clock; red-dot mounting index; twelve-contact electrical block at the bottom (5–7 o'clock), tiered | all mechanical couplings (fully electronic) | denser 12-pin interface vs EF's 8 |
+
+#### Dimensional summary
+
+| Field | Value | Unit |
+|---|---|---|
+| Flange focal distance | 20 (`secondary`) | mm |
+| Nominal throat diameter | 54 (`secondary`) | mm |
+| Effective clear aperture | 54 (`secondary`) | mm |
+| Camera mount outer diameter | 65 (`photo_scaled`) | mm |
+| Lens mount outer diameter | 63 (`photo_scaled`) | mm |
+| Contact count | 12 (`secondary`) | count |
+| Lock rotation | unknown (`unknown`) | deg |
+| Lock direction | unknown (`unknown`) | — |
+
+#### Figures (selected profile `canon-rf/base`)
+
+**Camera-side front view** — viewBox `-40 -42 80 82` ([standalone SVG](mounts/canon-rf-camera-front.svg))
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-40 -42 80 82" role="img" aria-labelledby="canon-rf-base-camera_side_front-title canon-rf-base-camera_side_front-desc"><title id="canon-rf-base-camera_side_front-title">Canon RF mount — camera-side front view (base)</title><desc id="canon-rf-base-camera_side_front-desc">Canon RF bayonet mount, camera-side front view. Flange focal distance 20 mm, nominal throat 54 mm. Profile canon-rf/base.</desc><metadata>{"mountId":"canon-rf","profileId":"canon-rf/base","view":"camera_side_front","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.625" y1="0" x2="1.625" y2="0" stroke="#8a94a0" stroke-width="0.48" fill="none" /><line x1="0" y1="-1.625" x2="0" y2="1.625" stroke="#8a94a0" stroke-width="0.48" fill="none" /><line x1="0" y1="-32.5" x2="0" y2="-34.45" stroke="#8a94a0" stroke-width="0.48" fill="none" /></g><g data-layer="camera-side-metal"><path d="M0,-32.5 A32.5,32.5 0 1 1 0,32.5 A32.5,32.5 0 1 1 0,-32.5 Z M0,-27 A27,27 0 1 1 0,27 A27,27 0 1 1 0,-27 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-32.5 A32.5,32.5 0 1 1 0,32.5 A32.5,32.5 0 1 1 0,-32.5 Z M0,-27 A27,27 0 1 1 0,27 A27,27 0 1 1 0,-27 Z" stroke="#6b7a8f" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M0,-27 A27,27 0 1 1 0,27 A27,27 0 1 1 0,-27 Z" stroke="#2f80c4" stroke-width="0.36" fill="none" /><circle cx="8.023" cy="-29.944" r="1" stroke="#7f8c3a" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><circle cx="29.944" cy="-8.023" r="1" stroke="#7f8c3a" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><circle cx="21.92" cy="21.92" r="1" stroke="#7f8c3a" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><circle cx="-8.023" cy="29.944" r="1" stroke="#7f8c3a" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><circle cx="-29.944" cy="8.023" r="1" stroke="#7f8c3a" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><circle cx="-21.92" cy="-21.92" r="1" stroke="#7f8c3a" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-core-interface"><path d="M0,-29.75 L-2.015,-32.938 L2.015,-32.938 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-29.75 L-2.015,-32.938 L2.015,-32.938 Z" stroke="#e8853a" stroke-width="0.48" fill="none" stroke-dasharray="0.6 1.6" /><path d="M3.758,-26.737 L4.175,-29.708 A30,30 0 0 1 23.64,-18.47 L21.276,-16.623 A27,27 0 0 0 3.758,-26.737 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M3.758,-26.737 L4.175,-29.708 A30,30 0 0 1 23.64,-18.47 L21.276,-16.623 A27,27 0 0 0 3.758,-26.737 Z" stroke="#2a9d8f" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M21.276,16.623 L23.64,18.47 A30,30 0 0 1 4.175,29.708 L3.758,26.737 A27,27 0 0 0 21.276,16.623 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M21.276,16.623 L23.64,18.47 A30,30 0 0 1 4.175,29.708 L3.758,26.737 A27,27 0 0 0 21.276,16.623 Z" stroke="#2a9d8f" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><circle cx="-28" cy="0" r="1.138" fill="#d1495b" fill-opacity="0.12" /><circle cx="-28" cy="0" r="1.138" stroke="#d1495b" stroke-width="0.48" fill="none" stroke-dasharray="0.6 1.6" /><path d="M-26.984,-0.942 L-29.982,-1.047 A30,30 0 0 1 -22.294,-20.074 L-20.065,-18.067 A27,27 0 0 0 -26.984,-0.942 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-26.984,-0.942 L-29.982,-1.047 A30,30 0 0 1 -22.294,-20.074 L-20.065,-18.067 A27,27 0 0 0 -26.984,-0.942 Z" stroke="#2a9d8f" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-variant-electrical"><path d="M12.275,20.039 L13.842,22.597 A26.5,26.5 0 0 1 12.649,23.286 L11.217,20.65 A23.5,23.5 0 0 0 12.275,20.039 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M12.275,20.039 L13.842,22.597 A26.5,26.5 0 0 1 12.649,23.286 L11.217,20.65 A23.5,23.5 0 0 0 12.275,20.039 Z" stroke="#8a5cd1" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M10.482,21.033 L11.82,23.718 A26.5,26.5 0 0 1 10.571,24.3 L9.374,21.549 A23.5,23.5 0 0 0 10.482,21.033 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M10.482,21.033 L11.82,23.718 A26.5,26.5 0 0 1 10.571,24.3 L9.374,21.549 A23.5,23.5 0 0 0 10.482,21.033 Z" stroke="#8a5cd1" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M8.609,21.866 L9.708,24.658 A26.5,26.5 0 0 1 8.413,25.129 L7.461,22.284 A23.5,23.5 0 0 0 8.609,21.866 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M8.609,21.866 L9.708,24.658 A26.5,26.5 0 0 1 8.413,25.129 L7.461,22.284 A23.5,23.5 0 0 0 8.609,21.866 Z" stroke="#8a5cd1" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M6.67,22.533 L7.522,25.41 A26.5,26.5 0 0 1 6.191,25.767 L5.49,22.85 A23.5,23.5 0 0 0 6.67,22.533 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M6.67,22.533 L7.522,25.41 A26.5,26.5 0 0 1 6.191,25.767 L5.49,22.85 A23.5,23.5 0 0 0 6.67,22.533 Z" stroke="#8a5cd1" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M4.681,23.029 L5.279,25.969 A26.5,26.5 0 0 1 3.922,26.208 L3.478,23.241 A23.5,23.5 0 0 0 4.681,23.029 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M4.681,23.029 L5.279,25.969 A26.5,26.5 0 0 1 3.922,26.208 L3.478,23.241 A23.5,23.5 0 0 0 4.681,23.029 Z" stroke="#8a5cd1" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M2.656,23.349 L2.995,26.33 A26.5,26.5 0 0 1 1.623,26.45 L1.439,23.456 A23.5,23.5 0 0 0 2.656,23.349 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M2.656,23.349 L2.995,26.33 A26.5,26.5 0 0 1 1.623,26.45 L1.439,23.456 A23.5,23.5 0 0 0 2.656,23.349 Z" stroke="#8a5cd1" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M0.611,23.492 L0.689,26.491 A26.5,26.5 0 0 1 -0.689,26.491 L-0.611,23.492 A23.5,23.5 0 0 0 0.611,23.492 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M0.611,23.492 L0.689,26.491 A26.5,26.5 0 0 1 -0.689,26.491 L-0.611,23.492 A23.5,23.5 0 0 0 0.611,23.492 Z" stroke="#8a5cd1" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M-1.439,23.456 L-1.623,26.45 A26.5,26.5 0 0 1 -2.995,26.33 L-2.656,23.349 A23.5,23.5 0 0 0 -1.439,23.456 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-1.439,23.456 L-1.623,26.45 A26.5,26.5 0 0 1 -2.995,26.33 L-2.656,23.349 A23.5,23.5 0 0 0 -1.439,23.456 Z" stroke="#8a5cd1" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M-3.478,23.241 L-3.922,26.208 A26.5,26.5 0 0 1 -5.279,25.969 L-4.681,23.029 A23.5,23.5 0 0 0 -3.478,23.241 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-3.478,23.241 L-3.922,26.208 A26.5,26.5 0 0 1 -5.279,25.969 L-4.681,23.029 A23.5,23.5 0 0 0 -3.478,23.241 Z" stroke="#8a5cd1" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M-5.49,22.85 L-6.191,25.767 A26.5,26.5 0 0 1 -7.522,25.41 L-6.67,22.533 A23.5,23.5 0 0 0 -5.49,22.85 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-5.49,22.85 L-6.191,25.767 A26.5,26.5 0 0 1 -7.522,25.41 L-6.67,22.533 A23.5,23.5 0 0 0 -5.49,22.85 Z" stroke="#8a5cd1" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M-7.461,22.284 L-8.413,25.129 A26.5,26.5 0 0 1 -9.708,24.658 L-8.609,21.866 A23.5,23.5 0 0 0 -7.461,22.284 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-7.461,22.284 L-8.413,25.129 A26.5,26.5 0 0 1 -9.708,24.658 L-8.609,21.866 A23.5,23.5 0 0 0 -7.461,22.284 Z" stroke="#8a5cd1" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M-9.374,21.549 L-10.571,24.3 A26.5,26.5 0 0 1 -11.82,23.718 L-10.482,21.033 A23.5,23.5 0 0 0 -9.374,21.549 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-9.374,21.549 L-10.571,24.3 A26.5,26.5 0 0 1 -11.82,23.718 L-10.482,21.033 A23.5,23.5 0 0 0 -9.374,21.549 Z" stroke="#8a5cd1" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-38.4" y1="-37.9" x2="-33.6" y2="-37.9" stroke="#2f80c4" stroke-width="0.574" /><text x="-32.288" y="-36.982" font-size="2.624" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-38.4" y1="-33.964" x2="-33.6" y2="-33.964" stroke="#6b7a8f" stroke-width="0.574" /><text x="-32.288" y="-33.046" font-size="2.624" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-38.4" y1="-30.028" x2="-33.6" y2="-30.028" stroke="#2a9d8f" stroke-width="0.574" /><text x="-32.288" y="-29.11" font-size="2.624" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-38.4" y1="-26.092" x2="-33.6" y2="-26.092" stroke="#d1495b" stroke-width="0.574" /><text x="-32.288" y="-25.174" font-size="2.624" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-38.4" y1="-22.156" x2="-33.6" y2="-22.156" stroke="#e8853a" stroke-width="0.574" /><text x="-32.288" y="-21.238" font-size="2.624" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-38.4" y1="-18.22" x2="-33.6" y2="-18.22" stroke="#8a5cd1" stroke-width="0.574" /><text x="-32.288" y="-17.302" font-size="2.624" fill="#8a5cd1" font-family="sans-serif">Electrical contact</text><line x1="-38.4" y1="-14.284" x2="-33.6" y2="-14.284" stroke="#7f8c3a" stroke-width="0.574" /><text x="-32.288" y="-13.366" font-size="2.624" fill="#7f8c3a" font-family="sans-serif">Screws / seals</text><line x1="-38.4" y1="-10.348" x2="-33.6" y2="-10.348" stroke="#8a94a0" stroke-width="0.574" /><text x="-32.288" y="-9.43" font-size="2.624" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
+
+**Lens-side rear view** — viewBox `-38 -40 76 78` ([standalone SVG](mounts/canon-rf-lens-rear.svg))
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-38 -40 76 78" role="img" aria-labelledby="canon-rf-base-lens_side_rear-title canon-rf-base-lens_side_rear-desc"><title id="canon-rf-base-lens_side_rear-title">Canon RF mount — lens-side rear view (base)</title><desc id="canon-rf-base-lens_side_rear-desc">Canon RF bayonet mount, lens-side rear view. Flange focal distance 20 mm, nominal throat 54 mm. Profile canon-rf/base.</desc><metadata>{"mountId":"canon-rf","profileId":"canon-rf/base","view":"lens_side_rear","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.575" y1="0" x2="1.575" y2="0" stroke="#8a94a0" stroke-width="0.456" fill="none" /><line x1="0" y1="-1.575" x2="0" y2="1.575" stroke="#8a94a0" stroke-width="0.456" fill="none" /><line x1="0" y1="-31.5" x2="0" y2="-33.39" stroke="#8a94a0" stroke-width="0.456" fill="none" /></g><g data-layer="lens-side-metal"><path d="M0,-31.5 A31.5,31.5 0 1 1 0,31.5 A31.5,31.5 0 1 1 0,-31.5 Z M0,-26 A26,26 0 1 1 0,26 A26,26 0 1 1 0,-26 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-31.5 A31.5,31.5 0 1 1 0,31.5 A31.5,31.5 0 1 1 0,-31.5 Z M0,-26 A26,26 0 1 1 0,26 A26,26 0 1 1 0,-26 Z" stroke="#6b7a8f" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /><path d="M0,-26 A26,26 0 1 1 0,26 A26,26 0 1 1 0,-26 Z" stroke="#2f80c4" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /></g><g data-layer="lens-side-core-interface"><path d="M0,-26.85 L-1.831,-29.944 L1.831,-29.944 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-26.85 L-1.831,-29.944 L1.831,-29.944 Z" stroke="#e8853a" stroke-width="0.456" fill="none" stroke-dasharray="0.6 1.6" /><path d="M20.065,-18.067 L22.294,-20.074 A30,30 0 0 1 29.982,-1.047 L26.984,-0.942 A27,27 0 0 0 20.065,-18.067 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M20.065,-18.067 L22.294,-20.074 A30,30 0 0 1 29.982,-1.047 L26.984,-0.942 A27,27 0 0 0 20.065,-18.067 Z" stroke="#2a9d8f" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /><circle cx="28" cy="0" r="1.103" fill="#d1495b" fill-opacity="0.12" /><circle cx="28" cy="0" r="1.103" stroke="#d1495b" stroke-width="0.456" fill="none" stroke-dasharray="0.6 1.6" /><path d="M-3.758,26.737 L-4.175,29.708 A30,30 0 0 1 -23.64,18.47 L-21.276,16.623 A27,27 0 0 0 -3.758,26.737 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-3.758,26.737 L-4.175,29.708 A30,30 0 0 1 -23.64,18.47 L-21.276,16.623 A27,27 0 0 0 -3.758,26.737 Z" stroke="#2a9d8f" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /><path d="M-21.276,-16.623 L-23.64,-18.47 A30,30 0 0 1 -4.175,-29.708 L-3.758,-26.737 A27,27 0 0 0 -21.276,-16.623 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-21.276,-16.623 L-23.64,-18.47 A30,30 0 0 1 -4.175,-29.708 L-3.758,-26.737 A27,27 0 0 0 -21.276,-16.623 Z" stroke="#2a9d8f" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /></g><g data-layer="lens-side-variant-electrical"><path d="M-9.374,21.549 L-10.571,24.3 A26.5,26.5 0 0 1 -11.82,23.718 L-10.482,21.033 A23.5,23.5 0 0 0 -9.374,21.549 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-9.374,21.549 L-10.571,24.3 A26.5,26.5 0 0 1 -11.82,23.718 L-10.482,21.033 A23.5,23.5 0 0 0 -9.374,21.549 Z" stroke="#8a5cd1" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /><path d="M-7.461,22.284 L-8.413,25.129 A26.5,26.5 0 0 1 -9.708,24.658 L-8.609,21.866 A23.5,23.5 0 0 0 -7.461,22.284 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-7.461,22.284 L-8.413,25.129 A26.5,26.5 0 0 1 -9.708,24.658 L-8.609,21.866 A23.5,23.5 0 0 0 -7.461,22.284 Z" stroke="#8a5cd1" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /><path d="M-5.49,22.85 L-6.191,25.767 A26.5,26.5 0 0 1 -7.522,25.41 L-6.67,22.533 A23.5,23.5 0 0 0 -5.49,22.85 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-5.49,22.85 L-6.191,25.767 A26.5,26.5 0 0 1 -7.522,25.41 L-6.67,22.533 A23.5,23.5 0 0 0 -5.49,22.85 Z" stroke="#8a5cd1" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /><path d="M-3.478,23.241 L-3.922,26.208 A26.5,26.5 0 0 1 -5.279,25.969 L-4.681,23.029 A23.5,23.5 0 0 0 -3.478,23.241 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-3.478,23.241 L-3.922,26.208 A26.5,26.5 0 0 1 -5.279,25.969 L-4.681,23.029 A23.5,23.5 0 0 0 -3.478,23.241 Z" stroke="#8a5cd1" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /><path d="M-1.439,23.456 L-1.623,26.45 A26.5,26.5 0 0 1 -2.995,26.33 L-2.656,23.349 A23.5,23.5 0 0 0 -1.439,23.456 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-1.439,23.456 L-1.623,26.45 A26.5,26.5 0 0 1 -2.995,26.33 L-2.656,23.349 A23.5,23.5 0 0 0 -1.439,23.456 Z" stroke="#8a5cd1" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /><path d="M0.611,23.492 L0.689,26.491 A26.5,26.5 0 0 1 -0.689,26.491 L-0.611,23.492 A23.5,23.5 0 0 0 0.611,23.492 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M0.611,23.492 L0.689,26.491 A26.5,26.5 0 0 1 -0.689,26.491 L-0.611,23.492 A23.5,23.5 0 0 0 0.611,23.492 Z" stroke="#8a5cd1" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /><path d="M2.656,23.349 L2.995,26.33 A26.5,26.5 0 0 1 1.623,26.45 L1.439,23.456 A23.5,23.5 0 0 0 2.656,23.349 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M2.656,23.349 L2.995,26.33 A26.5,26.5 0 0 1 1.623,26.45 L1.439,23.456 A23.5,23.5 0 0 0 2.656,23.349 Z" stroke="#8a5cd1" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /><path d="M4.681,23.029 L5.279,25.969 A26.5,26.5 0 0 1 3.922,26.208 L3.478,23.241 A23.5,23.5 0 0 0 4.681,23.029 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M4.681,23.029 L5.279,25.969 A26.5,26.5 0 0 1 3.922,26.208 L3.478,23.241 A23.5,23.5 0 0 0 4.681,23.029 Z" stroke="#8a5cd1" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /><path d="M6.67,22.533 L7.522,25.41 A26.5,26.5 0 0 1 6.191,25.767 L5.49,22.85 A23.5,23.5 0 0 0 6.67,22.533 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M6.67,22.533 L7.522,25.41 A26.5,26.5 0 0 1 6.191,25.767 L5.49,22.85 A23.5,23.5 0 0 0 6.67,22.533 Z" stroke="#8a5cd1" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /><path d="M8.609,21.866 L9.708,24.658 A26.5,26.5 0 0 1 8.413,25.129 L7.461,22.284 A23.5,23.5 0 0 0 8.609,21.866 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M8.609,21.866 L9.708,24.658 A26.5,26.5 0 0 1 8.413,25.129 L7.461,22.284 A23.5,23.5 0 0 0 8.609,21.866 Z" stroke="#8a5cd1" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /><path d="M10.482,21.033 L11.82,23.718 A26.5,26.5 0 0 1 10.571,24.3 L9.374,21.549 A23.5,23.5 0 0 0 10.482,21.033 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M10.482,21.033 L11.82,23.718 A26.5,26.5 0 0 1 10.571,24.3 L9.374,21.549 A23.5,23.5 0 0 0 10.482,21.033 Z" stroke="#8a5cd1" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /><path d="M12.275,20.039 L13.842,22.597 A26.5,26.5 0 0 1 12.649,23.286 L11.217,20.65 A23.5,23.5 0 0 0 12.275,20.039 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M12.275,20.039 L13.842,22.597 A26.5,26.5 0 0 1 12.649,23.286 L11.217,20.65 A23.5,23.5 0 0 0 12.275,20.039 Z" stroke="#8a5cd1" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-36.48" y1="-36.1" x2="-31.92" y2="-36.1" stroke="#2f80c4" stroke-width="0.546" /><text x="-30.672" y="-35.226" font-size="2.496" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-36.48" y1="-32.356" x2="-31.92" y2="-32.356" stroke="#6b7a8f" stroke-width="0.546" /><text x="-30.672" y="-31.482" font-size="2.496" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-36.48" y1="-28.612" x2="-31.92" y2="-28.612" stroke="#2a9d8f" stroke-width="0.546" /><text x="-30.672" y="-27.738" font-size="2.496" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-36.48" y1="-24.868" x2="-31.92" y2="-24.868" stroke="#d1495b" stroke-width="0.546" /><text x="-30.672" y="-23.994" font-size="2.496" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-36.48" y1="-21.124" x2="-31.92" y2="-21.124" stroke="#e8853a" stroke-width="0.546" /><text x="-30.672" y="-20.25" font-size="2.496" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-36.48" y1="-17.38" x2="-31.92" y2="-17.38" stroke="#8a5cd1" stroke-width="0.546" /><text x="-30.672" y="-16.506" font-size="2.496" fill="#8a5cd1" font-family="sans-serif">Electrical contact</text><line x1="-36.48" y1="-13.636" x2="-31.92" y2="-13.636" stroke="#8a94a0" stroke-width="0.546" /><text x="-30.672" y="-12.762" font-size="2.496" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
+
+**Axial / register schematic** — viewBox `-27 -44 36 84` ([standalone SVG](mounts/canon-rf-axial.svg))
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-27 -44 36 84" role="img" aria-labelledby="canon-rf-base-axial_section-title canon-rf-base-axial_section-desc"><title id="canon-rf-base-axial_section-title">Canon RF mount — axial / register schematic (base)</title><desc id="canon-rf-base-axial_section-desc">Canon RF bayonet mount, axial / register schematic. Flange focal distance 20 mm, nominal throat 54 mm. Profile canon-rf/base.</desc><metadata>{"mountId":"canon-rf","profileId":"canon-rf/base","view":"axial_section","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-20" y1="0" x2="1.2" y2="0" stroke="#8a94a0" stroke-width="0.25" fill="none" /><line x1="0" y1="-32.5" x2="0" y2="32.5" stroke="#8a94a0" stroke-width="0.25" fill="none" /></g><g data-layer="axial-section"><text x="-20" y="-23.15" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">sensor film plane</text><line x1="-20" y1="-21.65" x2="-20" y2="21.65" stroke="#2bb0c4" stroke-width="0.188" fill="none" /><line x1="0" y1="-32.5" x2="0" y2="32.5" stroke="#2bb0c4" stroke-width="0.25" fill="none" stroke-dasharray="4 2" /><text x="0" y="-34" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">flange datum</text><line x1="0.5" y1="-26" x2="0.5" y2="26" stroke="#2bb0c4" stroke-width="0.25" fill="none" stroke-dasharray="4 2" /><text x="0.5" y="-27.5" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">electrical contact plane</text><line x1="1.2" y1="-30" x2="1.2" y2="30" stroke="#2bb0c4" stroke-width="0.25" fill="none" stroke-dasharray="4 2" /><text x="1.2" y="-31.5" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">bayonet lug engagement</text></g><g aria-hidden="true"><line x1="-26.28" y1="-39.8" x2="-22.28" y2="-39.8" stroke="#8a94a0" stroke-width="0.588" /><text x="-20.936" y="-38.859" font-size="2.688" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text><line x1="-26.28" y1="-35.768" x2="-22.28" y2="-35.768" stroke="#2bb0c4" stroke-width="0.588" /><text x="-20.936" y="-34.827" font-size="2.688" fill="#2bb0c4" font-family="sans-serif">Register plane</text></g></svg>
+
+#### Camera-side front-view geometry
+
+| Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
+|---|---|---|---|---|---|---|---|
+| `body-throat` | body_throat | `canon-rf/base` | 0° | 0° | 360° | 0 | 27 |
+| `body-mount-ring` | mount_ring | `canon-rf/base` | 0° | 0° | 360° | 27 | 32.5 |
+| `body-slot-1` | bayonet_receiving_slot | `canon-rf/base` | 30° | 8° | 52° | 27 | 30 |
+| `body-slot-2` | bayonet_receiving_slot | `canon-rf/base` | 150° | 128° | 172° | 27 | 30 |
+| `body-slot-3` | bayonet_receiving_slot | `canon-rf/base` | 292° | 272° | 312° | 27 | 30 |
+| `body-index-mark` | index_mark | `canon-rf/base` | 0° | unknown | unknown | unknown | 33 |
+| `body-lock-pin` | lock_pin | `canon-rf/base` | 270° | unknown | unknown | unknown | 28 |
+
+#### Lens-side rear-view geometry
+
+| Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
+|---|---|---|---|---|---|---|---|
+| `lens-throat` | lens_throat | `canon-rf/base` | 0° | 0° | 360° | 0 | 26 |
+| `lens-mount-ring` | lens_mount_ring | `canon-rf/base` | 0° | 0° | 360° | 26 | 31.5 |
+| `lens-lug-1` | bayonet_lug | `canon-rf/base` | 30° | 8° | 52° | 27 | 30 |
+| `lens-lug-2` | bayonet_lug | `canon-rf/base` | 150° | 128° | 172° | 27 | 30 |
+| `lens-lug-3` | bayonet_lug | `canon-rf/base` | 292° | 272° | 312° | 27 | 30 |
+| `lens-index-mark` | index_mark | `canon-rf/base` | 0° | unknown | unknown | unknown | 30 |
+| `lens-lock-notch` | lock_notch | `canon-rf/base` | 270° | unknown | unknown | unknown | 28 |
+
+#### Electrical contacts
+
+| Side | No. | Profile | Center angle | Radius | Function |
+|---|---|---|---|---|---|
+| body | 1 | `canon-rf/base` | 150° | 25 | tiered: deeper bank [rf-2] |
+| body | 2 | `canon-rf/base` | 155° | 25 | tiered: deeper bank [rf-2] |
+| body | 3 | `canon-rf/base` | 160° | 25 | tiered: deeper bank [rf-2] |
+| body | 4 | `canon-rf/base` | 165° | 25 | tiered: deeper bank [rf-2] |
+| body | 5 | `canon-rf/base` | 170° | 25 | tiered: deeper bank [rf-2] |
+| body | 6 | `canon-rf/base` | 175° | 25 | tiered: deeper bank [rf-2] |
+| body | 7 | `canon-rf/base` | 180° | 25 | tiered: deeper bank [rf-2] |
+| body | 8 | `canon-rf/base` | 185° | 25 | tiered: deeper bank [rf-2] |
+| body | 9 | `canon-rf/base` | 190° | 25 | tiered: shallower bank [rf-2] |
+| body | 10 | `canon-rf/base` | 195° | 25 | tiered: shallower bank [rf-2] |
+| body | 11 | `canon-rf/base` | 200° | 25 | tiered: shallower bank [rf-2] |
+| body | 12 | `canon-rf/base` | 205° | 25 | tiered: shallower bank [rf-2] |
+| lens | 1 | `canon-rf/base` | 150° | 25 | tiered: deeper bank [rf-2] |
+| lens | 2 | `canon-rf/base` | 155° | 25 | tiered: deeper bank [rf-2] |
+| lens | 3 | `canon-rf/base` | 160° | 25 | tiered: deeper bank [rf-2] |
+| lens | 4 | `canon-rf/base` | 165° | 25 | tiered: deeper bank [rf-2] |
+| lens | 5 | `canon-rf/base` | 170° | 25 | tiered: deeper bank [rf-2] |
+| lens | 6 | `canon-rf/base` | 175° | 25 | tiered: deeper bank [rf-2] |
+| lens | 7 | `canon-rf/base` | 180° | 25 | tiered: deeper bank [rf-2] |
+| lens | 8 | `canon-rf/base` | 185° | 25 | tiered: deeper bank [rf-2] |
+| lens | 9 | `canon-rf/base` | 190° | 25 | tiered: shallower bank [rf-2] |
+| lens | 10 | `canon-rf/base` | 195° | 25 | tiered: shallower bank [rf-2] |
+| lens | 11 | `canon-rf/base` | 200° | 25 | tiered: shallower bank [rf-2] |
+| lens | 12 | `canon-rf/base` | 205° | 25 | tiered: shallower bank [rf-2] |
+
+#### Mechanical couplings
+
+None — fully electronic.
+
+#### Axial stack
+
+| Plane | z (mm) | Diameter (mm) |
+|---|---|---|
+| `flange_datum` | 0 | 65 |
+| `bayonet_lug_engagement` | 1.2 | 60 |
+| `electrical_contact_plane` | 0.5 | 52 |
+| `sensor_film_plane` | -20 | 43.3 |
+
+#### Machine-readable mount block
+
+```json
+{
+  "mountId": "canon-rf",
+  "displayLabel": "Canon RF",
+  "projectNote": "Canon RF mirrorless mount.",
+  "researchStatus": "researched",
+  "mvpStatus": "mvp_complete",
+  "mechanism": "bayonet",
+  "lockType": "sprung_detent",
+  "mvp": {
+    "requiredViews": [
+      "camera_side_front_view",
+      "lens_side_rear_view",
+      "axial_register_schematic"
+    ],
+    "requirementLevels": {
+      "mvpRequired": [
+        "flange_focal_distance_mm",
+        "nominal_throat_diameter_mm",
+        "camera_mount_outer_diameter_mm"
+      ],
+      "conditionalCoreRequired": [
+        "bayonet_lugs",
+        "lock_pin",
+        "index_mark"
+      ],
+      "variantRequired": [
+        "electrical_contacts"
+      ],
+      "mvpOptional": [
+        "mount_screws"
+      ],
+      "referenceGrade": [
+        "lug_ramp_undercut",
+        "contact_pitch"
+      ]
+    },
+    "profileModel": {
+      "baseProfileId": "canon-rf/base",
+      "selectedMvpProfileId": "canon-rf/base",
+      "variantStrategy": "base_only",
+      "variantProfiles": [
+        {
+          "profileId": "canon-rf/base",
+          "profileType": "base",
+          "appliesTo": "all Canon RF lenses and EOS R bodies (full-frame and RF-S), 2018–present",
+          "adds": [
+            "three bayonet tabs",
+            "locking pin/notch at 9 o'clock",
+            "red-dot mounting index",
+            "twelve-contact electrical block at the bottom (5–7 o'clock), tiered"
+          ],
+          "removes": [
+            "all mechanical couplings (fully electronic)"
+          ],
+          "changes": [
+            "denser 12-pin interface vs EF's 8"
+          ],
+          "cameraSideOverlayLayers": [
+            "camera-side-variant-electrical"
+          ],
+          "lensSideOverlayLayers": [
+            "lens-side-variant-electrical"
+          ],
+          "status": "researched",
+          "sourceRefs": [
+            "rf-1"
+          ]
+        }
+      ]
+    }
+  },
+  "coreDimensions": {
+    "flangeFocalDistanceMm": {
+      "value": 20,
+      "status": "secondary",
+      "sourceRefs": [
+        "rf-1"
+      ]
+    },
+    "nominalThroatDiameterMm": {
+      "value": 54,
+      "status": "secondary",
+      "sourceRefs": [
+        "rf-1"
+      ]
+    },
+    "effectiveClearApertureMm": {
+      "value": 54,
+      "status": "secondary",
+      "sourceRefs": [
+        "rf-1"
+      ]
+    },
+    "cameraMountOuterDiameterMm": {
+      "value": 65,
+      "status": "photo_scaled",
+      "sourceRefs": [
+        "rf-2"
+      ]
+    },
+    "lensMountOuterDiameterMm": {
+      "value": 63,
+      "status": "photo_scaled",
+      "sourceRefs": [
+        "rf-2"
+      ]
+    },
+    "contactCount": {
+      "value": 12,
+      "status": "secondary",
+      "sourceRefs": [
+        "rf-1"
+      ]
+    }
+  },
+  "lockGeometry": {
+    "insertionAngleDeg": {
+      "value": 0,
+      "status": "secondary",
+      "sourceRefs": [
+        "rf-1"
+      ]
+    },
+    "lockAngleDeg": {
+      "value": "unknown",
+      "status": "unknown",
+      "sourceRefs": [
+        "rf-1"
+      ]
+    },
+    "lockRotationDeg": {
+      "value": "unknown",
+      "status": "unknown",
+      "sourceRefs": [
+        "rf-1"
+      ]
+    },
+    "lockRotationDirection": {
+      "value": "unknown",
+      "status": "unknown",
+      "sourceRefs": []
+    }
+  },
+  "cameraSideFeatures": [
+    {
+      "featureId": "body-throat",
+      "featureType": "body_throat",
+      "profileId": "canon-rf/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "rf-1"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "rf-1"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 360,
+        "status": "secondary",
+        "sourceRefs": [
+          "rf-1"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "rf-1"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 27,
+        "status": "secondary",
+        "sourceRefs": [
+          "rf-1"
+        ]
+      },
+      "depthMm": {
+        "value": "not_applicable",
+        "status": "not_applicable",
+        "sourceRefs": []
+      },
+      "matesWith": "",
+      "shapeNotes": "54 mm throat opening"
+    },
+    {
+      "featureId": "body-mount-ring",
+      "featureType": "mount_ring",
+      "profileId": "canon-rf/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 360,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 27,
+        "status": "secondary",
+        "sourceRefs": [
+          "rf-1"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 32.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "depthMm": {
+        "value": "not_applicable",
+        "status": "not_applicable",
+        "sourceRefs": []
+      },
+      "matesWith": "",
+      "shapeNotes": "visible body mount ring"
+    },
+    {
+      "featureId": "body-slot-1",
+      "featureType": "bayonet_receiving_slot",
+      "profileId": "canon-rf/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 30,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 8,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 52,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 27,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 30,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "depthMm": {
+        "value": 2,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "matesWith": "lens-lug-1",
+      "shapeNotes": "three-tab bayonet [rf-2]"
+    },
+    {
+      "featureId": "body-slot-2",
+      "featureType": "bayonet_receiving_slot",
+      "profileId": "canon-rf/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 150,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 128,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 172,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 27,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 30,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "depthMm": {
+        "value": 2,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "matesWith": "lens-lug-2",
+      "shapeNotes": "three-tab bayonet [rf-2]"
+    },
+    {
+      "featureId": "body-slot-3",
+      "featureType": "bayonet_receiving_slot",
+      "profileId": "canon-rf/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 292,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 272,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 312,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 27,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 30,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "depthMm": {
+        "value": 2,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "matesWith": "lens-lug-3",
+      "shapeNotes": "three-tab bayonet [rf-2]"
+    },
+    {
+      "featureId": "body-index-mark",
+      "featureType": "index_mark",
+      "profileId": "canon-rf/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "startAngleDeg": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "endAngleDeg": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 33,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "depthMm": {
+        "value": "not_applicable",
+        "status": "not_applicable",
+        "sourceRefs": []
+      },
+      "matesWith": "lens-index-mark",
+      "shapeNotes": "red-dot mounting index"
+    },
+    {
+      "featureId": "body-lock-pin",
+      "featureType": "lock_pin",
+      "profileId": "canon-rf/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 270,
+        "status": "secondary",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "startAngleDeg": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "endAngleDeg": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 28,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "depthMm": {
+        "value": 2,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "matesWith": "lens-lock-notch",
+      "shapeNotes": "locking groove at 9 o'clock [rf-2]"
+    }
+  ],
+  "lensSideFeatures": [
+    {
+      "featureId": "lens-throat",
+      "featureType": "lens_throat",
+      "profileId": "canon-rf/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "rf-1"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "rf-1"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 360,
+        "status": "secondary",
+        "sourceRefs": [
+          "rf-1"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "rf-1"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 26,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "thicknessMm": {
+        "value": "not_applicable",
+        "status": "not_applicable",
+        "sourceRefs": []
+      },
+      "matesWith": "",
+      "shapeNotes": "rear opening"
+    },
+    {
+      "featureId": "lens-mount-ring",
+      "featureType": "lens_mount_ring",
+      "profileId": "canon-rf/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 360,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 26,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 31.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "thicknessMm": {
+        "value": "not_applicable",
+        "status": "not_applicable",
+        "sourceRefs": []
+      },
+      "matesWith": "",
+      "shapeNotes": "lens flange ring"
+    },
+    {
+      "featureId": "lens-lug-1",
+      "featureType": "bayonet_lug",
+      "profileId": "canon-rf/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 30,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 8,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 52,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 27,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 30,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "thicknessMm": {
+        "value": 2,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "matesWith": "body-slot-1",
+      "shapeNotes": "three-tab bayonet [rf-2]"
+    },
+    {
+      "featureId": "lens-lug-2",
+      "featureType": "bayonet_lug",
+      "profileId": "canon-rf/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 150,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 128,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 172,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 27,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 30,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "thicknessMm": {
+        "value": 2,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "matesWith": "body-slot-2",
+      "shapeNotes": "three-tab bayonet [rf-2]"
+    },
+    {
+      "featureId": "lens-lug-3",
+      "featureType": "bayonet_lug",
+      "profileId": "canon-rf/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 292,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 272,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 312,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 27,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 30,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "thicknessMm": {
+        "value": 2,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "matesWith": "body-slot-3",
+      "shapeNotes": "three-tab bayonet [rf-2]"
+    },
+    {
+      "featureId": "lens-index-mark",
+      "featureType": "index_mark",
+      "profileId": "canon-rf/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "startAngleDeg": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "endAngleDeg": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 30,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "thicknessMm": {
+        "value": "not_applicable",
+        "status": "not_applicable",
+        "sourceRefs": []
+      },
+      "matesWith": "body-index-mark",
+      "shapeNotes": "aligns with body red dot"
+    },
+    {
+      "featureId": "lens-lock-notch",
+      "featureType": "lock_notch",
+      "profileId": "canon-rf/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 270,
+        "status": "secondary",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "startAngleDeg": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "endAngleDeg": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 28,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "thicknessMm": {
+        "value": 2,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "matesWith": "body-lock-pin",
+      "shapeNotes": "receives body lock pin at 9 o'clock"
+    }
+  ],
+  "axialStack": [
+    {
+      "planeId": "flange_datum",
+      "zPositionMm": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "rf-1"
+        ]
+      },
+      "thicknessMm": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "rf-1"
+        ]
+      },
+      "diameterMm": {
+        "value": 65,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      }
+    },
+    {
+      "planeId": "bayonet_lug_engagement",
+      "zPositionMm": {
+        "value": 1.2,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "thicknessMm": {
+        "value": 2,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "diameterMm": {
+        "value": 60,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      }
+    },
+    {
+      "planeId": "electrical_contact_plane",
+      "zPositionMm": {
+        "value": 0.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "thicknessMm": {
+        "value": 0.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "diameterMm": {
+        "value": 52,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      }
+    },
+    {
+      "planeId": "sensor_film_plane",
+      "zPositionMm": {
+        "value": -20,
+        "status": "secondary",
+        "sourceRefs": [
+          "rf-1"
+        ]
+      },
+      "thicknessMm": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "rf-1"
+        ]
+      },
+      "diameterMm": {
+        "value": 43.3,
+        "status": "secondary",
+        "sourceRefs": [
+          "rf-1"
+        ]
+      }
+    }
+  ],
+  "contacts": [
+    {
+      "side": "body",
+      "contactNo": 1,
+      "profileId": "canon-rf/base",
+      "centerAngleDeg": {
+        "value": 150,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 25,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "heightMm": {
+        "value": 3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "function": "tiered: deeper bank [rf-2]"
+    },
+    {
+      "side": "body",
+      "contactNo": 2,
+      "profileId": "canon-rf/base",
+      "centerAngleDeg": {
+        "value": 155,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 25,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "heightMm": {
+        "value": 3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "function": "tiered: deeper bank [rf-2]"
+    },
+    {
+      "side": "body",
+      "contactNo": 3,
+      "profileId": "canon-rf/base",
+      "centerAngleDeg": {
+        "value": 160,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 25,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "heightMm": {
+        "value": 3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "function": "tiered: deeper bank [rf-2]"
+    },
+    {
+      "side": "body",
+      "contactNo": 4,
+      "profileId": "canon-rf/base",
+      "centerAngleDeg": {
+        "value": 165,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 25,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "heightMm": {
+        "value": 3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "function": "tiered: deeper bank [rf-2]"
+    },
+    {
+      "side": "body",
+      "contactNo": 5,
+      "profileId": "canon-rf/base",
+      "centerAngleDeg": {
+        "value": 170,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 25,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "heightMm": {
+        "value": 3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "function": "tiered: deeper bank [rf-2]"
+    },
+    {
+      "side": "body",
+      "contactNo": 6,
+      "profileId": "canon-rf/base",
+      "centerAngleDeg": {
+        "value": 175,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 25,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "heightMm": {
+        "value": 3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "function": "tiered: deeper bank [rf-2]"
+    },
+    {
+      "side": "body",
+      "contactNo": 7,
+      "profileId": "canon-rf/base",
+      "centerAngleDeg": {
+        "value": 180,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 25,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "heightMm": {
+        "value": 3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "function": "tiered: deeper bank [rf-2]"
+    },
+    {
+      "side": "body",
+      "contactNo": 8,
+      "profileId": "canon-rf/base",
+      "centerAngleDeg": {
+        "value": 185,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 25,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "heightMm": {
+        "value": 3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "function": "tiered: deeper bank [rf-2]"
+    },
+    {
+      "side": "body",
+      "contactNo": 9,
+      "profileId": "canon-rf/base",
+      "centerAngleDeg": {
+        "value": 190,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 25,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "heightMm": {
+        "value": 3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0.4,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "function": "tiered: shallower bank [rf-2]"
+    },
+    {
+      "side": "body",
+      "contactNo": 10,
+      "profileId": "canon-rf/base",
+      "centerAngleDeg": {
+        "value": 195,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 25,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "heightMm": {
+        "value": 3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0.4,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "function": "tiered: shallower bank [rf-2]"
+    },
+    {
+      "side": "body",
+      "contactNo": 11,
+      "profileId": "canon-rf/base",
+      "centerAngleDeg": {
+        "value": 200,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 25,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "heightMm": {
+        "value": 3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0.4,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "function": "tiered: shallower bank [rf-2]"
+    },
+    {
+      "side": "body",
+      "contactNo": 12,
+      "profileId": "canon-rf/base",
+      "centerAngleDeg": {
+        "value": 205,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 25,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "heightMm": {
+        "value": 3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0.4,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "function": "tiered: shallower bank [rf-2]"
+    },
+    {
+      "side": "lens",
+      "contactNo": 1,
+      "profileId": "canon-rf/base",
+      "centerAngleDeg": {
+        "value": 150,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 25,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "heightMm": {
+        "value": 3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "function": "tiered: deeper bank [rf-2]"
+    },
+    {
+      "side": "lens",
+      "contactNo": 2,
+      "profileId": "canon-rf/base",
+      "centerAngleDeg": {
+        "value": 155,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 25,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "heightMm": {
+        "value": 3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "function": "tiered: deeper bank [rf-2]"
+    },
+    {
+      "side": "lens",
+      "contactNo": 3,
+      "profileId": "canon-rf/base",
+      "centerAngleDeg": {
+        "value": 160,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 25,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "heightMm": {
+        "value": 3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "function": "tiered: deeper bank [rf-2]"
+    },
+    {
+      "side": "lens",
+      "contactNo": 4,
+      "profileId": "canon-rf/base",
+      "centerAngleDeg": {
+        "value": 165,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 25,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "heightMm": {
+        "value": 3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "function": "tiered: deeper bank [rf-2]"
+    },
+    {
+      "side": "lens",
+      "contactNo": 5,
+      "profileId": "canon-rf/base",
+      "centerAngleDeg": {
+        "value": 170,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 25,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "heightMm": {
+        "value": 3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "function": "tiered: deeper bank [rf-2]"
+    },
+    {
+      "side": "lens",
+      "contactNo": 6,
+      "profileId": "canon-rf/base",
+      "centerAngleDeg": {
+        "value": 175,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 25,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "heightMm": {
+        "value": 3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "function": "tiered: deeper bank [rf-2]"
+    },
+    {
+      "side": "lens",
+      "contactNo": 7,
+      "profileId": "canon-rf/base",
+      "centerAngleDeg": {
+        "value": 180,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 25,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "heightMm": {
+        "value": 3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "function": "tiered: deeper bank [rf-2]"
+    },
+    {
+      "side": "lens",
+      "contactNo": 8,
+      "profileId": "canon-rf/base",
+      "centerAngleDeg": {
+        "value": 185,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 25,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "heightMm": {
+        "value": 3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "function": "tiered: deeper bank [rf-2]"
+    },
+    {
+      "side": "lens",
+      "contactNo": 9,
+      "profileId": "canon-rf/base",
+      "centerAngleDeg": {
+        "value": 190,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 25,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "heightMm": {
+        "value": 3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "function": "tiered: shallower bank [rf-2]"
+    },
+    {
+      "side": "lens",
+      "contactNo": 10,
+      "profileId": "canon-rf/base",
+      "centerAngleDeg": {
+        "value": 195,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 25,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "heightMm": {
+        "value": 3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "function": "tiered: shallower bank [rf-2]"
+    },
+    {
+      "side": "lens",
+      "contactNo": 11,
+      "profileId": "canon-rf/base",
+      "centerAngleDeg": {
+        "value": 200,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 25,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "heightMm": {
+        "value": 3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "function": "tiered: shallower bank [rf-2]"
+    },
+    {
+      "side": "lens",
+      "contactNo": 12,
+      "profileId": "canon-rf/base",
+      "centerAngleDeg": {
+        "value": 205,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 25,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "heightMm": {
+        "value": 3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "function": "tiered: shallower bank [rf-2]"
+    }
+  ],
+  "mechanicalCouplings": [],
+  "screwsGasketsBaffles": [
+    {
+      "featureId": "body-mount-screws",
+      "featureType": "mount_screws",
+      "side": "body",
+      "count": {
+        "value": 6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "pcdMm": {
+        "value": 62,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "diameterMm": {
+        "value": 2,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "centerAnglesDeg": {
+        "value": [
+          15,
+          75,
+          135,
+          195,
+          255,
+          315
+        ],
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "rf-2"
+        ]
+      },
+      "shape": "round"
+    }
+  ],
+  "svgLayers": {
+    "mvpRequired": [
+      "datum-axis",
+      "camera-side-metal",
+      "lens-side-metal",
+      "axial-section",
+      "uncertainty"
+    ],
+    "conditionalCoreRequired": [
+      "clear-aperture",
+      "camera-side-core-interface",
+      "lens-side-core-interface"
+    ],
+    "variantRequired": [
+      "camera-side-variant-electrical",
+      "lens-side-variant-electrical"
+    ]
+  },
+  "sourceRefs": [
+    {
+      "ref": "rf-1",
+      "sourceType": "secondary",
+      "citation": "“Canon RF mount,” Wikipedia. Accessed 2026-06-04.",
+      "liveUrl": "https://en.wikipedia.org/wiki/Canon_RF_mount",
+      "archiveUrl": "http://web.archive.org/web/20251201213626/https://en.wikipedia.org/wiki/Canon_RF_mount",
+      "archiveDate": "2025-12-01",
+      "appliesTo": "flange focal distance, 54 mm throat, twelve pins, three tabs",
+      "confidence": "high"
+    },
+    {
+      "ref": "rf-2",
+      "sourceType": "secondary",
+      "citation": "“Lens Mounts: Canon RF,” JAPB (japb.net). Accessed 2026-06-04.",
+      "liveUrl": "https://japb.net/theory/lensmounts/canon-rf/",
+      "archiveUrl": "http://web.archive.org/web/20251207024417/https://japb.net/theory/lensmounts/canon-rf/",
+      "archiveDate": "2025-12-07",
+      "appliesTo": "locking groove at 9 o'clock, twelve tiered contacts across 5–7 o'clock",
+      "confidence": "medium"
+    }
+  ],
+  "openQuestions": [
+    {
+      "issue": "Tab angular spans, the mounting-index clock position, and the lock rotation angle/direction are photo-scaled or undocumented; per-contact clock positions are interpolated within the documented 5–7 o'clock band.",
+      "affectedFields": [
+        "cameraSideFeatures",
+        "lensSideFeatures",
+        "contacts",
+        "lockGeometry"
+      ],
+      "candidateValues": [],
+      "resolution": "Upgrade to an official Canon RF mount drawing or measured sample."
+    }
+  ],
+  "schemaVersion": "1.3",
+  "coordinateConvention": {
+    "units": "mm_deg",
+    "zDatum": "flange_datum",
+    "zPositive": "toward_lens",
+    "angleZero": "top_dead_center_camera_front_view",
+    "anglePositive": "clockwise_camera_front_view",
+    "storedAngleFrame": "camera_front_view",
+    "lensRearMirror": "theta_out = (360 - theta) mod 360",
+    "angleSpanRule": "clockwise_sweep_start_to_end_mod_360"
+  },
+  "render": {
+    "unitMapping": "1_user_unit_per_mm",
+    "marginFraction": 0.1,
+    "numericPrecision": 3,
+    "views": {
+      "cameraSideFront": {
+        "viewBox": "-40 -42 80 82"
+      },
+      "lensSideRear": {
+        "viewBox": "-38 -40 76 78"
+      },
+      "axialSection": {
+        "viewBox": "-27 -44 36 84"
+      }
+    }
+  },
+  "metadata": {
+    "title": "Canon RF mount",
+    "desc": "Canon RF mount — flange focal distance 20 mm, nominal throat 54 mm.",
+    "view": "unknown",
+    "profileId": "canon-rf/base"
+  }
+}
+```
+
+#### Sources
+
+| Ref | Type | Citation | Archive | Captured | Confidence |
+|---|---|---|---|---|---|
+| `rf-1` | secondary | “Canon RF mount,” Wikipedia. Accessed 2026-06-04. | [snapshot](http://web.archive.org/web/20251201213626/https://en.wikipedia.org/wiki/Canon_RF_mount) | 2025-12-01 | high |
+| `rf-2` | secondary | “Lens Mounts: Canon RF,” JAPB (japb.net). Accessed 2026-06-04. | [snapshot](http://web.archive.org/web/20251207024417/https://japb.net/theory/lensmounts/canon-rf/) | 2025-12-07 | medium |
+
+#### Open questions
+
+- Tab angular spans, the mounting-index clock position, and the lock rotation angle/direction are photo-scaled or undocumented; per-contact clock positions are interpolated within the documented 5–7 o'clock band. _(Upgrade to an official Canon RF mount drawing or measured sample.)_
+
+### `fujifilm-x` — Fujifilm X
+
+| Field | Value |
+|---|---|
+| Mount ID | `fujifilm-x` |
+| Display label | Fujifilm X |
+| Project note | Fujifilm X APS-C mirrorless mount. |
+| Research status | `researched` |
+| MVP status | `mvp_complete` |
+| Mount mechanism | `bayonet` (lock `sprung_detent`) |
+| Base profile | `fujifilm-x/base` |
+| Selected MVP profile | `fujifilm-x/base` |
+| Variant strategy | `base_only` |
+
+#### Base and variant profile matrix
+
+| Profile ID | Type | Applies to | Adds | Removes | Changes |
+|---|---|---|---|---|---|
+| `fujifilm-x/base` | base | all Fujifilm X lenses and bodies (APS-C), 2012–present | three straight-edged bayonet lugs; locking pin/notch at 4:30; mounting index; ten-contact electrical block at the bottom (4:30–7:30) | all mechanical couplings (fully electronic) | — |
+
+#### Dimensional summary
+
+| Field | Value | Unit |
+|---|---|---|
+| Flange focal distance | 17.7 (`secondary`) | mm |
+| Nominal throat diameter | 44 (`secondary`) | mm |
+| Effective clear aperture | 44 (`secondary`) | mm |
+| Camera mount outer diameter | 50 (`photo_scaled`) | mm |
+| Lens mount outer diameter | 48 (`photo_scaled`) | mm |
+| Contact count | 10 (`secondary`) | count |
+| Lock rotation | unknown (`unknown`) | deg |
+| Lock direction | unknown (`unknown`) | — |
+
+#### Figures (selected profile `fujifilm-x/base`)
+
+**Camera-side front view** — viewBox `-31 -32 62 63` ([standalone SVG](mounts/fujifilm-x-camera-front.svg))
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-31 -32 62 63" role="img" aria-labelledby="fujifilm-x-base-camera_side_front-title fujifilm-x-base-camera_side_front-desc"><title id="fujifilm-x-base-camera_side_front-title">Fujifilm X mount — camera-side front view (base)</title><desc id="fujifilm-x-base-camera_side_front-desc">Fujifilm X bayonet mount, camera-side front view. Flange focal distance 17.7 mm, nominal throat 44 mm. Profile fujifilm-x/base.</desc><metadata>{"mountId":"fujifilm-x","profileId":"fujifilm-x/base","view":"camera_side_front","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.25" y1="0" x2="1.25" y2="0" stroke="#8a94a0" stroke-width="0.372" fill="none" /><line x1="0" y1="-1.25" x2="0" y2="1.25" stroke="#8a94a0" stroke-width="0.372" fill="none" /><line x1="0" y1="-25" x2="0" y2="-26.5" stroke="#8a94a0" stroke-width="0.372" fill="none" /></g><g data-layer="camera-side-metal"><path d="M0,-25 A25,25 0 1 1 0,25 A25,25 0 1 1 0,-25 Z M0,-22 A22,22 0 1 1 0,22 A22,22 0 1 1 0,-22 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-25 A25,25 0 1 1 0,25 A25,25 0 1 1 0,-25 Z M0,-22 A22,22 0 1 1 0,22 A22,22 0 1 1 0,-22 Z" stroke="#6b7a8f" stroke-width="0.372" fill="none" stroke-dasharray="4 2" /><path d="M0,-22 A22,22 0 1 1 0,22 A22,22 0 1 1 0,-22 Z" stroke="#2f80c4" stroke-width="0.279" fill="none" /><circle cx="16.617" cy="-16.617" r="1" stroke="#7f8c3a" stroke-width="0.372" fill="none" stroke-dasharray="4 2" /><circle cx="16.617" cy="16.617" r="1" stroke="#7f8c3a" stroke-width="0.372" fill="none" stroke-dasharray="4 2" /><circle cx="-16.617" cy="16.617" r="1" stroke="#7f8c3a" stroke-width="0.372" fill="none" stroke-dasharray="4 2" /><circle cx="-16.617" cy="-16.617" r="1" stroke="#7f8c3a" stroke-width="0.372" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-core-interface"><path d="M0,-23 L-1.557,-25.452 L1.557,-25.452 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-23 L-1.557,-25.452 L1.557,-25.452 Z" stroke="#e8853a" stroke-width="0.372" fill="none" stroke-dasharray="0.6 1.6" /><path d="M3.82,-21.666 L4.254,-24.128 A24.5,24.5 0 0 1 18.768,-15.748 L16.853,-14.141 A22,22 0 0 0 3.82,-21.666 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M3.82,-21.666 L4.254,-24.128 A24.5,24.5 0 0 1 18.768,-15.748 L16.853,-14.141 A22,22 0 0 0 3.82,-21.666 Z" stroke="#2a9d8f" stroke-width="0.372" fill="none" stroke-dasharray="4 2" /><circle cx="16.263" cy="16.263" r="0.875" fill="#d1495b" fill-opacity="0.12" /><circle cx="16.263" cy="16.263" r="0.875" stroke="#d1495b" stroke-width="0.372" fill="none" stroke-dasharray="0.6 1.6" /><path d="M16.853,14.141 L18.768,15.748 A24.5,24.5 0 0 1 4.254,24.128 L3.82,21.666 A22,22 0 0 0 16.853,14.141 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M16.853,14.141 L18.768,15.748 A24.5,24.5 0 0 1 4.254,24.128 L3.82,21.666 A22,22 0 0 0 16.853,14.141 Z" stroke="#2a9d8f" stroke-width="0.372" fill="none" stroke-dasharray="4 2" /><path d="M-22,0 L-24.5,0 A24.5,24.5 0 0 1 -18.768,-15.748 L-16.853,-14.141 A22,22 0 0 0 -22,0 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-22,0 L-24.5,0 A24.5,24.5 0 0 1 -18.768,-15.748 L-16.853,-14.141 A22,22 0 0 0 -22,0 Z" stroke="#2a9d8f" stroke-width="0.372" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-variant-electrical"><path d="M14,13.139 L15.896,14.918 A21.8,21.8 0 0 1 14.918,15.896 L13.139,14 A19.2,19.2 0 0 0 14,13.139 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M14,13.139 L15.896,14.918 A21.8,21.8 0 0 1 14.918,15.896 L13.139,14 A19.2,19.2 0 0 0 14,13.139 Z" stroke="#8a5cd1" stroke-width="0.372" fill="none" stroke-dasharray="4 2" /><path d="M11.506,15.371 L13.064,17.452 A21.8,21.8 0 0 1 11.932,18.245 L10.509,16.069 A19.2,19.2 0 0 0 11.506,15.371 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M11.506,15.371 L13.064,17.452 A21.8,21.8 0 0 1 11.932,18.245 L10.509,16.069 A19.2,19.2 0 0 0 11.506,15.371 Z" stroke="#8a5cd1" stroke-width="0.372" fill="none" stroke-dasharray="4 2" /><path d="M8.662,17.135 L9.835,19.456 A21.8,21.8 0 0 1 8.582,20.04 L7.559,17.65 A19.2,19.2 0 0 0 8.662,17.135 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M8.662,17.135 L9.835,19.456 A21.8,21.8 0 0 1 8.582,20.04 L7.559,17.65 A19.2,19.2 0 0 0 8.662,17.135 Z" stroke="#8a5cd1" stroke-width="0.372" fill="none" stroke-dasharray="4 2" /><path d="M5.555,18.379 L6.307,20.868 A21.8,21.8 0 0 1 4.972,21.225 L4.379,18.694 A19.2,19.2 0 0 0 5.555,18.379 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M5.555,18.379 L6.307,20.868 A21.8,21.8 0 0 1 4.972,21.225 L4.379,18.694 A19.2,19.2 0 0 0 5.555,18.379 Z" stroke="#8a5cd1" stroke-width="0.372" fill="none" stroke-dasharray="4 2" /><path d="M2.279,19.064 L2.588,21.646 A21.8,21.8 0 0 1 1.211,21.766 L1.066,19.17 A19.2,19.2 0 0 0 2.279,19.064 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M2.279,19.064 L2.588,21.646 A21.8,21.8 0 0 1 1.211,21.766 L1.066,19.17 A19.2,19.2 0 0 0 2.279,19.064 Z" stroke="#8a5cd1" stroke-width="0.372" fill="none" stroke-dasharray="4 2" /><path d="M-1.066,19.17 L-1.211,21.766 A21.8,21.8 0 0 1 -2.588,21.646 L-2.279,19.064 A19.2,19.2 0 0 0 -1.066,19.17 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-1.066,19.17 L-1.211,21.766 A21.8,21.8 0 0 1 -2.588,21.646 L-2.279,19.064 A19.2,19.2 0 0 0 -1.066,19.17 Z" stroke="#8a5cd1" stroke-width="0.372" fill="none" stroke-dasharray="4 2" /><path d="M-4.379,18.694 L-4.972,21.225 A21.8,21.8 0 0 1 -6.307,20.868 L-5.555,18.379 A19.2,19.2 0 0 0 -4.379,18.694 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-4.379,18.694 L-4.972,21.225 A21.8,21.8 0 0 1 -6.307,20.868 L-5.555,18.379 A19.2,19.2 0 0 0 -4.379,18.694 Z" stroke="#8a5cd1" stroke-width="0.372" fill="none" stroke-dasharray="4 2" /><path d="M-7.559,17.65 L-8.582,20.04 A21.8,21.8 0 0 1 -9.835,19.456 L-8.662,17.135 A19.2,19.2 0 0 0 -7.559,17.65 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-7.559,17.65 L-8.582,20.04 A21.8,21.8 0 0 1 -9.835,19.456 L-8.662,17.135 A19.2,19.2 0 0 0 -7.559,17.65 Z" stroke="#8a5cd1" stroke-width="0.372" fill="none" stroke-dasharray="4 2" /><path d="M-10.509,16.069 L-11.932,18.245 A21.8,21.8 0 0 1 -13.064,17.452 L-11.506,15.371 A19.2,19.2 0 0 0 -10.509,16.069 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-10.509,16.069 L-11.932,18.245 A21.8,21.8 0 0 1 -13.064,17.452 L-11.506,15.371 A19.2,19.2 0 0 0 -10.509,16.069 Z" stroke="#8a5cd1" stroke-width="0.372" fill="none" stroke-dasharray="4 2" /><path d="M-13.139,14 L-14.918,15.896 A21.8,21.8 0 0 1 -15.896,14.918 L-14,13.139 A19.2,19.2 0 0 0 -13.139,14 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-13.139,14 L-14.918,15.896 A21.8,21.8 0 0 1 -15.896,14.918 L-14,13.139 A19.2,19.2 0 0 0 -13.139,14 Z" stroke="#8a5cd1" stroke-width="0.372" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-29.76" y1="-28.85" x2="-25.76" y2="-28.85" stroke="#2f80c4" stroke-width="0.441" /><text x="-24.752" y="-28.144" font-size="2.016" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-29.76" y1="-25.826" x2="-25.76" y2="-25.826" stroke="#6b7a8f" stroke-width="0.441" /><text x="-24.752" y="-25.12" font-size="2.016" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-29.76" y1="-22.802" x2="-25.76" y2="-22.802" stroke="#2a9d8f" stroke-width="0.441" /><text x="-24.752" y="-22.096" font-size="2.016" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-29.76" y1="-19.778" x2="-25.76" y2="-19.778" stroke="#d1495b" stroke-width="0.441" /><text x="-24.752" y="-19.072" font-size="2.016" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-29.76" y1="-16.754" x2="-25.76" y2="-16.754" stroke="#e8853a" stroke-width="0.441" /><text x="-24.752" y="-16.048" font-size="2.016" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-29.76" y1="-13.73" x2="-25.76" y2="-13.73" stroke="#8a5cd1" stroke-width="0.441" /><text x="-24.752" y="-13.024" font-size="2.016" fill="#8a5cd1" font-family="sans-serif">Electrical contact</text><line x1="-29.76" y1="-10.706" x2="-25.76" y2="-10.706" stroke="#7f8c3a" stroke-width="0.441" /><text x="-24.752" y="-10" font-size="2.016" fill="#7f8c3a" font-family="sans-serif">Screws / seals</text><line x1="-29.76" y1="-7.682" x2="-25.76" y2="-7.682" stroke="#8a94a0" stroke-width="0.441" /><text x="-24.752" y="-6.976" font-size="2.016" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
+
+**Lens-side rear view** — viewBox `-30 -31 60 61` ([standalone SVG](mounts/fujifilm-x-lens-rear.svg))
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-30 -31 60 61" role="img" aria-labelledby="fujifilm-x-base-lens_side_rear-title fujifilm-x-base-lens_side_rear-desc"><title id="fujifilm-x-base-lens_side_rear-title">Fujifilm X mount — lens-side rear view (base)</title><desc id="fujifilm-x-base-lens_side_rear-desc">Fujifilm X bayonet mount, lens-side rear view. Flange focal distance 17.7 mm, nominal throat 44 mm. Profile fujifilm-x/base.</desc><metadata>{"mountId":"fujifilm-x","profileId":"fujifilm-x/base","view":"lens_side_rear","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.2" y1="0" x2="1.2" y2="0" stroke="#8a94a0" stroke-width="0.36" fill="none" /><line x1="0" y1="-1.2" x2="0" y2="1.2" stroke="#8a94a0" stroke-width="0.36" fill="none" /><line x1="0" y1="-24" x2="0" y2="-25.44" stroke="#8a94a0" stroke-width="0.36" fill="none" /></g><g data-layer="lens-side-metal"><path d="M0,-24 A24,24 0 1 1 0,24 A24,24 0 1 1 0,-24 Z M0,-21 A21,21 0 1 1 0,21 A21,21 0 1 1 0,-21 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-24 A24,24 0 1 1 0,24 A24,24 0 1 1 0,-24 Z M0,-21 A21,21 0 1 1 0,21 A21,21 0 1 1 0,-21 Z" stroke="#6b7a8f" stroke-width="0.36" fill="none" stroke-dasharray="4 2" /><path d="M0,-21 A21,21 0 1 1 0,21 A21,21 0 1 1 0,-21 Z" stroke="#2f80c4" stroke-width="0.36" fill="none" stroke-dasharray="4 2" /></g><g data-layer="lens-side-core-interface"><path d="M0,-22.1 L-1.496,-24.454 L1.496,-24.454 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-22.1 L-1.496,-24.454 L1.496,-24.454 Z" stroke="#e8853a" stroke-width="0.36" fill="none" stroke-dasharray="0.6 1.6" /><path d="M16.853,-14.141 L18.768,-15.748 A24.5,24.5 0 0 1 24.5,0 L22,0 A22,22 0 0 0 16.853,-14.141 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M16.853,-14.141 L18.768,-15.748 A24.5,24.5 0 0 1 24.5,0 L22,0 A22,22 0 0 0 16.853,-14.141 Z" stroke="#2a9d8f" stroke-width="0.36" fill="none" stroke-dasharray="4 2" /><path d="M-3.82,21.666 L-4.254,24.128 A24.5,24.5 0 0 1 -18.768,15.748 L-16.853,14.141 A22,22 0 0 0 -3.82,21.666 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-3.82,21.666 L-4.254,24.128 A24.5,24.5 0 0 1 -18.768,15.748 L-16.853,14.141 A22,22 0 0 0 -3.82,21.666 Z" stroke="#2a9d8f" stroke-width="0.36" fill="none" stroke-dasharray="4 2" /><circle cx="-16.263" cy="16.263" r="0.84" fill="#d1495b" fill-opacity="0.12" /><circle cx="-16.263" cy="16.263" r="0.84" stroke="#d1495b" stroke-width="0.36" fill="none" stroke-dasharray="0.6 1.6" /><path d="M-16.853,-14.141 L-18.768,-15.748 A24.5,24.5 0 0 1 -4.254,-24.128 L-3.82,-21.666 A22,22 0 0 0 -16.853,-14.141 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-16.853,-14.141 L-18.768,-15.748 A24.5,24.5 0 0 1 -4.254,-24.128 L-3.82,-21.666 A22,22 0 0 0 -16.853,-14.141 Z" stroke="#2a9d8f" stroke-width="0.36" fill="none" stroke-dasharray="4 2" /></g><g data-layer="lens-side-variant-electrical"><path d="M-13.139,14 L-14.918,15.896 A21.8,21.8 0 0 1 -15.896,14.918 L-14,13.139 A19.2,19.2 0 0 0 -13.139,14 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-13.139,14 L-14.918,15.896 A21.8,21.8 0 0 1 -15.896,14.918 L-14,13.139 A19.2,19.2 0 0 0 -13.139,14 Z" stroke="#8a5cd1" stroke-width="0.36" fill="none" stroke-dasharray="4 2" /><path d="M-10.509,16.069 L-11.932,18.245 A21.8,21.8 0 0 1 -13.064,17.452 L-11.506,15.371 A19.2,19.2 0 0 0 -10.509,16.069 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-10.509,16.069 L-11.932,18.245 A21.8,21.8 0 0 1 -13.064,17.452 L-11.506,15.371 A19.2,19.2 0 0 0 -10.509,16.069 Z" stroke="#8a5cd1" stroke-width="0.36" fill="none" stroke-dasharray="4 2" /><path d="M-7.559,17.65 L-8.582,20.04 A21.8,21.8 0 0 1 -9.835,19.456 L-8.662,17.135 A19.2,19.2 0 0 0 -7.559,17.65 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-7.559,17.65 L-8.582,20.04 A21.8,21.8 0 0 1 -9.835,19.456 L-8.662,17.135 A19.2,19.2 0 0 0 -7.559,17.65 Z" stroke="#8a5cd1" stroke-width="0.36" fill="none" stroke-dasharray="4 2" /><path d="M-4.379,18.694 L-4.972,21.225 A21.8,21.8 0 0 1 -6.307,20.868 L-5.555,18.379 A19.2,19.2 0 0 0 -4.379,18.694 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-4.379,18.694 L-4.972,21.225 A21.8,21.8 0 0 1 -6.307,20.868 L-5.555,18.379 A19.2,19.2 0 0 0 -4.379,18.694 Z" stroke="#8a5cd1" stroke-width="0.36" fill="none" stroke-dasharray="4 2" /><path d="M-1.066,19.17 L-1.211,21.766 A21.8,21.8 0 0 1 -2.588,21.646 L-2.279,19.064 A19.2,19.2 0 0 0 -1.066,19.17 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-1.066,19.17 L-1.211,21.766 A21.8,21.8 0 0 1 -2.588,21.646 L-2.279,19.064 A19.2,19.2 0 0 0 -1.066,19.17 Z" stroke="#8a5cd1" stroke-width="0.36" fill="none" stroke-dasharray="4 2" /><path d="M2.279,19.064 L2.588,21.646 A21.8,21.8 0 0 1 1.211,21.766 L1.066,19.17 A19.2,19.2 0 0 0 2.279,19.064 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M2.279,19.064 L2.588,21.646 A21.8,21.8 0 0 1 1.211,21.766 L1.066,19.17 A19.2,19.2 0 0 0 2.279,19.064 Z" stroke="#8a5cd1" stroke-width="0.36" fill="none" stroke-dasharray="4 2" /><path d="M5.555,18.379 L6.307,20.868 A21.8,21.8 0 0 1 4.972,21.225 L4.379,18.694 A19.2,19.2 0 0 0 5.555,18.379 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M5.555,18.379 L6.307,20.868 A21.8,21.8 0 0 1 4.972,21.225 L4.379,18.694 A19.2,19.2 0 0 0 5.555,18.379 Z" stroke="#8a5cd1" stroke-width="0.36" fill="none" stroke-dasharray="4 2" /><path d="M8.662,17.135 L9.835,19.456 A21.8,21.8 0 0 1 8.582,20.04 L7.559,17.65 A19.2,19.2 0 0 0 8.662,17.135 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M8.662,17.135 L9.835,19.456 A21.8,21.8 0 0 1 8.582,20.04 L7.559,17.65 A19.2,19.2 0 0 0 8.662,17.135 Z" stroke="#8a5cd1" stroke-width="0.36" fill="none" stroke-dasharray="4 2" /><path d="M11.506,15.371 L13.064,17.452 A21.8,21.8 0 0 1 11.932,18.245 L10.509,16.069 A19.2,19.2 0 0 0 11.506,15.371 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M11.506,15.371 L13.064,17.452 A21.8,21.8 0 0 1 11.932,18.245 L10.509,16.069 A19.2,19.2 0 0 0 11.506,15.371 Z" stroke="#8a5cd1" stroke-width="0.36" fill="none" stroke-dasharray="4 2" /><path d="M14,13.139 L15.896,14.918 A21.8,21.8 0 0 1 14.918,15.896 L13.139,14 A19.2,19.2 0 0 0 14,13.139 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M14,13.139 L15.896,14.918 A21.8,21.8 0 0 1 14.918,15.896 L13.139,14 A19.2,19.2 0 0 0 14,13.139 Z" stroke="#8a5cd1" stroke-width="0.36" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-28.8" y1="-27.95" x2="-24.8" y2="-27.95" stroke="#2f80c4" stroke-width="0.427" /><text x="-23.8" y="-27.25" font-size="2" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-28.8" y1="-24.95" x2="-24.8" y2="-24.95" stroke="#6b7a8f" stroke-width="0.427" /><text x="-23.8" y="-24.25" font-size="2" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-28.8" y1="-21.95" x2="-24.8" y2="-21.95" stroke="#2a9d8f" stroke-width="0.427" /><text x="-23.8" y="-21.25" font-size="2" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-28.8" y1="-18.95" x2="-24.8" y2="-18.95" stroke="#d1495b" stroke-width="0.427" /><text x="-23.8" y="-18.25" font-size="2" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-28.8" y1="-15.95" x2="-24.8" y2="-15.95" stroke="#e8853a" stroke-width="0.427" /><text x="-23.8" y="-15.25" font-size="2" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-28.8" y1="-12.95" x2="-24.8" y2="-12.95" stroke="#8a5cd1" stroke-width="0.427" /><text x="-23.8" y="-12.25" font-size="2" fill="#8a5cd1" font-family="sans-serif">Electrical contact</text><line x1="-28.8" y1="-9.95" x2="-24.8" y2="-9.95" stroke="#8a94a0" stroke-width="0.427" /><text x="-23.8" y="-9.25" font-size="2" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
+
+**Axial / register schematic** — viewBox `-24 -35 31 66` ([standalone SVG](mounts/fujifilm-x-axial.svg))
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-24 -35 31 66" role="img" aria-labelledby="fujifilm-x-base-axial_section-title fujifilm-x-base-axial_section-desc"><title id="fujifilm-x-base-axial_section-title">Fujifilm X mount — axial / register schematic (base)</title><desc id="fujifilm-x-base-axial_section-desc">Fujifilm X bayonet mount, axial / register schematic. Flange focal distance 17.7 mm, nominal throat 44 mm. Profile fujifilm-x/base.</desc><metadata>{"mountId":"fujifilm-x","profileId":"fujifilm-x/base","view":"axial_section","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-17.7" y1="0" x2="1" y2="0" stroke="#8a94a0" stroke-width="0.25" fill="none" /><line x1="0" y1="-25" x2="0" y2="25" stroke="#8a94a0" stroke-width="0.25" fill="none" /></g><g data-layer="axial-section"><text x="-17.7" y="-15.65" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">sensor film plane</text><line x1="-17.7" y1="-14.15" x2="-17.7" y2="14.15" stroke="#2bb0c4" stroke-width="0.188" fill="none" /><line x1="0" y1="-25" x2="0" y2="25" stroke="#2bb0c4" stroke-width="0.25" fill="none" stroke-dasharray="4 2" /><text x="0" y="-26.5" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">flange datum</text><line x1="0.5" y1="-21" x2="0.5" y2="21" stroke="#2bb0c4" stroke-width="0.25" fill="none" stroke-dasharray="4 2" /><text x="0.5" y="-22.5" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">electrical contact plane</text><line x1="1" y1="-23" x2="1" y2="23" stroke="#2bb0c4" stroke-width="0.25" fill="none" stroke-dasharray="4 2" /><text x="1" y="-24.5" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">bayonet lug engagement</text></g><g aria-hidden="true"><line x1="-23.38" y1="-31.7" x2="-19.38" y2="-31.7" stroke="#8a94a0" stroke-width="0.462" /><text x="-18.324" y="-30.961" font-size="2.112" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text><line x1="-23.38" y1="-28.532" x2="-19.38" y2="-28.532" stroke="#2bb0c4" stroke-width="0.462" /><text x="-18.324" y="-27.793" font-size="2.112" fill="#2bb0c4" font-family="sans-serif">Register plane</text></g></svg>
+
+#### Camera-side front-view geometry
+
+| Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
+|---|---|---|---|---|---|---|---|
+| `body-throat` | body_throat | `fujifilm-x/base` | 0° | 0° | 360° | 0 | 22 |
+| `body-mount-ring` | mount_ring | `fujifilm-x/base` | 0° | 0° | 360° | 22 | 25 |
+| `body-slot-1` | bayonet_receiving_slot | `fujifilm-x/base` | 30° | 10° | 50° | 22 | 24.5 |
+| `body-slot-2` | bayonet_receiving_slot | `fujifilm-x/base` | 150° | 130° | 170° | 22 | 24.5 |
+| `body-slot-3` | bayonet_receiving_slot | `fujifilm-x/base` | 290° | 270° | 310° | 22 | 24.5 |
+| `body-index-mark` | index_mark | `fujifilm-x/base` | 0° | unknown | unknown | unknown | 25.5 |
+| `body-lock-pin` | lock_pin | `fujifilm-x/base` | 135° | unknown | unknown | unknown | 23 |
+
+#### Lens-side rear-view geometry
+
+| Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
+|---|---|---|---|---|---|---|---|
+| `lens-throat` | lens_throat | `fujifilm-x/base` | 0° | 0° | 360° | 0 | 21 |
+| `lens-mount-ring` | lens_mount_ring | `fujifilm-x/base` | 0° | 0° | 360° | 21 | 24 |
+| `lens-lug-1` | bayonet_lug | `fujifilm-x/base` | 30° | 10° | 50° | 22 | 24.5 |
+| `lens-lug-2` | bayonet_lug | `fujifilm-x/base` | 150° | 130° | 170° | 22 | 24.5 |
+| `lens-lug-3` | bayonet_lug | `fujifilm-x/base` | 290° | 270° | 310° | 22 | 24.5 |
+| `lens-index-mark` | index_mark | `fujifilm-x/base` | 0° | unknown | unknown | unknown | 24.5 |
+| `lens-lock-notch` | lock_notch | `fujifilm-x/base` | 135° | unknown | unknown | unknown | 23 |
+
+#### Electrical contacts
+
+| Side | No. | Profile | Center angle | Radius | Function |
+|---|---|---|---|---|---|
+| body | 1 | `fujifilm-x/base` | 135° | 20.5 |  |
+| body | 2 | `fujifilm-x/base` | 145° | 20.5 |  |
+| body | 3 | `fujifilm-x/base` | 155° | 20.5 |  |
+| body | 4 | `fujifilm-x/base` | 165° | 20.5 |  |
+| body | 5 | `fujifilm-x/base` | 175° | 20.5 |  |
+| body | 6 | `fujifilm-x/base` | 185° | 20.5 |  |
+| body | 7 | `fujifilm-x/base` | 195° | 20.5 |  |
+| body | 8 | `fujifilm-x/base` | 205° | 20.5 |  |
+| body | 9 | `fujifilm-x/base` | 215° | 20.5 |  |
+| body | 10 | `fujifilm-x/base` | 225° | 20.5 |  |
+| lens | 1 | `fujifilm-x/base` | 135° | 20.5 |  |
+| lens | 2 | `fujifilm-x/base` | 145° | 20.5 |  |
+| lens | 3 | `fujifilm-x/base` | 155° | 20.5 |  |
+| lens | 4 | `fujifilm-x/base` | 165° | 20.5 |  |
+| lens | 5 | `fujifilm-x/base` | 175° | 20.5 |  |
+| lens | 6 | `fujifilm-x/base` | 185° | 20.5 |  |
+| lens | 7 | `fujifilm-x/base` | 195° | 20.5 |  |
+| lens | 8 | `fujifilm-x/base` | 205° | 20.5 |  |
+| lens | 9 | `fujifilm-x/base` | 215° | 20.5 |  |
+| lens | 10 | `fujifilm-x/base` | 225° | 20.5 |  |
+
+#### Mechanical couplings
+
+None — fully electronic.
+
+#### Axial stack
+
+| Plane | z (mm) | Diameter (mm) |
+|---|---|---|
+| `flange_datum` | 0 | 50 |
+| `bayonet_lug_engagement` | 1 | 46 |
+| `electrical_contact_plane` | 0.5 | 42 |
+| `sensor_film_plane` | -17.7 | 28.3 |
+
+#### Machine-readable mount block
+
+```json
+{
+  "mountId": "fujifilm-x",
+  "displayLabel": "Fujifilm X",
+  "projectNote": "Fujifilm X APS-C mirrorless mount.",
+  "researchStatus": "researched",
+  "mvpStatus": "mvp_complete",
+  "mechanism": "bayonet",
+  "lockType": "sprung_detent",
+  "mvp": {
+    "requiredViews": [
+      "camera_side_front_view",
+      "lens_side_rear_view",
+      "axial_register_schematic"
+    ],
+    "requirementLevels": {
+      "mvpRequired": [
+        "flange_focal_distance_mm",
+        "nominal_throat_diameter_mm",
+        "camera_mount_outer_diameter_mm"
+      ],
+      "conditionalCoreRequired": [
+        "bayonet_lugs",
+        "lock_pin",
+        "index_mark"
+      ],
+      "variantRequired": [
+        "electrical_contacts"
+      ],
+      "mvpOptional": [
+        "mount_screws"
+      ],
+      "referenceGrade": [
+        "lug_ramp_undercut",
+        "contact_pitch"
+      ]
+    },
+    "profileModel": {
+      "baseProfileId": "fujifilm-x/base",
+      "selectedMvpProfileId": "fujifilm-x/base",
+      "variantStrategy": "base_only",
+      "variantProfiles": [
+        {
+          "profileId": "fujifilm-x/base",
+          "profileType": "base",
+          "appliesTo": "all Fujifilm X lenses and bodies (APS-C), 2012–present",
+          "adds": [
+            "three straight-edged bayonet lugs",
+            "locking pin/notch at 4:30",
+            "mounting index",
+            "ten-contact electrical block at the bottom (4:30–7:30)"
+          ],
+          "removes": [
+            "all mechanical couplings (fully electronic)"
+          ],
+          "changes": [],
+          "cameraSideOverlayLayers": [
+            "camera-side-variant-electrical"
+          ],
+          "lensSideOverlayLayers": [
+            "lens-side-variant-electrical"
+          ],
+          "status": "researched",
+          "sourceRefs": [
+            "fx-1"
+          ]
+        }
+      ]
+    }
+  },
+  "coreDimensions": {
+    "flangeFocalDistanceMm": {
+      "value": 17.7,
+      "status": "secondary",
+      "sourceRefs": [
+        "fx-1"
+      ]
+    },
+    "nominalThroatDiameterMm": {
+      "value": 44,
+      "status": "secondary",
+      "sourceRefs": [
+        "fx-1"
+      ]
+    },
+    "effectiveClearApertureMm": {
+      "value": 44,
+      "status": "secondary",
+      "sourceRefs": [
+        "fx-1"
+      ]
+    },
+    "cameraMountOuterDiameterMm": {
+      "value": 50,
+      "status": "photo_scaled",
+      "sourceRefs": [
+        "fx-2"
+      ]
+    },
+    "lensMountOuterDiameterMm": {
+      "value": 48,
+      "status": "photo_scaled",
+      "sourceRefs": [
+        "fx-2"
+      ]
+    },
+    "contactCount": {
+      "value": 10,
+      "status": "secondary",
+      "sourceRefs": [
+        "fx-1"
+      ]
+    }
+  },
+  "lockGeometry": {
+    "insertionAngleDeg": {
+      "value": 0,
+      "status": "secondary",
+      "sourceRefs": [
+        "fx-1"
+      ]
+    },
+    "lockAngleDeg": {
+      "value": "unknown",
+      "status": "unknown",
+      "sourceRefs": [
+        "fx-1"
+      ]
+    },
+    "lockRotationDeg": {
+      "value": "unknown",
+      "status": "unknown",
+      "sourceRefs": [
+        "fx-1"
+      ]
+    },
+    "lockRotationDirection": {
+      "value": "unknown",
+      "status": "unknown",
+      "sourceRefs": []
+    }
+  },
+  "cameraSideFeatures": [
+    {
+      "featureId": "body-throat",
+      "featureType": "body_throat",
+      "profileId": "fujifilm-x/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "fx-1"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "fx-1"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 360,
+        "status": "secondary",
+        "sourceRefs": [
+          "fx-1"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "fx-1"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 22,
+        "status": "secondary",
+        "sourceRefs": [
+          "fx-1"
+        ]
+      },
+      "depthMm": {
+        "value": "not_applicable",
+        "status": "not_applicable",
+        "sourceRefs": []
+      },
+      "matesWith": "",
+      "shapeNotes": "44 mm throat opening"
+    },
+    {
+      "featureId": "body-mount-ring",
+      "featureType": "mount_ring",
+      "profileId": "fujifilm-x/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 360,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 22,
+        "status": "secondary",
+        "sourceRefs": [
+          "fx-1"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 25,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "depthMm": {
+        "value": "not_applicable",
+        "status": "not_applicable",
+        "sourceRefs": []
+      },
+      "matesWith": "",
+      "shapeNotes": "visible body mount ring"
+    },
+    {
+      "featureId": "body-slot-1",
+      "featureType": "bayonet_receiving_slot",
+      "profileId": "fujifilm-x/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 30,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 10,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 50,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 22,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 24.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "depthMm": {
+        "value": 1.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "matesWith": "lens-lug-1",
+      "shapeNotes": "three-lug bayonet, straight edges [fx-1]"
+    },
+    {
+      "featureId": "body-slot-2",
+      "featureType": "bayonet_receiving_slot",
+      "profileId": "fujifilm-x/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 150,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 130,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 170,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 22,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 24.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "depthMm": {
+        "value": 1.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "matesWith": "lens-lug-2",
+      "shapeNotes": "three-lug bayonet, straight edges [fx-1]"
+    },
+    {
+      "featureId": "body-slot-3",
+      "featureType": "bayonet_receiving_slot",
+      "profileId": "fujifilm-x/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 290,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 270,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 310,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 22,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 24.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "depthMm": {
+        "value": 1.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "matesWith": "lens-lug-3",
+      "shapeNotes": "three-lug bayonet, straight edges [fx-1]"
+    },
+    {
+      "featureId": "body-index-mark",
+      "featureType": "index_mark",
+      "profileId": "fujifilm-x/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "startAngleDeg": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "endAngleDeg": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 25.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "depthMm": {
+        "value": "not_applicable",
+        "status": "not_applicable",
+        "sourceRefs": []
+      },
+      "matesWith": "lens-index-mark",
+      "shapeNotes": "mounting index"
+    },
+    {
+      "featureId": "body-lock-pin",
+      "featureType": "lock_pin",
+      "profileId": "fujifilm-x/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 135,
+        "status": "secondary",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "startAngleDeg": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "endAngleDeg": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 23,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "depthMm": {
+        "value": 2,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "matesWith": "lens-lock-notch",
+      "shapeNotes": "locking groove at 4:30 [fx-2]"
+    }
+  ],
+  "lensSideFeatures": [
+    {
+      "featureId": "lens-throat",
+      "featureType": "lens_throat",
+      "profileId": "fujifilm-x/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "fx-1"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "fx-1"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 360,
+        "status": "secondary",
+        "sourceRefs": [
+          "fx-1"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "fx-1"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 21,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "thicknessMm": {
+        "value": "not_applicable",
+        "status": "not_applicable",
+        "sourceRefs": []
+      },
+      "matesWith": "",
+      "shapeNotes": "rear opening"
+    },
+    {
+      "featureId": "lens-mount-ring",
+      "featureType": "lens_mount_ring",
+      "profileId": "fujifilm-x/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 360,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 21,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 24,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "thicknessMm": {
+        "value": "not_applicable",
+        "status": "not_applicable",
+        "sourceRefs": []
+      },
+      "matesWith": "",
+      "shapeNotes": "lens flange ring"
+    },
+    {
+      "featureId": "lens-lug-1",
+      "featureType": "bayonet_lug",
+      "profileId": "fujifilm-x/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 30,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 10,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 50,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 22,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 24.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "thicknessMm": {
+        "value": 1.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "matesWith": "body-slot-1",
+      "shapeNotes": "three-lug bayonet, straight edges [fx-1]"
+    },
+    {
+      "featureId": "lens-lug-2",
+      "featureType": "bayonet_lug",
+      "profileId": "fujifilm-x/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 150,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 130,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 170,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 22,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 24.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "thicknessMm": {
+        "value": 1.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "matesWith": "body-slot-2",
+      "shapeNotes": "three-lug bayonet, straight edges [fx-1]"
+    },
+    {
+      "featureId": "lens-lug-3",
+      "featureType": "bayonet_lug",
+      "profileId": "fujifilm-x/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 290,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 270,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 310,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 22,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 24.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "thicknessMm": {
+        "value": 1.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "matesWith": "body-slot-3",
+      "shapeNotes": "three-lug bayonet, straight edges [fx-1]"
+    },
+    {
+      "featureId": "lens-index-mark",
+      "featureType": "index_mark",
+      "profileId": "fujifilm-x/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "startAngleDeg": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "endAngleDeg": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 24.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "thicknessMm": {
+        "value": "not_applicable",
+        "status": "not_applicable",
+        "sourceRefs": []
+      },
+      "matesWith": "body-index-mark",
+      "shapeNotes": "aligns with body index"
+    },
+    {
+      "featureId": "lens-lock-notch",
+      "featureType": "lock_notch",
+      "profileId": "fujifilm-x/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 135,
+        "status": "secondary",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "startAngleDeg": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "endAngleDeg": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 23,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "thicknessMm": {
+        "value": 2,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "matesWith": "body-lock-pin",
+      "shapeNotes": "receives body lock pin (4:30)"
+    }
+  ],
+  "axialStack": [
+    {
+      "planeId": "flange_datum",
+      "zPositionMm": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "fx-1"
+        ]
+      },
+      "thicknessMm": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "fx-1"
+        ]
+      },
+      "diameterMm": {
+        "value": 50,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      }
+    },
+    {
+      "planeId": "bayonet_lug_engagement",
+      "zPositionMm": {
+        "value": 1,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "thicknessMm": {
+        "value": 1.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "diameterMm": {
+        "value": 46,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      }
+    },
+    {
+      "planeId": "electrical_contact_plane",
+      "zPositionMm": {
+        "value": 0.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "thicknessMm": {
+        "value": 0.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "diameterMm": {
+        "value": 42,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      }
+    },
+    {
+      "planeId": "sensor_film_plane",
+      "zPositionMm": {
+        "value": -17.7,
+        "status": "secondary",
+        "sourceRefs": [
+          "fx-1"
+        ]
+      },
+      "thicknessMm": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "fx-1"
+        ]
+      },
+      "diameterMm": {
+        "value": 28.3,
+        "status": "secondary",
+        "sourceRefs": [
+          "fx-1"
+        ]
+      }
+    }
+  ],
+  "contacts": [
+    {
+      "side": "body",
+      "contactNo": 1,
+      "profileId": "fujifilm-x/base",
+      "centerAngleDeg": {
+        "value": 135,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 20.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "heightMm": {
+        "value": 2.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0.4,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "body",
+      "contactNo": 2,
+      "profileId": "fujifilm-x/base",
+      "centerAngleDeg": {
+        "value": 145,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 20.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "heightMm": {
+        "value": 2.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0.4,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "body",
+      "contactNo": 3,
+      "profileId": "fujifilm-x/base",
+      "centerAngleDeg": {
+        "value": 155,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 20.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "heightMm": {
+        "value": 2.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0.4,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "body",
+      "contactNo": 4,
+      "profileId": "fujifilm-x/base",
+      "centerAngleDeg": {
+        "value": 165,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 20.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "heightMm": {
+        "value": 2.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0.4,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "body",
+      "contactNo": 5,
+      "profileId": "fujifilm-x/base",
+      "centerAngleDeg": {
+        "value": 175,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 20.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "heightMm": {
+        "value": 2.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0.4,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "body",
+      "contactNo": 6,
+      "profileId": "fujifilm-x/base",
+      "centerAngleDeg": {
+        "value": 185,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 20.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "heightMm": {
+        "value": 2.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0.4,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "body",
+      "contactNo": 7,
+      "profileId": "fujifilm-x/base",
+      "centerAngleDeg": {
+        "value": 195,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 20.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "heightMm": {
+        "value": 2.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0.4,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "body",
+      "contactNo": 8,
+      "profileId": "fujifilm-x/base",
+      "centerAngleDeg": {
+        "value": 205,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 20.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "heightMm": {
+        "value": 2.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0.4,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "body",
+      "contactNo": 9,
+      "profileId": "fujifilm-x/base",
+      "centerAngleDeg": {
+        "value": 215,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 20.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "heightMm": {
+        "value": 2.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0.4,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "body",
+      "contactNo": 10,
+      "profileId": "fujifilm-x/base",
+      "centerAngleDeg": {
+        "value": 225,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 20.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "heightMm": {
+        "value": 2.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0.4,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "lens",
+      "contactNo": 1,
+      "profileId": "fujifilm-x/base",
+      "centerAngleDeg": {
+        "value": 135,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 20.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "heightMm": {
+        "value": 2.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "lens",
+      "contactNo": 2,
+      "profileId": "fujifilm-x/base",
+      "centerAngleDeg": {
+        "value": 145,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 20.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "heightMm": {
+        "value": 2.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "lens",
+      "contactNo": 3,
+      "profileId": "fujifilm-x/base",
+      "centerAngleDeg": {
+        "value": 155,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 20.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "heightMm": {
+        "value": 2.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "lens",
+      "contactNo": 4,
+      "profileId": "fujifilm-x/base",
+      "centerAngleDeg": {
+        "value": 165,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 20.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "heightMm": {
+        "value": 2.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "lens",
+      "contactNo": 5,
+      "profileId": "fujifilm-x/base",
+      "centerAngleDeg": {
+        "value": 175,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 20.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "heightMm": {
+        "value": 2.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "lens",
+      "contactNo": 6,
+      "profileId": "fujifilm-x/base",
+      "centerAngleDeg": {
+        "value": 185,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 20.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "heightMm": {
+        "value": 2.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "lens",
+      "contactNo": 7,
+      "profileId": "fujifilm-x/base",
+      "centerAngleDeg": {
+        "value": 195,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 20.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "heightMm": {
+        "value": 2.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "lens",
+      "contactNo": 8,
+      "profileId": "fujifilm-x/base",
+      "centerAngleDeg": {
+        "value": 205,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 20.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "heightMm": {
+        "value": 2.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "lens",
+      "contactNo": 9,
+      "profileId": "fujifilm-x/base",
+      "centerAngleDeg": {
+        "value": 215,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 20.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "heightMm": {
+        "value": 2.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "lens",
+      "contactNo": 10,
+      "profileId": "fujifilm-x/base",
+      "centerAngleDeg": {
+        "value": 225,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 20.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "heightMm": {
+        "value": 2.6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "function": ""
+    }
+  ],
+  "mechanicalCouplings": [],
+  "screwsGasketsBaffles": [
+    {
+      "featureId": "body-mount-screws",
+      "featureType": "mount_screws",
+      "side": "body",
+      "count": {
+        "value": 4,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "pcdMm": {
+        "value": 47,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "diameterMm": {
+        "value": 2,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "centerAnglesDeg": {
+        "value": [
+          45,
+          135,
+          225,
+          315
+        ],
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "fx-2"
+        ]
+      },
+      "shape": "round"
+    }
+  ],
+  "svgLayers": {
+    "mvpRequired": [
+      "datum-axis",
+      "camera-side-metal",
+      "lens-side-metal",
+      "axial-section",
+      "uncertainty"
+    ],
+    "conditionalCoreRequired": [
+      "clear-aperture",
+      "camera-side-core-interface",
+      "lens-side-core-interface"
+    ],
+    "variantRequired": [
+      "camera-side-variant-electrical",
+      "lens-side-variant-electrical"
+    ]
+  },
+  "sourceRefs": [
+    {
+      "ref": "fx-1",
+      "sourceType": "secondary",
+      "citation": "“Fujifilm X-mount,” Wikipedia. Accessed 2026-06-04.",
+      "liveUrl": "https://en.wikipedia.org/wiki/Fujifilm_X-mount",
+      "archiveUrl": "http://web.archive.org/web/20251121080038/https://en.wikipedia.org/wiki/Fujifilm_X-mount",
+      "archiveDate": "2025-11-21",
+      "appliesTo": "flange focal distance, 44 mm throat, ten contacts, three lugs",
+      "confidence": "high"
+    },
+    {
+      "ref": "fx-2",
+      "sourceType": "secondary",
+      "citation": "“Lens Mounts: Fujifilm X,” JAPB (japb.net). Accessed 2026-06-04.",
+      "liveUrl": "https://japb.net/theory/lensmounts/fujifilm-x/",
+      "archiveUrl": "http://web.archive.org/web/20251016005946/https://japb.net/theory/lensmounts/fujifilm-x/",
+      "archiveDate": "2025-10-16",
+      "appliesTo": "locking groove at 4:30, ten contacts across 4:30–7:30, three straight-edged lugs",
+      "confidence": "medium"
+    }
+  ],
+  "openQuestions": [
+    {
+      "issue": "Lug angular spans, the mounting-index clock position, and the lock rotation angle/direction are photo-scaled or undocumented; per-contact clock positions are interpolated within the documented 4:30–7:30 band.",
+      "affectedFields": [
+        "cameraSideFeatures",
+        "lensSideFeatures",
+        "contacts",
+        "lockGeometry"
+      ],
+      "candidateValues": [],
+      "resolution": "Upgrade to an official Fujifilm X mount drawing or measured sample."
+    }
+  ],
+  "schemaVersion": "1.3",
+  "coordinateConvention": {
+    "units": "mm_deg",
+    "zDatum": "flange_datum",
+    "zPositive": "toward_lens",
+    "angleZero": "top_dead_center_camera_front_view",
+    "anglePositive": "clockwise_camera_front_view",
+    "storedAngleFrame": "camera_front_view",
+    "lensRearMirror": "theta_out = (360 - theta) mod 360",
+    "angleSpanRule": "clockwise_sweep_start_to_end_mod_360"
+  },
+  "render": {
+    "unitMapping": "1_user_unit_per_mm",
+    "marginFraction": 0.1,
+    "numericPrecision": 3,
+    "views": {
+      "cameraSideFront": {
+        "viewBox": "-31 -32 62 63"
+      },
+      "lensSideRear": {
+        "viewBox": "-30 -31 60 61"
+      },
+      "axialSection": {
+        "viewBox": "-24 -35 31 66"
+      }
+    }
+  },
+  "metadata": {
+    "title": "Fujifilm X mount",
+    "desc": "Fujifilm X mount — flange focal distance 17.7 mm, nominal throat 44 mm.",
+    "view": "unknown",
+    "profileId": "fujifilm-x/base"
+  }
+}
+```
+
+#### Sources
+
+| Ref | Type | Citation | Archive | Captured | Confidence |
+|---|---|---|---|---|---|
+| `fx-1` | secondary | “Fujifilm X-mount,” Wikipedia. Accessed 2026-06-04. | [snapshot](http://web.archive.org/web/20251121080038/https://en.wikipedia.org/wiki/Fujifilm_X-mount) | 2025-11-21 | high |
+| `fx-2` | secondary | “Lens Mounts: Fujifilm X,” JAPB (japb.net). Accessed 2026-06-04. | [snapshot](http://web.archive.org/web/20251016005946/https://japb.net/theory/lensmounts/fujifilm-x/) | 2025-10-16 | medium |
+
+#### Open questions
+
+- Lug angular spans, the mounting-index clock position, and the lock rotation angle/direction are photo-scaled or undocumented; per-contact clock positions are interpolated within the documented 4:30–7:30 band. _(Upgrade to an official Fujifilm X mount drawing or measured sample.)_
 
 ### `nikon-f` — Nikon F
 
@@ -4374,6 +8607,2223 @@ None — fully electronic.
 
 - Exact bayonet lug/slot angular spans and the mounting-index/lock-pin clock positions are photo-scaled; the JAPB teardown uses a 6-o'clock-at-top convention, so its clock positions are not adopted directly. _(Upgrade to an official Nikon mount drawing or measured sample.)_
 - AF-D carries five CPU contacts ('4+1'); AF-I/AF-S/AF-P carry up to ten. The five AF-D and eight AF-I/AF-S contacts modeled here are representative sets; functions are service-manual labels carried as descriptive text. _(Model per-variant contact maps from an official Nikon service reference.)_
+
+### `nikon-z` — Nikon Z
+
+| Field | Value |
+|---|---|
+| Mount ID | `nikon-z` |
+| Display label | Nikon Z |
+| Project note | Nikon Z mirrorless mount. |
+| Research status | `researched` |
+| MVP status | `mvp_complete` |
+| Mount mechanism | `bayonet` (lock `sprung_detent`) |
+| Base profile | `nikon-z/base` |
+| Selected MVP profile | `nikon-z/base` |
+| Variant strategy | `base_only` |
+
+#### Base and variant profile matrix
+
+| Profile ID | Type | Applies to | Adds | Removes | Changes |
+|---|---|---|---|---|---|
+| `nikon-z/base` | base | all Nikon Z lenses and bodies (FX and DX), 2018–present | four straight-edged bayonet lugs; locking pin/notch at 3 o'clock; mounting index; eleven-contact electrical block at the bottom (5–7 o'clock) | all mechanical couplings (fully electronic) | — |
+
+#### Dimensional summary
+
+| Field | Value | Unit |
+|---|---|---|
+| Flange focal distance | 16 (`secondary`) | mm |
+| Nominal throat diameter | 55 (`secondary`) | mm |
+| Effective clear aperture | 55 (`secondary`) | mm |
+| Camera mount outer diameter | 66 (`photo_scaled`) | mm |
+| Lens mount outer diameter | 64 (`photo_scaled`) | mm |
+| Contact count | 11 (`secondary`) | count |
+| Lock rotation | unknown (`unknown`) | deg |
+| Lock direction | unknown (`unknown`) | — |
+
+#### Figures (selected profile `nikon-z/base`)
+
+**Camera-side front view** — viewBox `-41 -42 82 83` ([standalone SVG](mounts/nikon-z-camera-front.svg))
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-41 -42 82 83" role="img" aria-labelledby="nikon-z-base-camera_side_front-title nikon-z-base-camera_side_front-desc"><title id="nikon-z-base-camera_side_front-title">Nikon Z mount — camera-side front view (base)</title><desc id="nikon-z-base-camera_side_front-desc">Nikon Z bayonet mount, camera-side front view. Flange focal distance 16 mm, nominal throat 55 mm. Profile nikon-z/base.</desc><metadata>{"mountId":"nikon-z","profileId":"nikon-z/base","view":"camera_side_front","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.65" y1="0" x2="1.65" y2="0" stroke="#8a94a0" stroke-width="0.492" fill="none" /><line x1="0" y1="-1.65" x2="0" y2="1.65" stroke="#8a94a0" stroke-width="0.492" fill="none" /><line x1="0" y1="-33" x2="0" y2="-34.98" stroke="#8a94a0" stroke-width="0.492" fill="none" /></g><g data-layer="camera-side-metal"><path d="M0,-33 A33,33 0 1 1 0,33 A33,33 0 1 1 0,-33 Z M0,-27.5 A27.5,27.5 0 1 1 0,27.5 A27.5,27.5 0 1 1 0,-27.5 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-33 A33,33 0 1 1 0,33 A33,33 0 1 1 0,-33 Z M0,-27.5 A27.5,27.5 0 1 1 0,27.5 A27.5,27.5 0 1 1 0,-27.5 Z" stroke="#6b7a8f" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /><path d="M0,-27.5 A27.5,27.5 0 1 1 0,27.5 A27.5,27.5 0 1 1 0,-27.5 Z" stroke="#2f80c4" stroke-width="0.369" fill="none" /><circle cx="10.774" cy="-29.6" r="1" stroke="#7f8c3a" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /><circle cx="31.021" cy="-5.47" r="1" stroke="#7f8c3a" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /><circle cx="20.248" cy="24.13" r="1" stroke="#7f8c3a" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /><circle cx="-10.774" cy="29.6" r="1" stroke="#7f8c3a" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /><circle cx="-31.021" cy="5.47" r="1" stroke="#7f8c3a" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /><circle cx="-20.248" cy="-24.13" r="1" stroke="#7f8c3a" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-core-interface"><path d="M0,-30.2 L-2.045,-33.438 L2.045,-33.438 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-30.2 L-2.045,-33.438 L2.045,-33.438 Z" stroke="#e8853a" stroke-width="0.492" fill="none" stroke-dasharray="0.6 1.6" /><path d="M12.91,-24.281 L14.319,-26.93 A30.5,30.5 0 0 1 26.93,-14.319 L24.281,-12.91 A27.5,27.5 0 0 0 12.91,-24.281 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M12.91,-24.281 L14.319,-26.93 A30.5,30.5 0 0 1 26.93,-14.319 L24.281,-12.91 A27.5,27.5 0 0 0 12.91,-24.281 Z" stroke="#2a9d8f" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /><circle cx="28.5" cy="0" r="1.155" fill="#d1495b" fill-opacity="0.12" /><circle cx="28.5" cy="0" r="1.155" stroke="#d1495b" stroke-width="0.492" fill="none" stroke-dasharray="0.6 1.6" /><path d="M24.281,12.91 L26.93,14.319 A30.5,30.5 0 0 1 14.319,26.93 L12.91,24.281 A27.5,27.5 0 0 0 24.281,12.91 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M24.281,12.91 L26.93,14.319 A30.5,30.5 0 0 1 14.319,26.93 L12.91,24.281 A27.5,27.5 0 0 0 24.281,12.91 Z" stroke="#2a9d8f" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /><path d="M-12.91,24.281 L-14.319,26.93 A30.5,30.5 0 0 1 -26.93,14.319 L-24.281,12.91 A27.5,27.5 0 0 0 -12.91,24.281 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-12.91,24.281 L-14.319,26.93 A30.5,30.5 0 0 1 -26.93,14.319 L-24.281,12.91 A27.5,27.5 0 0 0 -12.91,24.281 Z" stroke="#2a9d8f" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /><path d="M-24.281,-12.91 L-26.93,-14.319 A30.5,30.5 0 0 1 -14.319,-26.93 L-12.91,-24.281 A27.5,27.5 0 0 0 -24.281,-12.91 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-24.281,-12.91 L-26.93,-14.319 A30.5,30.5 0 0 1 -14.319,-26.93 L-12.91,-24.281 A27.5,27.5 0 0 0 -24.281,-12.91 Z" stroke="#2a9d8f" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-variant-electrical"><path d="M12.526,20.472 L14.092,23.031 A27,27 0 0 1 12.9,23.719 L11.466,21.084 A24,24 0 0 0 12.526,20.472 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M12.526,20.472 L14.092,23.031 A27,27 0 0 1 12.9,23.719 L11.466,21.084 A24,24 0 0 0 12.526,20.472 Z" stroke="#8a5cd1" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /><path d="M10.317,21.669 L11.607,24.378 A27,27 0 0 1 10.35,24.938 L9.2,22.167 A24,24 0 0 0 10.317,21.669 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M10.317,21.669 L11.607,24.378 A27,27 0 0 1 10.35,24.938 L9.2,22.167 A24,24 0 0 0 10.317,21.669 Z" stroke="#8a5cd1" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /><path d="M7.996,22.629 L8.995,25.458 A27,27 0 0 1 7.686,25.883 L6.832,23.007 A24,24 0 0 0 7.996,22.629 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M7.996,22.629 L8.995,25.458 A27,27 0 0 1 7.686,25.883 L6.832,23.007 A24,24 0 0 0 7.996,22.629 Z" stroke="#8a5cd1" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /><path d="M5.587,23.341 L6.285,26.258 A27,27 0 0 1 4.939,26.544 L4.39,23.595 A24,24 0 0 0 5.587,23.341 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M5.587,23.341 L6.285,26.258 A27,27 0 0 1 4.939,26.544 L4.39,23.595 A24,24 0 0 0 5.587,23.341 Z" stroke="#8a5cd1" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /><path d="M3.116,23.797 L3.506,26.771 A27,27 0 0 1 2.137,26.915 L1.9,23.925 A24,24 0 0 0 3.116,23.797 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M3.116,23.797 L3.506,26.771 A27,27 0 0 1 2.137,26.915 L1.9,23.925 A24,24 0 0 0 3.116,23.797 Z" stroke="#8a5cd1" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /><path d="M0.612,23.992 L0.688,26.991 A27,27 0 0 1 -0.688,26.991 L-0.612,23.992 A24,24 0 0 0 0.612,23.992 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M0.612,23.992 L0.688,26.991 A27,27 0 0 1 -0.688,26.991 L-0.612,23.992 A24,24 0 0 0 0.612,23.992 Z" stroke="#8a5cd1" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /><path d="M-1.9,23.925 L-2.137,26.915 A27,27 0 0 1 -3.506,26.771 L-3.116,23.797 A24,24 0 0 0 -1.9,23.925 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-1.9,23.925 L-2.137,26.915 A27,27 0 0 1 -3.506,26.771 L-3.116,23.797 A24,24 0 0 0 -1.9,23.925 Z" stroke="#8a5cd1" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /><path d="M-4.39,23.595 L-4.939,26.544 A27,27 0 0 1 -6.285,26.258 L-5.587,23.341 A24,24 0 0 0 -4.39,23.595 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-4.39,23.595 L-4.939,26.544 A27,27 0 0 1 -6.285,26.258 L-5.587,23.341 A24,24 0 0 0 -4.39,23.595 Z" stroke="#8a5cd1" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /><path d="M-6.832,23.007 L-7.686,25.883 A27,27 0 0 1 -8.995,25.458 L-7.996,22.629 A24,24 0 0 0 -6.832,23.007 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-6.832,23.007 L-7.686,25.883 A27,27 0 0 1 -8.995,25.458 L-7.996,22.629 A24,24 0 0 0 -6.832,23.007 Z" stroke="#8a5cd1" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /><path d="M-9.2,22.167 L-10.35,24.938 A27,27 0 0 1 -11.607,24.378 L-10.317,21.669 A24,24 0 0 0 -9.2,22.167 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-9.2,22.167 L-10.35,24.938 A27,27 0 0 1 -11.607,24.378 L-10.317,21.669 A24,24 0 0 0 -9.2,22.167 Z" stroke="#8a5cd1" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /><path d="M-11.466,21.084 L-12.9,23.719 A27,27 0 0 1 -14.092,23.031 L-12.526,20.472 A24,24 0 0 0 -11.466,21.084 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-11.466,21.084 L-12.9,23.719 A27,27 0 0 1 -14.092,23.031 L-12.526,20.472 A24,24 0 0 0 -11.466,21.084 Z" stroke="#8a5cd1" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-39.36" y1="-37.85" x2="-34.44" y2="-37.85" stroke="#2f80c4" stroke-width="0.581" /><text x="-33.112" y="-36.92" font-size="2.656" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-39.36" y1="-33.866" x2="-34.44" y2="-33.866" stroke="#6b7a8f" stroke-width="0.581" /><text x="-33.112" y="-32.936" font-size="2.656" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-39.36" y1="-29.882" x2="-34.44" y2="-29.882" stroke="#2a9d8f" stroke-width="0.581" /><text x="-33.112" y="-28.952" font-size="2.656" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-39.36" y1="-25.898" x2="-34.44" y2="-25.898" stroke="#d1495b" stroke-width="0.581" /><text x="-33.112" y="-24.968" font-size="2.656" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-39.36" y1="-21.914" x2="-34.44" y2="-21.914" stroke="#e8853a" stroke-width="0.581" /><text x="-33.112" y="-20.984" font-size="2.656" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-39.36" y1="-17.93" x2="-34.44" y2="-17.93" stroke="#8a5cd1" stroke-width="0.581" /><text x="-33.112" y="-17" font-size="2.656" fill="#8a5cd1" font-family="sans-serif">Electrical contact</text><line x1="-39.36" y1="-13.946" x2="-34.44" y2="-13.946" stroke="#7f8c3a" stroke-width="0.581" /><text x="-33.112" y="-13.016" font-size="2.656" fill="#7f8c3a" font-family="sans-serif">Screws / seals</text><line x1="-39.36" y1="-9.962" x2="-34.44" y2="-9.962" stroke="#8a94a0" stroke-width="0.581" /><text x="-33.112" y="-9.032" font-size="2.656" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
+
+**Lens-side rear view** — viewBox `-39 -41 78 80` ([standalone SVG](mounts/nikon-z-lens-rear.svg))
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-39 -41 78 80" role="img" aria-labelledby="nikon-z-base-lens_side_rear-title nikon-z-base-lens_side_rear-desc"><title id="nikon-z-base-lens_side_rear-title">Nikon Z mount — lens-side rear view (base)</title><desc id="nikon-z-base-lens_side_rear-desc">Nikon Z bayonet mount, lens-side rear view. Flange focal distance 16 mm, nominal throat 55 mm. Profile nikon-z/base.</desc><metadata>{"mountId":"nikon-z","profileId":"nikon-z/base","view":"lens_side_rear","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.6" y1="0" x2="1.6" y2="0" stroke="#8a94a0" stroke-width="0.468" fill="none" /><line x1="0" y1="-1.6" x2="0" y2="1.6" stroke="#8a94a0" stroke-width="0.468" fill="none" /><line x1="0" y1="-32" x2="0" y2="-33.92" stroke="#8a94a0" stroke-width="0.468" fill="none" /></g><g data-layer="lens-side-metal"><path d="M0,-32 A32,32 0 1 1 0,32 A32,32 0 1 1 0,-32 Z M0,-26.5 A26.5,26.5 0 1 1 0,26.5 A26.5,26.5 0 1 1 0,-26.5 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-32 A32,32 0 1 1 0,32 A32,32 0 1 1 0,-32 Z M0,-26.5 A26.5,26.5 0 1 1 0,26.5 A26.5,26.5 0 1 1 0,-26.5 Z" stroke="#6b7a8f" stroke-width="0.468" fill="none" stroke-dasharray="4 2" /><path d="M0,-26.5 A26.5,26.5 0 1 1 0,26.5 A26.5,26.5 0 1 1 0,-26.5 Z" stroke="#2f80c4" stroke-width="0.468" fill="none" stroke-dasharray="4 2" /></g><g data-layer="lens-side-core-interface"><path d="M0,-27.8 L-1.893,-30.942 L1.893,-30.942 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-27.8 L-1.893,-30.942 L1.893,-30.942 Z" stroke="#e8853a" stroke-width="0.468" fill="none" stroke-dasharray="0.6 1.6" /><path d="M12.91,-24.281 L14.319,-26.93 A30.5,30.5 0 0 1 26.93,-14.319 L24.281,-12.91 A27.5,27.5 0 0 0 12.91,-24.281 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M12.91,-24.281 L14.319,-26.93 A30.5,30.5 0 0 1 26.93,-14.319 L24.281,-12.91 A27.5,27.5 0 0 0 12.91,-24.281 Z" stroke="#2a9d8f" stroke-width="0.468" fill="none" stroke-dasharray="4 2" /><path d="M24.281,12.91 L26.93,14.319 A30.5,30.5 0 0 1 14.319,26.93 L12.91,24.281 A27.5,27.5 0 0 0 24.281,12.91 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M24.281,12.91 L26.93,14.319 A30.5,30.5 0 0 1 14.319,26.93 L12.91,24.281 A27.5,27.5 0 0 0 24.281,12.91 Z" stroke="#2a9d8f" stroke-width="0.468" fill="none" stroke-dasharray="4 2" /><path d="M-12.91,24.281 L-14.319,26.93 A30.5,30.5 0 0 1 -26.93,14.319 L-24.281,12.91 A27.5,27.5 0 0 0 -12.91,24.281 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-12.91,24.281 L-14.319,26.93 A30.5,30.5 0 0 1 -26.93,14.319 L-24.281,12.91 A27.5,27.5 0 0 0 -12.91,24.281 Z" stroke="#2a9d8f" stroke-width="0.468" fill="none" stroke-dasharray="4 2" /><circle cx="-28.5" cy="0" r="1.12" fill="#d1495b" fill-opacity="0.12" /><circle cx="-28.5" cy="0" r="1.12" stroke="#d1495b" stroke-width="0.468" fill="none" stroke-dasharray="0.6 1.6" /><path d="M-24.281,-12.91 L-26.93,-14.319 A30.5,30.5 0 0 1 -14.319,-26.93 L-12.91,-24.281 A27.5,27.5 0 0 0 -24.281,-12.91 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-24.281,-12.91 L-26.93,-14.319 A30.5,30.5 0 0 1 -14.319,-26.93 L-12.91,-24.281 A27.5,27.5 0 0 0 -24.281,-12.91 Z" stroke="#2a9d8f" stroke-width="0.468" fill="none" stroke-dasharray="4 2" /></g><g data-layer="lens-side-variant-electrical"><path d="M-11.466,21.084 L-12.9,23.719 A27,27 0 0 1 -14.092,23.031 L-12.526,20.472 A24,24 0 0 0 -11.466,21.084 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-11.466,21.084 L-12.9,23.719 A27,27 0 0 1 -14.092,23.031 L-12.526,20.472 A24,24 0 0 0 -11.466,21.084 Z" stroke="#8a5cd1" stroke-width="0.468" fill="none" stroke-dasharray="4 2" /><path d="M-9.2,22.167 L-10.35,24.938 A27,27 0 0 1 -11.607,24.378 L-10.317,21.669 A24,24 0 0 0 -9.2,22.167 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-9.2,22.167 L-10.35,24.938 A27,27 0 0 1 -11.607,24.378 L-10.317,21.669 A24,24 0 0 0 -9.2,22.167 Z" stroke="#8a5cd1" stroke-width="0.468" fill="none" stroke-dasharray="4 2" /><path d="M-6.832,23.007 L-7.686,25.883 A27,27 0 0 1 -8.995,25.458 L-7.996,22.629 A24,24 0 0 0 -6.832,23.007 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-6.832,23.007 L-7.686,25.883 A27,27 0 0 1 -8.995,25.458 L-7.996,22.629 A24,24 0 0 0 -6.832,23.007 Z" stroke="#8a5cd1" stroke-width="0.468" fill="none" stroke-dasharray="4 2" /><path d="M-4.39,23.595 L-4.939,26.544 A27,27 0 0 1 -6.285,26.258 L-5.587,23.341 A24,24 0 0 0 -4.39,23.595 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-4.39,23.595 L-4.939,26.544 A27,27 0 0 1 -6.285,26.258 L-5.587,23.341 A24,24 0 0 0 -4.39,23.595 Z" stroke="#8a5cd1" stroke-width="0.468" fill="none" stroke-dasharray="4 2" /><path d="M-1.9,23.925 L-2.137,26.915 A27,27 0 0 1 -3.506,26.771 L-3.116,23.797 A24,24 0 0 0 -1.9,23.925 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-1.9,23.925 L-2.137,26.915 A27,27 0 0 1 -3.506,26.771 L-3.116,23.797 A24,24 0 0 0 -1.9,23.925 Z" stroke="#8a5cd1" stroke-width="0.468" fill="none" stroke-dasharray="4 2" /><path d="M0.612,23.992 L0.688,26.991 A27,27 0 0 1 -0.688,26.991 L-0.612,23.992 A24,24 0 0 0 0.612,23.992 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M0.612,23.992 L0.688,26.991 A27,27 0 0 1 -0.688,26.991 L-0.612,23.992 A24,24 0 0 0 0.612,23.992 Z" stroke="#8a5cd1" stroke-width="0.468" fill="none" stroke-dasharray="4 2" /><path d="M3.116,23.797 L3.506,26.771 A27,27 0 0 1 2.137,26.915 L1.9,23.925 A24,24 0 0 0 3.116,23.797 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M3.116,23.797 L3.506,26.771 A27,27 0 0 1 2.137,26.915 L1.9,23.925 A24,24 0 0 0 3.116,23.797 Z" stroke="#8a5cd1" stroke-width="0.468" fill="none" stroke-dasharray="4 2" /><path d="M5.587,23.341 L6.285,26.258 A27,27 0 0 1 4.939,26.544 L4.39,23.595 A24,24 0 0 0 5.587,23.341 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M5.587,23.341 L6.285,26.258 A27,27 0 0 1 4.939,26.544 L4.39,23.595 A24,24 0 0 0 5.587,23.341 Z" stroke="#8a5cd1" stroke-width="0.468" fill="none" stroke-dasharray="4 2" /><path d="M7.996,22.629 L8.995,25.458 A27,27 0 0 1 7.686,25.883 L6.832,23.007 A24,24 0 0 0 7.996,22.629 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M7.996,22.629 L8.995,25.458 A27,27 0 0 1 7.686,25.883 L6.832,23.007 A24,24 0 0 0 7.996,22.629 Z" stroke="#8a5cd1" stroke-width="0.468" fill="none" stroke-dasharray="4 2" /><path d="M10.317,21.669 L11.607,24.378 A27,27 0 0 1 10.35,24.938 L9.2,22.167 A24,24 0 0 0 10.317,21.669 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M10.317,21.669 L11.607,24.378 A27,27 0 0 1 10.35,24.938 L9.2,22.167 A24,24 0 0 0 10.317,21.669 Z" stroke="#8a5cd1" stroke-width="0.468" fill="none" stroke-dasharray="4 2" /><path d="M12.526,20.472 L14.092,23.031 A27,27 0 0 1 12.9,23.719 L11.466,21.084 A24,24 0 0 0 12.526,20.472 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M12.526,20.472 L14.092,23.031 A27,27 0 0 1 12.9,23.719 L11.466,21.084 A24,24 0 0 0 12.526,20.472 Z" stroke="#8a5cd1" stroke-width="0.468" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-37.44" y1="-37" x2="-32.76" y2="-37" stroke="#2f80c4" stroke-width="0.56" /><text x="-31.48" y="-36.104" font-size="2.56" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-37.44" y1="-33.16" x2="-32.76" y2="-33.16" stroke="#6b7a8f" stroke-width="0.56" /><text x="-31.48" y="-32.264" font-size="2.56" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-37.44" y1="-29.32" x2="-32.76" y2="-29.32" stroke="#2a9d8f" stroke-width="0.56" /><text x="-31.48" y="-28.424" font-size="2.56" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-37.44" y1="-25.48" x2="-32.76" y2="-25.48" stroke="#d1495b" stroke-width="0.56" /><text x="-31.48" y="-24.584" font-size="2.56" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-37.44" y1="-21.64" x2="-32.76" y2="-21.64" stroke="#e8853a" stroke-width="0.56" /><text x="-31.48" y="-20.744" font-size="2.56" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-37.44" y1="-17.8" x2="-32.76" y2="-17.8" stroke="#8a5cd1" stroke-width="0.56" /><text x="-31.48" y="-16.904" font-size="2.56" fill="#8a5cd1" font-family="sans-serif">Electrical contact</text><line x1="-37.44" y1="-13.96" x2="-32.76" y2="-13.96" stroke="#8a94a0" stroke-width="0.56" /><text x="-31.48" y="-13.064" font-size="2.56" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
+
+**Axial / register schematic** — viewBox `-23 -44 31 84` ([standalone SVG](mounts/nikon-z-axial.svg))
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-23 -44 31 84" role="img" aria-labelledby="nikon-z-base-axial_section-title nikon-z-base-axial_section-desc"><title id="nikon-z-base-axial_section-title">Nikon Z mount — axial / register schematic (base)</title><desc id="nikon-z-base-axial_section-desc">Nikon Z bayonet mount, axial / register schematic. Flange focal distance 16 mm, nominal throat 55 mm. Profile nikon-z/base.</desc><metadata>{"mountId":"nikon-z","profileId":"nikon-z/base","view":"axial_section","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-16" y1="0" x2="1" y2="0" stroke="#8a94a0" stroke-width="0.25" fill="none" /><line x1="0" y1="-33" x2="0" y2="33" stroke="#8a94a0" stroke-width="0.25" fill="none" /></g><g data-layer="axial-section"><text x="-16" y="-23.15" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">sensor film plane</text><line x1="-16" y1="-21.65" x2="-16" y2="21.65" stroke="#2bb0c4" stroke-width="0.188" fill="none" /><line x1="0" y1="-33" x2="0" y2="33" stroke="#2bb0c4" stroke-width="0.25" fill="none" stroke-dasharray="4 2" /><text x="0" y="-34.5" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">flange datum</text><line x1="0.5" y1="-26" x2="0.5" y2="26" stroke="#2bb0c4" stroke-width="0.25" fill="none" stroke-dasharray="4 2" /><text x="0.5" y="-27.5" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">electrical contact plane</text><line x1="1" y1="-29" x2="1" y2="29" stroke="#2bb0c4" stroke-width="0.25" fill="none" stroke-dasharray="4 2" /><text x="1" y="-30.5" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">bayonet lug engagement</text></g><g aria-hidden="true"><line x1="-22.38" y1="-39.8" x2="-18.38" y2="-39.8" stroke="#8a94a0" stroke-width="0.588" /><text x="-17.036" y="-38.859" font-size="2.688" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text><line x1="-22.38" y1="-35.768" x2="-18.38" y2="-35.768" stroke="#2bb0c4" stroke-width="0.588" /><text x="-17.036" y="-34.827" font-size="2.688" fill="#2bb0c4" font-family="sans-serif">Register plane</text></g></svg>
+
+#### Camera-side front-view geometry
+
+| Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
+|---|---|---|---|---|---|---|---|
+| `body-throat` | body_throat | `nikon-z/base` | 0° | 0° | 360° | 0 | 27.5 |
+| `body-mount-ring` | mount_ring | `nikon-z/base` | 0° | 0° | 360° | 27.5 | 33 |
+| `body-slot-1` | bayonet_receiving_slot | `nikon-z/base` | 45° | 28° | 62° | 27.5 | 30.5 |
+| `body-slot-2` | bayonet_receiving_slot | `nikon-z/base` | 135° | 118° | 152° | 27.5 | 30.5 |
+| `body-slot-3` | bayonet_receiving_slot | `nikon-z/base` | 225° | 208° | 242° | 27.5 | 30.5 |
+| `body-slot-4` | bayonet_receiving_slot | `nikon-z/base` | 315° | 298° | 332° | 27.5 | 30.5 |
+| `body-index-mark` | index_mark | `nikon-z/base` | 0° | unknown | unknown | unknown | 33.5 |
+| `body-lock-pin` | lock_pin | `nikon-z/base` | 90° | unknown | unknown | unknown | 28.5 |
+
+#### Lens-side rear-view geometry
+
+| Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
+|---|---|---|---|---|---|---|---|
+| `lens-throat` | lens_throat | `nikon-z/base` | 0° | 0° | 360° | 0 | 26.5 |
+| `lens-mount-ring` | lens_mount_ring | `nikon-z/base` | 0° | 0° | 360° | 26.5 | 32 |
+| `lens-lug-1` | bayonet_lug | `nikon-z/base` | 45° | 28° | 62° | 27.5 | 30.5 |
+| `lens-lug-2` | bayonet_lug | `nikon-z/base` | 135° | 118° | 152° | 27.5 | 30.5 |
+| `lens-lug-3` | bayonet_lug | `nikon-z/base` | 225° | 208° | 242° | 27.5 | 30.5 |
+| `lens-lug-4` | bayonet_lug | `nikon-z/base` | 315° | 298° | 332° | 27.5 | 30.5 |
+| `lens-index-mark` | index_mark | `nikon-z/base` | 0° | unknown | unknown | unknown | 31 |
+| `lens-lock-notch` | lock_notch | `nikon-z/base` | 90° | unknown | unknown | unknown | 28.5 |
+
+#### Electrical contacts
+
+| Side | No. | Profile | Center angle | Radius | Function |
+|---|---|---|---|---|---|
+| body | 1 | `nikon-z/base` | 150° | 25.5 |  |
+| body | 2 | `nikon-z/base` | 156° | 25.5 |  |
+| body | 3 | `nikon-z/base` | 162° | 25.5 |  |
+| body | 4 | `nikon-z/base` | 168° | 25.5 |  |
+| body | 5 | `nikon-z/base` | 174° | 25.5 |  |
+| body | 6 | `nikon-z/base` | 180° | 25.5 |  |
+| body | 7 | `nikon-z/base` | 186° | 25.5 |  |
+| body | 8 | `nikon-z/base` | 192° | 25.5 |  |
+| body | 9 | `nikon-z/base` | 198° | 25.5 |  |
+| body | 10 | `nikon-z/base` | 204° | 25.5 |  |
+| body | 11 | `nikon-z/base` | 210° | 25.5 |  |
+| lens | 1 | `nikon-z/base` | 150° | 25.5 |  |
+| lens | 2 | `nikon-z/base` | 156° | 25.5 |  |
+| lens | 3 | `nikon-z/base` | 162° | 25.5 |  |
+| lens | 4 | `nikon-z/base` | 168° | 25.5 |  |
+| lens | 5 | `nikon-z/base` | 174° | 25.5 |  |
+| lens | 6 | `nikon-z/base` | 180° | 25.5 |  |
+| lens | 7 | `nikon-z/base` | 186° | 25.5 |  |
+| lens | 8 | `nikon-z/base` | 192° | 25.5 |  |
+| lens | 9 | `nikon-z/base` | 198° | 25.5 |  |
+| lens | 10 | `nikon-z/base` | 204° | 25.5 |  |
+| lens | 11 | `nikon-z/base` | 210° | 25.5 |  |
+
+#### Mechanical couplings
+
+None — fully electronic.
+
+#### Axial stack
+
+| Plane | z (mm) | Diameter (mm) |
+|---|---|---|
+| `flange_datum` | 0 | 66 |
+| `bayonet_lug_engagement` | 1 | 58 |
+| `electrical_contact_plane` | 0.5 | 52 |
+| `sensor_film_plane` | -16 | 43.3 |
+
+#### Machine-readable mount block
+
+```json
+{
+  "mountId": "nikon-z",
+  "displayLabel": "Nikon Z",
+  "projectNote": "Nikon Z mirrorless mount.",
+  "researchStatus": "researched",
+  "mvpStatus": "mvp_complete",
+  "mechanism": "bayonet",
+  "lockType": "sprung_detent",
+  "mvp": {
+    "requiredViews": [
+      "camera_side_front_view",
+      "lens_side_rear_view",
+      "axial_register_schematic"
+    ],
+    "requirementLevels": {
+      "mvpRequired": [
+        "flange_focal_distance_mm",
+        "nominal_throat_diameter_mm",
+        "camera_mount_outer_diameter_mm"
+      ],
+      "conditionalCoreRequired": [
+        "bayonet_lugs",
+        "lock_pin",
+        "index_mark"
+      ],
+      "variantRequired": [
+        "electrical_contacts"
+      ],
+      "mvpOptional": [
+        "mount_screws"
+      ],
+      "referenceGrade": [
+        "lug_ramp_undercut",
+        "contact_pitch"
+      ]
+    },
+    "profileModel": {
+      "baseProfileId": "nikon-z/base",
+      "selectedMvpProfileId": "nikon-z/base",
+      "variantStrategy": "base_only",
+      "variantProfiles": [
+        {
+          "profileId": "nikon-z/base",
+          "profileType": "base",
+          "appliesTo": "all Nikon Z lenses and bodies (FX and DX), 2018–present",
+          "adds": [
+            "four straight-edged bayonet lugs",
+            "locking pin/notch at 3 o'clock",
+            "mounting index",
+            "eleven-contact electrical block at the bottom (5–7 o'clock)"
+          ],
+          "removes": [
+            "all mechanical couplings (fully electronic)"
+          ],
+          "changes": [],
+          "cameraSideOverlayLayers": [
+            "camera-side-variant-electrical"
+          ],
+          "lensSideOverlayLayers": [
+            "lens-side-variant-electrical"
+          ],
+          "status": "researched",
+          "sourceRefs": [
+            "nz-1"
+          ]
+        }
+      ]
+    }
+  },
+  "coreDimensions": {
+    "flangeFocalDistanceMm": {
+      "value": 16,
+      "status": "secondary",
+      "sourceRefs": [
+        "nz-1"
+      ]
+    },
+    "nominalThroatDiameterMm": {
+      "value": 55,
+      "status": "secondary",
+      "sourceRefs": [
+        "nz-1"
+      ]
+    },
+    "effectiveClearApertureMm": {
+      "value": 55,
+      "status": "secondary",
+      "sourceRefs": [
+        "nz-1"
+      ]
+    },
+    "cameraMountOuterDiameterMm": {
+      "value": 66,
+      "status": "photo_scaled",
+      "sourceRefs": [
+        "nz-2"
+      ]
+    },
+    "lensMountOuterDiameterMm": {
+      "value": 64,
+      "status": "photo_scaled",
+      "sourceRefs": [
+        "nz-2"
+      ]
+    },
+    "contactCount": {
+      "value": 11,
+      "status": "secondary",
+      "sourceRefs": [
+        "nz-1"
+      ]
+    }
+  },
+  "lockGeometry": {
+    "insertionAngleDeg": {
+      "value": 0,
+      "status": "secondary",
+      "sourceRefs": [
+        "nz-1"
+      ]
+    },
+    "lockAngleDeg": {
+      "value": "unknown",
+      "status": "unknown",
+      "sourceRefs": [
+        "nz-1"
+      ]
+    },
+    "lockRotationDeg": {
+      "value": "unknown",
+      "status": "unknown",
+      "sourceRefs": [
+        "nz-1"
+      ]
+    },
+    "lockRotationDirection": {
+      "value": "unknown",
+      "status": "unknown",
+      "sourceRefs": []
+    }
+  },
+  "cameraSideFeatures": [
+    {
+      "featureId": "body-throat",
+      "featureType": "body_throat",
+      "profileId": "nikon-z/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "nz-1"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "nz-1"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 360,
+        "status": "secondary",
+        "sourceRefs": [
+          "nz-1"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "nz-1"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 27.5,
+        "status": "secondary",
+        "sourceRefs": [
+          "nz-1"
+        ]
+      },
+      "depthMm": {
+        "value": "not_applicable",
+        "status": "not_applicable",
+        "sourceRefs": []
+      },
+      "matesWith": "",
+      "shapeNotes": "55 mm throat opening"
+    },
+    {
+      "featureId": "body-mount-ring",
+      "featureType": "mount_ring",
+      "profileId": "nikon-z/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 360,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 27.5,
+        "status": "secondary",
+        "sourceRefs": [
+          "nz-1"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 33,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "depthMm": {
+        "value": "not_applicable",
+        "status": "not_applicable",
+        "sourceRefs": []
+      },
+      "matesWith": "",
+      "shapeNotes": "visible body mount ring"
+    },
+    {
+      "featureId": "body-slot-1",
+      "featureType": "bayonet_receiving_slot",
+      "profileId": "nikon-z/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 45,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 28,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 62,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 27.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 30.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "depthMm": {
+        "value": 2,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "matesWith": "lens-lug-1",
+      "shapeNotes": "four-lug bayonet, straight edges [nz-1]"
+    },
+    {
+      "featureId": "body-slot-2",
+      "featureType": "bayonet_receiving_slot",
+      "profileId": "nikon-z/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 135,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 118,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 152,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 27.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 30.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "depthMm": {
+        "value": 2,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "matesWith": "lens-lug-2",
+      "shapeNotes": "four-lug bayonet, straight edges [nz-1]"
+    },
+    {
+      "featureId": "body-slot-3",
+      "featureType": "bayonet_receiving_slot",
+      "profileId": "nikon-z/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 225,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 208,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 242,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 27.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 30.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "depthMm": {
+        "value": 2,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "matesWith": "lens-lug-3",
+      "shapeNotes": "four-lug bayonet, straight edges [nz-1]"
+    },
+    {
+      "featureId": "body-slot-4",
+      "featureType": "bayonet_receiving_slot",
+      "profileId": "nikon-z/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 315,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 298,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 332,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 27.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 30.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "depthMm": {
+        "value": 2,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "matesWith": "lens-lug-4",
+      "shapeNotes": "four-lug bayonet, straight edges [nz-1]"
+    },
+    {
+      "featureId": "body-index-mark",
+      "featureType": "index_mark",
+      "profileId": "nikon-z/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "startAngleDeg": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "endAngleDeg": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 33.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "depthMm": {
+        "value": "not_applicable",
+        "status": "not_applicable",
+        "sourceRefs": []
+      },
+      "matesWith": "lens-index-mark",
+      "shapeNotes": "white-dot mounting index"
+    },
+    {
+      "featureId": "body-lock-pin",
+      "featureType": "lock_pin",
+      "profileId": "nikon-z/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 90,
+        "status": "secondary",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "startAngleDeg": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "endAngleDeg": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 28.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "depthMm": {
+        "value": 2,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "matesWith": "lens-lock-notch",
+      "shapeNotes": "locking groove at 3 o'clock [nz-2]"
+    }
+  ],
+  "lensSideFeatures": [
+    {
+      "featureId": "lens-throat",
+      "featureType": "lens_throat",
+      "profileId": "nikon-z/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "nz-1"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "nz-1"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 360,
+        "status": "secondary",
+        "sourceRefs": [
+          "nz-1"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "nz-1"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 26.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "thicknessMm": {
+        "value": "not_applicable",
+        "status": "not_applicable",
+        "sourceRefs": []
+      },
+      "matesWith": "",
+      "shapeNotes": "rear opening"
+    },
+    {
+      "featureId": "lens-mount-ring",
+      "featureType": "lens_mount_ring",
+      "profileId": "nikon-z/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 360,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 26.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 32,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "thicknessMm": {
+        "value": "not_applicable",
+        "status": "not_applicable",
+        "sourceRefs": []
+      },
+      "matesWith": "",
+      "shapeNotes": "lens flange ring"
+    },
+    {
+      "featureId": "lens-lug-1",
+      "featureType": "bayonet_lug",
+      "profileId": "nikon-z/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 45,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 28,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 62,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 27.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 30.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "thicknessMm": {
+        "value": 2,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "matesWith": "body-slot-1",
+      "shapeNotes": "four-lug bayonet, straight edges [nz-1]"
+    },
+    {
+      "featureId": "lens-lug-2",
+      "featureType": "bayonet_lug",
+      "profileId": "nikon-z/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 135,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 118,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 152,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 27.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 30.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "thicknessMm": {
+        "value": 2,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "matesWith": "body-slot-2",
+      "shapeNotes": "four-lug bayonet, straight edges [nz-1]"
+    },
+    {
+      "featureId": "lens-lug-3",
+      "featureType": "bayonet_lug",
+      "profileId": "nikon-z/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 225,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 208,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 242,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 27.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 30.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "thicknessMm": {
+        "value": 2,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "matesWith": "body-slot-3",
+      "shapeNotes": "four-lug bayonet, straight edges [nz-1]"
+    },
+    {
+      "featureId": "lens-lug-4",
+      "featureType": "bayonet_lug",
+      "profileId": "nikon-z/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 315,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 298,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 332,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 27.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 30.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "thicknessMm": {
+        "value": 2,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "matesWith": "body-slot-4",
+      "shapeNotes": "four-lug bayonet, straight edges [nz-1]"
+    },
+    {
+      "featureId": "lens-index-mark",
+      "featureType": "index_mark",
+      "profileId": "nikon-z/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "startAngleDeg": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "endAngleDeg": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 31,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "thicknessMm": {
+        "value": "not_applicable",
+        "status": "not_applicable",
+        "sourceRefs": []
+      },
+      "matesWith": "body-index-mark",
+      "shapeNotes": "aligns with body index"
+    },
+    {
+      "featureId": "lens-lock-notch",
+      "featureType": "lock_notch",
+      "profileId": "nikon-z/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 90,
+        "status": "secondary",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "startAngleDeg": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "endAngleDeg": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 28.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "thicknessMm": {
+        "value": 2,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "matesWith": "body-lock-pin",
+      "shapeNotes": "receives body lock pin (3 o'clock)"
+    }
+  ],
+  "axialStack": [
+    {
+      "planeId": "flange_datum",
+      "zPositionMm": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "nz-1"
+        ]
+      },
+      "thicknessMm": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "nz-1"
+        ]
+      },
+      "diameterMm": {
+        "value": 66,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      }
+    },
+    {
+      "planeId": "bayonet_lug_engagement",
+      "zPositionMm": {
+        "value": 1,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "thicknessMm": {
+        "value": 2,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "diameterMm": {
+        "value": 58,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      }
+    },
+    {
+      "planeId": "electrical_contact_plane",
+      "zPositionMm": {
+        "value": 0.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "thicknessMm": {
+        "value": 0.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "diameterMm": {
+        "value": 52,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      }
+    },
+    {
+      "planeId": "sensor_film_plane",
+      "zPositionMm": {
+        "value": -16,
+        "status": "secondary",
+        "sourceRefs": [
+          "nz-1"
+        ]
+      },
+      "thicknessMm": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "nz-1"
+        ]
+      },
+      "diameterMm": {
+        "value": 43.3,
+        "status": "secondary",
+        "sourceRefs": [
+          "nz-1"
+        ]
+      }
+    }
+  ],
+  "contacts": [
+    {
+      "side": "body",
+      "contactNo": 1,
+      "profileId": "nikon-z/base",
+      "centerAngleDeg": {
+        "value": 150,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 25.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "heightMm": {
+        "value": 3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "body",
+      "contactNo": 2,
+      "profileId": "nikon-z/base",
+      "centerAngleDeg": {
+        "value": 156,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 25.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "heightMm": {
+        "value": 3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "body",
+      "contactNo": 3,
+      "profileId": "nikon-z/base",
+      "centerAngleDeg": {
+        "value": 162,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 25.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "heightMm": {
+        "value": 3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "body",
+      "contactNo": 4,
+      "profileId": "nikon-z/base",
+      "centerAngleDeg": {
+        "value": 168,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 25.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "heightMm": {
+        "value": 3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "body",
+      "contactNo": 5,
+      "profileId": "nikon-z/base",
+      "centerAngleDeg": {
+        "value": 174,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 25.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "heightMm": {
+        "value": 3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "body",
+      "contactNo": 6,
+      "profileId": "nikon-z/base",
+      "centerAngleDeg": {
+        "value": 180,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 25.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "heightMm": {
+        "value": 3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "body",
+      "contactNo": 7,
+      "profileId": "nikon-z/base",
+      "centerAngleDeg": {
+        "value": 186,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 25.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "heightMm": {
+        "value": 3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "body",
+      "contactNo": 8,
+      "profileId": "nikon-z/base",
+      "centerAngleDeg": {
+        "value": 192,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 25.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "heightMm": {
+        "value": 3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "body",
+      "contactNo": 9,
+      "profileId": "nikon-z/base",
+      "centerAngleDeg": {
+        "value": 198,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 25.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "heightMm": {
+        "value": 3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "body",
+      "contactNo": 10,
+      "profileId": "nikon-z/base",
+      "centerAngleDeg": {
+        "value": 204,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 25.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "heightMm": {
+        "value": 3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "body",
+      "contactNo": 11,
+      "profileId": "nikon-z/base",
+      "centerAngleDeg": {
+        "value": 210,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 25.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "heightMm": {
+        "value": 3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "lens",
+      "contactNo": 1,
+      "profileId": "nikon-z/base",
+      "centerAngleDeg": {
+        "value": 150,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 25.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "heightMm": {
+        "value": 3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "lens",
+      "contactNo": 2,
+      "profileId": "nikon-z/base",
+      "centerAngleDeg": {
+        "value": 156,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 25.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "heightMm": {
+        "value": 3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "lens",
+      "contactNo": 3,
+      "profileId": "nikon-z/base",
+      "centerAngleDeg": {
+        "value": 162,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 25.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "heightMm": {
+        "value": 3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "lens",
+      "contactNo": 4,
+      "profileId": "nikon-z/base",
+      "centerAngleDeg": {
+        "value": 168,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 25.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "heightMm": {
+        "value": 3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "lens",
+      "contactNo": 5,
+      "profileId": "nikon-z/base",
+      "centerAngleDeg": {
+        "value": 174,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 25.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "heightMm": {
+        "value": 3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "lens",
+      "contactNo": 6,
+      "profileId": "nikon-z/base",
+      "centerAngleDeg": {
+        "value": 180,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 25.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "heightMm": {
+        "value": 3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "lens",
+      "contactNo": 7,
+      "profileId": "nikon-z/base",
+      "centerAngleDeg": {
+        "value": 186,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 25.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "heightMm": {
+        "value": 3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "lens",
+      "contactNo": 8,
+      "profileId": "nikon-z/base",
+      "centerAngleDeg": {
+        "value": 192,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 25.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "heightMm": {
+        "value": 3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "lens",
+      "contactNo": 9,
+      "profileId": "nikon-z/base",
+      "centerAngleDeg": {
+        "value": 198,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 25.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "heightMm": {
+        "value": 3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "lens",
+      "contactNo": 10,
+      "profileId": "nikon-z/base",
+      "centerAngleDeg": {
+        "value": 204,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 25.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "heightMm": {
+        "value": 3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "lens",
+      "contactNo": 11,
+      "profileId": "nikon-z/base",
+      "centerAngleDeg": {
+        "value": 210,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 25.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "heightMm": {
+        "value": 3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "function": ""
+    }
+  ],
+  "mechanicalCouplings": [],
+  "screwsGasketsBaffles": [
+    {
+      "featureId": "body-mount-screws",
+      "featureType": "mount_screws",
+      "side": "body",
+      "count": {
+        "value": 6,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "pcdMm": {
+        "value": 63,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "diameterMm": {
+        "value": 2,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "centerAnglesDeg": {
+        "value": [
+          20,
+          80,
+          140,
+          200,
+          260,
+          320
+        ],
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "nz-2"
+        ]
+      },
+      "shape": "round"
+    }
+  ],
+  "svgLayers": {
+    "mvpRequired": [
+      "datum-axis",
+      "camera-side-metal",
+      "lens-side-metal",
+      "axial-section",
+      "uncertainty"
+    ],
+    "conditionalCoreRequired": [
+      "clear-aperture",
+      "camera-side-core-interface",
+      "lens-side-core-interface"
+    ],
+    "variantRequired": [
+      "camera-side-variant-electrical",
+      "lens-side-variant-electrical"
+    ]
+  },
+  "sourceRefs": [
+    {
+      "ref": "nz-1",
+      "sourceType": "secondary",
+      "citation": "“Nikon Z-mount,” Wikipedia. Accessed 2026-06-04.",
+      "liveUrl": "https://en.wikipedia.org/wiki/Nikon_Z-mount",
+      "archiveUrl": "http://web.archive.org/web/20260422214312/https://en.wikipedia.org/wiki/Nikon_Z-mount",
+      "archiveDate": "2026-04-22",
+      "appliesTo": "flange focal distance, 55 mm throat, eleven contacts, four lugs",
+      "confidence": "high"
+    },
+    {
+      "ref": "nz-2",
+      "sourceType": "secondary",
+      "citation": "“Lens Mounts: Nikon Z,” JAPB (japb.net). Accessed 2026-06-04.",
+      "liveUrl": "https://japb.net/theory/lensmounts/nikon-z/",
+      "archiveUrl": "http://web.archive.org/web/20251115002307/https://japb.net/theory/lensmounts/nikon-z/",
+      "archiveDate": "2025-11-15",
+      "appliesTo": "locking groove at 3 o'clock, eleven contacts across 5–7 o'clock, four straight-edged lugs",
+      "confidence": "medium"
+    }
+  ],
+  "openQuestions": [
+    {
+      "issue": "Lug angular spans, the mounting-index clock position, and the lock rotation angle/direction are photo-scaled or undocumented; per-contact clock positions are interpolated within the documented 5–7 o'clock band.",
+      "affectedFields": [
+        "cameraSideFeatures",
+        "lensSideFeatures",
+        "contacts",
+        "lockGeometry"
+      ],
+      "candidateValues": [],
+      "resolution": "Upgrade to an official Nikon Z mount drawing or measured sample."
+    }
+  ],
+  "schemaVersion": "1.3",
+  "coordinateConvention": {
+    "units": "mm_deg",
+    "zDatum": "flange_datum",
+    "zPositive": "toward_lens",
+    "angleZero": "top_dead_center_camera_front_view",
+    "anglePositive": "clockwise_camera_front_view",
+    "storedAngleFrame": "camera_front_view",
+    "lensRearMirror": "theta_out = (360 - theta) mod 360",
+    "angleSpanRule": "clockwise_sweep_start_to_end_mod_360"
+  },
+  "render": {
+    "unitMapping": "1_user_unit_per_mm",
+    "marginFraction": 0.1,
+    "numericPrecision": 3,
+    "views": {
+      "cameraSideFront": {
+        "viewBox": "-41 -42 82 83"
+      },
+      "lensSideRear": {
+        "viewBox": "-39 -41 78 80"
+      },
+      "axialSection": {
+        "viewBox": "-23 -44 31 84"
+      }
+    }
+  },
+  "metadata": {
+    "title": "Nikon Z mount",
+    "desc": "Nikon Z mount — flange focal distance 16 mm, nominal throat 55 mm.",
+    "view": "unknown",
+    "profileId": "nikon-z/base"
+  }
+}
+```
+
+#### Sources
+
+| Ref | Type | Citation | Archive | Captured | Confidence |
+|---|---|---|---|---|---|
+| `nz-1` | secondary | “Nikon Z-mount,” Wikipedia. Accessed 2026-06-04. | [snapshot](http://web.archive.org/web/20260422214312/https://en.wikipedia.org/wiki/Nikon_Z-mount) | 2026-04-22 | high |
+| `nz-2` | secondary | “Lens Mounts: Nikon Z,” JAPB (japb.net). Accessed 2026-06-04. | [snapshot](http://web.archive.org/web/20251115002307/https://japb.net/theory/lensmounts/nikon-z/) | 2025-11-15 | medium |
+
+#### Open questions
+
+- Lug angular spans, the mounting-index clock position, and the lock rotation angle/direction are photo-scaled or undocumented; per-contact clock positions are interpolated within the documented 5–7 o'clock band. _(Upgrade to an official Nikon Z mount drawing or measured sample.)_
 
 ### `pentax-k` — Pentax K
 
