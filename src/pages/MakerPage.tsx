@@ -19,6 +19,9 @@ import { getMakerDetails } from "../utils/catalog/makerDetails.js";
 import { breadcrumbJsonLd, collectionPageJsonLd } from "../utils/seo/structuredData.js";
 import { usePageThemeToggle } from "../utils/theme/usePageThemeToggle.js";
 import { LENS_LINK_BASE_STYLE, PAGE_BASE_STYLE } from "../utils/style/pageStyles.js";
+import { LENS_MOUNT_BY_ID } from "../utils/catalog/lensTaxonomy.js";
+import type { LensMountId, LensMountMetadata } from "../utils/catalog/lensTaxonomy.js";
+import MakerMountsSidebar from "../components/content/MakerMountsSidebar.js";
 import type { LensData } from "../types/optics.js";
 
 function lensesForMaker(makerSlug: string): { key: string; data: LensData }[] {
@@ -28,6 +31,13 @@ function lensesForMaker(makerSlug: string): { key: string; data: LensData }[] {
     key,
     data: LENS_CATALOG[key],
   }));
+}
+
+/** Canonical mount metadata for every mount used by the maker's lenses, in taxonomy order. */
+function mountsForMaker(lenses: { key: string; data: LensData }[]): LensMountMetadata[] {
+  const ids = new Set<LensMountId>();
+  for (const { data } of lenses) for (const mountId of data.lensMounts ?? []) ids.add(mountId);
+  return [...ids].map((id) => LENS_MOUNT_BY_ID[id]).sort((a, b) => a.sortOrder - b.sortOrder);
 }
 
 export default function MakerPage() {
@@ -42,6 +52,7 @@ export default function MakerPage() {
   const lenses = lensesForMaker(maker);
   if (lenses.length === 0) return <Navigate to="/makers" replace />;
   const details = getMakerDetails(maker);
+  const makerMounts = mountsForMaker(lenses);
 
   const seoDescription = details
     ? `${details.summary} Explore ${lenses.length} patent-derived ${displayName} lens cross-sections with ray tracing and optical analysis.`
@@ -115,6 +126,8 @@ export default function MakerPage() {
             {lenses.length} interactive lens {lenses.length === 1 ? "diagram" : "diagrams"}
           </p>
         )}
+
+        <MakerMountsSidebar mounts={makerMounts} theme={t} />
 
         <div style={{ borderTop: `1px solid ${t.panelBorder}`, paddingTop: "1rem" }}>
           {lenses.map(({ key, data }) => (
