@@ -1,0 +1,463 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://surfaceandstop.com/schemas/lens-mount.schema.json",
+  "$comment": "Published, external-facing contract for the per-mount machine block (schema version 1.3). The in-repo enforced mirror is src/types/mount.ts; the two MUST be edited together (there is no codegen between them). This project validates structurally via TypeScript `satisfies MountSpecInput` plus src/optics/mount/validateMountSpec.ts rather than running ajv against this schema, so the emitted JSON conforms by construction. This file is kept so external consumers and any future CI lint step have the authoritative JSON Schema.",
+  "title": "Lens Mount SVG per-mount specification",
+  "description": "Validates the machine-readable per-mount JSON block defined by the Lens Mount SVG Specification Package, schema version 1.3. Object keys are camelCase; enumerated values use the canonical snake_case tokens from package Section 10.1. This schema validates structural shape and token spelling; content-completeness (mvp-complete) is governed by package Sections 2.4 and 11, not here. The set of valid mountId values is authoritative in the LensVisualizer repo (src/lens-data/LENS_MOUNT_FORMAT_OPTIONS.md); a CI step should additionally assert membership in that list rather than duplicating it here.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "mountId",
+    "displayLabel",
+    "projectNote",
+    "researchStatus",
+    "mvpStatus",
+    "mechanism",
+    "lockType",
+    "mvp",
+    "coordinateConvention",
+    "render",
+    "coreDimensions",
+    "lockGeometry",
+    "cameraSideFeatures",
+    "lensSideFeatures",
+    "axialStack",
+    "contacts",
+    "mechanicalCouplings",
+    "screwsGasketsBaffles",
+    "svgLayers",
+    "metadata",
+    "sourceRefs",
+    "openQuestions"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.3",
+      "description": "Schema version of this record. Lets a consumer detect and quarantine stale 1.1/1.2-era data."
+    },
+    "mountId": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "description": "Canonical LensVisualizer mount ID, preserved exactly (e.g. canon-ef, leica-ltm, m42)."
+    },
+    "displayLabel": { "type": "string" },
+    "projectNote": { "type": "string" },
+    "researchStatus": {
+      "enum": ["stub", "partial", "researched", "complete"]
+    },
+    "mvpStatus": {
+      "enum": ["not_started", "renderable", "mvp_complete", "not_applicable"]
+    },
+    "mechanism": {
+      "enum": ["bayonet", "threaded", "breech_lock", "positive_lock", "fixed_lens", "hybrid", "unknown"]
+    },
+    "lockType": {
+      "enum": ["sprung_detent", "friction_shoulder", "breech_collar", "per_components", "not_applicable", "unknown"],
+      "description": "Locking action. NOTE: these tokens are introduced by this schema; package Section 10.1 should be amended to list them for full canonicalization."
+    },
+    "mvp": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["requiredViews", "requirementLevels", "profileModel"],
+      "properties": {
+        "requiredViews": {
+          "type": "array",
+          "items": { "enum": ["camera_side_front_view", "lens_side_rear_view", "axial_register_schematic"] },
+          "uniqueItems": true
+        },
+        "requirementLevels": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["mvpRequired", "conditionalCoreRequired", "variantRequired", "mvpOptional", "referenceGrade"],
+          "properties": {
+            "mvpRequired": { "type": "array", "items": { "type": "string" } },
+            "conditionalCoreRequired": { "type": "array", "items": { "type": "string" } },
+            "variantRequired": { "type": "array", "items": { "type": "string" } },
+            "mvpOptional": { "type": "array", "items": { "type": "string" } },
+            "referenceGrade": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "profileModel": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["baseProfileId", "selectedMvpProfileId", "variantStrategy", "variantProfiles"],
+          "properties": {
+            "baseProfileId": { "type": "string" },
+            "selectedMvpProfileId": { "type": "string" },
+            "variantStrategy": { "enum": ["none", "base_only", "variant_profiles_defined", "unknown"] },
+            "variantProfiles": {
+              "type": "array",
+              "items": { "$ref": "#/$defs/variantProfile" }
+            }
+          }
+        }
+      }
+    },
+    "coordinateConvention": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["units", "zDatum", "zPositive", "angleZero", "anglePositive", "storedAngleFrame", "lensRearMirror", "angleSpanRule"],
+      "description": "Fixed by package Section 4 / 4.1 / 4.2. Stored data must be normalized to this convention; documented source deviations live in notes/openQuestions, not by changing these tokens.",
+      "properties": {
+        "units": { "const": "mm_deg" },
+        "zDatum": { "const": "flange_datum" },
+        "zPositive": { "const": "toward_lens" },
+        "angleZero": { "const": "top_dead_center_camera_front_view" },
+        "anglePositive": { "const": "clockwise_camera_front_view" },
+        "storedAngleFrame": { "const": "camera_front_view" },
+        "lensRearMirror": { "const": "theta_out = (360 - theta) mod 360" },
+        "angleSpanRule": { "const": "clockwise_sweep_start_to_end_mod_360" }
+      }
+    },
+    "render": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["unitMapping", "marginFraction", "numericPrecision", "views"],
+      "properties": {
+        "unitMapping": { "const": "1_user_unit_per_mm" },
+        "marginFraction": { "const": 0.1 },
+        "numericPrecision": { "const": 3 },
+        "views": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["cameraSideFront", "lensSideRear", "axialSection"],
+          "properties": {
+            "cameraSideFront": { "$ref": "#/$defs/viewBoxHolder" },
+            "lensSideRear": { "$ref": "#/$defs/viewBoxHolder" },
+            "axialSection": { "$ref": "#/$defs/viewBoxHolder" }
+          }
+        }
+      }
+    },
+    "coreDimensions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["flangeFocalDistanceMm", "nominalThroatDiameterMm", "effectiveClearApertureMm", "cameraMountOuterDiameterMm", "lensMountOuterDiameterMm", "contactCount"],
+      "properties": {
+        "flangeFocalDistanceMm": { "$ref": "#/$defs/lengthValue" },
+        "nominalThroatDiameterMm": { "$ref": "#/$defs/lengthValue" },
+        "effectiveClearApertureMm": { "$ref": "#/$defs/lengthValue" },
+        "cameraMountOuterDiameterMm": { "$ref": "#/$defs/lengthValue" },
+        "lensMountOuterDiameterMm": { "$ref": "#/$defs/lengthValue" },
+        "contactCount": { "$ref": "#/$defs/countValue" }
+      }
+    },
+    "lockGeometry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["insertionAngleDeg", "lockAngleDeg", "lockRotationDeg", "lockRotationDirection"],
+      "properties": {
+        "insertionAngleDeg": { "$ref": "#/$defs/angleValue" },
+        "lockAngleDeg": { "$ref": "#/$defs/angleValue" },
+        "lockRotationDeg": { "$ref": "#/$defs/angleValue" },
+        "lockRotationDirection": { "$ref": "#/$defs/directionValue" }
+      }
+    },
+    "cameraSideFeatures": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/cameraSideFeature" }
+    },
+    "lensSideFeatures": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/lensSideFeature" }
+    },
+    "axialStack": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/axialPlane" }
+    },
+    "contacts": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/contact" }
+    },
+    "mechanicalCouplings": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/mechanicalCoupling" }
+    },
+    "screwsGasketsBaffles": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/screwGasketBaffle" }
+    },
+    "svgLayers": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mvpRequired", "conditionalCoreRequired", "variantRequired"],
+      "properties": {
+        "mvpRequired": {
+          "type": "array",
+          "items": { "enum": ["datum-axis", "camera-side-metal", "lens-side-metal", "axial-section", "uncertainty"] },
+          "uniqueItems": true
+        },
+        "conditionalCoreRequired": {
+          "type": "array",
+          "items": { "enum": ["clear-aperture", "camera-side-core-interface", "lens-side-core-interface"] },
+          "uniqueItems": true
+        },
+        "variantRequired": {
+          "type": "array",
+          "items": { "enum": ["camera-side-variant-electrical", "camera-side-variant-mechanical", "lens-side-variant-electrical", "lens-side-variant-mechanical"] },
+          "uniqueItems": true
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "desc", "view", "profileId"],
+      "properties": {
+        "title": { "type": "string" },
+        "desc": { "type": "string" },
+        "view": { "enum": ["camera_side_front", "lens_side_rear", "axial_section", "unknown"] },
+        "profileId": { "type": "string" }
+      }
+    },
+    "sourceRefs": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/sourceRef" }
+    },
+    "openQuestions": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/openQuestion" }
+    }
+  },
+  "$defs": {
+    "unknownTokens": {
+      "enum": ["unknown", "not_applicable"]
+    },
+    "statusToken": {
+      "enum": ["unknown", "not_applicable", "official", "patent", "service_manual", "measured", "photo_scaled", "secondary", "conflicting"]
+    },
+    "sourceRefList": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" }
+    },
+    "profileIdString": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*/[a-z0-9]+(-[a-z0-9]+)*$",
+      "description": "Profile ID of the form <mount-id>/<slug>, e.g. canon-ef/base or nikon-f/ai-s."
+    },
+    "featureIdString": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+    },
+    "featureTypeString": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(_[a-z0-9]+)*$",
+      "description": "snake_case feature descriptor, e.g. bayonet_receiving_slot, mount_ring, lock_pin, electrical_contact_carrier."
+    },
+    "angleValue": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "status", "sourceRefs"],
+      "properties": {
+        "value": { "oneOf": [ { "type": "number", "minimum": 0, "maximum": 360 }, { "$ref": "#/$defs/unknownTokens" } ] },
+        "status": { "$ref": "#/$defs/statusToken" },
+        "sourceRefs": { "$ref": "#/$defs/sourceRefList" }
+      }
+    },
+    "angleListValue": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "status", "sourceRefs"],
+      "properties": {
+        "value": { "oneOf": [ { "type": "array", "items": { "type": "number", "minimum": 0, "maximum": 360 } }, { "$ref": "#/$defs/unknownTokens" } ] },
+        "status": { "$ref": "#/$defs/statusToken" },
+        "sourceRefs": { "$ref": "#/$defs/sourceRefList" }
+      }
+    },
+    "lengthValue": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "status", "sourceRefs"],
+      "properties": {
+        "value": { "oneOf": [ { "type": "number", "minimum": 0 }, { "$ref": "#/$defs/unknownTokens" } ] },
+        "status": { "$ref": "#/$defs/statusToken" },
+        "sourceRefs": { "$ref": "#/$defs/sourceRefList" }
+      }
+    },
+    "coordinateValue": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "status", "sourceRefs"],
+      "description": "Signed axial coordinate (e.g. sensor plane at z = -flangeFocalDistanceMm).",
+      "properties": {
+        "value": { "oneOf": [ { "type": "number" }, { "$ref": "#/$defs/unknownTokens" } ] },
+        "status": { "$ref": "#/$defs/statusToken" },
+        "sourceRefs": { "$ref": "#/$defs/sourceRefList" }
+      }
+    },
+    "countValue": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "status", "sourceRefs"],
+      "properties": {
+        "value": { "oneOf": [ { "type": "integer", "minimum": 0 }, { "$ref": "#/$defs/unknownTokens" } ] },
+        "status": { "$ref": "#/$defs/statusToken" },
+        "sourceRefs": { "$ref": "#/$defs/sourceRefList" }
+      }
+    },
+    "directionValue": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "status", "sourceRefs"],
+      "properties": {
+        "value": { "enum": ["clockwise", "counterclockwise", "unknown", "not_applicable"] },
+        "status": { "$ref": "#/$defs/statusToken" },
+        "sourceRefs": { "$ref": "#/$defs/sourceRefList" }
+      }
+    },
+    "viewBoxHolder": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["viewBox"],
+      "properties": {
+        "viewBox": {
+          "type": "string",
+          "pattern": "^(unknown|-?\\d+(\\.\\d+)? -?\\d+(\\.\\d+)? \\d+(\\.\\d+)? \\d+(\\.\\d+)?)$",
+          "description": "Either 'unknown' or an SVG viewBox 'min-x min-y width height' in millimetres."
+        }
+      }
+    },
+    "cameraSideFeature": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["featureId", "featureType", "profileId", "count", "centerAngleDeg", "startAngleDeg", "endAngleDeg", "innerRadiusMm", "outerRadiusMm", "depthMm", "matesWith", "shapeNotes"],
+      "properties": {
+        "featureId": { "$ref": "#/$defs/featureIdString" },
+        "featureType": { "$ref": "#/$defs/featureTypeString" },
+        "profileId": { "$ref": "#/$defs/profileIdString" },
+        "count": { "type": "integer", "minimum": 0 },
+        "centerAngleDeg": { "$ref": "#/$defs/angleValue" },
+        "startAngleDeg": { "$ref": "#/$defs/angleValue" },
+        "endAngleDeg": { "$ref": "#/$defs/angleValue" },
+        "innerRadiusMm": { "$ref": "#/$defs/lengthValue" },
+        "outerRadiusMm": { "$ref": "#/$defs/lengthValue" },
+        "depthMm": { "$ref": "#/$defs/lengthValue" },
+        "matesWith": { "type": "string" },
+        "shapeNotes": { "type": "string" }
+      }
+    },
+    "lensSideFeature": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["featureId", "featureType", "profileId", "count", "centerAngleDeg", "startAngleDeg", "endAngleDeg", "innerRadiusMm", "outerRadiusMm", "thicknessMm", "matesWith", "shapeNotes"],
+      "properties": {
+        "featureId": { "$ref": "#/$defs/featureIdString" },
+        "featureType": { "$ref": "#/$defs/featureTypeString" },
+        "profileId": { "$ref": "#/$defs/profileIdString" },
+        "count": { "type": "integer", "minimum": 0 },
+        "centerAngleDeg": { "$ref": "#/$defs/angleValue" },
+        "startAngleDeg": { "$ref": "#/$defs/angleValue" },
+        "endAngleDeg": { "$ref": "#/$defs/angleValue" },
+        "innerRadiusMm": { "$ref": "#/$defs/lengthValue" },
+        "outerRadiusMm": { "$ref": "#/$defs/lengthValue" },
+        "thicknessMm": { "$ref": "#/$defs/lengthValue" },
+        "matesWith": { "type": "string" },
+        "shapeNotes": { "type": "string" }
+      }
+    },
+    "axialPlane": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["planeId", "zPositionMm", "thicknessMm", "diameterMm"],
+      "properties": {
+        "planeId": { "type": "string", "pattern": "^[a-z0-9]+(_[a-z0-9]+)*$" },
+        "zPositionMm": { "$ref": "#/$defs/coordinateValue" },
+        "thicknessMm": { "$ref": "#/$defs/lengthValue" },
+        "diameterMm": { "$ref": "#/$defs/lengthValue" }
+      }
+    },
+    "contact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["side", "contactNo", "profileId", "centerAngleDeg", "centerRadiusMm", "widthMm", "heightMm", "shape", "protrusionMm", "function"],
+      "properties": {
+        "side": { "enum": ["body", "lens"] },
+        "contactNo": { "type": "integer", "minimum": 1 },
+        "profileId": { "$ref": "#/$defs/profileIdString" },
+        "centerAngleDeg": { "$ref": "#/$defs/angleValue" },
+        "centerRadiusMm": { "$ref": "#/$defs/lengthValue" },
+        "widthMm": { "$ref": "#/$defs/lengthValue" },
+        "heightMm": { "$ref": "#/$defs/lengthValue" },
+        "shape": { "type": "string" },
+        "protrusionMm": { "$ref": "#/$defs/coordinateValue" },
+        "function": { "type": "string" }
+      }
+    },
+    "mechanicalCoupling": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["featureId", "side", "profileId", "centerAngleDeg", "radiusMm", "sizeOrTravel", "function", "compatibilityNotes"],
+      "properties": {
+        "featureId": { "$ref": "#/$defs/featureIdString" },
+        "side": { "enum": ["body", "lens", "both", "unknown"] },
+        "profileId": { "$ref": "#/$defs/profileIdString" },
+        "centerAngleDeg": { "$ref": "#/$defs/angleValue" },
+        "radiusMm": { "$ref": "#/$defs/lengthValue" },
+        "sizeOrTravel": { "type": "string" },
+        "function": { "type": "string" },
+        "compatibilityNotes": { "type": "string" }
+      }
+    },
+    "screwGasketBaffle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["featureId", "featureType", "side", "count", "pcdMm", "diameterMm", "centerAnglesDeg", "shape"],
+      "properties": {
+        "featureId": { "$ref": "#/$defs/featureIdString" },
+        "featureType": { "$ref": "#/$defs/featureTypeString" },
+        "side": { "enum": ["body", "lens", "both", "unknown"] },
+        "count": { "$ref": "#/$defs/countValue" },
+        "pcdMm": { "$ref": "#/$defs/lengthValue" },
+        "diameterMm": { "$ref": "#/$defs/lengthValue" },
+        "centerAnglesDeg": { "$ref": "#/$defs/angleListValue" },
+        "shape": { "type": "string" }
+      }
+    },
+    "variantProfile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["profileId", "profileType", "appliesTo", "adds", "removes", "changes", "sourceRefs"],
+      "description": "Element shape derived from package Sections 2.5 and 7 and the rule that every variant defines appliesTo, adds, removes, changes, and sourceRefs.",
+      "properties": {
+        "profileId": { "$ref": "#/$defs/profileIdString" },
+        "profileType": { "enum": ["base", "variant"] },
+        "appliesTo": { "type": "string" },
+        "requirementLayer": { "type": "string" },
+        "adds": { "type": "array", "items": { "type": "string" } },
+        "removes": { "type": "array", "items": { "type": "string" } },
+        "changes": { "type": "array", "items": { "type": "string" } },
+        "cameraSideOverlayLayers": { "type": "array", "items": { "type": "string" } },
+        "lensSideOverlayLayers": { "type": "array", "items": { "type": "string" } },
+        "status": { "type": "string" },
+        "sourceRefs": { "$ref": "#/$defs/sourceRefList" }
+      }
+    },
+    "sourceRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ref", "sourceType", "citation", "liveUrl", "archiveUrl", "archiveDate", "appliesTo", "confidence"],
+      "properties": {
+        "ref": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+        "sourceType": { "type": "string" },
+        "citation": { "type": "string" },
+        "liveUrl": { "type": "string" },
+        "archiveUrl": { "type": "string" },
+        "archiveDate": { "type": "string", "pattern": "^(unknown|\\d{4}-\\d{2}-\\d{2})$" },
+        "appliesTo": { "type": "string" },
+        "confidence": { "enum": ["high", "medium", "low", "unknown"] }
+      }
+    },
+    "openQuestion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["issue", "affectedFields", "candidateValues", "resolution"],
+      "properties": {
+        "issue": { "type": "string" },
+        "affectedFields": { "type": "array", "items": { "type": "string" } },
+        "candidateValues": { "type": "array", "items": { "type": ["string", "number"] } },
+        "resolution": { "type": "string" }
+      }
+    }
+  }
+}

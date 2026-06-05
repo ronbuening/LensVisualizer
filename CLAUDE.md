@@ -68,6 +68,7 @@ npm run test
 npm run test:coverage
 npm run generate:glass-reports
 npm run generate:mirror-reports
+npm run generate:mount-svgs
 npm run typecheck
 npm run lint
 npm run lint:fix
@@ -118,6 +119,7 @@ Read only the relevant focused doc before changing that area:
 - `agent_docs/claude-md-best-practices.md` - how to keep this file short and useful
 - `src/lens-data/LENS_DATA_SPEC.md` - full lens data format, glass identification conventions, validation rules
 - `src/lens-data/LENS_MOUNT_FORMAT_OPTIONS.md` - allowed `lensMounts` and `imageFormat` ids
+- `src/lens-data/MOUNT_SVG_SPEC.md` - mount-diagram data format (`*.mount.ts`); pairs with `src/lens-data/lens-mount.schema.json` and renders via `src/optics/mount/`
 - `src/lens-data/LENS_ANALYSIS_SPEC.md` - companion analysis-file format: required skeleton, conditional sections, voice
 - `src/lens-data/TEMPLATE.data.ts.template` - annotated lens template and SD guidance
 
@@ -155,6 +157,10 @@ telescope designs, use the hidden fixtures under `src/lens-data/reference/` and 
 changed. Track backfill status in `agent_docs/lens-mount-format-backfill.md`.
 `npm run generate:metadata` or `npm run build` will move root-level draft lens files into maker folders and fix nested
 imports.
+
+For a mount diagram: add `src/lens-data/mounts/<mount-id>.mount.ts` using `satisfies MountSpecInput` (mount ids from
+`lensTaxonomy.ts`), register it in `src/lens-data/mounts/index.ts`, and run `npm run generate:mount-svgs`. Keep
+`src/types/mount.ts` and `src/lens-data/lens-mount.schema.json` edited together. See `src/lens-data/MOUNT_SVG_SPEC.md`.
 
 For an article: create `src/content/**/*.md` with required `slug` and `title` frontmatter. Use `series` and
 `seriesOrder` for article series, and `toc: true` for long pieces. Run `npm run build` when route metadata should be

@@ -10,6 +10,8 @@ import { mountCanonicalURL, SITE_NAME, SITE_URL } from "../utils/catalog/lensMet
 import { breadcrumbJsonLd, collectionPageJsonLd } from "../utils/seo/structuredData.js";
 import { usePageThemeToggle } from "../utils/theme/usePageThemeToggle.js";
 import { getMountDetails } from "../utils/catalog/mountDetails.js";
+import { MOUNT_SPECS } from "../lens-data/mounts/index.js";
+import MountDiagramPanel from "../components/mount/MountDiagramPanel.js";
 import { LENS_LINK_BASE_STYLE, PAGE_BASE_STYLE } from "../utils/style/pageStyles.js";
 import { lensLinkFromMount } from "./lensIndex/clusterLinks.js";
 import { lensesForMount } from "./lensIndex/catalog.js";
@@ -24,6 +26,7 @@ export default function MountPage() {
   const lenses = lensesForMount(mountId);
   if (lenses.length === 0) return <Navigate to="/mounts" replace />;
   const details = getMountDetails(mountId);
+  const mountSpec = MOUNT_SPECS[mountId];
 
   const seoDescription = details
     ? `${details.summary} Explore ${lenses.length} patent-derived ${mount.label} lens diagrams with optical analysis.`
@@ -88,6 +91,12 @@ export default function MountPage() {
                 {paragraph}
               </p>
             ))}
+          </section>
+        )}
+
+        {mountSpec && (
+          <section style={{ marginBottom: "1.5rem" }}>
+            <MountDiagramPanel spec={mountSpec} theme={t} />
           </section>
         )}
 
