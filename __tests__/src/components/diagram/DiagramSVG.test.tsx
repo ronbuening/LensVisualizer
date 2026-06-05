@@ -19,12 +19,19 @@ import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
 import themes from "../../../../src/utils/theme/themes.js";
 import type { RuntimeLens, ElementShape } from "../../../../src/types/optics.js";
 
+const { mockApertureStop } = vi.hoisted(() => ({
+  mockApertureStop: vi.fn(),
+}));
+
 vi.mock("../../../../src/components/diagram/RayPolylines.js", () => ({
   default: ({ keyPrefix }: { keyPrefix: string }) => <g data-testid={`ray-${keyPrefix}`} />,
 }));
 
 vi.mock("../../../../src/components/diagram/ApertureStop.js", () => ({
-  default: () => <g data-testid="aperture-stop" />,
+  default: (props: Record<string, unknown>) => {
+    mockApertureStop(props);
+    return <g data-testid="aperture-stop" />;
+  },
 }));
 
 vi.mock("../../../../src/components/diagram/ElementAnnotations.js", () => ({
@@ -68,11 +75,13 @@ const baseLens = {
   lyImgLabel: 55,
   imagePlane: { z: 43, y: 0, normal: { z: 1, y: 0 }, label: "IMG" },
   stopIdx: 0,
+  S: [{ label: "STO", R: 1e15, d: 0, nd: 1, elemId: 0, sd: 10 }],
   epZRelStop: 0,
   N: 1,
   xpZRelLastSurf: 0,
   xpSD: 5,
   EP: { epSD: 5, yRatio: 1 },
+  isFoldedOptics: false,
   isZoom: false,
   elements: [{ id: 1, apd: false, nd: 1.5 }],
 } as unknown as RuntimeLens;
@@ -136,6 +145,7 @@ describe("DiagramSVG", () => {
     onSelect.mockReset();
     onLcaInsetClick.mockReset();
     onPetzvalBadgeClick.mockReset();
+    mockApertureStop.mockReset();
   });
 
   afterEach(() => {
@@ -259,6 +269,33 @@ describe("DiagramSVG", () => {
     expect(onSelect).toHaveBeenCalledWith(1);
     expect(onLcaInsetClick).toHaveBeenCalledTimes(1);
     expect(onPetzvalBadgeClick).toHaveBeenCalledTimes(1);
+  });
+
+  it("passes no central stop blocker for ordinary lenses", () => {
+    render(<DiagramSVG {...baseDiagramSvgProps({ onHover, onSelect })} />);
+
+    expect(mockApertureStop).toHaveBeenCalledWith(expect.objectContaining({ innerBlockedSD: 0 }));
+  });
+
+  it("passes the inferred central stop blocker for the Nikon Reflex 500mm New", () => {
+    const L = buildLens(LENS_CATALOG["nikon-reflex-nikkor-500mm-f8-new"]);
+    const layout = doLayout(0, 0, L);
+
+    render(
+      <DiagramSVG
+        {...baseDiagramSvgProps({
+          L,
+          zPos: layout.z,
+          IMG_MM: layout.imgZ,
+          stopZ: layout.z[L.stopIdx],
+          currentPhysStopSD: L.stopPhysSD,
+          onHover,
+          onSelect,
+        })}
+      />,
+    );
+
+    expect(mockApertureStop).toHaveBeenCalledWith(expect.objectContaining({ innerBlockedSD: 20.35 }));
   });
 
   it("renders a side image plane using its resolved normal", () => {

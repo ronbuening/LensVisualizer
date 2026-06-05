@@ -7,6 +7,7 @@
 
 import type { RayDensity } from "../types/state.js";
 import type { RuntimeLens } from "../types/optics.js";
+import { stopInnerBlockedSemiDiameter } from "./stopObstruction.js";
 
 /**
  * Heuristic for "expensive" lenses where ray-bundle analyses should drop to a
@@ -75,10 +76,10 @@ export function rayFractionsForDensity(fractions: readonly number[], density: Ra
 }
 
 /**
- * Derive ray samples while avoiding central folded-system obstructions.
+ * Derive ray samples while avoiding central stop and folded-system obstructions.
  *
- * For annular mirror paths, pupil fractions whose physical height falls inside
- * a central blocker or mirror hole are removed so visible normal/dense rays stay
+ * Pupil fractions whose physical height falls inside an explicit annular stop,
+ * central blocker, or mirror hole are removed so visible normal/dense rays stay
  * in transmissive pupil bands.
  *
  * @param L - lens fields needed to inspect folded obstructions
@@ -88,22 +89,15 @@ export function rayFractionsForDensity(fractions: readonly number[], density: Ra
  * @returns normalized pupil fractions that should survive obstruction clipping
  */
 export function obstructionAwareRayFractionsForDensity(
-  L: Pick<RuntimeLens, "isFoldedOptics" | "S">,
+  L: Pick<RuntimeLens, "isFoldedOptics" | "S" | "stopIdx">,
   fractions: readonly number[],
   density: RayDensity,
   entrancePupilSemiDiameter: number,
 ): number[] {
   const samples = rayFractionsForDensity(fractions, density);
-  if (!L.isFoldedOptics || entrancePupilSemiDiameter <= 0) return samples;
+  if (entrancePupilSemiDiameter <= 0) return samples;
 
-  const blockedRadius = L.S.reduce((max, surface) => {
-    const centralBlocker =
-      surface.interaction?.type === "block" ||
-      (surface.interaction?.type === "reflect" && surface.interaction.inactiveSide === "block");
-    if (centralBlocker && (surface.innerSd ?? 0) <= 0) return Math.max(max, surface.sd);
-    if (surface.interaction?.type === "reflect" && (surface.innerSd ?? 0) > 0) return Math.max(max, surface.innerSd!);
-    return max;
-  }, 0);
+  const blockedRadius = stopInnerBlockedSemiDiameter(L);
   if (blockedRadius <= 0) return samples;
 
   const minFraction = blockedRadius / entrancePupilSemiDiameter;

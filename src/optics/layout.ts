@@ -115,7 +115,8 @@ export function thick(i: number, focusT: number, zoomT: number, L: RuntimeLens, 
  * Compute current RuntimeLens layout positions.
  *
  * Surface vertices start at z=0 and accumulate current thicknesses. Folded systems
- * use their explicit image plane instead of assuming the last surface plus BFD.
+ * use an authored explicit image plane when present; otherwise their image plane
+ * tracks the current last-surface-plus-BFD position like ordinary prescriptions.
  *
  * @param focusT - normalized focus slider
  * @param zoomT - normalized zoom slider
@@ -128,7 +129,9 @@ export function doLayout(focusT: number, zoomT: number, L: RuntimeLens, aberrati
   const z = [0];
   for (let i = 0; i < th.length - 1; i++) z.push(z[i] + th[i]);
   const defaultImgZ = z[z.length - 1] + th[th.length - 1];
-  return { z, th, imgZ: L.isFoldedOptics ? L.imagePlane.z : defaultImgZ };
+  const hasExplicitFoldedImagePlane =
+    L.isFoldedOptics && (L.data?.opticalPath === undefined || L.data.opticalPath.imagePlane !== undefined);
+  return { z, th, imgZ: hasExplicitFoldedImagePlane ? L.imagePlane.z : defaultImgZ };
 }
 
 /**

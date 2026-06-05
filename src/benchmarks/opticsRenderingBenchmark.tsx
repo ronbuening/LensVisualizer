@@ -1155,6 +1155,7 @@ function compileChromaticTraceSegment(
     fraction,
     y: result.y,
     u: result.u,
+    z: result.reachedImagePlane ? snapshot.IMG_MM : snapshot.zPos[snapshot.L.N - 1],
     clipped: result.clipped,
   };
 }
@@ -1181,10 +1182,10 @@ function spreadForAxis(
   });
 
   for (const fraction of candidateFractions) {
-    const marginalRays: Partial<Record<ChromaticChannel, { y: number; u: number; clipped: boolean }>> = {};
+    const marginalRays: Partial<Record<ChromaticChannel, { y: number; u: number; z?: number; clipped: boolean }>> = {};
     for (const ray of axisRays) {
       if (Math.abs(ray.fraction - fraction) < 1e-12 && !ray.clipped && Math.abs(ray.u) > 1e-15) {
-        marginalRays[ray.channel] = { y: ray.y, u: ray.u, clipped: false };
+        marginalRays[ray.channel] = { y: ray.y, u: ray.u, z: ray.z, clipped: false };
       }
     }
     const channels = Object.keys(marginalRays) as ChromaticChannel[];

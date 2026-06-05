@@ -13,7 +13,18 @@ import {
   traceToStopViaGeneralized,
   type ExactTraceLens,
 } from "../../../src/optics/internal/exactSurfaceTrace.js";
-import { doLayout, solveChiefRay, SVG_PATH_SUBDIVISIONS, traceRay } from "../../../src/optics/optics.js";
+import { computeGroupMovementProfile } from "../../../src/optics/groupMovement.js";
+import {
+  computeLongitudinalChromaticFocus,
+  conjugateK,
+  doLayout,
+  entrancePupilAtState,
+  solveChiefRay,
+  stopInnerBlockedSemiDiameter,
+  SVG_PATH_SUBDIVISIONS,
+  traceRay,
+  traceRayChromatic,
+} from "../../../src/optics/optics.js";
 import { obstructionAwareRayFractionsForDensity } from "../../../src/optics/raySampling.js";
 import validateLensData from "../../../src/optics/validateLensData.js";
 import type { LensData, RuntimeLens } from "../../../src/types/optics.js";
@@ -255,6 +266,26 @@ describe("mirror optics support", () => {
     expect(samples.every((fraction) => Math.abs(fraction) >= blockedFraction - 1e-9)).toBe(true);
   });
 
+  it("resolves central stop blockers from folded obstruction geometry", () => {
+    const annular = buildLens(annularData);
+    const nikon = buildLens(nikonReflex500NewData);
+    const ringBlocker = buildLens(ringBlockerData);
+
+    expect(stopInnerBlockedSemiDiameter(annular)).toBeCloseTo(6, 12);
+    expect(stopInnerBlockedSemiDiameter(nikon)).toBeCloseTo(20.35, 12);
+    expect(stopInnerBlockedSemiDiameter(ringBlocker)).toBe(0);
+  });
+
+  it("prefers an explicitly authored stop inner semi-diameter", () => {
+    const explicitStopData = {
+      ...annularData,
+      surfaces: annularData.surfaces.map((surface) => (surface.label === "STO" ? { ...surface, innerSd: 4 } : surface)),
+    } satisfies LensData;
+    const L = buildLens(explicitStopData);
+
+    expect(stopInnerBlockedSemiDiameter(L)).toBe(4);
+  });
+
   it("renders annular mirror elements with an even-odd aperture hole", () => {
     const L = buildLens(annularData);
     const layout = doLayout(0, 0, L);
@@ -285,6 +316,70 @@ describe("mirror optics support", () => {
     expect(result.diagnostics?.hitSurfaceLabels).toContain("4");
     expect(result.diagnostics?.hitSurfaceLabels).toContain("14");
     expect(result.diagnostics?.finalMedium).toBeCloseTo(1, 12);
+  });
+
+  it("moves the Nikon 500mm New L1/M2 focus unit toward the object at close focus", () => {
+    const L = buildLens(nikonReflex500NewData);
+    const profile = computeGroupMovementProfile(L, "focus", { focusT: 1, zoomT: 0 });
+    const shiftByGroup = new Map(profile.series.map((series) => [series.group.label, series.currentPoint.shiftMm]));
+
+    expect(validateLensData(nikonReflex500NewData)).toEqual([]);
+    expect(shiftByGroup.get("L1")).toBeCloseTo(-8.05, 10);
+    expect(shiftByGroup.get("M2")).toBeCloseTo(-8.05, 10);
+    expect(shiftByGroup.get("L2")).toBeCloseTo(0, 10);
+    expect(shiftByGroup.get("M1")).toBeCloseTo(0, 10);
+  });
+
+  it("tracks close-focus rays through the Nikon 500mm New annular pupil", () => {
+    const L = buildLens(nikonReflex500NewData);
+    const layout = doLayout(1, 0, L);
+    const ep = entrancePupilAtState(L.stopPhysSD, 1, 0, L).epSD;
+    const focusK = conjugateK(1, 0, L);
+    const rayHeight = 0.8 * ep;
+    const infinityRay = traceRay(rayHeight, 0, layout.z, 1, 0, L.stopPhysSD, true, L);
+    const trackedRay = traceRay(rayHeight, rayHeight * focusK, layout.z, 1, 0, L.stopPhysSD, true, L);
+
+    expect(focusK).toBeGreaterThan(0);
+    expect(infinityRay.clipped).toBe(false);
+    expect(trackedRay.clipped).toBe(false);
+    expect(Math.abs(trackedRay.y)).toBeLessThan(Math.abs(infinityRay.y) * 0.1);
+  });
+
+  it("keeps folded d-line chromatic tracing aligned with monochrome tracing", () => {
+    const dLineData = {
+      ...nikonReflex500NewData,
+      elements: nikonReflex500NewData.elements.map((element) => ({ ...element, glass: undefined })),
+    } satisfies LensData;
+    const L = buildLens(dLineData);
+    const layout = doLayout(0, 0, L);
+    const ep = entrancePupilAtState(L.stopPhysSD, 0, 0, L).epSD;
+    const rayHeight = 0.75 * ep;
+
+    const monochrome = traceRay(rayHeight, 0, layout.z, 0, 0, L.stopPhysSD, true, L);
+    const green = traceRayChromatic(rayHeight, 0, layout.z, 0, 0, L.stopPhysSD, true, L, "G");
+
+    expect(green.reachedImagePlane).toBe(true);
+    expect(green.y).toBeCloseTo(monochrome.y, 12);
+    expect(green.u).toBeCloseTo(monochrome.u, 12);
+  });
+
+  it("measures folded chromatic spread from the reached image plane", () => {
+    const dLineData = {
+      ...nikonReflex500NewData,
+      elements: nikonReflex500NewData.elements.map((element) => ({ ...element, glass: undefined })),
+    } satisfies LensData;
+    const L = buildLens(dLineData);
+    const layout = doLayout(0, 0, L);
+    const ep = entrancePupilAtState(L.stopPhysSD, 0, 0, L).epSD;
+    const fraction = 0.83;
+    const green = traceRayChromatic(fraction * ep, 0, layout.z, 0, 0, L.stopPhysSD, true, L, "G");
+    const result = computeLongitudinalChromaticFocus(L, layout.z, 0, 0, ep, L.stopPhysSD, 0, {
+      longitudinalFractions: [fraction],
+    });
+
+    expect(result).not.toBeNull();
+    expect(result!.spread.imgHeights.G).toBeCloseTo(green.y, 12);
+    expect(Math.abs(result!.samples.find((sample) => sample.channel === "G")!.focusShiftMm!)).toBeLessThan(1);
   });
 
   it("keeps the Nikon 1000mm primary mirror thickness and folded intervals aligned to the patent", () => {

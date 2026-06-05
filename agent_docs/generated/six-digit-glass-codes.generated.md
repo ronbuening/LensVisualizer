@@ -9,10 +9,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **299** lenses scanned
-- **245** total code-only elements found
-- **245** elements in this report
-- **88** distinct lens files affected
+- **302** lenses scanned
+- **247** total code-only elements found
+- **247** elements in this report
+- **89** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -66,7 +66,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 517522 | 1 | 1 |
 | 518523 | 1 | 1 |
 | 520636 | 1 | 1 |
+| 525558 | 1 | 1 |
 | 525596 | 1 | 1 |
+| 531557 | 1 | 1 |
 | 531621 | 1 | 1 |
 | 533489 | 1 | 1 |
 | 534554 | 1 | 1 |
@@ -664,6 +666,13 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
 | L2 (Element 2) | 3 | `487698 — FK/FSL low-dispersion crown class (patent nd=1.48749, νd=69.8; no exact modern coefficient-backed match)` | 1.48749 / 69.80 | No catalog entry | abbe |
+
+### [Olympus M.Zuiko Digital 14-42mm f/3.5-5.6 II R](../../src/lens-data/olympus/OlympusMZuiko1442mmf3556II.data.ts) - US 8,994,842 B2
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
+|---|---|---|---|---|---|
+| L2 (Element 2) | 3A | `Unmatched (moldable crown, 525/558 class)` | 1.52542 / 55.78 | No catalog entry | abbe |
+| L7 (Element 7) | 13A | `Unmatched (moldable crown, 531/557 class)` | 1.53071 / 55.69 | No catalog entry | abbe |
 
 ### [OLYMPUS M.ZUIKO DIGITAL ED 12–40 mm f/2.8 PRO](../../src/lens-data/olympus/OlympusMZuiko1240mmf28PRO.data.ts) - US 2014/0139720 A1
 

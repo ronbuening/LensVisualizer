@@ -145,7 +145,7 @@ function buildZPositions(thicknesses: readonly number[]): number[] {
 }
 
 function resolveStateImagePlane(lens: EngineLens, defaultImgZ: number): Plane3 {
-  if (lens.flags.isFoldedOptics) return lens.imagePlane;
+  if (lens.flags.isFoldedOptics && lens.source.opticalPath?.imagePlane !== undefined) return lens.imagePlane;
   return Object.freeze({
     ...lens.imagePlane,
     point: Object.freeze([lens.imagePlane.point[0], lens.imagePlane.point[1], defaultImgZ] as const),

@@ -9,11 +9,12 @@ import type { ParaxialTraceResult, RayTraceResult, RuntimeLens } from "../../typ
 import { resolveImageFormatMetadata } from "../../utils/catalog/lensTaxonomy.js";
 import { normalizeRuntimeLens } from "../prescription/normalizeLensData.js";
 import { prepareState } from "../state/prepareState.js";
-import type { PreparedOpticalState, Ray3, Vec3 } from "../types.js";
+import type { Plane3, PreparedOpticalState, Ray3, Vec3 } from "../types.js";
 import { traceParaxialSurfaces2 } from "../math/paraxial.js";
 import { traceEngineRay2, traceRay2, traceRayVector2 } from "../trace/rayAdapters.js";
 import { traceToStopViaGeneralized2 } from "../trace/stopTrace.js";
 import type { TraceOptions } from "../trace/types.js";
+import { obstructionAwareRayFractionsForDensity } from "../raySampling.js";
 import {
   ABSOLUTE_HALF_FIELD_CEILING,
   fisheyeProjectionMaxTraceFieldAtZoom2,
@@ -806,12 +807,45 @@ export function conjugateK2(focusT: number, zoomT: number, L: RuntimeLens, aberr
   const du = 1e-5;
   const currentEP = entrancePupilAtState2(L.stopPhysSD, focusT, zoomT, L, undefined, aberrationT).epSD;
   const infinityEP = entrancePupilAtState2(L.stopPhysSD, 0, zoomT, L, undefined, 0).epSD;
-  const yRefCurrent = currentEP * CONJUGATE_REFERENCE_PUPIL_FRACTION;
-  const yRefInfinity = infinityEP * CONJUGATE_REFERENCE_PUPIL_FRACTION;
+  const yRefCurrent = currentEP * conjugateReferencePupilFraction2(L, currentEP);
+  const yRefInfinity = infinityEP * conjugateReferencePupilFraction2(L, infinityEP);
   const kt = realK2(yRefCurrent, du, focusT, zoomT, L, aberrationT);
   const k0 = realK2(yRefInfinity, du, 0, zoomT, L, 0);
   if (Number.isNaN(kt) || Number.isNaN(k0)) return 0;
   return kt - k0;
+}
+
+function conjugateReferencePupilFraction2(L: RuntimeLens, entrancePupilSemiDiameter: number): number {
+  if (!L.isFoldedOptics || entrancePupilSemiDiameter <= 0) return CONJUGATE_REFERENCE_PUPIL_FRACTION;
+
+  const defaultReference = CONJUGATE_REFERENCE_PUPIL_FRACTION;
+  const blockedFraction = foldedCentralObstructionFraction2(L, entrancePupilSemiDiameter);
+  if (blockedFraction <= defaultReference) return defaultReference;
+
+  const usableFractions = obstructionAwareRayFractionsForDensity(
+    L,
+    L.rayFractions,
+    "diagnostic",
+    entrancePupilSemiDiameter,
+  )
+    .map((fraction) => Math.abs(fraction))
+    .filter((fraction) => fraction >= blockedFraction - 1e-9)
+    .sort((a, b) => a - b);
+
+  return usableFractions[0] ?? Math.min(1, blockedFraction + 0.1 * (1 - blockedFraction));
+}
+
+function foldedCentralObstructionFraction2(L: RuntimeLens, entrancePupilSemiDiameter: number): number {
+  if (entrancePupilSemiDiameter <= 0) return 0;
+  const blockedRadius = L.S.reduce((max, surface) => {
+    const centralBlocker =
+      surface.interaction?.type === "block" ||
+      (surface.interaction?.type === "reflect" && surface.interaction.inactiveSide === "block");
+    if (centralBlocker && (surface.innerSd ?? 0) <= 0) return Math.max(max, surface.sd);
+    if (surface.interaction?.type === "reflect" && (surface.innerSd ?? 0) > 0) return Math.max(max, surface.innerSd!);
+    return max;
+  }, 0);
+  return blockedRadius / entrancePupilSemiDiameter;
 }
 
 function computeChiefRaySolve2(
@@ -928,6 +962,8 @@ interface RealSurfaceTraceResult2 {
   n: number;
   clipped: boolean;
   heights: readonly number[] | null;
+  reachedImagePlane: boolean;
+  terminalPoint: Vec3;
 }
 
 function traceStateSurfacesReal2(
@@ -947,6 +983,8 @@ function traceStateSurfacesReal2(
       n: stop.n,
       clipped: !stop.found,
       heights: null,
+      reachedImagePlane: false,
+      terminalPoint: stop.point ?? [0, stop.y, 0],
     };
   }
 
@@ -958,6 +996,8 @@ function traceStateSurfacesReal2(
     n: result.finalMedium,
     clipped: result.status !== "ok",
     heights: result.heights,
+    reachedImagePlane: result.reachedImagePlane,
+    terminalPoint: result.terminalPoint,
   };
 }
 
@@ -1030,8 +1070,28 @@ function traceToImageReal2(
 ): number {
   const state = prepareState(normalizeRuntimeLens(L), focusT, zoomT, aberrationT);
   const trace = traceStateSurfacesReal2(state, y0, u0, {});
-  if (!Number.isFinite(trace.y)) return NaN;
+  if (!Number.isFinite(trace.y) || trace.clipped) return NaN;
+  if (state.lens.flags.isFoldedOptics && trace.reachedImagePlane) {
+    return imagePlaneCoordinate2(trace.terminalPoint, state.imagePlane);
+  }
   return trace.y + (state.surfaces[state.surfaces.length - 1]?.d ?? 0) * trace.u;
+}
+
+function imagePlaneCoordinate2(point: Vec3, imagePlane: Plane3): number {
+  const tangentX: Vec3 = [1, 0, 0];
+  const tangentY: Vec3 = [
+    imagePlane.normal[1] * tangentX[2] - imagePlane.normal[2] * tangentX[1],
+    imagePlane.normal[2] * tangentX[0] - imagePlane.normal[0] * tangentX[2],
+    imagePlane.normal[0] * tangentX[1] - imagePlane.normal[1] * tangentX[0],
+  ];
+  const tangentLength = Math.hypot(tangentY[0], tangentY[1], tangentY[2]);
+  if (tangentLength <= 1e-12) return point[1] - imagePlane.point[1];
+  return (
+    ((point[0] - imagePlane.point[0]) * tangentY[0] +
+      (point[1] - imagePlane.point[1]) * tangentY[1] +
+      (point[2] - imagePlane.point[2]) * tangentY[2]) /
+    tangentLength
+  );
 }
 
 function realK2(yRef: number, du: number, focusT: number, zoomT: number, L: RuntimeLens, aberrationT = 0): number {

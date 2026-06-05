@@ -5,7 +5,13 @@
  * markers, badge overlays, and flash effect into one compositional layer.
  */
 
-import { epAtZoom, epZRelStopAtZoom, xpAtZoom, xpZRelLastSurfAtZoom } from "../../optics/optics.js";
+import {
+  epAtZoom,
+  epZRelStopAtZoom,
+  stopInnerBlockedSemiDiameter,
+  xpAtZoom,
+  xpZRelLastSurfAtZoom,
+} from "../../optics/optics.js";
 import ApertureStop from "./ApertureStop.js";
 import CardinalElementsOverlay from "./CardinalElementsOverlay.js";
 import ElementAnnotations from "./ElementAnnotations.js";
@@ -93,6 +99,7 @@ export default function DiagramOverlayLayer({
   onLcaInsetClick,
   onPetzvalBadgeClick,
 }: DiagramOverlayLayerProps) {
+  const stopInnerBlockedSD = stopInnerBlockedSemiDiameter(L);
   const screenPoint = (z: number, y: number): [number, number] => {
     const [zz, yy] = pointTransform ? pointTransform(z, y) : [z, y];
     return [sx(zz), sy(yy)];
@@ -121,6 +128,7 @@ export default function DiagramOverlayLayer({
         stopPhysSD={L.stopPhysSD}
         stopHousingSD={L.stopHousingSD}
         currentPhysStopSD={currentPhysStopSD}
+        innerBlockedSD={stopInnerBlockedSD}
         bladeStubFrac={L.bladeStubFrac}
         lyStoPad={L.lyStoPad}
         pointTransform={pointTransform}

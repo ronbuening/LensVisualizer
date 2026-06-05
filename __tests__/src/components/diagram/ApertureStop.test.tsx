@@ -83,4 +83,90 @@ describe("ApertureStop", () => {
     // Bottom blade: y2 = sy(bladeInner) = 5
     expect(lines[1].getAttribute("y2")).toBe("5");
   });
+
+  it("renders a central blocked segment for annular stops", () => {
+    const { container } = render(
+      <svg>
+        <ApertureStop
+          sx={identity}
+          sy={identity}
+          stopZ={0}
+          stopPhysSD={10}
+          stopHousingSD={12}
+          currentPhysStopSD={8}
+          innerBlockedSD={3}
+          bladeStubFrac={0.1}
+          lyStoPad={2}
+          t={mockTheme}
+        />
+      </svg>,
+    );
+
+    const lines = container.querySelectorAll("line");
+    expect(lines.length).toBe(3);
+    expect(lines[2].getAttribute("y1")).toBe("-3");
+    expect(lines[2].getAttribute("y2")).toBe("3");
+  });
+
+  it("omits invalid central blockers and clamps oversized blockers to the current aperture", () => {
+    const { container, rerender } = render(
+      <svg>
+        <ApertureStop
+          sx={identity}
+          sy={identity}
+          stopZ={0}
+          stopPhysSD={10}
+          stopHousingSD={12}
+          currentPhysStopSD={8}
+          innerBlockedSD={Number.NaN}
+          bladeStubFrac={0.1}
+          lyStoPad={2}
+          t={mockTheme}
+        />
+      </svg>,
+    );
+
+    expect(container.querySelectorAll("line").length).toBe(2);
+
+    rerender(
+      <svg>
+        <ApertureStop
+          sx={identity}
+          sy={identity}
+          stopZ={0}
+          stopPhysSD={10}
+          stopHousingSD={12}
+          currentPhysStopSD={8}
+          innerBlockedSD={0}
+          bladeStubFrac={0.1}
+          lyStoPad={2}
+          t={mockTheme}
+        />
+      </svg>,
+    );
+
+    expect(container.querySelectorAll("line").length).toBe(2);
+
+    rerender(
+      <svg>
+        <ApertureStop
+          sx={identity}
+          sy={identity}
+          stopZ={0}
+          stopPhysSD={10}
+          stopHousingSD={12}
+          currentPhysStopSD={8}
+          innerBlockedSD={30}
+          bladeStubFrac={0.1}
+          lyStoPad={2}
+          t={mockTheme}
+        />
+      </svg>,
+    );
+
+    const lines = container.querySelectorAll("line");
+    expect(lines.length).toBe(3);
+    expect(lines[2].getAttribute("y1")).toBe("-8");
+    expect(lines[2].getAttribute("y2")).toBe("8");
+  });
 });

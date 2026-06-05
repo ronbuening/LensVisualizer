@@ -124,8 +124,9 @@ function traceOffAxisChromaticMarginal(
   zoomT: number,
   currentEPSD: number,
   currentPhysStopSD: number,
+  imagePlaneZ: number,
   aberrationT: number,
-): { y: number; u: number; clipped: boolean } {
+): { y: number; u: number; z?: number; clipped: boolean } {
   if (isOffAxisVectorFieldGeometry(geometry)) {
     const ray = traceSkewRayVectorChromatic2(
       offsetVectorFieldRay(geometry.vectorLaunch, 0, fraction * currentEPSD),
@@ -138,7 +139,7 @@ function traceOffAxisChromaticMarginal(
       zoomT,
       aberrationT,
     );
-    return { y: ray.y, u: ray.uy, clipped: ray.clipped };
+    return { y: ray.y, u: ray.uy, z: L.isFoldedOptics ? imagePlaneZ : undefined, clipped: ray.clipped };
   }
 
   const ray = traceChiefRelativeSkewRayChromatic(
@@ -155,7 +156,7 @@ function traceOffAxisChromaticMarginal(
     channel,
     aberrationT,
   );
-  return { y: ray.y, u: ray.uy, clipped: ray.clipped };
+  return { y: ray.y, u: ray.uy, z: L.isFoldedOptics ? imagePlaneZ : undefined, clipped: ray.clipped };
 }
 
 function computeSpreadFromFractions(
@@ -164,18 +165,18 @@ function computeSpreadFromFractions(
   imagePlaneZ: number,
   lastSurfaceZ: number,
   axis: "onAxis" | "offAxis",
-  trace: (fraction: number, channel: ChromaticChannel) => { y: number; u: number; clipped: boolean },
+  trace: (fraction: number, channel: ChromaticChannel) => { y: number; u: number; z?: number; clipped: boolean },
 ): { spread: ChromaticSpread | null; attemptedRayCount: number } {
   let attemptedRayCount = 0;
 
   for (const fraction of fractions) {
-    const marginalRays: Partial<Record<ChromaticChannel, { y: number; u: number; clipped: boolean }>> = {};
+    const marginalRays: Partial<Record<ChromaticChannel, { y: number; u: number; z?: number; clipped: boolean }>> = {};
 
     for (const channel of channels) {
       attemptedRayCount++;
       const ray = trace(fraction, channel);
       if (!ray.clipped && Math.abs(ray.u) > 1e-15) {
-        marginalRays[channel] = { y: ray.y, u: ray.u, clipped: false };
+        marginalRays[channel] = { y: ray.y, u: ray.u, z: ray.z, clipped: false };
       }
     }
 
@@ -238,7 +239,7 @@ export function computeChromaticRayTraceAnalysis2(
         channel,
         aberrationT,
       );
-      return { y: ray.y, u: ray.u, clipped: ray.clipped };
+      return { y: ray.y, u: ray.u, z: ray.reachedImagePlane ? imagePlaneZ : lastSurfaceZ, clipped: ray.clipped };
     },
   );
 
@@ -271,6 +272,7 @@ export function computeChromaticRayTraceAnalysis2(
               zoomT,
               currentEPSD,
               currentPhysStopSD,
+              imagePlaneZ,
               aberrationT,
             ),
         );

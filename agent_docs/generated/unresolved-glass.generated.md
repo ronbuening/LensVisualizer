@@ -8,19 +8,19 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **299** lenses scanned
-- **3362** non-air surfaces examined
-- **3366** element glass declarations examined
-- **568** non-explicit-unmatched annotations did not resolve
+- **302** lenses scanned
+- **3387** non-air surfaces examined
+- **3391** element glass declarations examined
+- **569** non-explicit-unmatched annotations did not resolve
 - **204** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
 | Token | Occurrences | Lens files | Notes |
 |---|---:|---:|---|
+| S-LAL12 | 5 | 5 | |
 | 670571 | 4 | 2 | |
 | 863252 | 4 | 2 | |
-| S-LAL12 | 4 | 4 | |
 | S-NPH7 | 4 | 4 | |
 | 516565 | 3 | 1 | |
 | 585587 | 3 | 1 | |
@@ -225,6 +225,14 @@ or per-lens patent backfills.
 
 ## Occurrences
 
+### S-LAL12 — 5 occurrences
+
+- [Canon EF 70-200mm f/2.8L IS II USM](../../src/lens-data/canon/CanonEF70200mmf28LII.data.ts) 18: `S-LAL12 (OHARA)`
+- [Olympus M.Zuiko Digital ED 12mm f/2.0](../../src/lens-data/olympus/OlympusMZuiko12mmf2.data.ts) 3A: `S-LAL12 (OHARA)`
+- [smc PENTAX-FA645 120mm F4 Macro](../../src/lens-data/pentax/Pentax645FA120mmf4.data.ts) 13: `S-LAL12 (OHARA)`
+- [PENTAX-DA★ 50-135mm F2.8 ED [IF] SDM](../../src/lens-data/pentax/PentaxDA50135mmf28.data.ts) 25: `S-LAL12 (OHARA)`
+- [smc Pentax 67 Macro 100mm f/4](../../src/lens-data/pentax/PentaxSMC67100mmf4.data.ts) 9: `S-LAL12 (OHARA)`
+
 ### 670571 — 4 occurrences
 
 - [Minolta AF 35-105mm f/3.5-4.5 New (v2)](../../src/lens-data/minolta/MinoltaAF35105mmf3545v2.data.ts) 2: `670571 - high-index crown / lanthanum-crown class (unresolved)`
@@ -238,13 +246,6 @@ or per-lens patent backfills.
 - [Sony FE 14mm f/1.8 GM](../../src/lens-data/sony/SonyFE14mmf18GM.data.ts) 22: `863252 - dense flint (Sony patent nd=1.86252, vd=25.2; no exact public catalog match)`
 - [SONY FE 28-70mm F2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 23: `863252 — dense flint (patent nd=1.86252, νd=25.2)`
 - [SONY FE 28-70mm F2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 32: `863252 — dense flint (patent nd=1.86252, νd=25.2)`
-
-### S-LAL12 — 4 occurrences
-
-- [Canon EF 70-200mm f/2.8L IS II USM](../../src/lens-data/canon/CanonEF70200mmf28LII.data.ts) 18: `S-LAL12 (OHARA)`
-- [smc PENTAX-FA645 120mm F4 Macro](../../src/lens-data/pentax/Pentax645FA120mmf4.data.ts) 13: `S-LAL12 (OHARA)`
-- [PENTAX-DA★ 50-135mm F2.8 ED [IF] SDM](../../src/lens-data/pentax/PentaxDA50135mmf28.data.ts) 25: `S-LAL12 (OHARA)`
-- [smc Pentax 67 Macro 100mm f/4](../../src/lens-data/pentax/PentaxSMC67100mmf4.data.ts) 9: `S-LAL12 (OHARA)`
 
 ### S-NPH7 — 4 occurrences
 
