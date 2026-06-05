@@ -9,11 +9,11 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **299** lenses scanned (**291** visible)
-- **2699 / 3362** non-air surfaces use trusted Sellmeier data (80.3%)
+- **302** lenses scanned (**294** visible)
+- **2721 / 3387** non-air surfaces use trusted Sellmeier data (80.3%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
-- **153** code-only missing-Sellmeier elements in Sweep 2
+- **155** code-only missing-Sellmeier elements in Sweep 2
 - **2** Tier A proprietary backfill rows in Sweep 3
 
 ## Sweep 1 - Relabel Mismatches
@@ -61,6 +61,7 @@ These are efficient follow-up targets after mismatch blockers because one or two
 | [FUJIFILM FUJINON XF 56mm F1.2 R](../../src/lens-data/fujifilm/FujifilmXF56mmf12.data.ts) | 90.9% (10/11) | 1 | abbe: 1 |
 | [FUJIFILM FUJINON XF 90mm f/2 R LM WR](../../src/lens-data/fujifilm/FujifilmXF90mmf2.data.ts) | 90.9% (10/11) | 1 | abbe: 1 |
 | [NIKON NIKKOR Z 35mm f/1.8 S](../../src/lens-data/nikon/NikonZ35f18S.data.ts) | 90.9% (10/11) | 1 | abbe: 1 |
+| [Olympus M.Zuiko Digital ED 12mm f/2.0](../../src/lens-data/olympus/OlympusMZuiko12mmf2.data.ts) | 90.9% (10/11) | 1 | abbe: 1 |
 | [Sony E 18-55mm f/3.5-5.6 OSS](../../src/lens-data/sony/SonyE1855mmf3556.data.ts) | 90.9% (10/11) | 1 | abbe: 1 |
 | [CANON EF-S 17-55mm f/2.8 IS USM](../../src/lens-data/canon/CanonEFS1755mmf28IS.data.ts) | 90.5% (19/21) | 2 | lineIndices: 2 |
 | [CANON RF 24-240mm F4-6.3 IS USM](../../src/lens-data/canon/CanonRF24240mmf463.data.ts) | 90.5% (19/21) | 2 | abbe: 2 |

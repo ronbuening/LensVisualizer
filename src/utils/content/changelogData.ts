@@ -19,6 +19,18 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-06-05 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-06-05",
+    type: "lens",
+    summary:
+      "Added three Olympus Micro Four Thirds lenses: M.Zuiko Digital 12mm f/2.0, M.Zuiko Digital 17mm f/2.8, and M.Zuiko Digital 14-42mm f/3.5-5.6 II R",
+  },
+  {
+    date: "2026-06-05",
+    type: "fix",
+    summary: "Fixed a bug in focusing Nikon Reflex-Nikkor 500mm f/8 (New)",
+  },
   // ── 2026-06-04 ──────────────────────────────────────────────────────────
   {
     date: "2026-06-04",

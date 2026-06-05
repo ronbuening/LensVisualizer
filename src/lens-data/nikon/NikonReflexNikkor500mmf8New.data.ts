@@ -20,7 +20,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                    ║
  * ║  Focus: L1 and M2 move integrally 8.05 mm toward the object at     ║
  * ║  close focus. In physical coordinates this is represented as the   ║
- * ║  M2-to-fixed-rear-block spacing changing from 41.50 to 49.55 mm.   ║
+ * ║  M2-to-fixed-rear-block spacing changing from 41.50 to 49.55 mm;   ║
+ * ║  the viewer anchors the image plane so the rear block stays fixed   ║
+ * ║  and L1/M2 travel object-side, matching the patent mechanism.       ║
  * ║                                                                    ║
  * ║  Semi-diameters are estimated from the patent F/6.7 marginal ray   ║
  * ║  plus 2.5° half-field chief ray envelope, then rounded upward with ║
@@ -42,6 +44,12 @@ const LENS_DATA = {
     "2ω = 5°",
     "all-spherical Mangin catadioptric",
   ],
+
+  projection: {
+    kind: "rectilinear",
+    fullFieldDeg: 5,
+    maxTraceFieldDeg: 2.5,
+  },
 
   focalLengthMarketing: 500,
   focalLengthDesign: 499.482,

@@ -110,7 +110,7 @@ The focus mechanism is front-unit focus. L1 and M2 move together as a rigid unit
 | Infinity | ∞ | 0.00 mm | 0 |
 | Close focus | ≈ 1.5 m | 8.05 mm toward object | −0.404×, about 1:2.47 |
 
-In the patent's optical passage coordinates, this movement opens three optical spacings by the same amount: the L1-to-M1 spacing, the M1-to-M2 return spacing, and the M2-to-rear-corrector spacing. In the physical data file, the same movement is represented as a single variable spacing between the moving front unit and the fixed rear optical block: surface 6/8 changes from 41.50 mm at infinity to 49.55 mm at close focus.
+In the patent's optical passage coordinates, this movement opens three optical spacings by the same amount: the L1-to-M1 spacing, the M1-to-M2 return spacing, and the M2-to-rear-corrector spacing. In the physical data file, the same movement is represented by surface 6/8 changing from 41.50 mm at infinity to 49.55 mm at close focus. The folded layout then anchors the image plane, so the primary mirror and rear corrector stay fixed while L1 and M2 move toward the object.
 
 A paraxial finite-object trace gives an image-plane-referenced object distance of about 1.507 m for the 8.05 mm close-focus shift. The small difference from 1.500 m is within the expected effect of rounded prescription values and the patent's own rounded close-focus statement.
 

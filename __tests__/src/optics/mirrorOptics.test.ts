@@ -13,6 +13,7 @@ import {
   traceToStopViaGeneralized,
   type ExactTraceLens,
 } from "../../../src/optics/internal/exactSurfaceTrace.js";
+import { computeGroupMovementProfile } from "../../../src/optics/groupMovement.js";
 import { doLayout, solveChiefRay, SVG_PATH_SUBDIVISIONS, traceRay } from "../../../src/optics/optics.js";
 import { obstructionAwareRayFractionsForDensity } from "../../../src/optics/raySampling.js";
 import validateLensData from "../../../src/optics/validateLensData.js";
@@ -285,6 +286,18 @@ describe("mirror optics support", () => {
     expect(result.diagnostics?.hitSurfaceLabels).toContain("4");
     expect(result.diagnostics?.hitSurfaceLabels).toContain("14");
     expect(result.diagnostics?.finalMedium).toBeCloseTo(1, 12);
+  });
+
+  it("moves the Nikon 500mm New L1/M2 focus unit toward the object at close focus", () => {
+    const L = buildLens(nikonReflex500NewData);
+    const profile = computeGroupMovementProfile(L, "focus", { focusT: 1, zoomT: 0 });
+    const shiftByGroup = new Map(profile.series.map((series) => [series.group.label, series.currentPoint.shiftMm]));
+
+    expect(validateLensData(nikonReflex500NewData)).toEqual([]);
+    expect(shiftByGroup.get("L1")).toBeCloseTo(-8.05, 10);
+    expect(shiftByGroup.get("M2")).toBeCloseTo(-8.05, 10);
+    expect(shiftByGroup.get("L2")).toBeCloseTo(0, 10);
+    expect(shiftByGroup.get("M1")).toBeCloseTo(0, 10);
   });
 
   it("keeps the Nikon 1000mm primary mirror thickness and folded intervals aligned to the patent", () => {
