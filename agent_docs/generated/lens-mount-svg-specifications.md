@@ -56525,19 +56525,19 @@ None — fully electronic.
 | Effective clear aperture | 44 (`secondary`) | mm |
 | Camera mount outer diameter | 56 (`photo_scaled`) | mm |
 | Lens mount outer diameter | 52 (`photo_scaled`) | mm |
-| Contact count | 6 (`secondary`) | count |
+| Contact count | 6 (`patent`) | count |
 | Lock rotation | 70 (`secondary`) | deg |
-| Lock direction | clockwise (`secondary`) | — |
+| Lock direction | clockwise (`patent`) | — |
 
 #### Figures (selected profile `pentax-k/ka`)
 
 **Camera-side front view** — viewBox `-35 -36 70 71` ([standalone SVG](mounts/pentax-k-camera-front.svg))
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-35 -36 70 71" role="img" aria-labelledby="pentax-k-ka-camera_side_front-title pentax-k-ka-camera_side_front-desc"><title id="pentax-k-ka-camera_side_front-title">Pentax K mount — camera-side front view (ka)</title><desc id="pentax-k-ka-camera_side_front-desc">Pentax K bayonet mount, camera-side front view. Flange focal distance 45.46 mm, nominal throat 44 mm. Profile pentax-k/ka.</desc><metadata>{"mountId":"pentax-k","profileId":"pentax-k/ka","view":"camera_side_front","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.4" y1="0" x2="1.4" y2="0" stroke="#8a94a0" stroke-width="0.42" fill="none" /><line x1="0" y1="-1.4" x2="0" y2="1.4" stroke="#8a94a0" stroke-width="0.42" fill="none" /><line x1="0" y1="-28" x2="0" y2="-29.68" stroke="#8a94a0" stroke-width="0.42" fill="none" /></g><g data-layer="camera-side-metal"><path d="M0,-28 A28,28 0 1 1 0,28 A28,28 0 1 1 0,-28 Z M0,-22 A22,22 0 1 1 0,22 A22,22 0 1 1 0,-22 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-28 A28,28 0 1 1 0,28 A28,28 0 1 1 0,-28 Z M0,-22 A22,22 0 1 1 0,22 A22,22 0 1 1 0,-22 Z" stroke="#6b7a8f" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M0,-22 A22,22 0 1 1 0,22 A22,22 0 1 1 0,-22 Z" stroke="#2f80c4" stroke-width="0.315" fill="none" /><circle cx="17.678" cy="-17.678" r="1" stroke="#7f8c3a" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><circle cx="17.678" cy="17.678" r="1" stroke="#7f8c3a" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><circle cx="-17.678" cy="17.678" r="1" stroke="#7f8c3a" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><circle cx="-17.678" cy="-17.678" r="1" stroke="#7f8c3a" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-core-interface"><path d="M0,-26.2 L-1.77,-28.946 L1.77,-28.946 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-26.2 L-1.77,-28.946 L1.77,-28.946 Z" stroke="#e8853a" stroke-width="0.42" fill="none" stroke-dasharray="0.6 1.6" /><path d="M4.574,-21.519 L5.094,-23.965 A24.5,24.5 0 0 1 18.207,-16.394 L16.349,-14.721 A22,22 0 0 0 4.574,-21.519 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M4.574,-21.519 L5.094,-23.965 A24.5,24.5 0 0 1 18.207,-16.394 L16.349,-14.721 A22,22 0 0 0 4.574,-21.519 Z" stroke="#2a9d8f" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><circle cx="21.249" cy="8.802" r="0.98" fill="#d1495b" fill-opacity="0.12" /><circle cx="21.249" cy="8.802" r="0.98" stroke="#d1495b" stroke-width="0.42" fill="none" stroke-dasharray="0.6 1.6" /><path d="M16.349,14.721 L18.207,16.394 A24.5,24.5 0 0 1 5.094,23.965 L4.574,21.519 A22,22 0 0 0 16.349,14.721 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M16.349,14.721 L18.207,16.394 A24.5,24.5 0 0 1 5.094,23.965 L4.574,21.519 A22,22 0 0 0 16.349,14.721 Z" stroke="#2a9d8f" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M-20.923,6.798 L-23.301,7.571 A24.5,24.5 0 0 1 -23.301,-7.571 L-20.923,-6.798 A22,22 0 0 0 -20.923,6.798 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-20.923,6.798 L-23.301,7.571 A24.5,24.5 0 0 1 -23.301,-7.571 L-20.923,-6.798 A22,22 0 0 0 -20.923,6.798 Z" stroke="#2a9d8f" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-variant-electrical"><path d="M-10.563,16.153 L-11.877,18.161 A21.7,21.7 0 0 1 -13.004,17.372 L-11.566,15.451 A19.3,19.3 0 0 0 -10.563,16.153 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-10.563,16.153 L-11.877,18.161 A21.7,21.7 0 0 1 -13.004,17.372 L-11.566,15.451 A19.3,19.3 0 0 0 -10.563,16.153 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M-12.708,14.525 L-14.289,16.332 A21.7,21.7 0 0 1 -15.295,15.393 L-13.603,13.691 A19.3,19.3 0 0 0 -12.708,14.525 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-12.708,14.525 L-14.289,16.332 A21.7,21.7 0 0 1 -15.295,15.393 L-13.603,13.691 A19.3,19.3 0 0 0 -12.708,14.525 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M-14.606,12.615 L-16.423,14.184 A21.7,21.7 0 0 1 -17.289,13.115 L-15.376,11.664 A19.3,19.3 0 0 0 -14.606,12.615 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-14.606,12.615 L-16.423,14.184 A21.7,21.7 0 0 1 -17.289,13.115 L-15.376,11.664 A19.3,19.3 0 0 0 -14.606,12.615 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M-16.22,10.46 L-18.237,11.76 A21.7,21.7 0 0 1 -18.945,10.581 L-16.85,9.411 A19.3,19.3 0 0 0 -16.22,10.46 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-16.22,10.46 L-18.237,11.76 A21.7,21.7 0 0 1 -18.945,10.581 L-16.85,9.411 A19.3,19.3 0 0 0 -16.22,10.46 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M-17.518,8.101 L-19.696,9.108 A21.7,21.7 0 0 1 -20.234,7.841 L-17.996,6.974 A19.3,19.3 0 0 0 -17.518,8.101 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-17.518,8.101 L-19.696,9.108 A21.7,21.7 0 0 1 -20.234,7.841 L-17.996,6.974 A19.3,19.3 0 0 0 -17.518,8.101 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M-18.475,5.584 L-20.772,6.278 A21.7,21.7 0 0 1 -21.128,4.949 L-18.791,4.402 A19.3,19.3 0 0 0 -18.475,5.584 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-18.475,5.584 L-20.772,6.278 A21.7,21.7 0 0 1 -21.128,4.949 L-18.791,4.402 A19.3,19.3 0 0 0 -18.475,5.584 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-variant-mechanical"><circle cx="-22.216" cy="-5.953" r="0.84" stroke="#b5651d" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><circle cx="-20.785" cy="-12" r="0.84" stroke="#b5651d" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-33.6" y1="-32.45" x2="-29.4" y2="-32.45" stroke="#2f80c4" stroke-width="0.497" /><text x="-28.264" y="-31.655" font-size="2.272" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-33.6" y1="-29.042" x2="-29.4" y2="-29.042" stroke="#6b7a8f" stroke-width="0.497" /><text x="-28.264" y="-28.247" font-size="2.272" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-33.6" y1="-25.634" x2="-29.4" y2="-25.634" stroke="#2a9d8f" stroke-width="0.497" /><text x="-28.264" y="-24.839" font-size="2.272" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-33.6" y1="-22.226" x2="-29.4" y2="-22.226" stroke="#d1495b" stroke-width="0.497" /><text x="-28.264" y="-21.431" font-size="2.272" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-33.6" y1="-18.818" x2="-29.4" y2="-18.818" stroke="#e8853a" stroke-width="0.497" /><text x="-28.264" y="-18.023" font-size="2.272" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-33.6" y1="-15.41" x2="-29.4" y2="-15.41" stroke="#8a5cd1" stroke-width="0.497" /><text x="-28.264" y="-14.615" font-size="2.272" fill="#8a5cd1" font-family="sans-serif">Electrical contact</text><line x1="-33.6" y1="-12.002" x2="-29.4" y2="-12.002" stroke="#b5651d" stroke-width="0.497" /><text x="-28.264" y="-11.207" font-size="2.272" fill="#b5651d" font-family="sans-serif">Mechanical coupling</text><line x1="-33.6" y1="-8.594" x2="-29.4" y2="-8.594" stroke="#7f8c3a" stroke-width="0.497" /><text x="-28.264" y="-7.799" font-size="2.272" fill="#7f8c3a" font-family="sans-serif">Screws / seals</text><line x1="-33.6" y1="-5.186" x2="-29.4" y2="-5.186" stroke="#8a94a0" stroke-width="0.497" /><text x="-28.264" y="-4.391" font-size="2.272" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-35 -36 70 71" role="img" aria-labelledby="pentax-k-ka-camera_side_front-title pentax-k-ka-camera_side_front-desc"><title id="pentax-k-ka-camera_side_front-title">Pentax K mount — camera-side front view (ka)</title><desc id="pentax-k-ka-camera_side_front-desc">Pentax K bayonet mount, camera-side front view. Flange focal distance 45.46 mm, nominal throat 44 mm. Profile pentax-k/ka.</desc><metadata>{"mountId":"pentax-k","profileId":"pentax-k/ka","view":"camera_side_front","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.4" y1="0" x2="1.4" y2="0" stroke="#8a94a0" stroke-width="0.42" fill="none" /><line x1="0" y1="-1.4" x2="0" y2="1.4" stroke="#8a94a0" stroke-width="0.42" fill="none" /><line x1="0" y1="-28" x2="0" y2="-29.68" stroke="#8a94a0" stroke-width="0.42" fill="none" /></g><g data-layer="camera-side-metal"><path d="M0,-28 A28,28 0 1 1 0,28 A28,28 0 1 1 0,-28 Z M0,-22 A22,22 0 1 1 0,22 A22,22 0 1 1 0,-22 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-28 A28,28 0 1 1 0,28 A28,28 0 1 1 0,-28 Z M0,-22 A22,22 0 1 1 0,22 A22,22 0 1 1 0,-22 Z" stroke="#6b7a8f" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M0,-22 A22,22 0 1 1 0,22 A22,22 0 1 1 0,-22 Z" stroke="#2f80c4" stroke-width="0.315" fill="none" /><circle cx="17.678" cy="-17.678" r="1" stroke="#7f8c3a" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><circle cx="17.678" cy="17.678" r="1" stroke="#7f8c3a" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><circle cx="-17.678" cy="17.678" r="1" stroke="#7f8c3a" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><circle cx="-17.678" cy="-17.678" r="1" stroke="#7f8c3a" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-core-interface"><path d="M0,-26.2 L-1.77,-28.946 L1.77,-28.946 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-26.2 L-1.77,-28.946 L1.77,-28.946 Z" stroke="#e8853a" stroke-width="0.42" fill="none" stroke-dasharray="0.6 1.6" /><path d="M4.574,-21.519 L5.094,-23.965 A24.5,24.5 0 0 1 18.207,-16.394 L16.349,-14.721 A22,22 0 0 0 4.574,-21.519 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M4.574,-21.519 L5.094,-23.965 A24.5,24.5 0 0 1 18.207,-16.394 L16.349,-14.721 A22,22 0 0 0 4.574,-21.519 Z" stroke="#2a9d8f" stroke-width="0.42" fill="none" /><circle cx="21.249" cy="8.802" r="0.98" fill="#d1495b" fill-opacity="0.12" /><circle cx="21.249" cy="8.802" r="0.98" stroke="#d1495b" stroke-width="0.42" fill="none" /><path d="M16.349,14.721 L18.207,16.394 A24.5,24.5 0 0 1 5.094,23.965 L4.574,21.519 A22,22 0 0 0 16.349,14.721 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M16.349,14.721 L18.207,16.394 A24.5,24.5 0 0 1 5.094,23.965 L4.574,21.519 A22,22 0 0 0 16.349,14.721 Z" stroke="#2a9d8f" stroke-width="0.42" fill="none" /><path d="M-20.923,6.798 L-23.301,7.571 A24.5,24.5 0 0 1 -23.301,-7.571 L-20.923,-6.798 A22,22 0 0 0 -20.923,6.798 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-20.923,6.798 L-23.301,7.571 A24.5,24.5 0 0 1 -23.301,-7.571 L-20.923,-6.798 A22,22 0 0 0 -20.923,6.798 Z" stroke="#2a9d8f" stroke-width="0.42" fill="none" /></g><g data-layer="camera-side-variant-electrical"><path d="M-10.563,16.153 L-11.877,18.161 A21.7,21.7 0 0 1 -13.004,17.372 L-11.566,15.451 A19.3,19.3 0 0 0 -10.563,16.153 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-10.563,16.153 L-11.877,18.161 A21.7,21.7 0 0 1 -13.004,17.372 L-11.566,15.451 A19.3,19.3 0 0 0 -10.563,16.153 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" /><path d="M-12.708,14.525 L-14.289,16.332 A21.7,21.7 0 0 1 -15.295,15.393 L-13.603,13.691 A19.3,19.3 0 0 0 -12.708,14.525 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-12.708,14.525 L-14.289,16.332 A21.7,21.7 0 0 1 -15.295,15.393 L-13.603,13.691 A19.3,19.3 0 0 0 -12.708,14.525 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" /><path d="M-14.606,12.615 L-16.423,14.184 A21.7,21.7 0 0 1 -17.289,13.115 L-15.376,11.664 A19.3,19.3 0 0 0 -14.606,12.615 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-14.606,12.615 L-16.423,14.184 A21.7,21.7 0 0 1 -17.289,13.115 L-15.376,11.664 A19.3,19.3 0 0 0 -14.606,12.615 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" /><path d="M-16.22,10.46 L-18.237,11.76 A21.7,21.7 0 0 1 -18.945,10.581 L-16.85,9.411 A19.3,19.3 0 0 0 -16.22,10.46 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-16.22,10.46 L-18.237,11.76 A21.7,21.7 0 0 1 -18.945,10.581 L-16.85,9.411 A19.3,19.3 0 0 0 -16.22,10.46 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" /><path d="M-17.518,8.101 L-19.696,9.108 A21.7,21.7 0 0 1 -20.234,7.841 L-17.996,6.974 A19.3,19.3 0 0 0 -17.518,8.101 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-17.518,8.101 L-19.696,9.108 A21.7,21.7 0 0 1 -20.234,7.841 L-17.996,6.974 A19.3,19.3 0 0 0 -17.518,8.101 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" /><path d="M-18.475,5.584 L-20.772,6.278 A21.7,21.7 0 0 1 -21.128,4.949 L-18.791,4.402 A19.3,19.3 0 0 0 -18.475,5.584 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-18.475,5.584 L-20.772,6.278 A21.7,21.7 0 0 1 -21.128,4.949 L-18.791,4.402 A19.3,19.3 0 0 0 -18.475,5.584 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" /></g><g data-layer="camera-side-variant-mechanical"><circle cx="-22.216" cy="-5.953" r="0.84" stroke="#b5651d" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><circle cx="-20.785" cy="-12" r="0.84" stroke="#b5651d" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-33.6" y1="-32.45" x2="-29.4" y2="-32.45" stroke="#2f80c4" stroke-width="0.497" /><text x="-28.264" y="-31.655" font-size="2.272" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-33.6" y1="-29.042" x2="-29.4" y2="-29.042" stroke="#6b7a8f" stroke-width="0.497" /><text x="-28.264" y="-28.247" font-size="2.272" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-33.6" y1="-25.634" x2="-29.4" y2="-25.634" stroke="#2a9d8f" stroke-width="0.497" /><text x="-28.264" y="-24.839" font-size="2.272" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-33.6" y1="-22.226" x2="-29.4" y2="-22.226" stroke="#d1495b" stroke-width="0.497" /><text x="-28.264" y="-21.431" font-size="2.272" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-33.6" y1="-18.818" x2="-29.4" y2="-18.818" stroke="#e8853a" stroke-width="0.497" /><text x="-28.264" y="-18.023" font-size="2.272" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-33.6" y1="-15.41" x2="-29.4" y2="-15.41" stroke="#8a5cd1" stroke-width="0.497" /><text x="-28.264" y="-14.615" font-size="2.272" fill="#8a5cd1" font-family="sans-serif">Electrical contact</text><line x1="-33.6" y1="-12.002" x2="-29.4" y2="-12.002" stroke="#b5651d" stroke-width="0.497" /><text x="-28.264" y="-11.207" font-size="2.272" fill="#b5651d" font-family="sans-serif">Mechanical coupling</text><line x1="-33.6" y1="-8.594" x2="-29.4" y2="-8.594" stroke="#7f8c3a" stroke-width="0.497" /><text x="-28.264" y="-7.799" font-size="2.272" fill="#7f8c3a" font-family="sans-serif">Screws / seals</text><line x1="-33.6" y1="-5.186" x2="-29.4" y2="-5.186" stroke="#8a94a0" stroke-width="0.497" /><text x="-28.264" y="-4.391" font-size="2.272" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
 
 **Lens-side rear view** — viewBox `-33 -34 66 67` ([standalone SVG](mounts/pentax-k-lens-rear.svg))
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-33 -34 66 67" role="img" aria-labelledby="pentax-k-ka-lens_side_rear-title pentax-k-ka-lens_side_rear-desc"><title id="pentax-k-ka-lens_side_rear-title">Pentax K mount — lens-side rear view (ka)</title><desc id="pentax-k-ka-lens_side_rear-desc">Pentax K bayonet mount, lens-side rear view. Flange focal distance 45.46 mm, nominal throat 44 mm. Profile pentax-k/ka.</desc><metadata>{"mountId":"pentax-k","profileId":"pentax-k/ka","view":"lens_side_rear","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.3" y1="0" x2="1.3" y2="0" stroke="#8a94a0" stroke-width="0.396" fill="none" /><line x1="0" y1="-1.3" x2="0" y2="1.3" stroke="#8a94a0" stroke-width="0.396" fill="none" /><line x1="0" y1="-26" x2="0" y2="-27.56" stroke="#8a94a0" stroke-width="0.396" fill="none" /></g><g data-layer="lens-side-metal"><path d="M0,-26 A26,26 0 1 1 0,26 A26,26 0 1 1 0,-26 Z M0,-21 A21,21 0 1 1 0,21 A21,21 0 1 1 0,-21 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-26 A26,26 0 1 1 0,26 A26,26 0 1 1 0,-26 Z M0,-21 A21,21 0 1 1 0,21 A21,21 0 1 1 0,-21 Z" stroke="#6b7a8f" stroke-width="0.396" fill="none" stroke-dasharray="4 2" /><path d="M0,-21 A21,21 0 1 1 0,21 A21,21 0 1 1 0,-21 Z" stroke="#2f80c4" stroke-width="0.396" fill="none" stroke-dasharray="4 2" /></g><g data-layer="lens-side-core-interface"><path d="M0,-24.4 L-1.648,-26.95 L1.648,-26.95 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-24.4 L-1.648,-26.95 L1.648,-26.95 Z" stroke="#e8853a" stroke-width="0.396" fill="none" stroke-dasharray="0.6 1.6" /><path d="M20.923,-6.798 L23.301,-7.571 A24.5,24.5 0 0 1 23.301,7.571 L20.923,6.798 A22,22 0 0 0 20.923,-6.798 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M20.923,-6.798 L23.301,-7.571 A24.5,24.5 0 0 1 23.301,7.571 L20.923,6.798 A22,22 0 0 0 20.923,-6.798 Z" stroke="#2a9d8f" stroke-width="0.396" fill="none" stroke-dasharray="4 2" /><path d="M-4.574,21.519 L-5.094,23.965 A24.5,24.5 0 0 1 -18.207,16.394 L-16.349,14.721 A22,22 0 0 0 -4.574,21.519 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-4.574,21.519 L-5.094,23.965 A24.5,24.5 0 0 1 -18.207,16.394 L-16.349,14.721 A22,22 0 0 0 -4.574,21.519 Z" stroke="#2a9d8f" stroke-width="0.396" fill="none" stroke-dasharray="4 2" /><circle cx="-21.249" cy="8.802" r="0.91" fill="#d1495b" fill-opacity="0.12" /><circle cx="-21.249" cy="8.802" r="0.91" stroke="#d1495b" stroke-width="0.396" fill="none" stroke-dasharray="0.6 1.6" /><path d="M-16.349,-14.721 L-18.207,-16.394 A24.5,24.5 0 0 1 -5.094,-23.965 L-4.574,-21.519 A22,22 0 0 0 -16.349,-14.721 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-16.349,-14.721 L-18.207,-16.394 A24.5,24.5 0 0 1 -5.094,-23.965 L-4.574,-21.519 A22,22 0 0 0 -16.349,-14.721 Z" stroke="#2a9d8f" stroke-width="0.396" fill="none" stroke-dasharray="4 2" /></g><g data-layer="lens-side-variant-electrical"><path d="M-18.475,5.584 L-20.772,6.278 A21.7,21.7 0 0 1 -21.128,4.949 L-18.791,4.402 A19.3,19.3 0 0 0 -18.475,5.584 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-18.475,5.584 L-20.772,6.278 A21.7,21.7 0 0 1 -21.128,4.949 L-18.791,4.402 A19.3,19.3 0 0 0 -18.475,5.584 Z" stroke="#8a5cd1" stroke-width="0.396" fill="none" stroke-dasharray="4 2" /><path d="M-17.518,8.101 L-19.696,9.108 A21.7,21.7 0 0 1 -20.234,7.841 L-17.996,6.974 A19.3,19.3 0 0 0 -17.518,8.101 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-17.518,8.101 L-19.696,9.108 A21.7,21.7 0 0 1 -20.234,7.841 L-17.996,6.974 A19.3,19.3 0 0 0 -17.518,8.101 Z" stroke="#8a5cd1" stroke-width="0.396" fill="none" stroke-dasharray="4 2" /><path d="M-16.22,10.46 L-18.237,11.76 A21.7,21.7 0 0 1 -18.945,10.581 L-16.85,9.411 A19.3,19.3 0 0 0 -16.22,10.46 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-16.22,10.46 L-18.237,11.76 A21.7,21.7 0 0 1 -18.945,10.581 L-16.85,9.411 A19.3,19.3 0 0 0 -16.22,10.46 Z" stroke="#8a5cd1" stroke-width="0.396" fill="none" stroke-dasharray="4 2" /><path d="M-14.606,12.615 L-16.423,14.184 A21.7,21.7 0 0 1 -17.289,13.115 L-15.376,11.664 A19.3,19.3 0 0 0 -14.606,12.615 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-14.606,12.615 L-16.423,14.184 A21.7,21.7 0 0 1 -17.289,13.115 L-15.376,11.664 A19.3,19.3 0 0 0 -14.606,12.615 Z" stroke="#8a5cd1" stroke-width="0.396" fill="none" stroke-dasharray="4 2" /><path d="M-12.708,14.525 L-14.289,16.332 A21.7,21.7 0 0 1 -15.295,15.393 L-13.603,13.691 A19.3,19.3 0 0 0 -12.708,14.525 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-12.708,14.525 L-14.289,16.332 A21.7,21.7 0 0 1 -15.295,15.393 L-13.603,13.691 A19.3,19.3 0 0 0 -12.708,14.525 Z" stroke="#8a5cd1" stroke-width="0.396" fill="none" stroke-dasharray="4 2" /><path d="M-10.563,16.153 L-11.877,18.161 A21.7,21.7 0 0 1 -13.004,17.372 L-11.566,15.451 A19.3,19.3 0 0 0 -10.563,16.153 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-10.563,16.153 L-11.877,18.161 A21.7,21.7 0 0 1 -13.004,17.372 L-11.566,15.451 A19.3,19.3 0 0 0 -10.563,16.153 Z" stroke="#8a5cd1" stroke-width="0.396" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-31.68" y1="-30.65" x2="-27.68" y2="-30.65" stroke="#2f80c4" stroke-width="0.469" /><text x="-26.608" y="-29.9" font-size="2.144" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-31.68" y1="-27.434" x2="-27.68" y2="-27.434" stroke="#6b7a8f" stroke-width="0.469" /><text x="-26.608" y="-26.684" font-size="2.144" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-31.68" y1="-24.218" x2="-27.68" y2="-24.218" stroke="#2a9d8f" stroke-width="0.469" /><text x="-26.608" y="-23.468" font-size="2.144" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-31.68" y1="-21.002" x2="-27.68" y2="-21.002" stroke="#d1495b" stroke-width="0.469" /><text x="-26.608" y="-20.252" font-size="2.144" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-31.68" y1="-17.786" x2="-27.68" y2="-17.786" stroke="#e8853a" stroke-width="0.469" /><text x="-26.608" y="-17.036" font-size="2.144" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-31.68" y1="-14.57" x2="-27.68" y2="-14.57" stroke="#8a5cd1" stroke-width="0.469" /><text x="-26.608" y="-13.82" font-size="2.144" fill="#8a5cd1" font-family="sans-serif">Electrical contact</text><line x1="-31.68" y1="-11.354" x2="-27.68" y2="-11.354" stroke="#8a94a0" stroke-width="0.469" /><text x="-26.608" y="-10.604" font-size="2.144" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-33 -34 66 67" role="img" aria-labelledby="pentax-k-ka-lens_side_rear-title pentax-k-ka-lens_side_rear-desc"><title id="pentax-k-ka-lens_side_rear-title">Pentax K mount — lens-side rear view (ka)</title><desc id="pentax-k-ka-lens_side_rear-desc">Pentax K bayonet mount, lens-side rear view. Flange focal distance 45.46 mm, nominal throat 44 mm. Profile pentax-k/ka.</desc><metadata>{"mountId":"pentax-k","profileId":"pentax-k/ka","view":"lens_side_rear","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.3" y1="0" x2="1.3" y2="0" stroke="#8a94a0" stroke-width="0.396" fill="none" /><line x1="0" y1="-1.3" x2="0" y2="1.3" stroke="#8a94a0" stroke-width="0.396" fill="none" /><line x1="0" y1="-26" x2="0" y2="-27.56" stroke="#8a94a0" stroke-width="0.396" fill="none" /></g><g data-layer="lens-side-metal"><path d="M0,-26 A26,26 0 1 1 0,26 A26,26 0 1 1 0,-26 Z M0,-21 A21,21 0 1 1 0,21 A21,21 0 1 1 0,-21 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-26 A26,26 0 1 1 0,26 A26,26 0 1 1 0,-26 Z M0,-21 A21,21 0 1 1 0,21 A21,21 0 1 1 0,-21 Z" stroke="#6b7a8f" stroke-width="0.396" fill="none" stroke-dasharray="4 2" /><path d="M0,-21 A21,21 0 1 1 0,21 A21,21 0 1 1 0,-21 Z" stroke="#2f80c4" stroke-width="0.396" fill="none" stroke-dasharray="4 2" /></g><g data-layer="lens-side-core-interface"><path d="M0,-24.4 L-1.648,-26.95 L1.648,-26.95 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-24.4 L-1.648,-26.95 L1.648,-26.95 Z" stroke="#e8853a" stroke-width="0.396" fill="none" stroke-dasharray="0.6 1.6" /><path d="M20.923,-6.798 L23.301,-7.571 A24.5,24.5 0 0 1 23.301,7.571 L20.923,6.798 A22,22 0 0 0 20.923,-6.798 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M20.923,-6.798 L23.301,-7.571 A24.5,24.5 0 0 1 23.301,7.571 L20.923,6.798 A22,22 0 0 0 20.923,-6.798 Z" stroke="#2a9d8f" stroke-width="0.396" fill="none" /><path d="M-4.574,21.519 L-5.094,23.965 A24.5,24.5 0 0 1 -18.207,16.394 L-16.349,14.721 A22,22 0 0 0 -4.574,21.519 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-4.574,21.519 L-5.094,23.965 A24.5,24.5 0 0 1 -18.207,16.394 L-16.349,14.721 A22,22 0 0 0 -4.574,21.519 Z" stroke="#2a9d8f" stroke-width="0.396" fill="none" /><circle cx="-21.249" cy="8.802" r="0.91" fill="#d1495b" fill-opacity="0.12" /><circle cx="-21.249" cy="8.802" r="0.91" stroke="#d1495b" stroke-width="0.396" fill="none" /><path d="M-16.349,-14.721 L-18.207,-16.394 A24.5,24.5 0 0 1 -5.094,-23.965 L-4.574,-21.519 A22,22 0 0 0 -16.349,-14.721 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-16.349,-14.721 L-18.207,-16.394 A24.5,24.5 0 0 1 -5.094,-23.965 L-4.574,-21.519 A22,22 0 0 0 -16.349,-14.721 Z" stroke="#2a9d8f" stroke-width="0.396" fill="none" /></g><g data-layer="lens-side-variant-electrical"><path d="M-18.475,5.584 L-20.772,6.278 A21.7,21.7 0 0 1 -21.128,4.949 L-18.791,4.402 A19.3,19.3 0 0 0 -18.475,5.584 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-18.475,5.584 L-20.772,6.278 A21.7,21.7 0 0 1 -21.128,4.949 L-18.791,4.402 A19.3,19.3 0 0 0 -18.475,5.584 Z" stroke="#8a5cd1" stroke-width="0.396" fill="none" /><path d="M-17.518,8.101 L-19.696,9.108 A21.7,21.7 0 0 1 -20.234,7.841 L-17.996,6.974 A19.3,19.3 0 0 0 -17.518,8.101 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-17.518,8.101 L-19.696,9.108 A21.7,21.7 0 0 1 -20.234,7.841 L-17.996,6.974 A19.3,19.3 0 0 0 -17.518,8.101 Z" stroke="#8a5cd1" stroke-width="0.396" fill="none" /><path d="M-16.22,10.46 L-18.237,11.76 A21.7,21.7 0 0 1 -18.945,10.581 L-16.85,9.411 A19.3,19.3 0 0 0 -16.22,10.46 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-16.22,10.46 L-18.237,11.76 A21.7,21.7 0 0 1 -18.945,10.581 L-16.85,9.411 A19.3,19.3 0 0 0 -16.22,10.46 Z" stroke="#8a5cd1" stroke-width="0.396" fill="none" /><path d="M-14.606,12.615 L-16.423,14.184 A21.7,21.7 0 0 1 -17.289,13.115 L-15.376,11.664 A19.3,19.3 0 0 0 -14.606,12.615 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-14.606,12.615 L-16.423,14.184 A21.7,21.7 0 0 1 -17.289,13.115 L-15.376,11.664 A19.3,19.3 0 0 0 -14.606,12.615 Z" stroke="#8a5cd1" stroke-width="0.396" fill="none" /><path d="M-12.708,14.525 L-14.289,16.332 A21.7,21.7 0 0 1 -15.295,15.393 L-13.603,13.691 A19.3,19.3 0 0 0 -12.708,14.525 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-12.708,14.525 L-14.289,16.332 A21.7,21.7 0 0 1 -15.295,15.393 L-13.603,13.691 A19.3,19.3 0 0 0 -12.708,14.525 Z" stroke="#8a5cd1" stroke-width="0.396" fill="none" /><path d="M-10.563,16.153 L-11.877,18.161 A21.7,21.7 0 0 1 -13.004,17.372 L-11.566,15.451 A19.3,19.3 0 0 0 -10.563,16.153 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-10.563,16.153 L-11.877,18.161 A21.7,21.7 0 0 1 -13.004,17.372 L-11.566,15.451 A19.3,19.3 0 0 0 -10.563,16.153 Z" stroke="#8a5cd1" stroke-width="0.396" fill="none" /></g><g aria-hidden="true"><line x1="-31.68" y1="-30.65" x2="-27.68" y2="-30.65" stroke="#2f80c4" stroke-width="0.469" /><text x="-26.608" y="-29.9" font-size="2.144" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-31.68" y1="-27.434" x2="-27.68" y2="-27.434" stroke="#6b7a8f" stroke-width="0.469" /><text x="-26.608" y="-26.684" font-size="2.144" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-31.68" y1="-24.218" x2="-27.68" y2="-24.218" stroke="#2a9d8f" stroke-width="0.469" /><text x="-26.608" y="-23.468" font-size="2.144" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-31.68" y1="-21.002" x2="-27.68" y2="-21.002" stroke="#d1495b" stroke-width="0.469" /><text x="-26.608" y="-20.252" font-size="2.144" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-31.68" y1="-17.786" x2="-27.68" y2="-17.786" stroke="#e8853a" stroke-width="0.469" /><text x="-26.608" y="-17.036" font-size="2.144" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-31.68" y1="-14.57" x2="-27.68" y2="-14.57" stroke="#8a5cd1" stroke-width="0.469" /><text x="-26.608" y="-13.82" font-size="2.144" fill="#8a5cd1" font-family="sans-serif">Electrical contact</text><line x1="-31.68" y1="-11.354" x2="-27.68" y2="-11.354" stroke="#8a94a0" stroke-width="0.469" /><text x="-26.608" y="-10.604" font-size="2.144" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
 
 **Axial / register schematic** — viewBox `-52 -38 60 72` ([standalone SVG](mounts/pentax-k-axial.svg))
 
@@ -56553,7 +56553,7 @@ None — fully electronic.
 | `body-slot-2` | bayonet_receiving_slot | `pentax-k/base` | 150° | 132° | 168° | 22 | 24.5 |
 | `body-slot-3` | bayonet_receiving_slot | `pentax-k/base` | 270° | 252° | 288° | 22 | 24.5 |
 | `body-index-mark` | index_mark | `pentax-k/base` | 0° | unknown | unknown | unknown | 29 |
-| `body-lock-pin` | lock_pin | `pentax-k/base` | 112.5° | unknown | unknown | unknown | 23 |
+| `body-lock-pin` | lock_pin | `pentax-k/base` | 112.5° | 112.5° | 112.5° | 23 | 23 |
 
 #### Lens-side rear-view geometry
 
@@ -56565,7 +56565,7 @@ None — fully electronic.
 | `lens-lug-2` | bayonet_lug | `pentax-k/base` | 150° | 132° | 168° | 22 | 24.5 |
 | `lens-lug-3` | bayonet_lug | `pentax-k/base` | 270° | 252° | 288° | 22 | 24.5 |
 | `lens-index-mark` | index_mark | `pentax-k/base` | 0° | unknown | unknown | unknown | 27 |
-| `lens-lock-notch` | lock_notch | `pentax-k/base` | 112.5° | unknown | unknown | unknown | 23 |
+| `lens-lock-notch` | lock_notch | `pentax-k/base` | 112.5° | 112.5° | 112.5° | 23 | 23 |
 
 #### Electrical contacts
 
@@ -56587,6 +56587,8 @@ None — fully electronic.
 | lens | 7 | `pentax-k/kaf` | 263° | 20.5 | digital info (KAF) |
 | body | 8 | `pentax-k/kaf2` | 200° | 23.5 | power (KAF2) |
 | body | 9 | `pentax-k/kaf2` | 270° | 23.5 | power (KAF2) |
+| lens | 8 | `pentax-k/kaf2` | 200° | 23.5 | power/data mating contact (KAF2) |
+| lens | 9 | `pentax-k/kaf2` | 270° | 23.5 | power/data mating contact (KAF2) |
 
 #### Mechanical couplings
 
@@ -56595,6 +56597,9 @@ None — fully electronic.
 | `aperture-stop-down-coupler` | body | `pentax-k/ka` | sense aperture-ring setting |
 | `diaphragm-release-lever` | body | `pentax-k/ka` | hold open spring-loaded diaphragm |
 | `af-screw-coupler` | body | `pentax-k/kaf` | mechanical AF drive |
+| `af-driven-shaft` | lens | `pentax-k/kaf` | mechanical AF drive receiver |
+| `af-screw-coupler-kaf2` | body | `pentax-k/kaf2` | mechanical AF drive |
+| `af-driven-shaft-kaf2` | lens | `pentax-k/kaf2` | mechanical AF drive receiver |
 
 #### Axial stack
 
@@ -56687,7 +56692,8 @@ None — fully electronic.
           ],
           "status": "researched",
           "sourceRefs": [
-            "pk-2"
+            "pk-2",
+            "pk-p2"
           ]
         },
         {
@@ -56710,7 +56716,8 @@ None — fully electronic.
           ],
           "status": "researched",
           "sourceRefs": [
-            "pk-2"
+            "pk-2",
+            "pk-p2"
           ]
         },
         {
@@ -56728,11 +56735,13 @@ None — fully electronic.
             "camera-side-variant-mechanical"
           ],
           "lensSideOverlayLayers": [
-            "lens-side-variant-electrical"
+            "lens-side-variant-electrical",
+            "lens-side-variant-mechanical"
           ],
           "status": "researched",
           "sourceRefs": [
-            "pk-2"
+            "pk-2",
+            "pk-p3"
           ]
         },
         {
@@ -56745,14 +56754,17 @@ None — fully electronic.
           "removes": [],
           "changes": [],
           "cameraSideOverlayLayers": [
-            "camera-side-variant-electrical"
+            "camera-side-variant-electrical",
+            "camera-side-variant-mechanical"
           ],
           "lensSideOverlayLayers": [
-            "lens-side-variant-electrical"
+            "lens-side-variant-electrical",
+            "lens-side-variant-mechanical"
           ],
           "status": "researched",
           "sourceRefs": [
-            "pk-1"
+            "pk-1",
+            "pk-p3"
           ]
         },
         {
@@ -56830,8 +56842,9 @@ None — fully electronic.
     },
     "contactCount": {
       "value": 6,
-      "status": "secondary",
+      "status": "patent",
       "sourceRefs": [
+        "pk-p2",
         "pk-2"
       ]
     }
@@ -56860,9 +56873,9 @@ None — fully electronic.
     },
     "lockRotationDirection": {
       "value": "clockwise",
-      "status": "secondary",
+      "status": "patent",
       "sourceRefs": [
-        "pk-1"
+        "pk-p1"
       ]
     }
   },
@@ -56970,48 +56983,53 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 30,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p1",
           "pk-2"
         ]
       },
       "startAngleDeg": {
         "value": 12,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p1",
           "pk-2"
         ]
       },
       "endAngleDeg": {
         "value": 48,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p1",
           "pk-2"
         ]
       },
       "innerRadiusMm": {
         "value": 22,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p1",
           "pk-2"
         ]
       },
       "outerRadiusMm": {
         "value": 24.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p1",
           "pk-2"
         ]
       },
       "depthMm": {
         "value": 1.6,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "pk-2"
+          "pk-p1"
         ]
       },
       "matesWith": "lens-lug-1",
-      "shapeNotes": "three-prong, two straight edges [pk-2]"
+      "shapeNotes": "three-claw body bayonet washer from US4017878A, normalized to JAPB/Pentax K clocking"
     },
     {
       "featureId": "body-slot-2",
@@ -57020,48 +57038,53 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 150,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p1",
           "pk-2"
         ]
       },
       "startAngleDeg": {
         "value": 132,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p1",
           "pk-2"
         ]
       },
       "endAngleDeg": {
         "value": 168,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p1",
           "pk-2"
         ]
       },
       "innerRadiusMm": {
         "value": 22,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p1",
           "pk-2"
         ]
       },
       "outerRadiusMm": {
         "value": 24.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p1",
           "pk-2"
         ]
       },
       "depthMm": {
         "value": 1.6,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "pk-2"
+          "pk-p1"
         ]
       },
       "matesWith": "lens-lug-2",
-      "shapeNotes": "three-prong, two straight edges [pk-2]"
+      "shapeNotes": "three-claw body bayonet washer from US4017878A, normalized to JAPB/Pentax K clocking"
     },
     {
       "featureId": "body-slot-3",
@@ -57070,48 +57093,53 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 270,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p1",
           "pk-2"
         ]
       },
       "startAngleDeg": {
         "value": 252,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p1",
           "pk-2"
         ]
       },
       "endAngleDeg": {
         "value": 288,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p1",
           "pk-2"
         ]
       },
       "innerRadiusMm": {
         "value": 22,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p1",
           "pk-2"
         ]
       },
       "outerRadiusMm": {
         "value": 24.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p1",
           "pk-2"
         ]
       },
       "depthMm": {
         "value": 1.6,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "pk-2"
+          "pk-p1"
         ]
       },
       "matesWith": "lens-lug-3",
-      "shapeNotes": "three-prong, two straight edges [pk-2]"
+      "shapeNotes": "three-claw body bayonet washer from US4017878A, normalized to JAPB/Pentax K clocking"
     },
     {
       "featureId": "body-index-mark",
@@ -57168,48 +57196,53 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 112.5,
-        "status": "secondary",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p1",
           "pk-2"
         ]
       },
       "startAngleDeg": {
-        "value": "unknown",
-        "status": "unknown",
+        "value": 112.5,
+        "status": "patent",
         "sourceRefs": [
+          "pk-p1",
           "pk-2"
         ]
       },
       "endAngleDeg": {
-        "value": "unknown",
-        "status": "unknown",
+        "value": 112.5,
+        "status": "patent",
         "sourceRefs": [
+          "pk-p1",
           "pk-2"
         ]
       },
       "innerRadiusMm": {
-        "value": "unknown",
-        "status": "unknown",
+        "value": 23,
+        "status": "patent",
         "sourceRefs": [
+          "pk-p1",
           "pk-2"
         ]
       },
       "outerRadiusMm": {
         "value": 23,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p1",
           "pk-2"
         ]
       },
       "depthMm": {
         "value": 2,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "pk-2"
+          "pk-p1"
         ]
       },
       "matesWith": "lens-lock-notch",
-      "shapeNotes": "locking groove at roughly 3:45 [pk-2]"
+      "shapeNotes": "body lock pin 16 engaging the lens/adapter-side lock groove in US4017878A"
     }
   ],
   "lensSideFeatures": [
@@ -57316,48 +57349,53 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 30,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p1",
           "pk-2"
         ]
       },
       "startAngleDeg": {
         "value": 12,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p1",
           "pk-2"
         ]
       },
       "endAngleDeg": {
         "value": 48,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p1",
           "pk-2"
         ]
       },
       "innerRadiusMm": {
         "value": 22,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p1",
           "pk-2"
         ]
       },
       "outerRadiusMm": {
         "value": 24.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p1",
           "pk-2"
         ]
       },
       "thicknessMm": {
         "value": 1.6,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "pk-2"
+          "pk-p1"
         ]
       },
       "matesWith": "body-slot-1",
-      "shapeNotes": "three-prong, two straight edges [pk-2]"
+      "shapeNotes": "external bayonet claw/barrel 18/19 from US4017878A, normalized to JAPB/Pentax K clocking"
     },
     {
       "featureId": "lens-lug-2",
@@ -57366,48 +57404,53 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 150,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p1",
           "pk-2"
         ]
       },
       "startAngleDeg": {
         "value": 132,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p1",
           "pk-2"
         ]
       },
       "endAngleDeg": {
         "value": 168,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p1",
           "pk-2"
         ]
       },
       "innerRadiusMm": {
         "value": 22,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p1",
           "pk-2"
         ]
       },
       "outerRadiusMm": {
         "value": 24.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p1",
           "pk-2"
         ]
       },
       "thicknessMm": {
         "value": 1.6,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "pk-2"
+          "pk-p1"
         ]
       },
       "matesWith": "body-slot-2",
-      "shapeNotes": "three-prong, two straight edges [pk-2]"
+      "shapeNotes": "external bayonet claw/barrel 18/19 from US4017878A, normalized to JAPB/Pentax K clocking"
     },
     {
       "featureId": "lens-lug-3",
@@ -57416,48 +57459,53 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 270,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p1",
           "pk-2"
         ]
       },
       "startAngleDeg": {
         "value": 252,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p1",
           "pk-2"
         ]
       },
       "endAngleDeg": {
         "value": 288,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p1",
           "pk-2"
         ]
       },
       "innerRadiusMm": {
         "value": 22,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p1",
           "pk-2"
         ]
       },
       "outerRadiusMm": {
         "value": 24.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p1",
           "pk-2"
         ]
       },
       "thicknessMm": {
         "value": 1.6,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "pk-2"
+          "pk-p1"
         ]
       },
       "matesWith": "body-slot-3",
-      "shapeNotes": "three-prong, two straight edges [pk-2]"
+      "shapeNotes": "external bayonet claw/barrel 18/19 from US4017878A, normalized to JAPB/Pentax K clocking"
     },
     {
       "featureId": "lens-index-mark",
@@ -57514,48 +57562,53 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 112.5,
-        "status": "secondary",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p1",
           "pk-2"
         ]
       },
       "startAngleDeg": {
-        "value": "unknown",
-        "status": "unknown",
+        "value": 112.5,
+        "status": "patent",
         "sourceRefs": [
+          "pk-p1",
           "pk-2"
         ]
       },
       "endAngleDeg": {
-        "value": "unknown",
-        "status": "unknown",
+        "value": 112.5,
+        "status": "patent",
         "sourceRefs": [
+          "pk-p1",
           "pk-2"
         ]
       },
       "innerRadiusMm": {
-        "value": "unknown",
-        "status": "unknown",
+        "value": 23,
+        "status": "patent",
         "sourceRefs": [
+          "pk-p1",
           "pk-2"
         ]
       },
       "outerRadiusMm": {
         "value": 23,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p1",
           "pk-2"
         ]
       },
       "thicknessMm": {
         "value": 2,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "pk-2"
+          "pk-p1"
         ]
       },
       "matesWith": "body-lock-pin",
-      "shapeNotes": "receives body lock pin (roughly 3:45)"
+      "shapeNotes": "lock groove/recess 18' receiving body lock pin 16 in US4017878A"
     }
   ],
   "axialStack": [
@@ -57639,37 +57692,42 @@ None — fully electronic.
       "profileId": "pentax-k/ka",
       "centerAngleDeg": {
         "value": 215,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
       "centerRadiusMm": {
         "value": 20.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
       "heightMm": {
         "value": 2.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
       "shape": "pad",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
@@ -57681,37 +57739,42 @@ None — fully electronic.
       "profileId": "pentax-k/ka",
       "centerAngleDeg": {
         "value": 223,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
       "centerRadiusMm": {
         "value": 20.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
       "heightMm": {
         "value": 2.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
       "shape": "pad",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
@@ -57723,37 +57786,42 @@ None — fully electronic.
       "profileId": "pentax-k/ka",
       "centerAngleDeg": {
         "value": 231,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
       "centerRadiusMm": {
         "value": 20.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
       "heightMm": {
         "value": 2.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
       "shape": "pad",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
@@ -57765,37 +57833,42 @@ None — fully electronic.
       "profileId": "pentax-k/ka",
       "centerAngleDeg": {
         "value": 239,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
       "centerRadiusMm": {
         "value": 20.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
       "heightMm": {
         "value": 2.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
       "shape": "pad",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
@@ -57807,37 +57880,42 @@ None — fully electronic.
       "profileId": "pentax-k/ka",
       "centerAngleDeg": {
         "value": 247,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
       "centerRadiusMm": {
         "value": 20.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
       "heightMm": {
         "value": 2.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
       "shape": "pad",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
@@ -57849,37 +57927,42 @@ None — fully electronic.
       "profileId": "pentax-k/ka",
       "centerAngleDeg": {
         "value": 255,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
       "centerRadiusMm": {
         "value": 20.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
       "heightMm": {
         "value": 2.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
       "shape": "pad",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
@@ -57891,37 +57974,42 @@ None — fully electronic.
       "profileId": "pentax-k/ka",
       "centerAngleDeg": {
         "value": 215,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
       "centerRadiusMm": {
         "value": 20.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
       "heightMm": {
         "value": 2.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
@@ -57933,37 +58021,42 @@ None — fully electronic.
       "profileId": "pentax-k/ka",
       "centerAngleDeg": {
         "value": 223,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
       "centerRadiusMm": {
         "value": 20.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
       "heightMm": {
         "value": 2.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
@@ -57975,37 +58068,42 @@ None — fully electronic.
       "profileId": "pentax-k/ka",
       "centerAngleDeg": {
         "value": 231,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
       "centerRadiusMm": {
         "value": 20.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
       "heightMm": {
         "value": 2.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
@@ -58017,37 +58115,42 @@ None — fully electronic.
       "profileId": "pentax-k/ka",
       "centerAngleDeg": {
         "value": 239,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
       "centerRadiusMm": {
         "value": 20.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
       "heightMm": {
         "value": 2.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
@@ -58059,37 +58162,42 @@ None — fully electronic.
       "profileId": "pentax-k/ka",
       "centerAngleDeg": {
         "value": 247,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
       "centerRadiusMm": {
         "value": 20.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
       "heightMm": {
         "value": 2.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
@@ -58101,37 +58209,42 @@ None — fully electronic.
       "profileId": "pentax-k/ka",
       "centerAngleDeg": {
         "value": 255,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
       "centerRadiusMm": {
         "value": 20.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
       "heightMm": {
         "value": 2.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p2",
           "pk-2"
         ]
       },
@@ -58227,37 +58340,42 @@ None — fully electronic.
       "profileId": "pentax-k/kaf2",
       "centerAngleDeg": {
         "value": 200,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p3",
           "pk-1"
         ]
       },
       "centerRadiusMm": {
         "value": 23.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p3",
           "pk-1"
         ]
       },
       "widthMm": {
         "value": 1.6,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p3",
           "pk-1"
         ]
       },
       "heightMm": {
         "value": 2.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p3",
           "pk-1"
         ]
       },
       "shape": "pad",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p3",
           "pk-1"
         ]
       },
@@ -58269,41 +58387,140 @@ None — fully electronic.
       "profileId": "pentax-k/kaf2",
       "centerAngleDeg": {
         "value": 270,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p3",
           "pk-1"
         ]
       },
       "centerRadiusMm": {
         "value": 23.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p3",
           "pk-1"
         ]
       },
       "widthMm": {
         "value": 1.6,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p3",
           "pk-1"
         ]
       },
       "heightMm": {
         "value": 2.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p3",
           "pk-1"
         ]
       },
       "shape": "pad",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p3",
           "pk-1"
         ]
       },
       "function": "power (KAF2)"
+    },
+    {
+      "side": "lens",
+      "contactNo": 8,
+      "profileId": "pentax-k/kaf2",
+      "centerAngleDeg": {
+        "value": 200,
+        "status": "patent",
+        "sourceRefs": [
+          "pk-p3",
+          "pk-1"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 23.5,
+        "status": "patent",
+        "sourceRefs": [
+          "pk-p3",
+          "pk-1"
+        ]
+      },
+      "widthMm": {
+        "value": 1.6,
+        "status": "patent",
+        "sourceRefs": [
+          "pk-p3",
+          "pk-1"
+        ]
+      },
+      "heightMm": {
+        "value": 2.4,
+        "status": "patent",
+        "sourceRefs": [
+          "pk-p3",
+          "pk-1"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0,
+        "status": "patent",
+        "sourceRefs": [
+          "pk-p3",
+          "pk-1"
+        ]
+      },
+      "function": "power/data mating contact (KAF2)"
+    },
+    {
+      "side": "lens",
+      "contactNo": 9,
+      "profileId": "pentax-k/kaf2",
+      "centerAngleDeg": {
+        "value": 270,
+        "status": "patent",
+        "sourceRefs": [
+          "pk-p3",
+          "pk-1"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 23.5,
+        "status": "patent",
+        "sourceRefs": [
+          "pk-p3",
+          "pk-1"
+        ]
+      },
+      "widthMm": {
+        "value": 1.6,
+        "status": "patent",
+        "sourceRefs": [
+          "pk-p3",
+          "pk-1"
+        ]
+      },
+      "heightMm": {
+        "value": 2.4,
+        "status": "patent",
+        "sourceRefs": [
+          "pk-p3",
+          "pk-1"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0,
+        "status": "patent",
+        "sourceRefs": [
+          "pk-p3",
+          "pk-1"
+        ]
+      },
+      "function": "power/data mating contact (KAF2)"
     }
   ],
   "mechanicalCouplings": [
@@ -58357,21 +58574,95 @@ None — fully electronic.
       "profileId": "pentax-k/kaf",
       "centerAngleDeg": {
         "value": 250,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p3",
           "pk-2"
         ]
       },
       "radiusMm": {
         "value": 18,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "pk-p3",
           "pk-2"
         ]
       },
       "sizeOrTravel": "drive shaft",
       "function": "mechanical AF drive",
       "compatibilityNotes": "removed on KAF3 (in-lens SDM/DC motor)"
+    },
+    {
+      "featureId": "af-driven-shaft",
+      "side": "lens",
+      "profileId": "pentax-k/kaf",
+      "centerAngleDeg": {
+        "value": 250,
+        "status": "patent",
+        "sourceRefs": [
+          "pk-p3",
+          "pk-2"
+        ]
+      },
+      "radiusMm": {
+        "value": 18,
+        "status": "patent",
+        "sourceRefs": [
+          "pk-p3",
+          "pk-2"
+        ]
+      },
+      "sizeOrTravel": "driven shaft receiver",
+      "function": "mechanical AF drive receiver",
+      "compatibilityNotes": "mates with the body AF joint shaft in KAF/KAF2 screw-drive operation"
+    },
+    {
+      "featureId": "af-screw-coupler-kaf2",
+      "side": "body",
+      "profileId": "pentax-k/kaf2",
+      "centerAngleDeg": {
+        "value": 250,
+        "status": "patent",
+        "sourceRefs": [
+          "pk-p3",
+          "pk-2"
+        ]
+      },
+      "radiusMm": {
+        "value": 18,
+        "status": "patent",
+        "sourceRefs": [
+          "pk-p3",
+          "pk-2"
+        ]
+      },
+      "sizeOrTravel": "drive shaft",
+      "function": "mechanical AF drive",
+      "compatibilityNotes": "KAF2 retains screw-drive coupling alongside the power contacts"
+    },
+    {
+      "featureId": "af-driven-shaft-kaf2",
+      "side": "lens",
+      "profileId": "pentax-k/kaf2",
+      "centerAngleDeg": {
+        "value": 250,
+        "status": "patent",
+        "sourceRefs": [
+          "pk-p3",
+          "pk-2"
+        ]
+      },
+      "radiusMm": {
+        "value": 18,
+        "status": "patent",
+        "sourceRefs": [
+          "pk-p3",
+          "pk-2"
+        ]
+      },
+      "sizeOrTravel": "driven shaft receiver",
+      "function": "mechanical AF drive receiver",
+      "compatibilityNotes": "mates with the body AF joint shaft in KAF2 screw-drive operation"
     }
   ],
   "screwsGasketsBaffles": [
@@ -58459,22 +58750,43 @@ None — fully electronic.
     {
       "ref": "pk-p1",
       "sourceType": "patent",
-      "citation": "US4017878A, Asahi bayonet-mount adapter for screw-thread lenses on a bayonet body. Accessed 2026-06-06.",
+      "citation": "US4017878A, \"Bayonet mount adapter for a camera.\" Accessed 2026-06-06.",
       "liveUrl": "https://patents.google.com/patent/US4017878A/en",
       "archiveUrl": "https://patents.google.com/patent/US4017878A/en",
       "archiveDate": "2026-06-06",
-      "appliesTo": "Pentax K related adapter-only research lead",
-      "confidence": "low"
+      "appliesTo": "Asahi/Pentax bayonet body washer, internal claws, external lens/adapter claws, lock pin/groove, bayonet spring, rotation stopper, and clockwise engagement",
+      "confidence": "high"
+    },
+    {
+      "ref": "pk-p2",
+      "sourceType": "patent",
+      "citation": "US4357089A, \"Electrical contact arrangement for photographic camera with interchangeable lens.\" Accessed 2026-06-06.",
+      "liveUrl": "https://patents.google.com/patent/US4357089A/en",
+      "archiveUrl": "https://patents.google.com/patent/US4357089A/en",
+      "archiveDate": "2026-06-06",
+      "appliesTo": "Asahi/Pentax opposed mount-surface electrical contacts for diaphragm value and AUTO/MANUAL information, contact pairs, and lock pin/groove alignment",
+      "confidence": "high"
+    },
+    {
+      "ref": "pk-p3",
+      "sourceType": "patent",
+      "citation": "US4939532A, \"Mount apparatus of interchangeable lens camera.\" Accessed 2026-06-06.",
+      "liveUrl": "https://patents.google.com/patent/US4939532A/en",
+      "archiveUrl": "https://patents.google.com/patent/US4939532A/en",
+      "archiveDate": "2026-06-06",
+      "appliesTo": "Asahi/Pentax AF-era body mount, mount lock member, lens lock hole, retractable data/power contact pins, lens contact members, AF joint shaft, and lens driven shaft",
+      "confidence": "high"
     }
   ],
   "openQuestions": [
     {
-      "issue": "Throat diameter, bayonet lug spans, and per-contact clock positions are photo-scaled; the lock groove is documented only as 'roughly 3:45'.",
+      "issue": "US4017878A supports the three-claw bayonet/lock embodiment, US4357089A supports the KA opposed contact bank, and US4939532A supports the AF joint shaft plus data/power contacts; exact production throat, lug spans, contact pad dimensions/clocking, and later KAF/KAF2 terminal functions remain normalized to secondary imagery.",
       "affectedFields": [
         "nominalThroatDiameterMm",
         "cameraSideFeatures",
         "lensSideFeatures",
         "contacts",
+        "mechanicalCouplings",
         "body-lock-pin"
       ],
       "candidateValues": [],
@@ -58535,11 +58847,13 @@ None — fully electronic.
 |---|---|---|---|---|---|
 | `pk-1` | secondary | “Pentax K-mount,” Wikipedia. Accessed 2026-06-04. | [snapshot](http://web.archive.org/web/20260512111817/https://en.wikipedia.org/wiki/Pentax_K-mount) | 2026-05-12 | high |
 | `pk-2` | secondary | “Lens Mounts: Pentax K,” JAPB (japb.net). Accessed 2026-06-04. | [snapshot](http://web.archive.org/web/20260113064419/https://japb.net/theory/lensmounts/pentax-k/) | 2026-01-13 | medium |
-| `pk-p1` | patent | US4017878A, Asahi bayonet-mount adapter for screw-thread lenses on a bayonet body. Accessed 2026-06-06. | [snapshot](https://patents.google.com/patent/US4017878A/en) | 2026-06-06 | low |
+| `pk-p1` | patent | US4017878A, "Bayonet mount adapter for a camera." Accessed 2026-06-06. | [snapshot](https://patents.google.com/patent/US4017878A/en) | 2026-06-06 | high |
+| `pk-p2` | patent | US4357089A, "Electrical contact arrangement for photographic camera with interchangeable lens." Accessed 2026-06-06. | [snapshot](https://patents.google.com/patent/US4357089A/en) | 2026-06-06 | high |
+| `pk-p3` | patent | US4939532A, "Mount apparatus of interchangeable lens camera." Accessed 2026-06-06. | [snapshot](https://patents.google.com/patent/US4939532A/en) | 2026-06-06 | high |
 
 #### Open questions
 
-- Throat diameter, bayonet lug spans, and per-contact clock positions are photo-scaled; the lock groove is documented only as 'roughly 3:45'. _(Upgrade to an official Pentax/Ricoh K-mount drawing or measured sample.)_
+- US4017878A supports the three-claw bayonet/lock embodiment, US4357089A supports the KA opposed contact bank, and US4939532A supports the AF joint shaft plus data/power contacts; exact production throat, lug spans, contact pad dimensions/clocking, and later KAF/KAF2 terminal functions remain normalized to secondary imagery. _(Upgrade to an official Pentax/Ricoh K-mount drawing or measured sample.)_
 - Contact count grows across KA (6) → KAF (7) → KAF2 (9); contactCount records the KA baseline. _(Expose per-variant contact counts when variant selection drives the figure.)_
 
 ### `sigma-sa` — Sigma SA
