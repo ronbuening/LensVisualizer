@@ -30,7 +30,7 @@ describe("nikon-f.mount", () => {
 
   it("renders all three views with integer-bounded viewBoxes", () => {
     for (const view of ["camera_side_front", "lens_side_rear", "axial_section"] as const) {
-      const doc = buildMountSvgDoc(SPEC, "nikon-f/ai-s", view);
+      const doc = buildMountSvgDoc(SPEC, SPEC.mvp.profileModel.selectedMvpProfileId, view);
       expect(doc.viewBox).toMatch(/^-?\d+ -?\d+ \d+ \d+$/);
       expect(() => mountSvgDocToString(doc)).not.toThrow();
     }
@@ -44,7 +44,7 @@ describe("§4.1 lens-rear mirror gate (Nikon F)", () => {
       bodyIndex && typeof bodyIndex.centerAngleDeg.value === "number" ? bodyIndex.centerAngleDeg.value : NaN;
     expect(storedAngle).toBe(60); // documented camera-front index position (2 o'clock)
 
-    const rear = buildMountSvgDoc(SPEC, "nikon-f/ai-s", "lens_side_rear");
+    const rear = buildMountSvgDoc(SPEC, SPEC.mvp.profileModel.selectedMvpProfileId, "lens_side_rear");
     const lensIndex = rear.layers.flatMap((l) => l.elements).find((e) => e.sortKey === "lens-index-mark");
     // Vertical-axis flip: 60 → 300 (10 o'clock). The up-down flip would give 120, so this gate
     // distinguishes the two physically valid reflections.
@@ -55,9 +55,9 @@ describe("§4.1 lens-rear mirror gate (Nikon F)", () => {
   it("never mutates the spec while rendering", () => {
     const frozen = deepFreeze(normalizeMountSpec(NIKON_F_INPUT));
     expect(() => {
-      buildMountSvgDoc(frozen, "nikon-f/ai-s", "camera_side_front");
-      buildMountSvgDoc(frozen, "nikon-f/ai-s", "lens_side_rear");
-      buildMountSvgDoc(frozen, "nikon-f/ai-s", "axial_section");
+      buildMountSvgDoc(frozen, frozen.mvp.profileModel.selectedMvpProfileId, "camera_side_front");
+      buildMountSvgDoc(frozen, frozen.mvp.profileModel.selectedMvpProfileId, "lens_side_rear");
+      buildMountSvgDoc(frozen, frozen.mvp.profileModel.selectedMvpProfileId, "axial_section");
     }).not.toThrow();
   });
 });

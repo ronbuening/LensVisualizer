@@ -5,7 +5,8 @@
  * of metering/AF/aperture interfaces. The base profile holds only invariant geometry; named variant
  * overlays capture each mount-face era — pre-AI metering prong, AI / AI-S meter-coupling ridge and
  * indexing, AF-D screw drive + five CPU contacts, and AF-I/AF-S/AF-P in-lens motors with their CPU
- * contact block. Geometry is never averaged across eras. The MVP figure renders the AI-S variant.
+ * contact block. Geometry is never averaged across eras. The MVP figure renders the AF-I/AF-S/G
+ * representative so the default diagram matches modern CPU-contact lens rears.
  *
  * G (no aperture ring) and E (electromagnetic diaphragm) are aperture-design variations that ride on
  * the AF-S electrical interface rather than distinct mount-face geometry, so they are not modeled as
@@ -28,6 +29,7 @@ import { degListV, dirV, naV, unknownV, v } from "../optics/mount/authoring.js";
 const REF = ["nf-1"];
 const P1 = ["nf-p1"];
 const P2 = ["nf-p2"];
+const PHOTO = ["nf-photo-1"];
 const P12 = ["nf-p1", "nf-p2"];
 const REFP1 = ["nf-1", "nf-p1"];
 const REFP12 = ["nf-1", "nf-p1", "nf-p2"];
@@ -105,7 +107,7 @@ const NIKON_F_MOUNT = {
     },
     profileModel: {
       baseProfileId: "nikon-f/base",
-      selectedMvpProfileId: "nikon-f/ai-s",
+      selectedMvpProfileId: "nikon-f/af-i-af-s",
       variantStrategy: "variant_profiles_defined",
       variantProfiles: [
         {
@@ -169,7 +171,10 @@ const NIKON_F_MOUNT = {
           profileId: "nikon-f/af-i-af-s",
           profileType: "variant",
           appliesTo: "AF-I, AF-S and AF-P in-lens-motor lenses (incl. G and E aperture variants)",
-          adds: ["in-lens AF motor (AF-I coreless / AF-S SWM / AF-P stepping)", "CPU contact block (up to ten)"],
+          adds: [
+            "in-lens AF motor (AF-I coreless / AF-S SWM / AF-P stepping)",
+            "CPU contact block (eight-contact representative; up to ten across later variants)",
+          ],
           removes: [],
           changes: ["body AF screw coupler unused; AF driven in the lens; AF-P incompatible with many older bodies"],
           cameraSideOverlayLayers: ["camera-side-variant-electrical"],
@@ -187,7 +192,7 @@ const NIKON_F_MOUNT = {
     effectiveClearApertureMm: v(44, "secondary", REF),
     cameraMountOuterDiameterMm: v(54, "photo_scaled", REF),
     lensMountOuterDiameterMm: v(50, "photo_scaled", REF),
-    contactCount: v(5, "patent", P1),
+    contactCount: v(8, "photo_scaled", PHOTO),
   },
 
   lockGeometry: {
@@ -509,6 +514,16 @@ const NIKON_F_MOUNT = {
       centerAnglesDeg: degListV([30, 102, 174, 246, 318], "photo_scaled", REF),
       shape: "round",
     },
+    {
+      featureId: "lens-mount-screws",
+      featureType: "mount_screws",
+      side: "lens",
+      count: v(5, "photo_scaled", PHOTO),
+      pcdMm: v(49, "photo_scaled", PHOTO),
+      diameterMm: v(2.2, "photo_scaled", PHOTO),
+      centerAnglesDeg: degListV([0, 138, 180, 222, 303], "photo_scaled", PHOTO),
+      shape: "round",
+    },
   ],
 
   svgLayers: {
@@ -554,6 +569,16 @@ const NIKON_F_MOUNT = {
       archiveDate: "2026-06-06",
       appliesTo:
         "later Nikon F electrical connector arrangement with movable/fixed contact units, three collars/notches, and 60 degree mounting rotation embodiment",
+      confidence: "high",
+    },
+    {
+      ref: "nf-photo-1",
+      sourceType: "field_photo",
+      citation: "User-supplied rear view of an AF-S G-type Nikon F lens (IMG_1872.jpeg), 2026-06-06.",
+      liveUrl: "",
+      archiveUrl: "",
+      archiveDate: "unknown",
+      appliesTo: "AF-S/G lens-side contact-bank orientation and five-screw rear flange clocking",
       confidence: "high",
     },
   ],
