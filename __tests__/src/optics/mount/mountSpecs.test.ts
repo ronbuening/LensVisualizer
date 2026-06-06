@@ -23,6 +23,10 @@ const INPUT_MODULES = import.meta.glob<{ default: MountSpecInput }>("../../../..
 });
 const INPUT_ENTRIES = Object.entries(INPUT_MODULES).map(([path, module]) => [path, module.default] as const);
 const VIEWS = ["camera_side_front", "lens_side_rear", "axial_section"] as const;
+type AngledMountFeature = Pick<
+  MountSpec["cameraSideFeatures"][number] | MountSpec["lensSideFeatures"][number],
+  "startAngleDeg" | "endAngleDeg" | "centerAngleDeg"
+>;
 const STATUS_TOKENS = new Set<ValueStatus>([
   "unknown",
   "not_applicable",
@@ -67,6 +71,85 @@ it("authored mount inputs do not leave patent-cited photo-scaled values", () => 
   }
 
   expect(offenders).toEqual([]);
+});
+
+it("keeps Nikon Z contacts on the patent upper arc in both rendered viewpoints", () => {
+  const spec = MOUNT_SPECS["nikon-z"];
+  if (!spec) throw new Error("Expected Nikon Z mount spec to be registered");
+  const expectedStoredAngles = [30, 24, 18, 12, 6, 0, 354, 348, 342, 336, 330];
+  const contactAngle = (contact: MountSpec["contacts"][number]): number => {
+    const { value } = contact.centerAngleDeg;
+    if (typeof value !== "number") throw new Error(`Expected numeric Nikon Z contact angle for ${contact.side}`);
+    return value;
+  };
+
+  for (const side of ["body", "lens"] as const) {
+    const sideContacts = spec.contacts
+      .filter((contact) => contact.side === side)
+      .sort((a, b) => a.contactNo - b.contactNo);
+    expect(sideContacts.map(contactAngle)).toEqual(expectedStoredAngles);
+  }
+
+  const selectedProfile = spec.mvp.profileModel.selectedMvpProfileId;
+  const cameraFront = buildMountSvgDoc(spec, selectedProfile, "camera_side_front");
+  const lensRear = buildMountSvgDoc(spec, selectedProfile, "lens_side_rear");
+  const renderedAngles = (doc: ReturnType<typeof buildMountSvgDoc>): Map<string, number> =>
+    new Map(
+      doc.layers.flatMap((layer) => layer.elements.map((element) => [element.sortKey, element.sortAngle] as const)),
+    );
+
+  const cameraAngles = renderedAngles(cameraFront);
+  expect(cameraAngles.get("contact-body-1")).toBe(30);
+  expect(cameraAngles.get("contact-body-11")).toBe(330);
+
+  const lensAngles = renderedAngles(lensRear);
+  expect(lensAngles.get("contact-lens-1")).toBe(330);
+  expect(lensAngles.get("contact-lens-11")).toBe(30);
+});
+
+it("keeps Nikon Z claws in the patent unequal-length rotation", () => {
+  const spec = MOUNT_SPECS["nikon-z"];
+  if (!spec) throw new Error("Expected Nikon Z mount spec to be registered");
+  const bodyFeatureById = new Map<string, AngledMountFeature>(
+    spec.cameraSideFeatures.map((feature) => [feature.featureId, feature]),
+  );
+  const lensFeatureById = new Map<string, AngledMountFeature>(
+    spec.lensSideFeatures.map((feature) => [feature.featureId, feature]),
+  );
+  const angleValue = (
+    features: ReadonlyMap<string, AngledMountFeature>,
+    featureId: string,
+    key: "startAngleDeg" | "endAngleDeg" | "centerAngleDeg",
+  ): number => {
+    const feature = features.get(featureId);
+    if (!feature) throw new Error(`Expected Nikon Z feature ${featureId}`);
+    const { value } = feature[key];
+    if (typeof value !== "number") throw new Error(`Expected numeric angle for ${featureId}.${key}`);
+    return value;
+  };
+  const span = (features: ReadonlyMap<string, AngledMountFeature>, featureId: string): number =>
+    (angleValue(features, featureId, "endAngleDeg") - angleValue(features, featureId, "startAngleDeg") + 360) % 360;
+  const mirroredStart = (featureId: string): number =>
+    (360 - angleValue(lensFeatureById, featureId, "endAngleDeg")) % 360;
+  const mirroredEnd = (featureId: string): number =>
+    (360 - angleValue(lensFeatureById, featureId, "startAngleDeg")) % 360;
+
+  expect(angleValue(bodyFeatureById, "body-claw-29a", "centerAngleDeg")).toBe(49);
+  expect(angleValue(bodyFeatureById, "body-claw-29a", "startAngleDeg")).toBe(24);
+  expect(angleValue(bodyFeatureById, "body-claw-29b", "endAngleDeg")).toBe(320);
+  expect(span(bodyFeatureById, "body-claw-29a")).toBeGreaterThan(span(bodyFeatureById, "body-claw-29c"));
+  expect(span(bodyFeatureById, "body-claw-29c")).toBeGreaterThan(span(bodyFeatureById, "body-claw-29d"));
+  expect(span(bodyFeatureById, "body-claw-29d")).toBeGreaterThan(span(bodyFeatureById, "body-claw-29b"));
+
+  expect(mirroredEnd("lens-lug-39a")).toBe(346);
+  expect(mirroredStart("lens-lug-39b")).toBe(46);
+  expect(mirroredEnd("lens-lug-39b")).toBe(82);
+  expect(mirroredStart("lens-lug-39c")).toBe(118);
+  expect(mirroredEnd("lens-lug-39c")).toBe(166);
+  expect(mirroredStart("lens-lug-39d")).toBe(210);
+  expect(mirroredEnd("lens-lug-39d")).toBe(252);
+  expect(span(lensFeatureById, "lens-lug-39a")).toBeGreaterThan(span(lensFeatureById, "lens-lug-39c"));
+  expect(span(lensFeatureById, "lens-lug-39d")).toBeGreaterThan(span(lensFeatureById, "lens-lug-39b"));
 });
 
 describe.each(ENTRIES)("%s", (mountId, spec) => {

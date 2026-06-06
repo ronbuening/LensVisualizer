@@ -9,9 +9,10 @@
  *
  * Sourced layout: flange focal distance 16 mm and 55 mm throat [nz-1]. US10831084B2 discloses the
  * Nikon mirrorless four-claw bayonet embodiment, body/lens lock pin and receiving groove, and the
- * 11 body/lens terminal order [nz-p1]. The locking groove at 3 o'clock and production contact bank
- * clocking across 5–7 o'clock are cross-checked against the JAPB teardown [nz-2]. Lug spans, the
- * mounting-index position, and lock rotation angle/direction remain schematic/open.
+ * upper-arc 11 body/lens terminal order [nz-p1]. The JAPB teardown corroborates the 3 o'clock
+ * locking groove and four-lug mount, but conflicts with the patent on contact-bank clocking; the
+ * patent controls the terminal placement here. Lug spans, the mounting-index position, and lock
+ * rotation angle/direction remain schematic/open.
  */
 
 import type { ContactFeature, MountSpecInput } from "../types/mount.js";
@@ -37,17 +38,21 @@ const NIKON_Z_CONTACT_FUNCTIONS = [
   "LDET lens attachment detection",
 ] as const;
 
+function patentUpperTerminalAngle(contactNo: number): number {
+  return (30 - (contactNo - 1) * 6 + 360) % 360;
+}
+
 function makePatentTerminal(side: "body" | "lens", contactNo: number): ContactFeature {
   return {
     side,
     contactNo,
     profileId: "nikon-z/base",
-    centerAngleDeg: v(150 + (contactNo - 1) * 6, "patent", JP),
-    centerRadiusMm: v(25.5, "patent", JP),
-    widthMm: v(1.3, "patent", JP),
-    heightMm: v(3, "patent", JP),
+    centerAngleDeg: v(patentUpperTerminalAngle(contactNo), "patent", P),
+    centerRadiusMm: v(25.5, "patent", P),
+    widthMm: v(1.3, "patent", P),
+    heightMm: v(3, "patent", P),
     shape: side === "body" ? "spring pin" : "exposed pad",
-    protrusionMm: v(side === "body" ? 0.5 : 0, "patent", JP),
+    protrusionMm: v(side === "body" ? 0.5 : 0, "patent", P),
     function: NIKON_Z_CONTACT_FUNCTIONS[contactNo - 1] ?? "unspecified terminal",
   };
 }
@@ -83,7 +88,7 @@ const NIKON_Z_MOUNT = {
             "four straight-edged bayonet lugs",
             "locking pin/notch at 3 o'clock",
             "mounting index",
-            "eleven-contact electrical block at the bottom (5–7 o'clock)",
+            "eleven-contact electrical block at the top (11–1 o'clock)",
           ],
           removes: ["all mechanical couplings (fully electronic)"],
           changes: [],
@@ -142,60 +147,62 @@ const NIKON_Z_MOUNT = {
       shapeNotes: "body-side mount section around the four-claw patent embodiment",
     },
     {
-      featureId: "body-slot-1",
-      featureType: "bayonet_receiving_slot",
+      featureId: "body-claw-29a",
+      featureType: "body_bayonet_claw",
       profileId: "nikon-z/base",
       count: 1,
-      centerAngleDeg: v(45, "patent", JP),
-      startAngleDeg: v(28, "patent", JP),
-      endAngleDeg: v(62, "patent", JP),
+      centerAngleDeg: v(49, "patent", JP),
+      startAngleDeg: v(24, "patent", JP),
+      endAngleDeg: v(74, "patent", JP),
       innerRadiusMm: v(27.5, "patent", JP),
       outerRadiusMm: v(30.5, "patent", JP),
       depthMm: v(2, "patent", JP),
-      matesWith: "lens-lug-1",
-      shapeNotes: "patent four-claw bayonet receiving section, normalized to the production clocking",
+      matesWith: "lens-lug-39a",
+      shapeNotes:
+        "first body-side claw 29a, upper right and longest in the patent embodiment; Fig. 5A places the hot-line terminal lines near its roughly 50-degree sector while leaving the lock-pin gap clear",
     },
     {
-      featureId: "body-slot-2",
-      featureType: "bayonet_receiving_slot",
+      featureId: "body-claw-29d",
+      featureType: "body_bayonet_claw",
       profileId: "nikon-z/base",
       count: 1,
-      centerAngleDeg: v(135, "patent", JP),
-      startAngleDeg: v(118, "patent", JP),
-      endAngleDeg: v(152, "patent", JP),
+      centerAngleDeg: v(147, "patent", JP),
+      startAngleDeg: v(126, "patent", JP),
+      endAngleDeg: v(168, "patent", JP),
       innerRadiusMm: v(27.5, "patent", JP),
       outerRadiusMm: v(30.5, "patent", JP),
       depthMm: v(2, "patent", JP),
-      matesWith: "lens-lug-2",
-      shapeNotes: "patent four-claw bayonet receiving section, normalized to the production clocking",
+      matesWith: "lens-lug-39d",
+      shapeNotes: "fourth body-side claw 29d, lower right and third-longest in the patent embodiment",
     },
     {
-      featureId: "body-slot-3",
-      featureType: "bayonet_receiving_slot",
+      featureId: "body-claw-29c",
+      featureType: "body_bayonet_claw",
       profileId: "nikon-z/base",
       count: 1,
-      centerAngleDeg: v(225, "patent", JP),
-      startAngleDeg: v(208, "patent", JP),
-      endAngleDeg: v(242, "patent", JP),
+      centerAngleDeg: v(238, "patent", JP),
+      startAngleDeg: v(214, "patent", JP),
+      endAngleDeg: v(262, "patent", JP),
       innerRadiusMm: v(27.5, "patent", JP),
       outerRadiusMm: v(30.5, "patent", JP),
       depthMm: v(2, "patent", JP),
-      matesWith: "lens-lug-3",
-      shapeNotes: "patent four-claw bayonet receiving section, normalized to the production clocking",
+      matesWith: "lens-lug-39c",
+      shapeNotes: "third body-side claw 29c, lower left and second-longest in the patent embodiment",
     },
     {
-      featureId: "body-slot-4",
-      featureType: "bayonet_receiving_slot",
+      featureId: "body-claw-29b",
+      featureType: "body_bayonet_claw",
       profileId: "nikon-z/base",
       count: 1,
-      centerAngleDeg: v(315, "patent", JP),
-      startAngleDeg: v(298, "patent", JP),
-      endAngleDeg: v(332, "patent", JP),
+      centerAngleDeg: v(302, "patent", JP),
+      startAngleDeg: v(284, "patent", JP),
+      endAngleDeg: v(320, "patent", JP),
       innerRadiusMm: v(27.5, "patent", JP),
       outerRadiusMm: v(30.5, "patent", JP),
       depthMm: v(2, "patent", JP),
-      matesWith: "lens-lug-4",
-      shapeNotes: "patent four-claw bayonet receiving section, normalized to the production clocking",
+      matesWith: "lens-lug-39b",
+      shapeNotes:
+        "second body-side claw 29b, upper left and shortest in the patent embodiment; Fig. 5A leaves the upper terminal holder between 29b and 29a",
     },
     {
       featureId: "body-index-mark",
@@ -257,60 +264,64 @@ const NIKON_Z_MOUNT = {
       shapeNotes: "lens-side mount section around the four-claw patent embodiment",
     },
     {
-      featureId: "lens-lug-1",
+      featureId: "lens-lug-39a",
       featureType: "bayonet_lug",
       profileId: "nikon-z/base",
       count: 1,
-      centerAngleDeg: v(45, "patent", JP),
-      startAngleDeg: v(28, "patent", JP),
-      endAngleDeg: v(62, "patent", JP),
+      centerAngleDeg: v(44, "patent", JP),
+      startAngleDeg: v(14, "patent", JP),
+      endAngleDeg: v(74, "patent", JP),
       innerRadiusMm: v(27.5, "patent", JP),
       outerRadiusMm: v(30.5, "patent", JP),
       thicknessMm: v(2, "patent", JP),
-      matesWith: "body-slot-1",
-      shapeNotes: "patent lens-side claw, normalized to the production clocking",
+      matesWith: "body-claw-29a",
+      shapeNotes:
+        "first lens-side claw 39a; renders upper left after the lens-rear mirror transform and spans the roughly 60-degree sector called out for Fig. 6",
     },
     {
-      featureId: "lens-lug-2",
+      featureId: "lens-lug-39d",
       featureType: "bayonet_lug",
       profileId: "nikon-z/base",
       count: 1,
-      centerAngleDeg: v(135, "patent", JP),
-      startAngleDeg: v(118, "patent", JP),
-      endAngleDeg: v(152, "patent", JP),
+      centerAngleDeg: v(129, "patent", JP),
+      startAngleDeg: v(108, "patent", JP),
+      endAngleDeg: v(150, "patent", JP),
       innerRadiusMm: v(27.5, "patent", JP),
       outerRadiusMm: v(30.5, "patent", JP),
       thicknessMm: v(2, "patent", JP),
-      matesWith: "body-slot-2",
-      shapeNotes: "patent lens-side claw, normalized to the production clocking",
+      matesWith: "body-claw-29d",
+      shapeNotes:
+        "fourth lens-side claw 39d; renders lower left after the lens-rear mirror transform, with clocking cross-checked against a production lens-side photo",
     },
     {
-      featureId: "lens-lug-3",
+      featureId: "lens-lug-39c",
       featureType: "bayonet_lug",
       profileId: "nikon-z/base",
       count: 1,
-      centerAngleDeg: v(225, "patent", JP),
-      startAngleDeg: v(208, "patent", JP),
+      centerAngleDeg: v(218, "patent", JP),
+      startAngleDeg: v(194, "patent", JP),
       endAngleDeg: v(242, "patent", JP),
       innerRadiusMm: v(27.5, "patent", JP),
       outerRadiusMm: v(30.5, "patent", JP),
       thicknessMm: v(2, "patent", JP),
-      matesWith: "body-slot-3",
-      shapeNotes: "patent lens-side claw, normalized to the production clocking",
+      matesWith: "body-claw-29c",
+      shapeNotes:
+        "third lens-side claw 39c; renders lower right after the lens-rear mirror transform, with clocking cross-checked against a production lens-side photo",
     },
     {
-      featureId: "lens-lug-4",
+      featureId: "lens-lug-39b",
       featureType: "bayonet_lug",
       profileId: "nikon-z/base",
       count: 1,
-      centerAngleDeg: v(315, "patent", JP),
-      startAngleDeg: v(298, "patent", JP),
-      endAngleDeg: v(332, "patent", JP),
+      centerAngleDeg: v(296, "patent", JP),
+      startAngleDeg: v(278, "patent", JP),
+      endAngleDeg: v(314, "patent", JP),
       innerRadiusMm: v(27.5, "patent", JP),
       outerRadiusMm: v(30.5, "patent", JP),
       thicknessMm: v(2, "patent", JP),
-      matesWith: "body-slot-4",
-      shapeNotes: "patent lens-side claw, normalized to the production clocking",
+      matesWith: "body-claw-29b",
+      shapeNotes:
+        "second lens-side claw 39b; renders lower in the upper-right quadrant after the lens-rear mirror transform, leaving the Fig. 6 upper terminal gap clear",
     },
     {
       featureId: "lens-index-mark",
@@ -413,7 +424,8 @@ const NIKON_Z_MOUNT = {
       liveUrl: "https://japb.net/theory/lensmounts/nikon-z/",
       archiveUrl: "http://web.archive.org/web/20251115002307/https://japb.net/theory/lensmounts/nikon-z/",
       archiveDate: "2025-11-15",
-      appliesTo: "locking groove at 3 o'clock, eleven contacts across 5–7 o'clock, four straight-edged lugs",
+      appliesTo:
+        "locking groove at 3 o'clock and four straight-edged lugs; lower-arc contact placement is treated as conflicting secondary evidence",
       confidence: "medium",
     },
     {
@@ -425,7 +437,7 @@ const NIKON_Z_MOUNT = {
       archiveUrl: "https://patents.google.com/patent/US10831084B2/en",
       archiveDate: "2026-06-06",
       appliesTo:
-        "four-claw body/lens bayonet embodiment, body lock pin and lens receiving groove, 11 body/lens terminals, terminal order, and terminal-to-claw relationship",
+        "four-claw body/lens bayonet embodiment, body lock pin and lens receiving groove, upper body/lens terminal holders, 11 body/lens terminals, terminal order, and terminal-to-claw relationship",
       confidence: "high",
     },
   ],
@@ -437,6 +449,13 @@ const NIKON_Z_MOUNT = {
       affectedFields: ["cameraSideFeatures", "lensSideFeatures", "contacts", "lockGeometry"],
       candidateValues: [],
       resolution: "Upgrade to an official Nikon Z mount drawing or measured sample.",
+    },
+    {
+      issue:
+        "JAPB describes the Nikon Z contact bank at 5-7 o'clock, while US10831084B2 places both body-side and lens-side terminal holding units in the upper portion and shows the patent terminal order on the upper arc. The MVP follows the Nikon patent for contact clocking.",
+      affectedFields: ["contacts"],
+      candidateValues: ["patent upper arc: 11-1 o'clock", "conflicting secondary lower arc: 5-7 o'clock"],
+      resolution: "Keep the patent upper-arc placement unless an official Nikon service drawing supersedes it.",
     },
   ],
 } satisfies MountSpecInput;
