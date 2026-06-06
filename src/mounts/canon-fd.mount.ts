@@ -25,7 +25,7 @@ const { cameraSideFeatures, lensSideFeatures } = makeBayonetFeatures({
   lugSpanDeg: 40,
   lockCenterAngleDeg: 0,
   scalarStatus: "secondary",
-  featureStatus: "photo_scaled",
+  featureStatus: "patent",
   lugShapeNotes: "FD/FL breech-lock bayonet seating sectors",
   lockShapeNotes: "alignment/locking pin used with the lens-side breech collar",
   indexShapeNotes: "red alignment dot/pin for breech-lock insertion",
@@ -100,6 +100,7 @@ const CANON_FD_MOUNT = {
     mountOuterDiameterMm: 58,
     lugEngagementDiameterMm: 53,
     sensorFilmDiameterMm: 43.3,
+    featureStatus: "patent",
   }),
 
   contacts: [],

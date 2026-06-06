@@ -27,8 +27,8 @@ const { cameraSideFeatures, lensSideFeatures } = makeBayonetFeatures({
   lugCentersDeg: [30, 150, 292],
   lugSpanDeg: 38,
   lockCenterAngleDeg: 90,
-  scalarStatus: "photo_scaled",
-  featureStatus: "photo_scaled",
+  scalarStatus: "patent",
+  featureStatus: "patent",
   lugShapeNotes: "Nikon 1 three-pronged mirrorless bayonet",
   lockShapeNotes: "locking groove at 3 o'clock",
 });
@@ -99,6 +99,7 @@ const NIKON_1_MOUNT = {
     sensorFilmDiameterMm: 15.86,
     includeElectricalPlane: true,
     electricalDiameterMm: 38,
+    featureStatus: "patent",
   }),
 
   contacts: makeContactBank({
@@ -108,6 +109,7 @@ const NIKON_1_MOUNT = {
     startAngleDeg: 315,
     stepDeg: 8.2,
     radiusMm: 18,
+    status: "patent",
   }),
 
   mechanicalCouplings: [],

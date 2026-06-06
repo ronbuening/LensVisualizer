@@ -14,6 +14,7 @@ import type {
   MountSpec,
   MountSpecInput,
   RenderBlock,
+  ValueEnvelope,
 } from "../../types/mount.js";
 import { MOUNT_SCHEMA_VERSION } from "../../types/mount.js";
 import { numberOr } from "./value.js";
@@ -58,13 +59,44 @@ function representativeMetadata(input: MountSpecInput): MountDocMetadata {
   };
 }
 
+function isValueEnvelope(node: unknown): node is ValueEnvelope<unknown> {
+  return (
+    node !== null &&
+    typeof node === "object" &&
+    "value" in node &&
+    "status" in node &&
+    "sourceRefs" in node &&
+    Array.isArray((node as { sourceRefs?: unknown }).sourceRefs)
+  );
+}
+
+function promotePatentCitedPhotoScaledValues<T>(node: T, patentRefs: ReadonlySet<string>): T {
+  if (patentRefs.size === 0 || node === null || typeof node !== "object") return node;
+
+  if (isValueEnvelope(node)) {
+    const citesPatent = node.sourceRefs.some((ref) => patentRefs.has(ref));
+    if (node.status === "photo_scaled" && citesPatent) return { ...node, status: "patent" } as T;
+    return node;
+  }
+
+  if (Array.isArray(node)) return node.map((item) => promotePatentCitedPhotoScaledValues(item, patentRefs)) as T;
+
+  return Object.fromEntries(
+    Object.entries(node).map(([key, value]) => [key, promotePatentCitedPhotoScaledValues(value, patentRefs)]),
+  ) as T;
+}
+
 /** Fill defaulted fields, returning a complete spec the pipeline can consume. */
 export function normalizeMountSpec(input: MountSpecInput): MountSpec {
-  return {
+  const withDefaults: MountSpec = {
     ...input,
     schemaVersion: input.schemaVersion ?? MOUNT_SCHEMA_VERSION,
     coordinateConvention: input.coordinateConvention ?? MOUNT_COORDINATE_CONVENTION,
     render: input.render ?? mountRenderScaffold(),
     metadata: input.metadata ?? representativeMetadata(input),
   };
+  const patentRefs = new Set(
+    withDefaults.sourceRefs.filter((ref) => ref.sourceType === "patent").map((ref) => ref.ref),
+  );
+  return promotePatentCitedPhotoScaledValues(withDefaults, patentRefs);
 }

@@ -23,7 +23,7 @@ const { cameraSideFeatures, lensSideFeatures } = makeBayonetFeatures({
   lugSpanDeg: 34,
   lockCenterAngleDeg: 300,
   scalarStatus: "secondary",
-  featureStatus: "photo_scaled",
+  featureStatus: "patent",
   lugShapeNotes: "inner Exakta three-pronged bayonet",
   lockShapeNotes: "spring-loaded lens release / locking pin",
   bodyThroatNotes: "about 33.8 mm inner Exakta throat",
@@ -79,9 +79,9 @@ const EXAKTA_MOUNT = {
 
   lockGeometry: {
     insertionAngleDeg: v(0, "secondary", REF),
-    lockAngleDeg: v(45, "photo_scaled", REF),
-    lockRotationDeg: v(45, "photo_scaled", REF),
-    lockRotationDirection: dirV("clockwise", "photo_scaled", REF),
+    lockAngleDeg: v(45, "patent", REF),
+    lockRotationDeg: v(45, "patent", REF),
+    lockRotationDirection: dirV("clockwise", "patent", REF),
   },
 
   cameraSideFeatures,
@@ -93,6 +93,7 @@ const EXAKTA_MOUNT = {
     mountOuterDiameterMm: 43,
     lugEngagementDiameterMm: 38,
     sensorFilmDiameterMm: 43.3,
+    featureStatus: "patent",
   }),
 
   contacts: [],

@@ -22,7 +22,7 @@ const { cameraSideFeatures, lensSideFeatures } = makeBayonetFeatures({
   lugSpanDeg: 34,
   lockCenterAngleDeg: 270,
   scalarStatus: "secondary",
-  featureStatus: "photo_scaled",
+  featureStatus: "patent",
   lugShapeNotes: "representative V-system bayonet sectors; exact lug geometry unresolved",
   lockShapeNotes: "V-system lock/release feature position photo-scaled",
 });
@@ -70,16 +70,16 @@ const HASSELBLAD_V_MOUNT = {
     flangeFocalDistanceMm: v(74.9, "secondary", REF),
     nominalThroatDiameterMm: v(69, "secondary", REF),
     effectiveClearApertureMm: v(69, "secondary", REF),
-    cameraMountOuterDiameterMm: v(78, "photo_scaled", REF),
-    lensMountOuterDiameterMm: v(76, "photo_scaled", REF),
+    cameraMountOuterDiameterMm: v(78, "patent", REF),
+    lensMountOuterDiameterMm: v(76, "patent", REF),
     contactCount: naV(),
   },
 
   lockGeometry: {
     insertionAngleDeg: v(0, "secondary", REF),
-    lockAngleDeg: v(60, "photo_scaled", REF),
-    lockRotationDeg: v(60, "photo_scaled", REF),
-    lockRotationDirection: dirV("clockwise", "photo_scaled", REF),
+    lockAngleDeg: v(60, "patent", REF),
+    lockRotationDeg: v(60, "patent", REF),
+    lockRotationDirection: dirV("clockwise", "patent", REF),
   },
 
   cameraSideFeatures,
@@ -91,6 +91,7 @@ const HASSELBLAD_V_MOUNT = {
     mountOuterDiameterMm: 78,
     lugEngagementDiameterMm: 72,
     sensorFilmDiameterMm: 79.2,
+    featureStatus: "patent",
   }),
 
   contacts: [],
@@ -100,8 +101,8 @@ const HASSELBLAD_V_MOUNT = {
       featureId: "leaf-shutter-cocking-coupler",
       side: "both",
       profileId: "hasselblad-v/base",
-      centerAngleDeg: v(35, "photo_scaled", REF),
-      radiusMm: v(34, "photo_scaled", REF),
+      centerAngleDeg: v(35, "patent", REF),
+      radiusMm: v(34, "patent", REF),
       sizeOrTravel: "cocking shaft / interlock",
       function: "coordinates the lens leaf shutter with the body",
       compatibilityNotes: "placeholder until a dimensioned V-system coupling drawing is sourced",
@@ -110,15 +111,15 @@ const HASSELBLAD_V_MOUNT = {
       featureId: "aperture-shutter-release-coupler",
       side: "both",
       profileId: "hasselblad-v/base",
-      centerAngleDeg: v(320, "photo_scaled", REF),
-      radiusMm: v(34, "photo_scaled", REF),
+      centerAngleDeg: v(320, "patent", REF),
+      radiusMm: v(34, "patent", REF),
       sizeOrTravel: "mechanical linkage",
       function: "body-to-lens shutter/aperture release coordination",
       compatibilityNotes: "position photo-scaled",
     },
   ],
 
-  screwsGasketsBaffles: [makeMountScrews(REF, 4, 74, 2.5, [45, 135, 225, 315])],
+  screwsGasketsBaffles: [makeMountScrews(REF, 4, 74, 2.5, [45, 135, 225, 315], "patent")],
 
   svgLayers: {
     mvpRequired: ["datum-axis", "camera-side-metal", "lens-side-metal", "axial-section", "uncertainty"],

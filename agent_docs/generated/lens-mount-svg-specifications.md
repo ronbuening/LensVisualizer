@@ -82,27 +82,27 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
 | Field | Value | Unit |
 |---|---|---|
 | Flange focal distance | 69 (`secondary`) | mm |
-| Nominal throat diameter | 54 (`photo_scaled`) | mm |
-| Effective clear aperture | 54 (`photo_scaled`) | mm |
-| Camera mount outer diameter | 64 (`photo_scaled`) | mm |
-| Lens mount outer diameter | 62 (`photo_scaled`) | mm |
+| Nominal throat diameter | 54 (`patent`) | mm |
+| Effective clear aperture | 54 (`patent`) | mm |
+| Camera mount outer diameter | 64 (`patent`) | mm |
+| Lens mount outer diameter | 62 (`patent`) | mm |
 | Contact count | not_applicable (`not_applicable`) | count |
-| Lock rotation | 60 (`photo_scaled`) | deg |
-| Lock direction | clockwise (`photo_scaled`) | — |
+| Lock rotation | 60 (`patent`) | deg |
+| Lock direction | clockwise (`patent`) | — |
 
 #### Figures (selected profile `bronica-etr/base`)
 
 **Camera-side front view** — viewBox `-40 -41 80 81` ([standalone SVG](mounts/bronica-etr-camera-front.svg))
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-40 -41 80 81" role="img" aria-labelledby="bronica-etr-base-camera_side_front-title bronica-etr-base-camera_side_front-desc"><title id="bronica-etr-base-camera_side_front-title">Zenza Bronica ETR mount — camera-side front view (base)</title><desc id="bronica-etr-base-camera_side_front-desc">Zenza Bronica ETR bayonet mount, camera-side front view. Flange focal distance 69 mm, nominal throat 54 mm. Profile bronica-etr/base.</desc><metadata>{"mountId":"bronica-etr","profileId":"bronica-etr/base","view":"camera_side_front","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.6" y1="0" x2="1.6" y2="0" stroke="#8a94a0" stroke-width="0.48" fill="none" /><line x1="0" y1="-1.6" x2="0" y2="1.6" stroke="#8a94a0" stroke-width="0.48" fill="none" /><line x1="0" y1="-32" x2="0" y2="-33.92" stroke="#8a94a0" stroke-width="0.48" fill="none" /></g><g data-layer="camera-side-metal"><path d="M0,-32 A32,32 0 1 1 0,32 A32,32 0 1 1 0,-32 Z M0,-27 A27,27 0 1 1 0,27 A27,27 0 1 1 0,-27 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-32 A32,32 0 1 1 0,32 A32,32 0 1 1 0,-32 Z M0,-27 A27,27 0 1 1 0,27 A27,27 0 1 1 0,-27 Z" stroke="#6b7a8f" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M0,-27 A27,27 0 1 1 0,27 A27,27 0 1 1 0,-27 Z" stroke="#2f80c4" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><circle cx="21.213" cy="-21.213" r="1" stroke="#7f8c3a" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><circle cx="21.213" cy="21.213" r="1" stroke="#7f8c3a" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><circle cx="-21.213" cy="21.213" r="1" stroke="#7f8c3a" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><circle cx="-21.213" cy="-21.213" r="1" stroke="#7f8c3a" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-core-interface"><path d="M0,-29.3 L-1.984,-32.439 L1.984,-32.439 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-29.3 L-1.984,-32.439 L1.984,-32.439 Z" stroke="#e8853a" stroke-width="0.48" fill="none" stroke-dasharray="0.6 1.6" /><path d="M0.942,-26.984 L1.03,-29.482 A29.5,29.5 0 0 1 18.162,-23.246 L16.623,-21.276 A27,27 0 0 0 0.942,-26.984 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M0.942,-26.984 L1.03,-29.482 A29.5,29.5 0 0 1 18.162,-23.246 L16.623,-21.276 A27,27 0 0 0 0.942,-26.984 Z" stroke="#2a9d8f" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M22.897,14.308 L25.017,15.633 A29.5,29.5 0 0 1 11.051,27.352 L10.114,25.034 A27,27 0 0 0 22.897,14.308 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M22.897,14.308 L25.017,15.633 A29.5,29.5 0 0 1 11.051,27.352 L10.114,25.034 A27,27 0 0 0 22.897,14.308 Z" stroke="#2a9d8f" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M-23.84,12.676 L-26.047,13.849 A29.5,29.5 0 0 1 -29.213,-4.106 L-26.737,-3.758 A27,27 0 0 0 -23.84,12.676 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-23.84,12.676 L-26.047,13.849 A29.5,29.5 0 0 1 -29.213,-4.106 L-26.737,-3.758 A27,27 0 0 0 -23.84,12.676 Z" stroke="#2a9d8f" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><circle cx="-28" cy="0" r="1.12" fill="#d1495b" fill-opacity="0.12" /><circle cx="-28" cy="0" r="1.12" stroke="#d1495b" stroke-width="0.48" fill="none" stroke-dasharray="0.6 1.6" /></g><g data-layer="camera-side-variant-mechanical"><circle cx="16.712" cy="-19.917" r="0.96" stroke="#b5651d" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><circle cx="-16.712" cy="-19.917" r="0.96" stroke="#b5651d" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-38.4" y1="-36.95" x2="-33.6" y2="-36.95" stroke="#2f80c4" stroke-width="0.567" /><text x="-32.304" y="-36.043" font-size="2.592" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-38.4" y1="-33.062" x2="-33.6" y2="-33.062" stroke="#6b7a8f" stroke-width="0.567" /><text x="-32.304" y="-32.155" font-size="2.592" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-38.4" y1="-29.174" x2="-33.6" y2="-29.174" stroke="#2a9d8f" stroke-width="0.567" /><text x="-32.304" y="-28.267" font-size="2.592" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-38.4" y1="-25.286" x2="-33.6" y2="-25.286" stroke="#d1495b" stroke-width="0.567" /><text x="-32.304" y="-24.379" font-size="2.592" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-38.4" y1="-21.398" x2="-33.6" y2="-21.398" stroke="#e8853a" stroke-width="0.567" /><text x="-32.304" y="-20.491" font-size="2.592" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-38.4" y1="-17.51" x2="-33.6" y2="-17.51" stroke="#b5651d" stroke-width="0.567" /><text x="-32.304" y="-16.603" font-size="2.592" fill="#b5651d" font-family="sans-serif">Mechanical coupling</text><line x1="-38.4" y1="-13.622" x2="-33.6" y2="-13.622" stroke="#7f8c3a" stroke-width="0.567" /><text x="-32.304" y="-12.715" font-size="2.592" fill="#7f8c3a" font-family="sans-serif">Screws / seals</text><line x1="-38.4" y1="-9.734" x2="-33.6" y2="-9.734" stroke="#8a94a0" stroke-width="0.567" /><text x="-32.304" y="-8.827" font-size="2.592" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-40 -41 80 81" role="img" aria-labelledby="bronica-etr-base-camera_side_front-title bronica-etr-base-camera_side_front-desc"><title id="bronica-etr-base-camera_side_front-title">Zenza Bronica ETR mount — camera-side front view (base)</title><desc id="bronica-etr-base-camera_side_front-desc">Zenza Bronica ETR bayonet mount, camera-side front view. Flange focal distance 69 mm, nominal throat 54 mm. Profile bronica-etr/base.</desc><metadata>{"mountId":"bronica-etr","profileId":"bronica-etr/base","view":"camera_side_front","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.6" y1="0" x2="1.6" y2="0" stroke="#8a94a0" stroke-width="0.48" fill="none" /><line x1="0" y1="-1.6" x2="0" y2="1.6" stroke="#8a94a0" stroke-width="0.48" fill="none" /><line x1="0" y1="-32" x2="0" y2="-33.92" stroke="#8a94a0" stroke-width="0.48" fill="none" /></g><g data-layer="camera-side-metal"><path d="M0,-32 A32,32 0 1 1 0,32 A32,32 0 1 1 0,-32 Z M0,-27 A27,27 0 1 1 0,27 A27,27 0 1 1 0,-27 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-32 A32,32 0 1 1 0,32 A32,32 0 1 1 0,-32 Z M0,-27 A27,27 0 1 1 0,27 A27,27 0 1 1 0,-27 Z" stroke="#6b7a8f" stroke-width="0.48" fill="none" /><path d="M0,-27 A27,27 0 1 1 0,27 A27,27 0 1 1 0,-27 Z" stroke="#2f80c4" stroke-width="0.48" fill="none" /><circle cx="21.213" cy="-21.213" r="1" stroke="#7f8c3a" stroke-width="0.48" fill="none" /><circle cx="21.213" cy="21.213" r="1" stroke="#7f8c3a" stroke-width="0.48" fill="none" /><circle cx="-21.213" cy="21.213" r="1" stroke="#7f8c3a" stroke-width="0.48" fill="none" /><circle cx="-21.213" cy="-21.213" r="1" stroke="#7f8c3a" stroke-width="0.48" fill="none" /></g><g data-layer="camera-side-core-interface"><path d="M0,-29.3 L-1.984,-32.439 L1.984,-32.439 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-29.3 L-1.984,-32.439 L1.984,-32.439 Z" stroke="#e8853a" stroke-width="0.48" fill="none" stroke-dasharray="0.6 1.6" /><path d="M0.942,-26.984 L1.03,-29.482 A29.5,29.5 0 0 1 18.162,-23.246 L16.623,-21.276 A27,27 0 0 0 0.942,-26.984 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M0.942,-26.984 L1.03,-29.482 A29.5,29.5 0 0 1 18.162,-23.246 L16.623,-21.276 A27,27 0 0 0 0.942,-26.984 Z" stroke="#2a9d8f" stroke-width="0.48" fill="none" /><path d="M22.897,14.308 L25.017,15.633 A29.5,29.5 0 0 1 11.051,27.352 L10.114,25.034 A27,27 0 0 0 22.897,14.308 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M22.897,14.308 L25.017,15.633 A29.5,29.5 0 0 1 11.051,27.352 L10.114,25.034 A27,27 0 0 0 22.897,14.308 Z" stroke="#2a9d8f" stroke-width="0.48" fill="none" /><path d="M-23.84,12.676 L-26.047,13.849 A29.5,29.5 0 0 1 -29.213,-4.106 L-26.737,-3.758 A27,27 0 0 0 -23.84,12.676 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-23.84,12.676 L-26.047,13.849 A29.5,29.5 0 0 1 -29.213,-4.106 L-26.737,-3.758 A27,27 0 0 0 -23.84,12.676 Z" stroke="#2a9d8f" stroke-width="0.48" fill="none" /><circle cx="-28" cy="0" r="1.12" fill="#d1495b" fill-opacity="0.12" /><circle cx="-28" cy="0" r="1.12" stroke="#d1495b" stroke-width="0.48" fill="none" stroke-dasharray="0.6 1.6" /></g><g data-layer="camera-side-variant-mechanical"><circle cx="16.712" cy="-19.917" r="0.96" stroke="#b5651d" stroke-width="0.48" fill="none" /><circle cx="-16.712" cy="-19.917" r="0.96" stroke="#b5651d" stroke-width="0.48" fill="none" /></g><g aria-hidden="true"><line x1="-38.4" y1="-36.95" x2="-33.6" y2="-36.95" stroke="#2f80c4" stroke-width="0.567" /><text x="-32.304" y="-36.043" font-size="2.592" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-38.4" y1="-33.062" x2="-33.6" y2="-33.062" stroke="#6b7a8f" stroke-width="0.567" /><text x="-32.304" y="-32.155" font-size="2.592" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-38.4" y1="-29.174" x2="-33.6" y2="-29.174" stroke="#2a9d8f" stroke-width="0.567" /><text x="-32.304" y="-28.267" font-size="2.592" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-38.4" y1="-25.286" x2="-33.6" y2="-25.286" stroke="#d1495b" stroke-width="0.567" /><text x="-32.304" y="-24.379" font-size="2.592" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-38.4" y1="-21.398" x2="-33.6" y2="-21.398" stroke="#e8853a" stroke-width="0.567" /><text x="-32.304" y="-20.491" font-size="2.592" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-38.4" y1="-17.51" x2="-33.6" y2="-17.51" stroke="#b5651d" stroke-width="0.567" /><text x="-32.304" y="-16.603" font-size="2.592" fill="#b5651d" font-family="sans-serif">Mechanical coupling</text><line x1="-38.4" y1="-13.622" x2="-33.6" y2="-13.622" stroke="#7f8c3a" stroke-width="0.567" /><text x="-32.304" y="-12.715" font-size="2.592" fill="#7f8c3a" font-family="sans-serif">Screws / seals</text><line x1="-38.4" y1="-9.734" x2="-33.6" y2="-9.734" stroke="#8a94a0" stroke-width="0.567" /><text x="-32.304" y="-8.827" font-size="2.592" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
 
 **Lens-side rear view** — viewBox `-38 -40 76 78` ([standalone SVG](mounts/bronica-etr-lens-rear.svg))
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-38 -40 76 78" role="img" aria-labelledby="bronica-etr-base-lens_side_rear-title bronica-etr-base-lens_side_rear-desc"><title id="bronica-etr-base-lens_side_rear-title">Zenza Bronica ETR mount — lens-side rear view (base)</title><desc id="bronica-etr-base-lens_side_rear-desc">Zenza Bronica ETR bayonet mount, lens-side rear view. Flange focal distance 69 mm, nominal throat 54 mm. Profile bronica-etr/base.</desc><metadata>{"mountId":"bronica-etr","profileId":"bronica-etr/base","view":"lens_side_rear","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.55" y1="0" x2="1.55" y2="0" stroke="#8a94a0" stroke-width="0.456" fill="none" /><line x1="0" y1="-1.55" x2="0" y2="1.55" stroke="#8a94a0" stroke-width="0.456" fill="none" /><line x1="0" y1="-31" x2="0" y2="-32.86" stroke="#8a94a0" stroke-width="0.456" fill="none" /></g><g data-layer="lens-side-metal"><path d="M0,-31 A31,31 0 1 1 0,31 A31,31 0 1 1 0,-31 Z M0,-26 A26,26 0 1 1 0,26 A26,26 0 1 1 0,-26 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-31 A31,31 0 1 1 0,31 A31,31 0 1 1 0,-31 Z M0,-26 A26,26 0 1 1 0,26 A26,26 0 1 1 0,-26 Z" stroke="#6b7a8f" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /><path d="M0,-26 A26,26 0 1 1 0,26 A26,26 0 1 1 0,-26 Z" stroke="#2f80c4" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /></g><g data-layer="lens-side-core-interface"><path d="M0,-28.4 L-1.923,-31.441 L1.923,-31.441 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-28.4 L-1.923,-31.441 L1.923,-31.441 Z" stroke="#e8853a" stroke-width="0.456" fill="none" stroke-dasharray="0.6 1.6" /><circle cx="28" cy="0" r="1.085" fill="#d1495b" fill-opacity="0.12" /><circle cx="28" cy="0" r="1.085" stroke="#d1495b" stroke-width="0.456" fill="none" stroke-dasharray="0.6 1.6" /><path d="M26.737,-3.758 L29.213,-4.106 A29.5,29.5 0 0 1 26.047,13.849 L23.84,12.676 A27,27 0 0 0 26.737,-3.758 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M26.737,-3.758 L29.213,-4.106 A29.5,29.5 0 0 1 26.047,13.849 L23.84,12.676 A27,27 0 0 0 26.737,-3.758 Z" stroke="#2a9d8f" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /><path d="M-10.114,25.034 L-11.051,27.352 A29.5,29.5 0 0 1 -25.017,15.633 L-22.897,14.308 A27,27 0 0 0 -10.114,25.034 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-10.114,25.034 L-11.051,27.352 A29.5,29.5 0 0 1 -25.017,15.633 L-22.897,14.308 A27,27 0 0 0 -10.114,25.034 Z" stroke="#2a9d8f" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /><path d="M-16.623,-21.276 L-18.162,-23.246 A29.5,29.5 0 0 1 -1.03,-29.482 L-0.942,-26.984 A27,27 0 0 0 -16.623,-21.276 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-16.623,-21.276 L-18.162,-23.246 A29.5,29.5 0 0 1 -1.03,-29.482 L-0.942,-26.984 A27,27 0 0 0 -16.623,-21.276 Z" stroke="#2a9d8f" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /></g><g data-layer="lens-side-variant-mechanical"><circle cx="16.712" cy="-19.917" r="0.93" stroke="#b5651d" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /><circle cx="-16.712" cy="-19.917" r="0.93" stroke="#b5651d" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-36.48" y1="-36.1" x2="-31.92" y2="-36.1" stroke="#2f80c4" stroke-width="0.546" /><text x="-30.672" y="-35.226" font-size="2.496" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-36.48" y1="-32.356" x2="-31.92" y2="-32.356" stroke="#6b7a8f" stroke-width="0.546" /><text x="-30.672" y="-31.482" font-size="2.496" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-36.48" y1="-28.612" x2="-31.92" y2="-28.612" stroke="#2a9d8f" stroke-width="0.546" /><text x="-30.672" y="-27.738" font-size="2.496" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-36.48" y1="-24.868" x2="-31.92" y2="-24.868" stroke="#d1495b" stroke-width="0.546" /><text x="-30.672" y="-23.994" font-size="2.496" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-36.48" y1="-21.124" x2="-31.92" y2="-21.124" stroke="#e8853a" stroke-width="0.546" /><text x="-30.672" y="-20.25" font-size="2.496" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-36.48" y1="-17.38" x2="-31.92" y2="-17.38" stroke="#b5651d" stroke-width="0.546" /><text x="-30.672" y="-16.506" font-size="2.496" fill="#b5651d" font-family="sans-serif">Mechanical coupling</text><line x1="-36.48" y1="-13.636" x2="-31.92" y2="-13.636" stroke="#8a94a0" stroke-width="0.546" /><text x="-30.672" y="-12.762" font-size="2.496" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-38 -40 76 78" role="img" aria-labelledby="bronica-etr-base-lens_side_rear-title bronica-etr-base-lens_side_rear-desc"><title id="bronica-etr-base-lens_side_rear-title">Zenza Bronica ETR mount — lens-side rear view (base)</title><desc id="bronica-etr-base-lens_side_rear-desc">Zenza Bronica ETR bayonet mount, lens-side rear view. Flange focal distance 69 mm, nominal throat 54 mm. Profile bronica-etr/base.</desc><metadata>{"mountId":"bronica-etr","profileId":"bronica-etr/base","view":"lens_side_rear","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.55" y1="0" x2="1.55" y2="0" stroke="#8a94a0" stroke-width="0.456" fill="none" /><line x1="0" y1="-1.55" x2="0" y2="1.55" stroke="#8a94a0" stroke-width="0.456" fill="none" /><line x1="0" y1="-31" x2="0" y2="-32.86" stroke="#8a94a0" stroke-width="0.456" fill="none" /></g><g data-layer="lens-side-metal"><path d="M0,-31 A31,31 0 1 1 0,31 A31,31 0 1 1 0,-31 Z M0,-26 A26,26 0 1 1 0,26 A26,26 0 1 1 0,-26 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-31 A31,31 0 1 1 0,31 A31,31 0 1 1 0,-31 Z M0,-26 A26,26 0 1 1 0,26 A26,26 0 1 1 0,-26 Z" stroke="#6b7a8f" stroke-width="0.456" fill="none" /><path d="M0,-26 A26,26 0 1 1 0,26 A26,26 0 1 1 0,-26 Z" stroke="#2f80c4" stroke-width="0.456" fill="none" /></g><g data-layer="lens-side-core-interface"><path d="M0,-28.4 L-1.923,-31.441 L1.923,-31.441 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-28.4 L-1.923,-31.441 L1.923,-31.441 Z" stroke="#e8853a" stroke-width="0.456" fill="none" stroke-dasharray="0.6 1.6" /><circle cx="28" cy="0" r="1.085" fill="#d1495b" fill-opacity="0.12" /><circle cx="28" cy="0" r="1.085" stroke="#d1495b" stroke-width="0.456" fill="none" stroke-dasharray="0.6 1.6" /><path d="M26.737,-3.758 L29.213,-4.106 A29.5,29.5 0 0 1 26.047,13.849 L23.84,12.676 A27,27 0 0 0 26.737,-3.758 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M26.737,-3.758 L29.213,-4.106 A29.5,29.5 0 0 1 26.047,13.849 L23.84,12.676 A27,27 0 0 0 26.737,-3.758 Z" stroke="#2a9d8f" stroke-width="0.456" fill="none" /><path d="M-10.114,25.034 L-11.051,27.352 A29.5,29.5 0 0 1 -25.017,15.633 L-22.897,14.308 A27,27 0 0 0 -10.114,25.034 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-10.114,25.034 L-11.051,27.352 A29.5,29.5 0 0 1 -25.017,15.633 L-22.897,14.308 A27,27 0 0 0 -10.114,25.034 Z" stroke="#2a9d8f" stroke-width="0.456" fill="none" /><path d="M-16.623,-21.276 L-18.162,-23.246 A29.5,29.5 0 0 1 -1.03,-29.482 L-0.942,-26.984 A27,27 0 0 0 -16.623,-21.276 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-16.623,-21.276 L-18.162,-23.246 A29.5,29.5 0 0 1 -1.03,-29.482 L-0.942,-26.984 A27,27 0 0 0 -16.623,-21.276 Z" stroke="#2a9d8f" stroke-width="0.456" fill="none" /></g><g data-layer="lens-side-variant-mechanical"><circle cx="16.712" cy="-19.917" r="0.93" stroke="#b5651d" stroke-width="0.456" fill="none" /><circle cx="-16.712" cy="-19.917" r="0.93" stroke="#b5651d" stroke-width="0.456" fill="none" /></g><g aria-hidden="true"><line x1="-36.48" y1="-36.1" x2="-31.92" y2="-36.1" stroke="#2f80c4" stroke-width="0.546" /><text x="-30.672" y="-35.226" font-size="2.496" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-36.48" y1="-32.356" x2="-31.92" y2="-32.356" stroke="#6b7a8f" stroke-width="0.546" /><text x="-30.672" y="-31.482" font-size="2.496" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-36.48" y1="-28.612" x2="-31.92" y2="-28.612" stroke="#2a9d8f" stroke-width="0.546" /><text x="-30.672" y="-27.738" font-size="2.496" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-36.48" y1="-24.868" x2="-31.92" y2="-24.868" stroke="#d1495b" stroke-width="0.546" /><text x="-30.672" y="-23.994" font-size="2.496" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-36.48" y1="-21.124" x2="-31.92" y2="-21.124" stroke="#e8853a" stroke-width="0.546" /><text x="-30.672" y="-20.25" font-size="2.496" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-36.48" y1="-17.38" x2="-31.92" y2="-17.38" stroke="#b5651d" stroke-width="0.546" /><text x="-30.672" y="-16.506" font-size="2.496" fill="#b5651d" font-family="sans-serif">Mechanical coupling</text><line x1="-36.48" y1="-13.636" x2="-31.92" y2="-13.636" stroke="#8a94a0" stroke-width="0.546" /><text x="-30.672" y="-12.762" font-size="2.496" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
 
 **Axial / register schematic** — viewBox `-77 -47 86 90` ([standalone SVG](mounts/bronica-etr-axial.svg))
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-77 -47 86 90" role="img" aria-labelledby="bronica-etr-base-axial_section-title bronica-etr-base-axial_section-desc"><title id="bronica-etr-base-axial_section-title">Zenza Bronica ETR mount — axial / register schematic (base)</title><desc id="bronica-etr-base-axial_section-desc">Zenza Bronica ETR bayonet mount, axial / register schematic. Flange focal distance 69 mm, nominal throat 54 mm. Profile bronica-etr/base.</desc><metadata>{"mountId":"bronica-etr","profileId":"bronica-etr/base","view":"axial_section","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-69" y1="0" x2="1.2" y2="0" stroke="#8a94a0" stroke-width="0.516" fill="none" /><line x1="0" y1="-34.85" x2="0" y2="34.85" stroke="#8a94a0" stroke-width="0.516" fill="none" /></g><g data-layer="axial-section"><text x="-69" y="-36.35" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">sensor film plane</text><line x1="-69" y1="-34.85" x2="-69" y2="34.85" stroke="#2bb0c4" stroke-width="0.387" fill="none" /><line x1="0" y1="-32" x2="0" y2="32" stroke="#2bb0c4" stroke-width="0.516" fill="none" stroke-dasharray="4 2" /><text x="0" y="-33.5" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">flange datum</text><line x1="1.2" y1="-29.5" x2="1.2" y2="29.5" stroke="#2bb0c4" stroke-width="0.516" fill="none" stroke-dasharray="4 2" /><text x="1.2" y="-31" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">bayonet lug engagement</text></g><g aria-hidden="true"><line x1="-75.28" y1="-42.5" x2="-70.12" y2="-42.5" stroke="#8a94a0" stroke-width="0.63" /><text x="-68.68" y="-41.492" font-size="2.88" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text><line x1="-75.28" y1="-38.18" x2="-70.12" y2="-38.18" stroke="#2bb0c4" stroke-width="0.63" /><text x="-68.68" y="-37.172" font-size="2.88" fill="#2bb0c4" font-family="sans-serif">Register plane</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-77 -47 86 90" role="img" aria-labelledby="bronica-etr-base-axial_section-title bronica-etr-base-axial_section-desc"><title id="bronica-etr-base-axial_section-title">Zenza Bronica ETR mount — axial / register schematic (base)</title><desc id="bronica-etr-base-axial_section-desc">Zenza Bronica ETR bayonet mount, axial / register schematic. Flange focal distance 69 mm, nominal throat 54 mm. Profile bronica-etr/base.</desc><metadata>{"mountId":"bronica-etr","profileId":"bronica-etr/base","view":"axial_section","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-69" y1="0" x2="1.2" y2="0" stroke="#8a94a0" stroke-width="0.516" fill="none" /><line x1="0" y1="-34.85" x2="0" y2="34.85" stroke="#8a94a0" stroke-width="0.516" fill="none" /></g><g data-layer="axial-section"><text x="-69" y="-36.35" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">sensor film plane</text><line x1="-69" y1="-34.85" x2="-69" y2="34.85" stroke="#2bb0c4" stroke-width="0.387" fill="none" /><line x1="0" y1="-32" x2="0" y2="32" stroke="#2bb0c4" stroke-width="0.516" fill="none" /><text x="0" y="-33.5" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">flange datum</text><line x1="1.2" y1="-29.5" x2="1.2" y2="29.5" stroke="#2bb0c4" stroke-width="0.516" fill="none" /><text x="1.2" y="-31" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">bayonet lug engagement</text></g><g aria-hidden="true"><line x1="-75.28" y1="-42.5" x2="-70.12" y2="-42.5" stroke="#8a94a0" stroke-width="0.63" /><text x="-68.68" y="-41.492" font-size="2.88" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text><line x1="-75.28" y1="-38.18" x2="-70.12" y2="-38.18" stroke="#2bb0c4" stroke-width="0.63" /><text x="-68.68" y="-37.172" font-size="2.88" fill="#2bb0c4" font-family="sans-serif">Register plane</text></g></svg>
 
 #### Camera-side front-view geometry
 
@@ -230,7 +230,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
     },
     "nominalThroatDiameterMm": {
       "value": 54,
-      "status": "photo_scaled",
+      "status": "patent",
       "sourceRefs": [
         "betr-1",
         "betr-2",
@@ -239,7 +239,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
     },
     "effectiveClearApertureMm": {
       "value": 54,
-      "status": "photo_scaled",
+      "status": "patent",
       "sourceRefs": [
         "betr-1",
         "betr-2",
@@ -248,7 +248,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
     },
     "cameraMountOuterDiameterMm": {
       "value": 64,
-      "status": "photo_scaled",
+      "status": "patent",
       "sourceRefs": [
         "betr-1",
         "betr-2",
@@ -257,7 +257,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
     },
     "lensMountOuterDiameterMm": {
       "value": 62,
-      "status": "photo_scaled",
+      "status": "patent",
       "sourceRefs": [
         "betr-1",
         "betr-2",
@@ -282,7 +282,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
     },
     "lockAngleDeg": {
       "value": 60,
-      "status": "photo_scaled",
+      "status": "patent",
       "sourceRefs": [
         "betr-1",
         "betr-2",
@@ -291,7 +291,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
     },
     "lockRotationDeg": {
       "value": 60,
-      "status": "photo_scaled",
+      "status": "patent",
       "sourceRefs": [
         "betr-1",
         "betr-2",
@@ -300,7 +300,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
     },
     "lockRotationDirection": {
       "value": "clockwise",
-      "status": "photo_scaled",
+      "status": "patent",
       "sourceRefs": [
         "betr-1",
         "betr-2",
@@ -316,7 +316,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -325,7 +325,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "startAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -334,7 +334,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "endAngleDeg": {
         "value": 360,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -343,7 +343,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "innerRadiusMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -352,7 +352,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "outerRadiusMm": {
         "value": 27,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -374,7 +374,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -383,7 +383,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "startAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -392,7 +392,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "endAngleDeg": {
         "value": 360,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -401,7 +401,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "innerRadiusMm": {
         "value": 27,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -410,7 +410,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "outerRadiusMm": {
         "value": 32,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -432,7 +432,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "count": 1,
       "centerAngleDeg": {
         "value": 20,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -441,7 +441,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "startAngleDeg": {
         "value": 2,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -450,7 +450,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "endAngleDeg": {
         "value": 38,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -459,7 +459,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "innerRadiusMm": {
         "value": 27,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -468,7 +468,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "outerRadiusMm": {
         "value": 29.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -477,7 +477,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "depthMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -494,7 +494,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "count": 1,
       "centerAngleDeg": {
         "value": 140,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -503,7 +503,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "startAngleDeg": {
         "value": 122,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -512,7 +512,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "endAngleDeg": {
         "value": 158,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -521,7 +521,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "innerRadiusMm": {
         "value": 27,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -530,7 +530,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "outerRadiusMm": {
         "value": 29.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -539,7 +539,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "depthMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -556,7 +556,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "count": 1,
       "centerAngleDeg": {
         "value": 260,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -565,7 +565,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "startAngleDeg": {
         "value": 242,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -574,7 +574,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "endAngleDeg": {
         "value": 278,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -583,7 +583,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "innerRadiusMm": {
         "value": 27,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -592,7 +592,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "outerRadiusMm": {
         "value": 29.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -601,7 +601,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "depthMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -618,7 +618,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -654,7 +654,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "outerRadiusMm": {
         "value": 32.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -676,7 +676,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "count": 1,
       "centerAngleDeg": {
         "value": 270,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -712,7 +712,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "outerRadiusMm": {
         "value": 28,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -721,7 +721,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "depthMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -740,7 +740,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -749,7 +749,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "startAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -758,7 +758,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "endAngleDeg": {
         "value": 360,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -767,7 +767,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "innerRadiusMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -776,7 +776,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "outerRadiusMm": {
         "value": 26,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -798,7 +798,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -807,7 +807,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "startAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -816,7 +816,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "endAngleDeg": {
         "value": 360,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -825,7 +825,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "innerRadiusMm": {
         "value": 26,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -834,7 +834,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "outerRadiusMm": {
         "value": 31,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -856,7 +856,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "count": 1,
       "centerAngleDeg": {
         "value": 20,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -865,7 +865,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "startAngleDeg": {
         "value": 2,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -874,7 +874,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "endAngleDeg": {
         "value": 38,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -883,7 +883,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "innerRadiusMm": {
         "value": 27,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -892,7 +892,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "outerRadiusMm": {
         "value": 29.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -901,7 +901,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -918,7 +918,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "count": 1,
       "centerAngleDeg": {
         "value": 140,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -927,7 +927,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "startAngleDeg": {
         "value": 122,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -936,7 +936,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "endAngleDeg": {
         "value": 158,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -945,7 +945,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "innerRadiusMm": {
         "value": 27,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -954,7 +954,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "outerRadiusMm": {
         "value": 29.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -963,7 +963,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -980,7 +980,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "count": 1,
       "centerAngleDeg": {
         "value": 260,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -989,7 +989,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "startAngleDeg": {
         "value": 242,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -998,7 +998,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "endAngleDeg": {
         "value": 278,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -1007,7 +1007,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "innerRadiusMm": {
         "value": 27,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -1016,7 +1016,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "outerRadiusMm": {
         "value": 29.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -1025,7 +1025,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -1042,7 +1042,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -1078,7 +1078,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "outerRadiusMm": {
         "value": 31.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -1100,7 +1100,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "count": 1,
       "centerAngleDeg": {
         "value": 270,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -1136,7 +1136,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "outerRadiusMm": {
         "value": 28,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -1145,7 +1145,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -1179,7 +1179,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "diameterMm": {
         "value": 64,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -1191,7 +1191,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "planeId": "bayonet_lug_engagement",
       "zPositionMm": {
         "value": 1.2,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -1200,7 +1200,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -1209,7 +1209,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "diameterMm": {
         "value": 59,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -1256,7 +1256,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "profileId": "bronica-etr/base",
       "centerAngleDeg": {
         "value": 40,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -1265,7 +1265,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "radiusMm": {
         "value": 26,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -1282,7 +1282,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "profileId": "bronica-etr/base",
       "centerAngleDeg": {
         "value": 320,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -1291,7 +1291,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "radiusMm": {
         "value": 26,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -1310,7 +1310,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "side": "body",
       "count": {
         "value": 4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -1319,7 +1319,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "pcdMm": {
         "value": 60,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -1328,7 +1328,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "diameterMm": {
         "value": 2,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -1342,7 +1342,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
           225,
           315
         ],
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "betr-1",
           "betr-2",
@@ -1488,27 +1488,27 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
 | Field | Value | Unit |
 |---|---|---|
 | Flange focal distance | 85 (`secondary`) | mm |
-| Nominal throat diameter | 57 (`photo_scaled`) | mm |
-| Effective clear aperture | 57 (`photo_scaled`) | mm |
-| Camera mount outer diameter | 70 (`photo_scaled`) | mm |
-| Lens mount outer diameter | 68 (`photo_scaled`) | mm |
+| Nominal throat diameter | 57 (`patent`) | mm |
+| Effective clear aperture | 57 (`patent`) | mm |
+| Camera mount outer diameter | 70 (`patent`) | mm |
+| Lens mount outer diameter | 68 (`patent`) | mm |
 | Contact count | not_applicable (`not_applicable`) | count |
-| Lock rotation | 60 (`photo_scaled`) | deg |
-| Lock direction | clockwise (`photo_scaled`) | — |
+| Lock rotation | 60 (`patent`) | deg |
+| Lock direction | clockwise (`patent`) | — |
 
 #### Figures (selected profile `bronica-gs/base`)
 
 **Camera-side front view** — viewBox `-43 -45 86 88` ([standalone SVG](mounts/bronica-gs-camera-front.svg))
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-43 -45 86 88" role="img" aria-labelledby="bronica-gs-base-camera_side_front-title bronica-gs-base-camera_side_front-desc"><title id="bronica-gs-base-camera_side_front-title">Zenza Bronica GS mount — camera-side front view (base)</title><desc id="bronica-gs-base-camera_side_front-desc">Zenza Bronica GS bayonet mount, camera-side front view. Flange focal distance 85 mm, nominal throat 57 mm. Profile bronica-gs/base.</desc><metadata>{"mountId":"bronica-gs","profileId":"bronica-gs/base","view":"camera_side_front","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.75" y1="0" x2="1.75" y2="0" stroke="#8a94a0" stroke-width="0.516" fill="none" /><line x1="0" y1="-1.75" x2="0" y2="1.75" stroke="#8a94a0" stroke-width="0.516" fill="none" /><line x1="0" y1="-35" x2="0" y2="-37.1" stroke="#8a94a0" stroke-width="0.516" fill="none" /></g><g data-layer="camera-side-metal"><path d="M0,-35 A35,35 0 1 1 0,35 A35,35 0 1 1 0,-35 Z M0,-28.5 A28.5,28.5 0 1 1 0,28.5 A28.5,28.5 0 1 1 0,-28.5 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-35 A35,35 0 1 1 0,35 A35,35 0 1 1 0,-35 Z M0,-28.5 A28.5,28.5 0 1 1 0,28.5 A28.5,28.5 0 1 1 0,-28.5 Z" stroke="#6b7a8f" stroke-width="0.516" fill="none" stroke-dasharray="4 2" /><path d="M0,-28.5 A28.5,28.5 0 1 1 0,28.5 A28.5,28.5 0 1 1 0,-28.5 Z" stroke="#2f80c4" stroke-width="0.516" fill="none" stroke-dasharray="4 2" /><circle cx="23.335" cy="-23.335" r="1.1" stroke="#7f8c3a" stroke-width="0.516" fill="none" stroke-dasharray="4 2" /><circle cx="23.335" cy="23.335" r="1.1" stroke="#7f8c3a" stroke-width="0.516" fill="none" stroke-dasharray="4 2" /><circle cx="-23.335" cy="23.335" r="1.1" stroke="#7f8c3a" stroke-width="0.516" fill="none" stroke-dasharray="4 2" /><circle cx="-23.335" cy="-23.335" r="1.1" stroke="#7f8c3a" stroke-width="0.516" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-core-interface"><path d="M0,-32 L-2.167,-35.434 L2.167,-35.434 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-32 L-2.167,-35.434 L2.167,-35.434 Z" stroke="#e8853a" stroke-width="0.516" fill="none" stroke-dasharray="0.6 1.6" /><path d="M0.995,-28.483 L1.082,-30.981 A31,31 0 0 1 19.086,-24.428 L17.546,-22.458 A28.5,28.5 0 0 0 0.995,-28.483 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M0.995,-28.483 L1.082,-30.981 A31,31 0 0 1 19.086,-24.428 L17.546,-22.458 A28.5,28.5 0 0 0 0.995,-28.483 Z" stroke="#2a9d8f" stroke-width="0.516" fill="none" stroke-dasharray="4 2" /><path d="M24.169,15.103 L26.289,16.427 A31,31 0 0 1 11.613,28.743 L10.676,26.425 A28.5,28.5 0 0 0 24.169,15.103 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M24.169,15.103 L26.289,16.427 A31,31 0 0 1 11.613,28.743 L10.676,26.425 A28.5,28.5 0 0 0 24.169,15.103 Z" stroke="#2a9d8f" stroke-width="0.516" fill="none" stroke-dasharray="4 2" /><path d="M-25.164,13.38 L-27.371,14.554 A31,31 0 0 1 -30.698,-4.314 L-28.223,-3.966 A28.5,28.5 0 0 0 -25.164,13.38 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-25.164,13.38 L-27.371,14.554 A31,31 0 0 1 -30.698,-4.314 L-28.223,-3.966 A28.5,28.5 0 0 0 -25.164,13.38 Z" stroke="#2a9d8f" stroke-width="0.516" fill="none" stroke-dasharray="4 2" /><circle cx="-29.5" cy="0" r="1.225" fill="#d1495b" fill-opacity="0.12" /><circle cx="-29.5" cy="0" r="1.225" stroke="#d1495b" stroke-width="0.516" fill="none" stroke-dasharray="0.6 1.6" /></g><g data-layer="camera-side-variant-mechanical"><circle cx="17.998" cy="-21.449" r="1.05" stroke="#b5651d" stroke-width="0.516" fill="none" stroke-dasharray="4 2" /><circle cx="-17.998" cy="-21.449" r="1.05" stroke="#b5651d" stroke-width="0.516" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-41.28" y1="-40.6" x2="-36.12" y2="-40.6" stroke="#2f80c4" stroke-width="0.616" /><text x="-34.712" y="-39.614" font-size="2.816" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-41.28" y1="-36.376" x2="-36.12" y2="-36.376" stroke="#6b7a8f" stroke-width="0.616" /><text x="-34.712" y="-35.39" font-size="2.816" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-41.28" y1="-32.152" x2="-36.12" y2="-32.152" stroke="#2a9d8f" stroke-width="0.616" /><text x="-34.712" y="-31.166" font-size="2.816" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-41.28" y1="-27.928" x2="-36.12" y2="-27.928" stroke="#d1495b" stroke-width="0.616" /><text x="-34.712" y="-26.942" font-size="2.816" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-41.28" y1="-23.704" x2="-36.12" y2="-23.704" stroke="#e8853a" stroke-width="0.616" /><text x="-34.712" y="-22.718" font-size="2.816" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-41.28" y1="-19.48" x2="-36.12" y2="-19.48" stroke="#b5651d" stroke-width="0.616" /><text x="-34.712" y="-18.494" font-size="2.816" fill="#b5651d" font-family="sans-serif">Mechanical coupling</text><line x1="-41.28" y1="-15.256" x2="-36.12" y2="-15.256" stroke="#7f8c3a" stroke-width="0.616" /><text x="-34.712" y="-14.27" font-size="2.816" fill="#7f8c3a" font-family="sans-serif">Screws / seals</text><line x1="-41.28" y1="-11.032" x2="-36.12" y2="-11.032" stroke="#8a94a0" stroke-width="0.616" /><text x="-34.712" y="-10.046" font-size="2.816" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-43 -45 86 88" role="img" aria-labelledby="bronica-gs-base-camera_side_front-title bronica-gs-base-camera_side_front-desc"><title id="bronica-gs-base-camera_side_front-title">Zenza Bronica GS mount — camera-side front view (base)</title><desc id="bronica-gs-base-camera_side_front-desc">Zenza Bronica GS bayonet mount, camera-side front view. Flange focal distance 85 mm, nominal throat 57 mm. Profile bronica-gs/base.</desc><metadata>{"mountId":"bronica-gs","profileId":"bronica-gs/base","view":"camera_side_front","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.75" y1="0" x2="1.75" y2="0" stroke="#8a94a0" stroke-width="0.516" fill="none" /><line x1="0" y1="-1.75" x2="0" y2="1.75" stroke="#8a94a0" stroke-width="0.516" fill="none" /><line x1="0" y1="-35" x2="0" y2="-37.1" stroke="#8a94a0" stroke-width="0.516" fill="none" /></g><g data-layer="camera-side-metal"><path d="M0,-35 A35,35 0 1 1 0,35 A35,35 0 1 1 0,-35 Z M0,-28.5 A28.5,28.5 0 1 1 0,28.5 A28.5,28.5 0 1 1 0,-28.5 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-35 A35,35 0 1 1 0,35 A35,35 0 1 1 0,-35 Z M0,-28.5 A28.5,28.5 0 1 1 0,28.5 A28.5,28.5 0 1 1 0,-28.5 Z" stroke="#6b7a8f" stroke-width="0.516" fill="none" /><path d="M0,-28.5 A28.5,28.5 0 1 1 0,28.5 A28.5,28.5 0 1 1 0,-28.5 Z" stroke="#2f80c4" stroke-width="0.516" fill="none" /><circle cx="23.335" cy="-23.335" r="1.1" stroke="#7f8c3a" stroke-width="0.516" fill="none" /><circle cx="23.335" cy="23.335" r="1.1" stroke="#7f8c3a" stroke-width="0.516" fill="none" /><circle cx="-23.335" cy="23.335" r="1.1" stroke="#7f8c3a" stroke-width="0.516" fill="none" /><circle cx="-23.335" cy="-23.335" r="1.1" stroke="#7f8c3a" stroke-width="0.516" fill="none" /></g><g data-layer="camera-side-core-interface"><path d="M0,-32 L-2.167,-35.434 L2.167,-35.434 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-32 L-2.167,-35.434 L2.167,-35.434 Z" stroke="#e8853a" stroke-width="0.516" fill="none" stroke-dasharray="0.6 1.6" /><path d="M0.995,-28.483 L1.082,-30.981 A31,31 0 0 1 19.086,-24.428 L17.546,-22.458 A28.5,28.5 0 0 0 0.995,-28.483 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M0.995,-28.483 L1.082,-30.981 A31,31 0 0 1 19.086,-24.428 L17.546,-22.458 A28.5,28.5 0 0 0 0.995,-28.483 Z" stroke="#2a9d8f" stroke-width="0.516" fill="none" /><path d="M24.169,15.103 L26.289,16.427 A31,31 0 0 1 11.613,28.743 L10.676,26.425 A28.5,28.5 0 0 0 24.169,15.103 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M24.169,15.103 L26.289,16.427 A31,31 0 0 1 11.613,28.743 L10.676,26.425 A28.5,28.5 0 0 0 24.169,15.103 Z" stroke="#2a9d8f" stroke-width="0.516" fill="none" /><path d="M-25.164,13.38 L-27.371,14.554 A31,31 0 0 1 -30.698,-4.314 L-28.223,-3.966 A28.5,28.5 0 0 0 -25.164,13.38 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-25.164,13.38 L-27.371,14.554 A31,31 0 0 1 -30.698,-4.314 L-28.223,-3.966 A28.5,28.5 0 0 0 -25.164,13.38 Z" stroke="#2a9d8f" stroke-width="0.516" fill="none" /><circle cx="-29.5" cy="0" r="1.225" fill="#d1495b" fill-opacity="0.12" /><circle cx="-29.5" cy="0" r="1.225" stroke="#d1495b" stroke-width="0.516" fill="none" stroke-dasharray="0.6 1.6" /></g><g data-layer="camera-side-variant-mechanical"><circle cx="17.998" cy="-21.449" r="1.05" stroke="#b5651d" stroke-width="0.516" fill="none" /><circle cx="-17.998" cy="-21.449" r="1.05" stroke="#b5651d" stroke-width="0.516" fill="none" /></g><g aria-hidden="true"><line x1="-41.28" y1="-40.6" x2="-36.12" y2="-40.6" stroke="#2f80c4" stroke-width="0.616" /><text x="-34.712" y="-39.614" font-size="2.816" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-41.28" y1="-36.376" x2="-36.12" y2="-36.376" stroke="#6b7a8f" stroke-width="0.616" /><text x="-34.712" y="-35.39" font-size="2.816" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-41.28" y1="-32.152" x2="-36.12" y2="-32.152" stroke="#2a9d8f" stroke-width="0.616" /><text x="-34.712" y="-31.166" font-size="2.816" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-41.28" y1="-27.928" x2="-36.12" y2="-27.928" stroke="#d1495b" stroke-width="0.616" /><text x="-34.712" y="-26.942" font-size="2.816" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-41.28" y1="-23.704" x2="-36.12" y2="-23.704" stroke="#e8853a" stroke-width="0.616" /><text x="-34.712" y="-22.718" font-size="2.816" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-41.28" y1="-19.48" x2="-36.12" y2="-19.48" stroke="#b5651d" stroke-width="0.616" /><text x="-34.712" y="-18.494" font-size="2.816" fill="#b5651d" font-family="sans-serif">Mechanical coupling</text><line x1="-41.28" y1="-15.256" x2="-36.12" y2="-15.256" stroke="#7f8c3a" stroke-width="0.616" /><text x="-34.712" y="-14.27" font-size="2.816" fill="#7f8c3a" font-family="sans-serif">Screws / seals</text><line x1="-41.28" y1="-11.032" x2="-36.12" y2="-11.032" stroke="#8a94a0" stroke-width="0.616" /><text x="-34.712" y="-10.046" font-size="2.816" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
 
 **Lens-side rear view** — viewBox `-42 -44 84 86` ([standalone SVG](mounts/bronica-gs-lens-rear.svg))
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-42 -44 84 86" role="img" aria-labelledby="bronica-gs-base-lens_side_rear-title bronica-gs-base-lens_side_rear-desc"><title id="bronica-gs-base-lens_side_rear-title">Zenza Bronica GS mount — lens-side rear view (base)</title><desc id="bronica-gs-base-lens_side_rear-desc">Zenza Bronica GS bayonet mount, lens-side rear view. Flange focal distance 85 mm, nominal throat 57 mm. Profile bronica-gs/base.</desc><metadata>{"mountId":"bronica-gs","profileId":"bronica-gs/base","view":"lens_side_rear","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.7" y1="0" x2="1.7" y2="0" stroke="#8a94a0" stroke-width="0.504" fill="none" /><line x1="0" y1="-1.7" x2="0" y2="1.7" stroke="#8a94a0" stroke-width="0.504" fill="none" /><line x1="0" y1="-34" x2="0" y2="-36.04" stroke="#8a94a0" stroke-width="0.504" fill="none" /></g><g data-layer="lens-side-metal"><path d="M0,-34 A34,34 0 1 1 0,34 A34,34 0 1 1 0,-34 Z M0,-27.5 A27.5,27.5 0 1 1 0,27.5 A27.5,27.5 0 1 1 0,-27.5 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-34 A34,34 0 1 1 0,34 A34,34 0 1 1 0,-34 Z M0,-27.5 A27.5,27.5 0 1 1 0,27.5 A27.5,27.5 0 1 1 0,-27.5 Z" stroke="#6b7a8f" stroke-width="0.504" fill="none" stroke-dasharray="4 2" /><path d="M0,-27.5 A27.5,27.5 0 1 1 0,27.5 A27.5,27.5 0 1 1 0,-27.5 Z" stroke="#2f80c4" stroke-width="0.504" fill="none" stroke-dasharray="4 2" /></g><g data-layer="lens-side-core-interface"><path d="M0,-31.1 L-2.106,-34.436 L2.106,-34.436 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-31.1 L-2.106,-34.436 L2.106,-34.436 Z" stroke="#e8853a" stroke-width="0.504" fill="none" stroke-dasharray="0.6 1.6" /><circle cx="29.5" cy="0" r="1.19" fill="#d1495b" fill-opacity="0.12" /><circle cx="29.5" cy="0" r="1.19" stroke="#d1495b" stroke-width="0.504" fill="none" stroke-dasharray="0.6 1.6" /><path d="M28.223,-3.966 L30.698,-4.314 A31,31 0 0 1 27.371,14.554 L25.164,13.38 A28.5,28.5 0 0 0 28.223,-3.966 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M28.223,-3.966 L30.698,-4.314 A31,31 0 0 1 27.371,14.554 L25.164,13.38 A28.5,28.5 0 0 0 28.223,-3.966 Z" stroke="#2a9d8f" stroke-width="0.504" fill="none" stroke-dasharray="4 2" /><path d="M-10.676,26.425 L-11.613,28.743 A31,31 0 0 1 -26.289,16.427 L-24.169,15.103 A28.5,28.5 0 0 0 -10.676,26.425 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-10.676,26.425 L-11.613,28.743 A31,31 0 0 1 -26.289,16.427 L-24.169,15.103 A28.5,28.5 0 0 0 -10.676,26.425 Z" stroke="#2a9d8f" stroke-width="0.504" fill="none" stroke-dasharray="4 2" /><path d="M-17.546,-22.458 L-19.086,-24.428 A31,31 0 0 1 -1.082,-30.981 L-0.995,-28.483 A28.5,28.5 0 0 0 -17.546,-22.458 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-17.546,-22.458 L-19.086,-24.428 A31,31 0 0 1 -1.082,-30.981 L-0.995,-28.483 A28.5,28.5 0 0 0 -17.546,-22.458 Z" stroke="#2a9d8f" stroke-width="0.504" fill="none" stroke-dasharray="4 2" /></g><g data-layer="lens-side-variant-mechanical"><circle cx="17.998" cy="-21.449" r="1.02" stroke="#b5651d" stroke-width="0.504" fill="none" stroke-dasharray="4 2" /><circle cx="-17.998" cy="-21.449" r="1.02" stroke="#b5651d" stroke-width="0.504" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-40.32" y1="-39.7" x2="-35.28" y2="-39.7" stroke="#2f80c4" stroke-width="0.602" /><text x="-33.904" y="-38.737" font-size="2.752" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-40.32" y1="-35.572" x2="-35.28" y2="-35.572" stroke="#6b7a8f" stroke-width="0.602" /><text x="-33.904" y="-34.609" font-size="2.752" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-40.32" y1="-31.444" x2="-35.28" y2="-31.444" stroke="#2a9d8f" stroke-width="0.602" /><text x="-33.904" y="-30.481" font-size="2.752" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-40.32" y1="-27.316" x2="-35.28" y2="-27.316" stroke="#d1495b" stroke-width="0.602" /><text x="-33.904" y="-26.353" font-size="2.752" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-40.32" y1="-23.188" x2="-35.28" y2="-23.188" stroke="#e8853a" stroke-width="0.602" /><text x="-33.904" y="-22.225" font-size="2.752" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-40.32" y1="-19.06" x2="-35.28" y2="-19.06" stroke="#b5651d" stroke-width="0.602" /><text x="-33.904" y="-18.097" font-size="2.752" fill="#b5651d" font-family="sans-serif">Mechanical coupling</text><line x1="-40.32" y1="-14.932" x2="-35.28" y2="-14.932" stroke="#8a94a0" stroke-width="0.602" /><text x="-33.904" y="-13.969" font-size="2.752" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-42 -44 84 86" role="img" aria-labelledby="bronica-gs-base-lens_side_rear-title bronica-gs-base-lens_side_rear-desc"><title id="bronica-gs-base-lens_side_rear-title">Zenza Bronica GS mount — lens-side rear view (base)</title><desc id="bronica-gs-base-lens_side_rear-desc">Zenza Bronica GS bayonet mount, lens-side rear view. Flange focal distance 85 mm, nominal throat 57 mm. Profile bronica-gs/base.</desc><metadata>{"mountId":"bronica-gs","profileId":"bronica-gs/base","view":"lens_side_rear","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.7" y1="0" x2="1.7" y2="0" stroke="#8a94a0" stroke-width="0.504" fill="none" /><line x1="0" y1="-1.7" x2="0" y2="1.7" stroke="#8a94a0" stroke-width="0.504" fill="none" /><line x1="0" y1="-34" x2="0" y2="-36.04" stroke="#8a94a0" stroke-width="0.504" fill="none" /></g><g data-layer="lens-side-metal"><path d="M0,-34 A34,34 0 1 1 0,34 A34,34 0 1 1 0,-34 Z M0,-27.5 A27.5,27.5 0 1 1 0,27.5 A27.5,27.5 0 1 1 0,-27.5 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-34 A34,34 0 1 1 0,34 A34,34 0 1 1 0,-34 Z M0,-27.5 A27.5,27.5 0 1 1 0,27.5 A27.5,27.5 0 1 1 0,-27.5 Z" stroke="#6b7a8f" stroke-width="0.504" fill="none" /><path d="M0,-27.5 A27.5,27.5 0 1 1 0,27.5 A27.5,27.5 0 1 1 0,-27.5 Z" stroke="#2f80c4" stroke-width="0.504" fill="none" /></g><g data-layer="lens-side-core-interface"><path d="M0,-31.1 L-2.106,-34.436 L2.106,-34.436 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-31.1 L-2.106,-34.436 L2.106,-34.436 Z" stroke="#e8853a" stroke-width="0.504" fill="none" stroke-dasharray="0.6 1.6" /><circle cx="29.5" cy="0" r="1.19" fill="#d1495b" fill-opacity="0.12" /><circle cx="29.5" cy="0" r="1.19" stroke="#d1495b" stroke-width="0.504" fill="none" stroke-dasharray="0.6 1.6" /><path d="M28.223,-3.966 L30.698,-4.314 A31,31 0 0 1 27.371,14.554 L25.164,13.38 A28.5,28.5 0 0 0 28.223,-3.966 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M28.223,-3.966 L30.698,-4.314 A31,31 0 0 1 27.371,14.554 L25.164,13.38 A28.5,28.5 0 0 0 28.223,-3.966 Z" stroke="#2a9d8f" stroke-width="0.504" fill="none" /><path d="M-10.676,26.425 L-11.613,28.743 A31,31 0 0 1 -26.289,16.427 L-24.169,15.103 A28.5,28.5 0 0 0 -10.676,26.425 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-10.676,26.425 L-11.613,28.743 A31,31 0 0 1 -26.289,16.427 L-24.169,15.103 A28.5,28.5 0 0 0 -10.676,26.425 Z" stroke="#2a9d8f" stroke-width="0.504" fill="none" /><path d="M-17.546,-22.458 L-19.086,-24.428 A31,31 0 0 1 -1.082,-30.981 L-0.995,-28.483 A28.5,28.5 0 0 0 -17.546,-22.458 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-17.546,-22.458 L-19.086,-24.428 A31,31 0 0 1 -1.082,-30.981 L-0.995,-28.483 A28.5,28.5 0 0 0 -17.546,-22.458 Z" stroke="#2a9d8f" stroke-width="0.504" fill="none" /></g><g data-layer="lens-side-variant-mechanical"><circle cx="17.998" cy="-21.449" r="1.02" stroke="#b5651d" stroke-width="0.504" fill="none" /><circle cx="-17.998" cy="-21.449" r="1.02" stroke="#b5651d" stroke-width="0.504" fill="none" /></g><g aria-hidden="true"><line x1="-40.32" y1="-39.7" x2="-35.28" y2="-39.7" stroke="#2f80c4" stroke-width="0.602" /><text x="-33.904" y="-38.737" font-size="2.752" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-40.32" y1="-35.572" x2="-35.28" y2="-35.572" stroke="#6b7a8f" stroke-width="0.602" /><text x="-33.904" y="-34.609" font-size="2.752" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-40.32" y1="-31.444" x2="-35.28" y2="-31.444" stroke="#2a9d8f" stroke-width="0.602" /><text x="-33.904" y="-30.481" font-size="2.752" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-40.32" y1="-27.316" x2="-35.28" y2="-27.316" stroke="#d1495b" stroke-width="0.602" /><text x="-33.904" y="-26.353" font-size="2.752" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-40.32" y1="-23.188" x2="-35.28" y2="-23.188" stroke="#e8853a" stroke-width="0.602" /><text x="-33.904" y="-22.225" font-size="2.752" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-40.32" y1="-19.06" x2="-35.28" y2="-19.06" stroke="#b5651d" stroke-width="0.602" /><text x="-33.904" y="-18.097" font-size="2.752" fill="#b5651d" font-family="sans-serif">Mechanical coupling</text><line x1="-40.32" y1="-14.932" x2="-35.28" y2="-14.932" stroke="#8a94a0" stroke-width="0.602" /><text x="-33.904" y="-13.969" font-size="2.752" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
 
 **Axial / register schematic** — viewBox `-95 -59 106 114` ([standalone SVG](mounts/bronica-gs-axial.svg))
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-95 -59 106 114" role="img" aria-labelledby="bronica-gs-base-axial_section-title bronica-gs-base-axial_section-desc"><title id="bronica-gs-base-axial_section-title">Zenza Bronica GS mount — axial / register schematic (base)</title><desc id="bronica-gs-base-axial_section-desc">Zenza Bronica GS bayonet mount, axial / register schematic. Flange focal distance 85 mm, nominal throat 57 mm. Profile bronica-gs/base.</desc><metadata>{"mountId":"bronica-gs","profileId":"bronica-gs/base","view":"axial_section","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-85" y1="0" x2="1.2" y2="0" stroke="#8a94a0" stroke-width="0.636" fill="none" /><line x1="0" y1="-44.8" x2="0" y2="44.8" stroke="#8a94a0" stroke-width="0.636" fill="none" /></g><g data-layer="axial-section"><text x="-85" y="-46.3" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">sensor film plane</text><line x1="-85" y1="-44.8" x2="-85" y2="44.8" stroke="#2bb0c4" stroke-width="0.477" fill="none" /><line x1="0" y1="-35" x2="0" y2="35" stroke="#2bb0c4" stroke-width="0.636" fill="none" stroke-dasharray="4 2" /><text x="0" y="-36.5" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">flange datum</text><line x1="1.2" y1="-32" x2="1.2" y2="32" stroke="#2bb0c4" stroke-width="0.636" fill="none" stroke-dasharray="4 2" /><text x="1.2" y="-33.5" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">bayonet lug engagement</text></g><g aria-hidden="true"><line x1="-92.88" y1="-53.3" x2="-86.52" y2="-53.3" stroke="#8a94a0" stroke-width="0.798" /><text x="-84.696" y="-52.023" font-size="3.648" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text><line x1="-92.88" y1="-47.828" x2="-86.52" y2="-47.828" stroke="#2bb0c4" stroke-width="0.798" /><text x="-84.696" y="-46.551" font-size="3.648" fill="#2bb0c4" font-family="sans-serif">Register plane</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-95 -59 106 114" role="img" aria-labelledby="bronica-gs-base-axial_section-title bronica-gs-base-axial_section-desc"><title id="bronica-gs-base-axial_section-title">Zenza Bronica GS mount — axial / register schematic (base)</title><desc id="bronica-gs-base-axial_section-desc">Zenza Bronica GS bayonet mount, axial / register schematic. Flange focal distance 85 mm, nominal throat 57 mm. Profile bronica-gs/base.</desc><metadata>{"mountId":"bronica-gs","profileId":"bronica-gs/base","view":"axial_section","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-85" y1="0" x2="1.2" y2="0" stroke="#8a94a0" stroke-width="0.636" fill="none" /><line x1="0" y1="-44.8" x2="0" y2="44.8" stroke="#8a94a0" stroke-width="0.636" fill="none" /></g><g data-layer="axial-section"><text x="-85" y="-46.3" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">sensor film plane</text><line x1="-85" y1="-44.8" x2="-85" y2="44.8" stroke="#2bb0c4" stroke-width="0.477" fill="none" /><line x1="0" y1="-35" x2="0" y2="35" stroke="#2bb0c4" stroke-width="0.636" fill="none" /><text x="0" y="-36.5" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">flange datum</text><line x1="1.2" y1="-32" x2="1.2" y2="32" stroke="#2bb0c4" stroke-width="0.636" fill="none" /><text x="1.2" y="-33.5" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">bayonet lug engagement</text></g><g aria-hidden="true"><line x1="-92.88" y1="-53.3" x2="-86.52" y2="-53.3" stroke="#8a94a0" stroke-width="0.798" /><text x="-84.696" y="-52.023" font-size="3.648" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text><line x1="-92.88" y1="-47.828" x2="-86.52" y2="-47.828" stroke="#2bb0c4" stroke-width="0.798" /><text x="-84.696" y="-46.551" font-size="3.648" fill="#2bb0c4" font-family="sans-serif">Register plane</text></g></svg>
 
 #### Camera-side front-view geometry
 
@@ -1636,7 +1636,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
     },
     "nominalThroatDiameterMm": {
       "value": 57,
-      "status": "photo_scaled",
+      "status": "patent",
       "sourceRefs": [
         "bgs-1",
         "bgs-2",
@@ -1645,7 +1645,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
     },
     "effectiveClearApertureMm": {
       "value": 57,
-      "status": "photo_scaled",
+      "status": "patent",
       "sourceRefs": [
         "bgs-1",
         "bgs-2",
@@ -1654,7 +1654,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
     },
     "cameraMountOuterDiameterMm": {
       "value": 70,
-      "status": "photo_scaled",
+      "status": "patent",
       "sourceRefs": [
         "bgs-1",
         "bgs-2",
@@ -1663,7 +1663,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
     },
     "lensMountOuterDiameterMm": {
       "value": 68,
-      "status": "photo_scaled",
+      "status": "patent",
       "sourceRefs": [
         "bgs-1",
         "bgs-2",
@@ -1688,7 +1688,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
     },
     "lockAngleDeg": {
       "value": 60,
-      "status": "photo_scaled",
+      "status": "patent",
       "sourceRefs": [
         "bgs-1",
         "bgs-2",
@@ -1697,7 +1697,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
     },
     "lockRotationDeg": {
       "value": 60,
-      "status": "photo_scaled",
+      "status": "patent",
       "sourceRefs": [
         "bgs-1",
         "bgs-2",
@@ -1706,7 +1706,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
     },
     "lockRotationDirection": {
       "value": "clockwise",
-      "status": "photo_scaled",
+      "status": "patent",
       "sourceRefs": [
         "bgs-1",
         "bgs-2",
@@ -1722,7 +1722,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -1731,7 +1731,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "startAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -1740,7 +1740,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "endAngleDeg": {
         "value": 360,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -1749,7 +1749,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "innerRadiusMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -1758,7 +1758,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "outerRadiusMm": {
         "value": 28.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -1780,7 +1780,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -1789,7 +1789,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "startAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -1798,7 +1798,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "endAngleDeg": {
         "value": 360,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -1807,7 +1807,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "innerRadiusMm": {
         "value": 28.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -1816,7 +1816,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "outerRadiusMm": {
         "value": 35,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -1838,7 +1838,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "count": 1,
       "centerAngleDeg": {
         "value": 20,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -1847,7 +1847,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "startAngleDeg": {
         "value": 2,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -1856,7 +1856,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "endAngleDeg": {
         "value": 38,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -1865,7 +1865,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "innerRadiusMm": {
         "value": 28.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -1874,7 +1874,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "outerRadiusMm": {
         "value": 31,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -1883,7 +1883,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "depthMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -1900,7 +1900,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "count": 1,
       "centerAngleDeg": {
         "value": 140,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -1909,7 +1909,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "startAngleDeg": {
         "value": 122,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -1918,7 +1918,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "endAngleDeg": {
         "value": 158,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -1927,7 +1927,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "innerRadiusMm": {
         "value": 28.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -1936,7 +1936,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "outerRadiusMm": {
         "value": 31,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -1945,7 +1945,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "depthMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -1962,7 +1962,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "count": 1,
       "centerAngleDeg": {
         "value": 260,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -1971,7 +1971,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "startAngleDeg": {
         "value": 242,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -1980,7 +1980,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "endAngleDeg": {
         "value": 278,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -1989,7 +1989,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "innerRadiusMm": {
         "value": 28.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -1998,7 +1998,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "outerRadiusMm": {
         "value": 31,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -2007,7 +2007,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "depthMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -2024,7 +2024,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -2060,7 +2060,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "outerRadiusMm": {
         "value": 35.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -2082,7 +2082,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "count": 1,
       "centerAngleDeg": {
         "value": 270,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -2118,7 +2118,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "outerRadiusMm": {
         "value": 29.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -2127,7 +2127,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "depthMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -2146,7 +2146,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -2155,7 +2155,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "startAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -2164,7 +2164,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "endAngleDeg": {
         "value": 360,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -2173,7 +2173,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "innerRadiusMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -2182,7 +2182,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "outerRadiusMm": {
         "value": 27.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -2204,7 +2204,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -2213,7 +2213,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "startAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -2222,7 +2222,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "endAngleDeg": {
         "value": 360,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -2231,7 +2231,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "innerRadiusMm": {
         "value": 27.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -2240,7 +2240,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "outerRadiusMm": {
         "value": 34,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -2262,7 +2262,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "count": 1,
       "centerAngleDeg": {
         "value": 20,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -2271,7 +2271,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "startAngleDeg": {
         "value": 2,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -2280,7 +2280,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "endAngleDeg": {
         "value": 38,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -2289,7 +2289,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "innerRadiusMm": {
         "value": 28.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -2298,7 +2298,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "outerRadiusMm": {
         "value": 31,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -2307,7 +2307,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -2324,7 +2324,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "count": 1,
       "centerAngleDeg": {
         "value": 140,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -2333,7 +2333,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "startAngleDeg": {
         "value": 122,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -2342,7 +2342,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "endAngleDeg": {
         "value": 158,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -2351,7 +2351,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "innerRadiusMm": {
         "value": 28.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -2360,7 +2360,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "outerRadiusMm": {
         "value": 31,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -2369,7 +2369,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -2386,7 +2386,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "count": 1,
       "centerAngleDeg": {
         "value": 260,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -2395,7 +2395,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "startAngleDeg": {
         "value": 242,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -2404,7 +2404,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "endAngleDeg": {
         "value": 278,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -2413,7 +2413,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "innerRadiusMm": {
         "value": 28.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -2422,7 +2422,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "outerRadiusMm": {
         "value": 31,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -2431,7 +2431,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -2448,7 +2448,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -2484,7 +2484,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "outerRadiusMm": {
         "value": 34.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -2506,7 +2506,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "count": 1,
       "centerAngleDeg": {
         "value": 270,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -2542,7 +2542,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "outerRadiusMm": {
         "value": 29.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -2551,7 +2551,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -2585,7 +2585,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "diameterMm": {
         "value": 70,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -2597,7 +2597,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "planeId": "bayonet_lug_engagement",
       "zPositionMm": {
         "value": 1.2,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -2606,7 +2606,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -2615,7 +2615,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "diameterMm": {
         "value": 64,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -2662,7 +2662,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "profileId": "bronica-gs/base",
       "centerAngleDeg": {
         "value": 40,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -2671,7 +2671,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "radiusMm": {
         "value": 28,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -2688,7 +2688,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "profileId": "bronica-gs/base",
       "centerAngleDeg": {
         "value": 320,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -2697,7 +2697,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "radiusMm": {
         "value": 28,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -2716,7 +2716,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "side": "body",
       "count": {
         "value": 4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -2725,7 +2725,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "pcdMm": {
         "value": 66,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -2734,7 +2734,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "diameterMm": {
         "value": 2.2,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -2748,7 +2748,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
           225,
           315
         ],
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bgs-1",
           "bgs-2",
@@ -2894,27 +2894,27 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
 | Field | Value | Unit |
 |---|---|---|
 | Flange focal distance | 85 (`secondary`) | mm |
-| Nominal throat diameter | 57 (`photo_scaled`) | mm |
-| Effective clear aperture | 57 (`photo_scaled`) | mm |
-| Camera mount outer diameter | 70 (`photo_scaled`) | mm |
-| Lens mount outer diameter | 68 (`photo_scaled`) | mm |
+| Nominal throat diameter | 57 (`patent`) | mm |
+| Effective clear aperture | 57 (`patent`) | mm |
+| Camera mount outer diameter | 70 (`patent`) | mm |
+| Lens mount outer diameter | 68 (`patent`) | mm |
 | Contact count | not_applicable (`not_applicable`) | count |
-| Lock rotation | 60 (`photo_scaled`) | deg |
-| Lock direction | clockwise (`photo_scaled`) | — |
+| Lock rotation | 60 (`patent`) | deg |
+| Lock direction | clockwise (`patent`) | — |
 
 #### Figures (selected profile `bronica-sq/base`)
 
 **Camera-side front view** — viewBox `-43 -45 86 88` ([standalone SVG](mounts/bronica-sq-camera-front.svg))
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-43 -45 86 88" role="img" aria-labelledby="bronica-sq-base-camera_side_front-title bronica-sq-base-camera_side_front-desc"><title id="bronica-sq-base-camera_side_front-title">Zenza Bronica SQ mount — camera-side front view (base)</title><desc id="bronica-sq-base-camera_side_front-desc">Zenza Bronica SQ bayonet mount, camera-side front view. Flange focal distance 85 mm, nominal throat 57 mm. Profile bronica-sq/base.</desc><metadata>{"mountId":"bronica-sq","profileId":"bronica-sq/base","view":"camera_side_front","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.75" y1="0" x2="1.75" y2="0" stroke="#8a94a0" stroke-width="0.516" fill="none" /><line x1="0" y1="-1.75" x2="0" y2="1.75" stroke="#8a94a0" stroke-width="0.516" fill="none" /><line x1="0" y1="-35" x2="0" y2="-37.1" stroke="#8a94a0" stroke-width="0.516" fill="none" /></g><g data-layer="camera-side-metal"><path d="M0,-35 A35,35 0 1 1 0,35 A35,35 0 1 1 0,-35 Z M0,-28.5 A28.5,28.5 0 1 1 0,28.5 A28.5,28.5 0 1 1 0,-28.5 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-35 A35,35 0 1 1 0,35 A35,35 0 1 1 0,-35 Z M0,-28.5 A28.5,28.5 0 1 1 0,28.5 A28.5,28.5 0 1 1 0,-28.5 Z" stroke="#6b7a8f" stroke-width="0.516" fill="none" stroke-dasharray="4 2" /><path d="M0,-28.5 A28.5,28.5 0 1 1 0,28.5 A28.5,28.5 0 1 1 0,-28.5 Z" stroke="#2f80c4" stroke-width="0.516" fill="none" stroke-dasharray="4 2" /><circle cx="23.335" cy="-23.335" r="1.1" stroke="#7f8c3a" stroke-width="0.516" fill="none" stroke-dasharray="4 2" /><circle cx="23.335" cy="23.335" r="1.1" stroke="#7f8c3a" stroke-width="0.516" fill="none" stroke-dasharray="4 2" /><circle cx="-23.335" cy="23.335" r="1.1" stroke="#7f8c3a" stroke-width="0.516" fill="none" stroke-dasharray="4 2" /><circle cx="-23.335" cy="-23.335" r="1.1" stroke="#7f8c3a" stroke-width="0.516" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-core-interface"><path d="M0,-32 L-2.167,-35.434 L2.167,-35.434 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-32 L-2.167,-35.434 L2.167,-35.434 Z" stroke="#e8853a" stroke-width="0.516" fill="none" stroke-dasharray="0.6 1.6" /><path d="M0.995,-28.483 L1.082,-30.981 A31,31 0 0 1 19.086,-24.428 L17.546,-22.458 A28.5,28.5 0 0 0 0.995,-28.483 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M0.995,-28.483 L1.082,-30.981 A31,31 0 0 1 19.086,-24.428 L17.546,-22.458 A28.5,28.5 0 0 0 0.995,-28.483 Z" stroke="#2a9d8f" stroke-width="0.516" fill="none" stroke-dasharray="4 2" /><path d="M24.169,15.103 L26.289,16.427 A31,31 0 0 1 11.613,28.743 L10.676,26.425 A28.5,28.5 0 0 0 24.169,15.103 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M24.169,15.103 L26.289,16.427 A31,31 0 0 1 11.613,28.743 L10.676,26.425 A28.5,28.5 0 0 0 24.169,15.103 Z" stroke="#2a9d8f" stroke-width="0.516" fill="none" stroke-dasharray="4 2" /><path d="M-25.164,13.38 L-27.371,14.554 A31,31 0 0 1 -30.698,-4.314 L-28.223,-3.966 A28.5,28.5 0 0 0 -25.164,13.38 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-25.164,13.38 L-27.371,14.554 A31,31 0 0 1 -30.698,-4.314 L-28.223,-3.966 A28.5,28.5 0 0 0 -25.164,13.38 Z" stroke="#2a9d8f" stroke-width="0.516" fill="none" stroke-dasharray="4 2" /><circle cx="-29.5" cy="0" r="1.225" fill="#d1495b" fill-opacity="0.12" /><circle cx="-29.5" cy="0" r="1.225" stroke="#d1495b" stroke-width="0.516" fill="none" stroke-dasharray="0.6 1.6" /></g><g data-layer="camera-side-variant-mechanical"><circle cx="17.998" cy="-21.449" r="1.05" stroke="#b5651d" stroke-width="0.516" fill="none" stroke-dasharray="4 2" /><circle cx="-17.998" cy="-21.449" r="1.05" stroke="#b5651d" stroke-width="0.516" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-41.28" y1="-40.6" x2="-36.12" y2="-40.6" stroke="#2f80c4" stroke-width="0.616" /><text x="-34.712" y="-39.614" font-size="2.816" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-41.28" y1="-36.376" x2="-36.12" y2="-36.376" stroke="#6b7a8f" stroke-width="0.616" /><text x="-34.712" y="-35.39" font-size="2.816" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-41.28" y1="-32.152" x2="-36.12" y2="-32.152" stroke="#2a9d8f" stroke-width="0.616" /><text x="-34.712" y="-31.166" font-size="2.816" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-41.28" y1="-27.928" x2="-36.12" y2="-27.928" stroke="#d1495b" stroke-width="0.616" /><text x="-34.712" y="-26.942" font-size="2.816" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-41.28" y1="-23.704" x2="-36.12" y2="-23.704" stroke="#e8853a" stroke-width="0.616" /><text x="-34.712" y="-22.718" font-size="2.816" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-41.28" y1="-19.48" x2="-36.12" y2="-19.48" stroke="#b5651d" stroke-width="0.616" /><text x="-34.712" y="-18.494" font-size="2.816" fill="#b5651d" font-family="sans-serif">Mechanical coupling</text><line x1="-41.28" y1="-15.256" x2="-36.12" y2="-15.256" stroke="#7f8c3a" stroke-width="0.616" /><text x="-34.712" y="-14.27" font-size="2.816" fill="#7f8c3a" font-family="sans-serif">Screws / seals</text><line x1="-41.28" y1="-11.032" x2="-36.12" y2="-11.032" stroke="#8a94a0" stroke-width="0.616" /><text x="-34.712" y="-10.046" font-size="2.816" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-43 -45 86 88" role="img" aria-labelledby="bronica-sq-base-camera_side_front-title bronica-sq-base-camera_side_front-desc"><title id="bronica-sq-base-camera_side_front-title">Zenza Bronica SQ mount — camera-side front view (base)</title><desc id="bronica-sq-base-camera_side_front-desc">Zenza Bronica SQ bayonet mount, camera-side front view. Flange focal distance 85 mm, nominal throat 57 mm. Profile bronica-sq/base.</desc><metadata>{"mountId":"bronica-sq","profileId":"bronica-sq/base","view":"camera_side_front","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.75" y1="0" x2="1.75" y2="0" stroke="#8a94a0" stroke-width="0.516" fill="none" /><line x1="0" y1="-1.75" x2="0" y2="1.75" stroke="#8a94a0" stroke-width="0.516" fill="none" /><line x1="0" y1="-35" x2="0" y2="-37.1" stroke="#8a94a0" stroke-width="0.516" fill="none" /></g><g data-layer="camera-side-metal"><path d="M0,-35 A35,35 0 1 1 0,35 A35,35 0 1 1 0,-35 Z M0,-28.5 A28.5,28.5 0 1 1 0,28.5 A28.5,28.5 0 1 1 0,-28.5 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-35 A35,35 0 1 1 0,35 A35,35 0 1 1 0,-35 Z M0,-28.5 A28.5,28.5 0 1 1 0,28.5 A28.5,28.5 0 1 1 0,-28.5 Z" stroke="#6b7a8f" stroke-width="0.516" fill="none" /><path d="M0,-28.5 A28.5,28.5 0 1 1 0,28.5 A28.5,28.5 0 1 1 0,-28.5 Z" stroke="#2f80c4" stroke-width="0.516" fill="none" /><circle cx="23.335" cy="-23.335" r="1.1" stroke="#7f8c3a" stroke-width="0.516" fill="none" /><circle cx="23.335" cy="23.335" r="1.1" stroke="#7f8c3a" stroke-width="0.516" fill="none" /><circle cx="-23.335" cy="23.335" r="1.1" stroke="#7f8c3a" stroke-width="0.516" fill="none" /><circle cx="-23.335" cy="-23.335" r="1.1" stroke="#7f8c3a" stroke-width="0.516" fill="none" /></g><g data-layer="camera-side-core-interface"><path d="M0,-32 L-2.167,-35.434 L2.167,-35.434 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-32 L-2.167,-35.434 L2.167,-35.434 Z" stroke="#e8853a" stroke-width="0.516" fill="none" stroke-dasharray="0.6 1.6" /><path d="M0.995,-28.483 L1.082,-30.981 A31,31 0 0 1 19.086,-24.428 L17.546,-22.458 A28.5,28.5 0 0 0 0.995,-28.483 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M0.995,-28.483 L1.082,-30.981 A31,31 0 0 1 19.086,-24.428 L17.546,-22.458 A28.5,28.5 0 0 0 0.995,-28.483 Z" stroke="#2a9d8f" stroke-width="0.516" fill="none" /><path d="M24.169,15.103 L26.289,16.427 A31,31 0 0 1 11.613,28.743 L10.676,26.425 A28.5,28.5 0 0 0 24.169,15.103 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M24.169,15.103 L26.289,16.427 A31,31 0 0 1 11.613,28.743 L10.676,26.425 A28.5,28.5 0 0 0 24.169,15.103 Z" stroke="#2a9d8f" stroke-width="0.516" fill="none" /><path d="M-25.164,13.38 L-27.371,14.554 A31,31 0 0 1 -30.698,-4.314 L-28.223,-3.966 A28.5,28.5 0 0 0 -25.164,13.38 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-25.164,13.38 L-27.371,14.554 A31,31 0 0 1 -30.698,-4.314 L-28.223,-3.966 A28.5,28.5 0 0 0 -25.164,13.38 Z" stroke="#2a9d8f" stroke-width="0.516" fill="none" /><circle cx="-29.5" cy="0" r="1.225" fill="#d1495b" fill-opacity="0.12" /><circle cx="-29.5" cy="0" r="1.225" stroke="#d1495b" stroke-width="0.516" fill="none" stroke-dasharray="0.6 1.6" /></g><g data-layer="camera-side-variant-mechanical"><circle cx="17.998" cy="-21.449" r="1.05" stroke="#b5651d" stroke-width="0.516" fill="none" /><circle cx="-17.998" cy="-21.449" r="1.05" stroke="#b5651d" stroke-width="0.516" fill="none" /></g><g aria-hidden="true"><line x1="-41.28" y1="-40.6" x2="-36.12" y2="-40.6" stroke="#2f80c4" stroke-width="0.616" /><text x="-34.712" y="-39.614" font-size="2.816" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-41.28" y1="-36.376" x2="-36.12" y2="-36.376" stroke="#6b7a8f" stroke-width="0.616" /><text x="-34.712" y="-35.39" font-size="2.816" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-41.28" y1="-32.152" x2="-36.12" y2="-32.152" stroke="#2a9d8f" stroke-width="0.616" /><text x="-34.712" y="-31.166" font-size="2.816" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-41.28" y1="-27.928" x2="-36.12" y2="-27.928" stroke="#d1495b" stroke-width="0.616" /><text x="-34.712" y="-26.942" font-size="2.816" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-41.28" y1="-23.704" x2="-36.12" y2="-23.704" stroke="#e8853a" stroke-width="0.616" /><text x="-34.712" y="-22.718" font-size="2.816" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-41.28" y1="-19.48" x2="-36.12" y2="-19.48" stroke="#b5651d" stroke-width="0.616" /><text x="-34.712" y="-18.494" font-size="2.816" fill="#b5651d" font-family="sans-serif">Mechanical coupling</text><line x1="-41.28" y1="-15.256" x2="-36.12" y2="-15.256" stroke="#7f8c3a" stroke-width="0.616" /><text x="-34.712" y="-14.27" font-size="2.816" fill="#7f8c3a" font-family="sans-serif">Screws / seals</text><line x1="-41.28" y1="-11.032" x2="-36.12" y2="-11.032" stroke="#8a94a0" stroke-width="0.616" /><text x="-34.712" y="-10.046" font-size="2.816" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
 
 **Lens-side rear view** — viewBox `-42 -44 84 86` ([standalone SVG](mounts/bronica-sq-lens-rear.svg))
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-42 -44 84 86" role="img" aria-labelledby="bronica-sq-base-lens_side_rear-title bronica-sq-base-lens_side_rear-desc"><title id="bronica-sq-base-lens_side_rear-title">Zenza Bronica SQ mount — lens-side rear view (base)</title><desc id="bronica-sq-base-lens_side_rear-desc">Zenza Bronica SQ bayonet mount, lens-side rear view. Flange focal distance 85 mm, nominal throat 57 mm. Profile bronica-sq/base.</desc><metadata>{"mountId":"bronica-sq","profileId":"bronica-sq/base","view":"lens_side_rear","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.7" y1="0" x2="1.7" y2="0" stroke="#8a94a0" stroke-width="0.504" fill="none" /><line x1="0" y1="-1.7" x2="0" y2="1.7" stroke="#8a94a0" stroke-width="0.504" fill="none" /><line x1="0" y1="-34" x2="0" y2="-36.04" stroke="#8a94a0" stroke-width="0.504" fill="none" /></g><g data-layer="lens-side-metal"><path d="M0,-34 A34,34 0 1 1 0,34 A34,34 0 1 1 0,-34 Z M0,-27.5 A27.5,27.5 0 1 1 0,27.5 A27.5,27.5 0 1 1 0,-27.5 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-34 A34,34 0 1 1 0,34 A34,34 0 1 1 0,-34 Z M0,-27.5 A27.5,27.5 0 1 1 0,27.5 A27.5,27.5 0 1 1 0,-27.5 Z" stroke="#6b7a8f" stroke-width="0.504" fill="none" stroke-dasharray="4 2" /><path d="M0,-27.5 A27.5,27.5 0 1 1 0,27.5 A27.5,27.5 0 1 1 0,-27.5 Z" stroke="#2f80c4" stroke-width="0.504" fill="none" stroke-dasharray="4 2" /></g><g data-layer="lens-side-core-interface"><path d="M0,-31.1 L-2.106,-34.436 L2.106,-34.436 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-31.1 L-2.106,-34.436 L2.106,-34.436 Z" stroke="#e8853a" stroke-width="0.504" fill="none" stroke-dasharray="0.6 1.6" /><circle cx="29.5" cy="0" r="1.19" fill="#d1495b" fill-opacity="0.12" /><circle cx="29.5" cy="0" r="1.19" stroke="#d1495b" stroke-width="0.504" fill="none" stroke-dasharray="0.6 1.6" /><path d="M28.223,-3.966 L30.698,-4.314 A31,31 0 0 1 27.371,14.554 L25.164,13.38 A28.5,28.5 0 0 0 28.223,-3.966 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M28.223,-3.966 L30.698,-4.314 A31,31 0 0 1 27.371,14.554 L25.164,13.38 A28.5,28.5 0 0 0 28.223,-3.966 Z" stroke="#2a9d8f" stroke-width="0.504" fill="none" stroke-dasharray="4 2" /><path d="M-10.676,26.425 L-11.613,28.743 A31,31 0 0 1 -26.289,16.427 L-24.169,15.103 A28.5,28.5 0 0 0 -10.676,26.425 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-10.676,26.425 L-11.613,28.743 A31,31 0 0 1 -26.289,16.427 L-24.169,15.103 A28.5,28.5 0 0 0 -10.676,26.425 Z" stroke="#2a9d8f" stroke-width="0.504" fill="none" stroke-dasharray="4 2" /><path d="M-17.546,-22.458 L-19.086,-24.428 A31,31 0 0 1 -1.082,-30.981 L-0.995,-28.483 A28.5,28.5 0 0 0 -17.546,-22.458 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-17.546,-22.458 L-19.086,-24.428 A31,31 0 0 1 -1.082,-30.981 L-0.995,-28.483 A28.5,28.5 0 0 0 -17.546,-22.458 Z" stroke="#2a9d8f" stroke-width="0.504" fill="none" stroke-dasharray="4 2" /></g><g data-layer="lens-side-variant-mechanical"><circle cx="17.998" cy="-21.449" r="1.02" stroke="#b5651d" stroke-width="0.504" fill="none" stroke-dasharray="4 2" /><circle cx="-17.998" cy="-21.449" r="1.02" stroke="#b5651d" stroke-width="0.504" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-40.32" y1="-39.7" x2="-35.28" y2="-39.7" stroke="#2f80c4" stroke-width="0.602" /><text x="-33.904" y="-38.737" font-size="2.752" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-40.32" y1="-35.572" x2="-35.28" y2="-35.572" stroke="#6b7a8f" stroke-width="0.602" /><text x="-33.904" y="-34.609" font-size="2.752" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-40.32" y1="-31.444" x2="-35.28" y2="-31.444" stroke="#2a9d8f" stroke-width="0.602" /><text x="-33.904" y="-30.481" font-size="2.752" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-40.32" y1="-27.316" x2="-35.28" y2="-27.316" stroke="#d1495b" stroke-width="0.602" /><text x="-33.904" y="-26.353" font-size="2.752" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-40.32" y1="-23.188" x2="-35.28" y2="-23.188" stroke="#e8853a" stroke-width="0.602" /><text x="-33.904" y="-22.225" font-size="2.752" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-40.32" y1="-19.06" x2="-35.28" y2="-19.06" stroke="#b5651d" stroke-width="0.602" /><text x="-33.904" y="-18.097" font-size="2.752" fill="#b5651d" font-family="sans-serif">Mechanical coupling</text><line x1="-40.32" y1="-14.932" x2="-35.28" y2="-14.932" stroke="#8a94a0" stroke-width="0.602" /><text x="-33.904" y="-13.969" font-size="2.752" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-42 -44 84 86" role="img" aria-labelledby="bronica-sq-base-lens_side_rear-title bronica-sq-base-lens_side_rear-desc"><title id="bronica-sq-base-lens_side_rear-title">Zenza Bronica SQ mount — lens-side rear view (base)</title><desc id="bronica-sq-base-lens_side_rear-desc">Zenza Bronica SQ bayonet mount, lens-side rear view. Flange focal distance 85 mm, nominal throat 57 mm. Profile bronica-sq/base.</desc><metadata>{"mountId":"bronica-sq","profileId":"bronica-sq/base","view":"lens_side_rear","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.7" y1="0" x2="1.7" y2="0" stroke="#8a94a0" stroke-width="0.504" fill="none" /><line x1="0" y1="-1.7" x2="0" y2="1.7" stroke="#8a94a0" stroke-width="0.504" fill="none" /><line x1="0" y1="-34" x2="0" y2="-36.04" stroke="#8a94a0" stroke-width="0.504" fill="none" /></g><g data-layer="lens-side-metal"><path d="M0,-34 A34,34 0 1 1 0,34 A34,34 0 1 1 0,-34 Z M0,-27.5 A27.5,27.5 0 1 1 0,27.5 A27.5,27.5 0 1 1 0,-27.5 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-34 A34,34 0 1 1 0,34 A34,34 0 1 1 0,-34 Z M0,-27.5 A27.5,27.5 0 1 1 0,27.5 A27.5,27.5 0 1 1 0,-27.5 Z" stroke="#6b7a8f" stroke-width="0.504" fill="none" /><path d="M0,-27.5 A27.5,27.5 0 1 1 0,27.5 A27.5,27.5 0 1 1 0,-27.5 Z" stroke="#2f80c4" stroke-width="0.504" fill="none" /></g><g data-layer="lens-side-core-interface"><path d="M0,-31.1 L-2.106,-34.436 L2.106,-34.436 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-31.1 L-2.106,-34.436 L2.106,-34.436 Z" stroke="#e8853a" stroke-width="0.504" fill="none" stroke-dasharray="0.6 1.6" /><circle cx="29.5" cy="0" r="1.19" fill="#d1495b" fill-opacity="0.12" /><circle cx="29.5" cy="0" r="1.19" stroke="#d1495b" stroke-width="0.504" fill="none" stroke-dasharray="0.6 1.6" /><path d="M28.223,-3.966 L30.698,-4.314 A31,31 0 0 1 27.371,14.554 L25.164,13.38 A28.5,28.5 0 0 0 28.223,-3.966 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M28.223,-3.966 L30.698,-4.314 A31,31 0 0 1 27.371,14.554 L25.164,13.38 A28.5,28.5 0 0 0 28.223,-3.966 Z" stroke="#2a9d8f" stroke-width="0.504" fill="none" /><path d="M-10.676,26.425 L-11.613,28.743 A31,31 0 0 1 -26.289,16.427 L-24.169,15.103 A28.5,28.5 0 0 0 -10.676,26.425 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-10.676,26.425 L-11.613,28.743 A31,31 0 0 1 -26.289,16.427 L-24.169,15.103 A28.5,28.5 0 0 0 -10.676,26.425 Z" stroke="#2a9d8f" stroke-width="0.504" fill="none" /><path d="M-17.546,-22.458 L-19.086,-24.428 A31,31 0 0 1 -1.082,-30.981 L-0.995,-28.483 A28.5,28.5 0 0 0 -17.546,-22.458 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-17.546,-22.458 L-19.086,-24.428 A31,31 0 0 1 -1.082,-30.981 L-0.995,-28.483 A28.5,28.5 0 0 0 -17.546,-22.458 Z" stroke="#2a9d8f" stroke-width="0.504" fill="none" /></g><g data-layer="lens-side-variant-mechanical"><circle cx="17.998" cy="-21.449" r="1.02" stroke="#b5651d" stroke-width="0.504" fill="none" /><circle cx="-17.998" cy="-21.449" r="1.02" stroke="#b5651d" stroke-width="0.504" fill="none" /></g><g aria-hidden="true"><line x1="-40.32" y1="-39.7" x2="-35.28" y2="-39.7" stroke="#2f80c4" stroke-width="0.602" /><text x="-33.904" y="-38.737" font-size="2.752" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-40.32" y1="-35.572" x2="-35.28" y2="-35.572" stroke="#6b7a8f" stroke-width="0.602" /><text x="-33.904" y="-34.609" font-size="2.752" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-40.32" y1="-31.444" x2="-35.28" y2="-31.444" stroke="#2a9d8f" stroke-width="0.602" /><text x="-33.904" y="-30.481" font-size="2.752" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-40.32" y1="-27.316" x2="-35.28" y2="-27.316" stroke="#d1495b" stroke-width="0.602" /><text x="-33.904" y="-26.353" font-size="2.752" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-40.32" y1="-23.188" x2="-35.28" y2="-23.188" stroke="#e8853a" stroke-width="0.602" /><text x="-33.904" y="-22.225" font-size="2.752" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-40.32" y1="-19.06" x2="-35.28" y2="-19.06" stroke="#b5651d" stroke-width="0.602" /><text x="-33.904" y="-18.097" font-size="2.752" fill="#b5651d" font-family="sans-serif">Mechanical coupling</text><line x1="-40.32" y1="-14.932" x2="-35.28" y2="-14.932" stroke="#8a94a0" stroke-width="0.602" /><text x="-33.904" y="-13.969" font-size="2.752" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
 
 **Axial / register schematic** — viewBox `-94 -53 104 102` ([standalone SVG](mounts/bronica-sq-axial.svg))
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-94 -53 104 102" role="img" aria-labelledby="bronica-sq-base-axial_section-title bronica-sq-base-axial_section-desc"><title id="bronica-sq-base-axial_section-title">Zenza Bronica SQ mount — axial / register schematic (base)</title><desc id="bronica-sq-base-axial_section-desc">Zenza Bronica SQ bayonet mount, axial / register schematic. Flange focal distance 85 mm, nominal throat 57 mm. Profile bronica-sq/base.</desc><metadata>{"mountId":"bronica-sq","profileId":"bronica-sq/base","view":"axial_section","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-85" y1="0" x2="1.2" y2="0" stroke="#8a94a0" stroke-width="0.612" fill="none" /><line x1="0" y1="-39.6" x2="0" y2="39.6" stroke="#8a94a0" stroke-width="0.612" fill="none" /></g><g data-layer="axial-section"><text x="-85" y="-41.1" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">sensor film plane</text><line x1="-85" y1="-39.6" x2="-85" y2="39.6" stroke="#2bb0c4" stroke-width="0.459" fill="none" /><line x1="0" y1="-35" x2="0" y2="35" stroke="#2bb0c4" stroke-width="0.612" fill="none" stroke-dasharray="4 2" /><text x="0" y="-36.5" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">flange datum</text><line x1="1.2" y1="-32" x2="1.2" y2="32" stroke="#2bb0c4" stroke-width="0.612" fill="none" stroke-dasharray="4 2" /><text x="1.2" y="-33.5" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">bayonet lug engagement</text></g><g aria-hidden="true"><line x1="-91.92" y1="-47.9" x2="-85.68" y2="-47.9" stroke="#8a94a0" stroke-width="0.714" /><text x="-84.048" y="-46.758" font-size="3.264" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text><line x1="-91.92" y1="-43.004" x2="-85.68" y2="-43.004" stroke="#2bb0c4" stroke-width="0.714" /><text x="-84.048" y="-41.862" font-size="3.264" fill="#2bb0c4" font-family="sans-serif">Register plane</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-94 -53 104 102" role="img" aria-labelledby="bronica-sq-base-axial_section-title bronica-sq-base-axial_section-desc"><title id="bronica-sq-base-axial_section-title">Zenza Bronica SQ mount — axial / register schematic (base)</title><desc id="bronica-sq-base-axial_section-desc">Zenza Bronica SQ bayonet mount, axial / register schematic. Flange focal distance 85 mm, nominal throat 57 mm. Profile bronica-sq/base.</desc><metadata>{"mountId":"bronica-sq","profileId":"bronica-sq/base","view":"axial_section","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-85" y1="0" x2="1.2" y2="0" stroke="#8a94a0" stroke-width="0.612" fill="none" /><line x1="0" y1="-39.6" x2="0" y2="39.6" stroke="#8a94a0" stroke-width="0.612" fill="none" /></g><g data-layer="axial-section"><text x="-85" y="-41.1" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">sensor film plane</text><line x1="-85" y1="-39.6" x2="-85" y2="39.6" stroke="#2bb0c4" stroke-width="0.459" fill="none" /><line x1="0" y1="-35" x2="0" y2="35" stroke="#2bb0c4" stroke-width="0.612" fill="none" /><text x="0" y="-36.5" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">flange datum</text><line x1="1.2" y1="-32" x2="1.2" y2="32" stroke="#2bb0c4" stroke-width="0.612" fill="none" /><text x="1.2" y="-33.5" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">bayonet lug engagement</text></g><g aria-hidden="true"><line x1="-91.92" y1="-47.9" x2="-85.68" y2="-47.9" stroke="#8a94a0" stroke-width="0.714" /><text x="-84.048" y="-46.758" font-size="3.264" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text><line x1="-91.92" y1="-43.004" x2="-85.68" y2="-43.004" stroke="#2bb0c4" stroke-width="0.714" /><text x="-84.048" y="-41.862" font-size="3.264" fill="#2bb0c4" font-family="sans-serif">Register plane</text></g></svg>
 
 #### Camera-side front-view geometry
 
@@ -3042,7 +3042,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
     },
     "nominalThroatDiameterMm": {
       "value": 57,
-      "status": "photo_scaled",
+      "status": "patent",
       "sourceRefs": [
         "bsq-1",
         "bsq-2",
@@ -3051,7 +3051,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
     },
     "effectiveClearApertureMm": {
       "value": 57,
-      "status": "photo_scaled",
+      "status": "patent",
       "sourceRefs": [
         "bsq-1",
         "bsq-2",
@@ -3060,7 +3060,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
     },
     "cameraMountOuterDiameterMm": {
       "value": 70,
-      "status": "photo_scaled",
+      "status": "patent",
       "sourceRefs": [
         "bsq-1",
         "bsq-2",
@@ -3069,7 +3069,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
     },
     "lensMountOuterDiameterMm": {
       "value": 68,
-      "status": "photo_scaled",
+      "status": "patent",
       "sourceRefs": [
         "bsq-1",
         "bsq-2",
@@ -3094,7 +3094,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
     },
     "lockAngleDeg": {
       "value": 60,
-      "status": "photo_scaled",
+      "status": "patent",
       "sourceRefs": [
         "bsq-1",
         "bsq-2",
@@ -3103,7 +3103,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
     },
     "lockRotationDeg": {
       "value": 60,
-      "status": "photo_scaled",
+      "status": "patent",
       "sourceRefs": [
         "bsq-1",
         "bsq-2",
@@ -3112,7 +3112,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
     },
     "lockRotationDirection": {
       "value": "clockwise",
-      "status": "photo_scaled",
+      "status": "patent",
       "sourceRefs": [
         "bsq-1",
         "bsq-2",
@@ -3128,7 +3128,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3137,7 +3137,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "startAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3146,7 +3146,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "endAngleDeg": {
         "value": 360,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3155,7 +3155,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "innerRadiusMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3164,7 +3164,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "outerRadiusMm": {
         "value": 28.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3186,7 +3186,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3195,7 +3195,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "startAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3204,7 +3204,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "endAngleDeg": {
         "value": 360,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3213,7 +3213,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "innerRadiusMm": {
         "value": 28.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3222,7 +3222,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "outerRadiusMm": {
         "value": 35,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3244,7 +3244,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "count": 1,
       "centerAngleDeg": {
         "value": 20,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3253,7 +3253,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "startAngleDeg": {
         "value": 2,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3262,7 +3262,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "endAngleDeg": {
         "value": 38,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3271,7 +3271,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "innerRadiusMm": {
         "value": 28.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3280,7 +3280,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "outerRadiusMm": {
         "value": 31,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3289,7 +3289,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "depthMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3306,7 +3306,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "count": 1,
       "centerAngleDeg": {
         "value": 140,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3315,7 +3315,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "startAngleDeg": {
         "value": 122,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3324,7 +3324,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "endAngleDeg": {
         "value": 158,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3333,7 +3333,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "innerRadiusMm": {
         "value": 28.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3342,7 +3342,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "outerRadiusMm": {
         "value": 31,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3351,7 +3351,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "depthMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3368,7 +3368,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "count": 1,
       "centerAngleDeg": {
         "value": 260,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3377,7 +3377,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "startAngleDeg": {
         "value": 242,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3386,7 +3386,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "endAngleDeg": {
         "value": 278,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3395,7 +3395,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "innerRadiusMm": {
         "value": 28.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3404,7 +3404,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "outerRadiusMm": {
         "value": 31,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3413,7 +3413,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "depthMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3430,7 +3430,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3466,7 +3466,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "outerRadiusMm": {
         "value": 35.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3488,7 +3488,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "count": 1,
       "centerAngleDeg": {
         "value": 270,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3524,7 +3524,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "outerRadiusMm": {
         "value": 29.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3533,7 +3533,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "depthMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3552,7 +3552,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3561,7 +3561,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "startAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3570,7 +3570,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "endAngleDeg": {
         "value": 360,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3579,7 +3579,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "innerRadiusMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3588,7 +3588,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "outerRadiusMm": {
         "value": 27.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3610,7 +3610,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3619,7 +3619,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "startAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3628,7 +3628,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "endAngleDeg": {
         "value": 360,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3637,7 +3637,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "innerRadiusMm": {
         "value": 27.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3646,7 +3646,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "outerRadiusMm": {
         "value": 34,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3668,7 +3668,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "count": 1,
       "centerAngleDeg": {
         "value": 20,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3677,7 +3677,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "startAngleDeg": {
         "value": 2,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3686,7 +3686,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "endAngleDeg": {
         "value": 38,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3695,7 +3695,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "innerRadiusMm": {
         "value": 28.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3704,7 +3704,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "outerRadiusMm": {
         "value": 31,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3713,7 +3713,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3730,7 +3730,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "count": 1,
       "centerAngleDeg": {
         "value": 140,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3739,7 +3739,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "startAngleDeg": {
         "value": 122,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3748,7 +3748,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "endAngleDeg": {
         "value": 158,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3757,7 +3757,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "innerRadiusMm": {
         "value": 28.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3766,7 +3766,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "outerRadiusMm": {
         "value": 31,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3775,7 +3775,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3792,7 +3792,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "count": 1,
       "centerAngleDeg": {
         "value": 260,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3801,7 +3801,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "startAngleDeg": {
         "value": 242,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3810,7 +3810,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "endAngleDeg": {
         "value": 278,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3819,7 +3819,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "innerRadiusMm": {
         "value": 28.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3828,7 +3828,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "outerRadiusMm": {
         "value": 31,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3837,7 +3837,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3854,7 +3854,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3890,7 +3890,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "outerRadiusMm": {
         "value": 34.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3912,7 +3912,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "count": 1,
       "centerAngleDeg": {
         "value": 270,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3948,7 +3948,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "outerRadiusMm": {
         "value": 29.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3957,7 +3957,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -3991,7 +3991,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "diameterMm": {
         "value": 70,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -4003,7 +4003,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "planeId": "bayonet_lug_engagement",
       "zPositionMm": {
         "value": 1.2,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -4012,7 +4012,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -4021,7 +4021,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "diameterMm": {
         "value": 64,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -4068,7 +4068,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "profileId": "bronica-sq/base",
       "centerAngleDeg": {
         "value": 40,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -4077,7 +4077,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "radiusMm": {
         "value": 28,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -4094,7 +4094,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "profileId": "bronica-sq/base",
       "centerAngleDeg": {
         "value": 320,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -4103,7 +4103,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "radiusMm": {
         "value": 28,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -4122,7 +4122,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "side": "body",
       "count": {
         "value": 4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -4131,7 +4131,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "pcdMm": {
         "value": 66,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -4140,7 +4140,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       },
       "diameterMm": {
         "value": 2.2,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -4154,7 +4154,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
           225,
           315
         ],
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "bsq-1",
           "bsq-2",
@@ -6202,25 +6202,25 @@ None — fully electronic.
 | Flange focal distance | 18 (`secondary`) | mm |
 | Nominal throat diameter | 47 (`secondary`) | mm |
 | Effective clear aperture | 47 (`secondary`) | mm |
-| Camera mount outer diameter | 56 (`photo_scaled`) | mm |
-| Lens mount outer diameter | 54 (`photo_scaled`) | mm |
+| Camera mount outer diameter | 56 (`patent`) | mm |
+| Lens mount outer diameter | 54 (`patent`) | mm |
 | Contact count | 9 (`secondary`) | count |
-| Lock rotation | 60 (`photo_scaled`) | deg |
+| Lock rotation | 60 (`patent`) | deg |
 | Lock direction | clockwise (`secondary`) | — |
 
 #### Figures (selected profile `canon-ef-m/base`)
 
 **Camera-side front view** — viewBox `-35 -36 70 71` ([standalone SVG](mounts/canon-ef-m-camera-front.svg))
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-35 -36 70 71" role="img" aria-labelledby="canon-ef-m-base-camera_side_front-title canon-ef-m-base-camera_side_front-desc"><title id="canon-ef-m-base-camera_side_front-title">Canon EF-M mount — camera-side front view (base)</title><desc id="canon-ef-m-base-camera_side_front-desc">Canon EF-M bayonet mount, camera-side front view. Flange focal distance 18 mm, nominal throat 47 mm. Profile canon-ef-m/base.</desc><metadata>{"mountId":"canon-ef-m","profileId":"canon-ef-m/base","view":"camera_side_front","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.4" y1="0" x2="1.4" y2="0" stroke="#8a94a0" stroke-width="0.42" fill="none" /><line x1="0" y1="-1.4" x2="0" y2="1.4" stroke="#8a94a0" stroke-width="0.42" fill="none" /><line x1="0" y1="-28" x2="0" y2="-29.68" stroke="#8a94a0" stroke-width="0.42" fill="none" /></g><g data-layer="camera-side-metal"><path d="M0,-28 A28,28 0 1 1 0,28 A28,28 0 1 1 0,-28 Z M0,-23.5 A23.5,23.5 0 1 1 0,23.5 A23.5,23.5 0 1 1 0,-23.5 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-28 A28,28 0 1 1 0,28 A28,28 0 1 1 0,-28 Z M0,-23.5 A23.5,23.5 0 1 1 0,23.5 A23.5,23.5 0 1 1 0,-23.5 Z" stroke="#6b7a8f" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M0,-23.5 A23.5,23.5 0 1 1 0,23.5 A23.5,23.5 0 1 1 0,-23.5 Z" stroke="#2f80c4" stroke-width="0.315" fill="none" /><circle cx="18.385" cy="-18.385" r="0.9" stroke="#7f8c3a" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><circle cx="18.385" cy="18.385" r="0.9" stroke="#7f8c3a" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><circle cx="-18.385" cy="18.385" r="0.9" stroke="#7f8c3a" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><circle cx="-18.385" cy="-18.385" r="0.9" stroke="#7f8c3a" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-core-interface"><path d="M0,-25.7 L-1.74,-28.447 L1.74,-28.447 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-25.7 L-1.74,-28.447 L1.74,-28.447 Z" stroke="#e8853a" stroke-width="0.42" fill="none" stroke-dasharray="0.6 1.6" /><path d="M4.484,-23.068 L4.961,-25.522 A26,26 0 0 1 20.765,-15.647 L18.768,-14.143 A23.5,23.5 0 0 0 4.484,-23.068 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M4.484,-23.068 L4.961,-25.522 A26,26 0 0 1 20.765,-15.647 L18.768,-14.143 A23.5,23.5 0 0 0 4.484,-23.068 Z" stroke="#2a9d8f" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M18.263,14.789 L20.206,16.362 A26,26 0 0 1 4.067,25.68 L3.676,23.211 A23.5,23.5 0 0 0 18.263,14.789 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M18.263,14.789 L20.206,16.362 A26,26 0 0 1 4.067,25.68 L3.676,23.211 A23.5,23.5 0 0 0 18.263,14.789 Z" stroke="#2a9d8f" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><circle cx="-24.5" cy="0" r="0.98" fill="#d1495b" fill-opacity="0.12" /><circle cx="-24.5" cy="0" r="0.98" stroke="#d1495b" stroke-width="0.42" fill="none" stroke-dasharray="0.6 1.6" /><path d="M-23.496,-0.41 L-25.996,-0.454 A26,26 0 0 1 -19.015,-17.732 L-17.187,-16.027 A23.5,23.5 0 0 0 -23.496,-0.41 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-23.496,-0.41 L-25.996,-0.454 A26,26 0 0 1 -19.015,-17.732 L-17.187,-16.027 A23.5,23.5 0 0 0 -23.496,-0.41 Z" stroke="#2a9d8f" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-variant-electrical"><path d="M9.353,17.791 L10.656,20.27 A22.9,22.9 0 0 1 9.412,20.876 L8.261,18.324 A20.1,20.1 0 0 0 9.353,17.791 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M9.353,17.791 L10.656,20.27 A22.9,22.9 0 0 1 9.412,20.876 L8.261,18.324 A20.1,20.1 0 0 0 9.353,17.791 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M7.442,18.671 L8.479,21.272 A22.9,22.9 0 0 1 7.178,21.746 L6.301,19.087 A20.1,20.1 0 0 0 7.442,18.671 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M7.442,18.671 L8.479,21.272 A22.9,22.9 0 0 1 7.178,21.746 L6.301,19.087 A20.1,20.1 0 0 0 7.442,18.671 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M5.45,19.347 L6.209,22.042 A22.9,22.9 0 0 1 4.866,22.377 L4.271,19.641 A20.1,20.1 0 0 0 5.45,19.347 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M5.45,19.347 L6.209,22.042 A22.9,22.9 0 0 1 4.866,22.377 L4.271,19.641 A20.1,20.1 0 0 0 5.45,19.347 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M3.398,19.811 L3.871,22.57 A22.9,22.9 0 0 1 2.5,22.763 L2.194,19.98 A20.1,20.1 0 0 0 3.398,19.811 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M3.398,19.811 L3.871,22.57 A22.9,22.9 0 0 1 2.5,22.763 L2.194,19.98 A20.1,20.1 0 0 0 3.398,19.811 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M1.308,20.057 L1.491,22.851 A22.9,22.9 0 0 1 0.107,22.9 L0.094,20.1 A20.1,20.1 0 0 0 1.308,20.057 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M1.308,20.057 L1.491,22.851 A22.9,22.9 0 0 1 0.107,22.9 L0.094,20.1 A20.1,20.1 0 0 0 1.308,20.057 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M-0.795,20.084 L-0.906,22.882 A22.9,22.9 0 0 1 -2.287,22.785 L-2.008,19.999 A20.1,20.1 0 0 0 -0.795,20.084 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-0.795,20.084 L-0.906,22.882 A22.9,22.9 0 0 1 -2.287,22.785 L-2.008,19.999 A20.1,20.1 0 0 0 -0.795,20.084 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M-2.89,19.891 L-3.293,22.662 A22.9,22.9 0 0 1 -4.656,22.422 L-4.087,19.68 A20.1,20.1 0 0 0 -2.89,19.891 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-2.89,19.891 L-3.293,22.662 A22.9,22.9 0 0 1 -4.656,22.422 L-4.087,19.68 A20.1,20.1 0 0 0 -2.89,19.891 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M-4.954,19.48 L-5.644,22.194 A22.9,22.9 0 0 1 -6.975,21.812 L-6.122,19.145 A20.1,20.1 0 0 0 -4.954,19.48 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-4.954,19.48 L-5.644,22.194 A22.9,22.9 0 0 1 -6.975,21.812 L-6.122,19.145 A20.1,20.1 0 0 0 -4.954,19.48 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M-6.963,18.855 L-7.933,21.482 A22.9,22.9 0 0 1 -9.216,20.963 L-8.089,18.4 A20.1,20.1 0 0 0 -6.963,18.855 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-6.963,18.855 L-7.933,21.482 A22.9,22.9 0 0 1 -9.216,20.963 L-8.089,18.4 A20.1,20.1 0 0 0 -6.963,18.855 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-33.6" y1="-32.45" x2="-29.4" y2="-32.45" stroke="#2f80c4" stroke-width="0.497" /><text x="-28.264" y="-31.655" font-size="2.272" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-33.6" y1="-29.042" x2="-29.4" y2="-29.042" stroke="#6b7a8f" stroke-width="0.497" /><text x="-28.264" y="-28.247" font-size="2.272" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-33.6" y1="-25.634" x2="-29.4" y2="-25.634" stroke="#2a9d8f" stroke-width="0.497" /><text x="-28.264" y="-24.839" font-size="2.272" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-33.6" y1="-22.226" x2="-29.4" y2="-22.226" stroke="#d1495b" stroke-width="0.497" /><text x="-28.264" y="-21.431" font-size="2.272" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-33.6" y1="-18.818" x2="-29.4" y2="-18.818" stroke="#e8853a" stroke-width="0.497" /><text x="-28.264" y="-18.023" font-size="2.272" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-33.6" y1="-15.41" x2="-29.4" y2="-15.41" stroke="#8a5cd1" stroke-width="0.497" /><text x="-28.264" y="-14.615" font-size="2.272" fill="#8a5cd1" font-family="sans-serif">Electrical contact</text><line x1="-33.6" y1="-12.002" x2="-29.4" y2="-12.002" stroke="#7f8c3a" stroke-width="0.497" /><text x="-28.264" y="-11.207" font-size="2.272" fill="#7f8c3a" font-family="sans-serif">Screws / seals</text><line x1="-33.6" y1="-8.594" x2="-29.4" y2="-8.594" stroke="#8a94a0" stroke-width="0.497" /><text x="-28.264" y="-7.799" font-size="2.272" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-35 -36 70 71" role="img" aria-labelledby="canon-ef-m-base-camera_side_front-title canon-ef-m-base-camera_side_front-desc"><title id="canon-ef-m-base-camera_side_front-title">Canon EF-M mount — camera-side front view (base)</title><desc id="canon-ef-m-base-camera_side_front-desc">Canon EF-M bayonet mount, camera-side front view. Flange focal distance 18 mm, nominal throat 47 mm. Profile canon-ef-m/base.</desc><metadata>{"mountId":"canon-ef-m","profileId":"canon-ef-m/base","view":"camera_side_front","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.4" y1="0" x2="1.4" y2="0" stroke="#8a94a0" stroke-width="0.42" fill="none" /><line x1="0" y1="-1.4" x2="0" y2="1.4" stroke="#8a94a0" stroke-width="0.42" fill="none" /><line x1="0" y1="-28" x2="0" y2="-29.68" stroke="#8a94a0" stroke-width="0.42" fill="none" /></g><g data-layer="camera-side-metal"><path d="M0,-28 A28,28 0 1 1 0,28 A28,28 0 1 1 0,-28 Z M0,-23.5 A23.5,23.5 0 1 1 0,23.5 A23.5,23.5 0 1 1 0,-23.5 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-28 A28,28 0 1 1 0,28 A28,28 0 1 1 0,-28 Z M0,-23.5 A23.5,23.5 0 1 1 0,23.5 A23.5,23.5 0 1 1 0,-23.5 Z" stroke="#6b7a8f" stroke-width="0.42" fill="none" /><path d="M0,-23.5 A23.5,23.5 0 1 1 0,23.5 A23.5,23.5 0 1 1 0,-23.5 Z" stroke="#2f80c4" stroke-width="0.315" fill="none" /><circle cx="18.385" cy="-18.385" r="0.9" stroke="#7f8c3a" stroke-width="0.42" fill="none" /><circle cx="18.385" cy="18.385" r="0.9" stroke="#7f8c3a" stroke-width="0.42" fill="none" /><circle cx="-18.385" cy="18.385" r="0.9" stroke="#7f8c3a" stroke-width="0.42" fill="none" /><circle cx="-18.385" cy="-18.385" r="0.9" stroke="#7f8c3a" stroke-width="0.42" fill="none" /></g><g data-layer="camera-side-core-interface"><path d="M0,-25.7 L-1.74,-28.447 L1.74,-28.447 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-25.7 L-1.74,-28.447 L1.74,-28.447 Z" stroke="#e8853a" stroke-width="0.42" fill="none" stroke-dasharray="0.6 1.6" /><path d="M4.484,-23.068 L4.961,-25.522 A26,26 0 0 1 20.765,-15.647 L18.768,-14.143 A23.5,23.5 0 0 0 4.484,-23.068 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M4.484,-23.068 L4.961,-25.522 A26,26 0 0 1 20.765,-15.647 L18.768,-14.143 A23.5,23.5 0 0 0 4.484,-23.068 Z" stroke="#2a9d8f" stroke-width="0.42" fill="none" /><path d="M18.263,14.789 L20.206,16.362 A26,26 0 0 1 4.067,25.68 L3.676,23.211 A23.5,23.5 0 0 0 18.263,14.789 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M18.263,14.789 L20.206,16.362 A26,26 0 0 1 4.067,25.68 L3.676,23.211 A23.5,23.5 0 0 0 18.263,14.789 Z" stroke="#2a9d8f" stroke-width="0.42" fill="none" /><circle cx="-24.5" cy="0" r="0.98" fill="#d1495b" fill-opacity="0.12" /><circle cx="-24.5" cy="0" r="0.98" stroke="#d1495b" stroke-width="0.42" fill="none" stroke-dasharray="0.6 1.6" /><path d="M-23.496,-0.41 L-25.996,-0.454 A26,26 0 0 1 -19.015,-17.732 L-17.187,-16.027 A23.5,23.5 0 0 0 -23.496,-0.41 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-23.496,-0.41 L-25.996,-0.454 A26,26 0 0 1 -19.015,-17.732 L-17.187,-16.027 A23.5,23.5 0 0 0 -23.496,-0.41 Z" stroke="#2a9d8f" stroke-width="0.42" fill="none" /></g><g data-layer="camera-side-variant-electrical"><path d="M9.353,17.791 L10.656,20.27 A22.9,22.9 0 0 1 9.412,20.876 L8.261,18.324 A20.1,20.1 0 0 0 9.353,17.791 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M9.353,17.791 L10.656,20.27 A22.9,22.9 0 0 1 9.412,20.876 L8.261,18.324 A20.1,20.1 0 0 0 9.353,17.791 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" /><path d="M7.442,18.671 L8.479,21.272 A22.9,22.9 0 0 1 7.178,21.746 L6.301,19.087 A20.1,20.1 0 0 0 7.442,18.671 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M7.442,18.671 L8.479,21.272 A22.9,22.9 0 0 1 7.178,21.746 L6.301,19.087 A20.1,20.1 0 0 0 7.442,18.671 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" /><path d="M5.45,19.347 L6.209,22.042 A22.9,22.9 0 0 1 4.866,22.377 L4.271,19.641 A20.1,20.1 0 0 0 5.45,19.347 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M5.45,19.347 L6.209,22.042 A22.9,22.9 0 0 1 4.866,22.377 L4.271,19.641 A20.1,20.1 0 0 0 5.45,19.347 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" /><path d="M3.398,19.811 L3.871,22.57 A22.9,22.9 0 0 1 2.5,22.763 L2.194,19.98 A20.1,20.1 0 0 0 3.398,19.811 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M3.398,19.811 L3.871,22.57 A22.9,22.9 0 0 1 2.5,22.763 L2.194,19.98 A20.1,20.1 0 0 0 3.398,19.811 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" /><path d="M1.308,20.057 L1.491,22.851 A22.9,22.9 0 0 1 0.107,22.9 L0.094,20.1 A20.1,20.1 0 0 0 1.308,20.057 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M1.308,20.057 L1.491,22.851 A22.9,22.9 0 0 1 0.107,22.9 L0.094,20.1 A20.1,20.1 0 0 0 1.308,20.057 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" /><path d="M-0.795,20.084 L-0.906,22.882 A22.9,22.9 0 0 1 -2.287,22.785 L-2.008,19.999 A20.1,20.1 0 0 0 -0.795,20.084 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-0.795,20.084 L-0.906,22.882 A22.9,22.9 0 0 1 -2.287,22.785 L-2.008,19.999 A20.1,20.1 0 0 0 -0.795,20.084 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" /><path d="M-2.89,19.891 L-3.293,22.662 A22.9,22.9 0 0 1 -4.656,22.422 L-4.087,19.68 A20.1,20.1 0 0 0 -2.89,19.891 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-2.89,19.891 L-3.293,22.662 A22.9,22.9 0 0 1 -4.656,22.422 L-4.087,19.68 A20.1,20.1 0 0 0 -2.89,19.891 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" /><path d="M-4.954,19.48 L-5.644,22.194 A22.9,22.9 0 0 1 -6.975,21.812 L-6.122,19.145 A20.1,20.1 0 0 0 -4.954,19.48 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-4.954,19.48 L-5.644,22.194 A22.9,22.9 0 0 1 -6.975,21.812 L-6.122,19.145 A20.1,20.1 0 0 0 -4.954,19.48 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" /><path d="M-6.963,18.855 L-7.933,21.482 A22.9,22.9 0 0 1 -9.216,20.963 L-8.089,18.4 A20.1,20.1 0 0 0 -6.963,18.855 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-6.963,18.855 L-7.933,21.482 A22.9,22.9 0 0 1 -9.216,20.963 L-8.089,18.4 A20.1,20.1 0 0 0 -6.963,18.855 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" /></g><g aria-hidden="true"><line x1="-33.6" y1="-32.45" x2="-29.4" y2="-32.45" stroke="#2f80c4" stroke-width="0.497" /><text x="-28.264" y="-31.655" font-size="2.272" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-33.6" y1="-29.042" x2="-29.4" y2="-29.042" stroke="#6b7a8f" stroke-width="0.497" /><text x="-28.264" y="-28.247" font-size="2.272" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-33.6" y1="-25.634" x2="-29.4" y2="-25.634" stroke="#2a9d8f" stroke-width="0.497" /><text x="-28.264" y="-24.839" font-size="2.272" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-33.6" y1="-22.226" x2="-29.4" y2="-22.226" stroke="#d1495b" stroke-width="0.497" /><text x="-28.264" y="-21.431" font-size="2.272" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-33.6" y1="-18.818" x2="-29.4" y2="-18.818" stroke="#e8853a" stroke-width="0.497" /><text x="-28.264" y="-18.023" font-size="2.272" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-33.6" y1="-15.41" x2="-29.4" y2="-15.41" stroke="#8a5cd1" stroke-width="0.497" /><text x="-28.264" y="-14.615" font-size="2.272" fill="#8a5cd1" font-family="sans-serif">Electrical contact</text><line x1="-33.6" y1="-12.002" x2="-29.4" y2="-12.002" stroke="#7f8c3a" stroke-width="0.497" /><text x="-28.264" y="-11.207" font-size="2.272" fill="#7f8c3a" font-family="sans-serif">Screws / seals</text><line x1="-33.6" y1="-8.594" x2="-29.4" y2="-8.594" stroke="#8a94a0" stroke-width="0.497" /><text x="-28.264" y="-7.799" font-size="2.272" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
 
 **Lens-side rear view** — viewBox `-34 -35 68 69` ([standalone SVG](mounts/canon-ef-m-lens-rear.svg))
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-34 -35 68 69" role="img" aria-labelledby="canon-ef-m-base-lens_side_rear-title canon-ef-m-base-lens_side_rear-desc"><title id="canon-ef-m-base-lens_side_rear-title">Canon EF-M mount — lens-side rear view (base)</title><desc id="canon-ef-m-base-lens_side_rear-desc">Canon EF-M bayonet mount, lens-side rear view. Flange focal distance 18 mm, nominal throat 47 mm. Profile canon-ef-m/base.</desc><metadata>{"mountId":"canon-ef-m","profileId":"canon-ef-m/base","view":"lens_side_rear","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.35" y1="0" x2="1.35" y2="0" stroke="#8a94a0" stroke-width="0.408" fill="none" /><line x1="0" y1="-1.35" x2="0" y2="1.35" stroke="#8a94a0" stroke-width="0.408" fill="none" /><line x1="0" y1="-27" x2="0" y2="-28.62" stroke="#8a94a0" stroke-width="0.408" fill="none" /></g><g data-layer="lens-side-metal"><path d="M0,-27 A27,27 0 1 1 0,27 A27,27 0 1 1 0,-27 Z M0,-22.5 A22.5,22.5 0 1 1 0,22.5 A22.5,22.5 0 1 1 0,-22.5 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-27 A27,27 0 1 1 0,27 A27,27 0 1 1 0,-27 Z M0,-22.5 A22.5,22.5 0 1 1 0,22.5 A22.5,22.5 0 1 1 0,-22.5 Z" stroke="#6b7a8f" stroke-width="0.408" fill="none" stroke-dasharray="4 2" /><path d="M0,-22.5 A22.5,22.5 0 1 1 0,22.5 A22.5,22.5 0 1 1 0,-22.5 Z" stroke="#2f80c4" stroke-width="0.408" fill="none" stroke-dasharray="4 2" /></g><g data-layer="lens-side-core-interface"><path d="M0,-24.8 L-1.679,-27.449 L1.679,-27.449 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-24.8 L-1.679,-27.449 L1.679,-27.449 Z" stroke="#e8853a" stroke-width="0.408" fill="none" stroke-dasharray="0.6 1.6" /><path d="M17.187,-16.027 L19.015,-17.732 A26,26 0 0 1 25.996,-0.454 L23.496,-0.41 A23.5,23.5 0 0 0 17.187,-16.027 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M17.187,-16.027 L19.015,-17.732 A26,26 0 0 1 25.996,-0.454 L23.496,-0.41 A23.5,23.5 0 0 0 17.187,-16.027 Z" stroke="#2a9d8f" stroke-width="0.408" fill="none" stroke-dasharray="4 2" /><circle cx="24.5" cy="0" r="0.945" fill="#d1495b" fill-opacity="0.12" /><circle cx="24.5" cy="0" r="0.945" stroke="#d1495b" stroke-width="0.408" fill="none" stroke-dasharray="0.6 1.6" /><path d="M-3.676,23.211 L-4.067,25.68 A26,26 0 0 1 -20.206,16.362 L-18.263,14.789 A23.5,23.5 0 0 0 -3.676,23.211 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-3.676,23.211 L-4.067,25.68 A26,26 0 0 1 -20.206,16.362 L-18.263,14.789 A23.5,23.5 0 0 0 -3.676,23.211 Z" stroke="#2a9d8f" stroke-width="0.408" fill="none" stroke-dasharray="4 2" /><path d="M-18.768,-14.143 L-20.765,-15.647 A26,26 0 0 1 -4.961,-25.522 L-4.484,-23.068 A23.5,23.5 0 0 0 -18.768,-14.143 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-18.768,-14.143 L-20.765,-15.647 A26,26 0 0 1 -4.961,-25.522 L-4.484,-23.068 A23.5,23.5 0 0 0 -18.768,-14.143 Z" stroke="#2a9d8f" stroke-width="0.408" fill="none" stroke-dasharray="4 2" /></g><g data-layer="lens-side-variant-electrical"><path d="M-6.963,18.855 L-7.933,21.482 A22.9,22.9 0 0 1 -9.216,20.963 L-8.089,18.4 A20.1,20.1 0 0 0 -6.963,18.855 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-6.963,18.855 L-7.933,21.482 A22.9,22.9 0 0 1 -9.216,20.963 L-8.089,18.4 A20.1,20.1 0 0 0 -6.963,18.855 Z" stroke="#8a5cd1" stroke-width="0.408" fill="none" stroke-dasharray="4 2" /><path d="M-4.954,19.48 L-5.644,22.194 A22.9,22.9 0 0 1 -6.975,21.812 L-6.122,19.145 A20.1,20.1 0 0 0 -4.954,19.48 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-4.954,19.48 L-5.644,22.194 A22.9,22.9 0 0 1 -6.975,21.812 L-6.122,19.145 A20.1,20.1 0 0 0 -4.954,19.48 Z" stroke="#8a5cd1" stroke-width="0.408" fill="none" stroke-dasharray="4 2" /><path d="M-2.89,19.891 L-3.293,22.662 A22.9,22.9 0 0 1 -4.656,22.422 L-4.087,19.68 A20.1,20.1 0 0 0 -2.89,19.891 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-2.89,19.891 L-3.293,22.662 A22.9,22.9 0 0 1 -4.656,22.422 L-4.087,19.68 A20.1,20.1 0 0 0 -2.89,19.891 Z" stroke="#8a5cd1" stroke-width="0.408" fill="none" stroke-dasharray="4 2" /><path d="M-0.795,20.084 L-0.906,22.882 A22.9,22.9 0 0 1 -2.287,22.785 L-2.008,19.999 A20.1,20.1 0 0 0 -0.795,20.084 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-0.795,20.084 L-0.906,22.882 A22.9,22.9 0 0 1 -2.287,22.785 L-2.008,19.999 A20.1,20.1 0 0 0 -0.795,20.084 Z" stroke="#8a5cd1" stroke-width="0.408" fill="none" stroke-dasharray="4 2" /><path d="M1.308,20.057 L1.491,22.851 A22.9,22.9 0 0 1 0.107,22.9 L0.094,20.1 A20.1,20.1 0 0 0 1.308,20.057 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M1.308,20.057 L1.491,22.851 A22.9,22.9 0 0 1 0.107,22.9 L0.094,20.1 A20.1,20.1 0 0 0 1.308,20.057 Z" stroke="#8a5cd1" stroke-width="0.408" fill="none" stroke-dasharray="4 2" /><path d="M3.398,19.811 L3.871,22.57 A22.9,22.9 0 0 1 2.5,22.763 L2.194,19.98 A20.1,20.1 0 0 0 3.398,19.811 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M3.398,19.811 L3.871,22.57 A22.9,22.9 0 0 1 2.5,22.763 L2.194,19.98 A20.1,20.1 0 0 0 3.398,19.811 Z" stroke="#8a5cd1" stroke-width="0.408" fill="none" stroke-dasharray="4 2" /><path d="M5.45,19.347 L6.209,22.042 A22.9,22.9 0 0 1 4.866,22.377 L4.271,19.641 A20.1,20.1 0 0 0 5.45,19.347 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M5.45,19.347 L6.209,22.042 A22.9,22.9 0 0 1 4.866,22.377 L4.271,19.641 A20.1,20.1 0 0 0 5.45,19.347 Z" stroke="#8a5cd1" stroke-width="0.408" fill="none" stroke-dasharray="4 2" /><path d="M7.442,18.671 L8.479,21.272 A22.9,22.9 0 0 1 7.178,21.746 L6.301,19.087 A20.1,20.1 0 0 0 7.442,18.671 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M7.442,18.671 L8.479,21.272 A22.9,22.9 0 0 1 7.178,21.746 L6.301,19.087 A20.1,20.1 0 0 0 7.442,18.671 Z" stroke="#8a5cd1" stroke-width="0.408" fill="none" stroke-dasharray="4 2" /><path d="M9.353,17.791 L10.656,20.27 A22.9,22.9 0 0 1 9.412,20.876 L8.261,18.324 A20.1,20.1 0 0 0 9.353,17.791 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M9.353,17.791 L10.656,20.27 A22.9,22.9 0 0 1 9.412,20.876 L8.261,18.324 A20.1,20.1 0 0 0 9.353,17.791 Z" stroke="#8a5cd1" stroke-width="0.408" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-32.64" y1="-31.55" x2="-28.56" y2="-31.55" stroke="#2f80c4" stroke-width="0.483" /><text x="-27.456" y="-30.777" font-size="2.208" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-32.64" y1="-28.238" x2="-28.56" y2="-28.238" stroke="#6b7a8f" stroke-width="0.483" /><text x="-27.456" y="-27.465" font-size="2.208" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-32.64" y1="-24.926" x2="-28.56" y2="-24.926" stroke="#2a9d8f" stroke-width="0.483" /><text x="-27.456" y="-24.153" font-size="2.208" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-32.64" y1="-21.614" x2="-28.56" y2="-21.614" stroke="#d1495b" stroke-width="0.483" /><text x="-27.456" y="-20.841" font-size="2.208" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-32.64" y1="-18.302" x2="-28.56" y2="-18.302" stroke="#e8853a" stroke-width="0.483" /><text x="-27.456" y="-17.529" font-size="2.208" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-32.64" y1="-14.99" x2="-28.56" y2="-14.99" stroke="#8a5cd1" stroke-width="0.483" /><text x="-27.456" y="-14.217" font-size="2.208" fill="#8a5cd1" font-family="sans-serif">Electrical contact</text><line x1="-32.64" y1="-11.678" x2="-28.56" y2="-11.678" stroke="#8a94a0" stroke-width="0.483" /><text x="-27.456" y="-10.905" font-size="2.208" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-34 -35 68 69" role="img" aria-labelledby="canon-ef-m-base-lens_side_rear-title canon-ef-m-base-lens_side_rear-desc"><title id="canon-ef-m-base-lens_side_rear-title">Canon EF-M mount — lens-side rear view (base)</title><desc id="canon-ef-m-base-lens_side_rear-desc">Canon EF-M bayonet mount, lens-side rear view. Flange focal distance 18 mm, nominal throat 47 mm. Profile canon-ef-m/base.</desc><metadata>{"mountId":"canon-ef-m","profileId":"canon-ef-m/base","view":"lens_side_rear","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.35" y1="0" x2="1.35" y2="0" stroke="#8a94a0" stroke-width="0.408" fill="none" /><line x1="0" y1="-1.35" x2="0" y2="1.35" stroke="#8a94a0" stroke-width="0.408" fill="none" /><line x1="0" y1="-27" x2="0" y2="-28.62" stroke="#8a94a0" stroke-width="0.408" fill="none" /></g><g data-layer="lens-side-metal"><path d="M0,-27 A27,27 0 1 1 0,27 A27,27 0 1 1 0,-27 Z M0,-22.5 A22.5,22.5 0 1 1 0,22.5 A22.5,22.5 0 1 1 0,-22.5 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-27 A27,27 0 1 1 0,27 A27,27 0 1 1 0,-27 Z M0,-22.5 A22.5,22.5 0 1 1 0,22.5 A22.5,22.5 0 1 1 0,-22.5 Z" stroke="#6b7a8f" stroke-width="0.408" fill="none" /><path d="M0,-22.5 A22.5,22.5 0 1 1 0,22.5 A22.5,22.5 0 1 1 0,-22.5 Z" stroke="#2f80c4" stroke-width="0.408" fill="none" /></g><g data-layer="lens-side-core-interface"><path d="M0,-24.8 L-1.679,-27.449 L1.679,-27.449 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-24.8 L-1.679,-27.449 L1.679,-27.449 Z" stroke="#e8853a" stroke-width="0.408" fill="none" stroke-dasharray="0.6 1.6" /><path d="M17.187,-16.027 L19.015,-17.732 A26,26 0 0 1 25.996,-0.454 L23.496,-0.41 A23.5,23.5 0 0 0 17.187,-16.027 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M17.187,-16.027 L19.015,-17.732 A26,26 0 0 1 25.996,-0.454 L23.496,-0.41 A23.5,23.5 0 0 0 17.187,-16.027 Z" stroke="#2a9d8f" stroke-width="0.408" fill="none" /><circle cx="24.5" cy="0" r="0.945" fill="#d1495b" fill-opacity="0.12" /><circle cx="24.5" cy="0" r="0.945" stroke="#d1495b" stroke-width="0.408" fill="none" stroke-dasharray="0.6 1.6" /><path d="M-3.676,23.211 L-4.067,25.68 A26,26 0 0 1 -20.206,16.362 L-18.263,14.789 A23.5,23.5 0 0 0 -3.676,23.211 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-3.676,23.211 L-4.067,25.68 A26,26 0 0 1 -20.206,16.362 L-18.263,14.789 A23.5,23.5 0 0 0 -3.676,23.211 Z" stroke="#2a9d8f" stroke-width="0.408" fill="none" /><path d="M-18.768,-14.143 L-20.765,-15.647 A26,26 0 0 1 -4.961,-25.522 L-4.484,-23.068 A23.5,23.5 0 0 0 -18.768,-14.143 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-18.768,-14.143 L-20.765,-15.647 A26,26 0 0 1 -4.961,-25.522 L-4.484,-23.068 A23.5,23.5 0 0 0 -18.768,-14.143 Z" stroke="#2a9d8f" stroke-width="0.408" fill="none" /></g><g data-layer="lens-side-variant-electrical"><path d="M-6.963,18.855 L-7.933,21.482 A22.9,22.9 0 0 1 -9.216,20.963 L-8.089,18.4 A20.1,20.1 0 0 0 -6.963,18.855 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-6.963,18.855 L-7.933,21.482 A22.9,22.9 0 0 1 -9.216,20.963 L-8.089,18.4 A20.1,20.1 0 0 0 -6.963,18.855 Z" stroke="#8a5cd1" stroke-width="0.408" fill="none" /><path d="M-4.954,19.48 L-5.644,22.194 A22.9,22.9 0 0 1 -6.975,21.812 L-6.122,19.145 A20.1,20.1 0 0 0 -4.954,19.48 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-4.954,19.48 L-5.644,22.194 A22.9,22.9 0 0 1 -6.975,21.812 L-6.122,19.145 A20.1,20.1 0 0 0 -4.954,19.48 Z" stroke="#8a5cd1" stroke-width="0.408" fill="none" /><path d="M-2.89,19.891 L-3.293,22.662 A22.9,22.9 0 0 1 -4.656,22.422 L-4.087,19.68 A20.1,20.1 0 0 0 -2.89,19.891 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-2.89,19.891 L-3.293,22.662 A22.9,22.9 0 0 1 -4.656,22.422 L-4.087,19.68 A20.1,20.1 0 0 0 -2.89,19.891 Z" stroke="#8a5cd1" stroke-width="0.408" fill="none" /><path d="M-0.795,20.084 L-0.906,22.882 A22.9,22.9 0 0 1 -2.287,22.785 L-2.008,19.999 A20.1,20.1 0 0 0 -0.795,20.084 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-0.795,20.084 L-0.906,22.882 A22.9,22.9 0 0 1 -2.287,22.785 L-2.008,19.999 A20.1,20.1 0 0 0 -0.795,20.084 Z" stroke="#8a5cd1" stroke-width="0.408" fill="none" /><path d="M1.308,20.057 L1.491,22.851 A22.9,22.9 0 0 1 0.107,22.9 L0.094,20.1 A20.1,20.1 0 0 0 1.308,20.057 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M1.308,20.057 L1.491,22.851 A22.9,22.9 0 0 1 0.107,22.9 L0.094,20.1 A20.1,20.1 0 0 0 1.308,20.057 Z" stroke="#8a5cd1" stroke-width="0.408" fill="none" /><path d="M3.398,19.811 L3.871,22.57 A22.9,22.9 0 0 1 2.5,22.763 L2.194,19.98 A20.1,20.1 0 0 0 3.398,19.811 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M3.398,19.811 L3.871,22.57 A22.9,22.9 0 0 1 2.5,22.763 L2.194,19.98 A20.1,20.1 0 0 0 3.398,19.811 Z" stroke="#8a5cd1" stroke-width="0.408" fill="none" /><path d="M5.45,19.347 L6.209,22.042 A22.9,22.9 0 0 1 4.866,22.377 L4.271,19.641 A20.1,20.1 0 0 0 5.45,19.347 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M5.45,19.347 L6.209,22.042 A22.9,22.9 0 0 1 4.866,22.377 L4.271,19.641 A20.1,20.1 0 0 0 5.45,19.347 Z" stroke="#8a5cd1" stroke-width="0.408" fill="none" /><path d="M7.442,18.671 L8.479,21.272 A22.9,22.9 0 0 1 7.178,21.746 L6.301,19.087 A20.1,20.1 0 0 0 7.442,18.671 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M7.442,18.671 L8.479,21.272 A22.9,22.9 0 0 1 7.178,21.746 L6.301,19.087 A20.1,20.1 0 0 0 7.442,18.671 Z" stroke="#8a5cd1" stroke-width="0.408" fill="none" /><path d="M9.353,17.791 L10.656,20.27 A22.9,22.9 0 0 1 9.412,20.876 L8.261,18.324 A20.1,20.1 0 0 0 9.353,17.791 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M9.353,17.791 L10.656,20.27 A22.9,22.9 0 0 1 9.412,20.876 L8.261,18.324 A20.1,20.1 0 0 0 9.353,17.791 Z" stroke="#8a5cd1" stroke-width="0.408" fill="none" /></g><g aria-hidden="true"><line x1="-32.64" y1="-31.55" x2="-28.56" y2="-31.55" stroke="#2f80c4" stroke-width="0.483" /><text x="-27.456" y="-30.777" font-size="2.208" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-32.64" y1="-28.238" x2="-28.56" y2="-28.238" stroke="#6b7a8f" stroke-width="0.483" /><text x="-27.456" y="-27.465" font-size="2.208" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-32.64" y1="-24.926" x2="-28.56" y2="-24.926" stroke="#2a9d8f" stroke-width="0.483" /><text x="-27.456" y="-24.153" font-size="2.208" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-32.64" y1="-21.614" x2="-28.56" y2="-21.614" stroke="#d1495b" stroke-width="0.483" /><text x="-27.456" y="-20.841" font-size="2.208" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-32.64" y1="-18.302" x2="-28.56" y2="-18.302" stroke="#e8853a" stroke-width="0.483" /><text x="-27.456" y="-17.529" font-size="2.208" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-32.64" y1="-14.99" x2="-28.56" y2="-14.99" stroke="#8a5cd1" stroke-width="0.483" /><text x="-27.456" y="-14.217" font-size="2.208" fill="#8a5cd1" font-family="sans-serif">Electrical contact</text><line x1="-32.64" y1="-11.678" x2="-28.56" y2="-11.678" stroke="#8a94a0" stroke-width="0.483" /><text x="-27.456" y="-10.905" font-size="2.208" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
 
 **Axial / register schematic** — viewBox `-24 -38 32 72` ([standalone SVG](mounts/canon-ef-m-axial.svg))
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-24 -38 32 72" role="img" aria-labelledby="canon-ef-m-base-axial_section-title canon-ef-m-base-axial_section-desc"><title id="canon-ef-m-base-axial_section-title">Canon EF-M mount — axial / register schematic (base)</title><desc id="canon-ef-m-base-axial_section-desc">Canon EF-M bayonet mount, axial / register schematic. Flange focal distance 18 mm, nominal throat 47 mm. Profile canon-ef-m/base.</desc><metadata>{"mountId":"canon-ef-m","profileId":"canon-ef-m/base","view":"axial_section","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-18" y1="0" x2="1.2" y2="0" stroke="#8a94a0" stroke-width="0.25" fill="none" /><line x1="0" y1="-28" x2="0" y2="28" stroke="#8a94a0" stroke-width="0.25" fill="none" /></g><g data-layer="axial-section"><text x="-18" y="-15.675" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">sensor film plane</text><line x1="-18" y1="-14.175" x2="-18" y2="14.175" stroke="#2bb0c4" stroke-width="0.188" fill="none" /><line x1="0" y1="-28" x2="0" y2="28" stroke="#2bb0c4" stroke-width="0.25" fill="none" stroke-dasharray="4 2" /><text x="0" y="-29.5" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">flange datum</text><line x1="0.5" y1="-21.5" x2="0.5" y2="21.5" stroke="#2bb0c4" stroke-width="0.25" fill="none" stroke-dasharray="4 2" /><text x="0.5" y="-23" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">electrical contact plane</text><line x1="1.2" y1="-25.5" x2="1.2" y2="25.5" stroke="#2bb0c4" stroke-width="0.25" fill="none" stroke-dasharray="4 2" /><text x="1.2" y="-27" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">bayonet lug engagement</text></g><g aria-hidden="true"><line x1="-23.36" y1="-34.4" x2="-19.36" y2="-34.4" stroke="#8a94a0" stroke-width="0.504" /><text x="-18.208" y="-33.594" font-size="2.304" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text><line x1="-23.36" y1="-30.944" x2="-19.36" y2="-30.944" stroke="#2bb0c4" stroke-width="0.504" /><text x="-18.208" y="-30.138" font-size="2.304" fill="#2bb0c4" font-family="sans-serif">Register plane</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-24 -38 32 72" role="img" aria-labelledby="canon-ef-m-base-axial_section-title canon-ef-m-base-axial_section-desc"><title id="canon-ef-m-base-axial_section-title">Canon EF-M mount — axial / register schematic (base)</title><desc id="canon-ef-m-base-axial_section-desc">Canon EF-M bayonet mount, axial / register schematic. Flange focal distance 18 mm, nominal throat 47 mm. Profile canon-ef-m/base.</desc><metadata>{"mountId":"canon-ef-m","profileId":"canon-ef-m/base","view":"axial_section","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-18" y1="0" x2="1.2" y2="0" stroke="#8a94a0" stroke-width="0.25" fill="none" /><line x1="0" y1="-28" x2="0" y2="28" stroke="#8a94a0" stroke-width="0.25" fill="none" /></g><g data-layer="axial-section"><text x="-18" y="-15.675" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">sensor film plane</text><line x1="-18" y1="-14.175" x2="-18" y2="14.175" stroke="#2bb0c4" stroke-width="0.188" fill="none" /><line x1="0" y1="-28" x2="0" y2="28" stroke="#2bb0c4" stroke-width="0.25" fill="none" /><text x="0" y="-29.5" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">flange datum</text><line x1="0.5" y1="-21.5" x2="0.5" y2="21.5" stroke="#2bb0c4" stroke-width="0.25" fill="none" /><text x="0.5" y="-23" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">electrical contact plane</text><line x1="1.2" y1="-25.5" x2="1.2" y2="25.5" stroke="#2bb0c4" stroke-width="0.25" fill="none" /><text x="1.2" y="-27" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">bayonet lug engagement</text></g><g aria-hidden="true"><line x1="-23.36" y1="-34.4" x2="-19.36" y2="-34.4" stroke="#8a94a0" stroke-width="0.504" /><text x="-18.208" y="-33.594" font-size="2.304" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text><line x1="-23.36" y1="-30.944" x2="-19.36" y2="-30.944" stroke="#2bb0c4" stroke-width="0.504" /><text x="-18.208" y="-30.138" font-size="2.304" fill="#2bb0c4" font-family="sans-serif">Register plane</text></g></svg>
 
 #### Camera-side front-view geometry
 
@@ -6382,7 +6382,7 @@ None — fully electronic.
     },
     "cameraMountOuterDiameterMm": {
       "value": 56,
-      "status": "photo_scaled",
+      "status": "patent",
       "sourceRefs": [
         "efm-1",
         "efm-p1",
@@ -6391,7 +6391,7 @@ None — fully electronic.
     },
     "lensMountOuterDiameterMm": {
       "value": 54,
-      "status": "photo_scaled",
+      "status": "patent",
       "sourceRefs": [
         "efm-1",
         "efm-p1",
@@ -6418,7 +6418,7 @@ None — fully electronic.
     },
     "lockAngleDeg": {
       "value": 60,
-      "status": "photo_scaled",
+      "status": "patent",
       "sourceRefs": [
         "efm-1",
         "efm-p1",
@@ -6427,7 +6427,7 @@ None — fully electronic.
     },
     "lockRotationDeg": {
       "value": 60,
-      "status": "photo_scaled",
+      "status": "patent",
       "sourceRefs": [
         "efm-1",
         "efm-p1",
@@ -6510,7 +6510,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -6519,7 +6519,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -6528,7 +6528,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 360,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -6546,7 +6546,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 28,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -6568,7 +6568,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 32,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -6577,7 +6577,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 11,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -6586,7 +6586,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 53,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -6595,7 +6595,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 23.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -6604,7 +6604,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 26,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -6613,7 +6613,7 @@ None — fully electronic.
       },
       "depthMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -6630,7 +6630,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 150,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -6639,7 +6639,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 129,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -6648,7 +6648,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 171,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -6657,7 +6657,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 23.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -6666,7 +6666,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 26,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -6675,7 +6675,7 @@ None — fully electronic.
       },
       "depthMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -6692,7 +6692,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 292,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -6701,7 +6701,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 271,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -6710,7 +6710,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 313,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -6719,7 +6719,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 23.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -6728,7 +6728,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 26,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -6737,7 +6737,7 @@ None — fully electronic.
       },
       "depthMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -6754,7 +6754,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -6790,7 +6790,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 28.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -6812,7 +6812,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 270,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -6848,7 +6848,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 24.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -6857,7 +6857,7 @@ None — fully electronic.
       },
       "depthMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -6912,7 +6912,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 22.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -6934,7 +6934,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -6943,7 +6943,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -6952,7 +6952,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 360,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -6961,7 +6961,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 22.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -6970,7 +6970,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 27,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -6992,7 +6992,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 32,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7001,7 +7001,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 11,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7010,7 +7010,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 53,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7019,7 +7019,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 23.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7028,7 +7028,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 26,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7037,7 +7037,7 @@ None — fully electronic.
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7054,7 +7054,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 150,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7063,7 +7063,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 129,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7072,7 +7072,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 171,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7081,7 +7081,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 23.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7090,7 +7090,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 26,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7099,7 +7099,7 @@ None — fully electronic.
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7116,7 +7116,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 292,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7125,7 +7125,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 271,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7134,7 +7134,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 313,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7143,7 +7143,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 23.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7152,7 +7152,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 26,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7161,7 +7161,7 @@ None — fully electronic.
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7178,7 +7178,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7214,7 +7214,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 27.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7236,7 +7236,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 270,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7272,7 +7272,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 24.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7281,7 +7281,7 @@ None — fully electronic.
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7315,7 +7315,7 @@ None — fully electronic.
       },
       "diameterMm": {
         "value": 56,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7327,7 +7327,7 @@ None — fully electronic.
       "planeId": "bayonet_lug_engagement",
       "zPositionMm": {
         "value": 1.2,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7336,7 +7336,7 @@ None — fully electronic.
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7345,7 +7345,7 @@ None — fully electronic.
       },
       "diameterMm": {
         "value": 51,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7357,7 +7357,7 @@ None — fully electronic.
       "planeId": "electrical_contact_plane",
       "zPositionMm": {
         "value": 0.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7366,7 +7366,7 @@ None — fully electronic.
       },
       "thicknessMm": {
         "value": 0.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7375,7 +7375,7 @@ None — fully electronic.
       },
       "diameterMm": {
         "value": 43,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7421,7 +7421,7 @@ None — fully electronic.
       "profileId": "canon-ef-m/base",
       "centerAngleDeg": {
         "value": 154,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7430,7 +7430,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 21.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7439,7 +7439,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7448,7 +7448,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7458,7 +7458,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7473,7 +7473,7 @@ None — fully electronic.
       "profileId": "canon-ef-m/base",
       "centerAngleDeg": {
         "value": 160,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7482,7 +7482,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 21.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7491,7 +7491,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7500,7 +7500,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7510,7 +7510,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7525,7 +7525,7 @@ None — fully electronic.
       "profileId": "canon-ef-m/base",
       "centerAngleDeg": {
         "value": 166,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7534,7 +7534,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 21.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7543,7 +7543,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7552,7 +7552,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7562,7 +7562,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7577,7 +7577,7 @@ None — fully electronic.
       "profileId": "canon-ef-m/base",
       "centerAngleDeg": {
         "value": 172,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7586,7 +7586,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 21.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7595,7 +7595,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7604,7 +7604,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7614,7 +7614,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7629,7 +7629,7 @@ None — fully electronic.
       "profileId": "canon-ef-m/base",
       "centerAngleDeg": {
         "value": 178,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7638,7 +7638,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 21.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7647,7 +7647,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7656,7 +7656,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7666,7 +7666,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7681,7 +7681,7 @@ None — fully electronic.
       "profileId": "canon-ef-m/base",
       "centerAngleDeg": {
         "value": 184,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7690,7 +7690,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 21.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7699,7 +7699,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7708,7 +7708,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7718,7 +7718,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7733,7 +7733,7 @@ None — fully electronic.
       "profileId": "canon-ef-m/base",
       "centerAngleDeg": {
         "value": 190,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7742,7 +7742,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 21.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7751,7 +7751,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7760,7 +7760,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7770,7 +7770,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7785,7 +7785,7 @@ None — fully electronic.
       "profileId": "canon-ef-m/base",
       "centerAngleDeg": {
         "value": 196,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7794,7 +7794,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 21.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7803,7 +7803,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7812,7 +7812,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7822,7 +7822,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7837,7 +7837,7 @@ None — fully electronic.
       "profileId": "canon-ef-m/base",
       "centerAngleDeg": {
         "value": 202,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7846,7 +7846,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 21.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7855,7 +7855,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7864,7 +7864,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7874,7 +7874,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7889,7 +7889,7 @@ None — fully electronic.
       "profileId": "canon-ef-m/base",
       "centerAngleDeg": {
         "value": 154,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7898,7 +7898,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 21.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7907,7 +7907,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7916,7 +7916,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7926,7 +7926,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7941,7 +7941,7 @@ None — fully electronic.
       "profileId": "canon-ef-m/base",
       "centerAngleDeg": {
         "value": 160,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7950,7 +7950,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 21.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7959,7 +7959,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7968,7 +7968,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7978,7 +7978,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -7993,7 +7993,7 @@ None — fully electronic.
       "profileId": "canon-ef-m/base",
       "centerAngleDeg": {
         "value": 166,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -8002,7 +8002,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 21.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -8011,7 +8011,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -8020,7 +8020,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -8030,7 +8030,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -8045,7 +8045,7 @@ None — fully electronic.
       "profileId": "canon-ef-m/base",
       "centerAngleDeg": {
         "value": 172,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -8054,7 +8054,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 21.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -8063,7 +8063,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -8072,7 +8072,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -8082,7 +8082,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -8097,7 +8097,7 @@ None — fully electronic.
       "profileId": "canon-ef-m/base",
       "centerAngleDeg": {
         "value": 178,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -8106,7 +8106,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 21.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -8115,7 +8115,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -8124,7 +8124,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -8134,7 +8134,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -8149,7 +8149,7 @@ None — fully electronic.
       "profileId": "canon-ef-m/base",
       "centerAngleDeg": {
         "value": 184,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -8158,7 +8158,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 21.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -8167,7 +8167,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -8176,7 +8176,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -8186,7 +8186,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -8201,7 +8201,7 @@ None — fully electronic.
       "profileId": "canon-ef-m/base",
       "centerAngleDeg": {
         "value": 190,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -8210,7 +8210,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 21.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -8219,7 +8219,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -8228,7 +8228,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -8238,7 +8238,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -8253,7 +8253,7 @@ None — fully electronic.
       "profileId": "canon-ef-m/base",
       "centerAngleDeg": {
         "value": 196,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -8262,7 +8262,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 21.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -8271,7 +8271,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -8280,7 +8280,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -8290,7 +8290,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -8305,7 +8305,7 @@ None — fully electronic.
       "profileId": "canon-ef-m/base",
       "centerAngleDeg": {
         "value": 202,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -8314,7 +8314,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 21.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -8323,7 +8323,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -8332,7 +8332,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -8342,7 +8342,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -8360,7 +8360,7 @@ None — fully electronic.
       "side": "body",
       "count": {
         "value": 4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -8369,7 +8369,7 @@ None — fully electronic.
       },
       "pcdMm": {
         "value": 52,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -8378,7 +8378,7 @@ None — fully electronic.
       },
       "diameterMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -8392,7 +8392,7 @@ None — fully electronic.
           225,
           315
         ],
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "efm-1",
           "efm-p1",
@@ -10649,15 +10649,15 @@ None — fully electronic.
 
 **Camera-side front view** — viewBox `-36 -37 72 73` ([standalone SVG](mounts/canon-fd-camera-front.svg))
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-36 -37 72 73" role="img" aria-labelledby="canon-fd-base-camera_side_front-title canon-fd-base-camera_side_front-desc"><title id="canon-fd-base-camera_side_front-title">Canon FD mount — camera-side front view (base)</title><desc id="canon-fd-base-camera_side_front-desc">Canon FD breech-lock mount, camera-side front view. Flange focal distance 42 mm, nominal throat 48 mm. Profile canon-fd/base.</desc><metadata>{"mountId":"canon-fd","profileId":"canon-fd/base","view":"camera_side_front","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.45" y1="0" x2="1.45" y2="0" stroke="#8a94a0" stroke-width="0.432" fill="none" /><line x1="0" y1="-1.45" x2="0" y2="1.45" stroke="#8a94a0" stroke-width="0.432" fill="none" /><line x1="0" y1="-29" x2="0" y2="-30.74" stroke="#8a94a0" stroke-width="0.432" fill="none" /></g><g data-layer="camera-side-metal"><path d="M0,-29 A29,29 0 1 1 0,29 A29,29 0 1 1 0,-29 Z M0,-24 A24,24 0 1 1 0,24 A24,24 0 1 1 0,-24 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-29 A29,29 0 1 1 0,29 A29,29 0 1 1 0,-29 Z M0,-24 A24,24 0 1 1 0,24 A24,24 0 1 1 0,-24 Z" stroke="#6b7a8f" stroke-width="0.432" fill="none" stroke-dasharray="4 2" /><path d="M0,-24 A24,24 0 1 1 0,24 A24,24 0 1 1 0,-24 Z" stroke="#2f80c4" stroke-width="0.324" fill="none" /><circle cx="19.092" cy="-19.092" r="1" stroke="#7f8c3a" stroke-width="0.432" fill="none" stroke-dasharray="4 2" /><circle cx="19.092" cy="19.092" r="1" stroke="#7f8c3a" stroke-width="0.432" fill="none" stroke-dasharray="4 2" /><circle cx="-19.092" cy="19.092" r="1" stroke="#7f8c3a" stroke-width="0.432" fill="none" stroke-dasharray="4 2" /><circle cx="-19.092" cy="-19.092" r="1" stroke="#7f8c3a" stroke-width="0.432" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-core-interface"><path d="M0,-26.6 L-1.801,-29.445 L1.801,-29.445 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-26.6 L-1.801,-29.445 L1.801,-29.445 Z" stroke="#e8853a" stroke-width="0.432" fill="none" stroke-dasharray="0.6 1.6" /><circle cx="0" cy="-25" r="1.015" fill="#d1495b" fill-opacity="0.12" /><circle cx="0" cy="-25" r="1.015" stroke="#d1495b" stroke-width="0.432" fill="none" stroke-dasharray="0.6 1.6" /><path d="M4.168,-23.635 L4.602,-26.097 A26.5,26.5 0 0 1 20.3,-17.034 L18.385,-15.427 A24,24 0 0 0 4.168,-23.635 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M4.168,-23.635 L4.602,-26.097 A26.5,26.5 0 0 1 20.3,-17.034 L18.385,-15.427 A24,24 0 0 0 4.168,-23.635 Z" stroke="#2a9d8f" stroke-width="0.432" fill="none" stroke-dasharray="4 2" /><path d="M18.385,15.427 L20.3,17.034 A26.5,26.5 0 0 1 4.602,26.097 L4.168,23.635 A24,24 0 0 0 18.385,15.427 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M18.385,15.427 L20.3,17.034 A26.5,26.5 0 0 1 4.602,26.097 L4.168,23.635 A24,24 0 0 0 18.385,15.427 Z" stroke="#2a9d8f" stroke-width="0.432" fill="none" stroke-dasharray="4 2" /><path d="M-22.553,8.208 L-24.902,9.064 A26.5,26.5 0 0 1 -24.902,-9.064 L-22.553,-8.208 A24,24 0 0 0 -22.553,8.208 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-22.553,8.208 L-24.902,9.064 A26.5,26.5 0 0 1 -24.902,-9.064 L-22.553,-8.208 A24,24 0 0 0 -22.553,8.208 Z" stroke="#2a9d8f" stroke-width="0.432" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-variant-mechanical"><circle cx="16.263" cy="-16.263" r="0.87" stroke="#b5651d" stroke-width="0.432" fill="none" stroke-dasharray="4 2" /><circle cx="-15.427" cy="-18.385" r="0.87" stroke="#b5651d" stroke-width="0.432" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-34.56" y1="-33.35" x2="-30.24" y2="-33.35" stroke="#2f80c4" stroke-width="0.511" /><text x="-29.072" y="-32.532" font-size="2.336" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-34.56" y1="-29.846" x2="-30.24" y2="-29.846" stroke="#6b7a8f" stroke-width="0.511" /><text x="-29.072" y="-29.028" font-size="2.336" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-34.56" y1="-26.342" x2="-30.24" y2="-26.342" stroke="#2a9d8f" stroke-width="0.511" /><text x="-29.072" y="-25.524" font-size="2.336" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-34.56" y1="-22.838" x2="-30.24" y2="-22.838" stroke="#d1495b" stroke-width="0.511" /><text x="-29.072" y="-22.02" font-size="2.336" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-34.56" y1="-19.334" x2="-30.24" y2="-19.334" stroke="#e8853a" stroke-width="0.511" /><text x="-29.072" y="-18.516" font-size="2.336" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-34.56" y1="-15.83" x2="-30.24" y2="-15.83" stroke="#b5651d" stroke-width="0.511" /><text x="-29.072" y="-15.012" font-size="2.336" fill="#b5651d" font-family="sans-serif">Mechanical coupling</text><line x1="-34.56" y1="-12.326" x2="-30.24" y2="-12.326" stroke="#7f8c3a" stroke-width="0.511" /><text x="-29.072" y="-11.508" font-size="2.336" fill="#7f8c3a" font-family="sans-serif">Screws / seals</text><line x1="-34.56" y1="-8.822" x2="-30.24" y2="-8.822" stroke="#8a94a0" stroke-width="0.511" /><text x="-29.072" y="-8.004" font-size="2.336" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-36 -37 72 73" role="img" aria-labelledby="canon-fd-base-camera_side_front-title canon-fd-base-camera_side_front-desc"><title id="canon-fd-base-camera_side_front-title">Canon FD mount — camera-side front view (base)</title><desc id="canon-fd-base-camera_side_front-desc">Canon FD breech-lock mount, camera-side front view. Flange focal distance 42 mm, nominal throat 48 mm. Profile canon-fd/base.</desc><metadata>{"mountId":"canon-fd","profileId":"canon-fd/base","view":"camera_side_front","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.45" y1="0" x2="1.45" y2="0" stroke="#8a94a0" stroke-width="0.432" fill="none" /><line x1="0" y1="-1.45" x2="0" y2="1.45" stroke="#8a94a0" stroke-width="0.432" fill="none" /><line x1="0" y1="-29" x2="0" y2="-30.74" stroke="#8a94a0" stroke-width="0.432" fill="none" /></g><g data-layer="camera-side-metal"><path d="M0,-29 A29,29 0 1 1 0,29 A29,29 0 1 1 0,-29 Z M0,-24 A24,24 0 1 1 0,24 A24,24 0 1 1 0,-24 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-29 A29,29 0 1 1 0,29 A29,29 0 1 1 0,-29 Z M0,-24 A24,24 0 1 1 0,24 A24,24 0 1 1 0,-24 Z" stroke="#6b7a8f" stroke-width="0.432" fill="none" /><path d="M0,-24 A24,24 0 1 1 0,24 A24,24 0 1 1 0,-24 Z" stroke="#2f80c4" stroke-width="0.324" fill="none" /><circle cx="19.092" cy="-19.092" r="1" stroke="#7f8c3a" stroke-width="0.432" fill="none" stroke-dasharray="4 2" /><circle cx="19.092" cy="19.092" r="1" stroke="#7f8c3a" stroke-width="0.432" fill="none" stroke-dasharray="4 2" /><circle cx="-19.092" cy="19.092" r="1" stroke="#7f8c3a" stroke-width="0.432" fill="none" stroke-dasharray="4 2" /><circle cx="-19.092" cy="-19.092" r="1" stroke="#7f8c3a" stroke-width="0.432" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-core-interface"><path d="M0,-26.6 L-1.801,-29.445 L1.801,-29.445 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-26.6 L-1.801,-29.445 L1.801,-29.445 Z" stroke="#e8853a" stroke-width="0.432" fill="none" stroke-dasharray="0.6 1.6" /><circle cx="0" cy="-25" r="1.015" fill="#d1495b" fill-opacity="0.12" /><circle cx="0" cy="-25" r="1.015" stroke="#d1495b" stroke-width="0.432" fill="none" stroke-dasharray="0.6 1.6" /><path d="M4.168,-23.635 L4.602,-26.097 A26.5,26.5 0 0 1 20.3,-17.034 L18.385,-15.427 A24,24 0 0 0 4.168,-23.635 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M4.168,-23.635 L4.602,-26.097 A26.5,26.5 0 0 1 20.3,-17.034 L18.385,-15.427 A24,24 0 0 0 4.168,-23.635 Z" stroke="#2a9d8f" stroke-width="0.432" fill="none" /><path d="M18.385,15.427 L20.3,17.034 A26.5,26.5 0 0 1 4.602,26.097 L4.168,23.635 A24,24 0 0 0 18.385,15.427 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M18.385,15.427 L20.3,17.034 A26.5,26.5 0 0 1 4.602,26.097 L4.168,23.635 A24,24 0 0 0 18.385,15.427 Z" stroke="#2a9d8f" stroke-width="0.432" fill="none" /><path d="M-22.553,8.208 L-24.902,9.064 A26.5,26.5 0 0 1 -24.902,-9.064 L-22.553,-8.208 A24,24 0 0 0 -22.553,8.208 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-22.553,8.208 L-24.902,9.064 A26.5,26.5 0 0 1 -24.902,-9.064 L-22.553,-8.208 A24,24 0 0 0 -22.553,8.208 Z" stroke="#2a9d8f" stroke-width="0.432" fill="none" /></g><g data-layer="camera-side-variant-mechanical"><circle cx="16.263" cy="-16.263" r="0.87" stroke="#b5651d" stroke-width="0.432" fill="none" stroke-dasharray="4 2" /><circle cx="-15.427" cy="-18.385" r="0.87" stroke="#b5651d" stroke-width="0.432" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-34.56" y1="-33.35" x2="-30.24" y2="-33.35" stroke="#2f80c4" stroke-width="0.511" /><text x="-29.072" y="-32.532" font-size="2.336" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-34.56" y1="-29.846" x2="-30.24" y2="-29.846" stroke="#6b7a8f" stroke-width="0.511" /><text x="-29.072" y="-29.028" font-size="2.336" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-34.56" y1="-26.342" x2="-30.24" y2="-26.342" stroke="#2a9d8f" stroke-width="0.511" /><text x="-29.072" y="-25.524" font-size="2.336" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-34.56" y1="-22.838" x2="-30.24" y2="-22.838" stroke="#d1495b" stroke-width="0.511" /><text x="-29.072" y="-22.02" font-size="2.336" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-34.56" y1="-19.334" x2="-30.24" y2="-19.334" stroke="#e8853a" stroke-width="0.511" /><text x="-29.072" y="-18.516" font-size="2.336" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-34.56" y1="-15.83" x2="-30.24" y2="-15.83" stroke="#b5651d" stroke-width="0.511" /><text x="-29.072" y="-15.012" font-size="2.336" fill="#b5651d" font-family="sans-serif">Mechanical coupling</text><line x1="-34.56" y1="-12.326" x2="-30.24" y2="-12.326" stroke="#7f8c3a" stroke-width="0.511" /><text x="-29.072" y="-11.508" font-size="2.336" fill="#7f8c3a" font-family="sans-serif">Screws / seals</text><line x1="-34.56" y1="-8.822" x2="-30.24" y2="-8.822" stroke="#8a94a0" stroke-width="0.511" /><text x="-29.072" y="-8.004" font-size="2.336" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
 
 **Lens-side rear view** — viewBox `-35 -36 70 71` ([standalone SVG](mounts/canon-fd-lens-rear.svg))
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-35 -36 70 71" role="img" aria-labelledby="canon-fd-base-lens_side_rear-title canon-fd-base-lens_side_rear-desc"><title id="canon-fd-base-lens_side_rear-title">Canon FD mount — lens-side rear view (base)</title><desc id="canon-fd-base-lens_side_rear-desc">Canon FD breech-lock mount, lens-side rear view. Flange focal distance 42 mm, nominal throat 48 mm. Profile canon-fd/base.</desc><metadata>{"mountId":"canon-fd","profileId":"canon-fd/base","view":"lens_side_rear","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.4" y1="0" x2="1.4" y2="0" stroke="#8a94a0" stroke-width="0.42" fill="none" /><line x1="0" y1="-1.4" x2="0" y2="1.4" stroke="#8a94a0" stroke-width="0.42" fill="none" /><line x1="0" y1="-28" x2="0" y2="-29.68" stroke="#8a94a0" stroke-width="0.42" fill="none" /></g><g data-layer="lens-side-metal"><path d="M0,-28 A28,28 0 1 1 0,28 A28,28 0 1 1 0,-28 Z M0,-23 A23,23 0 1 1 0,23 A23,23 0 1 1 0,-23 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-28 A28,28 0 1 1 0,28 A28,28 0 1 1 0,-28 Z M0,-23 A23,23 0 1 1 0,23 A23,23 0 1 1 0,-23 Z" stroke="#6b7a8f" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M0,-23 A23,23 0 1 1 0,23 A23,23 0 1 1 0,-23 Z" stroke="#2f80c4" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /></g><g data-layer="lens-side-core-interface"><path d="M0,-25.7 L-1.74,-28.447 L1.74,-28.447 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-25.7 L-1.74,-28.447 L1.74,-28.447 Z" stroke="#e8853a" stroke-width="0.42" fill="none" stroke-dasharray="0.6 1.6" /><circle cx="0" cy="-25" r="0.98" fill="#d1495b" fill-opacity="0.12" /><circle cx="0" cy="-25" r="0.98" stroke="#d1495b" stroke-width="0.42" fill="none" stroke-dasharray="0.6 1.6" /><path d="M22.553,-8.208 L24.902,-9.064 A26.5,26.5 0 0 1 24.902,9.064 L22.553,8.208 A24,24 0 0 0 22.553,-8.208 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M22.553,-8.208 L24.902,-9.064 A26.5,26.5 0 0 1 24.902,9.064 L22.553,8.208 A24,24 0 0 0 22.553,-8.208 Z" stroke="#2a9d8f" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M-4.168,23.635 L-4.602,26.097 A26.5,26.5 0 0 1 -20.3,17.034 L-18.385,15.427 A24,24 0 0 0 -4.168,23.635 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-4.168,23.635 L-4.602,26.097 A26.5,26.5 0 0 1 -20.3,17.034 L-18.385,15.427 A24,24 0 0 0 -4.168,23.635 Z" stroke="#2a9d8f" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M-18.385,-15.427 L-20.3,-17.034 A26.5,26.5 0 0 1 -4.602,-26.097 L-4.168,-23.635 A24,24 0 0 0 -18.385,-15.427 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-18.385,-15.427 L-20.3,-17.034 A26.5,26.5 0 0 1 -4.602,-26.097 L-4.168,-23.635 A24,24 0 0 0 -18.385,-15.427 Z" stroke="#2a9d8f" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /></g><g data-layer="lens-side-variant-mechanical"><circle cx="0" cy="-28" r="0.84" stroke="#b5651d" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><circle cx="15.427" cy="-18.385" r="0.84" stroke="#b5651d" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><circle cx="-16.263" cy="-16.263" r="0.84" stroke="#b5651d" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-33.6" y1="-32.45" x2="-29.4" y2="-32.45" stroke="#2f80c4" stroke-width="0.497" /><text x="-28.264" y="-31.655" font-size="2.272" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-33.6" y1="-29.042" x2="-29.4" y2="-29.042" stroke="#6b7a8f" stroke-width="0.497" /><text x="-28.264" y="-28.247" font-size="2.272" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-33.6" y1="-25.634" x2="-29.4" y2="-25.634" stroke="#2a9d8f" stroke-width="0.497" /><text x="-28.264" y="-24.839" font-size="2.272" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-33.6" y1="-22.226" x2="-29.4" y2="-22.226" stroke="#d1495b" stroke-width="0.497" /><text x="-28.264" y="-21.431" font-size="2.272" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-33.6" y1="-18.818" x2="-29.4" y2="-18.818" stroke="#e8853a" stroke-width="0.497" /><text x="-28.264" y="-18.023" font-size="2.272" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-33.6" y1="-15.41" x2="-29.4" y2="-15.41" stroke="#b5651d" stroke-width="0.497" /><text x="-28.264" y="-14.615" font-size="2.272" fill="#b5651d" font-family="sans-serif">Mechanical coupling</text><line x1="-33.6" y1="-12.002" x2="-29.4" y2="-12.002" stroke="#8a94a0" stroke-width="0.497" /><text x="-28.264" y="-11.207" font-size="2.272" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-35 -36 70 71" role="img" aria-labelledby="canon-fd-base-lens_side_rear-title canon-fd-base-lens_side_rear-desc"><title id="canon-fd-base-lens_side_rear-title">Canon FD mount — lens-side rear view (base)</title><desc id="canon-fd-base-lens_side_rear-desc">Canon FD breech-lock mount, lens-side rear view. Flange focal distance 42 mm, nominal throat 48 mm. Profile canon-fd/base.</desc><metadata>{"mountId":"canon-fd","profileId":"canon-fd/base","view":"lens_side_rear","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.4" y1="0" x2="1.4" y2="0" stroke="#8a94a0" stroke-width="0.42" fill="none" /><line x1="0" y1="-1.4" x2="0" y2="1.4" stroke="#8a94a0" stroke-width="0.42" fill="none" /><line x1="0" y1="-28" x2="0" y2="-29.68" stroke="#8a94a0" stroke-width="0.42" fill="none" /></g><g data-layer="lens-side-metal"><path d="M0,-28 A28,28 0 1 1 0,28 A28,28 0 1 1 0,-28 Z M0,-23 A23,23 0 1 1 0,23 A23,23 0 1 1 0,-23 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-28 A28,28 0 1 1 0,28 A28,28 0 1 1 0,-28 Z M0,-23 A23,23 0 1 1 0,23 A23,23 0 1 1 0,-23 Z" stroke="#6b7a8f" stroke-width="0.42" fill="none" /><path d="M0,-23 A23,23 0 1 1 0,23 A23,23 0 1 1 0,-23 Z" stroke="#2f80c4" stroke-width="0.42" fill="none" /></g><g data-layer="lens-side-core-interface"><path d="M0,-25.7 L-1.74,-28.447 L1.74,-28.447 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-25.7 L-1.74,-28.447 L1.74,-28.447 Z" stroke="#e8853a" stroke-width="0.42" fill="none" stroke-dasharray="0.6 1.6" /><circle cx="0" cy="-25" r="0.98" fill="#d1495b" fill-opacity="0.12" /><circle cx="0" cy="-25" r="0.98" stroke="#d1495b" stroke-width="0.42" fill="none" stroke-dasharray="0.6 1.6" /><path d="M22.553,-8.208 L24.902,-9.064 A26.5,26.5 0 0 1 24.902,9.064 L22.553,8.208 A24,24 0 0 0 22.553,-8.208 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M22.553,-8.208 L24.902,-9.064 A26.5,26.5 0 0 1 24.902,9.064 L22.553,8.208 A24,24 0 0 0 22.553,-8.208 Z" stroke="#2a9d8f" stroke-width="0.42" fill="none" /><path d="M-4.168,23.635 L-4.602,26.097 A26.5,26.5 0 0 1 -20.3,17.034 L-18.385,15.427 A24,24 0 0 0 -4.168,23.635 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-4.168,23.635 L-4.602,26.097 A26.5,26.5 0 0 1 -20.3,17.034 L-18.385,15.427 A24,24 0 0 0 -4.168,23.635 Z" stroke="#2a9d8f" stroke-width="0.42" fill="none" /><path d="M-18.385,-15.427 L-20.3,-17.034 A26.5,26.5 0 0 1 -4.602,-26.097 L-4.168,-23.635 A24,24 0 0 0 -18.385,-15.427 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-18.385,-15.427 L-20.3,-17.034 A26.5,26.5 0 0 1 -4.602,-26.097 L-4.168,-23.635 A24,24 0 0 0 -18.385,-15.427 Z" stroke="#2a9d8f" stroke-width="0.42" fill="none" /></g><g data-layer="lens-side-variant-mechanical"><circle cx="0" cy="-28" r="0.84" stroke="#b5651d" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><circle cx="15.427" cy="-18.385" r="0.84" stroke="#b5651d" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><circle cx="-16.263" cy="-16.263" r="0.84" stroke="#b5651d" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-33.6" y1="-32.45" x2="-29.4" y2="-32.45" stroke="#2f80c4" stroke-width="0.497" /><text x="-28.264" y="-31.655" font-size="2.272" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-33.6" y1="-29.042" x2="-29.4" y2="-29.042" stroke="#6b7a8f" stroke-width="0.497" /><text x="-28.264" y="-28.247" font-size="2.272" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-33.6" y1="-25.634" x2="-29.4" y2="-25.634" stroke="#2a9d8f" stroke-width="0.497" /><text x="-28.264" y="-24.839" font-size="2.272" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-33.6" y1="-22.226" x2="-29.4" y2="-22.226" stroke="#d1495b" stroke-width="0.497" /><text x="-28.264" y="-21.431" font-size="2.272" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-33.6" y1="-18.818" x2="-29.4" y2="-18.818" stroke="#e8853a" stroke-width="0.497" /><text x="-28.264" y="-18.023" font-size="2.272" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-33.6" y1="-15.41" x2="-29.4" y2="-15.41" stroke="#b5651d" stroke-width="0.497" /><text x="-28.264" y="-14.615" font-size="2.272" fill="#b5651d" font-family="sans-serif">Mechanical coupling</text><line x1="-33.6" y1="-12.002" x2="-29.4" y2="-12.002" stroke="#8a94a0" stroke-width="0.497" /><text x="-28.264" y="-11.207" font-size="2.272" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
 
 **Axial / register schematic** — viewBox `-49 -40 57 76` ([standalone SVG](mounts/canon-fd-axial.svg))
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-49 -40 57 76" role="img" aria-labelledby="canon-fd-base-axial_section-title canon-fd-base-axial_section-desc"><title id="canon-fd-base-axial_section-title">Canon FD mount — axial / register schematic (base)</title><desc id="canon-fd-base-axial_section-desc">Canon FD breech-lock mount, axial / register schematic. Flange focal distance 42 mm, nominal throat 48 mm. Profile canon-fd/base.</desc><metadata>{"mountId":"canon-fd","profileId":"canon-fd/base","view":"axial_section","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-42" y1="0" x2="1.2" y2="0" stroke="#8a94a0" stroke-width="0.342" fill="none" /><line x1="0" y1="-29" x2="0" y2="29" stroke="#8a94a0" stroke-width="0.342" fill="none" /></g><g data-layer="axial-section"><text x="-42" y="-23.15" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">sensor film plane</text><line x1="-42" y1="-21.65" x2="-42" y2="21.65" stroke="#2bb0c4" stroke-width="0.257" fill="none" /><line x1="0" y1="-29" x2="0" y2="29" stroke="#2bb0c4" stroke-width="0.342" fill="none" stroke-dasharray="4 2" /><text x="0" y="-30.5" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">flange datum</text><line x1="1.2" y1="-26.5" x2="1.2" y2="26.5" stroke="#2bb0c4" stroke-width="0.342" fill="none" stroke-dasharray="4 2" /><text x="1.2" y="-28" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">bayonet lug engagement</text></g><g aria-hidden="true"><line x1="-47.86" y1="-36.2" x2="-43.86" y2="-36.2" stroke="#8a94a0" stroke-width="0.532" /><text x="-42.644" y="-35.349" font-size="2.432" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text><line x1="-47.86" y1="-32.552" x2="-43.86" y2="-32.552" stroke="#2bb0c4" stroke-width="0.532" /><text x="-42.644" y="-31.701" font-size="2.432" fill="#2bb0c4" font-family="sans-serif">Register plane</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-49 -40 57 76" role="img" aria-labelledby="canon-fd-base-axial_section-title canon-fd-base-axial_section-desc"><title id="canon-fd-base-axial_section-title">Canon FD mount — axial / register schematic (base)</title><desc id="canon-fd-base-axial_section-desc">Canon FD breech-lock mount, axial / register schematic. Flange focal distance 42 mm, nominal throat 48 mm. Profile canon-fd/base.</desc><metadata>{"mountId":"canon-fd","profileId":"canon-fd/base","view":"axial_section","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-42" y1="0" x2="1.2" y2="0" stroke="#8a94a0" stroke-width="0.342" fill="none" /><line x1="0" y1="-29" x2="0" y2="29" stroke="#8a94a0" stroke-width="0.342" fill="none" /></g><g data-layer="axial-section"><text x="-42" y="-23.15" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">sensor film plane</text><line x1="-42" y1="-21.65" x2="-42" y2="21.65" stroke="#2bb0c4" stroke-width="0.257" fill="none" /><line x1="0" y1="-29" x2="0" y2="29" stroke="#2bb0c4" stroke-width="0.342" fill="none" /><text x="0" y="-30.5" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">flange datum</text><line x1="1.2" y1="-26.5" x2="1.2" y2="26.5" stroke="#2bb0c4" stroke-width="0.342" fill="none" /><text x="1.2" y="-28" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">bayonet lug engagement</text></g><g aria-hidden="true"><line x1="-47.86" y1="-36.2" x2="-43.86" y2="-36.2" stroke="#8a94a0" stroke-width="0.532" /><text x="-42.644" y="-35.349" font-size="2.432" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text><line x1="-47.86" y1="-32.552" x2="-43.86" y2="-32.552" stroke="#2bb0c4" stroke-width="0.532" /><text x="-42.644" y="-31.701" font-size="2.432" fill="#2bb0c4" font-family="sans-serif">Register plane</text></g></svg>
 
 #### Camera-side front-view geometry
 
@@ -10920,7 +10920,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -10930,7 +10930,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -10940,7 +10940,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 360,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -10960,7 +10960,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 29,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -10983,7 +10983,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 30,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -10993,7 +10993,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 10,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -11003,7 +11003,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 50,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -11013,7 +11013,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 24,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -11023,7 +11023,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 26.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -11033,7 +11033,7 @@ None — fully electronic.
       },
       "depthMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -11051,7 +11051,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 150,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -11061,7 +11061,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 130,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -11071,7 +11071,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 170,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -11081,7 +11081,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 24,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -11091,7 +11091,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 26.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -11101,7 +11101,7 @@ None — fully electronic.
       },
       "depthMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -11119,7 +11119,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 270,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -11129,7 +11129,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 250,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -11139,7 +11139,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 290,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -11149,7 +11149,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 24,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -11159,7 +11159,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 26.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -11169,7 +11169,7 @@ None — fully electronic.
       },
       "depthMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -11187,7 +11187,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -11227,7 +11227,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 29.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -11250,7 +11250,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -11290,7 +11290,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 25,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -11300,7 +11300,7 @@ None — fully electronic.
       },
       "depthMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -11360,7 +11360,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 23,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -11383,7 +11383,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -11393,7 +11393,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -11403,7 +11403,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 360,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -11413,7 +11413,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 23,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -11423,7 +11423,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 28,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -11446,7 +11446,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 30,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -11456,7 +11456,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 10,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -11466,7 +11466,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 50,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -11476,7 +11476,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 24,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -11486,7 +11486,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 26.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -11496,7 +11496,7 @@ None — fully electronic.
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -11514,7 +11514,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 150,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -11524,7 +11524,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 130,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -11534,7 +11534,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 170,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -11544,7 +11544,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 24,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -11554,7 +11554,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 26.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -11564,7 +11564,7 @@ None — fully electronic.
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -11582,7 +11582,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 270,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -11592,7 +11592,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 250,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -11602,7 +11602,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 290,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -11612,7 +11612,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 24,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -11622,7 +11622,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 26.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -11632,7 +11632,7 @@ None — fully electronic.
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -11650,7 +11650,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -11690,7 +11690,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 28.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -11713,7 +11713,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -11753,7 +11753,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 25,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -11763,7 +11763,7 @@ None — fully electronic.
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -11800,7 +11800,7 @@ None — fully electronic.
       },
       "diameterMm": {
         "value": 58,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -11813,7 +11813,7 @@ None — fully electronic.
       "planeId": "bayonet_lug_engagement",
       "zPositionMm": {
         "value": 1.2,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -11823,7 +11823,7 @@ None — fully electronic.
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -11833,7 +11833,7 @@ None — fully electronic.
       },
       "diameterMm": {
         "value": 53,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fd-1",
           "fd-2",
@@ -12145,15 +12145,15 @@ None — fully electronic.
 
 **Camera-side front view** — viewBox `-36 -37 72 73` ([standalone SVG](mounts/canon-fl-camera-front.svg))
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-36 -37 72 73" role="img" aria-labelledby="canon-fl-base-camera_side_front-title canon-fl-base-camera_side_front-desc"><title id="canon-fl-base-camera_side_front-title">Canon FL mount — camera-side front view (base)</title><desc id="canon-fl-base-camera_side_front-desc">Canon FL breech-lock mount, camera-side front view. Flange focal distance 42 mm, nominal throat 48 mm. Profile canon-fl/base.</desc><metadata>{"mountId":"canon-fl","profileId":"canon-fl/base","view":"camera_side_front","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.45" y1="0" x2="1.45" y2="0" stroke="#8a94a0" stroke-width="0.432" fill="none" /><line x1="0" y1="-1.45" x2="0" y2="1.45" stroke="#8a94a0" stroke-width="0.432" fill="none" /><line x1="0" y1="-29" x2="0" y2="-30.74" stroke="#8a94a0" stroke-width="0.432" fill="none" /></g><g data-layer="camera-side-metal"><path d="M0,-29 A29,29 0 1 1 0,29 A29,29 0 1 1 0,-29 Z M0,-24 A24,24 0 1 1 0,24 A24,24 0 1 1 0,-24 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-29 A29,29 0 1 1 0,29 A29,29 0 1 1 0,-29 Z M0,-24 A24,24 0 1 1 0,24 A24,24 0 1 1 0,-24 Z" stroke="#6b7a8f" stroke-width="0.432" fill="none" stroke-dasharray="4 2" /><path d="M0,-24 A24,24 0 1 1 0,24 A24,24 0 1 1 0,-24 Z" stroke="#2f80c4" stroke-width="0.324" fill="none" /><circle cx="19.092" cy="-19.092" r="1" stroke="#7f8c3a" stroke-width="0.432" fill="none" stroke-dasharray="4 2" /><circle cx="19.092" cy="19.092" r="1" stroke="#7f8c3a" stroke-width="0.432" fill="none" stroke-dasharray="4 2" /><circle cx="-19.092" cy="19.092" r="1" stroke="#7f8c3a" stroke-width="0.432" fill="none" stroke-dasharray="4 2" /><circle cx="-19.092" cy="-19.092" r="1" stroke="#7f8c3a" stroke-width="0.432" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-core-interface"><path d="M0,-26.6 L-1.801,-29.445 L1.801,-29.445 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-26.6 L-1.801,-29.445 L1.801,-29.445 Z" stroke="#e8853a" stroke-width="0.432" fill="none" stroke-dasharray="0.6 1.6" /><circle cx="0" cy="-25" r="1.015" fill="#d1495b" fill-opacity="0.12" /><circle cx="0" cy="-25" r="1.015" stroke="#d1495b" stroke-width="0.432" fill="none" stroke-dasharray="0.6 1.6" /><path d="M4.168,-23.635 L4.602,-26.097 A26.5,26.5 0 0 1 20.3,-17.034 L18.385,-15.427 A24,24 0 0 0 4.168,-23.635 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M4.168,-23.635 L4.602,-26.097 A26.5,26.5 0 0 1 20.3,-17.034 L18.385,-15.427 A24,24 0 0 0 4.168,-23.635 Z" stroke="#2a9d8f" stroke-width="0.432" fill="none" stroke-dasharray="4 2" /><path d="M18.385,15.427 L20.3,17.034 A26.5,26.5 0 0 1 4.602,26.097 L4.168,23.635 A24,24 0 0 0 18.385,15.427 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M18.385,15.427 L20.3,17.034 A26.5,26.5 0 0 1 4.602,26.097 L4.168,23.635 A24,24 0 0 0 18.385,15.427 Z" stroke="#2a9d8f" stroke-width="0.432" fill="none" stroke-dasharray="4 2" /><path d="M-22.553,8.208 L-24.902,9.064 A26.5,26.5 0 0 1 -24.902,-9.064 L-22.553,-8.208 A24,24 0 0 0 -22.553,8.208 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-22.553,8.208 L-24.902,9.064 A26.5,26.5 0 0 1 -24.902,-9.064 L-22.553,-8.208 A24,24 0 0 0 -22.553,8.208 Z" stroke="#2a9d8f" stroke-width="0.432" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-variant-mechanical"><circle cx="16.263" cy="-16.263" r="0.87" stroke="#b5651d" stroke-width="0.432" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-34.56" y1="-33.35" x2="-30.24" y2="-33.35" stroke="#2f80c4" stroke-width="0.511" /><text x="-29.072" y="-32.532" font-size="2.336" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-34.56" y1="-29.846" x2="-30.24" y2="-29.846" stroke="#6b7a8f" stroke-width="0.511" /><text x="-29.072" y="-29.028" font-size="2.336" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-34.56" y1="-26.342" x2="-30.24" y2="-26.342" stroke="#2a9d8f" stroke-width="0.511" /><text x="-29.072" y="-25.524" font-size="2.336" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-34.56" y1="-22.838" x2="-30.24" y2="-22.838" stroke="#d1495b" stroke-width="0.511" /><text x="-29.072" y="-22.02" font-size="2.336" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-34.56" y1="-19.334" x2="-30.24" y2="-19.334" stroke="#e8853a" stroke-width="0.511" /><text x="-29.072" y="-18.516" font-size="2.336" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-34.56" y1="-15.83" x2="-30.24" y2="-15.83" stroke="#b5651d" stroke-width="0.511" /><text x="-29.072" y="-15.012" font-size="2.336" fill="#b5651d" font-family="sans-serif">Mechanical coupling</text><line x1="-34.56" y1="-12.326" x2="-30.24" y2="-12.326" stroke="#7f8c3a" stroke-width="0.511" /><text x="-29.072" y="-11.508" font-size="2.336" fill="#7f8c3a" font-family="sans-serif">Screws / seals</text><line x1="-34.56" y1="-8.822" x2="-30.24" y2="-8.822" stroke="#8a94a0" stroke-width="0.511" /><text x="-29.072" y="-8.004" font-size="2.336" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-36 -37 72 73" role="img" aria-labelledby="canon-fl-base-camera_side_front-title canon-fl-base-camera_side_front-desc"><title id="canon-fl-base-camera_side_front-title">Canon FL mount — camera-side front view (base)</title><desc id="canon-fl-base-camera_side_front-desc">Canon FL breech-lock mount, camera-side front view. Flange focal distance 42 mm, nominal throat 48 mm. Profile canon-fl/base.</desc><metadata>{"mountId":"canon-fl","profileId":"canon-fl/base","view":"camera_side_front","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.45" y1="0" x2="1.45" y2="0" stroke="#8a94a0" stroke-width="0.432" fill="none" /><line x1="0" y1="-1.45" x2="0" y2="1.45" stroke="#8a94a0" stroke-width="0.432" fill="none" /><line x1="0" y1="-29" x2="0" y2="-30.74" stroke="#8a94a0" stroke-width="0.432" fill="none" /></g><g data-layer="camera-side-metal"><path d="M0,-29 A29,29 0 1 1 0,29 A29,29 0 1 1 0,-29 Z M0,-24 A24,24 0 1 1 0,24 A24,24 0 1 1 0,-24 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-29 A29,29 0 1 1 0,29 A29,29 0 1 1 0,-29 Z M0,-24 A24,24 0 1 1 0,24 A24,24 0 1 1 0,-24 Z" stroke="#6b7a8f" stroke-width="0.432" fill="none" /><path d="M0,-24 A24,24 0 1 1 0,24 A24,24 0 1 1 0,-24 Z" stroke="#2f80c4" stroke-width="0.324" fill="none" /><circle cx="19.092" cy="-19.092" r="1" stroke="#7f8c3a" stroke-width="0.432" fill="none" stroke-dasharray="4 2" /><circle cx="19.092" cy="19.092" r="1" stroke="#7f8c3a" stroke-width="0.432" fill="none" stroke-dasharray="4 2" /><circle cx="-19.092" cy="19.092" r="1" stroke="#7f8c3a" stroke-width="0.432" fill="none" stroke-dasharray="4 2" /><circle cx="-19.092" cy="-19.092" r="1" stroke="#7f8c3a" stroke-width="0.432" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-core-interface"><path d="M0,-26.6 L-1.801,-29.445 L1.801,-29.445 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-26.6 L-1.801,-29.445 L1.801,-29.445 Z" stroke="#e8853a" stroke-width="0.432" fill="none" stroke-dasharray="0.6 1.6" /><circle cx="0" cy="-25" r="1.015" fill="#d1495b" fill-opacity="0.12" /><circle cx="0" cy="-25" r="1.015" stroke="#d1495b" stroke-width="0.432" fill="none" stroke-dasharray="0.6 1.6" /><path d="M4.168,-23.635 L4.602,-26.097 A26.5,26.5 0 0 1 20.3,-17.034 L18.385,-15.427 A24,24 0 0 0 4.168,-23.635 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M4.168,-23.635 L4.602,-26.097 A26.5,26.5 0 0 1 20.3,-17.034 L18.385,-15.427 A24,24 0 0 0 4.168,-23.635 Z" stroke="#2a9d8f" stroke-width="0.432" fill="none" /><path d="M18.385,15.427 L20.3,17.034 A26.5,26.5 0 0 1 4.602,26.097 L4.168,23.635 A24,24 0 0 0 18.385,15.427 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M18.385,15.427 L20.3,17.034 A26.5,26.5 0 0 1 4.602,26.097 L4.168,23.635 A24,24 0 0 0 18.385,15.427 Z" stroke="#2a9d8f" stroke-width="0.432" fill="none" /><path d="M-22.553,8.208 L-24.902,9.064 A26.5,26.5 0 0 1 -24.902,-9.064 L-22.553,-8.208 A24,24 0 0 0 -22.553,8.208 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-22.553,8.208 L-24.902,9.064 A26.5,26.5 0 0 1 -24.902,-9.064 L-22.553,-8.208 A24,24 0 0 0 -22.553,8.208 Z" stroke="#2a9d8f" stroke-width="0.432" fill="none" /></g><g data-layer="camera-side-variant-mechanical"><circle cx="16.263" cy="-16.263" r="0.87" stroke="#b5651d" stroke-width="0.432" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-34.56" y1="-33.35" x2="-30.24" y2="-33.35" stroke="#2f80c4" stroke-width="0.511" /><text x="-29.072" y="-32.532" font-size="2.336" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-34.56" y1="-29.846" x2="-30.24" y2="-29.846" stroke="#6b7a8f" stroke-width="0.511" /><text x="-29.072" y="-29.028" font-size="2.336" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-34.56" y1="-26.342" x2="-30.24" y2="-26.342" stroke="#2a9d8f" stroke-width="0.511" /><text x="-29.072" y="-25.524" font-size="2.336" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-34.56" y1="-22.838" x2="-30.24" y2="-22.838" stroke="#d1495b" stroke-width="0.511" /><text x="-29.072" y="-22.02" font-size="2.336" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-34.56" y1="-19.334" x2="-30.24" y2="-19.334" stroke="#e8853a" stroke-width="0.511" /><text x="-29.072" y="-18.516" font-size="2.336" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-34.56" y1="-15.83" x2="-30.24" y2="-15.83" stroke="#b5651d" stroke-width="0.511" /><text x="-29.072" y="-15.012" font-size="2.336" fill="#b5651d" font-family="sans-serif">Mechanical coupling</text><line x1="-34.56" y1="-12.326" x2="-30.24" y2="-12.326" stroke="#7f8c3a" stroke-width="0.511" /><text x="-29.072" y="-11.508" font-size="2.336" fill="#7f8c3a" font-family="sans-serif">Screws / seals</text><line x1="-34.56" y1="-8.822" x2="-30.24" y2="-8.822" stroke="#8a94a0" stroke-width="0.511" /><text x="-29.072" y="-8.004" font-size="2.336" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
 
 **Lens-side rear view** — viewBox `-35 -36 70 71` ([standalone SVG](mounts/canon-fl-lens-rear.svg))
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-35 -36 70 71" role="img" aria-labelledby="canon-fl-base-lens_side_rear-title canon-fl-base-lens_side_rear-desc"><title id="canon-fl-base-lens_side_rear-title">Canon FL mount — lens-side rear view (base)</title><desc id="canon-fl-base-lens_side_rear-desc">Canon FL breech-lock mount, lens-side rear view. Flange focal distance 42 mm, nominal throat 48 mm. Profile canon-fl/base.</desc><metadata>{"mountId":"canon-fl","profileId":"canon-fl/base","view":"lens_side_rear","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.4" y1="0" x2="1.4" y2="0" stroke="#8a94a0" stroke-width="0.42" fill="none" /><line x1="0" y1="-1.4" x2="0" y2="1.4" stroke="#8a94a0" stroke-width="0.42" fill="none" /><line x1="0" y1="-28" x2="0" y2="-29.68" stroke="#8a94a0" stroke-width="0.42" fill="none" /></g><g data-layer="lens-side-metal"><path d="M0,-28 A28,28 0 1 1 0,28 A28,28 0 1 1 0,-28 Z M0,-23 A23,23 0 1 1 0,23 A23,23 0 1 1 0,-23 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-28 A28,28 0 1 1 0,28 A28,28 0 1 1 0,-28 Z M0,-23 A23,23 0 1 1 0,23 A23,23 0 1 1 0,-23 Z" stroke="#6b7a8f" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M0,-23 A23,23 0 1 1 0,23 A23,23 0 1 1 0,-23 Z" stroke="#2f80c4" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /></g><g data-layer="lens-side-core-interface"><path d="M0,-25.7 L-1.74,-28.447 L1.74,-28.447 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-25.7 L-1.74,-28.447 L1.74,-28.447 Z" stroke="#e8853a" stroke-width="0.42" fill="none" stroke-dasharray="0.6 1.6" /><circle cx="0" cy="-25" r="0.98" fill="#d1495b" fill-opacity="0.12" /><circle cx="0" cy="-25" r="0.98" stroke="#d1495b" stroke-width="0.42" fill="none" stroke-dasharray="0.6 1.6" /><path d="M22.553,-8.208 L24.902,-9.064 A26.5,26.5 0 0 1 24.902,9.064 L22.553,8.208 A24,24 0 0 0 22.553,-8.208 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M22.553,-8.208 L24.902,-9.064 A26.5,26.5 0 0 1 24.902,9.064 L22.553,8.208 A24,24 0 0 0 22.553,-8.208 Z" stroke="#2a9d8f" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M-4.168,23.635 L-4.602,26.097 A26.5,26.5 0 0 1 -20.3,17.034 L-18.385,15.427 A24,24 0 0 0 -4.168,23.635 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-4.168,23.635 L-4.602,26.097 A26.5,26.5 0 0 1 -20.3,17.034 L-18.385,15.427 A24,24 0 0 0 -4.168,23.635 Z" stroke="#2a9d8f" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M-18.385,-15.427 L-20.3,-17.034 A26.5,26.5 0 0 1 -4.602,-26.097 L-4.168,-23.635 A24,24 0 0 0 -18.385,-15.427 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-18.385,-15.427 L-20.3,-17.034 A26.5,26.5 0 0 1 -4.602,-26.097 L-4.168,-23.635 A24,24 0 0 0 -18.385,-15.427 Z" stroke="#2a9d8f" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /></g><g data-layer="lens-side-variant-mechanical"><circle cx="0" cy="-28" r="0.84" stroke="#b5651d" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><circle cx="-16.263" cy="-16.263" r="0.84" stroke="#b5651d" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-33.6" y1="-32.45" x2="-29.4" y2="-32.45" stroke="#2f80c4" stroke-width="0.497" /><text x="-28.264" y="-31.655" font-size="2.272" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-33.6" y1="-29.042" x2="-29.4" y2="-29.042" stroke="#6b7a8f" stroke-width="0.497" /><text x="-28.264" y="-28.247" font-size="2.272" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-33.6" y1="-25.634" x2="-29.4" y2="-25.634" stroke="#2a9d8f" stroke-width="0.497" /><text x="-28.264" y="-24.839" font-size="2.272" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-33.6" y1="-22.226" x2="-29.4" y2="-22.226" stroke="#d1495b" stroke-width="0.497" /><text x="-28.264" y="-21.431" font-size="2.272" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-33.6" y1="-18.818" x2="-29.4" y2="-18.818" stroke="#e8853a" stroke-width="0.497" /><text x="-28.264" y="-18.023" font-size="2.272" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-33.6" y1="-15.41" x2="-29.4" y2="-15.41" stroke="#b5651d" stroke-width="0.497" /><text x="-28.264" y="-14.615" font-size="2.272" fill="#b5651d" font-family="sans-serif">Mechanical coupling</text><line x1="-33.6" y1="-12.002" x2="-29.4" y2="-12.002" stroke="#8a94a0" stroke-width="0.497" /><text x="-28.264" y="-11.207" font-size="2.272" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-35 -36 70 71" role="img" aria-labelledby="canon-fl-base-lens_side_rear-title canon-fl-base-lens_side_rear-desc"><title id="canon-fl-base-lens_side_rear-title">Canon FL mount — lens-side rear view (base)</title><desc id="canon-fl-base-lens_side_rear-desc">Canon FL breech-lock mount, lens-side rear view. Flange focal distance 42 mm, nominal throat 48 mm. Profile canon-fl/base.</desc><metadata>{"mountId":"canon-fl","profileId":"canon-fl/base","view":"lens_side_rear","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.4" y1="0" x2="1.4" y2="0" stroke="#8a94a0" stroke-width="0.42" fill="none" /><line x1="0" y1="-1.4" x2="0" y2="1.4" stroke="#8a94a0" stroke-width="0.42" fill="none" /><line x1="0" y1="-28" x2="0" y2="-29.68" stroke="#8a94a0" stroke-width="0.42" fill="none" /></g><g data-layer="lens-side-metal"><path d="M0,-28 A28,28 0 1 1 0,28 A28,28 0 1 1 0,-28 Z M0,-23 A23,23 0 1 1 0,23 A23,23 0 1 1 0,-23 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-28 A28,28 0 1 1 0,28 A28,28 0 1 1 0,-28 Z M0,-23 A23,23 0 1 1 0,23 A23,23 0 1 1 0,-23 Z" stroke="#6b7a8f" stroke-width="0.42" fill="none" /><path d="M0,-23 A23,23 0 1 1 0,23 A23,23 0 1 1 0,-23 Z" stroke="#2f80c4" stroke-width="0.42" fill="none" /></g><g data-layer="lens-side-core-interface"><path d="M0,-25.7 L-1.74,-28.447 L1.74,-28.447 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-25.7 L-1.74,-28.447 L1.74,-28.447 Z" stroke="#e8853a" stroke-width="0.42" fill="none" stroke-dasharray="0.6 1.6" /><circle cx="0" cy="-25" r="0.98" fill="#d1495b" fill-opacity="0.12" /><circle cx="0" cy="-25" r="0.98" stroke="#d1495b" stroke-width="0.42" fill="none" stroke-dasharray="0.6 1.6" /><path d="M22.553,-8.208 L24.902,-9.064 A26.5,26.5 0 0 1 24.902,9.064 L22.553,8.208 A24,24 0 0 0 22.553,-8.208 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M22.553,-8.208 L24.902,-9.064 A26.5,26.5 0 0 1 24.902,9.064 L22.553,8.208 A24,24 0 0 0 22.553,-8.208 Z" stroke="#2a9d8f" stroke-width="0.42" fill="none" /><path d="M-4.168,23.635 L-4.602,26.097 A26.5,26.5 0 0 1 -20.3,17.034 L-18.385,15.427 A24,24 0 0 0 -4.168,23.635 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-4.168,23.635 L-4.602,26.097 A26.5,26.5 0 0 1 -20.3,17.034 L-18.385,15.427 A24,24 0 0 0 -4.168,23.635 Z" stroke="#2a9d8f" stroke-width="0.42" fill="none" /><path d="M-18.385,-15.427 L-20.3,-17.034 A26.5,26.5 0 0 1 -4.602,-26.097 L-4.168,-23.635 A24,24 0 0 0 -18.385,-15.427 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-18.385,-15.427 L-20.3,-17.034 A26.5,26.5 0 0 1 -4.602,-26.097 L-4.168,-23.635 A24,24 0 0 0 -18.385,-15.427 Z" stroke="#2a9d8f" stroke-width="0.42" fill="none" /></g><g data-layer="lens-side-variant-mechanical"><circle cx="0" cy="-28" r="0.84" stroke="#b5651d" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><circle cx="-16.263" cy="-16.263" r="0.84" stroke="#b5651d" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-33.6" y1="-32.45" x2="-29.4" y2="-32.45" stroke="#2f80c4" stroke-width="0.497" /><text x="-28.264" y="-31.655" font-size="2.272" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-33.6" y1="-29.042" x2="-29.4" y2="-29.042" stroke="#6b7a8f" stroke-width="0.497" /><text x="-28.264" y="-28.247" font-size="2.272" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-33.6" y1="-25.634" x2="-29.4" y2="-25.634" stroke="#2a9d8f" stroke-width="0.497" /><text x="-28.264" y="-24.839" font-size="2.272" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-33.6" y1="-22.226" x2="-29.4" y2="-22.226" stroke="#d1495b" stroke-width="0.497" /><text x="-28.264" y="-21.431" font-size="2.272" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-33.6" y1="-18.818" x2="-29.4" y2="-18.818" stroke="#e8853a" stroke-width="0.497" /><text x="-28.264" y="-18.023" font-size="2.272" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-33.6" y1="-15.41" x2="-29.4" y2="-15.41" stroke="#b5651d" stroke-width="0.497" /><text x="-28.264" y="-14.615" font-size="2.272" fill="#b5651d" font-family="sans-serif">Mechanical coupling</text><line x1="-33.6" y1="-12.002" x2="-29.4" y2="-12.002" stroke="#8a94a0" stroke-width="0.497" /><text x="-28.264" y="-11.207" font-size="2.272" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
 
 **Axial / register schematic** — viewBox `-49 -40 57 76` ([standalone SVG](mounts/canon-fl-axial.svg))
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-49 -40 57 76" role="img" aria-labelledby="canon-fl-base-axial_section-title canon-fl-base-axial_section-desc"><title id="canon-fl-base-axial_section-title">Canon FL mount — axial / register schematic (base)</title><desc id="canon-fl-base-axial_section-desc">Canon FL breech-lock mount, axial / register schematic. Flange focal distance 42 mm, nominal throat 48 mm. Profile canon-fl/base.</desc><metadata>{"mountId":"canon-fl","profileId":"canon-fl/base","view":"axial_section","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-42" y1="0" x2="1.2" y2="0" stroke="#8a94a0" stroke-width="0.342" fill="none" /><line x1="0" y1="-29" x2="0" y2="29" stroke="#8a94a0" stroke-width="0.342" fill="none" /></g><g data-layer="axial-section"><text x="-42" y="-23.15" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">sensor film plane</text><line x1="-42" y1="-21.65" x2="-42" y2="21.65" stroke="#2bb0c4" stroke-width="0.257" fill="none" /><line x1="0" y1="-29" x2="0" y2="29" stroke="#2bb0c4" stroke-width="0.342" fill="none" stroke-dasharray="4 2" /><text x="0" y="-30.5" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">flange datum</text><line x1="1.2" y1="-26.5" x2="1.2" y2="26.5" stroke="#2bb0c4" stroke-width="0.342" fill="none" stroke-dasharray="4 2" /><text x="1.2" y="-28" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">bayonet lug engagement</text></g><g aria-hidden="true"><line x1="-47.86" y1="-36.2" x2="-43.86" y2="-36.2" stroke="#8a94a0" stroke-width="0.532" /><text x="-42.644" y="-35.349" font-size="2.432" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text><line x1="-47.86" y1="-32.552" x2="-43.86" y2="-32.552" stroke="#2bb0c4" stroke-width="0.532" /><text x="-42.644" y="-31.701" font-size="2.432" fill="#2bb0c4" font-family="sans-serif">Register plane</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-49 -40 57 76" role="img" aria-labelledby="canon-fl-base-axial_section-title canon-fl-base-axial_section-desc"><title id="canon-fl-base-axial_section-title">Canon FL mount — axial / register schematic (base)</title><desc id="canon-fl-base-axial_section-desc">Canon FL breech-lock mount, axial / register schematic. Flange focal distance 42 mm, nominal throat 48 mm. Profile canon-fl/base.</desc><metadata>{"mountId":"canon-fl","profileId":"canon-fl/base","view":"axial_section","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-42" y1="0" x2="1.2" y2="0" stroke="#8a94a0" stroke-width="0.342" fill="none" /><line x1="0" y1="-29" x2="0" y2="29" stroke="#8a94a0" stroke-width="0.342" fill="none" /></g><g data-layer="axial-section"><text x="-42" y="-23.15" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">sensor film plane</text><line x1="-42" y1="-21.65" x2="-42" y2="21.65" stroke="#2bb0c4" stroke-width="0.257" fill="none" /><line x1="0" y1="-29" x2="0" y2="29" stroke="#2bb0c4" stroke-width="0.342" fill="none" /><text x="0" y="-30.5" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">flange datum</text><line x1="1.2" y1="-26.5" x2="1.2" y2="26.5" stroke="#2bb0c4" stroke-width="0.342" fill="none" /><text x="1.2" y="-28" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">bayonet lug engagement</text></g><g aria-hidden="true"><line x1="-47.86" y1="-36.2" x2="-43.86" y2="-36.2" stroke="#8a94a0" stroke-width="0.532" /><text x="-42.644" y="-35.349" font-size="2.432" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text><line x1="-47.86" y1="-32.552" x2="-43.86" y2="-32.552" stroke="#2bb0c4" stroke-width="0.532" /><text x="-42.644" y="-31.701" font-size="2.432" fill="#2bb0c4" font-family="sans-serif">Register plane</text></g></svg>
 
 #### Camera-side front-view geometry
 
@@ -12402,7 +12402,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -12410,7 +12410,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -12418,7 +12418,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 360,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -12434,7 +12434,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 29,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -12455,7 +12455,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 30,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -12463,7 +12463,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 10,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -12471,7 +12471,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 50,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -12479,7 +12479,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 24,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -12487,7 +12487,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 26.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -12495,7 +12495,7 @@ None — fully electronic.
       },
       "depthMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -12511,7 +12511,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 150,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -12519,7 +12519,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 130,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -12527,7 +12527,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 170,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -12535,7 +12535,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 24,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -12543,7 +12543,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 26.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -12551,7 +12551,7 @@ None — fully electronic.
       },
       "depthMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -12567,7 +12567,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 270,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -12575,7 +12575,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 250,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -12583,7 +12583,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 290,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -12591,7 +12591,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 24,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -12599,7 +12599,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 26.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -12607,7 +12607,7 @@ None — fully electronic.
       },
       "depthMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -12623,7 +12623,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -12655,7 +12655,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 29.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -12676,7 +12676,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -12708,7 +12708,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 25,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -12716,7 +12716,7 @@ None — fully electronic.
       },
       "depthMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -12766,7 +12766,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 23,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -12787,7 +12787,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -12795,7 +12795,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -12803,7 +12803,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 360,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -12811,7 +12811,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 23,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -12819,7 +12819,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 28,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -12840,7 +12840,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 30,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -12848,7 +12848,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 10,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -12856,7 +12856,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 50,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -12864,7 +12864,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 24,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -12872,7 +12872,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 26.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -12880,7 +12880,7 @@ None — fully electronic.
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -12896,7 +12896,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 150,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -12904,7 +12904,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 130,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -12912,7 +12912,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 170,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -12920,7 +12920,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 24,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -12928,7 +12928,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 26.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -12936,7 +12936,7 @@ None — fully electronic.
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -12952,7 +12952,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 270,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -12960,7 +12960,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 250,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -12968,7 +12968,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 290,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -12976,7 +12976,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 24,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -12984,7 +12984,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 26.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -12992,7 +12992,7 @@ None — fully electronic.
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -13008,7 +13008,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -13040,7 +13040,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 28.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -13061,7 +13061,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -13093,7 +13093,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 25,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -13101,7 +13101,7 @@ None — fully electronic.
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -13132,7 +13132,7 @@ None — fully electronic.
       },
       "diameterMm": {
         "value": 58,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -13143,7 +13143,7 @@ None — fully electronic.
       "planeId": "bayonet_lug_engagement",
       "zPositionMm": {
         "value": 1.2,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -13151,7 +13151,7 @@ None — fully electronic.
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -13159,7 +13159,7 @@ None — fully electronic.
       },
       "diameterMm": {
         "value": 53,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "fl-1",
           "fl-p1"
@@ -18146,22 +18146,22 @@ None — fully electronic.
 | Camera mount outer diameter | 43 (`photo_scaled`) | mm |
 | Lens mount outer diameter | 41 (`photo_scaled`) | mm |
 | Contact count | not_applicable (`not_applicable`) | count |
-| Lock rotation | 45 (`photo_scaled`) | deg |
-| Lock direction | clockwise (`photo_scaled`) | — |
+| Lock rotation | 45 (`patent`) | deg |
+| Lock direction | clockwise (`patent`) | — |
 
 #### Figures (selected profile `exakta/base`)
 
 **Camera-side front view** — viewBox `-27 -28 54 55` ([standalone SVG](mounts/exakta-camera-front.svg))
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-27 -28 54 55" role="img" aria-labelledby="exakta-base-camera_side_front-title exakta-base-camera_side_front-desc"><title id="exakta-base-camera_side_front-title">Exakta mount — camera-side front view (base)</title><desc id="exakta-base-camera_side_front-desc">Exakta bayonet mount, camera-side front view. Flange focal distance 44.7 mm, nominal throat 33.8 mm. Profile exakta/base.</desc><metadata>{"mountId":"exakta","profileId":"exakta/base","view":"camera_side_front","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.075" y1="0" x2="1.075" y2="0" stroke="#8a94a0" stroke-width="0.324" fill="none" /><line x1="0" y1="-1.075" x2="0" y2="1.075" stroke="#8a94a0" stroke-width="0.324" fill="none" /><line x1="0" y1="-21.5" x2="0" y2="-22.79" stroke="#8a94a0" stroke-width="0.324" fill="none" /></g><g data-layer="camera-side-metal"><path d="M0,-21.5 A21.5,21.5 0 1 1 0,21.5 A21.5,21.5 0 1 1 0,-21.5 Z M0,-16.9 A16.9,16.9 0 1 1 0,16.9 A16.9,16.9 0 1 1 0,-16.9 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-21.5 A21.5,21.5 0 1 1 0,21.5 A21.5,21.5 0 1 1 0,-21.5 Z M0,-16.9 A16.9,16.9 0 1 1 0,16.9 A16.9,16.9 0 1 1 0,-16.9 Z" stroke="#6b7a8f" stroke-width="0.324" fill="none" stroke-dasharray="4 2" /><path d="M0,-16.9 A16.9,16.9 0 1 1 0,16.9 A16.9,16.9 0 1 1 0,-16.9 Z" stroke="#2f80c4" stroke-width="0.243" fill="none" /><circle cx="13.789" cy="-13.789" r="0.9" stroke="#7f8c3a" stroke-width="0.324" fill="none" stroke-dasharray="4 2" /><circle cx="13.789" cy="13.789" r="0.9" stroke="#7f8c3a" stroke-width="0.324" fill="none" stroke-dasharray="4 2" /><circle cx="-13.789" cy="13.789" r="0.9" stroke="#7f8c3a" stroke-width="0.324" fill="none" stroke-dasharray="4 2" /><circle cx="-13.789" cy="-13.789" r="0.9" stroke="#7f8c3a" stroke-width="0.324" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-core-interface"><path d="M0,-19.85 L-1.343,-21.959 L1.343,-21.959 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-19.85 L-1.343,-21.959 L1.343,-21.959 Z" stroke="#e8853a" stroke-width="0.324" fill="none" stroke-dasharray="0.6 1.6" /><path d="M-4.941,-16.162 L-5.672,-18.552 A19.4,19.4 0 0 1 5.672,-18.552 L4.941,-16.162 A16.9,16.9 0 0 0 -4.941,-16.162 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-4.941,-16.162 L-5.672,-18.552 A19.4,19.4 0 0 1 5.672,-18.552 L4.941,-16.162 A16.9,16.9 0 0 0 -4.941,-16.162 Z" stroke="#2a9d8f" stroke-width="0.324" fill="none" stroke-dasharray="4 2" /><path d="M16.467,3.802 L18.903,4.364 A19.4,19.4 0 0 1 13.231,14.188 L11.526,12.36 A16.9,16.9 0 0 0 16.467,3.802 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M16.467,3.802 L18.903,4.364 A19.4,19.4 0 0 1 13.231,14.188 L11.526,12.36 A16.9,16.9 0 0 0 16.467,3.802 Z" stroke="#2a9d8f" stroke-width="0.324" fill="none" stroke-dasharray="4 2" /><path d="M-11.526,12.36 L-13.231,14.188 A19.4,19.4 0 0 1 -18.903,4.364 L-16.467,3.802 A16.9,16.9 0 0 0 -11.526,12.36 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-11.526,12.36 L-13.231,14.188 A19.4,19.4 0 0 1 -18.903,4.364 L-16.467,3.802 A16.9,16.9 0 0 0 -11.526,12.36 Z" stroke="#2a9d8f" stroke-width="0.324" fill="none" stroke-dasharray="4 2" /><circle cx="-15.502" cy="-8.95" r="0.753" fill="#d1495b" fill-opacity="0.12" /><circle cx="-15.502" cy="-8.95" r="0.753" stroke="#d1495b" stroke-width="0.324" fill="none" stroke-dasharray="0.6 1.6" /></g><g data-layer="camera-side-variant-mechanical"><circle cx="-17.321" cy="-10" r="0.8" stroke="#b5651d" stroke-width="0.324" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-25.92" y1="-25.25" x2="-21.92" y2="-25.25" stroke="#2f80c4" stroke-width="0.4" /><text x="-20.92" y="-24.55" font-size="2" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-25.92" y1="-22.25" x2="-21.92" y2="-22.25" stroke="#6b7a8f" stroke-width="0.4" /><text x="-20.92" y="-21.55" font-size="2" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-25.92" y1="-19.25" x2="-21.92" y2="-19.25" stroke="#2a9d8f" stroke-width="0.4" /><text x="-20.92" y="-18.55" font-size="2" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-25.92" y1="-16.25" x2="-21.92" y2="-16.25" stroke="#d1495b" stroke-width="0.4" /><text x="-20.92" y="-15.55" font-size="2" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-25.92" y1="-13.25" x2="-21.92" y2="-13.25" stroke="#e8853a" stroke-width="0.4" /><text x="-20.92" y="-12.55" font-size="2" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-25.92" y1="-10.25" x2="-21.92" y2="-10.25" stroke="#b5651d" stroke-width="0.4" /><text x="-20.92" y="-9.55" font-size="2" fill="#b5651d" font-family="sans-serif">Mechanical coupling</text><line x1="-25.92" y1="-7.25" x2="-21.92" y2="-7.25" stroke="#7f8c3a" stroke-width="0.4" /><text x="-20.92" y="-6.55" font-size="2" fill="#7f8c3a" font-family="sans-serif">Screws / seals</text><line x1="-25.92" y1="-4.25" x2="-21.92" y2="-4.25" stroke="#8a94a0" stroke-width="0.4" /><text x="-20.92" y="-3.55" font-size="2" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-27 -28 54 55" role="img" aria-labelledby="exakta-base-camera_side_front-title exakta-base-camera_side_front-desc"><title id="exakta-base-camera_side_front-title">Exakta mount — camera-side front view (base)</title><desc id="exakta-base-camera_side_front-desc">Exakta bayonet mount, camera-side front view. Flange focal distance 44.7 mm, nominal throat 33.8 mm. Profile exakta/base.</desc><metadata>{"mountId":"exakta","profileId":"exakta/base","view":"camera_side_front","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.075" y1="0" x2="1.075" y2="0" stroke="#8a94a0" stroke-width="0.324" fill="none" /><line x1="0" y1="-1.075" x2="0" y2="1.075" stroke="#8a94a0" stroke-width="0.324" fill="none" /><line x1="0" y1="-21.5" x2="0" y2="-22.79" stroke="#8a94a0" stroke-width="0.324" fill="none" /></g><g data-layer="camera-side-metal"><path d="M0,-21.5 A21.5,21.5 0 1 1 0,21.5 A21.5,21.5 0 1 1 0,-21.5 Z M0,-16.9 A16.9,16.9 0 1 1 0,16.9 A16.9,16.9 0 1 1 0,-16.9 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-21.5 A21.5,21.5 0 1 1 0,21.5 A21.5,21.5 0 1 1 0,-21.5 Z M0,-16.9 A16.9,16.9 0 1 1 0,16.9 A16.9,16.9 0 1 1 0,-16.9 Z" stroke="#6b7a8f" stroke-width="0.324" fill="none" /><path d="M0,-16.9 A16.9,16.9 0 1 1 0,16.9 A16.9,16.9 0 1 1 0,-16.9 Z" stroke="#2f80c4" stroke-width="0.243" fill="none" /><circle cx="13.789" cy="-13.789" r="0.9" stroke="#7f8c3a" stroke-width="0.324" fill="none" stroke-dasharray="4 2" /><circle cx="13.789" cy="13.789" r="0.9" stroke="#7f8c3a" stroke-width="0.324" fill="none" stroke-dasharray="4 2" /><circle cx="-13.789" cy="13.789" r="0.9" stroke="#7f8c3a" stroke-width="0.324" fill="none" stroke-dasharray="4 2" /><circle cx="-13.789" cy="-13.789" r="0.9" stroke="#7f8c3a" stroke-width="0.324" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-core-interface"><path d="M0,-19.85 L-1.343,-21.959 L1.343,-21.959 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-19.85 L-1.343,-21.959 L1.343,-21.959 Z" stroke="#e8853a" stroke-width="0.324" fill="none" stroke-dasharray="0.6 1.6" /><path d="M-4.941,-16.162 L-5.672,-18.552 A19.4,19.4 0 0 1 5.672,-18.552 L4.941,-16.162 A16.9,16.9 0 0 0 -4.941,-16.162 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-4.941,-16.162 L-5.672,-18.552 A19.4,19.4 0 0 1 5.672,-18.552 L4.941,-16.162 A16.9,16.9 0 0 0 -4.941,-16.162 Z" stroke="#2a9d8f" stroke-width="0.324" fill="none" /><path d="M16.467,3.802 L18.903,4.364 A19.4,19.4 0 0 1 13.231,14.188 L11.526,12.36 A16.9,16.9 0 0 0 16.467,3.802 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M16.467,3.802 L18.903,4.364 A19.4,19.4 0 0 1 13.231,14.188 L11.526,12.36 A16.9,16.9 0 0 0 16.467,3.802 Z" stroke="#2a9d8f" stroke-width="0.324" fill="none" /><path d="M-11.526,12.36 L-13.231,14.188 A19.4,19.4 0 0 1 -18.903,4.364 L-16.467,3.802 A16.9,16.9 0 0 0 -11.526,12.36 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-11.526,12.36 L-13.231,14.188 A19.4,19.4 0 0 1 -18.903,4.364 L-16.467,3.802 A16.9,16.9 0 0 0 -11.526,12.36 Z" stroke="#2a9d8f" stroke-width="0.324" fill="none" /><circle cx="-15.502" cy="-8.95" r="0.753" fill="#d1495b" fill-opacity="0.12" /><circle cx="-15.502" cy="-8.95" r="0.753" stroke="#d1495b" stroke-width="0.324" fill="none" stroke-dasharray="0.6 1.6" /></g><g data-layer="camera-side-variant-mechanical"><circle cx="-17.321" cy="-10" r="0.8" stroke="#b5651d" stroke-width="0.324" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-25.92" y1="-25.25" x2="-21.92" y2="-25.25" stroke="#2f80c4" stroke-width="0.4" /><text x="-20.92" y="-24.55" font-size="2" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-25.92" y1="-22.25" x2="-21.92" y2="-22.25" stroke="#6b7a8f" stroke-width="0.4" /><text x="-20.92" y="-21.55" font-size="2" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-25.92" y1="-19.25" x2="-21.92" y2="-19.25" stroke="#2a9d8f" stroke-width="0.4" /><text x="-20.92" y="-18.55" font-size="2" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-25.92" y1="-16.25" x2="-21.92" y2="-16.25" stroke="#d1495b" stroke-width="0.4" /><text x="-20.92" y="-15.55" font-size="2" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-25.92" y1="-13.25" x2="-21.92" y2="-13.25" stroke="#e8853a" stroke-width="0.4" /><text x="-20.92" y="-12.55" font-size="2" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-25.92" y1="-10.25" x2="-21.92" y2="-10.25" stroke="#b5651d" stroke-width="0.4" /><text x="-20.92" y="-9.55" font-size="2" fill="#b5651d" font-family="sans-serif">Mechanical coupling</text><line x1="-25.92" y1="-7.25" x2="-21.92" y2="-7.25" stroke="#7f8c3a" stroke-width="0.4" /><text x="-20.92" y="-6.55" font-size="2" fill="#7f8c3a" font-family="sans-serif">Screws / seals</text><line x1="-25.92" y1="-4.25" x2="-21.92" y2="-4.25" stroke="#8a94a0" stroke-width="0.4" /><text x="-20.92" y="-3.55" font-size="2" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
 
 **Lens-side rear view** — viewBox `-26 -27 52 53` ([standalone SVG](mounts/exakta-lens-rear.svg))
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-26 -27 52 53" role="img" aria-labelledby="exakta-base-lens_side_rear-title exakta-base-lens_side_rear-desc"><title id="exakta-base-lens_side_rear-title">Exakta mount — lens-side rear view (base)</title><desc id="exakta-base-lens_side_rear-desc">Exakta bayonet mount, lens-side rear view. Flange focal distance 44.7 mm, nominal throat 33.8 mm. Profile exakta/base.</desc><metadata>{"mountId":"exakta","profileId":"exakta/base","view":"lens_side_rear","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.025" y1="0" x2="1.025" y2="0" stroke="#8a94a0" stroke-width="0.312" fill="none" /><line x1="0" y1="-1.025" x2="0" y2="1.025" stroke="#8a94a0" stroke-width="0.312" fill="none" /><line x1="0" y1="-20.5" x2="0" y2="-21.73" stroke="#8a94a0" stroke-width="0.312" fill="none" /></g><g data-layer="lens-side-metal"><path d="M0,-20.5 A20.5,20.5 0 1 1 0,20.5 A20.5,20.5 0 1 1 0,-20.5 Z M0,-15.9 A15.9,15.9 0 1 1 0,15.9 A15.9,15.9 0 1 1 0,-15.9 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-20.5 A20.5,20.5 0 1 1 0,20.5 A20.5,20.5 0 1 1 0,-20.5 Z M0,-15.9 A15.9,15.9 0 1 1 0,15.9 A15.9,15.9 0 1 1 0,-15.9 Z" stroke="#6b7a8f" stroke-width="0.312" fill="none" stroke-dasharray="4 2" /><path d="M0,-15.9 A15.9,15.9 0 1 1 0,15.9 A15.9,15.9 0 1 1 0,-15.9 Z" stroke="#2f80c4" stroke-width="0.312" fill="none" stroke-dasharray="4 2" /></g><g data-layer="lens-side-core-interface"><path d="M0,-18.95 L-1.282,-20.961 L1.282,-20.961 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-18.95 L-1.282,-20.961 L1.282,-20.961 Z" stroke="#e8853a" stroke-width="0.312" fill="none" stroke-dasharray="0.6 1.6" /><path d="M-4.941,-16.162 L-5.672,-18.552 A19.4,19.4 0 0 1 5.672,-18.552 L4.941,-16.162 A16.9,16.9 0 0 0 -4.941,-16.162 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-4.941,-16.162 L-5.672,-18.552 A19.4,19.4 0 0 1 5.672,-18.552 L4.941,-16.162 A16.9,16.9 0 0 0 -4.941,-16.162 Z" stroke="#2a9d8f" stroke-width="0.312" fill="none" stroke-dasharray="4 2" /><circle cx="15.502" cy="-8.95" r="0.718" fill="#d1495b" fill-opacity="0.12" /><circle cx="15.502" cy="-8.95" r="0.718" stroke="#d1495b" stroke-width="0.312" fill="none" stroke-dasharray="0.6 1.6" /><path d="M16.467,3.802 L18.903,4.364 A19.4,19.4 0 0 1 13.231,14.188 L11.526,12.36 A16.9,16.9 0 0 0 16.467,3.802 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M16.467,3.802 L18.903,4.364 A19.4,19.4 0 0 1 13.231,14.188 L11.526,12.36 A16.9,16.9 0 0 0 16.467,3.802 Z" stroke="#2a9d8f" stroke-width="0.312" fill="none" stroke-dasharray="4 2" /><path d="M-11.526,12.36 L-13.231,14.188 A19.4,19.4 0 0 1 -18.903,4.364 L-16.467,3.802 A16.9,16.9 0 0 0 -11.526,12.36 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-11.526,12.36 L-13.231,14.188 A19.4,19.4 0 0 1 -18.903,4.364 L-16.467,3.802 A16.9,16.9 0 0 0 -11.526,12.36 Z" stroke="#2a9d8f" stroke-width="0.312" fill="none" stroke-dasharray="4 2" /></g><g data-layer="lens-side-variant-mechanical"><circle cx="15.556" cy="-15.556" r="0.8" stroke="#b5651d" stroke-width="0.312" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-24.96" y1="-24.35" x2="-20.96" y2="-24.35" stroke="#2f80c4" stroke-width="0.4" /><text x="-19.96" y="-23.65" font-size="2" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-24.96" y1="-21.35" x2="-20.96" y2="-21.35" stroke="#6b7a8f" stroke-width="0.4" /><text x="-19.96" y="-20.65" font-size="2" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-24.96" y1="-18.35" x2="-20.96" y2="-18.35" stroke="#2a9d8f" stroke-width="0.4" /><text x="-19.96" y="-17.65" font-size="2" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-24.96" y1="-15.35" x2="-20.96" y2="-15.35" stroke="#d1495b" stroke-width="0.4" /><text x="-19.96" y="-14.65" font-size="2" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-24.96" y1="-12.35" x2="-20.96" y2="-12.35" stroke="#e8853a" stroke-width="0.4" /><text x="-19.96" y="-11.65" font-size="2" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-24.96" y1="-9.35" x2="-20.96" y2="-9.35" stroke="#b5651d" stroke-width="0.4" /><text x="-19.96" y="-8.65" font-size="2" fill="#b5651d" font-family="sans-serif">Mechanical coupling</text><line x1="-24.96" y1="-6.35" x2="-20.96" y2="-6.35" stroke="#8a94a0" stroke-width="0.4" /><text x="-19.96" y="-5.65" font-size="2" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-26 -27 52 53" role="img" aria-labelledby="exakta-base-lens_side_rear-title exakta-base-lens_side_rear-desc"><title id="exakta-base-lens_side_rear-title">Exakta mount — lens-side rear view (base)</title><desc id="exakta-base-lens_side_rear-desc">Exakta bayonet mount, lens-side rear view. Flange focal distance 44.7 mm, nominal throat 33.8 mm. Profile exakta/base.</desc><metadata>{"mountId":"exakta","profileId":"exakta/base","view":"lens_side_rear","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.025" y1="0" x2="1.025" y2="0" stroke="#8a94a0" stroke-width="0.312" fill="none" /><line x1="0" y1="-1.025" x2="0" y2="1.025" stroke="#8a94a0" stroke-width="0.312" fill="none" /><line x1="0" y1="-20.5" x2="0" y2="-21.73" stroke="#8a94a0" stroke-width="0.312" fill="none" /></g><g data-layer="lens-side-metal"><path d="M0,-20.5 A20.5,20.5 0 1 1 0,20.5 A20.5,20.5 0 1 1 0,-20.5 Z M0,-15.9 A15.9,15.9 0 1 1 0,15.9 A15.9,15.9 0 1 1 0,-15.9 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-20.5 A20.5,20.5 0 1 1 0,20.5 A20.5,20.5 0 1 1 0,-20.5 Z M0,-15.9 A15.9,15.9 0 1 1 0,15.9 A15.9,15.9 0 1 1 0,-15.9 Z" stroke="#6b7a8f" stroke-width="0.312" fill="none" /><path d="M0,-15.9 A15.9,15.9 0 1 1 0,15.9 A15.9,15.9 0 1 1 0,-15.9 Z" stroke="#2f80c4" stroke-width="0.312" fill="none" /></g><g data-layer="lens-side-core-interface"><path d="M0,-18.95 L-1.282,-20.961 L1.282,-20.961 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-18.95 L-1.282,-20.961 L1.282,-20.961 Z" stroke="#e8853a" stroke-width="0.312" fill="none" stroke-dasharray="0.6 1.6" /><path d="M-4.941,-16.162 L-5.672,-18.552 A19.4,19.4 0 0 1 5.672,-18.552 L4.941,-16.162 A16.9,16.9 0 0 0 -4.941,-16.162 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-4.941,-16.162 L-5.672,-18.552 A19.4,19.4 0 0 1 5.672,-18.552 L4.941,-16.162 A16.9,16.9 0 0 0 -4.941,-16.162 Z" stroke="#2a9d8f" stroke-width="0.312" fill="none" /><circle cx="15.502" cy="-8.95" r="0.718" fill="#d1495b" fill-opacity="0.12" /><circle cx="15.502" cy="-8.95" r="0.718" stroke="#d1495b" stroke-width="0.312" fill="none" stroke-dasharray="0.6 1.6" /><path d="M16.467,3.802 L18.903,4.364 A19.4,19.4 0 0 1 13.231,14.188 L11.526,12.36 A16.9,16.9 0 0 0 16.467,3.802 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M16.467,3.802 L18.903,4.364 A19.4,19.4 0 0 1 13.231,14.188 L11.526,12.36 A16.9,16.9 0 0 0 16.467,3.802 Z" stroke="#2a9d8f" stroke-width="0.312" fill="none" /><path d="M-11.526,12.36 L-13.231,14.188 A19.4,19.4 0 0 1 -18.903,4.364 L-16.467,3.802 A16.9,16.9 0 0 0 -11.526,12.36 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-11.526,12.36 L-13.231,14.188 A19.4,19.4 0 0 1 -18.903,4.364 L-16.467,3.802 A16.9,16.9 0 0 0 -11.526,12.36 Z" stroke="#2a9d8f" stroke-width="0.312" fill="none" /></g><g data-layer="lens-side-variant-mechanical"><circle cx="15.556" cy="-15.556" r="0.8" stroke="#b5651d" stroke-width="0.312" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-24.96" y1="-24.35" x2="-20.96" y2="-24.35" stroke="#2f80c4" stroke-width="0.4" /><text x="-19.96" y="-23.65" font-size="2" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-24.96" y1="-21.35" x2="-20.96" y2="-21.35" stroke="#6b7a8f" stroke-width="0.4" /><text x="-19.96" y="-20.65" font-size="2" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-24.96" y1="-18.35" x2="-20.96" y2="-18.35" stroke="#2a9d8f" stroke-width="0.4" /><text x="-19.96" y="-17.65" font-size="2" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-24.96" y1="-15.35" x2="-20.96" y2="-15.35" stroke="#d1495b" stroke-width="0.4" /><text x="-19.96" y="-14.65" font-size="2" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-24.96" y1="-12.35" x2="-20.96" y2="-12.35" stroke="#e8853a" stroke-width="0.4" /><text x="-19.96" y="-11.65" font-size="2" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-24.96" y1="-9.35" x2="-20.96" y2="-9.35" stroke="#b5651d" stroke-width="0.4" /><text x="-19.96" y="-8.65" font-size="2" fill="#b5651d" font-family="sans-serif">Mechanical coupling</text><line x1="-24.96" y1="-6.35" x2="-20.96" y2="-6.35" stroke="#8a94a0" stroke-width="0.4" /><text x="-19.96" y="-5.65" font-size="2" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
 
 **Axial / register schematic** — viewBox `-50 -31 56 58` ([standalone SVG](mounts/exakta-axial.svg))
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -31 56 58" role="img" aria-labelledby="exakta-base-axial_section-title exakta-base-axial_section-desc"><title id="exakta-base-axial_section-title">Exakta mount — axial / register schematic (base)</title><desc id="exakta-base-axial_section-desc">Exakta bayonet mount, axial / register schematic. Flange focal distance 44.7 mm, nominal throat 33.8 mm. Profile exakta/base.</desc><metadata>{"mountId":"exakta","profileId":"exakta/base","view":"axial_section","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-44.7" y1="0" x2="1.2" y2="0" stroke="#8a94a0" stroke-width="0.336" fill="none" /><line x1="0" y1="-21.65" x2="0" y2="21.65" stroke="#8a94a0" stroke-width="0.336" fill="none" /></g><g data-layer="axial-section"><text x="-44.7" y="-23.15" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">sensor film plane</text><line x1="-44.7" y1="-21.65" x2="-44.7" y2="21.65" stroke="#2bb0c4" stroke-width="0.252" fill="none" /><line x1="0" y1="-21.5" x2="0" y2="21.5" stroke="#2bb0c4" stroke-width="0.336" fill="none" stroke-dasharray="4 2" /><text x="0" y="-23" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">flange datum</text><line x1="1.2" y1="-19" x2="1.2" y2="19" stroke="#2bb0c4" stroke-width="0.336" fill="none" stroke-dasharray="4 2" /><text x="1.2" y="-20.5" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">bayonet lug engagement</text></g><g aria-hidden="true"><line x1="-48.88" y1="-28.1" x2="-44.88" y2="-28.1" stroke="#8a94a0" stroke-width="0.406" /><text x="-43.88" y="-27.4" font-size="2" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text><line x1="-48.88" y1="-25.1" x2="-44.88" y2="-25.1" stroke="#2bb0c4" stroke-width="0.406" /><text x="-43.88" y="-24.4" font-size="2" fill="#2bb0c4" font-family="sans-serif">Register plane</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -31 56 58" role="img" aria-labelledby="exakta-base-axial_section-title exakta-base-axial_section-desc"><title id="exakta-base-axial_section-title">Exakta mount — axial / register schematic (base)</title><desc id="exakta-base-axial_section-desc">Exakta bayonet mount, axial / register schematic. Flange focal distance 44.7 mm, nominal throat 33.8 mm. Profile exakta/base.</desc><metadata>{"mountId":"exakta","profileId":"exakta/base","view":"axial_section","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-44.7" y1="0" x2="1.2" y2="0" stroke="#8a94a0" stroke-width="0.336" fill="none" /><line x1="0" y1="-21.65" x2="0" y2="21.65" stroke="#8a94a0" stroke-width="0.336" fill="none" /></g><g data-layer="axial-section"><text x="-44.7" y="-23.15" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">sensor film plane</text><line x1="-44.7" y1="-21.65" x2="-44.7" y2="21.65" stroke="#2bb0c4" stroke-width="0.252" fill="none" /><line x1="0" y1="-21.5" x2="0" y2="21.5" stroke="#2bb0c4" stroke-width="0.336" fill="none" /><text x="0" y="-23" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">flange datum</text><line x1="1.2" y1="-19" x2="1.2" y2="19" stroke="#2bb0c4" stroke-width="0.336" fill="none" /><text x="1.2" y="-20.5" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">bayonet lug engagement</text></g><g aria-hidden="true"><line x1="-48.88" y1="-28.1" x2="-44.88" y2="-28.1" stroke="#8a94a0" stroke-width="0.406" /><text x="-43.88" y="-27.4" font-size="2" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text><line x1="-48.88" y1="-25.1" x2="-44.88" y2="-25.1" stroke="#2bb0c4" stroke-width="0.406" /><text x="-43.88" y="-24.4" font-size="2" fill="#2bb0c4" font-family="sans-serif">Register plane</text></g></svg>
 
 #### Camera-side front-view geometry
 
@@ -18335,7 +18335,7 @@ None — fully electronic.
     },
     "lockAngleDeg": {
       "value": 45,
-      "status": "photo_scaled",
+      "status": "patent",
       "sourceRefs": [
         "exa-1",
         "exa-2",
@@ -18344,7 +18344,7 @@ None — fully electronic.
     },
     "lockRotationDeg": {
       "value": 45,
-      "status": "photo_scaled",
+      "status": "patent",
       "sourceRefs": [
         "exa-1",
         "exa-2",
@@ -18353,7 +18353,7 @@ None — fully electronic.
     },
     "lockRotationDirection": {
       "value": "clockwise",
-      "status": "photo_scaled",
+      "status": "patent",
       "sourceRefs": [
         "exa-1",
         "exa-2",
@@ -18427,7 +18427,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -18436,7 +18436,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -18445,7 +18445,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 360,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -18463,7 +18463,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 21.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -18485,7 +18485,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -18494,7 +18494,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 343,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -18503,7 +18503,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 17,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -18512,7 +18512,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 16.9,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -18521,7 +18521,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 19.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -18530,7 +18530,7 @@ None — fully electronic.
       },
       "depthMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -18547,7 +18547,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 120,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -18556,7 +18556,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 103,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -18565,7 +18565,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 137,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -18574,7 +18574,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 16.9,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -18583,7 +18583,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 19.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -18592,7 +18592,7 @@ None — fully electronic.
       },
       "depthMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -18609,7 +18609,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 240,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -18618,7 +18618,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 223,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -18627,7 +18627,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 257,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -18636,7 +18636,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 16.9,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -18645,7 +18645,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 19.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -18654,7 +18654,7 @@ None — fully electronic.
       },
       "depthMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -18671,7 +18671,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -18707,7 +18707,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 22,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -18729,7 +18729,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 300,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -18765,7 +18765,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 17.9,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -18774,7 +18774,7 @@ None — fully electronic.
       },
       "depthMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -18829,7 +18829,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 15.899999999999999,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -18851,7 +18851,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -18860,7 +18860,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -18869,7 +18869,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 360,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -18878,7 +18878,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 15.899999999999999,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -18887,7 +18887,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 20.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -18909,7 +18909,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -18918,7 +18918,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 343,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -18927,7 +18927,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 17,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -18936,7 +18936,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 16.9,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -18945,7 +18945,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 19.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -18954,7 +18954,7 @@ None — fully electronic.
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -18971,7 +18971,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 120,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -18980,7 +18980,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 103,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -18989,7 +18989,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 137,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -18998,7 +18998,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 16.9,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -19007,7 +19007,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 19.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -19016,7 +19016,7 @@ None — fully electronic.
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -19033,7 +19033,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 240,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -19042,7 +19042,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 223,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -19051,7 +19051,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 257,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -19060,7 +19060,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 16.9,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -19069,7 +19069,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 19.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -19078,7 +19078,7 @@ None — fully electronic.
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -19095,7 +19095,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -19131,7 +19131,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 21,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -19153,7 +19153,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 300,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -19189,7 +19189,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 17.9,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -19198,7 +19198,7 @@ None — fully electronic.
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -19232,7 +19232,7 @@ None — fully electronic.
       },
       "diameterMm": {
         "value": 43,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -19244,7 +19244,7 @@ None — fully electronic.
       "planeId": "bayonet_lug_engagement",
       "zPositionMm": {
         "value": 1.2,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -19253,7 +19253,7 @@ None — fully electronic.
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -19262,7 +19262,7 @@ None — fully electronic.
       },
       "diameterMm": {
         "value": 38,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "exa-1",
           "exa-2",
@@ -19919,15 +19919,15 @@ None — fully electronic.
 
 **Camera-side front view** — viewBox `-31 -32 62 63` ([standalone SVG](mounts/four-thirds-camera-front.svg))
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-31 -32 62 63" role="img" aria-labelledby="four-thirds-base-camera_side_front-title four-thirds-base-camera_side_front-desc"><title id="four-thirds-base-camera_side_front-title">Four Thirds mount — camera-side front view (base)</title><desc id="four-thirds-base-camera_side_front-desc">Four Thirds bayonet mount, camera-side front view. Flange focal distance 38.67 mm, nominal throat 44 mm. Profile four-thirds/base.</desc><metadata>{"mountId":"four-thirds","profileId":"four-thirds/base","view":"camera_side_front","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.25" y1="0" x2="1.25" y2="0" stroke="#8a94a0" stroke-width="0.372" fill="none" /><line x1="0" y1="-1.25" x2="0" y2="1.25" stroke="#8a94a0" stroke-width="0.372" fill="none" /><line x1="0" y1="-25" x2="0" y2="-26.5" stroke="#8a94a0" stroke-width="0.372" fill="none" /></g><g data-layer="camera-side-metal"><path d="M0,-25 A25,25 0 1 1 0,25 A25,25 0 1 1 0,-25 Z M0,-22 A22,22 0 1 1 0,22 A22,22 0 1 1 0,-22 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-25 A25,25 0 1 1 0,25 A25,25 0 1 1 0,-25 Z M0,-22 A22,22 0 1 1 0,22 A22,22 0 1 1 0,-22 Z" stroke="#6b7a8f" stroke-width="0.372" fill="none" stroke-dasharray="4 2" /><path d="M0,-22 A22,22 0 1 1 0,22 A22,22 0 1 1 0,-22 Z" stroke="#2f80c4" stroke-width="0.279" fill="none" /><circle cx="16.263" cy="-16.263" r="0.9" stroke="#7f8c3a" stroke-width="0.372" fill="none" stroke-dasharray="4 2" /><circle cx="16.263" cy="16.263" r="0.9" stroke="#7f8c3a" stroke-width="0.372" fill="none" stroke-dasharray="4 2" /><circle cx="-16.263" cy="16.263" r="0.9" stroke="#7f8c3a" stroke-width="0.372" fill="none" stroke-dasharray="4 2" /><circle cx="-16.263" cy="-16.263" r="0.9" stroke="#7f8c3a" stroke-width="0.372" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-core-interface"><path d="M0,-23 L-1.557,-25.452 L1.557,-25.452 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-23 L-1.557,-25.452 L1.557,-25.452 Z" stroke="#e8853a" stroke-width="0.372" fill="none" stroke-dasharray="0.6 1.6" /><path d="M4.198,-21.596 L4.675,-24.05 A24.5,24.5 0 0 1 18.49,-16.073 L16.604,-14.433 A22,22 0 0 0 4.198,-21.596 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M4.198,-21.596 L4.675,-24.05 A24.5,24.5 0 0 1 18.49,-16.073 L16.604,-14.433 A22,22 0 0 0 4.198,-21.596 Z" stroke="#2a9d8f" stroke-width="0.372" fill="none" stroke-dasharray="4 2" /><path d="M16.604,14.433 L18.49,16.073 A24.5,24.5 0 0 1 4.675,24.05 L4.198,21.596 A22,22 0 0 0 16.604,14.433 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M16.604,14.433 L18.49,16.073 A24.5,24.5 0 0 1 4.675,24.05 L4.198,21.596 A22,22 0 0 0 16.604,14.433 Z" stroke="#2a9d8f" stroke-width="0.372" fill="none" stroke-dasharray="4 2" /><circle cx="-23" cy="0" r="0.875" fill="#d1495b" fill-opacity="0.12" /><circle cx="-23" cy="0" r="0.875" stroke="#d1495b" stroke-width="0.372" fill="none" stroke-dasharray="0.6 1.6" /><path d="M-21.97,-1.151 L-24.466,-1.282 A24.5,24.5 0 0 1 -18.49,-16.073 L-16.604,-14.433 A22,22 0 0 0 -21.97,-1.151 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-21.97,-1.151 L-24.466,-1.282 A24.5,24.5 0 0 1 -18.49,-16.073 L-16.604,-14.433 A22,22 0 0 0 -21.97,-1.151 Z" stroke="#2a9d8f" stroke-width="0.372" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-variant-electrical"><path d="M9.819,15.797 L11.297,18.175 A21.4,21.4 0 0 1 10.092,18.871 L8.772,16.402 A18.6,18.6 0 0 0 9.819,15.797 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M9.819,15.797 L11.297,18.175 A21.4,21.4 0 0 1 10.092,18.871 L8.772,16.402 A18.6,18.6 0 0 0 9.819,15.797 Z" stroke="#8a5cd1" stroke-width="0.372" fill="none" stroke-dasharray="4 2" /><path d="M7.673,16.944 L8.828,19.494 A21.4,21.4 0 0 1 7.543,20.027 L6.556,17.406 A18.6,18.6 0 0 0 7.673,16.944 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M7.673,16.944 L8.828,19.494 A21.4,21.4 0 0 1 7.543,20.027 L6.556,17.406 A18.6,18.6 0 0 0 7.673,16.944 Z" stroke="#8a5cd1" stroke-width="0.372" fill="none" stroke-dasharray="4 2" /><path d="M5.395,17.8 L6.207,20.48 A21.4,21.4 0 0 1 4.864,20.84 L4.228,18.113 A18.6,18.6 0 0 0 5.395,17.8 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M5.395,17.8 L6.207,20.48 A21.4,21.4 0 0 1 4.864,20.84 L4.228,18.113 A18.6,18.6 0 0 0 5.395,17.8 Z" stroke="#8a5cd1" stroke-width="0.372" fill="none" stroke-dasharray="4 2" /><path d="M3.026,18.352 L3.481,21.115 A21.4,21.4 0 0 1 2.102,21.296 L1.827,18.51 A18.6,18.6 0 0 0 3.026,18.352 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M3.026,18.352 L3.481,21.115 A21.4,21.4 0 0 1 2.102,21.296 L1.827,18.51 A18.6,18.6 0 0 0 3.026,18.352 Z" stroke="#8a5cd1" stroke-width="0.372" fill="none" stroke-dasharray="4 2" /><path d="M0.604,18.59 L0.695,21.389 A21.4,21.4 0 0 1 -0.695,21.389 L-0.604,18.59 A18.6,18.6 0 0 0 0.604,18.59 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M0.604,18.59 L0.695,21.389 A21.4,21.4 0 0 1 -0.695,21.389 L-0.604,18.59 A18.6,18.6 0 0 0 0.604,18.59 Z" stroke="#8a5cd1" stroke-width="0.372" fill="none" stroke-dasharray="4 2" /><path d="M-1.827,18.51 L-2.102,21.296 A21.4,21.4 0 0 1 -3.481,21.115 L-3.026,18.352 A18.6,18.6 0 0 0 -1.827,18.51 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-1.827,18.51 L-2.102,21.296 A21.4,21.4 0 0 1 -3.481,21.115 L-3.026,18.352 A18.6,18.6 0 0 0 -1.827,18.51 Z" stroke="#8a5cd1" stroke-width="0.372" fill="none" stroke-dasharray="4 2" /><path d="M-4.228,18.113 L-4.864,20.84 A21.4,21.4 0 0 1 -6.207,20.48 L-5.395,17.8 A18.6,18.6 0 0 0 -4.228,18.113 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-4.228,18.113 L-4.864,20.84 A21.4,21.4 0 0 1 -6.207,20.48 L-5.395,17.8 A18.6,18.6 0 0 0 -4.228,18.113 Z" stroke="#8a5cd1" stroke-width="0.372" fill="none" stroke-dasharray="4 2" /><path d="M-6.556,17.406 L-7.543,20.027 A21.4,21.4 0 0 1 -8.828,19.494 L-7.673,16.944 A18.6,18.6 0 0 0 -6.556,17.406 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-6.556,17.406 L-7.543,20.027 A21.4,21.4 0 0 1 -8.828,19.494 L-7.673,16.944 A18.6,18.6 0 0 0 -6.556,17.406 Z" stroke="#8a5cd1" stroke-width="0.372" fill="none" stroke-dasharray="4 2" /><path d="M-8.772,16.402 L-10.092,18.871 A21.4,21.4 0 0 1 -11.297,18.175 L-9.819,15.797 A18.6,18.6 0 0 0 -8.772,16.402 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-8.772,16.402 L-10.092,18.871 A21.4,21.4 0 0 1 -11.297,18.175 L-9.819,15.797 A18.6,18.6 0 0 0 -8.772,16.402 Z" stroke="#8a5cd1" stroke-width="0.372" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-29.76" y1="-28.85" x2="-25.76" y2="-28.85" stroke="#2f80c4" stroke-width="0.441" /><text x="-24.752" y="-28.144" font-size="2.016" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-29.76" y1="-25.826" x2="-25.76" y2="-25.826" stroke="#6b7a8f" stroke-width="0.441" /><text x="-24.752" y="-25.12" font-size="2.016" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-29.76" y1="-22.802" x2="-25.76" y2="-22.802" stroke="#2a9d8f" stroke-width="0.441" /><text x="-24.752" y="-22.096" font-size="2.016" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-29.76" y1="-19.778" x2="-25.76" y2="-19.778" stroke="#d1495b" stroke-width="0.441" /><text x="-24.752" y="-19.072" font-size="2.016" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-29.76" y1="-16.754" x2="-25.76" y2="-16.754" stroke="#e8853a" stroke-width="0.441" /><text x="-24.752" y="-16.048" font-size="2.016" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-29.76" y1="-13.73" x2="-25.76" y2="-13.73" stroke="#8a5cd1" stroke-width="0.441" /><text x="-24.752" y="-13.024" font-size="2.016" fill="#8a5cd1" font-family="sans-serif">Electrical contact</text><line x1="-29.76" y1="-10.706" x2="-25.76" y2="-10.706" stroke="#7f8c3a" stroke-width="0.441" /><text x="-24.752" y="-10" font-size="2.016" fill="#7f8c3a" font-family="sans-serif">Screws / seals</text><line x1="-29.76" y1="-7.682" x2="-25.76" y2="-7.682" stroke="#8a94a0" stroke-width="0.441" /><text x="-24.752" y="-6.976" font-size="2.016" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-31 -32 62 63" role="img" aria-labelledby="four-thirds-base-camera_side_front-title four-thirds-base-camera_side_front-desc"><title id="four-thirds-base-camera_side_front-title">Four Thirds mount — camera-side front view (base)</title><desc id="four-thirds-base-camera_side_front-desc">Four Thirds bayonet mount, camera-side front view. Flange focal distance 38.67 mm, nominal throat 44 mm. Profile four-thirds/base.</desc><metadata>{"mountId":"four-thirds","profileId":"four-thirds/base","view":"camera_side_front","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.25" y1="0" x2="1.25" y2="0" stroke="#8a94a0" stroke-width="0.372" fill="none" /><line x1="0" y1="-1.25" x2="0" y2="1.25" stroke="#8a94a0" stroke-width="0.372" fill="none" /><line x1="0" y1="-25" x2="0" y2="-26.5" stroke="#8a94a0" stroke-width="0.372" fill="none" /></g><g data-layer="camera-side-metal"><path d="M0,-25 A25,25 0 1 1 0,25 A25,25 0 1 1 0,-25 Z M0,-22 A22,22 0 1 1 0,22 A22,22 0 1 1 0,-22 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-25 A25,25 0 1 1 0,25 A25,25 0 1 1 0,-25 Z M0,-22 A22,22 0 1 1 0,22 A22,22 0 1 1 0,-22 Z" stroke="#6b7a8f" stroke-width="0.372" fill="none" /><path d="M0,-22 A22,22 0 1 1 0,22 A22,22 0 1 1 0,-22 Z" stroke="#2f80c4" stroke-width="0.279" fill="none" /><circle cx="16.263" cy="-16.263" r="0.9" stroke="#7f8c3a" stroke-width="0.372" fill="none" stroke-dasharray="4 2" /><circle cx="16.263" cy="16.263" r="0.9" stroke="#7f8c3a" stroke-width="0.372" fill="none" stroke-dasharray="4 2" /><circle cx="-16.263" cy="16.263" r="0.9" stroke="#7f8c3a" stroke-width="0.372" fill="none" stroke-dasharray="4 2" /><circle cx="-16.263" cy="-16.263" r="0.9" stroke="#7f8c3a" stroke-width="0.372" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-core-interface"><path d="M0,-23 L-1.557,-25.452 L1.557,-25.452 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-23 L-1.557,-25.452 L1.557,-25.452 Z" stroke="#e8853a" stroke-width="0.372" fill="none" stroke-dasharray="0.6 1.6" /><path d="M4.198,-21.596 L4.675,-24.05 A24.5,24.5 0 0 1 18.49,-16.073 L16.604,-14.433 A22,22 0 0 0 4.198,-21.596 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M4.198,-21.596 L4.675,-24.05 A24.5,24.5 0 0 1 18.49,-16.073 L16.604,-14.433 A22,22 0 0 0 4.198,-21.596 Z" stroke="#2a9d8f" stroke-width="0.372" fill="none" /><path d="M16.604,14.433 L18.49,16.073 A24.5,24.5 0 0 1 4.675,24.05 L4.198,21.596 A22,22 0 0 0 16.604,14.433 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M16.604,14.433 L18.49,16.073 A24.5,24.5 0 0 1 4.675,24.05 L4.198,21.596 A22,22 0 0 0 16.604,14.433 Z" stroke="#2a9d8f" stroke-width="0.372" fill="none" /><circle cx="-23" cy="0" r="0.875" fill="#d1495b" fill-opacity="0.12" /><circle cx="-23" cy="0" r="0.875" stroke="#d1495b" stroke-width="0.372" fill="none" stroke-dasharray="0.6 1.6" /><path d="M-21.97,-1.151 L-24.466,-1.282 A24.5,24.5 0 0 1 -18.49,-16.073 L-16.604,-14.433 A22,22 0 0 0 -21.97,-1.151 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-21.97,-1.151 L-24.466,-1.282 A24.5,24.5 0 0 1 -18.49,-16.073 L-16.604,-14.433 A22,22 0 0 0 -21.97,-1.151 Z" stroke="#2a9d8f" stroke-width="0.372" fill="none" /></g><g data-layer="camera-side-variant-electrical"><path d="M9.819,15.797 L11.297,18.175 A21.4,21.4 0 0 1 10.092,18.871 L8.772,16.402 A18.6,18.6 0 0 0 9.819,15.797 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M9.819,15.797 L11.297,18.175 A21.4,21.4 0 0 1 10.092,18.871 L8.772,16.402 A18.6,18.6 0 0 0 9.819,15.797 Z" stroke="#8a5cd1" stroke-width="0.372" fill="none" /><path d="M7.673,16.944 L8.828,19.494 A21.4,21.4 0 0 1 7.543,20.027 L6.556,17.406 A18.6,18.6 0 0 0 7.673,16.944 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M7.673,16.944 L8.828,19.494 A21.4,21.4 0 0 1 7.543,20.027 L6.556,17.406 A18.6,18.6 0 0 0 7.673,16.944 Z" stroke="#8a5cd1" stroke-width="0.372" fill="none" /><path d="M5.395,17.8 L6.207,20.48 A21.4,21.4 0 0 1 4.864,20.84 L4.228,18.113 A18.6,18.6 0 0 0 5.395,17.8 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M5.395,17.8 L6.207,20.48 A21.4,21.4 0 0 1 4.864,20.84 L4.228,18.113 A18.6,18.6 0 0 0 5.395,17.8 Z" stroke="#8a5cd1" stroke-width="0.372" fill="none" /><path d="M3.026,18.352 L3.481,21.115 A21.4,21.4 0 0 1 2.102,21.296 L1.827,18.51 A18.6,18.6 0 0 0 3.026,18.352 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M3.026,18.352 L3.481,21.115 A21.4,21.4 0 0 1 2.102,21.296 L1.827,18.51 A18.6,18.6 0 0 0 3.026,18.352 Z" stroke="#8a5cd1" stroke-width="0.372" fill="none" /><path d="M0.604,18.59 L0.695,21.389 A21.4,21.4 0 0 1 -0.695,21.389 L-0.604,18.59 A18.6,18.6 0 0 0 0.604,18.59 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M0.604,18.59 L0.695,21.389 A21.4,21.4 0 0 1 -0.695,21.389 L-0.604,18.59 A18.6,18.6 0 0 0 0.604,18.59 Z" stroke="#8a5cd1" stroke-width="0.372" fill="none" /><path d="M-1.827,18.51 L-2.102,21.296 A21.4,21.4 0 0 1 -3.481,21.115 L-3.026,18.352 A18.6,18.6 0 0 0 -1.827,18.51 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-1.827,18.51 L-2.102,21.296 A21.4,21.4 0 0 1 -3.481,21.115 L-3.026,18.352 A18.6,18.6 0 0 0 -1.827,18.51 Z" stroke="#8a5cd1" stroke-width="0.372" fill="none" /><path d="M-4.228,18.113 L-4.864,20.84 A21.4,21.4 0 0 1 -6.207,20.48 L-5.395,17.8 A18.6,18.6 0 0 0 -4.228,18.113 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-4.228,18.113 L-4.864,20.84 A21.4,21.4 0 0 1 -6.207,20.48 L-5.395,17.8 A18.6,18.6 0 0 0 -4.228,18.113 Z" stroke="#8a5cd1" stroke-width="0.372" fill="none" /><path d="M-6.556,17.406 L-7.543,20.027 A21.4,21.4 0 0 1 -8.828,19.494 L-7.673,16.944 A18.6,18.6 0 0 0 -6.556,17.406 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-6.556,17.406 L-7.543,20.027 A21.4,21.4 0 0 1 -8.828,19.494 L-7.673,16.944 A18.6,18.6 0 0 0 -6.556,17.406 Z" stroke="#8a5cd1" stroke-width="0.372" fill="none" /><path d="M-8.772,16.402 L-10.092,18.871 A21.4,21.4 0 0 1 -11.297,18.175 L-9.819,15.797 A18.6,18.6 0 0 0 -8.772,16.402 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-8.772,16.402 L-10.092,18.871 A21.4,21.4 0 0 1 -11.297,18.175 L-9.819,15.797 A18.6,18.6 0 0 0 -8.772,16.402 Z" stroke="#8a5cd1" stroke-width="0.372" fill="none" /></g><g aria-hidden="true"><line x1="-29.76" y1="-28.85" x2="-25.76" y2="-28.85" stroke="#2f80c4" stroke-width="0.441" /><text x="-24.752" y="-28.144" font-size="2.016" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-29.76" y1="-25.826" x2="-25.76" y2="-25.826" stroke="#6b7a8f" stroke-width="0.441" /><text x="-24.752" y="-25.12" font-size="2.016" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-29.76" y1="-22.802" x2="-25.76" y2="-22.802" stroke="#2a9d8f" stroke-width="0.441" /><text x="-24.752" y="-22.096" font-size="2.016" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-29.76" y1="-19.778" x2="-25.76" y2="-19.778" stroke="#d1495b" stroke-width="0.441" /><text x="-24.752" y="-19.072" font-size="2.016" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-29.76" y1="-16.754" x2="-25.76" y2="-16.754" stroke="#e8853a" stroke-width="0.441" /><text x="-24.752" y="-16.048" font-size="2.016" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-29.76" y1="-13.73" x2="-25.76" y2="-13.73" stroke="#8a5cd1" stroke-width="0.441" /><text x="-24.752" y="-13.024" font-size="2.016" fill="#8a5cd1" font-family="sans-serif">Electrical contact</text><line x1="-29.76" y1="-10.706" x2="-25.76" y2="-10.706" stroke="#7f8c3a" stroke-width="0.441" /><text x="-24.752" y="-10" font-size="2.016" fill="#7f8c3a" font-family="sans-serif">Screws / seals</text><line x1="-29.76" y1="-7.682" x2="-25.76" y2="-7.682" stroke="#8a94a0" stroke-width="0.441" /><text x="-24.752" y="-6.976" font-size="2.016" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
 
 **Lens-side rear view** — viewBox `-30 -31 60 61` ([standalone SVG](mounts/four-thirds-lens-rear.svg))
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-30 -31 60 61" role="img" aria-labelledby="four-thirds-base-lens_side_rear-title four-thirds-base-lens_side_rear-desc"><title id="four-thirds-base-lens_side_rear-title">Four Thirds mount — lens-side rear view (base)</title><desc id="four-thirds-base-lens_side_rear-desc">Four Thirds bayonet mount, lens-side rear view. Flange focal distance 38.67 mm, nominal throat 44 mm. Profile four-thirds/base.</desc><metadata>{"mountId":"four-thirds","profileId":"four-thirds/base","view":"lens_side_rear","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.2" y1="0" x2="1.2" y2="0" stroke="#8a94a0" stroke-width="0.36" fill="none" /><line x1="0" y1="-1.2" x2="0" y2="1.2" stroke="#8a94a0" stroke-width="0.36" fill="none" /><line x1="0" y1="-24" x2="0" y2="-25.44" stroke="#8a94a0" stroke-width="0.36" fill="none" /></g><g data-layer="lens-side-metal"><path d="M0,-24 A24,24 0 1 1 0,24 A24,24 0 1 1 0,-24 Z M0,-21 A21,21 0 1 1 0,21 A21,21 0 1 1 0,-21 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-24 A24,24 0 1 1 0,24 A24,24 0 1 1 0,-24 Z M0,-21 A21,21 0 1 1 0,21 A21,21 0 1 1 0,-21 Z" stroke="#6b7a8f" stroke-width="0.36" fill="none" stroke-dasharray="4 2" /><path d="M0,-21 A21,21 0 1 1 0,21 A21,21 0 1 1 0,-21 Z" stroke="#2f80c4" stroke-width="0.36" fill="none" stroke-dasharray="4 2" /></g><g data-layer="lens-side-core-interface"><path d="M0,-22.1 L-1.496,-24.454 L1.496,-24.454 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-22.1 L-1.496,-24.454 L1.496,-24.454 Z" stroke="#e8853a" stroke-width="0.36" fill="none" stroke-dasharray="0.6 1.6" /><path d="M16.604,-14.433 L18.49,-16.073 A24.5,24.5 0 0 1 24.466,-1.282 L21.97,-1.151 A22,22 0 0 0 16.604,-14.433 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M16.604,-14.433 L18.49,-16.073 A24.5,24.5 0 0 1 24.466,-1.282 L21.97,-1.151 A22,22 0 0 0 16.604,-14.433 Z" stroke="#2a9d8f" stroke-width="0.36" fill="none" stroke-dasharray="4 2" /><circle cx="23" cy="0" r="0.84" fill="#d1495b" fill-opacity="0.12" /><circle cx="23" cy="0" r="0.84" stroke="#d1495b" stroke-width="0.36" fill="none" stroke-dasharray="0.6 1.6" /><path d="M-4.198,21.596 L-4.675,24.05 A24.5,24.5 0 0 1 -18.49,16.073 L-16.604,14.433 A22,22 0 0 0 -4.198,21.596 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-4.198,21.596 L-4.675,24.05 A24.5,24.5 0 0 1 -18.49,16.073 L-16.604,14.433 A22,22 0 0 0 -4.198,21.596 Z" stroke="#2a9d8f" stroke-width="0.36" fill="none" stroke-dasharray="4 2" /><path d="M-16.604,-14.433 L-18.49,-16.073 A24.5,24.5 0 0 1 -4.675,-24.05 L-4.198,-21.596 A22,22 0 0 0 -16.604,-14.433 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-16.604,-14.433 L-18.49,-16.073 A24.5,24.5 0 0 1 -4.675,-24.05 L-4.198,-21.596 A22,22 0 0 0 -16.604,-14.433 Z" stroke="#2a9d8f" stroke-width="0.36" fill="none" stroke-dasharray="4 2" /></g><g data-layer="lens-side-variant-electrical"><path d="M-8.772,16.402 L-10.092,18.871 A21.4,21.4 0 0 1 -11.297,18.175 L-9.819,15.797 A18.6,18.6 0 0 0 -8.772,16.402 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-8.772,16.402 L-10.092,18.871 A21.4,21.4 0 0 1 -11.297,18.175 L-9.819,15.797 A18.6,18.6 0 0 0 -8.772,16.402 Z" stroke="#8a5cd1" stroke-width="0.36" fill="none" stroke-dasharray="4 2" /><path d="M-6.556,17.406 L-7.543,20.027 A21.4,21.4 0 0 1 -8.828,19.494 L-7.673,16.944 A18.6,18.6 0 0 0 -6.556,17.406 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-6.556,17.406 L-7.543,20.027 A21.4,21.4 0 0 1 -8.828,19.494 L-7.673,16.944 A18.6,18.6 0 0 0 -6.556,17.406 Z" stroke="#8a5cd1" stroke-width="0.36" fill="none" stroke-dasharray="4 2" /><path d="M-4.228,18.113 L-4.864,20.84 A21.4,21.4 0 0 1 -6.207,20.48 L-5.395,17.8 A18.6,18.6 0 0 0 -4.228,18.113 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-4.228,18.113 L-4.864,20.84 A21.4,21.4 0 0 1 -6.207,20.48 L-5.395,17.8 A18.6,18.6 0 0 0 -4.228,18.113 Z" stroke="#8a5cd1" stroke-width="0.36" fill="none" stroke-dasharray="4 2" /><path d="M-1.827,18.51 L-2.102,21.296 A21.4,21.4 0 0 1 -3.481,21.115 L-3.026,18.352 A18.6,18.6 0 0 0 -1.827,18.51 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-1.827,18.51 L-2.102,21.296 A21.4,21.4 0 0 1 -3.481,21.115 L-3.026,18.352 A18.6,18.6 0 0 0 -1.827,18.51 Z" stroke="#8a5cd1" stroke-width="0.36" fill="none" stroke-dasharray="4 2" /><path d="M0.604,18.59 L0.695,21.389 A21.4,21.4 0 0 1 -0.695,21.389 L-0.604,18.59 A18.6,18.6 0 0 0 0.604,18.59 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M0.604,18.59 L0.695,21.389 A21.4,21.4 0 0 1 -0.695,21.389 L-0.604,18.59 A18.6,18.6 0 0 0 0.604,18.59 Z" stroke="#8a5cd1" stroke-width="0.36" fill="none" stroke-dasharray="4 2" /><path d="M3.026,18.352 L3.481,21.115 A21.4,21.4 0 0 1 2.102,21.296 L1.827,18.51 A18.6,18.6 0 0 0 3.026,18.352 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M3.026,18.352 L3.481,21.115 A21.4,21.4 0 0 1 2.102,21.296 L1.827,18.51 A18.6,18.6 0 0 0 3.026,18.352 Z" stroke="#8a5cd1" stroke-width="0.36" fill="none" stroke-dasharray="4 2" /><path d="M5.395,17.8 L6.207,20.48 A21.4,21.4 0 0 1 4.864,20.84 L4.228,18.113 A18.6,18.6 0 0 0 5.395,17.8 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M5.395,17.8 L6.207,20.48 A21.4,21.4 0 0 1 4.864,20.84 L4.228,18.113 A18.6,18.6 0 0 0 5.395,17.8 Z" stroke="#8a5cd1" stroke-width="0.36" fill="none" stroke-dasharray="4 2" /><path d="M7.673,16.944 L8.828,19.494 A21.4,21.4 0 0 1 7.543,20.027 L6.556,17.406 A18.6,18.6 0 0 0 7.673,16.944 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M7.673,16.944 L8.828,19.494 A21.4,21.4 0 0 1 7.543,20.027 L6.556,17.406 A18.6,18.6 0 0 0 7.673,16.944 Z" stroke="#8a5cd1" stroke-width="0.36" fill="none" stroke-dasharray="4 2" /><path d="M9.819,15.797 L11.297,18.175 A21.4,21.4 0 0 1 10.092,18.871 L8.772,16.402 A18.6,18.6 0 0 0 9.819,15.797 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M9.819,15.797 L11.297,18.175 A21.4,21.4 0 0 1 10.092,18.871 L8.772,16.402 A18.6,18.6 0 0 0 9.819,15.797 Z" stroke="#8a5cd1" stroke-width="0.36" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-28.8" y1="-27.95" x2="-24.8" y2="-27.95" stroke="#2f80c4" stroke-width="0.427" /><text x="-23.8" y="-27.25" font-size="2" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-28.8" y1="-24.95" x2="-24.8" y2="-24.95" stroke="#6b7a8f" stroke-width="0.427" /><text x="-23.8" y="-24.25" font-size="2" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-28.8" y1="-21.95" x2="-24.8" y2="-21.95" stroke="#2a9d8f" stroke-width="0.427" /><text x="-23.8" y="-21.25" font-size="2" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-28.8" y1="-18.95" x2="-24.8" y2="-18.95" stroke="#d1495b" stroke-width="0.427" /><text x="-23.8" y="-18.25" font-size="2" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-28.8" y1="-15.95" x2="-24.8" y2="-15.95" stroke="#e8853a" stroke-width="0.427" /><text x="-23.8" y="-15.25" font-size="2" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-28.8" y1="-12.95" x2="-24.8" y2="-12.95" stroke="#8a5cd1" stroke-width="0.427" /><text x="-23.8" y="-12.25" font-size="2" fill="#8a5cd1" font-family="sans-serif">Electrical contact</text><line x1="-28.8" y1="-9.95" x2="-24.8" y2="-9.95" stroke="#8a94a0" stroke-width="0.427" /><text x="-23.8" y="-9.25" font-size="2" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-30 -31 60 61" role="img" aria-labelledby="four-thirds-base-lens_side_rear-title four-thirds-base-lens_side_rear-desc"><title id="four-thirds-base-lens_side_rear-title">Four Thirds mount — lens-side rear view (base)</title><desc id="four-thirds-base-lens_side_rear-desc">Four Thirds bayonet mount, lens-side rear view. Flange focal distance 38.67 mm, nominal throat 44 mm. Profile four-thirds/base.</desc><metadata>{"mountId":"four-thirds","profileId":"four-thirds/base","view":"lens_side_rear","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.2" y1="0" x2="1.2" y2="0" stroke="#8a94a0" stroke-width="0.36" fill="none" /><line x1="0" y1="-1.2" x2="0" y2="1.2" stroke="#8a94a0" stroke-width="0.36" fill="none" /><line x1="0" y1="-24" x2="0" y2="-25.44" stroke="#8a94a0" stroke-width="0.36" fill="none" /></g><g data-layer="lens-side-metal"><path d="M0,-24 A24,24 0 1 1 0,24 A24,24 0 1 1 0,-24 Z M0,-21 A21,21 0 1 1 0,21 A21,21 0 1 1 0,-21 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-24 A24,24 0 1 1 0,24 A24,24 0 1 1 0,-24 Z M0,-21 A21,21 0 1 1 0,21 A21,21 0 1 1 0,-21 Z" stroke="#6b7a8f" stroke-width="0.36" fill="none" /><path d="M0,-21 A21,21 0 1 1 0,21 A21,21 0 1 1 0,-21 Z" stroke="#2f80c4" stroke-width="0.36" fill="none" /></g><g data-layer="lens-side-core-interface"><path d="M0,-22.1 L-1.496,-24.454 L1.496,-24.454 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-22.1 L-1.496,-24.454 L1.496,-24.454 Z" stroke="#e8853a" stroke-width="0.36" fill="none" stroke-dasharray="0.6 1.6" /><path d="M16.604,-14.433 L18.49,-16.073 A24.5,24.5 0 0 1 24.466,-1.282 L21.97,-1.151 A22,22 0 0 0 16.604,-14.433 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M16.604,-14.433 L18.49,-16.073 A24.5,24.5 0 0 1 24.466,-1.282 L21.97,-1.151 A22,22 0 0 0 16.604,-14.433 Z" stroke="#2a9d8f" stroke-width="0.36" fill="none" /><circle cx="23" cy="0" r="0.84" fill="#d1495b" fill-opacity="0.12" /><circle cx="23" cy="0" r="0.84" stroke="#d1495b" stroke-width="0.36" fill="none" stroke-dasharray="0.6 1.6" /><path d="M-4.198,21.596 L-4.675,24.05 A24.5,24.5 0 0 1 -18.49,16.073 L-16.604,14.433 A22,22 0 0 0 -4.198,21.596 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-4.198,21.596 L-4.675,24.05 A24.5,24.5 0 0 1 -18.49,16.073 L-16.604,14.433 A22,22 0 0 0 -4.198,21.596 Z" stroke="#2a9d8f" stroke-width="0.36" fill="none" /><path d="M-16.604,-14.433 L-18.49,-16.073 A24.5,24.5 0 0 1 -4.675,-24.05 L-4.198,-21.596 A22,22 0 0 0 -16.604,-14.433 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-16.604,-14.433 L-18.49,-16.073 A24.5,24.5 0 0 1 -4.675,-24.05 L-4.198,-21.596 A22,22 0 0 0 -16.604,-14.433 Z" stroke="#2a9d8f" stroke-width="0.36" fill="none" /></g><g data-layer="lens-side-variant-electrical"><path d="M-8.772,16.402 L-10.092,18.871 A21.4,21.4 0 0 1 -11.297,18.175 L-9.819,15.797 A18.6,18.6 0 0 0 -8.772,16.402 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-8.772,16.402 L-10.092,18.871 A21.4,21.4 0 0 1 -11.297,18.175 L-9.819,15.797 A18.6,18.6 0 0 0 -8.772,16.402 Z" stroke="#8a5cd1" stroke-width="0.36" fill="none" /><path d="M-6.556,17.406 L-7.543,20.027 A21.4,21.4 0 0 1 -8.828,19.494 L-7.673,16.944 A18.6,18.6 0 0 0 -6.556,17.406 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-6.556,17.406 L-7.543,20.027 A21.4,21.4 0 0 1 -8.828,19.494 L-7.673,16.944 A18.6,18.6 0 0 0 -6.556,17.406 Z" stroke="#8a5cd1" stroke-width="0.36" fill="none" /><path d="M-4.228,18.113 L-4.864,20.84 A21.4,21.4 0 0 1 -6.207,20.48 L-5.395,17.8 A18.6,18.6 0 0 0 -4.228,18.113 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-4.228,18.113 L-4.864,20.84 A21.4,21.4 0 0 1 -6.207,20.48 L-5.395,17.8 A18.6,18.6 0 0 0 -4.228,18.113 Z" stroke="#8a5cd1" stroke-width="0.36" fill="none" /><path d="M-1.827,18.51 L-2.102,21.296 A21.4,21.4 0 0 1 -3.481,21.115 L-3.026,18.352 A18.6,18.6 0 0 0 -1.827,18.51 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-1.827,18.51 L-2.102,21.296 A21.4,21.4 0 0 1 -3.481,21.115 L-3.026,18.352 A18.6,18.6 0 0 0 -1.827,18.51 Z" stroke="#8a5cd1" stroke-width="0.36" fill="none" /><path d="M0.604,18.59 L0.695,21.389 A21.4,21.4 0 0 1 -0.695,21.389 L-0.604,18.59 A18.6,18.6 0 0 0 0.604,18.59 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M0.604,18.59 L0.695,21.389 A21.4,21.4 0 0 1 -0.695,21.389 L-0.604,18.59 A18.6,18.6 0 0 0 0.604,18.59 Z" stroke="#8a5cd1" stroke-width="0.36" fill="none" /><path d="M3.026,18.352 L3.481,21.115 A21.4,21.4 0 0 1 2.102,21.296 L1.827,18.51 A18.6,18.6 0 0 0 3.026,18.352 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M3.026,18.352 L3.481,21.115 A21.4,21.4 0 0 1 2.102,21.296 L1.827,18.51 A18.6,18.6 0 0 0 3.026,18.352 Z" stroke="#8a5cd1" stroke-width="0.36" fill="none" /><path d="M5.395,17.8 L6.207,20.48 A21.4,21.4 0 0 1 4.864,20.84 L4.228,18.113 A18.6,18.6 0 0 0 5.395,17.8 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M5.395,17.8 L6.207,20.48 A21.4,21.4 0 0 1 4.864,20.84 L4.228,18.113 A18.6,18.6 0 0 0 5.395,17.8 Z" stroke="#8a5cd1" stroke-width="0.36" fill="none" /><path d="M7.673,16.944 L8.828,19.494 A21.4,21.4 0 0 1 7.543,20.027 L6.556,17.406 A18.6,18.6 0 0 0 7.673,16.944 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M7.673,16.944 L8.828,19.494 A21.4,21.4 0 0 1 7.543,20.027 L6.556,17.406 A18.6,18.6 0 0 0 7.673,16.944 Z" stroke="#8a5cd1" stroke-width="0.36" fill="none" /><path d="M9.819,15.797 L11.297,18.175 A21.4,21.4 0 0 1 10.092,18.871 L8.772,16.402 A18.6,18.6 0 0 0 9.819,15.797 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M9.819,15.797 L11.297,18.175 A21.4,21.4 0 0 1 10.092,18.871 L8.772,16.402 A18.6,18.6 0 0 0 9.819,15.797 Z" stroke="#8a5cd1" stroke-width="0.36" fill="none" /></g><g aria-hidden="true"><line x1="-28.8" y1="-27.95" x2="-24.8" y2="-27.95" stroke="#2f80c4" stroke-width="0.427" /><text x="-23.8" y="-27.25" font-size="2" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-28.8" y1="-24.95" x2="-24.8" y2="-24.95" stroke="#6b7a8f" stroke-width="0.427" /><text x="-23.8" y="-24.25" font-size="2" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-28.8" y1="-21.95" x2="-24.8" y2="-21.95" stroke="#2a9d8f" stroke-width="0.427" /><text x="-23.8" y="-21.25" font-size="2" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-28.8" y1="-18.95" x2="-24.8" y2="-18.95" stroke="#d1495b" stroke-width="0.427" /><text x="-23.8" y="-18.25" font-size="2" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-28.8" y1="-15.95" x2="-24.8" y2="-15.95" stroke="#e8853a" stroke-width="0.427" /><text x="-23.8" y="-15.25" font-size="2" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-28.8" y1="-12.95" x2="-24.8" y2="-12.95" stroke="#8a5cd1" stroke-width="0.427" /><text x="-23.8" y="-12.25" font-size="2" fill="#8a5cd1" font-family="sans-serif">Electrical contact</text><line x1="-28.8" y1="-9.95" x2="-24.8" y2="-9.95" stroke="#8a94a0" stroke-width="0.427" /><text x="-23.8" y="-9.25" font-size="2" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
 
 **Axial / register schematic** — viewBox `-45 -35 52 66` ([standalone SVG](mounts/four-thirds-axial.svg))
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-45 -35 52 66" role="img" aria-labelledby="four-thirds-base-axial_section-title four-thirds-base-axial_section-desc"><title id="four-thirds-base-axial_section-title">Four Thirds mount — axial / register schematic (base)</title><desc id="four-thirds-base-axial_section-desc">Four Thirds bayonet mount, axial / register schematic. Flange focal distance 38.67 mm, nominal throat 44 mm. Profile four-thirds/base.</desc><metadata>{"mountId":"four-thirds","profileId":"four-thirds/base","view":"axial_section","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-38.67" y1="0" x2="1.2" y2="0" stroke="#8a94a0" stroke-width="0.312" fill="none" /><line x1="0" y1="-25" x2="0" y2="25" stroke="#8a94a0" stroke-width="0.312" fill="none" /></g><g data-layer="axial-section"><text x="-38.67" y="-12.32" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">sensor film plane</text><line x1="-38.67" y1="-10.82" x2="-38.67" y2="10.82" stroke="#2bb0c4" stroke-width="0.234" fill="none" /><line x1="0" y1="-25" x2="0" y2="25" stroke="#2bb0c4" stroke-width="0.312" fill="none" stroke-dasharray="4 2" /><text x="0" y="-26.5" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">flange datum</text><line x1="0.5" y1="-20" x2="0.5" y2="20" stroke="#2bb0c4" stroke-width="0.312" fill="none" stroke-dasharray="4 2" /><text x="0.5" y="-21.5" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">electrical contact plane</text><line x1="1.2" y1="-23" x2="1.2" y2="23" stroke="#2bb0c4" stroke-width="0.312" fill="none" stroke-dasharray="4 2" /><text x="1.2" y="-24.5" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">bayonet lug engagement</text></g><g aria-hidden="true"><line x1="-43.96" y1="-31.7" x2="-39.96" y2="-31.7" stroke="#8a94a0" stroke-width="0.462" /><text x="-38.904" y="-30.961" font-size="2.112" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text><line x1="-43.96" y1="-28.532" x2="-39.96" y2="-28.532" stroke="#2bb0c4" stroke-width="0.462" /><text x="-38.904" y="-27.793" font-size="2.112" fill="#2bb0c4" font-family="sans-serif">Register plane</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-45 -35 52 66" role="img" aria-labelledby="four-thirds-base-axial_section-title four-thirds-base-axial_section-desc"><title id="four-thirds-base-axial_section-title">Four Thirds mount — axial / register schematic (base)</title><desc id="four-thirds-base-axial_section-desc">Four Thirds bayonet mount, axial / register schematic. Flange focal distance 38.67 mm, nominal throat 44 mm. Profile four-thirds/base.</desc><metadata>{"mountId":"four-thirds","profileId":"four-thirds/base","view":"axial_section","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-38.67" y1="0" x2="1.2" y2="0" stroke="#8a94a0" stroke-width="0.312" fill="none" /><line x1="0" y1="-25" x2="0" y2="25" stroke="#8a94a0" stroke-width="0.312" fill="none" /></g><g data-layer="axial-section"><text x="-38.67" y="-12.32" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">sensor film plane</text><line x1="-38.67" y1="-10.82" x2="-38.67" y2="10.82" stroke="#2bb0c4" stroke-width="0.234" fill="none" /><line x1="0" y1="-25" x2="0" y2="25" stroke="#2bb0c4" stroke-width="0.312" fill="none" /><text x="0" y="-26.5" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">flange datum</text><line x1="0.5" y1="-20" x2="0.5" y2="20" stroke="#2bb0c4" stroke-width="0.312" fill="none" /><text x="0.5" y="-21.5" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">electrical contact plane</text><line x1="1.2" y1="-23" x2="1.2" y2="23" stroke="#2bb0c4" stroke-width="0.312" fill="none" /><text x="1.2" y="-24.5" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">bayonet lug engagement</text></g><g aria-hidden="true"><line x1="-43.96" y1="-31.7" x2="-39.96" y2="-31.7" stroke="#8a94a0" stroke-width="0.462" /><text x="-38.904" y="-30.961" font-size="2.112" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text><line x1="-43.96" y1="-28.532" x2="-39.96" y2="-28.532" stroke="#2bb0c4" stroke-width="0.462" /><text x="-38.904" y="-27.793" font-size="2.112" fill="#2bb0c4" font-family="sans-serif">Register plane</text></g></svg>
 
 #### Camera-side front-view geometry
 
@@ -20202,7 +20202,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -20211,7 +20211,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -20220,7 +20220,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 360,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -20238,7 +20238,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 25,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -20260,7 +20260,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 30,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -20269,7 +20269,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 11,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -20278,7 +20278,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 49,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -20287,7 +20287,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 22,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -20296,7 +20296,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 24.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -20305,7 +20305,7 @@ None — fully electronic.
       },
       "depthMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -20322,7 +20322,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 150,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -20331,7 +20331,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 131,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -20340,7 +20340,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 169,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -20349,7 +20349,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 22,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -20358,7 +20358,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 24.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -20367,7 +20367,7 @@ None — fully electronic.
       },
       "depthMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -20384,7 +20384,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 292,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -20393,7 +20393,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 273,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -20402,7 +20402,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 311,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -20411,7 +20411,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 22,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -20420,7 +20420,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 24.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -20429,7 +20429,7 @@ None — fully electronic.
       },
       "depthMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -20446,7 +20446,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -20482,7 +20482,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 25.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -20504,7 +20504,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 270,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -20540,7 +20540,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 23,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -20549,7 +20549,7 @@ None — fully electronic.
       },
       "depthMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -20604,7 +20604,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 21,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -20626,7 +20626,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -20635,7 +20635,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -20644,7 +20644,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 360,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -20653,7 +20653,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 21,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -20662,7 +20662,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 24,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -20684,7 +20684,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 30,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -20693,7 +20693,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 11,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -20702,7 +20702,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 49,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -20711,7 +20711,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 22,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -20720,7 +20720,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 24.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -20729,7 +20729,7 @@ None — fully electronic.
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -20746,7 +20746,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 150,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -20755,7 +20755,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 131,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -20764,7 +20764,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 169,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -20773,7 +20773,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 22,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -20782,7 +20782,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 24.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -20791,7 +20791,7 @@ None — fully electronic.
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -20808,7 +20808,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 292,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -20817,7 +20817,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 273,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -20826,7 +20826,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 311,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -20835,7 +20835,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 22,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -20844,7 +20844,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 24.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -20853,7 +20853,7 @@ None — fully electronic.
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -20870,7 +20870,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -20906,7 +20906,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 24.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -20928,7 +20928,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 270,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -20964,7 +20964,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 23,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -20973,7 +20973,7 @@ None — fully electronic.
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21007,7 +21007,7 @@ None — fully electronic.
       },
       "diameterMm": {
         "value": 50,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21019,7 +21019,7 @@ None — fully electronic.
       "planeId": "bayonet_lug_engagement",
       "zPositionMm": {
         "value": 1.2,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21028,7 +21028,7 @@ None — fully electronic.
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21037,7 +21037,7 @@ None — fully electronic.
       },
       "diameterMm": {
         "value": 46,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21049,7 +21049,7 @@ None — fully electronic.
       "planeId": "electrical_contact_plane",
       "zPositionMm": {
         "value": 0.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21058,7 +21058,7 @@ None — fully electronic.
       },
       "thicknessMm": {
         "value": 0.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21067,7 +21067,7 @@ None — fully electronic.
       },
       "diameterMm": {
         "value": 40,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21113,7 +21113,7 @@ None — fully electronic.
       "profileId": "four-thirds/base",
       "centerAngleDeg": {
         "value": 150,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21122,7 +21122,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 20,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21131,7 +21131,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21140,7 +21140,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21150,7 +21150,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21165,7 +21165,7 @@ None — fully electronic.
       "profileId": "four-thirds/base",
       "centerAngleDeg": {
         "value": 157.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21174,7 +21174,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 20,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21183,7 +21183,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21192,7 +21192,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21202,7 +21202,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21217,7 +21217,7 @@ None — fully electronic.
       "profileId": "four-thirds/base",
       "centerAngleDeg": {
         "value": 165,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21226,7 +21226,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 20,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21235,7 +21235,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21244,7 +21244,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21254,7 +21254,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21269,7 +21269,7 @@ None — fully electronic.
       "profileId": "four-thirds/base",
       "centerAngleDeg": {
         "value": 172.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21278,7 +21278,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 20,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21287,7 +21287,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21296,7 +21296,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21306,7 +21306,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21321,7 +21321,7 @@ None — fully electronic.
       "profileId": "four-thirds/base",
       "centerAngleDeg": {
         "value": 180,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21330,7 +21330,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 20,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21339,7 +21339,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21348,7 +21348,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21358,7 +21358,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21373,7 +21373,7 @@ None — fully electronic.
       "profileId": "four-thirds/base",
       "centerAngleDeg": {
         "value": 187.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21382,7 +21382,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 20,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21391,7 +21391,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21400,7 +21400,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21410,7 +21410,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21425,7 +21425,7 @@ None — fully electronic.
       "profileId": "four-thirds/base",
       "centerAngleDeg": {
         "value": 195,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21434,7 +21434,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 20,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21443,7 +21443,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21452,7 +21452,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21462,7 +21462,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21477,7 +21477,7 @@ None — fully electronic.
       "profileId": "four-thirds/base",
       "centerAngleDeg": {
         "value": 202.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21486,7 +21486,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 20,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21495,7 +21495,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21504,7 +21504,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21514,7 +21514,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21529,7 +21529,7 @@ None — fully electronic.
       "profileId": "four-thirds/base",
       "centerAngleDeg": {
         "value": 210,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21538,7 +21538,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 20,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21547,7 +21547,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21556,7 +21556,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21566,7 +21566,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21581,7 +21581,7 @@ None — fully electronic.
       "profileId": "four-thirds/base",
       "centerAngleDeg": {
         "value": 150,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21590,7 +21590,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 20,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21599,7 +21599,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21608,7 +21608,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21618,7 +21618,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21633,7 +21633,7 @@ None — fully electronic.
       "profileId": "four-thirds/base",
       "centerAngleDeg": {
         "value": 157.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21642,7 +21642,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 20,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21651,7 +21651,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21660,7 +21660,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21670,7 +21670,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21685,7 +21685,7 @@ None — fully electronic.
       "profileId": "four-thirds/base",
       "centerAngleDeg": {
         "value": 165,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21694,7 +21694,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 20,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21703,7 +21703,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21712,7 +21712,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21722,7 +21722,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21737,7 +21737,7 @@ None — fully electronic.
       "profileId": "four-thirds/base",
       "centerAngleDeg": {
         "value": 172.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21746,7 +21746,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 20,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21755,7 +21755,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21764,7 +21764,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21774,7 +21774,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21789,7 +21789,7 @@ None — fully electronic.
       "profileId": "four-thirds/base",
       "centerAngleDeg": {
         "value": 180,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21798,7 +21798,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 20,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21807,7 +21807,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21816,7 +21816,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21826,7 +21826,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21841,7 +21841,7 @@ None — fully electronic.
       "profileId": "four-thirds/base",
       "centerAngleDeg": {
         "value": 187.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21850,7 +21850,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 20,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21859,7 +21859,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21868,7 +21868,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21878,7 +21878,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21893,7 +21893,7 @@ None — fully electronic.
       "profileId": "four-thirds/base",
       "centerAngleDeg": {
         "value": 195,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21902,7 +21902,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 20,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21911,7 +21911,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21920,7 +21920,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21930,7 +21930,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21945,7 +21945,7 @@ None — fully electronic.
       "profileId": "four-thirds/base",
       "centerAngleDeg": {
         "value": 202.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21954,7 +21954,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 20,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21963,7 +21963,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21972,7 +21972,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21982,7 +21982,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -21997,7 +21997,7 @@ None — fully electronic.
       "profileId": "four-thirds/base",
       "centerAngleDeg": {
         "value": 210,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -22006,7 +22006,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 20,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -22015,7 +22015,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -22024,7 +22024,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -22034,7 +22034,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "ft-1",
           "ft-2",
@@ -28699,25 +28699,25 @@ None — fully electronic.
 | Flange focal distance | 74.9 (`secondary`) | mm |
 | Nominal throat diameter | 69 (`secondary`) | mm |
 | Effective clear aperture | 69 (`secondary`) | mm |
-| Camera mount outer diameter | 78 (`photo_scaled`) | mm |
-| Lens mount outer diameter | 76 (`photo_scaled`) | mm |
+| Camera mount outer diameter | 78 (`patent`) | mm |
+| Lens mount outer diameter | 76 (`patent`) | mm |
 | Contact count | not_applicable (`not_applicable`) | count |
-| Lock rotation | 60 (`photo_scaled`) | deg |
-| Lock direction | clockwise (`photo_scaled`) | — |
+| Lock rotation | 60 (`patent`) | deg |
+| Lock direction | clockwise (`patent`) | — |
 
 #### Figures (selected profile `hasselblad-v/base`)
 
 **Camera-side front view** — viewBox `-48 -50 96 98` ([standalone SVG](mounts/hasselblad-v-camera-front.svg))
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-48 -50 96 98" role="img" aria-labelledby="hasselblad-v-base-camera_side_front-title hasselblad-v-base-camera_side_front-desc"><title id="hasselblad-v-base-camera_side_front-title">Hasselblad V mount — camera-side front view (base)</title><desc id="hasselblad-v-base-camera_side_front-desc">Hasselblad V bayonet mount, camera-side front view. Flange focal distance 74.9 mm, nominal throat 69 mm. Profile hasselblad-v/base.</desc><metadata>{"mountId":"hasselblad-v","profileId":"hasselblad-v/base","view":"camera_side_front","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.95" y1="0" x2="1.95" y2="0" stroke="#8a94a0" stroke-width="0.576" fill="none" /><line x1="0" y1="-1.95" x2="0" y2="1.95" stroke="#8a94a0" stroke-width="0.576" fill="none" /><line x1="0" y1="-39" x2="0" y2="-41.34" stroke="#8a94a0" stroke-width="0.576" fill="none" /></g><g data-layer="camera-side-metal"><path d="M0,-39 A39,39 0 1 1 0,39 A39,39 0 1 1 0,-39 Z M0,-34.5 A34.5,34.5 0 1 1 0,34.5 A34.5,34.5 0 1 1 0,-34.5 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-39 A39,39 0 1 1 0,39 A39,39 0 1 1 0,-39 Z M0,-34.5 A34.5,34.5 0 1 1 0,34.5 A34.5,34.5 0 1 1 0,-34.5 Z" stroke="#6b7a8f" stroke-width="0.576" fill="none" stroke-dasharray="4 2" /><path d="M0,-34.5 A34.5,34.5 0 1 1 0,34.5 A34.5,34.5 0 1 1 0,-34.5 Z" stroke="#2f80c4" stroke-width="0.432" fill="none" /><circle cx="26.163" cy="-26.163" r="1.25" stroke="#7f8c3a" stroke-width="0.576" fill="none" stroke-dasharray="4 2" /><circle cx="26.163" cy="26.163" r="1.25" stroke="#7f8c3a" stroke-width="0.576" fill="none" stroke-dasharray="4 2" /><circle cx="-26.163" cy="26.163" r="1.25" stroke="#7f8c3a" stroke-width="0.576" fill="none" stroke-dasharray="4 2" /><circle cx="-26.163" cy="-26.163" r="1.25" stroke="#7f8c3a" stroke-width="0.576" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-core-interface"><path d="M0,-35.6 L-2.411,-39.426 L2.411,-39.426 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-35.6 L-2.411,-39.426 L2.411,-39.426 Z" stroke="#e8853a" stroke-width="0.576" fill="none" stroke-dasharray="0.6 1.6" /><path d="M-10.087,-32.993 L-10.818,-35.383 A37,37 0 0 1 10.818,-35.383 L10.087,-32.993 A34.5,34.5 0 0 0 -10.087,-32.993 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-10.087,-32.993 L-10.818,-35.383 A37,37 0 0 1 10.818,-35.383 L10.087,-32.993 A34.5,34.5 0 0 0 -10.087,-32.993 Z" stroke="#2a9d8f" stroke-width="0.576" fill="none" stroke-dasharray="4 2" /><path d="M33.616,7.761 L36.052,8.323 A37,37 0 0 1 25.234,27.06 L23.529,25.232 A34.5,34.5 0 0 0 33.616,7.761 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M33.616,7.761 L36.052,8.323 A37,37 0 0 1 25.234,27.06 L23.529,25.232 A34.5,34.5 0 0 0 33.616,7.761 Z" stroke="#2a9d8f" stroke-width="0.576" fill="none" stroke-dasharray="4 2" /><path d="M-23.529,25.232 L-25.234,27.06 A37,37 0 0 1 -36.052,8.323 L-33.616,7.761 A34.5,34.5 0 0 0 -23.529,25.232 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-23.529,25.232 L-25.234,27.06 A37,37 0 0 1 -36.052,8.323 L-33.616,7.761 A34.5,34.5 0 0 0 -23.529,25.232 Z" stroke="#2a9d8f" stroke-width="0.576" fill="none" stroke-dasharray="4 2" /><circle cx="-35.5" cy="0" r="1.365" fill="#d1495b" fill-opacity="0.12" /><circle cx="-35.5" cy="0" r="1.365" stroke="#d1495b" stroke-width="0.576" fill="none" stroke-dasharray="0.6 1.6" /></g><g data-layer="camera-side-variant-mechanical"><circle cx="19.502" cy="-27.851" r="1.17" stroke="#b5651d" stroke-width="0.576" fill="none" stroke-dasharray="4 2" /><circle cx="-21.855" cy="-26.046" r="1.17" stroke="#b5651d" stroke-width="0.576" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-46.08" y1="-45.1" x2="-40.32" y2="-45.1" stroke="#2f80c4" stroke-width="0.686" /><text x="-38.752" y="-44.002" font-size="3.136" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-46.08" y1="-40.396" x2="-40.32" y2="-40.396" stroke="#6b7a8f" stroke-width="0.686" /><text x="-38.752" y="-39.298" font-size="3.136" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-46.08" y1="-35.692" x2="-40.32" y2="-35.692" stroke="#2a9d8f" stroke-width="0.686" /><text x="-38.752" y="-34.594" font-size="3.136" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-46.08" y1="-30.988" x2="-40.32" y2="-30.988" stroke="#d1495b" stroke-width="0.686" /><text x="-38.752" y="-29.89" font-size="3.136" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-46.08" y1="-26.284" x2="-40.32" y2="-26.284" stroke="#e8853a" stroke-width="0.686" /><text x="-38.752" y="-25.186" font-size="3.136" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-46.08" y1="-21.58" x2="-40.32" y2="-21.58" stroke="#b5651d" stroke-width="0.686" /><text x="-38.752" y="-20.482" font-size="3.136" fill="#b5651d" font-family="sans-serif">Mechanical coupling</text><line x1="-46.08" y1="-16.876" x2="-40.32" y2="-16.876" stroke="#7f8c3a" stroke-width="0.686" /><text x="-38.752" y="-15.778" font-size="3.136" fill="#7f8c3a" font-family="sans-serif">Screws / seals</text><line x1="-46.08" y1="-12.172" x2="-40.32" y2="-12.172" stroke="#8a94a0" stroke-width="0.686" /><text x="-38.752" y="-11.074" font-size="3.136" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-48 -50 96 98" role="img" aria-labelledby="hasselblad-v-base-camera_side_front-title hasselblad-v-base-camera_side_front-desc"><title id="hasselblad-v-base-camera_side_front-title">Hasselblad V mount — camera-side front view (base)</title><desc id="hasselblad-v-base-camera_side_front-desc">Hasselblad V bayonet mount, camera-side front view. Flange focal distance 74.9 mm, nominal throat 69 mm. Profile hasselblad-v/base.</desc><metadata>{"mountId":"hasselblad-v","profileId":"hasselblad-v/base","view":"camera_side_front","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.95" y1="0" x2="1.95" y2="0" stroke="#8a94a0" stroke-width="0.576" fill="none" /><line x1="0" y1="-1.95" x2="0" y2="1.95" stroke="#8a94a0" stroke-width="0.576" fill="none" /><line x1="0" y1="-39" x2="0" y2="-41.34" stroke="#8a94a0" stroke-width="0.576" fill="none" /></g><g data-layer="camera-side-metal"><path d="M0,-39 A39,39 0 1 1 0,39 A39,39 0 1 1 0,-39 Z M0,-34.5 A34.5,34.5 0 1 1 0,34.5 A34.5,34.5 0 1 1 0,-34.5 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-39 A39,39 0 1 1 0,39 A39,39 0 1 1 0,-39 Z M0,-34.5 A34.5,34.5 0 1 1 0,34.5 A34.5,34.5 0 1 1 0,-34.5 Z" stroke="#6b7a8f" stroke-width="0.576" fill="none" /><path d="M0,-34.5 A34.5,34.5 0 1 1 0,34.5 A34.5,34.5 0 1 1 0,-34.5 Z" stroke="#2f80c4" stroke-width="0.432" fill="none" /><circle cx="26.163" cy="-26.163" r="1.25" stroke="#7f8c3a" stroke-width="0.576" fill="none" /><circle cx="26.163" cy="26.163" r="1.25" stroke="#7f8c3a" stroke-width="0.576" fill="none" /><circle cx="-26.163" cy="26.163" r="1.25" stroke="#7f8c3a" stroke-width="0.576" fill="none" /><circle cx="-26.163" cy="-26.163" r="1.25" stroke="#7f8c3a" stroke-width="0.576" fill="none" /></g><g data-layer="camera-side-core-interface"><path d="M0,-35.6 L-2.411,-39.426 L2.411,-39.426 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-35.6 L-2.411,-39.426 L2.411,-39.426 Z" stroke="#e8853a" stroke-width="0.576" fill="none" stroke-dasharray="0.6 1.6" /><path d="M-10.087,-32.993 L-10.818,-35.383 A37,37 0 0 1 10.818,-35.383 L10.087,-32.993 A34.5,34.5 0 0 0 -10.087,-32.993 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-10.087,-32.993 L-10.818,-35.383 A37,37 0 0 1 10.818,-35.383 L10.087,-32.993 A34.5,34.5 0 0 0 -10.087,-32.993 Z" stroke="#2a9d8f" stroke-width="0.576" fill="none" /><path d="M33.616,7.761 L36.052,8.323 A37,37 0 0 1 25.234,27.06 L23.529,25.232 A34.5,34.5 0 0 0 33.616,7.761 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M33.616,7.761 L36.052,8.323 A37,37 0 0 1 25.234,27.06 L23.529,25.232 A34.5,34.5 0 0 0 33.616,7.761 Z" stroke="#2a9d8f" stroke-width="0.576" fill="none" /><path d="M-23.529,25.232 L-25.234,27.06 A37,37 0 0 1 -36.052,8.323 L-33.616,7.761 A34.5,34.5 0 0 0 -23.529,25.232 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-23.529,25.232 L-25.234,27.06 A37,37 0 0 1 -36.052,8.323 L-33.616,7.761 A34.5,34.5 0 0 0 -23.529,25.232 Z" stroke="#2a9d8f" stroke-width="0.576" fill="none" /><circle cx="-35.5" cy="0" r="1.365" fill="#d1495b" fill-opacity="0.12" /><circle cx="-35.5" cy="0" r="1.365" stroke="#d1495b" stroke-width="0.576" fill="none" stroke-dasharray="0.6 1.6" /></g><g data-layer="camera-side-variant-mechanical"><circle cx="19.502" cy="-27.851" r="1.17" stroke="#b5651d" stroke-width="0.576" fill="none" /><circle cx="-21.855" cy="-26.046" r="1.17" stroke="#b5651d" stroke-width="0.576" fill="none" /></g><g aria-hidden="true"><line x1="-46.08" y1="-45.1" x2="-40.32" y2="-45.1" stroke="#2f80c4" stroke-width="0.686" /><text x="-38.752" y="-44.002" font-size="3.136" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-46.08" y1="-40.396" x2="-40.32" y2="-40.396" stroke="#6b7a8f" stroke-width="0.686" /><text x="-38.752" y="-39.298" font-size="3.136" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-46.08" y1="-35.692" x2="-40.32" y2="-35.692" stroke="#2a9d8f" stroke-width="0.686" /><text x="-38.752" y="-34.594" font-size="3.136" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-46.08" y1="-30.988" x2="-40.32" y2="-30.988" stroke="#d1495b" stroke-width="0.686" /><text x="-38.752" y="-29.89" font-size="3.136" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-46.08" y1="-26.284" x2="-40.32" y2="-26.284" stroke="#e8853a" stroke-width="0.686" /><text x="-38.752" y="-25.186" font-size="3.136" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-46.08" y1="-21.58" x2="-40.32" y2="-21.58" stroke="#b5651d" stroke-width="0.686" /><text x="-38.752" y="-20.482" font-size="3.136" fill="#b5651d" font-family="sans-serif">Mechanical coupling</text><line x1="-46.08" y1="-16.876" x2="-40.32" y2="-16.876" stroke="#7f8c3a" stroke-width="0.686" /><text x="-38.752" y="-15.778" font-size="3.136" fill="#7f8c3a" font-family="sans-serif">Screws / seals</text><line x1="-46.08" y1="-12.172" x2="-40.32" y2="-12.172" stroke="#8a94a0" stroke-width="0.686" /><text x="-38.752" y="-11.074" font-size="3.136" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
 
 **Lens-side rear view** — viewBox `-47 -49 94 96` ([standalone SVG](mounts/hasselblad-v-lens-rear.svg))
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-47 -49 94 96" role="img" aria-labelledby="hasselblad-v-base-lens_side_rear-title hasselblad-v-base-lens_side_rear-desc"><title id="hasselblad-v-base-lens_side_rear-title">Hasselblad V mount — lens-side rear view (base)</title><desc id="hasselblad-v-base-lens_side_rear-desc">Hasselblad V bayonet mount, lens-side rear view. Flange focal distance 74.9 mm, nominal throat 69 mm. Profile hasselblad-v/base.</desc><metadata>{"mountId":"hasselblad-v","profileId":"hasselblad-v/base","view":"lens_side_rear","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.9" y1="0" x2="1.9" y2="0" stroke="#8a94a0" stroke-width="0.564" fill="none" /><line x1="0" y1="-1.9" x2="0" y2="1.9" stroke="#8a94a0" stroke-width="0.564" fill="none" /><line x1="0" y1="-38" x2="0" y2="-40.28" stroke="#8a94a0" stroke-width="0.564" fill="none" /></g><g data-layer="lens-side-metal"><path d="M0,-38 A38,38 0 1 1 0,38 A38,38 0 1 1 0,-38 Z M0,-33.5 A33.5,33.5 0 1 1 0,33.5 A33.5,33.5 0 1 1 0,-33.5 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-38 A38,38 0 1 1 0,38 A38,38 0 1 1 0,-38 Z M0,-33.5 A33.5,33.5 0 1 1 0,33.5 A33.5,33.5 0 1 1 0,-33.5 Z" stroke="#6b7a8f" stroke-width="0.564" fill="none" stroke-dasharray="4 2" /><path d="M0,-33.5 A33.5,33.5 0 1 1 0,33.5 A33.5,33.5 0 1 1 0,-33.5 Z" stroke="#2f80c4" stroke-width="0.564" fill="none" stroke-dasharray="4 2" /></g><g data-layer="lens-side-core-interface"><path d="M0,-34.7 L-2.35,-38.428 L2.35,-38.428 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-34.7 L-2.35,-38.428 L2.35,-38.428 Z" stroke="#e8853a" stroke-width="0.564" fill="none" stroke-dasharray="0.6 1.6" /><path d="M-10.087,-32.993 L-10.818,-35.383 A37,37 0 0 1 10.818,-35.383 L10.087,-32.993 A34.5,34.5 0 0 0 -10.087,-32.993 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-10.087,-32.993 L-10.818,-35.383 A37,37 0 0 1 10.818,-35.383 L10.087,-32.993 A34.5,34.5 0 0 0 -10.087,-32.993 Z" stroke="#2a9d8f" stroke-width="0.564" fill="none" stroke-dasharray="4 2" /><circle cx="35.5" cy="0" r="1.33" fill="#d1495b" fill-opacity="0.12" /><circle cx="35.5" cy="0" r="1.33" stroke="#d1495b" stroke-width="0.564" fill="none" stroke-dasharray="0.6 1.6" /><path d="M33.616,7.761 L36.052,8.323 A37,37 0 0 1 25.234,27.06 L23.529,25.232 A34.5,34.5 0 0 0 33.616,7.761 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M33.616,7.761 L36.052,8.323 A37,37 0 0 1 25.234,27.06 L23.529,25.232 A34.5,34.5 0 0 0 33.616,7.761 Z" stroke="#2a9d8f" stroke-width="0.564" fill="none" stroke-dasharray="4 2" /><path d="M-23.529,25.232 L-25.234,27.06 A37,37 0 0 1 -36.052,8.323 L-33.616,7.761 A34.5,34.5 0 0 0 -23.529,25.232 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-23.529,25.232 L-25.234,27.06 A37,37 0 0 1 -36.052,8.323 L-33.616,7.761 A34.5,34.5 0 0 0 -23.529,25.232 Z" stroke="#2a9d8f" stroke-width="0.564" fill="none" stroke-dasharray="4 2" /></g><g data-layer="lens-side-variant-mechanical"><circle cx="21.855" cy="-26.046" r="1.14" stroke="#b5651d" stroke-width="0.564" fill="none" stroke-dasharray="4 2" /><circle cx="-19.502" cy="-27.851" r="1.14" stroke="#b5651d" stroke-width="0.564" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-45.12" y1="-44.2" x2="-39.48" y2="-44.2" stroke="#2f80c4" stroke-width="0.672" /><text x="-37.944" y="-43.125" font-size="3.072" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-45.12" y1="-39.592" x2="-39.48" y2="-39.592" stroke="#6b7a8f" stroke-width="0.672" /><text x="-37.944" y="-38.517" font-size="3.072" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-45.12" y1="-34.984" x2="-39.48" y2="-34.984" stroke="#2a9d8f" stroke-width="0.672" /><text x="-37.944" y="-33.909" font-size="3.072" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-45.12" y1="-30.376" x2="-39.48" y2="-30.376" stroke="#d1495b" stroke-width="0.672" /><text x="-37.944" y="-29.301" font-size="3.072" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-45.12" y1="-25.768" x2="-39.48" y2="-25.768" stroke="#e8853a" stroke-width="0.672" /><text x="-37.944" y="-24.693" font-size="3.072" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-45.12" y1="-21.16" x2="-39.48" y2="-21.16" stroke="#b5651d" stroke-width="0.672" /><text x="-37.944" y="-20.085" font-size="3.072" fill="#b5651d" font-family="sans-serif">Mechanical coupling</text><line x1="-45.12" y1="-16.552" x2="-39.48" y2="-16.552" stroke="#8a94a0" stroke-width="0.672" /><text x="-37.944" y="-15.477" font-size="3.072" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-47 -49 94 96" role="img" aria-labelledby="hasselblad-v-base-lens_side_rear-title hasselblad-v-base-lens_side_rear-desc"><title id="hasselblad-v-base-lens_side_rear-title">Hasselblad V mount — lens-side rear view (base)</title><desc id="hasselblad-v-base-lens_side_rear-desc">Hasselblad V bayonet mount, lens-side rear view. Flange focal distance 74.9 mm, nominal throat 69 mm. Profile hasselblad-v/base.</desc><metadata>{"mountId":"hasselblad-v","profileId":"hasselblad-v/base","view":"lens_side_rear","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.9" y1="0" x2="1.9" y2="0" stroke="#8a94a0" stroke-width="0.564" fill="none" /><line x1="0" y1="-1.9" x2="0" y2="1.9" stroke="#8a94a0" stroke-width="0.564" fill="none" /><line x1="0" y1="-38" x2="0" y2="-40.28" stroke="#8a94a0" stroke-width="0.564" fill="none" /></g><g data-layer="lens-side-metal"><path d="M0,-38 A38,38 0 1 1 0,38 A38,38 0 1 1 0,-38 Z M0,-33.5 A33.5,33.5 0 1 1 0,33.5 A33.5,33.5 0 1 1 0,-33.5 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-38 A38,38 0 1 1 0,38 A38,38 0 1 1 0,-38 Z M0,-33.5 A33.5,33.5 0 1 1 0,33.5 A33.5,33.5 0 1 1 0,-33.5 Z" stroke="#6b7a8f" stroke-width="0.564" fill="none" /><path d="M0,-33.5 A33.5,33.5 0 1 1 0,33.5 A33.5,33.5 0 1 1 0,-33.5 Z" stroke="#2f80c4" stroke-width="0.564" fill="none" /></g><g data-layer="lens-side-core-interface"><path d="M0,-34.7 L-2.35,-38.428 L2.35,-38.428 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-34.7 L-2.35,-38.428 L2.35,-38.428 Z" stroke="#e8853a" stroke-width="0.564" fill="none" stroke-dasharray="0.6 1.6" /><path d="M-10.087,-32.993 L-10.818,-35.383 A37,37 0 0 1 10.818,-35.383 L10.087,-32.993 A34.5,34.5 0 0 0 -10.087,-32.993 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-10.087,-32.993 L-10.818,-35.383 A37,37 0 0 1 10.818,-35.383 L10.087,-32.993 A34.5,34.5 0 0 0 -10.087,-32.993 Z" stroke="#2a9d8f" stroke-width="0.564" fill="none" /><circle cx="35.5" cy="0" r="1.33" fill="#d1495b" fill-opacity="0.12" /><circle cx="35.5" cy="0" r="1.33" stroke="#d1495b" stroke-width="0.564" fill="none" stroke-dasharray="0.6 1.6" /><path d="M33.616,7.761 L36.052,8.323 A37,37 0 0 1 25.234,27.06 L23.529,25.232 A34.5,34.5 0 0 0 33.616,7.761 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M33.616,7.761 L36.052,8.323 A37,37 0 0 1 25.234,27.06 L23.529,25.232 A34.5,34.5 0 0 0 33.616,7.761 Z" stroke="#2a9d8f" stroke-width="0.564" fill="none" /><path d="M-23.529,25.232 L-25.234,27.06 A37,37 0 0 1 -36.052,8.323 L-33.616,7.761 A34.5,34.5 0 0 0 -23.529,25.232 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-23.529,25.232 L-25.234,27.06 A37,37 0 0 1 -36.052,8.323 L-33.616,7.761 A34.5,34.5 0 0 0 -23.529,25.232 Z" stroke="#2a9d8f" stroke-width="0.564" fill="none" /></g><g data-layer="lens-side-variant-mechanical"><circle cx="21.855" cy="-26.046" r="1.14" stroke="#b5651d" stroke-width="0.564" fill="none" /><circle cx="-19.502" cy="-27.851" r="1.14" stroke="#b5651d" stroke-width="0.564" fill="none" /></g><g aria-hidden="true"><line x1="-45.12" y1="-44.2" x2="-39.48" y2="-44.2" stroke="#2f80c4" stroke-width="0.672" /><text x="-37.944" y="-43.125" font-size="3.072" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-45.12" y1="-39.592" x2="-39.48" y2="-39.592" stroke="#6b7a8f" stroke-width="0.672" /><text x="-37.944" y="-38.517" font-size="3.072" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-45.12" y1="-34.984" x2="-39.48" y2="-34.984" stroke="#2a9d8f" stroke-width="0.672" /><text x="-37.944" y="-33.909" font-size="3.072" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-45.12" y1="-30.376" x2="-39.48" y2="-30.376" stroke="#d1495b" stroke-width="0.672" /><text x="-37.944" y="-29.301" font-size="3.072" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-45.12" y1="-25.768" x2="-39.48" y2="-25.768" stroke="#e8853a" stroke-width="0.672" /><text x="-37.944" y="-24.693" font-size="3.072" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-45.12" y1="-21.16" x2="-39.48" y2="-21.16" stroke="#b5651d" stroke-width="0.672" /><text x="-37.944" y="-20.085" font-size="3.072" fill="#b5651d" font-family="sans-serif">Mechanical coupling</text><line x1="-45.12" y1="-16.552" x2="-39.48" y2="-16.552" stroke="#8a94a0" stroke-width="0.672" /><text x="-37.944" y="-15.477" font-size="3.072" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
 
 **Axial / register schematic** — viewBox `-84 -52 94 100` ([standalone SVG](mounts/hasselblad-v-axial.svg))
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-84 -52 94 100" role="img" aria-labelledby="hasselblad-v-base-axial_section-title hasselblad-v-base-axial_section-desc"><title id="hasselblad-v-base-axial_section-title">Hasselblad V mount — axial / register schematic (base)</title><desc id="hasselblad-v-base-axial_section-desc">Hasselblad V bayonet mount, axial / register schematic. Flange focal distance 74.9 mm, nominal throat 69 mm. Profile hasselblad-v/base.</desc><metadata>{"mountId":"hasselblad-v","profileId":"hasselblad-v/base","view":"axial_section","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-74.9" y1="0" x2="1.2" y2="0" stroke="#8a94a0" stroke-width="0.564" fill="none" /><line x1="0" y1="-39.6" x2="0" y2="39.6" stroke="#8a94a0" stroke-width="0.564" fill="none" /></g><g data-layer="axial-section"><text x="-74.9" y="-41.1" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">sensor film plane</text><line x1="-74.9" y1="-39.6" x2="-74.9" y2="39.6" stroke="#2bb0c4" stroke-width="0.423" fill="none" /><line x1="0" y1="-39" x2="0" y2="39" stroke="#2bb0c4" stroke-width="0.564" fill="none" stroke-dasharray="4 2" /><text x="0" y="-40.5" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">flange datum</text><line x1="1.2" y1="-36" x2="1.2" y2="36" stroke="#2bb0c4" stroke-width="0.564" fill="none" stroke-dasharray="4 2" /><text x="1.2" y="-37.5" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">bayonet lug engagement</text></g><g aria-hidden="true"><line x1="-82.12" y1="-47" x2="-76.48" y2="-47" stroke="#8a94a0" stroke-width="0.7" /><text x="-74.88" y="-45.88" font-size="3.2" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text><line x1="-82.12" y1="-42.2" x2="-76.48" y2="-42.2" stroke="#2bb0c4" stroke-width="0.7" /><text x="-74.88" y="-41.08" font-size="3.2" fill="#2bb0c4" font-family="sans-serif">Register plane</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-84 -52 94 100" role="img" aria-labelledby="hasselblad-v-base-axial_section-title hasselblad-v-base-axial_section-desc"><title id="hasselblad-v-base-axial_section-title">Hasselblad V mount — axial / register schematic (base)</title><desc id="hasselblad-v-base-axial_section-desc">Hasselblad V bayonet mount, axial / register schematic. Flange focal distance 74.9 mm, nominal throat 69 mm. Profile hasselblad-v/base.</desc><metadata>{"mountId":"hasselblad-v","profileId":"hasselblad-v/base","view":"axial_section","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-74.9" y1="0" x2="1.2" y2="0" stroke="#8a94a0" stroke-width="0.564" fill="none" /><line x1="0" y1="-39.6" x2="0" y2="39.6" stroke="#8a94a0" stroke-width="0.564" fill="none" /></g><g data-layer="axial-section"><text x="-74.9" y="-41.1" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">sensor film plane</text><line x1="-74.9" y1="-39.6" x2="-74.9" y2="39.6" stroke="#2bb0c4" stroke-width="0.423" fill="none" /><line x1="0" y1="-39" x2="0" y2="39" stroke="#2bb0c4" stroke-width="0.564" fill="none" /><text x="0" y="-40.5" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">flange datum</text><line x1="1.2" y1="-36" x2="1.2" y2="36" stroke="#2bb0c4" stroke-width="0.564" fill="none" /><text x="1.2" y="-37.5" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">bayonet lug engagement</text></g><g aria-hidden="true"><line x1="-82.12" y1="-47" x2="-76.48" y2="-47" stroke="#8a94a0" stroke-width="0.7" /><text x="-74.88" y="-45.88" font-size="3.2" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text><line x1="-82.12" y1="-42.2" x2="-76.48" y2="-42.2" stroke="#2bb0c4" stroke-width="0.7" /><text x="-74.88" y="-41.08" font-size="3.2" fill="#2bb0c4" font-family="sans-serif">Register plane</text></g></svg>
 
 #### Camera-side front-view geometry
 
@@ -28862,7 +28862,7 @@ None — fully electronic.
     },
     "cameraMountOuterDiameterMm": {
       "value": 78,
-      "status": "photo_scaled",
+      "status": "patent",
       "sourceRefs": [
         "hv-1",
         "hv-2",
@@ -28871,7 +28871,7 @@ None — fully electronic.
     },
     "lensMountOuterDiameterMm": {
       "value": 76,
-      "status": "photo_scaled",
+      "status": "patent",
       "sourceRefs": [
         "hv-1",
         "hv-2",
@@ -28896,7 +28896,7 @@ None — fully electronic.
     },
     "lockAngleDeg": {
       "value": 60,
-      "status": "photo_scaled",
+      "status": "patent",
       "sourceRefs": [
         "hv-1",
         "hv-2",
@@ -28905,7 +28905,7 @@ None — fully electronic.
     },
     "lockRotationDeg": {
       "value": 60,
-      "status": "photo_scaled",
+      "status": "patent",
       "sourceRefs": [
         "hv-1",
         "hv-2",
@@ -28914,7 +28914,7 @@ None — fully electronic.
     },
     "lockRotationDirection": {
       "value": "clockwise",
-      "status": "photo_scaled",
+      "status": "patent",
       "sourceRefs": [
         "hv-1",
         "hv-2",
@@ -28988,7 +28988,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -28997,7 +28997,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29006,7 +29006,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 360,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29024,7 +29024,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 39,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29046,7 +29046,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29055,7 +29055,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 343,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29064,7 +29064,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 17,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29073,7 +29073,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 34.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29082,7 +29082,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 37,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29091,7 +29091,7 @@ None — fully electronic.
       },
       "depthMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29108,7 +29108,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 120,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29117,7 +29117,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 103,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29126,7 +29126,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 137,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29135,7 +29135,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 34.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29144,7 +29144,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 37,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29153,7 +29153,7 @@ None — fully electronic.
       },
       "depthMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29170,7 +29170,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 240,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29179,7 +29179,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 223,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29188,7 +29188,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 257,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29197,7 +29197,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 34.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29206,7 +29206,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 37,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29215,7 +29215,7 @@ None — fully electronic.
       },
       "depthMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29232,7 +29232,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29268,7 +29268,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 39.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29290,7 +29290,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 270,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29326,7 +29326,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 35.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29335,7 +29335,7 @@ None — fully electronic.
       },
       "depthMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29390,7 +29390,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 33.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29412,7 +29412,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29421,7 +29421,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29430,7 +29430,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 360,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29439,7 +29439,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 33.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29448,7 +29448,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 38,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29470,7 +29470,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29479,7 +29479,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 343,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29488,7 +29488,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 17,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29497,7 +29497,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 34.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29506,7 +29506,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 37,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29515,7 +29515,7 @@ None — fully electronic.
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29532,7 +29532,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 120,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29541,7 +29541,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 103,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29550,7 +29550,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 137,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29559,7 +29559,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 34.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29568,7 +29568,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 37,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29577,7 +29577,7 @@ None — fully electronic.
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29594,7 +29594,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 240,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29603,7 +29603,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 223,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29612,7 +29612,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 257,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29621,7 +29621,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 34.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29630,7 +29630,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 37,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29639,7 +29639,7 @@ None — fully electronic.
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29656,7 +29656,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29692,7 +29692,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 38.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29714,7 +29714,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 270,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29750,7 +29750,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 35.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29759,7 +29759,7 @@ None — fully electronic.
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29793,7 +29793,7 @@ None — fully electronic.
       },
       "diameterMm": {
         "value": 78,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29805,7 +29805,7 @@ None — fully electronic.
       "planeId": "bayonet_lug_engagement",
       "zPositionMm": {
         "value": 1.2,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29814,7 +29814,7 @@ None — fully electronic.
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29823,7 +29823,7 @@ None — fully electronic.
       },
       "diameterMm": {
         "value": 72,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29870,7 +29870,7 @@ None — fully electronic.
       "profileId": "hasselblad-v/base",
       "centerAngleDeg": {
         "value": 35,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29879,7 +29879,7 @@ None — fully electronic.
       },
       "radiusMm": {
         "value": 34,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29896,7 +29896,7 @@ None — fully electronic.
       "profileId": "hasselblad-v/base",
       "centerAngleDeg": {
         "value": 320,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29905,7 +29905,7 @@ None — fully electronic.
       },
       "radiusMm": {
         "value": 34,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29924,7 +29924,7 @@ None — fully electronic.
       "side": "body",
       "count": {
         "value": 4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29933,7 +29933,7 @@ None — fully electronic.
       },
       "pcdMm": {
         "value": 74,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29942,7 +29942,7 @@ None — fully electronic.
       },
       "diameterMm": {
         "value": 2.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -29956,7 +29956,7 @@ None — fully electronic.
           225,
           315
         ],
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "hv-1",
           "hv-2",
@@ -38671,15 +38671,15 @@ None — fully electronic.
 
 **Camera-side front view** — viewBox `-28 -28 56 56` ([standalone SVG](mounts/micro-four-thirds-camera-front.svg))
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-28 -28 56 56" role="img" aria-labelledby="micro-four-thirds-base-camera_side_front-title micro-four-thirds-base-camera_side_front-desc"><title id="micro-four-thirds-base-camera_side_front-title">Micro Four Thirds mount — camera-side front view (base)</title><desc id="micro-four-thirds-base-camera_side_front-desc">Micro Four Thirds bayonet mount, camera-side front view. Flange focal distance 19.25 mm, nominal throat 38 mm. Profile micro-four-thirds/base.</desc><metadata>{"mountId":"micro-four-thirds","profileId":"micro-four-thirds/base","view":"camera_side_front","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.1" y1="0" x2="1.1" y2="0" stroke="#8a94a0" stroke-width="0.336" fill="none" /><line x1="0" y1="-1.1" x2="0" y2="1.1" stroke="#8a94a0" stroke-width="0.336" fill="none" /><line x1="0" y1="-22" x2="0" y2="-23.32" stroke="#8a94a0" stroke-width="0.336" fill="none" /></g><g data-layer="camera-side-metal"><path d="M0,-22 A22,22 0 1 1 0,22 A22,22 0 1 1 0,-22 Z M0,-19 A19,19 0 1 1 0,19 A19,19 0 1 1 0,-19 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-22 A22,22 0 1 1 0,22 A22,22 0 1 1 0,-22 Z M0,-19 A19,19 0 1 1 0,19 A19,19 0 1 1 0,-19 Z" stroke="#6b7a8f" stroke-width="0.336" fill="none" stroke-dasharray="4 2" /><path d="M0,-19 A19,19 0 1 1 0,19 A19,19 0 1 1 0,-19 Z" stroke="#2f80c4" stroke-width="0.252" fill="none" /><circle cx="14.142" cy="-14.142" r="0.8" stroke="#7f8c3a" stroke-width="0.336" fill="none" stroke-dasharray="4 2" /><circle cx="14.142" cy="14.142" r="0.8" stroke="#7f8c3a" stroke-width="0.336" fill="none" stroke-dasharray="4 2" /><circle cx="-14.142" cy="14.142" r="0.8" stroke="#7f8c3a" stroke-width="0.336" fill="none" stroke-dasharray="4 2" /><circle cx="-14.142" cy="-14.142" r="0.8" stroke="#7f8c3a" stroke-width="0.336" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-core-interface"><path d="M0,-20.3 L-1.374,-22.458 L1.374,-22.458 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-20.3 L-1.374,-22.458 L1.374,-22.458 Z" stroke="#e8853a" stroke-width="0.336" fill="none" stroke-dasharray="0.6 1.6" /><path d="M3.625,-18.651 L4.102,-21.105 A21.5,21.5 0 0 1 16.226,-14.105 L14.339,-12.465 A19,19 0 0 0 3.625,-18.651 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M3.625,-18.651 L4.102,-21.105 A21.5,21.5 0 0 1 16.226,-14.105 L14.339,-12.465 A19,19 0 0 0 3.625,-18.651 Z" stroke="#2a9d8f" stroke-width="0.336" fill="none" stroke-dasharray="4 2" /><circle cx="20" cy="0" r="0.77" fill="#d1495b" fill-opacity="0.12" /><circle cx="20" cy="0" r="0.77" stroke="#d1495b" stroke-width="0.336" fill="none" stroke-dasharray="0.6 1.6" /><path d="M14.339,12.465 L16.226,14.105 A21.5,21.5 0 0 1 4.102,21.105 L3.625,18.651 A19,19 0 0 0 14.339,12.465 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M14.339,12.465 L16.226,14.105 A21.5,21.5 0 0 1 4.102,21.105 L3.625,18.651 A19,19 0 0 0 14.339,12.465 Z" stroke="#2a9d8f" stroke-width="0.336" fill="none" stroke-dasharray="4 2" /><path d="M-18.974,-0.994 L-21.471,-1.125 A21.5,21.5 0 0 1 -16.226,-14.105 L-14.339,-12.465 A19,19 0 0 0 -18.974,-0.994 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-18.974,-0.994 L-21.471,-1.125 A21.5,21.5 0 0 1 -16.226,-14.105 L-14.339,-12.465 A19,19 0 0 0 -18.974,-0.994 Z" stroke="#2a9d8f" stroke-width="0.336" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-variant-electrical"><path d="M-0.596,-15.589 L-0.703,-18.387 A18.4,18.4 0 0 1 0.703,-18.387 L0.596,-15.589 A15.6,15.6 0 0 0 -0.596,-15.589 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-0.596,-15.589 L-0.703,-18.387 A18.4,18.4 0 0 1 0.703,-18.387 L0.596,-15.589 A15.6,15.6 0 0 0 -0.596,-15.589 Z" stroke="#8a5cd1" stroke-width="0.336" fill="none" stroke-dasharray="4 2" /><path d="M1.85,-15.49 L2.182,-18.27 A18.4,18.4 0 0 1 3.571,-18.05 L3.028,-15.303 A15.6,15.6 0 0 0 1.85,-15.49 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M1.85,-15.49 L2.182,-18.27 A18.4,18.4 0 0 1 3.571,-18.05 L3.028,-15.303 A15.6,15.6 0 0 0 1.85,-15.49 Z" stroke="#8a5cd1" stroke-width="0.336" fill="none" stroke-dasharray="4 2" /><path d="M4.25,-15.01 L5.013,-17.704 A18.4,18.4 0 0 1 6.351,-17.269 L5.384,-14.641 A15.6,15.6 0 0 0 4.25,-15.01 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M4.25,-15.01 L5.013,-17.704 A18.4,18.4 0 0 1 6.351,-17.269 L5.384,-14.641 A15.6,15.6 0 0 0 4.25,-15.01 Z" stroke="#8a5cd1" stroke-width="0.336" fill="none" stroke-dasharray="4 2" /><path d="M6.546,-14.16 L7.721,-16.702 A18.4,18.4 0 0 1 8.974,-16.063 L7.608,-13.619 A15.6,15.6 0 0 0 6.546,-14.16 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M6.546,-14.16 L7.721,-16.702 A18.4,18.4 0 0 1 8.974,-16.063 L7.608,-13.619 A15.6,15.6 0 0 0 6.546,-14.16 Z" stroke="#8a5cd1" stroke-width="0.336" fill="none" stroke-dasharray="4 2" /><path d="M8.68,-12.962 L10.238,-15.288 A18.4,18.4 0 0 1 11.376,-14.462 L9.645,-12.261 A15.6,15.6 0 0 0 8.68,-12.962 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M8.68,-12.962 L10.238,-15.288 A18.4,18.4 0 0 1 11.376,-14.462 L9.645,-12.261 A15.6,15.6 0 0 0 8.68,-12.962 Z" stroke="#8a5cd1" stroke-width="0.336" fill="none" stroke-dasharray="4 2" /><path d="M10.601,-11.444 L12.504,-13.499 A18.4,18.4 0 0 1 13.499,-12.504 L11.444,-10.601 A15.6,15.6 0 0 0 10.601,-11.444 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M10.601,-11.444 L12.504,-13.499 A18.4,18.4 0 0 1 13.499,-12.504 L11.444,-10.601 A15.6,15.6 0 0 0 10.601,-11.444 Z" stroke="#8a5cd1" stroke-width="0.336" fill="none" stroke-dasharray="4 2" /><path d="M-11.444,-10.601 L-13.499,-12.504 A18.4,18.4 0 0 1 -12.504,-13.499 L-10.601,-11.444 A15.6,15.6 0 0 0 -11.444,-10.601 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-11.444,-10.601 L-13.499,-12.504 A18.4,18.4 0 0 1 -12.504,-13.499 L-10.601,-11.444 A15.6,15.6 0 0 0 -11.444,-10.601 Z" stroke="#8a5cd1" stroke-width="0.336" fill="none" stroke-dasharray="4 2" /><path d="M-9.645,-12.261 L-11.376,-14.462 A18.4,18.4 0 0 1 -10.238,-15.288 L-8.68,-12.962 A15.6,15.6 0 0 0 -9.645,-12.261 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-9.645,-12.261 L-11.376,-14.462 A18.4,18.4 0 0 1 -10.238,-15.288 L-8.68,-12.962 A15.6,15.6 0 0 0 -9.645,-12.261 Z" stroke="#8a5cd1" stroke-width="0.336" fill="none" stroke-dasharray="4 2" /><path d="M-7.608,-13.619 L-8.974,-16.063 A18.4,18.4 0 0 1 -7.721,-16.702 L-6.546,-14.16 A15.6,15.6 0 0 0 -7.608,-13.619 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-7.608,-13.619 L-8.974,-16.063 A18.4,18.4 0 0 1 -7.721,-16.702 L-6.546,-14.16 A15.6,15.6 0 0 0 -7.608,-13.619 Z" stroke="#8a5cd1" stroke-width="0.336" fill="none" stroke-dasharray="4 2" /><path d="M-5.384,-14.641 L-6.351,-17.269 A18.4,18.4 0 0 1 -5.013,-17.704 L-4.25,-15.01 A15.6,15.6 0 0 0 -5.384,-14.641 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-5.384,-14.641 L-6.351,-17.269 A18.4,18.4 0 0 1 -5.013,-17.704 L-4.25,-15.01 A15.6,15.6 0 0 0 -5.384,-14.641 Z" stroke="#8a5cd1" stroke-width="0.336" fill="none" stroke-dasharray="4 2" /><path d="M-3.028,-15.303 L-3.571,-18.05 A18.4,18.4 0 0 1 -2.182,-18.27 L-1.85,-15.49 A15.6,15.6 0 0 0 -3.028,-15.303 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-3.028,-15.303 L-3.571,-18.05 A18.4,18.4 0 0 1 -2.182,-18.27 L-1.85,-15.49 A15.6,15.6 0 0 0 -3.028,-15.303 Z" stroke="#8a5cd1" stroke-width="0.336" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-26.88" y1="-25.2" x2="-22.88" y2="-25.2" stroke="#2f80c4" stroke-width="0.4" /><text x="-21.88" y="-24.5" font-size="2" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-26.88" y1="-22.2" x2="-22.88" y2="-22.2" stroke="#6b7a8f" stroke-width="0.4" /><text x="-21.88" y="-21.5" font-size="2" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-26.88" y1="-19.2" x2="-22.88" y2="-19.2" stroke="#2a9d8f" stroke-width="0.4" /><text x="-21.88" y="-18.5" font-size="2" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-26.88" y1="-16.2" x2="-22.88" y2="-16.2" stroke="#d1495b" stroke-width="0.4" /><text x="-21.88" y="-15.5" font-size="2" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-26.88" y1="-13.2" x2="-22.88" y2="-13.2" stroke="#e8853a" stroke-width="0.4" /><text x="-21.88" y="-12.5" font-size="2" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-26.88" y1="-10.2" x2="-22.88" y2="-10.2" stroke="#8a5cd1" stroke-width="0.4" /><text x="-21.88" y="-9.5" font-size="2" fill="#8a5cd1" font-family="sans-serif">Electrical contact</text><line x1="-26.88" y1="-7.2" x2="-22.88" y2="-7.2" stroke="#7f8c3a" stroke-width="0.4" /><text x="-21.88" y="-6.5" font-size="2" fill="#7f8c3a" font-family="sans-serif">Screws / seals</text><line x1="-26.88" y1="-4.2" x2="-22.88" y2="-4.2" stroke="#8a94a0" stroke-width="0.4" /><text x="-21.88" y="-3.5" font-size="2" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-28 -28 56 56" role="img" aria-labelledby="micro-four-thirds-base-camera_side_front-title micro-four-thirds-base-camera_side_front-desc"><title id="micro-four-thirds-base-camera_side_front-title">Micro Four Thirds mount — camera-side front view (base)</title><desc id="micro-four-thirds-base-camera_side_front-desc">Micro Four Thirds bayonet mount, camera-side front view. Flange focal distance 19.25 mm, nominal throat 38 mm. Profile micro-four-thirds/base.</desc><metadata>{"mountId":"micro-four-thirds","profileId":"micro-four-thirds/base","view":"camera_side_front","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.1" y1="0" x2="1.1" y2="0" stroke="#8a94a0" stroke-width="0.336" fill="none" /><line x1="0" y1="-1.1" x2="0" y2="1.1" stroke="#8a94a0" stroke-width="0.336" fill="none" /><line x1="0" y1="-22" x2="0" y2="-23.32" stroke="#8a94a0" stroke-width="0.336" fill="none" /></g><g data-layer="camera-side-metal"><path d="M0,-22 A22,22 0 1 1 0,22 A22,22 0 1 1 0,-22 Z M0,-19 A19,19 0 1 1 0,19 A19,19 0 1 1 0,-19 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-22 A22,22 0 1 1 0,22 A22,22 0 1 1 0,-22 Z M0,-19 A19,19 0 1 1 0,19 A19,19 0 1 1 0,-19 Z" stroke="#6b7a8f" stroke-width="0.336" fill="none" /><path d="M0,-19 A19,19 0 1 1 0,19 A19,19 0 1 1 0,-19 Z" stroke="#2f80c4" stroke-width="0.252" fill="none" /><circle cx="14.142" cy="-14.142" r="0.8" stroke="#7f8c3a" stroke-width="0.336" fill="none" stroke-dasharray="4 2" /><circle cx="14.142" cy="14.142" r="0.8" stroke="#7f8c3a" stroke-width="0.336" fill="none" stroke-dasharray="4 2" /><circle cx="-14.142" cy="14.142" r="0.8" stroke="#7f8c3a" stroke-width="0.336" fill="none" stroke-dasharray="4 2" /><circle cx="-14.142" cy="-14.142" r="0.8" stroke="#7f8c3a" stroke-width="0.336" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-core-interface"><path d="M0,-20.3 L-1.374,-22.458 L1.374,-22.458 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-20.3 L-1.374,-22.458 L1.374,-22.458 Z" stroke="#e8853a" stroke-width="0.336" fill="none" stroke-dasharray="0.6 1.6" /><path d="M3.625,-18.651 L4.102,-21.105 A21.5,21.5 0 0 1 16.226,-14.105 L14.339,-12.465 A19,19 0 0 0 3.625,-18.651 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M3.625,-18.651 L4.102,-21.105 A21.5,21.5 0 0 1 16.226,-14.105 L14.339,-12.465 A19,19 0 0 0 3.625,-18.651 Z" stroke="#2a9d8f" stroke-width="0.336" fill="none" /><circle cx="20" cy="0" r="0.77" fill="#d1495b" fill-opacity="0.12" /><circle cx="20" cy="0" r="0.77" stroke="#d1495b" stroke-width="0.336" fill="none" stroke-dasharray="0.6 1.6" /><path d="M14.339,12.465 L16.226,14.105 A21.5,21.5 0 0 1 4.102,21.105 L3.625,18.651 A19,19 0 0 0 14.339,12.465 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M14.339,12.465 L16.226,14.105 A21.5,21.5 0 0 1 4.102,21.105 L3.625,18.651 A19,19 0 0 0 14.339,12.465 Z" stroke="#2a9d8f" stroke-width="0.336" fill="none" /><path d="M-18.974,-0.994 L-21.471,-1.125 A21.5,21.5 0 0 1 -16.226,-14.105 L-14.339,-12.465 A19,19 0 0 0 -18.974,-0.994 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-18.974,-0.994 L-21.471,-1.125 A21.5,21.5 0 0 1 -16.226,-14.105 L-14.339,-12.465 A19,19 0 0 0 -18.974,-0.994 Z" stroke="#2a9d8f" stroke-width="0.336" fill="none" /></g><g data-layer="camera-side-variant-electrical"><path d="M-0.596,-15.589 L-0.703,-18.387 A18.4,18.4 0 0 1 0.703,-18.387 L0.596,-15.589 A15.6,15.6 0 0 0 -0.596,-15.589 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-0.596,-15.589 L-0.703,-18.387 A18.4,18.4 0 0 1 0.703,-18.387 L0.596,-15.589 A15.6,15.6 0 0 0 -0.596,-15.589 Z" stroke="#8a5cd1" stroke-width="0.336" fill="none" /><path d="M1.85,-15.49 L2.182,-18.27 A18.4,18.4 0 0 1 3.571,-18.05 L3.028,-15.303 A15.6,15.6 0 0 0 1.85,-15.49 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M1.85,-15.49 L2.182,-18.27 A18.4,18.4 0 0 1 3.571,-18.05 L3.028,-15.303 A15.6,15.6 0 0 0 1.85,-15.49 Z" stroke="#8a5cd1" stroke-width="0.336" fill="none" /><path d="M4.25,-15.01 L5.013,-17.704 A18.4,18.4 0 0 1 6.351,-17.269 L5.384,-14.641 A15.6,15.6 0 0 0 4.25,-15.01 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M4.25,-15.01 L5.013,-17.704 A18.4,18.4 0 0 1 6.351,-17.269 L5.384,-14.641 A15.6,15.6 0 0 0 4.25,-15.01 Z" stroke="#8a5cd1" stroke-width="0.336" fill="none" /><path d="M6.546,-14.16 L7.721,-16.702 A18.4,18.4 0 0 1 8.974,-16.063 L7.608,-13.619 A15.6,15.6 0 0 0 6.546,-14.16 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M6.546,-14.16 L7.721,-16.702 A18.4,18.4 0 0 1 8.974,-16.063 L7.608,-13.619 A15.6,15.6 0 0 0 6.546,-14.16 Z" stroke="#8a5cd1" stroke-width="0.336" fill="none" /><path d="M8.68,-12.962 L10.238,-15.288 A18.4,18.4 0 0 1 11.376,-14.462 L9.645,-12.261 A15.6,15.6 0 0 0 8.68,-12.962 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M8.68,-12.962 L10.238,-15.288 A18.4,18.4 0 0 1 11.376,-14.462 L9.645,-12.261 A15.6,15.6 0 0 0 8.68,-12.962 Z" stroke="#8a5cd1" stroke-width="0.336" fill="none" /><path d="M10.601,-11.444 L12.504,-13.499 A18.4,18.4 0 0 1 13.499,-12.504 L11.444,-10.601 A15.6,15.6 0 0 0 10.601,-11.444 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M10.601,-11.444 L12.504,-13.499 A18.4,18.4 0 0 1 13.499,-12.504 L11.444,-10.601 A15.6,15.6 0 0 0 10.601,-11.444 Z" stroke="#8a5cd1" stroke-width="0.336" fill="none" /><path d="M-11.444,-10.601 L-13.499,-12.504 A18.4,18.4 0 0 1 -12.504,-13.499 L-10.601,-11.444 A15.6,15.6 0 0 0 -11.444,-10.601 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-11.444,-10.601 L-13.499,-12.504 A18.4,18.4 0 0 1 -12.504,-13.499 L-10.601,-11.444 A15.6,15.6 0 0 0 -11.444,-10.601 Z" stroke="#8a5cd1" stroke-width="0.336" fill="none" /><path d="M-9.645,-12.261 L-11.376,-14.462 A18.4,18.4 0 0 1 -10.238,-15.288 L-8.68,-12.962 A15.6,15.6 0 0 0 -9.645,-12.261 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-9.645,-12.261 L-11.376,-14.462 A18.4,18.4 0 0 1 -10.238,-15.288 L-8.68,-12.962 A15.6,15.6 0 0 0 -9.645,-12.261 Z" stroke="#8a5cd1" stroke-width="0.336" fill="none" /><path d="M-7.608,-13.619 L-8.974,-16.063 A18.4,18.4 0 0 1 -7.721,-16.702 L-6.546,-14.16 A15.6,15.6 0 0 0 -7.608,-13.619 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-7.608,-13.619 L-8.974,-16.063 A18.4,18.4 0 0 1 -7.721,-16.702 L-6.546,-14.16 A15.6,15.6 0 0 0 -7.608,-13.619 Z" stroke="#8a5cd1" stroke-width="0.336" fill="none" /><path d="M-5.384,-14.641 L-6.351,-17.269 A18.4,18.4 0 0 1 -5.013,-17.704 L-4.25,-15.01 A15.6,15.6 0 0 0 -5.384,-14.641 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-5.384,-14.641 L-6.351,-17.269 A18.4,18.4 0 0 1 -5.013,-17.704 L-4.25,-15.01 A15.6,15.6 0 0 0 -5.384,-14.641 Z" stroke="#8a5cd1" stroke-width="0.336" fill="none" /><path d="M-3.028,-15.303 L-3.571,-18.05 A18.4,18.4 0 0 1 -2.182,-18.27 L-1.85,-15.49 A15.6,15.6 0 0 0 -3.028,-15.303 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-3.028,-15.303 L-3.571,-18.05 A18.4,18.4 0 0 1 -2.182,-18.27 L-1.85,-15.49 A15.6,15.6 0 0 0 -3.028,-15.303 Z" stroke="#8a5cd1" stroke-width="0.336" fill="none" /></g><g aria-hidden="true"><line x1="-26.88" y1="-25.2" x2="-22.88" y2="-25.2" stroke="#2f80c4" stroke-width="0.4" /><text x="-21.88" y="-24.5" font-size="2" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-26.88" y1="-22.2" x2="-22.88" y2="-22.2" stroke="#6b7a8f" stroke-width="0.4" /><text x="-21.88" y="-21.5" font-size="2" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-26.88" y1="-19.2" x2="-22.88" y2="-19.2" stroke="#2a9d8f" stroke-width="0.4" /><text x="-21.88" y="-18.5" font-size="2" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-26.88" y1="-16.2" x2="-22.88" y2="-16.2" stroke="#d1495b" stroke-width="0.4" /><text x="-21.88" y="-15.5" font-size="2" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-26.88" y1="-13.2" x2="-22.88" y2="-13.2" stroke="#e8853a" stroke-width="0.4" /><text x="-21.88" y="-12.5" font-size="2" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-26.88" y1="-10.2" x2="-22.88" y2="-10.2" stroke="#8a5cd1" stroke-width="0.4" /><text x="-21.88" y="-9.5" font-size="2" fill="#8a5cd1" font-family="sans-serif">Electrical contact</text><line x1="-26.88" y1="-7.2" x2="-22.88" y2="-7.2" stroke="#7f8c3a" stroke-width="0.4" /><text x="-21.88" y="-6.5" font-size="2" fill="#7f8c3a" font-family="sans-serif">Screws / seals</text><line x1="-26.88" y1="-4.2" x2="-22.88" y2="-4.2" stroke="#8a94a0" stroke-width="0.4" /><text x="-21.88" y="-3.5" font-size="2" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
 
 **Lens-side rear view** — viewBox `-26 -27 52 53` ([standalone SVG](mounts/micro-four-thirds-lens-rear.svg))
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-26 -27 52 53" role="img" aria-labelledby="micro-four-thirds-base-lens_side_rear-title micro-four-thirds-base-lens_side_rear-desc"><title id="micro-four-thirds-base-lens_side_rear-title">Micro Four Thirds mount — lens-side rear view (base)</title><desc id="micro-four-thirds-base-lens_side_rear-desc">Micro Four Thirds bayonet mount, lens-side rear view. Flange focal distance 19.25 mm, nominal throat 38 mm. Profile micro-four-thirds/base.</desc><metadata>{"mountId":"micro-four-thirds","profileId":"micro-four-thirds/base","view":"lens_side_rear","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.05" y1="0" x2="1.05" y2="0" stroke="#8a94a0" stroke-width="0.312" fill="none" /><line x1="0" y1="-1.05" x2="0" y2="1.05" stroke="#8a94a0" stroke-width="0.312" fill="none" /><line x1="0" y1="-21" x2="0" y2="-22.26" stroke="#8a94a0" stroke-width="0.312" fill="none" /></g><g data-layer="lens-side-metal"><path d="M0,-21 A21,21 0 1 1 0,21 A21,21 0 1 1 0,-21 Z M0,-18 A18,18 0 1 1 0,18 A18,18 0 1 1 0,-18 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-21 A21,21 0 1 1 0,21 A21,21 0 1 1 0,-21 Z M0,-18 A18,18 0 1 1 0,18 A18,18 0 1 1 0,-18 Z" stroke="#6b7a8f" stroke-width="0.312" fill="none" stroke-dasharray="4 2" /><path d="M0,-18 A18,18 0 1 1 0,18 A18,18 0 1 1 0,-18 Z" stroke="#2f80c4" stroke-width="0.312" fill="none" stroke-dasharray="4 2" /></g><g data-layer="lens-side-core-interface"><path d="M0,-19.4 L-1.313,-21.46 L1.313,-21.46 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-19.4 L-1.313,-21.46 L1.313,-21.46 Z" stroke="#e8853a" stroke-width="0.312" fill="none" stroke-dasharray="0.6 1.6" /><path d="M14.339,-12.465 L16.226,-14.105 A21.5,21.5 0 0 1 21.471,-1.125 L18.974,-0.994 A19,19 0 0 0 14.339,-12.465 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M14.339,-12.465 L16.226,-14.105 A21.5,21.5 0 0 1 21.471,-1.125 L18.974,-0.994 A19,19 0 0 0 14.339,-12.465 Z" stroke="#2a9d8f" stroke-width="0.312" fill="none" stroke-dasharray="4 2" /><path d="M-3.625,18.651 L-4.102,21.105 A21.5,21.5 0 0 1 -16.226,14.105 L-14.339,12.465 A19,19 0 0 0 -3.625,18.651 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-3.625,18.651 L-4.102,21.105 A21.5,21.5 0 0 1 -16.226,14.105 L-14.339,12.465 A19,19 0 0 0 -3.625,18.651 Z" stroke="#2a9d8f" stroke-width="0.312" fill="none" stroke-dasharray="4 2" /><circle cx="-20" cy="0" r="0.735" fill="#d1495b" fill-opacity="0.12" /><circle cx="-20" cy="0" r="0.735" stroke="#d1495b" stroke-width="0.312" fill="none" stroke-dasharray="0.6 1.6" /><path d="M-14.339,-12.465 L-16.226,-14.105 A21.5,21.5 0 0 1 -4.102,-21.105 L-3.625,-18.651 A19,19 0 0 0 -14.339,-12.465 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-14.339,-12.465 L-16.226,-14.105 A21.5,21.5 0 0 1 -4.102,-21.105 L-3.625,-18.651 A19,19 0 0 0 -14.339,-12.465 Z" stroke="#2a9d8f" stroke-width="0.312" fill="none" stroke-dasharray="4 2" /></g><g data-layer="lens-side-variant-electrical"><path d="M-0.596,-15.589 L-0.703,-18.387 A18.4,18.4 0 0 1 0.703,-18.387 L0.596,-15.589 A15.6,15.6 0 0 0 -0.596,-15.589 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-0.596,-15.589 L-0.703,-18.387 A18.4,18.4 0 0 1 0.703,-18.387 L0.596,-15.589 A15.6,15.6 0 0 0 -0.596,-15.589 Z" stroke="#8a5cd1" stroke-width="0.312" fill="none" stroke-dasharray="4 2" /><path d="M-3.028,-15.303 L-3.571,-18.05 A18.4,18.4 0 0 1 -2.182,-18.27 L-1.85,-15.49 A15.6,15.6 0 0 0 -3.028,-15.303 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-3.028,-15.303 L-3.571,-18.05 A18.4,18.4 0 0 1 -2.182,-18.27 L-1.85,-15.49 A15.6,15.6 0 0 0 -3.028,-15.303 Z" stroke="#8a5cd1" stroke-width="0.312" fill="none" stroke-dasharray="4 2" /><path d="M-5.384,-14.641 L-6.351,-17.269 A18.4,18.4 0 0 1 -5.013,-17.704 L-4.25,-15.01 A15.6,15.6 0 0 0 -5.384,-14.641 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-5.384,-14.641 L-6.351,-17.269 A18.4,18.4 0 0 1 -5.013,-17.704 L-4.25,-15.01 A15.6,15.6 0 0 0 -5.384,-14.641 Z" stroke="#8a5cd1" stroke-width="0.312" fill="none" stroke-dasharray="4 2" /><path d="M-7.608,-13.619 L-8.974,-16.063 A18.4,18.4 0 0 1 -7.721,-16.702 L-6.546,-14.16 A15.6,15.6 0 0 0 -7.608,-13.619 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-7.608,-13.619 L-8.974,-16.063 A18.4,18.4 0 0 1 -7.721,-16.702 L-6.546,-14.16 A15.6,15.6 0 0 0 -7.608,-13.619 Z" stroke="#8a5cd1" stroke-width="0.312" fill="none" stroke-dasharray="4 2" /><path d="M-9.645,-12.261 L-11.376,-14.462 A18.4,18.4 0 0 1 -10.238,-15.288 L-8.68,-12.962 A15.6,15.6 0 0 0 -9.645,-12.261 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-9.645,-12.261 L-11.376,-14.462 A18.4,18.4 0 0 1 -10.238,-15.288 L-8.68,-12.962 A15.6,15.6 0 0 0 -9.645,-12.261 Z" stroke="#8a5cd1" stroke-width="0.312" fill="none" stroke-dasharray="4 2" /><path d="M-11.444,-10.601 L-13.499,-12.504 A18.4,18.4 0 0 1 -12.504,-13.499 L-10.601,-11.444 A15.6,15.6 0 0 0 -11.444,-10.601 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-11.444,-10.601 L-13.499,-12.504 A18.4,18.4 0 0 1 -12.504,-13.499 L-10.601,-11.444 A15.6,15.6 0 0 0 -11.444,-10.601 Z" stroke="#8a5cd1" stroke-width="0.312" fill="none" stroke-dasharray="4 2" /><path d="M10.601,-11.444 L12.504,-13.499 A18.4,18.4 0 0 1 13.499,-12.504 L11.444,-10.601 A15.6,15.6 0 0 0 10.601,-11.444 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M10.601,-11.444 L12.504,-13.499 A18.4,18.4 0 0 1 13.499,-12.504 L11.444,-10.601 A15.6,15.6 0 0 0 10.601,-11.444 Z" stroke="#8a5cd1" stroke-width="0.312" fill="none" stroke-dasharray="4 2" /><path d="M8.68,-12.962 L10.238,-15.288 A18.4,18.4 0 0 1 11.376,-14.462 L9.645,-12.261 A15.6,15.6 0 0 0 8.68,-12.962 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M8.68,-12.962 L10.238,-15.288 A18.4,18.4 0 0 1 11.376,-14.462 L9.645,-12.261 A15.6,15.6 0 0 0 8.68,-12.962 Z" stroke="#8a5cd1" stroke-width="0.312" fill="none" stroke-dasharray="4 2" /><path d="M6.546,-14.16 L7.721,-16.702 A18.4,18.4 0 0 1 8.974,-16.063 L7.608,-13.619 A15.6,15.6 0 0 0 6.546,-14.16 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M6.546,-14.16 L7.721,-16.702 A18.4,18.4 0 0 1 8.974,-16.063 L7.608,-13.619 A15.6,15.6 0 0 0 6.546,-14.16 Z" stroke="#8a5cd1" stroke-width="0.312" fill="none" stroke-dasharray="4 2" /><path d="M4.25,-15.01 L5.013,-17.704 A18.4,18.4 0 0 1 6.351,-17.269 L5.384,-14.641 A15.6,15.6 0 0 0 4.25,-15.01 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M4.25,-15.01 L5.013,-17.704 A18.4,18.4 0 0 1 6.351,-17.269 L5.384,-14.641 A15.6,15.6 0 0 0 4.25,-15.01 Z" stroke="#8a5cd1" stroke-width="0.312" fill="none" stroke-dasharray="4 2" /><path d="M1.85,-15.49 L2.182,-18.27 A18.4,18.4 0 0 1 3.571,-18.05 L3.028,-15.303 A15.6,15.6 0 0 0 1.85,-15.49 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M1.85,-15.49 L2.182,-18.27 A18.4,18.4 0 0 1 3.571,-18.05 L3.028,-15.303 A15.6,15.6 0 0 0 1.85,-15.49 Z" stroke="#8a5cd1" stroke-width="0.312" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-24.96" y1="-24.35" x2="-20.96" y2="-24.35" stroke="#2f80c4" stroke-width="0.4" /><text x="-19.96" y="-23.65" font-size="2" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-24.96" y1="-21.35" x2="-20.96" y2="-21.35" stroke="#6b7a8f" stroke-width="0.4" /><text x="-19.96" y="-20.65" font-size="2" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-24.96" y1="-18.35" x2="-20.96" y2="-18.35" stroke="#2a9d8f" stroke-width="0.4" /><text x="-19.96" y="-17.65" font-size="2" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-24.96" y1="-15.35" x2="-20.96" y2="-15.35" stroke="#d1495b" stroke-width="0.4" /><text x="-19.96" y="-14.65" font-size="2" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-24.96" y1="-12.35" x2="-20.96" y2="-12.35" stroke="#e8853a" stroke-width="0.4" /><text x="-19.96" y="-11.65" font-size="2" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-24.96" y1="-9.35" x2="-20.96" y2="-9.35" stroke="#8a5cd1" stroke-width="0.4" /><text x="-19.96" y="-8.65" font-size="2" fill="#8a5cd1" font-family="sans-serif">Electrical contact</text><line x1="-24.96" y1="-6.35" x2="-20.96" y2="-6.35" stroke="#8a94a0" stroke-width="0.4" /><text x="-19.96" y="-5.65" font-size="2" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-26 -27 52 53" role="img" aria-labelledby="micro-four-thirds-base-lens_side_rear-title micro-four-thirds-base-lens_side_rear-desc"><title id="micro-four-thirds-base-lens_side_rear-title">Micro Four Thirds mount — lens-side rear view (base)</title><desc id="micro-four-thirds-base-lens_side_rear-desc">Micro Four Thirds bayonet mount, lens-side rear view. Flange focal distance 19.25 mm, nominal throat 38 mm. Profile micro-four-thirds/base.</desc><metadata>{"mountId":"micro-four-thirds","profileId":"micro-four-thirds/base","view":"lens_side_rear","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.05" y1="0" x2="1.05" y2="0" stroke="#8a94a0" stroke-width="0.312" fill="none" /><line x1="0" y1="-1.05" x2="0" y2="1.05" stroke="#8a94a0" stroke-width="0.312" fill="none" /><line x1="0" y1="-21" x2="0" y2="-22.26" stroke="#8a94a0" stroke-width="0.312" fill="none" /></g><g data-layer="lens-side-metal"><path d="M0,-21 A21,21 0 1 1 0,21 A21,21 0 1 1 0,-21 Z M0,-18 A18,18 0 1 1 0,18 A18,18 0 1 1 0,-18 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-21 A21,21 0 1 1 0,21 A21,21 0 1 1 0,-21 Z M0,-18 A18,18 0 1 1 0,18 A18,18 0 1 1 0,-18 Z" stroke="#6b7a8f" stroke-width="0.312" fill="none" /><path d="M0,-18 A18,18 0 1 1 0,18 A18,18 0 1 1 0,-18 Z" stroke="#2f80c4" stroke-width="0.312" fill="none" /></g><g data-layer="lens-side-core-interface"><path d="M0,-19.4 L-1.313,-21.46 L1.313,-21.46 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-19.4 L-1.313,-21.46 L1.313,-21.46 Z" stroke="#e8853a" stroke-width="0.312" fill="none" stroke-dasharray="0.6 1.6" /><path d="M14.339,-12.465 L16.226,-14.105 A21.5,21.5 0 0 1 21.471,-1.125 L18.974,-0.994 A19,19 0 0 0 14.339,-12.465 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M14.339,-12.465 L16.226,-14.105 A21.5,21.5 0 0 1 21.471,-1.125 L18.974,-0.994 A19,19 0 0 0 14.339,-12.465 Z" stroke="#2a9d8f" stroke-width="0.312" fill="none" /><path d="M-3.625,18.651 L-4.102,21.105 A21.5,21.5 0 0 1 -16.226,14.105 L-14.339,12.465 A19,19 0 0 0 -3.625,18.651 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-3.625,18.651 L-4.102,21.105 A21.5,21.5 0 0 1 -16.226,14.105 L-14.339,12.465 A19,19 0 0 0 -3.625,18.651 Z" stroke="#2a9d8f" stroke-width="0.312" fill="none" /><circle cx="-20" cy="0" r="0.735" fill="#d1495b" fill-opacity="0.12" /><circle cx="-20" cy="0" r="0.735" stroke="#d1495b" stroke-width="0.312" fill="none" stroke-dasharray="0.6 1.6" /><path d="M-14.339,-12.465 L-16.226,-14.105 A21.5,21.5 0 0 1 -4.102,-21.105 L-3.625,-18.651 A19,19 0 0 0 -14.339,-12.465 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-14.339,-12.465 L-16.226,-14.105 A21.5,21.5 0 0 1 -4.102,-21.105 L-3.625,-18.651 A19,19 0 0 0 -14.339,-12.465 Z" stroke="#2a9d8f" stroke-width="0.312" fill="none" /></g><g data-layer="lens-side-variant-electrical"><path d="M-0.596,-15.589 L-0.703,-18.387 A18.4,18.4 0 0 1 0.703,-18.387 L0.596,-15.589 A15.6,15.6 0 0 0 -0.596,-15.589 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-0.596,-15.589 L-0.703,-18.387 A18.4,18.4 0 0 1 0.703,-18.387 L0.596,-15.589 A15.6,15.6 0 0 0 -0.596,-15.589 Z" stroke="#8a5cd1" stroke-width="0.312" fill="none" /><path d="M-3.028,-15.303 L-3.571,-18.05 A18.4,18.4 0 0 1 -2.182,-18.27 L-1.85,-15.49 A15.6,15.6 0 0 0 -3.028,-15.303 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-3.028,-15.303 L-3.571,-18.05 A18.4,18.4 0 0 1 -2.182,-18.27 L-1.85,-15.49 A15.6,15.6 0 0 0 -3.028,-15.303 Z" stroke="#8a5cd1" stroke-width="0.312" fill="none" /><path d="M-5.384,-14.641 L-6.351,-17.269 A18.4,18.4 0 0 1 -5.013,-17.704 L-4.25,-15.01 A15.6,15.6 0 0 0 -5.384,-14.641 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-5.384,-14.641 L-6.351,-17.269 A18.4,18.4 0 0 1 -5.013,-17.704 L-4.25,-15.01 A15.6,15.6 0 0 0 -5.384,-14.641 Z" stroke="#8a5cd1" stroke-width="0.312" fill="none" /><path d="M-7.608,-13.619 L-8.974,-16.063 A18.4,18.4 0 0 1 -7.721,-16.702 L-6.546,-14.16 A15.6,15.6 0 0 0 -7.608,-13.619 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-7.608,-13.619 L-8.974,-16.063 A18.4,18.4 0 0 1 -7.721,-16.702 L-6.546,-14.16 A15.6,15.6 0 0 0 -7.608,-13.619 Z" stroke="#8a5cd1" stroke-width="0.312" fill="none" /><path d="M-9.645,-12.261 L-11.376,-14.462 A18.4,18.4 0 0 1 -10.238,-15.288 L-8.68,-12.962 A15.6,15.6 0 0 0 -9.645,-12.261 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-9.645,-12.261 L-11.376,-14.462 A18.4,18.4 0 0 1 -10.238,-15.288 L-8.68,-12.962 A15.6,15.6 0 0 0 -9.645,-12.261 Z" stroke="#8a5cd1" stroke-width="0.312" fill="none" /><path d="M-11.444,-10.601 L-13.499,-12.504 A18.4,18.4 0 0 1 -12.504,-13.499 L-10.601,-11.444 A15.6,15.6 0 0 0 -11.444,-10.601 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-11.444,-10.601 L-13.499,-12.504 A18.4,18.4 0 0 1 -12.504,-13.499 L-10.601,-11.444 A15.6,15.6 0 0 0 -11.444,-10.601 Z" stroke="#8a5cd1" stroke-width="0.312" fill="none" /><path d="M10.601,-11.444 L12.504,-13.499 A18.4,18.4 0 0 1 13.499,-12.504 L11.444,-10.601 A15.6,15.6 0 0 0 10.601,-11.444 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M10.601,-11.444 L12.504,-13.499 A18.4,18.4 0 0 1 13.499,-12.504 L11.444,-10.601 A15.6,15.6 0 0 0 10.601,-11.444 Z" stroke="#8a5cd1" stroke-width="0.312" fill="none" /><path d="M8.68,-12.962 L10.238,-15.288 A18.4,18.4 0 0 1 11.376,-14.462 L9.645,-12.261 A15.6,15.6 0 0 0 8.68,-12.962 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M8.68,-12.962 L10.238,-15.288 A18.4,18.4 0 0 1 11.376,-14.462 L9.645,-12.261 A15.6,15.6 0 0 0 8.68,-12.962 Z" stroke="#8a5cd1" stroke-width="0.312" fill="none" /><path d="M6.546,-14.16 L7.721,-16.702 A18.4,18.4 0 0 1 8.974,-16.063 L7.608,-13.619 A15.6,15.6 0 0 0 6.546,-14.16 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M6.546,-14.16 L7.721,-16.702 A18.4,18.4 0 0 1 8.974,-16.063 L7.608,-13.619 A15.6,15.6 0 0 0 6.546,-14.16 Z" stroke="#8a5cd1" stroke-width="0.312" fill="none" /><path d="M4.25,-15.01 L5.013,-17.704 A18.4,18.4 0 0 1 6.351,-17.269 L5.384,-14.641 A15.6,15.6 0 0 0 4.25,-15.01 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M4.25,-15.01 L5.013,-17.704 A18.4,18.4 0 0 1 6.351,-17.269 L5.384,-14.641 A15.6,15.6 0 0 0 4.25,-15.01 Z" stroke="#8a5cd1" stroke-width="0.312" fill="none" /><path d="M1.85,-15.49 L2.182,-18.27 A18.4,18.4 0 0 1 3.571,-18.05 L3.028,-15.303 A15.6,15.6 0 0 0 1.85,-15.49 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M1.85,-15.49 L2.182,-18.27 A18.4,18.4 0 0 1 3.571,-18.05 L3.028,-15.303 A15.6,15.6 0 0 0 1.85,-15.49 Z" stroke="#8a5cd1" stroke-width="0.312" fill="none" /></g><g aria-hidden="true"><line x1="-24.96" y1="-24.35" x2="-20.96" y2="-24.35" stroke="#2f80c4" stroke-width="0.4" /><text x="-19.96" y="-23.65" font-size="2" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-24.96" y1="-21.35" x2="-20.96" y2="-21.35" stroke="#6b7a8f" stroke-width="0.4" /><text x="-19.96" y="-20.65" font-size="2" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-24.96" y1="-18.35" x2="-20.96" y2="-18.35" stroke="#2a9d8f" stroke-width="0.4" /><text x="-19.96" y="-17.65" font-size="2" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-24.96" y1="-15.35" x2="-20.96" y2="-15.35" stroke="#d1495b" stroke-width="0.4" /><text x="-19.96" y="-14.65" font-size="2" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-24.96" y1="-12.35" x2="-20.96" y2="-12.35" stroke="#e8853a" stroke-width="0.4" /><text x="-19.96" y="-11.65" font-size="2" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-24.96" y1="-9.35" x2="-20.96" y2="-9.35" stroke="#8a5cd1" stroke-width="0.4" /><text x="-19.96" y="-8.65" font-size="2" fill="#8a5cd1" font-family="sans-serif">Electrical contact</text><line x1="-24.96" y1="-6.35" x2="-20.96" y2="-6.35" stroke="#8a94a0" stroke-width="0.4" /><text x="-19.96" y="-5.65" font-size="2" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
 
 **Axial / register schematic** — viewBox `-25 -31 32 58` ([standalone SVG](mounts/micro-four-thirds-axial.svg))
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-25 -31 32 58" role="img" aria-labelledby="micro-four-thirds-base-axial_section-title micro-four-thirds-base-axial_section-desc"><title id="micro-four-thirds-base-axial_section-title">Micro Four Thirds mount — axial / register schematic (base)</title><desc id="micro-four-thirds-base-axial_section-desc">Micro Four Thirds bayonet mount, axial / register schematic. Flange focal distance 19.25 mm, nominal throat 38 mm. Profile micro-four-thirds/base.</desc><metadata>{"mountId":"micro-four-thirds","profileId":"micro-four-thirds/base","view":"axial_section","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-19.25" y1="0" x2="1.2" y2="0" stroke="#8a94a0" stroke-width="0.25" fill="none" /><line x1="0" y1="-22" x2="0" y2="22" stroke="#8a94a0" stroke-width="0.25" fill="none" /></g><g data-layer="axial-section"><text x="-19.25" y="-12.32" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">sensor film plane</text><line x1="-19.25" y1="-10.82" x2="-19.25" y2="10.82" stroke="#2bb0c4" stroke-width="0.188" fill="none" /><line x1="0" y1="-22" x2="0" y2="22" stroke="#2bb0c4" stroke-width="0.25" fill="none" stroke-dasharray="4 2" /><text x="0" y="-23.5" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">flange datum</text><line x1="0.5" y1="-17" x2="0.5" y2="17" stroke="#2bb0c4" stroke-width="0.25" fill="none" stroke-dasharray="4 2" /><text x="0.5" y="-18.5" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">electrical contact plane</text><line x1="1.2" y1="-20" x2="1.2" y2="20" stroke="#2bb0c4" stroke-width="0.25" fill="none" stroke-dasharray="4 2" /><text x="1.2" y="-21.5" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">bayonet lug engagement</text></g><g aria-hidden="true"><line x1="-24.36" y1="-28.1" x2="-20.36" y2="-28.1" stroke="#8a94a0" stroke-width="0.406" /><text x="-19.36" y="-27.4" font-size="2" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text><line x1="-24.36" y1="-25.1" x2="-20.36" y2="-25.1" stroke="#2bb0c4" stroke-width="0.406" /><text x="-19.36" y="-24.4" font-size="2" fill="#2bb0c4" font-family="sans-serif">Register plane</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-25 -31 32 58" role="img" aria-labelledby="micro-four-thirds-base-axial_section-title micro-four-thirds-base-axial_section-desc"><title id="micro-four-thirds-base-axial_section-title">Micro Four Thirds mount — axial / register schematic (base)</title><desc id="micro-four-thirds-base-axial_section-desc">Micro Four Thirds bayonet mount, axial / register schematic. Flange focal distance 19.25 mm, nominal throat 38 mm. Profile micro-four-thirds/base.</desc><metadata>{"mountId":"micro-four-thirds","profileId":"micro-four-thirds/base","view":"axial_section","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-19.25" y1="0" x2="1.2" y2="0" stroke="#8a94a0" stroke-width="0.25" fill="none" /><line x1="0" y1="-22" x2="0" y2="22" stroke="#8a94a0" stroke-width="0.25" fill="none" /></g><g data-layer="axial-section"><text x="-19.25" y="-12.32" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">sensor film plane</text><line x1="-19.25" y1="-10.82" x2="-19.25" y2="10.82" stroke="#2bb0c4" stroke-width="0.188" fill="none" /><line x1="0" y1="-22" x2="0" y2="22" stroke="#2bb0c4" stroke-width="0.25" fill="none" /><text x="0" y="-23.5" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">flange datum</text><line x1="0.5" y1="-17" x2="0.5" y2="17" stroke="#2bb0c4" stroke-width="0.25" fill="none" /><text x="0.5" y="-18.5" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">electrical contact plane</text><line x1="1.2" y1="-20" x2="1.2" y2="20" stroke="#2bb0c4" stroke-width="0.25" fill="none" /><text x="1.2" y="-21.5" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">bayonet lug engagement</text></g><g aria-hidden="true"><line x1="-24.36" y1="-28.1" x2="-20.36" y2="-28.1" stroke="#8a94a0" stroke-width="0.406" /><text x="-19.36" y="-27.4" font-size="2" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text><line x1="-24.36" y1="-25.1" x2="-20.36" y2="-25.1" stroke="#2bb0c4" stroke-width="0.406" /><text x="-19.36" y="-24.4" font-size="2" fill="#2bb0c4" font-family="sans-serif">Register plane</text></g></svg>
 
 #### Camera-side front-view geometry
 
@@ -38954,7 +38954,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -38962,7 +38962,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -38970,7 +38970,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 360,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -38986,7 +38986,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 22,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39007,7 +39007,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 30,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39015,7 +39015,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 11,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39023,7 +39023,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 49,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39031,7 +39031,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 19,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39039,7 +39039,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 21.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39047,7 +39047,7 @@ None — fully electronic.
       },
       "depthMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39063,7 +39063,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 150,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39071,7 +39071,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 131,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39079,7 +39079,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 169,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39087,7 +39087,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 19,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39095,7 +39095,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 21.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39103,7 +39103,7 @@ None — fully electronic.
       },
       "depthMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39119,7 +39119,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 292,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39127,7 +39127,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 273,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39135,7 +39135,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 311,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39143,7 +39143,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 19,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39151,7 +39151,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 21.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39159,7 +39159,7 @@ None — fully electronic.
       },
       "depthMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39175,7 +39175,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39207,7 +39207,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 22.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39228,7 +39228,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 90,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39260,7 +39260,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 20,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39268,7 +39268,7 @@ None — fully electronic.
       },
       "depthMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39318,7 +39318,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 18,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39339,7 +39339,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39347,7 +39347,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39355,7 +39355,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 360,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39363,7 +39363,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 18,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39371,7 +39371,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 21,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39392,7 +39392,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 30,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39400,7 +39400,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 11,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39408,7 +39408,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 49,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39416,7 +39416,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 19,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39424,7 +39424,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 21.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39432,7 +39432,7 @@ None — fully electronic.
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39448,7 +39448,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 150,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39456,7 +39456,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 131,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39464,7 +39464,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 169,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39472,7 +39472,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 19,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39480,7 +39480,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 21.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39488,7 +39488,7 @@ None — fully electronic.
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39504,7 +39504,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 292,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39512,7 +39512,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 273,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39520,7 +39520,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 311,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39528,7 +39528,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 19,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39536,7 +39536,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 21.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39544,7 +39544,7 @@ None — fully electronic.
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39560,7 +39560,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39592,7 +39592,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 21.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39613,7 +39613,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 90,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39645,7 +39645,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 20,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39653,7 +39653,7 @@ None — fully electronic.
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39684,7 +39684,7 @@ None — fully electronic.
       },
       "diameterMm": {
         "value": 44,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39695,7 +39695,7 @@ None — fully electronic.
       "planeId": "bayonet_lug_engagement",
       "zPositionMm": {
         "value": 1.2,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39703,7 +39703,7 @@ None — fully electronic.
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39711,7 +39711,7 @@ None — fully electronic.
       },
       "diameterMm": {
         "value": 40,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39722,7 +39722,7 @@ None — fully electronic.
       "planeId": "electrical_contact_plane",
       "zPositionMm": {
         "value": 0.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39730,7 +39730,7 @@ None — fully electronic.
       },
       "thicknessMm": {
         "value": 0.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39738,7 +39738,7 @@ None — fully electronic.
       },
       "diameterMm": {
         "value": 34,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39780,7 +39780,7 @@ None — fully electronic.
       "profileId": "micro-four-thirds/base",
       "centerAngleDeg": {
         "value": 315,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39788,7 +39788,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 17,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39796,7 +39796,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39804,7 +39804,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39813,7 +39813,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39827,7 +39827,7 @@ None — fully electronic.
       "profileId": "micro-four-thirds/base",
       "centerAngleDeg": {
         "value": 324,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39835,7 +39835,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 17,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39843,7 +39843,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39851,7 +39851,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39860,7 +39860,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39874,7 +39874,7 @@ None — fully electronic.
       "profileId": "micro-four-thirds/base",
       "centerAngleDeg": {
         "value": 333,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39882,7 +39882,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 17,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39890,7 +39890,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39898,7 +39898,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39907,7 +39907,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39921,7 +39921,7 @@ None — fully electronic.
       "profileId": "micro-four-thirds/base",
       "centerAngleDeg": {
         "value": 342,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39929,7 +39929,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 17,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39937,7 +39937,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39945,7 +39945,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39954,7 +39954,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39968,7 +39968,7 @@ None — fully electronic.
       "profileId": "micro-four-thirds/base",
       "centerAngleDeg": {
         "value": 351,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39976,7 +39976,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 17,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39984,7 +39984,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -39992,7 +39992,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40001,7 +40001,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40015,7 +40015,7 @@ None — fully electronic.
       "profileId": "micro-four-thirds/base",
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40023,7 +40023,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 17,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40031,7 +40031,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40039,7 +40039,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40048,7 +40048,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40062,7 +40062,7 @@ None — fully electronic.
       "profileId": "micro-four-thirds/base",
       "centerAngleDeg": {
         "value": 9,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40070,7 +40070,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 17,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40078,7 +40078,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40086,7 +40086,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40095,7 +40095,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40109,7 +40109,7 @@ None — fully electronic.
       "profileId": "micro-four-thirds/base",
       "centerAngleDeg": {
         "value": 18,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40117,7 +40117,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 17,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40125,7 +40125,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40133,7 +40133,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40142,7 +40142,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40156,7 +40156,7 @@ None — fully electronic.
       "profileId": "micro-four-thirds/base",
       "centerAngleDeg": {
         "value": 27,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40164,7 +40164,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 17,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40172,7 +40172,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40180,7 +40180,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40189,7 +40189,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40203,7 +40203,7 @@ None — fully electronic.
       "profileId": "micro-four-thirds/base",
       "centerAngleDeg": {
         "value": 36,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40211,7 +40211,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 17,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40219,7 +40219,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40227,7 +40227,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40236,7 +40236,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40250,7 +40250,7 @@ None — fully electronic.
       "profileId": "micro-four-thirds/base",
       "centerAngleDeg": {
         "value": 45,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40258,7 +40258,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 17,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40266,7 +40266,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40274,7 +40274,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40283,7 +40283,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40297,7 +40297,7 @@ None — fully electronic.
       "profileId": "micro-four-thirds/base",
       "centerAngleDeg": {
         "value": 315,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40305,7 +40305,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 17,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40313,7 +40313,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40321,7 +40321,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40330,7 +40330,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40344,7 +40344,7 @@ None — fully electronic.
       "profileId": "micro-four-thirds/base",
       "centerAngleDeg": {
         "value": 324,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40352,7 +40352,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 17,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40360,7 +40360,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40368,7 +40368,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40377,7 +40377,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40391,7 +40391,7 @@ None — fully electronic.
       "profileId": "micro-four-thirds/base",
       "centerAngleDeg": {
         "value": 333,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40399,7 +40399,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 17,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40407,7 +40407,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40415,7 +40415,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40424,7 +40424,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40438,7 +40438,7 @@ None — fully electronic.
       "profileId": "micro-four-thirds/base",
       "centerAngleDeg": {
         "value": 342,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40446,7 +40446,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 17,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40454,7 +40454,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40462,7 +40462,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40471,7 +40471,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40485,7 +40485,7 @@ None — fully electronic.
       "profileId": "micro-four-thirds/base",
       "centerAngleDeg": {
         "value": 351,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40493,7 +40493,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 17,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40501,7 +40501,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40509,7 +40509,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40518,7 +40518,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40532,7 +40532,7 @@ None — fully electronic.
       "profileId": "micro-four-thirds/base",
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40540,7 +40540,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 17,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40548,7 +40548,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40556,7 +40556,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40565,7 +40565,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40579,7 +40579,7 @@ None — fully electronic.
       "profileId": "micro-four-thirds/base",
       "centerAngleDeg": {
         "value": 9,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40587,7 +40587,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 17,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40595,7 +40595,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40603,7 +40603,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40612,7 +40612,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40626,7 +40626,7 @@ None — fully electronic.
       "profileId": "micro-four-thirds/base",
       "centerAngleDeg": {
         "value": 18,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40634,7 +40634,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 17,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40642,7 +40642,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40650,7 +40650,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40659,7 +40659,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40673,7 +40673,7 @@ None — fully electronic.
       "profileId": "micro-four-thirds/base",
       "centerAngleDeg": {
         "value": 27,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40681,7 +40681,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 17,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40689,7 +40689,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40697,7 +40697,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40706,7 +40706,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40720,7 +40720,7 @@ None — fully electronic.
       "profileId": "micro-four-thirds/base",
       "centerAngleDeg": {
         "value": 36,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40728,7 +40728,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 17,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40736,7 +40736,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40744,7 +40744,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40753,7 +40753,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40767,7 +40767,7 @@ None — fully electronic.
       "profileId": "micro-four-thirds/base",
       "centerAngleDeg": {
         "value": 45,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40775,7 +40775,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 17,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40783,7 +40783,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40791,7 +40791,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -40800,7 +40800,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "mft-1",
           "mft-p1"
@@ -42275,15 +42275,15 @@ None — fully electronic.
 
 **Camera-side front view** — viewBox `-30 -31 60 61` ([standalone SVG](mounts/nikon-1-camera-front.svg))
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-30 -31 60 61" role="img" aria-labelledby="nikon-1-base-camera_side_front-title nikon-1-base-camera_side_front-desc"><title id="nikon-1-base-camera_side_front-title">Nikon 1 mount — camera-side front view (base)</title><desc id="nikon-1-base-camera_side_front-desc">Nikon 1 bayonet mount, camera-side front view. Flange focal distance 17 mm, nominal throat 40 mm. Profile nikon-1/base.</desc><metadata>{"mountId":"nikon-1","profileId":"nikon-1/base","view":"camera_side_front","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.2" y1="0" x2="1.2" y2="0" stroke="#8a94a0" stroke-width="0.36" fill="none" /><line x1="0" y1="-1.2" x2="0" y2="1.2" stroke="#8a94a0" stroke-width="0.36" fill="none" /><line x1="0" y1="-24" x2="0" y2="-25.44" stroke="#8a94a0" stroke-width="0.36" fill="none" /></g><g data-layer="camera-side-metal"><path d="M0,-24 A24,24 0 1 1 0,24 A24,24 0 1 1 0,-24 Z M0,-20 A20,20 0 1 1 0,20 A20,20 0 1 1 0,-20 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-24 A24,24 0 1 1 0,24 A24,24 0 1 1 0,-24 Z M0,-20 A20,20 0 1 1 0,20 A20,20 0 1 1 0,-20 Z" stroke="#6b7a8f" stroke-width="0.36" fill="none" stroke-dasharray="4 2" /><path d="M0,-20 A20,20 0 1 1 0,20 A20,20 0 1 1 0,-20 Z" stroke="#2f80c4" stroke-width="0.36" fill="none" stroke-dasharray="4 2" /><circle cx="15.556" cy="-15.556" r="0.8" stroke="#7f8c3a" stroke-width="0.36" fill="none" stroke-dasharray="4 2" /><circle cx="15.556" cy="15.556" r="0.8" stroke="#7f8c3a" stroke-width="0.36" fill="none" stroke-dasharray="4 2" /><circle cx="-15.556" cy="15.556" r="0.8" stroke="#7f8c3a" stroke-width="0.36" fill="none" stroke-dasharray="4 2" /><circle cx="-15.556" cy="-15.556" r="0.8" stroke="#7f8c3a" stroke-width="0.36" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-core-interface"><path d="M0,-22.1 L-1.496,-24.454 L1.496,-24.454 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-22.1 L-1.496,-24.454 L1.496,-24.454 Z" stroke="#e8853a" stroke-width="0.36" fill="none" stroke-dasharray="0.6 1.6" /><path d="M3.816,-19.633 L4.293,-22.087 A22.5,22.5 0 0 1 16.981,-14.761 L15.094,-13.121 A20,20 0 0 0 3.816,-19.633 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M3.816,-19.633 L4.293,-22.087 A22.5,22.5 0 0 1 16.981,-14.761 L15.094,-13.121 A20,20 0 0 0 3.816,-19.633 Z" stroke="#2a9d8f" stroke-width="0.36" fill="none" stroke-dasharray="4 2" /><circle cx="21" cy="0" r="0.84" fill="#d1495b" fill-opacity="0.12" /><circle cx="21" cy="0" r="0.84" stroke="#d1495b" stroke-width="0.36" fill="none" stroke-dasharray="0.6 1.6" /><path d="M15.094,13.121 L16.981,14.761 A22.5,22.5 0 0 1 4.293,22.087 L3.816,19.633 A20,20 0 0 0 15.094,13.121 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M15.094,13.121 L16.981,14.761 A22.5,22.5 0 0 1 4.293,22.087 L3.816,19.633 A20,20 0 0 0 15.094,13.121 Z" stroke="#2a9d8f" stroke-width="0.36" fill="none" stroke-dasharray="4 2" /><path d="M-19.973,-1.047 L-22.469,-1.178 A22.5,22.5 0 0 1 -16.981,-14.761 L-15.094,-13.121 A20,20 0 0 0 -19.973,-1.047 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-19.973,-1.047 L-22.469,-1.178 A22.5,22.5 0 0 1 -16.981,-14.761 L-15.094,-13.121 A20,20 0 0 0 -19.973,-1.047 Z" stroke="#2a9d8f" stroke-width="0.36" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-variant-electrical"><path d="M0.617,-16.589 L0.721,-19.387 A19.4,19.4 0 0 1 2.118,-19.284 L1.813,-16.501 A16.6,16.6 0 0 0 0.617,-16.589 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M0.617,-16.589 L0.721,-19.387 A19.4,19.4 0 0 1 2.118,-19.284 L1.813,-16.501 A16.6,16.6 0 0 0 0.617,-16.589 Z" stroke="#8a5cd1" stroke-width="0.36" fill="none" stroke-dasharray="4 2" /><path d="M2.977,-16.331 L3.479,-19.085 A19.4,19.4 0 0 1 4.847,-18.785 L4.148,-16.073 A16.6,16.6 0 0 0 2.977,-16.331 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M2.977,-16.331 L3.479,-19.085 A19.4,19.4 0 0 1 4.847,-18.785 L4.148,-16.073 A16.6,16.6 0 0 0 2.977,-16.331 Z" stroke="#8a5cd1" stroke-width="0.36" fill="none" stroke-dasharray="4 2" /><path d="M5.276,-15.739 L6.166,-18.394 A19.4,19.4 0 0 1 7.477,-17.901 L6.398,-15.318 A16.6,16.6 0 0 0 5.276,-15.739 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M5.276,-15.739 L6.166,-18.394 A19.4,19.4 0 0 1 7.477,-17.901 L6.398,-15.318 A16.6,16.6 0 0 0 5.276,-15.739 Z" stroke="#8a5cd1" stroke-width="0.36" fill="none" stroke-dasharray="4 2" /><path d="M7.467,-14.826 L8.726,-17.327 A19.4,19.4 0 0 1 9.954,-16.652 L8.517,-14.248 A16.6,16.6 0 0 0 7.467,-14.826 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M7.467,-14.826 L8.726,-17.327 A19.4,19.4 0 0 1 9.954,-16.652 L8.517,-14.248 A16.6,16.6 0 0 0 7.467,-14.826 Z" stroke="#8a5cd1" stroke-width="0.36" fill="none" stroke-dasharray="4 2" /><path d="M9.505,-13.609 L11.108,-15.905 A19.4,19.4 0 0 1 12.227,-15.062 L10.462,-12.888 A16.6,16.6 0 0 0 9.505,-13.609 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M9.505,-13.609 L11.108,-15.905 A19.4,19.4 0 0 1 12.227,-15.062 L10.462,-12.888 A16.6,16.6 0 0 0 9.505,-13.609 Z" stroke="#8a5cd1" stroke-width="0.36" fill="none" stroke-dasharray="4 2" /><path d="M11.349,-12.115 L13.263,-14.158 A19.4,19.4 0 0 1 14.25,-13.164 L12.193,-11.264 A16.6,16.6 0 0 0 11.349,-12.115 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M11.349,-12.115 L13.263,-14.158 A19.4,19.4 0 0 1 14.25,-13.164 L12.193,-11.264 A16.6,16.6 0 0 0 11.349,-12.115 Z" stroke="#8a5cd1" stroke-width="0.36" fill="none" stroke-dasharray="4 2" /><path d="M-12.154,-11.307 L-14.204,-13.214 A19.4,19.4 0 0 1 -13.214,-14.204 L-11.307,-12.154 A16.6,16.6 0 0 0 -12.154,-11.307 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-12.154,-11.307 L-14.204,-13.214 A19.4,19.4 0 0 1 -13.214,-14.204 L-11.307,-12.154 A16.6,16.6 0 0 0 -12.154,-11.307 Z" stroke="#8a5cd1" stroke-width="0.36" fill="none" stroke-dasharray="4 2" /><path d="M-10.417,-12.924 L-12.174,-15.105 A19.4,19.4 0 0 1 -11.053,-15.944 L-9.457,-13.642 A16.6,16.6 0 0 0 -10.417,-12.924 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-10.417,-12.924 L-12.174,-15.105 A19.4,19.4 0 0 1 -11.053,-15.944 L-9.457,-13.642 A16.6,16.6 0 0 0 -10.417,-12.924 Z" stroke="#8a5cd1" stroke-width="0.36" fill="none" stroke-dasharray="4 2" /><path d="M-8.467,-14.278 L-9.896,-16.686 A19.4,19.4 0 0 1 -8.666,-17.357 L-7.415,-14.852 A16.6,16.6 0 0 0 -8.467,-14.278 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-8.467,-14.278 L-9.896,-16.686 A19.4,19.4 0 0 1 -8.666,-17.357 L-7.415,-14.852 A16.6,16.6 0 0 0 -8.467,-14.278 Z" stroke="#8a5cd1" stroke-width="0.36" fill="none" stroke-dasharray="4 2" /><path d="M-6.344,-15.34 L-7.414,-17.927 A19.4,19.4 0 0 1 -6.101,-18.416 L-5.221,-15.758 A16.6,16.6 0 0 0 -6.344,-15.34 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-6.344,-15.34 L-7.414,-17.927 A19.4,19.4 0 0 1 -6.101,-18.416 L-5.221,-15.758 A16.6,16.6 0 0 0 -6.344,-15.34 Z" stroke="#8a5cd1" stroke-width="0.36" fill="none" stroke-dasharray="4 2" /><path d="M-4.091,-16.088 L-4.782,-18.801 A19.4,19.4 0 0 1 -3.412,-19.098 L-2.92,-16.341 A16.6,16.6 0 0 0 -4.091,-16.088 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-4.091,-16.088 L-4.782,-18.801 A19.4,19.4 0 0 1 -3.412,-19.098 L-2.92,-16.341 A16.6,16.6 0 0 0 -4.091,-16.088 Z" stroke="#8a5cd1" stroke-width="0.36" fill="none" stroke-dasharray="4 2" /><path d="M-1.755,-16.507 L-2.051,-19.291 A19.4,19.4 0 0 1 -0.654,-19.389 L-0.559,-16.591 A16.6,16.6 0 0 0 -1.755,-16.507 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-1.755,-16.507 L-2.051,-19.291 A19.4,19.4 0 0 1 -0.654,-19.389 L-0.559,-16.591 A16.6,16.6 0 0 0 -1.755,-16.507 Z" stroke="#8a5cd1" stroke-width="0.36" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-28.8" y1="-27.95" x2="-24.8" y2="-27.95" stroke="#2f80c4" stroke-width="0.427" /><text x="-23.8" y="-27.25" font-size="2" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-28.8" y1="-24.95" x2="-24.8" y2="-24.95" stroke="#6b7a8f" stroke-width="0.427" /><text x="-23.8" y="-24.25" font-size="2" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-28.8" y1="-21.95" x2="-24.8" y2="-21.95" stroke="#2a9d8f" stroke-width="0.427" /><text x="-23.8" y="-21.25" font-size="2" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-28.8" y1="-18.95" x2="-24.8" y2="-18.95" stroke="#d1495b" stroke-width="0.427" /><text x="-23.8" y="-18.25" font-size="2" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-28.8" y1="-15.95" x2="-24.8" y2="-15.95" stroke="#e8853a" stroke-width="0.427" /><text x="-23.8" y="-15.25" font-size="2" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-28.8" y1="-12.95" x2="-24.8" y2="-12.95" stroke="#8a5cd1" stroke-width="0.427" /><text x="-23.8" y="-12.25" font-size="2" fill="#8a5cd1" font-family="sans-serif">Electrical contact</text><line x1="-28.8" y1="-9.95" x2="-24.8" y2="-9.95" stroke="#7f8c3a" stroke-width="0.427" /><text x="-23.8" y="-9.25" font-size="2" fill="#7f8c3a" font-family="sans-serif">Screws / seals</text><line x1="-28.8" y1="-6.95" x2="-24.8" y2="-6.95" stroke="#8a94a0" stroke-width="0.427" /><text x="-23.8" y="-6.25" font-size="2" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-30 -31 60 61" role="img" aria-labelledby="nikon-1-base-camera_side_front-title nikon-1-base-camera_side_front-desc"><title id="nikon-1-base-camera_side_front-title">Nikon 1 mount — camera-side front view (base)</title><desc id="nikon-1-base-camera_side_front-desc">Nikon 1 bayonet mount, camera-side front view. Flange focal distance 17 mm, nominal throat 40 mm. Profile nikon-1/base.</desc><metadata>{"mountId":"nikon-1","profileId":"nikon-1/base","view":"camera_side_front","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.2" y1="0" x2="1.2" y2="0" stroke="#8a94a0" stroke-width="0.36" fill="none" /><line x1="0" y1="-1.2" x2="0" y2="1.2" stroke="#8a94a0" stroke-width="0.36" fill="none" /><line x1="0" y1="-24" x2="0" y2="-25.44" stroke="#8a94a0" stroke-width="0.36" fill="none" /></g><g data-layer="camera-side-metal"><path d="M0,-24 A24,24 0 1 1 0,24 A24,24 0 1 1 0,-24 Z M0,-20 A20,20 0 1 1 0,20 A20,20 0 1 1 0,-20 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-24 A24,24 0 1 1 0,24 A24,24 0 1 1 0,-24 Z M0,-20 A20,20 0 1 1 0,20 A20,20 0 1 1 0,-20 Z" stroke="#6b7a8f" stroke-width="0.36" fill="none" /><path d="M0,-20 A20,20 0 1 1 0,20 A20,20 0 1 1 0,-20 Z" stroke="#2f80c4" stroke-width="0.36" fill="none" /><circle cx="15.556" cy="-15.556" r="0.8" stroke="#7f8c3a" stroke-width="0.36" fill="none" stroke-dasharray="4 2" /><circle cx="15.556" cy="15.556" r="0.8" stroke="#7f8c3a" stroke-width="0.36" fill="none" stroke-dasharray="4 2" /><circle cx="-15.556" cy="15.556" r="0.8" stroke="#7f8c3a" stroke-width="0.36" fill="none" stroke-dasharray="4 2" /><circle cx="-15.556" cy="-15.556" r="0.8" stroke="#7f8c3a" stroke-width="0.36" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-core-interface"><path d="M0,-22.1 L-1.496,-24.454 L1.496,-24.454 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-22.1 L-1.496,-24.454 L1.496,-24.454 Z" stroke="#e8853a" stroke-width="0.36" fill="none" stroke-dasharray="0.6 1.6" /><path d="M3.816,-19.633 L4.293,-22.087 A22.5,22.5 0 0 1 16.981,-14.761 L15.094,-13.121 A20,20 0 0 0 3.816,-19.633 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M3.816,-19.633 L4.293,-22.087 A22.5,22.5 0 0 1 16.981,-14.761 L15.094,-13.121 A20,20 0 0 0 3.816,-19.633 Z" stroke="#2a9d8f" stroke-width="0.36" fill="none" /><circle cx="21" cy="0" r="0.84" fill="#d1495b" fill-opacity="0.12" /><circle cx="21" cy="0" r="0.84" stroke="#d1495b" stroke-width="0.36" fill="none" stroke-dasharray="0.6 1.6" /><path d="M15.094,13.121 L16.981,14.761 A22.5,22.5 0 0 1 4.293,22.087 L3.816,19.633 A20,20 0 0 0 15.094,13.121 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M15.094,13.121 L16.981,14.761 A22.5,22.5 0 0 1 4.293,22.087 L3.816,19.633 A20,20 0 0 0 15.094,13.121 Z" stroke="#2a9d8f" stroke-width="0.36" fill="none" /><path d="M-19.973,-1.047 L-22.469,-1.178 A22.5,22.5 0 0 1 -16.981,-14.761 L-15.094,-13.121 A20,20 0 0 0 -19.973,-1.047 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-19.973,-1.047 L-22.469,-1.178 A22.5,22.5 0 0 1 -16.981,-14.761 L-15.094,-13.121 A20,20 0 0 0 -19.973,-1.047 Z" stroke="#2a9d8f" stroke-width="0.36" fill="none" /></g><g data-layer="camera-side-variant-electrical"><path d="M0.617,-16.589 L0.721,-19.387 A19.4,19.4 0 0 1 2.118,-19.284 L1.813,-16.501 A16.6,16.6 0 0 0 0.617,-16.589 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M0.617,-16.589 L0.721,-19.387 A19.4,19.4 0 0 1 2.118,-19.284 L1.813,-16.501 A16.6,16.6 0 0 0 0.617,-16.589 Z" stroke="#8a5cd1" stroke-width="0.36" fill="none" /><path d="M2.977,-16.331 L3.479,-19.085 A19.4,19.4 0 0 1 4.847,-18.785 L4.148,-16.073 A16.6,16.6 0 0 0 2.977,-16.331 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M2.977,-16.331 L3.479,-19.085 A19.4,19.4 0 0 1 4.847,-18.785 L4.148,-16.073 A16.6,16.6 0 0 0 2.977,-16.331 Z" stroke="#8a5cd1" stroke-width="0.36" fill="none" /><path d="M5.276,-15.739 L6.166,-18.394 A19.4,19.4 0 0 1 7.477,-17.901 L6.398,-15.318 A16.6,16.6 0 0 0 5.276,-15.739 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M5.276,-15.739 L6.166,-18.394 A19.4,19.4 0 0 1 7.477,-17.901 L6.398,-15.318 A16.6,16.6 0 0 0 5.276,-15.739 Z" stroke="#8a5cd1" stroke-width="0.36" fill="none" /><path d="M7.467,-14.826 L8.726,-17.327 A19.4,19.4 0 0 1 9.954,-16.652 L8.517,-14.248 A16.6,16.6 0 0 0 7.467,-14.826 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M7.467,-14.826 L8.726,-17.327 A19.4,19.4 0 0 1 9.954,-16.652 L8.517,-14.248 A16.6,16.6 0 0 0 7.467,-14.826 Z" stroke="#8a5cd1" stroke-width="0.36" fill="none" /><path d="M9.505,-13.609 L11.108,-15.905 A19.4,19.4 0 0 1 12.227,-15.062 L10.462,-12.888 A16.6,16.6 0 0 0 9.505,-13.609 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M9.505,-13.609 L11.108,-15.905 A19.4,19.4 0 0 1 12.227,-15.062 L10.462,-12.888 A16.6,16.6 0 0 0 9.505,-13.609 Z" stroke="#8a5cd1" stroke-width="0.36" fill="none" /><path d="M11.349,-12.115 L13.263,-14.158 A19.4,19.4 0 0 1 14.25,-13.164 L12.193,-11.264 A16.6,16.6 0 0 0 11.349,-12.115 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M11.349,-12.115 L13.263,-14.158 A19.4,19.4 0 0 1 14.25,-13.164 L12.193,-11.264 A16.6,16.6 0 0 0 11.349,-12.115 Z" stroke="#8a5cd1" stroke-width="0.36" fill="none" /><path d="M-12.154,-11.307 L-14.204,-13.214 A19.4,19.4 0 0 1 -13.214,-14.204 L-11.307,-12.154 A16.6,16.6 0 0 0 -12.154,-11.307 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-12.154,-11.307 L-14.204,-13.214 A19.4,19.4 0 0 1 -13.214,-14.204 L-11.307,-12.154 A16.6,16.6 0 0 0 -12.154,-11.307 Z" stroke="#8a5cd1" stroke-width="0.36" fill="none" /><path d="M-10.417,-12.924 L-12.174,-15.105 A19.4,19.4 0 0 1 -11.053,-15.944 L-9.457,-13.642 A16.6,16.6 0 0 0 -10.417,-12.924 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-10.417,-12.924 L-12.174,-15.105 A19.4,19.4 0 0 1 -11.053,-15.944 L-9.457,-13.642 A16.6,16.6 0 0 0 -10.417,-12.924 Z" stroke="#8a5cd1" stroke-width="0.36" fill="none" /><path d="M-8.467,-14.278 L-9.896,-16.686 A19.4,19.4 0 0 1 -8.666,-17.357 L-7.415,-14.852 A16.6,16.6 0 0 0 -8.467,-14.278 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-8.467,-14.278 L-9.896,-16.686 A19.4,19.4 0 0 1 -8.666,-17.357 L-7.415,-14.852 A16.6,16.6 0 0 0 -8.467,-14.278 Z" stroke="#8a5cd1" stroke-width="0.36" fill="none" /><path d="M-6.344,-15.34 L-7.414,-17.927 A19.4,19.4 0 0 1 -6.101,-18.416 L-5.221,-15.758 A16.6,16.6 0 0 0 -6.344,-15.34 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-6.344,-15.34 L-7.414,-17.927 A19.4,19.4 0 0 1 -6.101,-18.416 L-5.221,-15.758 A16.6,16.6 0 0 0 -6.344,-15.34 Z" stroke="#8a5cd1" stroke-width="0.36" fill="none" /><path d="M-4.091,-16.088 L-4.782,-18.801 A19.4,19.4 0 0 1 -3.412,-19.098 L-2.92,-16.341 A16.6,16.6 0 0 0 -4.091,-16.088 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-4.091,-16.088 L-4.782,-18.801 A19.4,19.4 0 0 1 -3.412,-19.098 L-2.92,-16.341 A16.6,16.6 0 0 0 -4.091,-16.088 Z" stroke="#8a5cd1" stroke-width="0.36" fill="none" /><path d="M-1.755,-16.507 L-2.051,-19.291 A19.4,19.4 0 0 1 -0.654,-19.389 L-0.559,-16.591 A16.6,16.6 0 0 0 -1.755,-16.507 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-1.755,-16.507 L-2.051,-19.291 A19.4,19.4 0 0 1 -0.654,-19.389 L-0.559,-16.591 A16.6,16.6 0 0 0 -1.755,-16.507 Z" stroke="#8a5cd1" stroke-width="0.36" fill="none" /></g><g aria-hidden="true"><line x1="-28.8" y1="-27.95" x2="-24.8" y2="-27.95" stroke="#2f80c4" stroke-width="0.427" /><text x="-23.8" y="-27.25" font-size="2" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-28.8" y1="-24.95" x2="-24.8" y2="-24.95" stroke="#6b7a8f" stroke-width="0.427" /><text x="-23.8" y="-24.25" font-size="2" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-28.8" y1="-21.95" x2="-24.8" y2="-21.95" stroke="#2a9d8f" stroke-width="0.427" /><text x="-23.8" y="-21.25" font-size="2" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-28.8" y1="-18.95" x2="-24.8" y2="-18.95" stroke="#d1495b" stroke-width="0.427" /><text x="-23.8" y="-18.25" font-size="2" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-28.8" y1="-15.95" x2="-24.8" y2="-15.95" stroke="#e8853a" stroke-width="0.427" /><text x="-23.8" y="-15.25" font-size="2" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-28.8" y1="-12.95" x2="-24.8" y2="-12.95" stroke="#8a5cd1" stroke-width="0.427" /><text x="-23.8" y="-12.25" font-size="2" fill="#8a5cd1" font-family="sans-serif">Electrical contact</text><line x1="-28.8" y1="-9.95" x2="-24.8" y2="-9.95" stroke="#7f8c3a" stroke-width="0.427" /><text x="-23.8" y="-9.25" font-size="2" fill="#7f8c3a" font-family="sans-serif">Screws / seals</text><line x1="-28.8" y1="-6.95" x2="-24.8" y2="-6.95" stroke="#8a94a0" stroke-width="0.427" /><text x="-23.8" y="-6.25" font-size="2" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
 
 **Lens-side rear view** — viewBox `-29 -30 58 59` ([standalone SVG](mounts/nikon-1-lens-rear.svg))
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-29 -30 58 59" role="img" aria-labelledby="nikon-1-base-lens_side_rear-title nikon-1-base-lens_side_rear-desc"><title id="nikon-1-base-lens_side_rear-title">Nikon 1 mount — lens-side rear view (base)</title><desc id="nikon-1-base-lens_side_rear-desc">Nikon 1 bayonet mount, lens-side rear view. Flange focal distance 17 mm, nominal throat 40 mm. Profile nikon-1/base.</desc><metadata>{"mountId":"nikon-1","profileId":"nikon-1/base","view":"lens_side_rear","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.15" y1="0" x2="1.15" y2="0" stroke="#8a94a0" stroke-width="0.348" fill="none" /><line x1="0" y1="-1.15" x2="0" y2="1.15" stroke="#8a94a0" stroke-width="0.348" fill="none" /><line x1="0" y1="-23" x2="0" y2="-24.38" stroke="#8a94a0" stroke-width="0.348" fill="none" /></g><g data-layer="lens-side-metal"><path d="M0,-23 A23,23 0 1 1 0,23 A23,23 0 1 1 0,-23 Z M0,-19 A19,19 0 1 1 0,19 A19,19 0 1 1 0,-19 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-23 A23,23 0 1 1 0,23 A23,23 0 1 1 0,-23 Z M0,-19 A19,19 0 1 1 0,19 A19,19 0 1 1 0,-19 Z" stroke="#6b7a8f" stroke-width="0.348" fill="none" stroke-dasharray="4 2" /><path d="M0,-19 A19,19 0 1 1 0,19 A19,19 0 1 1 0,-19 Z" stroke="#2f80c4" stroke-width="0.348" fill="none" stroke-dasharray="4 2" /></g><g data-layer="lens-side-core-interface"><path d="M0,-21.2 L-1.435,-23.456 L1.435,-23.456 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-21.2 L-1.435,-23.456 L1.435,-23.456 Z" stroke="#e8853a" stroke-width="0.348" fill="none" stroke-dasharray="0.6 1.6" /><path d="M15.094,-13.121 L16.981,-14.761 A22.5,22.5 0 0 1 22.469,-1.178 L19.973,-1.047 A20,20 0 0 0 15.094,-13.121 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M15.094,-13.121 L16.981,-14.761 A22.5,22.5 0 0 1 22.469,-1.178 L19.973,-1.047 A20,20 0 0 0 15.094,-13.121 Z" stroke="#2a9d8f" stroke-width="0.348" fill="none" stroke-dasharray="4 2" /><path d="M-3.816,19.633 L-4.293,22.087 A22.5,22.5 0 0 1 -16.981,14.761 L-15.094,13.121 A20,20 0 0 0 -3.816,19.633 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-3.816,19.633 L-4.293,22.087 A22.5,22.5 0 0 1 -16.981,14.761 L-15.094,13.121 A20,20 0 0 0 -3.816,19.633 Z" stroke="#2a9d8f" stroke-width="0.348" fill="none" stroke-dasharray="4 2" /><circle cx="-21" cy="0" r="0.805" fill="#d1495b" fill-opacity="0.12" /><circle cx="-21" cy="0" r="0.805" stroke="#d1495b" stroke-width="0.348" fill="none" stroke-dasharray="0.6 1.6" /><path d="M-15.094,-13.121 L-16.981,-14.761 A22.5,22.5 0 0 1 -4.293,-22.087 L-3.816,-19.633 A20,20 0 0 0 -15.094,-13.121 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-15.094,-13.121 L-16.981,-14.761 A22.5,22.5 0 0 1 -4.293,-22.087 L-3.816,-19.633 A20,20 0 0 0 -15.094,-13.121 Z" stroke="#2a9d8f" stroke-width="0.348" fill="none" stroke-dasharray="4 2" /></g><g data-layer="lens-side-variant-electrical"><path d="M-1.755,-16.507 L-2.051,-19.291 A19.4,19.4 0 0 1 -0.654,-19.389 L-0.559,-16.591 A16.6,16.6 0 0 0 -1.755,-16.507 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-1.755,-16.507 L-2.051,-19.291 A19.4,19.4 0 0 1 -0.654,-19.389 L-0.559,-16.591 A16.6,16.6 0 0 0 -1.755,-16.507 Z" stroke="#8a5cd1" stroke-width="0.348" fill="none" stroke-dasharray="4 2" /><path d="M-4.091,-16.088 L-4.782,-18.801 A19.4,19.4 0 0 1 -3.412,-19.098 L-2.92,-16.341 A16.6,16.6 0 0 0 -4.091,-16.088 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-4.091,-16.088 L-4.782,-18.801 A19.4,19.4 0 0 1 -3.412,-19.098 L-2.92,-16.341 A16.6,16.6 0 0 0 -4.091,-16.088 Z" stroke="#8a5cd1" stroke-width="0.348" fill="none" stroke-dasharray="4 2" /><path d="M-6.344,-15.34 L-7.414,-17.927 A19.4,19.4 0 0 1 -6.101,-18.416 L-5.221,-15.758 A16.6,16.6 0 0 0 -6.344,-15.34 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-6.344,-15.34 L-7.414,-17.927 A19.4,19.4 0 0 1 -6.101,-18.416 L-5.221,-15.758 A16.6,16.6 0 0 0 -6.344,-15.34 Z" stroke="#8a5cd1" stroke-width="0.348" fill="none" stroke-dasharray="4 2" /><path d="M-8.467,-14.278 L-9.896,-16.686 A19.4,19.4 0 0 1 -8.666,-17.357 L-7.415,-14.852 A16.6,16.6 0 0 0 -8.467,-14.278 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-8.467,-14.278 L-9.896,-16.686 A19.4,19.4 0 0 1 -8.666,-17.357 L-7.415,-14.852 A16.6,16.6 0 0 0 -8.467,-14.278 Z" stroke="#8a5cd1" stroke-width="0.348" fill="none" stroke-dasharray="4 2" /><path d="M-10.417,-12.924 L-12.174,-15.105 A19.4,19.4 0 0 1 -11.053,-15.944 L-9.457,-13.642 A16.6,16.6 0 0 0 -10.417,-12.924 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-10.417,-12.924 L-12.174,-15.105 A19.4,19.4 0 0 1 -11.053,-15.944 L-9.457,-13.642 A16.6,16.6 0 0 0 -10.417,-12.924 Z" stroke="#8a5cd1" stroke-width="0.348" fill="none" stroke-dasharray="4 2" /><path d="M-12.154,-11.307 L-14.204,-13.214 A19.4,19.4 0 0 1 -13.214,-14.204 L-11.307,-12.154 A16.6,16.6 0 0 0 -12.154,-11.307 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-12.154,-11.307 L-14.204,-13.214 A19.4,19.4 0 0 1 -13.214,-14.204 L-11.307,-12.154 A16.6,16.6 0 0 0 -12.154,-11.307 Z" stroke="#8a5cd1" stroke-width="0.348" fill="none" stroke-dasharray="4 2" /><path d="M11.349,-12.115 L13.263,-14.158 A19.4,19.4 0 0 1 14.25,-13.164 L12.193,-11.264 A16.6,16.6 0 0 0 11.349,-12.115 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M11.349,-12.115 L13.263,-14.158 A19.4,19.4 0 0 1 14.25,-13.164 L12.193,-11.264 A16.6,16.6 0 0 0 11.349,-12.115 Z" stroke="#8a5cd1" stroke-width="0.348" fill="none" stroke-dasharray="4 2" /><path d="M9.505,-13.609 L11.108,-15.905 A19.4,19.4 0 0 1 12.227,-15.062 L10.462,-12.888 A16.6,16.6 0 0 0 9.505,-13.609 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M9.505,-13.609 L11.108,-15.905 A19.4,19.4 0 0 1 12.227,-15.062 L10.462,-12.888 A16.6,16.6 0 0 0 9.505,-13.609 Z" stroke="#8a5cd1" stroke-width="0.348" fill="none" stroke-dasharray="4 2" /><path d="M7.467,-14.826 L8.726,-17.327 A19.4,19.4 0 0 1 9.954,-16.652 L8.517,-14.248 A16.6,16.6 0 0 0 7.467,-14.826 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M7.467,-14.826 L8.726,-17.327 A19.4,19.4 0 0 1 9.954,-16.652 L8.517,-14.248 A16.6,16.6 0 0 0 7.467,-14.826 Z" stroke="#8a5cd1" stroke-width="0.348" fill="none" stroke-dasharray="4 2" /><path d="M5.276,-15.739 L6.166,-18.394 A19.4,19.4 0 0 1 7.477,-17.901 L6.398,-15.318 A16.6,16.6 0 0 0 5.276,-15.739 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M5.276,-15.739 L6.166,-18.394 A19.4,19.4 0 0 1 7.477,-17.901 L6.398,-15.318 A16.6,16.6 0 0 0 5.276,-15.739 Z" stroke="#8a5cd1" stroke-width="0.348" fill="none" stroke-dasharray="4 2" /><path d="M2.977,-16.331 L3.479,-19.085 A19.4,19.4 0 0 1 4.847,-18.785 L4.148,-16.073 A16.6,16.6 0 0 0 2.977,-16.331 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M2.977,-16.331 L3.479,-19.085 A19.4,19.4 0 0 1 4.847,-18.785 L4.148,-16.073 A16.6,16.6 0 0 0 2.977,-16.331 Z" stroke="#8a5cd1" stroke-width="0.348" fill="none" stroke-dasharray="4 2" /><path d="M0.617,-16.589 L0.721,-19.387 A19.4,19.4 0 0 1 2.118,-19.284 L1.813,-16.501 A16.6,16.6 0 0 0 0.617,-16.589 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M0.617,-16.589 L0.721,-19.387 A19.4,19.4 0 0 1 2.118,-19.284 L1.813,-16.501 A16.6,16.6 0 0 0 0.617,-16.589 Z" stroke="#8a5cd1" stroke-width="0.348" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-27.84" y1="-27.05" x2="-23.84" y2="-27.05" stroke="#2f80c4" stroke-width="0.413" /><text x="-22.84" y="-26.35" font-size="2" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-27.84" y1="-24.05" x2="-23.84" y2="-24.05" stroke="#6b7a8f" stroke-width="0.413" /><text x="-22.84" y="-23.35" font-size="2" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-27.84" y1="-21.05" x2="-23.84" y2="-21.05" stroke="#2a9d8f" stroke-width="0.413" /><text x="-22.84" y="-20.35" font-size="2" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-27.84" y1="-18.05" x2="-23.84" y2="-18.05" stroke="#d1495b" stroke-width="0.413" /><text x="-22.84" y="-17.35" font-size="2" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-27.84" y1="-15.05" x2="-23.84" y2="-15.05" stroke="#e8853a" stroke-width="0.413" /><text x="-22.84" y="-14.35" font-size="2" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-27.84" y1="-12.05" x2="-23.84" y2="-12.05" stroke="#8a5cd1" stroke-width="0.413" /><text x="-22.84" y="-11.35" font-size="2" fill="#8a5cd1" font-family="sans-serif">Electrical contact</text><line x1="-27.84" y1="-9.05" x2="-23.84" y2="-9.05" stroke="#8a94a0" stroke-width="0.413" /><text x="-22.84" y="-8.35" font-size="2" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-29 -30 58 59" role="img" aria-labelledby="nikon-1-base-lens_side_rear-title nikon-1-base-lens_side_rear-desc"><title id="nikon-1-base-lens_side_rear-title">Nikon 1 mount — lens-side rear view (base)</title><desc id="nikon-1-base-lens_side_rear-desc">Nikon 1 bayonet mount, lens-side rear view. Flange focal distance 17 mm, nominal throat 40 mm. Profile nikon-1/base.</desc><metadata>{"mountId":"nikon-1","profileId":"nikon-1/base","view":"lens_side_rear","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.15" y1="0" x2="1.15" y2="0" stroke="#8a94a0" stroke-width="0.348" fill="none" /><line x1="0" y1="-1.15" x2="0" y2="1.15" stroke="#8a94a0" stroke-width="0.348" fill="none" /><line x1="0" y1="-23" x2="0" y2="-24.38" stroke="#8a94a0" stroke-width="0.348" fill="none" /></g><g data-layer="lens-side-metal"><path d="M0,-23 A23,23 0 1 1 0,23 A23,23 0 1 1 0,-23 Z M0,-19 A19,19 0 1 1 0,19 A19,19 0 1 1 0,-19 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-23 A23,23 0 1 1 0,23 A23,23 0 1 1 0,-23 Z M0,-19 A19,19 0 1 1 0,19 A19,19 0 1 1 0,-19 Z" stroke="#6b7a8f" stroke-width="0.348" fill="none" /><path d="M0,-19 A19,19 0 1 1 0,19 A19,19 0 1 1 0,-19 Z" stroke="#2f80c4" stroke-width="0.348" fill="none" /></g><g data-layer="lens-side-core-interface"><path d="M0,-21.2 L-1.435,-23.456 L1.435,-23.456 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-21.2 L-1.435,-23.456 L1.435,-23.456 Z" stroke="#e8853a" stroke-width="0.348" fill="none" stroke-dasharray="0.6 1.6" /><path d="M15.094,-13.121 L16.981,-14.761 A22.5,22.5 0 0 1 22.469,-1.178 L19.973,-1.047 A20,20 0 0 0 15.094,-13.121 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M15.094,-13.121 L16.981,-14.761 A22.5,22.5 0 0 1 22.469,-1.178 L19.973,-1.047 A20,20 0 0 0 15.094,-13.121 Z" stroke="#2a9d8f" stroke-width="0.348" fill="none" /><path d="M-3.816,19.633 L-4.293,22.087 A22.5,22.5 0 0 1 -16.981,14.761 L-15.094,13.121 A20,20 0 0 0 -3.816,19.633 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-3.816,19.633 L-4.293,22.087 A22.5,22.5 0 0 1 -16.981,14.761 L-15.094,13.121 A20,20 0 0 0 -3.816,19.633 Z" stroke="#2a9d8f" stroke-width="0.348" fill="none" /><circle cx="-21" cy="0" r="0.805" fill="#d1495b" fill-opacity="0.12" /><circle cx="-21" cy="0" r="0.805" stroke="#d1495b" stroke-width="0.348" fill="none" stroke-dasharray="0.6 1.6" /><path d="M-15.094,-13.121 L-16.981,-14.761 A22.5,22.5 0 0 1 -4.293,-22.087 L-3.816,-19.633 A20,20 0 0 0 -15.094,-13.121 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-15.094,-13.121 L-16.981,-14.761 A22.5,22.5 0 0 1 -4.293,-22.087 L-3.816,-19.633 A20,20 0 0 0 -15.094,-13.121 Z" stroke="#2a9d8f" stroke-width="0.348" fill="none" /></g><g data-layer="lens-side-variant-electrical"><path d="M-1.755,-16.507 L-2.051,-19.291 A19.4,19.4 0 0 1 -0.654,-19.389 L-0.559,-16.591 A16.6,16.6 0 0 0 -1.755,-16.507 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-1.755,-16.507 L-2.051,-19.291 A19.4,19.4 0 0 1 -0.654,-19.389 L-0.559,-16.591 A16.6,16.6 0 0 0 -1.755,-16.507 Z" stroke="#8a5cd1" stroke-width="0.348" fill="none" /><path d="M-4.091,-16.088 L-4.782,-18.801 A19.4,19.4 0 0 1 -3.412,-19.098 L-2.92,-16.341 A16.6,16.6 0 0 0 -4.091,-16.088 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-4.091,-16.088 L-4.782,-18.801 A19.4,19.4 0 0 1 -3.412,-19.098 L-2.92,-16.341 A16.6,16.6 0 0 0 -4.091,-16.088 Z" stroke="#8a5cd1" stroke-width="0.348" fill="none" /><path d="M-6.344,-15.34 L-7.414,-17.927 A19.4,19.4 0 0 1 -6.101,-18.416 L-5.221,-15.758 A16.6,16.6 0 0 0 -6.344,-15.34 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-6.344,-15.34 L-7.414,-17.927 A19.4,19.4 0 0 1 -6.101,-18.416 L-5.221,-15.758 A16.6,16.6 0 0 0 -6.344,-15.34 Z" stroke="#8a5cd1" stroke-width="0.348" fill="none" /><path d="M-8.467,-14.278 L-9.896,-16.686 A19.4,19.4 0 0 1 -8.666,-17.357 L-7.415,-14.852 A16.6,16.6 0 0 0 -8.467,-14.278 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-8.467,-14.278 L-9.896,-16.686 A19.4,19.4 0 0 1 -8.666,-17.357 L-7.415,-14.852 A16.6,16.6 0 0 0 -8.467,-14.278 Z" stroke="#8a5cd1" stroke-width="0.348" fill="none" /><path d="M-10.417,-12.924 L-12.174,-15.105 A19.4,19.4 0 0 1 -11.053,-15.944 L-9.457,-13.642 A16.6,16.6 0 0 0 -10.417,-12.924 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-10.417,-12.924 L-12.174,-15.105 A19.4,19.4 0 0 1 -11.053,-15.944 L-9.457,-13.642 A16.6,16.6 0 0 0 -10.417,-12.924 Z" stroke="#8a5cd1" stroke-width="0.348" fill="none" /><path d="M-12.154,-11.307 L-14.204,-13.214 A19.4,19.4 0 0 1 -13.214,-14.204 L-11.307,-12.154 A16.6,16.6 0 0 0 -12.154,-11.307 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-12.154,-11.307 L-14.204,-13.214 A19.4,19.4 0 0 1 -13.214,-14.204 L-11.307,-12.154 A16.6,16.6 0 0 0 -12.154,-11.307 Z" stroke="#8a5cd1" stroke-width="0.348" fill="none" /><path d="M11.349,-12.115 L13.263,-14.158 A19.4,19.4 0 0 1 14.25,-13.164 L12.193,-11.264 A16.6,16.6 0 0 0 11.349,-12.115 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M11.349,-12.115 L13.263,-14.158 A19.4,19.4 0 0 1 14.25,-13.164 L12.193,-11.264 A16.6,16.6 0 0 0 11.349,-12.115 Z" stroke="#8a5cd1" stroke-width="0.348" fill="none" /><path d="M9.505,-13.609 L11.108,-15.905 A19.4,19.4 0 0 1 12.227,-15.062 L10.462,-12.888 A16.6,16.6 0 0 0 9.505,-13.609 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M9.505,-13.609 L11.108,-15.905 A19.4,19.4 0 0 1 12.227,-15.062 L10.462,-12.888 A16.6,16.6 0 0 0 9.505,-13.609 Z" stroke="#8a5cd1" stroke-width="0.348" fill="none" /><path d="M7.467,-14.826 L8.726,-17.327 A19.4,19.4 0 0 1 9.954,-16.652 L8.517,-14.248 A16.6,16.6 0 0 0 7.467,-14.826 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M7.467,-14.826 L8.726,-17.327 A19.4,19.4 0 0 1 9.954,-16.652 L8.517,-14.248 A16.6,16.6 0 0 0 7.467,-14.826 Z" stroke="#8a5cd1" stroke-width="0.348" fill="none" /><path d="M5.276,-15.739 L6.166,-18.394 A19.4,19.4 0 0 1 7.477,-17.901 L6.398,-15.318 A16.6,16.6 0 0 0 5.276,-15.739 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M5.276,-15.739 L6.166,-18.394 A19.4,19.4 0 0 1 7.477,-17.901 L6.398,-15.318 A16.6,16.6 0 0 0 5.276,-15.739 Z" stroke="#8a5cd1" stroke-width="0.348" fill="none" /><path d="M2.977,-16.331 L3.479,-19.085 A19.4,19.4 0 0 1 4.847,-18.785 L4.148,-16.073 A16.6,16.6 0 0 0 2.977,-16.331 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M2.977,-16.331 L3.479,-19.085 A19.4,19.4 0 0 1 4.847,-18.785 L4.148,-16.073 A16.6,16.6 0 0 0 2.977,-16.331 Z" stroke="#8a5cd1" stroke-width="0.348" fill="none" /><path d="M0.617,-16.589 L0.721,-19.387 A19.4,19.4 0 0 1 2.118,-19.284 L1.813,-16.501 A16.6,16.6 0 0 0 0.617,-16.589 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M0.617,-16.589 L0.721,-19.387 A19.4,19.4 0 0 1 2.118,-19.284 L1.813,-16.501 A16.6,16.6 0 0 0 0.617,-16.589 Z" stroke="#8a5cd1" stroke-width="0.348" fill="none" /></g><g aria-hidden="true"><line x1="-27.84" y1="-27.05" x2="-23.84" y2="-27.05" stroke="#2f80c4" stroke-width="0.413" /><text x="-22.84" y="-26.35" font-size="2" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-27.84" y1="-24.05" x2="-23.84" y2="-24.05" stroke="#6b7a8f" stroke-width="0.413" /><text x="-22.84" y="-23.35" font-size="2" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-27.84" y1="-21.05" x2="-23.84" y2="-21.05" stroke="#2a9d8f" stroke-width="0.413" /><text x="-22.84" y="-20.35" font-size="2" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-27.84" y1="-18.05" x2="-23.84" y2="-18.05" stroke="#d1495b" stroke-width="0.413" /><text x="-22.84" y="-17.35" font-size="2" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-27.84" y1="-15.05" x2="-23.84" y2="-15.05" stroke="#e8853a" stroke-width="0.413" /><text x="-22.84" y="-14.35" font-size="2" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-27.84" y1="-12.05" x2="-23.84" y2="-12.05" stroke="#8a5cd1" stroke-width="0.413" /><text x="-22.84" y="-11.35" font-size="2" fill="#8a5cd1" font-family="sans-serif">Electrical contact</text><line x1="-27.84" y1="-9.05" x2="-23.84" y2="-9.05" stroke="#8a94a0" stroke-width="0.413" /><text x="-22.84" y="-8.35" font-size="2" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
 
 **Axial / register schematic** — viewBox `-23 -34 30 64` ([standalone SVG](mounts/nikon-1-axial.svg))
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-23 -34 30 64" role="img" aria-labelledby="nikon-1-base-axial_section-title nikon-1-base-axial_section-desc"><title id="nikon-1-base-axial_section-title">Nikon 1 mount — axial / register schematic (base)</title><desc id="nikon-1-base-axial_section-desc">Nikon 1 bayonet mount, axial / register schematic. Flange focal distance 17 mm, nominal throat 40 mm. Profile nikon-1/base.</desc><metadata>{"mountId":"nikon-1","profileId":"nikon-1/base","view":"axial_section","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-17" y1="0" x2="1.2" y2="0" stroke="#8a94a0" stroke-width="0.25" fill="none" /><line x1="0" y1="-24" x2="0" y2="24" stroke="#8a94a0" stroke-width="0.25" fill="none" /></g><g data-layer="axial-section"><text x="-17" y="-9.43" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">sensor film plane</text><line x1="-17" y1="-7.93" x2="-17" y2="7.93" stroke="#2bb0c4" stroke-width="0.188" fill="none" /><line x1="0" y1="-24" x2="0" y2="24" stroke="#2bb0c4" stroke-width="0.25" fill="none" stroke-dasharray="4 2" /><text x="0" y="-25.5" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">flange datum</text><line x1="0.5" y1="-19" x2="0.5" y2="19" stroke="#2bb0c4" stroke-width="0.25" fill="none" stroke-dasharray="4 2" /><text x="0.5" y="-20.5" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">electrical contact plane</text><line x1="1.2" y1="-21.5" x2="1.2" y2="21.5" stroke="#2bb0c4" stroke-width="0.25" fill="none" stroke-dasharray="4 2" /><text x="1.2" y="-23" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">bayonet lug engagement</text></g><g aria-hidden="true"><line x1="-22.4" y1="-30.8" x2="-18.4" y2="-30.8" stroke="#8a94a0" stroke-width="0.448" /><text x="-17.376" y="-30.083" font-size="2.048" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text><line x1="-22.4" y1="-27.728" x2="-18.4" y2="-27.728" stroke="#2bb0c4" stroke-width="0.448" /><text x="-17.376" y="-27.011" font-size="2.048" fill="#2bb0c4" font-family="sans-serif">Register plane</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-23 -34 30 64" role="img" aria-labelledby="nikon-1-base-axial_section-title nikon-1-base-axial_section-desc"><title id="nikon-1-base-axial_section-title">Nikon 1 mount — axial / register schematic (base)</title><desc id="nikon-1-base-axial_section-desc">Nikon 1 bayonet mount, axial / register schematic. Flange focal distance 17 mm, nominal throat 40 mm. Profile nikon-1/base.</desc><metadata>{"mountId":"nikon-1","profileId":"nikon-1/base","view":"axial_section","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-17" y1="0" x2="1.2" y2="0" stroke="#8a94a0" stroke-width="0.25" fill="none" /><line x1="0" y1="-24" x2="0" y2="24" stroke="#8a94a0" stroke-width="0.25" fill="none" /></g><g data-layer="axial-section"><text x="-17" y="-9.43" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">sensor film plane</text><line x1="-17" y1="-7.93" x2="-17" y2="7.93" stroke="#2bb0c4" stroke-width="0.188" fill="none" /><line x1="0" y1="-24" x2="0" y2="24" stroke="#2bb0c4" stroke-width="0.25" fill="none" /><text x="0" y="-25.5" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">flange datum</text><line x1="0.5" y1="-19" x2="0.5" y2="19" stroke="#2bb0c4" stroke-width="0.25" fill="none" /><text x="0.5" y="-20.5" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">electrical contact plane</text><line x1="1.2" y1="-21.5" x2="1.2" y2="21.5" stroke="#2bb0c4" stroke-width="0.25" fill="none" /><text x="1.2" y="-23" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">bayonet lug engagement</text></g><g aria-hidden="true"><line x1="-22.4" y1="-30.8" x2="-18.4" y2="-30.8" stroke="#8a94a0" stroke-width="0.448" /><text x="-17.376" y="-30.083" font-size="2.048" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text><line x1="-22.4" y1="-27.728" x2="-18.4" y2="-27.728" stroke="#2bb0c4" stroke-width="0.448" /><text x="-17.376" y="-27.011" font-size="2.048" fill="#2bb0c4" font-family="sans-serif">Register plane</text></g></svg>
 
 #### Camera-side front-view geometry
 
@@ -42509,7 +42509,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -42521,7 +42521,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -42533,7 +42533,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 360,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -42545,7 +42545,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -42557,7 +42557,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 20,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -42582,7 +42582,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -42594,7 +42594,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -42606,7 +42606,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 360,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -42618,7 +42618,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 20,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -42630,7 +42630,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 24,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -42655,7 +42655,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 30,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -42667,7 +42667,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 11,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -42679,7 +42679,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 49,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -42691,7 +42691,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 20,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -42703,7 +42703,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 22.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -42715,7 +42715,7 @@ None — fully electronic.
       },
       "depthMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -42735,7 +42735,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 150,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -42747,7 +42747,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 131,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -42759,7 +42759,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 169,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -42771,7 +42771,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 20,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -42783,7 +42783,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 22.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -42795,7 +42795,7 @@ None — fully electronic.
       },
       "depthMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -42815,7 +42815,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 292,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -42827,7 +42827,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 273,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -42839,7 +42839,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 311,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -42851,7 +42851,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 20,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -42863,7 +42863,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 22.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -42875,7 +42875,7 @@ None — fully electronic.
       },
       "depthMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -42895,7 +42895,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -42943,7 +42943,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 24.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -42968,7 +42968,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 90,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43016,7 +43016,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 21,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43028,7 +43028,7 @@ None — fully electronic.
       },
       "depthMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43050,7 +43050,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43062,7 +43062,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43074,7 +43074,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 360,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43086,7 +43086,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43098,7 +43098,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 19,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43123,7 +43123,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43135,7 +43135,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43147,7 +43147,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 360,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43159,7 +43159,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 19,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43171,7 +43171,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 23,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43196,7 +43196,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 30,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43208,7 +43208,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 11,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43220,7 +43220,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 49,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43232,7 +43232,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 20,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43244,7 +43244,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 22.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43256,7 +43256,7 @@ None — fully electronic.
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43276,7 +43276,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 150,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43288,7 +43288,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 131,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43300,7 +43300,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 169,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43312,7 +43312,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 20,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43324,7 +43324,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 22.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43336,7 +43336,7 @@ None — fully electronic.
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43356,7 +43356,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 292,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43368,7 +43368,7 @@ None — fully electronic.
       },
       "startAngleDeg": {
         "value": 273,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43380,7 +43380,7 @@ None — fully electronic.
       },
       "endAngleDeg": {
         "value": 311,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43392,7 +43392,7 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 20,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43404,7 +43404,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 22.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43416,7 +43416,7 @@ None — fully electronic.
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43436,7 +43436,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43484,7 +43484,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 23.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43509,7 +43509,7 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 90,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43557,7 +43557,7 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 21,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43569,7 +43569,7 @@ None — fully electronic.
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43612,7 +43612,7 @@ None — fully electronic.
       },
       "diameterMm": {
         "value": 48,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43627,7 +43627,7 @@ None — fully electronic.
       "planeId": "bayonet_lug_engagement",
       "zPositionMm": {
         "value": 1.2,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43639,7 +43639,7 @@ None — fully electronic.
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43651,7 +43651,7 @@ None — fully electronic.
       },
       "diameterMm": {
         "value": 43,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43666,7 +43666,7 @@ None — fully electronic.
       "planeId": "electrical_contact_plane",
       "zPositionMm": {
         "value": 0.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43678,7 +43678,7 @@ None — fully electronic.
       },
       "thicknessMm": {
         "value": 0.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43690,7 +43690,7 @@ None — fully electronic.
       },
       "diameterMm": {
         "value": 38,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43748,7 +43748,7 @@ None — fully electronic.
       "profileId": "nikon-1/base",
       "centerAngleDeg": {
         "value": 315,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43760,7 +43760,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 18,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43772,7 +43772,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43784,7 +43784,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43797,7 +43797,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43815,7 +43815,7 @@ None — fully electronic.
       "profileId": "nikon-1/base",
       "centerAngleDeg": {
         "value": 323.20000000000005,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43827,7 +43827,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 18,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43839,7 +43839,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43851,7 +43851,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43864,7 +43864,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43882,7 +43882,7 @@ None — fully electronic.
       "profileId": "nikon-1/base",
       "centerAngleDeg": {
         "value": 331.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43894,7 +43894,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 18,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43906,7 +43906,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43918,7 +43918,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43931,7 +43931,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43949,7 +43949,7 @@ None — fully electronic.
       "profileId": "nikon-1/base",
       "centerAngleDeg": {
         "value": 339.6,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43961,7 +43961,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 18,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43973,7 +43973,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43985,7 +43985,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -43998,7 +43998,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44016,7 +44016,7 @@ None — fully electronic.
       "profileId": "nikon-1/base",
       "centerAngleDeg": {
         "value": 347.79999999999995,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44028,7 +44028,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 18,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44040,7 +44040,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44052,7 +44052,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44065,7 +44065,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44083,7 +44083,7 @@ None — fully electronic.
       "profileId": "nikon-1/base",
       "centerAngleDeg": {
         "value": 356,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44095,7 +44095,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 18,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44107,7 +44107,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44119,7 +44119,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44132,7 +44132,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44150,7 +44150,7 @@ None — fully electronic.
       "profileId": "nikon-1/base",
       "centerAngleDeg": {
         "value": 4.199999999999989,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44162,7 +44162,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 18,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44174,7 +44174,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44186,7 +44186,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44199,7 +44199,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44217,7 +44217,7 @@ None — fully electronic.
       "profileId": "nikon-1/base",
       "centerAngleDeg": {
         "value": 12.399999999999977,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44229,7 +44229,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 18,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44241,7 +44241,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44253,7 +44253,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44266,7 +44266,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44284,7 +44284,7 @@ None — fully electronic.
       "profileId": "nikon-1/base",
       "centerAngleDeg": {
         "value": 20.600000000000023,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44296,7 +44296,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 18,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44308,7 +44308,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44320,7 +44320,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44333,7 +44333,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44351,7 +44351,7 @@ None — fully electronic.
       "profileId": "nikon-1/base",
       "centerAngleDeg": {
         "value": 28.80000000000001,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44363,7 +44363,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 18,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44375,7 +44375,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44387,7 +44387,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44400,7 +44400,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44418,7 +44418,7 @@ None — fully electronic.
       "profileId": "nikon-1/base",
       "centerAngleDeg": {
         "value": 37,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44430,7 +44430,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 18,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44442,7 +44442,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44454,7 +44454,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44467,7 +44467,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44485,7 +44485,7 @@ None — fully electronic.
       "profileId": "nikon-1/base",
       "centerAngleDeg": {
         "value": 45.19999999999999,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44497,7 +44497,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 18,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44509,7 +44509,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44521,7 +44521,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44534,7 +44534,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44552,7 +44552,7 @@ None — fully electronic.
       "profileId": "nikon-1/base",
       "centerAngleDeg": {
         "value": 315,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44564,7 +44564,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 18,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44576,7 +44576,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44588,7 +44588,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44601,7 +44601,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44619,7 +44619,7 @@ None — fully electronic.
       "profileId": "nikon-1/base",
       "centerAngleDeg": {
         "value": 323.20000000000005,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44631,7 +44631,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 18,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44643,7 +44643,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44655,7 +44655,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44668,7 +44668,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44686,7 +44686,7 @@ None — fully electronic.
       "profileId": "nikon-1/base",
       "centerAngleDeg": {
         "value": 331.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44698,7 +44698,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 18,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44710,7 +44710,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44722,7 +44722,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44735,7 +44735,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44753,7 +44753,7 @@ None — fully electronic.
       "profileId": "nikon-1/base",
       "centerAngleDeg": {
         "value": 339.6,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44765,7 +44765,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 18,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44777,7 +44777,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44789,7 +44789,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44802,7 +44802,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44820,7 +44820,7 @@ None — fully electronic.
       "profileId": "nikon-1/base",
       "centerAngleDeg": {
         "value": 347.79999999999995,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44832,7 +44832,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 18,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44844,7 +44844,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44856,7 +44856,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44869,7 +44869,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44887,7 +44887,7 @@ None — fully electronic.
       "profileId": "nikon-1/base",
       "centerAngleDeg": {
         "value": 356,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44899,7 +44899,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 18,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44911,7 +44911,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44923,7 +44923,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44936,7 +44936,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44954,7 +44954,7 @@ None — fully electronic.
       "profileId": "nikon-1/base",
       "centerAngleDeg": {
         "value": 4.199999999999989,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44966,7 +44966,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 18,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44978,7 +44978,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -44990,7 +44990,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -45003,7 +45003,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -45021,7 +45021,7 @@ None — fully electronic.
       "profileId": "nikon-1/base",
       "centerAngleDeg": {
         "value": 12.399999999999977,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -45033,7 +45033,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 18,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -45045,7 +45045,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -45057,7 +45057,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -45070,7 +45070,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -45088,7 +45088,7 @@ None — fully electronic.
       "profileId": "nikon-1/base",
       "centerAngleDeg": {
         "value": 20.600000000000023,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -45100,7 +45100,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 18,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -45112,7 +45112,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -45124,7 +45124,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -45137,7 +45137,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -45155,7 +45155,7 @@ None — fully electronic.
       "profileId": "nikon-1/base",
       "centerAngleDeg": {
         "value": 28.80000000000001,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -45167,7 +45167,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 18,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -45179,7 +45179,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -45191,7 +45191,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -45204,7 +45204,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -45222,7 +45222,7 @@ None — fully electronic.
       "profileId": "nikon-1/base",
       "centerAngleDeg": {
         "value": 37,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -45234,7 +45234,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 18,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -45246,7 +45246,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -45258,7 +45258,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -45271,7 +45271,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -45289,7 +45289,7 @@ None — fully electronic.
       "profileId": "nikon-1/base",
       "centerAngleDeg": {
         "value": 45.19999999999999,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -45301,7 +45301,7 @@ None — fully electronic.
       },
       "centerRadiusMm": {
         "value": 18,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -45313,7 +45313,7 @@ None — fully electronic.
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -45325,7 +45325,7 @@ None — fully electronic.
       },
       "heightMm": {
         "value": 2.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",
@@ -45338,7 +45338,7 @@ None — fully electronic.
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
           "n1-1",
           "n1-2",

@@ -9,7 +9,7 @@
  */
 import { describe, expect, it } from "vitest";
 import { MOUNT_SPECS } from "../../../../src/mounts/index.js";
-import type { MountSpec, ValueStatus } from "../../../../src/types/mount.js";
+import type { MountSpec, MountSpecInput, ValueStatus } from "../../../../src/types/mount.js";
 import validateMountSpec from "../../../../src/optics/mount/validateMountSpec.js";
 import { buildMountSvgDoc } from "../../../../src/optics/mount/renderMount.js";
 import { mountSvgDocToString } from "../../../../src/optics/mount/toSvgString.js";
@@ -18,6 +18,10 @@ import { MOUNT_LAYER_ORDER } from "../../../../src/optics/mount/layers.js";
 import { isLensMountId } from "../../../../src/utils/catalog/lensTaxonomy.js";
 
 const ENTRIES = Object.entries(MOUNT_SPECS) as [string, MountSpec][];
+const INPUT_MODULES = import.meta.glob<{ default: MountSpecInput }>("../../../../src/mounts/*.mount.ts", {
+  eager: true,
+});
+const INPUT_ENTRIES = Object.entries(INPUT_MODULES).map(([path, module]) => [path, module.default] as const);
 const VIEWS = ["camera_side_front", "lens_side_rear", "axial_section"] as const;
 const STATUS_TOKENS = new Set<ValueStatus>([
   "unknown",
@@ -36,6 +40,33 @@ it("registers at least the three POC mounts", () => {
   expect(MOUNT_SPECS["nikon-f"]).toBeDefined();
   expect(MOUNT_SPECS["pentax-k"]).toBeDefined();
   expect(MOUNT_SPECS["canon-ef"]).toBeDefined();
+});
+
+it("authored mount inputs do not leave patent-cited photo-scaled values", () => {
+  const offenders: string[] = [];
+  const visit = (node: unknown, path: string, patentRefs: ReadonlySet<string>): void => {
+    if (!node || typeof node !== "object") return;
+    if (Array.isArray(node)) {
+      node.forEach((child, index) => visit(child, `${path}[${index}]`, patentRefs));
+      return;
+    }
+    const obj = node as Record<string, unknown>;
+    if ("value" in obj && "status" in obj && "sourceRefs" in obj) {
+      const sourceRefs = Array.isArray(obj.sourceRefs) ? (obj.sourceRefs as string[]) : [];
+      if (obj.status === "photo_scaled" && sourceRefs.some((ref) => patentRefs.has(ref))) offenders.push(path);
+    }
+    Object.entries(obj).forEach(([key, value]) => visit(value, `${path}.${key}`, patentRefs));
+  };
+
+  for (const [path, spec] of INPUT_ENTRIES) {
+    const patentRefs = new Set(
+      spec.sourceRefs.filter((source) => source.sourceType === "patent").map((source) => source.ref),
+    );
+    if (patentRefs.size === 0) continue;
+    visit(spec, path, patentRefs);
+  }
+
+  expect(offenders).toEqual([]);
 });
 
 describe.each(ENTRIES)("%s", (mountId, spec) => {
@@ -101,5 +132,30 @@ describe.each(ENTRIES)("%s", (mountId, spec) => {
     visit(json);
 
     expect(() => JSON.parse(JSON.stringify(json))).not.toThrow();
+  });
+
+  it("promotes patent-cited photo-scaled values to patent status", () => {
+    const patentRefs = new Set(
+      spec.sourceRefs.filter((source) => source.sourceType === "patent").map((source) => source.ref),
+    );
+    if (patentRefs.size === 0) return;
+
+    const offenders: string[] = [];
+    const visit = (node: unknown, path: string): void => {
+      if (!node || typeof node !== "object") return;
+      if (Array.isArray(node)) {
+        node.forEach((child, index) => visit(child, `${path}[${index}]`));
+        return;
+      }
+      const obj = node as Record<string, unknown>;
+      if ("value" in obj && "status" in obj && "sourceRefs" in obj) {
+        const sourceRefs = Array.isArray(obj.sourceRefs) ? (obj.sourceRefs as string[]) : [];
+        if (obj.status === "photo_scaled" && sourceRefs.some((ref) => patentRefs.has(ref))) offenders.push(path);
+      }
+      Object.entries(obj).forEach(([key, value]) => visit(value, `${path}.${key}`));
+    };
+
+    visit(spec, mountId);
+    expect(offenders).toEqual([]);
   });
 });

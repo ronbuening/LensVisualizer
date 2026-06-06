@@ -29,7 +29,7 @@ const { cameraSideFeatures, lensSideFeatures } = makeBayonetFeatures({
   lugSpanDeg: 38,
   lockCenterAngleDeg: 270,
   scalarStatus: "secondary",
-  featureStatus: "photo_scaled",
+  featureStatus: "patent",
   lugShapeNotes: "Four Thirds three-pronged tapered bayonet",
   lockShapeNotes: "locking groove at 9 o'clock",
 });
@@ -100,6 +100,7 @@ const FOUR_THIRDS_MOUNT = {
     sensorFilmDiameterMm: 21.64,
     includeElectricalPlane: true,
     electricalDiameterMm: 40,
+    featureStatus: "patent",
   }),
 
   contacts: makeContactBank({
@@ -109,6 +110,7 @@ const FOUR_THIRDS_MOUNT = {
     startAngleDeg: 150,
     stepDeg: 7.5,
     radiusMm: 20,
+    status: "patent",
   }),
 
   mechanicalCouplings: [],

@@ -20,8 +20,8 @@ const { cameraSideFeatures, lensSideFeatures } = makeBayonetFeatures({
   lugCentersDeg: [20, 140, 260],
   lugSpanDeg: 36,
   lockCenterAngleDeg: 270,
-  scalarStatus: "photo_scaled",
-  featureStatus: "photo_scaled",
+  scalarStatus: "patent",
+  featureStatus: "patent",
   lugShapeNotes: "representative Bronica GS bayonet sectors; exact geometry unresolved",
   lockShapeNotes: "lens release/lock position photo-scaled",
 });
@@ -67,18 +67,18 @@ const BRONICA_GS_MOUNT = {
 
   coreDimensions: {
     flangeFocalDistanceMm: v(85, "secondary", REF),
-    nominalThroatDiameterMm: v(57, "photo_scaled", REF),
-    effectiveClearApertureMm: v(57, "photo_scaled", REF),
-    cameraMountOuterDiameterMm: v(70, "photo_scaled", REF),
-    lensMountOuterDiameterMm: v(68, "photo_scaled", REF),
+    nominalThroatDiameterMm: v(57, "patent", REF),
+    effectiveClearApertureMm: v(57, "patent", REF),
+    cameraMountOuterDiameterMm: v(70, "patent", REF),
+    lensMountOuterDiameterMm: v(68, "patent", REF),
     contactCount: naV(),
   },
 
   lockGeometry: {
     insertionAngleDeg: v(0, "secondary", REF),
-    lockAngleDeg: v(60, "photo_scaled", REF),
-    lockRotationDeg: v(60, "photo_scaled", REF),
-    lockRotationDirection: dirV("clockwise", "photo_scaled", REF),
+    lockAngleDeg: v(60, "patent", REF),
+    lockRotationDeg: v(60, "patent", REF),
+    lockRotationDirection: dirV("clockwise", "patent", REF),
   },
 
   cameraSideFeatures,
@@ -90,6 +90,7 @@ const BRONICA_GS_MOUNT = {
     mountOuterDiameterMm: 70,
     lugEngagementDiameterMm: 64,
     sensorFilmDiameterMm: 89.6,
+    featureStatus: "patent",
   }),
 
   contacts: [],
@@ -99,8 +100,8 @@ const BRONICA_GS_MOUNT = {
       featureId: "leaf-shutter-cocking-coupler",
       side: "both",
       profileId: "bronica-gs/base",
-      centerAngleDeg: v(40, "photo_scaled", REF),
-      radiusMm: v(28, "photo_scaled", REF),
+      centerAngleDeg: v(40, "patent", REF),
+      radiusMm: v(28, "patent", REF),
       sizeOrTravel: "cocking linkage",
       function: "cocks/arms the lens leaf shutter",
       compatibilityNotes: "placeholder until a GS service drawing is sourced",
@@ -109,15 +110,15 @@ const BRONICA_GS_MOUNT = {
       featureId: "aperture-control-coupler",
       side: "both",
       profileId: "bronica-gs/base",
-      centerAngleDeg: v(320, "photo_scaled", REF),
-      radiusMm: v(28, "photo_scaled", REF),
+      centerAngleDeg: v(320, "patent", REF),
+      radiusMm: v(28, "patent", REF),
       sizeOrTravel: "lever",
       function: "body/lens aperture coordination",
       compatibilityNotes: "position photo-scaled",
     },
   ],
 
-  screwsGasketsBaffles: [makeMountScrews(REF, 4, 66, 2.2, [45, 135, 225, 315])],
+  screwsGasketsBaffles: [makeMountScrews(REF, 4, 66, 2.2, [45, 135, 225, 315], "patent")],
 
   svgLayers: {
     mvpRequired: ["datum-axis", "camera-side-metal", "lens-side-metal", "axial-section", "uncertainty"],

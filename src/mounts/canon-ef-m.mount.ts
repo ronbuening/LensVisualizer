@@ -29,7 +29,7 @@ const { cameraSideFeatures, lensSideFeatures } = makeBayonetFeatures({
   lugSpanDeg: 42,
   lockCenterAngleDeg: 270,
   scalarStatus: "secondary",
-  featureStatus: "photo_scaled",
+  featureStatus: "patent",
   lugShapeNotes: "three EF-M mirrorless bayonet pawls/slots",
   lockShapeNotes: "lock notch/pin position photo-scaled from EF-family orientation",
 });
@@ -82,15 +82,15 @@ const CANON_EF_M_MOUNT = {
     flangeFocalDistanceMm: v(18, "secondary", W),
     nominalThroatDiameterMm: v(47, "secondary", W),
     effectiveClearApertureMm: v(47, "secondary", W),
-    cameraMountOuterDiameterMm: v(56, "photo_scaled", REF),
-    lensMountOuterDiameterMm: v(54, "photo_scaled", REF),
+    cameraMountOuterDiameterMm: v(56, "patent", REF),
+    lensMountOuterDiameterMm: v(54, "patent", REF),
     contactCount: v(9, "secondary", REF),
   },
 
   lockGeometry: {
     insertionAngleDeg: v(0, "secondary", W),
-    lockAngleDeg: v(60, "photo_scaled", REF),
-    lockRotationDeg: v(60, "photo_scaled", REF),
+    lockAngleDeg: v(60, "patent", REF),
+    lockRotationDeg: v(60, "patent", REF),
     lockRotationDirection: dirV("clockwise", "secondary", REF),
   },
 
@@ -105,6 +105,7 @@ const CANON_EF_M_MOUNT = {
     sensorFilmDiameterMm: 28.35,
     includeElectricalPlane: true,
     electricalDiameterMm: 43,
+    featureStatus: "patent",
   }),
 
   contacts: makeContactBank({
@@ -114,10 +115,11 @@ const CANON_EF_M_MOUNT = {
     startAngleDeg: 154,
     stepDeg: 6,
     radiusMm: 21.5,
+    status: "patent",
   }),
 
   mechanicalCouplings: [],
-  screwsGasketsBaffles: [makeMountScrews(REF, 4, 52, 1.8, [45, 135, 225, 315])],
+  screwsGasketsBaffles: [makeMountScrews(REF, 4, 52, 1.8, [45, 135, 225, 315], "patent")],
 
   svgLayers: {
     mvpRequired: ["datum-axis", "camera-side-metal", "lens-side-metal", "axial-section", "uncertainty"],
