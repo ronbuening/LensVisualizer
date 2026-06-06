@@ -9,6 +9,8 @@
 - Followed up on Nikon F after reviewing US4766453A and US5185622A directly: the AF-era bayonet/lock/diaphragm/drive/contact structures now carry `patent` provenance where the patents support them.
 - Followed up on Leica M after reviewing US2618201A directly: the Leitz four-lug bayonet, selected keyed lug/slot, tactile notch/protuberance, selected-lug cam, and rangefinder-lever recess now carry `patent` provenance where the patent supports them.
 - Followed up on Pentax K after reviewing US4017878A, US4357089A, and US4939532A directly: the Asahi/Pentax bayonet/lock embodiment, KA contact bank, AF joint shaft, lens driven shaft, and AF-era data/power contacts now carry `patent` provenance where the patents support them.
+- Followed up on Sony A after reviewing US4659203A, JPH01302238A, and JPH09211645A directly: the Minolta/Sony A bayonet, eight-terminal bank/functions, lock/index, clockwise engagement, and aperture-control member/pin now carry `patent` provenance where the patents support them.
+- Followed up on Sony E after reviewing US9392150B2 directly: the E/FE body inside diameter, three arc-like latch embodiment, ten bottom contact pins, contact-pin holder, full-frame aperture geometry, and corresponding lens latch family now carry `patent` provenance where the patent supports them.
 
 ## In-Order Mount Pass
 - Canon EF: existing `mvp_complete`; patent leads retained as related EF-era connector provenance.
@@ -26,8 +28,8 @@
 - Four Thirds: existing `mvp_complete`; Olympus/Four Thirds patent retained for native body/lens mount provenance.
 - Micro Four Thirds: existing `mvp_complete`; Four Thirds predecessor patent retained as related-only provenance.
 - Pentax K: existing `mvp_complete`; Asahi/Pentax patents now back the bayonet/lock embodiment, KA contact bank, AF joint shaft, lens driven shaft, and AF-era data/power contacts, with exact production clocking still normalized to secondary imagery.
-- Sony A: existing `mvp_complete`; Minolta AF/A-mount patents retained for bayonet/contact provenance.
-- Sony E: existing `mvp_complete` under canonical id `sony-fe`; Sony E/FE patent lead retained.
+- Sony A: existing `mvp_complete`; Minolta AF/A-mount patents now back the three-claw bayonet lineage, later eight-terminal bank/functions, lock/index, clockwise engagement, and aperture control member/pin, while AF screw-drive position and screw pattern remain photo-scaled.
+- Sony E: existing `mvp_complete` under canonical id `sony-fe`; US9392150B2 now backs the E/FE body inside diameter, three arc-like body/lens latches, ten bottom contact pins, contact-pin holder, and full-frame aperture geometry, while lock/index and screw pattern remain photo-scaled.
 - Zenza Bronica ETR: existing renderable partial; Bronica lens-shutter mount patent retained as related family provenance.
 - Zenza Bronica GS: existing renderable partial; Bronica lens-shutter mount patent retained as related family provenance.
 - Zenza Bronica SQ: existing renderable partial; Bronica lens-shutter mount patent retained as related family provenance.
@@ -41,6 +43,7 @@
 - Nikon Z follow-up: reran `npm run typecheck`, `npm run test -- mountSpecs mountRender nikonFMount`, `npm run generate:mount-svgs`, `npm run format:check`, and `npm run lint` — all passed.
 - Nikon F follow-up: reran `npm run typecheck`, `npm run test -- mountSpecs mountRender nikonFMount`, `npm run generate:mount-svgs`, `npm run format:check`, and `npm run lint` — all passed.
 - Pentax K follow-up: reran `npm run typecheck`, `npm run test -- mountSpecs mountRender nikonFMount`, `npm run generate:mount-svgs`, `npm run format:check`, and `npm run lint` — all passed.
+- Sony A/E follow-up: reran `npm run typecheck`, `npm run test -- mountSpecs mountRender nikonFMount`, `npm run generate:mount-svgs`, `npm run format:check`, `npm run lint`, and `git diff --check` — all passed.
 
 ## Follow-ups
 - The partial medium-format/mechanical entries remain renderable but not reference-grade until service drawings or measured samples provide model-specific bayonet sectors and coupling positions.

@@ -60947,7 +60947,7 @@ None — fully electronic.
 
 | Profile ID | Type | Applies to | Adds | Removes | Changes |
 |---|---|---|---|---|---|
-| `sony-a/base` | base | all Minolta AF / Sony A lenses and bodies (full-frame and APS-C DT), 1985–present | bayonet lugs; lock pin/notch; mounting index; AF screw-drive coupler; mechanical aperture-control arm; electrical contact block | — | original Minolta 5-pin interface grew to eight contacts |
+| `sony-a/base` | base | all Minolta AF / Sony A lenses and bodies (full-frame and APS-C DT), 1985-present | bayonet lugs; lock pin/notch; mounting index; AF screw-drive coupler; mechanical aperture-control arm; electrical contact block | — | original Minolta 5-pin interface grew to eight contacts |
 
 #### Dimensional summary
 
@@ -60958,19 +60958,19 @@ None — fully electronic.
 | Effective clear aperture | 49.7 (`secondary`) | mm |
 | Camera mount outer diameter | 57 (`photo_scaled`) | mm |
 | Lens mount outer diameter | 55 (`photo_scaled`) | mm |
-| Contact count | 8 (`secondary`) | count |
+| Contact count | 8 (`patent`) | count |
 | Lock rotation | unknown (`unknown`) | deg |
-| Lock direction | unknown (`unknown`) | — |
+| Lock direction | clockwise (`patent`) | — |
 
 #### Figures (selected profile `sony-a/base`)
 
 **Camera-side front view** — viewBox `-35 -37 70 72` ([standalone SVG](mounts/sony-a-camera-front.svg))
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-35 -37 70 72" role="img" aria-labelledby="sony-a-base-camera_side_front-title sony-a-base-camera_side_front-desc"><title id="sony-a-base-camera_side_front-title">Sony A mount — camera-side front view (base)</title><desc id="sony-a-base-camera_side_front-desc">Sony A bayonet mount, camera-side front view. Flange focal distance 44.5 mm, nominal throat 49.7 mm. Profile sony-a/base.</desc><metadata>{"mountId":"sony-a","profileId":"sony-a/base","view":"camera_side_front","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.425" y1="0" x2="1.425" y2="0" stroke="#8a94a0" stroke-width="0.42" fill="none" /><line x1="0" y1="-1.425" x2="0" y2="1.425" stroke="#8a94a0" stroke-width="0.42" fill="none" /><line x1="0" y1="-28.5" x2="0" y2="-30.21" stroke="#8a94a0" stroke-width="0.42" fill="none" /></g><g data-layer="camera-side-metal"><path d="M0,-28.5 A28.5,28.5 0 1 1 0,28.5 A28.5,28.5 0 1 1 0,-28.5 Z M0,-24.85 A24.85,24.85 0 1 1 0,24.85 A24.85,24.85 0 1 1 0,-24.85 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-28.5 A28.5,28.5 0 1 1 0,28.5 A28.5,28.5 0 1 1 0,-28.5 Z M0,-24.85 A24.85,24.85 0 1 1 0,24.85 A24.85,24.85 0 1 1 0,-24.85 Z" stroke="#6b7a8f" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M0,-24.85 A24.85,24.85 0 1 1 0,24.85 A24.85,24.85 0 1 1 0,-24.85 Z" stroke="#2f80c4" stroke-width="0.315" fill="none" /><circle cx="13.5" cy="-23.383" r="1" stroke="#7f8c3a" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><circle cx="26.41" cy="5.614" r="1" stroke="#7f8c3a" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><circle cx="2.822" cy="26.852" r="1" stroke="#7f8c3a" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><circle cx="-24.666" cy="10.982" r="1" stroke="#7f8c3a" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><circle cx="-18.067" cy="-20.065" r="1" stroke="#7f8c3a" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-core-interface"><path d="M0,-26.15 L-1.77,-28.946 L1.77,-28.946 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-26.15 L-1.77,-28.946 L1.77,-28.946 Z" stroke="#e8853a" stroke-width="0.42" fill="none" stroke-dasharray="0.6 1.6" /><path d="M4.315,-24.472 L4.775,-27.082 A27.5,27.5 0 0 1 21.066,-17.677 L19.036,-15.973 A24.85,24.85 0 0 0 4.315,-24.472 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M4.315,-24.472 L4.775,-27.082 A27.5,27.5 0 0 1 21.066,-17.677 L19.036,-15.973 A24.85,24.85 0 0 0 4.315,-24.472 Z" stroke="#2a9d8f" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M19.036,15.973 L21.066,17.677 A27.5,27.5 0 0 1 4.775,27.082 L4.315,24.472 A24.85,24.85 0 0 0 19.036,15.973 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M19.036,15.973 L21.066,17.677 A27.5,27.5 0 0 1 4.775,27.082 L4.315,24.472 A24.85,24.85 0 0 0 19.036,15.973 Z" stroke="#2a9d8f" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><circle cx="-25.5" cy="0" r="0.998" fill="#d1495b" fill-opacity="0.12" /><circle cx="-25.5" cy="0" r="0.998" stroke="#d1495b" stroke-width="0.42" fill="none" stroke-dasharray="0.6 1.6" /><path d="M-24.85,0 L-27.5,0 A27.5,27.5 0 0 1 -21.066,-17.677 L-19.036,-15.973 A24.85,24.85 0 0 0 -24.85,0 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-24.85,0 L-27.5,0 A27.5,27.5 0 0 1 -21.066,-17.677 L-19.036,-15.973 A24.85,24.85 0 0 0 -24.85,0 Z" stroke="#2a9d8f" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-variant-electrical"><path d="M10.489,18.423 L11.776,20.683 A23.8,23.8 0 0 1 10.562,21.328 L9.408,18.998 A21.2,21.2 0 0 0 10.489,18.423 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M10.489,18.423 L11.776,20.683 A23.8,23.8 0 0 1 10.562,21.328 L9.408,18.998 A21.2,21.2 0 0 0 10.489,18.423 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M7.823,19.704 L8.783,22.12 A23.8,23.8 0 0 1 7.491,22.59 L6.672,20.123 A21.2,21.2 0 0 0 7.823,19.704 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M7.823,19.704 L8.783,22.12 A23.8,23.8 0 0 1 7.491,22.59 L6.672,20.123 A21.2,21.2 0 0 0 7.823,19.704 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M5.005,20.601 L5.619,23.127 A23.8,23.8 0 0 1 4.274,23.413 L3.807,20.855 A21.2,21.2 0 0 0 5.005,20.601 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M5.005,20.601 L5.619,23.127 A23.8,23.8 0 0 1 4.274,23.413 L3.807,20.855 A21.2,21.2 0 0 0 5.005,20.601 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M2.089,21.097 L2.345,23.684 A23.8,23.8 0 0 1 0.974,23.78 L0.867,21.182 A21.2,21.2 0 0 0 2.089,21.097 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M2.089,21.097 L2.345,23.684 A23.8,23.8 0 0 1 0.974,23.78 L0.867,21.182 A21.2,21.2 0 0 0 2.089,21.097 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M-0.867,21.182 L-0.974,23.78 A23.8,23.8 0 0 1 -2.345,23.684 L-2.089,21.097 A21.2,21.2 0 0 0 -0.867,21.182 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-0.867,21.182 L-0.974,23.78 A23.8,23.8 0 0 1 -2.345,23.684 L-2.089,21.097 A21.2,21.2 0 0 0 -0.867,21.182 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M-3.807,20.855 L-4.274,23.413 A23.8,23.8 0 0 1 -5.619,23.127 L-5.005,20.601 A21.2,21.2 0 0 0 -3.807,20.855 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-3.807,20.855 L-4.274,23.413 A23.8,23.8 0 0 1 -5.619,23.127 L-5.005,20.601 A21.2,21.2 0 0 0 -3.807,20.855 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M-6.672,20.123 L-7.491,22.59 A23.8,23.8 0 0 1 -8.783,22.12 L-7.823,19.704 A21.2,21.2 0 0 0 -6.672,20.123 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-6.672,20.123 L-7.491,22.59 A23.8,23.8 0 0 1 -8.783,22.12 L-7.823,19.704 A21.2,21.2 0 0 0 -6.672,20.123 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M-9.408,18.998 L-10.562,21.328 A23.8,23.8 0 0 1 -11.776,20.683 L-10.489,18.423 A21.2,21.2 0 0 0 -9.408,18.998 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-9.408,18.998 L-10.562,21.328 A23.8,23.8 0 0 1 -11.776,20.683 L-10.489,18.423 A21.2,21.2 0 0 0 -9.408,18.998 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-variant-mechanical"><circle cx="-18.794" cy="6.84" r="0.855" stroke="#b5651d" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><circle cx="-20.785" cy="-12" r="0.855" stroke="#b5651d" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-33.6" y1="-33.4" x2="-29.4" y2="-33.4" stroke="#2f80c4" stroke-width="0.504" /><text x="-28.248" y="-32.594" font-size="2.304" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-33.6" y1="-29.944" x2="-29.4" y2="-29.944" stroke="#6b7a8f" stroke-width="0.504" /><text x="-28.248" y="-29.138" font-size="2.304" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-33.6" y1="-26.488" x2="-29.4" y2="-26.488" stroke="#2a9d8f" stroke-width="0.504" /><text x="-28.248" y="-25.682" font-size="2.304" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-33.6" y1="-23.032" x2="-29.4" y2="-23.032" stroke="#d1495b" stroke-width="0.504" /><text x="-28.248" y="-22.226" font-size="2.304" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-33.6" y1="-19.576" x2="-29.4" y2="-19.576" stroke="#e8853a" stroke-width="0.504" /><text x="-28.248" y="-18.77" font-size="2.304" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-33.6" y1="-16.12" x2="-29.4" y2="-16.12" stroke="#8a5cd1" stroke-width="0.504" /><text x="-28.248" y="-15.314" font-size="2.304" fill="#8a5cd1" font-family="sans-serif">Electrical contact</text><line x1="-33.6" y1="-12.664" x2="-29.4" y2="-12.664" stroke="#b5651d" stroke-width="0.504" /><text x="-28.248" y="-11.858" font-size="2.304" fill="#b5651d" font-family="sans-serif">Mechanical coupling</text><line x1="-33.6" y1="-9.208" x2="-29.4" y2="-9.208" stroke="#7f8c3a" stroke-width="0.504" /><text x="-28.248" y="-8.402" font-size="2.304" fill="#7f8c3a" font-family="sans-serif">Screws / seals</text><line x1="-33.6" y1="-5.752" x2="-29.4" y2="-5.752" stroke="#8a94a0" stroke-width="0.504" /><text x="-28.248" y="-4.946" font-size="2.304" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-35 -37 70 72" role="img" aria-labelledby="sony-a-base-camera_side_front-title sony-a-base-camera_side_front-desc"><title id="sony-a-base-camera_side_front-title">Sony A mount — camera-side front view (base)</title><desc id="sony-a-base-camera_side_front-desc">Sony A bayonet mount, camera-side front view. Flange focal distance 44.5 mm, nominal throat 49.7 mm. Profile sony-a/base.</desc><metadata>{"mountId":"sony-a","profileId":"sony-a/base","view":"camera_side_front","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.425" y1="0" x2="1.425" y2="0" stroke="#8a94a0" stroke-width="0.42" fill="none" /><line x1="0" y1="-1.425" x2="0" y2="1.425" stroke="#8a94a0" stroke-width="0.42" fill="none" /><line x1="0" y1="-28.5" x2="0" y2="-30.21" stroke="#8a94a0" stroke-width="0.42" fill="none" /></g><g data-layer="camera-side-metal"><path d="M0,-28.5 A28.5,28.5 0 1 1 0,28.5 A28.5,28.5 0 1 1 0,-28.5 Z M0,-24.85 A24.85,24.85 0 1 1 0,24.85 A24.85,24.85 0 1 1 0,-24.85 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-28.5 A28.5,28.5 0 1 1 0,28.5 A28.5,28.5 0 1 1 0,-28.5 Z M0,-24.85 A24.85,24.85 0 1 1 0,24.85 A24.85,24.85 0 1 1 0,-24.85 Z" stroke="#6b7a8f" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M0,-24.85 A24.85,24.85 0 1 1 0,24.85 A24.85,24.85 0 1 1 0,-24.85 Z" stroke="#2f80c4" stroke-width="0.315" fill="none" /><circle cx="13.5" cy="-23.383" r="1" stroke="#7f8c3a" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><circle cx="26.41" cy="5.614" r="1" stroke="#7f8c3a" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><circle cx="2.822" cy="26.852" r="1" stroke="#7f8c3a" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><circle cx="-24.666" cy="10.982" r="1" stroke="#7f8c3a" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><circle cx="-18.067" cy="-20.065" r="1" stroke="#7f8c3a" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-core-interface"><path d="M0,-26.15 L-1.77,-28.946 L1.77,-28.946 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-26.15 L-1.77,-28.946 L1.77,-28.946 Z" stroke="#e8853a" stroke-width="0.42" fill="none" /><path d="M4.315,-24.472 L4.775,-27.082 A27.5,27.5 0 0 1 21.066,-17.677 L19.036,-15.973 A24.85,24.85 0 0 0 4.315,-24.472 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M4.315,-24.472 L4.775,-27.082 A27.5,27.5 0 0 1 21.066,-17.677 L19.036,-15.973 A24.85,24.85 0 0 0 4.315,-24.472 Z" stroke="#2a9d8f" stroke-width="0.42" fill="none" /><path d="M19.036,15.973 L21.066,17.677 A27.5,27.5 0 0 1 4.775,27.082 L4.315,24.472 A24.85,24.85 0 0 0 19.036,15.973 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M19.036,15.973 L21.066,17.677 A27.5,27.5 0 0 1 4.775,27.082 L4.315,24.472 A24.85,24.85 0 0 0 19.036,15.973 Z" stroke="#2a9d8f" stroke-width="0.42" fill="none" /><circle cx="-25.5" cy="0" r="0.998" fill="#d1495b" fill-opacity="0.12" /><circle cx="-25.5" cy="0" r="0.998" stroke="#d1495b" stroke-width="0.42" fill="none" /><path d="M-24.85,0 L-27.5,0 A27.5,27.5 0 0 1 -21.066,-17.677 L-19.036,-15.973 A24.85,24.85 0 0 0 -24.85,0 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-24.85,0 L-27.5,0 A27.5,27.5 0 0 1 -21.066,-17.677 L-19.036,-15.973 A24.85,24.85 0 0 0 -24.85,0 Z" stroke="#2a9d8f" stroke-width="0.42" fill="none" /></g><g data-layer="camera-side-variant-electrical"><path d="M10.489,18.423 L11.776,20.683 A23.8,23.8 0 0 1 10.562,21.328 L9.408,18.998 A21.2,21.2 0 0 0 10.489,18.423 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M10.489,18.423 L11.776,20.683 A23.8,23.8 0 0 1 10.562,21.328 L9.408,18.998 A21.2,21.2 0 0 0 10.489,18.423 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" /><path d="M7.823,19.704 L8.783,22.12 A23.8,23.8 0 0 1 7.491,22.59 L6.672,20.123 A21.2,21.2 0 0 0 7.823,19.704 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M7.823,19.704 L8.783,22.12 A23.8,23.8 0 0 1 7.491,22.59 L6.672,20.123 A21.2,21.2 0 0 0 7.823,19.704 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" /><path d="M5.005,20.601 L5.619,23.127 A23.8,23.8 0 0 1 4.274,23.413 L3.807,20.855 A21.2,21.2 0 0 0 5.005,20.601 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M5.005,20.601 L5.619,23.127 A23.8,23.8 0 0 1 4.274,23.413 L3.807,20.855 A21.2,21.2 0 0 0 5.005,20.601 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" /><path d="M2.089,21.097 L2.345,23.684 A23.8,23.8 0 0 1 0.974,23.78 L0.867,21.182 A21.2,21.2 0 0 0 2.089,21.097 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M2.089,21.097 L2.345,23.684 A23.8,23.8 0 0 1 0.974,23.78 L0.867,21.182 A21.2,21.2 0 0 0 2.089,21.097 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" /><path d="M-0.867,21.182 L-0.974,23.78 A23.8,23.8 0 0 1 -2.345,23.684 L-2.089,21.097 A21.2,21.2 0 0 0 -0.867,21.182 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-0.867,21.182 L-0.974,23.78 A23.8,23.8 0 0 1 -2.345,23.684 L-2.089,21.097 A21.2,21.2 0 0 0 -0.867,21.182 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" /><path d="M-3.807,20.855 L-4.274,23.413 A23.8,23.8 0 0 1 -5.619,23.127 L-5.005,20.601 A21.2,21.2 0 0 0 -3.807,20.855 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-3.807,20.855 L-4.274,23.413 A23.8,23.8 0 0 1 -5.619,23.127 L-5.005,20.601 A21.2,21.2 0 0 0 -3.807,20.855 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" /><path d="M-6.672,20.123 L-7.491,22.59 A23.8,23.8 0 0 1 -8.783,22.12 L-7.823,19.704 A21.2,21.2 0 0 0 -6.672,20.123 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-6.672,20.123 L-7.491,22.59 A23.8,23.8 0 0 1 -8.783,22.12 L-7.823,19.704 A21.2,21.2 0 0 0 -6.672,20.123 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" /><path d="M-9.408,18.998 L-10.562,21.328 A23.8,23.8 0 0 1 -11.776,20.683 L-10.489,18.423 A21.2,21.2 0 0 0 -9.408,18.998 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-9.408,18.998 L-10.562,21.328 A23.8,23.8 0 0 1 -11.776,20.683 L-10.489,18.423 A21.2,21.2 0 0 0 -9.408,18.998 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" /></g><g data-layer="camera-side-variant-mechanical"><circle cx="-18.794" cy="6.84" r="0.855" stroke="#b5651d" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><circle cx="-20.785" cy="-12" r="0.855" stroke="#b5651d" stroke-width="0.42" fill="none" /></g><g aria-hidden="true"><line x1="-33.6" y1="-33.4" x2="-29.4" y2="-33.4" stroke="#2f80c4" stroke-width="0.504" /><text x="-28.248" y="-32.594" font-size="2.304" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-33.6" y1="-29.944" x2="-29.4" y2="-29.944" stroke="#6b7a8f" stroke-width="0.504" /><text x="-28.248" y="-29.138" font-size="2.304" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-33.6" y1="-26.488" x2="-29.4" y2="-26.488" stroke="#2a9d8f" stroke-width="0.504" /><text x="-28.248" y="-25.682" font-size="2.304" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-33.6" y1="-23.032" x2="-29.4" y2="-23.032" stroke="#d1495b" stroke-width="0.504" /><text x="-28.248" y="-22.226" font-size="2.304" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-33.6" y1="-19.576" x2="-29.4" y2="-19.576" stroke="#e8853a" stroke-width="0.504" /><text x="-28.248" y="-18.77" font-size="2.304" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-33.6" y1="-16.12" x2="-29.4" y2="-16.12" stroke="#8a5cd1" stroke-width="0.504" /><text x="-28.248" y="-15.314" font-size="2.304" fill="#8a5cd1" font-family="sans-serif">Electrical contact</text><line x1="-33.6" y1="-12.664" x2="-29.4" y2="-12.664" stroke="#b5651d" stroke-width="0.504" /><text x="-28.248" y="-11.858" font-size="2.304" fill="#b5651d" font-family="sans-serif">Mechanical coupling</text><line x1="-33.6" y1="-9.208" x2="-29.4" y2="-9.208" stroke="#7f8c3a" stroke-width="0.504" /><text x="-28.248" y="-8.402" font-size="2.304" fill="#7f8c3a" font-family="sans-serif">Screws / seals</text><line x1="-33.6" y1="-5.752" x2="-29.4" y2="-5.752" stroke="#8a94a0" stroke-width="0.504" /><text x="-28.248" y="-4.946" font-size="2.304" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
 
 **Lens-side rear view** — viewBox `-35 -35 70 70` ([standalone SVG](mounts/sony-a-lens-rear.svg))
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-35 -35 70 70" role="img" aria-labelledby="sony-a-base-lens_side_rear-title sony-a-base-lens_side_rear-desc"><title id="sony-a-base-lens_side_rear-title">Sony A mount — lens-side rear view (base)</title><desc id="sony-a-base-lens_side_rear-desc">Sony A bayonet mount, lens-side rear view. Flange focal distance 44.5 mm, nominal throat 49.7 mm. Profile sony-a/base.</desc><metadata>{"mountId":"sony-a","profileId":"sony-a/base","view":"lens_side_rear","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.375" y1="0" x2="1.375" y2="0" stroke="#8a94a0" stroke-width="0.42" fill="none" /><line x1="0" y1="-1.375" x2="0" y2="1.375" stroke="#8a94a0" stroke-width="0.42" fill="none" /><line x1="0" y1="-27.5" x2="0" y2="-29.15" stroke="#8a94a0" stroke-width="0.42" fill="none" /></g><g data-layer="lens-side-metal"><path d="M0,-27.5 A27.5,27.5 0 1 1 0,27.5 A27.5,27.5 0 1 1 0,-27.5 Z M0,-23.85 A23.85,23.85 0 1 1 0,23.85 A23.85,23.85 0 1 1 0,-23.85 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-27.5 A27.5,27.5 0 1 1 0,27.5 A27.5,27.5 0 1 1 0,-27.5 Z M0,-23.85 A23.85,23.85 0 1 1 0,23.85 A23.85,23.85 0 1 1 0,-23.85 Z" stroke="#6b7a8f" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M0,-23.85 A23.85,23.85 0 1 1 0,23.85 A23.85,23.85 0 1 1 0,-23.85 Z" stroke="#2f80c4" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /></g><g data-layer="lens-side-core-interface"><path d="M0,-25.75 L-1.74,-28.447 L1.74,-28.447 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-25.75 L-1.74,-28.447 L1.74,-28.447 Z" stroke="#e8853a" stroke-width="0.42" fill="none" stroke-dasharray="0.6 1.6" /><path d="M19.036,-15.973 L21.066,-17.677 A27.5,27.5 0 0 1 27.5,0 L24.85,0 A24.85,24.85 0 0 0 19.036,-15.973 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M19.036,-15.973 L21.066,-17.677 A27.5,27.5 0 0 1 27.5,0 L24.85,0 A24.85,24.85 0 0 0 19.036,-15.973 Z" stroke="#2a9d8f" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><circle cx="25.5" cy="0" r="0.963" fill="#d1495b" fill-opacity="0.12" /><circle cx="25.5" cy="0" r="0.963" stroke="#d1495b" stroke-width="0.42" fill="none" stroke-dasharray="0.6 1.6" /><path d="M-4.315,24.472 L-4.775,27.082 A27.5,27.5 0 0 1 -21.066,17.677 L-19.036,15.973 A24.85,24.85 0 0 0 -4.315,24.472 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-4.315,24.472 L-4.775,27.082 A27.5,27.5 0 0 1 -21.066,17.677 L-19.036,15.973 A24.85,24.85 0 0 0 -4.315,24.472 Z" stroke="#2a9d8f" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M-19.036,-15.973 L-21.066,-17.677 A27.5,27.5 0 0 1 -4.775,-27.082 L-4.315,-24.472 A24.85,24.85 0 0 0 -19.036,-15.973 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-19.036,-15.973 L-21.066,-17.677 A27.5,27.5 0 0 1 -4.775,-27.082 L-4.315,-24.472 A24.85,24.85 0 0 0 -19.036,-15.973 Z" stroke="#2a9d8f" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /></g><g data-layer="lens-side-variant-electrical"><path d="M-9.408,18.998 L-10.562,21.328 A23.8,23.8 0 0 1 -11.776,20.683 L-10.489,18.423 A21.2,21.2 0 0 0 -9.408,18.998 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-9.408,18.998 L-10.562,21.328 A23.8,23.8 0 0 1 -11.776,20.683 L-10.489,18.423 A21.2,21.2 0 0 0 -9.408,18.998 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M-6.672,20.123 L-7.491,22.59 A23.8,23.8 0 0 1 -8.783,22.12 L-7.823,19.704 A21.2,21.2 0 0 0 -6.672,20.123 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-6.672,20.123 L-7.491,22.59 A23.8,23.8 0 0 1 -8.783,22.12 L-7.823,19.704 A21.2,21.2 0 0 0 -6.672,20.123 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M-3.807,20.855 L-4.274,23.413 A23.8,23.8 0 0 1 -5.619,23.127 L-5.005,20.601 A21.2,21.2 0 0 0 -3.807,20.855 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-3.807,20.855 L-4.274,23.413 A23.8,23.8 0 0 1 -5.619,23.127 L-5.005,20.601 A21.2,21.2 0 0 0 -3.807,20.855 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M-0.867,21.182 L-0.974,23.78 A23.8,23.8 0 0 1 -2.345,23.684 L-2.089,21.097 A21.2,21.2 0 0 0 -0.867,21.182 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-0.867,21.182 L-0.974,23.78 A23.8,23.8 0 0 1 -2.345,23.684 L-2.089,21.097 A21.2,21.2 0 0 0 -0.867,21.182 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M2.089,21.097 L2.345,23.684 A23.8,23.8 0 0 1 0.974,23.78 L0.867,21.182 A21.2,21.2 0 0 0 2.089,21.097 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M2.089,21.097 L2.345,23.684 A23.8,23.8 0 0 1 0.974,23.78 L0.867,21.182 A21.2,21.2 0 0 0 2.089,21.097 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M5.005,20.601 L5.619,23.127 A23.8,23.8 0 0 1 4.274,23.413 L3.807,20.855 A21.2,21.2 0 0 0 5.005,20.601 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M5.005,20.601 L5.619,23.127 A23.8,23.8 0 0 1 4.274,23.413 L3.807,20.855 A21.2,21.2 0 0 0 5.005,20.601 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M7.823,19.704 L8.783,22.12 A23.8,23.8 0 0 1 7.491,22.59 L6.672,20.123 A21.2,21.2 0 0 0 7.823,19.704 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M7.823,19.704 L8.783,22.12 A23.8,23.8 0 0 1 7.491,22.59 L6.672,20.123 A21.2,21.2 0 0 0 7.823,19.704 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M10.489,18.423 L11.776,20.683 A23.8,23.8 0 0 1 10.562,21.328 L9.408,18.998 A21.2,21.2 0 0 0 10.489,18.423 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M10.489,18.423 L11.776,20.683 A23.8,23.8 0 0 1 10.562,21.328 L9.408,18.998 A21.2,21.2 0 0 0 10.489,18.423 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-33.6" y1="-31.5" x2="-29.4" y2="-31.5" stroke="#2f80c4" stroke-width="0.49" /><text x="-28.28" y="-30.716" font-size="2.24" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-33.6" y1="-28.14" x2="-29.4" y2="-28.14" stroke="#6b7a8f" stroke-width="0.49" /><text x="-28.28" y="-27.356" font-size="2.24" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-33.6" y1="-24.78" x2="-29.4" y2="-24.78" stroke="#2a9d8f" stroke-width="0.49" /><text x="-28.28" y="-23.996" font-size="2.24" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-33.6" y1="-21.42" x2="-29.4" y2="-21.42" stroke="#d1495b" stroke-width="0.49" /><text x="-28.28" y="-20.636" font-size="2.24" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-33.6" y1="-18.06" x2="-29.4" y2="-18.06" stroke="#e8853a" stroke-width="0.49" /><text x="-28.28" y="-17.276" font-size="2.24" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-33.6" y1="-14.7" x2="-29.4" y2="-14.7" stroke="#8a5cd1" stroke-width="0.49" /><text x="-28.28" y="-13.916" font-size="2.24" fill="#8a5cd1" font-family="sans-serif">Electrical contact</text><line x1="-33.6" y1="-11.34" x2="-29.4" y2="-11.34" stroke="#8a94a0" stroke-width="0.49" /><text x="-28.28" y="-10.556" font-size="2.24" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-35 -35 70 70" role="img" aria-labelledby="sony-a-base-lens_side_rear-title sony-a-base-lens_side_rear-desc"><title id="sony-a-base-lens_side_rear-title">Sony A mount — lens-side rear view (base)</title><desc id="sony-a-base-lens_side_rear-desc">Sony A bayonet mount, lens-side rear view. Flange focal distance 44.5 mm, nominal throat 49.7 mm. Profile sony-a/base.</desc><metadata>{"mountId":"sony-a","profileId":"sony-a/base","view":"lens_side_rear","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.375" y1="0" x2="1.375" y2="0" stroke="#8a94a0" stroke-width="0.42" fill="none" /><line x1="0" y1="-1.375" x2="0" y2="1.375" stroke="#8a94a0" stroke-width="0.42" fill="none" /><line x1="0" y1="-27.5" x2="0" y2="-29.15" stroke="#8a94a0" stroke-width="0.42" fill="none" /></g><g data-layer="lens-side-metal"><path d="M0,-27.5 A27.5,27.5 0 1 1 0,27.5 A27.5,27.5 0 1 1 0,-27.5 Z M0,-23.85 A23.85,23.85 0 1 1 0,23.85 A23.85,23.85 0 1 1 0,-23.85 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-27.5 A27.5,27.5 0 1 1 0,27.5 A27.5,27.5 0 1 1 0,-27.5 Z M0,-23.85 A23.85,23.85 0 1 1 0,23.85 A23.85,23.85 0 1 1 0,-23.85 Z" stroke="#6b7a8f" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /><path d="M0,-23.85 A23.85,23.85 0 1 1 0,23.85 A23.85,23.85 0 1 1 0,-23.85 Z" stroke="#2f80c4" stroke-width="0.42" fill="none" stroke-dasharray="4 2" /></g><g data-layer="lens-side-core-interface"><path d="M0,-25.75 L-1.74,-28.447 L1.74,-28.447 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-25.75 L-1.74,-28.447 L1.74,-28.447 Z" stroke="#e8853a" stroke-width="0.42" fill="none" /><path d="M19.036,-15.973 L21.066,-17.677 A27.5,27.5 0 0 1 27.5,0 L24.85,0 A24.85,24.85 0 0 0 19.036,-15.973 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M19.036,-15.973 L21.066,-17.677 A27.5,27.5 0 0 1 27.5,0 L24.85,0 A24.85,24.85 0 0 0 19.036,-15.973 Z" stroke="#2a9d8f" stroke-width="0.42" fill="none" /><circle cx="25.5" cy="0" r="0.963" fill="#d1495b" fill-opacity="0.12" /><circle cx="25.5" cy="0" r="0.963" stroke="#d1495b" stroke-width="0.42" fill="none" /><path d="M-4.315,24.472 L-4.775,27.082 A27.5,27.5 0 0 1 -21.066,17.677 L-19.036,15.973 A24.85,24.85 0 0 0 -4.315,24.472 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-4.315,24.472 L-4.775,27.082 A27.5,27.5 0 0 1 -21.066,17.677 L-19.036,15.973 A24.85,24.85 0 0 0 -4.315,24.472 Z" stroke="#2a9d8f" stroke-width="0.42" fill="none" /><path d="M-19.036,-15.973 L-21.066,-17.677 A27.5,27.5 0 0 1 -4.775,-27.082 L-4.315,-24.472 A24.85,24.85 0 0 0 -19.036,-15.973 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-19.036,-15.973 L-21.066,-17.677 A27.5,27.5 0 0 1 -4.775,-27.082 L-4.315,-24.472 A24.85,24.85 0 0 0 -19.036,-15.973 Z" stroke="#2a9d8f" stroke-width="0.42" fill="none" /></g><g data-layer="lens-side-variant-electrical"><path d="M-9.408,18.998 L-10.562,21.328 A23.8,23.8 0 0 1 -11.776,20.683 L-10.489,18.423 A21.2,21.2 0 0 0 -9.408,18.998 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-9.408,18.998 L-10.562,21.328 A23.8,23.8 0 0 1 -11.776,20.683 L-10.489,18.423 A21.2,21.2 0 0 0 -9.408,18.998 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" /><path d="M-6.672,20.123 L-7.491,22.59 A23.8,23.8 0 0 1 -8.783,22.12 L-7.823,19.704 A21.2,21.2 0 0 0 -6.672,20.123 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-6.672,20.123 L-7.491,22.59 A23.8,23.8 0 0 1 -8.783,22.12 L-7.823,19.704 A21.2,21.2 0 0 0 -6.672,20.123 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" /><path d="M-3.807,20.855 L-4.274,23.413 A23.8,23.8 0 0 1 -5.619,23.127 L-5.005,20.601 A21.2,21.2 0 0 0 -3.807,20.855 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-3.807,20.855 L-4.274,23.413 A23.8,23.8 0 0 1 -5.619,23.127 L-5.005,20.601 A21.2,21.2 0 0 0 -3.807,20.855 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" /><path d="M-0.867,21.182 L-0.974,23.78 A23.8,23.8 0 0 1 -2.345,23.684 L-2.089,21.097 A21.2,21.2 0 0 0 -0.867,21.182 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-0.867,21.182 L-0.974,23.78 A23.8,23.8 0 0 1 -2.345,23.684 L-2.089,21.097 A21.2,21.2 0 0 0 -0.867,21.182 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" /><path d="M2.089,21.097 L2.345,23.684 A23.8,23.8 0 0 1 0.974,23.78 L0.867,21.182 A21.2,21.2 0 0 0 2.089,21.097 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M2.089,21.097 L2.345,23.684 A23.8,23.8 0 0 1 0.974,23.78 L0.867,21.182 A21.2,21.2 0 0 0 2.089,21.097 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" /><path d="M5.005,20.601 L5.619,23.127 A23.8,23.8 0 0 1 4.274,23.413 L3.807,20.855 A21.2,21.2 0 0 0 5.005,20.601 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M5.005,20.601 L5.619,23.127 A23.8,23.8 0 0 1 4.274,23.413 L3.807,20.855 A21.2,21.2 0 0 0 5.005,20.601 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" /><path d="M7.823,19.704 L8.783,22.12 A23.8,23.8 0 0 1 7.491,22.59 L6.672,20.123 A21.2,21.2 0 0 0 7.823,19.704 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M7.823,19.704 L8.783,22.12 A23.8,23.8 0 0 1 7.491,22.59 L6.672,20.123 A21.2,21.2 0 0 0 7.823,19.704 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" /><path d="M10.489,18.423 L11.776,20.683 A23.8,23.8 0 0 1 10.562,21.328 L9.408,18.998 A21.2,21.2 0 0 0 10.489,18.423 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M10.489,18.423 L11.776,20.683 A23.8,23.8 0 0 1 10.562,21.328 L9.408,18.998 A21.2,21.2 0 0 0 10.489,18.423 Z" stroke="#8a5cd1" stroke-width="0.42" fill="none" /></g><g data-layer="lens-side-variant-mechanical"><circle cx="20.785" cy="-12" r="0.825" stroke="#b5651d" stroke-width="0.42" fill="none" /></g><g aria-hidden="true"><line x1="-33.6" y1="-31.5" x2="-29.4" y2="-31.5" stroke="#2f80c4" stroke-width="0.49" /><text x="-28.28" y="-30.716" font-size="2.24" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-33.6" y1="-28.14" x2="-29.4" y2="-28.14" stroke="#6b7a8f" stroke-width="0.49" /><text x="-28.28" y="-27.356" font-size="2.24" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-33.6" y1="-24.78" x2="-29.4" y2="-24.78" stroke="#2a9d8f" stroke-width="0.49" /><text x="-28.28" y="-23.996" font-size="2.24" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-33.6" y1="-21.42" x2="-29.4" y2="-21.42" stroke="#d1495b" stroke-width="0.49" /><text x="-28.28" y="-20.636" font-size="2.24" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-33.6" y1="-18.06" x2="-29.4" y2="-18.06" stroke="#e8853a" stroke-width="0.49" /><text x="-28.28" y="-17.276" font-size="2.24" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-33.6" y1="-14.7" x2="-29.4" y2="-14.7" stroke="#8a5cd1" stroke-width="0.49" /><text x="-28.28" y="-13.916" font-size="2.24" fill="#8a5cd1" font-family="sans-serif">Electrical contact</text><line x1="-33.6" y1="-11.34" x2="-29.4" y2="-11.34" stroke="#b5651d" stroke-width="0.49" /><text x="-28.28" y="-10.556" font-size="2.24" fill="#b5651d" font-family="sans-serif">Mechanical coupling</text><line x1="-33.6" y1="-7.98" x2="-29.4" y2="-7.98" stroke="#8a94a0" stroke-width="0.49" /><text x="-28.28" y="-7.196" font-size="2.24" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
 
 **Axial / register schematic** — viewBox `-51 -39 59 74` ([standalone SVG](mounts/sony-a-axial.svg))
 
@@ -60985,8 +60985,8 @@ None — fully electronic.
 | `body-slot-1` | bayonet_receiving_slot | `sony-a/base` | 30° | 10° | 50° | 24.85 | 27.5 |
 | `body-slot-2` | bayonet_receiving_slot | `sony-a/base` | 150° | 130° | 170° | 24.85 | 27.5 |
 | `body-slot-3` | bayonet_receiving_slot | `sony-a/base` | 290° | 270° | 310° | 24.85 | 27.5 |
-| `body-index-mark` | index_mark | `sony-a/base` | 0° | unknown | unknown | unknown | 29 |
-| `body-lock-pin` | lock_pin | `sony-a/base` | 270° | unknown | unknown | unknown | 25.5 |
+| `body-index-mark` | index_mark | `sony-a/base` | 0° | 0° | 0° | 28 | 29 |
+| `body-lock-pin` | lock_pin | `sony-a/base` | 270° | 270° | 270° | 25.5 | 25.5 |
 
 #### Lens-side rear-view geometry
 
@@ -60997,29 +60997,29 @@ None — fully electronic.
 | `lens-lug-1` | bayonet_lug | `sony-a/base` | 30° | 10° | 50° | 24.85 | 27.5 |
 | `lens-lug-2` | bayonet_lug | `sony-a/base` | 150° | 130° | 170° | 24.85 | 27.5 |
 | `lens-lug-3` | bayonet_lug | `sony-a/base` | 290° | 270° | 310° | 24.85 | 27.5 |
-| `lens-index-mark` | index_mark | `sony-a/base` | 0° | unknown | unknown | unknown | 28.5 |
-| `lens-lock-notch` | lock_notch | `sony-a/base` | 270° | unknown | unknown | unknown | 25.5 |
+| `lens-index-mark` | index_mark | `sony-a/base` | 0° | 0° | 0° | 27.5 | 28.5 |
+| `lens-lock-notch` | lock_notch | `sony-a/base` | 270° | 270° | 270° | 25.5 | 25.5 |
 
 #### Electrical contacts
 
 | Side | No. | Profile | Center angle | Radius | Function |
 |---|---|---|---|---|---|
-| body | 1 | `sony-a/base` | 152° | 22.5 |  |
-| body | 2 | `sony-a/base` | 160° | 22.5 |  |
-| body | 3 | `sony-a/base` | 168° | 22.5 |  |
-| body | 4 | `sony-a/base` | 176° | 22.5 |  |
-| body | 5 | `sony-a/base` | 184° | 22.5 |  |
-| body | 6 | `sony-a/base` | 192° | 22.5 |  |
-| body | 7 | `sony-a/base` | 200° | 22.5 |  |
-| body | 8 | `sony-a/base` | 208° | 22.5 | 8th (original Minolta had 5) |
-| lens | 1 | `sony-a/base` | 152° | 22.5 |  |
-| lens | 2 | `sony-a/base` | 160° | 22.5 |  |
-| lens | 3 | `sony-a/base` | 168° | 22.5 |  |
-| lens | 4 | `sony-a/base` | 176° | 22.5 |  |
-| lens | 5 | `sony-a/base` | 184° | 22.5 |  |
-| lens | 6 | `sony-a/base` | 192° | 22.5 |  |
-| lens | 7 | `sony-a/base` | 200° | 22.5 |  |
-| lens | 8 | `sony-a/base` | 208° | 22.5 | 8th (original Minolta had 5) |
+| body | 1 | `sony-a/base` | 152° | 22.5 | circuit power |
+| body | 2 | `sony-a/base` | 160° | 22.5 | motor power |
+| body | 3 | `sony-a/base` | 168° | 22.5 | motor ground |
+| body | 4 | `sony-a/base` | 176° | 22.5 | lens/circuit ground |
+| body | 5 | `sony-a/base` | 184° | 22.5 | serial data output |
+| body | 6 | `sony-a/base` | 192° | 22.5 | communication request |
+| body | 7 | `sony-a/base` | 200° | 22.5 | serial clock |
+| body | 8 | `sony-a/base` | 208° | 22.5 | serial data input |
+| lens | 1 | `sony-a/base` | 152° | 22.5 | circuit power |
+| lens | 2 | `sony-a/base` | 160° | 22.5 | motor power |
+| lens | 3 | `sony-a/base` | 168° | 22.5 | motor ground |
+| lens | 4 | `sony-a/base` | 176° | 22.5 | lens/circuit ground |
+| lens | 5 | `sony-a/base` | 184° | 22.5 | serial data output |
+| lens | 6 | `sony-a/base` | 192° | 22.5 | communication request |
+| lens | 7 | `sony-a/base` | 200° | 22.5 | serial clock |
+| lens | 8 | `sony-a/base` | 208° | 22.5 | serial data input |
 
 #### Mechanical couplings
 
@@ -61027,6 +61027,7 @@ None — fully electronic.
 |---|---|---|---|
 | `af-screw-coupler` | body | `sony-a/base` | mechanical (screw-drive) AF |
 | `aperture-control-arm` | body | `sony-a/base` | mechanical aperture actuation |
+| `lens-aperture-pin` | lens | `sony-a/base` | lens diaphragm pin actuated by the body aperture control member |
 
 #### Axial stack
 
@@ -61086,7 +61087,7 @@ None — fully electronic.
         {
           "profileId": "sony-a/base",
           "profileType": "base",
-          "appliesTo": "all Minolta AF / Sony A lenses and bodies (full-frame and APS-C DT), 1985–present",
+          "appliesTo": "all Minolta AF / Sony A lenses and bodies (full-frame and APS-C DT), 1985-present",
           "adds": [
             "bayonet lugs",
             "lock pin/notch",
@@ -61104,7 +61105,8 @@ None — fully electronic.
             "camera-side-variant-mechanical"
           ],
           "lensSideOverlayLayers": [
-            "lens-side-variant-electrical"
+            "lens-side-variant-electrical",
+            "lens-side-variant-mechanical"
           ],
           "status": "researched",
           "sourceRefs": [
@@ -61155,8 +61157,9 @@ None — fully electronic.
     },
     "contactCount": {
       "value": 8,
-      "status": "secondary",
+      "status": "patent",
       "sourceRefs": [
+        "sa-p3",
         "sa-1"
       ]
     }
@@ -61173,20 +61176,22 @@ None — fully electronic.
       "value": "unknown",
       "status": "unknown",
       "sourceRefs": [
-        "sa-1"
+        "sa-p3"
       ]
     },
     "lockRotationDeg": {
       "value": "unknown",
       "status": "unknown",
       "sourceRefs": [
-        "sa-1"
+        "sa-p3"
       ]
     },
     "lockRotationDirection": {
-      "value": "unknown",
-      "status": "unknown",
-      "sourceRefs": []
+      "value": "clockwise",
+      "status": "patent",
+      "sourceRefs": [
+        "sa-p3"
+      ]
     }
   },
   "cameraSideFeatures": [
@@ -61293,48 +61298,60 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 30,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p1",
+          "sa-p3",
           "sa-1"
         ]
       },
       "startAngleDeg": {
         "value": 10,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p1",
+          "sa-p3",
           "sa-1"
         ]
       },
       "endAngleDeg": {
         "value": 50,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p1",
+          "sa-p3",
           "sa-1"
         ]
       },
       "innerRadiusMm": {
         "value": 24.85,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p1",
+          "sa-p3",
           "sa-1"
         ]
       },
       "outerRadiusMm": {
         "value": 27.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p1",
+          "sa-p3",
           "sa-1"
         ]
       },
       "depthMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p1",
+          "sa-p3",
           "sa-1"
         ]
       },
       "matesWith": "lens-lug-1",
-      "shapeNotes": "representative lug (count unconfirmed)"
+      "shapeNotes": "three Minolta/Sony A locking claws from US4659203A/JPH09211645A, normalized to A-mount clocking"
     },
     {
       "featureId": "body-slot-2",
@@ -61343,48 +61360,60 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 150,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p1",
+          "sa-p3",
           "sa-1"
         ]
       },
       "startAngleDeg": {
         "value": 130,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p1",
+          "sa-p3",
           "sa-1"
         ]
       },
       "endAngleDeg": {
         "value": 170,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p1",
+          "sa-p3",
           "sa-1"
         ]
       },
       "innerRadiusMm": {
         "value": 24.85,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p1",
+          "sa-p3",
           "sa-1"
         ]
       },
       "outerRadiusMm": {
         "value": 27.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p1",
+          "sa-p3",
           "sa-1"
         ]
       },
       "depthMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p1",
+          "sa-p3",
           "sa-1"
         ]
       },
       "matesWith": "lens-lug-2",
-      "shapeNotes": "representative lug (count unconfirmed)"
+      "shapeNotes": "three Minolta/Sony A locking claws from US4659203A/JPH09211645A, normalized to A-mount clocking"
     },
     {
       "featureId": "body-slot-3",
@@ -61393,48 +61422,60 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 290,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p1",
+          "sa-p3",
           "sa-1"
         ]
       },
       "startAngleDeg": {
         "value": 270,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p1",
+          "sa-p3",
           "sa-1"
         ]
       },
       "endAngleDeg": {
         "value": 310,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p1",
+          "sa-p3",
           "sa-1"
         ]
       },
       "innerRadiusMm": {
         "value": 24.85,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p1",
+          "sa-p3",
           "sa-1"
         ]
       },
       "outerRadiusMm": {
         "value": 27.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p1",
+          "sa-p3",
           "sa-1"
         ]
       },
       "depthMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p1",
+          "sa-p3",
           "sa-1"
         ]
       },
       "matesWith": "lens-lug-3",
-      "shapeNotes": "representative lug (count unconfirmed)"
+      "shapeNotes": "three Minolta/Sony A locking claws from US4659203A/JPH09211645A, normalized to A-mount clocking"
     },
     {
       "featureId": "body-index-mark",
@@ -61443,36 +61484,41 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "startAngleDeg": {
-        "value": "unknown",
-        "status": "unknown",
+        "value": 0,
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "endAngleDeg": {
-        "value": "unknown",
-        "status": "unknown",
+        "value": 0,
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "innerRadiusMm": {
-        "value": "unknown",
-        "status": "unknown",
+        "value": 28,
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "outerRadiusMm": {
         "value": 29,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
@@ -61482,7 +61528,7 @@ None — fully electronic.
         "sourceRefs": []
       },
       "matesWith": "lens-index-mark",
-      "shapeNotes": "mounting index"
+      "shapeNotes": "mounting index 13 in JPH09211645A, normalized to top-dead-center"
     },
     {
       "featureId": "body-lock-pin",
@@ -61491,48 +61537,54 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 270,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "startAngleDeg": {
-        "value": "unknown",
-        "status": "unknown",
+        "value": 270,
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "endAngleDeg": {
-        "value": "unknown",
-        "status": "unknown",
+        "value": 270,
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "innerRadiusMm": {
-        "value": "unknown",
-        "status": "unknown",
+        "value": 25.5,
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "outerRadiusMm": {
         "value": 25.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "depthMm": {
         "value": 2,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "matesWith": "lens-lock-notch",
-      "shapeNotes": "lock pin (position unconfirmed)"
+      "shapeNotes": "lock pin 17 positioned to engage lens lock hole 26 in JPH09211645A"
     }
   ],
   "lensSideFeatures": [
@@ -61639,48 +61691,60 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 30,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p1",
+          "sa-p3",
           "sa-1"
         ]
       },
       "startAngleDeg": {
         "value": 10,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p1",
+          "sa-p3",
           "sa-1"
         ]
       },
       "endAngleDeg": {
         "value": 50,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p1",
+          "sa-p3",
           "sa-1"
         ]
       },
       "innerRadiusMm": {
         "value": 24.85,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p1",
+          "sa-p3",
           "sa-1"
         ]
       },
       "outerRadiusMm": {
         "value": 27.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p1",
+          "sa-p3",
           "sa-1"
         ]
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p1",
+          "sa-p3",
           "sa-1"
         ]
       },
       "matesWith": "body-slot-1",
-      "shapeNotes": "representative lug (count unconfirmed)"
+      "shapeNotes": "lens locking claw 23a-23c family in JPH09211645A"
     },
     {
       "featureId": "lens-lug-2",
@@ -61689,48 +61753,60 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 150,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p1",
+          "sa-p3",
           "sa-1"
         ]
       },
       "startAngleDeg": {
         "value": 130,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p1",
+          "sa-p3",
           "sa-1"
         ]
       },
       "endAngleDeg": {
         "value": 170,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p1",
+          "sa-p3",
           "sa-1"
         ]
       },
       "innerRadiusMm": {
         "value": 24.85,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p1",
+          "sa-p3",
           "sa-1"
         ]
       },
       "outerRadiusMm": {
         "value": 27.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p1",
+          "sa-p3",
           "sa-1"
         ]
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p1",
+          "sa-p3",
           "sa-1"
         ]
       },
       "matesWith": "body-slot-2",
-      "shapeNotes": "representative lug (count unconfirmed)"
+      "shapeNotes": "lens locking claw 23a-23c family in JPH09211645A"
     },
     {
       "featureId": "lens-lug-3",
@@ -61739,48 +61815,60 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 290,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p1",
+          "sa-p3",
           "sa-1"
         ]
       },
       "startAngleDeg": {
         "value": 270,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p1",
+          "sa-p3",
           "sa-1"
         ]
       },
       "endAngleDeg": {
         "value": 310,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p1",
+          "sa-p3",
           "sa-1"
         ]
       },
       "innerRadiusMm": {
         "value": 24.85,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p1",
+          "sa-p3",
           "sa-1"
         ]
       },
       "outerRadiusMm": {
         "value": 27.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p1",
+          "sa-p3",
           "sa-1"
         ]
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p1",
+          "sa-p3",
           "sa-1"
         ]
       },
       "matesWith": "body-slot-3",
-      "shapeNotes": "representative lug (count unconfirmed)"
+      "shapeNotes": "lens locking claw 23a-23c family in JPH09211645A"
     },
     {
       "featureId": "lens-index-mark",
@@ -61789,36 +61877,41 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "startAngleDeg": {
-        "value": "unknown",
-        "status": "unknown",
+        "value": 0,
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "endAngleDeg": {
-        "value": "unknown",
-        "status": "unknown",
+        "value": 0,
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "innerRadiusMm": {
-        "value": "unknown",
-        "status": "unknown",
+        "value": 27.5,
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "outerRadiusMm": {
         "value": 28.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
@@ -61837,48 +61930,54 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 270,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "startAngleDeg": {
-        "value": "unknown",
-        "status": "unknown",
+        "value": 270,
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "endAngleDeg": {
-        "value": "unknown",
-        "status": "unknown",
+        "value": 270,
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "innerRadiusMm": {
-        "value": "unknown",
-        "status": "unknown",
+        "value": 25.5,
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "outerRadiusMm": {
         "value": 25.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "thicknessMm": {
         "value": 2,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "matesWith": "body-lock-pin",
-      "shapeNotes": "receives body lock pin"
+      "shapeNotes": "lens lock hole 26 receiving body lock pin 17 in JPH09211645A"
     }
   ],
   "axialStack": [
@@ -61917,8 +62016,10 @@ None — fully electronic.
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p1",
+          "sa-p3",
           "sa-1"
         ]
       },
@@ -61986,41 +62087,46 @@ None — fully electronic.
       "profileId": "sony-a/base",
       "centerAngleDeg": {
         "value": 152,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "centerRadiusMm": {
         "value": 22.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "heightMm": {
         "value": 2.6,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
-      "shape": "pad",
+      "shape": "pin",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
-      "function": ""
+      "function": "circuit power"
     },
     {
       "side": "body",
@@ -62028,41 +62134,46 @@ None — fully electronic.
       "profileId": "sony-a/base",
       "centerAngleDeg": {
         "value": 160,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "centerRadiusMm": {
         "value": 22.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "heightMm": {
         "value": 2.6,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
-      "shape": "pad",
+      "shape": "pin",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
-      "function": ""
+      "function": "motor power"
     },
     {
       "side": "body",
@@ -62070,41 +62181,46 @@ None — fully electronic.
       "profileId": "sony-a/base",
       "centerAngleDeg": {
         "value": 168,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "centerRadiusMm": {
         "value": 22.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "heightMm": {
         "value": 2.6,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
-      "shape": "pad",
+      "shape": "pin",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
-      "function": ""
+      "function": "motor ground"
     },
     {
       "side": "body",
@@ -62112,41 +62228,46 @@ None — fully electronic.
       "profileId": "sony-a/base",
       "centerAngleDeg": {
         "value": 176,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "centerRadiusMm": {
         "value": 22.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "heightMm": {
         "value": 2.6,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
-      "shape": "pad",
+      "shape": "pin",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
-      "function": ""
+      "function": "lens/circuit ground"
     },
     {
       "side": "body",
@@ -62154,41 +62275,46 @@ None — fully electronic.
       "profileId": "sony-a/base",
       "centerAngleDeg": {
         "value": 184,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "centerRadiusMm": {
         "value": 22.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "heightMm": {
         "value": 2.6,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
-      "shape": "pad",
+      "shape": "pin",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
-      "function": ""
+      "function": "serial data output"
     },
     {
       "side": "body",
@@ -62196,41 +62322,46 @@ None — fully electronic.
       "profileId": "sony-a/base",
       "centerAngleDeg": {
         "value": 192,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "centerRadiusMm": {
         "value": 22.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "heightMm": {
         "value": 2.6,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
-      "shape": "pad",
+      "shape": "pin",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
-      "function": ""
+      "function": "communication request"
     },
     {
       "side": "body",
@@ -62238,41 +62369,46 @@ None — fully electronic.
       "profileId": "sony-a/base",
       "centerAngleDeg": {
         "value": 200,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "centerRadiusMm": {
         "value": 22.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "heightMm": {
         "value": 2.6,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
-      "shape": "pad",
+      "shape": "pin",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
-      "function": ""
+      "function": "serial clock"
     },
     {
       "side": "body",
@@ -62280,41 +62416,46 @@ None — fully electronic.
       "profileId": "sony-a/base",
       "centerAngleDeg": {
         "value": 208,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "centerRadiusMm": {
         "value": 22.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "heightMm": {
         "value": 2.6,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
-      "shape": "pad",
+      "shape": "pin",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
-      "function": "8th (original Minolta had 5)"
+      "function": "serial data input"
     },
     {
       "side": "lens",
@@ -62322,41 +62463,46 @@ None — fully electronic.
       "profileId": "sony-a/base",
       "centerAngleDeg": {
         "value": 152,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "centerRadiusMm": {
         "value": 22.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "heightMm": {
         "value": 2.6,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
-      "function": ""
+      "function": "circuit power"
     },
     {
       "side": "lens",
@@ -62364,41 +62510,46 @@ None — fully electronic.
       "profileId": "sony-a/base",
       "centerAngleDeg": {
         "value": 160,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "centerRadiusMm": {
         "value": 22.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "heightMm": {
         "value": 2.6,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
-      "function": ""
+      "function": "motor power"
     },
     {
       "side": "lens",
@@ -62406,41 +62557,46 @@ None — fully electronic.
       "profileId": "sony-a/base",
       "centerAngleDeg": {
         "value": 168,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "centerRadiusMm": {
         "value": 22.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "heightMm": {
         "value": 2.6,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
-      "function": ""
+      "function": "motor ground"
     },
     {
       "side": "lens",
@@ -62448,41 +62604,46 @@ None — fully electronic.
       "profileId": "sony-a/base",
       "centerAngleDeg": {
         "value": 176,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "centerRadiusMm": {
         "value": 22.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "heightMm": {
         "value": 2.6,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
-      "function": ""
+      "function": "lens/circuit ground"
     },
     {
       "side": "lens",
@@ -62490,41 +62651,46 @@ None — fully electronic.
       "profileId": "sony-a/base",
       "centerAngleDeg": {
         "value": 184,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "centerRadiusMm": {
         "value": 22.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "heightMm": {
         "value": 2.6,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
-      "function": ""
+      "function": "serial data output"
     },
     {
       "side": "lens",
@@ -62532,41 +62698,46 @@ None — fully electronic.
       "profileId": "sony-a/base",
       "centerAngleDeg": {
         "value": 192,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "centerRadiusMm": {
         "value": 22.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "heightMm": {
         "value": 2.6,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
-      "function": ""
+      "function": "communication request"
     },
     {
       "side": "lens",
@@ -62574,41 +62745,46 @@ None — fully electronic.
       "profileId": "sony-a/base",
       "centerAngleDeg": {
         "value": 200,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "centerRadiusMm": {
         "value": 22.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "heightMm": {
         "value": 2.6,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
-      "function": ""
+      "function": "serial clock"
     },
     {
       "side": "lens",
@@ -62616,41 +62792,46 @@ None — fully electronic.
       "profileId": "sony-a/base",
       "centerAngleDeg": {
         "value": 208,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "centerRadiusMm": {
         "value": 22.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "heightMm": {
         "value": 2.6,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p3",
           "sa-1"
         ]
       },
-      "function": "8th (original Minolta had 5)"
+      "function": "serial data input"
     }
   ],
   "mechanicalCouplings": [
@@ -62682,21 +62863,47 @@ None — fully electronic.
       "profileId": "sony-a/base",
       "centerAngleDeg": {
         "value": 300,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p2",
           "sa-1"
         ]
       },
       "radiusMm": {
         "value": 24,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "sa-p2",
           "sa-1"
         ]
       },
       "sizeOrTravel": "lever/arm",
       "function": "mechanical aperture actuation",
-      "compatibilityNotes": ""
+      "compatibilityNotes": "body-side aperture control member 14 in JPH01302238A"
+    },
+    {
+      "featureId": "lens-aperture-pin",
+      "side": "lens",
+      "profileId": "sony-a/base",
+      "centerAngleDeg": {
+        "value": 300,
+        "status": "patent",
+        "sourceRefs": [
+          "sa-p2",
+          "sa-1"
+        ]
+      },
+      "radiusMm": {
+        "value": 24,
+        "status": "patent",
+        "sourceRefs": [
+          "sa-p2",
+          "sa-1"
+        ]
+      },
+      "sizeOrTravel": "diaphragm pin",
+      "function": "lens diaphragm pin actuated by the body aperture control member",
+      "compatibilityNotes": "lens-side diaphragm pin 9 in JPH01302238A"
     }
   ],
   "screwsGasketsBaffles": [
@@ -62765,7 +62972,7 @@ None — fully electronic.
     {
       "ref": "sa-1",
       "sourceType": "secondary",
-      "citation": "“Minolta A-mount system,” Wikipedia. Accessed 2026-06-04.",
+      "citation": "\"Minolta A-mount system,\" Wikipedia. Accessed 2026-06-04.",
       "liveUrl": "https://en.wikipedia.org/wiki/Minolta_A-mount_system",
       "archiveUrl": "http://web.archive.org/web/20221225232256/https://en.wikipedia.org/wiki/Minolta_A-mount_system",
       "archiveDate": "2022-12-25",
@@ -62775,38 +62982,39 @@ None — fully electronic.
     {
       "ref": "sa-p1",
       "sourceType": "patent",
-      "citation": "US4659203A, Minolta AF/A-mount bayonet and electronic-contact family. Accessed 2026-06-06.",
+      "citation": "US4659203A, \"Bayonet mount arrangement.\" Accessed 2026-06-06.",
       "liveUrl": "https://patents.google.com/patent/US4659203A/en",
       "archiveUrl": "https://patents.google.com/patent/US4659203A/en",
       "archiveDate": "2026-06-06",
-      "appliesTo": "Minolta AF / Sony A mount bayonet/contact research lead",
-      "confidence": "medium"
+      "appliesTo": "Minolta three-set bayonet claw arrangement with one upper and two lateral engagements, body/lens claws/recesses, and spring portions behind body claws",
+      "confidence": "high"
     },
     {
       "ref": "sa-p2",
       "sourceType": "patent",
-      "citation": "JPH01302238A, Minolta AF/A-mount contact family. Accessed 2026-06-06.",
+      "citation": "JPH01302238A, \"Interchangeable lens exchanging electrical signal with camera main body.\" Accessed 2026-06-06.",
       "liveUrl": "https://patents.google.com/patent/JPH01302238A/en",
       "archiveUrl": "https://patents.google.com/patent/JPH01302238A/en",
       "archiveDate": "2026-06-06",
-      "appliesTo": "Minolta AF / Sony A mount contact research lead",
-      "confidence": "low"
+      "appliesTo": "Minolta five-terminal lens/body signal contact group, power/ground-first contact geometry, bayonet claw, lens diaphragm pin, and body aperture-control member",
+      "confidence": "high"
     },
     {
       "ref": "sa-p3",
       "sourceType": "patent",
-      "citation": "JPH09211645A, Minolta bayonet mount device for lens-interchangeable camera. Accessed 2026-06-06.",
+      "citation": "JPH09211645A, \"Bayonet mount device of lens interchangeable camera.\" Accessed 2026-06-06.",
       "liveUrl": "https://patents.google.com/patent/JPH09211645A/en",
       "archiveUrl": "https://patents.google.com/patent/JPH09211645A/en",
       "archiveDate": "2026-06-06",
-      "appliesTo": "Minolta A bayonet mount device research lead",
-      "confidence": "medium"
+      "appliesTo": "Minolta/Sony A-style body/lens mount faces, three locking claws, clockwise engagement, index, eight body/lens contacts 15a-15h/25a-25h, lock pin/hole, and contact/claw overlap",
+      "confidence": "high"
     }
   ],
   "openQuestions": [
     {
-      "issue": "Contact count grew from the original Minolta 5-pin to 8 pins; eight is modeled.",
+      "issue": "The current base renders the later eight-terminal A interface from JPH09211645A; the original five-terminal Minolta interface in JPH01302238A is not split into a separate variant.",
       "affectedFields": [
+        "mvp.profileModel",
         "contactCount",
         "contacts"
       ],
@@ -62814,22 +63022,22 @@ None — fully electronic.
         5,
         8
       ],
-      "resolution": "Model per-era contact counts if a generation selector is added."
+      "resolution": "Add generation profiles if the application needs original 5-pin Minolta AF bodies/lenses separately."
     },
     {
-      "issue": "Sony A lacks an archived teardown with clock positions: the bayonet lug count, the contact/coupling positions, and the lock/index clock positions are photo-scaled (contacts placed at the bottom by convention).",
+      "issue": "Fine production clock positions, AF screw-drive coupler position, mount-ring diameter, and screw pattern remain photo-scaled; the bayonet count, electrical contact count/functions, lock/index presence, clockwise engagement, and aperture-control member are patent-backed.",
       "affectedFields": [
         "cameraSideFeatures",
         "lensSideFeatures",
         "contacts",
         "mechanicalCouplings",
-        "lockGeometry"
+        "screwsGasketsBaffles"
       ],
       "candidateValues": [
-        3,
-        4
+        "official Minolta/Sony mount drawing",
+        "measured production sample"
       ],
-      "resolution": "Upgrade to an official Minolta/Sony A mount drawing or measured sample."
+      "resolution": "Upgrade remaining photo-scaled values to measured/official when an authoritative production drawing is available."
     }
   ],
   "schemaVersion": "1.3",
@@ -62872,15 +63080,15 @@ None — fully electronic.
 
 | Ref | Type | Citation | Archive | Captured | Confidence |
 |---|---|---|---|---|---|
-| `sa-1` | secondary | “Minolta A-mount system,” Wikipedia. Accessed 2026-06-04. | [snapshot](http://web.archive.org/web/20221225232256/https://en.wikipedia.org/wiki/Minolta_A-mount_system) | 2022-12-25 | medium |
-| `sa-p1` | patent | US4659203A, Minolta AF/A-mount bayonet and electronic-contact family. Accessed 2026-06-06. | [snapshot](https://patents.google.com/patent/US4659203A/en) | 2026-06-06 | medium |
-| `sa-p2` | patent | JPH01302238A, Minolta AF/A-mount contact family. Accessed 2026-06-06. | [snapshot](https://patents.google.com/patent/JPH01302238A/en) | 2026-06-06 | low |
-| `sa-p3` | patent | JPH09211645A, Minolta bayonet mount device for lens-interchangeable camera. Accessed 2026-06-06. | [snapshot](https://patents.google.com/patent/JPH09211645A/en) | 2026-06-06 | medium |
+| `sa-1` | secondary | "Minolta A-mount system," Wikipedia. Accessed 2026-06-04. | [snapshot](http://web.archive.org/web/20221225232256/https://en.wikipedia.org/wiki/Minolta_A-mount_system) | 2022-12-25 | medium |
+| `sa-p1` | patent | US4659203A, "Bayonet mount arrangement." Accessed 2026-06-06. | [snapshot](https://patents.google.com/patent/US4659203A/en) | 2026-06-06 | high |
+| `sa-p2` | patent | JPH01302238A, "Interchangeable lens exchanging electrical signal with camera main body." Accessed 2026-06-06. | [snapshot](https://patents.google.com/patent/JPH01302238A/en) | 2026-06-06 | high |
+| `sa-p3` | patent | JPH09211645A, "Bayonet mount device of lens interchangeable camera." Accessed 2026-06-06. | [snapshot](https://patents.google.com/patent/JPH09211645A/en) | 2026-06-06 | high |
 
 #### Open questions
 
-- Contact count grew from the original Minolta 5-pin to 8 pins; eight is modeled. _(Model per-era contact counts if a generation selector is added.)_
-- Sony A lacks an archived teardown with clock positions: the bayonet lug count, the contact/coupling positions, and the lock/index clock positions are photo-scaled (contacts placed at the bottom by convention). _(Upgrade to an official Minolta/Sony A mount drawing or measured sample.)_
+- The current base renders the later eight-terminal A interface from JPH09211645A; the original five-terminal Minolta interface in JPH01302238A is not split into a separate variant. _(Add generation profiles if the application needs original 5-pin Minolta AF bodies/lenses separately.)_
+- Fine production clock positions, AF screw-drive coupler position, mount-ring diameter, and screw pattern remain photo-scaled; the bayonet count, electrical contact count/functions, lock/index presence, clockwise engagement, and aperture-control member are patent-backed. _(Upgrade remaining photo-scaled values to measured/official when an authoritative production drawing is available.)_
 
 ### `sony-fe` — Sony E
 
@@ -62900,7 +63108,7 @@ None — fully electronic.
 
 | Profile ID | Type | Applies to | Adds | Removes | Changes |
 |---|---|---|---|---|---|
-| `sony-fe/base` | base | all Sony E / FE lenses and bodies (APS-C and full-frame), 2010–present | bayonet lugs; lock pin/notch; mounting index; ten-contact electrical block along the bottom | all mechanical couplings (fully electronic) | — |
+| `sony-fe/base` | base | all Sony E / FE lenses and bodies (APS-C and full-frame), 2010-present | bayonet lugs; lock pin/notch; mounting index; ten-contact electrical block along the bottom | all mechanical couplings (fully electronic) | — |
 
 #### Dimensional summary
 
@@ -62908,10 +63116,10 @@ None — fully electronic.
 |---|---|---|
 | Flange focal distance | 18 (`secondary`) | mm |
 | Nominal throat diameter | 46.1 (`secondary`) | mm |
-| Effective clear aperture | 46.1 (`secondary`) | mm |
+| Effective clear aperture | 47 (`patent`) | mm |
 | Camera mount outer diameter | 54 (`photo_scaled`) | mm |
 | Lens mount outer diameter | 52 (`photo_scaled`) | mm |
-| Contact count | 10 (`secondary`) | count |
+| Contact count | 10 (`patent`) | count |
 | Lock rotation | unknown (`unknown`) | deg |
 | Lock direction | unknown (`unknown`) | — |
 
@@ -62919,25 +63127,26 @@ None — fully electronic.
 
 **Camera-side front view** — viewBox `-34 -35 68 69` ([standalone SVG](mounts/sony-fe-camera-front.svg))
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-34 -35 68 69" role="img" aria-labelledby="sony-fe-base-camera_side_front-title sony-fe-base-camera_side_front-desc"><title id="sony-fe-base-camera_side_front-title">Sony E mount — camera-side front view (base)</title><desc id="sony-fe-base-camera_side_front-desc">Sony E bayonet mount, camera-side front view. Flange focal distance 18 mm, nominal throat 46.1 mm. Profile sony-fe/base.</desc><metadata>{"mountId":"sony-fe","profileId":"sony-fe/base","view":"camera_side_front","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.35" y1="0" x2="1.35" y2="0" stroke="#8a94a0" stroke-width="0.408" fill="none" /><line x1="0" y1="-1.35" x2="0" y2="1.35" stroke="#8a94a0" stroke-width="0.408" fill="none" /><line x1="0" y1="-27" x2="0" y2="-28.62" stroke="#8a94a0" stroke-width="0.408" fill="none" /></g><g data-layer="camera-side-metal"><path d="M0,-27 A27,27 0 1 1 0,27 A27,27 0 1 1 0,-27 Z M0,-23 A23,23 0 1 1 0,23 A23,23 0 1 1 0,-23 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-27 A27,27 0 1 1 0,27 A27,27 0 1 1 0,-27 Z M0,-23 A23,23 0 1 1 0,23 A23,23 0 1 1 0,-23 Z" stroke="#6b7a8f" stroke-width="0.408" fill="none" stroke-dasharray="4 2" /><path d="M0,-23 A23,23 0 1 1 0,23 A23,23 0 1 1 0,-23 Z" stroke="#2f80c4" stroke-width="0.306" fill="none" /><circle cx="17.678" cy="-17.678" r="1" stroke="#7f8c3a" stroke-width="0.408" fill="none" stroke-dasharray="4 2" /><circle cx="17.678" cy="17.678" r="1" stroke="#7f8c3a" stroke-width="0.408" fill="none" stroke-dasharray="4 2" /><circle cx="-17.678" cy="17.678" r="1" stroke="#7f8c3a" stroke-width="0.408" fill="none" stroke-dasharray="4 2" /><circle cx="-17.678" cy="-17.678" r="1" stroke="#7f8c3a" stroke-width="0.408" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-core-interface"><path d="M0,-24.8 L-1.679,-27.449 L1.679,-27.449 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-24.8 L-1.679,-27.449 L1.679,-27.449 Z" stroke="#e8853a" stroke-width="0.408" fill="none" stroke-dasharray="0.6 1.6" /><path d="M3.994,-22.651 L4.428,-25.113 A25.5,25.5 0 0 1 19.534,-16.391 L17.619,-14.784 A23,23 0 0 0 3.994,-22.651 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M3.994,-22.651 L4.428,-25.113 A25.5,25.5 0 0 1 19.534,-16.391 L17.619,-14.784 A23,23 0 0 0 3.994,-22.651 Z" stroke="#2a9d8f" stroke-width="0.408" fill="none" stroke-dasharray="4 2" /><path d="M17.619,14.784 L19.534,16.391 A25.5,25.5 0 0 1 4.428,25.113 L3.994,22.651 A23,23 0 0 0 17.619,14.784 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M17.619,14.784 L19.534,16.391 A25.5,25.5 0 0 1 4.428,25.113 L3.994,22.651 A23,23 0 0 0 17.619,14.784 Z" stroke="#2a9d8f" stroke-width="0.408" fill="none" stroke-dasharray="4 2" /><circle cx="-24" cy="0" r="0.945" fill="#d1495b" fill-opacity="0.12" /><circle cx="-24" cy="0" r="0.945" stroke="#d1495b" stroke-width="0.408" fill="none" stroke-dasharray="0.6 1.6" /><path d="M-23,0 L-25.5,0 A25.5,25.5 0 0 1 -19.534,-16.391 L-17.619,-14.784 A23,23 0 0 0 -23,0 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-23,0 L-25.5,0 A25.5,25.5 0 0 1 -19.534,-16.391 L-17.619,-14.784 A23,23 0 0 0 -23,0 Z" stroke="#2a9d8f" stroke-width="0.408" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-variant-electrical"><path d="M9.782,17.1 L11.074,19.356 A22.3,22.3 0 0 1 9.855,20.004 L8.706,17.672 A19.7,19.7 0 0 0 9.782,17.1 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M9.782,17.1 L11.074,19.356 A22.3,22.3 0 0 1 9.855,20.004 L8.706,17.672 A19.7,19.7 0 0 0 9.782,17.1 Z" stroke="#8a5cd1" stroke-width="0.408" fill="none" stroke-dasharray="4 2" /><path d="M7.941,18.028 L8.99,20.408 A22.3,22.3 0 0 1 7.71,20.925 L6.811,18.485 A19.7,19.7 0 0 0 7.941,18.028 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M7.941,18.028 L8.99,20.408 A22.3,22.3 0 0 1 7.71,20.925 L6.811,18.485 A19.7,19.7 0 0 0 7.941,18.028 Z" stroke="#8a5cd1" stroke-width="0.408" fill="none" stroke-dasharray="4 2" /><path d="M6.014,18.76 L6.807,21.236 A22.3,22.3 0 0 1 5.48,21.616 L4.841,19.096 A19.7,19.7 0 0 0 6.014,18.76 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M6.014,18.76 L6.807,21.236 A22.3,22.3 0 0 1 5.48,21.616 L4.841,19.096 A19.7,19.7 0 0 0 6.014,18.76 Z" stroke="#8a5cd1" stroke-width="0.408" fill="none" stroke-dasharray="4 2" /><path d="M4.02,19.286 L4.55,21.831 A22.3,22.3 0 0 1 3.191,22.071 L2.819,19.497 A19.7,19.7 0 0 0 4.02,19.286 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M4.02,19.286 L4.55,21.831 A22.3,22.3 0 0 1 3.191,22.071 L2.819,19.497 A19.7,19.7 0 0 0 4.02,19.286 Z" stroke="#8a5cd1" stroke-width="0.408" fill="none" stroke-dasharray="4 2" /><path d="M1.982,19.6 L2.243,22.187 A22.3,22.3 0 0 1 0.866,22.283 L0.765,19.685 A19.7,19.7 0 0 0 1.982,19.6 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M1.982,19.6 L2.243,22.187 A22.3,22.3 0 0 1 0.866,22.283 L0.765,19.685 A19.7,19.7 0 0 0 1.982,19.6 Z" stroke="#8a5cd1" stroke-width="0.408" fill="none" stroke-dasharray="4 2" /><path d="M-0.078,19.7 L-0.088,22.3 A22.3,22.3 0 0 1 -1.468,22.252 L-1.296,19.657 A19.7,19.7 0 0 0 -0.078,19.7 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-0.078,19.7 L-0.088,22.3 A22.3,22.3 0 0 1 -1.468,22.252 L-1.296,19.657 A19.7,19.7 0 0 0 -0.078,19.7 Z" stroke="#8a5cd1" stroke-width="0.408" fill="none" stroke-dasharray="4 2" /><path d="M-2.137,19.584 L-2.419,22.168 A22.3,22.3 0 0 1 -3.785,21.976 L-3.344,19.414 A19.7,19.7 0 0 0 -2.137,19.584 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-2.137,19.584 L-2.419,22.168 A22.3,22.3 0 0 1 -3.785,21.976 L-3.344,19.414 A19.7,19.7 0 0 0 -2.137,19.584 Z" stroke="#8a5cd1" stroke-width="0.408" fill="none" stroke-dasharray="4 2" /><path d="M-4.172,19.253 L-4.723,21.794 A22.3,22.3 0 0 1 -6.062,21.46 L-5.355,18.958 A19.7,19.7 0 0 0 -4.172,19.253 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-4.172,19.253 L-4.723,21.794 A22.3,22.3 0 0 1 -6.062,21.46 L-5.355,18.958 A19.7,19.7 0 0 0 -4.172,19.253 Z" stroke="#8a5cd1" stroke-width="0.408" fill="none" stroke-dasharray="4 2" /><path d="M-6.162,18.712 L-6.975,21.181 A22.3,22.3 0 0 1 -8.272,20.709 L-7.307,18.295 A19.7,19.7 0 0 0 -6.162,18.712 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-6.162,18.712 L-6.975,21.181 A22.3,22.3 0 0 1 -8.272,20.709 L-7.307,18.295 A19.7,19.7 0 0 0 -6.162,18.712 Z" stroke="#8a5cd1" stroke-width="0.408" fill="none" stroke-dasharray="4 2" /><path d="M-8.084,17.965 L-9.151,20.336 A22.3,22.3 0 0 1 -10.391,19.731 L-9.18,17.431 A19.7,19.7 0 0 0 -8.084,17.965 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-8.084,17.965 L-9.151,20.336 A22.3,22.3 0 0 1 -10.391,19.731 L-9.18,17.431 A19.7,19.7 0 0 0 -8.084,17.965 Z" stroke="#8a5cd1" stroke-width="0.408" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-32.64" y1="-31.55" x2="-28.56" y2="-31.55" stroke="#2f80c4" stroke-width="0.483" /><text x="-27.456" y="-30.777" font-size="2.208" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-32.64" y1="-28.238" x2="-28.56" y2="-28.238" stroke="#6b7a8f" stroke-width="0.483" /><text x="-27.456" y="-27.465" font-size="2.208" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-32.64" y1="-24.926" x2="-28.56" y2="-24.926" stroke="#2a9d8f" stroke-width="0.483" /><text x="-27.456" y="-24.153" font-size="2.208" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-32.64" y1="-21.614" x2="-28.56" y2="-21.614" stroke="#d1495b" stroke-width="0.483" /><text x="-27.456" y="-20.841" font-size="2.208" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-32.64" y1="-18.302" x2="-28.56" y2="-18.302" stroke="#e8853a" stroke-width="0.483" /><text x="-27.456" y="-17.529" font-size="2.208" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-32.64" y1="-14.99" x2="-28.56" y2="-14.99" stroke="#8a5cd1" stroke-width="0.483" /><text x="-27.456" y="-14.217" font-size="2.208" fill="#8a5cd1" font-family="sans-serif">Electrical contact</text><line x1="-32.64" y1="-11.678" x2="-28.56" y2="-11.678" stroke="#7f8c3a" stroke-width="0.483" /><text x="-27.456" y="-10.905" font-size="2.208" fill="#7f8c3a" font-family="sans-serif">Screws / seals</text><line x1="-32.64" y1="-8.366" x2="-28.56" y2="-8.366" stroke="#8a94a0" stroke-width="0.483" /><text x="-27.456" y="-7.593" font-size="2.208" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-34 -35 68 69" role="img" aria-labelledby="sony-fe-base-camera_side_front-title sony-fe-base-camera_side_front-desc"><title id="sony-fe-base-camera_side_front-title">Sony E mount — camera-side front view (base)</title><desc id="sony-fe-base-camera_side_front-desc">Sony E bayonet mount, camera-side front view. Flange focal distance 18 mm, nominal throat 46.1 mm. Profile sony-fe/base.</desc><metadata>{"mountId":"sony-fe","profileId":"sony-fe/base","view":"camera_side_front","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.35" y1="0" x2="1.35" y2="0" stroke="#8a94a0" stroke-width="0.408" fill="none" /><line x1="0" y1="-1.35" x2="0" y2="1.35" stroke="#8a94a0" stroke-width="0.408" fill="none" /><line x1="0" y1="-27" x2="0" y2="-28.62" stroke="#8a94a0" stroke-width="0.408" fill="none" /></g><g data-layer="camera-side-metal"><path d="M0,-27 A27,27 0 1 1 0,27 A27,27 0 1 1 0,-27 Z M0,-23.5 A23.5,23.5 0 1 1 0,23.5 A23.5,23.5 0 1 1 0,-23.5 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-27 A27,27 0 1 1 0,27 A27,27 0 1 1 0,-27 Z M0,-23.5 A23.5,23.5 0 1 1 0,23.5 A23.5,23.5 0 1 1 0,-23.5 Z" stroke="#6b7a8f" stroke-width="0.408" fill="none" stroke-dasharray="4 2" /><path d="M0,-23.5 A23.5,23.5 0 1 1 0,23.5 A23.5,23.5 0 1 1 0,-23.5 Z" stroke="#2f80c4" stroke-width="0.408" fill="none" /><circle cx="17.678" cy="-17.678" r="1" stroke="#7f8c3a" stroke-width="0.408" fill="none" stroke-dasharray="4 2" /><circle cx="17.678" cy="17.678" r="1" stroke="#7f8c3a" stroke-width="0.408" fill="none" stroke-dasharray="4 2" /><circle cx="-17.678" cy="17.678" r="1" stroke="#7f8c3a" stroke-width="0.408" fill="none" stroke-dasharray="4 2" /><circle cx="-17.678" cy="-17.678" r="1" stroke="#7f8c3a" stroke-width="0.408" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-core-interface"><path d="M0,-24.8 L-1.679,-27.449 L1.679,-27.449 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-24.8 L-1.679,-27.449 L1.679,-27.449 Z" stroke="#e8853a" stroke-width="0.408" fill="none" stroke-dasharray="0.6 1.6" /><path d="M14.16,-18.124 L15.699,-20.094 A25.5,25.5 0 0 1 25.252,-3.549 L22.776,-3.201 A23,23 0 0 0 14.16,-18.124 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M14.16,-18.124 L15.699,-20.094 A25.5,25.5 0 0 1 25.252,-3.549 L22.776,-3.201 A23,23 0 0 0 14.16,-18.124 Z" stroke="#2a9d8f" stroke-width="0.408" fill="none" /><path d="M10.611,15.154 L12.905,18.431 A22.5,22.5 0 0 1 -12.905,18.431 L-10.611,15.154 A18.5,18.5 0 0 0 10.611,15.154 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M10.611,15.154 L12.905,18.431 A22.5,22.5 0 0 1 -12.905,18.431 L-10.611,15.154 A18.5,18.5 0 0 0 10.611,15.154 Z" stroke="#2a9d8f" stroke-width="0.408" fill="none" /><path d="M8.616,21.325 L9.552,23.643 A25.5,25.5 0 0 1 -10.777,23.111 L-9.72,20.845 A23,23 0 0 0 8.616,21.325 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M8.616,21.325 L9.552,23.643 A25.5,25.5 0 0 1 -10.777,23.111 L-9.72,20.845 A23,23 0 0 0 8.616,21.325 Z" stroke="#2a9d8f" stroke-width="0.408" fill="none" /><circle cx="-24" cy="0" r="0.945" fill="#d1495b" fill-opacity="0.12" /><circle cx="-24" cy="0" r="0.945" stroke="#d1495b" stroke-width="0.408" fill="none" stroke-dasharray="0.6 1.6" /><path d="M-22.986,0.803 L-25.484,0.89 A25.5,25.5 0 0 1 -18.95,-17.063 L-17.092,-15.39 A23,23 0 0 0 -22.986,0.803 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-22.986,0.803 L-25.484,0.89 A25.5,25.5 0 0 1 -18.95,-17.063 L-17.092,-15.39 A23,23 0 0 0 -22.986,0.803 Z" stroke="#2a9d8f" stroke-width="0.408" fill="none" /></g><g data-layer="camera-side-variant-electrical"><path d="M9.547,16.658 L10.84,18.914 A21.8,21.8 0 0 1 9.619,19.563 L8.472,17.23 A19.2,19.2 0 0 0 9.547,16.658 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M9.547,16.658 L10.84,18.914 A21.8,21.8 0 0 1 9.619,19.563 L8.472,17.23 A19.2,19.2 0 0 0 9.547,16.658 Z" stroke="#8a5cd1" stroke-width="0.408" fill="none" /><path d="M7.753,17.565 L8.803,19.944 A21.8,21.8 0 0 1 7.522,20.461 L6.624,18.021 A19.2,19.2 0 0 0 7.753,17.565 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M7.753,17.565 L8.803,19.944 A21.8,21.8 0 0 1 7.522,20.461 L6.624,18.021 A19.2,19.2 0 0 0 7.753,17.565 Z" stroke="#8a5cd1" stroke-width="0.408" fill="none" /><path d="M5.875,18.279 L6.67,20.754 A21.8,21.8 0 0 1 5.342,21.135 L4.704,18.615 A19.2,19.2 0 0 0 5.875,18.279 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M5.875,18.279 L6.67,20.754 A21.8,21.8 0 0 1 5.342,21.135 L4.704,18.615 A19.2,19.2 0 0 0 5.875,18.279 Z" stroke="#8a5cd1" stroke-width="0.408" fill="none" /><path d="M3.932,18.793 L4.464,21.338 A21.8,21.8 0 0 1 3.103,21.578 L2.733,19.005 A19.2,19.2 0 0 0 3.932,18.793 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M3.932,18.793 L4.464,21.338 A21.8,21.8 0 0 1 3.103,21.578 L2.733,19.005 A19.2,19.2 0 0 0 3.932,18.793 Z" stroke="#8a5cd1" stroke-width="0.408" fill="none" /><path d="M1.946,19.101 L2.209,21.688 A21.8,21.8 0 0 1 0.831,21.784 L0.731,19.186 A19.2,19.2 0 0 0 1.946,19.101 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M1.946,19.101 L2.209,21.688 A21.8,21.8 0 0 1 0.831,21.784 L0.731,19.186 A19.2,19.2 0 0 0 1.946,19.101 Z" stroke="#8a5cd1" stroke-width="0.408" fill="none" /><path d="M-0.061,19.2 L-0.07,21.8 A21.8,21.8 0 0 1 -1.451,21.752 L-1.278,19.157 A19.2,19.2 0 0 0 -0.061,19.2 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-0.061,19.2 L-0.07,21.8 A21.8,21.8 0 0 1 -1.451,21.752 L-1.278,19.157 A19.2,19.2 0 0 0 -0.061,19.2 Z" stroke="#8a5cd1" stroke-width="0.408" fill="none" /><path d="M-2.068,19.088 L-2.348,21.673 A21.8,21.8 0 0 1 -3.717,21.481 L-3.274,18.919 A19.2,19.2 0 0 0 -2.068,19.088 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-2.068,19.088 L-2.348,21.673 A21.8,21.8 0 0 1 -3.717,21.481 L-3.274,18.919 A19.2,19.2 0 0 0 -2.068,19.088 Z" stroke="#8a5cd1" stroke-width="0.408" fill="none" /><path d="M-4.052,18.768 L-4.601,21.309 A21.8,21.8 0 0 1 -5.942,20.975 L-5.233,18.473 A19.2,19.2 0 0 0 -4.052,18.768 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-4.052,18.768 L-4.601,21.309 A21.8,21.8 0 0 1 -5.942,20.975 L-5.233,18.473 A19.2,19.2 0 0 0 -4.052,18.768 Z" stroke="#8a5cd1" stroke-width="0.408" fill="none" /><path d="M-5.992,18.241 L-6.803,20.711 A21.8,21.8 0 0 1 -8.102,20.239 L-7.135,17.825 A19.2,19.2 0 0 0 -5.992,18.241 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-5.992,18.241 L-6.803,20.711 A21.8,21.8 0 0 1 -8.102,20.239 L-7.135,17.825 A19.2,19.2 0 0 0 -5.992,18.241 Z" stroke="#8a5cd1" stroke-width="0.408" fill="none" /><path d="M-7.865,17.515 L-8.931,19.887 A21.8,21.8 0 0 1 -10.173,19.281 L-8.96,16.981 A19.2,19.2 0 0 0 -7.865,17.515 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-7.865,17.515 L-8.931,19.887 A21.8,21.8 0 0 1 -10.173,19.281 L-8.96,16.981 A19.2,19.2 0 0 0 -7.865,17.515 Z" stroke="#8a5cd1" stroke-width="0.408" fill="none" /></g><g aria-hidden="true"><line x1="-32.64" y1="-31.55" x2="-28.56" y2="-31.55" stroke="#2f80c4" stroke-width="0.483" /><text x="-27.456" y="-30.777" font-size="2.208" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-32.64" y1="-28.238" x2="-28.56" y2="-28.238" stroke="#6b7a8f" stroke-width="0.483" /><text x="-27.456" y="-27.465" font-size="2.208" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-32.64" y1="-24.926" x2="-28.56" y2="-24.926" stroke="#2a9d8f" stroke-width="0.483" /><text x="-27.456" y="-24.153" font-size="2.208" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-32.64" y1="-21.614" x2="-28.56" y2="-21.614" stroke="#d1495b" stroke-width="0.483" /><text x="-27.456" y="-20.841" font-size="2.208" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-32.64" y1="-18.302" x2="-28.56" y2="-18.302" stroke="#e8853a" stroke-width="0.483" /><text x="-27.456" y="-17.529" font-size="2.208" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-32.64" y1="-14.99" x2="-28.56" y2="-14.99" stroke="#8a5cd1" stroke-width="0.483" /><text x="-27.456" y="-14.217" font-size="2.208" fill="#8a5cd1" font-family="sans-serif">Electrical contact</text><line x1="-32.64" y1="-11.678" x2="-28.56" y2="-11.678" stroke="#7f8c3a" stroke-width="0.483" /><text x="-27.456" y="-10.905" font-size="2.208" fill="#7f8c3a" font-family="sans-serif">Screws / seals</text><line x1="-32.64" y1="-8.366" x2="-28.56" y2="-8.366" stroke="#8a94a0" stroke-width="0.483" /><text x="-27.456" y="-7.593" font-size="2.208" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
 
 **Lens-side rear view** — viewBox `-32 -33 64 65` ([standalone SVG](mounts/sony-fe-lens-rear.svg))
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 -33 64 65" role="img" aria-labelledby="sony-fe-base-lens_side_rear-title sony-fe-base-lens_side_rear-desc"><title id="sony-fe-base-lens_side_rear-title">Sony E mount — lens-side rear view (base)</title><desc id="sony-fe-base-lens_side_rear-desc">Sony E bayonet mount, lens-side rear view. Flange focal distance 18 mm, nominal throat 46.1 mm. Profile sony-fe/base.</desc><metadata>{"mountId":"sony-fe","profileId":"sony-fe/base","view":"lens_side_rear","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.3" y1="0" x2="1.3" y2="0" stroke="#8a94a0" stroke-width="0.384" fill="none" /><line x1="0" y1="-1.3" x2="0" y2="1.3" stroke="#8a94a0" stroke-width="0.384" fill="none" /><line x1="0" y1="-26" x2="0" y2="-27.56" stroke="#8a94a0" stroke-width="0.384" fill="none" /></g><g data-layer="lens-side-metal"><path d="M0,-26 A26,26 0 1 1 0,26 A26,26 0 1 1 0,-26 Z M0,-22 A22,22 0 1 1 0,22 A22,22 0 1 1 0,-22 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-26 A26,26 0 1 1 0,26 A26,26 0 1 1 0,-26 Z M0,-22 A22,22 0 1 1 0,22 A22,22 0 1 1 0,-22 Z" stroke="#6b7a8f" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /><path d="M0,-22 A22,22 0 1 1 0,22 A22,22 0 1 1 0,-22 Z" stroke="#2f80c4" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /></g><g data-layer="lens-side-core-interface"><path d="M0,-23.9 L-1.618,-26.451 L1.618,-26.451 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-23.9 L-1.618,-26.451 L1.618,-26.451 Z" stroke="#e8853a" stroke-width="0.384" fill="none" stroke-dasharray="0.6 1.6" /><path d="M17.619,-14.784 L19.534,-16.391 A25.5,25.5 0 0 1 25.5,0 L23,0 A23,23 0 0 0 17.619,-14.784 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M17.619,-14.784 L19.534,-16.391 A25.5,25.5 0 0 1 25.5,0 L23,0 A23,23 0 0 0 17.619,-14.784 Z" stroke="#2a9d8f" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /><circle cx="24" cy="0" r="0.91" fill="#d1495b" fill-opacity="0.12" /><circle cx="24" cy="0" r="0.91" stroke="#d1495b" stroke-width="0.384" fill="none" stroke-dasharray="0.6 1.6" /><path d="M-3.994,22.651 L-4.428,25.113 A25.5,25.5 0 0 1 -19.534,16.391 L-17.619,14.784 A23,23 0 0 0 -3.994,22.651 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-3.994,22.651 L-4.428,25.113 A25.5,25.5 0 0 1 -19.534,16.391 L-17.619,14.784 A23,23 0 0 0 -3.994,22.651 Z" stroke="#2a9d8f" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /><path d="M-17.619,-14.784 L-19.534,-16.391 A25.5,25.5 0 0 1 -4.428,-25.113 L-3.994,-22.651 A23,23 0 0 0 -17.619,-14.784 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-17.619,-14.784 L-19.534,-16.391 A25.5,25.5 0 0 1 -4.428,-25.113 L-3.994,-22.651 A23,23 0 0 0 -17.619,-14.784 Z" stroke="#2a9d8f" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /></g><g data-layer="lens-side-variant-electrical"><path d="M-8.084,17.965 L-9.151,20.336 A22.3,22.3 0 0 1 -10.391,19.731 L-9.18,17.431 A19.7,19.7 0 0 0 -8.084,17.965 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-8.084,17.965 L-9.151,20.336 A22.3,22.3 0 0 1 -10.391,19.731 L-9.18,17.431 A19.7,19.7 0 0 0 -8.084,17.965 Z" stroke="#8a5cd1" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /><path d="M-6.162,18.712 L-6.975,21.181 A22.3,22.3 0 0 1 -8.272,20.709 L-7.307,18.295 A19.7,19.7 0 0 0 -6.162,18.712 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-6.162,18.712 L-6.975,21.181 A22.3,22.3 0 0 1 -8.272,20.709 L-7.307,18.295 A19.7,19.7 0 0 0 -6.162,18.712 Z" stroke="#8a5cd1" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /><path d="M-4.172,19.253 L-4.723,21.794 A22.3,22.3 0 0 1 -6.062,21.46 L-5.355,18.958 A19.7,19.7 0 0 0 -4.172,19.253 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-4.172,19.253 L-4.723,21.794 A22.3,22.3 0 0 1 -6.062,21.46 L-5.355,18.958 A19.7,19.7 0 0 0 -4.172,19.253 Z" stroke="#8a5cd1" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /><path d="M-2.137,19.584 L-2.419,22.168 A22.3,22.3 0 0 1 -3.785,21.976 L-3.344,19.414 A19.7,19.7 0 0 0 -2.137,19.584 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-2.137,19.584 L-2.419,22.168 A22.3,22.3 0 0 1 -3.785,21.976 L-3.344,19.414 A19.7,19.7 0 0 0 -2.137,19.584 Z" stroke="#8a5cd1" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /><path d="M-0.078,19.7 L-0.088,22.3 A22.3,22.3 0 0 1 -1.468,22.252 L-1.296,19.657 A19.7,19.7 0 0 0 -0.078,19.7 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-0.078,19.7 L-0.088,22.3 A22.3,22.3 0 0 1 -1.468,22.252 L-1.296,19.657 A19.7,19.7 0 0 0 -0.078,19.7 Z" stroke="#8a5cd1" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /><path d="M1.982,19.6 L2.243,22.187 A22.3,22.3 0 0 1 0.866,22.283 L0.765,19.685 A19.7,19.7 0 0 0 1.982,19.6 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M1.982,19.6 L2.243,22.187 A22.3,22.3 0 0 1 0.866,22.283 L0.765,19.685 A19.7,19.7 0 0 0 1.982,19.6 Z" stroke="#8a5cd1" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /><path d="M4.02,19.286 L4.55,21.831 A22.3,22.3 0 0 1 3.191,22.071 L2.819,19.497 A19.7,19.7 0 0 0 4.02,19.286 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M4.02,19.286 L4.55,21.831 A22.3,22.3 0 0 1 3.191,22.071 L2.819,19.497 A19.7,19.7 0 0 0 4.02,19.286 Z" stroke="#8a5cd1" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /><path d="M6.014,18.76 L6.807,21.236 A22.3,22.3 0 0 1 5.48,21.616 L4.841,19.096 A19.7,19.7 0 0 0 6.014,18.76 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M6.014,18.76 L6.807,21.236 A22.3,22.3 0 0 1 5.48,21.616 L4.841,19.096 A19.7,19.7 0 0 0 6.014,18.76 Z" stroke="#8a5cd1" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /><path d="M7.941,18.028 L8.99,20.408 A22.3,22.3 0 0 1 7.71,20.925 L6.811,18.485 A19.7,19.7 0 0 0 7.941,18.028 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M7.941,18.028 L8.99,20.408 A22.3,22.3 0 0 1 7.71,20.925 L6.811,18.485 A19.7,19.7 0 0 0 7.941,18.028 Z" stroke="#8a5cd1" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /><path d="M9.782,17.1 L11.074,19.356 A22.3,22.3 0 0 1 9.855,20.004 L8.706,17.672 A19.7,19.7 0 0 0 9.782,17.1 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M9.782,17.1 L11.074,19.356 A22.3,22.3 0 0 1 9.855,20.004 L8.706,17.672 A19.7,19.7 0 0 0 9.782,17.1 Z" stroke="#8a5cd1" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-30.72" y1="-29.75" x2="-26.72" y2="-29.75" stroke="#2f80c4" stroke-width="0.455" /><text x="-25.68" y="-29.022" font-size="2.08" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-30.72" y1="-26.63" x2="-26.72" y2="-26.63" stroke="#6b7a8f" stroke-width="0.455" /><text x="-25.68" y="-25.902" font-size="2.08" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-30.72" y1="-23.51" x2="-26.72" y2="-23.51" stroke="#2a9d8f" stroke-width="0.455" /><text x="-25.68" y="-22.782" font-size="2.08" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-30.72" y1="-20.39" x2="-26.72" y2="-20.39" stroke="#d1495b" stroke-width="0.455" /><text x="-25.68" y="-19.662" font-size="2.08" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-30.72" y1="-17.27" x2="-26.72" y2="-17.27" stroke="#e8853a" stroke-width="0.455" /><text x="-25.68" y="-16.542" font-size="2.08" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-30.72" y1="-14.15" x2="-26.72" y2="-14.15" stroke="#8a5cd1" stroke-width="0.455" /><text x="-25.68" y="-13.422" font-size="2.08" fill="#8a5cd1" font-family="sans-serif">Electrical contact</text><line x1="-30.72" y1="-11.03" x2="-26.72" y2="-11.03" stroke="#8a94a0" stroke-width="0.455" /><text x="-25.68" y="-10.302" font-size="2.08" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 -33 64 65" role="img" aria-labelledby="sony-fe-base-lens_side_rear-title sony-fe-base-lens_side_rear-desc"><title id="sony-fe-base-lens_side_rear-title">Sony E mount — lens-side rear view (base)</title><desc id="sony-fe-base-lens_side_rear-desc">Sony E bayonet mount, lens-side rear view. Flange focal distance 18 mm, nominal throat 46.1 mm. Profile sony-fe/base.</desc><metadata>{"mountId":"sony-fe","profileId":"sony-fe/base","view":"lens_side_rear","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.3" y1="0" x2="1.3" y2="0" stroke="#8a94a0" stroke-width="0.384" fill="none" /><line x1="0" y1="-1.3" x2="0" y2="1.3" stroke="#8a94a0" stroke-width="0.384" fill="none" /><line x1="0" y1="-26" x2="0" y2="-27.56" stroke="#8a94a0" stroke-width="0.384" fill="none" /></g><g data-layer="lens-side-metal"><path d="M0,-26 A26,26 0 1 1 0,26 A26,26 0 1 1 0,-26 Z M0,-20 A20,20 0 1 1 0,20 A20,20 0 1 1 0,-20 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-26 A26,26 0 1 1 0,26 A26,26 0 1 1 0,-26 Z M0,-20 A20,20 0 1 1 0,20 A20,20 0 1 1 0,-20 Z" stroke="#6b7a8f" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /><path d="M0,-20 A20,20 0 1 1 0,20 A20,20 0 1 1 0,-20 Z" stroke="#2f80c4" stroke-width="0.384" fill="none" /></g><g data-layer="lens-side-core-interface"><path d="M0,-23.9 L-1.618,-26.451 L1.618,-26.451 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-23.9 L-1.618,-26.451 L1.618,-26.451 Z" stroke="#e8853a" stroke-width="0.384" fill="none" stroke-dasharray="0.6 1.6" /><path d="M17.092,-15.39 L18.95,-17.063 A25.5,25.5 0 0 1 25.484,0.89 L22.986,0.803 A23,23 0 0 0 17.092,-15.39 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M17.092,-15.39 L18.95,-17.063 A25.5,25.5 0 0 1 25.484,0.89 L22.986,0.803 A23,23 0 0 0 17.092,-15.39 Z" stroke="#2a9d8f" stroke-width="0.384" fill="none" /><circle cx="24" cy="0" r="0.91" fill="#d1495b" fill-opacity="0.12" /><circle cx="24" cy="0" r="0.91" stroke="#d1495b" stroke-width="0.384" fill="none" stroke-dasharray="0.6 1.6" /><path d="M9.72,20.845 L10.777,23.111 A25.5,25.5 0 0 1 -9.552,23.643 L-8.616,21.325 A23,23 0 0 0 9.72,20.845 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M9.72,20.845 L10.777,23.111 A25.5,25.5 0 0 1 -9.552,23.643 L-8.616,21.325 A23,23 0 0 0 9.72,20.845 Z" stroke="#2a9d8f" stroke-width="0.384" fill="none" /><path d="M-22.776,-3.201 L-25.252,-3.549 A25.5,25.5 0 0 1 -15.699,-20.094 L-14.16,-18.124 A23,23 0 0 0 -22.776,-3.201 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-22.776,-3.201 L-25.252,-3.549 A25.5,25.5 0 0 1 -15.699,-20.094 L-14.16,-18.124 A23,23 0 0 0 -22.776,-3.201 Z" stroke="#2a9d8f" stroke-width="0.384" fill="none" /></g><g data-layer="lens-side-variant-electrical"><path d="M-7.865,17.515 L-8.931,19.887 A21.8,21.8 0 0 1 -10.173,19.281 L-8.96,16.981 A19.2,19.2 0 0 0 -7.865,17.515 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-7.865,17.515 L-8.931,19.887 A21.8,21.8 0 0 1 -10.173,19.281 L-8.96,16.981 A19.2,19.2 0 0 0 -7.865,17.515 Z" stroke="#8a5cd1" stroke-width="0.384" fill="none" /><path d="M-5.992,18.241 L-6.803,20.711 A21.8,21.8 0 0 1 -8.102,20.239 L-7.135,17.825 A19.2,19.2 0 0 0 -5.992,18.241 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-5.992,18.241 L-6.803,20.711 A21.8,21.8 0 0 1 -8.102,20.239 L-7.135,17.825 A19.2,19.2 0 0 0 -5.992,18.241 Z" stroke="#8a5cd1" stroke-width="0.384" fill="none" /><path d="M-4.052,18.768 L-4.601,21.309 A21.8,21.8 0 0 1 -5.942,20.975 L-5.233,18.473 A19.2,19.2 0 0 0 -4.052,18.768 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-4.052,18.768 L-4.601,21.309 A21.8,21.8 0 0 1 -5.942,20.975 L-5.233,18.473 A19.2,19.2 0 0 0 -4.052,18.768 Z" stroke="#8a5cd1" stroke-width="0.384" fill="none" /><path d="M-2.068,19.088 L-2.348,21.673 A21.8,21.8 0 0 1 -3.717,21.481 L-3.274,18.919 A19.2,19.2 0 0 0 -2.068,19.088 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-2.068,19.088 L-2.348,21.673 A21.8,21.8 0 0 1 -3.717,21.481 L-3.274,18.919 A19.2,19.2 0 0 0 -2.068,19.088 Z" stroke="#8a5cd1" stroke-width="0.384" fill="none" /><path d="M-0.061,19.2 L-0.07,21.8 A21.8,21.8 0 0 1 -1.451,21.752 L-1.278,19.157 A19.2,19.2 0 0 0 -0.061,19.2 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-0.061,19.2 L-0.07,21.8 A21.8,21.8 0 0 1 -1.451,21.752 L-1.278,19.157 A19.2,19.2 0 0 0 -0.061,19.2 Z" stroke="#8a5cd1" stroke-width="0.384" fill="none" /><path d="M1.946,19.101 L2.209,21.688 A21.8,21.8 0 0 1 0.831,21.784 L0.731,19.186 A19.2,19.2 0 0 0 1.946,19.101 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M1.946,19.101 L2.209,21.688 A21.8,21.8 0 0 1 0.831,21.784 L0.731,19.186 A19.2,19.2 0 0 0 1.946,19.101 Z" stroke="#8a5cd1" stroke-width="0.384" fill="none" /><path d="M3.932,18.793 L4.464,21.338 A21.8,21.8 0 0 1 3.103,21.578 L2.733,19.005 A19.2,19.2 0 0 0 3.932,18.793 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M3.932,18.793 L4.464,21.338 A21.8,21.8 0 0 1 3.103,21.578 L2.733,19.005 A19.2,19.2 0 0 0 3.932,18.793 Z" stroke="#8a5cd1" stroke-width="0.384" fill="none" /><path d="M5.875,18.279 L6.67,20.754 A21.8,21.8 0 0 1 5.342,21.135 L4.704,18.615 A19.2,19.2 0 0 0 5.875,18.279 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M5.875,18.279 L6.67,20.754 A21.8,21.8 0 0 1 5.342,21.135 L4.704,18.615 A19.2,19.2 0 0 0 5.875,18.279 Z" stroke="#8a5cd1" stroke-width="0.384" fill="none" /><path d="M7.753,17.565 L8.803,19.944 A21.8,21.8 0 0 1 7.522,20.461 L6.624,18.021 A19.2,19.2 0 0 0 7.753,17.565 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M7.753,17.565 L8.803,19.944 A21.8,21.8 0 0 1 7.522,20.461 L6.624,18.021 A19.2,19.2 0 0 0 7.753,17.565 Z" stroke="#8a5cd1" stroke-width="0.384" fill="none" /><path d="M9.547,16.658 L10.84,18.914 A21.8,21.8 0 0 1 9.619,19.563 L8.472,17.23 A19.2,19.2 0 0 0 9.547,16.658 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M9.547,16.658 L10.84,18.914 A21.8,21.8 0 0 1 9.619,19.563 L8.472,17.23 A19.2,19.2 0 0 0 9.547,16.658 Z" stroke="#8a5cd1" stroke-width="0.384" fill="none" /></g><g aria-hidden="true"><line x1="-30.72" y1="-29.75" x2="-26.72" y2="-29.75" stroke="#2f80c4" stroke-width="0.455" /><text x="-25.68" y="-29.022" font-size="2.08" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-30.72" y1="-26.63" x2="-26.72" y2="-26.63" stroke="#6b7a8f" stroke-width="0.455" /><text x="-25.68" y="-25.902" font-size="2.08" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-30.72" y1="-23.51" x2="-26.72" y2="-23.51" stroke="#2a9d8f" stroke-width="0.455" /><text x="-25.68" y="-22.782" font-size="2.08" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-30.72" y1="-20.39" x2="-26.72" y2="-20.39" stroke="#d1495b" stroke-width="0.455" /><text x="-25.68" y="-19.662" font-size="2.08" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-30.72" y1="-17.27" x2="-26.72" y2="-17.27" stroke="#e8853a" stroke-width="0.455" /><text x="-25.68" y="-16.542" font-size="2.08" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-30.72" y1="-14.15" x2="-26.72" y2="-14.15" stroke="#8a5cd1" stroke-width="0.455" /><text x="-25.68" y="-13.422" font-size="2.08" fill="#8a5cd1" font-family="sans-serif">Electrical contact</text><line x1="-30.72" y1="-11.03" x2="-26.72" y2="-11.03" stroke="#8a94a0" stroke-width="0.455" /><text x="-25.68" y="-10.302" font-size="2.08" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
 
 **Axial / register schematic** — viewBox `-24 -37 31 70` ([standalone SVG](mounts/sony-fe-axial.svg))
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-24 -37 31 70" role="img" aria-labelledby="sony-fe-base-axial_section-title sony-fe-base-axial_section-desc"><title id="sony-fe-base-axial_section-title">Sony E mount — axial / register schematic (base)</title><desc id="sony-fe-base-axial_section-desc">Sony E bayonet mount, axial / register schematic. Flange focal distance 18 mm, nominal throat 46.1 mm. Profile sony-fe/base.</desc><metadata>{"mountId":"sony-fe","profileId":"sony-fe/base","view":"axial_section","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-18" y1="0" x2="1" y2="0" stroke="#8a94a0" stroke-width="0.25" fill="none" /><line x1="0" y1="-27" x2="0" y2="27" stroke="#8a94a0" stroke-width="0.25" fill="none" /></g><g data-layer="axial-section"><text x="-18" y="-23.15" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">sensor film plane</text><line x1="-18" y1="-21.65" x2="-18" y2="21.65" stroke="#2bb0c4" stroke-width="0.188" fill="none" /><line x1="0" y1="-27" x2="0" y2="27" stroke="#2bb0c4" stroke-width="0.25" fill="none" stroke-dasharray="4 2" /><text x="0" y="-28.5" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">flange datum</text><line x1="0.5" y1="-22" x2="0.5" y2="22" stroke="#2bb0c4" stroke-width="0.25" fill="none" stroke-dasharray="4 2" /><text x="0.5" y="-23.5" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">electrical contact plane</text><line x1="1" y1="-24.5" x2="1" y2="24.5" stroke="#2bb0c4" stroke-width="0.25" fill="none" stroke-dasharray="4 2" /><text x="1" y="-26" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">bayonet lug engagement</text></g><g aria-hidden="true"><line x1="-23.38" y1="-33.5" x2="-19.38" y2="-33.5" stroke="#8a94a0" stroke-width="0.49" /><text x="-18.26" y="-32.716" font-size="2.24" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text><line x1="-23.38" y1="-30.14" x2="-19.38" y2="-30.14" stroke="#2bb0c4" stroke-width="0.49" /><text x="-18.26" y="-29.356" font-size="2.24" fill="#2bb0c4" font-family="sans-serif">Register plane</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-24 -37 31 70" role="img" aria-labelledby="sony-fe-base-axial_section-title sony-fe-base-axial_section-desc"><title id="sony-fe-base-axial_section-title">Sony E mount — axial / register schematic (base)</title><desc id="sony-fe-base-axial_section-desc">Sony E bayonet mount, axial / register schematic. Flange focal distance 18 mm, nominal throat 46.1 mm. Profile sony-fe/base.</desc><metadata>{"mountId":"sony-fe","profileId":"sony-fe/base","view":"axial_section","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-18" y1="0" x2="1" y2="0" stroke="#8a94a0" stroke-width="0.25" fill="none" /><line x1="0" y1="-27" x2="0" y2="27" stroke="#8a94a0" stroke-width="0.25" fill="none" /></g><g data-layer="axial-section"><text x="-18" y="-23.133" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">sensor film plane</text><line x1="-18" y1="-21.633" x2="-18" y2="21.634" stroke="#2bb0c4" stroke-width="0.25" fill="none" /><line x1="0" y1="-27" x2="0" y2="27" stroke="#2bb0c4" stroke-width="0.25" fill="none" stroke-dasharray="4 2" /><text x="0" y="-28.5" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">flange datum</text><line x1="0.5" y1="-22" x2="0.5" y2="22" stroke="#2bb0c4" stroke-width="0.25" fill="none" stroke-dasharray="4 2" /><text x="0.5" y="-23.5" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">electrical contact plane</text><line x1="1" y1="-24.5" x2="1" y2="24.5" stroke="#2bb0c4" stroke-width="0.25" fill="none" stroke-dasharray="4 2" /><text x="1" y="-26" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">bayonet lug engagement</text></g><g aria-hidden="true"><line x1="-23.38" y1="-33.5" x2="-19.38" y2="-33.5" stroke="#8a94a0" stroke-width="0.49" /><text x="-18.26" y="-32.716" font-size="2.24" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text><line x1="-23.38" y1="-30.14" x2="-19.38" y2="-30.14" stroke="#2bb0c4" stroke-width="0.49" /><text x="-18.26" y="-29.356" font-size="2.24" fill="#2bb0c4" font-family="sans-serif">Register plane</text></g></svg>
 
 #### Camera-side front-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
-| `body-throat` | body_throat | `sony-fe/base` | 0° | 0° | 360° | 0 | 23 |
-| `body-mount-ring` | mount_ring | `sony-fe/base` | 0° | 0° | 360° | 23 | 27 |
-| `body-slot-1` | bayonet_receiving_slot | `sony-fe/base` | 30° | 10° | 50° | 23 | 25.5 |
-| `body-slot-2` | bayonet_receiving_slot | `sony-fe/base` | 150° | 130° | 170° | 23 | 25.5 |
-| `body-slot-3` | bayonet_receiving_slot | `sony-fe/base` | 290° | 270° | 310° | 23 | 25.5 |
+| `body-throat` | body_throat | `sony-fe/base` | 0° | 0° | 360° | 0 | 23.5 |
+| `body-mount-ring` | mount_ring | `sony-fe/base` | 0° | 0° | 360° | 23.5 | 27 |
+| `body-slot-1` | bayonet_receiving_slot | `sony-fe/base` | 60° | 38° | 82° | 23 | 25.5 |
+| `body-slot-2` | bayonet_receiving_slot | `sony-fe/base` | 180° | 158° | 205° | 23 | 25.5 |
+| `body-slot-3` | bayonet_receiving_slot | `sony-fe/base` | 290° | 268° | 312° | 23 | 25.5 |
+| `body-contact-pin-holder` | contact_pin_holder | `sony-fe/base` | 180° | 145° | 215° | 18.5 | 22.5 |
 | `body-index-mark` | index_mark | `sony-fe/base` | 0° | unknown | unknown | unknown | 27.5 |
 | `body-lock-pin` | lock_pin | `sony-fe/base` | 270° | unknown | unknown | unknown | 24 |
 
@@ -62945,11 +63154,11 @@ None — fully electronic.
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
-| `lens-throat` | lens_throat | `sony-fe/base` | 0° | 0° | 360° | 0 | 22 |
-| `lens-mount-ring` | lens_mount_ring | `sony-fe/base` | 0° | 0° | 360° | 22 | 26 |
-| `lens-lug-1` | bayonet_lug | `sony-fe/base` | 30° | 10° | 50° | 23 | 25.5 |
-| `lens-lug-2` | bayonet_lug | `sony-fe/base` | 150° | 130° | 170° | 23 | 25.5 |
-| `lens-lug-3` | bayonet_lug | `sony-fe/base` | 290° | 270° | 310° | 23 | 25.5 |
+| `lens-throat` | lens_throat | `sony-fe/base` | 0° | 0° | 360° | 0 | 20 |
+| `lens-mount-ring` | lens_mount_ring | `sony-fe/base` | 0° | 0° | 360° | 20 | 26 |
+| `lens-lug-1` | bayonet_lug | `sony-fe/base` | 60° | 38° | 82° | 23 | 25.5 |
+| `lens-lug-2` | bayonet_lug | `sony-fe/base` | 180° | 158° | 205° | 23 | 25.5 |
+| `lens-lug-3` | bayonet_lug | `sony-fe/base` | 290° | 268° | 312° | 23 | 25.5 |
 | `lens-index-mark` | index_mark | `sony-fe/base` | 0° | unknown | unknown | unknown | 26.5 |
 | `lens-lock-notch` | lock_notch | `sony-fe/base` | 270° | unknown | unknown | unknown | 24 |
 
@@ -62957,26 +63166,26 @@ None — fully electronic.
 
 | Side | No. | Profile | Center angle | Radius | Function |
 |---|---|---|---|---|---|
-| body | 1 | `sony-fe/base` | 152° | 21 |  |
-| body | 2 | `sony-fe/base` | 158° | 21 |  |
-| body | 3 | `sony-fe/base` | 164° | 21 |  |
-| body | 4 | `sony-fe/base` | 170° | 21 |  |
-| body | 5 | `sony-fe/base` | 176° | 21 |  |
-| body | 6 | `sony-fe/base` | 182° | 21 |  |
-| body | 7 | `sony-fe/base` | 188° | 21 |  |
-| body | 8 | `sony-fe/base` | 194° | 21 |  |
-| body | 9 | `sony-fe/base` | 200° | 21 |  |
-| body | 10 | `sony-fe/base` | 206° | 21 |  |
-| lens | 1 | `sony-fe/base` | 152° | 21 |  |
-| lens | 2 | `sony-fe/base` | 158° | 21 |  |
-| lens | 3 | `sony-fe/base` | 164° | 21 |  |
-| lens | 4 | `sony-fe/base` | 170° | 21 |  |
-| lens | 5 | `sony-fe/base` | 176° | 21 |  |
-| lens | 6 | `sony-fe/base` | 182° | 21 |  |
-| lens | 7 | `sony-fe/base` | 188° | 21 |  |
-| lens | 8 | `sony-fe/base` | 194° | 21 |  |
-| lens | 9 | `sony-fe/base` | 200° | 21 |  |
-| lens | 10 | `sony-fe/base` | 206° | 21 |  |
+| body | 1 | `sony-fe/base` | 152° | 20.5 | contact pin 1 |
+| body | 2 | `sony-fe/base` | 158° | 20.5 | contact pin 2 |
+| body | 3 | `sony-fe/base` | 164° | 20.5 | contact pin 3 |
+| body | 4 | `sony-fe/base` | 170° | 20.5 | contact pin 4 |
+| body | 5 | `sony-fe/base` | 176° | 20.5 | contact pin 5 |
+| body | 6 | `sony-fe/base` | 182° | 20.5 | contact pin 6 |
+| body | 7 | `sony-fe/base` | 188° | 20.5 | contact pin 7 |
+| body | 8 | `sony-fe/base` | 194° | 20.5 | contact pin 8 |
+| body | 9 | `sony-fe/base` | 200° | 20.5 | contact pin 9 |
+| body | 10 | `sony-fe/base` | 206° | 20.5 | contact pin 10 |
+| lens | 1 | `sony-fe/base` | 152° | 20.5 | contact pin 1 |
+| lens | 2 | `sony-fe/base` | 158° | 20.5 | contact pin 2 |
+| lens | 3 | `sony-fe/base` | 164° | 20.5 | contact pin 3 |
+| lens | 4 | `sony-fe/base` | 170° | 20.5 | contact pin 4 |
+| lens | 5 | `sony-fe/base` | 176° | 20.5 | contact pin 5 |
+| lens | 6 | `sony-fe/base` | 182° | 20.5 | contact pin 6 |
+| lens | 7 | `sony-fe/base` | 188° | 20.5 | contact pin 7 |
+| lens | 8 | `sony-fe/base` | 194° | 20.5 | contact pin 8 |
+| lens | 9 | `sony-fe/base` | 200° | 20.5 | contact pin 9 |
+| lens | 10 | `sony-fe/base` | 206° | 20.5 | contact pin 10 |
 
 #### Mechanical couplings
 
@@ -62989,7 +63198,7 @@ None — fully electronic.
 | `flange_datum` | 0 | 54 |
 | `bayonet_lug_engagement` | 1 | 49 |
 | `electrical_contact_plane` | 0.5 | 44 |
-| `sensor_film_plane` | -18 | 43.3 |
+| `sensor_film_plane` | -18 | 43.267 |
 
 #### Machine-readable mount block
 
@@ -63038,7 +63247,7 @@ None — fully electronic.
         {
           "profileId": "sony-fe/base",
           "profileType": "base",
-          "appliesTo": "all Sony E / FE lenses and bodies (APS-C and full-frame), 2010–present",
+          "appliesTo": "all Sony E / FE lenses and bodies (APS-C and full-frame), 2010-present",
           "adds": [
             "bayonet lugs",
             "lock pin/notch",
@@ -63080,9 +63289,10 @@ None — fully electronic.
       ]
     },
     "effectiveClearApertureMm": {
-      "value": 46.1,
-      "status": "secondary",
+      "value": 47,
+      "status": "patent",
       "sourceRefs": [
+        "se-p1",
         "se-1"
       ]
     },
@@ -63102,8 +63312,9 @@ None — fully electronic.
     },
     "contactCount": {
       "value": 10,
-      "status": "secondary",
+      "status": "patent",
       "sourceRefs": [
+        "se-p1",
         "se-1"
       ]
     }
@@ -63144,36 +63355,41 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "secondary",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "startAngleDeg": {
         "value": 0,
-        "status": "secondary",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "endAngleDeg": {
         "value": 360,
-        "status": "secondary",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "innerRadiusMm": {
         "value": 0,
-        "status": "secondary",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "outerRadiusMm": {
-        "value": 23,
-        "status": "secondary",
+        "value": 23.5,
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
@@ -63183,7 +63399,7 @@ None — fully electronic.
         "sourceRefs": []
       },
       "matesWith": "",
-      "shapeNotes": "46.1 mm throat opening"
+      "shapeNotes": "47 mm body-mount inside diameter R in US9392150B2; production E throat is commonly cataloged as 46.1 mm"
     },
     {
       "featureId": "body-mount-ring",
@@ -63212,9 +63428,10 @@ None — fully electronic.
         ]
       },
       "innerRadiusMm": {
-        "value": 23,
-        "status": "secondary",
+        "value": 23.5,
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
@@ -63239,49 +63456,55 @@ None — fully electronic.
       "profileId": "sony-fe/base",
       "count": 1,
       "centerAngleDeg": {
-        "value": 30,
-        "status": "photo_scaled",
+        "value": 60,
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "startAngleDeg": {
-        "value": 10,
-        "status": "photo_scaled",
+        "value": 38,
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "endAngleDeg": {
-        "value": 50,
-        "status": "photo_scaled",
+        "value": 82,
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "innerRadiusMm": {
         "value": 23,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "outerRadiusMm": {
         "value": 25.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "depthMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "matesWith": "lens-lug-1",
-      "shapeNotes": "representative lug (count unconfirmed)"
+      "shapeNotes": "arc-like body latch 31 in Fig. 5 of US9392150B2, normalized to the E-mount front-view clocking"
     },
     {
       "featureId": "body-slot-2",
@@ -63289,49 +63512,55 @@ None — fully electronic.
       "profileId": "sony-fe/base",
       "count": 1,
       "centerAngleDeg": {
-        "value": 150,
-        "status": "photo_scaled",
+        "value": 180,
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "startAngleDeg": {
-        "value": 130,
-        "status": "photo_scaled",
+        "value": 158,
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "endAngleDeg": {
-        "value": 170,
-        "status": "photo_scaled",
+        "value": 205,
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "innerRadiusMm": {
         "value": 23,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "outerRadiusMm": {
         "value": 25.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "depthMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "matesWith": "lens-lug-2",
-      "shapeNotes": "representative lug (count unconfirmed)"
+      "shapeNotes": "arc-like body latch 31 in Fig. 5 of US9392150B2, normalized to the E-mount front-view clocking"
     },
     {
       "featureId": "body-slot-3",
@@ -63340,48 +63569,110 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 290,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "startAngleDeg": {
-        "value": 270,
-        "status": "photo_scaled",
+        "value": 268,
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "endAngleDeg": {
-        "value": 310,
-        "status": "photo_scaled",
+        "value": 312,
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "innerRadiusMm": {
         "value": 23,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "outerRadiusMm": {
         "value": 25.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "depthMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "matesWith": "lens-lug-3",
-      "shapeNotes": "representative lug (count unconfirmed)"
+      "shapeNotes": "arc-like body latch 31 in Fig. 5 of US9392150B2, normalized to the E-mount front-view clocking"
+    },
+    {
+      "featureId": "body-contact-pin-holder",
+      "featureType": "contact_pin_holder",
+      "profileId": "sony-fe/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 180,
+        "status": "patent",
+        "sourceRefs": [
+          "se-p1",
+          "se-1"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 145,
+        "status": "patent",
+        "sourceRefs": [
+          "se-p1",
+          "se-1"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 215,
+        "status": "patent",
+        "sourceRefs": [
+          "se-p1",
+          "se-1"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 18.5,
+        "status": "patent",
+        "sourceRefs": [
+          "se-p1",
+          "se-1"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 22.5,
+        "status": "patent",
+        "sourceRefs": [
+          "se-p1",
+          "se-1"
+        ]
+      },
+      "depthMm": {
+        "value": 1,
+        "status": "patent",
+        "sourceRefs": [
+          "se-p1",
+          "se-1"
+        ]
+      },
+      "matesWith": "",
+      "shapeNotes": "sector-form contact pin holder 52 surrounding the contact pins 70 in Figs. 8-9 of US9392150B2"
     },
     {
       "featureId": "body-index-mark",
@@ -63479,7 +63770,7 @@ None — fully electronic.
         ]
       },
       "matesWith": "lens-lock-notch",
-      "shapeNotes": "lock pin (position unconfirmed)"
+      "shapeNotes": "lock pin (position unconfirmed by US9392150B2)"
     }
   ],
   "lensSideFeatures": [
@@ -63490,36 +63781,41 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "secondary",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "startAngleDeg": {
         "value": 0,
-        "status": "secondary",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "endAngleDeg": {
         "value": 360,
-        "status": "secondary",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "innerRadiusMm": {
         "value": 0,
-        "status": "secondary",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "outerRadiusMm": {
-        "value": 22,
-        "status": "photo_scaled",
+        "value": 20,
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
@@ -63529,7 +63825,7 @@ None — fully electronic.
         "sourceRefs": []
       },
       "matesWith": "",
-      "shapeNotes": "rear opening"
+      "shapeNotes": "patent lens-mount inside diameter example is about 40 mm; production clear opening remains approximated by the body throat"
     },
     {
       "featureId": "lens-mount-ring",
@@ -63558,9 +63854,10 @@ None — fully electronic.
         ]
       },
       "innerRadiusMm": {
-        "value": 22,
-        "status": "photo_scaled",
+        "value": 20,
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
@@ -63585,49 +63882,55 @@ None — fully electronic.
       "profileId": "sony-fe/base",
       "count": 1,
       "centerAngleDeg": {
-        "value": 30,
-        "status": "photo_scaled",
+        "value": 60,
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "startAngleDeg": {
-        "value": 10,
-        "status": "photo_scaled",
+        "value": 38,
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "endAngleDeg": {
-        "value": 50,
-        "status": "photo_scaled",
+        "value": 82,
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "innerRadiusMm": {
         "value": 23,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "outerRadiusMm": {
         "value": 25.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "matesWith": "body-slot-1",
-      "shapeNotes": "representative lug (count unconfirmed)"
+      "shapeNotes": "corresponding lens latch family in US9392150B2"
     },
     {
       "featureId": "lens-lug-2",
@@ -63635,49 +63938,55 @@ None — fully electronic.
       "profileId": "sony-fe/base",
       "count": 1,
       "centerAngleDeg": {
-        "value": 150,
-        "status": "photo_scaled",
+        "value": 180,
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "startAngleDeg": {
-        "value": 130,
-        "status": "photo_scaled",
+        "value": 158,
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "endAngleDeg": {
-        "value": 170,
-        "status": "photo_scaled",
+        "value": 205,
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "innerRadiusMm": {
         "value": 23,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "outerRadiusMm": {
         "value": 25.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "matesWith": "body-slot-2",
-      "shapeNotes": "representative lug (count unconfirmed)"
+      "shapeNotes": "corresponding lens latch family in US9392150B2"
     },
     {
       "featureId": "lens-lug-3",
@@ -63686,48 +63995,54 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 290,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "startAngleDeg": {
-        "value": 270,
-        "status": "photo_scaled",
+        "value": 268,
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "endAngleDeg": {
-        "value": 310,
-        "status": "photo_scaled",
+        "value": 312,
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "innerRadiusMm": {
         "value": 23,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "outerRadiusMm": {
         "value": 25.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "matesWith": "body-slot-3",
-      "shapeNotes": "representative lug (count unconfirmed)"
+      "shapeNotes": "corresponding lens latch family in US9392150B2"
     },
     {
       "featureId": "lens-index-mark",
@@ -63825,7 +64140,7 @@ None — fully electronic.
         ]
       },
       "matesWith": "body-lock-pin",
-      "shapeNotes": "receives body lock pin"
+      "shapeNotes": "receives body lock pin (position unconfirmed by US9392150B2)"
     }
   ],
   "axialStack": [
@@ -63864,8 +64179,9 @@ None — fully electronic.
       },
       "thicknessMm": {
         "value": 1.8,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
@@ -63918,9 +64234,10 @@ None — fully electronic.
         ]
       },
       "diameterMm": {
-        "value": 43.3,
-        "status": "secondary",
+        "value": 43.267,
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       }
@@ -63933,41 +64250,46 @@ None — fully electronic.
       "profileId": "sony-fe/base",
       "centerAngleDeg": {
         "value": 152,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "centerRadiusMm": {
-        "value": 21,
-        "status": "photo_scaled",
+        "value": 20.5,
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "heightMm": {
         "value": 2.6,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
-      "shape": "pad",
+      "shape": "pin",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
-      "function": ""
+      "function": "contact pin 1"
     },
     {
       "side": "body",
@@ -63975,41 +64297,46 @@ None — fully electronic.
       "profileId": "sony-fe/base",
       "centerAngleDeg": {
         "value": 158,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "centerRadiusMm": {
-        "value": 21,
-        "status": "photo_scaled",
+        "value": 20.5,
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "heightMm": {
         "value": 2.6,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
-      "shape": "pad",
+      "shape": "pin",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
-      "function": ""
+      "function": "contact pin 2"
     },
     {
       "side": "body",
@@ -64017,41 +64344,46 @@ None — fully electronic.
       "profileId": "sony-fe/base",
       "centerAngleDeg": {
         "value": 164,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "centerRadiusMm": {
-        "value": 21,
-        "status": "photo_scaled",
+        "value": 20.5,
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "heightMm": {
         "value": 2.6,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
-      "shape": "pad",
+      "shape": "pin",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
-      "function": ""
+      "function": "contact pin 3"
     },
     {
       "side": "body",
@@ -64059,41 +64391,46 @@ None — fully electronic.
       "profileId": "sony-fe/base",
       "centerAngleDeg": {
         "value": 170,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "centerRadiusMm": {
-        "value": 21,
-        "status": "photo_scaled",
+        "value": 20.5,
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "heightMm": {
         "value": 2.6,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
-      "shape": "pad",
+      "shape": "pin",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
-      "function": ""
+      "function": "contact pin 4"
     },
     {
       "side": "body",
@@ -64101,41 +64438,46 @@ None — fully electronic.
       "profileId": "sony-fe/base",
       "centerAngleDeg": {
         "value": 176,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "centerRadiusMm": {
-        "value": 21,
-        "status": "photo_scaled",
+        "value": 20.5,
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "heightMm": {
         "value": 2.6,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
-      "shape": "pad",
+      "shape": "pin",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
-      "function": ""
+      "function": "contact pin 5"
     },
     {
       "side": "body",
@@ -64143,41 +64485,46 @@ None — fully electronic.
       "profileId": "sony-fe/base",
       "centerAngleDeg": {
         "value": 182,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "centerRadiusMm": {
-        "value": 21,
-        "status": "photo_scaled",
+        "value": 20.5,
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "heightMm": {
         "value": 2.6,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
-      "shape": "pad",
+      "shape": "pin",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
-      "function": ""
+      "function": "contact pin 6"
     },
     {
       "side": "body",
@@ -64185,41 +64532,46 @@ None — fully electronic.
       "profileId": "sony-fe/base",
       "centerAngleDeg": {
         "value": 188,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "centerRadiusMm": {
-        "value": 21,
-        "status": "photo_scaled",
+        "value": 20.5,
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "heightMm": {
         "value": 2.6,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
-      "shape": "pad",
+      "shape": "pin",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
-      "function": ""
+      "function": "contact pin 7"
     },
     {
       "side": "body",
@@ -64227,41 +64579,46 @@ None — fully electronic.
       "profileId": "sony-fe/base",
       "centerAngleDeg": {
         "value": 194,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "centerRadiusMm": {
-        "value": 21,
-        "status": "photo_scaled",
+        "value": 20.5,
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "heightMm": {
         "value": 2.6,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
-      "shape": "pad",
+      "shape": "pin",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
-      "function": ""
+      "function": "contact pin 8"
     },
     {
       "side": "body",
@@ -64269,41 +64626,46 @@ None — fully electronic.
       "profileId": "sony-fe/base",
       "centerAngleDeg": {
         "value": 200,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "centerRadiusMm": {
-        "value": 21,
-        "status": "photo_scaled",
+        "value": 20.5,
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "heightMm": {
         "value": 2.6,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
-      "shape": "pad",
+      "shape": "pin",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
-      "function": ""
+      "function": "contact pin 9"
     },
     {
       "side": "body",
@@ -64311,41 +64673,46 @@ None — fully electronic.
       "profileId": "sony-fe/base",
       "centerAngleDeg": {
         "value": 206,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "centerRadiusMm": {
-        "value": 21,
-        "status": "photo_scaled",
+        "value": 20.5,
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "heightMm": {
         "value": 2.6,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
-      "shape": "pad",
+      "shape": "pin",
       "protrusionMm": {
         "value": 0.4,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
-      "function": ""
+      "function": "contact pin 10"
     },
     {
       "side": "lens",
@@ -64353,41 +64720,46 @@ None — fully electronic.
       "profileId": "sony-fe/base",
       "centerAngleDeg": {
         "value": 152,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "centerRadiusMm": {
-        "value": 21,
-        "status": "photo_scaled",
+        "value": 20.5,
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "heightMm": {
         "value": 2.6,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
-      "function": ""
+      "function": "contact pin 1"
     },
     {
       "side": "lens",
@@ -64395,41 +64767,46 @@ None — fully electronic.
       "profileId": "sony-fe/base",
       "centerAngleDeg": {
         "value": 158,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "centerRadiusMm": {
-        "value": 21,
-        "status": "photo_scaled",
+        "value": 20.5,
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "heightMm": {
         "value": 2.6,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
-      "function": ""
+      "function": "contact pin 2"
     },
     {
       "side": "lens",
@@ -64437,41 +64814,46 @@ None — fully electronic.
       "profileId": "sony-fe/base",
       "centerAngleDeg": {
         "value": 164,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "centerRadiusMm": {
-        "value": 21,
-        "status": "photo_scaled",
+        "value": 20.5,
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "heightMm": {
         "value": 2.6,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
-      "function": ""
+      "function": "contact pin 3"
     },
     {
       "side": "lens",
@@ -64479,41 +64861,46 @@ None — fully electronic.
       "profileId": "sony-fe/base",
       "centerAngleDeg": {
         "value": 170,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "centerRadiusMm": {
-        "value": 21,
-        "status": "photo_scaled",
+        "value": 20.5,
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "heightMm": {
         "value": 2.6,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
-      "function": ""
+      "function": "contact pin 4"
     },
     {
       "side": "lens",
@@ -64521,41 +64908,46 @@ None — fully electronic.
       "profileId": "sony-fe/base",
       "centerAngleDeg": {
         "value": 176,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "centerRadiusMm": {
-        "value": 21,
-        "status": "photo_scaled",
+        "value": 20.5,
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "heightMm": {
         "value": 2.6,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
-      "function": ""
+      "function": "contact pin 5"
     },
     {
       "side": "lens",
@@ -64563,41 +64955,46 @@ None — fully electronic.
       "profileId": "sony-fe/base",
       "centerAngleDeg": {
         "value": 182,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "centerRadiusMm": {
-        "value": 21,
-        "status": "photo_scaled",
+        "value": 20.5,
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "heightMm": {
         "value": 2.6,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
-      "function": ""
+      "function": "contact pin 6"
     },
     {
       "side": "lens",
@@ -64605,41 +65002,46 @@ None — fully electronic.
       "profileId": "sony-fe/base",
       "centerAngleDeg": {
         "value": 188,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "centerRadiusMm": {
-        "value": 21,
-        "status": "photo_scaled",
+        "value": 20.5,
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "heightMm": {
         "value": 2.6,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
-      "function": ""
+      "function": "contact pin 7"
     },
     {
       "side": "lens",
@@ -64647,41 +65049,46 @@ None — fully electronic.
       "profileId": "sony-fe/base",
       "centerAngleDeg": {
         "value": 194,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "centerRadiusMm": {
-        "value": 21,
-        "status": "photo_scaled",
+        "value": 20.5,
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "heightMm": {
         "value": 2.6,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
-      "function": ""
+      "function": "contact pin 8"
     },
     {
       "side": "lens",
@@ -64689,41 +65096,46 @@ None — fully electronic.
       "profileId": "sony-fe/base",
       "centerAngleDeg": {
         "value": 200,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "centerRadiusMm": {
-        "value": 21,
-        "status": "photo_scaled",
+        "value": 20.5,
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "heightMm": {
         "value": 2.6,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
-      "function": ""
+      "function": "contact pin 9"
     },
     {
       "side": "lens",
@@ -64731,41 +65143,46 @@ None — fully electronic.
       "profileId": "sony-fe/base",
       "centerAngleDeg": {
         "value": 206,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "centerRadiusMm": {
-        "value": 21,
-        "status": "photo_scaled",
+        "value": 20.5,
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "heightMm": {
         "value": 2.6,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
       "shape": "pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
+          "se-p1",
           "se-1"
         ]
       },
-      "function": ""
+      "function": "contact pin 10"
     }
   ],
   "mechanicalCouplings": [],
@@ -64832,38 +65249,38 @@ None — fully electronic.
     {
       "ref": "se-1",
       "sourceType": "secondary",
-      "citation": "“Sony E-mount,” Wikipedia. Accessed 2026-06-04.",
+      "citation": "\"Sony E-mount,\" Wikipedia. Accessed 2026-06-04.",
       "liveUrl": "https://en.wikipedia.org/wiki/Sony_E-mount",
       "archiveUrl": "http://web.archive.org/web/20230522152822/https://en.wikipedia.org/wiki/Sony_E-mount",
       "archiveDate": "2023-05-22",
-      "appliesTo": "flange focal distance, 46.1 mm throat, ten contacts, APS-C/full-frame",
+      "appliesTo": "flange focal distance, 46.1 mm production throat, ten contacts, APS-C/full-frame",
       "confidence": "medium"
     },
     {
       "ref": "se-p1",
       "sourceType": "patent",
-      "citation": "US9392150B2, Sony E/FE body mount, contact-pin, latch and full-frame geometry patent. Accessed 2026-06-06.",
-      "liveUrl": "https://www.freepatentsonline.com/9392150.html",
-      "archiveUrl": "https://www.freepatentsonline.com/9392150.html",
+      "citation": "US9392150B2, \"Camera and optical apparatus.\" Accessed 2026-06-06.",
+      "liveUrl": "https://patents.google.com/patent/US9392150B2/en",
+      "archiveUrl": "https://patents.google.com/patent/US9392150B2/en",
       "archiveDate": "2026-06-06",
-      "appliesTo": "Sony E/FE mount and contact-pin/latch research lead",
-      "confidence": "medium"
+      "appliesTo": "Sony E/FE body mount inside diameter, three arc-like body/lens latches, ten bottom contact pins/contact holder, 35 mm full-frame aperture geometry, and contact-holder/mask relationship",
+      "confidence": "high"
     }
   ],
   "openQuestions": [
     {
-      "issue": "Sony E lacks an archived teardown with clock positions: the bayonet lug count, the lock-pin position, the mounting-index position, and the per-contact clock positions are photo-scaled (the contact bank is placed at the documented bottom of the mount).",
+      "issue": "US9392150B2 backs the E/FE body latch/contact-holder/full-frame geometry, but it does not document the production lock pin/notch, mounting-index clock, outer diameters, screw pattern, or exact production lug/contact clocking.",
       "affectedFields": [
         "cameraSideFeatures",
         "lensSideFeatures",
-        "contacts",
-        "lockGeometry"
+        "lockGeometry",
+        "screwsGasketsBaffles"
       ],
       "candidateValues": [
-        3,
-        4
+        "official Sony E mount mechanical drawing",
+        "measured production E/FE body and lens sample"
       ],
-      "resolution": "Upgrade to an official Sony E mount drawing or measured sample."
+      "resolution": "Upgrade remaining photo-scaled/unknown fields when an authoritative production drawing or measured sample is available."
     }
   ],
   "schemaVersion": "1.3",
@@ -64906,12 +65323,12 @@ None — fully electronic.
 
 | Ref | Type | Citation | Archive | Captured | Confidence |
 |---|---|---|---|---|---|
-| `se-1` | secondary | “Sony E-mount,” Wikipedia. Accessed 2026-06-04. | [snapshot](http://web.archive.org/web/20230522152822/https://en.wikipedia.org/wiki/Sony_E-mount) | 2023-05-22 | medium |
-| `se-p1` | patent | US9392150B2, Sony E/FE body mount, contact-pin, latch and full-frame geometry patent. Accessed 2026-06-06. | [snapshot](https://www.freepatentsonline.com/9392150.html) | 2026-06-06 | medium |
+| `se-1` | secondary | "Sony E-mount," Wikipedia. Accessed 2026-06-04. | [snapshot](http://web.archive.org/web/20230522152822/https://en.wikipedia.org/wiki/Sony_E-mount) | 2023-05-22 | medium |
+| `se-p1` | patent | US9392150B2, "Camera and optical apparatus." Accessed 2026-06-06. | [snapshot](https://patents.google.com/patent/US9392150B2/en) | 2026-06-06 | high |
 
 #### Open questions
 
-- Sony E lacks an archived teardown with clock positions: the bayonet lug count, the lock-pin position, the mounting-index position, and the per-contact clock positions are photo-scaled (the contact bank is placed at the documented bottom of the mount). _(Upgrade to an official Sony E mount drawing or measured sample.)_
+- US9392150B2 backs the E/FE body latch/contact-holder/full-frame geometry, but it does not document the production lock pin/notch, mounting-index clock, outer diameters, screw pattern, or exact production lug/contact clocking. _(Upgrade remaining photo-scaled/unknown fields when an authoritative production drawing or measured sample is available.)_
 
 ### `zeiss-contarex` — Zeiss Contarex
 
