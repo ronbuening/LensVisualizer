@@ -3,14 +3,17 @@
  *
  * Leica's rangefinder bayonet (1954): a very short 27.8 mm flange focal distance, a 44 mm bayonet
  * mount diameter, and a four-lug bayonet. The base profile holds the invariant bayonet plus the
- * rangefinder coupling cam; the `leica-m/6-bit` variant overlays the 6-bit lens-identification coding
- * (a strip of six white/black marks on the lens flange, read optically) found on recent lenses. There
- * are no electrical contacts. The MVP figure renders the 6-bit variant.
+ * patent-backed tactile keying / rangefinder-lever access features; the `leica-m/6-bit` variant overlays
+ * the 6-bit lens-identification coding (a strip of six white/black marks on the lens flange, read
+ * optically) found on recent lenses. There are no electrical contacts. The MVP figure renders the 6-bit
+ * variant.
  *
- * Sourced scalars: flange focal distance 27.8 mm, 44 mm bayonet/inside diameter, four lugs, rangefinder
- * coupling cam inside the top of the mount, 6-bit coding [leicam-1]; bayonet type and the 6-bit strip
- * also per the JAPB reference [leicam-2]. The throat diameter, the lug/lock/index clock positions, and
- * the cam/coding positions are photo-scaled and flagged in openQuestions.
+ * Sourced scalars: flange focal distance 27.8 mm and 44 mm bayonet/inside diameter [leicam-1, leicam-3];
+ * bayonet type and the 6-bit strip also per the JAPB reference [leicam-2]. US2618201A directly describes
+ * the Leitz four-slot/four-lug bayonet embodiment, a selected lug/slot pair of different arcuate size,
+ * tactile notch/protuberance keying, a selected-lug control cam, and a rangefinder-lever access recess
+ * [leicam-p1]. Exact Leica M production clocking, lock/index positions, and 6-bit positions remain
+ * photo-scaled or unknown and are flagged in openQuestions.
  */
 
 import type { MountSpecInput } from "../types/mount.js";
@@ -19,6 +22,8 @@ import { degListV, dirV, naV, unknownV, v } from "../optics/mount/authoring.js";
 const W = ["leicam-1"]; // Wikipedia
 const J = ["leicam-2"]; // JAPB teardown
 const FDT = ["leicam-3"]; // Film and Digital Times / IB/E Optics chart
+const P = ["leicam-p1"]; // Leitz four-lug bayonet patent embodiment
+const PF = ["leicam-p1", "leicam-3"];
 const WF = ["leicam-1", "leicam-3"];
 
 const LEICA_M_MOUNT = {
@@ -34,7 +39,7 @@ const LEICA_M_MOUNT = {
     requiredViews: ["camera_side_front_view", "lens_side_rear_view", "axial_register_schematic"],
     requirementLevels: {
       mvpRequired: ["flange_focal_distance_mm", "nominal_throat_diameter_mm", "camera_mount_outer_diameter_mm"],
-      conditionalCoreRequired: ["bayonet_lugs", "lock_pin", "index_mark", "rangefinder_cam"],
+      conditionalCoreRequired: ["bayonet_lugs", "tactile_orientation_key", "index_mark", "rangefinder_cam"],
       variantRequired: ["six_bit_coding"],
       mvpOptional: ["mount_screws"],
       referenceGrade: ["lug_ramp_undercut"],
@@ -48,7 +53,12 @@ const LEICA_M_MOUNT = {
           profileId: "leica-m/base",
           profileType: "base",
           appliesTo: "all Leica M lenses and bodies, 1954–present",
-          adds: ["four bayonet lugs", "lock pin/notch", "mounting index", "rangefinder coupling cam"],
+          adds: [
+            "four bayonet lugs with one keyed lug/slot pair",
+            "tactile orientation notch/protuberance",
+            "mounting index",
+            "rangefinder-lever access / selected-lug control cam",
+          ],
           removes: ["electrical contacts (rangefinder mechanical interface)"],
           changes: [],
           cameraSideOverlayLayers: ["camera-side-variant-mechanical"],
@@ -122,56 +132,56 @@ const LEICA_M_MOUNT = {
       featureType: "bayonet_receiving_slot",
       profileId: "leica-m/base",
       count: 1,
-      centerAngleDeg: v(45, "photo_scaled", W),
-      startAngleDeg: v(28, "photo_scaled", W),
-      endAngleDeg: v(62, "photo_scaled", W),
-      innerRadiusMm: v(22, "secondary", FDT),
-      outerRadiusMm: v(25.5, "photo_scaled", W),
-      depthMm: v(1.5, "photo_scaled", W),
+      centerAngleDeg: v(45, "patent", P),
+      startAngleDeg: v(23, "patent", P),
+      endAngleDeg: v(67, "patent", P),
+      innerRadiusMm: v(22, "patent", PF),
+      outerRadiusMm: v(25.5, "patent", PF),
+      depthMm: v(1.5, "patent", P),
       matesWith: "lens-lug-1",
-      shapeNotes: "four-lug bayonet [leicam-1]",
+      shapeNotes: "selected larger/keyed bayonet slot from US2618201A, normalized to Leica M clocking",
     },
     {
       featureId: "body-slot-2",
       featureType: "bayonet_receiving_slot",
       profileId: "leica-m/base",
       count: 1,
-      centerAngleDeg: v(135, "photo_scaled", W),
-      startAngleDeg: v(118, "photo_scaled", W),
-      endAngleDeg: v(152, "photo_scaled", W),
-      innerRadiusMm: v(22, "secondary", FDT),
-      outerRadiusMm: v(25.5, "photo_scaled", W),
-      depthMm: v(1.5, "photo_scaled", W),
+      centerAngleDeg: v(135, "patent", P),
+      startAngleDeg: v(121, "patent", P),
+      endAngleDeg: v(149, "patent", P),
+      innerRadiusMm: v(22, "patent", PF),
+      outerRadiusMm: v(25.5, "patent", PF),
+      depthMm: v(1.5, "patent", P),
       matesWith: "lens-lug-2",
-      shapeNotes: "four-lug bayonet [leicam-1]",
+      shapeNotes: "one of the three smaller bayonet slots in the US2618201A four-slot embodiment",
     },
     {
       featureId: "body-slot-3",
       featureType: "bayonet_receiving_slot",
       profileId: "leica-m/base",
       count: 1,
-      centerAngleDeg: v(225, "photo_scaled", W),
-      startAngleDeg: v(208, "photo_scaled", W),
-      endAngleDeg: v(242, "photo_scaled", W),
-      innerRadiusMm: v(22, "secondary", FDT),
-      outerRadiusMm: v(25.5, "photo_scaled", W),
-      depthMm: v(1.5, "photo_scaled", W),
+      centerAngleDeg: v(225, "patent", P),
+      startAngleDeg: v(211, "patent", P),
+      endAngleDeg: v(239, "patent", P),
+      innerRadiusMm: v(22, "patent", PF),
+      outerRadiusMm: v(25.5, "patent", PF),
+      depthMm: v(1.5, "patent", P),
       matesWith: "lens-lug-3",
-      shapeNotes: "four-lug bayonet [leicam-1]",
+      shapeNotes: "one of the three smaller bayonet slots in the US2618201A four-slot embodiment",
     },
     {
       featureId: "body-slot-4",
       featureType: "bayonet_receiving_slot",
       profileId: "leica-m/base",
       count: 1,
-      centerAngleDeg: v(315, "photo_scaled", W),
-      startAngleDeg: v(298, "photo_scaled", W),
-      endAngleDeg: v(332, "photo_scaled", W),
-      innerRadiusMm: v(22, "secondary", FDT),
-      outerRadiusMm: v(25.5, "photo_scaled", W),
-      depthMm: v(1.5, "photo_scaled", W),
+      centerAngleDeg: v(315, "patent", P),
+      startAngleDeg: v(301, "patent", P),
+      endAngleDeg: v(329, "patent", P),
+      innerRadiusMm: v(22, "patent", PF),
+      outerRadiusMm: v(25.5, "patent", PF),
+      depthMm: v(1.5, "patent", P),
       matesWith: "lens-lug-4",
-      shapeNotes: "four-lug bayonet [leicam-1]",
+      shapeNotes: "one of the three smaller bayonet slots in the US2618201A four-slot embodiment",
     },
     {
       featureId: "body-index-mark",
@@ -189,17 +199,18 @@ const LEICA_M_MOUNT = {
     },
     {
       featureId: "body-lock-pin",
-      featureType: "lock_pin",
+      featureType: "alignment_pin",
       profileId: "leica-m/base",
       count: 1,
-      centerAngleDeg: v(180, "photo_scaled", W),
-      startAngleDeg: unknownV(W),
-      endAngleDeg: unknownV(W),
-      innerRadiusMm: unknownV(W),
-      outerRadiusMm: v(24.5, "photo_scaled", W),
-      depthMm: v(2, "photo_scaled", W),
+      centerAngleDeg: v(45, "patent", P),
+      startAngleDeg: v(45, "patent", P),
+      endAngleDeg: v(45, "patent", P),
+      innerRadiusMm: v(24.5, "patent", PF),
+      outerRadiusMm: v(24.5, "patent", PF),
+      depthMm: v(1, "patent", P),
       matesWith: "lens-lock-notch",
-      shapeNotes: "lock pin (position unconfirmed)",
+      shapeNotes:
+        "tactile protuberance in the selected camera bayonet slot per US2618201A; production lock pin remains unverified",
     },
   ],
 
@@ -237,56 +248,56 @@ const LEICA_M_MOUNT = {
       featureType: "bayonet_lug",
       profileId: "leica-m/base",
       count: 1,
-      centerAngleDeg: v(45, "photo_scaled", W),
-      startAngleDeg: v(28, "photo_scaled", W),
-      endAngleDeg: v(62, "photo_scaled", W),
-      innerRadiusMm: v(22, "secondary", FDT),
-      outerRadiusMm: v(25.5, "photo_scaled", W),
-      thicknessMm: v(1.5, "photo_scaled", W),
+      centerAngleDeg: v(45, "patent", P),
+      startAngleDeg: v(23, "patent", P),
+      endAngleDeg: v(67, "patent", P),
+      innerRadiusMm: v(22, "patent", PF),
+      outerRadiusMm: v(25.5, "patent", PF),
+      thicknessMm: v(1.5, "patent", P),
       matesWith: "body-slot-1",
-      shapeNotes: "four-lug bayonet [leicam-1]",
+      shapeNotes: "selected larger/keyed bayonet lug from US2618201A, normalized to Leica M clocking",
     },
     {
       featureId: "lens-lug-2",
       featureType: "bayonet_lug",
       profileId: "leica-m/base",
       count: 1,
-      centerAngleDeg: v(135, "photo_scaled", W),
-      startAngleDeg: v(118, "photo_scaled", W),
-      endAngleDeg: v(152, "photo_scaled", W),
-      innerRadiusMm: v(22, "secondary", FDT),
-      outerRadiusMm: v(25.5, "photo_scaled", W),
-      thicknessMm: v(1.5, "photo_scaled", W),
+      centerAngleDeg: v(135, "patent", P),
+      startAngleDeg: v(121, "patent", P),
+      endAngleDeg: v(149, "patent", P),
+      innerRadiusMm: v(22, "patent", PF),
+      outerRadiusMm: v(25.5, "patent", PF),
+      thicknessMm: v(1.5, "patent", P),
       matesWith: "body-slot-2",
-      shapeNotes: "four-lug bayonet [leicam-1]",
+      shapeNotes: "one of the three smaller bayonet lugs in the US2618201A four-lug embodiment",
     },
     {
       featureId: "lens-lug-3",
       featureType: "bayonet_lug",
       profileId: "leica-m/base",
       count: 1,
-      centerAngleDeg: v(225, "photo_scaled", W),
-      startAngleDeg: v(208, "photo_scaled", W),
-      endAngleDeg: v(242, "photo_scaled", W),
-      innerRadiusMm: v(22, "secondary", FDT),
-      outerRadiusMm: v(25.5, "photo_scaled", W),
-      thicknessMm: v(1.5, "photo_scaled", W),
+      centerAngleDeg: v(225, "patent", P),
+      startAngleDeg: v(211, "patent", P),
+      endAngleDeg: v(239, "patent", P),
+      innerRadiusMm: v(22, "patent", PF),
+      outerRadiusMm: v(25.5, "patent", PF),
+      thicknessMm: v(1.5, "patent", P),
       matesWith: "body-slot-3",
-      shapeNotes: "four-lug bayonet [leicam-1]",
+      shapeNotes: "one of the three smaller bayonet lugs in the US2618201A four-lug embodiment",
     },
     {
       featureId: "lens-lug-4",
       featureType: "bayonet_lug",
       profileId: "leica-m/base",
       count: 1,
-      centerAngleDeg: v(315, "photo_scaled", W),
-      startAngleDeg: v(298, "photo_scaled", W),
-      endAngleDeg: v(332, "photo_scaled", W),
-      innerRadiusMm: v(22, "secondary", FDT),
-      outerRadiusMm: v(25.5, "photo_scaled", W),
-      thicknessMm: v(1.5, "photo_scaled", W),
+      centerAngleDeg: v(315, "patent", P),
+      startAngleDeg: v(301, "patent", P),
+      endAngleDeg: v(329, "patent", P),
+      innerRadiusMm: v(22, "patent", PF),
+      outerRadiusMm: v(25.5, "patent", PF),
+      thicknessMm: v(1.5, "patent", P),
       matesWith: "body-slot-4",
-      shapeNotes: "four-lug bayonet [leicam-1]",
+      shapeNotes: "one of the three smaller bayonet lugs in the US2618201A four-lug embodiment",
     },
     {
       featureId: "lens-index-mark",
@@ -307,14 +318,14 @@ const LEICA_M_MOUNT = {
       featureType: "lock_notch",
       profileId: "leica-m/base",
       count: 1,
-      centerAngleDeg: v(180, "photo_scaled", W),
-      startAngleDeg: unknownV(W),
-      endAngleDeg: unknownV(W),
-      innerRadiusMm: unknownV(W),
-      outerRadiusMm: v(24.5, "photo_scaled", W),
-      thicknessMm: v(2, "photo_scaled", W),
+      centerAngleDeg: v(45, "patent", P),
+      startAngleDeg: v(45, "patent", P),
+      endAngleDeg: v(45, "patent", P),
+      innerRadiusMm: v(24.5, "patent", PF),
+      outerRadiusMm: v(24.5, "patent", PF),
+      thicknessMm: v(1, "patent", P),
       matesWith: "body-lock-pin",
-      shapeNotes: "receives body lock pin",
+      shapeNotes: "tactile notch in the selected lens lug per US2618201A; production detent notch remains unverified",
     },
   ],
 
@@ -346,11 +357,12 @@ const LEICA_M_MOUNT = {
       featureId: "rangefinder-coupling-cam",
       side: "both",
       profileId: "leica-m/base",
-      centerAngleDeg: v(0, "secondary", W),
-      radiusMm: v(18, "photo_scaled", W),
-      sizeOrTravel: "cam / roller arm",
-      function: "couples lens focus to the rangefinder",
-      compatibilityNotes: "body roller arm inside the top of the mount",
+      centerAngleDeg: v(45, "patent", P),
+      radiusMm: v(18, "patent", P),
+      sizeOrTravel: "selected-lug cam 9 / rangefinder-lever recess 14",
+      function: "allows rangefinder-lever access and selected-lug control-cam actuation",
+      compatibilityNotes:
+        "US2618201A supports the cam/recess concept near the selected lug; exact Leica M production roller position remains unverified",
     },
     {
       featureId: "six-bit-coding",
@@ -417,19 +429,20 @@ const LEICA_M_MOUNT = {
     {
       ref: "leicam-p1",
       sourceType: "patent",
-      citation: "US2618201A, Leitz bayonet/lug objective attachment family. Accessed 2026-06-06.",
+      citation: "US2618201A, “Apparatus for detachably attaching camera objectives to cameras.” Accessed 2026-06-06.",
       liveUrl: "https://patents.google.com/patent/US2618201A/en",
       archiveUrl: "https://patents.google.com/patent/US2618201A/en",
       archiveDate: "2026-06-06",
-      appliesTo: "Leica M bayonet/lug research lead",
-      confidence: "medium",
+      appliesTo:
+        "Leitz four-slot/four-lug bayonet embodiment, selected larger/keyed lug and slot, tactile notch/protuberance, selected-lug control cam, and rangefinder-lever access recess",
+      confidence: "high",
     },
   ],
 
   openQuestions: [
     {
       issue:
-        "Leica M lacks an archived teardown with clock positions: the throat diameter, the lug spans, the rangefinder-cam and 6-bit-coding positions, and the lock/index clock positions are photo-scaled.",
+        "US2618201A supports the four-lug bayonet, keyed lug/slot, tactile notch/protuberance, selected-lug cam, and rangefinder-lever access recess; exact Leica M production lug clocking/spans, production sprung-lock details, the mounting-index clock position, and 6-bit-coding positions still need an official drawing or measured sample.",
       affectedFields: ["cameraSideFeatures", "lensSideFeatures", "mechanicalCouplings", "lockGeometry"],
       candidateValues: [],
       resolution: "Upgrade to an official Leica M mount drawing or measured sample.",

@@ -7,6 +7,7 @@
 - Added a validator guard so future label-prefixed URL strings cannot bypass live URL archive/date checks.
 - Followed up on Nikon Z after reviewing US10831084B2 directly: the patent now backs the four-claw body/lens bayonet, lock pin/receiving groove, and 11-terminal order with `patent` provenance so those features render as solid patent embodiment lines.
 - Followed up on Nikon F after reviewing US4766453A and US5185622A directly: the AF-era bayonet/lock/diaphragm/drive/contact structures now carry `patent` provenance where the patents support them.
+- Followed up on Leica M after reviewing US2618201A directly: the Leitz four-lug bayonet, selected keyed lug/slot, tactile notch/protuberance, selected-lug cam, and rangefinder-lever recess now carry `patent` provenance where the patent supports them.
 
 ## In-Order Mount Pass
 - Canon EF: existing `mvp_complete`; patent leads retained as related EF-era connector provenance.
@@ -17,7 +18,7 @@
 - Canon RF: existing `mvp_complete`; RF-era Canon patent family retained for claw/contact provenance.
 - Exakta: existing renderable partial; Ihagee quick-detachable mount patent retained as family provenance.
 - Hasselblad V: existing renderable partial; early Hasselblad-related patent retained as low-confidence lineage only.
-- Leica M: existing `mvp_complete`; Leitz bayonet/lug patent retained as strong family provenance.
+- Leica M: existing `mvp_complete`; Leitz bayonet/lug patent now backs the four-slot/four-lug bayonet embodiment, selected keyed lug/slot, tactile notch/protuberance, selected-lug cam, and rangefinder-lever recess.
 - Nikon 1: existing `mvp_complete`; Nikon 1/CX-era patent family retained for mount/contact provenance.
 - Nikon F: existing `mvp_complete`; AF-era Nikon F patent leads now back the bayonet/lock/diaphragm/AF-drive/contact structures that the patents directly disclose.
 - Nikon Z: existing `mvp_complete`; Nikon Z patent retained for body/lens-side mount/contact provenance.

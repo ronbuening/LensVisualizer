@@ -35239,7 +35239,7 @@ None — fully electronic.
 
 | Profile ID | Type | Applies to | Adds | Removes | Changes |
 |---|---|---|---|---|---|
-| `leica-m/base` | base | all Leica M lenses and bodies, 1954–present | four bayonet lugs; lock pin/notch; mounting index; rangefinder coupling cam | electrical contacts (rangefinder mechanical interface) | — |
+| `leica-m/base` | base | all Leica M lenses and bodies, 1954–present | four bayonet lugs with one keyed lug/slot pair; tactile orientation notch/protuberance; mounting index; rangefinder-lever access / selected-lug control cam | electrical contacts (rangefinder mechanical interface) | — |
 | `leica-m/6-bit` | variant | 6-bit-coded M lenses (digital M era) | 6-bit lens-identification coding (six white/black marks on the flange) | — | camera reads lens identity optically |
 
 #### Dimensional summary
@@ -35259,11 +35259,11 @@ None — fully electronic.
 
 **Camera-side front view** — viewBox `-32 -33 64 65` ([standalone SVG](mounts/leica-m-camera-front.svg))
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 -33 64 65" role="img" aria-labelledby="leica-m-6-bit-camera_side_front-title leica-m-6-bit-camera_side_front-desc"><title id="leica-m-6-bit-camera_side_front-title">Leica M mount — camera-side front view (6-bit)</title><desc id="leica-m-6-bit-camera_side_front-desc">Leica M bayonet mount, camera-side front view. Flange focal distance 27.8 mm, nominal throat 44 mm. Profile leica-m/6-bit.</desc><metadata>{"mountId":"leica-m","profileId":"leica-m/6-bit","view":"camera_side_front","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.3" y1="0" x2="1.3" y2="0" stroke="#8a94a0" stroke-width="0.384" fill="none" /><line x1="0" y1="-1.3" x2="0" y2="1.3" stroke="#8a94a0" stroke-width="0.384" fill="none" /><line x1="0" y1="-26" x2="0" y2="-27.56" stroke="#8a94a0" stroke-width="0.384" fill="none" /></g><g data-layer="camera-side-metal"><path d="M0,-26 A26,26 0 1 1 0,26 A26,26 0 1 1 0,-26 Z M0,-22 A22,22 0 1 1 0,22 A22,22 0 1 1 0,-22 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-26 A26,26 0 1 1 0,26 A26,26 0 1 1 0,-26 Z M0,-22 A22,22 0 1 1 0,22 A22,22 0 1 1 0,-22 Z" stroke="#6b7a8f" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /><path d="M0,-22 A22,22 0 1 1 0,22 A22,22 0 1 1 0,-22 Z" stroke="#2f80c4" stroke-width="0.288" fill="none" /><circle cx="17.324" cy="-17.324" r="0.8" stroke="#7f8c3a" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /><circle cx="17.324" cy="17.324" r="0.8" stroke="#7f8c3a" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /><circle cx="-17.324" cy="17.324" r="0.8" stroke="#7f8c3a" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /><circle cx="-17.324" cy="-17.324" r="0.8" stroke="#7f8c3a" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-core-interface"><path d="M0,-23.9 L-1.618,-26.451 L1.618,-26.451 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-23.9 L-1.618,-26.451 L1.618,-26.451 Z" stroke="#e8853a" stroke-width="0.384" fill="none" stroke-dasharray="0.6 1.6" /><path d="M10.328,-19.425 L11.972,-22.515 A25.5,25.5 0 0 1 22.515,-11.972 L19.425,-10.328 A22,22 0 0 0 10.328,-19.425 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M10.328,-19.425 L11.972,-22.515 A25.5,25.5 0 0 1 22.515,-11.972 L19.425,-10.328 A22,22 0 0 0 10.328,-19.425 Z" stroke="#2a9d8f" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /><path d="M19.425,10.328 L22.515,11.972 A25.5,25.5 0 0 1 11.972,22.515 L10.328,19.425 A22,22 0 0 0 19.425,10.328 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M19.425,10.328 L22.515,11.972 A25.5,25.5 0 0 1 11.972,22.515 L10.328,19.425 A22,22 0 0 0 19.425,10.328 Z" stroke="#2a9d8f" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /><circle cx="0" cy="24.5" r="0.91" fill="#d1495b" fill-opacity="0.12" /><circle cx="0" cy="24.5" r="0.91" stroke="#d1495b" stroke-width="0.384" fill="none" stroke-dasharray="0.6 1.6" /><path d="M-10.328,19.425 L-11.972,22.515 A25.5,25.5 0 0 1 -22.515,11.972 L-19.425,10.328 A22,22 0 0 0 -10.328,19.425 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-10.328,19.425 L-11.972,22.515 A25.5,25.5 0 0 1 -22.515,11.972 L-19.425,10.328 A22,22 0 0 0 -10.328,19.425 Z" stroke="#2a9d8f" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /><path d="M-19.425,-10.328 L-22.515,-11.972 A25.5,25.5 0 0 1 -11.972,-22.515 L-10.328,-19.425 A22,22 0 0 0 -19.425,-10.328 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-19.425,-10.328 L-22.515,-11.972 A25.5,25.5 0 0 1 -11.972,-22.515 L-10.328,-19.425 A22,22 0 0 0 -19.425,-10.328 Z" stroke="#2a9d8f" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-variant-mechanical"><circle cx="0" cy="-18" r="0.8" stroke="#b5651d" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-30.72" y1="-29.75" x2="-26.72" y2="-29.75" stroke="#2f80c4" stroke-width="0.455" /><text x="-25.68" y="-29.022" font-size="2.08" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-30.72" y1="-26.63" x2="-26.72" y2="-26.63" stroke="#6b7a8f" stroke-width="0.455" /><text x="-25.68" y="-25.902" font-size="2.08" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-30.72" y1="-23.51" x2="-26.72" y2="-23.51" stroke="#2a9d8f" stroke-width="0.455" /><text x="-25.68" y="-22.782" font-size="2.08" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-30.72" y1="-20.39" x2="-26.72" y2="-20.39" stroke="#d1495b" stroke-width="0.455" /><text x="-25.68" y="-19.662" font-size="2.08" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-30.72" y1="-17.27" x2="-26.72" y2="-17.27" stroke="#e8853a" stroke-width="0.455" /><text x="-25.68" y="-16.542" font-size="2.08" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-30.72" y1="-14.15" x2="-26.72" y2="-14.15" stroke="#b5651d" stroke-width="0.455" /><text x="-25.68" y="-13.422" font-size="2.08" fill="#b5651d" font-family="sans-serif">Mechanical coupling</text><line x1="-30.72" y1="-11.03" x2="-26.72" y2="-11.03" stroke="#7f8c3a" stroke-width="0.455" /><text x="-25.68" y="-10.302" font-size="2.08" fill="#7f8c3a" font-family="sans-serif">Screws / seals</text><line x1="-30.72" y1="-7.91" x2="-26.72" y2="-7.91" stroke="#8a94a0" stroke-width="0.455" /><text x="-25.68" y="-7.182" font-size="2.08" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 -33 64 65" role="img" aria-labelledby="leica-m-6-bit-camera_side_front-title leica-m-6-bit-camera_side_front-desc"><title id="leica-m-6-bit-camera_side_front-title">Leica M mount — camera-side front view (6-bit)</title><desc id="leica-m-6-bit-camera_side_front-desc">Leica M bayonet mount, camera-side front view. Flange focal distance 27.8 mm, nominal throat 44 mm. Profile leica-m/6-bit.</desc><metadata>{"mountId":"leica-m","profileId":"leica-m/6-bit","view":"camera_side_front","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.3" y1="0" x2="1.3" y2="0" stroke="#8a94a0" stroke-width="0.384" fill="none" /><line x1="0" y1="-1.3" x2="0" y2="1.3" stroke="#8a94a0" stroke-width="0.384" fill="none" /><line x1="0" y1="-26" x2="0" y2="-27.56" stroke="#8a94a0" stroke-width="0.384" fill="none" /></g><g data-layer="camera-side-metal"><path d="M0,-26 A26,26 0 1 1 0,26 A26,26 0 1 1 0,-26 Z M0,-22 A22,22 0 1 1 0,22 A22,22 0 1 1 0,-22 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-26 A26,26 0 1 1 0,26 A26,26 0 1 1 0,-26 Z M0,-22 A22,22 0 1 1 0,22 A22,22 0 1 1 0,-22 Z" stroke="#6b7a8f" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /><path d="M0,-22 A22,22 0 1 1 0,22 A22,22 0 1 1 0,-22 Z" stroke="#2f80c4" stroke-width="0.288" fill="none" /><circle cx="17.324" cy="-17.324" r="0.8" stroke="#7f8c3a" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /><circle cx="17.324" cy="17.324" r="0.8" stroke="#7f8c3a" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /><circle cx="-17.324" cy="17.324" r="0.8" stroke="#7f8c3a" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /><circle cx="-17.324" cy="-17.324" r="0.8" stroke="#7f8c3a" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-core-interface"><path d="M0,-23.9 L-1.618,-26.451 L1.618,-26.451 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-23.9 L-1.618,-26.451 L1.618,-26.451 Z" stroke="#e8853a" stroke-width="0.384" fill="none" stroke-dasharray="0.6 1.6" /><circle cx="17.324" cy="-17.324" r="0.91" fill="#d1495b" fill-opacity="0.12" /><circle cx="17.324" cy="-17.324" r="0.91" stroke="#d1495b" stroke-width="0.384" fill="none" /><path d="M8.596,-20.251 L9.964,-23.473 A25.5,25.5 0 0 1 23.473,-9.964 L20.251,-8.596 A22,22 0 0 0 8.596,-20.251 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M8.596,-20.251 L9.964,-23.473 A25.5,25.5 0 0 1 23.473,-9.964 L20.251,-8.596 A22,22 0 0 0 8.596,-20.251 Z" stroke="#2a9d8f" stroke-width="0.384" fill="none" /><path d="M18.858,11.331 L21.858,13.133 A25.5,25.5 0 0 1 13.133,21.858 L11.331,18.858 A22,22 0 0 0 18.858,11.331 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M18.858,11.331 L21.858,13.133 A25.5,25.5 0 0 1 13.133,21.858 L11.331,18.858 A22,22 0 0 0 18.858,11.331 Z" stroke="#2a9d8f" stroke-width="0.384" fill="none" /><path d="M-11.331,18.858 L-13.133,21.858 A25.5,25.5 0 0 1 -21.858,13.133 L-18.858,11.331 A22,22 0 0 0 -11.331,18.858 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-11.331,18.858 L-13.133,21.858 A25.5,25.5 0 0 1 -21.858,13.133 L-18.858,11.331 A22,22 0 0 0 -11.331,18.858 Z" stroke="#2a9d8f" stroke-width="0.384" fill="none" /><path d="M-18.858,-11.331 L-21.858,-13.133 A25.5,25.5 0 0 1 -13.133,-21.858 L-11.331,-18.858 A22,22 0 0 0 -18.858,-11.331 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-18.858,-11.331 L-21.858,-13.133 A25.5,25.5 0 0 1 -13.133,-21.858 L-11.331,-18.858 A22,22 0 0 0 -18.858,-11.331 Z" stroke="#2a9d8f" stroke-width="0.384" fill="none" /></g><g data-layer="camera-side-variant-mechanical"><circle cx="12.728" cy="-12.728" r="0.8" stroke="#b5651d" stroke-width="0.384" fill="none" /></g><g aria-hidden="true"><line x1="-30.72" y1="-29.75" x2="-26.72" y2="-29.75" stroke="#2f80c4" stroke-width="0.455" /><text x="-25.68" y="-29.022" font-size="2.08" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-30.72" y1="-26.63" x2="-26.72" y2="-26.63" stroke="#6b7a8f" stroke-width="0.455" /><text x="-25.68" y="-25.902" font-size="2.08" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-30.72" y1="-23.51" x2="-26.72" y2="-23.51" stroke="#2a9d8f" stroke-width="0.455" /><text x="-25.68" y="-22.782" font-size="2.08" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-30.72" y1="-20.39" x2="-26.72" y2="-20.39" stroke="#d1495b" stroke-width="0.455" /><text x="-25.68" y="-19.662" font-size="2.08" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-30.72" y1="-17.27" x2="-26.72" y2="-17.27" stroke="#e8853a" stroke-width="0.455" /><text x="-25.68" y="-16.542" font-size="2.08" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-30.72" y1="-14.15" x2="-26.72" y2="-14.15" stroke="#b5651d" stroke-width="0.455" /><text x="-25.68" y="-13.422" font-size="2.08" fill="#b5651d" font-family="sans-serif">Mechanical coupling</text><line x1="-30.72" y1="-11.03" x2="-26.72" y2="-11.03" stroke="#7f8c3a" stroke-width="0.455" /><text x="-25.68" y="-10.302" font-size="2.08" fill="#7f8c3a" font-family="sans-serif">Screws / seals</text><line x1="-30.72" y1="-7.91" x2="-26.72" y2="-7.91" stroke="#8a94a0" stroke-width="0.455" /><text x="-25.68" y="-7.182" font-size="2.08" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
 
 **Lens-side rear view** — viewBox `-32 -32 64 64` ([standalone SVG](mounts/leica-m-lens-rear.svg))
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 -32 64 64" role="img" aria-labelledby="leica-m-6-bit-lens_side_rear-title leica-m-6-bit-lens_side_rear-desc"><title id="leica-m-6-bit-lens_side_rear-title">Leica M mount — lens-side rear view (6-bit)</title><desc id="leica-m-6-bit-lens_side_rear-desc">Leica M bayonet mount, lens-side rear view. Flange focal distance 27.8 mm, nominal throat 44 mm. Profile leica-m/6-bit.</desc><metadata>{"mountId":"leica-m","profileId":"leica-m/6-bit","view":"lens_side_rear","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.25" y1="0" x2="1.25" y2="0" stroke="#8a94a0" stroke-width="0.384" fill="none" /><line x1="0" y1="-1.25" x2="0" y2="1.25" stroke="#8a94a0" stroke-width="0.384" fill="none" /><line x1="0" y1="-25" x2="0" y2="-26.5" stroke="#8a94a0" stroke-width="0.384" fill="none" /></g><g data-layer="lens-side-metal"><path d="M0,-25.5 A25.5,25.5 0 1 1 0,25.5 A25.5,25.5 0 1 1 0,-25.5 Z M0,-21 A21,21 0 1 1 0,21 A21,21 0 1 1 0,-21 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-25.5 A25.5,25.5 0 1 1 0,25.5 A25.5,25.5 0 1 1 0,-25.5 Z M0,-21 A21,21 0 1 1 0,21 A21,21 0 1 1 0,-21 Z" stroke="#6b7a8f" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /><path d="M0,-21 A21,21 0 1 1 0,21 A21,21 0 1 1 0,-21 Z" stroke="#2f80c4" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /></g><g data-layer="lens-side-core-interface"><path d="M0,-23.5 L-1.587,-25.952 L1.587,-25.952 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-23.5 L-1.587,-25.952 L1.587,-25.952 Z" stroke="#e8853a" stroke-width="0.384" fill="none" stroke-dasharray="0.6 1.6" /><path d="M10.328,-19.425 L11.972,-22.515 A25.5,25.5 0 0 1 22.515,-11.972 L19.425,-10.328 A22,22 0 0 0 10.328,-19.425 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M10.328,-19.425 L11.972,-22.515 A25.5,25.5 0 0 1 22.515,-11.972 L19.425,-10.328 A22,22 0 0 0 10.328,-19.425 Z" stroke="#2a9d8f" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /><path d="M19.425,10.328 L22.515,11.972 A25.5,25.5 0 0 1 11.972,22.515 L10.328,19.425 A22,22 0 0 0 19.425,10.328 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M19.425,10.328 L22.515,11.972 A25.5,25.5 0 0 1 11.972,22.515 L10.328,19.425 A22,22 0 0 0 19.425,10.328 Z" stroke="#2a9d8f" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /><circle cx="0" cy="24.5" r="0.875" fill="#d1495b" fill-opacity="0.12" /><circle cx="0" cy="24.5" r="0.875" stroke="#d1495b" stroke-width="0.384" fill="none" stroke-dasharray="0.6 1.6" /><path d="M-10.328,19.425 L-11.972,22.515 A25.5,25.5 0 0 1 -22.515,11.972 L-19.425,10.328 A22,22 0 0 0 -10.328,19.425 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-10.328,19.425 L-11.972,22.515 A25.5,25.5 0 0 1 -22.515,11.972 L-19.425,10.328 A22,22 0 0 0 -10.328,19.425 Z" stroke="#2a9d8f" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /><path d="M-19.425,-10.328 L-22.515,-11.972 A25.5,25.5 0 0 1 -11.972,-22.515 L-10.328,-19.425 A22,22 0 0 0 -19.425,-10.328 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-19.425,-10.328 L-22.515,-11.972 A25.5,25.5 0 0 1 -11.972,-22.515 L-10.328,-19.425 A22,22 0 0 0 -19.425,-10.328 Z" stroke="#2a9d8f" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /></g><g data-layer="lens-side-variant-mechanical"><circle cx="0" cy="-18" r="0.8" stroke="#b5651d" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /><circle cx="8.551" cy="23.492" r="0.8" stroke="#b5651d" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-30.72" y1="-28.8" x2="-26.72" y2="-28.8" stroke="#2f80c4" stroke-width="0.448" /><text x="-25.696" y="-28.083" font-size="2.048" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-30.72" y1="-25.728" x2="-26.72" y2="-25.728" stroke="#6b7a8f" stroke-width="0.448" /><text x="-25.696" y="-25.011" font-size="2.048" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-30.72" y1="-22.656" x2="-26.72" y2="-22.656" stroke="#2a9d8f" stroke-width="0.448" /><text x="-25.696" y="-21.939" font-size="2.048" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-30.72" y1="-19.584" x2="-26.72" y2="-19.584" stroke="#d1495b" stroke-width="0.448" /><text x="-25.696" y="-18.867" font-size="2.048" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-30.72" y1="-16.512" x2="-26.72" y2="-16.512" stroke="#e8853a" stroke-width="0.448" /><text x="-25.696" y="-15.795" font-size="2.048" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-30.72" y1="-13.44" x2="-26.72" y2="-13.44" stroke="#b5651d" stroke-width="0.448" /><text x="-25.696" y="-12.723" font-size="2.048" fill="#b5651d" font-family="sans-serif">Mechanical coupling</text><line x1="-30.72" y1="-10.368" x2="-26.72" y2="-10.368" stroke="#8a94a0" stroke-width="0.448" /><text x="-25.696" y="-9.651" font-size="2.048" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 -32 64 64" role="img" aria-labelledby="leica-m-6-bit-lens_side_rear-title leica-m-6-bit-lens_side_rear-desc"><title id="leica-m-6-bit-lens_side_rear-title">Leica M mount — lens-side rear view (6-bit)</title><desc id="leica-m-6-bit-lens_side_rear-desc">Leica M bayonet mount, lens-side rear view. Flange focal distance 27.8 mm, nominal throat 44 mm. Profile leica-m/6-bit.</desc><metadata>{"mountId":"leica-m","profileId":"leica-m/6-bit","view":"lens_side_rear","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.25" y1="0" x2="1.25" y2="0" stroke="#8a94a0" stroke-width="0.384" fill="none" /><line x1="0" y1="-1.25" x2="0" y2="1.25" stroke="#8a94a0" stroke-width="0.384" fill="none" /><line x1="0" y1="-25" x2="0" y2="-26.5" stroke="#8a94a0" stroke-width="0.384" fill="none" /></g><g data-layer="lens-side-metal"><path d="M0,-25.5 A25.5,25.5 0 1 1 0,25.5 A25.5,25.5 0 1 1 0,-25.5 Z M0,-21 A21,21 0 1 1 0,21 A21,21 0 1 1 0,-21 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-25.5 A25.5,25.5 0 1 1 0,25.5 A25.5,25.5 0 1 1 0,-25.5 Z M0,-21 A21,21 0 1 1 0,21 A21,21 0 1 1 0,-21 Z" stroke="#6b7a8f" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /><path d="M0,-21 A21,21 0 1 1 0,21 A21,21 0 1 1 0,-21 Z" stroke="#2f80c4" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /></g><g data-layer="lens-side-core-interface"><path d="M0,-23.5 L-1.587,-25.952 L1.587,-25.952 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-23.5 L-1.587,-25.952 L1.587,-25.952 Z" stroke="#e8853a" stroke-width="0.384" fill="none" stroke-dasharray="0.6 1.6" /><path d="M11.331,-18.858 L13.133,-21.858 A25.5,25.5 0 0 1 21.858,-13.133 L18.858,-11.331 A22,22 0 0 0 11.331,-18.858 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M11.331,-18.858 L13.133,-21.858 A25.5,25.5 0 0 1 21.858,-13.133 L18.858,-11.331 A22,22 0 0 0 11.331,-18.858 Z" stroke="#2a9d8f" stroke-width="0.384" fill="none" /><path d="M18.858,11.331 L21.858,13.133 A25.5,25.5 0 0 1 13.133,21.858 L11.331,18.858 A22,22 0 0 0 18.858,11.331 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M18.858,11.331 L21.858,13.133 A25.5,25.5 0 0 1 13.133,21.858 L11.331,18.858 A22,22 0 0 0 18.858,11.331 Z" stroke="#2a9d8f" stroke-width="0.384" fill="none" /><path d="M-11.331,18.858 L-13.133,21.858 A25.5,25.5 0 0 1 -21.858,13.133 L-18.858,11.331 A22,22 0 0 0 -11.331,18.858 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-11.331,18.858 L-13.133,21.858 A25.5,25.5 0 0 1 -21.858,13.133 L-18.858,11.331 A22,22 0 0 0 -11.331,18.858 Z" stroke="#2a9d8f" stroke-width="0.384" fill="none" /><circle cx="-17.324" cy="-17.324" r="0.875" fill="#d1495b" fill-opacity="0.12" /><circle cx="-17.324" cy="-17.324" r="0.875" stroke="#d1495b" stroke-width="0.384" fill="none" /><path d="M-20.251,-8.596 L-23.473,-9.964 A25.5,25.5 0 0 1 -9.964,-23.473 L-8.596,-20.251 A22,22 0 0 0 -20.251,-8.596 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-20.251,-8.596 L-23.473,-9.964 A25.5,25.5 0 0 1 -9.964,-23.473 L-8.596,-20.251 A22,22 0 0 0 -20.251,-8.596 Z" stroke="#2a9d8f" stroke-width="0.384" fill="none" /></g><g data-layer="lens-side-variant-mechanical"><circle cx="8.551" cy="23.492" r="0.8" stroke="#b5651d" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /><circle cx="-12.728" cy="-12.728" r="0.8" stroke="#b5651d" stroke-width="0.384" fill="none" /></g><g aria-hidden="true"><line x1="-30.72" y1="-28.8" x2="-26.72" y2="-28.8" stroke="#2f80c4" stroke-width="0.448" /><text x="-25.696" y="-28.083" font-size="2.048" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-30.72" y1="-25.728" x2="-26.72" y2="-25.728" stroke="#6b7a8f" stroke-width="0.448" /><text x="-25.696" y="-25.011" font-size="2.048" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-30.72" y1="-22.656" x2="-26.72" y2="-22.656" stroke="#2a9d8f" stroke-width="0.448" /><text x="-25.696" y="-21.939" font-size="2.048" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-30.72" y1="-19.584" x2="-26.72" y2="-19.584" stroke="#d1495b" stroke-width="0.448" /><text x="-25.696" y="-18.867" font-size="2.048" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-30.72" y1="-16.512" x2="-26.72" y2="-16.512" stroke="#e8853a" stroke-width="0.448" /><text x="-25.696" y="-15.795" font-size="2.048" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-30.72" y1="-13.44" x2="-26.72" y2="-13.44" stroke="#b5651d" stroke-width="0.448" /><text x="-25.696" y="-12.723" font-size="2.048" fill="#b5651d" font-family="sans-serif">Mechanical coupling</text><line x1="-30.72" y1="-10.368" x2="-26.72" y2="-10.368" stroke="#8a94a0" stroke-width="0.448" /><text x="-25.696" y="-9.651" font-size="2.048" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
 
 **Axial / register schematic** — viewBox `-34 -36 41 68` ([standalone SVG](mounts/leica-m-axial.svg))
 
@@ -35275,12 +35275,12 @@ None — fully electronic.
 |---|---|---|---|---|---|---|---|
 | `body-throat` | body_throat | `leica-m/base` | 0° | 0° | 360° | 0 | 22 |
 | `body-mount-ring` | mount_ring | `leica-m/base` | 0° | 0° | 360° | 22 | 26 |
-| `body-slot-1` | bayonet_receiving_slot | `leica-m/base` | 45° | 28° | 62° | 22 | 25.5 |
-| `body-slot-2` | bayonet_receiving_slot | `leica-m/base` | 135° | 118° | 152° | 22 | 25.5 |
-| `body-slot-3` | bayonet_receiving_slot | `leica-m/base` | 225° | 208° | 242° | 22 | 25.5 |
-| `body-slot-4` | bayonet_receiving_slot | `leica-m/base` | 315° | 298° | 332° | 22 | 25.5 |
+| `body-slot-1` | bayonet_receiving_slot | `leica-m/base` | 45° | 23° | 67° | 22 | 25.5 |
+| `body-slot-2` | bayonet_receiving_slot | `leica-m/base` | 135° | 121° | 149° | 22 | 25.5 |
+| `body-slot-3` | bayonet_receiving_slot | `leica-m/base` | 225° | 211° | 239° | 22 | 25.5 |
+| `body-slot-4` | bayonet_receiving_slot | `leica-m/base` | 315° | 301° | 329° | 22 | 25.5 |
 | `body-index-mark` | index_mark | `leica-m/base` | 0° | unknown | unknown | unknown | 26.5 |
-| `body-lock-pin` | lock_pin | `leica-m/base` | 180° | unknown | unknown | unknown | 24.5 |
+| `body-lock-pin` | alignment_pin | `leica-m/base` | 45° | 45° | 45° | 24.5 | 24.5 |
 
 #### Lens-side rear-view geometry
 
@@ -35288,18 +35288,18 @@ None — fully electronic.
 |---|---|---|---|---|---|---|---|
 | `lens-throat` | lens_throat | `leica-m/base` | 0° | 0° | 360° | 0 | 21 |
 | `lens-mount-ring` | lens_mount_ring | `leica-m/base` | 0° | 0° | 360° | 21 | 25.5 |
-| `lens-lug-1` | bayonet_lug | `leica-m/base` | 45° | 28° | 62° | 22 | 25.5 |
-| `lens-lug-2` | bayonet_lug | `leica-m/base` | 135° | 118° | 152° | 22 | 25.5 |
-| `lens-lug-3` | bayonet_lug | `leica-m/base` | 225° | 208° | 242° | 22 | 25.5 |
-| `lens-lug-4` | bayonet_lug | `leica-m/base` | 315° | 298° | 332° | 22 | 25.5 |
+| `lens-lug-1` | bayonet_lug | `leica-m/base` | 45° | 23° | 67° | 22 | 25.5 |
+| `lens-lug-2` | bayonet_lug | `leica-m/base` | 135° | 121° | 149° | 22 | 25.5 |
+| `lens-lug-3` | bayonet_lug | `leica-m/base` | 225° | 211° | 239° | 22 | 25.5 |
+| `lens-lug-4` | bayonet_lug | `leica-m/base` | 315° | 301° | 329° | 22 | 25.5 |
 | `lens-index-mark` | index_mark | `leica-m/base` | 0° | unknown | unknown | unknown | 26 |
-| `lens-lock-notch` | lock_notch | `leica-m/base` | 180° | unknown | unknown | unknown | 24.5 |
+| `lens-lock-notch` | lock_notch | `leica-m/base` | 45° | 45° | 45° | 24.5 | 24.5 |
 
 #### Mechanical couplings
 
 | Feature | Side | Profile | Function |
 |---|---|---|---|
-| `rangefinder-coupling-cam` | both | `leica-m/base` | couples lens focus to the rangefinder |
+| `rangefinder-coupling-cam` | both | `leica-m/base` | allows rangefinder-lever access and selected-lug control-cam actuation |
 | `six-bit-coding` | lens | `leica-m/6-bit` | optical lens-identification coding |
 
 #### Axial stack
@@ -35335,7 +35335,7 @@ None — fully electronic.
       ],
       "conditionalCoreRequired": [
         "bayonet_lugs",
-        "lock_pin",
+        "tactile_orientation_key",
         "index_mark",
         "rangefinder_cam"
       ],
@@ -35359,10 +35359,10 @@ None — fully electronic.
           "profileType": "base",
           "appliesTo": "all Leica M lenses and bodies, 1954–present",
           "adds": [
-            "four bayonet lugs",
-            "lock pin/notch",
+            "four bayonet lugs with one keyed lug/slot pair",
+            "tactile orientation notch/protuberance",
             "mounting index",
-            "rangefinder coupling cam"
+            "rangefinder-lever access / selected-lug control cam"
           ],
           "removes": [
             "electrical contacts (rangefinder mechanical interface)"
@@ -35580,48 +35580,50 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 45,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "leicam-1"
+          "leicam-p1"
         ]
       },
       "startAngleDeg": {
-        "value": 28,
-        "status": "photo_scaled",
+        "value": 23,
+        "status": "patent",
         "sourceRefs": [
-          "leicam-1"
+          "leicam-p1"
         ]
       },
       "endAngleDeg": {
-        "value": 62,
-        "status": "photo_scaled",
+        "value": 67,
+        "status": "patent",
         "sourceRefs": [
-          "leicam-1"
+          "leicam-p1"
         ]
       },
       "innerRadiusMm": {
         "value": 22,
-        "status": "secondary",
+        "status": "patent",
         "sourceRefs": [
+          "leicam-p1",
           "leicam-3"
         ]
       },
       "outerRadiusMm": {
         "value": 25.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "leicam-1"
+          "leicam-p1",
+          "leicam-3"
         ]
       },
       "depthMm": {
         "value": 1.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "leicam-1"
+          "leicam-p1"
         ]
       },
       "matesWith": "lens-lug-1",
-      "shapeNotes": "four-lug bayonet [leicam-1]"
+      "shapeNotes": "selected larger/keyed bayonet slot from US2618201A, normalized to Leica M clocking"
     },
     {
       "featureId": "body-slot-2",
@@ -35630,48 +35632,50 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 135,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "leicam-1"
+          "leicam-p1"
         ]
       },
       "startAngleDeg": {
-        "value": 118,
-        "status": "photo_scaled",
+        "value": 121,
+        "status": "patent",
         "sourceRefs": [
-          "leicam-1"
+          "leicam-p1"
         ]
       },
       "endAngleDeg": {
-        "value": 152,
-        "status": "photo_scaled",
+        "value": 149,
+        "status": "patent",
         "sourceRefs": [
-          "leicam-1"
+          "leicam-p1"
         ]
       },
       "innerRadiusMm": {
         "value": 22,
-        "status": "secondary",
+        "status": "patent",
         "sourceRefs": [
+          "leicam-p1",
           "leicam-3"
         ]
       },
       "outerRadiusMm": {
         "value": 25.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "leicam-1"
+          "leicam-p1",
+          "leicam-3"
         ]
       },
       "depthMm": {
         "value": 1.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "leicam-1"
+          "leicam-p1"
         ]
       },
       "matesWith": "lens-lug-2",
-      "shapeNotes": "four-lug bayonet [leicam-1]"
+      "shapeNotes": "one of the three smaller bayonet slots in the US2618201A four-slot embodiment"
     },
     {
       "featureId": "body-slot-3",
@@ -35680,48 +35684,50 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 225,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "leicam-1"
+          "leicam-p1"
         ]
       },
       "startAngleDeg": {
-        "value": 208,
-        "status": "photo_scaled",
+        "value": 211,
+        "status": "patent",
         "sourceRefs": [
-          "leicam-1"
+          "leicam-p1"
         ]
       },
       "endAngleDeg": {
-        "value": 242,
-        "status": "photo_scaled",
+        "value": 239,
+        "status": "patent",
         "sourceRefs": [
-          "leicam-1"
+          "leicam-p1"
         ]
       },
       "innerRadiusMm": {
         "value": 22,
-        "status": "secondary",
+        "status": "patent",
         "sourceRefs": [
+          "leicam-p1",
           "leicam-3"
         ]
       },
       "outerRadiusMm": {
         "value": 25.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "leicam-1"
+          "leicam-p1",
+          "leicam-3"
         ]
       },
       "depthMm": {
         "value": 1.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "leicam-1"
+          "leicam-p1"
         ]
       },
       "matesWith": "lens-lug-3",
-      "shapeNotes": "four-lug bayonet [leicam-1]"
+      "shapeNotes": "one of the three smaller bayonet slots in the US2618201A four-slot embodiment"
     },
     {
       "featureId": "body-slot-4",
@@ -35730,48 +35736,50 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 315,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "leicam-1"
+          "leicam-p1"
         ]
       },
       "startAngleDeg": {
-        "value": 298,
-        "status": "photo_scaled",
+        "value": 301,
+        "status": "patent",
         "sourceRefs": [
-          "leicam-1"
+          "leicam-p1"
         ]
       },
       "endAngleDeg": {
-        "value": 332,
-        "status": "photo_scaled",
+        "value": 329,
+        "status": "patent",
         "sourceRefs": [
-          "leicam-1"
+          "leicam-p1"
         ]
       },
       "innerRadiusMm": {
         "value": 22,
-        "status": "secondary",
+        "status": "patent",
         "sourceRefs": [
+          "leicam-p1",
           "leicam-3"
         ]
       },
       "outerRadiusMm": {
         "value": 25.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "leicam-1"
+          "leicam-p1",
+          "leicam-3"
         ]
       },
       "depthMm": {
         "value": 1.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "leicam-1"
+          "leicam-p1"
         ]
       },
       "matesWith": "lens-lug-4",
-      "shapeNotes": "four-lug bayonet [leicam-1]"
+      "shapeNotes": "one of the three smaller bayonet slots in the US2618201A four-slot embodiment"
     },
     {
       "featureId": "body-index-mark",
@@ -35823,53 +35831,55 @@ None — fully electronic.
     },
     {
       "featureId": "body-lock-pin",
-      "featureType": "lock_pin",
+      "featureType": "alignment_pin",
       "profileId": "leica-m/base",
       "count": 1,
       "centerAngleDeg": {
-        "value": 180,
-        "status": "photo_scaled",
+        "value": 45,
+        "status": "patent",
         "sourceRefs": [
-          "leicam-1"
+          "leicam-p1"
         ]
       },
       "startAngleDeg": {
-        "value": "unknown",
-        "status": "unknown",
+        "value": 45,
+        "status": "patent",
         "sourceRefs": [
-          "leicam-1"
+          "leicam-p1"
         ]
       },
       "endAngleDeg": {
-        "value": "unknown",
-        "status": "unknown",
+        "value": 45,
+        "status": "patent",
         "sourceRefs": [
-          "leicam-1"
+          "leicam-p1"
         ]
       },
       "innerRadiusMm": {
-        "value": "unknown",
-        "status": "unknown",
+        "value": 24.5,
+        "status": "patent",
         "sourceRefs": [
-          "leicam-1"
+          "leicam-p1",
+          "leicam-3"
         ]
       },
       "outerRadiusMm": {
         "value": 24.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "leicam-1"
+          "leicam-p1",
+          "leicam-3"
         ]
       },
       "depthMm": {
-        "value": 2,
-        "status": "photo_scaled",
+        "value": 1,
+        "status": "patent",
         "sourceRefs": [
-          "leicam-1"
+          "leicam-p1"
         ]
       },
       "matesWith": "lens-lock-notch",
-      "shapeNotes": "lock pin (position unconfirmed)"
+      "shapeNotes": "tactile protuberance in the selected camera bayonet slot per US2618201A; production lock pin remains unverified"
     }
   ],
   "lensSideFeatures": [
@@ -35976,48 +35986,50 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 45,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "leicam-1"
+          "leicam-p1"
         ]
       },
       "startAngleDeg": {
-        "value": 28,
-        "status": "photo_scaled",
+        "value": 23,
+        "status": "patent",
         "sourceRefs": [
-          "leicam-1"
+          "leicam-p1"
         ]
       },
       "endAngleDeg": {
-        "value": 62,
-        "status": "photo_scaled",
+        "value": 67,
+        "status": "patent",
         "sourceRefs": [
-          "leicam-1"
+          "leicam-p1"
         ]
       },
       "innerRadiusMm": {
         "value": 22,
-        "status": "secondary",
+        "status": "patent",
         "sourceRefs": [
+          "leicam-p1",
           "leicam-3"
         ]
       },
       "outerRadiusMm": {
         "value": 25.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "leicam-1"
+          "leicam-p1",
+          "leicam-3"
         ]
       },
       "thicknessMm": {
         "value": 1.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "leicam-1"
+          "leicam-p1"
         ]
       },
       "matesWith": "body-slot-1",
-      "shapeNotes": "four-lug bayonet [leicam-1]"
+      "shapeNotes": "selected larger/keyed bayonet lug from US2618201A, normalized to Leica M clocking"
     },
     {
       "featureId": "lens-lug-2",
@@ -36026,48 +36038,50 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 135,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "leicam-1"
+          "leicam-p1"
         ]
       },
       "startAngleDeg": {
-        "value": 118,
-        "status": "photo_scaled",
+        "value": 121,
+        "status": "patent",
         "sourceRefs": [
-          "leicam-1"
+          "leicam-p1"
         ]
       },
       "endAngleDeg": {
-        "value": 152,
-        "status": "photo_scaled",
+        "value": 149,
+        "status": "patent",
         "sourceRefs": [
-          "leicam-1"
+          "leicam-p1"
         ]
       },
       "innerRadiusMm": {
         "value": 22,
-        "status": "secondary",
+        "status": "patent",
         "sourceRefs": [
+          "leicam-p1",
           "leicam-3"
         ]
       },
       "outerRadiusMm": {
         "value": 25.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "leicam-1"
+          "leicam-p1",
+          "leicam-3"
         ]
       },
       "thicknessMm": {
         "value": 1.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "leicam-1"
+          "leicam-p1"
         ]
       },
       "matesWith": "body-slot-2",
-      "shapeNotes": "four-lug bayonet [leicam-1]"
+      "shapeNotes": "one of the three smaller bayonet lugs in the US2618201A four-lug embodiment"
     },
     {
       "featureId": "lens-lug-3",
@@ -36076,48 +36090,50 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 225,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "leicam-1"
+          "leicam-p1"
         ]
       },
       "startAngleDeg": {
-        "value": 208,
-        "status": "photo_scaled",
+        "value": 211,
+        "status": "patent",
         "sourceRefs": [
-          "leicam-1"
+          "leicam-p1"
         ]
       },
       "endAngleDeg": {
-        "value": 242,
-        "status": "photo_scaled",
+        "value": 239,
+        "status": "patent",
         "sourceRefs": [
-          "leicam-1"
+          "leicam-p1"
         ]
       },
       "innerRadiusMm": {
         "value": 22,
-        "status": "secondary",
+        "status": "patent",
         "sourceRefs": [
+          "leicam-p1",
           "leicam-3"
         ]
       },
       "outerRadiusMm": {
         "value": 25.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "leicam-1"
+          "leicam-p1",
+          "leicam-3"
         ]
       },
       "thicknessMm": {
         "value": 1.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "leicam-1"
+          "leicam-p1"
         ]
       },
       "matesWith": "body-slot-3",
-      "shapeNotes": "four-lug bayonet [leicam-1]"
+      "shapeNotes": "one of the three smaller bayonet lugs in the US2618201A four-lug embodiment"
     },
     {
       "featureId": "lens-lug-4",
@@ -36126,48 +36142,50 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 315,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "leicam-1"
+          "leicam-p1"
         ]
       },
       "startAngleDeg": {
-        "value": 298,
-        "status": "photo_scaled",
+        "value": 301,
+        "status": "patent",
         "sourceRefs": [
-          "leicam-1"
+          "leicam-p1"
         ]
       },
       "endAngleDeg": {
-        "value": 332,
-        "status": "photo_scaled",
+        "value": 329,
+        "status": "patent",
         "sourceRefs": [
-          "leicam-1"
+          "leicam-p1"
         ]
       },
       "innerRadiusMm": {
         "value": 22,
-        "status": "secondary",
+        "status": "patent",
         "sourceRefs": [
+          "leicam-p1",
           "leicam-3"
         ]
       },
       "outerRadiusMm": {
         "value": 25.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "leicam-1"
+          "leicam-p1",
+          "leicam-3"
         ]
       },
       "thicknessMm": {
         "value": 1.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "leicam-1"
+          "leicam-p1"
         ]
       },
       "matesWith": "body-slot-4",
-      "shapeNotes": "four-lug bayonet [leicam-1]"
+      "shapeNotes": "one of the three smaller bayonet lugs in the US2618201A four-lug embodiment"
     },
     {
       "featureId": "lens-index-mark",
@@ -36223,49 +36241,51 @@ None — fully electronic.
       "profileId": "leica-m/base",
       "count": 1,
       "centerAngleDeg": {
-        "value": 180,
-        "status": "photo_scaled",
+        "value": 45,
+        "status": "patent",
         "sourceRefs": [
-          "leicam-1"
+          "leicam-p1"
         ]
       },
       "startAngleDeg": {
-        "value": "unknown",
-        "status": "unknown",
+        "value": 45,
+        "status": "patent",
         "sourceRefs": [
-          "leicam-1"
+          "leicam-p1"
         ]
       },
       "endAngleDeg": {
-        "value": "unknown",
-        "status": "unknown",
+        "value": 45,
+        "status": "patent",
         "sourceRefs": [
-          "leicam-1"
+          "leicam-p1"
         ]
       },
       "innerRadiusMm": {
-        "value": "unknown",
-        "status": "unknown",
+        "value": 24.5,
+        "status": "patent",
         "sourceRefs": [
-          "leicam-1"
+          "leicam-p1",
+          "leicam-3"
         ]
       },
       "outerRadiusMm": {
         "value": 24.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "leicam-1"
+          "leicam-p1",
+          "leicam-3"
         ]
       },
       "thicknessMm": {
-        "value": 2,
-        "status": "photo_scaled",
+        "value": 1,
+        "status": "patent",
         "sourceRefs": [
-          "leicam-1"
+          "leicam-p1"
         ]
       },
       "matesWith": "body-lock-pin",
-      "shapeNotes": "receives body lock pin"
+      "shapeNotes": "tactile notch in the selected lens lug per US2618201A; production detent notch remains unverified"
     }
   ],
   "axialStack": [
@@ -36349,22 +36369,22 @@ None — fully electronic.
       "side": "both",
       "profileId": "leica-m/base",
       "centerAngleDeg": {
-        "value": 0,
-        "status": "secondary",
+        "value": 45,
+        "status": "patent",
         "sourceRefs": [
-          "leicam-1"
+          "leicam-p1"
         ]
       },
       "radiusMm": {
         "value": 18,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "leicam-1"
+          "leicam-p1"
         ]
       },
-      "sizeOrTravel": "cam / roller arm",
-      "function": "couples lens focus to the rangefinder",
-      "compatibilityNotes": "body roller arm inside the top of the mount"
+      "sizeOrTravel": "selected-lug cam 9 / rangefinder-lever recess 14",
+      "function": "allows rangefinder-lever access and selected-lug control-cam actuation",
+      "compatibilityNotes": "US2618201A supports the cam/recess concept near the selected lug; exact Leica M production roller position remains unverified"
     },
     {
       "featureId": "six-bit-coding",
@@ -36482,17 +36502,17 @@ None — fully electronic.
     {
       "ref": "leicam-p1",
       "sourceType": "patent",
-      "citation": "US2618201A, Leitz bayonet/lug objective attachment family. Accessed 2026-06-06.",
+      "citation": "US2618201A, “Apparatus for detachably attaching camera objectives to cameras.” Accessed 2026-06-06.",
       "liveUrl": "https://patents.google.com/patent/US2618201A/en",
       "archiveUrl": "https://patents.google.com/patent/US2618201A/en",
       "archiveDate": "2026-06-06",
-      "appliesTo": "Leica M bayonet/lug research lead",
-      "confidence": "medium"
+      "appliesTo": "Leitz four-slot/four-lug bayonet embodiment, selected larger/keyed lug and slot, tactile notch/protuberance, selected-lug control cam, and rangefinder-lever access recess",
+      "confidence": "high"
     }
   ],
   "openQuestions": [
     {
-      "issue": "Leica M lacks an archived teardown with clock positions: the throat diameter, the lug spans, the rangefinder-cam and 6-bit-coding positions, and the lock/index clock positions are photo-scaled.",
+      "issue": "US2618201A supports the four-lug bayonet, keyed lug/slot, tactile notch/protuberance, selected-lug cam, and rangefinder-lever access recess; exact Leica M production lug clocking/spans, production sprung-lock details, the mounting-index clock position, and 6-bit-coding positions still need an official drawing or measured sample.",
       "affectedFields": [
         "cameraSideFeatures",
         "lensSideFeatures",
@@ -36546,11 +36566,11 @@ None — fully electronic.
 | `leicam-1` | secondary | “Leica M mount,” Wikipedia. Accessed 2026-06-04. | [snapshot](http://web.archive.org/web/20221225162235/https://en.wikipedia.org/wiki/Leica_M_mount) | 2022-12-25 | medium |
 | `leicam-3` | secondary | Film and Digital Times / IB/E Optics mount chart. Accessed 2026-06-06. | [snapshot](https://www.fdtimes.com/wp-content/uploads/2017/05/81-82-FDTimes-IBE-Optics-Update.pdf) | 2026-06-06 | medium |
 | `leicam-2` | secondary | “Lens Mounts: Leica M,” JAPB (japb.net). Accessed 2026-06-04. | [snapshot](http://web.archive.org/web/20250429113337/https://japb.net/theory/lensmounts/leica-m/) | 2025-04-29 | medium |
-| `leicam-p1` | patent | US2618201A, Leitz bayonet/lug objective attachment family. Accessed 2026-06-06. | [snapshot](https://patents.google.com/patent/US2618201A/en) | 2026-06-06 | medium |
+| `leicam-p1` | patent | US2618201A, “Apparatus for detachably attaching camera objectives to cameras.” Accessed 2026-06-06. | [snapshot](https://patents.google.com/patent/US2618201A/en) | 2026-06-06 | high |
 
 #### Open questions
 
-- Leica M lacks an archived teardown with clock positions: the throat diameter, the lug spans, the rangefinder-cam and 6-bit-coding positions, and the lock/index clock positions are photo-scaled. _(Upgrade to an official Leica M mount drawing or measured sample.)_
+- US2618201A supports the four-lug bayonet, keyed lug/slot, tactile notch/protuberance, selected-lug cam, and rangefinder-lever access recess; exact Leica M production lug clocking/spans, production sprung-lock details, the mounting-index clock position, and 6-bit-coding positions still need an official drawing or measured sample. _(Upgrade to an official Leica M mount drawing or measured sample.)_
 
 ### `leica-r` — Leica R
 
