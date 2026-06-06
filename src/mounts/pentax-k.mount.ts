@@ -51,7 +51,7 @@ const PENTAX_K_MOUNT = {
           adds: ["three-lug bayonet (two straight edges)", "lock pin/notch", "mounting index"],
           removes: [],
           changes: [],
-          sourceRefs: W,
+          sourceRefs: [...W, "pk-p1"],
         },
         {
           profileId: "pentax-k/k",
@@ -637,6 +637,17 @@ const PENTAX_K_MOUNT = {
       appliesTo:
         "three-prong bayonet (two straight edges), locking groove at ~3:45, six KA contacts (m1/m2/r1/r2/r3/*)",
       confidence: "medium",
+    },
+    {
+      ref: "pk-p1",
+      sourceType: "patent",
+      citation:
+        "US4017878A, Asahi bayonet-mount adapter for screw-thread lenses on a bayonet body. Accessed 2026-06-06.",
+      liveUrl: "Google Patents: https://patents.google.com/patent/US4017878A/en",
+      archiveUrl: "https://patents.google.com/patent/US4017878A/en",
+      archiveDate: "2026-06-06",
+      appliesTo: "Pentax K related adapter-only research lead",
+      confidence: "low",
     },
   ],
 

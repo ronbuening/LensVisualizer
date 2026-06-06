@@ -55,7 +55,7 @@ const NIKON_F_MOUNT = {
           adds: ["three non-symmetric bayonet lugs", "lock pin/notch", "mounting index"],
           removes: [],
           changes: [],
-          sourceRefs: REF,
+          sourceRefs: [...REF, "nf-p1", "nf-p2"],
         },
         {
           profileId: "nikon-f/non-ai",
@@ -753,6 +753,26 @@ const NIKON_F_MOUNT = {
       appliesTo:
         "flange focal distance, throat, three non-symmetric lugs, CCW lock, AI/AI-S/AF/AF-S ladder, CPU contacts",
       confidence: "high",
+    },
+    {
+      ref: "nf-p1",
+      sourceType: "patent",
+      citation: "US4766453A, Nikon AF-era F-mount bayonet/drive/contact arrangement. Accessed 2026-06-06.",
+      liveUrl: "Google Patents: https://patents.google.com/patent/US4766453A/en",
+      archiveUrl: "https://patents.google.com/patent/US4766453A/en",
+      archiveDate: "2026-06-06",
+      appliesTo: "AF-era Nikon F mount bayonet/drive/contact research lead",
+      confidence: "low",
+    },
+    {
+      ref: "nf-p2",
+      sourceType: "patent",
+      citation: "US5185622A, Nikon AF-era F-mount/contact arrangement. Accessed 2026-06-06.",
+      liveUrl: "Google Patents: https://patents.google.com/patent/US5185622A/en",
+      archiveUrl: "https://patents.google.com/patent/US5185622A/en",
+      archiveDate: "2026-06-06",
+      appliesTo: "AF-era Nikon F mount/contact research lead",
+      confidence: "low",
     },
   ],
 
