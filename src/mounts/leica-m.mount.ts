@@ -1,13 +1,13 @@
 /**
  * Leica M mount SVG specification.
  *
- * Leica's rangefinder bayonet (1954): a very short 27.8 mm flange focal distance, a 44 mm external
+ * Leica's rangefinder bayonet (1954): a very short 27.8 mm flange focal distance, a 44 mm bayonet
  * mount diameter, and a four-lug bayonet. The base profile holds the invariant bayonet plus the
  * rangefinder coupling cam; the `leica-m/6-bit` variant overlays the 6-bit lens-identification coding
  * (a strip of six white/black marks on the lens flange, read optically) found on recent lenses. There
  * are no electrical contacts. The MVP figure renders the 6-bit variant.
  *
- * Sourced scalars: flange focal distance 27.8 mm, 44 mm external diameter, four lugs, rangefinder
+ * Sourced scalars: flange focal distance 27.8 mm, 44 mm bayonet/inside diameter, four lugs, rangefinder
  * coupling cam inside the top of the mount, 6-bit coding [leicam-1]; bayonet type and the 6-bit strip
  * also per the JAPB reference [leicam-2]. The throat diameter, the lug/lock/index clock positions, and
  * the cam/coding positions are photo-scaled and flagged in openQuestions.
@@ -18,6 +18,8 @@ import { degListV, dirV, naV, unknownV, v } from "../optics/mount/authoring.js";
 
 const W = ["leicam-1"]; // Wikipedia
 const J = ["leicam-2"]; // JAPB teardown
+const FDT = ["leicam-3"]; // Film and Digital Times / IB/E Optics chart
+const WF = ["leicam-1", "leicam-3"];
 
 const LEICA_M_MOUNT = {
   mountId: "leica-m",
@@ -52,7 +54,7 @@ const LEICA_M_MOUNT = {
           cameraSideOverlayLayers: ["camera-side-variant-mechanical"],
           lensSideOverlayLayers: ["lens-side-variant-mechanical"],
           status: "researched",
-          sourceRefs: [...W, "leicam-p1"],
+          sourceRefs: [...WF, "leicam-p1"],
         },
         {
           profileId: "leica-m/6-bit",
@@ -72,10 +74,10 @@ const LEICA_M_MOUNT = {
 
   coreDimensions: {
     flangeFocalDistanceMm: v(27.8, "secondary", W),
-    nominalThroatDiameterMm: v(38.5, "photo_scaled", W),
-    effectiveClearApertureMm: v(38.5, "photo_scaled", W),
-    cameraMountOuterDiameterMm: v(44, "secondary", W),
-    lensMountOuterDiameterMm: v(42, "photo_scaled", W),
+    nominalThroatDiameterMm: v(44, "secondary", FDT),
+    effectiveClearApertureMm: v(44, "secondary", FDT),
+    cameraMountOuterDiameterMm: v(52, "photo_scaled", W),
+    lensMountOuterDiameterMm: v(50, "photo_scaled", W),
     contactCount: naV(),
   },
 
@@ -96,7 +98,7 @@ const LEICA_M_MOUNT = {
       startAngleDeg: v(0, "secondary", W),
       endAngleDeg: v(360, "secondary", W),
       innerRadiusMm: v(0, "secondary", W),
-      outerRadiusMm: v(19.25, "photo_scaled", W),
+      outerRadiusMm: v(22, "secondary", FDT),
       depthMm: naV(),
       matesWith: "",
       shapeNotes: "rangefinder mount opening",
@@ -109,11 +111,11 @@ const LEICA_M_MOUNT = {
       centerAngleDeg: v(0, "photo_scaled", W),
       startAngleDeg: v(0, "photo_scaled", W),
       endAngleDeg: v(360, "photo_scaled", W),
-      innerRadiusMm: v(19.25, "photo_scaled", W),
-      outerRadiusMm: v(22, "secondary", W),
+      innerRadiusMm: v(22, "secondary", FDT),
+      outerRadiusMm: v(26, "photo_scaled", W),
       depthMm: naV(),
       matesWith: "",
-      shapeNotes: "44 mm external diameter",
+      shapeNotes: "photo-scaled visible body mount ring around the 44 mm bayonet opening",
     },
     {
       featureId: "body-slot-1",
@@ -123,8 +125,8 @@ const LEICA_M_MOUNT = {
       centerAngleDeg: v(45, "photo_scaled", W),
       startAngleDeg: v(28, "photo_scaled", W),
       endAngleDeg: v(62, "photo_scaled", W),
-      innerRadiusMm: v(19.25, "photo_scaled", W),
-      outerRadiusMm: v(21.5, "photo_scaled", W),
+      innerRadiusMm: v(22, "secondary", FDT),
+      outerRadiusMm: v(25.5, "photo_scaled", W),
       depthMm: v(1.5, "photo_scaled", W),
       matesWith: "lens-lug-1",
       shapeNotes: "four-lug bayonet [leicam-1]",
@@ -137,8 +139,8 @@ const LEICA_M_MOUNT = {
       centerAngleDeg: v(135, "photo_scaled", W),
       startAngleDeg: v(118, "photo_scaled", W),
       endAngleDeg: v(152, "photo_scaled", W),
-      innerRadiusMm: v(19.25, "photo_scaled", W),
-      outerRadiusMm: v(21.5, "photo_scaled", W),
+      innerRadiusMm: v(22, "secondary", FDT),
+      outerRadiusMm: v(25.5, "photo_scaled", W),
       depthMm: v(1.5, "photo_scaled", W),
       matesWith: "lens-lug-2",
       shapeNotes: "four-lug bayonet [leicam-1]",
@@ -151,8 +153,8 @@ const LEICA_M_MOUNT = {
       centerAngleDeg: v(225, "photo_scaled", W),
       startAngleDeg: v(208, "photo_scaled", W),
       endAngleDeg: v(242, "photo_scaled", W),
-      innerRadiusMm: v(19.25, "photo_scaled", W),
-      outerRadiusMm: v(21.5, "photo_scaled", W),
+      innerRadiusMm: v(22, "secondary", FDT),
+      outerRadiusMm: v(25.5, "photo_scaled", W),
       depthMm: v(1.5, "photo_scaled", W),
       matesWith: "lens-lug-3",
       shapeNotes: "four-lug bayonet [leicam-1]",
@@ -165,8 +167,8 @@ const LEICA_M_MOUNT = {
       centerAngleDeg: v(315, "photo_scaled", W),
       startAngleDeg: v(298, "photo_scaled", W),
       endAngleDeg: v(332, "photo_scaled", W),
-      innerRadiusMm: v(19.25, "photo_scaled", W),
-      outerRadiusMm: v(21.5, "photo_scaled", W),
+      innerRadiusMm: v(22, "secondary", FDT),
+      outerRadiusMm: v(25.5, "photo_scaled", W),
       depthMm: v(1.5, "photo_scaled", W),
       matesWith: "lens-lug-4",
       shapeNotes: "four-lug bayonet [leicam-1]",
@@ -180,7 +182,7 @@ const LEICA_M_MOUNT = {
       startAngleDeg: unknownV(W),
       endAngleDeg: unknownV(W),
       innerRadiusMm: unknownV(W),
-      outerRadiusMm: v(22.5, "photo_scaled", W),
+      outerRadiusMm: v(26.5, "photo_scaled", W),
       depthMm: naV(),
       matesWith: "lens-index-mark",
       shapeNotes: "mounting index",
@@ -194,7 +196,7 @@ const LEICA_M_MOUNT = {
       startAngleDeg: unknownV(W),
       endAngleDeg: unknownV(W),
       innerRadiusMm: unknownV(W),
-      outerRadiusMm: v(20.5, "photo_scaled", W),
+      outerRadiusMm: v(24.5, "photo_scaled", W),
       depthMm: v(2, "photo_scaled", W),
       matesWith: "lens-lock-notch",
       shapeNotes: "lock pin (position unconfirmed)",
@@ -211,7 +213,7 @@ const LEICA_M_MOUNT = {
       startAngleDeg: v(0, "secondary", W),
       endAngleDeg: v(360, "secondary", W),
       innerRadiusMm: v(0, "secondary", W),
-      outerRadiusMm: v(18.25, "photo_scaled", W),
+      outerRadiusMm: v(21, "photo_scaled", W),
       thicknessMm: naV(),
       matesWith: "",
       shapeNotes: "rear opening",
@@ -224,8 +226,8 @@ const LEICA_M_MOUNT = {
       centerAngleDeg: v(0, "photo_scaled", W),
       startAngleDeg: v(0, "photo_scaled", W),
       endAngleDeg: v(360, "photo_scaled", W),
-      innerRadiusMm: v(18.25, "photo_scaled", W),
-      outerRadiusMm: v(21.5, "photo_scaled", W),
+      innerRadiusMm: v(21, "photo_scaled", W),
+      outerRadiusMm: v(25.5, "photo_scaled", W),
       thicknessMm: naV(),
       matesWith: "",
       shapeNotes: "lens flange ring",
@@ -238,8 +240,8 @@ const LEICA_M_MOUNT = {
       centerAngleDeg: v(45, "photo_scaled", W),
       startAngleDeg: v(28, "photo_scaled", W),
       endAngleDeg: v(62, "photo_scaled", W),
-      innerRadiusMm: v(19.25, "photo_scaled", W),
-      outerRadiusMm: v(21.5, "photo_scaled", W),
+      innerRadiusMm: v(22, "secondary", FDT),
+      outerRadiusMm: v(25.5, "photo_scaled", W),
       thicknessMm: v(1.5, "photo_scaled", W),
       matesWith: "body-slot-1",
       shapeNotes: "four-lug bayonet [leicam-1]",
@@ -252,8 +254,8 @@ const LEICA_M_MOUNT = {
       centerAngleDeg: v(135, "photo_scaled", W),
       startAngleDeg: v(118, "photo_scaled", W),
       endAngleDeg: v(152, "photo_scaled", W),
-      innerRadiusMm: v(19.25, "photo_scaled", W),
-      outerRadiusMm: v(21.5, "photo_scaled", W),
+      innerRadiusMm: v(22, "secondary", FDT),
+      outerRadiusMm: v(25.5, "photo_scaled", W),
       thicknessMm: v(1.5, "photo_scaled", W),
       matesWith: "body-slot-2",
       shapeNotes: "four-lug bayonet [leicam-1]",
@@ -266,8 +268,8 @@ const LEICA_M_MOUNT = {
       centerAngleDeg: v(225, "photo_scaled", W),
       startAngleDeg: v(208, "photo_scaled", W),
       endAngleDeg: v(242, "photo_scaled", W),
-      innerRadiusMm: v(19.25, "photo_scaled", W),
-      outerRadiusMm: v(21.5, "photo_scaled", W),
+      innerRadiusMm: v(22, "secondary", FDT),
+      outerRadiusMm: v(25.5, "photo_scaled", W),
       thicknessMm: v(1.5, "photo_scaled", W),
       matesWith: "body-slot-3",
       shapeNotes: "four-lug bayonet [leicam-1]",
@@ -280,8 +282,8 @@ const LEICA_M_MOUNT = {
       centerAngleDeg: v(315, "photo_scaled", W),
       startAngleDeg: v(298, "photo_scaled", W),
       endAngleDeg: v(332, "photo_scaled", W),
-      innerRadiusMm: v(19.25, "photo_scaled", W),
-      outerRadiusMm: v(21.5, "photo_scaled", W),
+      innerRadiusMm: v(22, "secondary", FDT),
+      outerRadiusMm: v(25.5, "photo_scaled", W),
       thicknessMm: v(1.5, "photo_scaled", W),
       matesWith: "body-slot-4",
       shapeNotes: "four-lug bayonet [leicam-1]",
@@ -295,7 +297,7 @@ const LEICA_M_MOUNT = {
       startAngleDeg: unknownV(W),
       endAngleDeg: unknownV(W),
       innerRadiusMm: unknownV(W),
-      outerRadiusMm: v(22, "photo_scaled", W),
+      outerRadiusMm: v(26, "photo_scaled", W),
       thicknessMm: naV(),
       matesWith: "body-index-mark",
       shapeNotes: "aligns with body index",
@@ -309,7 +311,7 @@ const LEICA_M_MOUNT = {
       startAngleDeg: unknownV(W),
       endAngleDeg: unknownV(W),
       innerRadiusMm: unknownV(W),
-      outerRadiusMm: v(20.5, "photo_scaled", W),
+      outerRadiusMm: v(24.5, "photo_scaled", W),
       thicknessMm: v(2, "photo_scaled", W),
       matesWith: "body-lock-pin",
       shapeNotes: "receives body lock pin",
@@ -321,13 +323,13 @@ const LEICA_M_MOUNT = {
       planeId: "flange_datum",
       zPositionMm: v(0, "secondary", W),
       thicknessMm: v(0, "secondary", W),
-      diameterMm: v(44, "secondary", W),
+      diameterMm: v(52, "photo_scaled", W),
     },
     {
       planeId: "bayonet_lug_engagement",
       zPositionMm: v(1, "photo_scaled", W),
       thicknessMm: v(1.5, "photo_scaled", W),
-      diameterMm: v(40, "photo_scaled", W),
+      diameterMm: v(48, "photo_scaled", W),
     },
     {
       planeId: "sensor_film_plane",
@@ -355,7 +357,7 @@ const LEICA_M_MOUNT = {
       side: "lens",
       profileId: "leica-m/6-bit",
       centerAngleDeg: v(200, "photo_scaled", J),
-      radiusMm: v(21, "photo_scaled", J),
+      radiusMm: v(25, "photo_scaled", J),
       sizeOrTravel: "six white/black marks",
       function: "optical lens-identification coding",
       compatibilityNotes: "read by digital M bodies",
@@ -368,7 +370,7 @@ const LEICA_M_MOUNT = {
       featureType: "mount_screws",
       side: "body",
       count: v(4, "photo_scaled", W),
-      pcdMm: v(41, "photo_scaled", W),
+      pcdMm: v(49, "photo_scaled", W),
       diameterMm: v(1.6, "photo_scaled", W),
       centerAnglesDeg: degListV([45, 135, 225, 315], "photo_scaled", W),
       shape: "round",
@@ -389,7 +391,17 @@ const LEICA_M_MOUNT = {
       liveUrl: "https://en.wikipedia.org/wiki/Leica_M_mount",
       archiveUrl: "http://web.archive.org/web/20221225162235/https://en.wikipedia.org/wiki/Leica_M_mount",
       archiveDate: "2022-12-25",
-      appliesTo: "flange focal distance, 44 mm external diameter, four lugs, rangefinder cam, 6-bit coding",
+      appliesTo: "flange focal distance, 44 mm bayonet diameter, four lugs, rangefinder cam, 6-bit coding",
+      confidence: "medium",
+    },
+    {
+      ref: "leicam-3",
+      sourceType: "secondary",
+      citation: "Film and Digital Times / IB/E Optics mount chart. Accessed 2026-06-06.",
+      liveUrl: "FDTimes chart: https://www.fdtimes.com/wp-content/uploads/2017/05/81-82-FDTimes-IBE-Optics-Update.pdf",
+      archiveUrl: "https://www.fdtimes.com/wp-content/uploads/2017/05/81-82-FDTimes-IBE-Optics-Update.pdf",
+      archiveDate: "2026-06-06",
+      appliesTo: "Leica M 27.8 mm register and 44 mm inside diameter chart entry",
       confidence: "medium",
     },
     {
@@ -418,13 +430,7 @@ const LEICA_M_MOUNT = {
     {
       issue:
         "Leica M lacks an archived teardown with clock positions: the throat diameter, the lug spans, the rangefinder-cam and 6-bit-coding positions, and the lock/index clock positions are photo-scaled.",
-      affectedFields: [
-        "nominalThroatDiameterMm",
-        "cameraSideFeatures",
-        "lensSideFeatures",
-        "mechanicalCouplings",
-        "lockGeometry",
-      ],
+      affectedFields: ["cameraSideFeatures", "lensSideFeatures", "mechanicalCouplings", "lockGeometry"],
       candidateValues: [],
       resolution: "Upgrade to an official Leica M mount drawing or measured sample.",
     },

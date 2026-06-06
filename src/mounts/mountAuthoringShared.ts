@@ -3,10 +3,16 @@ import type {
   CameraSideFeature,
   ContactFeature,
   LensSideFeature,
+  MechanicalCoupling,
   MountProfileId,
+  MountSpecInput,
+  OpenQuestion,
   ScrewGasketBaffle,
+  SourceRef,
   ValueStatus,
+  VariantLayer,
 } from "../types/mount.js";
+import type { LensMountId } from "../utils/catalog/lensTaxonomy.js";
 import { degListV, naV, unknownV, v } from "../optics/mount/authoring.js";
 
 function normAngle(angleDeg: number): number {
@@ -209,6 +215,147 @@ export function makeBayonetFeatures(config: BayonetFeatureConfig): {
   return { cameraSideFeatures, lensSideFeatures };
 }
 
+interface ThreadedFeatureConfig {
+  profileId: MountProfileId;
+  refs: string[];
+  threadDiameterMm: number;
+  cameraOuterDiameterMm: number;
+  lensOuterDiameterMm: number;
+  pitchMm?: number;
+  scalarStatus?: ValueStatus;
+  featureStatus?: ValueStatus;
+  indexCenterAngleDeg?: number;
+  lockShapeNotes?: string;
+  threadShapeNotes: string;
+}
+
+export function makeThreadedFeatures(config: ThreadedFeatureConfig): {
+  cameraSideFeatures: CameraSideFeature[];
+  lensSideFeatures: LensSideFeature[];
+} {
+  const {
+    profileId,
+    refs,
+    threadDiameterMm,
+    cameraOuterDiameterMm,
+    lensOuterDiameterMm,
+    threadShapeNotes,
+    scalarStatus = "secondary",
+    featureStatus = "secondary",
+    indexCenterAngleDeg = 0,
+  } = config;
+  const threadRadiusMm = threadDiameterMm / 2;
+  const cameraOuterRadiusMm = cameraOuterDiameterMm / 2;
+  const lensOuterRadiusMm = lensOuterDiameterMm / 2;
+  const pitchText = config.pitchMm === undefined ? "" : `, ${config.pitchMm} mm pitch`;
+
+  const cameraSideFeatures: CameraSideFeature[] = [
+    {
+      featureId: "body-thread-throat",
+      featureType: "body_throat",
+      profileId,
+      count: 1,
+      centerAngleDeg: v(0, scalarStatus, refs),
+      startAngleDeg: v(0, scalarStatus, refs),
+      endAngleDeg: v(360, scalarStatus, refs),
+      innerRadiusMm: v(0, scalarStatus, refs),
+      outerRadiusMm: v(threadRadiusMm, scalarStatus, refs),
+      depthMm: naV(),
+      matesWith: "lens-thread",
+      shapeNotes: `${threadDiameterMm} mm female thread${pitchText}; ${threadShapeNotes}`,
+    },
+    {
+      featureId: "body-mount-ring",
+      featureType: "mount_ring",
+      profileId,
+      count: 1,
+      centerAngleDeg: v(0, featureStatus, refs),
+      startAngleDeg: v(0, featureStatus, refs),
+      endAngleDeg: v(360, featureStatus, refs),
+      innerRadiusMm: v(threadRadiusMm, scalarStatus, refs),
+      outerRadiusMm: v(cameraOuterRadiusMm, featureStatus, refs),
+      depthMm: naV(),
+      matesWith: "",
+      shapeNotes: "body threaded mount shoulder",
+    },
+    {
+      featureId: "body-thread-start",
+      featureType: "thread_start",
+      profileId,
+      count: 1,
+      centerAngleDeg: v(indexCenterAngleDeg, featureStatus, refs),
+      startAngleDeg: unknownV(refs),
+      endAngleDeg: unknownV(refs),
+      innerRadiusMm: v(threadRadiusMm - 1, featureStatus, refs),
+      outerRadiusMm: v(threadRadiusMm, scalarStatus, refs),
+      depthMm: v(config.pitchMm ?? 1, featureStatus, refs),
+      matesWith: "lens-thread-start",
+      shapeNotes: config.lockShapeNotes ?? "representative thread start / seating shoulder",
+    },
+  ];
+
+  const lensSideFeatures: LensSideFeature[] = [
+    {
+      featureId: "lens-throat",
+      featureType: "lens_throat",
+      profileId,
+      count: 1,
+      centerAngleDeg: v(0, scalarStatus, refs),
+      startAngleDeg: v(0, scalarStatus, refs),
+      endAngleDeg: v(360, scalarStatus, refs),
+      innerRadiusMm: v(0, scalarStatus, refs),
+      outerRadiusMm: v(threadRadiusMm - 1, featureStatus, refs),
+      thicknessMm: naV(),
+      matesWith: "",
+      shapeNotes: "rear opening inside male thread",
+    },
+    {
+      featureId: "lens-thread",
+      featureType: "male_thread",
+      profileId,
+      count: 1,
+      centerAngleDeg: v(0, scalarStatus, refs),
+      startAngleDeg: v(0, scalarStatus, refs),
+      endAngleDeg: v(360, scalarStatus, refs),
+      innerRadiusMm: v(threadRadiusMm - 1, featureStatus, refs),
+      outerRadiusMm: v(threadRadiusMm, scalarStatus, refs),
+      thicknessMm: v(config.pitchMm ?? 1, featureStatus, refs),
+      matesWith: "body-thread-throat",
+      shapeNotes: `${threadDiameterMm} mm male thread${pitchText}; ${threadShapeNotes}`,
+    },
+    {
+      featureId: "lens-mount-ring",
+      featureType: "lens_mount_ring",
+      profileId,
+      count: 1,
+      centerAngleDeg: v(0, featureStatus, refs),
+      startAngleDeg: v(0, featureStatus, refs),
+      endAngleDeg: v(360, featureStatus, refs),
+      innerRadiusMm: v(threadRadiusMm, scalarStatus, refs),
+      outerRadiusMm: v(lensOuterRadiusMm, featureStatus, refs),
+      thicknessMm: naV(),
+      matesWith: "",
+      shapeNotes: "lens threaded mount shoulder",
+    },
+    {
+      featureId: "lens-thread-start",
+      featureType: "thread_start",
+      profileId,
+      count: 1,
+      centerAngleDeg: v(indexCenterAngleDeg, featureStatus, refs),
+      startAngleDeg: unknownV(refs),
+      endAngleDeg: unknownV(refs),
+      innerRadiusMm: v(threadRadiusMm - 1, featureStatus, refs),
+      outerRadiusMm: v(threadRadiusMm, scalarStatus, refs),
+      thicknessMm: v(config.pitchMm ?? 1, featureStatus, refs),
+      matesWith: "body-thread-start",
+      shapeNotes: "representative male thread start",
+    },
+  ];
+
+  return { cameraSideFeatures, lensSideFeatures };
+}
+
 interface ContactBankConfig {
   profileId: MountProfileId;
   refs: string[];
@@ -332,5 +479,115 @@ export function makeMountScrews(
     diameterMm: v(diameterMm, status, refs),
     centerAnglesDeg: degListV(anglesDeg, status, refs),
     shape: "round",
+  };
+}
+
+interface SimpleMountSpecConfig {
+  mountId: LensMountId;
+  displayLabel: string;
+  projectNote: string;
+  researchStatus: MountSpecInput["researchStatus"];
+  mvpStatus: MountSpecInput["mvpStatus"];
+  mechanism: MountSpecInput["mechanism"];
+  lockType: MountSpecInput["lockType"];
+  profileId: MountProfileId;
+  refs: string[];
+  mvpRequired: string[];
+  conditionalCoreRequired: string[];
+  variantRequired?: string[];
+  referenceGrade?: string[];
+  appliesTo: string;
+  adds: string[];
+  removes: string[];
+  changes: string[];
+  flangeFocalDistanceMm: MountSpecInput["coreDimensions"]["flangeFocalDistanceMm"];
+  nominalThroatDiameterMm: MountSpecInput["coreDimensions"]["nominalThroatDiameterMm"];
+  effectiveClearApertureMm: MountSpecInput["coreDimensions"]["effectiveClearApertureMm"];
+  cameraMountOuterDiameterMm: MountSpecInput["coreDimensions"]["cameraMountOuterDiameterMm"];
+  lensMountOuterDiameterMm: MountSpecInput["coreDimensions"]["lensMountOuterDiameterMm"];
+  contactCount: MountSpecInput["coreDimensions"]["contactCount"];
+  lockGeometry: MountSpecInput["lockGeometry"];
+  cameraSideFeatures: CameraSideFeature[];
+  lensSideFeatures: LensSideFeature[];
+  axialStack: AxialPlane[];
+  contacts?: ContactFeature[];
+  mechanicalCouplings?: MechanicalCoupling[];
+  screwsGasketsBaffles?: ScrewGasketBaffle[];
+  sourceRefs: SourceRef[];
+  openQuestions: OpenQuestion[];
+  includeElectricalLayers?: boolean;
+  includeMechanicalLayers?: boolean;
+}
+
+export function makeSimpleMountSpec(config: SimpleMountSpecConfig): MountSpecInput {
+  const cameraSideOverlayLayers: VariantLayer[] = [
+    ...(config.includeElectricalLayers ? (["camera-side-variant-electrical"] as const) : []),
+    ...(config.includeMechanicalLayers ? (["camera-side-variant-mechanical"] as const) : []),
+  ];
+  const lensSideOverlayLayers: VariantLayer[] = [
+    ...(config.includeElectricalLayers ? (["lens-side-variant-electrical"] as const) : []),
+    ...(config.includeMechanicalLayers ? (["lens-side-variant-mechanical"] as const) : []),
+  ];
+  const variantRequired: VariantLayer[] = [...cameraSideOverlayLayers, ...lensSideOverlayLayers];
+
+  return {
+    mountId: config.mountId,
+    displayLabel: config.displayLabel,
+    projectNote: config.projectNote,
+    researchStatus: config.researchStatus,
+    mvpStatus: config.mvpStatus,
+    mechanism: config.mechanism,
+    lockType: config.lockType,
+    mvp: {
+      requiredViews: ["camera_side_front_view", "lens_side_rear_view", "axial_register_schematic"],
+      requirementLevels: {
+        mvpRequired: config.mvpRequired,
+        conditionalCoreRequired: config.conditionalCoreRequired,
+        variantRequired: config.variantRequired ?? [],
+        mvpOptional: ["mount_screws"],
+        referenceGrade: config.referenceGrade ?? [],
+      },
+      profileModel: {
+        baseProfileId: config.profileId,
+        selectedMvpProfileId: config.profileId,
+        variantStrategy: "base_only",
+        variantProfiles: [
+          {
+            profileId: config.profileId,
+            profileType: "base",
+            appliesTo: config.appliesTo,
+            adds: config.adds,
+            removes: config.removes,
+            changes: config.changes,
+            cameraSideOverlayLayers,
+            lensSideOverlayLayers,
+            status: config.researchStatus,
+            sourceRefs: config.refs,
+          },
+        ],
+      },
+    },
+    coreDimensions: {
+      flangeFocalDistanceMm: config.flangeFocalDistanceMm,
+      nominalThroatDiameterMm: config.nominalThroatDiameterMm,
+      effectiveClearApertureMm: config.effectiveClearApertureMm,
+      cameraMountOuterDiameterMm: config.cameraMountOuterDiameterMm,
+      lensMountOuterDiameterMm: config.lensMountOuterDiameterMm,
+      contactCount: config.contactCount,
+    },
+    lockGeometry: config.lockGeometry,
+    cameraSideFeatures: config.cameraSideFeatures,
+    lensSideFeatures: config.lensSideFeatures,
+    axialStack: config.axialStack,
+    contacts: config.contacts ?? [],
+    mechanicalCouplings: config.mechanicalCouplings ?? [],
+    screwsGasketsBaffles: config.screwsGasketsBaffles ?? [],
+    svgLayers: {
+      mvpRequired: ["datum-axis", "camera-side-metal", "lens-side-metal", "axial-section", "uncertainty"],
+      conditionalCoreRequired: ["clear-aperture", "camera-side-core-interface", "lens-side-core-interface"],
+      variantRequired,
+    },
+    sourceRefs: config.sourceRefs,
+    openQuestions: config.openQuestions,
   };
 }
