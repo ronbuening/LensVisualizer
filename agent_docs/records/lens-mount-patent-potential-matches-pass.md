@@ -6,6 +6,7 @@
 - Cleaned labeled `sourceRefs.liveUrl` values across mount specs so patent/JAPB/manufacturer references are direct URLs instead of strings like `Google Patents: https://...`.
 - Added a validator guard so future label-prefixed URL strings cannot bypass live URL archive/date checks.
 - Followed up on Nikon Z after reviewing US10831084B2 directly: the patent now backs the four-claw body/lens bayonet, lock pin/receiving groove, and 11-terminal order with `patent` provenance so those features render as solid patent embodiment lines.
+- Followed up on Nikon F after reviewing US4766453A and US5185622A directly: the AF-era bayonet/lock/diaphragm/drive/contact structures now carry `patent` provenance where the patents support them.
 
 ## In-Order Mount Pass
 - Canon EF: existing `mvp_complete`; patent leads retained as related EF-era connector provenance.
@@ -18,7 +19,7 @@
 - Hasselblad V: existing renderable partial; early Hasselblad-related patent retained as low-confidence lineage only.
 - Leica M: existing `mvp_complete`; Leitz bayonet/lug patent retained as strong family provenance.
 - Nikon 1: existing `mvp_complete`; Nikon 1/CX-era patent family retained for mount/contact provenance.
-- Nikon F: existing `mvp_complete`; AF-era Nikon F patent leads retained as related variant provenance.
+- Nikon F: existing `mvp_complete`; AF-era Nikon F patent leads now back the bayonet/lock/diaphragm/AF-drive/contact structures that the patents directly disclose.
 - Nikon Z: existing `mvp_complete`; Nikon Z patent retained for body/lens-side mount/contact provenance.
 - Four Thirds: existing `mvp_complete`; Olympus/Four Thirds patent retained for native body/lens mount provenance.
 - Micro Four Thirds: existing `mvp_complete`; Four Thirds predecessor patent retained as related-only provenance.
@@ -36,6 +37,7 @@
 - `npm run format:check` — passed after formatting `src/mounts/pentax-110.mount.ts`.
 - `npm run lint` — passed.
 - Nikon Z follow-up: reran `npm run typecheck`, `npm run test -- mountSpecs mountRender nikonFMount`, `npm run generate:mount-svgs`, `npm run format:check`, and `npm run lint` — all passed.
+- Nikon F follow-up: reran `npm run typecheck`, `npm run test -- mountSpecs mountRender nikonFMount`, `npm run generate:mount-svgs`, `npm run format:check`, and `npm run lint` — all passed.
 
 ## Follow-ups
 - The partial medium-format/mechanical entries remain renderable but not reference-grade until service drawings or measured samples provide model-specific bayonet sectors and coupling positions.
