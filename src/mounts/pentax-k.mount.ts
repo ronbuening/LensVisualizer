@@ -643,7 +643,7 @@ const PENTAX_K_MOUNT = {
       sourceType: "patent",
       citation:
         "US4017878A, Asahi bayonet-mount adapter for screw-thread lenses on a bayonet body. Accessed 2026-06-06.",
-      liveUrl: "Google Patents: https://patents.google.com/patent/US4017878A/en",
+      liveUrl: "https://patents.google.com/patent/US4017878A/en",
       archiveUrl: "https://patents.google.com/patent/US4017878A/en",
       archiveDate: "2026-06-06",
       appliesTo: "Pentax K related adapter-only research lead",

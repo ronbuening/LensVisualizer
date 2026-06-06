@@ -1385,7 +1385,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "ref": "betr-2",
       "sourceType": "secondary",
       "citation": "“Zenza Bronica ETRSi,” Lunar Stage. Accessed 2026-06-06.",
-      "liveUrl": "Lunar Stage: https://lunarstage.com/bronica-etrsi/",
+      "liveUrl": "https://lunarstage.com/bronica-etrsi/",
       "archiveUrl": "https://lunarstage.com/bronica-etrsi/",
       "archiveDate": "2026-06-06",
       "appliesTo": "ETR system identity, 69.0 mm flange-to-focal-plane distance",
@@ -1395,7 +1395,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "ref": "betr-p1",
       "sourceType": "patent",
       "citation": "US4063264A, Bronica lens-shutter SLR interchangeable-lens mount family. Accessed 2026-06-06.",
-      "liveUrl": "Google Patents: https://patents.google.com/patent/US4063264A/en",
+      "liveUrl": "https://patents.google.com/patent/US4063264A/en",
       "archiveUrl": "https://patents.google.com/patent/US4063264A/en",
       "archiveDate": "2026-06-06",
       "appliesTo": "Bronica mount-family and leaf-shutter coupling research lead",
@@ -2791,7 +2791,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "ref": "bgs-2",
       "sourceType": "secondary",
       "citation": "“Bronica GS-1,” Camera-wiki.org. Accessed 2026-06-06.",
-      "liveUrl": "Camera-wiki: https://camera-wiki.org/wiki/Bronica_GS1",
+      "liveUrl": "https://camera-wiki.org/wiki/Bronica_GS1",
       "archiveUrl": "https://camera-wiki.org/wiki/Bronica_GS1",
       "archiveDate": "2026-06-06",
       "appliesTo": "GS-1 system identity and lens-mount distinction from SQ",
@@ -2801,7 +2801,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "ref": "bgs-p1",
       "sourceType": "patent",
       "citation": "US4063264A, Bronica lens-shutter SLR interchangeable-lens mount family. Accessed 2026-06-06.",
-      "liveUrl": "Google Patents: https://patents.google.com/patent/US4063264A/en",
+      "liveUrl": "https://patents.google.com/patent/US4063264A/en",
       "archiveUrl": "https://patents.google.com/patent/US4063264A/en",
       "archiveDate": "2026-06-06",
       "appliesTo": "Bronica mount-family and leaf-shutter coupling research lead",
@@ -4197,7 +4197,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "ref": "bsq-2",
       "sourceType": "secondary",
       "citation": "“Bronica SQ,” Camera-wiki.org. Accessed 2026-06-06.",
-      "liveUrl": "Camera-wiki: https://camera-wiki.org/wiki/Bronica_SQ-Ai",
+      "liveUrl": "https://camera-wiki.org/wiki/Bronica_SQ-Ai",
       "archiveUrl": "https://camera-wiki.org/wiki/Bronica_SQ-Ai",
       "archiveDate": "2026-06-06",
       "appliesTo": "SQ system identity and leaf-shutter lens family",
@@ -4207,7 +4207,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
       "ref": "bsq-p1",
       "sourceType": "patent",
       "citation": "US4063264A, Bronica lens-shutter SLR interchangeable-lens mount family. Accessed 2026-06-06.",
-      "liveUrl": "Google Patents: https://patents.google.com/patent/US4063264A/en",
+      "liveUrl": "https://patents.google.com/patent/US4063264A/en",
       "archiveUrl": "https://patents.google.com/patent/US4063264A/en",
       "archiveDate": "2026-06-06",
       "appliesTo": "Bronica mount-family and leaf-shutter coupling research lead",
@@ -6083,7 +6083,7 @@ None — fully electronic.
       "ref": "ef-p1",
       "sourceType": "patent",
       "citation": "JPS62195633A, Canon EF-era bayonet/contact connector family. Accessed 2026-06-06.",
-      "liveUrl": "Google Patents: https://patents.google.com/patent/JPS62195633A/en",
+      "liveUrl": "https://patents.google.com/patent/JPS62195633A/en",
       "archiveUrl": "https://patents.google.com/patent/JPS62195633A/en",
       "archiveDate": "2026-06-06",
       "appliesTo": "related EF-era bayonet/contact connector research lead",
@@ -6093,7 +6093,7 @@ None — fully electronic.
       "ref": "ef-p2",
       "sourceType": "patent",
       "citation": "US4999659A, Canon EF-era camera/lens connector patent. Accessed 2026-06-06.",
-      "liveUrl": "Google Patents: https://patents.google.com/patent/US4999659A/en",
+      "liveUrl": "https://patents.google.com/patent/US4999659A/en",
       "archiveUrl": "https://patents.google.com/patent/US4999659A/en",
       "archiveDate": "2026-06-06",
       "appliesTo": "related EF-era contact connector research lead",
@@ -8435,7 +8435,7 @@ None — fully electronic.
       "ref": "efm-p1",
       "sourceType": "patent",
       "citation": "US8830607B2, “Image pickup apparatus capable of interchanging lenses and lens mount therefor.” Accessed 2026-06-06.",
-      "liveUrl": "Google Patents: https://patents.google.com/patent/US8830607B2/en",
+      "liveUrl": "https://patents.google.com/patent/US8830607B2/en",
       "archiveUrl": "https://patents.google.com/patent/US8830607B2/en",
       "archiveDate": "2026-06-06",
       "appliesTo": "Canon mirrorless bayonet pawls, body-side/lens-side mount portions, contact portion",
@@ -8445,7 +8445,7 @@ None — fully electronic.
       "ref": "efm-p2",
       "sourceType": "patent",
       "citation": "US9638987B2, “Camera and camera accessory.” Accessed 2026-06-06.",
-      "liveUrl": "Google Patents: https://patents.google.com/patent/US9638987B2/en",
+      "liveUrl": "https://patents.google.com/patent/US9638987B2/en",
       "archiveUrl": "https://patents.google.com/patent/US9638987B2/en",
       "archiveDate": "2026-06-06",
       "appliesTo": "multiple contact pins/contact surfaces arranged circumferentially in a Canon camera/accessory mount",
@@ -10533,7 +10533,7 @@ None — fully electronic.
       "ref": "efs-p1",
       "sourceType": "patent",
       "citation": "JPS62195633A, Canon camera/lens bayonet and contact connector family. Accessed 2026-06-06.",
-      "liveUrl": "Google Patents: https://patents.google.com/patent/JPS62195633A/en",
+      "liveUrl": "https://patents.google.com/patent/JPS62195633A/en",
       "archiveUrl": "https://patents.google.com/patent/JPS62195633A/en",
       "archiveDate": "2026-06-06",
       "appliesTo": "EF-era bayonet/contact research lead",
@@ -10543,7 +10543,7 @@ None — fully electronic.
       "ref": "efs-p2",
       "sourceType": "patent",
       "citation": "US4999659A, Canon camera accessory/contact connector family. Accessed 2026-06-06.",
-      "liveUrl": "Google Patents: https://patents.google.com/patent/US4999659A/en",
+      "liveUrl": "https://patents.google.com/patent/US4999659A/en",
       "archiveUrl": "https://patents.google.com/patent/US4999659A/en",
       "archiveDate": "2026-06-06",
       "appliesTo": "EF-era contact connector research lead",
@@ -12019,7 +12019,7 @@ None — fully electronic.
       "ref": "fd-2",
       "sourceType": "secondary",
       "citation": "“Lens mounts: Canon FD,” JAPB (japb.net). Accessed 2026-06-06.",
-      "liveUrl": "JAPB: https://japb.net/theory/lensmounts/canon-fd/",
+      "liveUrl": "https://japb.net/theory/lensmounts/canon-fd/",
       "archiveUrl": "https://japb.net/theory/lensmounts/canon-fd/",
       "archiveDate": "2026-06-06",
       "appliesTo": "breech-lock type, 42 mm register, stop-down and aperture-indicator levers, approx. 90 degree collar rotation",
@@ -12029,7 +12029,7 @@ None — fully electronic.
       "ref": "fd-p1",
       "sourceType": "patent",
       "citation": "US3906534A, “Device for mounting and dismounting an interchangeable lens.” Accessed 2026-06-06.",
-      "liveUrl": "Google Patents: https://patents.google.com/patent/US3906534A/en",
+      "liveUrl": "https://patents.google.com/patent/US3906534A/en",
       "archiveUrl": "https://patents.google.com/patent/US3906534A/en",
       "archiveDate": "2026-06-06",
       "appliesTo": "Canon breech-lock mounting/dismounting mechanism research lead",
@@ -12039,7 +12039,7 @@ None — fully electronic.
       "ref": "fd-p2",
       "sourceType": "patent",
       "citation": "US4251134A, Canon interchangeable-lens safety/mechanism patent. Accessed 2026-06-06.",
-      "liveUrl": "Google Patents: https://patents.google.com/patent/US4251134A/en",
+      "liveUrl": "https://patents.google.com/patent/US4251134A/en",
       "archiveUrl": "https://patents.google.com/patent/US4251134A/en",
       "archiveDate": "2026-06-06",
       "appliesTo": "Canon FD-era safety/mechanical mount research lead",
@@ -13315,7 +13315,7 @@ None — fully electronic.
       "ref": "fl-p1",
       "sourceType": "patent",
       "citation": "US3906534A, “Device for mounting and dismounting an interchangeable lens.” Accessed 2026-06-06.",
-      "liveUrl": "Google Patents: https://patents.google.com/patent/US3906534A/en",
+      "liveUrl": "https://patents.google.com/patent/US3906534A/en",
       "archiveUrl": "https://patents.google.com/patent/US3906534A/en",
       "archiveDate": "2026-06-06",
       "appliesTo": "Canon breech-lock lineage research lead",
@@ -15532,7 +15532,7 @@ None — fully electronic.
       "ref": "rf-p1",
       "sourceType": "patent",
       "citation": "US10613419B2, Canon RF-era body/accessory mount family. Accessed 2026-06-06.",
-      "liveUrl": "Google Patents: https://patents.google.com/patent/US10613419B2/en",
+      "liveUrl": "https://patents.google.com/patent/US10613419B2/en",
       "archiveUrl": "https://patents.google.com/patent/US10613419B2/en",
       "archiveDate": "2026-06-06",
       "appliesTo": "RF-era camera/accessory mount research lead",
@@ -15542,7 +15542,7 @@ None — fully electronic.
       "ref": "rf-p2",
       "sourceType": "patent",
       "citation": "US10620509B2, Canon RF-era accessory/contact terminal family. Accessed 2026-06-06.",
-      "liveUrl": "Google Patents: https://patents.google.com/patent/US10620509B2/en",
+      "liveUrl": "https://patents.google.com/patent/US10620509B2/en",
       "archiveUrl": "https://patents.google.com/patent/US10620509B2/en",
       "archiveDate": "2026-06-06",
       "appliesTo": "RF-era accessory/contact terminal research lead",
@@ -15552,7 +15552,7 @@ None — fully electronic.
       "ref": "rf-p3",
       "sourceType": "patent",
       "citation": "US10627704B2, Canon RF-era claw/contact terminal family. Accessed 2026-06-06.",
-      "liveUrl": "Google Patents: https://patents.google.com/patent/US10627704B2/en",
+      "liveUrl": "https://patents.google.com/patent/US10627704B2/en",
       "archiveUrl": "https://patents.google.com/patent/US10627704B2/en",
       "archiveDate": "2026-06-06",
       "appliesTo": "RF-era bayonet claw/contact research lead",
@@ -15562,7 +15562,7 @@ None — fully electronic.
       "ref": "rf-p4",
       "sourceType": "patent",
       "citation": "US10656504B2, Canon RF-era mount/accessory family. Accessed 2026-06-06.",
-      "liveUrl": "Google Patents: https://patents.google.com/patent/US10656504B2/en",
+      "liveUrl": "https://patents.google.com/patent/US10656504B2/en",
       "archiveUrl": "https://patents.google.com/patent/US10656504B2/en",
       "archiveDate": "2026-06-06",
       "appliesTo": "RF-era mount/accessory research lead",
@@ -16777,7 +16777,7 @@ None — fully electronic.
       "ref": "crf-1",
       "sourceType": "secondary",
       "citation": "“Flange focal distance,” Wikipedia. Accessed 2026-06-06.",
-      "liveUrl": "Wikipedia: https://en.wikipedia.org/wiki/Flange_focal_distance",
+      "liveUrl": "https://en.wikipedia.org/wiki/Flange_focal_distance",
       "archiveUrl": "http://web.archive.org/web/20260526152456/https://en.wikipedia.org/wiki/Flange_focal_distance",
       "archiveDate": "2026-05-26",
       "appliesTo": "Contax rangefinder register",
@@ -18040,7 +18040,7 @@ None — fully electronic.
       "ref": "cy-1",
       "sourceType": "secondary",
       "citation": "“Flange focal distance,” Wikipedia. Accessed 2026-06-06.",
-      "liveUrl": "Wikipedia: https://en.wikipedia.org/wiki/Flange_focal_distance",
+      "liveUrl": "https://en.wikipedia.org/wiki/Flange_focal_distance",
       "archiveUrl": "http://web.archive.org/web/20260526152456/https://en.wikipedia.org/wiki/Flange_focal_distance",
       "archiveDate": "2026-05-26",
       "appliesTo": "45.5 mm Contax/Yashica register",
@@ -19422,7 +19422,7 @@ None — fully electronic.
       "ref": "exa-2",
       "sourceType": "secondary",
       "citation": "“Lens Mounts: Exakta,” JAPB (japb.net). Accessed 2026-06-06.",
-      "liveUrl": "JAPB: https://japb.net/theory/lens-mounts/exakta/",
+      "liveUrl": "https://japb.net/theory/lens-mounts/exakta/",
       "archiveUrl": "https://japb.net/theory/lens-mounts/exakta/",
       "archiveDate": "2026-06-06",
       "appliesTo": "three-pronged inner bayonet, about 33.8 mm throat, release/locking pin, Exakta variants",
@@ -19432,7 +19432,7 @@ None — fully electronic.
       "ref": "exa-p1",
       "sourceType": "patent",
       "citation": "US2136149A, Ihagee quick-detachable lens mount patent. Accessed 2026-06-06.",
-      "liveUrl": "Google Patents: https://patents.google.com/patent/US2136149A/en",
+      "liveUrl": "https://patents.google.com/patent/US2136149A/en",
       "archiveUrl": "https://patents.google.com/patent/US2136149A/en",
       "archiveDate": "2026-06-06",
       "appliesTo": "Exakta-family quick-detachable bayonet research lead",
@@ -22129,7 +22129,7 @@ None — fully electronic.
       "ref": "ft-p1",
       "sourceType": "patent",
       "citation": "US6910814B2, Four Thirds digital camera system with lens/body mount portions. Accessed 2026-06-06.",
-      "liveUrl": "Google Patents: https://patents.google.com/patent/US6910814B2/en",
+      "liveUrl": "https://patents.google.com/patent/US6910814B2/en",
       "archiveUrl": "https://patents.google.com/patent/US6910814B2/en",
       "archiveDate": "2026-06-06",
       "appliesTo": "Four Thirds lens-side and body-side mount portions",
@@ -28596,7 +28596,7 @@ None — fully electronic.
       "ref": "hh-1",
       "sourceType": "secondary",
       "citation": "Film and Digital Times / IB/E Optics mount chart. Accessed 2026-06-06.",
-      "liveUrl": "FDTimes chart: https://www.fdtimes.com/wp-content/uploads/2017/05/81-82-FDTimes-IBE-Optics-Update.pdf",
+      "liveUrl": "https://www.fdtimes.com/wp-content/uploads/2017/05/81-82-FDTimes-IBE-Optics-Update.pdf",
       "archiveUrl": "https://www.fdtimes.com/wp-content/uploads/2017/05/81-82-FDTimes-IBE-Optics-Update.pdf",
       "archiveDate": "2026-06-06",
       "appliesTo": "Hasselblad H 61.63 mm register and approx. 67.5 mm inside-diameter chart entry",
@@ -29999,7 +29999,7 @@ None — fully electronic.
       "ref": "hv-2",
       "sourceType": "secondary",
       "citation": "Film and Digital Times / IB/E Optics mount chart. Accessed 2026-06-06.",
-      "liveUrl": "FDTimes chart: https://www.fdtimes.com/wp-content/uploads/2017/05/81-82-FDTimes-IBE-Optics-Update.pdf",
+      "liveUrl": "https://www.fdtimes.com/wp-content/uploads/2017/05/81-82-FDTimes-IBE-Optics-Update.pdf",
       "archiveUrl": "https://www.fdtimes.com/wp-content/uploads/2017/05/81-82-FDTimes-IBE-Optics-Update.pdf",
       "archiveDate": "2026-06-06",
       "appliesTo": "Hasselblad 500/200 V-system 74.9 mm FFD and 69 mm inside diameter chart entry",
@@ -30009,7 +30009,7 @@ None — fully electronic.
       "ref": "hv-p1",
       "sourceType": "patent",
       "citation": "US2526433A, early Hasselblad-related lens-mount/focusing patent. Accessed 2026-06-06.",
-      "liveUrl": "Google Patents: https://patents.google.com/patent/US2526433A/en",
+      "liveUrl": "https://patents.google.com/patent/US2526433A/en",
       "archiveUrl": "https://patents.google.com/patent/US2526433A/en",
       "archiveDate": "2026-06-06",
       "appliesTo": "Hasselblad mount-family research lead",
@@ -32233,7 +32233,7 @@ None — fully electronic.
       "ref": "xcd-1",
       "sourceType": "secondary",
       "citation": "“Flange focal distance,” Wikipedia. Accessed 2026-06-06.",
-      "liveUrl": "Wikipedia: https://en.wikipedia.org/wiki/Flange_focal_distance",
+      "liveUrl": "https://en.wikipedia.org/wiki/Flange_focal_distance",
       "archiveUrl": "http://web.archive.org/web/20260526152456/https://en.wikipedia.org/wiki/Flange_focal_distance",
       "archiveDate": "2026-05-26",
       "appliesTo": "18.14 mm Hasselblad XCD register",
@@ -35146,7 +35146,7 @@ None — fully electronic.
       "ref": "ltm-1",
       "sourceType": "secondary",
       "citation": "“Leica M39 lens mount,” Wikipedia. Accessed 2026-06-06.",
-      "liveUrl": "Wikipedia: https://en.wikipedia.org/wiki/Leica_M39_lens_mount",
+      "liveUrl": "https://en.wikipedia.org/wiki/Leica_M39_lens_mount",
       "archiveUrl": "http://web.archive.org/web/20260513020949/https://en.wikipedia.org/wiki/Leica_M39_lens_mount",
       "archiveDate": "2026-05-13",
       "appliesTo": "39 mm screw thread and 28.8 mm register",
@@ -35156,7 +35156,7 @@ None — fully electronic.
       "ref": "ltm-2",
       "sourceType": "secondary",
       "citation": "“Flange focal distance,” Wikipedia. Accessed 2026-06-06.",
-      "liveUrl": "Wikipedia: https://en.wikipedia.org/wiki/Flange_focal_distance",
+      "liveUrl": "https://en.wikipedia.org/wiki/Flange_focal_distance",
       "archiveUrl": "http://web.archive.org/web/20260526152456/https://en.wikipedia.org/wiki/Flange_focal_distance",
       "archiveDate": "2026-05-26",
       "appliesTo": "LTM register cross-check",
@@ -36463,7 +36463,7 @@ None — fully electronic.
       "ref": "leicam-3",
       "sourceType": "secondary",
       "citation": "Film and Digital Times / IB/E Optics mount chart. Accessed 2026-06-06.",
-      "liveUrl": "FDTimes chart: https://www.fdtimes.com/wp-content/uploads/2017/05/81-82-FDTimes-IBE-Optics-Update.pdf",
+      "liveUrl": "https://www.fdtimes.com/wp-content/uploads/2017/05/81-82-FDTimes-IBE-Optics-Update.pdf",
       "archiveUrl": "https://www.fdtimes.com/wp-content/uploads/2017/05/81-82-FDTimes-IBE-Optics-Update.pdf",
       "archiveDate": "2026-06-06",
       "appliesTo": "Leica M 27.8 mm register and 44 mm inside diameter chart entry",
@@ -36483,7 +36483,7 @@ None — fully electronic.
       "ref": "leicam-p1",
       "sourceType": "patent",
       "citation": "US2618201A, Leitz bayonet/lug objective attachment family. Accessed 2026-06-06.",
-      "liveUrl": "Google Patents: https://patents.google.com/patent/US2618201A/en",
+      "liveUrl": "https://patents.google.com/patent/US2618201A/en",
       "archiveUrl": "https://patents.google.com/patent/US2618201A/en",
       "archiveDate": "2026-06-06",
       "appliesTo": "Leica M bayonet/lug research lead",
@@ -37739,7 +37739,7 @@ None — fully electronic.
       "ref": "lr-1",
       "sourceType": "secondary",
       "citation": "“Flange focal distance,” Wikipedia. Accessed 2026-06-06.",
-      "liveUrl": "Wikipedia: https://en.wikipedia.org/wiki/Flange_focal_distance",
+      "liveUrl": "https://en.wikipedia.org/wiki/Flange_focal_distance",
       "archiveUrl": "http://web.archive.org/web/20260526152456/https://en.wikipedia.org/wiki/Flange_focal_distance",
       "archiveDate": "2026-05-26",
       "appliesTo": "47 mm Leica R register and 49 mm inside diameter",
@@ -38558,7 +38558,7 @@ None — fully electronic.
       "ref": "m42-1",
       "sourceType": "secondary",
       "citation": "“M42 lens mount,” Wikipedia. Accessed 2026-06-06.",
-      "liveUrl": "Wikipedia: https://en.wikipedia.org/wiki/M42_lens_mount",
+      "liveUrl": "https://en.wikipedia.org/wiki/M42_lens_mount",
       "archiveUrl": "http://web.archive.org/web/20260513021006/https://en.wikipedia.org/wiki/M42_lens_mount",
       "archiveDate": "2026-05-13",
       "appliesTo": "M42 x 1 thread and 45.46 mm register",
@@ -38568,7 +38568,7 @@ None — fully electronic.
       "ref": "m42-2",
       "sourceType": "secondary",
       "citation": "“Flange focal distance,” Wikipedia. Accessed 2026-06-06.",
-      "liveUrl": "Wikipedia: https://en.wikipedia.org/wiki/Flange_focal_distance",
+      "liveUrl": "https://en.wikipedia.org/wiki/Flange_focal_distance",
       "archiveUrl": "http://web.archive.org/web/20260526152456/https://en.wikipedia.org/wiki/Flange_focal_distance",
       "archiveDate": "2026-05-26",
       "appliesTo": "M42 register cross-check",
@@ -40884,7 +40884,7 @@ None — fully electronic.
       "ref": "mft-p1",
       "sourceType": "patent",
       "citation": "US6910814B2, Four Thirds predecessor mount patent lead. Accessed 2026-06-06.",
-      "liveUrl": "Google Patents: https://patents.google.com/patent/US6910814B2/en",
+      "liveUrl": "https://patents.google.com/patent/US6910814B2/en",
       "archiveUrl": "https://patents.google.com/patent/US6910814B2/en",
       "archiveDate": "2026-06-06",
       "appliesTo": "related predecessor Four Thirds body/lens mount structure",
@@ -42162,7 +42162,7 @@ None — fully electronic.
       "ref": "msr-1",
       "sourceType": "secondary",
       "citation": "“Flange focal distance,” Wikipedia. Accessed 2026-06-06.",
-      "liveUrl": "Wikipedia: https://en.wikipedia.org/wiki/Flange_focal_distance",
+      "liveUrl": "https://en.wikipedia.org/wiki/Flange_focal_distance",
       "archiveUrl": "http://web.archive.org/web/20260526152456/https://en.wikipedia.org/wiki/Flange_focal_distance",
       "archiveDate": "2026-05-26",
       "appliesTo": "43.5 mm Minolta SR register",
@@ -45426,7 +45426,7 @@ None — fully electronic.
       "ref": "n1-2",
       "sourceType": "secondary",
       "citation": "“Lens Mounts: Nikon 1,” JAPB (japb.net). Accessed 2026-06-06.",
-      "liveUrl": "JAPB: https://japb.net/theory/lensmounts/nikon-1/",
+      "liveUrl": "https://japb.net/theory/lensmounts/nikon-1/",
       "archiveUrl": "https://japb.net/theory/lensmounts/nikon-1/",
       "archiveDate": "2026-06-06",
       "appliesTo": "three-pronged bayonet, 3 o'clock lock groove, 12 contacts from 10:30–1:30",
@@ -45436,7 +45436,7 @@ None — fully electronic.
       "ref": "n1-p1",
       "sourceType": "patent",
       "citation": "US9075287B2, Nikon 1/CX-era camera accessory/body mount family. Accessed 2026-06-06.",
-      "liveUrl": "Google Patents: https://patents.google.com/patent/US9075287B2/en",
+      "liveUrl": "https://patents.google.com/patent/US9075287B2/en",
       "archiveUrl": "https://patents.google.com/patent/US9075287B2/en",
       "archiveDate": "2026-06-06",
       "appliesTo": "Nikon 1 accessory/body mount research lead",
@@ -45446,7 +45446,7 @@ None — fully electronic.
       "ref": "n1-p2",
       "sourceType": "patent",
       "citation": "US8430582B2, Nikon camera accessory mount family. Accessed 2026-06-06.",
-      "liveUrl": "Google Patents: https://patents.google.com/patent/US8430582B2/en",
+      "liveUrl": "https://patents.google.com/patent/US8430582B2/en",
       "archiveUrl": "https://patents.google.com/patent/US8430582B2/en",
       "archiveDate": "2026-06-06",
       "appliesTo": "Nikon 1/CX-era mount research lead",
@@ -45456,7 +45456,7 @@ None — fully electronic.
       "ref": "n1-p3",
       "sourceType": "patent",
       "citation": "US9164360B2, Nikon camera accessory mount family. Accessed 2026-06-06.",
-      "liveUrl": "Google Patents: https://patents.google.com/patent/US9164360B2/en",
+      "liveUrl": "https://patents.google.com/patent/US9164360B2/en",
       "archiveUrl": "https://patents.google.com/patent/US9164360B2/en",
       "archiveDate": "2026-06-06",
       "appliesTo": "Nikon 1/CX-era mount research lead",
@@ -45466,7 +45466,7 @@ None — fully electronic.
       "ref": "n1-p4",
       "sourceType": "patent",
       "citation": "US9645476B2, Nikon camera accessory mount family. Accessed 2026-06-06.",
-      "liveUrl": "Google Patents: https://patents.google.com/patent/US9645476B2/en",
+      "liveUrl": "https://patents.google.com/patent/US9645476B2/en",
       "archiveUrl": "https://patents.google.com/patent/US9645476B2/en",
       "archiveDate": "2026-06-06",
       "appliesTo": "Nikon 1/CX-era mount research lead",
@@ -47947,7 +47947,7 @@ None — fully electronic.
       "ref": "nf-p1",
       "sourceType": "patent",
       "citation": "US4766453A, Nikon AF-era F-mount bayonet/drive/contact arrangement. Accessed 2026-06-06.",
-      "liveUrl": "Google Patents: https://patents.google.com/patent/US4766453A/en",
+      "liveUrl": "https://patents.google.com/patent/US4766453A/en",
       "archiveUrl": "https://patents.google.com/patent/US4766453A/en",
       "archiveDate": "2026-06-06",
       "appliesTo": "AF-era Nikon F mount bayonet/drive/contact research lead",
@@ -47957,7 +47957,7 @@ None — fully electronic.
       "ref": "nf-p2",
       "sourceType": "patent",
       "citation": "US5185622A, Nikon AF-era F-mount/contact arrangement. Accessed 2026-06-06.",
-      "liveUrl": "Google Patents: https://patents.google.com/patent/US5185622A/en",
+      "liveUrl": "https://patents.google.com/patent/US5185622A/en",
       "archiveUrl": "https://patents.google.com/patent/US5185622A/en",
       "archiveDate": "2026-06-06",
       "appliesTo": "AF-era Nikon F mount/contact research lead",
@@ -49183,7 +49183,7 @@ None — fully electronic.
       "ref": "ns-1",
       "sourceType": "secondary",
       "citation": "“Flange focal distance,” Wikipedia. Accessed 2026-06-06.",
-      "liveUrl": "Wikipedia: https://en.wikipedia.org/wiki/Flange_focal_distance",
+      "liveUrl": "https://en.wikipedia.org/wiki/Flange_focal_distance",
       "archiveUrl": "http://web.archive.org/web/20260526152456/https://en.wikipedia.org/wiki/Flange_focal_distance",
       "archiveDate": "2026-05-26",
       "appliesTo": "Nikon S rangefinder register",
@@ -49288,7 +49288,7 @@ None — fully electronic.
 | Effective clear aperture | 55 (`secondary`) | mm |
 | Camera mount outer diameter | 66 (`photo_scaled`) | mm |
 | Lens mount outer diameter | 64 (`photo_scaled`) | mm |
-| Contact count | 11 (`secondary`) | count |
+| Contact count | 11 (`patent`) | count |
 | Lock rotation | unknown (`unknown`) | deg |
 | Lock direction | unknown (`unknown`) | — |
 
@@ -49296,11 +49296,11 @@ None — fully electronic.
 
 **Camera-side front view** — viewBox `-41 -42 82 83` ([standalone SVG](mounts/nikon-z-camera-front.svg))
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-41 -42 82 83" role="img" aria-labelledby="nikon-z-base-camera_side_front-title nikon-z-base-camera_side_front-desc"><title id="nikon-z-base-camera_side_front-title">Nikon Z mount — camera-side front view (base)</title><desc id="nikon-z-base-camera_side_front-desc">Nikon Z bayonet mount, camera-side front view. Flange focal distance 16 mm, nominal throat 55 mm. Profile nikon-z/base.</desc><metadata>{"mountId":"nikon-z","profileId":"nikon-z/base","view":"camera_side_front","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.65" y1="0" x2="1.65" y2="0" stroke="#8a94a0" stroke-width="0.492" fill="none" /><line x1="0" y1="-1.65" x2="0" y2="1.65" stroke="#8a94a0" stroke-width="0.492" fill="none" /><line x1="0" y1="-33" x2="0" y2="-34.98" stroke="#8a94a0" stroke-width="0.492" fill="none" /></g><g data-layer="camera-side-metal"><path d="M0,-33 A33,33 0 1 1 0,33 A33,33 0 1 1 0,-33 Z M0,-27.5 A27.5,27.5 0 1 1 0,27.5 A27.5,27.5 0 1 1 0,-27.5 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-33 A33,33 0 1 1 0,33 A33,33 0 1 1 0,-33 Z M0,-27.5 A27.5,27.5 0 1 1 0,27.5 A27.5,27.5 0 1 1 0,-27.5 Z" stroke="#6b7a8f" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /><path d="M0,-27.5 A27.5,27.5 0 1 1 0,27.5 A27.5,27.5 0 1 1 0,-27.5 Z" stroke="#2f80c4" stroke-width="0.369" fill="none" /><circle cx="10.774" cy="-29.6" r="1" stroke="#7f8c3a" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /><circle cx="31.021" cy="-5.47" r="1" stroke="#7f8c3a" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /><circle cx="20.248" cy="24.13" r="1" stroke="#7f8c3a" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /><circle cx="-10.774" cy="29.6" r="1" stroke="#7f8c3a" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /><circle cx="-31.021" cy="5.47" r="1" stroke="#7f8c3a" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /><circle cx="-20.248" cy="-24.13" r="1" stroke="#7f8c3a" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-core-interface"><path d="M0,-30.2 L-2.045,-33.438 L2.045,-33.438 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-30.2 L-2.045,-33.438 L2.045,-33.438 Z" stroke="#e8853a" stroke-width="0.492" fill="none" stroke-dasharray="0.6 1.6" /><path d="M12.91,-24.281 L14.319,-26.93 A30.5,30.5 0 0 1 26.93,-14.319 L24.281,-12.91 A27.5,27.5 0 0 0 12.91,-24.281 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M12.91,-24.281 L14.319,-26.93 A30.5,30.5 0 0 1 26.93,-14.319 L24.281,-12.91 A27.5,27.5 0 0 0 12.91,-24.281 Z" stroke="#2a9d8f" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /><circle cx="28.5" cy="0" r="1.155" fill="#d1495b" fill-opacity="0.12" /><circle cx="28.5" cy="0" r="1.155" stroke="#d1495b" stroke-width="0.492" fill="none" stroke-dasharray="0.6 1.6" /><path d="M24.281,12.91 L26.93,14.319 A30.5,30.5 0 0 1 14.319,26.93 L12.91,24.281 A27.5,27.5 0 0 0 24.281,12.91 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M24.281,12.91 L26.93,14.319 A30.5,30.5 0 0 1 14.319,26.93 L12.91,24.281 A27.5,27.5 0 0 0 24.281,12.91 Z" stroke="#2a9d8f" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /><path d="M-12.91,24.281 L-14.319,26.93 A30.5,30.5 0 0 1 -26.93,14.319 L-24.281,12.91 A27.5,27.5 0 0 0 -12.91,24.281 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-12.91,24.281 L-14.319,26.93 A30.5,30.5 0 0 1 -26.93,14.319 L-24.281,12.91 A27.5,27.5 0 0 0 -12.91,24.281 Z" stroke="#2a9d8f" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /><path d="M-24.281,-12.91 L-26.93,-14.319 A30.5,30.5 0 0 1 -14.319,-26.93 L-12.91,-24.281 A27.5,27.5 0 0 0 -24.281,-12.91 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-24.281,-12.91 L-26.93,-14.319 A30.5,30.5 0 0 1 -14.319,-26.93 L-12.91,-24.281 A27.5,27.5 0 0 0 -24.281,-12.91 Z" stroke="#2a9d8f" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-variant-electrical"><path d="M12.526,20.472 L14.092,23.031 A27,27 0 0 1 12.9,23.719 L11.466,21.084 A24,24 0 0 0 12.526,20.472 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M12.526,20.472 L14.092,23.031 A27,27 0 0 1 12.9,23.719 L11.466,21.084 A24,24 0 0 0 12.526,20.472 Z" stroke="#8a5cd1" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /><path d="M10.317,21.669 L11.607,24.378 A27,27 0 0 1 10.35,24.938 L9.2,22.167 A24,24 0 0 0 10.317,21.669 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M10.317,21.669 L11.607,24.378 A27,27 0 0 1 10.35,24.938 L9.2,22.167 A24,24 0 0 0 10.317,21.669 Z" stroke="#8a5cd1" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /><path d="M7.996,22.629 L8.995,25.458 A27,27 0 0 1 7.686,25.883 L6.832,23.007 A24,24 0 0 0 7.996,22.629 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M7.996,22.629 L8.995,25.458 A27,27 0 0 1 7.686,25.883 L6.832,23.007 A24,24 0 0 0 7.996,22.629 Z" stroke="#8a5cd1" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /><path d="M5.587,23.341 L6.285,26.258 A27,27 0 0 1 4.939,26.544 L4.39,23.595 A24,24 0 0 0 5.587,23.341 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M5.587,23.341 L6.285,26.258 A27,27 0 0 1 4.939,26.544 L4.39,23.595 A24,24 0 0 0 5.587,23.341 Z" stroke="#8a5cd1" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /><path d="M3.116,23.797 L3.506,26.771 A27,27 0 0 1 2.137,26.915 L1.9,23.925 A24,24 0 0 0 3.116,23.797 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M3.116,23.797 L3.506,26.771 A27,27 0 0 1 2.137,26.915 L1.9,23.925 A24,24 0 0 0 3.116,23.797 Z" stroke="#8a5cd1" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /><path d="M0.612,23.992 L0.688,26.991 A27,27 0 0 1 -0.688,26.991 L-0.612,23.992 A24,24 0 0 0 0.612,23.992 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M0.612,23.992 L0.688,26.991 A27,27 0 0 1 -0.688,26.991 L-0.612,23.992 A24,24 0 0 0 0.612,23.992 Z" stroke="#8a5cd1" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /><path d="M-1.9,23.925 L-2.137,26.915 A27,27 0 0 1 -3.506,26.771 L-3.116,23.797 A24,24 0 0 0 -1.9,23.925 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-1.9,23.925 L-2.137,26.915 A27,27 0 0 1 -3.506,26.771 L-3.116,23.797 A24,24 0 0 0 -1.9,23.925 Z" stroke="#8a5cd1" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /><path d="M-4.39,23.595 L-4.939,26.544 A27,27 0 0 1 -6.285,26.258 L-5.587,23.341 A24,24 0 0 0 -4.39,23.595 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-4.39,23.595 L-4.939,26.544 A27,27 0 0 1 -6.285,26.258 L-5.587,23.341 A24,24 0 0 0 -4.39,23.595 Z" stroke="#8a5cd1" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /><path d="M-6.832,23.007 L-7.686,25.883 A27,27 0 0 1 -8.995,25.458 L-7.996,22.629 A24,24 0 0 0 -6.832,23.007 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-6.832,23.007 L-7.686,25.883 A27,27 0 0 1 -8.995,25.458 L-7.996,22.629 A24,24 0 0 0 -6.832,23.007 Z" stroke="#8a5cd1" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /><path d="M-9.2,22.167 L-10.35,24.938 A27,27 0 0 1 -11.607,24.378 L-10.317,21.669 A24,24 0 0 0 -9.2,22.167 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-9.2,22.167 L-10.35,24.938 A27,27 0 0 1 -11.607,24.378 L-10.317,21.669 A24,24 0 0 0 -9.2,22.167 Z" stroke="#8a5cd1" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /><path d="M-11.466,21.084 L-12.9,23.719 A27,27 0 0 1 -14.092,23.031 L-12.526,20.472 A24,24 0 0 0 -11.466,21.084 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-11.466,21.084 L-12.9,23.719 A27,27 0 0 1 -14.092,23.031 L-12.526,20.472 A24,24 0 0 0 -11.466,21.084 Z" stroke="#8a5cd1" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-39.36" y1="-37.85" x2="-34.44" y2="-37.85" stroke="#2f80c4" stroke-width="0.581" /><text x="-33.112" y="-36.92" font-size="2.656" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-39.36" y1="-33.866" x2="-34.44" y2="-33.866" stroke="#6b7a8f" stroke-width="0.581" /><text x="-33.112" y="-32.936" font-size="2.656" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-39.36" y1="-29.882" x2="-34.44" y2="-29.882" stroke="#2a9d8f" stroke-width="0.581" /><text x="-33.112" y="-28.952" font-size="2.656" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-39.36" y1="-25.898" x2="-34.44" y2="-25.898" stroke="#d1495b" stroke-width="0.581" /><text x="-33.112" y="-24.968" font-size="2.656" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-39.36" y1="-21.914" x2="-34.44" y2="-21.914" stroke="#e8853a" stroke-width="0.581" /><text x="-33.112" y="-20.984" font-size="2.656" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-39.36" y1="-17.93" x2="-34.44" y2="-17.93" stroke="#8a5cd1" stroke-width="0.581" /><text x="-33.112" y="-17" font-size="2.656" fill="#8a5cd1" font-family="sans-serif">Electrical contact</text><line x1="-39.36" y1="-13.946" x2="-34.44" y2="-13.946" stroke="#7f8c3a" stroke-width="0.581" /><text x="-33.112" y="-13.016" font-size="2.656" fill="#7f8c3a" font-family="sans-serif">Screws / seals</text><line x1="-39.36" y1="-9.962" x2="-34.44" y2="-9.962" stroke="#8a94a0" stroke-width="0.581" /><text x="-33.112" y="-9.032" font-size="2.656" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-41 -42 82 83" role="img" aria-labelledby="nikon-z-base-camera_side_front-title nikon-z-base-camera_side_front-desc"><title id="nikon-z-base-camera_side_front-title">Nikon Z mount — camera-side front view (base)</title><desc id="nikon-z-base-camera_side_front-desc">Nikon Z bayonet mount, camera-side front view. Flange focal distance 16 mm, nominal throat 55 mm. Profile nikon-z/base.</desc><metadata>{"mountId":"nikon-z","profileId":"nikon-z/base","view":"camera_side_front","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.65" y1="0" x2="1.65" y2="0" stroke="#8a94a0" stroke-width="0.492" fill="none" /><line x1="0" y1="-1.65" x2="0" y2="1.65" stroke="#8a94a0" stroke-width="0.492" fill="none" /><line x1="0" y1="-33" x2="0" y2="-34.98" stroke="#8a94a0" stroke-width="0.492" fill="none" /></g><g data-layer="camera-side-metal"><path d="M0,-33 A33,33 0 1 1 0,33 A33,33 0 1 1 0,-33 Z M0,-27.5 A27.5,27.5 0 1 1 0,27.5 A27.5,27.5 0 1 1 0,-27.5 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-33 A33,33 0 1 1 0,33 A33,33 0 1 1 0,-33 Z M0,-27.5 A27.5,27.5 0 1 1 0,27.5 A27.5,27.5 0 1 1 0,-27.5 Z" stroke="#6b7a8f" stroke-width="0.492" fill="none" /><path d="M0,-27.5 A27.5,27.5 0 1 1 0,27.5 A27.5,27.5 0 1 1 0,-27.5 Z" stroke="#2f80c4" stroke-width="0.369" fill="none" /><circle cx="10.774" cy="-29.6" r="1" stroke="#7f8c3a" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /><circle cx="31.021" cy="-5.47" r="1" stroke="#7f8c3a" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /><circle cx="20.248" cy="24.13" r="1" stroke="#7f8c3a" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /><circle cx="-10.774" cy="29.6" r="1" stroke="#7f8c3a" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /><circle cx="-31.021" cy="5.47" r="1" stroke="#7f8c3a" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /><circle cx="-20.248" cy="-24.13" r="1" stroke="#7f8c3a" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-core-interface"><path d="M0,-30.2 L-2.045,-33.438 L2.045,-33.438 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-30.2 L-2.045,-33.438 L2.045,-33.438 Z" stroke="#e8853a" stroke-width="0.492" fill="none" stroke-dasharray="0.6 1.6" /><path d="M12.91,-24.281 L14.319,-26.93 A30.5,30.5 0 0 1 26.93,-14.319 L24.281,-12.91 A27.5,27.5 0 0 0 12.91,-24.281 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M12.91,-24.281 L14.319,-26.93 A30.5,30.5 0 0 1 26.93,-14.319 L24.281,-12.91 A27.5,27.5 0 0 0 12.91,-24.281 Z" stroke="#2a9d8f" stroke-width="0.492" fill="none" /><circle cx="28.5" cy="0" r="1.155" fill="#d1495b" fill-opacity="0.12" /><circle cx="28.5" cy="0" r="1.155" stroke="#d1495b" stroke-width="0.492" fill="none" /><path d="M24.281,12.91 L26.93,14.319 A30.5,30.5 0 0 1 14.319,26.93 L12.91,24.281 A27.5,27.5 0 0 0 24.281,12.91 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M24.281,12.91 L26.93,14.319 A30.5,30.5 0 0 1 14.319,26.93 L12.91,24.281 A27.5,27.5 0 0 0 24.281,12.91 Z" stroke="#2a9d8f" stroke-width="0.492" fill="none" /><path d="M-12.91,24.281 L-14.319,26.93 A30.5,30.5 0 0 1 -26.93,14.319 L-24.281,12.91 A27.5,27.5 0 0 0 -12.91,24.281 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-12.91,24.281 L-14.319,26.93 A30.5,30.5 0 0 1 -26.93,14.319 L-24.281,12.91 A27.5,27.5 0 0 0 -12.91,24.281 Z" stroke="#2a9d8f" stroke-width="0.492" fill="none" /><path d="M-24.281,-12.91 L-26.93,-14.319 A30.5,30.5 0 0 1 -14.319,-26.93 L-12.91,-24.281 A27.5,27.5 0 0 0 -24.281,-12.91 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-24.281,-12.91 L-26.93,-14.319 A30.5,30.5 0 0 1 -14.319,-26.93 L-12.91,-24.281 A27.5,27.5 0 0 0 -24.281,-12.91 Z" stroke="#2a9d8f" stroke-width="0.492" fill="none" /></g><g data-layer="camera-side-variant-electrical"><path d="M12.526,20.472 L14.092,23.031 A27,27 0 0 1 12.9,23.719 L11.466,21.084 A24,24 0 0 0 12.526,20.472 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M12.526,20.472 L14.092,23.031 A27,27 0 0 1 12.9,23.719 L11.466,21.084 A24,24 0 0 0 12.526,20.472 Z" stroke="#8a5cd1" stroke-width="0.492" fill="none" /><path d="M10.317,21.669 L11.607,24.378 A27,27 0 0 1 10.35,24.938 L9.2,22.167 A24,24 0 0 0 10.317,21.669 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M10.317,21.669 L11.607,24.378 A27,27 0 0 1 10.35,24.938 L9.2,22.167 A24,24 0 0 0 10.317,21.669 Z" stroke="#8a5cd1" stroke-width="0.492" fill="none" /><path d="M7.996,22.629 L8.995,25.458 A27,27 0 0 1 7.686,25.883 L6.832,23.007 A24,24 0 0 0 7.996,22.629 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M7.996,22.629 L8.995,25.458 A27,27 0 0 1 7.686,25.883 L6.832,23.007 A24,24 0 0 0 7.996,22.629 Z" stroke="#8a5cd1" stroke-width="0.492" fill="none" /><path d="M5.587,23.341 L6.285,26.258 A27,27 0 0 1 4.939,26.544 L4.39,23.595 A24,24 0 0 0 5.587,23.341 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M5.587,23.341 L6.285,26.258 A27,27 0 0 1 4.939,26.544 L4.39,23.595 A24,24 0 0 0 5.587,23.341 Z" stroke="#8a5cd1" stroke-width="0.492" fill="none" /><path d="M3.116,23.797 L3.506,26.771 A27,27 0 0 1 2.137,26.915 L1.9,23.925 A24,24 0 0 0 3.116,23.797 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M3.116,23.797 L3.506,26.771 A27,27 0 0 1 2.137,26.915 L1.9,23.925 A24,24 0 0 0 3.116,23.797 Z" stroke="#8a5cd1" stroke-width="0.492" fill="none" /><path d="M0.612,23.992 L0.688,26.991 A27,27 0 0 1 -0.688,26.991 L-0.612,23.992 A24,24 0 0 0 0.612,23.992 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M0.612,23.992 L0.688,26.991 A27,27 0 0 1 -0.688,26.991 L-0.612,23.992 A24,24 0 0 0 0.612,23.992 Z" stroke="#8a5cd1" stroke-width="0.492" fill="none" /><path d="M-1.9,23.925 L-2.137,26.915 A27,27 0 0 1 -3.506,26.771 L-3.116,23.797 A24,24 0 0 0 -1.9,23.925 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-1.9,23.925 L-2.137,26.915 A27,27 0 0 1 -3.506,26.771 L-3.116,23.797 A24,24 0 0 0 -1.9,23.925 Z" stroke="#8a5cd1" stroke-width="0.492" fill="none" /><path d="M-4.39,23.595 L-4.939,26.544 A27,27 0 0 1 -6.285,26.258 L-5.587,23.341 A24,24 0 0 0 -4.39,23.595 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-4.39,23.595 L-4.939,26.544 A27,27 0 0 1 -6.285,26.258 L-5.587,23.341 A24,24 0 0 0 -4.39,23.595 Z" stroke="#8a5cd1" stroke-width="0.492" fill="none" /><path d="M-6.832,23.007 L-7.686,25.883 A27,27 0 0 1 -8.995,25.458 L-7.996,22.629 A24,24 0 0 0 -6.832,23.007 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-6.832,23.007 L-7.686,25.883 A27,27 0 0 1 -8.995,25.458 L-7.996,22.629 A24,24 0 0 0 -6.832,23.007 Z" stroke="#8a5cd1" stroke-width="0.492" fill="none" /><path d="M-9.2,22.167 L-10.35,24.938 A27,27 0 0 1 -11.607,24.378 L-10.317,21.669 A24,24 0 0 0 -9.2,22.167 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-9.2,22.167 L-10.35,24.938 A27,27 0 0 1 -11.607,24.378 L-10.317,21.669 A24,24 0 0 0 -9.2,22.167 Z" stroke="#8a5cd1" stroke-width="0.492" fill="none" /><path d="M-11.466,21.084 L-12.9,23.719 A27,27 0 0 1 -14.092,23.031 L-12.526,20.472 A24,24 0 0 0 -11.466,21.084 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-11.466,21.084 L-12.9,23.719 A27,27 0 0 1 -14.092,23.031 L-12.526,20.472 A24,24 0 0 0 -11.466,21.084 Z" stroke="#8a5cd1" stroke-width="0.492" fill="none" /></g><g aria-hidden="true"><line x1="-39.36" y1="-37.85" x2="-34.44" y2="-37.85" stroke="#2f80c4" stroke-width="0.581" /><text x="-33.112" y="-36.92" font-size="2.656" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-39.36" y1="-33.866" x2="-34.44" y2="-33.866" stroke="#6b7a8f" stroke-width="0.581" /><text x="-33.112" y="-32.936" font-size="2.656" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-39.36" y1="-29.882" x2="-34.44" y2="-29.882" stroke="#2a9d8f" stroke-width="0.581" /><text x="-33.112" y="-28.952" font-size="2.656" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-39.36" y1="-25.898" x2="-34.44" y2="-25.898" stroke="#d1495b" stroke-width="0.581" /><text x="-33.112" y="-24.968" font-size="2.656" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-39.36" y1="-21.914" x2="-34.44" y2="-21.914" stroke="#e8853a" stroke-width="0.581" /><text x="-33.112" y="-20.984" font-size="2.656" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-39.36" y1="-17.93" x2="-34.44" y2="-17.93" stroke="#8a5cd1" stroke-width="0.581" /><text x="-33.112" y="-17" font-size="2.656" fill="#8a5cd1" font-family="sans-serif">Electrical contact</text><line x1="-39.36" y1="-13.946" x2="-34.44" y2="-13.946" stroke="#7f8c3a" stroke-width="0.581" /><text x="-33.112" y="-13.016" font-size="2.656" fill="#7f8c3a" font-family="sans-serif">Screws / seals</text><line x1="-39.36" y1="-9.962" x2="-34.44" y2="-9.962" stroke="#8a94a0" stroke-width="0.581" /><text x="-33.112" y="-9.032" font-size="2.656" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
 
 **Lens-side rear view** — viewBox `-39 -41 78 80` ([standalone SVG](mounts/nikon-z-lens-rear.svg))
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-39 -41 78 80" role="img" aria-labelledby="nikon-z-base-lens_side_rear-title nikon-z-base-lens_side_rear-desc"><title id="nikon-z-base-lens_side_rear-title">Nikon Z mount — lens-side rear view (base)</title><desc id="nikon-z-base-lens_side_rear-desc">Nikon Z bayonet mount, lens-side rear view. Flange focal distance 16 mm, nominal throat 55 mm. Profile nikon-z/base.</desc><metadata>{"mountId":"nikon-z","profileId":"nikon-z/base","view":"lens_side_rear","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.6" y1="0" x2="1.6" y2="0" stroke="#8a94a0" stroke-width="0.468" fill="none" /><line x1="0" y1="-1.6" x2="0" y2="1.6" stroke="#8a94a0" stroke-width="0.468" fill="none" /><line x1="0" y1="-32" x2="0" y2="-33.92" stroke="#8a94a0" stroke-width="0.468" fill="none" /></g><g data-layer="lens-side-metal"><path d="M0,-32 A32,32 0 1 1 0,32 A32,32 0 1 1 0,-32 Z M0,-26.5 A26.5,26.5 0 1 1 0,26.5 A26.5,26.5 0 1 1 0,-26.5 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-32 A32,32 0 1 1 0,32 A32,32 0 1 1 0,-32 Z M0,-26.5 A26.5,26.5 0 1 1 0,26.5 A26.5,26.5 0 1 1 0,-26.5 Z" stroke="#6b7a8f" stroke-width="0.468" fill="none" stroke-dasharray="4 2" /><path d="M0,-26.5 A26.5,26.5 0 1 1 0,26.5 A26.5,26.5 0 1 1 0,-26.5 Z" stroke="#2f80c4" stroke-width="0.468" fill="none" stroke-dasharray="4 2" /></g><g data-layer="lens-side-core-interface"><path d="M0,-27.8 L-1.893,-30.942 L1.893,-30.942 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-27.8 L-1.893,-30.942 L1.893,-30.942 Z" stroke="#e8853a" stroke-width="0.468" fill="none" stroke-dasharray="0.6 1.6" /><path d="M12.91,-24.281 L14.319,-26.93 A30.5,30.5 0 0 1 26.93,-14.319 L24.281,-12.91 A27.5,27.5 0 0 0 12.91,-24.281 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M12.91,-24.281 L14.319,-26.93 A30.5,30.5 0 0 1 26.93,-14.319 L24.281,-12.91 A27.5,27.5 0 0 0 12.91,-24.281 Z" stroke="#2a9d8f" stroke-width="0.468" fill="none" stroke-dasharray="4 2" /><path d="M24.281,12.91 L26.93,14.319 A30.5,30.5 0 0 1 14.319,26.93 L12.91,24.281 A27.5,27.5 0 0 0 24.281,12.91 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M24.281,12.91 L26.93,14.319 A30.5,30.5 0 0 1 14.319,26.93 L12.91,24.281 A27.5,27.5 0 0 0 24.281,12.91 Z" stroke="#2a9d8f" stroke-width="0.468" fill="none" stroke-dasharray="4 2" /><path d="M-12.91,24.281 L-14.319,26.93 A30.5,30.5 0 0 1 -26.93,14.319 L-24.281,12.91 A27.5,27.5 0 0 0 -12.91,24.281 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-12.91,24.281 L-14.319,26.93 A30.5,30.5 0 0 1 -26.93,14.319 L-24.281,12.91 A27.5,27.5 0 0 0 -12.91,24.281 Z" stroke="#2a9d8f" stroke-width="0.468" fill="none" stroke-dasharray="4 2" /><circle cx="-28.5" cy="0" r="1.12" fill="#d1495b" fill-opacity="0.12" /><circle cx="-28.5" cy="0" r="1.12" stroke="#d1495b" stroke-width="0.468" fill="none" stroke-dasharray="0.6 1.6" /><path d="M-24.281,-12.91 L-26.93,-14.319 A30.5,30.5 0 0 1 -14.319,-26.93 L-12.91,-24.281 A27.5,27.5 0 0 0 -24.281,-12.91 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-24.281,-12.91 L-26.93,-14.319 A30.5,30.5 0 0 1 -14.319,-26.93 L-12.91,-24.281 A27.5,27.5 0 0 0 -24.281,-12.91 Z" stroke="#2a9d8f" stroke-width="0.468" fill="none" stroke-dasharray="4 2" /></g><g data-layer="lens-side-variant-electrical"><path d="M-11.466,21.084 L-12.9,23.719 A27,27 0 0 1 -14.092,23.031 L-12.526,20.472 A24,24 0 0 0 -11.466,21.084 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-11.466,21.084 L-12.9,23.719 A27,27 0 0 1 -14.092,23.031 L-12.526,20.472 A24,24 0 0 0 -11.466,21.084 Z" stroke="#8a5cd1" stroke-width="0.468" fill="none" stroke-dasharray="4 2" /><path d="M-9.2,22.167 L-10.35,24.938 A27,27 0 0 1 -11.607,24.378 L-10.317,21.669 A24,24 0 0 0 -9.2,22.167 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-9.2,22.167 L-10.35,24.938 A27,27 0 0 1 -11.607,24.378 L-10.317,21.669 A24,24 0 0 0 -9.2,22.167 Z" stroke="#8a5cd1" stroke-width="0.468" fill="none" stroke-dasharray="4 2" /><path d="M-6.832,23.007 L-7.686,25.883 A27,27 0 0 1 -8.995,25.458 L-7.996,22.629 A24,24 0 0 0 -6.832,23.007 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-6.832,23.007 L-7.686,25.883 A27,27 0 0 1 -8.995,25.458 L-7.996,22.629 A24,24 0 0 0 -6.832,23.007 Z" stroke="#8a5cd1" stroke-width="0.468" fill="none" stroke-dasharray="4 2" /><path d="M-4.39,23.595 L-4.939,26.544 A27,27 0 0 1 -6.285,26.258 L-5.587,23.341 A24,24 0 0 0 -4.39,23.595 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-4.39,23.595 L-4.939,26.544 A27,27 0 0 1 -6.285,26.258 L-5.587,23.341 A24,24 0 0 0 -4.39,23.595 Z" stroke="#8a5cd1" stroke-width="0.468" fill="none" stroke-dasharray="4 2" /><path d="M-1.9,23.925 L-2.137,26.915 A27,27 0 0 1 -3.506,26.771 L-3.116,23.797 A24,24 0 0 0 -1.9,23.925 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-1.9,23.925 L-2.137,26.915 A27,27 0 0 1 -3.506,26.771 L-3.116,23.797 A24,24 0 0 0 -1.9,23.925 Z" stroke="#8a5cd1" stroke-width="0.468" fill="none" stroke-dasharray="4 2" /><path d="M0.612,23.992 L0.688,26.991 A27,27 0 0 1 -0.688,26.991 L-0.612,23.992 A24,24 0 0 0 0.612,23.992 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M0.612,23.992 L0.688,26.991 A27,27 0 0 1 -0.688,26.991 L-0.612,23.992 A24,24 0 0 0 0.612,23.992 Z" stroke="#8a5cd1" stroke-width="0.468" fill="none" stroke-dasharray="4 2" /><path d="M3.116,23.797 L3.506,26.771 A27,27 0 0 1 2.137,26.915 L1.9,23.925 A24,24 0 0 0 3.116,23.797 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M3.116,23.797 L3.506,26.771 A27,27 0 0 1 2.137,26.915 L1.9,23.925 A24,24 0 0 0 3.116,23.797 Z" stroke="#8a5cd1" stroke-width="0.468" fill="none" stroke-dasharray="4 2" /><path d="M5.587,23.341 L6.285,26.258 A27,27 0 0 1 4.939,26.544 L4.39,23.595 A24,24 0 0 0 5.587,23.341 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M5.587,23.341 L6.285,26.258 A27,27 0 0 1 4.939,26.544 L4.39,23.595 A24,24 0 0 0 5.587,23.341 Z" stroke="#8a5cd1" stroke-width="0.468" fill="none" stroke-dasharray="4 2" /><path d="M7.996,22.629 L8.995,25.458 A27,27 0 0 1 7.686,25.883 L6.832,23.007 A24,24 0 0 0 7.996,22.629 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M7.996,22.629 L8.995,25.458 A27,27 0 0 1 7.686,25.883 L6.832,23.007 A24,24 0 0 0 7.996,22.629 Z" stroke="#8a5cd1" stroke-width="0.468" fill="none" stroke-dasharray="4 2" /><path d="M10.317,21.669 L11.607,24.378 A27,27 0 0 1 10.35,24.938 L9.2,22.167 A24,24 0 0 0 10.317,21.669 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M10.317,21.669 L11.607,24.378 A27,27 0 0 1 10.35,24.938 L9.2,22.167 A24,24 0 0 0 10.317,21.669 Z" stroke="#8a5cd1" stroke-width="0.468" fill="none" stroke-dasharray="4 2" /><path d="M12.526,20.472 L14.092,23.031 A27,27 0 0 1 12.9,23.719 L11.466,21.084 A24,24 0 0 0 12.526,20.472 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M12.526,20.472 L14.092,23.031 A27,27 0 0 1 12.9,23.719 L11.466,21.084 A24,24 0 0 0 12.526,20.472 Z" stroke="#8a5cd1" stroke-width="0.468" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-37.44" y1="-37" x2="-32.76" y2="-37" stroke="#2f80c4" stroke-width="0.56" /><text x="-31.48" y="-36.104" font-size="2.56" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-37.44" y1="-33.16" x2="-32.76" y2="-33.16" stroke="#6b7a8f" stroke-width="0.56" /><text x="-31.48" y="-32.264" font-size="2.56" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-37.44" y1="-29.32" x2="-32.76" y2="-29.32" stroke="#2a9d8f" stroke-width="0.56" /><text x="-31.48" y="-28.424" font-size="2.56" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-37.44" y1="-25.48" x2="-32.76" y2="-25.48" stroke="#d1495b" stroke-width="0.56" /><text x="-31.48" y="-24.584" font-size="2.56" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-37.44" y1="-21.64" x2="-32.76" y2="-21.64" stroke="#e8853a" stroke-width="0.56" /><text x="-31.48" y="-20.744" font-size="2.56" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-37.44" y1="-17.8" x2="-32.76" y2="-17.8" stroke="#8a5cd1" stroke-width="0.56" /><text x="-31.48" y="-16.904" font-size="2.56" fill="#8a5cd1" font-family="sans-serif">Electrical contact</text><line x1="-37.44" y1="-13.96" x2="-32.76" y2="-13.96" stroke="#8a94a0" stroke-width="0.56" /><text x="-31.48" y="-13.064" font-size="2.56" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-39 -41 78 80" role="img" aria-labelledby="nikon-z-base-lens_side_rear-title nikon-z-base-lens_side_rear-desc"><title id="nikon-z-base-lens_side_rear-title">Nikon Z mount — lens-side rear view (base)</title><desc id="nikon-z-base-lens_side_rear-desc">Nikon Z bayonet mount, lens-side rear view. Flange focal distance 16 mm, nominal throat 55 mm. Profile nikon-z/base.</desc><metadata>{"mountId":"nikon-z","profileId":"nikon-z/base","view":"lens_side_rear","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.6" y1="0" x2="1.6" y2="0" stroke="#8a94a0" stroke-width="0.468" fill="none" /><line x1="0" y1="-1.6" x2="0" y2="1.6" stroke="#8a94a0" stroke-width="0.468" fill="none" /><line x1="0" y1="-32" x2="0" y2="-33.92" stroke="#8a94a0" stroke-width="0.468" fill="none" /></g><g data-layer="lens-side-metal"><path d="M0,-32 A32,32 0 1 1 0,32 A32,32 0 1 1 0,-32 Z M0,-26.5 A26.5,26.5 0 1 1 0,26.5 A26.5,26.5 0 1 1 0,-26.5 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-32 A32,32 0 1 1 0,32 A32,32 0 1 1 0,-32 Z M0,-26.5 A26.5,26.5 0 1 1 0,26.5 A26.5,26.5 0 1 1 0,-26.5 Z" stroke="#6b7a8f" stroke-width="0.468" fill="none" /><path d="M0,-26.5 A26.5,26.5 0 1 1 0,26.5 A26.5,26.5 0 1 1 0,-26.5 Z" stroke="#2f80c4" stroke-width="0.468" fill="none" stroke-dasharray="4 2" /></g><g data-layer="lens-side-core-interface"><path d="M0,-27.8 L-1.893,-30.942 L1.893,-30.942 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-27.8 L-1.893,-30.942 L1.893,-30.942 Z" stroke="#e8853a" stroke-width="0.468" fill="none" stroke-dasharray="0.6 1.6" /><path d="M12.91,-24.281 L14.319,-26.93 A30.5,30.5 0 0 1 26.93,-14.319 L24.281,-12.91 A27.5,27.5 0 0 0 12.91,-24.281 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M12.91,-24.281 L14.319,-26.93 A30.5,30.5 0 0 1 26.93,-14.319 L24.281,-12.91 A27.5,27.5 0 0 0 12.91,-24.281 Z" stroke="#2a9d8f" stroke-width="0.468" fill="none" /><path d="M24.281,12.91 L26.93,14.319 A30.5,30.5 0 0 1 14.319,26.93 L12.91,24.281 A27.5,27.5 0 0 0 24.281,12.91 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M24.281,12.91 L26.93,14.319 A30.5,30.5 0 0 1 14.319,26.93 L12.91,24.281 A27.5,27.5 0 0 0 24.281,12.91 Z" stroke="#2a9d8f" stroke-width="0.468" fill="none" /><path d="M-12.91,24.281 L-14.319,26.93 A30.5,30.5 0 0 1 -26.93,14.319 L-24.281,12.91 A27.5,27.5 0 0 0 -12.91,24.281 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-12.91,24.281 L-14.319,26.93 A30.5,30.5 0 0 1 -26.93,14.319 L-24.281,12.91 A27.5,27.5 0 0 0 -12.91,24.281 Z" stroke="#2a9d8f" stroke-width="0.468" fill="none" /><circle cx="-28.5" cy="0" r="1.12" fill="#d1495b" fill-opacity="0.12" /><circle cx="-28.5" cy="0" r="1.12" stroke="#d1495b" stroke-width="0.468" fill="none" /><path d="M-24.281,-12.91 L-26.93,-14.319 A30.5,30.5 0 0 1 -14.319,-26.93 L-12.91,-24.281 A27.5,27.5 0 0 0 -24.281,-12.91 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-24.281,-12.91 L-26.93,-14.319 A30.5,30.5 0 0 1 -14.319,-26.93 L-12.91,-24.281 A27.5,27.5 0 0 0 -24.281,-12.91 Z" stroke="#2a9d8f" stroke-width="0.468" fill="none" /></g><g data-layer="lens-side-variant-electrical"><path d="M-11.466,21.084 L-12.9,23.719 A27,27 0 0 1 -14.092,23.031 L-12.526,20.472 A24,24 0 0 0 -11.466,21.084 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-11.466,21.084 L-12.9,23.719 A27,27 0 0 1 -14.092,23.031 L-12.526,20.472 A24,24 0 0 0 -11.466,21.084 Z" stroke="#8a5cd1" stroke-width="0.468" fill="none" /><path d="M-9.2,22.167 L-10.35,24.938 A27,27 0 0 1 -11.607,24.378 L-10.317,21.669 A24,24 0 0 0 -9.2,22.167 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-9.2,22.167 L-10.35,24.938 A27,27 0 0 1 -11.607,24.378 L-10.317,21.669 A24,24 0 0 0 -9.2,22.167 Z" stroke="#8a5cd1" stroke-width="0.468" fill="none" /><path d="M-6.832,23.007 L-7.686,25.883 A27,27 0 0 1 -8.995,25.458 L-7.996,22.629 A24,24 0 0 0 -6.832,23.007 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-6.832,23.007 L-7.686,25.883 A27,27 0 0 1 -8.995,25.458 L-7.996,22.629 A24,24 0 0 0 -6.832,23.007 Z" stroke="#8a5cd1" stroke-width="0.468" fill="none" /><path d="M-4.39,23.595 L-4.939,26.544 A27,27 0 0 1 -6.285,26.258 L-5.587,23.341 A24,24 0 0 0 -4.39,23.595 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-4.39,23.595 L-4.939,26.544 A27,27 0 0 1 -6.285,26.258 L-5.587,23.341 A24,24 0 0 0 -4.39,23.595 Z" stroke="#8a5cd1" stroke-width="0.468" fill="none" /><path d="M-1.9,23.925 L-2.137,26.915 A27,27 0 0 1 -3.506,26.771 L-3.116,23.797 A24,24 0 0 0 -1.9,23.925 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-1.9,23.925 L-2.137,26.915 A27,27 0 0 1 -3.506,26.771 L-3.116,23.797 A24,24 0 0 0 -1.9,23.925 Z" stroke="#8a5cd1" stroke-width="0.468" fill="none" /><path d="M0.612,23.992 L0.688,26.991 A27,27 0 0 1 -0.688,26.991 L-0.612,23.992 A24,24 0 0 0 0.612,23.992 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M0.612,23.992 L0.688,26.991 A27,27 0 0 1 -0.688,26.991 L-0.612,23.992 A24,24 0 0 0 0.612,23.992 Z" stroke="#8a5cd1" stroke-width="0.468" fill="none" /><path d="M3.116,23.797 L3.506,26.771 A27,27 0 0 1 2.137,26.915 L1.9,23.925 A24,24 0 0 0 3.116,23.797 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M3.116,23.797 L3.506,26.771 A27,27 0 0 1 2.137,26.915 L1.9,23.925 A24,24 0 0 0 3.116,23.797 Z" stroke="#8a5cd1" stroke-width="0.468" fill="none" /><path d="M5.587,23.341 L6.285,26.258 A27,27 0 0 1 4.939,26.544 L4.39,23.595 A24,24 0 0 0 5.587,23.341 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M5.587,23.341 L6.285,26.258 A27,27 0 0 1 4.939,26.544 L4.39,23.595 A24,24 0 0 0 5.587,23.341 Z" stroke="#8a5cd1" stroke-width="0.468" fill="none" /><path d="M7.996,22.629 L8.995,25.458 A27,27 0 0 1 7.686,25.883 L6.832,23.007 A24,24 0 0 0 7.996,22.629 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M7.996,22.629 L8.995,25.458 A27,27 0 0 1 7.686,25.883 L6.832,23.007 A24,24 0 0 0 7.996,22.629 Z" stroke="#8a5cd1" stroke-width="0.468" fill="none" /><path d="M10.317,21.669 L11.607,24.378 A27,27 0 0 1 10.35,24.938 L9.2,22.167 A24,24 0 0 0 10.317,21.669 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M10.317,21.669 L11.607,24.378 A27,27 0 0 1 10.35,24.938 L9.2,22.167 A24,24 0 0 0 10.317,21.669 Z" stroke="#8a5cd1" stroke-width="0.468" fill="none" /><path d="M12.526,20.472 L14.092,23.031 A27,27 0 0 1 12.9,23.719 L11.466,21.084 A24,24 0 0 0 12.526,20.472 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M12.526,20.472 L14.092,23.031 A27,27 0 0 1 12.9,23.719 L11.466,21.084 A24,24 0 0 0 12.526,20.472 Z" stroke="#8a5cd1" stroke-width="0.468" fill="none" /></g><g aria-hidden="true"><line x1="-37.44" y1="-37" x2="-32.76" y2="-37" stroke="#2f80c4" stroke-width="0.56" /><text x="-31.48" y="-36.104" font-size="2.56" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-37.44" y1="-33.16" x2="-32.76" y2="-33.16" stroke="#6b7a8f" stroke-width="0.56" /><text x="-31.48" y="-32.264" font-size="2.56" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-37.44" y1="-29.32" x2="-32.76" y2="-29.32" stroke="#2a9d8f" stroke-width="0.56" /><text x="-31.48" y="-28.424" font-size="2.56" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-37.44" y1="-25.48" x2="-32.76" y2="-25.48" stroke="#d1495b" stroke-width="0.56" /><text x="-31.48" y="-24.584" font-size="2.56" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-37.44" y1="-21.64" x2="-32.76" y2="-21.64" stroke="#e8853a" stroke-width="0.56" /><text x="-31.48" y="-20.744" font-size="2.56" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-37.44" y1="-17.8" x2="-32.76" y2="-17.8" stroke="#8a5cd1" stroke-width="0.56" /><text x="-31.48" y="-16.904" font-size="2.56" fill="#8a5cd1" font-family="sans-serif">Electrical contact</text><line x1="-37.44" y1="-13.96" x2="-32.76" y2="-13.96" stroke="#8a94a0" stroke-width="0.56" /><text x="-31.48" y="-13.064" font-size="2.56" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
 
 **Axial / register schematic** — viewBox `-23 -44 31 84` ([standalone SVG](mounts/nikon-z-axial.svg))
 
@@ -49317,7 +49317,7 @@ None — fully electronic.
 | `body-slot-3` | bayonet_receiving_slot | `nikon-z/base` | 225° | 208° | 242° | 27.5 | 30.5 |
 | `body-slot-4` | bayonet_receiving_slot | `nikon-z/base` | 315° | 298° | 332° | 27.5 | 30.5 |
 | `body-index-mark` | index_mark | `nikon-z/base` | 0° | unknown | unknown | unknown | 33.5 |
-| `body-lock-pin` | lock_pin | `nikon-z/base` | 90° | unknown | unknown | unknown | 28.5 |
+| `body-lock-pin` | lock_pin | `nikon-z/base` | 90° | 90° | 90° | 28.5 | 28.5 |
 
 #### Lens-side rear-view geometry
 
@@ -49330,34 +49330,34 @@ None — fully electronic.
 | `lens-lug-3` | bayonet_lug | `nikon-z/base` | 225° | 208° | 242° | 27.5 | 30.5 |
 | `lens-lug-4` | bayonet_lug | `nikon-z/base` | 315° | 298° | 332° | 27.5 | 30.5 |
 | `lens-index-mark` | index_mark | `nikon-z/base` | 0° | unknown | unknown | unknown | 31 |
-| `lens-lock-notch` | lock_notch | `nikon-z/base` | 90° | unknown | unknown | unknown | 28.5 |
+| `lens-lock-notch` | lock_notch | `nikon-z/base` | 90° | 90° | 90° | 28.5 | 28.5 |
 
 #### Electrical contacts
 
 | Side | No. | Profile | Center angle | Radius | Function |
 |---|---|---|---|---|---|
-| body | 1 | `nikon-z/base` | 150° | 25.5 |  |
-| body | 2 | `nikon-z/base` | 156° | 25.5 |  |
-| body | 3 | `nikon-z/base` | 162° | 25.5 |  |
-| body | 4 | `nikon-z/base` | 168° | 25.5 |  |
-| body | 5 | `nikon-z/base` | 174° | 25.5 |  |
-| body | 6 | `nikon-z/base` | 180° | 25.5 |  |
-| body | 7 | `nikon-z/base` | 186° | 25.5 |  |
-| body | 8 | `nikon-z/base` | 192° | 25.5 |  |
-| body | 9 | `nikon-z/base` | 198° | 25.5 |  |
-| body | 10 | `nikon-z/base` | 204° | 25.5 |  |
-| body | 11 | `nikon-z/base` | 210° | 25.5 |  |
-| lens | 1 | `nikon-z/base` | 150° | 25.5 |  |
-| lens | 2 | `nikon-z/base` | 156° | 25.5 |  |
-| lens | 3 | `nikon-z/base` | 162° | 25.5 |  |
-| lens | 4 | `nikon-z/base` | 168° | 25.5 |  |
-| lens | 5 | `nikon-z/base` | 174° | 25.5 |  |
-| lens | 6 | `nikon-z/base` | 180° | 25.5 |  |
-| lens | 7 | `nikon-z/base` | 186° | 25.5 |  |
-| lens | 8 | `nikon-z/base` | 192° | 25.5 |  |
-| lens | 9 | `nikon-z/base` | 198° | 25.5 |  |
-| lens | 10 | `nikon-z/base` | 204° | 25.5 |  |
-| lens | 11 | `nikon-z/base` | 210° | 25.5 |  |
+| body | 1 | `nikon-z/base` | 150° | 25.5 | HDATA hot-line data |
+| body | 2 | `nikon-z/base` | 156° | 25.5 | HCLK hot-line clock |
+| body | 3 | `nikon-z/base` | 162° | 25.5 | DATAL command-data input |
+| body | 4 | `nikon-z/base` | 168° | 25.5 | CLK command-data clock |
+| body | 5 | `nikon-z/base` | 174° | 25.5 | DATAB command-data output |
+| body | 6 | `nikon-z/base` | 180° | 25.5 | RDY command-ready signal |
+| body | 7 | `nikon-z/base` | 186° | 25.5 | GND circuit ground |
+| body | 8 | `nikon-z/base` | 192° | 25.5 | V33 circuit power |
+| body | 9 | `nikon-z/base` | 198° | 25.5 | PGND drive-power ground |
+| body | 10 | `nikon-z/base` | 204° | 25.5 | VBAT drive power |
+| body | 11 | `nikon-z/base` | 210° | 25.5 | LDET lens attachment detection |
+| lens | 1 | `nikon-z/base` | 150° | 25.5 | HDATA hot-line data |
+| lens | 2 | `nikon-z/base` | 156° | 25.5 | HCLK hot-line clock |
+| lens | 3 | `nikon-z/base` | 162° | 25.5 | DATAL command-data input |
+| lens | 4 | `nikon-z/base` | 168° | 25.5 | CLK command-data clock |
+| lens | 5 | `nikon-z/base` | 174° | 25.5 | DATAB command-data output |
+| lens | 6 | `nikon-z/base` | 180° | 25.5 | RDY command-ready signal |
+| lens | 7 | `nikon-z/base` | 186° | 25.5 | GND circuit ground |
+| lens | 8 | `nikon-z/base` | 192° | 25.5 | V33 circuit power |
+| lens | 9 | `nikon-z/base` | 198° | 25.5 | PGND drive-power ground |
+| lens | 10 | `nikon-z/base` | 204° | 25.5 | VBAT drive power |
+| lens | 11 | `nikon-z/base` | 210° | 25.5 | LDET lens attachment detection |
 
 #### Mechanical couplings
 
@@ -49439,7 +49439,8 @@ None — fully electronic.
           "status": "researched",
           "sourceRefs": [
             "nz-1",
-            "nz-p1"
+            "nz-p1",
+            "nz-2"
           ]
         }
       ]
@@ -49483,9 +49484,10 @@ None — fully electronic.
     },
     "contactCount": {
       "value": 11,
-      "status": "secondary",
+      "status": "patent",
       "sourceRefs": [
-        "nz-1"
+        "nz-1",
+        "nz-p1"
       ]
     }
   },
@@ -49573,23 +49575,23 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-p1"
         ]
       },
       "startAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-p1"
         ]
       },
       "endAngleDeg": {
         "value": 360,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-p1"
         ]
       },
       "innerRadiusMm": {
@@ -49601,9 +49603,10 @@ None — fully electronic.
       },
       "outerRadiusMm": {
         "value": 33,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "depthMm": {
@@ -49612,7 +49615,7 @@ None — fully electronic.
         "sourceRefs": []
       },
       "matesWith": "",
-      "shapeNotes": "visible body mount ring"
+      "shapeNotes": "body-side mount section around the four-claw patent embodiment"
     },
     {
       "featureId": "body-slot-1",
@@ -49621,48 +49624,54 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 45,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "startAngleDeg": {
         "value": 28,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "endAngleDeg": {
         "value": 62,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "innerRadiusMm": {
         "value": 27.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "outerRadiusMm": {
         "value": 30.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "depthMm": {
         "value": 2,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "matesWith": "lens-lug-1",
-      "shapeNotes": "four-lug bayonet, straight edges [nz-1]"
+      "shapeNotes": "patent four-claw bayonet receiving section, normalized to the production clocking"
     },
     {
       "featureId": "body-slot-2",
@@ -49671,48 +49680,54 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 135,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "startAngleDeg": {
         "value": 118,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "endAngleDeg": {
         "value": 152,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "innerRadiusMm": {
         "value": 27.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "outerRadiusMm": {
         "value": 30.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "depthMm": {
         "value": 2,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "matesWith": "lens-lug-2",
-      "shapeNotes": "four-lug bayonet, straight edges [nz-1]"
+      "shapeNotes": "patent four-claw bayonet receiving section, normalized to the production clocking"
     },
     {
       "featureId": "body-slot-3",
@@ -49721,48 +49736,54 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 225,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "startAngleDeg": {
         "value": 208,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "endAngleDeg": {
         "value": 242,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "innerRadiusMm": {
         "value": 27.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "outerRadiusMm": {
         "value": 30.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "depthMm": {
         "value": 2,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "matesWith": "lens-lug-3",
-      "shapeNotes": "four-lug bayonet, straight edges [nz-1]"
+      "shapeNotes": "patent four-claw bayonet receiving section, normalized to the production clocking"
     },
     {
       "featureId": "body-slot-4",
@@ -49771,48 +49792,54 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 315,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "startAngleDeg": {
         "value": 298,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "endAngleDeg": {
         "value": 332,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "innerRadiusMm": {
         "value": 27.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "outerRadiusMm": {
         "value": 30.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "depthMm": {
         "value": 2,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "matesWith": "lens-lug-4",
-      "shapeNotes": "four-lug bayonet, straight edges [nz-1]"
+      "shapeNotes": "patent four-claw bayonet receiving section, normalized to the production clocking"
     },
     {
       "featureId": "body-index-mark",
@@ -49869,48 +49896,54 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 90,
-        "status": "secondary",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "startAngleDeg": {
-        "value": "unknown",
-        "status": "unknown",
+        "value": 90,
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "endAngleDeg": {
-        "value": "unknown",
-        "status": "unknown",
+        "value": 90,
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "innerRadiusMm": {
-        "value": "unknown",
-        "status": "unknown",
+        "value": 28.5,
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "outerRadiusMm": {
         "value": 28.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "depthMm": {
         "value": 2,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "matesWith": "lens-lock-notch",
-      "shapeNotes": "locking groove at 3 o'clock [nz-2]"
+      "shapeNotes": "body-side lock pin from the patent embodiment; 3 o'clock clocking cross-checked by JAPB"
     }
   ],
   "lensSideFeatures": [
@@ -49969,37 +50002,39 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-p1"
         ]
       },
       "startAngleDeg": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-p1"
         ]
       },
       "endAngleDeg": {
         "value": 360,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-p1"
         ]
       },
       "innerRadiusMm": {
         "value": 26.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "outerRadiusMm": {
         "value": 32,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "thicknessMm": {
@@ -50008,7 +50043,7 @@ None — fully electronic.
         "sourceRefs": []
       },
       "matesWith": "",
-      "shapeNotes": "lens flange ring"
+      "shapeNotes": "lens-side mount section around the four-claw patent embodiment"
     },
     {
       "featureId": "lens-lug-1",
@@ -50017,48 +50052,54 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 45,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "startAngleDeg": {
         "value": 28,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "endAngleDeg": {
         "value": 62,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "innerRadiusMm": {
         "value": 27.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "outerRadiusMm": {
         "value": 30.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "thicknessMm": {
         "value": 2,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "matesWith": "body-slot-1",
-      "shapeNotes": "four-lug bayonet, straight edges [nz-1]"
+      "shapeNotes": "patent lens-side claw, normalized to the production clocking"
     },
     {
       "featureId": "lens-lug-2",
@@ -50067,48 +50108,54 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 135,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "startAngleDeg": {
         "value": 118,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "endAngleDeg": {
         "value": 152,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "innerRadiusMm": {
         "value": 27.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "outerRadiusMm": {
         "value": 30.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "thicknessMm": {
         "value": 2,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "matesWith": "body-slot-2",
-      "shapeNotes": "four-lug bayonet, straight edges [nz-1]"
+      "shapeNotes": "patent lens-side claw, normalized to the production clocking"
     },
     {
       "featureId": "lens-lug-3",
@@ -50117,48 +50164,54 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 225,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "startAngleDeg": {
         "value": 208,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "endAngleDeg": {
         "value": 242,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "innerRadiusMm": {
         "value": 27.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "outerRadiusMm": {
         "value": 30.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "thicknessMm": {
         "value": 2,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "matesWith": "body-slot-3",
-      "shapeNotes": "four-lug bayonet, straight edges [nz-1]"
+      "shapeNotes": "patent lens-side claw, normalized to the production clocking"
     },
     {
       "featureId": "lens-lug-4",
@@ -50167,48 +50220,54 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 315,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "startAngleDeg": {
         "value": 298,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "endAngleDeg": {
         "value": 332,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "innerRadiusMm": {
         "value": 27.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "outerRadiusMm": {
         "value": 30.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "thicknessMm": {
         "value": 2,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "matesWith": "body-slot-4",
-      "shapeNotes": "four-lug bayonet, straight edges [nz-1]"
+      "shapeNotes": "patent lens-side claw, normalized to the production clocking"
     },
     {
       "featureId": "lens-index-mark",
@@ -50265,48 +50324,54 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 90,
-        "status": "secondary",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "startAngleDeg": {
-        "value": "unknown",
-        "status": "unknown",
+        "value": 90,
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "endAngleDeg": {
-        "value": "unknown",
-        "status": "unknown",
+        "value": 90,
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "innerRadiusMm": {
-        "value": "unknown",
-        "status": "unknown",
+        "value": 28.5,
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "outerRadiusMm": {
         "value": 28.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "thicknessMm": {
         "value": 2,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "matesWith": "body-lock-pin",
-      "shapeNotes": "receives body lock pin (3 o'clock)"
+      "shapeNotes": "lens-side lock-pin receiving section from the patent; 3 o'clock clocking cross-checked by JAPB"
     }
   ],
   "axialStack": [
@@ -50414,41 +50479,46 @@ None — fully electronic.
       "profileId": "nikon-z/base",
       "centerAngleDeg": {
         "value": 150,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "centerRadiusMm": {
         "value": 25.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "heightMm": {
         "value": 3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
-      "shape": "pad",
+      "shape": "spring pin",
       "protrusionMm": {
         "value": 0.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
-      "function": ""
+      "function": "HDATA hot-line data"
     },
     {
       "side": "body",
@@ -50456,41 +50526,46 @@ None — fully electronic.
       "profileId": "nikon-z/base",
       "centerAngleDeg": {
         "value": 156,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "centerRadiusMm": {
         "value": 25.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "heightMm": {
         "value": 3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
-      "shape": "pad",
+      "shape": "spring pin",
       "protrusionMm": {
         "value": 0.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
-      "function": ""
+      "function": "HCLK hot-line clock"
     },
     {
       "side": "body",
@@ -50498,41 +50573,46 @@ None — fully electronic.
       "profileId": "nikon-z/base",
       "centerAngleDeg": {
         "value": 162,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "centerRadiusMm": {
         "value": 25.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "heightMm": {
         "value": 3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
-      "shape": "pad",
+      "shape": "spring pin",
       "protrusionMm": {
         "value": 0.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
-      "function": ""
+      "function": "DATAL command-data input"
     },
     {
       "side": "body",
@@ -50540,41 +50620,46 @@ None — fully electronic.
       "profileId": "nikon-z/base",
       "centerAngleDeg": {
         "value": 168,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "centerRadiusMm": {
         "value": 25.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "heightMm": {
         "value": 3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
-      "shape": "pad",
+      "shape": "spring pin",
       "protrusionMm": {
         "value": 0.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
-      "function": ""
+      "function": "CLK command-data clock"
     },
     {
       "side": "body",
@@ -50582,41 +50667,46 @@ None — fully electronic.
       "profileId": "nikon-z/base",
       "centerAngleDeg": {
         "value": 174,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "centerRadiusMm": {
         "value": 25.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "heightMm": {
         "value": 3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
-      "shape": "pad",
+      "shape": "spring pin",
       "protrusionMm": {
         "value": 0.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
-      "function": ""
+      "function": "DATAB command-data output"
     },
     {
       "side": "body",
@@ -50624,41 +50714,46 @@ None — fully electronic.
       "profileId": "nikon-z/base",
       "centerAngleDeg": {
         "value": 180,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "centerRadiusMm": {
         "value": 25.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "heightMm": {
         "value": 3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
-      "shape": "pad",
+      "shape": "spring pin",
       "protrusionMm": {
         "value": 0.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
-      "function": ""
+      "function": "RDY command-ready signal"
     },
     {
       "side": "body",
@@ -50666,41 +50761,46 @@ None — fully electronic.
       "profileId": "nikon-z/base",
       "centerAngleDeg": {
         "value": 186,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "centerRadiusMm": {
         "value": 25.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "heightMm": {
         "value": 3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
-      "shape": "pad",
+      "shape": "spring pin",
       "protrusionMm": {
         "value": 0.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
-      "function": ""
+      "function": "GND circuit ground"
     },
     {
       "side": "body",
@@ -50708,41 +50808,46 @@ None — fully electronic.
       "profileId": "nikon-z/base",
       "centerAngleDeg": {
         "value": 192,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "centerRadiusMm": {
         "value": 25.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "heightMm": {
         "value": 3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
-      "shape": "pad",
+      "shape": "spring pin",
       "protrusionMm": {
         "value": 0.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
-      "function": ""
+      "function": "V33 circuit power"
     },
     {
       "side": "body",
@@ -50750,41 +50855,46 @@ None — fully electronic.
       "profileId": "nikon-z/base",
       "centerAngleDeg": {
         "value": 198,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "centerRadiusMm": {
         "value": 25.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "heightMm": {
         "value": 3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
-      "shape": "pad",
+      "shape": "spring pin",
       "protrusionMm": {
         "value": 0.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
-      "function": ""
+      "function": "PGND drive-power ground"
     },
     {
       "side": "body",
@@ -50792,41 +50902,46 @@ None — fully electronic.
       "profileId": "nikon-z/base",
       "centerAngleDeg": {
         "value": 204,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "centerRadiusMm": {
         "value": 25.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "heightMm": {
         "value": 3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
-      "shape": "pad",
+      "shape": "spring pin",
       "protrusionMm": {
         "value": 0.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
-      "function": ""
+      "function": "VBAT drive power"
     },
     {
       "side": "body",
@@ -50834,41 +50949,46 @@ None — fully electronic.
       "profileId": "nikon-z/base",
       "centerAngleDeg": {
         "value": 210,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "centerRadiusMm": {
         "value": 25.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "heightMm": {
         "value": 3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
-      "shape": "pad",
+      "shape": "spring pin",
       "protrusionMm": {
         "value": 0.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
-      "function": ""
+      "function": "LDET lens attachment detection"
     },
     {
       "side": "lens",
@@ -50876,41 +50996,46 @@ None — fully electronic.
       "profileId": "nikon-z/base",
       "centerAngleDeg": {
         "value": 150,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "centerRadiusMm": {
         "value": 25.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "heightMm": {
         "value": 3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
-      "shape": "pad",
+      "shape": "exposed pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
-      "function": ""
+      "function": "HDATA hot-line data"
     },
     {
       "side": "lens",
@@ -50918,41 +51043,46 @@ None — fully electronic.
       "profileId": "nikon-z/base",
       "centerAngleDeg": {
         "value": 156,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "centerRadiusMm": {
         "value": 25.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "heightMm": {
         "value": 3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
-      "shape": "pad",
+      "shape": "exposed pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
-      "function": ""
+      "function": "HCLK hot-line clock"
     },
     {
       "side": "lens",
@@ -50960,41 +51090,46 @@ None — fully electronic.
       "profileId": "nikon-z/base",
       "centerAngleDeg": {
         "value": 162,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "centerRadiusMm": {
         "value": 25.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "heightMm": {
         "value": 3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
-      "shape": "pad",
+      "shape": "exposed pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
-      "function": ""
+      "function": "DATAL command-data input"
     },
     {
       "side": "lens",
@@ -51002,41 +51137,46 @@ None — fully electronic.
       "profileId": "nikon-z/base",
       "centerAngleDeg": {
         "value": 168,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "centerRadiusMm": {
         "value": 25.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "heightMm": {
         "value": 3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
-      "shape": "pad",
+      "shape": "exposed pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
-      "function": ""
+      "function": "CLK command-data clock"
     },
     {
       "side": "lens",
@@ -51044,41 +51184,46 @@ None — fully electronic.
       "profileId": "nikon-z/base",
       "centerAngleDeg": {
         "value": 174,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "centerRadiusMm": {
         "value": 25.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "heightMm": {
         "value": 3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
-      "shape": "pad",
+      "shape": "exposed pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
-      "function": ""
+      "function": "DATAB command-data output"
     },
     {
       "side": "lens",
@@ -51086,41 +51231,46 @@ None — fully electronic.
       "profileId": "nikon-z/base",
       "centerAngleDeg": {
         "value": 180,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "centerRadiusMm": {
         "value": 25.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "heightMm": {
         "value": 3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
-      "shape": "pad",
+      "shape": "exposed pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
-      "function": ""
+      "function": "RDY command-ready signal"
     },
     {
       "side": "lens",
@@ -51128,41 +51278,46 @@ None — fully electronic.
       "profileId": "nikon-z/base",
       "centerAngleDeg": {
         "value": 186,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "centerRadiusMm": {
         "value": 25.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "heightMm": {
         "value": 3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
-      "shape": "pad",
+      "shape": "exposed pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
-      "function": ""
+      "function": "GND circuit ground"
     },
     {
       "side": "lens",
@@ -51170,41 +51325,46 @@ None — fully electronic.
       "profileId": "nikon-z/base",
       "centerAngleDeg": {
         "value": 192,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "centerRadiusMm": {
         "value": 25.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "heightMm": {
         "value": 3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
-      "shape": "pad",
+      "shape": "exposed pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
-      "function": ""
+      "function": "V33 circuit power"
     },
     {
       "side": "lens",
@@ -51212,41 +51372,46 @@ None — fully electronic.
       "profileId": "nikon-z/base",
       "centerAngleDeg": {
         "value": 198,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "centerRadiusMm": {
         "value": 25.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "heightMm": {
         "value": 3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
-      "shape": "pad",
+      "shape": "exposed pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
-      "function": ""
+      "function": "PGND drive-power ground"
     },
     {
       "side": "lens",
@@ -51254,41 +51419,46 @@ None — fully electronic.
       "profileId": "nikon-z/base",
       "centerAngleDeg": {
         "value": 204,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "centerRadiusMm": {
         "value": 25.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "heightMm": {
         "value": 3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
-      "shape": "pad",
+      "shape": "exposed pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
-      "function": ""
+      "function": "VBAT drive power"
     },
     {
       "side": "lens",
@@ -51296,41 +51466,46 @@ None — fully electronic.
       "profileId": "nikon-z/base",
       "centerAngleDeg": {
         "value": 210,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "centerRadiusMm": {
         "value": 25.5,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "widthMm": {
         "value": 1.3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
       "heightMm": {
         "value": 3,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
-      "shape": "pad",
+      "shape": "exposed pad",
       "protrusionMm": {
         "value": 0,
-        "status": "photo_scaled",
+        "status": "patent",
         "sourceRefs": [
-          "nz-2"
+          "nz-2",
+          "nz-p1"
         ]
       },
-      "function": ""
+      "function": "LDET lens attachment detection"
     }
   ],
   "mechanicalCouplings": [],
@@ -51403,7 +51578,7 @@ None — fully electronic.
       "liveUrl": "https://en.wikipedia.org/wiki/Nikon_Z-mount",
       "archiveUrl": "http://web.archive.org/web/20260422214312/https://en.wikipedia.org/wiki/Nikon_Z-mount",
       "archiveDate": "2026-04-22",
-      "appliesTo": "flange focal distance, 55 mm throat, eleven contacts, four lugs",
+      "appliesTo": "flange focal distance, 55 mm throat, and secondary corroboration for eleven contacts/four lugs",
       "confidence": "high"
     },
     {
@@ -51420,16 +51595,16 @@ None — fully electronic.
       "ref": "nz-p1",
       "sourceType": "patent",
       "citation": "US10831084B2, Nikon Z camera accessory/contact-terminal and body/lens-side mount structure. Accessed 2026-06-06.",
-      "liveUrl": "Google Patents: https://patents.google.com/patent/US10831084B2/en",
+      "liveUrl": "https://patents.google.com/patent/US10831084B2/en",
       "archiveUrl": "https://patents.google.com/patent/US10831084B2/en",
       "archiveDate": "2026-06-06",
-      "appliesTo": "Nikon Z mount/contact-terminal research lead",
-      "confidence": "medium"
+      "appliesTo": "four-claw body/lens bayonet embodiment, body lock pin and lens receiving groove, 11 body/lens terminals, terminal order, and terminal-to-claw relationship",
+      "confidence": "high"
     }
   ],
   "openQuestions": [
     {
-      "issue": "Lug angular spans, the mounting-index clock position, and the lock rotation angle/direction are photo-scaled or undocumented; per-contact clock positions are interpolated within the documented 5–7 o'clock band.",
+      "issue": "US10831084B2 supports the four-claw bayonet, lock-pin/receiving-groove relationship, and 11-terminal order, but it is a patent embodiment rather than an official Nikon service drawing; absolute production lug spans, mounting-index clock position, lock rotation angle/direction, and screw positions remain schematic/photo-scaled.",
       "affectedFields": [
         "cameraSideFeatures",
         "lensSideFeatures",
@@ -51482,11 +51657,11 @@ None — fully electronic.
 |---|---|---|---|---|---|
 | `nz-1` | secondary | “Nikon Z-mount,” Wikipedia. Accessed 2026-06-04. | [snapshot](http://web.archive.org/web/20260422214312/https://en.wikipedia.org/wiki/Nikon_Z-mount) | 2026-04-22 | high |
 | `nz-2` | secondary | “Lens Mounts: Nikon Z,” JAPB (japb.net). Accessed 2026-06-04. | [snapshot](http://web.archive.org/web/20251115002307/https://japb.net/theory/lensmounts/nikon-z/) | 2025-11-15 | medium |
-| `nz-p1` | patent | US10831084B2, Nikon Z camera accessory/contact-terminal and body/lens-side mount structure. Accessed 2026-06-06. | [snapshot](https://patents.google.com/patent/US10831084B2/en) | 2026-06-06 | medium |
+| `nz-p1` | patent | US10831084B2, Nikon Z camera accessory/contact-terminal and body/lens-side mount structure. Accessed 2026-06-06. | [snapshot](https://patents.google.com/patent/US10831084B2/en) | 2026-06-06 | high |
 
 #### Open questions
 
-- Lug angular spans, the mounting-index clock position, and the lock rotation angle/direction are photo-scaled or undocumented; per-contact clock positions are interpolated within the documented 5–7 o'clock band. _(Upgrade to an official Nikon Z mount drawing or measured sample.)_
+- US10831084B2 supports the four-claw bayonet, lock-pin/receiving-groove relationship, and 11-terminal order, but it is a patent embodiment rather than an official Nikon service drawing; absolute production lug spans, mounting-index clock position, lock rotation angle/direction, and screw positions remain schematic/photo-scaled. _(Upgrade to an official Nikon Z mount drawing or measured sample.)_
 
 ### `olympus-om` — Olympus OM
 
@@ -53633,7 +53808,7 @@ None — fully electronic.
       "ref": "p110-1",
       "sourceType": "secondary",
       "citation": "“Flange focal distance,” Wikipedia. Accessed 2026-06-06.",
-      "liveUrl": "Wikipedia: https://en.wikipedia.org/wiki/Flange_focal_distance",
+      "liveUrl": "https://en.wikipedia.org/wiki/Flange_focal_distance",
       "archiveUrl": "http://web.archive.org/web/20260526152456/https://en.wikipedia.org/wiki/Flange_focal_distance",
       "archiveDate": "2026-05-26",
       "appliesTo": "Pentax 110 27 mm register",
@@ -53643,9 +53818,9 @@ None — fully electronic.
       "ref": "p110-2",
       "sourceType": "secondary",
       "citation": "ISO3200.org, “Pentax 110 mount lenses.” Accessed 2026-06-06.",
-      "liveUrl": "ISO3200: https://iso3200.org/blog/references/pentax-110-mount-lenses/",
-      "archiveUrl": "unknown",
-      "archiveDate": "unknown",
+      "liveUrl": "https://iso3200.org/blog/references/pentax-110-mount-lenses/",
+      "archiveUrl": "http://web.archive.org/web/20260508081500/https://iso3200.org/blog/references/pentax-110-mount-lenses/",
+      "archiveDate": "2026-05-08",
       "appliesTo": "two-tab bayonet description and 27 mm register cross-check",
       "confidence": "medium"
     }
@@ -53703,7 +53878,7 @@ None — fully electronic.
 | Ref | Type | Citation | Archive | Captured | Confidence |
 |---|---|---|---|---|---|
 | `p110-1` | secondary | “Flange focal distance,” Wikipedia. Accessed 2026-06-06. | [snapshot](http://web.archive.org/web/20260526152456/https://en.wikipedia.org/wiki/Flange_focal_distance) | 2026-05-26 | medium |
-| `p110-2` | secondary | ISO3200.org, “Pentax 110 mount lenses.” Accessed 2026-06-06. | [snapshot](unknown) | unknown | medium |
+| `p110-2` | secondary | ISO3200.org, “Pentax 110 mount lenses.” Accessed 2026-06-06. | [snapshot](http://web.archive.org/web/20260508081500/https://iso3200.org/blog/references/pentax-110-mount-lenses/) | 2026-05-08 | medium |
 
 #### Open questions
 
@@ -54895,7 +55070,7 @@ None — fully electronic.
       "ref": "p645-1",
       "sourceType": "secondary",
       "citation": "“Flange focal distance,” Wikipedia. Accessed 2026-06-06.",
-      "liveUrl": "Wikipedia: https://en.wikipedia.org/wiki/Flange_focal_distance",
+      "liveUrl": "https://en.wikipedia.org/wiki/Flange_focal_distance",
       "archiveUrl": "http://web.archive.org/web/20260526152456/https://en.wikipedia.org/wiki/Flange_focal_distance",
       "archiveDate": "2026-05-26",
       "appliesTo": "Pentax 645 register",
@@ -56156,7 +56331,7 @@ None — fully electronic.
       "ref": "p67-1",
       "sourceType": "secondary",
       "citation": "“Flange focal distance,” Wikipedia. Accessed 2026-06-06.",
-      "liveUrl": "Wikipedia: https://en.wikipedia.org/wiki/Flange_focal_distance",
+      "liveUrl": "https://en.wikipedia.org/wiki/Flange_focal_distance",
       "archiveUrl": "http://web.archive.org/web/20260526152456/https://en.wikipedia.org/wiki/Flange_focal_distance",
       "archiveDate": "2026-05-26",
       "appliesTo": "Pentax 67 register",
@@ -58203,7 +58378,7 @@ None — fully electronic.
       "ref": "pk-p1",
       "sourceType": "patent",
       "citation": "US4017878A, Asahi bayonet-mount adapter for screw-thread lenses on a bayonet body. Accessed 2026-06-06.",
-      "liveUrl": "Google Patents: https://patents.google.com/patent/US4017878A/en",
+      "liveUrl": "https://patents.google.com/patent/US4017878A/en",
       "archiveUrl": "https://patents.google.com/patent/US4017878A/en",
       "archiveDate": "2026-06-06",
       "appliesTo": "Pentax K related adapter-only research lead",
@@ -60281,7 +60456,7 @@ None — fully electronic.
       "ref": "ssa-1",
       "sourceType": "secondary",
       "citation": "“Flange focal distance,” Wikipedia. Accessed 2026-06-06.",
-      "liveUrl": "Wikipedia: https://en.wikipedia.org/wiki/Flange_focal_distance",
+      "liveUrl": "https://en.wikipedia.org/wiki/Flange_focal_distance",
       "archiveUrl": "http://web.archive.org/web/20260526152456/https://en.wikipedia.org/wiki/Flange_focal_distance",
       "archiveDate": "2026-05-26",
       "appliesTo": "44 mm Sigma SA register",
@@ -62205,7 +62380,7 @@ None — fully electronic.
       "ref": "sa-p1",
       "sourceType": "patent",
       "citation": "US4659203A, Minolta AF/A-mount bayonet and electronic-contact family. Accessed 2026-06-06.",
-      "liveUrl": "Google Patents: https://patents.google.com/patent/US4659203A/en",
+      "liveUrl": "https://patents.google.com/patent/US4659203A/en",
       "archiveUrl": "https://patents.google.com/patent/US4659203A/en",
       "archiveDate": "2026-06-06",
       "appliesTo": "Minolta AF / Sony A mount bayonet/contact research lead",
@@ -62215,7 +62390,7 @@ None — fully electronic.
       "ref": "sa-p2",
       "sourceType": "patent",
       "citation": "JPH01302238A, Minolta AF/A-mount contact family. Accessed 2026-06-06.",
-      "liveUrl": "Google Patents: https://patents.google.com/patent/JPH01302238A/en",
+      "liveUrl": "https://patents.google.com/patent/JPH01302238A/en",
       "archiveUrl": "https://patents.google.com/patent/JPH01302238A/en",
       "archiveDate": "2026-06-06",
       "appliesTo": "Minolta AF / Sony A mount contact research lead",
@@ -62225,7 +62400,7 @@ None — fully electronic.
       "ref": "sa-p3",
       "sourceType": "patent",
       "citation": "JPH09211645A, Minolta bayonet mount device for lens-interchangeable camera. Accessed 2026-06-06.",
-      "liveUrl": "Google Patents: https://patents.google.com/patent/JPH09211645A/en",
+      "liveUrl": "https://patents.google.com/patent/JPH09211645A/en",
       "archiveUrl": "https://patents.google.com/patent/JPH09211645A/en",
       "archiveDate": "2026-06-06",
       "appliesTo": "Minolta A bayonet mount device research lead",
@@ -64272,7 +64447,7 @@ None — fully electronic.
       "ref": "se-p1",
       "sourceType": "patent",
       "citation": "US9392150B2, Sony E/FE body mount, contact-pin, latch and full-frame geometry patent. Accessed 2026-06-06.",
-      "liveUrl": "FreePatentsOnline: https://www.freepatentsonline.com/9392150.html",
+      "liveUrl": "https://www.freepatentsonline.com/9392150.html",
       "archiveUrl": "https://www.freepatentsonline.com/9392150.html",
       "archiveDate": "2026-06-06",
       "appliesTo": "Sony E/FE mount and contact-pin/latch research lead",
@@ -65529,7 +65704,7 @@ None — fully electronic.
       "ref": "zcx-1",
       "sourceType": "secondary",
       "citation": "“Flange focal distance,” Wikipedia. Accessed 2026-06-06.",
-      "liveUrl": "Wikipedia: https://en.wikipedia.org/wiki/Flange_focal_distance",
+      "liveUrl": "https://en.wikipedia.org/wiki/Flange_focal_distance",
       "archiveUrl": "http://web.archive.org/web/20260526152456/https://en.wikipedia.org/wiki/Flange_focal_distance",
       "archiveDate": "2026-05-26",
       "appliesTo": "46 mm Contarex register",

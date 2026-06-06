@@ -441,7 +441,10 @@
         "ref": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
         "sourceType": { "type": "string" },
         "citation": { "type": "string" },
-        "liveUrl": { "type": "string" },
+        "liveUrl": {
+          "type": "string",
+          "description": "Direct live URL when available. Human labels belong in citation; the in-repo validator rejects label-prefixed URL strings so archive/date checks cannot be bypassed."
+        },
         "archiveUrl": { "type": "string" },
         "archiveDate": { "type": "string", "pattern": "^(unknown|\\d{4}-\\d{2}-\\d{2})$" },
         "appliesTo": { "type": "string" },

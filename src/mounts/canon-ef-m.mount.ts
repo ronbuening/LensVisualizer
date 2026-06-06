@@ -143,7 +143,7 @@ const CANON_EF_M_MOUNT = {
       sourceType: "patent",
       citation:
         "US8830607B2, “Image pickup apparatus capable of interchanging lenses and lens mount therefor.” Accessed 2026-06-06.",
-      liveUrl: "Google Patents: https://patents.google.com/patent/US8830607B2/en",
+      liveUrl: "https://patents.google.com/patent/US8830607B2/en",
       archiveUrl: "https://patents.google.com/patent/US8830607B2/en",
       archiveDate: "2026-06-06",
       appliesTo: "Canon mirrorless bayonet pawls, body-side/lens-side mount portions, contact portion",
@@ -153,7 +153,7 @@ const CANON_EF_M_MOUNT = {
       ref: "efm-p2",
       sourceType: "patent",
       citation: "US9638987B2, “Camera and camera accessory.” Accessed 2026-06-06.",
-      liveUrl: "Google Patents: https://patents.google.com/patent/US9638987B2/en",
+      liveUrl: "https://patents.google.com/patent/US9638987B2/en",
       archiveUrl: "https://patents.google.com/patent/US9638987B2/en",
       archiveDate: "2026-06-06",
       appliesTo: "multiple contact pins/contact surfaces arranged circumferentially in a Canon camera/accessory mount",

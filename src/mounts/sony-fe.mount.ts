@@ -581,7 +581,7 @@ const SONY_E_MOUNT = {
       sourceType: "patent",
       citation:
         "US9392150B2, Sony E/FE body mount, contact-pin, latch and full-frame geometry patent. Accessed 2026-06-06.",
-      liveUrl: "FreePatentsOnline: https://www.freepatentsonline.com/9392150.html",
+      liveUrl: "https://www.freepatentsonline.com/9392150.html",
       archiveUrl: "https://www.freepatentsonline.com/9392150.html",
       archiveDate: "2026-06-06",
       appliesTo: "Sony E/FE mount and contact-pin/latch research lead",

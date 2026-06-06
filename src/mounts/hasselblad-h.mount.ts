@@ -79,7 +79,7 @@ const HASSELBLAD_H_MOUNT = makeSimpleMountSpec({
       ref: "hh-1",
       sourceType: "secondary",
       citation: "Film and Digital Times / IB/E Optics mount chart. Accessed 2026-06-06.",
-      liveUrl: "FDTimes chart: https://www.fdtimes.com/wp-content/uploads/2017/05/81-82-FDTimes-IBE-Optics-Update.pdf",
+      liveUrl: "https://www.fdtimes.com/wp-content/uploads/2017/05/81-82-FDTimes-IBE-Optics-Update.pdf",
       archiveUrl: "https://www.fdtimes.com/wp-content/uploads/2017/05/81-82-FDTimes-IBE-Optics-Update.pdf",
       archiveDate: "2026-06-06",
       appliesTo: "Hasselblad H 61.63 mm register and approx. 67.5 mm inside-diameter chart entry",

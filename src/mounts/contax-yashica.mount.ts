@@ -81,7 +81,7 @@ const CONTAX_YASHICA_MOUNT = makeSimpleMountSpec({
       ref: "cy-1",
       sourceType: "secondary",
       citation: "“Flange focal distance,” Wikipedia. Accessed 2026-06-06.",
-      liveUrl: "Wikipedia: https://en.wikipedia.org/wiki/Flange_focal_distance",
+      liveUrl: "https://en.wikipedia.org/wiki/Flange_focal_distance",
       archiveUrl: "http://web.archive.org/web/20260526152456/https://en.wikipedia.org/wiki/Flange_focal_distance",
       archiveDate: "2026-05-26",
       appliesTo: "45.5 mm Contax/Yashica register",

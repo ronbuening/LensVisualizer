@@ -143,7 +143,7 @@ const CANON_FL_MOUNT = {
       ref: "fl-p1",
       sourceType: "patent",
       citation: "US3906534A, “Device for mounting and dismounting an interchangeable lens.” Accessed 2026-06-06.",
-      liveUrl: "Google Patents: https://patents.google.com/patent/US3906534A/en",
+      liveUrl: "https://patents.google.com/patent/US3906534A/en",
       archiveUrl: "https://patents.google.com/patent/US3906534A/en",
       archiveDate: "2026-06-06",
       appliesTo: "Canon breech-lock lineage research lead",

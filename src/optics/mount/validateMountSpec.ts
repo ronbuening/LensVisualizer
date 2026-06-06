@@ -21,6 +21,8 @@ import { isLensMountId } from "../../utils/catalog/lensTaxonomy.js";
 import { normalizeMountSpec } from "./defaults.js";
 
 const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
+const DIRECT_URL = /^https?:\/\//;
+const EMBEDDED_URL = /https?:\/\//;
 const PROVENANCE_STATUSES = new Set<ValueStatus>([
   "official",
   "patent",
@@ -124,9 +126,11 @@ export default function validateMountSpec(input: MountSpecInput): string[] {
     knownRefs.add(src.ref);
     if (!ISO_DATE.test(src.archiveDate) && src.archiveDate !== "unknown")
       errors.push(`sourceRef "${src.ref}": archiveDate must be ISO-8601 or "unknown"`);
-    const hasLiveUrl = /^https?:\/\//.test(src.liveUrl);
+    const hasLiveUrl = DIRECT_URL.test(src.liveUrl);
+    if (!hasLiveUrl && EMBEDDED_URL.test(src.liveUrl))
+      errors.push(`sourceRef "${src.ref}": liveUrl must be a direct URL; put labels in citation`);
     if (hasLiveUrl) {
-      if (!/^https?:\/\//.test(src.archiveUrl))
+      if (!DIRECT_URL.test(src.archiveUrl))
         errors.push(`sourceRef "${src.ref}": a live URL requires an archived snapshot URL (package Section 3)`);
       if (!ISO_DATE.test(src.archiveDate))
         errors.push(`sourceRef "${src.ref}": a live URL requires an ISO-8601 archive capture date`);

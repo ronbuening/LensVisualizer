@@ -318,6 +318,7 @@ export interface SourceRef {
   ref: string;
   sourceType: string;
   citation: string;
+  /** Direct URL when available; put source labels in `citation`, not as a prefix here. */
   liveUrl: string;
   archiveUrl: string;
   /** ISO-8601 capture date, or `"unknown"`. */

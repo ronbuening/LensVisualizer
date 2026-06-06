@@ -135,7 +135,7 @@ const MICRO_FOUR_THIRDS_MOUNT = {
       ref: "mft-p1",
       sourceType: "patent",
       citation: "US6910814B2, Four Thirds predecessor mount patent lead. Accessed 2026-06-06.",
-      liveUrl: "Google Patents: https://patents.google.com/patent/US6910814B2/en",
+      liveUrl: "https://patents.google.com/patent/US6910814B2/en",
       archiveUrl: "https://patents.google.com/patent/US6910814B2/en",
       archiveDate: "2026-06-06",
       appliesTo: "related predecessor Four Thirds body/lens mount structure",
