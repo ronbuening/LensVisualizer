@@ -19,6 +19,12 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-06-06 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-06-06",
+    type: "lens",
+    summary: "Added three Sigma mirrorless lenses: 24mm F1.4, 28-45mm F1.8, and 60mm F2.8",
+  },
   // ── 2026-06-05 ──────────────────────────────────────────────────────────
   {
     date: "2026-06-05",
