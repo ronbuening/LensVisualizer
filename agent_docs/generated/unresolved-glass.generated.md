@@ -8,10 +8,10 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **305** lenses scanned
-- **3430** non-air surfaces examined
-- **3434** element glass declarations examined
-- **576** non-explicit-unmatched annotations did not resolve
+- **308** lenses scanned
+- **3474** non-air surfaces examined
+- **3478** element glass declarations examined
+- **578** non-explicit-unmatched annotations did not resolve
 - **209** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
@@ -21,6 +21,7 @@ or per-lens patent backfills.
 | S-LAL12 | 5 | 5 | |
 | 670571 | 4 | 2 | |
 | 863252 | 4 | 2 | |
+| S-BSM10 | 4 | 4 | |
 | S-NPH7 | 4 | 4 | |
 | 516565 | 3 | 1 | |
 | 585587 | 3 | 1 | |
@@ -59,7 +60,6 @@ or per-lens patent backfills.
 | NBFD10 | 2 | 2 | |
 | S-APL1 | 2 | 1 | |
 | S-BAH10 | 2 | 2 | |
-| S-BSM10 | 2 | 2 | |
 | S-BSM15 | 2 | 1 | |
 | S-FPM5 | 2 | 2 | |
 | S-LAL61 | 2 | 2 | |
@@ -251,6 +251,13 @@ or per-lens patent backfills.
 - [Sony FE 14mm f/1.8 GM](../../src/lens-data/sony/SonyFE14mmf18GM.data.ts) 22: `863252 - dense flint (Sony patent nd=1.86252, vd=25.2; no exact public catalog match)`
 - [SONY FE 28-70mm F2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 23: `863252 — dense flint (patent nd=1.86252, νd=25.2)`
 - [SONY FE 28-70mm F2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 32: `863252 — dense flint (patent nd=1.86252, νd=25.2)`
+
+### S-BSM10 — 4 occurrences
+
+- [Nikon Fuwatto Soft 90mm f/4.8](../../src/lens-data/nikon/NikonFuwattoSoft90mmf48.data.ts) 2: `S-BSM10 (OHARA; 623/570)`
+- [NIKON NIKKOR Z 24-50mm f/4-6.3](../../src/lens-data/nikon/NikonNikkorZ2450mmf463.data.ts) 1: `S-BSM10 (OHARA)`
+- [Olympus Zuiko Digital ED 14–35mm f/2.0 SWD](../../src/lens-data/olympus/OlympusMZuiko1435mmf2ED.data.ts) 22: `S-BSM10 (OHARA)`
+- [Olympus Zuiko Digital ED 150mm f/2.0](../../src/lens-data/olympus/OlympusMZuiko150mmf2ED.data.ts) 12: `S-BSM10 (OHARA)`
 
 ### S-NPH7 — 4 occurrences
 
@@ -452,11 +459,6 @@ or per-lens patent backfills.
 
 - [CANON FD 35mm f/2 S.S.C. (I)](../../src/lens-data/canon/CanonFD35mmf2.data.ts) 5: `BaF (702411, S-BAH10 family)`
 - [ZEISS Touit Makro-Planar T* 50mm f/2.8 Macro](../../src/lens-data/carl-zeiss-oberkochen/ZeissTouit50mmf28Macro.data.ts) 25: `S-BAH10 (OHARA)`
-
-### S-BSM10 — 2 occurrences
-
-- [Nikon Fuwatto Soft 90mm f/4.8](../../src/lens-data/nikon/NikonFuwattoSoft90mmf48.data.ts) 2: `S-BSM10 (OHARA; 623/570)`
-- [NIKON NIKKOR Z 24-50mm f/4-6.3](../../src/lens-data/nikon/NikonNikkorZ2450mmf463.data.ts) 1: `S-BSM10 (OHARA)`
 
 ### S-BSM15 — 2 occurrences
 
