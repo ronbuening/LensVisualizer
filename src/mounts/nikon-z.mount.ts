@@ -7,17 +7,18 @@
  * mount variant. Distinctively it uses a FOUR-lug bayonet (vs three on the F-mount) and eleven
  * electrical contacts.
  *
- * Sourced layout: flange focal distance 16 mm and 55 mm throat [nz-1]. US10831084B2 discloses the
- * Nikon mirrorless four-claw bayonet embodiment, body/lens lock pin and receiving groove, and the
- * upper-arc 11 body/lens terminal order [nz-p1]. The JAPB teardown corroborates the 3 o'clock
- * locking groove and four-lug mount, but conflicts with the patent on contact-bank clocking; the
- * patent controls the terminal placement here. Lug spans, the mounting-index position, and lock
- * rotation angle/direction remain schematic/open.
+ * Sourced layout: Nikon documents the Z mount's 16 mm flange focal distance and 55 mm inner diameter
+ * [nz-official-1]. US10831084B2 discloses the Nikon mirrorless four-claw bayonet embodiment,
+ * body/lens lock pin and receiving groove, and the upper-arc 11 body/lens terminal order [nz-p1].
+ * The JAPB teardown corroborates the 3 o'clock locking groove and four-lug mount, but conflicts with
+ * the patent on contact-bank clocking; the patent controls the terminal placement here. Lug spans,
+ * the mounting-index position, and lock rotation angle/direction remain schematic/open.
  */
 
 import type { ContactFeature, MountSpecInput } from "../types/mount.js";
 import { degListV, dirV, naV, unknownV, v } from "../optics/mount/authoring.js";
 
+const O = ["nz-official-1"]; // Nikon official news
 const W = ["nz-1"]; // Wikipedia
 const J = ["nz-2"]; // JAPB teardown
 const P = ["nz-p1"]; // Nikon patent embodiment
@@ -95,16 +96,16 @@ const NIKON_Z_MOUNT = {
           cameraSideOverlayLayers: ["camera-side-variant-electrical"],
           lensSideOverlayLayers: ["lens-side-variant-electrical"],
           status: "researched",
-          sourceRefs: [...WP, "nz-2"],
+          sourceRefs: [...O, ...WP, "nz-2"],
         },
       ],
     },
   },
 
   coreDimensions: {
-    flangeFocalDistanceMm: v(16, "secondary", W),
-    nominalThroatDiameterMm: v(55, "secondary", W),
-    effectiveClearApertureMm: v(55, "secondary", W),
+    flangeFocalDistanceMm: v(16, "official", O),
+    nominalThroatDiameterMm: v(55, "official", O),
+    effectiveClearApertureMm: v(55, "official", O),
     cameraMountOuterDiameterMm: v(66, "photo_scaled", J),
     lensMountOuterDiameterMm: v(64, "photo_scaled", J),
     contactCount: v(11, "patent", WP),
@@ -123,11 +124,11 @@ const NIKON_Z_MOUNT = {
       featureType: "body_throat",
       profileId: "nikon-z/base",
       count: 1,
-      centerAngleDeg: v(0, "secondary", W),
-      startAngleDeg: v(0, "secondary", W),
-      endAngleDeg: v(360, "secondary", W),
-      innerRadiusMm: v(0, "secondary", W),
-      outerRadiusMm: v(27.5, "secondary", W),
+      centerAngleDeg: v(0, "official", O),
+      startAngleDeg: v(0, "official", O),
+      endAngleDeg: v(360, "official", O),
+      innerRadiusMm: v(0, "official", O),
+      outerRadiusMm: v(27.5, "official", O),
       depthMm: naV(),
       matesWith: "",
       shapeNotes: "55 mm throat opening",
@@ -140,7 +141,7 @@ const NIKON_Z_MOUNT = {
       centerAngleDeg: v(0, "patent", P),
       startAngleDeg: v(0, "patent", P),
       endAngleDeg: v(360, "patent", P),
-      innerRadiusMm: v(27.5, "secondary", W),
+      innerRadiusMm: v(27.5, "official", O),
       outerRadiusMm: v(33, "patent", JP),
       depthMm: naV(),
       matesWith: "",
@@ -374,7 +375,7 @@ const NIKON_Z_MOUNT = {
     },
     {
       planeId: "sensor_film_plane",
-      zPositionMm: v(-16, "secondary", W),
+      zPositionMm: v(-16, "official", O),
       thicknessMm: v(0, "secondary", W),
       diameterMm: v(43.3, "secondary", W),
     },
@@ -407,6 +408,17 @@ const NIKON_Z_MOUNT = {
   },
 
   sourceRefs: [
+    {
+      ref: "nz-official-1",
+      sourceType: "official",
+      citation: "Nikon Corporation, “Nikon products receive the Good Design Award.” Accessed 2026-06-06.",
+      liveUrl: "https://www.nikon.com/company/news/2019/1002_gooddesign_02.html",
+      archiveUrl:
+        "http://web.archive.org/web/20241213094051/https://www.nikon.com/company/news/2019/1002_gooddesign_02.html",
+      archiveDate: "2024-12-13",
+      appliesTo: "Z mount 55 mm inner diameter and 16 mm flange focal distance",
+      confidence: "high",
+    },
     {
       ref: "nz-1",
       sourceType: "secondary",

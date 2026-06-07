@@ -4,15 +4,17 @@
  * Fujifilm's APS-C mirrorless mount (2012): a 17.7 mm flange focal distance and a 44 mm throat.
  * Modeled `base-only` — a single fully-electronic interface (no mechanical couplings).
  *
- * Sourced layout: flange focal distance 17.7 mm, 44 mm throat, ten electrical contacts, three
- * straight-edged lugs [fx-1]; the locking groove at 4:30 and the contact bank across 4:30–7:30
- * (bottom of the mount) per the JAPB teardown [fx-2]. Lug spans, the index position, and the lock
- * rotation angle/direction are photo-scaled or unknown and flagged in openQuestions.
+ * Sourced layout: Fujifilm documents the X-Pro1/X mount 17.7 mm flange-back distance
+ * [fx-official-1]. Wikipedia supplies the 44 mm throat, ten electrical contacts, and three-lug
+ * summary [fx-1]; the locking groove at 4:30 and the contact bank across 4:30–7:30 (bottom of the
+ * mount) come from the JAPB teardown [fx-2]. Lug spans, the index position, and the lock rotation
+ * angle/direction are photo-scaled or unknown and flagged in openQuestions.
  */
 
 import type { MountSpecInput } from "../types/mount.js";
 import { degListV, dirV, naV, unknownV, v } from "../optics/mount/authoring.js";
 
+const O = ["fx-official-1"]; // Fujifilm official X-Pro1 adapter story
 const W = ["fx-1"]; // Wikipedia
 const J = ["fx-2"]; // JAPB teardown
 
@@ -54,14 +56,14 @@ const FUJIFILM_X_MOUNT = {
           cameraSideOverlayLayers: ["camera-side-variant-electrical"],
           lensSideOverlayLayers: ["lens-side-variant-electrical"],
           status: "researched",
-          sourceRefs: W,
+          sourceRefs: [...O, ...W],
         },
       ],
     },
   },
 
   coreDimensions: {
-    flangeFocalDistanceMm: v(17.7, "secondary", W),
+    flangeFocalDistanceMm: v(17.7, "official", O),
     nominalThroatDiameterMm: v(44, "secondary", W),
     effectiveClearApertureMm: v(44, "secondary", W),
     cameraMountOuterDiameterMm: v(50, "photo_scaled", J),
@@ -299,7 +301,7 @@ const FUJIFILM_X_MOUNT = {
     },
     {
       planeId: "sensor_film_plane",
-      zPositionMm: v(-17.7, "secondary", W),
+      zPositionMm: v(-17.7, "official", O),
       thicknessMm: v(0, "secondary", W),
       diameterMm: v(28.3, "secondary", W),
     },
@@ -570,6 +572,17 @@ const FUJIFILM_X_MOUNT = {
   },
 
   sourceRefs: [
+    {
+      ref: "fx-official-1",
+      sourceType: "official",
+      citation: "FUJIFILM X Stories, “Allurement of M Mount Adapter.” Accessed 2026-06-06.",
+      liveUrl: "https://www.fujifilm-x.com/global/stories/allurement-of-m-mount-adapter/",
+      archiveUrl:
+        "http://web.archive.org/web/20201004122717/https://fujifilm-x.com/global/stories/allurement-of-m-mount-adapter/",
+      archiveDate: "2020-10-04",
+      appliesTo: "X-Pro1 / X mount 17.7 mm flange-back distance",
+      confidence: "high",
+    },
     {
       ref: "fx-1",
       sourceType: "secondary",

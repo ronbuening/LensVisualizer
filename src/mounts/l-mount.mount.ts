@@ -7,8 +7,9 @@
  * format is not a mount variant. It uses a four-lug bayonet, and distinctively its ten contacts sit
  * at the TOP of the mount (11–1 o'clock) rather than the bottom.
  *
- * Sourced layout: flange focal distance 20 mm, 51.6 mm throat, ten contacts, four lugs [lm-1]; the
- * locking groove at 4:30 and the contact bank across 11–1 o'clock per the JAPB teardown [lm-2]. Lug
+ * Sourced layout: the L-Mount Alliance documents the 20 mm flange distance, 51.6 mm diameter, and
+ * four-tab bayonet [lm-official-1]. Wikipedia supplies the ten-contact count [lm-1]; the locking
+ * groove at 4:30 and the contact bank across 11–1 o'clock come from the JAPB teardown [lm-2]. Lug
  * spans, the index position, and per-contact clock positions are photo-scaled and flagged in
  * openQuestions.
  */
@@ -16,6 +17,7 @@
 import type { MountSpecInput } from "../types/mount.js";
 import { degListV, dirV, naV, unknownV, v } from "../optics/mount/authoring.js";
 
+const O = ["lm-official-1"]; // L-Mount Alliance
 const W = ["lm-1"]; // Wikipedia
 const J = ["lm-2"]; // JAPB teardown
 
@@ -57,16 +59,16 @@ const L_MOUNT = {
           cameraSideOverlayLayers: ["camera-side-variant-electrical"],
           lensSideOverlayLayers: ["lens-side-variant-electrical"],
           status: "researched",
-          sourceRefs: W,
+          sourceRefs: [...O, ...W],
         },
       ],
     },
   },
 
   coreDimensions: {
-    flangeFocalDistanceMm: v(20, "secondary", W),
-    nominalThroatDiameterMm: v(51.6, "secondary", W),
-    effectiveClearApertureMm: v(51.6, "secondary", W),
+    flangeFocalDistanceMm: v(20, "official", O),
+    nominalThroatDiameterMm: v(51.6, "official", O),
+    effectiveClearApertureMm: v(51.6, "official", O),
     cameraMountOuterDiameterMm: v(62, "photo_scaled", J),
     lensMountOuterDiameterMm: v(60, "photo_scaled", J),
     contactCount: v(10, "secondary", W),
@@ -85,11 +87,11 @@ const L_MOUNT = {
       featureType: "body_throat",
       profileId: "l-mount/base",
       count: 1,
-      centerAngleDeg: v(0, "secondary", W),
-      startAngleDeg: v(0, "secondary", W),
-      endAngleDeg: v(360, "secondary", W),
-      innerRadiusMm: v(0, "secondary", W),
-      outerRadiusMm: v(25.8, "secondary", W),
+      centerAngleDeg: v(0, "official", O),
+      startAngleDeg: v(0, "official", O),
+      endAngleDeg: v(360, "official", O),
+      innerRadiusMm: v(0, "official", O),
+      outerRadiusMm: v(25.8, "official", O),
       depthMm: naV(),
       matesWith: "",
       shapeNotes: "51.6 mm throat opening",
@@ -102,7 +104,7 @@ const L_MOUNT = {
       centerAngleDeg: v(0, "photo_scaled", J),
       startAngleDeg: v(0, "photo_scaled", J),
       endAngleDeg: v(360, "photo_scaled", J),
-      innerRadiusMm: v(25.8, "secondary", W),
+      innerRadiusMm: v(25.8, "official", O),
       outerRadiusMm: v(31, "photo_scaled", J),
       depthMm: naV(),
       matesWith: "",
@@ -330,7 +332,7 @@ const L_MOUNT = {
     },
     {
       planeId: "sensor_film_plane",
-      zPositionMm: v(-20, "secondary", W),
+      zPositionMm: v(-20, "official", O),
       thicknessMm: v(0, "secondary", W),
       diameterMm: v(43.3, "secondary", W),
     },
@@ -601,6 +603,16 @@ const L_MOUNT = {
   },
 
   sourceRefs: [
+    {
+      ref: "lm-official-1",
+      sourceType: "official",
+      citation: "L-Mount Alliance, “L-Mount | Overview.” Accessed 2026-06-06.",
+      liveUrl: "https://l-mount.com/en/Overview",
+      archiveUrl: "http://web.archive.org/web/20251116195834/https://l-mount.com/en/Overview",
+      archiveDate: "2025-11-16",
+      appliesTo: "51.6 mm L-Mount diameter, 20 mm flange distance, and four-tab bayonet",
+      confidence: "high",
+    },
     {
       ref: "lm-1",
       sourceType: "secondary",

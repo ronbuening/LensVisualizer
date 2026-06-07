@@ -6,16 +6,18 @@
  * `imageFormat`, not in a separate mount. Modeled `base-only` - a single fully-electronic interface
  * (no mechanical couplings), with ten electrical contacts along the bottom of the mount.
  *
- * Sourced scalars: flange focal distance 18 mm, 46.1 mm production throat, ten contacts [se-1].
- * US9392150B2 directly documents the E/FE body mount embodiment: a 47 mm body-mount inside
- * diameter, three arc-like body latches and corresponding lens latches, ten contact pins at the
- * bottom contact holder, and the 35 mm full-frame image aperture geometry. The lock pin/notch,
- * mounting-index clock, outer diameters, and screw locations remain photo-scaled.
+ * Sourced scalars: Sony documents the E-mount 18 mm flange focal length [se-official-1]; the 46.1 mm
+ * production throat and ten-contact lineage are from the secondary Sony E-mount reference [se-1].
+ * US9392150B2 directly documents the E/FE body mount embodiment: a 47 mm body-mount inside diameter,
+ * three arc-like body latches and corresponding lens latches, ten contact pins at the bottom contact
+ * holder, and the 35 mm full-frame image aperture geometry. The lock pin/notch, mounting-index clock,
+ * outer diameters, and screw locations remain photo-scaled.
  */
 
 import type { ContactFeature, MountSpecInput } from "../types/mount.js";
 import { degListV, dirV, naV, unknownV, v } from "../optics/mount/authoring.js";
 
+const O = ["se-official-1"]; // Sony official manual
 const W = ["se-1"]; // Sony E-mount reference
 const P1 = ["se-p1"]; // Sony E/FE body mount patent
 const P1W = [...P1, ...W]; // Patent plus production E lineage
@@ -72,14 +74,14 @@ const SONY_E_MOUNT = {
           cameraSideOverlayLayers: ["camera-side-variant-electrical"],
           lensSideOverlayLayers: ["lens-side-variant-electrical"],
           status: "researched",
-          sourceRefs: [...W, "se-p1"],
+          sourceRefs: [...O, ...W, "se-p1"],
         },
       ],
     },
   },
 
   coreDimensions: {
-    flangeFocalDistanceMm: v(18, "secondary", W),
+    flangeFocalDistanceMm: v(18, "official", O),
     nominalThroatDiameterMm: v(46.1, "secondary", W),
     effectiveClearApertureMm: v(47, "patent", P1W),
     cameraMountOuterDiameterMm: v(54, "photo_scaled", W),
@@ -333,8 +335,8 @@ const SONY_E_MOUNT = {
     },
     {
       planeId: "sensor_film_plane",
-      zPositionMm: v(-18, "secondary", W),
-      thicknessMm: v(0, "secondary", W),
+      zPositionMm: v(-18, "official", O),
+      thicknessMm: v(0, "official", O),
       diameterMm: v(43.267, "patent", P1W),
     },
   ],
@@ -363,6 +365,16 @@ const SONY_E_MOUNT = {
   },
 
   sourceRefs: [
+    {
+      ref: "se-official-1",
+      sourceType: "official",
+      citation: "Sony, PXW-FX9V/PXW-FX9T operating instructions, specifications table. Accessed 2026-06-06.",
+      liveUrl: "https://pro.sony/s3/2019/12/06134306/4735109151.pdf",
+      archiveUrl: "http://web.archive.org/web/20241126221518/https://pro.sony/s3/2019/12/06134306/4735109151.pdf",
+      archiveDate: "2024-11-26",
+      appliesTo: "E mount 18 mm flange focal length",
+      confidence: "high",
+    },
     {
       ref: "se-1",
       sourceType: "secondary",

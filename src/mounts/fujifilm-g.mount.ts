@@ -5,19 +5,19 @@
  * focal distance and a large 65 mm throat for the 43.8 × 32.9 mm (44×33) sensor. Modeled `base-only`
  * — a single fully-electronic interface (no mechanical couplings).
  *
- * Sourced layout: flange focal distance 26.7 mm, 65 mm throat, three bayonet tabs [fg-1]; the locking
- * notch at 4:30 and the contact bank across 5–7 o'clock (bottom) per the JAPB teardown [fg-2]. The
- * contact count is recorded as conflicting — Wikipedia lists twelve, the JAPB teardown counts eleven.
- * Tab spans, the index position, and per-contact clock positions are photo-scaled and flagged in
- * openQuestions.
+ * Sourced layout: Fujifilm documents the G Mount's 26.7 mm flange-back distance, 65 mm mount
+ * diameter, and twelve electronic contact points [fg-official-1]. Wikipedia corroborates the
+ * three-tab mount [fg-1]; the locking notch at 4:30 and bottom contact-bank placement are from the
+ * JAPB teardown [fg-2], which counts eleven visible contacts. Tab spans, the index position, and
+ * per-contact clock positions are photo-scaled and flagged in openQuestions.
  */
 
 import type { MountSpecInput } from "../types/mount.js";
 import { degListV, dirV, naV, unknownV, v } from "../optics/mount/authoring.js";
 
+const O = ["fg-official-1"]; // Fujifilm official GFX article
 const W = ["fg-1"]; // Wikipedia
 const J = ["fg-2"]; // JAPB teardown
-const WJ = ["fg-1", "fg-2"];
 
 const FUJIFILM_G_MOUNT = {
   mountId: "fujifilm-g",
@@ -52,19 +52,19 @@ const FUJIFILM_G_MOUNT = {
           cameraSideOverlayLayers: ["camera-side-variant-electrical"],
           lensSideOverlayLayers: ["lens-side-variant-electrical"],
           status: "researched",
-          sourceRefs: W,
+          sourceRefs: [...O, ...W],
         },
       ],
     },
   },
 
   coreDimensions: {
-    flangeFocalDistanceMm: v(26.7, "secondary", W),
-    nominalThroatDiameterMm: v(65, "secondary", W),
-    effectiveClearApertureMm: v(65, "secondary", W),
+    flangeFocalDistanceMm: v(26.7, "official", O),
+    nominalThroatDiameterMm: v(65, "official", O),
+    effectiveClearApertureMm: v(65, "official", O),
     cameraMountOuterDiameterMm: v(78, "photo_scaled", J),
     lensMountOuterDiameterMm: v(76, "photo_scaled", J),
-    contactCount: v(12, "conflicting", WJ),
+    contactCount: v(12, "official", O),
   },
 
   lockGeometry: {
@@ -80,11 +80,11 @@ const FUJIFILM_G_MOUNT = {
       featureType: "body_throat",
       profileId: "fujifilm-g/base",
       count: 1,
-      centerAngleDeg: v(0, "secondary", W),
-      startAngleDeg: v(0, "secondary", W),
-      endAngleDeg: v(360, "secondary", W),
-      innerRadiusMm: v(0, "secondary", W),
-      outerRadiusMm: v(32.5, "secondary", W),
+      centerAngleDeg: v(0, "official", O),
+      startAngleDeg: v(0, "official", O),
+      endAngleDeg: v(360, "official", O),
+      innerRadiusMm: v(0, "official", O),
+      outerRadiusMm: v(32.5, "official", O),
       depthMm: naV(),
       matesWith: "",
       shapeNotes: "65 mm throat opening",
@@ -97,7 +97,7 @@ const FUJIFILM_G_MOUNT = {
       centerAngleDeg: v(0, "photo_scaled", J),
       startAngleDeg: v(0, "photo_scaled", J),
       endAngleDeg: v(360, "photo_scaled", J),
-      innerRadiusMm: v(32.5, "secondary", W),
+      innerRadiusMm: v(32.5, "official", O),
       outerRadiusMm: v(39, "photo_scaled", J),
       depthMm: naV(),
       matesWith: "",
@@ -297,7 +297,7 @@ const FUJIFILM_G_MOUNT = {
     },
     {
       planeId: "sensor_film_plane",
-      zPositionMm: v(-26.7, "secondary", W),
+      zPositionMm: v(-26.7, "official", O),
       thicknessMm: v(0, "secondary", W),
       diameterMm: v(54.8, "secondary", W),
     },
@@ -617,6 +617,18 @@ const FUJIFILM_G_MOUNT = {
 
   sourceRefs: [
     {
+      ref: "fg-official-1",
+      sourceType: "official",
+      citation:
+        "FUJIFILM Exposure Center, “Pick the Best GF Lens for Your Photo Style,” G Mount section. Accessed 2026-06-06.",
+      liveUrl: "https://www.fujifilm-x.com/en-us/exposure-center/pick-the-best-gf-lens-for-your-photo-style/",
+      archiveUrl:
+        "http://web.archive.org/web/20250321093547/https://www.fujifilm-x.com/en-us/exposure-center/pick-the-best-gf-lens-for-your-photo-style/",
+      archiveDate: "2025-03-21",
+      appliesTo: "65 mm G Mount diameter, 26.7 mm flange-back distance, and twelve electronic contacts",
+      confidence: "high",
+    },
+    {
       ref: "fg-1",
       sourceType: "secondary",
       citation: "“Fujifilm G-mount,” Wikipedia. Accessed 2026-06-04.",
@@ -641,10 +653,11 @@ const FUJIFILM_G_MOUNT = {
   openQuestions: [
     {
       issue:
-        "Contact count conflicts: Wikipedia lists twelve electrical connectors, the JAPB teardown counts eleven; twelve is modeled.",
-      affectedFields: ["contactCount", "contacts"],
+        "Official Fujifilm material confirms twelve electronic contacts, while the JAPB teardown counts eleven visible contacts; the twelfth contact's production clocking remains schematic.",
+      affectedFields: ["contacts"],
       candidateValues: [11, 12],
-      resolution: "Reconcile against an official Fujifilm G mount drawing or measured sample.",
+      resolution:
+        "Keep the official twelve-contact count; upgrade per-contact positions from a service drawing or measured sample.",
     },
     {
       issue:

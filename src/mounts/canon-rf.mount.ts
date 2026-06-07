@@ -6,16 +6,18 @@
  * `base-only` — a single fully-electronic interface (no mechanical couplings); full-frame and RF-S
  * (APS-C) share the mount, so format is not a mount variant.
  *
- * Sourced layout: flange focal distance 20 mm, 54 mm throat, twelve electrical pins, three bayonet
- * tabs [rf-1]; the locking groove at 9 o'clock and the contact bank across 5–7 o'clock, tiered so the
- * eight on the left sit further back than the four on the right, per the JAPB teardown [rf-2]. Tab
- * spans, the index position, and the lock rotation angle/direction are photo-scaled or unknown and
- * flagged in openQuestions.
+ * Sourced layout: Canon documents the 20 mm flange focal distance, 54 mm internal diameter, and
+ * twelve-pin RF communication interface [rf-official-1]. Wikipedia/JAPB corroborate the three-tab
+ * bayonet and teardown clocking [rf-1], [rf-2]. The locking groove at 9 o'clock and the contact bank
+ * across 5–7 o'clock, tiered so the eight on the left sit further back than the four on the right, are
+ * from JAPB [rf-2]. Tab spans, the index position, and the lock rotation angle/direction are
+ * photo-scaled or unknown and flagged in openQuestions.
  */
 
 import type { MountSpecInput } from "../types/mount.js";
 import { degListV, dirV, naV, unknownV, v } from "../optics/mount/authoring.js";
 
+const O = ["rf-official-1"]; // Canon official product page
 const W = ["rf-1"]; // Wikipedia
 const J = ["rf-2"]; // JAPB teardown
 
@@ -57,19 +59,19 @@ const CANON_RF_MOUNT = {
           cameraSideOverlayLayers: ["camera-side-variant-electrical"],
           lensSideOverlayLayers: ["lens-side-variant-electrical"],
           status: "researched",
-          sourceRefs: [...W, "rf-p1", "rf-p2", "rf-p3", "rf-p4"],
+          sourceRefs: [...O, ...W, "rf-p1", "rf-p2", "rf-p3", "rf-p4"],
         },
       ],
     },
   },
 
   coreDimensions: {
-    flangeFocalDistanceMm: v(20, "secondary", W),
-    nominalThroatDiameterMm: v(54, "secondary", W),
-    effectiveClearApertureMm: v(54, "secondary", W),
+    flangeFocalDistanceMm: v(20, "official", O),
+    nominalThroatDiameterMm: v(54, "official", O),
+    effectiveClearApertureMm: v(54, "official", O),
     cameraMountOuterDiameterMm: v(65, "photo_scaled", J),
     lensMountOuterDiameterMm: v(63, "photo_scaled", J),
-    contactCount: v(12, "secondary", W),
+    contactCount: v(12, "official", O),
   },
 
   lockGeometry: {
@@ -85,11 +87,11 @@ const CANON_RF_MOUNT = {
       featureType: "body_throat",
       profileId: "canon-rf/base",
       count: 1,
-      centerAngleDeg: v(0, "secondary", W),
-      startAngleDeg: v(0, "secondary", W),
-      endAngleDeg: v(360, "secondary", W),
-      innerRadiusMm: v(0, "secondary", W),
-      outerRadiusMm: v(27, "secondary", W),
+      centerAngleDeg: v(0, "official", O),
+      startAngleDeg: v(0, "official", O),
+      endAngleDeg: v(360, "official", O),
+      innerRadiusMm: v(0, "official", O),
+      outerRadiusMm: v(27, "official", O),
       depthMm: naV(),
       matesWith: "",
       shapeNotes: "54 mm throat opening",
@@ -102,7 +104,7 @@ const CANON_RF_MOUNT = {
       centerAngleDeg: v(0, "photo_scaled", J),
       startAngleDeg: v(0, "photo_scaled", J),
       endAngleDeg: v(360, "photo_scaled", J),
-      innerRadiusMm: v(27, "secondary", W),
+      innerRadiusMm: v(27, "official", O),
       outerRadiusMm: v(32.5, "photo_scaled", J),
       depthMm: naV(),
       matesWith: "",
@@ -302,7 +304,7 @@ const CANON_RF_MOUNT = {
     },
     {
       planeId: "sensor_film_plane",
-      zPositionMm: v(-20, "secondary", W),
+      zPositionMm: v(-20, "official", O),
       thicknessMm: v(0, "secondary", W),
       diameterMm: v(43.3, "secondary", W),
     },
@@ -621,6 +623,16 @@ const CANON_RF_MOUNT = {
   },
 
   sourceRefs: [
+    {
+      ref: "rf-official-1",
+      sourceType: "official",
+      citation: "Canon Latin America, “EOS RP,” RF mount overview. Accessed 2026-06-06.",
+      liveUrl: "https://www.cla.canon.com/en/p/eos-rp",
+      archiveUrl: "http://web.archive.org/web/20260307033241/https://www.cla.canon.com/en/p/eos-rp",
+      archiveDate: "2026-03-07",
+      appliesTo: "54 mm RF internal diameter, 20 mm flange focal distance, and twelve-pin communication interface",
+      confidence: "high",
+    },
     {
       ref: "rf-1",
       sourceType: "secondary",

@@ -3,8 +3,10 @@
  *
  * EF-S keeps the EF bayonet/register geometry but adds APS-C/short-back-focus compatibility markers:
  * the white-square mounting index and a rear projection that prevents EF-S lenses from mounting on
- * full-frame EF bodies. The patent leads are EF-family connector/bayonet records rather than a
- * separate EF-S native mount specification, so fine angular geometry remains EF-derived/photo-scaled.
+ * full-frame EF bodies. Canon's EOS R white paper is used for the shared 44 mm EF-family flange back
+ * distance and 54 mm inner diameter. The patent leads are EF-family connector/bayonet records rather
+ * than a separate EF-S native mount specification, so fine angular geometry remains
+ * EF-derived/photo-scaled.
  */
 
 import type { MountSpecInput } from "../types/mount.js";
@@ -16,6 +18,7 @@ import {
   makeStandardAxialStack,
 } from "./mountAuthoringShared.js";
 
+const O = ["efs-official-1"]; // Canon EOS white paper
 const W = ["efs-1"]; // Wikipedia EF-S
 const J = ["efs-2"]; // JAPB EF family
 const REF = ["efs-1", "efs-2"];
@@ -74,16 +77,16 @@ const CANON_EF_S_MOUNT = {
           cameraSideOverlayLayers: ["camera-side-variant-electrical"],
           lensSideOverlayLayers: ["lens-side-variant-electrical", "lens-side-variant-mechanical"],
           status: "researched",
-          sourceRefs: [...REF, "efs-p1", "efs-p2"],
+          sourceRefs: [...O, ...REF, "efs-p1", "efs-p2"],
         },
       ],
     },
   },
 
   coreDimensions: {
-    flangeFocalDistanceMm: v(44, "secondary", W),
-    nominalThroatDiameterMm: v(54, "secondary", REF),
-    effectiveClearApertureMm: v(54, "secondary", REF),
+    flangeFocalDistanceMm: v(44, "official", O),
+    nominalThroatDiameterMm: v(54, "official", O),
+    effectiveClearApertureMm: v(54, "official", O),
     cameraMountOuterDiameterMm: v(65, "photo_scaled", J),
     lensMountOuterDiameterMm: v(63, "photo_scaled", J),
     contactCount: v(8, "secondary", REF),
@@ -142,6 +145,17 @@ const CANON_EF_S_MOUNT = {
   },
 
   sourceRefs: [
+    {
+      ref: "efs-official-1",
+      sourceType: "official",
+      citation: "Canon, “EOS R System White Paper,” EOS system history section. Accessed 2026-06-06.",
+      liveUrl: "https://downloads.canon.com/nw/camera/misc-pages/eos-r/pdf/canon_eos_r_white_paper.pdf",
+      archiveUrl:
+        "http://web.archive.org/web/20251117083223/http://downloads.canon.com/nw/camera/misc-pages/eos-r/pdf/canon_eos_r_white_paper.pdf",
+      archiveDate: "2025-11-17",
+      appliesTo: "shared EF-family 54 mm inner diameter and 44 mm flange back distance",
+      confidence: "high",
+    },
     {
       ref: "efs-1",
       sourceType: "secondary",

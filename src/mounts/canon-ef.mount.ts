@@ -6,17 +6,19 @@
  * MVP. It is the catalog's clean fully-electronic, coupling-free case — no mechanical aperture/AF
  * levers — contrasting with the mechanically-coupled Nikon and Pentax mounts.
  *
- * Sourced layout: flange focal distance 44 mm and a 54 mm throat [ef-1]; three unsymmetrical
- * straight-edged bayonet prongs, a locking groove at 9 o'clock, and the electrical contacts grouped
- * across 5–7 o'clock (i.e. centered at the bottom of the mount) per the JAPB teardown [ef-2]. The
- * interface began with seven contacts; an eighth was added later, so contactCount records the modern
- * eight-contact set. Exact prong angular spans and per-contact clock positions remain photo-scaled
- * within the documented bands and are flagged in openQuestions.
+ * Sourced layout: Canon's EOS R white paper documents the EF mount's 44 mm flange back distance and
+ * 54 mm inner diameter [ef-official-1]; JAPB supplies the three unsymmetrical straight-edged bayonet
+ * prongs, locking groove at 9 o'clock, and the electrical contacts grouped across 5–7 o'clock
+ * (i.e. centered at the bottom of the mount) [ef-2]. The interface began with seven contacts; an
+ * eighth was added later, so contactCount records the modern eight-contact set. Exact prong angular
+ * spans and per-contact clock positions remain photo-scaled within the documented bands and are
+ * flagged in openQuestions.
  */
 
 import type { MountSpecInput } from "../types/mount.js";
 import { degListV, dirV, naV, unknownV, v } from "../optics/mount/authoring.js";
 
+const O = ["ef-official-1"]; // Canon EOS white paper
 const W = ["ef-1"]; // Wikipedia
 const J = ["ef-2"]; // JAPB teardown
 const WJ = ["ef-1", "ef-2"];
@@ -59,16 +61,16 @@ const CANON_EF_MOUNT = {
           cameraSideOverlayLayers: ["camera-side-variant-electrical"],
           lensSideOverlayLayers: ["lens-side-variant-electrical"],
           status: "researched",
-          sourceRefs: [...WJ, "ef-p1", "ef-p2"],
+          sourceRefs: [...O, ...WJ, "ef-p1", "ef-p2"],
         },
       ],
     },
   },
 
   coreDimensions: {
-    flangeFocalDistanceMm: v(44, "secondary", WJ),
-    nominalThroatDiameterMm: v(54, "secondary", W),
-    effectiveClearApertureMm: v(54, "secondary", W),
+    flangeFocalDistanceMm: v(44, "official", O),
+    nominalThroatDiameterMm: v(54, "official", O),
+    effectiveClearApertureMm: v(54, "official", O),
     cameraMountOuterDiameterMm: v(65, "photo_scaled", J),
     lensMountOuterDiameterMm: v(63, "photo_scaled", J),
     contactCount: v(8, "secondary", W),
@@ -87,11 +89,11 @@ const CANON_EF_MOUNT = {
       featureType: "body_throat",
       profileId: "canon-ef/base",
       count: 1,
-      centerAngleDeg: v(0, "secondary", W),
-      startAngleDeg: v(0, "secondary", W),
-      endAngleDeg: v(360, "secondary", W),
-      innerRadiusMm: v(0, "secondary", W),
-      outerRadiusMm: v(27, "secondary", W),
+      centerAngleDeg: v(0, "official", O),
+      startAngleDeg: v(0, "official", O),
+      endAngleDeg: v(360, "official", O),
+      innerRadiusMm: v(0, "official", O),
+      outerRadiusMm: v(27, "official", O),
       depthMm: naV(),
       matesWith: "",
       shapeNotes: "54 mm throat opening",
@@ -104,7 +106,7 @@ const CANON_EF_MOUNT = {
       centerAngleDeg: v(0, "photo_scaled", J),
       startAngleDeg: v(0, "photo_scaled", J),
       endAngleDeg: v(360, "photo_scaled", J),
-      innerRadiusMm: v(27, "secondary", W),
+      innerRadiusMm: v(27, "official", O),
       outerRadiusMm: v(32.5, "photo_scaled", J),
       depthMm: naV(),
       matesWith: "",
@@ -304,7 +306,7 @@ const CANON_EF_MOUNT = {
     },
     {
       planeId: "sensor_film_plane",
-      zPositionMm: v(-44, "secondary", W),
+      zPositionMm: v(-44, "official", O),
       thicknessMm: v(0, "secondary", W),
       diameterMm: v(43.3, "secondary", W),
     },
@@ -527,6 +529,17 @@ const CANON_EF_MOUNT = {
   },
 
   sourceRefs: [
+    {
+      ref: "ef-official-1",
+      sourceType: "official",
+      citation: "Canon, “EOS R System White Paper,” EOS system history section. Accessed 2026-06-06.",
+      liveUrl: "https://downloads.canon.com/nw/camera/misc-pages/eos-r/pdf/canon_eos_r_white_paper.pdf",
+      archiveUrl:
+        "http://web.archive.org/web/20251117083223/http://downloads.canon.com/nw/camera/misc-pages/eos-r/pdf/canon_eos_r_white_paper.pdf",
+      archiveDate: "2025-11-17",
+      appliesTo: "EF mount 54 mm inner diameter and 44 mm flange back distance",
+      confidence: "high",
+    },
     {
       ref: "ef-1",
       sourceType: "secondary",

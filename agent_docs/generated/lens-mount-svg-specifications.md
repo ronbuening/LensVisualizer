@@ -4299,9 +4299,9 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
 
 | Field | Value | Unit |
 |---|---|---|
-| Flange focal distance | 44 (`secondary`) | mm |
-| Nominal throat diameter | 54 (`secondary`) | mm |
-| Effective clear aperture | 54 (`secondary`) | mm |
+| Flange focal distance | 44 (`official`) | mm |
+| Nominal throat diameter | 54 (`official`) | mm |
+| Effective clear aperture | 54 (`official`) | mm |
 | Camera mount outer diameter | 65 (`photo_scaled`) | mm |
 | Lens mount outer diameter | 63 (`photo_scaled`) | mm |
 | Contact count | 8 (`secondary`) | count |
@@ -4312,7 +4312,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
 
 **Camera-side front view** — viewBox `-40 -42 80 82` ([standalone SVG](mounts/canon-ef-camera-front.svg))
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-40 -42 80 82" role="img" aria-labelledby="canon-ef-base-camera_side_front-title canon-ef-base-camera_side_front-desc"><title id="canon-ef-base-camera_side_front-title">Canon EF mount — camera-side front view (base)</title><desc id="canon-ef-base-camera_side_front-desc">Canon EF bayonet mount, camera-side front view. Flange focal distance 44 mm, nominal throat 54 mm. Profile canon-ef/base.</desc><metadata>{"mountId":"canon-ef","profileId":"canon-ef/base","view":"camera_side_front","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.625" y1="0" x2="1.625" y2="0" stroke="#8a94a0" stroke-width="0.48" fill="none" /><line x1="0" y1="-1.625" x2="0" y2="1.625" stroke="#8a94a0" stroke-width="0.48" fill="none" /><line x1="0" y1="-32.5" x2="0" y2="-34.45" stroke="#8a94a0" stroke-width="0.48" fill="none" /></g><g data-layer="camera-side-metal"><path d="M0,-32.5 A32.5,32.5 0 1 1 0,32.5 A32.5,32.5 0 1 1 0,-32.5 Z M0,-27 A27,27 0 1 1 0,27 A27,27 0 1 1 0,-27 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-32.5 A32.5,32.5 0 1 1 0,32.5 A32.5,32.5 0 1 1 0,-32.5 Z M0,-27 A27,27 0 1 1 0,27 A27,27 0 1 1 0,-27 Z" stroke="#6b7a8f" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M0,-27 A27,27 0 1 1 0,27 A27,27 0 1 1 0,-27 Z" stroke="#2f80c4" stroke-width="0.36" fill="none" /><circle cx="8.023" cy="-29.944" r="1" stroke="#7f8c3a" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><circle cx="29.944" cy="-8.023" r="1" stroke="#7f8c3a" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><circle cx="21.92" cy="21.92" r="1" stroke="#7f8c3a" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><circle cx="-8.023" cy="29.944" r="1" stroke="#7f8c3a" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><circle cx="-29.944" cy="8.023" r="1" stroke="#7f8c3a" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><circle cx="-21.92" cy="-21.92" r="1" stroke="#7f8c3a" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-core-interface"><path d="M0,-29.75 L-2.015,-32.938 L2.015,-32.938 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-29.75 L-2.015,-32.938 L2.015,-32.938 Z" stroke="#e8853a" stroke-width="0.48" fill="none" stroke-dasharray="0.6 1.6" /><path d="M2.822,-26.852 L3.136,-29.836 A30,30 0 0 1 24.271,-17.634 L21.843,-15.87 A27,27 0 0 0 2.822,-26.852 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M2.822,-26.852 L3.136,-29.836 A30,30 0 0 1 24.271,-17.634 L21.843,-15.87 A27,27 0 0 0 2.822,-26.852 Z" stroke="#2a9d8f" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M21.276,16.623 L23.64,18.47 A30,30 0 0 1 4.175,29.708 L3.758,26.737 A27,27 0 0 0 21.276,16.623 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M21.276,16.623 L23.64,18.47 A30,30 0 0 1 4.175,29.708 L3.758,26.737 A27,27 0 0 0 21.276,16.623 Z" stroke="#2a9d8f" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><circle cx="-28" cy="0" r="1.138" fill="#d1495b" fill-opacity="0.12" /><circle cx="-28" cy="0" r="1.138" stroke="#d1495b" stroke-width="0.48" fill="none" stroke-dasharray="0.6 1.6" /><path d="M-26.984,-0.942 L-29.982,-1.047 A30,30 0 0 1 -22.294,-20.074 L-20.065,-18.067 A27,27 0 0 0 -26.984,-0.942 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-26.984,-0.942 L-29.982,-1.047 A30,30 0 0 1 -22.294,-20.074 L-20.065,-18.067 A27,27 0 0 0 -26.984,-0.942 Z" stroke="#2a9d8f" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-variant-electrical"><path d="M11.609,20.432 L13.091,23.041 A26.5,26.5 0 0 1 11.781,23.737 L10.447,21.05 A23.5,23.5 0 0 0 11.609,20.432 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M11.609,20.432 L13.091,23.041 A26.5,26.5 0 0 1 11.781,23.737 L10.447,21.05 A23.5,23.5 0 0 0 11.609,20.432 Z" stroke="#8a5cd1" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M8.653,21.849 L9.757,24.638 A26.5,26.5 0 0 1 8.363,25.146 L7.416,22.299 A23.5,23.5 0 0 0 8.653,21.849 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M8.653,21.849 L9.757,24.638 A26.5,26.5 0 0 1 8.363,25.146 L7.416,22.299 A23.5,23.5 0 0 0 8.653,21.849 Z" stroke="#8a5cd1" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M5.528,22.841 L6.233,25.757 A26.5,26.5 0 0 1 4.782,26.065 L4.24,23.114 A23.5,23.5 0 0 0 5.528,22.841 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M5.528,22.841 L6.233,25.757 A26.5,26.5 0 0 1 4.782,26.065 L4.24,23.114 A23.5,23.5 0 0 0 5.528,22.841 Z" stroke="#8a5cd1" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M2.295,23.388 L2.588,26.373 A26.5,26.5 0 0 1 1.108,26.477 L0.982,23.479 A23.5,23.5 0 0 0 2.295,23.388 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M2.295,23.388 L2.588,26.373 A26.5,26.5 0 0 1 1.108,26.477 L0.982,23.479 A23.5,23.5 0 0 0 2.295,23.388 Z" stroke="#8a5cd1" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M-0.982,23.479 L-1.108,26.477 A26.5,26.5 0 0 1 -2.588,26.373 L-2.295,23.388 A23.5,23.5 0 0 0 -0.982,23.479 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-0.982,23.479 L-1.108,26.477 A26.5,26.5 0 0 1 -2.588,26.373 L-2.295,23.388 A23.5,23.5 0 0 0 -0.982,23.479 Z" stroke="#8a5cd1" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M-4.24,23.114 L-4.782,26.065 A26.5,26.5 0 0 1 -6.233,25.757 L-5.528,22.841 A23.5,23.5 0 0 0 -4.24,23.114 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-4.24,23.114 L-4.782,26.065 A26.5,26.5 0 0 1 -6.233,25.757 L-5.528,22.841 A23.5,23.5 0 0 0 -4.24,23.114 Z" stroke="#8a5cd1" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M-7.416,22.299 L-8.363,25.146 A26.5,26.5 0 0 1 -9.757,24.638 L-8.653,21.849 A23.5,23.5 0 0 0 -7.416,22.299 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-7.416,22.299 L-8.363,25.146 A26.5,26.5 0 0 1 -9.757,24.638 L-8.653,21.849 A23.5,23.5 0 0 0 -7.416,22.299 Z" stroke="#8a5cd1" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M-10.447,21.05 L-11.781,23.737 A26.5,26.5 0 0 1 -13.091,23.041 L-11.609,20.432 A23.5,23.5 0 0 0 -10.447,21.05 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-10.447,21.05 L-11.781,23.737 A26.5,26.5 0 0 1 -13.091,23.041 L-11.609,20.432 A23.5,23.5 0 0 0 -10.447,21.05 Z" stroke="#8a5cd1" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-38.4" y1="-37.9" x2="-33.6" y2="-37.9" stroke="#2f80c4" stroke-width="0.574" /><text x="-32.288" y="-36.982" font-size="2.624" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-38.4" y1="-33.964" x2="-33.6" y2="-33.964" stroke="#6b7a8f" stroke-width="0.574" /><text x="-32.288" y="-33.046" font-size="2.624" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-38.4" y1="-30.028" x2="-33.6" y2="-30.028" stroke="#2a9d8f" stroke-width="0.574" /><text x="-32.288" y="-29.11" font-size="2.624" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-38.4" y1="-26.092" x2="-33.6" y2="-26.092" stroke="#d1495b" stroke-width="0.574" /><text x="-32.288" y="-25.174" font-size="2.624" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-38.4" y1="-22.156" x2="-33.6" y2="-22.156" stroke="#e8853a" stroke-width="0.574" /><text x="-32.288" y="-21.238" font-size="2.624" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-38.4" y1="-18.22" x2="-33.6" y2="-18.22" stroke="#8a5cd1" stroke-width="0.574" /><text x="-32.288" y="-17.302" font-size="2.624" fill="#8a5cd1" font-family="sans-serif">Electrical contact</text><line x1="-38.4" y1="-14.284" x2="-33.6" y2="-14.284" stroke="#7f8c3a" stroke-width="0.574" /><text x="-32.288" y="-13.366" font-size="2.624" fill="#7f8c3a" font-family="sans-serif">Screws / seals</text><line x1="-38.4" y1="-10.348" x2="-33.6" y2="-10.348" stroke="#8a94a0" stroke-width="0.574" /><text x="-32.288" y="-9.43" font-size="2.624" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-40 -42 80 82" role="img" aria-labelledby="canon-ef-base-camera_side_front-title canon-ef-base-camera_side_front-desc"><title id="canon-ef-base-camera_side_front-title">Canon EF mount — camera-side front view (base)</title><desc id="canon-ef-base-camera_side_front-desc">Canon EF bayonet mount, camera-side front view. Flange focal distance 44 mm, nominal throat 54 mm. Profile canon-ef/base.</desc><metadata>{"mountId":"canon-ef","profileId":"canon-ef/base","view":"camera_side_front","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.625" y1="0" x2="1.625" y2="0" stroke="#8a94a0" stroke-width="0.48" fill="none" /><line x1="0" y1="-1.625" x2="0" y2="1.625" stroke="#8a94a0" stroke-width="0.48" fill="none" /><line x1="0" y1="-32.5" x2="0" y2="-34.45" stroke="#8a94a0" stroke-width="0.48" fill="none" /></g><g data-layer="camera-side-metal"><path d="M0,-32.5 A32.5,32.5 0 1 1 0,32.5 A32.5,32.5 0 1 1 0,-32.5 Z M0,-27 A27,27 0 1 1 0,27 A27,27 0 1 1 0,-27 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-32.5 A32.5,32.5 0 1 1 0,32.5 A32.5,32.5 0 1 1 0,-32.5 Z M0,-27 A27,27 0 1 1 0,27 A27,27 0 1 1 0,-27 Z" stroke="#6b7a8f" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M0,-27 A27,27 0 1 1 0,27 A27,27 0 1 1 0,-27 Z" stroke="#2f80c4" stroke-width="0.48" fill="none" /><circle cx="8.023" cy="-29.944" r="1" stroke="#7f8c3a" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><circle cx="29.944" cy="-8.023" r="1" stroke="#7f8c3a" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><circle cx="21.92" cy="21.92" r="1" stroke="#7f8c3a" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><circle cx="-8.023" cy="29.944" r="1" stroke="#7f8c3a" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><circle cx="-29.944" cy="8.023" r="1" stroke="#7f8c3a" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><circle cx="-21.92" cy="-21.92" r="1" stroke="#7f8c3a" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-core-interface"><path d="M0,-29.75 L-2.015,-32.938 L2.015,-32.938 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-29.75 L-2.015,-32.938 L2.015,-32.938 Z" stroke="#e8853a" stroke-width="0.48" fill="none" stroke-dasharray="0.6 1.6" /><path d="M2.822,-26.852 L3.136,-29.836 A30,30 0 0 1 24.271,-17.634 L21.843,-15.87 A27,27 0 0 0 2.822,-26.852 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M2.822,-26.852 L3.136,-29.836 A30,30 0 0 1 24.271,-17.634 L21.843,-15.87 A27,27 0 0 0 2.822,-26.852 Z" stroke="#2a9d8f" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M21.276,16.623 L23.64,18.47 A30,30 0 0 1 4.175,29.708 L3.758,26.737 A27,27 0 0 0 21.276,16.623 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M21.276,16.623 L23.64,18.47 A30,30 0 0 1 4.175,29.708 L3.758,26.737 A27,27 0 0 0 21.276,16.623 Z" stroke="#2a9d8f" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><circle cx="-28" cy="0" r="1.138" fill="#d1495b" fill-opacity="0.12" /><circle cx="-28" cy="0" r="1.138" stroke="#d1495b" stroke-width="0.48" fill="none" stroke-dasharray="0.6 1.6" /><path d="M-26.984,-0.942 L-29.982,-1.047 A30,30 0 0 1 -22.294,-20.074 L-20.065,-18.067 A27,27 0 0 0 -26.984,-0.942 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-26.984,-0.942 L-29.982,-1.047 A30,30 0 0 1 -22.294,-20.074 L-20.065,-18.067 A27,27 0 0 0 -26.984,-0.942 Z" stroke="#2a9d8f" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-variant-electrical"><path d="M11.609,20.432 L13.091,23.041 A26.5,26.5 0 0 1 11.781,23.737 L10.447,21.05 A23.5,23.5 0 0 0 11.609,20.432 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M11.609,20.432 L13.091,23.041 A26.5,26.5 0 0 1 11.781,23.737 L10.447,21.05 A23.5,23.5 0 0 0 11.609,20.432 Z" stroke="#8a5cd1" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M8.653,21.849 L9.757,24.638 A26.5,26.5 0 0 1 8.363,25.146 L7.416,22.299 A23.5,23.5 0 0 0 8.653,21.849 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M8.653,21.849 L9.757,24.638 A26.5,26.5 0 0 1 8.363,25.146 L7.416,22.299 A23.5,23.5 0 0 0 8.653,21.849 Z" stroke="#8a5cd1" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M5.528,22.841 L6.233,25.757 A26.5,26.5 0 0 1 4.782,26.065 L4.24,23.114 A23.5,23.5 0 0 0 5.528,22.841 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M5.528,22.841 L6.233,25.757 A26.5,26.5 0 0 1 4.782,26.065 L4.24,23.114 A23.5,23.5 0 0 0 5.528,22.841 Z" stroke="#8a5cd1" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M2.295,23.388 L2.588,26.373 A26.5,26.5 0 0 1 1.108,26.477 L0.982,23.479 A23.5,23.5 0 0 0 2.295,23.388 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M2.295,23.388 L2.588,26.373 A26.5,26.5 0 0 1 1.108,26.477 L0.982,23.479 A23.5,23.5 0 0 0 2.295,23.388 Z" stroke="#8a5cd1" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M-0.982,23.479 L-1.108,26.477 A26.5,26.5 0 0 1 -2.588,26.373 L-2.295,23.388 A23.5,23.5 0 0 0 -0.982,23.479 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-0.982,23.479 L-1.108,26.477 A26.5,26.5 0 0 1 -2.588,26.373 L-2.295,23.388 A23.5,23.5 0 0 0 -0.982,23.479 Z" stroke="#8a5cd1" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M-4.24,23.114 L-4.782,26.065 A26.5,26.5 0 0 1 -6.233,25.757 L-5.528,22.841 A23.5,23.5 0 0 0 -4.24,23.114 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-4.24,23.114 L-4.782,26.065 A26.5,26.5 0 0 1 -6.233,25.757 L-5.528,22.841 A23.5,23.5 0 0 0 -4.24,23.114 Z" stroke="#8a5cd1" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M-7.416,22.299 L-8.363,25.146 A26.5,26.5 0 0 1 -9.757,24.638 L-8.653,21.849 A23.5,23.5 0 0 0 -7.416,22.299 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-7.416,22.299 L-8.363,25.146 A26.5,26.5 0 0 1 -9.757,24.638 L-8.653,21.849 A23.5,23.5 0 0 0 -7.416,22.299 Z" stroke="#8a5cd1" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M-10.447,21.05 L-11.781,23.737 A26.5,26.5 0 0 1 -13.091,23.041 L-11.609,20.432 A23.5,23.5 0 0 0 -10.447,21.05 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-10.447,21.05 L-11.781,23.737 A26.5,26.5 0 0 1 -13.091,23.041 L-11.609,20.432 A23.5,23.5 0 0 0 -10.447,21.05 Z" stroke="#8a5cd1" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-38.4" y1="-37.9" x2="-33.6" y2="-37.9" stroke="#2f80c4" stroke-width="0.574" /><text x="-32.288" y="-36.982" font-size="2.624" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-38.4" y1="-33.964" x2="-33.6" y2="-33.964" stroke="#6b7a8f" stroke-width="0.574" /><text x="-32.288" y="-33.046" font-size="2.624" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-38.4" y1="-30.028" x2="-33.6" y2="-30.028" stroke="#2a9d8f" stroke-width="0.574" /><text x="-32.288" y="-29.11" font-size="2.624" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-38.4" y1="-26.092" x2="-33.6" y2="-26.092" stroke="#d1495b" stroke-width="0.574" /><text x="-32.288" y="-25.174" font-size="2.624" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-38.4" y1="-22.156" x2="-33.6" y2="-22.156" stroke="#e8853a" stroke-width="0.574" /><text x="-32.288" y="-21.238" font-size="2.624" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-38.4" y1="-18.22" x2="-33.6" y2="-18.22" stroke="#8a5cd1" stroke-width="0.574" /><text x="-32.288" y="-17.302" font-size="2.624" fill="#8a5cd1" font-family="sans-serif">Electrical contact</text><line x1="-38.4" y1="-14.284" x2="-33.6" y2="-14.284" stroke="#7f8c3a" stroke-width="0.574" /><text x="-32.288" y="-13.366" font-size="2.624" fill="#7f8c3a" font-family="sans-serif">Screws / seals</text><line x1="-38.4" y1="-10.348" x2="-33.6" y2="-10.348" stroke="#8a94a0" stroke-width="0.574" /><text x="-32.288" y="-9.43" font-size="2.624" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
 
 **Lens-side rear view** — viewBox `-38 -40 76 78` ([standalone SVG](mounts/canon-ef-lens-rear.svg))
 
@@ -4448,6 +4448,7 @@ None — fully electronic.
           ],
           "status": "researched",
           "sourceRefs": [
+            "ef-official-1",
             "ef-1",
             "ef-2",
             "ef-p1",
@@ -4460,24 +4461,23 @@ None — fully electronic.
   "coreDimensions": {
     "flangeFocalDistanceMm": {
       "value": 44,
-      "status": "secondary",
+      "status": "official",
       "sourceRefs": [
-        "ef-1",
-        "ef-2"
+        "ef-official-1"
       ]
     },
     "nominalThroatDiameterMm": {
       "value": 54,
-      "status": "secondary",
+      "status": "official",
       "sourceRefs": [
-        "ef-1"
+        "ef-official-1"
       ]
     },
     "effectiveClearApertureMm": {
       "value": 54,
-      "status": "secondary",
+      "status": "official",
       "sourceRefs": [
-        "ef-1"
+        "ef-official-1"
       ]
     },
     "cameraMountOuterDiameterMm": {
@@ -4540,37 +4540,37 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "secondary",
+        "status": "official",
         "sourceRefs": [
-          "ef-1"
+          "ef-official-1"
         ]
       },
       "startAngleDeg": {
         "value": 0,
-        "status": "secondary",
+        "status": "official",
         "sourceRefs": [
-          "ef-1"
+          "ef-official-1"
         ]
       },
       "endAngleDeg": {
         "value": 360,
-        "status": "secondary",
+        "status": "official",
         "sourceRefs": [
-          "ef-1"
+          "ef-official-1"
         ]
       },
       "innerRadiusMm": {
         "value": 0,
-        "status": "secondary",
+        "status": "official",
         "sourceRefs": [
-          "ef-1"
+          "ef-official-1"
         ]
       },
       "outerRadiusMm": {
         "value": 27,
-        "status": "secondary",
+        "status": "official",
         "sourceRefs": [
-          "ef-1"
+          "ef-official-1"
         ]
       },
       "depthMm": {
@@ -4609,9 +4609,9 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 27,
-        "status": "secondary",
+        "status": "official",
         "sourceRefs": [
-          "ef-1"
+          "ef-official-1"
         ]
       },
       "outerRadiusMm": {
@@ -5301,9 +5301,9 @@ None — fully electronic.
       "planeId": "sensor_film_plane",
       "zPositionMm": {
         "value": -44,
-        "status": "secondary",
+        "status": "official",
         "sourceRefs": [
-          "ef-1"
+          "ef-official-1"
         ]
       },
       "thicknessMm": {
@@ -6060,6 +6060,16 @@ None — fully electronic.
   },
   "sourceRefs": [
     {
+      "ref": "ef-official-1",
+      "sourceType": "official",
+      "citation": "Canon, “EOS R System White Paper,” EOS system history section. Accessed 2026-06-06.",
+      "liveUrl": "https://downloads.canon.com/nw/camera/misc-pages/eos-r/pdf/canon_eos_r_white_paper.pdf",
+      "archiveUrl": "http://web.archive.org/web/20251117083223/http://downloads.canon.com/nw/camera/misc-pages/eos-r/pdf/canon_eos_r_white_paper.pdf",
+      "archiveDate": "2025-11-17",
+      "appliesTo": "EF mount 54 mm inner diameter and 44 mm flange back distance",
+      "confidence": "high"
+    },
+    {
       "ref": "ef-1",
       "sourceType": "secondary",
       "citation": "“Canon EF lens mount,” Wikipedia. Accessed 2026-06-04.",
@@ -6165,6 +6175,7 @@ None — fully electronic.
 
 | Ref | Type | Citation | Archive | Captured | Confidence |
 |---|---|---|---|---|---|
+| `ef-official-1` | official | Canon, “EOS R System White Paper,” EOS system history section. Accessed 2026-06-06. | [snapshot](http://web.archive.org/web/20251117083223/http://downloads.canon.com/nw/camera/misc-pages/eos-r/pdf/canon_eos_r_white_paper.pdf) | 2025-11-17 | high |
 | `ef-1` | secondary | “Canon EF lens mount,” Wikipedia. Accessed 2026-06-04. | [snapshot](http://web.archive.org/web/20260604022746/https://en.wikipedia.org/wiki/Canon_EF_lens_mount) | 2026-06-04 | high |
 | `ef-2` | secondary | “Lens Mounts: Canon EF,” JAPB (japb.net). Accessed 2026-06-04. | [snapshot](http://web.archive.org/web/20260521090927/https://japb.net/theory/lensmounts/canon-ef/) | 2026-05-21 | medium |
 | `ef-p1` | patent | JPS62195633A, Canon EF-era bayonet/contact connector family. Accessed 2026-06-06. | [snapshot](https://patents.google.com/patent/JPS62195633A/en) | 2026-06-06 | low |
@@ -8537,9 +8548,9 @@ None — fully electronic.
 
 | Field | Value | Unit |
 |---|---|---|
-| Flange focal distance | 44 (`secondary`) | mm |
-| Nominal throat diameter | 54 (`secondary`) | mm |
-| Effective clear aperture | 54 (`secondary`) | mm |
+| Flange focal distance | 44 (`official`) | mm |
+| Nominal throat diameter | 54 (`official`) | mm |
+| Effective clear aperture | 54 (`official`) | mm |
 | Camera mount outer diameter | 65 (`photo_scaled`) | mm |
 | Lens mount outer diameter | 63 (`photo_scaled`) | mm |
 | Contact count | 8 (`secondary`) | count |
@@ -8688,6 +8699,7 @@ None — fully electronic.
           ],
           "status": "researched",
           "sourceRefs": [
+            "efs-official-1",
             "efs-1",
             "efs-2",
             "efs-p1",
@@ -8700,25 +8712,23 @@ None — fully electronic.
   "coreDimensions": {
     "flangeFocalDistanceMm": {
       "value": 44,
-      "status": "secondary",
+      "status": "official",
       "sourceRefs": [
-        "efs-1"
+        "efs-official-1"
       ]
     },
     "nominalThroatDiameterMm": {
       "value": 54,
-      "status": "secondary",
+      "status": "official",
       "sourceRefs": [
-        "efs-1",
-        "efs-2"
+        "efs-official-1"
       ]
     },
     "effectiveClearApertureMm": {
       "value": 54,
-      "status": "secondary",
+      "status": "official",
       "sourceRefs": [
-        "efs-1",
-        "efs-2"
+        "efs-official-1"
       ]
     },
     "cameraMountOuterDiameterMm": {
@@ -10510,6 +10520,16 @@ None — fully electronic.
   },
   "sourceRefs": [
     {
+      "ref": "efs-official-1",
+      "sourceType": "official",
+      "citation": "Canon, “EOS R System White Paper,” EOS system history section. Accessed 2026-06-06.",
+      "liveUrl": "https://downloads.canon.com/nw/camera/misc-pages/eos-r/pdf/canon_eos_r_white_paper.pdf",
+      "archiveUrl": "http://web.archive.org/web/20251117083223/http://downloads.canon.com/nw/camera/misc-pages/eos-r/pdf/canon_eos_r_white_paper.pdf",
+      "archiveDate": "2025-11-17",
+      "appliesTo": "shared EF-family 54 mm inner diameter and 44 mm flange back distance",
+      "confidence": "high"
+    },
+    {
       "ref": "efs-1",
       "sourceType": "secondary",
       "citation": "“Canon EF-S lens mount,” Wikipedia. Accessed 2026-06-06.",
@@ -10603,6 +10623,7 @@ None — fully electronic.
 
 | Ref | Type | Citation | Archive | Captured | Confidence |
 |---|---|---|---|---|---|
+| `efs-official-1` | official | Canon, “EOS R System White Paper,” EOS system history section. Accessed 2026-06-06. | [snapshot](http://web.archive.org/web/20251117083223/http://downloads.canon.com/nw/camera/misc-pages/eos-r/pdf/canon_eos_r_white_paper.pdf) | 2025-11-17 | high |
 | `efs-1` | secondary | “Canon EF-S lens mount,” Wikipedia. Accessed 2026-06-06. | [snapshot](http://web.archive.org/web/20260525113504/https://en.wikipedia.org/wiki/Canon_EF-S_lens_mount) | 2026-05-25 | medium |
 | `efs-2` | secondary | “Lens Mounts: Canon EF,” JAPB (japb.net). Accessed 2026-06-06. | [snapshot](http://web.archive.org/web/20260521090927/https://japb.net/theory/lensmounts/canon-ef/) | 2026-05-21 | medium |
 | `efs-p1` | patent | JPS62195633A, Canon camera/lens bayonet and contact connector family. Accessed 2026-06-06. | [snapshot](https://patents.google.com/patent/JPS62195633A/en) | 2026-06-06 | low |
@@ -13406,12 +13427,12 @@ None — fully electronic.
 
 | Field | Value | Unit |
 |---|---|---|
-| Flange focal distance | 20 (`secondary`) | mm |
-| Nominal throat diameter | 54 (`secondary`) | mm |
-| Effective clear aperture | 54 (`secondary`) | mm |
+| Flange focal distance | 20 (`official`) | mm |
+| Nominal throat diameter | 54 (`official`) | mm |
+| Effective clear aperture | 54 (`official`) | mm |
 | Camera mount outer diameter | 65 (`photo_scaled`) | mm |
 | Lens mount outer diameter | 63 (`photo_scaled`) | mm |
-| Contact count | 12 (`secondary`) | count |
+| Contact count | 12 (`official`) | count |
 | Lock rotation | unknown (`unknown`) | deg |
 | Lock direction | unknown (`unknown`) | — |
 
@@ -13419,7 +13440,7 @@ None — fully electronic.
 
 **Camera-side front view** — viewBox `-40 -42 80 82` ([standalone SVG](mounts/canon-rf-camera-front.svg))
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-40 -42 80 82" role="img" aria-labelledby="canon-rf-base-camera_side_front-title canon-rf-base-camera_side_front-desc"><title id="canon-rf-base-camera_side_front-title">Canon RF mount — camera-side front view (base)</title><desc id="canon-rf-base-camera_side_front-desc">Canon RF bayonet mount, camera-side front view. Flange focal distance 20 mm, nominal throat 54 mm. Profile canon-rf/base.</desc><metadata>{"mountId":"canon-rf","profileId":"canon-rf/base","view":"camera_side_front","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.625" y1="0" x2="1.625" y2="0" stroke="#8a94a0" stroke-width="0.48" fill="none" /><line x1="0" y1="-1.625" x2="0" y2="1.625" stroke="#8a94a0" stroke-width="0.48" fill="none" /><line x1="0" y1="-32.5" x2="0" y2="-34.45" stroke="#8a94a0" stroke-width="0.48" fill="none" /></g><g data-layer="camera-side-metal"><path d="M0,-32.5 A32.5,32.5 0 1 1 0,32.5 A32.5,32.5 0 1 1 0,-32.5 Z M0,-27 A27,27 0 1 1 0,27 A27,27 0 1 1 0,-27 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-32.5 A32.5,32.5 0 1 1 0,32.5 A32.5,32.5 0 1 1 0,-32.5 Z M0,-27 A27,27 0 1 1 0,27 A27,27 0 1 1 0,-27 Z" stroke="#6b7a8f" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M0,-27 A27,27 0 1 1 0,27 A27,27 0 1 1 0,-27 Z" stroke="#2f80c4" stroke-width="0.36" fill="none" /><circle cx="8.023" cy="-29.944" r="1" stroke="#7f8c3a" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><circle cx="29.944" cy="-8.023" r="1" stroke="#7f8c3a" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><circle cx="21.92" cy="21.92" r="1" stroke="#7f8c3a" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><circle cx="-8.023" cy="29.944" r="1" stroke="#7f8c3a" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><circle cx="-29.944" cy="8.023" r="1" stroke="#7f8c3a" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><circle cx="-21.92" cy="-21.92" r="1" stroke="#7f8c3a" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-core-interface"><path d="M0,-29.75 L-2.015,-32.938 L2.015,-32.938 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-29.75 L-2.015,-32.938 L2.015,-32.938 Z" stroke="#e8853a" stroke-width="0.48" fill="none" stroke-dasharray="0.6 1.6" /><path d="M3.758,-26.737 L4.175,-29.708 A30,30 0 0 1 23.64,-18.47 L21.276,-16.623 A27,27 0 0 0 3.758,-26.737 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M3.758,-26.737 L4.175,-29.708 A30,30 0 0 1 23.64,-18.47 L21.276,-16.623 A27,27 0 0 0 3.758,-26.737 Z" stroke="#2a9d8f" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M21.276,16.623 L23.64,18.47 A30,30 0 0 1 4.175,29.708 L3.758,26.737 A27,27 0 0 0 21.276,16.623 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M21.276,16.623 L23.64,18.47 A30,30 0 0 1 4.175,29.708 L3.758,26.737 A27,27 0 0 0 21.276,16.623 Z" stroke="#2a9d8f" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><circle cx="-28" cy="0" r="1.138" fill="#d1495b" fill-opacity="0.12" /><circle cx="-28" cy="0" r="1.138" stroke="#d1495b" stroke-width="0.48" fill="none" stroke-dasharray="0.6 1.6" /><path d="M-26.984,-0.942 L-29.982,-1.047 A30,30 0 0 1 -22.294,-20.074 L-20.065,-18.067 A27,27 0 0 0 -26.984,-0.942 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-26.984,-0.942 L-29.982,-1.047 A30,30 0 0 1 -22.294,-20.074 L-20.065,-18.067 A27,27 0 0 0 -26.984,-0.942 Z" stroke="#2a9d8f" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-variant-electrical"><path d="M12.275,20.039 L13.842,22.597 A26.5,26.5 0 0 1 12.649,23.286 L11.217,20.65 A23.5,23.5 0 0 0 12.275,20.039 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M12.275,20.039 L13.842,22.597 A26.5,26.5 0 0 1 12.649,23.286 L11.217,20.65 A23.5,23.5 0 0 0 12.275,20.039 Z" stroke="#8a5cd1" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M10.482,21.033 L11.82,23.718 A26.5,26.5 0 0 1 10.571,24.3 L9.374,21.549 A23.5,23.5 0 0 0 10.482,21.033 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M10.482,21.033 L11.82,23.718 A26.5,26.5 0 0 1 10.571,24.3 L9.374,21.549 A23.5,23.5 0 0 0 10.482,21.033 Z" stroke="#8a5cd1" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M8.609,21.866 L9.708,24.658 A26.5,26.5 0 0 1 8.413,25.129 L7.461,22.284 A23.5,23.5 0 0 0 8.609,21.866 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M8.609,21.866 L9.708,24.658 A26.5,26.5 0 0 1 8.413,25.129 L7.461,22.284 A23.5,23.5 0 0 0 8.609,21.866 Z" stroke="#8a5cd1" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M6.67,22.533 L7.522,25.41 A26.5,26.5 0 0 1 6.191,25.767 L5.49,22.85 A23.5,23.5 0 0 0 6.67,22.533 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M6.67,22.533 L7.522,25.41 A26.5,26.5 0 0 1 6.191,25.767 L5.49,22.85 A23.5,23.5 0 0 0 6.67,22.533 Z" stroke="#8a5cd1" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M4.681,23.029 L5.279,25.969 A26.5,26.5 0 0 1 3.922,26.208 L3.478,23.241 A23.5,23.5 0 0 0 4.681,23.029 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M4.681,23.029 L5.279,25.969 A26.5,26.5 0 0 1 3.922,26.208 L3.478,23.241 A23.5,23.5 0 0 0 4.681,23.029 Z" stroke="#8a5cd1" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M2.656,23.349 L2.995,26.33 A26.5,26.5 0 0 1 1.623,26.45 L1.439,23.456 A23.5,23.5 0 0 0 2.656,23.349 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M2.656,23.349 L2.995,26.33 A26.5,26.5 0 0 1 1.623,26.45 L1.439,23.456 A23.5,23.5 0 0 0 2.656,23.349 Z" stroke="#8a5cd1" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M0.611,23.492 L0.689,26.491 A26.5,26.5 0 0 1 -0.689,26.491 L-0.611,23.492 A23.5,23.5 0 0 0 0.611,23.492 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M0.611,23.492 L0.689,26.491 A26.5,26.5 0 0 1 -0.689,26.491 L-0.611,23.492 A23.5,23.5 0 0 0 0.611,23.492 Z" stroke="#8a5cd1" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M-1.439,23.456 L-1.623,26.45 A26.5,26.5 0 0 1 -2.995,26.33 L-2.656,23.349 A23.5,23.5 0 0 0 -1.439,23.456 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-1.439,23.456 L-1.623,26.45 A26.5,26.5 0 0 1 -2.995,26.33 L-2.656,23.349 A23.5,23.5 0 0 0 -1.439,23.456 Z" stroke="#8a5cd1" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M-3.478,23.241 L-3.922,26.208 A26.5,26.5 0 0 1 -5.279,25.969 L-4.681,23.029 A23.5,23.5 0 0 0 -3.478,23.241 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-3.478,23.241 L-3.922,26.208 A26.5,26.5 0 0 1 -5.279,25.969 L-4.681,23.029 A23.5,23.5 0 0 0 -3.478,23.241 Z" stroke="#8a5cd1" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M-5.49,22.85 L-6.191,25.767 A26.5,26.5 0 0 1 -7.522,25.41 L-6.67,22.533 A23.5,23.5 0 0 0 -5.49,22.85 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-5.49,22.85 L-6.191,25.767 A26.5,26.5 0 0 1 -7.522,25.41 L-6.67,22.533 A23.5,23.5 0 0 0 -5.49,22.85 Z" stroke="#8a5cd1" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M-7.461,22.284 L-8.413,25.129 A26.5,26.5 0 0 1 -9.708,24.658 L-8.609,21.866 A23.5,23.5 0 0 0 -7.461,22.284 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-7.461,22.284 L-8.413,25.129 A26.5,26.5 0 0 1 -9.708,24.658 L-8.609,21.866 A23.5,23.5 0 0 0 -7.461,22.284 Z" stroke="#8a5cd1" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M-9.374,21.549 L-10.571,24.3 A26.5,26.5 0 0 1 -11.82,23.718 L-10.482,21.033 A23.5,23.5 0 0 0 -9.374,21.549 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-9.374,21.549 L-10.571,24.3 A26.5,26.5 0 0 1 -11.82,23.718 L-10.482,21.033 A23.5,23.5 0 0 0 -9.374,21.549 Z" stroke="#8a5cd1" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-38.4" y1="-37.9" x2="-33.6" y2="-37.9" stroke="#2f80c4" stroke-width="0.574" /><text x="-32.288" y="-36.982" font-size="2.624" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-38.4" y1="-33.964" x2="-33.6" y2="-33.964" stroke="#6b7a8f" stroke-width="0.574" /><text x="-32.288" y="-33.046" font-size="2.624" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-38.4" y1="-30.028" x2="-33.6" y2="-30.028" stroke="#2a9d8f" stroke-width="0.574" /><text x="-32.288" y="-29.11" font-size="2.624" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-38.4" y1="-26.092" x2="-33.6" y2="-26.092" stroke="#d1495b" stroke-width="0.574" /><text x="-32.288" y="-25.174" font-size="2.624" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-38.4" y1="-22.156" x2="-33.6" y2="-22.156" stroke="#e8853a" stroke-width="0.574" /><text x="-32.288" y="-21.238" font-size="2.624" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-38.4" y1="-18.22" x2="-33.6" y2="-18.22" stroke="#8a5cd1" stroke-width="0.574" /><text x="-32.288" y="-17.302" font-size="2.624" fill="#8a5cd1" font-family="sans-serif">Electrical contact</text><line x1="-38.4" y1="-14.284" x2="-33.6" y2="-14.284" stroke="#7f8c3a" stroke-width="0.574" /><text x="-32.288" y="-13.366" font-size="2.624" fill="#7f8c3a" font-family="sans-serif">Screws / seals</text><line x1="-38.4" y1="-10.348" x2="-33.6" y2="-10.348" stroke="#8a94a0" stroke-width="0.574" /><text x="-32.288" y="-9.43" font-size="2.624" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-40 -42 80 82" role="img" aria-labelledby="canon-rf-base-camera_side_front-title canon-rf-base-camera_side_front-desc"><title id="canon-rf-base-camera_side_front-title">Canon RF mount — camera-side front view (base)</title><desc id="canon-rf-base-camera_side_front-desc">Canon RF bayonet mount, camera-side front view. Flange focal distance 20 mm, nominal throat 54 mm. Profile canon-rf/base.</desc><metadata>{"mountId":"canon-rf","profileId":"canon-rf/base","view":"camera_side_front","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.625" y1="0" x2="1.625" y2="0" stroke="#8a94a0" stroke-width="0.48" fill="none" /><line x1="0" y1="-1.625" x2="0" y2="1.625" stroke="#8a94a0" stroke-width="0.48" fill="none" /><line x1="0" y1="-32.5" x2="0" y2="-34.45" stroke="#8a94a0" stroke-width="0.48" fill="none" /></g><g data-layer="camera-side-metal"><path d="M0,-32.5 A32.5,32.5 0 1 1 0,32.5 A32.5,32.5 0 1 1 0,-32.5 Z M0,-27 A27,27 0 1 1 0,27 A27,27 0 1 1 0,-27 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-32.5 A32.5,32.5 0 1 1 0,32.5 A32.5,32.5 0 1 1 0,-32.5 Z M0,-27 A27,27 0 1 1 0,27 A27,27 0 1 1 0,-27 Z" stroke="#6b7a8f" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M0,-27 A27,27 0 1 1 0,27 A27,27 0 1 1 0,-27 Z" stroke="#2f80c4" stroke-width="0.48" fill="none" /><circle cx="8.023" cy="-29.944" r="1" stroke="#7f8c3a" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><circle cx="29.944" cy="-8.023" r="1" stroke="#7f8c3a" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><circle cx="21.92" cy="21.92" r="1" stroke="#7f8c3a" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><circle cx="-8.023" cy="29.944" r="1" stroke="#7f8c3a" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><circle cx="-29.944" cy="8.023" r="1" stroke="#7f8c3a" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><circle cx="-21.92" cy="-21.92" r="1" stroke="#7f8c3a" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-core-interface"><path d="M0,-29.75 L-2.015,-32.938 L2.015,-32.938 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-29.75 L-2.015,-32.938 L2.015,-32.938 Z" stroke="#e8853a" stroke-width="0.48" fill="none" stroke-dasharray="0.6 1.6" /><path d="M3.758,-26.737 L4.175,-29.708 A30,30 0 0 1 23.64,-18.47 L21.276,-16.623 A27,27 0 0 0 3.758,-26.737 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M3.758,-26.737 L4.175,-29.708 A30,30 0 0 1 23.64,-18.47 L21.276,-16.623 A27,27 0 0 0 3.758,-26.737 Z" stroke="#2a9d8f" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M21.276,16.623 L23.64,18.47 A30,30 0 0 1 4.175,29.708 L3.758,26.737 A27,27 0 0 0 21.276,16.623 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M21.276,16.623 L23.64,18.47 A30,30 0 0 1 4.175,29.708 L3.758,26.737 A27,27 0 0 0 21.276,16.623 Z" stroke="#2a9d8f" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><circle cx="-28" cy="0" r="1.138" fill="#d1495b" fill-opacity="0.12" /><circle cx="-28" cy="0" r="1.138" stroke="#d1495b" stroke-width="0.48" fill="none" stroke-dasharray="0.6 1.6" /><path d="M-26.984,-0.942 L-29.982,-1.047 A30,30 0 0 1 -22.294,-20.074 L-20.065,-18.067 A27,27 0 0 0 -26.984,-0.942 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-26.984,-0.942 L-29.982,-1.047 A30,30 0 0 1 -22.294,-20.074 L-20.065,-18.067 A27,27 0 0 0 -26.984,-0.942 Z" stroke="#2a9d8f" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-variant-electrical"><path d="M12.275,20.039 L13.842,22.597 A26.5,26.5 0 0 1 12.649,23.286 L11.217,20.65 A23.5,23.5 0 0 0 12.275,20.039 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M12.275,20.039 L13.842,22.597 A26.5,26.5 0 0 1 12.649,23.286 L11.217,20.65 A23.5,23.5 0 0 0 12.275,20.039 Z" stroke="#8a5cd1" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M10.482,21.033 L11.82,23.718 A26.5,26.5 0 0 1 10.571,24.3 L9.374,21.549 A23.5,23.5 0 0 0 10.482,21.033 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M10.482,21.033 L11.82,23.718 A26.5,26.5 0 0 1 10.571,24.3 L9.374,21.549 A23.5,23.5 0 0 0 10.482,21.033 Z" stroke="#8a5cd1" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M8.609,21.866 L9.708,24.658 A26.5,26.5 0 0 1 8.413,25.129 L7.461,22.284 A23.5,23.5 0 0 0 8.609,21.866 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M8.609,21.866 L9.708,24.658 A26.5,26.5 0 0 1 8.413,25.129 L7.461,22.284 A23.5,23.5 0 0 0 8.609,21.866 Z" stroke="#8a5cd1" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M6.67,22.533 L7.522,25.41 A26.5,26.5 0 0 1 6.191,25.767 L5.49,22.85 A23.5,23.5 0 0 0 6.67,22.533 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M6.67,22.533 L7.522,25.41 A26.5,26.5 0 0 1 6.191,25.767 L5.49,22.85 A23.5,23.5 0 0 0 6.67,22.533 Z" stroke="#8a5cd1" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M4.681,23.029 L5.279,25.969 A26.5,26.5 0 0 1 3.922,26.208 L3.478,23.241 A23.5,23.5 0 0 0 4.681,23.029 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M4.681,23.029 L5.279,25.969 A26.5,26.5 0 0 1 3.922,26.208 L3.478,23.241 A23.5,23.5 0 0 0 4.681,23.029 Z" stroke="#8a5cd1" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M2.656,23.349 L2.995,26.33 A26.5,26.5 0 0 1 1.623,26.45 L1.439,23.456 A23.5,23.5 0 0 0 2.656,23.349 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M2.656,23.349 L2.995,26.33 A26.5,26.5 0 0 1 1.623,26.45 L1.439,23.456 A23.5,23.5 0 0 0 2.656,23.349 Z" stroke="#8a5cd1" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M0.611,23.492 L0.689,26.491 A26.5,26.5 0 0 1 -0.689,26.491 L-0.611,23.492 A23.5,23.5 0 0 0 0.611,23.492 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M0.611,23.492 L0.689,26.491 A26.5,26.5 0 0 1 -0.689,26.491 L-0.611,23.492 A23.5,23.5 0 0 0 0.611,23.492 Z" stroke="#8a5cd1" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M-1.439,23.456 L-1.623,26.45 A26.5,26.5 0 0 1 -2.995,26.33 L-2.656,23.349 A23.5,23.5 0 0 0 -1.439,23.456 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-1.439,23.456 L-1.623,26.45 A26.5,26.5 0 0 1 -2.995,26.33 L-2.656,23.349 A23.5,23.5 0 0 0 -1.439,23.456 Z" stroke="#8a5cd1" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M-3.478,23.241 L-3.922,26.208 A26.5,26.5 0 0 1 -5.279,25.969 L-4.681,23.029 A23.5,23.5 0 0 0 -3.478,23.241 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-3.478,23.241 L-3.922,26.208 A26.5,26.5 0 0 1 -5.279,25.969 L-4.681,23.029 A23.5,23.5 0 0 0 -3.478,23.241 Z" stroke="#8a5cd1" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M-5.49,22.85 L-6.191,25.767 A26.5,26.5 0 0 1 -7.522,25.41 L-6.67,22.533 A23.5,23.5 0 0 0 -5.49,22.85 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-5.49,22.85 L-6.191,25.767 A26.5,26.5 0 0 1 -7.522,25.41 L-6.67,22.533 A23.5,23.5 0 0 0 -5.49,22.85 Z" stroke="#8a5cd1" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M-7.461,22.284 L-8.413,25.129 A26.5,26.5 0 0 1 -9.708,24.658 L-8.609,21.866 A23.5,23.5 0 0 0 -7.461,22.284 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-7.461,22.284 L-8.413,25.129 A26.5,26.5 0 0 1 -9.708,24.658 L-8.609,21.866 A23.5,23.5 0 0 0 -7.461,22.284 Z" stroke="#8a5cd1" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /><path d="M-9.374,21.549 L-10.571,24.3 A26.5,26.5 0 0 1 -11.82,23.718 L-10.482,21.033 A23.5,23.5 0 0 0 -9.374,21.549 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-9.374,21.549 L-10.571,24.3 A26.5,26.5 0 0 1 -11.82,23.718 L-10.482,21.033 A23.5,23.5 0 0 0 -9.374,21.549 Z" stroke="#8a5cd1" stroke-width="0.48" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-38.4" y1="-37.9" x2="-33.6" y2="-37.9" stroke="#2f80c4" stroke-width="0.574" /><text x="-32.288" y="-36.982" font-size="2.624" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-38.4" y1="-33.964" x2="-33.6" y2="-33.964" stroke="#6b7a8f" stroke-width="0.574" /><text x="-32.288" y="-33.046" font-size="2.624" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-38.4" y1="-30.028" x2="-33.6" y2="-30.028" stroke="#2a9d8f" stroke-width="0.574" /><text x="-32.288" y="-29.11" font-size="2.624" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-38.4" y1="-26.092" x2="-33.6" y2="-26.092" stroke="#d1495b" stroke-width="0.574" /><text x="-32.288" y="-25.174" font-size="2.624" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-38.4" y1="-22.156" x2="-33.6" y2="-22.156" stroke="#e8853a" stroke-width="0.574" /><text x="-32.288" y="-21.238" font-size="2.624" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-38.4" y1="-18.22" x2="-33.6" y2="-18.22" stroke="#8a5cd1" stroke-width="0.574" /><text x="-32.288" y="-17.302" font-size="2.624" fill="#8a5cd1" font-family="sans-serif">Electrical contact</text><line x1="-38.4" y1="-14.284" x2="-33.6" y2="-14.284" stroke="#7f8c3a" stroke-width="0.574" /><text x="-32.288" y="-13.366" font-size="2.624" fill="#7f8c3a" font-family="sans-serif">Screws / seals</text><line x1="-38.4" y1="-10.348" x2="-33.6" y2="-10.348" stroke="#8a94a0" stroke-width="0.574" /><text x="-32.288" y="-9.43" font-size="2.624" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
 
 **Lens-side rear view** — viewBox `-38 -40 76 78` ([standalone SVG](mounts/canon-rf-lens-rear.svg))
 
@@ -13563,6 +13584,7 @@ None — fully electronic.
           ],
           "status": "researched",
           "sourceRefs": [
+            "rf-official-1",
             "rf-1",
             "rf-p1",
             "rf-p2",
@@ -13576,23 +13598,23 @@ None — fully electronic.
   "coreDimensions": {
     "flangeFocalDistanceMm": {
       "value": 20,
-      "status": "secondary",
+      "status": "official",
       "sourceRefs": [
-        "rf-1"
+        "rf-official-1"
       ]
     },
     "nominalThroatDiameterMm": {
       "value": 54,
-      "status": "secondary",
+      "status": "official",
       "sourceRefs": [
-        "rf-1"
+        "rf-official-1"
       ]
     },
     "effectiveClearApertureMm": {
       "value": 54,
-      "status": "secondary",
+      "status": "official",
       "sourceRefs": [
-        "rf-1"
+        "rf-official-1"
       ]
     },
     "cameraMountOuterDiameterMm": {
@@ -13611,9 +13633,9 @@ None — fully electronic.
     },
     "contactCount": {
       "value": 12,
-      "status": "secondary",
+      "status": "official",
       "sourceRefs": [
-        "rf-1"
+        "rf-official-1"
       ]
     }
   },
@@ -13653,37 +13675,37 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "secondary",
+        "status": "official",
         "sourceRefs": [
-          "rf-1"
+          "rf-official-1"
         ]
       },
       "startAngleDeg": {
         "value": 0,
-        "status": "secondary",
+        "status": "official",
         "sourceRefs": [
-          "rf-1"
+          "rf-official-1"
         ]
       },
       "endAngleDeg": {
         "value": 360,
-        "status": "secondary",
+        "status": "official",
         "sourceRefs": [
-          "rf-1"
+          "rf-official-1"
         ]
       },
       "innerRadiusMm": {
         "value": 0,
-        "status": "secondary",
+        "status": "official",
         "sourceRefs": [
-          "rf-1"
+          "rf-official-1"
         ]
       },
       "outerRadiusMm": {
         "value": 27,
-        "status": "secondary",
+        "status": "official",
         "sourceRefs": [
-          "rf-1"
+          "rf-official-1"
         ]
       },
       "depthMm": {
@@ -13722,9 +13744,9 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 27,
-        "status": "secondary",
+        "status": "official",
         "sourceRefs": [
-          "rf-1"
+          "rf-official-1"
         ]
       },
       "outerRadiusMm": {
@@ -14414,9 +14436,9 @@ None — fully electronic.
       "planeId": "sensor_film_plane",
       "zPositionMm": {
         "value": -20,
-        "status": "secondary",
+        "status": "official",
         "sourceRefs": [
-          "rf-1"
+          "rf-official-1"
         ]
       },
       "thicknessMm": {
@@ -15509,6 +15531,16 @@ None — fully electronic.
   },
   "sourceRefs": [
     {
+      "ref": "rf-official-1",
+      "sourceType": "official",
+      "citation": "Canon Latin America, “EOS RP,” RF mount overview. Accessed 2026-06-06.",
+      "liveUrl": "https://www.cla.canon.com/en/p/eos-rp",
+      "archiveUrl": "http://web.archive.org/web/20260307033241/https://www.cla.canon.com/en/p/eos-rp",
+      "archiveDate": "2026-03-07",
+      "appliesTo": "54 mm RF internal diameter, 20 mm flange focal distance, and twelve-pin communication interface",
+      "confidence": "high"
+    },
+    {
       "ref": "rf-1",
       "sourceType": "secondary",
       "citation": "“Canon RF mount,” Wikipedia. Accessed 2026-06-04.",
@@ -15622,6 +15654,7 @@ None — fully electronic.
 
 | Ref | Type | Citation | Archive | Captured | Confidence |
 |---|---|---|---|---|---|
+| `rf-official-1` | official | Canon Latin America, “EOS RP,” RF mount overview. Accessed 2026-06-06. | [snapshot](http://web.archive.org/web/20260307033241/https://www.cla.canon.com/en/p/eos-rp) | 2026-03-07 | high |
 | `rf-1` | secondary | “Canon RF mount,” Wikipedia. Accessed 2026-06-04. | [snapshot](http://web.archive.org/web/20251201213626/https://en.wikipedia.org/wiki/Canon_RF_mount) | 2025-12-01 | high |
 | `rf-2` | secondary | “Lens Mounts: Canon RF,” JAPB (japb.net). Accessed 2026-06-04. | [snapshot](http://web.archive.org/web/20251207024417/https://japb.net/theory/lensmounts/canon-rf/) | 2025-12-07 | medium |
 | `rf-p1` | patent | US10613419B2, Canon RF-era body/accessory mount family. Accessed 2026-06-06. | [snapshot](https://patents.google.com/patent/US10613419B2/en) | 2026-06-06 | medium |
@@ -22221,12 +22254,12 @@ None — fully electronic.
 
 | Field | Value | Unit |
 |---|---|---|
-| Flange focal distance | 26.7 (`secondary`) | mm |
-| Nominal throat diameter | 65 (`secondary`) | mm |
-| Effective clear aperture | 65 (`secondary`) | mm |
+| Flange focal distance | 26.7 (`official`) | mm |
+| Nominal throat diameter | 65 (`official`) | mm |
+| Effective clear aperture | 65 (`official`) | mm |
 | Camera mount outer diameter | 78 (`photo_scaled`) | mm |
 | Lens mount outer diameter | 76 (`photo_scaled`) | mm |
-| Contact count | 12 (`conflicting`) | count |
+| Contact count | 12 (`official`) | count |
 | Lock rotation | unknown (`unknown`) | deg |
 | Lock direction | unknown (`unknown`) | — |
 
@@ -22234,7 +22267,7 @@ None — fully electronic.
 
 **Camera-side front view** — viewBox `-48 -50 96 98` ([standalone SVG](mounts/fujifilm-g-camera-front.svg))
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-48 -50 96 98" role="img" aria-labelledby="fujifilm-g-base-camera_side_front-title fujifilm-g-base-camera_side_front-desc"><title id="fujifilm-g-base-camera_side_front-title">Fujifilm G mount — camera-side front view (base)</title><desc id="fujifilm-g-base-camera_side_front-desc">Fujifilm G bayonet mount, camera-side front view. Flange focal distance 26.7 mm, nominal throat 65 mm. Profile fujifilm-g/base.</desc><metadata>{"mountId":"fujifilm-g","profileId":"fujifilm-g/base","view":"camera_side_front","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.95" y1="0" x2="1.95" y2="0" stroke="#8a94a0" stroke-width="0.576" fill="none" /><line x1="0" y1="-1.95" x2="0" y2="1.95" stroke="#8a94a0" stroke-width="0.576" fill="none" /><line x1="0" y1="-39" x2="0" y2="-41.34" stroke="#8a94a0" stroke-width="0.576" fill="none" /></g><g data-layer="camera-side-metal"><path d="M0,-39 A39,39 0 1 1 0,39 A39,39 0 1 1 0,-39 Z M0,-32.5 A32.5,32.5 0 1 1 0,32.5 A32.5,32.5 0 1 1 0,-32.5 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-39 A39,39 0 1 1 0,39 A39,39 0 1 1 0,-39 Z M0,-32.5 A32.5,32.5 0 1 1 0,32.5 A32.5,32.5 0 1 1 0,-32.5 Z" stroke="#6b7a8f" stroke-width="0.576" fill="none" stroke-dasharray="4 2" /><path d="M0,-32.5 A32.5,32.5 0 1 1 0,32.5 A32.5,32.5 0 1 1 0,-32.5 Z" stroke="#2f80c4" stroke-width="0.432" fill="none" /><circle cx="12.655" cy="-34.769" r="1.25" stroke="#7f8c3a" stroke-width="0.576" fill="none" stroke-dasharray="4 2" /><circle cx="36.438" cy="-6.425" r="1.25" stroke="#7f8c3a" stroke-width="0.576" fill="none" stroke-dasharray="4 2" /><circle cx="23.783" cy="28.344" r="1.25" stroke="#7f8c3a" stroke-width="0.576" fill="none" stroke-dasharray="4 2" /><circle cx="-12.655" cy="34.769" r="1.25" stroke="#7f8c3a" stroke-width="0.576" fill="none" stroke-dasharray="4 2" /><circle cx="-36.438" cy="6.425" r="1.25" stroke="#7f8c3a" stroke-width="0.576" fill="none" stroke-dasharray="4 2" /><circle cx="-23.783" cy="-28.344" r="1.25" stroke="#7f8c3a" stroke-width="0.576" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-core-interface"><path d="M0,-35.6 L-2.411,-39.426 L2.411,-39.426 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-35.6 L-2.411,-39.426 L2.411,-39.426 Z" stroke="#e8853a" stroke-width="0.576" fill="none" stroke-dasharray="0.6 1.6" /><path d="M5.644,-32.006 L6.251,-35.453 A36,36 0 0 1 27.578,-23.14 L24.896,-20.891 A32.5,32.5 0 0 0 5.644,-32.006 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M5.644,-32.006 L6.251,-35.453 A36,36 0 0 1 27.578,-23.14 L24.896,-20.891 A32.5,32.5 0 0 0 5.644,-32.006 Z" stroke="#2a9d8f" stroke-width="0.576" fill="none" stroke-dasharray="4 2" /><circle cx="23.688" cy="23.688" r="1.365" fill="#d1495b" fill-opacity="0.12" /><circle cx="23.688" cy="23.688" r="1.365" stroke="#d1495b" stroke-width="0.576" fill="none" stroke-dasharray="0.6 1.6" /><path d="M24.896,20.891 L27.578,23.14 A36,36 0 0 1 6.251,35.453 L5.644,32.006 A32.5,32.5 0 0 0 24.896,20.891 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M24.896,20.891 L27.578,23.14 A36,36 0 0 1 6.251,35.453 L5.644,32.006 A32.5,32.5 0 0 0 24.896,20.891 Z" stroke="#2a9d8f" stroke-width="0.576" fill="none" stroke-dasharray="4 2" /><path d="M-32.5,0 L-36,0 A36,36 0 0 1 -27.578,-23.14 L-24.896,-20.891 A32.5,32.5 0 0 0 -32.5,0 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-32.5,0 L-36,0 A36,36 0 0 1 -27.578,-23.14 L-24.896,-20.891 A32.5,32.5 0 0 0 -32.5,0 Z" stroke="#2a9d8f" stroke-width="0.576" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-variant-electrical"><path d="M14.822,24.343 L16.382,26.905 A31.5,31.5 0 0 1 15.109,27.64 L13.67,25.007 A28.5,28.5 0 0 0 14.822,24.343 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M14.822,24.343 L16.382,26.905 A31.5,31.5 0 0 1 15.109,27.64 L13.67,25.007 A28.5,28.5 0 0 0 14.822,24.343 Z" stroke="#8a5cd1" stroke-width="0.576" fill="none" stroke-dasharray="4 2" /><path d="M12.644,25.542 L13.975,28.23 A31.5,31.5 0 0 1 12.643,28.852 L11.439,26.104 A28.5,28.5 0 0 0 12.644,25.542 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M12.644,25.542 L13.975,28.23 A31.5,31.5 0 0 1 12.643,28.852 L11.439,26.104 A28.5,28.5 0 0 0 12.644,25.542 Z" stroke="#8a5cd1" stroke-width="0.576" fill="none" stroke-dasharray="4 2" /><path d="M10.37,26.547 L11.461,29.341 A31.5,31.5 0 0 1 10.08,29.844 L9.12,27.001 A28.5,28.5 0 0 0 10.37,26.547 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M10.37,26.547 L11.461,29.341 A31.5,31.5 0 0 1 10.08,29.844 L9.12,27.001 A28.5,28.5 0 0 0 10.37,26.547 Z" stroke="#8a5cd1" stroke-width="0.576" fill="none" stroke-dasharray="4 2" /><path d="M8.017,27.349 L8.86,30.228 A31.5,31.5 0 0 1 7.441,30.609 L6.732,27.693 A28.5,28.5 0 0 0 8.017,27.349 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M8.017,27.349 L8.86,30.228 A31.5,31.5 0 0 1 7.441,30.609 L6.732,27.693 A28.5,28.5 0 0 0 8.017,27.349 Z" stroke="#8a5cd1" stroke-width="0.576" fill="none" stroke-dasharray="4 2" /><path d="M5.602,27.944 L6.192,30.885 A31.5,31.5 0 0 1 4.745,31.141 L4.293,28.175 A28.5,28.5 0 0 0 5.602,27.944 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M5.602,27.944 L6.192,30.885 A31.5,31.5 0 0 1 4.745,31.141 L4.293,28.175 A28.5,28.5 0 0 0 5.602,27.944 Z" stroke="#8a5cd1" stroke-width="0.576" fill="none" stroke-dasharray="4 2" /><path d="M3.146,28.326 L3.477,31.308 A31.5,31.5 0 0 1 2.013,31.436 L1.821,28.442 A28.5,28.5 0 0 0 3.146,28.326 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M3.146,28.326 L3.477,31.308 A31.5,31.5 0 0 1 2.013,31.436 L1.821,28.442 A28.5,28.5 0 0 0 3.146,28.326 Z" stroke="#8a5cd1" stroke-width="0.576" fill="none" stroke-dasharray="4 2" /><path d="M0.665,28.492 L0.735,31.491 A31.5,31.5 0 0 1 -0.735,31.491 L-0.665,28.492 A28.5,28.5 0 0 0 0.665,28.492 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M0.665,28.492 L0.735,31.491 A31.5,31.5 0 0 1 -0.735,31.491 L-0.665,28.492 A28.5,28.5 0 0 0 0.665,28.492 Z" stroke="#8a5cd1" stroke-width="0.576" fill="none" stroke-dasharray="4 2" /><path d="M-1.821,28.442 L-2.013,31.436 A31.5,31.5 0 0 1 -3.477,31.308 L-3.146,28.326 A28.5,28.5 0 0 0 -1.821,28.442 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-1.821,28.442 L-2.013,31.436 A31.5,31.5 0 0 1 -3.477,31.308 L-3.146,28.326 A28.5,28.5 0 0 0 -1.821,28.442 Z" stroke="#8a5cd1" stroke-width="0.576" fill="none" stroke-dasharray="4 2" /><path d="M-4.293,28.175 L-4.745,31.141 A31.5,31.5 0 0 1 -6.192,30.885 L-5.602,27.944 A28.5,28.5 0 0 0 -4.293,28.175 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-4.293,28.175 L-4.745,31.141 A31.5,31.5 0 0 1 -6.192,30.885 L-5.602,27.944 A28.5,28.5 0 0 0 -4.293,28.175 Z" stroke="#8a5cd1" stroke-width="0.576" fill="none" stroke-dasharray="4 2" /><path d="M-6.732,27.693 L-7.441,30.609 A31.5,31.5 0 0 1 -8.86,30.228 L-8.017,27.349 A28.5,28.5 0 0 0 -6.732,27.693 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-6.732,27.693 L-7.441,30.609 A31.5,31.5 0 0 1 -8.86,30.228 L-8.017,27.349 A28.5,28.5 0 0 0 -6.732,27.693 Z" stroke="#8a5cd1" stroke-width="0.576" fill="none" stroke-dasharray="4 2" /><path d="M-9.12,27.001 L-10.08,29.844 A31.5,31.5 0 0 1 -11.461,29.341 L-10.37,26.547 A28.5,28.5 0 0 0 -9.12,27.001 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-9.12,27.001 L-10.08,29.844 A31.5,31.5 0 0 1 -11.461,29.341 L-10.37,26.547 A28.5,28.5 0 0 0 -9.12,27.001 Z" stroke="#8a5cd1" stroke-width="0.576" fill="none" stroke-dasharray="4 2" /><path d="M-11.439,26.104 L-12.643,28.852 A31.5,31.5 0 0 1 -13.975,28.23 L-12.644,25.542 A28.5,28.5 0 0 0 -11.439,26.104 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-11.439,26.104 L-12.643,28.852 A31.5,31.5 0 0 1 -13.975,28.23 L-12.644,25.542 A28.5,28.5 0 0 0 -11.439,26.104 Z" stroke="#8a5cd1" stroke-width="0.576" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-46.08" y1="-45.1" x2="-40.32" y2="-45.1" stroke="#2f80c4" stroke-width="0.686" /><text x="-38.752" y="-44.002" font-size="3.136" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-46.08" y1="-40.396" x2="-40.32" y2="-40.396" stroke="#6b7a8f" stroke-width="0.686" /><text x="-38.752" y="-39.298" font-size="3.136" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-46.08" y1="-35.692" x2="-40.32" y2="-35.692" stroke="#2a9d8f" stroke-width="0.686" /><text x="-38.752" y="-34.594" font-size="3.136" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-46.08" y1="-30.988" x2="-40.32" y2="-30.988" stroke="#d1495b" stroke-width="0.686" /><text x="-38.752" y="-29.89" font-size="3.136" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-46.08" y1="-26.284" x2="-40.32" y2="-26.284" stroke="#e8853a" stroke-width="0.686" /><text x="-38.752" y="-25.186" font-size="3.136" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-46.08" y1="-21.58" x2="-40.32" y2="-21.58" stroke="#8a5cd1" stroke-width="0.686" /><text x="-38.752" y="-20.482" font-size="3.136" fill="#8a5cd1" font-family="sans-serif">Electrical contact</text><line x1="-46.08" y1="-16.876" x2="-40.32" y2="-16.876" stroke="#7f8c3a" stroke-width="0.686" /><text x="-38.752" y="-15.778" font-size="3.136" fill="#7f8c3a" font-family="sans-serif">Screws / seals</text><line x1="-46.08" y1="-12.172" x2="-40.32" y2="-12.172" stroke="#8a94a0" stroke-width="0.686" /><text x="-38.752" y="-11.074" font-size="3.136" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-48 -50 96 98" role="img" aria-labelledby="fujifilm-g-base-camera_side_front-title fujifilm-g-base-camera_side_front-desc"><title id="fujifilm-g-base-camera_side_front-title">Fujifilm G mount — camera-side front view (base)</title><desc id="fujifilm-g-base-camera_side_front-desc">Fujifilm G bayonet mount, camera-side front view. Flange focal distance 26.7 mm, nominal throat 65 mm. Profile fujifilm-g/base.</desc><metadata>{"mountId":"fujifilm-g","profileId":"fujifilm-g/base","view":"camera_side_front","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.95" y1="0" x2="1.95" y2="0" stroke="#8a94a0" stroke-width="0.576" fill="none" /><line x1="0" y1="-1.95" x2="0" y2="1.95" stroke="#8a94a0" stroke-width="0.576" fill="none" /><line x1="0" y1="-39" x2="0" y2="-41.34" stroke="#8a94a0" stroke-width="0.576" fill="none" /></g><g data-layer="camera-side-metal"><path d="M0,-39 A39,39 0 1 1 0,39 A39,39 0 1 1 0,-39 Z M0,-32.5 A32.5,32.5 0 1 1 0,32.5 A32.5,32.5 0 1 1 0,-32.5 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-39 A39,39 0 1 1 0,39 A39,39 0 1 1 0,-39 Z M0,-32.5 A32.5,32.5 0 1 1 0,32.5 A32.5,32.5 0 1 1 0,-32.5 Z" stroke="#6b7a8f" stroke-width="0.576" fill="none" stroke-dasharray="4 2" /><path d="M0,-32.5 A32.5,32.5 0 1 1 0,32.5 A32.5,32.5 0 1 1 0,-32.5 Z" stroke="#2f80c4" stroke-width="0.576" fill="none" /><circle cx="12.655" cy="-34.769" r="1.25" stroke="#7f8c3a" stroke-width="0.576" fill="none" stroke-dasharray="4 2" /><circle cx="36.438" cy="-6.425" r="1.25" stroke="#7f8c3a" stroke-width="0.576" fill="none" stroke-dasharray="4 2" /><circle cx="23.783" cy="28.344" r="1.25" stroke="#7f8c3a" stroke-width="0.576" fill="none" stroke-dasharray="4 2" /><circle cx="-12.655" cy="34.769" r="1.25" stroke="#7f8c3a" stroke-width="0.576" fill="none" stroke-dasharray="4 2" /><circle cx="-36.438" cy="6.425" r="1.25" stroke="#7f8c3a" stroke-width="0.576" fill="none" stroke-dasharray="4 2" /><circle cx="-23.783" cy="-28.344" r="1.25" stroke="#7f8c3a" stroke-width="0.576" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-core-interface"><path d="M0,-35.6 L-2.411,-39.426 L2.411,-39.426 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-35.6 L-2.411,-39.426 L2.411,-39.426 Z" stroke="#e8853a" stroke-width="0.576" fill="none" stroke-dasharray="0.6 1.6" /><path d="M5.644,-32.006 L6.251,-35.453 A36,36 0 0 1 27.578,-23.14 L24.896,-20.891 A32.5,32.5 0 0 0 5.644,-32.006 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M5.644,-32.006 L6.251,-35.453 A36,36 0 0 1 27.578,-23.14 L24.896,-20.891 A32.5,32.5 0 0 0 5.644,-32.006 Z" stroke="#2a9d8f" stroke-width="0.576" fill="none" stroke-dasharray="4 2" /><circle cx="23.688" cy="23.688" r="1.365" fill="#d1495b" fill-opacity="0.12" /><circle cx="23.688" cy="23.688" r="1.365" stroke="#d1495b" stroke-width="0.576" fill="none" stroke-dasharray="0.6 1.6" /><path d="M24.896,20.891 L27.578,23.14 A36,36 0 0 1 6.251,35.453 L5.644,32.006 A32.5,32.5 0 0 0 24.896,20.891 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M24.896,20.891 L27.578,23.14 A36,36 0 0 1 6.251,35.453 L5.644,32.006 A32.5,32.5 0 0 0 24.896,20.891 Z" stroke="#2a9d8f" stroke-width="0.576" fill="none" stroke-dasharray="4 2" /><path d="M-32.5,0 L-36,0 A36,36 0 0 1 -27.578,-23.14 L-24.896,-20.891 A32.5,32.5 0 0 0 -32.5,0 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-32.5,0 L-36,0 A36,36 0 0 1 -27.578,-23.14 L-24.896,-20.891 A32.5,32.5 0 0 0 -32.5,0 Z" stroke="#2a9d8f" stroke-width="0.576" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-variant-electrical"><path d="M14.822,24.343 L16.382,26.905 A31.5,31.5 0 0 1 15.109,27.64 L13.67,25.007 A28.5,28.5 0 0 0 14.822,24.343 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M14.822,24.343 L16.382,26.905 A31.5,31.5 0 0 1 15.109,27.64 L13.67,25.007 A28.5,28.5 0 0 0 14.822,24.343 Z" stroke="#8a5cd1" stroke-width="0.576" fill="none" stroke-dasharray="4 2" /><path d="M12.644,25.542 L13.975,28.23 A31.5,31.5 0 0 1 12.643,28.852 L11.439,26.104 A28.5,28.5 0 0 0 12.644,25.542 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M12.644,25.542 L13.975,28.23 A31.5,31.5 0 0 1 12.643,28.852 L11.439,26.104 A28.5,28.5 0 0 0 12.644,25.542 Z" stroke="#8a5cd1" stroke-width="0.576" fill="none" stroke-dasharray="4 2" /><path d="M10.37,26.547 L11.461,29.341 A31.5,31.5 0 0 1 10.08,29.844 L9.12,27.001 A28.5,28.5 0 0 0 10.37,26.547 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M10.37,26.547 L11.461,29.341 A31.5,31.5 0 0 1 10.08,29.844 L9.12,27.001 A28.5,28.5 0 0 0 10.37,26.547 Z" stroke="#8a5cd1" stroke-width="0.576" fill="none" stroke-dasharray="4 2" /><path d="M8.017,27.349 L8.86,30.228 A31.5,31.5 0 0 1 7.441,30.609 L6.732,27.693 A28.5,28.5 0 0 0 8.017,27.349 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M8.017,27.349 L8.86,30.228 A31.5,31.5 0 0 1 7.441,30.609 L6.732,27.693 A28.5,28.5 0 0 0 8.017,27.349 Z" stroke="#8a5cd1" stroke-width="0.576" fill="none" stroke-dasharray="4 2" /><path d="M5.602,27.944 L6.192,30.885 A31.5,31.5 0 0 1 4.745,31.141 L4.293,28.175 A28.5,28.5 0 0 0 5.602,27.944 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M5.602,27.944 L6.192,30.885 A31.5,31.5 0 0 1 4.745,31.141 L4.293,28.175 A28.5,28.5 0 0 0 5.602,27.944 Z" stroke="#8a5cd1" stroke-width="0.576" fill="none" stroke-dasharray="4 2" /><path d="M3.146,28.326 L3.477,31.308 A31.5,31.5 0 0 1 2.013,31.436 L1.821,28.442 A28.5,28.5 0 0 0 3.146,28.326 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M3.146,28.326 L3.477,31.308 A31.5,31.5 0 0 1 2.013,31.436 L1.821,28.442 A28.5,28.5 0 0 0 3.146,28.326 Z" stroke="#8a5cd1" stroke-width="0.576" fill="none" stroke-dasharray="4 2" /><path d="M0.665,28.492 L0.735,31.491 A31.5,31.5 0 0 1 -0.735,31.491 L-0.665,28.492 A28.5,28.5 0 0 0 0.665,28.492 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M0.665,28.492 L0.735,31.491 A31.5,31.5 0 0 1 -0.735,31.491 L-0.665,28.492 A28.5,28.5 0 0 0 0.665,28.492 Z" stroke="#8a5cd1" stroke-width="0.576" fill="none" stroke-dasharray="4 2" /><path d="M-1.821,28.442 L-2.013,31.436 A31.5,31.5 0 0 1 -3.477,31.308 L-3.146,28.326 A28.5,28.5 0 0 0 -1.821,28.442 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-1.821,28.442 L-2.013,31.436 A31.5,31.5 0 0 1 -3.477,31.308 L-3.146,28.326 A28.5,28.5 0 0 0 -1.821,28.442 Z" stroke="#8a5cd1" stroke-width="0.576" fill="none" stroke-dasharray="4 2" /><path d="M-4.293,28.175 L-4.745,31.141 A31.5,31.5 0 0 1 -6.192,30.885 L-5.602,27.944 A28.5,28.5 0 0 0 -4.293,28.175 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-4.293,28.175 L-4.745,31.141 A31.5,31.5 0 0 1 -6.192,30.885 L-5.602,27.944 A28.5,28.5 0 0 0 -4.293,28.175 Z" stroke="#8a5cd1" stroke-width="0.576" fill="none" stroke-dasharray="4 2" /><path d="M-6.732,27.693 L-7.441,30.609 A31.5,31.5 0 0 1 -8.86,30.228 L-8.017,27.349 A28.5,28.5 0 0 0 -6.732,27.693 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-6.732,27.693 L-7.441,30.609 A31.5,31.5 0 0 1 -8.86,30.228 L-8.017,27.349 A28.5,28.5 0 0 0 -6.732,27.693 Z" stroke="#8a5cd1" stroke-width="0.576" fill="none" stroke-dasharray="4 2" /><path d="M-9.12,27.001 L-10.08,29.844 A31.5,31.5 0 0 1 -11.461,29.341 L-10.37,26.547 A28.5,28.5 0 0 0 -9.12,27.001 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-9.12,27.001 L-10.08,29.844 A31.5,31.5 0 0 1 -11.461,29.341 L-10.37,26.547 A28.5,28.5 0 0 0 -9.12,27.001 Z" stroke="#8a5cd1" stroke-width="0.576" fill="none" stroke-dasharray="4 2" /><path d="M-11.439,26.104 L-12.643,28.852 A31.5,31.5 0 0 1 -13.975,28.23 L-12.644,25.542 A28.5,28.5 0 0 0 -11.439,26.104 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-11.439,26.104 L-12.643,28.852 A31.5,31.5 0 0 1 -13.975,28.23 L-12.644,25.542 A28.5,28.5 0 0 0 -11.439,26.104 Z" stroke="#8a5cd1" stroke-width="0.576" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-46.08" y1="-45.1" x2="-40.32" y2="-45.1" stroke="#2f80c4" stroke-width="0.686" /><text x="-38.752" y="-44.002" font-size="3.136" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-46.08" y1="-40.396" x2="-40.32" y2="-40.396" stroke="#6b7a8f" stroke-width="0.686" /><text x="-38.752" y="-39.298" font-size="3.136" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-46.08" y1="-35.692" x2="-40.32" y2="-35.692" stroke="#2a9d8f" stroke-width="0.686" /><text x="-38.752" y="-34.594" font-size="3.136" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-46.08" y1="-30.988" x2="-40.32" y2="-30.988" stroke="#d1495b" stroke-width="0.686" /><text x="-38.752" y="-29.89" font-size="3.136" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-46.08" y1="-26.284" x2="-40.32" y2="-26.284" stroke="#e8853a" stroke-width="0.686" /><text x="-38.752" y="-25.186" font-size="3.136" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-46.08" y1="-21.58" x2="-40.32" y2="-21.58" stroke="#8a5cd1" stroke-width="0.686" /><text x="-38.752" y="-20.482" font-size="3.136" fill="#8a5cd1" font-family="sans-serif">Electrical contact</text><line x1="-46.08" y1="-16.876" x2="-40.32" y2="-16.876" stroke="#7f8c3a" stroke-width="0.686" /><text x="-38.752" y="-15.778" font-size="3.136" fill="#7f8c3a" font-family="sans-serif">Screws / seals</text><line x1="-46.08" y1="-12.172" x2="-40.32" y2="-12.172" stroke="#8a94a0" stroke-width="0.686" /><text x="-38.752" y="-11.074" font-size="3.136" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
 
 **Lens-side rear view** — viewBox `-47 -49 94 96` ([standalone SVG](mounts/fujifilm-g-lens-rear.svg))
 
@@ -22376,6 +22409,7 @@ None — fully electronic.
           ],
           "status": "researched",
           "sourceRefs": [
+            "fg-official-1",
             "fg-1"
           ]
         }
@@ -22385,23 +22419,23 @@ None — fully electronic.
   "coreDimensions": {
     "flangeFocalDistanceMm": {
       "value": 26.7,
-      "status": "secondary",
+      "status": "official",
       "sourceRefs": [
-        "fg-1"
+        "fg-official-1"
       ]
     },
     "nominalThroatDiameterMm": {
       "value": 65,
-      "status": "secondary",
+      "status": "official",
       "sourceRefs": [
-        "fg-1"
+        "fg-official-1"
       ]
     },
     "effectiveClearApertureMm": {
       "value": 65,
-      "status": "secondary",
+      "status": "official",
       "sourceRefs": [
-        "fg-1"
+        "fg-official-1"
       ]
     },
     "cameraMountOuterDiameterMm": {
@@ -22420,10 +22454,9 @@ None — fully electronic.
     },
     "contactCount": {
       "value": 12,
-      "status": "conflicting",
+      "status": "official",
       "sourceRefs": [
-        "fg-1",
-        "fg-2"
+        "fg-official-1"
       ]
     }
   },
@@ -22463,37 +22496,37 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "secondary",
+        "status": "official",
         "sourceRefs": [
-          "fg-1"
+          "fg-official-1"
         ]
       },
       "startAngleDeg": {
         "value": 0,
-        "status": "secondary",
+        "status": "official",
         "sourceRefs": [
-          "fg-1"
+          "fg-official-1"
         ]
       },
       "endAngleDeg": {
         "value": 360,
-        "status": "secondary",
+        "status": "official",
         "sourceRefs": [
-          "fg-1"
+          "fg-official-1"
         ]
       },
       "innerRadiusMm": {
         "value": 0,
-        "status": "secondary",
+        "status": "official",
         "sourceRefs": [
-          "fg-1"
+          "fg-official-1"
         ]
       },
       "outerRadiusMm": {
         "value": 32.5,
-        "status": "secondary",
+        "status": "official",
         "sourceRefs": [
-          "fg-1"
+          "fg-official-1"
         ]
       },
       "depthMm": {
@@ -22532,9 +22565,9 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 32.5,
-        "status": "secondary",
+        "status": "official",
         "sourceRefs": [
-          "fg-1"
+          "fg-official-1"
         ]
       },
       "outerRadiusMm": {
@@ -23224,9 +23257,9 @@ None — fully electronic.
       "planeId": "sensor_film_plane",
       "zPositionMm": {
         "value": -26.7,
-        "status": "secondary",
+        "status": "official",
         "sourceRefs": [
-          "fg-1"
+          "fg-official-1"
         ]
       },
       "thicknessMm": {
@@ -24319,6 +24352,16 @@ None — fully electronic.
   },
   "sourceRefs": [
     {
+      "ref": "fg-official-1",
+      "sourceType": "official",
+      "citation": "FUJIFILM Exposure Center, “Pick the Best GF Lens for Your Photo Style,” G Mount section. Accessed 2026-06-06.",
+      "liveUrl": "https://www.fujifilm-x.com/en-us/exposure-center/pick-the-best-gf-lens-for-your-photo-style/",
+      "archiveUrl": "http://web.archive.org/web/20250321093547/https://www.fujifilm-x.com/en-us/exposure-center/pick-the-best-gf-lens-for-your-photo-style/",
+      "archiveDate": "2025-03-21",
+      "appliesTo": "65 mm G Mount diameter, 26.7 mm flange-back distance, and twelve electronic contacts",
+      "confidence": "high"
+    },
+    {
       "ref": "fg-1",
       "sourceType": "secondary",
       "citation": "“Fujifilm G-mount,” Wikipedia. Accessed 2026-06-04.",
@@ -24341,16 +24384,15 @@ None — fully electronic.
   ],
   "openQuestions": [
     {
-      "issue": "Contact count conflicts: Wikipedia lists twelve electrical connectors, the JAPB teardown counts eleven; twelve is modeled.",
+      "issue": "Official Fujifilm material confirms twelve electronic contacts, while the JAPB teardown counts eleven visible contacts; the twelfth contact's production clocking remains schematic.",
       "affectedFields": [
-        "contactCount",
         "contacts"
       ],
       "candidateValues": [
         11,
         12
       ],
-      "resolution": "Reconcile against an official Fujifilm G mount drawing or measured sample."
+      "resolution": "Keep the official twelve-contact count; upgrade per-contact positions from a service drawing or measured sample."
     },
     {
       "issue": "Tab angular spans, the mounting-index clock position, and the lock rotation angle/direction are photo-scaled or undocumented; per-contact clock positions are interpolated within the documented 5–7 o'clock band.",
@@ -24404,12 +24446,13 @@ None — fully electronic.
 
 | Ref | Type | Citation | Archive | Captured | Confidence |
 |---|---|---|---|---|---|
+| `fg-official-1` | official | FUJIFILM Exposure Center, “Pick the Best GF Lens for Your Photo Style,” G Mount section. Accessed 2026-06-06. | [snapshot](http://web.archive.org/web/20250321093547/https://www.fujifilm-x.com/en-us/exposure-center/pick-the-best-gf-lens-for-your-photo-style/) | 2025-03-21 | high |
 | `fg-1` | secondary | “Fujifilm G-mount,” Wikipedia. Accessed 2026-06-04. | [snapshot](http://web.archive.org/web/20251219110027/https://en.wikipedia.org/wiki/Fujifilm_G-mount) | 2025-12-19 | high |
 | `fg-2` | secondary | “Lens Mounts: Fujifilm G,” JAPB (japb.net). Accessed 2026-06-04. | [snapshot](http://web.archive.org/web/20250623124111/https://japb.net/theory/lensmounts/fujifilm-g/) | 2025-06-23 | medium |
 
 #### Open questions
 
-- Contact count conflicts: Wikipedia lists twelve electrical connectors, the JAPB teardown counts eleven; twelve is modeled. _(Reconcile against an official Fujifilm G mount drawing or measured sample.)_
+- Official Fujifilm material confirms twelve electronic contacts, while the JAPB teardown counts eleven visible contacts; the twelfth contact's production clocking remains schematic. _(Keep the official twelve-contact count; upgrade per-contact positions from a service drawing or measured sample.)_
 - Tab angular spans, the mounting-index clock position, and the lock rotation angle/direction are photo-scaled or undocumented; per-contact clock positions are interpolated within the documented 5–7 o'clock band. _(Upgrade to an official Fujifilm G mount drawing or measured sample.)_
 
 ### `fujifilm-x` — Fujifilm X
@@ -24436,7 +24479,7 @@ None — fully electronic.
 
 | Field | Value | Unit |
 |---|---|---|
-| Flange focal distance | 17.7 (`secondary`) | mm |
+| Flange focal distance | 17.7 (`official`) | mm |
 | Nominal throat diameter | 44 (`secondary`) | mm |
 | Effective clear aperture | 44 (`secondary`) | mm |
 | Camera mount outer diameter | 50 (`photo_scaled`) | mm |
@@ -24587,6 +24630,7 @@ None — fully electronic.
           ],
           "status": "researched",
           "sourceRefs": [
+            "fx-official-1",
             "fx-1"
           ]
         }
@@ -24596,9 +24640,9 @@ None — fully electronic.
   "coreDimensions": {
     "flangeFocalDistanceMm": {
       "value": 17.7,
-      "status": "secondary",
+      "status": "official",
       "sourceRefs": [
-        "fx-1"
+        "fx-official-1"
       ]
     },
     "nominalThroatDiameterMm": {
@@ -25434,9 +25478,9 @@ None — fully electronic.
       "planeId": "sensor_film_plane",
       "zPositionMm": {
         "value": -17.7,
-        "status": "secondary",
+        "status": "official",
         "sourceRefs": [
-          "fx-1"
+          "fx-official-1"
         ]
       },
       "thicknessMm": {
@@ -26359,6 +26403,16 @@ None — fully electronic.
   },
   "sourceRefs": [
     {
+      "ref": "fx-official-1",
+      "sourceType": "official",
+      "citation": "FUJIFILM X Stories, “Allurement of M Mount Adapter.” Accessed 2026-06-06.",
+      "liveUrl": "https://www.fujifilm-x.com/global/stories/allurement-of-m-mount-adapter/",
+      "archiveUrl": "http://web.archive.org/web/20201004122717/https://fujifilm-x.com/global/stories/allurement-of-m-mount-adapter/",
+      "archiveDate": "2020-10-04",
+      "appliesTo": "X-Pro1 / X mount 17.7 mm flange-back distance",
+      "confidence": "high"
+    },
+    {
       "ref": "fx-1",
       "sourceType": "secondary",
       "citation": "“Fujifilm X-mount,” Wikipedia. Accessed 2026-06-04.",
@@ -26432,6 +26486,7 @@ None — fully electronic.
 
 | Ref | Type | Citation | Archive | Captured | Confidence |
 |---|---|---|---|---|---|
+| `fx-official-1` | official | FUJIFILM X Stories, “Allurement of M Mount Adapter.” Accessed 2026-06-06. | [snapshot](http://web.archive.org/web/20201004122717/https://fujifilm-x.com/global/stories/allurement-of-m-mount-adapter/) | 2020-10-04 | high |
 | `fx-1` | secondary | “Fujifilm X-mount,” Wikipedia. Accessed 2026-06-04. | [snapshot](http://web.archive.org/web/20251121080038/https://en.wikipedia.org/wiki/Fujifilm_X-mount) | 2025-11-21 | high |
 | `fx-2` | secondary | “Lens Mounts: Fujifilm X,” JAPB (japb.net). Accessed 2026-06-04. | [snapshot](http://web.archive.org/web/20251016005946/https://japb.net/theory/lensmounts/fujifilm-x/) | 2025-10-16 | medium |
 
@@ -32333,9 +32388,9 @@ None — fully electronic.
 
 | Field | Value | Unit |
 |---|---|---|
-| Flange focal distance | 20 (`secondary`) | mm |
-| Nominal throat diameter | 51.6 (`secondary`) | mm |
-| Effective clear aperture | 51.6 (`secondary`) | mm |
+| Flange focal distance | 20 (`official`) | mm |
+| Nominal throat diameter | 51.6 (`official`) | mm |
+| Effective clear aperture | 51.6 (`official`) | mm |
 | Camera mount outer diameter | 62 (`photo_scaled`) | mm |
 | Lens mount outer diameter | 60 (`photo_scaled`) | mm |
 | Contact count | 10 (`secondary`) | count |
@@ -32346,7 +32401,7 @@ None — fully electronic.
 
 **Camera-side front view** — viewBox `-38 -40 76 78` ([standalone SVG](mounts/l-mount-camera-front.svg))
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-38 -40 76 78" role="img" aria-labelledby="l-mount-base-camera_side_front-title l-mount-base-camera_side_front-desc"><title id="l-mount-base-camera_side_front-title">L-Mount mount — camera-side front view (base)</title><desc id="l-mount-base-camera_side_front-desc">L-Mount bayonet mount, camera-side front view. Flange focal distance 20 mm, nominal throat 51.6 mm. Profile l-mount/base.</desc><metadata>{"mountId":"l-mount","profileId":"l-mount/base","view":"camera_side_front","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.55" y1="0" x2="1.55" y2="0" stroke="#8a94a0" stroke-width="0.456" fill="none" /><line x1="0" y1="-1.55" x2="0" y2="1.55" stroke="#8a94a0" stroke-width="0.456" fill="none" /><line x1="0" y1="-31" x2="0" y2="-32.86" stroke="#8a94a0" stroke-width="0.456" fill="none" /></g><g data-layer="camera-side-metal"><path d="M0,-31 A31,31 0 1 1 0,31 A31,31 0 1 1 0,-31 Z M0,-25.8 A25.8,25.8 0 1 1 0,25.8 A25.8,25.8 0 1 1 0,-25.8 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-31 A31,31 0 1 1 0,31 A31,31 0 1 1 0,-31 Z M0,-25.8 A25.8,25.8 0 1 1 0,25.8 A25.8,25.8 0 1 1 0,-25.8 Z" stroke="#6b7a8f" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /><path d="M0,-25.8 A25.8,25.8 0 1 1 0,25.8 A25.8,25.8 0 1 1 0,-25.8 Z" stroke="#2f80c4" stroke-width="0.342" fill="none" /><circle cx="10.09" cy="-27.721" r="1" stroke="#7f8c3a" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /><circle cx="29.052" cy="-5.123" r="1" stroke="#7f8c3a" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /><circle cx="18.962" cy="22.598" r="1" stroke="#7f8c3a" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /><circle cx="-10.09" cy="27.721" r="1" stroke="#7f8c3a" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /><circle cx="-29.052" cy="5.123" r="1" stroke="#7f8c3a" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /><circle cx="-18.962" cy="-22.598" r="1" stroke="#7f8c3a" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-core-interface"><path d="M12.112,-22.78 L13.521,-25.429 A28.8,28.8 0 0 1 25.429,-13.521 L22.78,-12.112 A25.8,25.8 0 0 0 12.112,-22.78 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M12.112,-22.78 L13.521,-25.429 A28.8,28.8 0 0 1 25.429,-13.521 L22.78,-12.112 A25.8,25.8 0 0 0 12.112,-22.78 Z" stroke="#2a9d8f" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /><circle cx="18.738" cy="18.738" r="1.085" fill="#d1495b" fill-opacity="0.12" /><circle cx="18.738" cy="18.738" r="1.085" stroke="#d1495b" stroke-width="0.456" fill="none" stroke-dasharray="0.6 1.6" /><path d="M22.78,12.112 L25.429,13.521 A28.8,28.8 0 0 1 13.521,25.429 L12.112,22.78 A25.8,25.8 0 0 0 22.78,12.112 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M22.78,12.112 L25.429,13.521 A28.8,28.8 0 0 1 13.521,25.429 L12.112,22.78 A25.8,25.8 0 0 0 22.78,12.112 Z" stroke="#2a9d8f" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /><path d="M0,28.4 L1.923,31.441 L-1.923,31.441 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,28.4 L1.923,31.441 L-1.923,31.441 Z" stroke="#e8853a" stroke-width="0.456" fill="none" stroke-dasharray="0.6 1.6" /><path d="M-12.112,22.78 L-13.521,25.429 A28.8,28.8 0 0 1 -25.429,13.521 L-22.78,12.112 A25.8,25.8 0 0 0 -12.112,22.78 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-12.112,22.78 L-13.521,25.429 A28.8,28.8 0 0 1 -25.429,13.521 L-22.78,12.112 A25.8,25.8 0 0 0 -12.112,22.78 Z" stroke="#2a9d8f" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /><path d="M-22.78,-12.112 L-25.429,-13.521 A28.8,28.8 0 0 1 -13.521,-25.429 L-12.112,-22.78 A25.8,25.8 0 0 0 -22.78,-12.112 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-22.78,-12.112 L-25.429,-13.521 A28.8,28.8 0 0 1 -13.521,-25.429 L-12.112,-22.78 A25.8,25.8 0 0 0 -22.78,-12.112 Z" stroke="#2a9d8f" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-variant-electrical"><path d="M-0.608,-21.992 L-0.691,-24.99 A25,25 0 0 1 0.691,-24.99 L0.608,-21.992 A22,22 0 0 0 -0.608,-21.992 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-0.608,-21.992 L-0.691,-24.99 A25,25 0 0 1 0.691,-24.99 L0.608,-21.992 A22,22 0 0 0 -0.608,-21.992 Z" stroke="#8a5cd1" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /><path d="M1.694,-21.935 L1.925,-24.926 A25,25 0 0 1 3.3,-24.781 L2.904,-21.808 A22,22 0 0 0 1.694,-21.935 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M1.694,-21.935 L1.925,-24.926 A25,25 0 0 1 3.3,-24.781 L2.904,-21.808 A22,22 0 0 0 1.694,-21.935 Z" stroke="#8a5cd1" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /><path d="M3.977,-21.638 L4.52,-24.588 A25,25 0 0 1 5.872,-24.301 L5.167,-21.385 A22,22 0 0 0 3.977,-21.638 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M3.977,-21.638 L4.52,-24.588 A25,25 0 0 1 5.872,-24.301 L5.167,-21.385 A22,22 0 0 0 3.977,-21.638 Z" stroke="#8a5cd1" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /><path d="M6.217,-21.103 L7.065,-23.981 A25,25 0 0 1 8.38,-23.554 L7.374,-20.727 A22,22 0 0 0 6.217,-21.103 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M6.217,-21.103 L7.065,-23.981 A25,25 0 0 1 8.38,-23.554 L7.374,-20.727 A22,22 0 0 0 6.217,-21.103 Z" stroke="#8a5cd1" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /><path d="M8.389,-20.338 L9.533,-23.111 A25,25 0 0 1 10.796,-22.549 L9.501,-19.843 A22,22 0 0 0 8.389,-20.338 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M8.389,-20.338 L9.533,-23.111 A25,25 0 0 1 10.796,-22.549 L9.501,-19.843 A22,22 0 0 0 8.389,-20.338 Z" stroke="#8a5cd1" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /><path d="M-11.523,-18.741 L-13.094,-21.297 A25,25 0 0 1 -11.896,-21.988 L-10.469,-19.349 A22,22 0 0 0 -11.523,-18.741 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-11.523,-18.741 L-13.094,-21.297 A25,25 0 0 1 -11.896,-21.988 L-10.469,-19.349 A22,22 0 0 0 -11.523,-18.741 Z" stroke="#8a5cd1" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /><path d="M-9.501,-19.843 L-10.796,-22.549 A25,25 0 0 1 -9.533,-23.111 L-8.389,-20.338 A22,22 0 0 0 -9.501,-19.843 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-9.501,-19.843 L-10.796,-22.549 A25,25 0 0 1 -9.533,-23.111 L-8.389,-20.338 A22,22 0 0 0 -9.501,-19.843 Z" stroke="#8a5cd1" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /><path d="M-7.374,-20.727 L-8.38,-23.554 A25,25 0 0 1 -7.065,-23.981 L-6.217,-21.103 A22,22 0 0 0 -7.374,-20.727 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-7.374,-20.727 L-8.38,-23.554 A25,25 0 0 1 -7.065,-23.981 L-6.217,-21.103 A22,22 0 0 0 -7.374,-20.727 Z" stroke="#8a5cd1" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /><path d="M-5.167,-21.385 L-5.872,-24.301 A25,25 0 0 1 -4.52,-24.588 L-3.977,-21.638 A22,22 0 0 0 -5.167,-21.385 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-5.167,-21.385 L-5.872,-24.301 A25,25 0 0 1 -4.52,-24.588 L-3.977,-21.638 A22,22 0 0 0 -5.167,-21.385 Z" stroke="#8a5cd1" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /><path d="M-2.904,-21.808 L-3.3,-24.781 A25,25 0 0 1 -1.925,-24.926 L-1.694,-21.935 A22,22 0 0 0 -2.904,-21.808 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-2.904,-21.808 L-3.3,-24.781 A25,25 0 0 1 -1.925,-24.926 L-1.694,-21.935 A22,22 0 0 0 -2.904,-21.808 Z" stroke="#8a5cd1" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-36.48" y1="-36.1" x2="-31.92" y2="-36.1" stroke="#2f80c4" stroke-width="0.546" /><text x="-30.672" y="-35.226" font-size="2.496" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-36.48" y1="-32.356" x2="-31.92" y2="-32.356" stroke="#6b7a8f" stroke-width="0.546" /><text x="-30.672" y="-31.482" font-size="2.496" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-36.48" y1="-28.612" x2="-31.92" y2="-28.612" stroke="#2a9d8f" stroke-width="0.546" /><text x="-30.672" y="-27.738" font-size="2.496" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-36.48" y1="-24.868" x2="-31.92" y2="-24.868" stroke="#d1495b" stroke-width="0.546" /><text x="-30.672" y="-23.994" font-size="2.496" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-36.48" y1="-21.124" x2="-31.92" y2="-21.124" stroke="#e8853a" stroke-width="0.546" /><text x="-30.672" y="-20.25" font-size="2.496" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-36.48" y1="-17.38" x2="-31.92" y2="-17.38" stroke="#8a5cd1" stroke-width="0.546" /><text x="-30.672" y="-16.506" font-size="2.496" fill="#8a5cd1" font-family="sans-serif">Electrical contact</text><line x1="-36.48" y1="-13.636" x2="-31.92" y2="-13.636" stroke="#7f8c3a" stroke-width="0.546" /><text x="-30.672" y="-12.762" font-size="2.496" fill="#7f8c3a" font-family="sans-serif">Screws / seals</text><line x1="-36.48" y1="-9.892" x2="-31.92" y2="-9.892" stroke="#8a94a0" stroke-width="0.546" /><text x="-30.672" y="-9.018" font-size="2.496" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-38 -40 76 78" role="img" aria-labelledby="l-mount-base-camera_side_front-title l-mount-base-camera_side_front-desc"><title id="l-mount-base-camera_side_front-title">L-Mount mount — camera-side front view (base)</title><desc id="l-mount-base-camera_side_front-desc">L-Mount bayonet mount, camera-side front view. Flange focal distance 20 mm, nominal throat 51.6 mm. Profile l-mount/base.</desc><metadata>{"mountId":"l-mount","profileId":"l-mount/base","view":"camera_side_front","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.55" y1="0" x2="1.55" y2="0" stroke="#8a94a0" stroke-width="0.456" fill="none" /><line x1="0" y1="-1.55" x2="0" y2="1.55" stroke="#8a94a0" stroke-width="0.456" fill="none" /><line x1="0" y1="-31" x2="0" y2="-32.86" stroke="#8a94a0" stroke-width="0.456" fill="none" /></g><g data-layer="camera-side-metal"><path d="M0,-31 A31,31 0 1 1 0,31 A31,31 0 1 1 0,-31 Z M0,-25.8 A25.8,25.8 0 1 1 0,25.8 A25.8,25.8 0 1 1 0,-25.8 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-31 A31,31 0 1 1 0,31 A31,31 0 1 1 0,-31 Z M0,-25.8 A25.8,25.8 0 1 1 0,25.8 A25.8,25.8 0 1 1 0,-25.8 Z" stroke="#6b7a8f" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /><path d="M0,-25.8 A25.8,25.8 0 1 1 0,25.8 A25.8,25.8 0 1 1 0,-25.8 Z" stroke="#2f80c4" stroke-width="0.456" fill="none" /><circle cx="10.09" cy="-27.721" r="1" stroke="#7f8c3a" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /><circle cx="29.052" cy="-5.123" r="1" stroke="#7f8c3a" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /><circle cx="18.962" cy="22.598" r="1" stroke="#7f8c3a" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /><circle cx="-10.09" cy="27.721" r="1" stroke="#7f8c3a" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /><circle cx="-29.052" cy="5.123" r="1" stroke="#7f8c3a" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /><circle cx="-18.962" cy="-22.598" r="1" stroke="#7f8c3a" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-core-interface"><path d="M12.112,-22.78 L13.521,-25.429 A28.8,28.8 0 0 1 25.429,-13.521 L22.78,-12.112 A25.8,25.8 0 0 0 12.112,-22.78 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M12.112,-22.78 L13.521,-25.429 A28.8,28.8 0 0 1 25.429,-13.521 L22.78,-12.112 A25.8,25.8 0 0 0 12.112,-22.78 Z" stroke="#2a9d8f" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /><circle cx="18.738" cy="18.738" r="1.085" fill="#d1495b" fill-opacity="0.12" /><circle cx="18.738" cy="18.738" r="1.085" stroke="#d1495b" stroke-width="0.456" fill="none" stroke-dasharray="0.6 1.6" /><path d="M22.78,12.112 L25.429,13.521 A28.8,28.8 0 0 1 13.521,25.429 L12.112,22.78 A25.8,25.8 0 0 0 22.78,12.112 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M22.78,12.112 L25.429,13.521 A28.8,28.8 0 0 1 13.521,25.429 L12.112,22.78 A25.8,25.8 0 0 0 22.78,12.112 Z" stroke="#2a9d8f" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /><path d="M0,28.4 L1.923,31.441 L-1.923,31.441 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,28.4 L1.923,31.441 L-1.923,31.441 Z" stroke="#e8853a" stroke-width="0.456" fill="none" stroke-dasharray="0.6 1.6" /><path d="M-12.112,22.78 L-13.521,25.429 A28.8,28.8 0 0 1 -25.429,13.521 L-22.78,12.112 A25.8,25.8 0 0 0 -12.112,22.78 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-12.112,22.78 L-13.521,25.429 A28.8,28.8 0 0 1 -25.429,13.521 L-22.78,12.112 A25.8,25.8 0 0 0 -12.112,22.78 Z" stroke="#2a9d8f" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /><path d="M-22.78,-12.112 L-25.429,-13.521 A28.8,28.8 0 0 1 -13.521,-25.429 L-12.112,-22.78 A25.8,25.8 0 0 0 -22.78,-12.112 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-22.78,-12.112 L-25.429,-13.521 A28.8,28.8 0 0 1 -13.521,-25.429 L-12.112,-22.78 A25.8,25.8 0 0 0 -22.78,-12.112 Z" stroke="#2a9d8f" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-variant-electrical"><path d="M-0.608,-21.992 L-0.691,-24.99 A25,25 0 0 1 0.691,-24.99 L0.608,-21.992 A22,22 0 0 0 -0.608,-21.992 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-0.608,-21.992 L-0.691,-24.99 A25,25 0 0 1 0.691,-24.99 L0.608,-21.992 A22,22 0 0 0 -0.608,-21.992 Z" stroke="#8a5cd1" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /><path d="M1.694,-21.935 L1.925,-24.926 A25,25 0 0 1 3.3,-24.781 L2.904,-21.808 A22,22 0 0 0 1.694,-21.935 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M1.694,-21.935 L1.925,-24.926 A25,25 0 0 1 3.3,-24.781 L2.904,-21.808 A22,22 0 0 0 1.694,-21.935 Z" stroke="#8a5cd1" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /><path d="M3.977,-21.638 L4.52,-24.588 A25,25 0 0 1 5.872,-24.301 L5.167,-21.385 A22,22 0 0 0 3.977,-21.638 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M3.977,-21.638 L4.52,-24.588 A25,25 0 0 1 5.872,-24.301 L5.167,-21.385 A22,22 0 0 0 3.977,-21.638 Z" stroke="#8a5cd1" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /><path d="M6.217,-21.103 L7.065,-23.981 A25,25 0 0 1 8.38,-23.554 L7.374,-20.727 A22,22 0 0 0 6.217,-21.103 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M6.217,-21.103 L7.065,-23.981 A25,25 0 0 1 8.38,-23.554 L7.374,-20.727 A22,22 0 0 0 6.217,-21.103 Z" stroke="#8a5cd1" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /><path d="M8.389,-20.338 L9.533,-23.111 A25,25 0 0 1 10.796,-22.549 L9.501,-19.843 A22,22 0 0 0 8.389,-20.338 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M8.389,-20.338 L9.533,-23.111 A25,25 0 0 1 10.796,-22.549 L9.501,-19.843 A22,22 0 0 0 8.389,-20.338 Z" stroke="#8a5cd1" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /><path d="M-11.523,-18.741 L-13.094,-21.297 A25,25 0 0 1 -11.896,-21.988 L-10.469,-19.349 A22,22 0 0 0 -11.523,-18.741 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-11.523,-18.741 L-13.094,-21.297 A25,25 0 0 1 -11.896,-21.988 L-10.469,-19.349 A22,22 0 0 0 -11.523,-18.741 Z" stroke="#8a5cd1" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /><path d="M-9.501,-19.843 L-10.796,-22.549 A25,25 0 0 1 -9.533,-23.111 L-8.389,-20.338 A22,22 0 0 0 -9.501,-19.843 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-9.501,-19.843 L-10.796,-22.549 A25,25 0 0 1 -9.533,-23.111 L-8.389,-20.338 A22,22 0 0 0 -9.501,-19.843 Z" stroke="#8a5cd1" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /><path d="M-7.374,-20.727 L-8.38,-23.554 A25,25 0 0 1 -7.065,-23.981 L-6.217,-21.103 A22,22 0 0 0 -7.374,-20.727 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-7.374,-20.727 L-8.38,-23.554 A25,25 0 0 1 -7.065,-23.981 L-6.217,-21.103 A22,22 0 0 0 -7.374,-20.727 Z" stroke="#8a5cd1" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /><path d="M-5.167,-21.385 L-5.872,-24.301 A25,25 0 0 1 -4.52,-24.588 L-3.977,-21.638 A22,22 0 0 0 -5.167,-21.385 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-5.167,-21.385 L-5.872,-24.301 A25,25 0 0 1 -4.52,-24.588 L-3.977,-21.638 A22,22 0 0 0 -5.167,-21.385 Z" stroke="#8a5cd1" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /><path d="M-2.904,-21.808 L-3.3,-24.781 A25,25 0 0 1 -1.925,-24.926 L-1.694,-21.935 A22,22 0 0 0 -2.904,-21.808 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-2.904,-21.808 L-3.3,-24.781 A25,25 0 0 1 -1.925,-24.926 L-1.694,-21.935 A22,22 0 0 0 -2.904,-21.808 Z" stroke="#8a5cd1" stroke-width="0.456" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-36.48" y1="-36.1" x2="-31.92" y2="-36.1" stroke="#2f80c4" stroke-width="0.546" /><text x="-30.672" y="-35.226" font-size="2.496" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-36.48" y1="-32.356" x2="-31.92" y2="-32.356" stroke="#6b7a8f" stroke-width="0.546" /><text x="-30.672" y="-31.482" font-size="2.496" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-36.48" y1="-28.612" x2="-31.92" y2="-28.612" stroke="#2a9d8f" stroke-width="0.546" /><text x="-30.672" y="-27.738" font-size="2.496" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-36.48" y1="-24.868" x2="-31.92" y2="-24.868" stroke="#d1495b" stroke-width="0.546" /><text x="-30.672" y="-23.994" font-size="2.496" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-36.48" y1="-21.124" x2="-31.92" y2="-21.124" stroke="#e8853a" stroke-width="0.546" /><text x="-30.672" y="-20.25" font-size="2.496" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-36.48" y1="-17.38" x2="-31.92" y2="-17.38" stroke="#8a5cd1" stroke-width="0.546" /><text x="-30.672" y="-16.506" font-size="2.496" fill="#8a5cd1" font-family="sans-serif">Electrical contact</text><line x1="-36.48" y1="-13.636" x2="-31.92" y2="-13.636" stroke="#7f8c3a" stroke-width="0.546" /><text x="-30.672" y="-12.762" font-size="2.496" fill="#7f8c3a" font-family="sans-serif">Screws / seals</text><line x1="-36.48" y1="-9.892" x2="-31.92" y2="-9.892" stroke="#8a94a0" stroke-width="0.546" /><text x="-30.672" y="-9.018" font-size="2.496" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
 
 **Lens-side rear view** — viewBox `-37 -39 74 76` ([standalone SVG](mounts/l-mount-lens-rear.svg))
 
@@ -32486,6 +32541,7 @@ None — fully electronic.
           ],
           "status": "researched",
           "sourceRefs": [
+            "lm-official-1",
             "lm-1"
           ]
         }
@@ -32495,23 +32551,23 @@ None — fully electronic.
   "coreDimensions": {
     "flangeFocalDistanceMm": {
       "value": 20,
-      "status": "secondary",
+      "status": "official",
       "sourceRefs": [
-        "lm-1"
+        "lm-official-1"
       ]
     },
     "nominalThroatDiameterMm": {
       "value": 51.6,
-      "status": "secondary",
+      "status": "official",
       "sourceRefs": [
-        "lm-1"
+        "lm-official-1"
       ]
     },
     "effectiveClearApertureMm": {
       "value": 51.6,
-      "status": "secondary",
+      "status": "official",
       "sourceRefs": [
-        "lm-1"
+        "lm-official-1"
       ]
     },
     "cameraMountOuterDiameterMm": {
@@ -32572,37 +32628,37 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "secondary",
+        "status": "official",
         "sourceRefs": [
-          "lm-1"
+          "lm-official-1"
         ]
       },
       "startAngleDeg": {
         "value": 0,
-        "status": "secondary",
+        "status": "official",
         "sourceRefs": [
-          "lm-1"
+          "lm-official-1"
         ]
       },
       "endAngleDeg": {
         "value": 360,
-        "status": "secondary",
+        "status": "official",
         "sourceRefs": [
-          "lm-1"
+          "lm-official-1"
         ]
       },
       "innerRadiusMm": {
         "value": 0,
-        "status": "secondary",
+        "status": "official",
         "sourceRefs": [
-          "lm-1"
+          "lm-official-1"
         ]
       },
       "outerRadiusMm": {
         "value": 25.8,
-        "status": "secondary",
+        "status": "official",
         "sourceRefs": [
-          "lm-1"
+          "lm-official-1"
         ]
       },
       "depthMm": {
@@ -32641,9 +32697,9 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 25.8,
-        "status": "secondary",
+        "status": "official",
         "sourceRefs": [
-          "lm-1"
+          "lm-official-1"
         ]
       },
       "outerRadiusMm": {
@@ -33433,9 +33489,9 @@ None — fully electronic.
       "planeId": "sensor_film_plane",
       "zPositionMm": {
         "value": -20,
-        "status": "secondary",
+        "status": "official",
         "sourceRefs": [
-          "lm-1"
+          "lm-official-1"
         ]
       },
       "thicknessMm": {
@@ -34360,6 +34416,16 @@ None — fully electronic.
   },
   "sourceRefs": [
     {
+      "ref": "lm-official-1",
+      "sourceType": "official",
+      "citation": "L-Mount Alliance, “L-Mount | Overview.” Accessed 2026-06-06.",
+      "liveUrl": "https://l-mount.com/en/Overview",
+      "archiveUrl": "http://web.archive.org/web/20251116195834/https://l-mount.com/en/Overview",
+      "archiveDate": "2025-11-16",
+      "appliesTo": "51.6 mm L-Mount diameter, 20 mm flange distance, and four-tab bayonet",
+      "confidence": "high"
+    },
+    {
       "ref": "lm-1",
       "sourceType": "secondary",
       "citation": "“L-Mount,” Wikipedia. Accessed 2026-06-04.",
@@ -34433,6 +34499,7 @@ None — fully electronic.
 
 | Ref | Type | Citation | Archive | Captured | Confidence |
 |---|---|---|---|---|---|
+| `lm-official-1` | official | L-Mount Alliance, “L-Mount | Overview.” Accessed 2026-06-06. | [snapshot](http://web.archive.org/web/20251116195834/https://l-mount.com/en/Overview) | 2025-11-16 | high |
 | `lm-1` | secondary | “L-Mount,” Wikipedia. Accessed 2026-06-04. | [snapshot](http://web.archive.org/web/20251203103305/https://en.wikipedia.org/wiki/L-Mount) | 2025-12-03 | high |
 | `lm-2` | secondary | “Lens Mounts: L-Mount,” JAPB (japb.net). Accessed 2026-06-04. | [snapshot](http://web.archive.org/web/20250618064650/https://japb.net/theory/lensmounts/l-mount/) | 2025-06-18 | medium |
 
@@ -49416,9 +49483,9 @@ None — fully electronic.
 
 | Field | Value | Unit |
 |---|---|---|
-| Flange focal distance | 16 (`secondary`) | mm |
-| Nominal throat diameter | 55 (`secondary`) | mm |
-| Effective clear aperture | 55 (`secondary`) | mm |
+| Flange focal distance | 16 (`official`) | mm |
+| Nominal throat diameter | 55 (`official`) | mm |
+| Effective clear aperture | 55 (`official`) | mm |
 | Camera mount outer diameter | 66 (`photo_scaled`) | mm |
 | Lens mount outer diameter | 64 (`photo_scaled`) | mm |
 | Contact count | 11 (`patent`) | count |
@@ -49429,7 +49496,7 @@ None — fully electronic.
 
 **Camera-side front view** — viewBox `-41 -42 82 83` ([standalone SVG](mounts/nikon-z-camera-front.svg))
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-41 -42 82 83" role="img" aria-labelledby="nikon-z-base-camera_side_front-title nikon-z-base-camera_side_front-desc"><title id="nikon-z-base-camera_side_front-title">Nikon Z mount — camera-side front view (base)</title><desc id="nikon-z-base-camera_side_front-desc">Nikon Z bayonet mount, camera-side front view. Flange focal distance 16 mm, nominal throat 55 mm. Profile nikon-z/base.</desc><metadata>{"mountId":"nikon-z","profileId":"nikon-z/base","view":"camera_side_front","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.65" y1="0" x2="1.65" y2="0" stroke="#8a94a0" stroke-width="0.492" fill="none" /><line x1="0" y1="-1.65" x2="0" y2="1.65" stroke="#8a94a0" stroke-width="0.492" fill="none" /><line x1="0" y1="-33" x2="0" y2="-34.98" stroke="#8a94a0" stroke-width="0.492" fill="none" /></g><g data-layer="camera-side-metal"><path d="M0,-33 A33,33 0 1 1 0,33 A33,33 0 1 1 0,-33 Z M0,-27.5 A27.5,27.5 0 1 1 0,27.5 A27.5,27.5 0 1 1 0,-27.5 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-33 A33,33 0 1 1 0,33 A33,33 0 1 1 0,-33 Z M0,-27.5 A27.5,27.5 0 1 1 0,27.5 A27.5,27.5 0 1 1 0,-27.5 Z" stroke="#6b7a8f" stroke-width="0.492" fill="none" /><path d="M0,-27.5 A27.5,27.5 0 1 1 0,27.5 A27.5,27.5 0 1 1 0,-27.5 Z" stroke="#2f80c4" stroke-width="0.369" fill="none" /><circle cx="10.774" cy="-29.6" r="1" stroke="#7f8c3a" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /><circle cx="31.021" cy="-5.47" r="1" stroke="#7f8c3a" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /><circle cx="20.248" cy="24.13" r="1" stroke="#7f8c3a" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /><circle cx="-10.774" cy="29.6" r="1" stroke="#7f8c3a" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /><circle cx="-31.021" cy="5.47" r="1" stroke="#7f8c3a" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /><circle cx="-20.248" cy="-24.13" r="1" stroke="#7f8c3a" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-core-interface"><path d="M0,-30.2 L-2.045,-33.438 L2.045,-33.438 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-30.2 L-2.045,-33.438 L2.045,-33.438 Z" stroke="#e8853a" stroke-width="0.492" fill="none" stroke-dasharray="0.6 1.6" /><path d="M11.185,-25.123 L12.405,-27.863 A30.5,30.5 0 0 1 29.318,-8.407 L26.435,-7.58 A27.5,27.5 0 0 0 11.185,-25.123 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M11.185,-25.123 L12.405,-27.863 A30.5,30.5 0 0 1 29.318,-8.407 L26.435,-7.58 A27.5,27.5 0 0 0 11.185,-25.123 Z" stroke="#2a9d8f" stroke-width="0.492" fill="none" /><circle cx="28.5" cy="0" r="1.155" fill="#d1495b" fill-opacity="0.12" /><circle cx="28.5" cy="0" r="1.155" stroke="#d1495b" stroke-width="0.492" fill="none" /><path d="M22.248,16.164 L24.675,17.927 A30.5,30.5 0 0 1 6.341,29.834 L5.718,26.899 A27.5,27.5 0 0 0 22.248,16.164 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M22.248,16.164 L24.675,17.927 A30.5,30.5 0 0 1 6.341,29.834 L5.718,26.899 A27.5,27.5 0 0 0 22.248,16.164 Z" stroke="#2a9d8f" stroke-width="0.492" fill="none" /><path d="M-15.378,22.799 L-17.055,25.286 A30.5,30.5 0 0 1 -30.203,4.245 L-27.232,3.827 A27.5,27.5 0 0 0 -15.378,22.799 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-15.378,22.799 L-17.055,25.286 A30.5,30.5 0 0 1 -30.203,4.245 L-27.232,3.827 A27.5,27.5 0 0 0 -15.378,22.799 Z" stroke="#2a9d8f" stroke-width="0.492" fill="none" /><path d="M-26.683,-6.653 L-29.594,-7.379 A30.5,30.5 0 0 1 -19.605,-23.364 L-17.677,-21.066 A27.5,27.5 0 0 0 -26.683,-6.653 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-26.683,-6.653 L-29.594,-7.379 A30.5,30.5 0 0 1 -19.605,-23.364 L-17.677,-21.066 A27.5,27.5 0 0 0 -26.683,-6.653 Z" stroke="#2a9d8f" stroke-width="0.492" fill="none" /></g><g data-layer="camera-side-variant-electrical"><path d="M-0.612,-23.992 L-0.688,-26.991 A27,27 0 0 1 0.688,-26.991 L0.612,-23.992 A24,24 0 0 0 -0.612,-23.992 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-0.612,-23.992 L-0.688,-26.991 A27,27 0 0 1 0.688,-26.991 L0.612,-23.992 A24,24 0 0 0 -0.612,-23.992 Z" stroke="#8a5cd1" stroke-width="0.492" fill="none" /><path d="M1.9,-23.925 L2.137,-26.915 A27,27 0 0 1 3.506,-26.771 L3.116,-23.797 A24,24 0 0 0 1.9,-23.925 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M1.9,-23.925 L2.137,-26.915 A27,27 0 0 1 3.506,-26.771 L3.116,-23.797 A24,24 0 0 0 1.9,-23.925 Z" stroke="#8a5cd1" stroke-width="0.492" fill="none" /><path d="M4.39,-23.595 L4.939,-26.544 A27,27 0 0 1 6.285,-26.258 L5.587,-23.341 A24,24 0 0 0 4.39,-23.595 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M4.39,-23.595 L4.939,-26.544 A27,27 0 0 1 6.285,-26.258 L5.587,-23.341 A24,24 0 0 0 4.39,-23.595 Z" stroke="#8a5cd1" stroke-width="0.492" fill="none" /><path d="M6.832,-23.007 L7.686,-25.883 A27,27 0 0 1 8.995,-25.458 L7.996,-22.629 A24,24 0 0 0 6.832,-23.007 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M6.832,-23.007 L7.686,-25.883 A27,27 0 0 1 8.995,-25.458 L7.996,-22.629 A24,24 0 0 0 6.832,-23.007 Z" stroke="#8a5cd1" stroke-width="0.492" fill="none" /><path d="M9.2,-22.167 L10.35,-24.938 A27,27 0 0 1 11.607,-24.378 L10.317,-21.669 A24,24 0 0 0 9.2,-22.167 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M9.2,-22.167 L10.35,-24.938 A27,27 0 0 1 11.607,-24.378 L10.317,-21.669 A24,24 0 0 0 9.2,-22.167 Z" stroke="#8a5cd1" stroke-width="0.492" fill="none" /><path d="M11.466,-21.084 L12.9,-23.719 A27,27 0 0 1 14.092,-23.031 L12.526,-20.472 A24,24 0 0 0 11.466,-21.084 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M11.466,-21.084 L12.9,-23.719 A27,27 0 0 1 14.092,-23.031 L12.526,-20.472 A24,24 0 0 0 11.466,-21.084 Z" stroke="#8a5cd1" stroke-width="0.492" fill="none" /><path d="M-12.526,-20.472 L-14.092,-23.031 A27,27 0 0 1 -12.9,-23.719 L-11.466,-21.084 A24,24 0 0 0 -12.526,-20.472 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-12.526,-20.472 L-14.092,-23.031 A27,27 0 0 1 -12.9,-23.719 L-11.466,-21.084 A24,24 0 0 0 -12.526,-20.472 Z" stroke="#8a5cd1" stroke-width="0.492" fill="none" /><path d="M-10.317,-21.669 L-11.607,-24.378 A27,27 0 0 1 -10.35,-24.938 L-9.2,-22.167 A24,24 0 0 0 -10.317,-21.669 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-10.317,-21.669 L-11.607,-24.378 A27,27 0 0 1 -10.35,-24.938 L-9.2,-22.167 A24,24 0 0 0 -10.317,-21.669 Z" stroke="#8a5cd1" stroke-width="0.492" fill="none" /><path d="M-7.996,-22.629 L-8.995,-25.458 A27,27 0 0 1 -7.686,-25.883 L-6.832,-23.007 A24,24 0 0 0 -7.996,-22.629 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-7.996,-22.629 L-8.995,-25.458 A27,27 0 0 1 -7.686,-25.883 L-6.832,-23.007 A24,24 0 0 0 -7.996,-22.629 Z" stroke="#8a5cd1" stroke-width="0.492" fill="none" /><path d="M-5.587,-23.341 L-6.285,-26.258 A27,27 0 0 1 -4.939,-26.544 L-4.39,-23.595 A24,24 0 0 0 -5.587,-23.341 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-5.587,-23.341 L-6.285,-26.258 A27,27 0 0 1 -4.939,-26.544 L-4.39,-23.595 A24,24 0 0 0 -5.587,-23.341 Z" stroke="#8a5cd1" stroke-width="0.492" fill="none" /><path d="M-3.116,-23.797 L-3.506,-26.771 A27,27 0 0 1 -2.137,-26.915 L-1.9,-23.925 A24,24 0 0 0 -3.116,-23.797 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-3.116,-23.797 L-3.506,-26.771 A27,27 0 0 1 -2.137,-26.915 L-1.9,-23.925 A24,24 0 0 0 -3.116,-23.797 Z" stroke="#8a5cd1" stroke-width="0.492" fill="none" /></g><g aria-hidden="true"><line x1="-39.36" y1="-37.85" x2="-34.44" y2="-37.85" stroke="#2f80c4" stroke-width="0.581" /><text x="-33.112" y="-36.92" font-size="2.656" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-39.36" y1="-33.866" x2="-34.44" y2="-33.866" stroke="#6b7a8f" stroke-width="0.581" /><text x="-33.112" y="-32.936" font-size="2.656" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-39.36" y1="-29.882" x2="-34.44" y2="-29.882" stroke="#2a9d8f" stroke-width="0.581" /><text x="-33.112" y="-28.952" font-size="2.656" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-39.36" y1="-25.898" x2="-34.44" y2="-25.898" stroke="#d1495b" stroke-width="0.581" /><text x="-33.112" y="-24.968" font-size="2.656" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-39.36" y1="-21.914" x2="-34.44" y2="-21.914" stroke="#e8853a" stroke-width="0.581" /><text x="-33.112" y="-20.984" font-size="2.656" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-39.36" y1="-17.93" x2="-34.44" y2="-17.93" stroke="#8a5cd1" stroke-width="0.581" /><text x="-33.112" y="-17" font-size="2.656" fill="#8a5cd1" font-family="sans-serif">Electrical contact</text><line x1="-39.36" y1="-13.946" x2="-34.44" y2="-13.946" stroke="#7f8c3a" stroke-width="0.581" /><text x="-33.112" y="-13.016" font-size="2.656" fill="#7f8c3a" font-family="sans-serif">Screws / seals</text><line x1="-39.36" y1="-9.962" x2="-34.44" y2="-9.962" stroke="#8a94a0" stroke-width="0.581" /><text x="-33.112" y="-9.032" font-size="2.656" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-41 -42 82 83" role="img" aria-labelledby="nikon-z-base-camera_side_front-title nikon-z-base-camera_side_front-desc"><title id="nikon-z-base-camera_side_front-title">Nikon Z mount — camera-side front view (base)</title><desc id="nikon-z-base-camera_side_front-desc">Nikon Z bayonet mount, camera-side front view. Flange focal distance 16 mm, nominal throat 55 mm. Profile nikon-z/base.</desc><metadata>{"mountId":"nikon-z","profileId":"nikon-z/base","view":"camera_side_front","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.65" y1="0" x2="1.65" y2="0" stroke="#8a94a0" stroke-width="0.492" fill="none" /><line x1="0" y1="-1.65" x2="0" y2="1.65" stroke="#8a94a0" stroke-width="0.492" fill="none" /><line x1="0" y1="-33" x2="0" y2="-34.98" stroke="#8a94a0" stroke-width="0.492" fill="none" /></g><g data-layer="camera-side-metal"><path d="M0,-33 A33,33 0 1 1 0,33 A33,33 0 1 1 0,-33 Z M0,-27.5 A27.5,27.5 0 1 1 0,27.5 A27.5,27.5 0 1 1 0,-27.5 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-33 A33,33 0 1 1 0,33 A33,33 0 1 1 0,-33 Z M0,-27.5 A27.5,27.5 0 1 1 0,27.5 A27.5,27.5 0 1 1 0,-27.5 Z" stroke="#6b7a8f" stroke-width="0.492" fill="none" /><path d="M0,-27.5 A27.5,27.5 0 1 1 0,27.5 A27.5,27.5 0 1 1 0,-27.5 Z" stroke="#2f80c4" stroke-width="0.492" fill="none" /><circle cx="10.774" cy="-29.6" r="1" stroke="#7f8c3a" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /><circle cx="31.021" cy="-5.47" r="1" stroke="#7f8c3a" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /><circle cx="20.248" cy="24.13" r="1" stroke="#7f8c3a" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /><circle cx="-10.774" cy="29.6" r="1" stroke="#7f8c3a" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /><circle cx="-31.021" cy="5.47" r="1" stroke="#7f8c3a" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /><circle cx="-20.248" cy="-24.13" r="1" stroke="#7f8c3a" stroke-width="0.492" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-core-interface"><path d="M0,-30.2 L-2.045,-33.438 L2.045,-33.438 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M0,-30.2 L-2.045,-33.438 L2.045,-33.438 Z" stroke="#e8853a" stroke-width="0.492" fill="none" stroke-dasharray="0.6 1.6" /><path d="M11.185,-25.123 L12.405,-27.863 A30.5,30.5 0 0 1 29.318,-8.407 L26.435,-7.58 A27.5,27.5 0 0 0 11.185,-25.123 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M11.185,-25.123 L12.405,-27.863 A30.5,30.5 0 0 1 29.318,-8.407 L26.435,-7.58 A27.5,27.5 0 0 0 11.185,-25.123 Z" stroke="#2a9d8f" stroke-width="0.492" fill="none" /><circle cx="28.5" cy="0" r="1.155" fill="#d1495b" fill-opacity="0.12" /><circle cx="28.5" cy="0" r="1.155" stroke="#d1495b" stroke-width="0.492" fill="none" /><path d="M22.248,16.164 L24.675,17.927 A30.5,30.5 0 0 1 6.341,29.834 L5.718,26.899 A27.5,27.5 0 0 0 22.248,16.164 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M22.248,16.164 L24.675,17.927 A30.5,30.5 0 0 1 6.341,29.834 L5.718,26.899 A27.5,27.5 0 0 0 22.248,16.164 Z" stroke="#2a9d8f" stroke-width="0.492" fill="none" /><path d="M-15.378,22.799 L-17.055,25.286 A30.5,30.5 0 0 1 -30.203,4.245 L-27.232,3.827 A27.5,27.5 0 0 0 -15.378,22.799 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-15.378,22.799 L-17.055,25.286 A30.5,30.5 0 0 1 -30.203,4.245 L-27.232,3.827 A27.5,27.5 0 0 0 -15.378,22.799 Z" stroke="#2a9d8f" stroke-width="0.492" fill="none" /><path d="M-26.683,-6.653 L-29.594,-7.379 A30.5,30.5 0 0 1 -19.605,-23.364 L-17.677,-21.066 A27.5,27.5 0 0 0 -26.683,-6.653 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-26.683,-6.653 L-29.594,-7.379 A30.5,30.5 0 0 1 -19.605,-23.364 L-17.677,-21.066 A27.5,27.5 0 0 0 -26.683,-6.653 Z" stroke="#2a9d8f" stroke-width="0.492" fill="none" /></g><g data-layer="camera-side-variant-electrical"><path d="M-0.612,-23.992 L-0.688,-26.991 A27,27 0 0 1 0.688,-26.991 L0.612,-23.992 A24,24 0 0 0 -0.612,-23.992 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-0.612,-23.992 L-0.688,-26.991 A27,27 0 0 1 0.688,-26.991 L0.612,-23.992 A24,24 0 0 0 -0.612,-23.992 Z" stroke="#8a5cd1" stroke-width="0.492" fill="none" /><path d="M1.9,-23.925 L2.137,-26.915 A27,27 0 0 1 3.506,-26.771 L3.116,-23.797 A24,24 0 0 0 1.9,-23.925 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M1.9,-23.925 L2.137,-26.915 A27,27 0 0 1 3.506,-26.771 L3.116,-23.797 A24,24 0 0 0 1.9,-23.925 Z" stroke="#8a5cd1" stroke-width="0.492" fill="none" /><path d="M4.39,-23.595 L4.939,-26.544 A27,27 0 0 1 6.285,-26.258 L5.587,-23.341 A24,24 0 0 0 4.39,-23.595 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M4.39,-23.595 L4.939,-26.544 A27,27 0 0 1 6.285,-26.258 L5.587,-23.341 A24,24 0 0 0 4.39,-23.595 Z" stroke="#8a5cd1" stroke-width="0.492" fill="none" /><path d="M6.832,-23.007 L7.686,-25.883 A27,27 0 0 1 8.995,-25.458 L7.996,-22.629 A24,24 0 0 0 6.832,-23.007 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M6.832,-23.007 L7.686,-25.883 A27,27 0 0 1 8.995,-25.458 L7.996,-22.629 A24,24 0 0 0 6.832,-23.007 Z" stroke="#8a5cd1" stroke-width="0.492" fill="none" /><path d="M9.2,-22.167 L10.35,-24.938 A27,27 0 0 1 11.607,-24.378 L10.317,-21.669 A24,24 0 0 0 9.2,-22.167 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M9.2,-22.167 L10.35,-24.938 A27,27 0 0 1 11.607,-24.378 L10.317,-21.669 A24,24 0 0 0 9.2,-22.167 Z" stroke="#8a5cd1" stroke-width="0.492" fill="none" /><path d="M11.466,-21.084 L12.9,-23.719 A27,27 0 0 1 14.092,-23.031 L12.526,-20.472 A24,24 0 0 0 11.466,-21.084 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M11.466,-21.084 L12.9,-23.719 A27,27 0 0 1 14.092,-23.031 L12.526,-20.472 A24,24 0 0 0 11.466,-21.084 Z" stroke="#8a5cd1" stroke-width="0.492" fill="none" /><path d="M-12.526,-20.472 L-14.092,-23.031 A27,27 0 0 1 -12.9,-23.719 L-11.466,-21.084 A24,24 0 0 0 -12.526,-20.472 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-12.526,-20.472 L-14.092,-23.031 A27,27 0 0 1 -12.9,-23.719 L-11.466,-21.084 A24,24 0 0 0 -12.526,-20.472 Z" stroke="#8a5cd1" stroke-width="0.492" fill="none" /><path d="M-10.317,-21.669 L-11.607,-24.378 A27,27 0 0 1 -10.35,-24.938 L-9.2,-22.167 A24,24 0 0 0 -10.317,-21.669 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-10.317,-21.669 L-11.607,-24.378 A27,27 0 0 1 -10.35,-24.938 L-9.2,-22.167 A24,24 0 0 0 -10.317,-21.669 Z" stroke="#8a5cd1" stroke-width="0.492" fill="none" /><path d="M-7.996,-22.629 L-8.995,-25.458 A27,27 0 0 1 -7.686,-25.883 L-6.832,-23.007 A24,24 0 0 0 -7.996,-22.629 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-7.996,-22.629 L-8.995,-25.458 A27,27 0 0 1 -7.686,-25.883 L-6.832,-23.007 A24,24 0 0 0 -7.996,-22.629 Z" stroke="#8a5cd1" stroke-width="0.492" fill="none" /><path d="M-5.587,-23.341 L-6.285,-26.258 A27,27 0 0 1 -4.939,-26.544 L-4.39,-23.595 A24,24 0 0 0 -5.587,-23.341 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-5.587,-23.341 L-6.285,-26.258 A27,27 0 0 1 -4.939,-26.544 L-4.39,-23.595 A24,24 0 0 0 -5.587,-23.341 Z" stroke="#8a5cd1" stroke-width="0.492" fill="none" /><path d="M-3.116,-23.797 L-3.506,-26.771 A27,27 0 0 1 -2.137,-26.915 L-1.9,-23.925 A24,24 0 0 0 -3.116,-23.797 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-3.116,-23.797 L-3.506,-26.771 A27,27 0 0 1 -2.137,-26.915 L-1.9,-23.925 A24,24 0 0 0 -3.116,-23.797 Z" stroke="#8a5cd1" stroke-width="0.492" fill="none" /></g><g aria-hidden="true"><line x1="-39.36" y1="-37.85" x2="-34.44" y2="-37.85" stroke="#2f80c4" stroke-width="0.581" /><text x="-33.112" y="-36.92" font-size="2.656" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-39.36" y1="-33.866" x2="-34.44" y2="-33.866" stroke="#6b7a8f" stroke-width="0.581" /><text x="-33.112" y="-32.936" font-size="2.656" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-39.36" y1="-29.882" x2="-34.44" y2="-29.882" stroke="#2a9d8f" stroke-width="0.581" /><text x="-33.112" y="-28.952" font-size="2.656" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-39.36" y1="-25.898" x2="-34.44" y2="-25.898" stroke="#d1495b" stroke-width="0.581" /><text x="-33.112" y="-24.968" font-size="2.656" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-39.36" y1="-21.914" x2="-34.44" y2="-21.914" stroke="#e8853a" stroke-width="0.581" /><text x="-33.112" y="-20.984" font-size="2.656" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-39.36" y1="-17.93" x2="-34.44" y2="-17.93" stroke="#8a5cd1" stroke-width="0.581" /><text x="-33.112" y="-17" font-size="2.656" fill="#8a5cd1" font-family="sans-serif">Electrical contact</text><line x1="-39.36" y1="-13.946" x2="-34.44" y2="-13.946" stroke="#7f8c3a" stroke-width="0.581" /><text x="-33.112" y="-13.016" font-size="2.656" fill="#7f8c3a" font-family="sans-serif">Screws / seals</text><line x1="-39.36" y1="-9.962" x2="-34.44" y2="-9.962" stroke="#8a94a0" stroke-width="0.581" /><text x="-33.112" y="-9.032" font-size="2.656" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
 
 **Lens-side rear view** — viewBox `-39 -41 78 80` ([standalone SVG](mounts/nikon-z-lens-rear.svg))
 
@@ -49571,6 +49638,7 @@ None — fully electronic.
           ],
           "status": "researched",
           "sourceRefs": [
+            "nz-official-1",
             "nz-1",
             "nz-p1",
             "nz-2"
@@ -49582,23 +49650,23 @@ None — fully electronic.
   "coreDimensions": {
     "flangeFocalDistanceMm": {
       "value": 16,
-      "status": "secondary",
+      "status": "official",
       "sourceRefs": [
-        "nz-1"
+        "nz-official-1"
       ]
     },
     "nominalThroatDiameterMm": {
       "value": 55,
-      "status": "secondary",
+      "status": "official",
       "sourceRefs": [
-        "nz-1"
+        "nz-official-1"
       ]
     },
     "effectiveClearApertureMm": {
       "value": 55,
-      "status": "secondary",
+      "status": "official",
       "sourceRefs": [
-        "nz-1"
+        "nz-official-1"
       ]
     },
     "cameraMountOuterDiameterMm": {
@@ -49660,37 +49728,37 @@ None — fully electronic.
       "count": 1,
       "centerAngleDeg": {
         "value": 0,
-        "status": "secondary",
+        "status": "official",
         "sourceRefs": [
-          "nz-1"
+          "nz-official-1"
         ]
       },
       "startAngleDeg": {
         "value": 0,
-        "status": "secondary",
+        "status": "official",
         "sourceRefs": [
-          "nz-1"
+          "nz-official-1"
         ]
       },
       "endAngleDeg": {
         "value": 360,
-        "status": "secondary",
+        "status": "official",
         "sourceRefs": [
-          "nz-1"
+          "nz-official-1"
         ]
       },
       "innerRadiusMm": {
         "value": 0,
-        "status": "secondary",
+        "status": "official",
         "sourceRefs": [
-          "nz-1"
+          "nz-official-1"
         ]
       },
       "outerRadiusMm": {
         "value": 27.5,
-        "status": "secondary",
+        "status": "official",
         "sourceRefs": [
-          "nz-1"
+          "nz-official-1"
         ]
       },
       "depthMm": {
@@ -49729,9 +49797,9 @@ None — fully electronic.
       },
       "innerRadiusMm": {
         "value": 27.5,
-        "status": "secondary",
+        "status": "official",
         "sourceRefs": [
-          "nz-1"
+          "nz-official-1"
         ]
       },
       "outerRadiusMm": {
@@ -50584,9 +50652,9 @@ None — fully electronic.
       "planeId": "sensor_film_plane",
       "zPositionMm": {
         "value": -16,
-        "status": "secondary",
+        "status": "official",
         "sourceRefs": [
-          "nz-1"
+          "nz-official-1"
         ]
       },
       "thicknessMm": {
@@ -51595,6 +51663,16 @@ None — fully electronic.
   },
   "sourceRefs": [
     {
+      "ref": "nz-official-1",
+      "sourceType": "official",
+      "citation": "Nikon Corporation, “Nikon products receive the Good Design Award.” Accessed 2026-06-06.",
+      "liveUrl": "https://www.nikon.com/company/news/2019/1002_gooddesign_02.html",
+      "archiveUrl": "http://web.archive.org/web/20241213094051/https://www.nikon.com/company/news/2019/1002_gooddesign_02.html",
+      "archiveDate": "2024-12-13",
+      "appliesTo": "Z mount 55 mm inner diameter and 16 mm flange focal distance",
+      "confidence": "high"
+    },
+    {
       "ref": "nz-1",
       "sourceType": "secondary",
       "citation": "“Nikon Z-mount,” Wikipedia. Accessed 2026-06-04.",
@@ -51689,6 +51767,7 @@ None — fully electronic.
 
 | Ref | Type | Citation | Archive | Captured | Confidence |
 |---|---|---|---|---|---|
+| `nz-official-1` | official | Nikon Corporation, “Nikon products receive the Good Design Award.” Accessed 2026-06-06. | [snapshot](http://web.archive.org/web/20241213094051/https://www.nikon.com/company/news/2019/1002_gooddesign_02.html) | 2024-12-13 | high |
 | `nz-1` | secondary | “Nikon Z-mount,” Wikipedia. Accessed 2026-06-04. | [snapshot](http://web.archive.org/web/20260422214312/https://en.wikipedia.org/wiki/Nikon_Z-mount) | 2026-04-22 | high |
 | `nz-2` | secondary | “Lens Mounts: Nikon Z,” JAPB (japb.net). Accessed 2026-06-04. | [snapshot](http://web.archive.org/web/20251115002307/https://japb.net/theory/lensmounts/nikon-z/) | 2025-11-15 | medium |
 | `nz-p1` | patent | US10831084B2, Nikon Z camera accessory/contact-terminal and body/lens-side mount structure. Accessed 2026-06-06. | [snapshot](https://patents.google.com/patent/US10831084B2/en) | 2026-06-06 | high |
@@ -63067,7 +63146,7 @@ None — fully electronic.
 
 | Field | Value | Unit |
 |---|---|---|
-| Flange focal distance | 18 (`secondary`) | mm |
+| Flange focal distance | 18 (`official`) | mm |
 | Nominal throat diameter | 46.1 (`secondary`) | mm |
 | Effective clear aperture | 47 (`patent`) | mm |
 | Camera mount outer diameter | 54 (`photo_scaled`) | mm |
@@ -63219,6 +63298,7 @@ None — fully electronic.
           ],
           "status": "researched",
           "sourceRefs": [
+            "se-official-1",
             "se-1",
             "se-p1"
           ]
@@ -63229,9 +63309,9 @@ None — fully electronic.
   "coreDimensions": {
     "flangeFocalDistanceMm": {
       "value": 18,
-      "status": "secondary",
+      "status": "official",
       "sourceRefs": [
-        "se-1"
+        "se-official-1"
       ]
     },
     "nominalThroatDiameterMm": {
@@ -64174,16 +64254,16 @@ None — fully electronic.
       "planeId": "sensor_film_plane",
       "zPositionMm": {
         "value": -18,
-        "status": "secondary",
+        "status": "official",
         "sourceRefs": [
-          "se-1"
+          "se-official-1"
         ]
       },
       "thicknessMm": {
         "value": 0,
-        "status": "secondary",
+        "status": "official",
         "sourceRefs": [
-          "se-1"
+          "se-official-1"
         ]
       },
       "diameterMm": {
@@ -65200,6 +65280,16 @@ None — fully electronic.
   },
   "sourceRefs": [
     {
+      "ref": "se-official-1",
+      "sourceType": "official",
+      "citation": "Sony, PXW-FX9V/PXW-FX9T operating instructions, specifications table. Accessed 2026-06-06.",
+      "liveUrl": "https://pro.sony/s3/2019/12/06134306/4735109151.pdf",
+      "archiveUrl": "http://web.archive.org/web/20241126221518/https://pro.sony/s3/2019/12/06134306/4735109151.pdf",
+      "archiveDate": "2024-11-26",
+      "appliesTo": "E mount 18 mm flange focal length",
+      "confidence": "high"
+    },
+    {
       "ref": "se-1",
       "sourceType": "secondary",
       "citation": "\"Sony E-mount,\" Wikipedia. Accessed 2026-06-04.",
@@ -65276,6 +65366,7 @@ None — fully electronic.
 
 | Ref | Type | Citation | Archive | Captured | Confidence |
 |---|---|---|---|---|---|
+| `se-official-1` | official | Sony, PXW-FX9V/PXW-FX9T operating instructions, specifications table. Accessed 2026-06-06. | [snapshot](http://web.archive.org/web/20241126221518/https://pro.sony/s3/2019/12/06134306/4735109151.pdf) | 2024-11-26 | high |
 | `se-1` | secondary | "Sony E-mount," Wikipedia. Accessed 2026-06-04. | [snapshot](http://web.archive.org/web/20230522152822/https://en.wikipedia.org/wiki/Sony_E-mount) | 2023-05-22 | medium |
 | `se-p1` | patent | US9392150B2, "Camera and optical apparatus." Accessed 2026-06-06. | [snapshot](https://patents.google.com/patent/US9392150B2/en) | 2026-06-06 | high |
 
