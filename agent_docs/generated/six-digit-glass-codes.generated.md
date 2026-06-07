@@ -9,10 +9,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **305** lenses scanned
-- **247** total code-only elements found
-- **247** elements in this report
-- **89** distinct lens files affected
+- **308** lenses scanned
+- **248** total code-only elements found
+- **248** elements in this report
+- **90** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -105,6 +105,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 625533 | 1 | 1 |
 | 626357 | 1 | 1 |
 | 630346 | 1 | 1 |
+| 635232 | 1 | 1 |
 | 639554 | 1 | 1 |
 | 642581 | 1 | 1 |
 | 658397 | 1 | 1 |
@@ -685,6 +686,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
 |---|---|---|---|---|---|
 | L5 (Element 5) | 9 | `683447 — barium/lanthanum flint family (patent nd=1.68250, νd=44.65; no exact public catalog match)` | 1.68250 / 44.65 | No catalog entry | abbe |
+
+### [Olympus Zuiko Digital ED 14–35mm f/2.0 SWD](../../src/lens-data/olympus/OlympusMZuiko1435mmf2ED.data.ts) - US 8,081,392 B2
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |
+|---|---|---|---|---|---|
+| L18 (Element 18) | 35 | `Unmatched proprietary short flint (635/232, condition-b APD glass)` | 1.63494 / 23.22 | No catalog entry | abbe |
 
 ### [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) - US 2015/0268449 A1
 
