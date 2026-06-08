@@ -3,7 +3,7 @@
  *
  * Entries are manually curated in src/utils/content/changelogData.ts.
  * Grouped by date (newest first) with color-coded type badges.
- * Non-interactive: changelog items do not correspond to routable pages.
+ * Lens names may link to their catalog pages when entries include link data.
  */
 
 import type { Theme } from "../../types/theme.js";

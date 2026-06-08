@@ -1,3 +1,5 @@
+import type { ReactNode } from "react";
+import { Link } from "react-router";
 import type { Theme } from "../../types/theme.js";
 import { CHANGELOG } from "../../utils/content/changelogData.js";
 import {
@@ -12,6 +14,43 @@ interface ChangelogListProps {
   theme: Theme;
   entries?: readonly ChangelogEntry[];
   maxHeight?: string;
+}
+
+function renderSummary(entry: ChangelogEntry, theme: Theme): ReactNode {
+  if (!entry.links || entry.links.length === 0) return entry.summary;
+
+  const pieces: ReactNode[] = [];
+  let cursor = 0;
+
+  entry.links.forEach((link, linkIndex) => {
+    const nextIndex = entry.summary.indexOf(link.text, cursor);
+    if (nextIndex < 0) return;
+
+    if (nextIndex > cursor) {
+      pieces.push(entry.summary.slice(cursor, nextIndex));
+    }
+
+    pieces.push(
+      <Link
+        key={`${link.lensKey}-${linkIndex}`}
+        to={`/lens/${link.lensKey}`}
+        style={{
+          color: theme.descLinkColor,
+          textDecoration: "none",
+          borderBottom: `1px solid ${theme.descLinkColor}55`,
+        }}
+      >
+        {link.text}
+      </Link>,
+    );
+    cursor = nextIndex + link.text.length;
+  });
+
+  if (cursor < entry.summary.length) {
+    pieces.push(entry.summary.slice(cursor));
+  }
+
+  return pieces.length > 0 ? pieces : entry.summary;
 }
 
 export default function ChangelogList({ theme: t, entries = CHANGELOG, maxHeight = "28rem" }: ChangelogListProps) {
@@ -64,7 +103,7 @@ export default function ChangelogList({ theme: t, entries = CHANGELOG, maxHeight
               >
                 {CHANGELOG_TYPE_LABELS[entry.type]}
               </span>
-              <span style={{ fontSize: "0.8rem", color: t.body, lineHeight: 1.4 }}>{entry.summary}</span>
+              <span style={{ fontSize: "0.8rem", color: t.body, lineHeight: 1.4 }}>{renderSummary(entry, t)}</span>
             </div>
           ))}
         </div>

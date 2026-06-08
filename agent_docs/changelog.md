@@ -51,6 +51,7 @@ Add an entry when merging a PR that does any of the following:
 - Avoid PR jargon: "implement", "refactor", "hook into", "wire up"
 - Keep to one sentence, under ~90 characters
 - Name the specific lens, tab, or feature affected when helpful
+- For lens additions, list the actual lenses rather than only the count or maker group
 
 **Good:** `"Added coma analysis with 2D point-cloud preview to aberrations drawer"`
 **Bad:** `"Implement coma computation module and integrate with aberration panel"`
@@ -69,6 +70,19 @@ the `CHANGELOG` array (before the first existing entry):
   summary: "Added chromatic aberration chart to analysis drawer",
 },
 ```
+
+Lens entries can include inline links to catalog pages:
+
+```ts
+{
+  date: "2026-04-10",
+  type: "lens",
+  summary: "Added Nikon Nikkor-N Auto 28mm f/2",
+  links: [lensLink("nikkor-n-28f2", "Nikon Nikkor-N Auto 28mm f/2")],
+},
+```
+
+The `text` passed to `lensLink()` must appear exactly in `summary`; only make the lens-name words clickable.
 
 The array must remain sorted **newest-first**. `UpdatesPage.tsx` handles
 grouping by date, so no other code needs updating.
