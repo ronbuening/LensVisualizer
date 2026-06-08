@@ -35,7 +35,7 @@ export interface GlassEntry {
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
- * GLASS CATALOG — 279 vendor-verified entries (current source count, June 2026)
+ * GLASS CATALOG — 285 vendor-verified entries (current source count, June 2026)
  *
  * Coefficients are taken from authoritative public vendor catalogs. Each
  * entry's `source` field cites the document or database used. To verify a
@@ -3389,5 +3389,78 @@ export const RAW_CATALOG: readonly GlassEntry[] = [
     vd: 16.48,
     code6: "986165",
     source: "Hoya Zemax catalog 2017-04-01 via refractiveindex.info; FDS16-W page (formula 3 polynomial).",
+  },
+
+  /* ────── Phase 21 chromatic-coverage additions (June 2026) ──────
+   * Source-backed entries from the generated named-token opportunity queue.
+   * Each row round-trips through assertCatalogConsistent at the existing 1e-4
+   * tolerance. Broad E-LAF7 and S-NPH7 aliases remain intentionally omitted
+   * because current annotations span incompatible nd/vd regions.
+   */
+  {
+    name: "S-LAL12",
+    vendor: "Ohara",
+    B: [0.992053895, 0.771377731, 1.18296264],
+    C: [0.0167095063, 0.00236750156, 105.90108],
+    nd: 1.6779,
+    vd: 55.34,
+    PgF: 0.5472,
+    code6: "678553",
+    source: "Ohara S-LAL12 datasheet, OHARA 25-04 official optical-glass PDF.",
+  },
+  {
+    name: "S-BSM10",
+    vendor: "Ohara",
+    B: [0.945443081, 0.643237376, 1.17752968],
+    C: [0.0157263798, 0.00161924066, 121.361748],
+    nd: 1.6228,
+    vd: 57.05,
+    PgF: 0.5464,
+    code6: "623570",
+    source: "Ohara S-BSM10 datasheet, OHARA 25-04 official optical-glass PDF.",
+  },
+  {
+    name: "S-LAM7",
+    vendor: "Ohara",
+    B: [1.71014712, 0.256943292, 1.63986271],
+    C: [0.010516108, 0.0502809636, 146.181217],
+    nd: 1.7495,
+    vd: 35.28,
+    PgF: 0.5869,
+    code6: "750353",
+    source: "Ohara S-LAM7 datasheet, OHARA 25-04 official optical-glass PDF.",
+  },
+  {
+    name: "L-LAM69",
+    vendor: "Ohara",
+    B: [1.7403896, 0.176996917, 1.76775413],
+    C: [0.010339887, 0.0484822765, 136.671996],
+    nd: 1.73077,
+    vd: 40.51,
+    PgF: 0.5728,
+    code6: "731405",
+    source: "Ohara L-LAM69 datasheet, OHARA 25-04 official optical-glass PDF.",
+  },
+  {
+    name: "N-SF8",
+    vendor: "Schott",
+    B: [1.55075812, 0.209816918, 1.46205491],
+    C: [0.011433834, 0.0582725652, 133.24165],
+    nd: 1.68894,
+    vd: 31.31,
+    PgF: 0.5999,
+    code6: "689313",
+    source: "SCHOTT N-SF8 optical-glass datasheet, official SCHOTT Advanced Optics PDF.",
+  },
+  {
+    name: "H-LAF4",
+    vendor: "CDGM",
+    B: [0.210645313, 1.75547352, 1.28979005],
+    C: [0.0542759294, 0.0112370777, 119.852069],
+    nd: 1.7495,
+    vd: 34.989266,
+    PgF: 0.588,
+    code6: "750350",
+    source: "CDGM Zemax catalog 2022-06 via refractiveindex.info; H-LAF4 page.",
   },
 ];

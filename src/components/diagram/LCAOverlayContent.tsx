@@ -106,6 +106,7 @@ export default function LCAOverlayContent({
                 originX={MARGIN}
                 originY={MARGIN}
                 fontScale={2.8}
+                dispersionQuality={dispersionQuality}
               />
             </svg>
             <div style={{ ...CHART_CAPTION_STYLE, color: t.muted }}>

@@ -162,11 +162,11 @@ Thin-lens f ≈ −40.7 mm. This single element constitutes the entire focus gro
 
 ### 3.5 L5 — Rear Compensator (f = −68.35 mm)
 
-**L17** — Negative Meniscus, 764491-code L-LAM69 PGM glass (nd = 1.765, vd = 49.1) — **Glass-Molded Aspheric #3**
+**L17** — Negative Meniscus, unmatched 764491 PGM lanthanum crown (nd = 1.765, vd = 49.1) — **Glass-Molded Aspheric #3**
 R₁ = −43.071, R₂ = −248.821. Center thickness 1.50 mm. Both surfaces aspherical (K = 0, even-order polynomial through A12).
 Thin-lens f ≈ −68.1 mm.
 
-This is the most aggressively aspherized element in the entire design. The aspherical departures reach **−1.56 mm on the front surface and −1.67 mm on the rear** at the estimated semi-diameters — over 1.5 mm of departure from the base sphere. These are among the largest aspherical departures seen in any Canon interchangeable lens patent, and they are only achievable through precision glass molding (the L-LAM69-class glass has a low glass-transition temperature specifically formulated for this process).
+This is the most aggressively aspherized element in the entire design. The aspherical departures reach **−1.56 mm on the front surface and −1.67 mm on the rear** at the estimated semi-diameters — over 1.5 mm of departure from the base sphere. These are among the largest aspherical departures seen in any Canon interchangeable lens patent, and they are only achievable through precision glass molding. The 764491 glass is kept as an unmatched PGM lanthanum-crown row because the public L-LAM69 catalog glass is a different 731405 material.
 
 The extreme aspherization on L17 serves a critical function: as the beam diameter expands rapidly between L4 and L6 (especially at the telephoto end, where d31 reaches 17.24 mm), L17 provides field curvature and distortion correction that would otherwise require multiple additional spherical elements. The negative meniscus form contributes a negative Petzval component that partially compensates for the strong positive Petzval from L6.
 
@@ -198,10 +198,10 @@ The design uses 12 distinct glass types across 18 elements. The patent publishes
 | 2001/255 | TAFD40 | 2.00069 | 25.5 | **L12** | Ultra-high-index flint |
 | 1785/257 | S-TIH11 | 1.78472 | 25.7 | L13 | High-dispersion flint |
 | 1497/815 | S-FPL51 | 1.49700 | 81.5 | **L14** | Fluorophosphate (UD) |
-| 1764/491 | 764491 code / L-LAM69 | 1.76450 | 49.1 | **L17** | Moldable lanthanum crown |
+| 1764/491 | Unmatched 764491 PGM lanthanum crown | 1.76450 | 49.1 | **L17** | Moldable lanthanum crown |
 | 1804/466 | S-LAH65V | 1.80400 | 46.6 | L7, L18 | Dense lanthanum crown |
 
-The three glass-molded aspherical elements use two moldable glass families: L-BAL42 (L5 and L15) and the 764491 / L-LAM69-class glass on L17. L8 and L17 remain Abbe-based until matching catalog entries are added; their six-digit codes are kept in the data file so they can auto-upgrade if a future catalog source supplies exact Sellmeier data.
+The three glass-molded aspherical elements use two moldable glass families: L-BAL42 (L5 and L15) and the unmatched 764491 lanthanum-crown glass on L17. L8 and L17 remain Abbe-based until matching catalog entries are added; their six-digit codes are kept in the data file so they can auto-upgrade if a future catalog source supplies exact Sellmeier data.
 
 ---
 

@@ -7,7 +7,9 @@
  */
 import type { ChromaticSpread, ChromaticChannel } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
+import type { DispersionQuality } from "../../optics/dispersion.js";
 import { computeChromaticBarOffsets, REFERENCE_TCA_MM } from "../../optics/lcaScaling.js";
+import { ChromaticQualityBadge, chromaticQualityBadgeLabel } from "./ChromaticQualityBadge.js";
 
 function referenceHeight(imgHeights: Partial<Record<ChromaticChannel, number>>, fallback: number): number {
   if (imgHeights.G !== undefined) return imgHeights.G;
@@ -38,6 +40,7 @@ interface TCAInsetWidgetProps {
   originX?: number;
   originY?: number;
   fontScale?: number;
+  dispersionQuality?: DispersionQuality;
 }
 
 export default function TCAInsetWidget({
@@ -49,6 +52,7 @@ export default function TCAInsetWidget({
   originX = 0,
   originY = 0,
   fontScale = 1,
+  dispersionQuality,
 }: TCAInsetWidgetProps) {
   const insetW = width ?? 110;
   const insetH = height ?? 100;
@@ -64,6 +68,7 @@ export default function TCAInsetWidget({
   const activeChans = (["R", "G", "B", "V"] as ChromaticChannel[]).filter(
     (ch) => chromSpread.imgHeights[ch] !== undefined,
   );
+  const qualityLabel = chromaticQualityBadgeLabel(dispersionQuality);
   const midX = originX + insetW / 2;
   const fs = (base: number) => base * fontScale;
 
@@ -100,9 +105,13 @@ export default function TCAInsetWidget({
       >
         TCA
       </text>
-      <text x={midX} y={ySubtitle} textAnchor="middle" fill={t.muted} fontSize={fs(6.5)} fontFamily="inherit">
-        IMAGE HEIGHT
-      </text>
+      {qualityLabel ? (
+        <ChromaticQualityBadge dispersionQuality={dispersionQuality} x={midX} y={ySubtitle} t={t} fontSize={fs(6.5)} />
+      ) : (
+        <text x={midX} y={ySubtitle} textAnchor="middle" fill={t.muted} fontSize={fs(6.5)} fontFamily="inherit">
+          IMAGE HEIGHT
+        </text>
+      )}
       <line x1={originX + 6} y1={yAxis} x2={originX + insetW - 6} y2={yAxis} stroke={t.axis} strokeWidth={0.5} />
       {activeChans.map((ch) => {
         const offset = barOffsets[ch] ?? 0;

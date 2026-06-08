@@ -73,7 +73,7 @@ The r5 cemented interface is also diverging, but it is not the only negative con
 
 ### L5 — Rear positive dense-flint meniscus
 
-$n_e = 1.69416$, $\nu_e = 30.9$; catalog equivalent: Schott N-SF8 / SF8 class, approximately $n_d = 1.68894$, $\nu_d = 31.31$. Standalone f = +186.4 mm after scaling.
+$n_e = 1.69416$, $\nu_e = 30.9$; Schott N-SF8 / SF8 class by e-line comparison, but retained as explicit unmatched data because the stored prescription uses e-line values rather than d-line `nd`. Standalone f = +186.4 mm after scaling.
 
 L5 is a rear positive meniscus separated from G2 by the long a2 air space. It brings the diverged beam back toward focus and participates in the final chromatic balance. The glass is a dense flint rather than a crown, so this element cannot be read as a simple field flattener or neutral relay; it is an active component of the telephoto power and color correction.
 
@@ -87,7 +87,7 @@ The patent publishes only e-line refractive indices and e-line Abbe numbers. It 
 | L2 | 1.58403 / 41.4 | No exact public match; LF5-adjacent | Light flint class, 584/414 e-line | Moderate | Weak negative in front doublet |
 | L3 | 1.51871 / 64.0 | N-BK7: 1.51680 / 64.17 | BK7 borosilicate crown | High | Strong positive in G2 |
 | L4 | 1.60718 / 37.8 | F5: 1.60342 / 38.03 | F5 ordinary flint | High | Main negative element |
-| L5 | 1.69416 / 30.9 | N-SF8: 1.68894 / 31.31 | SF8 dense flint class | High | Rear positive meniscus |
+| L5 | 1.69416 / 30.9 | N-SF8 e-line class | Explicit unmatched SF8 dense flint class | High | Rear positive meniscus |
 
 The palette is conventional and economical: barium crown, borosilicate crown, light flint, ordinary flint, and dense flint. There is no evidence in the prescription for lanthanum crown or anomalous partial dispersion glass. That is consistent with the patent's stated objective of avoiding expensive very-high-index materials.
 

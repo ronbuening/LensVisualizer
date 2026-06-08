@@ -225,7 +225,7 @@ const LENS_DATA = {
       nd: 1.7645,
       vd: 49.1,
       fl: 30.9,
-      glass: "764491 - L-LAM69 / moldable lanthanum-crown class (patent nd=1.76450, vd=49.10; no public Sellmeier match)",
+      glass: "Unmatched 764491 - moldable lanthanum-crown class (patent nd=1.76450, vd=49.10; not catalog L-LAM69)",
       role: "Rear positive molded asphere and strongest individual positive element in the design.",
     },
   ],

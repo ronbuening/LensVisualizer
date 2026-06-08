@@ -18,7 +18,7 @@ Catalog version: bb70259
 | L11 / 19 | `glass` | `S-TIM27 (OHARA)` | `S-NBH51 (OHARA)` | Patent row [0097] lists nd=1.74951, vd=35.3; S-NBH51 round-trips within patent precision, while S-TIM27 is nd=1.63980. |
 | L12 / 20 | `glass` | `S-LAH79 (OHARA)` | `TAFD40 (HOYA)` | Patent row [0097] lists nd=2.00069, vd=25.5; TAFD40 round-trips code 001255, while S-LAH79 is nd=2.00330, vd=28.27. |
 | L13 / 22 | `glass` | `S-TIH53 (OHARA)` | `S-TIH11 (OHARA)` | Patent row [0097] lists nd=1.78472, vd=25.7; S-TIH11 round-trips code 785257, while S-TIH53 is nd=1.84666. |
-| L17 / 29A | `glass` | `L-LAM69 (OHARA)` | `764491 — L-LAM69 PGM lanthanum crown (nd=1.76450, νd=49.1)` | Patent row [0097] lists nd=1.76450, vd=49.1. No current catalog entry round-trips this pair, so the six-digit code is retained. |
+| L17 / 29A | `glass` | `L-LAM69 (OHARA)` | `Unmatched 764491 — PGM lanthanum crown (nd=1.76450, νd=49.1; not catalog L-LAM69)` | Patent row [0097] lists nd=1.76450, vd=49.1. Public L-LAM69 is a different 731405 glass, so the explicit unmatched six-digit code is retained. |
 
 ### Phase 2 — Retained-information audit
 

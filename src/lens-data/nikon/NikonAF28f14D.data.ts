@@ -137,7 +137,7 @@ const LENS_DATA = {
       nd: 1.7481,
       vd: 52.3,
       fl: +120.7,
-      glass: "LaM type (near OHARA S-LAM7, nd=1.74950, νd=52.33)",
+      glass: "Unmatched LaM crown (patent nd=1.74810, νd=52.3; S-LAM7 is index-near only)",
       apd: false,
       role: "Front element of cemented achromatic doublet L6. Weakly positive meniscus (concave to object); lanthanum crown paired with dense flint L6b for chromatic correction behind stop.",
       cemented: "L6",

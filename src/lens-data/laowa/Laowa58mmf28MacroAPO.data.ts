@@ -175,7 +175,7 @@ const LENS_DATA = {
       nd: 1.79391,
       vd: 47.17,
       fl: -41.9,
-      glass: "H-LAF4 (CDGM)",
+      glass: "Unmatched lanthanum flint (patent nd=1.79391, νd=47.17; not catalog H-LAF4)",
       apd: false,
       role: "First element of G3; diverges the post-stop beam, provides negative Petzval correction",
     },

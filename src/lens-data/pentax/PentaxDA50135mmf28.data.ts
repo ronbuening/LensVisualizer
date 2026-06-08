@@ -250,7 +250,7 @@ const LENS_DATA = {
       nd: 1.65844,
       vd: 50.9,
       fl: -30.1,
-      glass: "S-LAL12 (OHARA)",
+      glass: "N-SSK5 (Schott-equivalent, nd=1.65844, νd=50.9)",
       apd: false,
       cemented: "D4",
       role: "Petzval-sum corrector; net doublet with L14 is weakly negative",

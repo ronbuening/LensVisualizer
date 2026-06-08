@@ -66,7 +66,7 @@ Together L3 and L4 form the patent’s thick cemented negative meniscus member. 
 
 ### L5 — Rear Positive Meniscus, convex to object
 
-$n_e = 1.69416$, $\nu_e = 30.9$. Glass: N-SF8 / SF8-class dense flint. $f = +154.8$ mm.
+$n_e = 1.69416$, $\nu_e = 30.9$. Glass: explicit unmatched N-SF8 / SF8-class dense flint because the stored prescription uses e-line values rather than d-line `nd`. $f = +154.8$ mm.
 
 L5 is the back lens behind the aperture stop. Both radii are positive ($r_8=+0.51413$, $r_9=+1.41901$), so it is a positive meniscus convex toward the object. It adds rear positive power after the negative cemented member and helps set the large back focal distance.
 
@@ -81,7 +81,7 @@ The patent gives e-line values. The data file preserves those values in the `nd`
 | L1, L2 | 1.62303 / 60.1 | Schott N-SK16: $n_e=1.62286$, $\nu_e=60.08$ | Very close optical match; period Leitz literature indicates proprietary Leitz special glass. |
 | L3 | 1.55897 / 58.3 | Between BaK/SK crown families | No clean current-catalog match; recorded as unmatched vintage crown. |
 | L4 | 1.67764 / 32.0 | Schott SF5 / N-SF5 class: $n_e\approx1.67764$, $\nu_e\approx32.0$ | Confident dense-flint match. |
-| L5 | 1.69416 / 30.9 | Schott N-SF8 class: $n_e=1.69413$, $\nu_e=31.06$ | Confident dense-flint class match. |
+| L5 | 1.69416 / 30.9 | Schott N-SF8 e-line class: $n_e=1.69413$, $\nu_e=31.06$ | Confident class match; explicit unmatched for d-line catalog resolution. |
 
 The chromatic correction is conventional. There is no ED, fluorite, anomalous-partial-dispersion, or apochromatic glass claim in the patent. The L3–L4 crown/flint pairing supplies a large Abbe contrast, while L5 gives the designer a rear dense-flint balancing element. The flat cemented interface prevents the cemented member from behaving like a compact, self-contained achromat; the color correction is instead spread through the powers of all five elements.
 

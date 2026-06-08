@@ -14,7 +14,7 @@
  *
  * Regenerate: `npm test -- sixDigitGlassCodeScan`
  */
-import { mkdirSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import buildLens from "../../../src/optics/buildLens.js";
 import { evaluateSellmeier, LINE_NM, resolveGlass } from "../../../src/optics/glassCatalog.js";
@@ -24,10 +24,18 @@ import type { LensData } from "../../../src/types/optics.js";
 
 const modules = import.meta.glob<{ default: LensData }>("../../../src/lens-data/**/*.data.ts", { eager: true });
 const REPORT_DIR = "agent_docs/generated";
+const PATENTS_DIR = "patents";
+const REVIEWED_SIDECAR = "agent_docs/generated/six-digit-glass-codes-missing-sellmeier-reviewed.md";
+const MAX_RELEVANT_PATENTS = 4;
 
 interface SurfaceRef {
   label: string;
   quality: DispersionQuality;
+}
+
+interface PatentMatch {
+  path: string | null;
+  status: string;
 }
 
 interface CodeOnlyElement {
@@ -47,6 +55,8 @@ interface CodeOnlyElement {
   catalogNd: number | null;
   ndDiff: number | null;
   hasSellmeier: boolean;
+  localPatent: PatentMatch;
+  reviewedStatus: string;
 }
 
 function toRepoRelativeLensPath(modulePath: string): string {
@@ -55,10 +65,95 @@ function toRepoRelativeLensPath(modulePath: string): string {
 }
 
 function extractPatentNumber(subtitle: string | undefined): string | null {
-  const match = subtitle?.match(
-    /\b(?:Patent\s+)?((?:JPWO|WO|US|JP|DE|GB|FR|CH)\s*\d[\d,./-]*(?:\s*(?:A1|A|B2|B1|B|C\d?))?)/i,
-  );
+  const match = subtitle?.match(patentReferencePattern);
   return match?.[1].replace(/\s+/g, " ").trim() ?? null;
+}
+
+const patentReferencePattern =
+  /\b(?:Patent\s+)?((?:JPWO|WO|US|JP|DE|GB|FR|CH|CN)\s*\d[\d,./-]*(?:\s*(?:A1|A|B2|B1|B|C\d?|U))?)/i;
+
+function extractPatentReference(value: string): string | null {
+  const match = value.match(patentReferencePattern);
+  return match?.[1].replace(/\s+/g, " ").trim() ?? null;
+}
+
+function normalizePatentToken(value: string): string {
+  return value.toUpperCase().replace(/[^A-Z0-9]/g, "");
+}
+
+function stripPatentKind(value: string): string {
+  return value.replace(/(?:A1|A|B2|B1|B|C\d?|U)$/i, "");
+}
+
+function patentSearchTokens(patentNumber: string | null): string[] {
+  if (!patentNumber) return [];
+  const patentReference = extractPatentReference(patentNumber);
+  if (!patentReference) return [];
+  const normalized = normalizePatentToken(patentReference);
+  const stripped = stripPatentKind(normalized);
+  const noCountry = stripped.replace(/^(?:JPWO|WO|US|JP|DE|GB|FR|CH|CN)/, "");
+  const tokens = [normalized, stripped, noCountry];
+
+  for (const token of [normalized, stripped]) {
+    const publicationMatch = token.match(/^(JP|CN)(\d{4})(\d{1,5})((?:A1|A|B2|B1|B|C\d?|U)?)$/);
+    if (!publicationMatch) continue;
+    const [, country, year, serial, kind] = publicationMatch;
+    const padded = `${country}${year}${serial.padStart(6, "0")}${kind}`;
+    tokens.push(padded, stripPatentKind(padded), stripPatentKind(padded).replace(/^(?:JP|CN)/, ""));
+  }
+
+  return [...new Set(tokens)];
+}
+
+function patentInventory(): string[] {
+  if (!existsSync(PATENTS_DIR)) return [];
+  return readdirSync(PATENTS_DIR)
+    .filter((name) => name.toLowerCase().endsWith(".pdf"))
+    .sort((a, b) => a.localeCompare(b));
+}
+
+function findLocalPatent(patentNumber: string | null, files: readonly string[]): PatentMatch {
+  const tokens = patentSearchTokens(patentNumber);
+  if (tokens.length === 0) {
+    return { path: null, status: "No patent number parsed from lens metadata" };
+  }
+
+  const scored = files
+    .map((file) => {
+      const normalizedFile = normalizePatentToken(file.replace(/\.pdf$/i, ""));
+      let score = 0;
+      for (const token of tokens) {
+        if (normalizedFile === token) score = Math.max(score, 100);
+        else if (normalizedFile.includes(token)) score = Math.max(score, 75);
+        else if (token.includes(normalizedFile)) score = Math.max(score, 60);
+      }
+      return { file, score };
+    })
+    .filter((match) => match.score > 0)
+    .sort((a, b) => b.score - a.score || a.file.localeCompare(b.file));
+
+  if (scored.length === 0) {
+    return {
+      path: null,
+      status: `Missing from untracked local ${PATENTS_DIR}/ references (${tokens.join(", ")})`,
+    };
+  }
+
+  const best = scored[0];
+  if (scored.length > 1 && scored[1].score === best.score) {
+    return {
+      path: `${PATENTS_DIR}/${best.file}`,
+      status: `Ambiguous untracked local match; also see ${scored
+        .slice(1, MAX_RELEVANT_PATENTS)
+        .map((match) => `${PATENTS_DIR}/${match.file}`)
+        .join(", ")}`,
+    };
+  }
+
+  return {
+    path: `${PATENTS_DIR}/${best.file}`,
+    status: "Matched untracked local patent PDF",
+  };
 }
 
 function extractSixDigitCodes(glassString: string): string[] {
@@ -135,6 +230,29 @@ function codeFrequency(rows: readonly CodeOnlyElement[]): [string, number, numbe
     });
 }
 
+function reviewedSidecarStatus(filePath: string, codes: readonly string[], sidecarText: string): string {
+  if (!sidecarText) return "No reviewed sidecar found";
+  const basename = filePath.split("/").at(-1) ?? filePath;
+  const hits = sidecarText
+    .split("\n")
+    .filter((line) => line.includes(basename) && codes.some((code) => line.includes(code)));
+  return hits.length > 0 ? "Reviewed sidecar hit" : "No reviewed-sidecar hit";
+}
+
+function summarizePatentStatus(rows: readonly CodeOnlyElement[]): string {
+  const paths = [...new Set(rows.map((row) => row.localPatent.path).filter((path): path is string => path !== null))];
+  if (paths.length > 0) return paths.slice(0, MAX_RELEVANT_PATENTS).join("<br>");
+  const statuses = [...new Set(rows.map((row) => row.localPatent.status))];
+  return statuses.slice(0, MAX_RELEVANT_PATENTS).join("<br>");
+}
+
+function summarizeReviewedStatus(rows: readonly CodeOnlyElement[]): string {
+  const reviewed = rows.filter((row) => row.reviewedStatus === "Reviewed sidecar hit").length;
+  if (reviewed === rows.length) return "All representative rows reviewed";
+  if (reviewed > 0) return `${reviewed}/${rows.length} representative rows reviewed`;
+  return "No reviewed-sidecar hit";
+}
+
 function renderReport(options: {
   title: string;
   description: string[];
@@ -172,10 +290,13 @@ function renderReport(options: {
   const frequency = codeFrequency(sortedRows);
   lines.push("## Codes by Frequency");
   lines.push("");
-  lines.push("| Code | Elements | Lens files |");
-  lines.push("|---|---:|---:|");
+  lines.push("| Code | Elements | Lens files | localPatentStatus | reviewedSidecarStatus |");
+  lines.push("|---|---:|---:|---|---|");
   for (const [code, elementCount, lensCount] of frequency) {
-    lines.push(`| ${code} | ${elementCount} | ${lensCount} |`);
+    const rowsForCode = sortedRows.filter((row) => row.codes.includes(code));
+    lines.push(
+      `| ${code} | ${elementCount} | ${lensCount} | ${summarizePatentStatus(rowsForCode)} | ${summarizeReviewedStatus(rowsForCode)} |`,
+    );
   }
   lines.push("");
 
@@ -196,15 +317,15 @@ function renderReport(options: {
     lines.push(`### [${first.lensName}](../../${first.filePath})${patentSuffix}`);
     lines.push("");
     lines.push(
-      "| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality |",
+      "| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |",
     );
-    lines.push("|---|---|---|---|---|---|");
+    lines.push("|---|---|---|---|---|---|---|---|");
     for (const row of lensRows) {
       const vd = row.storedVd === undefined ? "?" : row.storedVd.toFixed(2);
       const surfaces = row.surfaceRefs.map((surface) => surface.label).join(", ") || "element";
       const elementName = row.elementLabel ? `${row.elementName} (${row.elementLabel})` : row.elementName;
       lines.push(
-        `| ${elementName} | ${surfaces} | \`${row.glassString}\` | ${row.storedNd.toFixed(5)} / ${vd} | ${catalogStatus(row)} | ${qualitySummary(row)} |`,
+        `| ${elementName} | ${surfaces} | \`${row.glassString}\` | ${row.storedNd.toFixed(5)} / ${vd} | ${catalogStatus(row)} | ${qualitySummary(row)} | ${row.localPatent.path ?? row.localPatent.status} | ${row.reviewedStatus} |`,
       );
     }
     lines.push("");
@@ -216,6 +337,8 @@ function renderReport(options: {
 describe("six-digit glass-code scan", () => {
   it("emits reports for code-only glass annotations", () => {
     const rows: CodeOnlyElement[] = [];
+    const patentFiles = patentInventory();
+    const reviewedSidecarText = existsSync(REVIEWED_SIDECAR) ? readFileSync(REVIEWED_SIDECAR, "utf8") : "";
     let totalLenses = 0;
 
     for (const [path, mod] of Object.entries(modules)) {
@@ -223,6 +346,7 @@ describe("six-digit glass-code scan", () => {
       if (!raw?.key) continue;
       const data: LensData = { ...LENS_DEFAULTS, ...raw } as LensData;
       const patentNumber = extractPatentNumber(data.subtitle);
+      const localPatent = findLocalPatent(patentNumber, patentFiles);
       totalLenses++;
 
       let L;
@@ -249,6 +373,12 @@ describe("six-digit glass-code scan", () => {
 
         const catalogEntry = resolveGlass(element.glass);
         const catalogNd = catalogEntry ? evaluateSellmeier(catalogEntry, LINE_NM.d) : null;
+        const hasSellmeier =
+          catalogNd !== null &&
+          L.S.some(
+            (surface) =>
+              surface.nd !== 1.0 && surface.elemId === element.id && Math.abs(catalogNd - surface.nd) <= 5e-3,
+          );
         rows.push({
           lensKey: data.key,
           lensName: data.name ?? data.key,
@@ -265,7 +395,9 @@ describe("six-digit glass-code scan", () => {
           catalogName: catalogEntry?.name ?? null,
           catalogNd,
           ndDiff: catalogNd === null ? null : catalogNd - element.nd,
-          hasSellmeier: surfaceRefs.some((surface) => surface.quality === "sellmeier"),
+          hasSellmeier,
+          localPatent,
+          reviewedStatus: reviewedSidecarStatus(filePath, extractSixDigitCodes(element.glass), reviewedSidecarText),
         });
       }
     }
@@ -295,7 +427,7 @@ describe("six-digit glass-code scan", () => {
         title: "Six-Digit Glass Code Elements Missing Sellmeier Data",
         description: [
           "Subset of [six-digit-glass-codes.generated.md](six-digit-glass-codes.generated.md) where no associated",
-          "element surface uses trusted catalog Sellmeier data in the runtime dispersion cascade.",
+          "element surface resolves to trusted catalog Sellmeier data through the nd safety net.",
           "These are the highest-priority code-only rows for catalog additions, aliases, or explicit `Unmatched` notes.",
         ],
         regenerateCommand: "npm test -- sixDigitGlassCodeScan",

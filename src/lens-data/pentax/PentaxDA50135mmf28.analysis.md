@@ -170,7 +170,7 @@ $n_d = 1.49700$, $\nu_d = 81.6$. Glass: S-FPL51 (OHARA) / FCD1 (HOYA) — **Extr
 L14 is the third and final ED element and also the single most powerful positive element in the design ($f = +37.6$ mm). Its biconvex shape ($R_{24} = 22.1$ mm, $R_{25} = -105.6$ mm) concentrates strong convergent power just before the fixed field stop FS. Cemented with L15, it forms the most critical achromatic pair in the relay section, where the angular spread of the beam is largest and chromatic correction has the greatest leverage.
 
 **L15 — Negative Biconcave (cemented with L14)**
-$n_d = 1.65844$, $\nu_d = 50.9$. Glass: S-LAL12 (OHARA) / LAC12 (HOYA) class. $f = -30.1$ mm.
+$n_d = 1.65844$, $\nu_d = 50.9$. Glass: N-SSK5 / equivalent dense crown class. $f = -30.1$ mm.
 
 L15 achromatizes against L14 in the cemented doublet. Despite L14's strong positive power ($+37.6$ mm), the combined L14+L15 doublet is weakly negative ($f \approx -519$ mm) — meaning L15 over-corrects L14's convergence. This is intentional: the negative net power of the doublet contributes to Petzval sum correction (flattening the field), while the individual elements still provide the necessary chromatic correction via their large $\Delta\nu_d$. The actual convergent power for Group 4's 40F sub-group comes from the combination of the L13 singlet ahead of the doublet ($f_{40F} = +108.6$ mm overall).
 
@@ -212,7 +212,7 @@ The design uses 11 distinct glass types across 18 elements:
 | S-TIH6 (OHARA) | 1.80518 | 25.4 | Dense flint | L4, L12 | 2 |
 | S-TIH53W (OHARA) | 1.84666 | 23.8 | Very dense flint | L8 | 1 |
 | S-LAL18 (OHARA) | 1.72916 | 54.7 | Lanthanum crown | L9 | 1 |
-| S-LAL12 (OHARA) | 1.65844 | 50.9 | Lanthanum crown | L15 | 1 |
+| N-SSK5 / equivalent | 1.65844 | 50.9 | Dense crown | L15 | 1 |
 | S-BAM4 (OHARA) | 1.60562 | 43.7 | Barium crown | L16 | 1 |
 
 Glass identifications are based on six-digit $n_d$/$\nu_d$ code matching against the OHARA, HOYA, and Schott catalogs. OHARA is the preferred vendor for a Pentax design of this era; HOYA equivalents exist for most entries (FCD1 for S-FPL51, FC5 for S-FSL5, etc.) but the patent does not specify a vendor. All glass assignments carry a confidence level of "probable" rather than "confirmed."
@@ -340,5 +340,5 @@ The lens remained in Pentax's product lineup from 2007 until its discontinuation
 1. US Patent 7,289,274 B1, "Telescopic Zoom Lens System," Masakazu Saori, PENTAX Corporation, granted October 30, 2007.
 2. Ricoh Imaging official product page: smc PENTAX-DA★ 50-135mmF2.8 ED [IF] SDM.
 3. Ricoh Imaging Star Lens Lineup page (confirms 18 elements / 14 groups, three ED glass elements, no AL designation).
-4. OHARA optical glass catalog (S-FPL51, S-FSL5, S-LAM2, S-LAH66, S-LAH65V, S-TIH6, S-TIH53W, S-LAL18, S-LAL12, S-BAM4, S-LAM66).
+4. OHARA and Schott optical glass catalogs (S-FPL51, S-FSL5, S-LAM2, S-LAH66, S-LAH65V, S-TIH6, S-TIH53W, S-LAL18, N-SSK5, S-BAM4, S-LAM66).
 5. HOYA optical glass catalog (FCD1, FC5, TAFD30, NBFD10, LAC14, LAC12, BAC4, NBFD15).

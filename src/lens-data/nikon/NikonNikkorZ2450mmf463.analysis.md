@@ -159,7 +159,7 @@ The eleven elements use just six distinct glass types (plus optical cement), ref
 
 | Element | nd | νd | Glass Code | Catalog Match | Type |
 |---|---|---|---|---|---|
-| L1a | 1.69680 | 55.46 | 697.555 | OHARA S-BSM10 | Barium crown |
+| L1a | 1.69680 | 55.46 | 697.555 | Unmatched barium crown; prior S-BSM10 label incompatible | Barium crown |
 | L1b | 1.53048 | 55.72 | 530.557 | COP resin (ZEONEX-type) | Plastic (cyclo-olefin polymer) |
 | L1c | 1.92286 | 20.88 | 923.209 | OHARA S-NPH2 | Ultra-high-dispersion flint |
 | L2a | 1.49700 | 81.61 | 497.816 | HOYA FCD1 / S-FPL51 | ED (fluorophosphate) |
@@ -177,7 +177,7 @@ All ten glass identifications match catalog values to five decimal places in nd 
 
 **ED Glass (L2a, L2b).** Both ED elements use the same glass — HOYA FCD1 (or its OHARA equivalent S-FPL51). With νd = 81.61, this is a standard fluorophosphate ED glass that Nikon has used extensively across their Z-mount lineup. Placing both ED elements in the G2 front sub-group, where the marginal ray height is near maximum, provides the strongest possible leverage for axial chromatic correction.
 
-**Ultra-High-Dispersion Flint (L1c).** L1c uses S-NPH2 (νd = 20.88), one of the most dispersive conventional glasses available. Paired against L1a's S-BSM10 (νd = 55.46), it forms a widely separated "air-spaced achromat" that corrects lateral chromatic aberration across the wide field angle. The Abbe number difference |νp − νn| = 34.57 satisfies the patent's condition (3) range of 34–40.
+**Ultra-High-Dispersion Flint (L1c).** L1c uses S-NPH2 (νd = 20.88), one of the most dispersive conventional glasses available. Paired against L1a's unmatched barium crown (νd = 55.46), it forms a widely separated "air-spaced achromat" that corrects lateral chromatic aberration across the wide field angle. The Abbe number difference |νp − νn| = 34.57 satisfies the patent's condition (3) range of 34–40.
 
 **Plastic Aspherics (L1b, L3b).** The choice of cyclo-olefin polymer (nd = 1.53048) for two aspherical elements is a deliberate cost and weight reduction strategy. COP resins such as Zeon's ZEONEX E48R (nd ≈ 1.53, νd ≈ 56) offer good optical clarity, low birefringence, and stable refractive index, at a fraction of the cost of molded glass aspherics. The tradeoff is greater thermal sensitivity (dn/dT ≈ −1.1 × 10⁻⁴/°C vs. ~10⁻⁶ for glass), which can shift focus in extreme temperatures. However, since both plastic elements carry weak net power (L1b ≈ −134 mm, L3b ≈ −915 mm), the thermal focus shift is minimal.
 

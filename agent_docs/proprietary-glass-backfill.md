@@ -1,9 +1,9 @@
 # Proprietary Glass Patent Backfill
 
 A focused follow-up to the chromatic dispersion overhaul. Current architecture is summarized in
-[architecture/optics-engine.md](architecture/optics-engine.md). The chromatic engine now has a four-tier preference
-cascade — Sellmeier → measured `nC`/`nF`/`ng` line indices → Abbe + dPgF → plain Abbe — and a 279-entry vendor catalog
-covers most catalog-resolvable glass declarations. What remains is a per-lens queue of proprietary, unidentified, or
+[architecture/optics-engine.md](architecture/optics-engine.md). The chromatic engine now uses this preference cascade:
+air → complete measured `nC`/`nF`/`ng` line indices → catalog Sellmeier → partial measured `nC`/`nF` line indices →
+Abbe + dPgF → plain Abbe, backed by a 285-entry vendor catalog. What remains is a per-lens queue of proprietary, unidentified, or
 inconsistently annotated glasses that no public catalog can safely resolve by name alone.
 
 ## Companion report: catalog mismatches
@@ -50,8 +50,7 @@ If the patent only lists `nd`/`vd` and `dPgF` without explicit `ng`, populate `d
 
 | Lens file | Patent reference | Elements needing backfill | Notes |
 |---|---|---|---|
-| [nikon/NikonZ28f28.data.ts](../src/lens-data/nikon/NikonZ28f28.data.ts) | WO2022/071249 A1 | 1 UV-curing resin (proprietary) | Local `patents/WO2022071249A1.pdf` is present but extracted as image-only/empty under `pdftotext`; OCR or a text JP/US family member is needed. Resin may not have line indices in the patent. |
-| [nikon/NikonNikkorZ50f18S.data.ts](../src/lens-data/nikon/NikonNikkorZ50f18S.data.ts) | WO2019/220618 A1 | 2 constant-quality resin/dummy surfaces | Local `patents/WO2019220618A1.pdf` is present but extracted as image-only/empty under `pdftotext`; current missing surfaces have no glass annotation to enrich. |
+| _None after the 2026-06-08 local rendered-page review._ | | | |
 
 Status column intentionally omitted — when you complete a backfill, delete the row from this table, regenerate the glass
 reports, and add a changelog entry if the user-visible chromatic result changed materially.
@@ -84,6 +83,8 @@ Rows removed from Tier A after local patent review:
 | [canon/CanonRF85mmf12L.data.ts](../src/lens-data/canon/CanonRF85mmf12L.data.ts) | US2020/0012073 A1 | `patents/US20200012073A1.pdf` (untracked local file) | Added structured patent `dPgF` values for L3 (`0.008`) and BR L9 (`0.092`); no `nC`, `nF`, or `ng` rows found. |
 | [fujifilm/FujifilmXF35mmf14R.data.ts](../src/lens-data/fujifilm/FujifilmXF35mmf14R.data.ts) | US2014/0285903 A1 | `patents/US20140285903A1.pdf` (untracked local file) | Rechecked 2026-06-04. Patent tables list `Nd`/`vd` only for the proprietary PGM row; no line-index or partial-dispersion rows found. |
 | [fujifilm/FujifilmXF50140mmf28R.data.ts](../src/lens-data/fujifilm/FujifilmXF50140mmf28R.data.ts) | US2017/0090163 A1 | `patents/US20170090163A1.pdf` (untracked local file) | Already cleared by Sweep 2 catalog work; current generated coverage is 23/23 Sellmeier surfaces, so no proprietary line-index backfill remains. |
+| [nikon/NikonZ28f28.data.ts](../src/lens-data/nikon/NikonZ28f28.data.ts) | WO2022/071249 A1 | `patents/WO2022071249A1.pdf` (untracked local file) | Rechecked 2026-06-08. Local PDF is image-only under `pdftotext`; rendered Example 2 pages show the UV-curing resin row as `nd=1.56093`, `νd=36.64` only, with no `nC`, `nF`, `ng`, `θgF`, or `dPgF` rows in the prescription, asphere, or variable-gap tables. No data change. |
+| [nikon/NikonNikkorZ50f18S.data.ts](../src/lens-data/nikon/NikonNikkorZ50f18S.data.ts) | WO2019/220618 A1 | `patents/WO2019220618A1.pdf` (untracked local file) | Rechecked 2026-06-08. Local PDF is image-only under `pdftotext`; rendered Example 9 Table 9 lists only `R`, `D`, `nd`, and `νd`. The resin row `6*` is `nd=1.56093`, `νd=36.6`; no `nC`, `nF`, `ng`, `θgF`, or `dPgF` rows were found, and the dummy/virtual surfaces have no glass material to enrich. No data change. |
 
 ## Workflow
 
