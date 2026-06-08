@@ -3,6 +3,9 @@
 Read this for route definitions, static pages, SSR/prerendering, SEO metadata, markdown articles, lens descriptions, and
 build metadata.
 
+> The `/mounts/:id` pages embed mount interface diagrams (`MountDiagramPanel`) and `/makers/:maker` pages embed a
+> mounts sidebar; both render from `src/mounts/` data. See [`mount-diagrams.md`](mount-diagrams.md).
+
 ## Pages And Routes
 
 | Module | Location | Purpose |

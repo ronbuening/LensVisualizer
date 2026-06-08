@@ -18,6 +18,7 @@ Created by **Ron Buening**. For project background and methodology, see [About T
 - Provides infinite-resolution zoom and pan for inspecting fine lens details, with mouse wheel, drag, pinch-to-zoom, and keyboard shortcuts
 - Supports shared-control side-by-side comparison between two lenses
 - Offers lens-library filters and groupings by maker, focal length, patent year, mount, and image format
+- Renders programmatic camera/lens mount interface diagrams (camera-side front and lens-side rear) on the mount pages, with a maker-page sidebar linking each maker's mounts
 - Ships crawlable lens, maker, comparison, and article pages with SSR prerendering
 
 ## How It Works
@@ -86,6 +87,7 @@ The catalog is auto-registered from `src/lens-data/**/*.data.ts`, so the README 
 - **Zoom and pan**: infinite-resolution SVG zoom via viewBox manipulation, with mouse wheel, pointer drag, touch pinch-to-zoom, and keyboard shortcuts (+/- zoom, arrows pan, Escape cancel)
 - **Responsive UI**: desktop side-by-side layouts, mobile view toggles, persistent preferences, and shareable deep links — URLs encode the selected element, glass map, LCA and Petzval overlays, lens-group movement overlay, analysis drawer + tab, and slider state including PC lens movement
 - **Catalog metadata**: lens data can declare canonical mount ids and image-format ids for library filtering and future field-aware analysis
+- **Mount interface diagrams**: programmatic camera-side and lens-side SVG diagrams of each camera mount (throat, bayonet lugs, lock pin, electrical contacts, mechanical couplings) on the `/mounts/:id` pages, with a feature-category legend, base/variant profiles, and a committed static reference set
 
 ## Tech Stack
 
@@ -120,6 +122,7 @@ npm run test          # Full Vitest suite
 npm run test:coverage # Coverage run
 npm run generate:glass-reports # Generated glass catalog reports
 npm run generate:mirror-reports # Hidden mirror fixture authoring report
+npm run generate:mount-svgs # Mount SVG specifications + per-view SVGs
 npm run typecheck     # TypeScript checks
 npm run lint          # ESLint
 npm run lint:fix      # ESLint autofix
@@ -153,9 +156,11 @@ src/
     hooks/      # Computation and UI orchestration hooks
     layout/     # LensViewer, LensDiagramPanel, drawer, viewport, page chrome
     markdown/   # Shared article/description Markdown renderer
+    mount/      # Mount interface diagram components (MountDiagram, panel)
   content/      # About pages and optics primers
   generated/    # Build-generated metadata and maker-prefix JSON
   lens-data/    # Lens prescriptions and accompanying analysis markdown
+  mounts/       # Mount diagram *.mount.ts specs, schema, and authoring guide
   optics/       # Pure ray tracing, lens construction, projection, and analysis math
   pages/        # Route-level page components
   routes/       # Shared React Router manifest
@@ -200,6 +205,7 @@ See [`src/lens-data/LENS_DATA_SPEC.md`](src/lens-data/LENS_DATA_SPEC.md) for the
 - [Viewer/diagram architecture](agent_docs/architecture/viewer-and-diagram.md)
 - [UI components architecture](agent_docs/architecture/ui-components.md)
 - [Optics engine architecture](agent_docs/architecture/optics-engine.md)
+- [Mount diagrams architecture](agent_docs/architecture/mount-diagrams.md)
 - [State/utilities architecture](agent_docs/architecture/state-and-utilities.md)
 - [Comparison architecture](agent_docs/architecture/comparison.md)
 - [Testing architecture](agent_docs/architecture/testing.md)
@@ -216,6 +222,7 @@ See [`src/lens-data/LENS_DATA_SPEC.md`](src/lens-data/LENS_DATA_SPEC.md) for the
 - [Gotchas](agent_docs/gotchas.md)
 - [Lens data format](src/lens-data/LENS_DATA_SPEC.md)
 - [Lens mount/format options](src/lens-data/LENS_MOUNT_FORMAT_OPTIONS.md)
+- [Mount SVG spec](src/mounts/MOUNT_SVG_SPEC.md)
 - [Lens analysis format](src/lens-data/LENS_ANALYSIS_SPEC.md)
 - [Optics primer](src/content/OpticsPrimerSimple.md)
 - [Aberrations primer](src/content/AberrationsPrimerSimple.md)

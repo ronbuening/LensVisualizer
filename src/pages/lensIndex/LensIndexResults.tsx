@@ -11,6 +11,14 @@ import { getMakerDetails } from "../../utils/catalog/makerDetails.js";
 import { isImageFormatId, isLensMountId } from "../../utils/catalog/lensTaxonomy.js";
 import type { LensLibraryBreadcrumbContext } from "./clusterLinks.js";
 import { LENS_LINK_BASE_STYLE, SECTION_HEADING_BASE_STYLE } from "./styles.js";
+import {
+  focalSectionAnchorId,
+  focalSubGroupAnchorId,
+  formatGroupAnchorId,
+  makerGroupAnchorId,
+  mountGroupAnchorId,
+  yearGroupAnchorId,
+} from "./groupAnchors.js";
 import type { GroupMode, ImageFormatGroup, MakerGroup, MountGroup, PrimeZoomSection, YearGroup } from "./types.js";
 import type { Theme } from "../../types/theme.js";
 
@@ -49,7 +57,7 @@ function MakerSections({
       {groups.map((group) => {
         const details = getMakerDetails(group.slug);
         return (
-          <section key={group.slug}>
+          <section key={group.slug} id={makerGroupAnchorId(group.slug)}>
             <h2 style={{ ...SECTION_HEADING_BASE_STYLE, borderBottom: `1px solid ${theme.panelBorder}` }}>
               <Link to={`/makers/${group.slug}`} style={{ color: "inherit", textDecoration: "none" }}>
                 {group.display}
@@ -100,7 +108,7 @@ function FocalSections({
   return (
     <>
       {sections.map((section) => (
-        <section key={section.label}>
+        <section key={section.label} id={focalSectionAnchorId(section.label)}>
           <h2
             style={{
               ...SECTION_HEADING_BASE_STYLE,
@@ -115,7 +123,11 @@ function FocalSections({
             </span>
           </h2>
           {section.subGroups.map((group) => (
-            <div key={group.label} style={{ marginBottom: "1rem" }}>
+            <div
+              key={group.label}
+              id={focalSubGroupAnchorId(section.label, group.label)}
+              style={{ marginBottom: "1rem" }}
+            >
               <h3
                 style={{
                   fontSize: "0.95rem",
@@ -162,7 +174,7 @@ function PatentYearSections({
   return (
     <>
       {groups.map((group) => (
-        <section key={group.decade}>
+        <section key={group.decade} id={yearGroupAnchorId(group.decade)}>
           <h2 style={{ ...SECTION_HEADING_BASE_STYLE, borderBottom: `1px solid ${theme.panelBorder}` }}>
             {group.decade}
             <span style={{ color: theme.label, fontSize: "0.75rem", marginLeft: "0.5rem", fontWeight: 400 }}>
@@ -197,7 +209,7 @@ function MountSections({
   return (
     <>
       {groups.map((group) => (
-        <section key={group.id}>
+        <section key={group.id} id={mountGroupAnchorId(group.id)}>
           <h2 style={{ ...SECTION_HEADING_BASE_STYLE, borderBottom: `1px solid ${theme.panelBorder}` }}>
             {isLensMountId(group.id) ? (
               <Link to={`/mounts/${group.id}`} style={{ color: "inherit", textDecoration: "none" }}>
@@ -240,7 +252,7 @@ function ImageFormatSections({
   return (
     <>
       {groups.map((group) => (
-        <section key={group.id}>
+        <section key={group.id} id={formatGroupAnchorId(group.id)}>
           <h2 style={{ ...SECTION_HEADING_BASE_STYLE, borderBottom: `1px solid ${theme.panelBorder}` }}>
             {isImageFormatId(group.id) ? (
               <Link to={`/formats/${group.id}`} style={{ color: "inherit", textDecoration: "none" }}>

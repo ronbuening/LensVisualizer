@@ -15,6 +15,15 @@ import { collectionPageJsonLd, datasetJsonLd, itemListJsonLd } from "../utils/se
 import { usePageThemeToggle } from "../utils/theme/usePageThemeToggle.js";
 import LensIndexFilterPanel from "./lensIndex/LensIndexFilterPanel.js";
 import LensIndexResults from "./lensIndex/LensIndexResults.js";
+import LinkListSidebar from "../components/content/LinkListSidebar.js";
+import SidebarLayout from "../components/content/SidebarLayout.js";
+import {
+  focalSubGroupAnchorId,
+  formatGroupAnchorId,
+  makerGroupAnchorId,
+  mountGroupAnchorId,
+  yearGroupAnchorId,
+} from "./lensIndex/groupAnchors.js";
 import {
   FILTER_BOUNDS,
   buildFilterBounds,
@@ -88,6 +97,56 @@ export default function LensIndexPage() {
   const yearGroups = useMemo(() => groupByPatentYear(filteredEntries, yearDir), [filteredEntries, yearDir]);
   const mountGroups = useMemo(() => groupByMount(filteredEntries), [filteredEntries]);
   const imageFormatGroups = useMemo(() => groupByImageFormat(filteredEntries), [filteredEntries]);
+  // Group-navigation sidebar: the groups of the currently-selected grouping, as in-page anchor links.
+  // Derived from the same filtered/grouped data, so it tracks both the grouping selector and filters.
+  const groupNav = useMemo(() => {
+    if (groupMode === "maker")
+      return {
+        title: "Makers",
+        items: makerGroups.map((g) => ({
+          id: g.slug,
+          label: `${g.display} (${g.lenses.length})`,
+          to: `#${makerGroupAnchorId(g.slug)}`,
+        })),
+      };
+    if (groupMode === "mount")
+      return {
+        title: "Mounts",
+        items: mountGroups.map((g) => ({
+          id: String(g.id),
+          label: `${g.label} (${g.lenses.length})`,
+          to: `#${mountGroupAnchorId(g.id)}`,
+        })),
+      };
+    if (groupMode === "format")
+      return {
+        title: "Formats",
+        items: imageFormatGroups.map((g) => ({
+          id: String(g.id),
+          label: `${g.label} (${g.lenses.length})`,
+          to: `#${formatGroupAnchorId(g.id)}`,
+        })),
+      };
+    if (groupMode === "focal")
+      return {
+        title: "Focal lengths",
+        items: focalSections.flatMap((s) =>
+          s.subGroups.map((sg) => ({
+            id: `${s.label}-${sg.label}`,
+            label: `${s.label} · ${sg.label}`,
+            to: `#${focalSubGroupAnchorId(s.label, sg.label)}`,
+          })),
+        ),
+      };
+    return {
+      title: "Patent years",
+      items: yearGroups.map((g) => ({
+        id: g.decade,
+        label: `${g.decade} (${g.lenses.length})`,
+        to: `#${yearGroupAnchorId(g.decade)}`,
+      })),
+    };
+  }, [groupMode, makerGroups, mountGroups, imageFormatGroups, focalSections, yearGroups]);
   const currentLensIndexSearch = serializeLensIndexUrlState({
     viewMode: parsedUrlState.viewMode,
     groupMode,
@@ -326,16 +385,29 @@ export default function LensIndexPage() {
           </div>
         )}
 
-        <LensIndexResults
-          groupMode={groupMode}
-          makerGroups={makerGroups}
-          focalSections={focalSections}
-          yearGroups={yearGroups}
-          mountGroups={mountGroups}
-          imageFormatGroups={imageFormatGroups}
-          theme={t}
-          hrefForLens={hrefForLens}
-        />
+        <SidebarLayout
+          sidebar={
+            groupNav.items.length > 0 ? (
+              <LinkListSidebar
+                title={groupNav.title}
+                ariaLabel={`Jump to ${groupNav.title.toLowerCase()}`}
+                items={groupNav.items}
+                theme={t}
+              />
+            ) : null
+          }
+        >
+          <LensIndexResults
+            groupMode={groupMode}
+            makerGroups={makerGroups}
+            focalSections={focalSections}
+            yearGroups={yearGroups}
+            mountGroups={mountGroups}
+            imageFormatGroups={imageFormatGroups}
+            theme={t}
+            hrefForLens={hrefForLens}
+          />
+        </SidebarLayout>
       </div>
     </div>
   );

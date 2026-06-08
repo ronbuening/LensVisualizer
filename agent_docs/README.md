@@ -34,6 +34,12 @@ Regenerate mirror fixture reports:
 npm run generate:mirror-reports
 ```
 
+Regenerate the mount SVG specifications + per-view SVGs:
+
+```bash
+npm run generate:mount-svgs
+```
+
 Individual report commands:
 
 - [`generated/unresolved-glass.generated.md`](generated/unresolved-glass.generated.md) — `npm test -- unresolvedGlassScan`
@@ -44,6 +50,7 @@ Individual report commands:
 - [`generated/six-digit-glass-codes-missing-sellmeier.generated.md`](generated/six-digit-glass-codes-missing-sellmeier.generated.md) — `npm test -- sixDigitGlassCodeScan`
 - [`generated/sellmeier-coverage.generated.md`](generated/sellmeier-coverage.generated.md) — `npm test -- sellmeierCoverageScan`
 - [`generated/mirror-fixtures.generated.md`](generated/mirror-fixtures.generated.md) — `npm test -- mirrorFixtureAuthoringReport`
+- [`generated/lens-mount-svg-specifications.md`](generated/lens-mount-svg-specifications.md) + [`generated/mounts/`](generated/mounts/) — `npm test -- mountSvgSpecificationsReport`
 
 ## Benchmarks
 
