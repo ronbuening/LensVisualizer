@@ -159,6 +159,7 @@ describe("analysis chart coverage", () => {
           originY={18}
           fontScale={1.4}
           onClick={onClick}
+          dispersionQuality="lineIndices"
         />
       </svg>,
     );
@@ -167,6 +168,7 @@ describe("analysis chart coverage", () => {
     expect(screen.getByText("R")).toBeTruthy();
     expect(screen.getByText("G")).toBeTruthy();
     expect(screen.getByText("B")).toBeTruthy();
+    expect(screen.getByText("Line indices")).toBeTruthy();
     expect(screen.getByText("0.4 µm")).toBeTruthy();
     expect(container.querySelector("rect")?.getAttribute("x")).toBe("12");
 
@@ -186,12 +188,14 @@ describe("analysis chart coverage", () => {
           originX={12}
           originY={18}
           fontScale={1.4}
+          dispersionQuality="lineIndices"
         />
       </svg>,
     );
 
     expect(screen.getByText("TCA")).toBeTruthy();
-    expect(screen.getByText("IMAGE HEIGHT")).toBeTruthy();
+    expect(screen.getByText("Line indices")).toBeTruthy();
+    expect(screen.queryByText("IMAGE HEIGHT")).toBeNull();
     expect(screen.getByText("R")).toBeTruthy();
     expect(screen.getByText("G")).toBeTruthy();
     expect(screen.getByText("B")).toBeTruthy();
@@ -214,11 +218,13 @@ describe("analysis chart coverage", () => {
         effectiveSC={1}
         IMG_MM={0}
         t={themes.dark}
+        dispersionQuality="lineIndices"
       />,
     );
 
     expect(screen.getByText("LCA")).toBeTruthy();
     expect(screen.getByText("TCA")).toBeTruthy();
+    expect(screen.getAllByText("Line indices")).toHaveLength(2);
     expect(screen.getByText(/OFF-AXIS TCA/)).toBeTruthy();
     expect(screen.getByText(/Longitudinal color is the wavelength focus spread/)).toBeTruthy();
     expect(screen.getByText(/Transverse color is the surviving wavelength spread/)).toBeTruthy();

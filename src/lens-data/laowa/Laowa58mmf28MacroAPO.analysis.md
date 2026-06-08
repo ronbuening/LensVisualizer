@@ -107,7 +107,7 @@ The aperture stop is located in the air gap between L9 (the last element of G2) 
 
 ### L10 — Negative Meniscus, Convex to Object
 
-$n_d = 1.79391$, $\nu_d = 47.17$. Glass: H-LAF4 (CDGM) — lanthanum flint. $f = -41.9$ mm.
+$n_d = 1.79391$, $\nu_d = 47.17$. Glass: unmatched lanthanum flint; public CDGM H-LAF4 is a different 750350 glass. $f = -41.9$ mm.
 
 L10 is the first element of G3 and a moderately strong negative meniscus ($R_1 = +121.42$, $R_2 = +26.02$). As the first element after the stop, it receives the most tightly converging axial beam in the system. Its negative power diverges this beam, beginning the positive-to-negative power transition that defines G3. The meniscus form (convex to object, concave to image) generates Petzval contribution with the same sign as a simple negative lens but with reduced higher-order aberrations compared to a biconcave form. L10 also acts as a field curvature corrector, introducing negative Petzval curvature that offsets the strong positive Petzval contribution from G2. The strongly curved rear surface ($R_2 = +26.02$) faces the L11 front ($R = -31.18$) across a narrow 3.15 mm air gap — the tightest cross-gap in G3 and the binding semi-diameter constraint for the entire rear group.
 
@@ -151,7 +151,7 @@ All fourteen elements match CDGM (Chengdu Guangming) catalog glasses with residu
 | L7 | 1.84666 | 23.78 | H-ZF52 | S-TIH53 (OHARA) | Dense flint |
 | L8 | 1.49700 | 81.61 | H-FK61 | FCD1 (HOYA), S-FPL51 (OHARA) | ED fluorophosphate |
 | L9 | 1.89782 | 29.90 | H-ZLAF68N | — | High-index lanthanum flint |
-| L10 | 1.79391 | 47.17 | H-LAF4 | — | Lanthanum flint |
+| L10 | 1.79391 | 47.17 | Unmatched lanthanum flint; not catalog H-LAF4 | — | Lanthanum flint |
 | L11 | 1.54517 | 48.63 | 545486 code-only | — | Light crown |
 | L12 | 1.86602 | 41.79 | H-ZLAF55C | TAFD40 (HOYA) | High-index lanthanum flint |
 | L13 | 1.49700 | 81.61 | H-FK61 | FCD1 (HOYA), S-FPL51 (OHARA) | ED fluorophosphate |

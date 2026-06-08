@@ -39,6 +39,7 @@ export const ALIASES: ReadonlyMap<string, string> = new Map([
   ["N-F2", "F2"],
   ["N-SF1", "SF1"],
   ["N-SF6", "SF6"],
+  ["SF8", "N-SF8"],
   ["FK5", "N-FK5"],
   ["LAF21", "N-LAF21"],
   ["LA-F21", "N-LAF21"],

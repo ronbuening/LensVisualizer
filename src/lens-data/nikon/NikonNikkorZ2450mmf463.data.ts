@@ -71,7 +71,7 @@ const LENS_DATA = {
       nd: 1.6968,
       vd: 55.46,
       fl: -28.2,
-      glass: "S-BSM10 (OHARA)",
+      glass: "Unmatched barium crown (patent nd=1.69680, νd=55.46; prior S-BSM10 label incompatible)",
       apd: false,
       role: "Primary G1 diverging element; convex toward object",
     },

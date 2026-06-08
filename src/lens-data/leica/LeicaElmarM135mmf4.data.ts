@@ -113,7 +113,7 @@ const LENS_DATA = {
       nd: 1.69416,
       vd: 30.9,
       fl: 186.36,
-      glass: "N-SF8 / SF8 class (Schott; patent e-line value stored)",
+      glass: "Unmatched SF8-class dense flint (Schott e-line source values; patent ne=1.69416, νe=30.9)",
       apd: false,
       role: "Rear positive dense-flint meniscus behind the long telephoto air space.",
     },

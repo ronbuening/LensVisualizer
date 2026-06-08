@@ -6,10 +6,11 @@
  * that with a preference cascade that prefers higher-fidelity data when the
  * lens declares it, and degrades gracefully otherwise:
  *
- *   1. Air (nd === 1.0)                       → constant 1.0
- *   2. Catalog Sellmeier (resolved by glass)  → λ-accurate at any wavelength
- *   3. Measured nC/nF on the element          → exact at the listed lines
- *   4. Abbe approximation (the legacy path)   → unchanged fallback
+ *   1. Air (nd === 1.0)                         → constant 1.0
+ *   2. Complete measured nC/nF/ng on the element → exact at the traced lines
+ *   3. Catalog Sellmeier (resolved by glass)    → λ-accurate at any wavelength
+ *   4. Measured nC/nF on the element            → exact C/F, estimated g
+ *   5. Abbe approximation (the legacy path)     → unchanged fallback
  *
  * Channels: R = C-line (656.3 nm), G = d-line (587.6 nm), B = F-line (486.1 nm),
  * V = g-line (435.8 nm — the secondary-spectrum probe). The Sellmeier path is
@@ -59,6 +60,31 @@ export interface SurfaceDispersion {
   readonly glassEntry?: GlassEntry;
 }
 
+function makeLineIndicesDispersion(
+  surface: SurfaceData,
+  element: ElementData | undefined,
+  spectral: SurfaceSpectral,
+): SurfaceDispersion {
+  const nd = surface.nd;
+  const nC = spectral.nC!;
+  const nF = spectral.nF!;
+  const ngMeasured = spectral.ng;
+  // Resolve V channel: prefer measured ng, otherwise extend from (nC, nF)
+  // using the dPgF-corrected partial dispersion. Fall back to nF (zero
+  // secondary spectrum) when no dPgF info is present.
+  let nVfallback: number;
+  if (ngMeasured !== undefined) {
+    nVfallback = ngMeasured;
+  } else if (element?.vd !== undefined) {
+    const PgF = partialDispersionPgF(element.vd, element.dPgF ?? 0);
+    nVfallback = nF + PgF * (nF - nC);
+  } else {
+    nVfallback = nF;
+  }
+  const fn: SurfaceIndexFn = (ch) => (ch === "R" ? nC : ch === "B" ? nF : ch === "V" ? nVfallback : nd);
+  return { fn, quality: "lineIndices" };
+}
+
 /**
  * Build the per-surface index function for a single surface, picking the
  * highest-fidelity data path that the surface and element can satisfy.
@@ -73,7 +99,14 @@ export function makeSurfaceDispersion(
     return { fn: () => 1.0, quality: "air" };
   }
 
-  // 1) Catalog Sellmeier — λ-accurate, the highest-fidelity path.
+  // 1) Complete measured line indices — exact at every traced chromatic line.
+  //    These are usually patent- or source-specific values for the actual
+  //    authored prescription, so prefer them over generic catalog equivalents.
+  if (spectral?.nC !== undefined && spectral?.nF !== undefined && spectral?.ng !== undefined) {
+    return makeLineIndicesDispersion(surface, element, spectral);
+  }
+
+  // 2) Catalog Sellmeier — λ-accurate, the highest-fidelity remaining path.
   //    Only trust the catalog when its d-line index agrees with the stored
   //    surface.nd within a transcription tolerance. Lens-data files sometimes
   //    annotate glasses speculatively ("S-LAH79 (OHARA) probable") with stored
@@ -93,31 +126,14 @@ export function makeSurfaceDispersion(
     }
   }
 
-  // 2) Measured line indices on the element — exact at the listed lines.
+  // 3) Partial measured line indices on the element — exact at the listed lines.
   //    Falls back to surface.nd at the d-line (G) and to a partial-dispersion
   //    estimate at the g-line (V) when ng is not measured.
   if (spectral?.nC !== undefined && spectral?.nF !== undefined) {
-    const nd = surface.nd;
-    const nC = spectral.nC;
-    const nF = spectral.nF;
-    const ngMeasured = spectral.ng;
-    // Resolve V channel: prefer measured ng, otherwise extend from (nC, nF)
-    // using the dPgF-corrected partial dispersion. Fall back to nF (zero
-    // secondary spectrum) when no dPgF info is present.
-    let nVfallback: number;
-    if (ngMeasured !== undefined) {
-      nVfallback = ngMeasured;
-    } else if (element?.vd !== undefined) {
-      const PgF = partialDispersionPgF(element.vd, element.dPgF ?? 0);
-      nVfallback = nF + PgF * (nF - nC);
-    } else {
-      nVfallback = nF;
-    }
-    const fn: SurfaceIndexFn = (ch) => (ch === "R" ? nC : ch === "B" ? nF : ch === "V" ? nVfallback : nd);
-    return { fn, quality: "lineIndices" };
+    return makeLineIndicesDispersion(surface, element, spectral);
   }
 
-  // 3) Abbe approximation — the legacy fallback for elements with only (nd, vd).
+  // 4) Abbe approximation — the legacy fallback for elements with only (nd, vd).
   //    The V channel uses Schott's normal-line partial dispersion plus the
   //    element's dPgF (when present). Without dPgF this is the standard
   //    "normal glass" approximation; with dPgF the Phase 1 codemod data
@@ -134,7 +150,7 @@ export function makeSurfaceDispersion(
     return { fn, quality: "abbe" };
   }
 
-  // 4) No vd at all — return the surface's nd verbatim. Chromatic spread is
+  // 5) No vd at all — return the surface's nd verbatim. Chromatic spread is
   //    zero through this surface, which is the same behavior the legacy
   //    `wavelengthNd(nd, undefined, ch)` returned.
   const nd = surface.nd;

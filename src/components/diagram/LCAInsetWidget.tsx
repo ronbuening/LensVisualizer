@@ -10,14 +10,7 @@ import type { ChromaticSpread, ChromaticChannel } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
 import type { DispersionQuality } from "../../optics/dispersion.js";
 import { computeLcaBarOffsets } from "../../optics/lcaScaling.js";
-
-const QUALITY_LABEL: Record<DispersionQuality, string> = {
-  sellmeier: "Sellmeier",
-  lineIndices: "Line indices",
-  abbe: "Abbe approx",
-  constant: "No dispersion",
-  air: "",
-};
+import { ChromaticQualityBadge } from "./ChromaticQualityBadge.js";
 
 function referenceIntercept(intercepts: Partial<Record<ChromaticChannel, number>>, fallback: number): number {
   if (intercepts.G !== undefined) return intercepts.G;
@@ -74,7 +67,6 @@ export default function LCAInsetWidget({
   const activeChans = (["R", "G", "B", "V"] as ChromaticChannel[]).filter(
     (ch) => chromSpread.intercepts[ch] !== undefined,
   );
-  const qualityLabel = dispersionQuality && dispersionQuality !== "air" ? QUALITY_LABEL[dispersionQuality] : "";
 
   let insetX: number;
   let insetY: number;
@@ -171,19 +163,13 @@ export default function LCAInsetWidget({
         {Math.round(mag)}
         {"\u00d7"}
       </text>
-      {qualityLabel && (
-        <text
-          x={midX}
-          y={insetY + insetH * 0.21}
-          textAnchor="middle"
-          fill={t.muted}
-          fontSize={fs(6.5)}
-          fontFamily="inherit"
-          opacity={0.75}
-        >
-          {qualityLabel}
-        </text>
-      )}
+      <ChromaticQualityBadge
+        dispersionQuality={dispersionQuality}
+        x={midX}
+        y={insetY + insetH * 0.21}
+        t={t}
+        fontSize={fs(6.5)}
+      />
     </g>
   );
 }

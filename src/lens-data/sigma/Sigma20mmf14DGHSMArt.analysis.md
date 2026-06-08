@@ -122,7 +122,7 @@ nd = 1.70154, νd = 41.15. Glass: BAFD7 (HOYA). f = -58.7 mm.
 E14 supplies negative field-balancing power between the strong positive E13 and the rear asphere E15. It helps keep the final converging group from producing excessive positive Petzval curvature.
 
 **E15 — Biconvex positive, both surfaces aspherical.**  
-nd = 1.76450, νd = 49.10. Glass: 764491 L-LAM69 / moldable lanthanum-crown class, with no public Sellmeier match. f = +30.9 mm.
+nd = 1.76450, νd = 49.10. Glass: unmatched 764491 moldable lanthanum-crown class. Public L-LAM69 is a different 731405 catalog glass, so no exact Sellmeier match is asserted. f = +30.9 mm.
 
 E15 is the strongest individual positive element in the design and the rear molded asphere. Its two aspherical surfaces work close to the image, where they can control spherical aberration, coma, and residual field behavior after the triplet and rear singlets have set the basic convergence.
 
@@ -143,7 +143,7 @@ The prescription does not name glass vendors; it gives nd and νd values. The id
 | E7, E8, E12, E13 | 1.59282 | 68.63 | 593/686 | FCD515 (Hoya) | SLD-class ED crowns |
 | E9, E11 | 1.80610 | 33.27 | 806/333 | NBFD15 (Hoya) | Dense-flint cemented partners |
 | E14 | 1.70154 | 41.15 | 702/412 | BAFD7 (HOYA) | Barium dense flint field balancer |
-| E15 | 1.76450 | 49.10 | 764/491 | L-LAM69 / moldable lanthanum-crown class; no public Sellmeier match | Rear molded asphere |
+| E15 | 1.76450 | 49.10 | 764/491 | Unmatched moldable lanthanum-crown class; not catalog L-LAM69 | Rear molded asphere |
 
 The FLD/SLD assignment is therefore straightforward. E5 and E10 are the two FLD elements. E3, E7, E8, E12, and E13 are the five SLD-class low-dispersion elements. This exactly matches Sigma's published special-glass count.
 

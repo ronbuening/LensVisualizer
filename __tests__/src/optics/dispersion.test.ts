@@ -68,6 +68,22 @@ describe("glass catalog", () => {
     expect(evaluateSellmeier(nbfd29!, LINE_NM.d)).toBeCloseTo(1.77047, 5);
   });
 
+  it("evaluates the phase 21 named-token catalog additions", () => {
+    const expected: Array<[glass: string, nd: number]> = [
+      ["S-LAL12", 1.6779],
+      ["S-BSM10", 1.6228],
+      ["S-LAM7", 1.7495],
+      ["L-LAM69", 1.73077],
+      ["N-SF8", 1.68894],
+      ["H-LAF4", 1.7495],
+    ];
+    for (const [glass, nd] of expected) {
+      const entry = resolveGlass(glass);
+      expect(entry?.name).toBe(glass);
+      expect(evaluateSellmeier(entry!, LINE_NM.d)).toBeCloseTo(nd, 5);
+    }
+  });
+
   it("evaluates explicit power-series catalog entries", () => {
     const hikariPskh1 = resolveGlass("593679 - fluorophosphate crown");
     expect(hikariPskh1?.name).toBe("J-PSKH1");
@@ -114,6 +130,13 @@ describe("resolveGlass", () => {
     expect(resolveGlass("Dense flint (806-333, uncertain)")?.name).toBe("NBFD15");
   });
 
+  it("resolves phase 21 additions by alias and six-digit code", () => {
+    expect(resolveGlass("SF8 dense flint")?.name).toBe("N-SF8");
+    expect(resolveGlass("Lanthanum flint 750/350")?.name).toBe("H-LAF4");
+    expect(resolveGlass("OHARA L-LAM69 PGM")?.name).toBe("L-LAM69");
+    expect(resolveGlass("S-BSM10 (OHARA; 623/570)")?.name).toBe("S-BSM10");
+  });
+
   it("returns null for unknown glasses", () => {
     expect(resolveGlass("S-FANTASY99 (made up)")).toBeNull();
     expect(resolveGlass("Z-NOSUCH50")).toBeNull();
@@ -154,6 +177,20 @@ describe("makeSurfaceDispersion preference cascade", () => {
     expect(d.fn("R")).toBeLessThan(d.fn("G"));
     expect(d.fn("G")).toBeLessThan(d.fn("B"));
     expect(d.fn("B")).toBeLessThan(d.fn("V"));
+  });
+
+  it("prefers complete measured line indices over a matching catalog entry", () => {
+    const d = makeSurfaceDispersion(
+      { R: 0, d: 0, sd: 0, label: "", nd, elemId: 1 },
+      { id: 1, name: "L1", label: "L1", type: "Test", nd, vd: 64.14, glass: "S-BSL7" },
+      { nC: 1.511, nF: 1.522, ng: 1.529 },
+    );
+    expect(d.quality).toBe("lineIndices");
+    expect(d.glassEntry).toBeUndefined();
+    expect(d.fn("R")).toBe(1.511);
+    expect(d.fn("G")).toBe(nd);
+    expect(d.fn("B")).toBe(1.522);
+    expect(d.fn("V")).toBe(1.529);
   });
 
   it("uses measured line indices when the catalog misses but nC/nF are present", () => {

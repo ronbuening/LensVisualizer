@@ -2,7 +2,7 @@
  * Sellmeier coverage scanner.
  *
  * Walks every lens in the catalog and reports how completely each lens is
- * backed by the strict runtime Sellmeier path. This uses the same safety net as
+ * backed by strict catalog Sellmeier data. This uses the same safety net as
  * src/optics/dispersion.ts: a glass annotation must resolve to a catalog entry
  * and the catalog d-line index must agree with the stored surface.nd closely
  * enough for the runtime to trust it.
@@ -42,9 +42,12 @@ interface CoverageRow {
   filePath: string;
   glassElements: number;
   fullySellmeierElements: number;
+  fullyTrustedChromaticElements: number;
   nonAirSurfaces: number;
   sellmeierSurfaces: number;
+  trustedChromaticSurfaces: number;
   missingSurfaces: MissingSurface[];
+  missingTrustedSurfaces: MissingSurface[];
 }
 
 function toRepoRelativeLensPath(modulePath: string): string {
@@ -99,11 +102,11 @@ function describeMissingSurface(surfaceNd: number, element: ElementData | undefi
 }
 
 function compareCoverage(a: CoverageRow, b: CoverageRow): number {
-  const aRatio = a.nonAirSurfaces === 0 ? 1 : a.sellmeierSurfaces / a.nonAirSurfaces;
-  const bRatio = b.nonAirSurfaces === 0 ? 1 : b.sellmeierSurfaces / b.nonAirSurfaces;
+  const aRatio = a.nonAirSurfaces === 0 ? 1 : a.trustedChromaticSurfaces / a.nonAirSurfaces;
+  const bRatio = b.nonAirSurfaces === 0 ? 1 : b.trustedChromaticSurfaces / b.nonAirSurfaces;
   if (aRatio !== bRatio) return bRatio - aRatio;
 
-  const missingDiff = a.missingSurfaces.length - b.missingSurfaces.length;
+  const missingDiff = a.missingTrustedSurfaces.length - b.missingTrustedSurfaces.length;
   if (missingDiff !== 0) return missingDiff;
 
   const sellmeierDiff = b.sellmeierSurfaces - a.sellmeierSurfaces;
@@ -113,7 +116,7 @@ function compareCoverage(a: CoverageRow, b: CoverageRow): number {
 }
 
 function coverageRatio(row: CoverageRow): number {
-  return row.nonAirSurfaces === 0 ? 1 : row.sellmeierSurfaces / row.nonAirSurfaces;
+  return row.nonAirSurfaces === 0 ? 1 : row.trustedChromaticSurfaces / row.nonAirSurfaces;
 }
 
 function coverageBucketLabel(row: CoverageRow): string {
@@ -122,6 +125,10 @@ function coverageBucketLabel(row: CoverageRow): string {
   const upper = lower + COVERAGE_BUCKET_SIZE;
   if (lower >= 95) return "95-99.9%";
   return `${lower}-${upper - 0.1}%`;
+}
+
+function lineIndexSurfaceCount(row: CoverageRow): number {
+  return row.trustedChromaticSurfaces - row.sellmeierSurfaces;
 }
 
 describe("Sellmeier coverage scan", () => {
@@ -137,39 +144,76 @@ describe("Sellmeier coverage scan", () => {
       const elementById = new Map(L.elements.map((element) => [element.id, element]));
 
       const missingSurfaces: MissingSurface[] = [];
+      const missingTrustedSurfaces: MissingSurface[] = [];
       let nonAirSurfaces = 0;
       let sellmeierSurfaces = 0;
+      let trustedChromaticSurfaces = 0;
 
       for (let i = 0; i < L.S.length; i++) {
         const surface = L.S[i];
         if (surface.nd === 1) continue;
         nonAirSurfaces++;
 
-        const quality = L.indexByIdx?.[i]?.quality ?? "missing";
-        if (quality === "sellmeier") {
-          sellmeierSurfaces++;
-          continue;
-        }
-
         const element = surface.elemId ? elementById.get(surface.elemId) : undefined;
-        missingSurfaces.push({
-          label: surface.label ?? `surface[${i}]`,
-          elementLabel: element?.label || element?.name || "element",
-          glassString: element?.glass ?? "",
-          quality,
-          reason: describeMissingSurface(surface.nd, element),
-        });
+        const catalogEntry = element?.glass ? resolveGlass(element.glass) : null;
+        const catalogNd = catalogEntry ? evaluateSellmeier(catalogEntry, LINE_NM.d) : null;
+        const sellmeierEligible = catalogNd !== null && Math.abs(catalogNd - surface.nd) <= MISMATCH_TOLERANCE;
+        const quality = L.indexByIdx?.[i]?.quality ?? "missing";
+        const trustedChromatic = sellmeierEligible || quality === "lineIndices";
+
+        if (sellmeierEligible) {
+          sellmeierSurfaces++;
+        }
+        if (trustedChromatic) {
+          trustedChromaticSurfaces++;
+        }
+        if (!sellmeierEligible) {
+          missingSurfaces.push({
+            label: surface.label ?? `surface[${i}]`,
+            elementLabel: element?.label || element?.name || "element",
+            glassString: element?.glass ?? "",
+            quality,
+            reason: describeMissingSurface(surface.nd, element),
+          });
+        }
+        if (!trustedChromatic) {
+          missingTrustedSurfaces.push({
+            label: surface.label ?? `surface[${i}]`,
+            elementLabel: element?.label || element?.name || "element",
+            glassString: element?.glass ?? "",
+            quality,
+            reason: describeMissingSurface(surface.nd, element),
+          });
+        }
       }
 
       const glassElements = L.elements.filter((element) => element.glass).length;
       const fullySellmeierElements = L.elements.filter((element) => {
         if (!element.glass) return false;
+        const catalogEntry = resolveGlass(element.glass);
+        if (!catalogEntry) return false;
+        const catalogNd = evaluateSellmeier(catalogEntry, LINE_NM.d);
         const elementSurfaces = L.S.map((surface, index) => ({ surface, index })).filter(
           ({ surface }) => surface.nd !== 1 && surface.elemId === element.id,
         );
         return (
           elementSurfaces.length > 0 &&
-          elementSurfaces.every(({ index }) => L.indexByIdx?.[index]?.quality === "sellmeier")
+          elementSurfaces.every(({ surface }) => Math.abs(catalogNd - surface.nd) <= MISMATCH_TOLERANCE)
+        );
+      }).length;
+      const fullyTrustedChromaticElements = L.elements.filter((element) => {
+        if (!element.glass) return false;
+        const catalogEntry = resolveGlass(element.glass);
+        const catalogNd = catalogEntry ? evaluateSellmeier(catalogEntry, LINE_NM.d) : null;
+        const elementSurfaces = L.S.map((surface, index) => ({ surface, index })).filter(
+          ({ surface }) => surface.nd !== 1 && surface.elemId === element.id,
+        );
+        return (
+          elementSurfaces.length > 0 &&
+          elementSurfaces.every(({ surface, index }) => {
+            const sellmeierEligible = catalogNd !== null && Math.abs(catalogNd - surface.nd) <= MISMATCH_TOLERANCE;
+            return sellmeierEligible || L.indexByIdx?.[index]?.quality === "lineIndices";
+          })
         );
       }).length;
 
@@ -181,27 +225,40 @@ describe("Sellmeier coverage scan", () => {
         filePath: toRepoRelativeLensPath(path),
         glassElements,
         fullySellmeierElements,
+        fullyTrustedChromaticElements,
         nonAirSurfaces,
         sellmeierSurfaces,
+        trustedChromaticSurfaces,
         missingSurfaces,
+        missingTrustedSurfaces,
       });
     }
 
     const sortedRows = [...rows].sort(compareCoverage);
-    const completeRows = sortedRows.filter((row) => row.nonAirSurfaces > 0 && row.missingSurfaces.length === 0);
+    const completeRows = sortedRows.filter((row) => row.nonAirSurfaces > 0 && row.missingTrustedSurfaces.length === 0);
+    const sellmeierCompleteRows = sortedRows.filter(
+      (row) => row.nonAirSurfaces > 0 && row.missingSurfaces.length === 0,
+    );
+    const lineIndexCompleteRows = completeRows.filter((row) => row.missingSurfaces.length > 0);
     const visibleRows = sortedRows.filter((row) => row.visible);
     const visibleCompleteRows = completeRows.filter((row) => row.visible);
-    const incompleteRows = sortedRows.filter((row) => row.missingSurfaces.length > 0);
-    const visibleIncompleteRows = visibleRows.filter((row) => row.missingSurfaces.length > 0);
+    const visibleSellmeierCompleteRows = sellmeierCompleteRows.filter((row) => row.visible);
+    const visibleLineIndexCompleteRows = lineIndexCompleteRows.filter((row) => row.visible);
+    const incompleteRows = sortedRows.filter((row) => row.missingTrustedSurfaces.length > 0);
+    const visibleIncompleteRows = visibleRows.filter((row) => row.missingTrustedSurfaces.length > 0);
     const totalNonAirSurfaces = rows.reduce((sum, row) => sum + row.nonAirSurfaces, 0);
     const totalSellmeierSurfaces = rows.reduce((sum, row) => sum + row.sellmeierSurfaces, 0);
+    const totalTrustedChromaticSurfaces = rows.reduce((sum, row) => sum + row.trustedChromaticSurfaces, 0);
 
     const lines: string[] = [];
     lines.push("# Sellmeier Coverage by Lens (auto-generated)");
     lines.push("");
-    lines.push("Completeness-ranked view of the lens catalog using the strict runtime Sellmeier path.");
-    lines.push("A surface counts as covered only when its element's `glass` annotation resolves to a catalog entry");
+    lines.push("Completeness-ranked view of the lens catalog using trusted chromatic coverage.");
+    lines.push(
+      "Strict Sellmeier coverage is still reported: a surface counts when its `glass` annotation resolves to a catalog entry",
+    );
     lines.push(`and the catalog d-line index agrees with the stored \`surface.nd\` within ${MISMATCH_TOLERANCE}.`);
+    lines.push("Trusted chromatic coverage additionally counts measured C/F/g line-index surfaces.");
     lines.push("");
     lines.push("**Regenerate this file** by running `npm test -- sellmeierCoverageScan`.");
     lines.push("Regenerate the full glass report set with `npm run generate:glass-reports`.");
@@ -210,63 +267,104 @@ describe("Sellmeier coverage scan", () => {
     lines.push("");
     lines.push(`- **${rows.length}** lenses scanned`);
     lines.push(`- **${visibleRows.length}** visible lenses scanned`);
-    lines.push(`- **${completeRows.length}** lenses fully covered`);
-    lines.push(`- **${visibleCompleteRows.length}** visible lenses fully covered`);
-    lines.push(`- **${totalSellmeierSurfaces} / ${totalNonAirSurfaces}** non-air surfaces use trusted Sellmeier data`);
-    lines.push(`- **${formatPercent(totalSellmeierSurfaces, totalNonAirSurfaces)}** surface coverage overall`);
+    lines.push(`- **${completeRows.length}** lenses fully covered by trusted chromatic data`);
+    lines.push(`- **${visibleCompleteRows.length}** visible lenses fully covered by trusted chromatic data`);
+    lines.push(`- **${sellmeierCompleteRows.length}** lenses fully covered by strict Sellmeier data`);
+    lines.push(`- **${visibleSellmeierCompleteRows.length}** visible lenses fully covered by strict Sellmeier data`);
+    lines.push(`- **${lineIndexCompleteRows.length}** lenses fully covered only after measured line-index data`);
+    lines.push(
+      `- **${visibleLineIndexCompleteRows.length}** visible lenses fully covered only after measured line-index data`,
+    );
+    lines.push(
+      `- **${totalSellmeierSurfaces} / ${totalNonAirSurfaces}** non-air surfaces use strict catalog Sellmeier data`,
+    );
+    lines.push(
+      `- **${formatPercent(totalSellmeierSurfaces, totalNonAirSurfaces)}** strict Sellmeier surface coverage overall`,
+    );
+    lines.push(
+      `- **${totalTrustedChromaticSurfaces} / ${totalNonAirSurfaces}** non-air surfaces use trusted chromatic data`,
+    );
+    lines.push(
+      `- **${formatPercent(totalTrustedChromaticSurfaces, totalNonAirSurfaces)}** trusted chromatic coverage overall`,
+    );
     lines.push("");
 
-    lines.push("## Fully Covered Lenses");
+    lines.push("## Fully Strict Sellmeier Lenses");
     lines.push("");
-    lines.push("| Lens | Glass elements | Non-air surfaces |");
-    lines.push("|---|---:|---:|");
-    for (const row of completeRows) {
+    lines.push("| Lens | Elements Sellmeier | Non-air surfaces | Strict Sellmeier surfaces |");
+    lines.push("|---|---:|---:|---:|");
+    for (const row of sellmeierCompleteRows) {
       const hidden = row.visible ? "" : " *(hidden)*";
-      lines.push(`| [${row.name}](../../${row.filePath})${hidden} | ${row.glassElements} | ${row.nonAirSurfaces} |`);
+      lines.push(
+        `| [${row.name}](../../${row.filePath})${hidden} | ${row.fullySellmeierElements}/${row.glassElements} | ${row.nonAirSurfaces} | ${row.sellmeierSurfaces}/${row.nonAirSurfaces} |`,
+      );
+    }
+    lines.push("");
+
+    lines.push("## Fully Trusted Through Measured Line Indices");
+    lines.push("");
+    lines.push(
+      "These lenses are complete for chromatic tracing but not strict catalog-Sellmeier complete. Their aggregate LCA/TCA dispersion badge should read `Line indices`.",
+    );
+    lines.push("");
+    lines.push(
+      "| Lens | Elements trusted | Elements Sellmeier | Non-air surfaces | Strict Sellmeier surfaces | Line-index surfaces | LCA/TCA badge |",
+    );
+    lines.push("|---|---:|---:|---:|---:|---:|---|");
+    for (const row of lineIndexCompleteRows) {
+      const hidden = row.visible ? "" : " *(hidden)*";
+      lines.push(
+        `| [${row.name}](../../${row.filePath})${hidden} | ${row.fullyTrustedChromaticElements}/${row.glassElements} | ${row.fullySellmeierElements}/${row.glassElements} | ${row.nonAirSurfaces} | ${row.sellmeierSurfaces}/${row.nonAirSurfaces} | ${lineIndexSurfaceCount(row)} | Line indices |`,
+      );
+    }
+    if (lineIndexCompleteRows.length === 0) {
+      lines.push("| _None_ |  |  |  |  |  |  |");
     }
     lines.push("");
 
     lines.push("## Incomplete Lenses by Completeness");
     lines.push("");
-    lines.push("Fully covered lenses are listed above; this table focuses on the remaining catalog work.");
+    lines.push(
+      "Fully strict and line-index-complete trusted lenses are listed above; this table focuses on remaining chromatic gaps.",
+    );
     lines.push("");
     lines.push(
-      "| Rank | Lens | Coverage | Sellmeier surfaces | Elements covered | Missing surfaces | Missing quality mix |",
+      "| Rank | Lens | Trusted chromatic coverage | Strict Sellmeier coverage | Elements trusted | Elements Sellmeier | Missing trusted surfaces | Missing quality mix |",
     );
-    lines.push("|---:|---|---:|---:|---:|---:|---|");
+    lines.push("|---:|---|---:|---:|---:|---:|---:|---|");
     let previousBucket = "";
     for (const [index, row] of incompleteRows.entries()) {
       const bucket = coverageBucketLabel(row);
       if (bucket !== previousBucket) {
-        lines.push(`|  | **${bucket} coverage** |  |  |  |  |  |`);
+        lines.push(`|  | **${bucket} coverage** |  |  |  |  |  |  |`);
         previousBucket = bucket;
       }
       const hidden = row.visible ? "" : " *(hidden)*";
       lines.push(
-        `| ${index + 1} | [${row.name}](../../${row.filePath})${hidden} | ${formatPercent(row.sellmeierSurfaces, row.nonAirSurfaces)} | ${row.sellmeierSurfaces}/${row.nonAirSurfaces} | ${row.fullySellmeierElements}/${row.glassElements} | ${row.missingSurfaces.length} | ${formatQualityCounts(row.missingSurfaces)} |`,
+        `| ${index + 1} | [${row.name}](../../${row.filePath})${hidden} | ${formatPercent(row.trustedChromaticSurfaces, row.nonAirSurfaces)} | ${formatPercent(row.sellmeierSurfaces, row.nonAirSurfaces)} | ${row.fullyTrustedChromaticElements}/${row.glassElements} | ${row.fullySellmeierElements}/${row.glassElements} | ${row.missingTrustedSurfaces.length} | ${formatQualityCounts(row.missingTrustedSurfaces)} |`,
       );
     }
     lines.push("");
 
     lines.push("## Missing Surface Details");
     lines.push("");
-    lines.push("Incomplete visible lenses, still ordered by descending completeness.");
+    lines.push("Incomplete visible lenses, still ordered by descending trusted chromatic completeness.");
     lines.push("");
     for (const row of visibleIncompleteRows) {
       const patentSuffix = row.patentNumber ? ` - ${row.patentNumber}` : "";
       lines.push(
-        `### [${row.name}](../../${row.filePath}) - ${formatPercent(row.sellmeierSurfaces, row.nonAirSurfaces)} (${row.sellmeierSurfaces}/${row.nonAirSurfaces})${patentSuffix}`,
+        `### [${row.name}](../../${row.filePath}) - ${formatPercent(row.trustedChromaticSurfaces, row.nonAirSurfaces)} trusted (${row.trustedChromaticSurfaces}/${row.nonAirSurfaces}); ${formatPercent(row.sellmeierSurfaces, row.nonAirSurfaces)} Sellmeier (${row.sellmeierSurfaces}/${row.nonAirSurfaces})${patentSuffix}`,
       );
       lines.push("");
       lines.push("| Surface | Element | Runtime quality | Glass annotation | Reason |");
       lines.push("|---|---|---|---|---|");
-      for (const surface of row.missingSurfaces.slice(0, MAX_MISSING_DETAILS)) {
+      for (const surface of row.missingTrustedSurfaces.slice(0, MAX_MISSING_DETAILS)) {
         lines.push(
           `| ${surface.label} | ${surface.elementLabel} | ${surface.quality} | \`${surface.glassString || "(none)"}\` | ${surface.reason} |`,
         );
       }
-      if (row.missingSurfaces.length > MAX_MISSING_DETAILS) {
-        const hiddenCount = row.missingSurfaces.length - MAX_MISSING_DETAILS;
+      if (row.missingTrustedSurfaces.length > MAX_MISSING_DETAILS) {
+        const hiddenCount = row.missingTrustedSurfaces.length - MAX_MISSING_DETAILS;
         lines.push(`| ... | ... | ... | ... | ${hiddenCount} more missing surface${hiddenCount === 1 ? "" : "s"} |`);
       }
       lines.push("");

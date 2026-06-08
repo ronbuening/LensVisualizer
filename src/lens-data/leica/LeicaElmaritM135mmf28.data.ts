@@ -110,7 +110,7 @@ const LENS_DATA = {
       nd: 1.69416,
       vd: 30.9,
       fl: 154.8,
-      glass: "SF8-class dense flint (Schott; e-line source values)",
+      glass: "Unmatched SF8-class dense flint (Schott e-line source values; patent ne=1.69416, νe=30.9)",
       apd: false,
       role: "Rear positive meniscus behind the stop; balances the front and cemented-member powers.",
     },
