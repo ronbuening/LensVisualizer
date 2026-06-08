@@ -9,8 +9,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **308** lenses scanned (**300** visible)
-- **2797 / 3474** non-air surfaces use trusted Sellmeier data (80.5%)
+- **311** lenses scanned (**303** visible)
+- **2826 / 3510** non-air surfaces use trusted Sellmeier data (80.5%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
 - **156** code-only missing-Sellmeier elements in Sweep 2
@@ -114,6 +114,7 @@ These are efficient follow-up targets after mismatch blockers because one or two
 | [NIKON AF-S NIKKOR 105mm f/1.4E ED](../../src/lens-data/nikon/NikonNikkor105f14E.data.ts) | 85.7% (12/14) | 2 | abbe: 2 |
 | [NIKON NIKKOR Z 24-70mm f/4 S](../../src/lens-data/nikon/NikonNikkorZ2470mmf4S.data.ts) | 85.7% (12/14) | 2 | abbe: 2 |
 | [NIKON NIKKOR Z 50mm f/1.8 S](../../src/lens-data/nikon/NikonNikkorZ50f18S.data.ts) | 85.7% (12/14) | 2 | constant: 2 |
+| [Panasonic Leica DG Nocticron 42.5mm f/1.2 ASPH Power O.I.S.](../../src/lens-data/panasonic/PanasonicDGNocticron42mmf12.data.ts) | 85.7% (12/14) | 2 | lineIndices: 2 |
 | [Nikon AF-P DX NIKKOR 18-55mm f/3.5-5.6G VR](../../src/lens-data/nikon/NikonAFPDX1855mmf3556G.data.ts) | 84.6% (11/13) | 2 | abbe: 2 |
 | [CANON EF-S 24mm f/2.8 STM](../../src/lens-data/canon/CanonEFS24mmf28STM.data.ts) | 83.3% (5/6) | 1 | abbe: 1 |
 | [Nikon 1 NIKKOR 10mm f/2.8](../../src/lens-data/nikon/Nikon1Nikkor10mmf28.data.ts) | 83.3% (5/6) | 1 | lineIndices: 1 |

@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **308** lenses scanned
-- **3474** non-air surfaces examined
-- **3478** element glass declarations examined
-- **578** non-explicit-unmatched annotations did not resolve
-- **209** distinct unresolved glass-like tokens found
+- **311** lenses scanned
+- **3510** non-air surfaces examined
+- **3514** element glass declarations examined
+- **584** non-explicit-unmatched annotations did not resolve
+- **211** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -47,10 +47,12 @@ or per-lens patent backfills.
 | 856401 | 2 | 1 | |
 | BACD4 | 2 | 2 | |
 | BSC3 | 2 | 2 | |
+| E-FD13 | 2 | 2 | |
 | E-FDS3HT | 2 | 1 | |
 | F7 | 2 | 2 | |
 | H-LAF3 | 2 | 2 | |
 | H-ZLAF4A | 2 | 1 | |
+| K-LAFK50 | 2 | 1 | |
 | N-BAF4 | 2 | 2 | |
 | N-BAK4 | 2 | 2 | |
 | N-LAF2 | 2 | 1 | |
@@ -154,7 +156,7 @@ or per-lens patent backfills.
 | 933209 | 1 | 1 | |
 | BACD14 | 1 | 1 | |
 | BK3 | 1 | 1 | |
-| E-FD13 | 1 | 1 | |
+| E-F5 | 1 | 1 | |
 | E-FEL6 | 1 | 1 | |
 | E-FPL51 | 1 | 1 | |
 | F3 | 1 | 1 | |
@@ -395,6 +397,11 @@ or per-lens patent backfills.
 - [CANON EF-S 24mm f/2.8 STM](../../src/lens-data/canon/CanonEFS24mmf28STM.data.ts) 10A: `E-C3 / BSC3 class (HOYA)`
 - [NIKON NIKKOR-N Auto 24mm f/2.8](../../src/lens-data/nikon/NikonNikkorAuto24f28.data.ts) 8: `BSC3 (Hoya) / historical crown equivalent`
 
+### E-FD13 — 2 occurrences
+
+- [Nikon Reflex-Nikkor 1000mm f/11](../../src/lens-data/nikon/NikonReflexNikkor1000mmf11.data.ts) L3F: `SF13-family dense flint, 741/277 class (Hoya E-FD13 / Hikari J-SF13 equivalent)`
+- [Panasonic LEICA DG SUMMILUX 12mm F1.4 ASPH.](../../src/lens-data/panasonic/PanasonicDGSummilux12mmf14.data.ts) 16: `E-FD13 (Hoya)`
+
 ### E-FDS3HT — 2 occurrences
 
 - [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../../src/lens-data/nikon/NikonZ105f28.data.ts) 11: `E-FDS3HT (Hikari) or equiv.`
@@ -414,6 +421,11 @@ or per-lens patent backfills.
 
 - [Laowa 24mm f/14 2× Macro Probe](../../src/lens-data/laowa/Laowa24mmf14Probe.data.ts) 1: `H-ZLaF4A (CDGM)`
 - [Laowa 24mm f/14 2× Macro Probe](../../src/lens-data/laowa/Laowa24mmf14Probe.data.ts) 46: `H-ZLaF4A (CDGM)`
+
+### K-LAFK50 — 2 occurrences
+
+- [Panasonic Leica DG Nocticron 42.5mm f/1.2 ASPH Power O.I.S.](../../src/lens-data/panasonic/PanasonicDGNocticron42mmf12.data.ts) 14A: `Moldable lanthanum, M-TAF / K-LaFK50 equivalent class`
+- [Panasonic Leica DG Nocticron 42.5mm f/1.2 ASPH Power O.I.S.](../../src/lens-data/panasonic/PanasonicDGNocticron42mmf12.data.ts) 20A: `Moldable lanthanum, M-TAF / K-LaFK50 equivalent class`
 
 ### N-BAF4 — 2 occurrences
 
@@ -845,9 +857,9 @@ or per-lens patent backfills.
 
 - [VIVITAR SERIES 1 35–85mm f/2.8 VMC](../../src/lens-data/vivitar/VivitarSeries13585mmf28.data.ts) 10: `BK3 (Schott)`
 
-### E-FD13 — 1 occurrence
+### E-F5 — 1 occurrence
 
-- [Nikon Reflex-Nikkor 1000mm f/11](../../src/lens-data/nikon/NikonReflexNikkor1000mmf11.data.ts) L3F: `SF13-family dense flint, 741/277 class (Hoya E-FD13 / Hikari J-SF13 equivalent)`
+- [Panasonic LEICA DG SUMMILUX 12mm F1.4 ASPH.](../../src/lens-data/panasonic/PanasonicDGSummilux12mmf14.data.ts) 11: `E-F5 (Hoya)`
 
 ### E-FEL6 — 1 occurrence
 
