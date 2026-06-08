@@ -22,8 +22,13 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-06-08 ──────────────────────────────────────────────────────────
   {
     date: "2026-06-08",
+    type: "improvement",
+    summary: "Improved glass matching and chromatic quality indicators",
+  },
+  {
+    date: "2026-06-08",
     type: "lens",
-    summary: "Added three Panasonic mirrorless lenses",
+    summary: "Added Panasonic Nocticron 42.5mm, Summilux 12mm, and G 14mm lenses",
   },
   // ── 2026-06-07 ──────────────────────────────────────────────────────────
   {
