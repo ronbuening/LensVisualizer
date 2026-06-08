@@ -19,7 +19,6 @@ import {
 import themes from "../../../../../src/utils/theme/themes.js";
 import type { FieldCurvatureResult } from "../../../../../src/optics/aberrationAnalysis.js";
 import type { FieldCurvatureFieldResult } from "../../../../../src/optics/aberration/types.js";
-import type { LateralColorCurveResult } from "../../../../../src/optics/compat.js";
 import type { VignettingSample } from "../../../../../src/optics/vignetteAnalysis.js";
 
 function field(
@@ -213,51 +212,7 @@ describe("analysis chart coverage", () => {
     expect(screen.getByText("0.5 µm")).toBeTruthy();
   });
 
-  it("renders LoCA, lateral color/TCA, and off-axis fan spread as separate chromatic overlay panels", () => {
-    const lateralColor: LateralColorCurveResult = {
-      channels: ["R", "G", "B"],
-      referenceChannel: "G",
-      fieldFractions: [0, 1],
-      fields: [
-        {
-          fieldFraction: 0,
-          label: "0%",
-          fieldAngleDeg: 0,
-          referenceChannel: "G",
-          referenceImageHeightMm: 0,
-          lateralSpreadMm: 0.0001,
-          lateralSpreadUm: 0.1,
-          samples: [
-            { channel: "R", imageHeightMm: -0.00005, relativeHeightMm: -0.00005, usable: true, clipped: false },
-            { channel: "G", imageHeightMm: 0, relativeHeightMm: 0, usable: true, clipped: false },
-            { channel: "B", imageHeightMm: 0.00005, relativeHeightMm: 0.00005, usable: true, clipped: false },
-          ],
-          validChannelCount: 3,
-          usable: true,
-        },
-        {
-          fieldFraction: 1,
-          label: "100%",
-          fieldAngleDeg: 20,
-          referenceChannel: "G",
-          referenceImageHeightMm: 12,
-          lateralSpreadMm: 0.0003,
-          lateralSpreadUm: 0.3,
-          samples: [
-            { channel: "R", imageHeightMm: 11.99985, relativeHeightMm: -0.00015, usable: true, clipped: false },
-            { channel: "G", imageHeightMm: 12, relativeHeightMm: 0, usable: true, clipped: false },
-            { channel: "B", imageHeightMm: 12.00015, relativeHeightMm: 0.00015, usable: true, clipped: false },
-          ],
-          validChannelCount: 3,
-          usable: true,
-        },
-      ],
-      usableFieldCount: 2,
-      maxLateralSpreadMm: 0.0003,
-      maxLateralSpreadUm: 0.3,
-      imagePlaneZ: 40,
-      halfFieldDeg: 20,
-    };
+  it("renders LoCA and off-axis fan as the chromatic overlay panels", () => {
     const { container } = render(
       <ChromaticOverlayContent
         chromaticRayFanSpread={{
@@ -280,7 +235,6 @@ describe("analysis chart coverage", () => {
             imagePlaneHeights: { R: -0.00025, G: 0, B: 0.00025 },
           },
         }}
-        lateralColor={lateralColor}
         effectiveSC={1}
         IMG_MM={0}
         t={themes.dark}
@@ -292,21 +246,20 @@ describe("analysis chart coverage", () => {
     expect(screen.getByText("FAN")).toBeTruthy();
     expect(screen.getAllByText("Line indices")).toHaveLength(2);
     expect(screen.getByText("LoCA / Axial Color")).toBeTruthy();
-    expect(screen.getByText("Lateral Color (TCA)")).toBeTruthy();
-    expect(screen.getByText("Off-Axis Fan Spread")).toBeTruthy();
-    expect(screen.getByText(/OFF-AXIS FAN SPREAD/)).toBeTruthy();
-    expect(screen.getByText(/LATERAL COLOR \/ TCA/)).toBeTruthy();
-    expect(screen.getByText(/Longitudinal color is the wavelength focus spread/)).toBeTruthy();
-    expect(screen.getByText(/Lateral color is the chief-ray image-height separation/)).toBeTruthy();
-    expect(screen.getByText(/It is not the chief-ray lateral color\/TCA metric/)).toBeTruthy();
+    expect(screen.getByText("Off-Axis Fan")).toBeTruthy();
+    expect(screen.getByText(/OFF-AXIS FAN/)).toBeTruthy();
+    expect(screen.getByText(/LoCA \/ axial color/)).toBeTruthy();
+    expect(screen.getByText(/Off-axis fan/)).toBeTruthy();
+    expect(screen.getByText(/lateral color\/TCA remains a separate chief-ray image-height metric/)).toBeTruthy();
+    expect(screen.queryByText("Lateral Color (TCA)")).toBeNull();
     expect(screen.getByText("0.4 µm")).toBeTruthy();
     expect(screen.getAllByText("0.5 µm").length).toBeGreaterThan(0);
     expect(screen.queryByText("0.8 µm")).toBeNull();
 
     const charts = Array.from(container.querySelectorAll("svg"));
-    expect(charts.length).toBeGreaterThanOrEqual(3);
-    expect(charts[0].getAttribute("width")).toBe("340");
-    expect(charts[0].getAttribute("height")).toBe("280");
+    expect(charts).toHaveLength(2);
+    expect(charts.map((chart) => chart.getAttribute("width"))).toEqual(["340", "340"]);
+    expect(charts.map((chart) => chart.getAttribute("height"))).toEqual(["280", "280"]);
   });
 
   it("shares chart math helpers for scales, domains, ticks, and SVG paths", () => {

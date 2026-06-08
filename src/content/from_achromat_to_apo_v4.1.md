@@ -509,7 +509,7 @@ The following terms appear throughout this article and correspond to specific fe
 
 **LoCA (Longitudinal Chromatic Aberration).** Axial color — the wavelength-dependent shift in focus position along the optical axis. Visible in the COLOR overlay as the axial separation between ray-fan convergence points at different wavelengths.
 
-**TCA (Transverse Chromatic Aberration).** Lateral color — the wavelength-dependent shift in chief-ray image height. Reported in the chromatic drawer and detail overlay as a chief-ray metric across field; it is distinct from the displayed off-axis ray-fan endpoint spread.
+**TCA (Transverse Chromatic Aberration).** Lateral color — the wavelength-dependent shift in chief-ray image height. Reported in the chromatic drawer as a chief-ray metric across field; it is distinct from the displayed off-axis ray-fan endpoint spread.
 
 **APD (Anomalous Partial Dispersion).** A flag or annotation indicating that a glass element departs from the normal line on the $P_{g,F}$ vs. $V_d$ diagram. Elements with APD are the materials that enable apochromatic correction.
 

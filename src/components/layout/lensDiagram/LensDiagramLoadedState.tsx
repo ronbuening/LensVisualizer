@@ -59,15 +59,7 @@ export default function LensDiagramLoadedState({
     cardinalElements,
     foldedHitOrderLabels,
   } = computed;
-  const {
-    chromaticRayFanSpread,
-    chromaticRayFanSpreads,
-    chromaticOverlayLateralColor,
-    chromaticOverlayLateralColorUnavailableReason,
-    rays,
-    offAxisRays,
-    chromaticRays,
-  } = rayData;
+  const { chromaticRayFanSpread, chromaticRayFanSpreads, rays, offAxisRays, chromaticRays } = rayData;
   const {
     theme: t,
     dark,
@@ -161,8 +153,6 @@ export default function LensDiagramLoadedState({
             chromaticRays={chromaticRays}
             chromaticRayFanSpread={chromaticRayFanSpread ?? null}
             chromaticRayFanSpreads={chromaticRayFanSpreads}
-            chromaticOverlayLateralColor={chromaticOverlayLateralColor}
-            chromaticOverlayLateralColorUnavailableReason={chromaticOverlayLateralColorUnavailableReason}
             showOnAxis={showOnAxis}
             showOffAxis={showOffAxis}
             showChromatic={showChromatic}

@@ -10,15 +10,12 @@ import { summarizeDispersionQuality } from "../../../optics/dispersion.js";
 import { elementHasAsphericSurface } from "../../display/asphericElementUtils.js";
 import type { AnalysisTabId } from "../../../types/state.js";
 import type { ChromaticRayFanSpreadByAxis } from "../../../types/optics.js";
-import type { LateralColorCurveResult } from "../../../optics/compat.js";
 
 interface DiagramViewportProps extends Omit<
   ComponentProps<typeof DiagramSVG>,
   "onLocaInsetClick" | "onPetzvalBadgeClick"
 > {
   chromaticRayFanSpreads?: ChromaticRayFanSpreadByAxis;
-  chromaticOverlayLateralColor?: LateralColorCurveResult | null;
-  chromaticOverlayLateralColorUnavailableReason?: string | null;
   showChromaticOverlay: boolean;
   showPetzvalOverlay: boolean;
   onCloseChromaticOverlay: () => void;
@@ -76,8 +73,6 @@ export default function DiagramViewport({
   chromaticRays,
   chromaticRayFanSpread,
   chromaticRayFanSpreads,
-  chromaticOverlayLateralColor,
-  chromaticOverlayLateralColorUnavailableReason,
   showOnAxis,
   showOffAxis,
   showChromatic,
@@ -280,8 +275,6 @@ export default function DiagramViewport({
           <ChromaticOverlayContent
             chromaticRayFanSpread={overlayChromSpread}
             chromaticRayFanSpreads={chromaticRayFanSpreads}
-            lateralColor={chromaticOverlayLateralColor ?? null}
-            lateralColorUnavailableReason={chromaticOverlayLateralColorUnavailableReason ?? null}
             effectiveSC={effectiveSC}
             IMG_MM={IMG_MM}
             t={t}

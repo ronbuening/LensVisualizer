@@ -289,8 +289,7 @@ describe("DiagramViewport", () => {
     expect(mockDiagramSVG).toHaveBeenLastCalledWith(expect.objectContaining({ chromaticRayFanSpread: onAxisSpread }));
   });
 
-  it("passes chief-ray lateral color separately from ray-fan spread into the chromatic overlay", () => {
-    const lateralColor = { maxLateralSpreadMm: 0.0003 };
+  it("passes on-axis and off-axis ray-fan spreads into the chromatic overlay", () => {
     const offAxisSpread = {
       axialInterceptSpreadMm: 0.4,
       imagePlaneHeightSpreadMm: 0.8,
@@ -310,8 +309,6 @@ describe("DiagramViewport", () => {
         showChromaticOverlay
         chromaticRayFanSpread={onAxisSpread}
         chromaticRayFanSpreads={{ onAxis: onAxisSpread, offAxis: offAxisSpread }}
-        chromaticOverlayLateralColor={lateralColor as any}
-        chromaticOverlayLateralColorUnavailableReason={null}
       />,
     );
 
@@ -319,7 +316,6 @@ describe("DiagramViewport", () => {
       expect.objectContaining({
         chromaticRayFanSpread: onAxisSpread,
         chromaticRayFanSpreads: { onAxis: onAxisSpread, offAxis: offAxisSpread },
-        lateralColor,
       }),
     );
   });

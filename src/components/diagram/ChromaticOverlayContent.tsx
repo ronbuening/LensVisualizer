@@ -1,8 +1,7 @@
 /**
  * ChromaticOverlayContent — Enlarged chromatic aberration visualization.
  *
- * Renders standalone charts for axial color, chief-ray lateral color, and the
- * displayed off-axis ray-fan endpoint spread.
+ * Renders standalone charts for axial color and displayed off-axis ray-fan spread.
  * Used inside PanelOverlay.
  */
 
@@ -10,17 +9,13 @@ import type { CSSProperties } from "react";
 import type { ChromaticRayFanSpread, ChromaticRayFanSpreadByAxis } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
 import type { DispersionQuality } from "../../optics/dispersion.js";
-import type { LateralColorCurveResult } from "../../optics/compat.js";
 import { CHROMATIC_CHANNEL_METADATA } from "../../optics/chromatic/channels.js";
-import LateralColorChart from "../display/analysis/LateralColorChart.js";
 import LocaInsetWidget from "./LocaInsetWidget.js";
 import ChromaticFanSpreadWidget from "./ChromaticFanSpreadWidget.js";
 
 interface ChromaticOverlayContentProps {
   chromaticRayFanSpread: ChromaticRayFanSpread;
   chromaticRayFanSpreads?: ChromaticRayFanSpreadByAxis;
-  lateralColor?: LateralColorCurveResult | null;
-  lateralColorUnavailableReason?: string | null;
   effectiveSC: number;
   IMG_MM: number;
   t: Theme;
@@ -54,8 +49,6 @@ function formatSpreadUm(mm: number): string {
 export default function ChromaticOverlayContent({
   chromaticRayFanSpread,
   chromaticRayFanSpreads,
-  lateralColor,
-  lateralColorUnavailableReason,
   effectiveSC,
   IMG_MM,
   t,
@@ -65,8 +58,6 @@ export default function ChromaticOverlayContent({
   const offAxisSpread = chromaticRayFanSpreads?.offAxis ?? null;
   const svgW = SINGLE_SVG_W;
   const svgH = SINGLE_SVG_H;
-  const lateralColorNote =
-    lateralColorUnavailableReason ?? "No usable chief-ray lateral color data is available for this lens state.";
 
   return (
     <div style={{ flex: 1, display: "flex", flexDirection: "column", padding: "8px 20px 20px" }}>
@@ -111,36 +102,9 @@ export default function ChromaticOverlayContent({
             LoCA is unavailable for the active channel set or current ray state.
           </div>
         )}
-        <div style={CHART_COLUMN_STYLE}>
-          <div style={{ ...PANEL_TITLE_STYLE, color: t.label }}>Lateral Color (TCA)</div>
-          {lateralColor ? (
-            <LateralColorChart result={lateralColor} t={t} width={svgW} height={svgH} />
-          ) : (
-            <div
-              style={{
-                minHeight: svgH,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: t.muted,
-                fontSize: 12,
-                lineHeight: 1.5,
-                textAlign: "center",
-                padding: 16,
-                boxSizing: "border-box",
-              }}
-            >
-              {lateralColorNote}
-            </div>
-          )}
-          <div style={{ ...CHART_CAPTION_STYLE, color: t.muted }}>
-            Lateral color is the chief-ray image-height separation across field. This is the transverse color metric,
-            separate from marginal ray-fan endpoint spread.
-          </div>
-        </div>
         {offAxisSpread && (
           <div style={CHART_COLUMN_STYLE}>
-            <div style={{ ...PANEL_TITLE_STYLE, color: t.label }}>Off-Axis Fan Spread</div>
+            <div style={{ ...PANEL_TITLE_STYLE, color: t.label }}>Off-Axis Fan</div>
             <svg width={svgW} height={svgH} viewBox={`0 0 ${svgW} ${svgH}`} style={CHART_SVG_STYLE}>
               <ChromaticFanSpreadWidget
                 chromaticRayFanSpread={offAxisSpread}
@@ -155,13 +119,13 @@ export default function ChromaticOverlayContent({
               />
             </svg>
             <div style={{ ...CHART_CAPTION_STYLE, color: t.muted }}>
-              This follows the displayed off-axis marginal fan and reports image-plane endpoint spread. It is not the
-              chief-ray lateral color/TCA metric.
+              This follows the displayed off-axis marginal fan and reports wavelength endpoint spread at the image
+              plane.
             </div>
           </div>
         )}
       </div>
-      {(chromaticRayFanSpreads?.onAxis || lateralColor || chromaticRayFanSpreads?.offAxis) && (
+      {(chromaticRayFanSpreads?.onAxis || chromaticRayFanSpreads?.offAxis) && (
         <div
           style={{
             display: "flex",
@@ -177,9 +141,8 @@ export default function ChromaticOverlayContent({
           {chromaticRayFanSpreads?.onAxis && (
             <span>LoCA / AXIAL COLOR {formatSpreadUm(chromaticRayFanSpreads.onAxis.axialInterceptSpreadMm)}</span>
           )}
-          {lateralColor && <span>LATERAL COLOR / TCA {formatSpreadUm(lateralColor.maxLateralSpreadMm)}</span>}
           {chromaticRayFanSpreads?.offAxis && (
-            <span>OFF-AXIS FAN SPREAD {formatSpreadUm(chromaticRayFanSpreads.offAxis.imagePlaneHeightSpreadMm)}</span>
+            <span>OFF-AXIS FAN {formatSpreadUm(chromaticRayFanSpreads.offAxis.imagePlaneHeightSpreadMm)}</span>
           )}
         </div>
       )}
@@ -192,18 +155,14 @@ export default function ChromaticOverlayContent({
           fontFamily: "inherit",
         }}
       >
-        <strong>LoCA / axial color</strong> measures how different wavelengths focus at different distances along the
-        optical axis. The LoCA chart uses the outermost usable on-axis marginal trace for the active channel set.{" "}
-        <strong>Lateral color / TCA</strong> measures chief-ray image-height separation at the current image plane
-        across field. The off-axis fan spread is shown separately because it follows the displayed marginal ray bundle
-        and should not be read as the chief-ray lateral-color metric. The colored bars show where{" "}
-        {CHROMATIC_CHANNEL_METADATA.R.description} ({CHROMATIC_CHANNEL_METADATA.R.wavelengthLabel}),{" "}
-        {CHROMATIC_CHANNEL_METADATA.G.description} ({CHROMATIC_CHANNEL_METADATA.G.wavelengthLabel}),{" "}
-        {CHROMATIC_CHANNEL_METADATA.B.description} ({CHROMATIC_CHANNEL_METADATA.B.wavelengthLabel}), and, when enabled,{" "}
-        {CHROMATIC_CHANNEL_METADATA.V.description} ({CHROMATIC_CHANNEL_METADATA.V.wavelengthLabel}) marginal rays cross
-        the axis in the LoCA chart and where they land at the image plane in the fan-spread chart. This is a geometric
-        spectral-line trace; it is useful for comparing correction strategy, but it is not a full-spectrum diffraction,
-        sensor-stack, or production APO certification.
+        <strong>LoCA / axial color</strong> shows where the active on-axis marginal wavelengths focus along the optical
+        axis. <strong>Off-axis fan</strong> shows where the displayed off-axis marginal fan lands at the image plane.
+        Both charts use the same selected spectral channels: {CHROMATIC_CHANNEL_METADATA.R.description} (
+        {CHROMATIC_CHANNEL_METADATA.R.wavelengthLabel}), {CHROMATIC_CHANNEL_METADATA.G.description} (
+        {CHROMATIC_CHANNEL_METADATA.G.wavelengthLabel}), {CHROMATIC_CHANNEL_METADATA.B.description} (
+        {CHROMATIC_CHANNEL_METADATA.B.wavelengthLabel}), and, when enabled, {CHROMATIC_CHANNEL_METADATA.V.description} (
+        {CHROMATIC_CHANNEL_METADATA.V.wavelengthLabel}). These are geometric marginal-ray diagnostics for the displayed
+        fan traces; lateral color/TCA remains a separate chief-ray image-height metric in the chromatic analysis drawer.
       </p>
     </div>
   );

@@ -23,6 +23,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-06-08",
     type: "improvement",
+    summary: "Improved chromatic overlay labels for LoCA and off-axis fan diagnostics",
+  },
+  {
+    date: "2026-06-08",
+    type: "improvement",
     summary: "Improved glass matching and chromatic quality indicators",
   },
   {

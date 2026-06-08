@@ -1,7 +1,6 @@
 import type { PointerEvent, ReactNode, RefObject, TouchEvent, WheelEvent } from "react";
 import type { CardinalElements } from "../../../optics/cardinalElements.js";
 import type { LensMovementTransform } from "../../../optics/lensMovement.js";
-import type { LateralColorCurveResult } from "../../../optics/compat.js";
 import type { GroupMovementMode } from "../../../types/groupMovement.js";
 import type {
   ChromaticRayFanSpread,
@@ -58,8 +57,6 @@ export interface PanelComputedModel {
 export interface PanelRayDataModel {
   chromaticRayFanSpread: ChromaticRayFanSpread | null;
   chromaticRayFanSpreads: ChromaticRayFanSpreadByAxis;
-  chromaticOverlayLateralColor: LateralColorCurveResult | null;
-  chromaticOverlayLateralColorUnavailableReason: string | null;
   rays: RaySegment[];
   offAxisRays: RaySegment[];
   chromaticRays: ChromaticRaySegment[];

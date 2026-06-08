@@ -283,9 +283,9 @@ folded systems because the current off-axis and field sweeps need fixture-backed
 
 ### 15. Deeper Diagram Affordances For Lateral Color
 
-**Why it helps:** The chromatic detail overlay now separates chief-ray lateral color/TCA from displayed off-axis ray-fan
-spread. A deeper diagram affordance could connect the lateral-color curve to field points directly in the SVG without
-overloading the small LoCA inset.
+**Why it helps:** The chromatic detail overlay now focuses on marginal-ray diagnostics: LoCA and the displayed off-axis
+fan. A deeper diagram affordance could connect the lateral-color curve to field points directly in the SVG without
+overloading the small LoCA inset or confusing chief-ray TCA with fan endpoint spread.
 
 **Effort:** M
 
@@ -294,7 +294,7 @@ overloading the small LoCA inset.
 - Add an optional lateral-color field marker or mini-chart that is visually distinct from the LoCA inset.
 - Keep the current small diagram inset LoCA-only.
 - Link any new affordance to the existing `computeLateralColorCurve()` result, not to marginal ray-fan endpoint spread.
-- Add tests proving the diagram still labels off-axis fan spread separately from lateral color/TCA.
+- Add tests proving any future diagram-level lateral-color affordance remains visually distinct from off-axis fan spread.
 
 ---
 

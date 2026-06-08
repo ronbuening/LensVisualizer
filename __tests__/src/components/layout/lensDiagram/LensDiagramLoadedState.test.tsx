@@ -120,8 +120,6 @@ function baseProps(overrides: Partial<LensDiagramLoadedStateProps> = {}): LensDi
     rayData: {
       chromaticRayFanSpread: null,
       chromaticRayFanSpreads: { onAxis: null, offAxis: null },
-      chromaticOverlayLateralColor: null,
-      chromaticOverlayLateralColorUnavailableReason: null,
       rays: [],
       offAxisRays: [],
       chromaticRays: [],
