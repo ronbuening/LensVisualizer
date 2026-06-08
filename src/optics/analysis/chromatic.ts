@@ -8,7 +8,7 @@ import {
   computeLongitudinalChromaticFocus,
   type ChromaticAnalysisOptions,
 } from "../chromatic/analysis.js";
-import { computeChromaticSpread2, traceRayChromatic2 } from "../chromatic/chromaticTrace.js";
+import { computeChromaticRayFanSpread2, traceRayChromatic2 } from "../chromatic/chromaticTrace.js";
 import { CHROMATIC_CHANNEL_ORDER } from "../chromatic/channels.js";
 import {
   computeProjectionAwareOffAxisFieldGeometry,
@@ -20,7 +20,12 @@ import type { FieldGeometryState } from "../optics.js";
 import { traceChiefRelativeSkewRayChromatic } from "../rayTrace.js";
 import { traceSkewRayVectorChromatic2 } from "../trace/rayAdapters.js";
 import { thick } from "../layout.js";
-import type { ChromaticChannel, ChromaticSpread, ChromaticSpreadByAxis, RuntimeLens } from "../../types/optics.js";
+import type {
+  ChromaticChannel,
+  ChromaticRayFanSpread,
+  ChromaticRayFanSpreadByAxis,
+  RuntimeLens,
+} from "../../types/optics.js";
 import type { PreparedOpticalState } from "../types.js";
 import type { FieldCurvatureFieldResult, FieldCurvatureResult } from "../aberration/types.js";
 import { zPosForPreparedAnalysis2 } from "./preparedStateAdapters.js";
@@ -38,16 +43,16 @@ export type {
 const DEFAULT_ON_AXIS_FRACTIONS = [0.97, 0.95, 0.9, 0.85, 0.8] as const;
 const DEFAULT_OFF_AXIS_FRACTIONS = [0.75, 0.5, 0.25, -0.75, -0.5, -0.25] as const;
 
-export interface ChromaticRayTraceAnalysisOptions2 {
+export interface ChromaticRayFanAnalysisOptions2 {
   channels?: readonly ChromaticChannel[];
   onAxisFractions?: readonly number[];
   offAxisFractions?: readonly number[];
   offAxisFieldFraction?: number;
 }
 
-export interface ChromaticRayTraceAnalysis2 {
+export interface ChromaticRayFanAnalysis2 {
   channels: readonly ChromaticChannel[];
-  spreads: ChromaticSpreadByAxis;
+  spreads: ChromaticRayFanSpreadByAxis;
   offAxisFieldAngleDeg: number;
   onAxisAttemptedRayCount: number;
   offAxisAttemptedRayCount: number;
@@ -166,7 +171,7 @@ function computeSpreadFromFractions(
   lastSurfaceZ: number,
   axis: "onAxis" | "offAxis",
   trace: (fraction: number, channel: ChromaticChannel) => { y: number; u: number; z?: number; clipped: boolean },
-): { spread: ChromaticSpread | null; attemptedRayCount: number } {
+): { spread: ChromaticRayFanSpread | null; attemptedRayCount: number } {
   let attemptedRayCount = 0;
 
   for (const fraction of fractions) {
@@ -184,7 +189,7 @@ function computeSpreadFromFractions(
     if (validChannels.length >= 2) {
       return {
         spread: {
-          ...computeChromaticSpread2(marginalRays, imagePlaneZ, lastSurfaceZ),
+          ...computeChromaticRayFanSpread2(marginalRays, imagePlaneZ, lastSurfaceZ),
           axis,
           fraction,
           channels: validChannels,
@@ -197,7 +202,7 @@ function computeSpreadFromFractions(
   return { spread: null, attemptedRayCount };
 }
 
-export function computeChromaticRayTraceAnalysis2(
+export function computeChromaticRayFanAnalysis2(
   L: RuntimeLens,
   zPos: number[],
   focusT: number,
@@ -205,8 +210,8 @@ export function computeChromaticRayTraceAnalysis2(
   currentEPSD: number,
   currentPhysStopSD: number,
   aberrationT = 0,
-  options: ChromaticRayTraceAnalysisOptions2 = {},
-): ChromaticRayTraceAnalysis2 {
+  options: ChromaticRayFanAnalysisOptions2 = {},
+): ChromaticRayFanAnalysis2 {
   const channels = normalizeChannels(options.channels);
   const empty = {
     channels,
@@ -286,13 +291,13 @@ export function computeChromaticRayTraceAnalysis2(
   };
 }
 
-export function computeChromaticRayTraceAnalysisForState2(
+export function computeChromaticRayFanAnalysisForState2(
   state: PreparedOpticalState,
   currentEPSD: number,
   currentPhysStopSD: number,
-  options?: ChromaticRayTraceAnalysisOptions2,
-): ChromaticRayTraceAnalysis2 {
-  return computeChromaticRayTraceAnalysis2(
+  options?: ChromaticRayFanAnalysisOptions2,
+): ChromaticRayFanAnalysis2 {
+  return computeChromaticRayFanAnalysis2(
     state.lens.runtime,
     zPosFromState(state),
     state.focusT,

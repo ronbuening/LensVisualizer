@@ -19,7 +19,7 @@ import ApoLantharRaw from "../../../../src/lens-data/voigtlander/VoigtlanderApoL
 
 const Sonnar = { ...LENS_DEFAULTS, ...SonnarRaw } as LensData;
 const ApoLanthar = { ...LENS_DEFAULTS, ...ApoLantharRaw } as LensData;
-const displayLcaFallbackFractions = [0.97, 0.95, 0.9, 0.85, 0.8] as const;
+const displayLocaFallbackFractions = [0.97, 0.95, 0.9, 0.85, 0.8] as const;
 
 function buildTestFixture(focusT = 0, zoomT = 0, data: LensData = Sonnar) {
   const L = buildLens(data);
@@ -45,8 +45,8 @@ function buildTestFixture(focusT = 0, zoomT = 0, data: LensData = Sonnar) {
   return { L, zPos, IMG_MM, sx, sy, clampedRayEnd, currentPhysStopSD, currentEPSD };
 }
 
-function expectedDisplayLcaFractions(L: RuntimeLens): number[] {
-  const fractions: number[] = [...displayLcaFallbackFractions];
+function expectedDisplayLocaFractions(L: RuntimeLens): number[] {
+  const fractions: number[] = [...displayLocaFallbackFractions];
   for (const fraction of L.rayFractions) {
     const absolute = Math.abs(fraction);
     if (absolute > 1e-12 && !fractions.some((value) => Math.abs(value - absolute) < 1e-12)) {
@@ -85,7 +85,7 @@ describe("useChromaticRays", () => {
       }),
     );
     expect(result.current.chromaticRays).toEqual([]);
-    expect(result.current.chromSpread).toBeNull();
+    expect(result.current.chromaticRayFanSpread).toBeNull();
     expect(result.current.error).toBeNull();
   });
 
@@ -116,7 +116,7 @@ describe("useChromaticRays", () => {
       }),
     );
     expect(result.current.chromaticRays).toEqual([]);
-    expect(result.current.chromSpread).toBeNull();
+    expect(result.current.chromaticRayFanSpread).toBeNull();
   });
 
   it("returns empty when no channels enabled", () => {
@@ -283,14 +283,14 @@ describe("useChromaticRays", () => {
       }),
     );
     expect(result.current.chromaticRays.every((r) => r.axis === "offAxis")).toBe(true);
-    expect(result.current.chromaticSpreads.onAxis).toBeNull();
-    expect(result.current.chromaticSpreads.offAxis).not.toBeNull();
-    expect(result.current.chromaticSpreads.offAxis?.axis).toBe("offAxis");
-    expect(result.current.chromaticSpreads.offAxis?.channels).toEqual(["R", "G"]);
-    expect(result.current.chromSpread).toBe(result.current.chromaticSpreads.offAxis);
+    expect(result.current.chromaticRayFanSpreads.onAxis).toBeNull();
+    expect(result.current.chromaticRayFanSpreads.offAxis).not.toBeNull();
+    expect(result.current.chromaticRayFanSpreads.offAxis?.axis).toBe("offAxis");
+    expect(result.current.chromaticRayFanSpreads.offAxis?.channels).toEqual(["R", "G"]);
+    expect(result.current.chromaticRayFanSpread).toBe(result.current.chromaticRayFanSpreads.offAxis);
   });
 
-  it("computes chromSpread with 2+ channels", () => {
+  it("computes chromaticRayFanSpread with 2+ channels", () => {
     const { L, zPos, IMG_MM, sx, sy, clampedRayEnd, currentPhysStopSD, currentEPSD } = buildTestFixture();
     const { result } = renderHook(() =>
       useChromaticRays({
@@ -317,26 +317,29 @@ describe("useChromaticRays", () => {
         lensKey: "ZeissSonnar50f15",
       }),
     );
-    expect(result.current.chromSpread).not.toBeNull();
-    expect(result.current.chromaticSpreads.onAxis).toBe(result.current.chromSpread);
-    expect(result.current.chromaticSpreads.offAxis).toBeNull();
-    expect(typeof result.current.chromSpread!.lcaMm).toBe("number");
-    expect(typeof result.current.chromSpread!.tcaMm).toBe("number");
-    expect(result.current.chromSpread!.axis).toBe("onAxis");
-    expect(result.current.chromSpread!.channels).toEqual(["R", "G", "B"]);
-    expect(typeof result.current.chromSpread!.fraction).toBe("number");
+    expect(result.current.chromaticRayFanSpread).not.toBeNull();
+    expect(result.current.chromaticRayFanSpreads.onAxis).toBe(result.current.chromaticRayFanSpread);
+    expect(result.current.chromaticRayFanSpreads.offAxis).toBeNull();
+    expect(typeof result.current.chromaticRayFanSpread!.axialInterceptSpreadMm).toBe("number");
+    expect(typeof result.current.chromaticRayFanSpread!.imagePlaneHeightSpreadMm).toBe("number");
+    expect(result.current.chromaticRayFanSpread!.axis).toBe("onAxis");
+    expect(result.current.chromaticRayFanSpread!.channels).toEqual(["R", "G", "B"]);
+    expect(typeof result.current.chromaticRayFanSpread!.fraction).toBe("number");
 
     const expected = computeLongitudinalChromaticFocus(L, zPos, 0, 0, currentEPSD, currentPhysStopSD, 0, {
       channels: ["R", "G", "B"],
-      longitudinalFractions: expectedDisplayLcaFractions(L),
+      longitudinalFractions: expectedDisplayLocaFractions(L),
     })!.spread;
-    expect(result.current.chromSpread!.lcaMm).toBeCloseTo(expected.lcaMm, 12);
-    expect(result.current.chromSpread!.fraction).toBe(expected.fraction);
+    expect(result.current.chromaticRayFanSpread!.axialInterceptSpreadMm).toBeCloseTo(
+      expected.axialInterceptSpreadMm,
+      12,
+    );
+    expect(result.current.chromaticRayFanSpread!.fraction).toBe(expected.fraction);
   });
 
-  it("does not report a larger LCA when a selected RGB channel is hidden", () => {
+  it("does not report a larger LoCA spread when a selected RGB channel is hidden", () => {
     const { L, zPos, IMG_MM, sx, sy, clampedRayEnd, currentPhysStopSD, currentEPSD } = buildTestFixture();
-    const getLca = (channels: { chromR: boolean; chromG: boolean; chromB: boolean }) => {
+    const getLoca = (channels: { chromR: boolean; chromG: boolean; chromB: boolean }) => {
       const { result } = renderHook(() =>
         useChromaticRays({
           L,
@@ -361,14 +364,14 @@ describe("useChromaticRays", () => {
         }),
       );
       expect(result.current.error).toBeNull();
-      expect(result.current.chromSpread).not.toBeNull();
-      return result.current.chromSpread!.lcaMm;
+      expect(result.current.chromaticRayFanSpread).not.toBeNull();
+      return result.current.chromaticRayFanSpread!.axialInterceptSpreadMm;
     };
 
-    const allRgb = getLca({ chromR: true, chromG: true, chromB: true });
-    const noRed = getLca({ chromR: false, chromG: true, chromB: true });
-    const noGreen = getLca({ chromR: true, chromG: false, chromB: true });
-    const noBlue = getLca({ chromR: true, chromG: true, chromB: false });
+    const allRgb = getLoca({ chromR: true, chromG: true, chromB: true });
+    const noRed = getLoca({ chromR: false, chromG: true, chromB: true });
+    const noGreen = getLoca({ chromR: true, chromG: false, chromB: true });
+    const noBlue = getLoca({ chromR: true, chromG: true, chromB: false });
 
     expect(noRed).toBeLessThanOrEqual(allRgb + 1e-9);
     expect(noGreen).toBeLessThanOrEqual(allRgb + 1e-9);
@@ -408,11 +411,11 @@ describe("useChromaticRays", () => {
     );
 
     expect(result.current.error).toBeNull();
-    expect(result.current.chromSpread).not.toBeNull();
-    expect(Object.keys(result.current.chromSpread!.intercepts).length).toBeGreaterThanOrEqual(2);
+    expect(result.current.chromaticRayFanSpread).not.toBeNull();
+    expect(Object.keys(result.current.chromaticRayFanSpread!.axialIntercepts).length).toBeGreaterThanOrEqual(2);
   });
 
-  it("returns null chromSpread with only 1 channel", () => {
+  it("returns null chromaticRayFanSpread with only 1 channel", () => {
     const { L, zPos, IMG_MM, sx, sy, clampedRayEnd, currentPhysStopSD, currentEPSD } = buildTestFixture();
     const { result } = renderHook(() =>
       useChromaticRays({
@@ -440,8 +443,8 @@ describe("useChromaticRays", () => {
       }),
     );
     // Only 1 channel → can't compute spread
-    expect(result.current.chromSpread).toBeNull();
-    expect(result.current.chromaticSpreads).toEqual({ onAxis: null, offAxis: null });
+    expect(result.current.chromaticRayFanSpread).toBeNull();
+    expect(result.current.chromaticRayFanSpreads).toEqual({ onAxis: null, offAxis: null });
   });
 
   it("catches errors gracefully", () => {

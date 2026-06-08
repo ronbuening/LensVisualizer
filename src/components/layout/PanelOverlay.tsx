@@ -6,7 +6,7 @@
  * ancestor. Clicking the backdrop closes the overlay; clicks on the content
  * panel are absorbed via stopPropagation.
  *
- * Designed for reuse with any diagram-level measure overlay (LCA, TCA, etc.).
+ * Designed for reuse with any diagram-level measure overlay.
  */
 
 import type { ReactNode } from "react";

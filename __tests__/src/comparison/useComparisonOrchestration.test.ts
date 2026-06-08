@@ -86,7 +86,7 @@ function buildState(overrides?: Partial<LensState["lens"]>): LensState {
       headerInfoExpanded: true,
       abbeShowGlassType: true,
       glassMapOpen: false,
-      lcaOverlayOpen: false,
+      chromaticOverlayOpen: false,
       petzvalOverlayOpen: false,
       showEffectiveAperture: false,
       aberrationsExpanded: true,

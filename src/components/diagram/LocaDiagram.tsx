@@ -69,7 +69,7 @@ const WY = {
 const ACH_CX = 158; // achromat panel
 const APO_CX = 482; // apochromat panel
 
-export default function LCADiagram({ isDark }: { isDark: boolean }) {
+export default function LocaDiagram({ isDark }: { isDark: boolean }) {
   const c = isDark ? DARK : LIGHT;
 
   // Reference horizontal lines for each wavelength across both panels
@@ -211,8 +211,8 @@ export default function LCADiagram({ isDark }: { isDark: boolean }) {
         y2={WY.d - 8}
         stroke={c.annotArrow}
         strokeWidth={1.2}
-        markerEnd="url(#lca-arr-r)"
-        markerStart="url(#lca-arr-l)"
+        markerEnd="url(#loca-arr-r)"
+        markerStart="url(#loca-arr-l)"
       />
       <text x={ACH_CX - 6} y={WY.d - 14} textAnchor="end" fill={c.annotArrow} fontFamily={FONT} fontSize={9}>
         secondary
@@ -297,10 +297,10 @@ export default function LCADiagram({ isDark }: { isDark: boolean }) {
 
       {/* Arrow markers for secondary spectrum annotation */}
       <defs>
-        <marker id="lca-arr-r" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto">
+        <marker id="loca-arr-r" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto">
           <path d="M0,0 L5,2.5 L0,5 Z" fill={c.annotArrow} />
         </marker>
-        <marker id="lca-arr-l" markerWidth="5" markerHeight="5" refX="1" refY="2.5" orient="auto-start-reverse">
+        <marker id="loca-arr-l" markerWidth="5" markerHeight="5" refX="1" refY="2.5" orient="auto-start-reverse">
           <path d="M0,0 L5,2.5 L0,5 Z" fill={c.annotArrow} />
         </marker>
       </defs>

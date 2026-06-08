@@ -10,7 +10,7 @@ import { halfFieldAtZoom } from "../../optics/optics.js";
 import { ENABLE_ASPH_DIAMOND_FILL, ENABLE_EDGE_PROJECTION } from "../../utils/featureFlags.js";
 import { collapseBtn } from "../../utils/style/styles.js";
 import CollapseButton from "../controls/CollapseButton.js";
-import type { RuntimeLens, ChromaticSpread, ChromaticSpreadByAxis } from "../../types/optics.js";
+import type { RuntimeLens, ChromaticRayFanSpread, ChromaticRayFanSpreadByAxis } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
 import type { OffAxisMode } from "../../types/state.js";
 import type { CSSProperties } from "react";
@@ -27,8 +27,8 @@ interface DiagramLegendProps {
   chromG: boolean;
   chromB: boolean;
   chromV: boolean;
-  chromSpread: ChromaticSpread | null;
-  chromaticSpreads?: ChromaticSpreadByAxis;
+  chromaticRayFanSpread: ChromaticRayFanSpread | null;
+  chromaticRayFanSpreads?: ChromaticRayFanSpreadByAxis;
   rayTracksF: boolean;
   legendExpanded: boolean;
   onLegendExpandedChange?: (expanded: boolean) => void;
@@ -47,15 +47,15 @@ export default function DiagramLegend({
   chromG,
   chromB,
   chromV,
-  chromSpread,
-  chromaticSpreads,
+  chromaticRayFanSpread,
+  chromaticRayFanSpreads,
   rayTracksF,
   legendExpanded,
   onLegendExpandedChange,
   onOpenAbbeDiagram,
 }: DiagramLegendProps) {
   const hasAbbeData = L.elements.some((e) => e.vd != null);
-  const axisSpreads = chromaticSpreads ?? { onAxis: chromSpread, offAxis: null };
+  const axisSpreads = chromaticRayFanSpreads ?? { onAxis: chromaticRayFanSpread, offAxis: null };
   const activeChannelCount = [chromR, chromG, chromB, chromV].filter(Boolean).length;
   const hasMetricAxis = showOnAxis || showOffAxis !== "off";
   const formatUm = (mm: number) =>
@@ -189,10 +189,12 @@ export default function DiagramLegend({
               const chromLabel = activeCh.length > 0 ? `Chromatic (${activeCh.join("/")})` : "Chromatic (none)";
               const summaryParts: string[] = [];
               if (showOnAxis && axisSpreads.onAxis) {
-                summaryParts.push(`axial LCA ${formatSpreadUm(axisSpreads.onAxis.lcaMm)}`);
+                summaryParts.push(`LoCA ${formatSpreadUm(axisSpreads.onAxis.axialInterceptSpreadMm)}`);
               }
               if (showOffAxis !== "off" && axisSpreads.offAxis) {
-                summaryParts.push(`off-axis TCA ${formatSpreadUm(axisSpreads.offAxis.tcaMm)}`);
+                summaryParts.push(
+                  `off-axis fan spread ${formatSpreadUm(axisSpreads.offAxis.imagePlaneHeightSpreadMm)}`,
+                );
               }
               const spreadSummary = summaryParts.length > 0 ? ` · ${summaryParts.join(" / ")}` : "";
               return (
@@ -232,7 +234,7 @@ export default function DiagramLegend({
             >
               {showOnAxis && (
                 <>
-                  <span style={{ fontSize: 10, color: t.label, letterSpacing: "0.1em" }}>AXIAL LCA</span>
+                  <span style={{ fontSize: 10, color: t.label, letterSpacing: "0.1em" }}>LoCA / Axial color</span>
                   <span
                     style={{
                       fontSize: 13,
@@ -242,7 +244,7 @@ export default function DiagramLegend({
                     }}
                   >
                     {axisSpreads.onAxis
-                      ? formatSpreadUm(axisSpreads.onAxis.lcaMm)
+                      ? formatSpreadUm(axisSpreads.onAxis.axialInterceptSpreadMm)
                       : activeChannelCount >= 2
                         ? "unavailable"
                         : "need 2 channels"}
@@ -252,7 +254,7 @@ export default function DiagramLegend({
               {showOffAxis !== "off" && (
                 <>
                   <span style={{ fontSize: 10, color: t.label, letterSpacing: "0.1em", marginLeft: 6 }}>
-                    OFF-AXIS TCA
+                    Off-axis fan spread
                   </span>
                   <span
                     style={{
@@ -263,7 +265,7 @@ export default function DiagramLegend({
                     }}
                   >
                     {axisSpreads.offAxis
-                      ? formatSpreadUm(axisSpreads.offAxis.tcaMm)
+                      ? formatSpreadUm(axisSpreads.offAxis.imagePlaneHeightSpreadMm)
                       : activeChannelCount >= 2
                         ? "unavailable"
                         : "need 2 channels"}

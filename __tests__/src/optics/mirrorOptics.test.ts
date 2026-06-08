@@ -378,7 +378,7 @@ describe("mirror optics support", () => {
     });
 
     expect(result).not.toBeNull();
-    expect(result!.spread.imgHeights.G).toBeCloseTo(green.y, 12);
+    expect(result!.spread.imagePlaneHeights.G).toBeCloseTo(green.y, 12);
     expect(Math.abs(result!.samples.find((sample) => sample.channel === "G")!.focusShiftMm!)).toBeLessThan(1);
   });
 

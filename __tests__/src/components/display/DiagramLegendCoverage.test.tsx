@@ -15,8 +15,18 @@ function lens(hasAbbeData = true): RuntimeLens {
   } as unknown as RuntimeLens;
 }
 
-const defaultAxialSpread = { lcaMm: 0.0012, tcaMm: 0, intercepts: {}, imgHeights: {} };
-const defaultOffAxisSpread = { lcaMm: 0.0002, tcaMm: 0.0004, intercepts: {}, imgHeights: {} };
+const defaultAxialSpread = {
+  axialInterceptSpreadMm: 0.0012,
+  imagePlaneHeightSpreadMm: 0,
+  axialIntercepts: {},
+  imagePlaneHeights: {},
+};
+const defaultOffAxisSpread = {
+  axialInterceptSpreadMm: 0.0002,
+  imagePlaneHeightSpreadMm: 0.0004,
+  axialIntercepts: {},
+  imagePlaneHeights: {},
+};
 
 function renderLegend({
   isWide = true,
@@ -29,10 +39,10 @@ function renderLegend({
   chromB = true,
   chromV = false,
   rayTracksF = true,
-  chromSpread = defaultAxialSpread,
-  chromaticSpreads = chromSpread
+  chromaticRayFanSpread = defaultAxialSpread,
+  chromaticRayFanSpreads = chromaticRayFanSpread
     ? {
-        onAxis: chromSpread,
+        onAxis: chromaticRayFanSpread,
         offAxis: defaultOffAxisSpread,
       }
     : { onAxis: null, offAxis: null },
@@ -54,8 +64,8 @@ function renderLegend({
         chromG={chromG}
         chromB={chromB}
         chromV={chromV}
-        chromSpread={chromSpread}
-        chromaticSpreads={chromaticSpreads}
+        chromaticRayFanSpread={chromaticRayFanSpread}
+        chromaticRayFanSpreads={chromaticRayFanSpreads}
         rayTracksF={rayTracksF}
         legendExpanded={legendExpanded}
         onLegendExpandedChange={onLegendExpandedChange}
@@ -80,7 +90,7 @@ describe("DiagramLegend", () => {
     expect(callbacks.onLegendExpandedChange).toHaveBeenCalledWith(true);
   });
 
-  it("renders ray mode descriptions and chromatic LCA/TCA readouts", () => {
+  it("renders ray mode descriptions and chromatic LoCA/fan-spread readouts", () => {
     renderLegend();
 
     expect(screen.getByText("Hover an element for optical details")).toBeTruthy();
@@ -88,23 +98,38 @@ describe("DiagramLegend", () => {
     expect(screen.getByText(/Off-axis rays \(15\.4°/)).toBeTruthy();
     expect(screen.getByText("Vignetted (ghost)")).toBeTruthy();
     expect(screen.getByText(/Chromatic \(R\/B\)/)).toBeTruthy();
-    expect(screen.getByText("AXIAL LCA")).toBeTruthy();
-    expect(screen.getByText("OFF-AXIS TCA")).toBeTruthy();
+    expect(screen.getByText("LoCA / Axial color")).toBeTruthy();
+    expect(screen.getByText("Off-axis fan spread")).toBeTruthy();
     expect(screen.getAllByText("1 µm").length).toBeGreaterThan(0);
     expect(screen.getByText("0.4 µm")).toBeTruthy();
   });
 
-  it("keeps axial LCA and off-axis TCA readouts on their own axis spreads", () => {
+  it("keeps LoCA and off-axis fan-spread readouts on their own axis spreads", () => {
     renderLegend({
-      chromSpread: { lcaMm: 0.099, tcaMm: 0.088, intercepts: {}, imgHeights: {} },
-      chromaticSpreads: {
-        onAxis: { lcaMm: 0.0012, tcaMm: 0.077, intercepts: {}, imgHeights: {} },
-        offAxis: { lcaMm: 0.066, tcaMm: 0.0004, intercepts: {}, imgHeights: {} },
+      chromaticRayFanSpread: {
+        axialInterceptSpreadMm: 0.099,
+        imagePlaneHeightSpreadMm: 0.088,
+        axialIntercepts: {},
+        imagePlaneHeights: {},
+      },
+      chromaticRayFanSpreads: {
+        onAxis: {
+          axialInterceptSpreadMm: 0.0012,
+          imagePlaneHeightSpreadMm: 0.077,
+          axialIntercepts: {},
+          imagePlaneHeights: {},
+        },
+        offAxis: {
+          axialInterceptSpreadMm: 0.066,
+          imagePlaneHeightSpreadMm: 0.0004,
+          axialIntercepts: {},
+          imagePlaneHeights: {},
+        },
       },
     });
 
-    expect(screen.getByText("AXIAL LCA")).toBeTruthy();
-    expect(screen.getByText("OFF-AXIS TCA")).toBeTruthy();
+    expect(screen.getByText("LoCA / Axial color")).toBeTruthy();
+    expect(screen.getByText("Off-axis fan spread")).toBeTruthy();
     expect(screen.getAllByText("1 µm").length).toBeGreaterThan(0);
     expect(screen.getByText("0.4 µm")).toBeTruthy();
     expect(screen.queryByText("99 µm")).toBeNull();
@@ -130,7 +155,7 @@ describe("DiagramLegend", () => {
         chromG={false}
         chromB={false}
         chromV={false}
-        chromSpread={null}
+        chromaticRayFanSpread={null}
         rayTracksF={false}
         legendExpanded={true}
         onOpenAbbeDiagram={vi.fn()}

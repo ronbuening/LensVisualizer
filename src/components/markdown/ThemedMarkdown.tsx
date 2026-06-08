@@ -11,7 +11,7 @@ import ExitPupilDiagram from "../diagram/ExitPupilDiagram.js";
 import TelecentricityDiagram from "../diagram/TelecentricityDiagram.js";
 import WorkingFNumberDiagram from "../diagram/WorkingFNumberDiagram.js";
 import PVDiagram from "../diagram/PVDiagram.js";
-import LCADiagram from "../diagram/LCADiagram.js";
+import LocaDiagram from "../diagram/LocaDiagram.js";
 import MTFDiagram from "../diagram/MTFDiagram.js";
 import type { Theme } from "../../types/theme.js";
 
@@ -304,10 +304,10 @@ function renderMarkdownImage(src: string | undefined, alt: string | undefined, t
       </figure>
     );
   }
-  if (src?.includes("lca-diagram")) {
+  if (src?.includes("loca-diagram")) {
     return (
       <figure style={{ margin: "24px 0", textAlign: "center" }}>
-        <LCADiagram isDark={isDark} />
+        <LocaDiagram isDark={isDark} />
         {caption}
       </figure>
     );

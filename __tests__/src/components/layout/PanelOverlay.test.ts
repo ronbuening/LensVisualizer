@@ -31,10 +31,10 @@ describe("PanelOverlay", () => {
   });
 });
 
-describe("LCAOverlayContent", () => {
+describe("ChromaticOverlayContent", () => {
   it("exports a default function component", async () => {
-    const mod = await import("../../../../src/components/diagram/LCAOverlayContent.js");
+    const mod = await import("../../../../src/components/diagram/ChromaticOverlayContent.js");
     expect(typeof mod.default).toBe("function");
-    expect(mod.default.name).toBe("LCAOverlayContent");
+    expect(mod.default.name).toBe("ChromaticOverlayContent");
   });
 });

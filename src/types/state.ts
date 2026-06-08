@@ -129,7 +129,7 @@ export type PanelField =
   | "headerInfoExpanded"
   | "abbeShowGlassType"
   | "glassMapOpen"
-  | "lcaOverlayOpen"
+  | "chromaticOverlayOpen"
   | "petzvalOverlayOpen"
   | "showEffectiveAperture"
   | "aberrationsExpanded"
@@ -145,7 +145,7 @@ export interface PanelsSlice {
   headerInfoExpanded: boolean;
   abbeShowGlassType: boolean;
   glassMapOpen: boolean;
-  lcaOverlayOpen: boolean;
+  chromaticOverlayOpen: boolean;
   petzvalOverlayOpen: boolean;
   showEffectiveAperture: boolean;
   aberrationsExpanded: boolean;
@@ -264,7 +264,7 @@ export interface URLState {
   selectedElementIdA?: number | null;
   selectedElementIdB?: number | null;
   glassMapOpen?: boolean;
-  lcaOverlayOpen?: boolean;
+  chromaticOverlayOpen?: boolean;
   petzvalOverlayOpen?: boolean;
   analysisDrawerOpen?: boolean;
   analysisDrawerTab?: AnalysisTabId;

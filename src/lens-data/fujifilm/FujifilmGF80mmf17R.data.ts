@@ -88,7 +88,7 @@ const LENS_DATA = {
       fl: -202.5,
       glass: "S-TIH10 (OHARA)",
       apd: false,
-      role: "Chromatic corrector for G1; titanium flint counteracts L11 LCA.",
+      role: "Chromatic corrector for G1; titanium flint counteracts L11 LoCA.",
     },
     {
       id: 3,

@@ -66,7 +66,7 @@ describe("useRayTracing", () => {
     expect(result.current.rays).toEqual([]);
     expect(result.current.offAxisRays).toEqual([]);
     expect(result.current.chromaticRays).toEqual([]);
-    expect(result.current.chromSpread).toBeNull();
+    expect(result.current.chromaticRayFanSpread).toBeNull();
     expect(result.current.rayError).toBeNull();
     expect(result.current.focusK).toBe(0);
   });
@@ -165,9 +165,9 @@ describe("useRayTracing", () => {
     expect(result.current.offAxisRays.length).toBeGreaterThan(0);
     expect(result.current.chromaticRays.some((r) => r.axis === "onAxis")).toBe(true);
     expect(result.current.chromaticRays.some((r) => r.axis === "offAxis")).toBe(true);
-    expect(result.current.chromSpread).not.toBeNull();
-    expect(result.current.chromaticSpreads.onAxis).not.toBeNull();
-    expect(result.current.chromaticSpreads.offAxis).not.toBeNull();
+    expect(result.current.chromaticRayFanSpread).not.toBeNull();
+    expect(result.current.chromaticRayFanSpreads.onAxis).not.toBeNull();
+    expect(result.current.chromaticRayFanSpreads.offAxis).not.toBeNull();
   });
 
   it("computes focusK when rayTracksF is true", () => {

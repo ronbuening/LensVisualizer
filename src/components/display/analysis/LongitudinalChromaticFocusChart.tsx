@@ -27,7 +27,7 @@ export default function LongitudinalChromaticFocusChart({
   const samples = result?.samples.filter((sample) => sample.usable && sample.relativeFocusShiftMm !== null) ?? [];
 
   if (!result || samples.length < 2) {
-    return <AnalysisEmptyState t={t}>Not enough chromatic focus data to plot axial LCA.</AnalysisEmptyState>;
+    return <AnalysisEmptyState t={t}>Not enough chromatic focus data to plot axial color/LoCA.</AnalysisEmptyState>;
   }
 
   const area = createPlotArea(width, height, { top: 24, right: 20, bottom: 44, left: 54 });

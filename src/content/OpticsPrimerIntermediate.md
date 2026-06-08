@@ -61,13 +61,13 @@ where nF and nC are the refractive indices at the F-line (486.13 nm, blue) and C
 
 The element-detail panel on this site shows the derived quantity *nF − nC* = (nd − 1)/νd alongside approximate red- and blue-channel indices so you can see at a glance how much a given element spreads color.
 
-## 6. Chromatic Aberration — LCA and TCA
+## 6. Chromatic Aberration — LoCA and TCA
 
-Because dispersion causes each wavelength to focus at a slightly different distance, a lens that is perfectly focused for green light will show red and blue light slightly out of focus. The axial (along the optical axis) component of this error is **longitudinal chromatic aberration** (**LCA**), reported on this site in micrometers (µm). The lateral (across the image height) component is **transverse chromatic aberration** (**TCA**), which manifests as color fringing at the edges of the frame.
+Because dispersion causes each wavelength to focus at a slightly different distance, a lens that is perfectly focused for green light will show red and blue light slightly out of focus. The axial (along the optical axis) component of this error is **longitudinal chromatic aberration** (**LoCA**), reported on this site in micrometers (µm). The lateral (across the image height) component is **transverse chromatic aberration** (**TCA**), which manifests as color fringing at the edges of the frame.
 
-An achromatic doublet — a positive crown element cemented to a negative flint element — is the classical correction strategy. The designer chooses the two glasses so that their combined dispersion cancels while their combined power remains positive. When the COLOR overlay is enabled in the viewer, you can see the separate R, G, and B ray paths diverge or converge at the image plane; the inset LCA diagram shows this spread at exaggerated magnification.
+An achromatic doublet — a positive crown element cemented to a negative flint element — is the classical correction strategy. The designer chooses the two glasses so that their combined dispersion cancels while their combined power remains positive. When the COLOR overlay is enabled in the viewer, you can see the separate R, G, and B ray paths diverge or converge at the image plane; the inset LoCA diagram shows this spread at exaggerated magnification.
 
-For a thin achromatic doublet, the condition for zero LCA is:
+For a thin achromatic doublet, the condition for zero LoCA is:
 
 > **φ₁/ν₁ + φ₂/ν₂ = 0**
 

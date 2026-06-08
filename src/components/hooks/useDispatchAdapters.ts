@@ -67,7 +67,7 @@ export interface DispatchAdapters {
   onGroupMovementModeChange: (mode: GroupMovementMode) => void;
   onZoomPanToggle: (v: boolean) => void;
   onGlassMapOpenChange: (v: boolean) => void;
-  onLcaOverlayChange: (v: boolean) => void;
+  onChromaticOverlayChange: (v: boolean) => void;
   onPetzvalOverlayChange: (v: boolean) => void;
 }
 
@@ -135,7 +135,8 @@ export default function useDispatchAdapters(): DispatchAdapters {
       onGroupMovementModeChange: (mode: GroupMovementMode) => dispatch({ type: SET_GROUP_MOVEMENT, open: true, mode }),
       onZoomPanToggle: (v: boolean) => dispatch({ type: SET_PANEL_EXPANDED, panel: "zoomPanActive", expanded: v }),
       onGlassMapOpenChange: (v: boolean) => dispatch({ type: SET_PANEL_EXPANDED, panel: "glassMapOpen", expanded: v }),
-      onLcaOverlayChange: (v: boolean) => dispatch({ type: SET_PANEL_EXPANDED, panel: "lcaOverlayOpen", expanded: v }),
+      onChromaticOverlayChange: (v: boolean) =>
+        dispatch({ type: SET_PANEL_EXPANDED, panel: "chromaticOverlayOpen", expanded: v }),
       onPetzvalOverlayChange: (v: boolean) =>
         dispatch({ type: SET_PANEL_EXPANDED, panel: "petzvalOverlayOpen", expanded: v }),
     }),

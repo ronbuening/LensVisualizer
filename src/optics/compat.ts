@@ -258,7 +258,7 @@ export {
   wavelengthNd2,
   type SurfaceIndexResolver2,
 } from "./chromatic/indexResolver.js";
-export { computeChromaticSpread2, traceEngineRayChromatic2 } from "./chromatic/chromaticTrace.js";
+export { computeChromaticRayFanSpread2, traceEngineRayChromatic2 } from "./chromatic/chromaticTrace.js";
 export { dispersionTableFromRuntime2, makeSurfaceDispersion2 } from "./chromatic/dispersionAdapter.js";
 export {
   summarizeDispersionQuality2,
@@ -301,8 +301,8 @@ export {
 export {
   computeChromaticAnalysis2,
   computeChromaticAnalysisForState2,
-  computeChromaticRayTraceAnalysis2,
-  computeChromaticRayTraceAnalysisForState2,
+  computeChromaticRayFanAnalysis2,
+  computeChromaticRayFanAnalysisForState2,
   computeLateralColorCurve2,
   computeLongitudinalChromaticFocus2,
   summarizeChromaticFieldFocus2,
@@ -311,8 +311,8 @@ export {
   type ChromaticChannelSpan2,
   type ChromaticFieldFocusFieldSummary2,
   type ChromaticFieldFocusSummary2,
-  type ChromaticRayTraceAnalysis2,
-  type ChromaticRayTraceAnalysisOptions2,
+  type ChromaticRayFanAnalysis2,
+  type ChromaticRayFanAnalysisOptions2,
   type LateralColorChannelSample,
   type LateralColorCurveResult,
   type LateralColorFieldSample,
@@ -362,4 +362,8 @@ export {
   rmsDeparture2,
   type DepartureSample2,
 } from "./analysis/asphericComparison.js";
-export { computeLcaBarOffsets2, REFERENCE_LCA_MM_2, type LcaBarResult2 } from "./analysis/lcaScaling.js";
+export {
+  computeLocaBarOffsets2,
+  REFERENCE_LOCA_MM_2,
+  type ChromaticBarResult2,
+} from "./analysis/chromaticRayFanScaling.js";

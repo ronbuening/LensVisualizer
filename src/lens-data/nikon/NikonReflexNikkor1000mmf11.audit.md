@@ -53,7 +53,7 @@ No new spectral line indices were found in the patent table. The patent's aberra
 Runtime checks during this audit found two behavior mismatches that are not prescription transcription errors:
 
 - Current field geometry collapses to `halfFieldDeg = 0` for this lens because the state field estimator tests a central chief ray against a centrally obstructed pupil. That makes the displayed off-axis fan effectively field-zero instead of a true oblique field fan.
-- Current longitudinal chromatic analysis reports about 8 mm LCA from the outer annular marginal ray. That conflicts with the patent's intended small axial color and is likely amplified by using image-plane extrapolation from rays that already terminate on the explicit folded image plane, plus annular/folded chief-ray assumptions.
+- Current longitudinal chromatic analysis reports about 8 mm LoCA from the outer annular marginal ray. That conflicts with the patent's intended small axial color and is likely amplified by using image-plane extrapolation from rays that already terminate on the explicit folded image plane, plus annular/folded chief-ray assumptions.
 
 ### Phase 4 - Analysis sync
 

@@ -3,20 +3,25 @@
  *
  * Traces density-derived axial and off-axis ray fans through wavelength-dependent
  * refractive indices for the selected spectral-line channels. Axial rays draw
- * the on-axis fan while a dedicated marginal-focus search feeds the LCA readout;
- * off-axis rays feed the transverse color readout using the same state-aware
+ * the on-axis fan while a dedicated marginal-focus search feeds the LoCA readout;
+ * off-axis rays feed the fan-spread readout using the same state-aware
  * field geometry as the monochrome off-axis fan.
  */
 import { useMemo } from "react";
 import {
-  computeChromaticSpread,
+  computeChromaticRayFanSpread,
   computeLongitudinalChromaticFocus,
   offsetVectorFieldRay,
   traceRayChromatic,
   traceRayVectorChromatic,
 } from "../../optics/optics.js";
 import { obstructionAwareRayFractionsForDensity } from "../../optics/raySampling.js";
-import type { RuntimeLens, ChromaticChannel, ChromaticSpread, ChromaticSpreadByAxis } from "../../types/optics.js";
+import type {
+  RuntimeLens,
+  ChromaticChannel,
+  ChromaticRayFanSpread,
+  ChromaticRayFanSpreadByAxis,
+} from "../../types/optics.js";
 import type { LensMovementTransform } from "../../optics/lensMovement.js";
 import type { OffAxisMode, RayDensity } from "../../types/state.js";
 import type { RaySegment } from "./useOnAxisRays.js";
@@ -61,15 +66,15 @@ interface UseChromaticRaysParams {
 
 interface UseChromaticRaysResult {
   chromaticRays: ChromaticRaySegment[];
-  chromSpread: ChromaticSpread | null;
-  chromaticSpreads: ChromaticSpreadByAxis;
+  chromaticRayFanSpread: ChromaticRayFanSpread | null;
+  chromaticRayFanSpreads: ChromaticRayFanSpreadByAxis;
   error: unknown;
 }
 
-const DISPLAY_LCA_FALLBACK_FRACTIONS = [0.97, 0.95, 0.9, 0.85, 0.8] as const;
+const DISPLAY_LOCA_FALLBACK_FRACTIONS = [0.97, 0.95, 0.9, 0.85, 0.8] as const;
 
 function longitudinalFractionsForDisplay(L: RuntimeLens, currentEPSD: number): number[] {
-  const fractions: number[] = [...DISPLAY_LCA_FALLBACK_FRACTIONS];
+  const fractions: number[] = [...DISPLAY_LOCA_FALLBACK_FRACTIONS];
   for (const fraction of obstructionAwareRayFractionsForDensity(L, L.rayFractions, "normal", currentEPSD)) {
     const absolute = Math.abs(fraction);
     if (absolute > 1e-12 && !fractions.some((value) => Math.abs(value - absolute) < 1e-12)) {
@@ -84,7 +89,7 @@ function spreadForAxis(
   axis: ChromaticRaySegment["axis"],
   IMG_MM: number,
   lastSurfaceZ: number,
-): ChromaticSpread | null {
+): ChromaticRayFanSpread | null {
   const axisRays = chromaticRays.filter((r) => r.axis === axis);
   if (axisRays.length === 0) return null;
 
@@ -102,7 +107,7 @@ function spreadForAxis(
     }
     const channels = Object.keys(marginalRays) as ChromaticChannel[];
     if (channels.length >= 2) {
-      return { ...computeChromaticSpread(marginalRays, IMG_MM, lastSurfaceZ), axis, fraction, channels };
+      return { ...computeChromaticRayFanSpread(marginalRays, IMG_MM, lastSurfaceZ), axis, fraction, channels };
     }
   }
 
@@ -289,7 +294,7 @@ export default function useChromaticRays({
 
   const chromaticRays = chromaticResult.segments;
 
-  const onAxisChromSpread = useMemo((): ChromaticSpread | null => {
+  const onAxisChromSpread = useMemo((): ChromaticRayFanSpread | null => {
     if (!L || !showChromatic || !showOnAxis || chromaticResult.error) return null;
     const channels = filterChannels(chromR, chromG, chromB, chromV);
     if (channels.length < 2) return null;
@@ -316,7 +321,7 @@ export default function useChromaticRays({
     aberrationT,
   ]);
 
-  const offAxisChromSpread = useMemo((): ChromaticSpread | null => {
+  const offAxisChromSpread = useMemo((): ChromaticRayFanSpread | null => {
     if (!L || !showChromatic || chromaticResult.error) return null;
     const channels = filterChannels(chromR, chromG, chromB, chromV);
     if (channels.length < 2) return null;
@@ -336,12 +341,12 @@ export default function useChromaticRays({
     movementTransform,
   ]);
 
-  const chromaticSpreads = useMemo(
-    (): ChromaticSpreadByAxis => ({ onAxis: onAxisChromSpread, offAxis: offAxisChromSpread }),
+  const chromaticRayFanSpreads = useMemo(
+    (): ChromaticRayFanSpreadByAxis => ({ onAxis: onAxisChromSpread, offAxis: offAxisChromSpread }),
     [onAxisChromSpread, offAxisChromSpread],
   );
 
-  const chromSpread = chromaticSpreads.onAxis ?? chromaticSpreads.offAxis;
+  const chromaticRayFanSpread = chromaticRayFanSpreads.onAxis ?? chromaticRayFanSpreads.offAxis;
 
-  return { chromaticRays, chromSpread, chromaticSpreads, error: chromaticResult.error };
+  return { chromaticRays, chromaticRayFanSpread, chromaticRayFanSpreads, error: chromaticResult.error };
 }

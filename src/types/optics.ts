@@ -457,19 +457,19 @@ export interface LayoutResult {
 
 export type ChromaticChannel = "R" | "G" | "B" | "V";
 
-export interface ChromaticSpread {
-  lcaMm: number;
-  tcaMm: number;
-  intercepts: Partial<Record<ChromaticChannel, number>>;
-  imgHeights: Partial<Record<ChromaticChannel, number>>;
+export interface ChromaticRayFanSpread {
+  axialInterceptSpreadMm: number;
+  imagePlaneHeightSpreadMm: number;
+  axialIntercepts: Partial<Record<ChromaticChannel, number>>;
+  imagePlaneHeights: Partial<Record<ChromaticChannel, number>>;
   axis?: "onAxis" | "offAxis";
   fraction?: number;
   channels?: ChromaticChannel[];
 }
 
-export interface ChromaticSpreadByAxis {
-  onAxis: ChromaticSpread | null;
-  offAxis: ChromaticSpread | null;
+export interface ChromaticRayFanSpreadByAxis {
+  onAxis: ChromaticRayFanSpread | null;
+  offAxis: ChromaticRayFanSpread | null;
 }
 
 /* ── Diagram geometry types ── */

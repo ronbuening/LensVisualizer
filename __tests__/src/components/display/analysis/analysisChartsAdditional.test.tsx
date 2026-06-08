@@ -5,9 +5,9 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import ChromaticFieldCurvaturePlot from "../../../../../src/components/display/analysis/ChromaticFieldCurvaturePlot.js";
 import FieldCurvatureMeanPlot from "../../../../../src/components/display/analysis/FieldCurvatureMeanPlot.js";
 import VignettingChart from "../../../../../src/components/display/analysis/VignettingChart.js";
-import LCAInsetWidget from "../../../../../src/components/diagram/LCAInsetWidget.js";
-import LCAOverlayContent from "../../../../../src/components/diagram/LCAOverlayContent.js";
-import TCAInsetWidget from "../../../../../src/components/diagram/TCAInsetWidget.js";
+import LocaInsetWidget from "../../../../../src/components/diagram/LocaInsetWidget.js";
+import ChromaticOverlayContent from "../../../../../src/components/diagram/ChromaticOverlayContent.js";
+import ChromaticFanSpreadWidget from "../../../../../src/components/diagram/ChromaticFanSpreadWidget.js";
 import {
   angleTicks,
   formatSignedCompactTick,
@@ -19,6 +19,7 @@ import {
 import themes from "../../../../../src/utils/theme/themes.js";
 import type { FieldCurvatureResult } from "../../../../../src/optics/aberrationAnalysis.js";
 import type { FieldCurvatureFieldResult } from "../../../../../src/optics/aberration/types.js";
+import type { LateralColorCurveResult } from "../../../../../src/optics/compat.js";
 import type { VignettingSample } from "../../../../../src/optics/vignetteAnalysis.js";
 
 function field(
@@ -141,12 +142,17 @@ describe("analysis chart coverage", () => {
     expect(container.querySelectorAll("circle")).toHaveLength(6);
   });
 
-  it("renders LCA inset channels, formatting, custom placement, and click handling", () => {
+  it("renders LoCA inset channels, formatting, custom placement, and click handling", () => {
     const onClick = vi.fn();
     const { container } = render(
       <svg>
-        <LCAInsetWidget
-          chromSpread={{ lcaMm: 0.0004, tcaMm: 0, intercepts: { R: -0.02, G: 0, B: 0.03 }, imgHeights: {} }}
+        <LocaInsetWidget
+          chromaticRayFanSpread={{
+            axialInterceptSpreadMm: 0.0004,
+            imagePlaneHeightSpreadMm: 0,
+            axialIntercepts: { R: -0.02, G: 0, B: 0.03 },
+            imagePlaneHeights: {},
+          }}
           effectiveSC={1}
           IMG_MM={0}
           IX={100}
@@ -164,7 +170,7 @@ describe("analysis chart coverage", () => {
       </svg>,
     );
 
-    expect(screen.getByText("LCA")).toBeTruthy();
+    expect(screen.getByText("LoCA")).toBeTruthy();
     expect(screen.getByText("R")).toBeTruthy();
     expect(screen.getByText("G")).toBeTruthy();
     expect(screen.getByText("B")).toBeTruthy();
@@ -176,11 +182,16 @@ describe("analysis chart coverage", () => {
     expect(onClick).toHaveBeenCalledTimes(1);
   });
 
-  it("renders TCA inset channels and image-plane formatting", () => {
+  it("renders off-axis fan-spread inset channels and image-plane formatting", () => {
     render(
       <svg>
-        <TCAInsetWidget
-          chromSpread={{ lcaMm: 0, tcaMm: 0.0005, intercepts: {}, imgHeights: { R: -0.00025, G: 0, B: 0.00025 } }}
+        <ChromaticFanSpreadWidget
+          chromaticRayFanSpread={{
+            axialInterceptSpreadMm: 0,
+            imagePlaneHeightSpreadMm: 0.0005,
+            axialIntercepts: {},
+            imagePlaneHeights: { R: -0.00025, G: 0, B: 0.00025 },
+          }}
           effectiveSC={1}
           t={themes.dark}
           width={160}
@@ -193,7 +204,7 @@ describe("analysis chart coverage", () => {
       </svg>,
     );
 
-    expect(screen.getByText("TCA")).toBeTruthy();
+    expect(screen.getByText("FAN")).toBeTruthy();
     expect(screen.getByText("Line indices")).toBeTruthy();
     expect(screen.queryByText("IMAGE HEIGHT")).toBeNull();
     expect(screen.getByText("R")).toBeTruthy();
@@ -202,19 +213,74 @@ describe("analysis chart coverage", () => {
     expect(screen.getByText("0.5 µm")).toBeTruthy();
   });
 
-  it("renders axial LCA with a matching off-axis TCA chart when both spreads are available", () => {
+  it("renders LoCA, lateral color/TCA, and off-axis fan spread as separate chromatic overlay panels", () => {
+    const lateralColor: LateralColorCurveResult = {
+      channels: ["R", "G", "B"],
+      referenceChannel: "G",
+      fieldFractions: [0, 1],
+      fields: [
+        {
+          fieldFraction: 0,
+          label: "0%",
+          fieldAngleDeg: 0,
+          referenceChannel: "G",
+          referenceImageHeightMm: 0,
+          lateralSpreadMm: 0.0001,
+          lateralSpreadUm: 0.1,
+          samples: [
+            { channel: "R", imageHeightMm: -0.00005, relativeHeightMm: -0.00005, usable: true, clipped: false },
+            { channel: "G", imageHeightMm: 0, relativeHeightMm: 0, usable: true, clipped: false },
+            { channel: "B", imageHeightMm: 0.00005, relativeHeightMm: 0.00005, usable: true, clipped: false },
+          ],
+          validChannelCount: 3,
+          usable: true,
+        },
+        {
+          fieldFraction: 1,
+          label: "100%",
+          fieldAngleDeg: 20,
+          referenceChannel: "G",
+          referenceImageHeightMm: 12,
+          lateralSpreadMm: 0.0003,
+          lateralSpreadUm: 0.3,
+          samples: [
+            { channel: "R", imageHeightMm: 11.99985, relativeHeightMm: -0.00015, usable: true, clipped: false },
+            { channel: "G", imageHeightMm: 12, relativeHeightMm: 0, usable: true, clipped: false },
+            { channel: "B", imageHeightMm: 12.00015, relativeHeightMm: 0.00015, usable: true, clipped: false },
+          ],
+          validChannelCount: 3,
+          usable: true,
+        },
+      ],
+      usableFieldCount: 2,
+      maxLateralSpreadMm: 0.0003,
+      maxLateralSpreadUm: 0.3,
+      imagePlaneZ: 40,
+      halfFieldDeg: 20,
+    };
     const { container } = render(
-      <LCAOverlayContent
-        chromSpread={{ lcaMm: 0.0004, tcaMm: 0, intercepts: { R: -0.02, G: 0, B: 0.03 }, imgHeights: {} }}
-        chromaticSpreads={{
-          onAxis: { lcaMm: 0.0004, tcaMm: 0, intercepts: { R: -0.02, G: 0, B: 0.03 }, imgHeights: {} },
+      <ChromaticOverlayContent
+        chromaticRayFanSpread={{
+          axialInterceptSpreadMm: 0.0004,
+          imagePlaneHeightSpreadMm: 0,
+          axialIntercepts: { R: -0.02, G: 0, B: 0.03 },
+          imagePlaneHeights: {},
+        }}
+        chromaticRayFanSpreads={{
+          onAxis: {
+            axialInterceptSpreadMm: 0.0004,
+            imagePlaneHeightSpreadMm: 0,
+            axialIntercepts: { R: -0.02, G: 0, B: 0.03 },
+            imagePlaneHeights: {},
+          },
           offAxis: {
-            lcaMm: 0.0008,
-            tcaMm: 0.0005,
-            intercepts: { R: -0.04, G: 0, B: 0.04 },
-            imgHeights: { R: -0.00025, G: 0, B: 0.00025 },
+            axialInterceptSpreadMm: 0.0008,
+            imagePlaneHeightSpreadMm: 0.0005,
+            axialIntercepts: { R: -0.04, G: 0, B: 0.04 },
+            imagePlaneHeights: { R: -0.00025, G: 0, B: 0.00025 },
           },
         }}
+        lateralColor={lateralColor}
         effectiveSC={1}
         IMG_MM={0}
         t={themes.dark}
@@ -222,21 +288,25 @@ describe("analysis chart coverage", () => {
       />,
     );
 
-    expect(screen.getByText("LCA")).toBeTruthy();
-    expect(screen.getByText("TCA")).toBeTruthy();
+    expect(screen.getByText("LoCA")).toBeTruthy();
+    expect(screen.getByText("FAN")).toBeTruthy();
     expect(screen.getAllByText("Line indices")).toHaveLength(2);
-    expect(screen.getByText(/OFF-AXIS TCA/)).toBeTruthy();
+    expect(screen.getByText("LoCA / Axial Color")).toBeTruthy();
+    expect(screen.getByText("Lateral Color (TCA)")).toBeTruthy();
+    expect(screen.getByText("Off-Axis Fan Spread")).toBeTruthy();
+    expect(screen.getByText(/OFF-AXIS FAN SPREAD/)).toBeTruthy();
+    expect(screen.getByText(/LATERAL COLOR \/ TCA/)).toBeTruthy();
     expect(screen.getByText(/Longitudinal color is the wavelength focus spread/)).toBeTruthy();
-    expect(screen.getByText(/Transverse color is the surviving wavelength spread/)).toBeTruthy();
-    expect(screen.getByText("Transverse Chromatic Aberration (TCA)")).toBeTruthy();
+    expect(screen.getByText(/Lateral color is the chief-ray image-height separation/)).toBeTruthy();
+    expect(screen.getByText(/It is not the chief-ray lateral color\/TCA metric/)).toBeTruthy();
     expect(screen.getByText("0.4 µm")).toBeTruthy();
     expect(screen.getAllByText("0.5 µm").length).toBeGreaterThan(0);
     expect(screen.queryByText("0.8 µm")).toBeNull();
 
     const charts = Array.from(container.querySelectorAll("svg"));
-    expect(charts).toHaveLength(2);
-    expect(charts.map((chart) => chart.getAttribute("width"))).toEqual(["340", "340"]);
-    expect(charts.map((chart) => chart.getAttribute("height"))).toEqual(["280", "280"]);
+    expect(charts.length).toBeGreaterThanOrEqual(3);
+    expect(charts[0].getAttribute("width")).toBe("340");
+    expect(charts[0].getAttribute("height")).toBe("280");
   });
 
   it("shares chart math helpers for scales, domains, ticks, and SVG paths", () => {
@@ -260,11 +330,16 @@ describe("analysis chart coverage", () => {
     ).toBe("M0.0,1.0 L2.0,3.0");
   });
 
-  it("auto-flips the LCA inset when it would overflow the right edge", () => {
+  it("auto-flips the LoCA inset when it would overflow the right edge", () => {
     const { container } = render(
       <svg>
-        <LCAInsetWidget
-          chromSpread={{ lcaMm: 0.02, tcaMm: 0, intercepts: { G: 0 }, imgHeights: {} }}
+        <LocaInsetWidget
+          chromaticRayFanSpread={{
+            axialInterceptSpreadMm: 0.02,
+            imagePlaneHeightSpreadMm: 0,
+            axialIntercepts: { G: 0 },
+            imagePlaneHeights: {},
+          }}
           effectiveSC={1}
           IMG_MM={0}
           IX={260}

@@ -28,7 +28,7 @@ import buildLens from "../optics/buildLens.js";
 import { analysisJobsForState2, createAnalysisComputationContext, prepareRuntimeState } from "../optics/compat.js";
 import {
   computeAnalysisFieldGeometryAtState,
-  computeChromaticSpread,
+  computeChromaticRayFanSpread,
   conjugateK,
   doLayout,
   effectiveFNumber,
@@ -68,7 +68,12 @@ import type { RaySegment } from "../components/hooks/useOnAxisRays.js";
 import type { FieldGeometryState } from "../optics/optics.js";
 import type { PreparedOpticalState } from "../optics/types.js";
 import type { AnalysisComputationContext } from "../optics/compat.js";
-import type { ChromaticChannel, ChromaticSpread, ChromaticSpreadByAxis, RuntimeLens } from "../types/optics.js";
+import type {
+  ChromaticChannel,
+  ChromaticRayFanSpread,
+  ChromaticRayFanSpreadByAxis,
+  RuntimeLens,
+} from "../types/optics.js";
 import type { OffAxisMode, RayDensity } from "../types/state.js";
 
 declare const process:
@@ -227,7 +232,7 @@ interface RayWorkOutput extends BenchmarkOutput {
   onAxisRays: number;
   offAxisRays: number;
   chromaticRays: number;
-  hasChromaticSpread: boolean;
+  hasChromaticRayFanSpread: boolean;
 }
 
 /** Full ray outputs reused by SVG rendering so trace cost is not counted twice there. */
@@ -235,8 +240,8 @@ interface RayWorkResult {
   rays: RaySegment[];
   offAxisRays: RaySegment[];
   chromaticRays: ChromaticRaySegment[];
-  chromSpread: ChromaticSpread | null;
-  chromaticSpreads: ChromaticSpreadByAxis;
+  chromaticRayFanSpread: ChromaticRayFanSpread | null;
+  chromaticRayFanSpreads: ChromaticRayFanSpreadByAxis;
   output: RayWorkOutput;
 }
 
@@ -592,25 +597,25 @@ function computeRayWork(snapshot: ScenarioSnapshot): RayWorkResult {
     }
   }
 
-  const chromaticSpreads: ChromaticSpreadByAxis = scenario.showChromatic
+  const chromaticRayFanSpreads: ChromaticRayFanSpreadByAxis = scenario.showChromatic
     ? {
         onAxis: spreadForAxis(chromaticRays, "onAxis", IMG_MM, zPos[L.N - 1]),
         offAxis: spreadForAxis(chromaticRays, "offAxis", IMG_MM, zPos[L.N - 1]),
       }
     : { onAxis: null, offAxis: null };
-  const chromSpread = chromaticSpreads.onAxis ?? chromaticSpreads.offAxis;
+  const chromaticRayFanSpread = chromaticRayFanSpreads.onAxis ?? chromaticRayFanSpreads.offAxis;
 
   return {
     rays,
     offAxisRays,
     chromaticRays,
-    chromSpread,
-    chromaticSpreads,
+    chromaticRayFanSpread,
+    chromaticRayFanSpreads,
     output: {
       onAxisRays: rays.length,
       offAxisRays: offAxisRays.length,
       chromaticRays: chromaticRays.length,
-      hasChromaticSpread: Boolean(chromSpread),
+      hasChromaticRayFanSpread: Boolean(chromaticRayFanSpread),
     },
   };
 }
@@ -963,7 +968,7 @@ function renderDiagram(snapshot: ScenarioSnapshot, rayWork: RayWorkResult): Benc
       rays={rayWork.rays}
       offAxisRays={rayWork.offAxisRays}
       chromaticRays={rayWork.chromaticRays}
-      chromSpread={rayWork.chromSpread}
+      chromaticRayFanSpread={rayWork.chromaticRayFanSpread}
       showOnAxis={snapshot.scenario.showOnAxis}
       showOffAxis={snapshot.scenario.showOffAxis}
       showChromatic={snapshot.scenario.showChromatic}
@@ -1172,7 +1177,7 @@ function spreadForAxis(
   axis: ChromaticRaySegment["axis"],
   IMG_MM: number,
   lastSurfaceZ: number,
-): ChromaticSpread | null {
+): ChromaticRayFanSpread | null {
   const axisRays = chromaticRays.filter((ray) => ray.axis === axis);
   if (axisRays.length === 0) return null;
 
@@ -1190,7 +1195,7 @@ function spreadForAxis(
     }
     const channels = Object.keys(marginalRays) as ChromaticChannel[];
     if (channels.length >= 2) {
-      return { ...computeChromaticSpread(marginalRays, IMG_MM, lastSurfaceZ), axis, fraction, channels };
+      return { ...computeChromaticRayFanSpread(marginalRays, IMG_MM, lastSurfaceZ), axis, fraction, channels };
     }
   }
 

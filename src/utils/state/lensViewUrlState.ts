@@ -22,7 +22,7 @@ type LensViewQueryKey =
   | "selectedElementIdA"
   | "selectedElementIdB"
   | "glassMapOpen"
-  | "lcaOverlayOpen"
+  | "chromaticOverlayOpen"
   | "petzvalOverlayOpen"
   | "analysisDrawerOpen"
   | "analysisDrawerTab"
@@ -50,7 +50,7 @@ export const VIEW_STATE_FIELDS = [
   { key: "selectedElementIdA", default: null as number | null },
   { key: "selectedElementIdB", default: null as number | null },
   { key: "glassMapOpen", default: false },
-  { key: "lcaOverlayOpen", default: false },
+  { key: "chromaticOverlayOpen", default: false },
   { key: "petzvalOverlayOpen", default: false },
   { key: "analysisDrawerOpen", default: false },
   { key: "groupMovementOpen", default: false },
@@ -70,7 +70,7 @@ const DEFAULT_URL_STATE: Partial<URLState> = {
   selectedElementIdA: null,
   selectedElementIdB: null,
   glassMapOpen: false,
-  lcaOverlayOpen: false,
+  chromaticOverlayOpen: false,
   petzvalOverlayOpen: false,
   analysisDrawerOpen: false,
   analysisDrawerTab: "aberrations",
@@ -129,7 +129,7 @@ export function parseLensViewQuery(search: string): LensViewQueryState {
   const selectedElementIdA = parseElementId(params, "a_el");
   const selectedElementIdB = parseElementId(params, "b_el");
   const glassMapOpen = parseBooleanParam(params, "gm");
-  const lcaOverlayOpen = parseBooleanParam(params, "lca");
+  const chromaticOverlayOpen = parseBooleanParam(params, "chr");
   const petzvalOverlayOpen = parseBooleanParam(params, "ptz");
   const analysisDrawerOpen = parseBooleanParam(params, "ad");
   const movementMode = params.get("mv");
@@ -139,7 +139,7 @@ export function parseLensViewQuery(search: string): LensViewQueryState {
   if (selectedElementIdA != null) state.selectedElementIdA = selectedElementIdA;
   if (selectedElementIdB != null) state.selectedElementIdB = selectedElementIdB;
   if (glassMapOpen !== undefined) state.glassMapOpen = glassMapOpen;
-  if (lcaOverlayOpen !== undefined) state.lcaOverlayOpen = lcaOverlayOpen;
+  if (chromaticOverlayOpen !== undefined) state.chromaticOverlayOpen = chromaticOverlayOpen;
   if (petzvalOverlayOpen !== undefined) state.petzvalOverlayOpen = petzvalOverlayOpen;
   if (analysisDrawerOpen !== undefined) state.analysisDrawerOpen = analysisDrawerOpen;
   if (isAnalysisTabId(tab)) state.analysisDrawerTab = tab;
@@ -163,7 +163,7 @@ export function buildLensViewQuery({
   selectedElementIdA,
   selectedElementIdB,
   glassMapOpen,
-  lcaOverlayOpen,
+  chromaticOverlayOpen,
   petzvalOverlayOpen,
   analysisDrawerOpen,
   analysisDrawerTab,
@@ -173,7 +173,7 @@ export function buildLensViewQuery({
   const usesV1ViewState =
     (comparing ? selectedElementIdA != null || selectedElementIdB != null : selectedElementId != null) ||
     Boolean(glassMapOpen) ||
-    Boolean(lcaOverlayOpen) ||
+    Boolean(chromaticOverlayOpen) ||
     Boolean(petzvalOverlayOpen) ||
     Boolean(analysisDrawerOpen) ||
     Boolean(groupMovementOpen);
@@ -195,7 +195,7 @@ export function buildLensViewQuery({
   }
 
   if (glassMapOpen) params.set("gm", "1");
-  if (lcaOverlayOpen) params.set("lca", "1");
+  if (chromaticOverlayOpen) params.set("chr", "1");
   if (petzvalOverlayOpen) params.set("ptz", "1");
   if (analysisDrawerOpen) params.set("ad", "1");
   if (analysisDrawerOpen && analysisDrawerTab && analysisDrawerTab !== "aberrations") {
@@ -231,7 +231,7 @@ export function buildLensViewQueryFromState(state: LensState, zoom: number | nul
     selectedElementIdA: state.panels.selectedElementIdA,
     selectedElementIdB: state.panels.selectedElementIdB,
     glassMapOpen: state.panels.glassMapOpen,
-    lcaOverlayOpen: state.panels.lcaOverlayOpen,
+    chromaticOverlayOpen: state.panels.chromaticOverlayOpen,
     petzvalOverlayOpen: state.panels.petzvalOverlayOpen,
     analysisDrawerOpen: state.panels.analysisDrawerOpen,
     analysisDrawerTab: state.panels.analysisDrawerTab,

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
-  computeChromaticSpread,
+  computeChromaticRayFanSpread,
   doLayout,
   sampleCircularPupil,
   sampleOrthogonalPupilFan,
@@ -80,7 +80,7 @@ describe("traceSkewRay", () => {
     expect(clipped.clipped).toBe(true);
   });
 
-  it("projects finite skew intercepts to the image plane", () => {
+  it("projects finite skew axialIntercepts to the image plane", () => {
     const skew = traceSkewRay(2, 1, 0.02, -0.03, 0, 0, 15, false, L);
     const intercept = skewImagePlaneIntercept(skew.x, skew.y, skew.ux, skew.uy, lastSurfZ, imagePlaneZ);
 
@@ -285,8 +285,8 @@ describe("chromatic fallback helpers", () => {
     expect(blue).toBeLessThan(violet);
   });
 
-  it("measures chromatic spread while omitting clipped and zero-slope intercepts", () => {
-    const spread = computeChromaticSpread(
+  it("measures chromatic spread while omitting clipped and zero-slope axialIntercepts", () => {
+    const spread = computeChromaticRayFanSpread(
       {
         R: { y: 1, u: -0.1, clipped: false },
         G: { y: 0.5, u: 0, clipped: false },
@@ -297,12 +297,12 @@ describe("chromatic fallback helpers", () => {
       10,
     );
 
-    expect(spread.intercepts.R).toBeCloseTo(20, 10);
-    expect(spread.intercepts.G).toBeUndefined();
-    expect(spread.intercepts.B).toBeUndefined();
-    expect(spread.intercepts.V).toBeCloseTo(12, 10);
-    expect(spread.lcaMm).toBeCloseTo(8, 10);
-    expect(spread.tcaMm).toBeCloseTo(0.8, 10);
+    expect(spread.axialIntercepts.R).toBeCloseTo(20, 10);
+    expect(spread.axialIntercepts.G).toBeUndefined();
+    expect(spread.axialIntercepts.B).toBeUndefined();
+    expect(spread.axialIntercepts.V).toBeCloseTo(12, 10);
+    expect(spread.axialInterceptSpreadMm).toBeCloseTo(8, 10);
+    expect(spread.imagePlaneHeightSpreadMm).toBeCloseTo(0.8, 10);
   });
 });
 
@@ -424,7 +424,7 @@ describe("traceSkewRayChromatic", () => {
     }
   });
 
-  it("produces different R and B intercepts for a dispersive lens", () => {
+  it("produces different R and B axialIntercepts for a dispersive lens", () => {
     const L = build(Sonnar50f15Raw);
 
     const redSkew = traceSkewRayChromatic(0, 5, 0, 0, 0, 0, L.stopPhysSD, false, L, "R");

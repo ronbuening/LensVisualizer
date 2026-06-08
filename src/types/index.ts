@@ -22,7 +22,7 @@ export type {
   ParaxialTraceResult,
   LayoutResult,
   ChromaticChannel,
-  ChromaticSpread,
+  ChromaticRayFanSpread,
   CoordinateTransforms,
   AsphPathData,
   ElementShape,

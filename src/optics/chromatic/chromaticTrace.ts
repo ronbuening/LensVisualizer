@@ -4,7 +4,7 @@
  * Converts prepared-state dispersion resolvers into RGB/V ray traces and channel spread summaries for UI displays.
  */
 
-import type { ChromaticChannel, ChromaticSpread, RayTraceResult, RuntimeLens } from "../../types/optics.js";
+import type { ChromaticChannel, ChromaticRayFanSpread, RayTraceResult, RuntimeLens } from "../../types/optics.js";
 import type { Ray3, PreparedOpticalState } from "../types.js";
 import {
   traceEngineRay2,
@@ -55,38 +55,38 @@ export function traceEngineRayChromatic2(
 }
 
 /**
- * Measure longitudinal and transverse chromatic spread from traced marginal rays.
+ * Measure chromatic ray-fan spread from traced marginal rays.
  *
- * Longitudinal chromatic aberration is the span of per-channel axial intercepts;
- * transverse chromatic aberration is the span of per-channel heights at `imgZ`.
+ * LoCA spread is the span of per-channel axial intercepts; fan image-height spread
+ * is the span of per-channel heights at `imgZ`.
  * Clipped channels are ignored so a failed color does not bias the spread.
  *
  * @param marginalRays - per-channel marginal ray state after the last surface
  * @param imgZ - image-plane z coordinate in mm
  * @param lastSurfZ - final surface vertex z coordinate in mm
- * @returns LCA/TCA spans plus per-channel intercepts and image heights in mm
+ * @returns ray-fan spans plus per-channel axial intercepts and image heights in mm
  */
-export function computeChromaticSpread2(
+export function computeChromaticRayFanSpread2(
   marginalRays: Partial<Record<ChromaticChannel, MarginalRayData>>,
   imgZ: number,
   lastSurfZ: number,
-): ChromaticSpread {
-  const intercepts: Partial<Record<ChromaticChannel, number>> = {};
-  const imgHeights: Partial<Record<ChromaticChannel, number>> = {};
+): ChromaticRayFanSpread {
+  const axialIntercepts: Partial<Record<ChromaticChannel, number>> = {};
+  const imagePlaneHeights: Partial<Record<ChromaticChannel, number>> = {};
   for (const ch of ["R", "G", "B", "V"] as ChromaticChannel[]) {
     const ray = marginalRays[ch];
     if (!ray || ray.clipped) continue;
     const rayZ = Number.isFinite(ray.z) ? ray.z! : lastSurfZ;
     if (Math.abs(ray.u) > 1e-15) {
-      intercepts[ch] = rayZ - ray.y / ray.u;
+      axialIntercepts[ch] = rayZ - ray.y / ray.u;
     }
     const dz = imgZ - rayZ;
-    imgHeights[ch] = ray.y + dz * ray.u;
+    imagePlaneHeights[ch] = ray.y + dz * ray.u;
   }
 
-  const lcaMm = spanOf(Object.values(intercepts));
-  const tcaMm = spanOf(Object.values(imgHeights));
-  return { lcaMm, tcaMm, intercepts, imgHeights };
+  const axialInterceptSpreadMm = spanOf(Object.values(axialIntercepts));
+  const imagePlaneHeightSpreadMm = spanOf(Object.values(imagePlaneHeights));
+  return { axialInterceptSpreadMm, imagePlaneHeightSpreadMm, axialIntercepts, imagePlaneHeights };
 }
 
 export {
@@ -97,4 +97,4 @@ export {
   type VectorRayTraceInput2,
 };
 
-export type { ChromaticChannel, ChromaticSpread, RayTraceResult, RuntimeLens };
+export type { ChromaticChannel, ChromaticRayFanSpread, RayTraceResult, RuntimeLens };

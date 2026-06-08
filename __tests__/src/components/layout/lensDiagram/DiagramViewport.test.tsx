@@ -7,8 +7,9 @@ import type { CardinalElements } from "../../../../../src/optics/cardinalElement
 import type { RuntimeLens } from "../../../../../src/types/optics.js";
 import type { Theme } from "../../../../../src/types/theme.js";
 
-const { mockAnalysisDrawer, mockDiagramSVG, mockPanelOverlay } = vi.hoisted(() => ({
+const { mockAnalysisDrawer, mockChromaticOverlayContent, mockDiagramSVG, mockPanelOverlay } = vi.hoisted(() => ({
   mockAnalysisDrawer: vi.fn(),
+  mockChromaticOverlayContent: vi.fn(),
   mockDiagramSVG: vi.fn(),
   mockPanelOverlay: vi.fn(),
 }));
@@ -38,8 +39,11 @@ vi.mock("../../../../../src/components/layout/PanelOverlay.js", () => ({
   },
 }));
 
-vi.mock("../../../../../src/components/diagram/LCAOverlayContent.js", () => ({
-  default: () => <div>LCA Overlay</div>,
+vi.mock("../../../../../src/components/diagram/ChromaticOverlayContent.js", () => ({
+  default: (props: Record<string, any>) => {
+    mockChromaticOverlayContent(props);
+    return <div>Chromatic Overlay</div>;
+  },
 }));
 
 vi.mock("../../../../../src/components/diagram/PetzvalOverlayContent.js", () => ({
@@ -70,7 +74,12 @@ const baseProps = {
   rays: [],
   offAxisRays: [],
   chromaticRays: [],
-  chromSpread: { lcaMm: 0.1, tcaMm: 0.2, intercepts: {}, imgHeights: {} },
+  chromaticRayFanSpread: {
+    axialInterceptSpreadMm: 0.1,
+    imagePlaneHeightSpreadMm: 0.2,
+    axialIntercepts: {},
+    imagePlaneHeights: {},
+  },
   showOnAxis: true,
   showOffAxis: "trueAngle" as const,
   showChromatic: true,
@@ -87,11 +96,11 @@ const baseProps = {
   flashVisible: false,
   flashKey: 0,
   flashFading: false,
-  showLcaOverlay: false,
+  showChromaticOverlay: false,
   showPetzvalOverlay: false,
-  onCloseLcaOverlay: vi.fn(),
+  onCloseChromaticOverlay: vi.fn(),
   onClosePetzvalOverlay: vi.fn(),
-  onOpenLcaOverlay: vi.fn(),
+  onOpenChromaticOverlay: vi.fn(),
   onOpenPetzvalOverlay: vi.fn(),
   analysisDrawerOpen: false,
   onAnalysisDrawerToggle: vi.fn(),
@@ -114,6 +123,7 @@ const baseProps = {
 describe("DiagramViewport", () => {
   beforeEach(() => {
     mockAnalysisDrawer.mockReset();
+    mockChromaticOverlayContent.mockReset();
     mockDiagramSVG.mockReset();
     mockPanelOverlay.mockReset();
     Object.values(baseProps).forEach((v) => {
@@ -229,48 +239,93 @@ describe("DiagramViewport", () => {
     expect(screen.queryByRole("button", { name: /compare selected aspheric element/i })).toBeNull();
   });
 
-  it("gates the LCA overlay on chromatic mode and available data", () => {
-    const { rerender } = render(<DiagramViewport {...baseProps} showLcaOverlay />);
+  it("gates the chromatic overlay on chromatic mode and available data", () => {
+    const { rerender } = render(<DiagramViewport {...baseProps} showChromaticOverlay />);
 
-    expect(screen.getByText("LCA Overlay")).toBeTruthy();
+    expect(screen.getByText("Chromatic Overlay")).toBeTruthy();
 
-    rerender(<DiagramViewport {...baseProps} showLcaOverlay showChromatic={false} />);
-    expect(screen.queryByText("LCA Overlay")).toBeNull();
+    rerender(<DiagramViewport {...baseProps} showChromaticOverlay showChromatic={false} />);
+    expect(screen.queryByText("Chromatic Overlay")).toBeNull();
 
-    rerender(<DiagramViewport {...baseProps} showLcaOverlay chromSpread={null} />);
-    expect(screen.queryByText("LCA Overlay")).toBeNull();
+    rerender(<DiagramViewport {...baseProps} showChromaticOverlay chromaticRayFanSpread={null} />);
+    expect(screen.queryByText("Chromatic Overlay")).toBeNull();
   });
 
-  it("uses axial spread data for the LCA inset and overlay when per-axis spreads are available", () => {
-    const offAxisSpread = { lcaMm: 0.4, tcaMm: 0.8, intercepts: {}, imgHeights: {} };
-    const onAxisSpread = { lcaMm: 0.1, tcaMm: 0.2, intercepts: {}, imgHeights: {} };
+  it("uses axial spread data for the LoCA inset and overlay when per-axis spreads are available", () => {
+    const offAxisSpread = {
+      axialInterceptSpreadMm: 0.4,
+      imagePlaneHeightSpreadMm: 0.8,
+      axialIntercepts: {},
+      imagePlaneHeights: {},
+    };
+    const onAxisSpread = {
+      axialInterceptSpreadMm: 0.1,
+      imagePlaneHeightSpreadMm: 0.2,
+      axialIntercepts: {},
+      imagePlaneHeights: {},
+    };
     const { rerender } = render(
       <DiagramViewport
         {...baseProps}
-        showLcaOverlay
-        chromSpread={offAxisSpread}
-        chromaticSpreads={{ onAxis: null, offAxis: offAxisSpread }}
+        showChromaticOverlay
+        chromaticRayFanSpread={offAxisSpread}
+        chromaticRayFanSpreads={{ onAxis: null, offAxis: offAxisSpread }}
       />,
     );
 
-    expect(screen.queryByText("LCA Overlay")).toBeNull();
-    expect(mockDiagramSVG).toHaveBeenLastCalledWith(expect.objectContaining({ chromSpread: null }));
+    expect(screen.queryByText("Chromatic Overlay")).toBeNull();
+    expect(mockDiagramSVG).toHaveBeenLastCalledWith(expect.objectContaining({ chromaticRayFanSpread: null }));
 
     rerender(
       <DiagramViewport
         {...baseProps}
-        showLcaOverlay
-        chromSpread={offAxisSpread}
-        chromaticSpreads={{ onAxis: onAxisSpread, offAxis: offAxisSpread }}
+        showChromaticOverlay
+        chromaticRayFanSpread={offAxisSpread}
+        chromaticRayFanSpreads={{ onAxis: onAxisSpread, offAxis: offAxisSpread }}
       />,
     );
 
-    expect(screen.getByText("LCA Overlay")).toBeTruthy();
-    expect(mockDiagramSVG).toHaveBeenLastCalledWith(expect.objectContaining({ chromSpread: onAxisSpread }));
+    expect(screen.getByText("Chromatic Overlay")).toBeTruthy();
+    expect(mockDiagramSVG).toHaveBeenLastCalledWith(expect.objectContaining({ chromaticRayFanSpread: onAxisSpread }));
+  });
+
+  it("passes chief-ray lateral color separately from ray-fan spread into the chromatic overlay", () => {
+    const lateralColor = { maxLateralSpreadMm: 0.0003 };
+    const offAxisSpread = {
+      axialInterceptSpreadMm: 0.4,
+      imagePlaneHeightSpreadMm: 0.8,
+      axialIntercepts: {},
+      imagePlaneHeights: {},
+    };
+    const onAxisSpread = {
+      axialInterceptSpreadMm: 0.1,
+      imagePlaneHeightSpreadMm: 0.2,
+      axialIntercepts: {},
+      imagePlaneHeights: {},
+    };
+
+    render(
+      <DiagramViewport
+        {...baseProps}
+        showChromaticOverlay
+        chromaticRayFanSpread={onAxisSpread}
+        chromaticRayFanSpreads={{ onAxis: onAxisSpread, offAxis: offAxisSpread }}
+        chromaticOverlayLateralColor={lateralColor as any}
+        chromaticOverlayLateralColorUnavailableReason={null}
+      />,
+    );
+
+    expect(mockChromaticOverlayContent).toHaveBeenCalledWith(
+      expect.objectContaining({
+        chromaticRayFanSpread: onAxisSpread,
+        chromaticRayFanSpreads: { onAxis: onAxisSpread, offAxis: offAxisSpread },
+        lateralColor,
+      }),
+    );
   });
 
   it("shows the Petzval overlay independently of chromatic gating", () => {
-    render(<DiagramViewport {...baseProps} showPetzvalOverlay showChromatic={false} chromSpread={null} />);
+    render(<DiagramViewport {...baseProps} showPetzvalOverlay showChromatic={false} chromaticRayFanSpread={null} />);
 
     expect(screen.getByText("Petzval Overlay")).toBeTruthy();
   });
@@ -328,8 +383,8 @@ describe("DiagramViewport", () => {
   });
 
   it("hides overlays in zoom mode", () => {
-    render(<DiagramViewport {...baseProps} zoomPanActive showLcaOverlay showPetzvalOverlay showGroupMovement />);
-    expect(screen.queryByText("LCA Overlay")).toBeNull();
+    render(<DiagramViewport {...baseProps} zoomPanActive showChromaticOverlay showPetzvalOverlay showGroupMovement />);
+    expect(screen.queryByText("Chromatic Overlay")).toBeNull();
     expect(screen.queryByText("Petzval Overlay")).toBeNull();
     expect(screen.queryByText("Movement Overlay")).toBeNull();
   });

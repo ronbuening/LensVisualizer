@@ -91,7 +91,7 @@ function bell(cx: number, peakMtf: number, hw: number): string {
 export default function MTFDiagram({ isDark }: { isDark: boolean }) {
   const c = isDark ? DARK : LIGHT;
 
-  // ── Non-APO: peaks spread by ~±23 px (representing LCA shift) ──
+  // Non-APO: peaks spread by about +/-23 px, representing LoCA shift.
   // Reference green at center, red shifted right (longer focus), blue left (shorter).
   const c1 = (L1 + R1) / 2; // 173 px
   const R_nonAPO = bell(c1 - 25, 0.8, 52); // blue (F-line: shorter focus = shifted left)

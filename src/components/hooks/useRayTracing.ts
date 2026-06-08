@@ -13,7 +13,7 @@ import useOffAxisRays from "./useOffAxisRays.js";
 import useChromaticRays from "./useChromaticRays.js";
 import type { RaySegment } from "./useOnAxisRays.js";
 import type { ChromaticRaySegment } from "./useChromaticRays.js";
-import type { RuntimeLens, ChromaticSpread, ChromaticSpreadByAxis } from "../../types/optics.js";
+import type { RuntimeLens, ChromaticRayFanSpread, ChromaticRayFanSpreadByAxis } from "../../types/optics.js";
 import type { OffAxisMode, RayDensity } from "../../types/state.js";
 import type { LensMovementTransform } from "../../optics/lensMovement.js";
 
@@ -47,8 +47,8 @@ interface UseRayTracingResult {
   rays: RaySegment[];
   offAxisRays: RaySegment[];
   chromaticRays: ChromaticRaySegment[];
-  chromSpread: ChromaticSpread | null;
-  chromaticSpreads: ChromaticSpreadByAxis;
+  chromaticRayFanSpread: ChromaticRayFanSpread | null;
+  chromaticRayFanSpreads: ChromaticRayFanSpreadByAxis;
   /** First ray-trace error across all three sub-hooks, or null if all succeeded. */
   rayError: unknown;
 }
@@ -125,8 +125,8 @@ export default function useRayTracing({
 
   const {
     chromaticRays,
-    chromSpread,
-    chromaticSpreads,
+    chromaticRayFanSpread,
+    chromaticRayFanSpreads,
     error: chromaticError,
   } = useChromaticRays({
     L,
@@ -156,5 +156,5 @@ export default function useRayTracing({
 
   const rayError = onAxisError ?? offAxisError ?? chromaticError ?? null;
 
-  return { focusK, rays, offAxisRays, chromaticRays, chromSpread, chromaticSpreads, rayError };
+  return { focusK, rays, offAxisRays, chromaticRays, chromaticRayFanSpread, chromaticRayFanSpreads, rayError };
 }

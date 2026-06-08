@@ -15,9 +15,9 @@ import {
 import ApertureStop from "./ApertureStop.js";
 import CardinalElementsOverlay from "./CardinalElementsOverlay.js";
 import ElementAnnotations from "./ElementAnnotations.js";
-import LCAInsetWidget from "./LCAInsetWidget.js";
+import LocaInsetWidget from "./LocaInsetWidget.js";
 import PetzvalSumBadge from "./PetzvalSumBadge.js";
-import type { RuntimeLens, ElementShape, ChromaticSpread } from "../../types/optics.js";
+import type { RuntimeLens, ElementShape, ChromaticRayFanSpread } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
 import type { DispersionQuality } from "../../optics/dispersion.js";
 import type { CardinalElements } from "../../optics/cardinalElements.js";
@@ -36,7 +36,7 @@ interface DiagramOverlayLayerProps {
   shapes: ElementShape[];
   stopZ: number;
   currentPhysStopSD: number;
-  chromSpread: ChromaticSpread | null;
+  chromaticRayFanSpread: ChromaticRayFanSpread | null;
   dispersionQuality?: DispersionQuality;
   showChromatic: boolean;
   showPupils: boolean;
@@ -57,7 +57,7 @@ interface DiagramOverlayLayerProps {
   flashVisible: boolean;
   flashKey: number;
   flashFading: boolean;
-  onLcaInsetClick?: () => void;
+  onLocaInsetClick?: () => void;
   onPetzvalBadgeClick?: () => void;
 }
 
@@ -75,7 +75,7 @@ export default function DiagramOverlayLayer({
   shapes,
   stopZ,
   currentPhysStopSD,
-  chromSpread,
+  chromaticRayFanSpread,
   dispersionQuality,
   showChromatic,
   showPupils,
@@ -96,7 +96,7 @@ export default function DiagramOverlayLayer({
   flashVisible,
   flashKey,
   flashFading,
-  onLcaInsetClick,
+  onLocaInsetClick,
   onPetzvalBadgeClick,
 }: DiagramOverlayLayerProps) {
   const stopInnerBlockedSD = stopInnerBlockedSemiDiameter(L);
@@ -156,16 +156,16 @@ export default function DiagramOverlayLayer({
         {L.imagePlane.label}
       </text>
 
-      {showChromatic && chromSpread && Object.keys(chromSpread.intercepts).length >= 2 && (
-        <LCAInsetWidget
-          chromSpread={chromSpread}
+      {showChromatic && chromaticRayFanSpread && Object.keys(chromaticRayFanSpread.axialIntercepts).length >= 2 && (
+        <LocaInsetWidget
+          chromaticRayFanSpread={chromaticRayFanSpread}
           effectiveSC={effectiveSC}
           IMG_MM={IMG_MM}
           IX={IX}
           svgW={L.svgW}
           sy={sy}
           t={t}
-          onClick={onLcaInsetClick}
+          onClick={onLocaInsetClick}
           dispersionQuality={dispersionQuality}
         />
       )}

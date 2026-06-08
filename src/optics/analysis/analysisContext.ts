@@ -51,7 +51,7 @@ export interface AnalysisComputationContext extends AnalysisComputationContextPa
   >;
   computeFieldCurvatureBundle: () => ReturnType<typeof analysisJobsForState2.computeFieldCurvatureBundle>;
   computeChromaticAnalysis: () => ReturnType<typeof analysisJobsForState2.computeChromaticAnalysis>;
-  computeChromaticRayTraceAnalysis: () => ReturnType<typeof analysisJobsForState2.computeChromaticRayTraceAnalysis>;
+  computeChromaticRayFanAnalysis: () => ReturnType<typeof analysisJobsForState2.computeChromaticRayFanAnalysis>;
   computeComaAnalysis: () => ReturnType<typeof analysisJobsForState2.computeComaAnalysis>;
 }
 
@@ -88,7 +88,7 @@ export function createAnalysisComputationContext({
     | undefined;
   let fieldCurvatureBundle: ReturnType<typeof analysisJobsForState2.computeFieldCurvatureBundle> | undefined;
   let chromaticAnalysis: ReturnType<typeof analysisJobsForState2.computeChromaticAnalysis> | undefined;
-  let chromaticRayTraceAnalysis: ReturnType<typeof analysisJobsForState2.computeChromaticRayTraceAnalysis> | undefined;
+  let chromaticRayFanAnalysis: ReturnType<typeof analysisJobsForState2.computeChromaticRayFanAnalysis> | undefined;
   let comaAnalysis: ReturnType<typeof analysisJobsForState2.computeComaAnalysis> | undefined;
 
   return {
@@ -183,8 +183,8 @@ export function createAnalysisComputationContext({
         resolvedFieldGeometry,
         sampling,
       )),
-    computeChromaticRayTraceAnalysis: () =>
-      (chromaticRayTraceAnalysis ??= analysisJobsForState2.computeChromaticRayTraceAnalysis(
+    computeChromaticRayFanAnalysis: () =>
+      (chromaticRayFanAnalysis ??= analysisJobsForState2.computeChromaticRayFanAnalysis(
         preparedState,
         currentEPSD,
         currentPhysStopSD,

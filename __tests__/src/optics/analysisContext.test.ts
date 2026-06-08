@@ -62,8 +62,8 @@ describe("analysis computation context", () => {
     expect(context.computeChromaticAnalysis()).toEqual(
       analysisJobsForState2.computeChromaticAnalysis(state, currentEPSD, currentPhysStopSD, fieldGeometry),
     );
-    expect(context.computeChromaticRayTraceAnalysis()).toEqual(
-      analysisJobsForState2.computeChromaticRayTraceAnalysis(state, currentEPSD, currentPhysStopSD, fieldGeometry, {
+    expect(context.computeChromaticRayFanAnalysis()).toEqual(
+      analysisJobsForState2.computeChromaticRayFanAnalysis(state, currentEPSD, currentPhysStopSD, fieldGeometry, {
         channels: ["R", "G", "B", "V"],
       }),
     );
@@ -97,7 +97,7 @@ describe("analysis computation context", () => {
     expect(context.computeSphericalAberrationBlurCharacter()).toBe(context.computeSphericalAberrationBlurCharacter());
     expect(context.computeBokehPreviewPair()).toBe(context.computeBokehPreviewPair());
     expect(context.computeChromaticAnalysis()).toBe(context.computeChromaticAnalysis());
-    expect(context.computeChromaticRayTraceAnalysis()).toBe(context.computeChromaticRayTraceAnalysis());
+    expect(context.computeChromaticRayFanAnalysis()).toBe(context.computeChromaticRayFanAnalysis());
     expect(context.computeFieldCurvatureBundle()).toBe(context.computeFieldCurvatureBundle());
   });
 
@@ -123,8 +123,8 @@ describe("analysis computation context", () => {
 
     expect(context.computeChromaticAnalysis().longitudinalFocus?.marginalFraction).toBe(0.5);
     expect(context.computeChromaticAnalysis().lateralColor?.fieldFractions).toEqual([0, 1]);
-    expect(context.computeChromaticRayTraceAnalysis().onAxisAttemptedRayCount).toBeLessThanOrEqual(4);
-    expect(context.computeChromaticRayTraceAnalysis().offAxisAttemptedRayCount).toBeLessThanOrEqual(4);
+    expect(context.computeChromaticRayFanAnalysis().onAxisAttemptedRayCount).toBeLessThanOrEqual(4);
+    expect(context.computeChromaticRayFanAnalysis().offAxisAttemptedRayCount).toBeLessThanOrEqual(4);
   });
 
   it("normalizes null field geometry to undefined for job calls", () => {

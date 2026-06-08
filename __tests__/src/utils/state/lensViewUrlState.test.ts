@@ -115,13 +115,13 @@ describe("lensViewUrlState", () => {
     expect(params.toString()).toBe("");
   });
 
-  it("round-trips LCA and Petzval overlay flags", () => {
-    const parsed = parseLensViewQuery("?v=1&lca=1&ptz=1");
-    expect(parsed.lcaOverlayOpen).toBe(true);
+  it("round-trips chromatic and Petzval overlay flags", () => {
+    const parsed = parseLensViewQuery("?v=1&chr=1&ptz=1");
+    expect(parsed.chromaticOverlayOpen).toBe(true);
     expect(parsed.petzvalOverlayOpen).toBe(true);
 
-    const params = buildLensViewQuery({ lcaOverlayOpen: true, petzvalOverlayOpen: true });
-    expect(params.toString()).toBe("v=1&lca=1&ptz=1");
+    const params = buildLensViewQuery({ chromaticOverlayOpen: true, petzvalOverlayOpen: true });
+    expect(params.toString()).toBe("v=1&chr=1&ptz=1");
   });
 
   it("round-trips signed perspective-control movement", () => {
@@ -155,7 +155,7 @@ describe("lensViewUrlState", () => {
       selectedElementIdA: null,
       selectedElementIdB: null,
       glassMapOpen: false,
-      lcaOverlayOpen: false,
+      chromaticOverlayOpen: false,
       petzvalOverlayOpen: false,
       analysisDrawerOpen: false,
       analysisDrawerTab: "aberrations",
