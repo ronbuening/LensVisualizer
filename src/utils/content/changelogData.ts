@@ -22,6 +22,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-06-07 ──────────────────────────────────────────────────────────
   {
     date: "2026-06-07",
+    type: "feature",
+    summary: "Added mount reference diagrams for the 300-lens catalog milestone",
+  },
+  {
+    date: "2026-06-07",
     type: "lens",
     summary: "Added three Olympus lenses",
   },
