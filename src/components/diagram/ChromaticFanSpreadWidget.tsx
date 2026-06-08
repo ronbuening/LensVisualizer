@@ -1,19 +1,22 @@
 /**
- * TCAInsetWidget — Magnified inset showing transverse chromatic aberration.
+ * ChromaticFanSpreadWidget — Magnified inset showing off-axis chromatic ray-fan spread.
  *
  * Displays each wavelength's image-plane height relative to the G/d-line
- * reference. The chart matches the LCA inset visual language, but it plots
- * lateral color instead of axial focus position.
+ * reference. The chart matches the LoCA inset visual language, but it plots
+ * the displayed marginal fan's endpoint spread instead of chief-ray TCA.
  */
-import type { ChromaticSpread, ChromaticChannel } from "../../types/optics.js";
+import type { ChromaticRayFanSpread, ChromaticChannel } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
 import type { DispersionQuality } from "../../optics/dispersion.js";
-import { computeChromaticBarOffsets, REFERENCE_TCA_MM } from "../../optics/lcaScaling.js";
+import {
+  computeChromaticBarOffsets,
+  REFERENCE_FAN_IMAGE_HEIGHT_SPREAD_MM,
+} from "../../optics/chromaticRayFanScaling.js";
 import { ChromaticQualityBadge, chromaticQualityBadgeLabel } from "./ChromaticQualityBadge.js";
 
-function referenceHeight(imgHeights: Partial<Record<ChromaticChannel, number>>, fallback: number): number {
-  if (imgHeights.G !== undefined) return imgHeights.G;
-  const values = Object.values(imgHeights);
+function referenceHeight(imagePlaneHeights: Partial<Record<ChromaticChannel, number>>, fallback: number): number {
+  if (imagePlaneHeights.G !== undefined) return imagePlaneHeights.G;
+  const values = Object.values(imagePlaneHeights);
   if (values.length === 0) return fallback;
   return (Math.min(...values) + Math.max(...values)) / 2;
 }
@@ -31,8 +34,8 @@ function formatSpreadUm(mm: number): string {
   return um >= 1 ? `${um.toFixed(0)} \u00b5m` : `${um.toFixed(1)} \u00b5m`;
 }
 
-interface TCAInsetWidgetProps {
-  chromSpread: ChromaticSpread;
+interface ChromaticFanSpreadWidgetProps {
+  chromaticRayFanSpread: ChromaticRayFanSpread;
   effectiveSC: number;
   t: Theme;
   width?: number;
@@ -43,8 +46,8 @@ interface TCAInsetWidgetProps {
   dispersionQuality?: DispersionQuality;
 }
 
-export default function TCAInsetWidget({
-  chromSpread,
+export default function ChromaticFanSpreadWidget({
+  chromaticRayFanSpread,
   effectiveSC,
   t,
   width,
@@ -53,20 +56,20 @@ export default function TCAInsetWidget({
   originY = 0,
   fontScale = 1,
   dispersionQuality,
-}: TCAInsetWidgetProps) {
+}: ChromaticFanSpreadWidgetProps) {
   const insetW = width ?? 110;
   const insetH = height ?? 100;
-  const reference = referenceHeight(chromSpread.imgHeights, 0);
+  const reference = referenceHeight(chromaticRayFanSpread.imagePlaneHeights, 0);
   const viewWidthPx = insetW - 24;
   const { barOffsets, mag } = computeChromaticBarOffsets(
-    chromSpread.imgHeights,
+    chromaticRayFanSpread.imagePlaneHeights,
     reference,
     viewWidthPx,
     effectiveSC,
-    REFERENCE_TCA_MM,
+    REFERENCE_FAN_IMAGE_HEIGHT_SPREAD_MM,
   );
   const activeChans = (["R", "G", "B", "V"] as ChromaticChannel[]).filter(
-    (ch) => chromSpread.imgHeights[ch] !== undefined,
+    (ch) => chromaticRayFanSpread.imagePlaneHeights[ch] !== undefined,
   );
   const qualityLabel = chromaticQualityBadgeLabel(dispersionQuality);
   const midX = originX + insetW / 2;
@@ -103,7 +106,7 @@ export default function TCAInsetWidget({
         fontFamily="inherit"
         style={{ letterSpacing: "0.1em" }}
       >
-        TCA
+        FAN
       </text>
       {qualityLabel ? (
         <ChromaticQualityBadge dispersionQuality={dispersionQuality} x={midX} y={ySubtitle} t={t} fontSize={fs(6.5)} />
@@ -150,7 +153,7 @@ export default function TCAInsetWidget({
         fontFamily="inherit"
         fontWeight={600}
       >
-        {formatSpreadUm(chromSpread.tcaMm)}
+        {formatSpreadUm(chromaticRayFanSpread.imagePlaneHeightSpreadMm)}
       </text>
       <text x={midX} y={yMagScale} textAnchor="middle" fill={t.muted} fontSize={fs(7.5)} fontFamily="inherit">
         {Math.round(mag)}

@@ -23,6 +23,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-06-08",
     type: "improvement",
+    summary: "Improved chromatic overlay labels for LoCA and off-axis fan diagnostics",
+  },
+  {
+    date: "2026-06-08",
+    type: "improvement",
     summary: "Improved glass matching and chromatic quality indicators",
   },
   {
@@ -119,12 +124,12 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-05-30",
     type: "feature",
-    summary: "Added chromatic analysis charts for LCA, lateral color, and field-focus color",
+    summary: "Added chromatic analysis charts for LoCA, lateral color/TCA, and field-focus color",
   },
   {
     date: "2026-05-30",
     type: "fix",
-    summary: "Fixed LCA and TCA displays to use matching charts with violet-channel traces",
+    summary: "Fixed LoCA and off-axis fan-spread displays to use matching charts with violet-channel traces",
   },
   {
     date: "2026-05-30",
@@ -396,7 +401,7 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-05-06",
     type: "fix",
-    summary: "Fixed soft-focus control in aberration, bokeh, pupil, and LCA views",
+    summary: "Fixed soft-focus control in aberration, bokeh, pupil, and LoCA views",
   },
   {
     date: "2026-05-06",
@@ -413,7 +418,7 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-05-05",
     type: "fix",
-    summary: "Fixed LCA inset values when chromatic color channels are toggled",
+    summary: "Fixed LoCA inset values when chromatic color channels are toggled",
   },
   {
     date: "2026-05-05",
@@ -519,7 +524,7 @@ export const CHANGELOG: ChangelogEntry[] = [
     date: "2026-04-28",
     type: "improvement",
     summary:
-      "Improved chromatic ray tracing with ray-density controls, off-axis color fans, and LCA readouts for clipped marginal rays",
+      "Improved chromatic ray tracing with ray-density controls, off-axis color fans, and LoCA readouts for clipped marginal rays",
   },
   {
     date: "2026-04-28",
@@ -565,7 +570,7 @@ export const CHANGELOG: ChangelogEntry[] = [
     date: "2026-04-26",
     type: "feature",
     summary:
-      "Added shareable URLs for selected elements, overlays (glass map, LCA, Petzval), bokeh preview, and analysis tabs",
+      "Added shareable URLs for selected elements, overlays (glass map, chromatic, Petzval), bokeh preview, and analysis tabs",
   },
   // ── 2026-04-25 ──────────────────────────────────────────────────────────
   {

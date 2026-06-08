@@ -125,7 +125,7 @@ const LENS_DATA = {
       fl: 25.1,
       glass: "E-FDS1 (HOYA)",
       apd: false,
-      role: "Variator chromatic corrector — high-dispersion positive for LCA control",
+      role: "Variator chromatic corrector — high-dispersion positive for LoCA control",
     },
     {
       id: 7,

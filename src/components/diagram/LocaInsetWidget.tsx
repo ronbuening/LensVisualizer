@@ -1,26 +1,26 @@
 /**
- * LCAInsetWidget — Magnified inset showing longitudinal chromatic aberration.
+ * LocaInsetWidget — Magnified inset showing longitudinal chromatic aberration.
  *
  * Displays where each wavelength's marginal ray crosses the axis relative to
- * the G/d-line reference. Uses a fixed reference scale (from lcaScaling) so
+ * the G/d-line reference. Uses a fixed reference scale so
  * lenses with worse CA show wider bars and well-corrected lenses show narrower
  * bars.  Accepts optional width/height for reuse in a future larger overlay.
  */
-import type { ChromaticSpread, ChromaticChannel } from "../../types/optics.js";
+import type { ChromaticRayFanSpread, ChromaticChannel } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
 import type { DispersionQuality } from "../../optics/dispersion.js";
-import { computeLcaBarOffsets } from "../../optics/lcaScaling.js";
+import { computeLocaBarOffsets } from "../../optics/chromaticRayFanScaling.js";
 import { ChromaticQualityBadge } from "./ChromaticQualityBadge.js";
 
-function referenceIntercept(intercepts: Partial<Record<ChromaticChannel, number>>, fallback: number): number {
-  if (intercepts.G !== undefined) return intercepts.G;
-  const values = Object.values(intercepts);
+function referenceIntercept(axialIntercepts: Partial<Record<ChromaticChannel, number>>, fallback: number): number {
+  if (axialIntercepts.G !== undefined) return axialIntercepts.G;
+  const values = Object.values(axialIntercepts);
   if (values.length === 0) return fallback;
   return (Math.min(...values) + Math.max(...values)) / 2;
 }
 
-interface LCAInsetWidgetProps {
-  chromSpread: ChromaticSpread;
+interface LocaInsetWidgetProps {
+  chromaticRayFanSpread: ChromaticRayFanSpread;
   effectiveSC: number;
   IMG_MM: number;
   IX: number;
@@ -43,8 +43,8 @@ interface LCAInsetWidgetProps {
   dispersionQuality?: DispersionQuality;
 }
 
-export default function LCAInsetWidget({
-  chromSpread,
+export default function LocaInsetWidget({
+  chromaticRayFanSpread,
   effectiveSC,
   IMG_MM,
   IX,
@@ -58,14 +58,19 @@ export default function LCAInsetWidget({
   onClick,
   fontScale = 1,
   dispersionQuality,
-}: LCAInsetWidgetProps) {
+}: LocaInsetWidgetProps) {
   const insetW = width ?? 110;
   const insetH = height ?? 100;
-  const gRef = referenceIntercept(chromSpread.intercepts, IMG_MM);
+  const gRef = referenceIntercept(chromaticRayFanSpread.axialIntercepts, IMG_MM);
   const viewWidthPx = insetW - 24;
-  const { barOffsets, mag } = computeLcaBarOffsets(chromSpread.intercepts, gRef, viewWidthPx, effectiveSC);
+  const { barOffsets, mag } = computeLocaBarOffsets(
+    chromaticRayFanSpread.axialIntercepts,
+    gRef,
+    viewWidthPx,
+    effectiveSC,
+  );
   const activeChans = (["R", "G", "B", "V"] as ChromaticChannel[]).filter(
-    (ch) => chromSpread.intercepts[ch] !== undefined,
+    (ch) => chromaticRayFanSpread.axialIntercepts[ch] !== undefined,
   );
 
   let insetX: number;
@@ -115,7 +120,7 @@ export default function LCAInsetWidget({
         fontFamily="inherit"
         style={{ letterSpacing: "0.1em" }}
       >
-        LCA
+        LoCA
       </text>
       <line x1={insetX + 6} y1={yAxis} x2={insetX + insetW - 6} y2={yAxis} stroke={t.axis} strokeWidth={0.5} />
       {activeChans.map((ch) => {
@@ -155,9 +160,9 @@ export default function LCAInsetWidget({
         fontFamily="inherit"
         fontWeight={600}
       >
-        {Math.abs(chromSpread.lcaMm * 1000) >= 1
-          ? `${Math.abs(chromSpread.lcaMm * 1000).toFixed(0)} \u00b5m`
-          : `${Math.abs(chromSpread.lcaMm * 1000).toFixed(1)} \u00b5m`}
+        {Math.abs(chromaticRayFanSpread.axialInterceptSpreadMm * 1000) >= 1
+          ? `${Math.abs(chromaticRayFanSpread.axialInterceptSpreadMm * 1000).toFixed(0)} \u00b5m`
+          : `${Math.abs(chromaticRayFanSpread.axialInterceptSpreadMm * 1000).toFixed(1)} \u00b5m`}
       </text>
       <text x={midX} y={yMagScale} textAnchor="middle" fill={t.muted} fontSize={fs(7.5)} fontFamily="inherit">
         {Math.round(mag)}

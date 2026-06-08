@@ -49,19 +49,19 @@ This additive property is the reason photographic lenses have so many elements. 
 
 The Seidel framework assumes a single wavelength. Extending to polychromatic light adds two more aberrations:
 
-**Longitudinal chromatic aberration (LCA)** — the axial focus shift between wavelengths. For a thin lens in air, the focus spread between the F-line (blue) and C-line (red) is:
+**Longitudinal chromatic aberration (LoCA)** — the axial focus shift between wavelengths. For a thin lens in air, the focus spread between the F-line (blue) and C-line (red) is:
 
 > **|δf| = f / νd**
 
-where *f* is the focal length and *νd* is the Abbe number. This expression makes clear why low-νd (high-dispersion) elements produce large LCA contributions and why ED glasses (high νd) are effective correctors. The viewer reports LCA in micrometers; values below roughly 10 µm are generally well-corrected for photographic use.
+where *f* is the focal length and *νd* is the Abbe number. This expression makes clear why low-νd (high-dispersion) elements produce large LoCA contributions and why ED glasses (high νd) are effective correctors. The viewer reports LoCA in micrometers; values below roughly 10 µm are generally well-corrected for photographic use.
 
-**Transverse chromatic aberration (TCA)** — a wavelength-dependent magnification that produces color fringing proportional to field height. It is often called "lateral color." TCA is zero on-axis and worst at the corners of the frame. It can be corrected independently of LCA by adjusting the chromatic properties of the elements near the stop (which primarily affect LCA) versus those far from the stop (which primarily affect TCA).
+**Transverse chromatic aberration (TCA)** — a wavelength-dependent magnification that produces color fringing proportional to field height. It is often called "lateral color." TCA is zero on-axis and worst at the corners of the frame. It can be corrected independently of LoCA by adjusting the chromatic properties of the elements near the stop (which primarily affect LoCA) versus those far from the stop (which primarily affect TCA).
 
 The achromatic-doublet condition from the optics primer,
 
 > **φ₁/ν₁ + φ₂/ν₂ = 0**
 
-corrects LCA to first order. An **apochromatic** design goes further, bringing a third wavelength to a common focus — typically by using anomalous-dispersion glasses whose partial dispersion ratios differ from the normal glass line on a P–νd diagram. The viewer's COLOR overlay, which traces separate R, G, and B ray paths, provides a direct visual test of how well a given design achieves this.
+corrects LoCA to first order. An **apochromatic** design goes further, bringing a third wavelength to a common focus — typically by using anomalous-dispersion glasses whose partial dispersion ratios differ from the normal glass line on a P–νd diagram. The viewer's COLOR overlay and chromatic drawer trace separate spectral-line paths and provide direct visual tests of how well a given design controls axial color, lateral color, and chromatic field focus.
 
 ## 5. Higher-Order Aberrations
 
@@ -89,7 +89,7 @@ Correcting aberrations is fundamentally a problem of balancing positive and nega
 
 **Symmetry about the stop.** A lens whose front and rear groups are mirror images of each other (with the stop at the center) automatically cancels all odd-order aberrations — coma, distortion, and TCA — for a 1:1 conjugate. Even approximate symmetry (as in a double-Gauss design) provides significant suppression of these three aberrations at other conjugates.
 
-**Doublet balancing.** Cemented doublets pair a positive crown element with a negative flint element to cancel LCA (via the achromatic condition) while shaping the Seidel contributions of the two surfaces to reduce spherical aberration and coma simultaneously. The viewer's element-detail panel shows the FL, nd, and νd of each element, making it straightforward to identify doublet partners and their corrective roles.
+**Doublet balancing.** Cemented doublets pair a positive crown element with a negative flint element to cancel LoCA (via the achromatic condition) while shaping the Seidel contributions of the two surfaces to reduce spherical aberration and coma simultaneously. The viewer's element-detail panel shows the FL, nd, and νd of each element, making it straightforward to identify doublet partners and their corrective roles.
 
 **Aspherical correction.** An aspherical surface bends rays by an amount that varies with zone in a way no sphere can match. Its primary effect is on spherical aberration (S_I), but because aspherical departure also changes the ray angles at that surface, it indirectly affects coma and, to a lesser degree, astigmatism. Aspheres are most effective when placed at surfaces where the marginal-ray height is large, which is why they commonly appear on the front or rear elements of fast designs.
 
@@ -105,6 +105,6 @@ The Aberrations tab shows spherical aberration in two complementary ways. The ma
 
 When the off-axis ray bundle is asymmetric — spreading more on one side of the chief ray than the other — the lens has residual coma. A tight, symmetric off-axis bundle indicates good coma correction.
 
-The LCA inset and the spread between R, G, and B ray convergence points quantify the chromatic correction directly. A lens with well-matched ED doublets will show the three channels converging nearly at the same point; one relying on conventional glasses will show a measurable spread, typically with the blue channel focusing shortest.
+The LoCA inset and the spread between R, G, and B ray convergence points quantify the chromatic correction directly. A lens with well-matched ED doublets will show the three channels converging nearly at the same point; one relying on conventional glasses will show a measurable spread, typically with the blue channel focusing shortest.
 
 Sweeping the aperture slider from wide open to stopped down compresses the on-axis ray fan and visually confirms the aperture-scaling relationships in the table above. And comparing the ray bundle at infinity versus at close focus in TRACKS FOCUS mode reveals how well the design's floating elements (if any) maintain the aberration balance across the conjugate range.

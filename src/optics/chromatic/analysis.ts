@@ -6,14 +6,14 @@
  * diagram rays, but return compact data contracts for analysis tabs.
  */
 
-import type { ChromaticChannel, ChromaticSpread, RuntimeLens } from "../../types/optics.js";
+import type { ChromaticChannel, ChromaticRayFanSpread, RuntimeLens } from "../../types/optics.js";
 import { computeProjectionAwareOffAxisFieldGeometry, traceOffAxisChiefRay } from "../aberration/offAxis.js";
 import {
   computeAnalysisFieldGeometryAtState2 as computeAnalysisFieldGeometryAtState,
   type FieldGeometryState2 as FieldGeometryState,
 } from "../field/fieldGeometry.js";
 import { thick } from "../layout.js";
-import { computeChromaticSpread2, traceRayChromatic2 } from "./chromaticTrace.js";
+import { computeChromaticRayFanSpread2, traceRayChromatic2 } from "./chromaticTrace.js";
 import { CHROMATIC_CHANNEL_ORDER } from "./channels.js";
 
 export const DEFAULT_CHROMATIC_ANALYSIS_CHANNELS = CHROMATIC_CHANNEL_ORDER;
@@ -47,7 +47,7 @@ export interface LongitudinalChromaticFocusResult {
   longitudinalSpreadUm: number;
   transverseSpreadMm: number;
   transverseSpreadUm: number;
-  spread: ChromaticSpread;
+  spread: ChromaticRayFanSpread;
   samples: LongitudinalChromaticFocusSample[];
   validChannelCount: number;
 }
@@ -137,7 +137,7 @@ function currentImagePlaneZ(
 /**
  * Compute axial chromatic focus from the outermost usable on-axis marginal ray.
  *
- * The result is an LCA-style focus summary by spectral channel. It searches
+ * The result is a LoCA-style focus summary by spectral channel. It searches
  * inward through marginal fractions so clipped wide-open rays do not make the
  * analysis unusable.
  */
@@ -192,13 +192,13 @@ export function computeLongitudinalChromaticFocus(
     const validChannels = Object.keys(marginalRays) as ChromaticChannel[];
     if (validChannels.length < 2) continue;
 
-    const spread = computeChromaticSpread2(marginalRays, imagePlaneZ, lastSurfaceZ);
+    const spread = computeChromaticRayFanSpread2(marginalRays, imagePlaneZ, lastSurfaceZ);
     const referenceChannel = referenceChannelFor(channels);
-    const referenceFocusZ = spread.intercepts[referenceChannel] ?? null;
-    const referenceImageHeight = spread.imgHeights[referenceChannel] ?? null;
+    const referenceFocusZ = spread.axialIntercepts[referenceChannel] ?? null;
+    const referenceImageHeight = spread.imagePlaneHeights[referenceChannel] ?? null;
     const samples = channels.map((channel): LongitudinalChromaticFocusSample => {
-      const focusZ = spread.intercepts[channel] ?? null;
-      const imageHeightMm = spread.imgHeights[channel] ?? null;
+      const focusZ = spread.axialIntercepts[channel] ?? null;
+      const imageHeightMm = spread.imagePlaneHeights[channel] ?? null;
       return {
         channel,
         focusZ,
@@ -218,10 +218,10 @@ export function computeLongitudinalChromaticFocus(
       marginalFraction,
       imagePlaneZ,
       lastSurfaceZ,
-      longitudinalSpreadMm: spread.lcaMm,
-      longitudinalSpreadUm: spread.lcaMm * 1000,
-      transverseSpreadMm: spread.tcaMm,
-      transverseSpreadUm: spread.tcaMm * 1000,
+      longitudinalSpreadMm: spread.axialInterceptSpreadMm,
+      longitudinalSpreadUm: spread.axialInterceptSpreadMm * 1000,
+      transverseSpreadMm: spread.imagePlaneHeightSpreadMm,
+      transverseSpreadUm: spread.imagePlaneHeightSpreadMm * 1000,
       spread: { ...spread, axis: "onAxis", fraction: marginalFraction, channels: validChannels },
       samples,
       validChannelCount: validChannels.length,
@@ -330,7 +330,7 @@ function computeLateralColorField(
 /**
  * Compute lateral color as chromatic chief-ray image-height spread across field.
  *
- * Lateral color is evaluated independently from the axial LCA ray. It measures
+ * Lateral color is evaluated independently from the axial LoCA ray. It measures
  * chromatic magnification change at the image plane rather than focus shift.
  */
 export function computeLateralColorCurve(

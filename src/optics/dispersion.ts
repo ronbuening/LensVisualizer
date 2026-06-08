@@ -192,7 +192,7 @@ export function indexAt(L: RuntimeLens, surfIdx: number, channel: ChromaticChann
 
 /**
  * Aggregate dispersion-quality summary for a whole lens — the "weakest link"
- * across all glass surfaces. Used to flag the LCA readout as approximate when
+ * across all glass surfaces. Used to flag the LoCA readout as approximate when
  * any traced glass lacks richer-than-Abbe data.
  */
 export function summarizeDispersionQuality(L: RuntimeLens): DispersionQuality {

@@ -1,7 +1,7 @@
 import { useEffect, useMemo } from "react";
 import type { ComponentProps, ReactNode } from "react";
 import DiagramSVG from "../../diagram/DiagramSVG.js";
-import LCAOverlayContent from "../../diagram/LCAOverlayContent.js";
+import ChromaticOverlayContent from "../../diagram/ChromaticOverlayContent.js";
 import PetzvalOverlayContent from "../../diagram/PetzvalOverlayContent.js";
 import AnalysisDrawer from "../AnalysisDrawer.js";
 import PanelOverlay from "../PanelOverlay.js";
@@ -9,18 +9,18 @@ import { ANALYSIS_TABS } from "./analysisTabs.js";
 import { summarizeDispersionQuality } from "../../../optics/dispersion.js";
 import { elementHasAsphericSurface } from "../../display/asphericElementUtils.js";
 import type { AnalysisTabId } from "../../../types/state.js";
-import type { ChromaticSpreadByAxis } from "../../../types/optics.js";
+import type { ChromaticRayFanSpreadByAxis } from "../../../types/optics.js";
 
 interface DiagramViewportProps extends Omit<
   ComponentProps<typeof DiagramSVG>,
-  "onLcaInsetClick" | "onPetzvalBadgeClick"
+  "onLocaInsetClick" | "onPetzvalBadgeClick"
 > {
-  chromaticSpreads?: ChromaticSpreadByAxis;
-  showLcaOverlay: boolean;
+  chromaticRayFanSpreads?: ChromaticRayFanSpreadByAxis;
+  showChromaticOverlay: boolean;
   showPetzvalOverlay: boolean;
-  onCloseLcaOverlay: () => void;
+  onCloseChromaticOverlay: () => void;
   onClosePetzvalOverlay: () => void;
-  onOpenLcaOverlay: () => void;
+  onOpenChromaticOverlay: () => void;
   onOpenPetzvalOverlay: () => void;
   analysisDrawerOpen: boolean;
   onAnalysisDrawerToggle: (open: boolean) => void;
@@ -71,8 +71,8 @@ export default function DiagramViewport({
   rays,
   offAxisRays,
   chromaticRays,
-  chromSpread,
-  chromaticSpreads,
+  chromaticRayFanSpread,
+  chromaticRayFanSpreads,
   showOnAxis,
   showOffAxis,
   showChromatic,
@@ -101,11 +101,11 @@ export default function DiagramViewport({
   flashVisible,
   flashKey,
   flashFading,
-  showLcaOverlay,
+  showChromaticOverlay,
   showPetzvalOverlay,
-  onCloseLcaOverlay,
+  onCloseChromaticOverlay,
   onClosePetzvalOverlay,
-  onOpenLcaOverlay,
+  onOpenChromaticOverlay,
   onOpenPetzvalOverlay,
   analysisDrawerOpen,
   onAnalysisDrawerToggle,
@@ -138,8 +138,8 @@ export default function DiagramViewport({
   /* Aggregate per-surface dispersion quality across the lens (worst-link tier).
      Cheap to recompute on every render — walks indexByIdx once. */
   const dispersionQuality = useMemo(() => summarizeDispersionQuality(L), [L]);
-  const onAxisChromSpread = chromaticSpreads ? chromaticSpreads.onAxis : chromSpread;
-  const overlayChromSpread = chromaticSpreads ? chromaticSpreads.onAxis : chromSpread;
+  const onAxisChromSpread = chromaticRayFanSpreads ? chromaticRayFanSpreads.onAxis : chromaticRayFanSpread;
+  const overlayChromSpread = chromaticRayFanSpreads ? chromaticRayFanSpreads.onAxis : chromaticRayFanSpread;
   const selectedAsphericElementId = useMemo(() => {
     if (isWide || sel == null || !onOpenAsphericCompare) return null;
     return elementHasAsphericSurface(L, sel) ? sel : null;
@@ -224,7 +224,7 @@ export default function DiagramViewport({
         rays={rays}
         offAxisRays={offAxisRays}
         chromaticRays={chromaticRays}
-        chromSpread={onAxisChromSpread}
+        chromaticRayFanSpread={onAxisChromSpread}
         dispersionQuality={dispersionQuality}
         showOnAxis={showOnAxis}
         showOffAxis={showOffAxis}
@@ -255,7 +255,7 @@ export default function DiagramViewport({
         flashVisible={flashVisible}
         flashKey={flashKey}
         flashFading={flashFading}
-        onLcaInsetClick={onOpenLcaOverlay}
+        onLocaInsetClick={onOpenChromaticOverlay}
         onPetzvalBadgeClick={onOpenPetzvalOverlay}
         viewBoxOverride={viewBoxOverride}
         zoomPanActive={zoomPanActive}
@@ -270,11 +270,11 @@ export default function DiagramViewport({
       />
 
       {/* Overlays — hidden in zoom/pan mode */}
-      {!zoomPanActive && showLcaOverlay && showChromatic && overlayChromSpread ? (
-        <PanelOverlay onClose={onCloseLcaOverlay} theme={t}>
-          <LCAOverlayContent
-            chromSpread={overlayChromSpread}
-            chromaticSpreads={chromaticSpreads}
+      {!zoomPanActive && showChromaticOverlay && showChromatic && overlayChromSpread ? (
+        <PanelOverlay onClose={onCloseChromaticOverlay} theme={t}>
+          <ChromaticOverlayContent
+            chromaticRayFanSpread={overlayChromSpread}
+            chromaticRayFanSpreads={chromaticRayFanSpreads}
             effectiveSC={effectiveSC}
             IMG_MM={IMG_MM}
             t={t}

@@ -27,9 +27,9 @@ import {
 import {
   computeChromaticAnalysis2,
   computeChromaticAnalysisForState2,
-  computeChromaticRayTraceAnalysis2,
-  computeChromaticRayTraceAnalysisForState2,
-  type ChromaticRayTraceAnalysisOptions2,
+  computeChromaticRayFanAnalysis2,
+  computeChromaticRayFanAnalysisForState2,
+  type ChromaticRayFanAnalysisOptions2,
 } from "./chromatic.js";
 import { CHROMATIC_CHANNEL_ORDER } from "../chromatic/channels.js";
 import {
@@ -168,7 +168,7 @@ export const analysisJobs2 = {
     );
   },
 
-  computeChromaticRayTraceAnalysis(
+  computeChromaticRayFanAnalysis(
     L: RuntimeLens,
     zPos: number[],
     focusT: number,
@@ -176,9 +176,9 @@ export const analysisJobs2 = {
     currentEPSD: number,
     currentPhysStopSD: number,
     aberrationT = 0,
-    options?: ChromaticRayTraceAnalysisOptions2,
+    options?: ChromaticRayFanAnalysisOptions2,
   ) {
-    return computeChromaticRayTraceAnalysis2(
+    return computeChromaticRayFanAnalysis2(
       L,
       zPos,
       focusT,
@@ -293,14 +293,14 @@ export const analysisJobsForState2 = {
     });
   },
 
-  computeChromaticRayTraceAnalysis(
+  computeChromaticRayFanAnalysis(
     state: PreparedOpticalState,
     currentEPSD: number,
     currentPhysStopSD: number,
     _fieldGeometry?: FieldGeometryState,
-    options?: ChromaticRayTraceAnalysisOptions2,
+    options?: ChromaticRayFanAnalysisOptions2,
   ) {
-    return computeChromaticRayTraceAnalysisForState2(state, currentEPSD, currentPhysStopSD, options);
+    return computeChromaticRayFanAnalysisForState2(state, currentEPSD, currentPhysStopSD, options);
   },
 
   computeComaAnalysis(

@@ -1,22 +1,21 @@
 /**
- * LCAOverlayContent — Enlarged chromatic aberration visualization.
+ * ChromaticOverlayContent — Enlarged chromatic aberration visualization.
  *
- * Renders standalone SVG charts for axial LCA and, when the off-axis fan is
- * present, image-plane TCA.
+ * Renders standalone charts for axial color and displayed off-axis ray-fan spread.
  * Used inside PanelOverlay.
  */
 
 import type { CSSProperties } from "react";
-import type { ChromaticSpread, ChromaticSpreadByAxis } from "../../types/optics.js";
+import type { ChromaticRayFanSpread, ChromaticRayFanSpreadByAxis } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
 import type { DispersionQuality } from "../../optics/dispersion.js";
 import { CHROMATIC_CHANNEL_METADATA } from "../../optics/chromatic/channels.js";
-import LCAInsetWidget from "./LCAInsetWidget.js";
-import TCAInsetWidget from "./TCAInsetWidget.js";
+import LocaInsetWidget from "./LocaInsetWidget.js";
+import ChromaticFanSpreadWidget from "./ChromaticFanSpreadWidget.js";
 
-interface LCAOverlayContentProps {
-  chromSpread: ChromaticSpread;
-  chromaticSpreads?: ChromaticSpreadByAxis;
+interface ChromaticOverlayContentProps {
+  chromaticRayFanSpread: ChromaticRayFanSpread;
+  chromaticRayFanSpreads?: ChromaticRayFanSpreadByAxis;
   effectiveSC: number;
   IMG_MM: number;
   t: Theme;
@@ -29,6 +28,14 @@ const MARGIN = 12;
 const CHART_COLUMN_STYLE = { flex: `0 1 ${SINGLE_SVG_W}px`, width: SINGLE_SVG_W, maxWidth: "100%", minWidth: 0 };
 const CHART_SVG_STYLE = { width: "100%", height: "auto", display: "block" };
 const CHART_CAPTION_STYLE: CSSProperties = { fontSize: 11, lineHeight: 1.45, marginTop: 8, textAlign: "center" };
+const PANEL_TITLE_STYLE: CSSProperties = {
+  fontSize: 10,
+  fontWeight: 700,
+  letterSpacing: "0.08em",
+  textTransform: "uppercase",
+  textAlign: "center",
+  marginBottom: 8,
+};
 
 function formatUm(mm: number): string {
   if (Math.abs(mm * 1000) >= 1) return `${Math.abs(mm * 1000).toFixed(0)} µm`;
@@ -39,16 +46,16 @@ function formatSpreadUm(mm: number): string {
   return mm !== 0 ? formatUm(mm) : "< 0.1 µm";
 }
 
-export default function LCAOverlayContent({
-  chromSpread,
-  chromaticSpreads,
+export default function ChromaticOverlayContent({
+  chromaticRayFanSpread,
+  chromaticRayFanSpreads,
   effectiveSC,
   IMG_MM,
   t,
   dispersionQuality,
-}: LCAOverlayContentProps) {
-  const onAxisSpread = chromaticSpreads ? chromaticSpreads.onAxis : chromSpread;
-  const offAxisSpread = chromaticSpreads?.offAxis ?? null;
+}: ChromaticOverlayContentProps) {
+  const onAxisSpread = chromaticRayFanSpreads ? chromaticRayFanSpreads.onAxis : chromaticRayFanSpread;
+  const offAxisSpread = chromaticRayFanSpreads?.offAxis ?? null;
   const svgW = SINGLE_SVG_W;
   const svgH = SINGLE_SVG_H;
 
@@ -67,9 +74,10 @@ export default function LCAOverlayContent({
       >
         {onAxisSpread ? (
           <div style={CHART_COLUMN_STYLE}>
+            <div style={{ ...PANEL_TITLE_STYLE, color: t.label }}>LoCA / Axial Color</div>
             <svg width={svgW} height={svgH} viewBox={`0 0 ${svgW} ${svgH}`} style={CHART_SVG_STYLE}>
-              <LCAInsetWidget
-                chromSpread={onAxisSpread}
+              <LocaInsetWidget
+                chromaticRayFanSpread={onAxisSpread}
                 effectiveSC={effectiveSC}
                 IMG_MM={IMG_MM}
                 IX={0}
@@ -91,14 +99,15 @@ export default function LCAOverlayContent({
           </div>
         ) : (
           <div style={{ color: t.muted, fontSize: 12, lineHeight: 1.5, textAlign: "center", maxWidth: 320 }}>
-            Axial LCA is unavailable for the active channel set or current ray state.
+            LoCA is unavailable for the active channel set or current ray state.
           </div>
         )}
         {offAxisSpread && (
           <div style={CHART_COLUMN_STYLE}>
+            <div style={{ ...PANEL_TITLE_STYLE, color: t.label }}>Off-Axis Fan</div>
             <svg width={svgW} height={svgH} viewBox={`0 0 ${svgW} ${svgH}`} style={CHART_SVG_STYLE}>
-              <TCAInsetWidget
-                chromSpread={offAxisSpread}
+              <ChromaticFanSpreadWidget
+                chromaticRayFanSpread={offAxisSpread}
                 effectiveSC={effectiveSC}
                 t={t}
                 width={svgW - MARGIN * 2}
@@ -110,12 +119,13 @@ export default function LCAOverlayContent({
               />
             </svg>
             <div style={{ ...CHART_CAPTION_STYLE, color: t.muted }}>
-              Transverse color is the surviving wavelength spread at the image plane for the displayed off-axis fan.
+              This follows the displayed off-axis marginal fan and reports wavelength endpoint spread at the image
+              plane.
             </div>
           </div>
         )}
       </div>
-      {chromaticSpreads?.onAxis && chromaticSpreads?.offAxis && (
+      {(chromaticRayFanSpreads?.onAxis || chromaticRayFanSpreads?.offAxis) && (
         <div
           style={{
             display: "flex",
@@ -128,8 +138,12 @@ export default function LCAOverlayContent({
             letterSpacing: "0.08em",
           }}
         >
-          <span>AXIAL LCA {formatSpreadUm(chromaticSpreads.onAxis.lcaMm)}</span>
-          <span>OFF-AXIS TCA {formatSpreadUm(chromaticSpreads.offAxis.tcaMm)}</span>
+          {chromaticRayFanSpreads?.onAxis && (
+            <span>LoCA / AXIAL COLOR {formatSpreadUm(chromaticRayFanSpreads.onAxis.axialInterceptSpreadMm)}</span>
+          )}
+          {chromaticRayFanSpreads?.offAxis && (
+            <span>OFF-AXIS FAN {formatSpreadUm(chromaticRayFanSpreads.offAxis.imagePlaneHeightSpreadMm)}</span>
+          )}
         </div>
       )}
       <p
@@ -141,17 +155,14 @@ export default function LCAOverlayContent({
           fontFamily: "inherit",
         }}
       >
-        <strong>Longitudinal Chromatic Aberration (LCA)</strong> measures how different wavelengths of light focus at
-        different distances along the optical axis. The axial LCA chart uses the outermost usable on-axis marginal trace
-        for the active channel set. <strong>Transverse Chromatic Aberration (TCA)</strong> measures how far those
-        wavelengths separate across image height at the current image plane; the off-axis TCA chart uses the displayed
-        off-axis fan. The colored bars show where {CHROMATIC_CHANNEL_METADATA.R.description} (
+        <strong>LoCA / axial color</strong> shows where the active on-axis marginal wavelengths focus along the optical
+        axis. <strong>Off-axis fan</strong> shows where the displayed off-axis marginal fan lands at the image plane.
+        Both charts use the same selected spectral channels: {CHROMATIC_CHANNEL_METADATA.R.description} (
         {CHROMATIC_CHANNEL_METADATA.R.wavelengthLabel}), {CHROMATIC_CHANNEL_METADATA.G.description} (
         {CHROMATIC_CHANNEL_METADATA.G.wavelengthLabel}), {CHROMATIC_CHANNEL_METADATA.B.description} (
         {CHROMATIC_CHANNEL_METADATA.B.wavelengthLabel}), and, when enabled, {CHROMATIC_CHANNEL_METADATA.V.description} (
-        {CHROMATIC_CHANNEL_METADATA.V.wavelengthLabel}) marginal rays cross the axis in the LCA chart and where they
-        land at the image plane in the TCA chart. This is a geometric spectral-line trace; it is useful for comparing
-        correction strategy, but it is not a full-spectrum diffraction, sensor-stack, or production APO certification.
+        {CHROMATIC_CHANNEL_METADATA.V.wavelengthLabel}). These are geometric marginal-ray diagnostics for the displayed
+        fan traces; lateral color/TCA remains a separate chief-ray image-height metric in the chromatic analysis drawer.
       </p>
     </div>
   );

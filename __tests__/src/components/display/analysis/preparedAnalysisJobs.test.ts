@@ -13,7 +13,7 @@ import type { RuntimeLens } from "../../../../../src/types/optics.js";
 const {
   mockComputeBothPupilAberrationProfiles,
   mockComputeChromaticAnalysis,
-  mockComputeChromaticRayTraceAnalysis,
+  mockComputeChromaticRayFanAnalysis,
   mockComputeDistortionCurve,
   mockComputeDistortionFieldGrid,
   mockComputeFieldCurvatureBundle,
@@ -24,7 +24,7 @@ const {
 } = vi.hoisted(() => ({
   mockComputeBothPupilAberrationProfiles: vi.fn(),
   mockComputeChromaticAnalysis: vi.fn(),
-  mockComputeChromaticRayTraceAnalysis: vi.fn(),
+  mockComputeChromaticRayFanAnalysis: vi.fn(),
   mockComputeDistortionCurve: vi.fn(),
   mockComputeDistortionFieldGrid: vi.fn(),
   mockComputeFieldCurvatureBundle: vi.fn(),
@@ -42,7 +42,7 @@ vi.mock("../../../../../src/optics/compat.js", async () => {
       ...(actual as { analysisJobsForState2: Record<string, unknown> }).analysisJobsForState2,
       computeBothPupilAberrationProfiles: mockComputeBothPupilAberrationProfiles,
       computeChromaticAnalysis: mockComputeChromaticAnalysis,
-      computeChromaticRayTraceAnalysis: mockComputeChromaticRayTraceAnalysis,
+      computeChromaticRayFanAnalysis: mockComputeChromaticRayFanAnalysis,
       computeDistortionCurve: mockComputeDistortionCurve,
       computeDistortionFieldGrid: mockComputeDistortionFieldGrid,
       computeFieldCurvatureBundle: mockComputeFieldCurvatureBundle,
@@ -131,10 +131,10 @@ const chromaticAnalysis = {
     transverseSpreadMm: 0.007,
     transverseSpreadUm: 7,
     spread: {
-      lcaMm: 0.035,
-      tcaMm: 0.007,
-      intercepts: { R: 59.99, G: 60, B: 60.02, V: 60.025 },
-      imgHeights: { R: -0.002, G: 0, B: 0.003, V: 0.005 },
+      axialInterceptSpreadMm: 0.035,
+      imagePlaneHeightSpreadMm: 0.007,
+      axialIntercepts: { R: 59.99, G: 60, B: 60.02, V: 60.025 },
+      imagePlaneHeights: { R: -0.002, G: 0, B: 0.003, V: 0.005 },
       axis: "onAxis",
       fraction: 0.95,
       channels: ["R", "G", "B", "V"],
@@ -231,15 +231,15 @@ const chromaticAnalysis = {
   },
 };
 
-const chromaticRayTraceAnalysis = {
+const chromaticRayFanAnalysis = {
   channels: ["R", "G", "B", "V"],
   spreads: {
     onAxis: chromaticAnalysis.longitudinalFocus.spread,
     offAxis: {
-      lcaMm: 0.018,
-      tcaMm: 0.009,
-      intercepts: { R: 59.98, G: 60, B: 60.01, V: 60.015 },
-      imgHeights: { R: 9.99, G: 10, B: 10.006, V: 10.009 },
+      axialInterceptSpreadMm: 0.018,
+      imagePlaneHeightSpreadMm: 0.009,
+      axialIntercepts: { R: 59.98, G: 60, B: 60.01, V: 60.015 },
+      imagePlaneHeights: { R: 9.99, G: 10, B: 10.006, V: 10.009 },
       axis: "offAxis",
       fraction: 0.75,
       channels: ["R", "G", "B", "V"],
@@ -303,8 +303,8 @@ describe("prepared-state analysis tabs", () => {
     mockComputeBothPupilAberrationProfiles.mockReturnValue(pupilProfiles);
     mockComputeChromaticAnalysis.mockReset();
     mockComputeChromaticAnalysis.mockReturnValue(chromaticAnalysis);
-    mockComputeChromaticRayTraceAnalysis.mockReset();
-    mockComputeChromaticRayTraceAnalysis.mockReturnValue(chromaticRayTraceAnalysis);
+    mockComputeChromaticRayFanAnalysis.mockReset();
+    mockComputeChromaticRayFanAnalysis.mockReturnValue(chromaticRayFanAnalysis);
     mockComputeDistortionCurve.mockReset();
     mockComputeDistortionCurve.mockReturnValue(distortionSamples);
     mockComputeDistortionFieldGrid.mockReset();
@@ -375,11 +375,11 @@ describe("prepared-state analysis tabs", () => {
       }),
     );
 
-    expect(html).toContain("Longitudinal Color");
+    expect(html).toContain("Axial Color (LoCA)");
     expect(html).toContain("V ng");
     expect(mockPrepareRuntimeState).not.toHaveBeenCalled();
     expect(mockComputeChromaticAnalysis).toHaveBeenCalledWith(preparedState, 10, 5, fieldGeometry);
-    expect(mockComputeChromaticRayTraceAnalysis).toHaveBeenCalledWith(preparedState, 10, 5, fieldGeometry, {
+    expect(mockComputeChromaticRayFanAnalysis).toHaveBeenCalledWith(preparedState, 10, 5, fieldGeometry, {
       channels: ["R", "G", "B", "V"],
     });
     expect(mockComputeFieldCurvatureBundle).toHaveBeenCalledWith(preparedState, 10, 5, fieldGeometry);

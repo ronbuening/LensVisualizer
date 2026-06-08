@@ -3,8 +3,8 @@ import type { CardinalElements } from "../../../optics/cardinalElements.js";
 import type { LensMovementTransform } from "../../../optics/lensMovement.js";
 import type { GroupMovementMode } from "../../../types/groupMovement.js";
 import type {
-  ChromaticSpread,
-  ChromaticSpreadByAxis,
+  ChromaticRayFanSpread,
+  ChromaticRayFanSpreadByAxis,
   ElementData,
   ElementShape,
   RuntimeLens,
@@ -55,8 +55,8 @@ export interface PanelComputedModel {
 }
 
 export interface PanelRayDataModel {
-  chromSpread: ChromaticSpread | null;
-  chromaticSpreads: ChromaticSpreadByAxis;
+  chromaticRayFanSpread: ChromaticRayFanSpread | null;
+  chromaticRayFanSpreads: ChromaticRayFanSpreadByAxis;
   rays: RaySegment[];
   offAxisRays: RaySegment[];
   chromaticRays: ChromaticRaySegment[];
@@ -108,12 +108,12 @@ export interface PanelDisplayFlagsModel {
 }
 
 export interface PanelOverlaysModel {
-  showLcaOverlay: boolean;
+  showChromaticOverlay: boolean;
   showPetzvalOverlay: boolean;
   showAbbeDiagram: boolean;
-  closeLcaOverlay: () => void;
+  closeChromaticOverlay: () => void;
   closePetzvalOverlay: () => void;
-  openLcaOverlay: () => void;
+  openChromaticOverlay: () => void;
   openPetzvalOverlay: () => void;
   openAbbeDiagram: () => void;
   closeAbbeDiagram: () => void;

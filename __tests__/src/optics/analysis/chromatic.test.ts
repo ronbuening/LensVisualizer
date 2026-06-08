@@ -3,7 +3,7 @@ import { buildChromaticPositiveElementLens } from "../testLensFixtures.js";
 import {
   computeChromaticAnalysis2,
   computeChromaticAnalysisForState2,
-  computeChromaticRayTraceAnalysis2,
+  computeChromaticRayFanAnalysis2,
   computeLateralColorCurve2,
   computeLongitudinalChromaticFocus2,
   prepareRuntimeState,
@@ -22,13 +22,13 @@ describe("chromatic analysis helpers", () => {
   it("computes axis-split ray-trace spreads for analysis callers", () => {
     const { L, z, currentEPSD, currentPhysStopSD } = chromaticFixture();
 
-    const result = computeChromaticRayTraceAnalysis2(L, z, 0, 0, currentEPSD, currentPhysStopSD);
+    const result = computeChromaticRayFanAnalysis2(L, z, 0, 0, currentEPSD, currentPhysStopSD);
 
     expect(result.channels).toEqual(["R", "G", "B", "V"]);
     expect(result.spreads.onAxis?.axis).toBe("onAxis");
     expect(result.spreads.offAxis?.axis).toBe("offAxis");
-    expect(result.spreads.onAxis?.lcaMm).toBeGreaterThan(0);
-    expect(result.spreads.offAxis?.tcaMm).toBeGreaterThanOrEqual(0);
+    expect(result.spreads.onAxis?.axialInterceptSpreadMm).toBeGreaterThan(0);
+    expect(result.spreads.offAxis?.imagePlaneHeightSpreadMm).toBeGreaterThanOrEqual(0);
     expect(result.onAxisAttemptedRayCount).toBeGreaterThanOrEqual(3);
     expect(result.offAxisAttemptedRayCount).toBeGreaterThanOrEqual(3);
   });

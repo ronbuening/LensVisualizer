@@ -3,7 +3,7 @@
  *
  * Renders the full `<svg>` element including: defs (glow filter + aspheric diamond
  * pattern), grid lines, optical axis, ray polylines, glass element paths (clickable),
- * aspheric overlays and labels, aperture stop, image plane, LCA inset widget,
+ * aspheric overlays and labels, aperture stop, image plane, LoCA inset widget,
  * element annotations, and flash overlay.
  *
  * This is a pure rendering component — all data arrives via props, no internal
@@ -16,7 +16,7 @@ import DiagramElementLayer from "./DiagramElementLayer.js";
 import DiagramGridAxisLayer from "./DiagramGridAxisLayer.js";
 import DiagramOverlayLayer from "./DiagramOverlayLayer.js";
 import DiagramRayLayers from "./DiagramRayLayers.js";
-import type { RuntimeLens, ElementShape, ChromaticSpread } from "../../types/optics.js";
+import type { RuntimeLens, ElementShape, ChromaticRayFanSpread } from "../../types/optics.js";
 import type { DispersionQuality } from "../../optics/dispersion.js";
 import type { LensMovementTransform } from "../../optics/lensMovement.js";
 import type { CardinalElements } from "../../optics/cardinalElements.js";
@@ -44,7 +44,7 @@ interface DiagramSVGProps {
   rays: RaySegment[];
   offAxisRays: RaySegment[];
   chromaticRays: ChromaticRaySegment[];
-  chromSpread: ChromaticSpread | null;
+  chromaticRayFanSpread: ChromaticRayFanSpread | null;
   dispersionQuality?: DispersionQuality;
   showOnAxis: boolean;
   showOffAxis: OffAxisMode;
@@ -75,7 +75,7 @@ interface DiagramSVGProps {
   flashVisible: boolean;
   flashKey: number;
   flashFading: boolean;
-  onLcaInsetClick?: () => void;
+  onLocaInsetClick?: () => void;
   onPetzvalBadgeClick?: () => void;
   /** Override the default viewBox for zoom/pan mode */
   viewBoxOverride?: string;
@@ -113,7 +113,7 @@ const DiagramSVG = memo(function DiagramSVG({
   rays,
   offAxisRays,
   chromaticRays,
-  chromSpread,
+  chromaticRayFanSpread,
   dispersionQuality,
   showOnAxis,
   showOffAxis,
@@ -144,7 +144,7 @@ const DiagramSVG = memo(function DiagramSVG({
   flashVisible,
   flashKey,
   flashFading,
-  onLcaInsetClick,
+  onLocaInsetClick,
   onPetzvalBadgeClick,
   viewBoxOverride,
   zoomPanActive,
@@ -236,7 +236,7 @@ const DiagramSVG = memo(function DiagramSVG({
         shapes={shapes}
         stopZ={stopZ}
         currentPhysStopSD={currentPhysStopSD}
-        chromSpread={chromSpread}
+        chromaticRayFanSpread={chromaticRayFanSpread}
         dispersionQuality={dispersionQuality}
         showChromatic={showChromatic}
         showPupils={showPupils}
@@ -257,7 +257,7 @@ const DiagramSVG = memo(function DiagramSVG({
         flashVisible={flashVisible}
         flashKey={flashKey}
         flashFading={flashFading}
-        onLcaInsetClick={onLcaInsetClick}
+        onLocaInsetClick={onLocaInsetClick}
         onPetzvalBadgeClick={onPetzvalBadgeClick}
       />
     </svg>

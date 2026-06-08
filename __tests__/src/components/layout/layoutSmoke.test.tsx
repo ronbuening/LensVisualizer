@@ -73,7 +73,7 @@ vi.mock("../../../../src/components/hooks/useLensComputation.js", () => ({
 }));
 
 vi.mock("../../../../src/components/hooks/useRayTracing.js", () => ({
-  default: () => ({ rays: [], offAxisRays: [], chromaticRays: [], chromSpread: null, rayError: null }),
+  default: () => ({ rays: [], offAxisRays: [], chromaticRays: [], chromaticRayFanSpread: null, rayError: null }),
 }));
 
 vi.mock("../../../../src/components/hooks/useDispatchAdapters.js", () => ({
@@ -87,7 +87,11 @@ vi.mock("../../../../src/components/hooks/useDispatchAdapters.js", () => ({
 }));
 
 vi.mock("../../../../src/components/hooks/useOverlayState.js", () => ({
-  default: () => ({ abbeOpen: false, lcaOpen: false, petzvalOpen: false }),
+  default: () => ({
+    asphCompareElementId: null,
+    openAsphCompare: vi.fn(),
+    closeAsphCompare: vi.fn(),
+  }),
 }));
 
 vi.mock("../../../../src/components/hooks/useHeaderHeight.js", () => ({

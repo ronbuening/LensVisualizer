@@ -196,14 +196,14 @@ describe("lensReducer", () => {
       state.panels = {
         ...state.panels,
         glassMapOpen: true,
-        lcaOverlayOpen: true,
+        chromaticOverlayOpen: true,
         petzvalOverlayOpen: true,
         groupMovementOpen: true,
         selectedElementId: 2,
       };
       const next = lensReducer(state, { type: SET_LENS_A, key: "canon_50" });
       expect(next.panels.glassMapOpen).toBe(false);
-      expect(next.panels.lcaOverlayOpen).toBe(false);
+      expect(next.panels.chromaticOverlayOpen).toBe(false);
       expect(next.panels.petzvalOverlayOpen).toBe(false);
       expect(next.panels.groupMovementOpen).toBe(false);
       expect(next.panels.selectedElementId).toBeNull();

@@ -105,10 +105,10 @@ export default function ChromaticTab({
   const rayTraceAnalysis = useMemo(
     () =>
       probe(
-        "computeChromaticRayTraceAnalysis",
+        "computeChromaticRayFanAnalysis",
         () =>
-          analysisContext?.computeChromaticRayTraceAnalysis() ??
-          analysisJobsForState2.computeChromaticRayTraceAnalysis(
+          analysisContext?.computeChromaticRayFanAnalysis() ??
+          analysisJobsForState2.computeChromaticRayFanAnalysis(
             preparedState,
             currentEPSD,
             currentPhysStopSD,
@@ -140,35 +140,21 @@ export default function ChromaticTab({
           </span>
           <div style={metricsStyle}>
             <AnalysisMetricRow
-              label="Axial LCA"
+              label="LoCA"
               value={formatFiniteUm(longitudinal?.longitudinalSpreadUm)}
               suffix={finiteUmSuffix(longitudinal?.longitudinalSpreadUm)}
               note={longitudinal ? `${(longitudinal.marginalFraction * 100).toFixed(0)}% pupil` : undefined}
               t={t}
             />
             <AnalysisMetricRow
-              label="On-axis image spread"
-              value={formatFiniteUm(longitudinal?.transverseSpreadUm)}
-              suffix={finiteUmSuffix(longitudinal?.transverseSpreadUm)}
-              note="sensor-plane ray heights"
-              t={t}
-            />
-            <AnalysisMetricRow
-              label="Max lateral color"
+              label="Lateral color / TCA"
               value={formatFiniteUm(lateral?.maxLateralSpreadUm)}
               suffix={finiteUmSuffix(lateral?.maxLateralSpreadUm)}
               note={lateral ? `${lateral.usableFieldCount}/${lateral.fields.length} fields` : undefined}
               t={t}
             />
             <AnalysisMetricRow
-              label="Off-axis marginal TCA"
-              value={formatFiniteUm(offAxisRaySpread === null ? null : offAxisRaySpread.tcaMm * 1000)}
-              suffix={finiteUmSuffix(offAxisRaySpread === null ? null : offAxisRaySpread.tcaMm * 1000)}
-              note={offAxisRaySpread ? `${rayTraceAnalysis.offAxisFieldAngleDeg.toFixed(1)}° field` : undefined}
-              t={t}
-            />
-            <AnalysisMetricRow
-              label="Field focus spread"
+              label="Field-focus spread"
               value={formatFiniteUm(fieldFocus.summary ? fieldFocus.summary.maxFocusSpreadMm * 1000 : undefined)}
               suffix={finiteUmSuffix(fieldFocus.summary ? fieldFocus.summary.maxFocusSpreadMm * 1000 : undefined)}
               note={
@@ -178,13 +164,31 @@ export default function ChromaticTab({
               }
               t={t}
             />
+            <AnalysisMetricRow
+              label="Axial image-plane fan spread"
+              value={formatFiniteUm(longitudinal?.transverseSpreadUm)}
+              suffix={finiteUmSuffix(longitudinal?.transverseSpreadUm)}
+              note="sensor-plane ray heights"
+              t={t}
+            />
+            <AnalysisMetricRow
+              label="Off-axis fan spread"
+              value={formatFiniteUm(
+                offAxisRaySpread === null ? null : offAxisRaySpread.imagePlaneHeightSpreadMm * 1000,
+              )}
+              suffix={finiteUmSuffix(
+                offAxisRaySpread === null ? null : offAxisRaySpread.imagePlaneHeightSpreadMm * 1000,
+              )}
+              note={offAxisRaySpread ? `${rayTraceAnalysis.offAxisFieldAngleDeg.toFixed(1)}° field` : undefined}
+              t={t}
+            />
           </div>
         </section>
 
         <section style={sectionStyle(t)}>
-          <span style={sectionTitleStyle(t)}>Longitudinal Color</span>
+          <span style={sectionTitleStyle(t)}>Axial Color (LoCA)</span>
           <span style={sectionCopyStyle(t)}>
-            On-axis LCA from the outermost usable marginal chromatic ray. The chart is relative to the selected
+            On-axis LoCA from the outermost usable marginal chromatic ray. The chart is relative to the selected
             reference line, so common defocus is not counted as chromatic focus separation.
           </span>
           <LongitudinalChromaticFocusChart result={longitudinal} t={t} />
@@ -197,7 +201,7 @@ export default function ChromaticTab({
                 t={t}
               />
               <AnalysisMetricRow
-                label="Image span"
+                label="Image-plane fan span"
                 value={formatFiniteUm(longitudinal.transverseSpreadUm)}
                 suffix={finiteUmSuffix(longitudinal.transverseSpreadUm)}
                 note="at image plane"
@@ -220,7 +224,7 @@ export default function ChromaticTab({
         </section>
 
         <section style={sectionStyle(t)}>
-          <span style={sectionTitleStyle(t)}>Lateral Color</span>
+          <span style={sectionTitleStyle(t)}>Lateral Color (TCA)</span>
           <span style={sectionCopyStyle(t)}>
             Chief-ray image-height spread at the current image plane. This is chromatic magnification error across the
             field, separate from axial focus shift.
@@ -251,7 +255,7 @@ export default function ChromaticTab({
         </section>
 
         <section style={sectionStyle(t)}>
-          <span style={sectionTitleStyle(t)}>Field-Focus Color</span>
+          <span style={sectionTitleStyle(t)}>Chromatic Field Focus (T/S)</span>
           <span style={sectionCopyStyle(t)}>
             Wavelength-dependent tangential and sagittal best-focus separation from the real-ray field-curve solver.
           </span>

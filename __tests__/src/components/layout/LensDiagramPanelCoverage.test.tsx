@@ -43,7 +43,7 @@ const mocks = vi.hoisted(() => {
     onHeaderInfoExpandedChange: vi.fn(),
     onZoomPanToggle: vi.fn(),
     onGlassMapOpenChange: vi.fn(),
-    onLcaOverlayChange: vi.fn(),
+    onChromaticOverlayChange: vi.fn(),
     onPetzvalOverlayChange: vi.fn(),
   };
   const zoomReset = vi.fn();
@@ -196,7 +196,7 @@ function rayResult(overrides: Record<string, unknown> = {}) {
     rays: [],
     offAxisRays: [],
     chromaticRays: [],
-    chromSpread: null,
+    chromaticRayFanSpread: null,
     rayError: null,
     ...overrides,
   };

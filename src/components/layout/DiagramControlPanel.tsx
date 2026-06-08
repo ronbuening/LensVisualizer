@@ -8,7 +8,12 @@
 import DiagramControls from "../controls/DiagramControls.js";
 import ElementInspector from "../display/ElementInspector.js";
 import DiagramLegend from "../display/DiagramLegend.js";
-import type { RuntimeLens, ElementData, ChromaticSpread, ChromaticSpreadByAxis } from "../../types/optics.js";
+import type {
+  RuntimeLens,
+  ElementData,
+  ChromaticRayFanSpread,
+  ChromaticRayFanSpreadByAxis,
+} from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
 import type { OffAxisMode } from "../../types/state.js";
 import type { GroupMovementMode } from "../../types/groupMovement.js";
@@ -66,8 +71,8 @@ interface DiagramControlPanelProps {
   chromG: boolean;
   chromB: boolean;
   chromV: boolean;
-  chromSpread: ChromaticSpread | null;
-  chromaticSpreads?: ChromaticSpreadByAxis;
+  chromaticRayFanSpread: ChromaticRayFanSpread | null;
+  chromaticRayFanSpreads?: ChromaticRayFanSpreadByAxis;
   rayTracksF: boolean;
   onOpenAbbeDiagram: () => void;
   onOpenAsphericCompare?: (eid: number) => void;
@@ -121,8 +126,8 @@ export default function DiagramControlPanel({
   chromG,
   chromB,
   chromV,
-  chromSpread,
-  chromaticSpreads,
+  chromaticRayFanSpread,
+  chromaticRayFanSpreads,
   rayTracksF,
   onOpenAbbeDiagram,
   onOpenAsphericCompare,
@@ -222,8 +227,8 @@ export default function DiagramControlPanel({
             chromG={chromG}
             chromB={chromB}
             chromV={chromV}
-            chromSpread={chromSpread}
-            chromaticSpreads={chromaticSpreads}
+            chromaticRayFanSpread={chromaticRayFanSpread}
+            chromaticRayFanSpreads={chromaticRayFanSpreads}
             rayTracksF={rayTracksF}
             legendExpanded={legendExpanded}
             onLegendExpandedChange={onLegendExpandedChange}

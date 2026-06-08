@@ -247,12 +247,12 @@ describe("analysis display tabs", () => {
     expect(html).toContain("Chromatic Analysis");
     expect(html).toContain("Geometric traces at C, d, F, and g spectral lines");
     expect(html).toContain("do not classify apochromatic correction");
-    expect(html).toContain("AXIAL LCA");
-    expect(html).toContain("MAX LATERAL COLOR");
-    expect(html).toContain("OFF-AXIS MARGINAL TCA");
-    expect(html).toContain("Longitudinal Color");
-    expect(html).toContain("Lateral Color");
-    expect(html).toContain("Field-Focus Color");
+    expect(html).toContain("LoCA");
+    expect(html).toContain("LATERAL COLOR / TCA");
+    expect(html).toContain("OFF-AXIS FAN SPREAD");
+    expect(html).toContain("Axial Color (LoCA)");
+    expect(html).toContain("Lateral Color (TCA)");
+    expect(html).toContain("Chromatic Field Focus (T/S)");
     expect(html).toContain("Focus from G nd (um)");
     expect(html).toContain("Height from G nd (um)");
     expect(html).toContain("C-line 656.3 nm");

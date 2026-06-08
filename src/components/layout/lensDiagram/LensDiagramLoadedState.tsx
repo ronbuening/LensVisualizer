@@ -59,7 +59,7 @@ export default function LensDiagramLoadedState({
     cardinalElements,
     foldedHitOrderLabels,
   } = computed;
-  const { chromSpread, chromaticSpreads, rays, offAxisRays, chromaticRays } = rayData;
+  const { chromaticRayFanSpread, chromaticRayFanSpreads, rays, offAxisRays, chromaticRays } = rayData;
   const {
     theme: t,
     dark,
@@ -151,8 +151,8 @@ export default function LensDiagramLoadedState({
             rays={rays}
             offAxisRays={offAxisRays}
             chromaticRays={chromaticRays}
-            chromSpread={chromSpread ?? null}
-            chromaticSpreads={chromaticSpreads}
+            chromaticRayFanSpread={chromaticRayFanSpread ?? null}
+            chromaticRayFanSpreads={chromaticRayFanSpreads}
             showOnAxis={showOnAxis}
             showOffAxis={showOffAxis}
             showChromatic={showChromatic}
@@ -182,11 +182,11 @@ export default function LensDiagramLoadedState({
             flashVisible={flashVisible}
             flashKey={flashKey}
             flashFading={flashFading}
-            showLcaOverlay={overlays.showLcaOverlay}
+            showChromaticOverlay={overlays.showChromaticOverlay}
             showPetzvalOverlay={overlays.showPetzvalOverlay}
-            onCloseLcaOverlay={overlays.closeLcaOverlay}
+            onCloseChromaticOverlay={overlays.closeChromaticOverlay}
             onClosePetzvalOverlay={overlays.closePetzvalOverlay}
-            onOpenLcaOverlay={overlays.openLcaOverlay}
+            onOpenChromaticOverlay={overlays.openChromaticOverlay}
             onOpenPetzvalOverlay={overlays.openPetzvalOverlay}
             analysisDrawerOpen={analysisDrawerOpen}
             onAnalysisDrawerToggle={adapters.onAnalysisDrawerToggle}
@@ -265,8 +265,8 @@ export default function LensDiagramLoadedState({
               chromG={chromG}
               chromB={chromB}
               chromV={chromV}
-              chromSpread={chromSpread ?? null}
-              chromaticSpreads={chromaticSpreads}
+              chromaticRayFanSpread={chromaticRayFanSpread ?? null}
+              chromaticRayFanSpreads={chromaticRayFanSpreads}
               rayTracksF={rayTracksF}
               onOpenAbbeDiagram={overlays.openAbbeDiagram}
               onOpenAsphericCompare={overlays.openAsphCompare}

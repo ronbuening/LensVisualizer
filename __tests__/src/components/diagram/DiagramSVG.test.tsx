@@ -38,11 +38,11 @@ vi.mock("../../../../src/components/diagram/ElementAnnotations.js", () => ({
   default: () => <g data-testid="element-annotations" />,
 }));
 
-vi.mock("../../../../src/components/diagram/LCAInsetWidget.js", () => ({
+vi.mock("../../../../src/components/diagram/LocaInsetWidget.js", () => ({
   default: ({ onClick }: { onClick?: () => void }) => (
     <g>
-      <button type="button" data-testid="lca-inset" onClick={onClick}>
-        LCA
+      <button type="button" data-testid="loca-inset" onClick={onClick}>
+        LoCA
       </button>
     </g>
   ),
@@ -113,7 +113,7 @@ function baseDiagramSvgProps(
     rays: [],
     offAxisRays: [],
     chromaticRays: [],
-    chromSpread: null,
+    chromaticRayFanSpread: null,
     showOnAxis: false,
     showOffAxis: "off",
     showChromatic: false,
@@ -137,13 +137,13 @@ function baseDiagramSvgProps(
 describe("DiagramSVG", () => {
   const onHover = vi.fn();
   const onSelect = vi.fn();
-  const onLcaInsetClick = vi.fn();
+  const onLocaInsetClick = vi.fn();
   const onPetzvalBadgeClick = vi.fn();
 
   beforeEach(() => {
     onHover.mockReset();
     onSelect.mockReset();
-    onLcaInsetClick.mockReset();
+    onLocaInsetClick.mockReset();
     onPetzvalBadgeClick.mockReset();
     mockApertureStop.mockReset();
   });
@@ -220,11 +220,11 @@ describe("DiagramSVG", () => {
             axis: "onAxis",
           },
         ]}
-        chromSpread={{
-          lcaMm: 0.1,
-          tcaMm: 0.2,
-          intercepts: { R: 0.1, G: 0 },
-          imgHeights: { R: 1, G: 0.8 },
+        chromaticRayFanSpread={{
+          axialInterceptSpreadMm: 0.1,
+          imagePlaneHeightSpreadMm: 0.2,
+          axialIntercepts: { R: 0.1, G: 0 },
+          imagePlaneHeights: { R: 1, G: 0.8 },
         }}
         showOnAxis={true}
         showOffAxis="trueAngle"
@@ -242,7 +242,7 @@ describe("DiagramSVG", () => {
         flashVisible={true}
         flashKey={1}
         flashFading={false}
-        onLcaInsetClick={onLcaInsetClick}
+        onLocaInsetClick={onLocaInsetClick}
         onPetzvalBadgeClick={onPetzvalBadgeClick}
       />,
     );
@@ -252,7 +252,7 @@ describe("DiagramSVG", () => {
     expect(screen.getByTestId("ray-chrom-on")).toBeTruthy();
     expect(screen.getByTestId("aperture-stop")).toBeTruthy();
     expect(screen.getByTestId("element-annotations")).toBeTruthy();
-    expect(screen.getByTestId("lca-inset")).toBeTruthy();
+    expect(screen.getByTestId("loca-inset")).toBeTruthy();
     expect(screen.getByTestId("petzval-badge")).toBeTruthy();
 
     const elementPath = container.querySelector('path[d="M 10 10 L 40 10 L 40 40 Z"]');
@@ -261,13 +261,13 @@ describe("DiagramSVG", () => {
     fireEvent.mouseEnter(elementPath!);
     fireEvent.mouseLeave(elementPath!);
     fireEvent.click(elementPath!);
-    fireEvent.click(screen.getByTestId("lca-inset"));
+    fireEvent.click(screen.getByTestId("loca-inset"));
     fireEvent.click(screen.getByTestId("petzval-badge"));
 
     expect(onHover).toHaveBeenNthCalledWith(1, 1);
     expect(onHover).toHaveBeenNthCalledWith(2, null);
     expect(onSelect).toHaveBeenCalledWith(1);
-    expect(onLcaInsetClick).toHaveBeenCalledTimes(1);
+    expect(onLocaInsetClick).toHaveBeenCalledTimes(1);
     expect(onPetzvalBadgeClick).toHaveBeenCalledTimes(1);
   });
 
@@ -324,7 +324,7 @@ describe("DiagramSVG", () => {
         rays={[]}
         offAxisRays={[]}
         chromaticRays={[]}
-        chromSpread={null}
+        chromaticRayFanSpread={null}
         showOnAxis={false}
         showOffAxis="off"
         showChromatic={false}
@@ -379,7 +379,7 @@ describe("DiagramSVG", () => {
         rays={[]}
         offAxisRays={[]}
         chromaticRays={[]}
-        chromSpread={null}
+        chromaticRayFanSpread={null}
         showOnAxis={false}
         showOffAxis="off"
         showChromatic={false}
@@ -437,7 +437,7 @@ describe("DiagramSVG", () => {
         rays={[]}
         offAxisRays={[]}
         chromaticRays={[]}
-        chromSpread={null}
+        chromaticRayFanSpread={null}
         showOnAxis={false}
         showOffAxis="off"
         showChromatic={false}
@@ -490,7 +490,7 @@ describe("DiagramSVG", () => {
         rays={[]}
         offAxisRays={[]}
         chromaticRays={[]}
-        chromSpread={null}
+        chromaticRayFanSpread={null}
         showOnAxis={false}
         showOffAxis="off"
         showChromatic={false}
@@ -555,7 +555,7 @@ describe("DiagramSVG", () => {
         rays={[]}
         offAxisRays={[]}
         chromaticRays={[]}
-        chromSpread={null}
+        chromaticRayFanSpread={null}
         showOnAxis={false}
         showOffAxis="off"
         showChromatic={false}
@@ -629,7 +629,7 @@ describe("DiagramSVG", () => {
         rays={[]}
         offAxisRays={[]}
         chromaticRays={[]}
-        chromSpread={null}
+        chromaticRayFanSpread={null}
         showOnAxis={false}
         showOffAxis="off"
         showChromatic={false}
@@ -685,7 +685,7 @@ describe("DiagramSVG", () => {
         rays={[]}
         offAxisRays={[]}
         chromaticRays={[]}
-        chromSpread={null}
+        chromaticRayFanSpread={null}
         showOnAxis={false}
         showOffAxis="off"
         showChromatic={false}

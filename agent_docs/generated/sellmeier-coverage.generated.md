@@ -118,9 +118,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Fully Trusted Through Measured Line Indices
 
-These lenses are complete for chromatic tracing but not strict catalog-Sellmeier complete. Their aggregate LCA/TCA dispersion badge should read `Line indices`.
+These lenses are complete for chromatic tracing but not strict catalog-Sellmeier complete. Their aggregate chromatic dispersion badge should read `Line indices`.
 
-| Lens | Elements trusted | Elements Sellmeier | Non-air surfaces | Strict Sellmeier surfaces | Line-index surfaces | LCA/TCA badge |
+| Lens | Elements trusted | Elements Sellmeier | Non-air surfaces | Strict Sellmeier surfaces | Line-index surfaces | Chromatic badge |
 |---|---:|---:|---:|---:|---:|---|
 | [CANON EF-S 17-55mm f/2.8 IS USM](../../src/lens-data/canon/CanonEFS1755mmf28IS.data.ts) | 21/21 | 19/21 | 21 | 19/21 | 2 | Line indices |
 | [Sony FE 16-35mm f/2.8 GM II](../../src/lens-data/sony/SonyFE1635mmf28GMII.data.ts) | 15/15 | 14/15 | 15 | 14/15 | 1 | Line indices |

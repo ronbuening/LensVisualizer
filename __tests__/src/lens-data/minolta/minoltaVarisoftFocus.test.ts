@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import buildLens from "../../../../src/optics/buildLens.js";
 import {
   computeAnalysisFieldGeometryAtState,
-  computeChromaticSpread,
+  computeChromaticRayFanSpread,
   doLayout,
   entrancePupilAtState,
   thick,
@@ -53,7 +53,7 @@ function expectMeaningfulDifference(actual: number, expected: number, message: s
   expect(Math.abs(actual - expected), message).toBeGreaterThan(1e-7);
 }
 
-function lcaAt(L: RuntimeLens, aberrationT: number) {
+function locaAt(L: RuntimeLens, aberrationT: number) {
   const { zPos, currentEPSD, currentPhysStopSD } = analysisState(L, 0, aberrationT);
   const lastSurfZ = zPos[L.N - 1];
   const rays: Partial<Record<ChromaticChannel, { y: number; u: number; clipped: boolean }>> = {};
@@ -61,7 +61,7 @@ function lcaAt(L: RuntimeLens, aberrationT: number) {
     const ray = traceRayChromatic(0.95 * currentEPSD, 0, zPos, 0, 0, currentPhysStopSD, true, L, channel, aberrationT);
     rays[channel] = { y: ray.y, u: ray.u, clipped: ray.clipped };
   }
-  return computeChromaticSpread(rays, doLayout(0, 0, L, aberrationT).imgZ, lastSurfZ);
+  return computeChromaticRayFanSpread(rays, doLayout(0, 0, L, aberrationT).imgZ, lastSurfZ);
 }
 
 describe("Minolta Varisoft 85mm f/2.8 focus model", () => {
@@ -235,12 +235,16 @@ describe("Minolta Varisoft 85mm f/2.8 focus model", () => {
     );
   });
 
-  it("applies the soft-focus ring to LCA", () => {
+  it("applies the soft-focus ring to LoCA", () => {
     const L = buildMinoltaVarisoft();
-    const sharpLca = lcaAt(L, 0);
-    const softLca = lcaAt(L, 1);
-    expect(sharpLca).not.toBeNull();
-    expect(softLca).not.toBeNull();
-    expectMeaningfulDifference(softLca!.lcaMm, sharpLca!.lcaMm, "soft ring should change longitudinal CA");
+    const sharpLoca = locaAt(L, 0);
+    const softLoca = locaAt(L, 1);
+    expect(sharpLoca).not.toBeNull();
+    expect(softLoca).not.toBeNull();
+    expectMeaningfulDifference(
+      softLoca!.axialInterceptSpreadMm,
+      sharpLoca!.axialInterceptSpreadMm,
+      "soft ring should change longitudinal CA",
+    );
   });
 });

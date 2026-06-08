@@ -55,7 +55,7 @@ L1 is a thin, weakly negative meniscus ($R_1 = +491.12$, $R_2 = +155.85$, $d = 1
 
 $n_d = 1.78472$, $\nu_d = 25.72$. Glass: H-ZF13 (CDGM) — dense flint. $f = +310.6$ mm.
 
-L2 is a weakly positive biconvex element ($R_1 = +335.03$, $R_2 = -890.60$, $d = 3.30$ mm) that completes G1. Both radii are large, giving only modest curvature despite the biconvex form. Its dense flint composition ($\nu_d = 25.7$) pairs chromatically with L1's higher-$\nu_d$ lanthanum flint. Together, L1 and L2 form a widely spaced achromatic corrector of near-zero net power. The combination introduces a controlled amount of longitudinal chromatic aberration (LCA) with the opposite sign to that produced by G2's powerful positive elements, contributing to the lens's APO performance. L2's relatively thick center ($3.3$ mm) also provides structural rigidity for the G1 cell, which must remain positionally stable as G2 and G3 move behind it.
+L2 is a weakly positive biconvex element ($R_1 = +335.03$, $R_2 = -890.60$, $d = 3.30$ mm) that completes G1. Both radii are large, giving only modest curvature despite the biconvex form. Its dense flint composition ($\nu_d = 25.7$) pairs chromatically with L1's higher-$\nu_d$ lanthanum flint. Together, L1 and L2 form a widely spaced achromatic corrector of near-zero net power. The combination introduces a controlled amount of longitudinal chromatic aberration (LoCA) with the opposite sign to that produced by G2's powerful positive elements, contributing to the lens's APO performance. L2's relatively thick center ($3.3$ mm) also provides structural rigidity for the G1 cell, which must remain positionally stable as G2 and G3 move behind it.
 
 ### L3 — Biconvex Positive (ED)
 

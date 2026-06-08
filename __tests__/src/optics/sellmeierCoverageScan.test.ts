@@ -304,11 +304,11 @@ describe("Sellmeier coverage scan", () => {
     lines.push("## Fully Trusted Through Measured Line Indices");
     lines.push("");
     lines.push(
-      "These lenses are complete for chromatic tracing but not strict catalog-Sellmeier complete. Their aggregate LCA/TCA dispersion badge should read `Line indices`.",
+      "These lenses are complete for chromatic tracing but not strict catalog-Sellmeier complete. Their aggregate chromatic dispersion badge should read `Line indices`.",
     );
     lines.push("");
     lines.push(
-      "| Lens | Elements trusted | Elements Sellmeier | Non-air surfaces | Strict Sellmeier surfaces | Line-index surfaces | LCA/TCA badge |",
+      "| Lens | Elements trusted | Elements Sellmeier | Non-air surfaces | Strict Sellmeier surfaces | Line-index surfaces | Chromatic badge |",
     );
     lines.push("|---|---:|---:|---:|---:|---:|---|");
     for (const row of lineIndexCompleteRows) {

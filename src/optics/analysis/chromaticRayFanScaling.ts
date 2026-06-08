@@ -1,21 +1,18 @@
 /**
- * LCA scaling analysis adapter — v2-compatible exports for fixed-reference chromatic bar offsets.
+ * Chromatic ray-fan scaling analysis adapter — v2-compatible exports for fixed-reference chromatic bar offsets.
  *
- * Delegates to the public lcaScaling helper so analysis callers share the same display scale.
+ * Keeps prepared-state analysis callers on the same display scale as RuntimeLens callers.
  */
 
 import type { ChromaticChannel } from "../../types/optics.js";
 
 /**
- * Fixed longitudinal chromatic aberration reference in mm for full-width bar scaling.
- *
- * The value matches the public `lcaScaling.ts` helper so v2/prepared-state callers
- * render the same visual offsets as RuntimeLens callers.
+ * Fixed LoCA reference in mm for full-width bar scaling.
  */
-export const REFERENCE_LCA_MM_2 = 0.15;
+export const REFERENCE_LOCA_MM_2 = 0.15;
 
-/** Pixel offsets and applied magnification for one LCA visualization. */
-export interface LcaBarResult2 {
+/** Pixel offsets and applied magnification for one LoCA visualization. */
+export interface ChromaticBarResult2 {
   barOffsets: Partial<Record<ChromaticChannel, number>>;
   mag: number;
   clamped: boolean;
@@ -26,28 +23,28 @@ export interface LcaBarResult2 {
  *
  * Intercepts are axial image-plane coordinates in mm. Offsets are returned in px
  * relative to the reference channel and clamped to half the available viewport width
- * so a very large LCA estimate cannot push bars outside the diagram.
+ * so a very large LoCA estimate cannot push bars outside the diagram.
  *
- * @param intercepts - per-channel axial intercept positions in mm
+ * @param axialIntercepts - per-channel axial intercept positions in mm
  * @param referenceIntercept - channel intercept used as the zero-offset baseline in mm
  * @param viewWidthPx - available view width in CSS pixels
  * @param effectiveSC - current optical-mm to pixel scale
  * @returns per-channel pixel offsets, magnification, and whether clamping was applied
  */
-export function computeLcaBarOffsets2(
-  intercepts: Partial<Record<ChromaticChannel, number>>,
+export function computeLocaBarOffsets2(
+  axialIntercepts: Partial<Record<ChromaticChannel, number>>,
   referenceIntercept: number,
   viewWidthPx: number,
   effectiveSC: number,
-): LcaBarResult2 {
+): ChromaticBarResult2 {
   const halfWidth = viewWidthPx / 2;
-  const baseMag = (halfWidth * 0.7) / (REFERENCE_LCA_MM_2 * effectiveSC);
+  const baseMag = (halfWidth * 0.7) / (REFERENCE_LOCA_MM_2 * effectiveSC);
   const barOffsets: Partial<Record<ChromaticChannel, number>> = {};
   let maxAbsPx = 0;
 
   for (const ch of ["R", "G", "B", "V"] as ChromaticChannel[]) {
-    if (intercepts[ch] === undefined) continue;
-    const px = (intercepts[ch] - referenceIntercept) * baseMag * effectiveSC;
+    if (axialIntercepts[ch] === undefined) continue;
+    const px = (axialIntercepts[ch] - referenceIntercept) * baseMag * effectiveSC;
     barOffsets[ch] = px;
     maxAbsPx = Math.max(maxAbsPx, Math.abs(px));
   }

@@ -5,7 +5,7 @@
  *   useLensComputation  → lens building, layout, transforms, shapes, aperture
  *   useRayTracing       → on-axis, off-axis, chromatic ray fans
  *   useDispatchAdapters → context dispatch callback wiring
- *   useOverlayState     → Abbe/LCA/Petzval overlay open/close state
+ *   useOverlayState     → Abbe/chromatic/Petzval overlay open/close state
  *   useHeaderHeight     → header ResizeObserver + height reporting
  *   useFlashOverlay     → flash animation state machine
  *   useSideLayoutDetection → overflow-based side layout switching
@@ -122,7 +122,7 @@ export default function LensDiagramPanel({
     headerInfoExpanded,
     abbeShowGlassType,
     glassMapOpen,
-    lcaOverlayOpen,
+    chromaticOverlayOpen,
     petzvalOverlayOpen,
     showEffectiveAperture,
     aberrationsExpanded,
@@ -234,11 +234,11 @@ export default function LensDiagramPanel({
     }
   }, [L, dispatch, selectedElementPanelId, sel]);
 
-  const { onGlassMapOpenChange, onLcaOverlayChange, onPetzvalOverlayChange } = adapters;
+  const { onGlassMapOpenChange, onChromaticOverlayChange, onPetzvalOverlayChange } = adapters;
   const openAbbeDiagram = useCallback(() => onGlassMapOpenChange(true), [onGlassMapOpenChange]);
   const closeAbbeDiagram = useCallback(() => onGlassMapOpenChange(false), [onGlassMapOpenChange]);
-  const openLcaOverlay = useCallback(() => onLcaOverlayChange(true), [onLcaOverlayChange]);
-  const closeLcaOverlay = useCallback(() => onLcaOverlayChange(false), [onLcaOverlayChange]);
+  const openChromaticOverlay = useCallback(() => onChromaticOverlayChange(true), [onChromaticOverlayChange]);
+  const closeChromaticOverlay = useCallback(() => onChromaticOverlayChange(false), [onChromaticOverlayChange]);
   const openPetzvalOverlay = useCallback(() => onPetzvalOverlayChange(true), [onPetzvalOverlayChange]);
   const closePetzvalOverlay = useCallback(() => onPetzvalOverlayChange(false), [onPetzvalOverlayChange]);
   const panelOverlays = useMemo(
@@ -247,9 +247,9 @@ export default function LensDiagramPanel({
       showAbbeDiagram: glassMapOpen,
       openAbbeDiagram,
       closeAbbeDiagram,
-      showLcaOverlay: lcaOverlayOpen,
-      openLcaOverlay,
-      closeLcaOverlay,
+      showChromaticOverlay: chromaticOverlayOpen,
+      openChromaticOverlay,
+      closeChromaticOverlay,
       showPetzvalOverlay: petzvalOverlayOpen,
       openPetzvalOverlay,
       closePetzvalOverlay,
@@ -257,12 +257,12 @@ export default function LensDiagramPanel({
     [
       overlays,
       glassMapOpen,
-      lcaOverlayOpen,
+      chromaticOverlayOpen,
       petzvalOverlayOpen,
       openAbbeDiagram,
       closeAbbeDiagram,
-      openLcaOverlay,
-      closeLcaOverlay,
+      openChromaticOverlay,
+      closeChromaticOverlay,
       openPetzvalOverlay,
       closePetzvalOverlay,
     ],
@@ -296,7 +296,7 @@ export default function LensDiagramPanel({
   const effectiveRayDensity = sliderInteracting && heavyRayWork ? "normal" : rayDensity;
 
   /* ── Ray tracing (on-axis, off-axis, chromatic) ── */
-  const { rays, offAxisRays, chromaticRays, chromSpread, chromaticSpreads, rayError } = useRayTracing({
+  const { rays, offAxisRays, chromaticRays, chromaticRayFanSpread, chromaticRayFanSpreads, rayError } = useRayTracing({
     L,
     zPos,
     IMG_MM,
@@ -320,7 +320,6 @@ export default function LensDiagramPanel({
     chromV,
     lensKey,
   });
-
   return (
     <PanelErrorBoundary lensKey={lensKey}>
       {buildError ? (
@@ -382,8 +381,8 @@ export default function LensDiagramPanel({
             foldedHitOrderLabels,
           }}
           rayData={{
-            chromSpread: chromSpread ?? null,
-            chromaticSpreads,
+            chromaticRayFanSpread: chromaticRayFanSpread ?? null,
+            chromaticRayFanSpreads,
             rays,
             offAxisRays,
             chromaticRays,

@@ -1,24 +1,24 @@
 /**
- * lcaScaling — Fixed-reference scaling for chromatic bar visualisations.
+ * chromaticRayFanScaling — Fixed-reference scaling for chromatic bar visualisations.
  *
  * Provides a consistent magnification so that lenses with larger chromatic
  * aberration display wider bars and well-corrected lenses display narrower
- * bars.  The LCA scale is anchored to REFERENCE_LCA_MM: a lens whose maximum
+ * bars.  The LoCA scale is anchored to REFERENCE_LOCA_MM: a lens whose maximum
  * channel offset equals that value will fill ~70 % of the available width.
  *
  * Extracted as a pure function so the same logic can drive both the small
- * inset widget and a future full-size overlay.
+ * LoCA inset widget and the detailed chromatic overlay.
  */
 import type { ChromaticChannel } from "../types/optics.js";
 
-/** Typical moderate LCA in mm — sets the "full width" reference point. */
-export const REFERENCE_LCA_MM = 0.15;
+/** Typical moderate LoCA in mm — sets the "full width" reference point. */
+export const REFERENCE_LOCA_MM = 0.15;
 
-/** Typical moderate TCA in mm — sets the lateral-color chart reference point. */
-export const REFERENCE_TCA_MM = 0.01;
+/** Typical moderate off-axis fan image-height spread in mm. */
+export const REFERENCE_FAN_IMAGE_HEIGHT_SPREAD_MM = 0.01;
 
 /** Pixel offsets and applied magnification for one chromatic bar visualization. */
-export interface LcaBarResult {
+export interface ChromaticBarResult {
   /** Pixel offset from centre for each active channel. */
   barOffsets: Partial<Record<ChromaticChannel, number>>;
   /** Effective magnification applied (for the readout label). */
@@ -44,7 +44,7 @@ export function computeChromaticBarOffsets(
   viewWidthPx: number,
   effectiveSC: number,
   referenceOffsetMm: number,
-): LcaBarResult {
+): ChromaticBarResult {
   const halfWidth = viewWidthPx / 2;
 
   // Fixed magnification: referenceOffsetMm of offset fills 70 % of the half-width.
@@ -76,11 +76,11 @@ export function computeChromaticBarOffsets(
   return { barOffsets, mag, clamped };
 }
 
-export function computeLcaBarOffsets(
-  intercepts: Partial<Record<ChromaticChannel, number>>,
+export function computeLocaBarOffsets(
+  axialIntercepts: Partial<Record<ChromaticChannel, number>>,
   referenceIntercept: number,
   viewWidthPx: number,
   effectiveSC: number,
-): LcaBarResult {
-  return computeChromaticBarOffsets(intercepts, referenceIntercept, viewWidthPx, effectiveSC, REFERENCE_LCA_MM);
+): ChromaticBarResult {
+  return computeChromaticBarOffsets(axialIntercepts, referenceIntercept, viewWidthPx, effectiveSC, REFERENCE_LOCA_MM);
 }

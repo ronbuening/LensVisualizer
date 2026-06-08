@@ -22,7 +22,9 @@ The app already has these analysis surfaces and should treat them as shipped bas
   field curvature.
 - Rectilinear distortion curve plus traced 2D chief-ray distortion field grid.
 - Focus-breathing readouts, vignetting/relative-illumination curves, and EP/XP pupil-aberration curves.
-- Abbe glass map, Petzval overlay, LCA inset/overlay, element inspector, and bokeh analysis tab.
+- Abbe glass map, Petzval overlay, LoCA inset/chromatic detail overlay, element inspector, and bokeh analysis tab.
+- Chromatic drawer analyses for axial color/LoCA, chief-ray lateral color/TCA, and chromatic tangential/sagittal
+  field-focus spread.
 - Side-by-side comparison mode with shared focus, aperture, zoom, and scale controls.
 
 This leaves several good opportunities: surfacing more of the scalar data users need for comparison, turning hidden
@@ -250,39 +252,55 @@ most intuitive "how big is the blur?" view. It would also give bokeh and aberrat
 - Clearly label this as geometric ray density, not diffraction MTF.
 - Add performance guards: fixed sample counts, memoization, lazy rendering, and maybe a "high resolution" toggle.
 
-### 13. Chromatic Lateral Color Curve
+### 13. Finite-Conjugate Chromatic Focus
 
-**Why it helps:** LCA and chromatic field curvature are visible today, but lateral color is not isolated as a first-class
-curve. Many wide-angle and telephoto designs would benefit from a field-dependent R/G/B image-height separation readout.
+**Why it helps:** The chromatic drawer now has longitudinal focus, lateral color/TCA, and tangential/sagittal
+field-focus curves for the current centered lens state. The remaining focus gap is finite-conjugate behavior: how axial
+color shifts when object distance changes, especially for macro and floating-element lenses.
 
 **Effort:** M-L
 
 **Implementation outline:**
 
-- Trace chromatic chief rays across field positions using the existing wavelength index adjustment.
-- Compute R/G/B image-height separation relative to green at each field angle.
-- Add a chart to the chromatic/aberrations area or a new Chromatic tab.
-- Add tests using lenses with known measurable chromatic spread.
+- Extend the current state-aware longitudinal focus helper to sweep focus distance or object conjugate, not just the
+  current slider position.
+- Keep the first version centered and sequential; document tilt/shift and folded mirror exclusions.
+- Summarize focus-shift slope and sign changes across the sweep.
+- Add tests using macro/floating lenses where focus-state chromatic behavior is expected to change.
 
-### 14. Longitudinal Chromatic Focus Curve
+### 14. Folded-Optics Chromatic Drawer Validation
 
-**Why it helps:** The LCA inset shows a compact view, but a focus curve would explain whether color focus shift is linear,
-balanced, or strongly asymmetric across channels.
+**Why it helps:** Folded mirror tracing is generalized for the diagram, but the chromatic drawer remains guarded for
+folded systems because the current off-axis and field sweeps need fixture-backed validation before they can be trusted.
+
+**Effort:** M-L
+
+**Implementation outline:**
+
+- Build folded chromatic fixtures with known image-plane and chief-ray behavior.
+- Validate LoCA, lateral color/TCA, and chromatic field-focus paths against the generalized folded tracer.
+- Lift drawer guards one analysis at a time only after fixture coverage lands.
+
+### 15. Deeper Diagram Affordances For Lateral Color
+
+**Why it helps:** The chromatic detail overlay now focuses on marginal-ray diagnostics: LoCA and the displayed off-axis
+fan. A deeper diagram affordance could connect the lateral-color curve to field points directly in the SVG without
+overloading the small LoCA inset or confusing chief-ray TCA with fan endpoint spread.
 
 **Effort:** M
 
 **Implementation outline:**
 
-- Repeatedly solve paraxial or real near-axis focus for R/G/B channels.
-- Plot channel focus position relative to green, optionally across aperture or zoom.
-- Reuse `computeChromaticSpread()` concepts but move the result into a dedicated pure helper.
-- Keep the first version to the existing R/G/B channels unless the data schema gains richer dispersion data.
+- Add an optional lateral-color field marker or mini-chart that is visually distinct from the LoCA inset.
+- Keep the current small diagram inset LoCA-only.
+- Link any new affordance to the existing `computeLateralColorCurve()` result, not to marginal ray-fan endpoint spread.
+- Add tests proving any future diagram-level lateral-color affordance remains visually distinct from off-axis fan spread.
 
 ---
 
 ## 4. Pupils, Sensor Fit, Illumination, And Bokeh
 
-### 15. Chief-Ray Angle And Sensor Compatibility
+### 16. Chief-Ray Angle And Sensor Compatibility
 
 **Why it helps:** The pupil-geometry articles discuss telecentricity, exit pupil distance, corner color cast, and sensor
 stack compatibility. A live chief-ray-angle chart would connect those articles to actual lenses.

@@ -8,7 +8,7 @@ import {
   formatDist,
   traceRay,
   traceRayChromatic,
-  computeChromaticSpread,
+  computeChromaticRayFanSpread,
   traceToImage,
   conjugateK,
   wavelengthNd,
@@ -248,7 +248,7 @@ describe("traceRay — exact Snell", () => {
     const { z: zPos } = doLayout(0, 0, L);
     const { pts, clipped } = traceRay(5, 0, zPos, 0, 0, 15, false, L);
     expect(clipped).toBe(false);
-    // pts: lead point + surface points, with the current tracer also appending image-plane intercepts.
+    // pts: lead point + surface points, with the current tracer also appending image-plane axialIntercepts.
     expect(pts.length).toBeGreaterThanOrEqual(L.N + 1);
   });
 
@@ -401,19 +401,19 @@ describe("traceRayChromatic", () => {
   });
 });
 
-describe("computeChromaticSpread", () => {
-  it("returns zero LCA when all channels have same intercept", () => {
+describe("computeChromaticRayFanSpread", () => {
+  it("returns zero LoCA spread when all channels have same axial intercept", () => {
     const marginalRays = {
       R: { y: 1.0, u: -0.1, clipped: false },
       G: { y: 1.0, u: -0.1, clipped: false },
       B: { y: 1.0, u: -0.1, clipped: false },
     };
-    const result = computeChromaticSpread(marginalRays, 50, 40);
-    expect(result.lcaMm).toBeCloseTo(0, 10);
-    expect(result.tcaMm).toBeCloseTo(0, 10);
+    const result = computeChromaticRayFanSpread(marginalRays, 50, 40);
+    expect(result.axialInterceptSpreadMm).toBeCloseTo(0, 10);
+    expect(result.imagePlaneHeightSpreadMm).toBeCloseTo(0, 10);
   });
 
-  it("computes positive LCA when red focuses farther than blue", () => {
+  it("computes positive LoCA spread when red focuses farther than blue", () => {
     // Red ray: y=1, u=-0.05 => intercept = 40 - 1/(-0.05) = 60
     // Blue ray: y=1, u=-0.06 => intercept = 40 - 1/(-0.06) = 56.67
     const marginalRays = {
@@ -421,10 +421,10 @@ describe("computeChromaticSpread", () => {
       G: { y: 1.0, u: -0.055, clipped: false },
       B: { y: 1.0, u: -0.06, clipped: false },
     };
-    const result = computeChromaticSpread(marginalRays, 65, 40);
-    expect(result.lcaMm).toBeGreaterThan(0);
-    expect(result.intercepts.R).toBeCloseTo(60, 4);
-    expect(result.intercepts.B).toBeCloseTo(40 + 1 / 0.06, 4);
+    const result = computeChromaticRayFanSpread(marginalRays, 65, 40);
+    expect(result.axialInterceptSpreadMm).toBeGreaterThan(0);
+    expect(result.axialIntercepts.R).toBeCloseTo(60, 4);
+    expect(result.axialIntercepts.B).toBeCloseTo(40 + 1 / 0.06, 4);
   });
 
   it("computes image heights correctly", () => {
@@ -432,19 +432,19 @@ describe("computeChromaticSpread", () => {
       R: { y: 0.5, u: 0.02, clipped: false },
       B: { y: 0.5, u: 0.03, clipped: false },
     };
-    const result = computeChromaticSpread(marginalRays, 50, 40);
+    const result = computeChromaticRayFanSpread(marginalRays, 50, 40);
     // R: 0.5 + 10*0.02 = 0.7
     // B: 0.5 + 10*0.03 = 0.8
-    expect(result.imgHeights.R).toBeCloseTo(0.7, 8);
-    expect(result.imgHeights.B).toBeCloseTo(0.8, 8);
-    expect(result.tcaMm).toBeCloseTo(0.1, 8);
+    expect(result.imagePlaneHeights.R).toBeCloseTo(0.7, 8);
+    expect(result.imagePlaneHeights.B).toBeCloseTo(0.8, 8);
+    expect(result.imagePlaneHeightSpreadMm).toBeCloseTo(0.1, 8);
   });
 
   it("handles missing channels gracefully", () => {
     const marginalRays = { G: { y: 1.0, u: -0.1, clipped: false } };
-    const result = computeChromaticSpread(marginalRays, 50, 40);
-    expect(result.lcaMm).toBe(0);
-    expect(result.tcaMm).toBe(0);
+    const result = computeChromaticRayFanSpread(marginalRays, 50, 40);
+    expect(result.axialInterceptSpreadMm).toBe(0);
+    expect(result.imagePlaneHeightSpreadMm).toBe(0);
   });
 
   it("skips clipped rays", () => {
@@ -452,10 +452,10 @@ describe("computeChromaticSpread", () => {
       R: { y: 1.0, u: -0.05, clipped: true },
       B: { y: 1.0, u: -0.06, clipped: false },
     };
-    const result = computeChromaticSpread(marginalRays, 50, 40);
-    // R is clipped → only B+G fallback not available (no G), so lcaMm = 0
-    expect(result.lcaMm).toBe(0);
-    expect(result.intercepts.R).toBeUndefined();
+    const result = computeChromaticRayFanSpread(marginalRays, 50, 40);
+    // R is clipped → only B+G fallback not available (no G), so axialInterceptSpreadMm = 0
+    expect(result.axialInterceptSpreadMm).toBe(0);
+    expect(result.axialIntercepts.R).toBeUndefined();
   });
 
   it("falls back to R−G when B is missing", () => {
@@ -463,10 +463,10 @@ describe("computeChromaticSpread", () => {
       R: { y: 1.0, u: -0.05, clipped: false },
       G: { y: 1.0, u: -0.055, clipped: false },
     };
-    const result = computeChromaticSpread(marginalRays, 65, 40);
+    const result = computeChromaticRayFanSpread(marginalRays, 65, 40);
     // R intercept: 40 - 1/(-0.05) = 60, G intercept: 40 - 1/(-0.055) ≈ 58.18
-    expect(result.lcaMm).toBeCloseTo(60 - (40 + 1 / 0.055), 4);
-    expect(result.lcaMm).not.toBe(0);
+    expect(result.axialInterceptSpreadMm).toBeCloseTo(60 - (40 + 1 / 0.055), 4);
+    expect(result.axialInterceptSpreadMm).not.toBe(0);
   });
 
   it("falls back to G−B when R is missing", () => {
@@ -474,26 +474,26 @@ describe("computeChromaticSpread", () => {
       G: { y: 1.0, u: -0.055, clipped: false },
       B: { y: 1.0, u: -0.06, clipped: false },
     };
-    const result = computeChromaticSpread(marginalRays, 65, 40);
+    const result = computeChromaticRayFanSpread(marginalRays, 65, 40);
     const gIntercept = 40 - 1.0 / -0.055;
     const bIntercept = 40 - 1.0 / -0.06;
-    expect(result.lcaMm).toBeCloseTo(gIntercept - bIntercept, 4);
-    expect(result.lcaMm).not.toBe(0);
+    expect(result.axialInterceptSpreadMm).toBeCloseTo(gIntercept - bIntercept, 4);
+    expect(result.axialInterceptSpreadMm).not.toBe(0);
   });
 
-  it("uses the selected channel span so hiding a channel cannot increase LCA", () => {
+  it("uses the selected channel span so hiding a channel cannot increase LoCA spread", () => {
     const marginalRays = {
       R: { y: 1.0, u: -0.1, clipped: false }, // intercept = 50
       G: { y: 1.0, u: -0.0666666667, clipped: false }, // intercept = 55
       B: { y: 1.0, u: -0.0833333333, clipped: false }, // intercept = 52
     };
-    const allChannels = computeChromaticSpread(marginalRays, 60, 40);
-    const withoutBlue = computeChromaticSpread({ R: marginalRays.R, G: marginalRays.G }, 60, 40);
-    const withoutGreen = computeChromaticSpread({ R: marginalRays.R, B: marginalRays.B }, 60, 40);
+    const allChannels = computeChromaticRayFanSpread(marginalRays, 60, 40);
+    const withoutBlue = computeChromaticRayFanSpread({ R: marginalRays.R, G: marginalRays.G }, 60, 40);
+    const withoutGreen = computeChromaticRayFanSpread({ R: marginalRays.R, B: marginalRays.B }, 60, 40);
 
-    expect(allChannels.lcaMm).toBeCloseTo(5, 4);
-    expect(withoutBlue.lcaMm).toBeLessThanOrEqual(allChannels.lcaMm);
-    expect(withoutGreen.lcaMm).toBeLessThanOrEqual(allChannels.lcaMm);
+    expect(allChannels.axialInterceptSpreadMm).toBeCloseTo(5, 4);
+    expect(withoutBlue.axialInterceptSpreadMm).toBeLessThanOrEqual(allChannels.axialInterceptSpreadMm);
+    expect(withoutGreen.axialInterceptSpreadMm).toBeLessThanOrEqual(allChannels.axialInterceptSpreadMm);
   });
 
   it("includes violet in chromatic spread when supplied", () => {
@@ -502,9 +502,9 @@ describe("computeChromaticSpread", () => {
       G: { y: 1.0, u: -0.0833333333, clipped: false },
       V: { y: 1.0, u: -0.05, clipped: false },
     };
-    const result = computeChromaticSpread(marginalRays, 70, 40);
-    expect(result.intercepts.V).toBeCloseTo(60, 4);
-    expect(result.lcaMm).toBeCloseTo(10, 4);
+    const result = computeChromaticRayFanSpread(marginalRays, 70, 40);
+    expect(result.axialIntercepts.V).toBeCloseTo(60, 4);
+    expect(result.axialInterceptSpreadMm).toBeCloseTo(10, 4);
   });
 });
 
@@ -587,16 +587,16 @@ describe("traceRay — Sonnar 50 f/1.5 production lens", () => {
     }
   });
 
-  it("chromatic dispersion is measurable (LCA > 0)", () => {
+  it("chromatic dispersion is measurable (LoCA spread > 0)", () => {
     const h = 0.3 * L.EP.epSD;
     const marginalRays: Record<ChromaticChannel, RayTraceResult> = {} as Record<ChromaticChannel, RayTraceResult>;
     for (const ch of ["R", "G", "B"] as ChromaticChannel[]) {
       marginalRays[ch] = traceRayChromatic(h, 0, zPos, 0, 0, L.stopPhysSD, false, L, ch);
     }
     const lastSurfZ = zPos[L.N - 1];
-    const spread = computeChromaticSpread(marginalRays, imgZ, lastSurfZ);
+    const spread = computeChromaticRayFanSpread(marginalRays, imgZ, lastSurfZ);
     // Should have measurable chromatic aberration (it's an f/1.5 Sonnar)
-    expect(Math.abs(spread.lcaMm)).toBeGreaterThan(0.001);
+    expect(Math.abs(spread.axialInterceptSpreadMm)).toBeGreaterThan(0.001);
   });
 
   it("rays trace at close focus (t=1) without TIR", () => {

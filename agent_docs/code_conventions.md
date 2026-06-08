@@ -24,7 +24,7 @@
 
 ## Architecture Constraints
 
-- **Pure-function modules** (`optics.ts`, `buildLens.ts`, `validateLensData.ts`, `diagramGeometry.ts`, `lcaScaling.ts`) have no React dependencies
+- **Pure-function modules** (`optics.ts`, `buildLens.ts`, `validateLensData.ts`, `diagramGeometry.ts`, `chromaticRayFanScaling.ts`) have no React dependencies
 - **Folded mirror behavior stays data-driven** — use `LensData.opticalPath`, `SurfaceData.interaction`, and `innerSd`
   instead of adding per-lens trace flags or special-case code paths for individual fixtures
 - **Inline styles only** — color palettes defined in theme objects; no CSS files or UI libraries

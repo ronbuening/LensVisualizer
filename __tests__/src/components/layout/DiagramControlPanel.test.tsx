@@ -74,7 +74,7 @@ function props(info: object | null = null) {
     chromG: true,
     chromB: true,
     chromV: false,
-    chromSpread: null,
+    chromaticRayFanSpread: null,
     rayTracksF: false,
     onOpenAbbeDiagram: vi.fn(),
   };

@@ -2,7 +2,7 @@
  * useOverlayState — Manages the aspheric deviation inspector overlay,
  * which has a per-element modal lifecycle that does not belong in the
  * shareable URL surface (selecting an aspheric element to compare is a
- * transient interaction). Other overlays (Abbe/glass map, LCA, Petzval,
+ * transient interaction). Other overlays (Abbe/glass map, chromatic, Petzval,
  * bokeh, analysis drawer) live in the reducer-backed `panels` slice and
  * are URL-shareable.
  */
