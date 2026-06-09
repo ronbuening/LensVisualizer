@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **314** lenses scanned
-- **3546** non-air surfaces examined
-- **3550** element glass declarations examined
-- **567** non-explicit-unmatched annotations did not resolve
-- **202** distinct unresolved glass-like tokens found
+- **320** lenses scanned
+- **3608** non-air surfaces examined
+- **3612** element glass declarations examined
+- **577** non-explicit-unmatched annotations did not resolve
+- **203** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -25,6 +25,7 @@ or per-lens patent backfills.
 | 585587 | 3 | 1 | |
 | 744495 | 3 | 3 | |
 | 863248 | 3 | 1 | |
+| S-BSM15 | 3 | 2 | |
 | S-TIF6 | 3 | 3 | |
 | 514428 | 2 | 1 | |
 | 531559 | 2 | 2 | |
@@ -53,7 +54,6 @@ or per-lens patent backfills.
 | NBFD10 | 2 | 2 | |
 | S-APL1 | 2 | 1 | |
 | S-BAH10 | 2 | 2 | |
-| S-BSM15 | 2 | 1 | |
 | S-FPM5 | 2 | 2 | |
 | S-LAL61 | 2 | 2 | |
 | S-LAM73 | 2 | 1 | |
@@ -70,6 +70,7 @@ or per-lens patent backfills.
 | 518635 | 1 | 1 | |
 | 534554 | 1 | 1 | |
 | 534556 | 1 | 1 | |
+| 544601 | 1 | 1 | |
 | 545486 | 1 | 1 | |
 | 552981 | 1 | 1 | |
 | 553555 | 1 | 1 | |
@@ -268,6 +269,12 @@ or per-lens patent backfills.
 - [SONY FE 70-200mm F2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 17: `863248 — ultra-dense flint (patent nd=1.86290, nu_d=24.8)`
 - [SONY FE 70-200mm F2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 19: `863248 — ultra-dense flint (patent nd=1.86290, nu_d=24.8)`
 
+### S-BSM15 — 3 occurrences
+
+- [CANON EF-S 18-55mm f/3.5-5.6 IS](../../src/lens-data/canon/CanonEFS1855mmf3556IS.data.ts) 3: `S-BSM15 (OHARA)`
+- [CANON EF-S 18-55mm f/3.5-5.6 IS](../../src/lens-data/canon/CanonEFS1855mmf3556IS.data.ts) 5: `S-BSM15 (OHARA)`
+- [PENTAX-DA 21mm F3.2 AL Limited](../../src/lens-data/pentax/PentaxDA21mmf32Limited.data.ts) 10: `S-BSM15 (OHARA equivalent)`
+
 ### S-TIF6 — 3 occurrences
 
 - [FUJIFILM FUJINON XF 56mm F1.2 R](../../src/lens-data/fujifilm/FujifilmXF56mmf12.data.ts) 16: `S-TIF6 (OHARA)`
@@ -409,11 +416,6 @@ or per-lens patent backfills.
 - [CANON FD 35mm f/2 S.S.C. (I)](../../src/lens-data/canon/CanonFD35mmf2.data.ts) 5: `BaF (702411, S-BAH10 family)`
 - [ZEISS Touit Makro-Planar T* 50mm f/2.8 Macro](../../src/lens-data/carl-zeiss-oberkochen/ZeissTouit50mmf28Macro.data.ts) 25: `S-BAH10 (OHARA)`
 
-### S-BSM15 — 2 occurrences
-
-- [CANON EF-S 18-55mm f/3.5-5.6 IS](../../src/lens-data/canon/CanonEFS1855mmf3556IS.data.ts) 3: `S-BSM15 (OHARA)`
-- [CANON EF-S 18-55mm f/3.5-5.6 IS](../../src/lens-data/canon/CanonEFS1855mmf3556IS.data.ts) 5: `S-BSM15 (OHARA)`
-
 ### S-FPM5 — 2 occurrences
 
 - [SIGMA 28-45mm F1.8 DG DN | Art](../../src/lens-data/sigma/Sigma2845mmf18DN.data.ts) 3: `S-FPM5 / FCD500 class (low-dispersion fluorophosphate crown)`
@@ -485,6 +487,10 @@ or per-lens patent backfills.
 ### 534556 — 1 occurrence
 
 - [PANASONIC LEICA DG SUMMILUX 9mm F1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG9mmf17.data.ts) 3A: `534556 — moldable crown (patent nd=1.53380, nu_d=55.6)`
+
+### 544601 — 1 occurrence
+
+- [PENTAX-DA 70mm F2.4 Limited](../../src/lens-data/pentax/PentaxDA70mmf24Limited.data.ts) 8: `BaK2-class light barium crown (544601; soft catalog match)`
 
 ### 545486 — 1 occurrence
 

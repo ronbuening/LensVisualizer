@@ -23,6 +23,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-06-09",
     type: "lens",
+    summary: "Added six Pentax Limited and D FA prime lenses",
+  },
+  {
+    date: "2026-06-09",
+    type: "lens",
     summary: "Added Minolta AF 28mm f/2, 28-75mm f/2.8, and Reflex 500mm f/8",
   },
   {
