@@ -9,10 +9,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **314** lenses scanned
-- **253** total code-only elements found
-- **161** elements in this report
-- **68** distinct lens files affected
+- **320** lenses scanned
+- **256** total code-only elements found
+- **164** elements in this report
+- **69** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -83,8 +83,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 670575 | 1 | 1 | patents/US5949588.pdf | All representative rows reviewed |
 | 672323 | 1 | 1 | patents/GB_850117_A.pdf | All representative rows reviewed |
 | 675348 | 1 | 1 | patents/JP2018180366A.pdf | All representative rows reviewed |
+| 676440 | 1 | 1 | patents/US7542219.pdf | No reviewed-sidecar hit |
 | 680312 | 1 | 1 | patents/JP2015041012A.pdf | No reviewed-sidecar hit |
 | 682366 | 1 | 1 | Missing from untracked local patents/ references (US4518229, 4518229) | No reviewed-sidecar hit |
+| 682575 | 1 | 1 | patents/US7542219.pdf | No reviewed-sidecar hit |
 | 683447 | 1 | 1 | patents/US4708445.pdf | All representative rows reviewed |
 | 683548 | 1 | 1 | patents/WO2021039813A1.pdf | All representative rows reviewed |
 | 693495 | 1 | 1 | patents/US3552833.pdf | No reviewed-sidecar hit |
@@ -118,6 +120,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 786275 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | No reviewed-sidecar hit |
 | 792257 | 1 | 1 | patents/JP2023039817A.pdf | No reviewed-sidecar hit |
 | 792450 | 1 | 1 | patents/WO2020136749A1.pdf | All representative rows reviewed |
+| 794255 | 1 | 1 | patents/US7542219.pdf | No reviewed-sidecar hit |
 | 797454 | 1 | 1 | patents/US5528428.pdf | All representative rows reviewed |
 | 800255 | 1 | 1 | patents/JP2015041012A.pdf | No reviewed-sidecar hit |
 | 801454 | 1 | 1 | patents/US20130033768A1.pdf | No reviewed-sidecar hit |
@@ -527,6 +530,14 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
 |---|---|---|---|---|---|---|---|
 | L8 (Element 8) | 13 | `Lanthanum flint (728/403, uncertain vendor)` | 1.72750 / 40.30 | No catalog entry | abbe | patents/US6560042.pdf | No reviewed-sidecar hit |
+
+### [PENTAX-DA 70mm F2.4 Limited](../../src/lens-data/pentax/PentaxDA70mmf24Limited.data.ts) - US 7,542,219 B2
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+|---|---|---|---|---|---|---|---|
+| L2 (Element 2) | 3 | `Unmatched lanthanum crown (682575; no exact current public catalog match)` | 1.68159 / 57.50 | No catalog entry | abbe | patents/US7542219.pdf | No reviewed-sidecar hit |
+| L3 (Element 3) | 5 | `Unmatched dense flint (794255; SF/S-TIH class)` | 1.79425 / 25.50 | No catalog entry | abbe | patents/US7542219.pdf | No reviewed-sidecar hit |
+| L4 (Element 4) | 7 | `Unmatched barium flint (676440; BaF/BaSF class)` | 1.67648 / 44.00 | No catalog entry | abbe | patents/US7542219.pdf | No reviewed-sidecar hit |
 
 ### [PENTAX-DA★ 16-50mm f/2.8 ED AL[IF] SDM](../../src/lens-data/pentax/PentaxDA1650mmf28.data.ts) - US 7,301,711 B2
 
