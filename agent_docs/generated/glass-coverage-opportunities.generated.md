@@ -9,12 +9,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **311** lenses scanned (**303** visible)
-- **2840 / 3510** non-air surfaces use strict catalog Sellmeier data (80.9%)
-- **2862 / 3510** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 81.5%)
+- **314** lenses scanned (**306** visible)
+- **2864 / 3546** non-air surfaces use strict catalog Sellmeier data (80.8%)
+- **2886 / 3546** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 81.4%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
-- **156** code-only missing-Sellmeier elements in Sweep 2
+- **161** code-only missing-Sellmeier elements in Sweep 2
 - **128** unresolved named-token elements in Sweep 2B
 - **0** Tier A proprietary backfill rows in Sweep 3
 
@@ -143,16 +143,16 @@ Add catalog entries only when public coefficient-backed vendor data is available
 | 870200 | 2 | 2 | patents/WO2023181666A1.pdf<br>patents/WO_2025239028_A1.pdf | All representative rows reviewed | [SONY FE 24-70mm f/2.8 GM II](../../src/lens-data/sony/SonyFE2470mmf28GMII.data.ts) Element 1 (1.86966 / 20.00)<br>[SONY FE 85mm F1.4 GM II](../../src/lens-data/sony/SonyFE85mmf14GMII.data.ts) Element 14 (1.86966 / 20.00) |
 | 933209 | 2 | 2 | patents/WO2021199923A1.pdf<br>patents/JP2023039817A.pdf | All representative rows reviewed | [Sony FE 14mm f/1.8 GM](../../src/lens-data/sony/SonyFE14mmf18GM.data.ts) High-index relay positive (1.93323 / 20.90)<br>[SONY FE 70-200mm F2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) Element 13 (1.93323 / 20.90) |
 | 493836 | 2 | 1 | Missing from untracked local patents/ references (US4786152, 4786152) | No reviewed-sidecar hit | [Minolta AF APO Tele 200mm f/2.8](../../src/lens-data/minolta/MinoltaAF200mmf28.data.ts) Element 1 (1.49310 / 83.55)<br>[Minolta AF APO Tele 200mm f/2.8](../../src/lens-data/minolta/MinoltaAF200mmf28.data.ts) Element 2 (1.49310 / 83.55) |
+| 511605 | 2 | 1 | patents/US4258985.pdf | No reviewed-sidecar hit | [Minolta AF 28mm f/2](../../src/lens-data/minolta/MinoltaAF28mmf2.data.ts) Element 2 (1.51110 / 60.49)<br>[Minolta AF 28mm f/2](../../src/lens-data/minolta/MinoltaAF28mmf2.data.ts) Element 3 (1.51110 / 60.49) |
 | 514428 | 2 | 1 | patents/JP2016021011A.pdf | All representative rows reviewed | [Nikon AF-S NIKKOR 20mm f/1.8G ED](../../src/lens-data/nikon/NikonNikkorAFS20mmf18G.data.ts) LS cement layer (1.51400 / 42.80)<br>[Nikon AF-S NIKKOR 20mm f/1.8G ED](../../src/lens-data/nikon/NikonNikkorAFS20mmf18G.data.ts) Rear doublet cement layer (1.51400 / 42.80) |
 | 585594 | 2 | 1 | patents/JP2023039817A.pdf | All representative rows reviewed | [SONY FE 70-200mm F2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) Element 11 (1.58547 / 59.40)<br>[SONY FE 70-200mm F2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) Element 12 (1.58547 / 59.40) |
 | 586609 | 2 | 1 | patents/US7301711.pdf | No reviewed-sidecar hit | [PENTAX-DA★ 16-50mm f/2.8 ED AL[IF] SDM](../../src/lens-data/pentax/PentaxDA1650mmf28.data.ts) Element 10 (1.58636 / 60.90)<br>[PENTAX-DA★ 16-50mm f/2.8 ED AL[IF] SDM](../../src/lens-data/pentax/PentaxDA1650mmf28.data.ts) Element 15 (1.58636 / 60.90) |
 | 666356 | 2 | 1 | patents/US20190265441A1.pdf | All representative rows reviewed | [CANON RF 50mm f/1.2 L USM](../../src/lens-data/canon/CanonRF50mmf12L.data.ts) Element 5 (1.66565 / 35.64)<br>[CANON RF 50mm f/1.2 L USM](../../src/lens-data/canon/CanonRF50mmf12L.data.ts) Element 10 (1.66565 / 35.64) |
 | 755516 | 2 | 1 | patents/JP2004109559A.pdf | All representative rows reviewed | [Minolta AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) Element 6 (1.75450 / 51.57)<br>[Minolta AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) Element 10 (1.75450 / 51.57) |
+| 762404 | 2 | 1 | patents/US4258985.pdf | No reviewed-sidecar hit | [Minolta AF 28mm f/2](../../src/lens-data/minolta/MinoltaAF28mmf2.data.ts) Element 4 (1.76200 / 40.38)<br>[Minolta AF 28mm f/2](../../src/lens-data/minolta/MinoltaAF28mmf2.data.ts) Element 5 (1.76200 / 40.38) |
 | 774492 | 2 | 1 | patents/US3748022.pdf | All representative rows reviewed | [CANON FD 35mm f/2 S.S.C. (I)](../../src/lens-data/canon/CanonFD35mmf2.data.ts) Element 5 (1.77370 / 49.20)<br>[CANON FD 35mm f/2 S.S.C. (I)](../../src/lens-data/canon/CanonFD35mmf2.data.ts) Element 8 (1.77370 / 49.20) |
 | 813252 | 2 | 1 | patents/US3591257.pdf | No reviewed-sidecar hit | [LEICA ELMARIT-R 28mm f/2.8](../../src/lens-data/leica/LeicaElmarit28mmf28.data.ts) Element 4 (1.81265 / 25.24)<br>[LEICA ELMARIT-R 28mm f/2.8](../../src/lens-data/leica/LeicaElmarit28mmf28.data.ts) Element 7 (1.81265 / 25.24) |
 | 856401 | 2 | 1 | patents/WO_2025263124_A1.pdf | All representative rows reviewed | [SONY FE 28-70mm F2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) Element 8 (1.85612 / 40.10)<br>[SONY FE 28-70mm F2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) Element 15 (1.85612 / 40.10) |
-| 487698 | 1 | 1 | patents/US3838911.pdf | All representative rows reviewed | [OLYMPUS E.ZUIKO AUTO-T 135mm f/3.5](../../src/lens-data/olympus/OlympusZuiko135mmf35.data.ts) Element 2 (1.48749 / 69.80) |
-| 504667 | 1 | 1 | patents/US2721499.pdf | All representative rows reviewed | [CARL ZEISS BIOGON 21mm f/4.5](../../src/lens-data/carl-zeiss-oberkochen/ZeissBiogon21mmf45.data.ts) Element 1 (1.50380 / 66.70) |
 
 ## Sweep 2B - Named Tokens Missing Catalog Resolution
 
