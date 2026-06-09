@@ -357,6 +357,25 @@ describe("DiagramSVG", () => {
     expect(label?.getAttribute("y")).toBe("325");
   });
 
+  it("renders an axial image plane at the fixed diagram IMG_MM", () => {
+    const zoomLens = {
+      ...baseLens,
+      imagePlane: { ...baseLens.imagePlane, z: 120 },
+    } as RuntimeLens;
+    const { container } = render(<DiagramSVG {...baseDiagramSvgProps({ L: zoomLens, IMG_MM: 43 })} />);
+
+    const imageLine = Array.from(container.querySelectorAll('line[stroke-dasharray="4,3"]')).find(
+      (line) => line.getAttribute("stroke") === themes.dark.imgLine,
+    );
+    const label = Array.from(container.querySelectorAll("text")).find((text) => text.textContent === "IMG");
+
+    expect(imageLine).toBeDefined();
+    expect(label).toBeDefined();
+    expect(Number(imageLine!.getAttribute("x1"))).toBeCloseTo(143, 10);
+    expect(Number(imageLine!.getAttribute("x2"))).toBeCloseTo(143, 10);
+    expect(Number(label!.getAttribute("x"))).toBeCloseTo(143, 10);
+  });
+
   it("renders the hidden Newtonian fixture image plane from its side-focus metadata", () => {
     const L = buildLens(LENS_CATALOG["reference-newtonian-side-focus"]);
     const layout = doLayout(0, 0, L);
