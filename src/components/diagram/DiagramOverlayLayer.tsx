@@ -105,18 +105,22 @@ export default function DiagramOverlayLayer({
     return [sx(zz), sy(yy)];
   };
   const imageNormal = L.imagePlane.normal;
+  const isAxialImagePlane = Math.abs(imageNormal.y) < 1e-9 && Math.abs(imageNormal.z) > 1 - 1e-9;
+  // Ordinary lenses pin the rendered sensor to IMG_MM; folded/side-focus planes keep their authored geometry.
+  const imagePlaneZ = isAxialImagePlane ? IMG_MM : L.imagePlane.z;
+  const imagePlaneY = L.imagePlane.y;
   const imageTangent = { z: imageNormal.y, y: -imageNormal.z };
   const imageLineStart = screenPoint(
-    L.imagePlane.z - imageTangent.z * L.lyImgLine,
-    L.imagePlane.y - imageTangent.y * L.lyImgLine,
+    imagePlaneZ - imageTangent.z * L.lyImgLine,
+    imagePlaneY - imageTangent.y * L.lyImgLine,
   );
   const imageLineEnd = screenPoint(
-    L.imagePlane.z + imageTangent.z * L.lyImgLine,
-    L.imagePlane.y + imageTangent.y * L.lyImgLine,
+    imagePlaneZ + imageTangent.z * L.lyImgLine,
+    imagePlaneY + imageTangent.y * L.lyImgLine,
   );
   const imageLabel = screenPoint(
-    L.imagePlane.z + imageTangent.z * L.lyImgLabel,
-    L.imagePlane.y + imageTangent.y * L.lyImgLabel,
+    imagePlaneZ + imageTangent.z * L.lyImgLabel,
+    imagePlaneY + imageTangent.y * L.lyImgLabel,
   );
 
   return (

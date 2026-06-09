@@ -19,6 +19,17 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-06-09 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-06-09",
+    type: "lens",
+    summary: "Added Minolta AF 28mm f/2, 28-75mm f/2.8, and Reflex 500mm f/8",
+  },
+  {
+    date: "2026-06-09",
+    type: "fix",
+    summary: "Fixed axial image-plane markers for zoomed and focused ray tracing",
+  },
   // ── 2026-06-08 ──────────────────────────────────────────────────────────
   {
     date: "2026-06-08",

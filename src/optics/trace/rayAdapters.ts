@@ -505,6 +505,14 @@ function stateForRuntimeLens(L: RuntimeLens, focusT: number, zoomT: number, aber
   return state;
 }
 
+/**
+ * Rebuild a prepared state around caller-supplied surface z positions.
+ *
+ * Diagram code can translate non-folded surface vertices so focus/zoom states
+ * stay registered to a fixed rendered sensor. Keep image-plane metadata and
+ * the final air gap in that same coordinate frame; folded systems retain their
+ * authored arbitrary image plane.
+ */
 function stateWithRuntimeZ(state: PreparedOpticalState, zPos: readonly number[]): PreparedOpticalState {
   let byZ = RUNTIME_Z_STATE_BY_BASE.get(state);
   if (!byZ) {
@@ -518,16 +526,37 @@ function stateWithRuntimeZ(state: PreparedOpticalState, zPos: readonly number[])
     return state;
   }
 
+  const baseFirstZ = state.z[0] ?? 0;
+  const shiftedFirstZ = zPos[0] ?? baseFirstZ;
+  const zShift = shiftedFirstZ - baseFirstZ;
+  // Non-folded layouts are translated as a rigid stack, so the axial image plane moves by the same delta.
+  const imgZ = state.lens.flags.isFoldedOptics ? state.imgZ : state.imgZ + zShift;
   const surfaces = state.surfaces.map((surface, index) => {
     const z = zPos[index] ?? surface.z;
-    const d = index < state.surfaces.length - 1 && zPos[index + 1] !== undefined ? zPos[index + 1] - z : surface.d;
+    let d: number;
+    if (index < state.surfaces.length - 1 && zPos[index + 1] !== undefined) {
+      d = zPos[index + 1] - z;
+    } else if (state.lens.flags.isFoldedOptics) {
+      d = surface.d;
+    } else {
+      // The last gap is the transfer distance to the shifted rendered image plane.
+      d = imgZ - z;
+    }
     return Object.freeze({ ...surface, z, d }) as CompiledStateSurface;
   });
+  const imagePlane = state.lens.flags.isFoldedOptics
+    ? state.imagePlane
+    : Object.freeze({
+        ...state.imagePlane,
+        point: Object.freeze([state.imagePlane.point[0], state.imagePlane.point[1], imgZ] as const),
+      });
   const shiftedState = Object.freeze({
     ...state,
     surfaces: Object.freeze(surfaces),
     z: Object.freeze([...zPos]),
-    imgZ: state.lens.flags.isFoldedOptics ? state.imgZ : state.imgZ,
+    imagePlane,
+    imgZ,
+    totalTrack: state.lens.flags.isFoldedOptics ? state.totalTrack : imgZ - shiftedFirstZ,
   });
   byZ.set(zPos, shiftedState);
   return shiftedState;
