@@ -19,6 +19,12 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-06-10 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-06-10",
+    type: "lens",
+    summary: "Added Canon EF 20-35mm, EF 24-70mm, and Serenar 100mm lenses",
+  },
   // ── 2026-06-09 ──────────────────────────────────────────────────────────
   {
     date: "2026-06-09",

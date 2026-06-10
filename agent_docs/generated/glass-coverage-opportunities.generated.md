@@ -9,9 +9,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **320** lenses scanned (**312** visible)
-- **2912 / 3608** non-air surfaces use strict catalog Sellmeier data (80.7%)
-- **2935 / 3608** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 81.3%)
+- **323** lenses scanned (**315** visible)
+- **2944 / 3644** non-air surfaces use strict catalog Sellmeier data (80.8%)
+- **2970 / 3644** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 81.5%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
 - **164** code-only missing-Sellmeier elements in Sweep 2
@@ -116,6 +116,7 @@ These are efficient follow-up targets after mismatch blockers because one or two
 | [PENTAX-110 24mm f/2.8](../../src/lens-data/pentax/Pentax11024mmf28.data.ts) | 83.3% (5/6) | 83.3% (5/6) | 1 | abbe: 1 |
 | [RICOH GR III  18.3mm f/2.8](../../src/lens-data/ricoh/RicohGR328f28.data.ts) | 83.3% (5/6) | 83.3% (5/6) | 1 | abbe: 1 |
 | [LEICA SUMMILUX 28 mm f/1.7 ASPH. (Q, Q2, Q3)](../../src/lens-data/leica/Leica28mmf17.data.ts) | 81.8% (9/11) | 81.8% (9/11) | 2 | abbe: 2 |
+| [Canon Serenar 100mm f/3.5 I](../../src/lens-data/canon/CanonSerenar100mmf35.data.ts) | 80.0% (4/5) | 80.0% (4/5) | 1 | abbe: 1 |
 | [NIKON L35AF 35mm f/2.8](../../src/lens-data/nikon/NikonL35AF35mmf28.data.ts) | 80.0% (4/5) | 80.0% (4/5) | 1 | abbe: 1 |
 | [Nikon Reflex-Nikkor 1000mm f/11](../../src/lens-data/nikon/NikonReflexNikkor1000mmf11.data.ts) | 80.0% (4/5) | 80.0% (4/5) | 1 | abbe: 1 |
 | [FUJIFILM FUJINON 35mm f/4 (GFX100RF)](../../src/lens-data/fujifilm/FujifilmGFX100RF35mmf4.data.ts) | 80.0% (8/10) | 80.0% (8/10) | 2 | abbe: 2 |
