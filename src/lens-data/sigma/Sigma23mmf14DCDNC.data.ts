@@ -295,6 +295,6 @@ const LENS_DATA = {
   nominalFno: 1.4,
   fstopSeries: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
   yScFill: 0.72,
-};
+} satisfies LensDataInput;
 
-export default LENS_DATA satisfies LensDataInput;
+export default LENS_DATA;

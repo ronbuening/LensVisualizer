@@ -23,7 +23,7 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-06-11",
     type: "lens",
-    summary: "Added three new Sigma lenses",
+    summary: "Added Sigma 17-40mm, 23mm, and 30mm lenses",
   },
   // ── 2026-06-10 ──────────────────────────────────────────────────────────
   {
