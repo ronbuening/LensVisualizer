@@ -8,6 +8,8 @@ links outward only when the task crosses boundaries.
 - [`architecture.md`](architecture.md) and [`architecture/`](architecture/) — subsystem map, program flow, public functions, and focused architecture notes.
 - Lens/content workflow docs at the root — lens authoring, patent audits, articles, changelog, comments, and gotchas.
 - Glass catalog workflow docs at the root — catalog buildout, relabel follow-up, and proprietary-glass backfill.
+- Agent instruction guidance at the root — [`agent-md-best-practices.md`](agent-md-best-practices.md) for general
+  AGENTS.md files and [`claude-md-best-practices.md`](claude-md-best-practices.md) for Claude-specific files.
 - Root-level project docs such as [`../TRACE_MODEL_IMPROVEMENT_PLAN.md`](../TRACE_MODEL_IMPROVEMENT_PLAN.md),
   [`../MIRROR_LENS_FUTURE_ENHANCEMENTS.md`](../MIRROR_LENS_FUTURE_ENHANCEMENTS.md), and
   [`../ANALYSIS_OPTIONS.md`](../ANALYSIS_OPTIONS.md) capture current status or future backlog for broad initiatives.

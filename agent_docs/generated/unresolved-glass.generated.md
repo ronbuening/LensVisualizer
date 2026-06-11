@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **323** lenses scanned
-- **3644** non-air surfaces examined
-- **3648** element glass declarations examined
-- **578** non-explicit-unmatched annotations did not resolve
-- **203** distinct unresolved glass-like tokens found
+- **326** lenses scanned
+- **3683** non-air surfaces examined
+- **3687** element glass declarations examined
+- **589** non-explicit-unmatched annotations did not resolve
+- **205** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -192,6 +192,7 @@ or per-lens patent backfills.
 | N-SF5 | 1 | 1 | |
 | N-SK4 | 1 | 1 | |
 | NBFD12 | 1 | 1 | |
+| NBFD32 | 1 | 1 | |
 | S-BAH32 | 1 | 1 | |
 | S-BAM12 | 1 | 1 | |
 | S-BSL10 | 1 | 1 | |
@@ -219,6 +220,7 @@ or per-lens patent backfills.
 | TAF105 | 1 | 1 | |
 | TAF2 | 1 | 1 | |
 | TAF3 | 1 | 1 | |
+| TAFD34 | 1 | 1 | |
 | TAFD5 | 1 | 1 | |
 | TAFL3 | 1 | 1 | |
 
@@ -976,6 +978,10 @@ or per-lens patent backfills.
 
 - [NIKON NIKKOR Z 24-50mm f/4-6.3](../../src/lens-data/nikon/NikonNikkorZ2450mmf463.data.ts) 11: `NBFD12 (HOYA)`
 
+### NBFD32 — 1 occurrence
+
+- [Sigma 17-40mm F1.8 DC | Art](../../src/lens-data/sigma/Sigma1740mmf18DCA.data.ts) 18: `NBFD32 (Hoya)`
+
 ### S-BAH32 — 1 occurrence
 
 - [OLYMPUS E.ZUIKO AUTO-T 135mm f/3.5](../../src/lens-data/olympus/OlympusZuiko135mmf35.data.ts) 6: `S-BAH32 (OHARA) exact match (670393)`
@@ -1083,6 +1089,10 @@ or per-lens patent backfills.
 ### TAF3 — 1 occurrence
 
 - [Sigma 60mm F2.8 DN | Art](../../src/lens-data/sigma/Sigma60mmf28DN.data.ts) 1: `TAF3 / N-LASF44 class (804/465 dense lanthanum flint)`
+
+### TAFD34 — 1 occurrence
+
+- [Sigma 17-40mm F1.8 DC | Art](../../src/lens-data/sigma/Sigma1740mmf18DCA.data.ts) 6: `TAFD34 (Hoya)`
 
 ### TAFD5 — 1 occurrence
 
