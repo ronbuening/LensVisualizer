@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **326** lenses scanned
-- **3683** non-air surfaces examined
-- **3687** element glass declarations examined
-- **589** non-explicit-unmatched annotations did not resolve
-- **205** distinct unresolved glass-like tokens found
+- **329** lenses scanned
+- **3717** non-air surfaces examined
+- **3721** element glass declarations examined
+- **599** non-explicit-unmatched annotations did not resolve
+- **208** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -25,6 +25,7 @@ or per-lens patent backfills.
 | 585587 | 3 | 1 | |
 | 744495 | 3 | 3 | |
 | 863248 | 3 | 1 | |
+| E-FD10 | 3 | 2 | |
 | S-BSM15 | 3 | 2 | |
 | S-TIF6 | 3 | 3 | |
 | 514428 | 2 | 1 | |
@@ -149,6 +150,7 @@ or per-lens patent backfills.
 | BACD14 | 1 | 1 | |
 | BK3 | 1 | 1 | |
 | E-F5 | 1 | 1 | |
+| E-FEL1 | 1 | 1 | |
 | E-FEL6 | 1 | 1 | |
 | E-FPL51 | 1 | 1 | |
 | F3 | 1 | 1 | |
@@ -220,6 +222,7 @@ or per-lens patent backfills.
 | TAF105 | 1 | 1 | |
 | TAF2 | 1 | 1 | |
 | TAF3 | 1 | 1 | |
+| TAF3D | 1 | 1 | |
 | TAFD34 | 1 | 1 | |
 | TAFD5 | 1 | 1 | |
 | TAFL3 | 1 | 1 | |
@@ -270,6 +273,12 @@ or per-lens patent backfills.
 - [SONY FE 70-200mm F2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 10: `863248 — ultra-dense flint (patent nd=1.86290, nu_d=24.8)`
 - [SONY FE 70-200mm F2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 17: `863248 — ultra-dense flint (patent nd=1.86290, nu_d=24.8)`
 - [SONY FE 70-200mm F2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 19: `863248 — ultra-dense flint (patent nd=1.86290, nu_d=24.8)`
+
+### E-FD10 — 3 occurrences
+
+- [SIGMA 35mm F1.4 DG HSM | Art](../../src/lens-data/sigma/Sigma35mmf14DGHSMA.data.ts) 7: `E-FD10 (Hoya)`
+- [SIGMA 35mm F1.4 DG HSM | Art](../../src/lens-data/sigma/Sigma35mmf14DGHSMA.data.ts) 17: `E-FD10 (Hoya)`
+- [SIGMA 50mm F1.4 DG HSM | Art](../../src/lens-data/sigma/Sigma50mmf14DGHSMA.data.ts) 13: `E-FD10 (HOYA, reference)`
 
 ### S-BSM15 — 3 occurrences
 
@@ -806,6 +815,10 @@ or per-lens patent backfills.
 
 - [Panasonic LEICA DG SUMMILUX 12mm F1.4 ASPH.](../../src/lens-data/panasonic/PanasonicDGSummilux12mmf14.data.ts) 11: `E-F5 (Hoya)`
 
+### E-FEL1 — 1 occurrence
+
+- [SIGMA 50mm F1.4 DG HSM | Art](../../src/lens-data/sigma/Sigma50mmf14DGHSMA.data.ts) 6: `E-FEL1 (HOYA)`
+
 ### E-FEL6 — 1 occurrence
 
 - [SONY FE 70-200mm F2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 27: `E-FEL6 class (HOYA) — eco flint`
@@ -1089,6 +1102,10 @@ or per-lens patent backfills.
 ### TAF3 — 1 occurrence
 
 - [Sigma 60mm F2.8 DN | Art](../../src/lens-data/sigma/Sigma60mmf28DN.data.ts) 1: `TAF3 / N-LASF44 class (804/465 dense lanthanum flint)`
+
+### TAF3D — 1 occurrence
+
+- [SIGMA 35mm F1.4 DG HSM | Art](../../src/lens-data/sigma/Sigma35mmf14DGHSMA.data.ts) 24: `TAF3D (Hoya)`
 
 ### TAFD34 — 1 occurrence
 

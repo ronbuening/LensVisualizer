@@ -9,13 +9,13 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **326** lenses scanned (**318** visible)
-- **2972 / 3683** non-air surfaces use strict catalog Sellmeier data (80.7%)
-- **2998 / 3683** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 81.4%)
+- **329** lenses scanned (**321** visible)
+- **2996 / 3717** non-air surfaces use strict catalog Sellmeier data (80.6%)
+- **3022 / 3717** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 81.3%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
 - **164** code-only missing-Sellmeier elements in Sweep 2
-- **131** unresolved named-token elements in Sweep 2B
+- **136** unresolved named-token elements in Sweep 2B
 - **0** Tier A proprietary backfill rows in Sweep 3
 
 ## Sweep 1 - Relabel Mismatches
@@ -167,6 +167,7 @@ These unresolved catalog-style labels are often better first catalog targets tha
 |---|---:|---:|---|---|
 | S-NPH7 | 4 | 4 | patents/US20230213745A1.pdf<br>patents/US20190265441A1.pdf<br>patents/JP2021179551A.pdf<br>patents/WO_2025263124_A1.pdf | [CANON RF 135mm f/1.8 L IS USM](../../src/lens-data/canon/CanonRF135f18.data.ts) Element 14 (2.00069 / 25.50; abbe)<br>[CANON RF 50mm f/1.2 L USM](../../src/lens-data/canon/CanonRF50mmf12L.data.ts) Element 3 (2.00100 / 29.13; abbe)<br>[PANASONIC LUMIX S 20–60mm F3.5–5.6](../../src/lens-data/panasonic/PanasonicLumixS2060mmf3556.data.ts) Element 11 (1.92286 / 20.90; abbe) |
 | S-TIF6 | 3 | 3 | patents/US20150212302A1.pdf<br>patents/US20200049962A1.pdf<br>patents/JP2012003015A.pdf | [FUJIFILM FUJINON XF 56mm F1.2 R](../../src/lens-data/fujifilm/FujifilmXF56mmf12.data.ts) Element 9 (1.66680 / 33.00; abbe)<br>[NIKON AF-S NIKKOR 80-400mm f/4.5-5.6G ED VR](../../src/lens-data/nikon/NikonNikkorAFS80400mmf4556G.data.ts) Element 18 (1.64769 / 33.70; abbe)<br>[RICOH GR LENS A12 28mm f/2.5](../../src/lens-data/ricoh/RicohGXRA1218mmf25.data.ts) Element 6 (1.67270 / 32.20; abbe) |
+| E-FD10 | 3 | 2 | patents/JP2014048488A.pdf<br>patents/JP2015114366A.pdf | [SIGMA 35mm F1.4 DG HSM | Art](../../src/lens-data/sigma/Sigma35mmf14DGHSMA.data.ts) Element 4 (1.72825 / 28.32; abbe)<br>[SIGMA 35mm F1.4 DG HSM | Art](../../src/lens-data/sigma/Sigma35mmf14DGHSMA.data.ts) Element 9 (1.72825 / 28.32; abbe)<br>[SIGMA 50mm F1.4 DG HSM | Art](../../src/lens-data/sigma/Sigma50mmf14DGHSMA.data.ts) L8 (1.72825 / 28.32; abbe) |
 | S-BSM15 | 3 | 2 | patents/US7411746.pdf | [CANON EF-S 18-55mm f/3.5-5.6 IS](../../src/lens-data/canon/CanonEFS1855mmf3556IS.data.ts) Element 2 (1.62299 / 58.20; abbe)<br>[CANON EF-S 18-55mm f/3.5-5.6 IS](../../src/lens-data/canon/CanonEFS1855mmf3556IS.data.ts) Element 3 (1.62299 / 58.20; abbe)<br>[PENTAX-DA 21mm F3.2 AL Limited](../../src/lens-data/pentax/PentaxDA21mmf32Limited.data.ts) Element 7 (1.62299 / 58.20; lineIndices) |
 | BACD4 | 2 | 2 | patents/US3552833.pdf<br>patents/US3524697.pdf | [Leica Macro-Elmarit-R 60mm f/2.8](../../src/lens-data/leica/LeicaMacroElmaritR60mmf28.data.ts) Element 6 (1.61521 / 58.40; abbe)<br>[Nikon Fisheye-Nikkor 6mm f/5.6](../../src/lens-data/nikon/NikonFisheyeNikkor6mmf56.data.ts) Patent L1 (1.61272 / 58.60; abbe) |
 | BSC3 | 2 | 2 | patents/JP2015111192A.pdf<br>patents/US3622227.pdf | [CANON EF-S 24mm f/2.8 STM](../../src/lens-data/canon/CanonEFS24mmf28STM.data.ts) Element 6 (1.58313 / 59.40; abbe)<br>[NIKON NIKKOR-N Auto 24mm f/2.8](../../src/lens-data/nikon/NikonNikkorAuto24f28.data.ts) Element 5 (1.51823 / 59.00; abbe) |
@@ -189,7 +190,6 @@ These unresolved catalog-style labels are often better first catalog targets tha
 | K-LAFK50 | 2 | 1 | patents/US20150192839A1.pdf | [Panasonic Leica DG Nocticron 42.5mm f/1.2 ASPH Power O.I.S.](../../src/lens-data/panasonic/PanasonicDGNocticron42mmf12.data.ts) Element 8 (1.77010 / 49.70; lineIndices)<br>[Panasonic Leica DG Nocticron 42.5mm f/1.2 ASPH Power O.I.S.](../../src/lens-data/panasonic/PanasonicDGNocticron42mmf12.data.ts) Element 11 (1.77010 / 49.70; lineIndices) |
 | N-LAF2 | 2 | 1 | Missing from untracked local patents/ references (DE2359156A1, DE2359156, 2359156) | [CARL ZEISS Distagon T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) Pre-stop negative meniscus (1.74400 / 44.77; abbe)<br>[CARL ZEISS Distagon T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) Positive doublet front element (1.74400 / 44.77; abbe) |
 | S-APL1 | 2 | 1 | patents/US3850509.pdf | [OLYMPUS OM Zuiko 16mm f/3.5 Fisheye](../../src/lens-data/olympus/OlympusZuiko16mmf35.data.ts) Element 8 (1.51728 / 69.60; abbe)<br>[OLYMPUS OM Zuiko 16mm f/3.5 Fisheye](../../src/lens-data/olympus/OlympusZuiko16mmf35.data.ts) Element 10 (1.51728 / 69.60; abbe) |
-| S-LAM73 | 2 | 1 | patents/WO_2025263124_A1.pdf | [SONY FE 28-70mm F2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) Element 16 (1.85659 / 40.10; abbe)<br>[SONY FE 28-70mm F2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) Element 20 (1.85659 / 40.10; abbe) |
 
 ## Sweep 3 - Proprietary Line-Index Backfill
 
