@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **329** lenses scanned
-- **3717** non-air surfaces examined
-- **3721** element glass declarations examined
-- **599** non-explicit-unmatched annotations did not resolve
-- **208** distinct unresolved glass-like tokens found
+- **332** lenses scanned
+- **3752** non-air surfaces examined
+- **3756** element glass declarations examined
+- **603** non-explicit-unmatched annotations did not resolve
+- **210** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -162,6 +162,7 @@ or per-lens patent backfills.
 | H-K8 | 1 | 1 | |
 | H-K9L | 1 | 1 | |
 | H-LAF51 | 1 | 1 | |
+| H-LAF53 | 1 | 1 | |
 | H-LAF6L | 1 | 1 | |
 | H-LAK3 | 1 | 1 | |
 | H-LAK53A | 1 | 1 | |
@@ -194,6 +195,7 @@ or per-lens patent backfills.
 | N-SF5 | 1 | 1 | |
 | N-SK4 | 1 | 1 | |
 | NBFD12 | 1 | 1 | |
+| NBFD30 | 1 | 1 | |
 | NBFD32 | 1 | 1 | |
 | S-BAH32 | 1 | 1 | |
 | S-BAM12 | 1 | 1 | |
@@ -863,6 +865,10 @@ or per-lens patent backfills.
 
 - [SIGMA DP3 MERRILL 50mm f/2.8](../../src/lens-data/sigma/SigmaDP3M50mmf28.data.ts) 10: `H-LAF51 (CDGM) or J-LASF019 (Hikari) — unconfirmed`
 
+### H-LAF53 — 1 occurrence
+
+- [SIGMA 10-18mm F2.8 DC DN | Contemporary](../../src/lens-data/sigma/Sigma1018mmf28DCDN.data.ts) 19: `NBF1 (Hoya) / H-LaF53 (CDGM equivalent)`
+
 ### H-LAF6L — 1 occurrence
 
 - [FUJIFILM FUJINON GF 20-35mm f/4 R WR](../../src/lens-data/fujifilm/FujifilmGF2035mmf4.data.ts) 14: `H-LaF6L / lanthanum flint class (757/477)`
@@ -990,6 +996,10 @@ or per-lens patent backfills.
 ### NBFD12 — 1 occurrence
 
 - [NIKON NIKKOR Z 24-50mm f/4-6.3](../../src/lens-data/nikon/NikonNikkorZ2450mmf463.data.ts) 11: `NBFD12 (HOYA)`
+
+### NBFD30 — 1 occurrence
+
+- [SIGMA 10-18mm F2.8 DC DN | Contemporary](../../src/lens-data/sigma/Sigma1018mmf28DCDN.data.ts) 8: `NBFD30 (Hoya)`
 
 ### NBFD32 — 1 occurrence
 
