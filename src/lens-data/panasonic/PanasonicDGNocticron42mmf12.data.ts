@@ -30,7 +30,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "panasonic-dg-nocticron-42mm-f12",
   maker: "Panasonic",
-  name: "Panasonic Leica DG Nocticron 42.5mm f/1.2 ASPH Power O.I.S.",
+  name: "PANASONIC LEICA DG NOCTICRON 42.5mm f/1.2 ASPH POWER O.I.S.",
   subtitle: "US 2015/0192839 A1 Example 5 — Panasonic / Miyazaki",
   specs: [
     "14 elements / 11 groups",

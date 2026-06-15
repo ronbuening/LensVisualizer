@@ -31,7 +31,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "nikon-l35af-35f28",
   maker: "Nikon",
-  name: "NIKON L35AF 35mm f/2.8",
+  name: "NIKON 35mm f/2.8 (Nikon L35AF)",
   subtitle: "US 4,457,596 EMBODIMENT 1 — NIPPON KOGAKU / WAKAMIYA",
   specs: ["5 ELEMENTS / 4 GROUPS", "f ≈ 35.0 mm", "F/2.8", "2ω ≈ 62.3°", "ALL SPHERICAL"],
 

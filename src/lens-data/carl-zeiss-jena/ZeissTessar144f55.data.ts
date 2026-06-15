@@ -35,7 +35,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "zeiss-tessar-144f55",
   maker: "Carl Zeiss Jena",
-  name: "CARL ZEISS TESSAR 144mm f/5.5",
+  name: "CARL ZEISS JENA TESSAR 144mm f/5.5",
   subtitle: "US 721,240 — CARL ZEISS / PAUL RUDOLPH (1903)",
   visible: true,
   specs: ["4 ELEMENTS / 3 GROUPS", "f ≈ 144 mm (scaled from normalized patent)", "F/5.5", "2ω ≈ 60°", "ALL SPHERICAL"],

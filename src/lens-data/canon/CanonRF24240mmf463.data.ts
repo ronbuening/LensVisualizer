@@ -28,7 +28,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "canon-rf24-240-f4-63",
   maker: "Canon",
-  name: "CANON RF 24-240mm F4-6.3 IS USM",
+  name: "CANON RF 24-240mm f/4-6.3 IS USM",
   subtitle: "US 2020/0142167 A1 EXAMPLE 1 — CANON / KIKUCHI",
   specs: [
     "21 ELEMENTS / 15 GROUPS",

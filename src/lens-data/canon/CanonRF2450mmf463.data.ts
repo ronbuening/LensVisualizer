@@ -38,7 +38,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "canon-rf-24-50-f45-63",
   maker: "Canon",
-  name: "CANON RF 24-50mm F4.5-6.3 IS STM",
+  name: "CANON RF 24-50mm f/4.5-6.3 IS STM",
   subtitle: "US 2023/0213739 A1 Example 1 — Canon / Nakahara & Okuoka",
   specs: [
     "8 ELEMENTS / 8 GROUPS",

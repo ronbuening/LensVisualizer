@@ -32,7 +32,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "fujifilm-gf55mm-f17-r-wr",
   maker: "Fujifilm",
-  name: "FUJIFILM FUJINON GF55mmF1.7 R WR",
+  name: "FUJIFILM FUJINON GF 55mm f/1.7 R WR",
   subtitle: "US 2023/0341664 A1 — Example 1",
   specs: ["55mm f/1.7", "14 elements / 10 groups", "2 aspherical + 2 ED elements", "G mount / 44×33 format"],
 

@@ -30,7 +30,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-gugotto-120mm-f45",
   maker: "Nikon",
-  name: "Nikon Gugutto Macro 120mm f/4.5",
+  name: "NIKON Gugutto Macro 120mm f/4.5",
   subtitle: "US 5,764,425 Example 4 — Koichi Ohshita / Nikon",
   specs: [
     "3 elements / 2 groups",

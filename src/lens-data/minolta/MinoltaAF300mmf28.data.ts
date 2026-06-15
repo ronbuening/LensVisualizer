@@ -29,7 +29,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "minolta-af-300mm-f28",
   maker: "Minolta",
-  name: "Minolta AF APO TELE 300mm f/2.8",
+  name: "MINOLTA AF APO TELE 300mm f/2.8",
   subtitle: "US 4,518,229 Example 8 — Minolta / Yasukuni",
   specs: [
     "Patent Example 8: f = 295.0 mm, FN = 2.9",

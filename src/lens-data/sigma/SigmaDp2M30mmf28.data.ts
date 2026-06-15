@@ -34,7 +34,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "sigma-dp2m-30f28",
   maker: "Sigma",
-  name: "SIGMA 30mm f/2.8 (DP2 Merrill)",
+  name: "SIGMA 30mm f/2.8 (Sigma DP2 Merrill)",
   subtitle: "JP 2013-156459 A Example 4 — Sigma / Kōno",
   specs: ["8 ELEMENTS / 6 GROUPS", "f ≈ 29.6 mm", "F/2.8", "2ω ≈ 52.1°", "1 ASPHERICAL SURFACE"],
 

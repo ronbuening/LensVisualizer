@@ -31,7 +31,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "sonnar-e-24f18-za",
   maker: "Sony",
-  name: "SONY SONNAR T* E 24mm F1.8 ZA",
+  name: "SONY SONNAR T* E 24mm f/1.8 ZA",
   subtitle: "US 2013/0033768 A1 Example 2 — Sony / Sunaga, Otake, Hosoi",
   specs: ["8 ELEMENTS / 7 GROUPS", "f ≈ 23.3 mm", "F/1.8", "2ω ≈ 61.7°", "3 ASPHERICAL SURFACES"],
 

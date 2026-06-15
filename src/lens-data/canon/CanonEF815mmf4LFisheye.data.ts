@@ -32,7 +32,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "canon-ef-8-15mm-f4l-fisheye-usm",
   maker: "Canon",
-  name: "Canon EF 8-15mm f/4L Fisheye USM",
+  name: "CANON EF 8-15mm f/4 L Fisheye USM",
   subtitle: "US 2012/0013996 A1 Example 1 — Canon / Okumura",
   specs: [
     "14 elements / 11 groups",

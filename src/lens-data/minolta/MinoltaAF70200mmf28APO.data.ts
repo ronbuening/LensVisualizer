@@ -27,7 +27,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "minolta-af-70-200mm-f28-apo-g-d-ssm",
   maker: "Minolta",
-  name: "Minolta AF 70-200mm f/2.8 APO G (D) SSM",
+  name: "MINOLTA AF 70-200mm f/2.8 APO G (D) SSM",
   subtitle: "JP 2004-109559 A Example 1 — Minolta zoom lens system",
   specs: [
     "Patent Example 1: 19 elements / 15 air-spaced optical clusters",

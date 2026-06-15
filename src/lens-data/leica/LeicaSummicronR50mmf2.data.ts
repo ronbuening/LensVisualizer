@@ -33,7 +33,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "leica-summicron-r-50mm-f2",
   maker: "Leica",
-  name: "Leica Summicron-R 50mm f/2",
+  name: "LEICA SUMMICRON-R 50mm f/2",
   subtitle: "US 4,123,144 Example 8 — Mandler / Edwards / Wagner",
   specs: [
     "6 elements / 4 groups",

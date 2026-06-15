@@ -39,7 +39,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "sony-sel30mmf35",
   maker: "Sony",
-  name: "Sony E 30mm F3.5 Macro",
+  name: "SONY E 30mm f/3.5 Macro",
   subtitle: "JP 2012-159613 A Example 1 - Sony / Tamron",
   specs: [
     "30 mm f/3.5 APS-C E-mount",

@@ -33,7 +33,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "minolta-af-100mm-f28-macro",
   maker: "Minolta",
-  name: "Minolta AF 100mm f/2.8 Macro",
+  name: "MINOLTA AF 100mm f/2.8 Macro",
   subtitle: "US 4,764,000 Example 8 — Minolta / Tokumaru",
   specs: [
     "8 elements / 8 groups",

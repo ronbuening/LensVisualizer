@@ -62,7 +62,7 @@ export const sigmaDgDnA35mmF14Data = {
   /* ── Identity ── */
   key: "sigma-35-f14-dgdn-art",
   maker: "Sigma",
-  name: "SIGMA 35mm F1.4 DG DN | Art",
+  name: "SIGMA 35mm f/1.4 DG DN | Art",
   subtitle: "JP 2022-33487 A Example 1 — Sigma / Shioda",
   specs: ["15 ELEMENTS / 11 GROUPS", "f ≈ 33.72 mm (35 mm marketed)", "F/1.4", "2ω ≈ 67.78°", "2 ASPHERICAL SURFACES"],
 

@@ -30,7 +30,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "nikkor-28f14d",
   maker: "Nikon",
-  name: "NIKON AF NIKKOR 28mm f/1.4D",
+  name: "NIKON AF NIKKOR 28mm f/1.4 D",
   subtitle: "US 5,315,441 EXAMPLE 1 — NIKON / HORI & TATSUNO",
   specs: ["11 ELEMENTS / 8 GROUPS", "f ≈ 28.6 mm", "F/1.4", "2ω ≈ 75.4°", "1 ASPHERICAL SURFACE (GROUND GLASS)"],
 

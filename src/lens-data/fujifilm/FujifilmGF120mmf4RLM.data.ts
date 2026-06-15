@@ -35,7 +35,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "gf-120f4-macro",
   maker: "Fujifilm",
-  name: "FUJIFILM FUJINON GF120mmF4 R LM OIS WR Macro",
+  name: "FUJIFILM FUJINON GF 120mm f/4 R LM OIS WR Macro",
   subtitle: "US 2018/0059384 A1 Example 1 — FUJIFILM / Noda",
   specs: ["14 ELEMENTS / 9 GROUPS", "f ≈ 116.4 mm", "F/4.12", "2ω ≈ 26.4°", "3 ED ELEMENTS", "ALL SPHERICAL"],
 

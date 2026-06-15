@@ -31,7 +31,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "nikon-afs-70-200-f28e-fl",
   maker: "Nikon",
-  name: "NIKON AF-S NIKKOR 70-200mm f/2.8E FL ED VR",
+  name: "NIKON AF-S NIKKOR 70-200mm f/2.8 E FL ED VR",
   subtitle: "WO 2019/097669 A1 EXAMPLE 1 — NIKON / ITO TOMOKI",
   specs: [
     "22 ELEMENTS / 18 GROUPS",

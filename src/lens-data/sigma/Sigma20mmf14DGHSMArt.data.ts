@@ -25,7 +25,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "sigma-20mm-f14-dg-hsm-art",
   maker: "Sigma",
-  name: "Sigma 20mm F1.4 DG HSM | Art",
+  name: "SIGMA 20mm f/1.4 DG HSM | Art",
   subtitle: "JP 2019-117419 A — Numerical Example 1",
   specs: [
     "15 elements / 11 groups",

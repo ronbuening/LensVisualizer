@@ -41,7 +41,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "schneider-super-symmar-xl-110-f56",
   maker: "Schneider-Kreuznach",
-  name: "SCHNEIDER SUPER-SYMMAR XL 5.6/110 ASPHERIC",
+  name: "SCHNEIDER-KREUZNACH SUPER-SYMMAR XL 110mm f/5.6 ASPHERIC",
   subtitle: "US 5,870,234 EXAMPLE 2 — SCHNEIDER-KREUZNACH / EBBESMEIER",
   specs: [
     "6 ELEMENTS / 5 GROUPS (PATENT)",

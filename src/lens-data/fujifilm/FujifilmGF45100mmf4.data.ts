@@ -25,7 +25,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "fujifilm-gf-45-100mm-f4-patent-example-1",
   maker: "Fujifilm",
-  name: "FUJIFILM Fujinon GF 45-100mmF4 R LM OIS WR",
+  name: "FUJIFILM FUJINON GF 45-100mm f/4 R LM OIS WR",
   subtitle: "US 2020/0379223 A1 Example 1 - FUJIFILM / Tomioka",
   specs: [
     "17 elements / 12 groups (patent)",

@@ -31,7 +31,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "hasselblad-xcd-120-f35-macro",
   maker: "Hasselblad",
-  name: "HASSELBLAD XCD 3,5/120mm Macro",
+  name: "HASSELBLAD XCD 120mm f/3.5 Macro",
   subtitle: "US 2020/0192060 A1 Example 2 — Nittoh Inc. / Sawamoto",
   specs: ["10 ELEMENTS / 7 GROUPS", "f = 120.0 mm", "F/3.5", "2ω ≈ 26°", "ALL SPHERICAL"],
 

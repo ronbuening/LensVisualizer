@@ -52,7 +52,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "sigma-art-85mm-f14-dgdn",
   maker: "Sigma",
-  name: "SIGMA 85mm F/1.4 DG DN | Art",
+  name: "SIGMA 85mm f/1.4 DG DN | Art",
   subtitle: "JP 2021-85935 Example 1 — Sigma / 塩田 了 (Ryo Shioda)",
   specs: [
     "15 ELEMENTS / 11 GROUPS",

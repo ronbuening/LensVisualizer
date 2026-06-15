@@ -21,7 +21,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "sigma-dp1x-16mm-f4",
   maker: "Sigma",
-  name: "Sigma DP1x 16.6mm f/4",
+  name: "SIGMA 16.6mm f/4 (Sigma DP1x)",
   subtitle: "JP 2008-040033 A Example 1 - Sigma / Yoshino",
   specs: [
     "6 elements / 5 groups",

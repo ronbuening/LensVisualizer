@@ -36,7 +36,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "sony-fe-85-f14-gm-ii",
   maker: "Sony",
-  name: "SONY FE 85mm F1.4 GM II",
+  name: "SONY FE 85mm f/1.4 GM II",
   subtitle: "WO 2025/239028 A1 Example 2 — Sony Group / Yamagishi, Tasaki, Kumisawa",
   specs: [
     "14 ELEMENTS / 11 GROUPS",

@@ -28,7 +28,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "hasselblad-hc-210-f4",
   maker: "Hasselblad",
-  name: "HASSELBLAD HC 4/210",
+  name: "HASSELBLAD HC 210mm f/4",
   subtitle: "US 6,445,511 B1 EXAMPLE 3 — FUJI PHOTO OPTICAL / KITAHARA",
   specs: ["10 ELEMENTS / 6 GROUPS", "f ≈ 210.0 mm", "F/4.0", "2ω ≈ 19.0°", "ALL SPHERICAL"],
 

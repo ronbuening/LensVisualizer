@@ -35,7 +35,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "minolta-af-28-75-f28-d",
   maker: "Minolta",
-  name: "Minolta AF 28-75mm f/2.8 (D)",
+  name: "MINOLTA AF 28-75mm f/2.8 (D)",
   subtitle: "JP 2004-101739 A — Tamron / Yamada Yasuharu",
   specs: [
     "28-75mm f/2.8",

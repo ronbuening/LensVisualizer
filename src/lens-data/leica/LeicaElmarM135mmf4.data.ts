@@ -38,7 +38,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "leica-elmar-m-135mm-f4",
   maker: "Leica",
-  name: "Leica Elmar-M 135mm f/4",
+  name: "LEICA ELMAR-M 135mm f/4",
   subtitle: "DE 1 183 707 B — Ernst Leitz single worked example",
   specs: ["5 elements / 3 groups", "f ≈ 134.5 mm", "F/4", "2ω ≈ 18°", "all-spherical", "unit focus"],
 

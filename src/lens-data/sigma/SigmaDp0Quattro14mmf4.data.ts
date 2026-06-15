@@ -31,7 +31,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "sigma-dp0-quattro-14-f4",
   maker: "Sigma",
-  name: "SIGMA dp0 Quattro 14mm f/4",
+  name: "SIGMA 14mm f/4 (Sigma dp0 Quattro)",
   subtitle: "JP 2016-139087 A EXAMPLE 2 — SIGMA / KŌNO, OGASAWARA",
   specs: ["11 ELEMENTS / 8 GROUPS", "f ≈ 13.97 mm", "F/4.13", "2ω ≈ 90.9°", "3 ASPHERICAL SURFACES"],
 

@@ -20,7 +20,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "minolta-af-35-105mm-f3-5-4-5-v2",
   maker: "Minolta",
-  name: "Minolta AF 35-105mm f/3.5-4.5 New (v2)",
+  name: "MINOLTA AF 35-105mm f/3.5-4.5 New (v2)",
   subtitle: "US 4,871,239 Example 3 / Claim 29",
   specs: [
     "35-105 mm full-frame A-mount zoom",

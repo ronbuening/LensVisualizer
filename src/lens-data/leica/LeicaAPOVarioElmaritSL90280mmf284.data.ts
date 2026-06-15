@@ -37,7 +37,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "leica-apo-vario-elmarit-sl-90-280-f28-4",
   maker: "Leica",
-  name: "LEICA APO-VARIO-ELMARIT-SL 90–280 mm f/2.8–4",
+  name: "LEICA APO-VARIO-ELMARIT-SL 90-280mm f/2.8-4",
   subtitle: "JP 2016-139125 A EXAMPLE 1 — PANASONIC / IMAOKA",
   specs: [
     "23 ELEMENTS / 7 GROUPS (17 SUB-GROUPS)",

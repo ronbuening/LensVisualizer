@@ -25,7 +25,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "ricoh-gr1-28f28",
   maker: "Ricoh",
-  name: "RICOH GR 28mm f/2.8",
+  name: "RICOH GR LENS 28mm f/2.8 (Ricoh GR1)",
   subtitle: "US 5,760,973 EXAMPLE 1 — RICOH / KAWAMURA",
   specs: ["7 ELEMENTS / 4 GROUPS", "f ≈ 28.1 mm", "F/2.86", "2ω ≈ 74.4°", "2 ASPHERICAL SURFACES"],
 

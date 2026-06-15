@@ -34,7 +34,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "fujifilm-ga645-pro-60mm-f4",
   maker: "Fujifilm",
-  name: "FUJIFILM Super EBC Fujinon 60mm f/4 (Fujifilm GA645 Professional)",
+  name: "FUJIFILM SUPER EBC FUJINON 60mm f/4 (Fujifilm GA645 Professional)",
   subtitle: "US 5,548,447 Example 1 — Fuji Photo Optical / Nobuaki Toyama",
   specs: [
     "7 elements / 6 groups",

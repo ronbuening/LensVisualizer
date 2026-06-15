@@ -31,7 +31,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "olympus-mzuiko-17mm-f28",
   maker: "Olympus",
-  name: "Olympus M.Zuiko Digital 17mm f/2.8",
+  name: "OLYMPUS M.ZUIKO DIGITAL 17mm f/2.8",
   subtitle: "US 8,755,132 B2 Example 1 — Olympus / Yamada & Kimata",
   specs: [
     "6 elements / 4 groups",

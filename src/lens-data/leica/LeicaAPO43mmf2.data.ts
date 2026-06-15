@@ -32,7 +32,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "leica-apo-summicron-43f2",
   maker: "Leica",
-  name: "LEICA APO-SUMMICRON 43mm f/2 ASPH. (Q3 43)",
+  name: "LEICA APO-SUMMICRON 43mm f/2 ASPH. (Leica Q3 43)",
   subtitle: "US 2024/0241349 A1 EXAMPLE 1 — PANASONIC / NISHIOKA",
   specs: ["11 ELEMENTS / 8 GROUPS", "f ≈ 41.7 mm", "F/2.06", "2ω ≈ 55.0°", "7 ASPHERICAL SURFACES (4 ELEMENTS)"],
 

@@ -39,7 +39,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "sony-sonnar-fe-55f18-za",
   maker: "Sony",
-  name: "SONY SONNAR T* FE 55mm F1.8 ZA",
+  name: "SONY SONNAR T* FE 55mm f/1.8 ZA",
   subtitle: "US 2015/0092100 A1 Example 1 — Sony / Chen, Miyagawa",
   specs: ["7 ELEMENTS / 5 GROUPS", "f ≈ 53.6 mm", "F/1.8", "2ω ≈ 43°", "5 ASPHERICAL SURFACES (3 ELEMENTS)"],
 

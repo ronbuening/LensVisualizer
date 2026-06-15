@@ -43,7 +43,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "fujifilm-gf80-f17",
   maker: "Fujifilm",
-  name: "FUJIFILM FUJINON GF80mmF1.7 R WR",
+  name: "FUJIFILM FUJINON GF 80mm f/1.7 R WR",
   subtitle: "US 2021/0294073 A1 Example 1 — Fujifilm / Kondo",
   specs: [
     "12 ELEMENTS / 9 GROUPS",

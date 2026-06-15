@@ -41,7 +41,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "sony-fe-20-70mm-f4-g",
   maker: "Sony",
-  name: "SONY FE 20–70 mm F4 G",
+  name: "SONY FE 20-70mm f/4 G",
   subtitle: "WO 2023/153076 A1 Example 8 — Sony Group / Tasaki, Kumisawa, Juri",
   specs: [
     "16 ELEMENTS / 13 GROUPS",

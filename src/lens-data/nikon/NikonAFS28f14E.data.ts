@@ -32,7 +32,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "nikon-afs-28f14e",
   maker: "Nikon",
-  name: "NIKON AF-S NIKKOR 28mm f/1.4E ED",
+  name: "NIKON AF-S NIKKOR 28mm f/1.4 E ED",
   subtitle: "JP2017-227799A EX1 — Konica Minolta / Nikon",
   specs: [
     "14 ELEMENTS / 11 GROUPS",

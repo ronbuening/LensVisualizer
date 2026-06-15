@@ -24,7 +24,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "sigma-105mm-f14-dg-hsm-art",
   maker: "Sigma",
-  name: "Sigma 105mm F1.4 DG HSM | Art",
+  name: "SIGMA 105mm f/1.4 DG HSM | Art",
   subtitle: "JP2019144477A Example 1 — Sigma",
   specs: [
     "17 elements / 12 groups",

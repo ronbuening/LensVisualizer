@@ -44,7 +44,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "hasselblad-hc-50-f35",
   maker: "Hasselblad",
-  name: "HASSELBLAD HC 3.5/50",
+  name: "HASSELBLAD HC 50mm f/3.5",
   subtitle: "US 2003/0011895 A1 Example 4 — Fuji Photo Optical / Masao Mori",
   specs: ["10 ELEMENTS / 9 GROUPS", "f ≈ 50.0 mm", "F/3.5", "2ω ≈ 69.4°", "ALL SPHERICAL"],
 

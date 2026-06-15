@@ -37,7 +37,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-afs-24-120mm-f4g",
   maker: "Nikon",
-  name: "Nikon AF-S NIKKOR 24-120mm f/4G ED VR",
+  name: "NIKON AF-S NIKKOR 24-120mm f/4 G ED VR",
   subtitle: "US 2010/0220400 A1 Example 1 — Nikon",
   specs: [
     "17 elements / 13 groups",

@@ -32,7 +32,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "minolta-af-28mm-f2",
   maker: "Minolta",
-  name: "Minolta AF 28mm f/2",
+  name: "MINOLTA AF 28mm f/2",
   subtitle: "US 4,258,985 Example 4 — Minolta / Akiyoshi Nakamura",
   specs: ["9 elements / 9 groups", "f = 28.0 mm", "F2.0", "2ω = 75°", "all-spherical"],
 

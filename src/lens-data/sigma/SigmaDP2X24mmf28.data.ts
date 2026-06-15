@@ -34,7 +34,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "sigma-dp2x-24mmf28",
   maker: "Sigma",
-  name: "SIGMA DP2X 24mm f/2.8",
+  name: "SIGMA 24mm f/2.8 (Sigma DP2x)",
   subtitle: "JP 2010-101979 A EXAMPLE 5 — SIGMA / OGASAHARA",
   specs: ["7 ELEMENTS / 6 GROUPS", "f ≈ 24.1 mm", "F/2.8", "2ω ≈ 56.8°", "2 ASPHERICAL SURFACES"],
 

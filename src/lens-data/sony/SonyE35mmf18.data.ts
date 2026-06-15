@@ -28,7 +28,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "sony-e-35mm-f18-oss",
   maker: "Sony",
-  name: "Sony E 35mm F1.8 OSS",
+  name: "SONY E 35mm f/1.8 OSS",
   subtitle: "JP 2014-89352 A Example 1 — Tamron / Sakai",
   specs: ["8 elements / 6 groups", "f = 34.914 mm", "F1.861 design", "2ω = 44.664°", "3 aspherical surfaces"],
 

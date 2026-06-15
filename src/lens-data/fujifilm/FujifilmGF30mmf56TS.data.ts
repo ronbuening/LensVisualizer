@@ -30,7 +30,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "fujifilm-gf-30mm-f56-ts",
   maker: "Fujifilm",
-  name: "FUJIFILM FUJINON GF30mmF5.6 T/S",
+  name: "FUJIFILM FUJINON GF 30mm f/5.6 T/S",
   subtitle: "WO 2024/195273 A1 Example 4 — Fujifilm",
   specs: [
     "16 elements / 11 groups",

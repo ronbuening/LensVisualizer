@@ -30,7 +30,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "nikon-afs-80-400-f45-56g",
   maker: "Nikon",
-  name: "NIKON AF-S NIKKOR 80-400mm f/4.5-5.6G ED VR",
+  name: "NIKON AF-S NIKKOR 80-400mm f/4.5-5.6 G ED VR",
   subtitle: "US 2020/0049962 A1 Example 1 — Nikon / Tomoki Ito",
   specs: [
     "20 ELEMENTS / 12 GROUPS",

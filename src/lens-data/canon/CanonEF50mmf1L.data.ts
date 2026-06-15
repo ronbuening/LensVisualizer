@@ -38,7 +38,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "canon-ef-50f10l",
   maker: "Canon",
-  name: "CANON EF 50mm f/1.0L USM",
+  name: "CANON EF 50mm f/1.0 L USM",
   subtitle: "US 4,717,245 EXAMPLE 2 — CANON / TAKAHASHI",
   specs: ["11 ELEMENTS / 9 GROUPS", "f ≈ 50.0 mm", "F/1.0", "2ω ≈ 45.2°", "2 ASPHERICAL SURFACES"],
 

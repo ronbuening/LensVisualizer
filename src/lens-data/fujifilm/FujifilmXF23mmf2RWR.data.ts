@@ -38,7 +38,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "fujifilm-xf-23mm-f2-r-wr",
   maker: "Fujifilm",
-  name: "FUJINON XF23mmF2 R WR",
+  name: "FUJIFILM FUJINON XF 23mm f/2 R WR",
   subtitle: "US 2017/0351051 A1 Example 1 — Fujifilm / Kawamura",
   specs: [
     "10 elements / 6 groups",

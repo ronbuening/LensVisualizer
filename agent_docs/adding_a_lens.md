@@ -36,6 +36,25 @@ Shared defaults from `src/lens-data/defaults.ts` are merged automatically under 
 
 Set `maker` to the manufacturer name (e.g. `"Nikon"`, `"Voigtländer"`, `"Carl Zeiss"`). This is used for maker pages (`/makers/:slug`) and SEO metadata. If omitted, `lensMetadata.ts` derives the maker from the lens `name` via prefix matching against `MAKER_PREFIXES`. Explicit `maker` is preferred for accuracy — especially for lenses whose `name` doesn't start with a recognized prefix.
 
+### Display Name
+
+Set `name` to the normalized UI title, not a raw source-title copy. Start with the public-facing manufacturer in all caps,
+then the all-caps lens branding or optical line, then separated mount/system tokens, focal length, aperture, and
+characteristics:
+
+```typescript
+name: "NIKON NIKKOR Z 50mm f/1.8 S",
+name: "FUJIFILM FUJINON XF 23mm f/2 R WR",
+name: "CANON RF 24-105mm f/2.8 L IS USM Z",
+```
+
+Avoid run-together forms such as `XF23mmF2`, `RF24-105mm`, `f/2.8L`, or `F1.4`. For fixed-lens cameras, keep the
+lens name first and put the camera body in parentheses:
+
+```typescript
+name: "FUJIFILM SUPER EBC FUJINON 60mm f/4 (Fujifilm GA645 Professional)",
+```
+
 ### Mount And Image Format Fields
 
 Use `lensMounts` and `imageFormat` when the production system and coverage are clear. Values must be canonical ids from

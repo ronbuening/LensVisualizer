@@ -32,7 +32,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "pentax-da-21mm-f32-limited",
   maker: "Pentax",
-  name: "PENTAX-DA 21mm F3.2 AL Limited",
+  name: "PENTAX DA 21mm f/3.2 AL Limited",
   subtitle: "US 7,411,746 B2 Embodiment 1 — Hoya / Kato & Saori",
   specs: [
     "8 elements / 5 groups",

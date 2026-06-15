@@ -33,7 +33,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "nikon-pce-micro-nikkor-45f28d",
   maker: "Nikon",
-  name: "NIKON PC-E MICRO-NIKKOR 45mm f/2.8D ED",
+  name: "NIKON PC-E MICRO-NIKKOR 45mm f/2.8 D ED",
   subtitle: "US 7,656,591 B2 EXAMPLE 1 — NIKON / H. YAMAMOTO",
   specs: [
     "9 ELEMENTS / 8 GROUPS",

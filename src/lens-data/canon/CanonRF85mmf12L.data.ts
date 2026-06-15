@@ -29,7 +29,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "canon-rf-85f12l",
   maker: "Canon",
-  name: "CANON RF 85mm f/1.2L USM",
+  name: "CANON RF 85mm f/1.2 L USM",
   subtitle: "US 2020/0012073 A1 EXAMPLE 1 — CANON / MAETAKI",
   specs: [
     "14 ELEMENTS / 9 GROUPS",

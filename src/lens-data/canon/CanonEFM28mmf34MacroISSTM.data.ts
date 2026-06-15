@@ -21,7 +21,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "canon-efm-28mm-f35-macro-is-stm",
   maker: "Canon",
-  name: "Canon EF-M 28mm f/3.5 Macro IS STM",
+  name: "CANON EF-M 28mm f/3.5 Macro IS STM",
   subtitle: "US 2016/0313535 A1 — Numerical Example 1",
   specs: [
     "Canon EF-M / APS-C",

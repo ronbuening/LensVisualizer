@@ -12,7 +12,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-1-nikkor-32mm-f12",
   maker: "Nikon",
-  name: "Nikon 1 NIKKOR 32mm f/1.2",
+  name: "NIKON 1 NIKKOR 32mm f/1.2",
   subtitle: "WO 2014/061226 A1 Example 1 - Nikon / Ishida & Tanaka",
   specs: [
     "9 elements / 7 groups",

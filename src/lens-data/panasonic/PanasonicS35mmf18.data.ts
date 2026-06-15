@@ -48,7 +48,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "panasonic-lumix-s-35-f18",
   maker: "Panasonic",
-  name: "PANASONIC LUMIX S 35mm F1.8",
+  name: "PANASONIC LUMIX S 35mm f/1.8",
   subtitle: "CN 216772097U Example 1 — Xiamen Panasonic / Zheng, Chen, Zhan",
   specs: ["11 ELEMENTS / 9 GROUPS", "f ≈ 33.8 mm", "F/1.8", "2ω ≈ 63°", "3 ASPHERICAL ELEMENTS (6 SURFACES)"],
 

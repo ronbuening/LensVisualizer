@@ -34,7 +34,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "sony-e-18-55mm-f35-56-oss",
   maker: "Sony",
-  name: "Sony E 18-55mm f/3.5-5.6 OSS",
+  name: "SONY E 18-55mm f/3.5-5.6 OSS",
   subtitle: "US 2011/0273780 A1 — Numerical Example 1",
   specs: [
     "11 elements / 9 groups",

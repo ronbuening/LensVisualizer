@@ -24,7 +24,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "sony-fe-14mm-f18-gm",
   maker: "Sony",
-  name: "Sony FE 14mm f/1.8 GM",
+  name: "SONY FE 14mm f/1.8 GM",
   subtitle: "WO 2021/199923 A1 — Numerical Example 1",
   specs: [
     "14 elements / 11 groups",

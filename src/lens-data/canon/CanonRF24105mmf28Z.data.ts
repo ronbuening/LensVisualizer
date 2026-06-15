@@ -40,7 +40,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "canon-rf24-105f28z",
   maker: "Canon",
-  name: "CANON RF24-105mm F2.8 L IS USM Z",
+  name: "CANON RF 24-105mm f/2.8 L IS USM Z",
   subtitle: "US 2024/0192474 A1 Example 4 — Canon / Iwamoto",
   specs: [
     "23 ELEMENTS / 18 GROUPS",

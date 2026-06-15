@@ -41,7 +41,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "laowa-65mm-f28-macro-apo",
   maker: "Laowa",
-  name: "Laowa 65mm f/2.8 2× Ultra Macro APO",
+  name: "LAOWA 65mm f/2.8 2× Ultra Macro APO",
   subtitle: "CN 110161666A EXAMPLE 2 — 安徽长庚光学科技 / LI DAYONG",
   specs: [
     "14 ELEMENTS / 10 GROUPS",

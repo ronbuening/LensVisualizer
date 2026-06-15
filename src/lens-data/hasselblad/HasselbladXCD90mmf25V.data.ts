@@ -40,7 +40,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "hasselblad-xcd-90-f25-v",
   maker: "Hasselblad",
-  name: "HASSELBLAD XCD 2,5/90V",
+  name: "HASSELBLAD XCD 90mm f/2.5 V",
   subtitle: "JP 2022-99402 A Example 1 — Panasonic IP Management / Nishioka",
   specs: [
     "9 ELEMENTS / 6 GROUPS",

@@ -29,7 +29,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "sony-planar-fe-50f14-za",
   maker: "Sony",
-  name: "SONY PLANAR T* FE 50mm F1.4 ZA",
+  name: "SONY PLANAR T* FE 50mm f/1.4 ZA",
   subtitle: "WO 2017/138250 A1 EXAMPLE 2 — SONY / HOSOI",
   specs: ["12 ELEMENTS / 9 GROUPS", "f ≈ 50.3 mm", "F/1.4", "2ω ≈ 46.4°", "2 ASPHERICAL SURFACES", "1 ED ELEMENT"],
 

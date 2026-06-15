@@ -22,7 +22,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "panasonic-dg-summilux-12mm-f14",
   maker: "Panasonic",
-  name: "Panasonic LEICA DG SUMMILUX 12mm F1.4 ASPH.",
+  name: "PANASONIC LEICA DG SUMMILUX 12mm f/1.4 ASPH.",
   subtitle: "JP2017-167327A Example 1 — Sigma / Masakazu Hibino",
   specs: [
     "15 elements / 12 groups",

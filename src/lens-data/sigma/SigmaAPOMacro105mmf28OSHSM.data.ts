@@ -26,7 +26,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "sigma-apo-macro-105mm-f28-os-hsm",
   maker: "Sigma",
-  name: "Sigma APO Macro 105mm F2.8 EX DG OS HSM",
+  name: "SIGMA APO Macro 105mm f/2.8 EX DG OS HSM",
   subtitle: "JP 2012-58682 A Example 4 — Sigma / Ogasawara",
   specs: [
     "16 elements / 11 groups",

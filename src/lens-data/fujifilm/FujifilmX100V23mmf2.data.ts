@@ -35,7 +35,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "fujifilm-x100v-23f2",
   maker: "Fujifilm",
-  name: "FUJIFILM FUJINON 23mm f/2 (X100V)",
+  name: "FUJIFILM FUJINON 23mm f/2 (Fujifilm X100V)",
   subtitle: "US 2020/0333569 A1 Example 1 — FUJIFILM / Kondo",
   specs: ["8 ELEMENTS / 6 GROUPS", "f ≈ 23.7 mm", "F/2.06", "2ω ≈ 62.0°", "4 ASPHERICAL SURFACES (2 ELEMENTS)"],
 

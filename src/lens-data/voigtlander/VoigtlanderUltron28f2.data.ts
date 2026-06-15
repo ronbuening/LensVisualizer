@@ -27,7 +27,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "ultron-28f2-asph",
   maker: "Voigtländer",
-  name: "VOIGTLÄNDER ULTRON Vintage Line 28mm F2 Aspherical",
+  name: "VOIGTLÄNDER ULTRON Vintage Line 28mm f/2 Aspherical",
   subtitle: "JP2022-100641A EXAMPLE 1 — COSINA / HATTA Shōju, SHIBATA Yūki",
   specs: [
     "10 ELEMENTS / 7 GROUPS",

@@ -32,7 +32,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "sigma-50f14-dgdn-art",
   maker: "Sigma",
-  name: "SIGMA 50mm F1.4 DG DN | Art",
+  name: "SIGMA 50mm f/1.4 DG DN | Art",
   subtitle: "JP 2023-183894 A Example 1 — Sigma / Yamamoto",
   specs: [
     "14 ELEMENTS / 11 GROUPS",

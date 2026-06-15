@@ -31,7 +31,7 @@ const LENS_DATA = {
   key: "nikkor-afs-14-24f28",
   visible: true,
   maker: "Nikon",
-  name: "NIKON AF-S NIKKOR 14-24mm f/2.8G ED",
+  name: "NIKON AF-S NIKKOR 14-24mm f/2.8 G ED",
   subtitle: "US 7,359,125 B2 EXAMPLE 1 — KIMURA & SATO / NIKON",
   specs: [
     "15 ELEMENTS / 11 GROUPS",

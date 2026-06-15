@@ -55,7 +55,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "nikon-35ti-35f28",
   maker: "Nikon",
-  name: "NIKON NIKKOR 35mm f/2.8 (35Ti)",
+  name: "NIKON NIKKOR 35mm f/2.8 (Nikon 35Ti)",
   subtitle: "US 5,243,468 · Fifth Embodiment (Claim 9) — Nikon / Ohtake 1993",
   specs: ["6 ELEMENTS / 4 GROUPS", "f ≈ 35.0 mm", "F/2.8 (design F/2.88)", "2ω ≈ 62.9°", "ALL SPHERICAL"],
 

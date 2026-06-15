@@ -15,7 +15,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "canon-ef-m-32mm-f14-stm",
   maker: "Canon",
-  name: "Canon EF-M 32mm f/1.4 STM",
+  name: "CANON EF-M 32mm f/1.4 STM",
   subtitle: "JP2018180366A Numerical Data 1 — Canon Inc.",
   specs: [
     "14 elements / 8 groups",

@@ -27,7 +27,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "olympus-mzuiko-14-42-3556-ii",
   maker: "Olympus",
-  name: "Olympus M.Zuiko Digital 14-42mm f/3.5-5.6 II R",
+  name: "OLYMPUS M.ZUIKO DIGITAL 14-42mm f/3.5-5.6 II R",
   subtitle: "US 8,994,842 B2 — Common Example A / Example 1",
   specs: [
     "8 elements / 7 groups",

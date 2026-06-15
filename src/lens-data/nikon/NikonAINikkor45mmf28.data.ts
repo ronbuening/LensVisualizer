@@ -37,7 +37,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-ai-nikkor-45mm-f28-p",
   maker: "Nikon",
-  name: "Nikon AI Nikkor 45mm f/2.8P",
+  name: "NIKON AI NIKKOR 45mm f/2.8 P",
   subtitle: "JP 2003-005030 A Example 6 — Nikon / Kōichi Ōshita",
   specs: ["4 elements / 3 groups", "f ≈ 45.0 mm", "f/2.8 (patent FNO 2.88)", "2ω = 50.3° patent", "all-spherical"],
 

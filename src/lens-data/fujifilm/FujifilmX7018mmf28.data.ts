@@ -33,7 +33,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "fujifilm-x70-18mm-f28",
   maker: "Fujifilm",
-  name: "FUJIFILM FUJINON 18.5 mm f/2.8 (X70)",
+  name: "FUJIFILM FUJINON 18.5mm f/2.8 (Fujifilm X70)",
   subtitle: "US 2017/0075089 A1 Example 1 — FUJIFILM / Nagami & Suzuki",
   specs: ["7 ELEMENTS / 5 GROUPS", "f ≈ 19.1 mm", "F/2.88", "2ω ≈ 72.8°", "4 ASPHERICAL SURFACES (2 ELEMENTS)"],
 

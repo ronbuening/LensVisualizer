@@ -31,7 +31,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-afp-dx-70-300-f4563g",
   maker: "Nikon",
-  name: "Nikon AF-P DX NIKKOR 70-300mm f/4.5-6.3G ED VR",
+  name: "NIKON AF-P DX NIKKOR 70-300mm f/4.5-6.3 G ED VR",
   subtitle: "US 2021/0026133 A1 Example 4 — Nikon",
   specs: [
     "70-300 mm marketed; 72.1-292.1 mm patent",

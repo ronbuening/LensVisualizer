@@ -21,7 +21,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "laowa-15mm-f2-zero-d",
   maker: "Laowa",
-  name: "Laowa 15mm f/2 Zero-D",
+  name: "LAOWA 15mm f/2 Zero-D",
   subtitle: "US 2018/0149842 A1 Example 1 - Anhui Changgeng Optics / Xiaohua Zhang",
   specs: [
     "Patent Example 1",

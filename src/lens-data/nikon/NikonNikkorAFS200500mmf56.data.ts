@@ -29,7 +29,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "nikkor-afs-200-500f56e",
   maker: "Nikon",
-  name: "NIKON AF-S NIKKOR 200-500mm f/5.6E ED VR",
+  name: "NIKON AF-S NIKKOR 200-500mm f/5.6 E ED VR",
   subtitle: "JP 2014-209144 A EXAMPLE 2 — NIKON / TAMRON",
   specs: [
     "19 ELEMENTS / 12 GROUPS",

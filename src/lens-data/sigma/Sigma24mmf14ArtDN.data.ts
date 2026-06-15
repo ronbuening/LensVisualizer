@@ -38,7 +38,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "sigma-24mm-f14-art-dn",
   maker: "Sigma",
-  name: "Sigma 24mm F1.4 DG DN | Art",
+  name: "SIGMA 24mm f/1.4 DG DN | Art",
   subtitle: "JP 2023-074094 A Example 1 — Sigma / R. Shioda",
   specs: [
     "17 elements / 14 groups",

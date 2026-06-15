@@ -27,7 +27,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "sony-fe-70-200-f28-gm-oss",
   maker: "Sony",
-  name: "Sony FE 70-200mm F2.8 GM OSS",
+  name: "SONY FE 70-200mm f/2.8 GM OSS",
   subtitle: "US 2019/0018229 A1 — Numerical Example 1",
   specs: [
     "23 elements / 18 groups",

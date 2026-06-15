@@ -44,7 +44,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "fujifilm-xf60-f24-r-macro",
   maker: "Fujifilm",
-  name: "FUJIFILM FUJINON XF 60mmF2.4 R Macro",
+  name: "FUJIFILM FUJINON XF 60mm f/2.4 R Macro",
   subtitle: "US 2014/0247506 A1 EXAMPLE 1 — FUJIFILM / ORI",
   specs: [
     "10 ELEMENTS / 8 GROUPS",

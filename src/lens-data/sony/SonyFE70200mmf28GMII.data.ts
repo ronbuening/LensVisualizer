@@ -30,7 +30,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "sony-fe-70-200mm-f28-gm-ii",
   maker: "Sony",
-  name: "SONY FE 70-200mm F2.8 GM OSS II",
+  name: "SONY FE 70-200mm f/2.8 GM OSS II",
   subtitle: "JP 2023-039817 A EXAMPLE 2 — SONY / MIYAKAWA, TAKAHASHI",
   specs: [
     "17 ELEMENTS / 14 GROUPS",

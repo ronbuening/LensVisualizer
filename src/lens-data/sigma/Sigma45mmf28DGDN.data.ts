@@ -38,7 +38,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "sigma-45mm-f28-dg-dn-contemporary",
   maker: "Sigma",
-  name: "SIGMA 45mm F2.8 DG DN | Contemporary",
+  name: "SIGMA 45mm f/2.8 DG DN | Contemporary",
   subtitle: "JP 2019-211703 A — Numerical Example 1",
   specs: [
     "8 elements / 7 groups",

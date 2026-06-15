@@ -30,7 +30,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "lumix-s-20-60-f35-56",
   maker: "Panasonic",
-  name: "PANASONIC LUMIX S 20–60mm F3.5–5.6",
+  name: "PANASONIC LUMIX S 20-60mm f/3.5-5.6",
   subtitle: "JP 2021-179551 A EXAMPLE 2 — PANASONIC / KITADA, KUDO, SUEYOSHI, LI",
   specs: [
     "11 ELEMENTS / 9 GROUPS",

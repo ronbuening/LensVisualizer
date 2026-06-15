@@ -8,7 +8,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "sigma-50f14-dg-hsm-a",
   maker: "Sigma",
-  name: "SIGMA 50mm F1.4 DG HSM | Art",
+  name: "SIGMA 50mm f/1.4 DG HSM | Art",
   subtitle: "JP 2015-114366 A, Numerical Example 1",
   specs: [
     "13 elements / 8 groups",

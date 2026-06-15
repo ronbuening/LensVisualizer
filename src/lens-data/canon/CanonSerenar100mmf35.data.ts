@@ -19,7 +19,7 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 const LENS_DATA = {
   key: "canon-serenar-100mm-f35",
-  name: "Canon Serenar 100mm f/3.5 I",
+  name: "CANON SERENAR 100mm f/3.5 I",
   maker: "Canon",
   subtitle: "DE 1,022,027 B — 1958 patent, 1953 Serenar LTM production lens",
   specs: ["100mm", "f/3.5", "5 elements / 4 groups", "Leica thread mount", "135 full-frame"],

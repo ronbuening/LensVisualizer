@@ -24,7 +24,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "sigma-apo-macro-150mm-f28-os-hsm",
   maker: "Sigma",
-  name: "SIGMA APO MACRO 150mm F2.8 EX DG OS HSM",
+  name: "SIGMA APO MACRO 150mm f/2.8 EX DG OS HSM",
   subtitle: "JP 2012-63403 A — Numerical Example 2",
   specs: [
     "19 elements / 13 groups",

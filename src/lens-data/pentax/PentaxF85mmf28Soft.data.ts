@@ -29,7 +29,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "pentax-f-85-f28-soft",
   maker: "Pentax",
-  name: "PENTAX-F 85mm f/2.8 Soft",
+  name: "PENTAX F 85mm f/2.8 Soft",
   subtitle: "US 5,267,086 Example 1 — Asahi Kogaku Kogyo / Hirano",
   specs: ["5 ELEMENTS / 4 GROUPS", "f ≈ 85.0 mm", "F/2.8", "2ω ≈ 28.4°", "ALL SPHERICAL"],
 

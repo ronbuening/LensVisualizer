@@ -31,7 +31,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-fisheye-nikkor-6mm-f28",
   maker: "Nikon",
-  name: "Nikon Fisheye-Nikkor 6mm f/2.8",
+  name: "NIKON FISHEYE-NIKKOR 6mm f/2.8",
   subtitle: "US 3,737,214 Example I — Nippon Kogaku / Shimizu",
   specs: ["12 elements / 9 groups", "6 mm circular fisheye", "F/2.8", "220° angle of field", "All-spherical"],
 

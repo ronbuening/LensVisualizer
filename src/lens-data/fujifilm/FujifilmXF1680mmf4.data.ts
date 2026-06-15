@@ -54,7 +54,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "fujifilm-xf-16-80-f4",
   maker: "Fujifilm",
-  name: "FUJIFILM FUJINON XF 16–80mm f/4 R OIS WR",
+  name: "FUJIFILM FUJINON XF 16-80mm f/4 R OIS WR",
   subtitle: "US 2020/0166735 A1 Example 11 — Fujifilm / Kawamura, Noda",
   specs: [
     "16 ELEMENTS / 12 GROUPS",

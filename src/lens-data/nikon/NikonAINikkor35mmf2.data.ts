@@ -26,7 +26,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-ai-nikkor-35mm-f2",
   maker: "Nikon",
-  name: "Nikon AI Nikkor 35mm f/2",
+  name: "NIKON AI NIKKOR 35mm f/2",
   subtitle: "US 3,507,558 — Yoshiyuki Shimizu / Nippon Kogaku",
   specs: ["35 mm", "f/2", "8 elements / 6 groups", "62° diagonal", "Nikon F"],
 

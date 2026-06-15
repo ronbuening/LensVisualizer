@@ -22,7 +22,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "canon-ef-20-35mm-f28l",
   maker: "Canon",
-  name: "Canon EF 20-35mm f/2.8L",
+  name: "CANON EF 20-35mm f/2.8 L",
   subtitle: "US 5,000,550 Example 1 - Canon / Takahashi et al.",
   specs: [
     "15 elements / 12 groups",

@@ -32,7 +32,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "sony-fe-28mm-f2",
   maker: "Sony",
-  name: "Sony FE 28mm F2",
+  name: "SONY FE 28mm f/2",
   subtitle: "US 10,191,254 B2 Example 10 — Sony / Katou et al.",
   specs: [
     "9 elements / 8 groups",

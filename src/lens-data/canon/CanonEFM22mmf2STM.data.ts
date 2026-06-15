@@ -28,7 +28,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "canon-efm-22mm-f2-stm",
   maker: "Canon",
-  name: "Canon EF-M 22mm f/2 STM",
+  name: "CANON EF-M 22mm f/2 STM",
   subtitle: "US 8,854,747 B2 Example 1 — Canon / Shunji Iwamoto",
   specs: [
     "7 elements / 6 groups",

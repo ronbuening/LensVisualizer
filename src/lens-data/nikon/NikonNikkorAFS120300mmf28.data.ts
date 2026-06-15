@@ -32,7 +32,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "nikkor-afs-120-300f28e",
   maker: "Nikon",
-  name: "NIKON AF-S NIKKOR 120-300mm f/2.8E FL ED SR VR",
+  name: "NIKON AF-S NIKKOR 120-300mm f/2.8 E FL ED SR VR",
   subtitle: "JP 2020-177057 A EXAMPLE 1 — NIKON / YAMASHITA, TAKE",
   specs: [
     "25 ELEMENTS / 19 GROUPS",

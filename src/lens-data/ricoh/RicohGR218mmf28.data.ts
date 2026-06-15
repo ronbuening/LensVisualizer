@@ -29,7 +29,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "ricoh-gr-18p3-f2p8",
   maker: "Ricoh",
-  name: "RICOH GR/GR2 18.3mm f/2.8",
+  name: "RICOH GR LENS 18.3mm f/2.8 (Ricoh GR / GR II)",
   subtitle: "US 2013/0321936 A1 EXAMPLE 3 — OHASHI",
   specs: ["7 ELEMENTS / 5 GROUPS", "f ≈ 18.3 mm", "F/2.8", "2ω ≈ 76.4°", "2 ASPHERICAL SURFACES"],
 

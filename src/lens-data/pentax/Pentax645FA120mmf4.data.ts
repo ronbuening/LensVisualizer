@@ -36,7 +36,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "pentax-645-fa-120mm-f4-macro",
   maker: "Pentax",
-  name: "smc PENTAX-FA645 120mm F4 Macro",
+  name: "PENTAX SMC FA 645 120mm f/4 Macro",
   subtitle: "US 6,154,324 Example 1 — Murata / Ito",
   specs: [
     "9 elements / 7 groups",

@@ -40,7 +40,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "pentax110-50f28",
   maker: "Pentax",
-  name: "PENTAX-110 50mm f/2.8",
+  name: "PENTAX 110 50mm f/2.8",
   subtitle: "US 4,289,385 Example 1 — Asahi Kogaku / Yamagata",
   specs: ["5 ELEMENTS / 5 GROUPS", "f ≈ 50.0 mm", "F/2.8", "2ω ≈ 24°", "ALL SPHERICAL"],
 

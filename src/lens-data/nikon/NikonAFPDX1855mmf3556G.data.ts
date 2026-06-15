@@ -31,7 +31,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "nikon-afp-dx-18-55mm-f35-56g-vr",
   maker: "Nikon",
-  name: "Nikon AF-P DX NIKKOR 18-55mm f/3.5-5.6G VR",
+  name: "NIKON AF-P DX NIKKOR 18-55mm f/3.5-5.6 G VR",
   subtitle: "US 10,690,896 B2 — First Example / Nikon",
   specs: [
     "12 elements / 9 groups (manufacturer count)",
