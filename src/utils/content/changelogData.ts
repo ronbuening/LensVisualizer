@@ -23,6 +23,12 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-06-15",
     type: "lens",
+    summary: "Added Fujifilm XF 23mm F1.4 LM WR, F2, and F2.8 lenses",
+  },
+  // ── 2026-06-14 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-06-14",
+    type: "lens",
     summary: "Added Fujifilm XF 16-55mm II, XF 33mm F1.4, and XF 56mm F1.2 R WR",
   },
   // ── 2026-06-13 ──────────────────────────────────────────────────────────
