@@ -23,7 +23,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "sony-fe-28-70mm-f2-gm",
   maker: "Sony",
-  name: "SONY FE 28-70mm F2 GM",
+  name: "SONY FE 28-70mm f/2 GM",
   subtitle: "WO 2025/263124 A1 Example 1 — Sony Group / Yamasaki, Yamada",
   specs: [
     "20 ELEMENTS / 14 GROUPS",

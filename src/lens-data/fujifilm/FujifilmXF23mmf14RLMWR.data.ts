@@ -23,7 +23,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "fujifilm-xf-23mm-f14-r-lm-wr",
   maker: "Fujifilm",
-  name: "FUJINON XF23mmF1.4 R LM WR",
+  name: "FUJIFILM FUJINON XF 23mm f/1.4 R LM WR",
   subtitle: "US 2022/0276464 A1 Example 7 — scaled to 23 mm",
   specs: [
     "15 elements / 10 groups",

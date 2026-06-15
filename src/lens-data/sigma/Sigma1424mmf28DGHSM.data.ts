@@ -35,7 +35,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "sigma-14-24mm-f28-dg-hsm-art",
   maker: "Sigma",
-  name: "Sigma 14-24mm F2.8 DG HSM | Art",
+  name: "SIGMA 14-24mm f/2.8 DG HSM | Art",
   subtitle: "JP 2018-189733 A Example 1 — Sigma / Ryo Shioda",
   specs: [
     "17 elements / 11 groups",

@@ -24,7 +24,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-reflex-nikkor-c-500mm-f8",
   maker: "Nikon",
-  name: "Nikon Reflex-Nikkor·C 500mm f/8",
+  name: "NIKON REFLEX-NIKKOR·C 500mm f/8",
   subtitle: "US 3,632,190 Example 1; folded Mangin catadioptric",
   specs: [
     "500 mm nominal focal length",

@@ -31,7 +31,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "pentax-da-70mm-f24-limited",
   maker: "Pentax",
-  name: "PENTAX-DA 70mm F2.4 Limited",
+  name: "PENTAX DA 70mm f/2.4 Limited",
   subtitle: "US 7,542,219 B2 Embodiment 1 — Hoya / Saori",
   specs: [
     "6 elements / 5 groups",

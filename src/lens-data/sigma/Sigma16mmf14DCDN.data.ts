@@ -34,7 +34,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "sigma-16mm-f14-dc-dn",
   maker: "Sigma",
-  name: "Sigma 16mm F1.4 DC DN | Contemporary",
+  name: "SIGMA 16mm f/1.4 DC DN | Contemporary",
   subtitle: "JP 2018-205527 A Example 1 — Sigma / Ochiai & Sato",
   specs: [
     "16 elements / 13 groups",

@@ -32,7 +32,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "fujifilm-gf-100-200mm-f56",
   maker: "FUJIFILM",
-  name: "FUJIFILM Fujinon GF 100-200mm F5.6 R LM OIS WR",
+  name: "FUJIFILM FUJINON GF 100-200mm f/5.6 R LM OIS WR",
   subtitle: "US 2019/0361195 A1 Example 1 — FUJIFILM / Masato Kondo",
   specs: [
     "20 elements / 13 groups",

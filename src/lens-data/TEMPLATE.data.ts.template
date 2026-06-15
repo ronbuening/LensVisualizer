@@ -47,7 +47,9 @@ const LENS_DATA = {
   key:      "unique-lens-key",                          // REQUIRED: unique ID for auto-registration
   maker:    "Manufacturer",                             // optional: maker name for SEO/routing (e.g. "Nikon", "Voigtländer"); if omitted, derived from name
   // visible: true,                                     // optional: set to false to hide from the UI dropdown (default: true)
-  name:     "MANUFACTURER LENS-NAME FLmm f/N",          // REQUIRED: full display name
+  // REQUIRED: full display name. Use all-caps manufacturer + lens branding, separated mount/system tokens,
+  // `FLmm f/N`, and camera-body parentheses for fixed-lens cameras.
+  name:     "MANUFACTURER BRAND MOUNT 50mm f/1.8 CHARACTERISTIC",
   subtitle: "PATENT-NUMBER EXAMPLE N — COMPANY / INVENTOR",  // optional: shown in UI header
   specs: [                                               // optional: spec strings for header display
     "N ELEMENTS / N GROUPS",

@@ -30,7 +30,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-af-p-70-300-f45-56e-ed-vr",
   maker: "Nikon",
-  name: "Nikon AF-P NIKKOR 70-300mm f/4.5-5.6E ED VR",
+  name: "NIKON AF-P NIKKOR 70-300mm f/4.5-5.6 E ED VR",
   subtitle: "US 2019/0353880 A1 — Example 1 / Nikon Machida",
   specs: [
     "18 elements / 14 groups",

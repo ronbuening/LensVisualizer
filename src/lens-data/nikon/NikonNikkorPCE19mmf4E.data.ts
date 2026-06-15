@@ -37,7 +37,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "nikon-pc-nikkor-19mm-f4e-ed",
   maker: "Nikon",
-  name: "NIKON PC NIKKOR 19mm f/4E ED",
+  name: "NIKON PC NIKKOR 19mm f/4 E ED",
   subtitle: "JP 2017-161685 A Example 1 — Konica Minolta / Nikon",
   specs: [
     "17 ELEMENTS / 13 GROUPS (18 physical)",

@@ -29,7 +29,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "sony-sonnar-fe-35-f28-za",
   maker: "Sony",
-  name: "SONY SONNAR T* FE 35mm F2.8 ZA",
+  name: "SONY SONNAR T* FE 35mm f/2.8 ZA",
   subtitle: "JP 2015-41012 A EXAMPLE 1 — TAMRON / SONY",
   specs: ["7 ELEMENTS / 5 GROUPS", "f ≈ 36.1 mm", "F/2.8", "2ω ≈ 62.6°", "6 ASPHERICAL SURFACES"],
 

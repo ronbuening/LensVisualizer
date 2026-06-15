@@ -32,7 +32,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-fuwatto-soft-90mm-f48",
   maker: "Nikon",
-  name: "Nikon Fuwatto Soft 90mm f/4.8",
+  name: "NIKON Fuwatto Soft 90mm f/4.8",
   subtitle: "US 5,796,530 Example 2 — second soft-focus configuration",
   specs: [
     "1 group / 2 elements",

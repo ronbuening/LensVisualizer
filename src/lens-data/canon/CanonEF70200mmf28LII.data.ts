@@ -31,7 +31,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "canon-ef-70-200mm-f28l-is-ii-usm",
   maker: "Canon",
-  name: "Canon EF 70-200mm f/2.8L IS II USM",
+  name: "CANON EF 70-200mm f/2.8 L IS II USM",
   subtitle: "US 2009/0296231 A1 — Numerical Embodiment 2",
   specs: [
     "23 elements / 19 groups",

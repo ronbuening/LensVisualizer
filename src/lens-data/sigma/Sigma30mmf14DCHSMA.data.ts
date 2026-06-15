@@ -29,7 +29,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "sigma-30mm-f14-dc-hsm-a",
   maker: "Sigma",
-  name: "Sigma 30mm F1.4 DC HSM | Art",
+  name: "SIGMA 30mm f/1.4 DC HSM | Art",
   subtitle: "JP2014142520A Example 1 — Sigma / Daiki Uehara",
   specs: [
     "9 elements / 8 groups",

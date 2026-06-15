@@ -27,7 +27,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "leica-apo-macro-elmarit-tl-60-f28",
   maker: "Leica",
-  name: "LEICA APO-MACRO-ELMARIT-TL 60 mm f/2.8 ASPH.",
+  name: "LEICA APO-MACRO-ELMARIT-TL 60mm f/2.8 ASPH.",
   subtitle: "JP 2016-090725A EXAMPLE 9 — KONICA MINOLTA / TANAKA",
   specs: ["10 ELEMENTS / 9 GROUPS", "f ≈ 60.0 mm", "F/2.8", "2ω ≈ 26.6°", "4 ASPHERICAL SURFACES"],
 

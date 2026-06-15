@@ -48,7 +48,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "laowa-24f14-probe",
   maker: "Laowa",
-  name: "Laowa 24mm f/14 2× Macro Probe",
+  name: "LAOWA 24mm f/14 2× Macro Probe",
   subtitle: "CN 210573001 U Example 1 — Laowa / Li Dayong",
   specs: ["27 ELEMENTS / 19 GROUPS", "f ≈ 23.7 mm", "F/14", "2ω ≈ 84.1°", "ALL SPHERICAL"],
 

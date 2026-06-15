@@ -24,7 +24,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "leica-macro-elmarit-r-60mm-f28",
   maker: "Leica",
-  name: "Leica Macro-Elmarit-R 60mm f/2.8",
+  name: "LEICA MACRO-ELMARIT-R 60mm f/2.8",
   subtitle: "US 3,552,833 — Ernst Leitz / Heinz Marquardt",
   specs: [
     "6 elements / 5 groups",

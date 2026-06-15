@@ -33,7 +33,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "canon-rf-24-70-f28",
   maker: "Canon",
-  name: "CANON RF 24-70mm f/2.8L IS USM",
+  name: "CANON RF 24-70mm f/2.8 L IS USM",
   subtitle: "US 2019/0278068 A1 EXAMPLE 5 — CANON / HATADA",
   specs: [
     "21 ELEMENTS / 15 GROUPS",

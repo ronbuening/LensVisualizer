@@ -41,7 +41,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "olympus-mzuiko-12-40-f28-pro",
   maker: "Olympus",
-  name: "OLYMPUS M.ZUIKO DIGITAL ED 12–40 mm f/2.8 PRO",
+  name: "OLYMPUS M.ZUIKO DIGITAL ED 12-40mm f/2.8 PRO",
   subtitle: "US 2014/0139720 A1 EXAMPLE 5 — OLYMPUS / OGATA",
   specs: [
     "14 ELEMENTS / 9 GROUPS",

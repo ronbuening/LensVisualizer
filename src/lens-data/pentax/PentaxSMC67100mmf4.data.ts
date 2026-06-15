@@ -36,7 +36,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "pentax-smc-67-100mm-f4",
   maker: "Pentax",
-  name: "smc Pentax 67 Macro 100mm f/4",
+  name: "PENTAX SMC 67 Macro 100mm f/4",
   subtitle: "US 6,002,533 Embodiment 1 — Asahi / Yoneyama",
   specs: ["6 elements / 4 groups", "f = 99.97 mm", "F/4", "2ω = 47.6° over 6×7", "all spherical"],
 

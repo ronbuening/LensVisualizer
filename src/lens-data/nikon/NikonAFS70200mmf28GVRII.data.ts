@@ -28,7 +28,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-af-s-70-200mm-f28g-vr-ii",
   maker: "Nikon",
-  name: "Nikon AF-S NIKKOR 70-200mm f/2.8G ED VR II",
+  name: "NIKON AF-S NIKKOR 70-200mm f/2.8 G ED VR II",
   subtitle: "US 8,416,506 B2 — Example 6",
   specs: [
     "70-200 mm f/2.8 FX telephoto zoom",

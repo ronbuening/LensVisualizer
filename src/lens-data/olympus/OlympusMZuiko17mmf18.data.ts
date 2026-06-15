@@ -17,7 +17,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const lensData = {
   key: "olympus-mzuiko-17mm-f18",
   maker: "Olympus",
-  name: "Olympus M.Zuiko Digital 17mm f/1.8",
+  name: "OLYMPUS M.ZUIKO DIGITAL 17mm f/1.8",
   subtitle: "JP 2013-186458 A — Numerical Example 3",
   specs: [
     "17mm f/1.8",

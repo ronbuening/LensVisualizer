@@ -29,7 +29,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "sigma-apo-macro-180mm-f28-os-hsm",
   maker: "Sigma",
-  name: "Sigma APO Macro 180mm f/2.8 EX DG OS HSM",
+  name: "SIGMA APO Macro 180mm f/2.8 EX DG OS HSM",
   subtitle: "JP 2013-104994 A — Numerical Example 2",
   specs: [
     "19 elements / 14 groups",

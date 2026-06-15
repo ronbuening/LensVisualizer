@@ -30,7 +30,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "pentax-fa-31-f18-al-ltd",
   maker: "Pentax",
-  name: "PENTAX FA 31mm F1.8 AL Limited",
+  name: "PENTAX FA 31mm f/1.8 AL Limited",
   subtitle: "US 6,560,042 B2 Example 3 — Pentax / Murata, Ito",
   specs: ["9 ELEMENTS / 7 GROUPS", "f ≈ 31.8 mm", "F/1.8", "2ω ≈ 69.6°", "1 ASPHERICAL SURFACE"],
 

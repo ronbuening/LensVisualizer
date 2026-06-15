@@ -26,7 +26,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-af-p-dx-10-20mm-f45-56g-vr",
   maker: "Nikon",
-  name: "Nikon AF-P DX NIKKOR 10-20mm f/4.5-5.6G VR",
+  name: "NIKON AF-P DX NIKKOR 10-20mm f/4.5-5.6 G VR",
   subtitle: "WO2021039813A1 / US20220269056A1 Example 2",
   specs: [
     "10-20 mm DX zoom",

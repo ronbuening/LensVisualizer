@@ -33,7 +33,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "laowa-58mm-f28-2x-macro-apo",
   maker: "Laowa",
-  name: "Laowa 58 mm f/2.8 2× Ultra-Macro APO",
+  name: "LAOWA 58mm f/2.8 2× Ultra-Macro APO",
   subtitle: "CN 116520542 A Example 2 — Laowa / Li Dayong",
   specs: ["14 ELEMENTS / 11 GROUPS", "f ≈ 59.2 mm", "F/2.9", "2ω ≈ 39.9°", "ALL SPHERICAL", "2× MACRO (MFD 0.185 m)"],
 

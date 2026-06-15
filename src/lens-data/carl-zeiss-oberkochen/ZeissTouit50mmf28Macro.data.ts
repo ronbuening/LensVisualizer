@@ -37,7 +37,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "zeiss-touit-50mm-f28-macro",
   maker: "Carl Zeiss Oberkochen",
-  name: "ZEISS Touit Makro-Planar T* 50mm f/2.8 Macro",
+  name: "CARL ZEISS TOUIT MAKRO-PLANAR T* 50mm f/2.8 Macro",
   subtitle: "JP 2015-161792 A Example 1 — Fujifilm / Carl Zeiss",
   specs: [
     "14 elements / 11 groups",

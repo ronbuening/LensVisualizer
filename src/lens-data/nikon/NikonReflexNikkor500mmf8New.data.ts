@@ -35,7 +35,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-reflex-nikkor-500mm-f8-new",
   maker: "Nikon",
-  name: "Nikon Reflex-Nikkor 500mm f/8 (New)",
+  name: "NIKON REFLEX-NIKKOR 500mm f/8 (New)",
   subtitle: "US 4,666,259 A — Example 1 / Yutaka Iizuka, Nippon Kogaku",
   specs: [
     "6 elements / 6 groups",

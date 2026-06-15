@@ -32,7 +32,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "canon-ef-100mm-f28l-macro-is",
   maker: "Canon",
-  name: "CANON EF 100mm f/2.8L Macro IS USM",
+  name: "CANON EF 100mm f/2.8 L Macro IS USM",
   subtitle: "US 7,864,451 B2 Example 1 — Canon / Taki",
   specs: [
     "15 ELEMENTS / 12 GROUPS",

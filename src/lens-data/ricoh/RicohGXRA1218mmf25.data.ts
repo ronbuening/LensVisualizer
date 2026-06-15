@@ -35,7 +35,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "ricoh-gxr-a12-18f25",
   maker: "Ricoh",
-  name: "RICOH GR LENS A12 28mm f/2.5",
+  name: "RICOH GR LENS A12 28mm f/2.5 (Ricoh GXR A12)",
   subtitle: "JP 2012-003015 A EXAMPLE 3 — KUBOTA / RICOH",
   specs: ["8 ELEMENTS / 6 GROUPS", "f = 18.28 mm (28 mm equiv.)", "F/2.56", "2ω ≈ 75.6°", "3 ASPHERICAL SURFACES"],
 

@@ -12,7 +12,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   key: "fujifilm-gf-45mm-f28-r-wr",
-  name: "FUJIFILM FUJINON GF45mmF2.8 R WR",
+  name: "FUJIFILM FUJINON GF 45mm f/2.8 R WR",
   maker: "Fujifilm",
   subtitle: "US 2020/0174231 A1 Example 1 — FUJIFILM / Taiga Noda",
   specs: [

@@ -33,7 +33,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "sony-fe-16-35mm-f28-gm-ii",
   maker: "Sony",
-  name: "Sony FE 16-35mm f/2.8 GM II",
+  name: "SONY FE 16-35mm f/2.8 GM II",
   subtitle: "WO 2024/135126 A1 Example 1 — Sony Group Corporation",
   specs: [
     "15 elements / 12 groups",

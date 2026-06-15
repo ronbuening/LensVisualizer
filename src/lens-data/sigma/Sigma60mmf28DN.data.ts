@@ -42,7 +42,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "sigma-60mm-f28-dn",
   maker: "Sigma",
-  name: "Sigma 60mm F2.8 DN | Art",
+  name: "SIGMA 60mm f/2.8 DN | Art",
   subtitle: "JP 2014-145954 A — Example 1",
   specs: [
     "8 elements / 6 groups",

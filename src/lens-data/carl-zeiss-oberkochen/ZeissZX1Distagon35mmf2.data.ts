@@ -28,7 +28,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "zeiss-zx1-distagon-35mm-f2",
   maker: "Carl Zeiss Oberkochen",
-  name: "ZEISS ZX1 Distagon T* 35mm f/2",
+  name: "CARL ZEISS DISTAGON T* 35mm f/2 (Zeiss ZX1)",
   subtitle: "US 2018/0180842 A1 Example 1 — Pretorius / Carl Zeiss AG",
   specs: ["8 elements / 5 groups", "f = 35.000 mm", "F/2.0", "2ω ≈ 63.5°", "4 aspherical surfaces"],
 

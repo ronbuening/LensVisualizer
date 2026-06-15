@@ -41,7 +41,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "leica-elmarit-tl-18mm-f28",
   maker: "Leica",
-  name: "Leica Elmarit-TL 18mm f/2.8 ASPH.",
+  name: "LEICA ELMARIT-TL 18mm f/2.8 ASPH.",
   subtitle: "US 2020/0341238 A1 — Third Numerical Example",
   specs: [
     "8 GLASS ELEMENTS / 6 GROUPS",

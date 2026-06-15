@@ -33,7 +33,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "nikon-pc-e-nikkor-24-f35d-ed",
   maker: "Nikon",
-  name: "NIKON PC-E NIKKOR 24mm f/3.5D ED",
+  name: "NIKON PC-E NIKKOR 24mm f/3.5 D ED",
   subtitle: "JP 2008-151949A EXAMPLE 2 — NIKON / SENSUI",
   specs: [
     "13 ELEMENTS / 10 GROUPS",

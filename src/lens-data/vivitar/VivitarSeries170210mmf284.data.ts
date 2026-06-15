@@ -44,7 +44,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "vivitar-s1-70-210-f28-4",
   maker: "Vivitar",
-  name: "VIVITAR SERIES 1 70–210mm f/2.8–4 VMC",
+  name: "VIVITAR SERIES 1 70-210mm f/2.8-4 VMC",
   subtitle: "US 4,758,073 Example 4 — Moskovich / Vivitar Corp.",
   specs: ["14 ELEMENTS / 10 GROUPS", "f = 72.1–203.8 mm", "F/2.89–4.01", "2ω ≈ 33.4–12.2°", "ALL SPHERICAL"],
 

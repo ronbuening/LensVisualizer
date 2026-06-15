@@ -17,7 +17,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "canon-ef-100mm-f28l-is-macro",
   maker: "Canon",
-  name: "Canon EF 100mm f/2.8L Macro IS USM",
+  name: "CANON EF 100mm f/2.8 L Macro IS USM",
   subtitle: "US 7,864,451 B2 - First Numerical Example",
   specs: [
     "15 elements / 12 groups",

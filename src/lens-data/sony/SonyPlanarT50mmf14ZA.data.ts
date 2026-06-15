@@ -28,7 +28,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "sony-planar-t-50f14-za",
   maker: "Sony",
-  name: "SONY PLANAR T* 50mm F1.4 ZA SSM",
+  name: "SONY PLANAR T* 50mm f/1.4 ZA SSM",
   subtitle: "US 2014/0071331 A1 EXAMPLE 4 — SONY / KATOU",
   specs: ["8 ELEMENTS / 5 GROUPS", "f = 51.5 mm", "F/1.45", "2ω ≈ 46.8°", "2 ASPHERICAL SURFACES"],
 

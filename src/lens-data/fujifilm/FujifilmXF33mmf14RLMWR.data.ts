@@ -32,7 +32,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "fujifilm-xf-33mm-f14-r-lm-wr",
   maker: "Fujifilm",
-  name: "FUJIFILM FUJINON XF33mmF1.4 R LM WR",
+  name: "FUJIFILM FUJINON XF 33mm f/1.4 R LM WR",
   subtitle: "US 2022/0276464 A1 Example 3 - FUJIFILM",
   specs: [
     "33 mm APS-C standard prime",

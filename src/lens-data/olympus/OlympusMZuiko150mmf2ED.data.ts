@@ -42,7 +42,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "olympus-zuiko-digital-ed-150mm-f2",
   maker: "Olympus",
-  name: "Olympus Zuiko Digital ED 150mm f/2.0",
+  name: "OLYMPUS ZUIKO DIGITAL ED 150mm f/2.0",
   subtitle: "US 7,408,719 B2 Example 1 — Olympus / T. Hosoya",
   specs: [
     "11 elements / 9 groups",

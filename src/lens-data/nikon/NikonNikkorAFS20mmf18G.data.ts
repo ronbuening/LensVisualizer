@@ -40,7 +40,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-nikkor-afs-20mm-f18g",
   maker: "Nikon",
-  name: "Nikon AF-S NIKKOR 20mm f/1.8G ED",
+  name: "NIKON AF-S NIKKOR 20mm f/1.8 G ED",
   subtitle: "JP 2016-021011 A Example 4 — Konica Minolta / Nikon",
   specs: [
     "13 elements / 11 groups",

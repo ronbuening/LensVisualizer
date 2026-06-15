@@ -29,7 +29,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "sony-fe-90mm-f2p8-macro",
   maker: "Sony",
-  name: "SONY FE 90 mm F2.8 Macro G OSS",
+  name: "SONY FE 90mm f/2.8 Macro G OSS",
   subtitle: "WO 2016/136352 A1 Example 2 — Sony / Uehara, Kanetaka, Uno",
   specs: ["15 ELEMENTS / 11 GROUPS", "f ≈ 92.6 mm", "F/2.8", "2ω ≈ 26.3°", "1 ASPHERICAL SURFACE"],
 

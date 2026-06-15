@@ -28,7 +28,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "olympus-zuiko-digital-ed-12-60mm-f28-4-swd",
   maker: "Olympus",
-  name: "Olympus Zuiko Digital ED 12-60mm f/2.8-4.0 SWD",
+  name: "OLYMPUS ZUIKO DIGITAL ED 12-60mm f/2.8-4.0 SWD",
   subtitle: "US 7,583,450 B2 Example 4 — Olympus / Ishii",
   specs: [
     "12-60mm Four Thirds standard zoom",

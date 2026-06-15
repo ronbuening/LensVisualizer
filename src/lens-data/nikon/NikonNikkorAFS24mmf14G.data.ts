@@ -24,7 +24,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-nikkor-afs-24mm-f14g",
   maker: "Nikon",
-  name: "Nikon AF-S NIKKOR 24mm f/1.4G ED",
+  name: "NIKON AF-S NIKKOR 24mm f/1.4 G ED",
   subtitle: "US 8,416,512 B2 — Example 3",
   specs: [
     "12 glass elements / 10 groups",

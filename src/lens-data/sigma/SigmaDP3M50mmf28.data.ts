@@ -39,7 +39,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "sigma-dp3m-50f28",
   maker: "Sigma",
-  name: "SIGMA DP3 MERRILL 50mm f/2.8",
+  name: "SIGMA 50mm f/2.8 (Sigma DP3 Merrill)",
   subtitle: "JP 2014-126652 A EXAMPLE 3 — SIGMA / OGASAWARA",
   specs: ["10 ELEMENTS / 8 GROUPS", "f ≈ 48.7 mm", "F/2.91 (design)", "2ω ≈ 32.1°", "1 ASPHERICAL SURFACE"],
 

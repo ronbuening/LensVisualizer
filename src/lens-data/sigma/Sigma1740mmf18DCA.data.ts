@@ -35,7 +35,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "sigma-17-40mm-f18-dc-art",
   maker: "Sigma",
-  name: "Sigma 17-40mm F1.8 DC | Art",
+  name: "SIGMA 17-40mm f/1.8 DC | Art",
   subtitle: "CN 121454749 A Example 1 — Sigma / Shioda Ryo",
   specs: [
     "17 elements / 11 groups",

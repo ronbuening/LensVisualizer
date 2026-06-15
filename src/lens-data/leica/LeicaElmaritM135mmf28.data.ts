@@ -36,7 +36,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "leica-elmarit-m-135mm-f28",
   maker: "Leica",
-  name: "Leica Elmarit-M 135mm f/2.8",
+  name: "LEICA ELMARIT-M 135mm f/2.8",
   subtitle: "US 3,108,152 Table II — Eugen Hermanni / Ernst Leitz GmbH",
   specs: ["5 elements / 4 groups", "f ≈ 135.1 mm", "F/2.8", "2ω = 18°", "all-spherical"],
 

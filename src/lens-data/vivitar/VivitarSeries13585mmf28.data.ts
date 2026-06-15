@@ -45,7 +45,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "vivitar-s1-35-85-f28",
   maker: "Vivitar",
-  name: "VIVITAR SERIES 1 35–85mm f/2.8 VMC",
+  name: "VIVITAR SERIES 1 35-85mm f/2.8 VMC",
   subtitle: "US 3,975,089 Example 1 — Betensky / Ponder & Best",
   specs: [
     "12 ELEMENTS / 9 GROUPS",

@@ -28,7 +28,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-ais-nikkor-50mm-f12",
   maker: "Nikon",
-  name: "Nikon AI-S Nikkor 50mm f/1.2",
+  name: "NIKON AI-S NIKKOR 50mm f/1.2",
   subtitle: "US 4,621,909 Example 3 — Hamanishi / Nippon Kogaku",
   specs: [
     "7 elements / 6 groups",

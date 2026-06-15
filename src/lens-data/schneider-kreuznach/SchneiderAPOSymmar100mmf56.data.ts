@@ -37,7 +37,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "schneider-apo-symmar-100-f56",
   maker: "Schneider-Kreuznach",
-  name: "SCHNEIDER-KREUZNACH APO-SYMMAR 5.6/100",
+  name: "SCHNEIDER-KREUZNACH APO-SYMMAR 100mm f/5.6",
   subtitle: "US 6,028,720 Example 2 / Claim 5 — Wartmann & Schauss",
   specs: ["6 ELEMENTS / 4 GROUPS", "f ≈ 103.0 mm (d-line)", "F/5.6", "2ω ≈ 72° (production, at f/22)", "ALL SPHERICAL"],
 

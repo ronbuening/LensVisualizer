@@ -29,7 +29,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "hasselblad-xcd-65-f28",
   maker: "Hasselblad",
-  name: "HASSELBLAD XCD 2,8/65",
+  name: "HASSELBLAD XCD 65mm f/2.8",
   subtitle: "US 2020/0319427 A1 Example 1 — Nittoh / Yazaki",
   specs: ["10 ELEMENTS / 6 GROUPS", "f ≈ 65.0 mm", "F/2.8", "2ω ≈ 46°", "ALL SPHERICAL"],
 

@@ -27,7 +27,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "nikon-1-nikkor-10mm-f28",
   maker: "Nikon",
-  name: "Nikon 1 NIKKOR 10mm f/2.8",
+  name: "NIKON 1 NIKKOR 10mm f/2.8",
   subtitle: "JP 2011-248340 A, Example 1 — Nikon / Take Toshinori",
   specs: [
     "6 elements / 5 groups",

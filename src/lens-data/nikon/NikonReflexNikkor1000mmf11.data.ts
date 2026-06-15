@@ -33,7 +33,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-reflex-nikkor-1000mm-f11",
   maker: "Nikon",
-  name: "Nikon Reflex-Nikkor 1000mm f/11",
+  name: "NIKON REFLEX-NIKKOR 1000mm f/11",
   subtitle: "US 3,507,556 Embodiment 1 — Nippon Kogaku / Shimizu",
   specs: ["5 elements / 5 groups", "f ≈ 1001.4 mm", "Fixed f/11", "2ω = 2°30′", "All-spherical Mangin catadioptric"],
 

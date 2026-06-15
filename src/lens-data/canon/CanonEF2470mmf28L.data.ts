@@ -38,7 +38,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "canon-ef-24-70mm-f28l-usm",
   maker: "Canon",
-  name: "Canon EF 24-70mm f/2.8L USM",
+  name: "CANON EF 24-70mm f/2.8 L USM",
   subtitle: "JP 2014-41222 A — Numerical Example 1",
   specs: [
     "16 elements / 13 groups",

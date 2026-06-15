@@ -39,7 +39,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "canon-rf-28-70-f2",
   maker: "Canon",
-  name: "CANON RF 28-70mm F2 L USM",
+  name: "CANON RF 28-70mm f/2 L USM",
   subtitle: "JP 2020-118807 A Example A — Canon / Kimura",
   specs: [
     "19 ELEMENTS / 13 GROUPS",

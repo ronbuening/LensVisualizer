@@ -29,7 +29,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "sigma-10-18mm-f28-dc-dn",
   maker: "Sigma",
-  name: "SIGMA 10-18mm F2.8 DC DN | Contemporary",
+  name: "SIGMA 10-18mm f/2.8 DC DN | Contemporary",
   subtitle: "JP 2024-104911 A, Numerical Example 2 — Sigma / Ryo Shioda",
   specs: [
     "13 elements / 10 groups",

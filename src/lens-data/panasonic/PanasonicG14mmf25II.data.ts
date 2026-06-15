@@ -35,7 +35,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "panasonic-g-14mm-f25-ii",
   maker: "Panasonic",
-  name: "Panasonic LUMIX G 14mm f/2.5 II ASPH",
+  name: "PANASONIC LUMIX G 14mm f/2.5 II ASPH",
   subtitle: "US 2013/0148006 A1 — Numerical Example 1",
   specs: [
     "6 elements / 5 groups",

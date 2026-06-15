@@ -22,7 +22,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "minolta-af-200mm-f28",
   maker: "Minolta",
-  name: "Minolta AF APO Tele 200mm f/2.8",
+  name: "MINOLTA AF APO Tele 200mm f/2.8",
   subtitle: "US 4,786,152 Embodiment 3 — Minolta / Arimoto",
   specs: [
     "200mm f/2.8",

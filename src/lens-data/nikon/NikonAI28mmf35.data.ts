@@ -28,7 +28,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-ai-28mm-f35",
   maker: "Nikon",
-  name: "Nikon AI Nikkor 28mm f/3.5",
+  name: "NIKON AI NIKKOR 28mm f/3.5",
   subtitle: "US 4,099,850 Example 5 — Sei Matsui / Nippon Kogaku",
   specs: ["6 elements / 6 groups", "f ≈ 28.00 mm", "f/3.5", "2ω = 74.2°", "all-spherical"],
 

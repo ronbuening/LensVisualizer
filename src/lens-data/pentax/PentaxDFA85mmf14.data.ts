@@ -31,7 +31,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "pentax-dfa-85mm-f14",
   maker: "Pentax",
-  name: "HD PENTAX-D FA★ 85mm F1.4 ED SDM AW",
+  name: "PENTAX HD D FA* 85mm f/1.4 ED SDM AW",
   subtitle: "US 2020/0301101 A1 — Numerical Example 3",
   specs: [
     "12 elements / 10 groups",

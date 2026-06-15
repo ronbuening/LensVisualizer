@@ -31,7 +31,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-nikkor-afs-28-300mm-f35-56g-ed-vr",
   maker: "Nikon",
-  name: "Nikon AF-S NIKKOR 28-300mm f/3.5-5.6G ED VR",
+  name: "NIKON AF-S NIKKOR 28-300mm f/3.5-5.6 G ED VR",
   subtitle: "US 2010/0220400 A1 Example 2 — Nikon / Yamamoto et al.",
   specs: [
     "28-300mm FX superzoom",

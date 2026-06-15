@@ -29,7 +29,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "minolta-af-35-70-f4",
   maker: "Minolta",
-  name: "Minolta AF Zoom 35-70mm f/4",
+  name: "MINOLTA AF Zoom 35-70mm f/4",
   subtitle: "US 4,560,253 Embodiment 2 — Minolta / Ogino",
   specs: [
     "6 components / 6 air-spaced groups",

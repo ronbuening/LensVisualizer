@@ -27,7 +27,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "hasselblad-hc-300-f4p5",
   maker: "Hasselblad",
-  name: "HASSELBLAD HC 4.5/300",
+  name: "HASSELBLAD HC 300mm f/4.5",
   subtitle: "US 2006/0209426 A1 Example 1 — Fujinon / Suzuki",
   specs: ["9 ELEMENTS / 7 GROUPS", "f ≈ 292.0 mm", "F/4.66", "2ω ≈ 13.4°", "ALL SPHERICAL"],
 

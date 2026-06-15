@@ -37,7 +37,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "canon-rf-28-70-f28-is-stm",
   maker: "Canon",
-  name: "CANON RF 28-70mm F2.8 IS STM",
+  name: "CANON RF 28-70mm f/2.8 IS STM",
   subtitle: "US 2024/0329367 A1 EXAMPLE 1 — CANON / HAGIWARA",
   specs: [
     "15 ELEMENTS / 12 GROUPS",

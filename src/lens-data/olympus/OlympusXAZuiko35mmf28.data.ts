@@ -35,7 +35,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "olympus-xa-zuiko-35-f28",
   maker: "Olympus",
-  name: "OLYMPUS XA F.ZUIKO 35mm f/2.8",
+  name: "OLYMPUS F.ZUIKO 35mm f/2.8 (Olympus XA)",
   subtitle: "US 4,235,521 EXAMPLE 1 — OLYMPUS / IMAI",
   specs: ["6 ELEMENTS / 5 GROUPS", "f ≈ 35.0 mm", "F/2.8", "2ω ≈ 63°", "ALL SPHERICAL"],
 

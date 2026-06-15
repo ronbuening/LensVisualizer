@@ -24,7 +24,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "fujifilm-xf-23mm-f28-r-wr",
   maker: "Fujifilm",
-  name: "FUJINON XF23mmF2.8 R WR",
+  name: "FUJIFILM FUJINON XF 23mm f/2.8 R WR",
   subtitle: "US 2026/0118637 A1 Example 4",
   specs: ["23mm", "f/2.8", "8 elements / 6 groups", "2 aspherical elements", "APS-C"],
 

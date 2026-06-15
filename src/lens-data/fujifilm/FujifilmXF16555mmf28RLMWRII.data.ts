@@ -32,7 +32,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "fujifilm-xf-16-55mm-f28-r-lm-wr-ii",
   maker: "Fujifilm",
-  name: "FUJINON XF16-55mmF2.8 R LM WR II",
+  name: "FUJIFILM FUJINON XF 16-55mm f/2.8 R LM WR II",
   subtitle: "US 2025/0234079 A1 Example 1 — Fujifilm",
   specs: [
     "16 elements / 11 groups",

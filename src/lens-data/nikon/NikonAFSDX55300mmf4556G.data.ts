@@ -14,7 +14,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-af-s-dx-55-300mm-f45-56g-ed-vr",
   maker: "Nikon",
-  name: "Nikon AF-S DX NIKKOR 55-300mm f/4.5-5.6G ED VR",
+  name: "NIKON AF-S DX NIKKOR 55-300mm f/4.5-5.6 G ED VR",
   subtitle: "US 2011/0102905 A1 Example 1 — Hiroki Harada / Nikon",
   specs: [
     "17 elements / 11 groups",

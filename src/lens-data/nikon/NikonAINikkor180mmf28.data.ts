@@ -9,7 +9,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-ai-nikkor-180mm-f28-ed",
   maker: "Nikon",
-  name: "Nikon AI Nikkor 180mm f/2.8 ED",
+  name: "NIKON AI NIKKOR 180mm f/2.8 ED",
   subtitle: "US 4,338,001 Embodiment 2 — Sei Matsui / Nippon Kogaku",
   specs: [
     "5 elements / 5 groups",

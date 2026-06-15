@@ -33,7 +33,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "sony-fe-135-f18-gm",
   maker: "Sony",
-  name: "SONY FE 135mm F1.8 GM",
+  name: "SONY FE 135mm f/1.8 GM",
   subtitle: "WO 2019/187633 EXAMPLE 1 — SONY / MATSUOKA, MIYAGAWA, MATSUMOTO",
   specs: ["13 ELEMENTS / 10 GROUPS", "f ≈ 131.0 mm", "F/1.854", "2ω ≈ 18.8°", "1 ASPHERICAL SURFACE (XA)"],
 

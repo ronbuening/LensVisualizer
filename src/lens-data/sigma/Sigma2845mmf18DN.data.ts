@@ -20,7 +20,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "sigma-28-45mm-f18-dg-dn",
   maker: "Sigma",
-  name: "SIGMA 28-45mm F1.8 DG DN | Art",
+  name: "SIGMA 28-45mm f/1.8 DG DN | Art",
   subtitle: "CN 120386081 A Example 1 - Sigma / Hiromichi Ochiai",
   specs: [
     "18 elements / 15 groups",

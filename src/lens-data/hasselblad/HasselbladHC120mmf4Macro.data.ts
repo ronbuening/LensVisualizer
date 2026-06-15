@@ -32,7 +32,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "hasselblad-hc-macro-4-120",
   maker: "Hasselblad",
-  name: "HASSELBLAD HC MACRO 4/120",
+  name: "HASSELBLAD HC Macro 120mm f/4",
   subtitle: "JP 2004-302170 A EXAMPLE 4 — FUJI PHOTO OPTICAL / OHNO",
   specs: ["9 ELEMENTS / 9 GROUPS", "f ≈ 118.7 mm", "F/4.0", "2ω ≈ 32.8°", "ALL SPHERICAL"],
 

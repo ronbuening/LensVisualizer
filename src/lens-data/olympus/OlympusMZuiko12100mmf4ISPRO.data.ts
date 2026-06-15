@@ -27,7 +27,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "olympus-mzuiko-12100mm-f4-is-pro",
   maker: "Olympus",
-  name: "Olympus M.Zuiko Digital ED 12-100mm f/4.0 IS PRO",
+  name: "OLYMPUS M.ZUIKO DIGITAL ED 12-100mm f/4.0 IS PRO",
   subtitle: "JP2017-090535A Example 1 — Olympus / Yanai et al.",
   specs: [
     "12-100mm f/4.0",

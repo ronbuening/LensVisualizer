@@ -31,7 +31,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "pentax-645-a-45mm-f28",
   maker: "Pentax",
-  name: "smc PENTAX-A 645 45mm f/2.8",
+  name: "PENTAX SMC A 645 45mm f/2.8",
   subtitle: "US 4,487,485 Example 1 — Asahi / Hisada",
   specs: ["45mm f/2.8", "9 elements / 8 groups", "76° on 645 film", "All-spherical", "Unit focus"],
 

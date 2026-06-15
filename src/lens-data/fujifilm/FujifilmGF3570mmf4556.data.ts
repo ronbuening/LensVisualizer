@@ -38,7 +38,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "fujifilm-gf-35-70mm-f45-56-wr",
   maker: "Fujifilm",
-  name: "FUJIFILM Fujinon GF 35-70mmF4.5-5.6 WR",
+  name: "FUJIFILM FUJINON GF 35-70mm f/4.5-5.6 WR",
   subtitle: "US 2022/0236544 A1 Example 1 — FUJIFILM / Ryosuke Nagami",
   specs: [
     "11 elements / 9 groups",

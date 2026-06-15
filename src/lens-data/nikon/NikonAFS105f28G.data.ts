@@ -18,7 +18,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   key: "nikon-afs-105f28-vr-micro",
-  name: "NIKON AF-S VR Micro-NIKKOR 105mm f/2.8G IF-ED",
+  name: "NIKON AF-S VR MICRO-NIKKOR 105mm f/2.8 G IF-ED",
   maker: "Nikon",
   subtitle: "US 7,218,457 B2 — Example 3 (Sensui, 2007)",
   specs: [

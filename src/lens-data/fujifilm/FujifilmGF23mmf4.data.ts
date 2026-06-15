@@ -16,7 +16,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "fujifilm-gf-23mm-f4",
   maker: "Fujifilm",
-  name: "FUJIFILM FUJINON GF23mmF4 R LM WR",
+  name: "FUJIFILM FUJINON GF 23mm f/4 R LM WR",
   subtitle: "US 2018/0210178 A1 Example 1 — FUJIFILM / Saito & Miyagishima",
   specs: [
     "Patent Example 1: 14 elements / 11 groups",

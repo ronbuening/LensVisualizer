@@ -30,7 +30,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-afs-24-70mm-f28g",
   maker: "Nikon",
-  name: "Nikon AF-S NIKKOR 24-70mm f/2.8G ED",
+  name: "NIKON AF-S NIKKOR 24-70mm f/2.8 G ED",
   subtitle: "US 7,508,592 B2 Example 2 — Hiroki Harada / Nikon",
   specs: [
     "24-70mm f/2.8 marketed; f=24.78-67.70mm, FNO=2.91 design",

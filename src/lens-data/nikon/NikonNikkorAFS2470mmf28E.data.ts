@@ -39,7 +39,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "nikkor-afs-24-70-f28e-vr",
   maker: "Nikon",
-  name: "NIKON AF-S NIKKOR 24-70mm f/2.8E ED VR",
+  name: "NIKON AF-S NIKKOR 24-70mm f/2.8 E ED VR",
   subtitle: "US 2020/0142168 A1 Example 1 — Nikon / Harada",
   specs: ["20 ELEMENTS / 16 GROUPS", "f = 24–70 mm", "F/2.8", "2ω ≈ 84.4–34.4°", "4 ASPHERICAL SURFACES"],
 

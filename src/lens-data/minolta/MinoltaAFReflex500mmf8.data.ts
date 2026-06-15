@@ -43,7 +43,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "minolta-af-reflex-500mm-f8",
   maker: "Minolta",
-  name: "Minolta AF Reflex 500mm f/8",
+  name: "MINOLTA AF Reflex 500mm f/8",
   subtitle: "US 4,951,078 Embodiment 1 — Okada / Minolta",
   specs: [
     "500 mm f/8 fixed",

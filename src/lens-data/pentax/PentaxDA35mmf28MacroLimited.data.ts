@@ -37,7 +37,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "pentax-da-35mm-f28-macro-limited",
   maker: "Pentax",
-  name: "Pentax DA 35mm f/2.8 Macro Limited",
+  name: "PENTAX DA 35mm f/2.8 Macro Limited",
   subtitle: "US 7,715,118 B2 Example 1 — Hoya / Koji Kato",
   specs: [
     "9 elements / 8 groups",

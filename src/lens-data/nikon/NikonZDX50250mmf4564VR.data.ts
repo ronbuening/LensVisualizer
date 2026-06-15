@@ -24,7 +24,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-z-dx-50-250mm-f45-63-vr",
   maker: "Nikon",
-  name: "Nikon NIKKOR Z DX 50-250mm f/4.5-6.3 VR",
+  name: "NIKON NIKKOR Z DX 50-250mm f/4.5-6.3 VR",
   subtitle: "JP WO2020/105107 A1 Example 1 — Nikon Corporation",
   specs: [
     "Production: 50-250 mm, f/4.5-6.3",

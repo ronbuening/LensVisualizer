@@ -34,7 +34,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "pentax-da-16-50-f28",
   maker: "Pentax",
-  name: "PENTAX-DA★ 16-50mm f/2.8 ED AL[IF] SDM",
+  name: "PENTAX DA* 16-50mm f/2.8 ED AL[IF] SDM",
   subtitle: "US 7,301,711 B2 Example 6 — PENTAX / Saori",
   specs: [
     "15 ELEMENTS / 12 GROUPS",

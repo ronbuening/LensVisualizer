@@ -26,7 +26,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "canon-ef-200mm-f2l-is-usm",
   maker: "Canon",
-  name: "Canon EF 200mm f/2L IS USM",
+  name: "CANON EF 200mm f/2 L IS USM",
   subtitle: "JP 2008-145584 A Example 1 — Canon / Yokoyama",
   specs: [
     "17 elements / 12 groups incl. filter; 16 powered elements rendered",

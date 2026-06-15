@@ -38,7 +38,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "laowa-12mm-f28-zero-d",
   maker: "Laowa",
-  name: "Laowa 12mm f/2.8 Zero-D",
+  name: "LAOWA 12mm f/2.8 Zero-D",
   subtitle: "CN205720849U Example 2 — Anhui Changgeng Optical Technology / Zhang Xiaohua",
   specs: [
     "16 elements / 10 groups",

@@ -18,7 +18,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "pentax-hd-dfa-21mm-f24-limited",
   maker: "Pentax",
-  name: "HD PENTAX-D FA 21mm F2.4 ED Limited DC WR",
+  name: "PENTAX HD D FA 21mm f/2.4 ED Limited DC WR",
   subtitle: "JP 2022-117775 A — Numerical Example 1",
   specs: [
     "11 elements / 8 groups",

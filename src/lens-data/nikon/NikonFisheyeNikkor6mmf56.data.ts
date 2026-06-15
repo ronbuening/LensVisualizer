@@ -30,7 +30,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-fisheye-nikkor-6mm-f56",
   maker: "Nikon",
-  name: "Nikon Fisheye-Nikkor 6mm f/5.6",
+  name: "NIKON FISHEYE-NIKKOR 6mm f/5.6",
   subtitle: "US 3,524,697 Example 1 — Isshiki / Matsuki",
   specs: ["9 elements / 6 groups", "f ≈ 6.00 mm", "F/5.6", "2ω = 220°", "all-spherical"],
 

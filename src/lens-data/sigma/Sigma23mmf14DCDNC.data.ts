@@ -33,7 +33,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "sigma-23mm-f14-dc-dn-c",
   maker: "Sigma",
-  name: "SIGMA 23mm F1.4 DC DN | Contemporary",
+  name: "SIGMA 23mm f/1.4 DC DN | Contemporary",
   subtitle: "JP 2024-035865 A Example 1 — Sigma / Murakami",
   specs: [
     "13 elements / 10 groups",

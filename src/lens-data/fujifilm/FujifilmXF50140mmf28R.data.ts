@@ -96,7 +96,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "fuji-xf-50140mm-f28",
   maker: "Fujifilm",
-  name: "FUJIFILM FUJINON XF 50–140mm F2.8 R LM OIS WR",
+  name: "FUJIFILM FUJINON XF 50-140mm f/2.8 R LM OIS WR",
   subtitle: "US 2017/0090163 A1 — Master Lens of Example 1 (T. Ori / Fujifilm)",
   specs: [
     "23 ELEMENTS / 16 GROUPS",

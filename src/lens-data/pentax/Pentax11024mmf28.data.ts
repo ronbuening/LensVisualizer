@@ -42,7 +42,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "pentax-110-24f28",
   maker: "Pentax",
-  name: "PENTAX-110 24mm f/2.8",
+  name: "PENTAX 110 24mm f/2.8",
   subtitle: "US 4,223,982 Example 2 — Asahi Kogaku / Sugiyama",
   specs: ["6 ELEMENTS / 5 GROUPS", "f ≈ 24.0 mm", "F/2.8", "2ω ≈ 48°", "ALL SPHERICAL"],
 

@@ -6,7 +6,7 @@ describe("lensCatalog", () => {
   it("keeps nested maker-folder lenses discoverable with matching analysis markdown", () => {
     const key = "zeiss-hologon-15f8";
     expect(LENS_CATALOG[key]).toBeDefined();
-    expect(LENS_CATALOG[key].name).toBe("CARL ZEISS HOLOGON 15 mm f/8");
+    expect(LENS_CATALOG[key].name).toBe("CARL ZEISS HOLOGON 15mm f/8 (Contarex Hologon / Leica M)");
     expect(mdForKey(key)).toContain("# Carl Zeiss Hologon 15 mm f/8");
   });
 

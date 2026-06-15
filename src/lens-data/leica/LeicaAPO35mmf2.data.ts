@@ -41,7 +41,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "leica-apo-summicron-m-35f2",
   maker: "Leica",
-  name: "LEICA APO-SUMMICRON-M 35 f/2 ASPH.",
+  name: "LEICA APO-SUMMICRON-M 35mm f/2 ASPH.",
   subtitle: "US 2022/0066176 A1 Ex. 1 — Leica Camera AG / Roth & Keller",
   specs: [
     "10 ELEMENTS / 5 GROUPS",

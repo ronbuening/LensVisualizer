@@ -28,7 +28,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "sigma-art-40-f14",
   maker: "Sigma",
-  name: "SIGMA 40mm F1.4 DG HSM | Art",
+  name: "SIGMA 40mm f/1.4 DG HSM | Art",
   subtitle: "JP 2020-012952 A Example 1 — Sigma / Yamanaka",
   specs: ["16 ELEMENTS / 12 GROUPS", "f ≈ 41.2 mm", "F/1.4", "2ω ≈ 55.9°", "2 ASPHERICAL SURFACES"],
 

@@ -29,7 +29,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "ricoh-gr3x-26f28",
   maker: "Ricoh",
-  name: "RICOH GR IIIx 26.1mm f/2.8",
+  name: "RICOH GR LENS 26.1mm f/2.8 (Ricoh GR IIIx)",
   subtitle: "US 2022/0026670 A1 EXAMPLE 3 — KAZUYASU OHASHI",
   specs: ["7 ELEMENTS / 5 GROUPS", "f ≈ 26.1 mm", "F/2.8", "2ω ≈ 56.6°", "3 ASPHERICAL SURFACES"],
 

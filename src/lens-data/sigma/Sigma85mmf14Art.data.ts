@@ -26,7 +26,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "sigma-85f14-art",
   maker: "Sigma",
-  name: "SIGMA 85mm F1.4 DG HSM | Art",
+  name: "SIGMA 85mm f/1.4 DG HSM | Art",
   subtitle: "JP2018-5099A Example 4 — Sigma / Ueda Yūki",
   specs: ["14 ELEMENTS / 12 GROUPS", "f ≈ 83.4 mm", "F/1.46", "2ω ≈ 29.1°", "2 ASPHERICAL SURFACES"],
 

@@ -29,7 +29,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "leica-summilux-28f17",
   maker: "Leica",
-  name: "LEICA SUMMILUX 28 mm f/1.7 ASPH. (Q, Q2, Q3)",
+  name: "LEICA SUMMILUX 28mm f/1.7 ASPH. (Leica Q, Q2, Q3)",
   subtitle: "US 2016/0266350 A1 Example 1 — PANASONIC IPM / IIYAMA & SUEYOSHI",
   specs: ["11 ELEMENTS / 9 GROUPS", "f ≈ 27.08 mm", "F/1.76", "2ω ≈ 79.9°", "3 ASPHERICAL ELEMENTS (5 SURFACES)"],
 

@@ -35,7 +35,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "sony-fe-28-70-f35-56-oss",
   maker: "Sony",
-  name: "Sony FE 28-70mm f/3.5-5.6 OSS",
+  name: "SONY FE 28-70mm f/3.5-5.6 OSS",
   subtitle: "US 2015/0077859 A1 Example 4 — Kanetaka / Nagamatsu, Sony",
   specs: [
     "28-70mm f/3.5-5.6",

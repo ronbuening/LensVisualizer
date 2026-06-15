@@ -3,7 +3,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "nikon-af-s-dx-55-200-f4-5-6g-ed-vr-ii",
   maker: "Nikon",
-  name: "Nikon AF-S DX NIKKOR 55-200mm f/4-5.6G ED VR II",
+  name: "NIKON AF-S DX NIKKOR 55-200mm f/4-5.6 G ED VR II",
   subtitle: "JPWO2015/141574A1 Example 2",
   specs: [
     "13 elements / 9 groups",

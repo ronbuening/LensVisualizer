@@ -42,7 +42,7 @@ const LENS_DATA = {
   key: "nikkor-afs-16-35f4-vr",
   visible: true,
   maker: "Nikon",
-  name: "NIKON AF-S NIKKOR 16-35mm f/4G ED VR",
+  name: "NIKON AF-S NIKKOR 16-35mm f/4 G ED VR",
   subtitle: "US 2010/0238560 A1 EXAMPLE 1 — NIKON / FUJIMOTO",
   specs: [
     "17 ELEMENTS / 12 GROUPS",

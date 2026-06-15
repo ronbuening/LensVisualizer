@@ -40,7 +40,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "leica-elmarit-r-35mm-f28",
   maker: "Leica",
-  name: "Leica Elmarit-R 35mm f/2.8",
+  name: "LEICA ELMARIT-R 35mm f/2.8",
   subtitle: "FR 1,471,493 — Ernst Leitz G.m.b.H.",
   specs: ["7 elements / 5 groups", "f ≈ 35.1 mm", "1:2.8", "2ω ≈ 63.3°", "all spherical"],
 

@@ -37,7 +37,7 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "olympus-zuiko-digital-ed-14-35mm-f2-swd",
   maker: "Olympus",
-  name: "Olympus Zuiko Digital ED 14–35mm f/2.0 SWD",
+  name: "OLYMPUS ZUIKO DIGITAL ED 14-35mm f/2.0 SWD",
   subtitle: "US 8,081,392 B2 Example 3 — Ishii / Shimizu, Olympus",
   specs: [
     "18 elements / 17 groups",
