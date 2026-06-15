@@ -9,10 +9,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **335** lenses scanned
-- **262** total code-only elements found
-- **164** elements in this report
-- **69** distinct lens files affected
+- **338** lenses scanned
+- **264** total code-only elements found
+- **166** elements in this report
+- **70** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -125,10 +125,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 800255 | 1 | 1 | patents/JP2015041012A.pdf | No reviewed-sidecar hit |
 | 801454 | 1 | 1 | patents/US20130033768A1.pdf | No reviewed-sidecar hit |
 | 803404 | 1 | 1 | patents/US20140247506A1.pdf | All representative rows reviewed |
+| 803405 | 1 | 1 | patents/US20170351051A1.pdf | No reviewed-sidecar hit |
 | 805410 | 1 | 1 | patents/US4871239.pdf | All representative rows reviewed |
 | 821426 | 1 | 1 | patents/US20100220400A1.pdf | All representative rows reviewed |
 | 835447 | 1 | 1 | patents/CN205720849U.pdf | All representative rows reviewed |
 | 840433 | 1 | 1 | patents/US5528428.pdf | No reviewed-sidecar hit |
+| 849401 | 1 | 1 | patents/US20170351051A1.pdf | No reviewed-sidecar hit |
 | 852402 | 1 | 1 | patents/WO2020136749A1.pdf | All representative rows reviewed |
 | 855399 | 1 | 1 | patents/JP2022092388A.pdf | All representative rows reviewed |
 | 859300 | 1 | 1 | patents/JP2021179551A.pdf | No reviewed-sidecar hit |
@@ -225,6 +227,13 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---|---|---|---|---|---|---|
 | L14 (Element 4) | 6 | `667311 - dense flint (patent nd=1.66680, vd=31.1; no exact public catalog match)` | 1.66680 / 31.10 | No catalog entry | abbe | patents/US20140247506A1.pdf | Reviewed sidecar hit |
 | L17 (Element 7) | 12A | `803404 - PGM lanthanum heavy flint (patent nd=1.80348, vd=40.4; no exact public catalog match)` | 1.80348 / 40.40 | No catalog entry | abbe | patents/US20140247506A1.pdf | Reviewed sidecar hit |
+
+### [FUJINON XF23mmF2 R WR](../../src/lens-data/fujifilm/FujifilmXF23mmf2RWR.data.ts) - US 2017/0351051 A1
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+|---|---|---|---|---|---|---|---|
+| L14 (L14 — biconcave double-asphere) | 7A | `849401 - high-index lanthanum flint (likely PGM aspheric melt; no exact public catalog match)` | 1.84887 / 40.12 | No catalog entry | abbe | patents/US20170351051A1.pdf | No reviewed-sidecar hit |
+| L21 (L21 — moving focus asphere) | 13A | `803405 - high-index lanthanum flint (likely PGM aspheric melt; no exact public catalog match)` | 1.80312 / 40.54 | No catalog entry | abbe | patents/US20170351051A1.pdf | No reviewed-sidecar hit |
 
 ### [HASSELBLAD HC 150mm f/3.2](../../src/lens-data/hasselblad/HasselbladHC150mmf32.data.ts) - US 2002/0075570 A1
 

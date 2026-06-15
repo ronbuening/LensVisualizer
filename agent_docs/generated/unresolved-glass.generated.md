@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **335** lenses scanned
-- **3796** non-air surfaces examined
-- **3800** element glass declarations examined
-- **605** non-explicit-unmatched annotations did not resolve
-- **211** distinct unresolved glass-like tokens found
+- **338** lenses scanned
+- **3829** non-air surfaces examined
+- **3833** element glass declarations examined
+- **609** non-explicit-unmatched annotations did not resolve
+- **217** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -53,6 +53,7 @@ or per-lens patent backfills.
 | N-LAK9 | 2 | 2 | |
 | N-LASF44 | 2 | 2 | |
 | NBFD10 | 2 | 2 | |
+| NBFD32 | 2 | 2 | |
 | S-APL1 | 2 | 1 | |
 | S-BAH10 | 2 | 2 | |
 | S-FPM5 | 2 | 2 | |
@@ -71,6 +72,7 @@ or per-lens patent backfills.
 | 518635 | 1 | 1 | |
 | 534554 | 1 | 1 | |
 | 534556 | 1 | 1 | |
+| 540597 | 1 | 1 | |
 | 544601 | 1 | 1 | |
 | 545486 | 1 | 1 | |
 | 552981 | 1 | 1 | |
@@ -106,6 +108,7 @@ or per-lens patent backfills.
 | 700555 | 1 | 1 | |
 | 702411 | 1 | 1 | |
 | 720504 | 1 | 1 | |
+| 730322 | 1 | 1 | |
 | 738493 | 1 | 1 | |
 | 747274 | 1 | 1 | |
 | 749547 | 1 | 1 | |
@@ -128,10 +131,12 @@ or per-lens patent backfills.
 | 797454 | 1 | 1 | |
 | 800255 | 1 | 1 | |
 | 803404 | 1 | 1 | |
+| 803405 | 1 | 1 | |
 | 805410 | 1 | 1 | |
 | 821426 | 1 | 1 | |
 | 835447 | 1 | 1 | |
 | 840433 | 1 | 1 | |
+| 849401 | 1 | 1 | |
 | 852402 | 1 | 1 | |
 | 854505 | 1 | 1 | |
 | 855399 | 1 | 1 | |
@@ -185,6 +190,7 @@ or per-lens patent backfills.
 | L-LAH85 | 1 | 1 | |
 | L-LAH86 | 1 | 1 | |
 | L-PHL1 | 1 | 1 | |
+| N-BAK2 | 1 | 1 | |
 | N-BALF4 | 1 | 1 | |
 | N-BASF2 | 1 | 1 | |
 | N-LAF7 | 1 | 1 | |
@@ -197,8 +203,8 @@ or per-lens patent backfills.
 | N-SK4 | 1 | 1 | |
 | NBFD12 | 1 | 1 | |
 | NBFD30 | 1 | 1 | |
-| NBFD32 | 1 | 1 | |
 | S-BAH32 | 1 | 1 | |
+| S-BAL12 | 1 | 1 | |
 | S-BAM12 | 1 | 1 | |
 | S-BSL10 | 1 | 1 | |
 | S-BSM2 | 1 | 1 | |
@@ -421,6 +427,11 @@ or per-lens patent backfills.
 - [HASSELBLAD HC MACRO 4/120](../../src/lens-data/hasselblad/HasselbladHC120mmf4Macro.data.ts) 16: `NBFD10 (HOYA)`
 - [SIGMA APO MACRO 150mm F2.8 EX DG OS HSM](../../src/lens-data/sigma/SigmaAPOMacro150mmf28OSHSM.data.ts) 32: `NBFD10 (Hoya; dense niobium flint)`
 
+### NBFD32 — 2 occurrences
+
+- [FUJINON XF23mmF2.8 R WR](../../src/lens-data/fujifilm/FujifilmXF23mmf28RWR.data.ts) 6: `730322 - NBFD32 (HOYA dense barium flint; no Sellmeier catalog entry)`
+- [Sigma 17-40mm F1.8 DC | Art](../../src/lens-data/sigma/Sigma1740mmf18DCA.data.ts) 18: `NBFD32 (Hoya)`
+
 ### S-APL1 — 2 occurrences
 
 - [OLYMPUS OM Zuiko 16mm f/3.5 Fisheye](../../src/lens-data/olympus/OlympusZuiko16mmf35.data.ts) 13: `S-APL1 (OHARA)`
@@ -502,6 +513,10 @@ or per-lens patent backfills.
 ### 534556 — 1 occurrence
 
 - [PANASONIC LEICA DG SUMMILUX 9mm F1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG9mmf17.data.ts) 3A: `534556 — moldable crown (patent nd=1.53380, nu_d=55.6)`
+
+### 540597 — 1 occurrence
+
+- [FUJINON XF23mmF1.4 R LM WR](../../src/lens-data/fujifilm/FujifilmXF23mmf14RLMWR.data.ts) 1: `540597 - barium crown (N-BAK2 / S-BAL12 class; vendor uncertain)`
 
 ### 544601 — 1 occurrence
 
@@ -643,6 +658,10 @@ or per-lens patent backfills.
 
 - [CARL ZEISS Distagon T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) 10: `LAK10 / N-LAK10 class (Schott, 720504; patent values retained)`
 
+### 730322 — 1 occurrence
+
+- [FUJINON XF23mmF2.8 R WR](../../src/lens-data/fujifilm/FujifilmXF23mmf28RWR.data.ts) 6: `730322 - NBFD32 (HOYA dense barium flint; no Sellmeier catalog entry)`
+
 ### 738493 — 1 occurrence
 
 - [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) 45: `738493 — lanthanum crown (patent nd=1.73800, νd≈49.3; no exact public catalog match)`
@@ -731,6 +750,10 @@ or per-lens patent backfills.
 
 - [FUJIFILM FUJINON XF 60mmF2.4 R Macro](../../src/lens-data/fujifilm/FujifilmXF60mmf24R.data.ts) 12A: `803404 - PGM lanthanum heavy flint (patent nd=1.80348, vd=40.4; no exact public catalog match)`
 
+### 803405 — 1 occurrence
+
+- [FUJINON XF23mmF2 R WR](../../src/lens-data/fujifilm/FujifilmXF23mmf2RWR.data.ts) 13A: `803405 - high-index lanthanum flint (likely PGM aspheric melt; no exact public catalog match)`
+
 ### 805410 — 1 occurrence
 
 - [Minolta AF 35-105mm f/3.5-4.5 New (v2)](../../src/lens-data/minolta/MinoltaAF35105mmf3545v2.data.ts) 22: `805410 - dense lanthanum-flint / LASF-class glass (unresolved)`
@@ -746,6 +769,10 @@ or per-lens patent backfills.
 ### 840433 — 1 occurrence
 
 - [NIKON NIKKOR 28mm f/2.8 (28Ti)](../../src/lens-data/nikon/Nikon28Ti28mmf28.data.ts) 3: `840433 - lanthanum flint (patent nd=1.84042, vd=43.30; no exact public catalog match)`
+
+### 849401 — 1 occurrence
+
+- [FUJINON XF23mmF2 R WR](../../src/lens-data/fujifilm/FujifilmXF23mmf2RWR.data.ts) 7A: `849401 - high-index lanthanum flint (likely PGM aspheric melt; no exact public catalog match)`
 
 ### 852402 — 1 occurrence
 
@@ -959,6 +986,10 @@ or per-lens patent backfills.
 
 - [PANASONIC LUMIX S 20–60mm F3.5–5.6](../../src/lens-data/panasonic/PanasonicLumixS2060mmf3556.data.ts) 18A: `L-PHL1 (OHARA)`
 
+### N-BAK2 — 1 occurrence
+
+- [FUJINON XF23mmF1.4 R LM WR](../../src/lens-data/fujifilm/FujifilmXF23mmf14RLMWR.data.ts) 1: `540597 - barium crown (N-BAK2 / S-BAL12 class; vendor uncertain)`
+
 ### N-BALF4 — 1 occurrence
 
 - [Nikon AF-S NIKKOR 70-200mm f/2.8G ED VR II](../../src/lens-data/nikon/NikonAFS70200mmf28GVRII.data.ts) 29: `H-BaF3 (CDGM) / N-BALF4 class`
@@ -1007,13 +1038,13 @@ or per-lens patent backfills.
 
 - [SIGMA 10-18mm F2.8 DC DN | Contemporary](../../src/lens-data/sigma/Sigma1018mmf28DCDN.data.ts) 8: `NBFD30 (Hoya)`
 
-### NBFD32 — 1 occurrence
-
-- [Sigma 17-40mm F1.8 DC | Art](../../src/lens-data/sigma/Sigma1740mmf18DCA.data.ts) 18: `NBFD32 (Hoya)`
-
 ### S-BAH32 — 1 occurrence
 
 - [OLYMPUS E.ZUIKO AUTO-T 135mm f/3.5](../../src/lens-data/olympus/OlympusZuiko135mmf35.data.ts) 6: `S-BAH32 (OHARA) exact match (670393)`
+
+### S-BAL12 — 1 occurrence
+
+- [FUJINON XF23mmF1.4 R LM WR](../../src/lens-data/fujifilm/FujifilmXF23mmf14RLMWR.data.ts) 1: `540597 - barium crown (N-BAK2 / S-BAL12 class; vendor uncertain)`
 
 ### S-BAM12 — 1 occurrence
 

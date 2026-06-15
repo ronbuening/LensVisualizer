@@ -9,10 +9,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **335** lenses scanned
-- **262** total code-only elements found
-- **262** elements in this report
-- **93** distinct lens files affected
+- **338** lenses scanned
+- **264** total code-only elements found
+- **264** elements in this report
+- **94** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -169,12 +169,14 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 800255 | 1 | 1 | patents/JP2015041012A.pdf | No reviewed-sidecar hit |
 | 801454 | 1 | 1 | patents/US20130033768A1.pdf | No reviewed-sidecar hit |
 | 803404 | 1 | 1 | patents/US20140247506A1.pdf | All representative rows reviewed |
+| 803405 | 1 | 1 | patents/US20170351051A1.pdf | No reviewed-sidecar hit |
 | 804396 | 1 | 1 | patents/US20200166735A1.pdf | No reviewed-sidecar hit |
 | 805410 | 1 | 1 | patents/US4871239.pdf | All representative rows reviewed |
 | 806333 | 1 | 1 | patents/WO2016136352A1.pdf | No reviewed-sidecar hit |
 | 821426 | 1 | 1 | patents/US20100220400A1.pdf | All representative rows reviewed |
 | 835447 | 1 | 1 | patents/CN205720849U.pdf | All representative rows reviewed |
 | 840433 | 1 | 1 | patents/US5528428.pdf | No reviewed-sidecar hit |
+| 849401 | 1 | 1 | patents/US20170351051A1.pdf | No reviewed-sidecar hit |
 | 850323 | 1 | 1 | patents/JP2022092388A.pdf | No reviewed-sidecar hit |
 | 851401 | 1 | 1 | patents/JPWO2017138250A1.pdf | No reviewed-sidecar hit |
 | 852402 | 1 | 1 | patents/WO2020136749A1.pdf | All representative rows reviewed |
@@ -351,6 +353,13 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L1c (Element 3) | 5 | `626357 — dense flint (patent nd=1.62588, νd=35.70; no exact catalog match)` | 1.62588 / 35.70 | E-F1 (trusted Sellmeier) | sellmeier | patents/US20180246292A1.pdf | No reviewed-sidecar hit |
 | L4aa (Element 11) | 20 | `003193 — ultra-high-index dense flint (patent nd=2.00272, νd=19.32; no exact catalog match)` | 2.00272 / 19.32 | E-FDS2 (trusted Sellmeier) | sellmeier | patents/US20180246292A1.pdf | No reviewed-sidecar hit |
 | L4ab (Element 12) | 21 | `697485 — lanthanum crown (patent nd=1.69700, νd=48.52; no exact catalog match)` | 1.69700 / 48.52 | S-LAM59 (trusted Sellmeier) | sellmeier | patents/US20180246292A1.pdf | No reviewed-sidecar hit |
+
+### [FUJINON XF23mmF2 R WR](../../src/lens-data/fujifilm/FujifilmXF23mmf2RWR.data.ts) - US 2017/0351051 A1
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+|---|---|---|---|---|---|---|---|
+| L14 (L14 — biconcave double-asphere) | 7A | `849401 - high-index lanthanum flint (likely PGM aspheric melt; no exact public catalog match)` | 1.84887 / 40.12 | No catalog entry | abbe | patents/US20170351051A1.pdf | No reviewed-sidecar hit |
+| L21 (L21 — moving focus asphere) | 13A | `803405 - high-index lanthanum flint (likely PGM aspheric melt; no exact public catalog match)` | 1.80312 / 40.54 | No catalog entry | abbe | patents/US20170351051A1.pdf | No reviewed-sidecar hit |
 
 ### [HASSELBLAD HC 150mm f/3.2](../../src/lens-data/hasselblad/HasselbladHC150mmf32.data.ts) - US 2002/0075570 A1
 
