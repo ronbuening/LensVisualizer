@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **332** lenses scanned
-- **3752** non-air surfaces examined
-- **3756** element glass declarations examined
-- **603** non-explicit-unmatched annotations did not resolve
-- **210** distinct unresolved glass-like tokens found
+- **335** lenses scanned
+- **3796** non-air surfaces examined
+- **3800** element glass declarations examined
+- **605** non-explicit-unmatched annotations did not resolve
+- **211** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -26,6 +26,7 @@ or per-lens patent backfills.
 | 744495 | 3 | 3 | |
 | 863248 | 3 | 1 | |
 | E-FD10 | 3 | 2 | |
+| E-FD13 | 3 | 3 | |
 | S-BSM15 | 3 | 2 | |
 | S-TIF6 | 3 | 3 | |
 | 514428 | 2 | 1 | |
@@ -41,7 +42,6 @@ or per-lens patent backfills.
 | 856401 | 2 | 1 | |
 | BACD4 | 2 | 2 | |
 | BSC3 | 2 | 2 | |
-| E-FD13 | 2 | 2 | |
 | E-FDS3HT | 2 | 1 | |
 | F7 | 2 | 2 | |
 | H-LAF3 | 2 | 2 | |
@@ -171,6 +171,7 @@ or per-lens patent backfills.
 | H-QF50 | 1 | 1 | |
 | H-ZF1 | 1 | 1 | |
 | H-ZF2 | 1 | 1 | |
+| H-ZF50 | 1 | 1 | |
 | H-ZF52A | 1 | 1 | |
 | H-ZF72 | 1 | 1 | |
 | H-ZLAF2 | 1 | 1 | |
@@ -282,6 +283,12 @@ or per-lens patent backfills.
 - [SIGMA 35mm F1.4 DG HSM | Art](../../src/lens-data/sigma/Sigma35mmf14DGHSMA.data.ts) 17: `E-FD10 (Hoya)`
 - [SIGMA 50mm F1.4 DG HSM | Art](../../src/lens-data/sigma/Sigma50mmf14DGHSMA.data.ts) 13: `E-FD10 (HOYA, reference)`
 
+### E-FD13 — 3 occurrences
+
+- [FUJIFILM FUJINON XF33mmF1.4 R LM WR](../../src/lens-data/fujifilm/FujifilmXF33mmf14RLMWR.data.ts) 18: `E-FD13 (HOYA) / H-ZF50 class`
+- [Nikon Reflex-Nikkor 1000mm f/11](../../src/lens-data/nikon/NikonReflexNikkor1000mmf11.data.ts) L3F: `SF13-family dense flint, 741/277 class (Hoya E-FD13 / Hikari J-SF13 equivalent)`
+- [Panasonic LEICA DG SUMMILUX 12mm F1.4 ASPH.](../../src/lens-data/panasonic/PanasonicDGSummilux12mmf14.data.ts) 16: `E-FD13 (Hoya)`
+
 ### S-BSM15 — 3 occurrences
 
 - [CANON EF-S 18-55mm f/3.5-5.6 IS](../../src/lens-data/canon/CanonEFS1855mmf3556IS.data.ts) 3: `S-BSM15 (OHARA)`
@@ -358,11 +365,6 @@ or per-lens patent backfills.
 
 - [CANON EF-S 24mm f/2.8 STM](../../src/lens-data/canon/CanonEFS24mmf28STM.data.ts) 10A: `E-C3 / BSC3 class (HOYA)`
 - [NIKON NIKKOR-N Auto 24mm f/2.8](../../src/lens-data/nikon/NikonNikkorAuto24f28.data.ts) 8: `BSC3 (Hoya) / historical crown equivalent`
-
-### E-FD13 — 2 occurrences
-
-- [Nikon Reflex-Nikkor 1000mm f/11](../../src/lens-data/nikon/NikonReflexNikkor1000mmf11.data.ts) L3F: `SF13-family dense flint, 741/277 class (Hoya E-FD13 / Hikari J-SF13 equivalent)`
-- [Panasonic LEICA DG SUMMILUX 12mm F1.4 ASPH.](../../src/lens-data/panasonic/PanasonicDGSummilux12mmf14.data.ts) 16: `E-FD13 (Hoya)`
 
 ### E-FDS3HT — 2 occurrences
 
@@ -900,6 +902,10 @@ or per-lens patent backfills.
 ### H-ZF2 — 1 occurrence
 
 - [Laowa 24mm f/14 2× Macro Probe](../../src/lens-data/laowa/Laowa24mmf14Probe.data.ts) 44: `H-ZF2 (CDGM)`
+
+### H-ZF50 — 1 occurrence
+
+- [FUJIFILM FUJINON XF33mmF1.4 R LM WR](../../src/lens-data/fujifilm/FujifilmXF33mmf14RLMWR.data.ts) 18: `E-FD13 (HOYA) / H-ZF50 class`
 
 ### H-ZF52A — 1 occurrence
 
