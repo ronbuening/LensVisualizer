@@ -19,6 +19,17 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-06-16 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-06-16",
+    type: "lens",
+    summary: "Added four Nikon F-mount primes from 20mm to 105mm macro",
+  },
+  {
+    date: "2026-06-16",
+    type: "fix",
+    summary: "Removed the duplicate Canon EF 100mm f/2.8L Macro IS USM entry",
+  },
   // ── 2026-06-15 ──────────────────────────────────────────────────────────
   {
     date: "2026-06-15",
