@@ -61,6 +61,13 @@ describe("lens-data scripts", () => {
     expect(deriveMakerSlug("Canon Demo Lens")).toBe("canon");
     expect(deriveMakerSlug("Laowa 12mm f/2.8 Zero-D")).toBe("laowa");
     expect(deriveMakerSlug("Venus Optics Laowa 24mm f/14 2X Macro Probe")).toBe("laowa");
+    expect(deriveMakerSlug("Rodenstock Grandagon-N 90mm f/4.5")).toBe("rodenstock");
+    expect(deriveMakerSlug("G. Rodenstock Eurynar 165mm f/4.5")).toBe("rodenstock");
+    expect(deriveMakerSlug("Nikkor-S Auto 50mm f/1.4")).toBe("nikon");
+    expect(deriveMakerSlug("Voigtlander Nokton 50mm f/1.2")).toBe("voigtlander");
+    expect(deriveMakerSlug("Schneider Kreuznach Super-Angulon 90mm f/8")).toBe("schneider-kreuznach");
+    expect(deriveMakerSlug("Rokkor-PG 58mm f/1.2")).toBe("minolta");
+    expect(deriveMakerSlug("Zuiko Auto-W 21mm f/2")).toBe("olympus");
     expect(deriveMakerSlug("Acme Prototype 50 mm")).toBe("acme");
   });
 

@@ -55,6 +55,29 @@ describe("deriveMaker", () => {
     expect(info.slug).toBe("voigtlander");
   });
 
+  it("derives makers from unaccented and lens-line aliases", () => {
+    expect(deriveMaker("VOIGTLANDER Nokton 50mm f/1.2")).toEqual({
+      display: "Voigtländer",
+      slug: "voigtlander",
+    });
+    expect(deriveMaker("NIKKOR-S Auto 50mm f/1.4")).toEqual({
+      display: "Nikon",
+      slug: "nikon",
+    });
+    expect(deriveMaker("ROKKOR-PG 58mm f/1.2")).toEqual({
+      display: "Minolta",
+      slug: "minolta",
+    });
+    expect(deriveMaker("ZUIKO AUTO-W 21mm f/2")).toEqual({
+      display: "Olympus",
+      slug: "olympus",
+    });
+    expect(deriveMaker("SCHNEIDER KREUZNACH Super-Angulon 90mm f/8")).toEqual({
+      display: "Schneider Kreuznach",
+      slug: "schneider-kreuznach",
+    });
+  });
+
   it("derives Laowa from LAOWA and Venus Optics prefixes", () => {
     expect(deriveMaker("LAOWA 12mm f/2.8 Zero-D")).toEqual({
       display: "Laowa",
@@ -63,6 +86,17 @@ describe("deriveMaker", () => {
     expect(deriveMaker("VENUS OPTICS Laowa 24mm f/14 2X Macro Probe")).toEqual({
       display: "Laowa",
       slug: "laowa",
+    });
+  });
+
+  it("derives Rodenstock from modern and historical prefixes", () => {
+    expect(deriveMaker("RODENSTOCK Grandagon-N 90mm f/4.5")).toEqual({
+      display: "Rodenstock",
+      slug: "rodenstock",
+    });
+    expect(deriveMaker("G. RODENSTOCK Eurynar 165mm f/4.5")).toEqual({
+      display: "Rodenstock",
+      slug: "rodenstock",
     });
   });
 
@@ -105,6 +139,7 @@ describe("allMakerSlugs", () => {
     expect(slugs).toContain("fujifilm");
     expect(slugs).toContain("vivitar");
     expect(slugs).toContain("laowa");
+    expect(slugs).toContain("rodenstock");
     expect(slugs.length).toBeGreaterThan(0);
   });
 });
@@ -117,6 +152,7 @@ describe("makerDisplayName", () => {
     expect(makerDisplayName("carl-zeiss-jena")).toBe("Carl Zeiss Jena");
     expect(makerDisplayName("carl-zeiss-oberkochen")).toBe("Carl Zeiss Oberkochen");
     expect(makerDisplayName("laowa")).toBe("Laowa");
+    expect(makerDisplayName("rodenstock")).toBe("Rodenstock");
   });
 
   it("returns null for unknown slug", () => {
