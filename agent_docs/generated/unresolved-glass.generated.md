@@ -8,16 +8,17 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **338** lenses scanned
-- **3829** non-air surfaces examined
-- **3833** element glass declarations examined
-- **609** non-explicit-unmatched annotations did not resolve
-- **217** distinct unresolved glass-like tokens found
+- **341** lenses scanned
+- **3856** non-air surfaces examined
+- **3860** element glass declarations examined
+- **616** non-explicit-unmatched annotations did not resolve
+- **218** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
 | Token | Occurrences | Lens files | Notes |
 |---|---:|---:|---|
+| SF56A | 5 | 4 | |
 | 670571 | 4 | 2 | |
 | 863252 | 4 | 2 | |
 | S-NPH7 | 4 | 4 | |
@@ -37,6 +38,7 @@ or per-lens patent backfills.
 | 755516 | 2 | 1 | |
 | 774492 | 2 | 1 | |
 | 784438 | 2 | 1 | |
+| 785261 | 2 | 1 | |
 | 807316 | 2 | 2 | |
 | 813252 | 2 | 1 | |
 | 856401 | 2 | 1 | |
@@ -61,7 +63,6 @@ or per-lens patent backfills.
 | S-LAM73 | 2 | 1 | |
 | S-NBH53 | 2 | 2 | |
 | SF5 | 2 | 2 | |
-| SF56A | 2 | 2 | |
 | SK18 | 2 | 1 | |
 | TAF1 | 2 | 2 | |
 | 157957 | 1 | 1 | |
@@ -238,6 +239,14 @@ or per-lens patent backfills.
 
 ## Occurrences
 
+### SF56A — 5 occurrences
+
+- [Nikon AF Nikkor 20mm f/2.8D](../../src/lens-data/nikon/NikonAFNikkor20mmf28D.data.ts) 3: `SF56A equivalent (SCHOTT / 785261)`
+- [Nikon AF Nikkor 20mm f/2.8D](../../src/lens-data/nikon/NikonAFNikkor20mmf28D.data.ts) 16: `SF56A equivalent (SCHOTT / 785261)`
+- [Nikon AF Nikkor 28mm f/2.8D](../../src/lens-data/nikon/NikonAFNikkor28mmf28D.data.ts) 9: `SF56A (SCHOTT)`
+- [NIKON AI NIKKOR 35mm f/2](../../src/lens-data/nikon/NikonAINikkor35mmf2.data.ts) 8: `SF56A class (785/261 dense flint)`
+- [NIKON NIKKOR-N AUTO 28mm f/2](../../src/lens-data/nikon/NikonNikkorN28mmf2.data.ts) 12: `FDS9 (HOYA) / SF56A (Schott)`
+
 ### 670571 — 4 occurrences
 
 - [MINOLTA AF 35-105mm f/3.5-4.5 New (v2)](../../src/lens-data/minolta/MinoltaAF35105mmf3545v2.data.ts) 2: `670571 - high-index crown / lanthanum-crown class (unresolved)`
@@ -346,6 +355,11 @@ or per-lens patent backfills.
 
 - [CARL ZEISS CONTAREX PLANAR 55mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissContarexPlanar55mmf14.data.ts) 7: `LaF10 (Schott 784438)`
 - [CARL ZEISS CONTAREX PLANAR 55mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissContarexPlanar55mmf14.data.ts) 9: `LaF10 (Schott 784438)`
+
+### 785261 — 2 occurrences
+
+- [Nikon AF Nikkor 20mm f/2.8D](../../src/lens-data/nikon/NikonAFNikkor20mmf28D.data.ts) 3: `SF56A equivalent (SCHOTT / 785261)`
+- [Nikon AF Nikkor 20mm f/2.8D](../../src/lens-data/nikon/NikonAFNikkor20mmf28D.data.ts) 16: `SF56A equivalent (SCHOTT / 785261)`
 
 ### 807316 — 2 occurrences
 
@@ -466,11 +480,6 @@ or per-lens patent backfills.
 
 - [LEICA ELMARIT-M 135mm f/2.8](../../src/lens-data/leica/LeicaElmaritM135mmf28.data.ts) 6: `SF5-class dense flint (Schott; e-line source values)`
 - [VOIGTLÄNDER MACRO APO-LANTHAR 125mm f/2.5 SL](../../src/lens-data/voigtlander/VoigtlanderMacroApoLanthar125mmf25.data.ts) 7: `SF5 (Schott) / K-SFS5 (Sumita)`
-
-### SF56A — 2 occurrences
-
-- [NIKON AI NIKKOR 35mm f/2](../../src/lens-data/nikon/NikonAINikkor35mmf2.data.ts) 8: `SF56A class (785/261 dense flint)`
-- [NIKON NIKKOR-N AUTO 28mm f/2](../../src/lens-data/nikon/NikonNikkorN28mmf2.data.ts) 12: `FDS9 (HOYA) / SF56A (Schott)`
 
 ### SK18 — 2 occurrences
 
