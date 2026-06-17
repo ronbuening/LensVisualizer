@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **341** lenses scanned
-- **3856** non-air surfaces examined
-- **3860** element glass declarations examined
-- **616** non-explicit-unmatched annotations did not resolve
-- **218** distinct unresolved glass-like tokens found
+- **344** lenses scanned
+- **3878** non-air surfaces examined
+- **3882** element glass declarations examined
+- **619** non-explicit-unmatched annotations did not resolve
+- **220** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -51,6 +51,7 @@ or per-lens patent backfills.
 | K-LAFK50 | 2 | 1 | |
 | N-BAF4 | 2 | 2 | |
 | N-BAK4 | 2 | 2 | |
+| N-BALF4 | 2 | 2 | |
 | N-LAF2 | 2 | 1 | |
 | N-LAK9 | 2 | 2 | |
 | N-LASF44 | 2 | 2 | |
@@ -154,6 +155,7 @@ or per-lens patent backfills.
 | 930240 | 1 | 1 | |
 | 933209 | 1 | 1 | |
 | BACD14 | 1 | 1 | |
+| BACD8 | 1 | 1 | |
 | BK3 | 1 | 1 | |
 | E-F5 | 1 | 1 | |
 | E-FEL1 | 1 | 1 | |
@@ -192,7 +194,6 @@ or per-lens patent backfills.
 | L-LAH86 | 1 | 1 | |
 | L-PHL1 | 1 | 1 | |
 | N-BAK2 | 1 | 1 | |
-| N-BALF4 | 1 | 1 | |
 | N-BASF2 | 1 | 1 | |
 | N-LAF7 | 1 | 1 | |
 | N-LAK10 | 1 | 1 | |
@@ -229,6 +230,7 @@ or per-lens patent backfills.
 | SF3 | 1 | 1 | |
 | SK4 | 1 | 1 | |
 | SK7 | 1 | 1 | |
+| SK8 | 1 | 1 | |
 | TAF105 | 1 | 1 | |
 | TAF2 | 1 | 1 | |
 | TAF3 | 1 | 1 | |
@@ -420,6 +422,11 @@ or per-lens patent backfills.
 
 - [LEICA ELMAR-M 135mm f/4](../../src/lens-data/leica/LeicaElmarM135mmf4.data.ts) 1: `N-BAK4 / BaK4 class (Schott; patent e-line value stored)`
 - [NIKON NIKKOR 35mm f/2.8 (Nikon 35Ti)](../../src/lens-data/nikon/Nikon35Ti35mmf28.data.ts) 9: `Schott N-BAK4 (nd=1.56883 / νd=56.04; Δnd≈0, Δνd=−0.04)`
+
+### N-BALF4 — 2 occurrences
+
+- [Canon FD 24mm f/2.8 S.S.C.](../../src/lens-data/canon/CanonFD24mmf28SSC.data.ts) 5: `N-BALF4 (SCHOTT; BaLF4-class equivalent)`
+- [NIKON AF-S NIKKOR 70-200mm f/2.8 G ED VR II](../../src/lens-data/nikon/NikonAFS70200mmf28GVRII.data.ts) 29: `H-BaF3 (CDGM) / N-BALF4 class`
 
 ### N-LAF2 — 2 occurrences
 
@@ -847,6 +854,10 @@ or per-lens patent backfills.
 
 - [PENTAX F 85mm f/2.8 Soft](../../src/lens-data/pentax/PentaxF85mmf28Soft.data.ts) 1: `BACD14 (HOYA)`
 
+### BACD8 — 1 occurrence
+
+- [Canon FD 28mm f/2.8 S.C.](../../src/lens-data/canon/CanonFD28mmf28.data.ts) 1: `SK8/BACD8 class (legacy 611/559 dense barium crown)`
+
 ### BK3 — 1 occurrence
 
 - [VIVITAR SERIES 1 35-85mm f/2.8 VMC](../../src/lens-data/vivitar/VivitarSeries13585mmf28.data.ts) 10: `BK3 (Schott)`
@@ -999,10 +1010,6 @@ or per-lens patent backfills.
 
 - [FUJIFILM FUJINON XF 23mm f/1.4 R LM WR](../../src/lens-data/fujifilm/FujifilmXF23mmf14RLMWR.data.ts) 1: `540597 - barium crown (N-BAK2 / S-BAL12 class; vendor uncertain)`
 
-### N-BALF4 — 1 occurrence
-
-- [NIKON AF-S NIKKOR 70-200mm f/2.8 G ED VR II](../../src/lens-data/nikon/NikonAFS70200mmf28GVRII.data.ts) 29: `H-BaF3 (CDGM) / N-BALF4 class`
-
 ### N-BASF2 — 1 occurrence
 
 - [CARL ZEISS DISTAGON T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) 3: `BASF2 / N-BASF2 class (Schott, 664358; patent νd retained)`
@@ -1146,6 +1153,10 @@ or per-lens patent backfills.
 ### SK7 — 1 occurrence
 
 - [CANON SERENAR 35mm f/3.2](../../src/lens-data/canon/CanonSerenar35mmf32.data.ts) 3: `SK7 (Schott)`
+
+### SK8 — 1 occurrence
+
+- [Canon FD 28mm f/2.8 S.C.](../../src/lens-data/canon/CanonFD28mmf28.data.ts) 1: `SK8/BACD8 class (legacy 611/559 dense barium crown)`
 
 ### TAF105 — 1 occurrence
 
