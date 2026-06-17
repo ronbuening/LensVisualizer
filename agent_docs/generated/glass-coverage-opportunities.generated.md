@@ -9,13 +9,13 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **341** lenses scanned (**333** visible)
-- **3114 / 3856** non-air surfaces use strict catalog Sellmeier data (80.8%)
-- **3140 / 3856** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 81.4%)
+- **344** lenses scanned (**336** visible)
+- **3133 / 3878** non-air surfaces use strict catalog Sellmeier data (80.8%)
+- **3159 / 3878** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 81.5%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
 - **166** code-only missing-Sellmeier elements in Sweep 2
-- **146** unresolved named-token elements in Sweep 2B
+- **149** unresolved named-token elements in Sweep 2B
 - **0** Tier A proprietary backfill rows in Sweep 3
 
 ## Sweep 1 - Relabel Mismatches
@@ -79,6 +79,7 @@ These are efficient follow-up targets after mismatch blockers because one or two
 | [SONY FE 24-70mm f/2.8 GM II](../../src/lens-data/sony/SonyFE2470mmf28GMII.data.ts) | 90.0% (18/20) | 90.0% (18/20) | 2 | abbe: 2 |
 | [NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) | 89.5% (17/19) | 89.5% (17/19) | 2 | abbe: 2 |
 | [NIKON NIKKOR Z DX 18-140mm f/3.5-6.3 VR](../../src/lens-data/nikon/NikonZDX18140mmf3563VR.data.ts) | 89.5% (17/19) | 89.5% (17/19) | 2 | abbe: 2 |
+| [Canon FD 24mm f/2.8 S.S.C.](../../src/lens-data/canon/CanonFD24mmf28SSC.data.ts) | 88.9% (8/9) | 88.9% (8/9) | 1 | abbe: 1 |
 | [NIKON 1 NIKKOR 32mm f/1.2](../../src/lens-data/nikon/Nikon1Nikkor32mmf12.data.ts) | 88.9% (8/9) | 88.9% (8/9) | 1 | abbe: 1 |
 | [NIKON NIKKOR-N 5cm f/1.1](../../src/lens-data/nikon/NikonN5cmf11.data.ts) | 88.9% (8/9) | 88.9% (8/9) | 1 | abbe: 1 |
 | [NIKON NIKKOR-N Auto 24mm f/2.8](../../src/lens-data/nikon/NikonNikkorAuto24f28.data.ts) | 88.9% (8/9) | 88.9% (8/9) | 1 | abbe: 1 |
@@ -182,6 +183,7 @@ These unresolved catalog-style labels are often better first catalog targets tha
 | H-LAF3 | 2 | 2 | patents/CN205427291U.pdf<br>patents/JPWO2020157904A1.pdf | [LAOWA 15mm f/4 Wide Angle 1:1 Macro](../../src/lens-data/laowa/Laowa15mmf4Macro.data.ts) Element 7b (1.80420 / 46.50; abbe)<br>[NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) Element 18 (1.82080 / 42.51; abbe) |
 | N-BAF4 | 2 | 2 | patents/JPWO2020157904A1.pdf | [CARL ZEISS DISTAGON T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) Negative doublet rear element (1.60562 / 43.92; abbe)<br>[NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) Element 10 (1.57957 / 53.74; abbe) |
 | N-BAK4 | 2 | 2 | patents/20260118637.pdf<br>patents/US5243468.pdf | [LEICA ELMAR-M 135mm f/4](../../src/lens-data/leica/LeicaElmarM135mmf4.data.ts) Element 1 (1.57125 / 55.80; abbe)<br>[NIKON NIKKOR 35mm f/2.8 (Nikon 35Ti)](../../src/lens-data/nikon/Nikon35Ti35mmf28.data.ts) Element 6 (1.56883 / 56.00; abbe) |
+| N-BALF4 | 2 | 2 | patents/US3748021.pdf<br>patents/US8416506.pdf | [Canon FD 24mm f/2.8 S.S.C.](../../src/lens-data/canon/CanonFD24mmf28SSC.data.ts) Element 3 (1.57957 / 53.70; abbe)<br>[NIKON AF-S NIKKOR 70-200mm f/2.8 G ED VR II](../../src/lens-data/nikon/NikonAFS70200mmf28GVRII.data.ts) L54 (1.57957 / 53.71; abbe) |
 | N-LAK9 | 2 | 2 | patents/US3038380.pdf<br>patents/FR_1471493_A.pdf | [CARL ZEISS B-DISTAGON 35mm f/4 (Contarex)](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon35mmf4.data.ts) LVII (1.69067 / 54.90; abbe)<br>[LEICA ELMARIT-R 35mm f/2.8](../../src/lens-data/leica/LeicaElmaritR35mmf28.data.ts) Element 7 (1.69400 / 54.60; abbe) |
 | N-LASF44 | 2 | 2 | patents/WO2024195273A1.pdf<br>patents/JP2014145954A.pdf | [FUJIFILM FUJINON GF 30mm f/5.6 T/S](../../src/lens-data/fujifilm/FujifilmGF30mmf56TS.data.ts) Element L32 (1.80420 / 46.50; abbe)<br>[SIGMA 60mm f/2.8 DN | Art](../../src/lens-data/sigma/Sigma60mmf28DN.data.ts) Element 1 (1.80420 / 46.50; abbe) |
 | NBFD10 | 2 | 2 | patents/JP2004302170A.pdf<br>patents/JP2012063403A.pdf | [HASSELBLAD HC Macro 120mm f/4](../../src/lens-data/hasselblad/HasselbladHC120mmf4Macro.data.ts) Element 8 (1.80440 / 39.60; abbe)<br>[SIGMA APO MACRO 150mm f/2.8 EX DG OS HSM](../../src/lens-data/sigma/SigmaAPOMacro150mmf28OSHSM.data.ts) Element 19 (1.83400 / 37.35; lineIndices) |
@@ -195,7 +197,6 @@ These unresolved catalog-style labels are often better first catalog targets tha
 | E-FDS3HT | 2 | 1 | patents/WO2022097401A1.pdf | [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../../src/lens-data/nikon/NikonZ105f28.data.ts) Element 7 (1.94595 / 17.98; abbe)<br>[NIKON NIKKOR Z MC 105mm f/2.8 VR S](../../src/lens-data/nikon/NikonZ105f28.data.ts) Element 13 (1.94595 / 17.98; abbe) |
 | H-ZLAF4A | 2 | 1 | patents/CN210573001U.pdf | [LAOWA 24mm f/14 2× Macro Probe](../../src/lens-data/laowa/Laowa24mmf14Probe.data.ts) Element 1 (1.83481 / 42.72; abbe)<br>[LAOWA 24mm f/14 2× Macro Probe](../../src/lens-data/laowa/Laowa24mmf14Probe.data.ts) Element 27 (1.83481 / 42.72; abbe) |
 | K-LAFK50 | 2 | 1 | patents/US20150192839A1.pdf | [PANASONIC LEICA DG NOCTICRON 42.5mm f/1.2 ASPH POWER O.I.S.](../../src/lens-data/panasonic/PanasonicDGNocticron42mmf12.data.ts) Element 8 (1.77010 / 49.70; lineIndices)<br>[PANASONIC LEICA DG NOCTICRON 42.5mm f/1.2 ASPH POWER O.I.S.](../../src/lens-data/panasonic/PanasonicDGNocticron42mmf12.data.ts) Element 11 (1.77010 / 49.70; lineIndices) |
-| N-LAF2 | 2 | 1 | Missing from untracked local patents/ references (DE2359156A1, DE2359156, 2359156) | [CARL ZEISS DISTAGON T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) Pre-stop negative meniscus (1.74400 / 44.77; abbe)<br>[CARL ZEISS DISTAGON T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) Positive doublet front element (1.74400 / 44.77; abbe) |
 
 ## Sweep 3 - Proprietary Line-Index Backfill
 
