@@ -13,13 +13,28 @@ with words like "probable" or "approx").
 
 ## Summary
 
-- **344** lenses scanned
-- **3878** glass surfaces examined
-- **3872** surfaces with non-empty `glass` strings
-- **3133** of those resolved to a catalog entry
-- **0** mismatches found (0.0% of resolved surfaces)
-- **0** distinct lens files affected
+- **348** lenses scanned
+- **3933** glass surfaces examined
+- **3927** surfaces with non-empty `glass` strings
+- **3170** of those resolved to a catalog entry
+- **2** mismatches found (0.1% of resolved surfaces)
+- **1** distinct lens files affected
 
-## No mismatches
+## Most-frequent mismatched catalog targets
 
-Every catalog-resolved surface agrees with its stored `nd` within tolerance. ✓
+Glass labels that get rejected most often. A high count here often points to a single glass
+annotation pattern (e.g. an obsolete name, a `probable` guess) that's used across many lenses.
+
+| Catalog entry | Rejected surfaces | Notes |
+|---|---|---|
+| TAFD25 | 2 | |
+
+## Mismatches by lens
+
+### [NIKON AF ZOOM-MICRO NIKKOR ED 70-180mm f/4.5-5.6D](../../src/lens-data/nikon/NikonAFZoomMicro70180mmf4556D.data.ts) — US 5,717,527
+
+| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
+|---|---|---|---|---|---|
+| 1 | `TAFD25 / J-LASFH13HS class (Nikon/Hikari, 861/230)` | TAFD25 | 1.86074 | 1.90366 | +0.0429 |
+| 3 | `TAFD25 / J-LASFH13HS class (Nikon/Hikari, 861/230)` | TAFD25 | 1.86074 | 1.90366 | +0.0429 |
+
