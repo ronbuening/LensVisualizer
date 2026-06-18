@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **344** lenses scanned
-- **3878** non-air surfaces examined
-- **3882** element glass declarations examined
-- **619** non-explicit-unmatched annotations did not resolve
-- **220** distinct unresolved glass-like tokens found
+- **348** lenses scanned
+- **3933** non-air surfaces examined
+- **3937** element glass declarations examined
+- **625** non-explicit-unmatched annotations did not resolve
+- **222** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -130,6 +130,7 @@ or per-lens patent backfills.
 | 781446 | 1 | 1 | |
 | 786275 | 1 | 1 | |
 | 792450 | 1 | 1 | |
+| 795286 | 1 | 1 | |
 | 797454 | 1 | 1 | |
 | 800255 | 1 | 1 | |
 | 803404 | 1 | 1 | |
@@ -187,6 +188,7 @@ or per-lens patent backfills.
 | H-ZLAF68N | 1 | 1 | |
 | H-ZLAF75B | 1 | 1 | |
 | H-ZLAF92 | 1 | 1 | |
+| K-BASF5 | 1 | 1 | |
 | K-SFS5 | 1 | 1 | |
 | L-BBH1 | 1 | 1 | |
 | L-LAH83 | 1 | 1 | |
@@ -754,6 +756,10 @@ or per-lens patent backfills.
 
 - [NIKON NIKKOR Z 24-70mm f/2.8 S](../../src/lens-data/nikon/NikonZ2470f28.data.ts) 26: `792450 — dense lanthanum crown (patent nd=1.79189, νd=45.04; no exact public catalog match)`
 
+### 795286 — 1 occurrence
+
+- [Nikon AI Zoom-Nikkor 50-135mm f/3.5S](../../src/lens-data/nikon/NikonAIZoomNikko50135mmf35S.data.ts) 22: `J-LAFH3 (HIKARI; 795286)`
+
 ### 797454 — 1 occurrence
 
 - [NIKON NIKKOR 28mm f/2.8 (Nikon 28Ti)](../../src/lens-data/nikon/Nikon28Ti28mmf28.data.ts) 9: `797454 — discontinued lanthanum glass (no exact public catalog match)`
@@ -981,6 +987,10 @@ or per-lens patent backfills.
 ### H-ZLAF92 — 1 occurrence
 
 - [LAOWA 58mm f/2.8 2× Ultra-Macro APO](../../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts) 10: `H-ZLAF92 (CDGM)`
+
+### K-BASF5 — 1 occurrence
+
+- [Nikon AI-S Zoom-Nikkor 35–70mm f/3.5](../../src/lens-data/nikon/NikonAIZoomNikkor3570mmf35.data.ts) 1: `603/425 barium flint; Sumita K-BaSF5-equivalent`
 
 ### K-SFS5 — 1 occurrence
 

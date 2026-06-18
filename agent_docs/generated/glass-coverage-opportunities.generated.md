@@ -9,13 +9,13 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **344** lenses scanned (**336** visible)
-- **3133 / 3878** non-air surfaces use strict catalog Sellmeier data (80.8%)
-- **3159 / 3878** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 81.5%)
-- **0** mismatch surfaces in Sweep 1 across **0** lens files
-- **0** Sweep 1 surfaces have a matching untracked local patent PDF
-- **166** code-only missing-Sellmeier elements in Sweep 2
-- **149** unresolved named-token elements in Sweep 2B
+- **348** lenses scanned (**340** visible)
+- **3168 / 3933** non-air surfaces use strict catalog Sellmeier data (80.5%)
+- **3194 / 3933** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 81.2%)
+- **2** mismatch surfaces in Sweep 1 across **1** lens files
+- **2** Sweep 1 surfaces have a matching untracked local patent PDF
+- **179** code-only missing-Sellmeier elements in Sweep 2
+- **150** unresolved named-token elements in Sweep 2B
 - **0** Tier A proprietary backfill rows in Sweep 3
 
 ## Sweep 1 - Relabel Mismatches
@@ -24,6 +24,8 @@ Patent PDFs under `patents/` are untracked local references. A missing local pat
 
 | Lens | Patent | Surface | Current label | Stored nd/vd | Best candidate(s) | localPatentPath | localPatentStatus |
 |---|---|---|---|---|---|---|---|
+| [NIKON AF ZOOM-MICRO NIKKOR ED 70-180mm f/4.5-5.6D](../../src/lens-data/nikon/NikonAFZoomMicro70180mmf4556D.data.ts) | US 5,717,527 | 1 | `TAFD25 / J-LASFH13HS class (Nikon/Hikari, 861/230)` | 1.86074 / 23.01 | S-NPH5 (Δnd=-0.0018, Δvd=-0.28) | patents/US5717527.pdf | Matched untracked local patent PDF |
+| [NIKON AF ZOOM-MICRO NIKKOR ED 70-180mm f/4.5-5.6D](../../src/lens-data/nikon/NikonAFZoomMicro70180mmf4556D.data.ts) | US 5,717,527 | 3 | `TAFD25 / J-LASFH13HS class (Nikon/Hikari, 861/230)` | 1.86074 / 23.01 | S-NPH5 (Δnd=-0.0018, Δvd=-0.28) | patents/US5717527.pdf | Matched untracked local patent PDF |
 
 ## Near-Complete Visible Lenses
 
@@ -145,6 +147,7 @@ Add catalog entries only when public coefficient-backed vendor data is available
 | 863252 | 4 | 2 | patents/WO2021199923A1.pdf<br>patents/WO_2025263124_A1.pdf | All representative rows reviewed | [SONY FE 14mm f/1.8 GM](../../src/lens-data/sony/SonyFE14mmf18GM.data.ts) Rear doublet flint (1.86252 / 25.20)<br>[SONY FE 14mm f/1.8 GM](../../src/lens-data/sony/SonyFE14mmf18GM.data.ts) Negative Petzval element (1.86252 / 25.20)<br>[SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) Element 14 (1.86252 / 25.20) |
 | 662561 | 4 | 1 | patents/GB_850117_A.pdf | All representative rows reviewed | [CARL ZEISS JENA PANCOLAR 50mm f/2](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaPancolar50mmf2.data.ts) Element 1 (1.66200 / 56.10)<br>[CARL ZEISS JENA PANCOLAR 50mm f/2](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaPancolar50mmf2.data.ts) Element 2 (1.66200 / 56.10)<br>[CARL ZEISS JENA PANCOLAR 50mm f/2](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaPancolar50mmf2.data.ts) Element 5 (1.66200 / 56.10) |
 | 777297 | 3 | 3 | patents/WO2021199923A1.pdf<br>patents/WO_2025263124_A1.pdf<br>patents/JP2023039817A.pdf | All representative rows reviewed | [SONY FE 14mm f/1.8 GM](../../src/lens-data/sony/SonyFE14mmf18GM.data.ts) LN rear element (1.77660 / 29.70)<br>[SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) Element 5 (1.77660 / 29.70)<br>[SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) Element 1 (1.77660 / 29.70) |
+| 501565 | 3 | 1 | patents/US4189212.pdf | No reviewed-sidecar hit | [Nikon AI Zoom-Nikkor 25-50mm f/4](../../src/lens-data/nikon/NikonAIZoomNikkor2550mmf4.data.ts) Element 6 (1.50137 / 56.50)<br>[Nikon AI Zoom-Nikkor 25-50mm f/4](../../src/lens-data/nikon/NikonAIZoomNikkor2550mmf4.data.ts) Element 7 (1.50137 / 56.50)<br>[Nikon AI Zoom-Nikkor 25-50mm f/4](../../src/lens-data/nikon/NikonAIZoomNikkor2550mmf4.data.ts) Element 9b (1.50137 / 56.50) |
 | 516565 | 3 | 1 | patents/CN216772097U.pdf | All representative rows reviewed | [PANASONIC LUMIX S 35mm f/1.8](../../src/lens-data/panasonic/PanasonicS35mmf18.data.ts) Element 8 (1.51602 / 56.50)<br>[PANASONIC LUMIX S 35mm f/1.8](../../src/lens-data/panasonic/PanasonicS35mmf18.data.ts) Element 9 (1.51602 / 56.50)<br>[PANASONIC LUMIX S 35mm f/1.8](../../src/lens-data/panasonic/PanasonicS35mmf18.data.ts) Element 10 (1.51602 / 56.50) |
 | 585587 | 3 | 1 | patents/WO2024195273A1.pdf | All representative rows reviewed | [FUJIFILM FUJINON GF 30mm f/5.6 T/S](../../src/lens-data/fujifilm/FujifilmGF30mmf56TS.data.ts) Element L11 (1.58480 / 58.71)<br>[FUJIFILM FUJINON GF 30mm f/5.6 T/S](../../src/lens-data/fujifilm/FujifilmGF30mmf56TS.data.ts) Element L25 (1.58480 / 58.71)<br>[FUJIFILM FUJINON GF 30mm f/5.6 T/S](../../src/lens-data/fujifilm/FujifilmGF30mmf56TS.data.ts) Element L31 (1.58480 / 58.71) |
 | 672472 | 3 | 1 | patents/US2084309.pdf | No reviewed-sidecar hit | [CARL ZEISS JENA BIOGON 35mm f/2.8 (pre-war)](../../src/lens-data/carl-zeiss-jena/ZeissBiogon35mmf28Prewar.data.ts) Element 1 (1.67160 / 47.20)<br>[CARL ZEISS JENA BIOGON 35mm f/2.8 (pre-war)](../../src/lens-data/carl-zeiss-jena/ZeissBiogon35mmf28Prewar.data.ts) Element 2 (1.67160 / 47.20)<br>[CARL ZEISS JENA BIOGON 35mm f/2.8 (pre-war)](../../src/lens-data/carl-zeiss-jena/ZeissBiogon35mmf28Prewar.data.ts) Element 6 (1.67160 / 47.20) |
@@ -164,7 +167,6 @@ Add catalog entries only when public coefficient-backed vendor data is available
 | 762404 | 2 | 1 | patents/US4258985.pdf | No reviewed-sidecar hit | [MINOLTA AF 28mm f/2](../../src/lens-data/minolta/MinoltaAF28mmf2.data.ts) Element 4 (1.76200 / 40.38)<br>[MINOLTA AF 28mm f/2](../../src/lens-data/minolta/MinoltaAF28mmf2.data.ts) Element 5 (1.76200 / 40.38) |
 | 774492 | 2 | 1 | patents/US3748022.pdf | All representative rows reviewed | [CANON FD 35mm f/2 S.S.C. (I)](../../src/lens-data/canon/CanonFD35mmf2.data.ts) Element 5 (1.77370 / 49.20)<br>[CANON FD 35mm f/2 S.S.C. (I)](../../src/lens-data/canon/CanonFD35mmf2.data.ts) Element 8 (1.77370 / 49.20) |
 | 813252 | 2 | 1 | patents/US3591257.pdf | No reviewed-sidecar hit | [LEICA ELMARIT-R 28mm f/2.8](../../src/lens-data/leica/LeicaElmarit28mmf28.data.ts) Element 4 (1.81265 / 25.24)<br>[LEICA ELMARIT-R 28mm f/2.8](../../src/lens-data/leica/LeicaElmarit28mmf28.data.ts) Element 7 (1.81265 / 25.24) |
-| 856401 | 2 | 1 | patents/WO_2025263124_A1.pdf | All representative rows reviewed | [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) Element 8 (1.85612 / 40.10)<br>[SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) Element 15 (1.85612 / 40.10) |
 
 ## Sweep 2B - Named Tokens Missing Catalog Resolution
 
