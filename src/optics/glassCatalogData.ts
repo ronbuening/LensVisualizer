@@ -35,7 +35,7 @@ export interface GlassEntry {
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
- * GLASS CATALOG — 285 vendor-verified entries (current source count, June 2026)
+ * GLASS CATALOG — 287 vendor-verified entries (current source count, June 2026)
  *
  * Coefficients are taken from authoritative public vendor catalogs. Each
  * entry's `source` field cites the document or database used. To verify a
@@ -1741,6 +1741,30 @@ export const RAW_CATALOG: readonly GlassEntry[] = [
     PgF: 0.6142,
     code6: "785263",
     source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info; S-TIH23 page.",
+  },
+
+  /* Schott current datasheet additions */
+  {
+    name: "SF56A",
+    vendor: "Schott",
+    B: [1.70579259, 0.344223052, 1.09601828],
+    C: [0.01338747, 0.0579561608, 121.616024],
+    nd: 1.7847,
+    vd: 26.08,
+    PgF: 0.6098,
+    code6: "785261",
+    source: "Schott optical glass datasheet SF56A, public PDF (as of 2014-02-01; media.schott.com content 7428154c).",
+  },
+  {
+    name: "N-BALF4",
+    vendor: "Schott",
+    B: [1.31004128, 0.142038259, 0.964929351],
+    C: [0.007965965, 0.0330672072, 109.19732],
+    nd: 1.57956,
+    vd: 53.87,
+    PgF: 0.552,
+    code6: "580539",
+    source: "Schott optical glass datasheet N-BALF4, public PDF (as of 2014-02-01; media.schott.com content 710baa54).",
   },
 
   /* Schott Phase 9 additions */

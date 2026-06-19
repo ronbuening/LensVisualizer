@@ -7,7 +7,7 @@ available, it falls back to partial measured `nC`/`nF` line indices, dPgF-correc
 approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **285 verified entries** in source as of June 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of vendor-published dispersion coefficients.
+The catalog currently has **287 verified entries** in source as of June 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of vendor-published dispersion coefficients.
 
 The generated reports in [`generated/`](generated/) are the current work queues:
 
@@ -136,6 +136,13 @@ already in the catalog.
 | ★ L-LAM69 | Ohara | 731405 | Official Ohara per-glass datasheet; exact row only, not used for 764491 moldable lanthanum-crown rows |
 | ★ N-SF8 / SF8 | Schott | 689313 | Official Schott datasheet; resolver aliases legacy `SF8` to `N-SF8` when the stored d-line index agrees |
 | ★ H-LAF4 | CDGM | 750350 | CDGM 2022 Zemax coefficients via refractiveindex.info; exact row only, not used for Laowa 1.79391 / 47.17 H-LAF4-class row |
+
+**Phase 22 additions** (June 2026 — report sweep over zero-mismatch named-token gaps using first-party Schott PDFs; all entries round-trip through `assertCatalogConsistent`. This pass cleared real Schott names and codes rather than aliasing them to nearby Ohara equivalents):
+
+| Glass | Vendor | Code | Notes |
+|---|---|---:|---|
+| ★ SF56A | Schott | 785261 | Official Schott datasheet; clears SF56A and 785/261 dense-flint rows with exact Schott coefficients |
+| ★ N-BALF4 | Schott | 580539 | Official Schott datasheet; clears N-BALF4 barium light-flint rows |
 
 **Phase 17 additions** (May 2026 — Hasselblad/Laowa/Leica/Minolta/Nikon six-digit missing-Sellmeier queue pass; all entries round-trip through `assertCatalogConsistent`):
 

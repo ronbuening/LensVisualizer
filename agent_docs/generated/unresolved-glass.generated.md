@@ -11,21 +11,19 @@ or per-lens patent backfills.
 - **354** lenses scanned
 - **4001** non-air surfaces examined
 - **4005** element glass declarations examined
-- **638** non-explicit-unmatched annotations did not resolve
-- **224** distinct unresolved glass-like tokens found
+- **632** non-explicit-unmatched annotations did not resolve
+- **221** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
 | Token | Occurrences | Lens files | Notes |
 |---|---:|---:|---|
-| SF56A | 5 | 4 | |
 | 670571 | 4 | 2 | |
 | 863252 | 4 | 2 | |
 | S-NPH7 | 4 | 4 | |
 | 516565 | 3 | 1 | |
 | 585587 | 3 | 1 | |
 | 744495 | 3 | 3 | |
-| 785261 | 3 | 2 | |
 | 863248 | 3 | 1 | |
 | E-FD10 | 3 | 2 | |
 | E-FD13 | 3 | 3 | |
@@ -43,6 +41,7 @@ or per-lens patent backfills.
 | 807316 | 2 | 2 | |
 | 813252 | 2 | 1 | |
 | 856401 | 2 | 1 | |
+| 861230 | 2 | 1 | |
 | BACD4 | 2 | 2 | |
 | BSC3 | 2 | 2 | |
 | E-FDS3HT | 2 | 1 | |
@@ -52,7 +51,6 @@ or per-lens patent backfills.
 | K-LAFK50 | 2 | 1 | |
 | N-BAF4 | 2 | 2 | |
 | N-BAK4 | 2 | 2 | |
-| N-BALF4 | 2 | 2 | |
 | N-LAF2 | 2 | 1 | |
 | N-LAK9 | 2 | 2 | |
 | N-LASF44 | 2 | 2 | |
@@ -169,7 +167,6 @@ or per-lens patent backfills.
 | FCD10A | 1 | 1 | |
 | FCD500 | 1 | 1 | |
 | FCD915 | 1 | 1 | |
-| H-BAF3 | 1 | 1 | |
 | H-K8 | 1 | 1 | |
 | H-K9L | 1 | 1 | |
 | H-LAF51 | 1 | 1 | |
@@ -245,14 +242,6 @@ or per-lens patent backfills.
 
 ## Occurrences
 
-### SF56A — 5 occurrences
-
-- [Nikon AF Nikkor 20mm f/2.8D](../../src/lens-data/nikon/NikonAFNikkor20mmf28D.data.ts) 3: `SF56A equivalent (SCHOTT / 785261)`
-- [Nikon AF Nikkor 20mm f/2.8D](../../src/lens-data/nikon/NikonAFNikkor20mmf28D.data.ts) 16: `SF56A equivalent (SCHOTT / 785261)`
-- [Nikon AF Nikkor 28mm f/2.8D](../../src/lens-data/nikon/NikonAFNikkor28mmf28D.data.ts) 9: `SF56A (SCHOTT)`
-- [NIKON AI NIKKOR 35mm f/2](../../src/lens-data/nikon/NikonAINikkor35mmf2.data.ts) 8: `SF56A class (785/261 dense flint)`
-- [NIKON NIKKOR-N AUTO 28mm f/2](../../src/lens-data/nikon/NikonNikkorN28mmf2.data.ts) 12: `FDS9 (HOYA) / SF56A (Schott)`
-
 ### 670571 — 4 occurrences
 
 - [MINOLTA AF 35-105mm f/3.5-4.5 New (v2)](../../src/lens-data/minolta/MinoltaAF35105mmf3545v2.data.ts) 2: `670571 - high-index crown / lanthanum-crown class (unresolved)`
@@ -291,12 +280,6 @@ or per-lens patent backfills.
 - [NIKON AF-S NIKKOR 24-70mm f/2.8 E ED VR](../../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) 1: `744495 — lanthanum crown (patent nd=1.74389, νd=49.50; no exact public catalog match)`
 - [NIKON NIKKOR Z 24-70mm f/4 S](../../src/lens-data/nikon/NikonNikkorZ2470mmf4S.data.ts) 4: `744495 — PGM low-Tg lanthanum crown (patent nd=1.74353, νd=49.5; no exact public catalog match)`
 - [NIKON NIKKOR Z 24-70mm f/2.8 S](../../src/lens-data/nikon/NikonZ2470f28.data.ts) 6A: `744495 — moldable lanthanum crown (patent nd=1.74389, νd=49.53; no exact public catalog match)`
-
-### 785261 — 3 occurrences
-
-- [Nikon AF Nikkor 20mm f/2.8D](../../src/lens-data/nikon/NikonAFNikkor20mmf28D.data.ts) 3: `SF56A equivalent (SCHOTT / 785261)`
-- [Nikon AF Nikkor 20mm f/2.8D](../../src/lens-data/nikon/NikonAFNikkor20mmf28D.data.ts) 16: `SF56A equivalent (SCHOTT / 785261)`
-- [NIKON SERIES E 135mm f/2.8](../../src/lens-data/nikon/NikonSeriesE135mmf28.data.ts) 7: `785261 — dense flint (line-index backfill; patent nd=1.78470, νd=26.1)`
 
 ### 863248 — 3 occurrences
 
@@ -388,6 +371,11 @@ or per-lens patent backfills.
 - [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 14A: `856401 — lanthanum dense crown (patent nd=1.85612, νd=40.1)`
 - [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 25A: `856401 — lanthanum dense crown (patent nd=1.85612, νd=40.1)`
 
+### 861230 — 2 occurrences
+
+- [NIKON AF ZOOM-MICRO NIKKOR ED 70-180mm f/4.5-5.6D](../../src/lens-data/nikon/NikonAFZoomMicro70180mmf4556D.data.ts) 1: `861230 — high-index dense flint (patent nd=1.86074, νd=23.01; no source-backed catalog match)`
+- [NIKON AF ZOOM-MICRO NIKKOR ED 70-180mm f/4.5-5.6D](../../src/lens-data/nikon/NikonAFZoomMicro70180mmf4556D.data.ts) 3: `861230 — high-index dense flint (patent nd=1.86074, νd=23.01; no source-backed catalog match)`
+
 ### BACD4 — 2 occurrences
 
 - [LEICA MACRO-ELMARIT-R 60mm f/2.8](../../src/lens-data/leica/LeicaMacroElmaritR60mmf28.data.ts) 10: `BACD4 class (e-line catalog match; patent vendor not named)`
@@ -432,11 +420,6 @@ or per-lens patent backfills.
 
 - [LEICA ELMAR-M 135mm f/4](../../src/lens-data/leica/LeicaElmarM135mmf4.data.ts) 1: `N-BAK4 / BaK4 class (Schott; patent e-line value stored)`
 - [NIKON NIKKOR 35mm f/2.8 (Nikon 35Ti)](../../src/lens-data/nikon/Nikon35Ti35mmf28.data.ts) 9: `Schott N-BAK4 (nd=1.56883 / νd=56.04; Δnd≈0, Δνd=−0.04)`
-
-### N-BALF4 — 2 occurrences
-
-- [Canon FD 24mm f/2.8 S.S.C.](../../src/lens-data/canon/CanonFD24mmf28SSC.data.ts) 5: `N-BALF4 (SCHOTT; BaLF4-class equivalent)`
-- [NIKON AF-S NIKKOR 70-200mm f/2.8 G ED VR II](../../src/lens-data/nikon/NikonAFS70200mmf28GVRII.data.ts) 29: `H-BaF3 (CDGM) / N-BALF4 class`
 
 ### N-LAF2 — 2 occurrences
 
@@ -915,10 +898,6 @@ or per-lens patent backfills.
 ### FCD915 — 1 occurrence
 
 - [SIGMA 28-45mm f/1.8 DG DN | Art](../../src/lens-data/sigma/Sigma2845mmf18DN.data.ts) 20: `FCD915 (HOYA)`
-
-### H-BAF3 — 1 occurrence
-
-- [NIKON AF-S NIKKOR 70-200mm f/2.8 G ED VR II](../../src/lens-data/nikon/NikonAFS70200mmf28GVRII.data.ts) 29: `H-BaF3 (CDGM) / N-BALF4 class`
 
 ### H-K8 — 1 occurrence
 

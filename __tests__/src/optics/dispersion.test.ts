@@ -84,6 +84,17 @@ describe("glass catalog", () => {
     }
   });
 
+  it("evaluates the Schott SF56A datasheet entry", () => {
+    const sf56a = resolveGlass("SF56A (Schott, 785/261)");
+    expect(sf56a?.name).toBe("SF56A");
+    expect(evaluateSellmeier(sf56a!, LINE_NM.d)).toBeCloseTo(1.7847, 5);
+    expect(resolveGlass("785261")?.name).toBe("SF56A");
+
+    const nbalf4 = resolveGlass("N-BALF4 barium light flint");
+    expect(nbalf4?.name).toBe("N-BALF4");
+    expect(evaluateSellmeier(nbalf4!, LINE_NM.d)).toBeCloseTo(1.57956, 5);
+  });
+
   it("evaluates explicit power-series catalog entries", () => {
     const hikariPskh1 = resolveGlass("593679 - fluorophosphate crown");
     expect(hikariPskh1?.name).toBe("J-PSKH1");
