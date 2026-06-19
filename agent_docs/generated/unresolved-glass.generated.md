@@ -8,17 +8,16 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **348** lenses scanned
-- **3933** non-air surfaces examined
-- **3937** element glass declarations examined
-- **625** non-explicit-unmatched annotations did not resolve
-- **222** distinct unresolved glass-like tokens found
+- **354** lenses scanned
+- **4001** non-air surfaces examined
+- **4005** element glass declarations examined
+- **618** non-explicit-unmatched annotations did not resolve
+- **212** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
 | Token | Occurrences | Lens files | Notes |
 |---|---:|---:|---|
-| SF56A | 5 | 4 | |
 | 670571 | 4 | 2 | |
 | 863252 | 4 | 2 | |
 | S-NPH7 | 4 | 4 | |
@@ -26,24 +25,20 @@ or per-lens patent backfills.
 | 585587 | 3 | 1 | |
 | 744495 | 3 | 3 | |
 | 863248 | 3 | 1 | |
-| E-FD10 | 3 | 2 | |
-| E-FD13 | 3 | 3 | |
-| S-BSM15 | 3 | 2 | |
 | S-TIF6 | 3 | 3 | |
 | 514428 | 2 | 1 | |
 | 531559 | 2 | 2 | |
 | 585594 | 2 | 1 | |
+| 620586 | 2 | 1 | |
 | 666356 | 2 | 1 | |
 | 744448 | 2 | 1 | |
 | 755516 | 2 | 1 | |
 | 774492 | 2 | 1 | |
 | 784438 | 2 | 1 | |
-| 785261 | 2 | 1 | |
 | 807316 | 2 | 2 | |
 | 813252 | 2 | 1 | |
 | 856401 | 2 | 1 | |
-| BACD4 | 2 | 2 | |
-| BSC3 | 2 | 2 | |
+| 861230 | 2 | 1 | |
 | E-FDS3HT | 2 | 1 | |
 | F7 | 2 | 2 | |
 | H-LAF3 | 2 | 2 | |
@@ -51,7 +46,6 @@ or per-lens patent backfills.
 | K-LAFK50 | 2 | 1 | |
 | N-BAF4 | 2 | 2 | |
 | N-BAK4 | 2 | 2 | |
-| N-BALF4 | 2 | 2 | |
 | N-LAF2 | 2 | 1 | |
 | N-LAK9 | 2 | 2 | |
 | N-LASF44 | 2 | 2 | |
@@ -167,7 +161,6 @@ or per-lens patent backfills.
 | FCD10A | 1 | 1 | |
 | FCD500 | 1 | 1 | |
 | FCD915 | 1 | 1 | |
-| H-BAF3 | 1 | 1 | |
 | H-K8 | 1 | 1 | |
 | H-K9L | 1 | 1 | |
 | H-LAF51 | 1 | 1 | |
@@ -180,7 +173,6 @@ or per-lens patent backfills.
 | H-QF50 | 1 | 1 | |
 | H-ZF1 | 1 | 1 | |
 | H-ZF2 | 1 | 1 | |
-| H-ZF50 | 1 | 1 | |
 | H-ZF52A | 1 | 1 | |
 | H-ZF72 | 1 | 1 | |
 | H-ZLAF2 | 1 | 1 | |
@@ -204,7 +196,6 @@ or per-lens patent backfills.
 | N-PK51 | 1 | 1 | |
 | N-PSK53A | 1 | 1 | |
 | N-SF5 | 1 | 1 | |
-| N-SK4 | 1 | 1 | |
 | NBFD12 | 1 | 1 | |
 | NBFD30 | 1 | 1 | |
 | S-BAH32 | 1 | 1 | |
@@ -226,7 +217,6 @@ or per-lens patent backfills.
 | S-TIF4 | 1 | 1 | |
 | S-TIF8 | 1 | 1 | |
 | S-TIM1 | 1 | 1 | |
-| SF13 | 1 | 1 | |
 | SF14 | 1 | 1 | |
 | SF19 | 1 | 1 | |
 | SF3 | 1 | 1 | |
@@ -242,14 +232,6 @@ or per-lens patent backfills.
 | TAFL3 | 1 | 1 | |
 
 ## Occurrences
-
-### SF56A — 5 occurrences
-
-- [Nikon AF Nikkor 20mm f/2.8D](../../src/lens-data/nikon/NikonAFNikkor20mmf28D.data.ts) 3: `SF56A equivalent (SCHOTT / 785261)`
-- [Nikon AF Nikkor 20mm f/2.8D](../../src/lens-data/nikon/NikonAFNikkor20mmf28D.data.ts) 16: `SF56A equivalent (SCHOTT / 785261)`
-- [Nikon AF Nikkor 28mm f/2.8D](../../src/lens-data/nikon/NikonAFNikkor28mmf28D.data.ts) 9: `SF56A (SCHOTT)`
-- [NIKON AI NIKKOR 35mm f/2](../../src/lens-data/nikon/NikonAINikkor35mmf2.data.ts) 8: `SF56A class (785/261 dense flint)`
-- [NIKON NIKKOR-N AUTO 28mm f/2](../../src/lens-data/nikon/NikonNikkorN28mmf2.data.ts) 12: `FDS9 (HOYA) / SF56A (Schott)`
 
 ### 670571 — 4 occurrences
 
@@ -296,24 +278,6 @@ or per-lens patent backfills.
 - [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 17: `863248 — ultra-dense flint (patent nd=1.86290, nu_d=24.8)`
 - [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 19: `863248 — ultra-dense flint (patent nd=1.86290, nu_d=24.8)`
 
-### E-FD10 — 3 occurrences
-
-- [SIGMA 35mm f/1.4 DG HSM | Art](../../src/lens-data/sigma/Sigma35mmf14DGHSMA.data.ts) 7: `E-FD10 (Hoya)`
-- [SIGMA 35mm f/1.4 DG HSM | Art](../../src/lens-data/sigma/Sigma35mmf14DGHSMA.data.ts) 17: `E-FD10 (Hoya)`
-- [SIGMA 50mm f/1.4 DG HSM | Art](../../src/lens-data/sigma/Sigma50mmf14DGHSMA.data.ts) 13: `E-FD10 (HOYA, reference)`
-
-### E-FD13 — 3 occurrences
-
-- [FUJIFILM FUJINON XF 33mm f/1.4 R LM WR](../../src/lens-data/fujifilm/FujifilmXF33mmf14RLMWR.data.ts) 18: `E-FD13 (HOYA) / H-ZF50 class`
-- [NIKON REFLEX-NIKKOR 1000mm f/11](../../src/lens-data/nikon/NikonReflexNikkor1000mmf11.data.ts) L3F: `SF13-family dense flint, 741/277 class (Hoya E-FD13 / Hikari J-SF13 equivalent)`
-- [PANASONIC LEICA DG SUMMILUX 12mm f/1.4 ASPH.](../../src/lens-data/panasonic/PanasonicDGSummilux12mmf14.data.ts) 16: `E-FD13 (Hoya)`
-
-### S-BSM15 — 3 occurrences
-
-- [CANON EF-S 18-55mm f/3.5-5.6 IS](../../src/lens-data/canon/CanonEFS1855mmf3556IS.data.ts) 3: `S-BSM15 (OHARA)`
-- [CANON EF-S 18-55mm f/3.5-5.6 IS](../../src/lens-data/canon/CanonEFS1855mmf3556IS.data.ts) 5: `S-BSM15 (OHARA)`
-- [PENTAX DA 21mm f/3.2 AL Limited](../../src/lens-data/pentax/PentaxDA21mmf32Limited.data.ts) 10: `S-BSM15 (OHARA equivalent)`
-
 ### S-TIF6 — 3 occurrences
 
 - [FUJIFILM FUJINON XF 56mm f/1.2 R](../../src/lens-data/fujifilm/FujifilmXF56mmf12.data.ts) 16: `S-TIF6 (OHARA)`
@@ -334,6 +298,11 @@ or per-lens patent backfills.
 
 - [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 20: `585594 — barium crown (patent nd=1.58547, nu_d=59.4)`
 - [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 22A: `585594 — barium crown (patent nd=1.58547, nu_d=59.4), XA element`
+
+### 620586 — 2 occurrences
+
+- [NIKON SERIES E 135mm f/2.8](../../src/lens-data/nikon/NikonSeriesE135mmf28.data.ts) 1: `620586 — patent crown glass (nd=1.62041, νd=58.6; no catalog match verified)`
+- [NIKON SERIES E 135mm f/2.8](../../src/lens-data/nikon/NikonSeriesE135mmf28.data.ts) 3: `620586 — patent crown glass (nd=1.62041, νd=58.6; no catalog match verified)`
 
 ### 666356 — 2 occurrences
 
@@ -360,11 +329,6 @@ or per-lens patent backfills.
 - [CARL ZEISS CONTAREX PLANAR 55mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissContarexPlanar55mmf14.data.ts) 7: `LaF10 (Schott 784438)`
 - [CARL ZEISS CONTAREX PLANAR 55mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissContarexPlanar55mmf14.data.ts) 9: `LaF10 (Schott 784438)`
 
-### 785261 — 2 occurrences
-
-- [Nikon AF Nikkor 20mm f/2.8D](../../src/lens-data/nikon/NikonAFNikkor20mmf28D.data.ts) 3: `SF56A equivalent (SCHOTT / 785261)`
-- [Nikon AF Nikkor 20mm f/2.8D](../../src/lens-data/nikon/NikonAFNikkor20mmf28D.data.ts) 16: `SF56A equivalent (SCHOTT / 785261)`
-
 ### 807316 — 2 occurrences
 
 - [MINOLTA AF 100mm f/2.8 Macro](../../src/lens-data/minolta/MinoltaAF100mmf28Macro.data.ts) 13: `807316 - dense lanthanum flint (patent nd=1.80741, vd=31.59; unresolved)`
@@ -380,15 +344,10 @@ or per-lens patent backfills.
 - [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 14A: `856401 — lanthanum dense crown (patent nd=1.85612, νd=40.1)`
 - [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 25A: `856401 — lanthanum dense crown (patent nd=1.85612, νd=40.1)`
 
-### BACD4 — 2 occurrences
+### 861230 — 2 occurrences
 
-- [LEICA MACRO-ELMARIT-R 60mm f/2.8](../../src/lens-data/leica/LeicaMacroElmaritR60mmf28.data.ts) 10: `BACD4 class (e-line catalog match; patent vendor not named)`
-- [NIKON FISHEYE-NIKKOR 6mm f/5.6](../../src/lens-data/nikon/NikonFisheyeNikkor6mmf56.data.ts) 1: `BACD4 / N-SK4 class (613/586)`
-
-### BSC3 — 2 occurrences
-
-- [CANON EF-S 24mm f/2.8 STM](../../src/lens-data/canon/CanonEFS24mmf28STM.data.ts) 10A: `E-C3 / BSC3 class (HOYA)`
-- [NIKON NIKKOR-N Auto 24mm f/2.8](../../src/lens-data/nikon/NikonNikkorAuto24f28.data.ts) 8: `BSC3 (Hoya) / historical crown equivalent`
+- [NIKON AF ZOOM-MICRO NIKKOR ED 70-180mm f/4.5-5.6D](../../src/lens-data/nikon/NikonAFZoomMicro70180mmf4556D.data.ts) 1: `861230 — high-index dense flint (patent nd=1.86074, νd=23.01; no source-backed catalog match)`
+- [NIKON AF ZOOM-MICRO NIKKOR ED 70-180mm f/4.5-5.6D](../../src/lens-data/nikon/NikonAFZoomMicro70180mmf4556D.data.ts) 3: `861230 — high-index dense flint (patent nd=1.86074, νd=23.01; no source-backed catalog match)`
 
 ### E-FDS3HT — 2 occurrences
 
@@ -424,11 +383,6 @@ or per-lens patent backfills.
 
 - [LEICA ELMAR-M 135mm f/4](../../src/lens-data/leica/LeicaElmarM135mmf4.data.ts) 1: `N-BAK4 / BaK4 class (Schott; patent e-line value stored)`
 - [NIKON NIKKOR 35mm f/2.8 (Nikon 35Ti)](../../src/lens-data/nikon/Nikon35Ti35mmf28.data.ts) 9: `Schott N-BAK4 (nd=1.56883 / νd=56.04; Δnd≈0, Δνd=−0.04)`
-
-### N-BALF4 — 2 occurrences
-
-- [Canon FD 24mm f/2.8 S.S.C.](../../src/lens-data/canon/CanonFD24mmf28SSC.data.ts) 5: `N-BALF4 (SCHOTT; BaLF4-class equivalent)`
-- [NIKON AF-S NIKKOR 70-200mm f/2.8 G ED VR II](../../src/lens-data/nikon/NikonAFS70200mmf28GVRII.data.ts) 29: `H-BaF3 (CDGM) / N-BALF4 class`
 
 ### N-LAF2 — 2 occurrences
 
@@ -904,10 +858,6 @@ or per-lens patent backfills.
 
 - [SIGMA 28-45mm f/1.8 DG DN | Art](../../src/lens-data/sigma/Sigma2845mmf18DN.data.ts) 20: `FCD915 (HOYA)`
 
-### H-BAF3 — 1 occurrence
-
-- [NIKON AF-S NIKKOR 70-200mm f/2.8 G ED VR II](../../src/lens-data/nikon/NikonAFS70200mmf28GVRII.data.ts) 29: `H-BaF3 (CDGM) / N-BALF4 class`
-
 ### H-K8 — 1 occurrence
 
 - [LAOWA 65mm f/2.8 2× Ultra Macro APO](../../src/lens-data/laowa/Laowa65mmf28MacroAPO.data.ts) 23: `H-K8 (CDGM)`
@@ -955,10 +905,6 @@ or per-lens patent backfills.
 ### H-ZF2 — 1 occurrence
 
 - [LAOWA 24mm f/14 2× Macro Probe](../../src/lens-data/laowa/Laowa24mmf14Probe.data.ts) 44: `H-ZF2 (CDGM)`
-
-### H-ZF50 — 1 occurrence
-
-- [FUJIFILM FUJINON XF 33mm f/1.4 R LM WR](../../src/lens-data/fujifilm/FujifilmXF33mmf14RLMWR.data.ts) 18: `E-FD13 (HOYA) / H-ZF50 class`
 
 ### H-ZF52A — 1 occurrence
 
@@ -1052,10 +998,6 @@ or per-lens patent backfills.
 
 - [RICOH GR LENS A12 28mm f/2.5 (Ricoh GXR A12)](../../src/lens-data/ricoh/RicohGXRA1218mmf25.data.ts) 10: `S-TIF6 (OHARA) / N-SF5 (SCHOTT)`
 
-### N-SK4 — 1 occurrence
-
-- [NIKON FISHEYE-NIKKOR 6mm f/5.6](../../src/lens-data/nikon/NikonFisheyeNikkor6mmf56.data.ts) 1: `BACD4 / N-SK4 class (613/586)`
-
 ### NBFD12 — 1 occurrence
 
 - [NIKON NIKKOR Z 24-50mm f/4-6.3](../../src/lens-data/nikon/NikonNikkorZ2450mmf463.data.ts) 11: `NBFD12 (HOYA)`
@@ -1139,10 +1081,6 @@ or per-lens patent backfills.
 ### S-TIM1 — 1 occurrence
 
 - [CANON RF 50mm f/1.2 L USM](../../src/lens-data/canon/CanonRF50mmf12L.data.ts) 21: `S-TIM1 (OHARA)`
-
-### SF13 — 1 occurrence
-
-- [NIKON REFLEX-NIKKOR 1000mm f/11](../../src/lens-data/nikon/NikonReflexNikkor1000mmf11.data.ts) L3F: `SF13-family dense flint, 741/277 class (Hoya E-FD13 / Hikari J-SF13 equivalent)`
 
 ### SF14 — 1 occurrence
 

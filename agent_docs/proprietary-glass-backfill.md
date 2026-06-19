@@ -3,7 +3,7 @@
 A focused follow-up to the chromatic dispersion overhaul. Current architecture is summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md). The chromatic engine now uses this preference cascade:
 air → complete measured `nC`/`nF`/`ng` line indices → catalog Sellmeier → partial measured `nC`/`nF` line indices →
-Abbe + dPgF → plain Abbe, backed by a 285-entry vendor catalog. What remains is a per-lens queue of proprietary, unidentified, or
+Abbe + dPgF → plain Abbe, backed by a 292-entry vendor catalog. What remains is a per-lens queue of proprietary, unidentified, or
 inconsistently annotated glasses that no public catalog can safely resolve by name alone.
 
 ## Companion report: catalog mismatches

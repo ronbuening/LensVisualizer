@@ -7,7 +7,7 @@ available, it falls back to partial measured `nC`/`nF` line indices, dPgF-correc
 approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **285 verified entries** in source as of June 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of vendor-published dispersion coefficients.
+The catalog currently has **292 verified entries** in source as of June 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of vendor-published dispersion coefficients.
 
 The generated reports in [`generated/`](generated/) are the current work queues:
 
@@ -137,6 +137,28 @@ already in the catalog.
 | ★ N-SF8 / SF8 | Schott | 689313 | Official Schott datasheet; resolver aliases legacy `SF8` to `N-SF8` when the stored d-line index agrees |
 | ★ H-LAF4 | CDGM | 750350 | CDGM 2022 Zemax coefficients via refractiveindex.info; exact row only, not used for Laowa 1.79391 / 47.17 H-LAF4-class row |
 
+**Phase 22 additions** (June 2026 — report sweep over zero-mismatch named-token gaps using first-party Schott PDFs; all entries round-trip through `assertCatalogConsistent`. This pass cleared real Schott names and codes rather than aliasing them to nearby Ohara equivalents):
+
+| Glass | Vendor | Code | Notes |
+|---|---|---:|---|
+| ★ SF56A | Schott | 785261 | Official Schott datasheet; clears SF56A and 785/261 dense-flint rows with exact Schott coefficients |
+| ★ N-BALF4 | Schott | 580539 | Official Schott datasheet; clears N-BALF4 barium light-flint rows |
+
+**Phase 23 additions** (June 2026 — named-token report pass using the current refractiveindex.info spec database mirrors of HOYA 2017-04-01 and OHARA 2017-11-30 Zemax data; all entries round-trip through `assertCatalogConsistent`. This pass also resolved legacy `BSC3` labels only where they mean Hoya's 518/590 E-C3 crown row, and relabeled an incompatible Canon 583/594 row to its matching catalog glass):
+
+| Glass | Vendor | Code | Notes |
+|---|---|---:|---|
+| ★ E-FD13 | Hoya | 741278 | Direct HOYA formula-3 row; clears E-FD13 labels without relying on S-TIH13 equivalence |
+| ★ E-FD10 | Hoya | 728283 | Direct HOYA formula-3 row; clears E-FD10 labels without relying on H-ZF4A/SF10 class labels |
+| ★ BACD4 | Hoya | 613586 | Direct HOYA formula-3 row; clears BACD4 dense-crown labels and code references |
+| ★ E-C3 / BSC3 | Hoya | 518590 | Direct HOYA formula-3 row; `BSC3` resolves here as the historical Hoya crown meaning |
+| ★ S-BSM15 | Ohara | 623582 | Direct OHARA Sellmeier row; clears repeated S-BSM15 crown labels |
+
+The same pass rechecked requested code-only rows `670571`, `486815`, `744495`, `863252`, `777297`, and `863248`
+against the current refractiveindex.info spec archive. No exact public `glass_code` record was found for those codes.
+Nearest `(nd, Vd)` neighbors either carry different codes (`670573`, `743493`/`743494`) or miss the patent row by
+material index/Abbe deltas, so those labels remain explicit code-only rows.
+
 **Phase 17 additions** (May 2026 — Hasselblad/Laowa/Leica/Minolta/Nikon six-digit missing-Sellmeier queue pass; all entries round-trip through `assertCatalogConsistent`):
 
 | Glass | Vendor | Unlocks | Notes |
@@ -198,7 +220,7 @@ This pass also corrected the S-LAH88 `code6` value from `916316` to `917316`, ma
 | ★ FK3 | Schott | 2 | Legacy fluor crown from Schott 2017 Zemax data |
 | ★ N-BALF5 | Schott | 2 | Barium light flint |
 
-`BSC3`, `F7`, `SK7`, `SK18`, `H-LAF3`, and `H-ZLAF4A` remain unresolved after this pass because the checked public catalog sources did not provide an exact coefficient-backed row. `TAFD35L` was added as an alias to the already-cataloged `TAFD35` 911/353 optical constants rather than duplicating an entry.
+`F7`, `SK7`, `SK18`, `H-LAF3`, and `H-ZLAF4A` remain unresolved after this pass because the checked public catalog sources did not provide an exact coefficient-backed row. `BSC3` remained unresolved at the time but was later routed to Hoya E-C3 in Phase 23. `TAFD35L` was added as an alias to the already-cataloged `TAFD35` 911/353 optical constants rather than duplicating an entry.
 
 **Phase 13 additions** (May 2026 — next-five glass relabel audit; all entries round-trip through `assertCatalogConsistent`; sourced from refractiveindex.info mirrors of HOYA/Ohara Zemax data so patent-code rows can resolve to catalog glass instead of six-digit fallbacks):
 

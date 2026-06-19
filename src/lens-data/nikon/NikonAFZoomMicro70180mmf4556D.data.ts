@@ -79,7 +79,7 @@ const LENS_DATA = {
       nd: 1.86074,
       vd: 23.01,
       fl: -130.5,
-      glass: "TAFD25 / J-LASFH13HS class (Nikon/Hikari, 861/230)",
+      glass: "861230 — high-index dense flint (patent nd=1.86074, νd=23.01; no source-backed catalog match)",
       role: "Front high-index negative meniscus of the focusing group.",
     },
     {
@@ -90,7 +90,7 @@ const LENS_DATA = {
       nd: 1.86074,
       vd: 23.01,
       fl: 63.1,
-      glass: "TAFD25 / J-LASFH13HS class (Nikon/Hikari, 861/230)",
+      glass: "861230 — high-index dense flint (patent nd=1.86074, νd=23.01; no source-backed catalog match)",
       role: "Symmetric positive lens that balances L1 within the front focus group.",
     },
     {

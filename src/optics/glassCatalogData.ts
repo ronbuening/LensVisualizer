@@ -35,7 +35,7 @@ export interface GlassEntry {
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
- * GLASS CATALOG — 285 vendor-verified entries (current source count, June 2026)
+ * GLASS CATALOG — 292 vendor-verified entries (current source count, June 2026)
  *
  * Coefficients are taken from authoritative public vendor catalogs. Each
  * entry's `source` field cites the document or database used. To verify a
@@ -1741,6 +1741,30 @@ export const RAW_CATALOG: readonly GlassEntry[] = [
     PgF: 0.6142,
     code6: "785263",
     source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info; S-TIH23 page.",
+  },
+
+  /* Schott current datasheet additions */
+  {
+    name: "SF56A",
+    vendor: "Schott",
+    B: [1.70579259, 0.344223052, 1.09601828],
+    C: [0.01338747, 0.0579561608, 121.616024],
+    nd: 1.7847,
+    vd: 26.08,
+    PgF: 0.6098,
+    code6: "785261",
+    source: "Schott optical glass datasheet SF56A, public PDF (as of 2014-02-01; media.schott.com content 7428154c).",
+  },
+  {
+    name: "N-BALF4",
+    vendor: "Schott",
+    B: [1.31004128, 0.142038259, 0.964929351],
+    C: [0.007965965, 0.0330672072, 109.19732],
+    nd: 1.57956,
+    vd: 53.87,
+    PgF: 0.552,
+    code6: "580539",
+    source: "Schott optical glass datasheet N-BALF4, public PDF (as of 2014-02-01; media.schott.com content 710baa54).",
   },
 
   /* Schott Phase 9 additions */
@@ -3462,5 +3486,62 @@ export const RAW_CATALOG: readonly GlassEntry[] = [
     PgF: 0.588,
     code6: "750350",
     source: "CDGM Zemax catalog 2022-06 via refractiveindex.info; H-LAF4 page.",
+  },
+
+  /* Phase 23 named-token additions (June 2026)
+   * Direct records from Hoya/Ohara Zemax data mirrored by refractiveindex.info.
+   * BSC3 is resolved through the legacy Hoya E-C3 optical constants; incompatible
+   * 583/594 annotations must use their own matching catalog row instead.
+   */
+  {
+    name: "E-FD13",
+    vendor: "Hoya",
+    polynomial: [2.9205906, -0.013681618, 0.03256776, 0.0028725519, -0.00024277107, 0.000026614514],
+    nd: 1.74077,
+    vd: 27.76,
+    PgF: 0.6077,
+    code6: "741278",
+    source: "Hoya Zemax catalog 2017-04-01 via refractiveindex.info; E-FD13 page (formula 3 polynomial).",
+  },
+  {
+    name: "E-FD10",
+    vendor: "Hoya",
+    polynomial: [2.881518, -0.013228312, 0.03145559, 0.0026851666, -0.00022577544, 0.000024693268],
+    nd: 1.72825,
+    vd: 28.32,
+    PgF: 0.6059,
+    code6: "728283",
+    source: "Hoya Zemax catalog 2017-04-01 via refractiveindex.info; E-FD10 page (formula 3 polynomial).",
+  },
+  {
+    name: "BACD4",
+    vendor: "Hoya",
+    polynomial: [2.5584621, -0.0097457283, 0.015110495, 0.00023273333, 0.0000011137249, 0.00000016424767],
+    nd: 1.61272,
+    vd: 58.58,
+    PgF: 0.5448,
+    code6: "613586",
+    source: "Hoya Zemax catalog 2017-04-01 via refractiveindex.info; BACD4 page (formula 3 polynomial).",
+  },
+  {
+    name: "E-C3",
+    vendor: "Hoya",
+    polynomial: [2.2725452, -0.008410491, 0.011306843, 0.00037782297, -0.000026903423, 0.0000015976489],
+    nd: 1.51823,
+    vd: 58.96,
+    PgF: 0.5442,
+    code6: "518590",
+    source: "Hoya Zemax catalog 2017-04-01 via refractiveindex.info; E-C3 page (formula 3 polynomial).",
+  },
+  {
+    name: "S-BSM15",
+    vendor: "Ohara",
+    B: [0.953128328, 0.637613977, 1.65245647],
+    C: [0.00387638985, 0.0185094632, 159.442367],
+    nd: 1.622992,
+    vd: 58.165763,
+    PgF: 0.5459,
+    code6: "623582",
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info; S-BSM15 page.",
   },
 ];

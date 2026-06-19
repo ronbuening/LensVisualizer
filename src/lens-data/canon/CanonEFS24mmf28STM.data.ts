@@ -120,7 +120,7 @@ const LENS_DATA = {
       nd: 1.58313,
       vd: 59.4,
       fl: 42.54,
-      glass: "E-C3 / BSC3 class (HOYA)",
+      glass: "S-BAL42 (OHARA) / 583594 barium crown",
       apd: false,
       role: "Aspherical field flattener; corrects field curvature and residual spherical aberration at large ray heights",
     },
