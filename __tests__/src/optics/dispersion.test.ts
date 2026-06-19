@@ -95,6 +95,22 @@ describe("glass catalog", () => {
     expect(evaluateSellmeier(nbalf4!, LINE_NM.d)).toBeCloseTo(1.57956, 5);
   });
 
+  it("evaluates the phase 23 named-token catalog additions", () => {
+    const expected: Array<[glass: string, nd: number]> = [
+      ["E-FD13", 1.74077],
+      ["E-FD10", 1.72825],
+      ["S-BSM15", 1.622992],
+      ["BACD4", 1.61272],
+      ["E-C3", 1.51823],
+    ];
+    for (const [glass, nd] of expected) {
+      const entry = resolveGlass(glass);
+      expect(entry?.name).toBe(glass);
+      expect(evaluateSellmeier(entry!, LINE_NM.d)).toBeCloseTo(nd, 5);
+    }
+    expect(resolveGlass("BSC3 (Hoya) / historical crown equivalent")?.name).toBe("E-C3");
+  });
+
   it("evaluates explicit power-series catalog entries", () => {
     const hikariPskh1 = resolveGlass("593679 - fluorophosphate crown");
     expect(hikariPskh1?.name).toBe("J-PSKH1");

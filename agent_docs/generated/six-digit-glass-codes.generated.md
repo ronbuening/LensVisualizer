@@ -781,7 +781,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
 |---|---|---|---|---|---|---|---|
-| L1 (Element 1) | 1 | `613586 — dense crown (line-index backfill; patent nd=1.61272, νd=58.6)` | 1.61272 / 58.60 | No catalog entry | lineIndices | patents/US4303314.pdf | Reviewed sidecar hit |
+| L1 (Element 1) | 1 | `613586 — dense crown (line-index backfill; patent nd=1.61272, νd=58.6)` | 1.61272 / 58.60 | BACD4 (trusted Sellmeier) | lineIndices | patents/US4303314.pdf | Reviewed sidecar hit |
 
 ### [NIKON SERIES E 135mm f/2.8](../../src/lens-data/nikon/NikonSeriesE135mmf28.data.ts) - US 4,303,314
 

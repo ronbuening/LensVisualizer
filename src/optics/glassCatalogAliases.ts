@@ -46,4 +46,7 @@ export const ALIASES: ReadonlyMap<string, string> = new Map([
   ["SK2", "N-SK2"],
   // HOYA's TAFD35L PGM/pressed-glass row shares the TAFD35 911/353 optical constants.
   ["TAFD35L", "TAFD35"],
+  // Historical Hoya BSC3 annotations in the lens data refer to the 518/590
+  // E-C3 crown row; 583/594 barium-crown rows must not use this alias.
+  ["BSC3", "E-C3"],
 ]);

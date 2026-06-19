@@ -11,8 +11,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 - **354** lenses scanned
 - **300** total code-only elements found
-- **201** elements in this report
-- **80** distinct lens files affected
+- **200** elements in this report
+- **79** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -82,7 +82,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 603564 | 1 | 1 | patents/JP2022092388A.pdf | All representative rows reviewed |
 | 612313 | 1 | 1 | patents/US20210026133A1.pdf | All representative rows reviewed |
 | 613369 | 1 | 1 | patents/US3743384.pdf | All representative rows reviewed |
-| 613586 | 1 | 1 | patents/US4303314.pdf | All representative rows reviewed |
 | 614563 | 1 | 1 | patents/US3376091.pdf | No reviewed-sidecar hit |
 | 617540 | 1 | 1 | patents/US5717527.pdf | No reviewed-sidecar hit |
 | 621380 | 1 | 1 | patents/US2896506.pdf | All representative rows reviewed |
@@ -564,12 +563,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
 |---|---|---|---|---|---|---|---|
 | L1 (Front corrector) | 1 | `Unmatched light crown (525/596; K5-class nearest)` | 1.52450 / 59.60 | No catalog entry | abbe | patents/US3632190.pdf | No reviewed-sidecar hit |
-
-### [NIKON SERIES E 100mm f/2.8](../../src/lens-data/nikon/NikonSeriesE100mmf28.data.ts) - US 4,303,314
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
-|---|---|---|---|---|---|---|---|
-| L1 (Element 1) | 1 | `613586 — dense crown (line-index backfill; patent nd=1.61272, νd=58.6)` | 1.61272 / 58.60 | No catalog entry | lineIndices | patents/US4303314.pdf | Reviewed sidecar hit |
 
 ### [NIKON SERIES E 135mm f/2.8](../../src/lens-data/nikon/NikonSeriesE135mmf28.data.ts) - US 4,303,314
 

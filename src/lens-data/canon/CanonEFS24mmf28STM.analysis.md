@@ -96,13 +96,13 @@ From Table 1, $\theta_{gF,R3}$ = 0.544, yielding a deviation of +0.014 above the
 
 ### L6 (RG4) — Positive Meniscus, Concave to Object (1× Aspherical Surface)
 
-$n_d$ = 1.58313, $\nu_d$ = 59.4. Glass: E-C3 / BSC3 class (HOYA) or H-ZBAK6 (CDGM) — borosilicate crown. $f$ = +42.5 mm.
+$n_d$ = 1.58313, $\nu_d$ = 59.4. Glass: S-BAL42 (OHARA) / 583594 barium crown. $f$ = +42.5 mm.
 
 L6 is the rearmost element and carries the only aspherical surface in the design (surface 12, its object-facing side). Both radii are negative (R12 = −34.842, R13 = −15.035), forming a positive meniscus concave to the object. The element sits at the point in the optical train where both axial and off-axis ray bundles reach their largest diameters (effective diameter of surface 13 is 18.94 mm, the largest in the lens), making it the optimal location for an aspherical corrector.
 
 The patent notes (¶0045) that L6 (RG4) is the preferred position for an asphere because both the on-axis marginal ray height and the off-axis chief ray height are large at this element. Placing the asphere here allows a single surface to simultaneously address field curvature and residual spherical aberration — corrections that would otherwise require additional elements.
 
-The glass is a borosilicate crown of moderate index and dispersion. Its $n_d$ and $\nu_d$ match two catalog entries within transcription tolerance: HOYA E-C3 / BSC3 and CDGM H-ZBAK6 (both $\Delta n_d$ = 0, $\Delta\nu_d$ < 0.1). No OHARA catalog glass corresponds to this $n_d$/$\nu_d$ pair, suggesting Canon sourced this element from HOYA or CDGM, or used a proprietary moldable variant with the same refractive properties. Canon's high-volume production of this pancake lens at a low price point would strongly favor precision glass molding (PGM) over conventional polishing for the aspherical element.
+The glass is a barium crown of moderate index and dispersion. Its $n_d$ and $\nu_d$ match OHARA S-BAL42 within transcription tolerance ($\Delta n_d$ < 1×10⁻⁵, $\Delta\nu_d$ < 0.1). The earlier E-C3/BSC3 class label is not retained: current Hoya E-C3/BSC3 constants are the lower-index 518/590 crown, not this 583/594 row.
 
 ## Glass Identification and Selection
 
@@ -115,7 +115,7 @@ The design uses six distinct glass types spanning a wide range of refractive ind
 | L3 | 1.69680 | 55.5 | S-BAL42 (OHARA) | Barium crown | Crown component of cemented achromatic doublet |
 | L4 | 1.80610 | 33.3 | S-TIH10 (OHARA) | Dense flint | Flint component of cemented doublet; aberration correction |
 | L5 | 1.59522 | 67.7 | S-FPM2 (OHARA) | Fluorophosphate crown | Anomalous dispersion positive; lateral color correction |
-| L6 | 1.58313 | 59.4 | E-C3 / BSC3 (HOYA) or H-ZBAK6 (CDGM) | Borosilicate crown | Moldable aspherical field flattener (PGM variant inferred) |
+| L6 | 1.58313 | 59.4 | S-BAL42 (OHARA) / 583594 | Barium crown | Moldable aspherical field flattener (PGM variant inferred) |
 
 **Chromatic strategy:** The design employs two distinct achromatic pairings. In the front group, L1 ($\nu_d$ = 35.3) and L2 ($\nu_d$ = 70.2) provide a large Abbe number difference of 34.9, correcting the axial chromatic aberration introduced by the front group's strong negative power. In the rear group, the cemented doublet L3 ($\nu_d$ = 55.5) + L4 ($\nu_d$ = 33.3) provides $\Delta\nu_d$ = 22.2, achromatizing the rear group's positive contributions. L5's fluorophosphate glass ($\theta_{gF}$ = 0.544, $\Delta P_{gF}$ ≈ +0.014) addresses secondary spectrum — particularly lateral color at the field edges — without requiring an ED element.
 
@@ -234,5 +234,4 @@ The patent also presents three alternative embodiments. Example 3 ($f$ = 20.65 m
 1. JP 2015-111192 A (2015), "光学系及びそれを有する撮像装置" (Optical System and Image Pickup Apparatus Having the Same), Canon Inc., Inventor: Gyoda Yuichi.
 2. Canon Inc. official product specifications: EF-S 24mm f/2.8 STM (canon-europe.com, usa.canon.com).
 3. OHARA Inc. optical glass catalog (ohara-inc.co.jp) — S-LAH55V, S-FSL5, S-BAL42, S-TIH10, S-FPM2.
-4. HOYA Corporation optical glass catalog — BSC3 / E-C3 (borosilicate crown).
-5. CDGM optical glass catalog — H-ZBAK6 (borosilicate crown).
+4. HOYA Corporation optical glass catalog — E-C3 / BSC3 historical crown row, checked and rejected for L6 because it is the 518/590 glass.
