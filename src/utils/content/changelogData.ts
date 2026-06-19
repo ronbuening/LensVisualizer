@@ -19,6 +19,12 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-06-19 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-06-19",
+    type: "lens",
+    summary: "Added six Nikon lenses, including Series E primes and AI zooms",
+  },
   // ── 2026-06-18 ──────────────────────────────────────────────────────────
   {
     date: "2026-06-18",

@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **348** lenses scanned
-- **3933** non-air surfaces examined
-- **3937** element glass declarations examined
-- **625** non-explicit-unmatched annotations did not resolve
-- **222** distinct unresolved glass-like tokens found
+- **354** lenses scanned
+- **4001** non-air surfaces examined
+- **4005** element glass declarations examined
+- **638** non-explicit-unmatched annotations did not resolve
+- **224** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -25,6 +25,7 @@ or per-lens patent backfills.
 | 516565 | 3 | 1 | |
 | 585587 | 3 | 1 | |
 | 744495 | 3 | 3 | |
+| 785261 | 3 | 2 | |
 | 863248 | 3 | 1 | |
 | E-FD10 | 3 | 2 | |
 | E-FD13 | 3 | 3 | |
@@ -33,12 +34,12 @@ or per-lens patent backfills.
 | 514428 | 2 | 1 | |
 | 531559 | 2 | 2 | |
 | 585594 | 2 | 1 | |
+| 620586 | 2 | 1 | |
 | 666356 | 2 | 1 | |
 | 744448 | 2 | 1 | |
 | 755516 | 2 | 1 | |
 | 774492 | 2 | 1 | |
 | 784438 | 2 | 1 | |
-| 785261 | 2 | 1 | |
 | 807316 | 2 | 2 | |
 | 813252 | 2 | 1 | |
 | 856401 | 2 | 1 | |
@@ -92,6 +93,7 @@ or per-lens patent backfills.
 | 606637 | 1 | 1 | |
 | 612313 | 1 | 1 | |
 | 612372 | 1 | 1 | |
+| 613586 | 1 | 1 | |
 | 624584 | 1 | 1 | |
 | 630346 | 1 | 1 | |
 | 640601 | 1 | 1 | |
@@ -290,6 +292,12 @@ or per-lens patent backfills.
 - [NIKON NIKKOR Z 24-70mm f/4 S](../../src/lens-data/nikon/NikonNikkorZ2470mmf4S.data.ts) 4: `744495 — PGM low-Tg lanthanum crown (patent nd=1.74353, νd=49.5; no exact public catalog match)`
 - [NIKON NIKKOR Z 24-70mm f/2.8 S](../../src/lens-data/nikon/NikonZ2470f28.data.ts) 6A: `744495 — moldable lanthanum crown (patent nd=1.74389, νd=49.53; no exact public catalog match)`
 
+### 785261 — 3 occurrences
+
+- [Nikon AF Nikkor 20mm f/2.8D](../../src/lens-data/nikon/NikonAFNikkor20mmf28D.data.ts) 3: `SF56A equivalent (SCHOTT / 785261)`
+- [Nikon AF Nikkor 20mm f/2.8D](../../src/lens-data/nikon/NikonAFNikkor20mmf28D.data.ts) 16: `SF56A equivalent (SCHOTT / 785261)`
+- [NIKON SERIES E 135mm f/2.8](../../src/lens-data/nikon/NikonSeriesE135mmf28.data.ts) 7: `785261 — dense flint (line-index backfill; patent nd=1.78470, νd=26.1)`
+
 ### 863248 — 3 occurrences
 
 - [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 10: `863248 — ultra-dense flint (patent nd=1.86290, nu_d=24.8)`
@@ -335,6 +343,11 @@ or per-lens patent backfills.
 - [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 20: `585594 — barium crown (patent nd=1.58547, nu_d=59.4)`
 - [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 22A: `585594 — barium crown (patent nd=1.58547, nu_d=59.4), XA element`
 
+### 620586 — 2 occurrences
+
+- [NIKON SERIES E 135mm f/2.8](../../src/lens-data/nikon/NikonSeriesE135mmf28.data.ts) 1: `620586 — patent crown glass (nd=1.62041, νd=58.6; no catalog match verified)`
+- [NIKON SERIES E 135mm f/2.8](../../src/lens-data/nikon/NikonSeriesE135mmf28.data.ts) 3: `620586 — patent crown glass (nd=1.62041, νd=58.6; no catalog match verified)`
+
 ### 666356 — 2 occurrences
 
 - [CANON RF 50mm f/1.2 L USM](../../src/lens-data/canon/CanonRF50mmf12L.data.ts) 8: `666356 — dense flint (nd=1.66565, νd=35.64)`
@@ -359,11 +372,6 @@ or per-lens patent backfills.
 
 - [CARL ZEISS CONTAREX PLANAR 55mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissContarexPlanar55mmf14.data.ts) 7: `LaF10 (Schott 784438)`
 - [CARL ZEISS CONTAREX PLANAR 55mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissContarexPlanar55mmf14.data.ts) 9: `LaF10 (Schott 784438)`
-
-### 785261 — 2 occurrences
-
-- [Nikon AF Nikkor 20mm f/2.8D](../../src/lens-data/nikon/NikonAFNikkor20mmf28D.data.ts) 3: `SF56A equivalent (SCHOTT / 785261)`
-- [Nikon AF Nikkor 20mm f/2.8D](../../src/lens-data/nikon/NikonAFNikkor20mmf28D.data.ts) 16: `SF56A equivalent (SCHOTT / 785261)`
 
 ### 807316 — 2 occurrences
 
@@ -603,6 +611,10 @@ or per-lens patent backfills.
 ### 612372 — 1 occurrence
 
 - [CARL ZEISS JENA TESSAR 50mm f/2.8](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaTessar50mmf28.data.ts) 3: `612372 F (≈ Schott F3 legacy)`
+
+### 613586 — 1 occurrence
+
+- [NIKON SERIES E 100mm f/2.8](../../src/lens-data/nikon/NikonSeriesE100mmf28.data.ts) 1: `613586 — dense crown (line-index backfill; patent nd=1.61272, νd=58.6)`
 
 ### 624584 — 1 occurrence
 
