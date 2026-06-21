@@ -9,10 +9,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **357** lenses scanned
-- **303** total code-only elements found
-- **203** elements in this report
-- **82** distinct lens files affected
+- **360** lenses scanned
+- **306** total code-only elements found
+- **206** elements in this report
+- **83** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -36,6 +36,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 518603 | 2 | 2 | patents/US4770511.pdf<br>patents/US4699475.pdf | All representative rows reviewed |
 | 531559 | 2 | 2 | patents/US20200142167A1.pdf<br>patents/WO2021039813A1.pdf | All representative rows reviewed |
 | 561453 | 2 | 2 | patents/US20020075570A1.pdf<br>patents/US3376091.pdf | 1/2 representative rows reviewed |
+| 569632 | 2 | 1 | Missing from untracked local patents/ references (US4025167, 4025167) | No reviewed-sidecar hit |
 | 585594 | 2 | 1 | patents/JP2023039817A.pdf | All representative rows reviewed |
 | 586609 | 2 | 1 | patents/US7301711.pdf | No reviewed-sidecar hit |
 | 620586 | 2 | 1 | patents/US4303314.pdf | All representative rows reviewed |
@@ -53,6 +54,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 933209 | 2 | 2 | patents/WO2021199923A1.pdf<br>patents/JP2023039817A.pdf | All representative rows reviewed |
 | 465658 | 1 | 1 | patents/US4189212.pdf | No reviewed-sidecar hit |
 | 487698 | 1 | 1 | patents/US3838911.pdf | All representative rows reviewed |
+| 498650 | 1 | 1 | Missing from untracked local patents/ references (US4025167, 4025167) | No reviewed-sidecar hit |
 | 504667 | 1 | 1 | patents/US2721499.pdf | All representative rows reviewed |
 | 511509 | 1 | 1 | patents/US4266860.pdf | No reviewed-sidecar hit |
 | 514530 | 1 | 1 | patents/JP2016021011A.pdf | All representative rows reviewed |
@@ -617,6 +619,14 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
 |---|---|---|---|---|---|---|---|
 | L5 (Element 5) | 9 | `683447 — barium/lanthanum flint family (patent nd=1.68250, νd=44.65; no exact public catalog match)` | 1.68250 / 44.65 | No catalog entry | abbe | patents/US4708445.pdf | Reviewed sidecar hit |
+
+### [OLYMPUS ZUIKO AUTO-ZOOM 85-250mm f/5](../../src/lens-data/olympus/OlympusZuikoAutoZoom85250mmf5.data.ts) - US 4,025,167
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+|---|---|---|---|---|---|---|---|
+| L4 (Element 4) | 6 | `569632 — dense crown (patent glass code)` | 1.56873 / 63.20 | No catalog entry | abbe | Missing from untracked local patents/ references (US4025167, 4025167) | No reviewed-sidecar hit |
+| L7 (Element 7) | 11 | `569632 — dense crown (patent glass code)` | 1.56873 / 63.20 | No catalog entry | abbe | Missing from untracked local patents/ references (US4025167, 4025167) | No reviewed-sidecar hit |
+| L10 (Element 10) | 16 | `498650 — borosilicate crown (patent glass code)` | 1.49831 / 65.00 | No catalog entry | abbe | Missing from untracked local patents/ references (US4025167, 4025167) | No reviewed-sidecar hit |
 
 ### [OLYMPUS ZUIKO DIGITAL ED 14-35mm f/2.0 SWD](../../src/lens-data/olympus/OlympusMZuiko1435mmf2ED.data.ts) - US 8,081,392 B2
 

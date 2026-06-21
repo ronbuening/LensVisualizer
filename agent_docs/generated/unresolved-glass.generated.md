@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **357** lenses scanned
-- **4033** non-air surfaces examined
-- **4037** element glass declarations examined
-- **621** non-explicit-unmatched annotations did not resolve
-- **213** distinct unresolved glass-like tokens found
+- **360** lenses scanned
+- **4068** non-air surfaces examined
+- **4072** element glass declarations examined
+- **632** non-explicit-unmatched annotations did not resolve
+- **221** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -26,8 +26,10 @@ or per-lens patent backfills.
 | 744495 | 3 | 3 | |
 | 863248 | 3 | 1 | |
 | S-TIF6 | 3 | 3 | |
+| 511605 | 2 | 1 | |
 | 514428 | 2 | 1 | |
 | 531559 | 2 | 2 | |
+| 569632 | 2 | 1 | |
 | 585594 | 2 | 1 | |
 | 620586 | 2 | 1 | |
 | 666356 | 2 | 1 | |
@@ -41,6 +43,8 @@ or per-lens patent backfills.
 | 861230 | 2 | 1 | |
 | E-FDS3HT | 2 | 1 | |
 | F7 | 2 | 2 | |
+| F8 | 2 | 2 | |
+| H-K6 | 2 | 1 | |
 | H-LAF3 | 2 | 2 | |
 | H-ZLAF4A | 2 | 1 | |
 | K-LAFK50 | 2 | 1 | |
@@ -63,6 +67,8 @@ or per-lens patent backfills.
 | 157957 | 1 | 1 | |
 | 182080 | 1 | 1 | |
 | 487698 | 1 | 1 | |
+| 498650 | 1 | 1 | |
+| 500660 | 1 | 1 | |
 | 514530 | 1 | 1 | |
 | 518523 | 1 | 1 | |
 | 518635 | 1 | 1 | |
@@ -157,10 +163,10 @@ or per-lens patent backfills.
 | E-FEL6 | 1 | 1 | |
 | E-FPL51 | 1 | 1 | |
 | F3 | 1 | 1 | |
-| F8 | 1 | 1 | |
 | FCD10A | 1 | 1 | |
 | FCD500 | 1 | 1 | |
 | FCD915 | 1 | 1 | |
+| H-K2 | 1 | 1 | |
 | H-K8 | 1 | 1 | |
 | H-K9L | 1 | 1 | |
 | H-LAF51 | 1 | 1 | |
@@ -182,7 +188,9 @@ or per-lens patent backfills.
 | H-ZLAF75B | 1 | 1 | |
 | H-ZLAF92 | 1 | 1 | |
 | K-BASF5 | 1 | 1 | |
+| K-PSKN2 | 1 | 1 | |
 | K-SFS5 | 1 | 1 | |
+| K-SSK9 | 1 | 1 | |
 | L-BBH1 | 1 | 1 | |
 | L-LAH83 | 1 | 1 | |
 | L-LAH85 | 1 | 1 | |
@@ -285,6 +293,11 @@ or per-lens patent backfills.
 - [NIKON AF-S NIKKOR 80-400mm f/4.5-5.6 G ED VR](../../src/lens-data/nikon/NikonNikkorAFS80400mmf4556G.data.ts) 29: `S-TIF6 (OHARA)`
 - [RICOH GR LENS A12 28mm f/2.5 (Ricoh GXR A12)](../../src/lens-data/ricoh/RicohGXRA1218mmf25.data.ts) 10: `S-TIF6 (OHARA) / N-SF5 (SCHOTT)`
 
+### 511605 — 2 occurrences
+
+- [OLYMPUS OM-SYSTEM ZUIKO AUTO-ZOOM 65-200mm f/4](../../src/lens-data/olympus/OlympusZuikoAutoZoom65200mmf4.data.ts) 13: `511605 crown class (CDGM H-K6 / legacy OHARA NSL7)`
+- [OLYMPUS OM-SYSTEM ZUIKO AUTO-ZOOM 65-200mm f/4](../../src/lens-data/olympus/OlympusZuikoAutoZoom65200mmf4.data.ts) 25: `511605 crown class (CDGM H-K6 / legacy OHARA NSL7)`
+
 ### 514428 — 2 occurrences
 
 - [NIKON AF-S NIKKOR 20mm f/1.8 G ED](../../src/lens-data/nikon/NikonNikkorAFS20mmf18G.data.ts) 9: `514428 — patent cement layer (nd=1.51400, νd=42.8)`
@@ -294,6 +307,11 @@ or per-lens patent backfills.
 
 - [CANON RF 24-240mm f/4-6.3 IS USM](../../src/lens-data/canon/CanonRF24240mmf463.data.ts) 25A: `531559 - moldable barium light crown (patent nd=1.53110, vd=55.9)`
 - [NIKON AF-P DX NIKKOR 10-20mm f/4.5-5.6 G VR](../../src/lens-data/nikon/NikonAFPDX1020mmf4556G.data.ts) 25: `531559 - patent-specified crown-like glass (theta_gF=0.5684; unresolved)`
+
+### 569632 — 2 occurrences
+
+- [OLYMPUS ZUIKO AUTO-ZOOM 85-250mm f/5](../../src/lens-data/olympus/OlympusZuikoAutoZoom85250mmf5.data.ts) 6: `569632 — dense crown (patent glass code)`
+- [OLYMPUS ZUIKO AUTO-ZOOM 85-250mm f/5](../../src/lens-data/olympus/OlympusZuikoAutoZoom85250mmf5.data.ts) 11: `569632 — dense crown (patent glass code)`
 
 ### 585594 — 2 occurrences
 
@@ -359,6 +377,16 @@ or per-lens patent backfills.
 
 - [CANON SERENAR 28mm f/3.5](../../src/lens-data/canon/CanonSerenar28mmf35.data.ts) 4: `F7 (Schott)`
 - [CARL ZEISS PRO-TESSAR 35mm f/3.2](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissProTessar35mmf32.data.ts) 10: `F7 (Schott)`
+
+### F8 — 2 occurrences
+
+- [CARL ZEISS TESSAR 50mm f/3.5](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissTessar50mmf35.data.ts) 3: `F8 historical (Schott, discontinued)`
+- [OLYMPUS ZUIKO AUTO-ZOOM 85-250mm f/5](../../src/lens-data/olympus/OlympusZuikoAutoZoom85250mmf5.data.ts) 21: `F8 class (Hikari / HOYA)`
+
+### H-K6 — 2 occurrences
+
+- [OLYMPUS OM-SYSTEM ZUIKO AUTO-ZOOM 65-200mm f/4](../../src/lens-data/olympus/OlympusZuikoAutoZoom65200mmf4.data.ts) 13: `511605 crown class (CDGM H-K6 / legacy OHARA NSL7)`
+- [OLYMPUS OM-SYSTEM ZUIKO AUTO-ZOOM 65-200mm f/4](../../src/lens-data/olympus/OlympusZuikoAutoZoom65200mmf4.data.ts) 25: `511605 crown class (CDGM H-K6 / legacy OHARA NSL7)`
 
 ### H-LAF3 — 2 occurrences
 
@@ -466,6 +494,14 @@ or per-lens patent backfills.
 ### 487698 — 1 occurrence
 
 - [OLYMPUS E.ZUIKO AUTO-T 135mm f/3.5](../../src/lens-data/olympus/OlympusZuiko135mmf35.data.ts) 3: `487698 — FK/FSL low-dispersion crown class (patent nd=1.48749, νd=69.8; no exact modern coefficient-backed match)`
+
+### 498650 — 1 occurrence
+
+- [OLYMPUS ZUIKO AUTO-ZOOM 85-250mm f/5](../../src/lens-data/olympus/OlympusZuikoAutoZoom85250mmf5.data.ts) 16: `498650 — borosilicate crown (patent glass code)`
+
+### 500660 — 1 occurrence
+
+- [OLYMPUS OM-SYSTEM ZUIKO AUTO-ZOOM 65-200mm f/4](../../src/lens-data/olympus/OlympusZuikoAutoZoom65200mmf4.data.ts) 17: `500660 crown class (CDGM H-K2 / OHARA BSL4)`
 
 ### 514530 — 1 occurrence
 
@@ -843,10 +879,6 @@ or per-lens patent backfills.
 
 - [CARL ZEISS JENA TESSAR 50mm f/2.8](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaTessar50mmf28.data.ts) 3: `612372 F (≈ Schott F3 legacy)`
 
-### F8 — 1 occurrence
-
-- [CARL ZEISS TESSAR 50mm f/3.5](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissTessar50mmf35.data.ts) 3: `F8 historical (Schott, discontinued)`
-
 ### FCD10A — 1 occurrence
 
 - [SIGMA 35mm f/1.4 DG DN | Art](../../src/lens-data/sigma/SigmaDGDNA35mmf14.data.ts) 11: `HOYA FCD10A (459/902)`
@@ -858,6 +890,10 @@ or per-lens patent backfills.
 ### FCD915 — 1 occurrence
 
 - [SIGMA 28-45mm f/1.8 DG DN | Art](../../src/lens-data/sigma/Sigma2845mmf18DN.data.ts) 20: `FCD915 (HOYA)`
+
+### H-K2 — 1 occurrence
+
+- [OLYMPUS OM-SYSTEM ZUIKO AUTO-ZOOM 65-200mm f/4](../../src/lens-data/olympus/OlympusZuikoAutoZoom65200mmf4.data.ts) 17: `500660 crown class (CDGM H-K2 / OHARA BSL4)`
 
 ### H-K8 — 1 occurrence
 
@@ -943,9 +979,17 @@ or per-lens patent backfills.
 
 - [Nikon AI-S Zoom-Nikkor 35–70mm f/3.5](../../src/lens-data/nikon/NikonAIZoomNikkor3570mmf35.data.ts) 1: `603/425 barium flint; Sumita K-BaSF5-equivalent`
 
+### K-PSKN2 — 1 occurrence
+
+- [OLYMPUS ZUIKO AUTO-ZOOM 85-250mm f/5](../../src/lens-data/olympus/OlympusZuikoAutoZoom85250mmf5.data.ts) 9: `PSK53A / K-PSKn2 class`
+
 ### K-SFS5 — 1 occurrence
 
 - [VOIGTLÄNDER MACRO APO-LANTHAR 125mm f/2.5 SL](../../src/lens-data/voigtlander/VoigtlanderMacroApoLanthar125mmf25.data.ts) 7: `SF5 (Schott) / K-SFS5 (Sumita)`
+
+### K-SSK9 — 1 occurrence
+
+- [OLYMPUS ZUIKO AUTO-ZOOM 85-250mm f/5](../../src/lens-data/olympus/OlympusZuikoAutoZoom85250mmf5.data.ts) 13: `K-SSK9 (Sumita) / BSM28 class`
 
 ### L-BBH1 — 1 occurrence
 
