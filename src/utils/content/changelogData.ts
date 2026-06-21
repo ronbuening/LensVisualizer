@@ -19,6 +19,12 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-06-20 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-06-20",
+    type: "lens",
+    summary: "Added Olympus 21mm, 9-36mm, and 8mm fisheye lenses",
+  },
   // ── 2026-06-19 ──────────────────────────────────────────────────────────
   {
     date: "2026-06-19",

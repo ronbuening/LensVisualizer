@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **354** lenses scanned
-- **4001** non-air surfaces examined
-- **4005** element glass declarations examined
-- **618** non-explicit-unmatched annotations did not resolve
-- **212** distinct unresolved glass-like tokens found
+- **357** lenses scanned
+- **4033** non-air surfaces examined
+- **4037** element glass declarations examined
+- **621** non-explicit-unmatched annotations did not resolve
+- **213** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -173,6 +173,7 @@ or per-lens patent backfills.
 | H-QF50 | 1 | 1 | |
 | H-ZF1 | 1 | 1 | |
 | H-ZF2 | 1 | 1 | |
+| H-ZF39 | 1 | 1 | |
 | H-ZF52A | 1 | 1 | |
 | H-ZF72 | 1 | 1 | |
 | H-ZLAF2 | 1 | 1 | |
@@ -905,6 +906,10 @@ or per-lens patent backfills.
 ### H-ZF2 — 1 occurrence
 
 - [LAOWA 24mm f/14 2× Macro Probe](../../src/lens-data/laowa/Laowa24mmf14Probe.data.ts) 44: `H-ZF2 (CDGM)`
+
+### H-ZF39 — 1 occurrence
+
+- [OLYMPUS ZUIKO AUTO-FISHEYE 8mm f/2.8](../../src/lens-data/olympus/OlympusZuikoAutoFisheye8mmf28.data.ts) 7: `H-ZF39 class (CDGM; 667/330)`
 
 ### H-ZF52A — 1 occurrence
 
