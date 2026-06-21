@@ -9,10 +9,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **354** lenses scanned
-- **300** total code-only elements found
-- **200** elements in this report
-- **79** distinct lens files affected
+- **357** lenses scanned
+- **303** total code-only elements found
+- **203** elements in this report
+- **82** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -56,6 +56,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 504667 | 1 | 1 | patents/US2721499.pdf | All representative rows reviewed |
 | 511509 | 1 | 1 | patents/US4266860.pdf | No reviewed-sidecar hit |
 | 514530 | 1 | 1 | patents/JP2016021011A.pdf | All representative rows reviewed |
+| 516641 | 1 | 1 | patents/US20030072086A1.pdf | No reviewed-sidecar hit |
 | 518523 | 1 | 1 | patents/US4871239.pdf | All representative rows reviewed |
 | 525558 | 1 | 1 | patents/US8994842.pdf | No reviewed-sidecar hit |
 | 525596 | 1 | 1 | patents/US3632190.pdf | No reviewed-sidecar hit |
@@ -111,6 +112,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 700555 | 1 | 1 | patents/WO_2025263124_A1.pdf | No reviewed-sidecar hit |
 | 702411 | 1 | 1 | patents/US3376091.pdf | No reviewed-sidecar hit |
 | 713433 | 1 | 1 | patents/US3942876.pdf | No reviewed-sidecar hit |
+| 720421 | 1 | 1 | patents/US3884556.pdf | No reviewed-sidecar hit |
 | 720521 | 1 | 1 | Missing from untracked local patents/ references (US4786152, 4786152) | No reviewed-sidecar hit |
 | 721334 | 1 | 1 | Missing from untracked local patents/ references (US4786152, 4786152) | No reviewed-sidecar hit |
 | 728403 | 1 | 1 | patents/US6560042.pdf | No reviewed-sidecar hit |
@@ -136,6 +138,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 775473 | 1 | 1 | patents/WO2022259649A1.pdf | No reviewed-sidecar hit |
 | 781446 | 1 | 1 | patents/JP2004109559A.pdf | All representative rows reviewed |
 | 786275 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | No reviewed-sidecar hit |
+| 787501 | 1 | 1 | patents/DE_2157160_A1.pdf | No reviewed-sidecar hit |
 | 792257 | 1 | 1 | patents/JP2023039817A.pdf | No reviewed-sidecar hit |
 | 792450 | 1 | 1 | patents/WO2020136749A1.pdf | All representative rows reviewed |
 | 794255 | 1 | 1 | patents/US7542219.pdf | No reviewed-sidecar hit |
@@ -584,12 +587,30 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---|---|---|---|---|---|---|
 | L2 (Element 2) | 3 | `487698 — FK/FSL low-dispersion crown class (patent nd=1.48749, νd=69.8; no exact modern coefficient-backed match)` | 1.48749 / 69.80 | No catalog entry | abbe | patents/US3838911.pdf | Reviewed sidecar hit |
 
+### [OLYMPUS G.ZUIKO AUTO-W 21mm f/3.5](../../src/lens-data/olympus/OlympusGZuikoAutoW21mmf35.data.ts) - US 3,884,556
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+|---|---|---|---|---|---|---|---|
+| L1 (Element 1) | 1 | `Unmatched (vintage lanthanum flint, code 720/421)` | 1.72000 / 42.10 | No catalog entry | abbe | patents/US3884556.pdf | No reviewed-sidecar hit |
+
 ### [OLYMPUS M.ZUIKO DIGITAL 14-42mm f/3.5-5.6 II R](../../src/lens-data/olympus/OlympusMZuiko1442mmf3556II.data.ts) - US 8,994,842 B2
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
 |---|---|---|---|---|---|---|---|
 | L2 (Element 2) | 3A | `Unmatched (moldable crown, 525/558 class)` | 1.52542 / 55.78 | No catalog entry | abbe | patents/US8994842.pdf | No reviewed-sidecar hit |
 | L7 (Element 7) | 13A | `Unmatched (moldable crown, 531/557 class)` | 1.53071 / 55.69 | No catalog entry | abbe | patents/US8994842.pdf | No reviewed-sidecar hit |
+
+### [OLYMPUS ZUIKO 9-36mm f/2-2.4 (Olympus E-10 / E-20)](../../src/lens-data/olympus/OlympusZuiko936mmf224.data.ts) - US 2003/0072086 A1
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+|---|---|---|---|---|---|---|---|
+| P1 (24 mm path-splitter prism) | 27 | `Path-splitter prism glass (516/641, patent-listed)` | 1.51633 / 64.14 | No catalog entry | abbe | patents/US20030072086A1.pdf | No reviewed-sidecar hit |
+
+### [OLYMPUS ZUIKO AUTO-FISHEYE 8mm f/2.8](../../src/lens-data/olympus/OlympusZuikoAutoFisheye8mmf28.data.ts) - DE 2157160 A1
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+|---|---|---|---|---|---|---|---|
+| L6 (Element 6) | 9 | `Unmatched (787/501 code; probable vintage high-index lanthanum flint)` | 1.78650 / 50.10 | No catalog entry | abbe | patents/DE_2157160_A1.pdf | No reviewed-sidecar hit |
 
 ### [OLYMPUS ZUIKO AUTO-MACRO 50mm f/2](../../src/lens-data/olympus/OlympusZuikoAutoMacro50mmf2.data.ts) - US 4,708,445
 
