@@ -22,6 +22,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-06-22 ──────────────────────────────────────────────────────────
   {
     date: "2026-06-22",
+    type: "improvement",
+    summary: "Refreshed the brand mark, favicons, and social cards with a negative center element",
+  },
+  {
+    date: "2026-06-22",
     type: "lens",
     summary: "Added three Pentax K-mount lenses, including the A★ 200mm f/4 Macro ED",
   },

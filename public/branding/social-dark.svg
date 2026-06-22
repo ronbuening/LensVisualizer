@@ -44,10 +44,10 @@
     <path d="M 40,-44 A 180,180 0 0 1 40,44" fill="none" stroke="#6a809a" stroke-width="0.5" stroke-dasharray="2,3" opacity="0.4"/>
 
     <!-- GROUP 2 — biconcave negative element, matched to outer concave element height -->
-    <path d="M 102,-44 A 140,140 0 0 1 102,44 L 120,44 A 140,140 0 0 1 120,-44 Z"
+    <path d="M 100,-40 A 93,93 0 0 1 100,40 L 122,40 A 93,93 0 0 1 122,-40 Z"
           fill="url(#crown-glass)" stroke="#5a8aaa" stroke-width="1.1" stroke-linejoin="round"/>
-    <path d="M 102,-44 A 140,140 0 0 1 102,44" fill="none" stroke="url(#coating-reflect)" stroke-width="1.8"/>
-    <path d="M 120,-44 A 140,140 0 0 0 120,44" fill="none" stroke="url(#coating-reflect)" stroke-width="1.5"/>
+    <path d="M 100,-40 A 93,93 0 0 1 100,40" fill="none" stroke="url(#coating-reflect)" stroke-width="1.8"/>
+    <path d="M 122,-40 A 93,93 0 0 0 122,40" fill="none" stroke="url(#coating-reflect)" stroke-width="1.5"/>
 
     <!-- GROUP 3 -->
     <path d="M 155,-42 A 70,70 0 0 1 155,42 L 182,44 A 180,180 0 0 1 182,-44 Z"

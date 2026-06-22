@@ -54,10 +54,10 @@
     <!-- ============================================ -->
 
     <!-- E3: Biconcave (negative element) — matched to outer concave element height -->
-    <path d="M 102,-44 A 140,140 0 0 1 102,44 L 120,44 A 140,140 0 0 1 120,-44 Z"
+    <path d="M 100,-40 A 93,93 0 0 1 100,40 L 122,40 A 93,93 0 0 1 122,-40 Z"
           fill="url(#crown-glass)" stroke="#2a5a78" stroke-width="1.2" stroke-linejoin="round"/>
-    <path d="M 102,-44 A 140,140 0 0 1 102,44" fill="none" stroke="url(#coating-reflect)" stroke-width="1.6"/>
-    <path d="M 120,-44 A 140,140 0 0 0 120,44" fill="none" stroke="url(#coating-reflect)" stroke-width="1.4"/>
+    <path d="M 100,-40 A 93,93 0 0 1 100,40" fill="none" stroke="url(#coating-reflect)" stroke-width="1.6"/>
+    <path d="M 122,-40 A 93,93 0 0 0 122,40" fill="none" stroke="url(#coating-reflect)" stroke-width="1.4"/>
 
     <!-- ============================================ -->
     <!-- GROUP 3: REAR CEMENTED DOUBLET (mirror of G1)-->
