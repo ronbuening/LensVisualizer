@@ -27,6 +27,7 @@ import {
   buildChromaticPositiveElementLens,
   buildGhostClippingLens,
   buildLayoutLens,
+  buildMissAfterFirstHitLens,
   buildSimplePositiveElementLens,
   buildTirLens,
   buildVariableStopGapLens,
@@ -615,12 +616,23 @@ describe("traceRay — Sonnar 50 f/1.5 production lens", () => {
   });
 
   it("ghost mode returns rendering points even when clipped", () => {
-    // Use a very large ray that will definitely clip
-    const h = 2.0 * L.EP.epSD;
+    // Use a marginal ray that hits several surfaces before missing a later one.
+    const h = 0.7 * L.EP.epSD;
     const { clipped, pts, ghostPts } = traceRay(h, 0, zPos, 0, 0, L.stopPhysSD, true, L);
     expect(clipped).toBe(true);
-    // Should still have some rendering points (pts from before clip + ghostPts after)
+    // Preceding valid hits still render even though tracing stops at the miss.
     expect(pts.length + ghostPts.length).toBeGreaterThan(1);
+  });
+
+  it("ghost mode stops after a missed surface while preserving preceding hits", () => {
+    const missLens = buildMissAfterFirstHitLens();
+    const { z: missZPos } = doLayout(0, 0, missLens);
+    const result = traceRay(20, 0, missZPos, 0, 0, 100, true, missLens);
+
+    expect(result.clipped).toBe(true);
+    expect(result.pts).toHaveLength(2);
+    expect(result.pts[1]).toEqual([missZPos[0], 20]);
+    expect(result.ghostPts).toHaveLength(0);
   });
 });
 
