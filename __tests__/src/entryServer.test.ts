@@ -280,6 +280,14 @@ describe("SSR render — maker page /makers/:maker", () => {
     expect(scripts).toContain('"@type":"CollectionPage"');
     expect(scripts).toContain('"@type":"BreadcrumbList"');
   });
+
+  it("renders seeded maker profiles before lens pages exist", () => {
+    const { helmet, html } = render("/makers/agfa");
+    const compactHtml = html.replace(/<!-- -->/g, "");
+    expect(helmet.link.toString()).toContain("/makers/agfa");
+    expect(compactHtml).toContain("Agfa Lenses");
+    expect(compactHtml).toContain("No patent-derived lens diagrams have been published for Agfa yet.");
+  });
 });
 
 /* ── Mounts ── */

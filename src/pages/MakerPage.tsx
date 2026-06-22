@@ -51,13 +51,15 @@ export default function MakerPage() {
   if (!displayName) return <Navigate to="/makers" replace />;
 
   const lenses = lensesForMaker(maker);
-  if (lenses.length === 0) return <Navigate to="/makers" replace />;
   const details = getMakerDetails(maker);
+  if (!details && lenses.length === 0) return <Navigate to="/makers" replace />;
   const makerMounts = mountsForMaker(lenses);
 
-  const seoDescription = details
-    ? `${details.summary} Explore ${lenses.length} patent-derived ${displayName} lens cross-sections with ray tracing and optical analysis.`
-    : `Explore ${lenses.length} patent-derived ${displayName} lens cross-sections with ray tracing and optical analysis.`;
+  const lensCountText =
+    lenses.length > 0
+      ? `Explore ${lenses.length} patent-derived ${displayName} lens cross-sections with ray tracing and optical analysis.`
+      : `Lens cross-sections will appear here as ${displayName} prescriptions are added to the catalog.`;
+  const seoDescription = details ? `${details.summary} ${lensCountText}` : lensCountText;
 
   return (
     <div style={{ backgroundColor: t.bg, color: t.body, minHeight: "100vh" }}>
@@ -106,8 +108,10 @@ export default function MakerPage() {
         {details && (
           <div style={{ marginBottom: "1.5rem" }}>
             <p style={{ fontSize: "0.8rem", color: t.label, marginBottom: "0.75rem" }}>
-              Est. {details.founded} · {details.headquarters} · {lenses.length}{" "}
-              {lenses.length === 1 ? "lens" : "lenses"}
+              Est. {details.founded} · {details.headquarters} ·{" "}
+              {lenses.length > 0
+                ? `${lenses.length} ${lenses.length === 1 ? "lens" : "lenses"}`
+                : "No published lens pages yet"}
             </p>
             {details.history.split("\n\n").map((paragraph, i) => (
               <p key={i} style={{ fontSize: "0.85rem", color: t.desc, lineHeight: 1.6, marginBottom: "0.75rem" }}>
@@ -141,16 +145,22 @@ export default function MakerPage() {
           }
         >
           <div style={{ borderTop: `1px solid ${t.panelBorder}`, paddingTop: "1rem" }}>
-            {lenses.map(({ key, data }) => (
-              <Link key={key} to={`/lens/${key}`} style={{ ...LENS_LINK_BASE_STYLE, color: t.descLinkColor }}>
-                {data.name}
-                {data.specs && data.specs.length > 0 && (
-                  <span style={{ color: t.label, fontSize: "0.75rem", marginLeft: "0.5rem" }}>
-                    — {data.specs.slice(0, 3).join(", ")}
-                  </span>
-                )}
-              </Link>
-            ))}
+            {lenses.length > 0 ? (
+              lenses.map(({ key, data }) => (
+                <Link key={key} to={`/lens/${key}`} style={{ ...LENS_LINK_BASE_STYLE, color: t.descLinkColor }}>
+                  {data.name}
+                  {data.specs && data.specs.length > 0 && (
+                    <span style={{ color: t.label, fontSize: "0.75rem", marginLeft: "0.5rem" }}>
+                      — {data.specs.slice(0, 3).join(", ")}
+                    </span>
+                  )}
+                </Link>
+              ))
+            ) : (
+              <p style={{ fontSize: "0.85rem", color: t.muted, margin: 0 }}>
+                No patent-derived lens diagrams have been published for {displayName} yet.
+              </p>
+            )}
           </div>
         </SidebarLayout>
       </div>

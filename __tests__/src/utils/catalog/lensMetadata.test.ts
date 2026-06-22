@@ -89,6 +89,29 @@ describe("deriveMaker", () => {
     });
   });
 
+  it("derives newly seeded makers and spelling aliases", () => {
+    expect(deriveMaker("AGFA Color-Solinar 50mm f/2.8")).toEqual({
+      display: "Agfa",
+      slug: "agfa",
+    });
+    expect(deriveMaker("ENNA MUNCHEN Lithagon 35mm f/2.8")).toEqual({
+      display: "Enna München",
+      slug: "enna-munchen",
+    });
+    expect(deriveMaker("MEYER OPTIC GOERLITZ Trioplan 100mm f/2.8")).toEqual({
+      display: "Meyer Optik Görlitz",
+      slug: "meyer-optik-goerlitz",
+    });
+    expect(deriveMaker("ROKINON 14mm f/2.8")).toEqual({
+      display: "Samyang",
+      slug: "samyang",
+    });
+    expect(deriveMaker("YASHINON 50mm f/1.7")).toEqual({
+      display: "Yashica",
+      slug: "yashica",
+    });
+  });
+
   it("derives Rodenstock from modern and historical prefixes", () => {
     expect(deriveMaker("RODENSTOCK Grandagon-N 90mm f/4.5")).toEqual({
       display: "Rodenstock",
@@ -110,6 +133,17 @@ describe("deriveMaker", () => {
     const info = deriveMaker("Some Lens Name", "Nikon");
     expect(info.display).toBe("Nikon");
     expect(info.slug).toBe("nikon");
+  });
+
+  it("canonicalizes explicit maker fields that match known alias prefixes", () => {
+    expect(deriveMaker("Some Lens Name", "Enna Munchen")).toEqual({
+      display: "Enna München",
+      slug: "enna-munchen",
+    });
+    expect(deriveMaker("Some Lens Name", "Meyer Optic Goerlitz")).toEqual({
+      display: "Meyer Optik Görlitz",
+      slug: "meyer-optik-goerlitz",
+    });
   });
 
   it("uses explicit maker field when provided (unknown maker)", () => {
@@ -140,6 +174,14 @@ describe("allMakerSlugs", () => {
     expect(slugs).toContain("vivitar");
     expect(slugs).toContain("laowa");
     expect(slugs).toContain("rodenstock");
+    expect(slugs).toContain("agfa");
+    expect(slugs).toContain("enna-munchen");
+    expect(slugs).toContain("kodak");
+    expect(slugs).toContain("meyer-optik-goerlitz");
+    expect(slugs).toContain("samyang");
+    expect(slugs).toContain("samsung");
+    expect(slugs).toContain("tokina");
+    expect(slugs).toContain("yashica");
     expect(slugs.length).toBeGreaterThan(0);
   });
 });
@@ -153,6 +195,10 @@ describe("makerDisplayName", () => {
     expect(makerDisplayName("carl-zeiss-oberkochen")).toBe("Carl Zeiss Oberkochen");
     expect(makerDisplayName("laowa")).toBe("Laowa");
     expect(makerDisplayName("rodenstock")).toBe("Rodenstock");
+    expect(makerDisplayName("enna-munchen")).toBe("Enna München");
+    expect(makerDisplayName("meyer-optik-goerlitz")).toBe("Meyer Optik Görlitz");
+    expect(makerDisplayName("samyang")).toBe("Samyang");
+    expect(makerDisplayName("yashica")).toBe("Yashica");
   });
 
   it("returns null for unknown slug", () => {
