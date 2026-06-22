@@ -23,6 +23,8 @@
  *   2026-05-07  Added Hasselblad maker entry.
  *   2026-05-14  Added Laowa maker entry.
  *   2026-06-16  Added Rodenstock maker entry in advance of dedicated lens additions.
+ *   2026-06-22  Added Agfa, Enna München, Kodak, Meyer Optik Görlitz,
+ *               Samyang, Samsung, Tokina, and Yashica maker entries.
  *   2026-04-26  Detail and accuracy pass on Leica (designer attributions,
  *               Solms→Leitz-Park facility history), Fujifilm (X100, GFX,
  *               2006 holding-company rebrand), Canon (Kwanon-vs-Hansa Canon,
@@ -40,6 +42,86 @@ export interface MakerDetails {
 }
 
 export const MAKER_DETAILS: Record<string, MakerDetails> = {
+  agfa: {
+    founded: 1867,
+    headquarters: "Mortsel, Belgium; historical camera works in Munich, Germany",
+    summary:
+      "European imaging company whose Agfa and later Agfa-Gevaert brands spanned photographic chemicals, film, cameras, projectors, and medical and graphic imaging systems, with a consumer-camera legacy centered on compact 35 mm cameras and Agfa-branded taking lenses.",
+    history:
+      "Agfa began in Berlin in 1867 as Aktiengesellschaft für Anilinfabrikation, a dye and chemistry company founded by Paul Mendelssohn Bartholdy and Carl Alexander von Martius. Its photographic business grew from dry plates, film, paper, and chemistry rather than cameras at first; Rodinal developer and the Agfa trademark made the name familiar to darkrooms well before Agfa became a mass-market camera marque. The Belgian half of the later Agfa-Gevaert group began separately in 1894, when Lieven Gevaert founded a photographic-paper business near Antwerp. The two companies merged in 1964 as Agfa-Gevaert.\n\nAgfa's camera and lens identity came through the Munich camera works that descended from Alexander Rietzschel's optical firm. Bayer acquired control of Rietzschel in the early 1920s, and the factory became part of Agfa's photographic operation. Interwar and postwar Agfa cameras ranged from simple box and folding cameras to the Karat, Silette, Ambi Silette, Optima, and compact 35 mm families. Their lenses carried names such as Agnar, Apotar, Solinar, and Color-Solinar, often designed for practical consumer photography rather than prestige interchangeable-lens systems.\n\nAgfa was also central to European color photography. Agfacolor Neu, introduced in the 1930s, established a chromogenic color-film process distinct from Kodak's Kodachrome approach and influenced later color-negative and color-print materials. After World War II, Agfa's eastern Wolfen plant became ORWO, while the western Agfa business continued through Bayer and then Agfa-Gevaert. The consumer imaging division was sold in 2004 and the AgfaPhoto name became a licensing business, while Agfa-Gevaert today focuses on medical imaging, digital printing, chemicals, and industrial imaging.",
+    notableDesigns:
+      "Agfa Karat, Agfa Silette, Agfa Ambi Silette, Agfa Optima, Color-Agnar, Apotar, Solinar, Color-Solinar, Agfacolor",
+  },
+  "enna-munchen": {
+    founded: 1920,
+    headquarters: "Munich and Wegscheid, Germany",
+    summary:
+      "German optical works founded in Munich by Alfred Neumann, best known for Ennalyt, Lithagon, and Tele-Ennalyt lenses, third-party SLR optics, projectors, and later precision plastic and assembly work.",
+    history:
+      "Enna Werk was founded in Munich in 1920 by engineer Alfred Neumann as an optical workshop producing lenses and optical components. Before selling lenses under its own name, Enna supplied optics to other brands, including Kodak and Liesegang. After wartime damage forced relocation and rebuilding, the company resumed in Munich under the Appelt family and began marketing Enna-branded lenses in 1950.\n\nThe 1950s and early 1960s were Enna's main photographic-lens period. The company built rangefinder lenses, then developed a broad SLR line from 24 mm to 600 mm with preset, click-stop, and automatic diaphragm variants for mounts such as Exakta, Edixa, Praktica/M42, and other third-party systems. Enna names included Lithagon wide-angles, Ennalyt normals and telephotos, and Tele-Ennalyt longer lenses. In 1964 the four-millionth Enna lens, a tele-zoom, was presented to the Munich Stadtmuseum.\n\nEnna gradually shifted away from camera-lens supply as Japanese SLR systems and first-party lens lines tightened the market. The company expanded projector production, technical optics, toolmaking, and plastic injection molding, with a Wegscheid branch opening in 1968 and administration moving there in 1990. Enna sold its optical business in 1991 and continued as a manufacturing and plastics specialist, leaving the photographic legacy in its compact third-party lenses and the Ennalyt and Lithagon names.",
+    notableDesigns:
+      "Lithagon 35mm lenses, Super-Lithagon 35mm f/1.9, Ennalyt 50mm lenses, Tele-Ennalyt 400mm f/4.5, Enna 85-250mm tele-zoom",
+  },
+  kodak: {
+    founded: 1892,
+    headquarters: "Rochester, New York, United States",
+    summary:
+      "American imaging company that turned photography into a mass consumer medium through roll film, simple cameras, photofinishing, motion-picture film, and the Ektar and Kodak Anastigmat lens families.",
+    history:
+      "Kodak grew from George Eastman's dry-plate business in Rochester. Eastman and Henry Strong formed the Eastman Dry Plate Company in 1881, the Kodak camera appeared in 1888 with the promise that the user only had to press the button, and Eastman Kodak Company was incorporated in 1892. Kodak's business model joined cameras, film, processing, printing, and distribution into a complete consumer system, making snapshot photography affordable and familiar at a global scale.\n\nKodak's cameras covered nearly every consumer category: the Brownie box cameras, folding roll-film cameras, Retina and Retinette 35 mm cameras from Kodak AG in Germany, Instamatic cartridge cameras, professional aerial and motion-picture equipment, and later compact digital cameras. Kodak lenses appeared under names including Kodak Anastigmat, Ektar, Anaston, Anastar, and Ektanon; some were Kodak-designed and Kodak-made, while many camera lines used optics from partners such as Schneider Kreuznach, Rodenstock, and other specialist manufacturers.\n\nThe Ektar name became Kodak's prestige photographic-lens label, covering high-quality taking lenses for Ektra, Medalist, large-format, aerial, and process applications. Kodak's motion-picture film business also shaped cinema optics indirectly by setting capture and projection standards. The company filed for Chapter 11 bankruptcy protection in 2012, emerged smaller, and now operates mainly in printing, advanced materials, chemicals, motion-picture film, and licensed consumer products, but its camera and lens history remains foundational to twentieth-century photography.",
+    notableDesigns:
+      "Kodak Brownie, Kodak Retina, Kodak Ektra, Kodak Medalist, Ektar lenses, Kodak Anastigmat, Aero-Ektar, Cine Ektar, Instamatic",
+  },
+  "meyer-optik-goerlitz": {
+    founded: 1896,
+    headquarters: "Görlitz, Germany; modern revival associated with OPC Optics in Bad Kreuznach and Hamburg",
+    summary:
+      "Historic German optical maker from Görlitz whose Trioplan, Primoplan, Orestor, Orestegor, and Domiplan lenses became cult manual-focus optics, with a modern brand revival built around updated classic formulas.",
+    history:
+      "Meyer Optik Görlitz began on April 1, 1896, when optician Hugo Meyer and businessman Heinrich Schätze founded the Optisch-Mechanische Industrie-Anstalt Hugo Meyer & Co. in Görlitz. Early success came from Aristostigmat and Euryplan-related optics, and the firm expanded into photographic and projection lenses before World War I. In 1920 Meyer began working with former Zeiss designer Paul Rudolph, gaining access to the Plasmat patent family and strengthening its position in high-speed and anastigmatic lens design.\n\nBy the 1930s the company, renamed Optische und Feinmechanische Werke Hugo Meyer & Co., was a major lens producer. Postwar East German nationalization turned it into VEB Feinoptisches Werk Görlitz, and the Meyer name remained visible on many M42, Exakta, Praktica, and medium-format lenses through the 1950s and 1960s. The Trioplan triplets became famous for bright-edged out-of-focus highlights, while Primoplan, Orestor, Orestegor, Lydith, and Domiplan lenses made Meyer a practical alternative to Carl Zeiss Jena in the East German camera ecosystem.\n\nIndustrial consolidation absorbed Meyer into VEB Pentacon in 1968 and later into the Carl Zeiss Jena combine. The Meyer-Optik name disappeared from new lenses after the early 1970s, and the briefly independent post-reunification Feinoptisches Werk Görlitz GmbH closed in 1991. The brand was revived in 2014 by net SE/Globell through crowdfunded reinterpretations, collapsed again during the 2018 insolvency, and was subsequently acquired by OPC Optical Precision Components Europe. The modern Meyer Optik Görlitz line focuses on German-assembled character lenses inspired by the Trioplan, Primoplan, and other historic formulas.",
+    notableDesigns:
+      "Trioplan 100mm f/2.8, Trioplan 50mm f/2.9, Primoplan 58mm f/1.9, Orestor 135mm f/2.8, Orestegor 200mm f/4, Lydith 30mm f/3.5, Domiplan 50mm f/2.8",
+  },
+  samyang: {
+    founded: 1972,
+    headquarters: "Changwon and Gwacheon, South Korea",
+    summary:
+      "South Korean third-party lens manufacturer, now LK Samyang, known for affordable manual-focus primes, Rokinon-branded export lenses, XEEN cinema optics, and an expanding autofocus mirrorless lineup.",
+    history:
+      "Samyang's optical business was incorporated in 1972 as Korea WAKO Co., Ltd. and became Samyang Optical Co., Ltd. in 1979. The company built its early reputation as a supplier of manual-focus lenses, CCTV optics, and private-label lenses sold under regional names including Rokinon, Bower, Pro-Optic, Vivitar, Opteka, and others. The company name changed to Samyang Optics in 2002, and the current corporate name LK Samyang was adopted in 2024.\n\nFor photographers outside Korea, Samyang became especially visible in the late DSLR era with inexpensive but optically ambitious manual-focus primes: the 8 mm fisheye, 14 mm f/2.8 ultra-wide, 24 mm f/1.4, 35 mm f/1.4, 85 mm f/1.4, 100 mm macro, 135 mm f/2, and 24 mm tilt-shift. These lenses often traded autofocus and electronic integration for strong optical performance at low prices, making them popular with landscape, astro, video, and adapted-lens users.\n\nSamyang expanded into cinema lenses with VDSLR and XEEN lines, then into native autofocus mirrorless lenses beginning with Sony E-mount full-frame designs in the mid-2010s. The company joined the L-Mount Alliance in 2023 and now ships autofocus lenses across Sony E, Nikon Z, Fujifilm X, Canon RF/RF-S, and L-mount families, while still maintaining manual-focus and cine product lines.",
+    notableDesigns:
+      "14mm f/2.8 ED AS IF UMC, 85mm f/1.4, 135mm f/2 ED UMC, 24mm f/3.5 Tilt-Shift, XP 14mm f/2.4, AF 35mm f/2.8 FE, AF 35-150mm f/2-2.8, XEEN cinema primes",
+  },
+  samsung: {
+    founded: 1938,
+    headquarters: "Suwon and Seoul, South Korea",
+    summary:
+      "South Korean electronics group whose Samsung Electronics imaging division built compact cameras, Pentax-partnered DSLRs, and the ambitious NX mirrorless system with native APS-C and NX Mini lenses.",
+    history:
+      "Samsung began as a trading company in 1938, while Samsung Electronics, the business behind the NX camera system, was founded in 1969. Samsung entered consumer imaging through compact film and digital cameras, then worked with Pentax on GX-series DSLRs before developing its own mirrorless platform. The result was the NX system, launched publicly with the NX10 in 2010: an APS-C mirrorless camera line using a short-flange Samsung NX mount and electronically coupled native lenses.\n\nSamsung's NX lens program was unusually broad for a short-lived system. Early lenses included the 30 mm f/2 pancake, 18-55 mm OIS, and 50-200 mm OIS; later designs added compact pancakes, macros, portrait primes, and premium S-series zooms. The i-Function control concept put camera settings behind a lens-mounted button and focus-ring interface, an attempt to make lens handling part of the camera's main control language.\n\nThe NX1 and NX500 generation showed how much sensor, processor, video, and autofocus technology Samsung could bring to cameras, and lenses such as the 16-50 mm f/2-2.8 S and 50-150 mm f/2.8 S made the system credible beyond entry-level mirrorless. Samsung withdrew from dedicated camera markets in the mid-2010s and the NX system became dormant, but the optical work remains a compact example of a major electronics company briefly building a complete interchangeable-lens ecosystem from scratch.",
+    notableDesigns:
+      "NX 30mm f/2 pancake, NX 16mm f/2.4, NX 45mm f/1.8, NX 85mm f/1.4 ED SSA, NX 60mm f/2.8 Macro OIS, NX 16-50mm f/2-2.8 S, NX 50-150mm f/2.8 S, NX Mini lenses",
+  },
+  tokina: {
+    founded: 1950,
+    headquarters: "Tokyo, Japan",
+    summary:
+      "Japanese third-party lens maker, now part of Kenko Tokina, known for robust AT-X wide-angle zooms, macro lenses, and practical alternatives for Canon, Nikon, Sony, Fujifilm, and other camera systems.",
+    history:
+      "Tokina traces its origins to 1950 in Tokyo, with the Tokina lens brand emerging as a specialist third-party alternative for SLR photographers. The company built its reputation around solid mechanical construction and independent optical designs for the major 35 mm SLR mounts rather than around a proprietary camera system. That position made Tokina one of the classic third-party lens makers alongside Sigma, Tamron, Vivitar, and later Cosina-branded lines.\n\nThe AT-X series became Tokina's best-known photographic identity. Tokina often emphasized wide-angle and ultra-wide zooms, where lenses such as the AT-X 11-16 mm f/2.8, 12-24 mm f/4, 16-28 mm f/2.8, and 17 mm and 20 mm primes filled gaps in first-party lineups or offered more accessible alternatives. The 90 mm f/2.5 macro, nicknamed the Bokina by enthusiasts, became one of the company's cult lenses for its sharpness and rendering.\n\nKenko took over Tokina's sales operation in 1994, and Kenko and Tokina merged as Kenko Tokina Co., Ltd. in 2011. The modern Tokina line spans DSLR lenses, cinema lenses, surveillance and industrial optics, and mirrorless-native atx-m and FiRIN designs for Sony E, Fujifilm X, and other systems.",
+    notableDesigns:
+      "AT-X 90mm f/2.5 Macro, AT-X Pro 11-16mm f/2.8, AT-X 12-24mm f/4, AT-X 16-28mm f/2.8, FiRIN 20mm f/2 FE, atx-m mirrorless primes",
+  },
+  yashica: {
+    founded: 1949,
+    headquarters: "Nagano, Japan; later Kyocera and Hong Kong brand ownership",
+    summary:
+      "Japanese camera maker whose Yashikor, Yashinon, and Tomioka-linked optics supported popular TLRs, Electro rangefinders, M42 SLRs, and the Contax/Yashica SLR ecosystem before Kyocera exited cameras.",
+    history:
+      "Yashica began in December 1949 in Nagano as Yashima Seiki, a small company making components for electric clocks before moving into camera parts. Its first complete camera, the Yashimaflex twin-lens reflex, appeared in 1953, and the company soon became Yashima Optical Industry and then Yashica. The Yashica Mat TLRs, especially the Mat-124 and Mat-124G, made the brand a major affordable alternative in 6x6 roll-film photography.\n\nYashica's lenses were closely tied to Tomioka Optical Works. Early TLR and rangefinder lenses used Yashikor and Yashinon names, and in 1968 Yashica acquired Tomioka outright. The company moved into 35 mm rangefinders and SLRs, including M42 screw-mount cameras and the electronically controlled Electro 35 rangefinder, one of the most successful aperture-priority consumer cameras of the 1960s and 1970s.\n\nThe most important system-era shift came from Yashica's collaboration with Carl Zeiss in the 1970s. The Contax RTS launched in 1975 with the shared Contax/Yashica bayonet, pairing Zeiss-designed Contax lenses with Yashica bodies and Yashica ML lenses in a common mount. Kyocera acquired Yashica in 1983 and continued both Yashica and Contax lines, but exited camera production in 2005. The Yashica trademark later passed to Hong Kong-based owners, while the historical photographic legacy remains with the TLRs, Electro rangefinders, Tomioka-made Yashinon lenses, and C/Y SLR system.",
+    notableDesigns:
+      "Yashica Mat-124G, Yashica Electro 35, Yashinon DX and ML lenses, Yashica FX-3, Contax/Yashica C/Y mount, Tomioka-linked fast normal lenses",
+  },
   leica: {
     founded: 1914,
     headquarters: "Wetzlar, Germany",

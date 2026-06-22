@@ -26,11 +26,16 @@ export interface MakerInfo {
   slug: string;
 }
 
+function uniqueMakerSlugs(): string[] {
+  return [...new Set(MAKER_PREFIXES.map((m) => m.slug))];
+}
+
 /** Derive maker info from a lens's maker field or name. */
 export function deriveMaker(nameOrMaker: string, makerField?: string): MakerInfo {
   /* Use explicit maker field if provided */
   if (makerField) {
-    const entry = MAKER_PREFIXES.find((m) => m.display === makerField);
+    const upperMaker = makerField.toUpperCase();
+    const entry = MAKER_PREFIXES.find((m) => m.display === makerField || m.prefix === upperMaker);
     if (entry) return { display: entry.display, slug: entry.slug };
     return { display: makerField, slug: makerField.toLowerCase().replace(/\s+/g, "-") };
   }
@@ -45,7 +50,7 @@ export function deriveMaker(nameOrMaker: string, makerField?: string): MakerInfo
 
 /** All known maker slugs, derived from MAKER_PREFIXES. */
 export function allMakerSlugs(): string[] {
-  return MAKER_PREFIXES.map((m) => m.slug);
+  return uniqueMakerSlugs();
 }
 
 /** Look up maker display name from slug. */

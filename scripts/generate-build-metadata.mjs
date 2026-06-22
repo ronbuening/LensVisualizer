@@ -37,7 +37,7 @@ const CONTENT_DIR = join(ROOT, "src", "content");
 const OUT_DIR = join(ROOT, "src", "generated");
 const OUT_FILE = join(OUT_DIR, "build-metadata.json");
 const MAKER_PREFIXES_FILE = join(OUT_DIR, "maker-prefixes.json");
-const MAKER_DETAILS_FILE = join(ROOT, "src", "utils", "makerDetails.ts");
+const MAKER_DETAILS_FILE = join(ROOT, "src", "utils", "catalog", "makerDetails.ts");
 const GIT_FRESHNESS_CONCURRENCY = 8;
 
 /** Parse simple YAML frontmatter from a markdown file. */
@@ -119,6 +119,11 @@ function collectRoutes(lenses, articles, makerSlugs, mountIds, formatIds) {
   ];
 }
 
+/** Known maker profile slugs, including entries seeded before their first lens. */
+function collectKnownMakerSlugs() {
+  return [...new Set(MAKER_PREFIXES.map((maker) => maker.slug))].sort();
+}
+
 /* ── Article metadata ─────────────────────────────────────────────────── */
 
 async function collectArticles(fallbackDate) {
@@ -179,7 +184,7 @@ async function main() {
   const lenses = allLenses.filter((lens) => lens.visible !== false);
   assertFreshnessDiversity({ lenses, articles });
   const lensKeys = lenses.map((l) => l.key).sort();
-  const makerSlugs = [...new Set(lenses.map((l) => l.makerSlug))].sort();
+  const makerSlugs = [...new Set([...lenses.map((l) => l.makerSlug), ...collectKnownMakerSlugs()])].sort();
   const mountIds = [...new Set(lenses.flatMap((l) => l.lensMountIds ?? []))].sort();
   const formatIds = [...new Set(lenses.flatMap((l) => (l.imageFormatId ? [l.imageFormatId] : [])))].sort();
   const routes = collectRoutes(lenses, articles, makerSlugs, mountIds, formatIds);

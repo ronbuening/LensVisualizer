@@ -63,6 +63,13 @@ describe("lens-data scripts", () => {
     expect(deriveMakerSlug("Venus Optics Laowa 24mm f/14 2X Macro Probe")).toBe("laowa");
     expect(deriveMakerSlug("Rodenstock Grandagon-N 90mm f/4.5")).toBe("rodenstock");
     expect(deriveMakerSlug("G. Rodenstock Eurynar 165mm f/4.5")).toBe("rodenstock");
+    expect(deriveMakerSlug("Agfa Color-Solinar 50mm f/2.8")).toBe("agfa");
+    expect(deriveMakerSlug("Enna Munchen Lithagon 35mm f/2.8")).toBe("enna-munchen");
+    expect(deriveMakerSlug("Meyer Optic Goerlitz Trioplan 100mm f/2.8")).toBe("meyer-optik-goerlitz");
+    expect(deriveMakerSlug("Rokinon 14mm f/2.8")).toBe("samyang");
+    expect(deriveMakerSlug("Samsung NX 30mm f/2")).toBe("samsung");
+    expect(deriveMakerSlug("Tokina AT-X 90mm f/2.5 Macro")).toBe("tokina");
+    expect(deriveMakerSlug("Yashinon 50mm f/1.7")).toBe("yashica");
     expect(deriveMakerSlug("Nikkor-S Auto 50mm f/1.4")).toBe("nikon");
     expect(deriveMakerSlug("Voigtlander Nokton 50mm f/1.2")).toBe("voigtlander");
     expect(deriveMakerSlug("Schneider Kreuznach Super-Angulon 90mm f/8")).toBe("schneider-kreuznach");
