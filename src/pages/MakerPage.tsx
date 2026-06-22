@@ -47,18 +47,14 @@ export default function MakerPage() {
 
   if (!maker) return <Navigate to="/makers" replace />;
 
-  const displayName = makerDisplayName(maker);
-  if (!displayName) return <Navigate to="/makers" replace />;
-
   const lenses = lensesForMaker(maker);
+  if (lenses.length === 0) return <Navigate to="/makers" replace />;
+
+  const displayName = makerDisplayName(maker) ?? deriveMaker(lenses[0].data.name, lenses[0].data.maker).display;
   const details = getMakerDetails(maker);
-  if (!details && lenses.length === 0) return <Navigate to="/makers" replace />;
   const makerMounts = mountsForMaker(lenses);
 
-  const lensCountText =
-    lenses.length > 0
-      ? `Explore ${lenses.length} patent-derived ${displayName} lens cross-sections with ray tracing and optical analysis.`
-      : `Lens cross-sections will appear here as ${displayName} prescriptions are added to the catalog.`;
+  const lensCountText = `Explore ${lenses.length} patent-derived ${displayName} lens cross-sections with ray tracing and optical analysis.`;
   const seoDescription = details ? `${details.summary} ${lensCountText}` : lensCountText;
 
   return (
@@ -108,10 +104,8 @@ export default function MakerPage() {
         {details && (
           <div style={{ marginBottom: "1.5rem" }}>
             <p style={{ fontSize: "0.8rem", color: t.label, marginBottom: "0.75rem" }}>
-              Est. {details.founded} · {details.headquarters} ·{" "}
-              {lenses.length > 0
-                ? `${lenses.length} ${lenses.length === 1 ? "lens" : "lenses"}`
-                : "No published lens pages yet"}
+              Est. {details.founded} · {details.headquarters} · {lenses.length}{" "}
+              {lenses.length === 1 ? "lens" : "lenses"}
             </p>
             {details.history.split("\n\n").map((paragraph, i) => (
               <p key={i} style={{ fontSize: "0.85rem", color: t.desc, lineHeight: 1.6, marginBottom: "0.75rem" }}>
