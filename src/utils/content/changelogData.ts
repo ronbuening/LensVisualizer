@@ -22,8 +22,13 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-06-22 ──────────────────────────────────────────────────────────
   {
     date: "2026-06-22",
+    type: "lens",
+    summary: "Added three Pentax K-mount lenses, including the A★ 200mm f/4 Macro ED",
+  },
+  {
+    date: "2026-06-22",
     type: "fix",
-    summary: "Fixed slow zoom rendering from clipped and missed ray paths",
+    summary: "Stopped ray traces after missed surfaces and limited clipped ghost rays",
   },
   // ── 2026-06-21 ──────────────────────────────────────────────────────────
   {
