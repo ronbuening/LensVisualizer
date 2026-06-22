@@ -8,7 +8,7 @@
 import { Link } from "react-router";
 import type { Theme } from "../../types/theme.js";
 import { CATALOG_KEYS, LENS_CATALOG, RECENT_LENS_KEYS } from "../../utils/catalog/lensCatalog.js";
-import { allMakerSlugs } from "../../utils/catalog/lensMetadata.js";
+import { deriveMaker } from "../../utils/catalog/lensMetadata.js";
 import useMediaQuery from "../../utils/useMediaQuery.js";
 
 interface QuickNavCardsProps {
@@ -16,7 +16,7 @@ interface QuickNavCardsProps {
 }
 
 function countMakers(): number {
-  return allMakerSlugs().length;
+  return new Set(CATALOG_KEYS.map((key) => deriveMaker(LENS_CATALOG[key].name, LENS_CATALOG[key].maker).slug)).size;
 }
 
 interface CardDef {

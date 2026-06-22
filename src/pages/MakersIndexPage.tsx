@@ -8,7 +8,7 @@ import { Link } from "react-router";
 import SEOHead from "../components/SEOHead.js";
 import PageNavBar from "../components/layout/PageNavBar.js";
 import { LENS_CATALOG, CATALOG_KEYS } from "../utils/catalog/lensCatalog.js";
-import { allMakerSlugs, deriveMaker, makerDisplayName, SITE_NAME, SITE_URL } from "../utils/catalog/lensMetadata.js";
+import { deriveMaker, SITE_NAME, SITE_URL } from "../utils/catalog/lensMetadata.js";
 import { getMakerDetails } from "../utils/catalog/makerDetails.js";
 import { collectionPageJsonLd, itemListJsonLd } from "../utils/seo/structuredData.js";
 import { usePageThemeToggle } from "../utils/theme/usePageThemeToggle.js";
@@ -30,12 +30,6 @@ function getAllMakers(): MakerEntry[] {
       existing.count++;
     } else {
       counts.set(maker.slug, { display: maker.display, slug: maker.slug, count: 1 });
-    }
-  }
-  for (const slug of allMakerSlugs()) {
-    if (!counts.has(slug)) {
-      const display = makerDisplayName(slug);
-      if (display) counts.set(slug, { display, slug, count: 0 });
     }
   }
   return Array.from(counts.values()).sort((a, b) => a.display.localeCompare(b.display));
@@ -105,10 +99,8 @@ export default function MakersIndexPage() {
               {details ? (
                 <>
                   <div style={{ fontSize: "0.8rem", color: t.label, marginTop: "0.25rem" }}>
-                    Est. {details.founded} · {details.headquarters} ·{" "}
-                    {maker.count > 0
-                      ? `${maker.count} ${maker.count === 1 ? "lens" : "lenses"}`
-                      : "No published lens pages yet"}
+                    Est. {details.founded} · {details.headquarters} · {maker.count}{" "}
+                    {maker.count === 1 ? "lens" : "lenses"}
                   </div>
                   <p style={{ fontSize: "0.8rem", color: t.subtitle, lineHeight: 1.5, marginTop: "0.5rem" }}>
                     {details.summary}

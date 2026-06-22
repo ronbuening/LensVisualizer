@@ -11,7 +11,7 @@ import {
   isImageFormatId,
   isLensMountId,
 } from "../../utils/catalog/lensTaxonomy.js";
-import { allMakerSlugs } from "../../utils/catalog/lensMetadata.js";
+import buildMeta from "../../generated/build-metadata.json";
 import { clampNumericFilterValue, defaultCustomFilter, hasActiveCustomFilters } from "./catalog.js";
 import type { CustomFilterState, FilterBounds, GroupMode, LensIndexViewMode, NumericFilterField } from "./types.js";
 
@@ -24,6 +24,7 @@ export interface LensIndexUrlState {
 
 const GROUP_MODES = new Set<GroupMode>(["maker", "focal", "year-asc", "year-desc", "mount", "format"]);
 const VIEW_MODES = new Set<LensIndexViewMode>(["visible", "all", "debug"]);
+const PUBLIC_MAKER_SLUGS = buildMeta.makerSlugs;
 const NUMERIC_PARAMS: ReadonlyArray<{ param: string; field: NumericFilterField; step: number }> = [
   { param: "focalMin", field: "focalMin", step: 0.1 },
   { param: "focalMax", field: "focalMax", step: 0.1 },
@@ -48,7 +49,7 @@ export function parseLensIndexViewMode(search: string): LensIndexViewMode {
     : "visible";
 }
 
-function sortedKnownMakers(values: string[], knownMakerSlugs = allMakerSlugs()): string[] {
+function sortedKnownMakers(values: string[], knownMakerSlugs = PUBLIC_MAKER_SLUGS): string[] {
   const makerSlugs = new Set(knownMakerSlugs);
   return [...new Set(values.filter((slug) => makerSlugs.has(slug)))].sort((a, b) => a.localeCompare(b));
 }
@@ -85,7 +86,7 @@ function parseNumericParam(
 export function parseLensIndexUrlState(
   search: string,
   bounds: FilterBounds,
-  knownMakerSlugs = allMakerSlugs(),
+  knownMakerSlugs = PUBLIC_MAKER_SLUGS,
 ): LensIndexUrlState {
   const params = new URLSearchParams(search);
   const viewMode = parseLensIndexViewMode(search);

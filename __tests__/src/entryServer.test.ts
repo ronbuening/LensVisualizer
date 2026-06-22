@@ -17,8 +17,7 @@ import { IMAGE_FORMAT_OPTIONS, MOUNT_OPTIONS } from "../../src/pages/lensIndex/c
 import { getMountDetails } from "../../src/utils/catalog/mountDetails.js";
 import { getImageFormatDetails } from "../../src/utils/catalog/imageFormatDetails.js";
 import {
-  allMakerSlugs,
-  makerDisplayName,
+  deriveMaker,
   SITE_NAME,
   SITE_URL,
   SOCIAL_IMAGE_HEIGHT,
@@ -31,8 +30,9 @@ import {
 
 const TEST_LENS_SLUG = CATALOG_KEYS[0];
 const TEST_LENS = LENS_CATALOG[TEST_LENS_SLUG];
-const TEST_MAKER_SLUG = allMakerSlugs()[0];
-const TEST_MAKER_DISPLAY = makerDisplayName(TEST_MAKER_SLUG)!;
+const TEST_MAKER = deriveMaker(TEST_LENS.name, TEST_LENS.maker);
+const TEST_MAKER_SLUG = TEST_MAKER.slug;
+const TEST_MAKER_DISPLAY = TEST_MAKER.display;
 const TEST_MOUNT = MOUNT_OPTIONS[0];
 const TEST_MOUNT_DETAILS = getMountDetails(TEST_MOUNT.id)!;
 const TEST_FORMAT = IMAGE_FORMAT_OPTIONS[0];
@@ -53,7 +53,7 @@ function escapeHtmlText(value: string): string {
 describe("SSR test preconditions", () => {
   it("catalog has at least one lens and one maker", () => {
     expect(CATALOG_KEYS.length).toBeGreaterThan(0);
-    expect(allMakerSlugs().length).toBeGreaterThan(0);
+    expect(TEST_MAKER_SLUG).toBeTruthy();
     expect(TEST_MAKER_DISPLAY).toBeTruthy();
   });
 });
@@ -279,14 +279,6 @@ describe("SSR render — maker page /makers/:maker", () => {
     const scripts = helmet.script.toString();
     expect(scripts).toContain('"@type":"CollectionPage"');
     expect(scripts).toContain('"@type":"BreadcrumbList"');
-  });
-
-  it("renders seeded maker profiles before lens pages exist", () => {
-    const { helmet, html } = render("/makers/agfa");
-    const compactHtml = html.replace(/<!-- -->/g, "");
-    expect(helmet.link.toString()).toContain("/makers/agfa");
-    expect(compactHtml).toContain("Agfa Lenses");
-    expect(compactHtml).toContain("No patent-derived lens diagrams have been published for Agfa yet.");
   });
 });
 

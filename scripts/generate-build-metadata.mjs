@@ -119,11 +119,6 @@ function collectRoutes(lenses, articles, makerSlugs, mountIds, formatIds) {
   ];
 }
 
-/** Known maker profile slugs, including entries seeded before their first lens. */
-function collectKnownMakerSlugs() {
-  return [...new Set(MAKER_PREFIXES.map((maker) => maker.slug))].sort();
-}
-
 /* ── Article metadata ─────────────────────────────────────────────────── */
 
 async function collectArticles(fallbackDate) {
@@ -184,7 +179,7 @@ async function main() {
   const lenses = allLenses.filter((lens) => lens.visible !== false);
   assertFreshnessDiversity({ lenses, articles });
   const lensKeys = lenses.map((l) => l.key).sort();
-  const makerSlugs = [...new Set([...lenses.map((l) => l.makerSlug), ...collectKnownMakerSlugs()])].sort();
+  const makerSlugs = [...new Set(lenses.map((l) => l.makerSlug))].sort();
   const mountIds = [...new Set(lenses.flatMap((l) => l.lensMountIds ?? []))].sort();
   const formatIds = [...new Set(lenses.flatMap((l) => (l.imageFormatId ? [l.imageFormatId] : [])))].sort();
   const routes = collectRoutes(lenses, articles, makerSlugs, mountIds, formatIds);
