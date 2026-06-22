@@ -43,11 +43,11 @@
           fill="url(#flint-glass)" stroke="#5a4a70" stroke-width="1" stroke-linejoin="round"/>
     <path d="M 40,-44 A 180,180 0 0 1 40,44" fill="none" stroke="#5a7090" stroke-width="0.5" stroke-dasharray="2,3" opacity="0.5"/>
 
-    <!-- GROUP 2 -->
-    <path d="M 110,-36 A 68,68 0 0 0 110,36 L 112,36 A 68,68 0 0 0 112,-36 Z"
+    <!-- GROUP 2 — biconcave negative element, matched to outer concave element height -->
+    <path d="M 102,-44 A 140,140 0 0 1 102,44 L 120,44 A 140,140 0 0 1 120,-44 Z"
           fill="url(#crown-glass)" stroke="#3a6a8a" stroke-width="1.1" stroke-linejoin="round"/>
-    <path d="M 110,-36 A 68,68 0 0 0 110,36" fill="none" stroke="url(#coating-reflect)" stroke-width="1.8"/>
-    <path d="M 112,-36 A 68,68 0 0 0 112,36" fill="none" stroke="url(#coating-reflect)" stroke-width="1.5"/>
+    <path d="M 102,-44 A 140,140 0 0 1 102,44" fill="none" stroke="url(#coating-reflect)" stroke-width="1.8"/>
+    <path d="M 120,-44 A 140,140 0 0 0 120,44" fill="none" stroke="url(#coating-reflect)" stroke-width="1.5"/>
 
     <!-- GROUP 3 -->
     <path d="M 155,-42 A 70,70 0 0 1 155,42 L 182,44 A 180,180 0 0 1 182,-44 Z"
@@ -64,10 +64,10 @@
     <!-- Optical axis -->
     <line x1="-7" y1="0" x2="300" y2="0" stroke="#b8c4d0" stroke-width="0.4" stroke-dasharray="4,7" opacity="0.35"/>
 
-    <!-- RGB rays — smooth beziers -->
-    <path d="M -7,-32 C 60,-22 140,-10 290,0" fill="none" stroke="#d83838" stroke-width="0.9" opacity="0.85"/>
+    <!-- RGB rays — diverge slightly at the negative center element, then converge -->
+    <path d="M -7,-32 C 48,-22 86,-15 111,-18 C 152,-24 224,-14 290,0" fill="none" stroke="#d83838" stroke-width="0.9" opacity="0.85"/>
     <line x1="-7" y1="0" x2="290" y2="0" stroke="#22a850" stroke-width="0.9" opacity="0.85"/>
-    <path d="M -7,32 C 60,22 140,10 290,0" fill="none" stroke="#3060d0" stroke-width="0.9" opacity="0.85"/>
+    <path d="M -7,32 C 48,22 86,15 111,18 C 152,24 224,14 290,0" fill="none" stroke="#3060d0" stroke-width="0.9" opacity="0.85"/>
 
     <!-- Focal flare -->
     <circle cx="290" cy="0" r="28" fill="url(#flare-outer)" opacity="0.7"/>

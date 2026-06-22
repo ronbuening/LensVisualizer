@@ -53,11 +53,11 @@
     <!-- GROUP 2: SINGLE MIDDLE ELEMENT               -->
     <!-- ============================================ -->
 
-    <!-- E3: Biconvex -->
-    <path d="M 110,-36 A 68,68 0 0 0 110,36 L 112,36 A 68,68 0 0 0 112,-36 Z"
+    <!-- E3: Biconcave (negative element) — matched to outer concave element height -->
+    <path d="M 102,-44 A 140,140 0 0 1 102,44 L 120,44 A 140,140 0 0 1 120,-44 Z"
           fill="url(#crown-glass)" stroke="#2a5a78" stroke-width="1.2" stroke-linejoin="round"/>
-    <path d="M 110,-36 A 68,68 0 0 0 110,36" fill="none" stroke="url(#coating-reflect)" stroke-width="1.6"/>
-    <path d="M 112,-36 A 68,68 0 0 0 112,36" fill="none" stroke="url(#coating-reflect)" stroke-width="1.4"/>
+    <path d="M 102,-44 A 140,140 0 0 1 102,44" fill="none" stroke="url(#coating-reflect)" stroke-width="1.6"/>
+    <path d="M 120,-44 A 140,140 0 0 0 120,44" fill="none" stroke="url(#coating-reflect)" stroke-width="1.4"/>
 
     <!-- ============================================ -->
     <!-- GROUP 3: REAR CEMENTED DOUBLET (mirror of G1)-->
@@ -90,16 +90,16 @@
     <!-- Smooth cubic beziers, extended past E1 front  -->
     <!-- ============================================ -->
 
-    <!-- Red ray (upper marginal) -->
-    <path d="M -7,-32 C 60,-22 140,-10 290,0"
+    <!-- Red ray (upper marginal) — diverges slightly at the negative center element, then converges -->
+    <path d="M -7,-32 C 48,-22 86,-15 111,-18 C 152,-24 224,-14 290,0"
           fill="none" stroke="#c02020" stroke-width="1.1" opacity="0.8"/>
 
     <!-- Green ray (axial) -->
     <line x1="-7" y1="0" x2="290" y2="0"
           stroke="#1a8a40" stroke-width="1.1" opacity="0.8"/>
 
-    <!-- Blue ray (lower marginal) -->
-    <path d="M -7,32 C 60,22 140,10 290,0"
+    <!-- Blue ray (lower marginal) — diverges slightly at the negative center element, then converges -->
+    <path d="M -7,32 C 48,22 86,15 111,18 C 152,24 224,14 290,0"
           fill="none" stroke="#2050b0" stroke-width="1.1" opacity="0.8"/>
 
     <!-- ============================================ -->
