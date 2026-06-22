@@ -41,6 +41,8 @@ export function compileRaySegment(
     const lastSolid = pts[pts.length - 1];
     const firstGhost = ghostPts[0];
     if (lastSolid && firstGhost) {
+      // Later clipped diagnostics can be far outside the viewport; render only
+      // the first clipped span so zoomed SVG bounds stay finite.
       gp.push([sx(lastSolid[0]), sy(lastSolid[1])]);
       gp.push([sx(firstGhost[0]), sy(firstGhost[1])]);
     }

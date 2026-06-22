@@ -78,6 +78,8 @@ export function traceSequential(
     const hit = intersectStateSurface({ origin, direction }, state, i, { maxT, refractiveIndex: n });
 
     if (!hit.ok) {
+      // A miss is terminal even in ghost mode: prior hits still display, while
+      // fabricated fallback points can create unbounded SVG paths.
       clipped = true;
       failureReason = hit.failureReason;
       pushClipEvent(clipEvents, state, i, "intersection-failure", hit.failureReason);

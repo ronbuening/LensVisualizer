@@ -19,6 +19,12 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-06-22 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-06-22",
+    type: "fix",
+    summary: "Fixed slow zoom rendering from clipped and missed ray paths",
+  },
   // ── 2026-06-21 ──────────────────────────────────────────────────────────
   {
     date: "2026-06-21",

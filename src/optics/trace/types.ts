@@ -66,6 +66,7 @@ export interface TraceOptions {
   recordHeights?: boolean;
   checkSemiDiameter?: boolean;
   stopSemiDiameter?: number;
+  /** Retain clipped surface hits as ghost points; missed surfaces still terminate without fallback hits. */
   ghost?: boolean;
   stopOnClip?: boolean;
   launchBoundT?: number;

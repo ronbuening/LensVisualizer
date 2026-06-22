@@ -185,6 +185,8 @@ export function traceGeneralized(
     }
 
     if (!nextSurfaceHit.ok) {
+      // A miss is terminal even in ghost mode: prior hits still display, while
+      // fabricated fallback points can create unbounded SVG paths.
       clipped = true;
       failureReason = nextSurfaceHit.failureReason;
       terminationReason = "trace-failure";
