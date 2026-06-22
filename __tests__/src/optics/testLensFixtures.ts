@@ -93,3 +93,15 @@ export function buildGhostClippingLens(key = "test-ghost-clipping-lens"): Runtim
     ],
   });
 }
+
+export function buildMissAfterFirstHitLens(key = "test-miss-after-first-hit-lens"): RuntimeLens {
+  return buildFixture({
+    key,
+    nominalFno: 4,
+    surfaces: [
+      { label: "STO", R: 1e15, nd: 1.0, sd: 100, d: 10, elemId: 0 },
+      { label: "1", R: 20, nd: 1.5, sd: 10, d: 8, elemId: 1 },
+      { label: "2", R: -20, nd: 1.0, sd: 10, d: 50, elemId: 1 },
+    ],
+  });
+}

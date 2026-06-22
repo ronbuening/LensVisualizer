@@ -9,13 +9,13 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **360** lenses scanned (**352** visible)
-- **3277 / 4068** non-air surfaces use strict catalog Sellmeier data (80.6%)
-- **3301 / 4068** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 81.1%)
+- **363** lenses scanned (**355** visible)
+- **3297 / 4090** non-air surfaces use strict catalog Sellmeier data (80.6%)
+- **3321 / 4090** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 81.2%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
 - **206** code-only missing-Sellmeier elements in Sweep 2
-- **132** unresolved named-token elements in Sweep 2B
+- **134** unresolved named-token elements in Sweep 2B
 - **0** Tier A proprietary backfill rows in Sweep 3
 
 ## Sweep 1 - Relabel Mismatches
@@ -78,6 +78,7 @@ These are efficient follow-up targets after mismatch blockers because one or two
 | [CANON RF 24-240mm f/4-6.3 IS USM](../../src/lens-data/canon/CanonRF24240mmf463.data.ts) | 90.5% (19/21) | 90.5% (19/21) | 2 | abbe: 2 |
 | [NIKON AF-S NIKKOR 24-70mm f/2.8 E ED VR](../../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) | 90.5% (19/21) | 90.5% (19/21) | 2 | abbe: 2 |
 | [NIKON NIKKOR Z DX 16-50mm f/3.5-6.3 VR](../../src/lens-data/nikon/NikonZDX1650mmf3563VR.data.ts) | 90.0% (9/10) | 90.0% (9/10) | 1 | abbe: 1 |
+| [PENTAX SMC PENTAX-A★ 200mm f/4 MACRO ED](../../src/lens-data/pentax/PentaxA200mmf4MacroED.data.ts) | 90.0% (9/10) | 90.0% (9/10) | 1 | abbe: 1 |
 | [VOIGTLÄNDER MACRO APO-LANTHAR 125mm f/2.5 SL](../../src/lens-data/voigtlander/VoigtlanderMacroApoLanthar125mmf25.data.ts) | 90.0% (9/10) | 90.0% (9/10) | 1 | abbe: 1 |
 | [VOIGTLÄNDER NOKTON 35mm f/1.2 Aspherical](../../src/lens-data/voigtlander/VoigtlanderNokton35mmf12.data.ts) | 90.0% (9/10) | 90.0% (9/10) | 1 | abbe: 1 |
 | [SONY FE 24-70mm f/2.8 GM II](../../src/lens-data/sony/SonyFE2470mmf28GMII.data.ts) | 90.0% (18/20) | 90.0% (18/20) | 2 | abbe: 2 |
@@ -109,6 +110,7 @@ These are efficient follow-up targets after mismatch blockers because one or two
 | [MINOLTA MD ROKKOR 50mm f/1.4](../../src/lens-data/minolta/MinoltaRokkor50mmf14MD.data.ts) | 85.7% (6/7) | 85.7% (6/7) | 1 | abbe: 1 |
 | [OLYMPUS G.ZUIKO AUTO-W 21mm f/3.5](../../src/lens-data/olympus/OlympusGZuikoAutoW21mmf35.data.ts) | 85.7% (6/7) | 85.7% (6/7) | 1 | abbe: 1 |
 | [OLYMPUS ZUIKO AUTO-S 50mm f/1.2](../../src/lens-data/olympus/OlympusZuikoAutoS50mmf12.data.ts) | 85.7% (6/7) | 85.7% (6/7) | 1 | abbe: 1 |
+| [PENTAX SMC PENTAX-A★ 135mm f/1.8](../../src/lens-data/pentax/PentaxA135mmf18.data.ts) | 85.7% (6/7) | 85.7% (6/7) | 1 | abbe: 1 |
 | [RICOH GR LENS 28mm f/2.8 (Ricoh GR1)](../../src/lens-data/ricoh/RicohGR28f28.data.ts) | 85.7% (6/7) | 85.7% (6/7) | 1 | abbe: 1 |
 | [RICOH GR LENS 26.1mm f/2.8 (Ricoh GR IIIx)](../../src/lens-data/ricoh/RicohGR3x.data.ts) | 85.7% (6/7) | 85.7% (6/7) | 1 | abbe: 1 |
 | [RICOH GR LENS 18.3mm f/2.8 (Ricoh GR IV)](../../src/lens-data/ricoh/RicohGR428f28.data.ts) | 85.7% (6/7) | 85.7% (6/7) | 1 | abbe: 1 |

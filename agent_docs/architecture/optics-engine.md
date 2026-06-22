@@ -123,6 +123,13 @@ Exact tracing is the only trace path. `traceRay()`, `traceRayChromatic()`, `trac
 have no mode/options surface — every call resolves to the exact path. The legacy vertex-plane tracer has
 been removed; do not reintroduce a `RayTraceOptions` parameter or a `traceMode` flag.
 
+The public RuntimeLens trace adapters route through the prepared-state sequential/generalized engine in
+`src/optics/trace/`. Surface-intersection misses are terminal in both paths, including ghost-mode diagram
+traces: the result preserves already solved hits for display and diagnostics, but does not fabricate fallback
+surface points after a miss. Aperture/semi-diameter clips remain distinct from misses; ghost mode can retain
+real clipped hit points, and the diagram display layer renders only the first clipped span so zoomed SVG
+bounds stay finite.
+
 The exact tracer in `internal/exactSurfaceTrace.ts` exposes two entry points:
 
 - `traceExactSurfaceStack({ x0, y0, ux0, uy0 }, options)` — slope launch, normalizes

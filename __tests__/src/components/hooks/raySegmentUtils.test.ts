@@ -62,7 +62,7 @@ describe("compileRaySegment", () => {
   });
 
   describe("clipped rays (clipped = true)", () => {
-    it("builds ghost polyline from last solid + ghost pts + endpoint", () => {
+    it("builds ghost polyline only from last solid to the first clipped point", () => {
       const pts = [
         [0, 1],
         [10, 2],
@@ -77,21 +77,25 @@ describe("compileRaySegment", () => {
         [0, 1],
         [10, 2],
       ]);
-      // ghost polyline: last solid + ghost pts + clampedRayEnd from last ghost
+      // ghost polyline: last solid + first clipped point only
       expect(seg.gp).toEqual([
         [10, 2],
         [20, 3],
-        [30, 4],
-        [100, 0],
       ]);
     });
 
-    it("uses endOverride for ghost endpoint when provided", () => {
+    it("ignores later ghost points and endOverride for clipped rays", () => {
       const pts = [[0, 0]];
-      const ghostPts = [[10, 5]];
+      const ghostPts = [
+        [10, 5],
+        [20, 8],
+      ];
       const override = [42, 24];
       const seg = compileRaySegment(pts, ghostPts, 0, true, identity, identity, clampedRayEnd, 50, override);
-      expect(seg.gp[seg.gp.length - 1]).toEqual([42, 24]);
+      expect(seg.gp).toEqual([
+        [0, 0],
+        [10, 5],
+      ]);
     });
 
     it("produces empty ghost when ghostPts is empty", () => {
@@ -108,12 +112,12 @@ describe("compileRaySegment", () => {
       ]);
     });
 
-    it("calls clampedRayEnd with last ghost point and exit slope", () => {
+    it("does not call clampedRayEnd for clipped rays", () => {
       const clamped = vi.fn((): [number, number] => [200, 50]);
       const pts = [[0, 0]];
       const ghostPts = [[30, 7]];
       compileRaySegment(pts, ghostPts, 0.15, true, identity, identity, clamped, 80);
-      expect(clamped).toHaveBeenCalledWith(30, 7, 0.15, 80);
+      expect(clamped).not.toHaveBeenCalled();
     });
 
     it("applies coordinate transforms to ghost points", () => {

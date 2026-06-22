@@ -1,7 +1,7 @@
 /**
  * Trace path planning — surface and image-plane intersection selection for exact tracing.
  *
- * Supplies bounded hit searches, nearest-surface selection, loop guards, and fallback geometry
+ * Supplies bounded hit searches, nearest-surface selection, and loop guards
  * used by sequential and generalized paths.
  */
 
@@ -250,57 +250,6 @@ export function loopStateKey(surfaceIndex: number, point: Vec3, direction: Vec3,
     bucket(direction[2], 1e-7),
     bucket(n, 1e-9),
   ].join(":");
-}
-
-/**
- * Build best-effort hit geometry when a diagnostic trace reaches a target without a solved hit.
- *
- * @param origin - current ray origin
- * @param direction - normalized ray direction
- * @param state - prepared optical state
- * @param surfaceIndex - target surface index
- * @param maxT - search bound used for sampling
- * @returns approximate surface point and normal, or null when no finite point is available
- */
-export function fallbackSurfacePoint(
-  origin: Vec3,
-  direction: Vec3,
-  state: PreparedOpticalState,
-  surfaceIndex: number,
-  maxT: number,
-): { point: Vec3; normal: Vec3 } | null {
-  const surface = state.surfaces[surfaceIndex];
-  const projectedT = Math.abs(direction[2]) > 1e-12 ? (surface.z - origin[2]) / direction[2] : NaN;
-  let t =
-    Number.isFinite(projectedT) && projectedT >= 0 && (!Number.isFinite(maxT) || projectedT <= maxT) ? projectedT : NaN;
-
-  if (!Number.isFinite(t)) {
-    if (!Number.isFinite(maxT) || maxT <= 0) return null;
-    const samples = 32;
-    let bestT = NaN;
-    let bestResidual = Infinity;
-    for (let i = 0; i <= samples; i++) {
-      const candidateT = (maxT * i) / samples;
-      const point: Vec3 = [
-        origin[0] + direction[0] * candidateT,
-        origin[1] + direction[1] * candidateT,
-        origin[2] + direction[2] * candidateT,
-      ];
-      const surfaceZ = surface.profile.pointAt(surface.z, point[0], point[1])[2];
-      const residual = Math.abs(point[2] - surfaceZ);
-      if (Number.isFinite(residual) && residual < bestResidual) {
-        bestResidual = residual;
-        bestT = candidateT;
-      }
-    }
-    if (!Number.isFinite(bestT)) return null;
-    t = bestT;
-  }
-
-  const x = origin[0] + direction[0] * t;
-  const y = origin[1] + direction[1] * t;
-  const point = surface.profile.pointAt(surface.z, x, y);
-  return { point, normal: surface.profile.normalAt(point, surface.z) };
 }
 
 function isPassiveAutoSurface(

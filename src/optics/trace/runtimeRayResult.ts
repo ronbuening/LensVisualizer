@@ -86,6 +86,8 @@ function appendTracePoints(result: EngineTraceResult, pts: number[][], ghostPts:
     const point = [hit.point[2], hit.point[1]];
     if (!Number.isFinite(point[0]) || !Number.isFinite(point[1])) continue;
     if (hit.clipped) {
+      // Intersection misses terminate before adding a hit; ghost points here
+      // are only real clipped surface hits.
       if (ghost) ghostPts.push(point);
     } else {
       pts.push(point);

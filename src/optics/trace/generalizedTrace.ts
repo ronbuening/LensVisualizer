@@ -23,7 +23,6 @@ import {
   resolvedNextIndex,
 } from "./interactions.js";
 import {
-  fallbackSurfacePoint,
   findNearestGeneralizedSurfaceHit,
   generalizedHitTolerance,
   intersectImagePlane,
@@ -186,37 +185,13 @@ export function traceGeneralized(
     }
 
     if (!nextSurfaceHit.ok) {
+      // A miss is terminal even in ghost mode: prior hits still display, while
+      // fabricated fallback points can create unbounded SVG paths.
       clipped = true;
       failureReason = nextSurfaceHit.failureReason;
       terminationReason = "trace-failure";
       pushClipEvent(clipEvents, state, nextSurfaceIndex, "intersection-failure", nextSurfaceHit.failureReason);
-      if (!ghost) break;
-
-      const fallback = fallbackSurfacePoint(
-        origin,
-        direction,
-        state,
-        nextSurfaceIndex,
-        targetedSurfaceMaxT(state, nextSurfaceIndex, origin, direction, launchBoundT),
-      );
-      if (fallback === null) continue;
-      const radius = Math.hypot(fallback.point[0], fallback.point[1]);
-      hits.push({
-        surfaceIndex: nextSurfaceIndex,
-        surfaceLabel: surfaceLabel(state, nextSurfaceIndex),
-        point: fallback.point,
-        normal: fallback.normal,
-        incidentDirection: [direction[0], direction[1], direction[2]],
-        radius,
-        clipped: true,
-        fallback: true,
-        failureReason: nextSurfaceHit.failureReason,
-        clipReason: "intersection-failure",
-      });
-      terminalPoint = fallback.point;
-      terminalSurfaceIndex = nextSurfaceIndex;
-      if (stopOnClip) break;
-      continue;
+      break;
     }
 
     const surface = state.surfaces[nextSurfaceIndex];

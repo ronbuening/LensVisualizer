@@ -11,7 +11,7 @@ import type { PreparedOpticalState, Ray3, Vec3 } from "../types.js";
 import { evaluateAperture } from "./aperture.js";
 import { pushClipEvent } from "./foldedDiagnostics.js";
 import { refractedDirection } from "./interactions.js";
-import { fallbackSurfacePoint, intersectStateSurface, sequentialSurfaceMaxT } from "./pathPlanner.js";
+import { intersectStateSurface, sequentialSurfaceMaxT } from "./pathPlanner.js";
 import type { EngineTraceResult, TraceFailureReason, TraceHit, TraceOptions } from "./types.js";
 import {
   clampTraceCount,
@@ -77,31 +77,18 @@ export function traceSequential(
     const maxT = sequentialSurfaceMaxT(state, i, origin, direction, launchBoundT);
     const hit = intersectStateSurface({ origin, direction }, state, i, { maxT, refractiveIndex: n });
 
-    let point: Vec3;
-    let normal: Vec3;
-    let radius: number;
-    let fallback = false;
-    let hitFailure: TraceFailureReason | null = null;
-
-    if (hit.ok) {
-      point = hit.point;
-      normal = hit.normal;
-      radius = hit.radius;
-    } else {
+    if (!hit.ok) {
+      // A miss is terminal even in ghost mode: prior hits still display, while
+      // fabricated fallback points can create unbounded SVG paths.
       clipped = true;
       failureReason = hit.failureReason;
       pushClipEvent(clipEvents, state, i, "intersection-failure", hit.failureReason);
-      if (!ghost) break;
-
-      const fallbackPoint = fallbackSurfacePoint(origin, direction, state, i, maxT);
-      if (fallbackPoint === null) continue;
-      point = fallbackPoint.point;
-      normal = fallbackPoint.normal;
-      radius = Math.hypot(point[0], point[1]);
-      fallback = true;
-      hitFailure = hit.failureReason;
+      break;
     }
 
+    const point = hit.point;
+    const normal = hit.normal;
+    const radius = hit.radius;
     terminalPoint = point;
     terminalSurfaceIndex = i;
     if (recordHeights) {
@@ -126,8 +113,8 @@ export function traceSequential(
       incidentDirection,
       radius,
       clipped: hitClipped,
-      fallback,
-      failureReason: hitFailure,
+      fallback: false,
+      failureReason: null,
       clipReason,
     };
 

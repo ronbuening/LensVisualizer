@@ -4,7 +4,7 @@
 > described here has shipped into `src/optics/`. Use `agent_docs/architecture/optics-engine.md` for current engine
 > boundaries; keep this file for the rationale behind fisheye/vector launch behavior.
 
-Status: revised after the PR 8 follow-ups and PR #506 landed, 2026-05-21.
+Status: revised after the PR 8 follow-ups, PR #506, and the ray ghost/miss rendering fix landed, 2026-06-22.
 
 The current branch state: every analysis module's field-launch slope routes through the shared projection helper;
 the Distortion tab's field grid samples in angular space for fisheyes; equisolid-angle projection is a recognized
@@ -539,8 +539,10 @@ Shipped in the same commit as PR 7's follow-up:
 ### PR 8 — Tracer surgery (landed)
 
 Originally seven numbered steps. Six landed across the commits below; **Step 5 (visual smoke on the Nikon
-6mm at 110° in the running app)** still requires browser access. **Step 2c (`fallbackSurfacePoint` for
-ghost-mode visualization)** is deferred — see note under step 2.
+6mm at 110° in the running app)** still requires browser access. The former **Step 2c
+(`fallbackSurfacePoint` for ghost-mode visualization)** is superseded for the active RuntimeLens diagram path:
+prepared-state sequential/generalized traces now terminate on missed surfaces, preserve preceding solved hits,
+and do not fabricate fallback hit geometry after a miss.
 
 ```
 beb040e  Lift exact-tracer forward-cone gates for bounding-sphere launches  (Steps 1, 2a, 2b)
@@ -571,16 +573,16 @@ c707fe9  Restrict tracingHalfField safety margin to fisheyes only           (rec
   on the Nokton 50/1 and θ = 5° on the Nikon 6mm confirm bit-identical results between launch surfaces
   (~1e-12 mm at z=0).
 - Validator `projection.maxTraceFieldDeg` cap raised from 90° to 180° (`6ce2906`).
+- Ghost-mode diagram traces no longer extend through missed surfaces on the active prepared-state engine path.
+  A miss terminates tracing with the prior hit history intact, while aperture/semi-diameter clips can still
+  produce real clipped hit points. The display layer draws clipped ghost rays only from the last solid point
+  to the first clipped point, avoiding unbounded SVG paths during zoom/pan.
 
 **What's still partial:**
 
 - **Step 5 — visual smoke.** Cannot be automated. Open the running app on the Nikon 6mm, click through
   diagram + distortion + vignette + pupil-aberration + off-axis tabs, confirm no NaN gaps, console
   warnings, or visually nonsense rays. Easiest after the next dev-server start.
-- **Step 2c — ghost-mode fallback.** `fallbackSurfacePoint()` in
-  [exactSurfaceTrace.ts](src/optics/internal/exactSurfaceTrace.ts) still rejects rays with
-  `|direction[2]| <= 1e-12`. Only reached via `ghost: true` visualization (not used by chief-ray
-  solving); it remains a polish task for diagnostic/ghost visualization edge cases.
 - **Vector-launch policy is still module-specific.** Bokeh, vignetting, pupil-aberration, distortion-grid, image-height,
   visible off-axis, and chromatic off-axis paths all consume vector launches where needed, but there is no shared
   `buildRayBundleForField()` abstraction yet. Keep that deferred until duplication becomes painful.
@@ -590,9 +592,9 @@ c707fe9  Restrict tracingHalfField safety margin to fisheyes only           (rec
   most Nikon 6mm angles, which produces `console.warn`s in dev mode; might be worth promoting the
   diagnostics aggregator to a CI gate.
 
-**Realistic effort for the remaining work:** Step 5 is 30 minutes with browser access. Step 2c and the catalog
-audit are opportunistic. A shared bundle builder is only worth a dedicated pass if future fisheye work starts
-copying vector launch policy across modules again.
+**Realistic effort for the remaining work:** Step 5 is 30 minutes with browser access. The catalog audit is
+opportunistic. A shared bundle builder is only worth a dedicated pass if future fisheye work starts copying
+vector launch policy across modules again.
 
 #### Step 1 — Lift the forward-cone gate in `surfaceIntersectionMaxT()`
 
@@ -669,18 +671,13 @@ The bracket midpoint is a worse starting guess for steep rays but a perfectly go
 bracket finder at [surfaceIntersection.ts:118](src/optics/internal/surfaceIntersection.ts#L118) already
 guarantees `lo < hi` brackets a sign change.
 
-**2c. Same fix in `fallbackSurfacePoint()`** at [exactSurfaceTrace.ts:340](src/optics/internal/exactSurfaceTrace.ts#L340).
-Currently `if (Math.abs(direction[2]) <= 1e-12) return null;`. The fallback's job is to give the *ghost-mode*
-visualizer something to draw when the real intersection fails. For grazing rays, project to the bounding-sphere
-intersection with the vertex plane via the `(lo, hi)` midpoint instead of dividing by `direction[2]`. If even
-that fails (e.g., the ray completely misses the sphere), return `null` is correct.
-
-**Deferred from steps 1–2** (commit `<commit-pending>`): Step 2c was not implemented in the steps-1+2 commit
-because `fallbackSurfacePoint` is only called from the `ghost: true` visualization branch in
-[exactSurfaceTrace.ts:195](src/optics/internal/exactSurfaceTrace.ts#L195), and no chief-ray-solving or analysis
-path enables ghost mode. With ghost mode off (today's default everywhere), failed intersections just break out
-of the trace loop. Step 2c becomes necessary only when the diagram panel (which does use ghost-mode rays) is
-asked to render a bounding-sphere launch — i.e., as part of step 6's catalog promotion. Wire it then.
+**2c. Superseded for active diagram rendering.** The original note targeted
+`fallbackSurfacePoint()` in [exactSurfaceTrace.ts](src/optics/internal/exactSurfaceTrace.ts), which could
+invent ghost-mode geometry after a failed intersection. The active RuntimeLens diagram path now uses the
+prepared-state trace adapters in [rayAdapters.ts](src/optics/trace/rayAdapters.ts). In that path, sequential
+and generalized traces stop immediately on a surface-intersection miss, keep preceding solved hits for display,
+and emit no fallback ghost point. The internal exact-trace fallback remains only for lower-level internal callers;
+do not reintroduce it into the diagram path as a post-miss visualization extension.
 
 **Risk assessment for steps 1–2.** This is the genuine numerics work. The intersection algorithm has been stable
 for forward-cone rays for many lens generations; opening it up to sideways and backward rays creates new failure
@@ -861,7 +858,7 @@ This is the bookkeeping step that completes PR 8.
 | Step | Files |
 |------|-------|
 | 1    | [src/optics/internal/exactSurfaceTrace.ts](src/optics/internal/exactSurfaceTrace.ts) (`surfaceIntersectionMaxT` + `traceExactSurfaceStackVector` options) |
-| 2    | [src/optics/internal/surfaceIntersection.ts](src/optics/internal/surfaceIntersection.ts) (gate + Newton seed), [src/optics/internal/exactSurfaceTrace.ts](src/optics/internal/exactSurfaceTrace.ts) (`fallbackSurfacePoint`) |
+| 2    | [src/optics/internal/surfaceIntersection.ts](src/optics/internal/surfaceIntersection.ts) (gate + Newton seed); the original [src/optics/internal/exactSurfaceTrace.ts](src/optics/internal/exactSurfaceTrace.ts) `fallbackSurfacePoint` follow-up is superseded for the active diagram path by miss termination in [src/optics/trace/sequentialTrace.ts](src/optics/trace/sequentialTrace.ts) and [src/optics/trace/generalizedTrace.ts](src/optics/trace/generalizedTrace.ts) |
 | 3    | [src/optics/fieldGeometry.ts](src/optics/fieldGeometry.ts) (`solveChiefRayBoundingSphere`), [src/optics/buildLens.ts](src/optics/buildLens.ts) (cache launch radius if useful) |
 | 4    | new `__tests__/src/optics/boundingSphereParity.test.ts` |
 | 5    | none in code (visual verification only) |

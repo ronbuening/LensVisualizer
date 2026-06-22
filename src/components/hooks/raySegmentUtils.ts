@@ -12,7 +12,7 @@ import type { ChromaticChannel } from "../../types/optics.js";
  * Compile traced ray points into a RaySegment with solid (sp) and ghost (gp) polylines.
  *
  * @param pts           — traced surface intersection points [[z, y], ...]
- * @param ghostPts      — extrapolated points beyond the clipping surface
+ * @param ghostPts      — clipped trace points; display uses only the first clip point
  * @param u             — exit slope of the ray
  * @param clipped       — true if the ray was clipped by the aperture stop
  * @param sx            — z → SVG-x coordinate transform
@@ -39,11 +39,12 @@ export function compileRaySegment(
 
   if (clipped && ghostPts.length > 0) {
     const lastSolid = pts[pts.length - 1];
-    if (lastSolid) gp.push([sx(lastSolid[0]), sy(lastSolid[1])]);
-    gp = gp.concat(ghostPts.map(([z, yy]) => [sx(z), sy(yy)]));
-    const lastGhost = ghostPts[ghostPts.length - 1];
-    if (lastGhost) {
-      gp.push(endOverride ?? clampedRayEnd(lastGhost[0], lastGhost[1], u, IMG_MM));
+    const firstGhost = ghostPts[0];
+    if (lastSolid && firstGhost) {
+      // Later clipped diagnostics can be far outside the viewport; render only
+      // the first clipped span so zoomed SVG bounds stay finite.
+      gp.push([sx(lastSolid[0]), sy(lastSolid[1])]);
+      gp.push([sx(firstGhost[0]), sy(firstGhost[1])]);
     }
   }
   if (!clipped && !reachedImagePlane) {

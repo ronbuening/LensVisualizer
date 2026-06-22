@@ -54,7 +54,7 @@ Key responsibilities:
 | Hook | Purpose |
 | --- | --- |
 | `useLensComputation.ts` | Lens building/reuse, layout, transforms, element shapes, aperture, current-state field geometry, and optional perspective-control movement. It imports stable optics modules directly; there is no old-vs-new selector. Stabilizes `zPos` by element-wise comparison. |
-| `useRayTracing.ts` | Orchestrates on-axis, off-axis, and chromatic ray hooks, applies ray density and optional movement transforms, and reports the first ray error. Folded systems receive generalized trace results terminating on `L.imagePlane`. |
+| `useRayTracing.ts` | Orchestrates on-axis, off-axis, and chromatic ray hooks, applies ray density and optional movement transforms, and reports the first ray error. Folded systems receive generalized trace results terminating on `L.imagePlane`; missed surfaces stop tracing while preserving preceding display hits. |
 | `useOnAxisRays.ts` | Computes density-derived on-axis ray fan segments, using obstruction-aware sampling for folded mirror systems. |
 | `useOffAxisRays.ts` | Computes density-derived visible off-axis rays using state-aware field geometry and folded image-plane termination where applicable. |
 | `offAxisRayUtils.ts` | Shared off-axis tracing geometry and optional edge-projection endpoint logic for monochrome and chromatic fans. |
@@ -87,7 +87,7 @@ Key responsibilities:
 | `DiagramGridAxisLayer.tsx` | Grid, axis, and image-plane reference elements, including explicit folded-system image planes that may be in front of, behind, or above the axial layout. |
 | `DiagramElementLayer.tsx` | Lens element paths, aspheric overlays, and surface accents. Annular elements use even-odd fill, tilted flat mirrors render from `interaction.normal`, and second-surface mirror coatings render as dashed substrate accents. |
 | `DiagramRayLayers.tsx` | On-axis, off-axis, and chromatic ray layers. When chromatic mode is active, it hides monochrome layers and lets ON-AXIS/OFF-AXIS gate the chromatic axial/off-axis groups. Folded ray polylines follow the generalized tracer rather than surface-list order. |
-| `RayPolylines.tsx` | Consolidated ray segment polyline rendering. |
+| `RayPolylines.tsx` | Consolidated ray segment polyline rendering. Ray segment compilation displays clipped ghost rays only from the last solid point to the first clipped point, keeping zoomed SVG bounds finite. |
 | `ApertureStop.tsx` | Aperture stop blades and STO label. |
 | `CardinalElementsOverlay.tsx` | Feature-flagged F/F′, H/H′, N/N′ and axial span overlay. |
 | `ElementAnnotations.tsx` | Element numbers, Abbe badges, group/doublet labels. |
