@@ -67,7 +67,7 @@ const LENS_DATA = {
       nd: 1.785,
       vd: 26.1,
       fl: -169.2,
-      glass: "Dense flint (785/261, SF11 class)",
+      glass: "785261 — dense flint (SF56A / SF11 class)",
       apd: false as const,
       role: "Front achromatic corrector; cemented to L2. High-dispersion partner to the FK5 crown.",
       cemented: "D1",
@@ -106,9 +106,9 @@ const LENS_DATA = {
       nd: 1.834,
       vd: 37.3,
       fl: 81.2,
-      glass: "S-LAH55 (Ohara)",
+      glass: "834373 — dense flint (M-NBFD10 catalog match; S-LAH60/LaSF5 class)",
       apd: false as const,
-      role: "Lanthanum dense flint; front element of G2 first doublet. Cemented to L5.",
+      role: "High-index dense flint; front element of G2 first doublet. Cemented to L5.",
       cemented: "D2a",
     },
     {
@@ -222,9 +222,9 @@ const LENS_DATA = {
       nd: 1.834,
       vd: 37.3,
       fl: -39.2,
-      glass: "S-LAH55 (Ohara)",
+      glass: "834373 — dense flint (M-NBFD10 catalog match; S-LAH60/LaSF5 class)",
       apd: false as const,
-      role: "Field flattener. Strong negative power near the image plane counteracts Petzval curvature.",
+      role: "Field flattener. Strong high-index negative power near the image plane counteracts Petzval curvature.",
     },
     {
       id: 14,
@@ -250,12 +250,12 @@ const LENS_DATA = {
     { label: "5", R: 258.513, d: 2.5, nd: 1.0, elemId: 0, sd: 24.5 }, // L3 rear → air (D1, variable)
 
     // ── G2: Negative zooming group (L4–L7) ──
-    { label: "6", R: -491.316, d: 3.4, nd: 1.834, elemId: 4, sd: 22.0 },
-    { label: "7", R: -59.685, d: 1.8, nd: 1.773, elemId: 5, sd: 21.0 }, // L4→L5 cemented junction
-    { label: "8", R: 37.576, d: 6.21, nd: 1.0, elemId: 0, sd: 14.4 }, // L5 rear → air
-    { label: "9", R: -40.656, d: 1.8, nd: 1.64, elemId: 6, sd: 14.4 },
-    { label: "10", R: 41.069, d: 4.4, nd: 1.805, elemId: 7, sd: 19.4 }, // L6→L7 cemented junction
-    { label: "11", R: 364.418, d: 37.49, nd: 1.0, elemId: 0, sd: 19.4 }, // L7 rear → air (D2, variable; corrected from 3.490)
+    { label: "6", R: -491.316, d: 3.4, nd: 1.834, elemId: 4, sd: 20.0 },
+    { label: "7", R: -59.685, d: 1.8, nd: 1.773, elemId: 5, sd: 19.0 }, // L4→L5 cemented junction
+    { label: "8", R: 37.576, d: 6.21, nd: 1.0, elemId: 0, sd: 14.45 }, // L5 rear → air
+    { label: "9", R: -40.656, d: 1.8, nd: 1.64, elemId: 6, sd: 14.45 },
+    { label: "10", R: 41.069, d: 4.4, nd: 1.805, elemId: 7, sd: 19.0 }, // L6→L7 cemented junction
+    { label: "11", R: 364.418, d: 37.49, nd: 1.0, elemId: 0, sd: 19.0 }, // L7 rear → air (D2, variable; corrected from 3.490)
 
     // ── G3a: Main positive power subgroup (L8–L11) ──
     { label: "12", R: 115.149, d: 3.8, nd: 1.487, elemId: 8, sd: 21.5 },

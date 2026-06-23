@@ -84,7 +84,7 @@ const LENS_DATA = {
       nd: 1.531,
       vd: 62.1,
       fl: 68.7,
-      glass: "BSM-type crown (531/621)",
+      glass: "531621 — BSM-type crown (no exact public catalog match)",
       apd: false,
       role: "Primary positive power in Group I. Exceptionally thick (13.8 mm) for principal-plane control.",
     },
@@ -121,7 +121,7 @@ const LENS_DATA = {
       nd: 1.834,
       vd: 37.3,
       fl: -16.5,
-      glass: "LaSF5 (Schott)",
+      glass: "834373 — dense flint (M-NBFD10 catalog match; LaSF5/S-LAH60 class)",
       apd: false,
       cemented: "D1",
       role: "Strongly negative element dominating Group II. R9 (+17.98 mm) is the steepest curvature in the system.",
@@ -134,7 +134,7 @@ const LENS_DATA = {
       nd: 1.498,
       vd: 65.1,
       fl: -19.2,
-      glass: "BK3 (Schott)",
+      glass: "498651 — BK3-type borosilicate crown (no exact public catalog match)",
       apd: false,
       cemented: "D2",
       role: "Low-index crown element of Group III compensator doublet.",
@@ -198,7 +198,7 @@ const LENS_DATA = {
       nd: 1.639,
       vd: 45.1,
       fl: 33.9,
-      glass: "BaSF52 (Schott)",
+      glass: "639451 — BaSF52-type barium dense flint (no exact public catalog match)",
       apd: false,
       role: "Strongly asymmetric biconvex in the converging beam. Moderate-dispersion barium flint for higher-order chromatic tuning.",
     },
@@ -233,7 +233,7 @@ const LENS_DATA = {
 
     // ── Group III (L6–L7 cemented) — moves during zoom ──
     { label: "10", R: -16.56, d: 1.0, nd: 1.498, elemId: 6, sd: 10.5 }, // L6 front
-    { label: "11", R: 22.97, d: 3.1, nd: 1.785, elemId: 7, sd: 9.0 }, // L6→L7 junction
+    { label: "11", R: 22.97, d: 3.1, nd: 1.785, elemId: 7, sd: 10.2 }, // L6→L7 junction
     { label: "12", R: -112.11, d: 8.83, nd: 1.0, elemId: 0, sd: 11.0 }, // L7 rear → air — var gap (3a: R12→STO)
 
     // ── Aperture stop (inferred from Fig. 1, fixed to Group IV) ──

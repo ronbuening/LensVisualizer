@@ -45,11 +45,11 @@ The aperture stop is located 6.70 mm after surface S18, within the D3 airspace b
 
 #### L1 — Negative Meniscus, Convex to Object
 
-nd = 1.78500, νd = 26.1. Glass: dense flint (785/261, SF11 class). f = −169.2 mm.
+nd = 1.78500, νd = 26.1. Glass: 785261 — dense flint (SF56A / SF11 class). f = −169.2 mm.
 
 L1 is a steeply curved negative meniscus that forms the front (object-side) half of a cemented doublet with L2. Its high dispersion (νd = 26.1) paired against L2's low dispersion (νd = 70.4) provides the primary achromatic correction for G1. With a front radius of 58.32 mm and a rear radius of 39.61 mm (both positive — concentric meniscus convex to the object), L1 also contributes negative spherical aberration that partially balances the positive spherical aberration introduced by the strong positive element L2. As the first surface of the entire lens system, S1's curvature directly controls the height and angle of the marginal ray entering the rest of the optics.
 
-The patent's stored nd/νd values (1.785/26.1) are closest to Schott SF11 (nd = 1.78472, νd = 25.76), with a νd discrepancy of 0.34 that exceeds typical rounding tolerance. This glass type differs from L1 in several other examples of the patent (e.g. Examples 1 and 2 use 1.805/25.5, i.e. SF6), suggesting Moskovich explored different flint choices across embodiments. The identification is labeled as "SF11 class" rather than a confident catalog match.
+The patent's stored nd/νd values (1.785/26.1) map to six-digit code 785261. The local Sellmeier catalog resolves that code to SF56A (nd = 1.7845, νd = 26.1), while Schott SF11 is also a plausible family-level analog (nd = 1.78472, νd = 25.76). The data file uses the code-first label so the dispersion resolver follows the measured patent code rather than a looser SF11-family name.
 
 #### L2 — Biconvex Positive
 
@@ -67,11 +67,11 @@ L3 is separated from the L1–L2 doublet by only 0.10 mm and provides supplement
 
 #### L4 + L5 — Cemented Doublet (f = −46.9 mm)
 
-**L4 — Positive Meniscus, Concave to Object.** nd = 1.83400, νd = 37.3. Glass: S-LAH55 (Ohara) — lanthanum dense flint. f = +81.2 mm.
+**L4 — Positive Meniscus, Concave to Object.** nd = 1.83400, νd = 37.3. Glass: 834373 — dense flint (M-NBFD10 catalog match; S-LAH60/LaSF5 class). f = +81.2 mm.
 
 **L5 — Biconcave Negative.** nd = 1.77300, νd = 49.6. Glass: S-LAH66 (OHARA) — lanthanum crown. f = −29.6 mm.
 
-This doublet is the primary power carrier of G2. L5's strong biconcave shape (R₁ = −59.69, R₂ = 37.58 mm) generates the bulk of the group's negative power. L4, although individually positive, is paired with L5 to form a net-negative cemented group while correcting chromatic aberration across the G2 complex. Both elements use lanthanum-series rare-earth glasses — L4 is a lanthanum dense flint (S-LAH55) and L5 is a lanthanum crown (S-LAH66). The high refractive indices (1.834 and 1.773) permit the strong curvatures needed for a short, powerful negative group while controlling Petzval sum contributions.
+This doublet is the primary power carrier of G2. L5's strong biconcave shape (R₁ = −59.69, R₂ = 37.58 mm) generates the bulk of the group's negative power. L4, although individually positive, is paired with L5 to form a net-negative cemented group while correcting chromatic aberration across the G2 complex. L4 is a 1.834/37.3 high-index dense flint best represented locally by code 834373/M-NBFD10, while L5 is a lanthanum crown (S-LAH66). The high refractive indices (1.834 and 1.773) permit the strong curvatures needed for a short, powerful negative group while controlling Petzval sum contributions.
 
 The junction surface at S7 (R = −59.685 mm) transitions from nd = 1.834 to nd = 1.773. This modest index step produces relatively little refraction at the cemented interface; the interface instead serves primarily to correct longitudinal chromatic aberration by exploiting the difference in dispersion between L4 (νd = 37.3) and L5 (νd = 49.6).
 
@@ -123,9 +123,9 @@ L12 is an unusual choice: a moderate-power positive element in a high-dispersion
 
 ##### L13 — Negative Meniscus, Concave to Object
 
-nd = 1.83400, νd = 37.3. Glass: S-LAH55 (Ohara) — lanthanum dense flint. f = −39.2 mm.
+nd = 1.83400, νd = 37.3. Glass: 834373 — dense flint (M-NBFD10 catalog match; S-LAH60/LaSF5 class). f = −39.2 mm.
 
-L13 is the strongest negative element in G3b (and one of the strongest in the entire system after L5) despite being part of a subgroup the patent describes as "low optical power." Its role is field flattening: positioned close to the image plane — only 4.80 mm of glass (L14) and the BFL separate it from the focal plane — L13's strong negative power counteracts the Petzval field curvature accumulated by the preceding positive groups. The lanthanum dense flint glass (nd = 1.834) provides the high refractive index needed to produce strong curvature in a compact element (2.20 mm center thickness). Both surfaces are concave to the object (R₁ = −25.51, R₂ = −120.29 mm), forming a meniscus that is steeply curved at the front (S21) where it intercepts the diverging ray bundle at relatively large angles.
+L13 is the strongest negative element in G3b (and one of the strongest in the entire system after L5) despite being part of a subgroup the patent describes as "low optical power." Its role is field flattening: positioned close to the image plane — only 4.80 mm of glass (L14) and the BFL separate it from the focal plane — L13's strong negative power counteracts the Petzval field curvature accumulated by the preceding positive groups. The 1.834/37.3 dense flint provides the high refractive index needed to produce strong curvature in a compact element (2.20 mm center thickness); locally, code 834373 is a closer match than S-LAH55. Both surfaces are concave to the object (R₁ = −25.51, R₂ = −120.29 mm), forming a meniscus that is steeply curved at the front (S21) where it intercepts the diverging ray bundle at relatively large angles.
 
 ##### L14 — Biconvex Positive
 
@@ -137,25 +137,25 @@ L14 is the final element before the image plane. Like L12, it uses a high-disper
 
 ## Glass Identification and Selection
 
-The design uses 9 distinct glass types across 14 elements. The palette is dominated by two glass families: fluor crowns (FK5, four elements) and dense flints (SF6/SF14, three elements), supplemented by three lanthanum-series rare-earth glasses and three conventional crowns/flints.
+The design uses 9 distinct glass types across 14 elements. The palette is dominated by two glass families: fluor crowns (FK5, four elements) and dense flints (SF6/SF14 plus the 785261 and 834373 rows), supplemented by high-index crown/flint pairs and conventional relay glasses.
 
 | Element(s) | nd | νd | Glass | Vendor | Family | Role |
 |---|---|---|---|---|---|---|
 | L2, L3, L8, L10 | 1.487 | 70.4 | FK5 / S-FSL5 | Schott / Ohara | Fluor crown | Low-dispersion positive power carriers |
 | L7, L11 | 1.805 | 25.5 | SF6 / S-TIH6 | Schott / Ohara | Dense flint | Achromatic correctors (high dispersion) |
-| L4, L13 | 1.834 | 37.3 | S-LAH55 | Ohara | Lanthanum dense flint | High-index elements for Petzval/field correction |
+| L4, L13 | 1.834 | 37.3 | 834373 / M-NBFD10 | Hoya / class match | High-index dense flint | High-index elements for Petzval/field correction |
 | L5 | 1.773 | 49.6 | S-LAH66 | OHARA | Lanthanum crown | High-index moderate-dispersion negative |
-| L1 | 1.785 | 26.1 | Dense flint (785/261, SF11 class) | Schott (probable) | Dense flint | Front achromatic corrector |
+| L1 | 1.785 | 26.1 | 785261 / SF56A-SF11 class | catalog/code match | Dense flint | Front achromatic corrector |
 | L14 | 1.762 | 26.6 | SF14 / S-TIH14 | Schott / Ohara | Dense flint | Lateral color corrector |
 | L12 | 1.603 | 38.0 | F5 / S-TIM5 | Schott / Ohara | Barium flint | Lateral color / field corrector |
 | L9 | 1.589 | 61.3 | SK5 | Schott | Barium crown | Relay positive element |
 | L6 | 1.640 | 60.2 | S-BSM81 | OHARA | Barium crown | Negative power in G2 |
 
-L1's glass (nd = 1.785, νd = 26.1) differs from that used in several other examples of the patent (Examples 1, 2, and 6 use nd = 1.805/νd = 25.5, i.e. SF6, for L1). The closest catalog match for the Example 4 values is Schott SF11 (nd = 1.78472, νd = 25.76), with a νd discrepancy of 0.34 that slightly exceeds typical rounding tolerance for a confident assignment. The glass is therefore identified at the class level with the six-digit code 785/261.
+L1's glass (nd = 1.785, νd = 26.1) differs from that used in several other examples of the patent (Examples 1, 2, and 6 use nd = 1.805/νd = 25.5, i.e. SF6, for L1). The Example 4 row is identified with six-digit code 785261 so the Sellmeier resolver can use the local SF56A coefficients while still noting the nearby SF11 family.
 
-The chromatic correction strategy is conventional in its broad strokes — FK5 crowns carry positive power while SF6-class flints correct — but shows sophistication in two areas. First, the use of three lanthanum-type rare-earth glasses (L4, L5, L13) provides high refractive indices that control Petzval sum and permit compact, high-power elements in G2 and G3b without the surface curvatures that an equivalent design in conventional glasses would require. Second, the deliberate use of high-dispersion glasses (F5, SF14) in positive elements near the image plane (L12, L14) corrects lateral chromatic aberration — a technique that is effective only for elements positioned well away from the aperture stop.
+The chromatic correction strategy is conventional in its broad strokes — FK5 crowns carry positive power while SF6-class flints correct — but shows sophistication in two areas. First, the use of high-index glasses (L4, L5, L13) controls Petzval sum and permits compact, high-power elements in G2 and G3b without the surface curvatures that an equivalent design in lower-index glasses would require. Second, the deliberate use of high-dispersion glasses (F5, SF14) in positive elements near the image plane (L12, L14) corrects lateral chromatic aberration — a technique that is effective only for elements positioned well away from the aperture stop.
 
-An Italian analysis by Marco Cavina (NOC Sensei, 2023) notes that Moskovich's original computation specified four lanthanum-type glasses, but the production lens may have substituted conventional equivalents for some positions to reduce cost. The patent prescription retains three such glasses (L4, L5, L13), all in positions where high refractive index is structurally essential — the strong negative group G2 and the field-flattening corrector in G3b.
+An Italian analysis by Marco Cavina (NOC Sensei, 2023) notes that Moskovich's original computation specified four lanthanum-type glasses, but the production lens may have substituted conventional equivalents for some positions to reduce cost. The patent prescription still uses high-index materials in the structurally essential positions: the strong negative group G2 and the field-flattening corrector in G3b.
 
 ---
 

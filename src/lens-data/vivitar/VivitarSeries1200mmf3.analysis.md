@@ -154,7 +154,7 @@ L4 operates as the leading element of the rear positive group. Despite using a h
 | Focal length | −71.0 mm |
 | Shape | Negative meniscus, concave toward object (convex rear) |
 
-**Glass identification:** Six-digit code **713433**. This glass has **no exact match** in any current major glass catalog (Schott, OHARA, HOYA, HIKARI, Sumita, or CDGM). On the Abbe diagram, the code 713-433 falls in a sparsely populated region between the lanthanum flint (LaF) family — which at this index would have ν_d ≈ 48–54 — and the barium dense flint (BaSF) family — which typically reaches only nd ≈ 1.70 at this dispersion. The nearest standard types are Schott N-BASF64 (nd = 1.704, ν_d = 39.4; Δnd = +0.009, Δν_d = −3.9) and HOYA LAF3 / Schott N-LAF3 (nd ≈ 1.717, ν_d ≈ 48.0; Δν_d = +4.7) — neither is close. This is most likely a **discontinued Japanese glass type** that was available to Komine in the 1970s, or a glass whose properties were slightly perturbed in the patent filing for proprietary protection. The production lens may have used a nearby catalog equivalent. The relatively high index with moderate dispersion suggests a barium- or lanthanum-containing composition.
+**Glass identification:** Six-digit code **713433**. This glass has **no exact match** in any current major glass catalog (Schott, OHARA, HOYA, HIKARI, Sumita, or CDGM). On the Abbe diagram, the code 713433 falls in a sparsely populated region between the lanthanum flint (LaF) family — which at this index would have ν_d ≈ 48–54 — and the barium dense flint (BaSF) family — which typically reaches only nd ≈ 1.70 at this dispersion. The nearest standard types are Schott N-BASF64 (nd = 1.704, ν_d = 39.4; Δnd = +0.009, Δν_d = −3.9) and HOYA LAF3 / Schott N-LAF3 (nd ≈ 1.717, ν_d ≈ 48.0; Δν_d = +4.7) — neither is close. This is most likely a **discontinued Japanese glass type** that was available to Komine in the 1970s, or a glass whose properties were slightly perturbed in the patent filing for proprietary protection. The production lens may have used a nearby catalog equivalent. The relatively high index with moderate dispersion suggests a barium- or lanthanum-containing composition.
 
 **Optical role:** L5 is the "fifth element" referenced in the patent as "negative with a convex rear surface." It is the last element of the movable objective group and works in concert with L4 to form the rear positive subgroup. Although individually negative (fl = −71.0 mm), L4 + L5 together form a nearly afocal pair (combined thick-lens focal length ≈ 7,083 mm, or +0.14 diopters), meaning this pair contributes very little net refractive power but plays a crucial role in correcting field curvature.
 
@@ -172,7 +172,7 @@ L5 is also the last element before the variable air gap (R10 → R11), which cha
 | Focal length | −249.4 mm |
 | Shape | Negative meniscus, concave toward image |
 
-**Glass identification:** Six-digit code **580537**. This is an exact match to Schott **BaLF4** (n_d = 1.57957, ν_d = 53.71), a barium light flint glass. BaLF4 sits in the transition zone between barium crowns and light flints — moderate index, moderate dispersion. It is a well-behaved, relatively inexpensive optical glass.
+**Glass identification:** Six-digit code **580537**. This is a BaLF4/N-BALF4-class barium light flint row. The data file uses coefficient-backed Schott N-BALF4 (n_d = 1.57956, ν_d = 53.87) as the closest local Sellmeier proxy for the patent's n_d = 1.57957, ν_d = 53.7. BaLF4 sits in the transition zone between barium crowns and light flints — moderate index, moderate dispersion. It is a well-behaved, relatively inexpensive optical glass.
 
 **Optical role:** L6 is the defining innovation of Betensky's patent. It is mechanically fixed to the lens housing (and thus to the film plane) and does not move during focusing. Its purpose is twofold:
 
@@ -304,7 +304,7 @@ The `.data.ts` file for this lens incorporates several departures from a literal
 | L3 | SF6 | 1.80518 | 25.5 | −63.2 mm | Negative | Telephoto diverger, chromatic correction |
 | L4 | SF6 | 1.80518 | 25.5 | +74.8 mm | Positive | Rear converger |
 | L5 | (713433) LaF/BaSF region | 1.71270 | 43.3 | −71.0 mm | Negative | Petzval/aberration balancing |
-| L6 | BaLF4 | 1.57957 | 53.7 | −249.4 mm | Negative | Fixed compensator/corrector |
+| L6 | N-BALF4 / BaLF4 class | 1.57957 | 53.7 | −249.4 mm | Negative | Fixed compensator/corrector |
 
 ---
 
