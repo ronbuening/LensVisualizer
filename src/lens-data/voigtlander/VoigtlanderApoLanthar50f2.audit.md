@@ -68,3 +68,10 @@ Updated [VoigtlanderApoLanthar50f2.analysis.md](VoigtlanderApoLanthar50f2.analys
 - Local patent source: `patents/JP2021043376A.pdf` (untracked local file).
 - Re-extracted the PDF with `pdftotext -layout` for the proprietary backfill sweep. The patent text defines table fields for `nd`, `νd`, and `dPgF`; it does not expose separate `nC`, `nF`, or `ng` rows in the extracted text.
 - No data-file backfill was made in this sweep. Elements 3 and 4 already carry the patent-listed `dPgF` values, and the remaining proprietary elements do not have patent-listed line indices available from the local PDF text.
+
+## 2026-06-23 — Full Voigtländer local-patent sweep
+
+- Local patent source: `patents/JP2021043376A.pdf` (untracked local file).
+- Rechecked Example 5, Table 5 on rendered page 27. The stored R, d, nd, vd, aspheric coefficients, and F36 variable gaps remain consistent with the patent.
+- Patent-listed `dPgF` values are present only for L3/L4, and the data file already carries those values. No additional APD, high-index, or glass-label updates were available from the patent.
+- The patent table does not publish semidiameters, so the existing SDs remain derived display clearances.

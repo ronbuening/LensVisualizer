@@ -141,27 +141,27 @@ S-NPH1 is a niobium-phosphate glass in OHARA's NPH (Niobium Phosphate High-index
 | νd | 37.37 | 37.37 | 0.00 |
 | 6-digit code | 900/374 | 900/374 | — |
 
-HOYA TAFD37A is a dense lanthanum glass with an extraordinarily high refractive index of 1.900 combined with moderate dispersion. The "TAFD" designation in HOYA's naming system indicates a Tantalum-containing Anomalous Dispersion Flint (Dense) glass — the name itself signals **anomalous partial dispersion (APD)** properties. Cosina's marketing material confirms the production lens contains "two Atypical Partial Dispersion elements," and these two elements — L22 in the cemented doublet and L31 in G3 — are the ones that use this glass.
+HOYA TAFD37A is a dense lanthanum glass with an extraordinarily high refractive index of 1.900 combined with moderate dispersion. The "TAFD" designation in HOYA's naming system indicates a Tantalum-containing Anomalous Dispersion Flint (Dense) glass — the name itself signals **anomalous partial dispersion (APD)** properties. Cosina's marketing material confirms the production lens contains "two Atypical Partial Dispersion elements," and these two high-power TAFD37A elements — L22 in the cemented doublet and L31 in G3 — are the strongest candidates for that manufacturer-stated count.
 
 The use of TAFD37A in both G2 and G3 is a key design decision. Its extremely high refractive index allows strong positive power from surfaces with relatively gentle curvature, reducing higher-order aberrations. At the same time, its APD characteristic (the partial dispersion θg,F deviates from the normal line) provides secondary spectrum correction that would otherwise require fluorite or ED glass in the front group.
 
 No OHARA glass matches these exact nd/νd values. OHARA's nearest equivalent is S-LAH92 (code 892/371, nd ≈ 1.892, νd ≈ 37.1), which differs by Δnd ≈ 0.008 and Δνd ≈ 0.3 — too large to be the same glass. This confirms that Cosina sources at least some glass from HOYA for this design. The choice of TAFD37A over S-LAH92 likely reflects both its closer match to the designer's optimization target and its superior APD properties at this specific nd/νd point.
 
-### L32 — HOYA E-ADF50
+### L32 — S-NBH5 / N-KZFS5 Class
 
-| Property | Patent | E-ADF50 | Residual |
+| Property | Patent | S-NBH5 / N-KZFS5 | Residual |
 |:---------|:-------|:--------|:---------|
 | nd | 1.65412 | 1.65412 | 0.00000 |
-| νd | 39.68 | 39.62 | +0.06 |
-| 6-digit code | 654/397 | 654/396 | — |
+| νd | 39.68 | 39.68 / 39.70 | 0.00 / −0.02 |
+| 6-digit code | 654/397 | 654/397 | — |
 
-HOYA E-ADF50 is a moderate-index flint glass in HOYA's eco-friendly "E-" series. The "ADF" designation stands for Anomalous Dispersion Flint, indicating that this glass also has non-standard partial dispersion characteristics — though its anomalous departure (dPgF = −0.0033) is modest compared to the TAFD37A elements. As the final negative element in the system, it serves as a field flattener and contributes to correction of the Petzval sum. Its relatively low refractive index compared to L31 (1.654 vs. 1.900) creates a strong index differential at the air gap between L31 and L32, which is critical for the field-flattening function.
+S-NBH5 and N-KZFS5 are exact `654/397` catalog matches for the patent pair. They are KZFS/NBH-class anomalous flints with modest negative anomalous partial dispersion. As the final negative element in the system, L32 serves as a field flattener and contributes to correction of the Petzval sum. Its relatively low refractive index compared to L31 (1.654 vs. 1.900) creates a strong index differential at the air gap between L31 and L32, which is critical for the field-flattening function.
 
-*Note:* No OHARA glass at code 654/397 appears in the current recommended catalog. The closest OHARA family member, L-TIM28 (code 689/311, a PGM-grade glass), has a completely different nd/νd. This further supports a mixed OHARA/HOYA glass supply chain for this design.
+*Note:* The local patent table lists nd/vd only; it does not print `dPgF`. The data file therefore marks L32 APD as inferred from the catalog-class match, not patent-stated.
 
 ### Glass summary
 
-The design draws from two glass manufacturers: OHARA (S-LAL18, S-TIH13, S-TIH14, S-NPH1) and HOYA (TAFD37A, E-ADF50). The glass families span lanthanum crowns (LAL), titanium flints (TIH), niobium phosphates (NPH), dense lanthanum anomalous dispersion types (TAFD), and anomalous dispersion flints (ADF). The optical condition νdp > νdn (Condition 2) — requiring that positive elements have higher Abbe numbers than negative elements within G1 — is straightforwardly satisfied: the three S-LAL18 elements have νd = 54.67, while the two negatives have νd = 27.74 (S-TIH13) and 26.58 (S-TIH14) respectively.
+The design draws from multiple high-index and anomalous-dispersion families: OHARA S-LAL18, S-TIH13, S-TIH14, S-NPH1, S-NBH5; Schott N-KZFS5 as an exact equivalent for L32; and HOYA TAFD37A. The glass families span lanthanum crowns (LAL), titanium flints (TIH), niobium phosphates (NPH), dense lanthanum anomalous dispersion types (TAFD), and KZFS/NBH anomalous flints. The optical condition νdp > νdn (Condition 2) — requiring that positive elements have higher Abbe numbers than negative elements within G1 — is straightforwardly satisfied: the three S-LAL18 elements have νd = 54.67, while the two negatives have νd = 27.74 (S-TIH13) and 26.58 (S-TIH14) respectively.
 
 ---
 
@@ -217,7 +217,7 @@ Surfaces i=15 (R=2707.72, effectively flat) and i=16 (R=−25.97). Using HOYA TA
 
 **L32 — Negative meniscus, concave toward object (f = −43.7 mm)**
 
-Surfaces i=17 (R=−26.07) and i=18 (R=−300.00, nearly flat). Using HOYA E-ADF50. This is the field flattener — its negative power and position near the image plane counteract the inward-curving Petzval surface produced by the strong positive elements. The concave-toward-object shape creates a diverging effect primarily in the off-axis bundle, flattening the field without significantly affecting the axial image. The nearly flat rear surface (R=−300.00) gently curves the outermost rays to fine-tune the back focal distance.
+Surfaces i=17 (R=−26.07) and i=18 (R=−300.00, nearly flat). Using an S-NBH5 / N-KZFS5-class anomalous flint. This is the field flattener — its negative power and position near the image plane counteract the inward-curving Petzval surface produced by the strong positive elements. The concave-toward-object shape creates a diverging effect primarily in the off-axis bundle, flattening the field without significantly affecting the axial image. The nearly flat rear surface (R=−300.00) gently curves the outermost rays to fine-tune the back focal distance.
 
 The fact that L31 and L32 are separated by an air gap (d=2.97 mm between surfaces 16 and 17), rather than cemented, distinguishes Example 1 from Example 2 (where G3 is a cemented doublet J31). The air gap provides an additional degree of freedom for aberration correction and allows each element to be independently centered during assembly.
 

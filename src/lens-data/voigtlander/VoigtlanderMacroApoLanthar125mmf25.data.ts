@@ -108,7 +108,7 @@ const LENS_DATA = {
       nd: 1.6727,
       vd: 32.2,
       fl: -55.7,
-      glass: "SF5 (Schott) / K-SFS5 (Sumita)",
+      glass: "E-FD5 (HOYA, patent nd/vd match) / SF5-class dense flint",
       apd: false,
       role: "Primary flint corrector; strongest negative element in Group 1, achromatizes the ED front trio.",
     },

@@ -256,7 +256,7 @@ beyond what standard glass combinations achieve.
 | nd / νd | 1.88300 / 40.81 |
 | Focal length | +18.17 mm |
 | Type | Biconvex positive |
-| Glass (catalog match) | **S-LAH60MQ / S-LAH64** — OHARA S-LAH60MQ (Δνd = 0.01), OHARA S-LAH64 (Δνd = 0.05) |
+| Glass (catalog match) | **H-ZLAF68C** — CDGM catalog match for the patent nd/vd pair |
 
 **Optical role:** L8 is a strong positive singlet (f = +18.17 mm) that serves as the primary
 image-forming element in the rear group. Its high refractive index (nd = 1.88300) keeps surface
@@ -265,6 +265,10 @@ biconvex shape (R₁₃ > |R₁₄|) indicates the rear surface is more strongly
 consistent with bending the converging beam toward the image while minimizing coma for the
 off-axis field. This element also contributes positively to the Petzval sum, which is balanced by
 the surrounding negative elements (L6, L9, L10).
+
+H-ZLAF68C is used here as a resolver-friendly catalog proxy. The patent table lists nd and νd
+only; it does not name a glass trade type. The earlier S-LAH60MQ/S-LAH64 label did not match the
+current catalog closely enough for dispersion modeling.
 
 #### L9 (Nnb) — Negative meniscus, image-side convex
 
@@ -277,7 +281,7 @@ the surrounding negative elements (L6, L9, L10).
 | Focal length | −100.00 mm |
 | Type | Negative meniscus (concave toward object, convex toward image) |
 | APD | **Possible** — glass-map position is consistent with anomalous dispersion, but no exact catalog match confirms it |
-| Glass (catalog match) | **Unconfirmed** — nd/νd does not match any standard OHARA, Schott, or HOYA glass in current catalogs. May correspond to a HOYA-specific or discontinued designation. Nearest: OHARA S-BSM15 (nd=1.62299, νd=58.14; Δnd=0.007, too distant for a match). |
+| Glass (catalog match) | **Unmatched (`630581`)** — nd/νd does not match any standard OHARA, Schott, HOYA, or current catalog glass closely enough. May correspond to a proprietary, discontinued, or supplier-specific designation. Nearest inspected neighbors remain too distant for a reliable match. |
 
 **Optical role:** L9 is a weak negative meniscus (f = −100 mm) that acts primarily as a field
 corrector. Its low power means it contributes little to the system's overall focal length, but
@@ -435,8 +439,8 @@ elements:
 | S-TIH14 | 1.76182 | 26.61 | L5 | OHARA S-TIH14 | Very dense flint for Jy doublet |
 | SF1-type | 1.71736 | 29.50 | L6 | Schott SF1 / OHARA S-TIH1 | Dense flint for Jx achromat |
 | S-LAC14 (probable APD) | 1.69680 | 55.46 | L7 | OHARA S-LAC14 (Δνd=0.05) | LaC crown, probable anomalous dispersion |
-| S-LAH60MQ | 1.88300 | 40.81 | L8 | OHARA S-LAH60MQ / S-LAH64 | High-index LaF for rear positive |
-| Unconfirmed (possible APD) | 1.62999 | 58.12 | L9 | No exact catalog match found | BaK/LaC region crown, possible anomalous dispersion |
+| H-ZLAF68C | 1.88300 | 40.81 | L8 | CDGM H-ZLAF68C | High-index LaF for rear positive |
+| Unmatched (`630581`, possible APD) | 1.62999 | 58.12 | L9 | No exact catalog match found | BaK/LaC region crown, possible anomalous dispersion |
 | NBFD3 / S-LAH63Q | 1.80610 | 40.73 | L10 | HOYA NBFD3 / OHARA S-LAH63Q | High-index LaF for aspheric element |
 
 Two features of the glass selection are noteworthy:
@@ -595,10 +599,11 @@ glasses and anomalous partial dispersion elements.
 - **Manufacturer:** Cosina Co., Ltd. product page for ULTRON Vintage Line 28mm F2 Aspherical
   (https://www.cosina.co.jp/voigtlander/en/vm-mount/ultron-vintage-line-28mm-f2-aspherical/).
 - **Retailer specifications:** B&H Photo (product #1637251), Amazon (ASIN B096QXNNWT).
-- **Glass catalogs:** OHARA optical glass catalog (S-LAH60MQ, S-LAC14, S-TIH1,
+- **Glass catalogs:** OHARA optical glass catalog (S-LAC14, S-TIH1,
   S-TIH14, S-LAH63Q, S-BSL7); Schott optical glass catalog (N-BK7, SF1, SF2, N-SF14,
   N-LASF46A, N-LaK14, N-LASF43); HOYA optical glass catalog (BSC7, E-FD2, E-FD1,
-  TAFD30, TAFD35, NBFD3). OHARA pocket catalog (2023) used for cross-reference verification.
+  TAFD30, TAFD35, NBFD3); CDGM optical glass catalog (H-ZLAF68C). OHARA pocket catalog (2023)
+  used for cross-reference verification.
 - **Computed values:** Thick-lens ABCD transfer matrix (EFL: 28.58 mm, BFL: 18.47 mm), paraxial
   marginal and chief ray traces (semi-diameter estimation), aspherical departure computations,
   and conditional expression verification performed independently using Python scripts.
