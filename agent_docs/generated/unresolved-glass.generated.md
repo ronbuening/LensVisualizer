@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **363** lenses scanned
-- **4090** non-air surfaces examined
-- **4094** element glass declarations examined
-- **634** non-explicit-unmatched annotations did not resolve
-- **223** distinct unresolved glass-like tokens found
+- **366** lenses scanned
+- **4124** non-air surfaces examined
+- **4128** element glass declarations examined
+- **638** non-explicit-unmatched annotations did not resolve
+- **224** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -211,6 +211,7 @@ or per-lens patent backfills.
 | NBFD30 | 1 | 1 | |
 | S-BAH32 | 1 | 1 | |
 | S-BAL12 | 1 | 1 | |
+| S-BAL3 | 1 | 1 | |
 | S-BAM12 | 1 | 1 | |
 | S-BSL10 | 1 | 1 | |
 | S-BSM2 | 1 | 1 | |
@@ -1072,6 +1073,10 @@ or per-lens patent backfills.
 ### S-BAL12 — 1 occurrence
 
 - [FUJIFILM FUJINON XF 23mm f/1.4 R LM WR](../../src/lens-data/fujifilm/FujifilmXF23mmf14RLMWR.data.ts) 1: `540597 - barium crown (N-BAK2 / S-BAL12 class; vendor uncertain)`
+
+### S-BAL3 — 1 occurrence
+
+- [CANON TS-E 90mm f/2.8L MACRO](../../src/lens-data/canon/CanonTSE90mmf28L.data.ts) 18: `S-BAL3 (OHARA)`
 
 ### S-BAM12 — 1 occurrence
 

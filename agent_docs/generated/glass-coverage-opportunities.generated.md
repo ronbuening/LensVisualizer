@@ -9,13 +9,13 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **363** lenses scanned (**355** visible)
-- **3297 / 4090** non-air surfaces use strict catalog Sellmeier data (80.6%)
-- **3321 / 4090** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 81.2%)
+- **366** lenses scanned (**358** visible)
+- **3327 / 4124** non-air surfaces use strict catalog Sellmeier data (80.7%)
+- **3351 / 4124** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 81.3%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
 - **206** code-only missing-Sellmeier elements in Sweep 2
-- **134** unresolved named-token elements in Sweep 2B
+- **135** unresolved named-token elements in Sweep 2B
 - **0** Tier A proprietary backfill rows in Sweep 3
 
 ## Sweep 1 - Relabel Mismatches
@@ -70,6 +70,7 @@ These are efficient follow-up targets after mismatch blockers because one or two
 | [SONY PLANAR T* FE 50mm f/1.4 ZA](../../src/lens-data/sony/SonyPlanarFE50mmf14ZA.data.ts) | 91.7% (11/12) | 91.7% (11/12) | 1 | abbe: 1 |
 | [CANON EF 50mm f/1.0 L USM](../../src/lens-data/canon/CanonEF50mmf1L.data.ts) | 90.9% (10/11) | 90.9% (10/11) | 1 | abbe: 1 |
 | [CANON EF-S 18-55mm f/3.5-5.6 IS](../../src/lens-data/canon/CanonEFS1855mmf3556IS.data.ts) | 90.9% (10/11) | 90.9% (10/11) | 1 | abbe: 1 |
+| [CANON TS-E 90mm f/2.8L MACRO](../../src/lens-data/canon/CanonTSE90mmf28L.data.ts) | 90.9% (10/11) | 90.9% (10/11) | 1 | abbe: 1 |
 | [FUJIFILM FUJINON XF 56mm f/1.2 R](../../src/lens-data/fujifilm/FujifilmXF56mmf12.data.ts) | 90.9% (10/11) | 90.9% (10/11) | 1 | abbe: 1 |
 | [FUJIFILM FUJINON XF 90mm f/2 R LM WR](../../src/lens-data/fujifilm/FujifilmXF90mmf2.data.ts) | 90.9% (10/11) | 90.9% (10/11) | 1 | abbe: 1 |
 | [NIKON NIKKOR Z 35mm f/1.8 S](../../src/lens-data/nikon/NikonZ35f18S.data.ts) | 90.9% (10/11) | 90.9% (10/11) | 1 | abbe: 1 |
