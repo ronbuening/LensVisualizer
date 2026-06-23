@@ -13,14 +13,16 @@
  */
 
 import {
-  computeAnalysisFieldGeometryAtState,
-  doLayout,
   sampleCircularPupil,
   skewImagePlaneIntercept,
   type CircularPupilSample,
-  type FieldGeometryState,
   type SkewImagePlaneIntercept,
-} from "../optics.js";
+} from "../rayTrace.js";
+import {
+  computeAnalysisFieldGeometryAtState2 as computeAnalysisFieldGeometryAtState,
+  type FieldGeometryState2 as FieldGeometryState,
+} from "../field/fieldGeometry.js";
+import { doLayout } from "../layout.js";
 import type { LayoutResult, RuntimeLens } from "../../types/optics.js";
 import { computeProjectionAwareOffAxisFieldGeometry, traceOffAxisBundleFromSamples } from "./offAxis.js";
 import { bestFocusPlane, computeRealRayHit, PROFILE_FRACS } from "./shared.js";

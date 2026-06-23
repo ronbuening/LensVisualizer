@@ -4,7 +4,7 @@
  * Centralizes the coordinate and best-focus conventions reused by spherical, coma, field-curvature, and bokeh modules.
  */
 
-import { traceRay } from "../optics.js";
+import { traceRay2 as traceRay } from "../trace/rayAdapters.js";
 import type { RuntimeLens } from "../../types/optics.js";
 
 /** Candidate fractions of the entrance pupil for the marginal ray sample. */
