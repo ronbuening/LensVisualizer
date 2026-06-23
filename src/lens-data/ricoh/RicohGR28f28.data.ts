@@ -122,7 +122,7 @@ const LENS_DATA = {
       nd: 1.74077,
       vd: 27.8,
       fl: -20.7,
-      glass: "EFD4 (HOYA)",
+      glass: "E-FD13 (HOYA) / S-TIH13 class (741278)",
       apd: false,
       role: "Rear element of cemented triplet. High-dispersion flint provides chromatic balance for the L3 group. Meniscus form contributes to Petzval field correction.",
       cemented: "T1",

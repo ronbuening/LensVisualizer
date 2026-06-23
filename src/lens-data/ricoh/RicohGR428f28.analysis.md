@@ -154,15 +154,15 @@ L21's strong positive power (f ≈ +6.9 mm) makes it the most powerful convergin
 | Glass (actual nd/νd) | nd = 1.76802, νd = 49.24 |
 | Thin-lens focal length | +127.7 mm (weak positive) |
 
-**Glass identification — discrepancy:** The patent lists this glass as "S-TIM35 (OHARA)" but the numerical data gives nd = 1.76802 and νd = 49.24. These values do not match S-TIM35 (nd = 1.69895, νd = 30.13), which is used on L22. The nd/νd pair 1.76802/49.24 is an exact match for **OHARA S-LAH53**, a lanthanum crown. This is clearly a typographical error in the patent publication — the glass name was duplicated from the preceding element. Throughout this analysis, L23 is treated as S-LAH53.
+**Glass identification — discrepancy:** The patent lists this glass as "S-TIM35 (OHARA)" but the numerical data gives nd = 1.76802 and νd = 49.24. These values do not match S-TIM35 (nd = 1.69895, νd = 30.13), which is used on L22. They also do not match the local OHARA S-LAH53 catalog row (1.80610/40.93). The closest coefficient-backed local match is **HOYA MC-TAF101-100 / M-TAF101 class** (1.76902/49.29), a moldable lanthanum/tantalum glass class used elsewhere in the catalog for this nd/νd region. The patent's printed S-TIM35 name is therefore treated as a copy error, but the corrected label is no longer described as S-LAH53.
 
-**Glass classification:** S-LAH53 is a high-index lanthanum crown (nd = 1.768, νd = 49.2). It offers a useful combination of moderately high index with relatively low dispersion — better chromatic behavior than the S-LAH58 used in L13 and L21, at the cost of somewhat lower index.
+**Glass classification:** The MC-TAF101 / M-TAF101 class is a high-index lanthanum/tantalum glass near the crown-flint boundary (nd ≈ 1.768, νd ≈ 49.2). It offers a useful combination of moderately high index with relatively low dispersion — better chromatic behavior than the S-LAH58 used in L13 and L21, at the cost of somewhat lower index.
 
 **Optical role:** L23 occupies the rearmost position in G2 and is the weakest positive element in the system (f ≈ +128 mm). The patent (¶0076) explains that L23's role is deliberately minimized in terms of power contribution to preserve the quasi-symmetric arrangement, while providing fine-tuning of off-axis aberrations from a position far from the stop where field-dependent rays are well separated. Its two aspherical surfaces carry modest departures: approximately −54 µm on surface 10 and +29 µm on surface 11 at estimated working apertures. These small corrections target residual coma and astigmatism at intermediate and full field heights.
 
 **Aspherical surface 10 (front):** K = 0. The dominant A4 term is negative (−2.44 × 10⁻⁴), indicating the surface becomes steeper (more concave) than the base sphere at the rim — tightening the curvature to correct the outer zone of the field.
 
-**Aspherical surface 11 (rear):** K = 0.310 (a mild oblate ellipsoid — K > 0 means more sag than the base sphere), with positive A4. The non-zero conic constant provides a smooth, continuous departure from the base sphere that the polynomial terms then fine-tune. Since S-LAH53 is an S-prefix glass (OHARA's standard polished-lens grade, not their L-prefix PGM line), L23's aspherical surfaces are likely fabricated by CNC grinding and polishing or MRF rather than by pressing.
+**Aspherical surface 11 (rear):** K = 0.310 (a mild oblate ellipsoid — K > 0 means more sag than the base sphere), with positive A4. The non-zero conic constant provides a smooth, continuous departure from the base sphere that the polynomial terms then fine-tune. The Hoya M-/MC-TAF class is compatible with precision glass molding, so L23 may be a molded aspheric rather than the polished S-prefix Ohara element implied by the earlier S-LAH53 label.
 
 ### 4.7 Element L31 — Negative Meniscus (both surfaces aspherical) — Group 3
 
@@ -172,10 +172,10 @@ L21's strong positive power (f ≈ +6.9 mm) makes it the most powerful convergin
 | Shape | Negative meniscus, convex to image |
 | R₁₂ / R₁₃ | −26.270 / −91.182 mm |
 | Center thickness | 0.75 mm |
-| Glass | M-TAF101 (HOYA) — nd = 1.80139, νd = 45.45 |
+| Glass | M-TAF31 (HOYA) — nd = 1.80139, νd = 45.45 |
 | Thin-lens focal length | −46.1 mm |
 
-**Glass classification:** M-TAF101 is a HOYA "M-series" glass — the M prefix designates glasses specifically formulated for precision glass molding (PGM). It is a tantalum crown with high index (1.801) and moderate dispersion (νd = 45.5). The M-series glasses have carefully controlled viscosity–temperature characteristics that allow them to be pressed into aspherical shapes in high-volume mold processes with excellent surface form accuracy.
+**Glass classification:** M-TAF31 is a HOYA "M-series" glass — the M prefix designates glasses specifically formulated for precision glass molding (PGM). It is a tantalum crown with high index (1.801) and moderate dispersion (νd = 45.5). The M-series glasses have carefully controlled viscosity–temperature characteristics that allow them to be pressed into aspherical shapes in high-volume mold processes with excellent surface form accuracy.
 
 This confirms the GR IV product description's statement of "glass-molded aspherical lens elements — including a large-diameter element used as the final lens." L31 is a PGM element manufactured by pressing molten glass into a precision aspheric mold.
 
@@ -199,10 +199,10 @@ The design uses only six distinct glasses across seven elements:
 | S-FTM16 | OHARA | 1.593 | 35.3 | L12 | Light flint |
 | S-LAH58 | OHARA | 1.883 | 40.8 | L13, L21 | Ultra-high-index LaK |
 | S-TIM35 | OHARA | 1.699 | 30.1 | L22 | Dense flint |
-| S-LAH53 | OHARA | 1.768 | 49.2 | L23 | High-index LaK |
-| M-TAF101 | HOYA | 1.801 | 45.5 | L31 | TaK crown (PGM) |
+| MC-TAF101-100 / M-TAF101 class | HOYA | 1.768 | 49.2 | L23 | Moldable lanthanum/tantalum class |
+| M-TAF31 | HOYA | 1.801 | 45.5 | L31 | TaK crown (PGM) |
 
-Two of the seven elements use glasses explicitly designated for precision glass molding: L11 with L-TIM28 (OHARA's L-prefix denotes low-Tg glasses formulated for PGM) and L31 with M-TAF101 (HOYA's M-series, explicitly for molding). L23 (S-LAH53) carries aspherical surfaces but has the S-prefix — OHARA's standard polished-lens designation, not their PGM line. L23's aspheric surfaces are therefore likely fabricated by CNC grinding and polishing or magnetorheological finishing (MRF) rather than by pressing. This is consistent with Ricoh's product literature, which refers to "glass-molded aspherical lens elements" as a specific subset of the aspherical elements — not all three.
+At least two of the seven elements use glasses explicitly designated for precision glass molding: L11 with L-TIM28 (OHARA's L-prefix denotes low-Tg glasses formulated for PGM) and L31 with M-TAF31 (HOYA's M-series, explicitly for molding). L23 now also resolves to a Hoya M-/MC-TAF class rather than the previously asserted S-LAH53 label, so a molded-aspheric interpretation is more plausible than the earlier polished-S-prefix interpretation.
 
 The design's chromatic correction strategy is noteworthy: the two cemented doublets (L12–L13 and L21–L22) each pair a moderate-dispersion lanthanum crown (S-LAH58, νd = 40.8) with a high-dispersion flint (S-FTM16 νd = 35.3, S-TIM35 νd = 30.1). The Δν across the cemented junctions is modest by classical achromat standards — 5.5 and 10.6 — far below the Δν > 20 typical of traditional crown–flint pairs. Instead, the design leverages the extreme *index* differential at each junction (Δn = 0.29 and 0.18 respectively) to achieve chromatic correction with gentle junction curvatures, reducing higher-order chromatic residuals that would arise from steep cemented interfaces.
 
@@ -258,7 +258,7 @@ The GR III (2019) used a 6-element, 4-group, 18.3 mm f/2.8 design with 2 aspheri
 
 - **G2 likely gains a third element (L23):** In the GR III's 6-element / 4-group layout, G2 plausibly consisted of only a cemented doublet. The addition of L23 — a weak positive meniscus with two aspherical surfaces — provides dedicated off-axis correction surfaces that can be independently optimized. This is consistent with reviews noting improved corner sharpness on the GR IV.
 
-- **G3's final element is now both-surfaces aspherical and glass-molded:** The use of HOYA M-TAF101 (a dedicated PGM glass) confirms this element is manufactured by pressing. The two-sided aspherical profile with departures exceeding 1 mm represents the limit of what modern glass molding can achieve at this element diameter, and it is responsible for the lens's low distortion and flat field characteristics. Whether the GR III's rear element carried one or two aspherical surfaces is unknown without its patent.
+- **G3's final element is now both-surfaces aspherical and glass-molded:** The use of HOYA M-TAF31 (a dedicated PGM glass matching nd = 1.80139 and νd = 45.45) confirms this element is manufactured by pressing. The two-sided aspherical profile with departures exceeding 1 mm represents the limit of what modern glass molding can achieve at this element diameter, and it is responsible for the lens's low distortion and flat field characteristics. Whether the GR III's rear element carried one or two aspherical surfaces is unknown without its patent.
 
 - **The quasi-symmetric power arrangement is explicitly designed around the stop:** The patent's extensive discussion of bilateral symmetry conditions (Conditions 1, 2, 8, 10) represents a thorough articulation of this design philosophy, though it is not possible to determine whether this represents a change from the GR III design or a continuation of it.
 
@@ -266,4 +266,4 @@ The GR III (2019) used a 6-element, 4-group, 18.3 mm f/2.8 design with 2 aspheri
 
 ## 9. Summary
 
-Patent JP2025-069516A Example 2 describes a 7-element, 5-group, 18.35 mm f/2.89 wide-angle lens that is the production optical design of the Ricoh GR IV. The design achieves compactness (TL/f = 1.53) through a quasi-symmetric positive–negative arrangement with a fixed negative rear group. Three elements carry aspherical surfaces (5 surfaces total) — of these, two (L11 and L31) are fabricated by precision glass molding using PGM-designated glasses (OHARA L-TIM28 and HOYA M-TAF101), while the third (L23, OHARA S-LAH53) likely uses conventional aspherical fabrication. The optical power is concentrated in two S-LAH58 biconvex elements (nd = 1.883) flanking the aperture stop in a quasi-symmetric arrangement, with chromatic correction achieved through extreme index differentials at the cemented junctions rather than through large Abbe number differences. During focus, G1+G2 translate as a unit toward the sensor for close-focus distances, with G3 fixed. The glass name listed for L23 in the patent publication contains a typographical error: the nd/νd values (1.76802/49.24) identify the glass as OHARA S-LAH53, not S-TIM35 as printed.
+Patent JP2025-069516A Example 2 describes a 7-element, 5-group, 18.35 mm f/2.89 wide-angle lens that is the production optical design of the Ricoh GR IV. The design achieves compactness (TL/f = 1.53) through a quasi-symmetric positive–negative arrangement with a fixed negative rear group. Three elements carry aspherical surfaces (5 surfaces total). The data file now identifies L31 as HOYA M-TAF31, the exact local catalog match for nd = 1.80139 and νd = 45.45, and treats L23 as a HOYA MC-TAF101 / M-TAF101-class match rather than the previously asserted S-LAH53. The optical power is concentrated in two S-LAH58 biconvex elements (nd = 1.883) flanking the aperture stop in a quasi-symmetric arrangement, with chromatic correction achieved through extreme index differentials at the cemented junctions rather than through large Abbe number differences. During focus, G1+G2 translate as a unit toward the sensor for close-focus distances, with G3 fixed. The glass name listed for L23 in the patent publication contains a typographical error: the nd/νd values (1.76802/49.24) do not identify S-TIM35 and also do not match OHARA S-LAH53.

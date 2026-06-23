@@ -115,9 +115,9 @@ S-LAH55 is a high-index lanthanum crown glass — one of the highest-index glass
 
 ### Element 6 — L(3,3): nd = 1.74077, νd = 27.8
 
-**Best match: EFD4 (HOYA)**
+**Best match: E-FD13 (HOYA) / S-TIH13 class**
 
-EFD4 is a high-dispersion extra-dense flint glass. As the rear element of the L3 cemented triplet, this concave meniscus provides the high-dispersion complement needed to achromatize the triplet as a unit. The cemented junction between L(3,2) and L(3,3) acts as a chromatic corrector for the rear group — the large index step (1.835 → 1.741) at R9 = −8.514 mm creates a strongly curved virtual boundary that separates wavelengths without introducing the alignment sensitivity of an air-spaced interface. This glass has no obvious Schott catalog equivalent at the exact nd/νd combination, suggesting that HOYA (or an equivalent Japanese manufacturer) was the primary supplier for this element.
+E-FD13 is a high-dispersion extra-dense Hoya flint matching the patent row's nd = 1.74077 and νd = 27.8; OHARA S-TIH13 is the same six-digit 741278 class. As the rear element of the L3 cemented triplet, this concave meniscus provides the high-dispersion complement needed to achromatize the triplet as a unit. The cemented junction between L(3,2) and L(3,3) acts as a chromatic corrector for the rear group — the large index step (1.835 → 1.741) at R9 = −8.514 mm creates a strongly curved virtual boundary that separates wavelengths without introducing the alignment sensitivity of an air-spaced interface.
 
 ### Element 7 — L(4,1): nd = 1.60342, νd = 38.0
 
@@ -134,7 +134,7 @@ F5 is a medium-index flint glass with moderate dispersion. This element serves a
 | L3 | 1.68893 / 31.2 | E-FD8 (HOYA) / S-TIM28 (OHARA) | Dense flint | Doublet negative |
 | L4 | 1.48749 / 70.4 | FK5 (Schott) | Fluorophosphate crown | Triplet front negative |
 | L5 | 1.83500 / 43.0 | S-LAH55 (OHARA) | Lanthanum crown | Triplet positive core |
-| L6 | 1.74077 / 27.8 | EFD4 (HOYA) | Extra-dense flint | Triplet rear negative |
+| L6 | 1.74077 / 27.8 | E-FD13 (HOYA) / S-TIH13 class | Extra-dense flint | Triplet rear negative |
 | L7 | 1.60342 / 38.0 | F5 (Schott) | Flint | Field flattener, asph. |
 
 The glass selection reveals a deliberate mix of Japanese (OHARA, HOYA) and European (Schott) catalog types. All seven glasses are standard catalog items available in the mid-1990s, consistent with a high-volume production compact camera. No exotic or special-melt glasses appear in the prescription. The design achieves its performance through architecture and aspherical correction rather than exotic materials.
@@ -241,14 +241,14 @@ The front element of the cemented triplet. Its low-index FK5 glass (nd = 1.487) 
 **Surfaces:** R8 = +34.733 (junction from L3,1), R9 = −8.514 (junction to L3,3)
 **Thin-lens focal length:** +8.2 mm
 
-The positive powerhouse of the rear group. At nd = 1.835, this S-LAH55 glass has the highest refractive index in the system. The two cemented junction surfaces on either side of this element — R8 (from FK5 at 1.487) and R9 (to EFD4 at 1.741) — create strongly refracting buried surfaces that provide convergent correction without the alignment sensitivity of air-spaced interfaces. The 4.37 mm center thickness (the thickest element in the system) accommodates the steep curvatures while maintaining adequate edge thickness for the junction bond.
+The positive powerhouse of the rear group. At nd = 1.835, this S-LAH55 glass has the highest refractive index in the system. The two cemented junction surfaces on either side of this element — R8 (from FK5 at 1.487) and R9 (to E-FD13/S-TIH13-class glass at 1.741) — create strongly refracting buried surfaces that provide convergent correction without the alignment sensitivity of air-spaced interfaces. The 4.37 mm center thickness (the thickest element in the system) accommodates the steep curvatures while maintaining adequate edge thickness for the junction bond.
 
 ### L(3,3) — Concave Meniscus Negative (Rear of Component L3 Triplet)
 
 **Surfaces:** R9 = −8.514 (junction from L3,2), R10 = −19.156
 **Thin-lens focal length:** −20.7 mm
 
-The rear element of the cemented triplet, this high-dispersion flint (EFD4, νd = 27.8) provides the chromatic balance for the L3 group. The three-element cemented construction — low-index crown, high-index lanthanum, high-dispersion flint — is a sophisticated variant of the classic apochromatic triplet configuration, optimized here not for secondary spectrum correction but for simultaneous control of chromatic aberration, Petzval sum, and spherical aberration within a minimal axial thickness.
+The rear element of the cemented triplet, this high-dispersion flint (E-FD13 / S-TIH13 class, νd = 27.8) provides the chromatic balance for the L3 group. The three-element cemented construction — low-index crown, high-index lanthanum, high-dispersion flint — is a sophisticated variant of the classic apochromatic triplet configuration, optimized here not for secondary spectrum correction but for simultaneous control of chromatic aberration, Petzval sum, and spherical aberration within a minimal axial thickness.
 
 ### L(4,1) — Negative Meniscus (Component L4)
 
@@ -329,4 +329,3 @@ The limited-edition L39 mount version (1997) placed the entire optical assembly 
 ---
 
 **Document prepared from US Patent 5,760,973. All numerical values and condition parameters verified by independent paraxial ray trace computation (EFL verified to within 0.02% of patent-stated value). Petzval sum computed surface-by-surface and verified against group contributions. Aspherical departures and local slopes computed numerically and cross-checked against patent descriptions. Glass identifications are inferred from catalog matching against OHARA, Schott, and HOYA databases and should be treated as best-fit identifications rather than confirmed production specifications.**
-

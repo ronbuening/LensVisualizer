@@ -155,15 +155,17 @@ Glass code: **821/427**.
 
 | Element | Glass | nd | νd | Pg,F | dPg,F | Mfg. method |
 |---------|-------|------|------|------|-------|-------------|
-| L1 | M-FCD1 | 1.497 | 81.56 | 0.539 | +0.032 (strong positive) | Glass-molded asphere |
-| L2 | E-FD8 | 1.689 | 31.16 | 0.599 | +0.008 (slight positive) | Polished spherical |
-| L3 | FDS90 | 1.847 | 23.78 | 0.619 | +0.015 (moderate positive) | Polished spherical |
-| L4 | TAFD30 | 1.883 | 40.80 | 0.565 | −0.010 (slight negative) | Polished spherical |
-| L5 | TAFD30 | 1.883 | 40.80 | 0.565 | −0.010 (slight negative) | Polished spherical |
-| L6 | E-FD8 | 1.689 | 31.16 | 0.599 | +0.008 (slight positive) | Polished spherical |
-| L7 | M-TAFD51 | 1.821 | 42.71 | 0.564 | −0.008 (slight negative) | Glass-molded asphere |
+| L1 | M-FCD1 / FCD1 class | 1.497 | 81.56 | 0.5388 | +0.03218 (strong positive) | Glass-molded asphere |
+| L2 | E-FD8 | 1.689 | 31.16 | 0.5989 | +0.00751 (slight positive) | Polished spherical |
+| L3 | FDS90 / S-TIH53 class | 1.847 | 23.78 | 0.6191 | +0.01530 (moderate positive) | Polished spherical |
+| L4 | TAFD30 | 1.883 | 40.80 | 0.5654 | −0.00977 (slight negative) | Polished spherical |
+| L5 | TAFD30 | 1.883 | 40.80 | 0.5654 | −0.00977 (slight negative) | Polished spherical |
+| L6 | E-FD8 | 1.689 | 31.16 | 0.5989 | +0.00751 (slight positive) | Polished spherical |
+| L7 | M-TAFD51 | 1.821 | 42.71 | 0.5642 | −0.00776 (slight negative) | Glass-molded asphere |
 
-The dPg,F values are computed relative to the Schott normal glass line (Pg,F = 0.6438 − 0.001682 × νd). The combination of strongly positive-APD M-FCD1 in L1 with the moderate positive-APD FDS90 and slight negative-APD TAFD30 in the cemented doublets creates a secondary-spectrum correction budget across the system. This is what enables the low chromatic aberration observed in the production GR.
+The dPg,F values are computed from the patent's Pg,F column relative to the Schott normal glass line (Pg,F = 0.6438 − 0.001682 × νd). The data file keeps the patent Hoya names in the descriptive label while exposing catalog-equivalent tokens where available: FCD1 for M-FCD1 and S-TIH53 for FDS90. M-TAFD51 remains a six-digit future-upgrade annotation because no public Sellmeier row is currently present.
+
+The combination of strongly positive-APD M-FCD1 in L1 with the moderate positive-APD FDS90 and slight negative-APD TAFD30 in the cemented doublets creates a secondary-spectrum correction budget across the system. This is what enables the low chromatic aberration observed in the production GR.
 
 ---
 

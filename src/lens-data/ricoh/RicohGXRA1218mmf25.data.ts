@@ -123,7 +123,7 @@ const LENS_DATA = {
       nd: 1.6727,
       vd: 32.2,
       fl: -12.6,
-      glass: "S-TIF6 (OHARA) / N-SF5 (SCHOTT)",
+      glass: "E-FD5 (HOYA) / S-TIF6 or N-SF5 class (673322)",
       apd: false,
       cemented: "D2",
       role: "Chromatic corrector in Group 2 front doublet.",

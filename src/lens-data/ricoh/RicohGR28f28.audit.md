@@ -2,6 +2,21 @@
 
 Patent: US 5,760,973
 
+## 2026-06-23 - Complete local patent recheck
+
+- Local patent source: `patents/US5760973.pdf` (untracked local file), Example 1.
+- `pdftotext -layout` was used to verify the Example 1 prescription table against the data file. Surface radii, spacings, nd/vd values, stop placement, variable back focus convention, and aspherical surfaces were retained.
+- This review supersedes the older "patent unavailable" notes below: the local PDF is now present and was checked.
+
+| Element / surface | Patent nd/vd | Before | After | Disposition |
+|---|---|---|---|---|
+| L(3,3) / row 9 | 1.74077 / 27.8 | `EFD4 (HOYA) / S-TIH13 class` | `E-FD13 (HOYA) / S-TIH13 class (741278)` | Exact local Hoya/OHARA class match for the patent row; previous Hoya family label was stale. |
+
+- The earlier L(2,2) E-FD8/S-TIM28 relabel remains correct.
+- The patent does not provide Pg,F, so no APD or dPgF values were added. No element is treated as APD from this source.
+- The patent does not list semi-diameters. Existing SDs remain estimates; the aperture progression was checked against the full-frame wide-angle drawing and is rational: largest clear apertures at the front negative and rear field-corrector elements, smaller apertures around the stop, and uniform SDs within cemented groups.
+- Companion analysis was updated so all L6 discussion names E-FD13 / S-TIH13 class instead of EFD4.
+
 ## 2026-06-04 — Sweep 1 local patent relabel
 
 - Local patent source: `patents/US5760973.pdf` (untracked local file).

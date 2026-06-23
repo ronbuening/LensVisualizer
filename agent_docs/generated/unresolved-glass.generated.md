@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **366** lenses scanned
 - **4124** non-air surfaces examined
 - **4128** element glass declarations examined
-- **621** non-explicit-unmatched annotations did not resolve
-- **230** distinct unresolved glass-like tokens found
+- **616** non-explicit-unmatched annotations did not resolve
+- **232** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -25,7 +25,6 @@ or per-lens patent backfills.
 | 585587 | 3 | 1 | |
 | 744495 | 3 | 3 | |
 | 863248 | 3 | 1 | |
-| S-TIF6 | 3 | 3 | |
 | 511605 | 2 | 1 | |
 | 514428 | 2 | 1 | |
 | 531559 | 2 | 2 | |
@@ -62,6 +61,7 @@ or per-lens patent backfills.
 | S-LAL61 | 2 | 2 | |
 | S-LAM73 | 2 | 1 | |
 | S-NBH53 | 2 | 2 | |
+| S-TIF6 | 2 | 2 | |
 | SK18 | 2 | 1 | |
 | TAF1 | 2 | 2 | |
 | 157957 | 1 | 1 | |
@@ -146,6 +146,7 @@ or per-lens patent backfills.
 | 803405 | 1 | 1 | |
 | 805410 | 1 | 1 | |
 | 821426 | 1 | 1 | |
+| 821427 | 1 | 1 | |
 | 835447 | 1 | 1 | |
 | 840433 | 1 | 1 | |
 | 849401 | 1 | 1 | |
@@ -157,7 +158,9 @@ or per-lens patent backfills.
 | 866450 | 1 | 1 | |
 | 870200 | 1 | 1 | |
 | 877370 | 1 | 1 | |
+| 882372 | 1 | 1 | |
 | 882408 | 1 | 1 | |
+| 903310 | 1 | 1 | |
 | 903354 | 1 | 1 | |
 | 904293 | 1 | 1 | |
 | 910313 | 1 | 1 | |
@@ -214,7 +217,6 @@ or per-lens patent backfills.
 | N-LASF43 | 1 | 1 | |
 | N-PK51 | 1 | 1 | |
 | N-PSK53A | 1 | 1 | |
-| N-SF5 | 1 | 1 | |
 | NBFD12 | 1 | 1 | |
 | NBFD30 | 1 | 1 | |
 | S-BAH32 | 1 | 1 | |
@@ -295,12 +297,6 @@ or per-lens patent backfills.
 - [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 10: `863248 — ultra-dense flint (patent nd=1.86290, nu_d=24.8)`
 - [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 17: `863248 — ultra-dense flint (patent nd=1.86290, nu_d=24.8)`
 - [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 19: `863248 — ultra-dense flint (patent nd=1.86290, nu_d=24.8)`
-
-### S-TIF6 — 3 occurrences
-
-- [FUJIFILM FUJINON XF 56mm f/1.2 R](../../src/lens-data/fujifilm/FujifilmXF56mmf12.data.ts) 16: `S-TIF6 (OHARA)`
-- [NIKON AF-S NIKKOR 80-400mm f/4.5-5.6 G ED VR](../../src/lens-data/nikon/NikonNikkorAFS80400mmf4556G.data.ts) 29: `S-TIF6 (OHARA)`
-- [RICOH GR LENS A12 28mm f/2.5 (Ricoh GXR A12)](../../src/lens-data/ricoh/RicohGXRA1218mmf25.data.ts) 10: `S-TIF6 (OHARA) / N-SF5 (SCHOTT)`
 
 ### 511605 — 2 occurrences
 
@@ -481,6 +477,11 @@ or per-lens patent backfills.
 
 - [FUJIFILM FUJINON XF 90mm f/2 R LM WR](../../src/lens-data/fujifilm/FujifilmXF90mmf2.data.ts) 6: `S-NBH53 (OHARA)`
 - [SONY E 18-55mm f/3.5-5.6 OSS](../../src/lens-data/sony/SonyE1855mmf3556.data.ts) 4: `S-NBH53 (OHARA)`
+
+### S-TIF6 — 2 occurrences
+
+- [FUJIFILM FUJINON XF 56mm f/1.2 R](../../src/lens-data/fujifilm/FujifilmXF56mmf12.data.ts) 16: `S-TIF6 (OHARA)`
+- [NIKON AF-S NIKKOR 80-400mm f/4.5-5.6 G ED VR](../../src/lens-data/nikon/NikonNikkorAFS80400mmf4556G.data.ts) 29: `S-TIF6 (OHARA)`
 
 ### SK18 — 2 occurrences
 
@@ -820,6 +821,10 @@ or per-lens patent backfills.
 
 - [NIKON AF-S NIKKOR 28-300mm f/3.5-5.6 G ED VR](../../src/lens-data/nikon/NikonNikkorAFS28300mmf3556G.data.ts) 34: `821426 — patent dense flint (nd=1.82080, νd=42.64; no public HIKARI/OHARA match found)`
 
+### 821427 — 1 occurrence
+
+- [RICOH GR LENS 18.3mm f/2.8 (Ricoh GR / GR II)](../../src/lens-data/ricoh/RicohGR218mmf28.data.ts) 12: `821427 - HOYA M-TAFD51 (PGM; patent Pg,F=0.5642)`
+
 ### 835447 — 1 occurrence
 
 - [LAOWA 12mm f/2.8 Zero-D](../../src/lens-data/laowa/Laowa12mmf28ZeroD.data.ts) 8: `835447 - high-index lanthanum class (patent nd=1.83481, vd=44.72; unresolved)`
@@ -864,9 +869,17 @@ or per-lens patent backfills.
 
 - [LEICA SUMMILUX 28mm f/1.7 ASPH. (Leica Q, Q2, Q3)](../../src/lens-data/leica/Leica28mmf17.data.ts) 12A: `877370 — high-index lanthanum glass (patent nd=1.87722, nu_d=37.0)`
 
+### 882372 — 1 occurrence
+
+- [RICOH GR LENS 18.3mm f/2.8 (Ricoh GR III)](../../src/lens-data/ricoh/RicohGR328f28.data.ts) 10A: `882372 - HOYA M-TAFD307 (PGM; patent Pg,F=0.5769)`
+
 ### 882408 — 1 occurrence
 
 - [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) 5: `882408 — high-index lanthanum glass (patent nd=1.88234, nu_d=40.8)`
+
+### 903310 — 1 occurrence
+
+- [RICOH GR LENS 26.1mm f/2.8 (Ricoh GR IIIx)](../../src/lens-data/ricoh/RicohGR3x.data.ts) 12A: `903310 - OHARA L-LAH86 (PGM; patent Pg,F=0.5943)`
 
 ### 903354 — 1 occurrence
 
@@ -1054,7 +1067,7 @@ or per-lens patent backfills.
 
 ### L-LAH86 — 1 occurrence
 
-- [RICOH GR LENS 26.1mm f/2.8 (Ricoh GR IIIx)](../../src/lens-data/ricoh/RicohGR3x.data.ts) 12A: `OHARA L-LAH86 (PGM)`
+- [RICOH GR LENS 26.1mm f/2.8 (Ricoh GR IIIx)](../../src/lens-data/ricoh/RicohGR3x.data.ts) 12A: `903310 - OHARA L-LAH86 (PGM; patent Pg,F=0.5943)`
 
 ### L-PHL1 — 1 occurrence
 
@@ -1091,10 +1104,6 @@ or per-lens patent backfills.
 ### N-PSK53A — 1 occurrence
 
 - [MINOLTA AF 35-105mm f/3.5-4.5 New (v2)](../../src/lens-data/minolta/MinoltaAF35105mmf3545v2.data.ts) 12: `N-PSK53A (Schott exact match; production vendor unproven)`
-
-### N-SF5 — 1 occurrence
-
-- [RICOH GR LENS A12 28mm f/2.5 (Ricoh GXR A12)](../../src/lens-data/ricoh/RicohGXRA1218mmf25.data.ts) 10: `S-TIF6 (OHARA) / N-SF5 (SCHOTT)`
 
 ### NBFD12 — 1 occurrence
 

@@ -125,6 +125,8 @@ Six of the seven glasses are explicitly named in the patent and confirmed agains
 | L6 | OHARA S-TIL6 | 1.53172 | 48.84 | 0.5631 | Titanium low-index crown-flint | Conventional polish |
 | L7 | OHARA L-LAH86 | 1.90270 | 31.00 | 0.5943 | Lanthanum dense flint | Precision glass mold (L-prefix) |
 
+The patent Pg,F values have been backfilled into the data file as dPgF values wherever the row is internally consistent. L5 is intentionally excluded from that backfill: the row's glass name and Pg,F value are corrupted in the scan, so only the nd/νd-derived 755523 glass-code identification is retained for that element.
+
 ### 5.2 L5 Glass Identification
 
 The L5 glass (nd = 1.75500, νd = 52.32) had its catalog name corrupted by OCR — the patent scan erroneously shows "S-LAH58" for surface 9, which is the glass used on surface 6 (L4). The PgF value printed for S9 (0.5667) is likewise S-LAH58's partial dispersion ratio, not the actual L5 glass. The true PgF for this glass is not recoverable from the corrupted text.

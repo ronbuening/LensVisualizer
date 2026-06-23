@@ -121,7 +121,7 @@ The stop is positioned between Group 1 and Group 2, in the air gap between L4 (r
 | Surfaces | 9 (R = +22.92) | 10 (junction, R = −11.87) / 11 (R = +30.47) |
 | Thickness | 4.2 mm | 0.8 mm |
 | nd / νd | 1.8830 / 40.8 | 1.6727 / 32.2 |
-| Glass match | S-LAH58 (OHARA) | S-TIF6 (OHARA) / N-SF5 (SCHOTT) |
+| Glass match | S-LAH58 (OHARA) | E-FD5 (HOYA) / S-TIF6 or N-SF5 class |
 | Individual focal length (standalone) | +9.4 mm | −12.6 mm |
 | **Doublet focal length** | **+28.5 mm** | |
 

@@ -21,8 +21,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                    ║
  * ║  NOTE ON GLASS — PATENT TYPO:                                      ║
  * ║    L23 is listed as "S-TIM35" in the patent, but its nd/vd        ║
- * ║    (1.76802/49.24) match OHARA S-LAH53 exactly.  S-TIM35          ║
- * ║    (1.69895/30.13) is used on L22.  This is a copy error.         ║
+ * ║    (1.76802/49.24) fit the HOYA M-TAF101 / MC-TAF101 class.       ║
+ * ║    S-TIM35 (1.69895/30.13) is used on L22.  This is a copy error. ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -122,9 +122,9 @@ const LENS_DATA = {
       nd: 1.76802,
       vd: 49.24,
       fl: 127.7,
-      glass: "S-LAH66 (OHARA)",
+      glass: "MC-TAF101-100 (HOYA) / M-TAF101 class",
       apd: false,
-      role: "Weak positive meniscus — fine-tunes off-axis aberrations far from stop. S-prefix: likely CNC/MRF asphere.",
+      role: "Weak positive meniscus — fine-tunes off-axis aberrations far from stop. Corrected Hoya M/MC-TAF-class label makes glass molding plausible for its two aspherical surfaces.",
     },
     {
       id: 7,
@@ -134,7 +134,7 @@ const LENS_DATA = {
       nd: 1.80139,
       vd: 45.45,
       fl: -46.1,
-      glass: "M-TAF101 (HOYA)",
+      glass: "M-TAF31 (HOYA; PGM, 801455)",
       apd: false,
       role: "Fixed negative rear element (G3) — field flattener and distortion corrector. HOYA M-series PGM glass, both surfaces heavily aspherical (>1 mm departure).",
     },
