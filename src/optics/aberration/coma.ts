@@ -6,13 +6,15 @@
  */
 
 import {
-  computeAnalysisFieldGeometryAtState,
   sampleCircularPupil,
   sampleOrthogonalPupilFan,
   type CircularPupilSample,
-  type FieldGeometryState,
   type OrthogonalPupilSample,
-} from "../optics.js";
+} from "../rayTrace.js";
+import {
+  computeAnalysisFieldGeometryAtState2 as computeAnalysisFieldGeometryAtState,
+  type FieldGeometryState2 as FieldGeometryState,
+} from "../field/fieldGeometry.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type {
   ComaAnalysisResult,

@@ -6,29 +6,32 @@
  */
 
 import {
-  bAtZoom,
-  computeFieldGeometryAtState,
-  halfFieldAtZoom,
-  offsetVectorFieldRay,
   sampleCircularPupil,
   sampleOrthogonalPupilFan,
   skewImagePlaneIntercept,
-  solveChiefRay,
-  thick,
   traceChiefRelativeSkewRay,
   traceChiefRelativeSkewRayChromatic,
-  traceSkewRayVector,
-  traceSkewRayVectorChromatic,
-  tracingHalfFieldAtZoom,
-  yRatioAtZoom,
   type CircularPupilSample,
-  type FieldGeometryState,
   type OrthogonalPupilSample,
   type SkewImagePlaneIntercept,
   type SkewRayTraceResult,
-  type VectorFieldRayLaunch,
-} from "../optics.js";
-import { isFisheyeProjection, projectionLaunchSlopeForField } from "../projection.js";
+} from "../rayTrace.js";
+import { bAtZoom, halfFieldAtZoom, thick, tracingHalfFieldAtZoom, yRatioAtZoom } from "../layout.js";
+import {
+  computeFieldGeometryAtState2 as computeFieldGeometryAtState,
+  offsetVectorFieldRay2 as offsetVectorFieldRay,
+  solveChiefRay2 as solveChiefRay,
+  type FieldGeometryState2 as FieldGeometryState,
+  type VectorFieldRayLaunch2 as VectorFieldRayLaunch,
+} from "../field/fieldGeometry.js";
+import {
+  traceSkewRayVector2 as traceSkewRayVector,
+  traceSkewRayVectorChromatic2 as traceSkewRayVectorChromatic,
+} from "../trace/rayAdapters.js";
+import {
+  isFisheyeProjection2 as isFisheyeProjection,
+  projectionLaunchSlopeForField2 as projectionLaunchSlopeForField,
+} from "../field/projection.js";
 import type { ChromaticChannel, RuntimeLens } from "../../types/optics.js";
 import { bestRelativeFocusPlane, type TransverseFocusHit } from "./shared.js";
 
