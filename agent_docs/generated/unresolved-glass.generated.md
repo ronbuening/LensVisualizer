@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **363** lenses scanned
-- **4090** non-air surfaces examined
-- **4094** element glass declarations examined
-- **634** non-explicit-unmatched annotations did not resolve
-- **223** distinct unresolved glass-like tokens found
+- **366** lenses scanned
+- **4124** non-air surfaces examined
+- **4128** element glass declarations examined
+- **639** non-explicit-unmatched annotations did not resolve
+- **224** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -57,6 +57,7 @@ or per-lens patent backfills.
 | NBFD32 | 2 | 2 | |
 | S-APL1 | 2 | 1 | |
 | S-BAH10 | 2 | 2 | |
+| S-BSM25 | 2 | 2 | |
 | S-FPM5 | 2 | 2 | |
 | S-LAL61 | 2 | 2 | |
 | S-LAM73 | 2 | 1 | |
@@ -211,10 +212,10 @@ or per-lens patent backfills.
 | NBFD30 | 1 | 1 | |
 | S-BAH32 | 1 | 1 | |
 | S-BAL12 | 1 | 1 | |
+| S-BAL3 | 1 | 1 | |
 | S-BAM12 | 1 | 1 | |
 | S-BSL10 | 1 | 1 | |
 | S-BSM2 | 1 | 1 | |
-| S-BSM25 | 1 | 1 | |
 | S-LAH60MQ | 1 | 1 | |
 | S-LAH75 | 1 | 1 | |
 | S-LAH85V | 1 | 1 | |
@@ -449,6 +450,11 @@ or per-lens patent backfills.
 
 - [CANON FD 35mm f/2 S.S.C. (I)](../../src/lens-data/canon/CanonFD35mmf2.data.ts) 5: `BaF (702411, S-BAH10 family)`
 - [CARL ZEISS TOUIT MAKRO-PLANAR T* 50mm f/2.8 Macro](../../src/lens-data/carl-zeiss-oberkochen/ZeissTouit50mmf28Macro.data.ts) 25: `S-BAH10 (OHARA)`
+
+### S-BSM25 — 2 occurrences
+
+- [CANON EF-S 55-250mm f/4-5.6 IS STM](../../src/lens-data/canon/CanonEFS55250mmf456ISSTM.data.ts) 21: `S-BSM25 (OHARA)`
+- [CANON TS-E 135mm f/4L MACRO](../../src/lens-data/canon/CanonTSE135mmf4L.data.ts) 1: `S-BSM25 (OHARA)`
 
 ### S-FPM5 — 2 occurrences
 
@@ -1073,6 +1079,10 @@ or per-lens patent backfills.
 
 - [FUJIFILM FUJINON XF 23mm f/1.4 R LM WR](../../src/lens-data/fujifilm/FujifilmXF23mmf14RLMWR.data.ts) 1: `540597 - barium crown (N-BAK2 / S-BAL12 class; vendor uncertain)`
 
+### S-BAL3 — 1 occurrence
+
+- [CANON TS-E 90mm f/2.8L MACRO](../../src/lens-data/canon/CanonTSE90mmf28L.data.ts) 18: `S-BAL3 (OHARA)`
+
 ### S-BAM12 — 1 occurrence
 
 - [FUJIFILM FUJINON GF 32-64mm f/4 R LM WR](../../src/lens-data/fujifilm/FujifilmGF3264mmf4.data.ts) 10: `S-BAM12 (OHARA)`
@@ -1084,10 +1094,6 @@ or per-lens patent backfills.
 ### S-BSM2 — 1 occurrence
 
 - [NIKON AF-S VR MICRO-NIKKOR 105mm f/2.8 G IF-ED](../../src/lens-data/nikon/NikonAFS105f28G.data.ts) 3: `S-BSM2 (OHARA)`
-
-### S-BSM25 — 1 occurrence
-
-- [CANON EF-S 55-250mm f/4-5.6 IS STM](../../src/lens-data/canon/CanonEFS55250mmf456ISSTM.data.ts) 21: `S-BSM25 (OHARA)`
 
 ### S-LAH60MQ — 1 occurrence
 

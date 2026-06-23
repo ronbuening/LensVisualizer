@@ -3,6 +3,9 @@ import buildLens from "../../../src/optics/buildLens.js";
 import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 
 const ENABLED_PC_KEYS = [
+  "canon-tse-50f28l-macro",
+  "canon-tse-90mm-f28l-macro",
+  "canon-tse-135mm-f4l",
   "fujifilm-gf-30mm-f56-ts",
   "nikon-pc-nikkor-19mm-f4e-ed",
   "nikon-pc-e-nikkor-24-f35d-ed",
@@ -19,7 +22,19 @@ describe("perspectiveControl lens data", () => {
     expect(enabled).toEqual([...ENABLED_PC_KEYS].sort());
   });
 
-  it("declares official Nikon shift and tilt limits for the enabled PC lenses", () => {
+  it("declares official shift and tilt limits for the enabled PC lenses", () => {
+    expect(LENS_CATALOG["canon-tse-50f28l-macro"].perspectiveControl).toMatchObject({
+      shiftRangeMm: [-12, 12],
+      tiltRangeDeg: [-8.5, 8.5],
+    });
+    expect(LENS_CATALOG["canon-tse-90mm-f28l-macro"].perspectiveControl).toMatchObject({
+      shiftRangeMm: [-12, 12],
+      tiltRangeDeg: [-10, 10],
+    });
+    expect(LENS_CATALOG["canon-tse-135mm-f4l"].perspectiveControl).toMatchObject({
+      shiftRangeMm: [-12, 12],
+      tiltRangeDeg: [-10, 10],
+    });
     expect(LENS_CATALOG["fujifilm-gf-30mm-f56-ts"].perspectiveControl).toMatchObject({
       shiftRangeMm: [-15, 15],
       tiltRangeDeg: [-8.5, 8.5],
