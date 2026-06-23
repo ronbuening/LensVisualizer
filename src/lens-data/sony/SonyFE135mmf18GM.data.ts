@@ -95,7 +95,8 @@ const LENS_DATA = {
       vd: 68.63,
       fl: 82.7,
       glass: "S-FPM2 (OHARA)",
-      apd: false,
+      apd: "inferred",
+      apdNote: "ED fluorophosphate class; patent publishes nd/vd only for this element.",
       role: "ED element; strongest positive singlet in GR1, recollects the beam after G3 with low dispersion.",
     },
     {
@@ -119,7 +120,7 @@ const LENS_DATA = {
       vd: 17.47,
       fl: 171.3,
       glass: "Dense flint (959/175, vendor uncertain — anomalous dispersion, θgF ≈ 0.660)",
-      apd: "inferred",
+      apd: "patent",
       apdNote:
         "θgF = 0.660 per patent condition (3); extreme anomalous dispersion flint used as positive element for axial color control",
       cemented: "D1",

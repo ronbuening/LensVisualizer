@@ -39,3 +39,10 @@ Patent: WO 2023/181666 A1, Example 4
 
 - `npm run generate:glass-reports` — passed; lens cleared from both glass mismatch queues.
 - `npm run typecheck`, `npm run format:check`, `npm run lint`, and `npm run test` — passed.
+
+## 2026-06-23 - Sony folder patent audit / APD + SD review
+
+- Rechecked local `patents/WO2023181666A1.pdf`; the PDF is image-only for text extraction, so this pass relied on rendered-table checks already reflected in the data and analysis sidecar.
+- Existing R/d/nd/vd, zoom/focus spacings, high-index/code-backed labels, APD metadata, and SD profile remain consistent with the patent-backed prescription and prior relabel pass.
+- No APD, high-index, glass-label, spacing, or SD edits were needed in this pass.
+- Current generated glass reports show no active Sony catalog-mismatch row for this lens.

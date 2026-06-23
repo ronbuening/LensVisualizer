@@ -1,6 +1,6 @@
 # Audit Log - Sony FE 90 mm F2.8 Macro G OSS
 
-Patent: WO 2016/136352 A1, Example 1
+Patent: WO 2016/136352 A1, Example 2
 
 ## 2026-05-20 - Glass relabel pass
 
@@ -12,3 +12,10 @@ Patent: WO 2016/136352 A1, Example 1
 - Updated G13 to `S-LAH95 (OHARA)` for nd=1.90370, vd=31.32.
 - Updated G14 to `N-SSK5 (Schott)` for nd=1.65840, vd=50.85.
 
+## 2026-06-23 - Sony folder patent audit / APD + SD review
+
+- Corrected this audit header from Example 1 to Example 2, matching `SonyFE90mmf28.data.ts` and the companion analysis sidecar.
+- Rechecked local `patents/WO2016136352A1.pdf`; local extraction is image-only, so this pass relies on the existing Example 2 analysis and prior cross-check against public patent text.
+- Existing R/d/nd/vd, focus spacings, high-index/catalog labels, APD metadata, and estimated SD profile remain consistent with the patent-backed Example 2 prescription and prior relabel pass.
+- No APD, high-index, glass-label, spacing, or SD edits were needed in this pass.
+- Current generated glass reports show no active Sony catalog-mismatch row for this lens.

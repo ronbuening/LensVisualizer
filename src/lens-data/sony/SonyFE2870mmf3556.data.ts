@@ -108,6 +108,8 @@ const LENS_DATA = {
       vd: 81.61,
       fl: 32.03,
       glass: "FCD1 (HOYA) / S-FPL51 class, 497816",
+      apd: "inferred",
+      apdNote: "Catalog ED fluorophosphate class; patent publishes nd/vd only.",
       role: "ED positive element of the cemented doublet behind the stop; principal secondary-spectrum corrector.",
       cemented: "D1",
     },

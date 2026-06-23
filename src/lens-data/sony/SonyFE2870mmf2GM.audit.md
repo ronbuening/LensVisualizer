@@ -64,3 +64,10 @@ The patent prescription table [Table 1], PDF page 24, publishes refractive index
 ### Phase 3 - Analysis sync
 
 - Updated the L13 element prose and fluorophosphate-crown table to use the 596670 patent-code label instead of S-FPM4.
+
+## 2026-06-23 - Sony folder patent audit / APD + SD review
+
+- Rechecked local `patents/WO_2025263124_A1.pdf`; the PDF is image-only for text extraction, so this pass relied on rendered-table checks already reflected in the data and analysis sidecar.
+- Existing R/d/nd/vd, zoom/focus spacings, high-index/code-backed labels, APD metadata, and SD profile remain consistent with the patent-backed prescription and prior relabel pass.
+- No APD, high-index, glass-label, spacing, or SD edits were needed in this pass.
+- Current generated glass reports show no active Sony catalog-mismatch row for this lens.

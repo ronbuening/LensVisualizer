@@ -23,3 +23,11 @@ No new catalog entries were added. WO 2021/199923 A1 publishes nd/vd and effecti
 ### Phase 4 - Analysis sync
 
 - Updated the analysis glass table and per-element text to use code-only patent glasses for L4, L5, L10, and L12.
+
+## 2026-06-23 - Sony folder patent audit / APD + SD review
+
+- Rechecked local `patents/WO2021199923A1.pdf`; the PDF is image-only for text extraction, so this pass relies on the rendered-table checks and the prior retained-information audit above.
+- Patent Table 1 had already confirmed the glass rows and full effective diameters; stored `sd` values remain half of those patent diameters where diameters are present.
+- Updated L3, L8, and L9 to `apd: "inferred"` because their patent nd/vd rows and production special-glass counts map to ED/Super-ED fluorophosphate classes. No patent dPgF or theta-gF values are assigned.
+- No R/d/nd/vd, spacing, high-index, or SD edits were needed in this pass.
+- Current generated glass reports show no active Sony catalog-mismatch row for this lens.

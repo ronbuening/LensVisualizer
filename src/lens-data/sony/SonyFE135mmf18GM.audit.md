@@ -25,3 +25,11 @@ Patent: WO 2019/187633, Example 1
 ### Analysis sync
 
 - Updated the G5/G8 element text and glass table.
+
+## 2026-06-23 - Sony folder patent audit / APD + SD review
+
+- Rechecked `patents/JPWO2019187633A1.pdf` and the existing analysis sidecar against the current data file.
+- Existing R/d/nd/vd, group movement, high-index labels, and estimated SD profile remain consistent with the patent-backed prescription and prior relabel passes.
+- Updated L14 from `apd: false` to `apd: "inferred"` for the S-FPM2 ED fluorophosphate class; the patent publishes nd/vd only for that element.
+- Updated L21 from `apd: "inferred"` to `apd: "patent"` because the existing note cites patent condition (3), theta-gF = 0.660, for the anomalous flint.
+- Current generated glass reports show no active Sony catalog-mismatch row for this lens.

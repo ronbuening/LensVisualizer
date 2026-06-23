@@ -107,7 +107,8 @@ const LENS_DATA = {
       vd: 81.608,
       fl: -29.59,
       glass: "FCD1 / S-FPL51 class (ED fluorocrown, 497/816)",
-      apd: false,
+      apd: "inferred",
+      apdNote: "Catalog ED fluorocrown class; patent publishes nd/vd only, so no patent dPgF is assigned.",
       role: "Single-element negative ED inner-focus group; moves image-ward for close focus.",
     },
     {

@@ -138,6 +138,8 @@ const LENS_DATA = {
       nC: 1.49514,
       nF: 1.50123,
       ng: 1.50451,
+      apd: "inferred",
+      apdNote: "Catalog ED fluorophosphate class; patent publishes nd/vd and line indices, but no dPgF.",
       cemented: "D1",
       role: "Advertised ED element; high-Abbe positive partner to L113 for primary axial chromatic correction.",
     },

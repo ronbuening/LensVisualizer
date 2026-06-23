@@ -20,3 +20,10 @@ Patent: JP 2015-41012 A, Example 1
 ### Analysis sync
 
 - Updated the glass table and element prose to describe these as code-backed unresolved glasses.
+
+## 2026-06-23 - Sony folder patent audit / APD + SD review
+
+- Rechecked local `patents/JP2015041012A.pdf` and the current analysis sidecar against the data file.
+- Existing R/d/nd/vd, high-index/code-backed labels, APD metadata, and estimated SD profile remain consistent with the patent-backed prescription and prior relabel pass.
+- No APD, high-index, glass-label, spacing, or SD edits were needed in this pass.
+- Current generated glass reports show no active Sony catalog-mismatch row for this lens.

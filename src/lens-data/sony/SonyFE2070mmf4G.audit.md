@@ -17,3 +17,10 @@ Patent: WO 2023/153076 A1, Example 8
 - Updated L23 from `S-LAH98 (OHARA)` to `S-NBH56 (OHARA)` for nd=1.85478, vd=24.80.
 - Updated L41 from `S-LAH79 (OHARA)` to `S-LAH98 (OHARA)` for nd=1.95375, vd=32.30.
 - Remaining incomplete Sellmeier coverage was unrelated to this May relabel queue pass. The 2026-06-04 source pass resolved 855/252 as HOYA NBFD25 and enabled slash-code resolution for existing 593/670 and 720/347 catalog rows. The Sweep 2 catalog pass later lets 694/532 resolve through the existing S-LAL13 / M-LAC130 code path.
+
+## 2026-06-23 - Sony folder patent audit / APD + SD review
+
+- Rechecked local `patents/WO2023153076A1.pdf`; the PDF is image-only for text extraction, so this pass relied on rendered-table checks already reflected in the data and analysis sidecar.
+- Existing R/d/nd/vd, zoom/focus spacings, high-index/code-backed labels, APD metadata, and SD profile remain consistent with the patent-backed prescription and prior relabel passes.
+- No APD, high-index, glass-label, spacing, or SD edits were needed in this pass.
+- Current generated glass reports show no active Sony catalog-mismatch row for this lens.

@@ -18,3 +18,10 @@ Patent: US 2015/0092100 A1, Example 1
 ### Analysis sync
 
 - Updated the L11 element paragraph and glass table.
+
+## 2026-06-23 - Sony folder patent audit / APD + SD review
+
+- Rechecked local `patents/US20150092100A1.pdf` and the current analysis sidecar against the data file.
+- Existing R/d/nd/vd, high-index/catalog labels, APD metadata, and estimated SD profile remain consistent with the patent-backed prescription and prior relabel pass.
+- No APD, high-index, glass-label, spacing, or SD edits were needed in this pass.
+- Current generated glass reports show no active Sony catalog-mismatch row for this lens.
