@@ -33,3 +33,10 @@ Patent: JP 2023-039817 A, Example 2
 
 - `npm run generate:glass-reports` — passed; lens cleared from `catalog-mismatches.generated.md` and `glass-relabel-by-lens.generated.md`.
 - `npm run typecheck`, `npm run format:check`, `npm run lint`, and `npm run test` — passed.
+
+## 2026-06-23 - Sony folder patent audit / APD + SD review
+
+- Rechecked local `patents/JP2023039817A.pdf` and the current analysis sidecar against the data file.
+- Prior Table 6 glass corrections remain valid; the current generated glass reports show no active Sony catalog-mismatch row for this lens.
+- Updated L12 and L13 to `apd: "inferred"` for Super ED fluorophosphate class, and L31, L51, and L81 to `apd: "inferred"` for ED fluorophosphate class. The patent publishes nd/vd only for these rows, so no dPgF values are assigned.
+- No R/d/nd/vd, spacing, high-index, or SD edits were needed in this pass.

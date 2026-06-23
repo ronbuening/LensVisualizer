@@ -78,6 +78,8 @@ const LENS_DATA = {
       vd: 68.6,
       fl: -34.07,
       glass: "S-FPM2-class ED fluorophosphate (OHARA; soft match, 595/686)",
+      apd: "inferred",
+      apdNote: "ED fluorophosphate class from patent nd/vd and production ED count; patent gives no dPgF table.",
       role: "Low-dispersion negative element at high chief-ray height for lateral-color correction.",
     },
     {
@@ -135,6 +137,9 @@ const LENS_DATA = {
       vd: 95.1,
       fl: 34.0183,
       glass: "S-FPL53/S-FPL55-class super-ED fluorophosphate (OHARA; soft match, 438/951)",
+      apd: "inferred",
+      apdNote:
+        "Super-ED fluorophosphate class from patent nd/vd and production Super ED count; patent gives no dPgF table.",
       role: "Low-dispersion positive element at the entrance of the moving G2F focus group.",
     },
     {
@@ -146,6 +151,8 @@ const LENS_DATA = {
       vd: 81.6,
       fl: 31.1897,
       glass: "S-FPL51-class ED fluorophosphate (OHARA; patent index aligns with catalog ne, 498/816)",
+      apd: "inferred",
+      apdNote: "ED fluorophosphate class from patent nd/vd; patent gives no dPgF table.",
       cemented: "D2",
       role: "ED crown element in the rear cemented doublet.",
     },

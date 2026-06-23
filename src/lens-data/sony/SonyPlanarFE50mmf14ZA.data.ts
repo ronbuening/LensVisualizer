@@ -119,7 +119,7 @@ const LENS_DATA = {
       vd: 68.6,
       fl: 52.6,
       glass: "Fluorophosphate crown, 593/686 class (uncertain) — ED glass",
-      apd: false,
+      apd: "inferred",
       apdNote: "Probable positive ΔPgF (fluorophosphate class); spectral data not published in patent.",
       role: "ED element — strongest single positive in GR1. Positioned after stop for simultaneous axial and lateral chromatic correction.",
     },

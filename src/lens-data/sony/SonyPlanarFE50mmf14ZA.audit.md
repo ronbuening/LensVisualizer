@@ -18,3 +18,10 @@ Patent: WO 2017/138250 A1, Example 2
 ### Analysis sync
 
 - Updated the Ln2 element paragraph and glass table.
+
+## 2026-06-23 - Sony folder patent audit / APD + SD review
+
+- Rechecked local `patents/JPWO2017138250A1.pdf` and the current analysis sidecar against the data file.
+- Existing R/d/nd/vd, high-index labels, and estimated SD profile remain consistent with the patent-backed prescription and prior relabel pass.
+- Updated Lp3 from `apd: false` to `apd: "inferred"` to match its existing fluorophosphate positive-delta-PgF note. The patent does not publish spectral partial dispersion data.
+- Current generated glass reports show no active Sony catalog-mismatch row for this lens.

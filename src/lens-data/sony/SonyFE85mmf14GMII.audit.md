@@ -69,3 +69,10 @@ Catalog version: bb70259
 ### Outstanding follow-ups
 
 - Patent-code glasses 986165 and 870200 intentionally remain catalog-unresolved until a public Sellmeier source is added. The 2026-06-04 source pass resolved 770297 as HOYA NBFD29.
+
+## 2026-06-23 - Sony folder patent audit / APD + SD review
+
+- Rechecked local `patents/WO_2025239028_A1.pdf`; the PDF is image-only for text extraction, so this pass relied on rendered-table checks already reflected in the data and analysis sidecar.
+- Existing R/d/nd/vd, high-index/code-backed labels, APD metadata, and SD profile remain consistent with the patent-backed prescription and prior relabel pass.
+- No APD, high-index, glass-label, spacing, or SD edits were needed in this pass.
+- Current generated glass reports show no active Sony catalog-mismatch row for this lens.
