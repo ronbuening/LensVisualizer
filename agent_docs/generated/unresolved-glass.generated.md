@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **366** lenses scanned
 - **4124** non-air surfaces examined
 - **4128** element glass declarations examined
-- **638** non-explicit-unmatched annotations did not resolve
-- **227** distinct unresolved glass-like tokens found
+- **626** non-explicit-unmatched annotations did not resolve
+- **228** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -61,7 +61,6 @@ or per-lens patent backfills.
 | S-LAL61 | 2 | 2 | |
 | S-LAM73 | 2 | 1 | |
 | S-NBH53 | 2 | 2 | |
-| SF5 | 2 | 2 | |
 | SK18 | 2 | 1 | |
 | TAF1 | 2 | 2 | |
 | 157957 | 1 | 1 | |
@@ -69,10 +68,12 @@ or per-lens patent backfills.
 | 459902 | 1 | 1 | |
 | 487698 | 1 | 1 | |
 | 498650 | 1 | 1 | |
+| 498651 | 1 | 1 | |
 | 500660 | 1 | 1 | |
 | 514530 | 1 | 1 | |
 | 518523 | 1 | 1 | |
 | 518635 | 1 | 1 | |
+| 531621 | 1 | 1 | |
 | 534554 | 1 | 1 | |
 | 534556 | 1 | 1 | |
 | 540597 | 1 | 1 | |
@@ -82,6 +83,7 @@ or per-lens patent backfills.
 | 553555 | 1 | 1 | |
 | 554381 | 1 | 1 | |
 | 561453 | 1 | 1 | |
+| 569631 | 1 | 1 | |
 | 571560 | 1 | 1 | |
 | 574425 | 1 | 1 | |
 | 575413 | 1 | 1 | |
@@ -96,6 +98,7 @@ or per-lens patent backfills.
 | 612372 | 1 | 1 | |
 | 624584 | 1 | 1 | |
 | 630346 | 1 | 1 | |
+| 639451 | 1 | 1 | |
 | 640601 | 1 | 1 | |
 | 658397 | 1 | 1 | |
 | 664358 | 1 | 1 | |
@@ -111,6 +114,7 @@ or per-lens patent backfills.
 | 694312 | 1 | 1 | |
 | 700555 | 1 | 1 | |
 | 702411 | 1 | 1 | |
+| 713433 | 1 | 1 | |
 | 720504 | 1 | 1 | |
 | 730322 | 1 | 1 | |
 | 738493 | 1 | 1 | |
@@ -194,7 +198,6 @@ or per-lens patent backfills.
 | K-BASF5 | 1 | 1 | |
 | K-LAFN11 | 1 | 1 | |
 | K-PSKN2 | 1 | 1 | |
-| K-SFS5 | 1 | 1 | |
 | K-SSK9 | 1 | 1 | |
 | L-BBH1 | 1 | 1 | |
 | L-LAH83 | 1 | 1 | |
@@ -219,7 +222,6 @@ or per-lens patent backfills.
 | S-BSL10 | 1 | 1 | |
 | S-BSM2 | 1 | 1 | |
 | S-BSM25 | 1 | 1 | |
-| S-LAH60MQ | 1 | 1 | |
 | S-LAH75 | 1 | 1 | |
 | S-LAH85V | 1 | 1 | |
 | S-LAL21 | 1 | 1 | |
@@ -228,13 +230,12 @@ or per-lens patent backfills.
 | S-NPH85 | 1 | 1 | |
 | S-PHM51 | 1 | 1 | |
 | S-SK14 | 1 | 1 | |
-| S-TIF1 | 1 | 1 | |
 | S-TIF4 | 1 | 1 | |
 | S-TIF8 | 1 | 1 | |
 | S-TIM1 | 1 | 1 | |
-| SF14 | 1 | 1 | |
 | SF19 | 1 | 1 | |
 | SF3 | 1 | 1 | |
+| SF5 | 1 | 1 | |
 | SK4 | 1 | 1 | |
 | SK7 | 1 | 1 | |
 | SK8 | 1 | 1 | |
@@ -474,11 +475,6 @@ or per-lens patent backfills.
 - [FUJIFILM FUJINON XF 90mm f/2 R LM WR](../../src/lens-data/fujifilm/FujifilmXF90mmf2.data.ts) 6: `S-NBH53 (OHARA)`
 - [SONY E 18-55mm f/3.5-5.6 OSS](../../src/lens-data/sony/SonyE1855mmf3556.data.ts) 4: `S-NBH53 (OHARA)`
 
-### SF5 — 2 occurrences
-
-- [LEICA ELMARIT-M 135mm f/2.8](../../src/lens-data/leica/LeicaElmaritM135mmf28.data.ts) 6: `SF5-class dense flint (Schott; e-line source values)`
-- [VOIGTLÄNDER MACRO APO-LANTHAR 125mm f/2.5 SL](../../src/lens-data/voigtlander/VoigtlanderMacroApoLanthar125mmf25.data.ts) 7: `SF5 (Schott) / K-SFS5 (Sumita)`
-
 ### SK18 — 2 occurrences
 
 - [CANON SERENAR 50mm f/1.8](../../src/lens-data/canon/CanonSerenar50mmf18.data.ts) 7: `SK18 (Schott)`
@@ -509,6 +505,10 @@ or per-lens patent backfills.
 
 - [OLYMPUS ZUIKO AUTO-ZOOM 85-250mm f/5](../../src/lens-data/olympus/OlympusZuikoAutoZoom85250mmf5.data.ts) 16: `498650 — borosilicate crown (patent glass code)`
 
+### 498651 — 1 occurrence
+
+- [VIVITAR SERIES 1 35-85mm f/2.8 VMC](../../src/lens-data/vivitar/VivitarSeries13585mmf28.data.ts) 10: `498651 — BK3-type borosilicate crown (no exact public catalog match)`
+
 ### 500660 — 1 occurrence
 
 - [OLYMPUS OM-SYSTEM ZUIKO AUTO-ZOOM 65-200mm f/4](../../src/lens-data/olympus/OlympusZuikoAutoZoom65200mmf4.data.ts) 17: `500660 crown class (CDGM H-K2 / OHARA BSL4)`
@@ -524,6 +524,10 @@ or per-lens patent backfills.
 ### 518635 — 1 occurrence
 
 - [FUJIFILM FUJINON GF 100-200mm f/5.6 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmGF100200mmf56.data.ts) 31A: `CDGM D-K59 (518635)`
+
+### 531621 — 1 occurrence
+
+- [VIVITAR SERIES 1 35-85mm f/2.8 VMC](../../src/lens-data/vivitar/VivitarSeries13585mmf28.data.ts) 3: `531621 — BSM-type crown (no exact public catalog match)`
 
 ### 534554 — 1 occurrence
 
@@ -560,6 +564,10 @@ or per-lens patent backfills.
 ### 561453 — 1 occurrence
 
 - [HASSELBLAD HC 150mm f/3.2](../../src/lens-data/hasselblad/HasselbladHC150mmf32.data.ts) 12: `561453 - barium light flint (patent e-line Ne=1.56433, vd=45.3; no exact public catalog match)`
+
+### 569631 — 1 occurrence
+
+- [VIVITAR SERIES 1 200mm f/3.0 VMC](../../src/lens-data/vivitar/VivitarSeries1200mmf3.data.ts) 1: `569631 — PSK2 phosphate crown (Schott) / S-PHM51 class`
 
 ### 571560 — 1 occurrence
 
@@ -616,6 +624,10 @@ or per-lens patent backfills.
 ### 630346 — 1 occurrence
 
 - [SONY SONNAR T* FE 35mm f/2.8 ZA](../../src/lens-data/sony/SonyFE35mmf28ZA.data.ts) 10: `630346 - dense flint (patent nd=1.63000, vd=34.57; no exact public catalog match)`
+
+### 639451 — 1 occurrence
+
+- [VIVITAR SERIES 1 35-85mm f/2.8 VMC](../../src/lens-data/vivitar/VivitarSeries13585mmf28.data.ts) 18: `639451 — BaSF52-type barium dense flint (no exact public catalog match)`
 
 ### 640601 — 1 occurrence
 
@@ -676,6 +688,10 @@ or per-lens patent backfills.
 ### 702411 — 1 occurrence
 
 - [CANON FD 35mm f/2 S.S.C. (I)](../../src/lens-data/canon/CanonFD35mmf2.data.ts) 5: `BaF (702411, S-BAH10 family)`
+
+### 713433 — 1 occurrence
+
+- [VIVITAR SERIES 1 200mm f/3.0 VMC](../../src/lens-data/vivitar/VivitarSeries1200mmf3.data.ts) 10: `713433 — LaF/BaSF boundary glass (no exact public catalog match)`
 
 ### 720504 — 1 occurrence
 
@@ -875,7 +891,7 @@ or per-lens patent backfills.
 
 ### BK3 — 1 occurrence
 
-- [VIVITAR SERIES 1 35-85mm f/2.8 VMC](../../src/lens-data/vivitar/VivitarSeries13585mmf28.data.ts) 10: `BK3 (Schott)`
+- [VIVITAR SERIES 1 35-85mm f/2.8 VMC](../../src/lens-data/vivitar/VivitarSeries13585mmf28.data.ts) 10: `498651 — BK3-type borosilicate crown (no exact public catalog match)`
 
 ### E-F5 — 1 occurrence
 
@@ -1009,10 +1025,6 @@ or per-lens patent backfills.
 
 - [OLYMPUS ZUIKO AUTO-ZOOM 85-250mm f/5](../../src/lens-data/olympus/OlympusZuikoAutoZoom85250mmf5.data.ts) 9: `PSK53A / K-PSKn2 class`
 
-### K-SFS5 — 1 occurrence
-
-- [VOIGTLÄNDER MACRO APO-LANTHAR 125mm f/2.5 SL](../../src/lens-data/voigtlander/VoigtlanderMacroApoLanthar125mmf25.data.ts) 7: `SF5 (Schott) / K-SFS5 (Sumita)`
-
 ### K-SSK9 — 1 occurrence
 
 - [OLYMPUS ZUIKO AUTO-ZOOM 85-250mm f/5](../../src/lens-data/olympus/OlympusZuikoAutoZoom85250mmf5.data.ts) 13: `K-SSK9 (Sumita) / BSM28 class`
@@ -1109,10 +1121,6 @@ or per-lens patent backfills.
 
 - [CANON EF-S 55-250mm f/4-5.6 IS STM](../../src/lens-data/canon/CanonEFS55250mmf456ISSTM.data.ts) 21: `S-BSM25 (OHARA)`
 
-### S-LAH60MQ — 1 occurrence
-
-- [VOIGTLÄNDER ULTRON Vintage Line 28mm f/2 Aspherical](../../src/lens-data/voigtlander/VoigtlanderUltron28f2.data.ts) 13: `S-LAH60MQ (OHARA)`
-
 ### S-LAH75 — 1 occurrence
 
 - [NIKON AF-S NIKKOR 120-300mm f/2.8 E FL ED SR VR](../../src/lens-data/nikon/NikonNikkorAFS120300mmf28.data.ts) 45: `OHARA S-LAH75`
@@ -1139,15 +1147,11 @@ or per-lens patent backfills.
 
 ### S-PHM51 — 1 occurrence
 
-- [VIVITAR SERIES 1 200mm f/3.0 VMC](../../src/lens-data/vivitar/VivitarSeries1200mmf3.data.ts) 1: `PSK2 (Schott) / S-PHM51 (OHARA)`
+- [VIVITAR SERIES 1 200mm f/3.0 VMC](../../src/lens-data/vivitar/VivitarSeries1200mmf3.data.ts) 1: `569631 — PSK2 phosphate crown (Schott) / S-PHM51 class`
 
 ### S-SK14 — 1 occurrence
 
 - [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) 18: `S-SK14 (OHARA)`
-
-### S-TIF1 — 1 occurrence
-
-- [VOIGTLÄNDER NOKTON 35mm f/1.2 Aspherical](../../src/lens-data/voigtlander/VoigtlanderNokton35mmf12.data.ts) 7: `S-TIF1 (OHARA)`
 
 ### S-TIF4 — 1 occurrence
 
@@ -1161,10 +1165,6 @@ or per-lens patent backfills.
 
 - [CANON RF 50mm f/1.2 L USM](../../src/lens-data/canon/CanonRF50mmf12L.data.ts) 21: `S-TIM1 (OHARA)`
 
-### SF14 — 1 occurrence
-
-- [VOIGTLÄNDER NOKTON 50mm f/1.0](../../src/lens-data/voigtlander/VoigtlanderNokton50f1.data.ts) 8: `Dense flint (SF14 family)`
-
 ### SF19 — 1 occurrence
 
 - [CANON New FD 50mm f/1.2](../../src/lens-data/canon/CanonFDn50f12.data.ts) 5: `Dense flint [667330] — OHARA SF19`
@@ -1172,6 +1172,10 @@ or per-lens patent backfills.
 ### SF3 — 1 occurrence
 
 - [CARL ZEISS PRO-TESSAR 35mm f/3.2](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissProTessar35mmf32.data.ts) 1: `SF3 (Schott)`
+
+### SF5 — 1 occurrence
+
+- [LEICA ELMARIT-M 135mm f/2.8](../../src/lens-data/leica/LeicaElmaritM135mmf28.data.ts) 6: `SF5-class dense flint (Schott; e-line source values)`
 
 ### SK4 — 1 occurrence
 

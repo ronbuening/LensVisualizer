@@ -10,9 +10,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **366** lenses scanned
-- **298** total code-only elements found
-- **206** elements in this report
-- **83** distinct lens files affected
+- **301** total code-only elements found
+- **209** elements in this report
+- **85** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -70,6 +70,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 541468 | 1 | 1 | patents/US4124276.pdf | All representative rows reviewed |
 | 545486 | 1 | 1 | patents/CN116520542A.pdf | No reviewed-sidecar hit |
 | 553381 | 1 | 1 | patents/US7508592.pdf | No reviewed-sidecar hit |
+| 553551 | 1 | 1 | patents/JP2023063766A.pdf | No reviewed-sidecar hit |
 | 553555 | 1 | 1 | patents/JP2022092388A.pdf | All representative rows reviewed |
 | 554381 | 1 | 1 | patents/US7359125.pdf | No reviewed-sidecar hit |
 | 561575 | 1 | 1 | patents/US2721499.pdf | All representative rows reviewed |
@@ -91,6 +92,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 624584 | 1 | 1 | patents/JP2025052870A.pdf | All representative rows reviewed |
 | 625533 | 1 | 1 | patents/US2721499.pdf | All representative rows reviewed |
 | 630346 | 1 | 1 | patents/JP2015041012A.pdf | No reviewed-sidecar hit |
+| 630581 | 1 | 1 | patents/JP2022100641A.pdf | No reviewed-sidecar hit |
 | 635232 | 1 | 1 | patents/US8081392.pdf | No reviewed-sidecar hit |
 | 639450 | 1 | 1 | patents/US3743384.pdf | All representative rows reviewed |
 | 642581 | 1 | 1 | patents/US2721499.pdf | All representative rows reviewed |
@@ -153,6 +155,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 803405 | 1 | 1 | patents/US20170351051A1.pdf | No reviewed-sidecar hit |
 | 804339 | 1 | 1 | patents/US5717527.pdf | No reviewed-sidecar hit |
 | 805410 | 1 | 1 | patents/US4871239.pdf | All representative rows reviewed |
+| 808406 | 1 | 1 | patents/JP2023063766A.pdf | No reviewed-sidecar hit |
 | 821426 | 1 | 1 | patents/US20100220400A1.pdf | All representative rows reviewed |
 | 835447 | 1 | 1 | patents/CN205720849U.pdf | All representative rows reviewed |
 | 840433 | 1 | 1 | patents/US5528428.pdf | No reviewed-sidecar hit |
@@ -785,11 +788,24 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
 |---|---|---|---|---|---|---|---|
-| L5 (Element 5) | 10 | `713-433 region (LaF/BaSF boundary; likely discontinued Japanese type)` | 1.71270 / 43.30 | No catalog entry | abbe | patents/US3942876.pdf | No reviewed-sidecar hit |
+| L5 (Element 5) | 10 | `713433 — LaF/BaSF boundary glass (no exact public catalog match)` | 1.71270 / 43.30 | No catalog entry | abbe | patents/US3942876.pdf | No reviewed-sidecar hit |
 
 ### [VIVITAR SERIES 1 35-85mm f/2.8 VMC](../../src/lens-data/vivitar/VivitarSeries13585mmf28.data.ts) - US 3,975,089
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
 |---|---|---|---|---|---|---|---|
-| L2 (Element 2) | 3 | `BSM-type crown (531/621)` | 1.53100 / 62.10 | No catalog entry | abbe | patents/US3975089.pdf | No reviewed-sidecar hit |
+| L2 (Element 2) | 3 | `531621 — BSM-type crown (no exact public catalog match)` | 1.53100 / 62.10 | No catalog entry | abbe | patents/US3975089.pdf | No reviewed-sidecar hit |
+
+### [VOIGTLÄNDER NOKTON 50mm f/1.0](../../src/lens-data/voigtlander/VoigtlanderNokton50f1.data.ts) - JP2023063766A
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+|---|---|---|---|---|---|---|---|
+| L6r (Element 8) | 14 | `Unmatched (553551 crown; patent nd=1.55298, νd=55.07)` | 1.55298 / 55.07 | No catalog entry | abbe | patents/JP2023063766A.pdf | No reviewed-sidecar hit |
+| L7 (Element 9) | 16A | `Unmatched (808406 high-index lanthanum glass; patent nd=1.80835, νd=40.55)` | 1.80835 / 40.55 | No catalog entry | abbe | patents/JP2023063766A.pdf | No reviewed-sidecar hit |
+
+### [VOIGTLÄNDER ULTRON Vintage Line 28mm f/2 Aspherical](../../src/lens-data/voigtlander/VoigtlanderUltron28f2.data.ts) - JP2022-100641A
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+|---|---|---|---|---|---|---|---|
+| L9 (Element 9 (Nnb)) | 15 | `Unmatched (630581 crown/APD candidate; patent nd=1.62999, νd=58.12)` | 1.62999 / 58.12 | No catalog entry | abbe | patents/JP2022100641A.pdf | No reviewed-sidecar hit |
 
