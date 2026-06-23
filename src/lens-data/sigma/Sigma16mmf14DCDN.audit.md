@@ -26,3 +26,34 @@ Patent: JP 2018-205527 A, Numerical Example 1
 ### Phase 4 - Analysis sync
 
 - No analysis text changes were required during this audit.
+
+## 2026-06-23 - Sigma-folder patent glass sweep
+
+### Phase 1 - Glass corrections
+
+| Element / surface | Field | Before | After | Justification |
+|---|---|---|---|---|
+| L18 | `glass` | `Crown-flint class (517/522)` | `E-CF6 (HOYA)` | Patent Example 1 stores nd/vd = 1.51742 / 52.15; HOYA E-CF6 is the exact catalog match. |
+| L19 | `glass` | `Dense flint class (673/322)` | `E-FD5 (HOYA)` | Patent nd/vd = 1.67270 / 32.17; HOYA E-FD5 matches the six-digit code. |
+| L21, L31 | `glass` | `SLD low-dispersion crown (593/686)` | `FCD505 (HOYA, SLD low-dispersion crown)` | Patent nd/vd = 1.59282 / 68.63; generated six-digit report resolves this as HOYA FCD505, consistent with Sigma SLD usage. |
+| L22 | `glass` | `Lanthanum dense-flint class (750/353)` | `S-LAM7 (OHARA)` | Patent nd/vd = 1.74950 / 35.33; OHARA S-LAM7 is the catalog-backed match. |
+| L43 | `glass` | `High-index lanthanum flint class (904/313)` | `S-LAH95 (OHARA)` | Patent nd/vd = 1.90366 / 31.32; OHARA S-LAH95 resolves the high-index rear doublet member. |
+
+### Phase 2 - Retained-information audit
+
+- Re-checked the extracted JP 2018-205527 A Example 1 prescription against the data file; surface radii, spacings, focus variables, and asphere coefficients were retained.
+- The cover-glass omission remains intentional and documented in the header.
+- The patent still provides no clear-aperture table, so no semi-diameter changes were made.
+
+### Phase 3 - Spectral / metadata enrichment
+
+- Retained the existing inferred APD annotations on Sigma-published FLD/SLD elements; no new patent line-index data was available.
+- Glass labels now resolve the formerly code-only catalog matches, raising this lens to full trusted Sellmeier coverage in the generated report.
+
+### Phase 4 - Analysis sync
+
+- Updated the companion analysis prose and glass summary table for L18, L19, L21/L31, L22, and L43.
+
+### Verification
+
+- `npm run generate:glass-reports`

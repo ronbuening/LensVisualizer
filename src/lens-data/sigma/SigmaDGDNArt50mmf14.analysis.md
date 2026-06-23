@@ -66,7 +66,7 @@ L3 is the second negative element in the GF1 subgroup. The patent states that GF
 
 ### L4 — Biconvex Positive, 2× Aspherical (GF2, 1st element)
 
-nd = 1.76450, νd = 49.10. Glass: 764/491 — aspherical mold glass (likely a proprietary Sigma or HOYA mold composition). f = +45.6 mm.
+nd = 1.76450, νd = 49.10. Glass: 764491 — aspherical mold glass with no exact public catalog match. f = +45.6 mm.
 
 L4 is the first aspherical element and the first element of the positive subgroup GF2. Both surfaces are aspherical. Surface 7 (front) carries a hyperboloidal conic constant K = −2.021, meaning the surface flattens rapidly toward the edge — significantly departing from a sphere. Surface 8 (rear) has K = +0.318, an oblate ellipsoid. Both surfaces carry polynomial coefficients through A18.
 
@@ -110,7 +110,7 @@ The use of a single lightweight element as the entire focus group is the core me
 
 ### L9 + L10 — Cemented Doublet (GR2F, achromatizing pair)
 
-**L9:** nd = 1.75500, νd = 52.32. Glass: Lanthanum crown (755/523 class). Biconvex positive. f = +25.2 mm.
+**L9:** nd = 1.75500, νd = 52.32. Glass: J-LASKH2 (Hikari, 755523 lanthanum crown). Biconvex positive. f = +25.2 mm.
 
 **L10:** nd = 1.85451, νd = 25.15. Glass: HOYA NBFD25 (855252), coefficient-backed by HOYA's optical-glass data. Negative meniscus, concave to object. f = −27.6 mm.
 
@@ -126,7 +126,7 @@ L11 is the most powerfully converging singlet in the rear group and uses the hig
 
 ### L12 + L13 — Cemented Doublet (GR2R, field flattener pair)
 
-**L12:** nd = 1.94595, νd = 17.98. Glass: Ultra-dispersive flint (946/180, no exact catalog match confirmed). Biconvex positive. f = +61.5 mm.
+**L12:** nd = 1.94595, νd = 17.98. Glass: FDS18 (HOYA, ultra-dispersive flint). Biconvex positive. f = +61.5 mm.
 
 **L13:** nd = 1.62004, νd = 36.30. Glass: S-TIM2 (OHARA) — medium flint. Biconcave negative. f = −37.2 mm.
 
@@ -151,15 +151,15 @@ The prescription uses 10 distinct glass types across 14 elements. The glass pale
 | L1 | 1.92286 | 20.88 | E-FDS1 (HOYA) | Ultra-high-index front positive; reduces curvatures |
 | L2 | 1.51742 | 52.15 | E-CF6 (HOYA) | Crown/flint boundary glass; negative for distortion/Petzval |
 | L3 | 1.80518 | 25.46 | S-TIH6 (OHARA) | Dense flint; negative Petzval contributor |
-| L4 | 1.76450 | 49.10 | 764/491 mold glass | Aspherical SA corrector |
+| L4 | 1.76450 | 49.10 | 764491 mold glass | Aspherical SA corrector |
 | L5 | 1.59282 | 68.62 | FCD515 (HOYA) | **SLD** — axial color correction |
 | L6 | 1.69895 | 30.05 | E-FD15 (HOYA) | Short flint; chromatic partner to L5 |
 | L7 | 1.88300 | 40.80 | S-LAH58 (OHARA) | Lanthanum crown; final GF convergence |
 | L8 | 1.59201 | 67.02 | 592/670 mold glass (FCD505 class) | Low-dispersion aspheric focus element |
-| L9 | 1.75500 | 52.32 | Lanthanum crown (755/523) | Rear achromat crown |
+| L9 | 1.75500 | 52.32 | J-LASKH2 (Hikari) | Rear achromat crown |
 | L10 | 1.85451 | 25.15 | HOYA NBFD25 | Rear achromat flint |
 | L11 | 2.00100 | 29.13 | TAFD55 (HOYA) | Ultra-high-index positive; minimized Petzval per φ |
-| L12 | 1.94595 | 17.98 | Ultra-dispersive flint (946/180, uncertain) | Lateral color correction |
+| L12 | 1.94595 | 17.98 | FDS18 (HOYA) | Lateral color correction |
 | L13 | 1.62004 | 36.30 | S-TIM2 (OHARA) | Medium flint; chromatic partner to L12 |
 | L14 | 1.68948 | 31.02 | S-TIM28 (OHARA) | Flint; aspherical field-flattening element |
 

@@ -591,7 +591,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 7A | Element 4 | abbe | `Aspherical mold glass (764/491)` | No catalog match |
+| 7A | Element 4 | abbe | `764491 — aspherical mold glass (no exact public catalog match; patent nd=1.76450, νd=49.10)` | No catalog match |
 
 ### [SONY FE 85mm f/1.4 GM II](../../src/lens-data/sony/SonyFE85mmf14GMII.data.ts) - 92.9% trusted (13/14); 92.9% Sellmeier (13/14) - WO 2025/239028 A1
 
@@ -1340,8 +1340,8 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
 | 7A | Element 4 | abbe | `HOYA M-TAF105 (773/495)` | No catalog match |
-| 8 | Element 5 | abbe | `Heavy flint, code 593/355 (vendor uncertain)` | No catalog match |
-| 11 | Element 7 | abbe | `HOYA FCD10A (459/902)` | No catalog match |
+| 8 | Element 5 | abbe | `593355 — heavy flint (vendor uncertain; no exact public catalog match)` | No catalog match |
+| 11 | Element 7 | abbe | `459902 — HOYA FCD10A (ELD fluorophosphate crown; no coefficient-backed catalog entry yet)` | No catalog match |
 | 25A | Element 14 | abbe | `HOYA M-TAF105 (773/495)` | No catalog match |
 
 ### [PANASONIC LUMIX S 20-60mm f/3.5-5.6](../../src/lens-data/panasonic/PanasonicLumixS2060mmf3556.data.ts) - 72.7% trusted (8/11); 72.7% Sellmeier (8/11) - JP 2021-179551 A

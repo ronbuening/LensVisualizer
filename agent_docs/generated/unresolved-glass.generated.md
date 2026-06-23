@@ -12,7 +12,7 @@ or per-lens patent backfills.
 - **4124** non-air surfaces examined
 - **4128** element glass declarations examined
 - **638** non-explicit-unmatched annotations did not resolve
-- **224** distinct unresolved glass-like tokens found
+- **227** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -66,6 +66,7 @@ or per-lens patent backfills.
 | TAF1 | 2 | 2 | |
 | 157957 | 1 | 1 | |
 | 182080 | 1 | 1 | |
+| 459902 | 1 | 1 | |
 | 487698 | 1 | 1 | |
 | 498650 | 1 | 1 | |
 | 500660 | 1 | 1 | |
@@ -85,6 +86,7 @@ or per-lens patent backfills.
 | 574425 | 1 | 1 | |
 | 575413 | 1 | 1 | |
 | 585417 | 1 | 1 | |
+| 593355 | 1 | 1 | |
 | 595686 | 1 | 1 | |
 | 596670 | 1 | 1 | |
 | 603564 | 1 | 1 | |
@@ -116,6 +118,7 @@ or per-lens patent backfills.
 | 749547 | 1 | 1 | |
 | 754260 | 1 | 1 | |
 | 757479 | 1 | 1 | |
+| 764491 | 1 | 1 | |
 | 768465 | 1 | 1 | |
 | 768492 | 1 | 1 | |
 | 769497 | 1 | 1 | |
@@ -494,6 +497,10 @@ or per-lens patent backfills.
 
 - [NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) 32: `Lanthanum flint (182080/4251, uncertain — possibly CDGM H-LAF3)`
 
+### 459902 — 1 occurrence
+
+- [SIGMA 35mm f/1.4 DG DN | Art](../../src/lens-data/sigma/SigmaDGDNA35mmf14.data.ts) 11: `459902 — HOYA FCD10A (ELD fluorophosphate crown; no coefficient-backed catalog entry yet)`
+
 ### 487698 — 1 occurrence
 
 - [OLYMPUS E.ZUIKO AUTO-T 135mm f/3.5](../../src/lens-data/olympus/OlympusZuiko135mmf35.data.ts) 3: `487698 — FK/FSL low-dispersion crown class (patent nd=1.48749, νd=69.8; no exact modern coefficient-backed match)`
@@ -569,6 +576,10 @@ or per-lens patent backfills.
 ### 585417 — 1 occurrence
 
 - [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) 3A: `585417 — light flint (patent nd=1.58542, nu_d=41.7)`
+
+### 593355 — 1 occurrence
+
+- [SIGMA 35mm f/1.4 DG DN | Art](../../src/lens-data/sigma/SigmaDGDNA35mmf14.data.ts) 8: `593355 — heavy flint (vendor uncertain; no exact public catalog match)`
 
 ### 595686 — 1 occurrence
 
@@ -693,6 +704,10 @@ or per-lens patent backfills.
 ### 757479 — 1 occurrence
 
 - [OLYMPUS OM J. ZUIKO AUTO-W 24mm f/2](../../src/lens-data/olympus/OlympusZuiko24mmf2J.data.ts) 1: `J-LAF04 class (HIKARI), 757479`
+
+### 764491 — 1 occurrence
+
+- [SIGMA 50mm f/1.4 DG DN | Art](../../src/lens-data/sigma/SigmaDGDNArt50mmf14.data.ts) 7A: `764491 — aspherical mold glass (no exact public catalog match; patent nd=1.76450, νd=49.10)`
 
 ### 768465 — 1 occurrence
 
@@ -884,7 +899,7 @@ or per-lens patent backfills.
 
 ### FCD10A — 1 occurrence
 
-- [SIGMA 35mm f/1.4 DG DN | Art](../../src/lens-data/sigma/SigmaDGDNA35mmf14.data.ts) 11: `HOYA FCD10A (459/902)`
+- [SIGMA 35mm f/1.4 DG DN | Art](../../src/lens-data/sigma/SigmaDGDNA35mmf14.data.ts) 11: `459902 — HOYA FCD10A (ELD fluorophosphate crown; no coefficient-backed catalog entry yet)`
 
 ### FCD500 — 1 occurrence
 
