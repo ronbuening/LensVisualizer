@@ -288,6 +288,11 @@ React components or `buildLens()`.
 ## Aberration Analysis
 
 `aberrationAnalysis.ts` re-exports helpers from `src/optics/aberration/`.
+Because that barrel is consumed by prepared-state analysis adapters, implementation modules under
+`src/optics/aberration/` should import lower-level engine sources directly (`field/`, `layout.ts`, `rayTrace.ts`,
+`trace/`, and `field/projection.ts`) instead of routing through public barrels such as `optics.ts` or `projection.ts`.
+Keep those public barrels stable for app/test callers, but avoid using them inside the re-exported aberration modules so
+`compat.ts` and `aberrationAnalysis.ts` do not form an initialization cycle.
 
 Important functions:
 
