@@ -69,7 +69,7 @@ L4 is the strongest standalone positive element in the design. It is the first e
 ### L5 + L6 — Cemented Achromat in L1b
 
 L5: nd = 1.49700, νd = 81.5. Glass: S-FPL51 / FCD1-class fluorophosphate UD glass. Standalone f = +25.8 mm at patent scale; +41.5 mm after scaling.  
-L6: nd = 1.67300, νd = 38.1. Glass: S-NBH52V (Ohara). Standalone f = -15.4 mm at patent scale; -24.7 mm after scaling.  
+L6: nd = 1.67300, νd = 38.1. Glass: S-NBH52 (Ohara). Standalone f = -15.4 mm at patent scale; -24.7 mm after scaling.  
 Cemented doublet in situ: f = -49.8 mm at patent scale; -80.1 mm after scaling.
 
 This cemented doublet is the principal achromatizing pair in the front half of the system. The high Abbe-number L5 element is the patent prescription's only obvious UD candidate, while L6 supplies the opposing high-dispersion negative power. The cemented group is net negative in situ, counterbalancing the strong L4 positive power and reducing longitudinal chromatic error.
@@ -94,7 +94,7 @@ L9 completes L1c with moderate positive power. Its relatively high Abbe number h
 
 ### L10 — Biconcave Negative Rear-Group Element
 
-nd = 1.57135, νd = 53.0. Glass: S-BAL3 (Ohara). f = -52.9 mm at patent scale; -85.0 mm after scaling.
+nd = 1.57135, νd = 53.0. Glass: S-BAL3 (Ohara class; unresolved in the local Sellmeier catalog). f = -52.9 mm at patent scale; -85.0 mm after scaling.
 
 L10 is the negative element at the front of L2. Its rear surface carries the stronger curvature, so its negative power is placed toward the image side of the element. As part of the weakly negative L2 group, it assists field flattening while avoiding excessive focus-dependent aberration change.
 
@@ -115,11 +115,11 @@ The patent does not name glass catalogs; it gives nd and νd. The following assi
 | L3      | 1.65412 | 39.7 | N-KZFS5 / S-NBH5 class   | Schott / Ohara class | Short-flint negative element           |
 | L4      | 1.91082 | 35.3 | TAFD35                   | Hoya equivalent      | Very-high-index positive power element |
 | L5      | 1.49700 | 81.5 | S-FPL51 / FCD1 class     | Ohara / Hoya class   | UD fluorophosphate positive element    |
-| L6      | 1.67300 | 38.1 | S-NBH52V                 | Ohara match          | Dense flint partner to L5              |
+| L6      | 1.67300 | 38.1 | S-NBH52                  | Ohara match          | Dense flint partner to L5              |
 | L7      | 1.74951 | 35.3 | S-LAM7                   | Ohara match          | Negative post-stop corrector           |
 | L8      | 1.77250 | 49.6 | S-LAH66                  | Ohara match          | Positive post-stop corrector           |
 | L9      | 1.59522 | 67.7 | S-FPM2                   | Ohara match          | Low-dispersion positive relay          |
-| L10     | 1.57135 | 53.0 | S-BAL3                   | Ohara match          | Rear-group negative element            |
+| L10     | 1.57135 | 53.0 | S-BAL3                   | unresolved catalog-equivalent | Rear-group negative element            |
 | L11     | 1.83400 | 37.2 | S-LAH60V                 | Ohara match          | Final high-index positive meniscus     |
 
 The glass strategy is conventional but careful: one low-dispersion positive element is paired with a dense flint in the L5-L6 cemented doublet, and a short-flint negative element appears in the pre-stop L1a subgroup. L9 adds a high-Abbe positive element after the stop. The design is not apochromatic in the strict sense from the patent data alone; it is a well-corrected macro achromat whose secondary-spectrum control is inferred from the selected glass families.
@@ -188,6 +188,6 @@ The patent cites JP 2008-298840 and JP 2013-231941 as prior art. The criticized 
 - JP 2018-205474 A, Japan Patent Office, published December 27, 2018. Primary source for the optical prescription, group definitions, conditional expressions, focus spacings, and paraxial example data.
 - Canon U.S.A., TS-E 90mm f/2.8L Macro product page and detailed specifications PDF. Manufacturer source for 90 mm f/2.8, 11 elements / 9 groups, manual focus, 0.39 m closest focusing distance, 77 mm filter, and physical dimensions.
 - Canon Europe, TS-E 90mm f/2.8L Macro specifications. Manufacturer source for ±10° tilt, ±12 mm shift, 0.50x maximum magnification, 11/9 construction, 9-blade diaphragm, f/45 minimum aperture, and the stated aspherical/UD element usage.
-- Ohara optical glass catalog. Catalog-equivalent references for S-NSL36, S-LAH55V, S-NBH52V, S-LAM7, S-LAH66, S-FPM2, S-BAL3, S-LAH60V, and S-FPL51-class glass.
+- Ohara optical glass catalog. Catalog-equivalent references for S-NSL36, S-LAH55V, S-NBH52, S-LAM7, S-LAH66, S-FPM2, S-LAH60V, and S-FPL51-class glass; S-BAL3 remains an unresolved local-catalog fallback.
 - Schott optical glass catalog. Catalog-equivalent reference for N-KZFS5-class short flint.
 - Hoya optical glass catalog. Catalog-equivalent reference for TAFD35 and FCD1-class equivalents.

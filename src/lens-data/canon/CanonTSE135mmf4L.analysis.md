@@ -33,7 +33,7 @@ The element focal lengths listed below are standalone in-air focal lengths for t
 
 ### G1 — Biconvex Positive
 
-nd = 1.65844, νd = 50.9. Glass: S-BSM25 (OHARA). f = +100.3 mm.
+nd = 1.65844, νd = 50.9. Glass: N-SSK5 (Schott; S-BSM25 class equivalent). f = +100.3 mm.
 
 G1 is the large front positive element of the fixed collector group. The patent describes L1 as beginning with a biconvex positive lens G1, which is consistent with R1 = +82.416 mm and R2 = -318.233 mm. Most of its refractive work is on the front surface, while the weaker rear surface moderates spherical aberration and keeps the front group from becoming excessively thick.
 
@@ -93,7 +93,7 @@ The prescription uses nine distinct glass types across eleven elements. The iden
 
 | Element | Catalog identification          |      nd |   νd | θgF class                   | Role                                 |
 | ------- | ------------------------------- | ------: | ---: | --------------------------- | ------------------------------------ |
-| G1      | S-BSM25 (OHARA)                 | 1.65844 | 50.9 | near normal                 | front dense crown collector          |
+| G1      | N-SSK5 (Schott; S-BSM25 class)  | 1.65844 | 50.9 | near normal                 | front dense crown collector          |
 | G2      | S-FPL51 (OHARA)                 | 1.49700 | 81.5 | strongly positive anomalous | UD L1p element                       |
 | G3      | TAFD35L class (HOYA equivalent) | 1.91082 | 35.3 | near normal                 | high-index negative L1 partner       |
 | G4      | S-LAH55V (OHARA)                | 1.83481 | 42.7 | negative deviation          | moving FN negative meniscus          |
@@ -194,6 +194,6 @@ The main design interest is not aspherical correction but floating-focus color c
 - JP 2018-132674 A, Canon Inc., published 2018-08-23. Primary source for the prescription, group structure, variable gaps, conditional expressions, and Example 1 paraxial data.
 - Canon Japan product specification FAQ for TS-E135mm F4L マクロ, document 92304. Official source for release date, element/group count, tilt/shift limits, MFD, magnification, filter size, aperture blade count, minimum aperture, and image-circle diameter.
 - Canon product specification page for TS-E 135mm f/4L MACRO. Official source for production metadata and confirmation of two UD elements.
-- OHARA optical glass catalog and product pages for S-BSM25, S-FPL51, S-LAH55V, S-NBH5, S-LAH99, S-LAL14, S-NBH56, S-LAH98, and S-LAL7.
+- Schott N-SSK5 optical-glass data for the 658509 dense-crown match, plus OHARA optical glass catalog and product pages for S-FPL51, S-LAH55V, S-NBH5, S-LAH99, S-LAL14, S-NBH56, S-LAH98, and S-LAL7.
 - OHARA 2018 S-LAL7Q announcement. Used to distinguish the time-consistent S-LAL7 label from the later S-LAL7Q variant.
 - HOYA optical glass catalog for TAFD35L equivalence to G3.

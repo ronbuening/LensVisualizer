@@ -135,7 +135,7 @@ const LENS_DATA = {
       nd: 1.673,
       vd: 38.1,
       fl: -24.74,
-      glass: "S-NBH52V (OHARA)",
+      glass: "S-NBH52 (OHARA)",
       role: "Dense flint partner to L5; its rear surface forms the object-side half of the stop waist.",
       cemented: "D1",
     },

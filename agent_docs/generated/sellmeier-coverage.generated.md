@@ -14,12 +14,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 - **358** visible lenses scanned
 - **107** lenses fully covered by trusted chromatic data
 - **107** visible lenses fully covered by trusted chromatic data
-- **100** lenses fully covered by strict Sellmeier data
-- **100** visible lenses fully covered by strict Sellmeier data
-- **7** lenses fully covered only after measured line-index data
-- **7** visible lenses fully covered only after measured line-index data
-- **3326 / 4124** non-air surfaces use strict catalog Sellmeier data
-- **80.6%** strict Sellmeier surface coverage overall
+- **101** lenses fully covered by strict Sellmeier data
+- **101** visible lenses fully covered by strict Sellmeier data
+- **6** lenses fully covered only after measured line-index data
+- **6** visible lenses fully covered only after measured line-index data
+- **3327 / 4124** non-air surfaces use strict catalog Sellmeier data
+- **80.7%** strict Sellmeier surface coverage overall
 - **3351 / 4124** non-air surfaces use trusted chromatic data
 - **81.3%** trusted chromatic coverage overall
 
@@ -70,6 +70,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | [FUJIFILM FUJINON GF 80mm f/1.7 R WR](../../src/lens-data/fujifilm/FujifilmGF80mmf17R.data.ts) | 12/12 | 12 | 12/12 |
 | [LAOWA 15mm f/2 Zero-D](../../src/lens-data/laowa/Laowa15mmf2ZeroD.data.ts) | 12/12 | 12 | 12/12 |
 | [PENTAX HD D FA* 85mm f/1.4 ED SDM AW](../../src/lens-data/pentax/PentaxDFA85mmf14.data.ts) | 12/12 | 12 | 12/12 |
+| [CANON TS-E 135mm f/4L MACRO](../../src/lens-data/canon/CanonTSE135mmf4L.data.ts) | 11/11 | 11 | 11/11 |
 | [FUJIFILM FUJINON GF 35-70mm f/4.5-5.6 WR](../../src/lens-data/fujifilm/FujifilmGF3570mmf4556.data.ts) | 11/11 | 11 | 11/11 |
 | [FUJIFILM FUJINON GF 45mm f/2.8 R WR](../../src/lens-data/fujifilm/FujifilmGF45mmf28.data.ts) | 11/11 | 11 | 11/11 |
 | [FUJIFILM FUJINON XF 23mm f/1.4 R](../../src/lens-data/fujifilm/FujifilmXF23mmf14.data.ts) | 11/11 | 11 | 11/11 |
@@ -139,7 +140,6 @@ These lenses are complete for chromatic tracing but not strict catalog-Sellmeier
 | [CANON EF 24-70mm f/2.8 L USM](../../src/lens-data/canon/CanonEF2470mmf28L.data.ts) | 16/16 | 13/16 | 16 | 13/16 | 3 | Line indices |
 | [PANASONIC LEICA DG SUMMILUX 12mm f/1.4 ASPH.](../../src/lens-data/panasonic/PanasonicDGSummilux12mmf14.data.ts) | 15/15 | 13/15 | 15 | 13/15 | 2 | Line indices |
 | [PANASONIC LEICA DG NOCTICRON 42.5mm f/1.2 ASPH POWER O.I.S.](../../src/lens-data/panasonic/PanasonicDGNocticron42mmf12.data.ts) | 14/14 | 12/14 | 14 | 12/14 | 2 | Line indices |
-| [CANON TS-E 135mm f/4L MACRO](../../src/lens-data/canon/CanonTSE135mmf4L.data.ts) | 11/11 | 10/11 | 11 | 10/11 | 1 | Line indices |
 | [SIGMA APO MACRO 150mm f/2.8 EX DG OS HSM](../../src/lens-data/sigma/SigmaAPOMacro150mmf28OSHSM.data.ts) | 19/19 | 7/19 | 19 | 7/19 | 12 | Line indices |
 
 ## Incomplete Lenses by Completeness

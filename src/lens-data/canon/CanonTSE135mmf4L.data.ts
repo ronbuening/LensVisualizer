@@ -71,7 +71,7 @@ const LENS_DATA = {
       nd: 1.65844,
       vd: 50.9,
       fl: 100.26,
-      glass: "S-BSM25 (OHARA)",
+      glass: "N-SSK5 (Schott; S-BSM25 class equivalent)",
       nC: 1.65455,
       nF: 1.66749,
       ng: 1.67469,
