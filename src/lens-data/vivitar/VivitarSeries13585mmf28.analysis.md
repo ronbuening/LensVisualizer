@@ -18,7 +18,7 @@ Rather than the conventional two-moving-group zoom design, Betensky's approach a
 The lens employs a positive-negative-negative-positive (PNNP) power distribution. Group I (positive front) and Groups II and III (negative variator and compensator) all move during zooming, while Group IV (positive relay) remains stationary. The patent identifies three critical conditional relationships governing the facing surface radii and combined curvature parameters—all three conditions are satisfied in the published prescription.
 
 ## Glass Palette
-The design uses six distinct optical glass types, dominated by high-index materials. Notably, the L9–L10 cemented doublet pairs fluorite crown (FK5, νd = 70.4) with ultra-dense flint (SF6, νd = 25.5), creating a Δνd = 44.9 differential for aggressive chromatic correction—a technique that would become standard in modern ED lens designs.
+The design uses ten distinct nd/νd rows, dominated by high-index dense flints and dense crowns. Notably, the L9–L10 cemented doublet pairs low-dispersion fluor crown FK5 (νd = 70.4) with dense flint SF6 (νd = 25.5), creating a Δνd = 44.9 differential for aggressive chromatic correction — a technique that would become standard in later high-performance zoom designs.
 
 ## Field Curvature Control
 The computed Petzval sum of +0.0017 mm⁻¹ demonstrates exceptional field-curvature correction for an era before aspherical surfaces became commonplace. This performance results from carefully balanced high-index negative elements working against the positive groups.
