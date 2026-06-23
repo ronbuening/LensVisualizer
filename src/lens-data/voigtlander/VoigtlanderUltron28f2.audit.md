@@ -2,6 +2,15 @@
 
 Patent: JP2022-100641A
 
+## 2026-06-23 - Full Voigtländer local-patent sweep
+
+- Local patent source: `patents/JP2022100641A.pdf` (untracked local file).
+- Rendered and visually rechecked Example 1, Table 1. The stored prescription and aspheric coefficients match the patent table.
+- Confirmed the patent high-index condition through L3/L4 at nd=1.91082. No separate high-index flag change was needed.
+- Updated L8 from `S-LAH60MQ (OHARA)` to `H-ZLAF68C (CDGM, patent nd/vd match)` for nd=1.88300, vd=40.81.
+- Updated L9 label to `Unmatched (630581 crown/APD candidate; patent nd=1.62999, νd=58.12)` to preserve the patent code while avoiding a weak false catalog match.
+- The patent does not list dPgF or semidiameters. L7/L9 APD status remains inferred from the manufacturer's two-APD-elements claim and glass-map position; the specific element assignment is not patent-confirmed.
+
 ## 2026-06-04 - Sweep 1 local patent relabel
 
 - Local patent source: `patents/JP2022100641A.pdf` (untracked local file).

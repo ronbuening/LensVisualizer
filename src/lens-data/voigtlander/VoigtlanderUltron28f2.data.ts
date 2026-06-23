@@ -154,7 +154,7 @@ const LENS_DATA = {
       nd: 1.883,
       vd: 40.81,
       fl: 18.17,
-      glass: "S-LAH60MQ (OHARA)",
+      glass: "H-ZLAF68C (CDGM, patent nd/vd match)",
       apd: false,
       role: "Strong positive rear singlet — primary image-forming element; high-index LaF keeps curvatures moderate for SA control; Petzval contribution balanced by surrounding negatives",
     },
@@ -166,7 +166,7 @@ const LENS_DATA = {
       nd: 1.62999,
       vd: 58.12,
       fl: -100.0,
-      glass: "Unconfirmed (no exact catalog match)",
+      glass: "Unmatched (630581 crown/APD candidate; patent nd=1.62999, νd=58.12)",
       apd: "inferred",
       apdNote:
         "Manufacturer states 2 APD elements; nd/νd in BaK/LaC transition region consistent with anomalous dispersion but no exact catalog glass identified",

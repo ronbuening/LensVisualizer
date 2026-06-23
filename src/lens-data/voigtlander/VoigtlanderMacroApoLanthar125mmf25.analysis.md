@@ -64,9 +64,9 @@ The patent explicitly requires that the Abbe numbers of the three front positive
 
 ### L44 — Biconcave Negative (near-plano front)
 
-nd = 1.67270, νd = 32.2. Glass: SF5 (Schott) / K-SFS5 (Sumita) — dense flint. f = −55.7 mm.
+nd = 1.67270, νd = 32.2. Glass: E-FD5 (HOYA, patent nd/vd match) / SF5-class dense flint. f = −55.7 mm.
 
-The primary flint corrector. L44 is the strongest negative element in Group 1 by absolute power (f = −55.7 mm). Its first surface is nearly flat (R1 = −2216.1 mm at production scale), while the second surface is a strongly curved concavity facing the image side (R2 = +38.2 mm), giving the element a near-plano-concave profile despite its technically biconcave classification. The dense flint glass (νd = 32.2) provides the high dispersion needed to achromatize the combined contribution of L41–L43. The strong negative power here also introduces overcorrected spherical aberration that partially balances the undercorrected SA from the three positive meniscus elements ahead.
+The primary flint corrector. L44 is the strongest negative element in Group 1 by absolute power (f = −55.7 mm). Its first surface is nearly flat (R1 = −2216.1 mm at production scale), while the second surface is a strongly curved concavity facing the image side (R2 = +38.2 mm), giving the element a near-plano-concave profile despite its technically biconcave classification. The dense flint glass (νd = 32.2) provides the high dispersion needed to achromatize the combined contribution of L41–L43. E-FD5 is used as the catalog proxy because it round-trips the patent nd/vd pair; the patent itself lists only nd and νd, not a trade name. The strong negative power here also introduces overcorrected spherical aberration that partially balances the undercorrected SA from the three positive meniscus elements ahead.
 
 The large air gap after L44 (3.73 mm at production scale) allows the axial and off-axis beams to separate spatially before entering the cemented doublet, improving the doublet's ability to act independently on coma and lateral color.
 
@@ -115,7 +115,7 @@ The design uses seven distinct glass types across ten elements. Cosina is docume
 | L41 | 1.48749 | 70.4 | FK5 / K-FK5 | Schott / Sumita | Low-dispersion crown collector |
 | L42 | 1.49700 | 81.6 | S-FPL51 / K-FPL51 | OHARA / Sumita | ED crown, primary achromatizer |
 | L43 | 1.49700 | 81.6 | S-FPL51 / K-FPL51 | OHARA / Sumita | ED crown, secondary achromatizer |
-| L44 | 1.67270 | 32.2 | SF5 / K-SFS5 | Schott / Sumita | Dense flint, chromatic corrector |
+| L44 | 1.67270 | 32.2 | E-FD5 / SF5-class | HOYA / class proxy | Dense flint, chromatic corrector |
 | L45 | 1.67003 | 47.2 | N-BAF10 / K-BAF10 | Schott / Sumita | Barium flint, coma corrector |
 | L46 | 1.83400 | 37.3 | S-LAH60 / K-LASH60 | OHARA / Sumita | Dense lanthanum flint, high-index corrector |
 | L47 | 1.58913 | 61.3 | S-BAL35 | OHARA | Barium crown, closing collector |
@@ -125,7 +125,7 @@ The design uses seven distinct glass types across ten elements. Cosina is docume
 The chromatic strategy of the design rests on three pillars:
 
 1. **Front-group ED pairing.** Two elements of S-FPL51–class glass (L42, L43) provide the anomalous partial dispersion (ΔP(g,F) ≈ +0.032) needed to bring three wavelengths to a common focus. By contrast, L41's FK5 glass has ΔP(g,F) ≈ +0.004 — insufficient for meaningful secondary-spectrum correction on its own, but its low base dispersion (νd = 70.4) keeps the primary chromatic contribution small. The patent's conditional V1, V2, V3 > 70 (¶0011) ensures that the entire front positive group has low dispersion, reducing the magnitude of chromatic error that the flint correctors must handle.
-2. **Single dense flint corrector.** L44 (SF5, νd = 32.2, ΔP(g,F) ≈ −0.001) provides nearly all the achromatizing power. Its large dispersion differential relative to the ED elements (Δνd ≈ 49) gives a strong chromatic lever arm, while its near-normal partial dispersion avoids introducing secondary spectrum of its own.
+2. **Single dense flint corrector.** L44 (E-FD5 / SF5-class, νd = 32.2) provides nearly all the achromatizing power. Its large dispersion differential relative to the ED elements (Δνd ≈ 49) gives a strong chromatic lever arm. The local patent table does not list partial dispersion for this element, so any ΔP(g,F) value is catalog-inferred rather than patent-stated.
 3. **Chromatically neutral focus and relay groups.** Both the floating Group 2 (L51) and the fixed Group 3 (L61, L62) use glasses with moderate Abbe numbers (53.9–64.2) and near-zero ΔP(g,F). This ensures that the apochromatic correction established in Group 1 is preserved as the focus state changes — a design choice that is not accidental but essential to the lens's claim of apochromatic performance across all magnifications.
 
 ## Focus Mechanism
@@ -194,6 +194,6 @@ Note: Example 1 of the same patent yields EFL = 99.975 mm and BFD = 42.26 mm at 
 1. JP 2002-090622 A (特開2002-90622), Cosina Co., Ltd., published 2002-03-27. Primary source for all prescription data, conditional expressions, and design rationale.
 2. Cosina Co., Ltd., product documentation for Macro Apo-Lanthar 125mm F2.5 SL (discontinued product archives). Marketing copy reproduced on lens-db.com specifies "two anomalous dispersion elements in its 11-element optical formula."
 3. Schroiff, Klaus, "Voigtlander APO-Lanthar 125mm f/2.5 SL — Review / Test Report," Photozone / OpticalLimits, March 2007. Independently confirms "11 elements in 9 groups including 2x ED elements."
-4. OHARA Optical Glass Catalog — nd/νd values and Sellmeier coefficients for S-FPL51, S-FSL5, S-BAL35, S-BSL7, S-LAL8, S-LAH60, S-TIH4, S-BAM4.
-5. Schott Optical Glass Catalog — nd/νd values for FK5, SF5, N-BAF10, N-LAK8.
-6. Sumita Optical Glass Catalog — nd/νd values for K-FK5, K-FPL51, K-SFS5, K-BAF10, K-LASH60, K-BAL14, K-BK7, K-LaL8.
+4. OHARA Optical Glass Catalog — nd/νd values and Sellmeier coefficients for S-FPL51, S-BAL35, S-BSL7, S-LAL8, S-LAH60.
+5. Schott Optical Glass Catalog — nd/νd values for FK5, SF5-class references, N-BAF10, N-LAK8.
+6. HOYA and Sumita Optical Glass Catalogs — nd/νd values for E-FD5, K-FK5, K-FPL51, K-BAF10, K-LASH60, K-BAL14, K-BK7, K-LaL8.

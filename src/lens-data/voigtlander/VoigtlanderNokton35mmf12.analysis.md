@@ -114,7 +114,7 @@ The patent explicitly requires that the positive elements in all cemented double
 ### L3a + L3b — Cemented Doublet 23
 
 **L3a glass:** nd = 1.80420, νd = 46.5 — **OHARA S-LAH65** (high-index lanthanum glass).
-**L3b glass:** nd = 1.64769, νd = 33.8 — **OHARA S-TIF1** (titanium flint).
+**L3b glass:** nd = 1.64769, νd = 33.8 — **HOYA E-FD2 / S-TIM22 class** dense flint.
 
 **Shape:** L3a is biconvex (R₆ = +28.934, R₇ = −47.262); L3b is biconcave (R₇ = −47.262, R₈ = +40.326).
 
@@ -123,7 +123,7 @@ The patent explicitly requires that the positive elements in all cemented double
 
 **Role:** This is the principal power-generating doublet, positioned immediately before the stop. The thick L3a element (13.10 mm center thickness — the thickest in the system) carries the highest surface powers in the front group, with its front surface contributing the largest single Petzval increment (+0.0154 mm⁻¹). The high refractive index of S-LAH65 is essential here: it provides strong convergence while keeping the Petzval contribution manageable (since Petzval contribution scales as φ/(n·n'), the high index in the denominator partially offsets the high surface power in the numerator). The substantial 13.1 mm center thickness is physically necessary: at f = +24.2 mm the constituent surface powers are very high, and the thick-lens correction term (−d·φ₁·φ₂/n) is significant, contributing roughly 7 mm of additional focal length beyond the thin-lens estimate.
 
-The Abbe number difference within this doublet is more substantial (Δν = 12.7), making it the primary chromatic corrector in the front group. The titanium flint L3b is paired against the high-index lanthanum L3a in a traditional achromatic arrangement. The doublet's front convex surface (L3a, R₆ = +28.934) and the first doublet's rear convex surface (L2b, R₅ = −41.350) face each other across a tiny 0.15 mm air gap — a classic double-Gauss "waist" configuration that enables high-order aberration balancing.
+The Abbe number difference within this doublet is more substantial (Δν = 12.7), making it the primary chromatic corrector in the front group. The dense flint L3b is paired against the high-index lanthanum L3a in a traditional achromatic arrangement. E-FD2 is the exact catalog proxy for the patent nd/vd pair; the patent does not name a trade glass. The doublet's front convex surface (L3a, R₆ = +28.934) and the first doublet's rear convex surface (L2b, R₅ = −41.350) face each other across a tiny 0.15 mm air gap — a classic double-Gauss "waist" configuration that enables high-order aberration balancing.
 
 
 ### Aperture Stop (S₂)
@@ -182,7 +182,7 @@ The large rear surface curvature (R₁₆ = −31.428 mm) generates the single l
 
 ### L7 — Biconcave Negative (Rear Element)
 
-**Glass:** nd = 1.54814, νd = 45.8 — **OHARA S-TIL2** (light titanium flint).
+**Glass:** nd = 1.54814, νd = 45.8 — **OHARA S-TIL1** (light titanium flint).
 
 **Shape:** Biconcave (R₁₇ = −75.075, R₁₈ = +30.000). The rear surface has 2.5× the curvature of the front, making this a strongly asymmetric negative element with most of its divergent power on the exit face.
 
@@ -202,10 +202,10 @@ The design uses 7 distinct glass types across 10 elements, with three types appe
 | S-FSL5 | 1487/704 | 1.48749 | 70.4 | L1 | 1 |
 | S-BAM4 | 1567/428 | 1.56732 | 42.8 | L2a | 1 |
 | **S-LAH65** | **1804/465** | **1.80420** | **46.5** | **L2b, L3a, L5b** | **3** |
-| S-TIF1 | 1648/338 | 1.64769 | 33.8 | L3b | 1 |
+| E-FD2 / S-TIM22 class | 1648/338 | 1.64769 | 33.8 | L3b | 1 |
 | **S-LAH63** | **1806/407** | **1.80610** | **40.7** | **L4, L6** | **2** |
 | S-TIH14 | 1805/255 | 1.80518 | 25.5 | L5a | 1 |
-| S-TIL2 | 1548/458 | 1.54814 | 45.8 | L7 | 1 |
+| S-TIL1 | 1548/458 | 1.54814 | 45.8 | L7 | 1 |
 
 The dominant materials are two high-index lanthanum glasses: S-LAH65 (3 elements) and S-LAH63 (2 elements). Together, these account for half the elements in the system. Six of the ten elements have nd > 1.7, and the three highest-index glasses (S-LAH65, S-LAH63, S-TIH14) all exceed nd = 1.80 — placing them among the most expensive and challenging optical glasses to manufacture.
 

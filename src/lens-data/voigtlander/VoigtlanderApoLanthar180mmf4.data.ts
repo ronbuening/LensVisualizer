@@ -175,7 +175,7 @@ const LENS_DATA = {
     { label: "7", R: 124.264, d: 2.0, nd: 1.834, elemId: 4, sd: 18.0 },
     { label: "8", R: 22.803, d: 6.87, nd: 1.48749, elemId: 5, sd: 18.0 },
     { label: "9", R: 86.224, d: 3.46, nd: 1.0, elemId: 0, sd: 15.3 },
-    // D2: L23 (S-LAH51) + L24 (S-TIH4) — reversed dispersion doublet
+    // D2: L23 (S-LAH53) + L24 (S-TIH10) — reversed dispersion doublet
     { label: "10", R: -5733.84, d: 2.0, nd: 1.8061, elemId: 6, sd: 14.0 },
     { label: "11", R: 16.465, d: 6.39, nd: 1.72825, elemId: 7, sd: 14.0 },
     { label: "12", R: 47.51, d: 9.5, nd: 1.0, elemId: 0, sd: 12.5 },

@@ -95,7 +95,7 @@ The choice of S-FSL5 rather than a more common crown (e.g., S-BSL7 / N-BK7) is n
 
 ### L23 — Near-Plano-Concave Negative (G2, cemented with L24)
 
-nd = 1.80610, νd = 40.7. Glass: S-LAH51 (OHARA) — lanthanum-aluminosilicate dense crown. f = −20.4 mm (thin-lens).
+nd = 1.80610, νd = 40.7. Glass: S-LAH53 (OHARA) — lanthanum-aluminosilicate dense crown. f = −20.4 mm (thin-lens).
 
 L23 forms the front element of the second cemented doublet in G2 (R₁ = −5733.840, R₂ = +16.465, d = 2.00 mm). The front surface is essentially flat (R ≈ −5734 mm), making this a near-plano-concave element with all its refracting power concentrated at the steeply curved cemented interface. This is the strongest single element in the entire system — its −20.4 mm focal length contributes the largest share of G2's diverging power.
 
@@ -103,9 +103,9 @@ The element's role is primarily telephoto compression: it takes the converging b
 
 ### L24 — Positive Meniscus, convex to object (G2, cemented with L23)
 
-nd = 1.72825, νd = 28.3. Glass: S-TIH4 (OHARA) — titanium-flint dense glass. f = +34.6 mm (thin-lens).
+nd = 1.72825, νd = 28.3. Glass: S-TIH10 (OHARA) — titanium-flint dense glass. f = +34.6 mm (thin-lens).
 
-L24 is the "positive flint" partner of the second doublet (cemented at R = +16.465, exit at R = +47.510, d = 6.39 mm). This is an unconventional doublet architecture: the high-dispersion glass (S-TIH4, νd = 28.3) carries the *positive* power, while the lower-dispersion glass (S-LAH51, νd = 40.7) carries the *negative* power. In a conventional achromat, the crown (low dispersion) is positive and the flint (high dispersion) is negative. Here the roles are reversed.
+L24 is the "positive flint" partner of the second doublet (cemented at R = +16.465, exit at R = +47.510, d = 6.39 mm). This is an unconventional doublet architecture: the high-dispersion glass (S-TIH10, νd = 28.3) carries the *positive* power, while the lower-dispersion glass (S-LAH53, νd = 40.7) carries the *negative* power. In a conventional achromat, the crown (low dispersion) is positive and the flint (high dispersion) is negative. Here the roles are reversed.
 
 This reversed arrangement is deliberate. A standard doublet produces undercorrected secondary spectrum — the residual focus shift between the blue-green and red wavelengths that cannot be eliminated by Abbe-number matching alone. By reversing the dispersion–power pairing, the L23+L24 doublet generates *overcorrected* primary chromatic aberration, which, when combined with the undercorrected residual from G1's three S-FPL51 elements, achieves a net secondary-spectrum correction that approaches apochromatic performance. The doublet's net achromatic residual (φ₁/ν₁ + φ₂/ν₂ = −0.18 × 10⁻³) is small, confirming that it is nearly self-achromatized despite the reversed architecture.
 
@@ -121,11 +121,11 @@ L31 sits just behind the aperture stop and operates at a relatively small beam d
 
 ### L32 — Negative Meniscus, concave to object (G3)
 
-nd = 1.80610, νd = 40.7. Glass: S-LAH51 (OHARA) — lanthanum-aluminosilicate dense crown (same glass as L23). f = −113.2 mm (thick-lens).
+nd = 1.80610, νd = 40.7. Glass: S-LAH53 (OHARA) — lanthanum-aluminosilicate dense crown (same glass as L23). f = −113.2 mm (thick-lens).
 
 L32 is the final optical element (R₁ = −33.161, R₂ = −53.488, d = 2.00 mm). Its concave-to-object meniscus shape gives it weak negative power, and together with L31 the pair forms a near-afocal corrector group (f₃ = +554 mm). L32's primary function is field correction: its negative meniscus shape, positioned far from the stop, generates astigmatism of the opposite sign to the astigmatism accumulated by the front and middle groups, flattening the tangential and sagittal focal surfaces.
 
-The use of S-LAH51 (the same glass as L23) in the rear group is notable — it creates a partial-dispersion pairing with L31's S-TIH6 that mirrors the L23/L24 pairing in G2. This symmetry of glass-pair architecture across the stop is a hallmark of designs that aim for uniform chromatic correction across the field, reducing lateral chromatic aberration (lateral color) at the field edges.
+The use of S-LAH53 (the same glass as L23) in the rear group is notable — it creates a partial-dispersion pairing with L31's S-TIH6 that mirrors the L23/L24 pairing in G2. This symmetry of glass-pair architecture across the stop is a hallmark of designs that aim for uniform chromatic correction across the field, reducing lateral chromatic aberration (lateral color) at the field edges.
 
 ## Glass Identification and Selection
 
@@ -136,15 +136,15 @@ All six distinct glasses in this design are exact matches to OHARA catalog entri
 | L11, L12, L13 | S-FPL51 (OHARA) | 1.49700 | 81.6 | ED fluorophosphate crown | Ultra-low dispersion front group; primary APO contributor |
 | L21 | S-LAH55 (OHARA) | 1.83400 | 37.3 | Lanthanum dense crown | High-index "flint role" in D1; telephoto divergence |
 | L22 | S-FSL5 (OHARA) | 1.48749 | 70.4 | Fluorine crown | Low-index crown in D1; maximizes Δn at cemented interface |
-| L23, L32 | S-LAH51 (OHARA) | 1.80610 | 40.7 | Lanthanum dense crown | Negative power in reversed doublets; telephoto + APO |
-| L24 | S-TIH4 (OHARA) | 1.72825 | 28.3 | Titanium dense flint | Positive flint in reversed D2; secondary-spectrum correction |
+| L23, L32 | S-LAH53 (OHARA) | 1.80610 | 40.7 | Lanthanum dense crown | Negative power in reversed doublets; telephoto + APO |
+| L24 | S-TIH10 (OHARA) | 1.72825 | 28.3 | Titanium dense flint | Positive flint in reversed D2; secondary-spectrum correction |
 | L31 | S-TIH6 (OHARA) | 1.80518 | 25.5 | Titanium dense flint (≡ Schott SF6) | Positive rear corrector; Petzval flattening + APO |
 
 The glass palette clusters into two functional families:
 
 **Ultra-low-dispersion crowns (νd > 70):** S-FPL51 and S-FSL5 provide the low-dispersion refractive power that anchors the chromatic correction. S-FPL51 in particular has strongly anomalous positive partial dispersion (ΔPgF ≈ +0.035), meaning its blue-to-green dispersion ratio deviates from the Schott normal line. This anomalous dispersion is the mechanism by which the design attacks the secondary spectrum — the residual longitudinal color shift between the C-line, d-line, and F-line focuses that an ordinary achromat cannot eliminate.
 
-**Dense flints and dense crowns (νd < 42):** S-LAH55, S-LAH51, S-TIH4, and S-TIH6 provide the high-dispersion counterweights. The patent uses three of OHARA's lanthanum-aluminosilicate (LAH) glasses in addition to two titanium-flint (TIH) glasses. The lanthanum glasses combine high index with moderate Abbe numbers (37–41), making them effective at creating large refractive-index steps at cemented interfaces without requiring extremely thick elements. The titanium flints (νd = 25–28) provide the strongest dispersion in the system and are deployed in the unusual positive-flint configuration that drives the secondary-spectrum correction.
+**Dense flints and dense crowns (νd < 42):** S-LAH55, S-LAH53, S-TIH10, and S-TIH6 provide the high-dispersion counterweights. The patent uses three of OHARA's lanthanum-aluminosilicate (LAH) glasses in addition to two titanium-flint (TIH) glasses. The lanthanum glasses combine high index with moderate Abbe numbers (37–41), making them effective at creating large refractive-index steps at cemented interfaces without requiring extremely thick elements. The titanium flints (νd = 25–28) provide the strongest dispersion in the system and are deployed in the unusual positive-flint configuration that drives the secondary-spectrum correction.
 
 ## Focus Mechanism
 
@@ -180,9 +180,9 @@ The APO-Lanthar 180mm uses three independent mechanisms to suppress the secondar
 
 1. **Ultra-low-dispersion front group.** All three G1 elements use S-FPL51, which has anomalous partial dispersion (ΔPgF ≈ +0.035 above the Schott normal line). Because the front group generates the primary converging power, using an anomalous-dispersion glass here shifts the secondary-spectrum balance of the entire system. The very high Abbe number (81.6) also means each element contributes minimal primary color per unit of power, reducing the total chromatic load that the negative group must compensate.
 
-2. **Reversed-dispersion doublets in G2.** The second doublet (L23+L24) uses the unusual positive-flint/negative-crown architecture. The "flint" element (S-TIH4, νd = 28.3) carries positive power, while the "crown" (S-LAH51, νd = 40.7) carries negative power. This reversal flips the sign of the doublet's secondary-spectrum contribution relative to a conventional achromatic doublet of the same net power. When combined with G1's anomalous-dispersion contribution, the reversed secondary spectrum from D2 enables a three-wavelength correction that a conventional glass pairing cannot achieve.
+2. **Reversed-dispersion doublets in G2.** The second doublet (L23+L24) uses the unusual positive-flint/negative-crown architecture. The "flint" element (S-TIH10, νd = 28.3) carries positive power, while the "crown" (S-LAH53, νd = 40.7) carries negative power. This reversal flips the sign of the doublet's secondary-spectrum contribution relative to a conventional achromatic doublet of the same net power. When combined with G1's anomalous-dispersion contribution, the reversed secondary spectrum from D2 enables a three-wavelength correction that a conventional glass pairing cannot achieve.
 
-3. **Rear corrector pairing.** G3 uses S-TIH6 (positive, νd = 25.5) paired with S-LAH51 (negative, νd = 40.7), mirroring the reversed-dispersion architecture of D2. Because G3 operates behind the stop at a different beam geometry than G2, it corrects the lateral component of chromatic aberration (lateral color, which affects the image height rather than the focus position) while contributing a small reinforcement to the longitudinal APO correction established by G1 and G2.
+3. **Rear corrector pairing.** G3 uses S-TIH6 (positive, νd = 25.5) paired with S-LAH53 (negative, νd = 40.7), mirroring the reversed-dispersion architecture of D2. Because G3 operates behind the stop at a different beam geometry than G2, it corrects the lateral component of chromatic aberration (lateral color, which affects the image height rather than the focus position) while contributing a small reinforcement to the longitudinal APO correction established by G1 and G2.
 
 ### Computed chromatic residuals
 
@@ -190,7 +190,7 @@ The total first-order chromatic residual Σ(φ/ν) for the full system is −0.3
 
 ### Petzval sum
 
-The computed Petzval sum is −0.000185 mm⁻¹, corresponding to a Petzval radius of −5411 mm — essentially flat. This near-zero Petzval sum is achieved through the balance of positive and negative powers across high-index glasses: the strong negative elements in G2 (S-LAH55, S-LAH51) contribute large negative Petzval terms that offset the positive contributions from the front group and rear corrector. The extremely flat Petzval surface is favorable for a telephoto lens, as it reduces the field curvature that would otherwise require the photographer to stop down significantly for sharp corners.
+The computed Petzval sum is −0.000185 mm⁻¹, corresponding to a Petzval radius of −5411 mm — essentially flat. This near-zero Petzval sum is achieved through the balance of positive and negative powers across high-index glasses: the strong negative elements in G2 (S-LAH55, S-LAH53) contribute large negative Petzval terms that offset the positive contributions from the front group and rear corrector. The extremely flat Petzval surface is favorable for a telephoto lens, as it reduces the field curvature that would otherwise require the photographer to stop down significantly for sharp corners.
 
 ## Conditional Expressions
 
@@ -222,4 +222,4 @@ The designer's approach in Example 1 — using three matched S-FPL51 menisci rat
 
 - JP 2003-270529 A (P2003-270529A), 「望遠レンズ」, Cosina Co., Ltd. / 蓬田 祥寿. Published 2003-09-25. Primary source for optical prescription, group architecture, conditional expressions, and aberration diagrams.
 - Cosina Co., Ltd. product specifications for the Voigtländer APO-Lanthar 180mm f/4 SL Close Focus. Manufacturer source for production specifications: 9 elements / 7 groups, f/4, MFD 1.2 m, 9 aperture blades, 49 mm filter thread, overall length ~79 mm.
-- OHARA Inc. optical glass catalog (current edition). Referenced for S-FPL51, S-LAH55, S-FSL5, S-LAH51, S-TIH4, S-TIH6 refractive indices, Abbe numbers, and partial-dispersion data.
+- OHARA Inc. optical glass catalog (current edition). Referenced for S-FPL51, S-LAH55, S-FSL5, S-LAH53, S-TIH10, S-TIH6 refractive indices, Abbe numbers, and partial-dispersion data.

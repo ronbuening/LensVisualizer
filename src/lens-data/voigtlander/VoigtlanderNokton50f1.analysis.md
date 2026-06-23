@@ -352,13 +352,11 @@ Identifying the actual glass types used is an exercise in inference: patent pres
 
 This is the most extreme glass in the system and one of the most extreme available in production. An nd above 1.90 places this firmly in the **lanthanum dense flint (LaSF)** family — the upper boundary of the conventional glass map, where maximum refractive power is extracted at the cost of high dispersion and significant material cost.
 
-The closest commonly cited catalogue match is **Schott LASF35** (legacy designation), with nominal nd = 1.90000 and νd = 35.28. The patent value is 0.005 higher in nd and 0.24 lower in νd than this nominal. CDGM's H-ZLaF series includes members in this approximate region. Several Japanese and Chinese glass manufacturers produce proprietary compositions at nd ≈ 1.90 with νd in the 33–37 range that do not appear in Western catalogues. Given that Cosina manufactures in Japan and sources glass from Japanese manufacturers including Ohara and Hoya, an Ohara or Hoya composition not widely catalogued outside Japan is plausible.
-
-The most economical explanation is that this is a **selected melt** of a standard LaSF-territory glass — see Section 11 for detailed discussion.
+The current codebase catalog contains an exact OHARA match: **S-LAH93** (nd = 1.90525, νd = 35.04). The patent itself does not name the glass, so the assignment remains a catalog identification rather than a patent-stated trade name, but it is substantially stronger than the older generic LASF35-family interpretation.
 
 ### L2 — nd = 1.90043, νd = 37.37
 
-Nearly as extreme as L1. Having two consecutive positive elements both above nd = 1.90 is unusual by any standard. The designer is deliberately concentrating the maximum available refractive power in the front group with the minimum physical volume. L2 sits slightly lower in nd and higher in νd than L1, suggesting a different glass of similar character — perhaps a different member of the same family.
+Nearly as extreme as L1. Having two consecutive positive elements both above nd = 1.90 is unusual by any standard. The designer is deliberately concentrating the maximum available refractive power in the front group with the minimum physical volume. L2 matches **HOYA TAFD37A** exactly in the current catalog (nd = 1.90043, νd = 37.37), identifying it as a different high-index lanthanum/anomalous-dispersion family member from L1.
 
 ### L3 — nd = 1.80518, νd = 25.46
 
@@ -366,7 +364,7 @@ An essentially exact match for **Schott SF6** (nominal nd = 1.80518, νd = 25.43
 
 ### L4f — nd = 1.76182, νd = 26.61
 
-A dense flint, less extreme than SF6. Consistent with glasses such as Ohara S-TIH14 (nd = 1.76200, νd = 26.52) or Schott SF14 / N-SF14 equivalents. Used as the negative element in the first cemented doublet of G2.
+A dense flint, less extreme than SF6. The patent value matches **OHARA S-TIH14** in the current catalog, also equivalent to the SF14 dense-flint family. It is used as the negative element in the first cemented doublet of G2.
 
 ### L4r, L5, L6f — nd = 1.88300, νd = 40.69
 
@@ -374,25 +372,25 @@ Three elements share identical nd and νd values to five decimal places. This st
 
 ### L6r — nd = 1.55298, νd = 55.07
 
-A moderate-index crown glass, serving as the negative element of the field-correcting cemented doublet. The combination of nd ≈ 1.553 and νd ≈ 55 is consistent with several standard crown glasses from Ohara, Schott, and Hoya, though no single standard glass gives a closer match than 0.001 in nd. Again consistent with selected melt of a standard crown.
+A moderate-index crown glass, serving as the negative element of the field-correcting cemented doublet. The combination of nd ≈ 1.553 and νd ≈ 55 is consistent with several standard crown glasses from Ohara, Schott, and Hoya, though no exact current-catalog match has been identified. The data file records the rounded six-digit code `553551` and leaves the element on the Abbe fallback rather than forcing a weak proxy.
 
 ### L7 — nd = 1.80835, νd = 40.55
 
-A lanthanum crown or lanthanum flint boundary glass, close to Ohara S-LAH65 family members or Hoya TAFD30 (nd = 1.80610, νd ≈ 40.7). The exact match is not definitive from the available catalogue data.
+A high-index lanthanum glass near the LaF/LaSF boundary. The nearest catalog neighbors are still offset from the patent pair, so the data file records the rounded six-digit code `808406` and keeps this as unmatched rather than assigning S-LAH53 or another near miss.
 
 ### Glass Map Summary
 
 | Element | n_d | ν_d | Most Likely Family | Confidence |
 |---------|-----|-----|-------------------|------------|
-| L1 | 1.90525 | 35.04 | LaSF (e.g., LASF35 melt) | Moderate |
-| L2 | 1.90043 | 37.37 | LaSF family | Moderate |
+| L1 | 1.90525 | 35.04 | **S-LAH93** | **High** |
+| L2 | 1.90043 | 37.37 | **TAFD37A** | **High** |
 | L3 | 1.80518 | 25.46 | **SF6 / S-TIH6** | **High** |
-| L4f | 1.76182 | 26.61 | Dense flint (SF14 family) | Moderate |
+| L4f | 1.76182 | 26.61 | **S-TIH14 / SF14 family** | **High** |
 | L4r | 1.88300 | 40.69 | **S-LAH58** | **High** |
 | L5 | 1.88300 | 40.69 | **S-LAH58 (same as L4r)** | **High** |
 | L6f | 1.88300 | 40.69 | **S-LAH58 (same as L4r, L5)** | **High** |
-| L6r | 1.55298 | 55.07 | Standard crown | Moderate |
-| L7 | 1.80835 | 40.55 | LaF/LaSF boundary | Moderate |
+| L6r | 1.55298 | 55.07 | Unmatched crown (`553551`) | Low |
+| L7 | 1.80835 | 40.55 | Unmatched high-index lanthanum (`808406`) | Low |
 
 ---
 
@@ -424,11 +422,7 @@ The optical property that would force a true custom melt — and cannot be addre
 
 At f/1.0, once primary chromatic aberration has been balanced to near-zero (as it has in this design), secondary spectrum becomes the limiting axial aberration. The secondary spectrum is dominated by the front-group elements, principally L1, because these elements see the largest ray heights and carry the largest marginal ray angles. Pg,F of L1 directly sets the secondary spectrum contribution from G1.
 
-Standard LaSF-family glasses cluster in a relatively narrow band of Pg,F values. If the optical design required a Pg,F shifted by 0.005–0.010 from all available standard glasses at nd ≈ 1.905 — which is a meaningful shift at this aperture — then no amount of selected melt selection would help, and a custom composition would be the only path.
-
-Whether this applies to L1 in the Nokton cannot be determined from the prescription data alone. The partial dispersion is not a parameter reported in patent Table 2. The five-decimal-place nd = 1.90525 could represent a selected melt of LASF35 (which would imply standard Pg,F) or a custom glass with shifted Pg,F (which would imply secondary spectrum correction was a design driver). Both interpretations are consistent with the prescription. Resolving the question would require the full spectral transmission data for the actual production glass.
-
-The most conservative and economically rational interpretation — consistent with standard industry practice — is that L1 uses a **selected melt of a standard or near-standard LaSF glass**, with the five-decimal nd value reflecting batch characterisation rather than a custom composition. This is by far the most common approach in precision photographic optics, and Cosina's use of the same glass type across multiple elements (L4r, L5, L6f) further suggests a pragmatic approach to materials specification.
+Standard LaSF-family glasses cluster in a relatively narrow band of Pg,F values. The exact S-LAH93 match makes a true custom composition for L1 less likely than the older generic LaSF interpretation suggested. However, the patent table still does not report partial dispersion for L1, so the APD/custom-melt question cannot be resolved from the patent alone. The data file therefore uses the exact catalog match for dispersion modeling and keeps APD false unless a source provides line-index or `dPgF` evidence.
 
 ---
 

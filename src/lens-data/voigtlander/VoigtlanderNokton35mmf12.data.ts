@@ -97,7 +97,7 @@ const LENS_DATA = {
       nd: 1.64769,
       vd: 33.8,
       fl: -33.2,
-      glass: "S-TIF1 (OHARA)",
+      glass: "E-FD2 (HOYA, patent nd/vd match) / S-TIM22 class",
       apd: false,
       role: "Primary chromatic corrector in front group (Δν = 12.7); titanium flint paired with S-LAH65.",
       cemented: "D23",

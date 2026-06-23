@@ -13,7 +13,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    Estimated from paraxial marginal + chief ray trace at design    ║
  * ║    f/1.23, half-field 16.28°, with ~8% mechanical clearance.      ║
  * ║    Front SD constrained by 58 mm filter thread OD.                ║
- * ║    Patent-stated Hh = 19.75 mm (i=1), Hs = 10.54 mm (i=10).     ║
+ * ║    Patent-stated marginal ray radii are Hh = 19.75 mm (i=1)     ║
+ * ║    and Hs = 10.54 mm (i=10); display SDs keep ~6–9% clearance.  ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -146,9 +147,10 @@ const LENS_DATA = {
       nd: 1.65412,
       vd: 39.68,
       fl: -43.7,
-      glass: "E-ADF50 (HOYA)",
-      apd: false,
-      role: "Field flattener; counteracts Petzval curvature near image plane",
+      glass: "S-NBH5 (OHARA) / N-KZFS5 (Schott) / E-ADF50 class",
+      apd: "inferred",
+      apdNote: "KZFS/NBH equivalent with negative anomalous partial dispersion; patent lists nd/vd only",
+      role: "Field flattener; KZFS/NBH anomalous flint counteracts Petzval curvature near image plane",
     },
   ],
 
