@@ -69,7 +69,7 @@ The design is **entirely spherical** — no aspherical surfaces are present anyw
 
 #### L1 — Positive Meniscus, Convex to Object
 
-nd = 1.65844, νd = 50.9. Glass: BACD14 (HOYA) — barium crown equivalent. f = +49.2 mm (scaled to 85mm).
+nd = 1.65844, νd = 50.9. Glass: BACD14 (HOYA) / N-SSK5 equivalent (658509) — barium/dense crown. f = +49.2 mm (scaled to 85mm).
 
 L1 is the optically dominant element of the entire system and the primary source of the deliberate soft focus effect. Its strongly curved front surface (R₁ = 30.29 mm at 85mm scale) generates large positive spherical aberration, which is the fundamental mechanism behind the lens's soft rendering.
 
@@ -81,7 +81,7 @@ The element is thick (d = 9.85 mm at 85mm scale), which contributes additional S
 
 #### L2 — Negative Meniscus, Concave to Image (Cemented to L1)
 
-nd = 1.78472, νd = 25.7. Glass: FD110 (HOYA) — dense flint. f = −82.6 mm (scaled to 85mm).
+nd = 1.78472, νd = 25.7. Glass: FD110 (HOYA) / S-TIH11 equivalent (785257) — dense flint. f = −82.6 mm (scaled to 85mm).
 
 L2 is cemented to L1 at their shared surface (R₂ = +470.382 at patent scale), forming a classic crown-flint achromatic doublet. The Abbe number difference ν₁ − ν₂ = 25.2 satisfies the patent's Condition (2): 10 < ν₁ − ν₂ < 30. This difference controls the chromatic correction of the doublet — enough dispersion contrast to achromatize the strong positive power of L1, but not so much that secondary spectrum becomes problematic.
 
@@ -91,7 +91,7 @@ The doublet as a unit has a focal length of approximately +96 mm (at 85mm scale)
 
 ### L3 — Negative Meniscus, Concave to Image
 
-nd = 1.72825, νd = 28.5. Glass: FD60 (HOYA) — dense flint. f = −56.0 mm (scaled to 85mm).
+nd = 1.72825, νd = 28.5. Glass: FD60 (HOYA) / S-TIH10 equivalent (728285) — dense flint. f = −56.0 mm (scaled to 85mm).
 
 L3 is the strongest negative element in the system (f = −56.0 mm) and serves multiple roles. It is an air-spaced flint element positioned between the cemented doublet and the biconvex L4, separated by a large air gap (d₃ = 12.23 mm at 85mm scale) from the doublet and by the aperture stop gap (d₅ = 3.67 mm) from L4.
 
@@ -139,17 +139,17 @@ This is deliberate and characteristic of soft focus lens design philosophy. Asph
 
 ## Glass Identification and Selection
 
-All five glasses in Example 1 are identified with high confidence against the HOYA catalog, which was the primary glass supplier for Pentax optical designs of this era.
+All five glasses in Example 1 are identified with high confidence against historical HOYA naming and modern code-equivalent catalog rows. The HOYA attribution remains useful for Pentax context, while the coefficient-backed equivalents give the data file measured Sellmeier dispersion where the current catalog has an exact nd/vd match.
 
 | Element | nd | νd | Glass (HOYA) | Cross-reference | Role |
 |---|---|---|---|---|---|
-| L1 | 1.65844 | 50.9 | BACD14 | S-BAL42 (OHARA), N-BASF2 (Schott) | Barium crown; positive SA generator |
-| L2 | 1.78472 | 25.7 | FD110 | S-TIH53 (OHARA), N-SF11 (Schott) | Dense flint; chromatic corrector |
-| L3 | 1.72825 | 28.5 | FD60 | S-TIH14 (OHARA), N-SF5 (Schott) | Dense flint; field flattener + chromatic |
+| L1 | 1.65844 | 50.9 | BACD14 | N-SSK5 equivalent (658509) | Barium/dense crown; positive SA generator |
+| L2 | 1.78472 | 25.7 | FD110 | S-TIH11 / N-SF11 class (785257) | Dense flint; chromatic corrector |
+| L3 | 1.72825 | 28.5 | FD60 | S-TIH10 class (728285) | Dense flint; field flattener + chromatic |
 | L4 | 1.80440 | 39.6 | S-LAH63 | OHARA | Lanthanum flint; primary converger |
 | L5 | 1.51633 | 64.1 | BSC7 | S-BSL7 (OHARA), N-BK7 (Schott) | Borosilicate crown; field flattener/relay |
 
-All matches are exact to the catalog's published precision (Δnd < 0.00001, Δνd < 0.05). The HOYA attribution is preferred because Pentax historically sourced glass from HOYA for its domestic optical production.
+The modern equivalent rows round-trip the patent nd/vd values closely enough for coefficient-backed dispersion. The HOYA names are retained as historical glass-family labels because Pentax commonly sourced glass from HOYA for domestic optical production.
 
 **Chromatic strategy.** The glass palette divides into two chromatic families: two dense flints (L2 at νd = 25.7, L3 at νd = 28.5) paired against a barium crown (L1 at νd = 50.9) and a BK7 crown (L5 at νd = 64.1). L4's lanthanum flint (νd = 39.6) straddles the boundary, contributing moderate positive chromatic aberration. The net chromatic balance is:
 
@@ -273,5 +273,5 @@ Among soft focus lenses of this era, the Pentax design is distinguished by its s
 - The K-Mount Page (kmp.pentaxians.eu), "F 85/2.8 Soft" and "K 85/2.2 Soft." Production specifications, catalog number, mechanical details, diaphragm behavior comparison between F and FA versions.
 - LENS-DB (lens-db.com), "smc Pentax-F 85mm F/2.8 Soft" and "smc Pentax-FA 85mm F/2.8 Soft." Element/group counts, magnification (1:4.35), introduction dates.
 - HOYA Optical Glass Catalog. Glass identification reference (BACD14, FD110, FD60, BSC7).
-- OHARA Optical Glass Catalog. Cross-reference glass identification (S-BAL42, S-TIH53, S-TIH14, S-LAH63, S-BSL7).
-- Schott Optical Glass Catalog. Cross-reference glass identification (N-BASF2, N-SF11, N-SF5, N-LAF33, N-BK7).
+- OHARA Optical Glass Catalog. Coefficient-backed glass identification (S-TIH11, S-TIH10, S-LAH63, S-BSL7).
+- Schott Optical Glass Catalog. Cross-reference glass identification (N-SSK5, N-SF11, N-SF5, N-LAF33, N-BK7).

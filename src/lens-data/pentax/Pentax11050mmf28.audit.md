@@ -19,3 +19,16 @@ Patent: US 4,289,385, Example 1
 ### Analysis sync
 
 - Updated the L4/L5 element discussion and summary table.
+
+## 2026-06-23 — Pentax folder patent audit
+
+### Patent evidence
+
+- Rechecked local patent file `patents/US4289385.pdf`.
+- Reviewed the first drawing sheet; the five-element telephoto layout and rear body diaphragm agree with the current rear-stop modeling.
+
+### Disposition
+
+- No additional glass corrections beyond the 2026-05-20 L4/L5 relabels.
+- APD status remains `false` for all elements; no partial-dispersion data is present in the patent.
+- No numeric clear-aperture or semi-diameter table was found. Existing SDs remain unchanged.

@@ -32,3 +32,10 @@ Patent: US 7,289,274 B1, Embodiment 5 / Table 5
 - `npm test -- glassRelabelByLensScan` passed; this lens no longer appears in the relabel queue.
 - `npm run typecheck` passed.
 - `npm run test` passed.
+
+## 2026-06-23 - Pentax folder patent audit
+
+- Rechecked local patent file `patents/US7289274B1.pdf` and reviewed the first drawing sheet.
+- Existing glass labels remain unchanged after the prior relabel pass; no new catalog-backed corrections were identified.
+- APD status remains `false`; the patent identifies ED-role elements by high Abbe number but does not provide partial-dispersion data.
+- The variable-aperture diaphragm and fixed flare stop remain consistent with the patent drawing. No patent clear-aperture or semi-diameter table was found, so existing SD estimates remain unchanged.

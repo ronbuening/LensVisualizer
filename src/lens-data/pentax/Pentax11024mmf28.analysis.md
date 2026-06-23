@@ -39,7 +39,7 @@ $n_d = 1.72825$, $\nu_d = 28.5$. Glass: S-TIH10 (OHARA) — dense flint. $f = -1
 
 L1 is a negative meniscus with its convex surface directed toward the object ($R_1 = +76.53$, $R_2 = +44.06$; both radii positive, forming a meniscus that bulges toward the object side). Its role is to pre-bend the oblique ray bundles inward before they enter the strongly positive L2. By placing a negative element at the front, the designer reduces the diameter required of L2 and subsequent elements, directly contributing to the compact form factor. The dense flint glass ($\nu_d = 28.5$) provides high dispersion, which is deliberately paired against L2's lower dispersion to achieve partial chromatic correction across the front group. The meniscus shape minimizes coma introduction by keeping the element approximately concentric to the stop — a standard technique in wide-angle front groups.
 
-This glass ($n_d = 1.72825$, $\nu_d = 28.5$) is one of the most common dense flints in optical design. In Examples 1 and 3 of the patent it is shared with L4, but Example 2 substitutes the titanium super flint TiSF6 for L4, gaining higher refractive index in the cemented doublet at the cost of a more exotic glass.
+This glass ($n_d = 1.72825$, $\nu_d = 28.5$) is one of the common dense-flint coordinates in optical design. In Examples 1 and 3 of the patent it is shared with L4, but Example 2 substitutes the higher-index 762265 titanium-flint class for L4, gaining refractive index in the cemented doublet.
 
 ### L2 — Biconvex Positive
 
@@ -65,7 +65,7 @@ The air gap $d_4 = 6.20$ between L2 and L3 is governed by Condition (4): $0.05 F
 
 #### L4 — Biconcave Negative (front element of doublet)
 
-$n_d = 1.76182$, $\nu_d = 26.6$. Glass: TiSF6 (Schott) / FD4 (Hoya) — titanium super flint. $f = -47.5$ (F = 100 units); $-11.4$ mm in production. These are standalone in-air focal lengths; in the cemented context (where the rear medium is L5's glass rather than air), L4's effective contribution is weaker ($f_{\text{cem}} \approx -85.6$).
+$n_d = 1.76182$, $\nu_d = 26.6$. Glass: S-TIH14 (OHARA) / FD140-N-SF14 class — titanium dense flint. $f = -47.5$ (F = 100 units); $-11.4$ mm in production. These are standalone in-air focal lengths; in the cemented context (where the rear medium is L5's glass rather than air), L4's effective contribution is weaker ($f_{\text{cem}} \approx -85.6$).
 
 #### L5 — Biconvex Positive (rear element of doublet)
 
@@ -75,7 +75,7 @@ L4 and L5 are cemented together along surface $r_8$ ($R = +84.16$) to form the f
 
 This doublet is an achromatic pair in the classic sense: L4's high-dispersion titanium flint ($\nu_d = 26.6$) is paired with L5's moderate-dispersion lanthanum flint ($\nu_d = 49.6$), which serves the crown role in the pair despite being technically classified as a flint by the $\nu_d = 50$ boundary. A paraxial chromatic verification using the cemented-context surface powers gives $\phi_4 / \nu_4 + \phi_5 / \nu_5 = -0.000128$, very close to zero, confirming that the doublet is designed to introduce near-zero longitudinal chromatic aberration of its own. The slight residual negative (undercorrected) value is deliberate: it compensates for the net positive chromatism contributed by the air-separated elements L2 and L6 elsewhere in the system.
 
-The glass selection here is distinctive. L4 uses TiSF6, a titanium-containing super flint that achieves very high dispersion ($\nu_d = 26.6$) at a moderately high refractive index ($n_d = 1.76182$). Its partner L5 uses a lanthanum flint at ($n_d = 1.77250$, $\nu_d = 49.6$), matching TAF1 (Hoya) and N-LAF34 (Schott, $\nu_d = 49.62$) — the 0.02 difference in Abbe number is within the patent's single-decimal-place rounding. No Ohara equivalent has been identified at these coordinates; the nearest Ohara glass, S-LAM54 ($n_d = 1.75700$, $\nu_d = 47.82$), differs by $\Delta n_d = 0.016$ and $\Delta \nu_d = 1.8$, well outside matching tolerance. Given that Pentax sourced glass from both Hoya and Ohara, the absence of an Ohara equivalent may indicate that Hoya or Schott supplied the L5 blank for this design. The near-equality of L4's and L5's refractive indices ($\Delta n_d = 0.01068$) means that the cemented interface $r_8$ is very weak optically ($\phi_8 = +0.000127$), contributing essentially zero Petzval curvature. This is a hallmark of a well-designed achromatic cemented pair: the interface corrects chromatic aberration without disturbing the field curvature balance.
+The glass selection here is distinctive. L4 uses the 762265 titanium-flint class, now catalog-backed as OHARA S-TIH14, which achieves very high dispersion ($\nu_d = 26.6$) at a moderately high refractive index ($n_d = 1.76182$). Its partner L5 uses a lanthanum flint at ($n_d = 1.77250$, $\nu_d = 49.6$), matching TAF1 (Hoya) and N-LAF34 (Schott, $\nu_d = 49.62$) — the 0.02 difference in Abbe number is within the patent's single-decimal-place rounding. The near-equality of L4's and L5's refractive indices ($\Delta n_d = 0.01068$) means that the cemented interface $r_8$ is very weak optically ($\phi_8 = +0.000127$), contributing essentially zero Petzval curvature. This is a hallmark of a well-designed achromatic cemented pair: the interface corrects chromatic aberration without disturbing the field curvature balance.
 
 ### L6 — Positive Meniscus, Concave to Object
 
@@ -96,13 +96,13 @@ Example 2 uses four distinct glass types across six elements. The design employs
 | L1 | 1.72825 | 28.5 | S-TIH10 (OHARA) | Dense flint | Negative meniscus; ray bending, coma control |
 | L2 | 1.80610 | 40.9 | S-LAH53 (Ohara) / NBFD3 (Hoya) | Lanthanum dense flint | Main positive power; reduced SA via high index |
 | L3 | 1.58913 | 61.1 | SK5 (Schott) / BACD5 (Hoya) | Barium crown | Negative diverger; Petzval flattener; axial color corrector |
-| L4 | 1.76182 | 26.6 | TiSF6 (Schott) / FD4 (Hoya) | Titanium super flint | Doublet flint; high-dispersion chromatic partner |
+| L4 | 1.76182 | 26.6 | S-TIH14 (OHARA) / FD140-N-SF14 class | Titanium dense flint | Doublet flint; high-dispersion chromatic partner |
 | L5 | 1.77250 | 49.6 | TAF1 (Hoya) / N-LAF34 (Schott) | Lanthanum flint | Low-dispersion doublet partner (crown role) |
 | L6 | 1.80610 | 40.9 | S-LAH53 (Ohara) / NBFD3 (Hoya) | Lanthanum dense flint | Rear positive collector; field flattener |
 
 The chromatic strategy is distributed across the entire system rather than concentrated in a single achromatic pair. L2 (lanthanum dense flint, $\nu_d = 40.9$) and L3 (barium crown, $\nu_d = 61.1$) form an air-spaced partial achromatizing pair in the front group, while L4 ($\nu_d = 26.6$) and L5 ($\nu_d = 49.6$) form the cemented achromatic doublet in the rear. L2 and L6 share the same high-index lanthanum dense flint, providing symmetric chromatic contributions that bookend the system. L1's dense flint and L3's barium crown contribute additional chromatic terms whose balance was optimized as part of the full system design rather than in isolation.
 
-The use of the titanium flint TiSF6 ($n_d = 1.76182$) for L4 is notable. Titanium-containing flints were a relatively recent addition to glass catalogs in the late 1970s, offering high dispersion at higher refractive index than conventional dense flints like SF6. This allowed the cemented interface with L5 to be nearly index-matched ($\Delta n_d = 0.01068$), a technique that suppresses both Petzval contribution and higher-order chromatic terms from the cement surface.
+The use of the 762265 titanium-flint class for L4 is notable. Titanium-containing flints were a relatively recent addition to glass catalogs in the late 1970s, offering high dispersion at higher refractive index than conventional dense flints like SF6. This allowed the cemented interface with L5 to be nearly index-matched ($\Delta n_d = 0.01068$), a technique that suppresses both Petzval contribution and higher-order chromatic terms from the cement surface.
 
 ## Focus Mechanism
 
@@ -183,6 +183,6 @@ The design's defining achievement is its combination of a very long back focal d
 - Pentax Auto 110 product specifications (6 elements / 5 groups, 24mm f/2.8, MFD 0.35m, filter Ø25.5mm, weight 13g).
 - Schott Optical Glass Catalog and datasheet for N-LAF34 ($n_d = 1.77250$, $\nu_d = 49.62$; glass code 773496).
 - Hoya Optical Glass Catalog (TAF1 glass identification, $n_d = 1.77250$, $\nu_d = 49.6$).
-- Ohara Optical Glass Catalog (S-LAH53 and S-TIH10 glass identification cross-references).
+- Ohara Optical Glass Catalog (S-LAH53, S-TIH10, and S-TIH14 glass identification cross-references).
 - Camera-wiki.org, Wikipedia "Pentax Auto 110" (production history and system specifications).
 - "Known and Unknown Pentax Lens Designers and Their Lenses" (Douglas Viewfinder blog) — Sugiyama biographical attribution.
