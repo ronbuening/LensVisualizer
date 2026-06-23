@@ -56,7 +56,7 @@ The patent describes a **5-element, 3-group symmetric design**:
 - **Group 2 (Central Singlet):** Element *c* (symmetric biconcave), made from the same glass as elements *a*. This is the diverging component inherited from the Cooke Triplet lineage.
 - **Group 3 (Rear Doublet):** Mirror image of Group 1. Element *b′* (biconvex dense crown) faces the central element, element *a′* (negative meniscus flint) forms the rear of the system.
 
-The aperture stop is placed "directly behind the central lens," in the air gap between element *c* and the rear doublet. The design is symmetric about this stop plane, which eliminates odd-order aberrations (distortion, lateral color, coma) to first order — a critical advantage for the photography of that era, where geometric fidelity was paramount.
+The aperture stop is placed directly behind the central lens, in the air gap between element *c* and the rear doublet. In this reconstruction it is offset 1.6 units behind S5, matching the drawing's visible clearance while preserving the full 8.1-unit rear-side air space. The element layout is symmetric, which suppresses odd-order aberrations (distortion, lateral color, coma) to first order — a critical advantage for the photography of that era, where geometric fidelity was paramount.
 
 ### 2.2 Element Shapes
 
@@ -102,7 +102,7 @@ A paraxial ray trace was performed for both interpretations:
 This reading assigns all four values to glass elements and requires inferring the air gaps. No air gap value is stated in the patent. The inferred symmetric gap that yields f = 100 is g ≈ 9.57. While this produces the correct EFL, it requires a free parameter not present in the patent and results in an unusually thick central biconcave element (8.1 center thickness at f = 100 normalization — over 8% of the focal length and ~5× the center thickness of the positive elements).
 
 **Interpretation B** — d³ = 8.1 is the air gap, d⁴ = 1.6 is element *c* center thickness:
-This reading assigns three values to elements (d¹ = 1.6 for *a*, d² = 3.6 for *b*, d⁴ = 1.6 for *c*) and one to the air gap (d³ = 8.1). By symmetry, the rear air gap also equals 8.1. This interpretation produces:
+This reading assigns three values to elements (d¹ = 1.6 for *a*, d² = 3.6 for *b*, d⁴ = 1.6 for *c*) and one to the air gap (d³ = 8.1). By symmetry, the rear air gap also equals 8.1; the stop is an aperture plane within that air space, 1.6 units behind S5 and 6.5 units ahead of S6. This interpretation produces:
 
 | Parameter | Value |
 |-----------|-------|
@@ -126,8 +126,8 @@ The complete symmetric prescription, reconstructed from the patent data with Int
 | S2 | +25.76 | 3.60 | 1.6080 | *a*\|*b* cement | Glass II |
 | S3 | −583.80 | 8.10 | 1.0000 | *b* rear | Air |
 | S4 | −44.76 | 1.60 | 1.5638 | *c* front | Glass I |
-| S5 | +44.76 | 0.00 | 1.0000 | *c* rear | Air |
-| STOP | ∞ | 8.10 | 1.0000 | Stop | Air |
+| S5 | +44.76 | 1.60 | 1.0000 | *c* rear → stop | Air |
+| STOP | ∞ | 6.50 | 1.0000 | Stop → rear doublet | Air |
 | S6 | +583.80 | 3.60 | 1.6080 | *b′* front | Glass II |
 | S7 | −25.76 | 1.60 | 1.5638 | *b′*\|*a′* cement | Glass I |
 | S8 | −41.00 | 85.52 | 1.0000 | *a′* rear | Air (BFD) |
@@ -333,7 +333,7 @@ This quantitative result is consistent with Kingslake's assessment that the symm
 
 ### 7.3 Distortion
 
-The symmetric arrangement provides inherent distortion correction. By placing the stop at the plane of symmetry, odd-order aberrations (distortion, lateral color, coma) cancel between the front and rear halves. The patent claims the picture is "almost perfectly true" — i.e., distortion is negligible. This was a significant practical advantage for architectural and reproduction photography.
+The symmetric arrangement provides inherent distortion correction. With the aperture stop carried immediately behind the central member, odd-order aberrations (distortion, lateral color, coma) remain strongly suppressed between the front and rear halves. The patent claims the picture is "almost perfectly true" — i.e., distortion is negligible. This was a significant practical advantage for architectural and reproduction photography.
 
 ### 7.4 Chromatic Aberration
 

@@ -14,8 +14,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    Patent does not list SDs. Estimated from paraxial marginal +   ║
  * ║    chief ray trace at full field (2ω = 43.6°), constrained by    ║
  * ║    edge thickness feasibility (element b has 0.43 edge at SD 12.5 ║
- * ║    — the tightest constraint in the system). Stop SD of 10.2      ║
- * ║    yields entrance pupil SD ≈ 12.5 (f/4.0 at f = 100).          ║
+ * ║    — the tightest constraint in the system). The runtime derives ║
+ * ║    the physical stop aperture from nominal f/4.0.                ║
  * ║                                                                    ║
  * ║  NOTE ON UNITS:                                                    ║
  * ║    All dimensions are in the patent's normalized system (f = 100). ║
@@ -51,7 +51,8 @@ const LENS_DATA = {
 
   /* ── Elements ──
    *  Five elements: front cemented doublet (a + b), central biconcave (c),
-   *  rear cemented doublet (b′ + a′). Symmetric about the aperture stop.
+   *  rear cemented doublet (b′ + a′). Symmetric optical layout, with
+   *  the aperture stop just behind the central element.
    *  Only two glass types used: Glass I (LF, nD=1.5638) and Glass II (SK, nD=1.6080).
    */
   elements: [
@@ -122,7 +123,9 @@ const LENS_DATA = {
   ],
 
   /* ── Surface prescription ──
-   *  Symmetric design: surfaces S1–S5 mirror S6–S8 about the stop.
+   *  Symmetric optical design: rear surfaces mirror the front surfaces.
+   *  The patent places the shutter directly behind the central lens; it
+   *  is rendered here 1.6 units behind S5 within the 8.1-unit rear air gap.
    *  Patent sign convention matches the standard (R > 0 → CoC to the right).
    *
    *  Cemented doublet patterns:
@@ -137,10 +140,10 @@ const LENS_DATA = {
 
     /* ── Central biconcave (c) ── */
     { label: "4", R: -44.76, d: 1.6, nd: 1.5638, elemId: 3, sd: 11.5 }, // c front
-    { label: "5", R: 44.76, d: 0.0, nd: 1.0, elemId: 0, sd: 11.5 }, // c rear → air
+    { label: "5", R: 44.76, d: 1.6, nd: 1.0, elemId: 0, sd: 11.5 }, // c rear → stop
 
     /* ── Aperture stop ── */
-    { label: "STO", R: 1e15, d: 8.1, nd: 1.0, elemId: 0, sd: 10.2 }, // stop (directly behind c)
+    { label: "STO", R: 1e15, d: 6.5, nd: 1.0, elemId: 0, sd: 10.2 }, // stop → rear doublet
 
     /* ── Rear cemented doublet (D2: b′ + a′) ── */
     { label: "6", R: 583.8, d: 3.6, nd: 1.608, elemId: 4, sd: 12.5 }, // b′ front
