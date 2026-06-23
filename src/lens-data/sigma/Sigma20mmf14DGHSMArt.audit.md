@@ -40,3 +40,18 @@ Patent: JP 2019-117419 A, Numerical Example 1
 - `npm run format:check` - passed.
 - `npm run lint` - passed.
 - `npm run test` - passed.
+
+## 2026-06-23 - Semi-diameter raw-geometry audit
+
+### SD corrections
+
+| Surface | Before | After | Justification |
+|---|---:|---:|---|
+| S12 | 19.8 | 19.6 | Raw extended edge check showed L7 S12/S13 self-crossing by 0.005 mm at the larger authored endpoint. |
+| S14 | 18.0 | 17.65 | Raw extended edge check showed L8 S14/S15 self-crossing by 0.129 mm at the larger authored endpoint. |
+
+### Notes
+
+- JP 2019-117419 A Example 1 does not publish a clear-aperture / effective-radius table.
+- Edits reduce only the offending larger endpoint and keep the inferred SD progression otherwise unchanged.
+- Temporary Sigma SD audit after the edits reported 0/27 Sigma files with raw SD/render issues.

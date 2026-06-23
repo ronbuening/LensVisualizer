@@ -243,7 +243,7 @@ const LENS_DATA = {
     // ── GF2: Positive rear subgroup (L4 asph, L5+L6 cemented, L7) ──
     { label: "7A", R: 89.29, d: 7.4823, nd: 1.7645, elemId: 4, sd: 22.0 },
     { label: "8A", R: -55.1739, d: 0.5621, nd: 1.0, elemId: 0, sd: 22.5 },
-    { label: "9", R: 76.095, d: 10.974, nd: 1.59282, elemId: 5, sd: 22.5 },
+    { label: "9", R: 76.095, d: 10.974, nd: 1.59282, elemId: 5, sd: 22.2 },
     { label: "10", R: -36.3741, d: 1.2, nd: 1.69895, elemId: 6, sd: 20.5 },
     { label: "11", R: -419.5413, d: 0.15, nd: 1.0, elemId: 0, sd: 20.5 },
     { label: "12", R: 249.5104, d: 5.3632, nd: 1.883, elemId: 7, sd: 20.5 },

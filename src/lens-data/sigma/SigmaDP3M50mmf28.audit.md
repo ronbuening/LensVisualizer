@@ -51,3 +51,17 @@ Patent: JP 2014-126652 A, Example 3
 ### Phase 3 - Analysis sync
 
 - Updated the L3 glass prose and glass-summary table from the erroneous H-ZF52 exact-match claim to Hoya NBFD15.
+
+## 2026-06-23 - Semi-diameter raw-geometry audit
+
+### SD corrections
+
+| Surface | Before | After | Justification |
+|---|---:|---:|---|
+| S3 | 11.0 | 10.4 | Raw extended edge check showed L2 S3/S4 self-crossing by 0.355 mm at the larger authored endpoint. |
+| S9 | 8.9 | 8.0 | Raw extended edge check showed L5 S8/S9 self-crossing by 0.675 mm at the larger authored endpoint. |
+
+### Notes
+
+- JP 2014-126652 A Example 3 defines effective radius terminology, but the rendered Example 3 surface table does not include a usable effective-radius column; SDs remain inferred.
+- Temporary Sigma SD audit after the edits reported 0/27 Sigma files with raw SD/render issues.

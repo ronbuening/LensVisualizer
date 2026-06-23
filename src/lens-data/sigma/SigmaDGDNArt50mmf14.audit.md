@@ -60,3 +60,16 @@ Patent: JP 2023-183894 A, Example 1
 ### Verification
 
 - `npm run generate:glass-reports`
+
+## 2026-06-23 - Semi-diameter raw-geometry audit
+
+### SD correction
+
+| Surface | Before | After | Justification |
+|---|---:|---:|---|
+| S9 | 22.5 | 22.2 | Raw extended edge check showed L5 S9/S10 self-crossing by 0.222 mm at the larger authored endpoint. |
+
+### Notes
+
+- JP 2023-183894 A Example 1 does not publish a clear-aperture / effective-radius table.
+- Temporary Sigma SD audit after the edit reported 0/27 Sigma files with raw SD/render issues.
