@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **366** lenses scanned
 - **4124** non-air surfaces examined
 - **4128** element glass declarations examined
-- **626** non-explicit-unmatched annotations did not resolve
-- **228** distinct unresolved glass-like tokens found
+- **621** non-explicit-unmatched annotations did not resolve
+- **230** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -29,6 +29,7 @@ or per-lens patent backfills.
 | 511605 | 2 | 1 | |
 | 514428 | 2 | 1 | |
 | 531559 | 2 | 2 | |
+| 561453 | 2 | 2 | |
 | 569632 | 2 | 1 | |
 | 585594 | 2 | 1 | |
 | 620586 | 2 | 1 | |
@@ -73,6 +74,7 @@ or per-lens patent backfills.
 | 514530 | 1 | 1 | |
 | 518523 | 1 | 1 | |
 | 518635 | 1 | 1 | |
+| 529770 | 1 | 1 | |
 | 531621 | 1 | 1 | |
 | 534554 | 1 | 1 | |
 | 534556 | 1 | 1 | |
@@ -82,7 +84,6 @@ or per-lens patent backfills.
 | 552981 | 1 | 1 | |
 | 553555 | 1 | 1 | |
 | 554381 | 1 | 1 | |
-| 561453 | 1 | 1 | |
 | 569631 | 1 | 1 | |
 | 571560 | 1 | 1 | |
 | 574425 | 1 | 1 | |
@@ -96,6 +97,7 @@ or per-lens patent backfills.
 | 606637 | 1 | 1 | |
 | 612313 | 1 | 1 | |
 | 612372 | 1 | 1 | |
+| 614563 | 1 | 1 | |
 | 624584 | 1 | 1 | |
 | 630346 | 1 | 1 | |
 | 639451 | 1 | 1 | |
@@ -315,6 +317,11 @@ or per-lens patent backfills.
 - [CANON RF 24-240mm f/4-6.3 IS USM](../../src/lens-data/canon/CanonRF24240mmf463.data.ts) 25A: `531559 - moldable barium light crown (patent nd=1.53110, vd=55.9)`
 - [NIKON AF-P DX NIKKOR 10-20mm f/4.5-5.6 G VR](../../src/lens-data/nikon/NikonAFPDX1020mmf4556G.data.ts) 25: `531559 - patent-specified crown-like glass (theta_gF=0.5684; unresolved)`
 
+### 561453 — 2 occurrences
+
+- [HASSELBLAD HC 150mm f/3.2](../../src/lens-data/hasselblad/HasselbladHC150mmf32.data.ts) 12: `561453 - barium light flint (patent e-line Ne=1.56433, vd=45.3; no exact public catalog match)`
+- [SCHNEIDER-KREUZNACH SUPER-ANGULON 75mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderSuperAngulon75mmf56.data.ts) 5: `561453 — BaLF-class barium light flint (Schott historical; no exact public Sellmeier)`
+
 ### 569632 — 2 occurrences
 
 - [OLYMPUS ZUIKO AUTO-ZOOM 85-250mm f/5](../../src/lens-data/olympus/OlympusZuikoAutoZoom85250mmf5.data.ts) 6: `569632 — dense crown (patent glass code)`
@@ -525,6 +532,10 @@ or per-lens patent backfills.
 
 - [FUJIFILM FUJINON GF 100-200mm f/5.6 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmGF100200mmf56.data.ts) 31A: `CDGM D-K59 (518635)`
 
+### 529770 — 1 occurrence
+
+- [SCHNEIDER-KREUZNACH APO-SYMMAR 100mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderAPOSymmar100mmf56.data.ts) 6: `529770 — N-PK51 (Schott phosphate crown; no local Sellmeier)`
+
 ### 531621 — 1 occurrence
 
 - [VIVITAR SERIES 1 35-85mm f/2.8 VMC](../../src/lens-data/vivitar/VivitarSeries13585mmf28.data.ts) 3: `531621 — BSM-type crown (no exact public catalog match)`
@@ -560,10 +571,6 @@ or per-lens patent backfills.
 ### 554381 — 1 occurrence
 
 - [NIKON AF-S NIKKOR 14-24mm f/2.8 G ED](../../src/lens-data/nikon/NikonNikkorAFS1424mmf28.data.ts) 6: `554381 — dense flint (patent nd=1.55389, nu_d=38.09)`
-
-### 561453 — 1 occurrence
-
-- [HASSELBLAD HC 150mm f/3.2](../../src/lens-data/hasselblad/HasselbladHC150mmf32.data.ts) 12: `561453 - barium light flint (patent e-line Ne=1.56433, vd=45.3; no exact public catalog match)`
 
 ### 569631 — 1 occurrence
 
@@ -616,6 +623,10 @@ or per-lens patent backfills.
 ### 612372 — 1 occurrence
 
 - [CARL ZEISS JENA TESSAR 50mm f/2.8](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaTessar50mmf28.data.ts) 3: `612372 F (≈ Schott F3 legacy)`
+
+### 614563 — 1 occurrence
+
+- [SCHNEIDER-KREUZNACH SUPER-ANGULON 75mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderSuperAngulon75mmf56.data.ts) 8: `614563 — SSK-class dense barium crown (Schott historical; no exact public Sellmeier)`
 
 ### 624584 — 1 occurrence
 
@@ -1075,7 +1086,7 @@ or per-lens patent backfills.
 
 ### N-PK51 — 1 occurrence
 
-- [SCHNEIDER-KREUZNACH APO-SYMMAR 100mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderAPOSymmar100mmf56.data.ts) 6: `N-PK51 (Schott)`
+- [SCHNEIDER-KREUZNACH APO-SYMMAR 100mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderAPOSymmar100mmf56.data.ts) 6: `529770 — N-PK51 (Schott phosphate crown; no local Sellmeier)`
 
 ### N-PSK53A — 1 occurrence
 

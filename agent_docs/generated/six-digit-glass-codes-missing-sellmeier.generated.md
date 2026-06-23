@@ -10,8 +10,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **366** lenses scanned
-- **301** total code-only elements found
-- **209** elements in this report
+- **298** total code-only elements found
+- **208** elements in this report
 - **85** distinct lens files affected
 
 ## Codes by Frequency
@@ -114,7 +114,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 693495 | 1 | 1 | patents/US3552833.pdf | No reviewed-sidecar hit |
 | 694312 | 1 | 1 | patents/WO2021199923A1.pdf | No reviewed-sidecar hit |
 | 700555 | 1 | 1 | patents/WO_2025263124_A1.pdf | No reviewed-sidecar hit |
-| 702411 | 1 | 1 | patents/US3376091.pdf | No reviewed-sidecar hit |
 | 713433 | 1 | 1 | patents/US3942876.pdf | No reviewed-sidecar hit |
 | 720421 | 1 | 1 | patents/US3884556.pdf | No reviewed-sidecar hit |
 | 720521 | 1 | 1 | Missing from untracked local patents/ references (US4786152, 4786152) | No reviewed-sidecar hit |
@@ -693,9 +692,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
 |---|---|---|---|---|---|---|---|
-| L4 (Element 4) | 5 | `BaLF class (561/453, Schott — uncertain identification)` | 1.56138 / 45.30 | No catalog entry | abbe | patents/US3376091.pdf | No reviewed-sidecar hit |
-| L6 (Element 6) | 8 | `SSK class (614/563, Schott — probable discontinued formulation)` | 1.61375 / 56.30 | No catalog entry | abbe | patents/US3376091.pdf | No reviewed-sidecar hit |
-| L7 (Element 7) | 9 | `BaSF class (702/411, Schott — probable discontinued formulation)` | 1.70181 / 41.10 | No catalog entry | abbe | patents/US3376091.pdf | No reviewed-sidecar hit |
+| L4 (Element 4) | 5 | `561453 — BaLF-class barium light flint (Schott historical; no exact public Sellmeier)` | 1.56138 / 45.30 | No catalog entry | abbe | patents/US3376091.pdf | No reviewed-sidecar hit |
+| L6 (Element 6) | 8 | `614563 — SSK-class dense barium crown (Schott historical; no exact public Sellmeier)` | 1.61375 / 56.30 | No catalog entry | abbe | patents/US3376091.pdf | No reviewed-sidecar hit |
 
 ### [SIGMA 35mm f/1.4 DG DN | Art](../../src/lens-data/sigma/SigmaDGDNA35mmf14.data.ts) - JP 2022-33487 A
 
