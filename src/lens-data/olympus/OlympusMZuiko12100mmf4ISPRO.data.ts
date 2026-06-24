@@ -108,7 +108,7 @@ const LENS_DATA = {
       nd: 1.88227,
       vd: 37.18,
       fl: -17.1,
-      glass: "M-TAFD307 / MC-TAFD307-class (HOYA, moldable)",
+      glass: "882372 — M-TAFD307 / MC-TAFD307-class (HOYA moldable high-index; no exact public catalog match)",
       role: "Dual-surface aspherical variator element in G2; the principal DSA element for wide-end distortion, field curvature, and coma control.",
     },
     {

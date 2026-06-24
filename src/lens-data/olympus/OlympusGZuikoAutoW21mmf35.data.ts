@@ -61,7 +61,7 @@ const LENS_DATA = {
       nd: 1.72,
       vd: 42.1,
       fl: 90.84,
-      glass: "Unmatched (vintage lanthanum flint, code 720/421)",
+      glass: "720421 — vintage lanthanum flint (patent nd=1.72000, νd=42.1; no exact public catalog match)",
       apd: false,
       role: "Front positive meniscus for retrofocus ray-angle and distortion control.",
     },

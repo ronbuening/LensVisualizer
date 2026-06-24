@@ -75,8 +75,8 @@ The patent condition for this group is $\nu_4 > \nu_5$ with $f < r_7 < 3.5f$. Ex
 
 ### L6 + L7 — Cemented Weak Positive Doublet, Group IV
 
-**L6:** $n_d = 1.7865$, $\nu_d = 50.1$. Glass: unmatched 787/501 code, probable vintage high-index lanthanum flint. $f = -14.97$ mm.  
-**L7:** $n_d = 1.6032$, $\nu_d = 42.3$. Glass: unmatched 603/423 code, BaSF5-class barium dense flint. $f = +15.19$ mm.
+**L6:** $n_d = 1.7865$, $\nu_d = 50.1$. Glass: 787501 probable vintage high-index lanthanum flint, no exact public catalog match. $f = -14.97$ mm.  
+**L7:** $n_d = 1.6032$, $\nu_d = 42.3$. Glass: 603423 BaSF5-class barium dense flint, no exact public catalog match. $f = +15.19$ mm.
 
 Group IV is the nearly afocal doublet in the transition region between the negative front groups and the positive rear relay. The independent trace gives a very weak positive focal length of +408.67 mm on the 8 mm scale. The patent text identifies this group with axial-aberration compensation, and the paraxial calculation confirms that it is not a primary image-forming group.
 
@@ -113,8 +113,8 @@ The design uses eight distinct patent glass codes across ten elements. L1/L3 sha
 | L2 | 1.7847 | 25.6 | 785/256 | S-TIH11 class (OHARA) | Close catalog match |
 | L4 | 1.6700 | 57.3 | 670/573 | J-LAK02 class (Hikari) | Close catalog match |
 | L5 | 1.6668 | 33.0 | 667/330 | H-ZF39 class (CDGM) | Close catalog match |
-| L6 | 1.7865 | 50.1 | 787/501 | Unmatched; probable vintage lanthanum flint | Catalog unresolved |
-| L7 | 1.6032 | 42.3 | 603/423 | Unmatched; BaSF5-class barium dense flint | Catalog unresolved |
+| L6 | 1.7865 | 50.1 | 787/501 | 787501 probable vintage lanthanum flint | Catalog unresolved |
+| L7 | 1.6032 | 42.3 | 603/423 | 603423 BaSF5-class barium dense flint | Catalog unresolved |
 | L8, L10 | 1.5173 | 69.3 | 517/693 | J-PKH1 class (Hikari) | Soft catalog match |
 | L9 | 1.9229 | 20.9 | 923/209 | N-SF66 class (SCHOTT) | Close catalog match |
 

@@ -84,9 +84,9 @@ The patent lists refractive index (nd) and Abbe number (νd) for each of the sev
 |---------|----|----|---------------|-------------|-------------------|-----------|
 | L1 | 1.8030 | 46.6 | 803.466 | Lanthanum dense flint (LaSF) | OHARA S-LAH65 | Δnd = +0.001, Δνd = −0.03 |
 | L2 | 1.8061 | 40.8 | 806.408 | Lanthanum dense flint (LaSF) | OHARA S-LAH53 | Δnd < 0.0001, Δνd = +0.1 |
-| L3 | 1.7618 | 27.1 | 762.271 | Dense flint (NbF/SF) | No exact modern match | Family-level ID only |
+| L3 | 1.7618 | 27.1 | 762.271 | 762271 dense flint (NbF/SF) | No exact modern match | Code-labeled family ID |
 | L4 | 1.7283 | 28.5 | 728.285 | Titanium dense flint (SF) | OHARA S-TIH10 / SCHOTT SF10 | Δnd < 0.001, Δνd < 0.1 |
-| L5 | 1.7550 | 52.4 | 755.524 | Lanthanum crown (LaK) | No exact modern match | Family-level ID only |
+| L5 | 1.7550 | 52.4 | 755.524 | 755524 lanthanum crown (LaK) | No exact modern match | Code-labeled family ID |
 | L6 | 1.7130 | 53.9 | 713.539 | Lanthanum crown (LaK) | SCHOTT N-LAK8 / HOYA LAC8 | Δnd < 0.001, Δνd < 0.1 |
 | L7 | 1.7130 | 53.9 | 713.539 | Lanthanum crown (LaK) | SCHOTT N-LAK8 / HOYA LAC8 | (same as L6) |
 

@@ -186,7 +186,7 @@ Olympus was a long-standing customer of both OHARA and HOYA glass manufacturers 
 |---|---|---|---|---|---|---|
 | L1 | 1.83481 | 42.82 | 835/428 | OHARA S-LAH58 / HOYA TAFD5 | Lanthanum heavy crown (LaH) | Confirmed (Δnd = 0, Δνd ≈ 0.1) |
 | L2 | 1.83400 | 37.19 | 834/372 | OHARA S-LAH65 / HOYA TAFD25 | Lanthanum heavy crown (LaH) | Confirmed (Δnd = 0, Δνd ≈ 0.03) |
-| L3 | 1.72825 | 28.46 | 728/285 | OHARA S-TIF8 / HOYA TIF6 | Titanium flint (TiF) | Confirmed exact (Δnd = 0, Δνd = 0) |
+| L3 | 1.72825 | 28.46 | 728/285 | OHARA S-TIH10 / HOYA TIF6 class | Titanium high-index flint | Catalog-equivalent relabel; patent nd/vd unchanged |
 | L4a | 1.84666 | 23.90 | 847/239 | OHARA S-TIH53 / HOYA E-TIH53 | Heavy titanium flint (TiH) | Confirmed (Δnd = 0, Δνd ≈ 0.12) |
 | L4b | 1.67790 | 55.33 | 678/553 | HOYA LAC12 | Crown glass | Coefficient-backed catalog relabel |
 | L5 | 1.77250 | 49.60 | 772/496 | OHARA S-LAH51 / HOYA TAF1 | Lanthanum crown (LaH) | Confirmed exact (Δnd = 0, Δνd = 0) |
