@@ -90,7 +90,7 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.5,
       fl: 23.6,
-      glass: "LACL60 (HOYA) / equiv. LaK",
+      glass: "E-LASF016 (Hikari) / J-LASF016 / LACL60 class",
       apd: false,
       role: "Strongest positive element in converter; cemented to L5",
       cemented: "D1",

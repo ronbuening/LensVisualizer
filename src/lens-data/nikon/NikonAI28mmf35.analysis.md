@@ -35,7 +35,7 @@ L3 is the main positive collector ahead of the stop. Behind the stop, L4 is the 
 
 ### L1 — Positive Meniscus, Convex to Object
 
-$n_d = 1.62374$, $\nu_d = 47.0$. Glass: J-BAF8 (HIKARI). $f = +191.29$ mm.
+$n_d = 1.62374$, $\nu_d = 47.0$. Glass: E-BAF8 (Hikari) / J-BAF8 class. $f = +191.29$ mm.
 
 L1 is a weak positive meniscus with a strongly curved front surface and a very weak rear surface. Its standalone focal length is long relative to the system focal length, so it is not a primary power element. Its role is to moderate the front-end ray bending and to help control the distortion introduced by the negative retrofocus front group.
 
@@ -43,7 +43,7 @@ The patent-side normalized radii are $R_1 = +356.822$ and $R_2 = +2169.231$. Bot
 
 ### L2 — Negative Meniscus, Convex to Object
 
-$n_d = 1.62041$, $\nu_d = 60.3$. Glass: J-SK16 (HIKARI). $f = -35.02$ mm.
+$n_d = 1.62041$, $\nu_d = 60.3$. Glass: N-SK16 / S-BSM16 / J-SK16 class. $f = -35.02$ mm.
 
 L2 is the dominant component in the front divergent group. Its rear surface, patent $r_4 = +55.245$, carries the strong negative curvature that sets the retrofocus separation and is explicitly constrained by patent condition (4). If this surface becomes too steep, the patent warns of field bending and coma; if it becomes too weak, the back focal distance falls below the intended retrofocus value.
 
@@ -51,15 +51,15 @@ The use of a relatively low-dispersion crown-type glass for this negative compon
 
 ### L3 — Biconvex Positive Collector
 
-$n_d = 1.70154$, $\nu_d = 41.1$. Glass: J-BASF7 (HIKARI). $f = +23.68$ mm.
+$n_d = 1.70154$, $\nu_d = 41.1$. Glass: BAFD7 (HOYA) / S-BAH27 / J-BASF7 class. $f = +23.68$ mm.
 
 L3 is the strongest positive element in the design and is the principal collector before the aperture stop. It receives the divergent output from L1-L2 and bends the beam toward the post-stop rear group. Its front surface is more strongly curved than its rear surface, consistent with the patent description of a biconvex element whose more convex surface faces the object.
 
-The high index of J-BASF7 allows this strong positive power without using still steeper curvatures. Its intermediate dispersion contributes to the ordinary achromatization of the system, but the design does not rely on ED or anomalous-partial-dispersion glass.
+The high index of the BAFD7 / S-BAH27 / J-BASF7 class glass allows this strong positive power without using still steeper curvatures. Its intermediate dispersion contributes to the ordinary achromatization of the system, but the design does not rely on ED or anomalous-partial-dispersion glass.
 
 ### L4 — Biconcave Negative Post-Stop Corrector
 
-$n_d = 1.75520$, $\nu_d = 27.5$. Glass: J-SF4 (HIKARI). $f = -16.67$ mm.
+$n_d = 1.75520$, $\nu_d = 27.5$. Glass: E-FD4 (HOYA) / H-ZF6 / J-SF4 class. $f = -16.67$ mm.
 
 L4 is the most powerful negative element in the lens. It sits immediately after the aperture stop and therefore works at relatively modest marginal-ray height while still seeing substantial off-axis ray separation. This makes it an efficient element for coma, astigmatism, field curvature, and Petzval correction.
 
@@ -67,7 +67,7 @@ The glass is a dense flint. Its high index reduces the magnitude of the negative
 
 ### L5 — Positive Meniscus, Convex to Image
 
-$n_d = 1.62041$, $\nu_d = 60.3$. Glass: J-SK16 (HIKARI). $f = +35.20$ mm.
+$n_d = 1.62041$, $\nu_d = 60.3$. Glass: N-SK16 / S-BSM16 / J-SK16 class. $f = +35.20$ mm.
 
 L5 is a positive meniscus behind L4, with its convex surface facing the image. It helps recover convergence after the strong negative L4 and contributes to rear-group field correction. Its low-dispersion crown-type glass also pairs chromatically with the dense flint L4.
 
@@ -75,7 +75,7 @@ The reuse of the same glass as L2 is optically plausible and production-efficien
 
 ### L6 — Final Biconvex Positive Relay
 
-$n_d = 1.58913$, $\nu_d = 61.2$. Glass: J-SK5 (HIKARI). $f = +51.85$ mm.
+$n_d = 1.58913$, $\nu_d = 61.2$. Glass: N-SK5 / S-BAL35 / J-SK5 class. $f = +51.85$ mm.
 
 L6 is the final positive relay element. Its role is not to supply the primary positive power of the lens, but to set the final convergence and back focal distance after the L4-L5 correction pair. It uses the lowest-index and lowest-dispersion glass in the system, appropriate for a final relay element that should not add excessive chromatic error near the film plane.
 
@@ -83,18 +83,18 @@ At production scale, the rear surface-to-image distance is 38.458 mm at infinity
 
 ## Glass Identification and Selection
 
-The patent gives refractive indices and Abbe numbers, but it does not name glass vendors. The accompanying data file uses HIKARI catalog names because the prescription is a Nippon Kogaku design and the HIKARI entries match the patent glass codes directly.
+The patent gives refractive indices and Abbe numbers, but it does not name glass vendors. The accompanying data file uses resolver-friendly catalog equivalents that preserve the Hikari/Nikon class where useful while pointing the renderer at available Sellmeier data.
 
-| Element | Patent $n_d$ | Patent $\nu_d$ | HIKARI catalog match | Catalog class | Role |
+| Element | Patent $n_d$ | Patent $\nu_d$ | Catalog-equivalent label | Catalog class | Role |
 |---|---:|---:|---|---|---|
-| L1 | 1.62374 | 47.0 | J-BAF8 | Barium flint class | Weak front positive / distortion moderation |
-| L2 | 1.62041 | 60.3 | J-SK16 | Crown class | Strong negative front diverger |
-| L3 | 1.70154 | 41.1 | J-BASF7 | Dense barium flint/crown boundary class | Main positive collector |
-| L4 | 1.75520 | 27.5 | J-SF4 | Dense flint | Post-stop negative corrector |
-| L5 | 1.62041 | 60.3 | J-SK16 | Crown class | Positive rear relay / chromatic balance |
-| L6 | 1.58913 | 61.2 | J-SK5 | Crown class | Final positive relay |
+| L1 | 1.62374 | 47.0 | E-BAF8 / J-BAF8 class | Barium flint class | Weak front positive / distortion moderation |
+| L2 | 1.62041 | 60.3 | N-SK16 / S-BSM16 / J-SK16 class | Crown class | Strong negative front diverger |
+| L3 | 1.70154 | 41.1 | BAFD7 / S-BAH27 / J-BASF7 class | Dense barium flint/crown boundary class | Main positive collector |
+| L4 | 1.75520 | 27.5 | E-FD4 / H-ZF6 / J-SF4 class | Dense flint | Post-stop negative corrector |
+| L5 | 1.62041 | 60.3 | N-SK16 / S-BSM16 / J-SK16 class | Crown class | Positive rear relay / chromatic balance |
+| L6 | 1.58913 | 61.2 | N-SK5 / S-BAL35 / J-SK5 class | Crown class | Final positive relay |
 
-Several older cross-reference labels are close but not exact catalog matches. In particular, the prior identification of L1 as an OHARA BAH32-class glass is not retained because OHARA S-BAH32 does not match the patent's $n_d = 1.62374$, $\nu_d = 47.0$ pair. L3 is also better represented by HIKARI J-BASF7 than by the earlier OHARA BAH27 label.
+Several older cross-reference labels are close but not exact catalog matches. In particular, the prior identification of L1 as an OHARA BAH32-class glass is not retained because OHARA S-BAH32 does not match the patent's $n_d = 1.62374$, $\nu_d = 47.0$ pair. L3 is represented as a BAFD7 / S-BAH27 / J-BASF7 class glass because those catalog entries match the patent's high-index barium-flint pair closely enough to supply useful dispersion data while preserving the patent's published $n_d$ and $\nu_d$.
 
 The chromatic correction is classical rather than apochromatic. The lens balances three crown-type low-dispersion elements, one dense flint post-stop element, and two intermediate glasses. No aspherical, ED, fluorite, or anomalous-partial-dispersion element is present in the patent prescription.
 
@@ -156,5 +156,5 @@ The result is not a modern flat-field, close-range-corrected 28 mm. It is a comp
 ## Sources
 
 1. US Patent 4,099,850, Sei Matsui, "Wide Angle Photographic Lens," assigned to Nippon Kogaku K.K., granted July 11, 1978; Certificate of Correction issued March 27, 1979.
-2. HIKARI Corporation, *Optical Glass Catalog 2023*, glass entries J-BAF8, J-SK16, J-BASF7, J-SF4, and J-SK5.
+2. Public Zemax/refractiveindex.info catalog entries for E-BAF8, N-SK16, S-BSM16, BAFD7, S-BAH27, E-FD4, H-ZF6, N-SK5, and S-BAL35; used as catalog equivalents for the patent's unnamed glass rows.
 3. Kouichi Ohshita, Nikon Corporation, *NIKKOR — The Thousand and One Nights No. 12: NIKKOR-H Auto 2.8cm F3.5*.

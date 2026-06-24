@@ -111,7 +111,7 @@ L3 is somewhat stronger than L1 (f = −149.4 mm vs. −189.5 mm), and its rear 
 | Thick-lens focal length | +84.4 mm |
 | Shape | R₁ > 0, R₂ < 0 → biconvex |
 
-**Glass identification:** nd = 1.7725, Vd = 49.5 (code 1772/495) matches HOYA LACL60 (nd = 1.77250, Vd = 49.60) or an older OHARA equivalent near-exactly. This is a lanthanum crown — high refractive index with relatively low dispersion, a premium glass type for the era.
+**Glass identification:** nd = 1.7725, Vd = 49.5 (code 1772/495) matches the E-LASF016 / J-LASF016 / LACL60 class near-exactly. This is a lanthanum crown — high refractive index with relatively low dispersion, a premium glass type for the era.
 
 **Optical role:** L4 is the strongest positive element in the forward group, and it forms the front component of the cemented doublet (L4+L5). The cemented junction surface r₈ is critical to the design — it is the surface addressed by patent Condition (2):
 
@@ -245,7 +245,7 @@ The design uses nine glass elements drawn from seven distinct glass types. The g
 |---|---|---|---|---|---|
 | L1, L3 | 1.62299 | 58.1 | 623/581 | Schott SK16 / OHARA equiv. | Barium silicate crown |
 | L2 | 1.74400 | 44.9 | 1744/449 | Schott LAF2 / OHARA S-LAM2 | Lanthanum flint |
-| L4 | 1.77250 | 49.5 | 1772/495 | HOYA LACL60 / OHARA equiv. | Lanthanum crown |
+| L4 | 1.77250 | 49.5 | 1772/495 | E-LASF016 / J-LASF016 / LACL60 class | Lanthanum crown |
 | L5, L6 | 1.51680 | 64.2 | 1517/642 | Schott BK7 / OHARA S-BSL7 | Borosilicate crown |
 | L7 | 1.78470 | 26.1 | 1785/261 | HOYA FDS9 / Schott SF56A | Dense flint |
 | L8 | 1.74443 | 47.9 | 1744/479 | Discontinued LaF/LaK type | Lanthanum flint (border) |

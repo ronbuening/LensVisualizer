@@ -11,6 +11,10 @@ import type { LensDataInput } from "../../types/optics.js";
 // Nikon's design note describes a zoom-cammed aperture that moves with the second group and changes diameter
 // to preserve f/4. The current data schema uses one fixed STO semi-diameter, so STO.sd is set to the wide-end
 // f/4 model aperture for layout while nominalFno remains the production constant f/4.
+//
+// Semi-diameters: the patent does not publish per-surface clear apertures. Values are visualization estimates
+// from marginal/chief ray envelopes, reduced where needed for positive edge thickness, sane adjacent-surface
+// proportions, and renderer-safe cross-gap sag clearance.
 
 const LENS_DATA = {
   key: "nikon-ai-zoom-nikkor-25-50mm-f4",

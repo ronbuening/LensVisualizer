@@ -57,13 +57,13 @@ The focal lengths below are standalone thick-lens values in air, computed from e
 
 ### L11 — Positive Meniscus, convex to object
 
-nd = 1.51680, νd = 64.1. Glass: **J-BK7A (Hikari)**. f = **+170.2 mm**.
+nd = 1.51680, νd = 64.1. Glass: **N-BK7 / S-BSL7 / J-BK7A class**. f = **+170.2 mm**.
 
 L11 is the first positive collector in GP1. The rear radius is extremely long, making the element only weakly positive. This limits front-surface spherical aberration while allowing the cemented L12/L13 doublet to carry the front group's chromatic balancing.
 
 ### L12 — Negative Meniscus, convex to object
 
-nd = 1.60342, νd = 38.0. Glass: **J-F5 (Hikari)**. f = **−108.0 mm**.
+nd = 1.60342, νd = 38.0. Glass: **F5 (Schott) / S-TIM5 / J-F5 class**. f = **−108.0 mm**.
 
 L12 is the negative flint member of the front cemented doublet. Its dispersion is paired with the higher-Abbe L13 member to let GP1 retain net positive power without excessive longitudinal and lateral color at the long end.
 
@@ -75,13 +75,13 @@ L13 is the positive crown member of the front doublet. Its low index and high Ab
 
 ### L21 — Negative Meniscus, convex to object
 
-nd = 1.77250, νd = 49.6. Glass: **J-LASF016 (Hikari)**. f = **−62.9 mm**.
+nd = 1.77250, νd = 49.6. Glass: **E-LASF016 (Hikari) / J-LASF016 class**. f = **−62.9 mm**.
 
 L21 begins GN1, the first negative group and the patent's stabilizer group. It pre-diverges the beam after GP1 and helps keep the decentered VR unit compact.
 
 ### L22 — Biconcave Negative
 
-nd = 1.80610, νd = 41.0. Glass: **J-LASF03 (Hikari)**. f = **−28.4 mm**.
+nd = 1.80610, νd = 41.0. Glass: **H-ZLAF52A (CDGM) / J-LASF03 class**. f = **−28.4 mm**.
 
 L22 is the dominant negative element in the cemented part of GN1. Its strong biconcave form supplies much of the negative group power required for zoom compensation and stabilization sensitivity.
 
@@ -105,19 +105,19 @@ L32 is the dense-flint negative member cemented to the ED element. The L31/L32 p
 
 ### L33 — Positive Meniscus, convex to object
 
-nd = 1.51823, νd = 58.8. Glass: **J-K3 (Hikari)**. f = **+68.7 mm**.
+nd = 1.51823, νd = 58.8. Glass: **E-C3 (HOYA) / S-NSL3 / J-K3 class**. f = **+68.7 mm**.
 
 L33 is a positive meniscus immediately before the stop. It conditions the ray bundle entering the aperture and distributes GP2's positive power so that the ED doublet is not overburdened.
 
 ### L34 — Negative Meniscus, convex to object
 
-nd = 1.90200, νd = 25.3. Glass: **J-LASFH24 (Hikari)**. f = **−60.4 mm**.
+nd = 1.90200, νd = 25.3. Glass: **902253 high-index dense flint, J-LASFH24 class**. f = **−60.4 mm**.
 
 L34 is the first powered element after the stop and is negative. Its high index and high dispersion make it a compact post-stop corrector for spherical, coma, and pupil-related residuals.
 
 ### L35 — Biconvex Positive
 
-nd = 1.74400, νd = 44.8. Glass: **J-LAF2 (Hikari)**. f = **+55.7 mm**.
+nd = 1.74400, νd = 44.8. Glass: **S-LAM2 (OHARA) / J-LAF2 class**. f = **+55.7 mm**.
 
 L35 restores positive convergence after L34. The nearly symmetric biconvex shape is favorable for distributing positive power around the stop-centered relay.
 
@@ -129,19 +129,19 @@ L36 is the final positive element of GP2. It shapes the beam before the rear foc
 
 ### L41 — Biconvex Positive
 
-nd = 1.80518, νd = 25.4. Glass: **J-SF6 (Hikari)**. f = **+31.9 mm**.
+nd = 1.80518, νd = 25.4. Glass: **H-ZF7LA (CDGM) / S-TIH6 / J-SF6 class**. f = **+31.9 mm**.
 
 L41 is the positive member of GN2, the focusing group. It balances the chromatic behavior of the following negative element while keeping the moving focus group compact.
 
 ### L42 — Biconcave Negative
 
-nd = 1.80610, νd = 41.0. Glass: **J-LASF03 (Hikari)**. f = **−20.6 mm**.
+nd = 1.80610, νd = 41.0. Glass: **H-ZLAF52A (CDGM) / J-LASF03 class**. f = **−20.6 mm**.
 
 L42 is the dominant negative member of GN2 and gives the focus group its net negative power. Image-side movement of this doublet changes final conjugate efficiently, which is why the patent assigns focusing to GN2.
 
 ### L51 — Positive Meniscus, concave to object
 
-nd = 1.58913, νd = 61.2. Glass: **J-SK5 (Hikari)**. f = **+57.8 mm**.
+nd = 1.58913, νd = 61.2. Glass: **N-SK5 / S-BAL35 / J-SK5 class**. f = **+57.8 mm**.
 
 L51 begins GN3 with a positive meniscus. It reduces the burden on the final negative meniscus and helps control field curvature and image-side ray angles.
 
@@ -153,28 +153,28 @@ L52 is the last powered element before the image. It supplies the residual negat
 
 ## Glass Identification and Selection
 
-The patent publishes nd and νd, not glass names. Nikon/Hikari J-series catalog matches were used first because Nikon is the applicant and because most entries match the patent values to transcription precision. L23 and L52 are retained as six-digit optical-property classes with public HOYA/CDGM equivalents rather than asserted Hikari melts.
+The patent publishes nd and νd, not glass names. The data file uses resolver-backed catalog equivalents where the same optical pair is available, while preserving Nikon/Hikari class names where useful. L23, L34, and L52 are retained as six-digit optical-property classes rather than asserted production melt vendors.
 
 | Element | Patent nd | Patent νd | Catalog identification | Note |
 |---|---:|---:|---|---|
-| L11 | 1.51680 | 64.1 | J-BK7A (Hikari) | exact J-series property match |
-| L12 | 1.60342 | 38.0 | J-F5 (Hikari) | exact J-series property match |
+| L11 | 1.51680 | 64.1 | N-BK7 / S-BSL7 / J-BK7A class | BK7-family crown |
+| L12 | 1.60342 | 38.0 | F5 / S-TIM5 / J-F5 class | flint member of front doublet |
 | L13 | 1.48749 | 70.3 | J-FK5 (Hikari) | high-Abbe crown, not the ED element counted by Nikon |
-| L21 | 1.77250 | 49.6 | J-LASF016 (Hikari) | high-index negative meniscus glass |
-| L22 | 1.80610 | 41.0 | J-LASF03 (Hikari) | used in both GN1 and GN2 |
+| L21 | 1.77250 | 49.6 | E-LASF016 / J-LASF016 class | high-index negative meniscus glass |
+| L22 | 1.80610 | 41.0 | H-ZLAF52A / J-LASF03 class | used in both GN1 and GN2 |
 | L23 | 1.94595 | 18.0 | 946180 dense-flint class; HOYA FDS18/FDS18-W equivalent | vendor not specified by patent |
-| L31 | 1.49700 | 81.6 | J-FK01A (Hikari) | sole ED-class element in Example 1 |
+| L31 | 1.49700 | 81.6 | J-FK01A (Hikari) | sole ED-class element in Example 1; APD inferred from glass class |
 | L32 | 1.85026 | 32.4 | J-LASF021 (Hikari) | ED doublet flint partner |
-| L33 | 1.51823 | 58.8 | J-K3 (Hikari) | pre-stop crown meniscus |
-| L34 | 1.90200 | 25.3 | J-LASFH24 (Hikari) | high-index post-stop flint |
-| L35 | 1.74400 | 44.8 | J-LAF2 (Hikari) | positive relay glass |
+| L33 | 1.51823 | 58.8 | E-C3 / S-NSL3 / J-K3 class | pre-stop crown meniscus |
+| L34 | 1.90200 | 25.3 | 902253 high-index dense flint / J-LASFH24 class | no exact public catalog match |
+| L35 | 1.74400 | 44.8 | S-LAM2 / J-LAF2 class | positive relay glass |
 | L36 | 1.79500 | 45.3 | J-LASF017 (Hikari) | final GP2 positive glass |
-| L41 | 1.80518 | 25.4 | J-SF6 (Hikari) | positive focus-doublet member |
-| L42 | 1.80610 | 41.0 | J-LASF03 (Hikari) | negative focus-doublet member |
-| L51 | 1.58913 | 61.2 | J-SK5 (Hikari) | rear positive meniscus glass |
+| L41 | 1.80518 | 25.4 | H-ZF7LA / S-TIH6 / J-SF6 class | positive focus-doublet member |
+| L42 | 1.80610 | 41.0 | H-ZLAF52A / J-LASF03 class | negative focus-doublet member |
+| L51 | 1.58913 | 61.2 | N-SK5 / S-BAL35 / J-SK5 class | rear positive meniscus glass |
 | L52 | 1.91082 | 35.2 | 911353 class; CDGM H-ZLaF4LA / HOYA TAFD35L equivalent | vendor not specified by patent |
 
-The chromatic correction strategy is concentrated in the L12/L13 front doublet and the L31/L32 GP2 doublet. L31 is the only ED-class element, while the other high-index dense flints keep the moving negative groups compact and help distribute chromatic correction across the zoom range.
+The chromatic correction strategy is concentrated in the L12/L13 front doublet and the L31/L32 GP2 doublet. L31 is the only ED-class element. The patent gives no line-index or partial-dispersion table, so its APD status is inferred from the ED fluorophosphate glass class rather than directly published. The other high-index dense flints keep the moving negative groups compact and help distribute chromatic correction across the zoom range.
 
 ## Focus Mechanism
 

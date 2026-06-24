@@ -110,9 +110,9 @@ Nikon states the lens incorporates **four ED (Extra-low Dispersion) glass elemen
 
 #### ED Glass (4 elements)
 
-**L12** (nd = 1.49782, νd = 82.6): Classic low-dispersion fluorophosphate crown, closely matching OHARA S-FPL51 class. This is the archetype of Nikon's "ED glass." Cemented with the high-index flint L11, forming the primary axial color-correcting achromatic doublet.
+**L12** (nd = 1.49782, νd = 82.6): Classic low-dispersion fluorophosphate crown, matching Hikari J-FKH1. This is the archetype of Nikon's "ED glass." Cemented with the high-index flint L11, forming the primary axial color-correcting achromatic doublet.
 
-**L22** (nd = 1.49782, νd = 82.6): Identical glass to L12, placed in G2. Contributes to lateral chromatic aberration correction in the negative diverging group.
+**L22** (nd = 1.49782, νd = 82.6): Identical Hikari J-FKH1 glass to L12, placed in G2. Contributes to lateral chromatic aberration correction in the negative diverging group.
 
 **L31** (nd = 1.59319, νd = 67.9): Medium-index phosphate crown with anomalous partial dispersion. Falls above the "normal line" on the partial dispersion diagram (Pg,F vs. νd). The front positive singlet of G3 — the focusing group.
 
@@ -122,30 +122,30 @@ Nikon states the lens incorporates **four ED (Extra-low Dispersion) glass elemen
 
 | Element | nd | νd | Six-Digit Code | Probable Glass | APD |
 |---------|------|------|---------|---------------|------|
-| L11 | 1.90265 | 35.7 | 1903/357 | LaH dense flint (no exact match) | Normal |
-| **L12** | **1.49782** | **82.6** | **1498/826** | **S-FPL51 class** | **ED** |
+| L11 | 1.90265 | 35.7 | 903357 | J-LASFH9 (Hikari) | Normal |
+| **L12** | **1.49782** | **82.6** | **498826** | **J-FKH1 (Hikari)** | **ED** |
 | **L13** | **1.43700** | **95.0** | **1437/950** | **FCD100 (HOYA)** | **Super ED** |
 | L21 | 1.80100 | 34.9 | 1801/349 | S-LAH52 (OHARA), exact | Normal |
-| **L22** | **1.49782** | **82.6** | **1498/826** | **S-FPL51 class** | **ED** |
+| **L22** | **1.49782** | **82.6** | **498826** | **J-FKH1 (Hikari)** | **ED** |
 | L23 | 1.81600 | 46.6 | 1816/466 | S-LAH59 (OHARA), exact | Normal |
 | L24 | 1.80518 | 25.5 | 1805/255 | SF6 (Schott), exact | Normal |
 | L25 | 1.83481 | 42.7 | 1835/427 | S-LAH55V (OHARA), exact | Normal |
-| **L31** | **1.59319** | **67.9** | **1593/679** | **Phosphate crown (ED)** | **ED** |
+| **L31** | **1.59319** | **67.9** | **593679** | **J-PSKH1 (Hikari)** | **ED** |
 | L32 | 1.90366 | 31.3 | 1904/313 | S-LAH65V (OHARA), near-exact | Normal |
-| **L33** | **1.59319** | **67.9** | **1593/679** | **Phosphate crown (ED)** | **ED** |
+| **L33** | **1.59319** | **67.9** | **593679** | **J-PSKH1 (Hikari)** | **ED** |
 | L41 | 1.72916 | 54.6 | 1729/546 | S-LAL18 (OHARA), exact | Normal |
-| L42 | 1.90265 | 35.7 | 1903/357 | Same as L11 | Normal |
+| L42 | 1.90265 | 35.7 | 903357 | Same as L11, J-LASFH9 | Normal |
 | L51 | 1.74400 | 44.8 | 1744/448 | S-LAM2 (OHARA), exact | Normal |
 | L52 | 1.48749 | 70.3 | 1487/703 | S-FSL5 (OHARA) / N-FK5 (Schott) | Normal |
-| L53 | 1.95000 | 29.4 | 1950/294 | TAFD45 (HOYA), near match | Normal |
+| L53 | 1.95000 | 29.4 | 950294 | J-LASFH15 (Hikari) / TAFD45 class | Normal |
 | L54 | 1.51742 | 52.2 | 1517/522 | S-NSL36 (OHARA) / K10 (Schott) | Normal |
-| L55 | 1.64769 | 33.7 | 1648/337 | S-TIF6 (OHARA), exact | Normal |
-| L56 | 1.60300 | 65.4 | 1603/654 | No close catalog match; likely proprietary | Normal |
+| L55 | 1.64769 | 33.7 | 648338 | S-TIM22 (OHARA) / S-TIF6 class | Normal |
+| L56 | 1.60300 | 65.4 | 603654 | S-PHM53 (OHARA) / phosphate crown class | Normal |
 | L57 | 1.83481 | 42.7 | 1835/427 | S-LAH55V (OHARA), same as L25 | Normal |
 
 ### 4.4 Glass Strategy
 
-The design employs an aggressive glass strategy: four ultra-high-index glasses (nd > 1.90) appear in L11, L32, L42 (all nd ≈ 1.903) and L53 (nd = 1.950, the highest-index glass in the system). Three distinct glass families provide chromatic correction at three levels: FCD100-class Super ED L13 (νd = 95) for secondary spectrum, FPL51-class ED L12/L22 (νd = 82.6) for primary color, and medium-dispersion ED L31/L33 (νd = 67.9) for residual color in the focusing group. Extensive glass reuse (L11=L42, L12=L22, L25=L57, L31=L33) simplifies procurement and quality control.
+The design employs an aggressive glass strategy: four ultra-high-index glasses (nd > 1.90) appear in L11, L32, L42 (all nd ≈ 1.903) and L53 (nd = 1.950, the highest-index glass in the system). Three distinct glass families provide chromatic correction at three levels: FCD100-class Super ED L13 (νd = 95) for secondary spectrum, J-FKH1 ED L12/L22 (νd = 82.6) for primary color, and J-PSKH1 medium-dispersion ED L31/L33 (νd = 67.9) for residual color in the focusing group. Extensive glass reuse (L11=L42, L12=L22, L25=L57, L31=L33) simplifies procurement and quality control.
 
 ---
 
@@ -157,8 +157,8 @@ G1 is the front objective group, collecting light and beginning convergence. Its
 
 | Element | Shape | fl (mm) | Glass | Role |
 |---------|-------|---------|-------|------|
-| L11 | Neg. meniscus (convex to object) | −210.5 | LaH dense flint (nd=1.903, νd=35.7) | High-index flint of cemented achromatic doublet |
-| L12 | Biconvex | +165.1 | **ED glass** (nd=1.498, νd=82.6) | Positive ED element; primary axial color corrector |
+| L11 | Neg. meniscus (convex to object) | −210.5 | J-LASFH9 high-index lanthanum flint (nd=1.903, νd=35.7) | High-index flint of cemented achromatic doublet |
+| L12 | Biconvex | +165.1 | **J-FKH1 ED glass** (nd=1.498, νd=82.6) | Positive ED element; primary axial color corrector |
 | L13 | Pos. meniscus (convex to object) | +202.2 | **Super ED / FCD100** (nd=1.437, νd=95.0) | Secondary spectrum corrector; ultra-low dispersion |
 
 The L11+L12 cemented doublet is a classic negative-lead achromat. L13, separated by 0.1 mm, is the single most optically valuable element in the system: without it, the 400 mm telephoto end would show pronounced secondary chromatic fringing.
@@ -170,7 +170,7 @@ G2 is the primary zoom variator. Despite being stationary during zooming, its st
 | Element | Shape | fl (mm) | Glass | Role |
 |---------|-------|---------|-------|------|
 | L21 | Biconvex | +74.0 | LaH dense flint (nd=1.801) | Front positive element of achromatic doublet |
-| L22 | Biconcave | −80.4 | **ED glass** (nd=1.498, νd=82.6) | Negative ED element; lateral color correction |
+| L22 | Biconcave | −80.4 | **J-FKH1 ED glass** (nd=1.498, νd=82.6) | Negative ED element; lateral color correction |
 | L23 | Biconcave | −33.7 | Lanthanum dense flint (nd=1.816, νd=46.6) | **VR sub-group front** |
 | L24 | Pos. meniscus (convex to object) | +55.5 | Dense flint (nd=1.805, νd=25.5) | **VR sub-group rear** |
 | L25 | Biconcave | −49.6 | Lanthanum dense flint (nd=1.835, νd=42.7) | Rear diverging singlet; wide-angle coma control |
@@ -189,9 +189,9 @@ G3 is the **focusing group**. The patent states at paragraph [0105] that G3 is m
 
 | Element | Shape | fl (mm) | Glass | Role |
 |---------|-------|---------|-------|------|
-| L31 | Biconvex | +78.7 | **ED glass** (nd=1.593, νd=67.9) | Front positive singlet |
+| L31 | Biconvex | +78.7 | **J-PSKH1 ED phosphate crown** (nd=1.593, νd=67.9) | Front positive singlet |
 | L32 | Neg. meniscus (convex to object) | −85.0 | Dense LaH flint (nd=1.904, νd=31.3) | Negative element of achromatic doublet |
-| L33 | Biconvex | +52.5 | **ED glass** (nd=1.593, νd=67.9) | Positive ED element of doublet |
+| L33 | Biconvex | +52.5 | **J-PSKH1 ED phosphate crown** (nd=1.593, νd=67.9) | Positive ED element of doublet |
 
 Both positive elements use the same ED glass, ensuring chromatic correction is maintained as G3 translates during focusing.
 
@@ -212,7 +212,7 @@ G4 is stationary during zoom (fixed relative to the image plane) and provides ne
 | Element | Shape | fl (mm) | Glass | Role |
 |---------|-------|---------|-------|------|
 | L41 | Biconcave | −31.9 | Lanthanum crown (nd=1.729, νd=54.6) | Strong negative power; Petzval flattener |
-| L42 | Pos. meniscus (convex to object) | +57.9 | Dense LaH flint (nd=1.903, νd=35.7) | Partially compensates L41; chromatic tuning |
+| L42 | Pos. meniscus (convex to object) | +57.9 | J-LASFH9 dense LaH flint (nd=1.903, νd=35.7) | Partially compensates L41; chromatic tuning |
 
 The glass pairing is notable: the negative element uses a lanthanum crown (νd = 54.6), while the positive element uses a high-dispersion lanthanum dense flint (νd = 35.7). This deliberate dispersion imbalance introduces chromatic aberration to compensate for residual color from surrounding groups.
 
@@ -224,15 +224,15 @@ G5 is the rear relay group forming the final image on the sensor. It is the most
 |---------|-------|---------|-------|------|
 | L51 | Biconvex (symmetric: R = ±124.142) | +83.9 | Lanthanum crown-flint (nd=1.744, νd=44.8) | Front positive singlet after aperture stop |
 | L52 | Plano-convex (convex to object) | +54.6 | Fluor crown (nd=1.487, νd=70.3) | Front element of cemented triplet |
-| L53 | Plano-concave (concave to image) | −27.8 | Ultra-high-index LaH flint (nd=1.950, νd=29.4) | Central negative of triplet; highest-index glass |
+| L53 | Plano-concave (concave to image) | −27.8 | J-LASFH15 / TAFD45-class ultra-high-index LaH flint (nd=1.950, νd=29.4) | Central negative of triplet; highest-index glass |
 | L54 | Plano-convex (convex to object) | +51.1 | Light crown (nd=1.517, νd=52.2) | Rear element of triplet |
-| L55 | Biconvex | +27.7 | Short flint (nd=1.648, νd=33.7) | Front of rear doublet; strong positive near image |
-| L56 | Plano-concave (concave to object) | −32.7 | Phosphate crown (nd=1.603, νd=65.4) | Rear of rear doublet; field flattener |
+| L55 | Biconvex | +27.7 | S-TIM22 / S-TIF6-class short flint (nd=1.648, νd=33.7) | Front of rear doublet; strong positive near image |
+| L56 | Plano-concave (concave to object) | −32.7 | S-PHM53 phosphate crown (nd=1.603, νd=65.4) | Rear of rear doublet; field flattener |
 | L57 | Neg. meniscus (concave to object) | −82.2 | Lanthanum dense flint (nd=1.835, νd=42.7) | Final element; telecentricity and Petzval control |
 
 **The cemented triplet (L52+L53+L54)** has two flat internal junctions and concentrates optical power at the two curved surfaces: the convex L52 front (R = 26.615 mm) and the L53→L54 junction (R = 26.437 mm). The ultra-high-index L53 (nd = 1.950) creates strong negative power at the curved junction (the large index step from 1.950 to 1.517 at R = 26.437). This triplet functions as a compact field corrector and is the primary mechanism for controlling field curvature and lateral color.
 
-**L55+L56 cemented doublet** sits close to the image plane and acts as a field-flattening pair, with the phosphate crown L56 (νd = 65.4) providing mild anomalous partial dispersion that assists lateral color correction at the field edges.
+**L55+L56 cemented doublet** sits close to the image plane and acts as a field-flattening pair, with the phosphate crown L56 (νd = 65.4) providing low-dispersion balancing that assists lateral color correction at the field edges.
 
 **L57** is the final element — a negative meniscus with its concave side facing the object, fine-tuning the exit pupil position for digital sensor telecentricity and providing final Petzval curvature correction.
 

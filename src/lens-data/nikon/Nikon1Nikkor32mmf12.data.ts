@@ -63,7 +63,7 @@ const LENS_DATA = {
       nd: 1.795,
       vd: 45.31,
       fl: 75.31,
-      glass: "TAF2 class (HOYA; patent nd/vd close but not exact)",
+      glass: "J-LASF017 (Hikari, 795453)",
       role: "High-index positive pre-stop element; adds power with moderate curvature.",
     },
     {

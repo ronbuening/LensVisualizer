@@ -97,7 +97,7 @@ const LENS_DATA = {
       nd: 1.5186,
       vd: 69.9,
       fl: +40.6,
-      glass: "Phosphate crown (no exact modern catalog match; 1990s-era type)",
+      glass: "J-PKH1 (Hikari, 519699)",
       apd: false,
       role: "Front element of cemented achromatic doublet L4. Thick meniscus (concave to object); high Abbe number provides low-dispersion component of the chromatic corrector.",
       cemented: "L4",

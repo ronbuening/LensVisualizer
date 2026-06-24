@@ -11,7 +11,7 @@ or per-lens patent backfills.
 - **366** lenses scanned
 - **4124** non-air surfaces examined
 - **4128** element glass declarations examined
-- **626** non-explicit-unmatched annotations did not resolve
+- **591** non-explicit-unmatched annotations did not resolve
 - **261** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
@@ -67,7 +67,6 @@ or per-lens patent backfills.
 | S-LAL61 | 2 | 2 | |
 | S-LAM73 | 2 | 1 | |
 | S-NBH53 | 2 | 2 | |
-| S-TIF6 | 2 | 2 | |
 | SK18 | 2 | 1 | |
 | TAF1 | 2 | 2 | |
 | 157957 | 1 | 1 | |
@@ -171,6 +170,7 @@ or per-lens patent backfills.
 | 789457 | 1 | 1 | |
 | 792450 | 1 | 1 | |
 | 795286 | 1 | 1 | |
+| 795287 | 1 | 1 | |
 | 797454 | 1 | 1 | |
 | 800255 | 1 | 1 | |
 | 803404 | 1 | 1 | |
@@ -191,6 +191,7 @@ or per-lens patent backfills.
 | 870200 | 1 | 1 | |
 | 877370 | 1 | 1 | |
 | 882408 | 1 | 1 | |
+| 902253 | 1 | 1 | |
 | 903310 | 1 | 1 | |
 | 903354 | 1 | 1 | |
 | 904293 | 1 | 1 | |
@@ -247,7 +248,6 @@ or per-lens patent backfills.
 | N-LASF43 | 1 | 1 | |
 | N-PK51 | 1 | 1 | |
 | N-PSK53A | 1 | 1 | |
-| NBFD12 | 1 | 1 | |
 | NBFD30 | 1 | 1 | |
 | S-BAH32 | 1 | 1 | |
 | S-BAL12 | 1 | 1 | |
@@ -265,6 +265,7 @@ or per-lens patent backfills.
 | S-PHM51 | 1 | 1 | |
 | S-SK14 | 1 | 1 | |
 | S-TIF4 | 1 | 1 | |
+| S-TIF6 | 1 | 1 | |
 | S-TIM1 | 1 | 1 | |
 | SF19 | 1 | 1 | |
 | SF3 | 1 | 1 | |
@@ -273,7 +274,6 @@ or per-lens patent backfills.
 | SK7 | 1 | 1 | |
 | SK8 | 1 | 1 | |
 | TAF105 | 1 | 1 | |
-| TAF2 | 1 | 1 | |
 | TAF3 | 1 | 1 | |
 | TAF3D | 1 | 1 | |
 | TAFD34 | 1 | 1 | |
@@ -548,11 +548,6 @@ or per-lens patent backfills.
 
 - [FUJIFILM FUJINON XF 90mm f/2 R LM WR](../../src/lens-data/fujifilm/FujifilmXF90mmf2.data.ts) 6: `S-NBH53 (OHARA)`
 - [SONY E 18-55mm f/3.5-5.6 OSS](../../src/lens-data/sony/SonyE1855mmf3556.data.ts) 4: `S-NBH53 (OHARA)`
-
-### S-TIF6 — 2 occurrences
-
-- [FUJIFILM FUJINON XF 56mm f/1.2 R](../../src/lens-data/fujifilm/FujifilmXF56mmf12.data.ts) 16: `S-TIF6 (OHARA)`
-- [NIKON AF-S NIKKOR 80-400mm f/4.5-5.6 G ED VR](../../src/lens-data/nikon/NikonNikkorAFS80400mmf4556G.data.ts) 29: `S-TIF6 (OHARA)`
 
 ### SK18 — 2 occurrences
 
@@ -968,6 +963,10 @@ or per-lens patent backfills.
 
 - [Nikon AI Zoom-Nikkor 50-135mm f/3.5S](../../src/lens-data/nikon/NikonAIZoomNikko50135mmf35S.data.ts) 22: `J-LAFH3 (HIKARI; 795286)`
 
+### 795287 — 1 occurrence
+
+- [NIKON AF-S NIKKOR 70-200mm f/2.8 G ED VR II](../../src/lens-data/nikon/NikonAFS70200mmf28GVRII.data.ts) 1: `J-LAFH3 (HIKARI; 795287, coefficients unavailable)`
+
 ### 797454 — 1 occurrence
 
 - [NIKON NIKKOR 28mm f/2.8 (Nikon 28Ti)](../../src/lens-data/nikon/Nikon28Ti28mmf28.data.ts) 9: `797454 — discontinued lanthanum glass (no exact public catalog match)`
@@ -1047,6 +1046,10 @@ or per-lens patent backfills.
 ### 882408 — 1 occurrence
 
 - [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) 5: `882408 — high-index lanthanum glass (patent nd=1.88234, nu_d=40.8)`
+
+### 902253 — 1 occurrence
+
+- [NIKON NIKKOR Z DX 50-250mm f/4.5-6.3 VR](../../src/lens-data/nikon/NikonZDX50250mmf4564VR.data.ts) 17: `902253 — high-index dense flint (J-LASFH24 class; no exact public catalog match)`
 
 ### 903310 — 1 occurrence
 
@@ -1272,10 +1275,6 @@ or per-lens patent backfills.
 
 - [MINOLTA AF 35-105mm f/3.5-4.5 New (v2)](../../src/lens-data/minolta/MinoltaAF35105mmf3545v2.data.ts) 12: `N-PSK53A (Schott exact match; production vendor unproven)`
 
-### NBFD12 — 1 occurrence
-
-- [NIKON NIKKOR Z 24-50mm f/4-6.3](../../src/lens-data/nikon/NikonNikkorZ2450mmf463.data.ts) 11: `NBFD12 (HOYA)`
-
 ### NBFD30 — 1 occurrence
 
 - [SIGMA 10-18mm f/2.8 DC DN | Contemporary](../../src/lens-data/sigma/Sigma1018mmf28DCDN.data.ts) 8: `NBFD30 (Hoya)`
@@ -1344,6 +1343,10 @@ or per-lens patent backfills.
 
 - [SONY PLANAR T* 50mm f/1.4 ZA SSM](../../src/lens-data/sony/SonyPlanarT50mmf14ZA.data.ts) 9: `S-TIF4 (OHARA)`
 
+### S-TIF6 — 1 occurrence
+
+- [FUJIFILM FUJINON XF 56mm f/1.2 R](../../src/lens-data/fujifilm/FujifilmXF56mmf12.data.ts) 16: `S-TIF6 (OHARA)`
+
 ### S-TIM1 — 1 occurrence
 
 - [CANON RF 50mm f/1.2 L USM](../../src/lens-data/canon/CanonRF50mmf12L.data.ts) 21: `S-TIM1 (OHARA)`
@@ -1375,10 +1378,6 @@ or per-lens patent backfills.
 ### TAF105 — 1 occurrence
 
 - [SIGMA 85mm f/1.4 DG HSM | Art](../../src/lens-data/sigma/Sigma85mmf14Art.data.ts) 17: `TAF105 (HOYA)`
-
-### TAF2 — 1 occurrence
-
-- [NIKON 1 NIKKOR 32mm f/1.2](../../src/lens-data/nikon/Nikon1Nikkor32mmf12.data.ts) 5: `TAF2 class (HOYA; patent nd/vd close but not exact)`
 
 ### TAF3 — 1 occurrence
 

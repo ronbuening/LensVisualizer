@@ -58,11 +58,11 @@ The patent links this condition to chromatic control in the front positive group
 
 ### L13 - Positive Meniscus, Convex to Object
 
-nd = 1.7950, νd = 45.31. Glass: TAF2 class (HOYA), uncertain. f = +75.31 mm.
+nd = 1.7950, νd = 45.31. Glass: Hikari J-LASF017, catalog code 795453. f = +75.31 mm.
 
 L13 is the third positive element in the pre-stop collector. It has the highest refractive index of the three front positive elements. That high index allows useful positive power with radii of 20.9000 mm and 30.0000 mm, avoiding an excessively steep biconvex form.
 
-The glass is not an exact current OHARA public-catalog match. The closest checked public match is HOYA TAF2 class glass, listed in HOYA's catalog data as nd = 1.79450 and νd = 45.39. That is close in index but not exact in Abbe number. The data file therefore marks L13 as TAF2 class rather than as a firm catalog identity.
+The earlier HOYA TAF2 class note is superseded by the Hikari J-LASF017 catalog entry now present in the local glass catalog. J-LASF017 gives nd = 1.79500 and νd = 45.31 with published power-series coefficients, matching the patent row and preserving runtime Sellmeier coverage.
 
 ### L14 - Negative Meniscus, Convex to Object
 
@@ -120,7 +120,7 @@ The surface-by-surface Petzval sum of surfaces 1-17 is +0.0052005 mm^-1, corresp
 |---|---:|---:|---|---|
 | L11 | 1.6968 | 55.52 | S-LAL14 (OHARA) | Firm class match |
 | L12 | 1.6030 | 65.44 | S-PHM53 (OHARA) | Firm class match |
-| L13 | 1.7950 | 45.31 | TAF2 class (HOYA) | Close, uncertain |
+| L13 | 1.7950 | 45.31 | J-LASF017 (Hikari, 795453) | Firm class match |
 | L14 | 1.7174 | 29.57 | S-TIH1 class (OHARA) | Close class match |
 | L15 | 1.6727 | 32.19 | S-TIM25 class (OHARA) | Close class match |
 | L16 | 1.8830 | 40.66 | S-LAH58 class (OHARA) | Close class match |
@@ -205,4 +205,4 @@ The inferred semi-diameters in the data file are not patent-published values. Th
 2. Nikon Corporation, "1 NIKKOR 32mm f/1.2," press release, May 14, 2013.
 3. Nikon USA, "1 NIKKOR 32mm f/1.2," archived product specifications.
 4. OHARA Corporation, public optical-glass catalog pages for S-LAL14, S-PHM53, S-TIH1, S-TIM25, S-LAH66, S-LAH55V, and S-TIH4.
-5. HOYA optical-glass catalog data for TAF2.
+5. HIKARI optical-glass catalog data for J-LASF017.
