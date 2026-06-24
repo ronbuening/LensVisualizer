@@ -61,7 +61,7 @@ The patent's front-group strategy is clear: L1 is not asked to provide strong po
 
 #### L2 — Negative Meniscus, convex to object
 
-`nd = 1.5111`, `νd = 60.49`. Glass: K7/C7 crown class. `f = −202.77` (`−56.78 mm`).
+`nd = 1.5111`, `νd = 60.49`. Glass: `511605` crown glass. `f = −202.77` (`−56.78 mm`).
 
 L2 is the first object-convex negative meniscus. Its radii, `r3 = +117.92` and `r4 = +54.21`, have the same sign, with the rear surface more strongly curved. The low index and high Abbe number show that the negative power is obtained mainly through curvature rather than through a dense flint.
 
@@ -69,7 +69,7 @@ This is a conservative chromatic choice for the front divergence: the element co
 
 #### L3 — Negative Meniscus, convex to object
 
-`nd = 1.5111`, `νd = 60.49`. Glass: K7/C7 crown class. `f = −196.46` (`−55.01 mm`).
+`nd = 1.5111`, `νd = 60.49`. Glass: `511605` crown glass. `f = −196.46` (`−55.01 mm`).
 
 L3 repeats the L2 strategy with very similar radii, `r5 = +115.00` and `r6 = +52.66`. The paired menisci distribute the front-group divergence over four curved air-glass surfaces instead of concentrating it in one stronger negative element.
 
@@ -79,7 +79,7 @@ The wide `d6 = 30.72` patent-unit air gap after L3 is a major retrofocus lever. 
 
 #### L4a — Positive Meniscus, convex to object
 
-`nd = 1.7620`, `νd = 40.38`. Glass: lanthanum flint class, glass code 762/404. `f = +173.90` (`+48.69 mm`).
+`nd = 1.7620`, `νd = 40.38`. Glass: `762404` lanthanum flint class. `f = +173.90` (`+48.69 mm`).
 
 L4a begins reconverging the diverged front-group bundle. Its positive power is concentrated mainly at the front surface, `r7 = +112.26`, while the rear radius, `r7′ = +694.93`, is much weaker.
 
@@ -87,7 +87,7 @@ The relatively high index allows useful power without especially steep curvature
 
 #### L4b — Weak Positive Singlet, near-plano biconvex
 
-`nd = 1.7620`, `νd = 40.38`. Glass: lanthanum flint class, glass code 762/404. `f = +244.65` (`+68.50 mm`).
+`nd = 1.7620`, `νd = 40.38`. Glass: `762404` lanthanum flint class. `f = +244.65` (`+68.50 mm`).
 
 L4b is the second positive singlet in the split second group. Its object-side radius, `r7″ = +1254.71`, is very weak; its rear surface, `r8 = −217.30`, supplies most of the element's power.
 
@@ -121,7 +121,7 @@ The optical role is complementary to L5. Together, L5–L7 form a positive–neg
 
 #### L8 — Weak Positive Singlet, near-plano biconvex
 
-`nd = 1.6968`, `νd = 55.80`. Glass: lanthanum crown class, LAC14/S-LAL14 class. `f = +189.87` (`+53.16 mm`).
+`nd = 1.6968`, `νd = 55.80`. Glass: `697558` lanthanum crown. `f = +189.87` (`+53.16 mm`).
 
 L8 is a weak positive terminal element. Its front radius, `r15 = +1956.95`, is nearly plano, while `r16 = −141.52` provides the rear curvature.
 
@@ -129,17 +129,17 @@ Located close to the image plane, L8 behaves partly as a field element. Its mode
 
 ## Glass Identification and Selection
 
-The patent lists only `nd` and `νd`. It does not name OHARA, Hoya, Schott, Hikari, CDGM, Sumita, or any other glass vendor, and it provides no partial-dispersion or line-index table. The glass names below are therefore class identifications and close catalog analogues, not asserted melt identities.
+The patent lists only `nd` and `νd`. It does not name OHARA, Hoya, Schott, Hikari, CDGM, Sumita, or any other glass vendor, and it provides no partial-dispersion or line-index table. The glass names below are therefore six-digit code and class identifications, not asserted vendor melt identities.
 
-| Element(s) | Patent `nd / νd` | Glass class | Closest catalog-class match | Role |
+| Element(s) | Patent `nd / νd` | Glass class | Code / treatment | Role |
 |---|---:|---|---|---|
-| L1 | 1.6935 / 53.61 | Lanthanum crown | 694/536; LAC13/S-LAL13 class | Weak front positive |
-| L2, L3 | 1.5111 / 60.49 | Crown | K7/C7 class | Low-dispersion front negative menisci |
-| L4a, L4b | 1.7620 / 40.38 | Lanthanum flint | 762/404 class | Split second-group positive power |
-| L5 | 1.7495 / 50.41 | Dense lanthanum crown | 750/504 class, exact melt unresolved | Post-stop spherical/coma correction |
-| L6 | 1.8052 / 25.21 | Dense flint | SF6/S-TIH6 class | Rear-group chromatic correction |
-| L7 | 1.7725 / 50.14 | High-index lanthanum glass | 773/501 class, approximate | Rear positive meniscus |
-| L8 | 1.6968 / 55.80 | Lanthanum crown | LAC14/S-LAL14 class | Terminal field positive |
+| L1 | 1.6935 / 53.61 | Lanthanum crown | `694536` | Weak front positive |
+| L2, L3 | 1.5111 / 60.49 | Crown | `511605` | Low-dispersion front negative menisci |
+| L4a, L4b | 1.7620 / 40.38 | Lanthanum flint | `762404` | Split second-group positive power |
+| L5 | 1.7495 / 50.41 | Dense lanthanum crown | `750504` | Post-stop spherical/coma correction |
+| L6 | 1.8052 / 25.21 | Dense flint | `805252` | Rear-group chromatic correction |
+| L7 | 1.7725 / 50.14 | High-index lanthanum glass | `773501` | Rear positive meniscus |
+| L8 | 1.6968 / 55.80 | Lanthanum crown | `697558` | Terminal field positive |
 
 The glass palette is conventional for a late-1970s fast wide-angle SLR lens. There is no ED, fluorite, fluorophosphate, anomalous-dispersion, or KZFS-type glass in the prescription. Color correction is mainly the ordinary achromatic pairing of the high-index, low-Abbe L6 biconcave element against the surrounding positive lanthanum crown/flint elements.
 
@@ -187,5 +187,5 @@ In Minolta's 28 mm f/2 lineage, this patent is best treated as the source for th
 - US 4,258,985, *Inverted Telephoto Type Wide Angle Lens System*, A. Nakamura, Minolta Camera K.K. Primary source for the optical prescription, element order, conditional expressions, figure layout, and Certificate of Correction.
 - Minolta AF Lenses owner's manual / specification table. Source for production metadata: 28 mm focal length, f/2 maximum aperture, nine elements in nine groups, 75° angle of view, 0.3 m minimum focus distance, f/22 minimum aperture, seven aperture blades, 55 mm filter, and physical size/weight.
 - Hoya Optical Glass Cross Reference Index. Used only for six-digit glass-code class comparison, not as proof of identical composition.
-- SCHOTT K7 and N-SF6 catalog datasheets. Used for close class verification of the crown pair and dense-flint L6 analogue.
+- Patent nd/vd rows and six-digit glass-code classes used for unresolved crown and dense-flint rows.
 - Hikari, OHARA, CDGM, and Sumita catalog cross-references. Used only as class-level checks where the patent does not name a vendor.

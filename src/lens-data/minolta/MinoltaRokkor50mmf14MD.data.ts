@@ -61,7 +61,7 @@ const LENS_DATA = {
       nd: 1.7885,
       vd: 45.7,
       fl: 61.3,
-      glass: "LAC14 (OHARA)",
+      glass: "789457 - high-index lanthanum flint (catalog unresolved)",
       apd: false,
       role: "Front collector; steep meniscus (convex to object) gathers beam from entrance pupil, reducing obliquity to control spherical aberration at f/1.4.",
     },

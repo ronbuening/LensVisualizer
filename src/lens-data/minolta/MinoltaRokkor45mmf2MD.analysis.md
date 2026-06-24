@@ -46,7 +46,7 @@ The design is entirely spherical. No aspherical surfaces are used.
 
 ### L1 — Positive Meniscus, Convex to Object (Group 1)
 
-nd = 1.7810, νd = 44.5. Glass: Minolta proprietary lanthanum flint (781/445 class; nearest catalog equivalent: Ohara S-LAH52). f = +53.9 mm.
+nd = 1.7810, νd = 44.5. Glass: `781445` lanthanum flint; no exact public catalog identity is assigned. f = +53.9 mm.
 
 L1 is the front collector. Its front surface (R = +37.5 mm) carries the strongest single-surface power in the front half of the system (φ₁ = 0.938 normalized), bending the incoming collimated rays sharply inward. The rear surface (R = +332.8 mm) is nearly flat, contributing only a weak negative correction (φ₂ = −0.106). The meniscus shape — deep convex front, nearly flat rear — is chosen to minimize the angle of incidence on the front surface at full aperture, reducing higher-order spherical aberration at the entrance. The high refractive index (nd = 1.781) further reduces the required curvature for a given power, keeping the surface contributions to spherical aberration and coma manageable.
 
@@ -54,7 +54,7 @@ The patent (Condition 6) requires N₁ > 1.71. At 1.781, L1 comfortably exceeds 
 
 ### L2 — Positive Meniscus, Convex to Object (Group 2)
 
-nd = 1.7495, νd = 50.1. Glass: Minolta proprietary lanthanum crown (750/501 class; nearest catalog equivalent: Hoya LAC14). f = +67.6 mm.
+nd = 1.7495, νd = 50.1. Glass: `750501` lanthanum crown; no exact public catalog identity is assigned. f = +67.6 mm.
 
 L2 is a strongly curved meniscus with both radii positive (R₁ = +19.5 mm, R₂ = +29.3 mm). In the classical 4-group double-Gauss, the second element would be cemented to the third to form a front achromatic doublet. Here, L2 is separated from L3 by a 1.35 mm air gap (d₄ = 0.03 normalized). This separation is the patent's primary structural innovation: it provides the designer with an additional degree of freedom — the air space d₄ — which is used to balance coma and astigmatism independently of the chromatic correction at the cemented interface that no longer exists.
 
@@ -62,7 +62,7 @@ L2 carries significant positive power (f = +67.6 mm) and, together with L1, form
 
 ### L3 — Negative Meniscus, Convex to Object (Group 3)
 
-nd = 1.7006, νd = 30.1. Glass: Minolta proprietary dense flint (700/301 class; nearest catalog equivalent: Hoya FD4 or Ohara S-TIM25). f = −28.6 mm.
+nd = 1.7006, νd = 30.1. Glass: `701301` dense flint; no exact public catalog identity is assigned. f = -28.6 mm.
 
 L3 is the strongest individual element in the system by absolute power. Its front surface (R = +69.6 mm) is gently curved, while its rear surface (R = +15.4 mm) is strongly convex — producing a meniscus whose concave-side power greatly exceeds its convex-side power, yielding a short negative focal length. This element is the "diverger" of the front half and plays three critical roles:
 
@@ -80,7 +80,7 @@ This air lens is the Petzval-correcting heart of the Gauss design. Its surfaces 
 
 ### L4 — Negative Meniscus, Concave to Object (Group 4, Front Element of Cemented Doublet)
 
-nd = 1.6398, νd = 35.3. Glass: Minolta proprietary medium flint (640/353 class; nearest catalog equivalent: Ohara S-TIM28 / Schott F7, with Δνd ≈ 0.8). f = −24.9 mm.
+nd = 1.6398, νd = 35.3. Glass: `640353` medium flint; no exact public catalog identity is assigned. f = -24.9 mm.
 
 L4 is the front (negative) component of the cemented doublet that constitutes Group 4. Its front surface (r₇ = −13.0 mm) is the most strongly curved surface in the entire system, carrying a surface power of φ = −2.213 (normalized). This surface is the primary source of negative spherical aberration in the rear group and, together with r₆ across the air gap, forms the diverging air lens described above.
 
@@ -90,7 +90,7 @@ L4 uses a medium flint glass (νd = 35.3) with a moderate refractive index (nd =
 
 ### L5 — Positive Meniscus, Concave to Object (Group 4, Rear Element of Cemented Doublet)
 
-nd = 1.7545, νd = 50.1. Glass: Minolta proprietary lanthanum crown (755/501 class; no exact catalog match — Δnd = +0.005 from nearest Hoya LAC14). f = +30.0 mm.
+nd = 1.7545, νd = 50.1. Glass: `755501` lanthanum crown; no exact public catalog identity is assigned. f = +30.0 mm.
 
 L5 is the positive component of the cemented doublet and the second-strongest individual element in the system (f = +30.0 mm). Its front surface is the cemented junction with L4 (R = −73.0 mm, weakly curved), while its rear surface (R = −17.7 mm) is strongly concave — producing a meniscus that bulges toward the image. This rear surface carries the doublet's principal converging power (φ₂ = +1.922 normalized).
 
@@ -100,7 +100,7 @@ The cemented doublet L4+L5 has a combined focal length of approximately −535 m
 
 ### L6 — Biconvex Positive (Group 5)
 
-nd = 1.6968, νd = 55.5. Glass: Minolta proprietary lanthanum crown (697/555 class; nearest catalog equivalent: Hoya LAC9 or Ohara S-LAL14 — essentially exact match). f = +44.7 mm.
+nd = 1.6968, νd = 55.5. Glass: `697555` lanthanum crown; no exact public catalog identity is assigned. f = +44.7 mm.
 
 L6 is the final and arguably most critical element. It is the only biconvex element in the system, with a nearly flat front surface (R = +622 mm) and a strongly concave rear surface (R = −32.8 mm). The rear surface carries nearly all of L6's converging power (φ₂ = 0.957 normalized), directing the rays toward the focal plane 36.1 mm behind the last glass vertex.
 
@@ -110,16 +110,16 @@ L6 uses the least dispersive glass in the system (νd = 55.5), consistent with i
 
 ## Glass Identification and Selection
 
-Minolta was one of the few Japanese camera manufacturers that produced its own optical glass, melting custom formulations at the company's Mukogawa factory near Osaka. The glass indices and Abbe numbers in the patent therefore represent Minolta proprietary melts, not off-the-shelf catalog glasses. The nearest catalog equivalents are identified below for reference, but the actual production glasses may differ in their detailed dispersion characteristics (partial dispersion, thermal coefficients) from any public catalog entry.
+Minolta was one of the few Japanese camera manufacturers that produced its own optical glass, melting custom formulations at the company's Mukogawa factory near Osaka. The patent gives only refractive indices and Abbe numbers here, not trade names. The data file therefore uses six-digit code labels and leaves chromatic tracing on Abbe fallback until exact public catalog identities are sourced.
 
-| Element | nd | νd | Six-Digit Code | Nearest Catalog Match | Vendor | Δnd | Δνd | Glass Family |
-|---------|------|------|----------------|----------------------|--------|------|------|-------------|
-| L1 | 1.7810 | 44.5 | 781/445 | S-LAH52 | OHARA | 0.000 | −0.05 | Lanthanum flint |
-| L2 | 1.7495 | 50.1 | 750/501 | LAC14 | HOYA | 0.000 | +0.10 | Lanthanum crown |
-| L3 | 1.7006 | 30.1 | 700/301 | FD4 / S-TIM25 | HOYA / OHARA | +0.001 | +0.05 | Dense flint |
-| L4 | 1.6398 | 35.3 | 640/353 | S-TIM28 / F7 | OHARA / Schott | 0.000 | +0.80 | Medium flint |
-| L5 | 1.7545 | 50.1 | 755/501 | (no exact match) | — | — | — | Lanthanum crown |
-| L6 | 1.6968 | 55.5 | 697/555 | LAC9 / S-LAL14 | HOYA / OHARA | 0.000 | −0.03 | Lanthanum crown |
+| Element | nd | νd | Six-Digit Code | Catalog Treatment | Glass Family |
+|---------|------|------|----------------|-------------------|-------------|
+| L1 | 1.7810 | 44.5 | 781445 | No exact public match assigned | Lanthanum flint |
+| L2 | 1.7495 | 50.1 | 750501 | No exact public match assigned | Lanthanum crown |
+| L3 | 1.7006 | 30.1 | 701301 | No exact public match assigned | Dense flint |
+| L4 | 1.6398 | 35.3 | 640353 | No exact public match assigned | Medium flint |
+| L5 | 1.7545 | 50.1 | 755501 | No exact public match assigned | Lanthanum crown |
+| L6 | 1.6968 | 55.5 | 697555 | No exact public match assigned | Lanthanum crown |
 
 The glass palette reveals a deliberate chromatic correction strategy:
 
@@ -129,9 +129,9 @@ The glass palette reveals a deliberate chromatic correction strategy:
 
 - **High-index strategy.** The average refractive index of the four positive elements is (1.781 + 1.7495 + 1.7545 + 1.6968)/4 = 1.745, comfortably exceeding the patent's Condition 3 threshold of 1.72. High-index glass allows the designer to achieve the required power with gentler curvatures, reducing surface contributions to aberrations. The patent emphasizes that this condition is essential for simultaneously reducing spherical aberration, controlling the Petzval sum, and minimizing coma flare.
 
-- **Lanthanum-based glass dominance.** Four of the six elements (L1, L2, L5, L6) use lanthanum-containing glass (lanthanum flints or lanthanum crowns), while the two negative-power elements (L3 and L4) use conventional dense and medium flint glasses. Lanthanum glasses offer high refractive indices with moderate-to-low dispersion — a combination unavailable in conventional barium crowns or dense flints. Minolta's in-house glass-melting capability was a significant competitive advantage here, as proprietary lanthanum formulations could be optimized for specific refractive-index/dispersion targets without the constraints of a commercial catalog.
+- **Lanthanum-based glass dominance.** Four of the six elements (L1, L2, L5, L6) use lanthanum-flint or lanthanum-crown index/dispersion regions, while the two negative-power elements (L3 and L4) use dense and medium flint regions. Lanthanum glasses offer high refractive indices with moderate-to-low dispersion, and Minolta's in-house glass-melting capability likely made these specific code targets practical.
 
-- **L5 is the most unusual glass.** At nd = 1.7545, νd = 50.1, L5 has no exact match in any major public catalog. The nearest candidate is Hoya LAC14 (nd = 1.74950, νd = 50.00), which is a reasonable class equivalent but carries a residual of Δnd = +0.005 — outside the tolerance for a confident identification. L5 shares its Abbe number with L2 (both at νd = 50.1) but has a higher refractive index (Δnd = +0.005). In Embodiments 1 and 2, L2 and L5 use identical glass (both N₂ = N₅ = 1.7495); the deliberate index split in Embodiment 7 suggests a final production refinement — holding dispersion constant while adjusting the index to control the monochromatic aberrations (spherical, coma, Petzval) at the cemented junction without disturbing the chromatic balance. This kind of fine-tuning is characteristic of a manufacturer with in-house glass-melting capability.
+- **L5 is the most unusual glass.** At nd = 1.7545, νd = 50.1, L5 has no exact match in the current public catalog data checked for this project. It shares its Abbe number with L2 (both at νd = 50.1) but has a higher refractive index (Δnd = +0.005). In Embodiments 1 and 2, L2 and L5 use identical glass (both N2 = N5 = 1.7495); the deliberate index split in Embodiment 7 suggests a final production refinement that holds dispersion constant while adjusting index for monochromatic aberration control.
 
 ## Focus Mechanism
 

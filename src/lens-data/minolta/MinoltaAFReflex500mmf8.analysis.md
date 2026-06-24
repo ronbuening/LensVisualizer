@@ -63,7 +63,7 @@ The glass is ordinary BK7-family borosilicate crown. It is used here for normal 
 
 ### M1 / L5 — Shared Primary Mangin Blank and Clear Central Relay Plug (r3/r4/r5 and r11/r12)
 
-$n_d = 1.67000$, $\nu_d = 57.07$. Glass: unmatched lanthanum-crown-class glass, nearest public catalog family around 670/571. Primary Mangin unit $f = +110.34$ mm; clear central plug, considered as a refractive element in air, $f = -1636.42$ mm.
+$n_d = 1.67000$, $\nu_d = 57.07$. Glass: `670571` lanthanum-crown-class glass. Primary Mangin unit $f = +110.34$ mm; clear central plug, considered as a refractive element in air, $f = -1636.42$ mm.
 
 The annular outer part of this blank is the primary Mangin mirror. Light enters through r3, reflects from the silvered concave rear surface r4, and exits again through the same physical front face, listed as r5 on the return pass. The silvered r4 surface is the system's main converging mirror.
 
@@ -71,7 +71,7 @@ The central portion of the same blank remains clear and is encountered later as 
 
 This dual radial use is analytically important. Treating r11–r12 as a separate, full-diameter lens would overstate the glass count and would make the rear relay physically collide with the annular primary. In the data file, M1 is the annular shell with an inner clear radius; L5 is the smaller central plug, with the same radii, glass, and axial stations.
 
-The 1.67000 / 57.07 glass does not match a public catalog entry closely enough for a firm vendor assignment. Hikari J-LAK02 is near in index but has $\nu_d = 57.35$, leaving a residual of roughly 0.28 in Abbe number. The family identification as lanthanum crown is secure; the catalog name is left unmatched rather than forced.
+The 1.67000 / 57.07 glass does not match a public catalog entry closely enough for a firm vendor assignment. The family identification as lanthanum crown is secure; the catalog name is withheld rather than forced.
 
 ### M2 — Secondary Mangin Mirror (r6 → r7 → r8)
 
@@ -89,7 +89,7 @@ The rear relay is a cemented triplet with net $f = +120.71$ mm. Its third member
 |---|---:|---:|---:|---|---:|---|
 | L3 | r9–r10 | 1.71300 | 53.93 | LAC8 / N-LAK8 class lanthanum crown | +33.08 mm | Strong positive relay element |
 | L4 | r10–r11 | 1.51680 | 64.20 | BSC7 / N-BK7 class borosilicate crown | −48.72 mm | Negative middle relay member |
-| L5 | r11–r12 | 1.67000 | 57.07 | unmatched lanthanum-crown class | −1636.42 mm | Nearly afocal central plug and aberration spacer |
+| L5 | r11-r12 | 1.67000 | 57.07 | `670571` lanthanum-crown class | -1636.42 mm | Nearly afocal central plug and aberration spacer |
 
 The steep cemented interface at r10 is the strongest refractive surface in the relay. L3 supplies most of the relay's positive power, L4 counterbalances it and helps control aberration, and L5 contributes little standalone power but is part of the rear correction because it is traversed after the secondary reflection.
 
@@ -97,11 +97,11 @@ Because most of the system's axial power is reflective, this cemented group is n
 
 ### L6 — Rear Negative Meniscus / Field Corrector (r13–r14)
 
-$n_d = 1.67000$, $\nu_d = 57.07$. Glass: unmatched lanthanum-crown-class glass, same family as the primary blank. Standalone $f = -97.15$ mm.
+$n_d = 1.67000$, $\nu_d = 57.07$. Glass: `670571` lanthanum-crown-class glass, same family as the primary blank. Standalone $f = -97.15$ mm.
 
 L6 is the rear negative meniscus. Its front surface r13 is the strongest negative Petzval contributor in the refractive portion of the lens. The element counterbalances the positive relay and helps keep the 35 mm image field acceptably flat for a long catadioptric objective.
 
-The glass is again treated as unmatched lanthanum crown. The analysis does not assign a specific vendor catalog name because the patent value remains offset from the closest public match.
+The analysis does not assign a specific vendor catalog name because the patent value remains offset from checked public catalog rows.
 
 ### Rear Plug-in Filter — r15–r16
 
@@ -118,7 +118,7 @@ The patent supplies only $n_d$ and $\nu_d$ values, not manufacturer glass names.
 | Patent glass | Code | Where used | Catalog interpretation | Comment |
 |---|---:|---|---|---|
 | 1.51680 / 64.20 | 517/642 | L1, M2, L4, filter | Hoya BSC7 / Schott N-BK7 / CDGM H-K9L class | Standard borosilicate crown; exact code match to Hoya BSC7 and CDGM H-K9L, near-identical N-BK7 family. |
-| 1.67000 / 57.07 | 670/571 | M1/L5, L6 | Unmatched lanthanum crown; closest checked public match Hikari J-LAK02 at 1.67000 / 57.35 | Family secure, exact vendor assignment withheld. |
+| 1.67000 / 57.07 | 670571 | M1/L5, L6 | Lanthanum crown; exact public catalog assignment withheld. | Family secure, exact vendor assignment withheld. |
 | 1.71300 / 53.93 | 713/539 | L3 | Hoya LAC8 / Schott N-LAK8 / Ohara S-LAL8 / Sumita K-LaK8 class | Lanthanum crown positive relay glass. |
 
 No ED, fluorite, or anomalous-partial-dispersion glass is present. That is expected for a mirror-dominant telephoto: most axial color is avoided by reflection rather than by a complex refractive achromat. The refractive glass selection mainly corrects residual aberrations and the Petzval balance left by the mirrors.
@@ -216,4 +216,4 @@ The production Minolta/Sony lens implements the practical fixed-aperture reflex-
 - Sony Corporation, "SAL500F80 500mm F8 Reflex Operating Instructions," 2-685-148-11(1). The manual identifies the plug-in filter, states that the lens has no aperture adjustment, and requires either the normal filter or ND4X filter to be installed.
 - HOYA Corporation USA Optics Division, "Optical Glass" catalog. Used for BSC7 designation, six-digit glass code convention, and optical-glass property definitions.
 - HOYA Group Optics Division, "Glass Cross Reference Index." Used for cross-vendor code checks: BSC7 / N-BK7 / H-K9L at 517/642 and LAC8 / N-LAK8 / S-LAL8 / K-LaK8 class at 713/539.
-- Hikari Glass / Nikon, J-LAK02 optical glass data sheet. Used as the closest checked public catalog neighbor for the patent's 1.67000 / 57.07 glass.
+- Public Hikari / Nikon lanthanum-crown catalog data were checked only to reject a forced exact vendor assignment for the patent's 1.67000 / 57.07 glass.

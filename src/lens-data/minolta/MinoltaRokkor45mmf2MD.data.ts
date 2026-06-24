@@ -54,8 +54,9 @@ const LENS_DATA = {
 
   /* ── Elements ──
    *  Modified Gauss: L1–L3 singlets (front half), L4+L5 cemented doublet,
-   *  L6 singlet (rear half).  All glasses are Minolta proprietary melts;
-   *  nearest catalog equivalents identified where possible.
+   *  L6 singlet (rear half).  The patent gives nd/vd values, not glass
+   *  trade names; code labels stay on Abbe fallback until exact public
+   *  catalog matches are sourced.
    */
   elements: [
     {
@@ -66,7 +67,7 @@ const LENS_DATA = {
       nd: 1.781,
       vd: 44.5,
       fl: 53.9,
-      glass: "Lanthanum flint (781/445 class, Minolta proprietary; nearest: S-LAH52, OHARA)",
+      glass: "781445 - lanthanum flint (catalog unresolved)",
       apd: false,
       role: "Front collector. Strongest single-surface power in the front half; high-index lanthanum flint reduces curvature for a given power, limiting SA and coma at full aperture.",
     },
@@ -78,7 +79,7 @@ const LENS_DATA = {
       nd: 1.7495,
       vd: 50.1,
       fl: 67.6,
-      glass: "Lanthanum crown (750/501 class, Minolta proprietary; nearest: LAC14, HOYA)",
+      glass: "750501 - lanthanum crown (catalog unresolved)",
       apd: false,
       role: "Separated positive meniscus — the patent's key structural innovation. Provides an extra degree of freedom (air gap d4) for independent coma and astigmatism balancing.",
     },
@@ -90,7 +91,7 @@ const LENS_DATA = {
       nd: 1.7006,
       vd: 30.1,
       fl: -28.6,
-      glass: "Dense flint (700/301 class, Minolta proprietary; nearest: FD4, HOYA / S-TIM25, OHARA)",
+      glass: "701301 - dense flint (catalog unresolved)",
       apd: false,
       role: "Principal diverging element of the front half. Strongest individual element by absolute power. Controls Petzval sum, provides chromatic over-correction, and forms the front surface of the central air lens.",
     },
@@ -102,7 +103,7 @@ const LENS_DATA = {
       nd: 1.6398,
       vd: 35.3,
       fl: -24.9,
-      glass: "Medium flint (640/353 class, Minolta proprietary; nearest: S-TIM28, OHARA)",
+      glass: "640353 - medium flint (catalog unresolved)",
       apd: false,
       cemented: "D1",
       role: "Front (negative) component of the cemented doublet. Its strongly curved front surface (r7) is the primary source of negative SA in the rear group and forms the rear surface of the diverging air lens.",
@@ -115,8 +116,7 @@ const LENS_DATA = {
       nd: 1.7545,
       vd: 50.1,
       fl: 30.0,
-      glass:
-        "Lanthanum crown (755/501 class, Minolta proprietary; no exact catalog match — Δnd = +0.005 from nearest LAC14, HOYA)",
+      glass: "755501 - lanthanum crown (catalog unresolved)",
       apd: false,
       cemented: "D1",
       role: "Rear (positive) component of the cemented doublet. Shares νd = 50.1 with L2, forming a symmetric achromatic pair across the stop. The doublet L4+L5 is nearly afocal (f ≈ −535 mm combined), functioning as an aberration corrector.",
@@ -129,7 +129,7 @@ const LENS_DATA = {
       nd: 1.6968,
       vd: 55.5,
       fl: 44.7,
-      glass: "Lanthanum crown (697/555 class, Minolta proprietary; nearest: LAC9, HOYA / S-LAL14, OHARA)",
+      glass: "697555 - lanthanum crown (catalog unresolved)",
       apd: false,
       role: "Final converging element and the principal contributor to the long BFD. Nearly flat front surface (R ≈ 622 mm) with a strongly curved rear; this reversed-curvature configuration (|r10| > |r11|) is a key patent innovation.",
     },

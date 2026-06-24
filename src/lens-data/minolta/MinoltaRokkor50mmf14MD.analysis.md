@@ -52,11 +52,11 @@ All data below is at the patent's normalized focal length $f = 100$. Production 
 
 ### L1 — Positive Meniscus, Convex to Object
 
-$n_d = 1.7885$, $\nu_d = 45.7$. Glass: **LAC14 (OHARA)** — exact match ($\Delta n_d < 0.0001$, $\Delta \nu_d = 0.02$). $f = +122.6$ mm.
+$n_d = 1.7885$, $\nu_d = 45.7$. Glass: `789457` high-index lanthanum flint; no exact public catalog identity is assigned. $f = +122.6$ mm.
 
 L1 is the front collector element. Its strong positive curvature at R1 ($+75.00$ mm) gathers the incoming beam and begins converging it toward the stop. The rear surface R2 ($+314.55$ mm) is only weakly curved, giving the element a steep meniscus shape (Coddington shape factor $q = 1.63$). The meniscus form is characteristic of fast Gauss-type designs: because both surfaces curve in the same direction, the angle of incidence at each surface is reduced compared to a biconvex element of equivalent power. This lower obliquity suppresses higher-order spherical aberration — a critical consideration at f/1.4 where marginal rays are steep. The glass choice — a high-index lanthanum crown ($n_d = 1.789$, $\nu_d = 45.7$) — keeps the surface curvatures moderate relative to the power required, further controlling spherical aberration.
 
-In the patent's Embodiment 1 (f/1.2), this same glass is used at three positions — L1, L5, and L6 — but Embodiment 2 uses distinct glasses at each. LAC14 recurs at the L1 position across all three embodiments, suggesting it was a preferred front-collector glass in Minolta's standard-lens designs of this period.
+In the patent's Embodiment 1 (f/1.2), this same index/dispersion region is used at three positions, but Embodiment 2 uses distinct glasses at each. The `789457` row is therefore treated as patent code data rather than a named catalog assignment.
 
 ### L2 — Positive Meniscus, Convex to Object
 
@@ -114,7 +114,7 @@ The design uses seven distinct glasses spanning the lanthanum crown, lanthanum f
 
 | Element | $n_d$ | $\nu_d$ | Catalog Match | Confidence | Role |
 |---------|-------|---------|---------------|------------|------|
-| L1 | 1.7885 | 45.7 | LAC14 (OHARA) | Exact | Lanthanum crown; front collector |
+| L1 | 1.7885 | 45.7 | 789457 | Code fallback | High-index lanthanum flint; front collector |
 | L2 | 1.7650 | 46.3 | E-LAF7 / TAFD5F (HOYA) | Exact | Lanthanum crown; secondary converter |
 | L3 | 1.7006 | 30.1 | S-TIM35 class (OHARA) | Near ($\Delta n_d = 0.0017$) | Titanium flint; Petzval corrector |
 | L4 | 1.7552 | 27.5 | S-TIH4 (OHARA) | Exact | Dense titanium flint; doublet flint |

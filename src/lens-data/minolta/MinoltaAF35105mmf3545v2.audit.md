@@ -37,3 +37,15 @@ Patent: US 4,871,239, Example 3 / claim 29
 ### Analysis sync
 
 - Updated element descriptions and the glass-identification table for the resolved and unresolved rows.
+
+## 2026-06-24 - Folder-wide patent audit
+
+### Patent evidence
+
+- Rechecked local `patents/US4871239.pdf`, Example 3 / claim 29.
+- The prior May glass audit remains valid, including the corrected d13 treatment, the thin rear aspheric layer, and the code/equivalent glass dispositions.
+
+### Disposition
+
+- No additional glass-label, APD, or high-index-status changes were needed.
+- The patent gives no per-surface clear apertures. Existing SDs remain inferred from the zoom envelope, inserted stop, element edge thickness, and corrected spacing geometry, so no SD edits were made.

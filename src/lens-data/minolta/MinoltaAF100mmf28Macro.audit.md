@@ -29,3 +29,15 @@ Patent: US 4,764,000, Example 8 / claim 9
 ### Analysis sync
 
 - Updated L4/L5/L7 descriptions and the glass-identification table.
+
+## 2026-06-24 - Folder-wide patent audit
+
+### Patent evidence
+
+- Rechecked local `patents/US4764000.pdf`, Example 8 / claim 9.
+- The prior May glass audit remains valid: `BPH50 (OHARA)` for L4, `H-LAK12 (CDGM equivalent; patent 697565)` for L5, and unresolved code `807316` for L7.
+
+### Disposition
+
+- No glass-label, APD, or high-index-status changes were needed in this pass.
+- The patent gives no clear apertures. Existing SDs remain inferred from the f/2.83 marginal envelope, 55 mm production filter constraint, edge thickness, and cross-gap sag clearance, so no SD edits were made.
