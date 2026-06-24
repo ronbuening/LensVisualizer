@@ -49,3 +49,10 @@ Patent: JP 2016-139125 A, Numerical Example 1
 
 - Relabeled L5 and L7 from code-only `593670` annotations to `J-PSKH4 (Hikari)`.
 - Updated the APD feature summary and analysis notes so the anomalous partial-dispersion pair is no longer described as anonymous six-digit glass.
+
+## 2026-06-24 — Folder audit recheck
+
+- Rechecked local `patents/JP2016139125A.pdf` OCR for Data 1, including the fixed surface table and variable spacing table.
+- Retained all current glass assignments and APD flags. The seven APD elements remain supported by patent/catalog evidence: S-FPL55, J-PSKH4, S-FPL51, and S-FSL5 rows carry the documented anomalous-dispersion roles.
+- Retained the high-index and ultra-high-index rows, including S-LAH95 and S-LAH99, because the patent nd/vd values still match the catalog-backed assignments.
+- The patent provides radii, thicknesses, variable spacings, nd/vd, and asphere data for other embodiments, but no clear-aperture or semi-diameter table for Data 1. Current SDs remain visualization estimates constrained by edge thickness and cross-gap clearance.

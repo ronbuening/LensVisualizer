@@ -53,7 +53,7 @@ $n_e = 1.58403$, $\nu_e = 41.4$; catalog equivalent: unresolved light-flint clas
 
 L2 is a weak negative element cemented to the rear of L1. Its flat front surface is optically neutral; the concave rear surface r3 supplies the negative contribution. The front doublet is not locally achromatized as a self-contained achromat. Its chromatic balance only makes sense in the complete five-element system.
 
-The L2 glass identification is deliberately not over-specified. The patent code $n_e/\nu_e = 1.58403/41.4$ is near light-flint territory, but modern Schott LF5 lists $n_e = 1.58482$ and $\nu_e = 40.57$, which is close but not exact. The data file therefore labels the element by class and e-line code rather than asserting a catalog melt.
+The L2 glass identification is deliberately not over-specified. The patent code $n_e/\nu_e = 1.58403/41.4$ is near light-flint territory, but modern Schott LF5 lists $n_e = 1.58482$ and $\nu_e = 40.57$, which is close but not exact. The data file therefore marks the element as an explicit unmatched e-line light-flint class rather than asserting a catalog melt.
 
 ### L3 — Biconvex positive borosilicate crown
 
@@ -84,7 +84,7 @@ The patent publishes only e-line refractive indices and e-line Abbe numbers. It 
 | Element | Patent $n_e / \nu_e$ | Catalog-class d-line equivalent | Identification used | Confidence | Role |
 |---|---:|---:|---|---|---|
 | L1 | 1.57125 / 55.8 | N-BAK4: 1.56883 / 55.98 | BaK4 barium crown | High | Front positive collector |
-| L2 | 1.58403 / 41.4 | No exact public match; LF5-adjacent | Light flint class, 584/414 e-line | Moderate | Weak negative in front doublet |
+| L2 | 1.58403 / 41.4 | No exact public match; LF5-adjacent | Explicit unmatched 584/414 e-line light flint | Moderate | Weak negative in front doublet |
 | L3 | 1.51871 / 64.0 | N-BK7: 1.51680 / 64.17 | BK7 borosilicate crown | High | Strong positive in G2 |
 | L4 | 1.60718 / 37.8 | F5: 1.60342 / 38.03 | F5 ordinary flint | High | Main negative element |
 | L5 | 1.69416 / 30.9 | N-SF8 e-line class | Explicit unmatched SF8 dense flint class | High | Rear positive meniscus |

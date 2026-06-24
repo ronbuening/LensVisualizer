@@ -94,21 +94,21 @@ The absence of aspherical surfaces places a premium on the designer's ability to
 
 ## 5. Glass Identification
 
-All five glass types specified in Example 3 match SCHOTT catalog glasses with negligible residuals. This is expected for a Leitz design of this era, as SCHOTT was the primary glass supplier for German optical manufacturers.
+Example 3 uses mostly catalog-resolvable historical Schott-class glasses. The repeated high-index flint pair at L4/L7 is retained as the patent-code glass `813252` because no coefficient-backed public catalog match has been verified.
 
 | Glass | Elements | nₑ | νₑ | SCHOTT Match | nᵈ | νᵈ | Family |
 |-------|----------|------:|------:|-------------|------:|------:|--------|
 | G1 | L1, L2, L5 | 1.62286 | 60.08 | **SK16** | 1.62041 | 60.32 | Dense barium crown |
 | G2 | L3 | 1.79227 | 47.15 | **LaF21** | 1.78800 | 47.49 | Lanthanum flint |
-| G3 | L4, L7 | 1.81265 | 25.24 | **SF6** | 1.80518 | 25.43 | Dense flint |
+| G3 | L4, L7 | 1.81265 | 25.24 | **813252 patent code** | — | — | High-index dense flint |
 | G4 | L6 | 1.72823 | 37.85 | **LaF10** | 1.72600 | 38.90 | Lanthanum flint |
 | G5 | L8 | 1.62408 | 36.11 | **F2** | 1.62004 | 36.37 | Flint |
 
-The SCHOTT N-SF6 data sheet (the current lead-free reformulation) lists nₑ = 1.81266 and νₑ = 25.16; the minor νₑ difference from the patent value (25.24) is consistent with the original leaded SF6 formulation available in the 1960s. Note that the current SCHOTT catalog uses "N-" prefixed designations (e.g., N-SF6, N-LAF21) for lead-free eco-glass reformulations introduced from the 1990s onward; the 1968-era glasses would have carried the unprefixed names (LaF21, LaF10, SF6).
+The earlier SF6 assignment was too specific for the resolver path. The patent pair nₑ = 1.81265 and νₑ = 25.24 is very close to historical dense-flint territory, but the tracked data now preserve the unbroken `813252` patent code until a coefficient-backed exact match is found. Note that current SCHOTT "N-" prefixed designations represent later lead-free reformulations, so legacy names should not be treated as automatic coefficient identities.
 
-**Glass selection rationale:** The design uses only five distinct glass types — a modest palette for an eight-element lens, and a practical manufacturing consideration. Three elements (L1, L2, L5) share the same glass (SK16), and two pairs share glass types (L4/L7 use SF6, L3 uses LaF21). This commonality reduces inventory complexity and cost.
+**Glass selection rationale:** The design uses only five distinct glass types — a modest palette for an eight-element lens, and a practical manufacturing consideration. Three elements (L1, L2, L5) share the same glass (SK16), and two pairs share glass types (L4/L7 use the `813252` high-index dense flint, L3 uses LaF21). This commonality reduces inventory complexity and cost.
 
-The glasses span a deliberate dispersion range. SK16 (νₑ ≈ 60) provides the low-dispersion crown needed for the front menisci and rear singlet. LaF21 (νₑ ≈ 47) is a high-index lanthanum glass that enables the strongly positive L3 element with manageable curvatures. SF6 (νₑ ≈ 25) is a classic dense flint used for the negative elements of the cemented doublets, providing the high dispersion required for achromatization. LaF10 in L6 and F2 in L8 provide intermediate dispersion values for the rear group's color correction.
+The glasses span a deliberate dispersion range. SK16 (νₑ ≈ 60) provides the low-dispersion crown needed for the front menisci and rear singlet. LaF21 (νₑ ≈ 47) is a high-index lanthanum glass that enables the strongly positive L3 element with manageable curvatures. The `813252` glass (νₑ ≈ 25) is a high-index dense flint used for the negative elements of the cemented doublets, providing the high dispersion required for achromatization. LaF10 in L6 and F2 in L8 provide intermediate dispersion values for the rear group's color correction.
 
 None of the glasses exhibit significant anomalous partial dispersion (ΔP_{g,F} < 0.009 for all five types). The design relies on classical achromatization through dispersion-contrast pairing of lanthanum flints with dense flints rather than the secondary spectrum correction that would become standard in later apochromatic Leica designs.
 
@@ -143,13 +143,13 @@ Both menisci use SK16, a dense barium crown with moderately high index (nₑ = 1
 | Element | R_front | R_rear | d | Glass | f |
 |---------|--------:|-------:|----:|-------|----:|
 | L3 | +60.10 | −91.20 | 30.72 | LaF21 | +50.2 |
-| L4 | −91.20 | −549.30 | 17.61 | SF6 | −137 |
+| L4 | −91.20 | −549.30 | 17.61 | 813252 | −137 |
 
 **Combined focal length:** f₂ ≈ +71.6 (patent: +71.4)
 
 This cemented doublet is the principal power element of the entire system. L3 is a thick biconvex element made of LaF21, a high-index lanthanum glass (nₑ = 1.792) that enables strong positive power with moderate surface curvatures — the front radius of +60.10 and rear radius of −91.20 yield comfortable fabrication tolerances. Its center thickness of 30.72 (at f = 100 scale; 8.6mm at production) is substantial, reflecting the need to control spherical aberration contributions from the large-aperture beam traversing this element.
 
-L4 is a negative meniscus of SF6 dense flint (nₑ = 1.813, νₑ = 25.24), cemented to L3. Despite both glasses being classified as flints, the substantial dispersion contrast (Δνₑ ≈ 22) between the moderate-dispersion lanthanum flint L3 and the high-dispersion dense flint L4 provides effective achromatization: L3's positive power with lower dispersion is partially compensated in chromatic terms by L4's negative power with higher dispersion, bringing two wavelengths to a common focus. The nearly flat exit surface (R = −549.30) minimizes the negative contribution of this surface to the Petzval sum while maintaining adequate negative power for color correction.
+L4 is a negative meniscus of the `813252` high-index dense flint (nₑ = 1.813, νₑ = 25.24), cemented to L3. Despite both glasses being classified as flints, the substantial dispersion contrast (Δνₑ ≈ 22) between the moderate-dispersion lanthanum flint L3 and the high-dispersion dense flint L4 provides effective achromatization: L3's positive power with lower dispersion is partially compensated in chromatic terms by L4's negative power with higher dispersion, bringing two wavelengths to a common focus. The nearly flat exit surface (R = −549.30) minimizes the negative contribution of this surface to the Petzval sum while maintaining adequate negative power for color correction.
 
 Together, Groups 1 and 2 form the complete front subsystem with a combined focal length of approximately +79.3 (from Fig. 6c). This positive combined power is required: the front subsystem must converge light toward the stop to establish the entrance pupil and enable reasonable aperture stop diameters.
 
@@ -171,16 +171,16 @@ This group is the most complex, comprising four elements in three subgroups: a s
 
 Despite being a meniscus with both surfaces concave toward the object, L5's thick-lens behavior yields a very weakly negative focal length. Its primary role is not power contribution but rather the control of spherical aberration and coma in the diverging beam immediately behind the stop. The SK16 glass (same as the front menisci) provides low dispersion, limiting chromatic contributions. This element acts as a field flattener and coma corrector, intercepting the beam at a height where off-axis rays are well separated from on-axis rays.
 
-**L6+L7 — Cemented Doublet (LaF10 + SF6, f ≈ +166):**
+**L6+L7 — Cemented Doublet (LaF10 + 813252, f ≈ +166):**
 
 | Element | R_front | R_rear | d | Glass | f |
 |---------|--------:|-------:|----:|-------|----:|
 | L6 | +3330.0 | −36.08 | 13.61 | LaF10 | +49.1 |
-| L7 | −36.08 | −100.50 | 6.00 | SF6 | −72.3 |
+| L7 | −36.08 | −100.50 | 6.00 | 813252 | −72.3 |
 
 L6 has a nearly flat front surface (R₁ = +3330 is effectively planar) and a strongly curved rear surface (R₂ = −36.08). The negative R₂ places the center of curvature to the left, meaning the rear surface is convex toward the image side. The element is therefore geometrically plano-convex (flat front, convex rear toward image), and optically strongly positive (f ≈ +49.1). This geometry places the refractive power at the cemented interface rather than at an air–glass surface, reducing surface reflection losses and ghosting — a practical consideration that Leica's own marketing literature highlighted as contributing to the lens's contrast and flare resistance.
 
-The LaF10/SF6 pairing mirrors the achromatization strategy of the front doublet (L3+L4), using the dispersion contrast between a moderate-dispersion lanthanum flint and a high-dispersion dense flint (Δνₑ ≈ 13) to provide local chromatic correction in the rear group. The combined focal length of +166 is weakly positive, meaning this doublet adds slight convergence to the beam while primarily serving a chromatic correction role.
+The LaF10/813252 pairing mirrors the achromatization strategy of the front doublet (L3+L4), using the dispersion contrast between a moderate-dispersion lanthanum flint and a high-dispersion dense flint (Δνₑ ≈ 13) to provide local chromatic correction in the rear group. The combined focal length of +166 is weakly positive, meaning this doublet adds slight convergence to the beam while primarily serving a chromatic correction role.
 
 **L8 — Final Negative Meniscus (F2, f ≈ −139):**
 
@@ -296,7 +296,7 @@ The progression reveals Mandler's design strategy: as the field angle increases,
 
 1. **All spherical** — no aspherical surfaces. Aberration control relies entirely on glass selection, element spacing, and the three-group quasi-retrofocus topology.
 
-2. **Five SCHOTT glasses** — SK16, LaF21, SF6, LaF10, and F2, all identified with zero or negligible residual against catalog nₑ/νₑ values. No anomalous partial dispersion glasses; purely classical achromatization.
+2. **Five glass classes** — SK16, LaF21, `813252` high-index dense flint, LaF10, and F2. No anomalous partial dispersion glasses; purely classical achromatization.
 
 3. **Unit focus** — the entire optical assembly translates for focusing to 0.30m close focus. No floating elements in the patent design (this was added in the 1994 successor).
 

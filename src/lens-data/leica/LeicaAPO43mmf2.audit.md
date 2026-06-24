@@ -59,3 +59,10 @@ Patent: US 2024/0241349 A1, Example 1
 ### Analysis sync
 
 - Updated the glass-selection table, element notes, and index-range summary.
+
+## 2026-06-24 - Folder audit recheck
+
+- Re-rendered local image-only patent `patents/US20240241349A1.pdf` and checked Example 1 / Table 1A on the rendered page.
+- Current glass assignments remain supported by the table rows and the previous May 2026 catalog audit. No code-only or unresolved Leica APO 43 glass remains in the generated missing-Sellmeier queues.
+- Rechecked APD/high-index status: FCD515 and M-FCD500 remain the APD contributors; TAFD40, S-LAH98, and S-NPH53/TAFD30 remain high-index or ultra-high-index assignments supported by their patent nd/vd values.
+- The patent defines numerical tables as radius, spacing, nd, vd, and aspheric coefficients only; no clear-aperture or semi-diameter table was found. Existing SDs remain ray/drawing estimates.

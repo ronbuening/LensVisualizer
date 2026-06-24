@@ -22,3 +22,10 @@ No new catalog entries were added. The issue is reference-line convention, not m
 ### Phase 4 - Analysis sync
 
 - Added an analysis note that the e-line Schott rows are resolver-unmatched solely to avoid applying d-line catalog constants.
+
+## 2026-06-24 - Folder audit recheck
+
+- Rechecked local `patents/US4123144.pdf` OCR for Example 8.
+- Retained the e-line-vs-d-line `Unmatched (...)` labels for SF10/SF11/SF2-class rows. This remains a reference-line protection issue, not a missing transcription.
+- Rechecked APD/high-index status: the patent gives no partial-dispersion data, so all elements remain non-APD. The high-index flint and lanthanum-flint roles remain supported by the patent e-line constants.
+- No patent clear-aperture or semi-diameter table was found. Current SDs remain estimates checked against the patent Fig. 2 proportions.

@@ -35,3 +35,9 @@ Patent: JP 2016-090725 A, Example 9
 - `npm run lint` — passed.
 - `npm run format:check` — passed.
 - `git diff --check` — passed.
+
+## 2026-06-24 — Folder audit recheck
+
+- Rechecked local `patents/JP2016090725A.pdf` OCR for Example 9 against the current data file, including the surface table, asphere-bearing rows, and cover-glass exclusion already documented in the analysis.
+- Retained all glass assignments. FCD100 remains the supported APD / super-ED element; NBFD15, TAFD35, S-BAL42, and the other catalog rows remain consistent with the patent nd/vd table.
+- No patent clear-aperture or semi-diameter table was found. Current SDs remain inferred from ray envelopes, field coverage, and drawing-safe element proportions.

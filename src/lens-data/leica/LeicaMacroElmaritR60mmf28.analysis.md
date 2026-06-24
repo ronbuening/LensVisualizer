@@ -61,7 +61,7 @@ The doublet's rear surface, $r_5$, is the tightest positive-radius surface in th
 
 ### L4 — Negative Meniscus, Concave to Object
 
-$n_e = 1.74070$, $\nu_e = 26.2$. Glass: unmatched dense flint, 741/262 e-line class. $f \approx -70.3$ mm.
+$n_e = 1.74070$, $\nu_e = 26.2$. Glass: explicit unmatched dense flint, 741/262 e-line class. $f \approx -70.3$ mm.
 
 L4 is the first element behind the stop. It is a strong negative meniscus with the highest-dispersion glass in the prescription. The front surface at $r_6$ has the largest single negative refractive power in the design, and the element contributes -0.615 to the Petzval sum.
 
@@ -94,7 +94,7 @@ The patent gives optical constants but does not name glass vendors. The column l
 | L1 | 1.74795 | 44.5 | LAF2 / S-LAM2 class | Strong e-line match | High-index front positive meniscus |
 | L2 | 1.69282 | 49.5 | Unmatched 693/495 e-line glass | Unresolved | Positive member of cemented negative doublet |
 | L3 | 1.67764 | 32.0 | E-FD5 / S-TIM25 class | Strong e-line match | Negative high-dispersion member of front doublet |
-| L4 | 1.74070 | 26.2 | Unmatched dense flint, 741/262 e-line class | Unresolved | Rear negative flint, field and color correction |
+| L4 | 1.74070 | 26.2 | Explicit unmatched dense flint, 741/262 e-line class | Unresolved | Rear negative flint, field and color correction |
 | L5 | 1.62287 | 60.1 | BACD16 / S-BSM16 class | Strong e-line match | Rear positive crown meniscus |
 | L6 | 1.61521 | 58.4 | BACD4 class | Strong e-line match | Final positive crown meniscus |
 
