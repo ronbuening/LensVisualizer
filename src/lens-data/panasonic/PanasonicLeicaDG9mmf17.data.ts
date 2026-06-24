@@ -151,7 +151,7 @@ const LENS_DATA = {
       nd: 1.58575,
       vd: 59.5,
       fl: 17.6,
-      glass: "586595 — barium crown (patent nd=1.58575, nu_d=59.5)",
+      glass: "P-SK57Q1 (Schott, 586595)",
       apd: false,
       role: "PGM double-aspheric; fine-tunes spherical aberration and field curvature before G2",
     },

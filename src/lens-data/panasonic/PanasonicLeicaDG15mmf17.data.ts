@@ -53,7 +53,8 @@ const LENS_DATA = {
       vd: 80.1,
       fl: -22.49,
       glass: "FPL51 class (499/801, OHARA family)",
-      apd: false,
+      apd: "inferred",
+      apdNote: "ED fluorophosphate/FPL51-family glass; patent lists nd/vd only.",
       role: "Negative field lens at front of retrofocus assembly; ED-class low-dispersion crown minimizes chromatic load",
     },
     {

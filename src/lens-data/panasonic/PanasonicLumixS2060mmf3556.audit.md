@@ -43,3 +43,22 @@ The solve treats the patent's published direction as authoritative and estimates
 - Updated surface 6 to a code-only `859300` annotation because no exact public coefficient-backed catalog match was found.
 - Updated surface 8 to `J-LASF021 (Hikari)`, surface 11A to `K-VC89 (Sumita)`, and surface 15 to `NBFD15 (HOYA)`.
 - Remaining incomplete Sellmeier coverage is from the code-only 859300 row and unrelated `L-PHL1` / `S-NPH7` no-catalog rows.
+
+## 2026-06-24 - Systematic patent-table audit
+
+### Patent evidence
+
+- Re-extracted `patents/JP2021179551A.pdf` and rechecked Numerical Example 2 / Tables 4, 5, and 6A-6D.
+- The current radii, thicknesses, zoom variables, aspheres, and infinity focus table match the patent-derived data.
+- The patent does not publish semi-diameters or effective diameters.
+
+### Updates
+
+| Area | Disposition |
+|---|---|
+| Data prescription | No numeric prescription changes. |
+| Glass labels | Retained the data labels from the May relabel pass: L4 stays unresolved `859300`, L5 is `J-LASF021 (Hikari)`, L6 is `K-VC89 (Sumita)`, L8 is `NBFD15 (HOYA)`. |
+| APD | FCD515 and both S-FPL51 rows remain catalog-inferred APD; the patent lists nd/vd only for those rows. |
+| High-index status | L2 remains a high-index variator lead and L11 remains the UHR rear field-flattener. |
+| SDs | Kept existing ray-trace-derived SDs because the patent table has no clear-aperture column. |
+| Analysis | Synced stale S-TIH14 / S-TIH10 / S-LAH63Q analysis text to the current 859300 / J-LASF021 / K-VC89 labels. |

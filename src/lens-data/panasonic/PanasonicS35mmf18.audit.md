@@ -41,3 +41,26 @@ Patent: CN 216772097 U, Example 1
 ### Remaining disposition
 
 - The `516565` PGM rows remain code-backed unresolved glasses because no exact public coefficient-backed match was found.
+
+## 2026-06-24 - Systematic patent-table audit
+
+### Patent evidence
+
+- Re-rendered `patents/CN216772097U.pdf` pages containing the Example 1 optical table because text extraction does not expose those rows reliably.
+- Verified the powered surface table, dummy planes, cover glass, and variable focus spacings against the data file:
+  - `d1`: 1.8000 / 2.5230 / 8.7213 mm.
+  - `d2`: 7.8560 / 7.1330 / 0.9347 mm.
+  - The utility-model table does not publish semi-diameters or effective diameters.
+
+### Updates
+
+| Area | Before | After | Disposition |
+|---|---|---|---|
+| L12, L14 APD | `apd: false` | `apd: "inferred"` | S-FPL51/FCD1 ED fluorophosphate class; patent lists nd/vd only. |
+| L16 glass/APD | ED phosphate code label, `apd: false` | `FCD515 (Hoya)`, `apd: "inferred"` | Code 593686 matches FCD515; APD is catalog-inferred, not patent-published. |
+| Analysis labels | Older H-ZF13 / H-LAK53A / S-LAH55 wording | S-TIM28 / S-LAL18 / NBFD15 wording | Synced analysis to the already-updated data labels. |
+
+### Retained decisions
+
+- L18, L21, and L31 remain `516565` PGM moldable crown annotations; no exact public coefficient-backed match was found.
+- Existing estimated SDs remain in place because the patent lacks clear-aperture data. The current proportions remain rational for the drawing: large front collector, smaller post-stop focus group, and modest rear-field group.

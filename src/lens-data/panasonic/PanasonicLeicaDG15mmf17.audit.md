@@ -32,3 +32,20 @@ Patent: US 2015/0268449 A1, Numerical Example 2
 
 - `npm run generate:glass-reports` — passed; lens cleared from both glass mismatch queues.
 - `npm run typecheck`, `npm run format:check`, `npm run lint`, and `npm run test` — passed.
+
+## 2026-06-24 - Systematic patent-table audit
+
+### Patent evidence
+
+- Rendered `patents/US_2015268449_A1.pdf` pages containing Numerical Example 2 / Tables 6-10 because the OCR text is incomplete.
+- Confirmed the prescription, focus variables, aspherical coefficients, and element focal-length table against the current data file.
+- The patent table does not publish semi-diameters or effective diameters.
+
+### Updates
+
+| Area | Before | After | Disposition |
+|---|---|---|---|
+| L1 APD | `apd: false` | `apd: "inferred"` | FPL51-family ED fluorophosphate row; patent lists nd/vd only. |
+| Glass labels | May code-backed relabels | unchanged | L2-L7 remain patent-code labels where public catalog candidates are not unique enough. |
+| High-index status | L5 ultra-high-index role | unchanged | Patent nd = 1.91597 supports the UHR/Petzval-controller note. |
+| SDs | ray-trace-derived estimates | unchanged | No patent clear-aperture column; current front/rear proportions remain visually plausible. |

@@ -59,9 +59,9 @@ L2 is the first and most strongly curved element in the variator group, entering
 
 **L3 — Biconcave Negative (L2b).** nd = 1.59283, νd = 68.6. Glass: FCD515 (HOYA) — fluorophosphate crown, ED class (dPgF ≈ +0.019). f = −21.7 mm.
 
-**L4 — Biconvex Positive (L2c).** nd = 1.85883, νd = 30.0. Glass: S-TIH14 (OHARA) — dense titanium flint. f = +14.9 mm.
+**L4 — Biconvex Positive (L2c).** nd = 1.85883, νd = 30.0. Glass: 859300 high-index flint; no exact public coefficient-backed catalog match. f = +14.9 mm.
 
-The L3+L4 cemented doublet is the chromatic corrector within the variator group. L3's ED glass (νd = 68.6, satisfying the preferred condition (1b): νL2b > 67) paired with L4's high-dispersion flint (νd = 30.0) provides strong achromatization of the beam passing through G2. The Abbe number difference Δν = 38.6 is substantial, enabling effective correction of both axial and lateral chromatic aberration across the zoom range.
+The L3+L4 cemented doublet is the chromatic corrector within the variator group. L3's ED glass (νd = 68.6, satisfying the preferred condition (1b): νL2b > 67) paired with L4's high-dispersion 859300 flint (νd = 30.0) provides strong achromatization of the beam passing through G2. The Abbe number difference Δν = 38.6 is substantial, enabling effective correction of both axial and lateral chromatic aberration across the zoom range.
 
 The cemented interface at R = +17.40 mm carries the abrupt index step from 1.59283 to 1.85883 (Δn = +0.266), producing convergent power at the junction. This positive power partially offsets L3's strong negative front-surface contribution and fine-tunes the chromatic balance between the low-dispersion crown (L3) and high-dispersion flint (L4). The doublet's combined power is negative, contributing to G2's overall variator function.
 
@@ -69,15 +69,15 @@ The identification of L3 as FCD515 (HOYA) rather than an OHARA equivalent is inf
 
 ### L5 — Biconcave Negative (G2, L2d)
 
-nd = 1.85000, νd = 32.4. Glass: S-TIH10 (OHARA) — dense titanium flint. f = −32.2 mm.
+nd = 1.85000, νd = 32.4. Glass: J-LASF021 (Hikari) — dense flint. f = −32.2 mm.
 
 L5 closes the variator group as the trailing negative element (R1 = −31.69, R2 = +204.40 mm). The patent notes (¶0077–0078) that placing a negative element at the rear of G2 enables smaller lens size and reduces the angle of incidence on L5, thereby suppressing field curvature. The relatively long rear radius (R2 = +204.4 mm, nearly plano) means most of L5's power comes from the front surface, which faces the air gap after L4 — a configuration that moderates spherical aberration at the wide end. The choice of dense flint (nd = 1.85) allows this correction without excessive thickness.
 
 ### L6 — Positive Meniscus, Convex to Object, Both Surfaces Aspherical (G3, L3a)
 
-nd = 1.80998, νd = 40.9. Glass: S-LAH63Q (OHARA) — precision-glass-moldable (PGM) lanthanum crown. f = +30.1 mm.
+nd = 1.80998, νd = 40.9. Glass: K-VC89 (Sumita) — PGM-grade lanthanum crown. f = +30.1 mm.
 
-L6 is the first element after the aperture stop and carries the highest positive power in G3. Both surfaces are aspherical (surfaces 11* and 12*), making it the primary monochromatic aberration corrector in the relay group. The "Q" suffix in S-LAH63Q designates a glass grade specifically formulated for precision glass molding — consistent with the double-aspheric requirement, as conventional polishing of two aspheric surfaces per element is prohibitively expensive at this price point.
+L6 is the first element after the aperture stop and carries the highest positive power in G3. Both surfaces are aspherical (surfaces 11* and 12*), making it the primary monochromatic aberration corrector in the relay group. K-VC89 provides a catalog-backed Sumita match for the patent nd/νd tuple and is consistent with the double-aspheric, molded-element role at this position.
 
 The meniscus form (R1 = +18.32, R2 = +67.33 mm, both convex to object) positions L6's power contribution predominantly at the front surface, where the beam is most collimated after passing through the stop. The aspherical coefficients on surface 11 show a small positive A4 term (+2.38×10⁻⁶), introducing slight additional convergence at the rim, combined with a negative A6 term (−2.09×10⁻⁷) that progressively flattens the outer zone — a classic spherical-aberration correction signature. Surface 12's aspherical profile (A4 = +3.89×10⁻⁵) provides complementary coma and astigmatism control.
 
@@ -132,9 +132,9 @@ The glass palette for Example 2 draws predominantly from OHARA's catalog, with o
 | L1 | 1.58913 | 61.3 | S-BAL35 | OHARA | Front collector, barium crown |
 | L2 | 1.90366 | 31.3 | S-LAH93 | OHARA | Variator, high-index lanthanum flint |
 | L3 | 1.59283 | 68.6 | FCD515 | HOYA | ED crown (dPgF ≈ +0.019), variator achromat |
-| L4 | 1.85883 | 30.0 | S-TIH14 | OHARA | Variator achromat partner, dense flint |
-| L5 | 1.85000 | 32.4 | S-TIH10 | OHARA | Trailing negative, dense flint |
-| L6 | 1.80998 | 40.9 | S-LAH63Q | OHARA | PGM, double-aspheric relay element |
+| L4 | 1.85883 | 30.0 | 859300 | unresolved | Variator achromat partner, dense high-index flint |
+| L5 | 1.85000 | 32.4 | J-LASF021 | Hikari | Trailing negative, dense flint |
+| L6 | 1.80998 | 40.9 | K-VC89 | Sumita | PGM, double-aspheric relay element |
 | L7 | 1.49700 | 81.6 | S-FPL51 | OHARA | ED crown, relay positive (1st) |
 | L8 | 1.80610 | 33.3 | S-TIH4 | OHARA | Relay achromat partner, dense flint |
 | L9 | 1.49700 | 81.6 | S-FPL51 | OHARA | ED crown, relay positive (2nd) |
@@ -143,7 +143,7 @@ The glass palette for Example 2 draws predominantly from OHARA's catalog, with o
 
 **Chromatic strategy.** The design uses two distinct achromatic doublet pairs — one in G2 (L3+L4) and one in G3 (L8+L9) — augmented by the standalone ED biconvex L7 in G3. The G2 doublet corrects chromatic aberration in the variator, where the beam divergence is large and wavelength-dependent, while the G3 doublet and L7 handle chromatic correction in the relay group, where beam convergence toward the image is strongest. The use of three ED elements (all with νd > 68) is unusual in a lens at this price point and reflects the wide-angle demands of the 20 mm starting focal length.
 
-**Moldable glass usage.** Two elements (L6, L10) use precision-glass-moldable grades (S-LAH63Q and L-PHL1 respectively), enabling cost-effective production of the four aspherical surfaces. Both grades have glass transition temperatures (Tg) suitable for high-volume molding, which is essential for a lens positioned as an affordable kit zoom.
+**Moldable glass usage.** Two elements (L6, L10) use precision-glass-moldable grades (K-VC89 and L-PHL1 respectively), enabling cost-effective production of the four aspherical surfaces. Both grades have glass transition temperatures (Tg) suitable for high-volume molding, which is essential for a lens positioned as an affordable kit zoom.
 
 ## Focus Mechanism
 
@@ -226,7 +226,7 @@ The larger A4 coefficient (roughly 16× that of surface 11) indicates more aggre
 | A12 | −8.75404 × 10⁻¹² |
 | A14 | +6.41106 × 10⁻¹⁴ |
 
-The A4 coefficients on surfaces 18 and 19 (≈ 2.4 × 10⁻⁴) are roughly 100× larger than surface 11's A4 (2.4 × 10⁻⁶), and approximately 6× larger than surface 12's A4 (3.9 × 10⁻⁵), indicating substantially more aggressive aspherical departure. This is consistent with L10's dual role as both the focus element and the primary astigmatism / field-curvature corrector for the system. Because L10 moves during focus, the aspherical profiles must maintain good correction across its full range of axial positions — a demanding requirement that necessitates the higher-order terms (A10, A12, A14) seen in the coefficients. Both the L6 and L10 aspherics are inferred to be precision glass molded (PGM), based on their glass types (S-LAH63Q and L-PHL1, both OHARA PGM grades).
+The A4 coefficients on surfaces 18 and 19 (≈ 2.4 × 10⁻⁴) are roughly 100× larger than surface 11's A4 (2.4 × 10⁻⁶), and approximately 6× larger than surface 12's A4 (3.9 × 10⁻⁵), indicating substantially more aggressive aspherical departure. This is consistent with L10's dual role as both the focus element and the primary astigmatism / field-curvature corrector for the system. Because L10 moves during focus, the aspherical profiles must maintain good correction across its full range of axial positions — a demanding requirement that necessitates the higher-order terms (A10, A12, A14) seen in the coefficients. Both the L6 and L10 aspherics are inferred to be precision glass molded (PGM), based on their glass types (K-VC89 and L-PHL1).
 
 ## Conditional Expressions
 
@@ -257,6 +257,6 @@ The lens remains in production and is commonly bundled as a kit lens with the LU
 - JP 2021-179551 A (published 18 November 2021). Full prescription data, embodiment descriptions, and conditional expressions.
 - Panasonic LUMIX product page (panasonic.com): production specifications, element count, special element designations.
 - Panasonic blog, "S Series Lenses — Chapter 7: S 20–60mm F3.5–5.6" (shop.panasonic.com/blogs/lumix): design philosophy, group layout, video performance goals.
-- OHARA Optical Glass Catalog (May 2023 edition): glass identification for S-BAL35, S-LAH93, S-TIH14, S-TIH10, S-LAH63Q, S-FPL51, S-TIH4, L-PHL1, S-NPH7.
+- OHARA, HOYA, Hikari, and Sumita optical glass catalog data: glass identification for S-BAL35, S-LAH93, FCD515, J-LASF021, K-VC89, S-FPL51, S-TIH4, NBFD15, L-PHL1, S-NPH7, and unresolved code-only 859300.
 - HOYA Optical Glass data (refractiveindex.info): FCD515 identification (nd = 1.59282, νd = 68.63, dPgF = +0.0194).
 - HOYA news releases (hoya-opticalworld.com): TAFD25 cross-reference (nd = 1.90366, νd = 31.32) confirming S-LAH93 equivalence.
