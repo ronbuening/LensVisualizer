@@ -31,3 +31,30 @@ Patent: CN205720849U / WO2017177665A1, Example 2
 ### Analysis sync
 
 - Updated the L1, L5, L12, and L16 narratives plus the glass-selection table.
+
+## 2026-06-24 - Full local patent audit
+
+### Phase 1 - Glass, APD, and high-index status
+
+- Reopened local `patents/CN205720849U.pdf`; the PDF has no usable text layer, so the Example 2 prescription pages were rendered and checked visually.
+- Reconfirmed the previously audited glass rows: L1 / `749547`, L5 / `835447`, and L12 / `904293` remain unresolved code-label rows, while L16 remains the catalog-backed CDGM `D-ZLAF81-25` match for `808410`.
+- No APD or high-index metadata changes were made in this pass. The 1.49700 / 81.61 ED-class rows already remain explicitly marked as inferred from the index/Abbe class, with no patent partial-dispersion support.
+
+### Phase 2 - Prescription and SD check
+
+- Checked Example 2 at f = 12.5 mm, Fno = 2.87, half-field = 60.1 deg. Stored radii, thicknesses, nd/vd rows, aspheres 3/4/26/27, and the published variable gaps D4, D12, and LB match the patent table.
+- The patent does not publish semi-diameters or effective diameters. The existing SDs remain renderer estimates, not patent-listed clear apertures.
+- The SD envelope was checked against the rendered patent drawing and prescription geometry: the large front negative group, tight stop, and reopening rear field-corrector group are consistent with the figure and avoid irrational proportions or cross-gap overlap in the viewer. No SD values were changed.
+
+### Phase 3 - Spectral / metadata enrichment
+
+- The patent publishes only nd and vd for the glass rows. No nC, nF, ng, PgF, theta_gF, dPgF, or Sellmeier coefficient source was found in the local patent, so no spectral constants were added.
+
+### Phase 4 - Analysis sync
+
+- No analysis text changes were required for this pass.
+
+### Verification
+
+- `npm run generate:glass-reports` - passed.
+- `npm run typecheck`, `npm run format:check`, `npm run lint`, `npm run test`, and `npm run build` - passed.

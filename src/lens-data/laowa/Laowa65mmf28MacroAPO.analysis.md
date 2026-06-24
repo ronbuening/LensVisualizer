@@ -74,11 +74,11 @@ G2 is the optical powerhouse of the design: seven elements in five sub-groups, c
 
 #### L3 — Biconvex Positive
 
-$n_d = 1.77250$, $\nu_d = 53.00$. Glass: LAK class (CDGM), uncertain — no exact catalog match at this $(n_d, \nu_d)$. $f = +52.3$ mm.
+$n_d = 1.77250$, $\nu_d = 53.00$. Glass: **773530 — high-index lanthanum crown**, uncertain — no exact public catalog match at this $(n_d, \nu_d)$. $f = +52.3$ mm.
 
 L3 is the leading element of the focusing group. Its strongly curved front surface (R = +45.53) provides the first substantial positive power the incoming beam encounters. The rear surface (R = −348.93) is nearly flat, making L3 a quasi-plano-convex element. The high refractive index ($n_d = 1.773$) keeps the surface curvatures moderate for the required power, reducing higher-order spherical aberration.
 
-This glass has an unusual Abbe number for its refractive index — $\nu_d = 53.0$ is notably higher than the standard CDGM H-LAK51 catalog entry ($\nu_d \approx 49.6$ at the same $n_d$). The six-digit code 773/530 does not correspond to any widely published CDGM, Schott, OHARA, or Hoya catalog entry. This may represent a proprietary melt, a less-commonly-published CDGM grade, or an idealized value in the patent text. The elevated Abbe number reduces the chromatic contribution of this powerful positive element, which is beneficial for the apochromatic correction strategy.
+This glass has an unusual Abbe number for its refractive index — $\nu_d = 53.0$ is notably higher than the standard CDGM H-LAK51 catalog entry ($\nu_d \approx 49.6$ at the same $n_d$). The six-digit code 773530 does not correspond to any widely published CDGM, Schott, OHARA, or Hoya catalog entry. This may represent a proprietary melt, a less-commonly-published CDGM grade, or an idealized value in the patent text. The elevated Abbe number reduces the chromatic contribution of this powerful positive element, which is beneficial for the apochromatic correction strategy.
 
 #### L4 — Positive Meniscus, convex to object (ED)
 
@@ -136,11 +136,11 @@ G3 is a five-element group with net negative power ($f_{G3} = -101.6$ mm). It ac
 
 #### L10 — Negative Meniscus, convex to object
 
-$n_d = 1.72916$, $\nu_d = 57.67$. Glass: LAK class (uncertain — possibly a proprietary CDGM grade). $f = -27.6$ mm.
+$n_d = 1.72916$, $\nu_d = 57.67$. Glass: **729577 — high-index lanthanum crown**, uncertain — possibly a proprietary CDGM grade. $f = -27.6$ mm.
 
 L10 is a meniscus with both surfaces convex to the object (R1 = +70.70, R2 = +15.60), the rear being far more steeply curved, giving strong negative power. It is the first element the beam encounters after crossing the variable gap from the stop.
 
-The glass code $(729/577)$ does not correspond precisely to any widely published CDGM catalog entry. H-LAK52 has $n_d = 1.72916$ but $\nu_d = 54.68$ — matching the refractive index exactly but not the dispersion ($\Delta\nu_d = +3.0$). Example 1 uses $\nu_d = 57.00$ at the equivalent position, further suggesting this Abbe number is a deliberate design parameter rather than a catalog standard. This may be a proprietary CDGM melt or a less-commonly-published catalog grade. The high index with moderate-to-low dispersion places it in the lanthanum crown family.
+The glass code 729577 does not correspond precisely to any widely published CDGM catalog entry. H-LAK52 has $n_d = 1.72916$ but $\nu_d = 54.68$ — matching the refractive index exactly but not the dispersion ($\Delta\nu_d = +3.0$). Example 1 uses $\nu_d = 57.00$ at the equivalent position, further suggesting this Abbe number is a deliberate design parameter rather than a catalog standard. This may be a proprietary CDGM melt or a less-commonly-published catalog grade. The high index with moderate-to-low dispersion places it in the lanthanum crown family.
 
 L10's strong negative power diverges the beam exiting the stop. This is essential for two reasons: it increases the back focal distance (allowing the rear element to clear the mirrorless camera mount), and it provides negative Petzval contribution to flatten the field.
 
@@ -186,20 +186,20 @@ The following table summarizes the glass palette. Laowa, being a Chinese manufac
 |---------|-------|---------|-----------------|------------|-------|------------|
 | L1 | 1.61800 | 63.39 | S-PHM52 | OHARA | Phosphate crown | High |
 | L2 | 1.60342 | 38.01 | H-QF50 | — | Light flint | High |
-| L3 | 1.77250 | 53.00 | Unmatched (LAK class) | — | Lanthanum crown | Uncertain |
+| L3 | 1.77250 | 53.00 | 773530 — high-index lanthanum crown | — | Lanthanum crown | Uncertain |
 | L4 | 1.49700 | 81.61 | H-FK61 | S-FPL51 / FCD1 | ED fluorophosphate crown | High |
 | L5 | 1.80518 | 25.46 | H-ZF7LA | CDGM | Dense flint | High |
 | L6 | 1.92286 | 20.88 | H-ZF72A | N-SF66 / S-NPH2 | Super-dense flint | High |
 | L7 | 1.80420 | 46.50 | H-ZLAF50D | CDGM | Lanthanum dense flint | High |
 | L8 | 1.49700 | 81.61 | H-FK61 | S-FPL51 / FCD1 | ED fluorophosphate crown | High |
 | L9 | 1.92286 | 20.88 | H-ZF72A | N-SF66 / S-NPH2 | Super-dense flint | High |
-| L10 | 1.72916 | 57.67 | Unmatched (LAK class) | — | Lanthanum crown | Uncertain ($\Delta\nu_d = +3.0$ vs H-LAK52) |
+| L10 | 1.72916 | 57.67 | 729577 — high-index lanthanum crown | — | Lanthanum crown | Uncertain ($\Delta\nu_d = +3.0$ vs H-LAK52) |
 | L11 | 1.76182 | 26.61 | S-TIH14 | OHARA | Dense flint | High |
 | L12 | 1.90366 | 31.31 | S-LAH95 / TAFD25 class | 904313 class | Lanthanum dense flint | High |
 | L13 | 1.49700 | 81.61 | H-FK61 | S-FPL51 / FCD1 | ED fluorophosphate crown | High |
 | L14 | 1.51823 | 58.96 | H-K8 | ≈ K7 | Crown | High |
 
-**Notes on uncertain identifications.** L3 and L10 have $(n_d, \nu_d)$ combinations that do not precisely match any widely published CDGM catalog entry. For L3 ($n_d = 1.77250$, $\nu_d = 53.00$), the nearest CDGM glass is H-LAK51 at $\nu_d \approx 49.6$ — a discrepancy of +3.4 in Abbe number. For L10 ($n_d = 1.72916$, $\nu_d = 57.67$), H-LAK52 matches the refractive index exactly but has $\nu_d = 54.68$ — a discrepancy of +3.0. Both offsets are too large for confident identification. These may be proprietary melts, less-commonly-published CDGM grades, or idealized values in the patent text. In both cases the Abbe numbers are higher (lower dispersion) than the nearest standard catalog glasses at the same index, which would slightly favor the chromatic correction.
+**Notes on uncertain identifications.** L3 and L10 have $(n_d, \nu_d)$ combinations that do not precisely match any widely published CDGM catalog entry. For L3 ($n_d = 1.77250$, $\nu_d = 53.00$), the nearest CDGM glass is H-LAK51 at $\nu_d \approx 49.6$ — a discrepancy of +3.4 in Abbe number. For L10 ($n_d = 1.72916$, $\nu_d = 57.67$), H-LAK52 matches the refractive index exactly but has $\nu_d = 54.68$ — a discrepancy of +3.0. Both offsets are too large for confident identification, so the data file preserves them as explicit six-digit patent-code rows for future catalog auto-upgrade instead of resolving them to H-LAK51/H-LAK52. These may be proprietary melts, less-commonly-published CDGM grades, or idealized values in the patent text. In both cases the Abbe numbers are higher (lower dispersion) than the nearest standard catalog glasses at the same index, which would slightly favor the chromatic correction.
 
 ---
 
