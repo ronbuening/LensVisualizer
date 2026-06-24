@@ -159,6 +159,9 @@ const LENS_DATA = {
       vd: 63.3,
       fl: 75.6,
       glass: "S-PHM52 (OHARA)",
+      apd: "inferred",
+      apdNote:
+        "S-PHM52 phosphate crown has positive anomalous partial dispersion; patent gives nd/vd only, so APD is inferred from the catalog glass class.",
       role: "Low-dispersion positive — satisfies cond. (5) νd > 60 for G2 achromatization",
     },
     {
@@ -170,6 +173,9 @@ const LENS_DATA = {
       vd: 81.5,
       fl: 73.0,
       glass: "S-FPL51 (OHARA)",
+      apd: "inferred",
+      apdNote:
+        "ED fluorophosphate crown; anomalous positive partial dispersion is inferred from the catalog glass class and its chromatic-correction role.",
       role: "ED element — final chromatic correction and field flattening; satisfies cond. (5)",
     },
   ],

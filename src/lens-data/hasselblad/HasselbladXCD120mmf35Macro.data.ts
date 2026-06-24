@@ -67,7 +67,9 @@ const LENS_DATA = {
       vd: 74.7,
       fl: 52.6,
       glass: "S-FPM3 (OHARA)",
-      apd: false,
+      apd: "inferred",
+      apdNote:
+        "ED fluorophosphate crown; anomalous positive partial dispersion is inferred from the S-FPM3 glass class and its chromatic-correction role.",
       role: "ED fluorophosphate crown; primary chromatic corrector in moving G2",
       cemented: "B1",
     },

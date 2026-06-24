@@ -64,3 +64,11 @@ Patent: US 6,445,511 B1, Embodiment 3 / Table 3
 - `npm run format:check` - passed.
 - `npm run lint` - passed.
 - `npm run test` - passed, 131 test files / 1666 tests.
+
+## 2026-06-24 - APD, high-index, and SD audit
+
+- Rechecked `patents/US6445511.pdf`, Embodiment 3 / Table 3 and Figure 1, against the current data file.
+- Confirmed L2 `S-FPL51 (OHARA) / FCD1 (HOYA)` is already marked as inferred APD, and no additional patent line-index data is available for a `patent` APD upgrade.
+- Confirmed the high-index elements remain L5, L6, L8, and L9 (nd >= 1.8), all ordinary high-index correction glasses rather than APD elements.
+- Rendered and reviewed the patent drawing. The stored SDs match the long telephoto proportions: dominant fixed front group, compact moving G2 doublet, and smaller rear relay group. No SD edits were made.
+- Verification: `npm run generate:glass-reports`, `npm run typecheck`, `npm run format:check`, `npm run lint`, `npm run test`, and `git diff --check` passed.

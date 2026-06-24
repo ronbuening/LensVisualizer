@@ -67,3 +67,11 @@ Patent: US 2006/0209426 A1, Example 1
 - `npm run format:check` - passed.
 - `npm run lint` - passed.
 - `npm run test` - passed, 131 test files / 1666 tests.
+
+## 2026-06-24 - APD, high-index, and SD audit
+
+- Rechecked `patents/US20060209426A1.pdf`, Example 1 / Figure 1, against the current data file.
+- Confirmed the APD metadata is already appropriate: G13 `S-FPL53` is patent-backed APD with dPgF = +0.0459, and G22 `S-LAM2` remains inferred mild negative APD.
+- Confirmed the high-index elements remain G12/G33 `NBFD15` and G21/G32 `S-TIH6` (nd >= 1.8). These are high-index correction glasses, not additional APD elements.
+- Rendered and reviewed the patent drawing. The SD profile matches the patent telephoto proportions: large G1, very compact translating G2, and smaller rear correction group. No SD edits were made.
+- Verification: `npm run generate:glass-reports`, `npm run typecheck`, `npm run format:check`, `npm run lint`, `npm run test`, and `git diff --check` passed.

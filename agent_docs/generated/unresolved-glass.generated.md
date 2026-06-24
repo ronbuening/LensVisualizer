@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **366** lenses scanned
 - **4124** non-air surfaces examined
 - **4128** element glass declarations examined
-- **591** non-explicit-unmatched annotations did not resolve
-- **261** distinct unresolved glass-like tokens found
+- **592** non-explicit-unmatched annotations did not resolve
+- **265** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -111,6 +111,7 @@ or per-lens patent backfills.
 | 630346 | 1 | 1 | |
 | 639449 | 1 | 1 | |
 | 639451 | 1 | 1 | |
+| 640346 | 1 | 1 | |
 | 640353 | 1 | 1 | |
 | 640601 | 1 | 1 | |
 | 658397 | 1 | 1 | |
@@ -136,6 +137,7 @@ or per-lens patent backfills.
 | 720421 | 1 | 1 | |
 | 720504 | 1 | 1 | |
 | 721334 | 1 | 1 | |
+| 729577 | 1 | 1 | |
 | 730322 | 1 | 1 | |
 | 738493 | 1 | 1 | |
 | 744447 | 1 | 1 | |
@@ -160,6 +162,7 @@ or per-lens patent backfills.
 | 773497 | 1 | 1 | |
 | 773498 | 1 | 1 | |
 | 773501 | 1 | 1 | |
+| 773530 | 1 | 1 | |
 | 774494 | 1 | 1 | |
 | 775473 | 1 | 1 | |
 | 777297 | 1 | 1 | |
@@ -217,6 +220,7 @@ or per-lens patent backfills.
 | H-LAF6L | 1 | 1 | |
 | H-LAF72 | 1 | 1 | |
 | H-LAK3 | 1 | 1 | |
+| H-LAK52 | 1 | 1 | |
 | H-LAK53A | 1 | 1 | |
 | H-LAK5A | 1 | 1 | |
 | H-LAK7 | 1 | 1 | |
@@ -727,6 +731,10 @@ or per-lens patent backfills.
 
 - [VIVITAR SERIES 1 35-85mm f/2.8 VMC](../../src/lens-data/vivitar/VivitarSeries13585mmf28.data.ts) 18: `639451 — BaSF52-type barium dense flint (no exact public catalog match)`
 
+### 640346 — 1 occurrence
+
+- [LEICA ELMARIT 90mm f/2.8](../../src/lens-data/leica/LeicaElmarit90mmf28.data.ts) 4: `640346 - F-family flint (patent nd=1.63980, vd=34.6; no exact public catalog match)`
+
 ### 640353 — 1 occurrence
 
 - [MINOLTA MD ROKKOR 45mm f/2](../../src/lens-data/minolta/MinoltaRokkor45mmf2MD.data.ts) 7: `640353 - medium flint (catalog unresolved)`
@@ -827,6 +835,10 @@ or per-lens patent backfills.
 
 - [MINOLTA AF APO Tele 200mm f/2.8](../../src/lens-data/minolta/MinoltaAF200mmf28.data.ts) 7: `721334 - dense lanthanum flint (catalog unresolved)`
 
+### 729577 — 1 occurrence
+
+- [LAOWA 65mm f/2.8 2× Ultra Macro APO](../../src/lens-data/laowa/Laowa65mmf28MacroAPO.data.ts) 16: `729577 — high-index lanthanum crown (patent nd=1.72916, νd=57.67; H-LAK52 matches nd but not νd)`
+
 ### 730322 — 1 occurrence
 
 - [FUJIFILM FUJINON XF 23mm f/2.8 R WR](../../src/lens-data/fujifilm/FujifilmXF23mmf28RWR.data.ts) 6: `730322 - NBFD32 (HOYA dense barium flint; no Sellmeier catalog entry)`
@@ -922,6 +934,10 @@ or per-lens patent backfills.
 ### 773501 — 1 occurrence
 
 - [MINOLTA AF 28mm f/2](../../src/lens-data/minolta/MinoltaAF28mmf2.data.ts) 13: `773501 - lanthanum flint (catalog unresolved)`
+
+### 773530 — 1 occurrence
+
+- [LAOWA 65mm f/2.8 2× Ultra Macro APO](../../src/lens-data/laowa/Laowa65mmf28MacroAPO.data.ts) 4: `773530 — high-index lanthanum crown (patent nd=1.77250, νd=53.00; no exact public catalog match)`
 
 ### 774494 — 1 occurrence
 
@@ -1150,6 +1166,10 @@ or per-lens patent backfills.
 ### H-LAK3 — 1 occurrence
 
 - [NIKON NIKKOR Z 35mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 1: `LaK family (640601, CDGM H-LAK3)`
+
+### H-LAK52 — 1 occurrence
+
+- [LAOWA 65mm f/2.8 2× Ultra Macro APO](../../src/lens-data/laowa/Laowa65mmf28MacroAPO.data.ts) 16: `729577 — high-index lanthanum crown (patent nd=1.72916, νd=57.67; H-LAK52 matches nd but not νd)`
 
 ### H-LAK53A — 1 occurrence
 

@@ -52,3 +52,12 @@ Patent: JP 2022-99402 A, Example 1
 ### Remaining disposition
 
 - The private/code-only rows `770297` and `911352` were unresolved in this May follow-up, then resolved in the 2026-06-04 source pass as HOYA NBFD29 and HOYA TAFD35.
+
+## 2026-06-24 - APD, high-index, and SD audit
+
+- Rechecked `patents/JP2022099402A.pdf`, Numerical Example 1 / Figure 1 and Table 1A, against the current data file.
+- Confirmed L2 `S-FPL51` remains the only inferred APD element. L3/L4 `NBFD29` use the patent-published PgF = 0.5951 for the matching glass row, which is near the Schott normal line and is not marked APD.
+- Added the same near-normal PgF note to L4 that L3 already carried, since L4 uses the same nd/vd glass family.
+- Confirmed the high-index elements remain L5 `S-NPH5`, L6 `TAFD35`, and L8 `S-TIH53` (nd >= 1.8). L9 `L-BBH1` remains a low-Tg molded-asphere glass disposition rather than an APD/high-index row.
+- Rendered and reviewed the patent drawing. The current SDs match the compact first group, tiny focus doublet, larger rear relay, and large molded rear aspheric proportions. No SD edits were made.
+- Verification: `npm run generate:glass-reports`, `npm run typecheck`, `npm run format:check`, `npm run lint`, `npm run test`, and `git diff --check` passed.

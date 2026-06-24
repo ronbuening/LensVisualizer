@@ -10,9 +10,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **366** lenses scanned
-- **321** total code-only elements found
-- **231** elements in this report
-- **91** distinct lens files affected
+- **323** total code-only elements found
+- **233** elements in this report
+- **93** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -49,7 +49,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 796409 | 2 | 1 | patents/US4699475.pdf | All representative rows reviewed |
 | 797454 | 2 | 2 | patents/US5557473.pdf<br>patents/US5528428.pdf | All representative rows reviewed |
 | 807316 | 2 | 2 | patents/US4764000.pdf<br>patents/US4871239.pdf | All representative rows reviewed |
-| 813252 | 2 | 1 | patents/US3591257.pdf | No reviewed-sidecar hit |
+| 813252 | 2 | 1 | patents/US3591257.pdf | All representative rows reviewed |
 | 856401 | 2 | 1 | patents/WO_2025263124_A1.pdf | All representative rows reviewed |
 | 861230 | 2 | 1 | patents/US5717527.pdf | No reviewed-sidecar hit |
 | 870200 | 2 | 2 | patents/WO2023181666A1.pdf<br>patents/WO_2025239028_A1.pdf | All representative rows reviewed |
@@ -70,7 +70,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 534554 | 1 | 1 | patents/US3737214.pdf | All representative rows reviewed |
 | 534556 | 1 | 1 | patents/US20230367186A1.pdf | No reviewed-sidecar hit |
 | 541468 | 1 | 1 | patents/US4124276.pdf | All representative rows reviewed |
-| 545486 | 1 | 1 | patents/CN116520542A.pdf | No reviewed-sidecar hit |
+| 545486 | 1 | 1 | patents/CN116520542A.pdf | All representative rows reviewed |
 | 553381 | 1 | 1 | patents/US7508592.pdf | All representative rows reviewed |
 | 553551 | 1 | 1 | patents/JP2023063766A.pdf | No reviewed-sidecar hit |
 | 553555 | 1 | 1 | patents/JP2022092388A.pdf | All representative rows reviewed |
@@ -97,6 +97,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 630581 | 1 | 1 | patents/JP2022100641A.pdf | No reviewed-sidecar hit |
 | 635232 | 1 | 1 | patents/US8081392.pdf | No reviewed-sidecar hit |
 | 639450 | 1 | 1 | patents/US3743384.pdf | All representative rows reviewed |
+| 640346 | 1 | 1 | patents/US2995980.pdf | All representative rows reviewed |
 | 640353 | 1 | 1 | patents/US4277149.pdf | No reviewed-sidecar hit |
 | 642581 | 1 | 1 | patents/US2721499.pdf | All representative rows reviewed |
 | 658397 | 1 | 1 | patents/JP2023039817A.pdf | No reviewed-sidecar hit |
@@ -127,7 +128,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 738493 | 1 | 1 | patents/JP2022092388A.pdf | All representative rows reviewed |
 | 741262 | 1 | 1 | patents/US3552833.pdf | No reviewed-sidecar hit |
 | 741276 | 1 | 1 | patents/US5717527.pdf | No reviewed-sidecar hit |
-| 747274 | 1 | 1 | patents/US3649104.pdf | No reviewed-sidecar hit |
+| 747274 | 1 | 1 | patents/US3649104.pdf | All representative rows reviewed |
 | 748523 | 1 | 1 | patents/US5717527.pdf | No reviewed-sidecar hit |
 | 749501 | 1 | 1 | patents/US4124276.pdf | All representative rows reviewed |
 | 749547 | 1 | 1 | patents/CN205720849U.pdf | All representative rows reviewed |
@@ -149,6 +150,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 773495 | 1 | 1 | patents/US20190250367A1.pdf | No reviewed-sidecar hit |
 | 773498 | 1 | 1 | patents/US4871239.pdf | All representative rows reviewed |
 | 773501 | 1 | 1 | patents/US4258985.pdf | No reviewed-sidecar hit |
+| 773530 | 1 | 1 | patents/CN110161666A.pdf | All representative rows reviewed |
 | 774494 | 1 | 1 | patents/WO_2025263124_A1.pdf | No reviewed-sidecar hit |
 | 775473 | 1 | 1 | patents/WO2022259649A1.pdf | No reviewed-sidecar hit |
 | 781445 | 1 | 1 | patents/US4277149.pdf | No reviewed-sidecar hit |
@@ -176,8 +178,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 852402 | 1 | 1 | patents/WO2020136749A1.pdf | All representative rows reviewed |
 | 855399 | 1 | 1 | patents/JP2022092388A.pdf | All representative rows reviewed |
 | 859300 | 1 | 1 | patents/JP2021179551A.pdf | No reviewed-sidecar hit |
-| 866450 | 1 | 1 | patents/CN116520542A.pdf | No reviewed-sidecar hit |
-| 877370 | 1 | 1 | patents/US20160266350A1.pdf | No reviewed-sidecar hit |
+| 866450 | 1 | 1 | patents/CN116520542A.pdf | All representative rows reviewed |
+| 877370 | 1 | 1 | patents/US20160266350A1.pdf | All representative rows reviewed |
 | 882408 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | No reviewed-sidecar hit |
 | 903354 | 1 | 1 | patents/JP2022092388A.pdf | All representative rows reviewed |
 | 904293 | 1 | 1 | patents/CN205720849U.pdf | All representative rows reviewed |
@@ -296,34 +298,46 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
 |---|---|---|---|---|---|---|---|
-| L1 (Element 1) | 1 | `866450 - high-index lanthanum flint (patent nd=1.86665, vd=45.0)` | 1.86665 / 45.00 | No catalog entry | abbe | patents/CN116520542A.pdf | No reviewed-sidecar hit |
-| L11 (Element 11) | 20 | `545486 - crown glass (patent nd=1.54517, vd=48.63)` | 1.54517 / 48.63 | No catalog entry | abbe | patents/CN116520542A.pdf | No reviewed-sidecar hit |
+| L1 (Element 1) | 1 | `866450 - high-index lanthanum flint (patent nd=1.86665, vd=45.0)` | 1.86665 / 45.00 | No catalog entry | abbe | patents/CN116520542A.pdf | Reviewed sidecar hit |
+| L11 (Element 11) | 20 | `545486 - crown glass (patent nd=1.54517, vd=48.63)` | 1.54517 / 48.63 | No catalog entry | abbe | patents/CN116520542A.pdf | Reviewed sidecar hit |
+
+### [LAOWA 65mm f/2.8 2× Ultra Macro APO](../../src/lens-data/laowa/Laowa65mmf28MacroAPO.data.ts) - CN 110161666A
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+|---|---|---|---|---|---|---|---|
+| L3 (Element 3) | 4 | `773530 — high-index lanthanum crown (patent nd=1.77250, νd=53.00; no exact public catalog match)` | 1.77250 / 53.00 | No catalog entry | abbe | patents/CN110161666A.pdf | Reviewed sidecar hit |
 
 ### [LEICA ELCAN 50mm f/2](../../src/lens-data/leica/LeicaElcan50mmf2.data.ts) - US 3,649,104
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
 |---|---|---|---|---|---|---|---|
-| L3 (Element 3) | 5 | `747274 - dense flint (patent nd=1.74710, vd=27.40; no exact public catalog match)` | 1.74710 / 27.40 | No catalog entry | abbe | patents/US3649104.pdf | No reviewed-sidecar hit |
+| L3 (Element 3) | 5 | `747274 - dense flint (patent nd=1.74710, vd=27.40; no exact public catalog match)` | 1.74710 / 27.40 | No catalog entry | abbe | patents/US3649104.pdf | Reviewed sidecar hit |
+
+### [LEICA ELMARIT 90mm f/2.8](../../src/lens-data/leica/LeicaElmarit90mmf28.data.ts) - US 2,995,980
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+|---|---|---|---|---|---|---|---|
+| L3 (Element 3) | 4 | `640346 - F-family flint (patent nd=1.63980, vd=34.6; no exact public catalog match)` | 1.63980 / 34.60 | No catalog entry | abbe | patents/US2995980.pdf | Reviewed sidecar hit |
 
 ### [LEICA ELMARIT-R 28mm f/2.8](../../src/lens-data/leica/LeicaElmarit28mmf28.data.ts) - US 3,591,257
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
 |---|---|---|---|---|---|---|---|
-| L4 (Element 4) | 6 | `813252 - high-index flint (patent nd=1.81265, vd=25.24; no exact public catalog match)` | 1.81265 / 25.24 | No catalog entry | abbe | patents/US3591257.pdf | No reviewed-sidecar hit |
-| L7 (Element 7) | 11 | `813252 - high-index flint (patent nd=1.81265, vd=25.24; no exact public catalog match)` | 1.81265 / 25.24 | No catalog entry | abbe | patents/US3591257.pdf | No reviewed-sidecar hit |
+| L4 (Element 4) | 6 | `813252 - high-index flint (patent nd=1.81265, vd=25.24; no exact public catalog match)` | 1.81265 / 25.24 | No catalog entry | abbe | patents/US3591257.pdf | Reviewed sidecar hit |
+| L7 (Element 7) | 11 | `813252 - high-index flint (patent nd=1.81265, vd=25.24; no exact public catalog match)` | 1.81265 / 25.24 | No catalog entry | abbe | patents/US3591257.pdf | Reviewed sidecar hit |
 
 ### [LEICA MACRO-ELMARIT-R 60mm f/2.8](../../src/lens-data/leica/LeicaMacroElmaritR60mmf28.data.ts) - US 3,552,833
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
 |---|---|---|---|---|---|---|---|
 | L2 (Element 2) | 3 | `Unmatched (693/495 e-line; positive member of front cemented doublet)` | 1.69282 / 49.50 | No catalog entry | abbe | patents/US3552833.pdf | No reviewed-sidecar hit |
-| L4 (Element 4) | 6 | `Unmatched dense flint (741/262 e-line; no close current HOYA/OHARA match)` | 1.74070 / 26.20 | No catalog entry | abbe | patents/US3552833.pdf | No reviewed-sidecar hit |
+| L4 (Element 4) | 6 | `Unmatched (dense flint, 741/262 e-line; no close current HOYA/OHARA match)` | 1.74070 / 26.20 | No catalog entry | abbe | patents/US3552833.pdf | No reviewed-sidecar hit |
 
 ### [LEICA SUMMILUX 28mm f/1.7 ASPH. (Leica Q, Q2, Q3)](../../src/lens-data/leica/Leica28mmf17.data.ts) - US 2016/0266350 A1
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
 |---|---|---|---|---|---|---|---|
-| L6 (Element 6) | 12A | `877370 — high-index lanthanum glass (patent nd=1.87722, nu_d=37.0)` | 1.87722 / 37.00 | No catalog entry | abbe | patents/US20160266350A1.pdf | No reviewed-sidecar hit |
+| L6 (Element 6) | 12A | `877370 — high-index lanthanum glass (patent nd=1.87722, nu_d=37.0)` | 1.87722 / 37.00 | No catalog entry | abbe | patents/US20160266350A1.pdf | Reviewed sidecar hit |
 
 ### [MINOLTA AF 100mm f/2.8 Macro](../../src/lens-data/minolta/MinoltaAF100mmf28Macro.data.ts) - US 4,764,000
 

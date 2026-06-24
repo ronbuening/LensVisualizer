@@ -47,3 +47,12 @@ Figure / SD check:
 
 - Rendered Figure 1 from the local PDF, page 1. Figure 1 is the matching Embodiment 1 cross-section.
 - The patent does not publish semi-diameters. The stored SD profile visually matches the figure's medium-format telephoto envelope: large front group, smaller translating G2 doublet, stop gap, and a compact rear triplet. No SD edits were made.
+
+## 2026-06-24 - APD, high-index, and SD audit
+
+- Rechecked `patents/US20020075570A1.pdf`, Embodiment 1 / Figure 1 and Tables 1/3, against the current data file.
+- Marked L2 and L4 `S-FPL51 (OHARA)` as inferred APD elements. The patent identifies their high-Abbe fluorophosphate/fluorite-class correction role through condition (6), but does not publish line indices for those elements.
+- Marked L8 `S-NBH8 (OHARA)` as patent-backed APD. The patent-published C/F/g/d line indices give PgF = 0.5831; relative to the normal line this is dPgF ~= -0.0023, matching the KZFS-class secondary-spectrum role and condition (7).
+- Confirmed L6 `S-LAH60` is the only nd >= 1.8 high-index element. L5 (`670572`) and L7 (`561453`) remain explicit code-only / unresolved public-catalog dispositions.
+- Re-reviewed Figure 1. The existing SD profile matches the telephoto envelope and the patent has no SD table, so no SD edits were made.
+- Verification: `npm run generate:glass-reports`, `npm run typecheck`, `npm run format:check`, `npm run lint`, `npm run test`, and `git diff --check` passed.

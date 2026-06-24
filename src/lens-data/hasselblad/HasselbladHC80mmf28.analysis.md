@@ -22,7 +22,7 @@ The identification of Embodiment 3 with the Hasselblad HC 80mm f/2.8 rests on th
 8. **Focus mechanism.** The patent provides only infinity-focus data, consistent with unit focus (entire lens translating), as the HC 80mm f/2.8 employs.
 9. **Minimum focus distance.** At MFD = 0.70 m and $f = 80$ mm, the paraxially computed magnification is $\approx 1\!:\!6.8$, close to Hasselblad's specified maximum magnification of 1:6.5.
 
-Embodiments 1 and 4 use different glass combinations; Embodiment 2 uses a closely related palette but with distinct rear-group glasses. Embodiment 3 reuses the L1 glass (S-LAH51) in L5, giving the rear group a particularly symmetric Abbe-number character against the front group, and pairs L6 with a lanthanum crown (S-LAL14, $\nu_d = 49.3$). All four embodiments show well-corrected aberrations (Figs. 2–5), but Embodiment 3's symmetric glass architecture and its near-optimal centering within the conditional expression ranges make it a strong candidate for the production optical formula.
+Embodiments 1 and 4 use different glass combinations; Embodiment 2 uses a closely related palette but with distinct rear-group glasses. Embodiment 3 reuses the L1 glass (S-LAH51) in L5, giving the rear group a particularly symmetric Abbe-number character against the front group, and pairs L6 with a lanthanum glass (S-LAM60, $\nu_d = 49.3$). All four embodiments show well-corrected aberrations (Figs. 2–5), but Embodiment 3's symmetric glass architecture and its near-optimal centering within the conditional expression ranges make it a strong candidate for the production optical formula.
 
 ## Optical Architecture
 
@@ -58,7 +58,7 @@ The image-side surface $R_4$ and the object-side surface of L3 ($R_5$) together 
 
 ### L3 — Negative Meniscus, convex to object
 
-$n_d = 1.60342$, $\nu_d = 38.0$. Glass: S-TIM2 (OHARA) — titanium flint. $f = -48.6$ mm.
+$n_d = 1.60342$, $\nu_d = 38.0$. Glass: S-TIM5 (OHARA) — titanium flint. $f = -48.6$ mm.
 
 L3 is the diverging element of the front group and the chromatic counterpart to L2. Its moderate refractive index ($n_d = 1.603$) and low Abbe number ($\nu_d = 38.0$) provide the negative dispersion needed to achromatize the front group. The patent requires a "moderate index of refraction and a low Abbe number" for L3 and bounds the Abbe number by Condition (11): $35.0 < \nu_3 < 45.0$ (¶0056).
 
@@ -68,11 +68,11 @@ The $R_4/f$ ratio (Condition 2) equals 1.647 for this embodiment, satisfying $1.
 
 ### L4 — Negative Meniscus, concave to object
 
-$n_d = 1.72825$, $\nu_d = 28.5$. Glass: S-TIH18 (OHARA) — dense titanium flint. $f = -41.6$ mm.
+$n_d = 1.72825$, $\nu_d = 28.5$. Glass: S-TIH10 (OHARA) — dense titanium flint. $f = -41.6$ mm.
 
 L4 is the first element of the rear group $G_2$ and is the chromatic mirror of the front group's negative element L3. It is a negative meniscus with its concave surface facing the object ($R_8 = -26.90$ mm, $R_9 = -253.62$ mm) — the shape-inverse of L3's convex-to-object meniscus. This shape symmetry across the stop is the hallmark of the double-Gauss topology and is what drives the cancellation of distortion and lateral color.
 
-S-TIH18 has the lowest Abbe number in the system ($\nu_d = 28.5$), making it the primary dispersion source for achromatizing the rear group. The patent states that the fourth element "should be made of glass material having a relatively high index of refraction and a small Abbe number" (¶0037). L4 is the strongest negative element overall ($f = -41.6$ mm), and its front surface $R_8$ produces the single largest negative Petzval contribution ($-0.01567\;\text{mm}^{-1}$) in the entire system. This is the counterbalancing term that drives the system Petzval sum toward zero.
+S-TIH10 has the lowest Abbe number in the system ($\nu_d = 28.5$), making it the primary dispersion source for achromatizing the rear group. The patent states that the fourth element "should be made of glass material having a relatively high index of refraction and a small Abbe number" (¶0037). L4 is the strongest negative element overall ($f = -41.6$ mm), and its front surface $R_8$ produces the single largest negative Petzval contribution ($-0.01567\;\text{mm}^{-1}$) in the entire system. This is the counterbalancing term that drives the system Petzval sum toward zero.
 
 ### L5 — Positive Meniscus, convex to image
 
@@ -86,11 +86,11 @@ The rear surface $R_{11}$ has the strongest curvature of any positive-contributi
 
 ### L6 — Positive Meniscus, convex to image
 
-$n_d = 1.74330$, $\nu_d = 49.3$. Glass: S-LAL14 (OHARA) — lanthanum crown. $f = +82.2$ mm.
+$n_d = 1.74330$, $\nu_d = 49.3$. Glass: S-LAM60 (OHARA) — lanthanum glass. $f = +82.2$ mm.
 
 L6 is the field-flattening element and the final positive meniscus of the rear group. Its convex-to-image shape ($R_{12} = -618.10$ mm, $R_{13} = -55.91$ mm) gives it a nearly flat object-side surface and a strongly curved image-side surface — the bulk of L6's refractive power is concentrated at $R_{13}$, the last refracting surface before the back focal space. The patent states that L6 "should be made of glass material having a high index of refraction and a large Abbe number" to allow "excellent correction of chromatic aberration and other aberrations in the rear lens group" (¶0037).
 
-S-LAL14 ($n_d = 1.743$, $\nu_d = 49.3$) is a lanthanum crown glass — distinctly different from the lanthanum dense flint (S-LAH51) used in L1 and L5. Its higher Abbe number makes it a better chromatic partner for the low-$\nu_d$ element L4 in the rear group, while its high refractive index keeps the curvature of $R_{13}$ moderate. The strong rear surface $R_{13}$ contributes $+0.00763\;\text{mm}^{-1}$ to the Petzval sum, completing the positive–negative balance of the full system.
+S-LAM60 ($n_d = 1.743$, $\nu_d = 49.3$) is a lanthanum glass — distinctly different from the lanthanum dense flint (S-LAH51) used in L1 and L5. Its higher Abbe number makes it a better chromatic partner for the low-$\nu_d$ element L4 in the rear group, while its high refractive index keeps the curvature of $R_{13}$ moderate. The strong rear surface $R_{13}$ contributes $+0.00763\;\text{mm}^{-1}$ to the Petzval sum, completing the positive–negative balance of the full system.
 
 L6 operates on a converging beam that is already close to the image plane, so it primarily controls the residual field curvature and astigmatism at the image periphery. Its relatively gentle front curvature ($R_{12} = -618$ mm, nearly flat) means it introduces minimal additional spherical aberration.
 
@@ -102,16 +102,16 @@ The design uses only four distinct glass types across six elements. All identifi
 |---------|-------|--------|---------------|-------|----------|------|
 | L1 | 1.78589 | 44.2 | S-LAH51 (OHARA) | Lanthanum dense flint | +101.9 | Front collector |
 | L2 | 1.51680 | 64.1 | S-BSL7 (OHARA) | Borosilicate crown | +88.3 | Achromatizing positive |
-| L3 | 1.60342 | 38.0 | S-TIM2 (OHARA) | Titanium flint | −48.6 | Front diverger |
-| L4 | 1.72825 | 28.5 | S-TIH18 (OHARA) | Dense titanium flint | −41.6 | Rear diverger |
+| L3 | 1.60342 | 38.0 | S-TIM5 (OHARA) | Titanium flint | −48.6 | Front diverger |
+| L4 | 1.72825 | 28.5 | S-TIH10 (OHARA) | Dense titanium flint | −41.6 | Rear diverger |
 | L5 | 1.78589 | 44.2 | S-LAH51 (OHARA) | Lanthanum dense flint | +62.5 | Rear converger |
-| L6 | 1.74330 | 49.3 | S-LAL14 (OHARA) | Lanthanum crown | +82.2 | Field flattener |
+| L6 | 1.74330 | 49.3 | S-LAM60 (OHARA) | Lanthanum glass | +82.2 | Field flattener |
 
-Cross-vendor equivalents exist for all of these glasses: S-BSL7 ≈ N-BK7 (Schott) ≈ BSC7 (HOYA); S-TIM2 ≈ F5 (Schott); S-TIH18 ≈ SF10 (Schott) ≈ FD60 (HOYA); S-LAL14 ≈ LACL60 (HOYA). Since Fujifilm has historically sourced glass from both OHARA and HOYA, the OHARA designations should be understood as representative catalog matches; the actual production glass vendor is not specified in the patent.
+Cross-vendor equivalents or near-equivalents exist for the public catalog matches: S-BSL7 ≈ N-BK7 (Schott) ≈ BSC7 (HOYA); S-TIM5 is F5-class; S-TIH10 is SF10-class; S-LAM60 sits in the same 743/493 lanthanum-glass neighborhood as common cross-vendor matches. Since Fujifilm has historically sourced glass from both OHARA and HOYA, the OHARA designations should be understood as representative catalog matches; the actual production glass vendor is not specified in the patent.
 
 The chromatic strategy is straightforward double-Gauss achromatization. Each half of the lens pairs one or two high-$\nu_d$ positive elements with one low-$\nu_d$ negative element: L1 ($\nu_d = 44.2$) + L2 ($\nu_d = 64.1$) against L3 ($\nu_d = 38.0$) in the front group; L4 ($\nu_d = 28.5$) against L5 ($\nu_d = 44.2$) + L6 ($\nu_d = 49.3$) in the rear group. The patent governs these pairings explicitly through Conditions (9)–(11), which bound the differences $\nu_2 - \nu_1$, $\nu_2 - \nu_3$, and the absolute value of $\nu_3$.
 
-A notable feature of the glass palette is its economy. S-BSL7 (BK7) is the cheapest optical glass in common production. S-TIM2 and S-TIH18 are standard catalog flints. Only L1, L5, and L6 use lanthanum glasses, and even these (S-LAH51, S-LAL14) are mainstream catalog types rather than exotic high-index or ED materials. The patent explicitly emphasizes producibility and cost control (¶0003, ¶0050, ¶0053), and the glass selection reflects this — no glass in the system is particularly expensive or difficult to polish. This is consistent with the HC 80mm f/2.8's position as the most affordable lens in the Hasselblad HC lineup.
+A notable feature of the glass palette is its economy. S-BSL7 (BK7) is the cheapest optical glass in common production. S-TIM5 and S-TIH10 are standard catalog flints. Only L1, L5, and L6 use lanthanum glasses, and even these (S-LAH51, S-LAM60) are mainstream catalog types rather than exotic high-index or ED materials. The patent explicitly emphasizes producibility and cost control (¶0003, ¶0050, ¶0053), and the glass selection reflects this — no glass in the system is particularly expensive or difficult to polish. This is consistent with the HC 80mm f/2.8's position as the most affordable lens in the Hasselblad HC lineup.
 
 ## Focus Mechanism
 
@@ -191,7 +191,7 @@ The Hasselblad HC 80mm f/2.8 belongs to a long lineage of double-Gauss normal le
 
 This design philosophy — fewer elements, no cemented interfaces, all-spherical — prioritizes manufacturing yield and cost control over the marginal performance gains that aspherical surfaces or exotic glass would provide. The patent's extensive discussion of MYLAR-plate spacing, edge-contact centering, and glass workability (¶0050–¶0053) reveals a design optimized for large-scale production by Fujifilm's optical factories.
 
-The four embodiments in the patent explore the accessible parameter space within this fixed topology: Embodiments 1 and 3 share the S-TIM2/S-LAH51 material pairing and the same L4 glass (S-TIH18, $\nu_d = 28.5$), differing primarily in the rear-group positive elements; Embodiment 2 substitutes a different dense flint in L4 ($n_d = 1.710$, $\nu_d = 29.5$) and uses S-LAH51 in L6; Embodiment 4 replaces L1's lanthanum dense flint with a lanthanum crown (S-LAL14, $\nu_d = 49.3$), widening Condition (9) to $\nu_2 - \nu_1 = 14.8$ and demonstrating the design's tolerance to material substitution.
+The four embodiments in the patent explore the accessible parameter space within this fixed topology: Embodiment 3 uses the S-TIM5/S-LAH51 material pairing in the front half and S-TIH10 for L4, differing from the neighboring embodiments primarily in the rear-group positive elements; Embodiment 2 substitutes a different dense flint in L4 ($n_d = 1.710$, $\nu_d = 29.5$) and uses S-LAH51 in L6; Embodiment 4 replaces L1's lanthanum dense flint with a lanthanum glass at $\nu_d = 49.3$, widening Condition (9) to $\nu_2 - \nu_1 = 14.8$ and demonstrating the design's tolerance to material substitution.
 
 ## Verification Summary
 
@@ -218,5 +218,5 @@ All eleven patent conditions were independently recomputed and confirmed satisfi
 6. Adorama product listing, Hasselblad HC 80mm f/2.8 — specifications: 6 elements / 6 groups, 46° AoV, MFD 0.70 m, 67 mm filter, f/2.8–32.
 7. ShaShinKi product listing — specifications: 46°/38°/29° (diag/hor/vert), max magnification 1:6.5.
 8. LENS-DB.COM entry, Hasselblad HC 80mm F/2.8 — notes "SUPER-EBC FUJINON 2,8/80 HASSELBLAD — made by Fujifilm."
-9. OHARA glass catalog (S-LAH51, S-BSL7, S-TIM2, S-TIH18, S-LAL14).
+9. OHARA glass catalog (S-LAH51, S-BSL7, S-TIM5, S-TIH10, S-LAM60).
 10. Kamerastore product listings for Hasselblad 80mm f/2.8 Planar C, CF, and CB — confirming 7 elements / 5 groups for C/CF versions and 6 elements for the CB redesign.

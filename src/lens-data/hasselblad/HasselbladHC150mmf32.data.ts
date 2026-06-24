@@ -71,7 +71,9 @@ const LENS_DATA = {
       vd: 81.6,
       fl: 132.6,
       glass: "S-FPL51 (OHARA)",
-      apd: false,
+      apd: "inferred",
+      apdNote:
+        "ED fluorophosphate crown; patent condition (6) selects the high-Abbe fluorophosphate/fluorite-class correction role, but no line indices are published for this element.",
       role: "First ED fluorophosphate crown in G1; primary achromatizing partner to L3.",
     },
     {
@@ -95,7 +97,9 @@ const LENS_DATA = {
       vd: 81.6,
       fl: 161.7,
       glass: "S-FPL51 (OHARA)",
-      apd: false,
+      apd: "inferred",
+      apdNote:
+        "ED fluorophosphate crown; patent condition (6) selects the high-Abbe fluorophosphate/fluorite-class correction role, but no line indices are published for this element.",
       role: "Second ED crown in G1; bookends L3 with L2 for balanced lateral color correction.",
     },
     {
@@ -145,7 +149,10 @@ const LENS_DATA = {
       vd: 34.7,
       fl: -51.1,
       glass: "S-NBH8 (OHARA) — KZFS-class, ΔPgF ≈ −0.002",
-      apd: false,
+      apd: "patent",
+      apdNote:
+        "Patent-published C/F/g/d line indices give PgF = 0.5831 and satisfy condition (7), marking this KZFS-class glass as the secondary-spectrum corrector.",
+      dPgF: -0.0023,
       nC: 1.71436,
       nF: 1.73511,
       ng: 1.74721,

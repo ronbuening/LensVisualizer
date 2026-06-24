@@ -1444,8 +1444,8 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
 | 2 | Element 2 | abbe | `H-QF50 (CDGM)` | No catalog match |
-| 4 | Element 3 | abbe | `Unmatched (lanthanum crown 773/530 — no exact CDGM catalog match; nearest H-LAK51 at νd ≈ 49.6)` | Explicit unmatched/proprietary annotation |
-| 16 | Element 10 | abbe | `Unmatched (lanthanum crown 729/577 — H-LAK52 matches nd exactly but νd = 54.68, Δνd = +3.0)` | Explicit unmatched/proprietary annotation |
+| 4 | Element 3 | abbe | `773530 — high-index lanthanum crown (patent nd=1.77250, νd=53.00; no exact public catalog match)` | No catalog match |
+| 16 | Element 10 | abbe | `729577 — high-index lanthanum crown (patent nd=1.72916, νd=57.67; H-LAK52 matches nd but not νd)` | No catalog match |
 | 23 | Element 14 | abbe | `H-K8 (CDGM)` | No catalog match |
 
 ### [FUJIFILM FUJINON XF 60mm f/2.4 R Macro](../../src/lens-data/fujifilm/FujifilmXF60mmf24R.data.ts) - 70.0% trusted (7/10); 70.0% Sellmeier (7/10) - US 2014/0247506 A1
@@ -1507,7 +1507,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
 | 3 | Element 2 | abbe | `Unmatched (693/495 e-line; positive member of front cemented doublet)` | Explicit unmatched/proprietary annotation |
-| 6 | Element 4 | abbe | `Unmatched dense flint (741/262 e-line; no close current HOYA/OHARA match)` | Explicit unmatched/proprietary annotation |
+| 6 | Element 4 | abbe | `Unmatched (dense flint, 741/262 e-line; no close current HOYA/OHARA match)` | Explicit unmatched/proprietary annotation |
 
 ### [NIKON AI NIKKOR 135mm f/2](../../src/lens-data/nikon/NikonAI135mmf2.data.ts) - 66.7% trusted (4/6); 66.7% Sellmeier (4/6) - US 4,062,630
 
@@ -1949,7 +1949,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
 | 1 | Element 1 | abbe | `N-BAK4 / BaK4 class (Schott; patent e-line value stored)` | No catalog match |
-| 2 | Element 2 | abbe | `Light flint class, 584/414 e-line code (LF5-adjacent, unresolved exact melt)` | No catalog match |
+| 2 | Element 2 | abbe | `Unmatched (584/414 e-line light-flint class; LF5-adjacent, no exact public catalog match)` | Explicit unmatched/proprietary annotation |
 | 7 | Element 5 | abbe | `Unmatched SF8-class dense flint (Schott e-line source values; patent ne=1.69416, νe=30.9)` | Explicit unmatched/proprietary annotation |
 
 ### [NIKON AI NIKKOR 180mm f/2.8 ED](../../src/lens-data/nikon/NikonAINikkor180mmf28.data.ts) - 40.0% trusted (2/5); 40.0% Sellmeier (2/5) - US 4,338,001
@@ -2124,7 +2124,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
 | 1 | Element 1 | abbe | `LaK9 (SCHOTT)` | No catalog match |
-| 4 | Element 3 | abbe | `1640/346 (F-family flint)` | No catalog match |
+| 4 | Element 3 | abbe | `640346 - F-family flint (patent nd=1.63980, vd=34.6; no exact public catalog match)` | No catalog match |
 | 6 | Element 4 | abbe | `BaSF1 (SCHOTT)` | No catalog match |
 | 7 | Element 5 | abbe | `LaF2 (SCHOTT)` | No catalog match |
 
