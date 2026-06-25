@@ -23,8 +23,8 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-06-25",
     type: "improvement",
-    summary: "Improved Canon glass, APD, and semidiameter metadata from patent audits",
-  }
+    summary: "Improved Canon, Fujifilm, and Zeiss patent-audited glass and metadata",
+  },
   {
     date: "2026-06-25",
     type: "lens",
@@ -35,6 +35,27 @@ export const CHANGELOG: ChangelogEntry[] = [
     date: "2026-06-24",
     type: "lens",
     summary: "Added six Rodenstock large-format lenses",
+  },
+  {
+    date: "2026-06-24",
+    type: "improvement",
+    summary: "Improved Hasselblad, Leica, Laowa, Nikon, Olympus, Minolta, and Panasonic patent data",
+  },
+  // ── 2026-06-23 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-06-23",
+    type: "lens",
+    summary: "Added patent-audited Canon TS-E 50mm, 90mm, and 135mm L tilt-shift lenses",
+  },
+  {
+    date: "2026-06-23",
+    type: "fix",
+    summary: "Corrected Sigma semi-diameter geometry and Voigtlander Heliar stop placement",
+  },
+  {
+    date: "2026-06-23",
+    type: "improvement",
+    summary: "Improved Sigma, Sony, Voigtlander, Vivitar, Schneider, Pentax, and Ricoh patent data",
   },
   // ── 2026-06-22 ──────────────────────────────────────────────────────────
   {
