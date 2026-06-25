@@ -114,6 +114,8 @@ const LENS_DATA = {
       fl: 76.4,
       glass: "NBFD29 (HOYA, 770297)",
       apd: false,
+      apdNote:
+        "Same patent nd/vd glass family as L3; patent-published PgF = 0.5951 for the matching row is near the Schott normal line, so this is not marked APD.",
       role: "Pre-stop positive converger; same glass as L3 introduces controlled chromatic contribution.",
     },
     {

@@ -192,7 +192,7 @@ const LENS_DATA = {
     { label: "2", R: 143.8625, d: 1.7773, nd: 1.0, elemId: 0, sd: 12.3 }, // L1 rear → air
 
     // DB1 — L2 (biconvex) + L3 (biconcave) cemented doublet
-    { label: "3", R: 18.4598, d: 3.7358, nd: 1.59282, elemId: 2, sd: 11.0 }, // L2 front
+    { label: "3", R: 18.4598, d: 3.7358, nd: 1.59282, elemId: 2, sd: 10.4 }, // L2 front
     { label: "4", R: -133.1738, d: 0.8, nd: 1.8061, elemId: 3, sd: 8.5 }, // L2→L3 junction
     { label: "5", R: 15.3383, d: 4.4992, nd: 1.0, elemId: 0, sd: 8.1 }, // L3 rear → air
 
@@ -203,7 +203,7 @@ const LENS_DATA = {
     // D1 — L4 (biconcave) + L5 (biconvex) cemented doublet
     { label: "7", R: -15.1537, d: 0.8, nd: 1.90366, elemId: 4, sd: 7.3 }, // L4 front
     { label: "8", R: 24.2003, d: 3.3262, nd: 1.83481, elemId: 5, sd: 7.6 }, // L4→L5 junction
-    { label: "9", R: -18.3336, d: 0.15, nd: 1.0, elemId: 0, sd: 8.9 }, // L5 rear → air
+    { label: "9", R: -18.3336, d: 0.15, nd: 1.0, elemId: 0, sd: 8.0 }, // L5 rear → air
 
     // L6 — biconvex relay
     { label: "10", R: 36.4736, d: 2.1561, nd: 1.834, elemId: 6, sd: 9.0 }, // L6 front

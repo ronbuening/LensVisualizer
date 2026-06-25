@@ -60,7 +60,7 @@ const LENS_DATA = {
       nd: 1.4952,
       vd: 79.74,
       fl: 218.33,
-      glass: "Unmatched fluorophosphate ED-class (495/797; not S-FPL51)",
+      glass: "495797 - fluorophosphate ED-class crown (catalog unresolved; not S-FPL51)",
       apd: "inferred",
       apdNote:
         "Anomalous partial dispersion is inferred from Minolta production literature; the patent gives only nd/vd.",
@@ -74,7 +74,7 @@ const LENS_DATA = {
       nd: 1.4952,
       vd: 79.74,
       fl: 202.12,
-      glass: "Unmatched fluorophosphate ED-class (495/797; not S-FPL51)",
+      glass: "495797 - fluorophosphate ED-class crown (catalog unresolved; not S-FPL51)",
       apd: "inferred",
       apdNote:
         "Anomalous partial dispersion is inferred from Minolta production literature; the patent gives only nd/vd.",
@@ -88,7 +88,7 @@ const LENS_DATA = {
       nd: 1.6815,
       vd: 36.64,
       fl: -183.98,
-      glass: "Unmatched dense flint class (682/366)",
+      glass: "682366 - dense flint class (catalog unresolved)",
       role: "Front-group negative flint used to balance the two low-dispersion positive crowns.",
     },
     {
@@ -145,7 +145,7 @@ const LENS_DATA = {
       nd: 1.67,
       vd: 57.07,
       fl: -76.94,
-      glass: "Unmatched high-index crown / lanthanum-crown class (670/571)",
+      glass: "670571 - high-index crown / lanthanum-crown class (catalog unresolved)",
       role: "Primary negative-power element of the moving focus subunit II-2.",
     },
     {

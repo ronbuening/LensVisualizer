@@ -72,11 +72,11 @@ L12 uses the same glass as L11 but with a weaker front surface (R1 = +109.8 mm) 
 
 #### L13 — Biconvex Positive
 
-nd = 1.78470, νd = 26.3. Glass: S-NPH4 (OHARA) — niobium phosphate heavy flint. f = +86.9 mm.
+nd = 1.78470, νd = 26.3. Glass: S-TIH23 (OHARA) — dense titanium flint. f = +86.9 mm.
 
 L13 is the positive lens at the rear of the negative front group, a distinctive feature of the first-embodiment design (¶0061, ¶0067). Its role is twofold: it partially offsets the strong negative distortion introduced by L11 and L12 (by adding positive power into the diverging subgroup), and it steers the divergent ray bundle from the meniscus pair toward a more manageable cone before the beam enters G1B. The patent's conditional expression (3) — which constrains the ratio f_n/f_{1a} to the range 0.35–0.65 — governs the balance between L13's positive contribution and the meniscus pair's negative power. A violation below the lower limit would overcorrect the distortion while worsening lower-oblique coma; a violation above would leave the distortion uncorrected (¶0076).
 
-The choice of S-NPH4 — a niobium phosphate heavy flint with very high dispersion (νd = 26.3) — is notable. In the front group's diverging geometry, this high-dispersion positive element generates a positive contribution to the lateral chromatic aberration that partially counteracts the negative lateral color introduced by the negative meniscus pair. The glass's high refractive index (1.785) also minimizes the surface curvatures needed for the required positive power. The NPH (niobium phosphate) glass family achieves its high dispersion through niobium oxide additions rather than the titanium oxide used in the TIH family, giving somewhat different partial-dispersion characteristics.
+The choice of S-TIH23 — a dense titanium flint with very high dispersion (νd = 26.3) — is notable. In the front group's diverging geometry, this high-dispersion positive element generates a positive contribution to the lateral chromatic aberration that partially counteracts the negative lateral color introduced by the negative meniscus pair. The glass's high refractive index (1.785) also minimizes the surface curvatures needed for the required positive power.
 
 ### Group G1B — Rear Collecting Group (positive)
 
@@ -118,11 +118,11 @@ L21 is the first element of the focus group. Its meniscus shape (R = −116.9 / 
 
 #### L22 — Negative Meniscus, concave to object
 
-nd = 1.63980, νd = 34.5. Glass: S-NBH52 (OHARA) — niobium phosphate heavy flint. f = −32.9 mm.
+nd = 1.63980, νd = 34.5. Glass: S-TIM27 (OHARA) — titanium flint. f = −32.9 mm.
 
 L22 is the sole negative element in G2 and plays a critical role defined by the patent's architecture: it introduces negative power into the converging (rear) group to correct negative distortion (¶0067). The general retrofocus lens generates large negative distortion from its inherently asymmetric power distribution; the patent's strategy is to insert a negative element in the convergent rear group to partially balance this asymmetry. Both radii are negative (R1 = −20.4 mm, R2 = −691.7 mm), making L22 a meniscus — not a biconcave — with its strongly concave surface facing the object. The patent describes it as "a negative lens having a concave surface directed to the object side" (¶0064). The strongly concave front surface is the most steeply curved surface in the entire rear group and handles the bulk of L22's distortion-correcting action.
 
-The choice of S-NBH52 — a niobium phosphate heavy flint with νd = 34.5 — is driven by chromatic considerations. The patent requires that G2 correct its own chromatic aberration of magnification independently from G1 (¶0071), so L22's high dispersion is paired against the low-dispersion positive elements L23 and L24 to achieve achromatization within the focus group alone. This independence ensures that when G2 moves during focusing, the lateral color does not change.
+The choice of S-TIM27 — a titanium flint with νd = 34.5 — is driven by chromatic considerations. The patent requires that G2 correct its own chromatic aberration of magnification independently from G1 (¶0071), so L22's high dispersion is paired against the low-dispersion positive elements L23 and L24 to achieve achromatization within the focus group alone. This independence ensures that when G2 moves during focusing, the lateral color does not change.
 
 The rear surface (R = −691.7 mm) is nearly flat, giving L22 a quasi-plano-concave cross-section despite its meniscus classification — almost all of its negative power comes from the front surface.
 
@@ -150,22 +150,22 @@ All 10 elements resolved to matches against the OHARA optical glass catalog with
 |---|---|---|---|---|---|---|
 | L11 | 1.80610 | 40.9 | S-LAH53 | OHARA | Lanthanum dense flint | High-index negative meniscus pair |
 | L12 | 1.80610 | 40.9 | S-LAH53 | OHARA | Lanthanum dense flint | High-index negative meniscus pair |
-| L13 | 1.78470 | 26.3 | S-NPH4 | OHARA | Niobium phosphate heavy flint | Positive corrector in front group |
+| L13 | 1.78470 | 26.3 | S-TIH23 | OHARA | Dense titanium flint | Positive corrector in front group |
 | L14 | 1.80810 | 22.8 | S-NPH1 | OHARA | Niobium phosphate heavy flint | Cemented doublet (flint component) |
 | L15 | 1.71300 | 53.9 | S-LAL8 | OHARA | Lanthanum crown | Cemented doublet (crown component) |
 | L16 | 1.51742 | 52.4 | S-NSL36 | OHARA | Normal crown | Field flattener in G1B |
 | L21 | 1.77250 | 49.6 | S-LAH66 | OHARA | Lanthanum dense flint | Lead positive in focus group |
-| L22 | 1.63980 | 34.5 | S-NBH52 | OHARA | Niobium phosphate heavy flint | Negative corrector in focus group |
+| L22 | 1.63980 | 34.5 | S-TIM27 | OHARA | Titanium flint | Negative corrector in focus group |
 | L23 | 1.61800 | 63.3 | S-PHM52 | OHARA | Phosphate crown | Low-dispersion positive |
 | L24 | 1.49700 | 81.5 | S-FPL51 | OHARA | Fluorophosphate ED crown | ED field flattener / chromatic corrector |
 
 **Chromatic strategy.** The design employs two distinct chromatic correction zones:
 
-In **G1** (the fixed group), the cemented doublet L14/L15 provides primary axial chromatic correction. The large Abbe number difference (Δνd = 31.1 between S-NPH1 and S-LAL8) creates an effective achromatic pair. The high-dispersion positive element L13 (S-NPH4, νd = 26.3) in the front subgroup provides an additional chromatic balancing contribution — its positive power in the diverging front section generates lateral chromatic aberration of the opposite sign to that produced by the negative meniscus pair (L11, L12), partially self-correcting G1A's lateral color.
+In **G1** (the fixed group), the cemented doublet L14/L15 provides primary axial chromatic correction. The large Abbe number difference (Δνd = 31.1 between S-NPH1 and S-LAL8) creates an effective achromatic pair. The high-dispersion positive element L13 (S-TIH23, νd = 26.3) in the front subgroup provides an additional chromatic balancing contribution — its positive power in the diverging front section generates lateral chromatic aberration of the opposite sign to that produced by the negative meniscus pair (L11, L12), partially self-correcting G1A's lateral color.
 
-In **G2** (the focus group), the negative element L22 (S-NBH52, νd = 34.5) is achromatized against L23 (S-PHM52, νd = 63.3) and L24 (S-FPL51, νd = 81.5). The patent's conditional expression (5) requires at least one of the third or fourth elements in G2 to have νd > 60; in this example, both satisfy the condition. This over-satisfaction ensures that G2's chromatic aberration of magnification is fully corrected internally, so that focus-dependent lateral color shift is minimized (¶0071, ¶0078).
+In **G2** (the focus group), the negative element L22 (S-TIM27, νd = 34.5) is achromatized against L23 (S-PHM52, νd = 63.3) and L24 (S-FPL51, νd = 81.5). The patent's conditional expression (5) requires at least one of the third or fourth elements in G2 to have νd > 60; in this example, both satisfy the condition. This over-satisfaction ensures that G2's chromatic aberration of magnification is fully corrected internally, so that focus-dependent lateral color shift is minimized (¶0071, ¶0078). L23 and L24 are also the APD-bearing elements in this focus group by catalog class: S-PHM52 is a phosphate crown with positive anomalous partial dispersion, and S-FPL51 is an ED fluorophosphate.
 
-**Glass family note.** The design makes extensive use of OHARA's niobium phosphate (NPH/NBH) glass families rather than the titanium-based (TIH) flints that might superficially appear to match based on similar refractive index ranges. Three of the four high-dispersion elements — L13 (S-NPH4), L14 (S-NPH1), and L22 (S-NBH52) — are niobium phosphate glasses. This is a deliberate design choice: NPH/NBH glasses offer different partial-dispersion characteristics compared to TIH glasses, which matters for controlling secondary chromatic aberration in a 10-element system operating over a 70° field. The lone exception is the ED element L24 (S-FPL51), which is a fluorophosphate — the preferred glass family for anomalous partial dispersion correction.
+**Glass family note.** The design mixes high-index lanthanum glasses, titanium flints, one niobium phosphate flint, and low-dispersion phosphate/fluorophosphate crowns. The 2026-05-20 patent relabel pass corrected L13 to S-TIH23 and L22 to S-TIM27, so the titanium-flint contribution is larger than the earlier analysis suggested. L14 remains the extreme-dispersion S-NPH1 component of the G1B cemented doublet, while L23 (S-PHM52) and L24 (S-FPL51) provide the focus group's low-dispersion and anomalous-partial-dispersion correction.
 
 ---
 
@@ -268,4 +268,4 @@ Small differences between computed and patent-tabulated conditional values are c
 
 1. US 2003/0011895 A1, "Retrofocus Imaging Lens," Masao Mori / Fuji Photo Optical Co., Ltd. Published January 16, 2003.
 2. Hasselblad HC 50mm f/3.5 product specification — KEH Camera: 10 elements / 9 groups, MFD 0.6 m, rear focus, 77 mm filter thread.
-3. OHARA Optical Glass Pocket Catalog (current edition) — glass identification cross-reference for S-LAH53, S-NPH4, S-NPH1, S-LAL8, S-NSL36, S-LAH66, S-NBH52, S-PHM52, S-FPL51. All identifications verified against authoritative nd/νd catalog values (Δnd = 0, Δνd < 0.2 for all 10 elements).
+3. OHARA Optical Glass Pocket Catalog (current edition) — glass identification cross-reference for S-LAH53, S-TIH23, S-NPH1, S-LAL8, S-NSL36, S-LAH66, S-TIM27, S-PHM52, S-FPL51. All identifications verified against authoritative nd/νd catalog values (Δnd = 0, Δνd < 0.2 for all 10 elements).

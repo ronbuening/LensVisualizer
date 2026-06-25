@@ -74,7 +74,7 @@ const LENS_DATA = {
       nd: 1.58403,
       vd: 41.4,
       fl: -478.81,
-      glass: "Light flint class, 584/414 e-line code (LF5-adjacent, unresolved exact melt)",
+      glass: "Unmatched (584/414 e-line light-flint class; LF5-adjacent, no exact public catalog match)",
       apd: false,
       role: "Weak negative flint cemented to L1; completes the front positive meniscus group.",
       cemented: "D1",

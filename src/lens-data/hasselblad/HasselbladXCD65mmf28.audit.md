@@ -30,3 +30,11 @@ Patent: US 2020/0319427 A1, Example 1 / Table 1
 ### Analysis sync
 
 - Updated the element descriptions, chromatic strategy, and glass-selection table.
+
+## 2026-06-24 - APD, high-index, and SD audit
+
+- Rechecked `patents/US20200319427A1.pdf`, Example 1 / Figure 1, against the current data file.
+- Confirmed L22 `S-FPL51` and L23 `S-FPM3` are already marked as patent-backed APD; both rows are the patent-marked anomalous-dispersion glasses.
+- Confirmed the high-index elements remain L12 `S-LAH55V` and L31 `S-LAH92` (nd >= 1.8), neither of which is an additional APD element.
+- Rendered and reviewed the patent drawing. The current SDs match the ray-bundle layout: compact front cemented groups, small G2 near the stop, and the largest diameters in the rear group. No SD edits were made.
+- Verification: `npm run generate:glass-reports`, `npm run typecheck`, `npm run format:check`, `npm run lint`, `npm run test`, and `git diff --check` passed.

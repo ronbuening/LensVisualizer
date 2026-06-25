@@ -32,3 +32,44 @@ Patent: JP 2023-183894 A, Example 1
 
 - `npm test -- dispersion`
 - `npm test -- glassRelabelByLensScan`
+
+## 2026-06-23 - Sigma-folder patent glass sweep
+
+### Phase 1 - Glass corrections
+
+| Element / surface | Field | Before | After | Justification |
+|---|---|---|---|---|
+| L4 / S7A | `glass` | `Aspherical mold glass (764/491)` | `764491 — aspherical mold glass (no exact public catalog match; patent nd=1.76450, νd=49.10)` | Patent Example 1 stores nd/vd = 1.76450 / 49.10. No exact public catalog entry was found, so the unbroken six-digit token preserves a future auto-upgrade path. |
+| L9 / S15 | `glass` | `Lanthanum crown (755/523)` | `J-LASKH2 (Hikari, 755523 lanthanum crown)` | Patent nd/vd = 1.75500 / 52.32; generated six-digit report resolves the row to Hikari J-LASKH2. |
+| L12 / S21 | `glass` | `Ultra-dispersive flint (946/180)` | `FDS18 (HOYA, ultra-dispersive flint)` | Patent nd/vd = 1.94595 / 17.98; HOYA FDS18 is the catalog-backed match. |
+
+### Phase 2 - Retained-information audit
+
+- Re-checked the text-extracted JP 2023-183894 A Example 1 prescription; surface radii, spacings, focus variables, and asphere coefficients were retained.
+- The patent does not publish clear apertures, so existing semi-diameter estimates remain unchanged.
+
+### Phase 3 - Spectral / metadata enrichment
+
+- No APD flag changes were made. L12 is an ultra-dispersive high-index flint by nd/vd, but the patent pass did not provide anomalous partial-dispersion data requiring an `apd` annotation.
+- L4 remains a deliberate Abbe fallback until a coefficient-backed 764491 catalog entry is available.
+
+### Phase 4 - Analysis sync
+
+- Updated the companion analysis prose and glass table for L4, L9, and L12.
+
+### Verification
+
+- `npm run generate:glass-reports`
+
+## 2026-06-23 - Semi-diameter raw-geometry audit
+
+### SD correction
+
+| Surface | Before | After | Justification |
+|---|---:|---:|---|
+| S9 | 22.5 | 22.2 | Raw extended edge check showed L5 S9/S10 self-crossing by 0.222 mm at the larger authored endpoint. |
+
+### Notes
+
+- JP 2023-183894 A Example 1 does not publish a clear-aperture / effective-radius table.
+- Temporary Sigma SD audit after the edit reported 0/27 Sigma files with raw SD/render issues.

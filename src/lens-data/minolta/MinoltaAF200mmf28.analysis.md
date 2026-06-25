@@ -42,33 +42,33 @@ The telephoto ratio of 0.859 confirms true telephoto contraction: the axial trac
 
 ### L1 — Biconvex Positive, AD Crown
 
-`nd = 1.49310`, `νd = 83.55`. Glass: unmatched AD fluorophosphate crown, patent code 493/836, `θgF = 0.539`. `f = +179.4 mm` production-scaled (`+96.3` patent units).
+`nd = 1.49310`, `νd = 83.55`. Glass: `493836` AD fluorophosphate crown, `θgF = 0.539` and `dPgF ≈ +0.0358` from the patent partial-dispersion ratio. `f = +179.4 mm` production-scaled (`+96.3` patent units).
 
 L1 is nearly plano-convex, with a strong front surface and a very weak rear surface. It starts the high-aperture converging bundle while keeping dispersion very low. The patent's condition (4) requires at least one positive front-unit element with partial dispersion ratio above 0.53 and Abbe number above 75; L1 satisfies this directly.
 
-Current public HOYA and OHARA catalog data do not provide a confident exact name for the `1.49310 / 83.55 / θgF = 0.539` glass. No exact public HOYA or OHARA catalog name is assigned here. The data file records the element as an unmatched patent-listed anomalous-dispersion fluorophosphate crown.
+Current public HOYA and OHARA catalog data do not provide a confident exact name for the `1.49310 / 83.55 / θgF = 0.539` glass. No exact public HOYA or OHARA catalog name is assigned here. The data file records the element by six-digit code and uses the patent partial-dispersion ratio for chromatic tracing.
 
 ### L2 — Positive Meniscus, Convex to Object, AD Crown
 
-`nd = 1.49310`, `νd = 83.55`. Glass: unmatched AD fluorophosphate crown, patent code 493/836, `θgF = 0.539`. `f = +155.0 mm` production-scaled (`+83.2` patent units).
+`nd = 1.49310`, `νd = 83.55`. Glass: `493836` AD fluorophosphate crown, `θgF = 0.539` and `dPgF ≈ +0.0358` from the patent partial-dispersion ratio. `f = +155.0 mm` production-scaled (`+83.2` patent units).
 
 L2 is the second anomalous-dispersion positive element. It shares the chromatic correction load with L1 and carries substantial positive front-group power without relying on high refractive index. The close L1-L2 spacing makes this pair behave as a strong low-dispersion collector, while the different bending of L2 provides an additional spherical and coma balancing degree of freedom.
 
 ### L3 — Positive Meniscus, Convex to Object
 
-`nd = 1.72000`, `νd = 52.14`. Glass: unmatched high-index lanthanum-crown class, code 720/521. `f = +116.1 mm` production-scaled (`+62.4` patent units).
+`nd = 1.72000`, `νd = 52.14`. Glass: `720521` high-index lanthanum-crown class. `f = +116.1 mm` production-scaled (`+62.4` patent units).
 
 L3 is the third element of component I-1 and provides high-index positive power after the two low-index AD crowns. Its rear surface, r6, is one of the patent's explicitly controlled surfaces. The r6/r7 radius ratio and the d6 air gap between L3 and L4 are the main distinction from the prior art designs cited by the patent, where the third positive and fourth negative front elements were cemented.
 
-The stored `1.72000 / 52.14` glass does not match the current public HOYA LAC10 or OHARA S-LAL10 values closely enough for a firm catalog identification. It is best treated as an unmatched high-index lanthanum crown or a discontinued/proprietary melt rather than forced into a near match.
+The stored `1.72000 / 52.14` glass does not match the current public HOYA LAC10 or OHARA S-LAL10 values closely enough for a firm catalog identification. It is best treated as code-based high-index lanthanum crown data rather than forced into a near match.
 
 ### L4 — Negative Meniscus, Convex to Object
 
-`nd = 1.72100`, `νd = 33.40`. Glass: unmatched dense lanthanum flint, code 721/334. `f = -57.7 mm` production-scaled (`-31.0` patent units).
+`nd = 1.72100`, `νd = 33.40`. Glass: `721334` dense lanthanum flint. `f = -57.7 mm` production-scaled (`-31.0` patent units).
 
 L4 is component I-2: the negative meniscus immediately behind the positive three-element front component. Its strongly curved rear surface adds the front unit's main negative compensating power. The positive/negative component spacing lets the compound front unit have a comparatively long focal length even though its subcomponents are individually much stronger.
 
-No current public HOYA or OHARA catalog match is assigned to this glass. It is recorded as an unmatched dense lanthanum flint rather than forced into a named catalog type.
+No current public HOYA or OHARA catalog match is assigned to this glass. It is recorded as code-based dense lanthanum flint data rather than forced into a named catalog type.
 
 ### L5 — Biconvex Positive, Cemented to L6
 
@@ -102,10 +102,10 @@ L8 is the single positive rear relay element. Its low dispersion avoids introduc
 
 | Element | nd | νd | Catalog treatment | Role |
 |---|---:|---:|---|---|
-| L1 | 1.49310 | 83.55 | Unmatched AD fluorophosphate crown, θgF = 0.539 | Primary anomalous-dispersion positive collector |
-| L2 | 1.49310 | 83.55 | Unmatched AD fluorophosphate crown, θgF = 0.539 | Secondary anomalous-dispersion positive collector |
-| L3 | 1.72000 | 52.14 | Unmatched high-index lanthanum crown, 720/521 | High-index positive power in I-1 |
-| L4 | 1.72100 | 33.40 | Unmatched dense lanthanum flint, 721/334 | Negative front-unit compensator |
+| L1 | 1.49310 | 83.55 | `493836` AD fluorophosphate crown, θgF = 0.539, dPgF ≈ +0.0358 | Primary anomalous-dispersion positive collector |
+| L2 | 1.49310 | 83.55 | `493836` AD fluorophosphate crown, θgF = 0.539, dPgF ≈ +0.0358 | Secondary anomalous-dispersion positive collector |
+| L3 | 1.72000 | 52.14 | `720521` high-index lanthanum crown | High-index positive power in I-1 |
+| L4 | 1.72100 | 33.40 | `721334` dense lanthanum flint | Negative front-unit compensator |
 | L5 | 1.75520 | 27.51 | HOYA E-FD4 / OHARA S-TIH4 | Dense-flint member of Unit II doublet |
 | L6 | 1.72000 | 50.31 | HOYA LAC10 / OHARA S-LAL10 | Lower-dispersion crown member of Unit II doublet |
 | L7 | 1.58144 | 40.89 | HOYA E-FL5 | Negative auxiliary element in Unit II |

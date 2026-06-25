@@ -109,9 +109,9 @@ The biconvex form ($R_1 = +10.53$, $R_2 = -20.11$) concentrates positive power p
 
 ### L9 — Biconvex Positive (2× Asph)
 
-$n_d = 1.58575$, $\nu_d = 59.5$. Glass: 586595 patent-code barium crown. $f = +17.6$ mm.
+$n_d = 1.58575$, $\nu_d = 59.5$. Glass: P-SK57Q1 (Schott, 586595) barium crown. $f = +17.6$ mm.
 
-L9 is the second aspherical element, with both surfaces (S18 and S19) carrying aspherical profiles. Unlike L2's surfaces which use strong conic constants, both of L9's surfaces have $K = 0$ (spherical base), with all aspherical correction provided by the polynomial terms $A_4$ through $A_{12}$. The audit keeps L9 as a patent-code barium crown because public catalog candidates were not unique enough for a vendor-level label.
+L9 is the second aspherical element, with both surfaces (S18 and S19) carrying aspherical profiles. Unlike L2's surfaces which use strong conic constants, both of L9's surfaces have $K = 0$ (spherical base), with all aspherical correction provided by the polynomial terms $A_4$ through $A_{12}$. The 586595 code now resolves to Schott P-SK57Q1 in the local coefficient-backed catalog, so the audit keeps the code in the label while using the catalog-backed glass name.
 
 The front surface (S18, $R = +26.30$) has a dominant negative $A_4$ coefficient ($-4.21 \times 10^{-5}$) that flattens the surface periphery relative to the base sphere. The departure reaches approximately −467 µm at the estimated clear aperture, making it a moderately strong asphere. This surface primarily corrects residual spherical aberration and coma emerging from the G1B group.
 
@@ -157,7 +157,7 @@ The design uses an all-OHARA glass palette of 10 distinct glasses across 12 elem
 | L6 | S-TIH4 (OHARA) | 1.75211 | 25.0 | Dense titanium flint | Weak positive; high-index higher-order correction |
 | L7 | S-LAH79 (OHARA) | 2.00100 | 29.1 | UHR lanthanum dense flint | Ultra-high-index negative; compactness + Petzval |
 | L8 | S-FPL51 (OHARA) | 1.49700 | 81.6 | ED fluorophosphate | Second ED element; axial color correction post-stop |
-| L9 | 586595 patent-code | 1.58575 | 59.5 | Barium crown | Moldable glass for double-aspheric positive |
+| L9 | P-SK57Q1 (Schott, 586595) | 1.58575 | 59.5 | Barium crown | Moldable glass for double-aspheric positive |
 | L10 | FDS18 (HOYA) | 1.94595 | 18.0 | Super-dense flint | High-index positive in focus group doublet |
 | L11 | S-TIH53 (OHARA) | 1.84666 | 23.8 | Dense titanium flint | Strong negative in focus group; field curvature |
 | L12 | S-PHM52Q (OHARA) | 1.62299 | 58.1 | Phosphate crown | Field flattener / telecentric corrector |
@@ -189,7 +189,7 @@ The production lens specifies a minimum focusing distance (MFD) of 0.095 m from 
 Four aspherical surfaces are distributed across two elements, both of which use OHARA L-series precision-glass-molded (PGM) glasses:
 
 - **L2 (534556 patent-code):** Surfaces S3 and S4 — both with strong prolate-ellipsoid conic constants
-- **L9 (586595 patent-code):** Surfaces S18 and S19 — both with spherical bases ($K = 0$), corrected by polynomial terms only
+- **L9 (P-SK57Q1 / 586595):** Surfaces S18 and S19 — both with spherical bases ($K = 0$), corrected by polynomial terms only
 
 The patent defines the aspherical sag equation as (¶0257):
 
@@ -305,4 +305,4 @@ All element focal lengths match Table 1D to within rounding precision. Variable-
 1. US 2023/0367186 A1 (Panasonic Intellectual Property Management Co., published November 16, 2023).
 2. JP 2022-080128 (priority application, filed May 16, 2022).
 3. Panasonic product page: "LEICA DG SUMMILUX 9mm / F1.7 ASPH. (H-X09)," Panasonic Corporation.
-4. OHARA, HOYA, Hikari, and refractiveindex.info catalog checks for nd/νd matching; L2 and L9 remain patent-code labels where no unique coefficient-backed public match was found.
+4. OHARA, HOYA, Hikari, Schott, and refractiveindex.info catalog checks for nd/νd matching; L2 remains a patent-code label where no unique coefficient-backed public match was found, while L9 resolves through the Schott P-SK57Q1 / 586595 row.

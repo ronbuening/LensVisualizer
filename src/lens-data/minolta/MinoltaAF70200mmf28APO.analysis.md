@@ -58,15 +58,15 @@ The L1-L2 cemented interface has a much stronger curvature than the broad front 
 
 ### L2 - Biconvex Positive ED/AD Element, Cemented to L1
 
-$n_d = 1.49310$, $ν_d = 83.58$. Glass: proprietary Minolta AD/ED fluorophosphate-type; no exact public catalog match. Standalone $f = +199.99$ mm.
+$n_d = 1.49310$, $ν_d = 83.58$. Glass: `493836` Minolta AD/ED fluorophosphate-type; no exact public catalog match. Standalone $f = +199.99$ mm.
 
-L2 is the first of four very-low-dispersion positive elements in the patent example. Its index/Abbe pair does not match public FCD1 / S-FPL51 exactly; those public catalog equivalents are roughly code 497/816, while the patent uses 493/836. It is therefore safer to describe L2 as a proprietary or special Minolta AD/ED fluorophosphate-type material rather than as a public catalog glass.
+L2 is the first of four very-low-dispersion positive elements in the patent example. Its index/Abbe pair does not match public FCD1 / S-FPL51 exactly; those public catalog equivalents are roughly code 497816, while the patent uses code `493836`. It is therefore safer to describe L2 by code as a special Minolta AD/ED fluorophosphate-type material rather than as a public catalog glass.
 
 The L1-L2 doublet has only weak net positive power, tracing to approximately +874 mm. That is the signature of a front color-correcting doublet that shapes aberrations without acting as the dominant collector by itself.
 
 ### L3 - Positive Meniscus ED/AD Element, Convex to Object
 
-$n_d = 1.49310$, $ν_d = 83.58$. Glass: proprietary Minolta AD/ED fluorophosphate-type; no exact public catalog match. Standalone $f = +249.91$ mm.
+$n_d = 1.49310$, $ν_d = 83.58$. Glass: `493836` Minolta AD/ED fluorophosphate-type; no exact public catalog match. Standalone $f = +249.91$ mm.
 
 L3 is the second front-group ED/AD element. It completes Gr1F and gives the fixed front sub-group much of its positive power while preserving the low-dispersion front correction strategy started by L2.
 
@@ -134,7 +134,7 @@ L11 begins Gr3. It restores convergence after the negative variator and sets up 
 
 ### L12 - Biconvex Positive ED/AD Element, Cemented to L13
 
-$n_d = 1.49310$, $ν_d = 83.58$. Glass: proprietary Minolta AD/ED fluorophosphate-type; no exact public catalog match. Standalone $f = +74.65$ mm.
+$n_d = 1.49310$, $ν_d = 83.58$. Glass: `493836` Minolta AD/ED fluorophosphate-type; no exact public catalog match. Standalone $f = +74.65$ mm.
 
 L12 is the third ED/AD element. Its placement after Gr2 is important: residual color introduced or magnified by the variator can be corrected downstream rather than being left entirely to the front group.
 
@@ -156,7 +156,7 @@ L14 is optically weak in isolation, but its placement just after the stop makes 
 
 ### L15 - Biconvex Positive ED/AD Element, Cemented to L16
 
-$n_d = 1.49310$, $ν_d = 83.58$. Glass: proprietary Minolta AD/ED fluorophosphate-type; no exact public catalog match. Standalone $f = +68.74$ mm.
+$n_d = 1.49310$, $ν_d = 83.58$. Glass: `493836` Minolta AD/ED fluorophosphate-type; no exact public catalog match. Standalone $f = +68.74$ mm.
 
 L15 is the fourth ED/AD element and the positive member of the rear cemented doublet. Its role differs from the front ED/AD pair. L2 and L3 address primary axial color at high beam diameter; L12 and L15 clean up residual axial and lateral color after zoom magnification has occurred.
 
@@ -195,7 +195,7 @@ The patent publishes only $n_d$ and $ν_d$. It does not publish vendor names, $n
 | Element(s) | Patent $n_d / ν_d$ | Data-file glass label | Confidence | Notes |
 |---|---:|---|---|---|
 | L1, L16 | 1.62004 / 36.30, 36.29 | F2 / S-TIM2 class | High class match | Flint partners for ED/AD positives |
-| L2, L3, L12, L15 | 1.49310 / 83.58 | Proprietary Minolta AD/ED fluorophosphate-type | Medium | Production documentation confirms four ED elements, but public FCD1/S-FPL51 is not an exact match |
+| L2, L3, L12, L15 | 1.49310 / 83.58 | `493836` Minolta AD/ED fluorophosphate-type | Medium | Production documentation confirms four ED elements, but public FCD1/S-FPL51 is not an exact match |
 | L4 | 1.71736 / 29.50 | HOYA E-FD1L / S-TIH1 / N-SF1 class | High | Dense flint negative in focus group |
 | L5 | 1.69680 / 56.47 | H-LAK12 (CDGM equivalent; patent 697565) | Medium | Cross-referenced to old LAL64 family; not supplier proof |
 | L6, L10 | 1.75450 / 51.57 | 755516 high-index crown | Low-medium | No exact public match retained |

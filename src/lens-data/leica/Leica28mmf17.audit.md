@@ -31,3 +31,10 @@ Patent: US 2016/0266350 A1, Example 1
 
 - `npm run generate:glass-reports` — passed; lens cleared from both glass mismatch queues.
 - `npm run typecheck`, `npm run format:check`, `npm run lint`, and `npm run test` — passed.
+
+## 2026-06-24 — Folder audit recheck
+
+- Rechecked local `patents/US20160266350A1.pdf` text for Example 1 against the current data file.
+- Retained L6 as `877370` high-index lanthanum glass. The patent row is nd=1.87722, vd=37.0 and still lacks a verified coefficient-backed public match.
+- Rechecked APD status: the patent gives no partial-dispersion data supporting APD flags for this Summilux-Q design, so all elements remain non-APD.
+- No patent clear-aperture or semi-diameter table was found. Existing SDs remain visualization estimates constrained by f/1.7 ray envelopes, image height, and the drawing proportions.

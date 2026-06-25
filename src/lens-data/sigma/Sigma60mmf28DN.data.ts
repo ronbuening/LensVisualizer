@@ -170,7 +170,7 @@ const LENS_DATA = {
   surfaces: [
     { label: "1", R: 31.12, d: 3.35, nd: 1.8042, elemId: 1, sd: 16.8 },
     { label: "2", R: 73.27, d: 4.93, nd: 1.0, elemId: 0, sd: 15.5 },
-    { label: "3", R: 21.5, d: 4.4, nd: 1.59282, elemId: 2, sd: 13.0 },
+    { label: "3", R: 21.5, d: 4.4, nd: 1.59282, elemId: 2, sd: 12.75 },
     { label: "4", R: -1000.0, d: 1.55, nd: 1.60342, elemId: 3, sd: 10.6 },
     { label: "5", R: 15.25, d: 4.5, nd: 1.0, elemId: 0, sd: 9.75 },
     { label: "STO", R: 1e15, d: 10.13, nd: 1.0, elemId: 0, sd: 6.991 },

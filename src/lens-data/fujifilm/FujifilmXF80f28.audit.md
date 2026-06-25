@@ -33,7 +33,20 @@ Patent: US 2018/0246292 A1 — Example 1
 
 - No patent-published line indices or partial-dispersion deviations were available to add.
 - Relabels to S-BAL35, TAFD40, S-TIH53, S-FPM3, S-LAH98, and S-NPH3 upgrade those elements to catalog Sellmeier dispersion.
-- Code-only labels 626357, 583595, 673382, 003193, and 697485 intentionally fall through to Abbe until matching catalog entries are added.
+- Code-only labels 626357, 583595, 673382, 003193, and 697485 intentionally fell through to Abbe in this pass because matching catalog entries were not yet present.
+
+## 2026-06-25 — Catalog backfill follow-up
+
+| Element / surface | Field | Before | After | Justification |
+|---|---|---|---|---|
+| L1c / S5 | `glass` | `626357 — dense flint (patent nd=1.62588, νd=35.70; no exact catalog match)` | `E-F1 (HOYA, 626/357 dense flint)` | The current catalog includes HOYA E-F1 with code6 `626357`, nd=1.62588, and vd=35.74, matching US 2018/0246292 A1 Table 1 row 5 within patent rounding. |
+| L4aa / S20 | `glass` | `003193 — ultra-high-index dense flint (patent nd=2.00272, νd=19.32; no exact catalog match)` | `E-FDS2 (HOYA, 003/193 ultra-high-index dense flint)` | The current catalog includes HOYA E-FDS2 with code6 `003193`, nd=2.00272, and vd=19.32, matching Table 1 row 20. |
+| L4ab / S21 | `glass` | `697485 — lanthanum crown (patent nd=1.69700, νd=48.52; no exact catalog match)` | `S-LAM59 (OHARA, 697/485 lanthanum crown)` | The current catalog includes OHARA S-LAM59 with code6 `697485`, nd=1.697002, and vd=48.516066, matching Table 1 row 21 within patent rounding. |
+
+### Notes
+
+- No radius, spacing, APD, focus, or semi-diameter edits were made. The patent does not list clear apertures for this example.
+- Updated [FujifilmXF80f28.analysis.md](FujifilmXF80f28.analysis.md) so the glass strategy table no longer calls these rows catalog-pending.
 - Existing metadata already covered subtitle, patent year, design focal length/aperture, element/group counts, mount/format, and focus description.
 
 ### Phase 4 — Analysis sync

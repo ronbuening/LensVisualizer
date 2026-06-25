@@ -53,3 +53,14 @@ Patent: US 2018/0100988 A1, Example 1 (Tables 1-3)
 - Updated [FujifilmGF110mmf2RLM.analysis.md](FujifilmGF110mmf2RLM.analysis.md) to describe L14 as coefficient-backed by NHG while keeping L13 unresolved.
 - Added H-ZLaF68L to the runtime catalog in [glassCatalogData.ts](../../optics/glassCatalogData.ts).
 - Batch verification is recorded in [six-digit-glass-codes-missing-sellmeier-reviewed.md](../../../agent_docs/generated/six-digit-glass-codes-missing-sellmeier-reviewed.md).
+
+## 2026-06-25 — Catalog backfill follow-up
+
+| Element / surface | Field | Before | After | Justification |
+|---|---|---|---|---|
+| L13 / S5 | `glass` | `567428 — high-index barium glass (patent nd=1.56732, νd=42.81)` | `S-TIL26 (OHARA, 567/428 high-index barium glass)` | The current runtime catalog now includes OHARA S-TIL26 with code6 `567428`, nd=1.567322, and vd=42.817076, matching US 2018/0100988 A1 Table 1 row 5 within patent rounding. |
+
+### Notes
+
+- No surface, spacing, APD, or semi-diameter edits were made. The patent does not publish clear apertures for Example 1.
+- Updated [FujifilmGF110mmf2RLM.analysis.md](FujifilmGF110mmf2RLM.analysis.md) to remove the stale unresolved status for L13.

@@ -37,7 +37,7 @@ The total prescription (at patent scale $f = 100$) spans a total optical track o
 
 ### L1 — Strong Positive Singlet (Group AI, front collector)
 
-$n_d = 1.7495$, $\nu_d = 50.1$. Glass: 749501 lanthanum crown, likely proprietary Minolta melt. $f \approx +66.6$ mm (patent scale), $\approx +56.6$ mm production.
+$n_d = 1.7495$, $\nu_d = 50.1$. Glass: `749501` lanthanum crown; no exact public catalog identity is assigned. $f \approx +66.6$ mm (patent scale), $\approx +56.6$ mm production.
 
 Surfaces: $r_1 = +47.717$ (strongly convex to object), $r_2 = +995.518$ (nearly flat). Center thickness: 8.64 mm. Shape: nearly plano-convex, convex to object.
 
@@ -57,7 +57,7 @@ Combined doublet: $f \approx +53.7$ mm (patent scale), $\approx +45.6$ mm produc
 
 #### L3 — Weak Negative Meniscus (front element of doublet)
 
-$n_d = 1.54072$, $\nu_d = 46.8$. Glass: 541468 light flint, probable Minolta proprietary melt. No exact coefficient-backed match was found in public OHARA, Schott, HOYA, HIKARI, CDGM, or refractiveindex.info catalog searches. In any event, the glass is a low-index, moderate-dispersion light flint.
+$n_d = 1.54072$, $\nu_d = 46.8$. Glass: `541468` light flint. No exact coefficient-backed match was found in public OHARA, Schott, HOYA, HIKARI, CDGM, or refractiveindex.info catalog searches. In any event, the glass is a low-index, moderate-dispersion light flint.
 
 Surfaces: $r_5 = +650.716$ (nearly flat front), $r_6 = +35.711$ (junction with L4). Center thickness: 2.53 mm. Shape: meniscus, convex to object, thin.
 
@@ -65,7 +65,7 @@ In isolation (removed from the doublet), L3 would be a moderate negative element
 
 #### L4 — Strong Positive Crown (rear element of doublet)
 
-$n_d = 1.72$, $\nu_d = 52.1$. Glass: lanthanum crown, nearest catalog match is Schott LaK10 ($n_d = 1.72000$, $\nu_d = 50.41$) or OHARA S-LAL10/S-LAL54 ($n_d = 1.72000$, $\nu_d = 50.23$). The $\nu_d$ discrepancy of $\approx 1.7{-}1.9$ units suggests either a Minolta proprietary melt or a production variant not represented in modern catalogs. Confidence: class-level (720/521 code).
+$n_d = 1.72$, $\nu_d = 52.1$. Glass: `720521` lanthanum crown. Current Schott/OHARA neighboring catalog rows are materially lower in Abbe number, so the data file keeps this as code fallback rather than assigning a near catalog name.
 
 Surfaces: $r_6 = +35.711$ (junction with L3), $r_7 = -54.216$ (rear, convex to image). Center thickness: 10.69 mm. Shape: biconvex, strongly positive.
 
@@ -83,7 +83,7 @@ L5 is mechanically stationary during focusing — it does not move relative to L
 
 ### L6 — Negative Meniscus (Group B, soft-focus control)
 
-$n_d = 1.57616$, $\nu_d = 41.4$. Glass: 576414 light flint, probable Minolta proprietary melt. No exact coefficient-backed public catalog match was found in the 2026-05-19 audit. $f \approx -166.8$ mm (patent scale), $\approx -141.8$ mm production.
+$n_d = 1.57616$, $\nu_d = 41.4$. Glass: `576414` light flint. No exact coefficient-backed public catalog match was found in the 2026-05-19 audit. $f \approx -166.8$ mm (patent scale), $\approx -141.8$ mm production.
 
 Surfaces: $r_{10} = -31.559$, $r_{11} = -48.743$. Center thickness: 3.22 mm. Shape: negative meniscus, concave toward the object.
 
@@ -93,16 +93,16 @@ The patent demonstrates (Column 6, lines 5–35) that widening $d_{B0}$ produces
 
 ## Glass Identification and Selection
 
-The prescription uses six distinct glasses. Minolta was one of the few camera manufacturers to produce its own optical glass (in addition to sourcing from OHARA and other vendors), and several of the glass types in this design appear to be Minolta proprietary melts with no exact match in publicly available catalogs.
+The prescription uses six distinct glasses. Minolta was one of the few camera manufacturers to produce its own optical glass, and several rows in this design have no exact match in publicly available catalogs. Those rows are recorded with six-digit code labels so future catalog additions can resolve automatically.
 
 | Element | $n_d$ | $\nu_d$ | Identification | Confidence | Role |
 |---------|-------|--------|----------------|------------|------|
-| L1 | 1.7495 | 50.1 | 749501 proprietary lanthanum crown | Class | Front positive collector — high index reduces curvature |
+| L1 | 1.7495 | 50.1 | 749501 lanthanum crown | Code fallback | Front positive collector — high index reduces curvature |
 | L2 | 1.6398 | 34.7 | S-TIM27 (OHARA) or equivalent | Confirmed ($\Delta n_d = 0.000$, $\Delta\nu_d = 0.27$) | Biconcave flint — chromatic correction partner for L1 |
-| L3 | 1.54072 | 46.8 | 541468 proprietary light flint | Class | Doublet front — Abbe differential for achromatization |
-| L4 | 1.72 | 52.1 | Lanthanum crown, LaK10 family (720/521) | Class (Δνd ≈ 1.7–1.9 from Schott/OHARA) | Doublet rear — primary positive power behind stop |
+| L3 | 1.54072 | 46.8 | 541468 light flint | Code fallback | Doublet front — Abbe differential for achromatization |
+| L4 | 1.72 | 52.1 | 720521 lanthanum crown | Code fallback | Doublet rear — primary positive power behind stop |
 | L5 | 1.6968 | 55.5 | S-LAL14 (OHARA) | Confirmed ($\Delta n_d = 0$, $\Delta\nu_d = 0.03$) | Stationary field relay meniscus |
-| L6 | 1.57616 | 41.4 | 576414 proprietary light flint | Class | Soft-focus control — low index keeps higher-order SA controllable |
+| L6 | 1.57616 | 41.4 | 576414 light flint | Code fallback | Soft-focus control — low index keeps higher-order SA controllable |
 
 The chromatic correction strategy pairs a high-$\nu_d$ crown (L1, L4, L5) against moderate-$\nu_d$ flints (L2, L3, L6). The two confirmed catalog glasses — S-TIM27 for L2 and S-LAL14 for L5 — are both standard OHARA production glasses that were widely available in the 1970s. The remaining four glasses are likely Minolta in-house melts, consistent with the company's well-documented practice of producing its own optical glass.
 

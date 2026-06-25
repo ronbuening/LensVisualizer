@@ -44,7 +44,7 @@ The Petzval sum is exceptionally well corrected at $\sum \varphi_k / (n_k \cdot 
 
 ## Element-by-Element Analysis
 
-The patent prescription uses e-line (546.1 nm) refractive indices and e-line-referenced Abbe numbers throughout. All $n_e$ and $\nu_e$ values quoted below are as published in the patent; the glass identifications reference the corresponding d-line catalog values where available. The data file preserves the patent's e-line values to maintain prescription fidelity.
+The patent prescription uses e-line (546.1 nm) refractive indices and e-line-referenced Abbe numbers throughout. All $n_e$ and $\nu_e$ values quoted below are as published in the patent; the glass identifications reference the corresponding d-line catalog values where available. The data file preserves the patent's e-line values to maintain prescription fidelity and marks those glass annotations as explicitly unmatched so d-line catalog Sellmeier curves are not silently applied to e-line-retained prescription data.
 
 ### L1 — Negative Meniscus (convex to object)
 
@@ -113,7 +113,7 @@ The design employs four distinct Schott glasses — a compact palette for a six-
 | L4b | 1.62408 | 36.12 | F2 class (Schott) | ~1.620 | ~36.4 | Standard flint | Achromat divergent partner |
 | L5 | 1.50349 | 56.13 | K10 (Schott) | 1.5014 | 56.4 | Crown | Rear field flattener |
 
-**Note on spectral convention.** The patent tabulates $n_e$ (refractive index at the e-line, 546.1 nm) and a corresponding e-line Abbe number, as is conventional for German optical patents. All patent values quoted in this analysis are e-line quantities. The $n_d$ and $\nu_d$ values in the table above are derived from the identified Schott catalog entries at the d-line (587.6 nm). The companion data file preserves the patent's e-line values in the surface prescription (labeled as `nd` per the file-format convention) to maintain prescription fidelity; d-line catalog values would alter the design's paraxial and aberration behavior.
+**Note on spectral convention.** The patent tabulates $n_e$ (refractive index at the e-line, 546.1 nm) and a corresponding e-line Abbe number, as is conventional for German optical patents. All patent values quoted in this analysis are e-line quantities. The $n_d$ and $\nu_d$ values in the table above are derived from the identified Schott catalog entries at the d-line (587.6 nm). The companion data file preserves the patent's e-line values in the surface prescription (labeled as `nd` per the file-format convention) to maintain prescription fidelity; d-line catalog values would alter the design's paraxial and aberration behavior. Its `glass` labels therefore use the explicit `Unmatched` prefix even where a Schott family name is known, preventing the runtime resolver from mixing d-line Sellmeier data with e-line geometry.
 
 **Note on L4b glass.** The patent's $n_e = 1.62408$ for L4b exceeds the current Schott F2 catalog value ($n_e = 1.62299$) by 0.001. This is a marginal match. It is possible that Schneider used a proprietary melt or an older Schott glass type that is no longer in the active catalog. The Abbe number match ($\nu_e = 36.12$ vs. 36.0 for F2) is good, and the optical behavior is consistent with a standard flint glass.
 

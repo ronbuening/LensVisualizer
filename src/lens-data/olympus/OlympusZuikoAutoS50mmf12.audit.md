@@ -19,3 +19,27 @@ Patent: US 4,099,843, Example 6
 ### Analysis sync
 
 - Updated the L4b glass table and summary prose.
+
+## 2026-06-24 - Olympus patent glass-code audit
+
+### Patent evidence
+
+- Reviewed local patent file `patents/US4099843.pdf`.
+- Example 6 confirms the existing R/d/nd/vd prescription. The patent does not publish clear-aperture semi-diameters.
+- The retained stop placement, focus approximation, surface geometry, and inferred SDs were left unchanged.
+
+### Glass corrections
+
+| Element / surface | Before | After | Disposition |
+|---|---|---|---|
+| L3 / S5 | `S-TIF8 (OHARA) / TIF6 (HOYA)` | `S-TIH10 (OHARA, 728285) / TIF6 class (HOYA)` | Public coefficient-backed OHARA catalog row matches the patent nd/vd pair better than the prior label. |
+
+### APD, high-index, and SD review
+
+- No APD status changes: the patent does not identify anomalous partial dispersion glass for Example 6.
+- The high-index/fast-normal correction roles are unchanged; this pass only relabels L3 within the titanium high-index flint family.
+- No SD change: the current inferred semi-diameters preserve the patent Fig. 1 proportions and the patent omits numerical clear apertures.
+
+### Analysis sync
+
+- Updated the glass summary row for L3.

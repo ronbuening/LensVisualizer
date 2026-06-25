@@ -102,7 +102,7 @@ const LENS_DATA = {
       nd: 1.76182,
       vd: 26.6,
       fl: -11.4,
-      glass: "TiSF6 (Schott) / FD4 (Hoya)",
+      glass: "S-TIH14 (OHARA) / FD140-N-SF14 class (762265)",
       apd: false,
       cemented: "D1",
       role: "High-dispersion flint element of cemented achromatic doublet (Component IV).",

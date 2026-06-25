@@ -91,7 +91,7 @@ const LENS_DATA = {
       nd: 1.7407,
       vd: 26.2,
       fl: -70.29,
-      glass: "Unmatched dense flint (741/262 e-line; no close current HOYA/OHARA match)",
+      glass: "Unmatched (dense flint, 741/262 e-line; no close current HOYA/OHARA match)",
       role: "Rear-side negative meniscus immediately behind the stop; strong field-flattening and chromatic overcorrection member.",
     },
     {

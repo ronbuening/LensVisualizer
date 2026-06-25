@@ -78,7 +78,7 @@ const LENS_DATA = {
       nd: 1.72825,
       vd: 28.46,
       fl: -32.9,
-      glass: "S-TIF8 (OHARA) / TIF6 (HOYA)",
+      glass: "S-TIH10 (OHARA, 728285) / TIF6 class (HOYA)",
       apd: false,
       role: "Spherical aberration correction; L2+L3 combined f₂₃ = −66.6 for Petzval control",
     },

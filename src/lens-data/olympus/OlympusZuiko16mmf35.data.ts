@@ -151,7 +151,7 @@ const LENS_DATA = {
       nd: 1.51728,
       vd: 69.6,
       fl: 62.1,
-      glass: "S-APL1 (OHARA)",
+      glass: "517696 — S-APL1 / APL1-class low-index high-Abbe crown (OHARA; no public Sellmeier match)",
       role: "Post-stop positive meniscus; low-dispersion relay element reconditioning the bundle.",
     },
     {
@@ -174,7 +174,7 @@ const LENS_DATA = {
       nd: 1.51728,
       vd: 69.6,
       fl: 19.16,
-      glass: "S-APL1 (OHARA)",
+      glass: "517696 — S-APL1 / APL1-class low-index high-Abbe crown (OHARA; no public Sellmeier match)",
       cemented: "L7",
       role: "Crown in rear doublet; final achromatizing and image-forming element.",
     },

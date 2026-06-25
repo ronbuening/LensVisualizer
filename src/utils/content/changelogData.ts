@@ -22,13 +22,40 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-06-25 ──────────────────────────────────────────────────────────
   {
     date: "2026-06-25",
-    type: "lens",
-    summary: "Added Canon G1 X, Nikon 35-70mm, and Rodenstock enlarger lenses",
+    type: "improvement",
+    summary: "Improved Canon, Fujifilm, and Zeiss patent-audited glass and metadata",
   },
   {
     date: "2026-06-25",
     type: "lens",
+    summary: "Added Canon G1 X, Nikon 35-70mm, and Rodenstock enlarger lenses",
+  },
+  // ── 2026-06-24 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-06-24",
+    type: "lens",
     summary: "Added six Rodenstock large-format lenses",
+  },
+  {
+    date: "2026-06-24",
+    type: "improvement",
+    summary: "Improved Hasselblad, Leica, Laowa, Nikon, Olympus, Minolta, and Panasonic patent data",
+  },
+  // ── 2026-06-23 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-06-23",
+    type: "lens",
+    summary: "Added patent-audited Canon TS-E 50mm, 90mm, and 135mm L tilt-shift lenses",
+  },
+  {
+    date: "2026-06-23",
+    type: "fix",
+    summary: "Corrected Sigma semi-diameter geometry and Voigtlander Heliar stop placement",
+  },
+  {
+    date: "2026-06-23",
+    type: "improvement",
+    summary: "Improved Sigma, Sony, Voigtlander, Vivitar, Schneider, Pentax, and Ricoh patent data",
   },
   // ── 2026-06-22 ──────────────────────────────────────────────────────────
   {

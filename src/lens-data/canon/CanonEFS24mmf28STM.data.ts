@@ -107,9 +107,10 @@ const LENS_DATA = {
       vd: 67.7,
       fl: 24.62,
       glass: "S-FPM2 (OHARA)",
-      apd: "inferred",
+      apd: "patent",
+      dPgF: 0.0141,
       apdNote:
-        "θgF = 0.544, ΔPgF ≈ +0.014 (from patent Table 1); positive anomalous dispersion for lateral color correction",
+        "θgF = 0.544, ΔPgF ≈ +0.0141 (from patent Table 1); positive anomalous dispersion for lateral color correction",
       role: "Primary positive relay; strongest rear-group element with anomalous partial dispersion for secondary spectrum",
     },
     {

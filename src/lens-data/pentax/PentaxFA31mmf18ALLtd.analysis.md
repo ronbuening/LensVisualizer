@@ -38,11 +38,11 @@ The power distribution is therefore negative–positive–positive across the th
 
 ### L1 — Biconvex Positive (Element 1, Group 10)
 
-$n_d = 1.72916$, $\nu_d = 54.7$. Glass: TAC8 (HOYA) — lanthanum crown. Schott equivalent: N-LAK34. $f = +129.0$ mm.
+$n_d = 1.72916$, $\nu_d = 54.7$. Glass: TAC8 / S-LAL18 (OHARA, 729547) class — lanthanum crown. $f = +129.0$ mm.
 
 L1 is a weakly positive biconvex element with a nearly plano rear surface ($R_2 = -5402.5$ mm). Its front surface ($R_1 = +95.70$ mm) faces the object. With a relatively long focal length, L1 acts as a gentle positive collector at the front of the system, gathering off-axis light bundles and directing them into the diverging elements behind it. In a retrofocus design the positive front element serves to reduce the angle of incidence on the subsequent negative menisci, controlling off-axis aberrations — particularly distortion and lateral color.
 
-The choice of a lanthanum crown ($n_d = 1.729$, $\nu_d = 54.7$) provides high refractive index for reducing surface curvatures while maintaining relatively low dispersion — a combination that qualifies as "high-refraction, low-dispersion" in the sense used by Ricoh Imaging's product literature. The OHARA catalog does not list a current glass at this code (729/547); the cross-reference tables identify HOYA TAC8 and Schott N-LAK34 as the matches, consistent with Pentax's known use of HOYA glasses.
+The choice of a lanthanum crown ($n_d = 1.729$, $\nu_d = 54.7$) provides high refractive index for reducing surface curvatures while maintaining relatively low dispersion — a combination that qualifies as "high-refraction, low-dispersion" in the sense used by Ricoh Imaging's product literature. The current catalog includes OHARA S-LAL18 at this code (729547), while TAC8 remains a plausible historical HOYA-family label for Pentax context.
 
 ### L2 — Negative Meniscus, convex to object (Element 2, Group 10)
 
@@ -118,7 +118,7 @@ The prescription uses a palette of seven distinct glasses across nine elements, 
 
 | Element | $n_d$ | $\nu_d$ | Glass / Catalog | Vendor | Role |
 |---------|-------|---------|-----------------|--------|------|
-| L1 | 1.72916 | 54.7 | TAC8 | HOYA | Lanthanum crown; front positive collector |
+| L1 | 1.72916 | 54.7 | TAC8 / S-LAL18 (729547) | HOYA / OHARA | Lanthanum crown; front positive collector |
 | L2 | 1.76182 | 26.5 | S-TIH14 | OHARA | Dense titanium flint; front group achromatizer |
 | L3 | 1.61800 | 63.4 | S-PHM52 | OHARA | Phosphate crown; lateral color control |
 | L4 | 1.80100 | 35.0 | S-LAM66 | OHARA | Lanthanum medium-dispersion glass; main front positive |
@@ -130,7 +130,7 @@ The prescription uses a palette of seven distinct glasses across nine elements, 
 
 The chromatic correction strategy pairs high-dispersion elements (L2 at $\nu_d = 26.5$, L7 at $\nu_d = 23.8$) against low-dispersion positives. L3's phosphate crown ($\nu_d = 63.4$) in the negative front group is the highest-Abbe-number glass in the prescription and controls lateral color across the wide field — a correction that would normally require the glass to be in a positive element but which, in the diverging front group of a retrofocus design, can be achieved through a negative element at a position where chief-ray heights are large. S-PHM52 has a small positive anomalous partial dispersion ($\Delta P_{gF} = +0.005$), well below the threshold for ED classification but useful at the margin for secondary-spectrum control.
 
-The Ricoh Imaging product description references "high-refraction, low-dispersion glass elements" as a distinguishing feature. This designation applies to the three lanthanum-class positive elements: L1 (TAC8, $n_d = 1.729$, $\nu_d = 54.7$), L6 (S-LAH65, $n_d = 1.804$, $\nu_d = 46.6$), and L9 (S-LAH66, $n_d = 1.773$, $\nu_d = 49.6$). All three have refractive indices above 1.7 with relatively low dispersion for their index — the defining characteristic of lanthanum crown glasses. These glasses enable the strong positive powers needed at f/1.8 without the surface curvatures (and resulting higher-order aberrations) that lower-index materials would demand.
+The Ricoh Imaging product description references "high-refraction, low-dispersion glass elements" as a distinguishing feature. This designation applies to the three lanthanum-class positive elements: L1 (TAC8 / S-LAL18 class, $n_d = 1.729$, $\nu_d = 54.7$), L6 (S-LAH65, $n_d = 1.804$, $\nu_d = 46.6$), and L9 (S-LAH66, $n_d = 1.773$, $\nu_d = 49.6$). All three have refractive indices above 1.7 with relatively low dispersion for their index — the defining characteristic of lanthanum crown glasses. These glasses enable the strong positive powers needed at f/1.8 without the surface curvatures (and resulting higher-order aberrations) that lower-index materials would demand.
 
 The patent's condition (2) requires $n_\text{PAV} > 1.7$, where $n_\text{PAV}$ is the average refractive index of positive elements in the second lens group. The computed value is 1.7763, satisfying the condition. This ensures that positive surface curvatures remain moderate enough to suppress higher-order aberrations at the wide f/1.8 aperture.
 

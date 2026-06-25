@@ -120,7 +120,7 @@ L4 is the positive partner in the L4/L5 cemented doublet. The aspherical front s
 
 #### L5 — Biconcave (S8–S9, cemented to L4)
 
-nd = 1.59270, νd = 35.45, ΔθgF = +0.008. Glass: heavy flint, code 593/355 (class identification only — the precise vendor name is not confidently determinable from nd/νd alone in this region; possibilities include HOYA E-F-class or HIKARI E-FF series). f = −42.2 mm.
+nd = 1.59270, νd = 35.45, ΔθgF = +0.008. Glass: 593355 — heavy flint (class identification only; no exact public catalog match is known from nd/νd alone in this region). f = −42.2 mm.
 
 L5 cements onto the rear of L4 with a shared concave junction at R = −43.78 mm. The doublet is a classic positive-then-negative achromat optimised within the front sub-group: L4 (high index, mid-νd) and L5 (mid index, high dispersion) balance axial chromatic aberration locally, while L4's asphericity controls high-order spherical aberration. The cement junction on the stop side of GFA, where the chief ray has begun to bend back, lets the doublet handle off-axis chromatic aberration efficiently as well.
 
@@ -136,7 +136,7 @@ L6 is the negative-power front of the L6/L7 cemented doublet. Its weak negative 
 
 #### L7 — Biconvex (S11–S12, cemented to L6)
 
-nd = 1.45860, νd = 90.19, ΔθgF = +0.049. Glass: **HOYA FCD10A** (high-confidence; the catalogued 459/902 cross-reference, the **ELD** of Sigma's marketing). f = +47.4 mm.
+nd = 1.45860, νd = 90.19, ΔθgF = +0.049. Glass: **459902 — HOYA FCD10A** (high-confidence; the six-digit cross-reference, the **ELD** of Sigma's marketing). f = +47.4 mm.
 
 L7 is GFB's chromatic workhorse. The cemented junction at R = +25.47 mm bends the beam strongly while the high anomalous dispersion of FCD10A cancels the secondary spectrum of the cemented pair. ΔθgF = +0.0492 sits ~0.05 above the Schott normal line — the deviation is what produces apochromatic-like correction across d-, F- and C-line foci. The "ELD" branding is appropriate: FCD10A's νd of 90 sits just below fluorite's 95 (FCD100), placing it in the second tier of anomalously dispersive crowns.
 
@@ -221,11 +221,11 @@ The four elements that Sigma names in the production specifications are all anom
 | Sigma label | Element | nd | νd | θgF | ΔθgF | Glass | dPgF (catalog) |
 |---|---|---|---|---|---|---|---|
 | **FLD** | L2 | 1.43700 | 95.10 | 0.533516 | +0.0565 | HOYA **FCD100** | — |
-| **ELD** | L7 | 1.45860 | 90.19 | 0.535032 | +0.0492 | HOYA **FCD10A** | — |
+| **ELD** | L7 | 1.45860 | 90.19 | 0.535032 | +0.0492 | 459902 — HOYA **FCD10A** | — |
 | **SLD** | L8 | 1.55032 | 75.50 | 0.539881 | +0.0276 | HOYA **FCD705** | +0.0277 |
 | **SLD** | L11 | 1.55032 | 75.50 | 0.539881 | +0.0276 | HOYA **FCD705** | +0.0277 |
 
-The FCD705 cross-reference is exact: HOYA's catalog dPgF of +0.0277 matches the prescription's computed ΔθgF of +0.0276 to four decimal places, confirming that L8 and L11 are HOYA FCD705 specifically (and not, for instance, OHARA's S-FPM family, which sits at a different νd region). FCD100 and FCD10A similarly have HOYA-specific 6-digit codes (437/951 and 459/902); OHARA's S-FPL53 (437/951) and S-FPL55 (439/948) are nearby but not exact equivalents to FCD100, and there is no current OHARA polished equivalent to FCD10A (459/902).
+The FCD705 cross-reference is exact: HOYA's catalog dPgF of +0.0277 matches the prescription's computed ΔθgF of +0.0276 to four decimal places, confirming that L8 and L11 are HOYA FCD705 specifically (and not, for instance, OHARA's S-FPM family, which sits at a different νd region). FCD100 and FCD10A similarly have HOYA-specific 6-digit codes (437/951 and 459902); OHARA's S-FPL53 (437/951) and S-FPL55 (439/948) are nearby but not exact equivalents to FCD100, and there is no current OHARA polished equivalent to FCD10A (459902).
 
 ### 4.2 The Remaining Eleven Elements
 

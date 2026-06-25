@@ -75,7 +75,7 @@ N-BALF5 is a conventional barium light flint with near-normal partial dispersion
 
 ### L3 — Positive Meniscus (Convex to Object)
 
-$n_e = 1.5223$, $\nu_e = 69.5$ → $n_d \approx 1.52055$, $\nu_d \approx 69.9$. Glass: unmatched — phosphate crown class with positive anomalous partial dispersion; six-digit code approximately 520/695 (e-line). $f_d = +130.4$ mm.
+$n_e = 1.5223$, $\nu_e = 69.5$ → $n_d \approx 1.52055$, $\nu_d \approx 69.9$. Glass: unmatched — phosphate crown class with positive anomalous partial dispersion; e-line code class approximately 522/695. $f_d = +130.4$ mm.
 
 L3 is the front positive meniscus that brackets the stop from the object side. Both surfaces are convex toward the object ($r_4 = +23.35$ mm, $r_5 = +34.66$ mm), with the rear surface more weakly curved. The meniscus geometry means that the element contributes positive power while presenting strongly curved concave surfaces toward the stop — a defining feature of the Plasmat layout that enables simultaneous correction of coma and astigmatism.
 
@@ -83,7 +83,7 @@ The patent explicitly requires that L3 be made of glass with anomalous partial d
 
 ### L4 — Positive Meniscus (Concave to Object)
 
-$n_e = 1.5302$, $\nu_e = 76.6$ → $n_d = 1.52855$, $\nu_d = 76.98$. Glass: N-PK51 (Schott) — phosphate crown, strong positive anomalous partial dispersion ($\Delta P_{g,F} \approx +0.0252$). $f_d = +142.0$ mm.
+$n_e = 1.5302$, $\nu_e = 76.6$ → $n_d = 1.52855$, $\nu_d = 76.98$. Glass: N-PK51 (Schott, code 529770) — phosphate crown, strong positive anomalous partial dispersion ($\Delta P_{g,F} \approx +0.0252$). $f_d = +142.0$ mm.
 
 L4 is the rear positive meniscus, the mirror-image counterpart to L3 across the stop. Both surfaces are concave toward the object ($r_6 = -46.19$ mm, $r_7 = -28.98$ mm), with the rear surface more strongly curved. Like L3, the meniscus shape contributes positive power while enabling off-axis aberration correction through the strongly curved air gap that faces the stop.
 
@@ -112,13 +112,13 @@ The design uses four distinct glasses, with two glasses shared symmetrically acr
 | S-PHM53 | 1.6052 | 65.1 | 1.60311 | 65.44 | OHARA S-PHM53 | L1, L6 | +0.0045 |
 | N-BALF5 | 1.5498 | 53.3 | 1.54739 | 53.63 | Schott N-BALF5 | L2, L5 | Near-normal |
 | Unmatched | 1.5223 | 69.5 | ~1.52055 | ~69.9 | Phosphate crown class | L3 | Positive (est.) |
-| N-PK51 | 1.5302 | 76.6 | 1.52855 | 76.98 | Schott N-PK51 | L4 | +0.0252 |
+| N-PK51 | 1.5302 | 76.6 | 1.52855 | 76.98 | Schott N-PK51 (529770) | L4 | +0.0252 |
 
 The classical approach to apochromatic correction in symmetric large-format objectives (as described in the patent's cited prior art, DE PS 1 258 134) placed KzFS-type "short flint" glass — characterized by negative anomalous partial dispersion and high antimony content — in the negative elements of the cemented doublets. The patent's Example 2 inverts this: anomalous-dispersion glass appears in the positive elements L1 and L6 (S-PHM53, with positive $\Delta\theta_{g,F}$) and in both meniscuses L3 and L4 (both with positive $\Delta\theta_{g,F}$, L4 being the stronger contributor via N-PK51). The negative elements L2 and L5 use N-BALF5, a conventional barium light flint with near-normal partial dispersion.
 
 This inversion is the patent's central innovation. By concentrating the chromatic correction duty on the four positive elements rather than the two negative ones, the designer gained additional degrees of freedom in the refractive power distribution of the cemented doublets. The patent notes that this "relieve[d] the strain" on the outer doublets, allowing a power combination that substantially reduced coma and field curvature compared to the predecessor Symmar designs (column 2, lines 43–50). A practical consequence is that all six elements are free of lead, arsenic, and antimony — an explicitly stated design objective.
 
-The deliberate use of different anomalous-dispersion glasses for L3 (six-digit code ~520/695) and L4 (N-PK51, code 529/770) breaks the perfect symmetry of the chromatic correction. In a symmetric design, lateral color is zero by construction, but residual secondary spectrum is doubled. By giving the rear meniscus (L4) substantially more anomalous dispersion than the front meniscus (L3), the designer can tune the balance of secondary spectrum across the field, trading marginal amounts of lateral color for improved field-wide sharpness — a trade-off that is especially valuable in large-format lenses designed to cover generous image circles for tilt/shift movements.
+The deliberate use of different anomalous-dispersion glasses for L3 (e-line code class ~522/695) and L4 (N-PK51, code 529770) breaks the perfect symmetry of the chromatic correction. In a symmetric design, lateral color is zero by construction, but residual secondary spectrum is doubled. By giving the rear meniscus (L4) substantially more anomalous dispersion than the front meniscus (L3), the designer can tune the balance of secondary spectrum across the field, trading marginal amounts of lateral color for improved field-wide sharpness — a trade-off that is especially valuable in large-format lenses designed to cover generous image circles for tilt/shift movements.
 
 ## Semi-Diameter Constraints and Mechanical Vignetting
 

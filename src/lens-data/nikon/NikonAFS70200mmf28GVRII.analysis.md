@@ -40,10 +40,10 @@ Standalone focal lengths below are thick-lens values in air. They were computed 
 
 ### G1: Fixed front collector
 
-**L11 — Negative Meniscus, convex to object.** nd = 1.79504, νd = 28.69. Glass: J-LAFH3 class, HIKARI. f = -186.4 mm.  
+**L11 — Negative Meniscus, convex to object.** nd = 1.79504, νd = 28.69. Glass: J-LAFH3 class, HIKARI; normalized code 795287, without public coefficients in the local catalog. f = -186.4 mm.
 L11 is the high-index, high-dispersion front half of the leading cemented doublet. It supplies the dispersive partner for the ED positive element behind it and keeps the first group from becoming a simple stack of low-dispersion positive lenses.
 
-**L12 — Biconvex Positive.** nd = 1.49782, νd = 82.52. Glass: J-FKH1 class, HIKARI ED fluorocrown. f = +196.1 mm.  
+**L12 — Biconvex Positive.** nd = 1.49782, νd = 82.52. Glass: J-FKH1 class, HIKARI ED fluorocrown. f = +196.1 mm.
 L12 is cemented to L11. The L11+L12 pair is nearly afocal as a standalone unit, with a calculated net focal length of approximately -3760 mm. Its main role is chromatic balancing at high ray height rather than supplying primary positive power.
 
 **L13 — Biconvex Positive.** nd = 1.49782, νd = 82.52. Glass: J-FKH1 class, HIKARI ED fluorocrown. f = +187.9 mm.  
@@ -118,7 +118,7 @@ The glass names are catalog-class identifications, not proof of a purchase order
 | Patent nd / νd | Catalog identification | Elements | Function |
 |---|---|---|---|
 | 1.49782 / 82.52 | J-FKH1, HIKARI ED fluorocrown; catalog nd = 1.497820, νd = 82.57 | L12, L13, L14, L51, L52, L56, L57 | Low-dispersion positive elements; secondary-spectrum reduction |
-| 1.79504 / 28.69 | J-LAFH3, HIKARI | L11 | High-dispersion front doublet partner |
+| 1.79504 / 28.69 | J-LAFH3, HIKARI; normalized code 795287, coefficients unavailable | L11 | High-dispersion front doublet partner |
 | 1.81600 / 46.62 | S-LAH59, OHARA class | L21, L25 | High-index negative variator elements |
 | 1.48749 / 70.41 | N-FK5 / J-FK5 fluor-crown class | L22 | Low-dispersion negative doublet member |
 | 1.84666 / 23.78 | S-TIH53, OHARA class | L23, L32, L41 | Dense-flint correction elements |
@@ -130,7 +130,7 @@ The glass names are catalog-class identifications, not proof of a purchase order
 | 1.80440 / 39.57 | S-LAH63, OHARA class | L55 | Negative VR singlet |
 | 1.85026 / 32.35 | J-LASF021 / S-LAH71 class | L58 | Rear high-index negative meniscus |
 
-The J-FKH1 identification is the most important glass match in the file. HIKARI's J-FKH1 datasheet gives nd = 1.497820 and νd = 82.57, with θgF = 0.5386 and ΔPgF = +0.0327. The patent rounds the same index and prints νd = 82.52, close enough for a catalog-class match. The data file carries J-FKH1's nC, nF, ng, and ΔPgF on the seven ED elements so that chromatic modeling is not limited to Abbe-only dispersion.
+The J-FKH1 identification is the most important glass match in the file. HIKARI's J-FKH1 datasheet gives nd = 1.497820 and νd = 82.57, with θgF = 0.5386 and ΔPgF = +0.0327. The patent rounds the same index and prints νd = 82.52, close enough for a catalog-class match. The seven ED rows are marked `apd: "inferred"` in the data file, while catalog-backed J-FKH1 coefficients let runtime chromatic modeling go beyond Abbe-only dispersion.
 
 The design is ED-rich but should not be described as apochromatic in the manufacturer's naming sense. Nikon published seven ED elements, and Table 6 confirms seven J-FKH1-class low-dispersion positive elements. That supports strong secondary-spectrum reduction, not a formal APO designation.
 

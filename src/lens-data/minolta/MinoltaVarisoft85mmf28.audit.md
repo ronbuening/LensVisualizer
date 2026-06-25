@@ -48,3 +48,21 @@ Patent: US 4,124,276A, Embodiment 3
 
 - Kept all three rows unresolved, but changed their labels to unbroken six-digit codes with explicit class notes for future auto-upgrade scanning.
 - Updated the analysis glass table and chromatic discussion to match the unresolved-code disposition.
+
+## 2026-06-24 - Folder-wide patent audit
+
+### Patent evidence
+
+- Rechecked local `patents/US4124276.pdf`, Embodiment 3 / Table 6.
+- The Table 6 rows support the existing soft-focus variable-spacing model and confirm L1 `749501`, L3 `541468`, L4 `720521`, and L6 `576414` as code fallback rows.
+
+### Glass and APD disposition
+
+- Changed L1, L3, L4, and L6 prose to explicit six-digit code fallback labels.
+- Kept the confirmed catalog assignments for L2 and L5.
+- No APD, ED, or fluorite status is supported by the patent.
+
+### Semi-diameter disposition
+
+- The patent gives no clear-aperture table.
+- Existing SDs remain inferred from the f/2.8 portrait-lens envelope and the two independent moving spacings. The proportions remain consistent with the patent drawings and no SD edits were made.

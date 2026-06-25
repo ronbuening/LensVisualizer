@@ -67,9 +67,9 @@ L3 is the second front-group ED positive element. Splitting the front positive p
 
 ### L4 — Negative Meniscus, dual-surface asphere / DSA
 
-$n_d = 1.88227$, $\nu_d = 37.18$. Glass: **HOYA M-TAFD307 / MC-TAFD307-class moldable high-index glass**. Standalone in-air focal length: **-17.1 mm**.
+$n_d = 1.88227$, $\nu_d = 37.18$. Glass: **882372 — HOYA M-TAFD307 / MC-TAFD307-class moldable high-index glass**. Standalone in-air focal length: **-17.1 mm**.
 
-L4 is the dominant optical correction element in G2. It is strongly negative, sits at the object side of the variator, and carries both DSA aspherical surfaces. The earlier draft labeled it OHARA L-LAH85V, but current OHARA L-LAH85V is around 1.854 / 40.38 and therefore cannot represent the patent value. HOYA's M-TAFD307/MC-TAFD307 family is the correct class by six-digit glass code and by molded-asphere use, though the patent value differs slightly from the current catalog nominal.
+L4 is the dominant optical correction element in G2. It is strongly negative, sits at the object side of the variator, and carries both DSA aspherical surfaces. The earlier draft labeled it OHARA L-LAH85V, but current OHARA L-LAH85V is around 1.854 / 40.38 and therefore cannot represent the patent value. HOYA's M-TAFD307/MC-TAFD307 family is the correct class by six-digit glass code and by molded-asphere use, though the patent value has no exact public coefficient-backed catalog row.
 
 The front asphere has a computed departure of **+91 µm at h = 12.5 mm**. The rear asphere has a computed departure of **-264 µm at h = 10.2 mm**, the largest verified departure in the design. This rear surface is the main wide-end correction surface for distortion, field curvature, and coma.
 
@@ -161,7 +161,7 @@ The glass audit corrected the main weaknesses in the earlier draft. The updated 
 | --------------- | ---------------------: | --------------------------------- | ----------------------------------------------------------- |
 | L1, L12         |        1.85478 / 24.80 | S-NBH56 (OHARA)                   | Replaces incorrect S-NPH53.                                 |
 | L2, L3, L9, L11 |        1.49700 / 81.54 | S-FPL51 (OHARA)                   | Exact ED match.                                             |
-| L4              |        1.88227 / 37.18 | HOYA M-TAFD307 / MC-TAFD307-class | Replaces incorrect OHARA L-LAH85V.                          |
+| L4              |        1.88227 / 37.18 | 882372 — HOYA M-TAFD307 / MC-TAFD307-class | Replaces incorrect OHARA L-LAH85V; no exact public Sellmeier row. |
 | L5              |        1.59282 / 68.62 | FCD515 (HOYA)                     | Exact HOYA ED match; not merely an unknown fluorophosphate. |
 | L6              |        2.00069 / 25.46 | TAFD40 (HOYA)                     | Exact Super HR match; replaces incorrect S-NPH4.            |
 | L7, L14         |        1.83481 / 42.73 | S-LAH55V (OHARA)                  | Exact S-LAH55V value; S-LAH55VS is only a near twin.        |

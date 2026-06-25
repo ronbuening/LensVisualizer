@@ -31,3 +31,21 @@ Patent: JP 2004-109559 A, Example 1
 ### Analysis sync
 
 - Updated the affected element descriptions and the glass-identification table.
+
+## 2026-06-24 - Folder-wide patent audit
+
+### Patent evidence
+
+- Rechecked local `patents/JP2004109559A.pdf`.
+- Because the numeric tables do not extract cleanly with `pdftotext`, pages 15-17 were rendered locally for visual checking of Example 1.
+- The rendered tables confirm the four `1.49310 / 83.58` low-dispersion rows at N2, N3, N12, and N15, plus the previously audited `697565`, `755516`, `670571`, and `781446` rows.
+
+### Glass and APD disposition
+
+- Changed the four `1.49310 / 83.58` rows from generic proprietary unmatched labels to explicit `493836` Minolta AD/ED fluorophosphate-type code labels.
+- APD remains `inferred` from production documentation. The patent confirms the high-Abbe material rows but does not publish partial-dispersion ratios or line-index data.
+
+### Semi-diameter disposition
+
+- The patent gives no per-surface clear apertures.
+- Existing SDs remain inferred visualization apertures constrained by the zoom envelope and f/2.8 telephoto proportions. No SD edits were made.

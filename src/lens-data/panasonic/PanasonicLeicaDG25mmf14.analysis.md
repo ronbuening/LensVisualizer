@@ -67,11 +67,11 @@ The Petzval sum is +0.00332 mm⁻¹, giving a Petzval radius of +301.6 mm — ap
 
 ### L1 — Positive Meniscus, convex to object
 
-nd = 2.00060, νd = 25.46. Glass: **S-NPH2 (OHARA)** — confirmed exact match. f = +29.8 mm.
+nd = 2.00060, νd = 25.46. Glass: **TAFD40 (HOYA)** — confirmed exact match. f = +29.8 mm.
 
-L1 is the front element and the design's **ultra-high refractive index (UHR)** element. S-NPH2 is one of the highest-index optical glasses commercially available, a niobium phosphate dense flint with nd > 2.0. Its extreme refractive index allows the front meniscus to achieve strong positive power with relatively gentle curvature (R1 = +21.18, R2 = +63.53), which reduces the marginal ray's angle of incidence across the front surface and suppresses high-order spherical aberration at the full f/1.4 aperture.
+L1 is the front element and the design's **ultra-high refractive index (UHR)** element. TAFD40 is one of the highest-index optical glasses commercially available, a niobium/tantalum dense flint with nd > 2.0. Its extreme refractive index allows the front meniscus to achieve strong positive power with relatively gentle curvature (R1 = +21.18, R2 = +63.53), which reduces the marginal ray's angle of incidence across the front surface and suppresses high-order spherical aberration at the full f/1.4 aperture.
 
-The trade-off is S-NPH2's high dispersion (νd = 25.46), which introduces substantial chromatic aberration. This is corrected downstream by the negative elements in G1A (L2) and the cemented doublets in G1B. The patent identifies L1 as the most distinctive element in the front group.
+The trade-off is TAFD40's high dispersion (νd = 25.46), which introduces substantial chromatic aberration. This is corrected downstream by the negative elements in G1A (L2) and the cemented doublets in G1B. The patent identifies L1 as the most distinctive element in the front group.
 
 ### L2 — Negative Meniscus, convex to object
 
@@ -113,7 +113,7 @@ The stop is located 1.018 mm behind L7's rear surface (the air gap from surface 
 
 ### L8 — Negative Meniscus, convex to object (1× Aspherical)
 
-nd = 1.73077, νd = 40.50. Glass: **S-LAL8 (OHARA)** — confirmed exact match. f = −40.3 mm.
+nd = 1.73077, νd = 40.50. Glass: **M-LAF81 (Hoya, 731405)** — confirmed coefficient-backed match. f = −40.3 mm.
 
 L8 is the sole element of **G2, the focus group**. It is a negative meniscus with R1 = +178.95 (nearly flat) and R2 = +25.25, and its object-side surface (S14) is aspherical. This is the lightest possible focus group — a single element — which the patent cites as essential for fast, quiet autofocus during video recording (¶0001, ¶0028).
 
@@ -123,7 +123,7 @@ The aspherical profile on S14 carries a strong negative A4 coefficient (−1.460
 
 ### L9 — Biconvex Positive (2× Aspherical)
 
-nd = 1.77250, νd = 49.62. Glass: **S-LAH51 (OHARA)** — near-exact match (Δνd ≈ 0.02 from catalog value of 49.60). f = +26.3 mm.
+nd = 1.77250, νd = 49.62. Glass: **S-LAH66 (OHARA)** — near-exact match (Δνd ≈ 0.02 from catalog value of 49.60). f = +26.3 mm.
 
 L9 is the sole element of **G3**, the fixed rear group. Both surfaces (S16 and S17) are aspherical, making L9 the most heavily corrected element in the design. G3's strong positive power (f = +26.3 mm, nearly equal to the system EFL) performs two critical functions:
 
@@ -135,18 +135,18 @@ L9 is the sole element of **G3**, the fixed rear group. Both surfaces (S16 and S
 
 ## Glass Identification and Selection
 
-The design uses only **five distinct glass types** across nine elements — a remarkably constrained palette for a 9-element f/1.4 design.
+The design uses only **six distinct glass types** across nine elements — a remarkably constrained palette for a 9-element f/1.4 design.
 
 | Glass | nd | νd | Vendor match | Elements | Class |
 |---|---|---|---|---|---|
-| S-NPH2 | 2.00060 | 25.46 | OHARA (exact) | L1 | Ultra-high-index Nb phosphate flint |
+| TAFD40 | 2.00060 | 25.46 | HOYA (exact) | L1 | Ultra-high-index dense flint |
 | S-LAH55V | 1.83481 | 42.72 | OHARA (exact) | L2 | Lanthanum crown |
 | S-TIH53 | 1.84666 | 23.78 | OHARA (exact) | L3, L6 | Dense titanium flint |
 | S-LAH58 | 1.88300 | 40.80 | OHARA (Δνd = 0.04) | L4, L5, L7 | Lanthanum crown |
-| S-LAL8 | 1.73077 | 40.50 | OHARA (exact) | L8 | Lanthanum crown |
-| S-LAH51 | 1.77250 | 49.62 | OHARA (Δνd = 0.02) | L9 | Lanthanum crown |
+| M-LAF81 | 1.73077 | 40.50 | Hoya (exact, 731405) | L8 | Moldable lanthanum flint |
+| S-LAH66 | 1.77250 | 49.62 | OHARA (Δνd = 0.02) | L9 | Lanthanum crown |
 
-Four of the six glass types match OHARA catalog entries exactly. The remaining two (used in L4/L5/L7 and L9) match OHARA values within Δνd ≤ 0.04 — well within catalog rounding tolerances. HOYA catalog equivalents (TAFD30 for S-LAH58, TAFD21 for S-LAH51) match exactly by νd. Sigma typically sources from OHARA for Japanese-designed lenses, so the OHARA designations are the most probable production glasses.
+The current labels use coefficient-backed catalog rows for every powered glass class. HOYA is selected where it gives the exact high-index or moldable match (TAFD40 for L1, M-LAF81 for L8), while OHARA remains the closest catalog-backed labeling for the repeated S-TIH53/S-LAH58 doublets and the S-LAH66 rear asphere.
 
 ### Chromatic Strategy
 
@@ -154,7 +154,7 @@ The design's chromatic correction relies on two mechanisms:
 
 1. **Cemented doublet achromatism.** Both cemented doublets (L3+L4, L6+L7) pair the high-dispersion S-TIH53 flint (νd = 23.78) with the lower-dispersion lanthanum crown S-LAH58 (νd ≈ 40.8). The large Δνd ≈ 17 at each junction provides strong primary chromatic correction.
 
-2. **Front-element dispersion compensation.** L1 (S-NPH2, νd = 25.46) contributes large positive chromatic aberration due to its strong power and high dispersion. L2 (S-LAH55V, νd = 42.72), though a meniscus rather than a classic flint, partially compensates via its negative power and moderate dispersion. The residual is absorbed by the doublets downstream.
+2. **Front-element dispersion compensation.** L1 (TAFD40, νd = 25.46) contributes large positive chromatic aberration due to its strong power and high dispersion. L2 (S-LAH55V, νd = 42.72), though a meniscus rather than a classic flint, partially compensates via its negative power and moderate dispersion. The residual is absorbed by the doublets downstream.
 
 No ED (extra-low dispersion) or anomalous-partial-dispersion glasses are used. The patent does not publish line indices (nC, nF, ng), so secondary-spectrum performance cannot be assessed from the prescription alone. This is consistent with a standard achromat rather than an apochromatic design.
 
@@ -229,7 +229,7 @@ At h ≈ 6 mm, the departure is approximately +24 μm. The A4 term dominates (+1
 
 ### Manufacturing Note
 
-L8 (S-LAL8) and L9 (S-LAH51) are both S-prefix OHARA glasses. Under OHARA's naming convention, S-prefix glasses are designated for conventional polishing, not precision glass molding (PGM). However, the Panasonic product literature describes L9's aspherical surfaces as "glass mold aspherical lenses." This suggests either that the production lens uses PGM-compatible glass equivalents not captured in the patent's prescription (vendors may offer moldability variants with nominally identical nd/νd), or that Panasonic/Leica's manufacturing process accommodates molding of these particular compositions. The patent itself does not specify the manufacturing method for the aspherical surfaces.
+L8 is now labeled as Hoya M-LAF81, a moldable lanthanum flint that exactly matches the patent nd/νd tuple and the 731405 code. L9 remains an OHARA S-LAH66 class match rather than a named moldable grade. Panasonic product literature describes the lens as using glass-molded aspherical lenses, so the production L9 may use a moldable equivalent with the same nominal nd/νd even though the patent does not specify the manufacturing method for each aspherical surface.
 
 ---
 
@@ -276,6 +276,6 @@ The computed EFL agrees with the patent value to better than 0.02% at both infin
 ## Sources
 
 1. JP 2013-3324 A. *Large-Aperture Lens.* Sigma Corporation / Uemura Yutaka. Published January 7, 2013. Example 2 (数値実施例2), ¶0065–0071, ¶0131.
-2. OHARA Optical Glass Catalog (2024 edition). Cross-referenced for S-NPH2, S-LAH55V, S-TIH53, S-LAH58, S-LAL8, S-LAH51.
-3. HOYA Optical Glass Catalog. Cross-referenced for TAFD30 and TAFD21 (alternate vendor matches for S-LAH58 and S-LAH51).
+2. OHARA Optical Glass Catalog (2024 edition). Cross-referenced for S-LAH55V, S-TIH53, S-LAH58, and S-LAH66.
+3. HOYA Optical Glass Catalog. Cross-referenced for TAFD40, M-LAF81, and TAFD30 alternate matches.
 4. Panasonic. *LEICA DG SUMMILUX 25mm / F1.4 II ASPH. (H-XA025) Product Page.* Referenced for production lens specifications (9 elements / 7 groups, 2 aspherical lenses, 1 UHR element, MFD 0.30 m, 46 mm filter, inner focus with stepping motor).

@@ -140,7 +140,7 @@ const LENS_DATA = {
       glass: "813252 - high-index flint (patent nd=1.81265, vd=25.24; no exact public catalog match)",
       apd: false,
       cemented: "D2",
-      role: "Rear-group achromatizer — SF6 dense flint paired with LaF10 (Δνₑ ≈ 13) for local chromatic correction",
+      role: "Rear-group achromatizer — patent-code dense flint paired with LaF10 (Δνₑ ≈ 13) for local chromatic correction",
     },
     {
       id: 8,

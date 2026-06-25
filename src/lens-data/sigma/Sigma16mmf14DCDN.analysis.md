@@ -98,12 +98,12 @@ L17 is the low-dispersion positive element in G1Bp. The patent states that using
 #### G1Bm — negative rear pair
 
 **L18 — Biconcave Negative.**
-nd = 1.51742, νd = 52.15. Glass: crown-flint class, six-digit code 517/522. f = -47.1 mm.
+nd = 1.51742, νd = 52.15. Glass: E-CF6 (HOYA). f = -47.1 mm.
 
 L18 is the first negative element of G1Bm. It participates in the re-diverging part of G1B and contributes negative Petzval power.
 
 **L19 — Negative Meniscus, concave to object.**
-nd = 1.67270, νd = 32.17. Glass: dense flint class, six-digit code 673/322. f = -63.6 mm.
+nd = 1.67270, νd = 32.17. Glass: E-FD5 (HOYA). f = -63.6 mm.
 
 L19 finishes the G1Bm pair. Together L18 and L19 pull the G1B image-side principal plane forward and help prevent the stop from becoming excessively large. The patent explicitly links the negative G1Bm construction to both stop-diameter reduction and Petzval control (¶0038, ¶0045–0047).
 
@@ -115,8 +115,8 @@ The stop is placed between G1 and G2 at surface 18. The patent marks this surfac
 
 **L21 + L22 — cemented doublet, biconvex positive plus negative meniscus.**
 
-- **L21 — Biconvex Positive.** nd = 1.59282, νd = 68.63. Glass: SLD low-dispersion crown, six-digit code 593/686. f = +27.4 mm.
-- **L22 — Negative Meniscus, concave to object.** nd = 1.74950, νd = 35.33. Glass: lanthanum dense-flint class, six-digit code 750/353. f = -65.6 mm.
+- **L21 — Biconvex Positive.** nd = 1.59282, νd = 68.63. Glass: FCD505 (HOYA), SLD low-dispersion crown. f = +27.4 mm.
+- **L22 — Negative Meniscus, concave to object.** nd = 1.74950, νd = 35.33. Glass: S-LAM7 (OHARA). f = -65.6 mm.
 
 This doublet is the strongest positive unit behind the stop. It follows the conventional low-dispersion-positive / higher-dispersion-negative pattern for axial color correction. The doublet also supplies much of the convergence that lets the following focus group remain a single small positive element.
 
@@ -128,7 +128,7 @@ L23 completes G2 and carries the second aspherical surface. It sits just behind 
 ### G3 — single-element inner-focus group
 
 **L31 — Positive Meniscus, convex to object.**
-nd = 1.59282, νd = 68.63. Glass: SLD low-dispersion crown, six-digit code 593/686. f = +85.4 mm.
+nd = 1.59282, νd = 68.63. Glass: FCD505 (HOYA), SLD low-dispersion crown. f = +85.4 mm.
 
 L31 is the entire focus group. The patent makes this a design objective: a one-lens positive focus group keeps the moving mass low, which is advantageous for contrast AF and small wobbling movements during video or continuous autofocus (¶0055–0062). The low-dispersion glass choice also limits focus-dependent chromatic change.
 
@@ -142,7 +142,7 @@ L41 begins the final negative group. Its negative power contributes to chief-ray
 **L42 + L43 — cemented doublet, biconvex positive plus negative meniscus.**
 
 - **L42 — Biconvex Positive.** nd = 1.43700, νd = 95.10. Glass: FCD100-class FLD fluorite-equivalent glass, six-digit code 437/951. f = +38.4 mm.
-- **L43 — Negative Meniscus, concave to object.** nd = 1.90366, νd = 31.32. Glass: high-index lanthanum flint class, six-digit code 904/313. f = -56.7 mm.
+- **L43 — Negative Meniscus, concave to object.** nd = 1.90366, νd = 31.32. Glass: S-LAH95 (OHARA). f = -56.7 mm.
 
 The rear doublet is net negative in situ as part of G4. L42 is the third FLD element in the system, paired with a high-index flint. The pair supplies rear chromatic correction while also helping hold the exit geometry within the patent's EXP/IH condition.
 
@@ -157,13 +157,13 @@ The patent gives nd and νd, not vendor glass names. The names below are therefo
 | L13 | 1.58913 | 61.25 | 589/613 | M-BACD5N-class molded barium crown | Front aspherical meniscus |
 | L14, L17, L42 | 1.43700 | 95.10 | 437/951 | FCD100-class FLD fluorite-equivalent glass | Secondary-spectrum and axial-color correction |
 | L16 | 1.91082 | 35.25 | 911/353 | TAFD35-class high-index lanthanum glass | G1Bp positive power |
-| L18 | 1.51742 | 52.15 | 517/522 | Crown-flint class | G1Bm negative power |
-| L19 | 1.67270 | 32.17 | 673/322 | Dense flint class | G1Bm negative meniscus |
-| L21, L31 | 1.59282 | 68.63 | 593/686 | SLD low-dispersion crown | Rear positive doublet member and focus group |
-| L22 | 1.74950 | 35.33 | 750/353 | Lanthanum dense-flint class | G2 doublet flint |
+| L18 | 1.51742 | 52.15 | 517/522 | E-CF6 (HOYA) | G1Bm negative power |
+| L19 | 1.67270 | 32.17 | 673/322 | E-FD5 (HOYA) | G1Bm negative meniscus |
+| L21, L31 | 1.59282 | 68.63 | 593/686 | FCD505 (HOYA), SLD low-dispersion crown | Rear positive doublet member and focus group |
+| L22 | 1.74950 | 35.33 | 750/353 | S-LAM7 (OHARA) | G2 doublet flint |
 | L23 | 1.69350 | 53.20 | 694/532 | M-LAC130-class molded lanthanum crown | Rear G2 asphere |
 | L41 | 1.80518 | 25.46 | 805/255 | SF6 / S-TIH6-class dense flint | G4 negative front member |
-| L43 | 1.90366 | 31.32 | 904/313 | High-index lanthanum flint class | G4 rear negative member |
+| L43 | 1.90366 | 31.32 | 904/313 | S-LAH95 (OHARA) | G4 rear negative member |
 
 The chromatic strategy is distributed. L17 gives the pre-stop positive G1Bp group a low-dispersion element at high marginal-ray height. L21 corrects the main rear positive doublet. L31 keeps the focus group from adding excessive focus-dependent color. L42 provides a rear low-dispersion positive member in the G4 cemented doublet. This is a sophisticated achromatizing strategy, but the patent does not publish line indices or partial-dispersion ratios, so the analysis should not describe the design as apochromatic.
 

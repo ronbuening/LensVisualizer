@@ -31,3 +31,11 @@ Patent: JP 2004-302170 A, Example 4 / Table 4
 ### Analysis sync
 
 - Updated the glass-selection table and source note to match the corrected labels.
+
+## 2026-06-24 - APD, high-index, and SD audit
+
+- Rechecked `patents/JP2004302170A.pdf`, Example 4 / Table 4, against the current data file.
+- Confirmed no ED, fluorophosphate, KZFS, or patent-published partial-dispersion elements are present. No APD metadata was added.
+- Confirmed the high-index elements remain L7 `S-TIH6` and L8 `NBFD10 (HOYA)` (nd >= 1.8). `NBFD10` remains the only unresolved/Sellmeier-missing glass disposition for this lens.
+- Rendered and reviewed the patent drawing. The existing SD profile matches the macro layout: broad front group ahead of the stop, smaller rear negative/positive correction elements, and a final rear element sized for the 645 field. No SD edits were made.
+- Verification: `npm run generate:glass-reports`, `npm run typecheck`, `npm run format:check`, `npm run lint`, `npm run test`, and `git diff --check` passed.

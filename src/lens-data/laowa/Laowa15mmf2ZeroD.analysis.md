@@ -151,7 +151,7 @@ The patent gives only $n_d$ and $\nu_d$ values, not supplier names. The glass na
 | L12 | 1.58313 | 59.46 | M-BACD12 / L-BAL42 / D-ZK2 class | Weak rear aspherical meniscus |
 | Patent plate | 1.51680 | 64.20 | BSC7 / N-BK7 class | Plane-parallel image-side plate, excluded from data file |
 
-The chromatic strategy is distributed rather than localized. One ED element is in the fixed front recovery doublet, and two ED elements are in the moving rear group. That split is significant: the fixed front group receives chromatic correction before the stop, while the moving focus group carries its own low-dispersion correction so axial color does not become wholly focus-position dependent.
+The chromatic strategy is distributed rather than localized. One ED element is in the fixed front recovery doublet, and two ED elements are in the moving rear group. That split is significant: the fixed front group receives chromatic correction before the stop, while the moving focus group carries its own low-dispersion correction so axial color does not become wholly focus-position dependent. The data file marks these three 1.49700 / 81.61 elements as inferred anomalous-partial-dispersion ED glass because the catalog-class match is fluorophosphate, but the patent itself publishes only $n_d$ and $\nu_d$.
 
 The design should be called **well achromatized using ED glass**, not apochromatic. The patent does not publish partial-dispersion values, and the production literature does not claim APO correction.
 

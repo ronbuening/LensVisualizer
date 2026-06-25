@@ -32,3 +32,26 @@ Patent: JP 2018-005099 A, Example 4
 
 - `npm test -- dispersion`
 - `npm test -- glassRelabelByLensScan`
+
+## 2026-06-23 - APD badge correction
+
+### Phase 1 - APD status corrections
+
+| Element / surface | Field | Before | After | Justification |
+|---|---|---|---|---|
+| L1, L3-L5, L8-L14 | `apd` | `inferred` or `patent` | `false` | JP 2018-005099 A Example 4 publishes PgF for all glass rows, but these elements sit inside the patent's ordinary-material PgF/νd range and should not be highlighted as special APD glass. Their `dPgF` values remain for chromatic tracing. |
+| L2, L6, L7 | `apd` | `patent` | retained | L2/L7 are the SLD low-dispersion elements, and L6 is the high-index anomalous-dispersion element called out by the patent/production design. |
+
+### Phase 2 - Retained-information audit
+
+- No surface, spacing, glass-name, or semi-diameter changes were made.
+- Patent PgF-derived `dPgF` values were retained on every element so spectral analysis still uses the published partial-dispersion data.
+
+### Phase 3 - Analysis sync
+
+- Updated the companion analysis text to distinguish patent PgF data from APD viewer badges.
+
+### Verification
+
+- `npm run typecheck`
+- `npm run test -- lensDataTyping dispersion ElementInspector`

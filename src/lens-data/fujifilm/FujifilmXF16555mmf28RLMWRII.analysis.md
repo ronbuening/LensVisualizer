@@ -160,6 +160,8 @@ The glass assignments were reworked from the patent's nd, νd, and θgF values a
 
 The one Super ED element is L33. The three ED elements are L12, L24, and L35. Those positions are inferred from the patent glass data and Fujifilm's published count, not from a manufacturer slot diagram.
 
+The APD display badge is now limited to the material rows with clear patent-supported deviation: the ED/Super ED rows L12, L24, L33, and L35; the front high-θgF dense flint L11; and the extreme-index high-θgF focus element L41. The other θgF rows remain represented by structured ΔPgF values for chromatic tracing but are not surfaced as special APD elements.
+
 ## Focus Mechanism
 
 The patent identifies G4 as the focus group and states that it moves toward the image side when focusing from infinity to the nearest object. G4 is a single cemented L41–L42 doublet. This is consistent with the production lens's internal linear-motor focusing, but the patent does not publish finite-conjugate spacing tables.

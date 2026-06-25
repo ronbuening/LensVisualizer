@@ -57,11 +57,11 @@ A surface-by-surface Petzval sum Σφ/(n·n′) gives +3.477 × 10⁻³ mm⁻¹,
 
 #### L1 — Negative meniscus, convex to object, rear aspheric
 
-nd = 1.744429, νd = 49.52. Glass: unmatched high-index lanthanum-crown class. f = −46.58 mm.
+nd = 1.744429, νd = 49.52. Glass: `744495` unmatched high-index lanthanum-crown class. f = −46.58 mm.
 
 L1 is the large negative front meniscus. Its rear surface is aspheric and is the probable large-diameter molded asphere referenced in Nikon's product literature. Its task is to accept the wide chief rays and reduce the distortion and astigmatism that a negative-lead f/2.8 zoom would otherwise generate at the 24 mm end.
 
-No exact public catalog match was found for the 744/495 code. The closest public glasses are in high-index lanthanum crown or lanthanum flint-adjacent territory, but the element should remain labeled as an unmatched class glass rather than assigned to a specific catalog name.
+No exact public catalog match was found for the `744495` code. The closest public glasses are in high-index lanthanum crown or lanthanum flint-adjacent territory, but the element should remain labeled as an unmatched class glass rather than assigned to a specific catalog name.
 
 #### L2 — Biconcave negative
 
@@ -79,8 +79,8 @@ L3 is a weak positive dense-flint corrector at the rear of G1. It partly achroma
 
 #### L4 — Hybrid biconvex positive asphere: resin shell plus glass body
 
-Resin shell: nd = 1.553890, νd = 38.09. Glass: unmatched UV-cure resin. f ≈ +2488 mm.  
-Glass body: nd = 1.772499, νd = 49.60. Glass: S-LAH66 (OHARA). f = +74.87 mm.  
+Resin shell: nd = 1.553890, νd = 38.09. Glass: `553381` unmatched UV-cure resin. f ≈ +2488 mm.
+Glass body: nd = 1.772499, νd = 49.60. Glass: S-LAH66 (OHARA). f = +74.87 mm.
 Composite f = +72.73 mm.
 
 The prescription lists a 0.10 mm low-index layer at surface 7 followed by a thicker high-index glass body at surfaces 8-9. This is best read as a hybrid aspherical element: a thin replicated resin surface on a spherical glass substrate. The resin shell has little standalone optical power; it is a figuring layer. The glass body carries nearly all of the element power.
@@ -153,10 +153,10 @@ Glass names were matched by nd/νd code against manufacturer data sheets. The pa
 
 | Elements | nd | νd | Identification | Status |
 |---|---:|---:|---|---|
-| L1 | 1.744429 | 49.52 | Unmatched high-index lanthanum-crown class | No exact public catalog match |
+| L1 | 1.744429 | 49.52 | `744495` unmatched high-index lanthanum-crown class | No exact public catalog match |
 | L2 | 1.618000 | 63.33 | S-PHM52 (OHARA) | Exact |
 | L3, L8 | 1.846660 | 23.78 | S-TIH53 (OHARA) | Exact |
-| L4 resin | 1.553890 | 38.09 | Unmatched UV-cure resin | Not catalog glass |
+| L4 resin | 1.553890 | 38.09 | `553381` unmatched UV-cure resin | Not catalog glass |
 | L4 glass body | 1.772499 | 49.60 | S-LAH66 (OHARA) | Exact |
 | L5 | 1.761821 | 26.52 | S-TIH14 (OHARA) | Exact |
 | L6, L12, L14 | 1.497820 | 82.56 | J-FKH1 (HIKARI) | Exact within rounding |

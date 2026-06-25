@@ -159,7 +159,7 @@ L3 is a thin negative meniscus in a low-dispersion fluorophosphate crown glass. 
 
 - **L4a** (front): nd = 1.51860, νd = 69.9, d = 9.00 mm.
   R₁ = −49.577 mm, R₂(junction) = −15.690 mm.
-  This is a thick meniscus element in a phosphate crown glass. The nd/νd pair (1.51860 / 69.9) does not correspond exactly to any current OHARA or Schott catalog type; it appears to be a 1990s-era glass that may have been discontinued or was a Nikon-specified melt. Its high Abbe number (69.9) identifies it as a low-dispersion crown.
+  This is a thick meniscus element in Hikari J-PKH1 phosphate crown glass. The local Hikari catalog entry gives nd = 1.51860 and νd = 69.89 with published power-series coefficients, matching the patent row within rounding. Its high Abbe number identifies it as a low-dispersion crown.
   Individual f = +40.6 mm (positive as a standalone element).
 
 - **L4b** (rear): nd = 1.51454, νd = 54.6, d = 1.50 mm.
@@ -274,7 +274,7 @@ The L8 doublet as a whole has f = +34.77 mm (strongly positive). As the patent t
 | L1 | 1.51680 | 64.1 | HOYA BSC7 / Schott BK7 | Borosilicate crown | Exact (nd) |
 | L2 | 1.77279 | 49.4 | OHARA S-LAM66 type | Lanthanum crown | Close |
 | L3 | 1.48749 | 70.4 | Schott FK5 / OHARA S-FSL5 | Fluorophosphate crown | Exact |
-| L4a | 1.51860 | 69.9 | No current catalog match | Phosphate crown | Unresolved |
+| L4a | 1.51860 | 69.9 | Hikari J-PKH1 (519699) | Phosphate crown | Exact |
 | L4b | 1.51454 | 54.6 | No current catalog match | Crown/light flint | Unresolved |
 | L5 | 1.80411 | 46.5 | OHARA S-LAH55 / Schott LASF35 | Lanthanum dense crown | Close |
 | L6a | 1.74810 | 52.3 | Unmatched LaM crown; S-LAM7 index-near only | Lanthanum crown | Explicit unmatched |
@@ -283,7 +283,7 @@ The L8 doublet as a whole has f = +34.77 mm (strongly positive). As the patent t
 | L8a | 1.80411 | 46.5 | Same as L5 | Lanthanum dense crown | Close |
 | L8b | 1.86074 | 23.0 | No current catalog match | Very dense flint | Unresolved |
 
-The unresolved glasses (L4a, L4b, L8b) likely correspond to 1990s-era OHARA, HOYA, or Sumita types that have since been discontinued or reformulated as part of the industry-wide shift to lead-free and arsenic-free glass compositions. The patent's nd/νd values are design-exact values, and the actual production glasses would have been selected from available catalog types with melt-to-melt tolerances. Two glasses are used twice (L2/L7 and L5/L8a), reducing the number of distinct glass types to nine.
+The unresolved glasses (L4b, L6a, L8b) likely correspond to 1990s-era OHARA, HOYA, Hikari, or Sumita types that have since been discontinued or reformulated as part of the industry-wide shift to lead-free and arsenic-free glass compositions. The patent's nd/νd values are design-exact values, and the actual production glasses would have been selected from available catalog types with melt-to-melt tolerances. Two glasses are used twice (L2/L7 and L5/L8a), reducing the number of distinct glass types to nine.
 
 ---
 

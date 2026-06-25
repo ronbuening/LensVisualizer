@@ -71,19 +71,19 @@ L12 is the first ED element. Its very low refractive index and very high Abbe nu
 
 #### L13 + L14 — Cemented Doublet (Negative + Positive)
 
-**L13** (front of doublet): nd = 1.68893, νd = 31.2. Glass: H-ZF13 (CDGM) — dense flint. f = −28.2 mm (standalone in air).  
+**L13** (front of doublet): nd = 1.68893, νd = 31.2. Glass: S-TIM28 (OHARA) — dense flint. f = −28.2 mm (standalone in air).<br>
 **L14** (rear of doublet): nd = 1.49700, νd = 81.6. Glass: S-FPL51 class ED fluorophosphate crown. f = +55.9 mm (standalone in air).  
 **Cemented doublet:** f = −67.3 mm (thick-lens trace).
 
 A cemented doublet joined at R = −318.07 mm (nearly flat junction). A thin cement layer (d = 0.01 mm, nd = 1.56732) sits at the junction — a standard UV-curing optical adhesive.
 
-L13 is a negative element with its concave surface facing the object (R6 = −18.29 mm). It acts as a strong diverger that controls the ray height entering L14 and introduces negative chromatic aberration of the flint type. The glass, H-ZF13 (CDGM), is a dense flint with nd = 1.68893 and νd = 31.2. L14 is the second ED element in the system, paired with L13 to form an achromatic cemented doublet. The flint–crown pairing (L13 flint + L14 ED crown) corrects longitudinal chromatic aberration locally within G1a while also contributing to Petzval curvature correction. The overall doublet carries net negative power (f ≈ −67 mm), continuing the divergence trend established by L12.
+L13 is a negative element with its concave surface facing the object (R6 = −18.29 mm). It acts as a strong diverger that controls the ray height entering L14 and introduces negative chromatic aberration of the flint type. The glass, S-TIM28 (OHARA), is a dense flint with nd = 1.68893 and νd = 31.2. L14 is the second ED element in the system, paired with L13 to form an achromatic cemented doublet. The flint–crown pairing (L13 flint + L14 ED crown) corrects longitudinal chromatic aberration locally within G1a while also contributing to Petzval curvature correction. The overall doublet carries net negative power (f ≈ −67 mm), continuing the divergence trend established by L12.
 
-The deliberate placement of two ED elements (L12 and L14) in G1a — both using the same S-FPL51-class glass — establishes the chromatic correction foundation for the entire system. The ultra-dense flint L11 at the front and the dense flint L13 provide the dispersive counterbalance.
+The deliberate placement of two ED elements (L12 and L14) in G1a — both using the same S-FPL51-class glass — establishes the chromatic correction foundation for the entire system. Their anomalous partial-dispersion status is inferred from the ED fluorophosphate family because this utility-model patent does not list line indices or dPgF values. The ultra-dense flint L11 at the front and the dense flint L13 provide the dispersive counterbalance.
 
 #### L15 — Biconvex Positive
 
-nd = 1.72916, νd = 54.7. Glass: lanthanum crown, H-LAK53A (CDGM) / S-LAL8 class (OHARA), code 729/547. f = +42.3 mm.
+nd = 1.72916, νd = 54.7. Glass: S-LAL18 (OHARA), code 729547. f = +42.3 mm.
 
 L15 is the last element before the aperture stop. As a biconvex element (R10 = +102.22, R11 = −43.24), it provides strong positive power that re-converges the beam diverged by L12 and the L13+L14 doublet. Its lanthanum crown glass offers a good balance of high index (minimizing surface curvature for given power) and moderate dispersion. Positioned immediately ahead of the stop, L15 controls the marginal ray height at the diaphragm and helps balance spherical aberration from the front group.
 
@@ -95,11 +95,13 @@ The aperture stop sits between G1a and G1b (surface 12, R = ∞). The Panasonic 
 
 #### L16 + L17 — Cemented Doublet (Positive + Negative)
 
-**L16** (front of doublet): nd = 1.59282, νd = 68.6. Glass: ED phosphate crown, code 593/686 (probable S-FPM2 (OHARA) / CDGM equivalent). f = +32.9 mm (standalone in air).  
-**L17** (rear of doublet): nd = 1.80610, νd = 33.3. Glass: dense lanthanum flint, S-LAH55 (OHARA) / CDGM equivalent, code 806/333. f = −55.5 mm (standalone in air).  
+**L16** (front of doublet): nd = 1.59282, νd = 68.6. Glass: FCD515 (Hoya), code 593686. f = +32.9 mm (standalone in air).<br>
+**L17** (rear of doublet): nd = 1.80610, νd = 33.3. Glass: NBFD15 (HOYA), code 806333. f = −55.5 mm (standalone in air).<br>
 **Cemented doublet:** f = +77.3 mm (thick-lens trace).
 
 Joined at R = −26.19 mm with a 0.01 mm cement layer (nd = 1.56732). L16 is the third ED element in the system. It provides the low-dispersion crown side of a classic crown–flint achromatic doublet (ED crown leading, flint following). L17 provides the high-dispersion chromatic counterbalance. As a standalone element in air, L17 has moderate negative power (f ≈ −55.5 mm). However, within the cemented interface — where light enters from L16's glass (nd = 1.59282) rather than from air — the front-surface refraction is much weaker, and L17's effective contribution flips to very weakly positive. This reversal has no effect on the system-level ray trace (which uses the correct surrounding media at each interface) but illustrates how the cemented interface redistributes power between the doublet's members. Positioned just after the stop, this doublet corrects chromatic aberration in the converging post-stop beam and controls coma and lateral color that would otherwise degrade off-axis performance.
+
+The utility-model patent lists nd/νd only for L16, not dPgF. The data file therefore marks FCD515's anomalous partial dispersion as catalog-inferred rather than patent-published.
 
 #### L18 — Positive Meniscus, Convex to Image (Aspherical)
 
@@ -158,10 +160,10 @@ The design uses 7 distinct glass types across 11 elements. The patent does not n
 |---|---|---|---|---|---|
 | L11 | 1.94595 | 18.0 | 946180 | FDS18 (HOYA) | High-index positive collector; extreme nd minimizes front diameter |
 | L12, L14 | 1.49700 | 81.6 | 497/816 | ED fluorophosphate (S-FPL51 class) | Primary chromatic correction; two ED elements in front group |
-| L13 | 1.68893 | 31.2 | 689/312 | Dense flint, H-ZF13 (CDGM) | Achromatic partner for L14 in cemented doublet |
-| L15 | 1.72916 | 54.7 | 729/547 | Lanthanum crown, H-LAK53A (CDGM) / S-LAL8 class | High-index pre-stop converger |
-| L16 | 1.59282 | 68.6 | 593/686 | ED phosphate crown (probable S-FPM2 (OHARA) / CDGM equivalent) | Third ED element; post-stop chromatic correction |
-| L17 | 1.80610 | 33.3 | 806/333 | Dense lanthanum flint, S-LAH55 (OHARA) / CDGM equivalent | Achromatic partner for L16 in cemented doublet |
+| L13 | 1.68893 | 31.2 | 689311 class | Dense flint, S-TIM28 (OHARA) | Achromatic partner for L14 in cemented doublet |
+| L15 | 1.72916 | 54.7 | 729547 | S-LAL18 (OHARA) | High-index pre-stop converger |
+| L16 | 1.59282 | 68.6 | 593686 | FCD515 (Hoya), ED fluorophosphate | Third ED element; post-stop chromatic correction |
+| L17 | 1.80610 | 33.3 | 806333 | NBFD15 (HOYA) | Achromatic partner for L16 in cemented doublet |
 | L18, L21, L31 | 1.51602 | 56.5 | 516565 | PGM moldable crown (unmatched — probable proprietary low-Tg glass) | All three aspherical elements; single moldable material |
 | L32 (+ CG) | 1.51680 | 64.2 | 517/642 | BK7 class — H-K9L (CDGM) / N-BK7 (Schott) | Field flattener; cover glass |
 
@@ -277,4 +279,4 @@ The patent was filed by Xiamen Panasonic (厦门松下), a subsidiary responsibl
 - CN 216772097 U, "大口径内对焦式光学系," Xiamen Panasonic Electronic Information Co., Ltd., granted 2022-06-17.
 - Panasonic product page, Lumix S 35mm F1.8 (S-S35), https://www.panasonic.com/.
 - Panasonic North America press release, November 9, 2021, "Panasonic Announces Compact, Lightweight LUMIX S 35mm F1.8 (S-S35)."
-- OHARA optical glass catalog (2023 edition), for glass cross-reference data.
+- OHARA and HOYA optical glass catalogs, for glass cross-reference data.

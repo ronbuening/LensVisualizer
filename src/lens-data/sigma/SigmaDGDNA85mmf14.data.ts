@@ -264,7 +264,7 @@ const LENS_DATA = {
     { label: "4", R: 136.9321, d: 0.25, nd: 1.0, elemId: 0, sd: 36.8 }, // L2 → air
     { label: "5", R: 42.0109, d: 6.4504, nd: 1.55032, elemId: 3, sd: 29.61 }, // L3 front
     { label: "6", R: 74.2493, d: 0.6, nd: 1.0, elemId: 0, sd: 29.61 }, // L3 → air
-    { label: "7", R: 34.3834, d: 7.0478, nd: 1.59282, elemId: 4, sd: 26.4 }, // L4 front (D1)
+    { label: "7", R: 34.3834, d: 7.0478, nd: 1.59282, elemId: 4, sd: 25.6 }, // L4 front (D1)
     { label: "8", R: 75.0611, d: 1.2, nd: 1.85451, elemId: 5, sd: 25.22 }, // L4/L5 junction (D1)
     { label: "9", R: 25.759, d: 4.8037, nd: 1.0, elemId: 0, sd: 22.2 }, // L5 → air
     { label: "10", R: 42.1035, d: 4.4695, nd: 1.59282, elemId: 6, sd: 19.3 }, // L6 front
@@ -276,7 +276,7 @@ const LENS_DATA = {
     { label: "14", R: 31.7329, d: 13.39, nd: 1.0, elemId: 0, sd: 17.2 }, // L7 rear → air, d14 (varies)
     /* GB — Rear group G3 (L8…L15) */
     { label: "15", R: 36.8904, d: 0.9, nd: 1.85451, elemId: 8, sd: 18.9 }, // L8 front (D2)
-    { label: "16", R: 22.7958, d: 4.3626, nd: 1.59282, elemId: 9, sd: 18.9 }, // L8/L9 junction (D2)
+    { label: "16", R: 22.7958, d: 4.3626, nd: 1.59282, elemId: 9, sd: 15.9 }, // L8/L9 junction (D2)
     { label: "17", R: 58.0454, d: 3.5976, nd: 1.0, elemId: 0, sd: 12.8 }, // L9 → air
     { label: "18", R: -46.5475, d: 0.95, nd: 1.85451, elemId: 10, sd: 15.0 }, // L10 front (D3)
     { label: "19", R: 55.7591, d: 3.9558, nd: 2.001, elemId: 11, sd: 16.8 }, // L10/L11 junction (D3)

@@ -38,11 +38,11 @@ The data file inserts `STO` halfway through the L4-L5 air space because the pate
 
 ### L1 — Positive Meniscus, convex to object
 
-nd = 1.72000, νd = 42.1. Glass: unmatched vintage lanthanum flint, code 720/421; LaF2-class. f = +90.8 mm.
+nd = 1.72000, νd = 42.1. Glass: 720421 vintage lanthanum flint; LaF2-class, no exact public catalog match. f = +90.8 mm.
 
 L1 is a weak positive meniscus with both radii positive. The front surface is more strongly curved than the rear surface, so the element contributes positive power while preserving a compact convex-front profile. Its standalone focal length is long compared with the system focal length, but its location at the front makes its ray-angle effect important.
 
-The patent assigns the first positive meniscus a distortion-correction role: it increases the principal-ray angle after the first component so that positive distortion from the front element offsets the large negative distortion otherwise produced by a compact retrofocus wide-angle. The 720/421 glass is a high-index, moderate-dispersion lanthanum-flint type. No current public OHARA, HOYA, HIKARI, or SCHOTT catalog entry was found that matches both nd = 1.7200 and νd = 42.1 closely enough for a confident modern catalog name, so the data file labels this element as unmatched rather than forcing a circular glass identification.
+The patent assigns the first positive meniscus a distortion-correction role: it increases the principal-ray angle after the first component so that positive distortion from the front element offsets the large negative distortion otherwise produced by a compact retrofocus wide-angle. The 720421 glass is a high-index, moderate-dispersion lanthanum-flint type. No current public OHARA, HOYA, HIKARI, or SCHOTT catalog entry was found that matches both nd = 1.7200 and νd = 42.1 closely enough for a confident modern catalog name, so the data file keeps a code-based label rather than forcing a circular glass identification.
 
 ### L2 — Negative Meniscus, convex to object
 
@@ -96,7 +96,7 @@ The patent notes that the sixth positive component can be divided into two posit
 
 | Element | nd | νd | Catalog treatment | Optical role |
 |---|---:|---:|---|---|
-| L1 | 1.72000 | 42.1 | Unmatched vintage lanthanum flint, code 720/421 | High-index front meniscus for ray-angle and distortion control |
+| L1 | 1.72000 | 42.1 | 720421 vintage lanthanum flint, no exact public catalog match | High-index front meniscus for ray-angle and distortion control |
 | L2 | 1.61800 | 63.4 | S-PHM52 (OHARA) current equivalent / PCD4-class phosphate crown | Low-dispersion negative front-group power |
 | L3 | 1.71300 | 54.0 | S-LAL8 (OHARA) / N-LAK8 class lanthanum crown | High-index negative front-group power |
 | L4 | 1.59550 | 39.2 | S-TIM8 (OHARA) / F8-class light flint | Thick positive power and aberration balancing |

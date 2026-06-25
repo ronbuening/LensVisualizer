@@ -114,7 +114,7 @@ This stop placement is not incidental. Putting the stop behind the main front co
 
 ### L6 — Positive Meniscus, convex to image side
 
-**nd = 1.51728, νd = 69.6. Glass: S-APL1 / APL1 (OHARA). Standalone f = 62.10 mm.**
+**nd = 1.51728, νd = 69.6. Glass: 517696 S-APL1 / APL1-class (OHARA), no public Sellmeier match. Standalone f = 62.10 mm.**
 
 L6 is a positive meniscus placed immediately behind the stop. The patent describes it as having its convex surface on the image side.[^patent] Its role is to recondition the post-stop bundle before it reaches the rear cemented doublet.
 
@@ -126,7 +126,7 @@ The air gap between L5 and L6 is also the stop region. That makes L6 sensitive t
 
 **L7a: nd = 1.80518, νd = 25.4. Glass: S-TIH6 (OHARA). Standalone f = −35.71 mm.**
 
-**L7b: nd = 1.51728, νd = 69.6. Glass: S-APL1 / APL1 (OHARA). Standalone f = 19.16 mm.**
+**L7b: nd = 1.51728, νd = 69.6. Glass: 517696 S-APL1 / APL1-class (OHARA), no public Sellmeier match. Standalone f = 19.16 mm.**
 
 **L7 cemented doublet f = 39.24 mm (ABCD thick-lens computation).**
 
@@ -148,7 +148,7 @@ The patent gives refractive index and Abbe number only; it does **not** name gla
 | L4b | S-TIM35 (OHARA) | 1.69895 | 30.1 | 699/301 | Dense flint side of the fourth cemented doublet; high dispersion for lateral color control. |
 | L5a | S-TIH11 (OHARA) | 1.78472 | 25.7 | 785/257 | Very high-dispersion dense flint in the fifth doublet. |
 | L5b | S-TIM5 (OHARA) | 1.60342 | 38.0 | 603/380 | Moderate-index flint paired to L5a across a strongly powered cemented surface. |
-| L6, L7b | S-APL1 / APL1 (OHARA) | 1.51728 | 69.6 | 517/696 | Low-index high-Abbe crown used after the stop and in the rear doublet. |
+| L6, L7b | 517696 — S-APL1 / APL1-class (OHARA) | 1.51728 | 69.6 | 517/696 | Low-index high-Abbe crown used after the stop and in the rear doublet; no public Sellmeier match in the current catalog. |
 | L7a | S-TIH6 (OHARA) | 1.80518 | 25.4 | 805/254 | Very high-dispersion dense flint at the front of the rear cemented doublet. |
 
 The palette has three clear patterns.
@@ -230,4 +230,4 @@ The critical erratum is d2: the main Table 1 prints 0.457, but the claims text (
 
 [^maitani]: Olympus Global, "The Olympus OM-1 – the XA Series," Maitani special lecture and translated OM-system interview material. These sources provide system-level context for compactness and OM-system development, not a lens-specific account of the 16 mm fisheye prescription.
 
-Glass-catalog identifications checked against OHARA catalog pages for S-BAL35, S-LAH51, S-LAL14, S-TIM35, S-TIH11, S-TIM5, and S-TIH6, plus the historical OHARA catalog entry for S-APL1 / APL1. The patent does not name the glass supplier; all glass names in this document are catalog-equivalent identifications by $n_d$ and $\nu_d$.
+Glass-catalog identifications checked against OHARA catalog pages for S-BAL35, S-LAH51, S-LAL14, S-TIM35, S-TIH11, S-TIM5, and S-TIH6, plus the historical OHARA identity for S-APL1 / APL1. The current catalog has no coefficient-backed S-APL1 row, so L6 and L7b remain code-labeled. The patent does not name the glass supplier; all glass names in this document are catalog-equivalent identifications by $n_d$ and $\nu_d$.

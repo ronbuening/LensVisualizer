@@ -64,9 +64,9 @@ L3 continues the beam divergence initiated by L2. Its negative power is weaker t
 
 ### L4 — Biconvex Positive (both surfaces aspherical)
 
-$n_d = 1.80755$, $\nu_d = 40.9$. Glass: 808/409 patent code — LAH-type lanthanum glass, likely PGM-moldable. Public catalogs do not expose an exact coefficient-backed match, so the data file keeps this as a patent-code label. $f = +72.5\ \text{mm}$.
+$n_d = 1.80755$, $\nu_d = 40.9$. Glass: 808409 / MC-NBFD135 code match — LAH-type lanthanum glass, likely PGM-moldable. The local catalog now resolves this code through a coefficient-backed public row, while the data label keeps the patent code visible for traceability. $f = +72.5\ \text{mm}$.
 
-L4 is one of the two aspherical elements in the design and the only aspherical element in the front group. Both surfaces carry aspherical profiles. The glass code 808/409 places it in the LAH (lanthanum, high-index) family, but the exact catalog match cannot be confirmed from publicly available data. Given that both surfaces are aspherical, L4 is almost certainly manufactured by precision glass molding (PGM), requiring a low-Tg glass formulation in this index/dispersion range.
+L4 is one of the two aspherical elements in the design and the only aspherical element in the front group. Both surfaces carry aspherical profiles. The glass code 808409 places it in the LAH (lanthanum, high-index) family, and the MC-NBFD135 code match supports a moldable low-Tg formulation. Given that both surfaces are aspherical, L4 is almost certainly manufactured by precision glass molding (PGM), requiring a low-Tg glass formulation in this index/dispersion range.
 
 The aspherical profiles are mild — the fourth-order coefficients are small ($A_4 \approx 4.0 \times 10^{-7}$ on S7, $A_4 \approx 3.9 \times 10^{-6}$ on S8) — reflecting the element's role as a zonal spherical aberration corrector rather than a gross wavefront reshaper. The patent's conditional expression (5) governs this element: $|f_{LG1a}/f_{G1}| = |72.46/43.57| = 1.663$, within the preferred range 0.6–6.0 (¶0122). A value near the lower bound would mean L4's power is too strong relative to G1 and the spherical component would overwhelm the aspherical correction; a value near the upper bound would mean L4 is too weak to contribute meaningfully to optical track compactness. At 1.66, the balance is toward moderate power with effective aspherical correction of 3rd- and 5th-order spherical aberration.
 
@@ -305,5 +305,5 @@ All 13 individual element focal lengths were verified to within ±0.0004 mm of t
 
 1. WO 2020/158622 A1, "撮像光学系と、撮像光学系を用いる撮像装置およびカメラシステム," Panasonic IP Management, published 2020-08-06. Numerical Example 3, Tables 3A–3D.
 2. Panasonic official product page, LUMIX S PRO 50mm F1.4 (S-X50): 13 elements / 11 groups, 2 aspherical, 3 ED, f/1.4, MFD 0.44 m, 0.15× max magnification, 47° diagonal FOV, 77 mm filter, 11 blades, 955 g.
-3. Public optical glass catalogs: OHARA S-NPH2, S-BSL7, S-NBH56, S-LAH65VS, S-TIL26, L-TIM28(P); HOYA FDS18 and FCD705 — referenced for $n_d$, $\nu_d$, and moldability classification.
+3. Public optical glass catalogs: OHARA S-NPH2, S-BSL7, S-NBH56, S-LAH65VS, S-TIL26, L-TIM28(P); HOYA FDS18, FCD515, FCD705; and MC-NBFD135 code-match data — referenced for $n_d$, $\nu_d$, $\Delta P_{gF}$, and moldability classification.
 4. Hoya optical glass catalog: FCD515 ($n_d = 1.59282$, $\nu_d = 68.63$, $\Delta P_{gF} = 0.0194$) — exact match for L5 and L6 ED elements. Data verified via refractiveindex.info (Hoya optical glass spec sheets).

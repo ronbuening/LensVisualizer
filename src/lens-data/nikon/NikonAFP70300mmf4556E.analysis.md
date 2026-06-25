@@ -62,7 +62,7 @@ L11 works with the L12/L13 cemented pair to establish the front group's net foca
 
 #### L12 — Negative meniscus in the front cemented doublet
 
-nd = 1.62004, νd = 36.40. Glass: J-F2 (Hikari). f = -160.4 mm.
+nd = 1.62004, νd = 36.40. Glass: F2 (Schott) / J-F2 class (Hikari). f = -160.4 mm.
 
 L12 is the negative flint member of the first cemented doublet. In isolation it is a negative meniscus, but in the front group it is bonded directly to L13. Its flint dispersion supplies the negative chromatic component needed to balance the low-dispersion positive member.
 
@@ -70,17 +70,17 @@ The cemented interface between L12 and L13 has R = 49.8109 mm. That strong cemen
 
 #### L13 — Positive meniscus, very-low-dispersion member of the front doublet
 
-nd = 1.49700, νd = 81.61. Glass: J-FK01A class (Hikari) — probable ED counterpart. f = +114.3 mm.
+nd = 1.49700, νd = 81.61. Glass: J-FK01A (Hikari, ED fluorophosphate candidate) — probable ED counterpart. f = +114.3 mm.
 
 L13 is the strongest match to Nikon's one-ED-element production statement. Its νd = 81.61 is the most extreme low-dispersion value in Example 1, and it is placed in the front achromat where low dispersion has high leverage over longitudinal color before the beam enters the negative variator.
 
-The Hikari name is treated as a catalog-class identification rather than a guaranteed proprietary melt name. The patent gives nd and νd but not vendor glass names.
+The Hikari name is treated as a catalog-class identification rather than a guaranteed proprietary melt name. The patent gives nd and νd but not vendor glass names or partial-dispersion data, so the APD/ED status is marked as inferred rather than patent-listed.
 
 ### G2 — Negative Variator Group
 
 #### L21 — Negative meniscus at the entrance of the variator
 
-nd = 1.69680, νd = 55.52. Glass: J-LAK14 (Hikari). f = -55.0 mm.
+nd = 1.69680, νd = 55.52. Glass: S-LAL14 (OHARA) / J-LAK14 class (Hikari). f = -55.0 mm.
 
 L21 begins the negative variator group with a high-index lanthanum crown. Its position immediately behind G1 lets it expand the beam and establish the zooming leverage needed for a 70-300 mm class range.
 
@@ -88,7 +88,7 @@ The high index keeps the negative power compact. Its moderate Abbe number preven
 
 #### L22 — Positive biconvex dense-flint compensator within G2
 
-nd = 1.78472, νd = 25.64. Glass: J-SF11 (Hikari). f = +33.7 mm.
+nd = 1.78472, νd = 25.64. Glass: SF11 (Schott) / J-SF11 class (Hikari; patent νd = 25.64). f = +33.7 mm.
 
 L22 is a positive biconvex element made from very high-dispersion dense flint. A positive element inside a net-negative variator is not contradictory; it provides internal aberration balancing and prevents G2 from becoming a simple stack of negative lenses.
 
@@ -96,7 +96,7 @@ The strong air spaces on both sides of L22 form part of the variator's air-lens 
 
 #### L23 — Negative biconcave lanthanum dense-flint element
 
-nd = 1.77250, νd = 49.62. Glass: J-LASF016 (Hikari). f = -41.0 mm.
+nd = 1.77250, νd = 49.62. Glass: N-LAF34 (Schott) / S-LAH66 / J-LASF016 class. f = -41.0 mm.
 
 L23 supplies a strong negative component in G2. Although the catalog family name contains "lanthanum," νd = 49.62 places it on the flint side of the crown/flint divide. Its job is to deepen the variator's negative power while keeping the group short.
 
@@ -122,7 +122,7 @@ In the cemented L31/L32 pair, L31 reduces the chromatic and coma burden that wou
 
 #### L32 — Positive member of the vibration-reduction cemented group
 
-nd = 1.64000, νd = 60.20. Glass: J-LAK01 (Hikari). f = +33.8 mm.
+nd = 1.64000, νd = 60.20. Glass: S-BSM81 (OHARA) / J-LAK01 class (patent νd = 60.20). f = +33.8 mm.
 
 L32 is the positive crown partner of L31. The cemented pair recomputes to **+67.213 mm**, giving fvr/fTM2 = 1.755 against the G3/M2 group focal length of +38.298 mm. This is the patent's central condition (1).
 
@@ -138,7 +138,7 @@ This element is not counted as the marketed ED element in this analysis. It is a
 
 #### L34 — Negative biconcave member of the L33/L34 pair
 
-nd = 1.80610, νd = 40.97. Glass: J-LASF03 (Hikari). f = -47.7 mm.
+nd = 1.80610, νd = 40.97. Glass: H-ZLAF52A (CDGM) / J-LASF03 class. f = -47.7 mm.
 
 L34 is the high-index, moderate-dispersion flint partner to L33. In the cemented pair, it supplies the negative chromatic component needed to keep the pre-stop positive cell from behaving like an uncontrolled positive singlet.
 
@@ -152,7 +152,7 @@ This central placement lets the designer split aberration correction around the 
 
 #### L35 — Negative meniscus in the post-stop cemented pair
 
-nd = 1.83400, νd = 37.18. Glass: J-LASF010 (Hikari). f = -39.6 mm.
+nd = 1.83400, νd = 37.18. Glass: S-LAH60 (OHARA) / J-LASF010 class. f = -39.6 mm.
 
 L35 is the negative high-index member of the post-stop cemented pair. The patent describes the L35/L36 cell as a negative cemented lens; recomputation gives **-392.704 mm**, which is weakly negative as an assembly.
 
@@ -178,7 +178,7 @@ Because it sits immediately before variable gap d25, L37 strongly affects the fo
 
 #### L41 — Positive meniscus in the moving RN group
 
-nd = 1.80518, νd = 25.45. Glass: J-SF6 (Hikari). f = +102.6 mm.
+nd = 1.80518, νd = 25.45. Glass: H-ZF7LA (CDGM) / S-TIH6 / J-SF6 class. f = +102.6 mm.
 
 L41 is the positive meniscus member of the moving rear negative group. It is a dense flint with very low Abbe number, but its standalone optical sign is positive. In combination with L42, the two-element group is negative with a recomputed focal length of **-48.034 mm**.
 
@@ -186,7 +186,7 @@ The positive member moderates the aberrations of the strong negative L42. A comp
 
 #### L42 — Negative biconcave dominant member of the moving RN group
 
-nd = 1.77250, νd = 49.62. Glass: J-LASF016 (Hikari). f = -30.9 mm.
+nd = 1.77250, νd = 49.62. Glass: N-LAF34 (Schott) / S-LAH66 / J-LASF016 class. f = -30.9 mm.
 
 L42 is the dominant negative member of the focusing group. Paragraph ¶0131 states that focusing from a long distant object to a short distant object is performed by moving the fourth lens group G4 in the image-surface direction. Since Example 1 G4 contains only L41 and L42, these two elements are the complete focusing group.
 
@@ -196,7 +196,7 @@ This small moving group is consistent with Nikon's AF-P stepping-motor productio
 
 #### L51 — Negative meniscus behind the focusing group
 
-nd = 1.62004, νd = 36.40. Glass: J-F2 (Hikari). f = -100.9 mm.
+nd = 1.62004, νd = 36.40. Glass: F2 (Schott) / J-F2 class (Hikari). f = -100.9 mm.
 
 L51 is a negative meniscus immediately behind the RN focusing group. The patent separately prefers a negative meniscus with a concave object-side surface adjacent to the image side of the RN group; in Example 1, this is L51.
 
@@ -204,7 +204,7 @@ Because L51 is fixed while G4 moves, it helps stabilize coma and field curvature
 
 #### L52 — Final positive biconvex element
 
-nd = 1.67003, νd = 47.14. Glass: J-BAF10 (Hikari). f = +79.7 mm.
+nd = 1.67003, νd = 47.14. Glass: N-BAF10 (Schott) / J-BAF10 class. f = +79.7 mm.
 
 L52 is the final positive relay and field element. It balances L51 according to condition (6), where (-fN)/fP = 1.266 for the strongest adjacent negative and positive elements behind the RN group.
 
@@ -212,24 +212,24 @@ This final element restores image-side convergence, contributes to field and Pet
 
 ## Glass Identification and Selection
 
-The patent gives nd and νd but does not name proprietary glass types. The names below are Hikari/Nikon J-series catalog matches or class matches. They should be read as catalog identifications for data annotation, not as proof of the exact production melts.
+The patent gives nd and νd but does not name proprietary glass types. The names below are coefficient-backed public catalog matches or class surrogates used for dispersion modeling. They should be read as catalog identifications for data annotation, not as proof of the exact production melts; the patent `nd`/`νd` values remain the authoritative prescription values in the data file.
 
-| Hikari catalog glass | nd | νd | Elements | Optical use |
+| Catalog label | nd | νd | Elements | Optical use |
 |---|---:|---:|---|---|
 | J-FK5 | 1.48749 | 70.31 | L11, L33 | Low-dispersion FK crown used as a weak collector and pre-stop achromat partner. |
-| J-F2 | 1.62004 | 36.40 | L12, L51 | Flint used for front achromat and rear relay negative power. |
-| J-FK01A class | 1.49700 | 81.61 | L13 | Very-low-dispersion FK-class glass; probable counterpart to Nikon's one ED element. |
-| J-LAK14 | 1.69680 | 55.52 | L21 | High-index lanthanum crown at the variator entrance. |
-| J-SF11 | 1.78472 | 25.64 | L22 | Very high-dispersion dense flint positive element inside G2. |
-| J-LASF016 | 1.77250 | 49.62 | L23, L42 | Dense lanthanum flint; νd below 50, so treated as flint. |
+| F2 / J-F2 class | 1.62004 | 36.40 | L12, L51 | Flint used for front achromat and rear relay negative power. |
+| J-FK01A | 1.49700 | 81.61 | L13 | Very-low-dispersion FK-class glass; probable counterpart to Nikon's one ED element, marked APD inferred. |
+| S-LAL14 / J-LAK14 class | 1.69680 | 55.52 | L21 | High-index lanthanum crown at the variator entrance. |
+| SF11 / J-SF11 class | 1.78472 | 25.64 | L22 | Very high-dispersion dense flint positive element inside G2. |
+| N-LAF34 / S-LAH66 / J-LASF016 class | 1.77250 | 49.62 | L23, L42 | Dense lanthanum flint; νd below 50, so treated as flint. |
 | J-LASF021 | 1.85026 | 32.35 | L24 | High-index, high-dispersion negative variator element. |
 | J-LAF016 | 1.80100 | 34.92 | L31, L37 | Lanthanum flint in the VR doublet and rear of G3. |
-| J-LAK01 | 1.64000 | 60.20 | L32 | Lanthanum crown; positive VR-doublet partner. |
-| J-LASF03 | 1.80610 | 40.97 | L34 | Dense lanthanum flint in the pre-stop cemented pair. |
-| J-LASF010 | 1.83400 | 37.18 | L35 | High-index lanthanum flint in the post-stop cemented pair. |
+| S-BSM81 / J-LAK01 class | 1.64000 | 60.20 | L32 | Lanthanum crown; positive VR-doublet partner. |
+| H-ZLAF52A / J-LASF03 class | 1.80610 | 40.97 | L34 | Dense lanthanum flint in the pre-stop cemented pair. |
+| S-LAH60 / J-LASF010 class | 1.83400 | 37.18 | L35 | High-index lanthanum flint in the post-stop cemented pair. |
 | J-BK7A / BK7-family class | 1.51680 | 63.88 | L36 | Borosilicate crown partner in the post-stop achromat. |
-| J-SF6 | 1.80518 | 25.45 | L41 | Dense flint positive meniscus in the moving focus group. |
-| J-BAF10 | 1.67003 | 47.14 | L52 | Barium flint final relay element. |
+| H-ZF7LA / S-TIH6 / J-SF6 class | 1.80518 | 25.45 | L41 | Dense flint positive meniscus in the moving focus group. |
+| N-BAF10 / J-BAF10 class | 1.67003 | 47.14 | L52 | Barium flint final relay element. |
 
 The chromatic strategy is not based on a large number of ED elements. Nikon publishes one ED element for the production lens, and the patent's most plausible counterpart is L13. The rest of the correction is distributed across crown/flint pairings: L12/L13 in the front group, L31/L32 in the VR group, L33/L34 and L35/L36 around the stop, and L51/L52 behind the focus group.
 

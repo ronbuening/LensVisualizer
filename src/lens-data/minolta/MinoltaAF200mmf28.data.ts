@@ -51,9 +51,10 @@ const LENS_DATA = {
       nd: 1.4931,
       vd: 83.55,
       fl: 179.37,
-      glass: "Unmatched AD fluorophosphate crown (493/836; θgF = 0.539 patent-listed)",
+      glass: "493836 - AD fluorophosphate crown (theta_gF = 0.539 patent-listed; catalog unresolved)",
       apd: "patent",
-      apdNote: "θgF = 0.539; public catalog glass unresolved against current HOYA/OHARA data",
+      dPgF: 0.0358,
+      apdNote: "theta_gF = 0.539 gives dPgF ~= +0.0358; public catalog glass unresolved",
       role: "Front positive collector and primary anomalous-dispersion chromatic corrector.",
     },
     {
@@ -64,9 +65,10 @@ const LENS_DATA = {
       nd: 1.4931,
       vd: 83.55,
       fl: 154.97,
-      glass: "Unmatched AD fluorophosphate crown (493/836; θgF = 0.539 patent-listed)",
+      glass: "493836 - AD fluorophosphate crown (theta_gF = 0.539 patent-listed; catalog unresolved)",
       apd: "patent",
-      apdNote: "θgF = 0.539; public catalog glass unresolved against current HOYA/OHARA data",
+      dPgF: 0.0358,
+      apdNote: "theta_gF = 0.539 gives dPgF ~= +0.0358; public catalog glass unresolved",
       role: "Second anomalous-dispersion positive element; shares the front-group chromatic correction load.",
     },
     {
@@ -77,7 +79,7 @@ const LENS_DATA = {
       nd: 1.72,
       vd: 52.14,
       fl: 116.11,
-      glass: "Unmatched high-index lanthanum crown (720/521)",
+      glass: "720521 - high-index lanthanum crown (catalog unresolved)",
       role: "High-index positive meniscus completing component I-1; its rear radius and following air gap govern coma control.",
     },
     {
@@ -88,7 +90,7 @@ const LENS_DATA = {
       nd: 1.721,
       vd: 33.4,
       fl: -57.71,
-      glass: "Unmatched dense lanthanum flint (721/334)",
+      glass: "721334 - dense lanthanum flint (catalog unresolved)",
       role: "Negative component I-2; balances front-group power and contributes telephoto contraction.",
     },
     {

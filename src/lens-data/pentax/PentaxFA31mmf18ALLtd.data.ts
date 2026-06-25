@@ -54,7 +54,7 @@ const LENS_DATA = {
       nd: 1.72916,
       vd: 54.7,
       fl: +129.0,
-      glass: "TAC8 (HOYA)",
+      glass: "TAC8 / S-LAL18 (OHARA, 729547) class",
       apd: false,
       role: "Weakly positive front collector; high-index lanthanum crown reduces surface curvatures while controlling off-axis aberrations in the retrofocus front group.",
     },

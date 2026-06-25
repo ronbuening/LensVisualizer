@@ -73,7 +73,7 @@ $n_d = 1.59522$, $\nu_d = 67.74$. Glass: S-FPM2 (OHARA). $f = +25.24$ mm.
 
 L5 is cemented to L4 and completes the movable negative doublet of partial compound lens 21. Although L5 is individually positive, the cemented pair has a combined focal length of -30.68 mm. This is the slower-moving of the two focus subgroups.
 
-The S-FPM2 glass has a high Abbe number and acts as the low-dispersion partner in the L4/L5 doublet. This second cemented group is a major contributor to longitudinal color control because it sits in the internal focusing section rather than at the front rim of the lens.
+The S-FPM2 glass has a high Abbe number and catalog-inferred anomalous partial dispersion, so it acts as the low-dispersion/APD partner in the L4/L5 doublet. This second cemented group is a major contributor to longitudinal color control because it sits in the internal focusing section rather than at the front rim of the lens.
 
 ### L6 — Biconvex Positive
 
@@ -89,7 +89,7 @@ $n_d = 1.59522$, $\nu_d = 67.74$. Glass: S-FPM2 (OHARA). $f = +41.93$ mm from th
 
 L7 is the image-side element of movable partial compound lens 22 and is the first of the two bi-aspheric elements. The spherical base form is plano-convex, but AF13 is a flat-base asphere with a strong negative fourth-order term. Across the patented clear aperture it no longer behaves as a simple plane surface.
 
-At the patent semi-diameter of 13.80054 mm, AF13 has -2.0000 mm of aspherical departure from the flat base. At the AF14 semi-diameter of 14.53752 mm, the spherical base sag is -4.6712 mm and the polynomial adds -0.5288 mm, giving -5.2000 mm total sag. The two surfaces therefore shape the marginal and field rays strongly without introducing an inflection point in the used region.
+At the patent semi-diameter of 13.80054 mm, AF13 has -2.0000 mm of aspherical departure from the flat base. At the AF14 semi-diameter of 14.53752 mm, the spherical base sag is -4.6712 mm and the polynomial adds -0.5288 mm, giving -5.2000 mm total sag. The two surfaces therefore shape the marginal and field rays strongly without introducing an inflection point in the used region. Its S-FPM2 material provides the second catalog-inferred APD contribution in the floating-focus section.
 
 ### L8 — Bi-Aspheric Negative Meniscus
 
@@ -113,9 +113,9 @@ The patent Table 1 gives glass trade names but does not print the numeric $n_d$ 
 | L2 | S-LAM61 (OHARA) | 1.72000 | 46.02 | Positive partner in front doublet |
 | L3 | S-NPH1 (OHARA) | 1.80809 | 22.76 | High-index, high-dispersion front positive singlet |
 | L4 | S-TIH1 (OHARA) | 1.71736 | 29.52 | Negative flint element in focus doublet |
-| L5 | S-FPM2 (OHARA) | 1.59522 | 67.74 | Low-dispersion partner in focus doublet |
+| L5 | S-FPM2 (OHARA) | 1.59522 | 67.74 | Low-dispersion/APD partner in focus doublet |
 | L6 | S-LAH59 (OHARA) | 1.81600 | 46.62 | High-index positive element in subgroup 22 |
-| L7 | S-FPM2 (OHARA) | 1.59522 | 67.74 | Low-dispersion bi-aspheric element |
+| L7 | S-FPM2 (OHARA) | 1.59522 | 67.74 | Low-dispersion/APD bi-aspheric element |
 | L8 | L-LAM69 (OHARA) | 1.73077 | 40.51 | Moldable rear bi-aspheric corrector |
 
 The corrected Petzval sum, computed surface by surface as $\sum \phi/(n n')$, is +0.001970 mm$^{-1}$, corresponding to a Petzval radius magnitude of about 508 mm. This replaces the earlier thin-element estimate and should not be interpreted as a Petzval radius near the full-frame diagonal.
@@ -151,7 +151,7 @@ Verified rim departures at the patent semi-diameters are -2.0000 mm for AF13, -0
 
 The patent's MTF discussion in ¶0065-¶0070 emphasizes 80 lp/mm performance across much of the full-frame field. It states that contrast remains high to roughly the vertical and horizontal frame edges, with the main falloff in the extreme corners. This is consistent with the compact fixed-camera objective being optimized as a sensor-lens unit rather than as an interchangeable lens that must tolerate multiple sensor stacks and flange environments.
 
-The chromatic correction strategy is conventional but dense: two cemented doublets, a low-dispersion S-FPM2 element in the focus doublet, and a second S-FPM2 element in the rear positive subgroup. The patent identifies the shorter visible wavelengths as the region where residual longitudinal color is more apparent, while distortion and chromatic difference of magnification remain very low.
+The chromatic correction strategy is conventional but dense: two cemented doublets, a catalog-inferred APD S-FPM2 element in the focus doublet, and a second S-FPM2 APD element in the rear positive subgroup. The patent identifies the shorter visible wavelengths as the region where residual longitudinal color is more apparent, while distortion and chromatic difference of magnification remain very low.
 
 The chief-ray-angle discussion should not be reduced to a paraxial estimate. AF13 and AF16 are explicitly identified as strongly progressive marginal-power surfaces for exit-pupil and sensor-incidence control. A first-order chief-ray trace is useful for sanity checking layout, but it is not sufficient to quantify the real-ray chief-ray angle after the large aspherical departures on AF13-AF16.
 

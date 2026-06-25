@@ -59,8 +59,9 @@ const LENS_DATA = {
       vd: 65.44,
       fl: 32.9,
       glass: "S-PHM53 (OHARA)",
-      apd: "inferred",
-      apdNote: "Δθ(g,F) ≈ +0.0045 — phosphate crown with positive anomalous partial dispersion",
+      apd: "patent",
+      apdNote:
+        "Patent-backed APD positive doublet glass; S-PHM53 is a phosphate crown with positive anomalous partial dispersion.",
       cemented: "D1",
       role: "Outer positive element of front cemented doublet; provides strong convergence and anomalous-dispersion correction (S-PHM53), replacing the antimony-containing short flints used in earlier Symmar designs.",
     },
@@ -87,9 +88,9 @@ const LENS_DATA = {
       fl: 130.4,
       glass:
         "Unmatched (phosphate crown class, ne=1.5223, ve=69.5; no public catalog match — possible special melt or discontinued glass)",
-      apd: "inferred",
+      apd: "patent",
       apdNote:
-        "Positive anomalous partial dispersion (estimated from glass-map position in the phosphate crown family)",
+        "Patent requires the stop-flanking positive meniscus glass to have anomalous partial dispersion; no PgF table is published.",
       role: "Front positive meniscus flanking the stop; carries primary converging power on the object side. Concave surface faces the stop — a hallmark of Plasmat geometry enabling simultaneous coma and astigmatism correction.",
     },
     {
@@ -100,10 +101,10 @@ const LENS_DATA = {
       nd: 1.52855,
       vd: 76.98,
       fl: 142.0,
-      glass: "N-PK51 (Schott)",
-      apd: "inferred",
+      glass: "529770 — N-PK51 (Schott phosphate crown; no local Sellmeier)",
+      apd: "patent",
       apdNote:
-        "ΔP(g,F) ≈ +0.0252 — strong positive anomalous partial dispersion; principal secondary-spectrum corrector",
+        "Patent requires anomalous partial dispersion for the stop-flanking positive meniscus; N-PK51 is the principal low-dispersion corrector.",
       role: "Rear positive meniscus flanking the stop; carries primary converging power on the image side. Stronger anomalous dispersion than L3 introduces deliberate asymmetry for field-wide chromatic balance.",
     },
     {
@@ -128,9 +129,9 @@ const LENS_DATA = {
       vd: 65.44,
       fl: 34.8,
       glass: "S-PHM53 (OHARA)",
-      apd: "inferred",
+      apd: "patent",
       apdNote:
-        "Δθ(g,F) ≈ +0.0045 — same anomalous-dispersion glass as L1, maintaining quasi-symmetric chromatic correction",
+        "Patent-backed APD positive doublet glass; same S-PHM53 phosphate crown as L1 maintains quasi-symmetric correction.",
       cemented: "D2",
       role: "Outer positive element of rear cemented doublet; mirror-symmetric counterpart to L1. Completes the quasi-symmetric anomalous-dispersion strategy.",
     },

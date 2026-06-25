@@ -49,6 +49,7 @@ L11 is the weak positive element at the object end of G1a. Its radii, +292.188 m
 
 **L12 — Biconcave Negative.**
 nd = 1.61340, νd = 44.3. Glass: short-flint / KZFS-class glass. f = -60.7 mm.
+Catalog-backed label in the data file: S-NBM51 / N-KZFS4 class (613443).
 
 L12 is the strong negative member of the G1a cemented doublet. The rear surface, R = +40.248 mm, supplies the negative power that makes G1a net-negative. The patent describes G1a as a negative component made by joining a biconvex lens and a biconcave lens, matching surfaces 1-3 in Example 1 (¶0063). Its negative power creates the front-converter action needed for back focus, but the curvature is moderated by conditional expression (3) to avoid excessive sagittal coma and astigmatism.
 
@@ -56,11 +57,13 @@ L12 is the strong negative member of the G1a cemented doublet. The rear surface,
 
 **L13 — High-Index Biconvex Positive.**
 nd = 1.91082, νd = 35.2. Glass: high-index tantalum/lanthanum dense-flint class. f = +43.0 mm.
+Catalog-backed label in the data file: HOYA TAFD35 (911353), with the patent rounding νd to 35.2.
 
 L13 is the strongest single positive element before the rear group. Its high refractive index is the n12P term of conditional expression (5), which requires n12P > 1.75 and preferably > 1.85 (¶0106-0107). Using a high-index positive glass allows the object-side surface to remain less tightly curved, reducing coma and astigmatism from this off-stop location.
 
 **L14 — Negative Cemented Partner.**
 nd = 1.61340, νd = 44.3. Glass: short-flint / KZFS-class glass. f = -62.0 mm.
+Catalog-backed label in the data file: S-NBM51 / N-KZFS4 class (613443).
 
 L14 achromatizes L13. The cemented pair remains net positive, approximately +122 mm in paraxial focal length, so it begins re-converging the beam after the negative G1a component. This arrangement corresponds to the patent's positive cemented lens in G1b (¶0090-0091).
 
@@ -73,6 +76,7 @@ L21 is the negative member of G1b's second cemented component. The patent favors
 
 **L22 — Low-Dispersion Biconvex Positive.**
 nd = 1.61800, νd = 63.4. Glass: anomalous partial-dispersion phosphate-crown class. f = +105.2 mm.
+Catalog-backed label in the data file: OHARA S-PHM52 (618634), with mild positive $\Delta P_{gF}$.
 
 L22 is a positive low-dispersion partner cemented to L21. The pair is still net negative, approximately -82 mm, but L22 adds a mild secondary-spectrum correction contribution in the front group. Its partial-dispersion behavior is inferred from catalog-class matching rather than directly tabulated in the patent; it is therefore treated as a mild anomalous-dispersion element, not as an ED element.
 
@@ -80,6 +84,7 @@ L22 is a positive low-dispersion partner cemented to L21. The pair is still net 
 
 **L23 — Biconvex Positive.**
 nd = 1.83481, νd = 42.7. Glass: lanthanum dense crown/flint class. f = +55.8 mm.
+Catalog-backed label in the data file: S-LAH55 / TAFD5F class (835427).
 
 L23 is the final element of G1b and the last lens before the moving G2 group. It converges the diverging beam left by G1's negative elements and hands G2 a more compact aperture bundle (¶0091). Its high index supplies useful positive power without excessively steep radii.
 
@@ -122,6 +127,7 @@ L42 is the second ED-class fluorophosphate element. It is the positive lens gove
 
 **L43 — High-Index Positive Meniscus, Convex to Image.**
 nd = 1.88300, νd = 40.8. Glass: high-index lanthanum dense-flint class. f = +111.7 mm.
+Catalog-backed label in the data file: S-LAH58 / TAFD30 class (883408).
 
 L43 is the positive meniscus in the image-side cemented lens. Its high refractive index satisfies conditional expression (12), n2P > 1.70. The patent explains that the low-index materials useful for secondary-spectrum correction can increase Petzval burden unless balanced by a high-index positive meniscus near this position (¶0117).
 
@@ -134,6 +140,7 @@ L44 is the negative partner to L43. The cemented pair has net negative power of 
 
 **L51 — Biconvex Positive, Both Surfaces Aspherical.**
 nd = 1.77250, νd = 49.5. Glass: moldable lanthanum crown class. f = +36.9 mm.
+No exact public Sellmeier row is in the current catalog; the data file keeps the code-backed `773495` annotation for future upgrade.
 
 L51 is the strongest positive single element in the system and the last glass element before the sensor stack. Both faces are aspherical. The patent places the asphere at the rear because the element has high converging power and the off-axis principal ray height is high there; this position allows simultaneous correction of spherical aberration, coma, and astigmatism (¶0095, ¶0117).
 
@@ -144,20 +151,20 @@ The patent gives nd and νd values but does not name glass manufacturers. Glass 
 | Element | nd | νd | Glass identification | Role |
 |---|---:|---:|---|---|
 | L11 | 1.60342 | 38.0 | F5-class dense flint | Front color-control positive |
-| L12 | 1.61340 | 44.3 | Short-flint / KZFS-class | G1a negative power |
-| L13 | 1.91082 | 35.2 | High-index dense flint class | n12P positive lens |
-| L14 | 1.61340 | 44.3 | Short-flint / KZFS-class | Achromatizing negative |
+| L12 | 1.61340 | 44.3 | S-NBM51 / N-KZFS4 class (613443) | G1a negative power |
+| L13 | 1.91082 | 35.2 | TAFD35 (HOYA, 911353) | n12P positive lens |
+| L14 | 1.61340 | 44.3 | S-NBM51 / N-KZFS4 class (613443) | Achromatizing negative |
 | L21 | 1.72047 | 34.7 | Niobium dense-flint class | Distributed negative power |
-| L22 | 1.61800 | 63.4 | Anomalous phosphate-crown class | Mild front-group secondary-spectrum correction |
-| L23 | 1.83481 | 42.7 | Lanthanum dense crown/flint class | Rear positive of G1 |
+| L22 | 1.61800 | 63.4 | S-PHM52 (OHARA, 618634) | Mild front-group secondary-spectrum correction |
+| L23 | 1.83481 | 42.7 | S-LAH55 / TAFD5F class (835427) | Rear positive of G1 |
 | L31 | 1.85150 | 40.8 | OHARA S-LAH89 class | G2a positive singlet |
 | L32 | 1.59522 | 67.7 | OHARA S-FPM2 / ED fluorophosphate class | ED positive before stop |
 | L33 | 1.60342 | 38.0 | F5-class dense flint | Cemented negative before stop |
 | L41 | 1.60342 | 38.0 | F5-class dense flint | Cemented negative behind stop |
 | L42 | 1.59522 | 67.7 | OHARA S-FPM2 / ED fluorophosphate class | ED positive governed by conditions (10)-(11) |
-| L43 | 1.88300 | 40.8 | High-index lanthanum dense-flint class | n2P high-index meniscus |
+| L43 | 1.88300 | 40.8 | S-LAH58 / TAFD30 class (883408) | n2P high-index meniscus |
 | L44 | 1.56732 | 42.8 | OHARA S-TIL26 class | Image-side negative |
-| L51 | 1.77250 | 49.5 | Moldable lanthanum crown class | Rear double-sided asphere |
+| L51 | 1.77250 | 49.5 | 773495 moldable lanthanum crown class | Rear double-sided asphere |
 
 The chromatic strategy is not apochromatic in the strict sense. The design uses two strong ED-class elements, L32 and L42, plus the milder low-dispersion/APD contribution of L22. The flint partners around the stop keep axial color and secondary spectrum controlled while preserving the modified-Gauss correction. The patent's aberration diagrams show a well-corrected fast standard lens rather than a claim of APO correction.
 

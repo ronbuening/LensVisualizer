@@ -83,7 +83,7 @@ The patent text notes that the outer members turn "their more strongly curved su
 
 ### L2 — Negative Meniscus (Outer Negative of Front Triplet), Cemented
 
-$n_d = 1.71700$, $\nu_d = 47.9$. Glass: **LaF3 (Schott)** — lanthanum flint (six-digit code 717/479). $f = -118.8$.
+$n_d = 1.71700$, $\nu_d = 47.9$. Glass: **LaF3 (Schott 717479) / S-LAM3 optical equivalent** — lanthanum flint. $f = -118.8$.
 
 L2 is the outermost element of the front cemented triplet (Group II), with surfaces $r_3 = +34.89$ (front) and $r_4 = +20.90$ (cemented junction with L3). It is a meniscus-shaped negative element ($f = -118.8$) with moderate thickness ($d_3 = 13.00$). The cement junction at $r_4$ bonds L2 to the central positive lens L3.
 
@@ -91,21 +91,21 @@ L2 has the highest refractive index ($n_d = 1.717$) in the front triplet, satisf
 
 As a lanthanum flint ($\nu_d = 47.9$), L2 provides moderate dispersion paired with the high index needed for the index-gradient constraint. The cemented interface at $r_4$ with L3 allows the two elements to act as an achromatic pair: L2 (lower $\nu_d$, more dispersive) opposes the chromatic contribution of L3 (higher $\nu_d$, less dispersive) across the shared boundary.
 
-The glass identification as LaF3 (Schott) is based on an exact match of $n_d = 1.71700$ and $\nu_d = 47.9$ against historical Schott catalog data. This designation places the glass at the boundary between lanthanum crowns (LaK, $\nu_d > 50$) and lanthanum flints (LaF, $\nu_d < 50$); the Abbe number of 47.9 places it formally in the flint range. This glass has been discontinued from the current Schott catalog.
+The glass identification as Schott LaF3 is based on an exact match of $n_d = 1.71700$ and $\nu_d = 47.9$ against historical Schott code 717479. The local coefficient-backed catalog resolves the same optical position through OHARA S-LAM3, so the data file records both the historical Schott assignment and the modern optical equivalent. This designation places the glass at the boundary between lanthanum crowns (LaK, $\nu_d > 50$) and lanthanum flints (LaF, $\nu_d < 50$); the Abbe number of 47.9 places it formally in the flint range.
 
 ### L3 — Biconvex Positive (Central Positive of Front Triplet), Cemented
 
-$n_d = 1.61405$, $\nu_d = 55.1$. Glass: **SSK class (Schott)** — dense barium crown, probable SSK4 variant (614/551). $f = +20.2$.
+$n_d = 1.61405$, $\nu_d = 55.1$. Glass: **SSK-class dense barium crown (614551)** — historical Schott-family row with Hikari SK9 optical equivalent. $f = +20.2$.
 
 L3 is the thick central positive lens ($d_4 = 16.48$) of the front cemented triplet, with surfaces at $r_4 = +20.90$ (cemented junction with L2) and $r_5 = -21.48$ (cemented junction with L4). It is the most powerful element in the front triplet ($f = +20.2$) and the second-most-powerful element overall (after L6 at $f = +18.2$), carrying much of the system's positive refractive power. Its nearly symmetric biconvex form ($r_4 \approx +20.9$, $r_5 \approx -21.5$) minimizes the spherical aberration contribution for the on-axis ray bundle.
 
-With the intermediate refractive index in the triplet's progressive sequence ($n_{d,\text{L4}} < n_{d,\text{L3}} < n_{d,\text{L2}}$), L3's glass occupies the dense barium crown region of the Abbe diagram. The exact match to a modern catalog entry is imperfect (closest modern match is SK4 at $n_d = 1.61272$, $\nu_d = 58.6$, which differs by $\Delta n_d = +0.0013$ and $\Delta\nu_d = -3.5$). The combination $n_d = 1.614$, $\nu_d = 55.1$ is consistent with a now-discontinued SSK-class (extra-dense barium crown) formulation from the 1960s Schott catalog, possibly SSK4 ($n_d = 1.61765$, $\nu_d = 55.1$, matching the Abbe number exactly though differing slightly in refractive index). The glass is identified here as SSK class with the six-digit code 614/551.
+With the intermediate refractive index in the triplet's progressive sequence ($n_{d,\text{L4}} < n_{d,\text{L3}} < n_{d,\text{L2}}$), L3's glass occupies the dense barium crown region of the Abbe diagram. The six-digit optical code is 614551. In the local catalog this round-trips through Hikari SK9, while the historical Schneider context still supports a Schott SSK-class formulation rather than a literal Hikari production glass. The data file therefore treats it as a coefficient-backed optical equivalent, not as proof of supplier.
 
 Chromatically, L3 is paired in achromatization with both L2 and L4: the cemented triplet structure allows three-glass chromatic correction across the two junction surfaces, balancing not only primary longitudinal chromatic aberration but also contributing to secondary spectrum control.
 
 ### L4 — Thin Biconcave Negative (Inner Negative of Front Triplet)
 
-$n_d = 1.56138$, $\nu_d = 45.3$. Glass: **BaLF class (Schott)** — barium light flint (561/453). $f = -36.1$.
+$n_d = 1.56138$, $\nu_d = 45.3$. Glass: **BaLF-class barium light flint (561453)** — historical Schott-family code-only row. $f = -36.1$.
 
 L4 is a very thin biconcave negative element ($d_5 = 1.48$) at the rear of the front cemented triplet, with surfaces $r_5 = -21.48$ (cemented junction with L3) and $r_6 = +360.27$ (the nearly flat rear surface facing the diaphragm space). It is the innermost element of the front half, immediately adjacent to the aperture stop. The opposite signs of $r_5$ (negative) and $r_6$ (positive) confirm the biconcave shape — both exterior surfaces are concave — though $r_6$ is so weakly curved that the element is effectively plano-concave. The patent describes these inner negative elements as "concave toward the diaphragm space," referring to the element's dominant concavity: the strongly curved $r_5$ surface has its concavity directed toward the image and diaphragm side.
 
@@ -113,31 +113,31 @@ The extreme thinness of L4 is one of the patent's key innovations. The text stat
 
 L4 has the lowest refractive index in the front triplet ($n_d = 1.561$), completing the progressive index gradient. Its role is primarily that of a **field-correcting element**: the nearly flat rear surface ($r_6 = +360.27$, effectively a plane) allows L4 to act as a weak negative corrector at the edge of the triplet without introducing significant additional spherical aberration. Its location adjacent to the diaphragm — where marginal ray heights are smallest but chief ray heights are largest — means its power primarily affects the oblique (off-axis) aberrations rather than on-axis aberrations.
 
-The glass identification is uncertain. The combination $n_d = 1.561$, $\nu_d = 45.3$ (code 561/453) falls in the barium light flint (BaLF) region of the Abbe diagram. No exact match has been found in current or historical Schott catalog references; this may be a discontinued formulation. The relatively low Abbe number ($\nu_d = 45.3$) places it on the flintier side of the crown–flint boundary, providing controlled dispersion at the junction with L3.
+The glass identification is code-family only. The combination $n_d = 1.561$, $\nu_d = 45.3$ (code 561453) falls in the barium light flint (BaLF) region of the Abbe diagram. No exact coefficient-backed public catalog row is present in the project for this pair, so the data file deliberately keeps it as a code-only historical Schott-family row. The relatively low Abbe number ($\nu_d = 45.3$) places it on the flintier side of the crown–flint boundary, providing controlled dispersion at the junction with L3.
 
 ### L5 — Thin Biconcave Negative (Inner Negative of Rear Triplet)
 
-$n_d = 1.56883$, $\nu_d = 56.0$. Glass: **BaK4 (Schott)** — barium crown. $f = -41.0$.
+$n_d = 1.56883$, $\nu_d = 56.0$. Glass: **BaK4 (Schott) / S-BAL14 optical equivalent** — barium crown. $f = -41.0$.
 
 L5 is the symmetry partner of L4, forming the innermost element of the rear cemented triplet (Group III). Like L4, it is extremely thin ($d_7 = 1.48$) and biconcave in shape — $r_7 = -1052.61$ (negative) and $r_8 = +23.84$ (positive) have opposite signs. The nearly flat front surface ($r_7$, adjacent to the diaphragm space) and the strongly curved rear surface ($r_8$, cemented to L6) make this element effectively plano-concave, with its dominant concavity facing the diaphragm — mirroring L4's orientation.
 
-The glass is positively identified as **Schott BaK4** ($n_d = 1.56883$, $\nu_d = 55.98$), matching the patent values to five decimal places in $n_d$ and within 0.02 units in $\nu_d$ — an exact match.
+The glass is positively identified as **Schott BaK4** ($n_d = 1.56883$, $\nu_d \approx 56.0$), matching the patent values. The local coefficient-backed catalog does not carry BaK4 by name, but OHARA S-BAL14 is a close barium-crown optical equivalent, so the data file includes that resolver target while preserving the historical Schott assignment.
 
 Despite occupying a symmetric position to L4, L5 uses a distinctly different glass. While L4 has $\nu_d = 45.3$ (a flint), L5 has $\nu_d = 56.0$ (a crown). This asymmetry in Abbe number ($\Delta\nu_d = 10.7$) between the inner negatives is the largest departure from symmetry in the design. The patent text does not explicitly address this difference, but it is consistent with the patent's broader claim that "the $\nu$ value of the outer negative lens and of the positive lens of one triplet differ from those of the corresponding lenses of the other triplet by not more than 8 units." This constraint applies to the outer negatives (L2 vs L7: $\Delta\nu_d = 6.8$) and the positives (L3 vs L6: $\Delta\nu_d = 1.2$), but the inner negatives are free to differ — and differ they do, providing the designer with additional degrees of freedom for chromatic balancing between the front and rear halves.
 
 ### L6 — Biconvex Positive (Central Positive of Rear Triplet), Cemented
 
-$n_d = 1.61375$, $\nu_d = 56.3$. Glass: **SSK class (Schott)** — dense barium crown (614/563). $f = +18.2$.
+$n_d = 1.61375$, $\nu_d = 56.3$. Glass: **SSK-class dense barium crown (614563)** — historical Schott-family code-only row. $f = +18.2$.
 
 L6 is the symmetry partner of L3 and the most powerful element in the entire system ($f = +18.2$, the shortest focal length of any element), with surfaces $r_8 = +23.84$ (cemented junction with L5) and $r_9 = -16.29$ (cemented junction with L7). It carries the greatest share of the system's positive refractive power in a nearly biconvex configuration, though somewhat asymmetric ($|r_9| < |r_8|$, meaning the image-side surface is more strongly curved).
 
-The glass is nearly identical to L3 in refractive index ($\Delta n_d = 0.00030$) but differs slightly in Abbe number ($\nu_d = 56.3$ vs 55.1, $\Delta\nu_d = 1.2$). This small difference is within the patent's tolerance of $\leq 8$ units for corresponding positive lenses. Like L3, the exact catalog match is uncertain; the glass is identified as an SSK-class dense barium crown (six-digit code 614/563), likely a companion formulation to the L3 glass from the same era of the Schott catalog.
+The glass is nearly identical to L3 in refractive index ($\Delta n_d = 0.00030$) but differs slightly in Abbe number ($\nu_d = 56.3$ vs 55.1, $\Delta\nu_d = 1.2$). This small difference is within the patent's tolerance of $\leq 8$ units for corresponding positive lenses. Unlike L3's 614551 row, the 614563 pair has no exact coefficient-backed public catalog row in the project, so it remains a code-only SSK-class dense barium crown assignment, likely a companion formulation to the L3 glass from the same era of the Schott catalog.
 
 L6 is slightly shorter in focal length than L3 ($+18.2$ vs $+20.2$), compensating for the different glass properties of L7 (which has lower $\nu_d$ than L2) to maintain chromatic balance.
 
 ### L7 — Negative Meniscus (Outer Negative of Rear Triplet), Cemented
 
-$n_d = 1.70181$, $\nu_d = 41.1$. Glass: **BaSF class (Schott)** — barium dense flint (702/411). $f = -61.4$.
+$n_d = 1.70181$, $\nu_d = 41.1$. Glass: **BaSF-class barium dense flint (702411)** — historical Schott-family row with S-BAH27 / BAFD7 optical equivalents. $f = -61.4$.
 
 L7 is the outermost element of the rear triplet, with surfaces $r_9 = -16.29$ (cemented junction with L6) and $r_{10} = -34.74$ (rear surface facing the air gap to L8). It is a substantial element ($d_9 = 12.89$) and the symmetry partner of L2.
 
@@ -145,17 +145,17 @@ L7 has the highest refractive index in the rear triplet ($n_d = 1.702$), satisfy
 
 Compared to its symmetry partner L2 ($\nu_d = 47.9$), L7 has a notably lower Abbe number ($\nu_d = 41.1$, $\Delta\nu_d = 6.8$). This difference, while within the patent's $\leq 8$ unit tolerance, represents a deliberate chromatic asymmetry between the triplets. L7's higher dispersion provides stronger color correction in the rear triplet to compensate for the different glass properties of L5 (which has higher $\nu_d$ than L4).
 
-The glass identification is approximate. The combination $n_d = 1.702$, $\nu_d = 41.1$ (code 702/411) falls in the barium dense flint (BaSF) region. The closest identified catalog entry is BaSF64 ($n_d = 1.704$, $\nu_d = 39.4$), which is close but not exact ($\Delta n_d = 0.002$, $\Delta\nu_d = 1.7$). The glass is likely a discontinued 1960s Schott formulation.
+The glass identification is historical-family plus modern optical equivalent. The combination $n_d = 1.702$, $\nu_d = 41.1$ (code 702411) falls in the barium dense flint / high-index barium region. Modern coefficient-backed catalog rows OHARA S-BAH27 and HOYA BAFD7 round-trip this optical position closely, but the physical glass in a 1960s Schneider design is still best described as a historical Schott BaSF-class formulation.
 
 ### L8 — Negative Meniscus (Dispersive Singlet), Concave to Object
 
-$n_d = 1.52015$, $\nu_d = 63.6$. Glass: **K/BK class (Schott)** — crown (520/636). $f = -63.5$.
+$n_d = 1.52015$, $\nu_d = 63.6$. Glass: **BK7G18 optical match (Schott 520636)** — K/BK crown class. $f = -63.5$.
 
 L8 is the rearmost element, forming Group IV — the symmetry partner of L1. It is a negative meniscus ($d_{11} = 4.27$) with both surfaces having their centers of curvature to the left: $r_{11} = -25.98$ (the strongly curved front surface facing the triplet) and $r_{12} = -128.32$ (the gently curved rear surface facing the image plane). As with L1, the radius ratio ($|r_{12}|/|r_{11}| \approx 4.9$) approximates the patent's 1:5 specification.
 
 L8 serves the same three roles as L1 — field lens, Petzval flattener, and low-reflection exit element — but on the image side. Its rear surface contributes $+0.00267$ to the Petzval sum, while its front surface contributes $-0.01317$, giving a net negative Petzval contribution that helps balance the positive contributions of the triplet.
 
-Unlike L1 (FK3 fluorophosphate crown), L8 uses a different crown glass: $n_d = 1.520$, $\nu_d = 63.6$ (code 520/636), which has a higher refractive index than FK3. This asymmetry ($\Delta n_d = 0.056$ between L1 and L8) is the second-largest glass asymmetry in the design after the L4/L5 Abbe number difference. The exact catalog match is uncertain — the glass falls between BK7 ($n_d = 1.517$, $\nu_d = 64.2$) and K5 ($n_d = 1.522$, $\nu_d = 59.5$) in the Abbe diagram. It is likely a discontinued Schott crown glass from the 1960s catalog. The higher index compared to L1 provides somewhat more power at the exit surface, compensating for the overall rear-biased power distribution of the system.
+Unlike L1 (FK3 fluorophosphate crown), L8 uses a different crown glass: $n_d = 1.520$, $\nu_d = 63.6$ (code 520636), which has a higher refractive index than FK3. This asymmetry ($\Delta n_d = 0.056$ between L1 and L8) is the second-largest glass asymmetry in the design after the L4/L5 Abbe number difference. The local catalog's Schott BK7G18 entry is an excellent optical match to this code, so the data file now uses that resolver target while still describing the historical role as a K/BK crown-class rear field lens.
 
 ---
 
@@ -164,15 +164,15 @@ Unlike L1 (FK3 fluorophosphate crown), L8 uses a different crown glass: $n_d = 1
 | Element | $n_d$ | $\nu_d$ | Glass | Vendor | Confidence | Role |
 |---------|-------|---------|-------|--------|------------|------|
 | L1 | 1.46450 | 65.8 | FK3 | Schott | Exact | Fluorophosphate crown, low-index field lens |
-| L2 | 1.71700 | 47.9 | LaF3 | Schott | Exact | Lanthanum flint, high-index outer negative |
-| L3 | 1.61405 | 55.1 | SSK class (614/551) | Schott | Probable | Dense barium crown, central positive |
-| L4 | 1.56138 | 45.3 | BaLF class (561/453) | Schott | Uncertain | Barium light flint, thin biconcave inner corrector |
-| L5 | 1.56883 | 56.0 | BaK4 | Schott | Exact | Barium crown, thin biconcave inner corrector |
-| L6 | 1.61375 | 56.3 | SSK class (614/563) | Schott | Probable | Dense barium crown, central positive |
-| L7 | 1.70181 | 41.1 | BaSF class (702/411) | Schott | Probable | Barium dense flint, high-index outer negative |
-| L8 | 1.52015 | 63.6 | K/BK class (520/636) | Schott | Uncertain | Crown, low-index field lens |
+| L2 | 1.71700 | 47.9 | LaF3 / S-LAM3 optical equivalent (717479) | Schott / OHARA equivalent | Exact optical match | Lanthanum flint, high-index outer negative |
+| L3 | 1.61405 | 55.1 | SSK class / Hikari SK9 optical equivalent (614551) | Schott historical / Hikari equivalent | Exact optical match | Dense barium crown, central positive |
+| L4 | 1.56138 | 45.3 | BaLF class (561453) | Schott historical | Code-only | Barium light flint, thin biconcave inner corrector |
+| L5 | 1.56883 | 56.0 | BaK4 / S-BAL14 optical equivalent | Schott / OHARA equivalent | High | Barium crown, thin biconcave inner corrector |
+| L6 | 1.61375 | 56.3 | SSK class (614563) | Schott historical | Code-only | Dense barium crown, central positive |
+| L7 | 1.70181 | 41.1 | BaSF class / S-BAH27 or BAFD7 optical equivalent (702411) | Schott historical / OHARA-HOYA equivalent | High | Barium dense flint, high-index outer negative |
+| L8 | 1.52015 | 63.6 | BK7G18 optical match (520636) | Schott | Exact optical match | Crown, low-index field lens |
 
-Three glasses are identified with high confidence (FK3, LaF3, BaK4). The remaining five are matched to glass families based on their position in the Abbe diagram and the six-digit Schott glass code, but exact catalog designations cannot be confirmed — many 1960s Schott formulations have been discontinued without public archival of their precise optical constants.
+After the June 2026 audit, five rows have coefficient-backed optical equivalents in the local catalog (L2, L3, L5, L7, L8), while L4 and L6 remain deliberate historical code-only rows. These modern equivalents are used to improve chromatic tracing where the optical constants round-trip, but they should not be read as proof that Schneider procured those exact modern catalog glasses.
 
 All glasses are attributed to Schott because Schneider-Kreuznach, as a German optical manufacturer based in the Rhineland, was the natural customer for Schott optical glass produced in Mainz, approximately 80 km from Schneider's Bad Kreuznach facility.
 

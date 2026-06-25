@@ -146,7 +146,7 @@ const LENS_DATA = {
       nd: 1.73077,
       vd: 40.5,
       fl: -40.3,
-      glass: "731405 - moldable flint (M-LAF81 code match; patent nd=1.73077, vd=40.50)",
+      glass: "M-LAF81 (Hoya, 731405)",
       apd: false,
       role: "Single-element inner-focus group (G2) — lightweight negative meniscus with aspherical front for SA stability across focus range",
     },

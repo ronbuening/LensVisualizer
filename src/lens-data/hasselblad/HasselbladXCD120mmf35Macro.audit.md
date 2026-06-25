@@ -34,3 +34,11 @@ Patent: US 2020/0192060 A1, Example 2
 ### Analysis sync
 
 - Updated element descriptions, glass table rows, and palette summary. Sweep 2 later resolved L31 by adding the missing `893204` catalog code.
+
+## 2026-06-24 - APD, high-index, and SD audit
+
+- Rechecked `patents/US20200192060A1.pdf`, Example 2 / Figure 5 and Figure 6 tables, against the current data file.
+- Marked L21 `S-FPM3 (OHARA)` as inferred APD. The patent gives nd/vd and H*2 effective diameters, while the APD status is inferred from the S-FPM3 fluorophosphate class and chromatic-correction role.
+- Confirmed the high-index elements remain L11, L23, L31, L51, and L52 (nd >= 1.8). L31 remains the explicit `893204` S-NPH4 code-backed disposition.
+- Confirmed the SDs already come from the patent H*2 effective-diameter column halved. Figure 5 is consistent with those values, so no SD edits were made.
+- Verification: `npm run generate:glass-reports`, `npm run typecheck`, `npm run format:check`, `npm run lint`, `npm run test`, and `git diff --check` passed.

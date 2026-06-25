@@ -31,3 +31,21 @@ Patent: WO 2020/158622 A1, Example 3 / Table 3A
 ### Analysis sync
 
 - Updated L4/L10/L11/L12 descriptions, glass table rows, chromatic strategy, and source notes.
+
+## 2026-06-24 - Systematic patent-table audit
+
+### Patent evidence
+
+- Re-extracted `patents/JPWO2020158622A1.pdf` and reviewed Numerical Example 3 / Tables 3A-3C against the data file.
+- The powered prescription, aspherical coefficients, variable focus spacings, and patent-published dPgF values match the current data.
+- The patent does not publish semi-diameters or effective diameters.
+
+### Updates
+
+| Area | Disposition |
+|---|---|
+| Glass labels | No prescription data change. Existing data already keeps FCD515, FCD705, FDS18, and the 808409 / MC-NBFD135 code-backed L4 label. |
+| APD | Patent-published dPgF remains authoritative for L1, L5, L6, L10, and L12. No inferred/patent status changes were needed. |
+| High-index status | L1 and L10 remain the high-index / UHR anchors identified by the patent nd values. |
+| SDs | Kept the existing ray-trace-derived SDs. With no patent clear-aperture table, those estimates remain the defensible source of record. |
+| Analysis | Synced the stale L4 note so it no longer claims that 808409 lacks a coefficient-backed catalog path. |

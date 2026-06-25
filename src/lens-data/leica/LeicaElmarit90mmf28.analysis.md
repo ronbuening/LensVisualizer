@@ -114,7 +114,7 @@ SF4 is a dense flint glass with very high refractive index and high dispersion. 
 ### L3 — nd = 1.63980, νd = 34.6
 
 **Identification: Flint-family glass, nearest catalog match SCHOTT F6**
-**Confidence: Family-level only.** The nearest modern SCHOTT catalog glass is F6 (nd = 1.63636, νd = 35.4), but the discrepancy is significant: Δnd = 0.00344, Δνd = 0.8. Six-digit glass code: 1640/346.
+**Confidence: Family-level only.** The nearest modern SCHOTT catalog glass is F6 (nd = 1.63636, νd = 35.4), but the discrepancy is significant: Δnd = 0.00344, Δνd = 0.8. Six-digit glass code: 640346.
 
 This glass falls in the flint (F) region of the Abbe diagram but does not match any glass in the current Schott catalog exactly. In the 1950s, Schott's catalog included glass types that have since been discontinued or reformulated — particularly lead-containing flints that were later replaced with eco-friendly equivalents. The patent value nd = 1.63980 / νd = 34.6 likely represents a specific historical glass type or melt batch available to Leitz in 1956–1957. Alternatively, Leitz may have used glass from another supplier (e.g., their own internal melts, or Chance-Pilkington glass). At family level, it is unambiguously a flint glass.
 

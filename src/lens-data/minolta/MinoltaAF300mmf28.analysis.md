@@ -33,15 +33,15 @@ The patent does not publish a stop coordinate or clear semi-diameters. For the d
 
 ### L1 — Biconvex Positive Front Crown
 
-nd = 1.49520, νd = 79.74. Glass: unmatched fluorophosphate ED-class glass, code 495/797. f = +218.33 mm.
+nd = 1.49520, νd = 79.74. Glass: `495797` fluorophosphate ED-class crown. f = +218.33 mm.
 
 L1 is the first of the two large positive low-dispersion elements that form the front collector. The front surface has substantially stronger curvature than the rear surface, so most of the element's power is carried at the first surface. Its high Abbe number reduces the axial chromatic burden for a front element with large positive power.
 
-The glass is not S-FPL51. Current OHARA S-FPL51 is code 497816 with nd = 1.49700 and νd = 81.54, whereas the patent gives nd = 1.49520 and νd = 79.74. The patent glass is therefore recorded as an unmatched fluorophosphate ED-class glass rather than assigned to a current catalog name.
+The glass is not S-FPL51. Current OHARA S-FPL51 is code 497816 with nd = 1.49700 and νd = 81.54, whereas the patent gives nd = 1.49520 and νd = 79.74. The patent glass is therefore recorded by its six-digit code rather than assigned to a current catalog name.
 
 ### L2 — Biconvex Positive Second Crown
 
-nd = 1.49520, νd = 79.74. Glass: unmatched fluorophosphate ED-class glass, code 495/797. f = +202.12 mm.
+nd = 1.49520, νd = 79.74. Glass: `495797` fluorophosphate ED-class crown. f = +202.12 mm.
 
 L2 repeats the same low-dispersion glass as L1 and supplies slightly stronger standalone positive power. Splitting the front positive power across L1 and L2 reduces the burden on any single refracting surface, which is important in a 300mm f/2.8-class lens where marginal-ray heights in the front group are large.
 
@@ -49,11 +49,11 @@ The thin 0.42 mm air gap between L1 and L2 functions mainly as a manufacturing a
 
 ### L3 — Biconcave Negative Front Flint
 
-nd = 1.68150, νd = 36.64. Glass: unmatched dense flint class, code 682/366. f = −183.98 mm.
+nd = 1.68150, νd = 36.64. Glass: `682366` dense flint class. f = −183.98 mm.
 
 L3 is the front group's negative chromatic partner. It offsets part of the positive power of L1 and L2 while providing the lower Abbe number needed to balance primary axial color. Its rear surface faces the long air space before the rear group and contributes significantly to the surface-by-surface Petzval balance.
 
-The glass was left as unmatched. Its refractive index and Abbe number place it in a dense flint or lanthanum-flint region, but no current OHARA, HOYA, Schott, HIKARI, CDGM, or Sumita catalog match should be asserted without a direct catalog match.
+Its refractive index and Abbe number place it in a dense flint or lanthanum-flint region, but no current OHARA, HOYA, Schott, HIKARI, CDGM, or Sumita catalog match should be asserted without a direct catalog match.
 
 ### L4 — Negative Meniscus, Concave to Object
 
@@ -85,11 +85,11 @@ L7 is cemented to L6 and supplies the opposing crown component of the L6+L7 pair
 
 ### L8 — Biconcave Negative Moving Singlet
 
-nd = 1.67000, νd = 57.07. Glass: unmatched high-index crown / lanthanum-crown class, code 670/571. f = −76.94 mm.
+nd = 1.67000, νd = 57.07. Glass: `670571` high-index crown / lanthanum-crown class. f = −76.94 mm.
 
 L8 is the principal negative-power element of the moving II-2 subunit. It dominates the subunit's net focal length of −74.055 mm. Its rear surface is the strongest negative Petzval contributor in the system, with a surface-by-surface Petzval term of −0.00601 mm⁻¹.
 
-The glass has a high refractive index and moderate Abbe number, consistent with a high-index crown or lanthanum-crown class. It remains unmatched because no authoritative catalog identity has been verified.
+The glass has a high refractive index and moderate Abbe number, consistent with a high-index crown or lanthanum-crown class. No authoritative catalog identity has been verified.
 
 ### L9 — Biconvex Positive, First Component of Final Doublet
 
@@ -109,16 +109,16 @@ The patent gives refractive index and Abbe number but no manufacturer glass name
 
 |    Code | Patent nd | Patent νd | Identification used                                           | Elements   |
 | ------: | --------: | --------: | ------------------------------------------------------------- | ---------- |
-| 495/797 |   1.49520 |     79.74 | Unmatched fluorophosphate ED-class glass; not current S-FPL51 | L1, L2     |
-| 682/366 |   1.68150 |     36.64 | Unmatched dense flint class                                   | L3         |
+| 495797 |   1.49520 |     79.74 | Fluorophosphate ED-class crown; not current S-FPL51 | L1, L2     |
+| 682366 |   1.68150 |     36.64 | Dense flint class                                   | L3         |
 | 654339  |   1.65446 |     33.86 | Hikari SF9 public code match; production vendor not asserted  | L4, L10    |
 | 603/607 |   1.60311 |     60.74 | S-BSM14 class, close OHARA vintage match                      | L5, L7, L9 |
 | 717/294 |   1.71736 |     29.42 | S-TIH1 class, close OHARA vintage match                       | L6         |
-| 670/571 |   1.67000 |     57.07 | Unmatched high-index crown / lanthanum-crown class            | L8         |
+| 670571 |   1.67000 |     57.07 | High-index crown / lanthanum-crown class            | L8         |
 
 The two front positive glasses are the key chromatic correction elements. Minolta/Konica Minolta literature describes AD, or anomalous-dispersion, glass in this lens, but the patent does not publish partial-dispersion ratios, C/F/g-line indices, or ΔPgF values. The analysis therefore treats anomalous partial dispersion as a production-literature inference rather than a patent-quantified value.
 
-The current OHARA S-FPL51 entry is not a match to the patent's 495/797 glass. S-FPL51 is code 497816, nd = 1.49700, νd = 81.54. Assigning the front elements to S-FPL51 would therefore be a catalog mismatch.
+The current OHARA S-FPL51 entry is not a match to the patent's `495797` glass. S-FPL51 is code 497816, nd = 1.49700, νd = 81.54. Assigning the front elements to S-FPL51 would therefore be a catalog mismatch.
 
 ## Focus Mechanism
 
