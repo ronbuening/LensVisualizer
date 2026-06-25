@@ -81,7 +81,7 @@ const LENS_DATA = {
       nd: 1.56732,
       vd: 42.81,
       fl: -87.0,
-      glass: "567428 — high-index barium glass (patent nd=1.56732, νd=42.81)",
+      glass: "S-TIL26 (OHARA, 567/428 high-index barium glass)",
       apd: false,
       cemented: "D1",
       role: "Negative partner of doublet D1; flat front, convex-to-object rear at cemented junction.",

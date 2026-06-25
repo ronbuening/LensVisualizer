@@ -109,30 +109,32 @@ The patent description of G2 as a negative-negative-positive sequence (¶0071) m
 
 ### L23 — Plano-convex Positive rear element
 
-$nd = 1.92119$, $νd = 23.96$, $θgF = 0.62025$. Glass: FDS24 (HOYA). $f = +75.9$ mm.
+$nd = 1.92119$, $νd = 23.96$, $θgF = 0.62025$, $ΔPgF \approx +0.01675$. Glass: FDS24 (HOYA). $f = +75.9$ mm.
 
 L23 is the ultra-high-index positive rear lens. Its front face is flat and its rear surface is curved, with only 5.3962 mm of air-equivalent back focus to the image plane. The high index lets the rear surface supply positive power without requiring a very steep curvature.
 
-This is a geometric rather than an apochromatic glass choice. FDS24 is a super-dense flint with very high dispersion. It is useful here because it bends light strongly in a compact thickness, helping manage the exit cone and sensor incidence angle in the short-back-focus fixed-lens camera.
+This is a geometric compactness choice first, not an ED-style apochromatic one. FDS24 is a super-dense flint with very high dispersion and a patent-listed positive partial-dispersion deviation. It is useful here because it bends light strongly in a compact thickness, helping manage the exit cone and sensor incidence angle in the short-back-focus fixed-lens camera.
 
 ## Glass Identification and Selection
 
 The corrected glass table is:
 
-| Element | nd | νd | θgF | Corrected identification | Status |
-|---|---:|---:|---:|---|---|
-| L11 | 1.54814 | 45.78 | 0.56859 | S-TIL1 (OHARA) | exact / equivalent |
-| L12 | 1.87070 | 40.73 | 0.56825 | TAFD32 (HOYA) / H-ZLaF64 class | exact |
-| L13 | 1.75500 | 52.32 | 0.54757 | S-LAH97 (OHARA) / TAC6 class | exact / equivalent |
-| L14 | 1.62004 | 36.26 | 0.58800 | S-TIM2 (OHARA) / N-F2 class | exact / equivalent |
-| L15 | 1.61997 | 63.88 | 0.54252 | PCD40 (HOYA) / H-PK65 class | exact |
-| L16 | 1.56732 | 42.82 | 0.57309 | S-TIL26 (OHARA) | exact |
-| L17 | 1.76802 | 49.24 | 0.55164 | M-TAF101 (HOYA) / D-LaF050 class | exact |
-| L21 | 1.68863 | 31.19 | 0.60069 | M-FD80 (HOYA) / D-ZF10 class | probable |
-| L22 | 1.51633 | 64.14 | 0.53531 | S-BSL7 (OHARA) / BSC7 class | exact / equivalent |
-| L23 | 1.92119 | 23.96 | 0.62025 | FDS24 (HOYA) | exact |
+| Element | nd | νd | θgF | ΔPgF | Corrected identification | Status |
+|---|---:|---:|---:|---:|---|---|
+| L11 | 1.54814 | 45.78 | 0.56859 | +0.00179 | S-TIL1 (OHARA) | exact / equivalent |
+| L12 | 1.87070 | 40.73 | 0.56825 | −0.00704 | TAFD32 (HOYA) / H-ZLaF64 class | exact |
+| L13 | 1.75500 | 52.32 | 0.54757 | −0.00823 | S-LAH97 (OHARA) / TAC6 class | exact / equivalent |
+| L14 | 1.62004 | 36.26 | 0.58800 | +0.00519 | S-TIM2 (OHARA) / N-F2 class | exact / equivalent |
+| L15 | 1.61997 | 63.88 | 0.54252 | +0.00617 | PCD40 (HOYA) / H-PK65 class | exact |
+| L16 | 1.56732 | 42.82 | 0.57309 | +0.00131 | S-TIL26 (OHARA) | exact |
+| L17 | 1.76802 | 49.24 | 0.55164 | −0.00934 | M-TAF101 (HOYA) / D-LaF050 class | exact |
+| L21 | 1.68863 | 31.19 | 0.60069 | +0.00935 | M-FD80 (HOYA) / D-ZF10 class | probable |
+| L22 | 1.51633 | 64.14 | 0.53531 | −0.00061 | S-BSL7 (OHARA) / BSC7 class | exact / equivalent |
+| L23 | 1.92119 | 23.96 | 0.62025 | +0.01675 | FDS24 (HOYA) | exact |
 
 The re-review found that the earlier draft had multiple glass-name errors. The most consequential were the L11/L16 swap, the L12 high-index glass assignment, the L13 lanthanum-crown assignment, and the L17 aspherical-lens glass. The revised analysis treats the patent constants, not vendor-name similarity, as controlling.
+
+The 2026-06-25 patent pass also transcribed Table 13 θgF into structured ΔPgF values. Most rows stay close to the normal line and are not displayed as APD special-glass elements. L23 is the exception: its +0.01675 deviation is high enough to keep a patent APD badge while still describing it as an ultra-high-index short flint rather than an ED or Super ED element.
 
 The system uses dispersion pairing in both cemented groups. G1f uses a negative flint-like front member and a high-index positive rear member, while G1r uses a high-dispersion negative lens against a low-dispersion positive lens. G2 uses a more extreme strategy: L21 is high-dispersion and negative, L22 is low-dispersion and negative, and L23 is an ultra-high-index positive flint constrained by the patent's positive-lens conditions.
 

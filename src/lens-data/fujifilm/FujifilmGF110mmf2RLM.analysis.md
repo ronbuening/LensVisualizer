@@ -57,7 +57,7 @@ FCD705 is a HOYA anomalous-dispersion fluorophosphate crown, classified as ED gl
 
 ### L13 — Negative Element, flat front / convex rear (cemented with L14 as doublet D1)
 
-nd = 1.56732, νd = 42.81. Glass: 567428 high-index barium glass; no current catalog entry resolves this patent pair. f = −87.0 mm.
+nd = 1.56732, νd = 42.81. Glass: OHARA S-TIL26, code 567/428 high-index barium glass. f = −87.0 mm.
 
 L13 has a flat front face (R = ∞) and a rear surface with R2 = +49.38 (convex toward the object side), which serves as the cemented junction with L14. Although the geometric shape is plano-convex, the element produces negative power (f = −87 mm) because the only curved surface acts as a diverging interface in air. Within the cemented doublet, the large index step at the junction (from nd = 1.567 in L13 to nd = 1.883 in L14) creates a strong refracting interface that dominates the doublet's chromatic behavior. The νd difference between L13 and L14 is modest (42.8 vs. 39.2), but the steep index gradient provides an effective color-correcting interface.
 
@@ -147,7 +147,7 @@ The design employs 12 distinct nd/νd glass pairs across 14 elements (three elem
 |-------|------|------|--------|---------|------|
 | TAFD45 / S-LAH98 | 1.95375 | 32.32 | HOYA / OHARA | L11 | High-index front collector |
 | FCD705 | 1.55032 | 75.50 | HOYA | L12, L16, L31 | ED crown (×3) — primary achromat partner |
-| 567428 code | 1.56732 | 42.81 | Unresolved | L13 | Barium/high-index glass in cemented doublet D1 |
+| S-TIL26 / 567428 | 1.56732 | 42.81 | OHARA Sellmeier | L13 | Barium/high-index glass in cemented doublet D1 |
 | H-ZLaF68L | 1.88300 | 39.22 | NHG | L14 | High-index lanthanum glass in cemented doublet D1 |
 | S-TIM27 | 1.63980 | 34.49 | OHARA | L15 | Titanium flint in cemented doublet D2 |
 | S-NPH3 | 1.95906 | 17.47 | OHARA | L21 | Ultra-dense flint — focus group achromat |

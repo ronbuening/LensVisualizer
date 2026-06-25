@@ -61,7 +61,7 @@ L12 is a high-index negative meniscus that continues the front-group divergence 
 
 ### L13 — Negative Meniscus, ED Glass
 
-nd = 1.49700, νd = 81.60, θgF = 0.53774. Glass: FCD1 / M-FCD1 class (HOYA). f = −54.23 mm.
+nd = 1.49700, νd = 81.60, θgF = 0.53774, ΔPgF ≈ +0.03119. Glass: FCD1 / M-FCD1 class (HOYA). f = −54.23 mm.
 
 L13 is the first ED element. It is a negative meniscus with a very weakly curved front surface and a stronger positive rear radius. Its low dispersion lets the front group add negative power without producing the lateral color that would otherwise be expected from such a large field angle.
 
@@ -69,8 +69,8 @@ The placement is important. L13 sits before the first positive cemented group, w
 
 ### L14 + L15 — Cemented Positive Doublet
 
-L14: nd = 1.65412, νd = 39.68, θgF = 0.57378. Glass: S-NBH5 (OHARA). Individual f = +22.65 mm.  
-L15: nd = 1.84666, νd = 23.84, θgF = 0.62012. Glass: S-TIH53 class (OHARA, close catalog match). Individual f = −67.96 mm.  
+L14: nd = 1.65412, νd = 39.68, θgF = 0.57378. Glass: S-NBH5 (OHARA). Individual f = +22.65 mm.<br>
+L15: nd = 1.84666, νd = 23.84, θgF = 0.62012, ΔPgF ≈ +0.01642. Glass: S-TIH53 class (OHARA, close catalog match). Individual f = −67.96 mm.<br>
 Doublet f = +36.57 mm.
 
 This is the first strong positive unit in G1. L14 is a biconvex positive element; L15 is a dense-flint negative meniscus cemented to it. The doublet supplies positive power while controlling the chromatic imbalance introduced by the earlier negative menisci.
@@ -99,8 +99,8 @@ L21 is close to S-LAL18 / N-LAK34 territory but is not assigned as an exact publ
 
 ### L23 + L24 — Cemented Doublet with Super ED Element
 
-L23: nd = 1.87070, νd = 40.73, θgF = 0.56825. Glass: HOYA TAFD32. Individual f = −20.54 mm.  
-L24: nd = 1.43700, νd = 95.10, θgF = 0.53364. Glass: HOYA FCD100, Super ED. Individual f = +22.29 mm.  
+L23: nd = 1.87070, νd = 40.73, θgF = 0.56825. Glass: HOYA TAFD32. Individual f = −20.54 mm.<br>
+L24: nd = 1.43700, νd = 95.10, θgF = 0.53364, ΔPgF ≈ +0.04980. Glass: HOYA FCD100, Super ED. Individual f = +22.29 mm.<br>
 Doublet f = +340.95 mm.
 
 This is the chromatic core of the focusing group. L23 is a high-index negative flint, while L24 is a thick biconvex Super ED element. The net power of the doublet is weakly positive, but the individual element powers are strong and opposite. That is characteristic of a chromatic-correction doublet: large internal bending is used to control color while net first-order power remains modest.
@@ -117,7 +117,7 @@ This element is more powerfully negative than L31 and is located where marginal 
 
 ### L26 — Biconvex Positive ED Element
 
-nd = 1.49700, νd = 81.61, θgF = 0.53804. Glass: FCD1 / M-FCD1 class (HOYA). f = +39.73 mm.
+nd = 1.49700, νd = 81.61, θgF = 0.53804, ΔPgF ≈ +0.03151. Glass: FCD1 / M-FCD1 class (HOYA). f = +39.73 mm.
 
 L26 is the final element of G2 and the second ED element in the design. It exits the moving focusing group before the DD[23] variable air gap. Its position gives it useful leverage over lateral chromatic aberration and helps preserve color correction as G2 translates during focusing.
 
@@ -141,26 +141,26 @@ L32 is a dense lanthanum flint by Abbe-number behavior, not a crown. The value �
 
 ## Glass Identification and Selection
 
-| Element | nd | νd | θgF | Glass assignment | Notes |
-|---|---:|---:|---:|---|---|
-| L11 | 1.58480 | 58.71 | 0.54116 | 585587 code-labeled moldable glass | Aspherical substrate |
-| L12 | 1.69680 | 55.53 | 0.54420 | S-LAL14 (OHARA) | Exact nd/νd match |
-| L13 | 1.49700 | 81.60 | 0.53774 | FCD1 / M-FCD1 (HOYA) | ED |
-| L14 | 1.65412 | 39.68 | 0.57378 | S-NBH5 (OHARA) | Exact nd/νd match |
-| L15 | 1.84666 | 23.84 | 0.62012 | S-TIH53 class (OHARA) | Close class match |
-| L16 | 1.48749 | 70.44 | 0.52933 | 487/704 low-dispersion crown | S-FSL5-class, not asserted exact |
-| L17 | 1.90043 | 37.37 | 0.57668 | TAFD37 / TAFD37A (HOYA) | Very-high-index flint |
-| L21 | 1.72916 | 54.54 | 0.54535 | 729/545 lanthanum crown class | S-LAL18/N-LAK34 class |
-| L22 | 1.48749 | 70.44 | 0.53062 | 487/704 low-dispersion crown | Same class as L16 |
-| L23 | 1.87070 | 40.73 | 0.56825 | TAFD32 (HOYA) | High-index flint partner |
-| L24 | 1.43700 | 95.10 | 0.53364 | FCD100 (HOYA) | Super ED |
-| L25 | 1.58480 | 58.71 | 0.54116 | 585587 code-labeled moldable glass | Aspherical substrate |
-| L26 | 1.49700 | 81.61 | 0.53804 | FCD1 / M-FCD1 (HOYA) | ED |
-| L31 | 1.58480 | 58.71 | 0.54116 | 585587 code-labeled moldable glass | Aspherical substrate |
-| L32 | 1.80420 | 46.50 | 0.55727 | N-LASF44 (Schott) | Dense lanthanum flint |
-| L33 | 1.56732 | 42.81 | 0.57567 | S-TIL26 / E-FL6 / H-QF56 class | Flint rear doublet member |
+| Element | nd | νd | θgF | ΔPgF | Glass assignment | Notes |
+|---|---:|---:|---:|---:|---|---|
+| L11 | 1.58480 | 58.71 | 0.54116 | −0.00387 | 585587 code-labeled moldable glass | Aspherical substrate |
+| L12 | 1.69680 | 55.53 | 0.54420 | −0.00618 | S-LAL14 (OHARA) | Exact nd/νd match |
+| L13 | 1.49700 | 81.60 | 0.53774 | +0.03119 | FCD1 / M-FCD1 (HOYA) | ED |
+| L14 | 1.65412 | 39.68 | 0.57378 | −0.00327 | S-NBH5 (OHARA) | Exact nd/νd match |
+| L15 | 1.84666 | 23.84 | 0.62012 | +0.01642 | S-TIH53 class (OHARA) | High-θgF dense flint |
+| L16 | 1.48749 | 70.44 | 0.52933 | +0.00403 | 487/704 low-dispersion crown | S-FSL5-class, not asserted exact |
+| L17 | 1.90043 | 37.37 | 0.57668 | −0.00425 | TAFD37 / TAFD37A (HOYA) | Very-high-index flint |
+| L21 | 1.72916 | 54.54 | 0.54535 | −0.00670 | 729/545 lanthanum crown class | S-LAL18/N-LAK34 class |
+| L22 | 1.48749 | 70.44 | 0.53062 | +0.00532 | 487/704 low-dispersion crown | Same class as L16 |
+| L23 | 1.87070 | 40.73 | 0.56825 | −0.00705 | TAFD32 (HOYA) | High-index flint partner |
+| L24 | 1.43700 | 95.10 | 0.53364 | +0.04980 | FCD100 (HOYA) | Super ED |
+| L25 | 1.58480 | 58.71 | 0.54116 | −0.00387 | 585587 code-labeled moldable glass | Aspherical substrate |
+| L26 | 1.49700 | 81.61 | 0.53804 | +0.03151 | FCD1 / M-FCD1 (HOYA) | ED |
+| L31 | 1.58480 | 58.71 | 0.54116 | −0.00387 | 585587 code-labeled moldable glass | Aspherical substrate |
+| L32 | 1.80420 | 46.50 | 0.55727 | −0.00831 | N-LASF44 (Schott) | Dense lanthanum flint |
+| L33 | 1.56732 | 42.81 | 0.57567 | +0.00389 | S-TIL26 / E-FL6 / H-QF56 class | Flint rear doublet member |
 
-The chromatic correction strategy is distributed rather than confined to a single group. L13 corrects lateral color early in the fixed front group. L24 provides the principal Super ED correction inside the moving focusing group. L26 adds a second ED contribution at the rear of G2. The dense-flint partners L15, L17, L23, L32, and L33 are not incidental: their high refractive indices and high dispersion let the design use strong internal chromatic balancing without allowing net group powers to become excessive.
+The chromatic correction strategy is distributed rather than confined to a single group. L13 corrects lateral color early in the fixed front group. L24 provides the principal Super ED correction inside the moving focusing group. L26 adds a second ED contribution at the rear of G2. L15 is not an ED element, but its patent-listed positive ΔPgF makes it a meaningful high-θgF dense-flint partner in the first front doublet. The remaining θgF rows sit close enough to the normal line that they are treated as ordinary catalog or code-labeled glasses rather than APD display-badge elements. The dense-flint partners L17, L23, L32, and L33 are still not incidental: their high refractive indices and high dispersion let the design use strong internal chromatic balancing without allowing net group powers to become excessive.
 
 
 ## Focus Mechanism

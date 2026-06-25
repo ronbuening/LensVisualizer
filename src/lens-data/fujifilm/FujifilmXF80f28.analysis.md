@@ -103,7 +103,7 @@ G1 is composed of four air-spaced elements and carries a net focal length of +44
 - Role: Primary chromatic corrector in the front group. The anomalous partial dispersion of S-FPL51 enables correction of secondary spectrum. Paired with the neighboring flint L1c, the Abbe number difference νd(L1b) − νd(L1c) = 45.84 satisfies the patent's Conditional Expression (3) (35 < Δν < 50), ensuring strong longitudinal chromatic aberration correction at infinity focus without overcorrection.
 
 **L1c — Negative biconcave (Element 3)**
-- Glass: nd = 1.62588, νd = 35.70 → **626357 dense flint** (no exact current catalog match)
+- Glass: nd = 1.62588, νd = 35.70 → **HOYA E-F1** dense flint (code 626357)
 - Thin-lens focal length: −31.0 mm
 - Radii: R₁ = −67.240 mm, R₂ = +27.219 mm
 - Role: Chromatic counterpart to L1b. The high-dispersion flint works against the low-dispersion ED glass to achromatize the front group. Its strong negative power also contributes to Petzval sum correction — critical for a macro lens that must maintain a flat field from infinity to 1:1.
@@ -156,8 +156,8 @@ G3 has a net focal length of +36.48 mm and is the second floating focus group. D
 G4a has a net focal length of −25.58 mm and translates perpendicular to the optical axis for image stabilization, shifting the image on the sensor to compensate for camera shake. Its |f₄ₐ/f| = 0.325 satisfies Conditional Expression (1).
 
 **L4aa + L4ab — Cemented doublet (Elements 11 + 12)**
-- L4aa: nd = 2.00272, νd = 19.32 → **003193 ultra-high index dense flint** (no exact current catalog match)
-- L4ab: nd = 1.69700, νd = 48.52 → **697485 lanthanum crown** (no exact current catalog match)
+- L4aa: nd = 2.00272, νd = 19.32 → **HOYA E-FDS2** ultra-high index dense flint (code 003193)
+- L4ab: nd = 1.69700, νd = 48.52 → **OHARA S-LAM59** lanthanum crown (code 697485)
 - Standalone focal lengths: L4aa ≈ +52.6 mm (positive), L4ab ≈ −24.3 mm (negative)
 - Conditional (2): ν₄ₐᵦ − ν₄ₐₐ = 29.20 (within 18–35 range)
 - Role: VR cemented doublet. L4aa's nd = 2.003 is one of the highest refractive indices used in production optics. The positive-negative arrangement provides internal achromatization of the VR group, suppressing chromatic aberration generation during lateral shift.
@@ -270,7 +270,7 @@ The design uses 15 distinct glass annotations across 16 elements, with two repea
 |---|---|---|---|---|---|
 | L1a | S-LAL18 | 1.72916 | 54.67 | Lanthanum crown | — |
 | L1b | S-FPL51 | 1.49700 | 81.54 | ED glass | Anomalous partial dispersion |
-| L1c | 626357 | 1.62588 | 35.70 | Dense flint | Catalog pending |
+| L1c | E-F1 / 626357 | 1.62588 | 35.70 | Dense flint | HOYA Sellmeier |
 | L1d | 583595 — S-BAL41 | 1.58313 | 59.46 | Barium crown | Aspherical substrate; catalog pending |
 | L2a | S-BAL35 | 1.58913 | 61.13 | Barium crown | — |
 | L2b | S-NBH52 | 1.67300 | 38.15 | Barium flint | OHARA Sellmeier |
@@ -278,8 +278,8 @@ The design uses 15 distinct glass annotations across 16 elements, with two repea
 | L3a | **S-FPL55** | 1.43875 | 94.66 | **Super ED** | **Fluorite-equivalent APD** |
 | L3b | S-FPL51 | 1.49700 | 81.54 | ED glass | Anomalous partial dispersion |
 | L3c | S-TIH53 | 1.84666 | 23.78 | Dense flint | — |
-| L4aa | 003193 | 2.00272 | 19.32 | Ultra-high index flint | nd > 2.0; catalog pending |
-| L4ab | 697485 | 1.69700 | 48.52 | Lanthanum crown | Catalog pending |
+| L4aa | E-FDS2 / 003193 | 2.00272 | 19.32 | Ultra-high index flint | HOYA Sellmeier; nd > 2.0 |
+| L4ab | S-LAM59 / 697485 | 1.69700 | 48.52 | Lanthanum crown | OHARA Sellmeier |
 | L4ac | S-FPM3 | 1.53775 | 74.70 | Fluorophosphate | Moderate APD |
 | L4ba | S-LAH98 | 1.95375 | 32.32 | Ultra-high index lanthanum | nd ≈ 1.95 |
 | L4bb | S-BSL7 | 1.51680 | 64.20 | Borosilicate crown (N-BK7) | — |
@@ -291,11 +291,11 @@ The design uses 15 distinct glass annotations across 16 elements, with two repea
 
 The design achieves chromatic correction through four achromatic "engines" distributed across the lens:
 
-1. **G1 air-spaced pair (L1b/L1c):** S-FPL51 (νd = 81.5) vs. 626357 dense flint (νd = 35.7), Δν = 45.8. Primary achromatization and secondary spectrum correction for the front group.
+1. **G1 air-spaced pair (L1b/L1c):** S-FPL51 (νd = 81.5) vs. HOYA E-F1 dense flint (νd = 35.7), Δν = 45.8. Primary achromatization and secondary spectrum correction for the front group.
 
 2. **G3 cemented doublet (L3b/L3c):** S-FPL51 (νd = 81.5) vs. S-TIH53 (νd = 23.8), Δν = 57.8. The largest Abbe number difference in the design, providing aggressive chromatic correction in the rear focus group.
 
-3. **G4a cemented doublet (L4aa/L4ab):** 003193 ultra-high-index flint (νd = 19.3) vs. 697485 lanthanum crown (νd = 48.5), Δν = 29.2. Internal achromatization of the VR group.
+3. **G4a cemented doublet (L4aa/L4ab):** HOYA E-FDS2 ultra-high-index flint (νd = 19.3) vs. OHARA S-LAM59 lanthanum crown (νd = 48.5), Δν = 29.2. Internal achromatization of the VR group.
 
 4. **G4b cemented doublet (L4bb/L4bc):** S-BSL7 (νd = 64.2) vs. S-NPH3 (νd = 17.5), Δν = 46.7. Final chromatic trim near the image plane.
 
