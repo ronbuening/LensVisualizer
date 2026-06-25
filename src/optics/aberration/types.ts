@@ -4,7 +4,7 @@
  * Defines the stable data contract between pure aberration calculations and React analysis components.
  */
 
-import { DEFAULT_ORTHOGONAL_PUPIL_FAN_SAMPLE_COUNT } from "../optics.js";
+import { DEFAULT_ORTHOGONAL_PUPIL_FAN_SAMPLE_COUNT } from "../rayTrace.js";
 import type { ChromaticChannel } from "../../types/optics.js";
 
 /** One sample point on the real-ray transverse SA profile curve. */

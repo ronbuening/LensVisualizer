@@ -13,13 +13,29 @@ with words like "probable" or "approx").
 
 ## Summary
 
-- **366** lenses scanned
-- **4124** glass surfaces examined
-- **4118** surfaces with non-empty `glass` strings
-- **3402** of those resolved to a catalog entry
-- **0** mismatches found (0.0% of resolved surfaces)
-- **0** distinct lens files affected
+- **377** lenses scanned
+- **4207** glass surfaces examined
+- **4201** surfaces with non-empty `glass` strings
+- **3374** of those resolved to a catalog entry
+- **2** mismatches found (0.1% of resolved surfaces)
+- **1** distinct lens files affected
 
-## No mismatches
+## Most-frequent mismatched catalog targets
 
-Every catalog-resolved surface agrees with its stored `nd` within tolerance. ✓
+Glass labels that get rejected most often. A high count here often points to a single glass
+annotation pattern (e.g. an obsolete name, a `probable` guess) that's used across many lenses.
+
+| Catalog entry | Rejected surfaces | Notes |
+|---|---|---|
+| SF10 | 1 | |
+| S-TIH18 | 1 | |
+
+## Mismatches by lens
+
+### [RODENSTOCK GRANDAGON-N 75mm f/6.8](../../src/lens-data/rodenstock/RodenstockGrandagonN75mmf68.data.ts) — DE 26
+
+| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
+|---|---|---|---|---|---|
+| 3 | `SF10 class (Schott legacy; stored patent n_e)` | SF10 | 1.73430 | 1.72825 | -0.0060 |
+| 7 | `SF18 / S-TIH18 class (stored patent n_e)` | S-TIH18 | 1.72730 | 1.72151 | -0.0058 |
+

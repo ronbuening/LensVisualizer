@@ -24,6 +24,17 @@ export const CHANGELOG: ChangelogEntry[] = [
     date: "2026-06-25",
     type: "improvement",
     summary: "Improved Canon glass, APD, and semidiameter metadata from patent audits",
+  }
+  {
+    date: "2026-06-25",
+    type: "lens",
+    summary: "Added Canon G1 X, Nikon 35-70mm, and Rodenstock enlarger lenses",
+  },
+  // ── 2026-06-24 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-06-24",
+    type: "lens",
+    summary: "Added six Rodenstock large-format lenses",
   },
   // ── 2026-06-22 ──────────────────────────────────────────────────────────
   {

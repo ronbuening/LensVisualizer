@@ -8,25 +8,29 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **366** lenses scanned
-- **4124** non-air surfaces examined
-- **4128** element glass declarations examined
-- **578** non-explicit-unmatched annotations did not resolve
-- **265** distinct unresolved glass-like tokens found
+- **377** lenses scanned
+- **4207** non-air surfaces examined
+- **4211** element glass declarations examined
+- **664** non-explicit-unmatched annotations did not resolve
+- **231** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
 | Token | Occurrences | Lens files | Notes |
 |---|---:|---:|---|
-| 670571 | 10 | 5 | |
-| 493836 | 6 | 2 | |
-| 511605 | 4 | 2 | |
+| SF5 | 5 | 5 | |
+| 670571 | 4 | 2 | |
 | 863252 | 4 | 2 | |
+| F7 | 4 | 3 | |
 | S-NPH7 | 4 | 4 | |
 | 516565 | 3 | 1 | |
 | 585587 | 3 | 1 | |
+| 670575 | 3 | 2 | |
 | 744495 | 3 | 3 | |
 | 863248 | 3 | 1 | |
+| N-LAK9 | 3 | 3 | |
+| S-TIF6 | 3 | 3 | |
+| 511605 | 2 | 1 | |
 | 514428 | 2 | 1 | |
 | 517696 | 2 | 1 | |
 | 531559 | 2 | 2 | |
@@ -48,7 +52,6 @@ or per-lens patent backfills.
 | 861230 | 2 | 1 | |
 | 882372 | 2 | 2 | |
 | E-FDS3HT | 2 | 1 | |
-| F7 | 2 | 2 | |
 | F8 | 2 | 2 | |
 | H-K6 | 2 | 1 | |
 | H-LAF3 | 2 | 2 | |
@@ -56,9 +59,12 @@ or per-lens patent backfills.
 | K-LAFK50 | 2 | 1 | |
 | N-BAF4 | 2 | 2 | |
 | N-BAK4 | 2 | 2 | |
+| N-K5 | 2 | 1 | |
 | N-LAF2 | 2 | 1 | |
-| N-LAK9 | 2 | 2 | |
 | N-LASF44 | 2 | 2 | |
+| N-PSK53A | 2 | 2 | |
+| N-SF5 | 2 | 2 | |
+| N-SSK2 | 2 | 2 | |
 | NBFD10 | 2 | 2 | |
 | NBFD32 | 2 | 2 | |
 | S-APL1 | 2 | 1 | |
@@ -68,6 +74,7 @@ or per-lens patent backfills.
 | S-LAM73 | 2 | 1 | |
 | S-NBH53 | 2 | 2 | |
 | SK18 | 2 | 1 | |
+| SK3 | 2 | 2 | |
 | TAF1 | 2 | 2 | |
 | 157957 | 1 | 1 | |
 | 182080 | 1 | 1 | |
@@ -90,7 +97,8 @@ or per-lens patent backfills.
 | 552981 | 1 | 1 | |
 | 553555 | 1 | 1 | |
 | 554381 | 1 | 1 | |
-| 569631 | 1 | 1 | |
+| 561453 | 1 | 1 | |
+| 561468 | 1 | 1 | |
 | 571560 | 1 | 1 | |
 | 574425 | 1 | 1 | |
 | 575413 | 1 | 1 | |
@@ -121,7 +129,6 @@ or per-lens patent backfills.
 | 670393 | 1 | 1 | |
 | 670572 | 1 | 1 | |
 | 670573 | 1 | 1 | |
-| 670575 | 1 | 1 | |
 | 680312 | 1 | 1 | |
 | 682366 | 1 | 1 | |
 | 683447 | 1 | 1 | |
@@ -209,6 +216,7 @@ or per-lens patent backfills.
 | E-FEL6 | 1 | 1 | |
 | E-FPL51 | 1 | 1 | |
 | F3 | 1 | 1 | |
+| F6 | 1 | 1 | |
 | FCD10A | 1 | 1 | |
 | FCD500 | 1 | 1 | |
 | FCD915 | 1 | 1 | |
@@ -230,6 +238,7 @@ or per-lens patent backfills.
 | H-ZF39 | 1 | 1 | |
 | H-ZF52A | 1 | 1 | |
 | H-ZF72 | 1 | 1 | |
+| H-ZK4 | 1 | 1 | |
 | H-ZLAF2 | 1 | 1 | |
 | H-ZLAF55C | 1 | 1 | |
 | H-ZLAF68N | 1 | 1 | |
@@ -251,7 +260,7 @@ or per-lens patent backfills.
 | N-LAK7 | 1 | 1 | |
 | N-LASF43 | 1 | 1 | |
 | N-PK51 | 1 | 1 | |
-| N-PSK53A | 1 | 1 | |
+| NBFD12 | 1 | 1 | |
 | NBFD30 | 1 | 1 | |
 | S-BAH32 | 1 | 1 | |
 | S-BAL12 | 1 | 1 | |
@@ -273,7 +282,7 @@ or per-lens patent backfills.
 | S-TIM1 | 1 | 1 | |
 | SF19 | 1 | 1 | |
 | SF3 | 1 | 1 | |
-| SF5 | 1 | 1 | |
+| SK12 | 1 | 1 | |
 | SK4 | 1 | 1 | |
 | SK7 | 1 | 1 | |
 | SK8 | 1 | 1 | |
@@ -286,7 +295,15 @@ or per-lens patent backfills.
 
 ## Occurrences
 
-### 670571 — 10 occurrences
+### SF5 — 5 occurrences
+
+- [LEICA ELMARIT-M 135mm f/2.8](../../src/lens-data/leica/LeicaElmaritM135mmf28.data.ts) 6: `SF5-class dense flint (Schott; e-line source values)`
+- [RODENSTOCK GRANDAGON-N 65mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN65mmf45.data.ts) 3: `SF5 / N-SF5 class (Schott; patent e-line values)`
+- [RODENSTOCK GRANDAGON-N 75mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN75mmf45.data.ts) 3: `SF5 (Schott legacy dense flint)`
+- [RODENSTOCK GRANDAGON-N 90mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN90mmf45.data.ts) 3: `SF5 (Schott)`
+- [VOIGTLÄNDER MACRO APO-LANTHAR 125mm f/2.5 SL](../../src/lens-data/voigtlander/VoigtlanderMacroApoLanthar125mmf25.data.ts) 7: `SF5 (Schott) / K-SFS5 (Sumita)`
+
+### 670571 — 4 occurrences
 
 - [MINOLTA AF APO TELE 300mm f/2.8](../../src/lens-data/minolta/MinoltaAF300mmf28.data.ts) 14: `670571 - high-index crown / lanthanum-crown class (catalog unresolved)`
 - [MINOLTA AF 35-105mm f/3.5-4.5 New (v2)](../../src/lens-data/minolta/MinoltaAF35105mmf3545v2.data.ts) 2: `670571 - high-index crown / lanthanum-crown class (unresolved)`
@@ -322,6 +339,13 @@ or per-lens patent backfills.
 - [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 23: `863252 — dense flint (patent nd=1.86252, νd=25.2)`
 - [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 32: `863252 — dense flint (patent nd=1.86252, νd=25.2)`
 
+### F7 — 4 occurrences
+
+- [CANON SERENAR 28mm f/3.5](../../src/lens-data/canon/CanonSerenar28mmf35.data.ts) 4: `F7 (Schott)`
+- [CARL ZEISS PRO-TESSAR 35mm f/3.2](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissProTessar35mmf32.data.ts) 10: `F7 (Schott)`
+- [RODENSTOCK ROGONAR-S 50mm f/2.8](../../src/lens-data/rodenstock/RodenstockRogonarS50mmf28.data.ts) 3: `F7 class (625/356; Schott F7 / CDGM F6 equivalents)`
+- [RODENSTOCK ROGONAR-S 50mm f/2.8](../../src/lens-data/rodenstock/RodenstockRogonarS50mmf28.data.ts) 3: `F7 class (625/356; Schott F7 / CDGM F6 equivalents)`
+
 ### S-NPH7 — 4 occurrences
 
 - [CANON RF 135mm f/1.8 L IS USM](../../src/lens-data/canon/CanonRF135f18.data.ts) 24: `S-NPH7 (OHARA)`
@@ -341,6 +365,12 @@ or per-lens patent backfills.
 - [FUJIFILM FUJINON GF 30mm f/5.6 T/S](../../src/lens-data/fujifilm/FujifilmGF30mmf56TS.data.ts) 20A: `585587 — moldable aspherical glass (patent-listed; no exact public catalog match)`
 - [FUJIFILM FUJINON GF 30mm f/5.6 T/S](../../src/lens-data/fujifilm/FujifilmGF30mmf56TS.data.ts) 24A: `585587 — moldable aspherical glass (patent-listed; no exact public catalog match)`
 
+### 670575 — 3 occurrences
+
+- [NIKON AF ZOOM-NIKKOR 35-70mm f/2.8D](../../src/lens-data/nikon/NikonAFZoomNikkor3570mmf28D.data.ts) 3: `Lanthanum crown (670575; J-LAK02 class)`
+- [NIKON AF ZOOM-NIKKOR 35-70mm f/2.8D](../../src/lens-data/nikon/NikonAFZoomNikkor3570mmf28D.data.ts) 5: `Lanthanum crown (670575; J-LAK02 class)`
+- [NIKON Gyogyotto 20mm f/8](../../src/lens-data/nikon/NikonGyogyotto20mmf8.data.ts) 4: `670575 — Nikon patent glass (nd=1.67025, νd=57.53; no current public OHARA/SCHOTT catalog match within tolerance)`
+
 ### 744495 — 3 occurrences
 
 - [NIKON AF-S NIKKOR 24-70mm f/2.8 E ED VR](../../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) 1: `744495 — lanthanum crown (patent nd=1.74389, νd=49.50; no exact public catalog match)`
@@ -352,6 +382,23 @@ or per-lens patent backfills.
 - [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 10: `863248 — ultra-dense flint (patent nd=1.86290, nu_d=24.8)`
 - [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 17: `863248 — ultra-dense flint (patent nd=1.86290, nu_d=24.8)`
 - [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 19: `863248 — ultra-dense flint (patent nd=1.86290, nu_d=24.8)`
+
+### N-LAK9 — 3 occurrences
+
+- [CARL ZEISS B-DISTAGON 35mm f/4 (Contarex)](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon35mmf4.data.ts) 10: `N-LAK9 / LAK9 (Schott)`
+- [LEICA ELMARIT-R 35mm f/2.8](../../src/lens-data/leica/LeicaElmaritR35mmf28.data.ts) 11: `LAK9 / N-LAK9 class (Schott legacy lanthanum crown; patent n_e)`
+- [RODENSTOCK RODAGON-WA 80mm f/4](../../src/lens-data/rodenstock/RodenstockRodagonWA80mmf4.data.ts) 1: `N-LAK9 (Schott)`
+
+### S-TIF6 — 3 occurrences
+
+- [FUJIFILM FUJINON XF 56mm f/1.2 R](../../src/lens-data/fujifilm/FujifilmXF56mmf12.data.ts) 16: `S-TIF6 (OHARA)`
+- [NIKON AF-S NIKKOR 80-400mm f/4.5-5.6 G ED VR](../../src/lens-data/nikon/NikonNikkorAFS80400mmf4556G.data.ts) 29: `S-TIF6 (OHARA)`
+- [RICOH GR LENS A12 28mm f/2.5 (Ricoh GXR A12)](../../src/lens-data/ricoh/RicohGXRA1218mmf25.data.ts) 10: `S-TIF6 (OHARA) / N-SF5 (SCHOTT)`
+
+### 511605 — 2 occurrences
+
+- [OLYMPUS OM-SYSTEM ZUIKO AUTO-ZOOM 65-200mm f/4](../../src/lens-data/olympus/OlympusZuikoAutoZoom65200mmf4.data.ts) 13: `511605 crown class (CDGM H-K6 / legacy OHARA NSL7)`
+- [OLYMPUS OM-SYSTEM ZUIKO AUTO-ZOOM 65-200mm f/4](../../src/lens-data/olympus/OlympusZuikoAutoZoom65200mmf4.data.ts) 25: `511605 crown class (CDGM H-K6 / legacy OHARA NSL7)`
 
 ### 514428 — 2 occurrences
 
@@ -458,11 +505,6 @@ or per-lens patent backfills.
 - [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../../src/lens-data/nikon/NikonZ105f28.data.ts) 11: `E-FDS3HT (Hikari) or equiv.`
 - [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../../src/lens-data/nikon/NikonZ105f28.data.ts) 22: `E-FDS3HT (Hikari) or equiv.`
 
-### F7 — 2 occurrences
-
-- [CANON SERENAR 28mm f/3.5](../../src/lens-data/canon/CanonSerenar28mmf35.data.ts) 4: `F7 (Schott)`
-- [CARL ZEISS PRO-TESSAR 35mm f/3.2](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissProTessar35mmf32.data.ts) 10: `F7 (Schott)`
-
 ### F8 — 2 occurrences
 
 - [CARL ZEISS TESSAR 50mm f/3.5](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissTessar50mmf35.data.ts) 3: `F8 historical (Schott, discontinued)`
@@ -498,20 +540,35 @@ or per-lens patent backfills.
 - [LEICA ELMAR-M 135mm f/4](../../src/lens-data/leica/LeicaElmarM135mmf4.data.ts) 1: `N-BAK4 / BaK4 class (Schott; patent e-line value stored)`
 - [NIKON NIKKOR 35mm f/2.8 (Nikon 35Ti)](../../src/lens-data/nikon/Nikon35Ti35mmf28.data.ts) 9: `Schott N-BAK4 (nd=1.56883 / νd=56.04; Δnd≈0, Δνd=−0.04)`
 
+### N-K5 — 2 occurrences
+
+- [RODENSTOCK GRANDAGON-N 75mm f/6.8](../../src/lens-data/rodenstock/RodenstockGrandagonN75mmf68.data.ts) 1: `K5 / N-K5 class (Schott; stored patent n_e)`
+- [RODENSTOCK GRANDAGON-N 75mm f/6.8](../../src/lens-data/rodenstock/RodenstockGrandagonN75mmf68.data.ts) 9: `K5 / N-K5 class (Schott; stored patent n_e)`
+
 ### N-LAF2 — 2 occurrences
 
 - [CARL ZEISS DISTAGON T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) 5: `LAF2 / N-LAF2 class (Schott, 744448; patent values retained)`
 - [CARL ZEISS DISTAGON T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) 7: `LAF2 / N-LAF2 class (Schott, 744448; patent values retained)`
 
-### N-LAK9 — 2 occurrences
-
-- [CARL ZEISS B-DISTAGON 35mm f/4 (Contarex)](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon35mmf4.data.ts) 10: `N-LAK9 / LAK9 (Schott)`
-- [LEICA ELMARIT-R 35mm f/2.8](../../src/lens-data/leica/LeicaElmaritR35mmf28.data.ts) 11: `LAK9 / N-LAK9 class (Schott legacy lanthanum crown; patent n_e)`
-
 ### N-LASF44 — 2 occurrences
 
 - [FUJIFILM FUJINON GF 30mm f/5.6 T/S](../../src/lens-data/fujifilm/FujifilmGF30mmf56TS.data.ts) 26: `N-LASF44 (Schott)`
 - [SIGMA 60mm f/2.8 DN | Art](../../src/lens-data/sigma/Sigma60mmf28DN.data.ts) 1: `TAF3 / N-LASF44 class (804/465 dense lanthanum flint)`
+
+### N-PSK53A — 2 occurrences
+
+- [MINOLTA AF 35-105mm f/3.5-4.5 New (v2)](../../src/lens-data/minolta/MinoltaAF35105mmf3545v2.data.ts) 12: `N-PSK53A (Schott exact match; production vendor unproven)`
+- [RODENSTOCK APO-SIRONAR-W 150mm f/5.6](../../src/lens-data/rodenstock/RodenstockApoSironarW150mmf56.data.ts) 3: `N-PSK53A class (Schott equivalent; patent-rounded nd/vd)`
+
+### N-SF5 — 2 occurrences
+
+- [RICOH GR LENS A12 28mm f/2.5 (Ricoh GXR A12)](../../src/lens-data/ricoh/RicohGXRA1218mmf25.data.ts) 10: `S-TIF6 (OHARA) / N-SF5 (SCHOTT)`
+- [RODENSTOCK GRANDAGON-N 65mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN65mmf45.data.ts) 3: `SF5 / N-SF5 class (Schott; patent e-line values)`
+
+### N-SSK2 — 2 occurrences
+
+- [RODENSTOCK GRANDAGON-N 75mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN75mmf45.data.ts) 4: `SSK2 / N-SSK2 class (Schott)`
+- [RODENSTOCK GRANDAGON-N 90mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN90mmf45.data.ts) 4: `SSK2 / N-SSK2 (Schott)`
 
 ### NBFD10 — 2 occurrences
 
@@ -557,6 +614,11 @@ or per-lens patent backfills.
 
 - [CANON SERENAR 50mm f/1.8](../../src/lens-data/canon/CanonSerenar50mmf18.data.ts) 7: `SK18 (Schott)`
 - [CANON SERENAR 50mm f/1.8](../../src/lens-data/canon/CanonSerenar50mmf18.data.ts) 9: `SK18 (Schott)`
+
+### SK3 — 2 occurrences
+
+- [RODENSTOCK GRANDAGON-N 75mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN75mmf45.data.ts) 8: `SK3 (Schott legacy dense crown)`
+- [RODENSTOCK GRANDAGON-N 90mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN90mmf45.data.ts) 8: `SK3 / H-ZK4 class (Schott/CDGM equivalent)`
 
 ### TAF1 — 2 occurrences
 
@@ -650,6 +712,10 @@ or per-lens patent backfills.
 ### 569631 — 1 occurrence
 
 - [VIVITAR SERIES 1 200mm f/3.0 VMC](../../src/lens-data/vivitar/VivitarSeries1200mmf3.data.ts) 1: `569631 — PSK2 phosphate crown (Schott) / S-PHM51 class`
+
+### 561468 — 1 occurrence
+
+- [RODENSTOCK GRANDAGON-N 90mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN90mmf45.data.ts) 5: `LLF3 / QF2 class (inferred, d-code 561468)`
 
 ### 571560 — 1 occurrence
 
@@ -770,10 +836,6 @@ or per-lens patent backfills.
 ### 670573 — 1 occurrence
 
 - [OLYMPUS OM J. ZUIKO AUTO-W 24mm f/2](../../src/lens-data/olympus/OlympusZuiko24mmf2J.data.ts) 7: `S-LAL52 class (OHARA) / E-LAK02 (HIKARI), 670573`
-
-### 670575 — 1 occurrence
-
-- [NIKON Gyogyotto 20mm f/8](../../src/lens-data/nikon/NikonGyogyotto20mmf8.data.ts) 4: `670575 — Nikon patent glass (nd=1.67025, νd=57.53; no current public OHARA/SCHOTT catalog match within tolerance)`
 
 ### 680312 — 1 occurrence
 
@@ -1123,6 +1185,10 @@ or per-lens patent backfills.
 
 - [CARL ZEISS JENA TESSAR 50mm f/2.8](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaTessar50mmf28.data.ts) 3: `612372 F (≈ Schott F3 legacy)`
 
+### F6 — 1 occurrence
+
+- [RODENSTOCK ROGONAR-S 50mm f/2.8](../../src/lens-data/rodenstock/RodenstockRogonarS50mmf28.data.ts) 3: `F7 class (625/356; Schott F7 / CDGM F6 equivalents)`
+
 ### FCD10A — 1 occurrence
 
 - [SIGMA 35mm f/1.4 DG DN | Art](../../src/lens-data/sigma/SigmaDGDNA35mmf14.data.ts) 11: `459902 — HOYA FCD10A (ELD fluorophosphate crown; no coefficient-backed catalog entry yet)`
@@ -1206,6 +1272,10 @@ or per-lens patent backfills.
 ### H-ZF72 — 1 occurrence
 
 - [LAOWA 58mm f/2.8 2× Ultra-Macro APO](../../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts) 9: `H-ZF72 (CDGM)`
+
+### H-ZK4 — 1 occurrence
+
+- [RODENSTOCK GRANDAGON-N 90mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN90mmf45.data.ts) 8: `SK3 / H-ZK4 class (Schott/CDGM equivalent)`
 
 ### H-ZLAF2 — 1 occurrence
 
@@ -1291,9 +1361,9 @@ or per-lens patent backfills.
 
 - [SCHNEIDER-KREUZNACH APO-SYMMAR 100mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderAPOSymmar100mmf56.data.ts) 6: `529770 — N-PK51 (Schott phosphate crown; no local Sellmeier)`
 
-### N-PSK53A — 1 occurrence
+### NBFD12 — 1 occurrence
 
-- [MINOLTA AF 35-105mm f/3.5-4.5 New (v2)](../../src/lens-data/minolta/MinoltaAF35105mmf3545v2.data.ts) 12: `N-PSK53A (Schott exact match; production vendor unproven)`
+- [NIKON NIKKOR Z 24-50mm f/4-6.3](../../src/lens-data/nikon/NikonNikkorZ2450mmf463.data.ts) 11: `NBFD12 (HOYA)`
 
 ### NBFD30 — 1 occurrence
 
@@ -1379,9 +1449,9 @@ or per-lens patent backfills.
 
 - [CARL ZEISS PRO-TESSAR 35mm f/3.2](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissProTessar35mmf32.data.ts) 1: `SF3 (Schott)`
 
-### SF5 — 1 occurrence
+### SK12 — 1 occurrence
 
-- [LEICA ELMARIT-M 135mm f/2.8](../../src/lens-data/leica/LeicaElmaritM135mmf28.data.ts) 6: `SF5-class dense flint (Schott; e-line source values)`
+- [RODENSTOCK GRANDAGON-N 75mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN75mmf45.data.ts) 7: `SK12 (Schott legacy dense crown)`
 
 ### SK4 — 1 occurrence
 

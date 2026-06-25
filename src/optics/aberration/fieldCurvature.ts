@@ -12,13 +12,15 @@ import {
   MERIDIONAL_COMA_SAMPLE_COUNT,
 } from "./types.js";
 import {
-  computeAnalysisFieldGeometryAtState,
   sampleOrthogonalPupilFan,
-  thick,
   traceChiefRelativeSkewRay,
   traceChiefRelativeSkewRayChromatic,
-  type FieldGeometryState,
-} from "../optics.js";
+} from "../rayTrace.js";
+import {
+  computeAnalysisFieldGeometryAtState2 as computeAnalysisFieldGeometryAtState,
+  type FieldGeometryState2 as FieldGeometryState,
+} from "../field/fieldGeometry.js";
+import { thick } from "../layout.js";
 import {
   bestFocusPlaneForDirection,
   computeStateAwareOffAxisFieldGeometry,
