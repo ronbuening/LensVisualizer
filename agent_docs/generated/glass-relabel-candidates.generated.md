@@ -19,11 +19,29 @@ both match the stored values within tolerance (nd ±0.005, vd ±3).
 - **No candidate**: relabel as `Unmatched (...reason)` and add a row to
   [glass-relabel-followup.md](../glass-relabel-followup.md) for per-lens patent verification.
 
-**Scope**: 0 mismatched surfaces across 0 unique groups.
+**Scope**: 2 mismatched surfaces across 2 unique groups.
+
+## stored (nd=1.72730, vd=29.02)  — 1 surface, current label resolves to S-TIH18
+
+Candidates:
+- **S-TIH10** (nd=1.72825, vd=28.46, Δnd=+0.0009, Δvd=-0.56)
+- **E-FD10** (nd=1.72825, vd=28.32, Δnd=+0.0009, Δvd=-0.70)
+- **H-ZF4A** (nd=1.72825, vd=28.32, Δnd=+0.0010, Δvd=-0.70)
+- **SF10** (nd=1.72825, vd=28.41, Δnd=+0.0010, Δvd=-0.61)
+
+Surfaces:
+- [RODENSTOCK GRANDAGON-N 75mm f/6.8](../../src/lens-data/rodenstock/RodenstockGrandagonN75mmf68.data.ts) `7`: `SF18 / S-TIH18 class (stored patent n_e)`
+
+## stored (nd=1.73430, vd=28.47)  — 1 surface, current label resolves to SF10
+
+**No catalog candidate within tolerance** — needs per-lens follow-up.
+
+Surfaces:
+- [RODENSTOCK GRANDAGON-N 75mm f/6.8](../../src/lens-data/rodenstock/RodenstockGrandagonN75mmf68.data.ts) `3`: `SF10 class (Schott legacy; stored patent n_e)`
 
 ---
 
 ## Summary
 
-- **0** (nd, vd) groups have at least one candidate (0 surfaces) — actionable relabels.
-- **0** (nd, vd) groups have NO candidate (0 surfaces) — needs patent verification or Unmatched relabeling.
+- **1** (nd, vd) groups have at least one candidate (1 surfaces) — actionable relabels.
+- **1** (nd, vd) groups have NO candidate (1 surfaces) — needs patent verification or Unmatched relabeling.
