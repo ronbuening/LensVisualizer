@@ -83,19 +83,21 @@ Used for both L2 (triplet front element) and L6 (rear doublet positive element).
 
 Used for L3 (the central element of the cemented triplet). This is the most optically significant glass choice in the entire design, and it embodies the fundamental insight of the Sonnar concept. With nd = 1.4645, this glass has one of the lowest refractive indices in the 1930s Schott catalog — approaching the index of optical cement (typically nd ≈ 1.50–1.56).
 
+The data file now marks this FK3 assignment as inferred APD/line-index backed, matching the project's other FK3 entries. That does not alter the patent prescription; it supplies the FK3 catalog spectral behavior for chromatic tracing.
+
 The practical consequence is that the cemented interfaces r₄ (Δnd = 0.207) and r₅ (Δnd = 0.225) have relatively small index differences compared to a glass-air transition (Δnd ≈ 0.5–0.7). These interfaces therefore contribute useful aberration correction — functioning as weak refracting surfaces — while producing negligible Fresnel reflection. In the Ernostar, these same corrections were achieved by air-spaced elements, each contributing two reflective air-glass surfaces. By filling the space with low-index glass, Bertele eliminated two air-glass interfaces entirely, reducing the system from 8 to 6 such interfaces.
 
 The nearest modern equivalent is Schott N-FK5 (nd = 1.4875, νd = 70.41), but this is not an exact match. FK (Fluor Kron) glasses are fluorine-containing crown compositions. They are not typically lead-based — unlike flint glasses where the "N-" prefix indicates lead and arsenic removal — so the compositional changes between the original FK3 and modern N-FK types are driven primarily by arsenic removal and process refinements rather than major reformulation.
 
-**nd = 1.6890, νd = 31.2 — Schott SF-type (Dense Flint)**
+**nd = 1.6890, νd = 31.2 — N-SF8 / SF8-equivalent dense flint**
 
-Used for L4 (the rear element of the cemented triplet — the strongly negative biconcave element). This is a high-dispersion lead-silicate flint glass with the lowest Abbe number in the design. The combination of high index and high dispersion makes it the primary source of negative chromatic power in the triplet, balancing the positive chromatic contributions of L2 and L3. No exact modern match exists; the closest current types are SF5 (nd = 1.6727, νd = 32.21) and SF2 (nd = 1.6477, νd = 33.85). The original glass was likely a now-discontinued lead-rich formulation.
+Used for L4 (the rear element of the cemented triplet — the strongly negative biconcave element). This is a high-dispersion lead-silicate flint glass with the lowest Abbe number in the design. The combination of high index and high dispersion makes it the primary source of negative chromatic power in the triplet, balancing the positive chromatic contributions of L2 and L3. N-SF8 / SF8 is the closest coefficient-backed local catalog equivalent (n_d = 1.68894, ν_d = 31.31). The data file uses the N-SF8 C/F/g line indices while preserving the patent's n_d = 1.6890 at the d-line.
 
 Note: This refractive index value was initially misread by text-extraction OCR as 1.6390. The correct reading of 1.6890 was confirmed both by high-resolution visual inspection and by computational verification (see §10).
 
-**nd = 1.5647, νd = 55.8 — Schott BaK4 type (Barium Crown)**
+**nd = 1.5647, νd = 55.8 — historical BaK4-class barium crown**
 
-Used for L5 (the front element of the rear cemented doublet). This is a moderate-index crown glass. The modern Schott N-BaK4 (nd = 1.5688, νd = 55.98) is an excellent match — one of the closest correspondences among all five glasses in this design. In the doublet, L5 acts as the negative (dispersing) component, paired with the higher-index positive L6 to form the "collecting cemented face" that is the subject of the patent claim.
+Used for L5 (the front element of the rear cemented doublet). This is a moderate-index crown glass. The BaK4 family assignment remains plausible from the patent n_d/ν_d pair, but the local coefficient catalog has no exact N-BaK4 entry to resolve, so the data file keeps this element explicitly unmatched. In the doublet, L5 acts as the negative (dispersing) component, paired with the higher-index positive L6 to form the "collecting cemented face" that is the subject of the patent claim.
 
 
 ## 4. Element-by-Element Optical Role
@@ -153,7 +155,7 @@ This is the innovation that transformed the Ernostar into the Sonnar. In the Ern
 | Shape | Biconcave |
 | R₅ / R₆ | −300.00 / +23.70 |
 | Focal length | −31.6 mm |
-| Glass | SF-type (nd = 1.6890, νd = 31.2) |
+| Glass | N-SF8 / SF8-equivalent dense flint (nd = 1.6890, νd = 31.2) |
 
 L4 is the most powerful individual element in the system (|f| = 31.6 mm). Its rear surface r₆ has the second-tightest curvature (+23.70 mm) and the highest single-surface power magnitude (φ = −0.02907 mm⁻¹). This is the principal diverging element, and it serves three critical functions:
 
@@ -176,7 +178,7 @@ The rear cemented doublet is the subject of the patent claim itself. The patent 
 | Shape | Negative meniscus, convex to object |
 | R₇ / R₈ | +200.00 / +30.70 |
 | Focal length | −64.5 mm |
-| Glass | BaK4 (nd = 1.5647, νd = 55.8) |
+| Glass | BaK4-class barium crown (nd = 1.5647, νd = 55.8; unresolved locally) |
 
 L5 is a thin (2.0 mm) negative meniscus. The patent claim requires that it be "a dispersing one" with "a refractive index smaller than that of the collecting lens" (L6). Indeed, nd(L5) = 1.5647 < nd(L6) = 1.6711, satisfying this condition with Δnd = 0.1064. This index difference at the cemented surface r₈ is the mechanism by which the doublet generates its collecting (converging) effect at the cement.
 

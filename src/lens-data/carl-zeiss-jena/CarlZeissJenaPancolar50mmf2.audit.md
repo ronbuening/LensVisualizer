@@ -39,3 +39,20 @@ Catalog version: local working tree, 2026-05-19
 - `npm run typecheck` — passed.
 - `npm run format:check` — passed.
 - `npm run test` — passed (131 files, 1666 tests; expected error-boundary console output only).
+
+## 2026-06-25 - Full-folder patent recheck
+
+### Source Note
+
+- Rechecked the local GB 850,117 PDF visually because the file is image-only. Claim 2 remains the source for the current data file.
+- Confirmed the f=100 table values and the 0.5x scale used in the data file, including the inferred 65% stop split through the l2 air gap.
+
+### Phase 1 - Glass / APD / high-index status
+
+- Retained the unresolved Jena in-house code labels for 662/561, 672/323, and 602/352. The patent gives nd/vd pairs only, and no coefficient-backed public equivalents were identified.
+- No APD metadata was added. No new line-index data is present in the patent.
+
+### Phase 2 - SD review
+
+- The patent drawing does not publish clear apertures. Existing SDs remain consistent with the drawing proportions and the rendered runtime layout.
+- Temporary Zeiss Jena diagnostic test - passed; runtime trim diagnostics empty for this lens.

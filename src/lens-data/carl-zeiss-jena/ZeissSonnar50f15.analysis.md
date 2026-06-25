@@ -108,9 +108,9 @@ The Abbe number of 65.7 provides a partial clue: it matches FK3 (ν_d = 65.8) al
 
 ### L4 — n_d = 1.6890, ν_d = 31.0
 
-**Probable type: Dense flint (SF family)**
+**Probable type: N-SF8 / SF8-equivalent dense flint**
 
-The patent explicitly describes L4 as having "a very high refractive index" and "very strong color separating capacity" (i.e., high dispersion / low Abbe number). The n_d/ν_d pair places this squarely in the dense flint region. The closest Schott match is SF5 (n_d = 1.6727, ν_d = 32.2), but the patent values are somewhat higher in index and lower in Abbe. This likely represents a historical dense flint melt available from Schott in 1932 and since discontinued.
+The patent explicitly describes L4 as having "a very high refractive index" and "very strong color separating capacity" (i.e., high dispersion / low Abbe number). The n_d/ν_d pair places this squarely in the dense flint region. The closest coefficient-backed match in the local catalog is N-SF8 / SF8 (n_d = 1.68894, ν_d = 31.31). The data file uses the N-SF8 C/F/g line indices while preserving the patent's stated n_d = 1.6890 at the d-line.
 
 The combination of high index and high dispersion makes L4 the chromatic "engine" of the front triplet: the large index difference between L3 (1.4075) and L4 (1.6890) at the cemented surface r₅ creates strong chromatic dispersion in the opposite sense to the chromatic effect at r₄, enabling spherochromatic correction.
 
@@ -122,9 +122,9 @@ The n_d/ν_d pair falls in the light-flint to barium-light-flint region. No exac
 
 ### L6 — n_d = 1.6578, ν_d = 51.2
 
-**Probable type: Very dense crown — virtually exact match to Schott SSK51 (n_d = 1.6577, ν_d = 51.2)**
+**Probable type: SSK51-class very dense crown, near N-SSK5**
 
-This is the second-most confident identification. The match to SSK51 (or its modern equivalent N-SSK5) is essentially exact: Δn_d = 0.0001, Δν_d = 0.0. SSK51 is a very dense crown glass — high index with moderate Abbe number, placing it on the boundary between crown and flint territory. It was historically available from Schott and is still in production.
+This is the second-most confident identification. The modern N-SSK5 catalog glass (historically SSK51-class) is close to the patent value: n_d = 1.65844, ν_d = 50.88 versus the patent's n_d = 1.6578, ν_d = 51.2. The difference is small but not exact, so the data file keeps this element explicitly unresolved and traces it from the patent constants instead of letting a near catalog equivalent move the d-line index.
 
 L6 is the powerful biconvex positive core of the rear triplet, and its high-index crown character is essential for achieving the strong positive power needed at this position (f ≈ +27.5 mm) without excessive surface curvatures.
 
@@ -192,7 +192,7 @@ Marco Cavina's analysis of the Sonnar design family identifies this as one of Be
 |----------|-------|
 | Type | Biconcave negative |
 | Focal length | f ≈ −29.4 mm (thick lens) |
-| Glass | Dense flint, n_d = 1.6890, ν_d = 31.0 |
+| Glass | N-SF8 / SF8-equivalent dense flint, n_d = 1.6890, ν_d = 31.0 |
 | Cemented to | L3 at surface r₅ |
 | Role | Dominant negative element of the front component; provides chromatic overcorrection to balance L2–L3 undercorrection; controls Petzval curvature |
 
@@ -222,7 +222,7 @@ L5 is a thin, weakly negative element that the patent describes as "plano-concav
 |----------|-------|
 | Type | Biconvex positive |
 | Focal length | f ≈ +27.5 mm (thick lens) |
-| Glass | Very dense crown (SSK51 type), n_d = 1.6578, ν_d = 51.2 |
+| Glass | SSK51-class very dense crown, near N-SSK5, n_d = 1.6578, ν_d = 51.2 |
 | Cemented between | L5 (at r₈) and L7 (at r₉) |
 | Role | Primary positive power of the rear group; the dominant converging element that forms the image |
 
@@ -340,8 +340,8 @@ Unit focusing has the advantage of simplicity and the disadvantage that aberrati
 - Erhard Bertele, "Ludwig J. Bertele, Ein Pionier der geometrischen Optik" (ETH Zürich, 2017) — referenced but not directly consulted
 
 ### Notes on Evidentiary Basis
-- Glass identifications for L2 (BaF10) and L6 (SSK51) are high-confidence matches based on n_d/ν_d proximity
-- Glass identifications for L1, L4, L5, and L7 are approximate, reflecting the use of historical Schott types no longer in production
+- Glass identification for L4 (N-SF8 / SF8 equivalent) is a high-confidence coefficient-backed match based on n_d/ν_d proximity; L6 remains a high-confidence SSK51-class identification but is left unresolved locally to preserve the patent d-line index exactly
+- Glass identifications for L1, L2, L5, and L7 remain unresolved historical Schott/Jena classes; their patent n_d/ν_d constants are retained and traced by Abbe fallback
 - The L3 glass (n_d = 1.4075, ν_d = 65.7) has no match in any modern catalog or among known crystalline optical materials at this index. Its value falls between lithium fluoride and calcium fluoride — a gap not occupied by any practical optical cement-compatible material. Deliberate patent obfuscation is the most probable explanation (see Section 4); the prescription is computationally self-consistent with this value regardless of the glass's physical identity
 - Focus mechanism is inferred from the camera system (Contax rangefinder) and the absence of variable-gap data in the patent
 - Semi-diameters are not stated in the patent and would need to be estimated from entrance pupil geometry for any detailed rendering
