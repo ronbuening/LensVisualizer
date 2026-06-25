@@ -23,6 +23,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-06-25",
     type: "lens",
+    summary: "Added Canon G1 X, Nikon 35-70mm, and Rodenstock enlarger lenses",
+  },
+  {
+    date: "2026-06-25",
+    type: "lens",
     summary: "Added six Rodenstock large-format lenses",
   },
   // ── 2026-06-22 ──────────────────────────────────────────────────────────
