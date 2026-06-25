@@ -26,3 +26,33 @@ Patent: US 10,571,651 B2, Numerical Data 1 (Sakai / Canon)
 - `npm run generate:glass-reports` - passed (7 files, 7 tests).
 - `npm run format:check` - passed.
 - `npm run lint` - passed.
+
+## 2026-06-25 - Catalog label normalization
+
+### Phase 1 - Glass corrections
+
+| Element / surface | Field | Before | After | Justification |
+|---|---|---|---|---|
+| L3 / surface 5 | `glass` | `S-LAM 7 (OHARA)` | `S-LAM7 (OHARA)` | Same patent nd=1.74950 / vd=35.3 row; canonical OHARA catalog token resolves without the embedded space. |
+| L4 / surface 7 | `glass` | `S-NBH 5 (OHARA)` | `S-NBH5 (OHARA)` | Same patent nd=1.65412 / vd=39.7 row; canonical OHARA catalog token resolves without the embedded space. |
+| L9 / surface 15 | `glass` | `S-NBH 5 (OHARA)` | `S-NBH5 (OHARA)` | Same patent nd=1.65412 / vd=39.7 row; same glass as L4. |
+
+### Phase 2 - Retained-information audit
+
+- No radius, spacing, nd/vd, asphere, focus, or semi-diameter values changed in this pass.
+
+### Phase 3 - Spectral / metadata enrichment
+
+- No new patent line-index or partial-dispersion values were present in the already reviewed Numerical Data 1 source.
+
+### Phase 4 - Analysis sync
+
+- No prose change needed; the analysis file already used `S-LAM7` and `S-NBH5`.
+
+### Verification
+
+- `npm run generate:glass-reports` - passed (7 files, 7 tests).
+- `npm run typecheck` - passed before and after metadata regeneration.
+- `npm run format:check` - passed.
+- `npm run lint` - passed.
+- `npm run test` - initially exposed stale generated route metadata; after `npm run generate:metadata`, passed (183 files, 2212 tests).

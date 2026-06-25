@@ -86,6 +86,8 @@ const LENS_DATA = {
       vd: 81.5,
       fl: 99.9,
       glass: "S-FPL51 (OHARA)",
+      apd: "inferred",
+      apdNote: "Catalog UD fluorophosphate member of the first-unit achromat; patent-specific APD condition is on L2.",
       role: "UD positive meniscus forming the rear element of the first zoom unit.",
       cemented: "D1",
     },
@@ -133,6 +135,8 @@ const LENS_DATA = {
       vd: 81.5,
       fl: 76.6,
       glass: "S-FPL51 (OHARA)",
+      apd: "inferred",
+      apdNote: "Second catalog UD fluorophosphate element matching Canon's published two-UD production count.",
       role: "Second UD element; leading positive element of the relay unit ahead of the stop.",
     },
     {

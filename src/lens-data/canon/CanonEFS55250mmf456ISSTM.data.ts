@@ -142,6 +142,8 @@ const LENS_DATA = {
       vd: 81.5,
       fl: 38.58,
       glass: "S-FPL51 (OHARA)",
+      apd: "inferred",
+      apdNote: "Catalog UD fluorophosphate element matching Canon's published one-UD production count.",
       cemented: "D3",
       role: "UD fluorophosphate positive element in the L3 chromatic-correction doublet.",
     },

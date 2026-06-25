@@ -97,7 +97,7 @@ const LENS_DATA = {
       nd: 1.7495,
       vd: 35.3,
       fl: 48.5,
-      glass: "S-LAM 7 (OHARA)",
+      glass: "S-LAM7 (OHARA)",
       role: "Strong positive element completing the weak negative first unit.",
     },
     {
@@ -108,7 +108,7 @@ const LENS_DATA = {
       nd: 1.65412,
       vd: 39.7,
       fl: -76.0,
-      glass: "S-NBH 5 (OHARA)",
+      glass: "S-NBH5 (OHARA)",
       role: "Negative part of the floating second unit.",
     },
     {
@@ -166,7 +166,7 @@ const LENS_DATA = {
       nd: 1.65412,
       vd: 39.7,
       fl: -26.3,
-      glass: "S-NBH 5 (OHARA)",
+      glass: "S-NBH5 (OHARA)",
       cemented: "D2",
       role: "Flint component giving the second L3a doublet weak net negative power.",
     },
