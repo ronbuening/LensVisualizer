@@ -39,6 +39,7 @@ const LENS_DATA = {
   focalLengthDesign: 50,
   apertureMarketing: 2.8,
   apertureDesign: 2.8,
+  lensMounts: ["enlarging-lens"],
   imageFormat: "135-full-frame",
   patentYear: 1960,
   elementCount: 4,

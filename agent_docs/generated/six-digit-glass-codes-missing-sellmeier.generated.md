@@ -9,10 +9,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **377** lenses scanned
-- **315** total code-only elements found
-- **233** elements in this report
-- **93** distinct lens files affected
+- **382** lenses scanned
+- **318** total code-only elements found
+- **236** elements in this report
+- **94** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -29,6 +29,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 585587 | 3 | 1 | patents/WO2024195273A1.pdf | All representative rows reviewed |
 | 672472 | 3 | 1 | patents/US2084309.pdf | No reviewed-sidecar hit |
 | 777297 | 3 | 3 | patents/WO2021199923A1.pdf<br>patents/WO_2025263124_A1.pdf<br>patents/JP2023039817A.pdf | All representative rows reviewed |
+| 796409 | 3 | 2 | patents/US5751485.pdf<br>patents/US4699475.pdf | 2/3 representative rows reviewed |
+| 804339 | 3 | 2 | patents/US5751485.pdf<br>patents/US5717527.pdf | No reviewed-sidecar hit |
 | 863248 | 3 | 1 | patents/JP2023039817A.pdf | All representative rows reviewed |
 | 511605 | 2 | 1 | patents/US4258985.pdf | No reviewed-sidecar hit |
 | 514428 | 2 | 1 | patents/JP2016021011A.pdf | All representative rows reviewed |
@@ -46,7 +48,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 755516 | 2 | 1 | patents/JP2004109559A.pdf | All representative rows reviewed |
 | 762404 | 2 | 1 | patents/US4258985.pdf | No reviewed-sidecar hit |
 | 774492 | 2 | 1 | patents/US3748022.pdf | All representative rows reviewed |
-| 796409 | 2 | 1 | patents/US4699475.pdf | All representative rows reviewed |
 | 797454 | 2 | 2 | patents/US5557473.pdf<br>patents/US5528428.pdf | All representative rows reviewed |
 | 807316 | 2 | 2 | patents/US4764000.pdf<br>patents/US4871239.pdf | All representative rows reviewed |
 | 813252 | 2 | 1 | patents/US3591257.pdf | All representative rows reviewed |
@@ -167,7 +168,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 801454 | 1 | 1 | patents/US20130033768A1.pdf | No reviewed-sidecar hit |
 | 803404 | 1 | 1 | patents/US20140247506A1.pdf | All representative rows reviewed |
 | 803405 | 1 | 1 | patents/US20170351051A1.pdf | No reviewed-sidecar hit |
-| 804339 | 1 | 1 | patents/US5717527.pdf | No reviewed-sidecar hit |
 | 805252 | 1 | 1 | patents/US4258985.pdf | No reviewed-sidecar hit |
 | 805410 | 1 | 1 | patents/US4871239.pdf | All representative rows reviewed |
 | 808406 | 1 | 1 | patents/JP2023063766A.pdf | No reviewed-sidecar hit |
@@ -440,6 +440,14 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L3 (Element 3) | 5 | `541468 - light flint (catalog unresolved)` | 1.54072 / 46.80 | No catalog entry | abbe | patents/US4124276.pdf | Reviewed sidecar hit |
 | L4 (Element 4) | 6 | `720521 - lanthanum crown (catalog unresolved)` | 1.72000 / 52.10 | No catalog entry | abbe | patents/US4124276.pdf | No reviewed-sidecar hit |
 | L6 (Element 6) | 10 | `576414 - light flint (catalog unresolved)` | 1.57616 / 41.40 | No catalog entry | abbe | patents/US4124276.pdf | Reviewed sidecar hit |
+
+### [NIKON AF MICRO-NIKKOR 200mm f/4D IF-ED](../../src/lens-data/nikon/NikonAFMicroNikkor200mmf4D.data.ts) - US 5,751,485
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+|---|---|---|---|---|---|---|---|
+| L1 (Element 1) | 1 | `Unmatched dense lanthanum flint class (804/339 patent code)` | 1.80384 / 33.89 | No catalog entry | abbe | patents/US5751485.pdf | No reviewed-sidecar hit |
+| L4 (Element 4) | 6 | `Unmatched lanthanum flint class (796/409 patent code)` | 1.79631 / 40.90 | No catalog entry | abbe | patents/US5751485.pdf | No reviewed-sidecar hit |
+| L7 (Element 7) | 10 | `Unmatched dense lanthanum flint class (804/339 patent code)` | 1.80384 / 33.89 | No catalog entry | abbe | patents/US5751485.pdf | No reviewed-sidecar hit |
 
 ### [Nikon AF Nikkor 28mm f/2.8D](../../src/lens-data/nikon/NikonAFNikkor28mmf28D.data.ts) - US 5,557,473,
 

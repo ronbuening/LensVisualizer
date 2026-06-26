@@ -59,6 +59,7 @@ const LENS_DATA = {
   focalLengthMarketing: 110,
   focalLengthDesign: 110.6,
   apertureMarketing: 5.6,
+  lensMounts: ["large-format-lens-board"],
   imageFormat: "5x7" as const,
   patentYear: 1999,
   elementCount: 6,

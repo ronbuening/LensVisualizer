@@ -128,6 +128,20 @@ export const MOUNT_DETAILS: Record<LensMountId, MountDetails> = {
     description:
       "Fixed-lens cameras do not have a mount in the interchangeable-lens sense. The lens, shutter, sensor or film gate, focusing mechanism, and body packaging can all be optimized together, which often enables designs that would be awkward or impossible as removable lenses.\n\nThat integration can change the optical problem substantially. A rear group may sit close to the film or sensor, the camera body can make room for collapsible or retracting mechanics, and digital compacts can rely on firmware correction as part of the finished imaging system.\n\nThis category is useful for catalog browsing because many important optical designs live in fixed-lens cameras: premium compacts, rangefinders, GR-style wide-angle cameras, and integrated zoom compacts. When a lens appears here, the page is clustering by camera architecture rather than by a bayonet standard.",
   },
+  "large-format-lens-board": {
+    era: "View-camera lens-board and shutter-mounted optics",
+    formatNotes: "Mostly 4x5, 5x7, and larger sheet-film or technical-camera coverage",
+    summary: "Board-mounted large-format lenses designed for bellows cameras, shutters, and front-standard movements.",
+    description:
+      "Large-format lenses usually do not belong to a single proprietary camera mount. A lens cell or shutter assembly is fitted to a removable lens board, and the camera supplies the bellows draw, front-standard movements, ground-glass focusing, and film holder or digital back. The practical interface is therefore a board and shutter opening rather than a bayonet with a fixed flange distance.\n\nThat changes the optical problem. Designers can assume unit focusing by moving the whole lens, generous back-focus variation from bellows extension, and image circles larger than the nominal film gate so rise, fall, shift, tilt, and swing can be used without immediately clipping the field. Coverage, usable image circle, and behavior at stopped-down working apertures often matter as much as full-aperture speed.\n\nIn this catalog, the large-format lens-board category groups view-camera and technical-camera taking lenses from makers such as Rodenstock, Schneider-Kreuznach, and Carl Zeiss Jena. Enlarging lenses and fixed-camera lenses remain in their own metadata categories unless the data file represents a view-camera taking lens.",
+  },
+  "enlarging-lens": {
+    era: "Darkroom and process enlarging lenses",
+    formatNotes: "Negative and print projection formats, commonly from 35 mm through medium format",
+    summary: "Finite-conjugate projection lenses for enlargers, copy work, and darkroom printing systems.",
+    description:
+      "Enlarging lenses are not camera taking lenses in the normal interchangeable-mount sense. They are usually mounted into an enlarger lens board or retaining ring and work between a film negative and the easel, with focus set by changing the enlarger head, lens stage, or easel distance rather than by a camera helicoid.\n\nThe optical design priorities differ from view-camera lenses. Enlarging objectives are finite-conjugate projection lenses: they are optimized for flat-field reproduction, even illumination, low distortion, and predictable performance over a recommended magnification range. A lens that covers a 6x9 negative in the darkroom is solving a different problem from a 6x9 camera lens focused at infinity.\n\nThis catalog category groups optical formulas whose data files explicitly represent enlarging objectives. It keeps them visible on mount pages and in mount sorting without mixing them into large-format taking-lens boards, even when their mechanical mounting also involves a threaded board or retaining ring.",
+  },
   "fuji-g690": {
     era: "Fujica/Fuji G690 medium-format rangefinder mount, late 1960s-1970s",
     formatNotes: "6x9 and related roll-film rangefinder formats",
