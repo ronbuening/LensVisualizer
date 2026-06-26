@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **377** lenses scanned
-- **4207** non-air surfaces examined
-- **4211** element glass declarations examined
-- **604** non-explicit-unmatched annotations did not resolve
-- **273** distinct unresolved glass-like tokens found
+- **382** lenses scanned
+- **4264** non-air surfaces examined
+- **4268** element glass declarations examined
+- **611** non-explicit-unmatched annotations did not resolve
+- **275** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -29,8 +29,10 @@ or per-lens patent backfills.
 | 585587 | 3 | 1 | |
 | 670575 | 3 | 2 | |
 | 744495 | 3 | 3 | |
+| 768492 | 3 | 2 | |
 | 863248 | 3 | 1 | |
 | N-LAK9 | 3 | 3 | |
+| N-LASF44 | 3 | 3 | |
 | 514428 | 2 | 1 | |
 | 517696 | 2 | 1 | |
 | 531559 | 2 | 2 | |
@@ -61,7 +63,6 @@ or per-lens patent backfills.
 | N-BAK4 | 2 | 2 | |
 | N-K5 | 2 | 1 | |
 | N-LAF2 | 2 | 1 | |
-| N-LASF44 | 2 | 2 | |
 | N-PSK53A | 2 | 2 | |
 | N-SSK2 | 2 | 2 | |
 | NBFD10 | 2 | 2 | |
@@ -75,6 +76,7 @@ or per-lens patent backfills.
 | SK18 | 2 | 1 | |
 | SK3 | 2 | 2 | |
 | TAF1 | 2 | 2 | |
+| TAF3 | 2 | 2 | |
 | 157957 | 1 | 1 | |
 | 182080 | 1 | 1 | |
 | 459902 | 1 | 1 | |
@@ -160,7 +162,6 @@ or per-lens patent backfills.
 | 762271 | 1 | 1 | |
 | 764491 | 1 | 1 | |
 | 768465 | 1 | 1 | |
-| 768492 | 1 | 1 | |
 | 769497 | 1 | 1 | |
 | 770479 | 1 | 1 | |
 | 770494 | 1 | 1 | |
@@ -184,6 +185,7 @@ or per-lens patent backfills.
 | 800255 | 1 | 1 | |
 | 803404 | 1 | 1 | |
 | 803405 | 1 | 1 | |
+| 804465 | 1 | 1 | |
 | 805252 | 1 | 1 | |
 | 805410 | 1 | 1 | |
 | 821426 | 1 | 1 | |
@@ -272,6 +274,7 @@ or per-lens patent backfills.
 | S-LAH85V | 1 | 1 | |
 | S-LAL21 | 1 | 1 | |
 | S-LAL52 | 1 | 1 | |
+| S-LAL7Q | 1 | 1 | |
 | S-NBM52 | 1 | 1 | |
 | S-NPH85 | 1 | 1 | |
 | S-PHM51 | 1 | 1 | |
@@ -286,7 +289,6 @@ or per-lens patent backfills.
 | SK7 | 1 | 1 | |
 | SK8 | 1 | 1 | |
 | TAF105 | 1 | 1 | |
-| TAF3 | 1 | 1 | |
 | TAF3D | 1 | 1 | |
 | TAFD34 | 1 | 1 | |
 | TAFD5 | 1 | 1 | |
@@ -375,6 +377,12 @@ or per-lens patent backfills.
 - [NIKON NIKKOR Z 24-70mm f/4 S](../../src/lens-data/nikon/NikonNikkorZ2470mmf4S.data.ts) 4: `744495 — PGM low-Tg lanthanum crown (patent nd=1.74353, νd=49.5; no exact public catalog match)`
 - [NIKON NIKKOR Z 24-70mm f/2.8 S](../../src/lens-data/nikon/NikonZ2470f28.data.ts) 6A: `744495 — moldable lanthanum crown (patent nd=1.74389, νd=49.53; no exact public catalog match)`
 
+### 768492 — 3 occurrences
+
+- [CANON ZOOM LENS 8.8-36.8mm f/1.8-2.8 (PowerShot G7 X)](../../src/lens-data/canon/CanonPowerShotG7X88368mmf1828.data.ts) 6A: `M-TAF101 (HOYA moldable; 768492 class)`
+- [CANON ZOOM LENS 8.8-36.8mm f/1.8-2.8 (PowerShot G7 X)](../../src/lens-data/canon/CanonPowerShotG7X88368mmf1828.data.ts) 11A: `M-TAF101 (HOYA moldable; 768492 class)`
+- [SONY FE 70-200mm f/4 G OSS](../../src/lens-data/sony/SonyFE70200mmf4G.data.ts) 27: `M-TAF101 / LAM55-class moldable glass (768492)`
+
 ### 863248 — 3 occurrences
 
 - [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 10: `863248 — ultra-dense flint (patent nd=1.86290, nu_d=24.8)`
@@ -386,6 +394,12 @@ or per-lens patent backfills.
 - [CARL ZEISS B-DISTAGON 35mm f/4 (Contarex)](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon35mmf4.data.ts) 10: `N-LAK9 / LAK9 (Schott)`
 - [LEICA ELMARIT-R 35mm f/2.8](../../src/lens-data/leica/LeicaElmaritR35mmf28.data.ts) 11: `LAK9 / N-LAK9 class (Schott legacy lanthanum crown; patent n_e)`
 - [RODENSTOCK RODAGON-WA 80mm f/4](../../src/lens-data/rodenstock/RodenstockRodagonWA80mmf4.data.ts) 1: `N-LAK9 (Schott)`
+
+### N-LASF44 — 3 occurrences
+
+- [CANON ZOOM LENS 8.8-36.8mm f/1.8-2.8 (PowerShot G7 X)](../../src/lens-data/canon/CanonPowerShotG7X88368mmf1828.data.ts) 2: `TAF3 / N-LASF44 class (HOYA/SCHOTT; 804465)`
+- [FUJIFILM FUJINON GF 30mm f/5.6 T/S](../../src/lens-data/fujifilm/FujifilmGF30mmf56TS.data.ts) 26: `N-LASF44 (Schott)`
+- [SIGMA 60mm f/2.8 DN | Art](../../src/lens-data/sigma/Sigma60mmf28DN.data.ts) 1: `TAF3 / N-LASF44 class (804/465 dense lanthanum flint)`
 
 ### 514428 — 2 occurrences
 
@@ -537,11 +551,6 @@ or per-lens patent backfills.
 - [CARL ZEISS DISTAGON T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) 5: `LAF2 / N-LAF2 class (Schott, 744448; patent values retained)`
 - [CARL ZEISS DISTAGON T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) 7: `LAF2 / N-LAF2 class (Schott, 744448; patent values retained)`
 
-### N-LASF44 — 2 occurrences
-
-- [FUJIFILM FUJINON GF 30mm f/5.6 T/S](../../src/lens-data/fujifilm/FujifilmGF30mmf56TS.data.ts) 26: `N-LASF44 (Schott)`
-- [SIGMA 60mm f/2.8 DN | Art](../../src/lens-data/sigma/Sigma60mmf28DN.data.ts) 1: `TAF3 / N-LASF44 class (804/465 dense lanthanum flint)`
-
 ### N-PSK53A — 2 occurrences
 
 - [MINOLTA AF 35-105mm f/3.5-4.5 New (v2)](../../src/lens-data/minolta/MinoltaAF35105mmf3545v2.data.ts) 12: `N-PSK53A (Schott exact match; production vendor unproven)`
@@ -606,6 +615,11 @@ or per-lens patent backfills.
 
 - [SIGMA APO MACRO 150mm f/2.8 EX DG OS HSM](../../src/lens-data/sigma/SigmaAPOMacro150mmf28OSHSM.data.ts) 7: `TAF1 (Hoya; tantalum/lanthanum flint)`
 - [SONY FE 28mm f/2](../../src/lens-data/sony/SonyFE28mmf2.data.ts) 8A: `M-TAF1 / TAF1 class (HOYA, 773/495)`
+
+### TAF3 — 2 occurrences
+
+- [CANON ZOOM LENS 8.8-36.8mm f/1.8-2.8 (PowerShot G7 X)](../../src/lens-data/canon/CanonPowerShotG7X88368mmf1828.data.ts) 2: `TAF3 / N-LASF44 class (HOYA/SCHOTT; 804465)`
+- [SIGMA 60mm f/2.8 DN | Art](../../src/lens-data/sigma/Sigma60mmf28DN.data.ts) 1: `TAF3 / N-LASF44 class (804/465 dense lanthanum flint)`
 
 ### 157957 — 1 occurrence
 
@@ -947,10 +961,6 @@ or per-lens patent backfills.
 
 - [NIKON FISHEYE-NIKKOR 6mm f/5.6](../../src/lens-data/nikon/NikonFisheyeNikkor6mmf56.data.ts) 11: `768465 — lanthanum flint patent melt (nd=1.76764, νd=46.5; no exact public catalog match)`
 
-### 768492 — 1 occurrence
-
-- [SONY FE 70-200mm f/4 G OSS](../../src/lens-data/sony/SonyFE70200mmf4G.data.ts) 27: `M-TAF101 / LAM55-class moldable glass (768492)`
-
 ### 769497 — 1 occurrence
 
 - [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) 12: `769497 — lanthanum crown (patent nd=1.76864, nu_d=49.7)`
@@ -1042,6 +1052,10 @@ or per-lens patent backfills.
 ### 803405 — 1 occurrence
 
 - [FUJIFILM FUJINON XF 23mm f/2 R WR](../../src/lens-data/fujifilm/FujifilmXF23mmf2RWR.data.ts) 13A: `803405 - high-index lanthanum flint (likely PGM aspheric melt; no exact public catalog match)`
+
+### 804465 — 1 occurrence
+
+- [CANON ZOOM LENS 8.8-36.8mm f/1.8-2.8 (PowerShot G7 X)](../../src/lens-data/canon/CanonPowerShotG7X88368mmf1828.data.ts) 2: `TAF3 / N-LASF44 class (HOYA/SCHOTT; 804465)`
 
 ### 805252 — 1 occurrence
 
@@ -1395,6 +1409,10 @@ or per-lens patent backfills.
 
 - [OLYMPUS OM J. ZUIKO AUTO-W 24mm f/2](../../src/lens-data/olympus/OlympusZuiko24mmf2J.data.ts) 7: `S-LAL52 class (OHARA) / E-LAK02 (HIKARI), 670573`
 
+### S-LAL7Q — 1 occurrence
+
+- [NIKON AF DX FISHEYE-NIKKOR 10.5mm f/2.8G ED](../../src/lens-data/nikon/NikonFisheyeNikkor105mmf28GED.data.ts) 17: `S-LAL7Q (OHARA)`
+
 ### S-NBM52 — 1 occurrence
 
 - [NIKON NIKKOR Z 50mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ50f12.data.ts) 30: `S-NBM52 (OHARA)`
@@ -1450,10 +1468,6 @@ or per-lens patent backfills.
 ### TAF105 — 1 occurrence
 
 - [SIGMA 85mm f/1.4 DG HSM | Art](../../src/lens-data/sigma/Sigma85mmf14Art.data.ts) 17: `TAF105 (HOYA)`
-
-### TAF3 — 1 occurrence
-
-- [SIGMA 60mm f/2.8 DN | Art](../../src/lens-data/sigma/Sigma60mmf28DN.data.ts) 1: `TAF3 / N-LASF44 class (804/465 dense lanthanum flint)`
 
 ### TAF3D — 1 occurrence
 
