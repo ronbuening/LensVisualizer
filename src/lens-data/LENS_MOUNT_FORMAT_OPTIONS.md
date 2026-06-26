@@ -30,6 +30,7 @@ catalog is being backfilled, but when present it must be a non-empty array of un
 | `contax-rf` | Contax RF | Contax rangefinder mount; usually pairs with `135-full-frame`. |
 | `zeiss-contarex` | Zeiss Contarex | Zeiss Ikon Contarex SLR mount; usually pairs with `135-full-frame`. |
 | `dkl` | DKL / Deckel | Deckel bayonet family; usually pairs with `135-full-frame`. |
+| `enlarging-lens` | Enlarging Lens | Enlarger-board/thread-mounted darkroom projection lenses. |
 | `exakta` | Exakta | Ihagee Exakta/Exa bayonet family; usually pairs with `135-full-frame`. |
 | `fixed-lens-camera` | Fixed-lens Camera | Integral camera lens with no interchangeable mount. |
 | `fuji-g690` | Fuji G690 | Fuji G690 medium-format rangefinder mount; usually pairs with `6x9`. |
@@ -42,6 +43,7 @@ catalog is being backfilled, but when present it must be a non-empty array of un
 | `xpan` | Hasselblad XPan / Fujifilm TX | XPan/TX panoramic 35 mm mount; usually pairs with `135-panoramic`. |
 | `konica-ar` | Konica AR | Konica Autoreflex/Hexanon AR SLR mount; usually pairs with `135-full-frame`. |
 | `konica-f` | Konica F | Early Konica F SLR mount; usually pairs with `135-full-frame`. |
+| `large-format-lens-board` | Large-format Lens Board | Board/shutter-mounted view-camera lenses; usually pairs with `4x5`, `5x7`, or `8x10`. |
 | `leica-ltm` | Leica LTM / M39 | Leica thread mount / M39 rangefinder mount. |
 | `leica-m` | Leica M | Leica M bayonet rangefinder mount. |
 | `leica-r` | Leica R | Leica R manual-focus SLR mount; usually pairs with `135-full-frame`. |

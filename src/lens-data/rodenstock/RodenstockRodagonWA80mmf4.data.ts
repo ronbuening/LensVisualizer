@@ -44,6 +44,7 @@ const LENS_DATA = {
   focalLengthDesign: 79.949,
   apertureMarketing: 4,
   apertureDesign: 4,
+  lensMounts: ["enlarging-lens"],
   imageFormat: "6x9",
   patentYear: 1978,
   elementCount: 6,

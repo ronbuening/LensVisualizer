@@ -22,6 +22,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-06-26 ──────────────────────────────────────────────────────────
   {
     date: "2026-06-26",
+    type: "feature",
+    summary: "Added large-format and enlarging lens browsing categories",
+  },
+  {
+    date: "2026-06-26",
     type: "lens",
     summary: "Added Canon PowerShot zooms plus Nikon 10.5mm fisheye and 200mm Micro",
   },
