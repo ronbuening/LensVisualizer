@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **382** lenses scanned
-- **4264** non-air surfaces examined
-- **4268** element glass declarations examined
-- **611** non-explicit-unmatched annotations did not resolve
-- **275** distinct unresolved glass-like tokens found
+- **385** lenses scanned
+- **4304** non-air surfaces examined
+- **4308** element glass declarations examined
+- **617** non-explicit-unmatched annotations did not resolve
+- **276** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -20,11 +20,11 @@ or per-lens patent backfills.
 |---|---:|---:|---|
 | 670571 | 10 | 5 | |
 | 493836 | 6 | 2 | |
+| SF5 | 5 | 5 | |
 | 511605 | 4 | 2 | |
 | 863252 | 4 | 2 | |
 | F7 | 4 | 3 | |
 | S-NPH7 | 4 | 4 | |
-| SF5 | 4 | 4 | |
 | 516565 | 3 | 1 | |
 | 585587 | 3 | 1 | |
 | 670575 | 3 | 2 | |
@@ -64,6 +64,7 @@ or per-lens patent backfills.
 | N-K5 | 2 | 1 | |
 | N-LAF2 | 2 | 1 | |
 | N-PSK53A | 2 | 2 | |
+| N-SF5 | 2 | 2 | |
 | N-SSK2 | 2 | 2 | |
 | NBFD10 | 2 | 2 | |
 | NBFD32 | 2 | 2 | |
@@ -261,7 +262,7 @@ or per-lens patent backfills.
 | N-LAK7 | 1 | 1 | |
 | N-LASF43 | 1 | 1 | |
 | N-PK51 | 1 | 1 | |
-| N-SF5 | 1 | 1 | |
+| N-SF2 | 1 | 1 | |
 | NBFD30 | 1 | 1 | |
 | S-BAH32 | 1 | 1 | |
 | S-BAL12 | 1 | 1 | |
@@ -318,6 +319,14 @@ or per-lens patent backfills.
 - [MINOLTA AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) 21: `493836 - Minolta AD/ED fluorophosphate-type (nd=1.49310, vd=83.58; catalog unresolved)`
 - [MINOLTA AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) 27: `493836 - Minolta AD/ED fluorophosphate-type (nd=1.49310, vd=83.58; catalog unresolved)`
 
+### SF5 — 5 occurrences
+
+- [LEICA ELMARIT-M 135mm f/2.8](../../src/lens-data/leica/LeicaElmaritM135mmf28.data.ts) 6: `SF5-class dense flint (Schott; e-line source values)`
+- [RODENSTOCK GRANDAGON-N 65mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN65mmf45.data.ts) 3: `SF5 / N-SF5 class (Schott; patent e-line values)`
+- [RODENSTOCK GRANDAGON-N 75mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN75mmf45.data.ts) 3: `SF5 (Schott legacy dense flint)`
+- [RODENSTOCK GRANDAGON-N 90mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN90mmf45.data.ts) 3: `SF5 (Schott)`
+- [SONY FE 12-24mm f/2.8 GM](../../src/lens-data/sony/SonyFE1224mmf28GM.data.ts) 13: `N-SF5 / SF5 class (dense flint, 678/322)`
+
 ### 511605 — 4 occurrences
 
 - [MINOLTA AF 28mm f/2](../../src/lens-data/minolta/MinoltaAF28mmf2.data.ts) 3: `511605 - crown glass (catalog unresolved)`
@@ -345,13 +354,6 @@ or per-lens patent backfills.
 - [CANON RF 50mm f/1.2 L USM](../../src/lens-data/canon/CanonRF50mmf12L.data.ts) 4: `S-NPH7 (OHARA)`
 - [PANASONIC LUMIX S 20-60mm f/3.5-5.6](../../src/lens-data/panasonic/PanasonicLumixS2060mmf3556.data.ts) 20: `S-NPH7 (OHARA)`
 - [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 31: `S-NPH7 (OHARA)`
-
-### SF5 — 4 occurrences
-
-- [LEICA ELMARIT-M 135mm f/2.8](../../src/lens-data/leica/LeicaElmaritM135mmf28.data.ts) 6: `SF5-class dense flint (Schott; e-line source values)`
-- [RODENSTOCK GRANDAGON-N 65mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN65mmf45.data.ts) 3: `SF5 / N-SF5 class (Schott; patent e-line values)`
-- [RODENSTOCK GRANDAGON-N 75mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN75mmf45.data.ts) 3: `SF5 (Schott legacy dense flint)`
-- [RODENSTOCK GRANDAGON-N 90mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN90mmf45.data.ts) 3: `SF5 (Schott)`
 
 ### 516565 — 3 occurrences
 
@@ -555,6 +557,11 @@ or per-lens patent backfills.
 
 - [MINOLTA AF 35-105mm f/3.5-4.5 New (v2)](../../src/lens-data/minolta/MinoltaAF35105mmf3545v2.data.ts) 12: `N-PSK53A (Schott exact match; production vendor unproven)`
 - [RODENSTOCK APO-SIRONAR-W 150mm f/5.6](../../src/lens-data/rodenstock/RodenstockApoSironarW150mmf56.data.ts) 3: `N-PSK53A class (Schott equivalent; patent-rounded nd/vd)`
+
+### N-SF5 — 2 occurrences
+
+- [RODENSTOCK GRANDAGON-N 65mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN65mmf45.data.ts) 3: `SF5 / N-SF5 class (Schott; patent e-line values)`
+- [SONY FE 12-24mm f/2.8 GM](../../src/lens-data/sony/SonyFE1224mmf28GM.data.ts) 13: `N-SF5 / SF5 class (dense flint, 678/322)`
 
 ### N-SSK2 — 2 occurrences
 
@@ -1357,9 +1364,9 @@ or per-lens patent backfills.
 
 - [SCHNEIDER-KREUZNACH APO-SYMMAR 100mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderAPOSymmar100mmf56.data.ts) 6: `529770 — N-PK51 (Schott phosphate crown; no local Sellmeier)`
 
-### N-SF5 — 1 occurrence
+### N-SF2 — 1 occurrence
 
-- [RODENSTOCK GRANDAGON-N 65mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN65mmf45.data.ts) 3: `SF5 / N-SF5 class (Schott; patent e-line values)`
+- [SONY FE 24mm f/1.4 GM](../../src/lens-data/sony/SonyFE24mmf14GM.data.ts) 19: `N-SF2 (SCHOTT)`
 
 ### NBFD30 — 1 occurrence
 
