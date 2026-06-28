@@ -9,10 +9,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **385** lenses scanned
-- **326** total code-only elements found
-- **326** elements in this report
-- **117** distinct lens files affected
+- **388** lenses scanned
+- **327** total code-only elements found
+- **327** elements in this report
+- **118** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -90,6 +90,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 533489 | 1 | 1 | patents/US2084309.pdf | No reviewed-sidecar hit |
 | 534554 | 1 | 1 | patents/US3737214.pdf | All representative rows reviewed |
 | 534556 | 1 | 1 | patents/US20230367186A1.pdf | No reviewed-sidecar hit |
+| 540509 | 1 | 1 | patents/GB_775944_A.pdf | No reviewed-sidecar hit |
 | 541468 | 1 | 1 | patents/US4124276.pdf | All representative rows reviewed |
 | 545486 | 1 | 1 | patents/CN116520542A.pdf | All representative rows reviewed |
 | 553381 | 1 | 1 | patents/US7508592.pdf | All representative rows reviewed |
@@ -239,6 +240,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 995293 | 1 | 1 | patents/JPWO2017138250A1.pdf | No reviewed-sidecar hit |
 
 ## Elements by Lens
+
+### [AGFA COLOR-MAGNOLAR II 100mm f/4.5](../../src/lens-data/agfa/AgfaColorMagnolarII100mmf45.data.ts) - GB 775,944
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+|---|---|---|---|---|---|---|---|
+| L3 (Element 3) | 4 | `Unmatched (540/509 crown-flint-boundary glass; no public catalog match located)` | 1.54041 / 50.90 | No catalog entry | abbe | patents/GB_775944_A.pdf | No reviewed-sidecar hit |
 
 ### [CANON EF-M 32mm f/1.4 STM](../../src/lens-data/canon/CanonEFM32mmf14STM.data.ts) - JP2018180366A
 

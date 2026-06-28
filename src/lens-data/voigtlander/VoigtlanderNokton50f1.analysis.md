@@ -13,13 +13,13 @@
 
 This document compiles a full technical analysis of the first embodiment disclosed in Japanese patent JP2023063766A, which covers the optical system of the Voigtländer Nokton 50mm f/1.0 lens manufactured by Cosina. The analysis proceeds from the patent's raw tabular data — surface radii, glass indices, aspherical coefficients — through to derived quantities including element powers, chromatic correction, field curvature, and aspherical surface departures. A final section addresses the question of glass provenance: which elements use standard catalogue glasses, which likely use selected melts, and under what circumstances a genuine custom glass formulation might have been required.
 
-All numerical values are drawn directly from Table 1 and Table 2 of the patent's first embodiment unless otherwise stated. Every derived quantity has been computed from first principles and verified independently in Python.
+All numerical values are drawn directly from Table 1 and Table 2 of the patent's first embodiment unless otherwise stated. Every derived quantity has been computed from first principles and verified independently in Python. A paraxial trace of the full Table 1 prescription gives f = 49.9977 mm and BFL = 18.7323 mm, which matches the patent's 18.74 mm image-side air gap within rounding. Cosina's Z-mount product specification gives a 47.9° angle of view for the production lens; that value is retained as the declared full-field coverage rather than used to rescale the patent prescription.
 
 ---
 
 ## 1. Context and Design Objectives
 
-A 50mm f/1.0 lens presents a specific set of constraints that differ from moderately fast lenses (f/1.4 or f/1.8) in kind, not just in degree. At f/1.0, the entrance pupil diameter equals the focal length: for a 50mm system, the entrance pupil is 50mm across. This immediately sets the scale of the optical problem. Spherical aberration from a single refracting surface scales as the fourth power of the marginal ray height — doubling the aperture from f/2.0 to f/1.0 multiplies the raw spherical aberration by a factor of sixteen. Every other aperture-dependent aberration (coma, zonal residuals, higher-order astigmatism) scales similarly aggressively.
+A 50mm f/1.0 lens presents a specific set of constraints that differ from moderately fast lenses (f/1.4 or f/1.8) in kind, not just in degree. At f/1.0, the entrance pupil diameter equals the focal length: for this embodiment, the traced f = 49.9977 mm requires an entrance pupil diameter of about 49.9977 mm. This immediately sets the scale of the optical problem. Spherical aberration from a single refracting surface scales as the fourth power of the marginal ray height — doubling the aperture from f/2.0 to f/1.0 multiplies the raw spherical aberration by a factor of sixteen. Every other aperture-dependent aberration (coma, zonal residuals, higher-order astigmatism) scales similarly aggressively.
 
 The historical response to this challenge — the Double-Gauss layout that underpins nearly every fast lens from the 1930s through the present day — uses symmetric or near-symmetric placement of strongly curved negative meniscus elements around the aperture stop to cancel odd-order aberrations (coma, distortion, lateral colour) by symmetry. The Double-Gauss works, but it carries a structural price: the physical length of the system relative to focal length is constrained by the geometry of the symmetric arrangement.
 
@@ -27,8 +27,8 @@ JP2023063766A explicitly departs from this heritage. Paragraph 0005 of the paten
 
 The patent claims an **asymmetric G1 → Stop → G2 layout** rather than a near-symmetric Gauss-type arrangement. In terms of power distribution — a front group that concentrates refractive work before the stop, and a rear group that functions primarily as a corrector — the design is consistent with telephoto decomposition, though the patent does not use that characterisation. The two explicit numerical constraints in the patent claims define what the designer is trying to achieve:
 
-- **TT/f < 1.72** (total track to focal length ratio): a compactness requirement. At the limiting value, a 50mm system would be 86mm long; the actual embodiment achieves 83.76mm, a ratio of 1.6752.
-- **−0.33 < f/f_le < 0.53** (system focal length to last-element focal length): a constraint on the refractive contribution of L7, the rear aspherical element. The actual value is −0.3235, near the lower boundary of the allowed range.
+- **TT/f < 1.72** (total track to focal length ratio): a compactness requirement. At the limiting value, a 50mm system would be 86mm long; the actual embodiment achieves 83.76mm, a ratio of 1.6753 using the traced f = 49.9977 mm.
+- **−0.33 < f/f_le < 0.53** (system focal length to last-element focal length): a constraint on the refractive contribution of L7, the rear aspherical element. The actual value is −0.3234, near the lower boundary of the allowed range.
 
 Together these constraints describe a lens that is compact (not just fast), where the rear aspherical element carries a specific — and relatively modest — share of the total system power.
 
@@ -36,7 +36,7 @@ Together these constraints describe a lens that is compact (not just fast), wher
 
 ## 2. Optical Architecture
 
-The system comprises nine elements in six groups (counting cemented doublets as single groups), arranged as follows.
+The system comprises nine elements in seven air-spaced groups, matching Cosina's production specification. The groups are arranged as follows.
 
 **G1** occupies surfaces 1 through 6, before the stop. It contains three single elements, all with their convex faces toward the object:
 
@@ -231,7 +231,7 @@ TT = 4.89 + 1.07 + 8.01 + 0.87 + 1.65 + 12.05 + 3.24
    + 2.78 + 18.74
    = 83.76 mm
 
-TT/f = 83.76 / 50.0 = 1.6752
+TT/f = 83.76 / 49.9977 = 1.6753
 ```
 
 The patent requires TT/f < 1.72. The first embodiment satisfies this with a margin of about 2.6%. A TT/f of 1.68 for a 50mm f/1.0 lens is genuinely compact — comparable Double-Gauss designs typically run to TT/f > 1.9 at this aperture.
@@ -241,10 +241,10 @@ The patent requires TT/f < 1.72. The first embodiment satisfies this with a marg
 The patent defines f_le as the focal length of the last element (L7). From the thin-lens calculation above, L7 has f = −154.58 mm, giving:
 
 ```
-f/f_le = 50.0 / (−154.58) = −0.3235
+f/f_le = 49.9977 / (−154.58) = −0.3234
 ```
 
-The patent requires −0.33 < f/f_le < 0.53. The actual value of −0.3235 sits just inside the lower boundary. This constraint prevents the rear element from carrying too much negative power (which would introduce excessive curvature and manufacturing difficulty) while also preventing it from being a positive element (which would change the fundamental character of the rear group).
+The patent requires −0.33 < f/f_le < 0.53. The actual value of −0.3234 sits just inside the lower boundary. This constraint prevents the rear element from carrying too much negative power (which would introduce excessive curvature and manufacturing difficulty) while also preventing it from being a positive element (which would change the fundamental character of the rear group).
 
 ---
 
@@ -436,12 +436,12 @@ JP2023063766A cites a single prior art patent: JP5151635 B2, granted to Nikon Co
 
 JP5151635 covers a fast photographic lens intended for compact-camera sensors. All four numerical embodiments share the same nine-element, seven-group topology: positive meniscus G1 → positive meniscus G2 → positive meniscus G3 → negative meniscus G4 → aperture stop → cemented doublet G56 (biconcave/biconvex) → positive singlet G7 → cemented doublet G89 (biconvex/biconcave) → filter group.
 
-The Nikon prior art and the Nokton Example 1 share a recognisable broad family resemblance as fast, asymmetric standard-lens layouts, but they are not structurally identical. Nikon's embodiment is a 7-group/9-element system with four pre-stop elements and an explicit floating two-group focus scheme. The Nokton Example 1 is a 6-group/9-element system with three pre-stop elements and a terminal single aspherical lens after the second rear cemented group. The architectural differences are summarised in the table below.
+The Nikon prior art and the Nokton Example 1 share a recognisable broad family resemblance as fast, asymmetric standard-lens layouts, but they are not structurally identical. Nikon's embodiment is a 7-group/9-element system with four pre-stop elements and an explicit floating two-group focus scheme. The Nokton Example 1 is also a 7-group/9-element system, but it has three pre-stop elements and a terminal single aspherical lens after the second rear cemented group. The architectural differences are summarised in the table below.
 
 | Property | JP5151635 (Nikon) | JP2023063766A Example 1 (Cosina) |
 |---|---|---|
 | Total elements | 9 | 9 |
-| Groups | 7 | 6 |
+| Groups | 7 | 7 |
 | Pre-stop elements | 4 (G1, G2, G3, G4) | 3 (L1, L2, L3) |
 | Post-stop sequence | cemented doublet + singlet + cemented doublet | cemented doublet + singlet + cemented doublet + single aspheric |
 | Terminal element | cemented doublet G89 | single aspherical meniscus L7 |
@@ -466,7 +466,7 @@ This exchange is quantifiable. The prior art achieves (ν1+ν2)/2 = 67.87. The N
 
 ### 12.3 Total Track and Compactness
 
-The JP5151635 first embodiment has TT = 56.13mm at f = 32.00mm, giving TT/f = **1.754**. This exceeds the Nokton's upper constraint of 1.72. The Nokton achieves TT/f = 1.675 — approximately 4.5% below its own ceiling, and approximately 4.5% below the prior art's actual value when both are normalised to focal length.
+The JP5151635 first embodiment has TT = 56.13mm at f = 32.00mm, giving TT/f = **1.754**. This exceeds the Nokton's upper constraint of 1.72. The Nokton achieves TT/f = 1.6753 — approximately 2.6% below its own ceiling, and approximately 4.5% below the prior art's actual value when both are normalised to focal length.
 
 The TT/f < 1.72 limit in the Nokton's patent claims places the claimed design space below the TT/f of Nikon's cited embodiment, which makes exclusion of that geometry a reasonable inference. The stated motive for the specific threshold is not established by the patent text, but the arithmetic consequence is clear: a design satisfying the Nokton's claims must be geometrically more compact than JP5151635's disclosed embodiment, while operating a full stop faster. The high-index front glass is the mechanism that makes this possible: by concentrating more refractive power into shorter radii of curvature in G1, adequate positive power can be delivered in a physically shorter front group.
 
@@ -495,8 +495,8 @@ The Nokton's design accepts the chromatic penalty of extreme-index front glass, 
 | Property | JP5151635 (Nikon, 2012) | JP2023063766A Example 1 (Cosina, 2021) |
 |---|---|---|
 | F-number | 1.24 | 1.0 |
-| Focal length | 32mm (small sensor) | 50mm (full frame) |
-| TT/f | 1.754 | 1.675 |
+| Focal length | 32mm (small sensor) | 49.9977mm (full frame) |
+| TT/f | 1.754 | 1.6753 |
 | G1/G2 glass strategy | νd ≈ 68, nd ≈ 1.593 | νd ≈ 36, nd ≈ 1.903 |
 | Mean Abbe of front group | 67.87 (> 60 required) | ~36 (would fail prior art constraint) |
 | Aspherical surfaces | 0 | 3 (ASP1, ASP16, ASP17) |
@@ -513,11 +513,11 @@ The Nokton 50mm f/1.0 as described in JP2023063766A represents a coherent and te
 
 **1. The extreme front glass selection.** Using two consecutive positive elements above nd = 1.90 in G1 is the defining choice of the design. It allows G1 to be physically small — the strong refraction of these glasses means the required power can be delivered with gentle surface curvatures, which in turn limits aberration generation. The cost is that these glasses are more dispersive (lower νd) than one would want, requiring the chromatic correction to be managed almost entirely in G2.
 
-**2. The asymmetric G1 → Stop → G2 layout.** The patent explicitly states (paragraph 0005) that the near-symmetric stop arrangement of Gauss-type designs fails to adequately correct coma at large apertures. Coma is an odd-order aberration that cancels by symmetry in a Double-Gauss, but only up to the point at which higher-order contributions become significant — which at f/1.0 they very much do. Abandoning symmetry was a deliberate response to this specific failure mode. By front-loading power before the stop and using G2 primarily for correction rather than power delivery, the designer achieves TT/f = 1.675 compactness while simultaneously addressing the coma problem that would defeat a Double-Gauss at this aperture.
+**2. The asymmetric G1 → Stop → G2 layout.** The patent explicitly states (paragraph 0005) that the near-symmetric stop arrangement of Gauss-type designs fails to adequately correct coma at large apertures. Coma is an odd-order aberration that cancels by symmetry in a Double-Gauss, but only up to the point at which higher-order contributions become significant — which at f/1.0 they very much do. Abandoning symmetry was a deliberate response to this specific failure mode. By front-loading power before the stop and using G2 primarily for correction rather than power delivery, the designer achieves TT/f = 1.6753 compactness while simultaneously addressing the coma problem that would defeat a Double-Gauss at this aperture.
 
 **3. The aspherical architecture.** Three aspherical surfaces carry dramatically different functional loads. ASP1 (front of L1) is a manufacturing feat — 739 µm of departure at ~52 mm diameter requires deterministic polishing. It corrects the spherical aberration generated by the strongest surfaces in the system. ASP16 and ASP17 (both surfaces of L7) together carry over a millimetre of combined departure and serve as the final wavefront correctors, cleaning up residuals that could not be addressed by the spherical elements upstream.
 
-**4. The L7 power constraint.** The patent's lower boundary of f/f_le > −0.33 prevents L7 from being a strongly negative element. At the actual value of −0.3235, L7 sits just inside this boundary — suggesting the design is optimised to place L7 as close to the edge of acceptable correction range as possible while satisfying the constraint. This is characteristic of a design that has been pushed to its geometrical limits.
+**4. The L7 power constraint.** The patent's lower boundary of f/f_le > −0.33 prevents L7 from being a strongly negative element. At the actual value of −0.3234, L7 sits just inside this boundary — suggesting the design is optimised to place L7 as close to the edge of acceptable correction range as possible while satisfying the constraint. This is characteristic of a design that has been pushed to its geometrical limits.
 
 **5. The glass strategy across G2.** Using a single glass (almost certainly Ohara S-LAH58 or equivalent) for three elements — L4r, L5, and L6f — is a simplification that reduces the number of glass types to procure, certify, and manage in production. It also makes the Petzval sum contributions from these elements predictable as a block, giving the designer precise control over field curvature by adjusting element powers independently of glass type.
 
@@ -534,8 +534,8 @@ All numerical results in this document were verified by independent Python compu
 | Quantity | Computed Value | Patent Constraint | Status |
 |----------|---------------|-------------------|--------|
 | TT | 83.76 mm | — | — |
-| TT/f | 1.6752 | < 1.72 | ✓ |
-| f/f_le | −0.3235 | −0.33 to +0.53 | ✓ |
+| TT/f | 1.6753 | < 1.72 | ✓ |
+| f/f_le | −0.3234 | −0.33 to +0.53 | ✓ |
 | Σ(φ/νd) | −0.000468 | ≈ 0 | ✓ |
 | Petzval sum | +0.002792 | small positive | ✓ |
 | ASP1 departure at H = 26 mm | −738.93 µm | — | — |
