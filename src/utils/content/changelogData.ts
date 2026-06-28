@@ -25,7 +25,7 @@ export const CHANGELOG: ChangelogEntry[] = [
     type: "lens",
     summary: "Added Agfa Solagon, Color-Telinear, and Color-Magnolar II lenses",
   },
-    // ── 2026-06-27 ──────────────────────────────────────────────────────────
+  // ── 2026-06-27 ──────────────────────────────────────────────────────────
   {
     date: "2026-06-27",
     type: "lens",
