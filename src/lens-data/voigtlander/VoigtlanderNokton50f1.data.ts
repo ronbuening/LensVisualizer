@@ -5,15 +5,21 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║           LENS DATA — NOKTON 50mm f/1.0                            ║
  * ╠══════════════════════════════════════════════════════════════════════╣
  * ║  Data source: JP2023063766A Example 1 (Cosina / Ogino).            ║
- * ║  Focus: unit focusing assumed (entire lens advances as a rigid     ║
- * ║  body).  Patent does not disclose a floating-element mechanism.    ║
+ * ║  Patent paraxial trace gives EFL = 49.9977 mm and BFL = 18.7323   ║
+ * ║  mm, matching the 18.74 mm image-side air gap within table        ║
+ * ║  rounding.  Cosina's Z-mount product page publishes a 47.9° full  ║
+ * ║  field, so projection.fullFieldDeg preserves the production       ║
+ * ║  coverage instead of deriving 46.8° from an ideal 50 mm diagonal. ║
+ * ║  Focus: patent gives the infinity prescription only; the 0.45 m   ║
+ * ║  close-focus state is modeled as a BF-only approximation for the  ║
+ * ║  mirrorless production variants.                                  ║
  * ║                                                                    ║
  * ║  NOTE ON _FOPEN:                                                   ║
  * ║    The Nokton's front group has strong positive power, giving a    ║
- * ║    y_ratio of ~0.645 at the stop.  The entrance pupil is ~1.55×   ║
+ * ║    y_ratio of ~0.6455 at the stop.  The entrance pupil is ~1.55×  ║
  * ║    larger than the physical stop opening.  _FOPEN uses EP-based    ║
  * ║    formula: EFL / (2 × EP_SD) to give the correct f/1.0 readout  ║
- * ║    while keeping the stop SD at its physically correct ~16.14 mm. ║
+ * ║    with EP SD ≈ 24.999 mm and physical stop SD ≈ 16.14 mm.       ║
  * ║                                                                    ║
  * ║  NOTE ON ASPHERICAL RENDERING:                                     ║
  * ║    3 aspherical surfaces (1A, 16A, 17A) with large polynomial     ║
@@ -29,14 +35,18 @@ const LENS_DATA = {
   maker: "Voigtländer",
   name: "VOIGTLÄNDER NOKTON 50mm f/1.0",
   subtitle: "JP2023063766A EXAMPLE 1 — COSINA / OGINO",
-  specs: ["9 ELEMENTS / 7 GROUPS", "f ≈ 50.0 mm", "F/1.0", "2ω ≈ 46.8°", "3 ASPHERICAL SURFACES"],
+  specs: ["9 ELEMENTS / 7 GROUPS", "f = 49.998 mm", "F/1.0", "2ω = 47.9°", "3 ASPHERICAL SURFACES"],
 
   focalLengthMarketing: 50,
-  focalLengthDesign: 50.0,
+  focalLengthDesign: 49.9977,
   apertureMarketing: 1.0,
   apertureDesign: 1.0,
-  lensMounts: ["nikon-z", "sony-fe","leica-m","canon-rf"],
+  lensMounts: ["nikon-z", "sony-fe", "leica-m", "canon-rf"],
   imageFormat: "135-full-frame",
+  projection: {
+    kind: "rectilinear",
+    fullFieldDeg: 47.9,
+  },
   patentYear: 2023,
   elementCount: 9,
   groupCount: 7,
@@ -153,13 +163,13 @@ const LENS_DATA = {
       fl: -154.6,
       glass: "Unmatched (808406 high-index lanthanum glass; patent nd=1.80835, νd=40.55)",
       apd: false,
-      role: "Rear aspherical corrector — ASP16 + ASP17 carry ~1 mm combined departure; f/f_le = −0.3235",
+      role: "Rear aspherical corrector — ASP16 + ASP17 carry ~1 mm combined departure; f/f_le = −0.3234",
     },
   ],
 
   /* ── Surface prescription — JP2023063766A Table 1, Example 1 ──
    *  Semi-diameters derived from paraxial marginal-ray trace at f/1.0
-   *  (EP SD = 25 mm).  Front-group SDs (L2, L3) refined against the
+   *  (EP SD ≈ 24.999 mm).  Front-group SDs (L2, L3) refined against the
    *  manufacturer's published cross-section diagram to better reflect
    *  the visual element proportions: L2 reduced to 24.0/20.0 mm and
    *  L3 front reduced to 19.0 mm.
@@ -167,7 +177,7 @@ const LENS_DATA = {
    *  Rear-group SDs sized to match patent Figure 1 proportions.
    *
    *  STOP SD is the physically correct value (~16.14 mm) so that the
-   *  computed entrance pupil is 25 mm SD = 50 mm diameter = f/1.0.
+   *  computed entrance pupil is ~24.999 mm SD = ~49.998 mm diameter = f/1.0.
    */
   surfaces: [
     { label: "1A", R: 40.765, d: 4.89, nd: 1.90525, elemId: 1, sd: 27.0 },
@@ -227,7 +237,9 @@ const LENS_DATA = {
 
   /* ── Variable air spacings ──
    *  Keyed by surface label.  [thickness_infinity, thickness_close_focus]
-   *  Unit focus: BFD increases by f²/(d_close − f) = 3.85 mm.
+   *  BF-only close-focus approximation: BFD increases by 3.85 mm. Cosina
+   *  advertises a floating mechanism for the mirrorless variants, but this
+   *  patent does not provide close-focus internal-spacing tables.
    */
   var: {
     "17A": [18.74, 22.59],
@@ -249,11 +261,12 @@ const LENS_DATA = {
   /* ── Focus configuration ── */
   closeFocusM: 0.45,
   focusDescription:
-    "Unit focus assumed — entire lens advances as one piece. Patent does not disclose a floating-element mechanism for this embodiment.",
+    "Mirrorless production variants focus to 0.45 m and advertise a floating mechanism; JP2023063766A discloses only the infinity prescription, so close focus is approximated with the image-side air gap.",
 
   /* ── Aperture configuration ── */
   nominalFno: 1.0,
-  fstopSeries: [1, 1.2, 1.4, 1.8, 2, 2.5, 2.8, 3.5, 4, 4.5, 5.6, 6.3, 8, 11, 16, 22, 32],
+  apertureBlades: 12,
+  fstopSeries: [1, 1.2, 1.4, 1.8, 2, 2.5, 2.8, 3.5, 4, 4.5, 5.6, 6.3, 8, 11, 16],
 
   /* ── Layout tuning (overrides defaults) ── */
   scFill: 0.5,

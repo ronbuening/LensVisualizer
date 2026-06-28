@@ -25,8 +25,9 @@ export const CHANGELOG: ChangelogEntry[] = [
     type: "lens",
     summary: "Added Agfa Solagon, Color-Telinear, and Color-Magnolar II lenses",
   },
+    // ── 2026-06-27 ──────────────────────────────────────────────────────────
   {
-    date: "2026-06-28",
+    date: "2026-06-27",
     type: "lens",
     summary: "Added Sony FE 12-24mm f/2.8 GM and two FE 24mm primes",
   },
