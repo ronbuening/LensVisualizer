@@ -20,21 +20,12 @@
  */
 
 import { ALIASES } from "./glassCatalogAliases.js";
-import { RAW_CATALOG, type GlassEntry } from "./glassCatalogData.js";
+import { DUPLICATE_CODE6_PRECEDENCE, RAW_CATALOG } from "./glassCatalogData.js";
+import type { GlassEntry } from "./glassCatalogTypes.js";
+import { LINE_NM } from "./spectralLines.js";
 
-export type { GlassEntry } from "./glassCatalogData.js";
-
-/** Standard spectral lines (nm) used by the chromatic engine. */
-export const LINE_NM = {
-  /** Hydrogen C line. */
-  C: 656.2725,
-  /** Helium d line — reference for nd, vd. */
-  d: 587.5618,
-  /** Hydrogen F line. */
-  F: 486.1327,
-  /** Mercury g line — secondary-spectrum probe. */
-  g: 435.8343,
-} as const;
+export type { GlassEntry } from "./glassCatalogTypes.js";
+export { LINE_NM } from "./spectralLines.js";
 
 /**
  * Evaluate the Sellmeier formula at wavelength λ (nm) for a catalog entry.
@@ -92,12 +83,16 @@ const CATALOG: ReadonlyMap<string, GlassEntry> = new Map(RAW_CATALOG.map((entry)
 
 /** Map of 6-digit Schott codes to canonical names. */
 const CODE6_INDEX: ReadonlyMap<string, string> = (() => {
-  const map = new Map<string, string>();
+  const map = new Map<string, string>(DUPLICATE_CODE6_PRECEDENCE);
   for (const entry of RAW_CATALOG) {
     if (entry.code6 && !map.has(entry.code6)) map.set(entry.code6, entry.name);
   }
   return map;
 })();
+
+function escapeRegExp(value: string): string {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
 
 /**
  * Resolve a real-world `glass` string from a lens-data file to a catalog entry.
@@ -126,6 +121,13 @@ export function resolveGlass(glassString: string | undefined): GlassEntry | null
   const tokens: string[] = [...(glassString.match(/[A-Za-z][A-Za-z0-9-]*\d[A-Za-z0-9]*|\d{6}/g) ?? [])];
   for (const match of glassString.matchAll(/(^|[^\d])(\d{3})\s*[/-]\s*(\d{3})(?!\d)/g)) {
     tokens.push(`${match[2]}${match[3]}`);
+  }
+  const upperGlassString = glassString.toUpperCase();
+  for (const alias of ALIASES.keys()) {
+    if (tokens.some((token) => token.toUpperCase() === alias)) continue;
+    if (new RegExp(`(^|[^A-Z0-9-])${escapeRegExp(alias)}(?=$|[^A-Z0-9-])`).test(upperGlassString)) {
+      tokens.push(alias);
+    }
   }
   for (const tokRaw of tokens) {
     const tok = tokRaw.toUpperCase();

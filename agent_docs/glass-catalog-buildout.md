@@ -470,7 +470,10 @@ The 1e-4 round-trip test will catch any transcription error — never relax the 
    $$n^2(\lambda) = 1 + \frac{B_1 \lambda^2}{\lambda^2 - C_1} + \frac{B_2 \lambda^2}{\lambda^2 - C_2} + \frac{B_3 \lambda^2}{\lambda^2 - C_3}$$
    with λ in **micrometres** and C in **micrometres²**, or Zemax formula 3 polynomial as described above. Reject any other formula until you have explicitly converted it.
 
-2. **Transcribe** the coefficients verbatim into a new entry in `RAW_CATALOG` in [src/optics/glassCatalogData.ts](../src/optics/glassCatalogData.ts). Keep all digits the source publishes — typically 8–10 significant figures.
+2. **Transcribe** the coefficients verbatim into the appropriate vendor shard under `src/optics/glassCatalogEntries/`
+   (`ohara.ts`, `schott.ts`, `hoya.ts`, etc.). Keep all digits the source publishes — typically 8–10 significant
+   figures. Then add the glass name to the source-order list in [src/optics/glassCatalogData.ts](../src/optics/glassCatalogData.ts)
+   at the intended catalog position so `RAW_CATALOG` remains the stable aggregate.
 
 3. **Fill in `nd` and `vd`** from the same vendor's published table (not from the lens data file). Provide `PgF` if listed and `code6` if it's a Schott-style 6-digit code.
 
@@ -482,7 +485,9 @@ The 1e-4 round-trip test will catch any transcription error — never relax the 
    ```
    The first test (`every entry's Sellmeier coefficients reproduce the listed nd within 1e-4`) fails immediately on a bad transcription, naming the offending glass and the diff. Tighten the value or fix the source — never relax the tolerance.
 
-6. **If the glass has a common informal alias** (`BSC7` for `S-BSL7`, `BK7` for `N-BK7`) add it to the `ALIASES` map.
+6. **If the glass has a common informal alias** (`BSC7` for `S-BSL7`, `BK7` for `N-BK7`) add a structured entry to
+   `ALIAS_RECORDS` in [src/optics/glassCatalogAliases.ts](../src/optics/glassCatalogAliases.ts), including the alias
+   `kind` and a short note explaining why the alias is safe. `ALIASES` is derived from those records.
 
 7. **If you've added enough entries** that the LCA readout for the target lens has visibly changed, regenerate the glass
    reports and add a changelog entry per [agent_docs/changelog.md](changelog.md).

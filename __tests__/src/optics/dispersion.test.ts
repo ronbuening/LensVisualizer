@@ -7,6 +7,8 @@ import {
   LINE_NM,
   resolveGlass,
 } from "../../../src/optics/glassCatalog.js";
+import { ALIAS_RECORDS } from "../../../src/optics/glassCatalogAliases.js";
+import { DUPLICATE_CODE6_PRECEDENCE } from "../../../src/optics/glassCatalogData.js";
 import { makeSurfaceDispersion, summarizeDispersionQuality } from "../../../src/optics/dispersion.js";
 import buildLens from "../../../src/optics/buildLens.js";
 import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
@@ -50,6 +52,43 @@ describe("glass catalog", () => {
     expect(allEntries().some((e) => e.name === "N-BK7")).toBe(true);
     expect(allEntries().some((e) => e.name === "S-BSL7")).toBe(true);
     expect(allEntries().some((e) => e.name === "CaF2")).toBe(true);
+  });
+
+  it("alias records point at real catalog entries", () => {
+    const names = new Set(allEntries().map((entry) => entry.name.toUpperCase()));
+    for (const alias of ALIAS_RECORDS) {
+      expect(names.has(alias.target.toUpperCase()), `${alias.alias} target ${alias.target}`).toBe(true);
+    }
+  });
+
+  it("alias keys are unique after resolver normalization", () => {
+    const keys = ALIAS_RECORDS.map((alias) => alias.alias.toUpperCase());
+    expect(new Set(keys).size).toBe(keys.length);
+  });
+
+  it("alias records resolve to their declared targets", () => {
+    for (const alias of ALIAS_RECORDS) {
+      expect(resolveGlass(alias.alias)?.name, alias.alias).toBe(alias.target);
+    }
+  });
+
+  it("explicit duplicate code6 precedence matches current resolver behavior", () => {
+    const namesByCode = new Map<string, string[]>();
+    for (const entry of allEntries()) {
+      if (!entry.code6) continue;
+      namesByCode.set(entry.code6, [...(namesByCode.get(entry.code6) ?? []), entry.name]);
+    }
+
+    const duplicateCodes = [...namesByCode.entries()]
+      .filter(([, names]) => names.length > 1)
+      .map(([code]) => code)
+      .sort();
+
+    expect([...DUPLICATE_CODE6_PRECEDENCE.keys()].sort()).toEqual(duplicateCodes);
+    for (const [code, expectedName] of DUPLICATE_CODE6_PRECEDENCE) {
+      expect(namesByCode.get(code)?.[0], code).toBe(expectedName);
+      expect(resolveGlass(code)?.name, code).toBe(expectedName);
+    }
   });
 
   it("evaluates vendor polynomial catalog entries", () => {

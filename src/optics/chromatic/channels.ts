@@ -1,5 +1,5 @@
 import type { ChromaticChannel } from "../../types/optics.js";
-import { LINE_NM } from "../glassCatalog.js";
+import { LINE_NM } from "../spectralLines.js";
 
 export interface ChromaticChannelMetadata {
   id: ChromaticChannel;
