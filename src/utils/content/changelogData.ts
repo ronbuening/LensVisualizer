@@ -19,6 +19,12 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-06-29 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-06-29",
+    type: "lens",
+    summary: "Added Enna München Lithagon wide-angle lenses",
+  },
   // ── 2026-06-28 ──────────────────────────────────────────────────────────
   {
     date: "2026-06-28",

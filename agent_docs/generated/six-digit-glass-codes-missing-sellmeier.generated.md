@@ -9,10 +9,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **388** lenses scanned
-- **327** total code-only elements found
-- **245** elements in this report
-- **97** distinct lens files affected
+- **391** lenses scanned
+- **331** total code-only elements found
+- **249** elements in this report
+- **100** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -43,6 +43,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 585594 | 2 | 1 | patents/JP2023039817A.pdf | All representative rows reviewed |
 | 586609 | 2 | 1 | patents/US7301711.pdf | No reviewed-sidecar hit |
 | 620586 | 2 | 1 | patents/US4303314.pdf | All representative rows reviewed |
+| 625356 | 2 | 1 | patents/US2959100.pdf | No reviewed-sidecar hit |
 | 666356 | 2 | 1 | patents/US20190265441A1.pdf | All representative rows reviewed |
 | 720521 | 2 | 2 | patents/US4124276.pdf | No reviewed-sidecar hit |
 | 744494 | 2 | 2 | patents/US3507558.pdf<br>patents/US3743384.pdf | All representative rows reviewed |
@@ -66,6 +67,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 514530 | 1 | 1 | patents/JP2016021011A.pdf | All representative rows reviewed |
 | 516641 | 1 | 1 | patents/US20030072086A1.pdf | No reviewed-sidecar hit |
 | 518523 | 1 | 1 | patents/US4871239.pdf | All representative rows reviewed |
+| 518652 | 1 | 1 | patents/US2821112.pdf | No reviewed-sidecar hit |
+| 519573 | 1 | 1 | patents/20260118637.pdf | No reviewed-sidecar hit |
 | 525558 | 1 | 1 | patents/US8994842.pdf | No reviewed-sidecar hit |
 | 525596 | 1 | 1 | patents/US3632190.pdf | No reviewed-sidecar hit |
 | 531557 | 1 | 1 | patents/US8994842.pdf | No reviewed-sidecar hit |
@@ -262,6 +265,25 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
 |---|---|---|---|---|---|---|---|
 | L3 (Element 3) | 5 | `574425 — light flint (no exact public catalog match)` | 1.57380 / 42.50 | No catalog entry | abbe | patents/FR_1066698_A.pdf | Reviewed sidecar hit |
+
+### [ENNA MÜNCHEN LITHAGON 24mm f/4](../../src/lens-data/enna-munchen/EnnaMunchenLithagon24mmf4.data.ts) - DE 1
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+|---|---|---|---|---|---|---|---|
+| L4 (Element 4) | 7 | `K4-class crown (legacy 519/573)` | 1.51895 / 57.30 | No catalog entry | abbe | patents/20260118637.pdf | No reviewed-sidecar hit |
+
+### [ENNA MÜNCHEN LITHAGON 35mm f/3.5](../../src/lens-data/enna-munchen/EnnaMunchenLithagon35mmf35.data.ts) - US 2,821,112
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+|---|---|---|---|---|---|---|---|
+| L1 (Element 1) | 1 | `Unmatched (518/652 crown class)` | 1.51821 / 65.20 | No catalog entry | abbe | patents/US2821112.pdf | No reviewed-sidecar hit |
+
+### [ENNA MÜNCHEN ULTRA-LITHAGON 28mm f/3.5](../../src/lens-data/enna-munchen/EnnaMunchenUltraLithagon28mmf35.data.ts) - US 2,959,100
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+|---|---|---|---|---|---|---|---|
+| L2 (Element 2) | 3 | `Unmatched legacy flint (625/356; exact catalog type unresolved)` | 1.62536 / 35.60 | No catalog entry | abbe | patents/US2959100.pdf | No reviewed-sidecar hit |
+| L4 (Element 4) | 7 | `Unmatched legacy flint (625/356; exact catalog type unresolved)` | 1.62536 / 35.60 | No catalog entry | abbe | patents/US2959100.pdf | No reviewed-sidecar hit |
 
 ### [FUJIFILM FUJINON GF 30mm f/5.6 T/S](../../src/lens-data/fujifilm/FujifilmGF30mmf56TS.data.ts) - WO 2024/195273 A1
 
