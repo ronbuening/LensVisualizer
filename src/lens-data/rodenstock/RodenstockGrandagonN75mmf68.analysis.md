@@ -35,7 +35,7 @@ The Petzval sum, computed surface by surface as $\sum \phi/(n n')$, is $+8.165 \
 
 ### L1 — Negative Meniscus, Convex to Object
 
-$n_e = 1.5246$, $\nu_e = 59.22$. Glass: K5 / N-K5 class, Schott match. Standalone $f = -44.17$ mm after scaling.
+$n_e = 1.5246$, $\nu_e = 59.22$. Glass: unmatched K5 / N-K5-class crown; the data file preserves the patent e-line value rather than resolving to a d-line catalog row. Standalone $f = -44.17$ mm after scaling.
 
 L1 uses modest-index crown glass and has radii $r_1 = +102.18$ and $r_2 = +23.46$ in the normalized patent table. The stronger rear curvature makes it a negative meniscus. Its function is to accept the steep field bundle, bend it toward the central doublets, and supply negative Petzval curvature at the front of the lens.
 
@@ -45,13 +45,13 @@ The same glass appears again in L6. That reuse is consistent with the quasi-symm
 
 #### L2 — Negative Meniscus
 
-$n_e = 1.7343$, $\nu_e = 28.47$. Glass: SF10 class, Schott legacy dense flint. Standalone $f = -50.48$ mm after scaling.
+$n_e = 1.7343$, $\nu_e = 28.47$. Glass: unmatched legacy dense flint, with SF10-class context retained only as a comparison. Standalone $f = -50.48$ mm after scaling.
 
 L2 is the high-index, high-dispersion member of the front cemented group. Its negative meniscus form provides chromatic leverage without allowing the cemented group to become too strongly positive.
 
 #### L3 — Positive Meniscus
 
-$n_e = 1.6269$, $\nu_e = 46.71$. Glass: BaF8 / J-BAF8 class. Standalone $f = +17.50$ mm after scaling.
+$n_e = 1.6269$, $\nu_e = 46.71$. Glass: unmatched BaF8 / J-BAF8-class glass; the data file preserves the patent e-line value rather than resolving to a d-line catalog row. Standalone $f = +17.50$ mm after scaling.
 
 L3 is the positive partner of the front doublet. The cemented pair has a verified net focal length of $+43.90$ mm after scaling. The patent also places the first internal stray-light baffle, $b_1$, inside this element at $db_1 = 4.46$ normalized units behind the cemented radius $r_4$, with $b_1 = 15.66$ full diameter in the normalized prescription.
 
@@ -61,19 +61,19 @@ The doublet is not a simple crown-flint pair in the modern catalog sense; both g
 
 #### L4 — Biconvex Positive
 
-$n_e = 1.6541$, $\nu_e = 38.86$. Glass: BaSF4 class, Schott/Sumita equivalent. Standalone $f = +15.24$ mm after scaling.
+$n_e = 1.6541$, $\nu_e = 38.86$. Glass: unmatched BaSF4-class glass; the data file preserves the patent e-line value rather than resolving to a d-line catalog row. Standalone $f = +15.24$ mm after scaling.
 
 L4 is the strongest individual positive element in the system. Its very weak front radius and strongly curved cemented rear radius form a biconvex element that supplies most of the rear doublet's positive power. The patent places the second internal stray-light baffle, $b_2$, inside this element at $db_2 = 4.23$ normalized units behind $r_6$, with $b_2 = 14.94$ full diameter.
 
 #### L5 — Negative Meniscus
 
-$n_e = 1.7273$, $\nu_e = 29.02$. Glass: SF18 / S-TIH18 class dense flint. Standalone $f = -35.03$ mm after scaling.
+$n_e = 1.7273$, $\nu_e = 29.02$. Glass: unmatched legacy dense flint, with SF18 / S-TIH18 context retained only as a comparison. Standalone $f = -35.03$ mm after scaling.
 
 L5 partially cancels L4's strong positive power and provides the high-dispersion partner needed for the rear doublet's chromatic correction. The verified rear doublet net focal length is $+36.11$ mm after scaling, making it slightly stronger than the front doublet.
 
 ### L6 — Negative Meniscus, Concave to Object
 
-$n_e = 1.5246$, $\nu_e = 59.22$. Glass: K5 / N-K5 class, Schott match. Standalone $f = -46.66$ mm after scaling.
+$n_e = 1.5246$, $\nu_e = 59.22$. Glass: unmatched K5 / N-K5-class crown; the data file preserves the patent e-line value rather than resolving to a d-line catalog row. Standalone $f = -46.66$ mm after scaling.
 
 L6 mirrors the front meniscus in glass choice and function but is not a numerically symmetric copy. Its radii, $r_9 = -27.48$ and $r_{10} = -179.75$, form a negative rear meniscus that helps control field curvature, distortion, and chief-ray geometry before the final image plane.
 
@@ -83,11 +83,11 @@ The patent gives $n_e$ and $\nu_e$, so direct comparison to current catalog $n_d
 
 | Element | Patent $n_e$ / $\nu_e$ | Catalog identification | Catalog $n_d$ / $\nu_d$ | Assessment |
 |---|---:|---|---:|---|
-| L1, L6 | 1.5246 / 59.22 | K5 / N-K5, Schott | 1.52249 / 59.48 | Exact e-line match to Schott N-K5 within rounding. |
-| L2 | 1.7343 / 28.47 | SF10, Schott legacy | 1.72825 / 28.41 | Index match at $n_e$; $\nu_e$ differs from the current Schott SF10 data, so this is treated as legacy/melt-equivalent. |
-| L3 | 1.6269 / 46.71 | BaF8 / J-BAF8 class | 1.62374 / 47.01 | Strong match to Hikari J-BAF8 / BaF8-class glass. |
-| L4 | 1.6541 / 38.86 | BaSF4 class | about 1.6513 / 38.3 | BaSF4-class match; current public catalogs do not make a melt-identical Schott BaSF4 assertion safe. |
-| L5 | 1.7273 / 29.02 | SF18 / S-TIH18 class | 1.72151 / 29.23 | Strong match to the SF18/S-TIH18 dense-flint position. |
+| L1, L6 | 1.5246 / 59.22 | Unmatched K5 / N-K5-class crown comparison | 1.52249 / 59.48 | E-line match to Schott N-K5 within rounding; kept off the d-line catalog resolver. |
+| L2 | 1.7343 / 28.47 | Unmatched legacy dense flint; SF10-class comparison only | 1.72825 / 28.41 | Kept off the d-line catalog resolver because the stored prescription is $n_e/\nu_e$ and the current SF10 d-line row does not round-trip. |
+| L3 | 1.6269 / 46.71 | Unmatched BaF8 / J-BAF8-class comparison | 1.62374 / 47.01 | Strong e-line class match; kept off the d-line catalog resolver. |
+| L4 | 1.6541 / 38.86 | Unmatched BaSF4-class comparison | about 1.6513 / 38.3 | BaSF4-class match; current public catalogs do not make a melt-identical d-line catalog assertion safe. |
+| L5 | 1.7273 / 29.02 | Unmatched legacy dense flint; SF18 / S-TIH18 comparison only | 1.72151 / 29.23 | Kept off the d-line catalog resolver because the stored prescription is $n_e/\nu_e$ and the current S-TIH18 d-line row does not round-trip. |
 
 The glass palette is economical. No ED, fluorite, lanthanum crown, or anomalous partial-dispersion glass is required. The front doublet has the larger dispersion separation; the rear doublet has a smaller separation but greater positive power.
 

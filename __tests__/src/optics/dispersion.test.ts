@@ -111,6 +111,26 @@ describe("glass catalog", () => {
     expect(resolveGlass("BSC3 (Hoya) / historical crown equivalent")?.name).toBe("E-C3");
   });
 
+  it("evaluates the phase 24 Schott named-token additions", () => {
+    const expected: Array<[glass: string, nd: number]> = [
+      ["SF5", 1.6727],
+      ["N-SF5", 1.67271],
+      ["N-LASF44", 1.8042],
+      ["N-LAK9", 1.691],
+      ["N-PSK53A", 1.618],
+      ["N-LAF2", 1.74397],
+      ["N-BAK4", 1.56883],
+      ["N-LAK7", 1.6516],
+      ["N-BAF4", 1.60568],
+      ["N-SSK2", 1.62229],
+    ];
+    for (const [glass, nd] of expected) {
+      const entry = resolveGlass(glass);
+      expect(entry?.name).toBe(glass);
+      expect(evaluateSellmeier(entry!, LINE_NM.d)).toBeCloseTo(nd, 5);
+    }
+  });
+
   it("evaluates explicit power-series catalog entries", () => {
     const hikariPskh1 = resolveGlass("593679 - fluorophosphate crown");
     expect(hikariPskh1?.name).toBe("J-PSKH1");

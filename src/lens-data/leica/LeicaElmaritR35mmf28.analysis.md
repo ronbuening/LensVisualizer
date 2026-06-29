@@ -94,7 +94,7 @@ At R11, the index step is $1.6940 - 1.6734 = +0.0206$ and the radius is positive
 
 ### L7 — Biconvex Positive, rear element of D2
 
-$n_e = 1.6940$, $\nu_e = 54.6$. Glass: LAK9 / N-LAK9 class, Schott legacy equivalent. $f = +12.08\ \mathrm{mm}$.
+$n_e = 1.6940$, $\nu_e = 54.6$. Glass: unmatched LAK9-class lanthanum crown; the data file keeps the patent e-line value off the d-line catalog resolver. $f = +12.08\ \mathrm{mm}$.
 
 L7 is the final and strongest standalone positive element. It uses the cemented $R_{11} = +12.530\ \mathrm{mm}$ front surface and the strongly curved $R_{12} = -20.125\ \mathrm{mm}$ rear surface. The element’s high index permits large positive power while keeping the rear air surface within practical curvature.
 
@@ -112,7 +112,7 @@ The patent tabulates $n_e$ and $\nu_e$, not $n_d$ and $\nu_d$. These values are 
 | L4 | 1.6241 | 60.1 | SK16 / N-SK16 class | Good class match |
 | L5 | 1.7046 | 34.6 | Unmatched dense flint | Low; no confident public match |
 | L6 | 1.6734 | 46.9 | BaF13-class barium flint | Moderate inferred class |
-| L7 | 1.6940 | 54.6 | LAK9 / N-LAK9 class | Good class match |
+| L7 | 1.6940 | 54.6 | Unmatched LAK9-class e-line row | Good class match, not a d-line catalog row |
 
 The practical chromatic strategy is distributed. The front doublet D1 does not behave like a simple high-Abbe crown plus low-Abbe flint achromat; its two glasses are relatively close in both index and dispersion because the patent’s cemented-surface condition limits the index step. The same is true, more weakly, for D2. L5 supplies the strongest dense-flint counterweight in the triplet-like rear system.
 

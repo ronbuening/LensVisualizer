@@ -61,7 +61,7 @@ const LENS_DATA = {
       nd: 1.57125,
       vd: 55.8,
       fl: 114.18,
-      glass: "N-BAK4 / BaK4 class (Schott; patent e-line value stored)",
+      glass: "Unmatched (barium crown; patent e-line value stored)",
       apd: false,
       role: "Front crown collector in the object-side positive cemented meniscus.",
       cemented: "D1",

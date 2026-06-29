@@ -35,7 +35,7 @@ export interface GlassEntry {
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
- * GLASS CATALOG — 292 vendor-verified entries (current source count, June 2026)
+ * GLASS CATALOG — 302 vendor-verified entries (current source count, June 2026)
  *
  * Coefficients are taken from authoritative public vendor catalogs. Each
  * entry's `source` field cites the document or database used. To verify a
@@ -3543,5 +3543,122 @@ export const RAW_CATALOG: readonly GlassEntry[] = [
     PgF: 0.5459,
     code6: "623582",
     source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info; S-BSM15 page.",
+  },
+
+  /* Phase 24 named-token additions (June 2026)
+   * Repeated Schott-name gaps from the coverage queue with source-backed
+   * formula-2 coefficients. E-line patent annotations that cite these families
+   * but preserve n_e values remain explicitly unmatched in lens data so the
+   * d-line Sellmeier catalog is not applied to a different reference line.
+   */
+  {
+    name: "SF5",
+    vendor: "Schott",
+    B: [1.46141885, 0.247713019, 0.949995832],
+    C: [0.0111826126, 0.0508594669, 112.041888],
+    nd: 1.6727,
+    vd: 32.21,
+    PgF: 0.5901,
+    code6: "673322",
+    source: "Schott Zemax catalog 2017-01-20b via refractiveindex.info; SF5 page.",
+  },
+  {
+    name: "N-SF5",
+    vendor: "Schott",
+    B: [1.52481889, 0.187085527, 1.42729015],
+    C: [0.011254756, 0.0588995392, 129.141675],
+    nd: 1.67271,
+    vd: 32.25,
+    PgF: 0.5969,
+    code6: "673323",
+    source: "Schott Zemax catalog 2017-01-20b via refractiveindex.info; N-SF5 page.",
+  },
+  {
+    name: "N-LASF44",
+    vendor: "Schott",
+    B: [1.78897105, 0.38675867, 1.30506243],
+    C: [0.00872506277, 0.0308085023, 92.7743824],
+    nd: 1.8042,
+    vd: 46.5,
+    PgF: 0.5573,
+    code6: "804465",
+    source: "Schott Zemax catalog 2017-01-20b via refractiveindex.info; N-LASF44 page.",
+  },
+  {
+    name: "N-LAK9",
+    vendor: "Schott",
+    B: [1.46231905, 0.344399589, 1.15508372],
+    C: [0.00724270156, 0.0243353131, 85.4686868],
+    nd: 1.691,
+    vd: 54.71,
+    PgF: 0.5368,
+    code6: "691547",
+    source: "Schott Zemax catalog 2017-01-20b via refractiveindex.info; N-LAK9 page.",
+  },
+  {
+    name: "N-PSK53A",
+    vendor: "Schott",
+    B: [1.38121836, 0.196745645, 0.886089205],
+    C: [0.00706416337, 0.0233251345, 97.4847345],
+    nd: 1.618,
+    vd: 63.39,
+    PgF: 0.5366,
+    code6: "618634",
+    source: "Schott Zemax catalog 2017-01-20b via refractiveindex.info; N-PSK53A page.",
+  },
+  {
+    name: "N-LAF2",
+    vendor: "Schott",
+    B: [1.80984227, 0.15729555, 1.0930037],
+    C: [0.0101711622, 0.0442431765, 100.687748],
+    nd: 1.74397,
+    vd: 44.85,
+    PgF: 0.5588,
+    code6: "744449",
+    source: "Schott Zemax catalog 2017-01-20b via refractiveindex.info; N-LAF2 page.",
+  },
+  {
+    name: "N-BAK4",
+    vendor: "Schott",
+    B: [1.28834642, 0.132817724, 0.945395373],
+    C: [0.00779980626, 0.0315631177, 105.965875],
+    nd: 1.56883,
+    vd: 55.98,
+    PgF: 0.5431,
+    code6: "569560",
+    source: "Schott Zemax catalog 2017-01-20b via refractiveindex.info; N-BAK4 page.",
+  },
+  {
+    name: "N-LAK7",
+    vendor: "Schott",
+    B: [1.23679889, 0.445051837, 1.01745888],
+    C: [0.00610105538, 0.0201388334, 90.638038],
+    nd: 1.6516,
+    vd: 58.52,
+    PgF: 0.5417,
+    code6: "652585",
+    source: "Schott Zemax catalog 2017-01-20b via refractiveindex.info; N-LAK7 page.",
+  },
+  {
+    name: "N-BAF4",
+    vendor: "Schott",
+    B: [1.42056328, 0.102721269, 1.14380976],
+    C: [0.00942015382, 0.0531087291, 110.278856],
+    nd: 1.60568,
+    vd: 43.72,
+    PgF: 0.5584,
+    code6: "606437",
+    source: "Schott Zemax catalog 2017-01-20b via refractiveindex.info; N-BAF4 page.",
+  },
+  {
+    name: "N-SSK2",
+    vendor: "Schott",
+    B: [1.4306027, 0.153150554, 1.01390904],
+    C: [0.00823982975, 0.0333736841, 106.870822],
+    nd: 1.62229,
+    vd: 53.27,
+    PgF: 0.5542,
+    code6: "622533",
+    source: "Schott Zemax catalog 2017-01-20b via refractiveindex.info; N-SSK2 page.",
   },
 ];
