@@ -19,6 +19,12 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-06-30 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-06-30",
+    type: "lens",
+    summary: "Added six Kodak and Konica patent-derived lens diagrams",
+  },
   // ── 2026-06-29 ──────────────────────────────────────────────────────────
   {
     date: "2026-06-29",

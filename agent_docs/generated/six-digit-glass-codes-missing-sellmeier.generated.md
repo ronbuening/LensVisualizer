@@ -9,10 +9,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **391** lenses scanned
-- **332** total code-only elements found
-- **250** elements in this report
-- **100** distinct lens files affected
+- **397** lenses scanned
+- **344** total code-only elements found
+- **262** elements in this report
+- **103** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -85,7 +85,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 554381 | 1 | 1 | patents/US7359125.pdf | No reviewed-sidecar hit |
 | 561575 | 1 | 1 | patents/US2721499.pdf | All representative rows reviewed |
 | 571560 | 1 | 1 | patents/WO_2025263124_A1.pdf | No reviewed-sidecar hit |
+| 573575 | 1 | 1 | patents/US2279384.pdf | No reviewed-sidecar hit |
 | 574425 | 1 | 1 | patents/FR_1066698_A.pdf | All representative rows reviewed |
+| 575414 | 1 | 1 | patents/US2279384.pdf | No reviewed-sidecar hit |
 | 576414 | 1 | 1 | patents/US4124276.pdf | All representative rows reviewed |
 | 585417 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | No reviewed-sidecar hit |
 | 593355 | 1 | 1 | patents/JP2022033487A.pdf | No reviewed-sidecar hit |
@@ -94,6 +96,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 596670 | 1 | 1 | patents/WO_2025263124_A1.pdf | No reviewed-sidecar hit |
 | 602352 | 1 | 1 | patents/GB_850117_A.pdf | All representative rows reviewed |
 | 603564 | 1 | 1 | patents/JP2022092388A.pdf | All representative rows reviewed |
+| 605382 | 1 | 1 | patents/US2279384.pdf | No reviewed-sidecar hit |
+| 611572 | 1 | 1 | patents/US2279384.pdf | No reviewed-sidecar hit |
 | 612313 | 1 | 1 | patents/US20210026133A1.pdf | All representative rows reviewed |
 | 613369 | 1 | 1 | patents/US3743384.pdf | All representative rows reviewed |
 | 614563 | 1 | 1 | patents/US3376091.pdf | No reviewed-sidecar hit |
@@ -111,6 +115,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 658397 | 1 | 1 | patents/JP2023039817A.pdf | No reviewed-sidecar hit |
 | 662577 | 1 | 1 | patents/US2896506.pdf | All representative rows reviewed |
 | 667311 | 1 | 1 | patents/US20140247506A1.pdf | All representative rows reviewed |
+| 667322 | 1 | 1 | patents/US2983193.pdf | No reviewed-sidecar hit |
 | 670572 | 1 | 1 | patents/US20020075570A1.pdf | No reviewed-sidecar hit |
 | 670575 | 1 | 1 | patents/US5949588.pdf | All representative rows reviewed |
 | 670576 | 1 | 1 | patents/US4497547.pdf | All representative rows reviewed |
@@ -122,9 +127,11 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 680312 | 1 | 1 | patents/JP2015041012A.pdf | No reviewed-sidecar hit |
 | 682366 | 1 | 1 | Missing from untracked local patents/ references (US4518229, 4518229) | No reviewed-sidecar hit |
 | 682575 | 1 | 1 | patents/US7542219.pdf | No reviewed-sidecar hit |
+| 683309 | 1 | 1 | patents/US2983193.pdf | No reviewed-sidecar hit |
 | 683447 | 1 | 1 | patents/US4708445.pdf | All representative rows reviewed |
 | 683548 | 1 | 1 | patents/WO2021039813A1.pdf | All representative rows reviewed |
 | 693495 | 1 | 1 | patents/US3552833.pdf | No reviewed-sidecar hit |
+| 693562 | 1 | 1 | patents/US2983193.pdf | No reviewed-sidecar hit |
 | 694312 | 1 | 1 | patents/WO2021199923A1.pdf | No reviewed-sidecar hit |
 | 694536 | 1 | 1 | patents/US4258985.pdf | No reviewed-sidecar hit |
 | 697558 | 1 | 1 | patents/US4258985.pdf | No reviewed-sidecar hit |
@@ -135,8 +142,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 721334 | 1 | 1 | Missing from untracked local patents/ references (US4786152, 4786152) | No reviewed-sidecar hit |
 | 728403 | 1 | 1 | patents/US6560042.pdf | No reviewed-sidecar hit |
 | 738493 | 1 | 1 | patents/JP2022092388A.pdf | All representative rows reviewed |
+| 740439 | 1 | 1 | patents/US2983193.pdf | No reviewed-sidecar hit |
+| 740458 | 1 | 1 | patents/US2983193.pdf | No reviewed-sidecar hit |
+| 740464 | 1 | 1 | patents/US2983193.pdf | No reviewed-sidecar hit |
 | 741262 | 1 | 1 | patents/US3552833.pdf | No reviewed-sidecar hit |
 | 741276 | 1 | 1 | patents/US5717527.pdf | No reviewed-sidecar hit |
+| 744458 | 1 | 1 | patents/US2279384.pdf | No reviewed-sidecar hit |
 | 747274 | 1 | 1 | patents/US3649104.pdf | All representative rows reviewed |
 | 748523 | 1 | 1 | patents/US5717527.pdf | No reviewed-sidecar hit |
 | 749501 | 1 | 1 | patents/US4124276.pdf | All representative rows reviewed |
@@ -180,6 +191,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 805410 | 1 | 1 | patents/US4871239.pdf | All representative rows reviewed |
 | 808406 | 1 | 1 | patents/JP2023063766A.pdf | No reviewed-sidecar hit |
 | 821426 | 1 | 1 | patents/US20100220400A1.pdf | All representative rows reviewed |
+| 831265 | 1 | 1 | patents/US3615126.pdf | No reviewed-sidecar hit |
 | 835447 | 1 | 1 | patents/CN205720849U.pdf | All representative rows reviewed |
 | 840433 | 1 | 1 | patents/US5528428.pdf | No reviewed-sidecar hit |
 | 849401 | 1 | 1 | patents/US20170351051A1.pdf | No reviewed-sidecar hit |
@@ -320,6 +332,33 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---|---|---|---|---|---|---|
 | L5 (Element 5) | 9 | `670572 - lanthanum crown (converted d-line estimate from patent e-line data; no exact public catalog match)` | 1.67003 / 57.20 | No catalog entry | abbe | patents/US20020075570A1.pdf | No reviewed-sidecar hit |
 | L7 (Element 7) | 12 | `561453 - barium light flint (patent e-line Ne=1.56433, vd=45.3; no exact public catalog match)` | 1.56093 / 45.30 | No catalog entry | abbe | patents/US20020075570A1.pdf | Reviewed sidecar hit |
+
+### [KODAK AERO EKTAR 6 in f/3.5](../../src/lens-data/kodak/KodakAeroEktar6inf35.data.ts) - US 2,983,193
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+|---|---|---|---|---|---|---|---|
+| L1 (Element 1) | 1 | `Unmatched (Kodak proprietary high-index lanthanum flint, 740/458)` | 1.74000 / 45.80 | No catalog entry | abbe | patents/US2983193.pdf | No reviewed-sidecar hit |
+| L2 (Element 2) | 3 | `Unmatched (Kodak proprietary high-index crown, 693/562)` | 1.69300 / 56.20 | No catalog entry | abbe | patents/US2983193.pdf | No reviewed-sidecar hit |
+| L3 (Element 3) | 4 | `Unmatched (Kodak proprietary dense flint, 683/309)` | 1.68300 / 30.90 | No catalog entry | abbe | patents/US2983193.pdf | No reviewed-sidecar hit |
+| L4 (Element 4) | 6 | `Unmatched (Kodak proprietary dense flint, 667/322)` | 1.66700 / 32.20 | No catalog entry | abbe | patents/US2983193.pdf | No reviewed-sidecar hit |
+| L5 (Element 5) | 7 | `Unmatched (Kodak proprietary lanthanum flint, 740/439)` | 1.74000 / 43.90 | No catalog entry | abbe | patents/US2983193.pdf | No reviewed-sidecar hit |
+| L6 (Element 6) | 9 | `Unmatched (Kodak proprietary high-index lanthanum flint, 740/464)` | 1.74000 / 46.40 | No catalog entry | abbe | patents/US2983193.pdf | No reviewed-sidecar hit |
+
+### [KODAK ENLARGING EKTAR 100mm f/4.5](../../src/lens-data/kodak/KodakEnlargingEktar100mmf45.data.ts) - US 2,279,384
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+|---|---|---|---|---|---|---|---|
+| L1 (Element 1) | 1 | `Unmatched (vintage barium crown class, 611/572)` | 1.61100 / 57.20 | No catalog entry | abbe | patents/US2279384.pdf | No reviewed-sidecar hit |
+| L2 (Element 2) | 2 | `Unmatched (vintage barium light-crown class, 573/575)` | 1.57300 / 57.50 | No catalog entry | abbe | patents/US2279384.pdf | No reviewed-sidecar hit |
+| L3 (Element 3) | 4 | `Unmatched (vintage dense flint class, 605/382)` | 1.60500 / 38.20 | No catalog entry | abbe | patents/US2279384.pdf | No reviewed-sidecar hit |
+| L4 (Element 4) | 6 | `Unmatched (vintage light flint class, 575/414)` | 1.57500 / 41.40 | No catalog entry | abbe | patents/US2279384.pdf | No reviewed-sidecar hit |
+| L5 (Element 5) | 7 | `Unmatched (vintage high-index lanthanum flint class, 744/458)` | 1.74400 / 45.80 | No catalog entry | abbe | patents/US2279384.pdf | No reviewed-sidecar hit |
+
+### [KONICA HEXANON 38mm f/2.8 (Konica C35)](../../src/lens-data/konica/KonicaHexanon38mmf28.data.ts) - US 3,615,126
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+|---|---|---|---|---|---|---|---|
+| L4 (Element 4) | 6 | `Unmatched (high-index dense flint, 831/265)` | 1.83060 / 26.50 | No catalog entry | abbe | patents/US3615126.pdf | No reviewed-sidecar hit |
 
 ### [LAOWA 12mm f/2.8 Zero-D](../../src/lens-data/laowa/Laowa12mmf28ZeroD.data.ts) - CN205720849U
 
