@@ -8,10 +8,10 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **391** lenses scanned
-- **4337** non-air surfaces examined
-- **4341** element glass declarations examined
-- **602** non-explicit-unmatched annotations did not resolve
+- **397** lenses scanned
+- **4368** non-air surfaces examined
+- **4372** element glass declarations examined
+- **605** non-explicit-unmatched annotations did not resolve
 - **264** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
@@ -23,6 +23,7 @@ or per-lens patent backfills.
 | F7 | 5 | 4 | |
 | 511605 | 4 | 2 | |
 | 863252 | 4 | 2 | |
+| S-LAL61 | 4 | 3 | |
 | S-NPH7 | 4 | 4 | |
 | 516565 | 3 | 1 | |
 | 585587 | 3 | 1 | |
@@ -60,7 +61,6 @@ or per-lens patent backfills.
 | S-APL1 | 2 | 1 | |
 | S-BAH10 | 2 | 2 | |
 | S-FPM5 | 2 | 2 | |
-| S-LAL61 | 2 | 2 | |
 | S-LAM73 | 2 | 1 | |
 | S-NBH53 | 2 | 2 | |
 | SK18 | 2 | 1 | |
@@ -329,6 +329,13 @@ or per-lens patent backfills.
 - [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 23: `863252 — dense flint (patent nd=1.86252, νd=25.2)`
 - [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 32: `863252 — dense flint (patent nd=1.86252, νd=25.2)`
 
+### S-LAL61 — 4 occurrences
+
+- [KONICA HEXAR 35mm f/2 (Konica Hexar AF)](../../src/lens-data/konica/KonicaHexar35mmf2.data.ts) 3: `S-LAL61 (OHARA)`
+- [KONICA HEXAR 35mm f/2 (Konica Hexar AF)](../../src/lens-data/konica/KonicaHexar35mmf2.data.ts) 9: `S-LAL61 (OHARA)`
+- [NIKON AF-S NIKKOR 28mm f/1.4 E ED](../../src/lens-data/nikon/NikonAFS28f14E.data.ts) 15: `S-LAL61 (OHARA)`
+- [NIKON AF-S DX NIKKOR 55-300mm f/4.5-5.6 G ED VR](../../src/lens-data/nikon/NikonAFSDX55300mmf4556G.data.ts) 6: `S-LAL61 class (OHARA; patent vd rounded high)`
+
 ### S-NPH7 — 4 occurrences
 
 - [CANON RF 135mm f/1.8 L IS USM](../../src/lens-data/canon/CanonRF135f18.data.ts) 24: `S-NPH7 (OHARA)`
@@ -521,11 +528,6 @@ or per-lens patent backfills.
 
 - [SIGMA 28-45mm f/1.8 DG DN | Art](../../src/lens-data/sigma/Sigma2845mmf18DN.data.ts) 3: `S-FPM5 / FCD500 class (low-dispersion fluorophosphate crown)`
 - [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 29A: `S-FPM5 (OHARA)`
-
-### S-LAL61 — 2 occurrences
-
-- [NIKON AF-S NIKKOR 28mm f/1.4 E ED](../../src/lens-data/nikon/NikonAFS28f14E.data.ts) 15: `S-LAL61 (OHARA)`
-- [NIKON AF-S DX NIKKOR 55-300mm f/4.5-5.6 G ED VR](../../src/lens-data/nikon/NikonAFSDX55300mmf4556G.data.ts) 6: `S-LAL61 class (OHARA; patent vd rounded high)`
 
 ### S-LAM73 — 2 occurrences
 
