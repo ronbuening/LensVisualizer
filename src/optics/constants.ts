@@ -5,8 +5,8 @@
  * one set of physical and numerical thresholds.
  */
 
-import { LINE_NM } from "./glassCatalog.js";
 import { DEFAULT_MAX_RIM_ANGLE_DEG, FLAT_R_THRESHOLD, MAX_RIM_SLOPE_TAN } from "./internal/surfaceMath.js";
+import { LINE_NM } from "./spectralLines.js";
 import type { ChromaticChannel } from "../types/optics.js";
 
 export { DEFAULT_MAX_RIM_ANGLE_DEG, FLAT_R_THRESHOLD, MAX_RIM_SLOPE_TAN };

@@ -181,7 +181,7 @@ const LENS_DATA = {
       nd: 1.57957,
       vd: 53.74,
       fl: 28.3,
-      glass: "N-BAF4 equiv. (157957/5374)",
+      glass: "N-BALF4 equiv. (580539; patent nd=1.57957, vd=53.74)",
       apd: false,
       cemented: "VR",
       role: "VR doublet crown — dominant positive power, large Δnd at cemented interface corrects lateral color during VR.",

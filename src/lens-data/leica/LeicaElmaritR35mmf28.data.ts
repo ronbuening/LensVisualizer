@@ -141,7 +141,7 @@ const LENS_DATA = {
       nd: 1.694,
       vd: 54.6,
       fl: 12.082,
-      glass: "LAK9 / N-LAK9 class (Schott legacy lanthanum crown; patent n_e)",
+      glass: "Unmatched (LAK9-class lanthanum crown; patent e-line value stored)",
       apd: false,
       role: "Rear positive doublet member and final strong converging element.",
       cemented: "D2",

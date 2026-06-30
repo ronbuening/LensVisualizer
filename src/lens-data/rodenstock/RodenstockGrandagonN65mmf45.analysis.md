@@ -50,7 +50,7 @@ The front cemented triplet is the first main positive group. Its three glasses s
 
 #### L2 — Negative Meniscus, Convex to Object
 
-n_e = 1.6776, ν_e = 31.97. Glass: Schott SF5 / N-SF5 class. Standalone f = −84.58 mm.
+n_e = 1.6776, ν_e = 31.97. Glass: unmatched Schott SF5-class dense flint; the data file keeps the patent e-line value off the d-line catalog resolver. Standalone f = −84.58 mm.
 
 L2 is the high-index, high-dispersion outer component of the front triplet. Its r₃ = +26.23 and r₄ = +14.96 form a negative meniscus in air. In situ, it supplies the flint side of the front achromatizing cemented interfaces.
 
@@ -115,7 +115,7 @@ The patent does not name glass catalogs. It publishes only n_e and ν_e values. 
 | Element | Patent n_e | Patent ν_e | Identification used | Confidence | Note |
 |---|---:|---:|---|---|---|
 | L1 | 1.4662 | 65.56 | Schott FK3 class | High class match | Legacy fluorite crown; not a current standard N-glass entry. |
-| L2 | 1.6776 | 31.97 | Schott SF5 / N-SF5 class | High | Current N-SF5 e-line data closely matches. |
+| L2 | 1.6776 | 31.97 | Unmatched Schott SF5-class e-line row | High | Current N-SF5 e-line data closely matches, but this is not a d-line catalog row. |
 | L3 | 1.6250 | 52.86 | Schott SSK2 class | Moderate-high | Dense special crown class. |
 | L4 | 1.5629 | 46.88 | Unmatched barium-flint / short-flint class | Class only | No exact current public catalog match verified. |
 | L5 | 1.5846 | 59.19 | Unmatched barium crown / BaK class | Class only | Crown-like dispersion; likely historical Schott BaK/BAL-family glass. |

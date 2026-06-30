@@ -10,8 +10,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **391** lenses scanned
-- **331** total code-only elements found
-- **331** elements in this report
+- **332** total code-only elements found
+- **332** elements in this report
 - **121** distinct lens files affected
 
 ## Codes by Frequency
@@ -145,6 +145,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 673322 | 1 | 1 | Missing from untracked local patents/ references (JP2020173366A, JP2020173366, 2020173366) | No reviewed-sidecar hit |
 | 675348 | 1 | 1 | patents/JP2018180366A.pdf | All representative rows reviewed |
 | 676440 | 1 | 1 | patents/US7542219.pdf | No reviewed-sidecar hit |
+| 678322 | 1 | 1 | patents/WO2021200206A1.pdf | No reviewed-sidecar hit |
 | 680312 | 1 | 1 | patents/JP2015041012A.pdf | No reviewed-sidecar hit |
 | 682366 | 1 | 1 | Missing from untracked local patents/ references (US4518229, 4518229) | No reviewed-sidecar hit |
 | 682575 | 1 | 1 | patents/US7542219.pdf | No reviewed-sidecar hit |
@@ -1034,6 +1035,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---|---|---|---|---|---|---|
 | L15 (L15 dense-flint positive) | 9 | `Unmatched (dense lanthanum flint, 856/323)` | 1.85649 / 32.30 | No catalog entry | abbe | patents/WO2021200206A1.pdf | No reviewed-sidecar hit |
 | L21 (L21 focus-group negative) | 12 | `Unmatched (ultra-dense short flint, 930/240)` | 1.93024 / 24.00 | No catalog entry | abbe | patents/WO2021200206A1.pdf | No reviewed-sidecar hit |
+| L22 (L22 focus-group positive) | 13 | `678322 — dense flint (Schott SF-family adjacent; no exact public catalog match)` | 1.67764 / 32.20 | No catalog entry | abbe | patents/WO2021200206A1.pdf | No reviewed-sidecar hit |
 | L31 (L31 stop-region negative) | 16 | `Unmatched (ultra-dense lanthanum flint, 961/323)` | 1.96073 / 32.30 | No catalog entry | abbe | patents/WO2021200206A1.pdf | No reviewed-sidecar hit |
 | L41 (L41 focus-group negative) | 20 | `Unmatched (ultra-dense lanthanum flint, 961/323)` | 1.96073 / 32.30 | No catalog entry | abbe | patents/WO2021200206A1.pdf | No reviewed-sidecar hit |
 | L51 (L51 GP5 positive) | 23 | `Unmatched (ultra-dense short flint, 903/204)` | 1.90314 / 20.40 | No catalog entry | abbe | patents/WO2021200206A1.pdf | No reviewed-sidecar hit |

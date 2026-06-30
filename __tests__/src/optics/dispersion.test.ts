@@ -7,6 +7,8 @@ import {
   LINE_NM,
   resolveGlass,
 } from "../../../src/optics/glassCatalog.js";
+import { ALIAS_RECORDS } from "../../../src/optics/glassCatalogAliases.js";
+import { DUPLICATE_CODE6_PRECEDENCE } from "../../../src/optics/glassCatalogData.js";
 import { makeSurfaceDispersion, summarizeDispersionQuality } from "../../../src/optics/dispersion.js";
 import buildLens from "../../../src/optics/buildLens.js";
 import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
@@ -50,6 +52,43 @@ describe("glass catalog", () => {
     expect(allEntries().some((e) => e.name === "N-BK7")).toBe(true);
     expect(allEntries().some((e) => e.name === "S-BSL7")).toBe(true);
     expect(allEntries().some((e) => e.name === "CaF2")).toBe(true);
+  });
+
+  it("alias records point at real catalog entries", () => {
+    const names = new Set(allEntries().map((entry) => entry.name.toUpperCase()));
+    for (const alias of ALIAS_RECORDS) {
+      expect(names.has(alias.target.toUpperCase()), `${alias.alias} target ${alias.target}`).toBe(true);
+    }
+  });
+
+  it("alias keys are unique after resolver normalization", () => {
+    const keys = ALIAS_RECORDS.map((alias) => alias.alias.toUpperCase());
+    expect(new Set(keys).size).toBe(keys.length);
+  });
+
+  it("alias records resolve to their declared targets", () => {
+    for (const alias of ALIAS_RECORDS) {
+      expect(resolveGlass(alias.alias)?.name, alias.alias).toBe(alias.target);
+    }
+  });
+
+  it("explicit duplicate code6 precedence matches current resolver behavior", () => {
+    const namesByCode = new Map<string, string[]>();
+    for (const entry of allEntries()) {
+      if (!entry.code6) continue;
+      namesByCode.set(entry.code6, [...(namesByCode.get(entry.code6) ?? []), entry.name]);
+    }
+
+    const duplicateCodes = [...namesByCode.entries()]
+      .filter(([, names]) => names.length > 1)
+      .map(([code]) => code)
+      .sort();
+
+    expect([...DUPLICATE_CODE6_PRECEDENCE.keys()].sort()).toEqual(duplicateCodes);
+    for (const [code, expectedName] of DUPLICATE_CODE6_PRECEDENCE) {
+      expect(namesByCode.get(code)?.[0], code).toBe(expectedName);
+      expect(resolveGlass(code)?.name, code).toBe(expectedName);
+    }
   });
 
   it("evaluates vendor polynomial catalog entries", () => {
@@ -109,6 +148,26 @@ describe("glass catalog", () => {
       expect(evaluateSellmeier(entry!, LINE_NM.d)).toBeCloseTo(nd, 5);
     }
     expect(resolveGlass("BSC3 (Hoya) / historical crown equivalent")?.name).toBe("E-C3");
+  });
+
+  it("evaluates the phase 24 Schott named-token additions", () => {
+    const expected: Array<[glass: string, nd: number]> = [
+      ["SF5", 1.6727],
+      ["N-SF5", 1.67271],
+      ["N-LASF44", 1.8042],
+      ["N-LAK9", 1.691],
+      ["N-PSK53A", 1.618],
+      ["N-LAF2", 1.74397],
+      ["N-BAK4", 1.56883],
+      ["N-LAK7", 1.6516],
+      ["N-BAF4", 1.60568],
+      ["N-SSK2", 1.62229],
+    ];
+    for (const [glass, nd] of expected) {
+      const entry = resolveGlass(glass);
+      expect(entry?.name).toBe(glass);
+      expect(evaluateSellmeier(entry!, LINE_NM.d)).toBeCloseTo(nd, 5);
+    }
   });
 
   it("evaluates explicit power-series catalog entries", () => {

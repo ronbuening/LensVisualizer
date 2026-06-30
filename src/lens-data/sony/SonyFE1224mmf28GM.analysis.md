@@ -92,7 +92,7 @@ L21 is the most object-side lens of GP2 and is the lens used for the patent's hi
 
 #### L22 — Biconvex Positive, cemented to L21
 
-nd = 1.67764, νd = 32.2. Glass: N-SF5 / SF5 class dense flint, 678/322 code. f = +25.9 mm.
+nd = 1.67764, νd = 32.2. Glass: 678322 dense flint, adjacent to the N-SF5/SF5 region but not an exact public catalog row. f = +25.9 mm.
 
 L22 provides the net positive power of the GP2 doublet. The cemented interface at R = +17.990 mm carries substantial refractive power because of the high index difference between L21 and L22. The pair is not a conventional crown-flint achromat; it is a high-index flint/flint cemented component optimized for compact moving-focus behavior.
 
@@ -180,7 +180,7 @@ The patent gives refractive index and Abbe number but does not name the glass ma
 | L14, L53 | 1.43810 | 95.1 | S-FPL53 / FCD100 class Super ED fluorophosphate, 438/951 | Super-ED-class correction in GP1 and GP5 |
 | L15 | 1.85649 | 32.3 | Unmatched dense lanthanum flint, 856/323 | positive flint in GP1 |
 | L21 | 1.93024 | 24.0 | Unmatched ultra-dense short flint, 930/240 | GP2 moving focus doublet |
-| L22 | 1.67764 | 32.2 | N-SF5 / SF5 class dense flint, 678/322 | GP2 positive focus element |
+| L22 | 1.67764 | 32.2 | 678322 dense flint, N-SF5/SF5-adjacent | GP2 positive focus element |
 | L31, L41, L52 | 1.96073 | 32.3 | Unmatched ultra-dense lanthanum flint, 961/323 | stop-region, GP4, and GP5 negative members |
 | L32 | 1.59412 | 67.0 | PCD51-class low-dispersion crown, 594/670 | mid-system aspherical corrector |
 | L51 | 1.90314 | 20.4 | Unmatched ultra-dense short flint, 903/204 | GP5 chromatic component |

@@ -78,7 +78,7 @@ const LENS_DATA = {
       nd: 1.6776,
       vd: 31.97,
       fl: -84.58,
-      glass: "SF5 / N-SF5 class (Schott; patent e-line values)",
+      glass: "Unmatched (SF5-class dense flint; patent e-line values)",
       cemented: "T1",
       role: "High-dispersion outer component of the front cemented triplet.",
     },

@@ -105,7 +105,7 @@ This cemented pair constitutes the **vibration-reduction element**. During image
 
 - **L32 — Negative Meniscus** (nd = 2.0010, vd = 29.12): Glass code 001291, an ultra-high-index dense flint. This is the **highest-index glass in the entire lens** (nd = 2.001). The extreme refractive index allows the cemented interface to carry strong corrective power while the outer surfaces remain at manageable curvatures. L32's negative power (f ≈ −48.7 mm thin-lens) partially offsets L33's positive contribution.
 
-- **L33 — Biconvex Positive** (nd = 1.5796, vd = 53.74): Glass N-BAF4 equivalent (Schott barium flint; nd = 1.57957, vd = 53.71). L33 provides the dominant positive power (f ≈ +28.3 mm thin-lens) that makes the cemented pair net-positive. The large nd step at the cemented interface (2.001 → 1.580, Δnd = 0.421) creates very strong refractive power at surface 19 (R = 20.9 mm), which is the primary correcting surface for lateral color during VR decentering.
+- **L33 — Biconvex Positive** (nd = 1.5796, vd = 53.74): Glass N-BALF4 equivalent (Schott barium light flint; catalog nd = 1.57956, vd = 53.87). L33 provides the dominant positive power (f ≈ +28.3 mm thin-lens) that makes the cemented pair net-positive. The large nd step at the cemented interface (2.001 → 1.580, Δnd = 0.421) creates very strong refractive power at surface 19 (R = 20.9 mm), which is the primary correcting surface for lateral color during VR decentering.
 
 The combined doublet is positive (f ≈ +67.7 mm), which is characteristic of Nikon's VR implementations — a positive VR group produces image shift in the same direction as the decentration, simplifying the control algorithm. The patent specifically identifies this doublet as the "防振群" (vibration-compensation group).
 

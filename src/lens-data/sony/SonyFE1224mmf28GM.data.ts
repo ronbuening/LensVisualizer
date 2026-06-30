@@ -128,7 +128,7 @@ const LENS_DATA = {
       nd: 1.67764,
       vd: 32.2,
       fl: 25.88,
-      glass: "N-SF5 / SF5 class (dense flint, 678/322)",
+      glass: "678322 — dense flint (Schott SF-family adjacent; no exact public catalog match)",
       cemented: "D1",
       role: "Positive rear element of GP2; supplies the net positive focus-group power.",
     },

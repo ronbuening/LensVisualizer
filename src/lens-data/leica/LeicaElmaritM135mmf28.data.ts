@@ -97,7 +97,7 @@ const LENS_DATA = {
       nd: 1.67764,
       vd: 32.0,
       fl: -39.0,
-      glass: "SF5-class dense flint (Schott; e-line source values)",
+      glass: "Unmatched (SF5-class dense flint; e-line source values)",
       apd: false,
       cemented: "D1",
       role: "Negative flint half of the cemented member; supplies the strongest negative surface power.",
