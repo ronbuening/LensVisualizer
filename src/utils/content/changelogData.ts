@@ -22,6 +22,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-06-29 ──────────────────────────────────────────────────────────
   {
     date: "2026-06-29",
+    type: "improvement",
+    summary: "Improved Schott glass matching and chromatic coverage across lenses",
+  },
+  {
+    date: "2026-06-29",
     type: "lens",
     summary: "Added Enna München Lithagon wide-angle lenses",
   },
