@@ -2,6 +2,7 @@ import { createRoot } from "react-dom/client";
 import { RouterProvider } from "react-router";
 import { HelmetProvider } from "react-helmet-async";
 import ErrorBoundary from "./components/errors/ErrorBoundary.js";
+import HolidayFavicon from "./components/HolidayFavicon.js";
 import router from "./router.js";
 import "katex/dist/katex.min.css";
 
@@ -21,6 +22,7 @@ router.subscribe((state) => {
 createRoot(document.getElementById("root")!).render(
   <ErrorBoundary>
     <HelmetProvider>
+      <HolidayFavicon />
       <RouterProvider router={router} />
     </HelmetProvider>
   </ErrorBoundary>,

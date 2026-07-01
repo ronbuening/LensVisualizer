@@ -1,11 +1,19 @@
 // @vitest-environment jsdom
 
+import type { ReactNode } from "react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { act, renderHook } from "@testing-library/react";
+import { MemoryRouter } from "react-router";
 import { PREFS_KEY } from "../../../../src/utils/state/preferences.js";
 import { usePageThemeToggle } from "../../../../src/utils/theme/usePageThemeToggle.js";
 import themes from "../../../../src/utils/theme/themes.js";
 import { clearBrowserState, installMatchMediaMock, seedLocalStorage } from "../../../testUtils.js";
+
+/* useActiveHoliday reads the router location; pin ?holiday=none so these theme
+   assertions stay deterministic regardless of the calendar date. */
+const wrapper = ({ children }: { children: ReactNode }) => (
+  <MemoryRouter initialEntries={["/?holiday=none"]}>{children}</MemoryRouter>
+);
 
 describe("usePageThemeToggle", () => {
   beforeEach(() => {
@@ -18,7 +26,7 @@ describe("usePageThemeToggle", () => {
       [PREFS_KEY]: JSON.stringify({ highContrast: false }),
     });
 
-    const { result } = renderHook(() => usePageThemeToggle());
+    const { result } = renderHook(() => usePageThemeToggle(), { wrapper });
 
     expect(result.current.themeMode).toBe("auto");
     expect(result.current.highContrast).toBe(false);
@@ -31,7 +39,7 @@ describe("usePageThemeToggle", () => {
       [PREFS_KEY]: JSON.stringify({ dark: false, highContrast: true }),
     });
 
-    const { result } = renderHook(() => usePageThemeToggle());
+    const { result } = renderHook(() => usePageThemeToggle(), { wrapper });
 
     expect(result.current.themeMode).toBe("light");
     expect(result.current.highContrast).toBe(true);
@@ -53,7 +61,7 @@ describe("usePageThemeToggle", () => {
       })),
     });
 
-    const { result } = renderHook(() => usePageThemeToggle());
+    const { result } = renderHook(() => usePageThemeToggle(), { wrapper });
 
     expect(result.current.themeMode).toBe("auto");
     expect(result.current.highContrast).toBe(true);
@@ -63,7 +71,7 @@ describe("usePageThemeToggle", () => {
   it("cycles theme mode and persists each step", () => {
     installMatchMediaMock(false);
 
-    const { result } = renderHook(() => usePageThemeToggle());
+    const { result } = renderHook(() => usePageThemeToggle(), { wrapper });
 
     act(() => result.current.toggleTheme());
     expect(result.current.themeMode).toBe("dark");
@@ -84,7 +92,7 @@ describe("usePageThemeToggle", () => {
   it("toggles high contrast and persists it", () => {
     installMatchMediaMock(false);
 
-    const { result } = renderHook(() => usePageThemeToggle());
+    const { result } = renderHook(() => usePageThemeToggle(), { wrapper });
 
     act(() => result.current.toggleHC());
 
@@ -96,7 +104,7 @@ describe("usePageThemeToggle", () => {
   it("updates the auto-resolved theme when the system color scheme changes", () => {
     const controller = installMatchMediaMock(false);
 
-    const { result } = renderHook(() => usePageThemeToggle());
+    const { result } = renderHook(() => usePageThemeToggle(), { wrapper });
     expect(result.current.theme).toBe(themes.light);
 
     act(() => controller.dispatchChange(true));

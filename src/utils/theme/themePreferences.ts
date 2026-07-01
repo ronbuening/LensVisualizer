@@ -1,4 +1,5 @@
-import themes from "./themes.js";
+import themes, { createTheme } from "./themes.js";
+import type { HolidayTheme } from "./holidayThemes.js";
 import type { Preferences } from "../../types/state.js";
 import type { Theme, ThemeVariant } from "../../types/theme.js";
 
@@ -60,6 +61,40 @@ export function resolveThemeVariant(dark: boolean, highContrast: boolean): Theme
 
 export function resolveTheme(dark: boolean, highContrast: boolean): Theme {
   return themes[resolveThemeVariant(dark, highContrast)];
+}
+
+function isLightVariant(variant: ThemeVariant): boolean {
+  return variant === "light" || variant === "lightHC";
+}
+
+/**
+ * Build a holiday-tinted Theme by merging the holiday's accent overrides onto the
+ * resolved base variant. The base Theme already carries every color token
+ * (including `_`-prefixed closure inputs), so re-running createTheme with the
+ * merged tokens preserves all element-styling functions while recoloring accents.
+ */
+export function buildHolidayTheme(dark: boolean, highContrast: boolean, holiday: HolidayTheme): Theme {
+  const variant = resolveThemeVariant(dark, highContrast);
+  const base = themes[variant];
+  return createTheme({
+    ...base,
+    ...holiday.overrides.base,
+    ...(isLightVariant(variant) ? holiday.overrides.light : {}),
+  });
+}
+
+/**
+ * Resolve the active Theme, applying the holiday skin only when the user is in
+ * "auto" mode on a holiday. Explicit Dark/Light choices are never overridden.
+ */
+export function resolveActiveTheme(
+  mode: ThemeMode,
+  dark: boolean,
+  highContrast: boolean,
+  holiday: HolidayTheme | null,
+): Theme {
+  if (mode === "auto" && holiday) return buildHolidayTheme(dark, highContrast, holiday);
+  return resolveTheme(dark, highContrast);
 }
 
 export function resolveThemePreferences(

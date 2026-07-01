@@ -33,6 +33,8 @@ const mocks = vi.hoisted(() => ({
 
 vi.mock("react-router", () => ({
   useNavigate: () => mocks.navigate,
+  // useActiveHoliday reads the location; pin ?holiday=none for a deterministic theme.
+  useLocation: () => ({ search: "?holiday=none", pathname: "/", hash: "", state: null, key: "test" }),
 }));
 
 vi.mock("../../../../src/utils/state/useLensState.js", () => ({

@@ -14,7 +14,8 @@ import { useCallback, useRef, useState } from "react";
 import { Link, useLocation } from "react-router";
 import type { Theme } from "../../types/theme.js";
 import { headerStrip, topBarBtn, toggleGroup, toggleBtn } from "../../utils/style/styles.js";
-import { THEME_ICON, THEME_LABEL } from "../../utils/theme/themeConstants.js";
+import { themeSlotDisplay } from "../../utils/theme/themeConstants.js";
+import { useActiveHoliday } from "../../utils/theme/useActiveHoliday.js";
 import { LENS_CATALOG } from "../../utils/catalog/lensCatalog.js";
 import { deriveMaker } from "../../utils/catalog/lensMetadata.js";
 import {
@@ -83,6 +84,8 @@ export default function BreadcrumbBar({ theme: t, isWide, lensKey }: BreadcrumbB
   const dispatch = useLensDispatch();
   const { dark, highContrast } = state.display;
   const themeMode: ThemeMode = themeModeFromDarkPreference(dark);
+  const holiday = useActiveHoliday();
+  const slot = themeSlotDisplay(themeMode, holiday);
 
   const openSettings = useCallback(() => {
     if (!triggerRef.current) return;
@@ -257,8 +260,8 @@ export default function BreadcrumbBar({ theme: t, isWide, lensKey }: BreadcrumbB
               onClick={() => dispatch({ type: SET_DARK, dark: darkPreferenceFromThemeMode(nextThemeMode(themeMode)) })}
               style={toggleBtn(t, false, { hasRightBorder: false })}
             >
-              <span style={{ fontSize: themeMode === "auto" ? 12 : 14, lineHeight: 1 }}>{THEME_ICON[themeMode]}</span>
-              <span>{THEME_LABEL[themeMode]}</span>
+              <span style={{ fontSize: themeMode === "auto" ? 12 : 14, lineHeight: 1 }}>{slot.icon}</span>
+              <span>{slot.label}</span>
             </button>
           </div>
         </div>

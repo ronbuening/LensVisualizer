@@ -26,7 +26,7 @@ import { PAGE_BASE_STYLE } from "../utils/style/pageStyles.js";
 export default function HomePage() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const { theme: t, themeMode, highContrast, toggleTheme, toggleHC } = usePageThemeToggle();
+  const { theme: t, themeMode, highContrast, holiday, toggleTheme, toggleHC } = usePageThemeToggle();
   const prefersDark = useMediaQuery("(prefers-color-scheme: dark)");
 
   /* Redirect legacy ?lens=KEY URLs to /lens/KEY */
@@ -52,7 +52,8 @@ export default function HomePage() {
 
   const isDesktop = useMediaQuery("(min-width: 720px)");
   const useDarkBrandAssets = themeMode === "auto" ? prefersDark : themeMode === "dark";
-  const heroBrandMark = "/branding/mark-card.svg";
+  const activeHoliday = themeMode === "auto" ? holiday : null;
+  const heroBrandMark = activeHoliday?.brandMark ?? "/branding/mark-card.svg";
 
   const displayedArticles = HOMEPAGE_ARTICLES.slice(0, HOMEPAGE_ARTICLE_LIMIT);
   const showMoreLink = HOMEPAGE_ARTICLES.length > HOMEPAGE_ARTICLE_LIMIT;

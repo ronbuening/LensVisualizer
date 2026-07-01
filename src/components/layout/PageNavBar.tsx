@@ -13,7 +13,8 @@ import type { ReactNode } from "react";
 import type { Theme } from "../../types/theme.js";
 import type { ThemeMode } from "../../utils/theme/themePreferences.js";
 import { headerStrip, toggleGroup, toggleBtn } from "../../utils/style/styles.js";
-import { THEME_ICON, THEME_LABEL } from "../../utils/theme/themeConstants.js";
+import { themeSlotDisplay } from "../../utils/theme/themeConstants.js";
+import { useActiveHoliday } from "../../utils/theme/useActiveHoliday.js";
 import useMediaQuery from "../../utils/useMediaQuery.js";
 
 interface PageNavBarProps {
@@ -35,6 +36,8 @@ export default function PageNavBar({
 }: PageNavBarProps) {
   const isWide = useMediaQuery("(min-width: 720px)");
   const padding = isWide ? "6px 24px" : "6px 12px";
+  const holiday = useActiveHoliday();
+  const slot = themeSlotDisplay(themeMode, holiday);
 
   return (
     <nav
@@ -68,8 +71,8 @@ export default function PageNavBar({
             <span>HC</span>
           </button>
           <button onClick={onToggleTheme} style={toggleBtn(t, false, { hasRightBorder: false })}>
-            <span style={{ fontSize: themeMode === "auto" ? 12 : 14, lineHeight: 1 }}>{THEME_ICON[themeMode]}</span>
-            <span>{THEME_LABEL[themeMode]}</span>
+            <span style={{ fontSize: themeMode === "auto" ? 12 : 14, lineHeight: 1 }}>{slot.icon}</span>
+            <span>{slot.label}</span>
           </button>
         </div>
       </div>
