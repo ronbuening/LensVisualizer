@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **397** lenses scanned
-- **4368** non-air surfaces examined
-- **4372** element glass declarations examined
-- **605** non-explicit-unmatched annotations did not resolve
-- **264** distinct unresolved glass-like tokens found
+- **400** lenses scanned
+- **4407** non-air surfaces examined
+- **4411** element glass declarations examined
+- **617** non-explicit-unmatched annotations did not resolve
+- **267** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -21,6 +21,7 @@ or per-lens patent backfills.
 | 670571 | 10 | 5 | |
 | 493836 | 6 | 2 | |
 | F7 | 5 | 4 | |
+| TAF1 | 5 | 3 | |
 | 511605 | 4 | 2 | |
 | 863252 | 4 | 2 | |
 | S-LAL61 | 4 | 3 | |
@@ -54,18 +55,19 @@ or per-lens patent backfills.
 | F8 | 2 | 2 | |
 | H-K6 | 2 | 1 | |
 | H-LAF3 | 2 | 2 | |
+| H-ZF39 | 2 | 2 | |
 | H-ZLAF4A | 2 | 1 | |
 | K-LAFK50 | 2 | 1 | |
 | NBFD10 | 2 | 2 | |
 | NBFD32 | 2 | 2 | |
 | S-APL1 | 2 | 1 | |
 | S-BAH10 | 2 | 2 | |
+| S-BSM36 | 2 | 1 | |
 | S-FPM5 | 2 | 2 | |
 | S-LAM73 | 2 | 1 | |
 | S-NBH53 | 2 | 2 | |
 | SK18 | 2 | 1 | |
 | SK3 | 2 | 2 | |
-| TAF1 | 2 | 2 | |
 | 182080 | 1 | 1 | |
 | 459902 | 1 | 1 | |
 | 487698 | 1 | 1 | |
@@ -197,9 +199,11 @@ or per-lens patent backfills.
 | 916364 | 1 | 1 | |
 | 930240 | 1 | 1 | |
 | 933209 | 1 | 1 | |
+| BACD14 | 1 | 1 | |
 | BACD8 | 1 | 1 | |
 | BK3 | 1 | 1 | |
 | E-F5 | 1 | 1 | |
+| E-F8 | 1 | 1 | |
 | E-FEL1 | 1 | 1 | |
 | E-FEL6 | 1 | 1 | |
 | E-FPL51 | 1 | 1 | |
@@ -225,7 +229,6 @@ or per-lens patent backfills.
 | H-QF50 | 1 | 1 | |
 | H-ZF1 | 1 | 1 | |
 | H-ZF2 | 1 | 1 | |
-| H-ZF39 | 1 | 1 | |
 | H-ZF52A | 1 | 1 | |
 | H-ZF72 | 1 | 1 | |
 | H-ZK4 | 1 | 1 | |
@@ -314,6 +317,14 @@ or per-lens patent backfills.
 - [ENNA MÜNCHEN LITHAGON 24mm f/4](../../src/lens-data/enna-munchen/EnnaMunchenLithagon24mmf4.data.ts) 5: `F7-class flint (legacy Schott 625/356; CDGM H-F6 equivalent)`
 - [RODENSTOCK ROGONAR-S 50mm f/2.8](../../src/lens-data/rodenstock/RodenstockRogonarS50mmf28.data.ts) 3: `F7 class (625/356; Schott F7 / CDGM F6 equivalents)`
 - [RODENSTOCK ROGONAR-S 50mm f/2.8](../../src/lens-data/rodenstock/RodenstockRogonarS50mmf28.data.ts) 3: `F7 class (625/356; Schott F7 / CDGM F6 equivalents)`
+
+### TAF1 — 5 occurrences
+
+- [CANON NEW FD 14mm f/2.8 L](../../src/lens-data/canon/CanonNewFD14mmf28L.data.ts) 7: `TAF1 (Hoya)`
+- [CANON NEW FD 14mm f/2.8 L](../../src/lens-data/canon/CanonNewFD14mmf28L.data.ts) 13: `TAF1 (Hoya)`
+- [CANON NEW FD 14mm f/2.8 L](../../src/lens-data/canon/CanonNewFD14mmf28L.data.ts) 15: `TAF1 (Hoya)`
+- [SIGMA APO MACRO 150mm f/2.8 EX DG OS HSM](../../src/lens-data/sigma/SigmaAPOMacro150mmf28OSHSM.data.ts) 7: `TAF1 (Hoya; tantalum/lanthanum flint)`
+- [SONY FE 28mm f/2](../../src/lens-data/sony/SonyFE28mmf2.data.ts) 8A: `M-TAF1 / TAF1 class (HOYA, 773/495)`
 
 ### 511605 — 4 occurrences
 
@@ -494,6 +505,11 @@ or per-lens patent backfills.
 - [LAOWA 15mm f/4 Wide Angle 1:1 Macro](../../src/lens-data/laowa/Laowa15mmf4Macro.data.ts) 16: `H-LAF3 (CDGM)`
 - [NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) 32: `Lanthanum flint (182080/4251, uncertain — possibly CDGM H-LAF3)`
 
+### H-ZF39 — 2 occurrences
+
+- [CANON NEW FD 14mm f/2.8 L](../../src/lens-data/canon/CanonNewFD14mmf28L.data.ts) 17: `Dense flint 667/330 (modern CDGM H-ZF39 equivalent; historical supplier unconfirmed)`
+- [OLYMPUS ZUIKO AUTO-FISHEYE 8mm f/2.8](../../src/lens-data/olympus/OlympusZuikoAutoFisheye8mmf28.data.ts) 7: `H-ZF39 class (CDGM; 667/330)`
+
 ### H-ZLAF4A — 2 occurrences
 
 - [LAOWA 24mm f/14 2× Macro Probe](../../src/lens-data/laowa/Laowa24mmf14Probe.data.ts) 1: `H-ZLaF4A (CDGM)`
@@ -524,6 +540,11 @@ or per-lens patent backfills.
 - [CANON FD 35mm f/2 S.S.C. (I)](../../src/lens-data/canon/CanonFD35mmf2.data.ts) 5: `BaF (702411, S-BAH10 family)`
 - [CARL ZEISS TOUIT MAKRO-PLANAR T* 50mm f/2.8 Macro](../../src/lens-data/carl-zeiss-oberkochen/ZeissTouit50mmf28Macro.data.ts) 25: `S-BAH10 (OHARA)`
 
+### S-BSM36 — 2 occurrences
+
+- [CANON NEW FD 150-600mm f/5.6L](../../src/lens-data/canon/CanonFD150600mmf56L.data.ts) 15: `Dense crown / SK class (643/584; S-BSM36 class)`
+- [CANON NEW FD 150-600mm f/5.6L](../../src/lens-data/canon/CanonFD150600mmf56L.data.ts) 17: `Dense crown / SK class (643/584; S-BSM36 class)`
+
 ### S-FPM5 — 2 occurrences
 
 - [SIGMA 28-45mm f/1.8 DG DN | Art](../../src/lens-data/sigma/Sigma2845mmf18DN.data.ts) 3: `S-FPM5 / FCD500 class (low-dispersion fluorophosphate crown)`
@@ -548,11 +569,6 @@ or per-lens patent backfills.
 
 - [RODENSTOCK GRANDAGON-N 75mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN75mmf45.data.ts) 8: `SK3 (Schott legacy dense crown)`
 - [RODENSTOCK GRANDAGON-N 90mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN90mmf45.data.ts) 8: `SK3 / H-ZK4 class (Schott/CDGM equivalent)`
-
-### TAF1 — 2 occurrences
-
-- [SIGMA APO MACRO 150mm f/2.8 EX DG OS HSM](../../src/lens-data/sigma/SigmaAPOMacro150mmf28OSHSM.data.ts) 7: `TAF1 (Hoya; tantalum/lanthanum flint)`
-- [SONY FE 28mm f/2](../../src/lens-data/sony/SonyFE28mmf2.data.ts) 8A: `M-TAF1 / TAF1 class (HOYA, 773/495)`
 
 ### 182080 — 1 occurrence
 
@@ -1078,6 +1094,10 @@ or per-lens patent backfills.
 
 - [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 24: `933209 — ultra-dense flint (patent nd=1.93323, nu_d=20.9)`
 
+### BACD14 — 1 occurrence
+
+- [CANON NEW FD 14mm f/2.8 L](../../src/lens-data/canon/CanonNewFD14mmf28L.data.ts) 3A: `BACD14 (Hoya)`
+
 ### BACD8 — 1 occurrence
 
 - [Canon FD 28mm f/2.8 S.C.](../../src/lens-data/canon/CanonFD28mmf28.data.ts) 1: `SK8/BACD8 class (legacy 611/559 dense barium crown)`
@@ -1089,6 +1109,10 @@ or per-lens patent backfills.
 ### E-F5 — 1 occurrence
 
 - [PANASONIC LEICA DG SUMMILUX 12mm f/1.4 ASPH.](../../src/lens-data/panasonic/PanasonicDGSummilux12mmf14.data.ts) 11: `E-F5 (Hoya)`
+
+### E-F8 — 1 occurrence
+
+- [CANON NEW FD 14mm f/2.8 L](../../src/lens-data/canon/CanonNewFD14mmf28L.data.ts) 10: `E-F8 (Hoya)`
 
 ### E-FEL1 — 1 occurrence
 
@@ -1189,10 +1213,6 @@ or per-lens patent backfills.
 ### H-ZF2 — 1 occurrence
 
 - [LAOWA 24mm f/14 2× Macro Probe](../../src/lens-data/laowa/Laowa24mmf14Probe.data.ts) 44: `H-ZF2 (CDGM)`
-
-### H-ZF39 — 1 occurrence
-
-- [OLYMPUS ZUIKO AUTO-FISHEYE 8mm f/2.8](../../src/lens-data/olympus/OlympusZuikoAutoFisheye8mmf28.data.ts) 7: `H-ZF39 class (CDGM; 667/330)`
 
 ### H-ZF52A — 1 occurrence
 
