@@ -9,10 +9,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **397** lenses scanned
-- **344** total code-only elements found
-- **262** elements in this report
-- **103** distinct lens files affected
+- **400** lenses scanned
+- **348** total code-only elements found
+- **264** elements in this report
+- **104** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -75,6 +75,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 531621 | 1 | 1 | patents/US3975089.pdf | No reviewed-sidecar hit |
 | 533489 | 1 | 1 | patents/US2084309.pdf | No reviewed-sidecar hit |
 | 534554 | 1 | 1 | patents/US3737214.pdf | All representative rows reviewed |
+| 534555 | 1 | 1 | patents/US4110006.pdf | No reviewed-sidecar hit |
 | 534556 | 1 | 1 | patents/US20230367186A1.pdf | No reviewed-sidecar hit |
 | 540509 | 1 | 1 | patents/GB_775944_A.pdf | No reviewed-sidecar hit |
 | 541468 | 1 | 1 | patents/US4124276.pdf | All representative rows reviewed |
@@ -168,6 +169,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 770494 | 1 | 1 | patents/WO2023181666A1.pdf | No reviewed-sidecar hit |
 | 772493 | 1 | 1 | patents/US20230341664A1.pdf | All representative rows reviewed |
 | 773495 | 1 | 1 | patents/US20190250367A1.pdf | No reviewed-sidecar hit |
+| 773497 | 1 | 1 | patents/US4110006.pdf | No reviewed-sidecar hit |
 | 773498 | 1 | 1 | patents/US4871239.pdf | All representative rows reviewed |
 | 773501 | 1 | 1 | patents/US4258985.pdf | No reviewed-sidecar hit |
 | 773530 | 1 | 1 | patents/CN110161666A.pdf | All representative rows reviewed |
@@ -230,6 +232,13 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---|---|---|---|---|---|---|
 | L5 (Element 5) | 9 | `LaK (774492, probable thoriated)` | 1.77370 / 49.20 | No catalog entry | abbe | patents/US3748022.pdf | Reviewed sidecar hit |
 | L8 (Element 8) | 14 | `LaK (774492, probable thoriated)` | 1.77370 / 49.20 | No catalog entry | abbe | patents/US3748022.pdf | Reviewed sidecar hit |
+
+### [CANON NEW FD 150-600mm f/5.6L](../../src/lens-data/canon/CanonFD150600mmf56L.data.ts) - US 4,110,006
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+|---|---|---|---|---|---|---|---|
+| L3 (Element 3) | 5 | `LaSF dense lanthanum-flint patent class (773/497)` | 1.77250 / 49.70 | No catalog entry | abbe | patents/US4110006.pdf | No reviewed-sidecar hit |
+| L17 (Element 17) | 30 | `Unmatched crown glass (534/555 vintage code)` | 1.53375 / 55.50 | No catalog entry | abbe | patents/US4110006.pdf | No reviewed-sidecar hit |
 
 ### [CANON RF 24-240mm f/4-6.3 IS USM](../../src/lens-data/canon/CanonRF24240mmf463.data.ts) - US 2020/0142167 A1
 

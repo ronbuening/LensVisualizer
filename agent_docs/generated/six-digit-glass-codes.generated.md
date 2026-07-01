@@ -9,10 +9,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **397** lenses scanned
-- **344** total code-only elements found
-- **344** elements in this report
-- **124** distinct lens files affected
+- **400** lenses scanned
+- **348** total code-only elements found
+- **348** elements in this report
+- **125** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -92,6 +92,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 531621 | 1 | 1 | patents/US3975089.pdf | No reviewed-sidecar hit |
 | 533489 | 1 | 1 | patents/US2084309.pdf | No reviewed-sidecar hit |
 | 534554 | 1 | 1 | patents/US3737214.pdf | All representative rows reviewed |
+| 534555 | 1 | 1 | patents/US4110006.pdf | No reviewed-sidecar hit |
 | 534556 | 1 | 1 | patents/US20230367186A1.pdf | No reviewed-sidecar hit |
 | 540509 | 1 | 1 | patents/GB_775944_A.pdf | No reviewed-sidecar hit |
 | 541468 | 1 | 1 | patents/US4124276.pdf | All representative rows reviewed |
@@ -202,6 +203,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 772493 | 1 | 1 | patents/US20230341664A1.pdf | All representative rows reviewed |
 | 772496 | 1 | 1 | patents/JPWO2019187633A1.pdf | No reviewed-sidecar hit |
 | 773495 | 1 | 1 | patents/US20190250367A1.pdf | No reviewed-sidecar hit |
+| 773497 | 1 | 1 | patents/US4110006.pdf | No reviewed-sidecar hit |
 | 773498 | 1 | 1 | patents/US4871239.pdf | All representative rows reviewed |
 | 773501 | 1 | 1 | patents/US4258985.pdf | No reviewed-sidecar hit |
 | 773530 | 1 | 1 | patents/CN110161666A.pdf | All representative rows reviewed |
@@ -220,6 +222,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 795286 | 1 | 1 | patents/US5717527.pdf | No reviewed-sidecar hit |
 | 796410 | 1 | 1 | patents/US4770511.pdf | All representative rows reviewed |
 | 800255 | 1 | 1 | patents/JP2015041012A.pdf | No reviewed-sidecar hit |
+| 800422 | 1 | 1 | patents/US4110006.pdf | No reviewed-sidecar hit |
 | 801454 | 1 | 1 | patents/US20130033768A1.pdf | No reviewed-sidecar hit |
 | 803404 | 1 | 1 | patents/US20140247506A1.pdf | All representative rows reviewed |
 | 803405 | 1 | 1 | patents/US20170351051A1.pdf | No reviewed-sidecar hit |
@@ -229,6 +232,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 808406 | 1 | 1 | patents/JP2023063766A.pdf | No reviewed-sidecar hit |
 | 821426 | 1 | 1 | patents/US20100220400A1.pdf | All representative rows reviewed |
 | 831265 | 1 | 1 | patents/US3615126.pdf | No reviewed-sidecar hit |
+| 834372 | 1 | 1 | patents/US4110006.pdf | No reviewed-sidecar hit |
 | 835447 | 1 | 1 | patents/CN205720849U.pdf | All representative rows reviewed |
 | 840433 | 1 | 1 | patents/US5528428.pdf | No reviewed-sidecar hit |
 | 849401 | 1 | 1 | patents/US20170351051A1.pdf | No reviewed-sidecar hit |
@@ -275,6 +279,15 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---|---|---|---|---|---|---|
 | L5 (Element 5) | 9 | `LaK (774492, probable thoriated)` | 1.77370 / 49.20 | No catalog entry | abbe | patents/US3748022.pdf | Reviewed sidecar hit |
 | L8 (Element 8) | 14 | `LaK (774492, probable thoriated)` | 1.77370 / 49.20 | No catalog entry | abbe | patents/US3748022.pdf | Reviewed sidecar hit |
+
+### [CANON NEW FD 150-600mm f/5.6L](../../src/lens-data/canon/CanonFD150600mmf56L.data.ts) - US 4,110,006
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+|---|---|---|---|---|---|---|---|
+| L3 (Element 3) | 5 | `LaSF dense lanthanum-flint patent class (773/497)` | 1.77250 / 49.70 | No catalog entry | abbe | patents/US4110006.pdf | No reviewed-sidecar hit |
+| L13 (Element 13) | 23 | `Dense lanthanum flint class (834/372)` | 1.83400 / 37.20 | S-LAH60 (trusted Sellmeier) | sellmeier | patents/US4110006.pdf | No reviewed-sidecar hit |
+| L17 (Element 17) | 30 | `Unmatched crown glass (534/555 vintage code)` | 1.53375 / 55.50 | No catalog entry | abbe | patents/US4110006.pdf | No reviewed-sidecar hit |
+| L18 (Element 18) | 32 | `Lanthanum flint class (800/422)` | 1.79952 / 42.20 | S-LAH52 (trusted Sellmeier) | sellmeier | patents/US4110006.pdf | No reviewed-sidecar hit |
 
 ### [CANON RF 100mm f/2.8 L MACRO IS USM](../../src/lens-data/canon/CanonRF100f28.data.ts) - JP2021-47297A
 

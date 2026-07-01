@@ -19,6 +19,12 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-07-01 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-07-01",
+    type: "lens",
+    summary: "Added three new Canon new FD lenses, 14mm f/2.8, 100mm f/2, and 150-600mm f/5.6",
+  },
   // ── 2026-06-30 ──────────────────────────────────────────────────────────
   {
     date: "2026-06-30",
