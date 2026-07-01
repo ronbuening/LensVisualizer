@@ -23,7 +23,12 @@ import { ALL_CATALOG_KEYS, LENS_CATALOG, CATALOG_KEYS, mdForKey } from "../../ut
 import usePreferences from "../../utils/state/usePreferences.js";
 import useURLSync from "../../utils/state/useURLSync.js";
 import { LensStateContext, LensDispatchContext, PanelStateContext } from "../../utils/state/LensContext.js";
-import { resolveDarkPreference, resolveTheme } from "../../utils/theme/themePreferences.js";
+import {
+  resolveActiveTheme,
+  resolveDarkPreference,
+  themeModeFromDarkPreference,
+} from "../../utils/theme/themePreferences.js";
+import { useActiveHoliday } from "../../utils/theme/useActiveHoliday.js";
 import _ABOUT_ME_MD from "../../content/AboutMe.md?raw";
 import _ABOUT_SITE_MD from "../../content/AboutSite.md?raw";
 import _OPTICS_PRIMER_SIMPLE_MD from "../../content/OpticsPrimerSimple.md?raw";
@@ -172,7 +177,8 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
      dark===null means "auto" — resolved reactively via system media query. */
   const systemDark = useMediaQuery("(prefers-color-scheme: dark)");
   const resolvedDark = resolveDarkPreference(dark, systemDark);
-  const t = resolveTheme(resolvedDark, highContrast);
+  const holiday = useActiveHoliday();
+  const t = resolveActiveTheme(themeModeFromDarkPreference(dark), resolvedDark, highContrast, holiday);
 
   /* ── Catalog names map for TopBar (avoids passing full LENS_CATALOG) ── */
   const catalogNames = useMemo(

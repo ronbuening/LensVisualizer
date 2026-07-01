@@ -19,7 +19,7 @@ import type { ThemeColorTokens, Theme } from "../../types/theme.js";
  *   elemFill(e, on)   — element fill based on glass type, APD status, and hover
  *   elemStroke(e, on) — element stroke based on APD status and hover
  */
-function createTheme(t: ThemeColorTokens): Theme {
+export function createTheme(t: ThemeColorTokens): Theme {
   return {
     ...t,
     gridDash: (i) => (i % 2 ? "2,5" : "none"),

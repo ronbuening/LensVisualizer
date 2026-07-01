@@ -17,6 +17,7 @@
     "generate:glass-reports": "vitest run --testTimeout 30000 unresolvedGlassScan catalogMismatchScan glassRelabelCandidatesScan glassRelabelByLensScan sixDigitGlassCodeScan sellmeierCoverageScan glassCoverageOpportunitiesScan",
     "generate:mirror-reports": "vitest run --testTimeout 30000 mirrorFixtureAuthoringReport",
     "generate:mount-svgs": "vitest run --testTimeout 30000 mountSvgSpecificationsReport",
+    "generate:holiday-branding": "node scripts/generate-holiday-branding.mjs",
     "benchmark:optics-rendering": "node scripts/benchmark-optics-rendering.mjs",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",

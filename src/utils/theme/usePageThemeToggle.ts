@@ -18,10 +18,12 @@ import {
   darkPreferenceFromThemeMode,
   nextThemeMode,
   readSystemThemePreferences,
-  resolveTheme,
+  resolveActiveTheme,
   resolveThemePreferences,
   type ThemeMode,
 } from "./themePreferences.js";
+import { useActiveHoliday } from "./useActiveHoliday.js";
+import type { HolidayTheme } from "./holidayThemes.js";
 import type { Theme } from "../../types/theme.js";
 
 interface PageThemeToggle {
@@ -29,6 +31,8 @@ interface PageThemeToggle {
   themeMode: ThemeMode;
   dark: boolean;
   highContrast: boolean;
+  /** Active holiday theme (only meaningful in "auto" mode), or null. */
+  holiday: HolidayTheme | null;
   toggleTheme: () => void;
   toggleHC: () => void;
 }
@@ -80,12 +84,14 @@ export function usePageThemeToggle(): PageThemeToggle {
     });
   }, [themeMode, persist]);
 
+  const holiday = useActiveHoliday();
   const resolvedDark = themeMode === "auto" ? systemDark : themeMode === "dark";
   return {
-    theme: resolveTheme(resolvedDark, highContrast),
+    theme: resolveActiveTheme(themeMode, resolvedDark, highContrast, holiday),
     themeMode,
     dark: resolvedDark,
     highContrast,
+    holiday,
     toggleTheme,
     toggleHC,
   };
