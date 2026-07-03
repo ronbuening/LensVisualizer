@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **400** lenses scanned
-- **4407** non-air surfaces examined
-- **4411** element glass declarations examined
-- **617** non-explicit-unmatched annotations did not resolve
-- **267** distinct unresolved glass-like tokens found
+- **403** lenses scanned
+- **4447** non-air surfaces examined
+- **4451** element glass declarations examined
+- **623** non-explicit-unmatched annotations did not resolve
+- **268** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -32,6 +32,7 @@ or per-lens patent backfills.
 | 744495 | 3 | 3 | |
 | 768492 | 3 | 2 | |
 | 863248 | 3 | 1 | |
+| NBFD32 | 3 | 3 | |
 | 514428 | 2 | 1 | |
 | 517696 | 2 | 1 | |
 | 531559 | 2 | 2 | |
@@ -55,11 +56,12 @@ or per-lens patent backfills.
 | F8 | 2 | 2 | |
 | H-K6 | 2 | 1 | |
 | H-LAF3 | 2 | 2 | |
+| H-LAK53A | 2 | 2 | |
+| H-ZBAF4 | 2 | 1 | |
 | H-ZF39 | 2 | 2 | |
 | H-ZLAF4A | 2 | 1 | |
 | K-LAFK50 | 2 | 1 | |
 | NBFD10 | 2 | 2 | |
-| NBFD32 | 2 | 2 | |
 | S-APL1 | 2 | 1 | |
 | S-BAH10 | 2 | 2 | |
 | S-BSM36 | 2 | 1 | |
@@ -223,7 +225,6 @@ or per-lens patent backfills.
 | H-LAF72 | 1 | 1 | |
 | H-LAK3 | 1 | 1 | |
 | H-LAK52 | 1 | 1 | |
-| H-LAK53A | 1 | 1 | |
 | H-LAK5A | 1 | 1 | |
 | H-LAK7 | 1 | 1 | |
 | H-QF50 | 1 | 1 | |
@@ -390,6 +391,12 @@ or per-lens patent backfills.
 - [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 17: `863248 — ultra-dense flint (patent nd=1.86290, nu_d=24.8)`
 - [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 19: `863248 — ultra-dense flint (patent nd=1.86290, nu_d=24.8)`
 
+### NBFD32 — 3 occurrences
+
+- [CANON RF 50mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF50mmf14LVCM.data.ts) 17: `NBFD32 (HOYA, 730-322)`
+- [FUJIFILM FUJINON XF 23mm f/2.8 R WR](../../src/lens-data/fujifilm/FujifilmXF23mmf28RWR.data.ts) 6: `730322 - NBFD32 (HOYA dense barium flint; no Sellmeier catalog entry)`
+- [SIGMA 17-40mm f/1.8 DC | Art](../../src/lens-data/sigma/Sigma1740mmf18DCA.data.ts) 18: `NBFD32 (Hoya)`
+
 ### 514428 — 2 occurrences
 
 - [NIKON AF-S NIKKOR 20mm f/1.8 G ED](../../src/lens-data/nikon/NikonNikkorAFS20mmf18G.data.ts) 9: `514428 — patent cement layer (nd=1.51400, νd=42.8)`
@@ -505,6 +512,16 @@ or per-lens patent backfills.
 - [LAOWA 15mm f/4 Wide Angle 1:1 Macro](../../src/lens-data/laowa/Laowa15mmf4Macro.data.ts) 16: `H-LAF3 (CDGM)`
 - [NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) 32: `Lanthanum flint (182080/4251, uncertain — possibly CDGM H-LAF3)`
 
+### H-LAK53A — 2 occurrences
+
+- [CANON RF 20mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF20mmf14LVCM.data.ts) 7: `H-LaK53A (CDGM)`
+- [LAOWA 58mm f/2.8 2× Ultra-Macro APO](../../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts) 7: `H-LAK53A (CDGM)`
+
+### H-ZBAF4 — 2 occurrences
+
+- [CANON RF 20mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF20mmf14LVCM.data.ts) 17: `H-ZBaF4 (CDGM, close match)`
+- [CANON RF 20mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF20mmf14LVCM.data.ts) 27: `H-ZBaF4 (CDGM, close match)`
+
 ### H-ZF39 — 2 occurrences
 
 - [CANON NEW FD 14mm f/2.8 L](../../src/lens-data/canon/CanonNewFD14mmf28L.data.ts) 17: `Dense flint 667/330 (modern CDGM H-ZF39 equivalent; historical supplier unconfirmed)`
@@ -524,11 +541,6 @@ or per-lens patent backfills.
 
 - [HASSELBLAD HC Macro 120mm f/4](../../src/lens-data/hasselblad/HasselbladHC120mmf4Macro.data.ts) 16: `NBFD10 (HOYA)`
 - [SIGMA APO MACRO 150mm f/2.8 EX DG OS HSM](../../src/lens-data/sigma/SigmaAPOMacro150mmf28OSHSM.data.ts) 32: `NBFD10 (Hoya; dense niobium flint)`
-
-### NBFD32 — 2 occurrences
-
-- [FUJIFILM FUJINON XF 23mm f/2.8 R WR](../../src/lens-data/fujifilm/FujifilmXF23mmf28RWR.data.ts) 6: `730322 - NBFD32 (HOYA dense barium flint; no Sellmeier catalog entry)`
-- [SIGMA 17-40mm f/1.8 DC | Art](../../src/lens-data/sigma/Sigma1740mmf18DCA.data.ts) 18: `NBFD32 (Hoya)`
 
 ### S-APL1 — 2 occurrences
 
@@ -1189,10 +1201,6 @@ or per-lens patent backfills.
 ### H-LAK52 — 1 occurrence
 
 - [LAOWA 65mm f/2.8 2× Ultra Macro APO](../../src/lens-data/laowa/Laowa65mmf28MacroAPO.data.ts) 16: `729577 — high-index lanthanum crown (patent nd=1.72916, νd=57.67; H-LAK52 matches nd but not νd)`
-
-### H-LAK53A — 1 occurrence
-
-- [LAOWA 58mm f/2.8 2× Ultra-Macro APO](../../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts) 7: `H-LAK53A (CDGM)`
 
 ### H-LAK5A — 1 occurrence
 

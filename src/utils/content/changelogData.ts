@@ -19,6 +19,12 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-07-03 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-07-03",
+    type: "lens",
+    summary: "Added Canon RF 16mm f/2.8, 20mm f/1.4, and 50mm f/1.4 primes",
+  },
   // ── 2026-07-01 ──────────────────────────────────────────────────────────
   {
     date: "2026-07-01",
