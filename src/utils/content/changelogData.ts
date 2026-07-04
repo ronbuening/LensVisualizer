@@ -23,6 +23,12 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-07-03",
     type: "lens",
+    summary: "Added three Nikon AI lenses: 24mm f/2.0, 28mm f/2.8S, and 35mm f/1.4S",
+  },
+  // ── 2026-07-02 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-07-02",
+    type: "lens",
     summary: "Added Canon RF 16mm f/2.8, 20mm f/1.4, and 50mm f/1.4 primes",
   },
   // ── 2026-07-01 ──────────────────────────────────────────────────────────
