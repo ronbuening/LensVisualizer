@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **406** lenses scanned
-- **4475** non-air surfaces examined
-- **4479** element glass declarations examined
-- **623** non-explicit-unmatched annotations did not resolve
-- **268** distinct unresolved glass-like tokens found
+- **412** lenses scanned
+- **4546** non-air surfaces examined
+- **4550** element glass declarations examined
+- **636** non-explicit-unmatched annotations did not resolve
+- **273** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -28,9 +28,12 @@ or per-lens patent backfills.
 | S-NPH7 | 4 | 4 | |
 | 516565 | 3 | 1 | |
 | 585587 | 3 | 1 | |
+| 617540 | 3 | 2 | |
 | 670575 | 3 | 2 | |
 | 744495 | 3 | 3 | |
 | 768492 | 3 | 2 | |
+| 797454 | 3 | 2 | |
+| 861230 | 3 | 2 | |
 | 863248 | 3 | 1 | |
 | NBFD32 | 3 | 3 | |
 | 514428 | 2 | 1 | |
@@ -47,10 +50,12 @@ or per-lens patent backfills.
 | 773495 | 2 | 2 | |
 | 774492 | 2 | 1 | |
 | 784438 | 2 | 1 | |
+| 795286 | 2 | 2 | |
+| 795287 | 2 | 2 | |
 | 807316 | 2 | 2 | |
 | 813252 | 2 | 1 | |
 | 856401 | 2 | 1 | |
-| 861230 | 2 | 1 | |
+| 861231 | 2 | 1 | |
 | 882372 | 2 | 2 | |
 | E-FDS3HT | 2 | 1 | |
 | F8 | 2 | 2 | |
@@ -171,9 +176,7 @@ or per-lens patent backfills.
 | 787501 | 1 | 1 | |
 | 789457 | 1 | 1 | |
 | 792450 | 1 | 1 | |
-| 795286 | 1 | 1 | |
-| 795287 | 1 | 1 | |
-| 797454 | 1 | 1 | |
+| 797455 | 1 | 1 | |
 | 800255 | 1 | 1 | |
 | 803404 | 1 | 1 | |
 | 803405 | 1 | 1 | |
@@ -241,6 +244,7 @@ or per-lens patent backfills.
 | K-BASF5 | 1 | 1 | |
 | K-LAFN11 | 1 | 1 | |
 | K-PSKN2 | 1 | 1 | |
+| K-SSK1 | 1 | 1 | |
 | K-SSK9 | 1 | 1 | |
 | L-BBH1 | 1 | 1 | |
 | L-LAH83 | 1 | 1 | |
@@ -282,6 +286,7 @@ or per-lens patent backfills.
 | SK7 | 1 | 1 | |
 | SK8 | 1 | 1 | |
 | TAF105 | 1 | 1 | |
+| TAF2 | 1 | 1 | |
 | TAF3D | 1 | 1 | |
 | TAFD34 | 1 | 1 | |
 | TAFD5 | 1 | 1 | |
@@ -367,6 +372,12 @@ or per-lens patent backfills.
 - [FUJIFILM FUJINON GF 30mm f/5.6 T/S](../../src/lens-data/fujifilm/FujifilmGF30mmf56TS.data.ts) 20A: `585587 — moldable aspherical glass (patent-listed; no exact public catalog match)`
 - [FUJIFILM FUJINON GF 30mm f/5.6 T/S](../../src/lens-data/fujifilm/FujifilmGF30mmf56TS.data.ts) 24A: `585587 — moldable aspherical glass (patent-listed; no exact public catalog match)`
 
+### 617540 — 3 occurrences
+
+- [NIKON 1 NIKKOR VR 10-30mm f/3.5-5.6](../../src/lens-data/nikon/Nikon1Nikkor1030mmf3556.data.ts) 15: `617540 - K-SSK1 / SSK1 class (no source-backed catalog match)`
+- [NIKON AF ZOOM-NIKKOR 28-80mm f/3.5-5.6 D](../../src/lens-data/nikon/NikonAFZoomNikkor2880mmf3556.data.ts) 9: `617540 - SSK-class crown`
+- [NIKON AF ZOOM-NIKKOR 28-80mm f/3.5-5.6 D](../../src/lens-data/nikon/NikonAFZoomNikkor2880mmf3556.data.ts) 11: `617540 - SSK-class crown`
+
 ### 670575 — 3 occurrences
 
 - [NIKON AF ZOOM-NIKKOR 35-70mm f/2.8D](../../src/lens-data/nikon/NikonAFZoomNikkor3570mmf28D.data.ts) 3: `Lanthanum crown (670575; J-LAK02 class)`
@@ -384,6 +395,18 @@ or per-lens patent backfills.
 - [CANON ZOOM LENS 8.8-36.8mm f/1.8-2.8 (PowerShot G7 X)](../../src/lens-data/canon/CanonPowerShotG7X88368mmf1828.data.ts) 6A: `M-TAF101 (HOYA moldable; 768492 class)`
 - [CANON ZOOM LENS 8.8-36.8mm f/1.8-2.8 (PowerShot G7 X)](../../src/lens-data/canon/CanonPowerShotG7X88368mmf1828.data.ts) 11A: `M-TAF101 (HOYA moldable; 768492 class)`
 - [SONY FE 70-200mm f/4 G OSS](../../src/lens-data/sony/SonyFE70200mmf4G.data.ts) 27: `M-TAF101 / LAM55-class moldable glass (768492)`
+
+### 797454 — 3 occurrences
+
+- [NIKON NIKKOR 28mm f/2.8 (Nikon 28Ti)](../../src/lens-data/nikon/Nikon28Ti28mmf28.data.ts) 9: `797454 — discontinued lanthanum glass (no exact public catalog match)`
+- [NIKON AF ZOOM-NIKKOR 28-80mm f/3.5-5.6 D](../../src/lens-data/nikon/NikonAFZoomNikkor2880mmf3556.data.ts) 3: `797454 - high-index lanthanum flint class`
+- [NIKON AF ZOOM-NIKKOR 28-80mm f/3.5-5.6 D](../../src/lens-data/nikon/NikonAFZoomNikkor2880mmf3556.data.ts) 5: `797454 - high-index lanthanum flint class`
+
+### 861230 — 3 occurrences
+
+- [NIKON AF ZOOM-MICRO NIKKOR ED 70-180mm f/4.5-5.6D](../../src/lens-data/nikon/NikonAFZoomMicro70180mmf4556D.data.ts) 1: `861230 — high-index dense flint (patent nd=1.86074, νd=23.01; no source-backed catalog match)`
+- [NIKON AF ZOOM-MICRO NIKKOR ED 70-180mm f/4.5-5.6D](../../src/lens-data/nikon/NikonAFZoomMicro70180mmf4556D.data.ts) 3: `861230 — high-index dense flint (patent nd=1.86074, νd=23.01; no source-backed catalog match)`
+- [NIKON AF ZOOM-NIKKOR 28-80mm f/3.5-5.6 D](../../src/lens-data/nikon/NikonAFZoomNikkor2880mmf3556.data.ts) 7: `861230 - dense flint class`
 
 ### 863248 — 3 occurrences
 
@@ -467,6 +490,16 @@ or per-lens patent backfills.
 - [CARL ZEISS CONTAREX PLANAR 55mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissContarexPlanar55mmf14.data.ts) 7: `LaF10 (Schott 784438)`
 - [CARL ZEISS CONTAREX PLANAR 55mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissContarexPlanar55mmf14.data.ts) 9: `LaF10 (Schott 784438)`
 
+### 795286 — 2 occurrences
+
+- [NIKON AF ZOOM-NIKKOR 28-80mm f/3.3-5.6 G](../../src/lens-data/nikon/NikonAFZoomNikkor2880mmf3356.data.ts) 10: `795286 - J-LAFH3 (HIKARI; no source-backed catalog match)`
+- [Nikon AI Zoom-Nikkor 50-135mm f/3.5S](../../src/lens-data/nikon/NikonAIZoomNikko50135mmf35S.data.ts) 22: `J-LAFH3 (HIKARI; 795286)`
+
+### 795287 — 2 occurrences
+
+- [NIKON AF-S NIKKOR 70-200mm f/2.8 G ED VR II](../../src/lens-data/nikon/NikonAFS70200mmf28GVRII.data.ts) 1: `J-LAFH3 (HIKARI; 795287, coefficients unavailable)`
+- [NIKON AF ZOOM-NIKKOR 28-85mm f/3.5-4.5](../../src/lens-data/nikon/NikonAFZoomNikkor2885mmf3545.data.ts) 25: `795287 - J-LAFH3 (Hikari; no source-backed catalog match)`
+
 ### 807316 — 2 occurrences
 
 - [MINOLTA AF 100mm f/2.8 Macro](../../src/lens-data/minolta/MinoltaAF100mmf28Macro.data.ts) 13: `807316 - dense lanthanum flint (patent nd=1.80741, vd=31.59; unresolved)`
@@ -482,10 +515,10 @@ or per-lens patent backfills.
 - [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 14A: `856401 — lanthanum dense crown (patent nd=1.85612, νd=40.1)`
 - [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 25A: `856401 — lanthanum dense crown (patent nd=1.85612, νd=40.1)`
 
-### 861230 — 2 occurrences
+### 861231 — 2 occurrences
 
-- [NIKON AF ZOOM-MICRO NIKKOR ED 70-180mm f/4.5-5.6D](../../src/lens-data/nikon/NikonAFZoomMicro70180mmf4556D.data.ts) 1: `861230 — high-index dense flint (patent nd=1.86074, νd=23.01; no source-backed catalog match)`
-- [NIKON AF ZOOM-MICRO NIKKOR ED 70-180mm f/4.5-5.6D](../../src/lens-data/nikon/NikonAFZoomMicro70180mmf4556D.data.ts) 3: `861230 — high-index dense flint (patent nd=1.86074, νd=23.01; no source-backed catalog match)`
+- [NIKON AF ZOOM-NIKKOR 28-85mm f/3.5-4.5](../../src/lens-data/nikon/NikonAFZoomNikkor2885mmf3545.data.ts) 8: `861231 - J-SFH2 (Hikari; no source-backed catalog match)`
+- [NIKON AF ZOOM-NIKKOR 28-85mm f/3.5-4.5](../../src/lens-data/nikon/NikonAFZoomNikkor2885mmf3545.data.ts) 10: `861231 - J-SFH2 (Hikari; no source-backed catalog match)`
 
 ### 882372 — 2 occurrences
 
@@ -986,17 +1019,9 @@ or per-lens patent backfills.
 
 - [NIKON NIKKOR Z 24-70mm f/2.8 S](../../src/lens-data/nikon/NikonZ2470f28.data.ts) 26: `792450 — dense lanthanum crown (patent nd=1.79189, νd=45.04; no exact public catalog match)`
 
-### 795286 — 1 occurrence
+### 797455 — 1 occurrence
 
-- [Nikon AI Zoom-Nikkor 50-135mm f/3.5S](../../src/lens-data/nikon/NikonAIZoomNikko50135mmf35S.data.ts) 22: `J-LAFH3 (HIKARI; 795286)`
-
-### 795287 — 1 occurrence
-
-- [NIKON AF-S NIKKOR 70-200mm f/2.8 G ED VR II](../../src/lens-data/nikon/NikonAFS70200mmf28GVRII.data.ts) 1: `J-LAFH3 (HIKARI; 795287, coefficients unavailable)`
-
-### 797454 — 1 occurrence
-
-- [NIKON NIKKOR 28mm f/2.8 (Nikon 28Ti)](../../src/lens-data/nikon/Nikon28Ti28mmf28.data.ts) 9: `797454 — discontinued lanthanum glass (no exact public catalog match)`
+- [NIKON AF ZOOM-NIKKOR 28-85mm f/3.5-4.5](../../src/lens-data/nikon/NikonAFZoomNikkor2885mmf3545.data.ts) 5: `797455 - TAF2 class (Hoya legacy; no exact catalog match)`
 
 ### 800255 — 1 occurrence
 
@@ -1266,6 +1291,10 @@ or per-lens patent backfills.
 
 - [OLYMPUS ZUIKO AUTO-ZOOM 85-250mm f/5](../../src/lens-data/olympus/OlympusZuikoAutoZoom85250mmf5.data.ts) 9: `PSK53A / K-PSKn2 class`
 
+### K-SSK1 — 1 occurrence
+
+- [NIKON 1 NIKKOR VR 10-30mm f/3.5-5.6](../../src/lens-data/nikon/Nikon1Nikkor1030mmf3556.data.ts) 15: `617540 - K-SSK1 / SSK1 class (no source-backed catalog match)`
+
 ### K-SSK9 — 1 occurrence
 
 - [OLYMPUS ZUIKO AUTO-ZOOM 85-250mm f/5](../../src/lens-data/olympus/OlympusZuikoAutoZoom85250mmf5.data.ts) 13: `K-SSK9 (Sumita) / BSM28 class`
@@ -1429,6 +1458,10 @@ or per-lens patent backfills.
 ### TAF105 — 1 occurrence
 
 - [SIGMA 85mm f/1.4 DG HSM | Art](../../src/lens-data/sigma/Sigma85mmf14Art.data.ts) 17: `TAF105 (HOYA)`
+
+### TAF2 — 1 occurrence
+
+- [NIKON AF ZOOM-NIKKOR 28-85mm f/3.5-4.5](../../src/lens-data/nikon/NikonAFZoomNikkor2885mmf3545.data.ts) 5: `797455 - TAF2 class (Hoya legacy; no exact catalog match)`
 
 ### TAF3D — 1 occurrence
 
