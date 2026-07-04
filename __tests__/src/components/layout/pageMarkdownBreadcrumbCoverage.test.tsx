@@ -127,7 +127,12 @@ describe("page, markdown, and breadcrumb coverage", () => {
   it("renders single-lens breadcrumbs and dispatches settings changes", () => {
     const dispatch = vi.fn();
     const lensKey = CATALOG_KEYS[0];
-    renderBreadcrumb({ lensKey, state: makeState({ lens: { lensKeyA: lensKey } as LensState["lens"] }), dispatch });
+    renderBreadcrumb({
+      lensKey,
+      state: makeState({ lens: { lensKeyA: lensKey } as LensState["lens"] }),
+      dispatch,
+      initialEntry: "/?holiday=none",
+    });
 
     expect(screen.getByRole("link", { name: "Home" }).getAttribute("href")).toBe("/");
     expect(screen.getByRole("link", { name: "Makers" }).getAttribute("href")).toBe("/makers");

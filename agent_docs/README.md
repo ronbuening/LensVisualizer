@@ -6,7 +6,8 @@ links outward only when the task crosses boundaries.
 ## Layout
 
 - [`architecture.md`](architecture.md) and [`architecture/`](architecture/) — subsystem map, program flow, public functions, and focused architecture notes.
-- Lens/content workflow docs at the root — lens authoring, patent audits, articles, changelog, comments, and gotchas.
+- Lens/content workflow docs at the root — lens authoring, patent audits, semi-diameter diagram audits, articles,
+  changelog, comments, and gotchas.
 - Glass catalog workflow docs at the root — catalog buildout, relabel follow-up, and proprietary-glass backfill.
 - Agent instruction guidance at the root — [`agent-md-best-practices.md`](agent-md-best-practices.md) for general
   AGENTS.md files and [`claude-md-best-practices.md`](claude-md-best-practices.md) for Claude-specific files.
