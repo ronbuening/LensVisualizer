@@ -19,6 +19,12 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-07-04 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-07-04",
+    type: "lens",
+    summary: "Added six Nikon zoom lenses, including Nikon 1 VR and AF Zoom-Nikkor designs",
+  },
   // ── 2026-07-03 ──────────────────────────────────────────────────────────
   {
     date: "2026-07-03",
