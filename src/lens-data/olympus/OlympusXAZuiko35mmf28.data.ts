@@ -19,6 +19,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    ~5–8% mechanical clearance, capped by edge thickness, sd/|R|,   ║
  * ║    and cross-gap sag intrusion constraints.  Front-group SDs       ║
  * ║    reflect natural vignetting expected in a compact camera body.   ║
+ * ║    The 2026 Fig. 2 audit raised the rear L4/L5 SDs so the final    ║
+ * ║    meniscus height tracks the patent drawing instead of the older  ║
+ * ║    ray-envelope-only rear pinch.                                   ║
  * ║                                                                    ║
  * ║  NOTE ON STOP POSITION:                                            ║
  * ║    Patent d6 = 16.56 air gap split 8.28 / 8.28 (midpoint);        ║
@@ -140,10 +143,10 @@ const LENS_DATA = {
     { label: "6", R: 9.558, d: 3.78, nd: 1.72, elemId: 4, sd: 5.5 }, // L3a/L3b cemented interface
     { label: "7", R: -65.094, d: 2.898, nd: 1.0, elemId: 0, sd: 5.0 }, // L3b rear → air (to STO)
     { label: "STO", R: 1e15, d: 2.898, nd: 1.0, elemId: 0, sd: 3.5 }, // Aperture stop (inferred from Fig. 2)
-    { label: "8", R: -6.472, d: 1.029, nd: 1.804, elemId: 5, sd: 3.6 }, // L4 front
-    { label: "9", R: -11.387, d: 1.043, nd: 1.0, elemId: 0, sd: 3.8 }, // L4 rear → air
-    { label: "10", R: -65.972, d: 1.75, nd: 1.7495, elemId: 6, sd: 4.0 }, // L5 front
-    { label: "11", R: -29.635, d: 13.602, nd: 1.0, elemId: 0, sd: 4.2 }, // L5 rear → image (BFD)
+    { label: "8", R: -6.472, d: 1.029, nd: 1.804, elemId: 5, sd: 5.1 }, // L4 front
+    { label: "9", R: -11.387, d: 1.043, nd: 1.0, elemId: 0, sd: 5.4 }, // L4 rear → air
+    { label: "10", R: -65.972, d: 1.75, nd: 1.7495, elemId: 6, sd: 7.0 }, // L5 front
+    { label: "11", R: -29.635, d: 13.602, nd: 1.0, elemId: 0, sd: 7.4 }, // L5 rear → image (BFD)
   ],
 
   /* ── Aspherical coefficients ── */
