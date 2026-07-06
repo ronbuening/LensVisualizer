@@ -170,6 +170,20 @@ describe("glass catalog", () => {
     }
   });
 
+  it("evaluates the CDGM Fuji coverage additions", () => {
+    const expected: Array<[glass: string, nd: number]> = [
+      ["H-BaF8", 1.62604],
+      ["H-ZF39", 1.6668],
+    ];
+    for (const [glass, nd] of expected) {
+      const entry = resolveGlass(glass);
+      expect(entry?.name).toBe(glass);
+      expect(evaluateSellmeier(entry!, LINE_NM.d)).toBeCloseTo(nd, 5);
+    }
+    expect(resolveGlass("626391")?.name).toBe("H-BaF8");
+    expect(resolveGlass("667331")?.name).toBe("H-ZF39");
+  });
+
   it("evaluates explicit power-series catalog entries", () => {
     const hikariPskh1 = resolveGlass("593679 - fluorophosphate crown");
     expect(hikariPskh1?.name).toBe("J-PSKH1");

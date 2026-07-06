@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **415** lenses scanned
-- **4580** non-air surfaces examined
-- **4584** element glass declarations examined
-- **636** non-explicit-unmatched annotations did not resolve
-- **273** distinct unresolved glass-like tokens found
+- **418** lenses scanned
+- **4601** non-air surfaces examined
+- **4605** element glass declarations examined
+- **632** non-explicit-unmatched annotations did not resolve
+- **272** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -63,7 +63,6 @@ or per-lens patent backfills.
 | H-LAF3 | 2 | 2 | |
 | H-LAK53A | 2 | 2 | |
 | H-ZBAF4 | 2 | 1 | |
-| H-ZF39 | 2 | 2 | |
 | H-ZLAF4A | 2 | 1 | |
 | K-LAFK50 | 2 | 1 | |
 | NBFD10 | 2 | 2 | |
@@ -554,11 +553,6 @@ or per-lens patent backfills.
 
 - [CANON RF 20mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF20mmf14LVCM.data.ts) 17: `H-ZBaF4 (CDGM, close match)`
 - [CANON RF 20mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF20mmf14LVCM.data.ts) 27: `H-ZBaF4 (CDGM, close match)`
-
-### H-ZF39 — 2 occurrences
-
-- [CANON NEW FD 14mm f/2.8 L](../../src/lens-data/canon/CanonNewFD14mmf28L.data.ts) 17: `Dense flint 667/330 (modern CDGM H-ZF39 equivalent; historical supplier unconfirmed)`
-- [OLYMPUS ZUIKO AUTO-FISHEYE 8mm f/2.8](../../src/lens-data/olympus/OlympusZuikoAutoFisheye8mmf28.data.ts) 7: `H-ZF39 class (CDGM; 667/330)`
 
 ### H-ZLAF4A — 2 occurrences
 

@@ -178,6 +178,8 @@ const GLASS_CATALOG_SOURCE_ORDER = [
   "S-LAH96",
   "H-ZF88",
   "H-ZLaF76",
+  "H-BaF8",
+  "H-ZF39",
   "LAC13",
   "J-PSKH1",
   "J-PSKH4",
