@@ -46,6 +46,7 @@ export default function MountPage() {
   if (lenses.length === 0) return <Navigate to="/mounts" replace />;
   const details = getMountDetails(mountId);
   const mountSpec = MOUNT_SPECS[mountId];
+  const diagramSpec = mountSpec?.mvpStatus === "not_applicable" ? undefined : mountSpec;
   const mountMakers = makersForMount(lenses);
 
   const seoDescription = details
@@ -114,9 +115,9 @@ export default function MountPage() {
           </section>
         )}
 
-        {mountSpec && (
+        {diagramSpec && (
           <section style={{ marginBottom: "1.5rem" }}>
-            <MountDiagramPanel spec={mountSpec} theme={t} />
+            <MountDiagramPanel spec={diagramSpec} theme={t} />
           </section>
         )}
 
