@@ -9,10 +9,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **412** lenses scanned
-- **355** total code-only elements found
-- **270** elements in this report
-- **105** distinct lens files affected
+- **415** lenses scanned
+- **359** total code-only elements found
+- **271** elements in this report
+- **106** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -70,6 +70,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 518523 | 1 | 1 | patents/US4871239.pdf | All representative rows reviewed |
 | 518652 | 1 | 1 | patents/US2821112.pdf | No reviewed-sidecar hit |
 | 519573 | 1 | 1 | patents/20260118637.pdf | No reviewed-sidecar hit |
+| 523701 | 1 | 1 | patents/US20100194930A1.pdf | No reviewed-sidecar hit |
 | 525558 | 1 | 1 | patents/US8994842.pdf | No reviewed-sidecar hit |
 | 525596 | 1 | 1 | patents/US3632190.pdf | No reviewed-sidecar hit |
 | 531557 | 1 | 1 | patents/US8994842.pdf | No reviewed-sidecar hit |
@@ -829,6 +830,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
 |---|---|---|---|---|---|---|---|
 | L2 (Element 2) | 3A | `534556 — moldable crown (patent nd=1.53380, nu_d=55.6)` | 1.53380 / 55.60 | No catalog entry | abbe | patents/US20230367186A1.pdf | No reviewed-sidecar hit |
+
+### [PANASONIC LUMIX G VARIO 7-14mm f/4 ASPH.](../../src/lens-data/panasonic/PanasonicLumixGVario714mmf4.data.ts) - US 2010/0194930 A1
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+|---|---|---|---|---|---|---|---|
+| L16 (Element 16) | 28 | `Unmatched crown class (523/701, likely phosphate/fluorophosphate)` | 1.52300 / 70.10 | No catalog entry | abbe | patents/US20100194930A1.pdf | No reviewed-sidecar hit |
 
 ### [PANASONIC LUMIX S 20-60mm f/3.5-5.6](../../src/lens-data/panasonic/PanasonicLumixS2060mmf3556.data.ts) - JP 2021-179551 A
 

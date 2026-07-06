@@ -22,6 +22,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-07-05 ──────────────────────────────────────────────────────────
   {
     date: "2026-07-05",
+    type: "lens",
+    summary: "Added Panasonic 7-14mm, 8mm fisheye, and 25mm Micro Four Thirds lenses",
+  },
+  {
+    date: "2026-07-05",
     type: "fix",
     summary: "Corrected patent-diagram semi-diameters across the lens catalog",
   },
