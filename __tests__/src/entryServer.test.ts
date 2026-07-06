@@ -35,6 +35,7 @@ const TEST_MAKER_SLUG = TEST_MAKER.slug;
 const TEST_MAKER_DISPLAY = TEST_MAKER.display;
 const TEST_MOUNT = MOUNT_OPTIONS[0];
 const TEST_MOUNT_DETAILS = getMountDetails(TEST_MOUNT.id)!;
+const TEST_RENDERABLE_MOUNT = MOUNT_OPTIONS.find((mount) => mount.id === "canon-ef") ?? TEST_MOUNT;
 const TEST_FORMAT = IMAGE_FORMAT_OPTIONS[0];
 const TEST_FORMAT_DETAILS = getImageFormatDetails(TEST_FORMAT.id)!;
 const TEST_ARTICLE = ARTICLES[0];
@@ -301,6 +302,17 @@ describe("SSR render — mounts", () => {
     expect(scripts).toContain('"@type":"BreadcrumbList"');
     expect(html).toContain(TEST_MOUNT.label);
     expect(html).toContain(escapeHtmlText(TEST_MOUNT_DETAILS.description.split("\n\n")[0]));
+  });
+
+  it("renders mount interface diagrams only for applicable mount specs", () => {
+    const renderable = render(`/mounts/${TEST_RENDERABLE_MOUNT.id}`);
+    const fixedLens = render("/mounts/fixed-lens-camera");
+
+    expect(renderable.html).toContain("Mount interface");
+    expect(fixedLens.html).toContain("Fixed-lens Camera");
+    expect(fixedLens.html).toContain("interactive lens");
+    expect(fixedLens.html).not.toContain("mount interface");
+    expect(fixedLens.html).not.toContain("Mount interface");
   });
 });
 
