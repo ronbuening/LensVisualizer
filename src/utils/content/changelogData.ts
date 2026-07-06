@@ -19,6 +19,12 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-07-06 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-07-06",
+    type: "lens",
+    summary: "Added Panasonic 7-14mm, 8mm fisheye, and 25mm Micro Four Thirds lenses",
+  },
   // ── 2026-07-05 ──────────────────────────────────────────────────────────
   {
     date: "2026-07-05",
