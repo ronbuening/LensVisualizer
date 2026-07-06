@@ -3,6 +3,17 @@
 Patent: US 3,874,771, Example 5  
 Catalog version: local working tree, 2026-06-25
 
+## 2026-07-06 - Mount metadata review
+
+- Added `lensMounts: ["contax-yashica"]` and `imageFormat: "135-full-frame"`.
+- Source review confirms the Planar T* 1.4/50 as part of the Yashica/Kyocera-era Contax/Yashica 35 mm SLR lens line.
+
+### Sources
+
+- US 3,874,771, Behrens and Glatzel / Carl Zeiss, Example 5.
+- Contax system overview, Contax/Yashica 35 mm SLR mount and lens list, https://en.wikipedia.org/wiki/Contax
+- Yashica history overview for the Carl Zeiss / Yashica Contax RTS collaboration and common C/Y bayonet, https://en.wikipedia.org/wiki/Yashica
+
 ## 2026-06-25 - APD, high-index, and semi-diameter audit
 
 ### Phase 1 - Glass corrections

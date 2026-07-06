@@ -2,6 +2,16 @@
 
 Patent: US 2,279,384, Example 6
 
+## 2026-07-06 - Mount metadata review
+
+- Added `lensMounts: ["enlarging-lens"]`.
+- Eastman Kodak's 1948 enlarging-equipment brochure lists the Kodak Enlarging Ektar 4-inch f/4.5 among Precision Enlarger lenses and accessories, matching this data file's production application context.
+- `imageFormat` remains unset: the brochure lists multiple negative carriers and states lens choice depends on negative size, but the reviewed text does not bind the 4-inch f/4.5 lens to one canonical catalog format strongly enough to seed a single `imageFormat` id.
+
+### Sources
+
+- Eastman Kodak Corp., _Kodak Enlarging Equipment Brochure 1948_, Internet Archive item `kodak-enlarging-equipment-brochure-1948`, https://archive.org/details/kodak-enlarging-equipment-brochure-1948
+
 ## 2026-07-04 - Semi-diameter patent-diagram review
 
 ### Phase 2 - Retained-information audit

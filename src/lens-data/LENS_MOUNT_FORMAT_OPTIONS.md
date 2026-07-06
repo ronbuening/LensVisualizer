@@ -17,6 +17,7 @@ catalog is being backfilled, but when present it must be a non-empty array of un
 
 | ID | Display Label | Notes |
 |----|---------------|-------|
+| `agfa-ambi-silette` | Agfa Ambi Silette | Agfa Ambi Silette proprietary 35 mm rangefinder bayonet. |
 | `canon-ef` | Canon EF | Canon EF SLR mount. |
 | `canon-ef-s` | Canon EF-S | Canon EF-derived APS-C DSLR mount; pairs with `aps-c`. |
 | `canon-ef-m` | Canon EF-M | Canon EF-M APS-C mirrorless mount; usually pairs with `aps-c`. |
@@ -28,6 +29,7 @@ catalog is being backfilled, but when present it must be a non-empty array of un
 | `contax-g` | Contax G | Contax G autofocus rangefinder-style mount; usually pairs with `135-full-frame`. |
 | `contax-n` | Contax N | Contax N autofocus SLR mount; usually pairs with `135-full-frame`. |
 | `contax-rf` | Contax RF | Contax rangefinder mount; usually pairs with `135-full-frame`. |
+| `zeiss-contaflex` | Zeiss Contaflex | Zeiss Ikon Contaflex Pro-Tessar convertible front-cell system; usually pairs with `135-full-frame`. |
 | `zeiss-contarex` | Zeiss Contarex | Zeiss Ikon Contarex SLR mount; usually pairs with `135-full-frame`. |
 | `dkl` | DKL / Deckel | Deckel bayonet family; usually pairs with `135-full-frame`. |
 | `enlarging-lens` | Enlarging Lens | Enlarger-board/thread-mounted darkroom projection lenses. |

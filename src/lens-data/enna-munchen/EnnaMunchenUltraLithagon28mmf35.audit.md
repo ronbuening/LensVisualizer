@@ -2,6 +2,17 @@
 
 Patent: US 2,959,100, Example 1 / Table I
 
+## 2026-07-06 - Mount metadata review
+
+- Added `lensMounts: ["exakta", "m42"]`.
+- Source review confirms Enna's 1958 Automatic-Sockel-System covered Edixa/Praktica and Exakta/Exa models; those map to the existing `m42` and `exakta` taxonomy ids.
+- Existing `imageFormat: "135-full-frame"` was retained.
+
+### Sources
+
+- US 2,959,100, Hans Lautenbacher / Enna Werk, Example 1 / Table I.
+- Enna Werk overview, Automatic-Sockel-System for Edixa, Praktica, Exakta, and Exa models, https://de.wikipedia.org/wiki/Enna_Werk
+
 ## 2026-07-04 - Semi-diameter patent-diagram review
 
 ### Phase 2 - Retained-information audit

@@ -2,6 +2,17 @@
 
 Patent: GB 775,944, sole numerical example
 
+## 2026-07-06 - Mount metadata review
+
+- Added `lensMounts: ["enlarging-lens"]`.
+- The data file and patent-linked analysis identify this as an Agfa Color-Magnolar II enlarger objective, so it belongs in the existing enlarging-lens taxonomy bucket rather than a camera mount.
+- `imageFormat` remains unset because the reviewed sources do not bind this scaled 100 mm dataset to one canonical negative format.
+
+### Sources
+
+- GB 775,944, Agfa Camera-Werk AG, sole numerical example.
+- Data-file context: Heliar-type enlarger objective.
+
 ## 2026-07-04 - Semi-diameter patent-diagram review
 
 ### Phase 2 - Retained-information audit

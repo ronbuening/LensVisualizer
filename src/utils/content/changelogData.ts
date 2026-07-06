@@ -22,6 +22,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-07-06 ──────────────────────────────────────────────────────────
   {
     date: "2026-07-06",
+    type: "improvement",
+    summary: "Added mount metadata for Kodak, Agfa, Zeiss, and Enna lenses",
+  },
+  {
+    date: "2026-07-06",
     type: "lens",
     summary: "Added Fujifilm SW 65mm, W 35mm, and Z 43-75mm patent-derived lenses",
   },

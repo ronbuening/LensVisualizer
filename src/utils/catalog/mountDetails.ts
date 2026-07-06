@@ -16,6 +16,13 @@ export interface MountDetails {
 }
 
 export const MOUNT_DETAILS: Record<LensMountId, MountDetails> = {
+  "agfa-ambi-silette": {
+    era: "Agfa Ambi Silette 35 mm rangefinder system, introduced in 1957",
+    formatNotes: "35 mm film rangefinder",
+    summary: "Agfa's proprietary Ambi Silette bayonet for a compact four-lens 35 mm rangefinder system.",
+    description:
+      "Agfa Ambi Silette was the interchangeable-lens branch of the Silette rangefinder family. The camera kept a central shutter in the body and used dedicated Agfa lenses rather than adopting one of the broader German leaf-shutter bayonet standards.\n\nThe system was small: a 35 mm Color-Ambion, 50 mm Color-Solinar, 90 mm Color-Telinear, and later a 130 mm Color-Telinear. The finder supported switchable frame lines for the main focal lengths, and the camera remained closer in spirit to a premium compact rangefinder than to an open-system SLR.\n\nIn this catalog, the Ambi Silette mount keeps Agfa's interchangeable rangefinder lenses separate from fixed-lens Silette cameras and from Agfa Ambiflex SLR lenses, whose mechanical interface and lens set are different.",
+  },
   "canon-ef": {
     era: "Canon EOS SLR and DSLR mount, introduced in 1987",
     formatNotes:
@@ -104,6 +111,13 @@ export const MOUNT_DETAILS: Record<LensMountId, MountDetails> = {
       "Zeiss Ikon's premium Contarex SLR mount, paired with mechanically elaborate bodies and high-end Zeiss lenses.",
     description:
       "Contarex was Zeiss Ikon's ambitious premium 35 mm SLR system. The original camera appeared at the end of the 1950s as an elaborate, expensive answer to the professional SLR market, and the lenses carried Zeiss's high-end optical identity into the reflex era.\n\nThe mount's lens family includes Planar, Distagon, Sonnar, Tessar, and specialty optics built to very high mechanical standards. Many designs show Zeiss adapting familiar names and correction priorities to the longer register and mirror clearance required by an SLR.\n\nContarex never became a mass-market standard, partly because the bodies were complex and costly just as Japanese professional SLR systems were accelerating. It remains one of the clearest examples of Zeiss translating its rangefinder and large-camera heritage into a no-compromise 35 mm SLR system.",
+  },
+  "zeiss-contaflex": {
+    era: "Zeiss Ikon Contaflex leaf-shutter SLR system, 1950s-1960s",
+    formatNotes: "35 mm leaf-shutter SLR, with Pro-Tessar convertible front-cell lenses on selected models",
+    summary: "Zeiss Ikon's Contaflex Pro-Tessar convertible lens system for 35 mm leaf-shutter SLR bodies.",
+    description:
+      "Zeiss Ikon Contaflex SLRs were compact 35 mm leaf-shutter reflex cameras. Early bodies had fixed Tessar lenses, while later Tessar-equipped models used the Pro-Tessar convertible system: the front cell could be removed and replaced by dedicated wide, tele, macro, or accessory units while the rear Tessar section and shutter remained in the camera.\n\nThat makes Contaflex different from a normal interchangeable-lens bayonet. The optical formula spans both the removable Pro-Tessar front unit and the body-mounted rear lens section, so the mount category is best treated as a system-specific convertible interface rather than DKL, Contarex, or a generic fixed-lens camera.\n\nFor catalog browsing, Contaflex entries show how leaf-shutter SLR makers tried to offer focal-length flexibility before focal-plane-shutter SLR mounts became dominant. The designs are constrained by the body shutter and fixed rear optics in ways that ordinary full-lens bayonet systems are not.",
   },
   dkl: {
     era: "Deckel leaf-shutter bayonet family, 1950s-1960s",

@@ -3,6 +3,16 @@
 Patent: DE 1,268,404 B, Example 2 / Table II  
 Catalog version: local working tree, 2026-06-25
 
+## 2026-07-06 - Mount metadata review
+
+- Added `lensMounts: ["zeiss-contarex"]` and `imageFormat: "135-full-frame"`.
+- The data file header identifies the design as a Contarex SLR telephoto Sonnar, and Contarex lens references list the 180 mm f/2.8 Olympia-Sonnar in the Contarex bayonet system.
+
+### Sources
+
+- DE 1,268,404 B, Example 2 / Table II.
+- Contarex lens overview, https://en.wikipedia.org/wiki/Contarex_lenses
+
 ## 2026-06-25 - APD, high-index, and semi-diameter audit
 
 ### Phase 1 - Glass corrections

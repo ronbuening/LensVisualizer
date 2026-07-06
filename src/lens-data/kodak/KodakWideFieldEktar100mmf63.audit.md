@@ -2,6 +2,19 @@
 
 Patent: US 2,518,719, Example 2 / Fig. 2
 
+## 2026-07-06 - Mount metadata review
+
+- Added `lensMounts: ["large-format-lens-board"]`.
+- The existing file already models the 100 mm f/6.3 design as a 4x5-format wide-field taking lens.
+- Source review found the Kodak/Reiss patent describes a wide-angle photographic camera objective, and the Kodak Wide-Field Ektar line is documented as a large-format camera lens family rather than a proprietary bayonet system.
+- Existing `imageFormat: "4x5"` was retained.
+
+### Sources
+
+- US 2,518,719, Max Reiss / Eastman Kodak, "Wide-angle camera objective," especially Example 2.
+- US 2,518,719 Google Patents record, https://patents.google.com/patent/US2518719A/en
+- Kodak lens overview secondary check for Wide-Field Ektar large-format camera use, https://ru.wikipedia.org/wiki/%D0%9E%D0%B1%D1%8A%D0%B5%D0%BA%D1%82%D0%B8%D0%B2%D1%8B_Kodak
+
 ## 2026-07-04 - Semi-diameter patent-diagram review
 
 ### Phase 2 - Retained-information audit

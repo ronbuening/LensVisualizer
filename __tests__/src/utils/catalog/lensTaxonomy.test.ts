@@ -40,6 +40,7 @@ describe("lensTaxonomy", () => {
   it("includes additional interchangeable-lens mount families", () => {
     expect(LENS_MOUNTS.map((mount) => mount.id)).toEqual(
       expect.arrayContaining([
+        "agfa-ambi-silette",
         "bronica-etr",
         "bronica-gs",
         "bronica-sq",
@@ -83,6 +84,7 @@ describe("lensTaxonomy", () => {
         "samsung-nx-mini",
         "sigma-sa",
         "xpan",
+        "zeiss-contaflex",
         "contax-yashica",
       ]),
     );
