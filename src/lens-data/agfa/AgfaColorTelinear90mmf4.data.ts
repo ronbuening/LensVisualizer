@@ -40,6 +40,7 @@ const LENS_DATA = {
   focalLengthDesign: 90.000442,
   apertureMarketing: 4,
   apertureDesign: 4,
+  lensMounts: ["agfa-ambi-silette"],
   imageFormat: "135-full-frame",
   patentYear: 1958,
   elementCount: 5,

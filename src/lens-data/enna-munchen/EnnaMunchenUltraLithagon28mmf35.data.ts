@@ -35,6 +35,7 @@ const LENS_DATA = {
   focalLengthDesign: 28.00055,
   apertureMarketing: 3.5,
   apertureDesign: 3.5,
+  lensMounts: ["exakta", "m42"],
   imageFormat: "135-full-frame",
   patentYear: 1960,
   elementCount: 6,

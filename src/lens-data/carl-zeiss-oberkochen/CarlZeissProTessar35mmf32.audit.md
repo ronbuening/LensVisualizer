@@ -3,6 +3,16 @@
 Patent: DE 1,089,183 B, Table 1  
 Catalog version: local working tree, 2026-06-25
 
+## 2026-07-06 - Mount metadata review
+
+- Added `lensMounts: ["zeiss-contaflex"]` and `imageFormat: "135-full-frame"`.
+- The data file header identifies the prescription as the Contaflex front-cell plus body-mounted Tessar rear section. Source review confirms the 35 mm f/3.2 Pro-Tessar as a Contaflex convertible-lens option, not a generic DKL lens.
+
+### Sources
+
+- DE 1,089,183 B, Table 1.
+- Contaflex SLR overview, Pro-Tessar convertible system and 35 mm f/3.2 listing, https://en.wikipedia.org/wiki/Contaflex_SLR
+
 ## 2026-06-25 - APD, high-index, and semi-diameter audit
 
 ### Phase 1 - Glass corrections

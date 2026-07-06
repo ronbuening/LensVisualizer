@@ -7,6 +7,7 @@
  */
 
 export const LENS_MOUNTS = [
+  { id: "agfa-ambi-silette", label: "Agfa Ambi Silette", sortOrder: 50 },
   { id: "canon-ef", label: "Canon EF", sortOrder: 100 },
   { id: "canon-ef-s", label: "Canon EF-S", sortOrder: 103 },
   { id: "canon-ef-m", label: "Canon EF-M", sortOrder: 105 },
@@ -18,6 +19,7 @@ export const LENS_MOUNTS = [
   { id: "contax-g", label: "Contax G", sortOrder: 160 },
   { id: "contax-n", label: "Contax N", sortOrder: 170 },
   { id: "contax-rf", label: "Contax RF", sortOrder: 180 },
+  { id: "zeiss-contaflex", label: "Zeiss Contaflex", sortOrder: 183 },
   { id: "zeiss-contarex", label: "Zeiss Contarex", sortOrder: 185 },
   { id: "dkl", label: "DKL / Deckel", sortOrder: 190 },
   { id: "exakta", label: "Exakta", sortOrder: 195 },

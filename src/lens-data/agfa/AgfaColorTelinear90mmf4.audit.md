@@ -2,6 +2,18 @@
 
 Patent: US 2,819,651, single worked example
 
+## 2026-07-06 - Mount metadata review
+
+- Added `lensMounts: ["agfa-ambi-silette"]`.
+- Source review confirms the 90 mm f/4 Color-Telinear as an interchangeable lens for the Agfa Ambi Silette rangefinder system.
+- Existing `imageFormat: "135-full-frame"` was retained.
+
+### Sources
+
+- US 2,819,651, Carl Baur and Christian Otzen / Agfa Camera-Werk AG, "Telephoto Objective."
+- Agfa Silette overview, Ambi-Silette lens list, https://de.wikipedia.org/wiki/Agfa_Silette
+- Existing analysis notes citing Cameraquest and AllPhotoLenses for Ambi Silette production context.
+
 ## 2026-07-04 - Semi-diameter patent-diagram review
 
 ### Phase 2 - Retained-information audit

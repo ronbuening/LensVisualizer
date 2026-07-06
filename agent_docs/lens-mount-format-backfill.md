@@ -7,18 +7,19 @@ the fields unset and add a note here until a source check resolves it.
 
 ## Current Coverage
 
-- Total lens data files: **382**
-- Files with both `lensMounts` and `imageFormat`: **357**
-- Files missing `lensMounts`: **21**
-- Files missing `imageFormat`: **24**
-- Files missing both fields: **20**
+- Total lens data files: **418**
+- Files with both `lensMounts` and `imageFormat`: **394**
+- Files missing `lensMounts`: **18**
+- Files missing `imageFormat`: **23**
+- Files missing both fields: **17**
 - Seeded formats currently in use: `1-inch-type`, `110`, `135-full-frame`, `44x33`, `4x5`, `5x7`, `645`,
-  `6x7`, `6x9`, `aps-c`, `four-thirds`
-- Seeded mounts currently in use: `canon-ef`, `canon-ef-m`, `canon-ef-s`, `canon-fd`, `canon-rf`, `contax-rf`,
-  `contax-yashica`, `enlarging-lens`, `exakta`, `fixed-lens-camera`, `four-thirds`, `fujifilm-g`, `fujifilm-x`,
-  `hasselblad-h`, `hasselblad-xcd`, `l-mount`, `large-format-lens-board`, `leica-ltm`, `leica-m`, `leica-r`,
-  `m42`, `micro-four-thirds`, `minolta-sr`, `nikon-1`, `nikon-f`, `nikon-s`, `nikon-z`, `olympus-om`,
-  `pentax-110`, `pentax-645`, `pentax-67`, `pentax-k`, `sigma-sa`, `sony-a`, `sony-fe`, `zeiss-contarex`
+  `6x6`, `6x7`, `6x9`, `aps-c`, `four-thirds`
+- Seeded mounts currently in use: `agfa-ambi-silette`, `canon-ef`, `canon-ef-m`, `canon-ef-s`, `canon-fd`,
+  `canon-rf`, `contax-rf`, `contax-yashica`, `enlarging-lens`, `exakta`, `fixed-lens-camera`, `four-thirds`,
+  `fujifilm-g`, `fujifilm-x`, `hasselblad-h`, `hasselblad-xcd`, `konica-ar`, `l-mount`,
+  `large-format-lens-board`, `leica-ltm`, `leica-m`, `leica-r`, `m42`, `micro-four-thirds`, `minolta-sr`,
+  `nikon-1`, `nikon-f`, `nikon-s`, `nikon-z`, `olympus-om`, `pentax-110`, `pentax-645`, `pentax-67`,
+  `pentax-k`, `praktina`, `sigma-sa`, `sony-a`, `sony-fe`, `zeiss-contaflex`, `zeiss-contarex`
 
 ## Source-Review Queue
 
@@ -30,9 +31,6 @@ Do not seed these from filename alone:
   - `SigmaArt40mmf14` — DSLR-era DG HSM Art; exact catalog mount coverage varied by system.
   - `SigmaDGDNA35mmf14`, `SigmaDGDNA85mmf14`, `SigmaDGDNArt50mmf14` — likely Sony E and L-mount
     full-frame, but confirm the exact production variants represented by each file.
-- Zeiss historical/system lenses:
-  - Carl Zeiss Oberkochen: `CarlZeissOlympiaSonnar180mmf28`, `CarlZeissPlanarT50mmf14`,
-    `CarlZeissProTessar35mmf32`
 - Laowa:
   - `Laowa12mmf28ZeroD` has `imageFormat` but no mount. Confirm represented production mounts before seeding.
 - Voigtländer:

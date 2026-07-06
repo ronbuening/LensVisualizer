@@ -38,6 +38,8 @@ const LENS_DATA = {
   focalLengthMarketing: 180,
   focalLengthDesign: 180.1,
   apertureMarketing: 2.8,
+  lensMounts: ["zeiss-contarex"],
+  imageFormat: "135-full-frame",
   patentYear: 1968,
   elementCount: 4,
   groupCount: 4,
