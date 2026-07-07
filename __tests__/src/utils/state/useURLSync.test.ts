@@ -309,6 +309,30 @@ describe("useURLSync — updateURLWithSliders (debounced)", () => {
     expect(replaceStateSpy.mock.calls.length).toBe(callsBefore + 1);
   });
 
+  it("clears the pending debounced write on unmount", () => {
+    const dispatch = vi.fn() as unknown as Dispatch<LensAction>;
+    // Non-zero focusT so a fired timer would produce a URL change (and a replaceState call)
+    const state: LensState = {
+      ...makeState(),
+      sliders: { focusT: 0.5, zoomT: 0, aberrationT: 0, stopdownT: 0, shiftMm: 0, tiltDeg: 0 },
+    };
+    const { result, unmount } = renderHook(() => useURLSync(state, dispatch, null, true, false));
+
+    act(() => {
+      result.current.updateURLWithSliders();
+    });
+    const callsBefore = replaceStateSpy.mock.calls.length;
+
+    // Simulate fast navigation away while the 100ms debounce is still pending
+    unmount();
+    act(() => {
+      vi.advanceTimersByTime(300);
+    });
+
+    // The stale timer must not fire and clobber the next route's URL
+    expect(replaceStateSpy.mock.calls.length).toBe(callsBefore);
+  });
+
   it("encodes non-zero focusT in the URL after debounce", () => {
     const dispatch = vi.fn() as unknown as Dispatch<LensAction>;
     const state: LensState = {

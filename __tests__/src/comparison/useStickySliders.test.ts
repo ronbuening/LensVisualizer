@@ -131,6 +131,53 @@ describe("useStickySliders", () => {
     expect(lastCall.type).toBe(SET_SHARED_FOCUS_T);
   });
 
+  it("dispatches the raw focus value (never NaN) when there is no focus pair", () => {
+    const { result } = renderHook(() => useStickySliders(dispatch, null, null, null));
+    act(() => {
+      result.current.handleSharedFocusChange(0.42);
+    });
+    expect(dispatchMock).toHaveBeenCalledWith({ type: SET_SHARED_FOCUS_T, value: 0.42 });
+  });
+
+  it("dispatches the raw stopdown value (never NaN) when there is no aperture pair", () => {
+    const { result } = renderHook(() => useStickySliders(dispatch, null, null, null));
+    act(() => {
+      result.current.handleSharedStopdownChange(0.37);
+    });
+    expect(dispatchMock).toHaveBeenCalledWith({ type: SET_SHARED_STOPDOWN_T, value: 0.37 });
+  });
+
+  it("dispatches the raw value (never NaN) when the pair has a null commonPoint", () => {
+    const focusPair = makeFocusPair(null);
+    const aperturePair = makeAperturePair(null);
+    const { result } = renderHook(() => useStickySliders(dispatch, focusPair, aperturePair, { LA, LB }));
+    act(() => {
+      result.current.handleSharedFocusChange(0.42);
+      result.current.handleSharedStopdownChange(0.37);
+    });
+    expect(dispatchMock).toHaveBeenCalledWith({ type: SET_SHARED_FOCUS_T, value: 0.42 });
+    expect(dispatchMock).toHaveBeenCalledWith({ type: SET_SHARED_STOPDOWN_T, value: 0.37 });
+  });
+
+  it("clears the pending flash timer on unmount", () => {
+    vi.useFakeTimers();
+    try {
+      const focusPair = makeFocusPair(0.5);
+      const { result, unmount } = renderHook(() => useStickySliders(dispatch, focusPair, null, { LA, LB }));
+
+      /* Cross the CP to trigger the 400ms flash timer */
+      act(() => result.current.handleSharedFocusChange(0.3));
+      act(() => result.current.handleSharedFocusChange(0.6));
+      expect(result.current.flashPanel).not.toBeNull();
+      expect(vi.getTimerCount()).toBeGreaterThan(0);
+
+      unmount();
+      expect(vi.getTimerCount()).toBe(0);
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+
   it("does not stick when commonPoint is near 0 or 1", () => {
     /* CP at 0.005 (< 0.01) — sticky should not activate.
      * The slider should still dispatch normally without entering the stuck state.
