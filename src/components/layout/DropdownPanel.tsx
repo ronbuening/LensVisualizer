@@ -28,7 +28,7 @@ interface DropdownPanelProps {
   open: boolean;
   pos: DropdownPanelPos | null;
   /** Ref to the trigger element — excluded from outside-click detection. */
-  triggerRef: RefObject<HTMLElement | null>;
+  triggerRef: RefObject<HTMLElement>;
   onClose: () => void;
   theme: Theme;
   children: React.ReactNode;
@@ -38,7 +38,7 @@ const DropdownPanel = forwardRef<HTMLDivElement, DropdownPanelProps>(function Dr
   { open, pos, triggerRef, onClose, theme: t, children },
   ref,
 ) {
-  const innerRef = useRef<HTMLDivElement>(null);
+  const innerRef = useRef<HTMLDivElement | null>(null);
 
   // Merge forwarded ref with local ref so we can use both
   const setRef = (el: HTMLDivElement | null) => {
@@ -46,7 +46,7 @@ const DropdownPanel = forwardRef<HTMLDivElement, DropdownPanelProps>(function Dr
     if (typeof ref === "function") {
       ref(el);
     } else if (ref) {
-      (ref as React.MutableRefObject<HTMLDivElement | null>).current = el;
+      ref.current = el;
     }
   };
 

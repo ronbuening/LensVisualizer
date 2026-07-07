@@ -150,7 +150,7 @@ export default function LensDiagramPanel({
   /* ── Hover/selection state ── */
   const [hov, setHov] = useState<number | null>(null);
   const [sliderInteracting, setSliderInteracting] = useState(false);
-  const panelContainerRef = useRef<HTMLDivElement | null>(null);
+  const panelContainerRef = useRef<HTMLDivElement>(null);
   const selectedElementPanelId = normalizePanelId(panelId);
   const sel = panels[selectedElementKeyForPanel(selectedElementPanelId)];
 
