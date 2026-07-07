@@ -1,4 +1,9 @@
-# Mirror Lens Future Enhancements
+# Mirror Lens Future Enhancements (ARCHIVED)
+
+> **ARCHIVED 2026-07-06.** This backlog is a historical record. Its open items were absorbed into
+> the "Mirror/Folded Backlog" section of `FEATURE_ADDITION_PLAN.md` at the repo root, which is now
+> the single source of truth for feature plans. The extensive "Done" records below remain valuable
+> historical context. Do not add items here.
 
 This is the working backlog for mirror-lens, telescope, annular-aperture, and folded-optics support after the first implementation pass. Keep this file focused on future engineering work; current authoring rules live in `src/lens-data/LENS_DATA_SPEC.md`, and architecture notes live under `agent_docs/`.
 

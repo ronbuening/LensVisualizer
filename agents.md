@@ -105,13 +105,15 @@ Read only the relevant focused doc before changing that area:
   mount SVG specifications with `npm run generate:mount-svgs`
 - `agent_docs/records/exact-surface-trace.md` - historical staged implementation notes for the exact trace rollout
 - `TRACE_MODEL_IMPROVEMENT_PLAN.md` - current/historical fisheye projection, vector launch, and bounding-sphere trace status
-- `MIRROR_OPTICS_ACCURACY_PLAN.md` - completed mirror/folded accuracy implementation and verification status
-- `MIRROR_LENS_FUTURE_ENHANCEMENTS.md` - follow-up backlog for mirror-lens analysis, tracing, UI, and authoring improvements
-- `CHROMATIC_DISPERSION_NOTES.md` - current chromatic dispersion cascade and catalog status
-- `ANALYSIS_OPTIONS.md` - forward-looking analysis feature roadmap
-- `PERFORMANCE.md` - performance roadmap and shipped slider-responsiveness stages
-- `SEO_OFFSITE_ACTIONS.md` - post-deploy search/social preview checklist
+- `FEATURE_ADDITION_PLAN.md` - single source of truth for planned features (absorbed the analysis-options and mirror-lens backlogs; archives under `agent_docs/records/`)
+- `EFFICIENCY_IMPROVEMENT_PLAN.md` - task-by-task redundancy cleanup and performance backlog with verification gates
 - `agent_docs/adding_a_lens.md` - lens data workflow and validation troubleshooting
+- `agent_docs/adding_an_analysis_tab.md` - recipe: the four registration points for a new analysis drawer tab
+- `agent_docs/adding_url_state.md` - recipe: adding a URL-shareable view-state field
+- `agent_docs/adding_a_route.md` - recipe: new page/route with prerender and sitemap wiring
+- `agent_docs/adding_ui_controls.md` - recipe: sliders/toggles via shared controls and dispatch adapters
+- `agent_docs/testing_recipes.md` - copy-paste test patterns and shared `__tests__/testUtils.tsx` helpers
+- `agent_docs/theme_tokens.md` - recipe: adding/changing theme color tokens across all four variants
 - `agent_docs/lens-mount-format-backfill.md` - mount/format metadata backfill status and review queue
 - `agent_docs/lens-patent-audit.md` - standard procedure for re-checking a lens against its patent and logging the result
 - `agent_docs/adding_an_article.md` - article/series frontmatter, TOC, links, verification

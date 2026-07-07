@@ -6,17 +6,24 @@ links outward only when the task crosses boundaries.
 ## Layout
 
 - [`architecture.md`](architecture.md) and [`architecture/`](architecture/) — subsystem map, program flow, public functions, and focused architecture notes.
+- Task recipes at the root — step-by-step guides for common change types:
+  [`adding_an_analysis_tab.md`](adding_an_analysis_tab.md), [`adding_url_state.md`](adding_url_state.md),
+  [`adding_a_route.md`](adding_a_route.md), [`adding_ui_controls.md`](adding_ui_controls.md),
+  [`testing_recipes.md`](testing_recipes.md), [`theme_tokens.md`](theme_tokens.md). Read the matching
+  recipe before starting one of these tasks.
 - Lens/content workflow docs at the root — lens authoring, patent audits, semi-diameter diagram audits, articles,
   changelog, comments, and gotchas.
 - Glass catalog workflow docs at the root — catalog buildout, relabel follow-up, and proprietary-glass backfill.
 - Agent instruction guidance at the root — [`agent-md-best-practices.md`](agent-md-best-practices.md) for general
   AGENTS.md files and [`claude-md-best-practices.md`](claude-md-best-practices.md) for Claude-specific files.
-- Root-level project docs such as [`../TRACE_MODEL_IMPROVEMENT_PLAN.md`](../TRACE_MODEL_IMPROVEMENT_PLAN.md),
-  [`../MIRROR_LENS_FUTURE_ENHANCEMENTS.md`](../MIRROR_LENS_FUTURE_ENHANCEMENTS.md), and
-  [`../ANALYSIS_OPTIONS.md`](../ANALYSIS_OPTIONS.md) capture current status or future backlog for broad initiatives.
+- Root-level project docs: [`../TRACE_MODEL_IMPROVEMENT_PLAN.md`](../TRACE_MODEL_IMPROVEMENT_PLAN.md) (historical
+  trace status), [`../FEATURE_ADDITION_PLAN.md`](../FEATURE_ADDITION_PLAN.md) (single source of truth for planned
+  features), and [`../EFFICIENCY_IMPROVEMENT_PLAN.md`](../EFFICIENCY_IMPROVEMENT_PLAN.md) (cleanup/performance
+  backlog). The former `ANALYSIS_OPTIONS.md` and `MIRROR_LENS_FUTURE_ENHANCEMENTS.md` roadmaps are archived under
+  [`records/`](records/).
 - Current mirror/folded optics behavior is covered in [`architecture/optics-engine.md`](architecture/optics-engine.md)
   and authoring rules are covered in [`adding_a_lens.md`](adding_a_lens.md); remaining follow-up work is tracked in
-  [`../MIRROR_LENS_FUTURE_ENHANCEMENTS.md`](../MIRROR_LENS_FUTURE_ENHANCEMENTS.md).
+  the Mirror/Folded Backlog section of [`../FEATURE_ADDITION_PLAN.md`](../FEATURE_ADDITION_PLAN.md).
 - [`generated/`](generated/) — auto-generated reports and work queues; regenerate these instead of hand-editing them.
 - [`benchmarks/`](benchmarks/) — on-demand optics/rendering benchmark history and the latest human-readable benchmark
   report. Run `npm run benchmark:optics-rendering` manually; this command is intentionally not part of normal tests or
