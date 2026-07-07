@@ -40,7 +40,7 @@ lens data; analysis tabs use current focus, zoom, and aperture state.
 | `chiefRayDiagnostics.ts` | Structured counter for chief-ray solve outcomes. `recordChiefRayStatus(lensKey, status)` is wired into `solveChiefRay`; `getChiefRayDiagnostics()` returns a `Map<lensKey, { converged, paraxial-fallback, bracket-failed, out-of-domain }>` snapshot for audit scripts. Dev-only `console.warn` for fallbacks is preserved. |
 | `raySampling.ts` | Viewport ray-density sampling for normal/dense/diagnostic ray fans, including obstruction-aware sampling for folded annular systems, plus `isHeavyLensForRayWork(L)` — the shared heuristic for heavy-lens density downgrades (fisheye OR `N ≥ 32` OR `maxSD ≥ 50 mm` OR `halfField ≥ 40°`). |
 | `stopObstruction.ts` | Shared stop-obstruction inference for annular stop display and ray sampling. Prefers authored `STO.innerSd`, then folded central blockers and annular mirror holes, while ignoring ring blockers whose center remains clear. |
-| `lcaScaling.ts` | Fixed-reference LCA bar offset scaling. |
+| `chromaticRayFanScaling.ts` | Fixed-reference chromatic ray-fan and LOCA bar offset scaling. |
 | `analysisJobs.ts` | Runtime and prepared-state analysis job facades. Currently synchronous; prepared for module-worker migration. |
 | `cardinalElements.ts` | State-aware first-order/cardinal element calculations for F/F′, H/H′, N/N′ and axial spans. |
 | `distortionAnalysis.ts` | Rectilinear distortion curve and traced 2D field grid. |

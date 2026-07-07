@@ -148,7 +148,7 @@ Read only the relevant focused doc before changing that area:
 - Keep slider-state-dependent analysis out of `buildLens()`; analysis tabs compute from current focus/zoom/aperture state.
 - Use existing shared utilities/components before adding new abstractions.
 - Use `src/components/markdown/ThemedMarkdown.tsx` for article and lens-description markdown.
-- Add analysis drawer tabs through `analysisTabs.ts`, a display tab component, and `AnalysisDrawerContent.tsx`.
+- Add analysis drawer tabs by following the four-step recipe in `agent_docs/adding_an_analysis_tab.md`.
 - Add shareable view state through `src/utils/state/lensViewUrlState.ts`, matching state types, and reducer hydration.
 - Keep perspective-control movement in `src/optics/lensMovement.ts` unless explicitly upgrading full moved-optics analysis.
 - Update all four theme variants when changing theme color tokens.
@@ -157,7 +157,7 @@ Read only the relevant focused doc before changing that area:
   `src/lens-data/LENS_MOUNT_FORMAT_OPTIONS.md` and do not free-type labels.
 - Mount interface diagrams are authored in `src/mounts/*.mount.ts` (`satisfies MountSpecInput`), rendered by the
   pure engine in `src/optics/mount/`, and shown by `src/components/mount/`. Keep `src/types/mount.ts` and
-  `src/mounts/lens-mount.schema.json` in sync (no ajv; `satisfies` + `validateMountSpec.ts` enforce the contract),
+  `src/mounts/lens-mount.schema.json` in sync (no ajv; `satisfies` + `src/optics/mount/validateMountSpec.ts` enforce the contract),
   register new mounts in `src/mounts/index.ts`, and run `npm run generate:mount-svgs` after changes. See
   `agent_docs/architecture/mount-diagrams.md`.
 
