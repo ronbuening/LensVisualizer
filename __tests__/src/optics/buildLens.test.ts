@@ -75,66 +75,68 @@ describe("paraxialTrace", () => {
 
 describe("buildLens — production lenses", () => {
   /* ── EFL regression tests ── */
+  // EFL values are pinned tightly to the verified paraxial output (patent
+  // nominal in the test name). A loose integer-digit tolerance would let a
+  // systematic paraxial error through; see exactTraceGoldenValues.test.ts
+  // for the matching exact-trace pins.
   it("ApoLanthar EFL ≈ 49.3 mm", () => {
     const L = buildLens(ApoLanthar);
-    expect(L.EFL).toBeCloseTo(49.3, 0);
+    expect(L.EFL).toBeCloseTo(49.282789, 5);
   });
 
   it("Nokton EFL ≈ 50.0 mm", () => {
     const L = buildLens(Nokton);
-    expect(L.EFL).toBeCloseTo(50.0, 0);
+    expect(L.EFL).toBeCloseTo(49.997679, 5);
   });
 
   it("Nikkor Z EFL is computed (includes filter stack)", () => {
     const L = buildLens(Nikkor);
     // Patent lists 51.6 mm for the optical system; the data file includes
     // the cover glass (BK7 filter, surfaces 25-26) which shifts the
-    // paraxial EFL calculation. Verify it's finite and positive.
-    expect(L.EFL).toBeGreaterThan(40);
-    expect(L.EFL).toBeLessThan(100);
-    expect(isFinite(L.EFL)).toBe(true);
+    // paraxial EFL calculation slightly.
+    expect(L.EFL).toBeCloseTo(51.600921, 5);
   });
 
   it("Nikkor 105 f/1.4E EFL ≈ 102 mm", () => {
     const L = buildLens(Nikkor105);
-    expect(L.EFL).toBeCloseTo(102, 0);
+    expect(L.EFL).toBeCloseTo(102.148542, 5);
   });
 
   it("NIKKOR-N 5cm f/1.1 EFL ≈ 50.1 mm", () => {
     const L = buildLens(NikkorN5cmf11);
-    expect(L.EFL).toBeCloseTo(50.1, 0);
+    expect(L.EFL).toBeCloseTo(50.087386, 5);
   });
 
   it("Sonnar 50 f/1.5 EFL ≈ 50.2 mm", () => {
     const L = buildLens(Sonnar50f15);
-    expect(L.EFL).toBeCloseTo(50.2, 0);
+    expect(L.EFL).toBeCloseTo(50.162656, 5);
   });
 
   /* ── f-number regression tests ── */
-  it("ApoLanthar FOPEN ≈ f/1.93", () => {
+  it("ApoLanthar FOPEN = f/1.93", () => {
     const L = buildLens(ApoLanthar);
-    expect(L.FOPEN).toBeCloseTo(1.93, 1);
+    expect(L.FOPEN).toBeCloseTo(1.93, 6);
   });
 
-  it("Nokton FOPEN ≈ f/1.0", () => {
+  it("Nokton FOPEN = f/1.0", () => {
     const L = buildLens(Nokton);
-    expect(L.FOPEN).toBeCloseTo(1.0, 1);
+    expect(L.FOPEN).toBeCloseTo(1.0, 6);
   });
 
-  it("Nikkor Z FOPEN ≈ f/1.85", () => {
+  it("Nikkor Z FOPEN = f/1.85", () => {
     const L = buildLens(Nikkor);
-    expect(L.FOPEN).toBeCloseTo(1.85, 1);
+    expect(L.FOPEN).toBeCloseTo(1.85, 6);
   });
 
   it("Nikon 6mm f/2.8 fisheye uses projection focal length for aperture sizing", () => {
     const L = buildLens(NikonFisheye6mmf28);
 
     expect(L.projection.kind).toBe("fisheye-equidistant");
-    expect(L.EFL).toBeCloseTo(37.4, 1);
+    expect(L.EFL).toBeCloseTo(37.413238, 5);
     expect(L.apertureReferenceFocalLength).toBeCloseTo(6.3, 6);
-    expect(L.FOPEN).toBeCloseTo(2.8, 2);
-    expect(L.stopPhysSD).toBeCloseTo(5.4, 1);
-    expect(L.EP.epSD).toBeCloseTo(6.3 / (2 * 2.8), 4);
+    expect(L.FOPEN).toBeCloseTo(2.8, 6);
+    expect(L.stopPhysSD).toBeCloseTo(5.395191, 5);
+    expect(L.EP.epSD).toBeCloseTo(6.3 / (2 * 2.8), 10);
     // halfField is the declared maxTraceFieldDeg for fisheyes (110° for the
     // Nikon 6mm). The paraxial-chief-ray bisection used to narrow this to ~32°,
     // but fisheyes skip that bisection — see buildLens.ts comment block and

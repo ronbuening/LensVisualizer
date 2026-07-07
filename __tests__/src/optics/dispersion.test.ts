@@ -37,6 +37,27 @@ describe("glass catalog", () => {
     expect(nF).toBeLessThan(ng);
   });
 
+  // assertCatalogConsistent only checks that each entry's Sellmeier fit
+  // reproduces its own stored nd — a systematically wrong catalog would still
+  // be self-consistent. These anchors pin two hand-verified reference glasses
+  // to independent published Schott datasheet indices at the C/d/F/g lines.
+  it.each([
+    { name: "N-BK7", nC: 1.51432, nd: 1.5168, nF: 1.52238, ng: 1.52668, vd: 64.17 },
+    { name: "SF6", nC: 1.79609, nd: 1.80518, nF: 1.82775, ng: 1.84707, vd: 25.43 },
+  ])("$name reproduces the published Schott datasheet indices at the C/d/F/g lines", (datasheet) => {
+    const entry = resolveGlass(datasheet.name);
+    expect(entry?.name).toBe(datasheet.name);
+    const nC = evaluateSellmeier(entry!, LINE_NM.C);
+    const nd = evaluateSellmeier(entry!, LINE_NM.d);
+    const nF = evaluateSellmeier(entry!, LINE_NM.F);
+    const ng = evaluateSellmeier(entry!, LINE_NM.g);
+    expect(nC).toBeCloseTo(datasheet.nC, 5);
+    expect(nd).toBeCloseTo(datasheet.nd, 5);
+    expect(nF).toBeCloseTo(datasheet.nF, 5);
+    expect(ng).toBeCloseTo(datasheet.ng, 5);
+    expect((nd - 1) / (nF - nC)).toBeCloseTo(datasheet.vd, 2);
+  });
+
   it("computed Abbe number for N-BK7 matches the catalog vd within 0.5", () => {
     const nbk7 = resolveGlass("N-BK7");
     expect(nbk7).not.toBeNull();
