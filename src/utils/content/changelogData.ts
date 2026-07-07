@@ -19,6 +19,12 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-07-07 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-07-07",
+    type: "lens",
+    summary: "Added Nikon UV-Nikkor 55mm and 105mm plus Ultra-Micro-Nikkor 29.5mm",
+  },
   // ── 2026-07-06 ──────────────────────────────────────────────────────────
   {
     date: "2026-07-06",

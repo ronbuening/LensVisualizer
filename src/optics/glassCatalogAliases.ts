@@ -22,6 +22,24 @@ export const ALIAS_RECORDS: readonly GlassAliasRecord[] = [
   { alias: "FLUORITE", target: "CaF2", kind: "informal", note: "Material name for the cataloged CaF2 crystal entry." },
   { alias: "CAF2", target: "CaF2", kind: "informal", note: "Uppercase token form of the CaF2 crystal entry." },
   {
+    alias: "FUSED-SILICA",
+    target: "SiO2",
+    kind: "informal",
+    note: "Material name for the cataloged fused-silica SiO2 entry.",
+  },
+  {
+    alias: "SILICA",
+    target: "SiO2",
+    kind: "informal",
+    note: "Common shorthand for fused silica / silica glass.",
+  },
+  {
+    alias: "QUARTZ",
+    target: "SiO2",
+    kind: "informal",
+    note: "Common UV-lens material shorthand routed to fused-silica optical constants.",
+  },
+  {
     alias: "SF57",
     target: "S-TIH53",
     kind: "vendor-equivalent",

@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **418** lenses scanned
-- **4601** non-air surfaces examined
-- **4605** element glass declarations examined
-- **632** non-explicit-unmatched annotations did not resolve
-- **272** distinct unresolved glass-like tokens found
+- **421** lenses scanned
+- **4619** non-air surfaces examined
+- **4623** element glass declarations examined
+- **634** non-explicit-unmatched annotations did not resolve
+- **273** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -35,6 +35,7 @@ or per-lens patent backfills.
 | 797454 | 3 | 2 | |
 | 861230 | 3 | 2 | |
 | 863248 | 3 | 1 | |
+| F8 | 3 | 3 | |
 | NBFD32 | 3 | 3 | |
 | 514428 | 2 | 1 | |
 | 517696 | 2 | 1 | |
@@ -58,7 +59,6 @@ or per-lens patent backfills.
 | 861231 | 2 | 1 | |
 | 882372 | 2 | 2 | |
 | E-FDS3HT | 2 | 1 | |
-| F8 | 2 | 2 | |
 | H-K6 | 2 | 1 | |
 | H-LAF3 | 2 | 2 | |
 | H-LAK53A | 2 | 2 | |
@@ -278,6 +278,7 @@ or per-lens patent backfills.
 | S-TIF4 | 1 | 1 | |
 | S-TIF6 | 1 | 1 | |
 | S-TIM1 | 1 | 1 | |
+| SF13 | 1 | 1 | |
 | SF19 | 1 | 1 | |
 | SF3 | 1 | 1 | |
 | SK12 | 1 | 1 | |
@@ -413,6 +414,12 @@ or per-lens patent backfills.
 - [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 17: `863248 — ultra-dense flint (patent nd=1.86290, nu_d=24.8)`
 - [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 19: `863248 — ultra-dense flint (patent nd=1.86290, nu_d=24.8)`
 
+### F8 — 3 occurrences
+
+- [CARL ZEISS TESSAR 50mm f/3.5](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissTessar50mmf35.data.ts) 3: `F8 historical (Schott, discontinued)`
+- [NIKON ULTRA-MICRO-NIKKOR 29.5mm f/1.2](../../src/lens-data/nikon/NikonUltraMicroNikkor295mmf12.data.ts) 11: `F8 class light flint (patent e-line index stored)`
+- [OLYMPUS ZUIKO AUTO-ZOOM 85-250mm f/5](../../src/lens-data/olympus/OlympusZuikoAutoZoom85250mmf5.data.ts) 21: `F8 class (Hikari / HOYA)`
+
 ### NBFD32 — 3 occurrences
 
 - [CANON RF 50mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF50mmf14LVCM.data.ts) 17: `NBFD32 (HOYA, 730-322)`
@@ -528,11 +535,6 @@ or per-lens patent backfills.
 
 - [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../../src/lens-data/nikon/NikonZ105f28.data.ts) 11: `E-FDS3HT (Hikari) or equiv.`
 - [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../../src/lens-data/nikon/NikonZ105f28.data.ts) 22: `E-FDS3HT (Hikari) or equiv.`
-
-### F8 — 2 occurrences
-
-- [CARL ZEISS TESSAR 50mm f/3.5](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissTessar50mmf35.data.ts) 3: `F8 historical (Schott, discontinued)`
-- [OLYMPUS ZUIKO AUTO-ZOOM 85-250mm f/5](../../src/lens-data/olympus/OlympusZuikoAutoZoom85250mmf5.data.ts) 21: `F8 class (Hikari / HOYA)`
 
 ### H-K6 — 2 occurrences
 
@@ -1424,6 +1426,10 @@ or per-lens patent backfills.
 ### S-TIM1 — 1 occurrence
 
 - [CANON RF 50mm f/1.2 L USM](../../src/lens-data/canon/CanonRF50mmf12L.data.ts) 21: `S-TIM1 (OHARA)`
+
+### SF13 — 1 occurrence
+
+- [NIKON ULTRA-MICRO-NIKKOR 29.5mm f/1.2](../../src/lens-data/nikon/NikonUltraMicroNikkor295mmf12.data.ts) 1: `SF13 class dense flint (patent e-line index stored)`
 
 ### SF19 — 1 occurrence
 

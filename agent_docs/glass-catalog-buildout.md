@@ -7,7 +7,7 @@ available, it falls back to partial measured `nC`/`nF` line indices, dPgF-correc
 approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **302 verified entries** in source as of June 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of vendor-published dispersion coefficients.
+The catalog currently has **303 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
 
 The generated reports in [`generated/`](generated/) are the current work queues:
 
@@ -173,6 +173,12 @@ material index/Abbe deltas, so those labels remain explicit code-only rows.
 | ★ N-LAK7 | Schott | 652585 | Lanthanum crown row used by Zeiss/Enna annotations |
 | ★ N-BAF4 | Schott | 606437 | Barium flint row used by Zeiss Distagon 28/2; this pass also corrected a Nikon Z 24-200 label that meant N-BALF4 |
 | ★ N-SSK2 | Schott | 622533 | Dense special crown row used by Rodenstock Grandagon-N f/4.5 annotations |
+
+**Phase 25 additions** (July 2026 — Nikon UV quartz/fluorite additions; special-material entry sourced from the published Malitson fused-silica Sellmeier fit and validated through `assertCatalogConsistent`. This pass also normalized Nikon UV labels to resolver-friendly ASCII material tokens):
+
+| Glass | Vendor | Code | Notes |
+|---|---|---:|---|
+| ★ SiO2 | Special | — | Fused silica / silica glass; clears quartz elements in Nikon UV-Nikkor 105mm f/4.5 when paired with existing CaF2 coverage |
 
 **Phase 17 additions** (May 2026 — Hasselblad/Laowa/Leica/Minolta/Nikon six-digit missing-Sellmeier queue pass; all entries round-trip through `assertCatalogConsistent`):
 

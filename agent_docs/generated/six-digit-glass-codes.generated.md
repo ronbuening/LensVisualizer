@@ -9,10 +9,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **418** lenses scanned
-- **359** total code-only elements found
-- **359** elements in this report
-- **127** distinct lens files affected
+- **421** lenses scanned
+- **360** total code-only elements found
+- **360** elements in this report
+- **128** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -77,6 +77,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 933209 | 2 | 2 | patents/WO2021199923A1.pdf<br>patents/JP2023039817A.pdf | All representative rows reviewed |
 | 950294 | 2 | 1 | patents/WO2019097669A1.pdf | No reviewed-sidecar hit |
 | 009291 | 1 | 1 | patents/WO2021200206A1.pdf | No reviewed-sidecar hit |
+| 449670 | 1 | 1 | patents/GB_1050055_A.pdf | No reviewed-sidecar hit |
 | 465658 | 1 | 1 | patents/US4189212.pdf | All representative rows reviewed |
 | 487698 | 1 | 1 | patents/US3838911.pdf | All representative rows reviewed |
 | 498650 | 1 | 1 | Missing from untracked local patents/ references (US4025167, 4025167) | No reviewed-sidecar hit |
@@ -942,6 +943,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L1 (Element 1) | 1 | `620586 — patent crown glass (nd=1.62041, νd=58.6; no catalog match verified)` | 1.62041 / 58.60 | No catalog entry | abbe | patents/US4303314.pdf | Reviewed sidecar hit |
 | L2 (Element 2) | 3 | `620586 — patent crown glass (nd=1.62041, νd=58.6; no catalog match verified)` | 1.62041 / 58.60 | No catalog entry | abbe | patents/US4303314.pdf | Reviewed sidecar hit |
 | L4 (Element 4) | 7 | `785261 — dense flint (line-index backfill; patent nd=1.78470, νd=26.1)` | 1.78470 / 26.10 | SF56A (trusted Sellmeier) | lineIndices | patents/US4303314.pdf | Reviewed sidecar hit |
+
+### [NIKON ULTRA-MICRO-NIKKOR 29.5mm f/1.2](../../src/lens-data/nikon/NikonUltraMicroNikkor295mmf12.data.ts) - GB 1,050,055
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+|---|---|---|---|---|---|---|---|
+| L3 (Element 3) | 5 | `Unmatched low-index crown 449/670 (patent e-line index stored)` | 1.44850 / 67.00 | No catalog entry | abbe | patents/GB_1050055_A.pdf | No reviewed-sidecar hit |
 
 ### [NIKON W-NIKKOR 35mm f/1.8](../../src/lens-data/nikon/NikonWNikkor35mmf18.data.ts) - US 2,896,506
 

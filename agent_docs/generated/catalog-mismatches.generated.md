@@ -13,13 +13,26 @@ with words like "probable" or "approx").
 
 ## Summary
 
-- **418** lenses scanned
-- **4601** glass surfaces examined
-- **4595** surfaces with non-empty `glass` strings
-- **3763** of those resolved to a catalog entry
-- **0** mismatches found (0.0% of resolved surfaces)
-- **0** distinct lens files affected
+- **421** lenses scanned
+- **4619** glass surfaces examined
+- **4613** surfaces with non-empty `glass` strings
+- **3775** of those resolved to a catalog entry
+- **1** mismatches found (0.0% of resolved surfaces)
+- **1** distinct lens files affected
 
-## No mismatches
+## Most-frequent mismatched catalog targets
 
-Every catalog-resolved surface agrees with its stored `nd` within tolerance. ✓
+Glass labels that get rejected most often. A high count here often points to a single glass
+annotation pattern (e.g. an obsolete name, a `probable` guess) that's used across many lenses.
+
+| Catalog entry | Rejected surfaces | Notes |
+|---|---|---|
+| N-SF8 | 1 | |
+
+## Mismatches by lens
+
+### [NIKON ULTRA-MICRO-NIKKOR 29.5mm f/1.2](../../src/lens-data/nikon/NikonUltraMicroNikkor295mmf12.data.ts) — GB 1,050,055
+
+| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
+|---|---|---|---|---|---|
+| 6 | `SF8 class dense flint (patent e-line index stored)` | N-SF8 | 1.69402 | 1.68894 | -0.0051 |

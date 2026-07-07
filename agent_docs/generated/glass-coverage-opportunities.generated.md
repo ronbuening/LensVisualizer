@@ -9,13 +9,13 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **418** lenses scanned (**410** visible)
-- **3763 / 4601** non-air surfaces use strict catalog Sellmeier data (81.8%)
-- **3798 / 4601** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 82.5%)
-- **0** mismatch surfaces in Sweep 1 across **0** lens files
-- **0** Sweep 1 surfaces have a matching untracked local patent PDF
-- **271** code-only missing-Sellmeier elements in Sweep 2
-- **133** unresolved named-token elements in Sweep 2B
+- **421** lenses scanned (**413** visible)
+- **3774 / 4619** non-air surfaces use strict catalog Sellmeier data (81.7%)
+- **3809 / 4619** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 82.5%)
+- **1** mismatch surfaces in Sweep 1 across **1** lens files
+- **1** Sweep 1 surfaces have a matching untracked local patent PDF
+- **272** code-only missing-Sellmeier elements in Sweep 2
+- **134** unresolved named-token elements in Sweep 2B
 - **0** Tier A proprietary backfill rows in Sweep 3
 
 ## Sweep 1 - Relabel Mismatches
@@ -24,6 +24,7 @@ Patent PDFs under `patents/` are untracked local references. A missing local pat
 
 | Lens | Patent | Surface | Current label | Stored nd/vd | Best candidate(s) | localPatentPath | localPatentStatus |
 |---|---|---|---|---|---|---|---|
+| [NIKON ULTRA-MICRO-NIKKOR 29.5mm f/1.2](../../src/lens-data/nikon/NikonUltraMicroNikkor295mmf12.data.ts) | GB 1,050,055 | 6 | `SF8 class dense flint (patent e-line index stored)` | 1.69402 / 31.20 | S-TIM35 (Δnd=+0.0049, Δvd=-1.07)<br>E-FD15 (Δnd=+0.0049, Δvd=-1.15) | patents/GB_1050055_A.pdf | Matched untracked local patent PDF |
 
 ## Near-Complete Visible Lenses
 
