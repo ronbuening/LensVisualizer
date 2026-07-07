@@ -1,7 +1,26 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import validateLensData from "../../../src/optics/validateLensData.js";
 import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
 import { MAX_RIM_SLOPE_TAN } from "../../../src/optics/internal/surfaceMath.js";
+
+/* Passthrough mock so a single test can make buildAsphereIndex throw once.
+ * buildAsphereIndex cannot be made to throw from plain lens data, so the
+ * folded image-plane guard's catch branch is only reachable this way. */
+const asphereIndexControl = vi.hoisted(() => ({ failNextBuild: false }));
+
+vi.mock("../../../src/optics/internal/lensState.js", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("../../../src/optics/internal/lensState.js")>();
+  return {
+    ...actual,
+    buildAsphereIndex: (...args: Parameters<typeof actual.buildAsphereIndex>) => {
+      if (asphereIndexControl.failNextBuild) {
+        asphereIndexControl.failNextBuild = false;
+        throw new Error("synthetic malformed asphere data");
+      }
+      return actual.buildAsphereIndex(...args);
+    },
+  };
+});
 
 function makeValid(overrides: Record<string, unknown> = {}): Record<string, unknown> {
   return {
@@ -542,6 +561,25 @@ describe("validateLensData", () => {
 
     const errors = validateLensData(data);
     expect(errors.some((error) => error.includes("must fit inside annular central opening"))).toBe(true);
+  });
+
+  it("reports an error instead of silently skipping folded image-plane validation when asphere indexing fails", () => {
+    const data = makeValid({
+      opticalPath: {
+        surfaceOrder: ["1", "STO", "2"],
+        maxInteractions: 4,
+        imagePlane: { z: 60 },
+      },
+    });
+
+    /* The folded reachability check builds its asphere index before the
+     * unguarded geometry-time build, so arming a single failure hits it. */
+    asphereIndexControl.failNextBuild = true;
+    const errors = validateLensData(data);
+
+    expect(
+      errors.some((e) => e.includes('"opticalPath.imagePlane"') && e.includes("synthetic malformed asphere data")),
+    ).toBe(true);
   });
 
   it("rejects malformed explicit element spans", () => {

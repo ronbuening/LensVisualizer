@@ -444,7 +444,12 @@ function validateFoldedImagePlaneReachability(
   let asphByIdx: ExactTraceLens["asphByIdx"];
   try {
     asphByIdx = buildAsphereIndex(data.asph, labelToIdx);
-  } catch {
+  } catch (cause) {
+    errors.push(
+      `"opticalPath.imagePlane" reachability could not be validated: malformed "asph" data (${
+        cause instanceof Error ? cause.message : String(cause)
+      })`,
+    );
     return;
   }
 

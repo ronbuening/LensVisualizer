@@ -78,6 +78,14 @@ export default function useURLSync(
     }, URL_UPDATE_DEBOUNCE_MS);
   }, [comparisonLenses, isLensPage, isComparePage]);
 
+  /* Clear any pending debounced write on unmount so a stale timer can't
+   * fire after navigation and clobber the next route's URL. */
+  useEffect(() => {
+    return () => {
+      if (urlUpdateTimer.current != null) clearTimeout(urlUpdateTimer.current);
+    };
+  }, []);
+
   /* ── 2. popstate hydration ── */
   const applyUrlViewState = useCallback(
     (search: string): void => {
