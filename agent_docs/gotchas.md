@@ -43,6 +43,7 @@
 - `lensMounts` and `imageFormat` must use canonical ids from `src/utils/catalog/lensTaxonomy.ts`; leave uncertain lenses unset
   and track them in `agent_docs/lens-mount-format-backfill.md`
 - Test files are `.ts` — both Vitest and tsc process them; Vitest resolves `.js` import extensions to `.ts` sources automatically
+- Several scan suites under `__tests__/src/optics/` are report generators that rewrite `agent_docs/generated/*.generated.md` on every run (`npm run generate:glass-reports` is just a vitest filter). The six-digit and glass-coverage-opportunities scans skip their rewrite when the untracked local `patents/` PDF inventory is empty, so plain `npm run test` in a fresh worktree or CI leaves the checked-in reports unchanged — regenerate those from a checkout where `patents/` is populated
 - `tsconfig.json` uses `strict: true` with `allowJs: false`; lens data `.data.ts` files are included in tsc via the `"src"` include
 - `.git-blame-ignore-revs` lists the initial Prettier commit — GitHub respects it automatically; for local blame run `git config blame.ignoreRevsFile .git-blame-ignore-revs`
 - `nominalFno` can be a single number or an array (one per zoom position) for variable-aperture zooms — array length must match `zoomPositions.length`; using an array on a non-zoom lens will fail validation
