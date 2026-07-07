@@ -1,4 +1,8 @@
-# Analysis Options - Feature Expansion Roadmap
+# Analysis Options - Feature Expansion Roadmap (ARCHIVED)
+
+> **ARCHIVED 2026-07-06.** This roadmap is a historical record. Its open items were absorbed into
+> `FEATURE_ADDITION_PLAN.md` at the repo root, which is now the single source of truth for feature
+> plans. Do not add items here; do not treat statuses below as current.
 
 This document tracks forward-looking opportunities for expanding LensVisualizer's feature set. It was refreshed after
 reviewing the current README, architecture notes, analysis-drawer implementation, optics modules, tests, article content,

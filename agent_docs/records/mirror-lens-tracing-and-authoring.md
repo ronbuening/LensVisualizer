@@ -28,4 +28,4 @@
 ## Follow-ups
 
 - Keep complex folded-system analysis tabs guarded until each tab has fixture-backed folded image-plane behavior.
-- Future mirror/telescope hardening remains tracked in `MIRROR_LENS_FUTURE_ENHANCEMENTS.md`.
+- Future mirror/telescope hardening remains tracked in the Mirror/Folded Backlog section of `FEATURE_ADDITION_PLAN.md` (formerly `MIRROR_LENS_FUTURE_ENHANCEMENTS.md`, archived as `mirror-lens-future-enhancements-archive.md`).
