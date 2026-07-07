@@ -10,7 +10,7 @@
  * hit its limit when a slider gets stuck.
  */
 
-import { useState, useRef, useCallback, type Dispatch, type MutableRefObject } from "react";
+import { useState, useRef, useEffect, useCallback, type Dispatch, type MutableRefObject } from "react";
 import { snapToCommon } from "./comparisonSliders.js";
 import type { FocusPairResult, AperturePairResult } from "./comparisonSliders.js";
 import { SET_SHARED_FOCUS_T, SET_SHARED_STOPDOWN_T } from "./comparisonReducer.js";
@@ -43,10 +43,18 @@ export default function useStickySliders(
   const prevFocusT = useRef<number>(0);
   const prevStopdownT = useRef<number>(0);
   const [flashPanel, setFlashPanel] = useState<string | null>(null);
+  const flashTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const triggerFlash = useCallback((panel: string): void => {
+    if (flashTimer.current != null) clearTimeout(flashTimer.current);
     setFlashPanel(panel);
-    setTimeout(() => setFlashPanel(null), 400);
+    flashTimer.current = setTimeout(() => setFlashPanel(null), 400);
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (flashTimer.current != null) clearTimeout(flashTimer.current);
+    };
   }, []);
 
   const handleSharedFocusChange = useCallback(
@@ -70,7 +78,7 @@ export default function useStickySliders(
           return;
         }
       }
-      const v = snapToCommon(rawT, cp!);
+      const v = cp != null ? snapToCommon(rawT, cp) : rawT;
       prevFocusT.current = v;
       dispatch({ type: SET_SHARED_FOCUS_T, value: v });
     },
@@ -98,7 +106,7 @@ export default function useStickySliders(
           return;
         }
       }
-      const v = snapToCommon(rawT, cp!);
+      const v = cp != null ? snapToCommon(rawT, cp) : rawT;
       prevStopdownT.current = v;
       dispatch({ type: SET_SHARED_STOPDOWN_T, value: v });
     },
