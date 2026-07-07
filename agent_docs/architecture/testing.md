@@ -50,6 +50,10 @@ Existing tests cover:
 
 - Pure optics functions and edge cases.
 - Lens build and data validation.
+- Golden-value trace regressions (`exactTraceGoldenValues.test.ts`): pinned EFL, image-plane, marginal/skew ray, fisheye
+  chief-ray, and folded-fixture values for reference designs, plus Schott datasheet anchors for N-BK7/SF6 in
+  `dispersion.test.ts`. These complement the finite/unclipped catalog smoke test — if a pin moves, absolute trace or
+  catalog behavior changed; investigate before re-pinning.
 - Mirror/folded optics fixtures: first-surface reflection, annular clipping/rendering, second-surface repeated hit order,
   automatic Newtonian path resolution, side/front/back image-plane termination, second-surface coating accents, folded
   analysis guardrails, off-axis chief-ray/image-plane accuracy, meridional symmetry, and analytic focal/back-focus
