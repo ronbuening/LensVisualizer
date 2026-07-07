@@ -17,3 +17,7 @@ declare module "node:path" {
   export function basename(path: string): string;
   export function join(...paths: string[]): string;
 }
+
+declare module "node:url" {
+  export function fileURLToPath(url: string | URL): string;
+}
