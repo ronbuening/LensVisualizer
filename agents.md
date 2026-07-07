@@ -187,6 +187,10 @@ Before commits or PRs, prefer:
 npm run typecheck && npm run format:check && npm run lint && npm run test
 ```
 
+`typecheck` and `test` regenerate `src/generated/` automatically via `pretypecheck`/`pretest` hooks, so they work on a
+fresh clone. Run `npm run generate:metadata` first only when running lint alone (type-aware ESLint needs the generated
+files) or when stray root-level lens files need organizing.
+
 Run `npm run build` for route, metadata, lens-data organization, SEO, article, or sitemap changes. Production deploys
 through Cloudflare Pages; see `agent_docs/workflow.md`.
 
