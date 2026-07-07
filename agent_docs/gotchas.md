@@ -66,9 +66,8 @@
 - Cardinal element overlays are state-aware first-order diagnostics. Keep the CARDINALS / DIMENSIONS controls
   feature-flagged by `ENABLE_CARDINAL_ELEMENTS`; the overlay must render H/N and H′/N′ as explicitly coincident for
   same-index systems and must not describe nodal points as no-parallax or panoramic rotation points
-- New analysis tabs require: (1) adding to `ANALYSIS_TABS` in `src/components/layout/lensDiagram/analysisTabs.ts`,
-  (2) creating a tab content component in `src/components/display/analysis/`, and (3) wiring it through
-  `ANALYSIS_TAB_RENDERERS` / `AnalysisDrawerContent.tsx`
+- New analysis tabs have four registration points (tab id in `ANALYSIS_TAB_IDS`, label, content component,
+  renderer entry); follow `agent_docs/adding_an_analysis_tab.md` rather than wiring from memory
 - The aspheric deviation inspector (`AsphericComparisonOverlay`) is **not** an analysis drawer tab — it is a standalone `OverlayModal` opened via the "Compare to sphere →" link in `ElementInspector`. Its open/close state lives in `useOverlayState.ts` (`asphCompareElementId`, `openAsphCompare`, `closeAsphCompare`) and resets automatically when switching lenses. This is the only diagram overlay still in `useOverlayState`; all the others (Abbe/glass-map, LCA, Petzval, bokeh, analysis drawer) live in the URL-shareable `panels` slice of the reducer. The callback flows: `useOverlayState` → `LensDiagramLoadedState` → `DiagramControlPanel` → `ElementInspector`
 - Adding a new shareable view-state field requires three coordinated edits: (1) the `[key, default]` entry in `VIEW_STATE_FIELDS` in `src/utils/state/lensViewUrlState.ts`, (2) the matching `URLState` and `PanelsSlice` (and `PanelField` union) entries in `src/types/state.ts`, and (3) the URL key + parse/build branch in `parseLensViewQuery` / `buildLensViewQuery` if the field needs a non-trivial encoding. The reducer's `APPLY_URL_VIEW_STATE` branch and `createInitialState` use the table directly, so they pick up new fields automatically once steps 1-2 are in place
 - Field curvature sign convention: positive shift = aft (toward sensor), negative = fore (toward lens). Petzval shift is negated relative to the geometric sag so it matches T/S direction for converging systems. Coma spot diagrams use industry-standard axes: sagittal on horizontal, tangential on vertical
