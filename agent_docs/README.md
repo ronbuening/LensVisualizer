@@ -62,6 +62,10 @@ Individual report commands:
 - [`generated/mirror-fixtures.generated.md`](generated/mirror-fixtures.generated.md) — `npm test -- mirrorFixtureAuthoringReport`
 - [`generated/lens-mount-svg-specifications.md`](generated/lens-mount-svg-specifications.md) + [`generated/mounts/`](generated/mounts/) — `npm test -- mountSvgSpecificationsReport`
 
+The `sixDigitGlassCodeScan` and `glassCoverageOpportunitiesScan` reports embed match statuses against the untracked
+local `patents/` PDF inventory. Those scans skip the rewrite when the inventory is empty (fresh worktrees, CI), so
+regenerate their three report files only from a checkout where `patents/` is populated.
+
 ## Benchmarks
 
 Optics/rendering benchmark records live outside `generated/` because each run is a permanent historical measurement:

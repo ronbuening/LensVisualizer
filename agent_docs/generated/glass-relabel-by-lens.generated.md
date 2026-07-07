@@ -21,3 +21,4 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | Surface | Current label | Stored nd/vd | Rejected as | Best candidate(s) | Confidence | Patent review |
 |---|---|---|---|---|---|---|
 | 6 | `SF8 class dense flint (patent e-line index stored)` | 1.69402 / 31.20 | N-SF8 (Δnd=-0.0051) | S-TIM35 (Δnd=+0.0049, Δvd=-1.07)<br>E-FD15 (Δnd=+0.0049, Δvd=-1.15) | Medium | Yes - choose candidate |
+
