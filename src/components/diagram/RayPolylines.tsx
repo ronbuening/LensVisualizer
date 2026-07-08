@@ -6,6 +6,8 @@
  * the on-axis, off-axis, and chromatic ray rendering into one component.
  */
 
+import { memo } from "react";
+
 interface RaySegment {
   sp: number[][];
   gp: number[][];
@@ -25,7 +27,7 @@ interface RayPolylinesProps {
   keyPrefix: string;
 }
 
-export default function RayPolylines({
+const RayPolylines = memo(function RayPolylines({
   rays,
   colorFn,
   solidWidth,
@@ -63,4 +65,6 @@ export default function RayPolylines({
       })}
     </>
   );
-}
+});
+
+export default RayPolylines;

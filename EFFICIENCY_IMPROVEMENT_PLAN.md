@@ -265,7 +265,7 @@ Context established by the audit:
 
 ### P1. Make `RayPolylines` memoizable and stabilize the props it receives
 
-- [ ] Effort: ~45 min · Risk: low · Expected impact: high
+- [x] Effort: ~45 min · Risk: low · Expected impact: high
 
 Facts (verified): `RayPolylines` (`src/components/diagram/RayPolylines.tsx`) is a plain function
 component — NOT wrapped in `memo`. Its parent `DiagramRayLayers`
