@@ -9,13 +9,13 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **421** lenses scanned (**413** visible)
-- **3774 / 4619** non-air surfaces use strict catalog Sellmeier data (81.7%)
-- **3809 / 4619** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 82.5%)
+- **424** lenses scanned (**416** visible)
+- **3828 / 4661** non-air surfaces use strict catalog Sellmeier data (82.1%)
+- **3860 / 4661** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 82.8%)
 - **1** mismatch surfaces in Sweep 1 across **1** lens files
 - **1** Sweep 1 surfaces have a matching untracked local patent PDF
-- **272** code-only missing-Sellmeier elements in Sweep 2
-- **134** unresolved named-token elements in Sweep 2B
+- **273** code-only missing-Sellmeier elements in Sweep 2
+- **129** unresolved named-token elements in Sweep 2B
 - **0** Tier A proprietary backfill rows in Sweep 3
 
 ## Sweep 1 - Relabel Mismatches
@@ -40,7 +40,6 @@ These are efficient follow-up targets after mismatch blockers because one or two
 | [NIKON 1 NIKKOR VR 10-100mm f/4-5.6](../../src/lens-data/nikon/Nikon1Nikkor10100mmf4VR.data.ts) | 95.0% (19/20) | 95.0% (19/20) | 1 | abbe: 1 |
 | [NIKON AF-S NIKKOR 200-500mm f/5.6 E ED VR](../../src/lens-data/nikon/NikonNikkorAFS200500mmf56.data.ts) | 94.7% (18/19) | 94.7% (18/19) | 1 | abbe: 1 |
 | [NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) | 94.7% (18/19) | 94.7% (18/19) | 1 | abbe: 1 |
-| [SIGMA APO Macro 180mm f/2.8 EX DG OS HSM](../../src/lens-data/sigma/SigmaAPOMacro180mmf28.data.ts) | 94.7% (18/19) | 84.2% (16/19) | 1 | abbe: 1 |
 | [CANON RF 24-105mm f/4 L IS USM](../../src/lens-data/canon/CanonRF24105mmf4L.data.ts) | 94.4% (17/18) | 94.4% (17/18) | 1 | abbe: 1 |
 | [NIKON AF-S NIKKOR 16-35mm f/4 G ED VR](../../src/lens-data/nikon/NikonNikkorAFS1635mmf4.data.ts) | 94.4% (17/18) | 94.4% (17/18) | 1 | abbe: 1 |
 | [NIKON PC NIKKOR 19mm f/4 E ED](../../src/lens-data/nikon/NikonNikkorPCE19mmf4E.data.ts) | 94.4% (17/18) | 94.4% (17/18) | 1 | abbe: 1 |
@@ -68,7 +67,6 @@ These are efficient follow-up targets after mismatch blockers because one or two
 | [SIGMA 50mm f/1.4 DG DN | Art](../../src/lens-data/sigma/SigmaDGDNArt50mmf14.data.ts) | 92.9% (13/14) | 92.9% (13/14) | 1 | abbe: 1 |
 | [SONY FE 85mm f/1.4 GM II](../../src/lens-data/sony/SonyFE85mmf14GMII.data.ts) | 92.9% (13/14) | 92.9% (13/14) | 1 | abbe: 1 |
 | [FUJIFILM FUJINON XF 56mm f/1.2 R WR](../../src/lens-data/fujifilm/FujifilmXF56mmf12RWR.data.ts) | 92.3% (12/13) | 92.3% (12/13) | 1 | abbe: 1 |
-| [SIGMA 23mm f/1.4 DC DN | Contemporary](../../src/lens-data/sigma/Sigma23mmf14DCDNC.data.ts) | 92.3% (12/13) | 92.3% (12/13) | 1 | abbe: 1 |
 | [NIKON AF-S NIKKOR 120-300mm f/2.8 E FL ED SR VR](../../src/lens-data/nikon/NikonNikkorAFS120300mmf28.data.ts) | 92.0% (23/25) | 92.0% (23/25) | 2 | abbe: 2 |
 | [NIKON 1 NIKKOR VR 10-30mm f/3.5-5.6](../../src/lens-data/nikon/Nikon1Nikkor1030mmf3556.data.ts) | 91.7% (11/12) | 91.7% (11/12) | 1 | abbe: 1 |
 | [Nikon AF Nikkor 20mm f/2.8D](../../src/lens-data/nikon/NikonAFNikkor20mmf28D.data.ts) | 91.7% (11/12) | 91.7% (11/12) | 1 | abbe: 1 |
@@ -102,7 +100,6 @@ These are efficient follow-up targets after mismatch blockers because one or two
 | [PENTAX FA 31mm f/1.8 AL Limited](../../src/lens-data/pentax/PentaxFA31mmf18ALLtd.data.ts) | 88.9% (8/9) | 88.9% (8/9) | 1 | abbe: 1 |
 | [SIGMA 30mm f/1.4 DC HSM | Art](../../src/lens-data/sigma/Sigma30mmf14DCHSMA.data.ts) | 88.9% (8/9) | 88.9% (8/9) | 1 | abbe: 1 |
 | [SONY E 35mm f/1.8 OSS](../../src/lens-data/sony/SonyE35mmf18.data.ts) | 88.9% (8/9) | 88.9% (8/9) | 1 | abbe: 1 |
-| [SONY FE 28mm f/2](../../src/lens-data/sony/SonyFE28mmf2.data.ts) | 88.9% (8/9) | 88.9% (8/9) | 1 | abbe: 1 |
 | [FUJIFILM FUJINON GF 45-100mm f/4 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmGF45100mmf4.data.ts) | 88.2% (15/17) | 88.2% (15/17) | 2 | abbe: 2 |
 | [NIKON NIKKOR Z 50mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ50f12.data.ts) | 88.2% (15/17) | 88.2% (15/17) | 2 | abbe: 2 |
 | [FUJIFILM FUJINON XF 23mm f/2.8 R WR](../../src/lens-data/fujifilm/FujifilmXF23mmf28RWR.data.ts) | 87.5% (7/8) | 87.5% (7/8) | 1 | abbe: 1 |
@@ -112,7 +109,6 @@ These are efficient follow-up targets after mismatch blockers because one or two
 | [SONY SONNAR T* E 24mm f/1.8 ZA](../../src/lens-data/sony/SonyFE24mmf18ZA.data.ts) | 87.5% (7/8) | 87.5% (7/8) | 1 | abbe: 1 |
 | [NIKON AF-S NIKKOR 24-70mm f/2.8 G ED](../../src/lens-data/nikon/NikonAFS2470mmf28G.data.ts) | 87.5% (14/16) | 87.5% (14/16) | 2 | abbe: 2 |
 | [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../../src/lens-data/nikon/NikonZ105f28.data.ts) | 87.5% (14/16) | 87.5% (14/16) | 2 | abbe: 2 |
-| [SIGMA 40mm f/1.4 DG HSM | Art](../../src/lens-data/sigma/SigmaArt40mmf14.data.ts) | 87.5% (14/16) | 87.5% (14/16) | 2 | abbe: 2 |
 | [CANON RF 50mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF50mmf14LVCM.data.ts) | 86.7% (13/15) | 86.7% (13/15) | 2 | abbe: 2 |
 | [FUJIFILM FUJINON GF 32-64mm f/4 R LM WR](../../src/lens-data/fujifilm/FujifilmGF3264mmf4.data.ts) | 86.7% (13/15) | 86.7% (13/15) | 2 | abbe: 2 |
 | [NIKON AF-S NIKKOR 28mm f/1.4 E ED](../../src/lens-data/nikon/NikonAFS28f14E.data.ts) | 86.7% (13/15) | 86.7% (13/15) | 2 | abbe: 2 |
@@ -191,7 +187,6 @@ These unresolved catalog-style labels are often better first catalog targets tha
 
 | Token | Elements | Lens files | localPatentStatus | Representative rows |
 |---|---:|---:|---|---|
-| TAF1 | 5 | 3 | patents/JP2012063403A.pdf<br>patents/US10191254.pdf | [CANON NEW FD 14mm f/2.8 L](../../src/lens-data/canon/CanonNewFD14mmf28L.data.ts) Element 4 (1.77250 / 49.60; abbe)<br>[CANON NEW FD 14mm f/2.8 L](../../src/lens-data/canon/CanonNewFD14mmf28L.data.ts) Element 8 (1.77250 / 49.60; abbe)<br>[CANON NEW FD 14mm f/2.8 L](../../src/lens-data/canon/CanonNewFD14mmf28L.data.ts) Element 9 (1.77250 / 49.60; abbe) |
 | S-NPH7 | 4 | 4 | patents/US20230213745A1.pdf<br>patents/US20190265441A1.pdf<br>patents/JP2021179551A.pdf<br>patents/WO_2025263124_A1.pdf | [CANON RF 135mm f/1.8 L IS USM](../../src/lens-data/canon/CanonRF135f18.data.ts) Element 14 (2.00069 / 25.50; abbe)<br>[CANON RF 50mm f/1.2 L USM](../../src/lens-data/canon/CanonRF50mmf12L.data.ts) Element 3 (2.00100 / 29.13; abbe)<br>[PANASONIC LUMIX S 20-60mm f/3.5-5.6](../../src/lens-data/panasonic/PanasonicLumixS2060mmf3556.data.ts) Element 11 (1.92286 / 20.90; abbe) |
 | S-LAL61 | 4 | 3 | patents/JP2017227799A.pdf | [KONICA HEXAR 35mm f/2 (Konica Hexar AF)](../../src/lens-data/konica/KonicaHexar35mmf2.data.ts) Element 2 (1.74100 / 52.70; lineIndices)<br>[KONICA HEXAR 35mm f/2 (Konica Hexar AF)](../../src/lens-data/konica/KonicaHexar35mmf2.data.ts) Element 5 (1.74100 / 52.70; lineIndices)<br>[NIKON AF-S NIKKOR 28mm f/1.4 E ED](../../src/lens-data/nikon/NikonAFS28f14E.data.ts) Element 8 (1.69680 / 55.50; abbe) |
 | NBFD32 | 3 | 3 | patents/US-20250251576-A1.pdf<br>patents/20260118637.pdf<br>patents/CN_121454749_A.pdf | [CANON RF 50mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF50mmf14LVCM.data.ts) Element 7 rear (1.73037 / 32.20; abbe)<br>[FUJIFILM FUJINON XF 23mm f/2.8 R WR](../../src/lens-data/fujifilm/FujifilmXF23mmf28RWR.data.ts) L21 negative in first rear doublet (1.73037 / 32.23; abbe)<br>[SIGMA 17-40mm f/1.8 DC | Art](../../src/lens-data/sigma/Sigma1740mmf18DCA.data.ts) Element 11 (1.73037 / 32.23; abbe) |
@@ -216,6 +211,7 @@ These unresolved catalog-style labels are often better first catalog targets tha
 | BK3 | 1 | 1 | patents/US3975089.pdf | [VIVITAR SERIES 1 35-85mm f/2.8 VMC](../../src/lens-data/vivitar/VivitarSeries13585mmf28.data.ts) Element 6 (1.49800 / 65.10; abbe) |
 | E-F5 | 1 | 1 | patents/JP2017167327A.pdf | [PANASONIC LEICA DG SUMMILUX 12mm f/1.4 ASPH.](../../src/lens-data/panasonic/PanasonicDGSummilux12mmf14.data.ts) Element 6 (1.60342 / 38.01; lineIndices) |
 | E-F8 | 1 | 1 | No patent number parsed from lens metadata/reference | [CANON NEW FD 14mm f/2.8 L](../../src/lens-data/canon/CanonNewFD14mmf28L.data.ts) Element 6 (1.59551 / 39.20; abbe) |
+| E-FEL1 | 1 | 1 | patents/JP2015114366A.pdf | [SIGMA 50mm f/1.4 DG HSM | Art](../../src/lens-data/sigma/Sigma50mmf14DGHSMA.data.ts) L4 (1.54814 / 45.82; abbe) |
 
 ## Sweep 3 - Proprietary Line-Index Backfill
 

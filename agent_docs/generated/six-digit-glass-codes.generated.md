@@ -9,10 +9,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **421** lenses scanned
-- **360** total code-only elements found
-- **360** elements in this report
-- **128** distinct lens files affected
+- **424** lenses scanned
+- **361** total code-only elements found
+- **361** elements in this report
+- **129** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -203,6 +203,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 768465 | 1 | 1 | patents/US3524697.pdf | All representative rows reviewed |
 | 769497 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | No reviewed-sidecar hit |
 | 770479 | 1 | 1 | patents/US2828671.pdf | All representative rows reviewed |
+| 770493 | 1 | 1 | Missing from untracked local patents/ references (WO2021246545A1, WO2021246545, 2021246545) | No reviewed-sidecar hit |
 | 770494 | 1 | 1 | patents/WO2023181666A1.pdf | No reviewed-sidecar hit |
 | 772493 | 1 | 1 | patents/US20230341664A1.pdf | All representative rows reviewed |
 | 772496 | 1 | 1 | patents/JPWO2019187633A1.pdf | No reviewed-sidecar hit |
@@ -1093,6 +1094,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
 |---|---|---|---|---|---|---|---|
 | L51 (Rear double-sided asphere) | 24A | `773495 - moldable lanthanum crown class (patent nd=1.77250, νd=49.5)` | 1.77250 / 49.50 | No catalog entry | abbe | patents/US20190250367A1.pdf | No reviewed-sidecar hit |
+
+### [SAMYANG AF 18mm f/2.8 FE](../../src/lens-data/samyang/SamyangAF18mmf28.data.ts) - WO 2021/246545 A1
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+|---|---|---|---|---|---|---|---|
+| L81 (L81 rear asphere) | 15A | `Unmatched lanthanum flint (770/493)` | 1.76951 / 49.30 | No catalog entry | abbe | Missing from untracked local patents/ references (WO2021246545A1, WO2021246545, 2021246545) | No reviewed-sidecar hit |
 
 ### [SCHNEIDER-KREUZNACH SUPER-ANGULON 75mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderSuperAngulon75mmf56.data.ts) - US 3,376,091
 

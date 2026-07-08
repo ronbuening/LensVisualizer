@@ -141,6 +141,36 @@ export const ALIAS_RECORDS: readonly GlassAliasRecord[] = [
     kind: "vendor-equivalent",
     note: "Historical Hoya crown annotations use the 518/590 E-C3 row; incompatible barium rows stay unmatched.",
   },
+  {
+    alias: "TAF1",
+    target: "S-LAH66",
+    kind: "vendor-equivalent",
+    note: "Hoya TAF1 annotations share the 773/496 optical-constant class with S-LAH66 when the stored d-line index agrees.",
+  },
+  {
+    alias: "PCD51",
+    target: "M-PCD51",
+    kind: "vendor-equivalent",
+    note: "Hoya PCD51-family annotations route to the coefficient-backed M-PCD51 row; mismatch checks reject incompatible rows.",
+  },
+  {
+    alias: "MP-PCD51-70",
+    target: "M-PCD51",
+    kind: "catalog-variant",
+    note: "Hoya molded preform notation for the PCD51 family, using the coefficient-backed M-PCD51 row.",
+  },
+  {
+    alias: "M-NBFD130",
+    target: "NBFD13",
+    kind: "vendor-equivalent",
+    note: "Hoya cross-reference places M-NBFD130 in the 806/407 NBFD13 optical-constant family.",
+  },
+  {
+    alias: "MP-NBFD130",
+    target: "NBFD13",
+    kind: "catalog-variant",
+    note: "Hoya molded preform notation for the 806/407 NBFD13 family.",
+  },
 ];
 
 /** Aliases that route to a canonical entry. Common informal names. */

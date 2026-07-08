@@ -235,6 +235,14 @@ describe("resolveGlass", () => {
     expect(resolveGlass("BK7")?.name).toBe("N-BK7");
   });
 
+  it("resolves Hoya patent-class aliases to coefficient-backed rows", () => {
+    expect(resolveGlass("TAF1 (HOYA)")?.name).toBe("S-LAH66");
+    expect(resolveGlass("PCD51 (HOYA)")?.name).toBe("M-PCD51");
+    expect(resolveGlass("MP-PCD51-70 precision-mold preform")?.name).toBe("M-PCD51");
+    expect(resolveGlass("M-NBFD130 (HOYA)")?.name).toBe("NBFD13");
+    expect(resolveGlass("MP-NBFD130 molded high-index flint")?.name).toBe("NBFD13");
+  });
+
   it("resolves Ohara PGM / large-format aliases to catalog equivalents", () => {
     expect(resolveGlass("L-BAL42 (OHARA)")?.name).toBe("S-BAL42");
     expect(resolveGlass("OHARA L-BSL7 (PGM)")?.name).toBe("S-BSL7");

@@ -10,18 +10,18 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **421** lenses scanned
-- **413** visible lenses scanned
-- **137** lenses fully covered by trusted chromatic data
-- **137** visible lenses fully covered by trusted chromatic data
-- **127** lenses fully covered by strict Sellmeier data
-- **127** visible lenses fully covered by strict Sellmeier data
+- **424** lenses scanned
+- **416** visible lenses scanned
+- **142** lenses fully covered by trusted chromatic data
+- **142** visible lenses fully covered by trusted chromatic data
+- **132** lenses fully covered by strict Sellmeier data
+- **132** visible lenses fully covered by strict Sellmeier data
 - **10** lenses fully covered only after measured line-index data
 - **10** visible lenses fully covered only after measured line-index data
-- **3774 / 4619** non-air surfaces use strict catalog Sellmeier data
-- **81.7%** strict Sellmeier surface coverage overall
-- **3809 / 4619** non-air surfaces use trusted chromatic data
-- **82.5%** trusted chromatic coverage overall
+- **3828 / 4661** non-air surfaces use strict catalog Sellmeier data
+- **82.1%** strict Sellmeier surface coverage overall
+- **3860 / 4661** non-air surfaces use trusted chromatic data
+- **82.8%** trusted chromatic coverage overall
 
 ## Fully Strict Sellmeier Lenses
 
@@ -37,6 +37,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | [CANON EF 70-300mm f/4-5.6 L IS USM](../../src/lens-data/canon/CanonEF70300mmf4556L.data.ts) | 19/19 | 19 | 19/19 |
 | [CANON RF 28-70mm f/2 L USM](../../src/lens-data/canon/CanonRF2870mmf2L.data.ts) | 19/19 | 19 | 19/19 |
 | [FUJIFILM FUJINON XF 200mm f/2 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmXF200mmf2R.data.ts) | 19/19 | 19 | 19/19 |
+| [SIGMA APO Macro 180mm f/2.8 EX DG OS HSM](../../src/lens-data/sigma/SigmaAPOMacro180mmf28.data.ts) | 19/19 | 19 | 19/19 |
 | [CANON EF 24-70mm f/2.8 L II USM](../../src/lens-data/canon/CanonEF2470mmf28LII.data.ts) | 18/18 | 18 | 18/18 |
 | [NIKON AF-P NIKKOR 70-300mm f/4.5-5.6 E ED VR](../../src/lens-data/nikon/NikonAFP70300mmf4556E.data.ts) | 18/18 | 18 | 18/18 |
 | [PENTAX DA* 50-135mm f/2.8 ED [IF] SDM](../../src/lens-data/pentax/PentaxDA50135mmf28.data.ts) | 18/18 | 18 | 18/18 |
@@ -54,6 +55,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | [NIKON NIKKOR Z 14-24mm f/2.8 S](../../src/lens-data/nikon/NikonZ1424f28S.data.ts) | 16/16 | 16 | 16/16 |
 | [OLYMPUS M.ZUIKO DIGITAL ED 40-150mm f/2.8 PRO](../../src/lens-data/olympus/OlympusMZuiko40150mmf28PRO.data.ts) | 16/16 | 16 | 16/16 |
 | [SIGMA 16mm f/1.4 DC DN | Contemporary](../../src/lens-data/sigma/Sigma16mmf14DCDN.data.ts) | 16/16 | 16 | 16/16 |
+| [SIGMA 40mm f/1.4 DG HSM | Art](../../src/lens-data/sigma/SigmaArt40mmf14.data.ts) | 16/16 | 16 | 16/16 |
 | [SIGMA APO Macro 105mm f/2.8 EX DG OS HSM](../../src/lens-data/sigma/SigmaAPOMacro105mmf28OSHSM.data.ts) | 16/16 | 16 | 16/16 |
 | [SONY FE 20-70mm f/4 G](../../src/lens-data/sony/SonyFE2070mmf4G.data.ts) | 16/16 | 16 | 16/16 |
 | [CANON EF 100mm f/2.8 L Macro IS USM](../../src/lens-data/canon/CanonEF100mmf28LIS.data.ts) | 15/15 | 15 | 15/15 |
@@ -67,6 +69,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | [OLYMPUS M.ZUIKO DIGITAL ED 12-40mm f/2.8 PRO](../../src/lens-data/olympus/OlympusMZuiko1240mmf28PRO.data.ts) | 14/14 | 14 | 14/14 |
 | [VIVITAR SERIES 1 70-210mm f/2.8-4 VMC](../../src/lens-data/vivitar/VivitarSeries170210mmf284.data.ts) | 14/14 | 14 | 14/14 |
 | [PANASONIC LUMIX S PRO 50mm f/1.4](../../src/lens-data/panasonic/PanasonicSPro50mmf14.data.ts) | 13/13 | 13 | 13/13 |
+| [SIGMA 23mm f/1.4 DC DN | Contemporary](../../src/lens-data/sigma/Sigma23mmf14DCDNC.data.ts) | 13/13 | 13 | 13/13 |
 | [SONY FE 135mm f/1.8 GM](../../src/lens-data/sony/SonyFE135mmf18GM.data.ts) | 13/13 | 13 | 13/13 |
 | [CANON RF 85mm f/2 Macro IS STM](../../src/lens-data/canon/CanonRF85mmf2Macro.data.ts) | 12/12 | 12 | 12/12 |
 | [CANON TS-E 50mm f/2.8L MACRO](../../src/lens-data/canon/CanonTSE50mmf28L.data.ts) | 12/12 | 12 | 12/12 |
@@ -82,6 +85,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | [NIKON AI NIKKOR 24mm f/2](../../src/lens-data/nikon/NikonAINikkor24mmf2.data.ts) | 11/11 | 11 | 11/11 |
 | [OLYMPUS M.ZUIKO DIGITAL ED 12mm f/2.0](../../src/lens-data/olympus/OlympusMZuiko12mmf2.data.ts) | 11/11 | 11 | 11/11 |
 | [OLYMPUS ZUIKO DIGITAL ED 150mm f/2.0](../../src/lens-data/olympus/OlympusMZuiko150mmf2ED.data.ts) | 11/11 | 11 | 11/11 |
+| [SAMYANG AF 85mm f/1.4 FE](../../src/lens-data/samyang/SamyangAF85mmf14.data.ts) | 11/11 | 11 | 11/11 |
 | [SIGMA 14mm f/4 (Sigma dp0 Quattro)](../../src/lens-data/sigma/SigmaDp0Quattro14mmf4.data.ts) | 11/11 | 11 | 11/11 |
 | [CANON EF-M 28mm f/3.5 Macro IS STM](../../src/lens-data/canon/CanonEFM28mmf34MacroISSTM.data.ts) | 10/10 | 10 | 10/10 |
 | [HASSELBLAD HC 210mm f/4](../../src/lens-data/hasselblad/HasselbladHC210mmf4.data.ts) | 10/10 | 10 | 10/10 |
@@ -107,6 +111,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | [PENTAX SMC A 645 45mm f/2.8](../../src/lens-data/pentax/Pentax645A45mmf28.data.ts) | 9/9 | 9 | 9/9 |
 | [PENTAX SMC FA 645 120mm f/4 Macro](../../src/lens-data/pentax/Pentax645FA120mmf4.data.ts) | 9/9 | 9 | 9/9 |
 | [SONY FE 28-70mm f/3.5-5.6 OSS](../../src/lens-data/sony/SonyFE2870mmf3556.data.ts) | 9/9 | 9 | 9/9 |
+| [SONY FE 28mm f/2](../../src/lens-data/sony/SonyFE28mmf2.data.ts) | 9/9 | 9 | 9/9 |
 | [VOIGTLÄNDER APO-LANTHAR 180mm f/4 SL Close Focus](../../src/lens-data/voigtlander/VoigtlanderApoLanthar180mmf4.data.ts) | 9/9 | 9 | 9/9 |
 | [VOIGTLÄNDER NOKTON 50mm f/1.2 X-Mount](../../src/lens-data/voigtlander/VoigtlanderNoktonX50mmf12.data.ts) | 9/9 | 9 | 9/9 |
 | [CANON FD 50mm f/1.2 L](../../src/lens-data/canon/CanonFD50mmf12L.data.ts) | 8/8 | 8 | 8/8 |
@@ -166,7 +171,7 @@ These lenses are complete for chromatic tracing but not strict catalog-Sellmeier
 | [CANON EF 24-70mm f/2.8 L USM](../../src/lens-data/canon/CanonEF2470mmf28L.data.ts) | 16/16 | 13/16 | 16 | 13/16 | 3 | Line indices |
 | [PANASONIC LEICA DG SUMMILUX 12mm f/1.4 ASPH.](../../src/lens-data/panasonic/PanasonicDGSummilux12mmf14.data.ts) | 15/15 | 13/15 | 15 | 13/15 | 2 | Line indices |
 | [PANASONIC LEICA DG NOCTICRON 42.5mm f/1.2 ASPH POWER O.I.S.](../../src/lens-data/panasonic/PanasonicDGNocticron42mmf12.data.ts) | 14/14 | 12/14 | 14 | 12/14 | 2 | Line indices |
-| [SIGMA APO MACRO 150mm f/2.8 EX DG OS HSM](../../src/lens-data/sigma/SigmaAPOMacro150mmf28OSHSM.data.ts) | 19/19 | 7/19 | 19 | 7/19 | 12 | Line indices |
+| [SIGMA APO MACRO 150mm f/2.8 EX DG OS HSM](../../src/lens-data/sigma/SigmaAPOMacro150mmf28OSHSM.data.ts) | 19/19 | 8/19 | 19 | 8/19 | 11 | Line indices |
 | [PANASONIC LUMIX G 25mm f/1.7 ASPH.](../../src/lens-data/panasonic/PanasonicLumixG25mmf17.data.ts) | 8/8 | 6/8 | 8 | 6/8 | 2 | Line indices |
 | [KONICA HEXAR 35mm f/2 (Konica Hexar AF)](../../src/lens-data/konica/KonicaHexar35mmf2.data.ts) | 7/7 | 5/7 | 7 | 5/7 | 2 | Line indices |
 | [KONICA HEXANON AR 35mm f/2.8](../../src/lens-data/konica/KonicaHexanonAR35mmf28.data.ts) | 5/5 | 4/5 | 5 | 4/5 | 1 | Line indices |
@@ -188,143 +193,143 @@ Fully strict and line-index-complete trusted lenses are listed above; this table
 |  | **90-94.9% coverage** |  |  |  |  |  |  |
 | 7 | [NIKON AF-S NIKKOR 200-500mm f/5.6 E ED VR](../../src/lens-data/nikon/NikonNikkorAFS200500mmf56.data.ts) | 94.7% | 94.7% | 18/19 | 18/19 | 1 | abbe: 1 |
 | 8 | [NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) | 94.7% | 94.7% | 18/19 | 18/19 | 1 | abbe: 1 |
-| 9 | [SIGMA APO Macro 180mm f/2.8 EX DG OS HSM](../../src/lens-data/sigma/SigmaAPOMacro180mmf28.data.ts) | 94.7% | 84.2% | 18/19 | 16/19 | 1 | abbe: 1 |
-| 10 | [CANON RF 24-105mm f/4 L IS USM](../../src/lens-data/canon/CanonRF24105mmf4L.data.ts) | 94.4% | 94.4% | 17/18 | 17/18 | 1 | abbe: 1 |
-| 11 | [NIKON AF-S NIKKOR 16-35mm f/4 G ED VR](../../src/lens-data/nikon/NikonNikkorAFS1635mmf4.data.ts) | 94.4% | 94.4% | 17/18 | 17/18 | 1 | abbe: 1 |
-| 12 | [NIKON PC NIKKOR 19mm f/4 E ED](../../src/lens-data/nikon/NikonNikkorPCE19mmf4E.data.ts) | 94.4% | 94.4% | 17/18 | 17/18 | 1 | abbe: 1 |
-| 13 | [OLYMPUS ZUIKO DIGITAL ED 14-35mm f/2.0 SWD](../../src/lens-data/olympus/OlympusMZuiko1435mmf2ED.data.ts) | 94.4% | 94.4% | 17/18 | 17/18 | 1 | abbe: 1 |
-| 14 | [CANON RF 135mm f/1.8 L IS USM](../../src/lens-data/canon/CanonRF135f18.data.ts) | 94.1% | 94.1% | 16/17 | 16/17 | 1 | abbe: 1 |
-| 15 | [NIKON AF-S DX NIKKOR 55-300mm f/4.5-5.6 G ED VR](../../src/lens-data/nikon/NikonAFSDX55300mmf4556G.data.ts) | 94.1% | 94.1% | 16/17 | 16/17 | 1 | abbe: 1 |
-| 16 | [OLYMPUS M.ZUIKO DIGITAL ED 12-100mm f/4.0 IS PRO](../../src/lens-data/olympus/OlympusMZuiko12100mmf4ISPRO.data.ts) | 94.1% | 94.1% | 16/17 | 16/17 | 1 | abbe: 1 |
-| 17 | [SIGMA 24mm f/1.4 DG DN | Art](../../src/lens-data/sigma/Sigma24mmf14ArtDN.data.ts) | 94.1% | 94.1% | 16/17 | 16/17 | 1 | abbe: 1 |
-| 18 | [NIKON NIKKOR Z DX 50-250mm f/4.5-6.3 VR](../../src/lens-data/nikon/NikonZDX50250mmf4564VR.data.ts) | 93.8% | 93.8% | 15/16 | 15/16 | 1 | abbe: 1 |
-| 19 | [PANASONIC LUMIX G VARIO 7-14mm f/4 ASPH.](../../src/lens-data/panasonic/PanasonicLumixGVario714mmf4.data.ts) | 93.8% | 93.8% | 15/16 | 15/16 | 1 | abbe: 1 |
-| 20 | [CANON EF-S 55-250mm f/4-5.6 IS STM](../../src/lens-data/canon/CanonEFS55250mmf456ISSTM.data.ts) | 93.3% | 93.3% | 14/15 | 14/15 | 1 | abbe: 1 |
-| 21 | [FUJIFILM FUJINON XF 23mm f/1.4 R LM WR](../../src/lens-data/fujifilm/FujifilmXF23mmf14RLMWR.data.ts) | 93.3% | 93.3% | 14/15 | 14/15 | 1 | abbe: 1 |
-| 22 | [FUJIFILM FUJINON XF 33mm f/1.4 R LM WR](../../src/lens-data/fujifilm/FujifilmXF33mmf14RLMWR.data.ts) | 93.3% | 93.3% | 14/15 | 14/15 | 1 | abbe: 1 |
-| 23 | [OLYMPUS ZUIKO 9-36mm f/2-2.4 (Olympus E-10 / E-20)](../../src/lens-data/olympus/OlympusZuiko936mmf224.data.ts) | 93.3% | 93.3% | 14/15 | 14/15 | 1 | abbe: 1 |
-| 24 | [OLYMPUS ZUIKO DIGITAL ED 12-60mm f/2.8-4.0 SWD](../../src/lens-data/olympus/OlympusMZuiko1260mmf284ED.data.ts) | 93.3% | 93.3% | 14/15 | 14/15 | 1 | abbe: 1 |
-| 25 | [PENTAX HD D FA* 50mm f/1.4 SDM AW](../../src/lens-data/pentax/PentaxDFA50mmf14SDM.data.ts) | 93.3% | 93.3% | 14/15 | 14/15 | 1 | abbe: 1 |
-| 26 | [SIGMA 20mm f/1.4 DG HSM | Art](../../src/lens-data/sigma/Sigma20mmf14DGHSMArt.data.ts) | 93.3% | 93.3% | 14/15 | 14/15 | 1 | abbe: 1 |
-| 27 | [CANON 12.5-62.5mm f/2.0-3.9 (PowerShot G1 X Mark II)](../../src/lens-data/canon/CanonPowerShotG1XII125625mmf239.data.ts) | 92.9% | 92.9% | 13/14 | 13/14 | 1 | abbe: 1 |
-| 28 | [CANON EF-M 32mm f/1.4 STM](../../src/lens-data/canon/CanonEFM32mmf14STM.data.ts) | 92.9% | 92.9% | 13/14 | 13/14 | 1 | abbe: 1 |
-| 29 | [CANON EF-S 10-18mm f/4.5-5.6 IS STM](../../src/lens-data/canon/CanonEFS1018mmf4.data.ts) | 92.9% | 92.9% | 13/14 | 13/14 | 1 | abbe: 1 |
-| 30 | [CANON RF 85mm f/1.2 L USM](../../src/lens-data/canon/CanonRF85mmf12L.data.ts) | 92.9% | 92.9% | 13/14 | 13/14 | 1 | abbe: 1 |
-| 31 | [CARL ZEISS TOUIT MAKRO-PLANAR T* 50mm f/2.8 Macro](../../src/lens-data/carl-zeiss-oberkochen/ZeissTouit50mmf28Macro.data.ts) | 92.9% | 92.9% | 13/14 | 13/14 | 1 | abbe: 1 |
-| 32 | [FUJIFILM FUJINON GF 120mm f/4 R LM OIS WR Macro](../../src/lens-data/fujifilm/FujifilmGF120mmf4RLM.data.ts) | 92.9% | 92.9% | 13/14 | 13/14 | 1 | abbe: 1 |
-| 33 | [NIKON AF-P DX NIKKOR 70-300mm f/4.5-6.3 G ED VR](../../src/lens-data/nikon/NikonAFPDX70300mmf4563G.data.ts) | 92.9% | 92.9% | 13/14 | 13/14 | 1 | abbe: 1 |
-| 34 | [SIGMA 50mm f/1.4 DG DN | Art](../../src/lens-data/sigma/SigmaDGDNArt50mmf14.data.ts) | 92.9% | 92.9% | 13/14 | 13/14 | 1 | abbe: 1 |
-| 35 | [SONY FE 85mm f/1.4 GM II](../../src/lens-data/sony/SonyFE85mmf14GMII.data.ts) | 92.9% | 92.9% | 13/14 | 13/14 | 1 | abbe: 1 |
-| 36 | [FUJIFILM FUJINON XF 56mm f/1.2 R WR](../../src/lens-data/fujifilm/FujifilmXF56mmf12RWR.data.ts) | 92.3% | 92.3% | 12/13 | 12/13 | 1 | abbe: 1 |
-| 37 | [SIGMA 23mm f/1.4 DC DN | Contemporary](../../src/lens-data/sigma/Sigma23mmf14DCDNC.data.ts) | 92.3% | 92.3% | 12/13 | 12/13 | 1 | abbe: 1 |
-| 38 | [NIKON AF-S NIKKOR 120-300mm f/2.8 E FL ED SR VR](../../src/lens-data/nikon/NikonNikkorAFS120300mmf28.data.ts) | 92.0% | 92.0% | 23/25 | 23/25 | 2 | abbe: 2 |
-| 39 | [NIKON 1 NIKKOR VR 10-30mm f/3.5-5.6](../../src/lens-data/nikon/Nikon1Nikkor1030mmf3556.data.ts) | 91.7% | 91.7% | 11/12 | 11/12 | 1 | abbe: 1 |
-| 40 | [Nikon AF Nikkor 20mm f/2.8D](../../src/lens-data/nikon/NikonAFNikkor20mmf28D.data.ts) | 91.7% | 91.7% | 11/12 | 11/12 | 1 | abbe: 1 |
-| 41 | [NIKON AF-S MICRO-NIKKOR 60mm f/2.8 G ED](../../src/lens-data/nikon/NikonAFSMicroNikkor60f28G.data.ts) | 91.7% | 91.7% | 11/12 | 11/12 | 1 | abbe: 1 |
-| 42 | [NIKON NIKKOR Z 85mm f/1.8 S](../../src/lens-data/nikon/NikonZ85f18S.data.ts) | 91.7% | 91.7% | 11/12 | 11/12 | 1 | abbe: 1 |
-| 43 | [PANASONIC LEICA DG SUMMILUX 9mm f/1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG9mmf17.data.ts) | 91.7% | 91.7% | 11/12 | 11/12 | 1 | abbe: 1 |
-| 44 | [SONY PLANAR T* FE 50mm f/1.4 ZA](../../src/lens-data/sony/SonyPlanarFE50mmf14ZA.data.ts) | 91.7% | 91.7% | 11/12 | 11/12 | 1 | abbe: 1 |
-| 45 | [CANON EF 50mm f/1.0 L USM](../../src/lens-data/canon/CanonEF50mmf1L.data.ts) | 90.9% | 90.9% | 10/11 | 10/11 | 1 | abbe: 1 |
-| 46 | [CANON EF-S 18-55mm f/3.5-5.6 IS](../../src/lens-data/canon/CanonEFS1855mmf3556IS.data.ts) | 90.9% | 90.9% | 10/11 | 10/11 | 1 | abbe: 1 |
-| 47 | [CANON TS-E 90mm f/2.8L MACRO](../../src/lens-data/canon/CanonTSE90mmf28L.data.ts) | 90.9% | 90.9% | 10/11 | 10/11 | 1 | abbe: 1 |
-| 48 | [FUJIFILM FUJINON XF 56mm f/1.2 R](../../src/lens-data/fujifilm/FujifilmXF56mmf12.data.ts) | 90.9% | 90.9% | 10/11 | 10/11 | 1 | abbe: 1 |
-| 49 | [FUJIFILM FUJINON XF 90mm f/2 R LM WR](../../src/lens-data/fujifilm/FujifilmXF90mmf2.data.ts) | 90.9% | 90.9% | 10/11 | 10/11 | 1 | abbe: 1 |
-| 50 | [NIKON NIKKOR Z 35mm f/1.8 S](../../src/lens-data/nikon/NikonZ35f18S.data.ts) | 90.9% | 90.9% | 10/11 | 10/11 | 1 | abbe: 1 |
-| 51 | [PENTAX HD D FA 21mm f/2.4 ED Limited DC WR](../../src/lens-data/pentax/PentaxHDDFA21mmf24Limited.data.ts) | 90.9% | 90.9% | 10/11 | 10/11 | 1 | abbe: 1 |
-| 52 | [SONY E 18-55mm f/3.5-5.6 OSS](../../src/lens-data/sony/SonyE1855mmf3556.data.ts) | 90.9% | 90.9% | 10/11 | 10/11 | 1 | abbe: 1 |
-| 53 | [CANON RF 24-240mm f/4-6.3 IS USM](../../src/lens-data/canon/CanonRF24240mmf463.data.ts) | 90.5% | 90.5% | 19/21 | 19/21 | 2 | abbe: 2 |
-| 54 | [NIKON AF-S NIKKOR 24-70mm f/2.8 E ED VR](../../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) | 90.5% | 90.5% | 19/21 | 19/21 | 2 | abbe: 2 |
-| 55 | [NIKON AF DX FISHEYE-NIKKOR 10.5mm f/2.8G ED](../../src/lens-data/nikon/NikonFisheyeNikkor105mmf28GED.data.ts) | 90.0% | 90.0% | 9/10 | 9/10 | 1 | abbe: 1 |
-| 56 | [NIKON NIKKOR Z DX 16-50mm f/3.5-6.3 VR](../../src/lens-data/nikon/NikonZDX1650mmf3563VR.data.ts) | 90.0% | 90.0% | 9/10 | 9/10 | 1 | abbe: 1 |
-| 57 | [PENTAX SMC PENTAX-A★ 200mm f/4 MACRO ED](../../src/lens-data/pentax/PentaxA200mmf4MacroED.data.ts) | 90.0% | 90.0% | 9/10 | 9/10 | 1 | abbe: 1 |
-| 58 | [VOIGTLÄNDER ULTRON Vintage Line 28mm f/2 Aspherical](../../src/lens-data/voigtlander/VoigtlanderUltron28f2.data.ts) | 90.0% | 90.0% | 9/10 | 9/10 | 1 | abbe: 1 |
-| 59 | [SONY FE 24-70mm f/2.8 GM II](../../src/lens-data/sony/SonyFE2470mmf28GMII.data.ts) | 90.0% | 90.0% | 18/20 | 18/20 | 2 | abbe: 2 |
+| 9 | [CANON RF 24-105mm f/4 L IS USM](../../src/lens-data/canon/CanonRF24105mmf4L.data.ts) | 94.4% | 94.4% | 17/18 | 17/18 | 1 | abbe: 1 |
+| 10 | [NIKON AF-S NIKKOR 16-35mm f/4 G ED VR](../../src/lens-data/nikon/NikonNikkorAFS1635mmf4.data.ts) | 94.4% | 94.4% | 17/18 | 17/18 | 1 | abbe: 1 |
+| 11 | [NIKON PC NIKKOR 19mm f/4 E ED](../../src/lens-data/nikon/NikonNikkorPCE19mmf4E.data.ts) | 94.4% | 94.4% | 17/18 | 17/18 | 1 | abbe: 1 |
+| 12 | [OLYMPUS ZUIKO DIGITAL ED 14-35mm f/2.0 SWD](../../src/lens-data/olympus/OlympusMZuiko1435mmf2ED.data.ts) | 94.4% | 94.4% | 17/18 | 17/18 | 1 | abbe: 1 |
+| 13 | [CANON RF 135mm f/1.8 L IS USM](../../src/lens-data/canon/CanonRF135f18.data.ts) | 94.1% | 94.1% | 16/17 | 16/17 | 1 | abbe: 1 |
+| 14 | [NIKON AF-S DX NIKKOR 55-300mm f/4.5-5.6 G ED VR](../../src/lens-data/nikon/NikonAFSDX55300mmf4556G.data.ts) | 94.1% | 94.1% | 16/17 | 16/17 | 1 | abbe: 1 |
+| 15 | [OLYMPUS M.ZUIKO DIGITAL ED 12-100mm f/4.0 IS PRO](../../src/lens-data/olympus/OlympusMZuiko12100mmf4ISPRO.data.ts) | 94.1% | 94.1% | 16/17 | 16/17 | 1 | abbe: 1 |
+| 16 | [SIGMA 24mm f/1.4 DG DN | Art](../../src/lens-data/sigma/Sigma24mmf14ArtDN.data.ts) | 94.1% | 94.1% | 16/17 | 16/17 | 1 | abbe: 1 |
+| 17 | [NIKON NIKKOR Z DX 50-250mm f/4.5-6.3 VR](../../src/lens-data/nikon/NikonZDX50250mmf4564VR.data.ts) | 93.8% | 93.8% | 15/16 | 15/16 | 1 | abbe: 1 |
+| 18 | [PANASONIC LUMIX G VARIO 7-14mm f/4 ASPH.](../../src/lens-data/panasonic/PanasonicLumixGVario714mmf4.data.ts) | 93.8% | 93.8% | 15/16 | 15/16 | 1 | abbe: 1 |
+| 19 | [CANON EF-S 55-250mm f/4-5.6 IS STM](../../src/lens-data/canon/CanonEFS55250mmf456ISSTM.data.ts) | 93.3% | 93.3% | 14/15 | 14/15 | 1 | abbe: 1 |
+| 20 | [FUJIFILM FUJINON XF 23mm f/1.4 R LM WR](../../src/lens-data/fujifilm/FujifilmXF23mmf14RLMWR.data.ts) | 93.3% | 93.3% | 14/15 | 14/15 | 1 | abbe: 1 |
+| 21 | [FUJIFILM FUJINON XF 33mm f/1.4 R LM WR](../../src/lens-data/fujifilm/FujifilmXF33mmf14RLMWR.data.ts) | 93.3% | 93.3% | 14/15 | 14/15 | 1 | abbe: 1 |
+| 22 | [OLYMPUS ZUIKO 9-36mm f/2-2.4 (Olympus E-10 / E-20)](../../src/lens-data/olympus/OlympusZuiko936mmf224.data.ts) | 93.3% | 93.3% | 14/15 | 14/15 | 1 | abbe: 1 |
+| 23 | [OLYMPUS ZUIKO DIGITAL ED 12-60mm f/2.8-4.0 SWD](../../src/lens-data/olympus/OlympusMZuiko1260mmf284ED.data.ts) | 93.3% | 93.3% | 14/15 | 14/15 | 1 | abbe: 1 |
+| 24 | [PENTAX HD D FA* 50mm f/1.4 SDM AW](../../src/lens-data/pentax/PentaxDFA50mmf14SDM.data.ts) | 93.3% | 93.3% | 14/15 | 14/15 | 1 | abbe: 1 |
+| 25 | [SIGMA 20mm f/1.4 DG HSM | Art](../../src/lens-data/sigma/Sigma20mmf14DGHSMArt.data.ts) | 93.3% | 93.3% | 14/15 | 14/15 | 1 | abbe: 1 |
+| 26 | [CANON 12.5-62.5mm f/2.0-3.9 (PowerShot G1 X Mark II)](../../src/lens-data/canon/CanonPowerShotG1XII125625mmf239.data.ts) | 92.9% | 92.9% | 13/14 | 13/14 | 1 | abbe: 1 |
+| 27 | [CANON EF-M 32mm f/1.4 STM](../../src/lens-data/canon/CanonEFM32mmf14STM.data.ts) | 92.9% | 92.9% | 13/14 | 13/14 | 1 | abbe: 1 |
+| 28 | [CANON EF-S 10-18mm f/4.5-5.6 IS STM](../../src/lens-data/canon/CanonEFS1018mmf4.data.ts) | 92.9% | 92.9% | 13/14 | 13/14 | 1 | abbe: 1 |
+| 29 | [CANON RF 85mm f/1.2 L USM](../../src/lens-data/canon/CanonRF85mmf12L.data.ts) | 92.9% | 92.9% | 13/14 | 13/14 | 1 | abbe: 1 |
+| 30 | [CARL ZEISS TOUIT MAKRO-PLANAR T* 50mm f/2.8 Macro](../../src/lens-data/carl-zeiss-oberkochen/ZeissTouit50mmf28Macro.data.ts) | 92.9% | 92.9% | 13/14 | 13/14 | 1 | abbe: 1 |
+| 31 | [FUJIFILM FUJINON GF 120mm f/4 R LM OIS WR Macro](../../src/lens-data/fujifilm/FujifilmGF120mmf4RLM.data.ts) | 92.9% | 92.9% | 13/14 | 13/14 | 1 | abbe: 1 |
+| 32 | [NIKON AF-P DX NIKKOR 70-300mm f/4.5-6.3 G ED VR](../../src/lens-data/nikon/NikonAFPDX70300mmf4563G.data.ts) | 92.9% | 92.9% | 13/14 | 13/14 | 1 | abbe: 1 |
+| 33 | [SIGMA 50mm f/1.4 DG DN | Art](../../src/lens-data/sigma/SigmaDGDNArt50mmf14.data.ts) | 92.9% | 92.9% | 13/14 | 13/14 | 1 | abbe: 1 |
+| 34 | [SONY FE 85mm f/1.4 GM II](../../src/lens-data/sony/SonyFE85mmf14GMII.data.ts) | 92.9% | 92.9% | 13/14 | 13/14 | 1 | abbe: 1 |
+| 35 | [FUJIFILM FUJINON XF 56mm f/1.2 R WR](../../src/lens-data/fujifilm/FujifilmXF56mmf12RWR.data.ts) | 92.3% | 92.3% | 12/13 | 12/13 | 1 | abbe: 1 |
+| 36 | [NIKON AF-S NIKKOR 120-300mm f/2.8 E FL ED SR VR](../../src/lens-data/nikon/NikonNikkorAFS120300mmf28.data.ts) | 92.0% | 92.0% | 23/25 | 23/25 | 2 | abbe: 2 |
+| 37 | [NIKON 1 NIKKOR VR 10-30mm f/3.5-5.6](../../src/lens-data/nikon/Nikon1Nikkor1030mmf3556.data.ts) | 91.7% | 91.7% | 11/12 | 11/12 | 1 | abbe: 1 |
+| 38 | [Nikon AF Nikkor 20mm f/2.8D](../../src/lens-data/nikon/NikonAFNikkor20mmf28D.data.ts) | 91.7% | 91.7% | 11/12 | 11/12 | 1 | abbe: 1 |
+| 39 | [NIKON AF-S MICRO-NIKKOR 60mm f/2.8 G ED](../../src/lens-data/nikon/NikonAFSMicroNikkor60f28G.data.ts) | 91.7% | 91.7% | 11/12 | 11/12 | 1 | abbe: 1 |
+| 40 | [NIKON NIKKOR Z 85mm f/1.8 S](../../src/lens-data/nikon/NikonZ85f18S.data.ts) | 91.7% | 91.7% | 11/12 | 11/12 | 1 | abbe: 1 |
+| 41 | [PANASONIC LEICA DG SUMMILUX 9mm f/1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG9mmf17.data.ts) | 91.7% | 91.7% | 11/12 | 11/12 | 1 | abbe: 1 |
+| 42 | [SONY PLANAR T* FE 50mm f/1.4 ZA](../../src/lens-data/sony/SonyPlanarFE50mmf14ZA.data.ts) | 91.7% | 91.7% | 11/12 | 11/12 | 1 | abbe: 1 |
+| 43 | [CANON EF 50mm f/1.0 L USM](../../src/lens-data/canon/CanonEF50mmf1L.data.ts) | 90.9% | 90.9% | 10/11 | 10/11 | 1 | abbe: 1 |
+| 44 | [CANON EF-S 18-55mm f/3.5-5.6 IS](../../src/lens-data/canon/CanonEFS1855mmf3556IS.data.ts) | 90.9% | 90.9% | 10/11 | 10/11 | 1 | abbe: 1 |
+| 45 | [CANON TS-E 90mm f/2.8L MACRO](../../src/lens-data/canon/CanonTSE90mmf28L.data.ts) | 90.9% | 90.9% | 10/11 | 10/11 | 1 | abbe: 1 |
+| 46 | [FUJIFILM FUJINON XF 56mm f/1.2 R](../../src/lens-data/fujifilm/FujifilmXF56mmf12.data.ts) | 90.9% | 90.9% | 10/11 | 10/11 | 1 | abbe: 1 |
+| 47 | [FUJIFILM FUJINON XF 90mm f/2 R LM WR](../../src/lens-data/fujifilm/FujifilmXF90mmf2.data.ts) | 90.9% | 90.9% | 10/11 | 10/11 | 1 | abbe: 1 |
+| 48 | [NIKON NIKKOR Z 35mm f/1.8 S](../../src/lens-data/nikon/NikonZ35f18S.data.ts) | 90.9% | 90.9% | 10/11 | 10/11 | 1 | abbe: 1 |
+| 49 | [PENTAX HD D FA 21mm f/2.4 ED Limited DC WR](../../src/lens-data/pentax/PentaxHDDFA21mmf24Limited.data.ts) | 90.9% | 90.9% | 10/11 | 10/11 | 1 | abbe: 1 |
+| 50 | [SONY E 18-55mm f/3.5-5.6 OSS](../../src/lens-data/sony/SonyE1855mmf3556.data.ts) | 90.9% | 90.9% | 10/11 | 10/11 | 1 | abbe: 1 |
+| 51 | [CANON RF 24-240mm f/4-6.3 IS USM](../../src/lens-data/canon/CanonRF24240mmf463.data.ts) | 90.5% | 90.5% | 19/21 | 19/21 | 2 | abbe: 2 |
+| 52 | [NIKON AF-S NIKKOR 24-70mm f/2.8 E ED VR](../../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) | 90.5% | 90.5% | 19/21 | 19/21 | 2 | abbe: 2 |
+| 53 | [NIKON AF DX FISHEYE-NIKKOR 10.5mm f/2.8G ED](../../src/lens-data/nikon/NikonFisheyeNikkor105mmf28GED.data.ts) | 90.0% | 90.0% | 9/10 | 9/10 | 1 | abbe: 1 |
+| 54 | [NIKON NIKKOR Z DX 16-50mm f/3.5-6.3 VR](../../src/lens-data/nikon/NikonZDX1650mmf3563VR.data.ts) | 90.0% | 90.0% | 9/10 | 9/10 | 1 | abbe: 1 |
+| 55 | [PENTAX SMC PENTAX-A★ 200mm f/4 MACRO ED](../../src/lens-data/pentax/PentaxA200mmf4MacroED.data.ts) | 90.0% | 90.0% | 9/10 | 9/10 | 1 | abbe: 1 |
+| 56 | [VOIGTLÄNDER ULTRON Vintage Line 28mm f/2 Aspherical](../../src/lens-data/voigtlander/VoigtlanderUltron28f2.data.ts) | 90.0% | 90.0% | 9/10 | 9/10 | 1 | abbe: 1 |
+| 57 | [SONY FE 24-70mm f/2.8 GM II](../../src/lens-data/sony/SonyFE2470mmf28GMII.data.ts) | 90.0% | 90.0% | 18/20 | 18/20 | 2 | abbe: 2 |
 |  | **85-89.9% coverage** |  |  |  |  |  |  |
-| 60 | [NIKON NIKKOR Z DX 18-140mm f/3.5-6.3 VR](../../src/lens-data/nikon/NikonZDX18140mmf3563VR.data.ts) | 89.5% | 89.5% | 17/19 | 17/19 | 2 | abbe: 2 |
-| 61 | [CANON RF 16mm f/2.8 STM](../../src/lens-data/canon/CanonRF16mmf28STM.data.ts) | 88.9% | 88.9% | 8/9 | 8/9 | 1 | abbe: 1 |
-| 62 | [NIKON AI NIKKOR 35mm f/1.4S](../../src/lens-data/nikon/NikonAINikkor35mmf14S.data.ts) | 88.9% | 88.9% | 8/9 | 8/9 | 1 | abbe: 1 |
-| 63 | [NIKON FISHEYE-NIKKOR 6mm f/5.6](../../src/lens-data/nikon/NikonFisheyeNikkor6mmf56.data.ts) | 88.9% | 88.9% | 8/9 | 8/9 | 1 | abbe: 1 |
-| 64 | [NIKON NIKKOR Z 26mm f/2.8](../../src/lens-data/nikon/NikonZ26f28.data.ts) | 88.9% | 88.9% | 8/9 | 8/9 | 1 | abbe: 1 |
-| 65 | [NIKON NIKKOR-N 5cm f/1.1](../../src/lens-data/nikon/NikonN5cmf11.data.ts) | 88.9% | 88.9% | 8/9 | 8/9 | 1 | abbe: 1 |
-| 66 | [NIKON NIKKOR-N AUTO 28mm f/2](../../src/lens-data/nikon/NikonNikkorN28mmf2.data.ts) | 88.9% | 88.9% | 8/9 | 8/9 | 1 | abbe: 1 |
-| 67 | [PENTAX DA 21mm f/3.2 AL Limited](../../src/lens-data/pentax/PentaxDA21mmf32Limited.data.ts) | 88.9% | 88.9% | 8/9 | 8/9 | 1 | abbe: 1 |
-| 68 | [PENTAX FA 31mm f/1.8 AL Limited](../../src/lens-data/pentax/PentaxFA31mmf18ALLtd.data.ts) | 88.9% | 88.9% | 8/9 | 8/9 | 1 | abbe: 1 |
-| 69 | [SIGMA 30mm f/1.4 DC HSM | Art](../../src/lens-data/sigma/Sigma30mmf14DCHSMA.data.ts) | 88.9% | 88.9% | 8/9 | 8/9 | 1 | abbe: 1 |
-| 70 | [SONY E 35mm f/1.8 OSS](../../src/lens-data/sony/SonyE35mmf18.data.ts) | 88.9% | 88.9% | 8/9 | 8/9 | 1 | abbe: 1 |
-| 71 | [SONY FE 28mm f/2](../../src/lens-data/sony/SonyFE28mmf2.data.ts) | 88.9% | 88.9% | 8/9 | 8/9 | 1 | abbe: 1 |
-| 72 | [FUJIFILM FUJINON GF 45-100mm f/4 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmGF45100mmf4.data.ts) | 88.2% | 88.2% | 15/17 | 15/17 | 2 | abbe: 2 |
-| 73 | [NIKON NIKKOR Z 50mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ50f12.data.ts) | 88.2% | 88.2% | 15/17 | 15/17 | 2 | abbe: 2 |
-| 74 | [FUJIFILM FUJINON XF 23mm f/2.8 R WR](../../src/lens-data/fujifilm/FujifilmXF23mmf28RWR.data.ts) | 87.5% | 87.5% | 7/8 | 7/8 | 1 | abbe: 1 |
-| 75 | [FUJIFILM FUJINON XF 35mm f/1.4 R](../../src/lens-data/fujifilm/FujifilmXF35mmf14R.data.ts) | 87.5% | 87.5% | 7/8 | 7/8 | 1 | abbe: 1 |
-| 76 | [MINOLTA AF 100mm f/2.8 Macro](../../src/lens-data/minolta/MinoltaAF100mmf28Macro.data.ts) | 87.5% | 87.5% | 7/8 | 7/8 | 1 | abbe: 1 |
-| 77 | [SONY SONNAR T* E 24mm f/1.8 ZA](../../src/lens-data/sony/SonyFE24mmf18ZA.data.ts) | 87.5% | 87.5% | 7/8 | 7/8 | 1 | abbe: 1 |
-| 78 | [RODENSTOCK GRANDAGON-N 75mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN75mmf45.data.ts) | 87.5% | 50.0% | 7/8 | 4/8 | 1 | abbe: 1 |
-| 79 | [NIKON AF-S NIKKOR 24-70mm f/2.8 G ED](../../src/lens-data/nikon/NikonAFS2470mmf28G.data.ts) | 87.5% | 87.5% | 14/16 | 14/16 | 2 | abbe: 2 |
-| 80 | [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../../src/lens-data/nikon/NikonZ105f28.data.ts) | 87.5% | 87.5% | 14/16 | 14/16 | 2 | abbe: 2 |
-| 81 | [SIGMA 40mm f/1.4 DG HSM | Art](../../src/lens-data/sigma/SigmaArt40mmf14.data.ts) | 87.5% | 87.5% | 14/16 | 14/16 | 2 | abbe: 2 |
-| 82 | [CANON RF 50mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF50mmf14LVCM.data.ts) | 86.7% | 86.7% | 13/15 | 13/15 | 2 | abbe: 2 |
-| 83 | [FUJIFILM FUJINON GF 32-64mm f/4 R LM WR](../../src/lens-data/fujifilm/FujifilmGF3264mmf4.data.ts) | 86.7% | 86.7% | 13/15 | 13/15 | 2 | abbe: 2 |
-| 84 | [NIKON AF-S NIKKOR 28mm f/1.4 E ED](../../src/lens-data/nikon/NikonAFS28f14E.data.ts) | 86.7% | 86.7% | 13/15 | 13/15 | 2 | abbe: 2 |
-| 85 | [NIKON PC-E NIKKOR 24mm f/3.5 D ED](../../src/lens-data/nikon/NikonPCENikkor24mmf35DED.data.ts) | 86.7% | 86.7% | 13/15 | 13/15 | 2 | abbe: 2 |
-| 86 | [CARL ZEISS B-DISTAGON 35mm f/4 (Contarex)](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon35mmf4.data.ts) | 85.7% | 85.7% | 6/7 | 6/7 | 1 | abbe: 1 |
-| 87 | [MINOLTA MD ROKKOR 50mm f/1.4](../../src/lens-data/minolta/MinoltaRokkor50mmf14MD.data.ts) | 85.7% | 85.7% | 6/7 | 6/7 | 1 | abbe: 1 |
-| 88 | [OLYMPUS G.ZUIKO AUTO-W 21mm f/3.5](../../src/lens-data/olympus/OlympusGZuikoAutoW21mmf35.data.ts) | 85.7% | 85.7% | 6/7 | 6/7 | 1 | abbe: 1 |
-| 89 | [PENTAX SMC PENTAX-A★ 135mm f/1.8](../../src/lens-data/pentax/PentaxA135mmf18.data.ts) | 85.7% | 85.7% | 6/7 | 6/7 | 1 | abbe: 1 |
-| 90 | [RICOH GR LENS 18.3mm f/2.8 (Ricoh GR / GR II)](../../src/lens-data/ricoh/RicohGR218mmf28.data.ts) | 85.7% | 85.7% | 6/7 | 6/7 | 1 | abbe: 1 |
-| 91 | [RICOH GR LENS 26.1mm f/2.8 (Ricoh GR IIIx)](../../src/lens-data/ricoh/RicohGR3x.data.ts) | 85.7% | 85.7% | 6/7 | 6/7 | 1 | abbe: 1 |
-| 92 | [SONY SONNAR T* FE 55mm f/1.8 ZA](../../src/lens-data/sony/SonyFE55mmf18ZA.data.ts) | 85.7% | 85.7% | 6/7 | 6/7 | 1 | abbe: 1 |
-| 93 | [CANON EF-S 10-22mm f/3.5-4.5 USM](../../src/lens-data/canon/CanonEFS1022mmf3545.data.ts) | 85.7% | 85.7% | 12/14 | 12/14 | 2 | abbe: 2 |
-| 94 | [FUJIFILM FUJINON GF 20-35mm f/4 R WR](../../src/lens-data/fujifilm/FujifilmGF2035mmf4.data.ts) | 85.7% | 85.7% | 12/14 | 12/14 | 2 | abbe: 2 |
-| 95 | [FUJIFILM FUJINON GF 55mm f/1.7 R WR](../../src/lens-data/fujifilm/FujifilmGF55mmf17.data.ts) | 85.7% | 85.7% | 12/14 | 12/14 | 2 | abbe: 2 |
-| 96 | [NIKON AF-S NIKKOR 105mm f/1.4 E ED](../../src/lens-data/nikon/NikonNikkor105f14E.data.ts) | 85.7% | 85.7% | 12/14 | 12/14 | 2 | abbe: 2 |
-| 97 | [Nikon AF-S NIKKOR 24mm f/1.8G ED](../../src/lens-data/nikon/NikonAFSNikkor24mmf18GED.data.ts) | 85.7% | 85.7% | 12/14 | 12/14 | 2 | abbe: 2 |
-| 98 | [NIKON AF-S VR MICRO-NIKKOR 105mm f/2.8 G IF-ED](../../src/lens-data/nikon/NikonAFS105f28G.data.ts) | 85.7% | 85.7% | 12/14 | 12/14 | 2 | abbe: 2 |
-| 99 | [NIKON NIKKOR Z 24-70mm f/4 S](../../src/lens-data/nikon/NikonNikkorZ2470mmf4S.data.ts) | 85.7% | 85.7% | 12/14 | 12/14 | 2 | abbe: 2 |
-| 100 | [NIKON NIKKOR Z 50mm f/1.8 S](../../src/lens-data/nikon/NikonNikkorZ50f18S.data.ts) | 85.7% | 85.7% | 12/12 | 12/12 | 2 | constant: 2 |
-| 101 | [LAOWA 24mm f/14 2× Macro Probe](../../src/lens-data/laowa/Laowa24mmf14Probe.data.ts) | 85.2% | 85.2% | 23/27 | 23/27 | 4 | abbe: 4 |
+| 58 | [NIKON NIKKOR Z DX 18-140mm f/3.5-6.3 VR](../../src/lens-data/nikon/NikonZDX18140mmf3563VR.data.ts) | 89.5% | 89.5% | 17/19 | 17/19 | 2 | abbe: 2 |
+| 59 | [CANON RF 16mm f/2.8 STM](../../src/lens-data/canon/CanonRF16mmf28STM.data.ts) | 88.9% | 88.9% | 8/9 | 8/9 | 1 | abbe: 1 |
+| 60 | [NIKON AI NIKKOR 35mm f/1.4S](../../src/lens-data/nikon/NikonAINikkor35mmf14S.data.ts) | 88.9% | 88.9% | 8/9 | 8/9 | 1 | abbe: 1 |
+| 61 | [NIKON FISHEYE-NIKKOR 6mm f/5.6](../../src/lens-data/nikon/NikonFisheyeNikkor6mmf56.data.ts) | 88.9% | 88.9% | 8/9 | 8/9 | 1 | abbe: 1 |
+| 62 | [NIKON NIKKOR Z 26mm f/2.8](../../src/lens-data/nikon/NikonZ26f28.data.ts) | 88.9% | 88.9% | 8/9 | 8/9 | 1 | abbe: 1 |
+| 63 | [NIKON NIKKOR-N 5cm f/1.1](../../src/lens-data/nikon/NikonN5cmf11.data.ts) | 88.9% | 88.9% | 8/9 | 8/9 | 1 | abbe: 1 |
+| 64 | [NIKON NIKKOR-N AUTO 28mm f/2](../../src/lens-data/nikon/NikonNikkorN28mmf2.data.ts) | 88.9% | 88.9% | 8/9 | 8/9 | 1 | abbe: 1 |
+| 65 | [PENTAX DA 21mm f/3.2 AL Limited](../../src/lens-data/pentax/PentaxDA21mmf32Limited.data.ts) | 88.9% | 88.9% | 8/9 | 8/9 | 1 | abbe: 1 |
+| 66 | [PENTAX FA 31mm f/1.8 AL Limited](../../src/lens-data/pentax/PentaxFA31mmf18ALLtd.data.ts) | 88.9% | 88.9% | 8/9 | 8/9 | 1 | abbe: 1 |
+| 67 | [SIGMA 30mm f/1.4 DC HSM | Art](../../src/lens-data/sigma/Sigma30mmf14DCHSMA.data.ts) | 88.9% | 88.9% | 8/9 | 8/9 | 1 | abbe: 1 |
+| 68 | [SONY E 35mm f/1.8 OSS](../../src/lens-data/sony/SonyE35mmf18.data.ts) | 88.9% | 88.9% | 8/9 | 8/9 | 1 | abbe: 1 |
+| 69 | [FUJIFILM FUJINON GF 45-100mm f/4 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmGF45100mmf4.data.ts) | 88.2% | 88.2% | 15/17 | 15/17 | 2 | abbe: 2 |
+| 70 | [NIKON NIKKOR Z 50mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ50f12.data.ts) | 88.2% | 88.2% | 15/17 | 15/17 | 2 | abbe: 2 |
+| 71 | [FUJIFILM FUJINON XF 23mm f/2.8 R WR](../../src/lens-data/fujifilm/FujifilmXF23mmf28RWR.data.ts) | 87.5% | 87.5% | 7/8 | 7/8 | 1 | abbe: 1 |
+| 72 | [FUJIFILM FUJINON XF 35mm f/1.4 R](../../src/lens-data/fujifilm/FujifilmXF35mmf14R.data.ts) | 87.5% | 87.5% | 7/8 | 7/8 | 1 | abbe: 1 |
+| 73 | [MINOLTA AF 100mm f/2.8 Macro](../../src/lens-data/minolta/MinoltaAF100mmf28Macro.data.ts) | 87.5% | 87.5% | 7/8 | 7/8 | 1 | abbe: 1 |
+| 74 | [SONY SONNAR T* E 24mm f/1.8 ZA](../../src/lens-data/sony/SonyFE24mmf18ZA.data.ts) | 87.5% | 87.5% | 7/8 | 7/8 | 1 | abbe: 1 |
+| 75 | [RODENSTOCK GRANDAGON-N 75mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN75mmf45.data.ts) | 87.5% | 50.0% | 7/8 | 4/8 | 1 | abbe: 1 |
+| 76 | [NIKON AF-S NIKKOR 24-70mm f/2.8 G ED](../../src/lens-data/nikon/NikonAFS2470mmf28G.data.ts) | 87.5% | 87.5% | 14/16 | 14/16 | 2 | abbe: 2 |
+| 77 | [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../../src/lens-data/nikon/NikonZ105f28.data.ts) | 87.5% | 87.5% | 14/16 | 14/16 | 2 | abbe: 2 |
+| 78 | [CANON RF 50mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF50mmf14LVCM.data.ts) | 86.7% | 86.7% | 13/15 | 13/15 | 2 | abbe: 2 |
+| 79 | [FUJIFILM FUJINON GF 32-64mm f/4 R LM WR](../../src/lens-data/fujifilm/FujifilmGF3264mmf4.data.ts) | 86.7% | 86.7% | 13/15 | 13/15 | 2 | abbe: 2 |
+| 80 | [NIKON AF-S NIKKOR 28mm f/1.4 E ED](../../src/lens-data/nikon/NikonAFS28f14E.data.ts) | 86.7% | 86.7% | 13/15 | 13/15 | 2 | abbe: 2 |
+| 81 | [NIKON PC-E NIKKOR 24mm f/3.5 D ED](../../src/lens-data/nikon/NikonPCENikkor24mmf35DED.data.ts) | 86.7% | 86.7% | 13/15 | 13/15 | 2 | abbe: 2 |
+| 82 | [SAMYANG AF 35-150mm f/2-2.8 FE / L](../../src/lens-data/samyang/SamyangAF35150mmf228.data.ts) | 86.4% | 86.4% | 19/22 | 19/22 | 3 | abbe: 3 |
+| 83 | [CARL ZEISS B-DISTAGON 35mm f/4 (Contarex)](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon35mmf4.data.ts) | 85.7% | 85.7% | 6/7 | 6/7 | 1 | abbe: 1 |
+| 84 | [MINOLTA MD ROKKOR 50mm f/1.4](../../src/lens-data/minolta/MinoltaRokkor50mmf14MD.data.ts) | 85.7% | 85.7% | 6/7 | 6/7 | 1 | abbe: 1 |
+| 85 | [OLYMPUS G.ZUIKO AUTO-W 21mm f/3.5](../../src/lens-data/olympus/OlympusGZuikoAutoW21mmf35.data.ts) | 85.7% | 85.7% | 6/7 | 6/7 | 1 | abbe: 1 |
+| 86 | [PENTAX SMC PENTAX-A★ 135mm f/1.8](../../src/lens-data/pentax/PentaxA135mmf18.data.ts) | 85.7% | 85.7% | 6/7 | 6/7 | 1 | abbe: 1 |
+| 87 | [RICOH GR LENS 18.3mm f/2.8 (Ricoh GR / GR II)](../../src/lens-data/ricoh/RicohGR218mmf28.data.ts) | 85.7% | 85.7% | 6/7 | 6/7 | 1 | abbe: 1 |
+| 88 | [RICOH GR LENS 26.1mm f/2.8 (Ricoh GR IIIx)](../../src/lens-data/ricoh/RicohGR3x.data.ts) | 85.7% | 85.7% | 6/7 | 6/7 | 1 | abbe: 1 |
+| 89 | [SONY SONNAR T* FE 55mm f/1.8 ZA](../../src/lens-data/sony/SonyFE55mmf18ZA.data.ts) | 85.7% | 85.7% | 6/7 | 6/7 | 1 | abbe: 1 |
+| 90 | [CANON EF-S 10-22mm f/3.5-4.5 USM](../../src/lens-data/canon/CanonEFS1022mmf3545.data.ts) | 85.7% | 85.7% | 12/14 | 12/14 | 2 | abbe: 2 |
+| 91 | [FUJIFILM FUJINON GF 20-35mm f/4 R WR](../../src/lens-data/fujifilm/FujifilmGF2035mmf4.data.ts) | 85.7% | 85.7% | 12/14 | 12/14 | 2 | abbe: 2 |
+| 92 | [FUJIFILM FUJINON GF 55mm f/1.7 R WR](../../src/lens-data/fujifilm/FujifilmGF55mmf17.data.ts) | 85.7% | 85.7% | 12/14 | 12/14 | 2 | abbe: 2 |
+| 93 | [NIKON AF-S NIKKOR 105mm f/1.4 E ED](../../src/lens-data/nikon/NikonNikkor105f14E.data.ts) | 85.7% | 85.7% | 12/14 | 12/14 | 2 | abbe: 2 |
+| 94 | [Nikon AF-S NIKKOR 24mm f/1.8G ED](../../src/lens-data/nikon/NikonAFSNikkor24mmf18GED.data.ts) | 85.7% | 85.7% | 12/14 | 12/14 | 2 | abbe: 2 |
+| 95 | [NIKON AF-S VR MICRO-NIKKOR 105mm f/2.8 G IF-ED](../../src/lens-data/nikon/NikonAFS105f28G.data.ts) | 85.7% | 85.7% | 12/14 | 12/14 | 2 | abbe: 2 |
+| 96 | [NIKON NIKKOR Z 24-70mm f/4 S](../../src/lens-data/nikon/NikonNikkorZ2470mmf4S.data.ts) | 85.7% | 85.7% | 12/14 | 12/14 | 2 | abbe: 2 |
+| 97 | [NIKON NIKKOR Z 50mm f/1.8 S](../../src/lens-data/nikon/NikonNikkorZ50f18S.data.ts) | 85.7% | 85.7% | 12/12 | 12/12 | 2 | constant: 2 |
+| 98 | [LAOWA 24mm f/14 2× Macro Probe](../../src/lens-data/laowa/Laowa24mmf14Probe.data.ts) | 85.2% | 85.2% | 23/27 | 23/27 | 4 | abbe: 4 |
 |  | **80-84.9% coverage** |  |  |  |  |  |  |
-| 102 | [NIKON AF-P DX NIKKOR 18-55mm f/3.5-5.6 G VR](../../src/lens-data/nikon/NikonAFPDX1855mmf3556G.data.ts) | 84.6% | 84.6% | 11/13 | 11/13 | 2 | abbe: 2 |
-| 103 | [SIGMA 35mm f/1.4 DG HSM | Art](../../src/lens-data/sigma/Sigma35mmf14DGHSMA.data.ts) | 84.6% | 84.6% | 11/13 | 11/13 | 2 | abbe: 2 |
-| 104 | [Nikon AF Nikkor 28mm f/2.8D](../../src/lens-data/nikon/NikonAFNikkor28mmf28D.data.ts) | 83.3% | 83.3% | 5/6 | 5/6 | 1 | abbe: 1 |
-| 105 | [NIKON AI NIKKOR 135mm f/2](../../src/lens-data/nikon/NikonAI135mmf2.data.ts) | 83.3% | 83.3% | 5/6 | 5/6 | 1 | abbe: 1 |
-| 106 | [NIKON REFLEX-NIKKOR 500mm f/8 (New)](../../src/lens-data/nikon/NikonReflexNikkor500mmf8New.data.ts) | 83.3% | 83.3% | 5/6 | 5/6 | 1 | abbe: 1 |
-| 107 | [NIKON REFLEX-NIKKOR·C 500mm f/8](../../src/lens-data/nikon/NikonReflexNikkorC500mmf8.data.ts) | 83.3% | 83.3% | 5/6 | 5/6 | 1 | abbe: 1 |
-| 108 | [OLYMPUS F.ZUIKO AUTO-T 200mm f/5](../../src/lens-data/olympus/OlympusZuikoAutoT200mmf5.data.ts) | 83.3% | 83.3% | 5/6 | 5/6 | 1 | abbe: 1 |
-| 109 | [RICOH GR LENS 18.3mm f/2.8 (Ricoh GR III)](../../src/lens-data/ricoh/RicohGR328f28.data.ts) | 83.3% | 83.3% | 5/6 | 5/6 | 1 | abbe: 1 |
-| 110 | [NIKON NIKKOR Z 24-70mm f/2.8 S](../../src/lens-data/nikon/NikonZ2470f28.data.ts) | 82.4% | 82.4% | 14/17 | 14/17 | 3 | abbe: 3 |
-| 111 | [NIKON NIKKOR Z 35mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) | 82.4% | 82.4% | 14/17 | 14/17 | 3 | abbe: 3 |
-| 112 | [CANON ZOOM LENS 8.8-36.8mm f/1.8-2.8 (PowerShot G7 X)](../../src/lens-data/canon/CanonPowerShotG7X88368mmf1828.data.ts) | 81.8% | 81.8% | 9/11 | 9/11 | 2 | abbe: 2 |
-| 113 | [LEICA SUMMILUX 28mm f/1.7 ASPH. (Leica Q, Q2, Q3)](../../src/lens-data/leica/Leica28mmf17.data.ts) | 81.8% | 81.8% | 9/11 | 9/11 | 2 | abbe: 2 |
-| 114 | [FUJIFILM FUJINON GF 30mm f/5.6 T/S](../../src/lens-data/fujifilm/FujifilmGF30mmf56TS.data.ts) | 81.3% | 81.3% | 13/16 | 13/16 | 3 | abbe: 3 |
-| 115 | [NIKON AF-S NIKKOR 20mm f/1.8 G ED](../../src/lens-data/nikon/NikonNikkorAFS20mmf18G.data.ts) | 81.3% | 81.3% | 13/16 | 13/16 | 3 | abbe: 3 |
-| 116 | [Nikon AI Zoom-Nikkor 35–105mm f/3.5–4.5S](../../src/lens-data/nikon/NikonAIZoomNikkor35105mmf3545.data.ts) | 81.3% | 81.3% | 13/16 | 13/16 | 3 | abbe: 3 |
-| 117 | [NIKON NIKKOR Z 24-120mm f/4 S](../../src/lens-data/nikon/NikonNikkorZ24120mmf4S.data.ts) | 81.3% | 81.3% | 13/16 | 13/16 | 3 | abbe: 3 |
-| 118 | [PENTAX DA* 16-50mm f/2.8 ED AL[IF] SDM](../../src/lens-data/pentax/PentaxDA1650mmf28.data.ts) | 81.3% | 81.3% | 13/16 | 13/16 | 3 | abbe: 3 |
-| 119 | [CANON SERENAR 100mm f/3.5 I](../../src/lens-data/canon/CanonSerenar100mmf35.data.ts) | 80.0% | 80.0% | 4/5 | 4/5 | 1 | abbe: 1 |
-| 120 | [NIKON 35mm f/2.8 (Nikon L35AF)](../../src/lens-data/nikon/NikonL35AF35mmf28.data.ts) | 80.0% | 80.0% | 4/5 | 4/5 | 1 | abbe: 1 |
-| 121 | [AGFA COLOR-MAGNOLAR II 100mm f/4.5](../../src/lens-data/agfa/AgfaColorMagnolarII100mmf45.data.ts) | 80.0% | 40.0% | 4/5 | 2/5 | 1 | abbe: 1 |
-| 122 | [FUJIFILM FUJINON 35mm f/4 (Fujifilm GFX100RF)](../../src/lens-data/fujifilm/FujifilmGFX100RF35mmf4.data.ts) | 80.0% | 80.0% | 8/10 | 8/10 | 2 | abbe: 2 |
-| 123 | [FUJIFILM FUJINON XF 23mm f/2 R WR](../../src/lens-data/fujifilm/FujifilmXF23mmf2RWR.data.ts) | 80.0% | 80.0% | 8/10 | 8/10 | 2 | abbe: 2 |
-| 124 | [LEICA ELMARIT-TL 18mm f/2.8 ASPH.](../../src/lens-data/leica/LeicaElmaritTL18mmf28.data.ts) | 80.0% | 80.0% | 8/10 | 8/10 | 2 | abbe: 2 |
-| 125 | [MINOLTA AF APO TELE 300mm f/2.8](../../src/lens-data/minolta/MinoltaAF300mmf28.data.ts) | 80.0% | 80.0% | 8/10 | 8/10 | 2 | abbe: 2 |
-| 126 | [OLYMPUS OM J. ZUIKO AUTO-W 24mm f/2](../../src/lens-data/olympus/OlympusZuiko24mmf2J.data.ts) | 80.0% | 80.0% | 8/10 | 8/10 | 2 | abbe: 2 |
-| 127 | [OLYMPUS OM ZUIKO 16mm f/3.5 Fisheye](../../src/lens-data/olympus/OlympusZuiko16mmf35.data.ts) | 80.0% | 80.0% | 8/10 | 8/10 | 2 | abbe: 2 |
-| 128 | [SONY FE 24mm f/2.8 G](../../src/lens-data/sony/SonyFE24mmf28G.data.ts) | 80.0% | 80.0% | 8/10 | 8/10 | 2 | abbe: 2 |
-| 129 | [NIKON AF-S NIKKOR 14-24mm f/2.8 G ED](../../src/lens-data/nikon/NikonNikkorAFS1424mmf28.data.ts) | 80.0% | 80.0% | 12/15 | 12/15 | 3 | abbe: 3 |
-| 130 | [MINOLTA AF 28-75mm f/2.8 (D)](../../src/lens-data/minolta/MinoltaAF2875mmf28D.data.ts) | 80.0% | 80.0% | 16/20 | 16/20 | 4 | abbe: 4 |
+| 99 | [NIKON AF-P DX NIKKOR 18-55mm f/3.5-5.6 G VR](../../src/lens-data/nikon/NikonAFPDX1855mmf3556G.data.ts) | 84.6% | 84.6% | 11/13 | 11/13 | 2 | abbe: 2 |
+| 100 | [SIGMA 35mm f/1.4 DG HSM | Art](../../src/lens-data/sigma/Sigma35mmf14DGHSMA.data.ts) | 84.6% | 84.6% | 11/13 | 11/13 | 2 | abbe: 2 |
+| 101 | [Nikon AF Nikkor 28mm f/2.8D](../../src/lens-data/nikon/NikonAFNikkor28mmf28D.data.ts) | 83.3% | 83.3% | 5/6 | 5/6 | 1 | abbe: 1 |
+| 102 | [NIKON AI NIKKOR 135mm f/2](../../src/lens-data/nikon/NikonAI135mmf2.data.ts) | 83.3% | 83.3% | 5/6 | 5/6 | 1 | abbe: 1 |
+| 103 | [NIKON REFLEX-NIKKOR 500mm f/8 (New)](../../src/lens-data/nikon/NikonReflexNikkor500mmf8New.data.ts) | 83.3% | 83.3% | 5/6 | 5/6 | 1 | abbe: 1 |
+| 104 | [NIKON REFLEX-NIKKOR·C 500mm f/8](../../src/lens-data/nikon/NikonReflexNikkorC500mmf8.data.ts) | 83.3% | 83.3% | 5/6 | 5/6 | 1 | abbe: 1 |
+| 105 | [OLYMPUS F.ZUIKO AUTO-T 200mm f/5](../../src/lens-data/olympus/OlympusZuikoAutoT200mmf5.data.ts) | 83.3% | 83.3% | 5/6 | 5/6 | 1 | abbe: 1 |
+| 106 | [RICOH GR LENS 18.3mm f/2.8 (Ricoh GR III)](../../src/lens-data/ricoh/RicohGR328f28.data.ts) | 83.3% | 83.3% | 5/6 | 5/6 | 1 | abbe: 1 |
+| 107 | [NIKON NIKKOR Z 24-70mm f/2.8 S](../../src/lens-data/nikon/NikonZ2470f28.data.ts) | 82.4% | 82.4% | 14/17 | 14/17 | 3 | abbe: 3 |
+| 108 | [NIKON NIKKOR Z 35mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) | 82.4% | 82.4% | 14/17 | 14/17 | 3 | abbe: 3 |
+| 109 | [CANON ZOOM LENS 8.8-36.8mm f/1.8-2.8 (PowerShot G7 X)](../../src/lens-data/canon/CanonPowerShotG7X88368mmf1828.data.ts) | 81.8% | 81.8% | 9/11 | 9/11 | 2 | abbe: 2 |
+| 110 | [LEICA SUMMILUX 28mm f/1.7 ASPH. (Leica Q, Q2, Q3)](../../src/lens-data/leica/Leica28mmf17.data.ts) | 81.8% | 81.8% | 9/11 | 9/11 | 2 | abbe: 2 |
+| 111 | [FUJIFILM FUJINON GF 30mm f/5.6 T/S](../../src/lens-data/fujifilm/FujifilmGF30mmf56TS.data.ts) | 81.3% | 81.3% | 13/16 | 13/16 | 3 | abbe: 3 |
+| 112 | [NIKON AF-S NIKKOR 20mm f/1.8 G ED](../../src/lens-data/nikon/NikonNikkorAFS20mmf18G.data.ts) | 81.3% | 81.3% | 13/16 | 13/16 | 3 | abbe: 3 |
+| 113 | [Nikon AI Zoom-Nikkor 35–105mm f/3.5–4.5S](../../src/lens-data/nikon/NikonAIZoomNikkor35105mmf3545.data.ts) | 81.3% | 81.3% | 13/16 | 13/16 | 3 | abbe: 3 |
+| 114 | [NIKON NIKKOR Z 24-120mm f/4 S](../../src/lens-data/nikon/NikonNikkorZ24120mmf4S.data.ts) | 81.3% | 81.3% | 13/16 | 13/16 | 3 | abbe: 3 |
+| 115 | [PENTAX DA* 16-50mm f/2.8 ED AL[IF] SDM](../../src/lens-data/pentax/PentaxDA1650mmf28.data.ts) | 81.3% | 81.3% | 13/16 | 13/16 | 3 | abbe: 3 |
+| 116 | [CANON SERENAR 100mm f/3.5 I](../../src/lens-data/canon/CanonSerenar100mmf35.data.ts) | 80.0% | 80.0% | 4/5 | 4/5 | 1 | abbe: 1 |
+| 117 | [NIKON 35mm f/2.8 (Nikon L35AF)](../../src/lens-data/nikon/NikonL35AF35mmf28.data.ts) | 80.0% | 80.0% | 4/5 | 4/5 | 1 | abbe: 1 |
+| 118 | [AGFA COLOR-MAGNOLAR II 100mm f/4.5](../../src/lens-data/agfa/AgfaColorMagnolarII100mmf45.data.ts) | 80.0% | 40.0% | 4/5 | 2/5 | 1 | abbe: 1 |
+| 119 | [FUJIFILM FUJINON 35mm f/4 (Fujifilm GFX100RF)](../../src/lens-data/fujifilm/FujifilmGFX100RF35mmf4.data.ts) | 80.0% | 80.0% | 8/10 | 8/10 | 2 | abbe: 2 |
+| 120 | [FUJIFILM FUJINON XF 23mm f/2 R WR](../../src/lens-data/fujifilm/FujifilmXF23mmf2RWR.data.ts) | 80.0% | 80.0% | 8/10 | 8/10 | 2 | abbe: 2 |
+| 121 | [LEICA ELMARIT-TL 18mm f/2.8 ASPH.](../../src/lens-data/leica/LeicaElmaritTL18mmf28.data.ts) | 80.0% | 80.0% | 8/10 | 8/10 | 2 | abbe: 2 |
+| 122 | [MINOLTA AF APO TELE 300mm f/2.8](../../src/lens-data/minolta/MinoltaAF300mmf28.data.ts) | 80.0% | 80.0% | 8/10 | 8/10 | 2 | abbe: 2 |
+| 123 | [OLYMPUS OM J. ZUIKO AUTO-W 24mm f/2](../../src/lens-data/olympus/OlympusZuiko24mmf2J.data.ts) | 80.0% | 80.0% | 8/10 | 8/10 | 2 | abbe: 2 |
+| 124 | [OLYMPUS OM ZUIKO 16mm f/3.5 Fisheye](../../src/lens-data/olympus/OlympusZuiko16mmf35.data.ts) | 80.0% | 80.0% | 8/10 | 8/10 | 2 | abbe: 2 |
+| 125 | [SONY FE 24mm f/2.8 G](../../src/lens-data/sony/SonyFE24mmf28G.data.ts) | 80.0% | 80.0% | 8/10 | 8/10 | 2 | abbe: 2 |
+| 126 | [NIKON AF-S NIKKOR 14-24mm f/2.8 G ED](../../src/lens-data/nikon/NikonNikkorAFS1424mmf28.data.ts) | 80.0% | 80.0% | 12/15 | 12/15 | 3 | abbe: 3 |
+| 127 | [MINOLTA AF 28-75mm f/2.8 (D)](../../src/lens-data/minolta/MinoltaAF2875mmf28D.data.ts) | 80.0% | 80.0% | 16/20 | 16/20 | 4 | abbe: 4 |
 |  | **75-79.9% coverage** |  |  |  |  |  |  |
-| 131 | [CANON NEW FD 150-600mm f/5.6L](../../src/lens-data/canon/CanonFD150600mmf56L.data.ts) | 78.9% | 78.9% | 15/19 | 15/19 | 4 | abbe: 4 |
-| 132 | [NIKON AF-S NIKKOR 24mm f/1.4 G ED](../../src/lens-data/nikon/NikonNikkorAFS24mmf14G.data.ts) | 78.6% | 78.6% | 11/14 | 11/14 | 3 | abbe: 3 |
-| 133 | [OLYMPUS OM-SYSTEM ZUIKO AUTO-ZOOM 65-200mm f/4](../../src/lens-data/olympus/OlympusZuikoAutoZoom65200mmf4.data.ts) | 78.6% | 78.6% | 11/14 | 11/14 | 3 | abbe: 3 |
-| 134 | [SIGMA 85mm f/1.4 DG HSM | Art](../../src/lens-data/sigma/Sigma85mmf14Art.data.ts) | 78.6% | 78.6% | 11/14 | 11/14 | 3 | abbe: 3 |
-| 135 | [CANON ZOOM LENS 15-45mm f/2.8-5.6 (PowerShot G1 X Mark III)](../../src/lens-data/canon/CanonPowerShotG1XIII1545mmf2856.data.ts) | 77.8% | 77.8% | 7/9 | 7/9 | 2 | abbe: 2 |
-| 136 | [CARL ZEISS DISTAGON T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) | 77.8% | 77.8% | 7/9 | 7/9 | 2 | abbe: 2 |
-| 137 | [CARL ZEISS DISTAGON T* 35mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon35mmf14.data.ts) | 77.8% | 77.8% | 7/9 | 7/9 | 2 | abbe: 2 |
-| 138 | [HASSELBLAD HC 150mm f/3.2](../../src/lens-data/hasselblad/HasselbladHC150mmf32.data.ts) | 77.8% | 77.8% | 7/9 | 7/9 | 2 | abbe: 2 |
-| 139 | [OLYMPUS ZUIKO AUTO-MACRO 90mm f/2](../../src/lens-data/olympus/OlympusZuikoAutoMacro90mmf2.data.ts) | 77.8% | 77.8% | 7/9 | 7/9 | 2 | abbe: 2 |
-| 140 | [SONY E 30mm f/3.5 Macro](../../src/lens-data/sony/SonySEL30mmf35.data.ts) | 77.8% | 77.8% | 7/9 | 7/9 | 2 | abbe: 2 |
-| 141 | [VOIGTLÄNDER NOKTON 50mm f/1.0](../../src/lens-data/voigtlander/VoigtlanderNokton50f1.data.ts) | 77.8% | 77.8% | 7/9 | 7/9 | 2 | abbe: 2 |
-| 142 | [NIKON AF MICRO-NIKKOR 200mm f/4D IF-ED](../../src/lens-data/nikon/NikonAFMicroNikkor200mmf4D.data.ts) | 76.9% | 76.9% | 10/13 | 10/13 | 3 | abbe: 3 |
+| 128 | [CANON NEW FD 150-600mm f/5.6L](../../src/lens-data/canon/CanonFD150600mmf56L.data.ts) | 78.9% | 78.9% | 15/19 | 15/19 | 4 | abbe: 4 |
+| 129 | [NIKON AF-S NIKKOR 24mm f/1.4 G ED](../../src/lens-data/nikon/NikonNikkorAFS24mmf14G.data.ts) | 78.6% | 78.6% | 11/14 | 11/14 | 3 | abbe: 3 |
+| 130 | [OLYMPUS OM-SYSTEM ZUIKO AUTO-ZOOM 65-200mm f/4](../../src/lens-data/olympus/OlympusZuikoAutoZoom65200mmf4.data.ts) | 78.6% | 78.6% | 11/14 | 11/14 | 3 | abbe: 3 |
+| 131 | [SIGMA 85mm f/1.4 DG HSM | Art](../../src/lens-data/sigma/Sigma85mmf14Art.data.ts) | 78.6% | 78.6% | 11/14 | 11/14 | 3 | abbe: 3 |
+| 132 | [CANON ZOOM LENS 15-45mm f/2.8-5.6 (PowerShot G1 X Mark III)](../../src/lens-data/canon/CanonPowerShotG1XIII1545mmf2856.data.ts) | 77.8% | 77.8% | 7/9 | 7/9 | 2 | abbe: 2 |
+| 133 | [CARL ZEISS DISTAGON T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) | 77.8% | 77.8% | 7/9 | 7/9 | 2 | abbe: 2 |
+| 134 | [CARL ZEISS DISTAGON T* 35mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon35mmf14.data.ts) | 77.8% | 77.8% | 7/9 | 7/9 | 2 | abbe: 2 |
+| 135 | [HASSELBLAD HC 150mm f/3.2](../../src/lens-data/hasselblad/HasselbladHC150mmf32.data.ts) | 77.8% | 77.8% | 7/9 | 7/9 | 2 | abbe: 2 |
+| 136 | [OLYMPUS ZUIKO AUTO-MACRO 90mm f/2](../../src/lens-data/olympus/OlympusZuikoAutoMacro90mmf2.data.ts) | 77.8% | 77.8% | 7/9 | 7/9 | 2 | abbe: 2 |
+| 137 | [SAMYANG AF 18mm f/2.8 FE](../../src/lens-data/samyang/SamyangAF18mmf28.data.ts) | 77.8% | 77.8% | 7/9 | 7/9 | 2 | abbe: 2 |
+| 138 | [SONY E 30mm f/3.5 Macro](../../src/lens-data/sony/SonySEL30mmf35.data.ts) | 77.8% | 77.8% | 7/9 | 7/9 | 2 | abbe: 2 |
+| 139 | [VOIGTLÄNDER NOKTON 50mm f/1.0](../../src/lens-data/voigtlander/VoigtlanderNokton50f1.data.ts) | 77.8% | 77.8% | 7/9 | 7/9 | 2 | abbe: 2 |
+| 140 | [SIGMA 28-45mm f/1.8 DG DN | Art](../../src/lens-data/sigma/Sigma2845mmf18DN.data.ts) | 77.8% | 77.8% | 14/18 | 14/18 | 4 | abbe: 4 |
+| 141 | [NIKON AF MICRO-NIKKOR 200mm f/4D IF-ED](../../src/lens-data/nikon/NikonAFMicroNikkor200mmf4D.data.ts) | 76.9% | 76.9% | 10/13 | 10/13 | 3 | abbe: 3 |
+| 142 | [SIGMA 10-18mm f/2.8 DC DN | Contemporary](../../src/lens-data/sigma/Sigma1018mmf28DCDN.data.ts) | 76.9% | 76.9% | 10/13 | 10/13 | 3 | abbe: 3 |
 | 143 | [SIGMA 50mm f/1.4 DG HSM | Art](../../src/lens-data/sigma/Sigma50mmf14DGHSMA.data.ts) | 76.9% | 76.9% | 10/13 | 10/13 | 3 | abbe: 3 |
 | 144 | [SONY FE 24mm f/1.4 GM](../../src/lens-data/sony/SonyFE24mmf14GM.data.ts) | 76.9% | 76.9% | 10/13 | 10/13 | 3 | abbe: 3 |
 | 145 | [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) | 76.9% | 76.9% | 20/26 | 20/26 | 6 | abbe: 6 |
@@ -347,38 +352,38 @@ Fully strict and line-index-complete trusted lenses are listed above; this table
 | 161 | [OLYMPUS OM ZUIKO AUTO-W 21mm f/2](../../src/lens-data/olympus/OlympusZuikoAuto21mmf2.data.ts) | 72.7% | 72.7% | 8/11 | 8/11 | 3 | abbe: 3 |
 | 162 | [PANASONIC LUMIX S 20-60mm f/3.5-5.6](../../src/lens-data/panasonic/PanasonicLumixS2060mmf3556.data.ts) | 72.7% | 72.7% | 8/11 | 8/11 | 3 | abbe: 3 |
 | 163 | [PANASONIC LUMIX S 35mm f/1.8](../../src/lens-data/panasonic/PanasonicS35mmf18.data.ts) | 72.7% | 72.7% | 8/11 | 8/11 | 3 | abbe: 3 |
-| 164 | [SIGMA 28-45mm f/1.8 DG DN | Art](../../src/lens-data/sigma/Sigma2845mmf18DN.data.ts) | 72.2% | 72.2% | 13/18 | 13/18 | 5 | abbe: 5 |
-| 165 | [Canon FD 28mm f/2.8 S.C.](../../src/lens-data/canon/CanonFD28mmf28.data.ts) | 71.4% | 71.4% | 5/7 | 5/7 | 2 | abbe: 2 |
-| 166 | [CANON New FD 50mm f/1.2](../../src/lens-data/canon/CanonFDn50f12.data.ts) | 71.4% | 71.4% | 5/7 | 5/7 | 2 | abbe: 2 |
-| 167 | [CANON SERENAR 85mm f/1.5](../../src/lens-data/canon/CanonSerenar85mmf15.data.ts) | 71.4% | 71.4% | 5/7 | 5/7 | 2 | abbe: 2 |
-| 168 | [FUJIFILM FUJINON 18.5mm f/2.8 (Fujifilm X70)](../../src/lens-data/fujifilm/FujifilmX7018mmf28.data.ts) | 71.4% | 71.4% | 5/7 | 5/7 | 2 | abbe: 2 |
-| 169 | [NIKON AF ZOOM-NIKKOR 28-80mm f/3.3-5.6 G](../../src/lens-data/nikon/NikonAFZoomNikkor2880mmf3356.data.ts) | 71.4% | 71.4% | 5/7 | 5/7 | 2 | abbe: 2 |
-| 170 | [NIKON AI-S NIKKOR 50mm f/1.2](../../src/lens-data/nikon/NikonAISNikkor50mmf12.data.ts) | 71.4% | 71.4% | 5/7 | 5/7 | 2 | abbe: 2 |
-| 171 | [OLYMPUS G.ZUIKO AUTO-S 55mm f/1.2](../../src/lens-data/olympus/OlympusZuikoAutoS55mmf12.data.ts) | 71.4% | 71.4% | 5/7 | 5/7 | 2 | abbe: 2 |
-| 172 | [PANASONIC LUMIX G 14mm f/2.5 II ASPH](../../src/lens-data/panasonic/PanasonicG14mmf25II.data.ts) | 71.4% | 71.4% | 5/7 | 5/7 | 2 | abbe: 2 |
-| 173 | [SIGMA 24mm f/2.8 (Sigma DP2x)](../../src/lens-data/sigma/SigmaDP2X24mmf28.data.ts) | 71.4% | 71.4% | 5/7 | 5/7 | 2 | abbe: 2 |
-| 174 | [LAOWA 65mm f/2.8 2× Ultra Macro APO](../../src/lens-data/laowa/Laowa65mmf28MacroAPO.data.ts) | 71.4% | 71.4% | 10/14 | 10/14 | 4 | abbe: 4 |
-| 175 | [FUJIFILM FUJINON XF 60mm f/2.4 R Macro](../../src/lens-data/fujifilm/FujifilmXF60mmf24R.data.ts) | 70.0% | 70.0% | 7/10 | 7/10 | 3 | abbe: 3 |
-| 176 | [Nikon AI Micro-Nikkor 105mm f/2.8S](../../src/lens-data/nikon/NikonAIMicroNikkor105mmf28S.data.ts) | 70.0% | 70.0% | 7/10 | 7/10 | 3 | abbe: 3 |
-| 177 | [Nikon AI-S Zoom-Nikkor 35–70mm f/3.5](../../src/lens-data/nikon/NikonAIZoomNikkor3570mmf35.data.ts) | 70.0% | 70.0% | 7/10 | 7/10 | 3 | abbe: 3 |
-| 178 | [OLYMPUS ZUIKO AUTO-FISHEYE 8mm f/2.8](../../src/lens-data/olympus/OlympusZuikoAutoFisheye8mmf28.data.ts) | 70.0% | 70.0% | 7/10 | 7/10 | 3 | abbe: 3 |
-| 179 | [SIGMA 50mm f/2.8 (Sigma DP3 Merrill)](../../src/lens-data/sigma/SigmaDP3M50mmf28.data.ts) | 70.0% | 70.0% | 7/10 | 7/10 | 3 | abbe: 3 |
+| 164 | [Canon FD 28mm f/2.8 S.C.](../../src/lens-data/canon/CanonFD28mmf28.data.ts) | 71.4% | 71.4% | 5/7 | 5/7 | 2 | abbe: 2 |
+| 165 | [CANON New FD 50mm f/1.2](../../src/lens-data/canon/CanonFDn50f12.data.ts) | 71.4% | 71.4% | 5/7 | 5/7 | 2 | abbe: 2 |
+| 166 | [CANON SERENAR 85mm f/1.5](../../src/lens-data/canon/CanonSerenar85mmf15.data.ts) | 71.4% | 71.4% | 5/7 | 5/7 | 2 | abbe: 2 |
+| 167 | [FUJIFILM FUJINON 18.5mm f/2.8 (Fujifilm X70)](../../src/lens-data/fujifilm/FujifilmX7018mmf28.data.ts) | 71.4% | 71.4% | 5/7 | 5/7 | 2 | abbe: 2 |
+| 168 | [NIKON AF ZOOM-NIKKOR 28-80mm f/3.3-5.6 G](../../src/lens-data/nikon/NikonAFZoomNikkor2880mmf3356.data.ts) | 71.4% | 71.4% | 5/7 | 5/7 | 2 | abbe: 2 |
+| 169 | [NIKON AI-S NIKKOR 50mm f/1.2](../../src/lens-data/nikon/NikonAISNikkor50mmf12.data.ts) | 71.4% | 71.4% | 5/7 | 5/7 | 2 | abbe: 2 |
+| 170 | [OLYMPUS G.ZUIKO AUTO-S 55mm f/1.2](../../src/lens-data/olympus/OlympusZuikoAutoS55mmf12.data.ts) | 71.4% | 71.4% | 5/7 | 5/7 | 2 | abbe: 2 |
+| 171 | [PANASONIC LUMIX G 14mm f/2.5 II ASPH](../../src/lens-data/panasonic/PanasonicG14mmf25II.data.ts) | 71.4% | 71.4% | 5/7 | 5/7 | 2 | abbe: 2 |
+| 172 | [SIGMA 24mm f/2.8 (Sigma DP2x)](../../src/lens-data/sigma/SigmaDP2X24mmf28.data.ts) | 71.4% | 71.4% | 5/7 | 5/7 | 2 | abbe: 2 |
+| 173 | [LAOWA 65mm f/2.8 2× Ultra Macro APO](../../src/lens-data/laowa/Laowa65mmf28MacroAPO.data.ts) | 71.4% | 71.4% | 10/14 | 10/14 | 4 | abbe: 4 |
+| 174 | [FUJIFILM FUJINON XF 60mm f/2.4 R Macro](../../src/lens-data/fujifilm/FujifilmXF60mmf24R.data.ts) | 70.0% | 70.0% | 7/10 | 7/10 | 3 | abbe: 3 |
+| 175 | [Nikon AI Micro-Nikkor 105mm f/2.8S](../../src/lens-data/nikon/NikonAIMicroNikkor105mmf28S.data.ts) | 70.0% | 70.0% | 7/10 | 7/10 | 3 | abbe: 3 |
+| 176 | [Nikon AI-S Zoom-Nikkor 35–70mm f/3.5](../../src/lens-data/nikon/NikonAIZoomNikkor3570mmf35.data.ts) | 70.0% | 70.0% | 7/10 | 7/10 | 3 | abbe: 3 |
+| 177 | [OLYMPUS ZUIKO AUTO-FISHEYE 8mm f/2.8](../../src/lens-data/olympus/OlympusZuikoAutoFisheye8mmf28.data.ts) | 70.0% | 70.0% | 7/10 | 7/10 | 3 | abbe: 3 |
+| 178 | [SIGMA 50mm f/2.8 (Sigma DP3 Merrill)](../../src/lens-data/sigma/SigmaDP3M50mmf28.data.ts) | 70.0% | 70.0% | 7/10 | 7/10 | 3 | abbe: 3 |
 |  | **65-69.9% coverage** |  |  |  |  |  |  |
-| 180 | [SIGMA 10-18mm f/2.8 DC DN | Contemporary](../../src/lens-data/sigma/Sigma1018mmf28DCDN.data.ts) | 69.2% | 69.2% | 9/13 | 9/13 | 4 | abbe: 4 |
-| 181 | [CANON RF 20mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF20mmf14LVCM.data.ts) | 68.8% | 68.8% | 11/16 | 11/16 | 5 | abbe: 5 |
-| 182 | [NIKON Gyogyotto 20mm f/8](../../src/lens-data/nikon/NikonGyogyotto20mmf8.data.ts) | 66.7% | 66.7% | 2/3 | 2/3 | 1 | abbe: 1 |
-| 183 | [AGFA SOLAGON 50mm f/2](../../src/lens-data/agfa/AgfaSolagon50mmf2.data.ts) | 66.7% | 66.7% | 4/6 | 4/6 | 2 | abbe: 2 |
-| 184 | [CANON SERENAR 28mm f/3.5](../../src/lens-data/canon/CanonSerenar28mmf35.data.ts) | 66.7% | 66.7% | 4/6 | 4/6 | 2 | abbe: 2 |
-| 185 | [LEICA MACRO-ELMARIT-R 60mm f/2.8](../../src/lens-data/leica/LeicaMacroElmaritR60mmf28.data.ts) | 66.7% | 66.7% | 4/6 | 4/6 | 2 | abbe: 2 |
-| 186 | [RODENSTOCK SIRONAR-N 100mm f/5.6](../../src/lens-data/rodenstock/RodenstockSironarN100mmf56.data.ts) | 66.7% | 66.7% | 4/6 | 4/6 | 2 | abbe: 2 |
-| 187 | [SCHNEIDER-KREUZNACH APO-SYMMAR 100mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderAPOSymmar100mmf56.data.ts) | 66.7% | 66.7% | 4/6 | 4/6 | 2 | abbe: 2 |
-| 188 | [VIVITAR SERIES 1 200mm f/3.0 VMC](../../src/lens-data/vivitar/VivitarSeries1200mmf3.data.ts) | 66.7% | 66.7% | 4/6 | 4/6 | 2 | abbe: 2 |
-| 189 | [CANON FD 35mm f/2 S.S.C. (I)](../../src/lens-data/canon/CanonFD35mmf2.data.ts) | 66.7% | 66.7% | 6/9 | 6/9 | 3 | abbe: 3 |
-| 190 | [HASSELBLAD HC Macro 120mm f/4](../../src/lens-data/hasselblad/HasselbladHC120mmf4Macro.data.ts) | 66.7% | 66.7% | 6/9 | 6/9 | 3 | abbe: 3 |
-| 191 | [NIKON AF-S NIKKOR 58mm f/1.4 G](../../src/lens-data/nikon/Nikon58f14GDesignCandidate.data.ts) | 66.7% | 66.7% | 6/9 | 6/9 | 3 | abbe: 3 |
-| 192 | [HASSELBLAD XCD 90mm f/2.5 V](../../src/lens-data/hasselblad/HasselbladXCD90mmf25V.data.ts) | 66.7% | 66.7% | 8/9 | 8/9 | 4 | constant: 3, abbe: 1 |
-| 193 | [NIKON AF ZOOM-NIKKOR 28-85mm f/3.5-4.5](../../src/lens-data/nikon/NikonAFZoomNikkor2885mmf3545.data.ts) | 66.7% | 66.7% | 10/15 | 10/15 | 5 | abbe: 5 |
+| 179 | [CANON RF 20mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF20mmf14LVCM.data.ts) | 68.8% | 68.8% | 11/16 | 11/16 | 5 | abbe: 5 |
+| 180 | [NIKON Gyogyotto 20mm f/8](../../src/lens-data/nikon/NikonGyogyotto20mmf8.data.ts) | 66.7% | 66.7% | 2/3 | 2/3 | 1 | abbe: 1 |
+| 181 | [AGFA SOLAGON 50mm f/2](../../src/lens-data/agfa/AgfaSolagon50mmf2.data.ts) | 66.7% | 66.7% | 4/6 | 4/6 | 2 | abbe: 2 |
+| 182 | [CANON SERENAR 28mm f/3.5](../../src/lens-data/canon/CanonSerenar28mmf35.data.ts) | 66.7% | 66.7% | 4/6 | 4/6 | 2 | abbe: 2 |
+| 183 | [LEICA MACRO-ELMARIT-R 60mm f/2.8](../../src/lens-data/leica/LeicaMacroElmaritR60mmf28.data.ts) | 66.7% | 66.7% | 4/6 | 4/6 | 2 | abbe: 2 |
+| 184 | [RODENSTOCK SIRONAR-N 100mm f/5.6](../../src/lens-data/rodenstock/RodenstockSironarN100mmf56.data.ts) | 66.7% | 66.7% | 4/6 | 4/6 | 2 | abbe: 2 |
+| 185 | [SCHNEIDER-KREUZNACH APO-SYMMAR 100mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderAPOSymmar100mmf56.data.ts) | 66.7% | 66.7% | 4/6 | 4/6 | 2 | abbe: 2 |
+| 186 | [VIVITAR SERIES 1 200mm f/3.0 VMC](../../src/lens-data/vivitar/VivitarSeries1200mmf3.data.ts) | 66.7% | 66.7% | 4/6 | 4/6 | 2 | abbe: 2 |
+| 187 | [CANON FD 35mm f/2 S.S.C. (I)](../../src/lens-data/canon/CanonFD35mmf2.data.ts) | 66.7% | 66.7% | 6/9 | 6/9 | 3 | abbe: 3 |
+| 188 | [HASSELBLAD HC Macro 120mm f/4](../../src/lens-data/hasselblad/HasselbladHC120mmf4Macro.data.ts) | 66.7% | 66.7% | 6/9 | 6/9 | 3 | abbe: 3 |
+| 189 | [NIKON AF-S NIKKOR 58mm f/1.4 G](../../src/lens-data/nikon/Nikon58f14GDesignCandidate.data.ts) | 66.7% | 66.7% | 6/9 | 6/9 | 3 | abbe: 3 |
+| 190 | [HASSELBLAD XCD 90mm f/2.5 V](../../src/lens-data/hasselblad/HasselbladXCD90mmf25V.data.ts) | 66.7% | 66.7% | 8/9 | 8/9 | 4 | constant: 3, abbe: 1 |
+| 191 | [NIKON AF ZOOM-NIKKOR 28-85mm f/3.5-4.5](../../src/lens-data/nikon/NikonAFZoomNikkor2885mmf3545.data.ts) | 66.7% | 66.7% | 10/15 | 10/15 | 5 | abbe: 5 |
 |  | **60-64.9% coverage** |  |  |  |  |  |  |
+| 192 | [SIGMA 17-40mm f/1.8 DC | Art](../../src/lens-data/sigma/Sigma1740mmf18DCA.data.ts) | 64.7% | 64.7% | 11/17 | 11/17 | 6 | abbe: 6 |
+| 193 | [CANON NEW FD 14mm f/2.8 L](../../src/lens-data/canon/CanonNewFD14mmf28L.data.ts) | 64.3% | 64.3% | 9/14 | 9/14 | 5 | abbe: 5 |
 | 194 | [FUJIFILM FUJINON 23mm f/2 (Fujifilm X100V)](../../src/lens-data/fujifilm/FujifilmX100V23mmf2.data.ts) | 62.5% | 62.5% | 5/8 | 5/8 | 3 | abbe: 3 |
 | 195 | [LEICA ELMARIT-R 28mm f/2.8](../../src/lens-data/leica/LeicaElmarit28mmf28.data.ts) | 62.5% | 62.5% | 5/8 | 5/8 | 3 | abbe: 3 |
 | 196 | [NIKON AI NIKKOR 35mm f/2](../../src/lens-data/nikon/NikonAINikkor35mmf2.data.ts) | 62.5% | 62.5% | 5/8 | 5/8 | 3 | abbe: 3 |
@@ -417,64 +422,62 @@ Fully strict and line-index-complete trusted lenses are listed above; this table
 | 227 | [LAOWA 15mm f/4 Wide Angle 1:1 Macro](../../src/lens-data/laowa/Laowa15mmf4Macro.data.ts) | 50.0% | 50.0% | 6/12 | 6/12 | 6 | abbe: 6 |
 | 228 | [NIKON AF-P DX NIKKOR 10-20mm f/4.5-5.6 G VR](../../src/lens-data/nikon/NikonAFPDX1020mmf4556G.data.ts) | 50.0% | 50.0% | 8/16 | 8/16 | 8 | abbe: 8 |
 |  | **45-49.9% coverage** |  |  |  |  |  |  |
-| 229 | [SIGMA 17-40mm f/1.8 DC | Art](../../src/lens-data/sigma/Sigma1740mmf18DCA.data.ts) | 47.1% | 47.1% | 8/17 | 8/17 | 9 | abbe: 9 |
-| 230 | [MINOLTA AF 35-105mm f/3.5-4.5 New (v2)](../../src/lens-data/minolta/MinoltaAF35105mmf3545v2.data.ts) | 46.2% | 46.2% | 6/13 | 6/13 | 7 | abbe: 7 |
-| 231 | [Nikon AI Zoom-Nikkor 25-50mm f/4](../../src/lens-data/nikon/NikonAIZoomNikkor2550mmf4.data.ts) | 45.5% | 45.5% | 5/11 | 5/11 | 6 | abbe: 6 |
-| 232 | [Nikon AI Zoom-Nikkor 360-1200mm f/11 ED](../../src/lens-data/nikon/NikonAIZoomNikkor3601200mmf11ED.data.ts) | 45.0% | 45.0% | 9/20 | 9/20 | 11 | abbe: 11 |
+| 229 | [MINOLTA AF 35-105mm f/3.5-4.5 New (v2)](../../src/lens-data/minolta/MinoltaAF35105mmf3545v2.data.ts) | 46.2% | 46.2% | 6/13 | 6/13 | 7 | abbe: 7 |
+| 230 | [Nikon AI Zoom-Nikkor 25-50mm f/4](../../src/lens-data/nikon/NikonAIZoomNikkor2550mmf4.data.ts) | 45.5% | 45.5% | 5/11 | 5/11 | 6 | abbe: 6 |
+| 231 | [Nikon AI Zoom-Nikkor 360-1200mm f/11 ED](../../src/lens-data/nikon/NikonAIZoomNikkor3601200mmf11ED.data.ts) | 45.0% | 45.0% | 9/20 | 9/20 | 11 | abbe: 11 |
 |  | **40-44.9% coverage** |  |  |  |  |  |  |
-| 233 | [CARL ZEISS JENA BIOGON 35mm f/2.8 (pre-war)](../../src/lens-data/carl-zeiss-jena/ZeissBiogon35mmf28Prewar.data.ts) | 42.9% | 42.9% | 3/7 | 3/7 | 4 | abbe: 4 |
-| 234 | [MINOLTA AF Zoom 35-70mm f/4](../../src/lens-data/minolta/MinoltaAF3570mmf4.data.ts) | 42.9% | 42.9% | 3/7 | 3/7 | 4 | abbe: 4 |
-| 235 | [SONY SONNAR T* FE 35mm f/2.8 ZA](../../src/lens-data/sony/SonyFE35mmf28ZA.data.ts) | 42.9% | 42.9% | 3/7 | 3/7 | 4 | abbe: 4 |
-| 236 | [CANON NEW FD 14mm f/2.8 L](../../src/lens-data/canon/CanonNewFD14mmf28L.data.ts) | 42.9% | 42.9% | 6/14 | 6/14 | 8 | abbe: 8 |
-| 237 | [LAOWA 58mm f/2.8 2× Ultra-Macro APO](../../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts) | 42.9% | 42.9% | 6/14 | 6/14 | 8 | abbe: 8 |
-| 238 | [AGFA COLOR-TELINEAR 90mm f/4](../../src/lens-data/agfa/AgfaColorTelinear90mmf4.data.ts) | 40.0% | 40.0% | 2/5 | 2/5 | 3 | abbe: 3 |
-| 239 | [LEICA ELMAR-M 135mm f/4](../../src/lens-data/leica/LeicaElmarM135mmf4.data.ts) | 40.0% | 40.0% | 2/5 | 2/5 | 3 | abbe: 3 |
-| 240 | [NIKON AI NIKKOR 180mm f/2.8 ED](../../src/lens-data/nikon/NikonAINikkor180mmf28.data.ts) | 40.0% | 40.0% | 2/5 | 2/5 | 3 | abbe: 3 |
-| 241 | [VOIGTLÄNDER HELIAR (Symmetric) f/4](../../src/lens-data/voigtlander/VoigtlanderHeliar.data.ts) | 40.0% | 40.0% | 2/5 | 2/5 | 3 | abbe: 3 |
+| 232 | [CARL ZEISS JENA BIOGON 35mm f/2.8 (pre-war)](../../src/lens-data/carl-zeiss-jena/ZeissBiogon35mmf28Prewar.data.ts) | 42.9% | 42.9% | 3/7 | 3/7 | 4 | abbe: 4 |
+| 233 | [MINOLTA AF Zoom 35-70mm f/4](../../src/lens-data/minolta/MinoltaAF3570mmf4.data.ts) | 42.9% | 42.9% | 3/7 | 3/7 | 4 | abbe: 4 |
+| 234 | [SONY SONNAR T* FE 35mm f/2.8 ZA](../../src/lens-data/sony/SonyFE35mmf28ZA.data.ts) | 42.9% | 42.9% | 3/7 | 3/7 | 4 | abbe: 4 |
+| 235 | [LAOWA 58mm f/2.8 2× Ultra-Macro APO](../../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts) | 42.9% | 42.9% | 6/14 | 6/14 | 8 | abbe: 8 |
+| 236 | [SONY FE 12-24mm f/2.8 GM](../../src/lens-data/sony/SonyFE1224mmf28GM.data.ts) | 41.2% | 41.2% | 7/17 | 7/17 | 10 | abbe: 10 |
+| 237 | [AGFA COLOR-TELINEAR 90mm f/4](../../src/lens-data/agfa/AgfaColorTelinear90mmf4.data.ts) | 40.0% | 40.0% | 2/5 | 2/5 | 3 | abbe: 3 |
+| 238 | [LEICA ELMAR-M 135mm f/4](../../src/lens-data/leica/LeicaElmarM135mmf4.data.ts) | 40.0% | 40.0% | 2/5 | 2/5 | 3 | abbe: 3 |
+| 239 | [NIKON AI NIKKOR 180mm f/2.8 ED](../../src/lens-data/nikon/NikonAINikkor180mmf28.data.ts) | 40.0% | 40.0% | 2/5 | 2/5 | 3 | abbe: 3 |
+| 240 | [VOIGTLÄNDER HELIAR (Symmetric) f/4](../../src/lens-data/voigtlander/VoigtlanderHeliar.data.ts) | 40.0% | 40.0% | 2/5 | 2/5 | 3 | abbe: 3 |
 |  | **35-39.9% coverage** |  |  |  |  |  |  |
-| 242 | [CARL ZEISS BIOGON 21mm f/4.5](../../src/lens-data/carl-zeiss-oberkochen/ZeissBiogon21mmf45.data.ts) | 37.5% | 37.5% | 3/8 | 3/8 | 5 | abbe: 5 |
-| 243 | [SONY FE 12-24mm f/2.8 GM](../../src/lens-data/sony/SonyFE1224mmf28GM.data.ts) | 35.3% | 35.3% | 6/17 | 6/17 | 11 | abbe: 11 |
-| 244 | [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) | 35.3% | 35.3% | 6/17 | 6/17 | 11 | abbe: 11 |
+| 241 | [CARL ZEISS BIOGON 21mm f/4.5](../../src/lens-data/carl-zeiss-oberkochen/ZeissBiogon21mmf45.data.ts) | 37.5% | 37.5% | 3/8 | 3/8 | 5 | abbe: 5 |
+| 242 | [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) | 35.3% | 35.3% | 6/17 | 6/17 | 11 | abbe: 11 |
 |  | **30-34.9% coverage** |  |  |  |  |  |  |
-| 245 | [CANON SERENAR 50mm f/1.8](../../src/lens-data/canon/CanonSerenar50mmf18.data.ts) | 33.3% | 33.3% | 2/6 | 2/6 | 4 | abbe: 4 |
-| 246 | [ENNA MÜNCHEN ULTRA-LITHAGON 28mm f/3.5](../../src/lens-data/enna-munchen/EnnaMunchenUltraLithagon28mmf35.data.ts) | 33.3% | 33.3% | 2/6 | 2/6 | 4 | abbe: 4 |
-| 247 | [MINOLTA VARISOFT ROKKOR 85mm f/2.8](../../src/lens-data/minolta/MinoltaVarisoft85mmf28.data.ts) | 33.3% | 33.3% | 2/6 | 2/6 | 4 | abbe: 4 |
-| 248 | [PENTAX DA 70mm f/2.4 Limited](../../src/lens-data/pentax/PentaxDA70mmf24Limited.data.ts) | 33.3% | 33.3% | 2/6 | 2/6 | 4 | abbe: 4 |
-| 249 | [VOIGTLÄNDER ULTRON 50mm f/2](../../src/lens-data/voigtlander/VoigtlanderUltron50f2.data.ts) | 33.3% | 33.3% | 2/6 | 2/6 | 4 | abbe: 4 |
-| 250 | [SIGMA 85mm f/1.4 DG DN | Art](../../src/lens-data/sigma/SigmaDGDNA85mmf14.data.ts) | 33.3% | 33.3% | 5/15 | 5/15 | 10 | abbe: 10 |
-| 251 | [NIKON AF-S DX NIKKOR 55-200mm f/4-5.6 G ED VR II](../../src/lens-data/nikon/NikonAFSDX55200mmf456G.data.ts) | 30.8% | 30.8% | 4/13 | 4/13 | 9 | abbe: 9 |
-| 252 | [VOIGTLÄNDER APO-LANTHAR 50mm f/2.0 Aspherical](../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.ts) | 30.0% | 30.0% | 3/10 | 3/10 | 7 | abbe: 7 |
+| 243 | [CANON SERENAR 50mm f/1.8](../../src/lens-data/canon/CanonSerenar50mmf18.data.ts) | 33.3% | 33.3% | 2/6 | 2/6 | 4 | abbe: 4 |
+| 244 | [ENNA MÜNCHEN ULTRA-LITHAGON 28mm f/3.5](../../src/lens-data/enna-munchen/EnnaMunchenUltraLithagon28mmf35.data.ts) | 33.3% | 33.3% | 2/6 | 2/6 | 4 | abbe: 4 |
+| 245 | [MINOLTA VARISOFT ROKKOR 85mm f/2.8](../../src/lens-data/minolta/MinoltaVarisoft85mmf28.data.ts) | 33.3% | 33.3% | 2/6 | 2/6 | 4 | abbe: 4 |
+| 246 | [PENTAX DA 70mm f/2.4 Limited](../../src/lens-data/pentax/PentaxDA70mmf24Limited.data.ts) | 33.3% | 33.3% | 2/6 | 2/6 | 4 | abbe: 4 |
+| 247 | [VOIGTLÄNDER ULTRON 50mm f/2](../../src/lens-data/voigtlander/VoigtlanderUltron50f2.data.ts) | 33.3% | 33.3% | 2/6 | 2/6 | 4 | abbe: 4 |
+| 248 | [SIGMA 85mm f/1.4 DG DN | Art](../../src/lens-data/sigma/SigmaDGDNA85mmf14.data.ts) | 33.3% | 33.3% | 5/15 | 5/15 | 10 | abbe: 10 |
+| 249 | [NIKON AF-S DX NIKKOR 55-200mm f/4-5.6 G ED VR II](../../src/lens-data/nikon/NikonAFSDX55200mmf456G.data.ts) | 30.8% | 30.8% | 4/13 | 4/13 | 9 | abbe: 9 |
+| 250 | [VOIGTLÄNDER APO-LANTHAR 50mm f/2.0 Aspherical](../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.ts) | 30.0% | 30.0% | 3/10 | 3/10 | 7 | abbe: 7 |
 |  | **25-29.9% coverage** |  |  |  |  |  |  |
-| 253 | [LEICA ELMARIT-R 35mm f/2.8](../../src/lens-data/leica/LeicaElmaritR35mmf28.data.ts) | 28.6% | 28.6% | 2/7 | 2/7 | 5 | abbe: 5 |
-| 254 | [NIKON W-NIKKOR 35mm f/1.8](../../src/lens-data/nikon/NikonWNikkor35mmf18.data.ts) | 28.6% | 28.6% | 2/7 | 2/7 | 5 | abbe: 5 |
-| 255 | [NIKON AF ZOOM-NIKKOR 28-80mm f/3.5-5.6 D](../../src/lens-data/nikon/NikonAFZoomNikkor2880mmf3556.data.ts) | 25.0% | 25.0% | 2/8 | 2/8 | 6 | abbe: 6 |
-| 256 | [RODENSTOCK GRANDAGON-N 65mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN65mmf45.data.ts) | 25.0% | 25.0% | 2/8 | 2/8 | 6 | abbe: 6 |
+| 251 | [LEICA ELMARIT-R 35mm f/2.8](../../src/lens-data/leica/LeicaElmaritR35mmf28.data.ts) | 28.6% | 28.6% | 2/7 | 2/7 | 5 | abbe: 5 |
+| 252 | [NIKON W-NIKKOR 35mm f/1.8](../../src/lens-data/nikon/NikonWNikkor35mmf18.data.ts) | 28.6% | 28.6% | 2/7 | 2/7 | 5 | abbe: 5 |
+| 253 | [NIKON AF ZOOM-NIKKOR 28-80mm f/3.5-5.6 D](../../src/lens-data/nikon/NikonAFZoomNikkor2880mmf3556.data.ts) | 25.0% | 25.0% | 2/8 | 2/8 | 6 | abbe: 6 |
+| 254 | [RODENSTOCK GRANDAGON-N 65mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN65mmf45.data.ts) | 25.0% | 25.0% | 2/8 | 2/8 | 6 | abbe: 6 |
 |  | **20-24.9% coverage** |  |  |  |  |  |  |
-| 257 | [LEICA ELMARIT 90mm f/2.8](../../src/lens-data/leica/LeicaElmarit90mmf28.data.ts) | 20.0% | 20.0% | 1/5 | 1/5 | 4 | abbe: 4 |
+| 255 | [LEICA ELMARIT 90mm f/2.8](../../src/lens-data/leica/LeicaElmarit90mmf28.data.ts) | 20.0% | 20.0% | 1/5 | 1/5 | 4 | abbe: 4 |
 |  | **15-19.9% coverage** |  |  |  |  |  |  |
-| 258 | [MINOLTA MD ROKKOR 45mm f/2](../../src/lens-data/minolta/MinoltaRokkor45mmf2MD.data.ts) | 16.7% | 16.7% | 1/6 | 1/6 | 5 | abbe: 5 |
-| 259 | [FUJIFILM FUJINON XF 50mm f/1.0 R WR](../../src/lens-data/fujifilm/FujifilmXF50f1.data.ts) | 16.7% | 16.7% | 2/12 | 2/12 | 10 | abbe: 10 |
-| 260 | [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) | 15.0% | 15.0% | 3/20 | 3/20 | 17 | abbe: 17 |
+| 256 | [MINOLTA MD ROKKOR 45mm f/2](../../src/lens-data/minolta/MinoltaRokkor45mmf2MD.data.ts) | 16.7% | 16.7% | 1/6 | 1/6 | 5 | abbe: 5 |
+| 257 | [FUJIFILM FUJINON XF 50mm f/1.0 R WR](../../src/lens-data/fujifilm/FujifilmXF50f1.data.ts) | 16.7% | 16.7% | 2/12 | 2/12 | 10 | abbe: 10 |
+| 258 | [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) | 15.0% | 15.0% | 3/20 | 3/20 | 17 | abbe: 17 |
 |  | **10-14.9% coverage** |  |  |  |  |  |  |
-| 261 | [CARL ZEISS JENA SONNAR 50mm f/1.5](../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.ts) | 14.3% | 14.3% | 1/7 | 1/7 | 6 | abbe: 6 |
-| 262 | [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) | 11.1% | 11.1% | 1/9 | 1/9 | 8 | abbe: 8 |
+| 259 | [CARL ZEISS JENA SONNAR 50mm f/1.5](../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.ts) | 14.3% | 14.3% | 1/7 | 1/7 | 6 | abbe: 6 |
+| 260 | [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) | 11.1% | 11.1% | 1/9 | 1/9 | 8 | abbe: 8 |
 |  | **0-4.9% coverage** |  |  |  |  |  |  |
-| 263 | [REFERENCE Maksutov Cassegrain Meniscus](../../src/lens-data/reference/ReferenceMaksutovCassegrainMeniscus.data.ts) *(hidden)* | 0.0% | 0.0% | 0/3 | 0/3 | 1 | abbe: 1 |
-| 264 | [REFERENCE Mangin Second-Surface Mirror](../../src/lens-data/reference/ReferenceManginSecondSurfaceMirror.data.ts) *(hidden)* | 0.0% | 0.0% | 0/1 | 0/1 | 1 | abbe: 1 |
-| 265 | [NIKON UV-NIKKOR AUTO 55mm f/4](../../src/lens-data/nikon/NikonUvNikkor55mmf4.data.ts) | 0.0% | 0.0% | 0/3 | 0/3 | 3 | abbe: 3 |
-| 266 | [CARL ZEISS JENA TESSAR 144mm f/5.5](../../src/lens-data/carl-zeiss-jena/ZeissTessar144f55.data.ts) | 0.0% | 0.0% | 0/4 | 0/4 | 4 | abbe: 4 |
-| 267 | [LEICA ELCAN 50mm f/2](../../src/lens-data/leica/LeicaElcan50mmf2.data.ts) | 0.0% | 0.0% | 0/4 | 0/4 | 4 | abbe: 4 |
-| 268 | [KODAK ENLARGING EKTAR 100mm f/4.5](../../src/lens-data/kodak/KodakEnlargingEktar100mmf45.data.ts) | 0.0% | 0.0% | 0/5 | 0/5 | 5 | abbe: 5 |
-| 269 | [LEICA ELMARIT-M 135mm f/2.8](../../src/lens-data/leica/LeicaElmaritM135mmf28.data.ts) | 0.0% | 0.0% | 0/5 | 0/5 | 5 | abbe: 5 |
-| 270 | [CARL ZEISS JENA PANCOLAR 50mm f/2](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaPancolar50mmf2.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | abbe: 6 |
-| 271 | [KODAK AERO EKTAR 6 in f/3.5](../../src/lens-data/kodak/KodakAeroEktar6inf35.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | abbe: 6 |
-| 272 | [LEICA SUMMICRON-M 50mm f/2](../../src/lens-data/leica/LeicaSummicronV550mmf2.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | abbe: 6 |
-| 273 | [LEICA SUMMICRON-R 50mm f/2](../../src/lens-data/leica/LeicaSummicronR50mmf2.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | abbe: 6 |
-| 274 | [RODENSTOCK GRANDAGON-N 75mm f/6.8](../../src/lens-data/rodenstock/RodenstockGrandagonN75mmf68.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | abbe: 6 |
-| 275 | [SCHNEIDER-KREUZNACH SUPER-SYMMAR XL 110mm f/5.6 ASPHERIC](../../src/lens-data/schneider-kreuznach/SchneiderSuperSymmarXL110mmf56.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | abbe: 6 |
-| 276 | [CARL ZEISS PLANAR T* 50mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissPlanarT50mmf14.data.ts) | 0.0% | 0.0% | 0/7 | 0/7 | 7 | abbe: 7 |
-| 277 | [CARL ZEISS PRO-TESSAR 35mm f/3.2](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissProTessar35mmf32.data.ts) | 0.0% | 0.0% | 0/8 | 0/8 | 8 | abbe: 8 |
-| 278 | [MINOLTA AF 28mm f/2](../../src/lens-data/minolta/MinoltaAF28mmf2.data.ts) | 0.0% | 0.0% | 0/9 | 0/9 | 9 | abbe: 9 |
+| 261 | [REFERENCE Maksutov Cassegrain Meniscus](../../src/lens-data/reference/ReferenceMaksutovCassegrainMeniscus.data.ts) *(hidden)* | 0.0% | 0.0% | 0/3 | 0/3 | 1 | abbe: 1 |
+| 262 | [REFERENCE Mangin Second-Surface Mirror](../../src/lens-data/reference/ReferenceManginSecondSurfaceMirror.data.ts) *(hidden)* | 0.0% | 0.0% | 0/1 | 0/1 | 1 | abbe: 1 |
+| 263 | [NIKON UV-NIKKOR AUTO 55mm f/4](../../src/lens-data/nikon/NikonUvNikkor55mmf4.data.ts) | 0.0% | 0.0% | 0/3 | 0/3 | 3 | abbe: 3 |
+| 264 | [CARL ZEISS JENA TESSAR 144mm f/5.5](../../src/lens-data/carl-zeiss-jena/ZeissTessar144f55.data.ts) | 0.0% | 0.0% | 0/4 | 0/4 | 4 | abbe: 4 |
+| 265 | [LEICA ELCAN 50mm f/2](../../src/lens-data/leica/LeicaElcan50mmf2.data.ts) | 0.0% | 0.0% | 0/4 | 0/4 | 4 | abbe: 4 |
+| 266 | [KODAK ENLARGING EKTAR 100mm f/4.5](../../src/lens-data/kodak/KodakEnlargingEktar100mmf45.data.ts) | 0.0% | 0.0% | 0/5 | 0/5 | 5 | abbe: 5 |
+| 267 | [LEICA ELMARIT-M 135mm f/2.8](../../src/lens-data/leica/LeicaElmaritM135mmf28.data.ts) | 0.0% | 0.0% | 0/5 | 0/5 | 5 | abbe: 5 |
+| 268 | [CARL ZEISS JENA PANCOLAR 50mm f/2](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaPancolar50mmf2.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | abbe: 6 |
+| 269 | [KODAK AERO EKTAR 6 in f/3.5](../../src/lens-data/kodak/KodakAeroEktar6inf35.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | abbe: 6 |
+| 270 | [LEICA SUMMICRON-M 50mm f/2](../../src/lens-data/leica/LeicaSummicronV550mmf2.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | abbe: 6 |
+| 271 | [LEICA SUMMICRON-R 50mm f/2](../../src/lens-data/leica/LeicaSummicronR50mmf2.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | abbe: 6 |
+| 272 | [RODENSTOCK GRANDAGON-N 75mm f/6.8](../../src/lens-data/rodenstock/RodenstockGrandagonN75mmf68.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | abbe: 6 |
+| 273 | [SCHNEIDER-KREUZNACH SUPER-SYMMAR XL 110mm f/5.6 ASPHERIC](../../src/lens-data/schneider-kreuznach/SchneiderSuperSymmarXL110mmf56.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | abbe: 6 |
+| 274 | [CARL ZEISS PLANAR T* 50mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissPlanarT50mmf14.data.ts) | 0.0% | 0.0% | 0/7 | 0/7 | 7 | abbe: 7 |
+| 275 | [CARL ZEISS PRO-TESSAR 35mm f/3.2](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissProTessar35mmf32.data.ts) | 0.0% | 0.0% | 0/8 | 0/8 | 8 | abbe: 8 |
+| 276 | [MINOLTA AF 28mm f/2](../../src/lens-data/minolta/MinoltaAF28mmf2.data.ts) | 0.0% | 0.0% | 0/9 | 0/9 | 9 | abbe: 9 |
 
 ## Missing Surface Details
 
@@ -527,12 +530,6 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
 | 32 | Element 18 | abbe | `Lanthanum flint (182080/4251, uncertain — possibly CDGM H-LAF3)` | No catalog match |
-
-### [SIGMA APO Macro 180mm f/2.8 EX DG OS HSM](../../src/lens-data/sigma/SigmaAPOMacro180mmf28.data.ts) - 94.7% trusted (18/19); 84.2% Sellmeier (16/19) - JP 2013-104994 A
-
-| Surface | Element | Runtime quality | Glass annotation | Reason |
-|---|---|---|---|---|
-| 33 | Element 19 | abbe | `M-NBFD130 class dense lanthanum flint` | No catalog match |
 
 ### [CANON RF 24-105mm f/4 L IS USM](../../src/lens-data/canon/CanonRF24105mmf4L.data.ts) - 94.4% trusted (17/18); 94.4% Sellmeier (17/18) - US 2019/0278068 A1
 
@@ -695,12 +692,6 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
 | 10A | L24 double-aspheric corrector | abbe | `582/594 moldable crown; Hoya M-BACD12 class (inferred)` | No catalog match |
-
-### [SIGMA 23mm f/1.4 DC DN | Contemporary](../../src/lens-data/sigma/Sigma23mmf14DCDNC.data.ts) - 92.3% trusted (12/13); 92.3% Sellmeier (12/13) - JP 2024-035865 A
-
-| Surface | Element | Runtime quality | Glass annotation | Reason |
-|---|---|---|---|---|
-| 23A | L33 rear biaspheric meniscus | abbe | `MP-NBFD130 / M-NBFD130 (HOYA moldable)` | No catalog match |
 
 ### [NIKON AF-S NIKKOR 120-300mm f/2.8 E FL ED SR VR](../../src/lens-data/nikon/NikonNikkorAFS120300mmf28.data.ts) - 92.0% trusted (23/25); 92.0% Sellmeier (23/25) - JP 2020-177057 A
 
@@ -905,12 +896,6 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 |---|---|---|---|---|
 | 4A | L113 composite resin layer | abbe | `UV-curable optical resin (patent nd=1.540, νd=41.200)` | No catalog match |
 
-### [SONY FE 28mm f/2](../../src/lens-data/sony/SonyFE28mmf2.data.ts) - 88.9% trusted (8/9); 88.9% Sellmeier (8/9) - US 10,191,254 B2
-
-| Surface | Element | Runtime quality | Glass annotation | Reason |
-|---|---|---|---|---|
-| 8A | Element 5 | abbe | `M-TAF1 / TAF1 class (HOYA, 773/495)` | No catalog match |
-
 ### [FUJIFILM FUJINON GF 45-100mm f/4 R LM OIS WR](../../src/lens-data/fujifilm/FujifilmGF45100mmf4.data.ts) - 88.2% trusted (15/17); 88.2% Sellmeier (15/17) - US 2020/0379223 A1
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
@@ -969,13 +954,6 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 11 | Element 7 | abbe | `E-FDS3HT (Hikari) or equiv.` | No catalog match |
 | 22 | Element 13 | abbe | `E-FDS3HT (Hikari) or equiv.` | No catalog match |
 
-### [SIGMA 40mm f/1.4 DG HSM | Art](../../src/lens-data/sigma/SigmaArt40mmf14.data.ts) - 87.5% trusted (14/16); 87.5% Sellmeier (14/16) - JP 2020-012952 A
-
-| Surface | Element | Runtime quality | Glass annotation | Reason |
-|---|---|---|---|---|
-| 17 | Element 10 | abbe | `PCD51 (HOYA)` | No catalog match |
-| 26 | Element 15 | abbe | `PCD51 (HOYA)` | No catalog match |
-
 ### [CANON RF 50mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF50mmf14LVCM.data.ts) - 86.7% trusted (13/15); 86.7% Sellmeier (13/15) - US 2025/0251576 A1
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
@@ -1003,6 +981,14 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 |---|---|---|---|---|
 | 2 | Element 1 (resin layer) | abbe | `UV-cure resin` | No catalog match |
 | 7 | Element 3 (resin layer) | abbe | `UV-cure resin` | No catalog match |
+
+### [SAMYANG AF 35-150mm f/2-2.8 FE / L](../../src/lens-data/samyang/SamyangAF35150mmf228.data.ts) - 86.4% trusted (19/22); 86.4% Sellmeier (19/22) - US 2025/0231383 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 6A | L4 hybrid resin asphere | abbe | `UV-curable hybrid aspherical resin (patent nd=1.517, νd=52.0)` | No catalog match |
+| 34 | L18 positive dense flint rear | abbe | `FDS20-W (Hoya) / 870-200 dense flint class` | No catalog match |
+| 40A | L21 final dual-aspherical meniscus | abbe | `K-SKLD200 / K-SKLD120(M) neighborhood, proprietary crown class` | Explicit unmatched/proprietary annotation |
 
 ### [CARL ZEISS B-DISTAGON 35mm f/4 (Contarex)](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon35mmf4.data.ts) - 85.7% trusted (6/7); 85.7% Sellmeier (6/7) - US 3,038,380
 
@@ -1383,6 +1369,13 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 9 | Element 5 | abbe | `744447 — LAF7-class lanthanum flint (HOYA; no exact public catalog match)` | No catalog match |
 | 11 | Element 6 | abbe | `773497 — TAFL3-class lanthanum crown (HOYA; no exact public catalog match)` | No catalog match |
 
+### [SAMYANG AF 18mm f/2.8 FE](../../src/lens-data/samyang/SamyangAF18mmf28.data.ts) - 77.8% trusted (7/9); 77.8% Sellmeier (7/9) - WO 2021/246545 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 3A | L21 molded asphere | abbe | `Unmatched crown (514/637, PGM/BK7-family)` | Explicit unmatched/proprietary annotation |
+| 15A | L81 rear asphere | abbe | `Unmatched lanthanum flint (770/493)` | Explicit unmatched/proprietary annotation |
+
 ### [SONY E 30mm f/3.5 Macro](../../src/lens-data/sony/SonySEL30mmf35.data.ts) - 77.8% trusted (7/9); 77.8% Sellmeier (7/9) - JP 2012-159613 A
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
@@ -1397,6 +1390,15 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 14 | Element 8 | abbe | `Unmatched (553551 crown; patent nd=1.55298, νd=55.07)` | Explicit unmatched/proprietary annotation |
 | 16A | Element 9 | abbe | `Unmatched (808406 high-index lanthanum glass; patent nd=1.80835, νd=40.55)` | Explicit unmatched/proprietary annotation |
 
+### [SIGMA 28-45mm f/1.8 DG DN | Art](../../src/lens-data/sigma/Sigma2845mmf18DN.data.ts) - 77.8% trusted (14/18); 77.8% Sellmeier (14/18)
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 3 | Element 2 | abbe | `S-FPM5 / FCD500 class (low-dispersion fluorophosphate crown)` | No catalog match |
+| 11 | Element 6 | abbe | `S-LAL21 (OHARA)` | No catalog match |
+| 20 | Element 11 | abbe | `FCD915 (HOYA)` | No catalog match |
+| 29 | Element 16 | abbe | `FDS16-W (HOYA)` | No catalog match |
+
 ### [NIKON AF MICRO-NIKKOR 200mm f/4D IF-ED](../../src/lens-data/nikon/NikonAFMicroNikkor200mmf4D.data.ts) - 76.9% trusted (10/13); 76.9% Sellmeier (10/13) - US 5,751,485
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
@@ -1404,6 +1406,14 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 1 | Element 1 | abbe | `Unmatched dense lanthanum flint class (804/339 patent code)` | Explicit unmatched/proprietary annotation |
 | 6 | Element 4 | abbe | `Unmatched lanthanum flint class (796/409 patent code)` | Explicit unmatched/proprietary annotation |
 | 10 | Element 7 | abbe | `Unmatched dense lanthanum flint class (804/339 patent code)` | Explicit unmatched/proprietary annotation |
+
+### [SIGMA 10-18mm f/2.8 DC DN | Contemporary](../../src/lens-data/sigma/Sigma1018mmf28DCDN.data.ts) - 76.9% trusted (10/13); 76.9% Sellmeier (10/13) - JP 2024-104911 A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 8 | Element 5 | abbe | `NBFD30 (Hoya)` | No catalog match |
+| 11 | Element 7 | abbe | `FF5 (Hoya)` | No catalog match |
+| 19 | Element 11 | abbe | `NBF1 (Hoya) / H-LaF53 (CDGM equivalent)` | No catalog match |
 
 ### [SIGMA 50mm f/1.4 DG HSM | Art](../../src/lens-data/sigma/Sigma50mmf14DGHSMA.data.ts) - 76.9% trusted (10/13); 76.9% Sellmeier (10/13) - JP 2015-114366 A
 
@@ -1570,16 +1580,6 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 15A | Element 9 | abbe | `516565 — PGM moldable crown (same as L18, L31; no exact public catalog match)` | No catalog match |
 | 17A | Element 10 | abbe | `516565 — PGM moldable crown (same as L18, L21; no exact public catalog match)` | No catalog match |
 
-### [SIGMA 28-45mm f/1.8 DG DN | Art](../../src/lens-data/sigma/Sigma2845mmf18DN.data.ts) - 72.2% trusted (13/18); 72.2% Sellmeier (13/18)
-
-| Surface | Element | Runtime quality | Glass annotation | Reason |
-|---|---|---|---|---|
-| 3 | Element 2 | abbe | `S-FPM5 / FCD500 class (low-dispersion fluorophosphate crown)` | No catalog match |
-| 11 | Element 6 | abbe | `S-LAL21 (OHARA)` | No catalog match |
-| 20 | Element 11 | abbe | `FCD915 (HOYA)` | No catalog match |
-| 29 | Element 16 | abbe | `FDS16-W (HOYA)` | No catalog match |
-| 33A | Element 18 | abbe | `M-NBFD130 (HOYA, molded high-index flint)` | No catalog match |
-
 ### [Canon FD 28mm f/2.8 S.C.](../../src/lens-data/canon/CanonFD28mmf28.data.ts) - 71.4% trusted (5/7); 71.4% Sellmeier (5/7) - US 4,046,459
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
@@ -1692,15 +1692,6 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 12 | Element 7 | abbe | `CF6 (Hoya) — tentative (ΔVd = +0.04)` | No catalog match |
 | 18 | Element 10 | abbe | `Uncertain; TACD5 (Hoya) possible — no confirmed catalog match` | No catalog match |
 
-### [SIGMA 10-18mm f/2.8 DC DN | Contemporary](../../src/lens-data/sigma/Sigma1018mmf28DCDN.data.ts) - 69.2% trusted (9/13); 69.2% Sellmeier (9/13) - JP 2024-104911 A
-
-| Surface | Element | Runtime quality | Glass annotation | Reason |
-|---|---|---|---|---|
-| 8 | Element 5 | abbe | `NBFD30 (Hoya)` | No catalog match |
-| 11 | Element 7 | abbe | `FF5 (Hoya)` | No catalog match |
-| 19 | Element 11 | abbe | `NBF1 (Hoya) / H-LaF53 (CDGM equivalent)` | No catalog match |
-| 23A | Element 13 | abbe | `M-NBFD130 (Hoya)` | No catalog match |
-
 ### [CANON RF 20mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF20mmf14LVCM.data.ts) - 68.8% trusted (11/16); 68.8% Sellmeier (11/16) - US 2025/0389929 A1
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
@@ -1801,6 +1792,27 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 10 | Element 6 | abbe | `861231 - J-SFH2 (Hikari; no source-backed catalog match)` | No catalog match |
 | 19 | Element 12 | abbe | `518603 - unmatched crown (closest current S-NSL3 differs in nu_d)` | Explicit unmatched/proprietary annotation |
 | 25 | Element 15 | abbe | `795287 - J-LAFH3 (Hikari; no source-backed catalog match)` | No catalog match |
+
+### [SIGMA 17-40mm f/1.8 DC | Art](../../src/lens-data/sigma/Sigma1740mmf18DCA.data.ts) - 64.7% trusted (11/17); 64.7% Sellmeier (11/17)
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 3A | Element 2 | abbe | `MP-FCD500-20 (Hoya precision-mold ED preform)` | No catalog match |
+| 6 | Element 4 | abbe | `TAFD34 (Hoya)` | No catalog match |
+| 12 | Element 8 | abbe | `TAC6L (Hoya)` | No catalog match |
+| 16 | Element 10 | abbe | `FDS16-W (Hoya)` | No catalog match |
+| 18 | Element 11 | abbe | `NBFD32 (Hoya)` | No catalog match |
+| 25 | Element 15 | abbe | `NBF1 (Hoya)` | No catalog match |
+
+### [CANON NEW FD 14mm f/2.8 L](../../src/lens-data/canon/CanonNewFD14mmf28L.data.ts) - 64.3% trusted (9/14); 64.3% Sellmeier (9/14)
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `LAC14 (Hoya)` | No catalog match |
+| 3A | Element 2 | abbe | `BACD14 (Hoya)` | No catalog match |
+| 5 | Element 3 | abbe | `LAC14 (Hoya)` | No catalog match |
+| 9 | Element 5 | abbe | `LAC14 (Hoya)` | No catalog match |
+| 10 | Element 6 | abbe | `E-F8 (Hoya)` | No catalog match |
 
 ### [FUJIFILM FUJINON 23mm f/2 (Fujifilm X100V)](../../src/lens-data/fujifilm/FujifilmX100V23mmf2.data.ts) - 62.5% trusted (5/8); 62.5% Sellmeier (5/8) - US 2020/0333569 A1
 
@@ -2129,20 +2141,6 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 18 | L24 | abbe | `J-LLF6 (Hikari-equivalent light flint)` | No catalog match |
 | 25 | L41 | abbe | `531559 - patent-specified crown-like glass (theta_gF=0.5684; unresolved)` | No catalog match |
 
-### [SIGMA 17-40mm f/1.8 DC | Art](../../src/lens-data/sigma/Sigma1740mmf18DCA.data.ts) - 47.1% trusted (8/17); 47.1% Sellmeier (8/17)
-
-| Surface | Element | Runtime quality | Glass annotation | Reason |
-|---|---|---|---|---|
-| 1A | Element 1 | abbe | `MP-PCD51-70 (Hoya precision-mold preform; PCD51 class)` | No catalog match |
-| 3A | Element 2 | abbe | `MP-FCD500-20 (Hoya precision-mold ED preform)` | No catalog match |
-| 6 | Element 4 | abbe | `TAFD34 (Hoya)` | No catalog match |
-| 12 | Element 8 | abbe | `TAC6L (Hoya)` | No catalog match |
-| 16 | Element 10 | abbe | `FDS16-W (Hoya)` | No catalog match |
-| 18 | Element 11 | abbe | `NBFD32 (Hoya)` | No catalog match |
-| 23A | Element 14 | abbe | `MP-PCD51-70 (Hoya precision-mold preform; PCD51 class)` | No catalog match |
-| 25 | Element 15 | abbe | `NBF1 (Hoya)` | No catalog match |
-| ... | ... | ... | ... | 1 more missing surface |
-
 ### [MINOLTA AF 35-105mm f/3.5-4.5 New (v2)](../../src/lens-data/minolta/MinoltaAF35105mmf3545v2.data.ts) - 46.2% trusted (6/13); 46.2% Sellmeier (6/13) - US 4,871,239
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
@@ -2207,19 +2205,6 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 10 | Element 6 | abbe | `630346 - dense flint (patent nd=1.63000, vd=34.57; no exact public catalog match)` | No catalog match |
 | 12A | Element 7 | abbe | `680312 - dense flint (patent nd=1.68000, vd=31.16; no exact public catalog match)` | No catalog match |
 
-### [CANON NEW FD 14mm f/2.8 L](../../src/lens-data/canon/CanonNewFD14mmf28L.data.ts) - 42.9% trusted (6/14); 42.9% Sellmeier (6/14)
-
-| Surface | Element | Runtime quality | Glass annotation | Reason |
-|---|---|---|---|---|
-| 1 | Element 1 | abbe | `LAC14 (Hoya)` | No catalog match |
-| 3A | Element 2 | abbe | `BACD14 (Hoya)` | No catalog match |
-| 5 | Element 3 | abbe | `LAC14 (Hoya)` | No catalog match |
-| 7 | Element 4 | abbe | `TAF1 (Hoya)` | No catalog match |
-| 9 | Element 5 | abbe | `LAC14 (Hoya)` | No catalog match |
-| 10 | Element 6 | abbe | `E-F8 (Hoya)` | No catalog match |
-| 13 | Element 8 | abbe | `TAF1 (Hoya)` | No catalog match |
-| 15 | Element 9 | abbe | `TAF1 (Hoya)` | No catalog match |
-
 ### [LAOWA 58mm f/2.8 2× Ultra-Macro APO](../../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts) - 42.9% trusted (6/14); 42.9% Sellmeier (6/14)
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
@@ -2232,6 +2217,20 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 18 | Element 10 | abbe | `Unmatched lanthanum flint (patent nd=1.79391, νd=47.17; not catalog H-LAF4)` | Explicit unmatched/proprietary annotation |
 | 20 | Element 11 | abbe | `545486 - crown glass (patent nd=1.54517, vd=48.63)` | No catalog match |
 | 21 | Element 12 | abbe | `H-ZLAF55C (CDGM)` | No catalog match |
+
+### [SONY FE 12-24mm f/2.8 GM](../../src/lens-data/sony/SonyFE1224mmf28GM.data.ts) - 41.2% trusted (7/17); 41.2% Sellmeier (7/17) - WO 2021/200206 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 3A | L12 front XA element | abbe | `M-TAF1 class (PGM lanthanum flint, 772/492)` | No catalog match |
+| 9 | L15 dense-flint positive | abbe | `Unmatched (dense lanthanum flint, 856/323)` | Explicit unmatched/proprietary annotation |
+| 12 | L21 focus-group negative | abbe | `Unmatched (ultra-dense short flint, 930/240)` | Explicit unmatched/proprietary annotation |
+| 13 | L22 focus-group positive | abbe | `678322 — dense flint (Schott SF-family adjacent; no exact public catalog match)` | No catalog match |
+| 16 | L31 stop-region negative | abbe | `Unmatched (ultra-dense lanthanum flint, 961/323)` | Explicit unmatched/proprietary annotation |
+| 20 | L41 focus-group negative | abbe | `Unmatched (ultra-dense lanthanum flint, 961/323)` | Explicit unmatched/proprietary annotation |
+| 23 | L51 GP5 positive | abbe | `Unmatched (ultra-dense short flint, 903/204)` | Explicit unmatched/proprietary annotation |
+| 24 | L52 GP5 negative | abbe | `Unmatched (ultra-dense lanthanum flint, 961/323)` | Explicit unmatched/proprietary annotation |
+| ... | ... | ... | ... | 2 more missing surfaces |
 
 ### [AGFA COLOR-TELINEAR 90mm f/4](../../src/lens-data/agfa/AgfaColorTelinear90mmf4.data.ts) - 40.0% trusted (2/5); 40.0% Sellmeier (2/5) - US 2,819,651
 
@@ -2274,20 +2273,6 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 8 | Element 5 | abbe | `BaK/SK crown (561/575)` | No catalog match |
 | 9 | Element 6 | abbe | `SK-type dense crown (625/533)` | No catalog match |
 | 12 | Element 8 | abbe | `LaK/SK crown (642/581)` | No catalog match |
-
-### [SONY FE 12-24mm f/2.8 GM](../../src/lens-data/sony/SonyFE1224mmf28GM.data.ts) - 35.3% trusted (6/17); 35.3% Sellmeier (6/17) - WO 2021/200206 A1
-
-| Surface | Element | Runtime quality | Glass annotation | Reason |
-|---|---|---|---|---|
-| 3A | L12 front XA element | abbe | `M-TAF1 class (PGM lanthanum flint, 772/492)` | No catalog match |
-| 9 | L15 dense-flint positive | abbe | `Unmatched (dense lanthanum flint, 856/323)` | Explicit unmatched/proprietary annotation |
-| 12 | L21 focus-group negative | abbe | `Unmatched (ultra-dense short flint, 930/240)` | Explicit unmatched/proprietary annotation |
-| 13 | L22 focus-group positive | abbe | `678322 — dense flint (Schott SF-family adjacent; no exact public catalog match)` | No catalog match |
-| 16 | L31 stop-region negative | abbe | `Unmatched (ultra-dense lanthanum flint, 961/323)` | Explicit unmatched/proprietary annotation |
-| 18A | L32 aspherical positive | abbe | `PCD51 class (low-dispersion crown, 594/670)` | No catalog match |
-| 20 | L41 focus-group negative | abbe | `Unmatched (ultra-dense lanthanum flint, 961/323)` | Explicit unmatched/proprietary annotation |
-| 23 | L51 GP5 positive | abbe | `Unmatched (ultra-dense short flint, 903/204)` | Explicit unmatched/proprietary annotation |
-| ... | ... | ... | ... | 3 more missing surfaces |
 
 ### [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) - 35.3% trusted (6/17); 35.3% Sellmeier (6/17) - JP 2023-039817 A
 
