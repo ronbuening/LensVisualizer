@@ -4,6 +4,8 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   plugins: [react()],
   base: "/",
+  /* Honor an externally assigned dev-server port (e.g. preview tooling); Vite ignores PORT by default. */
+  server: process.env.PORT ? { port: Number(process.env.PORT) } : undefined,
   test: {
     coverage: {
       provider: "v8",
