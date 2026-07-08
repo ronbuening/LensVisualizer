@@ -9,6 +9,11 @@
  * Always passes — its job is to emit a planning report, not gate CI.
  *
  * Regenerate: `npm test -- glassCoverageOpportunitiesScan`
+ *
+ * The report embeds match statuses against the untracked local `patents/` PDF
+ * inventory and sorts Sweep 1 by them, so the rewrite is skipped when that
+ * inventory is empty (fresh worktrees, CI); the checked-in report stays
+ * authoritative there.
  */
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
@@ -622,6 +627,16 @@ describe("glass coverage opportunities scan", () => {
 
     const proprietaryRows = parseTierAProprietaryRows(patentFiles);
     const matchedRelabels = relabels.filter((row) => row.localPatent.path !== null).length;
+
+    // Without the untracked local patents/ inventory, a rewrite would replace every
+    // localPatentStatus with environment-dependent "Missing ..." churn and reorder
+    // Sweep 1; keep the checked-in report (generated where patents/ is populated)
+    // untouched instead.
+    if (patentFiles.length === 0) {
+      console.warn("glassCoverageOpportunitiesScan: no local patents/*.pdf references found; skipping report rewrite.");
+      expect(totalLenses).toBeGreaterThan(0);
+      return;
+    }
 
     const lines: string[] = [];
     lines.push("# Glass Coverage Opportunities (auto-generated)");

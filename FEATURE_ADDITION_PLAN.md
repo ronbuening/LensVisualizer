@@ -35,6 +35,28 @@ git log first).
 Effort scale (inherited from the analysis roadmap): **S** 0.5–1 day · **M** 2–4 days ·
 **L** 1–2 weeks · **XL** multi-week.
 
+## Per-Item Template
+
+Items in this plan (and in `TRACE_MODEL_IMPROVEMENT_PLAN.md`) should carry the sections below so a
+weaker model or junior engineer can execute them without further research.
+`EFFICIENCY_IMPROVEMENT_PLAN.md` already mostly follows this shape. New items MUST include every
+section; existing items are upgraded opportunistically — F4 and F5 below are fully templated
+examples.
+
+- **Files to touch** — every file, each marked **new** or **modified**.
+- **Reference to mimic** — an existing file + symbol doing the closest thing; read it before
+  writing code.
+- **Data-type contract** — the shape of every non-obvious input/output, linking the defining type
+  and file. Include one filled example value where the shape alone is ambiguous.
+- **Steps** — numbered, each roughly one commit-sized action.
+- **Gotchas** — the specific `agent_docs/gotchas.md` line items (by line number AND a short quote,
+  since line numbers drift) that bite this task.
+- **Verification** — exact commands plus concrete acceptance numbers or grep-able conditions.
+  Never "plausibly", "should look right", or other judgment-only criteria.
+- **Out of scope** — what the item deliberately does not do, so nobody gold-plates.
+- **Rollback** — how to back the change out (usually "revert the branch"; note anything extra,
+  e.g. regenerating reports or metadata).
+
 ---
 
 ## Already Shipped — Do NOT Rebuild
@@ -146,9 +168,35 @@ half-field angle, focus-breathing %, telephoto ratio after F3). Heavier rows (ed
 edge relative illumination, SA, coma span, EP/XP shift) go behind a collapsed "More metrics"
 section computed lazily on expand.
 
-Verified foundation: `useComparisonDisplayValues` (default export,
-`src/comparison/useComparisonDisplayValues.ts`) already derives per-side display values;
-`computeOpticalSummaryForState2` provides the cheap metrics per prepared state.
+Files to touch:
+- **New:** `src/comparison/useComparisonScorecard.ts`, `src/comparison/ComparisonMetricsTable.tsx`,
+  a hook test + component smoke test under `__tests__/src/comparison/` (match neighbor naming).
+- **Modified:** `src/comparison/ComparisonContent.tsx` (mount the table below the dual diagrams).
+
+Reference to mimic: `useComparisonDisplayValues` (default export,
+`src/comparison/useComparisonDisplayValues.ts`) already derives per-side display values from the
+comparison build result — copy its guard-then-`useMemo`-per-side structure.
+`computeOpticalSummaryForState2` (`src/optics/analysis/summary.ts`) provides the cheap metrics per
+prepared state.
+
+Data-type contract: per-side inputs flow through `useComparisonOrchestration`
+(`src/comparison/useComparisonOrchestration.ts`) — the single wiring hook `LensViewer` already
+uses for comparison mode. It wraps `useComparisonMode`, which builds the per-side runtime lenses
+(`comparisonLenses.LA` / `.LB` via `buildLens`, guarded by `isComparisonOk(comparisonLenses)`)
+and maps the shared sliders to per-side slider values (`focusPair.focusA/.focusB`,
+`aperturePair.stopdownA/.stopdownB`, `zoomPair.zoomA/.zoomB`). Both sides are driven by the single
+`SharedSlidersSlice` (`state.sharedSliders`: `sharedFocusT`, `sharedStopdownT`, `sharedZoomT`,
+`sharedShiftMm`, `sharedTiltDeg` — declared in `src/comparison/comparisonTypes.ts`); there is no
+per-side slider state, so the scorecard recomputes exactly when the shared slice or a lens key
+changes. Per-side prepared states are built from `(LA, focusA, zoomA)` / `(LB, focusB, zoomB)` the
+same way `useComparisonDisplayValues` derives its per-side EFL/f-number values. One filled example
+row of the hook's return shape:
+
+```ts
+{ id: "totalTrack", label: "TOTAL TRACK", a: 92.4, b: 118.7, delta: 26.3, format: "mm" }
+// a/b/delta in the metric's native unit; delta = b − a (signed, B relative to A) —
+// document the sign convention in the hook header comment.
+```
 
 Steps:
 1. New hook `src/comparison/useComparisonScorecard.ts`: takes both sides' prepared states +
@@ -164,8 +212,23 @@ Steps:
 5. Tests: hook test with two known catalog lenses asserting cheap-row values and delta signs;
    component smoke test; folded lens renders dashes not numbers.
 
-Acceptance: scorecard tracks shared sliders live; expanding heavy rows doesn't stutter the
-sliders (compute on expand, not per frame); gate passes; changelog entry.
+Gotchas: `agent_docs/gotchas.md:53` — "Analysis drawer closes automatically when switching lenses
+(SET_LENS_A) or entering comparison mode (ENTER_COMPARE) to prevent stale data display". The
+scorecard therefore must NOT live in or read the analysis drawer; it renders inside
+`ComparisonContent.tsx` with its own expand state. Also `gotchas.md:57-60` (folded analysis is
+guarded by path) — heavy rows show "—" for any side with `L.isFoldedOptics`.
+
+Verification: gate (`npm run typecheck && npm run format:check && npm run lint && npm run test`);
+hook test pins the cheap-row values for the two chosen catalog lenses to the same precision the
+summary tab displays (2 decimals) and asserts every delta equals `b − a`; dragging a shared slider
+in `npm run dev` updates cheap rows live while collapsed heavy rows compute nothing (verify with a
+temporary `console.count` inside the heavy `useMemo` — zero counts until expand; remove before
+commit). Changelog entry added.
+
+Out of scope: per-frame recompute of heavy rows; URL state for the expand flag; a scorecard on the
+single-lens page.
+
+Rollback: revert the branch — no schema, generated-file, or URL-state changes are involved.
 
 ### F5. Prescription & power ledger analysis tab (AO#8)
 
@@ -175,6 +238,30 @@ What: per-surface table — radius, medium transition, index, Abbe, surface powe
 Petzval contribution — plus per-element focal length, grouped by the lens's annotated
 groups/doublets; live with focus/zoom.
 
+Files to touch:
+- **New:** `src/optics/analysis/prescriptionLedger.ts`, the tab component
+  `PrescriptionLedgerTab.tsx` (place it beside the other tabs in
+  `src/components/display/analysis/`), helper unit test + tab smoke test under `__tests__/`.
+- **Modified:** the four analysis-tab registration points listed in
+  `agent_docs/adding_an_analysis_tab.md`.
+
+Reference to mimic: any `*ForState2` analysis adapter (e.g. `computeOpticalSummaryForState2` in
+`src/optics/analysis/summary.ts`) for the helper shape; `OpticalSummaryTab.tsx` for a
+row-oriented tab component.
+
+Data-type contract: the helper takes a `PreparedOpticalState` (type declared in
+`src/optics/types.ts`, built by `prepareState` in `src/optics/state/prepareState.ts`).
+`state.surfaces` is `readonly CompiledStateSurface[]`; each surface carries `physicalIndex`,
+`label`, `R` (mm, signed), `d` (gap to the next surface, already resolved for the current
+focus/zoom/aberration state), `z` (vertex position, mm), `nd` (index of the medium FOLLOWING the
+surface), `sd`, `innerSd`, `elemId`, `stopPlacement`, `asphere` (null when spherical),
+`interaction`, `profile`, and `base` (the pre-state `CompiledSurface`). Index pairing for surface
+power at surface `i`: `n1 = i === 0 ? 1.0 : state.surfaces[i - 1].nd`, `n2 =
+state.surfaces[i].nd`. The stop surface index is `state.lens.stop.surfaceIndex` (`StopSpec`).
+Element rows come from `state.lens.elements` (`readonly CompiledElement[]`: `id`, `name`, `label`,
+`type`, `nd`, `vd`, `glass`, `surfaceSpan`); group/doublet annotations are on
+`state.lens.annotations`.
+
 Steps:
 1. New pure helper `src/optics/analysis/prescriptionLedger.ts`:
    `computePrescriptionLedgerForState2(state): PrescriptionLedgerResult` with
@@ -183,14 +270,17 @@ Steps:
    - Surface power: `(n2 − n1) / R` with R in meters for diopters, or keep mm⁻¹ and label it —
      pick one, document in the helper header, use consistently.
    - Petzval contribution per surface: `(n2 − n1) / (R · n1 · n2)`.
-   - Flat surfaces (R treated as infinite): power 0 — check how the engine flags flat radii
-     (grep `FLAT_R` in `src/optics/`) and reuse that constant rather than testing a magic number.
+   - Flat surfaces: power 0. The engine's flat-radius convention is
+     `Math.abs(R) > FLAT_R_THRESHOLD` (`FLAT_R_THRESHOLD = 1e10`, exported from
+     `src/optics/constants.ts`) — reuse that constant rather than testing a magic number.
    - Current thicknesses/indices come from the prepared state (zoom/focus dependent).
 2. New tab (`agent_docs/adding_an_analysis_tab.md` — all four registration points), id
    `"prescription"`, label `PRESCRIPTION`.
 3. Component `PrescriptionLedgerTab.tsx`: table with theme tokens; group header rows from the
-   lens's group/doublet annotations; APD/asphere badges consistent with the element inspector's
-   badges (find and reuse its badge styles).
+   lens's group/doublet annotations; APD/asphere badges reusing the badge styles from
+   `src/components/display/ElementInspector.tsx` (the APD badge near line 138: `fontSize: 8`,
+   `padding: "2px 6px"`, `borderRadius: 3`, `t.apdPatentBg`/`t.apdInferBg` background,
+   `letterSpacing: "0.08em"`, `fontWeight: 600`).
 4. Stretch (separate commit, optional): row hover dispatches the same element-hover action the
    diagram uses (see `useDispatchAdapters`).
 5. Tests: helper unit test on a simple triplet from the catalog with hand-checked surface powers
@@ -198,8 +288,22 @@ Steps:
    (mirror surfaces: decide and document — simplest is to show the table with mirror rows marked,
    since per-surface power is still meaningful; if that's contentious, gate folded and note it).
 
-Acceptance: powers sum plausibly (spot-check one lens against its analysis.md notes if present);
-live updates with sliders; gate passes; changelog entry.
+Gotchas: `agent_docs/gotchas.md:33-35` — trace adapters cache prepared state by
+`(RuntimeLens, focusT, zoomT, aberrationT)`; the ledger must read everything from the passed
+`state`, never rebuild its own. `gotchas.md:57-60` — folded analysis is guarded by path; whatever
+mirror-row decision step 5 takes, an `L.isFoldedOptics` lens must not silently show refractive
+math for mirror surfaces.
+
+Verification: gate (`npm run typecheck && npm run format:check && npm run lint && npm run test`);
+the two hand-computed surface powers in the helper test match the helper output to within 0.1%;
+per-element focal lengths for the chosen triplet are finite and each element's sign matches its
+converging/diverging role in the lens's `*.analysis.md` notes; moving the focus slider in
+`npm run dev` changes the state-dependent rows without a tab remount. Changelog entry added.
+
+Out of scope: editing/exporting the prescription; tolerance or sensitivity columns; any
+`buildLens()` change.
+
+Rollback: revert the branch; the tab registration points are the only shared files touched.
 
 ### F6. Pupil/sensor compatibility tab (AO#16)
 
@@ -410,13 +514,24 @@ percentage under each tile. The existing 1D curve stays the headline.
 Verified foundation: the current vignetting analysis
 (`computeVignettingCurveForState2(state, currentEPSD, currentPhysStopSD, fieldGeometry?, sampling?)`
 → `VignettingSample { fieldAngleDeg, geometricTransmission, relativeIllumination }`) sweeps ONLY
-meridional pupil rays. The bokeh module already traces full 2D pupil bundles:
-`sampleCircularPupil()` and `traceOffAxisBundleFromSamples()` in `src/optics/aberration/bokeh.ts`
-(337 samples in concentric rings, each sample retaining pupil radius/azimuth).
+meridional pupil rays. The bokeh module (`src/optics/aberration/bokeh.ts`) already traces full 2D
+pupil bundles via `sampleCircularPupil()` (defined in `src/optics/rayTrace.ts`, re-exported from
+`src/optics/optics.ts`) and `traceOffAxisBundleFromSamples()` (defined in
+`src/optics/aberration/offAxis.ts`) — 337 samples in concentric rings, each sample retaining
+pupil radius/azimuth.
+
+Clipped-vs-survived signal (verified in `offAxis.ts`): `traceOffAxisBundleFromSamples()` does NOT
+return per-sample clipped flags — clipped samples are dropped inside its `flatMap`
+(`if (trace.clipped) return [];`), and the returned `OffAxisBundle` carries only survivors in
+`samples: OffAxisTracedSample[]` plus the aggregate counts `sampleCount` / `validSampleCount` /
+`clippedSampleCount`. Reconstruct per-sample survival by matching each input sample's `index`
+against the survivors' `sourceSampleIndex` (any input index absent from `bundle.samples` was
+clipped); survivors keep their `radiusFraction` / `azimuthRad` for plotting.
 
 Steps:
-1. Read `src/optics/aberration/bokeh.ts` around those two helpers first — the footprint helper is
-   essentially "bokeh bundle trace, but record survival instead of image-plane position".
+1. Read `src/optics/aberration/bokeh.ts` around its use of those two helpers first — the footprint
+   helper is essentially "bokeh bundle trace, but record survival instead of image-plane
+   position".
 2. New pure helper `src/optics/analysis/pupilFootprints.ts`:
    `computePupilFootprintsForState2(state, currentEPSD, currentPhysStopSD, fieldGeometry?, sampling?)`
    → `{ fields: Array<{ fieldFraction, fieldAngleDeg, samples: Array<{ px, py, survived }>, transmission }> }`

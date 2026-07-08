@@ -13,6 +13,8 @@ export default function useMediaQuery(query: string): boolean {
   );
   useEffect(() => {
     const mql = window.matchMedia(query);
+    /* Re-sync on query change — the lazy initial state only runs for the first query */
+    setMatches(mql.matches);
     const handler = (e: MediaQueryListEvent): void => setMatches(e.matches);
     mql.addEventListener("change", handler);
     return () => mql.removeEventListener("change", handler);

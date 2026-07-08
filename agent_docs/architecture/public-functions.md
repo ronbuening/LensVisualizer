@@ -102,7 +102,7 @@ state. Keep slider-dependent analysis out of `buildLens()`.
 | `src/optics/cardinalElements.ts` | `computeCardinalElementsAtState` | Principal/nodal/focal point diagnostics for the current state. |
 | `src/optics/groupMovement.ts` | `getGroupMovementAvailability`, `firstAvailableGroupMovementMode`, `inferLensMovementGroups`, `computeGroupMovementProfile` | Focus/zoom/combined group movement diagnostics. |
 | `src/optics/asphericComparison.ts` | `computeDepartureProfile`, `computeBestFitSphereR`, `peakAbsDeparture`, `rmsDeparture`, `nearestSurfaceForClick` | Aspheric departure data for inspection UI. |
-| `src/optics/lcaScaling.ts` | `computeLcaBarOffsets` | Normalize longitudinal chromatic-aberration bars for display. |
+| `src/optics/chromaticRayFanScaling.ts` | `computeChromaticBarOffsets`, `computeLocaBarOffsets` | Normalize chromatic ray-fan and longitudinal chromatic-aberration bars for display. |
 
 ## Catalog, Content, And SEO
 

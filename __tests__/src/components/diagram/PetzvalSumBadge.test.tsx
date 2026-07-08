@@ -77,6 +77,32 @@ describe("PetzvalSumBadge", () => {
     expect(onClick).toHaveBeenCalledOnce();
   });
 
+  it("is keyboard-operable as a button when onClick is provided", () => {
+    const onClick = vi.fn();
+    const { container } = render(
+      <svg>
+        <PetzvalSumBadge L={makeLens(0.005)} t={mockTheme} onClick={onClick} />
+      </svg>,
+    );
+    const badge = container.querySelector("g")!;
+    expect(badge.getAttribute("role")).toBe("button");
+    expect(badge.getAttribute("tabindex")).toBe("0");
+    fireEvent.keyDown(badge, { key: "Enter" });
+    fireEvent.keyDown(badge, { key: " " });
+    expect(onClick).toHaveBeenCalledTimes(2);
+  });
+
+  it("stays out of the accessibility tree when not clickable", () => {
+    const { container } = render(
+      <svg>
+        <PetzvalSumBadge L={makeLens(0.005)} t={mockTheme} />
+      </svg>,
+    );
+    const badge = container.querySelector("g")!;
+    expect(badge.getAttribute("role")).toBeNull();
+    expect(badge.getAttribute("tabindex")).toBeNull();
+  });
+
   it("has pointer cursor when onClick is provided", () => {
     const { container } = render(
       <svg>

@@ -34,17 +34,23 @@ export default function SharedFStopQuickSelect({
   return (
     <div style={QUICK_SELECT_STYLE}>
       {quickStops.map((value) => (
-        <span
+        <button
           key={value}
           onClick={() => onSelect(value)}
+          aria-label={`Set aperture to f/${value}`}
           style={{
+            background: "none",
+            border: "none",
+            padding: 0,
+            font: "inherit",
+            color: "inherit",
             cursor: "pointer",
             opacity: Math.abs(currentFNumber - value) < 0.15 ? 1 : 0.55,
             transition: "opacity 0.15s",
           }}
         >
           f/{value}
-        </span>
+        </button>
       ))}
     </div>
   );

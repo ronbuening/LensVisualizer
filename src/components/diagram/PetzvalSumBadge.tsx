@@ -27,7 +27,23 @@ export default function PetzvalSumBadge({ L, t, onClick }: PetzvalSumBadgeProps)
   const h = 52;
 
   return (
-    <g onClick={onClick} style={onClick ? { cursor: "pointer" } : { pointerEvents: "none" }}>
+    <g
+      onClick={onClick}
+      role={onClick ? "button" : undefined}
+      aria-label={onClick ? "Open Petzval field curvature detail" : undefined}
+      tabIndex={onClick ? 0 : undefined}
+      onKeyDown={
+        onClick
+          ? (e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                onClick();
+              }
+            }
+          : undefined
+      }
+      style={onClick ? { cursor: "pointer" } : { pointerEvents: "none" }}
+    >
       <rect
         x={x}
         y={y}

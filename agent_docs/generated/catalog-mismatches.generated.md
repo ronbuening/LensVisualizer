@@ -36,3 +36,4 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 | Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
 |---|---|---|---|---|---|
 | 6 | `SF8 class dense flint (patent e-line index stored)` | N-SF8 | 1.69402 | 1.68894 | -0.0051 |
+

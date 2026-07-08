@@ -41,7 +41,15 @@
     <meta name="twitter:image" content="https://surfaceandstop.com/branding/social-dark.png" />
     <meta name="twitter:image:alt" content="Surface &amp; Stop social card featuring the site's lens mark with RGB ray traces." />
 
-    <!-- GoatCounter analytics — auto-tracks initial page load; SPA navigations tracked in main.tsx -->
+    <!-- GoatCounter analytics — auto-tracks initial page load; SPA navigations tracked in main.tsx.
+         The path callback drops the query string so shareable slider/comparison state stays out of analytics. -->
+    <script>
+      window.goatcounter = {
+        path: function () {
+          return location.pathname;
+        },
+      };
+    </script>
     <script data-goatcounter="%VITE_GOATCOUNTER_URL%" async src="//gc.zgo.at/count.js"></script>
 
     <style>

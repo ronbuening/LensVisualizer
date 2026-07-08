@@ -433,23 +433,31 @@ export default function DiagramControls({
                 }}
               >
                 {availableFStops.map((n) => (
-                  <span
+                  <button
                     key={n}
                     onClick={() => {
                       handleStopdownChange(Math.log(n / L.FOPEN) / Math.log(L.maxFstop / L.FOPEN));
                       handlePointerUp();
                     }}
+                    aria-label={`Set aperture to f/${n}`}
                     style={{
+                      background: "none",
+                      border: "none",
+                      padding: 0,
+                      font: "inherit",
+                      color: "inherit",
                       cursor: "pointer",
                       opacity: Math.abs(fNumber - n) < 0.15 ? 1 : 0.55,
                       transition: "opacity 0.15s",
                     }}
                   >
                     f/{n}
-                  </span>
+                  </button>
                 ))}
               </div>
-              <div
+              <button
+                onClick={onToggleEffectiveAperture}
+                aria-pressed={showEffectiveAperture}
                 style={{
                   marginTop: 8,
                   fontSize: 9,
@@ -457,13 +465,18 @@ export default function DiagramControls({
                   cursor: "pointer",
                   userSelect: "none",
                   transition: "color 0.3s",
+                  background: "none",
+                  border: "none",
+                  padding: 0,
+                  fontFamily: "inherit",
+                  textAlign: "left",
+                  display: "block",
                 }}
-                onClick={onToggleEffectiveAperture}
               >
                 <span style={{ opacity: showEffectiveAperture ? 1 : 0.5 }}>
                   {showEffectiveAperture ? "\u2611" : "\u2610"} Show effective aperture
                 </span>
-              </div>
+              </button>
             </>
           )}
         </SliderControl>

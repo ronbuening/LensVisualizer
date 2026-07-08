@@ -15,6 +15,29 @@
 - **Props interfaces** defined at the top of each `.tsx` component file
 - **Type definitions** centralized in `src/types/` — `optics.ts` (RuntimeLens, LensData, etc.), `state.ts` (LensState, LensAction), `theme.ts` (Theme, ThemeColorTokens)
 - Intentionally partial mock objects in tests use `as unknown as RuntimeLens` (or the relevant type) to satisfy strict mode while keeping fixtures minimal
+- **`satisfies`, not annotation, for authored data.** Lens prescriptions export
+  `export default { ... } satisfies LensDataInput` and mount specs use `satisfies MountSpecInput` —
+  never `const data: LensDataInput = { ... }`. `satisfies` contract-checks the object while
+  preserving its narrow literal types, which downstream normalization, validation, and inference
+  rely on; an annotation would widen every field to the input type and lose that information.
+
+## The `*2` Engine Suffix and Compat Facade
+
+Optics-engine modules under `src/optics/` export helpers with a historical `2` suffix
+(`buildLens2`, `solveChiefRay2`, `traceRay2`, …) left over from the exact-trace rollout.
+`src/optics/compat.ts` collects the suffixed names, and the stable public barrels —
+`src/optics/optics.ts`, `src/optics/fieldGeometry.ts`, `src/optics/diagramGeometry.ts`,
+`src/optics/buildLens.ts` — re-export them un-suffixed (`solveChiefRay2 as solveChiefRay`).
+
+- **App/UI code imports the un-suffixed name from a public barrel**, not the `*2` symbol.
+  There is no `solveChiefRay` vs `solveChiefRay2` distinction to choose between — they are the
+  same function; the suffix is an engine-internal spelling.
+- Do not add new `*2` names. New engine helpers get ordinary names; the suffix exists only so
+  legacy call sites kept compiling during the rollout.
+- Known debt: a few analysis-drawer helpers (e.g. `analysisJobsForState2`) have no un-suffixed
+  facade yet, so some analysis tabs import them from `compat.ts` directly. When touching those
+  call sites, prefer adding the un-suffixed re-export to a public barrel over spreading more
+  `*2` imports.
 
 ## Formatting
 

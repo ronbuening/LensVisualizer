@@ -19,6 +19,8 @@ code no longer matches the excerpt (the task may already be done).
   style exactly; do not restyle code you pass through.
 - When done: check the box here, and add a line to your branch record
   (`agent_docs/record_keeping.md`).
+- New items added to this plan should follow the shared per-item template defined in
+  `FEATURE_ADDITION_PLAN.md` ("Per-Item Template") — the tasks below already mostly match it.
 
 Status legend: `[ ]` open · `[x]` done · `[-]` rejected (keep the entry, note why).
 
@@ -320,9 +322,46 @@ Steps (repeat per batch of 3–5 components, one commit per batch):
    object/array/closure).
 3. If all props are stable → wrap the component in `memo`.
    If a prop is freshly allocated → first hoist/memoize it at the call site, then wrap.
-   If a prop cannot be made stable cheaply → skip the component and record it under P7 with the
-   reason.
+   If a prop cannot be made stable cheaply → skip the component and record it in the
+   "P2 deferred components" subsection below with the reason.
 4. Verify one component per batch with the `console.count` probe technique from P1.
+
+Worked example — `DiagramDefs`. Its only call site is `DiagramSVG.tsx:189`:
+`<DiagramDefs dark={dark} filterId={filterId} theme={t} />`. Classification per step 2: `dark` is
+a boolean, `filterId` a string, and `theme` is the `t` prop of the already-memoized `DiagramSVG` —
+all three referentially stable, so the wrap alone suffices. Before:
+
+```tsx
+// src/components/diagram/DiagramDefs.tsx
+export default function DiagramDefs({ dark, filterId, theme: t }: DiagramDefsProps) {
+  return <defs>…</defs>;
+}
+```
+
+After (same shape as `DiagramElementLayer.tsx`, the in-repo example):
+
+```tsx
+import { memo } from "react";
+
+const DiagramDefs = memo(function DiagramDefs({ dark, filterId, theme: t }: DiagramDefsProps) {
+  return <defs>…</defs>;
+});
+export default DiagramDefs;
+```
+
+If step 2 had instead found a freshly-allocated prop — say the call site read
+`<DiagramDefs config={{ blur: dark ? 2.5 : 3 }} … />` — the memo would never hit, because `{...}`
+is a new object every render. Hoist it at the call site FIRST, then wrap:
+
+```tsx
+// in DiagramSVG (the call site), before the return:
+const defsConfig = useMemo(() => ({ blur: dark ? 2.5 : 3 }), [dark]);
+// …
+<DiagramDefs config={defsConfig} dark={dark} filterId={filterId} theme={t} />
+```
+
+The same applies to inline closures (`onX={() => …}` → `useCallback`) and inline arrays. This
+call-site hoist is the half of the task that actually takes time; the `memo` wrap is mechanical.
 
 Suggested first batch (rendered every frame inside the SVG): `DiagramGridAxisLayer`,
 `DiagramDefs`, `ApertureStop`, `ElementAnnotations`. Second batch: overlay widgets
@@ -332,6 +371,16 @@ diagrams (`MTFDiagram`, `PVDiagram`, `TelecentricityDiagram`, `WorkingFNumberDia
 priority, only do them if their props are trivially stable.
 
 Acceptance per batch: benchmark before/after; probe check; no test/visual changes; gate passes.
+
+#### P2 deferred components
+
+Components skipped during P2 batches because a prop could not be made referentially stable
+cheaply. Record each as `ComponentName — unstable prop + where it's allocated + why the hoist
+isn't cheap`, so a later pass (or a P6-style investigation) can pick them up without redoing the
+step-2 classification. Do not move these to P7 — P7 is for confirmed non-issues, and a skipped
+memoization is deferred work, not a non-issue.
+
+- (none yet)
 
 ### P3. Precompute SVG polyline point strings once per compiled ray
 

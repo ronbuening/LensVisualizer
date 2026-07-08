@@ -5,6 +5,7 @@
  * markers, badge overlays, and flash effect into one compositional layer.
  */
 
+import usePrefersReducedMotion from "../../utils/usePrefersReducedMotion.js";
 import {
   epAtZoom,
   epZRelStopAtZoom,
@@ -99,6 +100,7 @@ export default function DiagramOverlayLayer({
   onLocaInsetClick,
   onPetzvalBadgeClick,
 }: DiagramOverlayLayerProps) {
+  const reducedMotion = usePrefersReducedMotion();
   const stopInnerBlockedSD = stopInnerBlockedSemiDiameter(L);
   const screenPoint = (z: number, y: number): [number, number] => {
     const [zz, yy] = pointTransform ? pointTransform(z, y) : [z, y];
@@ -426,7 +428,10 @@ export default function DiagramOverlayLayer({
           height={L.svgH}
           fill={dark ? "#ffffff" : "#000000"}
           opacity={flashFading ? 0 : 0.22}
-          style={{ transition: flashFading ? "opacity 0.45s ease-out" : "none", pointerEvents: "none" }}
+          style={{
+            transition: flashFading && !reducedMotion ? "opacity 0.45s ease-out" : "none",
+            pointerEvents: "none",
+          }}
         />
       )}
     </>

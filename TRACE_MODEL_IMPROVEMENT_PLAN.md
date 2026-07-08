@@ -454,6 +454,13 @@ PRs 5–8 and PR #506 are landed. The next concrete work is no longer "make 110�
 classification, browser smoke, diagnostics/performance audit, and selective cleanup where vector-launch handling is
 still more module-specific than ideal.
 
+New actionable items added to this plan must follow the per-item template defined in
+`FEATURE_ADDITION_PLAN.md` ("Per-Item Template"): **Files to touch** (new vs modified) /
+**Reference to mimic** / **Data-type contract** / **Steps** / **Gotchas** (specific
+`agent_docs/gotchas.md` line items) / **Verification** (exact commands + concrete acceptance
+numbers, never "plausibly") / **Out of scope** / **Rollback**. The `auditChiefRays.mjs` item
+below is the templated example in this file.
+
 ### Landed: PR 5 — Migrate analysis slope launches to projectionLaunchSlopeForField
 
 **Goal.** Centralize every `uField = -Math.tan(θ)` in the optics layer on the projection helper added in
@@ -890,15 +897,110 @@ Remaining:
 - **Catalog audit.** Walk every lens in `LENS_CATALOG`, check `(focal, fullField)` consistency vs declared
   `projection.kind`, and flag suspects. Likely candidates for fisheye classification beyond the Nikon 6mm:
   any lens with `fullFieldDeg ≥ 100` whose `focalLengthMm` is much smaller than `EFL/tan(fullField/2)`.
-- **Audit script consuming `getChiefRayDiagnostics()`.** A `scripts/auditChiefRays.mjs` that builds every
-  catalog lens, sweeps θ across its declared half-field, and reports any lens with non-`converged` solves.
-  Pairs naturally with the catalog audit above.
+- **Audit script consuming `getChiefRayDiagnostics()`.** Fully specified in the
+  "Audit script: `scripts/auditChiefRays.mjs`" section below. Pairs naturally with the catalog
+  audit above.
 - **Cached launch radius on `RuntimeLens`.** Step 3 of PR 8's tracer surgery proposes
   `computeLaunchRadius(L, geom)`. If the bisection calls it on every iteration, cache it once at `buildLens`
   time. Skip until profiling justifies it; bisection is ~30 iterations and the computation is O(N) over
   surfaces.
 - **Equisolid catalog entries.** PR 7 added the projection type but no lens declares it. Sigma 15mm f/2.8 EX
   DG Fisheye, Nikkor AF 8mm f/2.8 D, Olympus Zuiko 8mm f/3.5 — all candidates if patent data is available.
+
+### Audit script: `scripts/auditChiefRays.mjs` — catalog chief-ray convergence audit
+
+- [ ] Effort: S-M · Developer-facing
+
+What: a script that builds every visible catalog lens, sweeps chief-ray solves across each lens's
+half-field at a canonical state, and writes a per-lens convergence report so regressions in the
+solver (and lenses needing projection/annular attention) surface without manual browser triage.
+
+Files to touch:
+- **New:** `scripts/auditChiefRays.mjs` (Node orchestrator), `src/benchmarks/chiefRayAudit.ts`
+  (the TypeScript entry module the orchestrator builds and imports — sibling of
+  `src/benchmarks/opticsRenderingBenchmark.tsx`), generated report
+  `agent_docs/generated/chief-ray-audit.generated.md`.
+- **Modified:** `package.json` (register `"audit:chief-rays": "node scripts/auditChiefRays.mjs"`),
+  `agent_docs/README.md` (one line in the generated-report index).
+
+Reference to mimic: `scripts/benchmark-optics-rendering.mjs` is the REQUIRED template for loading
+the TypeScript engine from an `.mjs` script. A plain `import "../src/optics/....ts"` from `.mjs`
+fails — Node cannot execute TypeScript, and `lensCatalog.ts` uses Vite glob imports that only
+resolve through Vite. Copy the benchmark's pattern exactly: build the TS entry via Vite SSR into a
+temp dir, then dynamic-import the emitted JS:
+
+```js
+import { build } from "vite";
+await build({
+  configFile: join(ROOT, "vite.config.js"),
+  build: {
+    ssr: join(ROOT, "src", "benchmarks", "chiefRayAudit.ts"),
+    outDir, // mkdtempSync(join(os.tmpdir(), "lens-chief-ray-audit-"))
+    emptyOutDir: true,
+    rollupOptions: { output: { format: "es" } },
+  },
+  ssr: { noExternal: true },
+  logLevel: "warn",
+});
+const auditModule = await import(pathToFileURL(join(outDir, "chiefRayAudit.js")).href);
+```
+
+Data-type contract: `src/optics/chiefRayDiagnostics.ts` exports
+`getChiefRayDiagnostics(): Map<string, Record<ChiefRayStatus, number>>` (keyed by lens key;
+statuses `"converged" | "paraxial-fallback" | "bracket-failed" | "out-of-domain"`) and
+`resetChiefRayDiagnostics()`. The counters populate as a side effect of `solveChiefRay` calls, so
+the entry module's sweep is: reset diagnostics; for each visible lens in `LENS_CATALOG`,
+`buildLens()`, take `computeFieldGeometryAtState().halfFieldDeg` at `focusT = 0, zoomT = 0,
+aberrationT = 0`, and solve the chief ray at field fractions `[0.25, 0.5, 0.75, 0.9, 1.0]` of that
+half-field, skipping angles below 1° (the solver skips iteration there — `gotchas.md:77-80`);
+then read the Map.
+
+Output format: a markdown table written to `agent_docs/generated/chief-ray-audit.generated.md`
+with one row per lens, sorted by lens key, columns:
+`Lens key | Solves | Converged | Paraxial-fallback | Bracket-failed | Out-of-domain | Hard-fail % | Verdict`.
+Verdict is `PASS`, `FAIL`, or `ALLOWLISTED`. No timestamps or machine info in the file body —
+identical inputs must produce a byte-identical report.
+
+Pass/fail threshold: a lens FAILS when `(bracket-failed + out-of-domain) / total solves > 0.05`
+(5%, a named constant — matching the 5% warning convention of feature F17 in
+`FEATURE_ADDITION_PLAN.md`). `paraxial-fallback` is acceptable but reported. A named allowlist
+constant in the entry module exempts centrally obstructed reflex lenses (currently the Nikon
+Reflex-Nikkor 1000mm f/11) until mirror backlog item M1 lands; allowlisted rows still appear in
+the table with verdict `ALLOWLISTED`.
+
+Exit-code semantics: exit `0` when every non-allowlisted lens passes; exit `1` when at least one
+non-allowlisted lens fails (the report is still written first); any thrown build/import/sweep
+error propagates as a non-zero exit with a stack trace. The script is runnable as a CI gate but is
+NOT wired into build/test by default.
+
+Steps:
+1. Write `src/benchmarks/chiefRayAudit.ts` exporting `runChiefRayAudit(): { rows, failures }` plus
+   a `buildChiefRayAuditReport(rows): string` markdown builder (mirror how
+   `opticsRenderingBenchmark.tsx` separates run from report).
+2. Write `scripts/auditChiefRays.mjs` with the Vite-SSR loading block above; it calls the two
+   exports, writes the report, prints a summary line, and sets the exit code.
+3. Register the npm script and add the `agent_docs/README.md` index line.
+4. Run it once and commit the generated report alongside the script.
+
+Gotchas: `gotchas.md:23-25` — the blocked central chief ray on centrally obstructed reflex lenses
+collapses field geometry (the reason for the allowlist). `gotchas.md:30-32` — the solver memoizes
+per `RuntimeLens` via `WeakMap`; build each lens exactly once per run so counts aren't deflated by
+cache hits. `gotchas.md:46` — generated reports must stay deterministic so fresh worktrees and CI
+don't churn them; this report depends only on lens data, so it regenerates unconditionally but
+must contain no timestamps.
+
+Verification: `npm run audit:chief-rays` exits 0 on the current catalog and writes the report;
+running it twice produces a byte-identical file (`git diff --exit-code
+agent_docs/generated/chief-ray-audit.generated.md` after the second run); temporarily setting the
+threshold constant to 0 makes it exit 1 (then restore); gate passes
+(`npm run typecheck && npm run format:check && npm run lint && npm run test`).
+
+Out of scope: fixing any lens the audit flags (file findings in the catalog-audit follow-up);
+wiring the script into CI or the build; sweeping focus/zoom states beyond the canonical
+`focusT = 0, zoomT = 0`.
+
+Rollback: delete the two new files, the `package.json` line, the README index line, and the
+generated report — nothing else references them.
 
 ### Deferred
 

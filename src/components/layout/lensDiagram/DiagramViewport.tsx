@@ -271,7 +271,7 @@ export default function DiagramViewport({
 
       {/* Overlays — hidden in zoom/pan mode */}
       {!zoomPanActive && showChromaticOverlay && showChromatic && overlayChromSpread ? (
-        <PanelOverlay onClose={onCloseChromaticOverlay} theme={t}>
+        <PanelOverlay onClose={onCloseChromaticOverlay} theme={t} ariaLabel="Chromatic aberration detail">
           <ChromaticOverlayContent
             chromaticRayFanSpread={overlayChromSpread}
             chromaticRayFanSpreads={chromaticRayFanSpreads}
@@ -284,13 +284,13 @@ export default function DiagramViewport({
       ) : null}
 
       {!zoomPanActive && showPetzvalOverlay ? (
-        <PanelOverlay onClose={onClosePetzvalOverlay} theme={t}>
+        <PanelOverlay onClose={onClosePetzvalOverlay} theme={t} ariaLabel="Petzval field curvature detail">
           <PetzvalOverlayContent L={L} t={t} />
         </PanelOverlay>
       ) : null}
 
       {!zoomPanActive && showGroupMovement ? (
-        <PanelOverlay onClose={onGroupMovementClose} theme={t}>
+        <PanelOverlay onClose={onGroupMovementClose} theme={t} ariaLabel="Group movement detail">
           {groupMovementContent}
         </PanelOverlay>
       ) : null}

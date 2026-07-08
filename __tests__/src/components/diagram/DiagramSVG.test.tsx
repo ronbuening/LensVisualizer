@@ -17,6 +17,7 @@ import { computeElementShapes } from "../../../../src/optics/diagramGeometry.js"
 import { doLayout } from "../../../../src/optics/optics.js";
 import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
 import themes from "../../../../src/utils/theme/themes.js";
+import { installMatchMediaMock } from "../../../testUtils.js";
 import type { RuntimeLens, ElementShape } from "../../../../src/types/optics.js";
 
 const { mockApertureStop } = vi.hoisted(() => ({
@@ -59,6 +60,7 @@ vi.mock("../../../../src/components/diagram/PetzvalSumBadge.js", () => ({
 }));
 
 const baseLens = {
+  data: { name: "Test Lens 50mm f/2", maker: "Testco" },
   svgW: 1200,
   svgH: 600,
   maxSD: 20,
@@ -83,7 +85,7 @@ const baseLens = {
   EP: { epSD: 5, yRatio: 1 },
   isFoldedOptics: false,
   isZoom: false,
-  elements: [{ id: 1, apd: false, nd: 1.5 }],
+  elements: [{ id: 1, name: "E1", apd: false, nd: 1.5 }],
 } as unknown as RuntimeLens;
 
 const baseShape = {
@@ -141,6 +143,7 @@ describe("DiagramSVG", () => {
   const onPetzvalBadgeClick = vi.fn();
 
   beforeEach(() => {
+    installMatchMediaMock();
     onHover.mockReset();
     onSelect.mockReset();
     onLocaInsetClick.mockReset();
@@ -150,6 +153,51 @@ describe("DiagramSVG", () => {
 
   afterEach(() => {
     cleanup();
+  });
+
+  it("names the diagram for assistive technology with role, label, title, and description", () => {
+    const { container } = render(
+      <DiagramSVG {...baseDiagramSvgProps({ shapes: [baseShape], showOnAxis: true, onHover, onSelect })} />,
+    );
+
+    const svg = container.querySelector("svg");
+    expect(svg?.getAttribute("role")).toBe("img");
+    expect(svg?.getAttribute("aria-label")).toBe("Lens cross-section diagram of Testco Test Lens 50mm f/2");
+    expect(svg?.querySelector("title")?.textContent).toBe("Lens cross-section diagram of Testco Test Lens 50mm f/2");
+    const desc = svg?.querySelector("desc")?.textContent ?? "";
+    expect(desc).toContain("1-element");
+    expect(desc).toContain("on-axis rays");
+  });
+
+  it("describes hidden ray layers when no overlays are shown", () => {
+    const { container } = render(<DiagramSVG {...baseDiagramSvgProps({ onHover, onSelect })} />);
+    expect(container.querySelector("desc")?.textContent).toContain("all ray layers hidden");
+  });
+
+  it("selects and toggles a lens element from the keyboard", () => {
+    const { container } = render(<DiagramSVG {...baseDiagramSvgProps({ shapes: [baseShape], onHover, onSelect })} />);
+
+    const elementPath = container.querySelector('path[role="button"]');
+    expect(elementPath?.getAttribute("tabindex")).toBe("0");
+    expect(elementPath?.getAttribute("aria-label")).toBe("Select lens element E1");
+    expect(elementPath?.getAttribute("aria-pressed")).toBe("false");
+
+    fireEvent.keyDown(elementPath!, { key: "Enter" });
+    expect(onSelect).toHaveBeenCalledWith(1);
+
+    fireEvent.keyDown(elementPath!, { key: " " });
+    expect(onSelect).toHaveBeenCalledTimes(2);
+  });
+
+  it("removes element paths from the tab order in zoom/pan mode", () => {
+    const { container } = render(
+      <DiagramSVG {...baseDiagramSvgProps({ shapes: [baseShape], zoomPanActive: true, onHover, onSelect })} />,
+    );
+
+    const elementPath = container.querySelector('path[role="button"]');
+    expect(elementPath?.getAttribute("tabindex")).toBe("-1");
+    fireEvent.keyDown(elementPath!, { key: "Enter" });
+    expect(onSelect).not.toHaveBeenCalled();
   });
 
   it("preserves intrinsic-height sizing by default", () => {

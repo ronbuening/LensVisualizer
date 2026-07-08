@@ -4,6 +4,8 @@ import react from "@vitejs/plugin-react";
 export default defineConfig(({ isSsrBuild }) => ({
   plugins: [react()],
   base: "/",
+  /* Honor an externally assigned dev-server port (e.g. preview tooling); Vite ignores PORT by default. */
+  server: process.env.PORT ? { port: Number(process.env.PORT) } : undefined,
   build: {
     /* Client-only vendor chunking (rolldown). The SSR prerender build keeps
      * default chunking — it is never shipped to browsers. Group order matters:

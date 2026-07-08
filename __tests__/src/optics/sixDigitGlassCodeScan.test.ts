@@ -13,6 +13,10 @@
  * Always passes — its job is to surface the data, not gate CI.
  *
  * Regenerate: `npm test -- sixDigitGlassCodeScan`
+ *
+ * The reports embed match statuses against the untracked local `patents/` PDF
+ * inventory, so the rewrite is skipped when that inventory is empty (fresh
+ * worktrees, CI); the checked-in reports stay authoritative there.
  */
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
@@ -403,6 +407,16 @@ describe("six-digit glass-code scan", () => {
     }
 
     const noSellmeierRows = rows.filter((row) => !row.hasSellmeier);
+
+    // Without the untracked local patents/ inventory, a rewrite would replace every
+    // localPatentStatus with environment-dependent "Missing ..." churn; keep the
+    // checked-in reports (generated where patents/ is populated) untouched instead.
+    if (patentFiles.length === 0) {
+      console.warn("sixDigitGlassCodeScan: no local patents/*.pdf references found; skipping report rewrite.");
+      expect(totalLenses).toBeGreaterThan(0);
+      return;
+    }
+
     mkdirSync(REPORT_DIR, { recursive: true });
 
     writeFileSync(

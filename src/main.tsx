@@ -4,14 +4,16 @@ import { HelmetProvider } from "react-helmet-async";
 import ErrorBoundary from "./components/errors/ErrorBoundary.js";
 import HolidayFavicon from "./components/HolidayFavicon.js";
 import router from "./router.js";
+import { installGlobalErrorBeacons } from "./utils/errorBeacon.js";
 
 // Track SPA navigations in GoatCounter. The script tag in index.html handles the
-// initial page view automatically; count only when the location actually changes
+// initial page view automatically; count only when the pathname actually changes
 // between router emissions, since lazy-route initialization and mount both emit
-// state updates for the initial path.
+// state updates for the initial path. Only the pathname is sent — the query
+// string holds shareable slider/comparison state that does not belong in analytics.
 let _gcLastPath: string | null = null;
 router.subscribe((state) => {
-  const path = state.location.pathname + state.location.search;
+  const path = state.location.pathname;
   if (_gcLastPath === null) {
     _gcLastPath = path;
     return;
@@ -21,6 +23,9 @@ router.subscribe((state) => {
   if (!import.meta.env.PROD || !window.goatcounter?.count) return;
   window.goatcounter.count({ path });
 });
+
+// Beacon uncaught errors and unhandled rejections to GoatCounter (production only).
+installGlobalErrorBeacons();
 
 /* Pages are route-level code-split chunks, so the router initializes
  * asynchronously while it fetches the chunk for the current URL. Delay the

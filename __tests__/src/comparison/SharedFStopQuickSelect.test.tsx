@@ -48,6 +48,12 @@ describe("SharedFStopQuickSelect", () => {
     expect(onSelect).toHaveBeenCalledWith(4);
   });
 
+  it("renders keyboard-accessible buttons for each f-stop", () => {
+    render(<SharedFStopQuickSelect {...baseProps} />);
+    const button = screen.getByRole("button", { name: "Set aperture to f/4" });
+    expect(button.tagName).toBe("BUTTON");
+  });
+
   it("highlights the current f-number with full opacity", () => {
     render(<SharedFStopQuickSelect {...baseProps} currentFNumber={4} />);
     const active = screen.getByText("f/4");

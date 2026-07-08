@@ -22,6 +22,10 @@ The generated reports in [`generated/`](generated/) are the current work queues:
 
 Regenerate all glass reports together with `npm run generate:glass-reports`.
 
+The six-digit and glass-coverage-opportunities reports embed match statuses against the untracked local `patents/`
+PDF inventory, so their scans skip the rewrite when that inventory is empty (fresh worktrees, CI). Regenerate those
+three files only from a checkout where `patents/` is populated; elsewhere the checked-in reports stay as-is.
+
 ## Why So Few Entries To Start With
 
 The first cut of the catalog had nine entries. Six were wrong: when the Sellmeier coefficients were validated against the listed `nd` at 587.5618 nm via `assertCatalogConsistent`, four diverged by 5e-3 to 2e-2 — well outside any reasonable transcription tolerance. The values came from memory and were unreliable.
