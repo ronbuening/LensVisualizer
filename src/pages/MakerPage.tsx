@@ -7,7 +7,7 @@
 import { useParams, Navigate, Link } from "react-router";
 import SEOHead from "../components/SEOHead.js";
 import PageNavBar from "../components/layout/PageNavBar.js";
-import { LENS_CATALOG, CATALOG_KEYS } from "../utils/catalog/lensCatalog.js";
+import { LENS_SUMMARIES, SUMMARY_KEYS } from "../utils/catalog/lensSummaries.js";
 import {
   deriveMaker,
   makerDisplayName,
@@ -23,19 +23,19 @@ import { LENS_MOUNT_BY_ID } from "../utils/catalog/lensTaxonomy.js";
 import type { LensMountId, LensMountMetadata } from "../utils/catalog/lensTaxonomy.js";
 import LinkListSidebar from "../components/content/LinkListSidebar.js";
 import SidebarLayout from "../components/content/SidebarLayout.js";
-import type { LensData } from "../types/optics.js";
+import type { LensSummary } from "../utils/catalog/lensSummaries.js";
 
-function lensesForMaker(makerSlug: string): { key: string; data: LensData }[] {
-  return CATALOG_KEYS.filter(
-    (key) => deriveMaker(LENS_CATALOG[key].name, LENS_CATALOG[key].maker).slug === makerSlug,
+function lensesForMaker(makerSlug: string): { key: string; data: LensSummary }[] {
+  return SUMMARY_KEYS.filter(
+    (key) => deriveMaker(LENS_SUMMARIES[key].name, LENS_SUMMARIES[key].maker).slug === makerSlug,
   ).map((key) => ({
     key,
-    data: LENS_CATALOG[key],
+    data: LENS_SUMMARIES[key],
   }));
 }
 
 /** Canonical mount metadata for every mount used by the maker's lenses, in taxonomy order. */
-function mountsForMaker(lenses: { key: string; data: LensData }[]): LensMountMetadata[] {
+function mountsForMaker(lenses: { key: string; data: LensSummary }[]): LensMountMetadata[] {
   const ids = new Set<LensMountId>();
   for (const { data } of lenses) for (const mountId of data.lensMounts ?? []) ids.add(mountId);
   return [...ids].map((id) => LENS_MOUNT_BY_ID[id]).sort((a, b) => a.sortOrder - b.sortOrder);

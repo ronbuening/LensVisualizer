@@ -6,7 +6,7 @@ import ChangelogList from "../components/content/ChangelogList.js";
 import StaticPageShell from "../components/layout/StaticPageShell.js";
 import { SITE_NAME, SITE_URL } from "../utils/catalog/lensMetadata.js";
 import { collectionPageJsonLd } from "../utils/seo/structuredData.js";
-import { ALL_LENSES_BY_DATE, LENS_CATALOG } from "../utils/catalog/lensCatalog.js";
+import { ALL_LENSES_BY_DATE, LENS_SUMMARIES } from "../utils/catalog/lensSummaries.js";
 import { formatDisplayDate } from "../utils/content/changelogHelpers.js";
 
 export default function UpdatesPage() {
@@ -85,7 +85,7 @@ export default function UpdatesPage() {
               </h2>
               <div style={{ maxHeight: isWide ? "72vh" : "60vh", overflowY: "auto", paddingRight: "0.25rem" }}>
                 {ALL_LENSES_BY_DATE.map((e) => {
-                  const lens = LENS_CATALOG[e.key];
+                  const lens = LENS_SUMMARIES[e.key];
                   if (!lens) return null;
                   return (
                     <Link

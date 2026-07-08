@@ -7,7 +7,7 @@
 
 import { Link } from "react-router";
 import type { Theme } from "../../types/theme.js";
-import { CATALOG_KEYS, LENS_CATALOG, RECENT_LENS_KEYS } from "../../utils/catalog/lensCatalog.js";
+import { SUMMARY_KEYS, LENS_SUMMARIES, RECENT_LENS_KEYS } from "../../utils/catalog/lensSummaries.js";
 import { deriveMaker } from "../../utils/catalog/lensMetadata.js";
 import useMediaQuery from "../../utils/useMediaQuery.js";
 
@@ -16,7 +16,7 @@ interface QuickNavCardsProps {
 }
 
 function countMakers(): number {
-  return new Set(CATALOG_KEYS.map((key) => deriveMaker(LENS_CATALOG[key].name, LENS_CATALOG[key].maker).slug)).size;
+  return new Set(SUMMARY_KEYS.map((key) => deriveMaker(LENS_SUMMARIES[key].name, LENS_SUMMARIES[key].maker).slug)).size;
 }
 
 interface CardDef {
@@ -28,14 +28,14 @@ interface CardDef {
 export default function QuickNavCards({ theme: t }: QuickNavCardsProps) {
   const isWide = useMediaQuery("(min-width: 720px)");
   const makerCount = countMakers();
-  const viewerLens = RECENT_LENS_KEYS.length > 0 ? RECENT_LENS_KEYS[0].key : CATALOG_KEYS[0];
+  const viewerLens = RECENT_LENS_KEYS.length > 0 ? RECENT_LENS_KEYS[0].key : SUMMARY_KEYS[0];
 
   const cards: CardDef[] = [
-    { title: "Lens Library", subtitle: `${CATALOG_KEYS.length} interactive diagrams`, to: "/lenses" },
+    { title: "Lens Library", subtitle: `${SUMMARY_KEYS.length} interactive diagrams`, to: "/lenses" },
     { title: "Browse by Maker", subtitle: `${makerCount} manufacturers`, to: "/makers" },
     {
       title: "Open Viewer",
-      subtitle: viewerLens ? LENS_CATALOG[viewerLens].name : "Explore a lens",
+      subtitle: viewerLens ? LENS_SUMMARIES[viewerLens].name : "Explore a lens",
       to: viewerLens ? `/lens/${viewerLens}` : "/lenses",
     },
     { title: "Start Here", subtitle: "New to lens design? Begin with the basics", to: "/articles/start-here" },

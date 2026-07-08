@@ -6,6 +6,9 @@ import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import rehypeSlug from "rehype-slug";
 import rehypeKatex from "rehype-katex";
+/* KaTeX styles ride along with this component's chunk so pages that never
+ * render markdown don't download them (previously imported in main.tsx). */
+import "katex/dist/katex.min.css";
 import EntrancePupilDiagram from "../diagram/EntrancePupilDiagram.js";
 import ExitPupilDiagram from "../diagram/ExitPupilDiagram.js";
 import TelecentricityDiagram from "../diagram/TelecentricityDiagram.js";

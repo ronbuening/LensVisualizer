@@ -22,6 +22,10 @@ const WRAPPER_STYLE: CSSProperties = { padding: "16px 24px 24px", fontSize: 12, 
 const EMPTY_STATE_STYLE: CSSProperties = { padding: 32, fontSize: 12, fontStyle: "italic" };
 
 export default function DescriptionPanel({ markdown, theme: t }: DescriptionPanelProps) {
+  /* undefined = analysis exists but its code-split chunk is still loading */
+  if (markdown === undefined) {
+    return <div style={{ ...EMPTY_STATE_STYLE, color: t.muted }}>Loading analysis…</div>;
+  }
   if (!markdown) {
     return <div style={{ ...EMPTY_STATE_STYLE, color: t.muted }}>No description available for this lens.</div>;
   }

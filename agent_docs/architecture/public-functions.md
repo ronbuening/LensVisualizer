@@ -110,8 +110,9 @@ state. Keep slider-dependent analysis out of `buildLens()`.
 | --- | --- | --- |
 | `src/utils/catalog/lensCatalog.ts` | `LENS_CATALOG` | Keyed map of visible and hidden defaulted lens data, auto-registered from `src/lens-data/**/*.data.ts`. |
 | `src/utils/catalog/lensCatalog.ts` | `CATALOG_KEYS` | Visible lens keys sorted by display name. |
-| `src/utils/catalog/lensCatalog.ts` | `mdForKey(key)` | Raw companion `*.analysis.md` content for a lens key. |
-| `src/utils/catalog/lensCatalog.ts` | `RECENT_LENS_KEYS`, `ALL_LENSES_BY_DATE` | Lens freshness lists derived from build metadata. |
+| `src/utils/catalog/lensCatalog.ts` | `hasMdForKey(key)`, `loadMdForKey(key)`, `cachedMdForKey(key)` | Companion `*.analysis.md` existence check plus async code-split loader and sync cache lookup for a lens key. |
+| `src/utils/catalog/lensSummaries.ts` | `LENS_SUMMARIES`, `SUMMARY_KEYS`, `ALL_SUMMARY_KEYS`, `DEBUG_SUMMARY_KEYS` | Generated lightweight lens metadata (name, maker, specs, marketing numbers, mounts, format) for index-style pages that must not ship full prescriptions. |
+| `src/utils/catalog/lensSummaries.ts` | `RECENT_LENS_KEYS`, `ALL_LENSES_BY_DATE` | Lens freshness lists derived from build metadata. |
 | `src/utils/catalog/lensMetadata.ts` | `deriveMaker`, `allMakerSlugs`, `makerDisplayName` | Maker display/slug derivation from generated maker prefixes. |
 | `src/utils/catalog/lensMetadata.ts` | `lensPageTitle`, `lensPageDescription`, `lensCanonicalURL`, `lensJsonLd` | Lens SEO metadata and JSON-LD. |
 | `src/utils/catalog/lensMetadata.ts` | `makerCanonicalURL`, `mountCanonicalURL`, `formatCanonicalURL` | Canonical URLs for taxonomy pages. |

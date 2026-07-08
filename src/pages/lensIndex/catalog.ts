@@ -7,7 +7,12 @@
  * instead of a 1000-line mix of SEO, state, and grouping math.
  */
 
-import { ALL_CATALOG_KEYS, CATALOG_KEYS, DEBUG_CATALOG_KEYS, LENS_CATALOG } from "../../utils/catalog/lensCatalog.js";
+import {
+  ALL_SUMMARY_KEYS,
+  SUMMARY_KEYS,
+  DEBUG_SUMMARY_KEYS,
+  LENS_SUMMARIES,
+} from "../../utils/catalog/lensSummaries.js";
 import { deriveMaker } from "../../utils/catalog/lensMetadata.js";
 import { IMAGE_FORMAT_BY_ID, LENS_MOUNT_BY_ID } from "../../utils/catalog/lensTaxonomy.js";
 import type {
@@ -26,7 +31,7 @@ import type {
   PrimeZoomSection,
   YearGroup,
 } from "./types.js";
-import type { LensData } from "../../types/optics.js";
+import type { LensSummary } from "../../utils/catalog/lensSummaries.js";
 import type { ImageFormatId, LensMountId } from "../../utils/catalog/lensTaxonomy.js";
 
 const FOCAL_BUCKETS: ReadonlyArray<{ label: string; maxFl: number }> = [
@@ -45,23 +50,23 @@ function focalBucketLabel(fl: number): string {
   return FOCAL_BUCKETS[FOCAL_BUCKETS.length - 1].label;
 }
 
-function lensFocalRange(data: LensData): [number, number] | null {
+function lensFocalRange(data: LensSummary): [number, number] | null {
   const fl = data.focalLengthMarketing;
   if (fl === undefined || fl === null) return null;
   if (Array.isArray(fl)) return [Math.min(fl[0], fl[1]), Math.max(fl[0], fl[1])];
   return [fl, fl];
 }
 
-function isZoomLens(data: LensData): boolean {
+function isZoomLens(data: LensSummary): boolean {
   return Array.isArray(data.focalLengthMarketing);
 }
 
-function groupingFocalLength(data: LensData): number | null {
+function groupingFocalLength(data: LensSummary): number | null {
   const range = lensFocalRange(data);
   return range ? range[0] : null;
 }
 
-function lensAperture(data: LensData): number | null {
+function lensAperture(data: LensSummary): number | null {
   if (data.apertureMarketing !== undefined) return data.apertureMarketing;
   if (data.apertureDesign !== undefined) return data.apertureDesign;
   if (Array.isArray(data.nominalFno)) return Math.min(...data.nominalFno);
@@ -70,7 +75,7 @@ function lensAperture(data: LensData): number | null {
 
 function buildCatalogEntries(keys: readonly string[]): CatalogLensEntry[] {
   return keys.map((key) => {
-    const data = LENS_CATALOG[key];
+    const data = LENS_SUMMARIES[key];
     const lensMounts = (data.lensMounts ?? []).map((mountId) => LENS_MOUNT_BY_ID[mountId]);
     const imageFormat = data.imageFormat ? IMAGE_FORMAT_BY_ID[data.imageFormat] : null;
     return {
@@ -441,9 +446,9 @@ export function clampNumericFilterValue(value: number, min: number, max: number,
   return Number(snapped.toFixed(precision));
 }
 
-export const CATALOG_ENTRIES = buildCatalogEntries(CATALOG_KEYS);
-export const ALL_CATALOG_ENTRIES = buildCatalogEntries(ALL_CATALOG_KEYS);
-export const DEBUG_CATALOG_ENTRIES = buildCatalogEntries(DEBUG_CATALOG_KEYS);
+export const CATALOG_ENTRIES = buildCatalogEntries(SUMMARY_KEYS);
+export const ALL_CATALOG_ENTRIES = buildCatalogEntries(ALL_SUMMARY_KEYS);
+export const DEBUG_CATALOG_ENTRIES = buildCatalogEntries(DEBUG_SUMMARY_KEYS);
 export const FILTER_BOUNDS = buildFilterBounds(CATALOG_ENTRIES);
 export const MAKER_OPTIONS = buildMakerOptions(CATALOG_ENTRIES);
 export const MOUNT_OPTIONS = buildMountOptions(CATALOG_ENTRIES);

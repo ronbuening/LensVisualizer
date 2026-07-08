@@ -1,13 +1,14 @@
 import { describe, it, expect } from "vitest";
-import { LENS_CATALOG, CATALOG_KEYS, mdForKey } from "../../../../src/utils/catalog/lensCatalog.js";
+import { LENS_CATALOG, CATALOG_KEYS, hasMdForKey, loadMdForKey } from "../../../../src/utils/catalog/lensCatalog.js";
 import buildLens from "../../../../src/optics/buildLens.js";
 
 describe("lensCatalog", () => {
-  it("keeps nested maker-folder lenses discoverable with matching analysis markdown", () => {
+  it("keeps nested maker-folder lenses discoverable with matching analysis markdown", async () => {
     const key = "zeiss-hologon-15f8";
     expect(LENS_CATALOG[key]).toBeDefined();
     expect(LENS_CATALOG[key].name).toBe("CARL ZEISS HOLOGON 15mm f/8 (Contarex Hologon / Leica M)");
-    expect(mdForKey(key)).toContain("# Carl Zeiss Hologon 15 mm f/8");
+    expect(hasMdForKey(key)).toBe(true);
+    expect(await loadMdForKey(key)).toContain("# Carl Zeiss Hologon 15 mm f/8");
   });
 
   it("CATALOG_KEYS is non-empty", () => {
@@ -40,14 +41,16 @@ describe("lensCatalog", () => {
     }
   });
 
-  it("mdForKey returns a string for known lenses", () => {
+  it("loadMdForKey returns a string for known lenses", async () => {
     /* At least one lens should have an .analysis.md file */
-    const found = CATALOG_KEYS.some((k) => typeof mdForKey(k) === "string");
-    expect(found).toBe(true);
+    const withMd = CATALOG_KEYS.find((k) => hasMdForKey(k));
+    expect(withMd).toBeDefined();
+    expect(typeof (await loadMdForKey(withMd!))).toBe("string");
   });
 
-  it("mdForKey returns null for unknown keys", () => {
-    expect(mdForKey("nonexistent_lens_key_xyz")).toBeNull();
+  it("hasMdForKey / loadMdForKey handle unknown keys", async () => {
+    expect(hasMdForKey("nonexistent_lens_key_xyz")).toBe(false);
+    expect(await loadMdForKey("nonexistent_lens_key_xyz")).toBeNull();
   });
 
   it("CATALOG_KEYS is sorted alphabetically by display name", () => {

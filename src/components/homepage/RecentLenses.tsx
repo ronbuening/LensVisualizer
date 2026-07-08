@@ -8,8 +8,8 @@
 
 import { Link } from "react-router";
 import type { Theme } from "../../types/theme.js";
-import type { RecentLensEntry } from "../../utils/catalog/lensCatalog.js";
-import { LENS_CATALOG } from "../../utils/catalog/lensCatalog.js";
+import type { RecentLensEntry } from "../../utils/catalog/lensSummaries.js";
+import { LENS_SUMMARIES } from "../../utils/catalog/lensSummaries.js";
 
 interface RecentLensesProps {
   entries: RecentLensEntry[];
@@ -23,7 +23,7 @@ function formatDate(iso: string): string {
 }
 
 export default function RecentLenses({ entries, theme: t, showUpdatesLink }: RecentLensesProps) {
-  const valid = entries.filter((e) => LENS_CATALOG[e.key]);
+  const valid = entries.filter((e) => LENS_SUMMARIES[e.key]);
   if (valid.length === 0) return null;
 
   return (
@@ -41,7 +41,7 @@ export default function RecentLenses({ entries, theme: t, showUpdatesLink }: Rec
         Recently Added
       </h2>
       {valid.map((e) => {
-        const lens = LENS_CATALOG[e.key];
+        const lens = LENS_SUMMARIES[e.key];
         return (
           <Link
             key={e.key}

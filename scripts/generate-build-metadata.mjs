@@ -19,6 +19,7 @@
 import { execFileSync } from "node:child_process";
 import { readdirSync, readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { join } from "node:path";
+import { pathToFileURL } from "node:url";
 import {
   assertFreshnessDiversity,
   assertFullGitHistory,
@@ -38,7 +39,57 @@ const OUT_DIR = join(ROOT, "src", "generated");
 const OUT_FILE = join(OUT_DIR, "build-metadata.json");
 const MAKER_PREFIXES_FILE = join(OUT_DIR, "maker-prefixes.json");
 const MAKER_DETAILS_FILE = join(ROOT, "src", "utils", "catalog", "makerDetails.ts");
+const LENS_SUMMARIES_FILE = join(OUT_DIR, "lens-summaries.json");
 const GIT_FRESHNESS_CONCURRENCY = 8;
+
+/* ── Lens summaries ───────────────────────────────────────────────────── */
+
+/* Fields consumed by non-viewer pages (lens index, maker/mount/format pages,
+ * updates, homepage cards). Keep in sync with the LensSummary type in
+ * src/utils/catalog/lensSummaries.ts. */
+const SUMMARY_FIELDS = [
+  "key",
+  "name",
+  "maker",
+  "specs",
+  "focalLengthMarketing",
+  "apertureMarketing",
+  "apertureDesign",
+  "nominalFno",
+  "patentYear",
+  "lensMounts",
+  "imageFormat",
+];
+
+/**
+ * Evaluate every lens data module and extract the lightweight summary fields.
+ *
+ * Lens `*.data.ts` files only have type-only imports, so Node's native type
+ * stripping can import them directly — no bundler needed. The resulting JSON
+ * lets index-style pages render without shipping full prescriptions.
+ */
+async function collectLensSummaries() {
+  const dataFiles = readdirSync(LENS_DATA_DIR, { recursive: true })
+    .filter((file) => typeof file === "string" && file.endsWith(".data.ts"))
+    .map((file) => file.replace(/\\/g, "/"))
+    .sort();
+
+  const summaries = [];
+  for (const relativePath of dataFiles) {
+    const mod = await import(pathToFileURL(join(LENS_DATA_DIR, relativePath)).href);
+    const data = mod?.default;
+    if (!data?.key) continue;
+    const summary = {};
+    for (const field of SUMMARY_FIELDS) {
+      if (data[field] !== undefined) summary[field] = data[field];
+    }
+    /* Mirror the runtime defaults merge for the one summary-relevant default */
+    summary.visible = data.visible !== false;
+    summaries.push(summary);
+  }
+  /* Match the catalog's display ordering (sorted by name) */
+  return summaries.sort((a, b) => a.name.localeCompare(b.name));
+}
 
 /** Parse simple YAML frontmatter from a markdown file. */
 function parseFrontmatterContent(content) {
@@ -195,6 +246,10 @@ async function main() {
   const lensFreshness = Object.fromEntries(lenses.map((lens) => [lens.key, lens.freshness]));
   const metadata = { lensFreshness, articles, lensKeys, makerSlugs, mountIds, formatIds, routes, routeFreshness };
   writeFileSync(OUT_FILE, JSON.stringify(metadata, null, 2) + "\n", "utf-8");
+
+  const lensSummaries = await collectLensSummaries();
+  writeFileSync(LENS_SUMMARIES_FILE, JSON.stringify(lensSummaries) + "\n", "utf-8");
+  console.log(`Lens summaries written to ${LENS_SUMMARIES_FILE} (${lensSummaries.length} lenses)`);
 
   // Keep the README public lens count in sync automatically
   const readme = readFileSync(README_FILE, "utf-8");

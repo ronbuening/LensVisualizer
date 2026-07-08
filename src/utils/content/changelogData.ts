@@ -22,6 +22,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-07-07 ──────────────────────────────────────────────────────────
   {
     date: "2026-07-07",
+    type: "improvement",
+    summary: "Cut first-page download from 4.3 MB to under 1 MB by loading lens data and prose on demand",
+  },
+  {
+    date: "2026-07-07",
     type: "lens",
     summary: "Added Nikon UV-Nikkor 55mm and 105mm plus Ultra-Micro-Nikkor 29.5mm",
   },

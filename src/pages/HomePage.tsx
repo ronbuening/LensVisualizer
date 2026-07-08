@@ -15,7 +15,7 @@ import QuickNavCards from "../components/homepage/QuickNavCards.js";
 import ArticleList from "../components/content/ArticleList.js";
 import RecentLenses from "../components/homepage/RecentLenses.js";
 import HomeFooter from "../components/homepage/HomeFooter.js";
-import { CATALOG_KEYS, RECENT_LENS_KEYS } from "../utils/catalog/lensCatalog.js";
+import { SUMMARY_KEYS, RECENT_LENS_KEYS } from "../utils/catalog/lensSummaries.js";
 import { SITE_NAME, SITE_URL } from "../utils/catalog/lensMetadata.js";
 import { usePageThemeToggle } from "../utils/theme/usePageThemeToggle.js";
 import { HOMEPAGE_ARTICLES, HOMEPAGE_ARTICLE_LIMIT } from "../utils/content/homepageContent.js";
@@ -32,14 +32,14 @@ export default function HomePage() {
   /* Redirect legacy ?lens=KEY URLs to /lens/KEY */
   useEffect(() => {
     const lensKey = searchParams.get("lens");
-    if (lensKey && CATALOG_KEYS.includes(lensKey)) {
+    if (lensKey && SUMMARY_KEYS.includes(lensKey)) {
       void navigate(`/lens/${lensKey}`, { replace: true });
       return;
     }
     /* Redirect legacy ?a=KEY&b=KEY comparison URLs to /compare/KEY/KEY */
     const a = searchParams.get("a");
     const b = searchParams.get("b");
-    if (a && b && CATALOG_KEYS.includes(a) && CATALOG_KEYS.includes(b)) {
+    if (a && b && SUMMARY_KEYS.includes(a) && SUMMARY_KEYS.includes(b)) {
       const params = new URLSearchParams();
       for (const key of ["focus", "aperture", "zoom"]) {
         const val = searchParams.get(key);

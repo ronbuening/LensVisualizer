@@ -390,9 +390,14 @@ Acceptance: gate passes; no visual change.
 
 ### P5. Shrink the initial bundle — component-level lazy loading (NOT route-level)
 
-- [ ] Effort: 2–4 h · Risk: medium · Expected impact: medium (first-load only)
+- [x] Superseded by Part 3 (B-series, done 2026-07-07) — route-level splitting DID prove viable.
 
-Hard constraint (verified): `src/entry-server.tsx` prerenders with synchronous `renderToString`
+The "hard constraint" below was circumventable: the manifest now holds dynamic-import loaders,
+and `entry-server.tsx` awaits every page module once at module scope (top-level await) before the
+still-synchronous `renderToString` runs. Prerendered output is unchanged. The original constraint
+text is kept for history; see Part 3 for what actually shipped.
+
+Original note: `src/entry-server.tsx` prerenders with synchronous `renderToString`
 over the shared route manifest. `React.lazy` around route pages in
 `src/routes/routeManifest.tsx` would break prerendered output. Do NOT convert the manifest.
 
@@ -439,6 +444,72 @@ toggles/re-renders), mark this task `[-] rejected — check is load-bearing` and
 - Ray-count allocations in the ray hooks are bounded by ray density and already inside `useMemo`.
 - The three ray hooks are intentionally separate; do not unify.
 - `scripts/` has no copy-pasted helper duplication worth extracting.
+
+---
+
+## Part 3 — Bundle & Load (B-series)
+
+### B1. Code-split the monolithic bundle (done 2026-07-07)
+
+- [x] Effort: done · Risk: was high (SSR parity) · Impact: first-load download cut ~50–98% per page
+
+Before: the client build emitted ONE JS chunk (14,576,907 B raw / 4,335,901 B gzip) downloaded by
+every visitor to every page. ~97% of it was lens prescriptions (421 eager `*.data.ts`, ~4.4 MB
+source) and analysis prose (413 eager `*.analysis.md?raw`, ~9.8 MB source).
+
+What shipped (four coordinated changes):
+
+1. **Per-lens analysis markdown** — the `*.analysis.md` glob in
+   `src/utils/catalog/lensCatalog.ts` is non-eager; `hasMdForKey` (sync existence check for
+   SSR/LensPage) + `loadMdForKey` (async, cached) + `useLensAnalysisMarkdown` hook feed
+   `DescriptionPanel`, which shows "Loading analysis…" while the chunk fetches. Prerendered lens
+   pages never contained the markdown body (the viewer is `ClientOnly`), so SSR output is
+   unchanged.
+2. **Route-level splitting** — `src/routes/routeManifest.tsx` maps paths to dynamic-import
+   loaders. The client router (`src/router.tsx`) uses React Router's `lazy` route option (no
+   Suspense fallback flash; navigation waits for the chunk), and `src/main.tsx` delays the first
+   React commit until the router is initialized so prerendered HTML is never blanked.
+   `src/entry-server.tsx` awaits all page modules via top-level await, keeping `render()`
+   synchronous for `prerender.mjs` and the SSR tests. All chunk fetches go through
+   `src/utils/chunkLoadRetry.ts`, which force-reloads once when stale cached HTML references
+   deleted hashed assets.
+3. **Lens summaries for index-style pages** — `scripts/generate-build-metadata.mjs` evaluates
+   every `*.data.ts` (Node 24 type stripping; the files only have type-only imports) and emits
+   `src/generated/lens-summaries.json` (171 KB raw / ~30 KB gzip). `src/utils/catalog/
+   lensSummaries.ts` exposes it; the lens index, maker/mount/format pages, updates page, and
+   homepage cards consume summaries, so only viewer pages (`/lens/:slug`, `/compare/*`) load the
+   full-prescription chunk. A parity test (`__tests__/src/utils/catalog/lensSummaries.test.ts`)
+   fails if the script's field list drifts from the runtime catalog.
+4. **Vendor chunking + KaTeX CSS** — `vite.config.js` uses rolldown `codeSplitting.groups` for
+   `vendor-react`, `vendor-router`, `vendor-katex`, `vendor-markdown` (client build only; the SSR
+   build keeps default chunking). KaTeX CSS moved from `main.tsx` into `ThemedMarkdown.tsx`;
+   `prerender.mjs` injects a direct `<link>` to the hashed KaTeX stylesheet only into pages whose
+   rendered HTML contains KaTeX markup, so math stays styled without JS.
+
+After (gzip, measured 2026-07-07): every page ships ~87 KB (entry 11 KB + react 45 KB + router
+31 KB + runtime); index-style pages add ~30 KB of summaries; article pages add ~142 KB article
+content + ~131 KB markdown/KaTeX vendors; lens/compare pages add ~730 KB (viewer + all
+prescriptions) plus a ~10–55 KB raw per-lens analysis chunk on demand. Worst page ≈ 0.9 MB gzip
+vs 4.34 MB before; most pages are 90–97% smaller.
+
+Verified: `npm run build` (524 routes prerendered), `npm run seo:audit` (0 errors), typecheck,
+lint, format:check, full test suite (2248 tests), plus production-preview click-through (lens
+page viewer + async analysis, lens index, math article with styled KaTeX, no console errors or
+failed requests).
+
+### B2. Follow-ups (open)
+
+- [ ] **Per-lens prescription loading** — viewer pages still download all 421 prescriptions
+  (~730 KB gzip chunk shared with the viewer code). The real fix is loading `*.data.ts` per lens
+  behind an async gate in `useLensComputation`/comparison, with `entry-server.tsx` preloading all
+  of them for SSR. High risk (touches the viewer core, URL sync, comparison); do it as its own
+  branch with the parity test as a safety net.
+- [ ] **Article content chunk** — `src/utils/content/homepageContent.ts` eagerly inlines all
+  article markdown (454 KB raw / 142 KB gzip) and rides into the homepage and every article page;
+  LensViewer also imports it for `stripFrontmatter` + primer overlays. Same treatment as lens
+  analysis markdown: non-eager glob + per-article loader, keeping SSR preloaded.
+- [ ] **MountPage chunk** — 300 KB raw; mount diagram engine + specs. Check whether
+  `MOUNT_SPECS` can be summary-ized the same way if it grows.
 
 ---
 
