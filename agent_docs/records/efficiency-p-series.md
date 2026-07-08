@@ -9,6 +9,7 @@
 - P2: Updated the `ChromaticOverlayContent` export-shape test to account for React memo exports.
 - P3: Added required `spPoints`/`gpPoints` fields to compiled ray segments, computed the SVG point strings in `compileRaySegment`, and changed `RayPolylines` to consume the precomputed strings.
 - P3: Updated ray-related diagram test fixtures to include complete compiled segment fields.
+- P4: Replaced the per-shape `L.elements.find(...)` lookup in `DiagramElementLayer` with a `useMemo`-built `Map`.
 
 ## Verification
 - P1 benchmark baseline: `agent_docs/benchmarks/runs/2026-07-08T12-21-02Z-6f30a0d0.json`
@@ -33,6 +34,13 @@
 - P3 `npm run format:check` — passed
 - P3 `npm run lint` — passed
 - P3 `npm run test` — passed, 2309 tests
+- P4 benchmark baseline: `agent_docs/benchmarks/runs/2026-07-08T13-14-49Z-a36cfd88.json`
+- P4 benchmark after: `agent_docs/benchmarks/runs/2026-07-08T13-17-08Z-a36cfd88.json`
+- P4 benchmark retention pruned `agent_docs/benchmarks/runs/2026-05-27T03-28-15Z-15b03e7.json`
+- P4 `npm run typecheck` — passed
+- P4 `npm run format:check` — passed
+- P4 `npm run lint` — passed
+- P4 `npm run test` — passed, 2309 tests
 
 ## Follow-ups
-- Continue with P4, preserving one tested commit per item.
+- Part 2 P1-P4 complete.

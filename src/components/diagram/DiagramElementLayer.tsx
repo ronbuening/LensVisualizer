@@ -5,7 +5,7 @@
  * renderer only coordinates layout and render order.
  */
 
-import { memo } from "react";
+import { memo, useMemo } from "react";
 import { ENABLE_ASPH_DIAMOND_FILL } from "../../utils/featureFlags.js";
 import type { RuntimeLens, ElementShape } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
@@ -33,10 +33,12 @@ const DiagramElementLayer = memo(function DiagramElementLayer({
   onHover,
   onSelect,
 }: DiagramElementLayerProps) {
+  const elementById = useMemo(() => new Map(L.elements.map((element) => [element.id, element])), [L.elements]);
+
   return (
     <>
       {shapes.map(({ eid, d: path, fillRule }) => {
-        const element = L.elements.find((candidate) => candidate.id === eid)!;
+        const element = elementById.get(eid)!;
         const highlighted = act === eid;
         const selected = sel === eid;
         const toggleSelect = (): void => onSelect(selected ? null : eid);

@@ -429,7 +429,7 @@ gate passes.
 
 ### P4. Replace O(shapes × elements) lookup with a Map in `DiagramElementLayer`
 
-- [ ] Effort: ~15 min · Risk: low · Expected impact: low-medium
+- [x] Effort: ~15 min · Risk: low · Expected impact: low-medium
 
 `src/components/diagram/DiagramElementLayer.tsx:39` (inside `shapes.map`):
 
