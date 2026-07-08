@@ -7,6 +7,8 @@
  * the block is emitted from the typed object, asserting the required keys, enum tokens, and the
  * value-envelope shape is enough to catch drift between the types and the schema.
  */
+import { readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 import { MOUNT_SPECS } from "../../../../src/mounts/index.js";
 import type { MountSpec, MountSpecInput, ValueStatus } from "../../../../src/types/mount.js";
@@ -38,6 +40,26 @@ const STATUS_TOKENS = new Set<ValueStatus>([
   "secondary",
   "conflicting",
 ]);
+
+it("keeps MountSpec keys in sync with lens-mount.schema.json", () => {
+  // The emitted JSON block is the MountSpec object itself, so diffing its keys
+  // against the schema catches drift between src/types/mount.ts and
+  // src/mounts/lens-mount.schema.json in either direction.
+  const schemaPath = fileURLToPath(new URL("../../../../src/mounts/lens-mount.schema.json", import.meta.url));
+  const schema = JSON.parse(readFileSync(schemaPath, "utf-8")) as {
+    additionalProperties: boolean;
+    required: string[];
+    properties: Record<string, unknown>;
+  };
+
+  expect(schema.additionalProperties).toBe(false);
+  const schemaKeys = [...schema.required].sort();
+  expect([...Object.keys(schema.properties)].sort()).toEqual(schemaKeys);
+
+  for (const [mountId, spec] of ENTRIES) {
+    expect(Object.keys(emitMountJson(spec)).sort(), `emitted keys for ${mountId}`).toEqual(schemaKeys);
+  }
+});
 
 it("registers at least the three POC mounts", () => {
   expect(ENTRIES.length).toBeGreaterThanOrEqual(3);
