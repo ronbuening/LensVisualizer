@@ -22,7 +22,7 @@ const FOCUSABLE_SELECTOR = [
   '[tabindex]:not([tabindex="-1"])',
 ].join(", ");
 
-export default function useModalDialog(onClose: () => void): RefObject<HTMLDivElement> {
+export default function useModalDialog(onClose: () => void): RefObject<HTMLDivElement | null> {
   const panelRef = useRef<HTMLDivElement>(null);
   /* Keep the latest onClose without re-running the mount effect (callers pass inline arrows) */
   const onCloseRef = useRef(onClose);

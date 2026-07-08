@@ -1,5 +1,5 @@
-import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import { configDefaults, defineConfig } from "vitest/config";
 
 export default defineConfig(({ isSsrBuild }) => ({
   plugins: [react()],
@@ -30,6 +30,7 @@ export default defineConfig(({ isSsrBuild }) => ({
         },
   },
   test: {
+    exclude: [...configDefaults.exclude, "**/.claude/**"],
     coverage: {
       provider: "v8",
       include: [

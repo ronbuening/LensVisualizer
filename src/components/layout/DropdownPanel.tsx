@@ -28,7 +28,7 @@ interface DropdownPanelProps {
   open: boolean;
   pos: DropdownPanelPos | null;
   /** Ref to the trigger element — excluded from outside-click detection. */
-  triggerRef: RefObject<HTMLElement>;
+  triggerRef: RefObject<HTMLElement | null>;
   onClose: () => void;
   theme: Theme;
   children: React.ReactNode;

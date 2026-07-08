@@ -170,7 +170,7 @@ export interface PanelInteractionsModel {
 }
 
 export interface LensDiagramLoadedStateProps {
-  panelContainerRef: RefObject<HTMLDivElement>;
+  panelContainerRef: RefObject<HTMLDivElement | null>;
   computed: PanelComputedModel;
   rayData: PanelRayDataModel;
   displayFlags: PanelDisplayFlagsModel;

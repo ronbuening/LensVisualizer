@@ -10,7 +10,7 @@ import type { RefObject } from "react";
 
 interface UseSideLayoutDetectionParams {
   enabled: boolean;
-  containerRef: RefObject<HTMLDivElement>;
+  containerRef: RefObject<HTMLDivElement | null>;
   /** Dependencies that may change available control/layout affordances. */
   deps: unknown[];
 }

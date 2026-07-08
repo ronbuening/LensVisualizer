@@ -16,7 +16,7 @@ interface UseHeaderHeightParams {
 }
 
 interface UseHeaderHeightResult {
-  headerRef: RefObject<HTMLDivElement>;
+  headerRef: RefObject<HTMLDivElement | null>;
   headerHeight: number;
 }
 
