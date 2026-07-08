@@ -12,7 +12,7 @@ import {
   computeChromaticBarOffsets,
   REFERENCE_FAN_IMAGE_HEIGHT_SPREAD_MM,
 } from "../../optics/chromaticRayFanScaling.js";
-import { chromaticChannelColor } from "../display/analysis/chromaticChartUtils.js";
+import { chromaticChannelColor, formatSpreadUmFromMm } from "../display/analysis/chromaticChartUtils.js";
 import { ChromaticQualityBadge, chromaticQualityBadgeLabel } from "./ChromaticQualityBadge.js";
 
 function referenceHeight(imagePlaneHeights: Partial<Record<ChromaticChannel, number>>, fallback: number): number {
@@ -20,12 +20,6 @@ function referenceHeight(imagePlaneHeights: Partial<Record<ChromaticChannel, num
   const values = Object.values(imagePlaneHeights);
   if (values.length === 0) return fallback;
   return (Math.min(...values) + Math.max(...values)) / 2;
-}
-
-function formatSpreadUm(mm: number): string {
-  const um = Math.abs(mm * 1000);
-  if (um === 0) return "< 0.1 \u00b5m";
-  return um >= 1 ? `${um.toFixed(0)} \u00b5m` : `${um.toFixed(1)} \u00b5m`;
 }
 
 interface ChromaticFanSpreadWidgetProps {
@@ -147,7 +141,7 @@ export default function ChromaticFanSpreadWidget({
         fontFamily="inherit"
         fontWeight={600}
       >
-        {formatSpreadUm(chromaticRayFanSpread.imagePlaneHeightSpreadMm)}
+        {formatSpreadUmFromMm(chromaticRayFanSpread.imagePlaneHeightSpreadMm)}
       </text>
       <text x={midX} y={yMagScale} textAnchor="middle" fill={t.muted} fontSize={fs(7.5)} fontFamily="inherit">
         {Math.round(mag)}

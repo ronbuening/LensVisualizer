@@ -31,3 +31,10 @@ export function formatUmMagnitude(value: number): string {
   if (abs >= 10) return abs.toFixed(1);
   return abs.toFixed(2);
 }
+
+/** Format a millimeter spread as a µm string; exact zero renders as the floor label. */
+export function formatSpreadUmFromMm(mm: number): string {
+  const um = Math.abs(mm * 1000);
+  if (um === 0) return "< 0.1 µm";
+  return um >= 1 ? `${um.toFixed(0)} µm` : `${um.toFixed(1)} µm`;
+}

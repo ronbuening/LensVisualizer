@@ -10,6 +10,7 @@ import type { ChromaticRayFanSpread, ChromaticRayFanSpreadByAxis } from "../../t
 import type { Theme } from "../../types/theme.js";
 import type { DispersionQuality } from "../../optics/dispersion.js";
 import { CHROMATIC_CHANNEL_METADATA } from "../../optics/chromatic/channels.js";
+import { formatSpreadUmFromMm } from "../display/analysis/chromaticChartUtils.js";
 import LocaInsetWidget from "./LocaInsetWidget.js";
 import ChromaticFanSpreadWidget from "./ChromaticFanSpreadWidget.js";
 
@@ -36,15 +37,6 @@ const PANEL_TITLE_STYLE: CSSProperties = {
   textAlign: "center",
   marginBottom: 8,
 };
-
-function formatUm(mm: number): string {
-  if (Math.abs(mm * 1000) >= 1) return `${Math.abs(mm * 1000).toFixed(0)} µm`;
-  return `${Math.abs(mm * 1000).toFixed(1)} µm`;
-}
-
-function formatSpreadUm(mm: number): string {
-  return mm !== 0 ? formatUm(mm) : "< 0.1 µm";
-}
 
 export default function ChromaticOverlayContent({
   chromaticRayFanSpread,
@@ -139,10 +131,10 @@ export default function ChromaticOverlayContent({
           }}
         >
           {chromaticRayFanSpreads?.onAxis && (
-            <span>LoCA / AXIAL COLOR {formatSpreadUm(chromaticRayFanSpreads.onAxis.axialInterceptSpreadMm)}</span>
+            <span>LoCA / AXIAL COLOR {formatSpreadUmFromMm(chromaticRayFanSpreads.onAxis.axialInterceptSpreadMm)}</span>
           )}
           {chromaticRayFanSpreads?.offAxis && (
-            <span>OFF-AXIS FAN {formatSpreadUm(chromaticRayFanSpreads.offAxis.imagePlaneHeightSpreadMm)}</span>
+            <span>OFF-AXIS FAN {formatSpreadUmFromMm(chromaticRayFanSpreads.offAxis.imagePlaneHeightSpreadMm)}</span>
           )}
         </div>
       )}
