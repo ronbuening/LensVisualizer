@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **421** lenses scanned
-- **4619** non-air surfaces examined
-- **4623** element glass declarations examined
-- **634** non-explicit-unmatched annotations did not resolve
-- **273** distinct unresolved glass-like tokens found
+- **424** lenses scanned
+- **4661** non-air surfaces examined
+- **4665** element glass declarations examined
+- **619** non-explicit-unmatched annotations did not resolve
+- **272** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -21,7 +21,6 @@ or per-lens patent backfills.
 | 670571 | 10 | 5 | |
 | 493836 | 6 | 2 | |
 | F7 | 5 | 4 | |
-| TAF1 | 5 | 3 | |
 | 511605 | 4 | 2 | |
 | 863252 | 4 | 2 | |
 | S-LAL61 | 4 | 3 | |
@@ -323,14 +322,6 @@ or per-lens patent backfills.
 - [ENNA MÜNCHEN LITHAGON 24mm f/4](../../src/lens-data/enna-munchen/EnnaMunchenLithagon24mmf4.data.ts) 5: `F7-class flint (legacy Schott 625/356; CDGM H-F6 equivalent)`
 - [RODENSTOCK ROGONAR-S 50mm f/2.8](../../src/lens-data/rodenstock/RodenstockRogonarS50mmf28.data.ts) 3: `F7 class (625/356; Schott F7 / CDGM F6 equivalents)`
 - [RODENSTOCK ROGONAR-S 50mm f/2.8](../../src/lens-data/rodenstock/RodenstockRogonarS50mmf28.data.ts) 3: `F7 class (625/356; Schott F7 / CDGM F6 equivalents)`
-
-### TAF1 — 5 occurrences
-
-- [CANON NEW FD 14mm f/2.8 L](../../src/lens-data/canon/CanonNewFD14mmf28L.data.ts) 7: `TAF1 (Hoya)`
-- [CANON NEW FD 14mm f/2.8 L](../../src/lens-data/canon/CanonNewFD14mmf28L.data.ts) 13: `TAF1 (Hoya)`
-- [CANON NEW FD 14mm f/2.8 L](../../src/lens-data/canon/CanonNewFD14mmf28L.data.ts) 15: `TAF1 (Hoya)`
-- [SIGMA APO MACRO 150mm f/2.8 EX DG OS HSM](../../src/lens-data/sigma/SigmaAPOMacro150mmf28OSHSM.data.ts) 7: `TAF1 (Hoya; tantalum/lanthanum flint)`
-- [SONY FE 28mm f/2](../../src/lens-data/sony/SonyFE28mmf2.data.ts) 8A: `M-TAF1 / TAF1 class (HOYA, 773/495)`
 
 ### 511605 — 4 occurrences
 

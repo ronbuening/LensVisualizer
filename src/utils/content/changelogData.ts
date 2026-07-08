@@ -22,6 +22,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-07-08 ──────────────────────────────────────────────────────────
   {
     date: "2026-07-08",
+    type: "lens",
+    summary: "Added Samyang AF 18mm, 85mm, and 35-150mm FE/L lenses",
+  },
+  {
+    date: "2026-07-08",
     type: "improvement",
     summary: "Improved ray-heavy lens diagram rendering and interaction performance",
   },
