@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 interface Colors {
   bg: string;
   border: string;
@@ -51,7 +53,7 @@ const LIGHT: Colors = {
 
 const FONT = "'JetBrains Mono','SF Mono',monospace";
 
-export default function EntrancePupilDiagram({ isDark }: { isDark: boolean }) {
+const EntrancePupilDiagram = memo(function EntrancePupilDiagram({ isDark }: { isDark: boolean }) {
   const c = isDark ? DARK : LIGHT;
 
   return (
@@ -146,4 +148,6 @@ export default function EntrancePupilDiagram({ isDark }: { isDark: boolean }) {
       </text>
     </svg>
   );
-}
+});
+
+export default EntrancePupilDiagram;

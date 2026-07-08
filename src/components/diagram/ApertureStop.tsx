@@ -4,6 +4,7 @@
  * Drawn as two thick lines (top and bottom) from the physical housing edge
  * inward to the current aperture opening, plus the "STO" label above.
  */
+import { memo } from "react";
 import type { Theme } from "../../types/theme.js";
 
 interface ApertureStopProps {
@@ -20,7 +21,7 @@ interface ApertureStopProps {
   t: Theme;
 }
 
-export default function ApertureStop({
+const ApertureStop = memo(function ApertureStop({
   sx,
   sy,
   stopZ,
@@ -94,4 +95,6 @@ export default function ApertureStop({
       </text>
     </>
   );
-}
+});
+
+export default ApertureStop;

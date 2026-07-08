@@ -3,6 +3,8 @@
 // materials (CaF₂, N-FK51A) that enable apochromatic correction.
 // Glass positions are schematic, not computed from precise catalog data.
 
+import { memo } from "react";
+
 interface Colors {
   bg: string;
   border: string;
@@ -100,7 +102,7 @@ const GLASSES: Glass[] = [
 const X_TICKS = [100, 80, 60, 40, 20];
 const Y_TICKS = [0.5, 0.55, 0.6];
 
-export default function PVDiagram({ isDark }: { isDark: boolean }) {
+const PVDiagram = memo(function PVDiagram({ isDark }: { isDark: boolean }) {
   const c = isDark ? DARK : LIGHT;
 
   function dotColor(type: GType): string {
@@ -238,4 +240,6 @@ export default function PVDiagram({ isDark }: { isDark: boolean }) {
       </text>
     </svg>
   );
-}
+});
+
+export default PVDiagram;

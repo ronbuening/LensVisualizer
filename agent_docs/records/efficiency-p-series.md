@@ -5,6 +5,8 @@
 
 ## Changes
 - P1: Wrapped `RayPolylines` in `memo`, memoized chromatic ray filtering in `DiagramRayLayers`, and stabilized the four ray color callbacks.
+- P2: Wrapped the remaining P2 diagram census components in `memo`: hot SVG layers, overlay widgets/content, cardinal overlays, and standalone article diagrams. Hoisted the chromatic overlay centerline callback so `LocaInsetWidget` receives a stable function prop in modal rendering.
+- P2: Updated the `ChromaticOverlayContent` export-shape test to account for React memo exports.
 
 ## Verification
 - P1 benchmark baseline: `agent_docs/benchmarks/runs/2026-07-08T12-21-02Z-6f30a0d0.json`
@@ -14,6 +16,14 @@
 - P1 `npm run format:check` — passed
 - P1 `npm run lint` — passed
 - P1 `npm run test` — passed, 2308 tests
+- P2 benchmark baseline: `agent_docs/benchmarks/runs/2026-07-08T12-53-50Z-ae2d2405.json`
+- P2 benchmark after: `agent_docs/benchmarks/runs/2026-07-08T13-00-12Z-ae2d2405.json`
+- P2 render probe: temporary `console.count("DiagramGridAxisLayer render")`; toggling settled diagram-level `PUPILS` overlay added 0 counts.
+- P2 `./node_modules/.bin/vitest run __tests__/src/components/layout/PanelOverlay.test.ts --testTimeout 30000` — passed
+- P2 `npm run typecheck` — passed
+- P2 `npm run format:check` — passed
+- P2 `npm run lint` — passed
+- P2 `npm run test` — passed, 2308 tests
 
 ## Follow-ups
-- Continue with P2-P4, preserving one tested commit per item.
+- Continue with P3-P4, preserving one tested commit per item.

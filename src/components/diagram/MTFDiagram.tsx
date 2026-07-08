@@ -5,6 +5,8 @@
 // MTF nearly matches the monochromatic value.
 // Curves are illustrative bell-shapes; not computed from a specific prescription.
 
+import { memo } from "react";
+
 interface Colors {
   bg: string;
   border: string;
@@ -88,7 +90,7 @@ function bell(cx: number, peakMtf: number, hw: number): string {
   ].join(" ");
 }
 
-export default function MTFDiagram({ isDark }: { isDark: boolean }) {
+const MTFDiagram = memo(function MTFDiagram({ isDark }: { isDark: boolean }) {
   const c = isDark ? DARK : LIGHT;
 
   // Non-APO: peaks spread by about +/-23 px, representing LoCA shift.
@@ -256,4 +258,6 @@ export default function MTFDiagram({ isDark }: { isDark: boolean }) {
       </text>
     </svg>
   );
-}
+});
+
+export default MTFDiagram;

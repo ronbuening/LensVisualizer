@@ -6,6 +6,7 @@
  * lenses with worse CA show wider bars and well-corrected lenses show narrower
  * bars.  Accepts optional width/height for reuse in a future larger overlay.
  */
+import { memo } from "react";
 import type { ChromaticRayFanSpread, ChromaticChannel } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
 import type { DispersionQuality } from "../../optics/dispersion.js";
@@ -43,7 +44,7 @@ interface LocaInsetWidgetProps {
   dispersionQuality?: DispersionQuality;
 }
 
-export default function LocaInsetWidget({
+const LocaInsetWidget = memo(function LocaInsetWidget({
   chromaticRayFanSpread,
   effectiveSC,
   IMG_MM,
@@ -193,4 +194,6 @@ export default function LocaInsetWidget({
       />
     </g>
   );
-}
+});
+
+export default LocaInsetWidget;

@@ -5,6 +5,7 @@
  * Used inside PanelOverlay.
  */
 
+import { memo } from "react";
 import type { CSSProperties } from "react";
 import type { ChromaticRayFanSpread, ChromaticRayFanSpreadByAxis } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
@@ -37,8 +38,9 @@ const PANEL_TITLE_STYLE: CSSProperties = {
   textAlign: "center",
   marginBottom: 8,
 };
+const overlayCenterY = (): number => SINGLE_SVG_H / 2;
 
-export default function ChromaticOverlayContent({
+const ChromaticOverlayContent = memo(function ChromaticOverlayContent({
   chromaticRayFanSpread,
   chromaticRayFanSpreads,
   effectiveSC,
@@ -74,7 +76,7 @@ export default function ChromaticOverlayContent({
                 IMG_MM={IMG_MM}
                 IX={0}
                 svgW={svgW}
-                sy={() => svgH / 2}
+                sy={overlayCenterY}
                 t={t}
                 width={svgW - MARGIN * 2}
                 height={svgH - MARGIN * 2}
@@ -158,4 +160,6 @@ export default function ChromaticOverlayContent({
       </p>
     </div>
   );
-}
+});
+
+export default ChromaticOverlayContent;

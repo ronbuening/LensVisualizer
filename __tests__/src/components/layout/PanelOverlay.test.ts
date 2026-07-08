@@ -32,9 +32,10 @@ describe("PanelOverlay", () => {
 });
 
 describe("ChromaticOverlayContent", () => {
-  it("exports a default function component", async () => {
+  it("exports a default memo component", async () => {
     const mod = await import("../../../../src/components/diagram/ChromaticOverlayContent.js");
-    expect(typeof mod.default).toBe("function");
-    expect(mod.default.name).toBe("ChromaticOverlayContent");
+    const component = mod.default as { type?: { name?: string } };
+    expect(typeof mod.default).toBe("object");
+    expect(component.type?.name).toBe("ChromaticOverlayContent");
   });
 });

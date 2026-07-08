@@ -5,6 +5,7 @@
  * markers, badge overlays, and flash effect into one compositional layer.
  */
 
+import { memo } from "react";
 import usePrefersReducedMotion from "../../utils/usePrefersReducedMotion.js";
 import {
   epAtZoom,
@@ -62,7 +63,7 @@ interface DiagramOverlayLayerProps {
   onPetzvalBadgeClick?: () => void;
 }
 
-export default function DiagramOverlayLayer({
+const DiagramOverlayLayer = memo(function DiagramOverlayLayer({
   lens: L,
   theme: t,
   dark,
@@ -436,4 +437,6 @@ export default function DiagramOverlayLayer({
       )}
     </>
   );
-}
+});
+
+export default DiagramOverlayLayer;

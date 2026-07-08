@@ -5,6 +5,7 @@
  * field radius R_ptz = 1/P gives a physical distance in mm. Both are displayed
  * as a compact badge in the upper-left corner of the diagram SVG.
  */
+import { memo } from "react";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
 import { formatPetzvalRadius } from "../../optics/optics.js";
@@ -15,7 +16,7 @@ interface PetzvalSumBadgeProps {
   onClick?: () => void;
 }
 
-export default function PetzvalSumBadge({ L, t, onClick }: PetzvalSumBadgeProps) {
+const PetzvalSumBadge = memo(function PetzvalSumBadge({ L, t, onClick }: PetzvalSumBadgeProps) {
   const P = L.petzvalSum;
   const sign = P >= 0 ? "+" : "\u2212";
   const pStr = `${sign}${Math.abs(P).toFixed(4)} mm\u207b\u00b9`;
@@ -82,4 +83,6 @@ export default function PetzvalSumBadge({ L, t, onClick }: PetzvalSumBadgeProps)
       </text>
     </g>
   );
-}
+});
+
+export default PetzvalSumBadge;

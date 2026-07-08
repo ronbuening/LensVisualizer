@@ -309,7 +309,7 @@ Acceptance: benchmark run before/after committed; render-count check performed; 
 
 ### P2. Memoize pure diagram SVG components — with prop-stability verification
 
-- [ ] Effort: ~2 h in batches · Risk: low-medium · Expected impact: medium-high
+- [x] Effort: ~2 h in batches · Risk: low-medium · Expected impact: medium-high
 
 Unmemoized components in `src/components/diagram/` (census 2026-07-06): `ApertureStop`,
 `CardinalElementsOverlay`, `ChromaticFanSpreadWidget`, `ChromaticOverlayContent`, `DiagramDefs`,

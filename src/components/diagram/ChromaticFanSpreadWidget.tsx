@@ -5,6 +5,7 @@
  * reference. The chart matches the LoCA inset visual language, but it plots
  * the displayed marginal fan's endpoint spread instead of chief-ray TCA.
  */
+import { memo } from "react";
 import type { ChromaticRayFanSpread, ChromaticChannel } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
 import type { DispersionQuality } from "../../optics/dispersion.js";
@@ -34,7 +35,7 @@ interface ChromaticFanSpreadWidgetProps {
   dispersionQuality?: DispersionQuality;
 }
 
-export default function ChromaticFanSpreadWidget({
+const ChromaticFanSpreadWidget = memo(function ChromaticFanSpreadWidget({
   chromaticRayFanSpread,
   effectiveSC,
   t,
@@ -149,4 +150,6 @@ export default function ChromaticFanSpreadWidget({
       </text>
     </g>
   );
-}
+});
+
+export default ChromaticFanSpreadWidget;
