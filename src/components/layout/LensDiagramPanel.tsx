@@ -18,7 +18,7 @@
  * wires sub-components.
  */
 
-import { useState, useEffect, useMemo, useRef, useCallback } from "react";
+import { useState, useEffect, useMemo, useRef, useCallback, type RefObject } from "react";
 import useLensComputation from "../hooks/useLensComputation.js";
 import useViewBoxZoom from "../hooks/useViewBoxZoom.js";
 import useRayTracing from "../hooks/useRayTracing.js";
@@ -150,7 +150,7 @@ export default function LensDiagramPanel({
   /* ── Hover/selection state ── */
   const [hov, setHov] = useState<number | null>(null);
   const [sliderInteracting, setSliderInteracting] = useState(false);
-  const panelContainerRef = useRef<HTMLDivElement>(null);
+  const panelContainerRef = useRef<HTMLDivElement>(null) as RefObject<HTMLDivElement>;
   const selectedElementPanelId = normalizePanelId(panelId);
   const sel = panels[selectedElementKeyForPanel(selectedElementPanelId)];
 

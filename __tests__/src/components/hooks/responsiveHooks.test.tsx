@@ -3,7 +3,7 @@
 import { cleanup, render, screen } from "@testing-library/react";
 import { act } from "react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { useRef } from "react";
+import { useRef, type RefObject } from "react";
 import useHeaderHeight from "../../../../src/components/hooks/useHeaderHeight.js";
 import useSideLayoutDetection from "../../../../src/components/hooks/useSideLayoutDetection.js";
 import { installResizeObserverMock } from "../../../testUtils.js";
@@ -66,7 +66,7 @@ function HeaderHeightProbe({
 }
 
 function SideLayoutProbe({ enabled, dep }: { enabled: boolean; dep: string }) {
-  const containerRef = useRef<HTMLDivElement | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null) as RefObject<HTMLDivElement>;
   const useSideLayout = useSideLayoutDetection({ enabled, containerRef, deps: [dep] });
   return (
     <div ref={containerRef}>
