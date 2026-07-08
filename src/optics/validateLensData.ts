@@ -1028,7 +1028,8 @@ export default function validateLensData(data: UntrustedLensData): string[] {
   const maxRimAngleDeg = typeof data.maxRimAngleDeg === "number" ? data.maxRimAngleDeg : undefined;
   const maxRimSlopeTan =
     maxRimAngleDeg !== undefined && isFinite(maxRimAngleDeg)
-      ? Math.tan((maxRimAngleDeg * Math.PI) / 180)
+      ? // eslint-disable-next-line no-restricted-syntax -- rim-slope TIR threshold from a data-declared angle, not a field launch
+        Math.tan((maxRimAngleDeg * Math.PI) / 180)
       : MAX_RIM_SLOPE_TAN;
 
   for (let i = 0; i < S.length; i++) {

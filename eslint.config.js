@@ -68,6 +68,83 @@ export default [
       "react/react-in-jsx-scope": "off",
 
       "no-console": "off",
+
+      // Guard CLAUDE.md working rules that are otherwise convention-only:
+      // react-markdown renders only through the shared ThemedMarkdown wrapper,
+      // and styling is inline-only (the katex stylesheet in main.tsx is the
+      // sole exception; both carve-outs are separate config blocks below).
+      "no-restricted-imports": [
+        "error",
+        {
+          paths: [
+            {
+              name: "react-markdown",
+              message: "Render markdown through src/components/markdown/ThemedMarkdown.tsx instead.",
+            },
+          ],
+          patterns: [
+            {
+              group: ["*.css", "**/*.css", "*.scss", "**/*.scss"],
+              message: "Inline styles only — no CSS files (see agent_docs/code_conventions.md).",
+            },
+          ],
+        },
+      ],
+    },
+  },
+
+  // ThemedMarkdown is the one component allowed to import react-markdown.
+  {
+    files: ["src/components/markdown/ThemedMarkdown.tsx"],
+    rules: {
+      "no-restricted-imports": [
+        "error",
+        {
+          patterns: [
+            {
+              group: ["*.css", "**/*.css", "*.scss", "**/*.scss"],
+              message: "Inline styles only — no CSS files (see agent_docs/code_conventions.md).",
+            },
+          ],
+        },
+      ],
+    },
+  },
+
+  // main.tsx is the one module allowed to import a stylesheet (katex math CSS).
+  {
+    files: ["src/main.tsx"],
+    rules: {
+      "no-restricted-imports": [
+        "error",
+        {
+          paths: [
+            {
+              name: "react-markdown",
+              message: "Render markdown through src/components/markdown/ThemedMarkdown.tsx instead.",
+            },
+          ],
+        },
+      ],
+    },
+  },
+
+  // Fisheye/ultra-wide field launch must go through the projection module
+  // (src/optics/field/projection.ts + solveChiefRay); inlined Math.tan(field)
+  // silently assumes a rectilinear projection. Non-field-launch tangents
+  // (rim-slope geometry, vignetting bisection) carry per-line disables.
+  {
+    files: ["src/optics/**/*.ts"],
+    ignores: ["src/optics/field/projection.ts"],
+    rules: {
+      "no-restricted-syntax": [
+        "error",
+        {
+          selector: 'CallExpression[callee.object.name="Math"][callee.property.name="tan"]',
+          message:
+            "Math.tan in src/optics/ usually means an inlined rectilinear field launch — use src/optics/field/projection.ts / solveChiefRay. If this tangent is not a field launch, add a line disable explaining why.",
+        },
+      ],
     },
   },
 

@@ -496,6 +496,7 @@ export default function buildLens(data: LensData): RuntimeLens {
       effectiveSvgH = svgH;
     }
     const maxRimSin = Math.sin((maxRimAngleDeg * Math.PI) / 180);
+    // eslint-disable-next-line no-restricted-syntax -- rim-slope tangent for SVG element outline geometry, not a field launch
     const maxRimTan = Math.tan((maxRimAngleDeg * Math.PI) / 180);
     const gridPitch = totalTrack / 15;
     const gridCount = Math.ceil(svgW / (gridPitch * SC)) + 4;
@@ -740,6 +741,7 @@ export default function buildLens(data: LensData): RuntimeLens {
   const fisheye = isFisheyeProjection(projection);
   const epRatio = Math.abs(realYRatio) > 1e-9 ? realB / realYRatio : B / epTrace.y;
   const testChief = (deg: number): boolean => {
+    // eslint-disable-next-line no-restricted-syntax -- slope-launch vignetting bisection (see comment above); feeds tracingHalfField only, diagram field launch still goes through projection.ts
     const uTest = -Math.tan((deg * Math.PI) / 180);
     const yIn = -epRatio * uTest;
     const result = realTraceFullSystemDetailed(S, asphByIdx, yIn, uTest);
@@ -822,6 +824,7 @@ export default function buildLens(data: LensData): RuntimeLens {
     effectiveSvgH = svgH;
   }
   const maxRimSin = Math.sin((maxRimAngleDeg * Math.PI) / 180);
+  // eslint-disable-next-line no-restricted-syntax -- rim-slope tangent for SVG element outline geometry, not a field launch
   const maxRimTan = Math.tan((maxRimAngleDeg * Math.PI) / 180);
   const gridPitch = totalTrack / 15;
   const gridCount = Math.ceil(svgW / (gridPitch * SC)) + 4;
@@ -950,6 +953,7 @@ export default function buildLens(data: LensData): RuntimeLens {
        * uses the bisected value. */
       const zEpRatio = Math.abs(zRealYRatio) > 1e-9 ? zRealB / zRealYRatio : zBValue / epT.y;
       const zTestChief = (deg: number): boolean => {
+        // eslint-disable-next-line no-restricted-syntax -- slope-launch vignetting bisection (see comment above); feeds zoomTracingHalfFields only, diagram field launch still goes through projection.ts
         const uTest = -Math.tan((deg * Math.PI) / 180);
         const yIn = -zEpRatio * uTest;
         const result = realTraceFullSystemDetailed(tmpS, asphByIdx, yIn, uTest);

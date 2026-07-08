@@ -3,6 +3,7 @@ import {
   buildLensViewQuery,
   lensViewQueryToUrlState,
   parseLensViewQuery,
+  type LensViewQueryState,
 } from "../../../../src/utils/state/lensViewUrlState.js";
 
 describe("lensViewUrlState", () => {
@@ -162,6 +163,42 @@ describe("lensViewUrlState", () => {
       groupMovementOpen: false,
       groupMovementMode: "focus",
     });
+  });
+
+  it("round-trips every shareable view-state field (completeness guard)", () => {
+    // Required<LensViewQueryState> makes this fixture fail `npm run typecheck`
+    // whenever a new shareable field is added to the query state without being
+    // exercised here — extend the fixture AND the assertions below together.
+    // Values are chosen to survive the builder's toFixed() rounding and to be
+    // non-default so every field actually serializes.
+    const fixture: Required<LensViewQueryState> = {
+      focus: 0.25,
+      aberration: 0.75,
+      aperture: 0.5,
+      zoom: 70,
+      shift: -4.5,
+      tilt: 3.25,
+      selectedElementId: 4,
+      selectedElementIdA: 2,
+      selectedElementIdB: 9,
+      glassMapOpen: true,
+      chromaticOverlayOpen: true,
+      petzvalOverlayOpen: true,
+      analysisDrawerOpen: true,
+      analysisDrawerTab: "distortion",
+      groupMovementOpen: true,
+      groupMovementMode: "zoom",
+    };
+
+    const single = parseLensViewQuery(`?${buildLensViewQuery(fixture).toString()}`);
+    const { selectedElementIdA: _a, selectedElementIdB: _b, ...singleLensFields } = fixture;
+    expect(single).toMatchObject(singleLensFields);
+
+    // Comparison mode serializes a_el/b_el instead of el and drops aberration.
+    const comparing = parseLensViewQuery(`?${buildLensViewQuery({ ...fixture, comparing: true }).toString()}`);
+    expect(comparing.selectedElementIdA).toBe(fixture.selectedElementIdA);
+    expect(comparing.selectedElementIdB).toBe(fixture.selectedElementIdB);
+    expect(comparing.selectedElementId).toBeUndefined();
   });
 
   it("ignores the removed beta bokeh overlay URL flag", () => {
