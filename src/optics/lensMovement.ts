@@ -31,6 +31,14 @@ export interface LensMovementTransform extends ResolvedLensMovement {
 
 const DEFAULT_SHIFT_STEP_MM = 0.1;
 const DEFAULT_TILT_STEP_DEG = 0.1;
+
+/**
+ * Hard envelope for movement values arriving from untrusted sources (URL
+ * params). Wider than any lens-authored `shiftRangeMm` / `tiltRangeDeg`, which
+ * clamp tighter per lens via `clampLensMovement` at trace time.
+ */
+export const MOVEMENT_SHIFT_ENVELOPE_MM: [number, number] = [-25, 25];
+export const MOVEMENT_TILT_ENVELOPE_DEG: [number, number] = [-15, 15];
 const IDENTITY_EPSILON = 1e-9;
 const DEG_TO_RAD = Math.PI / 180;
 

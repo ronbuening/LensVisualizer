@@ -5,6 +5,7 @@ import {
   parseLensViewQuery,
   type LensViewQueryState,
 } from "../../../../src/utils/state/lensViewUrlState.js";
+import { MOVEMENT_SHIFT_ENVELOPE_MM, MOVEMENT_TILT_ENVELOPE_DEG } from "../../../../src/optics/lensMovement.js";
 
 describe("lensViewUrlState", () => {
   it("parses v1 single-lens view params", () => {
@@ -132,6 +133,26 @@ describe("lensViewUrlState", () => {
 
     const params = buildLensViewQuery({ shift: -11.5, tilt: 8.25 });
     expect(params.toString()).toBe("shift=-11.50&tilt=8.25");
+  });
+
+  it("clamps adversarial shift/tilt values to the movement envelope", () => {
+    const huge = parseLensViewQuery("?shift=1e12&tilt=1e12");
+    expect(huge.shift).toBe(MOVEMENT_SHIFT_ENVELOPE_MM[1]);
+    expect(huge.tilt).toBe(MOVEMENT_TILT_ENVELOPE_DEG[1]);
+
+    const negative = parseLensViewQuery("?shift=-1e12&tilt=-1e12");
+    expect(negative.shift).toBe(MOVEMENT_SHIFT_ENVELOPE_MM[0]);
+    expect(negative.tilt).toBe(MOVEMENT_TILT_ENVELOPE_DEG[0]);
+  });
+
+  it("passes in-envelope shift/tilt through unchanged and drops non-finite values", () => {
+    const inRange = parseLensViewQuery("?shift=-11.5&tilt=8.25");
+    expect(inRange.shift).toBe(-11.5);
+    expect(inRange.tilt).toBe(8.25);
+
+    const nonFinite = parseLensViewQuery("?shift=Infinity&tilt=NaN");
+    expect(nonFinite).not.toHaveProperty("shift");
+    expect(nonFinite).not.toHaveProperty("tilt");
   });
 
   it("round-trips group movement overlay mode", () => {

@@ -10,6 +10,7 @@
 
 import { isAnalysisTabId, type LensState, type URLState } from "../../types/state.js";
 import { isGroupMovementMode } from "../../types/groupMovement.js";
+import { MOVEMENT_SHIFT_ENVELOPE_MM, MOVEMENT_TILT_ENVELOPE_DEG } from "../../optics/lensMovement.js";
 
 type LensViewQueryKey =
   | "focus"
@@ -91,6 +92,12 @@ function parseUnitParam(params: URLSearchParams, key: string): number | null {
   return Math.max(0, Math.min(1, parsed));
 }
 
+function parseClampedParam(params: URLSearchParams, key: string, [min, max]: [number, number]): number | null {
+  const parsed = parseNumberParam(params, key);
+  if (parsed == null) return null;
+  return Math.max(min, Math.min(max, parsed));
+}
+
 function parseZoomParam(params: URLSearchParams): number | null {
   const parsed = parseNumberParam(params, "zoom");
   return parsed != null && parsed > 0 ? parsed : null;
@@ -117,8 +124,8 @@ export function parseLensViewQuery(search: string): LensViewQueryState {
     aperture: parseUnitParam(params, "aperture"),
     zoom: parseZoomParam(params),
   };
-  const shift = parseNumberParam(params, "shift");
-  const tilt = parseNumberParam(params, "tilt");
+  const shift = parseClampedParam(params, "shift", MOVEMENT_SHIFT_ENVELOPE_MM);
+  const tilt = parseClampedParam(params, "tilt", MOVEMENT_TILT_ENVELOPE_DEG);
   if (shift != null) state.shift = shift;
   if (tilt != null) state.tilt = tilt;
 
