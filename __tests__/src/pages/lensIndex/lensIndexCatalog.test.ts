@@ -10,7 +10,7 @@ import {
 } from "../../../../src/pages/lensIndex/catalog.js";
 import { CATALOG_KEYS } from "../../../../src/utils/catalog/lensCatalog.js";
 import type { CatalogLensEntry, FilterBounds } from "../../../../src/pages/lensIndex/types.js";
-import type { LensData } from "../../../../src/types/optics.js";
+import type { LensSummary } from "../../../../src/utils/catalog/lensSummaries.js";
 import { IMAGE_FORMAT_BY_ID, LENS_MOUNT_BY_ID } from "../../../../src/utils/catalog/lensTaxonomy.js";
 
 const TEST_BOUNDS: FilterBounds = {
@@ -28,7 +28,7 @@ function entry(
 ): CatalogLensEntry {
   return {
     key,
-    data: { key, name: key.toUpperCase() } as LensData,
+    data: { key, name: key.toUpperCase() } as LensSummary,
     maker: { display: "Test", slug: "test" },
     focalRange: [50, 50],
     aperture: 2,

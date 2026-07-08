@@ -9,7 +9,7 @@ import { useParams, Navigate, Link } from "react-router";
 import LensVisualization from "../components/layout/LensViewer.js";
 import SEOHead from "../components/SEOHead.js";
 import ClientOnly from "../components/ClientOnly.js";
-import { LENS_CATALOG, mdForKey } from "../utils/catalog/lensCatalog.js";
+import { LENS_CATALOG, hasMdForKey } from "../utils/catalog/lensCatalog.js";
 import {
   lensPageTitle,
   lensPageDescription,
@@ -52,7 +52,8 @@ export default function LensPage() {
 
   const lens = LENS_CATALOG[slug];
   const maker = deriveMaker(lens.name, lens.maker);
-  const analysis = mdForKey(slug);
+  /* Existence check only — the markdown body is code-split and loaded by the viewer */
+  const hasAnalysis = hasMdForKey(slug);
 
   return (
     <>
@@ -143,7 +144,7 @@ export default function LensPage() {
               </section>
             )}
 
-            {analysis && (
+            {hasAnalysis && (
               <section style={{ marginBottom: "1rem" }}>
                 <h2 style={{ fontSize: "0.95rem", fontWeight: 600, marginBottom: "0.5rem" }}>Analysis</h2>
                 <p style={{ fontSize: "0.8rem", color: "#999" }}>

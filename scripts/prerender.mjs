@@ -13,13 +13,27 @@
  * Run after `vite build` (client) via the build pipeline.
  */
 
-import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync } from "node:fs";
 import { join, dirname } from "node:path";
 
 const ROOT = join(import.meta.dirname, "..");
 const DIST_DIR = join(ROOT, "dist");
 const META_PATH = join(ROOT, "src", "generated", "build-metadata.json");
 const NOT_FOUND_ROUTE = "/this-route-does-not-exist";
+
+/**
+ * Find the hashed KaTeX stylesheet emitted by the client build.
+ *
+ * KaTeX CSS is imported by the code-split markdown renderer (not the entry),
+ * so no prerendered page references it statically. Pages whose rendered HTML
+ * contains KaTeX markup get a direct <link> injected so math is styled
+ * before (or without) JavaScript.
+ */
+function findKatexStylesheet() {
+  const assets = readdirSync(join(DIST_DIR, "assets"));
+  const file = assets.find((name) => /katex.*\.css$/i.test(name));
+  return file ? `/assets/${file}` : null;
+}
 
 /**
  * Validate that every route pattern from the React Router manifest is
@@ -100,13 +114,23 @@ async function prerender() {
   /* Read the client HTML template */
   const template = readFileSync(join(DIST_DIR, "index.html"), "utf-8");
 
+  const katexStylesheet = findKatexStylesheet();
+
   console.log(`Prerendering ${routes.length} routes...`);
 
   for (const route of routes) {
     const { html: appHtml, helmet } = render(route);
 
     /* Build head tags from helmet */
-    const headTags = [helmet.title.toString(), helmet.meta.toString(), helmet.link.toString(), helmet.script.toString()]
+    const katexLink =
+      katexStylesheet && appHtml.includes('class="katex') ? `<link rel="stylesheet" href="${katexStylesheet}"/>` : "";
+    const headTags = [
+      helmet.title.toString(),
+      helmet.meta.toString(),
+      helmet.link.toString(),
+      helmet.script.toString(),
+      katexLink,
+    ]
       .filter(Boolean)
       .join("\n    ");
 

@@ -19,7 +19,8 @@
 import { useMemo, useCallback } from "react";
 import { useNavigate } from "react-router";
 
-import { ALL_CATALOG_KEYS, LENS_CATALOG, CATALOG_KEYS, mdForKey } from "../../utils/catalog/lensCatalog.js";
+import { ALL_CATALOG_KEYS, LENS_CATALOG, CATALOG_KEYS } from "../../utils/catalog/lensCatalog.js";
+import useLensAnalysisMarkdown from "../hooks/useLensAnalysisMarkdown.js";
 import usePreferences from "../../utils/state/usePreferences.js";
 import useURLSync from "../../utils/state/useURLSync.js";
 import { LensStateContext, LensDispatchContext, PanelStateContext } from "../../utils/state/LensContext.js";
@@ -160,7 +161,7 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
     isComparePage,
   );
 
-  const markdown = useMemo(() => mdForKey(lensKeyA), [lensKeyA]);
+  const markdown = useLensAnalysisMarkdown(lensKeyA);
 
   const desktopViewOptions = useMemo(() => {
     return [

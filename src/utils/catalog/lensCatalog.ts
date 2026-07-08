@@ -6,6 +6,7 @@
  */
 
 import LENS_DEFAULTS from "../../lens-data/defaults.js";
+import { loadChunkWithReload } from "../chunkLoadRetry.js";
 import type { LensData } from "../../types/optics.js";
 
 /* Eagerly import all lens data files under src/lens-data/ — Vite resolves the glob at build time.
@@ -46,15 +47,17 @@ const CATALOG_KEYS: string[] = ALL_CATALOG_KEYS.filter((k) => LENS_CATALOG[k].vi
 /* Debug/reference lenses sorted alphabetically by display name. */
 const DEBUG_CATALOG_KEYS: string[] = ALL_CATALOG_KEYS.filter(isDebugLensKey);
 
-const _mdModules = import.meta.glob<string>("../../lens-data/**/*.analysis.md", {
-  eager: true,
+/* Analysis markdown is code-split: the non-eager glob maps each file to a
+ * dynamic importer, so ~10 MB of prose is fetched per lens on demand instead
+ * of shipping inside the main bundle. */
+const _mdLoaders = import.meta.glob<string>("../../lens-data/**/*.analysis.md", {
   query: "?raw",
   import: "default",
 });
-const MD_BY_STEM: Record<string, string> = {};
-for (const [path, raw] of Object.entries(_mdModules)) {
+const MD_LOADER_BY_STEM: Record<string, () => Promise<string>> = {};
+for (const [path, loader] of Object.entries(_mdLoaders)) {
   const stem = path.replace("../../lens-data", "").replace(".analysis.md", "");
-  MD_BY_STEM[stem] = raw;
+  MD_LOADER_BY_STEM[stem] = loader;
 }
 
 /* Map lens key → data file stem so we can find the matching .analysis.md */
@@ -65,32 +68,45 @@ for (const [path, mod] of Object.entries(_modules)) {
 }
 
 /**
- * Look up the raw markdown analysis content for a lens key.
+ * Whether a lens key has a companion `.analysis.md` file.
+ *
+ * Synchronous (the glob's key set is known at build time), so SSR and the
+ * prerender pass can gate analysis sections without loading the content.
  */
-function mdForKey(key: string): string | null {
+function hasMdForKey(key: string): boolean {
   const stem = KEY_TO_STEM[key];
-  return stem ? MD_BY_STEM[stem] || null : null;
+  return stem !== undefined && stem in MD_LOADER_BY_STEM;
 }
 
-/* ── Recent lenses (derived from build-time git dates) ─────────────── */
+const MD_CACHE = new Map<string, string>();
 
-import buildMeta from "../../generated/build-metadata.json";
-
-interface RecentLensEntry {
-  key: string;
-  date: string;
+/**
+ * Return the already-fetched markdown for a lens key, or null when it has
+ * not been loaded (or does not exist). Lets the UI render instantly when
+ * revisiting a lens without an async round trip.
+ */
+function cachedMdForKey(key: string): string | null {
+  return MD_CACHE.get(key) ?? null;
 }
 
-/** All visible lenses sorted newest-first by publication date. */
-const ALL_LENSES_BY_DATE: RecentLensEntry[] = Object.entries(
-  buildMeta.lensFreshness as Record<string, { publishedOn: string; lastModified: string }>,
-)
-  .filter(([key]) => CATALOG_KEYS.includes(key))
-  .sort(([, a], [, b]) => b.publishedOn.localeCompare(a.publishedOn))
-  .map(([key, freshness]) => ({ key, date: freshness.publishedOn }));
+/**
+ * Fetch the raw markdown analysis content for a lens key.
+ *
+ * @returns the markdown string, or null when the lens has no analysis file
+ */
+async function loadMdForKey(key: string): Promise<string | null> {
+  const stem = KEY_TO_STEM[key];
+  const loader = stem ? MD_LOADER_BY_STEM[stem] : undefined;
+  if (!loader) return null;
+  const cached = MD_CACHE.get(key);
+  if (cached !== undefined) return cached;
+  const raw = await loadChunkWithReload(loader);
+  MD_CACHE.set(key, raw);
+  return raw;
+}
 
-/** Up to 7 most recently added lenses, newest-first. */
-const RECENT_LENS_KEYS: RecentLensEntry[] = ALL_LENSES_BY_DATE.slice(0, 7);
+/* Recent-lens lists and other index-page metadata live in lensSummaries.ts,
+ * which non-viewer pages use so they don't pull the full prescription data. */
 
 export {
   LENS_CATALOG,
@@ -98,8 +114,7 @@ export {
   CATALOG_KEYS,
   DEBUG_CATALOG_KEYS,
   isDebugLensKey,
-  mdForKey,
-  RECENT_LENS_KEYS,
-  ALL_LENSES_BY_DATE,
+  hasMdForKey,
+  cachedMdForKey,
+  loadMdForKey,
 };
-export type { RecentLensEntry };

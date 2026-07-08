@@ -71,8 +71,8 @@ export default [
 
       // Guard CLAUDE.md working rules that are otherwise convention-only:
       // react-markdown renders only through the shared ThemedMarkdown wrapper,
-      // and styling is inline-only (the katex stylesheet in main.tsx is the
-      // sole exception; both carve-outs are separate config blocks below).
+      // and styling is inline-only (the katex stylesheet in ThemedMarkdown is
+      // the sole exception; the carve-out is a separate config block below).
       "no-restricted-imports": [
         "error",
         {
@@ -93,7 +93,10 @@ export default [
     },
   },
 
-  // ThemedMarkdown is the one component allowed to import react-markdown.
+  // ThemedMarkdown is the one component allowed to import react-markdown, and
+  // the KaTeX stylesheet lives here so it ships with the code-split markdown
+  // chunk instead of the entry bundle (prerender.mjs links it directly into
+  // math pages for the no-JS case).
   {
     files: ["src/components/markdown/ThemedMarkdown.tsx"],
     rules: {
@@ -102,26 +105,8 @@ export default [
         {
           patterns: [
             {
-              group: ["*.css", "**/*.css", "*.scss", "**/*.scss"],
+              group: ["*.css", "**/*.css", "*.scss", "**/*.scss", "!katex/dist/katex.min.css"],
               message: "Inline styles only — no CSS files (see agent_docs/code_conventions.md).",
-            },
-          ],
-        },
-      ],
-    },
-  },
-
-  // main.tsx is the one module allowed to import a stylesheet (katex math CSS).
-  {
-    files: ["src/main.tsx"],
-    rules: {
-      "no-restricted-imports": [
-        "error",
-        {
-          paths: [
-            {
-              name: "react-markdown",
-              message: "Render markdown through src/components/markdown/ThemedMarkdown.tsx instead.",
             },
           ],
         },

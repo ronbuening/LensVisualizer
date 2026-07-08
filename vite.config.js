@@ -1,11 +1,34 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-export default defineConfig({
+export default defineConfig(({ isSsrBuild }) => ({
   plugins: [react()],
   base: "/",
   /* Honor an externally assigned dev-server port (e.g. preview tooling); Vite ignores PORT by default. */
   server: process.env.PORT ? { port: Number(process.env.PORT) } : undefined,
+  build: {
+    /* Client-only vendor chunking (rolldown). The SSR prerender build keeps
+     * default chunking — it is never shipped to browsers. Group order matters:
+     * modules land in the first matching group, so framework chunks come
+     * before the markdown toolchain (which depends on react). */
+    rolldownOptions: isSsrBuild
+      ? {}
+      : {
+          output: {
+            codeSplitting: {
+              groups: [
+                { name: "vendor-react", test: /node_modules[\\/](react|react-dom|scheduler)[\\/]/ },
+                { name: "vendor-router", test: /node_modules[\\/]react-router[\\/]/ },
+                { name: "vendor-katex", test: /node_modules[\\/](katex|rehype-katex)[\\/]/ },
+                {
+                  name: "vendor-markdown",
+                  test: /node_modules[\\/](react-markdown|remark-[^\\/]+|rehype-[^\\/]+|micromark[^\\/]*|mdast-[^\\/]+|unist-[^\\/]+|unified|hast-[^\\/]+|hastscript|vfile[^\\/]*|property-information|space-separated-tokens|comma-separated-tokens|character-entities[^\\/]*|decode-named-character-reference|trim-lines|bail|trough|devlop|zwitch|ccount|longest-streak|markdown-table|escape-string-regexp|html-url-attributes|stringify-entities|web-namespaces|is-plain-obj)[\\/]/,
+                },
+              ],
+            },
+          },
+        },
+  },
   test: {
     coverage: {
       provider: "v8",
@@ -36,4 +59,4 @@ export default defineConfig({
       reportsDirectory: "coverage",
     },
   },
-});
+}));

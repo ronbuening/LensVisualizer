@@ -7,7 +7,7 @@
 import { Link } from "react-router";
 import SEOHead from "../components/SEOHead.js";
 import PageNavBar from "../components/layout/PageNavBar.js";
-import { LENS_CATALOG, CATALOG_KEYS } from "../utils/catalog/lensCatalog.js";
+import { LENS_SUMMARIES, SUMMARY_KEYS } from "../utils/catalog/lensSummaries.js";
 import { deriveMaker, SITE_NAME, SITE_URL } from "../utils/catalog/lensMetadata.js";
 import { getMakerDetails } from "../utils/catalog/makerDetails.js";
 import { collectionPageJsonLd, itemListJsonLd } from "../utils/seo/structuredData.js";
@@ -22,8 +22,8 @@ interface MakerEntry {
 
 function getAllMakers(): MakerEntry[] {
   const counts = new Map<string, MakerEntry>();
-  for (const key of CATALOG_KEYS) {
-    const data = LENS_CATALOG[key];
+  for (const key of SUMMARY_KEYS) {
+    const data = LENS_SUMMARIES[key];
     const maker = deriveMaker(data.name, data.maker);
     const existing = counts.get(maker.slug);
     if (existing) {

@@ -3,44 +3,35 @@
  *
  * Consumed by both the client-side browser router (`src/router.tsx`) and the
  * SSR static renderer (`src/entry-server.tsx`) so route definitions stay in sync.
+ *
+ * Each entry pairs a path with a dynamic-import loader instead of an element,
+ * so page components become route-level code-split chunks in the client build.
+ * The client router resolves loaders lazily per navigation; the SSR entry
+ * awaits every loader up front and then renders synchronously.
  */
 
-import type { ReactNode } from "react";
-import HomePage from "../pages/HomePage.js";
-import LensPage from "../pages/LensPage.js";
-import LensIndexPage from "../pages/LensIndexPage.js";
-import MakersIndexPage from "../pages/MakersIndexPage.js";
-import MakerPage from "../pages/MakerPage.js";
-import MountsIndexPage from "../pages/MountsIndexPage.js";
-import MountPage from "../pages/MountPage.js";
-import FormatsIndexPage from "../pages/FormatsIndexPage.js";
-import FormatPage from "../pages/FormatPage.js";
-import ComparePage from "../pages/ComparePage.js";
-import ArticlesPage from "../pages/ArticlesPage.js";
-import ArticlePage from "../pages/ArticlePage.js";
-import UpdatesPage from "../pages/UpdatesPage.js";
-import NotFoundPage from "../pages/NotFoundPage.js";
+import type { ComponentType } from "react";
 
 export interface RouteManifestEntry {
   path: string;
-  element: ReactNode;
+  load: () => Promise<{ default: ComponentType }>;
 }
 
 const routeManifest: RouteManifestEntry[] = [
-  { path: "/", element: <HomePage /> },
-  { path: "/lenses", element: <LensIndexPage /> },
-  { path: "/lens/:slug", element: <LensPage /> },
-  { path: "/compare/:slugA/:slugB", element: <ComparePage /> },
-  { path: "/makers", element: <MakersIndexPage /> },
-  { path: "/makers/:maker", element: <MakerPage /> },
-  { path: "/mounts", element: <MountsIndexPage /> },
-  { path: "/mounts/:mountId", element: <MountPage /> },
-  { path: "/formats", element: <FormatsIndexPage /> },
-  { path: "/formats/:formatId", element: <FormatPage /> },
-  { path: "/articles", element: <ArticlesPage /> },
-  { path: "/articles/:slug", element: <ArticlePage /> },
-  { path: "/updates", element: <UpdatesPage /> },
-  { path: "*", element: <NotFoundPage /> },
+  { path: "/", load: () => import("../pages/HomePage.js") },
+  { path: "/lenses", load: () => import("../pages/LensIndexPage.js") },
+  { path: "/lens/:slug", load: () => import("../pages/LensPage.js") },
+  { path: "/compare/:slugA/:slugB", load: () => import("../pages/ComparePage.js") },
+  { path: "/makers", load: () => import("../pages/MakersIndexPage.js") },
+  { path: "/makers/:maker", load: () => import("../pages/MakerPage.js") },
+  { path: "/mounts", load: () => import("../pages/MountsIndexPage.js") },
+  { path: "/mounts/:mountId", load: () => import("../pages/MountPage.js") },
+  { path: "/formats", load: () => import("../pages/FormatsIndexPage.js") },
+  { path: "/formats/:formatId", load: () => import("../pages/FormatPage.js") },
+  { path: "/articles", load: () => import("../pages/ArticlesPage.js") },
+  { path: "/articles/:slug", load: () => import("../pages/ArticlePage.js") },
+  { path: "/updates", load: () => import("../pages/UpdatesPage.js") },
+  { path: "*", load: () => import("../pages/NotFoundPage.js") },
 ];
 
 export default routeManifest;

@@ -6,7 +6,7 @@
  * vocabulary without polluting the global type surface.
  */
 
-import type { LensData } from "../../types/optics.js";
+import type { LensSummary } from "../../utils/catalog/lensSummaries.js";
 import type {
   ImageFormatId,
   ImageFormatMetadata,
@@ -19,7 +19,7 @@ export type LensIndexViewMode = "visible" | "all" | "debug";
 
 export interface CatalogLensEntry {
   key: string;
-  data: LensData;
+  data: LensSummary;
   maker: {
     display: string;
     slug: string;

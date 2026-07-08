@@ -23,10 +23,10 @@ import SidebarLayout from "../components/content/SidebarLayout.js";
 import { LENS_LINK_BASE_STYLE, PAGE_BASE_STYLE } from "../utils/style/pageStyles.js";
 import { lensLinkFromMount } from "./lensIndex/clusterLinks.js";
 import { lensesForMount } from "./lensIndex/catalog.js";
-import type { LensData } from "../types/optics.js";
+import type { LensSummary } from "../utils/catalog/lensSummaries.js";
 
 /** Makers (slug + display label) that have lenses for this mount, alphabetically. */
-function makersForMount(lenses: { data: LensData }[]): { slug: string; label: string }[] {
+function makersForMount(lenses: { data: LensSummary }[]): { slug: string; label: string }[] {
   const map = new Map<string, string>();
   for (const { data } of lenses) {
     const { slug } = deriveMaker(data.name, data.maker);

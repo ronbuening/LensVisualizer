@@ -9,7 +9,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { Link, useSearchParams } from "react-router";
 import SEOHead from "../components/SEOHead.js";
 import PageNavBar from "../components/layout/PageNavBar.js";
-import { LENS_CATALOG, CATALOG_KEYS } from "../utils/catalog/lensCatalog.js";
+import { LENS_SUMMARIES, SUMMARY_KEYS } from "../utils/catalog/lensSummaries.js";
 import { SITE_NAME, SITE_URL } from "../utils/catalog/lensMetadata.js";
 import { collectionPageJsonLd, datasetJsonLd, itemListJsonLd } from "../utils/seo/structuredData.js";
 import { usePageThemeToggle } from "../utils/theme/usePageThemeToggle.js";
@@ -68,7 +68,7 @@ export default function LensIndexPage() {
   const [filterOpen, setFilterOpen] = useState(parsedUrlState.filterOpen);
   const yearDir: "asc" | "desc" = groupMode === "year-desc" ? "desc" : "asc";
   const totalLenses = catalogEntries.length;
-  const publicLensCount = CATALOG_KEYS.length;
+  const publicLensCount = SUMMARY_KEYS.length;
   const { theme: t, themeMode, highContrast, toggleTheme, toggleHC } = usePageThemeToggle();
   const seoDescription = `Browse ${publicLensCount} patent-derived lens cross-section diagrams from Nikon, Carl Zeiss, Ricoh, Voigtländer, and more, with ray tracing and optical analysis.`;
   const {
@@ -206,8 +206,8 @@ export default function LensIndexPage() {
           itemListJsonLd({
             name: "Lens Library",
             url: `${SITE_URL}/lenses`,
-            items: CATALOG_KEYS.map((key) => ({
-              name: LENS_CATALOG[key].name,
+            items: SUMMARY_KEYS.map((key) => ({
+              name: LENS_SUMMARIES[key].name,
               url: `${SITE_URL}/lens/${key}`,
             })),
           }),

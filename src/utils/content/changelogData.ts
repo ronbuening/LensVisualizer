@@ -23,6 +23,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-07-07",
     type: "improvement",
+    summary: "Cut first-page download from 4.3 MB to under 1 MB by loading lens data and prose on demand",
+  },
+  {
+    date: "2026-07-07",
+    type: "improvement",
     summary: "Improved keyboard and screen-reader access to diagrams, overlays, and controls",
   },
   {
