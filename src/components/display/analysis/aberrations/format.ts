@@ -17,6 +17,14 @@ export function formatSignedUm(valueUm: number): string {
   return `${rounded} µm`;
 }
 
+export function formatComaSpanUm(spanUm: number): string {
+  const abs = Math.abs(spanUm);
+  if (abs >= 1000) return `${(spanUm / 1000).toFixed(2)} mm`;
+  if (abs >= 100) return `${spanUm.toFixed(0)} µm`;
+  if (abs >= 10) return `${spanUm.toFixed(1)} µm`;
+  return `${spanUm.toFixed(2)} µm`;
+}
+
 export function formatSignedMm(valueMm: number): string {
   if (Math.abs(valueMm) < 0.005) return "0.00 mm";
   return `${valueMm.toFixed(2)} mm`;

@@ -1,7 +1,7 @@
 import ComaPreviewGrid from "../ComaPreviewGrid.js";
-import { formatComaSpan } from "../MeridionalComaPlot.js";
 import type { ComaPointCloudPreviewResult } from "../../../../optics/aberrationAnalysis.js";
 import type { Theme } from "../../../../types/theme.js";
+import { formatComaSpanUm } from "./format.js";
 import SectionHeader from "./SectionHeader.js";
 
 interface ComaPreviewSectionProps {
@@ -116,7 +116,7 @@ export default function ComaPreviewSection({ result, expanded, onToggle, theme }
                       transition: "color 0.3s",
                     }}
                   >
-                    ±{formatComaSpan(result.sharedSpotHalfRangeMm * 1000)}
+                    ±{formatComaSpanUm(result.sharedSpotHalfRangeMm * 1000)}
                   </span>
                 </div>
                 {outerField ? (
@@ -138,7 +138,7 @@ export default function ComaPreviewSection({ result, expanded, onToggle, theme }
                         transition: "color 0.3s",
                       }}
                     >
-                      {formatComaSpan(outerField.rmsRadiusUm)}
+                      {formatComaSpanUm(outerField.rmsRadiusUm)}
                     </span>
                   </div>
                 ) : null}
@@ -161,7 +161,7 @@ export default function ComaPreviewSection({ result, expanded, onToggle, theme }
                         transition: "color 0.3s",
                       }}
                     >
-                      {formatComaSpan(outerField.tangentialSpanUm)}
+                      {formatComaSpanUm(outerField.tangentialSpanUm)}
                     </span>
                   </div>
                 ) : null}
@@ -184,7 +184,7 @@ export default function ComaPreviewSection({ result, expanded, onToggle, theme }
                         transition: "color 0.3s",
                       }}
                     >
-                      {formatComaSpan(outerField.sagittalSpanUm)}
+                      {formatComaSpanUm(outerField.sagittalSpanUm)}
                     </span>
                   </div>
                 ) : null}

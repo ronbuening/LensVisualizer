@@ -1,6 +1,7 @@
-import MeridionalComaPlot, { formatComaSpan } from "../MeridionalComaPlot.js";
+import MeridionalComaPlot from "../MeridionalComaPlot.js";
 import type { MeridionalComaResult } from "../../../../optics/aberrationAnalysis.js";
 import type { Theme } from "../../../../types/theme.js";
+import { formatComaSpanUm } from "./format.js";
 import SectionHeader from "./SectionHeader.js";
 
 interface MeridionalComaSectionProps {
@@ -69,7 +70,7 @@ export default function MeridionalComaSection({ result, expanded, onToggle, them
                       transition: "color 0.3s",
                     }}
                   >
-                    {formatComaSpan(result.spanUm)}
+                    {formatComaSpanUm(result.spanUm)}
                   </span>
                 </div>
                 <div
@@ -88,7 +89,7 @@ export default function MeridionalComaSection({ result, expanded, onToggle, them
                       transition: "color 0.3s",
                     }}
                   >
-                    {formatComaSpan(result.signedOuterDeltaUm)}
+                    {formatComaSpanUm(result.signedOuterDeltaUm)}
                   </span>
                 </div>
                 <div style={{ display: "flex", alignItems: "center", gap: 8 }}>

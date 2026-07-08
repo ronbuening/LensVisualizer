@@ -26,14 +26,6 @@ const PW = VB_W - ML - MR;
 const PH = VB_H - MT - MB;
 const MIN_Y_RANGE_MM = 0.02;
 
-export function formatComaSpan(spanUm: number): string {
-  const abs = Math.abs(spanUm);
-  if (abs >= 1000) return `${(spanUm / 1000).toFixed(2)} mm`;
-  if (abs >= 100) return `${spanUm.toFixed(0)} µm`;
-  if (abs >= 10) return `${spanUm.toFixed(1)} µm`;
-  return `${spanUm.toFixed(2)} µm`;
-}
-
 export default function MeridionalComaPlot({ result, t }: MeridionalComaPlotProps) {
   const yHalfRange = Math.max(
     MIN_Y_RANGE_MM,

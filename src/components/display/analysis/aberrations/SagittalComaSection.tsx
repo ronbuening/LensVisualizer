@@ -1,6 +1,7 @@
-import SagittalComaPlot, { formatSagittalComaSpan } from "../SagittalComaPlot.js";
+import SagittalComaPlot from "../SagittalComaPlot.js";
 import type { SagittalComaResult } from "../../../../optics/aberrationAnalysis.js";
 import type { Theme } from "../../../../types/theme.js";
+import { formatComaSpanUm } from "./format.js";
 import SectionHeader from "./SectionHeader.js";
 
 interface SagittalComaSectionProps {
@@ -68,7 +69,7 @@ export default function SagittalComaSection({ result, expanded, onToggle, theme 
                       transition: "color 0.3s",
                     }}
                   >
-                    {formatSagittalComaSpan(result.spanUm)}
+                    {formatComaSpanUm(result.spanUm)}
                   </span>
                 </div>
                 <div
@@ -87,7 +88,7 @@ export default function SagittalComaSection({ result, expanded, onToggle, theme 
                       transition: "color 0.3s",
                     }}
                   >
-                    {formatSagittalComaSpan(result.signedOuterDeltaUm)}
+                    {formatComaSpanUm(result.signedOuterDeltaUm)}
                   </span>
                 </div>
                 <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
