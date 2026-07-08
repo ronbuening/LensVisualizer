@@ -37,6 +37,17 @@ describe("compileRaySegment", () => {
       expect(seg.sp[1]).toEqual([30, -20]);
     });
 
+    it("precomputes SVG point strings from final segment points", () => {
+      const pts = [
+        [0, 1],
+        [10, 2],
+        [20, 3],
+      ];
+      const seg = compileRaySegment(pts, [], 0, false, identity, identity, clampedRayEnd, 50, undefined, true);
+      expect(seg.spPoints).toBe("0,1 10,2 20,3");
+      expect(seg.gpPoints).toBe("");
+    });
+
     it("uses endOverride instead of clampedRayEnd when provided", () => {
       const pts = [[0, 1]];
       const override = [999, 888];

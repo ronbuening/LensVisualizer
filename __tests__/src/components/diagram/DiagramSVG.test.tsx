@@ -18,6 +18,7 @@ import { doLayout } from "../../../../src/optics/optics.js";
 import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
 import themes from "../../../../src/utils/theme/themes.js";
 import { installMatchMediaMock } from "../../../testUtils.js";
+import type { RaySegment } from "../../../../src/components/diagram/diagramSvgTypes.js";
 import type { RuntimeLens, ElementShape } from "../../../../src/types/optics.js";
 
 const { mockApertureStop } = vi.hoisted(() => ({
@@ -58,6 +59,14 @@ vi.mock("../../../../src/components/diagram/PetzvalSumBadge.js", () => ({
     </g>
   ),
 }));
+
+function pointsString(points: number[][]): string {
+  return points.map((point) => `${point[0]},${point[1]}`).join(" ");
+}
+
+function segment(sp: number[][], gp: number[][] = []): RaySegment {
+  return { sp, gp, spPoints: pointsString(sp), gpPoints: pointsString(gp) };
+}
 
 const baseLens = {
   data: { name: "Test Lens 50mm f/2", maker: "Testco" },
@@ -240,30 +249,23 @@ describe("DiagramSVG", () => {
         stopZ={220}
         currentPhysStopSD={8}
         rays={[
-          {
-            sp: [
-              [0, 0],
-              [20, 10],
-            ],
-            gp: [],
-          },
+          segment([
+            [0, 0],
+            [20, 10],
+          ]),
         ]}
         offAxisRays={[
-          {
-            sp: [
-              [0, 5],
-              [20, 15],
-            ],
-            gp: [],
-          },
+          segment([
+            [0, 5],
+            [20, 15],
+          ]),
         ]}
         chromaticRays={[
           {
-            sp: [
+            ...segment([
               [0, 10],
               [20, 20],
-            ],
-            gp: [],
+            ]),
             channel: "R",
             axis: "onAxis",
           },

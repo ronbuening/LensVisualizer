@@ -393,7 +393,7 @@ memoization is deferred work, not a non-issue.
 
 ### P3. Precompute SVG polyline point strings once per compiled ray
 
-- [ ] Effort: ~45 min · Risk: low · Expected impact: medium
+- [x] Effort: ~45 min · Risk: low · Expected impact: medium
 
 `RayPolylines.tsx` rebuilds the `points` attribute for every ray on every render:
 

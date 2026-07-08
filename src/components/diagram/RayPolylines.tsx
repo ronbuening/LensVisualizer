@@ -7,11 +7,7 @@
  */
 
 import { memo } from "react";
-
-interface RaySegment {
-  sp: number[][];
-  gp: number[][];
-}
+import type { RaySegment } from "./diagramSvgTypes.js";
 
 interface RayPolylinesProps {
   rays: RaySegment[];
@@ -37,13 +33,13 @@ const RayPolylines = memo(function RayPolylines({
 }: RayPolylinesProps) {
   return (
     <>
-      {rays.map(({ sp, gp }, ri) => {
+      {rays.map(({ sp, gp, spPoints, gpPoints }, ri) => {
         const color = colorFn(ri);
         return (
           <g key={`${keyPrefix}${ri}`}>
             {sp.length > 1 && (
               <polyline
-                points={sp.map((p) => `${p[0]},${p[1]}`).join(" ")}
+                points={spPoints}
                 fill="none"
                 stroke={color}
                 strokeWidth={solidWidth * rayWidthScale}
@@ -52,7 +48,7 @@ const RayPolylines = memo(function RayPolylines({
             )}
             {gp.length > 1 && (
               <polyline
-                points={gp.map((p) => `${p[0]},${p[1]}`).join(" ")}
+                points={gpPoints}
                 fill="none"
                 stroke={color}
                 strokeWidth={0.6 * rayWidthScale}
