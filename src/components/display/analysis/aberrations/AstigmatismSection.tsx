@@ -1,3 +1,4 @@
+import { AberrationValueDisplay } from "../analysisUi.js";
 import AstigmatismPlot from "../AstigmatismPlot.js";
 import type { FieldCurvatureResult } from "../../../../optics/aberrationAnalysis.js";
 import type { Theme } from "../../../../types/theme.js";
@@ -89,82 +90,29 @@ export default function AstigmatismSection({ result, expanded, onToggle, theme }
                   fontSize: 9.5,
                 }}
               >
-                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                  <span style={{ fontSize: 10, color: theme.label, letterSpacing: "0.1em", transition: "color 0.3s" }}>
-                    FIELDS
-                  </span>
-                  <span
-                    style={{
-                      fontSize: 13,
-                      fontWeight: 600,
-                      color: theme.value,
-                      fontVariantNumeric: "tabular-nums",
-                      transition: "color 0.3s",
-                    }}
-                  >
-                    {inCircleFields.length}/{result.fields.length}
-                  </span>
-                </div>
-                <div
-                  style={{ display: "flex", alignItems: "center", gap: 8 }}
-                  title="Maximum parabasal tangential-sagittal split across sampled field positions."
-                >
-                  <span style={{ fontSize: 10, color: theme.label, letterSpacing: "0.1em", transition: "color 0.3s" }}>
-                    PARA MAX SPLIT
-                  </span>
-                  <span
-                    style={{
-                      fontSize: 13,
-                      fontWeight: 600,
-                      color: theme.value,
-                      fontVariantNumeric: "tabular-nums",
-                      transition: "color 0.3s",
-                    }}
-                  >
-                    {formatSignedUm(parabasalMaxSplitUm)}
-                  </span>
+                <AberrationValueDisplay
+                  label="FIELDS"
+                  value={`${inCircleFields.length}/${result.fields.length}`}
+                  t={theme}
+                />
+                <div title="Maximum parabasal tangential-sagittal split across sampled field positions.">
+                  <AberrationValueDisplay
+                    label="PARA MAX SPLIT"
+                    value={formatSignedUm(parabasalMaxSplitUm)}
+                    t={theme}
+                  />
                 </div>
                 {showRealRayMetric ? (
-                  <div
-                    style={{ display: "flex", alignItems: "center", gap: 8 }}
-                    title="Maximum real-ray tangential-sagittal split across sampled field positions."
-                  >
-                    <span
-                      style={{ fontSize: 10, color: theme.label, letterSpacing: "0.1em", transition: "color 0.3s" }}
-                    >
-                      REAL MAX SPLIT
-                    </span>
-                    <span
-                      style={{
-                        fontSize: 13,
-                        fontWeight: 600,
-                        color: theme.value,
-                        fontVariantNumeric: "tabular-nums",
-                        transition: "color 0.3s",
-                      }}
-                    >
-                      {formatSignedUm(realRayMaxSplitUm)}
-                    </span>
+                  <div title="Maximum real-ray tangential-sagittal split across sampled field positions.">
+                    <AberrationValueDisplay
+                      label="REAL MAX SPLIT"
+                      value={formatSignedUm(realRayMaxSplitUm)}
+                      t={theme}
+                    />
                   </div>
                 ) : null}
-                <div
-                  style={{ display: "flex", alignItems: "center", gap: 8 }}
-                  title="Outermost tangential-sagittal split. When the real-ray solve differs materially, both values are shown."
-                >
-                  <span style={{ fontSize: 10, color: theme.label, letterSpacing: "0.1em", transition: "color 0.3s" }}>
-                    OUTER SPLIT
-                  </span>
-                  <span
-                    style={{
-                      fontSize: 13,
-                      fontWeight: 600,
-                      color: theme.value,
-                      fontVariantNumeric: "tabular-nums",
-                      transition: "color 0.3s",
-                    }}
-                  >
-                    {edgeSplitLabel}
-                  </span>
+                <div title="Outermost tangential-sagittal split. When the real-ray solve differs materially, both values are shown.">
+                  <AberrationValueDisplay label="OUTER SPLIT" value={edgeSplitLabel} t={theme} />
                 </div>
               </div>
             </>

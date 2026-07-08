@@ -1,3 +1,4 @@
+import { AberrationValueDisplay } from "../analysisUi.js";
 import ChromaticFieldCurvaturePlot from "../ChromaticFieldCurvaturePlot.js";
 import FieldCurvaturePlot from "../FieldCurvaturePlot.js";
 import StandardFieldCurvaturePlot from "../StandardFieldCurvaturePlot.js";
@@ -68,62 +69,30 @@ export default function FieldCurvatureSection({ result, expanded, onToggle, them
                   fontSize: 9.5,
                 }}
               >
-                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                  <span style={{ fontSize: 10, color: theme.label, letterSpacing: "0.1em", transition: "color 0.3s" }}>
-                    FIELDS
-                  </span>
-                  <span
-                    style={{
-                      fontSize: 13,
-                      fontWeight: 600,
-                      color: theme.value,
-                      fontVariantNumeric: "tabular-nums",
-                      transition: "color 0.3s",
-                    }}
-                  >
-                    {result.usableFieldCount}/{result.fields.length}
-                  </span>
-                </div>
-                <div
-                  style={{ display: "flex", alignItems: "center", gap: 8 }}
-                  title="Edge-field parabasal tangential and sagittal shifts relative to the image plane."
-                >
-                  <span style={{ fontSize: 10, color: theme.label, letterSpacing: "0.1em", transition: "color 0.3s" }}>
-                    EDGE T / S
-                  </span>
-                  <span
-                    style={{
-                      fontSize: 13,
-                      fontWeight: 600,
-                      color: theme.value,
-                      fontVariantNumeric: "tabular-nums",
-                      transition: "color 0.3s",
-                    }}
-                  >
-                    T {formatSignedMm(result.edgeTangentialShiftMm)} / S {formatSignedMm(result.edgeSagittalShiftMm)}
-                  </span>
+                <AberrationValueDisplay
+                  label="FIELDS"
+                  value={`${result.usableFieldCount}/${result.fields.length}`}
+                  t={theme}
+                />
+                <div title="Edge-field parabasal tangential and sagittal shifts relative to the image plane.">
+                  <AberrationValueDisplay
+                    label="EDGE T / S"
+                    value={
+                      <>
+                        T {formatSignedMm(result.edgeTangentialShiftMm)} / S{" "}
+                        {formatSignedMm(result.edgeSagittalShiftMm)}
+                      </>
+                    }
+                    t={theme}
+                  />
                 </div>
                 {result.chromaticFocusSpreadMm !== null ? (
-                  <div
-                    style={{ display: "flex", alignItems: "center", gap: 8 }}
-                    title="Maximum chromatic focus spread: largest R-to-B tangential or sagittal best-focus separation across all sampled fields."
-                  >
-                    <span
-                      style={{ fontSize: 10, color: theme.label, letterSpacing: "0.1em", transition: "color 0.3s" }}
-                    >
-                      CHROM SPREAD
-                    </span>
-                    <span
-                      style={{
-                        fontSize: 13,
-                        fontWeight: 600,
-                        color: theme.value,
-                        fontVariantNumeric: "tabular-nums",
-                        transition: "color 0.3s",
-                      }}
-                    >
-                      {formatSignedMm(result.chromaticFocusSpreadMm)}
-                    </span>
+                  <div title="Maximum chromatic focus spread: largest R-to-B tangential or sagittal best-focus separation across all sampled fields.">
+                    <AberrationValueDisplay
+                      label="CHROM SPREAD"
+                      value={formatSignedMm(result.chromaticFocusSpreadMm)}
+                      t={theme}
+                    />
                   </div>
                 ) : null}
               </div>

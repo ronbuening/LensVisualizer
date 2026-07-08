@@ -1,3 +1,4 @@
+import { AberrationValueDisplay } from "../analysisUi.js";
 import ComaPreviewGrid from "../ComaPreviewGrid.js";
 import type { ComaPointCloudPreviewResult } from "../../../../optics/aberrationAnalysis.js";
 import type { Theme } from "../../../../types/theme.js";
@@ -84,108 +85,43 @@ export default function ComaPreviewSection({ result, expanded, onToggle, theme }
                   fontSize: 9.5,
                 }}
               >
-                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                  <span style={{ fontSize: 10, color: theme.label, letterSpacing: "0.1em", transition: "color 0.3s" }}>
-                    FIELDS
-                  </span>
-                  <span
-                    style={{
-                      fontSize: 13,
-                      fontWeight: 600,
-                      color: theme.value,
-                      fontVariantNumeric: "tabular-nums",
-                      transition: "color 0.3s",
-                    }}
-                  >
-                    {result.usableFieldCount}/{result.fields.length}
-                  </span>
-                </div>
-                <div
-                  style={{ display: "flex", alignItems: "center", gap: 8 }}
-                  title="Shared square spot half-range used to normalize all representative traced and schematic tiles."
-                >
-                  <span style={{ fontSize: 10, color: theme.label, letterSpacing: "0.1em", transition: "color 0.3s" }}>
-                    RANGE
-                  </span>
-                  <span
-                    style={{
-                      fontSize: 13,
-                      fontWeight: 600,
-                      color: theme.value,
-                      fontVariantNumeric: "tabular-nums",
-                      transition: "color 0.3s",
-                    }}
-                  >
-                    ±{formatComaSpanUm(result.sharedSpotHalfRangeMm * 1000)}
-                  </span>
+                <AberrationValueDisplay
+                  label="FIELDS"
+                  value={`${result.usableFieldCount}/${result.fields.length}`}
+                  t={theme}
+                />
+                <div title="Shared square spot half-range used to normalize all representative traced and schematic tiles.">
+                  <AberrationValueDisplay
+                    label="RANGE"
+                    value={`±${formatComaSpanUm(result.sharedSpotHalfRangeMm * 1000)}`}
+                    t={theme}
+                  />
                 </div>
                 {outerField ? (
-                  <div
-                    style={{ display: "flex", alignItems: "center", gap: 8 }}
-                    title="Outermost usable field weighted RMS radius around the traced spot centroid."
-                  >
-                    <span
-                      style={{ fontSize: 10, color: theme.label, letterSpacing: "0.1em", transition: "color 0.3s" }}
-                    >
-                      OUTER RMS
-                    </span>
-                    <span
-                      style={{
-                        fontSize: 13,
-                        fontWeight: 600,
-                        color: theme.value,
-                        fontVariantNumeric: "tabular-nums",
-                        transition: "color 0.3s",
-                      }}
-                    >
-                      {formatComaSpanUm(outerField.rmsRadiusUm)}
-                    </span>
+                  <div title="Outermost usable field weighted RMS radius around the traced spot centroid.">
+                    <AberrationValueDisplay
+                      label="OUTER RMS"
+                      value={formatComaSpanUm(outerField.rmsRadiusUm)}
+                      t={theme}
+                    />
                   </div>
                 ) : null}
                 {outerField ? (
-                  <div
-                    style={{ display: "flex", alignItems: "center", gap: 8 }}
-                    title="Outermost usable field tangential span from the chief-ray-referenced point cloud."
-                  >
-                    <span
-                      style={{ fontSize: 10, color: theme.label, letterSpacing: "0.1em", transition: "color 0.3s" }}
-                    >
-                      T SPAN
-                    </span>
-                    <span
-                      style={{
-                        fontSize: 13,
-                        fontWeight: 600,
-                        color: theme.value,
-                        fontVariantNumeric: "tabular-nums",
-                        transition: "color 0.3s",
-                      }}
-                    >
-                      {formatComaSpanUm(outerField.tangentialSpanUm)}
-                    </span>
+                  <div title="Outermost usable field tangential span from the chief-ray-referenced point cloud.">
+                    <AberrationValueDisplay
+                      label="T SPAN"
+                      value={formatComaSpanUm(outerField.tangentialSpanUm)}
+                      t={theme}
+                    />
                   </div>
                 ) : null}
                 {outerField ? (
-                  <div
-                    style={{ display: "flex", alignItems: "center", gap: 8 }}
-                    title="Outermost usable field sagittal span from the chief-ray-referenced point cloud."
-                  >
-                    <span
-                      style={{ fontSize: 10, color: theme.label, letterSpacing: "0.1em", transition: "color 0.3s" }}
-                    >
-                      S SPAN
-                    </span>
-                    <span
-                      style={{
-                        fontSize: 13,
-                        fontWeight: 600,
-                        color: theme.value,
-                        fontVariantNumeric: "tabular-nums",
-                        transition: "color 0.3s",
-                      }}
-                    >
-                      {formatComaSpanUm(outerField.sagittalSpanUm)}
-                    </span>
+                  <div title="Outermost usable field sagittal span from the chief-ray-referenced point cloud.">
+                    <AberrationValueDisplay
+                      label="S SPAN"
+                      value={formatComaSpanUm(outerField.sagittalSpanUm)}
+                      t={theme}
+                    />
                   </div>
                 ) : null}
                 {outerField ? (
@@ -211,26 +147,12 @@ export default function ComaPreviewSection({ result, expanded, onToggle, theme }
                   </div>
                 ) : null}
                 {outerField ? (
-                  <div
-                    style={{ display: "flex", alignItems: "center", gap: 8 }}
-                    title="Outermost usable field sagittal-to-tangential span ratio from the traced point cloud. Smaller values indicate a more elongated coma footprint."
-                  >
-                    <span
-                      style={{ fontSize: 10, color: theme.label, letterSpacing: "0.1em", transition: "color 0.3s" }}
-                    >
-                      OUTER S/T
-                    </span>
-                    <span
-                      style={{
-                        fontSize: 13,
-                        fontWeight: 600,
-                        color: theme.value,
-                        fontVariantNumeric: "tabular-nums",
-                        transition: "color 0.3s",
-                      }}
-                    >
-                      {outerField.sagittalToTangentialRatio.toFixed(2)}
-                    </span>
+                  <div title="Outermost usable field sagittal-to-tangential span ratio from the traced point cloud. Smaller values indicate a more elongated coma footprint.">
+                    <AberrationValueDisplay
+                      label="OUTER S/T"
+                      value={outerField.sagittalToTangentialRatio.toFixed(2)}
+                      t={theme}
+                    />
                   </div>
                 ) : null}
               </div>

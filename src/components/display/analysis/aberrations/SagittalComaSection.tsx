@@ -1,3 +1,4 @@
+import { AberrationValueDisplay } from "../analysisUi.js";
 import SagittalComaPlot from "../SagittalComaPlot.js";
 import type { SagittalComaResult } from "../../../../optics/aberrationAnalysis.js";
 import type { Theme } from "../../../../types/theme.js";
@@ -53,76 +54,22 @@ export default function SagittalComaSection({ result, expanded, onToggle, theme 
                   fontSize: 9.5,
                 }}
               >
-                <div
-                  style={{ display: "flex", alignItems: "center", gap: 8 }}
-                  title="Sagittal fan span: maximum minus minimum chief-ray-relative x-intercept across valid samples."
-                >
-                  <span style={{ fontSize: 10, color: theme.label, letterSpacing: "0.1em", transition: "color 0.3s" }}>
-                    FAN SPAN
-                  </span>
-                  <span
-                    style={{
-                      fontSize: 13,
-                      fontWeight: 600,
-                      color: theme.value,
-                      fontVariantNumeric: "tabular-nums",
-                      transition: "color 0.3s",
-                    }}
-                  >
-                    {formatComaSpanUm(result.spanUm)}
-                  </span>
+                <div title="Sagittal fan span: maximum minus minimum chief-ray-relative x-intercept across valid samples.">
+                  <AberrationValueDisplay label="FAN SPAN" value={formatComaSpanUm(result.spanUm)} t={theme} />
                 </div>
-                <div
-                  style={{ display: "flex", alignItems: "center", gap: 8 }}
-                  title="Signed right-minus-left outer ray delta, still measured relative to the chief ray."
-                >
-                  <span style={{ fontSize: 10, color: theme.label, letterSpacing: "0.1em", transition: "color 0.3s" }}>
-                    OUTER DELTA
-                  </span>
-                  <span
-                    style={{
-                      fontSize: 13,
-                      fontWeight: 600,
-                      color: theme.value,
-                      fontVariantNumeric: "tabular-nums",
-                      transition: "color 0.3s",
-                    }}
-                  >
-                    {formatComaSpanUm(result.signedOuterDeltaUm)}
-                  </span>
+                <div title="Signed right-minus-left outer ray delta, still measured relative to the chief ray.">
+                  <AberrationValueDisplay
+                    label="OUTER DELTA"
+                    value={formatComaSpanUm(result.signedOuterDeltaUm)}
+                    t={theme}
+                  />
                 </div>
-                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                  <span style={{ fontSize: 10, color: theme.label, letterSpacing: "0.1em", transition: "color 0.3s" }}>
-                    FIELD
-                  </span>
-                  <span
-                    style={{
-                      fontSize: 13,
-                      fontWeight: 600,
-                      color: theme.value,
-                      fontVariantNumeric: "tabular-nums",
-                      transition: "color 0.3s",
-                    }}
-                  >
-                    {formatField(result)}
-                  </span>
-                </div>
-                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                  <span style={{ fontSize: 10, color: theme.label, letterSpacing: "0.1em", transition: "color 0.3s" }}>
-                    VALID
-                  </span>
-                  <span
-                    style={{
-                      fontSize: 13,
-                      fontWeight: 600,
-                      color: theme.value,
-                      fontVariantNumeric: "tabular-nums",
-                      transition: "color 0.3s",
-                    }}
-                  >
-                    {result.validSampleCount}/{result.sampleCount}
-                  </span>
-                </div>
+                <AberrationValueDisplay label="FIELD" value={formatField(result)} t={theme} />
+                <AberrationValueDisplay
+                  label="VALID"
+                  value={`${result.validSampleCount}/${result.sampleCount}`}
+                  t={theme}
+                />
               </div>
             </>
           ) : (

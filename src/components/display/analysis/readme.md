@@ -66,7 +66,7 @@ flowchart LR
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
 | `AberrationsPanel.tsx` | React component module | src/components/display (5), src/types (2), package:react, src/optics/compat.ts, src/optics/optics.ts, +1 more | src/benchmarks, src/components/layout | default, AberrationsPanel |
-| `analysisUi.tsx` | React component module | package:react, src/types | src/components/display (11) | AnalysisMetricRow, AnalysisEmptyState |
+| `analysisUi.tsx` | React component module | package:react, src/types | src/components/display (16) | AnalysisMetricRow, AnalysisEmptyState, AberrationValueDisplay |
 | `AstigmatismPlot.tsx` | React component module | src/components/display, src/optics/aberrationAnalysis.ts, src/types | src/components/display | default, AstigmatismPlot |
 | `BokehPreviewContent.tsx` | React component module | src/components/display, src/optics/aberrationAnalysis.ts, src/types | src/components/display | default, BokehPreviewContent |
 | `BokehPreviewGrid.tsx` | React component module | src/optics/aberrationAnalysis.ts (2), package:react, src/types | src/components/display | default, BokehPreviewGrid |

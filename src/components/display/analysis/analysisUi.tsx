@@ -50,3 +50,29 @@ interface AnalysisEmptyStateProps {
 export function AnalysisEmptyState({ children, t }: AnalysisEmptyStateProps) {
   return <div style={{ color: t.muted, fontSize: 10, padding: 12, transition: "color 0.3s" }}>{children}</div>;
 }
+
+interface AberrationValueDisplayProps {
+  label: string;
+  value: ReactNode;
+  t: Theme;
+}
+
+/** Inline label/value pair used by aberration drawer sections. */
+export function AberrationValueDisplay({ label, value, t }: AberrationValueDisplayProps) {
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+      <span style={{ fontSize: 10, color: t.label, letterSpacing: "0.1em", transition: "color 0.3s" }}>{label}</span>
+      <span
+        style={{
+          fontSize: 13,
+          fontWeight: 600,
+          color: t.value,
+          fontVariantNumeric: "tabular-nums",
+          transition: "color 0.3s",
+        }}
+      >
+        {value}
+      </span>
+    </div>
+  );
+}
