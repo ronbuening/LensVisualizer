@@ -89,4 +89,18 @@ describe("useMediaQuery", () => {
     /* Old listener removed, new one added */
     expect(listeners.length).toBe(1);
   });
+
+  it("re-syncs matches when the query string changes", () => {
+    currentMatches = false;
+    const { result, rerender } = renderHook(({ q }: { q: string }) => useMediaQuery(q), {
+      initialProps: { q: "(min-width: 900px)" },
+    });
+    expect(result.current).toBe(false);
+
+    /* The new query matches immediately — no change event fires, so the
+       effect must read mql.matches itself instead of keeping the stale value */
+    currentMatches = true;
+    rerender({ q: "(min-width: 600px)" });
+    expect(result.current).toBe(true);
+  });
 });

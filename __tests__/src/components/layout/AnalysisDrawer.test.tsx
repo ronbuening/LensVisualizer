@@ -1,8 +1,9 @@
 // @vitest-environment jsdom
 
-import { afterEach, describe, it, expect, vi } from "vitest";
+import { afterEach, beforeEach, describe, it, expect, vi } from "vitest";
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import AnalysisDrawer, { type AnalysisTab } from "../../../../src/components/layout/AnalysisDrawer.js";
+import { installMatchMediaMock } from "../../../testUtils.js";
 import type { Theme } from "../../../../src/types/theme.js";
 
 const tabs: AnalysisTab[] = [
@@ -24,6 +25,10 @@ const theme = {
 } as unknown as Theme;
 
 describe("AnalysisDrawer", () => {
+  beforeEach(() => {
+    installMatchMediaMock();
+  });
+
   afterEach(() => {
     cleanup();
   });

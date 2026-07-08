@@ -99,7 +99,23 @@ export default function LocaInsetWidget({
   const yMagScale = insetY + insetH * 0.95;
 
   return (
-    <g onClick={onClick} style={onClick ? { cursor: "pointer" } : undefined}>
+    <g
+      onClick={onClick}
+      role={onClick ? "button" : undefined}
+      aria-label={onClick ? "Open chromatic aberration detail" : undefined}
+      tabIndex={onClick ? 0 : undefined}
+      onKeyDown={
+        onClick
+          ? (e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                onClick();
+              }
+            }
+          : undefined
+      }
+      style={onClick ? { cursor: "pointer" } : undefined}
+    >
       <rect
         x={insetX}
         y={insetY}

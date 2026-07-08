@@ -22,6 +22,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-07-07 ──────────────────────────────────────────────────────────
   {
     date: "2026-07-07",
+    type: "improvement",
+    summary: "Improved keyboard and screen-reader access to diagrams, overlays, and controls",
+  },
+  {
+    date: "2026-07-07",
     type: "lens",
     summary: "Added Nikon UV-Nikkor 55mm and 105mm plus Ultra-Micro-Nikkor 29.5mm",
   },

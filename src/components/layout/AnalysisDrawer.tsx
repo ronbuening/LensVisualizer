@@ -7,6 +7,7 @@
  */
 
 import { useEffect, useCallback, type ReactNode, type CSSProperties } from "react";
+import usePrefersReducedMotion from "../../utils/usePrefersReducedMotion.js";
 import type { Theme } from "../../types/theme.js";
 import type { AnalysisTabId } from "../../types/state.js";
 
@@ -36,6 +37,8 @@ export default function AnalysisDrawer({
   isWide,
   children,
 }: AnalysisDrawerProps) {
+  const reducedMotion = usePrefersReducedMotion();
+
   /* ── Escape key closes the drawer ── */
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
@@ -62,7 +65,7 @@ export default function AnalysisDrawer({
     border: `1px solid ${t.panelBorder}`,
     borderRadius: 8,
     boxShadow: "0 4px 24px rgba(0,0,0,0.25)",
-    transition: "transform 0.3s ease, opacity 0.3s ease",
+    transition: reducedMotion ? undefined : "transform 0.3s ease, opacity 0.3s ease",
     transform: open ? "translate(0, 0)" : isWide ? "translateX(-100%)" : "translateY(-100%)",
     opacity: open ? 1 : 0,
     pointerEvents: open ? "auto" : "none",

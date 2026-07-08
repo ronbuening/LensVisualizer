@@ -326,14 +326,27 @@ export default function SharedSlidersBar({
                     <span>B eff. f/{effectiveFNumB < 10 ? effectiveFNumB.toFixed(1) : Math.round(effectiveFNumB)}</span>
                   </div>
                 )}
-              <div
-                style={{ marginTop: 6, fontSize: 9, color: t.desc, cursor: "pointer", userSelect: "none" }}
+              <button
                 onClick={onToggleEffectiveAperture}
+                aria-pressed={showEffectiveAperture}
+                style={{
+                  marginTop: 6,
+                  fontSize: 9,
+                  color: t.desc,
+                  cursor: "pointer",
+                  userSelect: "none",
+                  background: "none",
+                  border: "none",
+                  padding: 0,
+                  fontFamily: "inherit",
+                  textAlign: "left",
+                  display: "block",
+                }}
               >
                 <span style={{ opacity: showEffectiveAperture ? 1 : 0.5 }}>
                   {showEffectiveAperture ? "\u2611" : "\u2610"} Show effective aperture
                 </span>
-              </div>
+              </button>
             </>
           }
         />

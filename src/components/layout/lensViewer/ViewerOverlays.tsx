@@ -77,19 +77,25 @@ export default function ViewerOverlays({
       />
 
       {showAboutSite && (
-        <OverlayModal onClose={onCloseAboutSite} theme={t}>
+        <OverlayModal onClose={onCloseAboutSite} theme={t} ariaLabel="About this site">
           <DescriptionPanel markdown={aboutSiteMarkdown} theme={t} />
         </OverlayModal>
       )}
 
       {showAbout && (
-        <OverlayModal onClose={onCloseAboutAuthor} theme={t}>
+        <OverlayModal onClose={onCloseAboutAuthor} theme={t} ariaLabel="About the author">
           <DescriptionPanel markdown={aboutAuthorMarkdown} theme={t} />
         </OverlayModal>
       )}
 
       {showOpticsPrimer && (
-        <OverlayModal onClose={onCloseOpticsPrimer} theme={t} maxWidth={isWide ? 640 : 480} scrollKey={primerLevel}>
+        <OverlayModal
+          onClose={onCloseOpticsPrimer}
+          theme={t}
+          maxWidth={isWide ? 640 : 480}
+          scrollKey={primerLevel}
+          ariaLabel="Optics primer"
+        >
           <DescriptionPanel
             markdown={primerLevel === "simple" ? opticsPrimerSimpleMarkdown : opticsPrimerIntermediateMarkdown}
             theme={t}
@@ -104,6 +110,7 @@ export default function ViewerOverlays({
           theme={t}
           maxWidth={isWide ? 640 : 480}
           scrollKey={aberrationsLevel}
+          ariaLabel="Aberrations primer"
         >
           <DescriptionPanel
             markdown={

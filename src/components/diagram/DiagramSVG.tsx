@@ -11,6 +11,7 @@
  * through from the parent LensDiagramPanel.
  */
 import { memo } from "react";
+import usePrefersReducedMotion from "../../utils/usePrefersReducedMotion.js";
 import DiagramDefs from "./DiagramDefs.js";
 import DiagramElementLayer from "./DiagramElementLayer.js";
 import DiagramGridAxisLayer from "./DiagramGridAxisLayer.js";
@@ -158,9 +159,26 @@ const DiagramSVG = memo(function DiagramSVG({
   isPanning,
 }: DiagramSVGProps) {
   const zoomCursor = zoomPanActive ? (isPanning ? "grabbing" : "grab") : undefined;
+  const reducedMotion = usePrefersReducedMotion();
+
+  /* ── Accessible name/description for the primary diagram ── */
+  const lensDisplayName = [L.data.maker, L.data.name].filter(Boolean).join(" ");
+  const ariaLabel = `Lens cross-section diagram of ${lensDisplayName}`;
+  const shownLayers = [
+    showOnAxis ? "on-axis rays" : null,
+    showOffAxis !== "off" ? "off-axis rays" : null,
+    showChromatic ? "chromatic rays" : null,
+    showPupils ? "pupil overlays" : null,
+    showCardinals ? "cardinal element markers" : null,
+  ].filter((layer): layer is string => layer !== null);
+  const description =
+    `Cross-section of the ${L.elements.length}-element ${lensDisplayName} with ray tracing` +
+    (shownLayers.length > 0 ? `, showing ${shownLayers.join(", ")}.` : "; all ray layers hidden.");
 
   return (
     <svg
+      role="img"
+      aria-label={ariaLabel}
       viewBox={viewBoxOverride ?? `0 0 ${L.svgW} ${L.svgH}`}
       width="100%"
       style={{
@@ -173,7 +191,7 @@ const DiagramSVG = memo(function DiagramSVG({
             : maxSvgHeight,
         minHeight: fillAvailableHeight ? 0 : compact ? 200 : 290,
         background: t.bg,
-        transition: "background 0.3s",
+        transition: reducedMotion ? undefined : "background 0.3s",
         cursor: zoomCursor,
         touchAction: zoomPanActive ? "none" : undefined,
       }}
@@ -186,6 +204,8 @@ const DiagramSVG = memo(function DiagramSVG({
       onTouchMove={zoomPanActive ? onSvgTouchMove : undefined}
       onTouchEnd={zoomPanActive ? onSvgTouchEnd : undefined}
     >
+      <title>{ariaLabel}</title>
+      <desc>{description}</desc>
       <DiagramDefs dark={dark} filterId={filterId} theme={t} />
       <DiagramGridAxisLayer lens={L} theme={t} CX={CX} effectiveSC={effectiveSC} sy={sy} />
       {lensAxis && (
