@@ -276,7 +276,12 @@ export default function LensDiagramLoadedState({
       </div>
 
       {overlays.showAbbeDiagram && (
-        <OverlayModal onClose={() => adapters.onGlassMapOpenChange(false)} theme={t} maxWidth={580}>
+        <OverlayModal
+          onClose={() => adapters.onGlassMapOpenChange(false)}
+          theme={t}
+          maxWidth={580}
+          ariaLabel="Glass map"
+        >
           <AbbeDiagram
             L={L}
             t={t}
@@ -291,7 +296,12 @@ export default function LensDiagramLoadedState({
           const targetInfo = L.elements.find((e) => e.id === overlays.asphCompareElementId);
           if (!targetInfo) return null;
           return (
-            <OverlayModal onClose={overlays.closeAsphCompare} theme={t} maxWidth={760}>
+            <OverlayModal
+              onClose={overlays.closeAsphCompare}
+              theme={t}
+              maxWidth={760}
+              ariaLabel="Aspheric surface comparison"
+            >
               <AsphericComparisonOverlay key={targetInfo.id} L={L} info={targetInfo} theme={t} />
             </OverlayModal>
           );

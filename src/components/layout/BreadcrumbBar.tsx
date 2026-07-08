@@ -12,6 +12,7 @@
 
 import { useCallback, useRef, useState } from "react";
 import { Link, useLocation } from "react-router";
+import usePrefersReducedMotion from "../../utils/usePrefersReducedMotion.js";
 import type { Theme } from "../../types/theme.js";
 import { headerStrip, topBarBtn, toggleGroup, toggleBtn } from "../../utils/style/styles.js";
 import { themeSlotDisplay } from "../../utils/theme/themeConstants.js";
@@ -77,6 +78,7 @@ function sourceFromSearch(search: string): BreadcrumbSource | null {
 
 export default function BreadcrumbBar({ theme: t, isWide, lensKey }: BreadcrumbBarProps) {
   const location = useLocation();
+  const reducedMotion = usePrefersReducedMotion();
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [settingsPos, setSettingsPos] = useState<DropdownPanelPos | null>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
@@ -230,7 +232,7 @@ export default function BreadcrumbBar({ theme: t, isWide, lensKey }: BreadcrumbB
             style={{
               display: "inline-block",
               transform: settingsOpen ? "rotate(180deg)" : "rotate(0deg)",
-              transition: "transform 0.2s",
+              transition: reducedMotion ? undefined : "transform 0.2s",
               fontSize: 10,
               lineHeight: 1,
             }}

@@ -38,6 +38,8 @@ const DiagramElementLayer = memo(function DiagramElementLayer({
       {shapes.map(({ eid, d: path, fillRule }) => {
         const element = L.elements.find((candidate) => candidate.id === eid)!;
         const highlighted = act === eid;
+        const selected = sel === eid;
+        const toggleSelect = (): void => onSelect(selected ? null : eid);
         return (
           <path
             key={eid}
@@ -46,6 +48,10 @@ const DiagramElementLayer = memo(function DiagramElementLayer({
             fillRule={fillRule}
             stroke={t.elemStroke(element, highlighted)}
             strokeWidth={highlighted ? t.elemStrokeActive : t.elemStrokeIdle}
+            role="button"
+            aria-label={`Select lens element ${element.name}`}
+            aria-pressed={selected}
+            tabIndex={zoomPanActive ? -1 : 0}
             style={{
               cursor: zoomPanActive ? undefined : "pointer",
               transition: "all 0.12s",
@@ -54,7 +60,19 @@ const DiagramElementLayer = memo(function DiagramElementLayer({
             }}
             onMouseEnter={zoomPanActive ? undefined : () => onHover(eid)}
             onMouseLeave={zoomPanActive ? undefined : () => onHover(null)}
-            onClick={zoomPanActive ? undefined : () => onSelect(sel === eid ? null : eid)}
+            onFocus={zoomPanActive ? undefined : () => onHover(eid)}
+            onBlur={zoomPanActive ? undefined : () => onHover(null)}
+            onClick={zoomPanActive ? undefined : toggleSelect}
+            onKeyDown={
+              zoomPanActive
+                ? undefined
+                : (e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      toggleSelect();
+                    }
+                  }
+            }
           />
         );
       })}
