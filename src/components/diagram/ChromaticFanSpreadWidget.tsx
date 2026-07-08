@@ -12,6 +12,7 @@ import {
   computeChromaticBarOffsets,
   REFERENCE_FAN_IMAGE_HEIGHT_SPREAD_MM,
 } from "../../optics/chromaticRayFanScaling.js";
+import { chromaticChannelColor } from "../display/analysis/chromaticChartUtils.js";
 import { ChromaticQualityBadge, chromaticQualityBadgeLabel } from "./ChromaticQualityBadge.js";
 
 function referenceHeight(imagePlaneHeights: Partial<Record<ChromaticChannel, number>>, fallback: number): number {
@@ -19,13 +20,6 @@ function referenceHeight(imagePlaneHeights: Partial<Record<ChromaticChannel, num
   const values = Object.values(imagePlaneHeights);
   if (values.length === 0) return fallback;
   return (Math.min(...values) + Math.max(...values)) / 2;
-}
-
-function channelColor(channel: ChromaticChannel, t: Theme): string {
-  if (channel === "R") return t.rayChromR;
-  if (channel === "G") return t.rayChromG;
-  if (channel === "B") return t.rayChromB;
-  return t.rayChromV;
 }
 
 function formatSpreadUm(mm: number): string {
@@ -118,7 +112,7 @@ export default function ChromaticFanSpreadWidget({
       <line x1={originX + 6} y1={yAxis} x2={originX + insetW - 6} y2={yAxis} stroke={t.axis} strokeWidth={0.5} />
       {activeChans.map((ch) => {
         const offset = barOffsets[ch] ?? 0;
-        const color = channelColor(ch, t);
+        const color = chromaticChannelColor(t, ch);
         return (
           <g key={ch}>
             <line
