@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 interface Colors {
   bg: string;
   border: string;
@@ -80,7 +82,7 @@ function Lens({ x, y1, y2, c }: { x: number; y1: number; y2: number; c: Colors }
   );
 }
 
-export default function TelecentricityDiagram({ isDark }: { isDark: boolean }) {
+const TelecentricityDiagram = memo(function TelecentricityDiagram({ isDark }: { isDark: boolean }) {
   const c = isDark ? DARK : LIGHT;
 
   const ray = { stroke: c.ray, strokeWidth: 1.3, fill: "none" } as const;
@@ -278,4 +280,6 @@ export default function TelecentricityDiagram({ isDark }: { isDark: boolean }) {
       </text>
     </svg>
   );
-}
+});
+
+export default TelecentricityDiagram;

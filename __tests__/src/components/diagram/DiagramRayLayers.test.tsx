@@ -3,6 +3,7 @@
 import { describe, it, expect } from "vitest";
 import { render } from "@testing-library/react";
 import DiagramRayLayers from "../../../../src/components/diagram/DiagramRayLayers.js";
+import type { RaySegment } from "../../../../src/components/diagram/diagramSvgTypes.js";
 import type { RuntimeLens } from "../../../../src/types/optics.js";
 import type { Theme } from "../../../../src/types/theme.js";
 
@@ -24,13 +25,18 @@ const mockTheme = {
   rayOffDash: "",
 } as unknown as Theme;
 
-const twoPointSeg = {
-  sp: [
-    [0, 0],
-    [100, 50],
-  ],
-  gp: [],
-};
+function pointsString(points: number[][]): string {
+  return points.map((point) => `${point[0]},${point[1]}`).join(" ");
+}
+
+function segment(sp: number[][], gp: number[][] = []): RaySegment {
+  return { sp, gp, spPoints: pointsString(sp), gpPoints: pointsString(gp) };
+}
+
+const twoPointSeg = segment([
+  [0, 0],
+  [100, 50],
+]);
 
 describe("DiagramRayLayers", () => {
   it("renders on-axis rays when showOnAxis is true", () => {

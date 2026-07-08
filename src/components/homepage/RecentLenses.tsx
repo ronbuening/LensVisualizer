@@ -10,16 +10,12 @@ import { Link } from "react-router";
 import type { Theme } from "../../types/theme.js";
 import type { RecentLensEntry } from "../../utils/catalog/lensSummaries.js";
 import { LENS_SUMMARIES } from "../../utils/catalog/lensSummaries.js";
+import { formatDisplayDate } from "../../utils/content/changelogHelpers.js";
 
 interface RecentLensesProps {
   entries: RecentLensEntry[];
   theme: Theme;
   showUpdatesLink?: boolean;
-}
-
-function formatDate(iso: string): string {
-  const d = new Date(iso + "T00:00:00");
-  return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
 }
 
 export default function RecentLenses({ entries, theme: t, showUpdatesLink }: RecentLensesProps) {
@@ -58,7 +54,7 @@ export default function RecentLenses({ entries, theme: t, showUpdatesLink }: Rec
             }}
           >
             <div style={{ fontSize: "0.875rem", fontWeight: 600, color: t.descLinkColor }}>{lens.name}</div>
-            <div style={{ fontSize: "0.7rem", color: t.label, margin: "0.2rem 0" }}>{formatDate(e.date)}</div>
+            <div style={{ fontSize: "0.7rem", color: t.label, margin: "0.2rem 0" }}>{formatDisplayDate(e.date)}</div>
             {lens.specs && lens.specs.length > 0 && (
               <div style={{ fontSize: "0.75rem", color: t.muted, marginBottom: "0.2rem" }}>
                 {lens.specs.slice(0, 3).join(" · ")}

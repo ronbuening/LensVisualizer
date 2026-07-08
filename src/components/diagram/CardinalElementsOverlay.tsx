@@ -1,3 +1,4 @@
+import { memo } from "react";
 import type { CardinalElements, CardinalDistance, CardinalPoint } from "../../optics/cardinalElements.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
@@ -96,7 +97,7 @@ function dimensionLine(distance: CardinalDistance, y: number, sx: (z: number) =>
   );
 }
 
-export default function CardinalElementsOverlay({
+const CardinalElementsOverlay = memo(function CardinalElementsOverlay({
   lens: L,
   theme: t,
   cardinals,
@@ -178,4 +179,6 @@ export default function CardinalElementsOverlay({
       ) : null}
     </g>
   );
-}
+});
+
+export default CardinalElementsOverlay;

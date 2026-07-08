@@ -6,6 +6,7 @@
  * Used inside PanelOverlay.
  */
 
+import { memo } from "react";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
 import { formatPetzvalRadius } from "../../optics/optics.js";
@@ -18,7 +19,7 @@ interface PetzvalOverlayContentProps {
 const SVG_W = 340;
 const SVG_H = 180;
 
-export default function PetzvalOverlayContent({ L, t }: PetzvalOverlayContentProps) {
+const PetzvalOverlayContent = memo(function PetzvalOverlayContent({ L, t }: PetzvalOverlayContentProps) {
   const P = L.petzvalSum;
   const sign = P >= 0 ? "+" : "\u2212";
   const pStr = `P = ${sign}${Math.abs(P).toFixed(4)} mm\u207b\u00b9`;
@@ -80,4 +81,6 @@ export default function PetzvalOverlayContent({ L, t }: PetzvalOverlayContentPro
       </p>
     </div>
   );
-}
+});
+
+export default PetzvalOverlayContent;

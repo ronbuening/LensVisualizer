@@ -10,6 +10,7 @@ import { halfFieldAtZoom } from "../../optics/optics.js";
 import { ENABLE_ASPH_DIAMOND_FILL, ENABLE_EDGE_PROJECTION } from "../../utils/featureFlags.js";
 import { collapseBtn } from "../../utils/style/styles.js";
 import CollapseButton from "../controls/CollapseButton.js";
+import { formatSpreadUmFromMm } from "./analysis/chromaticChartUtils.js";
 import type { RuntimeLens, ChromaticRayFanSpread, ChromaticRayFanSpreadByAxis } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
 import type { OffAxisMode } from "../../types/state.js";
@@ -58,9 +59,6 @@ export default function DiagramLegend({
   const axisSpreads = chromaticRayFanSpreads ?? { onAxis: chromaticRayFanSpread, offAxis: null };
   const activeChannelCount = [chromR, chromG, chromB, chromV].filter(Boolean).length;
   const hasMetricAxis = showOnAxis || showOffAxis !== "off";
-  const formatUm = (mm: number) =>
-    Math.abs(mm * 1000) >= 1 ? `${Math.abs(mm * 1000).toFixed(0)} µm` : `${Math.abs(mm * 1000).toFixed(1)} µm`;
-  const formatSpreadUm = (mm: number) => (mm !== 0 ? formatUm(mm) : "< 0.1 µm");
   return (
     <div style={{ padding: "6px 0" }}>
       <div
@@ -189,11 +187,11 @@ export default function DiagramLegend({
               const chromLabel = activeCh.length > 0 ? `Chromatic (${activeCh.join("/")})` : "Chromatic (none)";
               const summaryParts: string[] = [];
               if (showOnAxis && axisSpreads.onAxis) {
-                summaryParts.push(`LoCA ${formatSpreadUm(axisSpreads.onAxis.axialInterceptSpreadMm)}`);
+                summaryParts.push(`LoCA ${formatSpreadUmFromMm(axisSpreads.onAxis.axialInterceptSpreadMm)}`);
               }
               if (showOffAxis !== "off" && axisSpreads.offAxis) {
                 summaryParts.push(
-                  `off-axis fan spread ${formatSpreadUm(axisSpreads.offAxis.imagePlaneHeightSpreadMm)}`,
+                  `off-axis fan spread ${formatSpreadUmFromMm(axisSpreads.offAxis.imagePlaneHeightSpreadMm)}`,
                 );
               }
               const spreadSummary = summaryParts.length > 0 ? ` · ${summaryParts.join(" / ")}` : "";
@@ -244,7 +242,7 @@ export default function DiagramLegend({
                     }}
                   >
                     {axisSpreads.onAxis
-                      ? formatSpreadUm(axisSpreads.onAxis.axialInterceptSpreadMm)
+                      ? formatSpreadUmFromMm(axisSpreads.onAxis.axialInterceptSpreadMm)
                       : activeChannelCount >= 2
                         ? "unavailable"
                         : "need 2 channels"}
@@ -265,7 +263,7 @@ export default function DiagramLegend({
                     }}
                   >
                     {axisSpreads.offAxis
-                      ? formatSpreadUm(axisSpreads.offAxis.imagePlaneHeightSpreadMm)
+                      ? formatSpreadUmFromMm(axisSpreads.offAxis.imagePlaneHeightSpreadMm)
                       : activeChannelCount >= 2
                         ? "unavailable"
                         : "need 2 channels"}

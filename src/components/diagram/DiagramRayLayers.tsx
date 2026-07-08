@@ -5,7 +5,7 @@
  * hand off the current render state and not repeat three similar branches.
  */
 
-import { memo } from "react";
+import { memo, useCallback, useMemo } from "react";
 import RayPolylines from "./RayPolylines.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
@@ -33,19 +33,34 @@ const DiagramRayLayers = memo(function DiagramRayLayers({
   showOffAxis,
   showChromatic,
 }: DiagramRayLayersProps) {
-  const chromaticOnAxisRays = chromaticRays.filter((ray) => ray.axis === "onAxis");
-  const chromaticOffAxisRays = chromaticRays.filter((ray) => ray.axis === "offAxis");
-  const chromaticColor = (ray: ChromaticRaySegment | undefined) => {
-    const ch = ray?.channel;
-    return ch === "R" ? t.rayChromR : ch === "G" ? t.rayChromG : t.rayChromB;
-  };
+  const chromaticOnAxisRays = useMemo(() => chromaticRays.filter((ray) => ray.axis === "onAxis"), [chromaticRays]);
+  const chromaticOffAxisRays = useMemo(() => chromaticRays.filter((ray) => ray.axis === "offAxis"), [chromaticRays]);
+  const onAxisColor = useCallback((ri: number) => (ri < rays.length / 2 ? t.rayCool : t.rayWarm), [rays.length, t]);
+  const offAxisColor = useCallback(
+    (ri: number) => (ri < offAxisRays.length / 2 ? t.rayOffCool : t.rayOffWarm),
+    [offAxisRays.length, t],
+  );
+  const chromaticOnAxisColor = useCallback(
+    (ri: number) => {
+      const ch = chromaticOnAxisRays[ri]?.channel;
+      return ch === "R" ? t.rayChromR : ch === "G" ? t.rayChromG : t.rayChromB;
+    },
+    [chromaticOnAxisRays, t],
+  );
+  const chromaticOffAxisColor = useCallback(
+    (ri: number) => {
+      const ch = chromaticOffAxisRays[ri]?.channel;
+      return ch === "R" ? t.rayChromR : ch === "G" ? t.rayChromG : t.rayChromB;
+    },
+    [chromaticOffAxisRays, t],
+  );
 
   return (
     <>
       {showOnAxis && !showChromatic && (
         <RayPolylines
           rays={rays}
-          colorFn={(ri) => (ri < rays.length / 2 ? t.rayCool : t.rayWarm)}
+          colorFn={onAxisColor}
           solidWidth={1.2}
           rayWidthScale={t.rayWidthScale}
           keyPrefix="on"
@@ -55,7 +70,7 @@ const DiagramRayLayers = memo(function DiagramRayLayers({
       {showOffAxis !== "off" && !showChromatic && (
         <RayPolylines
           rays={offAxisRays}
-          colorFn={(ri) => (ri < offAxisRays.length / 2 ? t.rayOffCool : t.rayOffWarm)}
+          colorFn={offAxisColor}
           solidWidth={1.1}
           rayWidthScale={t.rayWidthScale}
           solidDash={t.rayOffDash || undefined}
@@ -66,7 +81,7 @@ const DiagramRayLayers = memo(function DiagramRayLayers({
       {showChromatic && showOnAxis && (
         <RayPolylines
           rays={chromaticOnAxisRays}
-          colorFn={(ri) => chromaticColor(chromaticOnAxisRays[ri])}
+          colorFn={chromaticOnAxisColor}
           solidWidth={1.0}
           rayWidthScale={t.rayWidthScale}
           keyPrefix="chrom-on"
@@ -76,7 +91,7 @@ const DiagramRayLayers = memo(function DiagramRayLayers({
       {showChromatic && showOffAxis !== "off" && (
         <RayPolylines
           rays={chromaticOffAxisRays}
-          colorFn={(ri) => chromaticColor(chromaticOffAxisRays[ri])}
+          colorFn={chromaticOffAxisColor}
           solidWidth={1.0}
           rayWidthScale={t.rayWidthScale}
           solidDash={t.rayOffDash || undefined}

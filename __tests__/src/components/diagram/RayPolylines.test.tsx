@@ -3,10 +3,19 @@
 import { describe, it, expect } from "vitest";
 import { render } from "@testing-library/react";
 import RayPolylines from "../../../../src/components/diagram/RayPolylines.js";
+import type { RaySegment } from "../../../../src/components/diagram/diagramSvgTypes.js";
 
 /* Wrap in an SVG since RayPolylines renders SVG elements */
 function renderInSvg(ui: React.ReactElement) {
   return render(<svg>{ui}</svg>);
+}
+
+function pointsString(points: number[][]): string {
+  return points.map((point) => `${point[0]},${point[1]}`).join(" ");
+}
+
+function segment(sp: number[][], gp: number[][] = []): RaySegment {
+  return { sp, gp, spPoints: pointsString(sp), gpPoints: pointsString(gp) };
 }
 
 describe("RayPolylines", () => {
@@ -19,21 +28,15 @@ describe("RayPolylines", () => {
 
   it("renders a solid polyline for each ray with >= 2 sp points", () => {
     const rays = [
-      {
-        sp: [
-          [0, 0],
-          [100, 50],
-          [200, 0],
-        ],
-        gp: [],
-      },
-      {
-        sp: [
-          [0, 10],
-          [100, 60],
-        ],
-        gp: [],
-      },
+      segment([
+        [0, 0],
+        [100, 50],
+        [200, 0],
+      ]),
+      segment([
+        [0, 10],
+        [100, 60],
+      ]),
     ];
     const { container } = renderInSvg(
       <RayPolylines rays={rays} colorFn={() => "#ff0000"} solidWidth={1.2} rayWidthScale={1} keyPrefix="on" />,
@@ -45,7 +48,7 @@ describe("RayPolylines", () => {
   });
 
   it("does not render a solid polyline for a ray with < 2 sp points", () => {
-    const rays = [{ sp: [[50, 25]], gp: [] }];
+    const rays = [segment([[50, 25]])];
     const { container } = renderInSvg(
       <RayPolylines rays={rays} colorFn={() => "red"} solidWidth={1} rayWidthScale={1} keyPrefix="t" />,
     );
@@ -54,17 +57,17 @@ describe("RayPolylines", () => {
 
   it("renders a ghost polyline when gp has >= 2 points", () => {
     const rays = [
-      {
-        sp: [
+      segment(
+        [
           [0, 0],
           [50, 10],
         ],
-        gp: [
+        [
           [50, 10],
           [100, 20],
           [150, 30],
         ],
-      },
+      ),
     ];
     const { container } = renderInSvg(
       <RayPolylines rays={rays} colorFn={() => "blue"} solidWidth={1.2} rayWidthScale={1} keyPrefix="g" />,
@@ -80,13 +83,13 @@ describe("RayPolylines", () => {
 
   it("does not render ghost polyline when gp has < 2 points", () => {
     const rays = [
-      {
-        sp: [
+      segment(
+        [
           [0, 0],
           [50, 10],
         ],
-        gp: [[50, 10]],
-      },
+        [[50, 10]],
+      ),
     ];
     const { container } = renderInSvg(
       <RayPolylines rays={rays} colorFn={() => "blue"} solidWidth={1} rayWidthScale={1} keyPrefix="t" />,
@@ -97,20 +100,14 @@ describe("RayPolylines", () => {
 
   it("applies colorFn per ray index", () => {
     const rays = [
-      {
-        sp: [
-          [0, 0],
-          [10, 5],
-        ],
-        gp: [],
-      },
-      {
-        sp: [
-          [0, 0],
-          [10, -5],
-        ],
-        gp: [],
-      },
+      segment([
+        [0, 0],
+        [10, 5],
+      ]),
+      segment([
+        [0, 0],
+        [10, -5],
+      ]),
     ];
     const colors = ["#aaa", "#bbb"];
     const { container } = renderInSvg(
@@ -123,13 +120,10 @@ describe("RayPolylines", () => {
 
   it("applies strokeWidth with rayWidthScale", () => {
     const rays = [
-      {
-        sp: [
-          [0, 0],
-          [10, 5],
-        ],
-        gp: [],
-      },
+      segment([
+        [0, 0],
+        [10, 5],
+      ]),
     ];
     const { container } = renderInSvg(
       <RayPolylines rays={rays} colorFn={() => "red"} solidWidth={2} rayWidthScale={1.5} keyPrefix="w" />,
@@ -140,13 +134,10 @@ describe("RayPolylines", () => {
 
   it("applies solidDash to solid polylines", () => {
     const rays = [
-      {
-        sp: [
-          [0, 0],
-          [10, 5],
-        ],
-        gp: [],
-      },
+      segment([
+        [0, 0],
+        [10, 5],
+      ]),
     ];
     const { container } = renderInSvg(
       <RayPolylines rays={rays} colorFn={() => "red"} solidWidth={1} rayWidthScale={1} solidDash="4,3" keyPrefix="d" />,
@@ -156,13 +147,10 @@ describe("RayPolylines", () => {
 
   it("uses 'none' stroke-dasharray by default", () => {
     const rays = [
-      {
-        sp: [
-          [0, 0],
-          [10, 5],
-        ],
-        gp: [],
-      },
+      segment([
+        [0, 0],
+        [10, 5],
+      ]),
     ];
     const { container } = renderInSvg(
       <RayPolylines rays={rays} colorFn={() => "red"} solidWidth={1} rayWidthScale={1} keyPrefix="n" />,

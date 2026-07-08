@@ -5,6 +5,7 @@
  * those passive reference marks stay easy to scan and easy to test.
  */
 
+import { memo } from "react";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
 
@@ -16,7 +17,13 @@ interface DiagramGridAxisLayerProps {
   sy: (y: number) => number;
 }
 
-export default function DiagramGridAxisLayer({ lens: L, theme: t, CX, effectiveSC, sy }: DiagramGridAxisLayerProps) {
+const DiagramGridAxisLayer = memo(function DiagramGridAxisLayer({
+  lens: L,
+  theme: t,
+  CX,
+  effectiveSC,
+  sy,
+}: DiagramGridAxisLayerProps) {
   return (
     <>
       {Array.from({ length: L.gridCount }, (_, i) => {
@@ -38,4 +45,6 @@ export default function DiagramGridAxisLayer({ lens: L, theme: t, CX, effectiveS
       <line x1={8} y1={sy(0)} x2={L.svgW - 8} y2={sy(0)} stroke={t.axis} strokeWidth={0.5} strokeDasharray="6,4" />
     </>
   );
-}
+});
+
+export default DiagramGridAxisLayer;

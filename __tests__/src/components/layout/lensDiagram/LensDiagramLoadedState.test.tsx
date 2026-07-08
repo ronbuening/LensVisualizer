@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
-import { createRef, type ReactNode } from "react";
+import { createRef, type ReactNode, type RefObject } from "react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import LensDiagramLoadedState from "../../../../../src/components/layout/lensDiagram/LensDiagramLoadedState.js";
 import themes from "../../../../../src/utils/theme/themes.js";
@@ -82,7 +82,7 @@ function baseProps(overrides: Partial<LensDiagramLoadedStateProps> = {}): LensDi
   };
 
   return {
-    panelContainerRef: createRef<HTMLDivElement>(),
+    panelContainerRef: createRef<HTMLDivElement>() as RefObject<HTMLDivElement>,
     computed: {
       L: lens,
       focusT: 0,

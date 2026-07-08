@@ -5,6 +5,7 @@
  * reference. The chart matches the LoCA inset visual language, but it plots
  * the displayed marginal fan's endpoint spread instead of chief-ray TCA.
  */
+import { memo } from "react";
 import type { ChromaticRayFanSpread, ChromaticChannel } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
 import type { DispersionQuality } from "../../optics/dispersion.js";
@@ -12,6 +13,7 @@ import {
   computeChromaticBarOffsets,
   REFERENCE_FAN_IMAGE_HEIGHT_SPREAD_MM,
 } from "../../optics/chromaticRayFanScaling.js";
+import { chromaticChannelColor, formatSpreadUmFromMm } from "../display/analysis/chromaticChartUtils.js";
 import { ChromaticQualityBadge, chromaticQualityBadgeLabel } from "./ChromaticQualityBadge.js";
 
 function referenceHeight(imagePlaneHeights: Partial<Record<ChromaticChannel, number>>, fallback: number): number {
@@ -19,19 +21,6 @@ function referenceHeight(imagePlaneHeights: Partial<Record<ChromaticChannel, num
   const values = Object.values(imagePlaneHeights);
   if (values.length === 0) return fallback;
   return (Math.min(...values) + Math.max(...values)) / 2;
-}
-
-function channelColor(channel: ChromaticChannel, t: Theme): string {
-  if (channel === "R") return t.rayChromR;
-  if (channel === "G") return t.rayChromG;
-  if (channel === "B") return t.rayChromB;
-  return t.rayChromV;
-}
-
-function formatSpreadUm(mm: number): string {
-  const um = Math.abs(mm * 1000);
-  if (um === 0) return "< 0.1 \u00b5m";
-  return um >= 1 ? `${um.toFixed(0)} \u00b5m` : `${um.toFixed(1)} \u00b5m`;
 }
 
 interface ChromaticFanSpreadWidgetProps {
@@ -46,7 +35,7 @@ interface ChromaticFanSpreadWidgetProps {
   dispersionQuality?: DispersionQuality;
 }
 
-export default function ChromaticFanSpreadWidget({
+const ChromaticFanSpreadWidget = memo(function ChromaticFanSpreadWidget({
   chromaticRayFanSpread,
   effectiveSC,
   t,
@@ -118,7 +107,7 @@ export default function ChromaticFanSpreadWidget({
       <line x1={originX + 6} y1={yAxis} x2={originX + insetW - 6} y2={yAxis} stroke={t.axis} strokeWidth={0.5} />
       {activeChans.map((ch) => {
         const offset = barOffsets[ch] ?? 0;
-        const color = channelColor(ch, t);
+        const color = chromaticChannelColor(t, ch);
         return (
           <g key={ch}>
             <line
@@ -153,7 +142,7 @@ export default function ChromaticFanSpreadWidget({
         fontFamily="inherit"
         fontWeight={600}
       >
-        {formatSpreadUm(chromaticRayFanSpread.imagePlaneHeightSpreadMm)}
+        {formatSpreadUmFromMm(chromaticRayFanSpread.imagePlaneHeightSpreadMm)}
       </text>
       <text x={midX} y={yMagScale} textAnchor="middle" fill={t.muted} fontSize={fs(7.5)} fontFamily="inherit">
         {Math.round(mag)}
@@ -161,4 +150,6 @@ export default function ChromaticFanSpreadWidget({
       </text>
     </g>
   );
-}
+});
+
+export default ChromaticFanSpreadWidget;

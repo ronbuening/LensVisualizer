@@ -10,6 +10,8 @@ import type { ChromaticChannel } from "../../types/optics.js";
 export interface RaySegment {
   sp: number[][];
   gp: number[][];
+  spPoints: string;
+  gpPoints: string;
 }
 
 export interface ChromaticRaySegment extends RaySegment {

@@ -25,7 +25,7 @@ export default function useHeaderHeight({
   lensKey,
   onHeaderHeight,
 }: UseHeaderHeightParams): UseHeaderHeightResult {
-  const headerRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null) as RefObject<HTMLDivElement>;
   const [headerHeight, setHeaderHeight] = useState(80);
 
   useLayoutEffect(() => {

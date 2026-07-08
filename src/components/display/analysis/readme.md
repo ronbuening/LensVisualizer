@@ -66,12 +66,12 @@ flowchart LR
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
 | `AberrationsPanel.tsx` | React component module | src/components/display (5), src/types (2), package:react, src/optics/compat.ts, src/optics/optics.ts, +1 more | src/benchmarks, src/components/layout | default, AberrationsPanel |
-| `analysisUi.tsx` | React component module | package:react, src/types | src/components/display (11) | AnalysisMetricRow, AnalysisEmptyState |
+| `analysisUi.tsx` | React component module | package:react, src/types | src/components/display (16) | AnalysisMetricRow, AnalysisEmptyState, AberrationValueDisplay |
 | `AstigmatismPlot.tsx` | React component module | src/components/display, src/optics/aberrationAnalysis.ts, src/types | src/components/display | default, AstigmatismPlot |
 | `BokehPreviewContent.tsx` | React component module | src/components/display, src/optics/aberrationAnalysis.ts, src/types | src/components/display | default, BokehPreviewContent |
 | `BokehPreviewGrid.tsx` | React component module | src/optics/aberrationAnalysis.ts (2), package:react, src/types | src/components/display | default, BokehPreviewGrid |
 | `BokehTab.tsx` | React component module | src/components/display (3), src/types (2), src/optics/compat.ts, src/optics/types.ts | src/components/layout | default, BokehTab |
-| `chromaticChartUtils.ts` | Chromatic Chart Utils helper module | src/types (2), src/optics/chromatic | src/components/display (4) | chromaticChannelColor, chromaticChannelLegendLabel, formatSignedUm, formatUmMagnitude |
+| `chromaticChartUtils.ts` | Chromatic Chart Utils helper module | src/types (2), src/optics/chromatic | src/components/display (5), src/components/diagram (2) | chromaticChannelColor, chromaticChannelLegendLabel, formatSignedUm, formatUmMagnitude, formatSpreadUmFromMm |
 | `ChromaticFieldCurvaturePlot.tsx` | React component module | src/components/display (2), src/types (2), src/optics/aberrationAnalysis.ts, src/optics/chromatic | src/components/display (2) | default, ChromaticFieldCurvaturePlot |
 | `ChromaticTab.tsx` | React component module | src/components/display (6), src/optics/compat.ts (2), src/types (2), package:react, src/optics/chromatic, +3 more | src/components/layout | default, ChromaticTab |
 | `ComaPreviewGrid.tsx` | React component module | package:react, src/optics/aberrationAnalysis.ts, src/types | src/components/display | default, ComaPreviewGrid |
@@ -84,14 +84,13 @@ flowchart LR
 | `FocusBreathingTab.tsx` | React component module | src/types (2), package:react, src/optics/optics.ts | src/components/layout | default, FocusBreathingTab |
 | `LateralColorChart.tsx` | React component module | src/components/display (4), src/types (2), src/optics/compat.ts | src/components/display | default, LateralColorChart |
 | `LongitudinalChromaticFocusChart.tsx` | React component module | src/components/display (4), src/optics/compat.ts, src/types | src/components/display | default, LongitudinalChromaticFocusChart |
-| `MeridionalComaPlot.tsx` | React component module | src/components/display, src/optics/aberrationAnalysis.ts, src/types | src/components/display (2) | formatComaSpan, default, MeridionalComaPlot |
+| `MeridionalComaPlot.tsx` | React component module | src/components/display, src/optics/aberrationAnalysis.ts, src/types | src/components/display (2) | default, MeridionalComaPlot |
 | `OpticalSummaryTab.tsx` | React component module | src/components/display (2), src/optics/compat.ts (2), src/types (2), package:react, src/optics/optics.ts, +1 more | src/components/layout | default, OpticalSummaryTab |
 | `PupilAberrationChart.tsx` | React component module | src/components/display (3), src/optics/pupilAberration.ts, src/types | src/components/display | default, PupilAberrationChart |
 | `PupilAberrationTab.tsx` | React component module | src/components/display (3), src/optics/compat.ts (2), src/types (2), package:react, src/optics/optics.ts, +1 more | src/components/layout | default, PupilAberrationTab |
-| `SagittalComaPlot.tsx` | React component module | src/components/display, src/optics/aberrationAnalysis.ts, src/types | src/components/display | formatSagittalComaSpan, default, SagittalComaPlot |
+| `SagittalComaPlot.tsx` | React component module | src/components/display, src/optics/aberrationAnalysis.ts, src/types | src/components/display | default, SagittalComaPlot |
 | `StandardFieldCurvaturePlot.tsx` | React component module | src/components/display, src/optics/aberrationAnalysis.ts, src/types | src/components/display | default, StandardFieldCurvaturePlot |
 | `useBokehPreviewData.ts` | React hook module | src/optics/compat.ts (2), package:react, src/optics/types.ts, src/utils/perfProbe.ts | src/components/display | default, useBokehPreviewData |
 | `usePreparedAnalysisState.ts` | React hook module | package:react, src/optics/compat.ts, src/optics/types.ts, src/types | src/components/display (6), src/components/layout | default, usePreparedAnalysisState |
 | `VignettingChart.tsx` | React component module | src/components/display (3), src/optics/vignetteAnalysis.ts, src/types | src/components/display | default, VignettingChart |
 | `VignettingTab.tsx` | React component module | src/components/display (3), src/optics/compat.ts (2), src/types (2), package:react, src/optics/optics.ts, +2 more | src/components/layout | default, VignettingTab |
-

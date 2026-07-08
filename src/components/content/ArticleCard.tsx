@@ -6,16 +6,12 @@
 
 import { Link } from "react-router";
 import type { Theme } from "../../types/theme.js";
+import { formatDisplayDate } from "../../utils/content/changelogHelpers.js";
 import type { HomepageArticle } from "../../utils/content/homepageContent.js";
 
 interface ArticleCardProps {
   article: HomepageArticle;
   theme: Theme;
-}
-
-function formatDate(iso: string): string {
-  const d = new Date(iso + "T00:00:00");
-  return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
 }
 
 const TAG_COLORS: Record<string, string> = {
@@ -58,7 +54,9 @@ export default function ArticleCard({ article, theme: t }: ArticleCardProps) {
           </span>
         )}
       </div>
-      <div style={{ fontSize: "0.7rem", color: t.label, marginBottom: "0.3rem" }}>{formatDate(article.date)}</div>
+      <div style={{ fontSize: "0.7rem", color: t.label, marginBottom: "0.3rem" }}>
+        {formatDisplayDate(article.date)}
+      </div>
       <div style={{ fontSize: "0.8rem", color: t.muted, lineHeight: 1.5 }}>{article.summary}</div>
     </Link>
   );

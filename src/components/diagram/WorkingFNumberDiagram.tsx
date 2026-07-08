@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 interface Colors {
   bg: string;
   border: string;
@@ -97,7 +99,7 @@ function Lens({ x, c }: { x: number; c: Colors }) {
   );
 }
 
-export default function WorkingFNumberDiagram({ isDark }: { isDark: boolean }) {
+const WorkingFNumberDiagram = memo(function WorkingFNumberDiagram({ isDark }: { isDark: boolean }) {
   const c = isDark ? DARK : LIGHT;
 
   return (
@@ -248,4 +250,6 @@ export default function WorkingFNumberDiagram({ isDark }: { isDark: boolean }) {
       </text>
     </svg>
   );
-}
+});
+
+export default WorkingFNumberDiagram;

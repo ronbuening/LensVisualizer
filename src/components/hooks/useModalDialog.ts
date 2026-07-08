@@ -23,7 +23,7 @@ const FOCUSABLE_SELECTOR = [
 ].join(", ");
 
 export default function useModalDialog(onClose: () => void): RefObject<HTMLDivElement> {
-  const panelRef = useRef<HTMLDivElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null) as RefObject<HTMLDivElement>;
   /* Keep the latest onClose without re-running the mount effect (callers pass inline arrows) */
   const onCloseRef = useRef(onClose);
   onCloseRef.current = onClose;

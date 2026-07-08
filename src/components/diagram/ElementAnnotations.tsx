@@ -2,6 +2,7 @@
  * ElementAnnotations — Element number labels, Abbe νd badges, group labels,
  * and doublet labels rendered in the SVG diagram.
  */
+import { memo } from "react";
 import type { RuntimeLens, ElementShape } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
 
@@ -17,7 +18,7 @@ interface ElementAnnotationsProps {
   showChromatic: boolean;
 }
 
-export default function ElementAnnotations({
+const ElementAnnotations = memo(function ElementAnnotations({
   L,
   t,
   shapes,
@@ -113,4 +114,6 @@ export default function ElementAnnotations({
       })}
     </>
   );
-}
+});
+
+export default ElementAnnotations;

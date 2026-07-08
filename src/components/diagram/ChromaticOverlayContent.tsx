@@ -5,11 +5,13 @@
  * Used inside PanelOverlay.
  */
 
+import { memo } from "react";
 import type { CSSProperties } from "react";
 import type { ChromaticRayFanSpread, ChromaticRayFanSpreadByAxis } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
 import type { DispersionQuality } from "../../optics/dispersion.js";
 import { CHROMATIC_CHANNEL_METADATA } from "../../optics/chromatic/channels.js";
+import { formatSpreadUmFromMm } from "../display/analysis/chromaticChartUtils.js";
 import LocaInsetWidget from "./LocaInsetWidget.js";
 import ChromaticFanSpreadWidget from "./ChromaticFanSpreadWidget.js";
 
@@ -36,17 +38,9 @@ const PANEL_TITLE_STYLE: CSSProperties = {
   textAlign: "center",
   marginBottom: 8,
 };
+const overlayCenterY = (): number => SINGLE_SVG_H / 2;
 
-function formatUm(mm: number): string {
-  if (Math.abs(mm * 1000) >= 1) return `${Math.abs(mm * 1000).toFixed(0)} µm`;
-  return `${Math.abs(mm * 1000).toFixed(1)} µm`;
-}
-
-function formatSpreadUm(mm: number): string {
-  return mm !== 0 ? formatUm(mm) : "< 0.1 µm";
-}
-
-export default function ChromaticOverlayContent({
+const ChromaticOverlayContent = memo(function ChromaticOverlayContent({
   chromaticRayFanSpread,
   chromaticRayFanSpreads,
   effectiveSC,
@@ -82,7 +76,7 @@ export default function ChromaticOverlayContent({
                 IMG_MM={IMG_MM}
                 IX={0}
                 svgW={svgW}
-                sy={() => svgH / 2}
+                sy={overlayCenterY}
                 t={t}
                 width={svgW - MARGIN * 2}
                 height={svgH - MARGIN * 2}
@@ -139,10 +133,10 @@ export default function ChromaticOverlayContent({
           }}
         >
           {chromaticRayFanSpreads?.onAxis && (
-            <span>LoCA / AXIAL COLOR {formatSpreadUm(chromaticRayFanSpreads.onAxis.axialInterceptSpreadMm)}</span>
+            <span>LoCA / AXIAL COLOR {formatSpreadUmFromMm(chromaticRayFanSpreads.onAxis.axialInterceptSpreadMm)}</span>
           )}
           {chromaticRayFanSpreads?.offAxis && (
-            <span>OFF-AXIS FAN {formatSpreadUm(chromaticRayFanSpreads.offAxis.imagePlaneHeightSpreadMm)}</span>
+            <span>OFF-AXIS FAN {formatSpreadUmFromMm(chromaticRayFanSpreads.offAxis.imagePlaneHeightSpreadMm)}</span>
           )}
         </div>
       )}
@@ -166,4 +160,6 @@ export default function ChromaticOverlayContent({
       </p>
     </div>
   );
-}
+});
+
+export default ChromaticOverlayContent;

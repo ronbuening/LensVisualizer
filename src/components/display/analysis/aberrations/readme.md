@@ -83,7 +83,7 @@ flowchart LR
 | `AstigmatismSection.tsx` | React component module | src/components/display (3), src/optics/aberrationAnalysis.ts, src/types | src/benchmarks, src/components/display | default, AstigmatismSection |
 | `ComaPreviewSection.tsx` | React component module | src/components/display (3), src/optics/aberrationAnalysis.ts, src/types | src/benchmarks, src/components/display | default, ComaPreviewSection |
 | `FieldCurvatureSection.tsx` | React component module | src/components/display (5), src/optics/aberrationAnalysis.ts, src/types | src/benchmarks, src/components/display | default, FieldCurvatureSection |
-| `format.ts` | Format helper module | none | src/components/display (4) | formatSaUm, formatSignedSaUm, formatSignedUm, formatSignedMm |
+| `format.ts` | Format helper module | none | src/components/display (4) | formatSaUm, formatSignedSaUm, formatSignedUm, formatComaSpanUm, formatSignedMm |
 | `MeridionalComaSection.tsx` | React component module | src/components/display (2), src/optics/aberrationAnalysis.ts, src/types | src/benchmarks, src/components/display | default, MeridionalComaSection |
 | `SADiagram.tsx` | React component module | src/components/display, src/optics/aberrationAnalysis.ts, src/types | src/components/display | default, SADiagram |
 | `SagittalComaSection.tsx` | React component module | src/components/display (2), src/optics/aberrationAnalysis.ts, src/types | src/benchmarks, src/components/display | default, SagittalComaSection |
@@ -92,4 +92,3 @@ flowchart LR
 | `useComaData.ts` | React hook module | src/optics/compat.ts (2), package:react, src/optics/aberrationAnalysis.ts, src/optics/optics.ts, src/optics/types.ts, +2 more | src/components/display | default, useComaData |
 | `useFieldCurvatureData.ts` | React hook module | src/optics/compat.ts (2), package:react, src/optics/aberrationAnalysis.ts, src/optics/optics.ts, src/optics/types.ts, +1 more | src/components/display | default, useFieldCurvatureData |
 | `useSphericalAberrationData.ts` | React hook module | src/optics/compat.ts (2), package:react, src/optics/aberrationAnalysis.ts, src/optics/types.ts, src/types, +1 more | src/components/display | default, useSphericalAberrationData |
-

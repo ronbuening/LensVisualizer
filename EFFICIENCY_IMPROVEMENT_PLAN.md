@@ -30,7 +30,7 @@ Status legend: `[ ]` open · `[x]` done · `[-]` rejected (keep the entry, note 
 
 ### E1. Deduplicate the chromatic channel color helper
 
-- [ ] Effort: ~15 min · Risk: low
+- [x] Effort: ~15 min · Risk: low
 
 Two byte-equivalent implementations exist. The local one:
 
@@ -64,7 +64,7 @@ imports/calls); gate passes.
 
 ### E2. Deduplicate date formatting — three private copies of an exported helper
 
-- [ ] Effort: ~20 min · Risk: low
+- [x] Effort: ~20 min · Risk: low
 
 `src/utils/content/changelogHelpers.ts:19` already exports the exact function:
 
@@ -88,7 +88,7 @@ Acceptance: `grep -rn "function formatDate" src` returns nothing; gate passes.
 
 ### E3. Merge the two identical coma-span formatters
 
-- [ ] Effort: ~30 min · Risk: low
+- [x] Effort: ~30 min · Risk: low
 
 `formatComaSpan` (`src/components/display/analysis/MeridionalComaPlot.tsx:29`) and
 `formatSagittalComaSpan` (`src/components/display/analysis/SagittalComaPlot.tsx:28`) are identical:
@@ -123,7 +123,7 @@ Acceptance: `grep -rn "formatSagittalComaSpan\|formatComaSpan" src __tests__` sh
 
 ### E4. Consolidate the three mm→µm spread formatters
 
-- [ ] Effort: ~45 min · Risk: low
+- [x] Effort: ~45 min · Risk: low
 
 Three implementations of "format a millimeter value as a µm string, with a `< 0.1 µm` floor".
 They are behaviorally equivalent (all three special-case exactly `mm === 0`, since
@@ -173,7 +173,7 @@ passes.
 
 ### E5. Extract the repeated label/value display block in aberration sections
 
-- [ ] Effort: 1–2 h · Risk: low
+- [x] Effort: 1–2 h · Risk: low
 
 The pattern "10px letter-spaced label + 13px 600-weight tabular-nums value in a flex row" is
 hand-copied ~20 times across `src/components/display/analysis/aberrations/`
@@ -222,6 +222,15 @@ Steps:
 2. Convert one file per commit. After each file: visual check in `npm run dev` (Aberrations tab,
    dark theme is enough) and run that file's tests.
 
+Converted exact rows in `MeridionalComaSection.tsx`, `SagittalComaSection.tsx`,
+`ComaPreviewSection.tsx`, `FieldCurvatureSection.tsx`, and `AstigmatismSection.tsx` on
+2026-07-08. Left variants:
+- `ComaPreviewSection.tsx` `OUTER TAIL`: value text is non-tabular descriptive text.
+- `SphericalAberrationSection.tsx` `FRONT / REAR BLUR`: multiple value spans, mixed colors, and
+  extra note text.
+- `SphericalAberrationSection.tsx` `BEST-FOCUS SPREAD`: `gap: 10` layout plus trailing note text.
+- `SphericalAberrationSection.tsx` `LSA`: `gap: 10` layout, so it is not byte-matching.
+
 Acceptance: converted files render identically; each replaced block is gone; gate passes.
 
 ### E6. Confirmed non-issues — do NOT "fix" these (audited 2026-07-06)
@@ -256,7 +265,7 @@ Context established by the audit:
 
 ### P1. Make `RayPolylines` memoizable and stabilize the props it receives
 
-- [ ] Effort: ~45 min · Risk: low · Expected impact: high
+- [x] Effort: ~45 min · Risk: low · Expected impact: high
 
 Facts (verified): `RayPolylines` (`src/components/diagram/RayPolylines.tsx`) is a plain function
 component — NOT wrapped in `memo`. Its parent `DiagramRayLayers`
@@ -300,7 +309,7 @@ Acceptance: benchmark run before/after committed; render-count check performed; 
 
 ### P2. Memoize pure diagram SVG components — with prop-stability verification
 
-- [ ] Effort: ~2 h in batches · Risk: low-medium · Expected impact: medium-high
+- [x] Effort: ~2 h in batches · Risk: low-medium · Expected impact: medium-high
 
 Unmemoized components in `src/components/diagram/` (census 2026-07-06): `ApertureStop`,
 `CardinalElementsOverlay`, `ChromaticFanSpreadWidget`, `ChromaticOverlayContent`, `DiagramDefs`,
@@ -384,7 +393,7 @@ memoization is deferred work, not a non-issue.
 
 ### P3. Precompute SVG polyline point strings once per compiled ray
 
-- [ ] Effort: ~45 min · Risk: low · Expected impact: medium
+- [x] Effort: ~45 min · Risk: low · Expected impact: medium
 
 `RayPolylines.tsx` rebuilds the `points` attribute for every ray on every render:
 
@@ -420,7 +429,7 @@ gate passes.
 
 ### P4. Replace O(shapes × elements) lookup with a Map in `DiagramElementLayer`
 
-- [ ] Effort: ~15 min · Risk: low · Expected impact: low-medium
+- [x] Effort: ~15 min · Risk: low · Expected impact: low-medium
 
 `src/components/diagram/DiagramElementLayer.tsx:39` (inside `shapes.map`):
 

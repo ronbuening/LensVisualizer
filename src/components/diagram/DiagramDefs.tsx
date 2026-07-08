@@ -5,6 +5,7 @@
  * so the parent component can focus on render-order orchestration.
  */
 
+import { memo } from "react";
 import { ENABLE_ASPH_DIAMOND_FILL } from "../../utils/featureFlags.js";
 import type { Theme } from "../../types/theme.js";
 
@@ -14,7 +15,7 @@ interface DiagramDefsProps {
   theme: Theme;
 }
 
-export default function DiagramDefs({ dark, filterId, theme: t }: DiagramDefsProps) {
+const DiagramDefs = memo(function DiagramDefs({ dark, filterId, theme: t }: DiagramDefsProps) {
   return (
     <defs>
       {dark ? (
@@ -43,4 +44,6 @@ export default function DiagramDefs({ dark, filterId, theme: t }: DiagramDefsPro
       )}
     </defs>
   );
-}
+});
+
+export default DiagramDefs;

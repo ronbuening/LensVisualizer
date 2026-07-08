@@ -8,6 +8,10 @@
 import type { RaySegment } from "./useOnAxisRays.js";
 import type { ChromaticChannel } from "../../types/optics.js";
 
+function polylinePoints(points: number[][]): string {
+  return points.map((point) => `${point[0]},${point[1]}`).join(" ");
+}
+
 /**
  * Compile traced ray points into a RaySegment with solid (sp) and ghost (gp) polylines.
  *
@@ -54,7 +58,9 @@ export function compileRaySegment(
     }
   }
 
-  return { sp, gp };
+  const spPoints = polylinePoints(sp);
+  const gpPoints = polylinePoints(gp);
+  return { sp, gp, spPoints, gpPoints };
 }
 
 /**

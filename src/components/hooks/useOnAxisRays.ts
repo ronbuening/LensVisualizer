@@ -17,6 +17,8 @@ import { compileRaySegment } from "./raySegmentUtils.js";
 export interface RaySegment {
   sp: number[][];
   gp: number[][];
+  spPoints: string;
+  gpPoints: string;
 }
 
 interface UseOnAxisRaysParams {

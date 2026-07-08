@@ -3,6 +3,8 @@
 // Right panel: apochromat — three wavelength crossings (C, d, F), much smaller residual.
 // Not computed from a specific prescription; positions are representative.
 
+import { memo } from "react";
+
 interface Colors {
   bg: string;
   border: string;
@@ -69,7 +71,7 @@ const WY = {
 const ACH_CX = 158; // achromat panel
 const APO_CX = 482; // apochromat panel
 
-export default function LocaDiagram({ isDark }: { isDark: boolean }) {
+const LocaDiagram = memo(function LocaDiagram({ isDark }: { isDark: boolean }) {
   const c = isDark ? DARK : LIGHT;
 
   // Reference horizontal lines for each wavelength across both panels
@@ -306,4 +308,6 @@ export default function LocaDiagram({ isDark }: { isDark: boolean }) {
       </defs>
     </svg>
   );
-}
+});
+
+export default LocaDiagram;
