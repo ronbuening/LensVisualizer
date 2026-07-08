@@ -5,6 +5,7 @@
 import { Component } from "react";
 import type { ReactNode, ErrorInfo } from "react";
 import { ErrorDisplay } from "./ErrorBoundary.js";
+import { reportErrorBeacon } from "../../utils/errorBeacon.js";
 
 interface PanelErrorBoundaryProps {
   lensKey: string;
@@ -27,6 +28,7 @@ export default class PanelErrorBoundary extends Component<PanelErrorBoundaryProp
   componentDidCatch(error: Error, info: ErrorInfo): void {
     const stack = info?.componentStack || null;
     console.error(`[LensDiagramPanel] Render error for lens "${this.props.lensKey}":`, error, stack);
+    reportErrorBeacon("lens-diagram-panel", error, this.props.lensKey);
     this.setState({ componentStack: stack });
   }
   componentDidUpdate(prevProps: PanelErrorBoundaryProps): void {

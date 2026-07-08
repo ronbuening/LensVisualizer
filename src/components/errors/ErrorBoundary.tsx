@@ -17,6 +17,7 @@
 import { Component } from "react";
 import type { ReactNode, ErrorInfo, CSSProperties } from "react";
 import { buildIssueURL, REPO_URL } from "../../utils/errorReporting.js";
+import { reportErrorBeacon } from "../../utils/errorBeacon.js";
 
 interface ErrorDisplayProps {
   error: Error | null;
@@ -191,6 +192,7 @@ export default class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBo
    * component stack trace (which component tree led to the error). */
   componentDidCatch(error: Error, info: ErrorInfo): void {
     console.error("[LensVisualizer] Uncaught render error:", error, info?.componentStack);
+    reportErrorBeacon("error-boundary", error);
     this.setState({ componentStack: info?.componentStack || null });
   }
 
