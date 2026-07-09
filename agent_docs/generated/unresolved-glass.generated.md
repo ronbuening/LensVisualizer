@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **424** lenses scanned
-- **4661** non-air surfaces examined
-- **4665** element glass declarations examined
-- **619** non-explicit-unmatched annotations did not resolve
-- **272** distinct unresolved glass-like tokens found
+- **428** lenses scanned
+- **4696** non-air surfaces examined
+- **4699** element glass declarations examined
+- **615** non-explicit-unmatched annotations did not resolve
+- **273** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -124,6 +124,7 @@ or per-lens patent backfills.
 | 670393 | 1 | 1 | |
 | 670572 | 1 | 1 | |
 | 670573 | 1 | 1 | |
+| 670574 | 1 | 1 | |
 | 678322 | 1 | 1 | |
 | 680312 | 1 | 1 | |
 | 682366 | 1 | 1 | |
@@ -805,6 +806,10 @@ or per-lens patent backfills.
 ### 670573 — 1 occurrence
 
 - [OLYMPUS OM J. ZUIKO AUTO-W 24mm f/2](../../src/lens-data/olympus/OlympusZuiko24mmf2J.data.ts) 7: `S-LAL52 class (OHARA) / E-LAK02 (HIKARI), 670573`
+
+### 670574 — 1 occurrence
+
+- [NIKON R-UW AF FISHEYE-NIKKOR 13mm f/2.8](../../src/lens-data/nikon/NikonRUWAFNikkor13mmf28.data.ts) 3: `J-LAK02 (HIKARI) / 670574 class, close`
 
 ### 678322 — 1 occurrence
 
