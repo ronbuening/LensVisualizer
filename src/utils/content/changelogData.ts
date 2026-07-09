@@ -19,6 +19,17 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-07-09 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-07-09",
+    type: "lens",
+    summary: "Added Nikon Nikonos RS 13mm, 20-35mm, and 50mm lenses",
+  },
+  {
+    date: "2026-07-09",
+    type: "lens",
+    summary: "Added Nikon Dodotto 400mm f/8 lens",
+  },
   // ── 2026-07-08 ──────────────────────────────────────────────────────────
   {
     date: "2026-07-08",

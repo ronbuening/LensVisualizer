@@ -377,7 +377,7 @@ export const MOUNT_DETAILS: Record<LensMountId, MountDetails> = {
     summary:
       "Nikon's dedicated underwater autofocus SLR mount for the Nikonos RS system, distinct from classic Nikonos and Nikon F.",
     description:
-      "Nikonos RS was Nikon's purpose-built underwater autofocus SLR system, introduced after the classic Nikonos amphibious cameras. Its RS bayonet supported dedicated R-UW AF Nikkor lenses and should be treated as a separate mount from both the older Nikonos system and ordinary Nikon F SLR lenses.\n\nThe RS system kept the 35 mm frame but changed the mechanical and electronic problem around it. Lens design, focusing, sealing, and handling all had to work in an underwater SLR body rather than a scale-focus amphibious camera or a conventional land camera in a housing.\n\nFor catalog browsing, Nikonos RS entries should stay separate because the mount represents a short-lived but highly specialized underwater SLR ecosystem. Its lenses are best compared with other environmental or underwater optics before being folded into ordinary 35 mm SLR assumptions.",
+      "Nikonos RS was Nikon's purpose-built underwater autofocus SLR system, introduced after the classic Nikonos amphibious cameras. Its RS bayonet supported dedicated R-UW AF Nikkor lenses and should be treated as a separate mount from both the older Nikonos system and ordinary Nikon F SLR lenses.\n\nThe RS system kept the 35 mm frame but changed the mechanical and electronic problem around it. Lens design, focusing, sealing, and handling all had to work in an underwater SLR body rather than a scale-focus amphibious camera or a conventional land camera in a housing.",
   },
   "nikon-s": {
     era: "Nikon rangefinder mount, 1940s-1960s",
