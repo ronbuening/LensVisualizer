@@ -19,6 +19,12 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-07-10 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-07-10",
+    type: "lens",
+    summary: "Added Nikon NIKKOR-H 2.8cm, AF-S 18-35mm, and Z DX 12-28mm lenses",
+  },
   // ── 2026-07-09 ──────────────────────────────────────────────────────────
   {
     date: "2026-07-09",
