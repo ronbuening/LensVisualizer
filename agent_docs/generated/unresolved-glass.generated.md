@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **431** lenses scanned
-- **4732** non-air surfaces examined
-- **4735** element glass declarations examined
-- **621** non-explicit-unmatched annotations did not resolve
-- **273** distinct unresolved glass-like tokens found
+- **434** lenses scanned
+- **4756** non-air surfaces examined
+- **4759** element glass declarations examined
+- **623** non-explicit-unmatched annotations did not resolve
+- **274** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -266,6 +266,7 @@ or per-lens patent backfills.
 | S-BSL10 | 1 | 1 | |
 | S-BSM2 | 1 | 1 | |
 | S-BSM25 | 1 | 1 | |
+| S-BSM9 | 1 | 1 | |
 | S-LAH75 | 1 | 1 | |
 | S-LAH85V | 1 | 1 | |
 | S-LAL21 | 1 | 1 | |
@@ -1374,6 +1375,10 @@ or per-lens patent backfills.
 ### S-BSM25 — 1 occurrence
 
 - [CANON EF-S 55-250mm f/4-5.6 IS STM](../../src/lens-data/canon/CanonEFS55250mmf456ISSTM.data.ts) 21: `S-BSM25 (OHARA)`
+
+### S-BSM9 — 1 occurrence
+
+- [OLYMPUS H.ZUIKO AUTO-W 24mm f/2.8](../../src/lens-data/olympus/OlympusZuiko24mmf28.data.ts) 7: `S-BSM9 (OHARA) equivalent`
 
 ### S-LAH75 — 1 occurrence
 

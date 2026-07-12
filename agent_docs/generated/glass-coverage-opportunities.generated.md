@@ -9,13 +9,13 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **431** lenses scanned (**423** visible)
-- **3885 / 4732** non-air surfaces use strict catalog Sellmeier data (82.1%)
-- **3917 / 4732** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 82.8%)
+- **434** lenses scanned (**426** visible)
+- **3906 / 4756** non-air surfaces use strict catalog Sellmeier data (82.1%)
+- **3938 / 4756** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 82.8%)
 - **1** mismatch surfaces in Sweep 1 across **1** lens files
 - **1** Sweep 1 surfaces have a matching untracked local patent PDF
 - **281** code-only missing-Sellmeier elements in Sweep 2
-- **129** unresolved named-token elements in Sweep 2B
+- **130** unresolved named-token elements in Sweep 2B
 - **0** Tier A proprietary backfill rows in Sweep 3
 
 ## Sweep 1 - Relabel Mismatches
@@ -141,6 +141,7 @@ These are efficient follow-up targets after mismatch blockers because one or two
 | [AGFA COLOR-MAGNOLAR II 100mm f/4.5](../../src/lens-data/agfa/AgfaColorMagnolarII100mmf45.data.ts) | 80.0% (4/5) | 40.0% (2/5) | 1 | abbe: 1 |
 | [CANON SERENAR 100mm f/3.5 I](../../src/lens-data/canon/CanonSerenar100mmf35.data.ts) | 80.0% (4/5) | 80.0% (4/5) | 1 | abbe: 1 |
 | [NIKON 35mm f/2.8 (Nikon L35AF)](../../src/lens-data/nikon/NikonL35AF35mmf28.data.ts) | 80.0% (4/5) | 80.0% (4/5) | 1 | abbe: 1 |
+| [OLYMPUS E.ZUIKO AUTO-T 1000mm f/11](../../src/lens-data/olympus/OlympusEZuiko1000mmf11.data.ts) | 80.0% (4/5) | 80.0% (4/5) | 1 | abbe: 1 |
 | [FUJIFILM FUJINON 35mm f/4 (Fujifilm GFX100RF)](../../src/lens-data/fujifilm/FujifilmGFX100RF35mmf4.data.ts) | 80.0% (8/10) | 80.0% (8/10) | 2 | abbe: 2 |
 | [FUJIFILM FUJINON XF 23mm f/2 R WR](../../src/lens-data/fujifilm/FujifilmXF23mmf2RWR.data.ts) | 80.0% (8/10) | 80.0% (8/10) | 2 | abbe: 2 |
 | [LEICA ELMARIT-TL 18mm f/2.8 ASPH.](../../src/lens-data/leica/LeicaElmaritTL18mmf28.data.ts) | 80.0% (8/10) | 80.0% (8/10) | 2 | abbe: 2 |
