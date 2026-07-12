@@ -19,6 +19,12 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-07-11 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-07-11",
+    type: "lens",
+    summary: "Added Olympus Zuiko 18mm, 24mm, and 1000mm lenses for OM mount",
+  },
   // ── 2026-07-10 ──────────────────────────────────────────────────────────
   {
     date: "2026-07-10",
