@@ -6,6 +6,24 @@ import type { GlassEntry } from "../glassCatalogTypes.js";
 
 export const HIKARI_GLASS_ENTRIES: readonly GlassEntry[] = [
   {
+    name: "J-LAK8",
+    vendor: "Hikari",
+    powerSeries: [
+      [2.87779172, 0],
+      [-0.0135972618, 2],
+      [-0.000208866139, 4],
+      [0.0203518573, -2],
+      [0.000244901642, -4],
+      [0.0000123070041, -6],
+      [-0.000000132629677, -8],
+    ],
+    nd: 1.713,
+    vd: 53.96,
+    PgF: 0.5452,
+    code6: "713540",
+    source: "Hikari Optical Glass Catalog 2025-06, J-LAK8 page; vendor formula-3 power-series coefficients.",
+  },
+  {
     name: "J-PSKH1",
     vendor: "Hikari",
     powerSeries: [

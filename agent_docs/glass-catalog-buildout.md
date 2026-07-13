@@ -7,7 +7,7 @@ available, it falls back to partial measured `nC`/`nF` line indices, dPgF-correc
 approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **303 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **312 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
 
 The generated reports in [`generated/`](generated/) are the current work queues:
 
@@ -183,6 +183,18 @@ material index/Abbe deltas, so those labels remain explicit code-only rows.
 | Glass | Vendor | Code | Notes |
 |---|---|---:|---|
 | ★ SiO2 | Special | — | Fused silica / silica glass; clears quartz elements in Nikon UV-Nikkor 105mm f/4.5 when paired with existing CaF2 coverage |
+
+**Phase 26 additions** (July 2026 — Olympus wide-angle patent pass using the current vendor-published Hikari and Sumita catalogs plus HOYA's obsolete-inclusive Zemax catalog; all entries round-trip through `assertCatalogConsistent`):
+
+| Glass | Vendor | Code | Notes |
+|---|---|---:|---|
+| ★ J-LAK8 | Hikari | 713540 | Exact current Hikari power-series row; completes the two repeated crown elements in the Olympus 28mm f/3.5 |
+| ★ BAF13 | Sumita | 669450 | Exact current Sumita polynomial row for the Olympus 28mm f/3.5 intermediate positive element |
+| ★ K-LaFn11 | Sumita | 720460 | Vendor-canonical row replacing a cross-vendor S-LAM61 code fallback in the Olympus 28mm f/2 |
+| ★ K-LaK14 | Sumita | 697556 | Exact Sumita row for both rear positive elements of the Olympus 28mm f/2 |
+| ★ LACL60 | Hoya | 640602 | Discontinued HOYA lanthanum crown retained in the official obsolete-inclusive catalog |
+| ★ TAF4 | Hoya | 788475 | Discontinued HOYA tantalum flint row replacing an N-LAF21 code fallback |
+| ★ FD140 | Hoya | 762266 | Exact HOYA dense-flint row for the Olympus 28mm f/2 negative rear partner |
 
 **Phase 17 additions** (May 2026 — Hasselblad/Laowa/Leica/Minolta/Nikon six-digit missing-Sellmeier queue pass; all entries round-trip through `assertCatalogConsistent`):
 

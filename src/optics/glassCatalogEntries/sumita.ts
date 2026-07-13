@@ -5,6 +5,33 @@
 import type { GlassEntry } from "../glassCatalogTypes.js";
 
 export const SUMITA_GLASS_ENTRIES: readonly GlassEntry[] = [
+  {
+    name: "K-LaK14",
+    vendor: "Sumita",
+    polynomial: [2.8277206, -0.013838479, 0.0179847, 0.00057777884, -0.000037712827, 0.0000022935918],
+    nd: 1.6968,
+    vd: 55.6,
+    code6: "697556",
+    source: "Sumita Zemax catalog 2026-06-04; vendor formula-3 polynomial for K-LaK14.",
+  },
+  {
+    name: "K-LaFn11",
+    vendor: "Sumita",
+    polynomial: [2.8917009, -0.011920903, 0.022558933, 0.00079204231, -0.000040820426, 0.0000041373045],
+    nd: 1.72013,
+    vd: 46.0,
+    code6: "720460",
+    source: "Sumita Zemax catalog 2026-06-04; vendor formula-3 polynomial for K-LaFn11.",
+  },
+  {
+    name: "BAF13",
+    vendor: "Sumita",
+    polynomial: [2.719865, -0.008385828, 0.02303157, -0.00001724107, 0.00007939306, -0.000002414054],
+    nd: 1.66892,
+    vd: 45.0,
+    code6: "669450",
+    source: "Sumita Zemax catalog 2026-06-04; vendor formula-3 polynomial for BAF13.",
+  },
   /* ────── Sumita — APO-relevant K-prefix crowns ──────
    * K-GFK68 appears in the Voigtländer APO-Lanthar 50/2 prescription. Sumita
    * AGF entries use the polynomial Schott formula (form 1); B/C below are a

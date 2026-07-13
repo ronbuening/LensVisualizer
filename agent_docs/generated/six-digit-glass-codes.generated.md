@@ -9,10 +9,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **434** lenses scanned
-- **369** total code-only elements found
-- **369** elements in this report
-- **133** distinct lens files affected
+- **437** lenses scanned
+- **372** total code-only elements found
+- **372** elements in this report
+- **134** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -34,6 +34,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 863252 | 4 | 2 | patents/WO2021199923A1.pdf<br>patents/WO_2025263124_A1.pdf | All representative rows reviewed |
 | 001255 | 3 | 3 | patents/US20200142167A1.pdf<br>patents/JP2022092388A.pdf<br>patents/WO2022097401A1.pdf | No reviewed-sidecar hit |
 | 001291 | 3 | 2 | patents/US20200142167A1.pdf<br>patents/JPWO2020157904A1.pdf | No reviewed-sidecar hit |
+| 504668 | 3 | 1 | patents/US3862794.pdf | No reviewed-sidecar hit |
 | 515546 | 3 | 3 | patents/JPA 1999030748-000000.pdf<br>patents/US3507558.pdf<br>patents/US3743384.pdf | 2/3 representative rows reviewed |
 | 516565 | 3 | 1 | patents/CN216772097U.pdf | All representative rows reviewed |
 | 585587 | 3 | 1 | patents/WO2024195273A1.pdf | All representative rows reviewed |
@@ -1038,6 +1039,14 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
 |---|---|---|---|---|---|---|---|
 | L5 (Element 5) | 9 | `683447 — barium/lanthanum flint family (patent nd=1.68250, νd=44.65; no exact public catalog match)` | 1.68250 / 44.65 | No catalog entry | abbe | patents/US4708445.pdf | Reviewed sidecar hit |
+
+### [OLYMPUS ZUIKO AUTO-W 28mm f/2](../../src/lens-data/olympus/OlympusZuikoAutoW28mmf2.data.ts) - US 3,862,794
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+|---|---|---|---|---|---|---|---|
+| L2 (Element 2) | 3 | `Unmatched crown (504/668; vintage or proprietary)` | 1.50378 / 66.80 | No catalog entry | abbe | patents/US3862794.pdf | No reviewed-sidecar hit |
+| L3 (Element 3) | 5 | `Unmatched crown (504/668; vintage or proprietary)` | 1.50378 / 66.80 | No catalog entry | abbe | patents/US3862794.pdf | No reviewed-sidecar hit |
+| L4a (Element 4a) | 7 | `Unmatched crown (504/668; vintage or proprietary)` | 1.50378 / 66.80 | No catalog entry | abbe | patents/US3862794.pdf | No reviewed-sidecar hit |
 
 ### [OLYMPUS ZUIKO AUTO-ZOOM 85-250mm f/5](../../src/lens-data/olympus/OlympusZuikoAutoZoom85250mmf5.data.ts) - US 4,025,167
 

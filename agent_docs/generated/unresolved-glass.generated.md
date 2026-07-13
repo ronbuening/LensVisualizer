@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **434** lenses scanned
-- **4756** non-air surfaces examined
-- **4759** element glass declarations examined
-- **623** non-explicit-unmatched annotations did not resolve
-- **274** distinct unresolved glass-like tokens found
+- **437** lenses scanned
+- **4780** non-air surfaces examined
+- **4783** element glass declarations examined
+- **618** non-explicit-unmatched annotations did not resolve
+- **272** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -224,7 +224,6 @@ or per-lens patent backfills.
 | H-LAF51 | 1 | 1 | |
 | H-LAF53 | 1 | 1 | |
 | H-LAF6L | 1 | 1 | |
-| H-LAF72 | 1 | 1 | |
 | H-LAK3 | 1 | 1 | |
 | H-LAK52 | 1 | 1 | |
 | H-LAK5A | 1 | 1 | |
@@ -241,7 +240,6 @@ or per-lens patent backfills.
 | H-ZLAF75B | 1 | 1 | |
 | H-ZLAF92 | 1 | 1 | |
 | K-BASF5 | 1 | 1 | |
-| K-LAFN11 | 1 | 1 | |
 | K-PSKN2 | 1 | 1 | |
 | K-SSK1 | 1 | 1 | |
 | K-SSK9 | 1 | 1 | |
@@ -1208,10 +1206,6 @@ or per-lens patent backfills.
 
 - [FUJIFILM FUJINON GF 20-35mm f/4 R WR](../../src/lens-data/fujifilm/FujifilmGF2035mmf4.data.ts) 14: `H-LaF6L / lanthanum flint class (757/477)`
 
-### H-LAF72 — 1 occurrence
-
-- [PENTAX SMC PENTAX-A★ 135mm f/1.8](../../src/lens-data/pentax/PentaxA135mmf18.data.ts) 10: `K-LaFn11 (Sumita) / H-LaF72 class`
-
 ### H-LAK3 — 1 occurrence
 
 - [NIKON NIKKOR Z 35mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 1: `LaK family (640601, CDGM H-LAK3)`
@@ -1275,10 +1269,6 @@ or per-lens patent backfills.
 ### K-BASF5 — 1 occurrence
 
 - [Nikon AI-S Zoom-Nikkor 35–70mm f/3.5](../../src/lens-data/nikon/NikonAIZoomNikkor3570mmf35.data.ts) 1: `603/425 barium flint; Sumita K-BaSF5-equivalent`
-
-### K-LAFN11 — 1 occurrence
-
-- [PENTAX SMC PENTAX-A★ 135mm f/1.8](../../src/lens-data/pentax/PentaxA135mmf18.data.ts) 10: `K-LaFn11 (Sumita) / H-LaF72 class`
 
 ### K-PSKN2 — 1 occurrence
 
