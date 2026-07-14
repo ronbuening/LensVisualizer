@@ -20,9 +20,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║   The patent gives no stop coordinate. It establishes only that the       ║
  * ║   diaphragm region lies in d7, between L3 and L4. The STO surface splits  ║
  * ║   d7 equally as a neutral reconstruction; this midpoint is not a patent   ║
- * ║   dimension. Semi-diameters follow the relative rim heights in Fig. 1,     ║
- * ║   constrained by spherical-rim, edge-thickness, element-ratio, and         ║
- * ║   signed cross-gap-sag checks. They are not published mechanical sizes.   ║
+ * ║   dimension. Semi-diameters are a normalized reconstruction of the rim    ║
+ * ║   progression in Fig. 1, anchored at surface 1 and constrained by          ║
+ * ║   spherical-rim, edge-thickness, and signed cross-gap-sag checks. They     ║
+ * ║   are representative drawing apertures, not published mechanical sizes.   ║
  * ║                                                                            ║
  * ║ GLASS LABELS:                                                              ║
  * ║   The patent publishes nd and νd only. Catalog names below are optical-    ║
@@ -169,20 +170,20 @@ const LENS_DATA = {
   /* ── Surfaces, object to image ── */
   surfaces: [
     { label: "1", R: 47.596191, d: 3.059859, nd: 1.4645, elemId: 1, sd: 21.5 },
-    { label: "2", R: 24.582207, d: 4.267027, nd: 1.0, elemId: 0, sd: 18.5 },
-    { label: "3", R: 36.003494, d: 8.05143, nd: 1.755, elemId: 2, sd: 18.5 },
-    { label: "4", R: 106.126181, d: 6.038268, nd: 1.6254, elemId: 3, sd: 16.0 },
-    { label: "5", R: 36.467882, d: 8.50974, nd: 1.0, elemId: 0, sd: 14.5 },
-    { label: "6", R: 58.616304, d: 2.41555, nd: 1.7725, elemId: 4, sd: 9.0 },
-    { label: "7", R: 67.969723, d: 2.013161, nd: 1.0, elemId: 0, sd: 8.5 },
+    { label: "2", R: 24.582207, d: 4.267027, nd: 1.0, elemId: 0, sd: 17.0 },
+    { label: "3", R: 36.003494, d: 8.05143, nd: 1.755, elemId: 2, sd: 17.0 },
+    { label: "4", R: 106.126181, d: 6.038268, nd: 1.6254, elemId: 3, sd: 16.5 },
+    { label: "5", R: 36.467882, d: 8.50974, nd: 1.0, elemId: 0, sd: 13.5 },
+    { label: "6", R: 58.616304, d: 2.41555, nd: 1.7725, elemId: 4, sd: 9.8 },
+    { label: "7", R: 67.969723, d: 2.013161, nd: 1.0, elemId: 0, sd: 9.5 },
     { label: "STO", R: 1e15, d: 2.013161, nd: 1.0, elemId: 0, sd: 10.29 },
-    { label: "8", R: 390.835331, d: 23.477157, nd: 1.6204, elemId: 5, sd: 15.0 },
-    { label: "9", R: -23.108806, d: 2.41555, nd: 1.6668, elemId: 6, sd: 15.0 },
+    { label: "8", R: 390.835331, d: 23.477157, nd: 1.6204, elemId: 5, sd: 13.5 },
+    { label: "9", R: -23.108806, d: 2.41555, nd: 1.6668, elemId: 6, sd: 13.5 },
     { label: "10", R: -34.015861, d: 0.410899, nd: 1.0, elemId: 0, sd: 13.5 },
-    { label: "11", R: -142.764258, d: 7.10077, nd: 1.6204, elemId: 7, sd: 14.0 },
-    { label: "12", R: -54.520687, d: 3.140094, nd: 1.0, elemId: 0, sd: 15.5 },
-    { label: "13", R: -34.616406, d: 3.059859, nd: 1.4787, elemId: 8, sd: 18.5 },
-    { label: "14", R: 159.818992, d: 99.61912, nd: 1.0, elemId: 0, sd: 20.0 },
+    { label: "11", R: -142.764258, d: 7.10077, nd: 1.6204, elemId: 7, sd: 16.5 },
+    { label: "12", R: -54.520687, d: 3.140094, nd: 1.0, elemId: 0, sd: 16.5 },
+    { label: "13", R: -34.616406, d: 3.059859, nd: 1.4787, elemId: 8, sd: 20.5 },
+    { label: "14", R: 159.818992, d: 99.61912, nd: 1.0, elemId: 0, sd: 20.5 },
   ],
 
   asph: {},

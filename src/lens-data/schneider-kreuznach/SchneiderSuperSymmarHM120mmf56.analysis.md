@@ -191,12 +191,12 @@ at production scale, with reciprocal magnitude 1400.071 mm. This is a prescripti
 
 Every final TypeScript radius and axial distance was divided by the scale factor and compared with the patent table. The reconstructed split around `STO` sums to the patent's original $d_7$ within rounding, and no other patent spacing was divided or redistributed.
 
-The inferred semi-diameters are not patent data. Their revised progression follows the relative rim heights in the patent section, including the small L3, broad central L4 doublet, and outward-expanding rear groups. They satisfy the project geometry checks:
+The inferred semi-diameters are not patent data. Their normalized progression follows the relative rim heights in Fig. 1: L2 sits distinctly inside L1, L3 is the smallest glass group, the thick L4 doublet has nearly level rims, and L5/L6 expand stepwise toward the image side. Surface 1 remains the scale anchor; the other drawing heights are represented proportionally within the prescription's spherical-rim and air-gap limits. They satisfy the project geometry checks:
 
-- maximum $sd/|R|=0.752577$, below the 0.90 spherical limit;
-- maximum front/rear semi-diameter ratio within one element = 1.162162;
-- minimum calculated edge thickness = 2.329561 mm;
-- maximum signed cross-gap sag intrusion = 76.8248% of the associated air gap;
+- maximum $sd/|R|=0.691557$, below the 0.90 spherical rim-slope equivalent;
+- maximum front/rear semi-diameter ratio within one element = 1.264706;
+- minimum calculated edge thickness = 2.307763 mm;
+- maximum signed cross-gap sag intrusion = 59.9873% of the associated air gap;
 - the on-axis bundle and the 19.27° chief ray clear, while the display field retains a well-populated pupil interval with expected edge vignetting.
 
 The production lens's 41° half-field is retained as authoritative projection metadata. The visible first-order ray fan is limited to 47% of that half-field because a paraxial tangent launch at 41° is not a valid model of the patent's high-angle finite-aperture ray geometry and would force nonphysical clear apertures through the steep front meniscus. The stored semi-diameters should therefore be read as rendering-safe inferred apertures, not factory drawing dimensions.
