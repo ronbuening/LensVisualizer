@@ -202,6 +202,7 @@ describe("glass catalog", () => {
     const expected: Array<[glass: string, nd: number]> = [
       ["H-BaF8", 1.62604],
       ["H-ZF39", 1.6668],
+      ["H-F6", 1.62495],
     ];
     for (const [glass, nd] of expected) {
       const entry = resolveGlass(glass);
@@ -210,6 +211,7 @@ describe("glass catalog", () => {
     }
     expect(resolveGlass("626391")?.name).toBe("H-BaF8");
     expect(resolveGlass("667331")?.name).toBe("H-ZF39");
+    expect(resolveGlass("625356")?.name).toBe("H-F6");
   });
 
   it("evaluates explicit power-series catalog entries", () => {

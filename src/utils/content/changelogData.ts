@@ -19,6 +19,12 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-07-14 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-07-14",
+    type: "lens",
+    summary: "Added Schneider-Kreuznach Super-Angulon 75mm and 90mm plus Super-Symmar HM 120mm",
+  },
   // ── 2026-07-13 ───────────────────────────────────────────────────────────────────
   {
     date: "2026-07-13",

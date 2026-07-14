@@ -9,13 +9,13 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **440** lenses scanned (**432** visible)
-- **3953 / 4800** non-air surfaces use strict catalog Sellmeier data (82.4%)
-- **3985 / 4800** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 83.0%)
+- **443** lenses scanned (**435** visible)
+- **3972 / 4820** non-air surfaces use strict catalog Sellmeier data (82.4%)
+- **4004 / 4820** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 83.1%)
 - **1** mismatch surfaces in Sweep 1 across **1** lens files
 - **1** Sweep 1 surfaces have a matching untracked local patent PDF
-- **285** code-only missing-Sellmeier elements in Sweep 2
-- **126** unresolved named-token elements in Sweep 2B
+- **286** code-only missing-Sellmeier elements in Sweep 2
+- **125** unresolved named-token elements in Sweep 2B
 - **0** Tier A proprietary backfill rows in Sweep 3
 
 ## Sweep 1 - Relabel Mismatches
@@ -105,6 +105,7 @@ These are efficient follow-up targets after mismatch blockers because one or two
 | [FUJIFILM FUJINON XF 35mm f/1.4 R](../../src/lens-data/fujifilm/FujifilmXF35mmf14R.data.ts) | 87.5% (7/8) | 87.5% (7/8) | 1 | abbe: 1 |
 | [MINOLTA AF 100mm f/2.8 Macro](../../src/lens-data/minolta/MinoltaAF100mmf28Macro.data.ts) | 87.5% (7/8) | 87.5% (7/8) | 1 | abbe: 1 |
 | [RODENSTOCK GRANDAGON-N 75mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN75mmf45.data.ts) | 87.5% (7/8) | 50.0% (4/8) | 1 | abbe: 1 |
+| [SCHNEIDER-KREUZNACH SUPER-SYMMAR HM 120mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderSuperSymmarHM120mmf56.data.ts) | 87.5% (7/8) | 87.5% (7/8) | 1 | abbe: 1 |
 | [SONY SONNAR T* E 24mm f/1.8 ZA](../../src/lens-data/sony/SonyFE24mmf18ZA.data.ts) | 87.5% (7/8) | 87.5% (7/8) | 1 | abbe: 1 |
 | [NIKON AF-S NIKKOR 24-70mm f/2.8 G ED](../../src/lens-data/nikon/NikonAFS2470mmf28G.data.ts) | 87.5% (14/16) | 87.5% (14/16) | 2 | abbe: 2 |
 | [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../../src/lens-data/nikon/NikonZ105f28.data.ts) | 87.5% (14/16) | 87.5% (14/16) | 2 | abbe: 2 |
@@ -134,6 +135,8 @@ These are efficient follow-up targets after mismatch blockers because one or two
 | [NIKON REFLEX-NIKKOR·C 500mm f/8](../../src/lens-data/nikon/NikonReflexNikkorC500mmf8.data.ts) | 83.3% (5/6) | 83.3% (5/6) | 1 | abbe: 1 |
 | [OLYMPUS F.ZUIKO AUTO-T 200mm f/5](../../src/lens-data/olympus/OlympusZuikoAutoT200mmf5.data.ts) | 83.3% (5/6) | 83.3% (5/6) | 1 | abbe: 1 |
 | [RICOH GR LENS 18.3mm f/2.8 (Ricoh GR III)](../../src/lens-data/ricoh/RicohGR328f28.data.ts) | 83.3% (5/6) | 83.3% (5/6) | 1 | abbe: 1 |
+| [SCHNEIDER-KREUZNACH SUPER-ANGULON 90mm f/8](../../src/lens-data/schneider-kreuznach/SchneiderSuperAngulon90mmf8.data.ts) | 83.3% (5/6) | 83.3% (5/6) | 1 | abbe: 1 |
+| [SCHNEIDER-KREUZNACH TECHNIKA SUPER-ANGULON 75mm f/8](../../src/lens-data/schneider-kreuznach/SchneiderTechnikaSuperAngulon75mmf8.data.ts) | 83.3% (5/6) | 83.3% (5/6) | 1 | abbe: 1 |
 | [CANON ZOOM LENS 8.8-36.8mm f/1.8-2.8 (PowerShot G7 X)](../../src/lens-data/canon/CanonPowerShotG7X88368mmf1828.data.ts) | 81.8% (9/11) | 81.8% (9/11) | 2 | abbe: 2 |
 | [LEICA SUMMILUX 28mm f/1.7 ASPH. (Leica Q, Q2, Q3)](../../src/lens-data/leica/Leica28mmf17.data.ts) | 81.8% (9/11) | 81.8% (9/11) | 2 | abbe: 2 |
 | [AGFA COLOR-MAGNOLAR II 100mm f/4.5](../../src/lens-data/agfa/AgfaColorMagnolarII100mmf45.data.ts) | 80.0% (4/5) | 40.0% (2/5) | 1 | abbe: 1 |

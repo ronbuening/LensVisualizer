@@ -7,7 +7,7 @@ available, it falls back to partial measured `nC`/`nF` line indices, dPgF-correc
 approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **313 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **314 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
 
 The generated reports in [`generated/`](generated/) are the current work queues:
 
@@ -201,6 +201,12 @@ material index/Abbe deltas, so those labels remain explicit code-only rows.
 | Glass | Vendor | Code | Notes |
 |---|---|---:|---|
 | ★ S-BAH10 | Ohara | 670473 | Exact 1.67003 / 47.23 row for the Super-Takumar 28mm f/3.5 and existing true S-BAH10 annotations; incompatible 702411 class wording remains explicitly unmatched |
+
+**Phase 28 additions** (July 2026 — Schneider patent pass using CDGM's vendor-published per-glass datasheet; the entry round-trips through `assertCatalogConsistent`):
+
+| Glass | Vendor | Code | Notes |
+|---|---|---:|---|
+| ★ H-F6 | CDGM | 625356 | Exact public row for the 625/356 flint position in the Super-Symmar HM 120mm f/5.6 and Enna Lithagon 24mm f/4 |
 
 **Phase 17 additions** (May 2026 — Hasselblad/Laowa/Leica/Minolta/Nikon six-digit missing-Sellmeier queue pass; all entries round-trip through `assertCatalogConsistent`):
 
