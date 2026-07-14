@@ -9,13 +9,13 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **437** lenses scanned (**429** visible)
-- **3932 / 4780** non-air surfaces use strict catalog Sellmeier data (82.3%)
-- **3964 / 4780** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 82.9%)
+- **440** lenses scanned (**432** visible)
+- **3953 / 4800** non-air surfaces use strict catalog Sellmeier data (82.4%)
+- **3985 / 4800** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 83.0%)
 - **1** mismatch surfaces in Sweep 1 across **1** lens files
 - **1** Sweep 1 surfaces have a matching untracked local patent PDF
-- **284** code-only missing-Sellmeier elements in Sweep 2
-- **128** unresolved named-token elements in Sweep 2B
+- **285** code-only missing-Sellmeier elements in Sweep 2
+- **126** unresolved named-token elements in Sweep 2B
 - **0** Tier A proprietary backfill rows in Sweep 3
 
 ## Sweep 1 - Relabel Mismatches
@@ -61,7 +61,6 @@ These are efficient follow-up targets after mismatch blockers because one or two
 | [CANON EF-S 10-18mm f/4.5-5.6 IS STM](../../src/lens-data/canon/CanonEFS1018mmf4.data.ts) | 92.9% (13/14) | 92.9% (13/14) | 1 | abbe: 1 |
 | [CANON 12.5-62.5mm f/2.0-3.9 (PowerShot G1 X Mark II)](../../src/lens-data/canon/CanonPowerShotG1XII125625mmf239.data.ts) | 92.9% (13/14) | 92.9% (13/14) | 1 | abbe: 1 |
 | [CANON RF 85mm f/1.2 L USM](../../src/lens-data/canon/CanonRF85mmf12L.data.ts) | 92.9% (13/14) | 92.9% (13/14) | 1 | abbe: 1 |
-| [CARL ZEISS TOUIT MAKRO-PLANAR T* 50mm f/2.8 Macro](../../src/lens-data/carl-zeiss-oberkochen/ZeissTouit50mmf28Macro.data.ts) | 92.9% (13/14) | 92.9% (13/14) | 1 | abbe: 1 |
 | [FUJIFILM FUJINON GF 120mm f/4 R LM OIS WR Macro](../../src/lens-data/fujifilm/FujifilmGF120mmf4RLM.data.ts) | 92.9% (13/14) | 92.9% (13/14) | 1 | abbe: 1 |
 | [NIKON AF-P DX NIKKOR 70-300mm f/4.5-6.3 G ED VR](../../src/lens-data/nikon/NikonAFPDX70300mmf4563G.data.ts) | 92.9% (13/14) | 92.9% (13/14) | 1 | abbe: 1 |
 | [SIGMA 50mm f/1.4 DG DN | Art](../../src/lens-data/sigma/SigmaDGDNArt50mmf14.data.ts) | 92.9% (13/14) | 92.9% (13/14) | 1 | abbe: 1 |
@@ -193,7 +192,6 @@ These unresolved catalog-style labels are often better first catalog targets tha
 | H-LAF3 | 2 | 2 | patents/CN205427291U.pdf<br>patents/JPWO2020157904A1.pdf | [LAOWA 15mm f/4 Wide Angle 1:1 Macro](../../src/lens-data/laowa/Laowa15mmf4Macro.data.ts) Element 7b (1.80420 / 46.50; abbe)<br>[NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) Element 18 (1.82080 / 42.51; abbe) |
 | H-LAK53A | 2 | 2 | patents/US-20250389929-A1.pdf<br>patents/CN116520542A.pdf | [CANON RF 20mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF20mmf14LVCM.data.ts) G4 (1.75500 / 52.30; abbe)<br>[LAOWA 58mm f/2.8 2× Ultra-Macro APO](../../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts) Element 4 (1.72916 / 54.67; abbe) |
 | NBFD10 | 2 | 2 | patents/JP2004302170A.pdf<br>patents/JP2012063403A.pdf | [HASSELBLAD HC Macro 120mm f/4](../../src/lens-data/hasselblad/HasselbladHC120mmf4Macro.data.ts) Element 8 (1.80440 / 39.60; abbe)<br>[SIGMA APO MACRO 150mm f/2.8 EX DG OS HSM](../../src/lens-data/sigma/SigmaAPOMacro150mmf28OSHSM.data.ts) Element 19 (1.83400 / 37.35; lineIndices) |
-| S-BAH10 | 2 | 2 | patents/US3748022.pdf | [CANON FD 35mm f/2 S.S.C. (I)](../../src/lens-data/canon/CanonFD35mmf2.data.ts) Element 3 (1.70154 / 41.10; abbe)<br>[CARL ZEISS TOUIT MAKRO-PLANAR T* 50mm f/2.8 Macro](../../src/lens-data/carl-zeiss-oberkochen/ZeissTouit50mmf28Macro.data.ts) L63 (1.67003 / 47.23; abbe) |
 | S-FPM5 | 2 | 2 | patents/CN_120386081_A.pdf<br>patents/WO_2025263124_A1.pdf | [SIGMA 28-45mm f/1.8 DG DN | Art](../../src/lens-data/sigma/Sigma2845mmf18DN.data.ts) Element 2 (1.55200 / 70.70; abbe)<br>[SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) Element 17 (1.59456 / 66.90; abbe) |
 | S-NBH53 | 2 | 2 | patents/US20160274335A1.pdf<br>patents/US20110273780A1.pdf | [FUJIFILM FUJINON XF 90mm f/2 R LM WR](../../src/lens-data/fujifilm/FujifilmXF90mmf2.data.ts) Element 4 (1.74950 / 35.33; abbe)<br>[SONY E 18-55mm f/3.5-5.6 OSS](../../src/lens-data/sony/SonyE1855mmf3556.data.ts) Element 3 (1.91082 / 35.25; abbe) |
 | SK3 | 2 | 2 | patents/DE_2444954_A1.pdf | [RODENSTOCK GRANDAGON-N 75mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN75mmf45.data.ts) Element 6 (1.60881 / 58.90; lineIndices)<br>[RODENSTOCK GRANDAGON-N 90mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN90mmf45.data.ts) Element 6 (1.60881 / 58.86; abbe) |
@@ -212,6 +210,7 @@ These unresolved catalog-style labels are often better first catalog targets tha
 | E-F5 | 1 | 1 | patents/JP2017167327A.pdf | [PANASONIC LEICA DG SUMMILUX 12mm f/1.4 ASPH.](../../src/lens-data/panasonic/PanasonicDGSummilux12mmf14.data.ts) Element 6 (1.60342 / 38.01; lineIndices) |
 | E-F8 | 1 | 1 | No patent number parsed from lens metadata/reference | [CANON NEW FD 14mm f/2.8 L](../../src/lens-data/canon/CanonNewFD14mmf28L.data.ts) Element 6 (1.59551 / 39.20; abbe) |
 | E-FEL1 | 1 | 1 | patents/JP2015114366A.pdf | [SIGMA 50mm f/1.4 DG HSM | Art](../../src/lens-data/sigma/Sigma50mmf14DGHSMA.data.ts) L4 (1.54814 / 45.82; abbe) |
+| E-FEL6 | 1 | 1 | patents/JP2023039817A.pdf | [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) Element 15 (1.61669 / 44.30; abbe) |
 
 ## Sweep 3 - Proprietary Line-Index Backfill
 

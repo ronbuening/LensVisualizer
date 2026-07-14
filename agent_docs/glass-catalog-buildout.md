@@ -7,7 +7,7 @@ available, it falls back to partial measured `nC`/`nF` line indices, dPgF-correc
 approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **312 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **313 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
 
 The generated reports in [`generated/`](generated/) are the current work queues:
 
@@ -195,6 +195,12 @@ material index/Abbe deltas, so those labels remain explicit code-only rows.
 | ★ LACL60 | Hoya | 640602 | Discontinued HOYA lanthanum crown retained in the official obsolete-inclusive catalog |
 | ★ TAF4 | Hoya | 788475 | Discontinued HOYA tantalum flint row replacing an N-LAF21 code fallback |
 | ★ FD140 | Hoya | 762266 | Exact HOYA dense-flint row for the Olympus 28mm f/2 negative rear partner |
+
+**Phase 27 additions** (July 2026 — Pentax Takumar patent pass using OHARA's vendor-published per-glass datasheet; the entry round-trips through `assertCatalogConsistent`):
+
+| Glass | Vendor | Code | Notes |
+|---|---|---:|---|
+| ★ S-BAH10 | Ohara | 670473 | Exact 1.67003 / 47.23 row for the Super-Takumar 28mm f/3.5 and existing true S-BAH10 annotations; incompatible 702411 class wording remains explicitly unmatched |
 
 **Phase 17 additions** (May 2026 — Hasselblad/Laowa/Leica/Minolta/Nikon six-digit missing-Sellmeier queue pass; all entries round-trip through `assertCatalogConsistent`):
 

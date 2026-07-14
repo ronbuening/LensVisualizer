@@ -9,9 +9,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **437** lenses scanned
-- **372** total code-only elements found
-- **284** elements in this report
+- **440** lenses scanned
+- **373** total code-only elements found
+- **285** elements in this report
 - **113** distinct lens files affected
 
 ## Codes by Frequency
@@ -144,6 +144,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 697558 | 1 | 1 | patents/US4258985.pdf | No reviewed-sidecar hit |
 | 700555 | 1 | 1 | patents/WO_2025263124_A1.pdf | No reviewed-sidecar hit |
 | 701301 | 1 | 1 | patents/US4277149.pdf | No reviewed-sidecar hit |
+| 702411 | 1 | 1 | patents/US3748022.pdf | No reviewed-sidecar hit |
 | 713433 | 1 | 1 | patents/US3942876.pdf | No reviewed-sidecar hit |
 | 720421 | 1 | 1 | patents/US3884556.pdf | No reviewed-sidecar hit |
 | 721334 | 1 | 1 | Missing from untracked local patents/ references (US4786152, 4786152) | No reviewed-sidecar hit |
@@ -237,6 +238,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
 |---|---|---|---|---|---|---|---|
+| L3 (Element 3) | 5 | `Unmatched BaF 702411 (patent glass; no exact catalog match)` | 1.70154 / 41.10 | No catalog entry | abbe | patents/US3748022.pdf | No reviewed-sidecar hit |
 | L5 (Element 5) | 9 | `LaK (774492, probable thoriated)` | 1.77370 / 49.20 | No catalog entry | abbe | patents/US3748022.pdf | Reviewed sidecar hit |
 | L8 (Element 8) | 14 | `LaK (774492, probable thoriated)` | 1.77370 / 49.20 | No catalog entry | abbe | patents/US3748022.pdf | Reviewed sidecar hit |
 
