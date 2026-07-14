@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **440** lenses scanned
-- **4800** non-air surfaces examined
-- **4803** element glass declarations examined
-- **616** non-explicit-unmatched annotations did not resolve
-- **270** distinct unresolved glass-like tokens found
+- **443** lenses scanned
+- **4820** non-air surfaces examined
+- **4823** element glass declarations examined
+- **614** non-explicit-unmatched annotations did not resolve
+- **268** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -20,7 +20,6 @@ or per-lens patent backfills.
 |---|---:|---:|---|
 | 670571 | 10 | 5 | |
 | 493836 | 6 | 2 | |
-| F7 | 5 | 4 | |
 | 511605 | 4 | 2 | |
 | 863252 | 4 | 2 | |
 | S-LAL61 | 4 | 3 | |
@@ -58,6 +57,7 @@ or per-lens patent backfills.
 | 861231 | 2 | 1 | |
 | 882372 | 2 | 2 | |
 | E-FDS3HT | 2 | 1 | |
+| F7 | 2 | 2 | |
 | H-K6 | 2 | 1 | |
 | H-LAF3 | 2 | 2 | |
 | H-LAK53A | 2 | 2 | |
@@ -210,12 +210,10 @@ or per-lens patent backfills.
 | E-FEL6 | 1 | 1 | |
 | E-FPL51 | 1 | 1 | |
 | F3 | 1 | 1 | |
-| F6 | 1 | 1 | |
 | FCD10A | 1 | 1 | |
 | FCD500 | 1 | 1 | |
 | FCD915 | 1 | 1 | |
 | H-BAF6 | 1 | 1 | |
-| H-F6 | 1 | 1 | |
 | H-K2 | 1 | 1 | |
 | H-K8 | 1 | 1 | |
 | H-K9L | 1 | 1 | |
@@ -312,14 +310,6 @@ or per-lens patent backfills.
 - [MINOLTA AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) 4: `493836 - Minolta AD/ED fluorophosphate-type (nd=1.49310, vd=83.58; catalog unresolved)`
 - [MINOLTA AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) 21: `493836 - Minolta AD/ED fluorophosphate-type (nd=1.49310, vd=83.58; catalog unresolved)`
 - [MINOLTA AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) 27: `493836 - Minolta AD/ED fluorophosphate-type (nd=1.49310, vd=83.58; catalog unresolved)`
-
-### F7 — 5 occurrences
-
-- [CANON SERENAR 28mm f/3.5](../../src/lens-data/canon/CanonSerenar28mmf35.data.ts) 4: `F7 (Schott)`
-- [CARL ZEISS PRO-TESSAR 35mm f/3.2](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissProTessar35mmf32.data.ts) 10: `F7 (Schott)`
-- [ENNA MÜNCHEN LITHAGON 24mm f/4](../../src/lens-data/enna-munchen/EnnaMunchenLithagon24mmf4.data.ts) 5: `F7-class flint (legacy Schott 625/356; CDGM H-F6 equivalent)`
-- [RODENSTOCK ROGONAR-S 50mm f/2.8](../../src/lens-data/rodenstock/RodenstockRogonarS50mmf28.data.ts) 3: `F7 class (625/356; Schott F7 / CDGM F6 equivalents)`
-- [RODENSTOCK ROGONAR-S 50mm f/2.8](../../src/lens-data/rodenstock/RodenstockRogonarS50mmf28.data.ts) 3: `F7 class (625/356; Schott F7 / CDGM F6 equivalents)`
 
 ### 511605 — 4 occurrences
 
@@ -524,6 +514,11 @@ or per-lens patent backfills.
 
 - [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../../src/lens-data/nikon/NikonZ105f28.data.ts) 11: `E-FDS3HT (Hikari) or equiv.`
 - [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../../src/lens-data/nikon/NikonZ105f28.data.ts) 22: `E-FDS3HT (Hikari) or equiv.`
+
+### F7 — 2 occurrences
+
+- [CANON SERENAR 28mm f/3.5](../../src/lens-data/canon/CanonSerenar28mmf35.data.ts) 4: `F7 (Schott)`
+- [CARL ZEISS PRO-TESSAR 35mm f/3.2](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissProTessar35mmf32.data.ts) 10: `F7 (Schott)`
 
 ### H-K6 — 2 occurrences
 
@@ -1147,10 +1142,6 @@ or per-lens patent backfills.
 
 - [CARL ZEISS JENA TESSAR 50mm f/2.8](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaTessar50mmf28.data.ts) 3: `612372 F (≈ Schott F3 legacy)`
 
-### F6 — 1 occurrence
-
-- [RODENSTOCK ROGONAR-S 50mm f/2.8](../../src/lens-data/rodenstock/RodenstockRogonarS50mmf28.data.ts) 3: `F7 class (625/356; Schott F7 / CDGM F6 equivalents)`
-
 ### FCD10A — 1 occurrence
 
 - [SIGMA 35mm f/1.4 DG DN | Art](../../src/lens-data/sigma/SigmaDGDNA35mmf14.data.ts) 11: `459902 — HOYA FCD10A (ELD fluorophosphate crown; no coefficient-backed catalog entry yet)`
@@ -1166,10 +1157,6 @@ or per-lens patent backfills.
 ### H-BAF6 — 1 occurrence
 
 - [ENNA MÜNCHEN LITHAGON 24mm f/4](../../src/lens-data/enna-munchen/EnnaMunchenLithagon24mmf4.data.ts) 13: `H-BaF6 (CDGM) / barium-flint 608/462 class`
-
-### H-F6 — 1 occurrence
-
-- [ENNA MÜNCHEN LITHAGON 24mm f/4](../../src/lens-data/enna-munchen/EnnaMunchenLithagon24mmf4.data.ts) 5: `F7-class flint (legacy Schott 625/356; CDGM H-F6 equivalent)`
 
 ### H-K2 — 1 occurrence
 

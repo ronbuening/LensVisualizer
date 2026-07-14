@@ -240,4 +240,15 @@ export const CDGM_GLASS_ENTRIES: readonly GlassEntry[] = [
     code6: "750350",
     source: "CDGM Zemax catalog 2022-06 via refractiveindex.info; H-LAF4 page.",
   },
+  {
+    name: "H-F6",
+    vendor: "CDGM",
+    B: [1.44071636, 0.128999184, 1.16853639],
+    C: [0.0110480895, 0.0590811678, 115.021995],
+    nd: 1.62495,
+    vd: 35.59,
+    PgF: 0.5898,
+    code6: "625356",
+    source: "CDGM H-F6 public datasheet, 2026 access; Sellmeier constants K1-L3, d-code 625356.",
+  },
 ];
