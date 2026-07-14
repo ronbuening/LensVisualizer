@@ -1,13 +1,13 @@
 ## Patent Reference and Design Identification
 
-- **Patent:** US 3,506,339
-- **Filed:** September 8, 1967
-- **Priority:** September 10, 1966 (Japan 41/59,723)
-- **Granted:** April 14, 1970
-- **Inventor:** Tomokazu Kazamaki
-- **Assignee:** Asahi Kogaku Kogyo Kabushiki Kaisha
-- **Title:** _Compact Retrofocus Wide Angle Objective Lens System_
-- **Embodiment analyzed:** Table 1, the patent's sole numerical example
+**Patent:** US 3,506,339\
+**Filed:** September 8, 1967\
+**Priority:** September 10, 1966 (Japan 41/59,723)\
+**Granted:** April 14, 1970\
+**Inventor:** Tomokazu Kazamaki\
+**Assignee:** Asahi Kogaku Kogyo Kabushiki Kaisha\
+**Title:** _Compact Retrofocus Wide Angle Objective Lens System_\
+**Embodiment analyzed:** Table 1, the patent's sole numerical example
 
 The patent gives one seven-element prescription normalized to $F=100\,\text{mm}$ at $f/3.5$. The numerical table and
 claim specify fourteen spherical refracting surfaces, seven air-separated elements, and the complete set of axial

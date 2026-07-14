@@ -1,13 +1,13 @@
 ## Patent Reference and Design Identification
 
-- **Patent:** US 3,506,336
-- **Priority:** Japan, September 30, 1966 (41/64,565)
-- **Filed:** September 27, 1967
-- **Granted:** April 14, 1970
-- **Inventor:** Yasuo Takahashi
-- **Assignee:** Asahi Kogaku Kogyo Kabushiki Kaisha
-- **Title:** Wide Angle Lens System
-- **Embodiment analyzed:** Preferred embodiment; the patent contains one numerical example
+**Patent:** US 3,506,336\
+**Priority:** Japan, September 30, 1966 (41/64,565)\
+**Filed:** September 27, 1967\
+**Granted:** April 14, 1970\
+**Inventor:** Yasuo Takahashi\
+**Assignee:** Asahi Kogaku Kogyo Kabushiki Kaisha\
+**Title:** Wide Angle Lens System\
+**Embodiment analyzed:** Preferred embodiment; the patent contains one numerical example
 
 US 3,506,336 does not identify a commercial product by name. Its association with the compact Asahi Pentax Super-Takumar 35mm f/2 is therefore strong but inferential rather than patent-stated.
 
