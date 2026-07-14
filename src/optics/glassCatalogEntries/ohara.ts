@@ -1484,4 +1484,15 @@ export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
     code6: "623582",
     source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info; S-BSM15 page.",
   },
+  {
+    name: "S-BAH10",
+    vendor: "Ohara",
+    B: [1.59034337, 0.138464579, 1.21988043],
+    C: [0.0093273434, 0.0427498654, 119.251777],
+    nd: 1.670029,
+    vd: 47.23,
+    PgF: 0.5627,
+    code6: "670473",
+    source: "OHARA S-BAH10 product datasheet (OHARA 17-04), vendor-published dispersion constants.",
+  },
 ];

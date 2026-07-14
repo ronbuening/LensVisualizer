@@ -19,6 +19,12 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-07-13 ───────────────────────────────────────────────────────────────────
+  {
+    date: "2026-07-13",
+    type: "lens",
+    summary: "Added Pentax Super-Takumar 28mm and 35mm plus Ultra-Achromatic-Takumar 85mm",
+  },
   // ── 2026-07-12 ──────────────────────────────────────────────────────────
   {
     date: "2026-07-12",

@@ -119,6 +119,13 @@ describe("glass catalog", () => {
     expect(evaluateSellmeier(tafd45!, LINE_NM.C)).toBeLessThan(evaluateSellmeier(tafd45!, LINE_NM.F));
   });
 
+  it("resolves OHARA S-BAH10 by name and six-digit code", () => {
+    const sbah10 = resolveGlass("S-BAH10 (OHARA equivalent)");
+    expect(sbah10?.name).toBe("S-BAH10");
+    expect(resolveGlass("670473")?.name).toBe("S-BAH10");
+    expect(evaluateSellmeier(sbah10!, LINE_NM.d)).toBeCloseTo(1.67003, 5);
+  });
+
   it("evaluates current HOYA NBFD source-sheet polynomial entries", () => {
     const nbfd25 = resolveGlass("NBFD25 (HOYA)");
     const nbfd29 = resolveGlass("NBFD29 (HOYA)");

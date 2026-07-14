@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **437** lenses scanned
-- **4780** non-air surfaces examined
-- **4783** element glass declarations examined
-- **618** non-explicit-unmatched annotations did not resolve
-- **272** distinct unresolved glass-like tokens found
+- **440** lenses scanned
+- **4800** non-air surfaces examined
+- **4803** element glass declarations examined
+- **616** non-explicit-unmatched annotations did not resolve
+- **270** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -66,7 +66,6 @@ or per-lens patent backfills.
 | K-LAFK50 | 2 | 1 | |
 | NBFD10 | 2 | 2 | |
 | S-APL1 | 2 | 1 | |
-| S-BAH10 | 2 | 2 | |
 | S-BSM36 | 2 | 1 | |
 | S-FPM5 | 2 | 2 | |
 | S-LAM73 | 2 | 1 | |
@@ -135,7 +134,6 @@ or per-lens patent backfills.
 | 697558 | 1 | 1 | |
 | 700555 | 1 | 1 | |
 | 701301 | 1 | 1 | |
-| 702411 | 1 | 1 | |
 | 713433 | 1 | 1 | |
 | 713539 | 1 | 1 | |
 | 720421 | 1 | 1 | |
@@ -567,11 +565,6 @@ or per-lens patent backfills.
 - [OLYMPUS OM ZUIKO 16mm f/3.5 Fisheye](../../src/lens-data/olympus/OlympusZuiko16mmf35.data.ts) 13: `517696 — S-APL1 / APL1-class low-index high-Abbe crown (OHARA; no public Sellmeier match)`
 - [OLYMPUS OM ZUIKO 16mm f/3.5 Fisheye](../../src/lens-data/olympus/OlympusZuiko16mmf35.data.ts) 16: `517696 — S-APL1 / APL1-class low-index high-Abbe crown (OHARA; no public Sellmeier match)`
 
-### S-BAH10 — 2 occurrences
-
-- [CANON FD 35mm f/2 S.S.C. (I)](../../src/lens-data/canon/CanonFD35mmf2.data.ts) 5: `BaF (702411, S-BAH10 family)`
-- [CARL ZEISS TOUIT MAKRO-PLANAR T* 50mm f/2.8 Macro](../../src/lens-data/carl-zeiss-oberkochen/ZeissTouit50mmf28Macro.data.ts) 25: `S-BAH10 (OHARA)`
-
 ### S-BSM36 — 2 occurrences
 
 - [CANON NEW FD 150-600mm f/5.6L](../../src/lens-data/canon/CanonFD150600mmf56L.data.ts) 15: `Dense crown / SK class (643/584; S-BSM36 class)`
@@ -849,10 +842,6 @@ or per-lens patent backfills.
 ### 701301 — 1 occurrence
 
 - [MINOLTA MD ROKKOR 45mm f/2](../../src/lens-data/minolta/MinoltaRokkor45mmf2MD.data.ts) 5: `701301 - dense flint (catalog unresolved)`
-
-### 702411 — 1 occurrence
-
-- [CANON FD 35mm f/2 S.S.C. (I)](../../src/lens-data/canon/CanonFD35mmf2.data.ts) 5: `BaF (702411, S-BAH10 family)`
 
 ### 713433 — 1 occurrence
 
