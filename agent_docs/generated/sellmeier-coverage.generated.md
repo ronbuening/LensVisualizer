@@ -10,18 +10,18 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **443** lenses scanned
-- **435** visible lenses scanned
-- **152** lenses fully covered by trusted chromatic data
-- **152** visible lenses fully covered by trusted chromatic data
-- **142** lenses fully covered by strict Sellmeier data
-- **142** visible lenses fully covered by strict Sellmeier data
-- **10** lenses fully covered only after measured line-index data
-- **10** visible lenses fully covered only after measured line-index data
-- **3972 / 4820** non-air surfaces use strict catalog Sellmeier data
-- **82.4%** strict Sellmeier surface coverage overall
-- **4004 / 4820** non-air surfaces use trusted chromatic data
-- **83.1%** trusted chromatic coverage overall
+- **446** lenses scanned
+- **438** visible lenses scanned
+- **155** lenses fully covered by trusted chromatic data
+- **155** visible lenses fully covered by trusted chromatic data
+- **144** lenses fully covered by strict Sellmeier data
+- **144** visible lenses fully covered by strict Sellmeier data
+- **11** lenses fully covered only after measured line-index data
+- **11** visible lenses fully covered only after measured line-index data
+- **4010 / 4859** non-air surfaces use strict catalog Sellmeier data
+- **82.5%** strict Sellmeier surface coverage overall
+- **4043 / 4859** non-air surfaces use trusted chromatic data
+- **83.2%** trusted chromatic coverage overall
 
 ## Fully Strict Sellmeier Lenses
 
@@ -41,6 +41,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | [CANON EF 24-70mm f/2.8 L II USM](../../src/lens-data/canon/CanonEF2470mmf28LII.data.ts) | 18/18 | 18 | 18/18 |
 | [NIKON AF-P NIKKOR 70-300mm f/4.5-5.6 E ED VR](../../src/lens-data/nikon/NikonAFP70300mmf4556E.data.ts) | 18/18 | 18 | 18/18 |
 | [PENTAX DA* 50-135mm f/2.8 ED [IF] SDM](../../src/lens-data/pentax/PentaxDA50135mmf28.data.ts) | 18/18 | 18 | 18/18 |
+| [SONY 70-400mm f/4-5.6 G SSM II](../../src/lens-data/sony/SonySAL70400mmf456G.data.ts) | 18/18 | 18 | 18/18 |
 | [CANON RF 100mm f/2.8 L MACRO IS USM](../../src/lens-data/canon/CanonRF100f28.data.ts) | 17/17 | 17 | 17/17 |
 | [CANON RF 70-200mm f/2.8 L IS USM](../../src/lens-data/canon/CanonRF70200f28.data.ts) | 17/17 | 17 | 17/17 |
 | [FUJIFILM FUJINON XF 16-55mm f/2.8 R LM WR](../../src/lens-data/fujifilm/FujifilmXF1655mmf28R.data.ts) | 17/17 | 17 | 17/17 |
@@ -138,6 +139,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | [OLYMPUS ZUIKO AUTO-S 50mm f/1.2](../../src/lens-data/olympus/OlympusZuikoAutoS50mmf12.data.ts) | 7/7 | 7 | 7/7 |
 | [PENTAX SMC PENTAX-A★ 135mm f/1.8](../../src/lens-data/pentax/PentaxA135mmf18.data.ts) | 7/7 | 7 | 7/7 |
 | [PENTAX SUPER-TAKUMAR 28mm f/3.5](../../src/lens-data/pentax/PentaxSuperTakumar28mmf35.data.ts) | 7/7 | 7 | 7/7 |
+| [RICOH GR LENS 18.3mm f/2.8 (Ricoh GR / GR II)](../../src/lens-data/ricoh/RicohGR218mmf28.data.ts) | 7/7 | 7 | 7/7 |
 | [RICOH GR LENS 18.3mm f/2.8 (Ricoh GR IV)](../../src/lens-data/ricoh/RicohGR428f28.data.ts) | 7/7 | 7 | 7/7 |
 | [RICOH GR LENS 28mm f/2.8 (Ricoh GR1)](../../src/lens-data/ricoh/RicohGR28f28.data.ts) | 7/7 | 7 | 7/7 |
 | [CANON EF 40mm f/2.8 STM](../../src/lens-data/canon/CanonEF40mmf28.data.ts) | 6/6 | 6 | 6/6 |
@@ -180,6 +182,7 @@ These lenses are complete for chromatic tracing but not strict catalog-Sellmeier
 | [SONY FE 16-35mm f/2.8 GM II](../../src/lens-data/sony/SonyFE1635mmf28GMII.data.ts) | 15/15 | 14/15 | 15 | 14/15 | 1 | Line indices |
 | [CANON EF 24-70mm f/2.8 L USM](../../src/lens-data/canon/CanonEF2470mmf28L.data.ts) | 16/16 | 13/16 | 16 | 13/16 | 3 | Line indices |
 | [PANASONIC LEICA DG SUMMILUX 12mm f/1.4 ASPH.](../../src/lens-data/panasonic/PanasonicDGSummilux12mmf14.data.ts) | 15/15 | 13/15 | 15 | 13/15 | 2 | Line indices |
+| [SONY FE 20mm f/1.8 G](../../src/lens-data/sony/SonyFE20mmf18G.data.ts) | 14/14 | 13/14 | 14 | 13/14 | 1 | Line indices |
 | [PANASONIC LEICA DG NOCTICRON 42.5mm f/1.2 ASPH POWER O.I.S.](../../src/lens-data/panasonic/PanasonicDGNocticron42mmf12.data.ts) | 14/14 | 12/14 | 14 | 12/14 | 2 | Line indices |
 | [SIGMA APO MACRO 150mm f/2.8 EX DG OS HSM](../../src/lens-data/sigma/SigmaAPOMacro150mmf28OSHSM.data.ts) | 19/19 | 8/19 | 19 | 8/19 | 11 | Line indices |
 | [PANASONIC LUMIX G 25mm f/1.7 ASPH.](../../src/lens-data/panasonic/PanasonicLumixG25mmf17.data.ts) | 8/8 | 6/8 | 8 | 6/8 | 2 | Line indices |
@@ -281,8 +284,8 @@ Fully strict and line-index-complete trusted lenses are listed above; this table
 | 83 | [CARL ZEISS B-DISTAGON 35mm f/4 (Contarex)](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon35mmf4.data.ts) | 85.7% | 85.7% | 6/7 | 6/7 | 1 | abbe: 1 |
 | 84 | [MINOLTA MD ROKKOR 50mm f/1.4](../../src/lens-data/minolta/MinoltaRokkor50mmf14MD.data.ts) | 85.7% | 85.7% | 6/7 | 6/7 | 1 | abbe: 1 |
 | 85 | [OLYMPUS G.ZUIKO AUTO-W 21mm f/3.5](../../src/lens-data/olympus/OlympusGZuikoAutoW21mmf35.data.ts) | 85.7% | 85.7% | 6/7 | 6/7 | 1 | abbe: 1 |
-| 86 | [RICOH GR LENS 18.3mm f/2.8 (Ricoh GR / GR II)](../../src/lens-data/ricoh/RicohGR218mmf28.data.ts) | 85.7% | 85.7% | 6/7 | 6/7 | 1 | abbe: 1 |
-| 87 | [RICOH GR LENS 26.1mm f/2.8 (Ricoh GR IIIx)](../../src/lens-data/ricoh/RicohGR3x.data.ts) | 85.7% | 85.7% | 6/7 | 6/7 | 1 | abbe: 1 |
+| 86 | [RICOH GR LENS 26.1mm f/2.8 (Ricoh GR IIIx)](../../src/lens-data/ricoh/RicohGR3x.data.ts) | 85.7% | 85.7% | 6/7 | 6/7 | 1 | abbe: 1 |
+| 87 | [SONY E 20mm f/2.8](../../src/lens-data/sony/SonyE20mmf28.data.ts) | 85.7% | 85.7% | 6/7 | 6/7 | 1 | abbe: 1 |
 | 88 | [SONY SONNAR T* FE 55mm f/1.8 ZA](../../src/lens-data/sony/SonyFE55mmf18ZA.data.ts) | 85.7% | 85.7% | 6/7 | 6/7 | 1 | abbe: 1 |
 | 89 | [CANON EF-S 10-22mm f/3.5-4.5 USM](../../src/lens-data/canon/CanonEFS1022mmf3545.data.ts) | 85.7% | 85.7% | 12/14 | 12/14 | 2 | abbe: 2 |
 | 90 | [FUJIFILM FUJINON GF 20-35mm f/4 R WR](../../src/lens-data/fujifilm/FujifilmGF2035mmf4.data.ts) | 85.7% | 85.7% | 12/14 | 12/14 | 2 | abbe: 2 |
@@ -1027,17 +1030,17 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 |---|---|---|---|---|
 | 1 | Element 1 | abbe | `720421 — vintage lanthanum flint (patent nd=1.72000, νd=42.1; no exact public catalog match)` | No catalog match |
 
-### [RICOH GR LENS 18.3mm f/2.8 (Ricoh GR / GR II)](../../src/lens-data/ricoh/RicohGR218mmf28.data.ts) - 85.7% trusted (6/7); 85.7% Sellmeier (6/7) - US 2013/0321936 A1
-
-| Surface | Element | Runtime quality | Glass annotation | Reason |
-|---|---|---|---|---|
-| 12 | Element 7 | abbe | `821427 - HOYA M-TAFD51 (PGM; patent Pg,F=0.5642)` | No catalog match |
-
 ### [RICOH GR LENS 26.1mm f/2.8 (Ricoh GR IIIx)](../../src/lens-data/ricoh/RicohGR3x.data.ts) - 85.7% trusted (6/7); 85.7% Sellmeier (6/7) - US 2022/0026670 A1
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
 | 12A | Element 7 | abbe | `903310 - OHARA L-LAH86 (PGM; patent Pg,F=0.5943)` | No catalog match |
+
+### [SONY E 20mm f/2.8](../../src/lens-data/sony/SonyE20mmf28.data.ts) - 85.7% trusted (6/7); 85.7% Sellmeier (6/7) - US 2014/0204265 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 2 | L1 aspherical resin layer | abbe | `Unmatched (proprietary aspherical resin; patent nd=1.534, νd=41.71)` | Explicit unmatched/proprietary annotation |
 
 ### [SONY SONNAR T* FE 55mm f/1.8 ZA](../../src/lens-data/sony/SonyFE55mmf18ZA.data.ts) - 85.7% trusted (6/7); 85.7% Sellmeier (6/7) - US 2015/0092100 A1
 

@@ -9,9 +9,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **443** lenses scanned (**435** visible)
-- **3972 / 4820** non-air surfaces use strict catalog Sellmeier data (82.4%)
-- **4004 / 4820** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 83.1%)
+- **446** lenses scanned (**438** visible)
+- **4010 / 4859** non-air surfaces use strict catalog Sellmeier data (82.5%)
+- **4043 / 4859** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 83.2%)
 - **1** mismatch surfaces in Sweep 1 across **1** lens files
 - **1** Sweep 1 surfaces have a matching untracked local patent PDF
 - **286** code-only missing-Sellmeier elements in Sweep 2
@@ -116,8 +116,8 @@ These are efficient follow-up targets after mismatch blockers because one or two
 | [CARL ZEISS B-DISTAGON 35mm f/4 (Contarex)](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon35mmf4.data.ts) | 85.7% (6/7) | 85.7% (6/7) | 1 | abbe: 1 |
 | [MINOLTA MD ROKKOR 50mm f/1.4](../../src/lens-data/minolta/MinoltaRokkor50mmf14MD.data.ts) | 85.7% (6/7) | 85.7% (6/7) | 1 | abbe: 1 |
 | [OLYMPUS G.ZUIKO AUTO-W 21mm f/3.5](../../src/lens-data/olympus/OlympusGZuikoAutoW21mmf35.data.ts) | 85.7% (6/7) | 85.7% (6/7) | 1 | abbe: 1 |
-| [RICOH GR LENS 18.3mm f/2.8 (Ricoh GR / GR II)](../../src/lens-data/ricoh/RicohGR218mmf28.data.ts) | 85.7% (6/7) | 85.7% (6/7) | 1 | abbe: 1 |
 | [RICOH GR LENS 26.1mm f/2.8 (Ricoh GR IIIx)](../../src/lens-data/ricoh/RicohGR3x.data.ts) | 85.7% (6/7) | 85.7% (6/7) | 1 | abbe: 1 |
+| [SONY E 20mm f/2.8](../../src/lens-data/sony/SonyE20mmf28.data.ts) | 85.7% (6/7) | 85.7% (6/7) | 1 | abbe: 1 |
 | [SONY SONNAR T* FE 55mm f/1.8 ZA](../../src/lens-data/sony/SonyFE55mmf18ZA.data.ts) | 85.7% (6/7) | 85.7% (6/7) | 1 | abbe: 1 |
 | [CANON EF-S 10-22mm f/3.5-4.5 USM](../../src/lens-data/canon/CanonEFS1022mmf3545.data.ts) | 85.7% (12/14) | 85.7% (12/14) | 2 | abbe: 2 |
 | [FUJIFILM FUJINON GF 20-35mm f/4 R WR](../../src/lens-data/fujifilm/FujifilmGF2035mmf4.data.ts) | 85.7% (12/14) | 85.7% (12/14) | 2 | abbe: 2 |

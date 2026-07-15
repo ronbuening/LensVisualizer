@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **443** lenses scanned
-- **4820** non-air surfaces examined
-- **4823** element glass declarations examined
+- **446** lenses scanned
+- **4859** non-air surfaces examined
+- **4862** element glass declarations examined
 - **614** non-explicit-unmatched annotations did not resolve
-- **268** distinct unresolved glass-like tokens found
+- **267** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -180,7 +180,6 @@ or per-lens patent backfills.
 | 805252 | 1 | 1 | |
 | 805410 | 1 | 1 | |
 | 821426 | 1 | 1 | |
-| 821427 | 1 | 1 | |
 | 835447 | 1 | 1 | |
 | 840433 | 1 | 1 | |
 | 849401 | 1 | 1 | |
@@ -1021,10 +1020,6 @@ or per-lens patent backfills.
 ### 821426 — 1 occurrence
 
 - [NIKON AF-S NIKKOR 28-300mm f/3.5-5.6 G ED VR](../../src/lens-data/nikon/NikonNikkorAFS28300mmf3556G.data.ts) 34: `821426 — patent dense flint (nd=1.82080, νd=42.64; no public HIKARI/OHARA match found)`
-
-### 821427 — 1 occurrence
-
-- [RICOH GR LENS 18.3mm f/2.8 (Ricoh GR / GR II)](../../src/lens-data/ricoh/RicohGR218mmf28.data.ts) 12: `821427 - HOYA M-TAFD51 (PGM; patent Pg,F=0.5642)`
 
 ### 835447 — 1 occurrence
 
