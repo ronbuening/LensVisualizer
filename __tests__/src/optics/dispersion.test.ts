@@ -135,6 +135,14 @@ describe("glass catalog", () => {
     expect(evaluateSellmeier(nbfd29!, LINE_NM.d)).toBeCloseTo(1.77047, 5);
   });
 
+  it("evaluates and resolves the current HOYA M-TAFD51 polynomial entry", () => {
+    const mTafd51 = resolveGlass("M-TAFD51 (HOYA; 821/427 catalog match)");
+    expect(mTafd51?.name).toBe("M-TAFD51");
+    expect(resolveGlass("821427")?.name).toBe("M-TAFD51");
+    expect(evaluateSellmeier(mTafd51!, LINE_NM.d)).toBeCloseTo(1.8208, 5);
+    expect(evaluateSellmeier(mTafd51!, LINE_NM.C)).toBeLessThan(evaluateSellmeier(mTafd51!, LINE_NM.F));
+  });
+
   it("evaluates the phase 21 named-token catalog additions", () => {
     const expected: Array<[glass: string, nd: number]> = [
       ["S-LAL12", 1.6779],

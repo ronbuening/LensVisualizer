@@ -163,7 +163,7 @@ Glass code: **821/427**.
 | L6 | E-FD8 | 1.689 | 31.16 | 0.5989 | +0.00751 (slight positive) | Polished spherical |
 | L7 | M-TAFD51 | 1.821 | 42.71 | 0.5642 | −0.00776 (slight negative) | Glass-molded asphere |
 
-The dPg,F values are computed from the patent's Pg,F column relative to the Schott normal glass line (Pg,F = 0.6438 − 0.001682 × νd). The data file keeps the patent Hoya names in the descriptive label while exposing catalog-equivalent tokens where available: FCD1 for M-FCD1 and S-TIH53 for FDS90. M-TAFD51 remains a six-digit future-upgrade annotation because no public Sellmeier row is currently present.
+The dPg,F values are computed from the patent's Pg,F column relative to the Schott normal glass line (Pg,F = 0.6438 − 0.001682 × νd). The data file keeps the patent Hoya names in the descriptive label while exposing catalog-equivalent tokens where available: FCD1 for M-FCD1 and S-TIH53 for FDS90. M-TAFD51 now resolves through HOYA's official formula-3 polynomial and 821427 catalog code.
 
 The combination of strongly positive-APD M-FCD1 in L1 with the moderate positive-APD FDS90 and slight negative-APD TAFD30 in the cemented doublets creates a secondary-spectrum correction budget across the system. This is what enables the low chromatic aberration observed in the production GR.
 

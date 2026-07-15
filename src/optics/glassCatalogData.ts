@@ -281,6 +281,7 @@ const GLASS_CATALOG_SOURCE_ORDER = [
   "PCD40",
   "M-LAC130",
   "M-BACD5N",
+  "M-TAFD51",
   "M-TAFD305",
   "BAFD7",
   "SF9",

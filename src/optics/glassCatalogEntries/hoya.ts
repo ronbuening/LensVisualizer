@@ -34,6 +34,16 @@ export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
     code6: "762266",
     source: "HOYA Zemax catalog 2026-07-07 including obsolete glasses; vendor formula-3 polynomial for FD140.",
   },
+  {
+    name: "M-TAFD51",
+    vendor: "Hoya",
+    polynomial: [3.227682, -0.01453816, 0.0292121, 0.001057062, -0.00004787162, 0.000004557239],
+    nd: 1.8208,
+    vd: 42.71,
+    PgF: 0.5642,
+    code6: "821427",
+    source: "HOYA Zemax catalog 2026-07-07; vendor formula-3 polynomial for M-TAFD51.",
+  },
   /* ────── Hoya — ED crowns and dense lanthanum flints ──────
    * Hoya AGF entries use the polynomial Schott formula (form 1), not
    * Sellmeier-1. The B/C below are a least-squares Sellmeier-1 fit to

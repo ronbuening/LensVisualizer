@@ -7,7 +7,7 @@ available, it falls back to partial measured `nC`/`nF` line indices, dPgF-correc
 approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **314 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **315 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
 
 The generated reports in [`generated/`](generated/) are the current work queues:
 
@@ -207,6 +207,12 @@ material index/Abbe deltas, so those labels remain explicit code-only rows.
 | Glass | Vendor | Code | Notes |
 |---|---|---:|---|
 | ★ H-F6 | CDGM | 625356 | Exact public row for the 625/356 flint position in the Super-Symmar HM 120mm f/5.6 and Enna Lithagon 24mm f/4 |
+
+**Phase 29 additions** (July 2026 — Sony patent pass using HOYA's current vendor-published Zemax catalog; the entry round-trips through `assertCatalogConsistent`):
+
+| Glass | Vendor | Code | Notes |
+|---|---|---:|---|
+| ★ M-TAFD51 | Hoya | 821427 | Exact moldable dense-flint formula-3 row; completes named-glass dispersion coverage for the Sony E 20mm f/2.8 and upgrades the existing Ricoh GR II 18.3mm f/2.8 annotation |
 
 **Phase 17 additions** (May 2026 — Hasselblad/Laowa/Leica/Minolta/Nikon six-digit missing-Sellmeier queue pass; all entries round-trip through `assertCatalogConsistent`):
 

@@ -19,6 +19,12 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-07-15 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-07-15",
+    type: "lens",
+    summary: "Added Sony E 20mm f/2.8, FE 20mm f/1.8 G, and 70-400mm f/4-5.6 G SSM II",
+  },
   // ── 2026-07-14 ──────────────────────────────────────────────────────────
   {
     date: "2026-07-14",
