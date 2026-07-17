@@ -53,10 +53,10 @@ flowchart TD
 
 ## Current Scope
 
-- `438` visible lens pages are currently published from [`src/lens-data/`](src/lens-data/)
+- `441` visible lens pages are currently published from [`src/lens-data/`](src/lens-data/)
 - The catalog spans classic and modern designs from Canon, Carl Zeiss Jena, Carl Zeiss Oberkochen, Fujifilm,
   Hasselblad, Laowa, Leica, Minolta, Nikon, Olympus, Panasonic, Pentax, Ricoh, Schneider-Kreuznach, Sigma, Sony,
-  Vivitar, and Voigtländer
+  Tamron, Vivitar, and Voigtländer
 - Lens pages pair interactive diagrams with long-form optical analysis markdown
 
 The catalog is auto-registered from `src/lens-data/**/*.data.ts`, so the README no longer tries to maintain a hand-written per-lens table.

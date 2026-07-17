@@ -305,6 +305,7 @@ const GLASS_CATALOG_SOURCE_ORDER = [
   "M-NBFD10",
   "FDS16-W",
   "S-LAL12",
+  "S-LAL12Q",
   "S-BSM10",
   "S-LAM7",
   "L-LAM69",
@@ -333,6 +334,8 @@ const GLASS_CATALOG_SOURCE_ORDER = [
   "BAF13",
   "J-LAK8",
   "S-BAH10",
+  "S-LAH66N",
+  "FDS90",
   "H-F6",
 ] as const;
 
@@ -364,6 +367,7 @@ export const DUPLICATE_CODE6_PRECEDENCE: ReadonlyMap<string, string> = new Map([
   ["847238", "S-TIH53"],
   ["618634", "S-PHM52"],
   ["773496", "S-LAH66"],
+  ["678553", "S-LAL12"],
   ["804396", "S-LAH63"],
   ["835427", "S-LAH55"],
   ["904313", "S-LAH95"],

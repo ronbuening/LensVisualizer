@@ -110,6 +110,10 @@ describe("deriveMaker", () => {
       display: "Yashica",
       slug: "yashica",
     });
+    expect(deriveMaker("TAMRON SP 90mm f/2.8 Macro")).toEqual({
+      display: "Tamron",
+      slug: "tamron",
+    });
   });
 
   it("derives Rodenstock from modern and historical prefixes", () => {
@@ -124,9 +128,9 @@ describe("deriveMaker", () => {
   });
 
   it("falls back to first word for unknown maker", () => {
-    const info = deriveMaker("TAMRON 28-75mm f/2.8");
-    expect(info.display).toBe("TAMRON");
-    expect(info.slug).toBe("tamron");
+    const info = deriveMaker("ACME 28-75mm f/2.8");
+    expect(info.display).toBe("ACME");
+    expect(info.slug).toBe("acme");
   });
 
   it("uses explicit maker field when provided (known maker)", () => {

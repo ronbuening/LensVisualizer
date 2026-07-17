@@ -159,6 +159,22 @@ describe("glass catalog", () => {
     }
   });
 
+  it("evaluates the Tamron glass-coverage additions against OHARA line indices", () => {
+    const expected = [
+      { glass: "S-LAH66N", nC: 1.76779, nd: 1.7725, nF: 1.78338, ng: 1.79199 },
+      { glass: "S-LAL12Q", nC: 1.67417, nd: 1.6779, nF: 1.68642, ng: 1.69307 },
+      { glass: "FDS90", nC: 1.83649, nd: 1.84666, nF: 1.87209, ng: 1.89413 },
+    ];
+    for (const datasheet of expected) {
+      const entry = resolveGlass(datasheet.glass);
+      expect(entry?.name).toBe(datasheet.glass);
+      expect(evaluateSellmeier(entry!, LINE_NM.C)).toBeCloseTo(datasheet.nC, 5);
+      expect(evaluateSellmeier(entry!, LINE_NM.d)).toBeCloseTo(datasheet.nd, 5);
+      expect(evaluateSellmeier(entry!, LINE_NM.F)).toBeCloseTo(datasheet.nF, 5);
+      expect(evaluateSellmeier(entry!, LINE_NM.g)).toBeCloseTo(datasheet.ng, 5);
+    }
+  });
+
   it("evaluates the Schott SF56A datasheet entry", () => {
     const sf56a = resolveGlass("SF56A (Schott, 785/261)");
     expect(sf56a?.name).toBe("SF56A");
