@@ -1441,6 +1441,17 @@ export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source: "Ohara S-LAL12 datasheet, OHARA 25-04 official optical-glass PDF.",
   },
   {
+    name: "S-LAL12Q",
+    vendor: "Ohara",
+    B: [1.09887025, 0.665500482, 1.07183658],
+    C: [0.00538103754, 0.0186717709, 83.08165],
+    nd: 1.6779,
+    vd: 55.346888,
+    PgF: 0.5434,
+    code6: "678553",
+    source: "Ohara Zemax OpticStudio DATA 2026-05-29 (OHARA_260529_CATALOG.AGF), vendor-published catalog data.",
+  },
+  {
     name: "S-BSM10",
     vendor: "Ohara",
     B: [0.945443081, 0.643237376, 1.17752968],
@@ -1494,5 +1505,17 @@ export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
     PgF: 0.5627,
     code6: "670473",
     source: "OHARA S-BAH10 product datasheet (OHARA 17-04), vendor-published dispersion constants.",
+  },
+  /* ────── Phase 30 Tamron coverage addition (July 2026) ────── */
+  {
+    name: "S-LAH66N",
+    vendor: "Ohara",
+    B: [1.66344396, 0.408708592, 1.22168283],
+    C: [0.00799392412, 0.0273425739, 84.91142],
+    nd: 1.772498,
+    vd: 49.547914,
+    PgF: 0.5519,
+    code6: "773496",
+    source: "Ohara Zemax OpticStudio DATA 2026-05-29 (OHARA_260529_CATALOG.AGF), vendor-published catalog data.",
   },
 ];

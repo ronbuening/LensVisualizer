@@ -701,4 +701,16 @@ export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
     code6: "518590",
     source: "Hoya Zemax catalog 2017-04-01 via refractiveindex.info; E-C3 page (formula 3 polynomial).",
   },
+  /* Phase 30 Tamron coverage addition (July 2026) */
+  {
+    name: "FDS90",
+    vendor: "Hoya",
+    polynomial: [3.2606321, -0.017780398, 0.040902938, 0.0056076934, -0.00056434039, 0.000054763391],
+    nd: 1.84666,
+    vd: 23.78,
+    PgF: 0.6192,
+    code6: "847238",
+    source:
+      "Hoya Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published obsolete catalog row.",
+  },
 ];

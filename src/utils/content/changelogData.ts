@@ -19,6 +19,12 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-07-16 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-07-16",
+    type: "lens",
+    summary: "Added Tamron SP 60mm, 90mm, and 180mm macro lenses",
+  },
   // ── 2026-07-15 ──────────────────────────────────────────────────────────
   {
     date: "2026-07-15",

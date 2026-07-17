@@ -25,6 +25,7 @@
  *   2026-06-16  Added Rodenstock maker entry in advance of dedicated lens additions.
  *   2026-06-22  Added Agfa, Enna München, Kodak, Meyer Optik Görlitz,
  *               Samyang, Samsung, Tokina, and Yashica maker entries.
+ *   2026-07-16  Added Tamron maker entry.
  *   2026-04-26  Detail and accuracy pass on Leica (designer attributions,
  *               Solms→Leitz-Park facility history), Fujifilm (X100, GFX,
  *               2006 holding-company rebrand), Canon (Kwanon-vs-Hansa Canon,
@@ -101,6 +102,16 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
       "Samsung began as a trading company in 1938, while Samsung Electronics, the business behind the NX camera system, was founded in 1969. Samsung entered consumer imaging through compact film and digital cameras, then worked with Pentax on GX-series DSLRs before developing its own mirrorless platform. The result was the NX system, launched publicly with the NX10 in 2010: an APS-C mirrorless camera line using a short-flange Samsung NX mount and electronically coupled native lenses.\n\nSamsung's NX lens program was unusually broad for a short-lived system. Early lenses included the 30 mm f/2 pancake, 18-55 mm OIS, and 50-200 mm OIS; later designs added compact pancakes, macros, portrait primes, and premium S-series zooms. The i-Function control concept put camera settings behind a lens-mounted button and focus-ring interface, an attempt to make lens handling part of the camera's main control language.\n\nThe NX1 and NX500 generation showed how much sensor, processor, video, and autofocus technology Samsung could bring to cameras, and lenses such as the 16-50 mm f/2-2.8 S and 50-150 mm f/2.8 S made the system credible beyond entry-level mirrorless. Samsung withdrew from dedicated camera markets in the mid-2010s and the NX system became dormant, but the optical work remains a compact example of a major electronics company briefly building a complete interchangeable-lens ecosystem from scratch.",
     notableDesigns:
       "NX 30mm f/2 pancake, NX 16mm f/2.4, NX 45mm f/1.8, NX 85mm f/1.4 ED SSA, NX 60mm f/2.8 Macro OIS, NX 16-50mm f/2-2.8 S, NX 50-150mm f/2.8 S, NX Mini lenses",
+  },
+  tamron: {
+    founded: 1950,
+    headquarters: "Saitama City, Saitama, Japan",
+    summary:
+      "Japanese optical manufacturer known for interchangeable third-party camera lenses, the adaptable T-mount and Adaptall systems, SP performance optics, long-running 90 mm macro lenses, and compact high-ratio zooms.",
+    history:
+      "Tamron began in November 1950 in Urawa, now part of Saitama City, as Taisei Optical Equipment Manufacturing, founded by Fujio Watanabe and Takeyuki Arai to make camera and binocular lenses. The business was incorporated in 1952, when optical designer Uhyoue Tamura joined and helped establish its design department. His surname inspired the Tamron trademark registered in 1958; Taisei Optical adopted Tamron Co., Ltd. as its corporate name in 1970.\n\nThe company built its early interchangeable-lens identity around mount flexibility and practical zoom design. It developed the T-mount system in 1957, began mass-producing its affordable 95-205 mm f/6.3 telephoto zoom in 1959, introduced Adapt-A-Matic in the 1960s, and followed with Adaptall in 1976. The SP, or Super Performance, series arrived in 1979, the same era that produced the first SP 90 mm f/2.5 macro. That 90 mm line became a Tamron signature, evolving through autofocus, 1:1 reproduction, internal focusing, VC stabilization, and mirrorless versions.\n\nTamron expanded beyond interchangeable still-camera lenses into broadcast, surveillance, automotive, medical, and industrial optics. It acquired Bronica in 1995 and merged that medium-format camera company into Tamron in 1998. In photography, the company helped popularize compact all-in-one zooms, then broadened its premium SP primes and zooms and built extensive native mirrorless ranges. Modern lenses such as the 28-75 mm f/2.8, 35-150 mm f/2-2.8, and 150-600 mm continue its role as a major independent alternative to camera-system manufacturers.",
+    notableDesigns:
+      "T-mount, Adapt-A-Matic, Adaptall and Adaptall-2, SP 90mm Macro series, SP AF 60mm f/2 Di II Macro, SP AF 180mm f/3.5 Di Macro, 28-200mm all-in-one zoom, 28-75mm f/2.8, 35-150mm f/2-2.8, SP 150-600mm",
   },
   tokina: {
     founded: 1950,
