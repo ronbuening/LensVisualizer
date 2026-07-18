@@ -9,10 +9,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **449** lenses scanned
-- **374** total code-only elements found
-- **374** elements in this report
-- **135** distinct lens files affected
+- **452** lenses scanned
+- **375** total code-only elements found
+- **375** elements in this report
+- **136** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -180,6 +180,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 720421 | 1 | 1 | patents/US3884556.pdf | No reviewed-sidecar hit |
 | 720502 | 1 | 1 | patents/JP2022092388A.pdf | No reviewed-sidecar hit |
 | 721334 | 1 | 1 | Missing from untracked local patents/ references (US4786152, 4786152) | No reviewed-sidecar hit |
+| 728261 | 1 | 1 | patents/US4523816.pdf | No reviewed-sidecar hit |
 | 728284 | 1 | 1 | patents/WO2020136749A1.pdf | No reviewed-sidecar hit |
 | 728285 | 1 | 1 | patents/JP2021056407A.pdf | No reviewed-sidecar hit |
 | 728403 | 1 | 1 | patents/US6560042.pdf | No reviewed-sidecar hit |
@@ -1308,6 +1309,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
 |---|---|---|---|---|---|---|---|
 | L2 (Element 2) | 3 | `531621 — BSM-type crown (no exact public catalog match)` | 1.53100 / 62.10 | No catalog entry | abbe | patents/US3975089.pdf | No reviewed-sidecar hit |
+
+### [VIVITAR SERIES 1 450mm f/4.5 VMC ASPHERICAL MIRROR](../../src/lens-data/vivitar/VivitarSeries1450mmf45.data.ts) - US 4,523,816
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+|---|---|---|---|---|---|---|---|
+| L5 (G2 doublet 1 rear) | 7 | `Unmatched (dense flint 728/261; no official HOYA or SUMITA catalog match)` | 1.72800 / 26.10 | No catalog entry | abbe | patents/US4523816.pdf | No reviewed-sidecar hit |
 
 ### [VOIGTLÄNDER NOKTON 50mm f/1.0](../../src/lens-data/voigtlander/VoigtlanderNokton50f1.data.ts) - JP2023063766A
 

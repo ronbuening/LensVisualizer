@@ -13,12 +13,12 @@ with words like "probable" or "approx").
 
 ## Summary
 
-- **449** lenses scanned
-- **4901** glass surfaces examined
-- **4894** surfaces with non-empty `glass` strings
-- **4053** of those resolved to a catalog entry
-- **1** mismatches found (0.0% of resolved surfaces)
-- **1** distinct lens files affected
+- **452** lenses scanned
+- **4930** glass surfaces examined
+- **4923** surfaces with non-empty `glass` strings
+- **4087** of those resolved to a catalog entry
+- **2** mismatches found (0.0% of resolved surfaces)
+- **2** distinct lens files affected
 
 ## Most-frequent mismatched catalog targets
 
@@ -27,9 +27,16 @@ annotation pattern (e.g. an obsolete name, a `probable` guess) that's used acros
 
 | Catalog entry | Rejected surfaces | Notes |
 |---|---|---|
+| NBFD10 | 1 | |
 | N-SF8 | 1 | |
 
 ## Mismatches by lens
+
+### [HASSELBLAD HC Macro 120mm f/4](../../src/lens-data/hasselblad/HasselbladHC120mmf4Macro.data.ts) — JP 2004-302170 A
+
+| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |
+|---|---|---|---|---|---|
+| 16 | `NBFD10 (HOYA)` | NBFD10 | 1.80440 | 1.83400 | +0.0296 |
 
 ### [NIKON ULTRA-MICRO-NIKKOR 29.5mm f/1.2](../../src/lens-data/nikon/NikonUltraMicroNikkor295mmf12.data.ts) — GB 1,050,055
 

@@ -548,4 +548,15 @@ export const SCHOTT_GLASS_ENTRIES: readonly GlassEntry[] = [
     code6: "622533",
     source: "Schott Zemax catalog 2017-01-20b via refractiveindex.info; N-SSK2 page.",
   },
+  {
+    name: "LLF1",
+    vendor: "Schott",
+    B: [1.21640125, 0.13366454, 0.883399468],
+    C: [0.008578072, 0.0420143003, 107.59306],
+    nd: 1.54814,
+    vd: 45.75,
+    PgF: 0.566,
+    code6: "548458",
+    source: "SCHOTT Optical Glass Datasheet LLF1, 2023-12-01; vendor Sellmeier coefficients.",
+  },
 ];

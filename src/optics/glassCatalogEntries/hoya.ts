@@ -16,6 +16,25 @@ export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
       "HOYA Zemax catalog 2026-07-07 including obsolete glasses; vendor formula-3 polynomial for discontinued LACL60.",
   },
   {
+    name: "LAC10",
+    vendor: "Hoya",
+    polynomial: [2.8951998, -0.011701218, 0.022126485, 0.00038494791, -0.0000079808302, 0.0000015035116],
+    nd: 1.72,
+    vd: 50.35,
+    code6: "720503",
+    source:
+      "HOYA Zemax catalog 2026-07-07 including obsolete glasses; vendor formula-3 polynomial for discontinued LAC10.",
+  },
+  {
+    name: "NBFD10",
+    vendor: "Hoya",
+    polynomial: [3.2615573, -0.014542851, 0.033470739, 0.0012266479, -0.000025391842, 0.0000055971739],
+    nd: 1.834,
+    vd: 37.34,
+    code6: "834373",
+    source: "HOYA Zemax catalog 2026-07-07 including obsolete glasses; vendor formula-3 polynomial for legacy NBFD10.",
+  },
+  {
     name: "TAF4",
     vendor: "Hoya",
     polynomial: [3.1212281, -0.014119909, 0.026520622, 0.00040415763, 0.000014260634, 0.0000003164256],
