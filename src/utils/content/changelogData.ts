@@ -19,6 +19,12 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-07-17 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-07-17",
+    type: "lens",
+    summary: "Added Vivitar Series 1 135mm f/2.3, 450mm f/4.5, and 70-210mm f/3.5 lenses",
+  },
   // ── 2026-07-16 ──────────────────────────────────────────────────────────
   {
     date: "2026-07-16",

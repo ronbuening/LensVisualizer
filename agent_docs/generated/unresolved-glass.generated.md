@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **449** lenses scanned
-- **4901** non-air surfaces examined
-- **4904** element glass declarations examined
-- **614** non-explicit-unmatched annotations did not resolve
-- **267** distinct unresolved glass-like tokens found
+- **452** lenses scanned
+- **4930** non-air surfaces examined
+- **4935** element glass declarations examined
+- **610** non-explicit-unmatched annotations did not resolve
+- **266** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -64,7 +64,6 @@ or per-lens patent backfills.
 | H-ZBAF4 | 2 | 1 | |
 | H-ZLAF4A | 2 | 1 | |
 | K-LAFK50 | 2 | 1 | |
-| NBFD10 | 2 | 2 | |
 | S-APL1 | 2 | 1 | |
 | S-BSM36 | 2 | 1 | |
 | S-FPM5 | 2 | 2 | |
@@ -548,11 +547,6 @@ or per-lens patent backfills.
 
 - [PANASONIC LEICA DG NOCTICRON 42.5mm f/1.2 ASPH POWER O.I.S.](../../src/lens-data/panasonic/PanasonicDGNocticron42mmf12.data.ts) 14A: `Moldable lanthanum, M-TAF / K-LaFK50 equivalent class`
 - [PANASONIC LEICA DG NOCTICRON 42.5mm f/1.2 ASPH POWER O.I.S.](../../src/lens-data/panasonic/PanasonicDGNocticron42mmf12.data.ts) 20A: `Moldable lanthanum, M-TAF / K-LaFK50 equivalent class`
-
-### NBFD10 — 2 occurrences
-
-- [HASSELBLAD HC Macro 120mm f/4](../../src/lens-data/hasselblad/HasselbladHC120mmf4Macro.data.ts) 16: `NBFD10 (HOYA)`
-- [SIGMA APO MACRO 150mm f/2.8 EX DG OS HSM](../../src/lens-data/sigma/SigmaAPOMacro150mmf28OSHSM.data.ts) 32: `NBFD10 (Hoya; dense niobium flint)`
 
 ### S-APL1 — 2 occurrences
 
