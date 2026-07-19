@@ -40,7 +40,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 2018/0149842 A1",
   patentAuthors: ["Xiaohua Zhang"],
-  patentAssignees: ["Anhui Changgeng Optics Technology Co Ltd"],
+  patentAssignees: ["Anhui Changgeng Optics Technology Co., Ltd."],
   patentYear: 2018,
   elementCount: 12,
   groupCount: 9,

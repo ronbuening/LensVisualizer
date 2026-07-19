@@ -54,7 +54,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 9,063,253 B2",
   patentAuthors: ["Nobuyuki Adachi"],
-  patentAssignees: ["Tamron Co Ltd"],
+  patentAssignees: ["Tamron Co., Ltd."],
   patentYear: 2015,
   elementCount: 14,
   groupCount: 11,

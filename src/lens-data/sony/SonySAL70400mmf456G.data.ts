@@ -58,7 +58,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 8,049,968 B2",
   patentAuthors: ["Hisayuki Yamanaka", "Dayong Li"],
-  patentAssignees: ["Tamron Co Ltd"],
+  patentAssignees: ["Tamron Co., Ltd."],
   patentYear: 2011,
   elementCount: 18,
   groupCount: 12,

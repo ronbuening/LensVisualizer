@@ -26,7 +26,7 @@ const LENS_DATA = {
   imageFormat: "1-inch-type",
   patentNumber: "US 2015/0153549 A1",
   patentAuthors: ["Mami Muratani"],
-  patentAssignees: ["Nikon Corp"],
+  patentAssignees: ["Nikon Corporation"],
   patentYear: 2015,
   elementCount: 9,
   groupCount: 7,

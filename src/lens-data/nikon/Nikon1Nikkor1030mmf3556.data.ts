@@ -46,7 +46,7 @@ const LENS_DATA = {
   imageFormat: "1-inch-type",
   patentNumber: "US 2012/0019926 A1",
   patentAuthors: ["Akira Yamagami"],
-  patentAssignees: ["Nikon Corp"],
+  patentAssignees: ["Nikon Corporation"],
   patentYear: 2012,
   elementCount: 12,
   groupCount: 9,

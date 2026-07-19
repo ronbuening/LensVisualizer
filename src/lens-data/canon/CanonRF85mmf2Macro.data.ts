@@ -38,7 +38,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 2021/0072505 A1",
   patentAuthors: ["Kana Kobayashi"],
-  patentAssignees: ["Canon Inc"],
+  patentAssignees: ["Canon Inc."],
   patentYear: 2021,
   elementCount: 12,
   groupCount: 11,

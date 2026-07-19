@@ -38,7 +38,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 4,871,239",
   patentAuthors: ["Hisayuki Masumoto", "Akira Fukushima"],
-  patentAssignees: ["Minolta Co Ltd"],
+  patentAssignees: ["Minolta Co., Ltd."],
   patentYear: 1989,
   elementCount: 13,
   groupCount: 10,

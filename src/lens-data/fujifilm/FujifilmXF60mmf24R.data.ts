@@ -62,7 +62,7 @@ const LENS_DATA = {
   imageFormat: "aps-c",
   patentNumber: "US 2014/0247506 A1",
   patentAuthors: ["Tetsuya Ori"],
-  patentAssignees: ["Fujifilm Corp"],
+  patentAssignees: ["Fujifilm Corporation"],
   patentYear: 2014,
   elementCount: 10,
   groupCount: 8,

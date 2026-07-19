@@ -47,7 +47,7 @@ const LENS_DATA = {
   imageFormat: "44x33",
   patentNumber: "US 2018/0059384 A1",
   patentAuthors: ["Taiga Noda"],
-  patentAssignees: ["Fujifilm Corp"],
+  patentAssignees: ["Fujifilm Corporation"],
   patentYear: 2018,
   elementCount: 14,
   groupCount: 9,

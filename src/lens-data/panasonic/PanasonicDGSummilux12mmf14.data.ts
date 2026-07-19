@@ -41,7 +41,7 @@ const LENS_DATA = {
   imageFormat: "four-thirds",
   patentNumber: "JP 2017-167327 A",
   patentAuthors: ["Masakazu Hibino"],
-  patentAssignees: ["SIGMA CORP"],
+  patentAssignees: ["Sigma Corporation"],
   patentYear: 2017,
   elementCount: 15,
   groupCount: 12,

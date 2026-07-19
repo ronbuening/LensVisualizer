@@ -48,7 +48,7 @@ const LENS_DATA = {
   imageFormat: "aps-c",
   patentNumber: "US 2020/0333569 A1",
   patentAuthors: ["Masato Kondo"],
-  patentAssignees: ["Fujifilm Corp"],
+  patentAssignees: ["Fujifilm Corporation"],
   patentYear: 2020,
   elementCount: 8,
   groupCount: 6,

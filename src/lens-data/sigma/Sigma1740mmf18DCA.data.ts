@@ -53,7 +53,7 @@ const LENS_DATA = {
   imageFormat: "aps-c",
   patentNumber: "CN 121454749 A",
   patentAuthors: ["Ryo Shioda"],
-  patentAssignees: ["SIGMA CORP"],
+  patentAssignees: ["Sigma Corporation"],
   patentYear: 2026,
   elementCount: 17,
   groupCount: 11,

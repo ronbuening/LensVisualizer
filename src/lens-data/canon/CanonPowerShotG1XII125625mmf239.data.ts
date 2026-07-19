@@ -49,7 +49,7 @@ const LENS_DATA = {
   lensMounts: ["fixed-lens-camera"],
   patentNumber: "US 2015/0219882 A1",
   patentAuthors: ["Shuichi Mogi"],
-  patentAssignees: ["Canon Inc"],
+  patentAssignees: ["Canon Inc."],
   patentYear: 2015,
   elementCount: 14,
   groupCount: 11,

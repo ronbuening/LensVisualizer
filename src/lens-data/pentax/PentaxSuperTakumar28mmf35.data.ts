@@ -48,7 +48,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 3,506,339",
   patentAuthors: ["Tomokazu Kazamaki"],
-  patentAssignees: ["Asahi Kogaku Kogyo Co Ltd"],
+  patentAssignees: ["Asahi Kogaku Kogyo Co., Ltd."],
   patentYear: 1970,
   elementCount: 7,
   groupCount: 7,

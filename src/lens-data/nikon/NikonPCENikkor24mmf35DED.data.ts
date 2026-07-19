@@ -53,7 +53,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "JP 2008-151949 A",
   patentAuthors: ["Takayuki Sensui"],
-  patentAssignees: ["Nikon Corp"],
+  patentAssignees: ["Nikon Corporation"],
   patentYear: 2008,
   elementCount: 13,
   groupCount: 10,

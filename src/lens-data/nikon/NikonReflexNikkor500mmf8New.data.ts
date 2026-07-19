@@ -59,7 +59,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 4,666,259 A",
   patentAuthors: ["Yutaka Iizuka"],
-  patentAssignees: ["Nippon Kogaku KK"],
+  patentAssignees: ["Nippon Kogaku K.K."],
   patentYear: 1987,
   elementCount: 6,
   groupCount: 6,

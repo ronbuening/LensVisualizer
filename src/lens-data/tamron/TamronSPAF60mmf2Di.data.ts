@@ -58,7 +58,7 @@ const LENS_DATA = {
   imageFormat: "aps-c",
   patentNumber: "US 2011/0286116 A1",
   patentAuthors: ["Kaori Shimizu", "Hisayuki Yamanaka"],
-  patentAssignees: ["Tamron Co Ltd"],
+  patentAssignees: ["Tamron Co., Ltd."],
   patentYear: 2011,
   elementCount: 14,
   groupCount: 10,

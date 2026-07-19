@@ -48,7 +48,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 4,666,260",
   patentAuthors: ["Takayuki Ito"],
-  patentAssignees: ["Asahi Kogaku Kogyo Co Ltd"],
+  patentAssignees: ["Asahi Kogaku Kogyo Co., Ltd."],
   patentYear: 1987,
   elementCount: 10,
   groupCount: 9,

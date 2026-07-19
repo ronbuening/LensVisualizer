@@ -48,7 +48,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "JP 2020-173366 A",
   patentAuthors: ["Ryosuke Imajima", "Takakazu Hirose", "Daisuke Tanahashi", "Yasushi Yamamoto", "Mami Muratani"],
-  patentAssignees: ["Konica Minolta Co., Ltd.", "Nikon Corporation"],
+  patentAssignees: ["Konica Minolta, Inc.","Nikon Corporation"],
   patentYear: 2020,
   elementCount: 12,
   groupCount: 8,

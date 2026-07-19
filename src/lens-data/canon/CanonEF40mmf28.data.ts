@@ -39,7 +39,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 8,970,966 B2",
   patentAuthors: ["Satoshi Maetaki"],
-  patentAssignees: ["Canon Inc"],
+  patentAssignees: ["Canon Inc."],
   patentYear: 2015,
   elementCount: 6,
   groupCount: 4,

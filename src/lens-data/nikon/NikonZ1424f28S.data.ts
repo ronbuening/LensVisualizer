@@ -58,7 +58,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "WO 2021/117563 A1",
   patentAuthors: ["Fumiaki Ohtake", "Azuna Nonaka", "Yoshiharu Yuasa", "Takeshi Umeda"],
-  patentAssignees: ["Nikon Corp"],
+  patentAssignees: ["Nikon Corporation"],
   patentYear: 2021,
   elementCount: 16,
   groupCount: 11,

@@ -61,7 +61,7 @@ const LENS_DATA = {
   imageFormat: "aps-c",
   patentNumber: "JP 2014-145954 A",
   patentAuthors: ["Masakazu Hibino"],
-  patentAssignees: ["SIGMA CORP"],
+  patentAssignees: ["Sigma Corporation"],
   patentYear: 2014,
   elementCount: 8,
   groupCount: 6,

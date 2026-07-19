@@ -48,7 +48,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 3,108,152",
   patentAuthors: ["Eugen Hermanni"],
-  patentAssignees: ["Ernst Leitz Wetzlar GmbH"],
+  patentAssignees: ["Ernst Leitz GmbH"],
   patentYear: 1963,
   elementCount: 5,
   groupCount: 4,

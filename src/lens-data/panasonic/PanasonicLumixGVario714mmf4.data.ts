@@ -37,7 +37,7 @@ const LENS_DATA = {
   imageFormat: "four-thirds",
   patentNumber: "US 2010/0194930 A1",
   patentAuthors: ["Kyoichi Miyazaki", "Keiichi Zaitsu"],
-  patentAssignees: ["Panasonic Corp"],
+  patentAssignees: ["Panasonic Corporation"],
   patentYear: 2010,
   elementCount: 16,
   groupCount: 12,

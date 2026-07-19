@@ -49,7 +49,7 @@ const LENS_DATA = {
   imageFormat: "four-thirds",
   patentNumber: "US 8,755,132 B2",
   patentAuthors: ["Yasuharu Yamada", "Hirohiko Kimata"],
-  patentAssignees: ["Olympus Imaging Corp"],
+  patentAssignees: ["Olympus Imaging Corporation"],
   patentYear: 2014,
   elementCount: 6,
   groupCount: 4,

@@ -45,7 +45,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "JP 2021-043376 A",
   patentAuthors: ["Yasuyuki Sugano"],
-  patentAssignees: ["Cosina Co Ltd"],
+  patentAssignees: ["Cosina Co., Ltd."],
   patentYear: 2021,
   elementCount: 10,
   groupCount: 8,

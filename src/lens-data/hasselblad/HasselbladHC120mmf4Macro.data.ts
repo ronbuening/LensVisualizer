@@ -45,7 +45,7 @@ const LENS_DATA = {
   imageFormat: "645",
   patentNumber: "JP 2004-302170 A",
   patentAuthors: ["Kazunori Ohno"],
-  patentAssignees: ["Fuji Photo Optical Co Ltd"],
+  patentAssignees: ["Fuji Photo Optical Co., Ltd."],
   patentYear: 2004,
   elementCount: 9,
   groupCount: 9,

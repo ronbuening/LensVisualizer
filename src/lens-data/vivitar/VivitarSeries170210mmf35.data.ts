@@ -54,7 +54,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "JP S51-63635",
   patentAuthors: ["Rinzo Watanabe", "Ellis I. Betensky"],
-  patentAssignees: ["KINO SEIMITSU KOGYO KK"],
+  patentAssignees: ["Kino Seimitsu Kogyo K.K."],
   patentYear: 1976,
   elementCount: 15,
   groupCount: 10,

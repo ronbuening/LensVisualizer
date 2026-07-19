@@ -41,7 +41,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 2014/0071331 A1",
   patentAuthors: ["Kouji Katou", "Yumiko Uehara", "Motoyuki Ohtake"],
-  patentAssignees: ["Sony Corp"],
+  patentAssignees: ["Sony Corporation"],
   patentYear: 2014,
   elementCount: 8,
   groupCount: 5,

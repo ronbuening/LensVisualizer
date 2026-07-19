@@ -51,7 +51,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 2015/0077859 A1",
   patentAuthors: ["Fumikazu Kanetaka", "Kodai Nagamatsu"],
-  patentAssignees: ["Sony Corp"],
+  patentAssignees: ["Sony Corporation"],
   patentYear: 2015,
   elementCount: 9,
   groupCount: 8,

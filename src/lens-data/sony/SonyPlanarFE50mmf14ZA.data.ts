@@ -42,7 +42,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "WO 2017/138250 A1",
   patentAuthors: ["Masaharu Hosoi"],
-  patentAssignees: ["Sony Corp"],
+  patentAssignees: ["Sony Corporation"],
   patentYear: 2017,
   elementCount: 12,
   groupCount: 9,

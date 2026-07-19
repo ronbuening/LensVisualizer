@@ -51,7 +51,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 5,822,132",
   patentAuthors: ["Jun Hirakawa"],
-  patentAssignees: ["Asahi Kogaku Kogyo Co Ltd"],
+  patentAssignees: ["Asahi Kogaku Kogyo Co., Ltd."],
   patentYear: 1998,
   elementCount: 5,
   groupCount: 5,

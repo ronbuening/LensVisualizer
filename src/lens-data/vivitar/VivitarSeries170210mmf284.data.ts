@@ -54,7 +54,7 @@ const LENS_DATA = {
   apertureDesign: 2.89,
   patentNumber: "US 4,758,073",
   patentAuthors: ["Jacob Moskovich"],
-  patentAssignees: ["Vivitar Corp"],
+  patentAssignees: ["Vivitar Corporation"],
   patentYear: 1988,
   elementCount: 14,
   groupCount: 10,

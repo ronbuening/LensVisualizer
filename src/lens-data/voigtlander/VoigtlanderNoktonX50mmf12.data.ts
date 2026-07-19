@@ -35,7 +35,7 @@ const LENS_DATA = {
   imageFormat: "aps-c",
   patentNumber: "JP 2025-058577 A",
   patentAuthors: ["Yuki Shibata"],
-  patentAssignees: ["Cosina Co Ltd"],
+  patentAssignees: ["Cosina Co., Ltd."],
   patentYear: 2025,
   elementCount: 9,
   groupCount: 8,

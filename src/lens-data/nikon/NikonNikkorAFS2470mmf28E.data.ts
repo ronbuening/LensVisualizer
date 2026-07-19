@@ -52,7 +52,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 2020/0142168 A1",
   patentAuthors: ["Hiroki Harada"],
-  patentAssignees: ["Nikon Corp"],
+  patentAssignees: ["Nikon Corporation"],
   patentYear: 2020,
   elementCount: 20,
   groupCount: 16,

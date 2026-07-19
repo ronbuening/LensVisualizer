@@ -54,7 +54,7 @@ const LENS_DATA = {
   lensMounts: ["fixed-lens-camera"],
   patentNumber: "US 2003/0072086 A1",
   patentAuthors: ["Tsutomu Uzawa", "Masahiro Suzuki"],
-  patentAssignees: ["Olympus Optical Co Ltd"],
+  patentAssignees: ["Olympus Optical Co., Ltd."],
   patentYear: 2003,
   elementCount: 14,
   groupCount: 11,

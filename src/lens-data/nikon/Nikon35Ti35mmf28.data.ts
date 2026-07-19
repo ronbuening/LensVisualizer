@@ -68,7 +68,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 5,243,468",
   patentAuthors: ["Motoyuki Ohtake"],
-  patentAssignees: ["Nikon Corp"],
+  patentAssignees: ["Nikon Corporation"],
   patentYear: 1993,
   elementCount: 6,
   groupCount: 4,

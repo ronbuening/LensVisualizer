@@ -49,7 +49,7 @@ const LENS_DATA = {
   },
   patentNumber: "JP 2023-063766 A",
   patentAuthors: ["Kazuhiro Ogino"],
-  patentAssignees: ["Cosina Co Ltd"],
+  patentAssignees: ["Cosina Co., Ltd."],
   patentYear: 2023,
   elementCount: 9,
   groupCount: 7,

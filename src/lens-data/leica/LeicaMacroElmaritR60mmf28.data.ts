@@ -43,7 +43,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 3,552,833",
   patentAuthors: ["Heinz Marquardt"],
-  patentAssignees: ["Ernst Leitz Wetzlar GmbH"],
+  patentAssignees: ["Ernst Leitz GmbH"],
   patentYear: 1971,
   elementCount: 6,
   groupCount: 5,

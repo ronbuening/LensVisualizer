@@ -54,7 +54,7 @@ const LENS_DATA = {
   imageFormat: "aps-c",
   patentNumber: "US 2012/0069456 A1",
   patentAuthors: ["Takashi Suzuki"],
-  patentAssignees: ["Fujifilm Corp"],
+  patentAssignees: ["Fujifilm Corporation"],
   patentYear: 2012,
   elementCount: 8,
   groupCount: 6,

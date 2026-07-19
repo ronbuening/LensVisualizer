@@ -63,7 +63,7 @@ const LENS_DATA = {
   imageFormat: "aps-c" as const,
   patentNumber: "JP 2007-108398 A",
   patentAuthors: ["Hiroshi Endo"],
-  patentAssignees: ["Canon Inc"],
+  patentAssignees: ["Canon Inc."],
   patentYear: 2007,
   elementCount: 21,
   groupCount: 12,

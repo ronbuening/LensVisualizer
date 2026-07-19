@@ -41,7 +41,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 3,632,190",
   patentAuthors: ["Yoshiyuki Shimizu"],
-  patentAssignees: ["Nippon Kogaku KK"],
+  patentAssignees: ["Nippon Kogaku K.K."],
   patentYear: 1972,
   elementCount: 5,
   groupCount: 3,

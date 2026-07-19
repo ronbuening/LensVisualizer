@@ -56,7 +56,7 @@ const LENS_DATA = {
   imageFormat: "four-thirds",
   patentNumber: "US 2017/0059832 A1",
   patentAuthors: ["Shunichiro Yoshinaga"],
-  patentAssignees: ["Panasonic Intellectual Property Management Co Ltd"],
+  patentAssignees: ["Panasonic Intellectual Property Management Co., Ltd."],
   patentYear: 2017,
   elementCount: 8,
   groupCount: 7,

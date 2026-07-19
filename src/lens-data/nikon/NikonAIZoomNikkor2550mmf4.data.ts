@@ -36,7 +36,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 4,189,212",
   patentAuthors: ["Norio Mizutani", "Soichi Nakamura"],
-  patentAssignees: ["Nippon Kogaku KK"],
+  patentAssignees: ["Nippon Kogaku K.K."],
   patentYear: 1980,
   elementCount: 11,
   groupCount: 10,

@@ -42,7 +42,7 @@ const LENS_DATA = {
   imageFormat: "44x33",
   patentNumber: "US 2020/0192060 A1",
   patentAuthors: ["Akira Sawamoto"],
-  patentAssignees: ["Nittoh Inc"],
+  patentAssignees: ["Nittoh Inc."],
   patentYear: 2020,
   elementCount: 10,
   groupCount: 7,

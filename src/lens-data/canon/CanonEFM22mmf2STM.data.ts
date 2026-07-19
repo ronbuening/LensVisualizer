@@ -46,7 +46,7 @@ const LENS_DATA = {
   imageFormat: "aps-c",
   patentNumber: "US 8,854,747 B2",
   patentAuthors: ["Shunji Iwamoto"],
-  patentAssignees: ["Canon Inc"],
+  patentAssignees: ["Canon Inc."],
   patentYear: 2014,
   elementCount: 7,
   groupCount: 6,

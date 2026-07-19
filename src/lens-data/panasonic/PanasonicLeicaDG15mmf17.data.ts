@@ -40,7 +40,7 @@ const LENS_DATA = {
   imageFormat: "four-thirds",
   patentNumber: "US 2015/0268449 A1",
   patentAuthors: ["Yoshiaki Kurioka", "Takehiro Nishioka"],
-  patentAssignees: ["Panasonic Intellectual Property Management Co Ltd"],
+  patentAssignees: ["Panasonic Intellectual Property Management Co., Ltd."],
   patentYear: 2015,
   elementCount: 9,
   groupCount: 7,

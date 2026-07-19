@@ -40,7 +40,7 @@ const LENS_DATA = {
   apertureDesign: 2.0,
   patentNumber: "US 3,736,049",
   patentAuthors: ["Yoshiyuki Shimizu"],
-  patentAssignees: ["Nippon Kogaku KK"],
+  patentAssignees: ["Nippon Kogaku K.K."],
   patentYear: 1973,
   elementCount: 9,
   groupCount: 8,

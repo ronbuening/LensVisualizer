@@ -44,7 +44,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "WO 2024/147268 A1",
   patentAuthors: ["Mami Muratani", "Hiroshi Yamamoto", "Tomonori Kuribayashi", "Takuro Ono"],
-  patentAssignees: ["Nikon Corp"],
+  patentAssignees: ["Nikon Corporation"],
   patentYear: 2024,
   elementCount: 16,
   groupCount: 14,

@@ -54,7 +54,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 3,862,794 A",
   patentAuthors: ["Toru Fujii"],
-  patentAssignees: ["Olympus Optical Co Ltd"],
+  patentAssignees: ["Olympus Optical Co., Ltd."],
   patentYear: 1975,
   elementCount: 9,
   groupCount: 8,

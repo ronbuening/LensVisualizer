@@ -45,7 +45,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "JP 2012-058682 A",
   patentAuthors: ["Noriyuki Ogasawara"],
-  patentAssignees: ["SIGMA CORP"],
+  patentAssignees: ["Sigma Corporation"],
   patentYear: 2012,
   elementCount: 16,
   groupCount: 11,

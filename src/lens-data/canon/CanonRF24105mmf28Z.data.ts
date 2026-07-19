@@ -59,7 +59,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 2024/0192474 A1",
   patentAuthors: ["Shunji Iwamoto"],
-  patentAssignees: ["Canon Inc"],
+  patentAssignees: ["Canon Inc."],
   patentYear: 2024,
   elementCount: 23,
   groupCount: 18,

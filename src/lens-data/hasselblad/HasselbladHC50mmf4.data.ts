@@ -56,7 +56,7 @@ const LENS_DATA = {
   imageFormat: "645",
   patentNumber: "US 2003/0011895 A1",
   patentAuthors: ["Masao Mori"],
-  patentAssignees: ["Fuji Photo Optical Co Ltd"],
+  patentAssignees: ["Fuji Photo Optical Co., Ltd."],
   patentYear: 2003,
   elementCount: 10,
   groupCount: 9,

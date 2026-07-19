@@ -58,7 +58,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "JP WO2020/157904 A1",
   patentAuthors: ["Ayumu Makida", "Tomoki Ito", "Satoshi Miwa"],
-  patentAssignees: ["Nikon Corp"],
+  patentAssignees: ["Nikon Corporation"],
   patentYear: 2020,
   elementCount: 19,
   groupCount: 15,

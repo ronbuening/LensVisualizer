@@ -56,7 +56,7 @@ const LENS_DATA = {
   imageFormat: "aps-c",
   patentNumber: "US 7,715,118 B2",
   patentAuthors: ["Koji Kato"],
-  patentAssignees: ["Hoya Corp"],
+  patentAssignees: ["Hoya Corporation"],
   patentYear: 2010,
   elementCount: 9,
   groupCount: 8,

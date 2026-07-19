@@ -47,7 +47,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 2025/0389929 A1",
   patentAuthors: ["Takahiro Saito"],
-  patentAssignees: ["Canon Inc"],
+  patentAssignees: ["Canon Inc."],
   patentYear: 2025,
   elementCount: 16,
   groupCount: 11,

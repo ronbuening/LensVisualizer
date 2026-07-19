@@ -50,7 +50,7 @@ const LENS_DATA = {
   imageFormat: "6x9",
   patentNumber: "JP S56-140311",
   patentAuthors: ["Ryoichi Doi", "Yutaka Sakai", "Kazunori Ohno"],
-  patentAssignees: ["Fuji Photo Optical Co Ltd"],
+  patentAssignees: ["Fuji Photo Optical Co., Ltd."],
   patentYear: 1981,
   elementCount: 6,
   groupCount: 4,

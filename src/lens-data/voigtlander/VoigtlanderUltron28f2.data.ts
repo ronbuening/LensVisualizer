@@ -45,7 +45,7 @@ const LENS_DATA = {
   // apertureDesign omitted — patent F/2.0 matches marketing
   patentNumber: "JP 2022-100641 A",
   patentAuthors: ["Yoshihisa Yomogida", "Yuki Shibata"],
-  patentAssignees: ["Cosina Co Ltd"],
+  patentAssignees: ["Cosina Co., Ltd."],
   patentYear: 2022,
   elementCount: 10,
   groupCount: 7,

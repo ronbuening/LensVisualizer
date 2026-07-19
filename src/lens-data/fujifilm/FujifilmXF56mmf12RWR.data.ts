@@ -49,7 +49,7 @@ const LENS_DATA = {
   imageFormat: "aps-c",
   patentNumber: "JP 2023-029039 A",
   patentAuthors: ["Takuya Tanaka", "Yasutaka Shimada"],
-  patentAssignees: ["Fujifilm Corp"],
+  patentAssignees: ["Fujifilm Corporation"],
   patentYear: 2023,
   elementCount: 13,
   groupCount: 8,

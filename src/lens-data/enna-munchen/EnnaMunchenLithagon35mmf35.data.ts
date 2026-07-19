@@ -51,7 +51,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 2,821,112",
   patentAuthors: ["Johann Lautenbacher", "Theodor Brendel"],
-  patentAssignees: ["ENNA WERK OPTIK APELT"],
+  patentAssignees: ["Enna-Werk Optische Anstalt Dr. Appelt K.G."],
   patentYear: 1958,
   elementCount: 4,
   groupCount: 4,

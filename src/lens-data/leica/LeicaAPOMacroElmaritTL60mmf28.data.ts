@@ -40,7 +40,7 @@ const LENS_DATA = {
   imageFormat: "aps-c",
   patentNumber: "JP 2016-090725 A",
   patentAuthors: ["Hiroaki Tanaka"],
-  patentAssignees: ["Konica Minolta Inc"],
+  patentAssignees: ["Konica Minolta, Inc."],
   patentYear: 2016,
   elementCount: 10,
   groupCount: 9,

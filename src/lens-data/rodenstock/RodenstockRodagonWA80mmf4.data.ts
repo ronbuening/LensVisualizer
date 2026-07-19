@@ -48,7 +48,7 @@ const LENS_DATA = {
   imageFormat: "6x9",
   patentNumber: "DE 2818435 B1",
   patentAuthors: ["Franz Schlegel", "Josef Weiß"],
-  patentAssignees: ["Optische Werke G Rodenstock"],
+  patentAssignees: ["Optische Werke G. Rodenstock"],
   patentYear: 1978,
   elementCount: 6,
   groupCount: 4,

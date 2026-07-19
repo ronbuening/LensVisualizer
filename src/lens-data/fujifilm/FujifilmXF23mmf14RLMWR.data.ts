@@ -40,7 +40,7 @@ const LENS_DATA = {
   imageFormat: "aps-c" as const,
   patentNumber: "US 2022/0276464 A1",
   patentAuthors: ["Taiga Noda", "Ryoko Tomioka"],
-  patentAssignees: ["Fujifilm Corp"],
+  patentAssignees: ["Fujifilm Corporation"],
   patentYear: 2022,
   elementCount: 15,
   groupCount: 10,

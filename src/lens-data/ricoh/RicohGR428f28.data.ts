@@ -42,7 +42,7 @@ const LENS_DATA = {
   imageFormat: "aps-c",
   patentNumber: "JP 2025-069516 A",
   patentAuthors: ["Takahiro Nakayama"],
-  patentAssignees: ["Ricoh Co Ltd"],
+  patentAssignees: ["Ricoh Co., Ltd."],
   patentYear: 2025,
   elementCount: 7,
   groupCount: 5,

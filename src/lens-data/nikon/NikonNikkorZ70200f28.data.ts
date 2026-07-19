@@ -40,7 +40,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "WO 2020/105104 A1",
   patentAuthors: ["Takeru Uehara"],
-  patentAssignees: ["Nikon Corp"],
+  patentAssignees: ["Nikon Corporation"],
   patentYear: 2020,
   elementCount: 21,
   groupCount: 18,

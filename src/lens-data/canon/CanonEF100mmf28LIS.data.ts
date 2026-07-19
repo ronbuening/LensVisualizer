@@ -35,7 +35,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 7,864,451 B2",
   patentAuthors: ["Yoshiyuki Taki"],
-  patentAssignees: ["Canon Inc"],
+  patentAssignees: ["Canon Inc."],
   patentYear: 2011,
   elementCount: 15,
   groupCount: 12,

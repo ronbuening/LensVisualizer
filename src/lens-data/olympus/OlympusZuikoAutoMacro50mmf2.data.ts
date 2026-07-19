@@ -49,7 +49,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 4,708,445",
   patentAuthors: ["Hisashi Goto"],
-  patentAssignees: ["Olympus Optical Co Ltd"],
+  patentAssignees: ["Olympus Optical Co., Ltd."],
   patentYear: 1987,
   elementCount: 9,
   groupCount: 7,

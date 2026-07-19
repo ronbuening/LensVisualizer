@@ -44,7 +44,7 @@ const LENS_DATA = {
   imageFormat: "aps-c",
   patentNumber: "JP 2016-139087 A",
   patentAuthors: ["Tomoki Kono", "Noriyuki Ogasawara"],
-  patentAssignees: ["SIGMA CORP"],
+  patentAssignees: ["Sigma Corporation"],
   patentYear: 2016,
   elementCount: 11,
   groupCount: 8,

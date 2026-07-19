@@ -40,7 +40,7 @@ const LENS_DATA = {
   imageFormat: "645",
   patentNumber: "US 2006/0209426 A1",
   patentAuthors: ["Takashi Suzuki"],
-  patentAssignees: ["Fujinon Corp"],
+  patentAssignees: ["Fujinon Corporation"],
   patentYear: 2006,
   elementCount: 9,
   groupCount: 7,

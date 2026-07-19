@@ -47,7 +47,7 @@ const LENS_DATA = {
   imageFormat: "aps-c",
   patentNumber: "US 2026/0056396 A1",
   patentAuthors: ["Takeru Uehara"],
-  patentAssignees: ["Nikon Corp"],
+  patentAssignees: ["Nikon Corporation"],
   patentYear: 2026,
   elementCount: 12,
   groupCount: 11,

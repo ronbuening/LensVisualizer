@@ -53,7 +53,7 @@ const LENS_DATA = {
   imageFormat: "aps-c",
   patentNumber: "US 7,161,746 B2",
   patentAuthors: ["Keiko Mizuguchi"],
-  patentAssignees: ["Nikon Corp"],
+  patentAssignees: ["Nikon Corporation"],
   patentYear: 2007,
   elementCount: 10,
   groupCount: 7,

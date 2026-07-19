@@ -42,7 +42,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 2,745,315",
   patentAuthors: ["Theodor Brendel"],
-  patentAssignees: ["Agfa Camera Werk AG"],
+  patentAssignees: ["Agfa Camera-Werk AG"],
   patentYear: 1956,
   elementCount: 6,
   groupCount: 4,

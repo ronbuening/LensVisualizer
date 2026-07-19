@@ -52,7 +52,7 @@ const LENS_DATA = {
   imageFormat: "aps-c",
   patentNumber: "US 2011/0273780 A1",
   patentAuthors: ["Masaharu Hosoi", "Hiroyuki Matsumoto", "Masafumi Sueyoshi"],
-  patentAssignees: ["Sony Corp"],
+  patentAssignees: ["Sony Corporation"],
   patentYear: 2011,
   elementCount: 11,
   groupCount: 9,

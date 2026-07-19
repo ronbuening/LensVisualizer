@@ -43,7 +43,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "JP 2019-117419 A",
   patentAuthors: ["Kenta Fujita"],
-  patentAssignees: ["SIGMA CORP"],
+  patentAssignees: ["Sigma Corporation"],
   patentYear: 2019,
   elementCount: 15,
   groupCount: 11,

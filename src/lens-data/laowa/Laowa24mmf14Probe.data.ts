@@ -60,7 +60,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "CN 210573001 U",
   patentAuthors: ["Dayong Li"],
-  patentAssignees: ["Anhui Changgeng Optics Technology Co ltd"],
+  patentAssignees: ["Anhui Changgeng Optics Technology Co., Ltd."],
   patentYear: 2020,
   elementCount: 27,
   groupCount: 19,

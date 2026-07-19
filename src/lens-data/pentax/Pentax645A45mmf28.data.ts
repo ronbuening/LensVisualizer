@@ -43,7 +43,7 @@ const LENS_DATA = {
   imageFormat: "645",
   patentNumber: "US 4,487,485",
   patentAuthors: ["Masaharu Hisada"],
-  patentAssignees: ["Asahi Kogaku Kogyo Co Ltd"],
+  patentAssignees: ["Asahi Kogaku Kogyo Co., Ltd."],
   patentYear: 1984,
   elementCount: 9,
   groupCount: 8,

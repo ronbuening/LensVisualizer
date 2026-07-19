@@ -98,7 +98,7 @@ const LENS_DATA = {
   imageFormat: "aps-c",
   patentNumber: "US 2016/0154221 A1",
   patentAuthors: ["Taiga Noda", "Michio Cho"],
-  patentAssignees: ["Fujifilm Corp"],
+  patentAssignees: ["Fujifilm Corporation"],
   patentYear: 2016,
   elementCount: 17,
   groupCount: 12,

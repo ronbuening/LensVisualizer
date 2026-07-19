@@ -55,7 +55,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "JP S63-17421 A",
   patentAuthors: ["Takashi Matsushita"],
-  patentAssignees: ["Canon Inc"],
+  patentAssignees: ["Canon Inc."],
   patentYear: 1988,
   elementCount: 8,
   groupCount: 7,

@@ -39,7 +39,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "JP 2014-048488 A",
   patentAuthors: ["Ryo Shioda"],
-  patentAssignees: ["SIGMA CORP"],
+  patentAssignees: ["Sigma Corporation"],
   patentYear: 2014,
   elementCount: 13,
   groupCount: 11,

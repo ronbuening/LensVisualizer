@@ -41,7 +41,7 @@ const LENS_DATA = {
   lensMounts: ["enlarging-lens"],
   patentNumber: "GB 775,944",
   patentAuthors: [],
-  patentAssignees: ["Agfa Camera-Werk Aktiengesellschaft"],
+  patentAssignees: ["Agfa Camera-Werk AG"],
   patentYear: 1957,
   elementCount: 5,
   groupCount: 3,

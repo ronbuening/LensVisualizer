@@ -37,7 +37,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 5,760,973",
   patentAuthors: ["Atsushi Kawamura"],
-  patentAssignees: ["Ricoh Co Ltd"],
+  patentAssignees: ["Ricoh Co., Ltd."],
   patentYear: 1998,
   elementCount: 7,
   groupCount: 4,

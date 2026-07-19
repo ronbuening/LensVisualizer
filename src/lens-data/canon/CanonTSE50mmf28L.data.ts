@@ -51,7 +51,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 10,571,651 B2",
   patentAuthors: ["Hideki Sakai"],
-  patentAssignees: ["Canon Inc"],
+  patentAssignees: ["Canon Inc."],
   patentYear: 2020,
   elementCount: 12,
   groupCount: 9,

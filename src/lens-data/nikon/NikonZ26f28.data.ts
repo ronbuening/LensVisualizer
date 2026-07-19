@@ -41,7 +41,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "WO 2023/190222 A1",
   patentAuthors: ["Ayumu Makida", "Taeko Toshi"],
-  patentAssignees: ["Nikon Corp"],
+  patentAssignees: ["Nikon Corporation"],
   patentYear: 2023,
   elementCount: 8,
   groupCount: 4,

@@ -47,7 +47,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 4,560,253",
   patentAuthors: ["Shuji Ogino"],
-  patentAssignees: ["Minolta Co Ltd"],
+  patentAssignees: ["Minolta Co., Ltd."],
   patentYear: 1985,
   elementCount: 6,
   groupCount: 6,

@@ -57,7 +57,7 @@ const LENS_DATA = {
   imageFormat: "aps-c",
   patentNumber: "JP 2012-159613 A",
   patentAuthors: ["Takahiko Sakai", "Masaharu Hosoi"],
-  patentAssignees: ["Sony Corporation", "Tamron Co., Ltd."],
+  patentAssignees: ["Sony Corporation","Tamron Co., Ltd."],
   patentYear: 2012,
   elementCount: 7,
   groupCount: 6,

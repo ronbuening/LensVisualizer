@@ -58,7 +58,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 2019/0265441 A1",
   patentAuthors: ["Masato Katayose"],
-  patentAssignees: ["Canon Inc"],
+  patentAssignees: ["Canon Inc."],
   patentYear: 2019,
   elementCount: 15,
   groupCount: 9,

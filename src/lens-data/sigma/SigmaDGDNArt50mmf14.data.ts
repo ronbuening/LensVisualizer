@@ -49,7 +49,7 @@ const LENS_DATA = {
   apertureDesign: 1.45,
   patentNumber: "JP 2023-183894 A",
   patentAuthors: ["Yukihiro Yamamoto"],
-  patentAssignees: ["SIGMA CORP"],
+  patentAssignees: ["Sigma Corporation"],
   patentYear: 2023,
   elementCount: 14,
   groupCount: 11,

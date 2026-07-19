@@ -57,7 +57,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 2023/0213739 A1",
   patentAuthors: ["Makoto Nakahara", "Shinya Okuoka"],
-  patentAssignees: ["Canon Inc"],
+  patentAssignees: ["Canon Inc."],
   patentYear: 2023,
   elementCount: 8,
   groupCount: 8,

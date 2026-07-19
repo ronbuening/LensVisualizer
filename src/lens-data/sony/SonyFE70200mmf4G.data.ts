@@ -48,7 +48,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 2015/0226945 A1",
   patentAuthors: ["Takumi Matsui", "Keita Kaifu"],
-  patentAssignees: ["Sony Corp"],
+  patentAssignees: ["Sony Corporation"],
   patentYear: 2015,
   elementCount: 21,
   groupCount: 15,

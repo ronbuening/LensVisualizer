@@ -58,7 +58,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 2020/0257181 A1",
   patentAuthors: ["Yuichi Gyoda"],
-  patentAssignees: ["Canon Inc"],
+  patentAssignees: ["Canon Inc."],
   patentYear: 2020,
   elementCount: 16,
   groupCount: 12,

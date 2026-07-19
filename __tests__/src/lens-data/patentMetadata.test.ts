@@ -28,10 +28,23 @@ function normalizedWordOrderKey(value: string): string {
     .join("");
 }
 
+function normalizedAssigneeKey(value: string): string {
+  return value
+    .normalize("NFKD")
+    .toLocaleLowerCase()
+    .replace(/\p{M}/gu, "")
+    .replace(
+      /\b(?:corporation|corp|incorporated|inc|company|co|limited|ltd|kabushiki|kaisha|aktiengesellschaft|kk)\b/gu,
+      "",
+    )
+    .replace(/[^\p{L}\p{N}]/gu, "");
+}
+
 describe("lens patent metadata", () => {
   it("declares complete structured metadata on every patent-backed lens", () => {
     const normalizedSpellings = new Map<string, string>();
     const normalizedWordOrders = new Map<string, string>();
+    const normalizedAssigneeSpellings = new Map<string, string>();
 
     for (const [path, { default: data }] of Object.entries(modules)) {
       if (path.includes("/reference/")) continue;
@@ -58,6 +71,24 @@ describe("lens patent metadata", () => {
           author,
         );
         normalizedWordOrders.set(wordOrderKey, author);
+      }
+
+      for (const assignee of data.patentAssignees ?? []) {
+        expect(assignee.normalize("NFKC"), `${path}: patentAssignees must use normalized Unicode`).toBe(assignee);
+        expect(assignee, `${path}: patentAssignees must use conventional capitalization`).not.toMatch(
+          /^[^\p{Ll}]*\p{Lu}[^\p{Ll}]*$/u,
+        );
+        expect(assignee, `${path}: patentAssignees must omit parenthetical source annotations`).not.toMatch(/[()]/);
+        expect(assignee, `${path}: patentAssignees must use canonical corporate suffixes`).not.toMatch(
+          /\b(?:Co|Corp|Inc|Ltd|KK)\b(?!\.)/,
+        );
+
+        const assigneeKey = normalizedAssigneeKey(assignee);
+        expect(
+          normalizedAssigneeSpellings.get(assigneeKey) ?? assignee,
+          `${path}: inconsistent assignee spelling`,
+        ).toBe(assignee);
+        normalizedAssigneeSpellings.set(assigneeKey, assignee);
       }
     }
   });

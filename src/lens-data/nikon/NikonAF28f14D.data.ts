@@ -42,7 +42,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 5,315,441",
   patentAuthors: ["Kenji Hori", "Wataru Tatsuno"],
-  patentAssignees: ["Nikon Corp"],
+  patentAssignees: ["Nikon Corporation"],
   patentYear: 1994,
   elementCount: 11,
   groupCount: 8,

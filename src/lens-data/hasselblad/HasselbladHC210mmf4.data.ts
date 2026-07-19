@@ -40,7 +40,7 @@ const LENS_DATA = {
   imageFormat: "645",
   patentNumber: "US 6,445,511 B1",
   patentAuthors: ["You Kitahara"],
-  patentAssignees: ["Fuji Photo Optical Co Ltd"],
+  patentAssignees: ["Fuji Photo Optical Co., Ltd."],
   patentYear: 2002,
   elementCount: 10,
   groupCount: 6,

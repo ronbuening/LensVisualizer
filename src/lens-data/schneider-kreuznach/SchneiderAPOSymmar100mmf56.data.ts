@@ -48,7 +48,7 @@ const LENS_DATA = {
   imageFormat: "4x5" as const,
   patentNumber: "US 6,028,720",
   patentAuthors: ["Rolf Wartmann", "Udo Schauss"],
-  patentAssignees: ["Jos Schneider Optische Werke GmbH"],
+  patentAssignees: ["Jos. Schneider Optische Werke Kreuznach GmbH & Co. KG"],
   patentYear: 2000,
   elementCount: 6,
   groupCount: 4,

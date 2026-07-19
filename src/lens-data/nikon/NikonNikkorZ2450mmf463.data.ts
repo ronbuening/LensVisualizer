@@ -59,7 +59,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "JP 2021-189377 A",
   patentAuthors: ["Takakazu Hirose", "Keiko Yamada", "Yasushi Yamamoto", "Hiroshi Yamamoto"],
-  patentAssignees: ["Konica Minolta", "Nikon Corporation"],
+  patentAssignees: ["Konica Minolta, Inc.","Nikon Corporation"],
   patentYear: 2021,
   elementCount: 11,
   groupCount: 10,

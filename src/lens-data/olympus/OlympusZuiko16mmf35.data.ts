@@ -58,7 +58,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 3,850,509",
   patentAuthors: ["Jihei Nakagawa"],
-  patentAssignees: ["Olympus Optical Co Ltd"],
+  patentAssignees: ["Olympus Optical Co., Ltd."],
   patentYear: 1974,
   elementCount: 11, // 10 optical elements + 1 built-in filter plate (filter excluded from prescription)
   groupCount: 8, // 7 optical groups + 1 filter group (filter excluded from prescription)

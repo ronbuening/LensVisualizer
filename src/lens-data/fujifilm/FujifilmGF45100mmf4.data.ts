@@ -44,7 +44,7 @@ const LENS_DATA = {
   imageFormat: "44x33",
   patentNumber: "US 2020/0379223 A1",
   patentAuthors: ["Ryoko Tomioka"],
-  patentAssignees: ["Fujifilm Corp"],
+  patentAssignees: ["Fujifilm Corporation"],
   patentYear: 2020,
   elementCount: 17,
   groupCount: 12,

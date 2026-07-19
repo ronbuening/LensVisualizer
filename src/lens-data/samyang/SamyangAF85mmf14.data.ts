@@ -41,7 +41,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "WO 2021/085655 A1",
   patentAuthors: ["Moon-Kyung Kim"],
-  patentAssignees: ["Samyang Optics Co Ltd"],
+  patentAssignees: ["Samyang Optics Co., Ltd."],
   patentYear: 2021,
   elementCount: 11,
   groupCount: 8,

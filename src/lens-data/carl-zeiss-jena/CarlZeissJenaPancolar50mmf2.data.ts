@@ -45,7 +45,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "GB 850,117",
   patentAuthors: ["Eduard Hubert", "Harry Zöllner"],
-  patentAssignees: ["VEB Carl Zeiss Jena GmbH"],
+  patentAssignees: ["VEB Carl Zeiss Jena"],
   patentYear: 1960,
   elementCount: 6,
   groupCount: 4,

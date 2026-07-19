@@ -44,7 +44,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 2,896,506",
   patentAuthors: ["Hideo Azuma"],
-  patentAssignees: ["Nippon Kogaku KK"],
+  patentAssignees: ["Nippon Kogaku K.K."],
   patentYear: 1959,
   elementCount: 7,
   groupCount: 5,

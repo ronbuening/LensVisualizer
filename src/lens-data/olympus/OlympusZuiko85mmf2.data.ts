@@ -42,7 +42,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 4,063,802",
   patentAuthors: ["Toshihiro Imai", "Yoshitsugi Ikeda"],
-  patentAssignees: ["Olympus Optical Co Ltd"],
+  patentAssignees: ["Olympus Optical Co., Ltd."],
   patentYear: 1977,
   elementCount: 5,
   groupCount: 4,

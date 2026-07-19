@@ -48,7 +48,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "JP H05-034592 A",
   patentAuthors: ["Hideki Ogawa"],
-  patentAssignees: ["Canon Inc"],
+  patentAssignees: ["Canon Inc."],
   patentYear: 1993,
   elementCount: 14,
   groupCount: 10,

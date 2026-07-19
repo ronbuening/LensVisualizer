@@ -61,7 +61,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 4,951,078",
   patentAuthors: ["Takashi Okada"],
-  patentAssignees: ["Minolta Co Ltd"],
+  patentAssignees: ["Minolta Co., Ltd."],
   patentYear: 1990,
   elementCount: 7,
   groupCount: 5,

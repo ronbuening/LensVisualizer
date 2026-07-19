@@ -40,7 +40,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 5,267,086",
   patentAuthors: ["Hiroyuki Hirano"],
-  patentAssignees: ["Asahi Kogaku Kogyo Co Ltd"],
+  patentAssignees: ["Asahi Kogaku Kogyo Co., Ltd."],
   patentYear: 1993,
   elementCount: 5,
   groupCount: 4,

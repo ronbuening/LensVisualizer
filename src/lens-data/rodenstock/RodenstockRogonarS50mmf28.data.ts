@@ -43,7 +43,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "DE 1,089,991",
   patentAuthors: ["Karlheinz Pennig"],
-  patentAssignees: ["Optische Werke G Rodenstock"],
+  patentAssignees: ["Optische Werke G. Rodenstock"],
   patentYear: 1960,
   elementCount: 4,
   groupCount: 3,

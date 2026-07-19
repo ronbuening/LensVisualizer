@@ -44,7 +44,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 2,819,651",
   patentAuthors: ["Carl Baur", "Christian Otzen"],
-  patentAssignees: ["AGFA CAMERA WERK AG FA"],
+  patentAssignees: ["Agfa Camera-Werk AG"],
   patentYear: 1958,
   elementCount: 5,
   groupCount: 3,

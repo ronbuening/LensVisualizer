@@ -35,7 +35,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 8,767,319 B2",
   patentAuthors: ["Yoshihito Souma", "Satoru Shibata"],
-  patentAssignees: ["Konica Minolta Advanced Layers, Inc.", "Nikon Corporation"],
+  patentAssignees: ["Konica Minolta Advanced Layers, Inc.","Nikon Corporation"],
   patentYear: 2014,
   elementCount: 10,
   groupCount: 9,

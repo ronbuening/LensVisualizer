@@ -44,7 +44,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 4,258,985",
   patentAuthors: ["Akiyoshi Nakamura"],
-  patentAssignees: ["Minolta Co Ltd"],
+  patentAssignees: ["Minolta Co., Ltd."],
   patentYear: 1981,
   elementCount: 9,
   groupCount: 9,

@@ -50,7 +50,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 4,303,314",
   patentAuthors: ["Sei Matsui"],
-  patentAssignees: ["Nippon Kogaku KK"],
+  patentAssignees: ["Nippon Kogaku K.K."],
   patentYear: 1981,
   elementCount: 4,
   groupCount: 4,

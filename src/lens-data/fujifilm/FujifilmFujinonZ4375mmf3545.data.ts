@@ -45,7 +45,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 4,195,912",
   patentAuthors: ["Yoshikazu Doi", "Yutaka Sakai", "Kazunori Ohno"],
-  patentAssignees: ["Fuji Photo Optical Co Ltd"],
+  patentAssignees: ["Fuji Photo Optical Co., Ltd."],
   patentYear: 1980,
   elementCount: 7,
   groupCount: 7,

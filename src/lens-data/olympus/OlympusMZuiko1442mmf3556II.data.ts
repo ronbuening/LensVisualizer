@@ -43,7 +43,7 @@ const LENS_DATA = {
   imageFormat: "four-thirds",
   patentNumber: "US 8,994,842 B2",
   patentAuthors: ["Toshio Takahashi", "Hiroshi Kodama", "Kento Hara", "Kazumi Ito"],
-  patentAssignees: ["Olympus Imaging Corp"],
+  patentAssignees: ["Olympus Imaging Corporation"],
   patentYear: 2015,
   elementCount: 8,
   groupCount: 7,

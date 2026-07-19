@@ -49,7 +49,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 4,182,550",
   patentAuthors: ["Tamikazu Yamaguchi"],
-  patentAssignees: ["Minolta Co Ltd"],
+  patentAssignees: ["Minolta Co., Ltd."],
   patentYear: 1980,
   elementCount: 7,
   groupCount: 6,

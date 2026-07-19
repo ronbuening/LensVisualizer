@@ -43,7 +43,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "JP 2019-090947 A",
   patentAuthors: ["Keiko Yamada", "Ryosuke Imajima", "Wataru Tatsuno", "Haruo Sato"],
-  patentAssignees: ["Konica Minolta Inc.", "Nikon Corporation"],
+  patentAssignees: ["Konica Minolta, Inc.","Nikon Corporation"],
   patentYear: 2019,
   elementCount: 11,
   groupCount: 9,

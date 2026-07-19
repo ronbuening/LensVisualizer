@@ -29,7 +29,7 @@ const LENS_DATA = {
   imageFormat: "aps-c",
   patentNumber: "US 2011/0102905 A1",
   patentAuthors: ["Hiroki Harada"],
-  patentAssignees: ["Nikon Corp"],
+  patentAssignees: ["Nikon Corporation"],
   patentYear: 2011,
   elementCount: 17,
   groupCount: 11,

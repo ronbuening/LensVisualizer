@@ -42,7 +42,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 6,560,042 B2",
   patentAuthors: ["Masayuki Murata", "Takayuki Ito"],
-  patentAssignees: ["Pentax Corp"],
+  patentAssignees: ["Pentax Corporation"],
   patentYear: 2003,
   elementCount: 9,
   groupCount: 7,

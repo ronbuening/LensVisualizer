@@ -41,7 +41,7 @@ const LENS_DATA = {
   imageFormat: "6x6",
   patentNumber: "US 2,983,193",
   patentAuthors: ["Willy Schade"],
-  patentAssignees: ["Eastman Kodak Co"],
+  patentAssignees: ["Eastman Kodak Company"],
   patentYear: 1961,
   elementCount: 6,
   groupCount: 4,

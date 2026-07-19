@@ -50,7 +50,7 @@ const LENS_DATA = {
   imageFormat: "aps-c",
   patentNumber: "JP 2015-031869 A",
   patentAuthors: ["Makoto Nakahara"],
-  patentAssignees: ["Canon Inc"],
+  patentAssignees: ["Canon Inc."],
   patentYear: 2015,
   elementCount: 14,
   groupCount: 11,

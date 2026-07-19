@@ -19,7 +19,7 @@ const LENS_DATA = {
   imageFormat: "aps-c",
   patentNumber: "WO 2015/141574 A1",
   patentAuthors: ["Taku Matsuo", "Hiroshi Yamamoto"],
-  patentAssignees: ["Nikon Corp"],
+  patentAssignees: ["Nikon Corporation"],
   patentYear: 2015,
   elementCount: 13,
   groupCount: 9,

@@ -56,7 +56,7 @@ const LENS_DATA = {
   imageFormat: "aps-c",
   patentNumber: "JP 2015-161792 A",
   patentAuthors: ["Ryoko Tomioka", "Hiroki Saito", "Aurélien Dodoc", "Michael Pollmann", "Jürgen Klein"],
-  patentAssignees: ["Fujifilm Corporation", "Carl Zeiss AG"],
+  patentAssignees: ["Fujifilm Corporation","Carl Zeiss AG"],
   patentYear: 2015,
   elementCount: 14,
   groupCount: 11,

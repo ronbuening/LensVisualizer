@@ -45,7 +45,7 @@ const LENS_DATA = {
   imageFormat: "four-thirds",
   patentNumber: "JP 2017-090535 A",
   patentAuthors: ["Tetsuya Yanai", "Toyonori Kon", "Daichi Murakami", "Yuki Kubota"],
-  patentAssignees: ["Olympus Corp"],
+  patentAssignees: ["Olympus Corporation"],
   patentYear: 2017,
   elementCount: 17,
   groupCount: 11,

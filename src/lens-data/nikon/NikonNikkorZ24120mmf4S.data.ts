@@ -75,7 +75,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "WO 2022/259649 A1",
   patentAuthors: ["Takuro Ono", "Kosuke Machida", "Ayumu Makida", "Keisuke Tsubonoya"],
-  patentAssignees: ["Nikon Corp"],
+  patentAssignees: ["Nikon Corporation"],
   patentYear: 2022,
   elementCount: 16,
   groupCount: 13,

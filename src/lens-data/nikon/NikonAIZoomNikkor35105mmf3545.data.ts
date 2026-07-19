@@ -28,7 +28,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 4,699,475",
   patentAuthors: ["Tomowaki Takahashi", "Yasuhiro Aono"],
-  patentAssignees: ["Nippon Kogaku KK"],
+  patentAssignees: ["Nippon Kogaku K.K."],
   patentYear: 1987,
   elementCount: 16,
   groupCount: 12,

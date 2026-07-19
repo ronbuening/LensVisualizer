@@ -52,7 +52,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "JP 2018-132674 A",
   patentAuthors: ["Akira Mizuma"],
-  patentAssignees: ["Canon Inc"],
+  patentAssignees: ["Canon Inc."],
   patentYear: 2018,
   elementCount: 11,
   groupCount: 7,

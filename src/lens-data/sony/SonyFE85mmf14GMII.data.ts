@@ -55,7 +55,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "WO 2025/239028 A1",
   patentAuthors: ["Masakazu Yamagishi", "Ryohei Tazaki", "Yuma Kumisawa"],
-  patentAssignees: ["Sony Group Corp"],
+  patentAssignees: ["Sony Group Corporation"],
   patentYear: 2025,
   elementCount: 14,
   groupCount: 11,

@@ -41,7 +41,7 @@ const LENS_DATA = {
   imageFormat: "44x33",
   patentNumber: "US 2025/0362482 A1",
   patentAuthors: ["Daiki Komatsu"],
-  patentAssignees: ["Fujifilm Corp"],
+  patentAssignees: ["Fujifilm Corporation"],
   patentYear: 2025,
   elementCount: 10,
   groupCount: 8,

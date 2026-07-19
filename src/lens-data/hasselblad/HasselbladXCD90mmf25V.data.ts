@@ -60,7 +60,7 @@ const LENS_DATA = {
   imageFormat: "44x33",
   patentNumber: "JP 2022-099402 A",
   patentAuthors: ["Takehiro Nishioka"],
-  patentAssignees: ["Panasonic Intellectual Property Management Co Ltd"],
+  patentAssignees: ["Panasonic Intellectual Property Management Co., Ltd."],
   patentYear: 2022,
   elementCount: 9,
   groupCount: 6,

@@ -46,7 +46,7 @@ const LENS_DATA = {
   imageFormat: "four-thirds",
   patentNumber: "JP 2013-003324 A",
   patentAuthors: ["Yutaka Kamimura"],
-  patentAssignees: ["SIGMA CORP"],
+  patentAssignees: ["Sigma Corporation"],
   patentYear: 2013,
   elementCount: 9,
   groupCount: 7,

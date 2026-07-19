@@ -34,7 +34,7 @@ const lensData = {
   imageFormat: "four-thirds",
   patentNumber: "JP 2013-186458 A",
   patentAuthors: ["Yasuharu Yamada", "Daichi Murakami", "Yuki Kubota"],
-  patentAssignees: ["Olympus Imaging Corp"],
+  patentAssignees: ["Olympus Imaging Corporation"],
   patentYear: 2013,
   elementCount: 9,
   groupCount: 6,

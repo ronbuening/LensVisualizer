@@ -49,7 +49,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "JP 2021-179551 A",
   patentAuthors: ["Takahiro Kitada", "Yuka Kudo", "Masashi Sueyoshi", "Jindong Li"],
-  patentAssignees: ["Panasonic Intellectual Property Management Co Ltd"],
+  patentAssignees: ["Panasonic Intellectual Property Management Co., Ltd."],
   patentYear: 2021,
   elementCount: 11,
   groupCount: 9,

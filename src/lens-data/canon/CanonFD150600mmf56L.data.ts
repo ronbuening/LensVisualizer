@@ -20,7 +20,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 4,110,006",
   patentAuthors: ["Keiji Ikemori"],
-  patentAssignees: ["Canon Inc"],
+  patentAssignees: ["Canon Inc."],
   patentYear: 1978,
   elementCount: 19,
   groupCount: 15,

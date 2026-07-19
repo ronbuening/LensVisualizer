@@ -47,7 +47,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 3,830,559",
   patentAuthors: ["Masaki Matsubara"],
-  patentAssignees: ["Olympus Optical Co Ltd"],
+  patentAssignees: ["Olympus Optical Co., Ltd."],
   patentYear: 1974,
   elementCount: 10,
   groupCount: 8,

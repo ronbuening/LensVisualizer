@@ -53,7 +53,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame" as const,
   patentNumber: "WO 2023/181666 A1",
   patentAuthors: ["Masaki Maruyama"],
-  patentAssignees: ["Sony Group Corp"],
+  patentAssignees: ["Sony Group Corporation"],
   patentYear: 2023,
   elementCount: 20,
   groupCount: 15,

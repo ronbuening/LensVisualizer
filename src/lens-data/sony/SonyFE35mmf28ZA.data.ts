@@ -41,7 +41,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "JP 2015-041012 A",
   patentAuthors: ["Takahiko Sakai"],
-  patentAssignees: ["Tamron Co., Ltd.", "Sony Corporation"],
+  patentAssignees: ["Tamron Co., Ltd.","Sony Corporation"],
   patentYear: 2015,
   elementCount: 7,
   groupCount: 5,

@@ -44,7 +44,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "JP 2008-145584 A",
   patentAuthors: ["Takayoshi Yokoyama"],
-  patentAssignees: ["Canon Inc"],
+  patentAssignees: ["Canon Inc."],
   patentYear: 2008,
   elementCount: 17,
   groupCount: 12,

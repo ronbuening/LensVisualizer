@@ -36,7 +36,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 4,170,403",
   patentAuthors: ["Toshiko Shimokura"],
-  patentAssignees: ["Konica Minolta Inc"],
+  patentAssignees: ["Konica Minolta, Inc."],
   patentYear: 1979,
   elementCount: 5,
   groupCount: 5,

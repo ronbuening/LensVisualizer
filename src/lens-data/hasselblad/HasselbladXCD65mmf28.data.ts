@@ -41,7 +41,7 @@ const LENS_DATA = {
   imageFormat: "44x33",
   patentNumber: "US 2020/0319427 A1",
   patentAuthors: ["Takuya Yazaki"],
-  patentAssignees: ["Nittoh Inc"],
+  patentAssignees: ["Nittoh Inc."],
   patentYear: 2020,
   elementCount: 10,
   groupCount: 6,

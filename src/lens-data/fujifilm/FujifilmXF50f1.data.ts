@@ -32,7 +32,7 @@ const LENS_DATA = {
   imageFormat: "aps-c",
   patentNumber: "US 2021/0231927 A1",
   patentAuthors: ["Daiki Kawamura", "Michio Cho"],
-  patentAssignees: ["Fujifilm Corp"],
+  patentAssignees: ["Fujifilm Corporation"],
   patentYear: 2021,
   elementCount: 12,
   groupCount: 9,

@@ -47,7 +47,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "JP H05-164961",
   patentAuthors: ["Yoshio Shimazaki"],
-  patentAssignees: ["Konica Minolta Inc"],
+  patentAssignees: ["Konica Minolta, Inc."],
   patentYear: 1993,
   elementCount: 7,
   groupCount: 6,

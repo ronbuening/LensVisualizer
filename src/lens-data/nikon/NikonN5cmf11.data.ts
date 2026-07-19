@@ -40,7 +40,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 2,828,671",
   patentAuthors: ["Saburo Murakami"],
-  patentAssignees: ["Nippon Kogaku KK"],
+  patentAssignees: ["Nippon Kogaku K.K."],
   patentYear: 1958,
   elementCount: 9,
   groupCount: 6,

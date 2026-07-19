@@ -44,7 +44,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 2024/0241349 A1",
   patentAuthors: ["Takehiro Nishioka", "Yoshiaki Kurioka"],
-  patentAssignees: ["Panasonic Intellectual Property Management Co Ltd"],
+  patentAssignees: ["Panasonic Intellectual Property Management Co., Ltd."],
   patentYear: 2024,
   elementCount: 11,
   groupCount: 8,

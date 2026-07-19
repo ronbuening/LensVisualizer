@@ -59,7 +59,7 @@ const LENS_DATA = {
   imageFormat: "aps-c",
   patentNumber: "US 2020/0341238 A1",
   patentAuthors: ["Hideki Kai"],
-  patentAssignees: ["Panasonic Intellectual Property Management Co Ltd"],
+  patentAssignees: ["Panasonic Intellectual Property Management Co., Ltd."],
   patentYear: 2020,
   elementCount: 8,
   groupCount: 6,

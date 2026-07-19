@@ -47,7 +47,7 @@ const LENS_DATA = {
   imageFormat: "aps-c",
   patentNumber: "JP 2018-106021 A",
   patentAuthors: ["Daisuke Ito"],
-  patentAssignees: ["Canon Inc"],
+  patentAssignees: ["Canon Inc."],
   patentYear: 2018,
   elementCount: 9,
   groupCount: 8,

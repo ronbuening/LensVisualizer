@@ -40,7 +40,7 @@ const LENS_DATA = {
   imageFormat: "aps-c",
   patentNumber: "JP 2008-040033 A",
   patentAuthors: ["Shizuka Yoshino"],
-  patentAssignees: ["SIGMA CORP"],
+  patentAssignees: ["Sigma Corporation"],
   patentYear: 2008,
   elementCount: 6,
   groupCount: 5,

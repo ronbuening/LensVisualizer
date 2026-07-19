@@ -47,7 +47,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "DE 2205380 A1",
   patentAuthors: ["Nobuo Yamashita"],
-  patentAssignees: ["Olympus Optical Co Ltd"],
+  patentAssignees: ["Olympus Optical Co., Ltd."],
   patentYear: 1973,
   elementCount: 7,
   groupCount: 7,

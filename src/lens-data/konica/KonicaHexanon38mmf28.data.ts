@@ -50,7 +50,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 3,615,126",
   patentAuthors: ["Tadashi Kojima"],
-  patentAssignees: ["Konica Minolta Inc"],
+  patentAssignees: ["Konica Minolta, Inc."],
   patentYear: 1971,
   elementCount: 4,
   groupCount: 3,

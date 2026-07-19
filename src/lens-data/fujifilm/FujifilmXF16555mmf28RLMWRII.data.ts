@@ -49,7 +49,7 @@ const LENS_DATA = {
   imageFormat: "aps-c",
   patentNumber: "US 2025/0234079 A1",
   patentAuthors: ["Yuya Hirakawa", "Taiga Noda"],
-  patentAssignees: ["Fujifilm Corp"],
+  patentAssignees: ["Fujifilm Corporation"],
   patentYear: 2025,
   elementCount: 16,
   groupCount: 11,

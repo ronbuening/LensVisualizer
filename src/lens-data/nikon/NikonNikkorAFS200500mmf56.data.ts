@@ -47,7 +47,7 @@ const LENS_DATA = {
   apertureDesign: 5.6,
   patentNumber: "JP 2014-209144 A",
   patentAuthors: ["Taku Matsuo", "Takeshi Suzuki", "Haruo Sato", "Hisayuki Yamanaka"],
-  patentAssignees: ["Nikon Corporation", "Tamron Co., Ltd."],
+  patentAssignees: ["Nikon Corporation","Tamron Co., Ltd."],
   patentYear: 2014,
   elementCount: 19,
   groupCount: 12,

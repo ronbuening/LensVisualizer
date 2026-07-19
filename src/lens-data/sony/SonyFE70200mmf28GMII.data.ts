@@ -49,7 +49,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "JP 2023-039817 A",
   patentAuthors: ["Naoki Miyagawa", "Shugo Takahashi"],
-  patentAssignees: ["Sony Group Corp"],
+  patentAssignees: ["Sony Group Corporation"],
   patentYear: 2023,
   elementCount: 17,
   groupCount: 14,

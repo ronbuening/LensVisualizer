@@ -44,7 +44,7 @@ const LENS_DATA = {
   imageFormat: "aps-c",
   patentNumber: "JP 2015-111192 A",
   patentAuthors: ["Yuichi Gyoda"],
-  patentAssignees: ["Canon Inc"],
+  patentAssignees: ["Canon Inc."],
   patentYear: 2015,
   elementCount: 6,
   groupCount: 5,

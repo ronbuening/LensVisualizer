@@ -52,7 +52,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "FR 1,471,493",
   patentAuthors: [],
-  patentAssignees: ["Ernst Leitz G.m.b.H."],
+  patentAssignees: ["Ernst Leitz GmbH"],
   patentYear: 1967,
   elementCount: 7,
   groupCount: 5,

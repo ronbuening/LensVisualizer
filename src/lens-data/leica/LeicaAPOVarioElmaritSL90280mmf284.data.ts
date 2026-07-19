@@ -59,7 +59,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "JP 2016-139125 A",
   patentAuthors: ["Takuya Imaoka"],
-  patentAssignees: ["Panasonic Intellectual Property Management Co Ltd"],
+  patentAssignees: ["Panasonic Intellectual Property Management Co., Ltd."],
   patentYear: 2016,
   elementCount: 23,
   groupCount: 7,

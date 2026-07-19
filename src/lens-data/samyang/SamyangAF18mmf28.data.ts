@@ -55,7 +55,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "WO 2021/246545 A1",
   patentAuthors: ["Jung Du Lee"],
-  patentAssignees: ["Samyang Optics Co Ltd"],
+  patentAssignees: ["Samyang Optics Co., Ltd."],
   patentYear: 2021,
   elementCount: 9,
   groupCount: 8,

@@ -52,7 +52,7 @@ const LENS_DATA = {
   imageFormat: "aps-c",
   patentNumber: "JP 2024-035865 A",
   patentAuthors: ["Kyosuke Murakami"],
-  patentAssignees: ["SIGMA CORP"],
+  patentAssignees: ["Sigma Corporation"],
   patentYear: 2024,
   elementCount: 13,
   groupCount: 10,

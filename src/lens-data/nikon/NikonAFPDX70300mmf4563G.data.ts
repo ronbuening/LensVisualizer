@@ -47,7 +47,7 @@ const LENS_DATA = {
   imageFormat: "aps-c",
   patentNumber: "US 2021/0026133 A1",
   patentAuthors: ["Masashi Yamashita", "Tomoki Ito", "Hiroshi Yabumoto", "Hiroshi Yamamoto", "Satoshi Miwa", "Keisuke Tsubonoya", "Ayumu Makida", "Takeru Uehara"],
-  patentAssignees: ["Nikon Corp"],
+  patentAssignees: ["Nikon Corporation"],
   patentYear: 2021,
   elementCount: 14,
   groupCount: 10,

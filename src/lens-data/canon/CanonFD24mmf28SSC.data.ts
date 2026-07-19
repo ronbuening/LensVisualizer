@@ -50,7 +50,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 3,748,021",
   patentAuthors: ["Akira Tajima", "Kikuo Momiyama"],
-  patentAssignees: ["Canon Inc"],
+  patentAssignees: ["Canon Inc."],
   patentYear: 1973,
   elementCount: 9,
   groupCount: 8,

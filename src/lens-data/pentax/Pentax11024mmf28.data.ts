@@ -54,7 +54,7 @@ const LENS_DATA = {
   imageFormat: "110",
   patentNumber: "US 4,223,982",
   patentAuthors: ["Takahiro Sugiyama"],
-  patentAssignees: ["Asahi Kogaku Kogyo Co Ltd"],
+  patentAssignees: ["Asahi Kogaku Kogyo Co., Ltd."],
   patentYear: 1980,
   elementCount: 6,
   groupCount: 5,

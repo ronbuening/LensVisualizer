@@ -48,7 +48,7 @@ const LENS_DATA = {
   imageFormat: "aps-c",
   patentNumber: "JP 2012-003015 A",
   patentAuthors: ["Takashi Kubota"],
-  patentAssignees: ["Ricoh Co Ltd"],
+  patentAssignees: ["Ricoh Co., Ltd."],
   patentYear: 2012,
   elementCount: 8,
   groupCount: 6,

@@ -61,7 +61,7 @@ const LENS_DATA = {
   imageFormat: "four-thirds",
   patentNumber: "US 7,408,719 B2",
   patentAuthors: ["Takeshi Hosoya"],
-  patentAssignees: ["Olympus Corp"],
+  patentAssignees: ["Olympus Corporation"],
   patentYear: 2008,
   elementCount: 11,
   groupCount: 9,

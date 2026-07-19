@@ -40,7 +40,7 @@ const LENS_DATA = {
   imageFormat: "aps-c",
   patentNumber: "JP 2014-089352 A",
   patentAuthors: ["Takahiko Sakai"],
-  patentAssignees: ["Tamron Co Ltd"],
+  patentAssignees: ["Tamron Co., Ltd."],
   patentYear: 2014,
   elementCount: 8,
   groupCount: 6,

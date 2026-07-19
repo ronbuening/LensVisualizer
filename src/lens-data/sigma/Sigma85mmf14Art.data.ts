@@ -39,7 +39,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "JP 2018-005099 A",
   patentAuthors: ["Yuki Ueda"],
-  patentAssignees: ["SIGMA CORP"],
+  patentAssignees: ["Sigma Corporation"],
   patentYear: 2018,
   elementCount: 14,
   groupCount: 12,

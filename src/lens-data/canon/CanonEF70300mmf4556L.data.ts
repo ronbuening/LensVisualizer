@@ -34,7 +34,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "JP 2013-140404 A",
   patentAuthors: ["Shigenobu Sugita"],
-  patentAssignees: ["Canon Inc"],
+  patentAssignees: ["Canon Inc."],
   patentYear: 2013,
   elementCount: 19,
   groupCount: 14,

@@ -62,7 +62,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 2010/0238560 A1",
   patentAuthors: ["Makoto Fujimoto"],
-  patentAssignees: ["Nikon Corp"],
+  patentAssignees: ["Nikon Corporation"],
   patentYear: 2010,
   elementCount: 17,
   groupCount: 12,

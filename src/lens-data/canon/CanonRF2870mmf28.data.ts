@@ -56,7 +56,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 2024/0329367 A1",
   patentAuthors: ["Yasuaki Hagiwara"],
-  patentAssignees: ["Canon Inc"],
+  patentAssignees: ["Canon Inc."],
   patentYear: 2024,
   elementCount: 15,
   groupCount: 12,

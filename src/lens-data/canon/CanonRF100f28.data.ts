@@ -35,7 +35,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "JP 2021-047297 A",
   patentAuthors: ["Keiko Taki", "Takeo Mori", "Makoto Nakahara"],
-  patentAssignees: ["Canon Inc"],
+  patentAssignees: ["Canon Inc."],
   patentYear: 2021,
   elementCount: 17,
   groupCount: 13,

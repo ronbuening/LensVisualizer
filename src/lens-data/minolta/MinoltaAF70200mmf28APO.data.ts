@@ -44,7 +44,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "JP 2004-109559 A",
   patentAuthors: ["Hiroyuki Matsumoto", "Mamoru Terada"],
-  patentAssignees: ["Minolta Co Ltd"],
+  patentAssignees: ["Minolta Co., Ltd."],
   patentYear: 2004,
   elementCount: 19,
   groupCount: 15,

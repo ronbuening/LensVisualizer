@@ -45,7 +45,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 5,557,473",
   patentAuthors: ["Yoshikazu Sugiyama", "Haruo Sato"],
-  patentAssignees: ["Nikon Corp"],
+  patentAssignees: ["Nikon Corporation"],
   patentYear: 1996,
   elementCount: 6,
   groupCount: 6,

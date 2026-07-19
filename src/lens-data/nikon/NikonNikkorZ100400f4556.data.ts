@@ -42,7 +42,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "JP 2022-092388 A",
   patentAuthors: ["Hiroshi Yabumoto"],
-  patentAssignees: ["Nikon Corp"],
+  patentAssignees: ["Nikon Corporation"],
   patentYear: 2022,
   elementCount: 25,
   groupCount: 20,

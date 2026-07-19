@@ -111,7 +111,7 @@ Keep it normalized even when the product's official styling varies by source:
 | `imageFormat` | `ImageFormatId` | | Single canonical image-circle/format id, e.g. `"135-full-frame"`, `"aps-c"`, or `"110"`. |
 | `patentNumber` | `string` | | Source patent publication or grant identifier, including jurisdiction and kind code when the source publishes one (e.g. `"US 10,571,651 B2"`). Do not include an example, embodiment, table, or figure label. |
 | `patentAuthors` | `string[]` | | Inventors named by the source patent, in source order. Use one complete personal name per entry. An empty array means the patent names no individual inventor. |
-| `patentAssignees` | `string[]` | | Assignees named by the source patent, or applicants when that jurisdiction publishes applicants rather than assignees. Use the historical names printed by the source. An empty array means the patent names no assignee or applicant. |
+| `patentAssignees` | `string[]` | | Assignees named by the source patent, or applicants when that jurisdiction publishes applicants rather than assignees. Use one canonical display name for each historical legal entity. An empty array means the patent names no assignee or applicant. |
 | `patentYear` | `number` | | Year the patent was published or granted (e.g. `2019`). |
 | `elementCount` | `number` | | Total number of glass elements in the design. |
 | `groupCount` | `number` | | Total number of air-separated groups in the design. |
@@ -168,7 +168,7 @@ fields supplement `subtitle`: keep worked-example and design-correlation prose i
 ```javascript
 patentNumber: "US 10,571,651 B2",
 patentAuthors: ["Hideki Sakai"],
-patentAssignees: ["Canon Kabushiki Kaisha"],
+patentAssignees: ["Canon Inc."],
 ```
 
 - Record the exact publication or grant used to transcribe the prescription, rather than silently substituting a related
@@ -183,8 +183,11 @@ patentAssignees: ["Canon Kabushiki Kaisha"],
   historical or corporate application names only the applicant and does not identify an individual inventor; do not
   substitute a later secondary attribution.
 - `patentAssignees` records ownership at the source publication or grant. For WO, JP, CN, and other documents that label
-  the party as an applicant rather than an assignee, record the applicant here. Preserve historical legal names instead
-  of replacing them with the current product maker or a modern successor.
+  the party as an applicant rather than an assignee, record the applicant here. Normalize capitalization, punctuation,
+  reliable diacritics, and corporate suffixes to the entity's conventional official form, and use the same display name
+  for that entity throughout the corpus. Omit locations, translated-name duplicates, and source-database artifacts.
+  Preserve distinct historical legal entities, subsidiaries, and reorganized companies instead of merging them into the
+  current product maker or a modern successor.
 - Empty arrays are meaningful source statements, not placeholders for unfinished research: use `patentAuthors: []` only
   when the source names no individual inventor, and `patentAssignees: []` only when it identifies no assignee or applicant.
 - Do not add filing dates, priority numbers, attorneys, agents, examiners, translators, or current patent owners to these

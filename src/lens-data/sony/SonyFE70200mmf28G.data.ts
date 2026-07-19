@@ -45,7 +45,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 2019/0018229 A1",
   patentAuthors: ["Naoki Miyagawa", "Yonghua Chen"],
-  patentAssignees: ["Sony Corp"],
+  patentAssignees: ["Sony Corporation"],
   patentYear: 2019,
   elementCount: 23,
   groupCount: 18,

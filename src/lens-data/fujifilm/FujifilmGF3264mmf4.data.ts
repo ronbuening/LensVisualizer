@@ -47,7 +47,7 @@ const LENS_DATA = {
   imageFormat: "44x33",
   patentNumber: "US 10,191,246 B2",
   patentAuthors: ["Hiroki Saito"],
-  patentAssignees: ["Fujifilm Corp"],
+  patentAssignees: ["Fujifilm Corporation"],
   patentYear: 2019,
   elementCount: 14,
   groupCount: 11,

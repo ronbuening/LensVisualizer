@@ -77,6 +77,7 @@ const LENS_DATA = {
    *                        Latin names use Given Middle Family order without titles or locations.
    *                        Use [] only when the source names no individual inventor.
    *  patentAssignees      Source assignees, or applicants where that is the published role.
+   *                        Use one canonical legal-entity name without locations or database artifacts.
    *                        Use [] only when the source names none; do not use it for unknown data.
    *  patentYear            Year the patent was published or granted (e.g. 2019).
    *  elementCount          Total number of physical glass elements. For folded mirror lenses,
@@ -103,7 +104,7 @@ const LENS_DATA = {
   imageFormat:          "135-full-frame", // optional; one canonical id only, e.g. "aps-c", "110", "4x5"
   patentNumber:         "US 10,571,651 B2",
   patentAuthors:        ["Hideki Sakai"],
-  patentAssignees:      ["Canon Kabushiki Kaisha"],
+  patentAssignees:      ["Canon Inc."],
   patentYear:           2019,
   elementCount:         12,
   groupCount:           9,

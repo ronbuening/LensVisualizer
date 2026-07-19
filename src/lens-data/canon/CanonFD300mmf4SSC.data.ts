@@ -54,7 +54,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 4,251,133",
   patentAuthors: ["Sadahiko Tsuji"],
-  patentAssignees: ["Canon Inc"],
+  patentAssignees: ["Canon Inc."],
   patentYear: 1981,
   elementCount: 6,
   groupCount: 6,

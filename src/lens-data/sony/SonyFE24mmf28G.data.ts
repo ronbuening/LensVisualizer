@@ -55,7 +55,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "JP 2022-030896 A",
   patentAuthors: ["Junichi Yamazoe", "Ryohei Tazaki"],
-  patentAssignees: ["Tamron Co., Ltd.", "Sony Group Corporation"],
+  patentAssignees: ["Tamron Co., Ltd.","Sony Group Corporation"],
   patentYear: 2022,
   elementCount: 8,
   groupCount: 7,

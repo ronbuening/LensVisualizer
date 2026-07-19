@@ -66,7 +66,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "WO 2019/049372 A1",
   patentAuthors: ["Takeshi Umeda"],
-  patentAssignees: ["Nikon Corp"],
+  patentAssignees: ["Nikon Corporation"],
   patentYear: 2019,
   elementCount: 14,
   groupCount: 11,

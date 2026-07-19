@@ -36,7 +36,7 @@ const LENS_DATA = {
   imageFormat: "aps-c" as const,
   patentNumber: "US 2026/0118637 A1",
   patentAuthors: ["Taiga Noda"],
-  patentAssignees: ["Fujifilm Corp"],
+  patentAssignees: ["Fujifilm Corporation"],
   patentYear: 2026,
   elementCount: 8,
   groupCount: 6,

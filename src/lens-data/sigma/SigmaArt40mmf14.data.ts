@@ -38,7 +38,7 @@ const LENS_DATA = {
   apertureDesign: 1.45,
   patentNumber: "JP 2020-012952 A",
   patentAuthors: ["Takeshi Yamanaka"],
-  patentAssignees: ["SIGMA CORP"],
+  patentAssignees: ["Sigma Corporation"],
   patentYear: 2020,
   elementCount: 16,
   groupCount: 12,

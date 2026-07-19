@@ -36,7 +36,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "DE 1 228 820 B",
   patentAuthors: ["Hans Lautenbacher"],
-  patentAssignees: ["ENNA WERK OPTIK APELT"],
+  patentAssignees: ["Enna-Werk Optische Anstalt Dr. Appelt K.G."],
   patentYear: 1966,
   elementCount: 7,
   groupCount: 7,

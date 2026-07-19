@@ -50,7 +50,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "DE 1,183,707 B",
   patentAuthors: ["Otto Zimmermann", "Gustav Kleineberg", "Eugen Hermanni"],
-  patentAssignees: ["Ernst Leitz Wetzlar GmbH"],
+  patentAssignees: ["Ernst Leitz GmbH"],
   patentYear: 1964,
   elementCount: 5,
   groupCount: 3,

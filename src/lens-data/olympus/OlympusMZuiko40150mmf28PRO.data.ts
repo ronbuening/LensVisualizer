@@ -51,7 +51,7 @@ const LENS_DATA = {
   imageFormat: "four-thirds",
   patentNumber: "US 2015/0168697 A1",
   patentAuthors: ["Yasuji Ogata"],
-  patentAssignees: ["Olympus Corp"],
+  patentAssignees: ["Olympus Corporation"],
   patentYear: 2015,
   elementCount: 16,
   groupCount: 10,

@@ -53,7 +53,7 @@ const LENS_DATA = {
   imageFormat: "four-thirds",
   patentNumber: "US 2013/0148006 A1",
   patentAuthors: ["Shunichiro Yoshinaga", "Kyoichi Miyazaki", "Takao Yamanaka", "Keiichi Zaitsu"],
-  patentAssignees: ["Panasonic Corp"],
+  patentAssignees: ["Panasonic Corporation"],
   patentYear: 2013,
   elementCount: 6,
   groupCount: 5,

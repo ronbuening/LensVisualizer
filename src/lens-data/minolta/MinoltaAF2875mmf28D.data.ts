@@ -53,7 +53,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "JP 2004-101739 A",
   patentAuthors: ["Yasuharu Yamada"],
-  patentAssignees: ["Tamron Co Ltd"],
+  patentAssignees: ["Tamron Co., Ltd."],
   patentYear: 2004,
   elementCount: 16,
   groupCount: 14,

@@ -52,7 +52,7 @@ const LENS_DATA = {
   imageFormat: "aps-c",
   patentNumber: "JP 2018-205527 A",
   patentAuthors: ["Hiromichi Ochiai", "Ryosuke Sato"],
-  patentAssignees: ["SIGMA CORP"],
+  patentAssignees: ["Sigma Corporation"],
   patentYear: 2018,
   elementCount: 16,
   groupCount: 13,

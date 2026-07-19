@@ -41,7 +41,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 2016/0266350 A1",
   patentAuthors: ["Tomoko Iiyama", "Masafumi Sueyoshi"],
-  patentAssignees: ["Panasonic Intellectual Property Management Co Ltd"],
+  patentAssignees: ["Panasonic Intellectual Property Management Co., Ltd."],
   patentYear: 2016,
   elementCount: 11,
   groupCount: 9,

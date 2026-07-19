@@ -40,7 +40,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "JP 2021-189351 A",
   patentAuthors: ["Keigo Koida"],
-  patentAssignees: ["Nikon Corp"],
+  patentAssignees: ["Nikon Corporation"],
   patentYear: 2021,
   elementCount: 6,
   groupCount: 4,

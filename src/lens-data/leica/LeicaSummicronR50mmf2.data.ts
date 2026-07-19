@@ -51,7 +51,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 4,123,144",
   patentAuthors: ["Walter Mandler", "Garry Edwards", "Erich Wagner"],
-  patentAssignees: ["Ernst Leitz Wetzlar GmbH"],
+  patentAssignees: ["Ernst Leitz GmbH"],
   patentYear: 1978,
   elementCount: 6,
   groupCount: 4,

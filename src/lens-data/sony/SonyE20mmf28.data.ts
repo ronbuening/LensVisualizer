@@ -48,7 +48,7 @@ const LENS_DATA = {
   imageFormat: "aps-c",
   patentNumber: "US 2014/0204265 A1",
   patentAuthors: ["Toshihiro Sunaga"],
-  patentAssignees: ["Sony Corp"],
+  patentAssignees: ["Sony Corporation"],
   patentYear: 2014,
   elementCount: 6,
   groupCount: 6,

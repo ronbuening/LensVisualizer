@@ -58,7 +58,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "JP 2016-021011 A",
   patentAuthors: ["Yasunari Fukuda", "Atsuo Masui", "Kosuke Machida"],
-  patentAssignees: ["Konica Minolta, Inc.", "Nikon Corporation"],
+  patentAssignees: ["Konica Minolta, Inc.","Nikon Corporation"],
   patentYear: 2016,
   elementCount: 13,
   groupCount: 11,

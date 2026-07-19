@@ -51,7 +51,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "DE 2157160 A1",
   patentAuthors: ["Jihei Nakagawa"],
-  patentAssignees: ["Olympus Optical Co Ltd"],
+  patentAssignees: ["Olympus Optical Co., Ltd."],
   patentYear: 1973,
   elementCount: 10,
   groupCount: 6,

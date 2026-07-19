@@ -46,7 +46,7 @@ const LENS_DATA = {
   imageFormat: "aps-c",
   patentNumber: "US 2017/0075089 A1",
   patentAuthors: ["Ryosuke Nagami", "Takashi Suzuki"],
-  patentAssignees: ["Fujifilm Corp"],
+  patentAssignees: ["Fujifilm Corporation"],
   patentYear: 2017,
   elementCount: 7,
   groupCount: 5,

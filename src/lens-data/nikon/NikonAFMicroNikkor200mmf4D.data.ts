@@ -58,7 +58,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 5,751,485",
   patentAuthors: ["Kenzaburo Suzuki"],
-  patentAssignees: ["Nikon Corp"],
+  patentAssignees: ["Nikon Corporation"],
   patentYear: 1998,
   elementCount: 13,
   groupCount: 8,

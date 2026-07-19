@@ -35,7 +35,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "WO 2020/213337 A1",
   patentAuthors: ["Kota Omiya", "Tetsuichiro Okumura"],
-  patentAssignees: ["Sony Corp"],
+  patentAssignees: ["Sony Corporation"],
   patentYear: 2020,
   elementCount: 14,
   groupCount: 12,

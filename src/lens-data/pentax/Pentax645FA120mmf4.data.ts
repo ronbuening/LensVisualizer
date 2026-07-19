@@ -54,7 +54,7 @@ const LENS_DATA = {
   imageFormat: "645",
   patentNumber: "US 6,154,324",
   patentAuthors: ["Masayuki Murata", "Takayuki Ito"],
-  patentAssignees: ["Asahi Kogaku Kogyo Co Ltd"],
+  patentAssignees: ["Asahi Kogaku Kogyo Co., Ltd."],
   patentYear: 2000,
   elementCount: 9,
   groupCount: 7,

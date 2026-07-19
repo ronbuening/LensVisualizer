@@ -39,7 +39,7 @@ const LENS_DATA = {
   imageFormat: "four-thirds",
   patentNumber: "US 2023/0367186 A1",
   patentAuthors: ["Yuka Ikegami", "Takahiro Kitada", "Kunio Dohno"],
-  patentAssignees: ["Panasonic Intellectual Property Management Co Ltd"],
+  patentAssignees: ["Panasonic Intellectual Property Management Co., Ltd."],
   patentYear: 2023,
   elementCount: 12,
   groupCount: 9,

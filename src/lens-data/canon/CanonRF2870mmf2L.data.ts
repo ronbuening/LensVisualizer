@@ -58,7 +58,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "JP 2020-118807 A",
   patentAuthors: ["Kohei Kimura"],
-  patentAssignees: ["Canon Inc"],
+  patentAssignees: ["Canon Inc."],
   patentYear: 2020,
   elementCount: 19,
   groupCount: 13,

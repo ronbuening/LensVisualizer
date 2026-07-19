@@ -69,7 +69,7 @@ const LENS_DATA = {
   apertureDesign: 1.46,
   patentNumber: "JP 2021-085935 A",
   patentAuthors: ["Ryo Shioda"],
-  patentAssignees: ["SIGMA CORP"],
+  patentAssignees: ["Sigma Corporation"],
   patentYear: 2021,
   elementCount: 15,
   groupCount: 11,

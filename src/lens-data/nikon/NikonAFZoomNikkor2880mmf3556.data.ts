@@ -60,7 +60,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "JP H11-030748 A",
   patentAuthors: ["Keiji Moriyama"],
-  patentAssignees: ["Nikon Corp"],
+  patentAssignees: ["Nikon Corporation"],
   patentYear: 1999,
   elementCount: 8,
   groupCount: 8,

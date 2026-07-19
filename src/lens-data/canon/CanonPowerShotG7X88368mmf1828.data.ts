@@ -60,7 +60,7 @@ const LENS_DATA = {
   imageFormat: "1-inch-type",
   patentNumber: "US 2016/0062096 A1",
   patentAuthors: ["Takahiro Hatada"],
-  patentAssignees: ["Canon Inc"],
+  patentAssignees: ["Canon Inc."],
   patentYear: 2016,
   elementCount: 11,
   groupCount: 9,

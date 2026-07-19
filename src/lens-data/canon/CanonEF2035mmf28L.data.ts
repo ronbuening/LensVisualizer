@@ -41,7 +41,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 5,000,550",
   patentAuthors: ["Sadatoshi Takahashi", "Koutaro Yano", "Hiroshi Endo"],
-  patentAssignees: ["Canon Inc"],
+  patentAssignees: ["Canon Inc."],
   patentYear: 1991,
   elementCount: 15,
   groupCount: 12,

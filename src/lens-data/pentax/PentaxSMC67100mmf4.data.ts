@@ -48,7 +48,7 @@ const LENS_DATA = {
   imageFormat: "6x7",
   patentNumber: "US 6,002,533",
   patentAuthors: ["Shuji Yoneyama"],
-  patentAssignees: ["Asahi Kogaku Kogyo Co Ltd"],
+  patentAssignees: ["Asahi Kogaku Kogyo Co., Ltd."],
   patentYear: 1999,
   elementCount: 6,
   groupCount: 4,

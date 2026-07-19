@@ -44,7 +44,7 @@ const LENS_DATA = {
   apertureMarketing: 2.0,
   patentNumber: "US 2,627,204",
   patentAuthors: ["Albrecht Wilhelm Tronnier"],
-  patentAssignees: ["Voigtlander AG"],
+  patentAssignees: ["Voigtländer & Sohn AG"],
   patentYear: 1953,
   elementCount: 6,
   groupCount: 5,

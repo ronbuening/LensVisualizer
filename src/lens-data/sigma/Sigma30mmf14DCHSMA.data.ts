@@ -47,7 +47,7 @@ const LENS_DATA = {
   imageFormat: "aps-c",
   patentNumber: "JP 2014-142520 A",
   patentAuthors: ["Hiroki Uehara"],
-  patentAssignees: ["SIGMA CORP"],
+  patentAssignees: ["Sigma Corporation"],
   patentYear: 2014,
   elementCount: 9,
   groupCount: 8,

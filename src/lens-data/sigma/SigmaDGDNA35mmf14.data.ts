@@ -73,7 +73,7 @@ export const sigmaDgDnA35mmF14Data = {
   apertureDesign: 1.46,
   patentNumber: "JP 2022-033487 A",
   patentAuthors: ["Ryo Shioda"],
-  patentAssignees: ["SIGMA CORP"],
+  patentAssignees: ["Sigma Corporation"],
   patentYear: 2022,
   elementCount: 15,
   groupCount: 11,

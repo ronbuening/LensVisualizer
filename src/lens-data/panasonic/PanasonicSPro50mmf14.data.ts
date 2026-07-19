@@ -56,7 +56,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "WO 2020/158622 A1",
   patentAuthors: ["Shunichiro Yoshinaga", "Yasuhito Suzuki"],
-  patentAssignees: ["Panasonic Intellectual Property Management Co Ltd"],
+  patentAssignees: ["Panasonic Intellectual Property Management Co., Ltd."],
   patentYear: 2020,
   elementCount: 13,
   groupCount: 11,

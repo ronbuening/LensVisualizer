@@ -48,7 +48,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 4,163,603",
   patentAuthors: ["Teruyoshi Tsunashima"],
-  patentAssignees: ["Nippon Kogaku KK"],
+  patentAssignees: ["Nippon Kogaku K.K."],
   patentYear: 1979,
   elementCount: 11,
   groupCount: 10,

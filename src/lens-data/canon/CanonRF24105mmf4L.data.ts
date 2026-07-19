@@ -46,7 +46,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 2019/0278068 A1",
   patentAuthors: ["Takahiro Hatada"],
-  patentAssignees: ["Canon Inc"],
+  patentAssignees: ["Canon Inc."],
   patentYear: 2019,
   elementCount: 18,
   groupCount: 14,

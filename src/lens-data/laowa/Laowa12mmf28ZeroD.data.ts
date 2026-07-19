@@ -56,7 +56,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "CN 205720849 U",
   patentAuthors: ["Xiaohua Zhang"],
-  patentAssignees: ["ANHUI CHANGGENG OPTICAL TECHNOLOGY Co Ltd"],
+  patentAssignees: ["Anhui Changgeng Optics Technology Co., Ltd."],
   patentYear: 2016,
   elementCount: 16,
   groupCount: 10,

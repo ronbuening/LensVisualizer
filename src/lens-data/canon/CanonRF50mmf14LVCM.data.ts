@@ -42,7 +42,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 2025/0251576 A1",
   patentAuthors: ["Tomohiro Ino"],
-  patentAssignees: ["Canon Inc"],
+  patentAssignees: ["Canon Inc."],
   patentYear: 2025,
   elementCount: 14,
   groupCount: 11,

@@ -39,7 +39,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "CN 120386081 A",
   patentAuthors: ["Hiromichi Ochiai"],
-  patentAssignees: ["Sigma Corp Japan"],
+  patentAssignees: ["Sigma Corporation"],
   patentYear: 2025,
   elementCount: 18,
   groupCount: 15,

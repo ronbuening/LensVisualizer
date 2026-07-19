@@ -48,7 +48,7 @@ const LENS_DATA = {
   lensMounts: ["large-format-lens-board"],
   patentNumber: "US 716,035",
   patentAuthors: ["Carl August Hans Harting"],
-  patentAssignees: ["Voigtlander AG"],
+  patentAssignees: ["Voigtländer & Sohn AG"],
   patentYear: 1902,
   elementCount: 5,
   groupCount: 3,

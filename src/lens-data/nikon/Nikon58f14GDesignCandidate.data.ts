@@ -52,7 +52,7 @@ const LENS_DATA = {
   apertureDesign: 1.4,
   patentNumber: "JP 2013-019993 A",
   patentAuthors: ["Haruo Sato"],
-  patentAssignees: ["Nikon Corp"],
+  patentAssignees: ["Nikon Corporation"],
   patentYear: 2013,
   elementCount: 9,
   groupCount: 5,

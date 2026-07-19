@@ -46,7 +46,7 @@ const LENS_DATA = {
   imageFormat: "1-inch-type",
   patentNumber: "JP 2011-248340 A",
   patentAuthors: ["Toshinori Take"],
-  patentAssignees: ["Nikon Corp"],
+  patentAssignees: ["Nikon Corporation"],
   patentYear: 2011,
   elementCount: 6,
   groupCount: 5,

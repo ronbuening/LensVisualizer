@@ -60,7 +60,7 @@ const LENS_DATA = {
   imageFormat: "aps-c",
   patentNumber: "US 7,289,274 B1",
   patentAuthors: ["Masakazu Saori"],
-  patentAssignees: ["Pentax Corp"],
+  patentAssignees: ["Pentax Corporation"],
   patentYear: 2007,
   elementCount: 18,
   groupCount: 14,

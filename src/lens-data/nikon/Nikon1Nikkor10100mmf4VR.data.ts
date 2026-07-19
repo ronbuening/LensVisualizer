@@ -38,7 +38,7 @@ const LENS_DATA = {
   imageFormat: "1-inch-type",
   patentNumber: "US 2020/0348497 A1",
   patentAuthors: ["Akihiko Obama", "Masashi Yamashita"],
-  patentAssignees: ["Nikon Corp"],
+  patentAssignees: ["Nikon Corporation"],
   patentYear: 2020,
   elementCount: 19,
   groupCount: 12,

@@ -49,7 +49,7 @@ const LENS_DATA = {
   imageFormat: "four-thirds",
   patentNumber: "US 2012/0147254 A1",
   patentAuthors: ["Nobuyuki Adachi", "Takuya Imaoka"],
-  patentAssignees: ["Panasonic Corp"],
+  patentAssignees: ["Panasonic Corporation"],
   patentYear: 2012,
   elementCount: 10,
   groupCount: 9,

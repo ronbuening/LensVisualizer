@@ -60,7 +60,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "WO 2023/153076 A1",
   patentAuthors: ["Ryohei Tazaki", "Yuma Kumisawa", "Hiroo Juri"],
-  patentAssignees: ["Sony Group Corp"],
+  patentAssignees: ["Sony Group Corporation"],
   patentYear: 2023,
   elementCount: 16,
   groupCount: 13,

@@ -47,7 +47,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 4,806,000",
   patentAuthors: ["Yoshiharu Shiokama", "Naoto Ohta", "Hiroshi Okano", "Kiyotaka Inadome"],
-  patentAssignees: ["Nikon Corp"],
+  patentAssignees: ["Nikon Corporation"],
   patentYear: 1989,
   elementCount: 15,
   groupCount: 11,

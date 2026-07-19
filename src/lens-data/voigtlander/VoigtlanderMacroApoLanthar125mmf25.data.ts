@@ -56,7 +56,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "JP 2002-090622 A",
   patentAuthors: ["Yoshihisa Yomogida"],
-  patentAssignees: ["Cosina Co Ltd"],
+  patentAssignees: ["Cosina Co., Ltd."],
   patentYear: 2002,
   elementCount: 10,
   groupCount: 9,

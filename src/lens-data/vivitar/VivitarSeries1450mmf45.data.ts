@@ -66,7 +66,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 4,523,816",
   patentAuthors: ["Melvyn H. Kreitzer"],
-  patentAssignees: ["Vivitar Corp"],
+  patentAssignees: ["Vivitar Corporation"],
   patentYear: 1985,
   elementCount: 10,
   groupCount: 7,

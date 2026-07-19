@@ -36,7 +36,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "WO 2020/136749 A1",
   patentAuthors: ["Kosuke Machida", "Osamu Gomibuchi", "Kenichi Kitano", "Mizuki Wayu", "Tsuneo Watanabe", "Makoto Horikoshi", "Ichiro Imaei"],
-  patentAssignees: ["Nikon Corp"],
+  patentAssignees: ["Nikon Corporation"],
   patentYear: 2020,
   elementCount: 17,
   groupCount: 15,

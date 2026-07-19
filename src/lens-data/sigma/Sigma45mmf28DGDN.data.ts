@@ -57,7 +57,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "JP 2019-211703 A",
   patentAuthors: ["Yukihiro Yamamoto"],
-  patentAssignees: ["SIGMA CORP"],
+  patentAssignees: ["Sigma Corporation"],
   patentYear: 2019,
   elementCount: 8,
   groupCount: 7,

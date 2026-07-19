@@ -59,7 +59,7 @@ const LENS_DATA = {
   // imageFormat intentionally omitted: the project taxonomy has no canonical id for the G1 X 1.5-inch format.
   patentNumber: "US 2013/0176385 A1",
   patentAuthors: ["Hiroshi Saruwatari"],
-  patentAssignees: ["Canon Inc"],
+  patentAssignees: ["Canon Inc."],
   patentYear: 2013,
   elementCount: 11,
   groupCount: 10,

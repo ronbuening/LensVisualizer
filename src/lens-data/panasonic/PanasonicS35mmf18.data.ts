@@ -60,7 +60,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "CN 216772097 U",
   patentAuthors: ["郑艺丹", "陈汉钊", "詹晓晴"],
-  patentAssignees: ["Panasonic AVC Networks Xiamen Co Ltd"],
+  patentAssignees: ["Panasonic AVC Networks Xiamen Co., Ltd."],
   patentYear: 2022,
   elementCount: 11,
   groupCount: 9,

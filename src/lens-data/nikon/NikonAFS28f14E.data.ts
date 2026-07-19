@@ -51,7 +51,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "JP 2017-227799 A",
   patentAuthors: ["Yasunari Fukuda", "Akiko Furuta", "Toshinori Take", "Takayuki Sensui"],
-  patentAssignees: ["Konica Minolta, Inc.", "Nikon Corporation"],
+  patentAssignees: ["Konica Minolta, Inc.","Nikon Corporation"],
   patentYear: 2017,
   elementCount: 14,
   groupCount: 11,

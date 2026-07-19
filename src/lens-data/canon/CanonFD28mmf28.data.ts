@@ -49,7 +49,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 4,046,459",
   patentAuthors: ["Naoto Kawamura"],
-  patentAssignees: ["Canon Inc"],
+  patentAssignees: ["Canon Inc."],
   patentYear: 1977,
   elementCount: 7,
   groupCount: 7,

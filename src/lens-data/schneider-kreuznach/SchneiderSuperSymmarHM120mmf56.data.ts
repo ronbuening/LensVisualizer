@@ -58,7 +58,7 @@ const LENS_DATA = {
   imageFormat: "4x5",
   patentNumber: "US 4,773,745",
   patentAuthors: ["Hiltrud Schitthof"],
-  patentAssignees: ["Jos Schneider Optische Werke GmbH"],
+  patentAssignees: ["Jos. Schneider Optische Werke Kreuznach GmbH & Co. KG"],
   patentYear: 1988,
   elementCount: 8,
   groupCount: 6,

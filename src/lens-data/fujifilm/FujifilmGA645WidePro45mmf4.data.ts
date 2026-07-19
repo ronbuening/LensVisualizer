@@ -49,7 +49,7 @@ const LENS_DATA = {
   imageFormat: "645",
   patentNumber: "US 5,621,575",
   patentAuthors: ["Nobuaki Toyama"],
-  patentAssignees: ["Fuji Photo Optical Co Ltd"],
+  patentAssignees: ["Fuji Photo Optical Co., Ltd."],
   patentYear: 1997,
   elementCount: 7,
   groupCount: 5,

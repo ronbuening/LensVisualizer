@@ -44,7 +44,7 @@ const LENS_DATA = {
   imageFormat: "44x33",
   patentNumber: "US 2018/0100988 A1",
   patentAuthors: ["Masato Kondo"],
-  patentAssignees: ["Fujifilm Corp"],
+  patentAssignees: ["Fujifilm Corporation"],
   patentYear: 2018,
   elementCount: 14,
   groupCount: 9,

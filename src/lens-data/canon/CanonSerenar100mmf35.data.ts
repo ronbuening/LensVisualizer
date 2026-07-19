@@ -32,7 +32,7 @@ const LENS_DATA = {
   closeFocusM: 1.0,
   patentNumber: "DE 1,022,027 B",
   patentAuthors: ["Hiroshi Ito"],
-  patentAssignees: ["Canon Camera Co Inc"],
+  patentAssignees: ["Canon Camera Co., Inc."],
   patentYear: 1958,
   elementCount: 5,
   groupCount: 4,
