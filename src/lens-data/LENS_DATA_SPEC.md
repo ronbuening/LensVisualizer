@@ -101,7 +101,7 @@ Keep it normalized even when the product's official styling varies by source:
 |-------|------|---------|-------------|
 | `maker` | `string` | | Manufacturer name (e.g. `"Nikon"`, `"Voigtländer"`). Used for maker pages and SEO metadata. If omitted, derived from the lens `name` via prefix matching. |
 | `visible` | `boolean` | `true` | Controls whether the lens appears in the UI catalog. Set to `false` to hide a lens from the dropdown without removing its data file. |
-| `subtitle` | `string` | | Patent reference shown in UI header |
+| `subtitle` | `string` | | Legacy patent/example context. Used as the UI-header fallback when structured patent metadata is unavailable. |
 | `specs` | `string[]` | | Spec strings displayed in header |
 | `focalLengthMarketing` | `number \| [number, number]` | | Marketed/nominal focal length in mm. Single number for primes (e.g. `50`); `[wide, tele]` tuple for zooms (e.g. `[70, 200]`). |
 | `focalLengthDesign` | `number \| [number, number]` | | Design/patent focal length in mm (computed EFL). Single number for primes; `[wide, tele]` for zooms. May differ from marketing value. |
@@ -164,6 +164,8 @@ Suggested backfill order:
 Patent-backed lens files must declare `patentNumber`, `patentAuthors`, and `patentAssignees` together. Synthetic,
 reference, or independently measured prescriptions with no patent source should omit all three fields. These structured
 fields supplement `subtitle`: keep worked-example and design-correlation prose in `subtitle`, not in `patentNumber`.
+The UI displays `patentNumber`, followed by the names in `patentAuthors`; it uses `subtitle` only when the structured
+patent fields are unavailable.
 
 ```javascript
 patentNumber: "US 10,571,651 B2",

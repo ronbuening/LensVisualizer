@@ -13,6 +13,7 @@ import ComparePage from "../../../src/pages/ComparePage.js";
 import NotFoundPage from "../../../src/pages/NotFoundPage.js";
 import { ARTICLE_CONTENT, ARTICLES, HOMEPAGE_ARTICLES } from "../../../src/utils/content/homepageContent.js";
 import { CATALOG_KEYS, LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
+import { lensDisplaySubtitle } from "../../../src/utils/catalog/lensPatentMetadata.js";
 import { clearBrowserState, installMatchMediaMock, renderWithRouter } from "../../testUtils.js";
 
 vi.mock("../../../src/components/SEOHead.js", () => ({
@@ -170,6 +171,26 @@ describe("static page renders", () => {
 
     expect(screen.getByText(`${LENS_CATALOG[slugA].name} vs ${LENS_CATALOG[slugB].name}`)).toBeTruthy();
     expect(screen.getByText(/Interactive side-by-side comparison available in the viewer above/i)).toBeTruthy();
+  });
+
+  it("renders structured patent attribution in the lens-page fallback", () => {
+    const lensKey = CATALOG_KEYS.find((key) => LENS_CATALOG[key].patentNumber);
+    expect(lensKey).toBeTruthy();
+    if (!lensKey) return;
+
+    const lens = LENS_CATALOG[lensKey];
+    const displaySubtitle = lensDisplaySubtitle(lens);
+    expect(displaySubtitle).toBeTruthy();
+
+    renderRoutes(
+      `/lens/${lensKey}`,
+      <Routes>
+        <Route path="/lens/:slug" element={<LensPage />} />
+      </Routes>,
+    );
+
+    expect(screen.getByText(displaySubtitle ?? "")).toBeTruthy();
+    if (lens.subtitle && lens.subtitle !== displaySubtitle) expect(screen.queryByText(lens.subtitle)).toBeNull();
   });
 
   it("renders hidden reference lens fallback content for debug library links", () => {

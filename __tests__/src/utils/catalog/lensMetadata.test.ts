@@ -4,6 +4,7 @@ import {
   allMakerSlugs,
   makerDisplayName,
   lensPatentReference,
+  lensDisplaySubtitle,
   lensPageTitle,
   lensPageDescription,
   lensCanonicalURL,
@@ -223,12 +224,49 @@ describe("lensPageTitle", () => {
 /* ── lensPatentReference ── */
 
 describe("lensPatentReference", () => {
+  it("prefers the structured patent number", () => {
+    expect(
+      lensPatentReference(
+        makeLens({ patentNumber: "US 10,571,651 B2", subtitle: "US 10,571,651 B2 Numerical Data 1" }),
+      ),
+    ).toBe("US 10,571,651 B2");
+  });
+
   it("uses explicit patent subtitles as the patent reference", () => {
     expect(lensPatentReference(makeLens())).toBe("US Patent 2019/0234567");
   });
 
   it("returns null when no patent-like subtitle is present", () => {
     expect(lensPatentReference(makeLens({ subtitle: "Production lens notes" }))).toBeNull();
+  });
+});
+
+/* ── lensDisplaySubtitle ── */
+
+describe("lensDisplaySubtitle", () => {
+  it("formats the patent number followed by inventors in source order", () => {
+    expect(
+      lensDisplaySubtitle(
+        makeLens({
+          patentNumber: "US 10,571,651 B2",
+          patentAuthors: ["Hideki Sakai", "Aiko Example"],
+          subtitle: "legacy subtitle",
+        }),
+      ),
+    ).toBe("US 10,571,651 B2 — Hideki Sakai, Aiko Example");
+  });
+
+  it("shows only the patent number when the source names no individual inventor", () => {
+    expect(lensDisplaySubtitle(makeLens({ patentNumber: "GB 775,944", patentAuthors: [] }))).toBe("GB 775,944");
+  });
+
+  it("falls back to the legacy subtitle when structured patent metadata is incomplete", () => {
+    expect(lensDisplaySubtitle(makeLens({ patentNumber: undefined, patentAuthors: undefined }))).toBe(
+      "US Patent 2019/0234567",
+    );
+    expect(lensDisplaySubtitle(makeLens({ patentNumber: "US 1", patentAuthors: undefined }))).toBe(
+      "US Patent 2019/0234567",
+    );
   });
 });
 

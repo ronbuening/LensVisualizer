@@ -71,6 +71,24 @@ describe("DiagramHeader", () => {
     expect(screen.getByRole("button", { name: "COLOR" })).toBeTruthy();
   });
 
+  it("displays structured patent attribution instead of the legacy subtitle", () => {
+    const baseLens = lens();
+    const structuredLens = {
+      ...baseLens,
+      data: {
+        ...baseLens.data,
+        subtitle: "legacy subtitle",
+        patentNumber: "US 10,571,651 B2",
+        patentAuthors: ["Hideki Sakai", "Aiko Example"],
+      },
+    } as RuntimeLens;
+
+    renderHeader({ L: structuredLens });
+
+    expect(screen.getByText("US 10,571,651 B2 — Hideki Sakai, Aiko Example")).toBeTruthy();
+    expect(screen.queryByText("legacy subtitle")).toBeNull();
+  });
+
   it("routes desktop ray-mode and density controls to callbacks", () => {
     const onRayTracksFChange = vi.fn();
     const onRayDensityChange = vi.fn();

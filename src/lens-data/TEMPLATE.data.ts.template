@@ -50,7 +50,7 @@ const LENS_DATA = {
   // REQUIRED: full display name. Use all-caps manufacturer + lens branding, separated mount/system tokens,
   // `FLmm f/N`, and camera-body parentheses for fixed-lens cameras.
   name:     "MANUFACTURER BRAND MOUNT 50mm f/1.8 CHARACTERISTIC",
-  subtitle: "PATENT-NUMBER EXAMPLE N — COMPANY / INVENTOR",  // optional: shown in UI header
+  subtitle: "PATENT-NUMBER EXAMPLE N — COMPANY / INVENTOR",  // optional: legacy context and UI fallback
   specs: [                                               // optional: spec strings for header display
     "N ELEMENTS / N GROUPS",
     "f ≈ NN.N mm",
