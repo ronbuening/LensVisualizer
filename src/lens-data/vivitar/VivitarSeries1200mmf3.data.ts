@@ -40,7 +40,7 @@ const LENS_DATA = {
       nd: 1.56873,
       vd: 63.1,
       fl: 101.4,
-      glass: "569631 — PSK2 phosphate crown (Schott) / S-PHM51 class",
+      glass: "569631 — PSK2 phosphate crown (Schott)",
       apd: false,
       role: "Front positive crown — dominant positive power; strongly convex front surface with nearly flat rear minimizes spherical aberration.",
     },

@@ -7,7 +7,7 @@ available, it falls back to partial measured `nC`/`nF` line indices, dPgF-correc
 approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **330 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **333 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
 
 The July 17, 2026 Vivitar batch added exact vendor records for SCHOTT LLF1; legacy HOYA LAC10 and NBFD10; and legacy SUMITA BAF9, BAF11, BK1, F1, FK5, K5, LAFN2, LF2, and SK5. The SUMITA coefficients come from the manufacturer's 2025-11-07 all-glass Zemax catalog, which explicitly includes discontinued types.
 
@@ -223,6 +223,14 @@ material index/Abbe deltas, so those labels remain explicit code-only rows.
 | ★ S-LAH66N | Ohara | 773496 | Exact modern OHARA N-formulation row for the 773/496 lanthanum positions in the Tamron 60mm and 90mm macro prescriptions |
 | ★ S-LAL12Q | Ohara | 678553 | Exact Q-formulation row for the 678/553 element in the Tamron 90mm macro prescription |
 | ★ FDS90 | Hoya | 847238 | Exact discontinued HOYA dense-flint row used by three elements in the Tamron 90mm macro prescription; kept distinct from current FDS90-SG and FDS90-SGP formulations |
+
+**Phase 31 additions** (July 2026 — Canon ultra-wide and fisheye patent pass using OHARA's 2017 vendor Zemax catalog via refractiveindex.info; all three entries round-trip through `assertCatalogConsistent`):
+
+| Glass | Vendor | Code | Notes |
+|---|---|---:|---|
+| ★ PBH71 | Ohara | 923213 | Exact historical dense-flint row for L12 of the Canon EF 14mm f/2.8L USM design; replaces the weaker N-SF66 comparison |
+| ★ S-PHM51 | Ohara | 617628 | Historical formula-3 phosphate crown for L2 of the Canon EF 15mm f/2.8 Fisheye design |
+| ★ NSL7 | Ohara | 511605 | Historical formula-3 reference crown for L5 of the Canon EF 15mm f/2.8 Fisheye design |
 
 **Phase 17 additions** (May 2026 — Hasselblad/Laowa/Leica/Minolta/Nikon six-digit missing-Sellmeier queue pass; all entries round-trip through `assertCatalogConsistent`):
 
