@@ -47,6 +47,9 @@ const LENS_DATA = {
   apertureDesign: 1.24,
   lensMounts: ["canon-rf"],
   imageFormat: "135-full-frame",
+  patentNumber: "US 2020/0012073 A1",
+  patentAuthors: ["Satoshi Maetaki"],
+  patentAssignees: ["Canon Inc"],
   patentYear: 2020,
   elementCount: 13, // production count; patent Example 1 has 14
   groupCount: 9,

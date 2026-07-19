@@ -74,6 +74,7 @@ const LENS_DATA = {
    *  patentNumber         Source patent publication/grant identifier, including jurisdiction
    *                        and published kind code. Do not include an example/table label.
    *  patentAuthors        Inventors in source order, one complete personal name per entry.
+   *                        Use [] only when the source names no individual inventor.
    *  patentAssignees      Source assignees, or applicants where that is the published role.
    *                        Use [] only when the source names none; do not use it for unknown data.
    *  patentYear            Year the patent was published or granted (e.g. 2019).

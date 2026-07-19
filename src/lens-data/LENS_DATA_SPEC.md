@@ -110,7 +110,7 @@ Keep it normalized even when the product's official styling varies by source:
 | `lensMounts` | `LensMountId[]` | | Canonical mount ids for production variants represented by this optical formula. May contain multiple ids, e.g. `["nikon-z", "sony-fe"]`. |
 | `imageFormat` | `ImageFormatId` | | Single canonical image-circle/format id, e.g. `"135-full-frame"`, `"aps-c"`, or `"110"`. |
 | `patentNumber` | `string` | | Source patent publication or grant identifier, including jurisdiction and kind code when the source publishes one (e.g. `"US 10,571,651 B2"`). Do not include an example, embodiment, table, or figure label. |
-| `patentAuthors` | `string[]` | | Inventors named by the source patent, in source order. Use one complete personal name per entry. |
+| `patentAuthors` | `string[]` | | Inventors named by the source patent, in source order. Use one complete personal name per entry. An empty array means the patent names no individual inventor. |
 | `patentAssignees` | `string[]` | | Assignees named by the source patent, or applicants when that jurisdiction publishes applicants rather than assignees. Use the historical names printed by the source. An empty array means the patent names no assignee or applicant. |
 | `patentYear` | `number` | | Year the patent was published or granted (e.g. `2019`). |
 | `elementCount` | `number` | | Total number of glass elements in the design. |
@@ -176,12 +176,13 @@ patentAssignees: ["Canon Kabushiki Kaisha"],
 - `patentAuthors` contains inventors only. Preserve the source ordering and put each person in a separate array entry;
   never collapse additional inventors into `"et al."`. Prefer the published Latin-script form when the patent or an
   official family front page provides one. Otherwise preserve the source-script name, optionally followed by an
-  established romanization in parentheses.
+  established romanization in parentheses. Use `patentAuthors: []` when a historical or corporate application names
+  only the applicant and does not identify an individual inventor; do not substitute a later secondary attribution.
 - `patentAssignees` records ownership at the source publication or grant. For WO, JP, CN, and other documents that label
   the party as an applicant rather than an assignee, record the applicant here. Preserve historical legal names instead
   of replacing them with the current product maker or a modern successor.
-- Use `patentAssignees: []` only when the source identifies no assignee or applicant. An empty array is meaningful; it is
-  not a placeholder for unfinished research. `patentAuthors` must contain at least one inventor for a patent-backed file.
+- Empty arrays are meaningful source statements, not placeholders for unfinished research: use `patentAuthors: []` only
+  when the source names no individual inventor, and `patentAssignees: []` only when it identifies no assignee or applicant.
 - Do not add filing dates, priority numbers, attorneys, agents, examiners, translators, or current patent owners to these
   fields. `patentYear` remains the year of the source publication or grant named by `patentNumber`.
 

@@ -43,6 +43,9 @@ const LENS_DATA = {
   // apertureDesign omitted — matches marketing
   lensMounts: ["m42","exakta"],
   imageFormat: "135-full-frame",
+  patentNumber: "GB 850,117",
+  patentAuthors: ["Eduard Hubert", "Harry Zoellner"],
+  patentAssignees: ["VEB Carl Zeiss Jena GmbH"],
   patentYear: 1960,
   elementCount: 6,
   groupCount: 4,

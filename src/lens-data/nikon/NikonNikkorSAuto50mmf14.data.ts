@@ -38,6 +38,9 @@ const LENS_DATA = {
   /* ── Explicit metadata fields ── */
   focalLengthMarketing: 50,
   apertureMarketing: 1.4,
+  patentNumber: "US 3,560,079",
+  patentAuthors: ["Zenji Wakimoto", "Yoshiyuki Simizu"],
+  patentAssignees: ["Nippon Kogaku KK"],
   patentYear: 1971,
   elementCount: 7,
   groupCount: 5,

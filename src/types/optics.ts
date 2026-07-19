@@ -253,7 +253,7 @@ export interface LensData {
   imageFormat?: ImageFormatId;
   /** Source patent publication or grant identifier, including jurisdiction and kind code when published. */
   patentNumber?: string;
-  /** Inventors named by the source patent, in source order. */
+  /** Inventors named by the source patent, in source order; empty when the patent names none. */
   patentAuthors?: string[];
   /** Assignees or applicants named by the source patent; empty when the patent names none. */
   patentAssignees?: string[];
