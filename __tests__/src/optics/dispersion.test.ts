@@ -119,6 +119,25 @@ describe("glass catalog", () => {
     expect(evaluateSellmeier(tafd45!, LINE_NM.C)).toBeLessThan(evaluateSellmeier(tafd45!, LINE_NM.F));
   });
 
+  it("evaluates the historical OHARA glasses in the Canon EF 200mm f/1.8 patent", () => {
+    const expected = [
+      { glass: "BPH5", nC: 1.64921, nd: 1.654115, nF: 1.66569, ng: 1.6751 },
+      { glass: "PBH53", nC: 1.83653, nd: 1.846658, nF: 1.87198, ng: 1.89382 },
+      { glass: "BPM4", nC: 1.60921, nd: 1.6134, nF: 1.6232, ng: 1.63107 },
+    ];
+
+    for (const datasheet of expected) {
+      const entry = resolveGlass(datasheet.glass);
+      expect(entry?.name).toBe(datasheet.glass);
+      expect(evaluateSellmeier(entry!, LINE_NM.C)).toBeCloseTo(datasheet.nC, 5);
+      expect(evaluateSellmeier(entry!, LINE_NM.d)).toBeCloseTo(datasheet.nd, 5);
+      expect(evaluateSellmeier(entry!, LINE_NM.F)).toBeCloseTo(datasheet.nF, 5);
+      expect(evaluateSellmeier(entry!, LINE_NM.g)).toBeCloseTo(datasheet.ng, 4);
+    }
+
+    expect(resolveGlass("613438")?.name).toBe("BPM4");
+  });
+
   it("resolves OHARA S-BAH10 by name and six-digit code", () => {
     const sbah10 = resolveGlass("S-BAH10 (OHARA equivalent)");
     expect(sbah10?.name).toBe("S-BAH10");
@@ -133,6 +152,20 @@ describe("glass catalog", () => {
     expect(nbfd29).not.toBeNull();
     expect(evaluateSellmeier(nbfd25!, LINE_NM.d)).toBeCloseTo(1.85451, 5);
     expect(evaluateSellmeier(nbfd29!, LINE_NM.d)).toBeCloseTo(1.77047, 5);
+  });
+
+  it("evaluates the SUMITA K-LaK9 and K-LaK11 catalog polynomials", () => {
+    const expected: Array<[glass: string, code: string, nd: number]> = [
+      ["K-LaK9", "691548", 1.691],
+      ["K-LaK11", "658573", 1.6583],
+    ];
+    for (const [glass, code, nd] of expected) {
+      const entry = resolveGlass(glass);
+      expect(entry?.name).toBe(glass);
+      expect(resolveGlass(code)?.name).toBe(glass);
+      expect(evaluateSellmeier(entry!, LINE_NM.d)).toBeCloseTo(nd, 5);
+      expect(evaluateSellmeier(entry!, LINE_NM.C)).toBeLessThan(evaluateSellmeier(entry!, LINE_NM.F));
+    }
   });
 
   it("evaluates and resolves the current HOYA M-TAFD51 polynomial entry", () => {

@@ -1554,4 +1554,38 @@ export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
     code6: "511605",
     source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info; NSL7 page (formula 3 polynomial).",
   },
+  /* ────── Phase 33 Canon EF 200mm f/1.8 historical-glass additions (July 2026) ──────
+   * OHARA's current all-products AGF retains these discontinued types. Their
+   * formulae reproduce the patent's independently published C/d/F/g indices,
+   * making them stronger matches than modern glasses that merely share a
+   * rounded six-digit coordinate.
+   */
+  {
+    name: "BPH5",
+    vendor: "Ohara",
+    B: [1.44845677, 0.22044806, 0.99476362],
+    C: [0.0092817361, 0.0433001987, 77.6475264],
+    nd: 1.654115,
+    vd: 39.687638,
+    code6: "654397",
+    source: "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF), vendor-published discontinued-glass data.",
+  },
+  {
+    name: "PBH53",
+    vendor: "Ohara",
+    polynomial: [3.2498918, -0.010466366, 0.048000686, 0.0031859922, -0.00015447369, 0.000026258671],
+    nd: 1.846658,
+    vd: 23.885544,
+    code6: "847239",
+    source: "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF), vendor-published discontinued-glass data.",
+  },
+  {
+    name: "BPM4",
+    vendor: "Ohara",
+    polynomial: [2.5489492, -0.012922911, 0.018433588, 0.00067483064, -0.000028837579, 0.000003057603],
+    nd: 1.6134,
+    vd: 43.841533,
+    code6: "613438",
+    source: "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF), vendor-published discontinued-glass data.",
+  },
 ];

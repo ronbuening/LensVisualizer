@@ -180,4 +180,24 @@ export const SUMITA_GLASS_ENTRIES: readonly GlassEntry[] = [
     code6: "587590",
     source: "Sumita Optical Glass K-SKLD200 datasheet, catalog Ver. 14.01.00; formula-3 coefficients A0-A5.",
   },
+  {
+    name: "K-LaK9",
+    vendor: "Sumita",
+    polynomial: [2.8065086, -0.012084694, 0.018509723, 0.00045689652, -0.000015275984, 0.0000010018509],
+    nd: 1.691,
+    vd: 54.8,
+    code6: "691548",
+    source:
+      "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor formula-3 polynomial for K-LaK9.",
+  },
+  {
+    name: "K-LaK11",
+    vendor: "Sumita",
+    polynomial: [2.703071, -0.011555097, 0.016440907, 0.00044044678, -0.000021866961, 0.0000013531002],
+    nd: 1.6583,
+    vd: 57.3,
+    code6: "658573",
+    source:
+      "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor formula-3 polynomial for K-LaK11.",
+  },
 ];
