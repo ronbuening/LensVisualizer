@@ -109,6 +109,9 @@ Keep it normalized even when the product's official styling varies by source:
 | `apertureDesign` | `number` | | Design/patent maximum f-number (precise computed value, e.g. `1.85`). May differ from marketing value. |
 | `lensMounts` | `LensMountId[]` | | Canonical mount ids for production variants represented by this optical formula. May contain multiple ids, e.g. `["nikon-z", "sony-fe"]`. |
 | `imageFormat` | `ImageFormatId` | | Single canonical image-circle/format id, e.g. `"135-full-frame"`, `"aps-c"`, or `"110"`. |
+| `patentNumber` | `string` | | Source patent publication or grant identifier, including jurisdiction and kind code when the source publishes one (e.g. `"US 10,571,651 B2"`). Do not include an example, embodiment, table, or figure label. |
+| `patentAuthors` | `string[]` | | Inventors named by the source patent, in source order. Use one complete personal name per entry. |
+| `patentAssignees` | `string[]` | | Assignees named by the source patent, or applicants when that jurisdiction publishes applicants rather than assignees. Use the historical names printed by the source. An empty array means the patent names no assignee or applicant. |
 | `patentYear` | `number` | | Year the patent was published or granted (e.g. `2019`). |
 | `elementCount` | `number` | | Total number of glass elements in the design. |
 | `groupCount` | `number` | | Total number of air-separated groups in the design. |
@@ -155,6 +158,32 @@ Suggested backfill order:
 2. Sony E, Fujifilm X, Pentax 110/K, Panasonic/Sigma L-mount where obvious.
 3. Fixed-lens cameras by format only.
 4. Historical Zeiss, Leica, and Voigtländer designs after source checks, because variants are common.
+
+## Patent Metadata
+
+Patent-backed lens files must declare `patentNumber`, `patentAuthors`, and `patentAssignees` together. Synthetic,
+reference, or independently measured prescriptions with no patent source should omit all three fields. These structured
+fields supplement `subtitle`: keep worked-example and design-correlation prose in `subtitle`, not in `patentNumber`.
+
+```javascript
+patentNumber: "US 10,571,651 B2",
+patentAuthors: ["Hideki Sakai"],
+patentAssignees: ["Canon Kabushiki Kaisha"],
+```
+
+- Record the exact publication or grant used to transcribe the prescription, rather than silently substituting a related
+  US, EP, WO, or national-family publication. Preserve its jurisdiction prefix and kind code when the source prints one.
+- `patentAuthors` contains inventors only. Preserve the source ordering and put each person in a separate array entry;
+  never collapse additional inventors into `"et al."`. Prefer the published Latin-script form when the patent or an
+  official family front page provides one. Otherwise preserve the source-script name, optionally followed by an
+  established romanization in parentheses.
+- `patentAssignees` records ownership at the source publication or grant. For WO, JP, CN, and other documents that label
+  the party as an applicant rather than an assignee, record the applicant here. Preserve historical legal names instead
+  of replacing them with the current product maker or a modern successor.
+- Use `patentAssignees: []` only when the source identifies no assignee or applicant. An empty array is meaningful; it is
+  not a placeholder for unfinished research. `patentAuthors` must contain at least one inventor for a patent-backed file.
+- Do not add filing dates, priority numbers, attorneys, agents, examiners, translators, or current patent owners to these
+  fields. `patentYear` remains the year of the source publication or grant named by `patentNumber`.
 
 ## Projection Metadata
 
