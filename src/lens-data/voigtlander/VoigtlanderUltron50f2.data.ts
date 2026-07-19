@@ -43,7 +43,7 @@ const LENS_DATA = {
   focalLengthDesign: 50.003,
   apertureMarketing: 2.0,
   patentNumber: "US 2,627,204",
-  patentAuthors: ["Tronnier Albrecht Wilhelm"],
+  patentAuthors: ["Albrecht Wilhelm Tronnier"],
   patentAssignees: ["Voigtlander AG"],
   patentYear: 1953,
   elementCount: 6,

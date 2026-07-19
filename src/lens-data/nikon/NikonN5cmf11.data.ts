@@ -39,7 +39,7 @@ const LENS_DATA = {
   lensMounts: ["nikon-s"],
   imageFormat: "135-full-frame",
   patentNumber: "US 2,828,671",
-  patentAuthors: ["Murakami Saburo"],
+  patentAuthors: ["Saburo Murakami"],
   patentAssignees: ["Nippon Kogaku KK"],
   patentYear: 1958,
   elementCount: 9,

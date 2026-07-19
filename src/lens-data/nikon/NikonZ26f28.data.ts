@@ -40,7 +40,7 @@ const LENS_DATA = {
   lensMounts: ["nikon-z"],
   imageFormat: "135-full-frame",
   patentNumber: "WO 2023/190222 A1",
-  patentAuthors: ["歩 槇田", "妙子 渡士"],
+  patentAuthors: ["Ayumu Makida", "Taeko Toshi"],
   patentAssignees: ["Nikon Corp"],
   patentYear: 2023,
   elementCount: 8,

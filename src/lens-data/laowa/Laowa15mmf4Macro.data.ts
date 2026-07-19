@@ -39,7 +39,7 @@ const LENS_DATA = {
   lensMounts: ["canon-ef", "nikon-f", "sony-a", "sony-fe", "pentax-k"],
   imageFormat: "135-full-frame",
   patentNumber: "CN 205427291 U",
-  patentAuthors: ["张小华"],
+  patentAuthors: ["Xiaohua Zhang"],
   patentAssignees: ["ANHUI CHANGGENG OPTICAL TECHNOLOGY Co Ltd"],
   patentYear: 2016,
   elementCount: 12,

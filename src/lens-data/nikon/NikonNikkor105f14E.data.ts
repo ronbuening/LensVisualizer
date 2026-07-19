@@ -33,7 +33,7 @@ const LENS_DATA = {
   lensMounts: ["nikon-f"],
   imageFormat: "135-full-frame",
   patentNumber: "WO 2019/116563 A1",
-  patentAuthors: ["雅史 山下", "智希 伊藤", "洋 籔本", "山本　浩史", "哲史 三輪", "啓介 坪野谷", "歩 槇田", "健 上原"],
+  patentAuthors: ["Masashi Yamashita", "Tomoki Ito", "Hiroshi Yabumoto", "Hiroshi Yamamoto", "Satoshi Miwa", "Keisuke Tsubonoya", "Ayumu Makida", "Takeru Uehara"],
   patentAssignees: ["Nikon Corp"],
   patentYear: 2019,
   elementCount: 14,

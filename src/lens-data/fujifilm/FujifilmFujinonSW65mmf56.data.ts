@@ -49,7 +49,7 @@ const LENS_DATA = {
   lensMounts: ["fixed-lens-camera"],
   imageFormat: "6x9",
   patentNumber: "JP S56-140311",
-  patentAuthors: ["Ryoichi Doi", "Yutaka Sakai", "Kazunori Ono"],
+  patentAuthors: ["Ryoichi Doi", "Yutaka Sakai", "Kazunori Ohno"],
   patentAssignees: ["Fuji Photo Optical Co Ltd"],
   patentYear: 1981,
   elementCount: 6,

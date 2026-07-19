@@ -40,7 +40,7 @@ const LENS_DATA = {
   lensMounts: ["leica-m", "leica-ltm"],
   imageFormat: "135-full-frame",
   patentNumber: "US 2,995,980",
-  patentAuthors: ["Zimmermann Otto", "Knetsch Georg"],
+  patentAuthors: ["Otto Zimmermann", "Georg Knetsch"],
   patentAssignees: ["Ernst Leitz Wetzlar GmbH"],
   patentYear: 1961,
   elementCount: 5,

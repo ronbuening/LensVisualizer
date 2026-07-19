@@ -43,7 +43,7 @@ const LENS_DATA = {
   lensMounts: ["sony-fe"],
   imageFormat: "aps-c",
   patentNumber: "US 2013/0033768 A1",
-  patentAuthors: ["Toshihiro Sunaga", "Motoyuki Otake", "Masaharu Hosoi"],
+  patentAuthors: ["Toshihiro Sunaga", "Motoyuki Ohtake", "Masaharu Hosoi"],
   patentAssignees: ["Sony Corp"],
   patentYear: 2013,
   elementCount: 8,

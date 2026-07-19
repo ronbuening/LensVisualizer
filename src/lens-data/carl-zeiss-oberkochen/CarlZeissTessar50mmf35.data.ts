@@ -51,7 +51,7 @@ const LENS_DATA = {
   lensMounts: ["exakta","m42","leica-ltm"],
   imageFormat: "135-full-frame",
   patentNumber: "CH 314381",
-  patentAuthors: ["Guenther Dr Lange", "Robert Dr Phil Richter"],
+  patentAuthors: ["Günther Lange", "Robert Richter"],
   patentAssignees: ["Zeiss Carl Fa"],
   patentYear: 1956,
   elementCount: 4,

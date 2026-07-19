@@ -53,7 +53,7 @@ const LENS_DATA = {
   apertureDesign: 3.65,
   imageFormat: "135-full-frame",
   patentNumber: "JP S51-63635",
-  patentAuthors: ["Rinzo Watanabe", "Ai Betensukii Erisu"],
+  patentAuthors: ["Rinzo Watanabe", "Ellis I. Betensky"],
   patentAssignees: ["KINO SEIMITSU KOGYO KK"],
   patentYear: 1976,
   elementCount: 15,

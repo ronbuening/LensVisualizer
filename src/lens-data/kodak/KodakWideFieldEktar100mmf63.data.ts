@@ -58,7 +58,7 @@ const LENS_DATA = {
   lensMounts: ["large-format-lens-board"],
   imageFormat: "4x5",
   patentNumber: "US 2,518,719",
-  patentAuthors: ["Reiss Max"],
+  patentAuthors: ["Max Reiss"],
   patentAssignees: ["Eastman Kodak Co"],
   patentYear: 1950,
   elementCount: 4,

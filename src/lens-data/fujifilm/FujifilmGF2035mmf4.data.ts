@@ -48,7 +48,7 @@ const LENS_DATA = {
   lensMounts: ["fujifilm-g"],
   imageFormat: "44x33",
   patentNumber: "US 2022/0236544 A1",
-  patentAuthors: ["Ryosuke NAGAMI"],
+  patentAuthors: ["Ryosuke Nagami"],
   patentAssignees: ["Fujifilm Corp"],
   patentYear: 2022,
   elementCount: 14,

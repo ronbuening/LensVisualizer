@@ -61,7 +61,7 @@ const LENS_DATA = {
   lensMounts: ["fujifilm-x", "sony-fe", "canon-ef-m", "nikon-z", "canon-rf", "l-mount"],
   imageFormat: "aps-c",
   patentNumber: "CN 110161666 A",
-  patentAuthors: ["李大勇"],
+  patentAuthors: ["Dayong Li"],
   patentAssignees: ["ANHUI CHANGGENG OPTICAL TECHNOLOGY Co Ltd"],
   patentYear: 2019,
   elementCount: 14,

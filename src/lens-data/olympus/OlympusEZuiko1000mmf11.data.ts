@@ -42,7 +42,7 @@ const LENS_DATA = {
   lensMounts: ["olympus-om"],
   imageFormat: "135-full-frame",
   patentNumber: "DE 2206106 A1",
-  patentAuthors: ["Jihei Higashi Tokio Nakagawa (Japan). P"],
+  patentAuthors: ["Jihei Nakagawa"],
   patentAssignees: ["Olympus Optical Co Ltd"],
   patentYear: 1972,
   elementCount: 5,

@@ -43,7 +43,7 @@ const LENS_DATA = {
   lensMounts: ["agfa-ambi-silette"],
   imageFormat: "135-full-frame",
   patentNumber: "US 2,819,651",
-  patentAuthors: ["Baur Carl", "Otzen Christian"],
+  patentAuthors: ["Carl Baur", "Christian Otzen"],
   patentAssignees: ["AGFA CAMERA WERK AG FA"],
   patentYear: 1958,
   elementCount: 5,

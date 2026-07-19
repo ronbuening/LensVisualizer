@@ -174,10 +174,14 @@ patentAssignees: ["Canon Kabushiki Kaisha"],
 - Record the exact publication or grant used to transcribe the prescription, rather than silently substituting a related
   US, EP, WO, or national-family publication. Preserve its jurisdiction prefix and kind code when the source prints one.
 - `patentAuthors` contains inventors only. Preserve the source ordering and put each person in a separate array entry;
-  never collapse additional inventors into `"et al."`. Prefer the published Latin-script form when the patent or an
-  official family front page provides one. Otherwise preserve the source-script name, optionally followed by an
-  established romanization in parentheses. Use `patentAuthors: []` when a historical or corporate application names
-  only the applicant and does not identify an individual inventor; do not substitute a later secondary attribution.
+  never collapse additional inventors into `"et al."`. Normalize Latin-script display names to `Given Middle Family`
+  order with conventional capitalization, reliable diacritics, and no honorifics, credentials, locations, or source
+  database artifacts. Use one canonical spelling and romanization for the same person throughout the corpus, even when
+  different family publications vary in capitalization or name order. Prefer the published Latin-script form when the
+  patent or an official family front page provides one. Otherwise preserve a Unicode-normalized source-script name in
+  its native order, optionally followed by an established romanization in parentheses. Use `patentAuthors: []` when a
+  historical or corporate application names only the applicant and does not identify an individual inventor; do not
+  substitute a later secondary attribution.
 - `patentAssignees` records ownership at the source publication or grant. For WO, JP, CN, and other documents that label
   the party as an applicant rather than an assignee, record the applicant here. Preserve historical legal names instead
   of replacing them with the current product maker or a modern successor.

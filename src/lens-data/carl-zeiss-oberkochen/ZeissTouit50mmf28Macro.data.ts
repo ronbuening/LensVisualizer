@@ -55,7 +55,7 @@ const LENS_DATA = {
   lensMounts: ["sony-fe", "fujifilm-x"],
   imageFormat: "aps-c",
   patentNumber: "JP 2015-161792 A",
-  patentAuthors: ["Ryoko Tomioka", "Hiroki Saito", "Dodoc Aurelian", "Pollmann Michael", "Klein Juergen"],
+  patentAuthors: ["Ryoko Tomioka", "Hiroki Saito", "Aurélien Dodoc", "Michael Pollmann", "Jürgen Klein"],
   patentAssignees: ["Fujifilm Corporation", "Carl Zeiss AG"],
   patentYear: 2015,
   elementCount: 14,

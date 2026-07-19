@@ -43,7 +43,7 @@ const LENS_DATA = {
   lensMounts: ["nikon-s", "leica-ltm"],
   imageFormat: "135-full-frame",
   patentNumber: "US 2,896,506",
-  patentAuthors: ["Azuma Hideo"],
+  patentAuthors: ["Hideo Azuma"],
   patentAssignees: ["Nippon Kogaku KK"],
   patentYear: 1959,
   elementCount: 7,

@@ -38,7 +38,7 @@ const LENS_DATA = {
   lensMounts: ["l-mount", "sony-fe"],
   imageFormat: "135-full-frame",
   patentNumber: "CN 120386081 A",
-  patentAuthors: ["落合裕道"],
+  patentAuthors: ["Hiromichi Ochiai"],
   patentAssignees: ["Sigma Corp Japan"],
   patentYear: 2025,
   elementCount: 18,

@@ -56,7 +56,7 @@ const LENS_DATA = {
   lensMounts: ["nikon-f"],
   imageFormat: "135-full-frame",
   patentNumber: "US 3,743,384",
-  patentAuthors: ["S Nakamura"],
+  patentAuthors: ["Soichi Nakamura"],
   patentAssignees: ["Nippon Kogaku KK"],
   patentYear: 1973,
   elementCount: 20,

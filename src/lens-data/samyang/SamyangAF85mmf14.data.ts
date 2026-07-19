@@ -40,7 +40,7 @@ const LENS_DATA = {
   lensMounts: ["sony-fe"],
   imageFormat: "135-full-frame",
   patentNumber: "WO 2021/085655 A1",
-  patentAuthors: ["김문경"],
+  patentAuthors: ["Moon-Kyung Kim"],
   patentAssignees: ["Samyang Optics Co Ltd"],
   patentYear: 2021,
   elementCount: 11,

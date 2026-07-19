@@ -38,7 +38,7 @@ const LENS_DATA = {
   lensMounts: ["exakta", "m42"],
   imageFormat: "135-full-frame",
   patentNumber: "US 2,959,100",
-  patentAuthors: ["Lautenbacher Hans"],
+  patentAuthors: ["Hans Lautenbacher"],
   patentAssignees: ["ENNA WERK OPTIK APELT"],
   patentYear: 1960,
   elementCount: 6,

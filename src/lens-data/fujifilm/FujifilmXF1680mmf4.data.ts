@@ -73,7 +73,7 @@ const LENS_DATA = {
   lensMounts: ["fujifilm-x"],
   imageFormat: "aps-c",
   patentNumber: "US 2020/0166735 A1",
-  patentAuthors: ["Daiki KAWAMURA", "Taiga Noda"],
+  patentAuthors: ["Daiki Kawamura", "Taiga Noda"],
   patentAssignees: ["Fujifilm Corp"],
   patentYear: 2020,
   elementCount: 16,

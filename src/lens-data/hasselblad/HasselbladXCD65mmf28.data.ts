@@ -40,7 +40,7 @@ const LENS_DATA = {
   lensMounts: ["hasselblad-xcd"],
   imageFormat: "44x33",
   patentNumber: "US 2020/0319427 A1",
-  patentAuthors: ["Takuya YAZAKI"],
+  patentAuthors: ["Takuya Yazaki"],
   patentAssignees: ["Nittoh Inc"],
   patentYear: 2020,
   elementCount: 10,

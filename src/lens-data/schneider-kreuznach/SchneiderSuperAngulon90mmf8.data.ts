@@ -58,7 +58,7 @@ const LENS_DATA = {
   apertureDesign: 8,
   imageFormat: "4x5",
   patentNumber: "DE 975 637 C",
-  patentAuthors: ["Guenter Klemt"],
+  patentAuthors: ["Günter Klemt"],
   patentAssignees: ["Jos Schneider Optische Werke GmbH"],
   patentYear: 1962,
   elementCount: 6,

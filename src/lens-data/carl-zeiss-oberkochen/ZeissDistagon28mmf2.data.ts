@@ -43,7 +43,7 @@ const LENS_DATA = {
   lensMounts: ["contax-yashica"],
   imageFormat: "135-full-frame",
   patentNumber: "DE 2359156 A1",
-  patentAuthors: ["Erhard Dr Phil Glatzel"],
+  patentAuthors: ["Erhard Glatzel"],
   patentAssignees: ["Carl Zeiss SMT GmbH"],
   patentYear: 1975,
   elementCount: 9,

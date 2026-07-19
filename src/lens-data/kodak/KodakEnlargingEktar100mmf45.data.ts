@@ -27,7 +27,7 @@ const LENS_DATA = {
   apertureDesign: 4.5,
   lensMounts: ["enlarging-lens"],
   patentNumber: "US 2,279,384",
-  patentAuthors: ["Fred E Altman"],
+  patentAuthors: ["Fred E. Altman"],
   patentAssignees: ["Eastman Kodak Co"],
   patentYear: 1942,
   elementCount: 5,

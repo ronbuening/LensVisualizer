@@ -45,7 +45,7 @@ const LENS_DATA = {
   lensMounts: ["fixed-lens-camera"],
   imageFormat: "aps-c",
   patentNumber: "US 2017/0075089 A1",
-  patentAuthors: ["Ryosuke NAGAMI", "Takashi Suzuki"],
+  patentAuthors: ["Ryosuke Nagami", "Takashi Suzuki"],
   patentAssignees: ["Fujifilm Corp"],
   patentYear: 2017,
   elementCount: 7,

@@ -43,7 +43,7 @@ const LENS_DATA = {
   lensMounts: ["nikon-z"],
   imageFormat: "135-full-frame",
   patentNumber: "WO 2024/147268 A1",
-  patentAuthors: ["真美 村谷", "浩史 山本", "知憲 栗林", "拓郎 小野"],
+  patentAuthors: ["Mami Muratani", "Hiroshi Yamamoto", "Tomonori Kuribayashi", "Takuro Ono"],
   patentAssignees: ["Nikon Corp"],
   patentYear: 2024,
   elementCount: 16,

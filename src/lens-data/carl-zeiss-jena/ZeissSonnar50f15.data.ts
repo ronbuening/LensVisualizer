@@ -40,7 +40,7 @@ const LENS_DATA = {
   lensMounts: ["contax-rf"],
   imageFormat: "135-full-frame",
   patentNumber: "US 1,975,678",
-  patentAuthors: ["Bertele Ludwig"],
+  patentAuthors: ["Ludwig Bertele"],
   patentAssignees: ["Zeiss Ikon AG"],
   patentYear: 1934,
   elementCount: 7,

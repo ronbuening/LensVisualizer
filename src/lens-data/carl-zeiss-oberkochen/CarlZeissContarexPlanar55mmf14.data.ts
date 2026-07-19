@@ -44,7 +44,7 @@ const LENS_DATA = {
   lensMounts: ["zeiss-contarex"],
   imageFormat: "135-full-frame",
   patentNumber: "DE 1,170,157 B",
-  patentAuthors: ["Johannes Berger", "Dr Guenther Lange"],
+  patentAuthors: ["Johannes Berger", "Günther Lange"],
   patentAssignees: ["Carl Zeiss SMT GmbH"],
   patentYear: 1964,
   elementCount: 7,

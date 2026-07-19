@@ -52,7 +52,7 @@ const LENS_DATA = {
   lensMounts: ["l-mount", "canon-rf", "fujifilm-x", "sony-fe"],
   imageFormat: "aps-c",
   patentNumber: "CN 121454749 A",
-  patentAuthors: ["盐田了"],
+  patentAuthors: ["Ryo Shioda"],
   patentAssignees: ["SIGMA CORP"],
   patentYear: 2026,
   elementCount: 17,

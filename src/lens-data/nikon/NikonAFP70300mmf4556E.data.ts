@@ -46,7 +46,7 @@ const LENS_DATA = {
   lensMounts: ["nikon-f"],
   imageFormat: "135-full-frame",
   patentNumber: "US 2019/0353880 A1",
-  patentAuthors: ["Kosuke MACHIDA"],
+  patentAuthors: ["Kosuke Machida"],
   patentAssignees: ["Nikon Corp"],
   patentYear: 2019,
   elementCount: 18,

@@ -40,7 +40,7 @@ const LENS_DATA = {
   lensMounts: ["large-format-lens-board"],
   imageFormat: "6x6",
   patentNumber: "US 2,983,193",
-  patentAuthors: ["Schade Willy"],
+  patentAuthors: ["Willy Schade"],
   patentAssignees: ["Eastman Kodak Co"],
   patentYear: 1961,
   elementCount: 6,

@@ -32,7 +32,7 @@ const LENS_DATA = {
   lensMounts: ["nikon-f"],
   imageFormat: "135-full-frame",
   patentNumber: "JP S38-26133",
-  patentAuthors: ["Wakimoto Zenji"],
+  patentAuthors: ["Zenji Wakimoto"],
   patentAssignees: ["Nippon Kogaku Kogyo K.K."],
   patentYear: 1963,
   elementCount: 6,

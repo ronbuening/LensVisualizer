@@ -47,7 +47,7 @@ const LENS_DATA = {
   lensMounts: ["enlarging-lens"],
   imageFormat: "6x9",
   patentNumber: "DE 2818435 B1",
-  patentAuthors: ["Franz Schlegel", "Josef Weiss"],
+  patentAuthors: ["Franz Schlegel", "Josef Weiß"],
   patentAssignees: ["Optische Werke G Rodenstock"],
   patentYear: 1978,
   elementCount: 6,

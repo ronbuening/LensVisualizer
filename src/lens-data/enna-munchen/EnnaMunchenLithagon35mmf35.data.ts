@@ -50,7 +50,7 @@ const LENS_DATA = {
   lensMounts: ["exakta", "m42", "praktina"],
   imageFormat: "135-full-frame",
   patentNumber: "US 2,821,112",
-  patentAuthors: ["Lautenbacher Johann", "Brendel Theodor"],
+  patentAuthors: ["Johann Lautenbacher", "Theodor Brendel"],
   patentAssignees: ["ENNA WERK OPTIK APELT"],
   patentYear: 1958,
   elementCount: 4,

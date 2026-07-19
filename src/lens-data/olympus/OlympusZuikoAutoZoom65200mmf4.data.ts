@@ -50,7 +50,7 @@ const LENS_DATA = {
   lensMounts: ["olympus-om"],
   imageFormat: "135-full-frame",
   patentNumber: "US 4,568,150",
-  patentAuthors: ["Kazuo Ikari", "Tooru Fujii"],
+  patentAuthors: ["Kazuo Ikari", "Toru Fujii"],
   patentAssignees: ["Olympus Optical Co Ltd"],
   patentYear: 1986,
   elementCount: 14,

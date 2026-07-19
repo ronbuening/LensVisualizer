@@ -62,7 +62,7 @@ const LENS_DATA = {
   lensMounts: ["large-format-lens-board"],
   imageFormat: "5x7" as const,
   patentNumber: "US 5,870,234",
-  patentAuthors: ["Hiltrud Ebbesmeier nee Schitthof"],
+  patentAuthors: ["Hiltrud Ebbesmeier née Schitthof"],
   patentAssignees: ["Jos Schneider Optische Werke GmbH"],
   patentYear: 1999,
   elementCount: 6,

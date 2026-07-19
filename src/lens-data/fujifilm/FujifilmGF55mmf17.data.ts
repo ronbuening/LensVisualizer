@@ -43,7 +43,7 @@ const LENS_DATA = {
   lensMounts: ["fujifilm-g"],
   imageFormat: "44x33",
   patentNumber: "US 2023/0341664 A1",
-  patentAuthors: ["Yasutaka Shimada", "Shunsuke MIYAGISHIMA"],
+  patentAuthors: ["Yasutaka Shimada", "Shunsuke Miyagishima"],
   patentAssignees: ["Fujifilm Corp"],
   patentYear: 2023,
   elementCount: 14,

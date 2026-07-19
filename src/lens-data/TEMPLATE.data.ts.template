@@ -73,7 +73,8 @@ const LENS_DATA = {
    *                        Used by lens index filters now and future image-field analysis.
    *  patentNumber         Source patent publication/grant identifier, including jurisdiction
    *                        and published kind code. Do not include an example/table label.
-   *  patentAuthors        Inventors in source order, one complete personal name per entry.
+   *  patentAuthors        Inventors in source order, one canonical personal name per entry.
+   *                        Latin names use Given Middle Family order without titles or locations.
    *                        Use [] only when the source names no individual inventor.
    *  patentAssignees      Source assignees, or applicants where that is the published role.
    *                        Use [] only when the source names none; do not use it for unknown data.

@@ -61,7 +61,7 @@ const LENS_DATA = {
   lensMounts: ["nikon-z"],
   imageFormat: "aps-c",
   patentNumber: "WO 2020/012638 A1",
-  patentAuthors: ["陽子 小松原", "武 梅田"],
+  patentAuthors: ["Yoko Komatsubara", "Takeshi Umeda"],
   patentAssignees: ["Nikon Corp"],
   patentYear: 2020,
   elementCount: 9,

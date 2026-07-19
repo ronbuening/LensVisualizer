@@ -41,7 +41,7 @@ const LENS_DATA = {
   lensMounts: ["sony-fe"],
   imageFormat: "135-full-frame",
   patentNumber: "WO 2016/136352 A1",
-  patentAuthors: ["祐美子 上原", "文和 金高", "久 宇野"],
+  patentAuthors: ["Yumiko Uehara", "Fumikazu Kanetaka", "Hisashi Uno"],
   patentAssignees: ["Sony Corp"],
   patentYear: 2016,
   elementCount: 15,

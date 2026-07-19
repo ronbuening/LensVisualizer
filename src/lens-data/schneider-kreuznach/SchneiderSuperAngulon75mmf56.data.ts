@@ -40,7 +40,7 @@ const LENS_DATA = {
   lensMounts: ["large-format-lens-board"],
   imageFormat: "4x5" as const,
   patentNumber: "US 3,376,091",
-  patentAuthors: ["Wagner Werner", "Macher Karl Heinrich"],
+  patentAuthors: ["Werner Wagner", "Karl Heinrich Macher"],
   patentAssignees: ["Jos Schneider Optische Werke GmbH"],
   patentYear: 1968,
   elementCount: 8,

@@ -47,7 +47,7 @@ const LENS_DATA = {
   lensMounts: ["pentax-k"],
   imageFormat: "135-full-frame",
   patentNumber: "US 4,666,260",
-  patentAuthors: ["Takayuki Itoh"],
+  patentAuthors: ["Takayuki Ito"],
   patentAssignees: ["Asahi Kogaku Kogyo Co Ltd"],
   patentYear: 1987,
   elementCount: 10,

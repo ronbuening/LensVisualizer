@@ -55,7 +55,7 @@ const LENS_DATA = {
   lensMounts: ["l-mount"],
   imageFormat: "135-full-frame",
   patentNumber: "WO 2020/158622 A1",
-  patentAuthors: ["俊一郎 吉永", "靖人 鈴木"],
+  patentAuthors: ["Shunichiro Yoshinaga", "Yasuhito Suzuki"],
   patentAssignees: ["Panasonic Intellectual Property Management Co Ltd"],
   patentYear: 2020,
   elementCount: 13,

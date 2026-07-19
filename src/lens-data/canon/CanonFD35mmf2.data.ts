@@ -29,7 +29,7 @@ const LENS_DATA = {
   lensMounts: ["canon-fd"],
   imageFormat: "135-full-frame",
   patentNumber: "US 3,748,022",
-  patentAuthors: ["A Tajima"],
+  patentAuthors: ["Akira Tajima"],
   patentAssignees: ["Canon Inc"],
   patentYear: 1973,
   elementCount: 9,

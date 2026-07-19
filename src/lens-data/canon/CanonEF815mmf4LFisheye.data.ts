@@ -56,7 +56,7 @@ const LENS_DATA = {
   lensMounts: ["canon-ef"],
   imageFormat: "135-full-frame",
   patentNumber: "US 2012/0013996 A1",
-  patentAuthors: ["Tetsuichirou Okumura"],
+  patentAuthors: ["Tetsuichiro Okumura"],
   patentAssignees: ["Canon Inc"],
   patentYear: 2012,
   elementCount: 14,

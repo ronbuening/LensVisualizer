@@ -34,7 +34,7 @@ const LENS_DATA = {
   lensMounts: ["fujifilm-x"],
   imageFormat: "aps-c",
   patentNumber: "US 2018/0246292 A1",
-  patentAuthors: ["Ryoko Tomioka", "Daiki KAWAMURA"],
+  patentAuthors: ["Ryoko Tomioka", "Daiki Kawamura"],
   patentAssignees: ["Fujifilm Corp"],
   patentYear: 2018,
   elementCount: 16,

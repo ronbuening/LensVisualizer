@@ -44,7 +44,7 @@ const LENS_DATA = {
   lensMounts: ["hasselblad-h"],
   imageFormat: "645",
   patentNumber: "JP 2004-302170 A",
-  patentAuthors: ["Kazunori Ono"],
+  patentAuthors: ["Kazunori Ohno"],
   patentAssignees: ["Fuji Photo Optical Co Ltd"],
   patentYear: 2004,
   elementCount: 9,

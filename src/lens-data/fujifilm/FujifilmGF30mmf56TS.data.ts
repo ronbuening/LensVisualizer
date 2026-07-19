@@ -48,7 +48,7 @@ const LENS_DATA = {
   lensMounts: ["fujifilm-g"],
   imageFormat: "44x33",
   patentNumber: "WO 2024/195273 A1",
-  patentAuthors: ["大樹 小松", "琢也 田中", "広樹 斉藤"],
+  patentAuthors: ["Daiki Komatsu", "Takuya Tanaka", "Hiroki Saito"],
   patentAssignees: ["Fujifilm Corp"],
   patentYear: 2024,
   elementCount: 16,

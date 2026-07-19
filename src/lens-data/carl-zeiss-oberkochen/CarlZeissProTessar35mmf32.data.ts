@@ -49,7 +49,7 @@ const LENS_DATA = {
   lensMounts: ["zeiss-contaflex"],
   imageFormat: "135-full-frame",
   patentNumber: "DE 1,089,183",
-  patentAuthors: ["Dr Guenther Lange"],
+  patentAuthors: ["Günther Lange"],
   patentAssignees: ["Carl Zeiss SMT GmbH"],
   patentYear: 1960,
   elementCount: 8,

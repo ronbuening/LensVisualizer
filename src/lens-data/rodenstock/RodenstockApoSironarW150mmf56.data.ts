@@ -54,7 +54,7 @@ const LENS_DATA = {
   lensMounts: ["large-format-lens-board"],
   imageFormat: "5x7",
   patentNumber: "DE 3,907,928 A1",
-  patentAuthors: ["Ernst Rothe", "Josef Weiss"],
+  patentAuthors: ["Ernst Rothe", "Josef Weiß"],
   patentAssignees: ["Optische Werke G Rodenstock"],
   patentYear: 1990,
   elementCount: 8,

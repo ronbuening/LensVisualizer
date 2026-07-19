@@ -44,7 +44,7 @@ const LENS_DATA = {
   lensMounts: ["sony-fe"],
   imageFormat: "135-full-frame",
   patentNumber: "WO 2019/187633 A1",
-  patentAuthors: ["松岡　大", "直己 宮川", "松本　博之"],
+  patentAuthors: ["Dai Matsuoka", "Naoki Miyagawa", "Hiroyuki Matsumoto"],
   patentAssignees: ["Sony Corp"],
   patentYear: 2019,
   elementCount: 13,

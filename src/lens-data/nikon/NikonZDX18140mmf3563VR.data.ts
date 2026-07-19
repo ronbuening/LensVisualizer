@@ -58,7 +58,7 @@ const LENS_DATA = {
   lensMounts: ["nikon-z"],
   imageFormat: "aps-c",
   patentNumber: "WO 2022/264542 A1",
-  patentAuthors: ["知之 幸島", "規和 横井", "貴博 石川"],
+  patentAuthors: ["Tomoyuki Sashima", "Norikazu Yokoi", "Takahiro Ishikawa"],
   patentAssignees: ["Nikon Corp"],
   patentYear: 2022,
   elementCount: 17,

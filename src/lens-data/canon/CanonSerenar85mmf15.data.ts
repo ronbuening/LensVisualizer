@@ -41,7 +41,7 @@ const LENS_DATA = {
   lensMounts: ["leica-ltm"],
   imageFormat: "135-full-frame",
   patentNumber: "US 2,645,973",
-  patentAuthors: ["Ito Hiroshi"],
+  patentAuthors: ["Hiroshi Ito"],
   patentAssignees: ["Canon Camera Co Inc"],
   patentYear: 1953,
   elementCount: 7,

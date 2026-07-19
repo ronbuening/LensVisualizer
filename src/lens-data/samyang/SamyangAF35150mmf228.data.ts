@@ -53,7 +53,7 @@ const LENS_DATA = {
   lensMounts: ["sony-fe", "l-mount"],
   imageFormat: "135-full-frame",
   patentNumber: "US 2025/0231383 A1",
-  patentAuthors: ["Ju Yeon JO"],
+  patentAuthors: ["Ju Yeon Jo"],
   patentAssignees: ["Samyang Optics Co Ltd"],
   patentYear: 2025,
   elementCount: 21,

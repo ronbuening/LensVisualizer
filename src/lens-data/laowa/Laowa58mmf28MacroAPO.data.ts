@@ -45,7 +45,7 @@ const LENS_DATA = {
   lensMounts: ["sony-fe", "canon-rf", "nikon-z", "l-mount"],
   imageFormat: "135-full-frame",
   patentNumber: "CN 116520542 A",
-  patentAuthors: ["李大勇"],
+  patentAuthors: ["Dayong Li"],
   patentAssignees: ["Anhui Changgeng Optics Technology Co ltd"],
   patentYear: 2023,
   elementCount: 14,

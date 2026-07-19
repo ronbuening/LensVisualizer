@@ -49,7 +49,7 @@ const LENS_DATA = {
   lensMounts: ["nikon-f"],
   imageFormat: "135-full-frame",
   patentNumber: "US 3,737,214",
-  patentAuthors: ["Y Shimizu"],
+  patentAuthors: ["Yoshiyuki Shimizu"],
   patentAssignees: ["Nippon Kogaku KK"],
   patentYear: 1973,
   elementCount: 12,

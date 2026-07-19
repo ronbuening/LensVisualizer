@@ -29,7 +29,7 @@ const LENS_DATA = {
   lensMounts: ["nikon-1"],
   imageFormat: "1-inch-type",
   patentNumber: "WO 2014/061226 A1",
-  patentAuthors: ["久美子 石田", "一政 田中"],
+  patentAuthors: ["Kumiko Ishida", "Issei Tanaka"],
   patentAssignees: ["Nikon Corp"],
   patentYear: 2014,
   elementCount: 9,

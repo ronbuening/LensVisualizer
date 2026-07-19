@@ -47,7 +47,7 @@ const LENS_DATA = {
   lensMounts: ["leica-m", "leica-r"],
   imageFormat: "135-full-frame",
   patentNumber: "US 3,108,152",
-  patentAuthors: ["Hermanni Eugen"],
+  patentAuthors: ["Eugen Hermanni"],
   patentAssignees: ["Ernst Leitz Wetzlar GmbH"],
   patentYear: 1963,
   elementCount: 5,

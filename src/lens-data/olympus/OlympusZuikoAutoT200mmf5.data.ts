@@ -43,7 +43,7 @@ const LENS_DATA = {
   lensMounts: ["olympus-om"],
   imageFormat: "135-full-frame",
   patentNumber: "US 3,804,494",
-  patentAuthors: ["K Ito"],
+  patentAuthors: ["Keiichi Ito"],
   patentAssignees: ["Olympus Optical Co Ltd"],
   patentYear: 1974,
   elementCount: 6,
