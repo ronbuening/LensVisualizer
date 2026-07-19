@@ -1518,4 +1518,40 @@ export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
     code6: "773496",
     source: "Ohara Zemax OpticStudio DATA 2026-05-29 (OHARA_260529_CATALOG.AGF), vendor-published catalog data.",
   },
+  /* ────── Phase 31 Canon wide-angle additions (July 2026) ──────
+   * Historical Ohara rows required by the EF 14mm and EF 15mm patent
+   * prescriptions. The 2017 vendor Zemax catalog publishes PBH71 in
+   * Sellmeier-1 form and S-PHM51 / NSL7 in formula-3 polynomial form.
+   */
+  {
+    name: "PBH71",
+    vendor: "Ohara",
+    B: [1.97039844, 0.520330498, 1.30696186],
+    C: [0.0155780448, 0.0632642123, 142.045097],
+    nd: 1.922864,
+    vd: 21.288699,
+    PgF: 0.6275,
+    code6: "923213",
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info; PBH71 page.",
+  },
+  {
+    name: "S-PHM51",
+    vendor: "Ohara",
+    polynomial: [2.5759016, -0.010553544, 0.013895937, 0.00026498331, -0.0000019680543, 0.00000010989977],
+    nd: 1.617001,
+    vd: 62.800809,
+    PgF: 0.543,
+    code6: "617628",
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info; S-PHM51 page (formula 3 polynomial).",
+  },
+  {
+    name: "NSL7",
+    vendor: "Ohara",
+    polynomial: [2.2524157, -0.008626195, 0.011155352, 0.00020721565, -0.00000026893015, 0.000000038724966],
+    nd: 1.511121,
+    vd: 60.485793,
+    PgF: 0.5435,
+    code6: "511605",
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info; NSL7 page (formula 3 polynomial).",
+  },
 ];

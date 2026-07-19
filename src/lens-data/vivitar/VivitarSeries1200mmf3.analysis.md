@@ -94,7 +94,7 @@ This is noteworthy because the Vivitar Series 1 200mm f/3.0 achieves its perform
 | Focal length | +101.4 mm |
 | Shape | Positive meniscus, convex toward object |
 
-**Glass identification:** Six-digit code **569631**. This is an exact match to Schott **PSK2** (n_d = 1.56873, ν_d = 63.16), a phosphate-silicate crown. Equivalents include OHARA S-PHM51 and Sumita K-PSKn2. PSK2 is a moderate-index, low-dispersion crown occupying the boundary between the barium crown (SK) and phosphate (PK) families.
+**Glass identification:** Six-digit code **569631**. This is an exact match to Schott **PSK2** ($n_d=1.56873$, $\nu_d=63.16$), a phosphate-silicate crown. PSK2 is a moderate-index, low-dispersion crown occupying the boundary between the barium crown (SK) and phosphate (PK) families. OHARA S-PHM51 is not an equivalent: its published code is 617628.
 
 **Optical role:** L1 is the leading positive element of the front group. Its strongly convex front surface (R1 = +56.828) provides the dominant positive refractive power, while the nearly flat rear surface (R2 = +3586.0, essentially plano) minimizes spherical aberration contribution from the second surface. The low dispersion (ν_d = 63.1) keeps L1's contribution to longitudinal chromatic aberration modest. At f/3 with a ~67 mm entrance pupil, L1 carries the largest clear aperture in the system and is the primary light-gathering element.
 

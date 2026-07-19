@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **452** lenses scanned
-- **4930** non-air surfaces examined
-- **4935** element glass declarations examined
-- **610** non-explicit-unmatched annotations did not resolve
-- **266** distinct unresolved glass-like tokens found
+- **455** lenses scanned
+- **4968** non-air surfaces examined
+- **4973** element glass declarations examined
+- **606** non-explicit-unmatched annotations did not resolve
+- **263** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -20,7 +20,6 @@ or per-lens patent backfills.
 |---|---:|---:|---|
 | 670571 | 10 | 5 | |
 | 493836 | 6 | 2 | |
-| 511605 | 4 | 2 | |
 | 863252 | 4 | 2 | |
 | S-LAL61 | 4 | 3 | |
 | S-NPH7 | 4 | 4 | |
@@ -58,7 +57,6 @@ or per-lens patent backfills.
 | 882372 | 2 | 2 | |
 | E-FDS3HT | 2 | 1 | |
 | F7 | 2 | 2 | |
-| H-K6 | 2 | 1 | |
 | H-LAF3 | 2 | 2 | |
 | H-LAK53A | 2 | 2 | |
 | H-ZBAF4 | 2 | 1 | |
@@ -266,7 +264,6 @@ or per-lens patent backfills.
 | S-LAL7Q | 1 | 1 | |
 | S-NBM52 | 1 | 1 | |
 | S-NPH85 | 1 | 1 | |
-| S-PHM51 | 1 | 1 | |
 | S-SK14 | 1 | 1 | |
 | S-TIF4 | 1 | 1 | |
 | S-TIF6 | 1 | 1 | |
@@ -308,13 +305,6 @@ or per-lens patent backfills.
 - [MINOLTA AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) 4: `493836 - Minolta AD/ED fluorophosphate-type (nd=1.49310, vd=83.58; catalog unresolved)`
 - [MINOLTA AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) 21: `493836 - Minolta AD/ED fluorophosphate-type (nd=1.49310, vd=83.58; catalog unresolved)`
 - [MINOLTA AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) 27: `493836 - Minolta AD/ED fluorophosphate-type (nd=1.49310, vd=83.58; catalog unresolved)`
-
-### 511605 — 4 occurrences
-
-- [MINOLTA AF 28mm f/2](../../src/lens-data/minolta/MinoltaAF28mmf2.data.ts) 3: `511605 - crown glass (catalog unresolved)`
-- [MINOLTA AF 28mm f/2](../../src/lens-data/minolta/MinoltaAF28mmf2.data.ts) 5: `511605 - crown glass (catalog unresolved)`
-- [OLYMPUS OM-SYSTEM ZUIKO AUTO-ZOOM 65-200mm f/4](../../src/lens-data/olympus/OlympusZuikoAutoZoom65200mmf4.data.ts) 13: `511605 crown class (CDGM H-K6 / legacy OHARA NSL7)`
-- [OLYMPUS OM-SYSTEM ZUIKO AUTO-ZOOM 65-200mm f/4](../../src/lens-data/olympus/OlympusZuikoAutoZoom65200mmf4.data.ts) 25: `511605 crown class (CDGM H-K6 / legacy OHARA NSL7)`
 
 ### 863252 — 4 occurrences
 
@@ -518,11 +508,6 @@ or per-lens patent backfills.
 - [CANON SERENAR 28mm f/3.5](../../src/lens-data/canon/CanonSerenar28mmf35.data.ts) 4: `F7 (Schott)`
 - [CARL ZEISS PRO-TESSAR 35mm f/3.2](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissProTessar35mmf32.data.ts) 10: `F7 (Schott)`
 
-### H-K6 — 2 occurrences
-
-- [OLYMPUS OM-SYSTEM ZUIKO AUTO-ZOOM 65-200mm f/4](../../src/lens-data/olympus/OlympusZuikoAutoZoom65200mmf4.data.ts) 13: `511605 crown class (CDGM H-K6 / legacy OHARA NSL7)`
-- [OLYMPUS OM-SYSTEM ZUIKO AUTO-ZOOM 65-200mm f/4](../../src/lens-data/olympus/OlympusZuikoAutoZoom65200mmf4.data.ts) 25: `511605 crown class (CDGM H-K6 / legacy OHARA NSL7)`
-
 ### H-LAF3 — 2 occurrences
 
 - [LAOWA 15mm f/4 Wide Angle 1:1 Macro](../../src/lens-data/laowa/Laowa15mmf4Macro.data.ts) 16: `H-LAF3 (CDGM)`
@@ -669,7 +654,7 @@ or per-lens patent backfills.
 
 ### 569631 — 1 occurrence
 
-- [VIVITAR SERIES 1 200mm f/3.0 VMC](../../src/lens-data/vivitar/VivitarSeries1200mmf3.data.ts) 1: `569631 — PSK2 phosphate crown (Schott) / S-PHM51 class`
+- [VIVITAR SERIES 1 200mm f/3.0 VMC](../../src/lens-data/vivitar/VivitarSeries1200mmf3.data.ts) 1: `569631 — PSK2 phosphate crown (Schott)`
 
 ### 571560 — 1 occurrence
 
@@ -1362,10 +1347,6 @@ or per-lens patent backfills.
 ### S-NPH85 — 1 occurrence
 
 - [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 19: `S-NPH85 (OHARA)`
-
-### S-PHM51 — 1 occurrence
-
-- [VIVITAR SERIES 1 200mm f/3.0 VMC](../../src/lens-data/vivitar/VivitarSeries1200mmf3.data.ts) 1: `569631 — PSK2 phosphate crown (Schott) / S-PHM51 class`
 
 ### S-SK14 — 1 occurrence
 

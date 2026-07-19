@@ -9,9 +9,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **452** lenses scanned
+- **455** lenses scanned
 - **375** total code-only elements found
-- **287** elements in this report
+- **285** elements in this report
 - **115** distinct lens files affected
 
 ## Codes by Frequency
@@ -38,7 +38,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 861230 | 3 | 2 | patents/US5717527.pdf<br>patents/JPA 1999030748-000000.pdf | No reviewed-sidecar hit |
 | 863248 | 3 | 1 | patents/JP2023039817A.pdf | All representative rows reviewed |
 | 961323 | 3 | 1 | patents/WO2021200206A1.pdf | No reviewed-sidecar hit |
-| 511605 | 2 | 1 | patents/US4258985.pdf | No reviewed-sidecar hit |
 | 514428 | 2 | 1 | patents/JP2016021011A.pdf | All representative rows reviewed |
 | 518603 | 2 | 2 | patents/US4770511.pdf<br>patents/US4699475.pdf | All representative rows reviewed |
 | 531559 | 2 | 2 | patents/US20200142167A1.pdf<br>patents/WO2021039813A1.pdf | All representative rows reviewed |
@@ -444,8 +443,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
 |---|---|---|---|---|---|---|---|
 | L1 (Element 1) | 1 | `694536 - lanthanum crown (catalog unresolved)` | 1.69350 / 53.61 | No catalog entry | abbe | patents/US4258985.pdf | No reviewed-sidecar hit |
-| L2 (Element 2) | 3 | `511605 - crown glass (catalog unresolved)` | 1.51110 / 60.49 | No catalog entry | abbe | patents/US4258985.pdf | No reviewed-sidecar hit |
-| L3 (Element 3) | 5 | `511605 - crown glass (catalog unresolved)` | 1.51110 / 60.49 | No catalog entry | abbe | patents/US4258985.pdf | No reviewed-sidecar hit |
 | L4a (Element 4) | 7 | `762404 - lanthanum flint class (catalog unresolved)` | 1.76200 / 40.38 | No catalog entry | abbe | patents/US4258985.pdf | No reviewed-sidecar hit |
 | L4b (Element 5) | 7pp | `762404 - lanthanum flint class (catalog unresolved)` | 1.76200 / 40.38 | No catalog entry | abbe | patents/US4258985.pdf | No reviewed-sidecar hit |
 | L5 (Element 6) | 9 | `750504 - dense lanthanum crown class (catalog unresolved)` | 1.74950 / 50.41 | No catalog entry | abbe | patents/US4258985.pdf | No reviewed-sidecar hit |

@@ -19,6 +19,12 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-07-18 ──────────────────────────────────────────────────────────
+  {
+    date: "2026-07-18",
+    type: "lens",
+    summary: "Added Canon EF 11-24mm f/4L USM, 14mm f/2.8L USM, and 15mm f/2.8 Fisheye lenses",
+  },
   // ── 2026-07-17 ──────────────────────────────────────────────────────────
   {
     date: "2026-07-17",

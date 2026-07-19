@@ -2,6 +2,11 @@
 
 Patent: US 3,942,876, Example 4 / Table IV / Fig. 5
 
+## 2026-07-18 — S-PHM51 catalog disambiguation
+
+- Removed the `S-PHM51 class` suffix from L1. The newly cataloged OHARA row is code 617628 and does not match the patent's 569631 PSK2 coordinates.
+- Retained the explicit `569631 — PSK2 phosphate crown (Schott)` identification and removed the false S-PHM51 equivalence from the analysis.
+
 ## 2026-06-23 — Vivitar folder patent audit
 
 ### Phase 1 — Glass reconciliation

@@ -9,7 +9,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **452** lenses scanned
+- **455** lenses scanned
 - **375** total code-only elements found
 - **375** elements in this report
 - **136** distinct lens files affected
@@ -544,8 +544,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
 |---|---|---|---|---|---|---|---|
 | L1 (Element 1) | 1 | `694536 - lanthanum crown (catalog unresolved)` | 1.69350 / 53.61 | No catalog entry | abbe | patents/US4258985.pdf | No reviewed-sidecar hit |
-| L2 (Element 2) | 3 | `511605 - crown glass (catalog unresolved)` | 1.51110 / 60.49 | No catalog entry | abbe | patents/US4258985.pdf | No reviewed-sidecar hit |
-| L3 (Element 3) | 5 | `511605 - crown glass (catalog unresolved)` | 1.51110 / 60.49 | No catalog entry | abbe | patents/US4258985.pdf | No reviewed-sidecar hit |
+| L2 (Element 2) | 3 | `511605 - crown glass (catalog unresolved)` | 1.51110 / 60.49 | NSL7 (trusted Sellmeier) | sellmeier | patents/US4258985.pdf | No reviewed-sidecar hit |
+| L3 (Element 3) | 5 | `511605 - crown glass (catalog unresolved)` | 1.51110 / 60.49 | NSL7 (trusted Sellmeier) | sellmeier | patents/US4258985.pdf | No reviewed-sidecar hit |
 | L4a (Element 4) | 7 | `762404 - lanthanum flint class (catalog unresolved)` | 1.76200 / 40.38 | No catalog entry | abbe | patents/US4258985.pdf | No reviewed-sidecar hit |
 | L4b (Element 5) | 7pp | `762404 - lanthanum flint class (catalog unresolved)` | 1.76200 / 40.38 | No catalog entry | abbe | patents/US4258985.pdf | No reviewed-sidecar hit |
 | L5 (Element 6) | 9 | `750504 - dense lanthanum crown class (catalog unresolved)` | 1.74950 / 50.41 | No catalog entry | abbe | patents/US4258985.pdf | No reviewed-sidecar hit |
