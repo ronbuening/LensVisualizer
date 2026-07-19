@@ -1,7 +1,7 @@
 /**
  * Lens index page — /lenses
  *
- * Browsable list of all lenses with maker/focal/patent grouping
+ * Browsable list of all lenses with maker/attribution/focal/patent grouping
  * and custom filters, with crawlable <a> links.
  */
 
@@ -22,6 +22,7 @@ import {
   formatGroupAnchorId,
   makerGroupAnchorId,
   mountGroupAnchorId,
+  patentPartyGroupAnchorId,
   yearGroupAnchorId,
 } from "./lensIndex/groupAnchors.js";
 import {
@@ -31,8 +32,10 @@ import {
   buildMakerOptions,
   buildMountOptions,
   catalogEntriesForView,
+  groupByAssignee,
   groupByFocalLength,
   groupByImageFormat,
+  groupByInventor,
   groupByMaker,
   groupByMount,
   groupByPatentYear,
@@ -93,6 +96,8 @@ export default function LensIndexPage() {
     initialFilter: parsedUrlState.customFilter,
   });
   const makerGroups = useMemo(() => groupByMaker(filteredEntries), [filteredEntries]);
+  const inventorGroups = useMemo(() => groupByInventor(filteredEntries), [filteredEntries]);
+  const assigneeGroups = useMemo(() => groupByAssignee(filteredEntries), [filteredEntries]);
   const focalSections = useMemo(() => groupByFocalLength(filteredEntries), [filteredEntries]);
   const yearGroups = useMemo(() => groupByPatentYear(filteredEntries, yearDir), [filteredEntries, yearDir]);
   const mountGroups = useMemo(() => groupByMount(filteredEntries), [filteredEntries]);
@@ -107,6 +112,24 @@ export default function LensIndexPage() {
           id: g.slug,
           label: `${g.display} (${g.lenses.length})`,
           to: `#${makerGroupAnchorId(g.slug)}`,
+        })),
+      };
+    if (groupMode === "inventor")
+      return {
+        title: "Inventors",
+        items: inventorGroups.map((g) => ({
+          id: g.id,
+          label: `${g.label} (${g.lenses.length})`,
+          to: `#${patentPartyGroupAnchorId("inventor", g.id)}`,
+        })),
+      };
+    if (groupMode === "assignee")
+      return {
+        title: "Assignees",
+        items: assigneeGroups.map((g) => ({
+          id: g.id,
+          label: `${g.label} (${g.lenses.length})`,
+          to: `#${patentPartyGroupAnchorId("assignee", g.id)}`,
         })),
       };
     if (groupMode === "mount")
@@ -146,7 +169,16 @@ export default function LensIndexPage() {
         to: `#${yearGroupAnchorId(g.decade)}`,
       })),
     };
-  }, [groupMode, makerGroups, mountGroups, imageFormatGroups, focalSections, yearGroups]);
+  }, [
+    groupMode,
+    makerGroups,
+    inventorGroups,
+    assigneeGroups,
+    mountGroups,
+    imageFormatGroups,
+    focalSections,
+    yearGroups,
+  ]);
   const currentLensIndexSearch = serializeLensIndexUrlState({
     viewMode: parsedUrlState.viewMode,
     groupMode,
@@ -298,6 +330,20 @@ export default function LensIndexPage() {
             </button>
             <button
               type="button"
+              style={toggleButtonStyle(groupMode === "inventor")}
+              onClick={() => setGroupMode("inventor")}
+            >
+              By Inventor
+            </button>
+            <button
+              type="button"
+              style={toggleButtonStyle(groupMode === "assignee")}
+              onClick={() => setGroupMode("assignee")}
+            >
+              By Assignee
+            </button>
+            <button
+              type="button"
               style={toggleButtonStyle(groupMode === "focal")}
               onClick={() => setGroupMode("focal")}
             >
@@ -400,6 +446,8 @@ export default function LensIndexPage() {
           <LensIndexResults
             groupMode={groupMode}
             makerGroups={makerGroups}
+            inventorGroups={inventorGroups}
+            assigneeGroups={assigneeGroups}
             focalSections={focalSections}
             yearGroups={yearGroups}
             mountGroups={mountGroups}

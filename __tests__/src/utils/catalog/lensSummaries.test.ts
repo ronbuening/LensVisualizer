@@ -42,6 +42,9 @@ describe("lensSummaries parity with lensCatalog", () => {
       expect(summary.apertureMarketing).toBe(data.apertureMarketing);
       expect(summary.apertureDesign).toBe(data.apertureDesign);
       expect(summary.nominalFno).toEqual(data.nominalFno);
+      expect(summary.patentNumber).toBe(data.patentNumber);
+      expect(summary.patentAuthors).toEqual(data.patentAuthors);
+      expect(summary.patentAssignees).toEqual(data.patentAssignees);
       expect(summary.patentYear).toBe(data.patentYear);
       expect(summary.lensMounts).toEqual(data.lensMounts);
       expect(summary.imageFormat).toBe(data.imageFormat);

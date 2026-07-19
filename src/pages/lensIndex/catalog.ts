@@ -28,6 +28,7 @@ import type {
   MountGroup,
   MountOption,
   NumericFilterField,
+  PatentPartyGroup,
   PrimeZoomSection,
   YearGroup,
 } from "./types.js";
@@ -250,6 +251,58 @@ export function groupByMaker(entries: CatalogLensEntry[]): MakerGroup[] {
     groups.get(entry.maker.slug)!.lenses.push(entry);
   }
   return Array.from(groups.values()).sort((a, b) => a.display.localeCompare(b.display));
+}
+
+function groupByPatentParty(
+  entries: CatalogLensEntry[],
+  field: "patentAuthors" | "patentAssignees",
+  unnamedLabel: string,
+): PatentPartyGroup[] {
+  const groups = new Map<string, PatentPartyGroup>();
+
+  const addToGroup = (id: string, label: string, entry: CatalogLensEntry) => {
+    if (!groups.has(id)) groups.set(id, { id, label, lenses: [] });
+    groups.get(id)!.lenses.push(entry);
+  };
+
+  for (const entry of entries) {
+    const parties = entry.data[field];
+    if (parties === undefined) {
+      addToGroup("missing-metadata", "No patent metadata", entry);
+      continue;
+    }
+    if (parties.length === 0) {
+      addToGroup("unnamed", unnamedLabel, entry);
+      continue;
+    }
+    for (const party of parties) addToGroup(`named:${party}`, party, entry);
+  }
+
+  return Array.from(groups.values()).sort((a, b) => {
+    const rank = (group: PatentPartyGroup) => (group.id.startsWith("named:") ? 0 : group.id === "unnamed" ? 1 : 2);
+    return rank(a) - rank(b) || a.label.localeCompare(b.label);
+  });
+}
+
+/**
+ * Group entries by every inventor named on their source patent.
+ *
+ * A lens with multiple inventors is intentionally included once in each
+ * inventor group. Source-confirmed empty arrays and absent fixture metadata
+ * remain distinguishable in their own trailing groups.
+ */
+export function groupByInventor(entries: CatalogLensEntry[]): PatentPartyGroup[] {
+  return groupByPatentParty(entries, "patentAuthors", "No named inventor");
+}
+
+/**
+ * Group entries by every assignee or applicant named on their source patent.
+ *
+ * A lens with multiple assignees is intentionally included once in each
+ * assignee group.
+ */
+export function groupByAssignee(entries: CatalogLensEntry[]): PatentPartyGroup[] {
+  return groupByPatentParty(entries, "patentAssignees", "No named assignee or applicant");
 }
 
 /**

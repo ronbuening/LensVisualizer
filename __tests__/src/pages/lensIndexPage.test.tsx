@@ -8,7 +8,7 @@
  */
 
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { cleanup, fireEvent, screen, waitFor } from "@testing-library/react";
+import { cleanup, fireEvent, screen, waitFor, within } from "@testing-library/react";
 import { HelmetProvider } from "react-helmet-async";
 import LensIndexPage from "../../../src/pages/LensIndexPage.js";
 import {
@@ -120,6 +120,54 @@ describe("LensIndexPage", () => {
     fireEvent.click(screen.getByRole("button", { name: "By Format" }));
     expect(screen.getByRole("link", { name: "135 / Full-frame" }).getAttribute("href")).toBe("/formats/135-full-frame");
     expect(screen.getByText("Unknown Format")).toBeTruthy();
+  });
+
+  it("groups each lens under every inventor and assignee with matching navigation sidebars", () => {
+    const scrollTo = vi.fn();
+    Object.defineProperty(window, "scrollTo", { configurable: true, value: scrollTo });
+    renderLensIndexPage();
+
+    const multiInventorEntry = CATALOG_ENTRIES.find((entry) => (entry.data.patentAuthors?.length ?? 0) > 1);
+    const multiAssigneeEntry = CATALOG_ENTRIES.find((entry) => (entry.data.patentAssignees?.length ?? 0) > 1);
+    expect(multiInventorEntry).toBeDefined();
+    expect(multiAssigneeEntry).toBeDefined();
+
+    fireEvent.click(screen.getByRole("button", { name: "By Inventor" }));
+
+    const inventorName = multiInventorEntry!.data.patentAuthors![0];
+    const escapedInventor = inventorName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const inventorHeading = screen.getByRole("heading", { name: new RegExp(`^${escapedInventor}\\s*\\(\\d+\\)$`) });
+    const inventorTargetId = inventorHeading.closest("section")?.id;
+    const inventorSidebar = screen.getByRole("navigation", { name: "Jump to inventors" });
+    const inventorSidebarLink = within(inventorSidebar).getByRole("link", {
+      name: new RegExp(`^${escapedInventor} \\(\\d+\\)$`),
+    });
+    expect(inventorSidebarLink.getAttribute("href")).toBe(`#${inventorTargetId}`);
+    fireEvent.click(inventorSidebarLink);
+    expect(scrollTo).toHaveBeenCalledWith({ top: expect.any(Number), behavior: "smooth" });
+    const inventorLensLinks = screen.getAllByRole("link", {
+      name: new RegExp(multiInventorEntry!.data.name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")),
+    });
+    expect(inventorLensLinks).toHaveLength(multiInventorEntry!.data.patentAuthors!.length);
+    expect(inventorLensLinks[0].getAttribute("href")).toContain("returnTo=%2Flenses%3Fgroup%3Dinventor");
+
+    fireEvent.click(screen.getByRole("button", { name: "By Assignee" }));
+
+    const assigneeName = multiAssigneeEntry!.data.patentAssignees![0];
+    const escapedAssignee = assigneeName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const assigneeHeading = screen.getByRole("heading", { name: new RegExp(`^${escapedAssignee}\\s*\\(\\d+\\)$`) });
+    const assigneeTargetId = assigneeHeading.closest("section")?.id;
+    const assigneeSidebar = screen.getByRole("navigation", { name: "Jump to assignees" });
+    expect(
+      within(assigneeSidebar)
+        .getByRole("link", { name: new RegExp(`^${escapedAssignee} \\(\\d+\\)$`) })
+        .getAttribute("href"),
+    ).toBe(`#${assigneeTargetId}`);
+    const assigneeLensLinks = screen.getAllByRole("link", {
+      name: new RegExp(multiAssigneeEntry!.data.name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")),
+    });
+    expect(assigneeLensLinks).toHaveLength(multiAssigneeEntry!.data.patentAssignees!.length);
+    expect(assigneeLensLinks[0].getAttribute("href")).toContain("returnTo=%2Flenses%3Fgroup%3Dassignee");
   });
 
   it("hydrates grouping and filters from the URL and preserves a return path in lens links", async () => {

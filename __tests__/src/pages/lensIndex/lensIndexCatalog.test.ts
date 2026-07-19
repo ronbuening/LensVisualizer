@@ -4,7 +4,9 @@ import {
   defaultCustomFilter,
   DEBUG_CATALOG_ENTRIES,
   catalogEntriesForView,
+  groupByAssignee,
   groupByImageFormat,
+  groupByInventor,
   groupByMount,
   matchesCustomFilter,
 } from "../../../../src/pages/lensIndex/catalog.js";
@@ -93,6 +95,38 @@ describe("lens index catalog metadata filters", () => {
 });
 
 describe("lens index catalog metadata grouping", () => {
+  it("duplicates multi-inventor lenses into every inventor group and preserves source-empty states", () => {
+    const multiInventor = entry("multi-inventor");
+    multiInventor.data.patentAuthors = ["Ada Inventor", "Grace Inventor"];
+    const unnamedInventor = entry("unnamed-inventor");
+    unnamedInventor.data.patentAuthors = [];
+    const missingMetadata = entry("missing-metadata");
+
+    const groups = groupByInventor([missingMetadata, unnamedInventor, multiInventor]);
+
+    expect(groups.map((group) => group.label)).toEqual([
+      "Ada Inventor",
+      "Grace Inventor",
+      "No named inventor",
+      "No patent metadata",
+    ]);
+    expect(groups[0].lenses).toEqual([multiInventor]);
+    expect(groups[1].lenses).toEqual([multiInventor]);
+    expect(groups[2].lenses).toEqual([unnamedInventor]);
+    expect(groups[3].lenses).toEqual([missingMetadata]);
+  });
+
+  it("duplicates multi-assignee lenses into every assignee group", () => {
+    const multiAssignee = entry("multi-assignee");
+    multiAssignee.data.patentAssignees = ["Alpha Optics", "Beta Optics"];
+
+    const groups = groupByAssignee([multiAssignee]);
+
+    expect(groups.map((group) => group.label)).toEqual(["Alpha Optics", "Beta Optics"]);
+    expect(groups[0].lenses).toEqual([multiAssignee]);
+    expect(groups[1].lenses).toEqual([multiAssignee]);
+  });
+
   it("duplicates multi-mount lenses into each mount group and puts unknown last", () => {
     const multiMount = entry("multi", {
       lensMounts: [LENS_MOUNT_BY_ID["nikon-z"], LENS_MOUNT_BY_ID["sony-fe"]],
