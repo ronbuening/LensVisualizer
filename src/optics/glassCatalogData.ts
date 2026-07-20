@@ -355,6 +355,7 @@ const GLASS_CATALOG_SOURCE_ORDER = [
   "BPH5",
   "PBH53",
   "BPM4",
+  "TIM11",
   "K-LaK9",
   "K-LaK11",
 ] as const;
