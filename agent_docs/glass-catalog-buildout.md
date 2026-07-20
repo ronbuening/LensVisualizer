@@ -7,7 +7,7 @@ available, it falls back to partial measured `nC`/`nF` line indices, dPgF-correc
 approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **335 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **338 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
 
 The July 17, 2026 Vivitar batch added exact vendor records for SCHOTT LLF1; legacy HOYA LAC10 and NBFD10; and legacy SUMITA BAF9, BAF11, BK1, F1, FK5, K5, LAFN2, LF2, and SK5. The SUMITA coefficients come from the manufacturer's 2025-11-07 all-glass Zemax catalog, which explicitly includes discontinued types.
 
@@ -238,6 +238,14 @@ material index/Abbe deltas, so those labels remain explicit code-only rows.
 |---|---|---:|---|
 | ★ K-LaK9 | Sumita | 691548 | Exact coordinate equivalent for the rear positive element in US 2,838,978 |
 | ★ K-LaK11 | Sumita | 658573 | Exact coordinate equivalent for the front positive element in US 2,838,978 |
+
+**Phase 33 additions** (July 2026 — Canon EF 200mm f/1.8 patent pass using OHARA's official 2026-07-01 all-products Zemax catalog, including discontinued types; all three entries round-trip through `assertCatalogConsistent` and reproduce the patent's C/d/F/g indices):
+
+| Glass | Vendor | Code | Notes |
+|---|---|---:|---|
+| ★ BPH5 | Ohara | 654397 | Exact historical spectral match for L3 and L8; distinct from the modern same-code S-NBH5 formulation |
+| ★ PBH53 | Ohara | 847239 | Exact historical spectral match for L6; distinct from the modern same-code S-NPH53 formulation |
+| ★ BPM4 | Ohara | 613438 | Exact historical spectral match for L7; closes the lens's final Sellmeier catalog gap |
 
 **Phase 17 additions** (May 2026 — Hasselblad/Laowa/Leica/Minolta/Nikon six-digit missing-Sellmeier queue pass; all entries round-trip through `assertCatalogConsistent`):
 

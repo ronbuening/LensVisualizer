@@ -7,6 +7,7 @@ import validateLensData from "../../../src/optics/validateLensData.js";
 import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 
 const MATERIAL_TRIM_TOLERANCE_MM = 0.25;
+const INTENTIONAL_MATERIAL_TRIMS = new Set(["canon-s-50mm-f2-8:L2:4:gap"]);
 
 describe("element render diagnostics", () => {
   function maxRenderedGapOverlapMm(key: string): number {
@@ -58,7 +59,8 @@ describe("element render diagnostics", () => {
       const layout = doLayout(0, 0, L);
       for (const diagnostic of computeElementRenderDiagnostics(L, layout.z)) {
         for (const surface of [diagnostic.front, diagnostic.rear]) {
-          if (surface.trimAmount > MATERIAL_TRIM_TOLERANCE_MM) {
+          const trimKey = `${key}:L${diagnostic.eid}:${surface.surfaceLabel}:${surface.trimCause}`;
+          if (surface.trimAmount > MATERIAL_TRIM_TOLERANCE_MM && !INTENTIONAL_MATERIAL_TRIMS.has(trimKey)) {
             offenders.push(
               `${key} L${diagnostic.eid} ${surface.surfaceLabel}: ${surface.trimAmount.toFixed(2)} mm (${surface.trimCause})`,
             );
@@ -68,6 +70,18 @@ describe("element render diagnostics", () => {
     }
 
     expect(offenders).toEqual([]);
+  });
+
+  it("documents the Canon 50mm f/2.8 patent-silhouette trim", () => {
+    const L = buildLens(LENS_CATALOG["canon-s-50mm-f2-8"]);
+    const layout = doLayout(0, 0, L);
+    const diagnostic = computeElementRenderDiagnostics(L, layout.z).find((candidate) => candidate.eid === 2);
+
+    expect(diagnostic).toBeDefined();
+    expect(diagnostic!.rear.surfaceLabel).toBe("4");
+    expect(diagnostic!.rear.trimCause).toBe("gap");
+    expect(diagnostic!.rear.trimAmount).toBeGreaterThan(1.68);
+    expect(diagnostic!.rear.trimAmount).toBeLessThan(1.7);
   });
 
   it("does not leave rendered cross-gap collisions in production lenses", () => {

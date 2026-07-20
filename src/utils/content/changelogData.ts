@@ -23,7 +23,7 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-07-19",
     type: "lens",
-    summary: "Added Canon 50mm f/1.2 and 50mm f/2.8 patent lenses",
+    summary: "Added Canon 50mm f/1.2, 50mm f/2.8, and EF 200mm f/1.8 L USM lenses",
   },
   {
     date: "2026-07-19",

@@ -157,7 +157,7 @@ The patent omits clear apertures, but Figure 1 draws all three components at bro
 | 3 | 10.5 mm | L2 front edge |
 | 4 | 10.5 mm | L2 rear edge, matched to the front edge as drawn in Figure 1 |
 | STO | 6.9384 mm | aperture-defining |
-| 5 | 8.8 mm | L3 plane front, tapered only enough to preserve material clearance from L2 |
+| 5 | 10.5 mm | L3 plane front, matched to the rest of the cemented rear component |
 | 6 | 10.5 mm | cemented interface and shared L3–L4 rim |
 | 7 | 10.5 mm | L4 rear edge, matched to L3's maximum height |
 
@@ -165,10 +165,10 @@ The data file also declares the patent's $46^\circ$ rectilinear full field expli
 
 - maximum $sd/|R|=0.67742$ at surface 4;
 - maximum spherical rim angle = $42.64^\circ$;
-- maximum element front/rear semi-diameter ratio = 1.19318 at L3;
+- maximum element front/rear semi-diameter ratio = 1.00000;
 - minimum computed edge thickness = 0.72284 mm at L1;
 - surface 2–3 signed sag intrusion = 1.63878 mm in a 3.60000 mm gap (45.52%);
-- surface 4–5 material-to-material sag intrusion = 2.74030 mm across their combined 3.05000 mm gap at the shared 8.8 mm material band (89.85%);
+- matching surfaces 4 and 5 to the Figure 1 silhouette makes their declared 10.5 mm rims overlap in the patent's compressed 3.05000 mm axial gap; the diagram renderer therefore trims L2 surface 4 to 8.81 mm while preserving L3's full 10.5 mm plane face;
 - surface 4–STO signed sag intrusion at the stop aperture = 1.63969 mm in a 2.00000 mm gap (81.98%);
 - STO–surface 5 intrusion = 0 in the remaining 1.05000 mm plane-to-plane gap.
 
