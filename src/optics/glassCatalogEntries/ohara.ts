@@ -1588,4 +1588,15 @@ export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
     code6: "613438",
     source: "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF), vendor-published discontinued-glass data.",
   },
+  /* ────── Phase 34 Canon EF 20mm historical-glass addition (July 2026) ────── */
+  {
+    name: "TIM11",
+    vendor: "Ohara",
+    polynomial: [2.5613591, -0.01200739, 0.020780357, 0.001425606, -0.00011027477, 0.000011477786],
+    nd: 1.620955,
+    vd: 35.880852,
+    PgF: 0.5892,
+    code6: "621359",
+    source: "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF), vendor-published discontinued-glass data.",
+  },
 ];
