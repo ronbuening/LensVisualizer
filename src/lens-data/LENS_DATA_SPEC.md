@@ -101,7 +101,7 @@ Keep it normalized even when the product's official styling varies by source:
 |-------|------|---------|-------------|
 | `maker` | `string` | | Manufacturer name (e.g. `"Nikon"`, `"Voigtländer"`). Used for maker pages and SEO metadata. If omitted, derived from the lens `name` via prefix matching. |
 | `visible` | `boolean` | `true` | Controls whether the lens appears in the UI catalog. Set to `false` to hide a lens from the dropdown without removing its data file. |
-| `subtitle` | `string` | | Patent reference shown in UI header |
+| `subtitle` | `string` | | Legacy patent/example context. Used as the UI-header fallback when structured patent metadata is unavailable. |
 | `specs` | `string[]` | | Spec strings displayed in header |
 | `focalLengthMarketing` | `number \| [number, number]` | | Marketed/nominal focal length in mm. Single number for primes (e.g. `50`); `[wide, tele]` tuple for zooms (e.g. `[70, 200]`). |
 | `focalLengthDesign` | `number \| [number, number]` | | Design/patent focal length in mm (computed EFL). Single number for primes; `[wide, tele]` for zooms. May differ from marketing value. |
@@ -109,6 +109,9 @@ Keep it normalized even when the product's official styling varies by source:
 | `apertureDesign` | `number` | | Design/patent maximum f-number (precise computed value, e.g. `1.85`). May differ from marketing value. |
 | `lensMounts` | `LensMountId[]` | | Canonical mount ids for production variants represented by this optical formula. May contain multiple ids, e.g. `["nikon-z", "sony-fe"]`. |
 | `imageFormat` | `ImageFormatId` | | Single canonical image-circle/format id, e.g. `"135-full-frame"`, `"aps-c"`, or `"110"`. |
+| `patentNumber` | `string` | | Source patent publication or grant identifier, including jurisdiction and kind code when the source publishes one (e.g. `"US 10,571,651 B2"`). Do not include an example, embodiment, table, or figure label. |
+| `patentAuthors` | `string[]` | | Inventors named by the source patent, in source order. Use one complete personal name per entry. An empty array means the patent names no individual inventor. |
+| `patentAssignees` | `string[]` | | Assignees named by the source patent, or applicants when that jurisdiction publishes applicants rather than assignees. Use one canonical display name for each historical legal entity. An empty array means the patent names no assignee or applicant. |
 | `patentYear` | `number` | | Year the patent was published or granted (e.g. `2019`). |
 | `elementCount` | `number` | | Total number of glass elements in the design. |
 | `groupCount` | `number` | | Total number of air-separated groups in the design. |
@@ -155,6 +158,42 @@ Suggested backfill order:
 2. Sony E, Fujifilm X, Pentax 110/K, Panasonic/Sigma L-mount where obvious.
 3. Fixed-lens cameras by format only.
 4. Historical Zeiss, Leica, and Voigtländer designs after source checks, because variants are common.
+
+## Patent Metadata
+
+Patent-backed lens files must declare `patentNumber`, `patentAuthors`, and `patentAssignees` together. Synthetic,
+reference, or independently measured prescriptions with no patent source should omit all three fields. These structured
+fields supplement `subtitle`: keep worked-example and design-correlation prose in `subtitle`, not in `patentNumber`.
+The UI displays `patentNumber`, followed by the names in `patentAuthors`; it uses `subtitle` only when the structured
+patent fields are unavailable.
+
+```javascript
+patentNumber: "US 10,571,651 B2",
+patentAuthors: ["Hideki Sakai"],
+patentAssignees: ["Canon Inc."],
+```
+
+- Record the exact publication or grant used to transcribe the prescription, rather than silently substituting a related
+  US, EP, WO, or national-family publication. Preserve its jurisdiction prefix and kind code when the source prints one.
+- `patentAuthors` contains inventors only. Preserve the source ordering and put each person in a separate array entry;
+  never collapse additional inventors into `"et al."`. Normalize Latin-script display names to `Given Middle Family`
+  order with conventional capitalization, reliable diacritics, and no honorifics, credentials, locations, or source
+  database artifacts. Use one canonical spelling and romanization for the same person throughout the corpus, even when
+  different family publications vary in capitalization or name order. Prefer the published Latin-script form when the
+  patent or an official family front page provides one. Otherwise preserve a Unicode-normalized source-script name in
+  its native order, optionally followed by an established romanization in parentheses. Use `patentAuthors: []` when a
+  historical or corporate application names only the applicant and does not identify an individual inventor; do not
+  substitute a later secondary attribution.
+- `patentAssignees` records ownership at the source publication or grant. For WO, JP, CN, and other documents that label
+  the party as an applicant rather than an assignee, record the applicant here. Normalize capitalization, punctuation,
+  reliable diacritics, and corporate suffixes to the entity's conventional official form, and use the same display name
+  for that entity throughout the corpus. Omit locations, translated-name duplicates, and source-database artifacts.
+  Preserve distinct historical legal entities, subsidiaries, and reorganized companies instead of merging them into the
+  current product maker or a modern successor.
+- Empty arrays are meaningful source statements, not placeholders for unfinished research: use `patentAuthors: []` only
+  when the source names no individual inventor, and `patentAssignees: []` only when it identifies no assignee or applicant.
+- Do not add filing dates, priority numbers, attorneys, agents, examiners, translators, or current patent owners to these
+  fields. `patentYear` remains the year of the source publication or grant named by `patentNumber`.
 
 ## Projection Metadata
 

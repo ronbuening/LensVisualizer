@@ -10,7 +10,7 @@ import LensVisualization from "../components/layout/LensViewer.js";
 import SEOHead from "../components/SEOHead.js";
 import ClientOnly from "../components/ClientOnly.js";
 import { LENS_CATALOG } from "../utils/catalog/lensCatalog.js";
-import { deriveMaker } from "../utils/catalog/lensMetadata.js";
+import { deriveMaker, lensDisplaySubtitle } from "../utils/catalog/lensMetadata.js";
 import { comparePageTitle, comparePageDescription, compareCanonicalURL } from "../comparison/comparisonURLSync.js";
 
 const CONTENT_STYLE: React.CSSProperties = {
@@ -28,6 +28,7 @@ function LensSummary({ lensKey }: { lensKey: string }) {
   const lens = LENS_CATALOG[lensKey];
   if (!lens) return null;
   const maker = deriveMaker(lens.name, lens.maker);
+  const displaySubtitle = lensDisplaySubtitle(lens);
   return (
     <section style={{ marginBottom: "1.5rem" }}>
       <h2 style={{ fontSize: "1rem", fontWeight: 600, marginBottom: "0.25rem" }}>
@@ -35,7 +36,9 @@ function LensSummary({ lensKey }: { lensKey: string }) {
           {lens.name}
         </Link>
       </h2>
-      {lens.subtitle && <p style={{ fontSize: "0.8rem", color: "#999", marginBottom: "0.5rem" }}>{lens.subtitle}</p>}
+      {displaySubtitle && (
+        <p style={{ fontSize: "0.8rem", color: "#999", marginBottom: "0.5rem" }}>{displaySubtitle}</p>
+      )}
       <p style={{ fontSize: "0.8rem", color: "#ccc" }}>
         {maker.display}
         {lens.specs && lens.specs.length > 0 ? ` — ${lens.specs.slice(0, 3).join(", ")}` : ""}

@@ -14,7 +14,7 @@ import type {
   LensMountMetadata,
 } from "../../utils/catalog/lensTaxonomy.js";
 
-export type GroupMode = "maker" | "focal" | "year-asc" | "year-desc" | "mount" | "format";
+export type GroupMode = "maker" | "inventor" | "assignee" | "focal" | "year-asc" | "year-desc" | "mount" | "format";
 export type LensIndexViewMode = "visible" | "all" | "debug";
 
 export interface CatalogLensEntry {
@@ -63,6 +63,12 @@ export interface MountGroup {
 
 export interface ImageFormatGroup {
   id: ImageFormatId | "unknown";
+  label: string;
+  lenses: CatalogLensEntry[];
+}
+
+export interface PatentPartyGroup {
+  id: string;
   label: string;
   lenses: CatalogLensEntry[];
 }

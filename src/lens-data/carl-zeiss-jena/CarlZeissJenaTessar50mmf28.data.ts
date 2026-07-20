@@ -43,6 +43,9 @@ const LENS_DATA = {
   // apertureDesign omitted — patent does not specify f-number; 2.8 is production identification
   lensMounts: ["m42"],
   imageFormat: "135-full-frame",
+  patentNumber: "FR 1.066.698",
+  patentAuthors: [],
+  patentAssignees: ["VEB Optik Carl Zeiss Jena"],
   patentYear: 1952,
   elementCount: 4,
   groupCount: 3,

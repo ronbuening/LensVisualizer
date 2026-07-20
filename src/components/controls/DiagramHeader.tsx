@@ -19,6 +19,7 @@ import CardinalControls from "./CardinalControls.js";
 import RayToggles from "./RayToggles.js";
 import ChromaticControls from "./ChromaticControls.js";
 import { ENABLE_CARDINAL_ELEMENTS } from "../../utils/featureFlags.js";
+import { lensDisplaySubtitle } from "../../utils/catalog/lensPatentMetadata.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
 import type { OffAxisMode, RayDensity } from "../../types/state.js";
@@ -133,6 +134,7 @@ const DiagramHeader = memo(
     ref,
   ) {
     const projection = L.projection ?? { kind: "rectilinear" };
+    const displaySubtitle = lensDisplaySubtitle(L.data);
     const compactFocalReadout = isFisheyeProjection(projection)
       ? `Proj f ${(fisheyeProjectionFocalLengthAtZoom(projection, zoomT) ?? L.apertureReferenceFocalLength).toFixed(1)}`
       : `EFL ${L.isZoom ? eflAtZoom(zoomT, L).toFixed(1) : L.EFL.toFixed(1)}`;
@@ -184,16 +186,18 @@ const DiagramHeader = memo(
             )}
           </div>
           <div style={{ display: "flex", alignItems: "baseline", gap: 6, marginTop: compact ? 2 : 3 }}>
-            <span
-              style={{
-                fontSize: compact ? 9 : 10.5,
-                color: t.subtitle,
-                letterSpacing: "0.08em",
-                transition: "color 0.3s",
-              }}
-            >
-              {L.data.subtitle}
-            </span>
+            {displaySubtitle && (
+              <span
+                style={{
+                  fontSize: compact ? 9 : 10.5,
+                  color: t.subtitle,
+                  letterSpacing: "0.08em",
+                  transition: "color 0.3s",
+                }}
+              >
+                {displaySubtitle}
+              </span>
+            )}
             {!isWide && (
               <CollapseButton
                 expanded={headerInfoExpanded}

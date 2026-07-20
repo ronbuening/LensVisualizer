@@ -17,9 +17,18 @@ import {
   formatGroupAnchorId,
   makerGroupAnchorId,
   mountGroupAnchorId,
+  patentPartyGroupAnchorId,
   yearGroupAnchorId,
 } from "./groupAnchors.js";
-import type { GroupMode, ImageFormatGroup, MakerGroup, MountGroup, PrimeZoomSection, YearGroup } from "./types.js";
+import type {
+  GroupMode,
+  ImageFormatGroup,
+  MakerGroup,
+  MountGroup,
+  PatentPartyGroup,
+  PrimeZoomSection,
+  YearGroup,
+} from "./types.js";
 import type { Theme } from "../../types/theme.js";
 
 function LensEntryLink({
@@ -162,6 +171,43 @@ function FocalSections({
   );
 }
 
+function PatentPartySections({
+  groups,
+  role,
+  theme,
+  hrefForLens,
+}: {
+  groups: PatentPartyGroup[];
+  role: "inventor" | "assignee";
+  theme: Theme;
+  hrefForLens: (lensKey: string, context?: LensLibraryBreadcrumbContext) => string;
+}) {
+  return (
+    <>
+      {groups.map((group) => (
+        <section key={group.id} id={patentPartyGroupAnchorId(role, group.id)}>
+          <h2 style={{ ...SECTION_HEADING_BASE_STYLE, borderBottom: `1px solid ${theme.panelBorder}` }}>
+            {group.label}
+            <span style={{ color: theme.label, fontSize: "0.75rem", marginLeft: "0.5rem", fontWeight: 400 }}>
+              ({group.lenses.length})
+            </span>
+          </h2>
+          {group.lenses.map((entry) => (
+            <LensEntryLink
+              key={`${group.id}-${entry.key}`}
+              lensKey={entry.key}
+              text={entry.data.name}
+              meta={entry.data.patentNumber ?? (entry.data.patentYear ? String(entry.data.patentYear) : null)}
+              theme={theme}
+              hrefForLens={hrefForLens}
+            />
+          ))}
+        </section>
+      ))}
+    </>
+  );
+}
+
 function PatentYearSections({
   groups,
   theme,
@@ -286,6 +332,8 @@ function ImageFormatSections({
 export default function LensIndexResults({
   groupMode,
   makerGroups,
+  inventorGroups,
+  assigneeGroups,
   focalSections,
   yearGroups,
   mountGroups,
@@ -295,6 +343,8 @@ export default function LensIndexResults({
 }: {
   groupMode: GroupMode;
   makerGroups: MakerGroup[];
+  inventorGroups: PatentPartyGroup[];
+  assigneeGroups: PatentPartyGroup[];
   focalSections: PrimeZoomSection[];
   yearGroups: YearGroup[];
   mountGroups: MountGroup[];
@@ -303,6 +353,12 @@ export default function LensIndexResults({
   hrefForLens?: (lensKey: string, context?: LensLibraryBreadcrumbContext) => string;
 }) {
   if (groupMode === "maker") return <MakerSections groups={makerGroups} theme={theme} hrefForLens={hrefForLens} />;
+  if (groupMode === "inventor") {
+    return <PatentPartySections groups={inventorGroups} role="inventor" theme={theme} hrefForLens={hrefForLens} />;
+  }
+  if (groupMode === "assignee") {
+    return <PatentPartySections groups={assigneeGroups} role="assignee" theme={theme} hrefForLens={hrefForLens} />;
+  }
   if (groupMode === "focal") return <FocalSections sections={focalSections} theme={theme} hrefForLens={hrefForLens} />;
   if (groupMode === "mount") return <MountSections groups={mountGroups} theme={theme} hrefForLens={hrefForLens} />;
   if (groupMode === "format") {

@@ -16,6 +16,7 @@ import {
   lensCanonicalURL,
   lensJsonLd,
   deriveMaker,
+  lensDisplaySubtitle,
   SITE_URL,
 } from "../utils/catalog/lensMetadata.js";
 import { breadcrumbJsonLd } from "../utils/seo/structuredData.js";
@@ -54,6 +55,7 @@ export default function LensPage() {
   const maker = deriveMaker(lens.name, lens.maker);
   /* Existence check only — the markdown body is code-split and loaded by the viewer */
   const hasAnalysis = hasMdForKey(slug);
+  const displaySubtitle = lensDisplaySubtitle(lens);
 
   return (
     <>
@@ -95,8 +97,8 @@ export default function LensPage() {
 
             <h1 style={{ fontSize: "1.25rem", fontWeight: 600, marginBottom: "0.5rem" }}>{lens.name}</h1>
 
-            {lens.subtitle && (
-              <p style={{ fontSize: "0.8rem", color: "#999", marginBottom: "1rem" }}>{lens.subtitle}</p>
+            {displaySubtitle && (
+              <p style={{ fontSize: "0.8rem", color: "#999", marginBottom: "1rem" }}>{displaySubtitle}</p>
             )}
 
             {lens.specs && lens.specs.length > 0 && (

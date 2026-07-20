@@ -22,7 +22,16 @@ export interface LensIndexUrlState {
   customFilter: CustomFilterState;
 }
 
-const GROUP_MODES = new Set<GroupMode>(["maker", "focal", "year-asc", "year-desc", "mount", "format"]);
+const GROUP_MODES = new Set<GroupMode>([
+  "maker",
+  "inventor",
+  "assignee",
+  "focal",
+  "year-asc",
+  "year-desc",
+  "mount",
+  "format",
+]);
 const VIEW_MODES = new Set<LensIndexViewMode>(["visible", "all", "debug"]);
 const PUBLIC_MAKER_SLUGS = buildMeta.makerSlugs;
 const NUMERIC_PARAMS: ReadonlyArray<{ param: string; field: NumericFilterField; step: number }> = [

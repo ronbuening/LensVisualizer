@@ -8,6 +8,7 @@
 import type { LensData } from "../../types/optics.js";
 import buildMeta from "../../generated/build-metadata.json";
 import makerPrefixes from "../../generated/maker-prefixes.json";
+import { lensPatentReference } from "./lensPatentMetadata.js";
 
 const SITE_NAME = "Surface & Stop";
 const SITE_URL = "https://surfaceandstop.com";
@@ -77,21 +78,12 @@ function lensSpecSummary(lens: LensData, maxSpecs = 3): string {
   return lens.specs?.slice(0, maxSpecs).join(", ") || "";
 }
 
-export function lensPatentReference(lens: LensData): string | null {
-  const subtitle = lens.subtitle?.trim();
-  if (!subtitle) return null;
-  if (/\bpatent\b/i.test(subtitle)) return subtitle;
-
-  const patentMatch = subtitle.match(/\b(?:US|WO|JP|EP|GB|DE|CN)\s?[A-Z]?\d[\d/,-]*(?:\s?[A-Z]\d?)?\b/i);
-  return patentMatch ? patentMatch[0].trim() : null;
-}
-
 /** Title-case a lens name (e.g., "NIKON NIKKOR Z 50mm f/1.8 S" stays as-is since it's already styled). */
 export function lensPageTitle(lens: LensData): string {
   return `${lens.name} — Optical Cross-Section & Ray Tracing | ${SITE_NAME}`;
 }
 
-/** Generate a meta description from lens specs and subtitle. */
+/** Generate a meta description from lens specs and patent metadata. */
 export function lensPageDescription(lens: LensData): string {
   const specStr = lensSpecSummary(lens);
   const patentRef = lensPatentReference(lens);
@@ -158,6 +150,7 @@ export function lensJsonLd(lens: LensData, lensKey: string): Record<string, unkn
 
 /* Re-export comparison metadata (moved to comparison module) for backward compatibility */
 export { comparePageTitle, comparePageDescription, compareCanonicalURL } from "../../comparison/comparisonURLSync.js";
+export { lensDisplaySubtitle, lensPatentReference } from "./lensPatentMetadata.js";
 
 export {
   SITE_NAME,

@@ -40,6 +40,9 @@ const LENS_DATA = {
   // apertureDesign omitted — matches marketing
   lensMounts: ["contax-rf"],
   imageFormat: "135-full-frame",
+  patentNumber: "US 2,721,499",
+  patentAuthors: ["Ludwig Bertele"],
+  patentAssignees: [],
   patentYear: 1955,
   elementCount: 8,
   groupCount: 5,
