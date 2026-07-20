@@ -2,14 +2,14 @@
 
 ## Patent Reference and Design Identification
 
-- **Patent:** JP H01-102413 A (JP 1989-102413 A)
-- **Application number:** JP 62-260854
-- **Filed:** 15 October 1987
-- **Published:** 20 April 1989
-- **Inventors:** Hideki Ogawa (小川秀樹); Sadatoshi Takahashi (高橋貞利)
-- **Applicant:** Canon Inc.
-- **Title:** 大口径比望遠レンズ (*Large-Aperture-Ratio Telephoto Lens*)
-- **Embodiment analyzed:** Numerical Example 1 (数値実施例1)
+**Patent:** JP H01-102413 A (JP 1989-102413 A)
+**Application number:** JP 62-260854
+**Filed:** 15 October 1987
+**Published:** 20 April 1989
+**Inventors:** Hideki Ogawa (小川秀樹); Sadatoshi Takahashi (高橋貞利)
+**Applicant:** Canon Inc.
+**Title:** 大口径比望遠レンズ (*Large-Aperture-Ratio Telephoto Lens*)
+**Embodiment analyzed:** Numerical Example 1 (数値実施例1)
 
 Numerical Example 1 is the strongest match to the powered optical core of the Canon EF 200mm f/1.8 L USM. The identification rests on several independent correspondences:
 
