@@ -9,10 +9,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **455** lenses scanned
-- **375** total code-only elements found
-- **375** elements in this report
-- **136** distinct lens files affected
+- **457** lenses scanned
+- **376** total code-only elements found
+- **376** elements in this report
+- **137** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -119,6 +119,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 581409 | 1 | 1 | patents/JPWO2020158622A1.pdf | No reviewed-sidecar hit |
 | 585417 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | No reviewed-sidecar hit |
 | 592670 | 1 | 1 | patents/US20150092100A1.pdf | No reviewed-sidecar hit |
+| 593343 | 1 | 1 | patents/US2838978.pdf | No reviewed-sidecar hit |
 | 593355 | 1 | 1 | patents/JP2022033487A.pdf | No reviewed-sidecar hit |
 | 593686 | 1 | 1 | patents/JPWO2017138250A1.pdf | No reviewed-sidecar hit |
 | 595355 | 1 | 1 | patents/US5579169.pdf | No reviewed-sidecar hit |
@@ -279,6 +280,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
 |---|---|---|---|---|---|---|---|
 | L3 (Element 3) | 4 | `Unmatched (540/509 crown-flint-boundary glass; no public catalog match located)` | 1.54041 / 50.90 | No catalog entry | abbe | patents/GB_775944_A.pdf | No reviewed-sidecar hit |
+
+### [CANON 50mm f/2.8](../../src/lens-data/canon/Canon50mmf28.data.ts) - US 2,838,978
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+|---|---|---|---|---|---|---|---|
+| L2 (Element 2) | 3 | `Unmatched (593/343 medium-index flint; nearest public catalog coordinates are non-unique)` | 1.59300 / 34.30 | No catalog entry | abbe | patents/US2838978.pdf | No reviewed-sidecar hit |
 
 ### [CANON EF-M 32mm f/1.4 STM](../../src/lens-data/canon/CanonEFM32mmf14STM.data.ts) - JP2018180366A
 

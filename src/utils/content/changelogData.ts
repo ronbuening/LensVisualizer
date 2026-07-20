@@ -22,6 +22,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-07-19 ──────────────────────────────────────────────────────────
   {
     date: "2026-07-19",
+    type: "lens",
+    summary: "Added Canon 50mm f/1.2 and 50mm f/2.8 patent lenses",
+  },
+  {
+    date: "2026-07-19",
     type: "feature",
     summary: "Added patent attribution details and inventor/assignee browsing across the lens library",
   },

@@ -7,7 +7,7 @@ available, it falls back to partial measured `nC`/`nF` line indices, dPgF-correc
 approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **333 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **335 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
 
 The July 17, 2026 Vivitar batch added exact vendor records for SCHOTT LLF1; legacy HOYA LAC10 and NBFD10; and legacy SUMITA BAF9, BAF11, BK1, F1, FK5, K5, LAFN2, LF2, and SK5. The SUMITA coefficients come from the manufacturer's 2025-11-07 all-glass Zemax catalog, which explicitly includes discontinued types.
 
@@ -231,6 +231,13 @@ material index/Abbe deltas, so those labels remain explicit code-only rows.
 | ★ PBH71 | Ohara | 923213 | Exact historical dense-flint row for L12 of the Canon EF 14mm f/2.8L USM design; replaces the weaker N-SF66 comparison |
 | ★ S-PHM51 | Ohara | 617628 | Historical formula-3 phosphate crown for L2 of the Canon EF 15mm f/2.8 Fisheye design |
 | ★ NSL7 | Ohara | 511605 | Historical formula-3 reference crown for L5 of the Canon EF 15mm f/2.8 Fisheye design |
+
+**Phase 32 additions** (July 2026 — vintage Canon 50mm patent pass using SUMITA's official 2025-11-07 all-glass Zemax catalog, including discontinued types; both entries retain the vendor's formula-3 polynomials and round-trip through `assertCatalogConsistent`):
+
+| Glass | Vendor | Code | Notes |
+|---|---|---:|---|
+| ★ K-LaK9 | Sumita | 691548 | Exact coordinate equivalent for the rear positive element in US 2,838,978 |
+| ★ K-LaK11 | Sumita | 658573 | Exact coordinate equivalent for the front positive element in US 2,838,978 |
 
 **Phase 17 additions** (May 2026 — Hasselblad/Laowa/Leica/Minolta/Nikon six-digit missing-Sellmeier queue pass; all entries round-trip through `assertCatalogConsistent`):
 
