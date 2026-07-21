@@ -92,7 +92,8 @@ G1 is the large, strongly negative front group that creates the retrofocus field
 **L13 is unusual** — most designers place ED glass in positive elements to correct primary longitudinal chromatic aberration. Using ED glass in a *negative* element in the front group suggests that secondary lateral chromatic aberration (secondary spectrum of lateral color) was a dominant residual in the design, and this was the most effective placement to address it.
 
 **L14 — Biconvex Positive (nearly plano-convex)**
-- Glass: nd = 1.737999, νd = 32.3 → **738323 dense-flint code** (no public catalog entry currently round-trips)
+- Glass: nd = 1.737999, νd = 32.3 → **HIKARI J-KZFH9 catalog equivalent** (code 738323; catalog nd = 1.73800,
+  νd = 32.26). The patent does not identify the production vendor.
 - Focal length: +47.7 mm
 - This positive element partially compensates the strong negative power of L11–L13, reducing the divergence angle of the beam entering G2. Its low Abbe number (νd = 32.3, a dense flint) provides the complementary dispersion needed to achromatize the front group in combination with L13's ED glass. The rear surface R = −644.56 mm is nearly flat, making this effectively a plano-convex element — a form that minimizes coma contribution from the individual element.
 
@@ -270,7 +271,7 @@ The design uses 12 distinct glass identifications across 16 elements:
 | S-LAH55 | 1.83481 | 42.7 | L36, L39 | 2 |
 | S-BAL35 / L-BAL35 | 1.58887 | 61.1 | L11 | 1 |
 | S-LAM60 | 1.74310 | 49.4 | L12 | 1 |
-| 738323 dense-flint code | 1.73800 | 32.3 | L14 | 1 |
+| HIKARI J-KZFH9 equivalent (738323) | 1.73800 | 32.3 | L14 | 1 |
 | TAFD40 | 2.00060 | 25.4 | L21 | 1 |
 | S-TIM22 | 1.64769 | 33.7 | L22 | 1 |
 | Hikari J-LASFH23 (850270) | 1.85000 | 27.0 | L31 | 1 |
@@ -279,7 +280,10 @@ The design uses 12 distinct glass identifications across 16 elements:
 | S-TIH53 | 1.84666 | 23.7 | L34 | 1 |
 | S-LAH89 | 1.85108 | 40.1 | L40 | 1 |
 
-Glass identifications are based on matching the patent's nd/νd values against published catalog data. Most relabels either round-trip directly or fall within the project mismatch tolerance. L31 now resolves to Hikari J-LASFH23, while L14 remains a six-digit code annotation instead of a speculative catalog name. L32 is closest to the OHARA S-FPM2 fluorophosphate family, and L40 is closest to S-LAH89 among the current catalog entries.
+Glass identifications are based on matching the patent's nd/νd values against published catalog data. Most relabels
+either round-trip directly or fall within the project mismatch tolerance. L14 now resolves to HIKARI J-KZFH9 and L31
+to HIKARI J-LASFH23; these are catalog equivalents rather than production-supplier claims. L32 is closest to the OHARA
+S-FPM2 fluorophosphate family, and L40 is closest to S-LAH89 among the current catalog entries.
 
 The design makes heavy use of high-index glasses (seven elements have nd > 1.73) to keep surface curvatures manageable despite the very strong total power of the system. The single ultra-high-index element (L21, nd = 2.0006) is notable — the relabeled TAFD40 match is one of the densest commercially available optical glasses, and its use in the compact focusing group helps keep that group physically small.
 
@@ -340,7 +344,8 @@ The NIKKOR Z 14-24mm f/2.8 S, as revealed by Example 4 of WO 2021/117563, is a c
 
 ## Revision Log
 
-**v3 (this document):** Synced the narrative with the May 2026 patent audit: L12 S-LAM60, L14 738323 code, L21 TAFD40, L22 S-TIM22, L31 Hikari J-LASFH23, L32 S-FPM2, L33 S-LAH98, L40 S-LAH89, and the four ED elements as S-FPL51-class rather than S-FPL52.
+**v4 (this document):** Preserves the May 2026 patent-audit corrections and syncs L14's 738323 code with the current
+coefficient-backed HIKARI J-KZFH9 catalog entry.
 
 **v2:** Corrected glass identifications for L11 (S-BAM4 → S-BAL35/L-BAL35), L12 (S-LAM2 → S-LAM51), L32 (S-BSM14 → near S-FPM3), and all four ED elements (S-FPL51 → S-FPL52). Added note on L-BAL35 PGM glass variant for L11. Added independent numerical verification table (§9). Added total track values at all four zoom positions. Corrected aspherical departure discussion for surfaces 2\* and 4\* (previous departure figures were computed at unrealistically large semi-diameters; now noted as SD-dependent). Added semi-diameter estimation methodology (§10). Corrected total track change during zoom (was "~6 mm," now correctly "~8.6 mm"). Added intermediate-focus variable spacing table (β = 0.025). Corrected MFD calculation with explicit sum (141 + 138.3 = 279.3 mm ≈ 0.28 m).
 
@@ -350,4 +355,4 @@ The NIKKOR Z 14-24mm f/2.8 S, as revealed by Example 4 of WO 2021/117563, is a c
 
 1. WO 2021/117563 A1, "Variable Magnification Optical System, Optical Apparatus and Method for Manufacturing Variable Magnification Optical System," Nikon Corporation, PCT/JP2020/044761, published 17 June 2021. Example 4 (Table 4), paragraphs [0107]–[0114].
 2. Nikon Corporation, "NIKKOR Z 14-24mm f/2.8 S" product page: 16 elements / 11 groups, 4 ED, 3 aspherical elements. nikonusa.com.
-3. OHARA, HOYA, and Hikari/Nikon optical glass catalog data in the project resolver (glass identification reference for nd/νd matching: S-FPL51, S-BAL35, L-BAL35, S-LAM60, TAFD40, S-TIM22, S-FPM2, S-LAH98, S-TIH53, S-LAH55, S-LAH89, J-LASFH23; code annotation retained for the unmatched 738323 patent pair).
+3. OHARA, HOYA, and Hikari/Nikon optical glass catalog data in the project resolver (glass identification reference for nd/νd matching: S-FPL51, S-BAL35, L-BAL35, S-LAM60, TAFD40, S-TIM22, S-FPM2, S-LAH98, S-TIH53, S-LAH55, S-LAH89, J-KZFH9, and J-LASFH23).

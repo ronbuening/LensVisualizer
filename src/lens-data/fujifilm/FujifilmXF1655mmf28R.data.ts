@@ -140,7 +140,7 @@ const LENS_DATA = {
       nd: 1.755,
       vd: 52.32,
       fl: 94.1,
-      glass: "Near OHARA S-LAL60 (755523)",
+      glass: "J-LASKH2 (HIKARI catalog equivalent; patent code 755523, vendor unspecified)",
       apd: false,
       role: "Separate positive lanthanum crown; distributes G1 positive power to suppress spherical aberration",
     },

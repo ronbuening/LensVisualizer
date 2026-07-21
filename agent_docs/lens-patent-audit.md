@@ -78,7 +78,7 @@ For every element with a `glass:` annotation:
        ```
        "NNNNNN — descriptive label (Vendor)"
        ```
-       Example: `"911353 — lanthanum (nd=1.91082, νd=35.3)"`. Use this only after checking whether the code can be resolved to a sourceable catalog entry. The resolver extracts `NNNNNN` as a `\d{6}` token and looks it up in `CODE6_INDEX`. Since no matching catalog entry exists yet, it returns null and Abbe approximation runs with the element's stored nd/νd. **When a catalog entry is later added with `code6: "NNNNNN"`, the annotation auto-upgrades from Abbe to Sellmeier with no changes to the data or analysis file.** Write the 6 digits as one unbroken string — a slash (`911/353`), space (`911 353`), or dash breaks the token and prevents the future auto-upgrade.
+       Example: `"670571 — lanthanum crown (catalog unresolved; nd=1.67000, νd=57.07)"`. Use this only after checking whether the code can be resolved to a sourceable catalog entry. The resolver extracts `NNNNNN` as a `\d{6}` token and looks it up in `CODE6_INDEX`. When no matching catalog entry exists, it returns null and Abbe approximation runs with the element's stored nd/νd. **If a catalog entry is later added with the same `code6`, the annotation auto-upgrades from Abbe to Sellmeier with no changes to the data or analysis file.** Prefer the unbroken six-digit form because it is canonical and easiest for reports to scan. The resolver also normalizes slash and hyphen forms (`670/571`, `670-571`); a whitespace-separated form (`670 571`) is not resolver-safe.
      - **6-digit code is unknown** (vintage proprietary, designer-attributed, or composition fully opaque) → use the explicit `Unmatched` prefix:
        ```
        "Unmatched (description, reason)"
@@ -144,13 +144,17 @@ nF:   1.49978,  // F-line (486.1 nm)
 ng:   1.50387,  // g-line (435.8 nm) — recommended for APO designs
 ```
 
-The dispersion cascade (Sellmeier → line indices → Abbe + dPgF → plain Abbe) honors whatever you populate. Filling more fields is always strictly better and never breaks. See [proprietary-glass-backfill.md](proprietary-glass-backfill.md) for the cascade rules and the LCA quality-badge upgrade path.
+The full dispersion cascade (complete line indices → catalog Sellmeier → partial line indices → Abbe + dPgF → plain
+Abbe) honors whatever you populate. See [proprietary-glass-backfill.md](proprietary-glass-backfill.md) for the cascade
+rules and the LCA quality-badge upgrade path.
 
 **Metadata enrichment** (top-level lens fields). Add when missing:
 
 | Field | When to add |
 |---|---|
-| `subtitle` | Always, if patent reference is missing — e.g. `"Patent JP2019-220618 A1 — Example 9"`. |
+| `patentNumber` | Exact publication or grant transcribed, including jurisdiction/kind code. Required for patent-backed production lenses. |
+| `patentAuthors` / `patentAssignees` | Complete source-order inventor list and source assignee/applicant list. Required with `patentNumber`; empty arrays mean the source truly names none, not “unknown.” |
+| `subtitle` | Compact example and design-correlation context — e.g. `"WO 2019/220618 A1 — Example 9"`. Keep it because reports still use it for source/example matching. |
 | `patentYear` | Year published or granted. |
 | `focalLengthDesign` / `apertureDesign` | When the patent's computed values differ from marketing. |
 | `elementCount` / `groupCount` | Always — easy to miss. |
@@ -168,7 +172,8 @@ Targeted edits to make in the analysis:
 - **Element-by-element narrative** — relabel any glass name that changed in Phase 1. Update inline (nd, vd) values to match the corrected data file.
 - **Glass class statements** — phrases like "S-FPL53 / FCD100 class (super-ED…)" become "S-FPL51 / FCD1 class (ED, νd = 82.6)" when the audit downgrades the class.
 - **APO claims** — only retain "anomalous partial dispersion" or "APO" language when the data file's dPgF or line indices justify it. Bare Abbe-only data is not enough to claim APO behavior.
-- **Patent reference accuracy** — if Phase 3 added a `subtitle`, the analysis's "Patent Reference" section should match.
+- **Patent reference accuracy** — the bold metadata block must match `patentNumber`, `patentAuthors`,
+  `patentAssignees`, and `patentYear`; its embodiment line must agree with `subtitle`.
 - **Aspherical coefficient values** — analysis files sometimes quote coefficients inline; update them when Phase 2 corrected the data.
 
 If `*.analysis.md` does not exist, do not create one as part of an audit — analysis authoring is its own pass. The `*.audit.md` log captures the data-file-only outcome.
@@ -218,7 +223,7 @@ Catalog version: <commit short SHA, optional>
 
 ### Phase 4 — Analysis sync
 
-- Updated [Lens.analysis.md](Lens.analysis.md) §G2 narrative: "Super ED" → "ED (νd = 82.6)"; removed "S-FPL53 / FCD100" reference.
+- Updated `Lens.analysis.md` §G2 narrative: "Super ED" → "ED (νd = 82.6)"; removed "S-FPL53 / FCD100" reference.
 - Removed unsupported "true APO" claim — current spectral data justifies "well-corrected achromat" only.
 
 ### Verification
@@ -263,7 +268,8 @@ After regeneration, check the lens section in [glass-relabel-by-lens.generated.m
 
 If the audit relabeled a surface that the historical global followup queue tracked, move the row from "Pending" to "Resolved this session" in [glass-relabel-followup.md](glass-relabel-followup.md).
 
-If the audit was on a lens listed in [proprietary-glass-backfill.md](proprietary-glass-backfill.md) Tier A and successfully populated the `spectral` block, delete the row from that table.
+If the audit was on a lens listed in [proprietary-glass-backfill.md](proprietary-glass-backfill.md) Tier A and
+successfully populated the direct `dPgF`/line-index fields, delete the row from that table.
 
 ## Pruning audit logs
 

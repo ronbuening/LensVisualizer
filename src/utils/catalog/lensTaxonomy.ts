@@ -2,8 +2,8 @@
  * Canonical lens catalog taxonomy.
  *
  * Lens data files store stable ids from this module rather than free-typed
- * display labels. That keeps catalog filters and future image-field analysis
- * working from the same vocabulary.
+ * display labels. That keeps catalog filters and image-field analysis working
+ * from the same vocabulary.
  */
 
 export const LENS_MOUNTS = [

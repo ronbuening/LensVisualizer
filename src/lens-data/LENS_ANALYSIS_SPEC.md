@@ -17,7 +17,7 @@ The analysis is read by users and other authors. It should be patent-grounded, t
 ## File Naming and Pairing
 
 - Analysis files use the same relative stem path as the data file with `.analysis.md` instead of `.data.ts`. Example: `nikon/NikonNikkorZ50f18S.data.ts` → `nikon/NikonNikkorZ50f18S.analysis.md`.
-- Analysis files are optional. A prescription without one is rendered with a default description. When a prescription does carry an analysis, this spec governs its structure.
+- Analysis files are optional. A prescription without one shows the viewer's empty-state message (`No description available`). When a prescription does carry an analysis, this spec governs its structure.
 - Markdown is rendered with GitHub-flavored Markdown plus inline math (`$...$` and `$$...$$`). Tables, fenced code blocks, blockquotes, and nested lists are all supported.
 
 ## Required Section Skeleton
@@ -48,6 +48,11 @@ Begin this section with a robust bold-label metadata block before the identifica
 
 Use the block adaptively. A robust block has, at minimum, `**Patent:**`, one ownership/authorship line (`**Inventor:**`, `**Inventors:**`, `**Applicant:**`, or `**Assignee:**`), one date line (`**Filed:**`, `**Published:**`, or `**Granted:**`), and the selected embodiment when the source provides one. Include optional rows such as application number, priority date, title, classification, total claims, or worked-example count only when known or readily verified; omit optional unknowns rather than inventing values. For older granted patents, `**Granted:**` can replace `**Published:**` when the grant is the meaningful public event. For multi-patent analyses, use the block for the primary transcribed patent and describe secondary or context patents in the prose unless multiple patents directly supply prescriptions; in that case, use one block per primary prescription source.
 
+Keep this block synchronized with the data file's structured `patentNumber`, `patentAuthors`, `patentAssignees`, and
+`patentYear`. `patentNumber` identifies the exact publication or grant used for the transcription; the embodiment belongs
+in `subtitle` and `**Embodiment analyzed:**`, not in that structured identifier. Preserve every inventor in source order
+and use the same normalized personal and legal-entity names used elsewhere in the corpus.
+
 A reader who knows the lens but not the patent should be able to verify the identification from this section alone.
 
 ### 2. Optical Architecture
@@ -60,7 +65,11 @@ Names the overall design type (modified Gaussian, double-Gauss, telephoto, retro
 
 When the design is a zoom or has tilt/shift, describe the kinematics here at a high level (which groups move, what direction, over what range).
 
-For folded or mirror systems, also state the optical encounter order separately from the physical front-to-rear surface order. Identify first-surface versus second-surface mirrors, annular apertures, central obstructions, and the explicit image-plane location when it is not the ordinary rear image plane. If a patent figure shows a rear corrector inside the clear center of an annular primary, say so here so future data edits do not "fix" the apparent nesting by stretching or moving the corrector.
+For folded or mirror systems, state both the data file's listed/model order and the optical encounter order; these may
+also differ from simple physical front-to-rear order. Identify first-surface versus second-surface mirrors, annular
+apertures, central obstructions, signed return-path displacements, and the explicit image-plane location when it is not
+the ordinary rear image plane. If a patent figure shows a rear corrector inside the clear center of an annular primary,
+say so here so future data edits do not "fix" the apparent nesting by stretching or moving the corrector.
 
 When one physical mirror blank is modeled as complementary rendered regions, describe both identities. Example: "M1 is the silvered annular primary shell; L4 is the clear central plug of the same blank." State the shared radii, axial stations, and glass identity, and note that the data file may have one more `elements` entry than the patent's physical `elementCount` because the SVG and tracer need separate radial regions.
 
@@ -164,9 +173,25 @@ Going significantly past 650 lines usually means the analysis is restating the d
 
 When the analysis claims chromatic behavior — APO performance, secondary-spectrum correction, anomalous partial dispersion — the underlying data file should carry the spectral fields that support the claim (`dPgF`, `nC`, `nF`, `ng` on the relevant elements; or `glass:` annotations that resolve to a vendor Sellmeier catalog). Bare `nd`/`νd` data is not enough to claim apochromatic behavior, because Abbe-only modeling cannot represent partial dispersion. If the patent does not publish the supporting numbers and they cannot be recovered, soften the claim ("well-corrected achromat") or explicitly mark it as inferred.
 
+These spectral fields are direct properties of each `ElementData` object. Do not wrap them in an authored `spectral`
+object; `SurfaceSpectral` is a runtime-derived type.
+
 ## When the Patent Conflicts with the Data File
 
 The analysis describes the patent and the prescription as transcribed. When the data file deviates from the patent (scaled focal length, inferred SDs, simplified focus model when the patent only published infinity data), state that explicitly in the relevant section, label the deviation, and explain why. This is preferable to silent reconciliation.
+
+Distinguish three kinds of statement throughout the document:
+
+- **Source fact:** directly published by the patent, manufacturer, or cited catalog.
+- **Catalog-derived result:** a glass property or equivalence obtained after resolving the data file's `glass` label.
+- **Author inference/modeling choice:** production-to-patent correlation, inferred stop or semi-diameter, reconstructed
+  close-focus spacing, omitted cover/filter/dummy plane, or a corrected apparent source typo.
+
+Before delivery, compare the analysis against the final data file—not the extraction notes. The lens name, embodiment,
+element/group count, surface labels, `nd`/`νd`, glass names, asphere coefficients, focus mechanism, scaling statement,
+and all structured patent metadata must agree. If a uniform scale factor `s` was applied, the analysis should state that
+all dimensional values were scaled and that each aspheric coefficient was transformed as
+`A_p,scaled = A_p,patent / s^(p-1)` while `K` stayed unchanged.
 
 ## Examples
 

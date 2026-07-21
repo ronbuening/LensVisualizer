@@ -1,3 +1,5 @@
+// This import is correct for a root-level draft. If authoring directly in a maker folder,
+// use "../../types/optics.js" instead; generate:metadata rewrites it when organizing a draft.
 import type { LensDataInput } from "../types/optics.js";
 
 /**
@@ -17,7 +19,8 @@ import type { LensDataInput } from "../types/optics.js";
  * ║                                                                    ║
  * ║  NOTE ON SCALING (if applicable):                                   ║
  * ║    [If patent data is at a different focal length, note the scale  ║
- * ║    factor applied to R, d, and sd values here.  E.g.:             ║
+ * ║    factor applied to R, d, sd, and other lengths here. Transform  ║
+ * ║    each A_p as A_p/scalefactor^(p−1); K is unchanged. E.g.:       ║
  * ║    "Patent at f=100; all values scaled ×0.5 to f≈50 production."] ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
@@ -50,7 +53,7 @@ const LENS_DATA = {
   // REQUIRED: full display name. Use all-caps manufacturer + lens branding, separated mount/system tokens,
   // `FLmm f/N`, and camera-body parentheses for fixed-lens cameras.
   name:     "MANUFACTURER BRAND MOUNT 50mm f/1.8 CHARACTERISTIC",
-  subtitle: "PATENT-NUMBER EXAMPLE N — COMPANY / INVENTOR",  // optional: legacy context and UI fallback
+  subtitle: "PATENT-NUMBER EXAMPLE N — COMPANY / INVENTOR",  // optional: compact example/correlation context; UI/report fallback
   specs: [                                               // optional: spec strings for header display
     "N ELEMENTS / N GROUPS",
     "f ≈ NN.N mm",
@@ -70,7 +73,7 @@ const LENS_DATA = {
    *  lensMounts            Optional canonical mount ids from src/utils/catalog/lensTaxonomy.ts.
    *                        A lens may declare multiple mounts; do not free-type display labels.
    *  imageFormat           Optional single canonical format id from src/utils/catalog/lensTaxonomy.ts.
-   *                        Used by lens index filters now and future image-field analysis.
+   *                        Used by lens index filters and image-field-aware analysis.
    *  patentNumber         Source patent publication/grant identifier, including jurisdiction
    *                        and published kind code. Do not include an example/table label.
    *  patentAuthors        Inventors in source order, one canonical personal name per entry.
@@ -181,8 +184,10 @@ const LENS_DATA = {
   ],
 
   /* ── Surface prescription ──
-   *  One entry per optical surface, in physical front-to-rear axial order.
-   *  Folded systems still keep this physical order; opticalPath controls hit order.
+   *  One entry per optical surface. Ordinary refractive lenses use physical
+   *  front-to-rear axial order. Folded systems may use a stable physical/model
+   *  order or source transmission order; signed d establishes axial stations and
+   *  opticalPath controls hit order. Document the chosen ordering in the header.
    *  Includes glass surfaces, mirror surfaces, blocker surfaces, AND air gaps.
    *  Exactly one surface must have label "STO" (the aperture stop).
    *
@@ -255,14 +260,16 @@ const LENS_DATA = {
    *    R > 0  →  center of curvature to the RIGHT of the surface
    *    R < 0  →  center of curvature to the LEFT of the surface
    *    R = 1e15 → flat surface (effectively infinite radius)
-   *    d is always positive (distance to next surface along the axis)
+   *    d is non-negative for ordinary sequential lenses. Folded models may use a
+   *      negative displacement for a return toward object space or 0 for coincident planes.
    *    nd = 1.0 for air gaps; nd = glass refractive index for glass media
    *
    *  elemId assignment rules:
    *    - Each glass element gets EXACTLY ONE surface with its elemId: its front (entry) surface.
    *    - Air gap surfaces (nd = 1.0 after a glass element) always use elemId: 0.
    *    - The aperture stop (STO) uses elemId: 0 unless it is explicitly inside a glass element.
-   *    - The last surface's d is the back focal distance (BFD) to the image plane.
+   *    - For ordinary sequential lenses, the last surface's d is the BFD to the image plane.
+   *      Folded systems declare opticalPath.imagePlane instead.
    *    - Embedded glass stop exception: use stopPlacement: "inside-element" on STO, set STO.nd
    *      and STO.elemId to the containing glass, and add fromSurface/toSurface to that element.
    *    - Mirror elements: tag the reflective face with the mirror element's elemId and
@@ -304,9 +311,10 @@ const LENS_DATA = {
    *    { label: "10",  R: -17.503, d: 0.14, nd: 1.56093, elemId: 6, sd: ... },  // Glass/resin junction
    *    { label: "11A", R: -16.276, d: ...,  nd: 1.0,     elemId: 0, sd: ... },  // Resin rear (asph) → air
    *
-   *  Why: buildLens.ts finds the FIRST surface with each elemId and uses (index, index+1)
-   *  as the element's front/rear pair for rendering. Tagging rear or air surfaces with
-   *  non-zero elemId will cause rendering errors or crashes.
+   *  Why: without fromSurface/toSurface, buildLens.ts finds the FIRST surface with each
+   *  elemId and uses (index, index+1) as the rendered span. Tagging rear or air surfaces
+   *  with non-zero elemId creates the wrong span. Use explicit spans only for the
+   *  documented embedded-stop and folded-mirror exceptions.
    *
    *  Folded mirror examples:
    *    First-surface mirror:
@@ -399,6 +407,19 @@ const LENS_DATA = {
     // ["17", "BF"],             // [surface_label, display_text]
   ],
 
+  /* ── Independent aberration control (optional) ──
+   *  Use only for a real soft-focus / spherical-aberration-control ring, not focus.
+   *  The base surface d must match the first (normal/sharp) value.
+   */
+  // aberrationControl: {
+  //   label: "SOFT",
+  //   minLabel: "0",
+  //   maxLabel: "3",
+  //   step: 0.004,
+  //   var: { "9": [2.074, 6.962], "11": [64.427, 53.951] },
+  //   varLabels: [["9", "D(B0)"], ["11", "BF"]],
+  // },
+
   /* ── Zoom lens fields (optional — omit entirely for prime lenses) ──
    *  When zoomPositions is present, the lens is treated as a zoom and a zoom slider
    *  is shown in the UI.  When absent, the lens is a prime — no zoom slider.
@@ -441,6 +462,8 @@ const LENS_DATA = {
                                    //   For variable-aperture zooms, use an array with one value
                                    //   per zoom position: e.g. [4.5, 5.76] for f/4.5-5.6
   fstopSeries:  [1.4, 1.8, 2, 2.5, 2.8, 3.5, 4, 4.5, 5.6, 6.3, 8, 11, 16, 22],  // REQUIRED: f-stop quick-select values
+  // apertureBlades: 9,                  // optional; reserved for future polygonal bokeh rendering
+  // apertureBladeRoundedness: 0.5,      // optional 0–1; 0 = straight, 1 = circular
 
   /* ── Layout tuning (overrides defaults from defaults.ts) ──
    *  Only include if the defaults don't work well for this lens.

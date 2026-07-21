@@ -114,7 +114,7 @@ const LENS_DATA = {
       nd: 1.737999,
       vd: 32.3,
       fl: 47.7,
-      glass: "738323 — dense flint (patent nd=1.73800, νd=32.3)",
+      glass: "J-KZFH9 (HIKARI catalog equivalent; patent code 738323, vendor unspecified)",
       apd: false,
       role: "Achromatization partner for L13 — dense flint compensates G1 divergence and provides primary chromatic correction.",
     },
