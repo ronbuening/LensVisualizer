@@ -24,6 +24,8 @@ and homepage UI.
 | `StaticPageShell.tsx` | Shared shell for static pages with breadcrumbs, theme toggles, and page base layout. |
 | `BreadcrumbBar.tsx` | Lens page breadcrumb navigation. |
 | `SingleLensContent.tsx` | Single-lens diagram and description composition. |
+| `search/CatalogSearchBox.tsx` | Shared search form with direct exact-match routing and optional live suggestions. |
+| `search/CatalogSearchResults.tsx` | Grouped lens-name, patent-number, and author results for `/search`. |
 
 ## Controls
 
@@ -153,4 +155,8 @@ Keep article-specific behavior in the renderer rather than duplicating markdown 
 | `HeroSection.tsx` | Homepage hero and primary calls to action. |
 | `RecentLenses.tsx` | Recently added lens cards. |
 | `QuickNavCards.tsx` | Navigation cards for lenses, makers, and articles. |
+| `IndexNavBar.tsx` | Compact homepage bar linking the mount, format, author, and article indexes. |
 | `HomeFooter.tsx` | Homepage footer with about links and credits. |
+
+The homepage mounts `CatalogSearchBox` directly below the hero. `PageNavBar` and the viewer's `BreadcrumbBar` both
+provide a persistent Search link on every other route.

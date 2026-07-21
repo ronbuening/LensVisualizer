@@ -10,8 +10,10 @@ import { Link, useSearchParams, useNavigate } from "react-router";
 import SEOHead from "../components/SEOHead.js";
 import PageNavBar from "../components/layout/PageNavBar.js";
 import HeroSection from "../components/homepage/HeroSection.js";
+import CatalogSearchBox from "../components/search/CatalogSearchBox.js";
 import TrustStrip from "../components/homepage/TrustStrip.js";
 import QuickNavCards from "../components/homepage/QuickNavCards.js";
+import IndexNavBar from "../components/homepage/IndexNavBar.js";
 import ArticleList from "../components/content/ArticleList.js";
 import RecentLenses from "../components/homepage/RecentLenses.js";
 import HomeFooter from "../components/homepage/HomeFooter.js";
@@ -81,8 +83,14 @@ export default function HomePage() {
 
       <div style={PAGE_BASE_STYLE}>
         <HeroSection theme={t} brandMarkSrc={heroBrandMark} useDarkBrandFrame={useDarkBrandAssets} />
-        <TrustStrip theme={t} />
+        <CatalogSearchBox
+          theme={t}
+          heading="Find a lens or inventor"
+          description="Search by lens name, patent number, or author. Exact matches open directly."
+          showSuggestions
+        />
         <QuickNavCards theme={t} />
+        <IndexNavBar theme={t} />
         <div style={isDesktop ? { display: "flex", gap: "2rem", alignItems: "flex-start" } : {}}>
           <div style={isDesktop ? { flex: "1 1 0", minWidth: 0 } : {}}>
             <ArticleList articles={displayedArticles} theme={t} showMoreLink={showMoreLink} />
@@ -91,6 +99,7 @@ export default function HomePage() {
             <RecentLenses entries={RECENT_LENS_KEYS} theme={t} showUpdatesLink />
           </div>
         </div>
+        <TrustStrip theme={t} />
         <HomeFooter theme={t} />
       </div>
     </div>

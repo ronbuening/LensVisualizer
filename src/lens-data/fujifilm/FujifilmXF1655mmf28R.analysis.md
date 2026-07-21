@@ -112,7 +112,7 @@ The table below lists all 17 elements in the design, front to rear, with the ele
 |---|---|---|---|---|---|
 | **L11** | 1.84666 | 23.78 | **OHARA S-TIH53** (exact) | −179.4 | Cemented to L12; front face of the leading doublet. A high-index dense flint, its low Abbe number (strongly dispersive) lets it correct longitudinal and lateral chromatic aberration generated downstream while carrying only modest refractive power. The patent paragraph [0058] explicitly assigns this role: *"the 1-1 negative lens L11 bears the function of correcting longitudinal chromatic aberration, lateral chromatic aberration, and spherical aberration."* |
 | **L12** | 1.61800 | 63.33 | **OHARA S-PHM52** (Δνd = +0.06) | +140.4 | Cemented to L11 to form the achromatic leading doublet. A lanthanum phosphate crown (PHM family, low-dispersion, high-index for its νd class). |
-| **L13** | 1.75500 | 52.32 | Near **OHARA S-LAL60** (Δnd = −0.0005, Δνd = −0.75) or melt variant; six-digit code **755523** | +94.1 | Separate positive lanthanum crown. Distributes positive power between two positive lenses in G1 (the patent rationale, paragraph [0058]) to suppress spherical aberration generation while keeping the overall group power short enough to shorten track. |
+| **L13** | 1.75500 | 52.32 | **HIKARI J-LASKH2** catalog equivalent (Δnd = 0, Δνd = +0.02); six-digit code **755523**, production vendor unspecified | +94.1 | Separate positive lanthanum crown. Distributes positive power between two positive lenses in G1 (the patent rationale, paragraph [0058]) to suppress spherical aberration generation while keeping the overall group power short enough to shorten track. |
 
 ### 4.2 Variator (G2) — negative meniscus leader + cemented doublet + negative singlet
 
@@ -177,7 +177,8 @@ Glass identification confidence (Δ values reported as **catalog minus patent**)
 - **Exact catalog matches** (|Δnd| < 0.0001 and |Δνd| < 0.05 at time of patent filing, 2014): L11, L21, L23, L24, L32A, L32B, L33B, L42, L51 — nine elements confirmed at rounding precision.
 - **Very close** (within ~0.07 νd units of the current published catalog value): L12 (S-PHM52, Δνd = +0.06), L33A and L43 (S-FPL51, Δνd = +0.07 vs. modern datasheet; 0.00 vs. 2014 datasheet), L41 (S-PHM52, Δνd = +0.06). The 2014-era OHARA catalog listed slightly different νd values for phosphate-crown and fluor-phosphate glasses than today's; these elements are exact matches against catalog data contemporary with the patent's priority date.
 - **Close** (within ~0.3 νd units): L22 (S-LAL14, Δνd = −0.12), L34 (L-PHM52, Δνd = +0.27), L31 (L-TIM28, Δnd = +0.0044, Δνd = +0.28). All three likely represent melt-variant or contemporary-catalog differences rather than a different glass family.
-- **Family-level only** (no close direct match): L13 (six-digit code **755523**) — no catalog glass within 2 νd units; the design may use a bespoke melt or a now-discontinued catalog entry.
+- **Catalog-equivalent match:** L13 (six-digit code **755523**) now resolves to HIKARI J-LASKH2 at the stored index and
+  within 0.02 νd; this is a dispersion model, not a claim about Fujifilm's production supplier.
 
 Of note: L21's glass is confirmed as **HOYA M-TAFD305** (six-digit code 851401) — an exact catalog match. OHARA's pocket-catalog cross-reference tables (2018 and 2023 editions) list this six-digit code directly against M-TAFD305, with HIKARI (J-LASFH21 family) and Sumita (K-VC91/K-VC99 series) offering functional equivalents. For a Japanese manufacturer using precision-glass-molded aspheric elements, HOYA moldable glasses are an entirely expected sourcing choice. The HOYA M-prefix designates a low-Tg composition for precision glass molding (PGM), consistent with L21 being a double-aspheric element.
 

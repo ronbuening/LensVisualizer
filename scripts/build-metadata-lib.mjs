@@ -213,6 +213,7 @@ export function buildRouteFreshness({
   makerSlugs,
   mountIds = [],
   formatIds = [],
+  authors = [],
   makerDetailsFreshness,
   fallbackDate,
 }) {
@@ -227,8 +228,10 @@ export function buildRouteFreshness({
     [...allLensFreshness, ...allArticleFreshness, makerDetailsFreshness],
     fallbackDate,
   );
+  routeFreshness["/search"] = combineFreshnessEntries(allLensFreshness, fallbackDate);
   routeFreshness["/lenses"] = combineFreshnessEntries(allLensFreshness, fallbackDate);
   routeFreshness["/makers"] = combineFreshnessEntries([...allLensFreshness, makerDetailsFreshness], fallbackDate);
+  routeFreshness["/authors"] = combineFreshnessEntries(allLensFreshness, fallbackDate);
   routeFreshness["/mounts"] = combineFreshnessEntries(allLensFreshness, fallbackDate);
   routeFreshness["/formats"] = combineFreshnessEntries(allLensFreshness, fallbackDate);
   routeFreshness["/articles"] = combineFreshnessEntries(allArticleFreshness, fallbackDate);
@@ -264,6 +267,12 @@ export function buildRouteFreshness({
   for (const formatId of formatIds) {
     const formatLensFreshness = lenses.filter((lens) => lens.imageFormatId === formatId).map((lens) => lens.freshness);
     routeFreshness[`/formats/${formatId}`] = combineFreshnessEntries(formatLensFreshness, fallbackDate);
+  }
+
+  for (const author of authors) {
+    const authorLensKeys = new Set(author.lensKeys);
+    const authorLensFreshness = lenses.filter((lens) => authorLensKeys.has(lens.key)).map((lens) => lens.freshness);
+    routeFreshness[`/authors/${author.slug}`] = combineFreshnessEntries(authorLensFreshness, fallbackDate);
   }
 
   return routeFreshness;

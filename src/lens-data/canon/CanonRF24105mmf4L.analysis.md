@@ -123,7 +123,8 @@ L3 is the most complex unit, containing 8 elements across 5 air-separated groups
 **Aperture Stop (STO)** — Flat, d = 0.30 mm.
 Located at the very front of L3, consistent with all five patent examples.
 
-**L8** — Plano-Convex, 911353-code lanthanum glass (nd = 1.911, vd = 35.3)
+**L8** — Plano-Convex, 911353-code lanthanum glass (nd = 1.911, vd = 35.3); the code now resolves to the
+coefficient-backed HOYA TAFD35 catalog equivalent, without asserting that Canon sourced the production melt from HOYA.
 R₁ = +44.965, R₂ = ∞ (plano rear). Center thickness 2.30 mm.
 Thin-lens f ≈ +49.4 mm. A dense lanthanum flint placed immediately after the stop to start converging the beam. Its high index allows the required power with relatively gentle curvature, keeping spherical aberration low at the stop where the marginal ray height is at its minimum.
 
@@ -184,7 +185,9 @@ The positive meniscus form (concave toward the object) also contributes a positi
 
 ## 4. Glass Selection Summary
 
-The design uses 12 distinct glass types across 18 elements. The patent publishes only optical constants, not vendor glass names; after audit, ten of the twelve glass families resolve to catalog entries and two are retained as code-based fallbacks pending a future catalog source.
+The design uses 12 distinct glass types across 18 elements. The patent publishes only optical constants, not vendor
+glass names; 11 of the 12 glass families now resolve to catalog entries, while one remains a code-based fallback pending
+a future catalog source.
 
 | Glass Code | Catalog label | nd | vd | Elements | Category |
 |---|---|---|---|---|---|
@@ -192,7 +195,7 @@ The design uses 12 distinct glass types across 18 elements. The patent publishes
 | 1729/547 | S-LAL18 | 1.72916 | 54.7 | L2, L3, L16 | Lanthanum crown |
 | 1954/323 | S-LAH98 | 1.95375 | 32.3 | L4, L9 | Ultra-high-index lanthanum flint |
 | 1583/594 | L-BAL42 | 1.58313 | 59.4 | **L5, L15** | Moldable barium crown |
-| 1911/353 | 911353 code | 1.91082 | 35.3 | L8 | Dense lanthanum flint |
+| 1911/353 | TAFD35 (HOYA catalog equivalent) | 1.91082 | 35.3 | L8 | Dense lanthanum flint |
 | 1595/677 | S-FPM2 / MC-7 | 1.59522 | 67.7 | L10 | Phosphate crown |
 | 1750/353 | S-NBH51 | 1.74951 | 35.3 | L11 | Dense flint |
 | 2001/255 | TAFD40 | 2.00069 | 25.5 | **L12** | Ultra-high-index flint |

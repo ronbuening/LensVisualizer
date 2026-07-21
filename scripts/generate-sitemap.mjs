@@ -17,14 +17,23 @@ const DIST_DIR = join(import.meta.dirname, "..", "dist");
 /** Assign sitemap priority based on route path prefix. */
 function routePriority(route) {
   if (route === "/") return "1.0";
+  if (route === "/search") return "0.9";
   if (route === "/lenses") return "0.9";
   if (route.startsWith("/lens/")) return "0.8";
-  if (route === "/makers" || route === "/mounts" || route === "/formats" || route === "/articles") return "0.7";
+  if (
+    route === "/makers" ||
+    route === "/authors" ||
+    route === "/mounts" ||
+    route === "/formats" ||
+    route === "/articles"
+  )
+    return "0.7";
   if (
     route.startsWith("/makers/") ||
     route.startsWith("/mounts/") ||
     route.startsWith("/formats/") ||
-    route.startsWith("/articles/")
+    route.startsWith("/articles/") ||
+    route.startsWith("/authors/")
   ) {
     return "0.6";
   }

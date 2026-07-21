@@ -3,14 +3,24 @@
 A focused follow-up to the chromatic dispersion overhaul. Current architecture is summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md). The chromatic engine now uses this preference cascade:
 air → complete measured `nC`/`nF`/`ng` line indices → catalog Sellmeier → partial measured `nC`/`nF` line indices →
-Abbe + dPgF → plain Abbe, backed by a 302-entry vendor catalog. What remains is a per-lens queue of proprietary, unidentified, or
-inconsistently annotated glasses that no public catalog can safely resolve by name alone.
+Abbe + dPgF → plain Abbe, backed by the current vendor catalog in `src/optics/glassCatalog.ts`. What remains is a
+per-lens queue of proprietary, unidentified, or inconsistently annotated glasses that no public catalog can safely
+resolve by name alone.
 
 ## Companion report: catalog mismatches
 
 Separate from the proprietary-glass list below, there is a second category of dispersion-quality issue: surfaces whose `glass` annotation **does** resolve to a vendor catalog entry but whose stored `surface.nd` disagrees with the catalog Sellmeier nd by more than the safety-net tolerance (5e-3) — typically because the annotation was a speculative guess (e.g. `"S-LAH79 (OHARA) probable"` when the real glass is something else).
 
-The dispersion engine rejects these mismatches and falls through to the Abbe path. The full per-surface list is auto-generated and lives in [catalog-mismatches.generated.md](generated/catalog-mismatches.generated.md). Regenerate it with `npm test -- catalogMismatchScan`. Candidate relabels live in [glass-relabel-candidates.generated.md](generated/glass-relabel-candidates.generated.md), regenerated with `npm test -- glassRelabelCandidatesScan`; unresolved non-matching tokens live in [unresolved-glass.generated.md](generated/unresolved-glass.generated.md), regenerated with `npm test -- unresolvedGlassScan`. The consolidated three-sweep queue is [glass-coverage-opportunities.generated.md](generated/glass-coverage-opportunities.generated.md), regenerated with `npm test -- glassCoverageOpportunitiesScan`.
+The dispersion engine rejects these mismatches and falls through to the best lower-quality path available: direct line
+indices when present, otherwise dPgF-corrected/plain Abbe or constant index. The full per-surface list is auto-generated
+and lives in [catalog-mismatches.generated.md](generated/catalog-mismatches.generated.md). Regenerate it with
+`npm test -- catalogMismatchScan`. Candidate relabels live in
+[glass-relabel-candidates.generated.md](generated/glass-relabel-candidates.generated.md), regenerated with
+`npm test -- glassRelabelCandidatesScan`; unresolved non-matching tokens live in
+[unresolved-glass.generated.md](generated/unresolved-glass.generated.md), regenerated with
+`npm test -- unresolvedGlassScan`. The consolidated three-sweep queue is
+[glass-coverage-opportunities.generated.md](generated/glass-coverage-opportunities.generated.md), regenerated with
+`npm test -- glassCoverageOpportunitiesScan`.
 
 The fix for a mismatch is one of:
 
@@ -31,15 +41,15 @@ For both, the Sellmeier path is permanently closed. The line-indices path is the
 
 ## How the backfill applies
 
-When you find line-index data in a patent, populate the matching element's `spectral` block in its `*.data.ts` file. The schema is in [src/types/optics.ts](../src/types/optics.ts) (`SurfaceSpectral` interface):
+When you find line-index data in a patent, populate the fields directly on the matching `ElementData` object in its
+`*.data.ts` file. The authoring schema is `ElementData` in [src/types/optics.ts](../src/types/optics.ts);
+`SurfaceSpectral` is derived at runtime and is not an authored wrapper.
 
 ```ts
-spectral: {
-  nC: 1.49234,   // C-line (656.3 nm) refractive index
-  nF: 1.49978,   // F-line (486.1 nm) refractive index
-  ng: 1.50387,   // g-line (435.8 nm) — optional but recommended for APO designs
-  dPgF: 0.0376,  // anomalous partial dispersion deviation (often listed separately)
-}
+nC: 1.49234,   // C-line (656.3 nm) refractive index
+nF: 1.49978,   // F-line (486.1 nm) refractive index
+ng: 1.50387,   // g-line (435.8 nm) — optional but recommended for APO designs
+dPgF: 0.0376,  // anomalous partial dispersion deviation (often listed separately)
 ```
 
 The dispersion cascade in [src/optics/dispersion.ts](../src/optics/dispersion.ts) honors these immediately. With `nC`/`nF` populated the surface upgrades from `abbe` to `lineIndices` quality, and the LCA inset's quality badge will reflect the change.

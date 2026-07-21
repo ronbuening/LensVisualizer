@@ -231,6 +231,7 @@ describe("build metadata helpers", () => {
       makerSlugs: ["canon", "nikon"],
       mountIds: ["canon-rf", "nikon-z"],
       formatIds: ["135-full-frame"],
+      authors: [{ name: "Author A", slug: "author-a", lensKeys: ["lens-a"], patentCount: 1 }],
       makerDetailsFreshness: { publishedOn: "2026-03-17", lastModified: "2026-03-26" },
       fallbackDate: "2026-03-27",
     });
@@ -240,6 +241,14 @@ describe("build metadata helpers", () => {
       lastModified: "2026-03-27",
     });
     expect(routeFreshness["/lenses"]).toEqual({
+      publishedOn: "2026-03-19",
+      lastModified: "2026-03-27",
+    });
+    expect(routeFreshness["/search"]).toEqual({
+      publishedOn: "2026-03-19",
+      lastModified: "2026-03-27",
+    });
+    expect(routeFreshness["/authors"]).toEqual({
       publishedOn: "2026-03-19",
       lastModified: "2026-03-27",
     });
@@ -258,6 +267,10 @@ describe("build metadata helpers", () => {
     expect(routeFreshness["/formats/135-full-frame"]).toEqual({
       publishedOn: "2026-03-19",
       lastModified: "2026-03-27",
+    });
+    expect(routeFreshness["/authors/author-a"]).toEqual({
+      publishedOn: "2026-03-19",
+      lastModified: "2026-03-25",
     });
   });
 });

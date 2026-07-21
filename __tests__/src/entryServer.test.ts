@@ -16,6 +16,7 @@ import { CATALOG_KEYS, LENS_CATALOG } from "../../src/utils/catalog/lensCatalog.
 import { IMAGE_FORMAT_OPTIONS, MOUNT_OPTIONS } from "../../src/pages/lensIndex/catalog.js";
 import { getMountDetails } from "../../src/utils/catalog/mountDetails.js";
 import { getImageFormatDetails } from "../../src/utils/catalog/imageFormatDetails.js";
+import { AUTHORS, patentsForAuthor } from "../../src/utils/catalog/authorCatalog.js";
 import {
   deriveMaker,
   SITE_NAME,
@@ -39,6 +40,8 @@ const TEST_RENDERABLE_MOUNT = MOUNT_OPTIONS.find((mount) => mount.id === "canon-
 const TEST_FORMAT = IMAGE_FORMAT_OPTIONS[0];
 const TEST_FORMAT_DETAILS = getImageFormatDetails(TEST_FORMAT.id)!;
 const TEST_ARTICLE = ARTICLES[0];
+const TEST_AUTHOR = AUTHORS.find((author) => author.patentCount > 0)!;
+const TEST_AUTHOR_PATENT = patentsForAuthor(TEST_AUTHOR.name)[0];
 
 function escapeHtmlText(value: string): string {
   return value
@@ -64,11 +67,14 @@ describe("SSR test preconditions", () => {
 describe("SSR render — all routes produce valid helmet output", () => {
   const routes = [
     ["/", "home"],
+    ["/search", "search"],
     ["/lenses", "lens index"],
     [`/lens/${TEST_LENS_SLUG}`, "lens page"],
     [`/compare/${TEST_LENS_SLUG}/${CATALOG_KEYS[1]}`, "compare page"],
     ["/makers", "makers index"],
     [`/makers/${TEST_MAKER_SLUG}`, "maker page"],
+    ["/authors", "authors index"],
+    [`/authors/${TEST_AUTHOR.slug}`, "author page"],
     ["/mounts", "mounts index"],
     [`/mounts/${TEST_MOUNT.id}`, "mount page"],
     ["/formats", "formats index"],
@@ -89,9 +95,12 @@ describe("SSR render — all routes produce valid helmet output", () => {
 describe("SSR render — content pages produce non-empty HTML", () => {
   const contentRoutes = [
     ["/lenses", "lens index"],
+    ["/search", "search"],
     [`/lens/${TEST_LENS_SLUG}`, "lens page"],
     ["/makers", "makers index"],
     [`/makers/${TEST_MAKER_SLUG}`, "maker page"],
+    ["/authors", "authors index"],
+    [`/authors/${TEST_AUTHOR.slug}`, "author page"],
     ["/mounts", "mounts index"],
     [`/mounts/${TEST_MOUNT.id}`, "mount page"],
     ["/formats", "formats index"],
@@ -179,6 +188,35 @@ describe("SSR render — lens index /lenses", () => {
     expect(scripts).toContain('"@type":"CollectionPage"');
     expect(scripts).toContain('"@type":"Dataset"');
     expect(scripts).toContain('"@type":"ItemList"');
+  });
+});
+
+/* ── Search and authors ── */
+
+describe("SSR render — search and author pages", () => {
+  it("renders the search landing page with canonical metadata", () => {
+    const { helmet, html } = render("/search");
+    expect(helmet.title.toString()).toContain("Search Lens Patents and Authors");
+    expect(helmet.link.toString()).toContain(`${SITE_URL}/search`);
+    expect(html).toContain("Search the Catalog");
+  });
+
+  it("renders the crawlable author index", () => {
+    const { helmet, html } = render("/authors");
+    expect(helmet.title.toString()).toContain("Lens Patent Authors");
+    expect(helmet.link.toString()).toContain(`${SITE_URL}/authors`);
+    expect(helmet.script.toString()).toContain('"@type":"ItemList"');
+    expect(html).toContain(TEST_AUTHOR.name);
+  });
+
+  it("renders a crawlable author patent collection", () => {
+    const url = `/authors/${TEST_AUTHOR.slug}`;
+    const { helmet, html } = render(url);
+    expect(helmet.title.toString()).toContain(TEST_AUTHOR.name);
+    expect(helmet.link.toString()).toContain(url);
+    expect(helmet.script.toString()).toContain('"@type":"CollectionPage"');
+    expect(html).toContain(TEST_AUTHOR.name);
+    expect(html).toContain(escapeHtmlText(TEST_AUTHOR_PATENT.patentNumber));
   });
 });
 

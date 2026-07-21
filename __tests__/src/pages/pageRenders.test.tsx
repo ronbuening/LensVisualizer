@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { cleanup, screen, waitFor } from "@testing-library/react";
+import { cleanup, screen, waitFor, within } from "@testing-library/react";
 import { HelmetProvider } from "react-helmet-async";
 import type { ReactElement, ReactNode } from "react";
 import { Route, Routes, useLocation } from "react-router";
@@ -66,8 +66,18 @@ describe("static page renders", () => {
     expect(screen.getByText("Interactive Camera Lens Cross-Section Visualizer")).toBeTruthy();
     expect(screen.getAllByRole("link", { name: /Lens Library/i }).length).toBeGreaterThan(0);
     expect(screen.getAllByRole("link", { name: /Browse by Maker/i }).length).toBeGreaterThan(0);
+    expect(screen.getByRole("searchbox", { name: /Search lenses, patents, and authors/i })).toBeTruthy();
+    expect(screen.getByRole("link", { name: "Search" }).style.width).toBe("30px");
+    expect(screen.getByRole("link", { name: "Search" }).style.height).toBe("30px");
+    const indexNav = screen.getByRole("navigation", { name: "Catalog indexes" });
+    expect(within(indexNav).getByRole("link", { name: "Mounts" }).getAttribute("href")).toBe("/mounts");
+    expect(within(indexNav).getByRole("link", { name: "Formats" }).getAttribute("href")).toBe("/formats");
+    expect(within(indexNav).getByRole("link", { name: "Authors" }).getAttribute("href")).toBe("/authors");
+    expect(within(indexNav).getByRole("link", { name: "Articles" }).getAttribute("href")).toBe("/articles");
     expect(screen.getByText("Articles & Guides")).toBeTruthy();
     expect(screen.getByText(HOMEPAGE_ARTICLES[0].title)).toBeTruthy();
+    const bodyText = document.body.textContent ?? "";
+    expect(bodyText.indexOf("Patent-derived optical models")).toBeGreaterThan(bodyText.indexOf("Articles & Guides"));
     expect(screen.getByRole("link", { name: "Sitemap" }).getAttribute("href")).toBe("/sitemap.xml");
   });
 

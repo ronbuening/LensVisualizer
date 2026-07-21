@@ -134,17 +134,26 @@ This is the most complex unit in the design, containing six elements organized i
 A **positive biconvex** element (f = +34.5 mm) in heavy flint glass (OHARA S-TIH14). Located immediately after the aperture stop, it begins converging the beam toward the image. Its high dispersion enables chromatic correction when paired with the subsequent cemented doublet.
 
 **L9** (surfaces 17–18): nd = 1.58144, νd = 40.8
-A **positive plano-convex** element (f = +34.1 mm) in barium crown glass (six-digit code 581408; no current catalog match). The rear surface is flat (R = ∞). This element is cemented to L10.
+A **positive plano-convex** element (f = +34.1 mm) in barium crown glass. Code 581408 resolves to the
+coefficient-backed OHARA PBL25 catalog equivalent; the patent does not identify the production vendor. The rear surface
+is flat (R = ∞). This element is cemented to L10.
 
 **L10** (surfaces 18–19): nd = 2.00100, νd = 29.1
-A negative element (f = −20.5 mm) in ultra-high-index dense flint glass (six-digit code 001291; no current catalog match), with a **plano-convex geometric form** — the front surface is flat (the cemented junction with L9) and the rear surface is convex (R₂ = +20.5 mm). Despite its convex exit surface, the element has strong negative optical power because light transitions from the very high refractive index glass (nd = 2.001) into air at that surface, producing divergence. The L9/L10 cemented doublet provides achromatic correction within subunit X and controls the beam diameter entering the OIS subunit.
+A negative element (f = −20.5 mm) in ultra-high-index dense flint glass. Code 001291 resolves to the coefficient-backed
+OHARA S-LAH99 catalog equivalent; the patent does not identify the production vendor. It has a **plano-convex geometric
+form** — the front surface is flat (the cemented junction with L9) and the rear surface is convex (R₂ = +20.5 mm).
+Despite its convex exit surface, the element has strong negative optical power because light transitions from the very
+high refractive index glass (nd = 2.001) into air at that surface, producing divergence. The L9/L10 cemented doublet
+provides achromatic correction within subunit X and controls the beam diameter entering the OIS subunit.
 
 #### Subunit Y — Image Stabilization Unit (fy = +41.45 mm)
 
 This is the subunit that physically shifts perpendicular to the optical axis during image stabilization (OIS). At the telephoto end, the patent specifies a correction shift of 0.509 mm. The subunit consists of a single cemented doublet:
 
 **L11** (surfaces 20–21): nd = 2.00069, νd = 25.5
-A **negative meniscus** (f = −40.9 mm) in ultra-high-index dense flint glass (six-digit code 001255; no current catalog match). This is the first element of the cemented IS doublet.
+A **negative meniscus** (f = −40.9 mm) in ultra-high-index dense flint glass. Code 001255 resolves to the
+coefficient-backed HOYA TAFD40 catalog equivalent; the patent does not identify the production vendor. This is the first
+element of the cemented IS doublet.
 
 **L12** (surfaces 21–22): nd = 1.72000, νd = 43.7
 A **positive biconvex** element (f = +20.6 mm) in lanthanum flint glass (OHARA S-LAM3), cemented to L11.
@@ -260,7 +269,8 @@ The design makes extensive use of ultra-high-index glasses:
 
 - **nd = 2.00100** (νd = 29.1): Used in L10 and L13 — both negative elements in the correction group. This 001291-code glass allows extremely strong curvatures in compact form. In the IS unit, the high index keeps the elements thin and lightweight, directly benefiting the stabilization mechanism's speed and power consumption.
 
-- **nd = 2.00069** (νd = 25.5): Used in L11 — the negative element of the IS cemented doublet. This 001255-code glass is not currently catalog-resolved in the project.
+- **nd = 2.00069** (νd = 25.5): Used in L11 — the negative element of the IS cemented doublet. The 001255 code resolves
+  to the coefficient-backed HOYA TAFD40 catalog equivalent.
 
 These nd ≈ 2.0 glasses are expensive specialty materials, but their use is justified in the IS subunit where minimizing weight and diameter directly improves stabilization performance.
 
@@ -276,11 +286,11 @@ These nd ≈ 2.0 glasses are expensive specialty materials, but their use is jus
 | L6 | 1.92286 | 20.9 | E-FD15 type | Ultra-high index dense flint |
 | L7 | 1.77250 | 49.6 | S-LAH66 type | Lanthanum crown |
 | L8 | 1.76182 | 26.5 | S-TIH14 type | Heavy flint |
-| L9 | 1.58144 | 40.8 | 581408 code | Barium crown |
-| L10 | 2.00100 | 29.1 | 001291 code | Ultra-high index dense flint |
-| L11 | 2.00069 | 25.5 | 001255 code | Ultra-high index dense flint |
+| L9 | 1.58144 | 40.8 | PBL25 (OHARA equivalent; 581408) | Barium crown |
+| L10 | 2.00100 | 29.1 | S-LAH99 (OHARA equivalent; 001291) | Ultra-high index dense flint |
+| L11 | 2.00069 | 25.5 | TAFD40 (HOYA equivalent; 001255) | Ultra-high index dense flint |
 | L12 | 1.72000 | 43.7 | S-LAM3 type | Lanthanum flint |
-| L13 | 2.00100 | 29.1 | 001291 code | Ultra-high index dense flint |
+| L13 | 2.00100 | 29.1 | S-LAH99 (OHARA equivalent; 001291) | Ultra-high index dense flint |
 | L14 | 1.53110 | 55.9 | 531559 code | Barium light crown **(ASPH)** |
 | L15 | 1.85478 | 24.8 | S-TIH53W type | Short flint |
 | L16 | 1.59282 | 68.6 | 593686 code | Borosilicate crown |

@@ -86,15 +86,15 @@ catalog is being backfilled, but when present it must be a non-empty array of un
 | `bronica-etr` | Zenza Bronica ETR | Bronica ETR 6x4.5 medium-format SLR mount; usually pairs with `645`. |
 | `bronica-gs` | Zenza Bronica GS | Bronica GS-1 6x7 medium-format SLR mount; usually pairs with `6x7`. |
 | `bronica-sq` | Zenza Bronica SQ | Bronica SQ 6x6 medium-format SLR mount; usually pairs with `6x6`. |
-| `contax-yashica` | Yashica / Contax | Contax/Yashica 35 mm SLR mount; usually pairs with `135-full-frame`. |
+| `contax-yashica` | Contax / Yashica | Contax/Yashica 35 mm SLR mount; usually pairs with `135-full-frame`. |
 
 ## Image Format IDs
 
 Use `imageFormat` for the single image circle or capture format the prescription is intended to cover. The field is
 optional while the catalog is being backfilled, but when present it must be exactly one known id.
 
-Dimensions are nominal usable frame dimensions in millimeters and are intended for catalog grouping plus future
-distortion, field, and aberration views.
+Dimensions are nominal usable frame dimensions in millimeters and are used for catalog grouping plus image-field limits
+in distortion, vignetting, bokeh, and aberration analysis.
 
 | ID | Display Label | Width x Height (mm) | Diagonal (mm) | Aspect Ratio |
 |----|---------------|---------------------|---------------|--------------|

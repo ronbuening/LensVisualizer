@@ -11,10 +11,15 @@
 
 No manual imports or catalog edits required.
 
+The organizer moves only the root-level `.data.ts` file and its same-stem `.analysis.md`. It does not move
+`.audit.md`; create or relocate an audit log separately in the final maker folder. If authoring directly inside a maker
+folder, use `../../types/optics.js` instead of the template's root-level `../types/optics.js` import.
+
 ## Reference Documents
 
 - **Full data-file format specification:** `src/lens-data/LENS_DATA_SPEC.md`
 - **Companion analysis-file format:** `src/lens-data/LENS_ANALYSIS_SPEC.md` — required skeleton, conditional sections, voice and conventions for `*.analysis.md`.
+- **AI construction/integration handoff:** [lens-data-integration-handoff.md](lens-data-integration-handoff.md) — compact process and recurring issues from recent lens batches.
 - **Annotated template:** `src/lens-data/TEMPLATE.data.ts.template`
 - **Shared defaults:** `src/lens-data/defaults.ts`
 - **Mirror/folded reference fixtures:** `src/lens-data/reference/*.data.ts` — hidden synthetic examples for first-surface mirrors, annular obstructions, Mangin-style second-surface mirrors, Newtonian side focus, Cassegrain/Gregorian/Maksutov-style folded paths, and annular blocker behavior.
@@ -164,6 +169,10 @@ and conic height limits (K > 0). Rare designs with the aperture stop physically 
 `stopPlacement: "inside-element"` on `STO` and `fromSurface`/`toSurface` on the containing element; see
 `src/lens-data/LENS_DATA_SPEC.md` for the embedded-stop rules.
 
+Corpus tests add policy checks beyond the runtime validator, including structured patent metadata, the analysis-file
+metadata/section floor, catalog integrity, and production render diagnostics. Passing a single `buildLens()` call is
+therefore necessary but not the complete integration gate.
+
 ### Zoom Lenses
 
 If the patent describes a variable focal-length lens with spacing tables at multiple focal lengths, add zoom fields:
@@ -206,19 +215,20 @@ For constant-aperture zooms (e.g., f/2.8), keep `nominalFno` as a single number.
 
 ## Capturing nC / nF / ng during authoring
 
-When the patent embodiment lists per-element line indices (typically `nC`, `nF`, sometimes `ng`) alongside the standard `nd`/`vd`, capture them on the matching `ElementData.spectral` block:
+When the patent embodiment lists per-element line indices (typically `nC`, `nF`, sometimes `ng`) alongside the standard
+`nd`/`vd`, capture them directly on the matching `ElementData` object. Do not add a `spectral` wrapper; that name is used
+only for runtime-derived surface data.
 
 ```typescript
-spectral: {
-  nC: 1.49234,   // C-line (656.3 nm)
-  nF: 1.49978,   // F-line (486.1 nm)
-  ng: 1.50387,   // g-line (435.8 nm) — optional but recommended for APO designs
-  dPgF: 0.0376,  // anomalous partial dispersion deviation (also recorded by the codemod)
-}
+nC: 1.49234,   // C-line (656.3 nm)
+nF: 1.49978,   // F-line (486.1 nm)
+ng: 1.50387,   // g-line (435.8 nm) — optional but recommended for APO designs
+dPgF: 0.0376,  // anomalous partial dispersion deviation
 ```
 
 This matters for **proprietary glasses** that won't resolve to the public Sellmeier catalog (Sumita unidentified melts, "phosphate crown ED" placeholders, etc.). The dispersion engine cascade in `src/optics/dispersion.ts` then routes the surface to the `lineIndices` quality tier instead of falling back to the Abbe approximation, and the LCA inset's quality badge reflects the upgrade.
 
-For catalog-resolvable glass strings (`S-FPL51`, `N-BK7`, etc.) you don't need to populate `spectral` — the engine reaches Sellmeier quality directly from the catalog.
+For catalog-resolvable glass strings (`S-FPL51`, `N-BK7`, etc.) you do not need to duplicate line indices—the engine
+reaches Sellmeier quality directly from the catalog.
 
 The prioritized list of lenses still needing patent line-index backfill lives in [agent_docs/proprietary-glass-backfill.md](proprietary-glass-backfill.md).

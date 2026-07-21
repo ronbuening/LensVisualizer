@@ -11,8 +11,9 @@ links outward only when the task crosses boundaries.
   [`adding_a_route.md`](adding_a_route.md), [`adding_ui_controls.md`](adding_ui_controls.md),
   [`testing_recipes.md`](testing_recipes.md), [`theme_tokens.md`](theme_tokens.md). Read the matching
   recipe before starting one of these tasks.
-- Lens/content workflow docs at the root — lens authoring, patent audits, semi-diameter diagram audits, articles,
-  changelog, comments, and gotchas.
+- Lens/content workflow docs at the root — lens authoring, the copy-ready
+  [`lens-data-integration-handoff.md`](lens-data-integration-handoff.md), patent audits, semi-diameter diagram audits,
+  articles, changelog, comments, and gotchas.
 - Glass catalog workflow docs at the root — catalog buildout, relabel follow-up, and proprietary-glass backfill.
 - Agent instruction guidance at the root — [`agent-md-best-practices.md`](agent-md-best-practices.md) for general
   AGENTS.md files and [`claude-md-best-practices.md`](claude-md-best-practices.md) for Claude-specific files.
@@ -58,7 +59,9 @@ Individual report commands:
 - [`generated/glass-relabel-by-lens.generated.md`](generated/glass-relabel-by-lens.generated.md) — `npm test -- glassRelabelByLensScan`
 - [`generated/six-digit-glass-codes.generated.md`](generated/six-digit-glass-codes.generated.md) — `npm test -- sixDigitGlassCodeScan`
 - [`generated/six-digit-glass-codes-missing-sellmeier.generated.md`](generated/six-digit-glass-codes-missing-sellmeier.generated.md) — `npm test -- sixDigitGlassCodeScan`
+- [`generated/six-digit-glass-codes-missing-sellmeier-reviewed.md`](generated/six-digit-glass-codes-missing-sellmeier-reviewed.md) — manual review sidecar; preserve it when regenerating reports
 - [`generated/sellmeier-coverage.generated.md`](generated/sellmeier-coverage.generated.md) — `npm test -- sellmeierCoverageScan`
+- [`generated/glass-coverage-opportunities.generated.md`](generated/glass-coverage-opportunities.generated.md) — `npm test -- glassCoverageOpportunitiesScan`
 - [`generated/mirror-fixtures.generated.md`](generated/mirror-fixtures.generated.md) — `npm test -- mirrorFixtureAuthoringReport`
 - [`generated/lens-mount-svg-specifications.md`](generated/lens-mount-svg-specifications.md) + [`generated/mounts/`](generated/mounts/) — `npm test -- mountSvgSpecificationsReport`
 

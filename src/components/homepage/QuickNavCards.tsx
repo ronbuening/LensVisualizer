@@ -57,7 +57,7 @@ export default function QuickNavCards({ theme: t }: QuickNavCardsProps) {
         display: "grid",
         gridTemplateColumns: isWide ? "1fr 1fr" : "1fr",
         gap: isWide ? "1rem" : "0.75rem",
-        margin: "0 0 2.5rem",
+        margin: "0 0 0.75rem",
       }}
     >
       {cards.map((card) => (

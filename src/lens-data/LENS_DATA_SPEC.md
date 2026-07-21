@@ -4,12 +4,18 @@ Reference for creating new `*.data.ts` files in `lens-data/`.
 
 ## Quick Start
 
-1. Copy `TEMPLATE.data.ts.template` to `YourLens.data.ts` or a nested path like `maker/YourLens.data.ts`
+1. Copy `TEMPLATE.data.ts.template` to the lens-data root as `YourLens.data.ts`
 2. Fill in all fields following this spec
 3. Optionally add `YourLens.analysis.md` for the description panel
-4. Auto-registration picks it up — no imports or catalog edits needed
+4. Run `npm run generate:metadata`; the organizer moves the root-level data/analysis pair into the derived maker folder and rewrites the type import
+5. Auto-registration picks it up — no imports or catalog edits needed
 
 File naming: `lens-data/**/*.data.ts` (glob pattern used for auto-discovery). Each file imports and uses `satisfies LensDataInput` for compile-time type checking. Optional analysis files use the same relative stem path with a `.analysis.md` suffix.
+
+The root-first workflow is the least error-prone because the template's `../types/optics.js` import is correct there. If
+you create a file directly in `lens-data/<maker>/`, change that import to `../../types/optics.js`. The organizer moves
+only a root-level `.data.ts` file and its same-stem `.analysis.md`; create or move any `.audit.md` separately after the
+maker folder is known.
 
 Ordinary photographic lenses still use the historical front-to-rear sequential prescription by default. Mirror lenses and telescope-style reference fixtures opt into the generalized optical-path model with `opticalPath` and per-surface `interaction` fields, described below.
 
@@ -28,10 +34,15 @@ Per-lens patent audit logs use `*.audit.md` alongside the data file. They are no
 **Do NOT include:**
 - **Sensor glass / cover glass** — the protective or thermal compensation glass plate on the camera sensor (rear of the assembly)
 - **Filters** — UV, ND, polarizing, or other filters mounted on the lens or in front of the sensor
+- **Dummy / flare-cutter planes** — source-table bookkeeping surfaces that do not change medium and are not active
+  blockers in the modeled path
 - **Mechanical components** — focus motors, aperture blades (mechanical detail), barrel, mounts
 - **Parent/donor designs** — if the lens is a descendant of another design, transcribe only the final production or patent design shown, not intermediate parent elements
 
 For telescope and mirror-lens fixtures, include the optical surfaces that rays can hit, not the full mechanical tube. A secondary baffle or obstruction that clips rays belongs in `surfaces`; a spider vane, cell, barrel, or mount detail does not.
+
+When an omitted cover/filter plate changes the source's optical path length or quoted back focus, convert the remaining
+rear spacing to the documented air-equivalent distance instead of leaving the prescription silently short.
 
 ---
 
@@ -43,8 +54,8 @@ For telescope and mirror-lens fixtures, include the optical surfaces that rays c
 |-------|------|-------------|
 | `key` | `string` | Unique identifier (e.g. `"nokton-50f1"`). Used as catalog key. |
 | `name` | `string` | Full UI display name following the display-name convention below (e.g. `"NIKON NIKKOR Z 50mm f/1.8 S"`) |
-| `elements` | `array` | Glass elements, front to rear (min 1) |
-| `surfaces` | `array` | Optical surfaces, front to rear (min 1) |
+| `elements` | `array` | Physical glass/mirror elements (min 1); ordinary lenses list front to rear, while folded models document their stable model order |
+| `surfaces` | `array` | Optical surfaces (min 1); ordinary lenses list front to rear, while folded models may use signed displacements and explicit path order |
 | `nominalFno` | `number \| number[]` | Nominal f-number — single value for primes/constant-aperture zooms, or array (one per zoom position) for variable-aperture zooms (e.g. `[4.5, 5.76]`) |
 | `closeFocusM` | `number` | Minimum focus distance in meters |
 | `fstopSeries` | `array` | F-stop values for quick-select UI buttons |
@@ -58,7 +69,7 @@ These are merged automatically. Override only when needed.
 | `svgW` | `1080` | SVG viewport width (px) |
 | `svgH` | `490` | SVG viewport height (px) |
 | `clipMargin` | `1.0` | Clipping margin for element trimming |
-| `maxRimAngleDeg` | `~64.2` | Max rim angle (degrees), synchronized with validation's `sd/|R| = 0.9` spherical limit |
+| `maxRimAngleDeg` | `~64.2` | Maximum actual spherical/aspherical rim-slope angle; the default equals the old `sd/|R| = 0.9` threshold for a sphere |
 | `gapSagFrac` | `0.90` | Cross-gap sag intrusion fraction, synchronized with validation and rendering; must be > 0 and ≤ 1 |
 | `maxAspectRatio` | `1.6` | Max YSC/SC ratio — clamps vertical scale to prevent horizontal squashing on long lenses |
 | `focusStep` | `0.004` | Focus slider step size |
@@ -101,7 +112,7 @@ Keep it normalized even when the product's official styling varies by source:
 |-------|------|---------|-------------|
 | `maker` | `string` | | Manufacturer name (e.g. `"Nikon"`, `"Voigtländer"`). Used for maker pages and SEO metadata. If omitted, derived from the lens `name` via prefix matching. |
 | `visible` | `boolean` | `true` | Controls whether the lens appears in the UI catalog. Set to `false` to hide a lens from the dropdown without removing its data file. |
-| `subtitle` | `string` | | Legacy patent/example context. Used as the UI-header fallback when structured patent metadata is unavailable. |
+| `subtitle` | `string` | | Compact patent/example/design-correlation context. Used as the UI-header fallback when structured patent metadata is unavailable and retained by several corpus reports for source/example matching. |
 | `specs` | `string[]` | | Spec strings displayed in header |
 | `focalLengthMarketing` | `number \| [number, number]` | | Marketed/nominal focal length in mm. Single number for primes (e.g. `50`); `[wide, tele]` tuple for zooms (e.g. `[70, 200]`). |
 | `focalLengthDesign` | `number \| [number, number]` | | Design/patent focal length in mm (computed EFL). Single number for primes; `[wide, tele]` for zooms. May differ from marketing value. |
@@ -137,7 +148,7 @@ Keep it normalized even when the product's official styling varies by source:
 
 Use canonical ids from `src/utils/catalog/lensTaxonomy.ts`; do not free-type labels such as `"Full Frame"` or `"Nikon Z mount"`.
 See [LENS_MOUNT_FORMAT_OPTIONS.md](LENS_MOUNT_FORMAT_OPTIONS.md) for the current list of allowed ids. These ids drive
-lens-index filtering now and will be reused by distortion and aberration views.
+lens-index filtering, catalog grouping, and image-field-aware analysis.
 
 ```javascript
 lensMounts: ["nikon-z", "sony-fe"],
@@ -475,12 +486,13 @@ Each entry in the `elements` array describes one physical glass element.
 }
 ```
 
-**Spectral-data notes (chromatic modeling).** The chromatic-aberration ray trace consults
-spectral fields in this preference order: explicit `nC`/`nF`/`ng` → catalog Sellmeier resolved
-from `glass` → `dPgF`-corrected Abbe → plain Abbe (`nd` + `vd` only). Each level falls back
-to the next. So filling more spectral data is always strictly better, and lenses with no
-spectral data beyond `nd`/`vd` continue to work as before. For apochromatic designs where
-the patent publishes partial dispersion or line indices, prefer transcribing them.
+**Spectral-data notes (chromatic modeling).** Store `nC`, `nF`, `ng`, and `dPgF` directly on the
+element; there is no authored `spectral` wrapper. The chromatic-aberration ray trace consults
+data in this preference order: air → complete explicit `nC`/`nF`/`ng` → catalog Sellmeier
+resolved from `glass` → partial explicit `nC`/`nF` → `dPgF`-corrected Abbe → plain Abbe
+(`nd` + `vd` only), then constant index when `vd` is unavailable. Each level falls back to the
+next. For apochromatic designs where the patent publishes partial dispersion or line indices,
+prefer transcribing them.
 
 **Common `type` values:**
 - `"Biconvex Positive"`, `"Biconcave Negative"`
@@ -491,7 +503,7 @@ the patent publishes partial dispersion or line indices, prefer transcribing the
 **Validation rules:**
 - Each `id` must be unique across all elements
 - Every element must be referenced by at least one surface's `elemId`
-- `fromSurface` and `toSurface` are normally omitted. Use them only when one physical element contains an optically neutral internal surface, currently the supported case is an embedded aperture stop. Both labels must exist, `fromSurface` must precede `toSurface`, and the internal surfaces between them must be explicitly flagged as internal stops.
+- `fromSurface` and `toSurface` are normally omitted. Ordinary refractive elements may use them for an embedded aperture stop: both labels must exist, `fromSurface` must precede `toSurface`, and internal surfaces must be explicitly flagged as internal stops. Folded mirror models also support the documented annular-shell, nested-corrector, and complementary shared-blank spans when `opticalPath` is present.
 
 ---
 
@@ -505,7 +517,7 @@ The `glass` string on each element is consulted by the chromatic dispersion engi
 |---|---|---|
 | Vendor catalog name | `"S-FPL51 (OHARA)"` | The element is a public catalog glass; the name resolves to a published Sellmeier source. |
 | Vendor name plus class hint | `"S-FPL51 / FCD1 class (ED fluorophosphate, νd = 82.6)"` | Multiple vendors publish equivalent glasses and the patent does not name one specifically; pick the most likely vendor and include the cross-reference. |
-| Generic class with code | `"Dense flint (752/251, uncertain)"` | The glass is identified only by its 6-digit Schott code in the patent; vendor identity is unknown. |
+| Generic class with code | `"670571 — lanthanum crown (catalog unresolved)"` | The glass is identified only by its six-digit code in the patent; vendor identity is unknown. Keep the six digits unbroken for report and future catalog matching. |
 | Schott legacy name | `"SF6 (Schott)"`, `"N-BK7 (Schott)"` | The glass is a Schott legacy or N-series entry with stable public Sellmeier data. |
 | Sumita / Hoya / CDGM name | `"FCD1 (Hoya)"`, `"K-GFK68 (Sumita)"` | The patent or vendor literature names the glass directly. |
 | Unmatched / proprietary | `"Unmatched (vintage Leitz proprietary, no public catalog)"` | The glass is a custom melt, vintage proprietary, or designer-attributed approximation that no public catalog will match. |
@@ -569,7 +581,10 @@ When a patent does not specify the vendor, prefer the vendor whose name matches 
 
 ## Surface Object
 
-Each entry in the `surfaces` array describes one optical surface, in physical front-to-rear axial order. Folded systems still keep this physical order; `opticalPath` controls the ray hit order.
+Each entry in the `surfaces` array describes one optical surface. Ordinary refractive lenses use physical
+front-to-rear axial order. Folded systems may use a stable physical/model order or the source's transmission order;
+signed `d` values establish axial stations and `opticalPath` controls the actual ray-hit order. Document any departure
+from ordinary front-to-rear ordering in the file header and companion analysis.
 
 ```javascript
 {
@@ -592,7 +607,7 @@ Each entry in the `surfaces` array describes one optical surface, in physical fr
 | `R > 0` | Center of curvature to the RIGHT |
 | `R < 0` | Center of curvature to the LEFT |
 | `R = 1e15` | Flat surface (infinite radius) |
-| `d > 0` | Always positive (distance to next surface) |
+| `d` | Axial displacement to the next listed surface. Use non-negative forward distances for ordinary sequential lenses; folded models may use negative values for a return toward object space and `0` for coincident/passive planes. |
 | `nd = 1.0` | Air gap |
 | `nd > 1.0` | Glass medium (use the glass's refractive index) |
 | `innerSd` | Inner inactive radius for annular surfaces; must be non-negative and smaller than `sd` |
@@ -630,7 +645,7 @@ Each entry in the `surfaces` array describes one optical surface, in physical fr
 - **Nested correctors inside annular mirrors:** Folded mirror lenses may place a rear corrector group inside the empty central opening of an annular primary. This is valid only when `opticalPath` is present, the explicit mirror element span has matching `innerSd` on its front/back boundaries, at least one boundary is reflective, and every nested surface fits inside the central opening. Ordinary refractive element spans still reject non-stop internal surfaces.
 - **Shared annular/central mirror blanks:** Folded mirror lenses may split one physical blank into complementary rendered spans, such as a silvered annular primary shell plus a clear central L4 plug with the same axial depth and glass. This is valid only when `opticalPath` is present and the internal annular surfaces have no shared radial material band with the central span boundaries. Ordinary refractive element spans still reject non-stop internal surfaces.
 - **Blocker:** Use `interaction: { type: "block" }` and `elemId: 0` for a pure aperture obstruction. Use a non-zero `elemId` only if the blocker should be rendered as a physical element with a front/back surface span.
-- **Last surface:** `d` = back focal distance to image plane
+- **Last surface:** for an ordinary sequential lens, `d` is the back focal distance to the default image plane. Folded systems should declare `opticalPath.imagePlane`; the final listed `d` need not represent a conventional rear BFD.
 
 ### Aperture Stop
 
@@ -806,9 +821,11 @@ These are computed automatically and added to the frozen lens object:
 | `zoomEFLs` | `number[]` | Computed EFL at each zoom position via paraxial trace |
 | `zoomEPs` | `number[]` | Entrance pupil SD at each zoom position |
 | `zoomHalfFields` | `number[]` | Vignetting-limited half-field angle at each zoom position |
+| `zoomTracingHalfFields` | `number[]` | Trace-safe half-field angle at each zoom position |
 | `zoomYRatios` | `number[]` | Marginal ray height ratio at stop for each zoom position |
 | `zoomBs` | `number[]` | Chief ray height at stop for each zoom position |
 | `zoomFOPENs` | `number[]` | Wide-open f-number at each zoom position (derived from `zoomEFLs` and `zoomEPs`) |
+| `zoomEpZRelStops` / `zoomXpZRelLastSurfs` / `zoomXpSDs` | `number[]` | Entrance- and exit-pupil geometry at each zoom position |
 
 ### Variable-Aperture Zooms
 
@@ -860,7 +877,7 @@ doublets: [
 
 ## Validation
 
-`validateLensData()` runs automatically when a lens is loaded. It checks:
+`validateLensData()` runs automatically when a lens is loaded. Its blocking schema/geometry checks include:
 
 1. All required fields are present and correctly typed
 2. Exactly one `"STO"` surface exists
@@ -876,12 +893,17 @@ doublets: [
 12. All `groups`/`doublets` reference valid surface labels
 13. Cross-gap surface overlap: combined sag intrusion from the shared radial material band of two boundary surfaces doesn't exceed `gapSagFrac × gap` — checked at all zoom positions for zoom lenses. For folded annular mirror lenses, surfaces fully inside a central hole do not overlap the annular mirror shell, and complementary central/annular spans in a shared mirror blank are validated by their shared material bands rather than their full semi-diameters.
 14. Conic height limit: for aspherical surfaces with K > 0, sd ≤ 0.98 × |R| / √(1+K)
-15. Element render diagnostics: production lenses must not require material hidden trim (>0.25 mm) from slope, conic, or cross-gap limits
-16. `innerSd` must be finite, non-negative, and smaller than `sd`
-17. `interaction.type` must be `"refract"`, `"reflect"`, or `"block"`; side fields must be valid enum values; `normal` vectors must have finite `z` and `y` components; tilted flat mirror backing planes must repeat the reflective face normal
-18. `opticalPath.mode` must be `"sequential"` or `"auto"`; `surfaceOrder` labels must exist; `imagePlane` point/normal fields must be finite; `maxInteractions` must be a positive integer
+15. `innerSd` must be finite, non-negative, and smaller than `sd`
+16. `interaction.type` must be `"refract"`, `"reflect"`, or `"block"`; side fields must be valid enum values; `normal` vectors must have finite `z` and `y` components; tilted flat mirror backing planes must repeat the reflective face normal
+17. `opticalPath.mode` must be `"sequential"` or `"auto"`; `surfaceOrder` labels must exist; `imagePlane` point/normal fields must be finite; `maxInteractions` must be a positive integer large enough for the declared path
+18. Perspective-control ranges, projection metadata, aberration-control gaps, explicit element spans, rim slope, edge thickness, and the remaining numeric bounds described above
 
 On failure, `buildLens()` throws with all errors listed.
+
+Corpus tests add policies that are intentionally separate from `validateLensData()`: structured patent metadata and
+author-name normalization, catalog integrity, the analysis-file structural floor, and production element-render diagnostics. In
+particular, production lenses fail the render-diagnostics test when slope, conic, or cross-gap limits would require more
+than 0.25 mm of hidden material trim.
 
 ### Glass-Annotation Audits (Non-Blocking)
 
@@ -901,7 +923,7 @@ When transcribing from an optical patent:
 6. **Glass identification** — See the **Glass Identification** section above for canonical `glass:` formats, the `Unmatched (...)` convention for proprietary glass, and round-trip verification expectations. Match `nd`/`νd` pairs against vendor catalogs (Ohara, Schott, Hoya, Sumita, CDGM) and prefer the vendor whose name the patent uses; when the patent is silent, prefer the vendor consistent with the rest of the lens. When the patent publishes anomalous partial dispersion data (`PgF`/`ΔPgF`) or per-element line indices (`nC`, `nF`, `ng`), transcribe them onto the element block — these enable higher-fidelity chromatic modeling than `nd`/`vd` alone
 7. **Focal length** — Use the patent's stated EFL, or compute from the prescription via paraxial ray trace
 8. **F-number** — Use the patent's stated f-number. If the patent gives the stop diameter, compute `f/# = EFL / (2 × EP_SD)`
-9. **Scaling** — If the patent prescription is at a different focal length than production (e.g., f=100 in patent, f=50 production), apply a uniform scale factor to ALL R, d, and sd values. Document the scale factor in the file header
+9. **Scaling** — If the patent prescription is at a different focal length than production (e.g., f=100 in patent, f=50 production), apply a uniform scale factor `s` to all `R`, `d`, `sd`, image-plane coordinates, and other dimensional spacings. Transform each aspherical polynomial coefficient as `A_p,scaled = A_p,patent / s^(p-1)`; keep `K` unchanged. Document the scale factor and coefficient transform in the file header
 10. **EFL verification** — After transcribing all surfaces, verify the computed EFL (from `buildLens()` or tests) matches the patent's stated focal length (scaled if applicable). A mismatch usually indicates a sign error in R or a wrong nd value
 11. **Cross-reference patent text** — Compare the patent's prose element descriptions (e.g., "plano-convex", "biconcave") against your transcribed R values. Older patents sometimes use approximate language — "plane" may mean "very weakly curved" if the numerical example has a finite but large R
 
@@ -917,9 +939,11 @@ When transcribing from an optical patent:
 ## Example: Minimal All-Spherical Singlet
 
 ```javascript
+import type { LensDataInput } from "../types/optics.js";
+
 const LENS_DATA = {
   key:      "example-singlet",
-  name:     "Example Singlet 50mm f/4",
+  name:     "REFERENCE SINGLET 50mm f/4",
   elements: [
     { id: 1, name: "L1", label: "Element 1", type: "Biconvex Positive", nd: 1.51633, vd: 64.06, fl: 50.0, glass: "N-BK7" },
   ],
@@ -938,7 +962,7 @@ const LENS_DATA = {
   fstopSeries:  [4, 5.6, 8, 11, 16, 22],
   scFill:       0.50,
   yScFill:      0.30,
-};
+} satisfies LensDataInput;
 export default LENS_DATA;
 ```
 

@@ -108,6 +108,7 @@ Read only the relevant focused doc before changing that area:
 - `FEATURE_ADDITION_PLAN.md` - single source of truth for planned features (absorbed the analysis-options and mirror-lens backlogs; archives under `agent_docs/records/`)
 - `EFFICIENCY_IMPROVEMENT_PLAN.md` - task-by-task redundancy cleanup and performance backlog with verification gates
 - `agent_docs/adding_a_lens.md` - lens data workflow and validation troubleshooting
+- `agent_docs/lens-data-integration-handoff.md` - copy-ready AI handoff for constructing and integrating data/analysis pairs
 - `agent_docs/adding_an_analysis_tab.md` - recipe: the four registration points for a new analysis drawer tab
 - `agent_docs/adding_url_state.md` - recipe: adding a URL-shareable view-state field
 - `agent_docs/adding_a_route.md` - recipe: new page/route with prerender and sitemap wiring

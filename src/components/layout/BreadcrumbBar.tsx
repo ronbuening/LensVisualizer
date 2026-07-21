@@ -14,7 +14,7 @@ import { useCallback, useRef, useState } from "react";
 import { Link, useLocation } from "react-router";
 import usePrefersReducedMotion from "../../utils/usePrefersReducedMotion.js";
 import type { Theme } from "../../types/theme.js";
-import { headerStrip, topBarBtn, toggleGroup, toggleBtn } from "../../utils/style/styles.js";
+import { headerSearchBtn, headerStrip, topBarBtn, toggleGroup, toggleBtn } from "../../utils/style/styles.js";
 import { themeSlotDisplay } from "../../utils/theme/themeConstants.js";
 import { useActiveHoliday } from "../../utils/theme/useActiveHoliday.js";
 import { LENS_CATALOG } from "../../utils/catalog/lensCatalog.js";
@@ -214,32 +214,36 @@ export default function BreadcrumbBar({ theme: t, isWide, lensKey }: BreadcrumbB
           )}
         </div>
 
-        <button
-          ref={triggerRef}
-          onClick={settingsOpen ? () => setSettingsOpen(false) : openSettings}
-          style={{
-            ...topBarBtn(t, isWide),
-            marginLeft: 12,
-            flexShrink: 0,
-            display: "flex",
-            alignItems: "center",
-            gap: 5,
-            padding: isWide ? "4px 12px" : "4px 8px",
-          }}
-        >
-          {isWide ? <span>SETTINGS</span> : <span style={{ fontSize: 13, lineHeight: 1 }}>⚙</span>}
-          <span
+        <div style={{ display: "flex", alignItems: "center", gap: 4, marginLeft: 12, flexShrink: 0 }}>
+          <Link to="/search" aria-label="Search" style={headerSearchBtn(t)}>
+            ⌕
+          </Link>
+          <button
+            ref={triggerRef}
+            onClick={settingsOpen ? () => setSettingsOpen(false) : openSettings}
             style={{
-              display: "inline-block",
-              transform: settingsOpen ? "rotate(180deg)" : "rotate(0deg)",
-              transition: reducedMotion ? undefined : "transform 0.2s",
-              fontSize: 10,
-              lineHeight: 1,
+              ...topBarBtn(t, isWide),
+              flexShrink: 0,
+              display: "flex",
+              alignItems: "center",
+              gap: 5,
+              padding: isWide ? "4px 12px" : "4px 8px",
             }}
           >
-            ▾
-          </span>
-        </button>
+            {isWide ? <span>SETTINGS</span> : <span style={{ fontSize: 13, lineHeight: 1 }}>⚙</span>}
+            <span
+              style={{
+                display: "inline-block",
+                transform: settingsOpen ? "rotate(180deg)" : "rotate(0deg)",
+                transition: reducedMotion ? undefined : "transform 0.2s",
+                fontSize: 10,
+                lineHeight: 1,
+              }}
+            >
+              ▾
+            </span>
+          </button>
+        </div>
       </nav>
 
       <DropdownPanel

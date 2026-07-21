@@ -17,6 +17,13 @@ export interface ArticleFreshnessInput {
   lastModified: string;
 }
 
+export interface AuthorRouteInput {
+  name: string;
+  slug: string;
+  lensKeys: string[];
+  patentCount: number;
+}
+
 export type ExecFileSyncLike = (file: string, args: string[], options: { cwd?: string; encoding: string }) => string;
 
 export function assertFullGitHistory(options?: {
@@ -97,6 +104,7 @@ export function buildRouteFreshness(options: {
   makerSlugs: string[];
   mountIds?: string[];
   formatIds?: string[];
+  authors?: AuthorRouteInput[];
   makerDetailsFreshness: FreshnessEntry | null;
   fallbackDate: string;
 }): Record<string, FreshnessEntry>;
