@@ -19,6 +19,12 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-07-21 ──────────────────────────────────────────────────
+  {
+    date: "2026-07-21",
+    type: "lens",
+    summary: "Added Canon EF 28-105mm f/3.5-4.5 II USM, EF 28-105mm f/4-5.6, and EF 28-135mm f/3.5-5.6 IS USM lenses",
+  },
   // ── 2026-07-20 ───────────────────────────────────────────────────
   {
     date: "2026-07-20",
