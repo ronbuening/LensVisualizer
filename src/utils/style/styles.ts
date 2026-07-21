@@ -244,6 +244,23 @@ export function topBarBtn(t: Theme, wide: boolean): CSSProperties {
   };
 }
 
+/** Square Search action aligned to the 30px height of header option groups. */
+export function headerSearchBtn(t: Theme): CSSProperties {
+  return {
+    ...topBarBtn(t, false),
+    width: 30,
+    height: 30,
+    padding: 0,
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    fontSize: 15,
+    lineHeight: 1,
+    textDecoration: "none",
+    textAlign: "center",
+  };
+}
+
 /**
  * Overlay modal with theme-derived background and border.
  */

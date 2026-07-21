@@ -138,7 +138,10 @@ describe("page, markdown, and breadcrumb coverage", () => {
     expect(screen.getByRole("link", { name: "Home" }).getAttribute("href")).toBe("/");
     expect(screen.getByRole("link", { name: "Makers" }).getAttribute("href")).toBe("/makers");
     expect(screen.getByText(LENS_CATALOG[lensKey].name)).toBeTruthy();
-    expect(screen.getByRole("link", { name: "Search" }).getAttribute("href")).toBe("/search");
+    const searchLink = screen.getByRole("link", { name: "Search" });
+    expect(searchLink.getAttribute("href")).toBe("/search");
+    expect(searchLink.style.width).toBe("30px");
+    expect(searchLink.style.height).toBe("30px");
 
     fireEvent.click(screen.getByRole("button", { name: /settings/i }));
     fireEvent.click(screen.getByRole("button", { name: /HC/i }));

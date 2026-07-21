@@ -14,7 +14,7 @@ import { useCallback, useRef, useState } from "react";
 import { Link, useLocation } from "react-router";
 import usePrefersReducedMotion from "../../utils/usePrefersReducedMotion.js";
 import type { Theme } from "../../types/theme.js";
-import { headerStrip, topBarBtn, toggleGroup, toggleBtn } from "../../utils/style/styles.js";
+import { headerSearchBtn, headerStrip, topBarBtn, toggleGroup, toggleBtn } from "../../utils/style/styles.js";
 import { themeSlotDisplay } from "../../utils/theme/themeConstants.js";
 import { useActiveHoliday } from "../../utils/theme/useActiveHoliday.js";
 import { LENS_CATALOG } from "../../utils/catalog/lensCatalog.js";
@@ -215,17 +215,8 @@ export default function BreadcrumbBar({ theme: t, isWide, lensKey }: BreadcrumbB
         </div>
 
         <div style={{ display: "flex", alignItems: "center", gap: 4, marginLeft: 12, flexShrink: 0 }}>
-          <Link
-            to="/search"
-            aria-label="Search"
-            style={{
-              ...topBarBtn(t, isWide),
-              padding: isWide ? "4px 10px" : "4px 8px",
-              textDecoration: "none",
-              textAlign: "center",
-            }}
-          >
-            {isWide ? "SEARCH" : "⌕"}
+          <Link to="/search" aria-label="Search" style={headerSearchBtn(t)}>
+            ⌕
           </Link>
           <button
             ref={triggerRef}

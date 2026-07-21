@@ -12,6 +12,7 @@ import {
   sliderInput,
   selector,
   headerStrip,
+  headerSearchBtn,
   topBarBtn,
   overlayModal,
   panelOverlayContent,
@@ -237,6 +238,17 @@ describe("topBarBtn(t, wide)", () => {
     const s = topBarBtn(mockTheme, true);
     expect(s.backgroundColor).toBe(mockTheme.selectorBg);
     expect(s.color).toBe(mockTheme.selectorText);
+  });
+});
+
+describe("headerSearchBtn(t)", () => {
+  it("provides a square target matching the header option-group height", () => {
+    const s = headerSearchBtn(mockTheme);
+    expect(s.width).toBe(30);
+    expect(s.height).toBe(30);
+    expect(s.padding).toBe(0);
+    expect(s.alignItems).toBe("center");
+    expect(s.justifyContent).toBe("center");
   });
 });
 
