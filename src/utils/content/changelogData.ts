@@ -23,7 +23,7 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-07-21",
     type: "feature",
-    summary: "Added catalog search by lens name, patent number, and inventor",
+    summary: "Added catalog search, inventor pages, and a browsable patent author index",
   },
   {
     date: "2026-07-21",

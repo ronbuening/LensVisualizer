@@ -155,6 +155,7 @@ Keep article-specific behavior in the renderer rather than duplicating markdown 
 | `HeroSection.tsx` | Homepage hero and primary calls to action. |
 | `RecentLenses.tsx` | Recently added lens cards. |
 | `QuickNavCards.tsx` | Navigation cards for lenses, makers, and articles. |
+| `IndexNavBar.tsx` | Compact homepage bar linking the mount, format, author, and article indexes. |
 | `HomeFooter.tsx` | Homepage footer with about links and credits. |
 
 The homepage mounts `CatalogSearchBox` directly below the hero. `PageNavBar` and the viewer's `BreadcrumbBar` both

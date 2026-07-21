@@ -10,6 +10,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { Route, Routes, useLocation } from "react-router";
 import SearchPage from "../../../src/pages/SearchPage.js";
 import AuthorPage from "../../../src/pages/AuthorPage.js";
+import AuthorsIndexPage from "../../../src/pages/AuthorsIndexPage.js";
 import CatalogSearchBox from "../../../src/components/search/CatalogSearchBox.js";
 import { AUTHORS, patentsForAuthor } from "../../../src/utils/catalog/authorCatalog.js";
 import themes from "../../../src/utils/theme/themes.js";
@@ -92,5 +93,32 @@ describe("search and author pages", () => {
     fireEvent.click(screen.getByRole("button", { name: "Co-authors" }));
     expect(screen.getByRole("button", { name: "Co-authors" }).getAttribute("aria-pressed")).toBe("true");
     expect(screen.getByRole("navigation", { name: "Co-author sections" })).toBeTruthy();
+  });
+
+  it("renders an author index and sorts it by name or patent count", () => {
+    const alphabeticalAuthors = [...AUTHORS].sort((left, right) => left.name.localeCompare(right.name));
+    const authorsByPatentCount = [...AUTHORS].sort(
+      (left, right) => right.patentCount - left.patentCount || left.name.localeCompare(right.name),
+    );
+
+    renderWithRouter(
+      <HelmetProvider>
+        <Routes>
+          <Route path="/authors" element={<AuthorsIndexPage />} />
+        </Routes>
+      </HelmetProvider>,
+      { initialEntries: ["/authors"] },
+    );
+
+    expect(screen.getByRole("heading", { level: 1, name: "Lens Patent Authors" })).toBeTruthy();
+    expect(screen.getByRole("link", { name: alphabeticalAuthors[0].name }).getAttribute("href")).toBe(
+      `/authors/${alphabeticalAuthors[0].slug}`,
+    );
+    expect(document.querySelector("main a[href^='/authors/']")?.textContent).toBe(alphabeticalAuthors[0].name);
+
+    fireEvent.click(screen.getByRole("button", { name: "Patent count" }));
+
+    expect(screen.getByRole("button", { name: "Patent count" }).getAttribute("aria-pressed")).toBe("true");
+    expect(document.querySelector("main a[href^='/authors/']")?.textContent).toBe(authorsByPatentCount[0].name);
   });
 });

@@ -25,6 +25,7 @@ const routeManifest: RouteManifestEntry[] = [
   { path: "/compare/:slugA/:slugB", load: () => import("../pages/ComparePage.js") },
   { path: "/makers", load: () => import("../pages/MakersIndexPage.js") },
   { path: "/makers/:maker", load: () => import("../pages/MakerPage.js") },
+  { path: "/authors", load: () => import("../pages/AuthorsIndexPage.js") },
   { path: "/authors/:author", load: () => import("../pages/AuthorPage.js") },
   { path: "/mounts", load: () => import("../pages/MountsIndexPage.js") },
   { path: "/mounts/:mountId", load: () => import("../pages/MountPage.js") },

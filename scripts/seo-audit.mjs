@@ -216,7 +216,7 @@ function auditLensPages(lensKeys) {
   );
 }
 
-function auditInternalLinks(lensKeys, articleSlugs, makerSlugs, mountIds = [], formatIds = []) {
+function auditInternalLinks(lensKeys, articleSlugs, makerSlugs, mountIds = [], formatIds = [], authors = []) {
   console.log("\n[Internal links]");
 
   /* /lenses → all lens pages */
@@ -303,6 +303,23 @@ function auditInternalLinks(lensKeys, articleSlugs, makerSlugs, mountIds = [], f
     }
     ok(`/formats page has ${foundLinks}/${formatIds.length} format links`);
   }
+
+  /* /authors → all author pages */
+  const authorsPage = join(DIST_DIR, "authors", "index.html");
+  if (!existsSync(authorsPage)) {
+    error("Missing /authors/index.html");
+  } else {
+    const html = readFileSync(authorsPage, "utf-8");
+    let foundLinks = 0;
+    for (const author of authors) {
+      if (html.includes(`href="/authors/${author.slug}"`)) {
+        foundLinks++;
+      } else {
+        error(`/authors page missing link to /authors/${author.slug}`);
+      }
+    }
+    ok(`/authors page has ${foundLinks}/${authors.length} author links`);
+  }
 }
 
 function audit404() {
@@ -343,18 +360,18 @@ if (!existsSync(META_PATH)) {
 }
 
 const buildMeta = JSON.parse(readFileSync(META_PATH, "utf-8"));
-const { routes, lensKeys, makerSlugs, mountIds = [], formatIds = [] } = buildMeta;
+const { routes, lensKeys, makerSlugs, mountIds = [], formatIds = [], authors = [] } = buildMeta;
 const articleSlugs = buildMeta.articles.map((a) => a.slug);
 
 console.log(
-  `Found ${lensKeys.length} lenses, ${articleSlugs.length} articles, ${makerSlugs.length} makers, ${mountIds.length} mounts, ${formatIds.length} formats (${routes.length} routes).`,
+  `Found ${lensKeys.length} lenses, ${articleSlugs.length} articles, ${makerSlugs.length} makers, ${authors.length} authors, ${mountIds.length} mounts, ${formatIds.length} formats (${routes.length} routes).`,
 );
 
 auditRobotsTxt();
 auditSitemap(routes);
 auditAllPrerenderedPages(routes);
 auditLensPages(lensKeys);
-auditInternalLinks(lensKeys, articleSlugs, makerSlugs, mountIds, formatIds);
+auditInternalLinks(lensKeys, articleSlugs, makerSlugs, mountIds, formatIds, authors);
 audit404();
 
 console.log("\n============================");

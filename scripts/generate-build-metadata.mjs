@@ -164,6 +164,7 @@ function collectRoutes(lenses, articles, makerSlugs, mountIds, formatIds, author
     "/search",
     "/lenses",
     "/makers",
+    "/authors",
     "/mounts",
     "/formats",
     "/articles",

@@ -73,6 +73,7 @@ describe("SSR render — all routes produce valid helmet output", () => {
     [`/compare/${TEST_LENS_SLUG}/${CATALOG_KEYS[1]}`, "compare page"],
     ["/makers", "makers index"],
     [`/makers/${TEST_MAKER_SLUG}`, "maker page"],
+    ["/authors", "authors index"],
     [`/authors/${TEST_AUTHOR.slug}`, "author page"],
     ["/mounts", "mounts index"],
     [`/mounts/${TEST_MOUNT.id}`, "mount page"],
@@ -98,6 +99,7 @@ describe("SSR render — content pages produce non-empty HTML", () => {
     [`/lens/${TEST_LENS_SLUG}`, "lens page"],
     ["/makers", "makers index"],
     [`/makers/${TEST_MAKER_SLUG}`, "maker page"],
+    ["/authors", "authors index"],
     [`/authors/${TEST_AUTHOR.slug}`, "author page"],
     ["/mounts", "mounts index"],
     [`/mounts/${TEST_MOUNT.id}`, "mount page"],
@@ -197,6 +199,14 @@ describe("SSR render — search and author pages", () => {
     expect(helmet.title.toString()).toContain("Search Lens Patents and Authors");
     expect(helmet.link.toString()).toContain(`${SITE_URL}/search`);
     expect(html).toContain("Search the Catalog");
+  });
+
+  it("renders the crawlable author index", () => {
+    const { helmet, html } = render("/authors");
+    expect(helmet.title.toString()).toContain("Lens Patent Authors");
+    expect(helmet.link.toString()).toContain(`${SITE_URL}/authors`);
+    expect(helmet.script.toString()).toContain('"@type":"ItemList"');
+    expect(html).toContain(TEST_AUTHOR.name);
   });
 
   it("renders a crawlable author patent collection", () => {

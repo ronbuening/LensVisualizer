@@ -96,7 +96,7 @@ export default function AuthorPage() {
   const { theme: t, themeMode, highContrast, toggleTheme, toggleHC } = usePageThemeToggle();
   const author = authorSlug ? getAuthorBySlug(authorSlug) : undefined;
 
-  if (!author) return <Navigate to="/search" replace />;
+  if (!author) return <Navigate to="/authors" replace />;
 
   const patents = patentsForAuthor(author.name);
   const groupMode: AuthorGroupMode = searchParams.get("group") === "coauthor" ? "coauthor" : "assignee";
@@ -135,7 +135,7 @@ export default function AuthorPage() {
           }),
           breadcrumbJsonLd([
             { name: "Home", url: SITE_URL },
-            { name: "Search", url: `${SITE_URL}/search` },
+            { name: "Authors", url: `${SITE_URL}/authors` },
             { name: author.name, url: canonicalURL },
           ]),
         ]}
@@ -152,8 +152,8 @@ export default function AuthorPage() {
           Home
         </Link>
         <span style={{ color: t.muted, margin: "0 0.35em" }}>/</span>
-        <Link to="/search" style={{ color: t.descLinkColor, textDecoration: "none" }}>
-          Search
+        <Link to="/authors" style={{ color: t.descLinkColor, textDecoration: "none" }}>
+          Authors
         </Link>
         <span style={{ color: t.muted, margin: "0 0.35em" }}>/</span>
         <span style={{ color: t.body }}>{author.name}</span>

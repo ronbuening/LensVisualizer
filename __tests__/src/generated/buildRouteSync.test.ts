@@ -47,6 +47,7 @@ describe("build-route-sync", () => {
     expect(routes).toContain("/makers");
     expect(routes).toContain("/mounts");
     expect(routes).toContain("/formats");
+    expect(routes).toContain("/authors");
     expect(routes).toContain("/articles");
   });
 
