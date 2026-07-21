@@ -60,6 +60,7 @@ describe("search and author pages", () => {
       </Routes>,
     );
 
+    expect(screen.getByRole("searchbox").style.fontSize).toBe("16px");
     fireEvent.change(screen.getByRole("searchbox"), { target: { value: "AGFA COLOR-TELINEAR 90mm f/4" } });
     expect(screen.getByRole("link", { name: /AGFA COLOR-TELINEAR 90mm f\/4/ }).getAttribute("href")).toBe(
       "/lens/agfa-color-telinear-90mm-f4",
