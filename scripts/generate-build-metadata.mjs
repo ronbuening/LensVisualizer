@@ -7,6 +7,7 @@
  *   - lensKeys: sorted array of all visible lens catalog keys
  *   - makerSlugs: sorted array of unique maker URL slugs
  *   - mountIds / formatIds: sorted arrays of used taxonomy ids
+ *   - authors: inventor names, stable slugs, and related lens/patent counts
  *   - routes: flat array of all concrete URL paths to pre-render
  *
  * This is the single source of truth for route enumeration. Downstream scripts
@@ -30,6 +31,7 @@ import {
 } from "./build-metadata-lib.mjs";
 import { collectLensDataAsync } from "./lens-data-lib.mjs";
 import { MAKER_PREFIXES } from "./maker-prefixes.mjs";
+import { buildAuthorMetadata } from "./author-metadata.mjs";
 
 const ROOT = join(import.meta.dirname, "..");
 const README_FILE = join(ROOT, "README.md");
@@ -156,9 +158,10 @@ function collectTrackedArticlePathsBySlug() {
 /* ── Route collection ────────────────────────────────────────────────── */
 
 /** Build the flat array of all concrete routes to pre-render. */
-function collectRoutes(lenses, articles, makerSlugs, mountIds, formatIds) {
+function collectRoutes(lenses, articles, makerSlugs, mountIds, formatIds, authors) {
   return [
     "/",
+    "/search",
     "/lenses",
     "/makers",
     "/mounts",
@@ -170,6 +173,7 @@ function collectRoutes(lenses, articles, makerSlugs, mountIds, formatIds) {
     ...makerSlugs.map((s) => `/makers/${s}`),
     ...mountIds.map((id) => `/mounts/${id}`),
     ...formatIds.map((id) => `/formats/${id}`),
+    ...authors.map((author) => `/authors/${author.slug}`),
   ];
 }
 
@@ -219,7 +223,7 @@ async function main() {
 
   writeFileSync(MAKER_PREFIXES_FILE, JSON.stringify(MAKER_PREFIXES, null, 2) + "\n", "utf-8");
 
-  const [allLenses, articles, makerDetailsFreshness] = await Promise.all([
+  const [allLenses, articles, makerDetailsFreshness, lensSummaries] = await Promise.all([
     collectLensDataAsync({
       rootDir: ROOT,
       lensDataDir: LENS_DATA_DIR,
@@ -228,6 +232,7 @@ async function main() {
     }),
     collectArticles(fallbackDate),
     getGitFileFreshnessAsync(MAKER_DETAILS_FILE, { cwd: ROOT, fallbackDate }),
+    collectLensSummaries(),
   ]);
 
   const lenses = allLenses.filter((lens) => lens.visible !== false);
@@ -236,21 +241,32 @@ async function main() {
   const makerSlugs = [...new Set(lenses.map((l) => l.makerSlug))].sort();
   const mountIds = [...new Set(lenses.flatMap((l) => l.lensMountIds ?? []))].sort();
   const formatIds = [...new Set(lenses.flatMap((l) => (l.imageFormatId ? [l.imageFormatId] : [])))].sort();
-  const routes = collectRoutes(lenses, articles, makerSlugs, mountIds, formatIds);
+  const authors = buildAuthorMetadata(lensSummaries);
+  const routes = collectRoutes(lenses, articles, makerSlugs, mountIds, formatIds, authors);
   const routeFreshness = buildRouteFreshness({
     lenses,
     articles,
     makerSlugs,
     mountIds,
     formatIds,
+    authors,
     makerDetailsFreshness,
     fallbackDate,
   });
   const lensFreshness = Object.fromEntries(lenses.map((lens) => [lens.key, lens.freshness]));
-  const metadata = { lensFreshness, articles, lensKeys, makerSlugs, mountIds, formatIds, routes, routeFreshness };
+  const metadata = {
+    lensFreshness,
+    articles,
+    lensKeys,
+    makerSlugs,
+    mountIds,
+    formatIds,
+    authors,
+    routes,
+    routeFreshness,
+  };
   writeFileSync(OUT_FILE, JSON.stringify(metadata, null, 2) + "\n", "utf-8");
 
-  const lensSummaries = await collectLensSummaries();
   writeFileSync(LENS_SUMMARIES_FILE, JSON.stringify(lensSummaries) + "\n", "utf-8");
   console.log(`Lens summaries written to ${LENS_SUMMARIES_FILE} (${lensSummaries.length} lenses)`);
 
@@ -266,7 +282,7 @@ async function main() {
   }
 
   console.log(
-    `Build metadata written to ${OUT_FILE} (${lensKeys.length} lenses, ${articles.length} articles, ${makerSlugs.length} makers, ${mountIds.length} mounts, ${formatIds.length} formats, ${routes.length} routes)`,
+    `Build metadata written to ${OUT_FILE} (${lensKeys.length} lenses, ${articles.length} articles, ${makerSlugs.length} makers, ${authors.length} authors, ${mountIds.length} mounts, ${formatIds.length} formats, ${routes.length} routes)`,
   );
 }
 

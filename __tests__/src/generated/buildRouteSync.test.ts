@@ -42,6 +42,7 @@ describe("build-route-sync", () => {
 
     expect(routes.length).toBeGreaterThan(0);
     expect(routes).toContain("/");
+    expect(routes).toContain("/search");
     expect(routes).toContain("/lenses");
     expect(routes).toContain("/makers");
     expect(routes).toContain("/mounts");
@@ -96,6 +97,19 @@ describe("build-route-sync", () => {
     expect(makerRoutes.length).toBe(buildMeta.makerSlugs.length);
     for (const slug of buildMeta.makerSlugs) {
       expect(makerRoutes).toContain(`/makers/${slug}`);
+    }
+  });
+
+  it("generated authors match the prerendered author routes", () => {
+    const authorRoutes = buildMeta.routes.filter((route: string) => route.startsWith("/authors/"));
+
+    expect(authorRoutes.length).toBe(buildMeta.authors.length);
+    expect(new Set(buildMeta.authors.map((author) => author.slug)).size).toBe(buildMeta.authors.length);
+    for (const author of buildMeta.authors) {
+      expect(authorRoutes).toContain(`/authors/${author.slug}`);
+      expect(author.name).toBeTruthy();
+      expect(author.lensKeys.length).toBeGreaterThan(0);
+      expect(author.patentCount).toBeGreaterThan(0);
     }
   });
 

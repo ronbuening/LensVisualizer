@@ -10,6 +10,7 @@ import { Link, useSearchParams, useNavigate } from "react-router";
 import SEOHead from "../components/SEOHead.js";
 import PageNavBar from "../components/layout/PageNavBar.js";
 import HeroSection from "../components/homepage/HeroSection.js";
+import CatalogSearchBox from "../components/search/CatalogSearchBox.js";
 import TrustStrip from "../components/homepage/TrustStrip.js";
 import QuickNavCards from "../components/homepage/QuickNavCards.js";
 import ArticleList from "../components/content/ArticleList.js";
@@ -81,6 +82,12 @@ export default function HomePage() {
 
       <div style={PAGE_BASE_STYLE}>
         <HeroSection theme={t} brandMarkSrc={heroBrandMark} useDarkBrandFrame={useDarkBrandAssets} />
+        <CatalogSearchBox
+          theme={t}
+          heading="Find a lens or inventor"
+          description="Search by lens name, patent number, or author. Exact matches open directly."
+          showSuggestions
+        />
         <TrustStrip theme={t} />
         <QuickNavCards theme={t} />
         <div style={isDesktop ? { display: "flex", gap: "2rem", alignItems: "flex-start" } : {}}>

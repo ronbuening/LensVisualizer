@@ -214,32 +214,45 @@ export default function BreadcrumbBar({ theme: t, isWide, lensKey }: BreadcrumbB
           )}
         </div>
 
-        <button
-          ref={triggerRef}
-          onClick={settingsOpen ? () => setSettingsOpen(false) : openSettings}
-          style={{
-            ...topBarBtn(t, isWide),
-            marginLeft: 12,
-            flexShrink: 0,
-            display: "flex",
-            alignItems: "center",
-            gap: 5,
-            padding: isWide ? "4px 12px" : "4px 8px",
-          }}
-        >
-          {isWide ? <span>SETTINGS</span> : <span style={{ fontSize: 13, lineHeight: 1 }}>⚙</span>}
-          <span
+        <div style={{ display: "flex", alignItems: "center", gap: 4, marginLeft: 12, flexShrink: 0 }}>
+          <Link
+            to="/search"
+            aria-label="Search"
             style={{
-              display: "inline-block",
-              transform: settingsOpen ? "rotate(180deg)" : "rotate(0deg)",
-              transition: reducedMotion ? undefined : "transform 0.2s",
-              fontSize: 10,
-              lineHeight: 1,
+              ...topBarBtn(t, isWide),
+              padding: isWide ? "4px 10px" : "4px 8px",
+              textDecoration: "none",
+              textAlign: "center",
             }}
           >
-            ▾
-          </span>
-        </button>
+            {isWide ? "SEARCH" : "⌕"}
+          </Link>
+          <button
+            ref={triggerRef}
+            onClick={settingsOpen ? () => setSettingsOpen(false) : openSettings}
+            style={{
+              ...topBarBtn(t, isWide),
+              flexShrink: 0,
+              display: "flex",
+              alignItems: "center",
+              gap: 5,
+              padding: isWide ? "4px 12px" : "4px 8px",
+            }}
+          >
+            {isWide ? <span>SETTINGS</span> : <span style={{ fontSize: 13, lineHeight: 1 }}>⚙</span>}
+            <span
+              style={{
+                display: "inline-block",
+                transform: settingsOpen ? "rotate(180deg)" : "rotate(0deg)",
+                transition: reducedMotion ? undefined : "transform 0.2s",
+                fontSize: 10,
+                lineHeight: 1,
+              }}
+            >
+              ▾
+            </span>
+          </button>
+        </div>
       </nav>
 
       <DropdownPanel

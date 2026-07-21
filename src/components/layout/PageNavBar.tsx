@@ -10,9 +10,10 @@
  */
 
 import type { ReactNode } from "react";
+import { Link } from "react-router";
 import type { Theme } from "../../types/theme.js";
 import type { ThemeMode } from "../../utils/theme/themePreferences.js";
-import { headerStrip, toggleGroup, toggleBtn } from "../../utils/style/styles.js";
+import { headerStrip, toggleGroup, toggleBtn, topBarBtn } from "../../utils/style/styles.js";
 import { themeSlotDisplay } from "../../utils/theme/themeConstants.js";
 import { useActiveHoliday } from "../../utils/theme/useActiveHoliday.js";
 import useMediaQuery from "../../utils/useMediaQuery.js";
@@ -65,6 +66,18 @@ export default function PageNavBar({
       </div>
 
       <div style={{ display: "flex", alignItems: "center", gap: 4, flexShrink: 0, marginLeft: 12 }}>
+        <Link
+          to="/search"
+          aria-label="Search"
+          style={{
+            ...topBarBtn(t, isWide),
+            padding: isWide ? "4px 10px" : "4px 8px",
+            textDecoration: "none",
+            textAlign: "center",
+          }}
+        >
+          {isWide ? "SEARCH" : "⌕"}
+        </Link>
         <div style={toggleGroup(t)}>
           <button onClick={onToggleHC} style={toggleBtn(t, highContrast)}>
             <span style={{ fontSize: 12, lineHeight: 1, fontWeight: 700 }}>◐</span>

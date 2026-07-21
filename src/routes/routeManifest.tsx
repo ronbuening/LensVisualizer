@@ -19,11 +19,13 @@ export interface RouteManifestEntry {
 
 const routeManifest: RouteManifestEntry[] = [
   { path: "/", load: () => import("../pages/HomePage.js") },
+  { path: "/search", load: () => import("../pages/SearchPage.js") },
   { path: "/lenses", load: () => import("../pages/LensIndexPage.js") },
   { path: "/lens/:slug", load: () => import("../pages/LensPage.js") },
   { path: "/compare/:slugA/:slugB", load: () => import("../pages/ComparePage.js") },
   { path: "/makers", load: () => import("../pages/MakersIndexPage.js") },
   { path: "/makers/:maker", load: () => import("../pages/MakerPage.js") },
+  { path: "/authors/:author", load: () => import("../pages/AuthorPage.js") },
   { path: "/mounts", load: () => import("../pages/MountsIndexPage.js") },
   { path: "/mounts/:mountId", load: () => import("../pages/MountPage.js") },
   { path: "/formats", load: () => import("../pages/FormatsIndexPage.js") },

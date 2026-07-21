@@ -14,10 +14,12 @@ build metadata.
 | `routeManifest.tsx` | `src/routes/` | Shared React route patterns used by the client router and SSR entry. |
 | `entry-server.tsx` | `src/` | SSR render function and manifest path export for static prerendering. |
 | `HomePage.tsx` | `src/pages/` | Homepage shell with hero, navigation cards, articles, recent lenses, and legacy redirect handling. |
+| `SearchPage.tsx` | `src/pages/` | Lightweight catalog search at `/search` for lens names, patent numbers, and authors. |
 | `LensPage.tsx` | `src/pages/` | Individual lens page at `/lens/:slug` with SEO fallback content plus client-only `LensViewer`. |
 | `LensIndexPage.tsx` | `src/pages/` | Browsable lens library at `/lenses`. |
 | `MakerPage.tsx` | `src/pages/` | Maker page at `/makers/:maker`, lists maker lenses. |
 | `MakersIndexPage.tsx` | `src/pages/` | Maker index at `/makers`, lists makers with counts. |
+| `AuthorPage.tsx` | `src/pages/` | Author page at `/authors/:author`, grouping related patents by assignee or co-author. |
 | `MountPage.tsx` | `src/pages/` | Mount page at `/mounts/:mountId`, lists lenses for one mount. |
 | `MountsIndexPage.tsx` | `src/pages/` | Mount index at `/mounts`, lists represented mounts with counts. |
 | `FormatPage.tsx` | `src/pages/` | Image-format page at `/formats/:formatId`, lists lenses for one format. |
@@ -42,7 +44,8 @@ The app uses React Router 7 with client-side routing plus static prerendering fo
 - `main.tsx` mounts `RouterProvider` with the browser router.
 - `entry-server.tsx` exports `render(url): { html, helmet }` using `StaticRouter` and `react-helmet-async`.
 - `scripts/generate-build-metadata.mjs` expands the concrete prerender route list into
-  `src/generated/build-metadata.json`, including homepage, lens, maker, mount, format, article, and update routes.
+  `src/generated/build-metadata.json`, including homepage, search, lens, author, maker, mount, format, article, and
+  update routes.
 - `scripts/prerender.mjs` reads that concrete route list, builds the SSR entry, validates it against
   `manifestPaths` exported from `entry-server.tsx`, and writes each route plus `404.html` into `dist/`.
 - `/compare/:slugA/:slugB` is routeable and SSR-capable, but it is intentionally excluded from the generated concrete
@@ -95,7 +98,7 @@ Metadata generation is split across:
 - `scripts/lens-data-lib.mjs` - lens data scanning, root-file organization helpers, maker slug derivation.
 - `scripts/build-metadata-lib.mjs` - git freshness helpers, bounded concurrency, route freshness aggregation.
 - `scripts/generate-build-metadata.mjs` - top-level metadata orchestration, concrete route enumeration, generated route
-  freshness, generated maker-prefix JSON, and README lens-count refresh.
+  freshness, generated author index, generated maker-prefix JSON, and README lens-count refresh.
 - `scripts/maker-prefixes.mjs` - single source of truth for maker prefixes, emitted to
   `src/generated/maker-prefixes.json`.
 
