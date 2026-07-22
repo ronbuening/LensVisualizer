@@ -6,7 +6,7 @@
 **Filed:** July 8, 1997  
 **Granted:** May 4, 1999  
 **Inventor:** Hideki Ogawa  
-**Assignee:** Canon Kabushiki Kaisha  
+**Assignee:** Canon Inc.  
 **Title:** *Compact Wide-Angle Zoom Lens*  
 **Embodiment:** Numerical Example 1
 
