@@ -91,173 +91,177 @@ export default function RelationshipMap({
           Reset view
         </button>
       )}
-      <svg
-        role="img"
-        aria-label={ariaLabel}
-        viewBox={zoom.viewBox}
-        style={{
-          width: "100%",
-          height: "auto",
-          display: "block",
-          touchAction: "none",
-          cursor: zoom.isPanning ? "grabbing" : "grab",
-        }}
-        onWheel={zoom.handleWheel}
-        onPointerDown={zoom.handlePointerDown}
-        onPointerMove={zoom.handlePointerMove}
-        onPointerUp={zoom.handlePointerUp}
-        onTouchStart={zoom.handleTouchStart}
-        onTouchMove={zoom.handleTouchMove}
-        onTouchEnd={zoom.handleTouchEnd}
-      >
-        {/* Edges first so nodes and labels always draw on top. */}
-        {layout.edges.map((edge, i) => {
-          const active = edge.from === activeNodeId || edge.to === activeNodeId;
-          return (
-            <line
-              key={`${edge.from}->${edge.to}-${i}`}
-              x1={edge.x1}
-              y1={edge.y1}
-              x2={edge.x2}
-              y2={edge.y2}
-              stroke={t.axis}
-              strokeWidth={active ? 2 : 1}
-              opacity={active ? 1 : 0.5}
-              pointerEvents="none"
-            />
-          );
-        })}
-
-        {/* Nodes + labels. */}
-        {layout.nodes.map((node) => {
-          const hovered = hoveredNodeId === node.id;
-          if (node.id === graph.center.id) {
+      {/* Bordered viewport: makes the zoom/pan region visually distinct from
+       * the surrounding page (which scrolls). */}
+      <div style={{ border: `1px solid ${t.panelBorder}`, borderRadius: 8, overflow: "hidden" }}>
+        <svg
+          role="img"
+          aria-label={ariaLabel}
+          viewBox={zoom.viewBox}
+          style={{
+            width: "100%",
+            height: "auto",
+            display: "block",
+            touchAction: "none",
+            cursor: zoom.isPanning ? "grabbing" : "grab",
+          }}
+          onWheel={zoom.handleWheel}
+          onPointerDown={zoom.handlePointerDown}
+          onPointerMove={zoom.handlePointerMove}
+          onPointerUp={zoom.handlePointerUp}
+          onTouchStart={zoom.handleTouchStart}
+          onTouchMove={zoom.handleTouchMove}
+          onTouchEnd={zoom.handleTouchEnd}
+        >
+          {/* Edges first so nodes and labels always draw on top. */}
+          {layout.edges.map((edge, i) => {
+            const active = edge.from === activeNodeId || edge.to === activeNodeId;
             return (
-              <g key={node.id}>
-                <title>{node.fullLabel}</title>
-                <circle cx={node.x} cy={node.y} r={node.r} fill={t.panelBg} stroke={t.sliderAccent} strokeWidth={2} />
-                <text
-                  x={node.labelX}
-                  y={node.labelY}
-                  textAnchor={node.labelAnchor}
-                  fontSize={11}
-                  fill={t.title}
-                  pointerEvents="none"
-                >
-                  {node.label}
-                </text>
-              </g>
+              <line
+                key={`${edge.from}->${edge.to}-${i}`}
+                x1={edge.x1}
+                y1={edge.y1}
+                x2={edge.x2}
+                y2={edge.y2}
+                stroke={t.axis}
+                strokeWidth={active ? 2 : 1}
+                opacity={active ? 1 : 0.5}
+                pointerEvents="none"
+              />
             );
-          }
+          })}
 
-          const patent = patentById.get(node.id);
-          if (patent) {
-            const selected = selectedPatentId === node.id;
-            const year = patentYearById.get(node.id);
+          {/* Nodes + labels. */}
+          {layout.nodes.map((node) => {
+            const hovered = hoveredNodeId === node.id;
+            if (node.id === graph.center.id) {
+              return (
+                <g key={node.id}>
+                  <title>{node.fullLabel}</title>
+                  <circle cx={node.x} cy={node.y} r={node.r} fill={t.panelBg} stroke={t.sliderAccent} strokeWidth={2} />
+                  <text
+                    x={node.labelX}
+                    y={node.labelY}
+                    textAnchor={node.labelAnchor}
+                    fontSize={11}
+                    fill={t.title}
+                    pointerEvents="none"
+                  >
+                    {node.label}
+                  </text>
+                </g>
+              );
+            }
+
+            const patent = patentById.get(node.id);
+            if (patent) {
+              const selected = selectedPatentId === node.id;
+              const year = patentYearById.get(node.id);
+              return (
+                <g
+                  key={node.id}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`Patent ${patent.patentNumber}${year ? `, ${year}` : ""}`}
+                  style={{ cursor: "pointer" }}
+                  onPointerDown={stopNodePointerDown}
+                  onPointerEnter={() => setHoveredNodeId(node.id)}
+                  onPointerLeave={() => setHoveredNodeId((cur) => (cur === node.id ? null : cur))}
+                  onClick={() => onSelectPatent(selected ? null : node.id)}
+                  onKeyDown={(e) => {
+                    if (isActivateKey(e)) {
+                      e.preventDefault();
+                      onSelectPatent(selected ? null : node.id);
+                    }
+                  }}
+                >
+                  <title>{node.fullLabel}</title>
+                  <circle
+                    cx={node.x}
+                    cy={node.y}
+                    r={PATENT_R}
+                    fill={t.panelBg}
+                    stroke={selected ? t.toggleActiveBorder : t.stop}
+                    strokeWidth={selected ? 3 : hovered ? 3 : 1.5}
+                  />
+                  <text
+                    x={node.labelX}
+                    y={node.labelY}
+                    textAnchor={node.labelAnchor}
+                    fontSize={11}
+                    fill={t.label}
+                    pointerEvents="none"
+                  >
+                    {node.label}
+                    {year !== undefined && (
+                      <tspan x={node.labelX} dy={13} fill={t.muted}>
+                        {year}
+                      </tspan>
+                    )}
+                  </text>
+                </g>
+              );
+            }
+
+            const party = partyById.get(node.id);
+            if (!party) return null;
+            const isAssignee = party.ref.role === "assignee";
+            const side = 2 * PARTY_R * 0.85;
             return (
               <g
                 key={node.id}
                 role="button"
                 tabIndex={0}
-                aria-label={`Patent ${patent.patentNumber}${year ? `, ${year}` : ""}`}
+                aria-label={`Recenter map on ${party.ref.name}${isAssignee ? " (assignee)" : " (inventor)"}`}
                 style={{ cursor: "pointer" }}
                 onPointerDown={stopNodePointerDown}
                 onPointerEnter={() => setHoveredNodeId(node.id)}
                 onPointerLeave={() => setHoveredNodeId((cur) => (cur === node.id ? null : cur))}
-                onClick={() => onSelectPatent(selected ? null : node.id)}
+                onClick={() => onFocusParty(party.ref)}
                 onKeyDown={(e) => {
                   if (isActivateKey(e)) {
                     e.preventDefault();
-                    onSelectPatent(selected ? null : node.id);
+                    onFocusParty(party.ref);
                   }
                 }}
               >
                 <title>{node.fullLabel}</title>
-                <circle
-                  cx={node.x}
-                  cy={node.y}
-                  r={PATENT_R}
-                  fill={t.panelBg}
-                  stroke={selected ? t.toggleActiveBorder : t.stop}
-                  strokeWidth={selected ? 3 : hovered ? 3 : 1.5}
-                />
+                {isAssignee ? (
+                  <rect
+                    x={node.x - side / 2}
+                    y={node.y - side / 2}
+                    width={side}
+                    height={side}
+                    rx={3}
+                    fill={t.panelBg}
+                    stroke={t.rayCool}
+                    strokeWidth={hovered ? 3 : 1.5}
+                  />
+                ) : (
+                  <circle
+                    cx={node.x}
+                    cy={node.y}
+                    r={PARTY_R}
+                    fill={t.panelBg}
+                    stroke={t.rayWarm}
+                    strokeWidth={hovered ? 3 : 1.5}
+                  />
+                )}
                 <text
                   x={node.labelX}
                   y={node.labelY}
                   textAnchor={node.labelAnchor}
                   fontSize={11}
-                  fill={t.label}
+                  fill={t.body}
                   pointerEvents="none"
                 >
                   {node.label}
-                  {year !== undefined && (
-                    <tspan x={node.labelX} dy={13} fill={t.muted}>
-                      {year}
-                    </tspan>
-                  )}
                 </text>
               </g>
             );
-          }
-
-          const party = partyById.get(node.id);
-          if (!party) return null;
-          const isAssignee = party.ref.role === "assignee";
-          const side = 2 * PARTY_R * 0.85;
-          return (
-            <g
-              key={node.id}
-              role="button"
-              tabIndex={0}
-              aria-label={`Recenter map on ${party.ref.name}${isAssignee ? " (assignee)" : " (inventor)"}`}
-              style={{ cursor: "pointer" }}
-              onPointerDown={stopNodePointerDown}
-              onPointerEnter={() => setHoveredNodeId(node.id)}
-              onPointerLeave={() => setHoveredNodeId((cur) => (cur === node.id ? null : cur))}
-              onClick={() => onFocusParty(party.ref)}
-              onKeyDown={(e) => {
-                if (isActivateKey(e)) {
-                  e.preventDefault();
-                  onFocusParty(party.ref);
-                }
-              }}
-            >
-              <title>{node.fullLabel}</title>
-              {isAssignee ? (
-                <rect
-                  x={node.x - side / 2}
-                  y={node.y - side / 2}
-                  width={side}
-                  height={side}
-                  rx={3}
-                  fill={t.panelBg}
-                  stroke={t.rayCool}
-                  strokeWidth={hovered ? 3 : 1.5}
-                />
-              ) : (
-                <circle
-                  cx={node.x}
-                  cy={node.y}
-                  r={PARTY_R}
-                  fill={t.panelBg}
-                  stroke={t.rayWarm}
-                  strokeWidth={hovered ? 3 : 1.5}
-                />
-              )}
-              <text
-                x={node.labelX}
-                y={node.labelY}
-                textAnchor={node.labelAnchor}
-                fontSize={11}
-                fill={t.body}
-                pointerEvents="none"
-              >
-                {node.label}
-              </text>
-            </g>
-          );
-        })}
-      </svg>
+          })}
+        </svg>
+      </div>
 
       <div
         style={{
