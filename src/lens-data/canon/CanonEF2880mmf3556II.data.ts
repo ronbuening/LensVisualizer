@@ -1,63 +1,16 @@
 import type { LensDataInput } from "../../types/optics.js";
 
 /**
- * ╔══════════════════════════════════════════════════════════════════════╗
- * ║   LENS DATA — CANON EF 28-80mm f/3.5-5.6 II                       ║
- * ╠══════════════════════════════════════════════════════════════════════╣
- * ║  Patent source: US 5,899,585, Numerical Example 1.                 ║
- * ║  Production correlation: Canon EF28-80mm f/3.5-5.6 II.             ║
- * ║  Prescription: 10 elements / 10 air-spaced groups, all spherical.  ║
- * ║                                                                    ║
- * ║  RAW / NORMALIZED / SCALED PRESCRIPTION                            ║
- * ║  The radii, element thicknesses, refractive indices, and zoom      ║
- * ║  gaps are the patent's printed millimetre values with its radius   ║
- * ║  sign convention normalized to +z from object to image. No raw     ║
- * ║  prescription value was corrected. No production scaling is       ║
- * ║  applied: source EFL states 28.98 / 50.00 / 77.08 mm, target       ║
- * ║  states identical, scale factor s = 1.000000. There are no         ║
- * ║  aspheres, so A_p,scaled = A_p,patent / s^(p-1) is not applicable; ║
- * ║  K is likewise not applicable.                                    ║
- * ║                                                                    ║
- * ║  IMAGE PLANE                                                       ║
- * ║  The patent omits the r21-to-image distance. Surface 21 therefore ║
- * ║  uses a fixed inferred BFD of 37.732911 mm from an independent     ║
- * ║  common-image-plane least-squares recovery. The printed d8 and d17 ║
- * ║  values remain unchanged. Raw state BFD estimates from the         ║
- * ║  rounded table are 37.724482 / 37.701927 / 37.625185 mm.           ║
- * ║                                                                    ║
- * ║  ZOOM AND FOCUS MODEL                                              ║
- * ║  Zoom gaps D8 and D17 are published and are copied exactly. L1     ║
- * ║  reverses direction between wide-middle and middle-tele; L2 moves  ║
- * ║  monotonically objectward; L3 and the image plane remain fixed.    ║
- * ║  Focus model: NO_INTERNAL_RECONSTRUCTION. The patent states that   ║
- * ║  L1 focuses, but publishes no finite-focus spacings. The required  ║
- * ║  closeFocusM is Canon's rounded 0.38 m production MFD; it does not  ║
- * ║  validate internal focus gaps. Infinity and close pairs are kept   ║
- * ║  identical so the file does not invent focus travel.               ║
- * ║                                                                    ║
- * ║  STOP AND SEMI-DIAMETERS                                           ║
- * ║  The stop position at r11 is patent-published. Its wide-state SD   ║
- * ║  8.582619 mm is inferred from the patent f/3.46 and independently  ║
- * ║  traced entrance pupil. The variable nominalFno values allow the   ║
- * ║  runtime to derive the corresponding state-specific wide-open stop ║
- * ║  aperture. All element SDs are inferences constrained by exact     ║
- * ║  marginal/chief-ray envelopes at the rendered 60% field, Canon's  ║
- * ║  official optical section and 58 mm filter / 66.4 mm barrel, edge ║
- * ║  thickness, actual rim slope, shared-band gap intrusion, and       ║
- * ║  renderer trim diagnostics. Full-field edge-pupil clipping remains ║
- * ║  as ordinary mechanical vignetting; chief and rendered bundles pass. ║
- * ║                                                                    ║
- * ║  GLASS IDENTIFICATION                                              ║
- * ║  The patent names no glass vendor. The stored names are probable   ║
- * ║  OHARA catalog equivalents supported by the printed (nd, vd)       ║
- * ║  pairs; they are not claims of Canon's actual supplier. nC, nF,    ║
- * ║  and ng are current OHARA catalog values. dPgF is independently    ║
- * ║  computed from those line indices and is not patent-published.     ║
- * ╚══════════════════════════════════════════════════════════════════════╝
+ * Canon EF 28-80mm f/3.5-5.6 II.
+ * Prescription: US 5,899,585, Numerical Example 1; 10 air-spaced elements, all spherical.
+ * Patent dimensions are retained without focal-length scaling. D8 and D17 are published zoom gaps.
+ * The patent omits r21-to-image distance; 37.732911 mm is an independently recovered common image plane.
+ * No finite-focus spacings are published, so identical infinity/close pairs prevent an invented focus state.
+ * Semi-diameters and the stop diameter are inferred rendering apertures, not manufacturer clear-aperture data.
+ * Glass names are current OHARA catalog equivalents; Canon's historical supplier is not identified.
  */
 
 const LENS_DATA = {
-  /* ── Identity ── */
   key: "canon-ef-28-80mm-f35-56-ii",
   maker: "Canon",
   name: "CANON EF 28-80mm f/3.5-5.6 II",
@@ -78,16 +31,14 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 5,899,585",
   patentAuthors: ["Hideki Ogawa"],
-  patentAssignees: ["Canon Kabushiki Kaisha"],
+  patentAssignees: ["Canon Inc."],
   patentYear: 1999,
   elementCount: 10,
   groupCount: 10,
 
-  /* ── Optical states ── */
   zoomPositions: [28.98, 50.0, 77.08],
   zoomLabels: ["Wide", "Tele"],
-  // The optical control follows the patent prescription. The marketed f/3.5-5.6 endpoints remain in product metadata;
-  // forcing f/5.6 on this exact prescription opens the stop beyond the verified r13/r14 clear-aperture geometry.
+  // Retain the patent optical states; imposing the marketed tele f/5.6 would exceed r13/r14 aperture geometry.
   nominalFno: [3.46, 4.51, 5.88],
   closeFocusM: 0.38,
   focusDescription:
@@ -96,11 +47,8 @@ const LENS_DATA = {
   fstopSeries: [3.5, 4, 5.6, 8, 11, 16, 22, 32],
   maxFstop: 38,
   apertureBlades: 5,
-
-  /* ── Per-lens layout ── */
   yScFill: 0.72,
 
-  /* ── Elements ── */
   elements: [
     {
       id: 1,
@@ -256,7 +204,6 @@ const LENS_DATA = {
     },
   ],
 
-  /* ── Surfaces: physical object-to-image order ── */
   surfaces: [
     { label: "1", R: 117.525, d: 2.7, nd: 1.51633, elemId: 1, sd: 22.0 },
     { label: "2", R: 689.019, d: 0.15, nd: 1.0, elemId: 0, sd: 21.0 },
@@ -282,8 +229,6 @@ const LENS_DATA = {
   ],
 
   asph: {},
-
-  /* ── Published zoom variables; identical pairs mean no focus reconstruction ── */
   var: {
     "8": [
       [32.88, 32.88],
@@ -300,7 +245,6 @@ const LENS_DATA = {
     ["8", "D8 (L1-L2)"],
     ["17", "D17 (L2-L3)"],
   ],
-
   groups: [
     { text: "L1", fromSurface: "1", toSurface: "8" },
     { text: "L2", fromSurface: "9", toSurface: "17" },
