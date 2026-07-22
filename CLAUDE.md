@@ -43,6 +43,7 @@ src/components/           - React UI components and hooks
     lensViewer/           - Viewer-level chrome, content layout, and header helpers
   markdown/               - Shared markdown renderer
   mount/                  - Mount interface diagram components (MountDiagram, panel)
+  relationshipMap/        - patent relationship map (radial layout engine + SVG renderer + picker)
 src/comparison/           - Comparison mode feature module
 src/optics/               - Pure optical engine and analysis helpers
   math/ trace/ field/     - Vector math, exact tracing, projection-aware field launch

@@ -362,9 +362,9 @@ Steps:
 Acceptance: table matches the element inspector's data for spot-checked elements; row click
 selects in diagram; gate passes; changelog entry.
 
-### F25. Patent relationship map explorer
+### F25. Patent relationship map explorer — SHIPPED (2026-07-22)
 
-- [ ] Effort: M-L · Data: `patentAuthors[]`, `patentAssignees[]`, `patentNumber`, `patentYear`
+- [x] Effort: M-L · Data: `patentAuthors[]`, `patentAssignees[]`, `patentNumber`, `patentYear`
 
 What: an interactive `/relationships` page that centers on an inventor or assignee and draws a
 two-ring ego graph as inline SVG — their patents on the inner ring, each patent's other

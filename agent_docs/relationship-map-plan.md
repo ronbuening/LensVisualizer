@@ -1,6 +1,12 @@
 # Patent Relationship Map — Implementation Plan
 
-Status: **planned, not started**. Tracked as F25 in `FEATURE_ADDITION_PLAN.md`.
+Status: **SHIPPED 2026-07-22** on branch `ronbuening/RelationMapping` (F25 in
+`FEATURE_ADDITION_PLAN.md`). All six milestones landed; see the per-milestone status notes below and
+the branch record `agent_docs/records/relationship-map-2026-07-22.md`. The one deviation from this
+spec: `scripts/author-metadata.mjs` is backed by a hand-written `scripts/author-metadata.d.mts`
+declaration file for `tsc`, which the plan did not anticipate — `buildAssigneeMetadata` and a
+`patentAssignees?` field had to be added there too (M1). Optional M6 polish items (recenter
+transition, decade tint, double-click reset) were intentionally skipped.
 
 This document is a self-contained spec. Signatures and file references were verified against the
 working tree on 2026-07-22; re-locate by symbol name if a line has drifted, and STOP if reality
@@ -85,7 +91,10 @@ the site.
 
 ---
 
-## Milestone 1 — Build-time assignee index
+## Milestone 1 — Build-time assignee index  ✅ DONE
+
+(Deviation: also updated `scripts/author-metadata.d.mts` — the `.mjs` has a companion hand-written
+type declaration that must export `buildAssigneeMetadata` and carry `patentAssignees?`.)
 
 Goal: `build-metadata.json` gains `assignees: [{ name, slug, lensKeys, patentCount }]` with the
 same slug rules authors already have.
@@ -140,7 +149,7 @@ prints a count > 0 and a `{name, slug, lensKeys, patentCount}` object.
 
 ---
 
-## Milestone 2 — Runtime catalogs + graph assembly (pure data layer)
+## Milestone 2 — Runtime catalogs + graph assembly (pure data layer)  ✅ DONE
 
 Goal: pure functions that turn a focus party into a renderable graph object. No React yet.
 
@@ -268,7 +277,7 @@ nodes (one `author:…`, one `assignee:…`), and 3 edges.
 
 ---
 
-## Milestone 3 — Radial layout engine (pure geometry)
+## Milestone 3 — Radial layout engine (pure geometry)  ✅ DONE
 
 Goal: a pure function mapping a `RelationshipGraph` to SVG coordinates. No React.
 
@@ -401,7 +410,10 @@ increasing θ goes clockwise on screen):
 
 ---
 
-## Milestone 4 — SVG map components
+## Milestone 4 — SVG map components  ✅ DONE
+
+(The component test file adds an explicit `afterEach(cleanup)` — this repo's Testing Library setup
+does not auto-clean between cases.)
 
 Goal: the interactive SVG renderer plus the entity picker and patent detail card. Still no page.
 
@@ -540,7 +552,7 @@ to the M5 page test too):
 
 ---
 
-## Milestone 5 — Page, route, build wiring, entry links
+## Milestone 5 — Page, route, build wiring, entry links  ✅ DONE
 
 Goal: `/relationships` live end-to-end: prerendered intro/picker state, client-side map, links
 from existing pages.
@@ -669,7 +681,7 @@ After `npm run build`, ALL of these must hold:
 
 ---
 
-## Milestone 6 — Polish, docs, ship rituals
+## Milestone 6 — Polish, docs, ship rituals  ✅ DONE (optional polish skipped)
 
 **Files to touch**
 

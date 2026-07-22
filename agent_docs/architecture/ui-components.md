@@ -139,6 +139,17 @@ Use `src/components/display/analysis/charts/` before adding chart-local SVG axis
 Current chart consumers include distortion, vignetting, pupil aberration, and field curvature. `StandardFieldCurvaturePlot`
 is a compatibility wrapper around the configurable `FieldCurvaturePlot`.
 
+## Relationship Map Components
+
+`src/components/relationshipMap/` renders the patent relationship map at `/relationships`, mirroring the mount-diagram
+engine/renderer split: `layout.ts` is a pure, React-free geometry engine that maps a `RelationshipGraph` (from
+`src/utils/catalog/relationshipGraph.ts`) to a deterministic, collision-free two-ring radial layout; `RelationshipMap.tsx`
+renders that layout as inline SVG (edges → nodes → labels) with `useViewBoxZoom` pan/zoom, hover edge highlighting, and
+colorblind-safe role shapes (circle inventor / square assignee), translating node clicks into recenter/select callbacks
+rather than navigating from inside the `<svg>`. `RelationshipEntityPicker.tsx` is the searchable inventor/assignee chooser
+(full grid + compact dropdown) and `PatentDetailCard.tsx` is the selected-patent panel (a deliberate copy of `AuthorPage`'s
+local `PatentCard` whose party names recenter the map instead of linking to author pages). The page owns URL/`focus` state.
+
 ## Markdown Renderer
 
 `ThemedMarkdown` supports both `article` and `description` variants:
