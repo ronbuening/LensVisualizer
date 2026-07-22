@@ -62,13 +62,15 @@ export function authorPathForName(name: string): string | undefined {
 }
 
 /**
- * Aggregate visible lens summaries into one record per patent for an author.
+ * Aggregate visible lens summaries into one record per patent for a party.
  *
  * A source patent may underpin multiple diagrams. Those diagrams stay under a
- * single patent record so the page describes the author's patent work rather
- * than implying each rendered example is a different filing.
+ * single patent record so the result describes the party's patent work rather
+ * than implying each rendered example is a different filing. The membership
+ * test switches between the inventor (`patentAuthors`) and assignee
+ * (`patentAssignees`) name lists based on `role`.
  */
-export function patentsForAuthor(name: string): AuthorPatent[] {
+export function patentsForParty(name: string, role: "author" | "assignee"): AuthorPatent[] {
   const patents = new Map<
     string,
     {
@@ -82,7 +84,8 @@ export function patentsForAuthor(name: string): AuthorPatent[] {
 
   for (const key of SUMMARY_KEYS) {
     const lens: LensSummary = LENS_SUMMARIES[key];
-    if (!lens.patentAuthors?.includes(name)) continue;
+    const names = role === "author" ? lens.patentAuthors : lens.patentAssignees;
+    if (!names?.includes(name)) continue;
 
     const patentNumber = lens.patentNumber ?? `Patent source for ${lens.name}`;
     const record = patents.get(patentNumber) ?? {
@@ -112,6 +115,11 @@ export function patentsForAuthor(name: string): AuthorPatent[] {
         (a.patentYear ?? Number.POSITIVE_INFINITY) - (b.patentYear ?? Number.POSITIVE_INFINITY) ||
         a.patentNumber.localeCompare(b.patentNumber),
     );
+}
+
+/** Aggregate one record per patent for an inventor (see {@link patentsForParty}). */
+export function patentsForAuthor(name: string): AuthorPatent[] {
+  return patentsForParty(name, "author");
 }
 
 /**

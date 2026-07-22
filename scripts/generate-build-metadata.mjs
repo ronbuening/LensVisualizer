@@ -8,6 +8,7 @@
  *   - makerSlugs: sorted array of unique maker URL slugs
  *   - mountIds / formatIds: sorted arrays of used taxonomy ids
  *   - authors: inventor names, stable slugs, and related lens/patent counts
+ *   - assignees: assignee names, stable slugs, and related lens/patent counts
  *   - routes: flat array of all concrete URL paths to pre-render
  *
  * This is the single source of truth for route enumeration. Downstream scripts
@@ -31,7 +32,7 @@ import {
 } from "./build-metadata-lib.mjs";
 import { collectLensDataAsync } from "./lens-data-lib.mjs";
 import { MAKER_PREFIXES } from "./maker-prefixes.mjs";
-import { buildAuthorMetadata } from "./author-metadata.mjs";
+import { buildAuthorMetadata, buildAssigneeMetadata } from "./author-metadata.mjs";
 
 const ROOT = join(import.meta.dirname, "..");
 const README_FILE = join(ROOT, "README.md");
@@ -169,6 +170,7 @@ function collectRoutes(lenses, articles, makerSlugs, mountIds, formatIds, author
     "/formats",
     "/articles",
     "/updates",
+    "/relationships",
     ...articles.map((a) => `/articles/${a.slug}`),
     ...lenses.map((l) => `/lens/${l.key}`),
     ...makerSlugs.map((s) => `/makers/${s}`),
@@ -243,6 +245,7 @@ async function main() {
   const mountIds = [...new Set(lenses.flatMap((l) => l.lensMountIds ?? []))].sort();
   const formatIds = [...new Set(lenses.flatMap((l) => (l.imageFormatId ? [l.imageFormatId] : [])))].sort();
   const authors = buildAuthorMetadata(lensSummaries);
+  const assignees = buildAssigneeMetadata(lensSummaries);
   const routes = collectRoutes(lenses, articles, makerSlugs, mountIds, formatIds, authors);
   const routeFreshness = buildRouteFreshness({
     lenses,
@@ -263,6 +266,7 @@ async function main() {
     mountIds,
     formatIds,
     authors,
+    assignees,
     routes,
     routeFreshness,
   };
@@ -283,7 +287,7 @@ async function main() {
   }
 
   console.log(
-    `Build metadata written to ${OUT_FILE} (${lensKeys.length} lenses, ${articles.length} articles, ${makerSlugs.length} makers, ${authors.length} authors, ${mountIds.length} mounts, ${formatIds.length} formats, ${routes.length} routes)`,
+    `Build metadata written to ${OUT_FILE} (${lensKeys.length} lenses, ${articles.length} articles, ${makerSlugs.length} makers, ${authors.length} authors, ${assignees.length} assignees, ${mountIds.length} mounts, ${formatIds.length} formats, ${routes.length} routes)`,
   );
 }
 

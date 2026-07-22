@@ -29,7 +29,17 @@ build metadata.
 | `ArticlesPage.tsx` | `src/pages/` | Article archive at `/articles`. |
 | `ArticlePage.tsx` | `src/pages/` | Article page at `/articles/:slug`. |
 | `UpdatesPage.tsx` | `src/pages/` | Recently added lens/update page. |
+| `RelationshipMapPage.tsx` | `src/pages/` | Patent relationship map at `/relationships`; the focus inventor/assignee lives in a `?focus=<role>:<slug>` query param (see below). |
 | `NotFoundPage.tsx` | `src/pages/` | Catch-all 404. |
+
+`RelationshipMapPage` is one static route whose content is driven by a query param rather than a path param: with no
+`focus` it renders the intro + entity picker + "most-connected" link columns (this is the prerendered SEO state), and with
+a valid `?focus=<role>:<slug>` it builds and renders the interactive ego graph. The prerenderer only ever emits the
+no-focus HTML, so all query-dependent content is gated behind a `mounted` flag (the same mechanism as `ClientOnly.tsx`) to
+keep the server render and first client render identical; the real focus appears one paint after hydration. Recentering
+uses `setSearchParams` without `replace`, so browser Back retraces the exploration path. The canonical URL is always
+`/relationships` (no query). Assignee slugs come from the build-generated `assignees` array in `build-metadata.json`
+(alongside `authors`); assignees have no dedicated pages.
 
 ## Static Page Shells
 

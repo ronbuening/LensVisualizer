@@ -236,6 +236,7 @@ export function buildRouteFreshness({
   routeFreshness["/formats"] = combineFreshnessEntries(allLensFreshness, fallbackDate);
   routeFreshness["/articles"] = combineFreshnessEntries(allArticleFreshness, fallbackDate);
   routeFreshness["/updates"] = combineFreshnessEntries(allLensFreshness, fallbackDate);
+  routeFreshness["/relationships"] = combineFreshnessEntries(allLensFreshness, fallbackDate);
 
   for (const article of articles) {
     routeFreshness[`/articles/${article.slug}`] = {

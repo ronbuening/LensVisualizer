@@ -16,6 +16,7 @@ const INDEX_LINKS = [
   { label: "Mounts", to: "/mounts" },
   { label: "Formats", to: "/formats" },
   { label: "Authors", to: "/authors" },
+  { label: "Relationships", to: "/relationships" },
   { label: "Articles", to: "/articles" },
 ] as const;
 

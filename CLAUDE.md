@@ -43,6 +43,7 @@ src/components/           - React UI components and hooks
     lensViewer/           - Viewer-level chrome, content layout, and header helpers
   markdown/               - Shared markdown renderer
   mount/                  - Mount interface diagram components (MountDiagram, panel)
+  relationshipMap/        - patent relationship map (radial layout engine + SVG renderer + picker)
 src/comparison/           - Comparison mode feature module
 src/optics/               - Pure optical engine and analysis helpers
   math/ trace/ field/     - Vector math, exact tracing, projection-aware field launch
@@ -106,6 +107,7 @@ Read only the relevant focused doc before changing that area:
 - `agent_docs/records/exact-surface-trace.md` - historical staged implementation notes for the exact trace rollout
 - `TRACE_MODEL_IMPROVEMENT_PLAN.md` - current/historical fisheye projection, vector launch, and bounding-sphere trace status
 - `FEATURE_ADDITION_PLAN.md` - single source of truth for planned features (absorbed the analysis-options and mirror-lens backlogs; archives under `agent_docs/records/`)
+- `agent_docs/relationship-map-plan.md` - self-contained implementation plan for the F25 patent relationship map page
 - `EFFICIENCY_IMPROVEMENT_PLAN.md` - task-by-task redundancy cleanup and performance backlog with verification gates
 - `agent_docs/adding_a_lens.md` - lens data workflow and validation troubleshooting
 - `agent_docs/lens-data-integration-handoff.md` - copy-ready AI handoff for constructing and integrating data/analysis pairs
