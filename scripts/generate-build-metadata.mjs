@@ -170,6 +170,7 @@ function collectRoutes(lenses, articles, makerSlugs, mountIds, formatIds, author
     "/formats",
     "/articles",
     "/updates",
+    "/relationships",
     ...articles.map((a) => `/articles/${a.slug}`),
     ...lenses.map((l) => `/lens/${l.key}`),
     ...makerSlugs.map((s) => `/makers/${s}`),

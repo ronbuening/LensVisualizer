@@ -73,7 +73,12 @@ export default function AuthorsIndexPage() {
       <main style={PAGE_BASE_STYLE}>
         <h1 style={{ fontSize: "1.5rem", fontWeight: 600, margin: "1.5rem 0 0.5rem" }}>Lens Patent Authors</h1>
         <p style={{ color: t.muted, fontSize: "0.8rem", lineHeight: 1.5, marginBottom: "1.5rem" }}>
-          {AUTHORS.length} named inventors represented in the Surface &amp; Stop catalog.
+          {AUTHORS.length} named inventors represented in the Surface &amp; Stop catalog. Explore how they connect
+          through shared patents in the{" "}
+          <Link to="/relationships" style={{ color: t.descLinkColor, textDecoration: "none" }}>
+            patent relationship map
+          </Link>
+          .
         </p>
 
         <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1.25rem" }}>

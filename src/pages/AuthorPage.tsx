@@ -161,9 +161,17 @@ export default function AuthorPage() {
 
       <main style={PAGE_BASE_STYLE}>
         <h1 style={{ fontSize: "1.5rem", fontWeight: 600, margin: "1.5rem 0 0.35rem" }}>{author.name}</h1>
-        <p style={{ color: t.muted, fontSize: "0.8rem", lineHeight: 1.5, marginBottom: "1rem" }}>
+        <p style={{ color: t.muted, fontSize: "0.8rem", lineHeight: 1.5, marginBottom: "0.4rem" }}>
           {patents.length} related {patents.length === 1 ? "patent" : "patents"} across {author.lensKeys.length}{" "}
           interactive lens {author.lensKeys.length === 1 ? "diagram" : "diagrams"}.
+        </p>
+        <p style={{ marginBottom: "1rem" }}>
+          <Link
+            to={`/relationships?focus=author:${author.slug}`}
+            style={{ color: t.descLinkColor, textDecoration: "none", fontSize: "0.75rem" }}
+          >
+            View in relationship map →
+          </Link>
         </p>
 
         <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1.25rem" }}>

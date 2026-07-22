@@ -34,6 +34,7 @@ const routeManifest: RouteManifestEntry[] = [
   { path: "/articles", load: () => import("../pages/ArticlesPage.js") },
   { path: "/articles/:slug", load: () => import("../pages/ArticlePage.js") },
   { path: "/updates", load: () => import("../pages/UpdatesPage.js") },
+  { path: "/relationships", load: () => import("../pages/RelationshipMapPage.js") },
   { path: "*", load: () => import("../pages/NotFoundPage.js") },
 ];
 
