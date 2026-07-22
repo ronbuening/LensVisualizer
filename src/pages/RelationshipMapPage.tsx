@@ -1,13 +1,14 @@
 /**
  * Patent Relationship Map page — /relationships
  *
- * Draws a two-ring "ego graph" around a focus inventor or assignee chosen via
- * the `?focus=<role>:<slug>` query param. With no focus it renders an intro,
+ * Draws an ego graph around an inventor, assignee, or patent chosen via the
+ * `?focus=<role>:<value>` query param. With no focus it renders an intro,
  * entity picker, and "most-connected" link columns — this no-focus state is the
  * prerendered SEO content. Query-dependent content is gated behind a mounted
  * flag so the server render (no query) and the first client render agree, then
  * the real focus appears one paint after hydration (same idea as ClientOnly).
- * Only `focus` is URL state; the selected patent is component state.
+ * Patent clicks use the same URL focus state as party clicks, so browser Back
+ * retraces both kinds of exploration.
  */
 
 import { useEffect, useMemo, useState } from "react";
@@ -19,7 +20,13 @@ import RelationshipEntityPicker from "../components/relationshipMap/Relationship
 import PatentDetailCard from "../components/relationshipMap/PatentDetailCard.js";
 import { AUTHORS } from "../utils/catalog/authorCatalog.js";
 import { ASSIGNEES } from "../utils/catalog/assigneeCatalog.js";
-import { buildRelationshipGraph, resolveFocusParam, type PartyRef } from "../utils/catalog/relationshipGraph.js";
+import {
+  buildRelationshipGraph,
+  resolveFocusParam,
+  type GraphPatentNode,
+  type PartyRef,
+  type RelationshipFocus,
+} from "../utils/catalog/relationshipGraph.js";
 import { SITE_NAME, SITE_URL } from "../utils/catalog/lensMetadata.js";
 import { breadcrumbJsonLd, collectionPageJsonLd } from "../utils/seo/structuredData.js";
 import { PAGE_BASE_STYLE } from "../utils/style/pageStyles.js";
@@ -41,17 +48,17 @@ export default function RelationshipMapPage() {
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
 
-  const [selectedPatentId, setSelectedPatentId] = useState<string | null>(null);
-
   /* Server render and first client render agree (no focus); the real focus
    * appears one paint after hydration. Same mechanism as ClientOnly.tsx. */
   const focus = mounted ? resolveFocusParam(searchParams.get("focus")) : undefined;
   const graph = useMemo(() => (focus ? buildRelationshipGraph(focus) : undefined), [focus]);
 
-  const setFocusParty = (ref: PartyRef) => {
-    setSelectedPatentId(null);
-    setSearchParams({ focus: `${ref.role}:${ref.slug}` });
+  const setFocus = (nextFocus: RelationshipFocus) => {
+    const value = nextFocus.role === "patent" ? nextFocus.patentNumber : nextFocus.slug;
+    setSearchParams({ focus: `${nextFocus.role}:${value}` });
   };
+  const setFocusParty = (ref: PartyRef) => setFocus(ref);
+  const setFocusPatent = (patent: GraphPatentNode) => setFocus({ role: "patent", patentNumber: patent.patentNumber });
 
   const topAuthors = useMemo(() => topByPatents(AUTHORS), []);
   const topAssignees = useMemo(() => topByPatents(ASSIGNEES), []);
@@ -59,7 +66,7 @@ export default function RelationshipMapPage() {
   const canonicalURL = `${SITE_URL}/relationships`;
   const seoDescription = `Explore how ${AUTHORS.length} optical inventors and ${ASSIGNEES.length} assignees connect through shared lens patents in an interactive relationship map.`;
 
-  const selectedPatent = graph && selectedPatentId ? graph.patents.find((p) => p.id === selectedPatentId) : undefined;
+  const focusedPatent = graph?.centerKind === "patent" ? graph.center : undefined;
 
   return (
     <div style={{ backgroundColor: t.bg, color: t.body, minHeight: "100vh" }}>
@@ -106,7 +113,7 @@ export default function RelationshipMapPage() {
           <>
             <div style={{ margin: "1.25rem 0 1rem" }}>
               <h2 style={{ fontSize: "1.3rem", fontWeight: 600, margin: "0 0 0.35rem" }}>
-                {focus.name}
+                {focus.role === "patent" ? focus.patentNumber : focus.name}
                 <span
                   style={{
                     display: "inline-block",
@@ -115,21 +122,28 @@ export default function RelationshipMapPage() {
                     letterSpacing: "0.06em",
                     padding: "0.12rem 0.4rem",
                     borderRadius: 3,
-                    border: `1px solid ${focus.role === "assignee" ? t.rayCool : t.rayWarm}`,
+                    border: `1px solid ${
+                      focus.role === "patent" ? t.stop : focus.role === "assignee" ? t.rayCool : t.rayWarm
+                    }`,
                     color: t.muted,
                     marginLeft: "0.5rem",
                     verticalAlign: "middle",
                   }}
                 >
-                  {focus.role === "assignee" ? "assignee" : "inventor"}
+                  {focus.role === "patent" ? "patent" : focus.role === "assignee" ? "assignee" : "inventor"}
                 </span>
               </h2>
-              {graph.center.hasPage && (
+              {focus.role === "author" && (
                 <Link
                   to={`/authors/${focus.slug}`}
                   style={{ color: t.descLinkColor, textDecoration: "none", fontSize: "0.75rem" }}
                 >
                   View patent list page →
+                </Link>
+              )}
+              {focus.role === "patent" && (
+                <Link to="/patents" style={{ color: t.descLinkColor, textDecoration: "none", fontSize: "0.75rem" }}>
+                  Browse all patents →
                 </Link>
               )}
             </div>
@@ -142,20 +156,11 @@ export default function RelationshipMapPage() {
               key={graph.center.id}
               graph={graph}
               theme={t}
-              selectedPatentId={selectedPatentId}
-              onSelectPatent={setSelectedPatentId}
+              onFocusPatent={setFocusPatent}
               onFocusParty={setFocusParty}
             />
 
-            {selectedPatent && (
-              <PatentDetailCard
-                patent={selectedPatent}
-                centerRef={focus}
-                theme={t}
-                onFocusParty={setFocusParty}
-                onClose={() => setSelectedPatentId(null)}
-              />
-            )}
+            {focusedPatent && <PatentDetailCard patent={focusedPatent} theme={t} onFocusParty={setFocusParty} />}
           </>
         ) : (
           <>
@@ -170,8 +175,12 @@ export default function RelationshipMapPage() {
               }}
             >
               Pick an inventor or assignee to see the patents credited to them and every other inventor and assignee
-              named on those patents. Click an outer node to recenter the map on that party and keep exploring; click a
-              patent to open its details and jump to the interactive lens diagrams derived from it.
+              named on those patents. Click any outer party or patent to put it at the center and keep exploring. Patent
+              views include links to every interactive lens diagram derived from that source. You can also browse the{" "}
+              <Link to="/patents" style={{ color: t.descLinkColor, textDecoration: "none" }}>
+                complete patent index
+              </Link>
+              .
             </p>
 
             <RelationshipEntityPicker theme={t} onPick={setFocusParty} />

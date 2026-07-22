@@ -1,5 +1,5 @@
 /**
- * PatentDetailCard — detail panel shown below the map for a selected patent.
+ * PatentDetailCard — detail panel shown below a patent-centered map.
  *
  * Visually mirrors AuthorPage's local PatentCard (panel chrome, number/year
  * header, assignee + inventor lines, divider, lens links). The difference is
@@ -16,20 +16,14 @@ import type { GraphPatentNode, PartyRef, PartyRole } from "../../utils/catalog/r
 
 interface PatentDetailCardProps {
   patent: GraphPatentNode;
-  centerRef: PartyRef;
+  centerRef?: PartyRef;
   theme: Theme;
   onFocusParty: (ref: PartyRef) => void;
-  onClose: () => void;
 }
 
-export default function PatentDetailCard({
-  patent,
-  centerRef,
-  theme: t,
-  onFocusParty,
-  onClose,
-}: PatentDetailCardProps) {
-  const isCenter = (name: string, role: PartyRole) => role === centerRef.role && name === centerRef.name;
+export default function PatentDetailCard({ patent, centerRef, theme: t, onFocusParty }: PatentDetailCardProps) {
+  const isCenter = (name: string, role: PartyRole) =>
+    centerRef !== undefined && role === centerRef.role && name === centerRef.name;
 
   const renderParty = (name: string, role: PartyRole, index: number) => {
     const meta = role === "author" ? getAuthorByName(name) : getAssigneeByName(name);
@@ -67,7 +61,6 @@ export default function PatentDetailCard({
   return (
     <article
       style={{
-        position: "relative",
         background: t.panelBg,
         border: `1px solid ${t.panelBorder}`,
         borderRadius: 6,
@@ -75,25 +68,7 @@ export default function PatentDetailCard({
         marginTop: "1rem",
       }}
     >
-      <button
-        type="button"
-        onClick={onClose}
-        aria-label="Close patent details"
-        style={{
-          position: "absolute",
-          top: "0.5rem",
-          right: "0.6rem",
-          background: "none",
-          border: "none",
-          color: t.muted,
-          cursor: "pointer",
-          fontSize: "0.85rem",
-        }}
-      >
-        Close
-      </button>
-
-      <h3 style={{ color: t.title, fontSize: "0.95rem", margin: "0 0 0.35rem", paddingRight: "3rem" }}>
+      <h3 style={{ color: t.title, fontSize: "0.95rem", margin: "0 0 0.35rem" }}>
         {patent.patentNumber}
         {patent.patentYear !== undefined && (
           <span style={{ color: t.label, fontSize: "0.7rem", marginLeft: "0.5rem", fontWeight: 400 }}>

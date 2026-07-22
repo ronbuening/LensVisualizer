@@ -2,7 +2,7 @@
 
 /**
  * Page-level coverage for /relationships: intro/picker prerender state, focused
- * map rendering, silent fallback, recentering URL updates, and patent detail.
+ * map rendering, silent fallback, recentering URL updates, and patent focus.
  */
 
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
@@ -116,14 +116,16 @@ describe("RelationshipMapPage", () => {
     expect(screen.queryByRole("link", { name: "Relationship map" })).toBeNull();
   });
 
-  it("shows the patent detail card with a working lens link when a patent is clicked", async () => {
+  it("centers a clicked patent and shows its credited parties and diagrams", async () => {
     const slug = connectedAuthorSlug();
     renderRoutes(`/relationships?focus=author:${slug}`, PAGE_ROUTE);
-    const patentButtons = await screen.findAllByRole("button", { name: /^Patent / });
+    const patentButtons = await screen.findAllByRole("button", { name: /Center map on patent/ });
     fireEvent.click(patentButtons[0]);
     await waitFor(() => {
-      expect(screen.getByRole("button", { name: /Close patent details/ })).toBeDefined();
+      expect(screen.getByTestId("location-echo").textContent).toMatch(/focus=patent%3A/);
+      expect(screen.getByRole("img").getAttribute("aria-label")).toContain("centered on patent");
     });
+    expect(screen.getAllByRole("button", { name: /Recenter map on/ }).length).toBeGreaterThan(0);
     const lensLink = document.querySelector('a[href^="/lens/"]');
     expect(lensLink).not.toBeNull();
   });

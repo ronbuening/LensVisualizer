@@ -8,8 +8,10 @@
 import { describe, expect, it } from "vitest";
 import { AUTHORS } from "../../../../src/utils/catalog/authorCatalog.js";
 import { ASSIGNEES } from "../../../../src/utils/catalog/assigneeCatalog.js";
+import { PATENTS } from "../../../../src/utils/catalog/patentCatalog.js";
 import {
   buildRelationshipGraph,
+  relationshipPathForFocus,
   resolveFocusParam,
   type PartyRef,
 } from "../../../../src/utils/catalog/relationshipGraph.js";
@@ -30,6 +32,8 @@ describe("buildRelationshipGraph invariants", () => {
       const centerId = `${ref.role}:${ref.slug}`;
 
       // Center identity.
+      expect(graph.centerKind).toBe("party");
+      if (graph.centerKind !== "party") continue;
       expect(graph.center.id).toBe(centerId);
       expect(graph.center.ref).toEqual(ref);
       expect(graph.center.hasPage).toBe(ref.role === "author");
@@ -69,6 +73,21 @@ describe("buildRelationshipGraph invariants", () => {
     }
   });
 
+  it("builds a one-ring graph for every patent", () => {
+    for (const patent of PATENTS) {
+      const graph = buildRelationshipGraph({ role: "patent", patentNumber: patent.patentNumber });
+      expect(graph.centerKind).toBe("patent");
+      if (graph.centerKind !== "patent") continue;
+
+      expect(graph.center.patentNumber).toBe(patent.patentNumber);
+      expect(graph.patents).toEqual([graph.center]);
+      expect(graph.parties).toHaveLength(patent.authors.length + patent.assignees.length);
+      expect(graph.edges).toHaveLength(graph.parties.length);
+      expect(graph.edges.every((edge) => edge.from === graph.center.id)).toBe(true);
+      expect(new Set(graph.parties.map((party) => party.id)).size).toBe(graph.parties.length);
+    }
+  });
+
   it("produces the expected shape for at least one connected author", () => {
     const connected = AUTHOR_REFS.map(buildRelationshipGraph).find((g) => g.parties.length > 0);
     expect(connected).toBeDefined();
@@ -100,9 +119,25 @@ describe("resolveFocusParam", () => {
     expect(resolveFocusParam(`assignee:${a.slug}`)).toEqual({ role: "assignee", name: a.name, slug: a.slug });
   });
 
+  it("resolves a valid patent", () => {
+    const patent = PATENTS[0];
+    expect(resolveFocusParam(`patent:${patent.patentNumber}`)).toEqual({
+      role: "patent",
+      patentNumber: patent.patentNumber,
+    });
+  });
+
+  it("encodes patent focus values in relationship URLs", () => {
+    const patent = PATENTS.find((entry) => /[ /]/.test(entry.patentNumber)) ?? PATENTS[0];
+    const path = relationshipPathForFocus({ role: "patent", patentNumber: patent.patentNumber });
+    const query = path.slice(path.indexOf("?") + 1);
+    expect(new URLSearchParams(query).get("focus")).toBe(`patent:${patent.patentNumber}`);
+  });
+
   it("returns undefined for unknown slug, bad role, null/empty/no-colon", () => {
     expect(resolveFocusParam(`author:definitely-not-a-real-slug-xyz`)).toBeUndefined();
     expect(resolveFocusParam(`maker:${AUTHORS[0].slug}`)).toBeUndefined();
+    expect(resolveFocusParam("patent:definitely-not-a-real-patent")).toBeUndefined();
     expect(resolveFocusParam(null)).toBeUndefined();
     expect(resolveFocusParam("")).toBeUndefined();
     expect(resolveFocusParam("no-colon-here")).toBeUndefined();

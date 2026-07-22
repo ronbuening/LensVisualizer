@@ -45,7 +45,7 @@ function makeGraph(n: number, parties: GraphPartyNode[] = []): RelationshipGraph
     ...patents.map((p) => ({ from: center.id, to: p.id })),
     ...parties.flatMap((pa) => pa.patentIds.map((pid) => ({ from: pid, to: pa.id }))),
   ];
-  return { center, patents, parties, edges };
+  return { centerKind: "party", center, patents, parties, edges };
 }
 
 /** Recover a node's ring angle from its coordinates about the layout center. */
@@ -67,6 +67,26 @@ describe("layoutRelationshipGraph", () => {
     expect(Math.abs(p.x - cx)).toBeLessThan(1e-6);
     // With m = 0 the patent ring radius degrades to MIN_RING_1 = 140, above center.
     expect(Math.abs(p.y - (cy - 140))).toBeLessThan(1e-6);
+  });
+
+  it("places a focused patent at center with its credited parties on one ring", () => {
+    const center = patent(0);
+    const parties = [party(0, [center.id]), party(1, [center.id]), party(2, [center.id])];
+    const graph: RelationshipGraph = {
+      centerKind: "patent",
+      center,
+      patents: [center],
+      parties,
+      edges: parties.map((item) => ({ from: center.id, to: item.id })),
+    };
+    const layout = layoutRelationshipGraph(graph);
+    const cx = layout.width / 2;
+    const cy = layout.height / 2;
+
+    expect(layout.nodeById[center.id].x).toBe(cx);
+    expect(layout.nodeById[center.id].y).toBe(cy);
+    expect(layout.nodes).toHaveLength(1 + parties.length);
+    expect(layout.edges).toHaveLength(parties.length);
   });
 
   it("spaces 8 patents at equal 2π/8 gaps", () => {

@@ -1,14 +1,14 @@
 /**
  * Author catalog — runtime aggregation for inventor pages.
  *
- * Uses the build-generated author slugs and lightweight lens summaries to
- * assemble unique patent records without loading full optical prescriptions.
- * AuthorPage consumes the grouped records; search consumes the author index.
+ * Uses the build-generated author slugs and shared patent catalog without
+ * loading full optical prescriptions. AuthorPage consumes the grouped records;
+ * search consumes the author index.
  */
 
 import buildMeta from "../../generated/build-metadata.json";
-import { LENS_SUMMARIES, SUMMARY_KEYS } from "./lensSummaries.js";
-import type { LensSummary } from "./lensSummaries.js";
+import { PATENTS } from "./patentCatalog.js";
+import type { PatentLens, PatentRecord } from "./patentCatalog.js";
 
 export interface AuthorMetadata {
   name: string;
@@ -17,19 +17,9 @@ export interface AuthorMetadata {
   patentCount: number;
 }
 
-export interface AuthorPatentLens {
-  key: string;
-  name: string;
-  specs?: string[];
-}
+export type AuthorPatentLens = PatentLens;
 
-export interface AuthorPatent {
-  patentNumber: string;
-  patentYear?: number;
-  authors: string[];
-  assignees: string[];
-  lenses: AuthorPatentLens[];
-}
+export type AuthorPatent = PatentRecord;
 
 export type AuthorGroupMode = "assignee" | "coauthor";
 
@@ -71,50 +61,13 @@ export function authorPathForName(name: string): string | undefined {
  * (`patentAssignees`) name lists based on `role`.
  */
 export function patentsForParty(name: string, role: "author" | "assignee"): AuthorPatent[] {
-  const patents = new Map<
-    string,
-    {
-      patentNumber: string;
-      patentYear?: number;
-      authors: Set<string>;
-      assignees: Set<string>;
-      lenses: AuthorPatentLens[];
-    }
-  >();
-
-  for (const key of SUMMARY_KEYS) {
-    const lens: LensSummary = LENS_SUMMARIES[key];
-    const names = role === "author" ? lens.patentAuthors : lens.patentAssignees;
-    if (!names?.includes(name)) continue;
-
-    const patentNumber = lens.patentNumber ?? `Patent source for ${lens.name}`;
-    const record = patents.get(patentNumber) ?? {
-      patentNumber,
-      patentYear: lens.patentYear,
-      authors: new Set<string>(),
-      assignees: new Set<string>(),
-      lenses: [],
-    };
-
-    for (const author of lens.patentAuthors ?? []) record.authors.add(author);
-    for (const assignee of lens.patentAssignees ?? []) record.assignees.add(assignee);
-    record.lenses.push({ key, name: lens.name, specs: lens.specs });
-    patents.set(patentNumber, record);
-  }
-
-  return [...patents.values()]
-    .map((patent) => ({
-      patentNumber: patent.patentNumber,
-      patentYear: patent.patentYear,
-      authors: [...patent.authors],
-      assignees: [...patent.assignees],
-      lenses: patent.lenses.sort((a, b) => a.name.localeCompare(b.name)),
-    }))
-    .sort(
-      (a, b) =>
-        (a.patentYear ?? Number.POSITIVE_INFINITY) - (b.patentYear ?? Number.POSITIVE_INFINITY) ||
-        a.patentNumber.localeCompare(b.patentNumber),
-    );
+  return PATENTS.filter((patent) =>
+    role === "author" ? patent.authors.includes(name) : patent.assignees.includes(name),
+  ).sort(
+    (a, b) =>
+      (a.patentYear ?? Number.POSITIVE_INFINITY) - (b.patentYear ?? Number.POSITIVE_INFINITY) ||
+      a.patentNumber.localeCompare(b.patentNumber),
+  );
 }
 
 /** Aggregate one record per patent for an inventor (see {@link patentsForParty}). */

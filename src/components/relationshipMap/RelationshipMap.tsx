@@ -1,25 +1,24 @@
 /**
- * RelationshipMap — interactive SVG renderer for the two-ring patent ego graph.
+ * RelationshipMap — interactive SVG renderer for patent relationship graphs.
  *
  * Consumes the pure layout engine (layout.ts) and draws edges, then nodes, then
- * labels as inline SVG with inline styles. Parties recenter the map (parent owns
- * the URL state); patents open a detail card. Zoom/pan comes from the shared
- * useViewBoxZoom hook. No <a>/<Link> inside the <svg> — interactive nodes are
- * role="button" <g> elements and the parent translates clicks to navigation.
+ * labels as inline SVG with inline styles. Party and patent nodes both recenter
+ * through parent-owned URL state. Zoom/pan comes from the shared useViewBoxZoom
+ * hook. No <a>/<Link> lives inside the SVG; the parent translates node clicks
+ * to navigation.
  */
 
 import { useMemo, useState, type CSSProperties, type KeyboardEvent, type PointerEvent } from "react";
 import useViewBoxZoom from "../hooks/useViewBoxZoom.js";
 import { toggleBtn } from "../../utils/style/styles.js";
 import type { Theme } from "../../types/theme.js";
-import type { PartyRef, RelationshipGraph } from "../../utils/catalog/relationshipGraph.js";
+import type { GraphPatentNode, PartyRef, RelationshipGraph } from "../../utils/catalog/relationshipGraph.js";
 import { layoutRelationshipGraph } from "./layout.js";
 
 interface RelationshipMapProps {
   graph: RelationshipGraph;
   theme: Theme;
-  selectedPatentId: string | null;
-  onSelectPatent: (patentId: string | null) => void;
+  onFocusPatent: (patent: GraphPatentNode) => void;
   onFocusParty: (ref: PartyRef) => void;
 }
 
@@ -40,24 +39,25 @@ function stopNodePointerDown(event: PointerEvent<SVGGElement>) {
   event.stopPropagation();
 }
 
-export default function RelationshipMap({
-  graph,
-  theme: t,
-  selectedPatentId,
-  onSelectPatent,
-  onFocusParty,
-}: RelationshipMapProps) {
+export default function RelationshipMap({ graph, theme: t, onFocusPatent, onFocusParty }: RelationshipMapProps) {
   const layout = useMemo(() => layoutRelationshipGraph(graph), [graph]);
   const zoom = useViewBoxZoom(layout.width, layout.height, true);
   const [hoveredNodeId, setHoveredNodeId] = useState<string | null>(null);
 
   const patentById = useMemo(() => new Map(graph.patents.map((p) => [p.id, p])), [graph.patents]);
-  const partyById = useMemo(() => new Map(graph.parties.map((p) => [p.id, p])), [graph.parties]);
+  const partyById = useMemo(
+    () =>
+      new Map([
+        ...graph.parties.map((party) => [party.id, party] as const),
+        ...(graph.centerKind === "party" ? ([[graph.center.id, graph.center]] as const) : []),
+      ]),
+    [graph],
+  );
   const patentYearById = useMemo(() => new Map(graph.patents.map((p) => [p.id, p.patentYear])), [graph.patents]);
 
-  const activeNodeId = hoveredNodeId ?? selectedPatentId;
+  const activeNodeId = hoveredNodeId;
 
-  const centerName = graph.center.ref.name;
+  const centerName = graph.centerKind === "patent" ? `patent ${graph.center.patentNumber}` : graph.center.ref.name;
   const ariaLabel = `Relationship map centered on ${centerName}: ${graph.patents.length} ${
     graph.patents.length === 1 ? "patent" : "patents"
   }, ${graph.parties.length} related ${graph.parties.length === 1 ? "inventor or assignee" : "inventors and assignees"}`;
@@ -134,44 +134,25 @@ export default function RelationshipMap({
           {/* Nodes + labels. */}
           {layout.nodes.map((node) => {
             const hovered = hoveredNodeId === node.id;
-            if (node.id === graph.center.id) {
-              return (
-                <g key={node.id}>
-                  <title>{node.fullLabel}</title>
-                  <circle cx={node.x} cy={node.y} r={node.r} fill={t.panelBg} stroke={t.sliderAccent} strokeWidth={2} />
-                  <text
-                    x={node.labelX}
-                    y={node.labelY}
-                    textAnchor={node.labelAnchor}
-                    fontSize={11}
-                    fill={t.title}
-                    pointerEvents="none"
-                  >
-                    {node.label}
-                  </text>
-                </g>
-              );
-            }
-
             const patent = patentById.get(node.id);
             if (patent) {
-              const selected = selectedPatentId === node.id;
+              const centered = graph.centerKind === "patent" && graph.center.id === node.id;
               const year = patentYearById.get(node.id);
               return (
                 <g
                   key={node.id}
-                  role="button"
-                  tabIndex={0}
-                  aria-label={`Patent ${patent.patentNumber}${year ? `, ${year}` : ""}`}
-                  style={{ cursor: "pointer" }}
-                  onPointerDown={stopNodePointerDown}
+                  role={centered ? undefined : "button"}
+                  tabIndex={centered ? undefined : 0}
+                  aria-label={centered ? undefined : `Center map on patent ${patent.patentNumber}`}
+                  style={{ cursor: centered ? "default" : "pointer" }}
+                  onPointerDown={centered ? undefined : stopNodePointerDown}
                   onPointerEnter={() => setHoveredNodeId(node.id)}
                   onPointerLeave={() => setHoveredNodeId((cur) => (cur === node.id ? null : cur))}
-                  onClick={() => onSelectPatent(selected ? null : node.id)}
+                  onClick={centered ? undefined : () => onFocusPatent(patent)}
                   onKeyDown={(e) => {
-                    if (isActivateKey(e)) {
+                    if (!centered && isActivateKey(e)) {
                       e.preventDefault();
-                      onSelectPatent(selected ? null : node.id);
+                      onFocusPatent(patent);
                     }
                   }}
                 >
@@ -179,10 +160,10 @@ export default function RelationshipMap({
                   <circle
                     cx={node.x}
                     cy={node.y}
-                    r={PATENT_R}
+                    r={centered ? node.r : PATENT_R}
                     fill={t.panelBg}
-                    stroke={selected ? t.toggleActiveBorder : t.stop}
-                    strokeWidth={selected ? 3 : hovered ? 3 : 1.5}
+                    stroke={centered ? t.sliderAccent : t.stop}
+                    strokeWidth={centered ? 2.5 : hovered ? 3 : 1.5}
                   />
                   <text
                     x={node.labelX}
@@ -205,21 +186,27 @@ export default function RelationshipMap({
 
             const party = partyById.get(node.id);
             if (!party) return null;
+            const centered = graph.centerKind === "party" && graph.center.id === node.id;
             const isAssignee = party.ref.role === "assignee";
-            const side = 2 * PARTY_R * 0.85;
+            const partyRadius = centered ? node.r : PARTY_R;
+            const side = 2 * partyRadius * 0.85;
             return (
               <g
                 key={node.id}
-                role="button"
-                tabIndex={0}
-                aria-label={`Recenter map on ${party.ref.name}${isAssignee ? " (assignee)" : " (inventor)"}`}
-                style={{ cursor: "pointer" }}
-                onPointerDown={stopNodePointerDown}
+                role={centered ? undefined : "button"}
+                tabIndex={centered ? undefined : 0}
+                aria-label={
+                  centered
+                    ? undefined
+                    : `Recenter map on ${party.ref.name}${isAssignee ? " (assignee)" : " (inventor)"}`
+                }
+                style={{ cursor: centered ? "default" : "pointer" }}
+                onPointerDown={centered ? undefined : stopNodePointerDown}
                 onPointerEnter={() => setHoveredNodeId(node.id)}
                 onPointerLeave={() => setHoveredNodeId((cur) => (cur === node.id ? null : cur))}
-                onClick={() => onFocusParty(party.ref)}
+                onClick={centered ? undefined : () => onFocusParty(party.ref)}
                 onKeyDown={(e) => {
-                  if (isActivateKey(e)) {
+                  if (!centered && isActivateKey(e)) {
                     e.preventDefault();
                     onFocusParty(party.ref);
                   }
@@ -234,17 +221,17 @@ export default function RelationshipMap({
                     height={side}
                     rx={3}
                     fill={t.panelBg}
-                    stroke={t.rayCool}
-                    strokeWidth={hovered ? 3 : 1.5}
+                    stroke={centered ? t.sliderAccent : t.rayCool}
+                    strokeWidth={centered ? 2.5 : hovered ? 3 : 1.5}
                   />
                 ) : (
                   <circle
                     cx={node.x}
                     cy={node.y}
-                    r={PARTY_R}
+                    r={partyRadius}
                     fill={t.panelBg}
-                    stroke={t.rayWarm}
-                    strokeWidth={hovered ? 3 : 1.5}
+                    stroke={centered ? t.sliderAccent : t.rayWarm}
+                    strokeWidth={centered ? 2.5 : hovered ? 3 : 1.5}
                   />
                 )}
                 <text

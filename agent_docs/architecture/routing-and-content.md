@@ -21,6 +21,7 @@ build metadata.
 | `MakersIndexPage.tsx` | `src/pages/` | Maker index at `/makers`, lists makers with counts. |
 | `AuthorPage.tsx` | `src/pages/` | Author page at `/authors/:author`, grouping related patents by assignee or co-author. |
 | `AuthorsIndexPage.tsx` | `src/pages/` | Author index at `/authors`, listing represented patent authors with patent and lens counts and name/count sorting. |
+| `PatentsIndexPage.tsx` | `src/pages/` | Patent index at `/patents`, listing credited parties and links to every related lens diagram. |
 | `MountPage.tsx` | `src/pages/` | Mount page at `/mounts/:mountId`, lists lenses for one mount. |
 | `MountsIndexPage.tsx` | `src/pages/` | Mount index at `/mounts`, lists represented mounts with counts. |
 | `FormatPage.tsx` | `src/pages/` | Image-format page at `/formats/:formatId`, lists lenses for one format. |
@@ -29,17 +30,18 @@ build metadata.
 | `ArticlesPage.tsx` | `src/pages/` | Article archive at `/articles`. |
 | `ArticlePage.tsx` | `src/pages/` | Article page at `/articles/:slug`. |
 | `UpdatesPage.tsx` | `src/pages/` | Recently added lens/update page. |
-| `RelationshipMapPage.tsx` | `src/pages/` | Patent relationship map at `/relationships`; the focus inventor/assignee lives in a `?focus=<role>:<slug>` query param (see below). |
+| `RelationshipMapPage.tsx` | `src/pages/` | Patent relationship map at `/relationships`; the focus inventor, assignee, or patent lives in a `?focus=<role>:<value>` query param (see below). |
 | `NotFoundPage.tsx` | `src/pages/` | Catch-all 404. |
 
 `RelationshipMapPage` is one static route whose content is driven by a query param rather than a path param: with no
 `focus` it renders the intro + entity picker + "most-connected" link columns (this is the prerendered SEO state), and with
-a valid `?focus=<role>:<slug>` it builds and renders the interactive ego graph. The prerenderer only ever emits the
+a valid party or patent focus it builds and renders the interactive ego graph. Party focus uses two rings
+(party → patents → other parties); patent focus uses one ring (patent → all credited parties). The prerenderer emits the
 no-focus HTML, so all query-dependent content is gated behind a `mounted` flag (the same mechanism as `ClientOnly.tsx`) to
 keep the server render and first client render identical; the real focus appears one paint after hydration. Recentering
-uses `setSearchParams` without `replace`, so browser Back retraces the exploration path. The canonical URL is always
-`/relationships` (no query). Assignee slugs come from the build-generated `assignees` array in `build-metadata.json`
-(alongside `authors`); assignees have no dedicated pages.
+on parties or patents uses `setSearchParams` without `replace`, so browser Back retraces the exploration path. The
+canonical URL is always `/relationships` (no query). Assignee slugs come from the build-generated `assignees` array in
+`build-metadata.json` (alongside `authors`); assignees have no dedicated pages.
 
 ## Static Page Shells
 

@@ -1,12 +1,10 @@
 /**
  * Radial layout engine for the patent relationship map.
  *
- * Pure geometry: maps a RelationshipGraph to SVG coordinates for a two-ring
- * ego graph (center, patent ring, party ring). Deterministic and collision-free
- * by construction — evenly spaced ring slots whose radii grow with node count,
- * no iterative force layout. Mirrors the engine/renderer split used by mount
- * diagrams: this module holds no React or theme imports so it stays unit-
- * testable with synthetic graphs.
+ * Pure geometry: maps a RelationshipGraph to SVG coordinates. Party focus uses
+ * two rings (patents, then related parties); patent focus uses one party ring.
+ * Both are deterministic and collision-free by construction — evenly spaced
+ * ring slots whose radii grow with node count, with no force simulation.
  */
 
 import type { RelationshipGraph } from "../../utils/catalog/relationshipGraph.js";
@@ -84,6 +82,53 @@ function placeLabel(
 
 /** Compute deterministic SVG coordinates for the two-ring relationship graph. */
 export function layoutRelationshipGraph(graph: RelationshipGraph): RelationshipLayout {
+  if (graph.centerKind === "patent") {
+    const count = graph.parties.length;
+    const ringRadius = Math.max(MIN_RING_1, (count * MIN_PARTY_ARC) / TAU);
+    const half = ringRadius + LABEL_MARGIN;
+    const cx = half;
+    const cy = half;
+    const centerLabel = graph.center.patentNumber;
+    const centerNode: LayoutNode = {
+      id: graph.center.id,
+      x: cx,
+      y: cy,
+      r: CENTER_R,
+      label: truncateLabel(centerLabel),
+      fullLabel: centerLabel,
+      labelX: cx,
+      labelY: cy + CENTER_R + 16,
+      labelAnchor: "middle",
+    };
+    const nodes = [centerNode];
+    const nodeById: Record<string, LayoutNode> = { [centerNode.id]: centerNode };
+
+    graph.parties.forEach((party, index) => {
+      const angle = TOP + (TAU * index) / count;
+      const x = cx + ringRadius * Math.cos(angle);
+      const y = cy + ringRadius * Math.sin(angle);
+      const node: LayoutNode = {
+        id: party.id,
+        x,
+        y,
+        r: PARTY_R,
+        label: truncateLabel(party.ref.name),
+        fullLabel: party.ref.name,
+        ...placeLabel(x, y, PARTY_R, angle),
+      };
+      nodes.push(node);
+      nodeById[node.id] = node;
+    });
+
+    const edges = graph.edges.flatMap((edge) => {
+      const from = nodeById[edge.from];
+      const to = nodeById[edge.to];
+      return from && to ? [{ from: edge.from, to: edge.to, x1: from.x, y1: from.y, x2: to.x, y2: to.y }] : [];
+    });
+
+    return { width: 2 * half, height: 2 * half, nodes, nodeById, edges };
+  }
+
   const n = graph.patents.length; // always ≥ 1
   const m = graph.parties.length; // can be 0
 

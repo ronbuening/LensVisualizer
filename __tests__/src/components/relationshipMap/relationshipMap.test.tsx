@@ -36,13 +36,7 @@ describe("RelationshipMap", () => {
     const graph = findConnectedGraph();
     const onFocusParty = vi.fn();
     const { getAllByRole } = renderWithRouter(
-      <RelationshipMap
-        graph={graph}
-        theme={theme}
-        selectedPatentId={null}
-        onSelectPatent={vi.fn()}
-        onFocusParty={onFocusParty}
-      />,
+      <RelationshipMap graph={graph} theme={theme} onFocusPatent={vi.fn()} onFocusParty={onFocusParty} />,
     );
 
     const partyButtons = getAllByRole("button", { name: /Recenter map on/ });
@@ -56,66 +50,48 @@ describe("RelationshipMap", () => {
     const graph = findConnectedGraph();
     const onFocusParty = vi.fn();
     const { getAllByRole } = renderWithRouter(
-      <RelationshipMap
-        graph={graph}
-        theme={theme}
-        selectedPatentId={null}
-        onSelectPatent={vi.fn()}
-        onFocusParty={onFocusParty}
-      />,
+      <RelationshipMap graph={graph} theme={theme} onFocusPatent={vi.fn()} onFocusParty={onFocusParty} />,
     );
     fireEvent.keyDown(getAllByRole("button", { name: /Recenter map on/ })[0], { key: "Enter" });
     expect(onFocusParty).toHaveBeenCalledTimes(1);
   });
 
-  it("selects and deselects a patent node", () => {
+  it("requests a patent-centered view when a patent node is clicked", () => {
     const graph = findConnectedGraph();
-    const onSelectPatent = vi.fn();
-    const patentId = graph.patents[0].id;
-    const { getAllByRole, rerender } = renderWithRouter(
-      <RelationshipMap
-        graph={graph}
-        theme={theme}
-        selectedPatentId={null}
-        onSelectPatent={onSelectPatent}
-        onFocusParty={vi.fn()}
-      />,
+    const onFocusPatent = vi.fn();
+    const patent = graph.patents[0];
+    const { getAllByRole } = renderWithRouter(
+      <RelationshipMap graph={graph} theme={theme} onFocusPatent={onFocusPatent} onFocusParty={vi.fn()} />,
     );
-    const patentButtons = getAllByRole("button", { name: /^Patent / });
+    const patentButtons = getAllByRole("button", { name: /Center map on patent/ });
     fireEvent.click(patentButtons[0]);
-    expect(onSelectPatent).toHaveBeenCalledWith(patentId);
+    expect(onFocusPatent).toHaveBeenCalledWith(patent);
+  });
 
-    onSelectPatent.mockClear();
-    rerender(
-      <RelationshipMap
-        graph={graph}
-        theme={theme}
-        selectedPatentId={patentId}
-        onSelectPatent={onSelectPatent}
-        onFocusParty={vi.fn()}
-      />,
+  it("renders every credited party around a patent center", () => {
+    const source = findConnectedGraph().patents[0];
+    const graph = buildRelationshipGraph({ role: "patent", patentNumber: source.patentNumber });
+    const { getAllByRole, getByRole } = renderWithRouter(
+      <RelationshipMap graph={graph} theme={theme} onFocusPatent={vi.fn()} onFocusParty={vi.fn()} />,
     );
-    fireEvent.click(getAllByRole("button", { name: /^Patent / })[0]);
-    expect(onSelectPatent).toHaveBeenCalledWith(null);
+
+    expect(getByRole("img").getAttribute("aria-label")).toContain(`patent ${source.patentNumber}`);
+    expect(getAllByRole("button", { name: /Recenter map on/ }).length).toBe(graph.parties.length);
   });
 });
 
 describe("PatentDetailCard", () => {
   it("renders lens links and recenters non-center inventors", () => {
     const graph = findConnectedGraph();
+    expect(graph.centerKind).toBe("party");
+    if (graph.centerKind !== "party") return;
     // Choose a patent whose inventor list has a non-center inventor.
     const centerRef = graph.center.ref;
     const patent = graph.patents.find((p) => p.authors.some((name) => name !== centerRef.name)) ?? graph.patents[0];
     const onFocusParty = vi.fn();
 
     const { container, getByText } = renderWithRouter(
-      <PatentDetailCard
-        patent={patent}
-        centerRef={centerRef}
-        theme={theme}
-        onFocusParty={onFocusParty}
-        onClose={vi.fn()}
-      />,
+      <PatentDetailCard patent={patent} centerRef={centerRef} theme={theme} onFocusParty={onFocusParty} />,
     );
 
     const lensLink = container.querySelector(`a[href^="/lens/"]`);

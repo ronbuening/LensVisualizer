@@ -8,6 +8,12 @@ declaration file for `tsc`, which the plan did not anticipate — `buildAssignee
 `patentAssignees?` field had to be added there too (M1). Optional M6 polish items (recenter
 transition, decade tint, double-click reset) were intentionally skipped.
 
+Follow-up on **2026-07-22** superseded the patent-selection portions of this shipped plan. Patent
+nodes now become URL-backed `patent:<patent number>` focus targets, render at the center with every
+credited inventor and assignee around them, and show their diagram links below the map. The same
+shared patent catalog also powers the new static `/patents` index. The milestone text below remains
+the historical implementation record for the original party-centered release.
+
 This document is a self-contained spec. Signatures and file references were verified against the
 working tree on 2026-07-22; re-locate by symbol name if a line has drifted, and STOP if reality
 contradicts a description here (the feature may have partially shipped — check git log first).
