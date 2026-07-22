@@ -31,14 +31,15 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 5,899,585",
   patentAuthors: ["Hideki Ogawa"],
-  patentAssignees: ["Canon Inc."],
+  patentAssignees: ["Canon Kabushiki Kaisha"],
   patentYear: 1999,
   elementCount: 10,
   groupCount: 10,
 
   zoomPositions: [28.98, 50.0, 77.08],
   zoomLabels: ["Wide", "Tele"],
-  // Retain the patent optical states; imposing the marketed tele f/5.6 would exceed r13/r14 aperture geometry.
+  // Retain the patent optical states; imposing the marketed tele f/5.6 would exceed the modeled stop and
+  // rear-L2 apertures.
   nominalFno: [3.46, 4.51, 5.88],
   closeFocusM: 0.38,
   focusDescription:
@@ -47,6 +48,7 @@ const LENS_DATA = {
   fstopSeries: [3.5, 4, 5.6, 8, 11, 16, 22, 32],
   maxFstop: 38,
   apertureBlades: 5,
+
   yScFill: 0.72,
 
   elements: [
@@ -229,6 +231,7 @@ const LENS_DATA = {
   ],
 
   asph: {},
+
   var: {
     "8": [
       [32.88, 32.88],
@@ -245,6 +248,7 @@ const LENS_DATA = {
     ["8", "D8 (L1-L2)"],
     ["17", "D17 (L2-L3)"],
   ],
+
   groups: [
     { text: "L1", fromSurface: "1", toSurface: "8" },
     { text: "L2", fromSurface: "9", toSurface: "17" },
