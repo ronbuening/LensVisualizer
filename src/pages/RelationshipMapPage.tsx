@@ -92,7 +92,13 @@ export default function RelationshipMapPage() {
           Home
         </Link>
         <span style={{ color: t.muted, margin: "0 0.35em" }}>/</span>
-        <span style={{ color: t.body }}>Relationship map</span>
+        {focus ? (
+          <Link to="/relationships" style={{ color: t.descLinkColor, textDecoration: "none" }}>
+            Relationship map
+          </Link>
+        ) : (
+          <span style={{ color: t.body }}>Relationship map</span>
+        )}
       </PageNavBar>
 
       <main style={PAGE_BASE_STYLE}>

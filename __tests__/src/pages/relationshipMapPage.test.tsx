@@ -99,6 +99,23 @@ describe("RelationshipMapPage", () => {
     });
   });
 
+  it("links the breadcrumb back to the relationships home when focused", async () => {
+    const slug = connectedAuthorSlug();
+    renderRoutes(`/relationships?focus=author:${slug}`, PAGE_ROUTE);
+    const crumb = await screen.findByRole("link", { name: "Relationship map" });
+    expect(crumb.getAttribute("href")).toBe("/relationships");
+    fireEvent.click(crumb);
+    await waitFor(() => {
+      expect(screen.getByRole("heading", { level: 1, name: /Patent Relationship Map/ })).toBeDefined();
+    });
+    expect(screen.queryByRole("img")).toBeNull();
+  });
+
+  it("renders the breadcrumb as plain text with no focus", () => {
+    renderRoutes("/relationships", PAGE_ROUTE);
+    expect(screen.queryByRole("link", { name: "Relationship map" })).toBeNull();
+  });
+
   it("shows the patent detail card with a working lens link when a patent is clicked", async () => {
     const slug = connectedAuthorSlug();
     renderRoutes(`/relationships?focus=author:${slug}`, PAGE_ROUTE);

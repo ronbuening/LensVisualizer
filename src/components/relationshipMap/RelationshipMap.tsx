@@ -8,7 +8,7 @@
  * role="button" <g> elements and the parent translates clicks to navigation.
  */
 
-import { useMemo, useState, type CSSProperties, type KeyboardEvent } from "react";
+import { useMemo, useState, type CSSProperties, type KeyboardEvent, type PointerEvent } from "react";
 import useViewBoxZoom from "../hooks/useViewBoxZoom.js";
 import { toggleBtn } from "../../utils/style/styles.js";
 import type { Theme } from "../../types/theme.js";
@@ -29,6 +29,15 @@ const PARTY_R = 14;
 /** True when an Enter or Space key event should activate a node. */
 function isActivateKey(event: KeyboardEvent): boolean {
   return event.key === "Enter" || event.key === " " || event.key === "Spacebar";
+}
+
+/* Keep a pointerdown that starts on an interactive node from bubbling to the
+ * <svg>: the pan hook calls setPointerCapture on the svg during pointerdown,
+ * which retargets the following click to the svg and would swallow the node's
+ * onClick. Stopping propagation means no capture is taken, so the click reaches
+ * the node. Panning still works when a drag starts on the background/edges. */
+function stopNodePointerDown(event: PointerEvent<SVGGElement>) {
+  event.stopPropagation();
 }
 
 export default function RelationshipMap({
@@ -152,6 +161,7 @@ export default function RelationshipMap({
                 tabIndex={0}
                 aria-label={`Patent ${patent.patentNumber}${year ? `, ${year}` : ""}`}
                 style={{ cursor: "pointer" }}
+                onPointerDown={stopNodePointerDown}
                 onPointerEnter={() => setHoveredNodeId(node.id)}
                 onPointerLeave={() => setHoveredNodeId((cur) => (cur === node.id ? null : cur))}
                 onClick={() => onSelectPatent(selected ? null : node.id)}
@@ -201,6 +211,7 @@ export default function RelationshipMap({
               tabIndex={0}
               aria-label={`Recenter map on ${party.ref.name}${isAssignee ? " (assignee)" : " (inventor)"}`}
               style={{ cursor: "pointer" }}
+              onPointerDown={stopNodePointerDown}
               onPointerEnter={() => setHoveredNodeId(node.id)}
               onPointerLeave={() => setHoveredNodeId((cur) => (cur === node.id ? null : cur))}
               onClick={() => onFocusParty(party.ref)}
