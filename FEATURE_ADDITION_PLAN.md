@@ -362,6 +362,20 @@ Steps:
 Acceptance: table matches the element inspector's data for spot-checked elements; row click
 selects in diagram; gate passes; changelog entry.
 
+### F25. Patent relationship map explorer
+
+- [ ] Effort: M-L · Data: `patentAuthors[]`, `patentAssignees[]`, `patentNumber`, `patentYear`
+
+What: an interactive `/relationships` page that centers on an inventor or assignee and draws a
+two-ring ego graph as inline SVG — their patents on the inner ring, each patent's other
+inventors/assignees on the outer ring. Clicking an outer party recenters the map (query-param
+URL state, Back retraces the exploration); clicking a patent opens a detail card linking to the
+derived lens diagrams. Requires build-generated assignee slugs alongside the existing author
+index. No new dependencies; deterministic radial layout, no force simulation.
+
+Full self-contained spec (milestones, files, data contracts, layout math, tests, verification):
+`agent_docs/relationship-map-plan.md`. Follow that document; this entry only tracks status.
+
 ---
 
 ## Tier 3 — Depth (M)
