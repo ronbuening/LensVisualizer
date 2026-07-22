@@ -1,9 +1,11 @@
 /**
- * Author metadata helpers for search and prerender route generation.
+ * Patent-party metadata helpers for search and prerender route generation.
  *
- * Converts the inventor names embedded in lightweight lens summaries into a
- * stable, collision-safe author index. The browser consumes the generated
- * entries, so URL construction has one build-time source of truth.
+ * Converts the inventor (`patentAuthors`) and assignee (`patentAssignees`)
+ * names embedded in lightweight lens summaries into stable, collision-safe
+ * indexes. The browser consumes the generated entries, so URL construction has
+ * one build-time source of truth. `buildAuthorMetadata` and
+ * `buildAssigneeMetadata` are thin wrappers over the same parameterized scan.
  */
 
 /** Return a deterministic unsigned FNV-1a hash encoded compactly for URLs. */
@@ -34,21 +36,22 @@ function authorSlugBase(name) {
 }
 
 /**
- * Build the author index emitted in build-metadata.json.
+ * Build a collision-safe party index (inventors or assignees) from summaries.
  *
  * Readable slugs remain unsuffixed when unique. Names that transliterate to
  * the same slug, or names without ASCII characters, receive a stable hash so
- * no author page can shadow another.
+ * no party page or focus target can shadow another.
  *
- * @param {Array<{key: string, patentNumber?: string, patentAuthors?: string[], visible?: boolean}>} lensSummaries
+ * @param {Array<{key: string, patentNumber?: string, patentAuthors?: string[], patentAssignees?: string[], visible?: boolean}>} lensSummaries
+ * @param {"patentAuthors" | "patentAssignees"} field which name list to index
  * @returns {Array<{name: string, slug: string, lensKeys: string[], patentCount: number}>}
  */
-export function buildAuthorMetadata(lensSummaries) {
+function buildPatentPartyMetadata(lensSummaries, field) {
   const records = new Map();
 
   for (const lens of lensSummaries) {
     if (lens.visible === false) continue;
-    for (const name of lens.patentAuthors ?? []) {
+    for (const name of lens[field] ?? []) {
       const existing = records.get(name) ?? { lensKeys: new Set(), patentNumbers: new Set() };
       existing.lensKeys.add(lens.key);
       if (lens.patentNumber) existing.patentNumbers.add(lens.patentNumber);
@@ -74,4 +77,14 @@ export function buildAuthorMetadata(lensSummaries) {
       patentCount: record.patentNumbers.size,
     };
   });
+}
+
+/** Build the inventor (`patentAuthors`) index emitted in build-metadata.json. */
+export function buildAuthorMetadata(lensSummaries) {
+  return buildPatentPartyMetadata(lensSummaries, "patentAuthors");
+}
+
+/** Build the assignee (`patentAssignees`) index emitted in build-metadata.json. */
+export function buildAssigneeMetadata(lensSummaries) {
+  return buildPatentPartyMetadata(lensSummaries, "patentAssignees");
 }
