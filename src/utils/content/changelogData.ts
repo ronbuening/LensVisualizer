@@ -22,6 +22,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-07-22 ──────────────────────────────────────────────────
   {
     date: "2026-07-22",
+    type: "lens",
+    summary: "Added Canon EF 28-70mm II, 28-80mm II, and 28-90mm II USM zoom lenses",
+  },
+  {
+    date: "2026-07-22",
     type: "feature",
     summary:
       "Added an interactive patent relationship map connecting inventors and assignees through shared lens patents",
