@@ -11,6 +11,8 @@ import SEOHead from "../components/SEOHead.js";
 import LinkListSidebar from "../components/content/LinkListSidebar.js";
 import SidebarLayout from "../components/content/SidebarLayout.js";
 import PageNavBar from "../components/layout/PageNavBar.js";
+import { getAuthorBiography } from "../utils/catalog/authorBiographies.js";
+import type { AuthorBiography } from "../utils/catalog/authorBiographies.js";
 import {
   authorPathForName,
   getAuthorBySlug,
@@ -30,6 +32,47 @@ interface PatentCardProps {
   patent: AuthorPatent;
   currentAuthor: string;
   theme: Theme;
+}
+
+interface AuthorBiographySectionProps {
+  biography: AuthorBiography;
+  theme: Theme;
+}
+
+function AuthorBiographySection({ biography, theme: t }: AuthorBiographySectionProps) {
+  return (
+    <section
+      aria-labelledby="author-biography-heading"
+      style={{
+        background: t.panelBg,
+        border: `1px solid ${t.panelBorder}`,
+        borderRadius: 6,
+        padding: "0.9rem 1rem",
+        margin: "1rem 0",
+      }}
+    >
+      <h2 id="author-biography-heading" style={{ color: t.title, fontSize: "1rem", margin: "0 0 0.55rem" }}>
+        Biography
+      </h2>
+      <p style={{ color: t.body, fontSize: "0.8rem", lineHeight: 1.7, margin: "0 0 0.65rem" }}>{biography.summary}</p>
+      <p style={{ color: t.label, fontSize: "0.68rem", lineHeight: 1.6, margin: 0 }}>
+        Sources:{" "}
+        {biography.sources.map((source, index) => (
+          <span key={source.url}>
+            {index > 0 && " · "}
+            <a
+              href={source.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: t.descLinkColor, textDecoration: "none" }}
+            >
+              {source.label}
+            </a>
+          </span>
+        ))}
+      </p>
+    </section>
+  );
 }
 
 function PatentCard({ patent, currentAuthor, theme: t }: PatentCardProps) {
@@ -98,6 +141,7 @@ export default function AuthorPage() {
 
   if (!author) return <Navigate to="/authors" replace />;
 
+  const biography = getAuthorBiography(author.name);
   const patents = patentsForAuthor(author.name);
   const groupMode: AuthorGroupMode = searchParams.get("group") === "coauthor" ? "coauthor" : "assignee";
   const groups = groupAuthorPatents(patents, author.name, groupMode);
@@ -165,6 +209,7 @@ export default function AuthorPage() {
           {patents.length} related {patents.length === 1 ? "patent" : "patents"} across {author.lensKeys.length}{" "}
           interactive lens {author.lensKeys.length === 1 ? "diagram" : "diagrams"}.
         </p>
+        {biography && <AuthorBiographySection biography={biography} theme={t} />}
         <p style={{ marginBottom: "1rem" }}>
           <Link
             to={`/relationships?focus=author:${author.slug}`}
