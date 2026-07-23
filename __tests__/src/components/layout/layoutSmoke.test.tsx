@@ -21,6 +21,11 @@ import type { LensState } from "../../../../src/types/state.js";
 
 /* Mocks must be defined before imports of the components under test. */
 
+vi.mock("../../../../src/utils/featureFlags.js", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("../../../../src/utils/featureFlags.js")>();
+  return { ...actual, ENABLE_ANALYSIS_VIEW: true };
+});
+
 /* Mock heavy child components of SingleLensContent */
 vi.mock("../../../../src/components/layout/LensDiagramPanel.js", () => ({
   default: ({

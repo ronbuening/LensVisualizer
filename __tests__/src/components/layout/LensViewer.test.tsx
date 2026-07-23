@@ -31,6 +31,11 @@ const mocks = vi.hoisted(() => ({
   state: null as LensState | null,
 }));
 
+vi.mock("../../../../src/utils/featureFlags.js", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("../../../../src/utils/featureFlags.js")>();
+  return { ...actual, ENABLE_ANALYSIS_VIEW: true };
+});
+
 vi.mock("react-router", () => ({
   useNavigate: () => mocks.navigate,
   // useActiveHoliday reads the location; pin ?holiday=none for a deterministic theme.

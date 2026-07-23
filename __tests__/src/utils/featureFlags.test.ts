@@ -20,10 +20,6 @@ describe("featureFlags", () => {
     expect(keys).toHaveLength(6);
   });
 
-  it("enables companion lens analysis views", () => {
-    expect(flags.ENABLE_ANALYSIS_VIEW).toBe(true);
-  });
-
   it("all keys follow ENABLE_ naming convention", () => {
     for (const key of Object.keys(flags)) {
       expect(key).toMatch(/^ENABLE_/);
