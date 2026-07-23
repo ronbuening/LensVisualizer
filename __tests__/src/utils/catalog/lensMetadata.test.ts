@@ -4,6 +4,7 @@ import {
   allMakerSlugs,
   makerDisplayName,
   lensPatentReference,
+  lensPatentAttribution,
   lensDisplaySubtitle,
   lensPageTitle,
   lensPageDescription,
@@ -244,6 +245,20 @@ describe("lensPatentReference", () => {
 /* ── lensDisplaySubtitle ── */
 
 describe("lensDisplaySubtitle", () => {
+  it("normalizes structured patent attribution for linked subtitle rendering", () => {
+    expect(
+      lensPatentAttribution(
+        makeLens({
+          patentNumber: " US 10,571,651 B2 ",
+          patentAuthors: [" Hideki Sakai ", "", "Aiko Example"],
+        }),
+      ),
+    ).toEqual({
+      patentNumber: "US 10,571,651 B2",
+      authors: ["Hideki Sakai", "Aiko Example"],
+    });
+  });
+
   it("formats the patent number followed by inventors in source order", () => {
     expect(
       lensDisplaySubtitle(

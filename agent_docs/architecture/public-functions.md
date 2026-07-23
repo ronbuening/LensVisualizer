@@ -114,6 +114,7 @@ state. Keep slider-dependent analysis out of `buildLens()`.
 | `src/utils/catalog/lensSummaries.ts` | `LENS_SUMMARIES`, `SUMMARY_KEYS`, `ALL_SUMMARY_KEYS`, `DEBUG_SUMMARY_KEYS` | Generated lightweight lens metadata (name, maker, specs, marketing numbers, mounts, format) for index-style pages that must not ship full prescriptions. |
 | `src/utils/catalog/lensSummaries.ts` | `RECENT_LENS_KEYS`, `ALL_LENSES_BY_DATE` | Lens freshness lists derived from build metadata. |
 | `src/utils/catalog/lensMetadata.ts` | `deriveMaker`, `allMakerSlugs`, `makerDisplayName` | Maker display/slug derivation from generated maker prefixes. |
+| `src/utils/catalog/lensMetadata.ts` | `lensDisplaySubtitle`, `lensPatentAttribution`, `lensPatentReference` | Normalized patent subtitle text, structured inventor attribution, and patent reference fallback. |
 | `src/utils/catalog/lensMetadata.ts` | `lensPageTitle`, `lensPageDescription`, `lensCanonicalURL`, `lensJsonLd` | Lens SEO metadata and JSON-LD. |
 | `src/utils/catalog/lensMetadata.ts` | `makerCanonicalURL`, `mountCanonicalURL`, `formatCanonicalURL` | Canonical URLs for taxonomy pages. |
 | `src/utils/catalog/lensTaxonomy.ts` | `LENS_MOUNTS`, `LENS_MOUNT_BY_ID`, `isLensMountId` | Canonical lens mount ids and guard. |

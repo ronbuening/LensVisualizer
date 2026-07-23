@@ -2,8 +2,10 @@
 
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import type { ComponentProps } from "react";
+import { MemoryRouter } from "react-router";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import DiagramHeader from "../../../../src/components/controls/DiagramHeader.js";
+import { authorPathForName } from "../../../../src/utils/catalog/authorCatalog.js";
 import themes from "../../../../src/utils/theme/themes.js";
 import type { RuntimeLens } from "../../../../src/types/optics.js";
 import { buildSimplePositiveElementLens } from "../../optics/testLensFixtures.js";
@@ -56,7 +58,11 @@ function renderHeader(overrides: Partial<ComponentProps<typeof DiagramHeader>> =
     headerInfoExpanded: false,
     ...overrides,
   };
-  return render(<DiagramHeader {...props} />);
+  return render(
+    <MemoryRouter>
+      <DiagramHeader {...props} />
+    </MemoryRouter>,
+  );
 }
 
 describe("DiagramHeader", () => {
@@ -85,7 +91,10 @@ describe("DiagramHeader", () => {
 
     renderHeader({ L: structuredLens });
 
-    expect(screen.getByText("US 10,571,651 B2 — Hideki Sakai, Aiko Example")).toBeTruthy();
+    const authorLink = screen.getByRole("link", { name: "Hideki Sakai" });
+    expect(authorLink.getAttribute("href")).toBe(authorPathForName("Hideki Sakai"));
+    expect(authorLink.parentElement?.parentElement?.textContent).toBe("US 10,571,651 B2 — Hideki Sakai, Aiko Example");
+    expect(screen.queryByRole("link", { name: "Aiko Example" })).toBeNull();
     expect(screen.queryByText("legacy subtitle")).toBeNull();
   });
 

@@ -31,7 +31,7 @@ and homepage UI.
 
 | Module | Purpose |
 | --- | --- |
-| `DiagramHeader.tsx` | Title/spec header plus ray mode, ray density, and chromatic controls; memoized and ref-forwarding. |
+| `DiagramHeader.tsx` | Title/spec header with patent-inventor links, plus ray mode, ray density, and chromatic controls; memoized and ref-forwarding. |
 | `RayToggles.tsx` | On-axis/off-axis toggle buttons with typed off-axis cycling. |
 | `CardinalControls.tsx` | Feature-flagged cardinal element and dimension overlay toggles. |
 | `ChromaticControls.tsx` | COLOR master toggle plus R/G/B channel buttons. |
