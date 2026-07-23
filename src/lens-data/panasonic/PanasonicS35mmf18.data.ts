@@ -49,7 +49,7 @@ const LENS_DATA = {
   key: "panasonic-lumix-s-35-f18",
   maker: "Panasonic",
   name: "PANASONIC LUMIX S 35mm f/1.8",
-  subtitle: "CN 216772097U Example 1 — Xiamen Panasonic / Zheng, Chen, Zhan",
+  subtitle: "CN 216772097U Example 1 — Xiamen Panasonic / Yidan Zheng, Hanzhao Chen, Xiaoqing Zhan",
   specs: ["11 ELEMENTS / 9 GROUPS", "f ≈ 33.8 mm", "F/1.8", "2ω ≈ 63°", "3 ASPHERICAL ELEMENTS (6 SURFACES)"],
 
   focalLengthMarketing: 35,
@@ -59,7 +59,7 @@ const LENS_DATA = {
   lensMounts: ["l-mount"],
   imageFormat: "135-full-frame",
   patentNumber: "CN 216772097 U",
-  patentAuthors: ["郑艺丹", "陈汉钊", "詹晓晴"],
+  patentAuthors: ["Yidan Zheng", "Hanzhao Chen", "Xiaoqing Zhan"],
   patentAssignees: ["Panasonic AVC Networks Xiamen Co., Ltd."],
   patentYear: 2022,
   elementCount: 11,
