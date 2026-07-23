@@ -7,7 +7,11 @@ available, it falls back to partial measured `nC`/`nF` line indices, dPgF-correc
 approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **339 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **340 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+
+The July 23, 2026 Canon batch added OHARA S-TIH53WN from the vendor's April 2025 datasheet. The WN variant retains
+the conventional d-line index while publishing modified off-d-line indices and dispersion constants for
+high-precision lenses; it is distinct from S-TIH53 and S-TIH53W.
 
 The July 17, 2026 Vivitar batch added exact vendor records for SCHOTT LLF1; legacy HOYA LAC10 and NBFD10; and legacy SUMITA BAF9, BAF11, BK1, F1, FK5, K5, LAFN2, LF2, and SK5. The SUMITA coefficients come from the manufacturer's 2025-11-07 all-glass Zemax catalog, which explicitly includes discontinued types.
 
