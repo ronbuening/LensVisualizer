@@ -45,7 +45,7 @@ const LENS_DATA = {
   lensMounts: ["nikon-f"],
   imageFormat: "645",
   patentNumber: "JP H9-105860",
-  patentAuthors: ["Koichi Ohshita"],
+  patentAuthors: ["Kouichi Ohshita"],
   patentAssignees: ["Nikon Corporation"],
   patentYear: 1997,
   elementCount: 4,

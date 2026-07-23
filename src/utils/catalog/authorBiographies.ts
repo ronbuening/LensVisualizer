@@ -146,6 +146,112 @@ export const AUTHOR_BIOGRAPHIES = {
       },
     ],
   },
+  "Hideo Azuma": {
+    summary:
+      "Hideo Azuma was a senior manager in Nippon Kogaku’s Optical Design Section, an experienced designer of rangefinder-camera lenses, and one of Zenji Wakimoto’s teachers. Nikon credits him with helping establish its approach to aberration balancing and with designing the W-Nikkor 3.5 cm f/1.8, completed in 1955. That compact, fast wide-angle lens used new lanthanum glasses in an original symmetrical arrangement that Nikon describes as a model for later designs.",
+    sources: [
+      {
+        label: "Nikon — NIKKOR: The Thousand and One Nights No. 3",
+        url: "https://imaging.nikon.com/imaging/information/story/0003/",
+      },
+    ],
+  },
+  "Haruo Sato": {
+    summary:
+      "Haruo Sato is a Nikon optical designer and one of the principal authors documenting NIKKOR design history in the company’s Thousand and One Nights series. He joined Nikon in 1985 and, only six months later, was assigned his first lens: the Ai AF Zoom Nikkor 24–50 mm f/3.3–4.5S, Nikon’s first wide-angle autofocus zoom. His later patent record spans compact consumer zooms, professional ultra-wide zooms, supertelephotos, and fast prime lenses.",
+    sources: [
+      {
+        label: "Nikon — NIKKOR: The Thousand and One Nights No. 93",
+        url: "https://imaging.nikon.com/imaging/information/story/0093/",
+      },
+    ],
+  },
+  "Hiroshi Ito": {
+    summary:
+      "Hiroshi Ito was an early postwar Canon optical engineer whose 1951 Serenar 50 mm f/1.8 became one of the company’s defining rangefinder lenses. Canon credits his original analysis with overcoming the coma flare that limited fast Gaussian objectives. The resulting theory accelerated Canon’s development of large-aperture normal, wide-angle, and telephoto lenses, while Ito later made broader contributions to the diversification of Canon’s business.",
+    sources: [
+      {
+        label: "Canon Camera Museum — Canon history, 1946–1954",
+        url: "https://global.canon/en/c-museum/history/story03.html",
+      },
+    ],
+  },
+  "Jihei Nakagawa": {
+    summary:
+      "Jihei Nakagawa was a Japanese optical designer and author whose patents in this catalog span fast standard, fisheye, ultra-wide-angle, and extreme-telephoto Olympus objectives. Beyond product design, he developed practical methods for applying aberration theory, published technical papers from the Nakagawa Lens Design Laboratory, and wrote Lens Design Engineering. Nikon later described him as an exceptionally distinguished designer and cited both his book and his unusual positive-lead 18 mm f/3.5 design.",
+    sources: [
+      {
+        label: "Nikon — NIKKOR: The Thousand and One Nights No. 55",
+        url: "https://imaging.nikon.com/imaging/information/story/0055/",
+      },
+      {
+        label: "J-STAGE — An Application of Aberration Theory for Determination of the Forms of Lens Elements",
+        url: "https://www.jstage.jst.go.jp/article/kogaku1972/8/6/8_6_330/_article/-char/ja/",
+      },
+    ],
+  },
+  "Koichi Wakamiya": {
+    summary:
+      "Koichi Wakamiya was a Nikon optical designer who moved from custom instruments and equipment into camera-lens development. He designed the 35 mm f/2.8 optical system for Nikon’s first autofocus compact camera, the L35AF “Pikaichi,” then continued with later Pikaichi models. Nikon also identifies the Series E 100 mm f/2.8 and the UV-Nikkor 105 mm f/4.5S among his signature designs, and credits him with training Kouichi Ohshita.",
+    sources: [
+      {
+        label: "Nikon — NIKKOR: The Thousand and One Nights No. 33",
+        url: "https://imaging.nikon.com/imaging/information/story/0033/",
+      },
+    ],
+  },
+  "Kouichi Ohshita": {
+    summary:
+      "Kouichi Ohshita is a Nikon optical designer and technical writer who learned optical-system design from Koichi Wakamiya before assuming compact-camera lens responsibilities. His patent work in this catalog ranges from a fast portrait lens and an underwater wide-angle zoom to the deliberately simple Fun Fun LensSet. Ohshita also became a prolific author of Nikon’s Thousand and One Nights histories, preserving the design reasoning and working traditions behind generations of NIKKOR lenses.",
+    sources: [
+      {
+        label: "Nikon — NIKKOR: The Thousand and One Nights No. 33",
+        url: "https://imaging.nikon.com/imaging/information/story/0033/",
+      },
+      {
+        label: "Nikon — NIKKOR: The Thousand and One Nights No. 52",
+        url: "https://imaging.nikon.com/imaging/information/story/0052/",
+      },
+      {
+        label: "Nikon — NIKKOR: The Thousand and One Nights No. 54",
+        url: "https://imaging.nikon.com/imaging/information/story/0054/",
+      },
+    ],
+  },
+  "Saburo Murakami": {
+    summary:
+      "Saburo Murakami was a central figure in Nippon Kogaku’s prewar and early postwar photographic-lens program. Working in the company’s Optical System Research Department, he persisted with camera-lens design when military optics dominated production. Nikon credits him with the six foundational interchangeable lenses introduced from 1945 through 1949 and records how he repeatedly recalculated designs around severe postwar glass shortages, helping reestablish the company’s civilian camera business.",
+    sources: [
+      {
+        label: "Nikon — NIKKOR: The Thousand and One Nights No. 34",
+        url: "https://imaging.nikon.com/imaging/information/story/0034/",
+      },
+    ],
+  },
+  "Yoshiyuki Shimizu": {
+    summary:
+      "Yoshiyuki Shimizu was a prolific Nippon Kogaku optical designer who joined the company in 1952. After training in optics, mechanics, lens processing, and polishing, he moved into the design of camera and microscope optics. A protégé of Zenji Wakimoto, Shimizu helped develop the Nikkor-S Auto 50 mm f/1.4 and later created its next-generation successor. His broader work encompassed fast normal and wide-angle lenses, fisheyes, and catadioptric telephotos.",
+    sources: [
+      {
+        label: "Nikon — NIKKOR: The Thousand and One Nights No. 84",
+        url: "https://imaging.nikon.com/imaging/information/story/0084/",
+      },
+      {
+        label: "Nikon — NIKKOR: The Thousand and One Nights No. 97",
+        url: "https://imaging.nikon.com/imaging/information/story/0097/",
+      },
+    ],
+  },
+  "Zenji Wakimoto": {
+    summary:
+      "Zenji Wakimoto (1924–1996) was a distinguished Nippon Kogaku optical designer whose work ranged from S- and F-mount NIKKOR lenses to precision Micro-Nikkor objectives. His symmetrical wide-angle configuration for the Nikkor-O 2.1 cm f/4 established a durable design principle that Nikon continued to use for decades. He received Japan’s Medal with Purple Ribbon for developing Ultramicro-Nikkor lenses used in integrated-circuit fabrication and later served Nikon as a director and consultant.",
+    sources: [
+      {
+        label: "Nikon — NIKKOR: The Thousand and One Nights No. 1",
+        url: "https://imaging.nikon.com/imaging/information/story/0001/",
+      },
+    ],
+  },
 } as const satisfies Record<string, AuthorBiography>;
 
 /** Return a curated profile when this author has one. */

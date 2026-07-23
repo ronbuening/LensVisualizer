@@ -6,7 +6,7 @@
 **Filed:** June 14, 1996
 **Granted:** June 9, 1998
 **Priority date:** August 17, 1995 (JP 7-23950)
-**Inventor:** Koichi Ohshita
+**Inventor:** Kouichi Ohshita
 **Assignee:** Nikon Corporation, Tokyo, Japan
 **Title:** Telephoto Lens
 **Embodiment analyzed:** Fourth Embodiment / Example 4, Table 4 and FIG. 7
@@ -140,9 +140,9 @@ The result should not be read as a conventional high-performance macro lens. Nik
 
 ## Sources
 
-1. US Patent 5,764,425, Koichi Ohshita, "Telephoto Lens," Nikon Corporation, filed June 14, 1996, granted June 9, 1998. Primary prescription source: Example 4 / Table 4 / FIG. 7.
-2. Koichi Ohshita, "Nikon Fun Fun LensSet, Part 1 (Gugutto Macro/Fuwatto Soft)," *NIKKOR — The Thousand and One Nights*, Tale No. 52, Nikon Corporation. https://imaging.nikon.com/imaging/information/story/0052/
-3. Koichi Ohshita, "Nikon Fun Fun LensSet, Part 2 (Gyogyotto 20, Dodotto 400)," *NIKKOR — The Thousand and One Nights*, Tale No. 54, Nikon Corporation. https://imaging.nikon.com/imaging/information/story/0054/
+1. US Patent 5,764,425, Kouichi Ohshita, "Telephoto Lens," Nikon Corporation, filed June 14, 1996, granted June 9, 1998. Primary prescription source: Example 4 / Table 4 / FIG. 7.
+2. Kouichi Ohshita, "Nikon Fun Fun LensSet, Part 1 (Gugutto Macro/Fuwatto Soft)," *NIKKOR — The Thousand and One Nights*, Tale No. 52, Nikon Corporation. https://imaging.nikon.com/imaging/information/story/0052/
+3. Kouichi Ohshita, "Nikon Fun Fun LensSet, Part 2 (Gyogyotto 20, Dodotto 400)," *NIKKOR — The Thousand and One Nights*, Tale No. 54, Nikon Corporation. https://imaging.nikon.com/imaging/information/story/0054/
 4. Nikon Inc., *Nikon Amusing Lenses* manual, October 1995. https://www.nikon-image.com/enjoy/life/historynikkor/0054/download/manual.pdf
 5. Nikon Corporation, "Optical Glass for Molded Lenses (Q-series)," Q-SK55S entry. https://www.nikon.com/business/components/lineup/materials/optical-glass/catalog-mold/
 6. HOYA GROUP Optics Division, "Glass Cross Reference Index." https://www.hoya-opticalworld.com/english/products/crossreference.html

@@ -13,10 +13,19 @@ const PROFILED_AUTHORS = [
   "Erhard Glatzel",
   "Günther Lange",
   "Harry Zöllner",
+  "Haruo Sato",
+  "Hideo Azuma",
+  "Hiroshi Ito",
+  "Jihei Nakagawa",
+  "Koichi Wakamiya",
+  "Kouichi Ohshita",
   "Ludwig Bertele",
   "Paul Rudolph",
   "Robert Richter",
+  "Saburo Murakami",
   "Walter Mandler",
+  "Yoshiyuki Shimizu",
+  "Zenji Wakimoto",
 ];
 
 describe("author biographies", () => {
@@ -46,5 +55,11 @@ describe("author biographies", () => {
 
   it("returns no profile for an uncurated author", () => {
     expect(getAuthorBiography("Carl Baur")).toBeUndefined();
+  });
+
+  it("uses Nikon's spelling for Kouichi Ohshita's catalog identity", () => {
+    expect(getAuthorByName("Kouichi Ohshita")).toBeDefined();
+    expect(getAuthorByName("Koichi Ohshita")).toBeUndefined();
+    expect(getAuthorBiography("Koichi Ohshita")).toBeUndefined();
   });
 });

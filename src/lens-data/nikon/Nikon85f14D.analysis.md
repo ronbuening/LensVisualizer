@@ -5,7 +5,7 @@
 **Patent:** US 5,640,277
 **Filed:** December 27, 1994
 **Granted:** June 17, 1997
-**Inventor:** Koichi Ohshita (大下浩一)
+**Inventor:** Kouichi Ohshita (大下孝一)
 **Assignee:** Nikon Corporation, Tokyo, Japan
 **Japanese Priority:** JP 5-353455, filed Dec 28, 1993
 **Embodiment analyzed:** Example 2
@@ -20,7 +20,7 @@ The Nikon AF Nikkor 85mm f/1.4D IF is covered by US Patent 5,640,277, which pres
 - **Element count:** The production lens is specified by Nikon as 9 elements in 8 groups. Examples 1, 3–5, 7, and 8 use 8 elements in 7 groups. Only Examples 2 and 6 have 9 elements. Example 6 uses a cemented doublet for L1 (negative + positive cemented pair), while Example 2 splits L1 into two separate positive meniscus elements — a configuration consistent with the production cross-section diagram published by Nikon.
 - **Focal length and f-number:** f = 85.00 mm, FN = 1.43 (the patent's f/1.43 reflects the as-designed maximum aperture; the nominal f/1.4 is the marketed specification).
 - **Back focal distance:** Bf = 38.12 mm, consistent with a Nikon F-mount SLR requiring the rear element to extend into the mirror box.
-- **Designer match:** Koichi Ohshita is named both in the patent and in Nikon's own historical account (Nikkor — Thousand and One Nights No. 41), which confirms him as the optical designer.
+- **Designer match:** Kouichi Ohshita is named both in the patent and in Nikon's own historical account (Nikkor — Thousand and One Nights No. 41), which confirms him as the optical designer.
 
 The lens was developed between early summer 1992 and spring 1993, with trial production beginning in spring 1994 and mass production in winter 1995. It was released in December 1995.
 
@@ -282,7 +282,7 @@ At close focus (β = −0.10), the aberration plots show that the spherical aber
 
 ## 9. Sources
 
-1. US Patent 5,640,277 — "Large Aperture Medium Telephoto Lens System," Koichi Ohshita, Nikon Corporation. Filed Dec 27, 1994. Example 2.
+1. US Patent 5,640,277 — "Large Aperture Medium Telephoto Lens System," Kouichi Ohshita, Nikon Corporation. Filed Dec 27, 1994. Example 2.
 2. Japanese Patent Application JP 5-353455, priority date Dec 28, 1993.
 3. Nikon Corporation — "NIKKOR – The Thousand and One Nights No. 41: Ai AF Nikkor 85mm F1.4D (IF)," by Haruo Sato. Published on Nikon Imaging website.
 4. Nikon USA — AF NIKKOR 85mm f/1.4D IF product specifications page.
