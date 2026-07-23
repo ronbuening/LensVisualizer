@@ -7,6 +7,7 @@
 
 import LensDiagramPanel from "./LensDiagramPanel.js";
 import DescriptionPanel from "./DescriptionPanel.js";
+import { ENABLE_ANALYSIS_VIEW } from "../../utils/featureFlags.js";
 import type { Theme } from "../../types/theme.js";
 import type { DesktopView, MobileView } from "../../types/state.js";
 
@@ -28,6 +29,7 @@ export default function SingleLensContent({
   lensKeyA,
   markdown,
 }: SingleLensContentProps) {
+  const resolvedDesktopView = ENABLE_ANALYSIS_VIEW ? effectiveDesktopView : "diagram";
   const singleDiagramContent = (
     <LensDiagramPanel
       lensKey={lensKeyA}
@@ -35,7 +37,7 @@ export default function SingleLensContent({
       panelId="main"
       compact={false}
       showControls={true}
-      sideLayoutEnabled={isWide && effectiveDesktopView === "diagram"}
+      sideLayoutEnabled={isWide && resolvedDesktopView === "diagram"}
       fillAvailableHeight={isWide}
     />
   );
@@ -54,10 +56,10 @@ export default function SingleLensContent({
   );
 
   if (isWide) {
-    if (effectiveDesktopView === "diagram") {
+    if (resolvedDesktopView === "diagram") {
       return <div style={{ height: "100%", minHeight: 0, overflow: "hidden" }}>{singleDiagramContent}</div>;
     }
-    if (effectiveDesktopView === "analysis") {
+    if (resolvedDesktopView === "analysis") {
       return <div style={{ height: "100%", minHeight: 0, overflowY: "auto" }}>{descriptionContent}</div>;
     }
     /* Both — side-by-side */
@@ -79,7 +81,7 @@ export default function SingleLensContent({
   }
 
   /* Mobile: toggle between views */
-  if (mobileView === "diagram") {
+  if (!ENABLE_ANALYSIS_VIEW || mobileView === "diagram") {
     return singleDiagramContent;
   }
   return descriptionContent;

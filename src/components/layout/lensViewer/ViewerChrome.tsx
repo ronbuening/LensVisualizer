@@ -12,7 +12,7 @@ import CardinalControls from "../../controls/CardinalControls.js";
 import ControlsBar from "../ControlsBar.js";
 import TopBar from "../TopBar.js";
 import ViewToggleBar from "../ViewToggleBar.js";
-import { ENABLE_CARDINAL_ELEMENTS } from "../../../utils/featureFlags.js";
+import { ENABLE_ANALYSIS_VIEW, ENABLE_CARDINAL_ELEMENTS } from "../../../utils/featureFlags.js";
 import { SET_RAY_TOGGLE } from "../../../utils/state/lensReducer.js";
 import { headerStrip, toggleBtn, toggleGroup } from "../../../utils/style/styles.js";
 import type { Theme } from "../../../types/theme.js";
@@ -70,7 +70,9 @@ export default function ViewerChrome({
   onDesktopViewChange,
 }: ViewerChromeProps) {
   const [mobileControlPage, setMobileControlPage] = useState<"standard" | "cardinals">("standard");
-  const showMobileControlSwitcher = ENABLE_CARDINAL_ELEMENTS && !isWide && !comparing && mobileView === "diagram";
+  const effectiveMobileView = ENABLE_ANALYSIS_VIEW ? mobileView : "diagram";
+  const showMobileControlSwitcher =
+    ENABLE_CARDINAL_ELEMENTS && !isWide && !comparing && effectiveMobileView === "diagram";
 
   const mobileControlArrows = showMobileControlSwitcher ? (
     <div
@@ -125,7 +127,7 @@ export default function ViewerChrome({
 
       {comparing && <ControlsBar {...controlsBarProps} compact={false} showScaleMode={true} />}
 
-      {!isWide && !comparing && (
+      {ENABLE_ANALYSIS_VIEW && !isWide && !comparing && (
         <ViewToggleBar
           theme={t}
           options={
@@ -140,7 +142,7 @@ export default function ViewerChrome({
         />
       )}
 
-      {showDesktopToggle && (
+      {ENABLE_ANALYSIS_VIEW && showDesktopToggle && (
         <ViewToggleBar
           theme={t}
           options={desktopViewOptions}
@@ -153,7 +155,7 @@ export default function ViewerChrome({
 
       {!isWide &&
         !comparing &&
-        mobileView === "diagram" &&
+        effectiveMobileView === "diagram" &&
         (!showMobileControlSwitcher || mobileControlPage === "standard") && (
           <ControlsBar {...controlsBarProps} compact={true} showScaleMode={false} />
         )}

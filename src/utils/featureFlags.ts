@@ -25,5 +25,8 @@ export const ENABLE_EDGE_PROJECTION = false;
 // Remove when the spherical-aberration diagnostic presentation settles.
 export const ENABLE_REAL_RAY_LSA_DIAGNOSTIC = false;
 
+// Remove when companion lens analysis files are permanently exposed or retired.
+export const ENABLE_ANALYSIS_VIEW = false;
+
 // Remove when cardinal element overlays ship or are abandoned.
 export const ENABLE_CARDINAL_ELEMENTS = true;

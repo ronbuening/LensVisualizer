@@ -40,6 +40,9 @@ and homepage UI.
 | `CollapseButton.tsx` | Shared LESS/MORE toggle used by controls and legend. |
 | `LensSelector.tsx` | Portal-based custom lens dropdown with viewport positioning and Escape handling. |
 
+Companion `*.analysis.md` content and its desktop/mobile view controls are gated by `ENABLE_ANALYSIS_VIEW`. When the
+flag is disabled, individual lens pages remain diagram-only and do not load or advertise the companion markdown.
+
 The NORMAL / DENSE / DIAGNOSTIC ray-density segmented control belongs beside the FROM ∞ / TRACKS FOCUS tracing control
 in both `DiagramHeader` and `ControlsBar`. It is a preference-backed view setting, so do not add it to the breadcrumb
 settings menu or the URL query state.
