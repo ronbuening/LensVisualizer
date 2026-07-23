@@ -9,9 +9,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **467** lenses scanned (**459** visible)
-- **4242 / 5094** non-air surfaces use strict catalog Sellmeier data (83.3%)
-- **4272 / 5094** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 83.9%)
+- **470** lenses scanned (**462** visible)
+- **4272 / 5125** non-air surfaces use strict catalog Sellmeier data (83.4%)
+- **4302 / 5125** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 83.9%)
 - **2** mismatch surfaces in Sweep 1 across **2** lens files
 - **2** Sweep 1 surfaces have a matching untracked local patent PDF
 - **286** code-only missing-Sellmeier elements in Sweep 2
@@ -45,6 +45,7 @@ These are efficient follow-up targets after mismatch blockers because one or two
 | [NIKON AF-S NIKKOR 16-35mm f/4 G ED VR](../../src/lens-data/nikon/NikonNikkorAFS1635mmf4.data.ts) | 94.4% (17/18) | 94.4% (17/18) | 1 | abbe: 1 |
 | [NIKON PC NIKKOR 19mm f/4 E ED](../../src/lens-data/nikon/NikonNikkorPCE19mmf4E.data.ts) | 94.4% (17/18) | 94.4% (17/18) | 1 | abbe: 1 |
 | [OLYMPUS ZUIKO DIGITAL ED 14-35mm f/2.0 SWD](../../src/lens-data/olympus/OlympusMZuiko1435mmf2ED.data.ts) | 94.4% (17/18) | 94.4% (17/18) | 1 | abbe: 1 |
+| [CANON EF 28-200mm f/3.5-5.6 USM](../../src/lens-data/canon/CanonEF28200mmf3556USM.data.ts) | 94.1% (16/17) | 94.1% (16/17) | 1 | abbe: 1 |
 | [CANON RF 135mm f/1.8 L IS USM](../../src/lens-data/canon/CanonRF135f18.data.ts) | 94.1% (16/17) | 94.1% (16/17) | 1 | abbe: 1 |
 | [NIKON AF-S DX NIKKOR 55-300mm f/4.5-5.6 G ED VR](../../src/lens-data/nikon/NikonAFSDX55300mmf4556G.data.ts) | 94.1% (16/17) | 94.1% (16/17) | 1 | abbe: 1 |
 | [OLYMPUS M.ZUIKO DIGITAL ED 12-100mm f/4.0 IS PRO](../../src/lens-data/olympus/OlympusMZuiko12100mmf4ISPRO.data.ts) | 94.1% (16/17) | 94.1% (16/17) | 1 | abbe: 1 |
