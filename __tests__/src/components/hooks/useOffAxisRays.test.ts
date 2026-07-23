@@ -19,6 +19,11 @@ import SonnarRaw from "../../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f1
 import NikonFisheye6mmf28Raw from "../../../../src/lens-data/nikon/NikonFisheyeNikkor6mmf28.data.js";
 import { computeOffAxisTraceGeometry } from "../../../../src/components/hooks/offAxisRayUtils.js";
 
+vi.mock("../../../../src/utils/featureFlags.js", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("../../../../src/utils/featureFlags.js")>();
+  return { ...actual, ENABLE_EDGE_PROJECTION: false };
+});
+
 const Sonnar = { ...LENS_DEFAULTS, ...SonnarRaw } as LensData;
 const NikonFisheye6mmf28 = { ...LENS_DEFAULTS, ...NikonFisheye6mmf28Raw } as LensData;
 
@@ -171,6 +176,16 @@ describe("useOffAxisRays", () => {
 
   it("produces segments in edge mode", () => {
     const { L, zPos, IMG_MM, sx, sy, clampedRayEnd, currentPhysStopSD, currentEPSD } = buildTestFixture();
+    const geometry = computeOffAxisTraceGeometry({
+      L,
+      zPos,
+      IMG_MM,
+      focusT: 0,
+      zoomT: 0,
+      sx,
+      sy,
+      showOffAxis: "edge",
+    });
     const { result } = renderHook(() =>
       useOffAxisRays({
         L,
@@ -192,6 +207,7 @@ describe("useOffAxisRays", () => {
     );
     expect(result.current.error).toBeNull();
     expect(result.current.segments.length).toBe(L.offAxisFractions.length);
+    expect(geometry?.useEdge).toBe(false);
   });
 
   it("works with rayTracksF enabled", () => {

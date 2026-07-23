@@ -1,4 +1,4 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import buildLens, { paraxialTrace, realTraceToStop } from "../../../src/optics/buildLens.js";
 import { doLayout } from "../../../src/optics/optics.js";
 import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
@@ -16,6 +16,11 @@ import CanonEF815mmf4LFisheyeRaw from "../../../src/lens-data/canon/CanonEF815mm
 import Sonnar50f15Raw from "../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
 import Hologon15f8Raw from "../../../src/lens-data/carl-zeiss-oberkochen/ZeissHologon15mmf8.data.js";
 import NikkorZ70200Raw from "../../../src/lens-data/nikon/NikonNikkorZ70200f28.data.js";
+
+vi.mock("../../../src/utils/featureFlags.js", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("../../../src/utils/featureFlags.js")>();
+  return { ...actual, ENABLE_UNIFORM_SCALING: true };
+});
 
 const ApoLanthar = { ...LENS_DEFAULTS, ...ApoLantharRaw } as LensData;
 const Nokton = { ...LENS_DEFAULTS, ...NoktonRaw } as LensData;

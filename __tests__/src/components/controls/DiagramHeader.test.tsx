@@ -10,6 +10,11 @@ import themes from "../../../../src/utils/theme/themes.js";
 import type { RuntimeLens } from "../../../../src/types/optics.js";
 import { buildSimplePositiveElementLens } from "../../optics/testLensFixtures.js";
 
+vi.mock("../../../../src/utils/featureFlags.js", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("../../../../src/utils/featureFlags.js")>();
+  return { ...actual, ENABLE_CARDINAL_ELEMENTS: true };
+});
+
 afterEach(() => cleanup());
 
 function lens(overrides: Partial<RuntimeLens> = {}): RuntimeLens {

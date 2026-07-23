@@ -8,6 +8,11 @@ import type { PreparedOpticalState } from "../../../../../src/optics/types.js";
 import type { RuntimeLens } from "../../../../../src/types/optics.js";
 import type { Theme } from "../../../../../src/types/theme.js";
 
+vi.mock("../../../../../src/utils/featureFlags.js", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("../../../../../src/utils/featureFlags.js")>();
+  return { ...actual, ENABLE_REAL_RAY_LSA_DIAGNOSTIC: false };
+});
+
 const {
   mockComputeSphericalAberration,
   mockComputeSphericalAberrationBlurCharacter,

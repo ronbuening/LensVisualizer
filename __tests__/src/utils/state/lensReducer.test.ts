@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach } from "vitest";
+import { describe, it, expect, beforeEach, vi } from "vitest";
 import type {
   LensState,
   LensAction,
@@ -39,6 +39,11 @@ import lensReducer, {
   ENTER_COMPARE,
   EXIT_COMPARE,
 } from "../../../../src/utils/state/lensReducer.js";
+
+vi.mock("../../../../src/utils/featureFlags.js", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("../../../../src/utils/featureFlags.js")>();
+  return { ...actual, ENABLE_EDGE_PROJECTION: false };
+});
 
 const CATALOG_KEYS = ["nikon_58", "canon_50", "zeiss_35"];
 
@@ -114,6 +119,11 @@ describe("createInitialState", () => {
     expect(state.rays.showOnAxis).toBe(false);
     expect(state.rays.rayDensity).toBe("dense");
     expect(state.display.desktopView).toBe("diagram");
+  });
+
+  it("downgrades a persisted edge projection when the feature is disabled", () => {
+    const state = createInitialState({ showOffAxis: "edge" }, {}, false, CATALOG_KEYS);
+    expect(state.rays.showOffAxis).toBe("trueAngle");
   });
 
   it("comparison URL sets shared sliders from URL params", () => {

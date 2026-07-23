@@ -6,6 +6,15 @@ import DiagramLegend from "../../../../src/components/display/DiagramLegend.js";
 import themes from "../../../../src/utils/theme/themes.js";
 import type { RuntimeLens } from "../../../../src/types/optics.js";
 
+vi.mock("../../../../src/utils/featureFlags.js", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("../../../../src/utils/featureFlags.js")>();
+  return {
+    ...actual,
+    ENABLE_ASPH_DIAMOND_FILL: false,
+    ENABLE_EDGE_PROJECTION: false,
+  };
+});
+
 function lens(hasAbbeData = true): RuntimeLens {
   return {
     halfField: 22,
@@ -91,11 +100,13 @@ describe("DiagramLegend", () => {
   });
 
   it("renders ray mode descriptions and chromatic LoCA/fan-spread readouts", () => {
-    renderLegend();
+    const { container } = renderLegend({ showOffAxis: "edge" });
 
     expect(screen.getByText("Hover an element for optical details")).toBeTruthy();
     expect(screen.getByText("On-axis rays (tracks focus)")).toBeTruthy();
     expect(screen.getByText(/Off-axis rays \(15\.4°/)).toBeTruthy();
+    expect(screen.queryByText(/edge proj/)).toBeNull();
+    expect(container.querySelector("#legend-asph-dm")).toBeNull();
     expect(screen.getByText("Vignetted (ghost)")).toBeTruthy();
     expect(screen.getByText(/Chromatic \(R\/B\)/)).toBeTruthy();
     expect(screen.getByText("LoCA / Axial color")).toBeTruthy();

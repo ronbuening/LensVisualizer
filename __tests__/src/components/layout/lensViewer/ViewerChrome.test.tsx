@@ -6,6 +6,11 @@ import ViewerChrome from "../../../../../src/components/layout/lensViewer/Viewer
 import { SET_RAY_TOGGLE } from "../../../../../src/utils/state/lensReducer.js";
 import themes from "../../../../../src/utils/theme/themes.js";
 
+vi.mock("../../../../../src/utils/featureFlags.js", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("../../../../../src/utils/featureFlags.js")>();
+  return { ...actual, ENABLE_CARDINAL_ELEMENTS: true };
+});
+
 vi.mock("../../../../../src/components/layout/BreadcrumbBar.js", () => ({
   default: () => <div data-testid="breadcrumb" />,
 }));
