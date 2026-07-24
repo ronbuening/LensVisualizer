@@ -44,6 +44,16 @@ describe("computeAsphericDeparture", () => {
     const d = computeAsphericDeparture(15, 50, 50, MILD_ASPH);
     expect(Math.abs(d)).toBeGreaterThan(0);
   });
+
+  it("equals A3*h^3 for a pure odd asphere against the matching base sphere", () => {
+    const A3 = 5e-5;
+    const oddAsph: AsphericCoefficients = { K: 0, A4: 0, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0, A3 };
+    const sd = 12;
+    for (const h of [3, 8, sd]) {
+      expect(computeAsphericDeparture(h, 50, 50, oddAsph)).toBeCloseTo(A3 * h ** 3, 12);
+    }
+    expect(peakAbsDeparture(computeDepartureProfile(50, 50, oddAsph, sd))).toBeCloseTo(A3 * sd ** 3, 12);
+  });
 });
 
 describe("computeBestFitSphereR", () => {

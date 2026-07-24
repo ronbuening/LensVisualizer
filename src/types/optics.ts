@@ -138,6 +138,19 @@ export interface AsphericCoefficients {
   A16?: number;
   A18?: number;
   A20?: number;
+  /**
+   * Odd-order coefficients in the radial height h >= 0, so they stay rotationally
+   * symmetric. Optional — omit when the patent does not list them.
+   */
+  A3?: number;
+  A5?: number;
+  A7?: number;
+  A9?: number;
+  A11?: number;
+  A13?: number;
+  A15?: number;
+  A17?: number;
+  A19?: number;
 }
 
 export interface ElementData {

@@ -35,7 +35,24 @@ type ExplicitElementSpan = {
 };
 
 const REQUIRED_ASPHERIC_COEFFICIENTS = ["K", "A4", "A6", "A8", "A10", "A12", "A14"] as const;
-const OPTIONAL_ASPHERIC_COEFFICIENTS = ["A16", "A18", "A20"] as const;
+const OPTIONAL_ASPHERIC_COEFFICIENTS = [
+  "A16",
+  "A18",
+  "A20",
+  "A3",
+  "A5",
+  "A7",
+  "A9",
+  "A11",
+  "A13",
+  "A15",
+  "A17",
+  "A19",
+] as const;
+const KNOWN_ASPHERIC_COEFFICIENTS = new Set<string>([
+  ...REQUIRED_ASPHERIC_COEFFICIENTS,
+  ...OPTIONAL_ASPHERIC_COEFFICIENTS,
+]);
 
 function validateNumberRange(
   config: PerspectiveControlConfig,
@@ -685,6 +702,11 @@ export default function validateLensData(data: UntrustedLensData): string[] {
         const value = coeffs[field];
         if (value !== undefined && (typeof value !== "number" || !isFinite(value))) {
           errors.push(`asph key "${label}" has non-finite optional coefficient ${field}`);
+        }
+      }
+      for (const field of Object.keys(coeffs)) {
+        if (!KNOWN_ASPHERIC_COEFFICIENTS.has(field)) {
+          errors.push(`asph key "${label}" has unknown coefficient ${field}`);
         }
       }
     }

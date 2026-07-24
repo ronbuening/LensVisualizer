@@ -35,8 +35,10 @@ export function sag(h: number, R: number): number {
 /**
  * Compute conic-plus-polynomial aspheric sag at radial height h.
  *
- * Applies the even-order asphere convention used by lens patents:
- * z = conic(K, R, h) + A4*h^4 + A6*h^6 + ...
+ * Applies the polynomial asphere convention used by lens patents:
+ * z = conic(K, R, h) + A4*h^4 + A6*h^6 + ... plus optional odd orders
+ * A3*h^3 + A5*h^5 + ... in the radial height h >= 0, so odd terms remain
+ * rotationally symmetric.
  *
  * @param h - radial ray height in mm
  * @param R - signed base radius in mm
@@ -61,7 +63,20 @@ export function conicPolySag(h: number, R: number, asph: AsphericCoefficients | 
     (asph.A16 ?? 0) * h2 ** 8 +
     (asph.A18 ?? 0) * h2 ** 9 +
     (asph.A20 ?? 0) * h2 ** 10;
-  return conic + poly;
+  // Odd orders stay a separate additive sum: it is exactly 0 for even-only
+  // surfaces, keeping their sag bit-identical to the pre-odd-order engine.
+  const oddPoly =
+    h *
+    ((asph.A3 ?? 0) * h2 +
+      (asph.A5 ?? 0) * h2 ** 2 +
+      (asph.A7 ?? 0) * h2 ** 3 +
+      (asph.A9 ?? 0) * h2 ** 4 +
+      (asph.A11 ?? 0) * h2 ** 5 +
+      (asph.A13 ?? 0) * h2 ** 6 +
+      (asph.A15 ?? 0) * h2 ** 7 +
+      (asph.A17 ?? 0) * h2 ** 8 +
+      (asph.A19 ?? 0) * h2 ** 9);
+  return conic + poly + oddPoly;
 }
 
 /**
@@ -94,5 +109,17 @@ export function sagSlopeRaw(h: number, R: number, asph: AsphericCoefficients | u
       16 * (asph.A16 ?? 0) * h2 ** 7 +
       18 * (asph.A18 ?? 0) * h2 ** 8 +
       20 * (asph.A20 ?? 0) * h2 ** 9);
-  return conicSlope + polySlope;
+  // d/dh of an odd term A_n*h^n is n*A_n*h^(n-1), an even power of h; kept as a
+  // separate sum so even-only surfaces remain bit-identical (see conicPolySag).
+  const oddSlope =
+    3 * (asph.A3 ?? 0) * h2 +
+    5 * (asph.A5 ?? 0) * h2 ** 2 +
+    7 * (asph.A7 ?? 0) * h2 ** 3 +
+    9 * (asph.A9 ?? 0) * h2 ** 4 +
+    11 * (asph.A11 ?? 0) * h2 ** 5 +
+    13 * (asph.A13 ?? 0) * h2 ** 6 +
+    15 * (asph.A15 ?? 0) * h2 ** 7 +
+    17 * (asph.A17 ?? 0) * h2 ** 8 +
+    19 * (asph.A19 ?? 0) * h2 ** 9;
+  return conicSlope + polySlope + oddSlope;
 }
