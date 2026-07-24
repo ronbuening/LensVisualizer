@@ -88,7 +88,7 @@ $n_d = 1.58313$, $\nu_d = 59.46$. Glass: **Hoya M-BACD12 / MC-BACD12 moldable cr
 
 L22 is the only aspherical element in Example 1. Both surfaces have negative radii, so it is a negative meniscus convex toward the image side. Its position immediately after the strong positive L21 makes it the principal high-order correction element in the front subgroup GMf. The M-BACD12 designation is consistent with a glass-molded asphere rather than a large polished asphere.
 
-The two aspherical surfaces are handled specially in the data file because the patent uses odd polynomial terms that the renderer does not natively support. The original patent coefficients are retained in the analysis; the `.data.ts` file uses even-order least-squares refits with sub-0.024 µm maximum residual over the adopted semi-diameters.
+Both aspherical surfaces are transcribed exactly in the data file, including the patent's odd polynomial terms, which the renderer now supports natively. Earlier revisions used even-order least-squares refits with sub-0.024 µm maximum residual while the renderer was even-order only.
 
 ### L23 + L24 — Cemented Rear GMf Doublet
 
@@ -177,14 +177,14 @@ The patent marks surfaces 11 and 12, the two faces of L22, as aspherical. The pa
 
 In renderer convention, $K = 0$ for both surfaces. The polynomial is the correction. The positive $A_4$ terms steepen the peripheral sag relative to the spherical base, while the higher-order alternating terms keep the departure from running away at the adopted clear apertures.
 
-Because the project renderer supports even-order aspheres only, the data file uses even-order least-squares refits over the adopted render semi-diameters: 9.6 mm for surface 11A and 9.8 mm for surface 12A.
+The data file now transcribes the odd-order patent polynomial directly. Earlier revisions, when the renderer supported even-order aspheres only, used even-order least-squares refits over the adopted render semi-diameters: 9.6 mm for surface 11A and 9.8 mm for surface 12A.
 
 | Surface | Adopted SD | Maximum refit residual | RMS residual | Patent edge departure | Refit edge departure |
 |---|---:|---:|---:|---:|---:|
 | 11A | 9.6 mm | 0.022 µm | 0.007 µm | 1159.987 µm | 1159.965 µm |
 | 12A | 9.8 mm | 0.024 µm | 0.008 µm | 1459.367 µm | 1459.343 µm |
 
-The residuals are below any meaningful rendering scale, but the refit is still documented because the data file is not a literal transcription of the odd-order patent polynomial.
+Those refit residuals were below any meaningful rendering scale; the table is retained as a record of the retired approximation and of the patent edge departures used to verify the exact transcription.
 
 ## Air Lenses and Ray-Angle Control
 
@@ -221,7 +221,7 @@ The corrected transcription reproduces the patent's paraxial focal lengths and b
 | Middle | 49.434 mm | 49.43341 mm | 22.090 mm | 22.09031 mm |
 | Tele | 67.893 mm | 67.89373 mm | 22.090 mm | 22.08946 mm |
 
-The principal corrections relative to the earlier draft are analytical, not cosmetic: the design is no longer called a strict retrofocus lens; glass names have been tightened to code-matched catalog classes; L41 is treated as a 581-408 light-flint class rather than an asserted exact Hoya glass; and the asphere implementation now documents the necessary even-order refit of the patent's odd-order polynomial terms.
+The principal corrections relative to the earlier draft are analytical, not cosmetic: the design is no longer called a strict retrofocus lens; glass names have been tightened to code-matched catalog classes; L41 is treated as a 581-408 light-flint class rather than an asserted exact Hoya glass; and the aspherical surfaces are transcribed exactly, including the patent's odd-order polynomial terms.
 
 ## Sources
 

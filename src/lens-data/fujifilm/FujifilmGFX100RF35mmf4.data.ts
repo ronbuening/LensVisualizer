@@ -14,11 +14,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * clear apertures are conservative renderer apertures checked against edge thickness,
  * conic limits, and cross-gap sag intrusion.
  *
- * Surface 15A contains odd-order aspherical coefficients in the patent. The current
- * renderer stores even-order aspheres only, so 15A is represented here by an even-order
- * least-squares refit over h = 0..13.0 mm. Refit residual: max 0.04 µm,
- * RMS 0.01 µm. The analysis file preserves the patent's
- * original odd-order coefficients.
+ * Surface 15A carries the patent's exact odd/even aspherical coefficients (A4-A20,
+ * including odd orders A5-A19). Earlier revisions stored an even-order least-squares
+ * refit (max residual 0.04 µm over h = 0..13.0 mm) while the renderer lacked
+ * odd-order support. The analysis file documents the full patent table.
  */
 
 const LENS_DATA = {
@@ -252,17 +251,27 @@ const LENS_DATA = {
       A18: 1.7741841901e-18,
       A20: -2.0096774496e-21,
     },
+    // Exact patent odd/even coefficients (Table 15, KA = 7.0896629652 → K = KA − 1;
+    // A3 = 0 omitted; A7 uses the re-review-corrected 2.1858635689e-7).
     "15A": {
       K: 6.0896629652,
-      A4: -1.273921812305e-4,
-      A6: 6.225308367471e-7,
-      A8: -5.270017831864e-9,
-      A10: 8.497988104132e-11,
-      A12: -8.76772023499e-13,
-      A14: 4.28966910494e-15,
-      A16: -5.297188127984e-18,
-      A18: -2.446383729733e-20,
-      A20: 6.062789672869e-23,
+      A4: -1.0499566787e-4,
+      A5: -1.7524859132e-5,
+      A6: 4.5030349598e-6,
+      A7: 2.1858635689e-7,
+      A8: -1.8332704424e-7,
+      A9: 1.0104186656e-8,
+      A10: 3.2832007849e-9,
+      A11: -3.5373721277e-10,
+      A12: -2.6860875467e-11,
+      A13: 4.6941325681e-12,
+      A14: 6.2135840221e-14,
+      A15: -3.1574129484e-14,
+      A16: 4.8063364846e-16,
+      A17: 1.0713713899e-16,
+      A18: -3.3492681519e-18,
+      A19: -1.4581851029e-19,
+      A20: 6.0349230674e-21,
     },
   },
 

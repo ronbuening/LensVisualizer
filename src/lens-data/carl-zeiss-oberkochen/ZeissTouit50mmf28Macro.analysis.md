@@ -206,7 +206,7 @@ $$Z_d = \frac{C h^2}{1 + \sqrt{1 - K_A C^2 h^2}} + \sum_m A_m h^m$$
 
 where C = 1/R. In the LensVisualizer convention, the conic term is written with 1 + K inside the square root. Therefore the standard conic constant is K = K_A − 1. In Example 1 all three aspherical surfaces list K_A = 1.0000000, so all have K = 0 spherical bases and use polynomial departure terms for the correction.
 
-A notable feature is the presence of odd-order terms on surfaces 4 and 7. Since h is a radial coordinate, the odd powers do not break rotational symmetry. They simply provide additional radial degrees of freedom. The LensVisualizer data file cannot store odd powers, so surfaces 4A and 7A are represented by even-order least-squares fits over their listed renderer semi-diameters. The fit residuals are below 0.026 µm on surface 4A and below 0.006 µm on surface 7A, far smaller than the prescription table precision.
+A notable feature is the presence of odd-order terms on surfaces 4 and 7. Since h is a radial coordinate, the odd powers do not break rotational symmetry. They simply provide additional radial degrees of freedom. The LensVisualizer data file stores these odd-order coefficients directly, so surfaces 4A and 7A carry the exact patent polynomial (A3-A15). Earlier revisions used even-order least-squares fits (residuals below 0.026 µm on 4A and 0.006 µm on 7A) while the renderer was even-order only.
 
 ### Surface 4A — L13 front, R = +23.5562 mm
 
@@ -306,7 +306,7 @@ A fresh paraxial y-nu ray trace was run directly from the patent's Example 1 sur
 
 The standalone in-air element focal lengths and the group focal lengths were also recomputed. The group values are: G1 = +28.36 mm, G2 = −17.48 mm, G3 = +37.09 mm, G4 = +70.52 mm, G5 = +48.51 mm, and G6 = −33.22 mm. These confirm the patent's positive-negative-positive-stop-positive-positive-negative architecture.
 
-The data file deliberately differs from the patent in three implementation details. First, PP is excluded and folded into the final BFD, as required by the project data convention. Second, the odd-order aspheres on surfaces 4 and 7 are represented by even-order fits, because the renderer's aspherical model is even-order only. Third, the current prime-focus spacing model stores only the β = 0 and β = −0.98 endpoints, so it cannot reproduce the β = −0.5 expansion of DD[18] in the interactive interpolation. These changes do not affect the infinity-focus paraxial focal length or group-power verification.
+The data file deliberately differs from the patent in two implementation details. First, PP is excluded and folded into the final BFD, as required by the project data convention. Second, the current prime-focus spacing model stores only the β = 0 and β = −0.98 endpoints, so it cannot reproduce the β = −0.5 expansion of DD[18] in the interactive interpolation. (The odd-order aspheres on surfaces 4 and 7, previously even-order fits, are now transcribed exactly.) These changes do not affect the infinity-focus paraxial focal length or group-power verification.
 
 ## Sources
 

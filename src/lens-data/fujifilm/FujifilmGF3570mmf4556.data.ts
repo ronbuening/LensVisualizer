@@ -20,11 +20,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  project convention. Its optical path is folded into surface 21    ║
  * ║  as an air-equivalent BFD of 22.090 mm.                            ║
  * ║                                                                    ║
- * ║  The patent lists odd-order aspherical terms A5, A7, and A9 on     ║
- * ║  surfaces 11 and 12. The renderer supports even-order terms only,  ║
- * ║  so surfaces 11A and 12A use least-squares even-order refits over  ║
- * ║  the adopted render semi-diameters. Maximum sag residuals are      ║
- * ║  below 0.024 µm.                                                   ║
+ * ║  Surfaces 11A and 12A carry the patent's exact coefficients,       ║
+ * ║  including the odd-order terms A5, A7, and A9 (KA = 1 → K = 0).    ║
+ * ║  Earlier revisions used even-order least-squares refits while      ║
+ * ║  the renderer lacked odd-order support.                            ║
  * ║                                                                    ║
  * ║  Semi-diameters are estimated render clear apertures. Surface 9    ║
  * ║  and surface 19 are anchored to the patent ED values of 16.58 mm   ║
@@ -218,25 +217,31 @@ const LENS_DATA = {
   ],
 
   asph: {
-    // Even-order refit of patent surface 11, which includes unsupported odd terms A5/A7/A9.
+    // Exact patent coefficients for surface 11 (KA = 1 → K = 0; A3 = 0 omitted).
     "11A": {
       K: 0,
-      A4: 1.883647449847e-4,
-      A6: -7.298764381051e-7,
-      A8: 1.910801140995e-9,
-      A10: -3.582779572258e-11,
-      A12: 5.462021204825e-13,
-      A14: -1.822285194368e-15,
+      A4: 1.9333299e-4,
+      A5: -3.2634652e-6,
+      A6: -1.3836702e-7,
+      A7: 3.141274e-8,
+      A8: -1.78773e-8,
+      A9: 1.6054978e-9,
+      A10: -2.495967e-11,
+      A12: 0,
+      A14: 0,
     },
-    // Even-order refit of patent surface 12, which includes unsupported odd terms A5/A7/A9.
+    // Exact patent coefficients for surface 12 (KA = 1 → K = 0; A3 = 0 omitted).
     "12A": {
       K: 0,
-      A4: 2.050131455998e-4,
-      A6: -5.781837037374e-7,
-      A8: 1.89363445273e-9,
-      A10: -4.901470145865e-11,
-      A12: 5.647907702201e-13,
-      A14: -1.635676991838e-15,
+      A4: 2.093986e-4,
+      A5: -2.7452878e-6,
+      A6: -1.1927223e-7,
+      A7: 2.9002318e-8,
+      A8: -1.177491e-8,
+      A9: 6.5535125e-10,
+      A10: 1.0444752e-11,
+      A12: 0,
+      A14: 0,
     },
   },
 

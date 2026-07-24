@@ -15,11 +15,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    folded into the final BFD: 1.00 + 1.22 / 1.51680 + 22.81 = 24.6143248945 mm.    ║
  * ║                                                                                      ║
  * ║  NOTE ON ASPHERES:                                                                   ║
- * ║    The patent uses odd and even powers on surfaces 4 and 7. LensVisualizer stores   ║
- * ║    even-order coefficients only, so surfaces 4A and 7A are least-squares refits     ║
- * ║    over the listed renderer semi-diameters. Maximum refit residuals: 0.026 µm on    ║
- * ║    S4 over 0-12.0 mm, and 0.006 µm on S7 over 0-7.7 mm. Surface 6A is copied        ║
- * ║    directly because the patent gives even powers only.                              ║
+ * ║    Surfaces 4A and 7A carry the patent's exact odd/even coefficients (A3-A15,       ║
+ * ║    KA = 1 → K = 0). Earlier revisions stored even-order least-squares refits        ║
+ * ║    because the renderer lacked odd-order support. Surface 6A is copied directly     ║
+ * ║    because the patent gives even powers only.                                       ║
  * ║                                                                                      ║
  * ║  NOTE ON FOCUS DATA:                                                                 ║
  * ║    The patent gives β = 0, -0.5, and -0.98 spacings. LensVisualizer's current       ║
@@ -263,17 +262,22 @@ const LENS_DATA = {
   ],
 
   asph: {
+    // Exact patent odd/even coefficients (Table for surface 4, KA = 1 → K = 0).
     "4A": {
       K: 0,
-      A4: -1.051555685111637e-5,
-      A6: 4.050958052964697e-7,
-      A8: -1.831396910281167e-8,
-      A10: 4.544274699334215e-10,
-      A12: -6.839456817745785e-12,
-      A14: 6.396270596596304e-14,
-      A16: -3.654058075843303e-16,
-      A18: 1.172712377245193e-18,
-      A20: -1.604553986682877e-21,
+      A3: -1.9975218e-5,
+      A4: 6.2378398e-7,
+      A5: -6.7539764e-7,
+      A6: -1.4423201e-8,
+      A7: 7.9012377e-10,
+      A8: 1.3838857e-10,
+      A9: 2.1167277e-11,
+      A10: 4.3025158e-13,
+      A11: -1.6841831e-14,
+      A12: -2.1109002e-14,
+      A13: -2.4650413e-15,
+      A14: -5.8476062e-17,
+      A15: 2.9617348e-17,
     },
     "6A": {
       K: 0,
@@ -284,17 +288,22 @@ const LENS_DATA = {
       A12: 0,
       A14: 0,
     },
+    // Exact patent odd/even coefficients (Table for surface 7, KA = 1 → K = 0).
     "7A": {
       K: 0,
-      A4: 2.424749080153175e-5,
-      A6: 1.352796668878109e-6,
-      A8: -1.684998008448662e-7,
-      A10: 9.573164189794696e-9,
-      A12: -3.424133695386654e-10,
-      A14: 7.772441160525017e-12,
-      A16: -1.080842317450219e-13,
-      A18: 8.389380996143237e-16,
-      A20: -2.782261057184308e-18,
+      A3: -1.7101547e-5,
+      A4: 3.8413905e-5,
+      A5: -6.373894e-7,
+      A6: -2.2519977e-7,
+      A7: -2.8870262e-8,
+      A8: -1.5872068e-9,
+      A9: 8.7049597e-11,
+      A10: 4.6685223e-11,
+      A11: 5.4433814e-12,
+      A12: -1.0209216e-13,
+      A13: -5.536815e-14,
+      A14: -1.2829288e-14,
+      A15: 1.29655e-15,
     },
   },
 

@@ -248,7 +248,7 @@ The A7 coefficient was corrected during re-review. The earlier draft had $2.1859
 
 The odd-order terms are rotationally symmetric because $h$ is radial and non-negative; they do not imply a decentered or anamorphic surface. Their purpose is to give the radial sag curve more freedom, especially in the outer zone. This matches the patent's Conditional Expression (16), which requires the second derivative magnitude near the effective rim to exceed twice the value at half-height for the image-side surface of the second aspherical lens.
 
-The current data renderer supports even-order aspheres only. Surface 15A in `FujifilmGFX100RF35mmf4.data.ts` is therefore stored as an even-order least-squares refit over h = 0..13.0 mm. The fitted data surface has a maximum sag residual of 0.04 µm and RMS residual of 0.01 µm against the full patent odd/even polynomial over that aperture. The patent-original coefficients above remain the analytical reference.
+The data renderer now supports odd-order aspheres, and surface 15A in `FujifilmGFX100RF35mmf4.data.ts` stores the full patent odd/even polynomial exactly. Earlier revisions used an even-order least-squares refit over h = 0..13.0 mm with a maximum sag residual of 0.04 µm and RMS residual of 0.01 µm against the patent polynomial. The patent-original coefficients above remain the analytical reference.
 
 ## Conditional Expressions
 
