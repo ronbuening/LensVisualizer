@@ -118,6 +118,7 @@ For aspherics, verify the `asph` block:
 - Conic constant convention. Some patents use `κ = 1 + K` (treat κ = 1 as K = 0). The patent text near the asph table usually states the convention explicitly.
 - Coefficient sign and magnitude — copy verbatim, including scientific notation. Watch for missing exponents (e.g. `1.5e-7` mis-typed as `1.5`).
 - Set unused required slots (A4–A14) to `0`, not omitted. A16/A18/A20 are optional; omit when absent in the patent.
+- Odd orders A3–A19 are supported and optional — transcribe them verbatim when the patent lists non-zero values; omit zero-valued odd terms. Older data files may still carry even-order least-squares refits from before odd-order support; the replacement queue is `agent_docs/odd-asphere-backfill.md`.
 
 For zoom lenses, additionally verify:
 

@@ -100,6 +100,7 @@ Read only the relevant focused doc before changing that area:
 - `agent_docs/architecture/testing.md` - test layout and regression expectations
 - `agent_docs/glass-catalog-buildout.md` - chromatic dispersion catalog, resolver, and how to add Sellmeier entries safely
 - `agent_docs/glass-relabel-followup.md` - per-lens catalog mismatch relabel queue and audit workflow pointers
+- `agent_docs/odd-asphere-backfill.md` - per-lens queue for replacing even-order asphere refits with exact patent odd-order coefficients
 - `agent_docs/proprietary-glass-backfill.md` - patent line-index backfill workflow for unresolved proprietary glasses
 - `agent_docs/generated/` - generated glass, mirror fixture, and mount-SVG reports; refresh glass reports with
   `npm run generate:glass-reports`, hidden mirror fixture reports with `npm run generate:mirror-reports`, and the

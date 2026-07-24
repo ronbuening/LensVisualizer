@@ -116,7 +116,7 @@ Required when the design has any aspherical surface; omit cleanly when the desig
 
 - Which surfaces are aspherical and on which elements.
 - The patent's aspheric equation form, especially the conic-constant convention (e.g. some patents tabulate κ where κ = 1 corresponds to a spherical base — i.e. K = 0 in the standard form). State the convention explicitly.
-- The coefficients per surface (A4, A6, A8, …) in scientific notation, copied from the patent.
+- The coefficients per surface (A4, A6, A8, … plus any odd orders A3, A5, A7, …) in scientific notation, copied from the patent. Odd powers of the radial height h remain rotationally symmetric; note when a patent uses them.
 - A sentence interpreting each surface's correction profile (negative A4 on a converging surface flattens the periphery, etc.).
 - Manufacturing notes when relevant: glass-molded asphere (GMo), precision-glass-molded (PGM), composite/hybrid (thin resin layer on a glass substrate), or polished glass asphere.
 
