@@ -14,12 +14,13 @@
 
 import { useEffect, useState } from "react";
 import { cachedMdForKey, hasMdForKey, loadMdForKey } from "../../utils/catalog/lensCatalog.js";
+import { ENABLE_ANALYSIS_VIEW } from "../../utils/featureFlags.js";
 
 export default function useLensAnalysisMarkdown(lensKey: string): string | null | undefined {
   const [settled, setSettled] = useState<{ key: string; md: string | null } | null>(null);
 
   useEffect(() => {
-    if (!hasMdForKey(lensKey) || cachedMdForKey(lensKey) !== null) return;
+    if (!ENABLE_ANALYSIS_VIEW || !hasMdForKey(lensKey) || cachedMdForKey(lensKey) !== null) return;
     let cancelled = false;
     loadMdForKey(lensKey)
       .then((md) => {
@@ -33,7 +34,7 @@ export default function useLensAnalysisMarkdown(lensKey: string): string | null 
     };
   }, [lensKey]);
 
-  if (!hasMdForKey(lensKey)) return null;
+  if (!ENABLE_ANALYSIS_VIEW || !hasMdForKey(lensKey)) return null;
   const cached = cachedMdForKey(lensKey);
   if (cached !== null) return cached;
   /* File exists but is not cached: either still loading or the fetch failed */

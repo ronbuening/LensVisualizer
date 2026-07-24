@@ -7,7 +7,7 @@
 **Filed:** August 12, 1996
 **Granted:** August 18, 1998
 **Priority:** JP 7-231948 (August 17, 1995)
-**Inventor:** Koichi Oshita / Kouichi Ohshita
+**Inventor:** Kouichi Ohshita (rendered as Koichi Oshita in the US patent)
 **Assignee:** Nikon Corporation, Tokyo, Japan
 **Title:** Lens System with Switchable Soft Focus
 **Embodiment analyzed:** Example Embodiment 2, second soft-focus configuration (Table 2, Figs. 7-12)

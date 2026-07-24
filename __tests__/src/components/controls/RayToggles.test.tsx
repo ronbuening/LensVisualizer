@@ -5,6 +5,11 @@ import { render, screen, fireEvent, cleanup } from "@testing-library/react";
 import RayToggles from "../../../../src/components/controls/RayToggles.js";
 import type { Theme } from "../../../../src/types/theme.js";
 
+vi.mock("../../../../src/utils/featureFlags.js", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("../../../../src/utils/featureFlags.js")>();
+  return { ...actual, ENABLE_EDGE_PROJECTION: false };
+});
+
 afterEach(() => cleanup());
 
 const mockTheme = {
@@ -66,6 +71,25 @@ describe("RayToggles", () => {
     );
     fireEvent.click(screen.getByText("OFF-AXIS"));
     expect(onChange).toHaveBeenCalled();
+  });
+
+  it("uses the two-state off-axis cycle when edge projection is disabled", () => {
+    const onChange = vi.fn();
+    render(
+      <RayToggles
+        t={mockTheme}
+        showOnAxis={true}
+        showOffAxis="trueAngle"
+        onShowOffAxisChange={onChange}
+        showPupils={false}
+      />,
+    );
+
+    fireEvent.click(screen.getByRole("button", { name: "OFF-AXIS" }));
+
+    expect(onChange).toHaveBeenCalledWith("off");
+    expect(screen.queryByRole("button", { name: "TRUE ∠" })).toBeNull();
+    expect(screen.queryByRole("button", { name: "EDGE PROJ" })).toBeNull();
   });
 
   it("renders SVG icons inside buttons", () => {

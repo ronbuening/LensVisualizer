@@ -10,6 +10,7 @@ import LensVisualization from "../components/layout/LensViewer.js";
 import SEOHead from "../components/SEOHead.js";
 import ClientOnly from "../components/ClientOnly.js";
 import { LENS_CATALOG, hasMdForKey } from "../utils/catalog/lensCatalog.js";
+import { ENABLE_ANALYSIS_VIEW } from "../utils/featureFlags.js";
 import {
   lensPageTitle,
   lensPageDescription,
@@ -54,7 +55,7 @@ export default function LensPage() {
   const lens = LENS_CATALOG[slug];
   const maker = deriveMaker(lens.name, lens.maker);
   /* Existence check only — the markdown body is code-split and loaded by the viewer */
-  const hasAnalysis = hasMdForKey(slug);
+  const hasAnalysis = ENABLE_ANALYSIS_VIEW && hasMdForKey(slug);
   const displaySubtitle = lensDisplaySubtitle(lens);
 
   return (

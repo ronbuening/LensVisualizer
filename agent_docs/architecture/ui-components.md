@@ -31,7 +31,7 @@ and homepage UI.
 
 | Module | Purpose |
 | --- | --- |
-| `DiagramHeader.tsx` | Title/spec header plus ray mode, ray density, and chromatic controls; memoized and ref-forwarding. |
+| `DiagramHeader.tsx` | Title/spec header with patent-inventor links, plus ray mode, ray density, and chromatic controls; memoized and ref-forwarding. |
 | `RayToggles.tsx` | On-axis/off-axis toggle buttons with typed off-axis cycling. |
 | `CardinalControls.tsx` | Feature-flagged cardinal element and dimension overlay toggles. |
 | `ChromaticControls.tsx` | COLOR master toggle plus R/G/B channel buttons. |
@@ -39,6 +39,9 @@ and homepage UI.
 | `SliderControl.tsx` | Reusable slider with label, value, endpoints, optional compact action slot, and optional collapsible content. |
 | `CollapseButton.tsx` | Shared LESS/MORE toggle used by controls and legend. |
 | `LensSelector.tsx` | Portal-based custom lens dropdown with viewport positioning and Escape handling. |
+
+Companion `*.analysis.md` content and its desktop/mobile view controls are gated by `ENABLE_ANALYSIS_VIEW`. When the
+flag is disabled, individual lens pages remain diagram-only and do not load or advertise the companion markdown.
 
 The NORMAL / DENSE / DIAGNOSTIC ray-density segmented control belongs beside the FROM ∞ / TRACKS FOCUS tracing control
 in both `DiagramHeader` and `ControlsBar`. It is a preference-backed view setting, so do not add it to the breadcrumb

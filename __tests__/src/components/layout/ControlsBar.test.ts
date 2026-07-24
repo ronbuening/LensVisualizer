@@ -15,6 +15,15 @@ import ControlsBar from "../../../../src/components/layout/ControlsBar.js";
 import { SET_RAY_TOGGLE, SET_SCALE_MODE } from "../../../../src/utils/state/lensReducer.js";
 import themes from "../../../../src/utils/theme/themes.js";
 
+vi.mock("../../../../src/utils/featureFlags.js", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("../../../../src/utils/featureFlags.js")>();
+  return {
+    ...actual,
+    ENABLE_CARDINAL_ELEMENTS: true,
+    ENABLE_EDGE_PROJECTION: false,
+  };
+});
+
 describe("ControlsBar", () => {
   const dispatch = vi.fn();
 

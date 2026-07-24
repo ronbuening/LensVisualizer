@@ -5,7 +5,7 @@
 **Patent:** US 5,490,012  
 **Filed:** December 28, 1992; priority January 8, 1992 (JP 4-001358)  
 **Granted:** February 6, 1996  
-**Inventor:** Koichi Ohshita  
+**Inventor:** Kouichi Ohshita  
 **Assignee:** Nikon Corporation  
 **Title:** Underwater Wide Angle Zoom Lens  
 **Embodiment analyzed:** First Embodiment, Table 1
@@ -207,7 +207,7 @@ The result is an unusual underwater zoom topology. G1 is fixed and serves as bot
 
 ## Sources
 
-1. US Patent 5,490,012, Koichi Ohshita, Nikon Corporation, "Underwater Wide Angle Zoom Lens," granted February 6, 1996. Primary source for the prescription, zoom spacings, conditional expressions, and focusing description.
+1. US Patent 5,490,012, Kouichi Ohshita, Nikon Corporation, "Underwater Wide Angle Zoom Lens," granted February 6, 1996. Primary source for the prescription, zoom spacings, conditional expressions, and focusing description.
 2. Nikon Corporation, "Our Product History: 1990's," official Nikon Imaging product-history page. Source for Nikonos RS launch context and underwater AF SLR, 100 m pressure-resistance, and R-UW mount context.
 3. SCHOTT optical glass datasheets for N-BK7, N-SF1, N-SK16, and N-SF6. Source for exact nd/νd catalog checks.
 4. OHARA optical glass pages / catalog data for S-LAL14 and legacy cross-reference data. Source for the S-LAL14 and BAH26-class glass checks.

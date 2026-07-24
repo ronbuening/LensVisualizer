@@ -12,7 +12,7 @@ import SearchPage from "../../../src/pages/SearchPage.js";
 import AuthorPage from "../../../src/pages/AuthorPage.js";
 import AuthorsIndexPage from "../../../src/pages/AuthorsIndexPage.js";
 import CatalogSearchBox from "../../../src/components/search/CatalogSearchBox.js";
-import { AUTHORS, patentsForAuthor } from "../../../src/utils/catalog/authorCatalog.js";
+import { AUTHORS, getAuthorByName, patentsForAuthor } from "../../../src/utils/catalog/authorCatalog.js";
 import themes from "../../../src/utils/theme/themes.js";
 import { clearBrowserState, installMatchMediaMock, renderWithRouter } from "../../testUtils.js";
 
@@ -94,6 +94,27 @@ describe("search and author pages", () => {
     fireEvent.click(screen.getByRole("button", { name: "Co-authors" }));
     expect(screen.getByRole("button", { name: "Co-authors" }).getAttribute("aria-pressed")).toBe("true");
     expect(screen.getByRole("navigation", { name: "Co-author sections" })).toBeTruthy();
+  });
+
+  it("renders a sourced biography for a profiled author", () => {
+    const author = getAuthorByName("Paul Rudolph");
+    expect(author).toBeDefined();
+    if (!author) return;
+
+    renderWithRouter(
+      <HelmetProvider>
+        <Routes>
+          <Route path="/authors/:author" element={<AuthorPage />} />
+        </Routes>
+      </HelmetProvider>,
+      { initialEntries: [`/authors/${author.slug}`] },
+    );
+
+    expect(screen.getByRole("heading", { level: 2, name: "Biography" })).toBeTruthy();
+    expect(screen.getByText(/foundational designers of modern photographic objectives/)).toBeTruthy();
+    expect(screen.getByRole("link", { name: "ZEISS — History of camera and cine lenses" }).getAttribute("href")).toBe(
+      "https://www.zeiss.com/corporate/en/about-zeiss/past/history/technological-milestones/camera-and-cine-lenses.html",
+    );
   });
 
   it("renders an author index and sorts it by name or patent count", () => {

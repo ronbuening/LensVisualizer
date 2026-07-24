@@ -42,6 +42,7 @@ const TEST_FORMAT_DETAILS = getImageFormatDetails(TEST_FORMAT.id)!;
 const TEST_ARTICLE = ARTICLES[0];
 const TEST_AUTHOR = AUTHORS.find((author) => author.patentCount > 0)!;
 const TEST_AUTHOR_PATENT = patentsForAuthor(TEST_AUTHOR.name)[0];
+const TEST_PROFILED_AUTHOR = AUTHORS.find((author) => author.name === "Paul Rudolph")!;
 
 function escapeHtmlText(value: string): string {
   return value
@@ -217,6 +218,13 @@ describe("SSR render — search and author pages", () => {
     expect(helmet.script.toString()).toContain('"@type":"CollectionPage"');
     expect(html).toContain(TEST_AUTHOR.name);
     expect(html).toContain(escapeHtmlText(TEST_AUTHOR_PATENT.patentNumber));
+  });
+
+  it("includes curated biographies in prerendered author content", () => {
+    const { html } = render(`/authors/${TEST_PROFILED_AUTHOR.slug}`);
+    expect(html).toContain("Biography");
+    expect(html).toContain("foundational designers of modern photographic objectives");
+    expect(html).toContain("ZEISS — History of camera and cine lenses");
   });
 });
 

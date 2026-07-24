@@ -22,7 +22,7 @@ const LENS_DATA = {
   key: "nikkor-85f14d",
   maker: "Nikon",
   name: "NIKON AF NIKKOR 85mm f/1.4 D IF",
-  subtitle: "US 5,640,277 Example 2 — Nikon / Koichi Ohshita",
+  subtitle: "US 5,640,277 Example 2 — Nikon / Kouichi Ohshita",
   specs: ["9 ELEMENTS / 8 GROUPS", "f = 85.0 mm", "F/1.4", "2ω = 28°30'", "ALL SPHERICAL"],
 
   focalLengthMarketing: 85,
@@ -32,7 +32,7 @@ const LENS_DATA = {
   lensMounts: ["nikon-f"],
   imageFormat: "135-full-frame",
   patentNumber: "US 5,640,277",
-  patentAuthors: ["Koichi Ohshita"],
+  patentAuthors: ["Kouichi Ohshita"],
   patentAssignees: ["Nikon Corporation"],
   patentYear: 1997,
   elementCount: 9,

@@ -4,7 +4,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ╔══════════════════════════════════════════════════════════════════════╗
  * ║          LENS DATA — Nikon Gugutto Macro 120mm f/4.5               ║
  * ╠══════════════════════════════════════════════════════════════════════╣
- * ║  Data source: US 5,764,425, Example 4, Koichi Ohshita / Nikon.     ║
+ * ║  Data source: US 5,764,425, Example 4, Kouichi Ohshita / Nikon.    ║
  * ║  Two-group, three-element all-spherical telephoto macro lens.       ║
  * ║  3 elements / 2 groups, 0 aspherical surfaces.                     ║
  * ║  Focus: unit extension; only the final back-focus gap changes.      ║
@@ -31,7 +31,7 @@ const LENS_DATA = {
   key: "nikon-gugotto-120mm-f45",
   maker: "Nikon",
   name: "NIKON Gugutto Macro 120mm f/4.5",
-  subtitle: "US 5,764,425 Example 4 — Koichi Ohshita / Nikon",
+  subtitle: "US 5,764,425 Example 4 — Kouichi Ohshita / Nikon",
   specs: [
     "3 elements / 2 groups",
     "120mm f/4.5 fixed aperture",
@@ -46,7 +46,7 @@ const LENS_DATA = {
   lensMounts: ["nikon-f"],
   imageFormat: "135-full-frame",
   patentNumber: "US 5,764,425",
-  patentAuthors: ["Koichi Ohshita"],
+  patentAuthors: ["Kouichi Ohshita"],
   patentAssignees: ["Nikon Corporation"],
   patentYear: 1998,
   elementCount: 3,

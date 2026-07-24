@@ -7,12 +7,12 @@
 **Filed:** January 20, 1998; continuation-in-part of U.S. Ser. No. 08/658,460 filed June 5, 1996  
 **Priority date:** July 7, 1995 (JP 7-195923, added by certificate of correction)  
 **Granted:** September 7, 1999  
-**Inventors:** Koichi Ohshita; Atsushi Shibayama  
+**Inventors:** Kouichi Ohshita; Atsushi Shibayama  
 **Assignee:** Nikon Corporation  
 **Embodiment analyzed:** Eighth embodiment, Table 8  
 **Worked examples in patent:** 11  
 
-The patent discloses a low-cost super-wide-angle / fisheye-type lens made from only three glass elements: a plano-concave first negative lens, a thick negative meniscus second lens, and a positive third lens. The second and third lenses are cemented in the disclosed examples. This is the same structural family described by Koichi Ohshita in Nikon's _NIKKOR — The Thousand and One Nights_ account of the Gyogyotto 20: a strong plano-concave front element, an unusually thick meniscus corrector, and a final convex imaging element joined into a two-group three-element structure.
+The patent discloses a low-cost super-wide-angle / fisheye-type lens made from only three glass elements: a plano-concave first negative lens, a thick negative meniscus second lens, and a positive third lens. The second and third lenses are cemented in the disclosed examples. This is the same structural family described by Kouichi Ohshita in Nikon's _NIKKOR — The Thousand and One Nights_ account of the Gyogyotto 20: a strong plano-concave front element, an unusually thick meniscus corrector, and a final convex imaging element joined into a two-group three-element structure.
 
 Table 8 is retained as the working prescription because it is the patent example with the widest stated field angle, $2\omega = 164.0^\circ$, while retaining the production-relevant three-element/two-group construction, fixed f/8-class aperture, and low-cost all-spherical design. It should not be treated as a proof that the production lens used Table 8 without mechanical changes. Nikon's first-party retrospective gives the production design concept and 1995 release context but does not identify a patent table number. The data file therefore models Table 8 as the closest patent-grounded proxy, not as a factory service drawing.
 
@@ -160,8 +160,8 @@ The `*.data.ts` file applies the uniform 0.20 scale factor to all radii, center 
 ## Sources
 
 1. US Patent 5,949,588, Ohshita and Shibayama, "Wide Angle Lens," granted September 7, 1999.  
-2. Koichi Ohshita, "NIKKOR — The Thousand and One Nights No.54: Nikon Fun Fun LensSet, Part 2 (Gyogyotto 20, Dodotto 400)," Nikon Imaging.  
-3. Koichi Ohshita, "NIKKOR — The Thousand and One Nights No.52: Nikon Fun Fun LensSet," Nikon Imaging.  
+2. Kouichi Ohshita, "NIKKOR — The Thousand and One Nights No.54: Nikon Fun Fun LensSet, Part 2 (Gyogyotto 20, Dodotto 400)," Nikon Imaging.  
+3. Kouichi Ohshita, "NIKKOR — The Thousand and One Nights No.52: Nikon Fun Fun LensSet," Nikon Imaging.  
 4. SCHOTT Optical Glass Datasheets: N-SK16 and N-SF6.  
 5. OHARA Optical Glass Datasheets: S-BSM16 and S-TIH6.  
 6. The Fish List, "Nikon 'fun' Gyogyotto Fisheye type 20mm f/8," used only as a secondary check for production-format metadata and image-circle context.

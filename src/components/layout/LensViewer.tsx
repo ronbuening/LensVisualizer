@@ -39,6 +39,7 @@ import _ABERRATIONS_PRIMER_INTERMEDIATE_MD from "../../content/AberrationsPrimer
 import { stripFrontmatter } from "../../utils/content/homepageContent.js";
 import useLensState from "../../utils/state/useLensState.js";
 import useMediaQuery from "../../utils/useMediaQuery.js";
+import { ENABLE_ANALYSIS_VIEW } from "../../utils/featureFlags.js";
 import {
   SET_LENS_A,
   SET_LENS_B,
@@ -164,13 +165,14 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
   const markdown = useLensAnalysisMarkdown(lensKeyA);
 
   const desktopViewOptions = useMemo(() => {
+    if (!ENABLE_ANALYSIS_VIEW) return [{ label: "DIAGRAM", val: "diagram" }] as const;
     return [
       { label: "DIAGRAM", val: "diagram" },
       { label: "BOTH", val: "both" },
       { label: "ANALYSIS", val: "analysis" },
     ] as const;
   }, []);
-  const defaultDesktopView = "both";
+  const defaultDesktopView = ENABLE_ANALYSIS_VIEW ? "both" : "diagram";
   const effectiveDesktopView = desktopViewOptions.some((o) => o.val === desktopView) ? desktopView : defaultDesktopView;
   const showDesktopToggle = isWide && !comparing && desktopViewOptions.length > 1;
 

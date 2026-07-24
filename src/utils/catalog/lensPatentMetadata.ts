@@ -2,17 +2,34 @@ import type { LensData } from "../../types/optics.js";
 
 type LensPatentDisplayData = Pick<LensData, "patentNumber" | "patentAuthors" | "subtitle">;
 
+export interface LensPatentAttribution {
+  patentNumber: string;
+  authors: string[];
+}
+
 function legacySubtitle(lens: LensPatentDisplayData): string | null {
   return lens.subtitle?.trim() || null;
 }
 
+/** Return normalized structured attribution when both patent fields are present. */
+export function lensPatentAttribution(lens: LensPatentDisplayData): LensPatentAttribution | null {
+  const patentNumber = lens.patentNumber?.trim();
+  if (!patentNumber || lens.patentAuthors === undefined) return null;
+
+  return {
+    patentNumber,
+    authors: lens.patentAuthors.map((author) => author.trim()).filter(Boolean),
+  };
+}
+
 /** Build the standardized patent attribution shown beneath a lens name. */
 export function lensDisplaySubtitle(lens: LensPatentDisplayData): string | null {
-  const patentNumber = lens.patentNumber?.trim();
-  if (!patentNumber || lens.patentAuthors === undefined) return legacySubtitle(lens);
+  const attribution = lensPatentAttribution(lens);
+  if (!attribution) return legacySubtitle(lens);
 
-  const authors = lens.patentAuthors.map((author) => author.trim()).filter(Boolean);
-  return authors.length > 0 ? `${patentNumber} — ${authors.join(", ")}` : patentNumber;
+  return attribution.authors.length > 0
+    ? `${attribution.patentNumber} — ${attribution.authors.join(", ")}`
+    : attribution.patentNumber;
 }
 
 /** Return the structured patent number, falling back to a legacy subtitle reference. */

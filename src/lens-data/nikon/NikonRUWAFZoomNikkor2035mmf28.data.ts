@@ -3,7 +3,7 @@ import type { LensDataInput } from "../../types/optics.js";
 /**
  * NIKON R-UW AF ZOOM-NIKKOR 20-35mm f/2.8
  *
- * Data source: US 5,490,012, First Embodiment, Table 1 (Koichi Ohshita / Nikon Corporation).
+ * Data source: US 5,490,012, First Embodiment, Table 1 (Kouichi Ohshita / Nikon Corporation).
  * Underwater wide-angle zoom for the Nikonos RS system. 10 physical glass elements in 10 air-spaced groups,
  * including the rear dustproof/drip-proof plane plate; all surfaces are spherical.
  *
@@ -40,7 +40,7 @@ const LENS_DATA = {
   key: "nikon-ruw-af-zoom-nikkor-20-35mm-f28",
   maker: "Nikon",
   name: "NIKON R-UW AF ZOOM-NIKKOR 20-35mm f/2.8",
-  subtitle: "US 5,490,012 First Embodiment - Nikon / Koichi Ohshita",
+  subtitle: "US 5,490,012 First Embodiment - Nikon / Kouichi Ohshita",
   specs: [
     "10 elements / 10 groups",
     "f = 20.60-34.00 mm in water",
@@ -55,7 +55,7 @@ const LENS_DATA = {
   lensMounts: ["nikonos-rs"],
   imageFormat: "135-full-frame",
   patentNumber: "US 5,490,012",
-  patentAuthors: ["Koichi Ohshita"],
+  patentAuthors: ["Kouichi Ohshita"],
   patentAssignees: ["Nikon Corporation"],
   patentYear: 1996,
   elementCount: 10,

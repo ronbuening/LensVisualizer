@@ -25,6 +25,11 @@ export const CHANGELOG: ChangelogEntry[] = [
     type: "lens",
     summary: "Added Canon EF 28mm f/2.8 and IS USM primes plus the 28-200mm USM zoom",
   },
+  {
+    date: "2026-07-23",
+    type: "feature",
+    summary: "Added sourced inventor biographies and lens-subtitle links to author pages",
+  },
   // ── 2026-07-22 ──────────────────────────────────────────────────
   {
     date: "2026-07-22",
