@@ -133,13 +133,13 @@ L21 is the single aspherical element in the design and the most optically intere
 
 **Role in the system:** L21's negative power (f ≈ −59 mm) acts as the "diverging core" of the rear group, creating a large separation in ray heights between the stop and the cemented triplet. This is essential for the triplet to correct both axial and lateral chromatic aberration simultaneously. The aspheric profiles on L21 are responsible for the bulk of the residual spherical aberration correction — the patent text ([0036]) explicitly states that the aspherical lens provides "effective correction" of spherical aberration before light enters the cemented triplet, enabling the triplet to then "satisfactorily correct spherical aberration, chromatic coma aberration, and lateral chromatic aberration."
 
-**Aspherical departure:** At an estimated semi-diameter of ~8 mm (marginal ray height ~7.5 mm plus clearance), the front surface (S10A) departs by approximately −870 µm from its paraxial sphere, and the rear surface (S11A) departs by approximately −323 µm. The front surface becomes more deeply concave at the rim than the base sphere, while the rear surface becomes less convex (flatter) at the rim. The net effect is to increase L21's negative power at the margin relative to the paraxial zone, over-correcting marginal rays to compensate for the residual under-corrected spherical aberration from the many positive elements in the front group and cemented triplet.
+**Aspherical departure:** With the exact patent polynomials, the front surface S10A departs by −1257.304 µm from its paraxial sphere at the 8.4 mm data-file semi-diameter, while S11A departs by −149.709 µm at 6.5 mm. The S10A estimate is 0.1 mm smaller than the original refit-era estimate so the exact profile remains inside the project rim-slope safety limit. The net effect is to increase L21's negative power at the margin relative to the paraxial zone, over-correcting marginal rays to compensate for the residual under-corrected spherical aberration from the many positive elements in the front group and cemented triplet.
 
 **Glass type:** The nd = 1.51760, νd = 63.5 prescription places this glass in the borosilicate crown (BK/BSC) family, close to the ubiquitous BK7 (nd = 1.51680, νd = 64.17). The slight difference from standard BK7 values suggests a proprietary glass-molding formulation optimized for precision glass molding (PGM). Fujifilm, as a major glass manufacturer through its Fujinon optical division, likely uses an in-house molding glass. The low refractive index and high Abbe number make this glass essentially "color-neutral," ensuring that the aspheric surfaces correct monochromatic aberrations without disturbing the chromatic balance.
 
-**Aspherical coefficient format (patent vs. data file):** The patent describes the aspheric sag using a non-standard polynomial form with both odd and even powers of the radial height *h* (terms A3·h³ through A20·h²⁰) and a parabolic base curve (K_patent = 0 in the expression `Zd = C·h²/{1+(1−K·C²·h²)^½} + ΣAm·h^m`). Setting K = 0 in this formula reduces the base curve to `C·h²/2` (the paraxial approximation), meaning the polynomial must encode all higher-order departure from a parabola, including the normal spherical correction terms (h⁴/8R³, h⁶/16R⁵, …) that a spherical base would provide intrinsically.
+**Aspherical coefficient format:** The patent describes the aspheric sag with both odd and even powers of radial height *h* (A3·h³ through A20·h²⁰) and writes its conic denominator as `1−K_A·C²·h²`. Its tabulated $K_A = 0$ therefore describes a paraboloid and converts to the renderer's standard conic constant $K = K_A - 1 = -1$.
 
-The renderer's standard sag equation uses K in the conventional `1−(1+K)·C²·h²` form with even-order-only polynomial terms (A4, A6, …, A20). To bridge these two representations, a least-squares refit was performed, sampling the patent sag profile at 2000 radial points from h = 0.01 to h = 8.0 mm and fitting the standard even-order equation with K = 0 (spherical base). The resulting maximum residual is 0.44 µm for S10A and 0.35 µm for S11A — well below any rendering or optical significance threshold. The refitted coefficients are used in the data file.
+The data file stores Table 2 directly: $K=-1$ plus every nonzero A3–A20 coefficient on both surfaces. No even-order refit or conic substitution remains.
 
 ### Element 6 — L22: Plano-Convex (Triplet Front)
 
@@ -265,22 +265,25 @@ Example 1 satisfies all conditional expressions including the tighter "primed" v
 
 ---
 
-## 8. Aspherical Coefficient Conversion
+## 8. Aspherical Coefficient Transcription
 
 The patent's aspherical sag formula differs from the standard (ISO 10110 / Zemax / renderer) convention in two ways:
 
-**Base curve:** The patent uses `Zd = C·h² / {1 + (1 − K·C²·h²)^½}` with K = 0, which yields a parabolic base `C·h²/2`. The standard formula uses `Z = C·h² / {1 + (1 − (1+K)·C²·h²)^½}` where K = 0 yields a full spherical base. The patent's parabolic base means the polynomial coefficients must encode the spherical correction terms (h⁴/8R³, h⁶/16R⁵, …) that a spherical base provides intrinsically.
+**Base curve:** The patent uses `Zd = C·h² / {1 + (1 − K_A·C²·h²)^½}` with $K_A = 0$, which yields the paraboloid `C·h²/2`. The standard formula uses `Z = C·h² / {1 + (1 − (1+K)·C²·h²)^½}`, so the direct conversion is $K = K_A - 1 = -1$.
 
-**Polynomial orders:** The patent includes both odd (A3, A5, A7, …) and even (A4, A6, A8, …) powers of h through A20. The renderer supports only even-order coefficients (A4, A6, …, A20). Odd-order terms in a sag polynomial are unusual — they produce asymmetric profiles about the paraxial apex — but in this context they function as additional fitting degrees of freedom for the physical surface shape over the positive-h domain. Since the sag equation is only evaluated for h ≥ 0, odd-power terms behave like smooth monotonic functions that can be well-approximated by even-order polynomials over a finite interval.
+**Polynomial orders:** Table 2 includes both odd and even powers from A3 through A20. All are now represented directly:
 
-**Refit procedure:** The patent sag was evaluated at 2000 radial points from h = 0.01 mm to h = 8.0 mm (slightly beyond the estimated clear aperture). A least-squares fit to the standard even-order sag equation with K = 0 (spherical base) yielded the following residuals:
+| Surface | A3 | A4 | A5 | A6 | A7 | A8 | A9 | A10 | A11 |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| 10A | 1.4267934E-03 | -1.6625706E-03 | 7.1056683E-04 | -9.1063817E-05 | -6.7671475E-05 | 3.1530346E-05 | -2.7404199E-06 | -1.2148981E-06 | 2.9053673E-07 |
+| 11A | 1.4075342E-03 | -1.5407051E-03 | 7.2833847E-04 | -1.3764849E-04 | -3.4723387E-05 | 2.1553742E-05 | -2.4723865E-06 | -6.0987942E-07 | 1.7824931E-07 |
 
-| Surface | Max Residual | RMS Residual |
-|---------|-------------|-------------|
-| S10A | 0.44 µm | 0.15 µm |
-| S11A | 0.35 µm | 0.13 µm |
+| Surface | A12 | A13 | A14 | A15 | A16 | A17 | A18 | A19 | A20 |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| 10A | 6.3508375E-09 | -7.9573382E-09 | 4.5951622E-10 | 9.3989975E-11 | -9.7762088E-12 | -4.3352953E-13 | 7.1170331E-14 | 2.5581917E-16 | -1.6083703E-16 |
+| 11A | -3.5081942E-09 | -3.6689473E-09 | 3.8060840E-10 | 2.1235855E-11 | -5.4237286E-12 | 1.6515932E-13 | 2.1078707E-14 | -1.6918406E-15 | 3.4763829E-17 |
 
-These residuals are approximately 0.05% of the total aspherical departure (870 µm for S10A, 323 µm for S11A) and are negligible for both rendering accuracy and optical performance characterization.
+At the selected semi-diameters, the exact profiles depart from their paraxial spheres by −1257.304 µm for S10A ($h=8.4$ mm) and −149.709 µm for S11A ($h=6.5$ mm). These values are used as regression checks against transcription errors.
 
 ---
 

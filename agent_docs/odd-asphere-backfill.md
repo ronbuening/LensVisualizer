@@ -26,6 +26,9 @@ Companion references:
 | [FujifilmXF1655mmf28R.data.ts](../src/lens-data/fujifilm/FujifilmXF1655mmf28R.data.ts) | 6A, 7A, 13A, 14A, 22A, 23A | Exact Example 1 Table 4 odd/even A4–A16; zero A3 omitted; KA converted with K = KA − 1. |
 | [Sigma1424mmf28DGHSM.data.ts](../src/lens-data/sigma/Sigma1424mmf28DGHSM.data.ts) | 5A, 6A | Exact Numerical Example 1 A3–A16; standard K = 0 retained. |
 | [FujifilmXF18mmf2.data.ts](../src/lens-data/fujifilm/FujifilmXF18mmf2.data.ts) | 9A, 10A, 13A, 14A | Exact Example 4 Table 8 odd/even coefficients; KA converted with K = KA − 1. |
+| [FujifilmXF23mmf14RLMWR.data.ts](../src/lens-data/fujifilm/FujifilmXF23mmf14RLMWR.data.ts) | 21A, 22A, 25A, 26A | Exact Example 7 A4–A14 incl. odd terms, rescaled with Aₙ/s^(n−1); KA = 1 → K = 0. |
+| [FujifilmXF35mmf14R.data.ts](../src/lens-data/fujifilm/FujifilmXF35mmf14R.data.ts) | 10A, 11A | Exact Example 1 Table 2 A3–A20; KA = 0 → K = −1 restores the patent paraboloid bases. |
+| [FujifilmGF23mmf4.data.ts](../src/lens-data/fujifilm/FujifilmGF23mmf4.data.ts) | 3A, 4A, 18A, 19A | Exact Example 1 A4–A16 incl. odd A5–A15; zero A3 omitted; KA converted with K = KA − 1. |
 
 ## Backfill workflow
 
@@ -51,9 +54,6 @@ entirely). Residuals are the values documented in each analysis file.
 
 | Priority | Lens file | Surfaces | Complications / notes |
 |---|---|---|---|
-| 7 | [FujifilmXF23mmf14RLMWR.data.ts](../src/lens-data/fujifilm/FujifilmXF23mmf14RLMWR.data.ts) | 4 aspheres | Prescription uniformly scaled to 23 mm — rescale Aₙ by 1/s^(n−1). Odd A5–A13. |
-| 8 | [FujifilmXF35mmf14R.data.ts](../src/lens-data/fujifilm/FujifilmXF35mmf14R.data.ts) | S12A, S13A(?) | Patent K = 0 in its own convention = paraboloid base → K = −1 here; polynomial encodes sphere-vs-parabola departure. |
-| 9 | [FujifilmGF23mmf4.data.ts](../src/lens-data/fujifilm/FujifilmGF23mmf4.data.ts) | see analysis | Odd terms through A15; patent even/odd terms partially cancel, so dropping odds is not an option. |
 | 10 | [FujifilmXF16555mmf28RLMWRII.data.ts](../src/lens-data/fujifilm/FujifilmXF16555mmf28RLMWRII.data.ts) | see analysis | Odd A3–A9; full patent Table 3 preserved in analysis. |
 | 11 | [FujifilmXF60mmf24R.data.ts](../src/lens-data/fujifilm/FujifilmXF60mmf24R.data.ts) | S12A, S13A | Odd A3–A9; tables preserved in analysis. |
 | 12 | [FujifilmXF33mmf14RLMWR.data.ts](../src/lens-data/fujifilm/FujifilmXF33mmf14RLMWR.data.ts) | 4 aspheres | A3 = 0; odd A5–A11 non-zero. |

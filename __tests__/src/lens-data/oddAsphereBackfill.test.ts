@@ -1,11 +1,14 @@
 import { describe, expect, it } from "vitest";
 import { conicPolySag, sag } from "../../../src/optics/optics.js";
 import ZeissTouit from "../../../src/lens-data/carl-zeiss-oberkochen/ZeissTouit50mmf28Macro.data.js";
+import FujifilmGF23 from "../../../src/lens-data/fujifilm/FujifilmGF23mmf4.data.js";
 import FujifilmGF3570 from "../../../src/lens-data/fujifilm/FujifilmGF3570mmf4556.data.js";
 import FujifilmGFX100RF from "../../../src/lens-data/fujifilm/FujifilmGFX100RF35mmf4.data.js";
 import FujifilmX70 from "../../../src/lens-data/fujifilm/FujifilmX7018mmf28.data.js";
 import FujifilmXF1655 from "../../../src/lens-data/fujifilm/FujifilmXF1655mmf28R.data.js";
 import FujifilmXF18 from "../../../src/lens-data/fujifilm/FujifilmXF18mmf2.data.js";
+import FujifilmXF23 from "../../../src/lens-data/fujifilm/FujifilmXF23mmf14RLMWR.data.js";
+import FujifilmXF35 from "../../../src/lens-data/fujifilm/FujifilmXF35mmf14R.data.js";
 import FujifilmXF50 from "../../../src/lens-data/fujifilm/FujifilmXF50f1.data.js";
 import FujifilmXF56 from "../../../src/lens-data/fujifilm/FujifilmXF56mmf12.data.js";
 import Sigma1424 from "../../../src/lens-data/sigma/Sigma1424mmf28DGHSM.data.js";
@@ -159,6 +162,49 @@ describe("Fujifilm XF18mm f/2 odd-order backfill", () => {
     for (const [label, h, expectedMicrons] of expected) {
       expect(
         Math.abs(departureMicrons(h, surfaceR(FujifilmXF18, label), FujifilmXF18.asph[label]) - expectedMicrons),
+      ).toBeLessThanOrEqual(0.01);
+    }
+  });
+});
+
+describe("Fujifilm XF23mm f/1.4 R LM WR odd-order backfill", () => {
+  it("matches the analysis-quoted exact scaled edge departures", () => {
+    const expected = [
+      ["21A", 11.8781, -115.498],
+      ["22A", 11.8781, 1057.587],
+      ["25A", 11.97546, 222.423],
+      ["26A", 11.97546, 354.395],
+    ] as const;
+    for (const [label, h, expectedMicrons] of expected) {
+      expect(
+        Math.abs(departureMicrons(h, surfaceR(FujifilmXF23, label), FujifilmXF23.asph[label]) - expectedMicrons),
+      ).toBeLessThanOrEqual(0.01);
+    }
+  });
+});
+
+describe("Fujifilm XF35mm f/1.4 R odd-order backfill", () => {
+  it("matches the analysis-quoted exact edge departures", () => {
+    expect(
+      Math.abs(departureMicrons(8.4, surfaceR(FujifilmXF35, "10A"), FujifilmXF35.asph["10A"]) - -1257.304),
+    ).toBeLessThanOrEqual(0.01);
+    expect(
+      Math.abs(departureMicrons(6.5, surfaceR(FujifilmXF35, "11A"), FujifilmXF35.asph["11A"]) - -149.709),
+    ).toBeLessThanOrEqual(0.01);
+  });
+});
+
+describe("Fujifilm GF23mm f/4 odd-order backfill", () => {
+  it("matches the analysis-quoted exact edge departures", () => {
+    const expected = [
+      ["3A", 14.5, 688.665],
+      ["4A", 12.2, -631.897],
+      ["18A", 16.5, -3174.943],
+      ["19A", 16.8, -596.891],
+    ] as const;
+    for (const [label, h, expectedMicrons] of expected) {
+      expect(
+        Math.abs(departureMicrons(h, surfaceR(FujifilmGF23, label), FujifilmGF23.asph[label]) - expectedMicrons),
       ).toBeLessThanOrEqual(0.01);
     }
   });
