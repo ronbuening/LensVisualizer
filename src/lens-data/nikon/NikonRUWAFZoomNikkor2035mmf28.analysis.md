@@ -5,7 +5,7 @@
 **Patent:** US 5,490,012  
 **Filed:** December 28, 1992; priority January 8, 1992 (JP 4-001358)  
 **Granted:** February 6, 1996  
-**Inventor:** Kouichi Ohshita\
+**Inventor:** Kouichi Ohshita  
 **Assignee:** Nikon Corporation  
 **Title:** Underwater Wide Angle Zoom Lens  
 **Embodiment analyzed:** First Embodiment, Table 1

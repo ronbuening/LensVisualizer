@@ -7,7 +7,7 @@
 **Filed:** January 20, 1998; continuation-in-part of U.S. Ser. No. 08/658,460 filed June 5, 1996  
 **Priority date:** July 7, 1995 (JP 7-195923, added by certificate of correction)  
 **Granted:** September 7, 1999  
-**Inventors:** Kouichi Ohshita; Atsushi Shibayama\
+**Inventors:** Kouichi Ohshita; Atsushi Shibayama  
 **Assignee:** Nikon Corporation  
 **Embodiment analyzed:** Eighth embodiment, Table 8  
 **Worked examples in patent:** 11  
@@ -160,8 +160,8 @@ The `*.data.ts` file applies the uniform 0.20 scale factor to all radii, center 
 ## Sources
 
 1. US Patent 5,949,588, Ohshita and Shibayama, "Wide Angle Lens," granted September 7, 1999.  
-2. Kouichi Ohshita, "NIKKOR — The Thousand and One Nights No.54: Nikon Fun Fun LensSet, Part 2 (Gyogyotto 20, Dodotto 400)," Nikon Imaging.
-3. Kouichi Ohshita, "NIKKOR — The Thousand and One Nights No.52: Nikon Fun Fun LensSet," Nikon Imaging.
+2. Kouichi Ohshita, "NIKKOR — The Thousand and One Nights No.54: Nikon Fun Fun LensSet, Part 2 (Gyogyotto 20, Dodotto 400)," Nikon Imaging.  
+3. Kouichi Ohshita, "NIKKOR — The Thousand and One Nights No.52: Nikon Fun Fun LensSet," Nikon Imaging.  
 4. SCHOTT Optical Glass Datasheets: N-SK16 and N-SF6.  
 5. OHARA Optical Glass Datasheets: S-BSM16 and S-TIH6.  
 6. The Fish List, "Nikon 'fun' Gyogyotto Fisheye type 20mm f/8," used only as a secondary check for production-format metadata and image-circle context.
