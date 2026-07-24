@@ -1022,6 +1022,18 @@ export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info; S-TIH53W page. Improved-transmittance variant.",
   },
   {
+    name: "S-TIH53WN",
+    vendor: "Ohara",
+    B: [1.87308069, 0.376460262, 2.37441773],
+    C: [0.0141364636, 0.0636374877, 184.8987],
+    nd: 1.84666,
+    vd: 23.86,
+    PgF: 0.6208,
+    code6: "847239",
+    source:
+      "OHARA S-TIH53WN datasheet OHARA 25-04 (Apr 2025). Modified-dispersion high-precision variant; vendor Sellmeier constants.",
+  },
+  {
     name: "S-BAH28",
     vendor: "Ohara",
     B: [1.69493484, 0.192890298, 1.56385948],

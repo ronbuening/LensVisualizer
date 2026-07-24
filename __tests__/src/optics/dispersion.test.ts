@@ -58,6 +58,15 @@ describe("glass catalog", () => {
     expect((nd - 1) / (nF - nC)).toBeCloseTo(datasheet.vd, 2);
   });
 
+  it("S-TIH53WN reproduces the published OHARA 25-04 line indices", () => {
+    const entry = resolveGlass("S-TIH53WN (OHARA)");
+    expect(entry?.name).toBe("S-TIH53WN");
+    expect(evaluateSellmeier(entry!, LINE_NM.C)).toBeCloseTo(1.83653, 5);
+    expect(evaluateSellmeier(entry!, LINE_NM.d)).toBeCloseTo(1.84666, 5);
+    expect(evaluateSellmeier(entry!, LINE_NM.F)).toBeCloseTo(1.87201, 5);
+    expect(evaluateSellmeier(entry!, LINE_NM.g)).toBeCloseTo(1.89403, 5);
+  });
+
   it("computed Abbe number for N-BK7 matches the catalog vd within 0.5", () => {
     const nbk7 = resolveGlass("N-BK7");
     expect(nbk7).not.toBeNull();
