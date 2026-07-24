@@ -29,6 +29,9 @@ Companion references:
 | [FujifilmXF23mmf14RLMWR.data.ts](../src/lens-data/fujifilm/FujifilmXF23mmf14RLMWR.data.ts) | 21A, 22A, 25A, 26A | Exact Example 7 A4–A14 incl. odd terms, rescaled with Aₙ/s^(n−1); KA = 1 → K = 0. |
 | [FujifilmXF35mmf14R.data.ts](../src/lens-data/fujifilm/FujifilmXF35mmf14R.data.ts) | 10A, 11A | Exact Example 1 Table 2 A3–A20; KA = 0 → K = −1 restores the patent paraboloid bases. |
 | [FujifilmGF23mmf4.data.ts](../src/lens-data/fujifilm/FujifilmGF23mmf4.data.ts) | 3A, 4A, 18A, 19A | Exact Example 1 A4–A16 incl. odd A5–A15; zero A3 omitted; KA converted with K = KA − 1. |
+| [FujifilmXF16555mmf28RLMWRII.data.ts](../src/lens-data/fujifilm/FujifilmXF16555mmf28RLMWRII.data.ts) | 6A, 7A, 14A, 15A, 22A, 23A, 27A, 28A | Exact Example 1 Table 3 A3–A10; literal near-zero A3 terms retained; KA = 1 → K = 0. |
+| [FujifilmXF60mmf24R.data.ts](../src/lens-data/fujifilm/FujifilmXF60mmf24R.data.ts) | 12A, 13A | Exact Example 1 Table 3 A3–A10; patent eccentricity converted with K = Kpat − 1. |
+| [FujifilmXF33mmf14RLMWR.data.ts](../src/lens-data/fujifilm/FujifilmXF33mmf14RLMWR.data.ts) | 20A, 21A, 25A, 26A | Exact Example 3 Table 12 A4–A12 incl. odd terms; zero A3 omitted; KA = 1 → K = 0. |
 
 ## Backfill workflow
 
@@ -54,9 +57,6 @@ entirely). Residuals are the values documented in each analysis file.
 
 | Priority | Lens file | Surfaces | Complications / notes |
 |---|---|---|---|
-| 10 | [FujifilmXF16555mmf28RLMWRII.data.ts](../src/lens-data/fujifilm/FujifilmXF16555mmf28RLMWRII.data.ts) | see analysis | Odd A3–A9; full patent Table 3 preserved in analysis. |
-| 11 | [FujifilmXF60mmf24R.data.ts](../src/lens-data/fujifilm/FujifilmXF60mmf24R.data.ts) | S12A, S13A | Odd A3–A9; tables preserved in analysis. |
-| 12 | [FujifilmXF33mmf14RLMWR.data.ts](../src/lens-data/fujifilm/FujifilmXF33mmf14RLMWR.data.ts) | 4 aspheres | A3 = 0; odd A5–A11 non-zero. |
 | 13 | [FujifilmXF23mmf2RWR.data.ts](../src/lens-data/fujifilm/FujifilmXF23mmf2RWR.data.ts) | see analysis | Odd A3, A5, A7, … present. |
 | 14 | [FujifilmGF45mmf28.data.ts](../src/lens-data/fujifilm/FujifilmGF45mmf28.data.ts) | 2 surfaces | A3 = 0; odd A5, A7, A9, A11 active. |
 | 15 | [FujifilmGF3264mmf4.data.ts](../src/lens-data/fujifilm/FujifilmGF3264mmf4.data.ts) | see analysis | Even fit A4–A16 against full patent sag; conic preserved. |

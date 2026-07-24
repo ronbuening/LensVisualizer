@@ -18,10 +18,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    cross-gap sag intrusion validated computationally.             ║
  * ║                                                                    ║
  * ║  NOTE ON ASPHERICAL SURFACES:                                      ║
- * ║    Patent uses odd-order polynomial terms (A3–A9) and a non-      ║
- * ║    standard conic "eccentricity" K where K_std = K_patent − 1.    ║
- * ║    Coefficients refitted to even-order (A4–A14) via least-squares ║
- * ║    over h = 0–11 mm. Max residual < 0.15 nm; see analysis.md.    ║
+ * ║    Exact Example 1 Table 3 odd/even A3–A10 coefficients are       ║
+ * ║    stored directly. Patent eccentricity converts with Kstd=Kpat−1.║
  * ║                                                                    ║
  * ║  NOTE ON L15 ABBE NUMBER:                                          ║
  * ║    Patent Table 1 lists νd = 48.8 for surface 9 (L15). Cross-    ║
@@ -221,29 +219,33 @@ const LENS_DATA = {
     { label: "19", R: -56.9828, d: 20.34, nd: 1.0, elemId: 0, sd: 9.5 }, // L23 rear → image (BFD, cover glass air-equiv folded)
   ],
 
-  /* ── Aspherical coefficients ──
-   *  Refitted from patent's odd+even order polynomial (A3–A10) with non-standard
-   *  conic "eccentricity" to standard even-order-only form (A4–A14).
-   *  K_std = K_patent − 1.  Max refit residual < 0.15 nm over h = 0–11 mm.
-   */
+  /* ── Exact Example 1, Table 3 aspherical coefficients ── */
   asph: {
     "12A": {
       K: -3.154014e1,
-      A4: 9.643206e-5,
-      A6: -4.485087e-7,
-      A8: -9.443291e-9,
-      A10: 2.623015e-10,
-      A12: -1.989546e-12,
-      A14: 2.061914e-15,
+      A3: -1.88631e-4,
+      A4: 2.861281e-4,
+      A5: -7.19871e-5,
+      A6: 1.134194e-5,
+      A7: -2.726246e-7,
+      A8: -1.992572e-7,
+      A9: 2.806654e-8,
+      A10: -1.18193e-9,
+      A12: 0,
+      A14: 0,
     },
     "13A": {
       K: 5.910862e1,
-      A4: 3.386573e-6,
-      A6: 2.311207e-7,
-      A8: -5.842872e-9,
-      A10: 5.69833e-11,
-      A12: -1.773299e-13,
-      A14: 2.131915e-16,
+      A3: -1.680437e-4,
+      A4: 1.554805e-4,
+      A5: -5.548409e-5,
+      A6: 1.067906e-5,
+      A7: -1.051099e-6,
+      A8: 4.143267e-8,
+      A9: 3.478004e-10,
+      A10: -4.029777e-11,
+      A12: 0,
+      A14: 0,
     },
   },
 

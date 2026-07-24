@@ -240,41 +240,16 @@ The strongly negative standard conic constant (K ≈ −31.5) makes this a heavi
 
 This surface has a strongly positive K_std ≈ +59, which defines an oblate ellipsoidal base that departs rapidly from spherical. At h = 10 mm, the aspherical departure is approximately +181 µm — the aspherical surface sags significantly more than the sphere. This dramatic correction is aimed primarily at sagittal field curvature, consistent with the patent's claim.
 
-### 5.4 Even-order refit for renderer
+### 5.4 Data-file transcription
 
-The lens diagram renderer's aspherical schema supports only even-order coefficients (A4, A6, A8, A10, A12, A14). The patent's use of odd-order terms (A3, A5, A7, A9) requires a least-squares refit to even-order polynomials for visualization. The conic constant K_std is retained from the patent; only the polynomial coefficients are refitted.
+The data file stores both surfaces' full patent A3–A10 polynomials directly, with $K_\mathrm{std}=K_\mathrm{patent}-1$. Because the patent stops at A10, the schema-required A12 and A14 fields are explicit zeros.
 
-The refit was performed over h = 0–11 mm (covering the estimated semi-diameter with margin) using 200 sample points and scipy least-squares optimization.
+At the current clear-aperture estimates, the exact profiles depart from their paraxial spheres by:
 
-**Surface 12A — refitted coefficients:**
-
-| Parameter | Refitted value |
-|---|---|
-| K | −3.154014×10¹ |
-| A4 | +9.643206×10⁻⁵ |
-| A6 | −4.485087×10⁻⁷ |
-| A8 | −9.443291×10⁻⁹ |
-| A10 | +2.623015×10⁻¹⁰ |
-| A12 | −1.989546×10⁻¹² |
-| A14 | +2.061914×10⁻¹⁵ |
-| Max residual | 0.10 nm |
-| RMS residual | 0.04 nm |
-
-**Surface 13A — refitted coefficients:**
-
-| Parameter | Refitted value |
-|---|---|
-| K | +5.910862×10¹ |
-| A4 | +3.386573×10⁻⁶ |
-| A6 | +2.311207×10⁻⁷ |
-| A8 | −5.842872×10⁻⁹ |
-| A10 | +5.698330×10⁻¹¹ |
-| A12 | −1.773299×10⁻¹³ |
-| A14 | +2.131915×10⁻¹⁶ |
-| Max residual | 0.14 nm |
-| RMS residual | 0.05 nm |
-
-Both refits achieve sub-nanometer accuracy — well within the manufacturing tolerance of a glass-molded aspherical element (typically ±500–1000 nm). The A12 and A14 terms are needed to absorb the influence of the odd-order patent terms but remain small enough to be physically plausible.
+| Surface | Semi-diameter | Exact departure |
+|---|---:|---:|
+| 12A | 8.5 mm | +48.326 µm |
+| 13A | 8.2 mm | +63.515 µm |
 
 ---
 
@@ -378,4 +353,4 @@ The XF60mm F2.4 R Macro is a two-group medium telephoto with a positive front gr
 - **L14 glass identity:** The nd = 1.66680 / νd = 31.1 combination has no confirmed catalog match in OHARA, HOYA, or Schott catalogs. This may be a proprietary melt, a discontinued type, or the νd value may contain an additional transcription error.
 - **L17 glass identity:** The PGM glass (nd = 1.80348, νd = 40.4) has no exact catalog match and is likely a proprietary or low-softening-temperature variant optimized for glass molding.
 - **Aspherical conic convention:** The patent uses a non-standard "eccentricity" K that maps to the standard conic constant as K_std = K_patent − 1. This conversion has been verified by consistency checks against spherical and paraboloidal limit cases. All values in this document and the data file use the converted standard convention.
-- **Odd-order aspherical terms:** The patent specifies odd-order polynomial coefficients (A3, A5, A7, A9) not supported by the renderer's even-order-only schema. A least-squares refit to even-order-only terms (A4–A14) achieves sub-0.15 nm maximum residual over the estimated clear aperture (h = 0–11 mm). Refitted coefficients are listed in §5.4 and used in the data file.
+- **Odd-order aspherical terms:** The patent's complete A3–A10 polynomials are transcribed directly in the data file. Section 5 records the conic conversion and the exact edge departures used for regression checks.
