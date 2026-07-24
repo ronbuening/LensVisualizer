@@ -3,6 +3,9 @@ import { conicPolySag, sag } from "../../../src/optics/optics.js";
 import ZeissTouit from "../../../src/lens-data/carl-zeiss-oberkochen/ZeissTouit50mmf28Macro.data.js";
 import FujifilmGF3570 from "../../../src/lens-data/fujifilm/FujifilmGF3570mmf4556.data.js";
 import FujifilmGFX100RF from "../../../src/lens-data/fujifilm/FujifilmGFX100RF35mmf4.data.js";
+import FujifilmX70 from "../../../src/lens-data/fujifilm/FujifilmX7018mmf28.data.js";
+import FujifilmXF50 from "../../../src/lens-data/fujifilm/FujifilmXF50f1.data.js";
+import FujifilmXF56 from "../../../src/lens-data/fujifilm/FujifilmXF56mmf12.data.js";
 import type { AsphericCoefficients } from "../../../src/types/optics.js";
 
 /* Guards the exact odd/even patent transcriptions that replaced the even-order
@@ -15,7 +18,7 @@ function surfaceR(lens: { surfaces: readonly { label: string; R: number }[] }, l
   return surface.R;
 }
 
-/** Polynomial departure from the base sphere in µm (all tested surfaces have K = 0 conic bases except 15A). */
+/** Exact aspheric departure from the paraxial sphere in µm. */
 function departureMicrons(h: number, R: number, asph: AsphericCoefficients): number {
   return (conicPolySag(h, R, asph) - sag(h, R)) * 1000;
 }
@@ -71,5 +74,44 @@ describe("Fujifilm GFX100RF 35mm odd-order backfill", () => {
     }
     expect(maxResidualMicrons).toBeLessThanOrEqual(0.05);
     expect(maxResidualMicrons).toBeGreaterThan(0);
+  });
+});
+
+describe("Fujifilm X70 18.5mm odd-order backfill", () => {
+  it("matches the analysis-quoted exact edge departures", () => {
+    expect(
+      Math.abs(departureMicrons(4.75, surfaceR(FujifilmX70, "8A"), FujifilmX70.asph["8A"]) - 247.177),
+    ).toBeLessThanOrEqual(0.01);
+    expect(
+      Math.abs(departureMicrons(5.15, surfaceR(FujifilmX70, "9A"), FujifilmX70.asph["9A"]) - 367.516),
+    ).toBeLessThanOrEqual(0.01);
+    expect(
+      Math.abs(departureMicrons(6.25, surfaceR(FujifilmX70, "10A"), FujifilmX70.asph["10A"]) - -628.802),
+    ).toBeLessThanOrEqual(0.01);
+    expect(
+      Math.abs(departureMicrons(6.55, surfaceR(FujifilmX70, "11A"), FujifilmX70.asph["11A"]) - -494.019),
+    ).toBeLessThanOrEqual(0.01);
+  });
+});
+
+describe("Fujifilm XF50mm f/1.0 odd-order backfill", () => {
+  it("matches the analysis-quoted exact edge departures", () => {
+    expect(
+      Math.abs(departureMicrons(10.7, surfaceR(FujifilmXF50, "15A"), FujifilmXF50.asph["15A"]) - 1230.181),
+    ).toBeLessThanOrEqual(0.01);
+    expect(
+      Math.abs(departureMicrons(9.9, surfaceR(FujifilmXF50, "16A"), FujifilmXF50.asph["16A"]) - 632.133),
+    ).toBeLessThanOrEqual(0.01);
+  });
+});
+
+describe("Fujifilm XF56mm f/1.2 odd-order backfill", () => {
+  it("matches the analysis-quoted exact edge departures", () => {
+    expect(
+      Math.abs(departureMicrons(6.0, surfaceR(FujifilmXF56, "13A"), FujifilmXF56.asph["13A"]) - -261.595),
+    ).toBeLessThanOrEqual(0.01);
+    expect(
+      Math.abs(departureMicrons(6.0, surfaceR(FujifilmXF56, "14A"), FujifilmXF56.asph["14A"]) - -211.838),
+    ).toBeLessThanOrEqual(0.01);
   });
 });

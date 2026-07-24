@@ -10,14 +10,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║         toward object; G1 and L25 fixed to image plane.           ║
  * ║                                                                    ║
  * ║  NOTE ON ASPHERICAL SURFACES:                                      ║
- * ║    The patent specifies odd-order polynomial terms (A3, A5, A7,   ║
- * ║    A9, A11, A13, A15, A17, A19) in addition to even-order terms.  ║
- * ║    The renderer supports only even-order coefficients (A4–A14).   ║
- * ║    Odd-order terms and A16–A20 are OMITTED. This affects the      ║
- * ║    aspherical sag profile, particularly at intermediate zones.    ║
- * ║    The odd-order A3 coefficient is the largest in magnitude       ║
- * ║    (~3.8×10⁻⁴ for S13A) and its omission slightly alters the     ║
- * ║    rendered element shape and ray trace near the rim.             ║
+ * ║    Exact patent Table 9 odd/even coefficients A3–A20 are          ║
+ * ║    transcribed below for both surfaces. K = 0 uses a spherical    ║
+ * ║    base in both the patent and renderer conventions.              ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
  * ║    Patent does not list semi-diameters. Values estimated from     ║
@@ -40,7 +35,7 @@ const LENS_DATA = {
   maker: "Fujifilm",
   name: "FUJIFILM FUJINON XF 56mm f/1.2 R",
   subtitle: "US 2015/0212302 A1 Example 3 — Fujifilm / Suzuki",
-  specs: ["11 ELEMENTS / 8 GROUPS", "f ≈ 56.99 mm", "F/1.25", "2ω ≈ 28.0°", "2 ASPHERICAL SURFACES (even-order only)"],
+  specs: ["11 ELEMENTS / 8 GROUPS", "f ≈ 56.99 mm", "F/1.25", "2ω ≈ 28.0°", "2 ASPHERICAL SURFACES"],
 
   focalLengthMarketing: 56,
   focalLengthDesign: 56.99,
@@ -223,34 +218,50 @@ const LENS_DATA = {
   ],
 
   /* ── Aspherical coefficients ──
-   *  Even-order only (A4–A14). Patent specifies odd-order terms A3–A19
-   *  and higher-order A16–A20 which are unsupported by the renderer.
-   *  Omitted coefficients for surface 13A: A3=3.8394e-4, A5=1.4778e-4,
-   *    A7=-4.3589e-6, A9=-8.1702e-9, A11=1.8896e-9, A13=-3.5277e-12,
-   *    A15=-7.1519e-13, A17=9.4964e-15, A19=-3.5657e-17.
-   *  Omitted coefficients for surface 14A: A3=3.2574e-4, A5=1.1259e-4,
-   *    A7=-3.6581e-6, A9=-8.9862e-8, A11=4.6428e-9, A13=-4.8041e-11,
-   *    A15=-5.5600e-14, A17=3.3642e-15, A19=-1.2834e-17.
-   *  Higher-order (A16–A20) also omitted for both surfaces.
+   *  Exact patent Table 9 odd/even coefficients A3–A20.
    */
   asph: {
     "13A": {
       K: 0,
+      A3: 3.8393566e-4,
       A4: -6.2592552e-4,
+      A5: 1.477835e-4,
       A6: -1.4352983e-5,
+      A7: -4.3588543e-6,
       A8: 1.1550101e-6,
+      A9: -8.1701706e-9,
       A10: -2.0799721e-8,
+      A11: 1.8896154e-9,
       A12: -7.7228059e-11,
+      A13: -3.5277023e-12,
       A14: 5.669064e-12,
+      A15: -7.1519452e-13,
+      A16: -3.4765348e-14,
+      A17: 9.49641e-15,
+      A18: -1.8369342e-16,
+      A19: -3.5656606e-17,
+      A20: 1.5813241e-18,
     },
     "14A": {
       K: 0,
+      A3: 3.2574414e-4,
       A4: -5.1485989e-4,
+      A5: 1.1258987e-4,
       A6: -1.045219e-5,
+      A7: -3.6580954e-6,
       A8: 1.2413561e-6,
+      A9: -8.9862297e-8,
       A10: -1.9808269e-8,
+      A11: 4.6427534e-9,
       A12: -2.0450812e-10,
+      A13: -4.804073e-11,
       A14: 6.9487622e-12,
+      A15: -5.5600157e-14,
+      A16: -5.2312313e-14,
+      A17: 3.3641818e-15,
+      A18: 6.5265695e-17,
+      A19: -1.2833819e-17,
+      A20: 3.4385862e-19,
     },
   },
 

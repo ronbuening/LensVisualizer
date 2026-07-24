@@ -73,7 +73,30 @@ G2 contains five elements in three air-spaced groups: the aspherical singlet L21
 
 **L21 — Biconcave Negative (double-sided aspherical)**
 nd = 1.58313, νd = 59.4. Glass: L-BAL42 (OHARA) — PGM glass (probable). f = −91.1 mm.
-The sole aspherical element in the design, with both surfaces carrying aspherical departures (surfaces *13 and *14 in the patent). The "L-" prefix on the OHARA designation indicates a low-softening-temperature glass designed specifically for precision glass molding (PGM). The aspherical sag equation used in the patent includes both odd-order (A3, A5, A7, …) and even-order (A4, A6, A8, …) polynomial coefficients. Because the renderer supports only even-order terms through A14, the visualization uses an approximation; see the data file header for omitted coefficients. Positioned immediately behind the aperture stop, L21 intercepts the marginal ray bundle where the aspherical correction is most effective for spherical aberration.
+The sole aspherical element in the design, with both surfaces carrying aspherical departures (surfaces *13 and *14 in the patent). The "L-" prefix on the OHARA designation indicates a low-softening-temperature glass designed specifically for precision glass molding (PGM). The aspherical sag equation includes odd and even powers, all of which are transcribed exactly from Example 3 Table 9 in the companion data file. Positioned immediately behind the aperture stop, L21 intercepts the marginal ray bundle where the aspherical correction is most effective for spherical aberration.
+
+| Term | S13A | S14A |
+|---|---:|---:|
+| A3 | 3.8393566E−04 | 3.2574414E−04 |
+| A4 | −6.2592552E−04 | −5.1485989E−04 |
+| A5 | 1.4778350E−04 | 1.1258987E−04 |
+| A6 | −1.4352983E−05 | −1.0452190E−05 |
+| A7 | −4.3588543E−06 | −3.6580954E−06 |
+| A8 | 1.1550101E−06 | 1.2413561E−06 |
+| A9 | −8.1701706E−09 | −8.9862297E−08 |
+| A10 | −2.0799721E−08 | −1.9808269E−08 |
+| A11 | 1.8896154E−09 | 4.6427534E−09 |
+| A12 | −7.7228059E−11 | −2.0450812E−10 |
+| A13 | −3.5277023E−12 | −4.8040730E−11 |
+| A14 | 5.6690635E−12 | 6.9487622E−12 |
+| A15 | −7.1519452E−13 | −5.5600157E−14 |
+| A16 | −3.4765348E−14 | −5.2312313E−14 |
+| A17 | 9.4964100E−15 | 3.3641818E−15 |
+| A18 | −1.8369342E−16 | 6.5265695E−17 |
+| A19 | −3.5656606E−17 | −1.2833819E−17 |
+| A20 | 1.5813241E−18 | 3.4385862E−19 |
+
+At the 6.0 mm semi-diameters used by the data file, the exact profiles depart from their spherical bases by −261.595 µm (S13A) and −211.838 µm (S14A).
 
 **L22 + L23 + L24 — Cemented Triplet T1**
 L22: nd = 1.88300, νd = 40.8. Glass: S-LAH66 (OHARA). f = +16.6 mm.

@@ -20,6 +20,9 @@ Companion references:
 | [ZeissTouit50mmf28Macro.data.ts](../src/lens-data/carl-zeiss-oberkochen/ZeissTouit50mmf28Macro.data.ts) | 4A, 7A | Exact A3–A15, KA = 1 → K = 0. Replaced refits with ≤0.026 µm residuals. |
 | [FujifilmGF3570mmf4556.data.ts](../src/lens-data/fujifilm/FujifilmGF3570mmf4556.data.ts) | 11A, 12A | Exact A4–A10 incl. odd A5/A7/A9; A3 = 0 omitted. |
 | [FujifilmGFX100RF35mmf4.data.ts](../src/lens-data/fujifilm/FujifilmGFX100RF35mmf4.data.ts) | 15A | Exact A4–A20 incl. odd A5–A19; K = +6.0896629652 unchanged. |
+| [FujifilmX7018mmf28.data.ts](../src/lens-data/fujifilm/FujifilmX7018mmf28.data.ts) | 8A, 9A, 10A, 11A | Exact Example 1 Table 3 A3–A20; KA = 0 → K = −1 restores the patent paraboloid bases. |
+| [FujifilmXF50f1.data.ts](../src/lens-data/fujifilm/FujifilmXF50f1.data.ts) | 15A, 16A | Exact Example 3 Table 12 A4–A20 incl. odd A5–A19; zero A3 omitted. |
+| [FujifilmXF56mmf12.data.ts](../src/lens-data/fujifilm/FujifilmXF56mmf12.data.ts) | 13A, 14A | Exact Example 3 Table 9 A3–A20. |
 
 ## Backfill workflow
 
@@ -45,9 +48,6 @@ entirely). Residuals are the values documented in each analysis file.
 
 | Priority | Lens file | Surfaces | Complications / notes |
 |---|---|---|---|
-| 1 | [FujifilmX7018mmf28.data.ts](../src/lens-data/fujifilm/FujifilmX7018mmf28.data.ts) | S8A, S9A, S10A, S11A | Worst refits: 7 µm (S10A), 9 µm (S11A). Patent uses a paraboloid base (K = −1 in renderer convention); current refit uses K = 0. |
-| 2 | [FujifilmXF50f1.data.ts](../src/lens-data/fujifilm/FujifilmXF50f1.data.ts) | L2a both surfaces | Odd terms (A5–A19) and higher evens (A16–A20) were **omitted entirely**, not refit — profile is approximate at large heights on an f/1.0 lens. |
-| 3 | [FujifilmXF56mmf12.data.ts](../src/lens-data/fujifilm/FujifilmXF56mmf12.data.ts) | *13, *14 | Odd terms omitted (approximation noted in data header). |
 | 4 | [FujifilmXF1655mmf28R.data.ts](../src/lens-data/fujifilm/FujifilmXF1655mmf28R.data.ts) | all 6 aspheric surfaces | Odd orders A5–A15 non-zero on every surface; on S7A the A5 term alone is ~1.49 mm of rim sag. |
 | 5 | [Sigma1424mmf28DGHSM.data.ts](../src/lens-data/sigma/Sigma1424mmf28DGHSM.data.ts) | 5, 6 | Refit residuals 1.59 / 1.64 µm. Patent already uses standard K. |
 | 6 | [FujifilmXF18mmf2.data.ts](../src/lens-data/fujifilm/FujifilmXF18mmf2.data.ts) | 4 aspheric surfaces | Odd A3–A15; A5 on S13 contributes >8 mm edge sag. |

@@ -11,11 +11,8 @@
 //
 // Aspherical surfaces use the patent's KA convention: KA = 1 + K.
 // Patent KA = 1.0 → K = 0 (spherical base conic). Patent coefficients extend
-// to 20th order and include odd-power terms (A3, A5, …). Only even-order
-// coefficients A4–A14 are included here; odd-order and higher-even (A16–A20)
-// terms are omitted. A3 = 0 on both surfaces. The first omitted odd term (A5)
-// is non-negligible — the aspherical profile at large aperture heights is
-// approximate.
+// to 20th order and include odd-power terms. The exact A4–A20 coefficients
+// are transcribed below; A3 = 0 on both surfaces and is omitted.
 
 import type { LensDataInput } from "../../types/optics.js";
 
@@ -142,7 +139,7 @@ const LENS_DATA = {
       vd: 31.2,
       fl: -97.5,
       glass: "NbF/SF (nd=1.689, νd=31.2)",
-      role: "Sole aspherical element — both surfaces carry polynomial aspherical figuring (even-order A4–A14 in data file; patent extends to A20 with odd terms). Primary corrector for residual spherical aberration and higher-order coma. Positioned immediately behind the stop.",
+      role: "Sole aspherical element — both surfaces carry the patent's exact odd/even A4–A20 polynomial figuring. Primary corrector for residual spherical aberration and higher-order coma. Positioned immediately behind the stop.",
     },
     {
       id: 9,
@@ -234,24 +231,46 @@ const LENS_DATA = {
 
   asph: {
     // Patent sag: Z = C·h²/{1+√(1−KA·C²·h²)} + Σ Am·h^m, m=3..20
-    // KA = 1.0 → K = 0. Even-order A4–A14 only; odd-order and A16–A20 omitted.
+    // Exact Table 12 coefficients; KA = 1.0 → K = 0 and zero A3 terms are omitted.
     "15A": {
       K: 0,
       A4: 5.0823068e-5,
+      A5: 5.6696216e-6,
       A6: -1.1665918e-6,
+      A7: 2.3011235e-7,
       A8: -8.5462646e-9,
+      A9: -3.987199e-9,
       A10: 5.8946218e-10,
+      A11: 6.8551648e-12,
       A12: -7.4371184e-12,
+      A13: 3.9451971e-13,
       A14: 3.7621265e-14,
+      A15: -4.2785117e-15,
+      A16: -2.5668735e-17,
+      A17: 1.8252095e-17,
+      A18: -4.3536351e-19,
+      A19: -2.9072588e-20,
+      A20: 1.1528202e-21,
     },
     "16A": {
       K: 0,
       A4: 3.9661172e-5,
+      A5: 7.3155985e-6,
       A6: -1.924187e-6,
+      A7: 2.0632606e-7,
       A8: 2.7709406e-8,
+      A9: -6.9926396e-9,
       A10: -2.2702122e-11,
+      A11: 9.8429055e-11,
       A12: -3.5432557e-12,
+      A13: -7.7218349e-13,
       A14: 4.3918443e-14,
+      A15: 3.5209637e-15,
+      A16: -2.5005394e-16,
+      A17: -8.7077803e-18,
+      A18: 7.1579377e-19,
+      A19: 9.0040531e-21,
+      A20: -8.3059544e-22,
     },
   },
 
