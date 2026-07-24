@@ -133,27 +133,34 @@ $$
 Z_d = \frac{C h^2}{1 + \sqrt{1 - K_A C^2 h^2}} + \sum_{m=3}^{20} A_m h^m
 $$
 
-Here C = 1/R and the patent's KA convention has KA = 1 for a spherical base curve. In the standard renderer convention this corresponds to K = 0. The patent also includes odd-order coefficients A3, A5, A7, and so on. Because the renderer supports the standard even-order form only, the data file uses even-order least-squares refits over the adopted clear semi-diameters.
+Here C = 1/R and the patent's KA convention has KA = 1 for a spherical base curve. In the standard renderer convention this corresponds to K = 0. The data file stores the complete odd/even Table 3 polynomial directly.
 
-The leading patent coefficients copied from Table 3 and used in the refit are:
+The full Example 1 coefficients, re-transcribed from the local patent PDF, are:
 
-| Surface | KA | A3 | A4 | A6 | A8 |
-|---|---:|---:|---:|---:|---:|
-| S7 | 1.0000000E+00 | +1.5073532E-04 | -1.1467085E-04 | +2.7115028E-05 | -2.7494956E-06 |
-| S8 | 1.0000000E+00 | +2.5439114E-04 | -9.1808037E-05 | +3.4413909E-05 | -2.5271341E-06 |
-| S13 | 1.0000000E+00 | +1.1475882E-04 | +9.4330279E-05 | -1.6458052E-07 | -8.0154932E-10 |
-| S14 | 1.0000000E+00 | +2.2255579E-05 | +1.4188125E-04 | -3.3414964E-07 | +2.9999049E-09 |
+| Surface | A3 | A4 | A5 | A6 | A7 | A8 | A9 | A10 | A11 |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| S7 | 1.5073532E-04 | -1.1467085E-04 | -2.5158022E-05 | 2.7115028E-05 | -2.6530657E-06 | -2.7494956E-06 | 6.4552685E-07 | 1.1322721E-07 | -4.7857408E-08 |
+| S8 | 2.5439114E-04 | -9.1808037E-05 | 7.5153059E-06 | 3.4413909E-05 | -9.3493840E-06 | -2.5271341E-06 | 1.2301067E-06 | 5.2583751E-08 | -7.6395204E-08 |
+| S13 | 1.1475882E-04 | 9.4330279E-05 | 4.0970098E-06 | -1.6458052E-07 | -1.3961895E-08 | -8.0154932E-10 | 1.6071861E-10 | 3.6880972E-11 | 4.3306258E-12 |
+| S14 | 2.2255579E-05 | 1.4188125E-04 | -5.2116815E-08 | -3.3414964E-07 | -2.9038350E-09 | 2.9999049E-09 | 4.5010731E-10 | 3.7798784E-11 | 5.3163730E-12 |
 
-The full A3-A20 patent series was used for the numerical refit; only the leading terms are repeated here to avoid duplicating the entire patent table.
+| Surface | A12 | A13 | A14 | A15 | A16 | A17 | A18 | A19 | A20 |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| S7 | -1.0785306E-09 | 1.8203001E-09 | -7.5189036E-11 | -3.8314367E-11 | 2.9096315E-12 | 4.2481861E-13 | -4.1411358E-14 | -1.9323433E-15 | 2.1635158E-16 |
+| S8 | 2.8925500E-09 | 2.6477596E-09 | -2.0845725E-10 | -5.2489457E-11 | 5.4161891E-12 | 5.5711588E-13 | -6.6500124E-14 | -2.4586981E-15 | 3.2167677E-16 |
+| S13 | 2.2470515E-13 | -3.4824709E-14 | -1.7660620E-14 | -1.0771212E-15 | -1.8639544E-16 | 2.8875371E-17 | 4.7797588E-18 | 5.1689957E-19 | -9.3666797E-20 |
+| S14 | -9.2257398E-13 | -2.5562964E-13 | 1.1944812E-14 | -2.0402486E-15 | -1.4848757E-16 | 2.8123105E-17 | 1.1218178E-17 | 1.8795160E-19 | -1.2793914E-19 |
 
-| Surface | Element | Adopted semi-diameter | Refit maximum residual | Refit RMS residual |
-|---|---|---:|---:|---:|
-| 7A | L14 front | 7.20 mm | 0.041 µm | 0.015 µm |
-| 8A | L14 rear | 7.13 mm | 0.057 µm | 0.021 µm |
-| 13A | L21 front | 8.00 mm | 0.045 µm | 0.018 µm |
-| 14A | L21 rear | 7.90 mm | 0.009 µm | 0.004 µm |
+All four surfaces have KA = 1 and therefore standard K = 0. At the adopted semi-diameters, the exact profiles depart from their corresponding paraxial spheres by:
 
-These residuals are small enough for visual ray-tracing and layout use. Surface 8A was held to a 7.13 mm semi-diameter because the patent's full odd/even departure becomes steep near the rim and is followed by only a 0.420 mm air gap; this keeps cross-gap sag intrusion within the project limit without materially changing the optical diagram.
+| Surface | Element | Adopted semi-diameter | Exact departure |
+|---|---|---:|---:|
+| 7A | L14 front | 7.20 mm | −262.925 µm |
+| 8A | L14 rear | 7.13 mm | +164.806 µm |
+| 13A | L21 front | 8.00 mm | +537.774 µm |
+| 14A | L21 rear | 7.90 mm | +545.702 µm |
+
+Surface 8A remains held to a 7.13 mm semi-diameter because the exact odd/even departure becomes steep near the rim and is followed by only a 0.420 mm air gap; this keeps cross-gap sag intrusion within the project limit without materially changing the optical diagram.
 
 ## Conditional Expressions
 

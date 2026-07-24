@@ -138,15 +138,23 @@ $$
 Z_d=\frac{C h^2}{1+\sqrt{1-K_A C^2 h^2}}+\sum_{m=3}^{16} A_m h^m,
 $$
 
-where $C = 1/R$. This means the standard conic constant used by the data file is $K = K_A - 1$. The patent includes odd polynomial terms. LensVisualizer's current asphere model uses even powers only, so the data file preserves the patent conic and fits even-order coefficients A4 through A16 to the full patent sag over the rendered semi-diameter.
+where $C = 1/R$. This means the standard conic constant used by the data file is $K = K_A - 1$. Zero A3 terms are omitted, and every nonzero A4–A16 coefficient from Table 3 is stored directly.
 
-| Surface | Element | Patent KA | Data-file K | Data-file semi-diameter | Max refit residual |
-|---|---|---:|---:|---:|---:|
-| S6A | L21 resin rear | +0.63914607 | -0.36085393 | 16.00 mm | 0.046 µm |
-| S15A | L32 front | +2.04449020 | +1.04449020 | 10.50 mm | 0.008 µm |
-| S16A | L32 rear | -4.81767370 | -5.81767370 | 10.50 mm | 0.014 µm |
-| S22A | L41 front | -3.50443090 | -4.50443090 | 12.10 mm | 0.017 µm |
-| S23A | L41 rear | +0.39019706 | -0.60980294 | 12.12 mm | 0.016 µm |
+| Surface | Patent KA | Standard K | A4 | A5 | A6 | A7 | A8 | A9 | A10 |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| S6A | 0.63914607 | -0.36085393 | -3.9131873E-06 | 4.5804164E-06 | -3.1297225E-06 | 9.4449056E-07 | -1.5568669E-07 | 1.4171414E-08 | -5.7106822E-10 |
+| S15A | 2.04449020 | 1.04449020 | -5.2024485E-05 | -2.7661214E-06 | 7.5084016E-07 | 1.2757000E-08 | -2.0219615E-08 | 2.7042830E-09 | -7.6987177E-11 |
+| S16A | -4.81767370 | -5.81767370 | -8.6421047E-06 | -1.6968009E-06 | 1.3758671E-07 | 2.3656995E-07 | -4.9230907E-08 | 8.3812853E-10 | 1.1346146E-09 |
+| S22A | -3.50443090 | -4.50443090 | 7.4535777E-06 | -9.1821053E-07 | -2.4598177E-08 | 2.3689478E-08 | 3.7426690E-10 | -3.6042983E-10 | 1.7103438E-13 |
+| S23A | 0.39019706 | -0.60980294 | 1.1844063E-05 | -2.2795946E-06 | 2.0258403E-07 | 4.9969989E-08 | -1.4814706E-08 | 1.3215336E-09 | 8.2362757E-11 |
+
+| Surface | A11 | A12 | A13 | A14 | A15 | A16 | Semi-diameter | Exact departure |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| S6A | -7.9068908E-12 | 1.1114447E-12 | 5.8869099E-14 | -8.6533992E-15 | 3.3406257E-16 | -4.5375705E-18 | 16.00 mm | −1519.780 µm |
+| S15A | -1.4247514E-11 | 2.2494370E-12 | -3.0551706E-13 | 3.2364995E-14 | -1.7933891E-15 | 3.8285431E-17 | 10.50 mm | −488.913 µm |
+| S16A | -1.7021691E-10 | 3.7163422E-12 | 1.5386536E-12 | -1.9495772E-13 | 1.0133432E-14 | -2.0715032E-16 | 10.50 mm | +218.616 µm |
+| S22A | 6.4767682E-12 | -8.0354289E-13 | 4.7122771E-14 | -1.2339622E-15 | -4.4927986E-18 | 6.6243103E-19 | 12.10 mm | +155.099 µm |
+| S23A | -2.5026104E-11 | 1.3313954E-12 | 6.5305118E-14 | -9.6886207E-15 | 3.6316399E-16 | -4.4122167E-18 | 12.12 mm | +204.597 µm |
 
 S6A is the compound-resin asphere at the front of the variator group. Its job is primarily field-dependent correction, including distortion and oblique aberration suppression. S15A and S16A form a post-stop double-aspherical corrector on L32; they are better interpreted as high-order correction surfaces than as power-bearing surfaces. S22A and S23A on L41 operate farther toward the image side and are tied to the patent's stated coma-control purpose for the negative image-side group.
 

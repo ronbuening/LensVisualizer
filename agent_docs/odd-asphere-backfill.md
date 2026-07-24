@@ -32,6 +32,9 @@ Companion references:
 | [FujifilmXF16555mmf28RLMWRII.data.ts](../src/lens-data/fujifilm/FujifilmXF16555mmf28RLMWRII.data.ts) | 6A, 7A, 14A, 15A, 22A, 23A, 27A, 28A | Exact Example 1 Table 3 A3–A10; literal near-zero A3 terms retained; KA = 1 → K = 0. |
 | [FujifilmXF60mmf24R.data.ts](../src/lens-data/fujifilm/FujifilmXF60mmf24R.data.ts) | 12A, 13A | Exact Example 1 Table 3 A3–A10; patent eccentricity converted with K = Kpat − 1. |
 | [FujifilmXF33mmf14RLMWR.data.ts](../src/lens-data/fujifilm/FujifilmXF33mmf14RLMWR.data.ts) | 20A, 21A, 25A, 26A | Exact Example 3 Table 12 A4–A12 incl. odd terms; zero A3 omitted; KA = 1 → K = 0. |
+| [FujifilmXF23mmf2RWR.data.ts](../src/lens-data/fujifilm/FujifilmXF23mmf2RWR.data.ts) | 7A, 8A, 13A, 14A | Exact Example 1 Table 3 A3–A20; KA = 1 → K = 0. |
+| [FujifilmGF45mmf28.data.ts](../src/lens-data/fujifilm/FujifilmGF45mmf28.data.ts) | 16A, 17A | Exact Example 1 Table 3 A4–A12 incl. odd terms; zero A3 omitted; KA = 1 → K = 0. |
+| [FujifilmGF3264mmf4.data.ts](../src/lens-data/fujifilm/FujifilmGF3264mmf4.data.ts) | 6A, 15A, 16A, 22A, 23A | Exact Example 1 Table 3 A4–A16 incl. odd terms; zero A3 omitted; KA converted with K = KA − 1. |
 
 ## Backfill workflow
 
@@ -57,9 +60,6 @@ entirely). Residuals are the values documented in each analysis file.
 
 | Priority | Lens file | Surfaces | Complications / notes |
 |---|---|---|---|
-| 13 | [FujifilmXF23mmf2RWR.data.ts](../src/lens-data/fujifilm/FujifilmXF23mmf2RWR.data.ts) | see analysis | Odd A3, A5, A7, … present. |
-| 14 | [FujifilmGF45mmf28.data.ts](../src/lens-data/fujifilm/FujifilmGF45mmf28.data.ts) | 2 surfaces | A3 = 0; odd A5, A7, A9, A11 active. |
-| 15 | [FujifilmGF3264mmf4.data.ts](../src/lens-data/fujifilm/FujifilmGF3264mmf4.data.ts) | see analysis | Even fit A4–A16 against full patent sag; conic preserved. |
 | 16 | [FujifilmGF2035mmf4.data.ts](../src/lens-data/fujifilm/FujifilmGF2035mmf4.data.ts) | see analysis | Odd A5/A7/A9. Analysis only *summarizes* patent coefficients — may need patent re-transcription. |
 | 17 | [FujifilmGF100200mmf56.data.ts](../src/lens-data/fujifilm/FujifilmGF100200mmf56.data.ts) | see analysis | Odd+even A3–A20; analysis lists only leading coefficients — may need patent re-transcription. |
 | 18 | [FujifilmX100V23mmf2.data.ts](../src/lens-data/fujifilm/FujifilmX100V23mmf2.data.ts) | see analysis | Patent sums m = 3..20 (18 coefficients per surface). |
