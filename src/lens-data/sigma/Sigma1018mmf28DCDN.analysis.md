@@ -202,11 +202,7 @@ The original Example 2 coefficients are:
 | 23 | -1.00000 | A4 = -3.17786E-05, A6 = -6.56688E-07, A8 = +3.22451E-09, A10 = -4.39587E-13 |
 | 24 | 0 | A4 = +5.38996E-05, A6 = -2.92940E-07, A8 = -4.43503E-10, A10 = +6.04648E-11, A12 = -3.46836E-13 |
 
-The data-file renderer supports even-order aspheres. Surface 4 is therefore stored as an even-order least-squares refit over the rendered clear semi-diameter y = 0-10.25 mm, with R and K retained from the patent. The fitted coefficients used in the data file are:
-
-A4 = -9.373052525359E-05, A6 = +1.170550452395E-06, A8 = -1.533130191306E-08, A10 = +1.814323930378E-10, A12 = -1.373015437848E-12, A14 = +3.668693896826E-15.
-
-Against the original odd-plus-even surface over y = 0-10.25 mm, the fit residual is 1.37E-05 mm maximum and 5.53E-06 mm RMS. This is a data-file implementation approximation only; the patent analysis remains based on the original odd-order prescription.
+The companion data file now transcribes the complete surface-4 row directly, including A3, A5, A7, A9, A11, and A13. Its ordinary conic constant K = -0.2 and all A3–A14 values match Numerical Example 2. At the 10.25 mm data-file semi-diameter, the exact profile departs from the corresponding paraxial sphere by −911.983 µm.
 
 ## Chromatic Correction Strategy
 
@@ -259,9 +255,9 @@ The following implementation details are reflected in the data file:
 
 - The optical prescription is unscaled; all R, d, nd, and νd values follow Example 2 directly.
 - The data file uses the patent infinity zoom spacings only. Manufacturer close-focus distance is recorded as metadata, but no close-focus optical travel is synthesized.
-- Semi-diameters are conservative diagrammatic estimates because the patent does not publish clear apertures. They were checked for sd/|R| < 0.90, element front/rear SD ratio ≤ 1.25, positive edge thickness, and signed cross-gap sag clearance. The second review changed only these estimated SD values and the surface-4 even-order refit; it did not change the patent prescription radii, thicknesses, glasses, zoom spacings, or computed paraxial values.
+- Semi-diameters are conservative diagrammatic estimates because the patent does not publish clear apertures. They were checked for sd/|R| < 0.90, element front/rear SD ratio ≤ 1.25, positive edge thickness, and signed cross-gap sag clearance. The second review changed only these estimated SD values; it did not change the patent prescription radii, thicknesses, glasses, zoom spacings, or computed paraxial values.
 - APD UI tagging is intentionally restricted to L3, L9, L10, and L12. The remaining elements still retain patent-derived ΔPgF values where available, but they are not highlighted as special anomalous-dispersion elements.
-- Surface 4 is approximated in the data file by an even-order refit, because the original patent surface includes odd-order terms not represented by the viewer's asphere model.
+- Surface 4 retains the original patent's complete odd/even polynomial through A14.
 
 ## Deviations Between Patent and Production Specifications
 

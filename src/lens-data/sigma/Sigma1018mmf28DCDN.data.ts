@@ -20,9 +20,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  cross-gap sag intrusion. They are not production aperture data.    ║
  * ║                                                                    ║
  * ║  NOTE ON ASPHERES: patent surface 4 includes odd-order terms.       ║
- * ║  The viewer's even-order asphere model stores a least-squares       ║
- * ║  even-order refit of surface 4 over y = 0-10.25 mm; companion        ║
- * ║  analysis records the original odd-order patent coefficients.       ║
+ * ║  Numerical Example 2 A3–A14 are transcribed exactly; the other      ║
+ * ║  six aspheres retain their patent even-order coefficients.          ║
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
@@ -301,12 +300,18 @@ const LENS_DATA = {
     },
     "4A": {
       K: -0.2,
-      A4: -9.373052525359e-5,
-      A6: 1.170550452395e-6,
-      A8: -1.533130191306e-8,
-      A10: 1.814323930378e-10,
-      A12: -1.373015437848e-12,
-      A14: 3.668693896826e-15,
+      A3: -8.61492e-6,
+      A4: -9.04369e-5,
+      A5: 1.49662e-6,
+      A6: -6.10593e-9,
+      A7: 3.07996e-7,
+      A8: -5.78057e-8,
+      A9: 3.22483e-9,
+      A10: 1.20097e-10,
+      A11: -1.86496e-11,
+      A12: 1.23408e-12,
+      A13: -1.53332e-13,
+      A14: 7.16732e-15,
     },
     "17A": {
       K: 0,

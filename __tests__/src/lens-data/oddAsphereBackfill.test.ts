@@ -19,7 +19,9 @@ import FujifilmXF35 from "../../../src/lens-data/fujifilm/FujifilmXF35mmf14R.dat
 import FujifilmXF50 from "../../../src/lens-data/fujifilm/FujifilmXF50f1.data.js";
 import FujifilmXF56 from "../../../src/lens-data/fujifilm/FujifilmXF56mmf12.data.js";
 import FujifilmXF60 from "../../../src/lens-data/fujifilm/FujifilmXF60mmf24R.data.js";
+import FujifilmX100 from "../../../src/lens-data/fujifilm/FujifilmX10023mmf2.data.js";
 import FujifilmX100V from "../../../src/lens-data/fujifilm/FujifilmX100V23mmf2.data.js";
+import Sigma1018 from "../../../src/lens-data/sigma/Sigma1018mmf28DCDN.data.js";
 import Sigma1424 from "../../../src/lens-data/sigma/Sigma1424mmf28DGHSM.data.js";
 import type { AsphericCoefficients } from "../../../src/types/optics.js";
 
@@ -356,5 +358,24 @@ describe("Fujifilm X100V 23mm f/2 odd-order backfill", () => {
         Math.abs(departureMicrons(h, surfaceR(FujifilmX100V, label), FujifilmX100V.asph[label]) - expectedMicrons),
       ).toBeLessThanOrEqual(0.01);
     }
+  });
+});
+
+describe("Fujifilm X100 23mm f/2 odd-order backfill", () => {
+  it("matches the analysis-quoted exact edge departures", () => {
+    expect(
+      Math.abs(departureMicrons(6.4, surfaceR(FujifilmX100, "10A"), FujifilmX100.asph["10A"]) - -246.111),
+    ).toBeLessThanOrEqual(0.01);
+    expect(
+      Math.abs(departureMicrons(6.0, surfaceR(FujifilmX100, "11A"), FujifilmX100.asph["11A"]) - -104.58),
+    ).toBeLessThanOrEqual(0.01);
+  });
+});
+
+describe("Sigma 10-18mm f/2.8 DC DN odd-order backfill", () => {
+  it("matches the analysis-quoted exact edge departure", () => {
+    expect(
+      Math.abs(departureMicrons(10.25, surfaceR(Sigma1018, "4A"), Sigma1018.asph["4A"]) - -911.983),
+    ).toBeLessThanOrEqual(0.01);
   });
 });

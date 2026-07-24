@@ -9,3 +9,9 @@ Patent: US 2012/0069456 A1
 - Updated surface 12 to `J-SFH1 (Hikari)` for nd=1.80809, vd=22.80.
 - The lens is now fully covered by trusted Sellmeier data.
 
+## 2026-07-24 - Odd-order asphere backfill
+
+- Re-transcribed Example 1 Table 2 from the local patent PDF.
+- Replaced the even-order least-squares approximations on surfaces 10A and 11A with the exact A3-A20 rows.
+- Converted patent K = 0 to the standard renderer convention K = -1, preserving the patent's paraboloid bases.
+- Added edge-departure regression coverage at both data-file semi-diameters.

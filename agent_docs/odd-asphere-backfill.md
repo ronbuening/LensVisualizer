@@ -38,6 +38,8 @@ Companion references:
 | [FujifilmGF2035mmf4.data.ts](../src/lens-data/fujifilm/FujifilmGF2035mmf4.data.ts) | 3A, 4A, 10A, 11A, 17A, 18A, 22A, 23A | Exact Example 10 Table 30 A4–A10 incl. odd terms; zero A3 omitted; KA = 1 → K = 0. |
 | [FujifilmGF100200mmf56.data.ts](../src/lens-data/fujifilm/FujifilmGF100200mmf56.data.ts) | 31A, 32A | Exact Example 1 Table 3 A4–A20 incl. odd terms; zero A3 omitted; KA converted with K = KA − 1. |
 | [FujifilmX100V23mmf2.data.ts](../src/lens-data/fujifilm/FujifilmX100V23mmf2.data.ts) | 7A, 8A, 9A, 10A | Exact Example 1 Table 3 A3–A20; patent columns 8–11 mapped to data labels 7A–10A; KA = 1 → K = 0. |
+| [FujifilmX10023mmf2.data.ts](../src/lens-data/fujifilm/FujifilmX10023mmf2.data.ts) | 10A, 11A | Exact Example 1 Table 2 A3–A20; patent K = 0 converted to standard K = −1. |
+| [Sigma1018mmf28DCDN.data.ts](../src/lens-data/sigma/Sigma1018mmf28DCDN.data.ts) | 4A | Exact Numerical Example 2 A3–A14; ordinary K = −0.2 retained. |
 
 ## Backfill workflow
 
@@ -58,13 +60,7 @@ Companion references:
 
 ## Queue
 
-Ordered roughly by expected visual/analytical impact (refit residual size, or terms dropped
-entirely). Residuals are the values documented in each analysis file.
-
-| Priority | Lens file | Surfaces | Complications / notes |
-|---|---|---|---|
-| 19 | [FujifilmX10023mmf2.data.ts](../src/lens-data/fujifilm/FujifilmX10023mmf2.data.ts) | see analysis | Odd terms documented; older patent conventions — verify conic form. |
-| 20 | [Sigma1018mmf28DCDN.data.ts](../src/lens-data/sigma/Sigma1018mmf28DCDN.data.ts) | 4 | Refit residual only 0.014 µm — lowest impact. |
+The tracked odd-order backfill queue is complete.
 
 ## Checked and excluded
 

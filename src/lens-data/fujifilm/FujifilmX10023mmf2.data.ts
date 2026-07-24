@@ -20,10 +20,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  NOTE ON ASPHERICAL COEFFICIENTS:                                  ║
  * ║    Patent uses Zd = C·h²/{1+√(1−K·C²h²)} + Σ Am·h^m (m=3..20).  ║
  * ║    Patent K=0 → parabolic base (standard K = −1).                 ║
- * ║    Patent includes odd-order terms (A3, A5, …) unsupported by     ║
- * ║    the renderer. Even-order coefficients (A4–A20) refitted via    ║
- * ║    least-squares over h ∈ [0, 6.0 mm] against standard spherical ║
- * ║    base (K = 0). Max fit error: S10 ≈ 0.16 µm, S11 ≈ 0.73 µm.   ║
+ * ║    Example 1 Table 2 A3–A20 are transcribed exactly, including    ║
+ * ║    every non-zero odd-order term.                                  ║
  * ║                                                                    ║
  * ║  NOTE ON CLOSE-FOCUS DATA:                                         ║
  * ║    Patent does not publish close-focus spacings for Example 1.    ║
@@ -191,33 +189,50 @@ const LENS_DATA = {
   ],
 
   /* ── Aspherical coefficients ──
-   *  Refitted from patent's odd+even polynomial (K_pat=0, A3–A20) to standard
-   *  even-order-only format with spherical base (K=0). See file header for methodology.
+   *  Exact Example 1 Table 2 values. Patent K=0 converts to standard K=-1.
    */
   asph: {
     "10A": {
-      K: 0,
-      A4: -2.1247e-7,
-      A6: -9.1252e-7,
-      A8: -2.3725e-6,
-      A10: 3.4661e-7,
-      A12: -2.458e-8,
-      A14: 9.9894e-10,
-      A16: -2.3734e-11,
-      A18: 3.0727e-13,
-      A20: -1.6773e-15,
+      K: -1,
+      A3: 1.359265e-4,
+      A4: 3.7162356e-6,
+      A5: -6.5383916e-5,
+      A6: 1.2224508e-5,
+      A7: -6.7024023e-7,
+      A8: -7.0851318e-8,
+      A9: -1.4834043e-9,
+      A10: 4.694365e-10,
+      A11: 7.0944713e-11,
+      A12: 4.0056802e-12,
+      A13: -2.5358331e-13,
+      A14: -6.2786396e-14,
+      A15: -7.2519329e-15,
+      A16: -6.2665147e-16,
+      A17: -1.2454499e-16,
+      A18: 7.5045399e-18,
+      A19: 9.487108e-18,
+      A20: -7.9734604e-19,
     },
     "11A": {
-      K: 0,
-      A4: 2.6702e-7,
-      A6: 1.1393e-6,
-      A8: 2.9026e-6,
-      A10: -8.2092e-7,
-      A12: 8.5465e-8,
-      A14: -4.5684e-9,
-      A16: 1.3423e-10,
-      A18: -2.0656e-12,
-      A20: 1.3036e-14,
+      K: -1,
+      A3: -3.6381176e-4,
+      A4: 1.5137686e-3,
+      A5: -1.4708597e-3,
+      A6: 6.8718645e-4,
+      A7: -1.7619011e-4,
+      A8: 2.2970993e-5,
+      A9: -1.2455617e-6,
+      A10: 1.7608222e-7,
+      A11: -6.3140576e-8,
+      A12: 5.2054679e-9,
+      A13: 6.6772864e-10,
+      A14: -9.4611209e-11,
+      A15: -3.2254692e-12,
+      A16: 5.9858623e-13,
+      A17: 2.3337864e-14,
+      A18: -1.1788037e-15,
+      A19: -3.5021994e-16,
+      A20: 1.8725398e-17,
     },
   },
 
