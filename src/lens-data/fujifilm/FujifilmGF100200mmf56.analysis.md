@@ -200,14 +200,19 @@ The patent does not publish close-focus spacings, object-distance tables, or fin
 
 L48 has two aspherical surfaces, patent surfaces 31 and 32. The patent's sag expression uses tabulated KA, where KA = 1 corresponds to a spherical base. For the project's standard equation, the conic constant is therefore K = KA − 1. Surface 31 uses K = +1.8572951; surface 32 uses K = 0.
 
-The patent Table 3 coefficients include both odd and even terms A3 through A20. The leading patent coefficients are:
+The patent Table 3 coefficients include both odd and even terms A3 through A20. Zero A3 is omitted in the data file; the complete nonzero series is:
 
-| Surface |        KA |             A4 |             A5 |             A6 |             A7 |             A8 |
-| ------- | --------: | -------------: | -------------: | -------------: | -------------: | -------------: |
-| 31      | 2.8572951 | −7.3711067E−06 | −1.7817947E−06 | +4.3707776E−07 | −2.6735859E−08 | −6.3741378E−09 |
-| 32      | 1.0000000 | −2.8957588E−06 | +3.3996120E−07 | −1.5456344E−07 | +4.0287917E−08 | −2.9995264E−09 |
+| Surface | KA | A4 | A5 | A6 | A7 | A8 | A9 | A10 | A11 |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| 31 | 2.8572951 | -7.3711067E-06 | -1.7817947E-06 | 4.3707776E-07 | -2.6735859E-08 | -6.3741378E-09 | 8.4356379E-10 | 5.3683757E-11 | -1.1791015E-11 |
+| 32 | 1.0000000 | -2.8957588E-06 | 3.3996120E-07 | -1.5456344E-07 | 4.0287917E-08 | -2.9995264E-09 | -5.8201593E-10 | 9.5104961E-11 | 8.0089734E-13 |
 
-Because the viewer's data schema supports even-order aspheres, the data file uses an even-order least-squares refit through A20 over h ≤ 14.5 mm. Against the full patent odd+even sag expression, the maximum residual is approximately 0.0067 µm on surface 31 and 0.0038 µm on surface 32, far below any diagram-level significance. The 14.5 mm semi-diameter is also the geometry limit used for the element: at h = 14.5 mm the full patent sag gives an L48 edge thickness of about 0.434 mm.
+| Surface | A12 | A13 | A14 | A15 | A16 | A17 | A18 | A19 | A20 |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| 31 | 4.9091049E-14 | 6.2143266E-14 | -1.8069522E-15 | -1.2319010E-16 | 5.4714530E-18 | -2.7239555E-20 | 1.9939949E-21 | 2.9379048E-22 | -1.6186888E-23 |
+| 32 | -7.0737478E-13 | 1.9090278E-14 | 1.5575916E-15 | -7.6779636E-17 | 1.8668195E-18 | -1.4052547E-19 | 9.1768224E-21 | 1.2514959E-22 | -2.5127160E-23 |
+
+At the 14.5 mm geometry limit, the exact profiles depart from their paraxial spheres by +971.940 µm on surface 31 and +382.355 µm on surface 32. The full patent sag leaves an L48 edge thickness of about 0.434 mm.
 
 ## Chromatic Correction Strategy
 

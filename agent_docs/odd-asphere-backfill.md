@@ -35,6 +35,9 @@ Companion references:
 | [FujifilmXF23mmf2RWR.data.ts](../src/lens-data/fujifilm/FujifilmXF23mmf2RWR.data.ts) | 7A, 8A, 13A, 14A | Exact Example 1 Table 3 A3–A20; KA = 1 → K = 0. |
 | [FujifilmGF45mmf28.data.ts](../src/lens-data/fujifilm/FujifilmGF45mmf28.data.ts) | 16A, 17A | Exact Example 1 Table 3 A4–A12 incl. odd terms; zero A3 omitted; KA = 1 → K = 0. |
 | [FujifilmGF3264mmf4.data.ts](../src/lens-data/fujifilm/FujifilmGF3264mmf4.data.ts) | 6A, 15A, 16A, 22A, 23A | Exact Example 1 Table 3 A4–A16 incl. odd terms; zero A3 omitted; KA converted with K = KA − 1. |
+| [FujifilmGF2035mmf4.data.ts](../src/lens-data/fujifilm/FujifilmGF2035mmf4.data.ts) | 3A, 4A, 10A, 11A, 17A, 18A, 22A, 23A | Exact Example 10 Table 30 A4–A10 incl. odd terms; zero A3 omitted; KA = 1 → K = 0. |
+| [FujifilmGF100200mmf56.data.ts](../src/lens-data/fujifilm/FujifilmGF100200mmf56.data.ts) | 31A, 32A | Exact Example 1 Table 3 A4–A20 incl. odd terms; zero A3 omitted; KA converted with K = KA − 1. |
+| [FujifilmX100V23mmf2.data.ts](../src/lens-data/fujifilm/FujifilmX100V23mmf2.data.ts) | 7A, 8A, 9A, 10A | Exact Example 1 Table 3 A3–A20; patent columns 8–11 mapped to data labels 7A–10A; KA = 1 → K = 0. |
 
 ## Backfill workflow
 
@@ -60,9 +63,6 @@ entirely). Residuals are the values documented in each analysis file.
 
 | Priority | Lens file | Surfaces | Complications / notes |
 |---|---|---|---|
-| 16 | [FujifilmGF2035mmf4.data.ts](../src/lens-data/fujifilm/FujifilmGF2035mmf4.data.ts) | see analysis | Odd A5/A7/A9. Analysis only *summarizes* patent coefficients — may need patent re-transcription. |
-| 17 | [FujifilmGF100200mmf56.data.ts](../src/lens-data/fujifilm/FujifilmGF100200mmf56.data.ts) | see analysis | Odd+even A3–A20; analysis lists only leading coefficients — may need patent re-transcription. |
-| 18 | [FujifilmX100V23mmf2.data.ts](../src/lens-data/fujifilm/FujifilmX100V23mmf2.data.ts) | see analysis | Patent sums m = 3..20 (18 coefficients per surface). |
 | 19 | [FujifilmX10023mmf2.data.ts](../src/lens-data/fujifilm/FujifilmX10023mmf2.data.ts) | see analysis | Odd terms documented; older patent conventions — verify conic form. |
 | 20 | [Sigma1018mmf28DCDN.data.ts](../src/lens-data/sigma/Sigma1018mmf28DCDN.data.ts) | 4 | Refit residual only 0.014 µm — lowest impact. |
 

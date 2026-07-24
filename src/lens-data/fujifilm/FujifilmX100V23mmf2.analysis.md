@@ -139,15 +139,31 @@ $$Z_d = \frac{C \cdot h^2}{1 + \sqrt{1 - K_A \cdot C^2 \cdot h^2}} + \sum A_m \c
 
 where $C = 1/R$ is the paraxial curvature, $h$ is the radial height, $K_A$ is the conic constant parameter, and $A_m$ are the polynomial coefficients. The parameter $K_A$ in this patent corresponds to $(1 + K)$ in the standard optical convention. Since $K_A = 1.0$ for all four aspheric surfaces, the conic constant $K = 0$ in every case — all base curves are spherical.
 
-### Non-standard polynomial terms and refit methodology
+### Exact odd/even polynomial transcription
 
 A notable feature of this patent's aspheric specification is the inclusion of odd-order polynomial terms ($A_3, A_5, A_7, \ldots$) alongside the conventional even-order terms. The summation runs from $m = 3$ through $m = 20$, yielding 18 coefficients per surface. Standard rotationally symmetric aspheric specifications use only even-order terms ($h^4, h^6, h^8, \ldots$), because the sag of a smooth rotationally symmetric surface is naturally expressed as a polynomial in $h^2$. The odd-order terms ($h^3, h^5, \ldots$) do not break rotational symmetry — $h^m$ for any integer $m$ is rotationally symmetric since $h = \sqrt{x^2 + y^2}$ — but they introduce sag profiles not representable in the standard even-order basis. This extended form is encountered in several Fujifilm patents and likely reflects internal design-code conventions.
 
-For the companion data file, the patent's odd+even coefficients have been refitted to even-order-only polynomials ($A_4$ through $A_{20}$) via weighted least-squares regression over the clear aperture of each surface. The maximum refit error is below 0.20 µm (surface 9A), with RMS errors below 0.08 µm on all four surfaces — well within manufacturing tolerances.
+The companion data file stores Table 3 directly. Patent columns 8–11 map in order to data-file surfaces 7A–10A:
+
+| Data surface | A3 | A4 | A5 | A6 | A7 | A8 | A9 | A10 | A11 |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| 7A | -1.5217964E-04 | 2.4706739E-04 | -1.9986864E-04 | 1.0534079E-04 | -3.4430391E-05 | 6.9668708E-06 | -8.2587997E-07 | 4.6910827E-08 | -5.7981580E-10 |
+| 8A | 4.6707088E-04 | -1.0166693E-04 | 3.6407193E-05 | -1.3756074E-05 | 5.1076177E-06 | -1.2536522E-06 | 1.9023164E-07 | -1.5587710E-08 | 2.8140078E-10 |
+| 9A | 6.9988571E-04 | -7.8490068E-05 | -2.3476671E-05 | 1.7123418E-05 | -4.1267936E-06 | 5.0213388E-07 | -1.9486235E-09 | -8.2542881E-09 | 1.0151630E-09 |
+| 10A | -2.3771611E-04 | 1.7211189E-04 | -4.3702546E-06 | -1.5476285E-05 | 5.2884500E-06 | -6.7258964E-07 | 1.3917510E-09 | 1.0109269E-08 | -1.2035642E-09 |
+
+| Data surface | A12 | A13 | A14 | A15 | A16 | A17 | A18 | A19 | A20 |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| 7A | 2.2371123E-10 | -6.8464232E-11 | 7.0551541E-12 | -3.2955028E-13 | 6.0646736E-15 | -3.1163867E-18 | -7.1851751E-19 | 1.1695193E-20 | 1.8644650E-21 |
+| 8A | 3.2636450E-11 | 5.0343516E-12 | -1.2681241E-12 | 8.7906193E-14 | -2.0482602E-15 | -4.9884016E-19 | 5.2732620E-19 | -1.8316881E-19 | 8.4138980E-21 |
+| 9A | -3.1786078E-11 | -2.6828331E-12 | 1.9590923E-13 | 6.6935119E-15 | -8.5735230E-16 | -4.4918245E-18 | 1.6151998E-18 | 8.0183252E-20 | -8.8086271E-21 |
+| 10A | 5.9393956E-11 | -3.9309708E-12 | 6.5830604E-13 | -5.2709876E-14 | 1.1668344E-15 | 2.1822742E-17 | 3.5346850E-19 | 3.5695647E-19 | -3.5705496E-20 |
+
+The exact profiles depart from their paraxial spheres by +27.447 µm at 7A ($h=6.3$ mm), +94.584 µm at 8A ($h=6.2$ mm), +277.252 µm at 9A ($h=7.6$ mm), and +193.097 µm at 10A ($h=7.6$ mm).
 
 ### Surface-by-surface aspherical roles
 
-**L23 front (surface 7A, $R = +34.72$ mm).** This surface carries the most aggressive aspherical departure in the design. The refitted profile steepens convergence at the rim, increasing the bending of marginal rays. Together with surface 8A, it jointly controls spherical aberration, coma, and higher-order zonal errors across the thick biconvex element.
+**L23 front (surface 7A, $R = +34.72$ mm).** The exact profile steepens convergence at the rim, increasing the bending of marginal rays. Together with surface 8A, it jointly controls spherical aberration, coma, and higher-order zonal errors across the thick biconvex element.
 
 **L23 rear (surface 8A, $R = -33.48$ mm).** The rear surface carries a strong positive $A_4$ departure that opens up the periphery, creating a complex correction profile that varies across aperture zones. Surfaces 7A and 8A work as a correction pair to balance the spherical aberration budget of the entire system.
 
