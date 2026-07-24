@@ -209,19 +209,31 @@ Here K is the standard conic constant: K = 0 is a spherical base conic. All Exam
 | Surface | Element face | Patent role | Polynomial content | Data-file treatment |
 |---|---|---|---|---|
 | 1 | L1 object face | SA1 | even A4-A12 | patent coefficients retained |
-| 5 | L3 object face | SA2 | odd + even A3-A16 | even-order least-squares refit |
-| 6 | L3 image face | companion to SA2 | odd + even A3-A16 | even-order least-squares refit |
+| 5 | L3 object face | SA2 | odd + even A3-A16 | exact patent coefficients retained |
+| 6 | L3 image face | companion to SA2 | odd + even A3-A16 | exact patent coefficients retained |
 | 28 | L17 object face | rear field correction | even A4-A16 | patent coefficients retained |
 | 29 | L17 image face | rear field correction | even A4-A16 | patent coefficients retained |
 
-The unsupported odd-order terms on surfaces 5 and 6 are not silently discarded. They are fitted into an even-order A4-A16 basis over the 17.5 mm semi-diameter used in the data file. The maximum residuals are 1.59 μm on surface 5 and 1.64 μm on surface 6, with RMS residuals of 0.645 μm and 0.665 μm respectively. This approximation is explicitly a renderer compatibility step; the patent prescription remains the analytical source.
+The companion data file transcribes Numerical Example 1's odd/even values directly:
 
-The fitted data-file coefficients for the two converted surfaces are:
+| Term | S5A | S6A |
+|---|---:|---:|
+| A3 | 1.93222E-04 | 1.94996E-04 |
+| A4 | -3.68159E-05 | -2.79917E-05 |
+| A5 | 5.25855E-06 | 3.65169E-06 |
+| A6 | -6.73333E-07 | -2.89294E-07 |
+| A7 | 9.17837E-08 | 5.54599E-08 |
+| A8 | -6.28671E-09 | -4.95413E-09 |
+| A9 | 3.30188E-11 | 4.32334E-12 |
+| A10 | 1.65903E-11 | 1.90161E-11 |
+| A11 | -7.27135E-13 | -8.89540E-13 |
+| A12 | 8.86930E-15 | 1.29484E-14 |
+| A13 | -2.15003E-17 | 5.98468E-17 |
+| A14 | -9.32433E-19 | -2.64408E-18 |
+| A15 | 2.26985E-19 | -2.71372E-19 |
+| A16 | -5.26081E-21 | 1.09024E-20 |
 
-| Surface | A4 | A6 | A8 | A10 | A12 | A14 | A16 |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| 5A fit | 2.635536e-5 | -4.898165e-7 | 6.275896e-9 | -4.342815e-11 | 1.636386e-13 | -3.190534e-16 | 2.528436e-19 |
-| 6A fit | 3.274259e-5 | -4.599580e-7 | 5.911256e-9 | -4.247059e-11 | 1.645702e-13 | -3.268378e-16 | 2.616246e-19 |
+At the 17.5 mm semi-diameters used by the data file, the exact profiles depart from their spherical bases by +571.910 µm (S5A) and +881.809 µm (S6A).
 
 ## Conditional Expressions
 

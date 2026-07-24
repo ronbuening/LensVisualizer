@@ -33,19 +33,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    The patent uses the Fujifilm sag convention                     ║
  * ║        Z = C·h²/(1 + √(1 − KA·C²·h²)) + Σ A_m·h^m   (m = 3..16)     ║
  * ║    with non-zero ODD-order polynomial coefficients on all six      ║
- * ║    aspherical surfaces.  The project schema supports EVEN orders   ║
- * ║    only (A4, A6, A8, A10, A12, A14 required; A16, A18, A20         ║
- * ║    optional), and the standard conic K_std = KA − 1.               ║
- * ║                                                                    ║
- * ║    To preserve visual fidelity to the patent surface, each asph    ║
- * ║    surface's (R, K) base has been retained EXACTLY from the patent ║
- * ║    (KA mapped to K_std = KA − 1), and the polynomial has been      ║
- * ║    least-squares RE-FITTED over the surface's clear aperture using ║
- * ║    only even orders A4..A16.  Worst-case sag residual after refit  ║
- * ║    is ~11 μm at the rim of S22A; residuals on the other five       ║
- * ║    surfaces are sub-3 μm.  This is adequate for visualization but  ║
- * ║    not for optical simulation or manufacturing.  See the companion ║
- * ║    analysis document, §6.1a, for fit details.                      ║
+ * ║    aspherical surfaces. Exact Table 4 odd/even coefficients are   ║
+ * ║    transcribed below, with the standard conic K = KA − 1.          ║
  * ║                                                                    ║
  * ║  NOTE ON SCALING:                                                   ║
  * ║    Patent Example 1 prescription is at f = 16.492 mm (wide) to     ║
@@ -379,73 +368,99 @@ const LENS_DATA = {
   /* ── Aspherical coefficients ──
    *  Each of the six patent aspherics uses the Fujifilm convention
    *     Z = C·h²/(1 + √(1 − KA·C²·h²)) + Σ A_m·h^m   (m = 3..16)
-   *  with non-zero odd orders.  The (R, KA) base is retained exactly
-   *  (K_std = KA − 1 inserted here), and the polynomial has been
-   *  least-squares re-fitted over the surface's clear aperture using
-   *  even orders A4..A16 only.  Worst-case sag residual after refit:
-   *  ~11 μm at the rim of S22A; sub-3 μm on the other five surfaces.
-   *  See analysis §6.1a for fit details.
+   *  with non-zero odd orders. Exact Table 4 coefficients are retained,
+   *  with K_std = KA − 1 inserted here and zero A3 terms omitted.
    */
   asph: {
     "6A": {
-      K: 0.0,
-      A4: -4.332663e-11,
-      A6: -1.116917e-9,
-      A8: -1.833214e-8,
-      A10: 6.404905e-10,
-      A12: -8.515753e-12,
-      A14: 5.066359e-14,
-      A16: -1.130948e-16,
+      K: 0,
+      A4: -2.6826923e-5,
+      A5: 4.7863658e-6,
+      A6: -1.8421337e-7,
+      A7: -1.8337031e-8,
+      A8: 1.6991972e-9,
+      A9: 4.0861337e-11,
+      A10: -7.851143e-12,
+      A11: -4.307865e-14,
+      A12: 2.3184894e-14,
+      A13: 4.1106169e-17,
+      A14: -4.8125491e-17,
+      A15: 3.8585298e-19,
+      A16: 2.7390609e-20,
     },
     "7A": {
       K: -2.3833082,
-      A4: 8.816128e-7,
-      A6: 8.611936e-6,
-      A8: -3.269228e-7,
-      A10: 6.307652e-9,
-      A12: -6.52077e-11,
-      A14: 3.450697e-13,
-      A16: -7.337994e-16,
+      A4: 5.1722084e-5,
+      A5: 1.924965e-5,
+      A6: -4.6557231e-6,
+      A7: 6.808623e-7,
+      A8: -4.6108053e-8,
+      A9: -1.7600435e-9,
+      A10: 4.557412e-10,
+      A11: -5.9515764e-12,
+      A12: -1.949942e-12,
+      A13: 1.9031053e-14,
+      A14: 5.4999737e-15,
+      A15: 1.9283343e-16,
+      A16: -2.0233351e-17,
     },
     "13A": {
-      K: 0.0,
-      A4: -1.456767e-7,
-      A6: -1.311471e-6,
-      A8: 5.235481e-8,
-      A10: -1.07252e-9,
-      A12: 1.18629e-11,
-      A14: -6.715091e-14,
-      A16: 1.527351e-16,
+      K: 0,
+      A4: 4.1332336e-6,
+      A5: -8.6972277e-6,
+      A6: 1.5350565e-6,
+      A7: -7.8404429e-8,
+      A8: -7.4982002e-9,
+      A9: 8.8156832e-10,
+      A10: -9.4816394e-12,
+      A11: -6.284011e-13,
+      A12: -2.4248166e-14,
+      A14: 0,
     },
     "14A": {
-      K: 0.0,
-      A4: -3.819466e-8,
-      A6: -3.238937e-7,
-      A8: 1.148276e-8,
-      A10: -2.060812e-10,
-      A12: 2.056398e-12,
-      A14: -1.044507e-14,
-      A16: 2.091965e-17,
+      K: 0,
+      A4: 1.0143172e-5,
+      A5: -6.3304378e-6,
+      A6: 8.2811414e-7,
+      A7: 1.05711e-8,
+      A8: -6.8812553e-9,
+      A9: -2.0359431e-10,
+      A10: 6.3325383e-11,
+      A11: -3.4680139e-14,
+      A12: -1.5600198e-13,
+      A14: 0,
     },
     "22A": {
-      K: 0.0,
-      A4: -1.491699e-10,
-      A6: -4.125307e-9,
-      A8: -7.263441e-8,
-      A10: 2.090593e-9,
-      A12: -2.411155e-11,
-      A14: 1.257416e-13,
-      A16: -2.407388e-16,
+      K: 0,
+      A4: -4.8240511e-5,
+      A5: 5.2748685e-6,
+      A6: -6.2154451e-7,
+      A7: -4.8032329e-8,
+      A8: 1.3275405e-8,
+      A9: 6.1331416e-10,
+      A10: -2.2421975e-10,
+      A11: -3.4333485e-12,
+      A12: 2.2269472e-12,
+      A13: 2.2654836e-14,
+      A14: -1.4106854e-14,
+      A15: -1.194908e-16,
+      A16: 4.6802864e-17,
     },
     "23A": {
-      K: 0.0,
-      A4: 2.846231e-11,
-      A6: 7.97446e-10,
-      A8: 1.422518e-8,
-      A10: -4.237183e-10,
-      A12: 5.323013e-12,
-      A14: -3.234446e-14,
-      A16: 8.265862e-17,
+      K: 0,
+      A4: -4.3314253e-7,
+      A5: 1.6554907e-6,
+      A6: 5.7603232e-7,
+      A7: -2.3889843e-7,
+      A8: 2.0442912e-8,
+      A9: 2.1682367e-9,
+      A10: -3.8023797e-10,
+      A11: -5.6322606e-12,
+      A12: 2.8361883e-12,
+      A13: 9.7304729e-15,
+      A14: -1.094833e-14,
+      A15: -5.6980089e-16,
+      A16: 6.3788931e-17,
     },
   },
 

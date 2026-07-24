@@ -202,26 +202,45 @@ $$
 
 Hence $K_A = 1$ corresponds to a sphere ($K_{\text{std}} = 0$), and $K_A = -1.3833$ on surface 7 corresponds to a hyperboloid ($K_{\text{std}} = -2.3833$). This is an important check: applied naively, a −1.38 value copied directly into Zemax or a competitor code would (incorrectly) be interpreted as a near-paraboloid, not a strong hyperboloid.
 
-Another notable feature: the polynomial sum runs over **both even and odd orders** from $m = 3$ to $m = 16$, and this is not a formal nicety — **all six aspherical surfaces in Example 1 carry non-zero odd-order coefficients $A_5, A_7, A_9, A_{11}, A_{13}, A_{15}$**, and on the strongest surface (S7A, L21 rear) the odd orders contribute sag comparable to or larger than the even orders. At $h = 9.5$ mm on S7A, the $A_5$ term alone contributes approximately $+1.49$ mm of sag — nearly half of the surface's total sag at the rim. The inclusion of odd orders distinguishes this from some Western conventions that restrict to even powers only; any faithful reimplementation must honour both parities.
+Another notable feature: the polynomial sum runs over **both even and odd orders** from $m = 3$ to $m = 16$, and this is not a formal nicety — all six aspherical surfaces in Example 1 carry non-zero odd-order coefficients. On the strongest surface (S7A, L21 rear) the odd orders contribute sag comparable to or larger than the even orders. At $h = 9.5$ mm on S7A, the $A_5$ term alone contributes approximately $+1.49$ mm of sag — nearly half of the surface's total sag at the rim. The inclusion of odd orders distinguishes this from some Western conventions that restrict to even powers only; any faithful reimplementation must honour both parities.
 
-### 6.1a Even-only re-fit for the companion data file
+### 6.1a Exact Table 4 transcription
 
-The project's lens-rendering schema (see `LENS_DATA_SPEC`) accepts only **even**-order aspheric coefficients ($A_4, A_6, A_8, A_{10}, A_{12}, A_{14}$, with optional $A_{16}, A_{18}, A_{20}$) and the standard conic $K_\text{std} = K_A - 1$. Naively dropping the odd orders is not an option: at the rim of S7A it produces a ~5 mm sag discrepancy relative to the patent surface — a catastrophic departure that would render the surface visibly wrong.
+The companion data file stores the patent's exact odd/even coefficients and converts only the conic convention. Zero $A_3$ terms are omitted; blank higher-order entries for S13A and S14A are zero.
 
-The companion data file (`FujifilmXF1655f28R.data.ts`) therefore uses the following principled substitute: the patent's base conic $(R, K_\text{std})$ is retained **exactly** for each surface, and the polynomial is **least-squares re-fitted over the surface's clear aperture** using only the available even orders $A_4\ldots A_{16}$. The fit samples the patent surface (odd + even) at 300 points on $[0, h_\text{max}]$, where $h_\text{max}$ is a small margin (~2%) above the surface's estimated clear semi-diameter in the design. Residuals after refit:
+| Term | S6A | S7A | S13A |
+|---|---:|---:|---:|
+| A4 | −2.6826923E−05 | 5.1722084E−05 | 4.1332336E−06 |
+| A5 | 4.7863658E−06 | 1.9249650E−05 | −8.6972277E−06 |
+| A6 | −1.8421337E−07 | −4.6557231E−06 | 1.5350565E−06 |
+| A7 | −1.8337031E−08 | 6.8086230E−07 | −7.8404429E−08 |
+| A8 | 1.6991972E−09 | −4.6108053E−08 | −7.4982002E−09 |
+| A9 | 4.0861337E−11 | −1.7600435E−09 | 8.8156832E−10 |
+| A10 | −7.8511430E−12 | 4.5574120E−10 | −9.4816394E−12 |
+| A11 | −4.3078650E−14 | −5.9515764E−12 | −6.2840110E−13 |
+| A12 | 2.3184894E−14 | −1.9499420E−12 | −2.4248166E−14 |
+| A13 | 4.1106169E−17 | 1.9031053E−14 | 0 |
+| A14 | −4.8125491E−17 | 5.4999737E−15 | 0 |
+| A15 | 3.8585298E−19 | 1.9283343E−16 | 0 |
+| A16 | 2.7390609E−20 | −2.0233351E−17 | 0 |
 
-| Surface | $h_\text{max}$ (mm) | max sag residual (μm) | rms residual (μm) |
-|---|---|---|---|
-| S6A (L21 front) | 11.68 | 2.9 | 1.3 |
-| S7A (L21 rear) | 11.06 | 2.8 | 1.2 |
-| S13A (L31 front) | 10.62 | 0.3 | 0.1 |
-| S14A (L31 rear) | 10.31 | 0.04 | 0.02 |
-| S22A (L34 front) | 12.10 | 11.2 | 4.6 |
-| S23A (L34 rear) | 12.18 | 1.8 | 0.8 |
+| Term | S14A | S22A | S23A |
+|---|---:|---:|---:|
+| A4 | 1.0143172E−05 | −4.8240511E−05 | −4.3314253E−07 |
+| A5 | −6.3304378E−06 | 5.2748685E−06 | 1.6554907E−06 |
+| A6 | 8.2811414E−07 | −6.2154451E−07 | 5.7603232E−07 |
+| A7 | 1.0571100E−08 | −4.8032329E−08 | −2.3889843E−07 |
+| A8 | −6.8812553E−09 | 1.3275405E−08 | 2.0442912E−08 |
+| A9 | −2.0359431E−10 | 6.1331416E−10 | 2.1682367E−09 |
+| A10 | 6.3325383E−11 | −2.2421975E−10 | −3.8023797E−10 |
+| A11 | −3.4680139E−14 | −3.4333485E−12 | −5.6322606E−12 |
+| A12 | −1.5600198E−13 | 2.2269472E−12 | 2.8361883E−12 |
+| A13 | 0 | 2.2654836E−14 | 9.7304729E−15 |
+| A14 | 0 | −1.4106854E−14 | −1.0948330E−14 |
+| A15 | 0 | −1.1949080E−16 | −5.6980089E−16 |
+| A16 | 0 | 4.6802864E−17 | 6.3788931E−17 |
 
-The worst-case residual is 11.2 μm at the rim of S22A — well below typical manufacturing tolerance (λ/4 in the visible is ~140 nm, but practical element-shape tolerance in a zoom lens is tens of micrometres). For visualization purposes the refit is indistinguishable from the patent surface; for optical simulation or manufacturing, the patent's full odd + even coefficients would be required.
-
-The refitted coefficients (present in the `.data.ts` file) are **not** the patent's original values and must not be confused with them. Anyone reading the coefficients back out of the data file to reproduce optical simulation must use the patent Table 4 values, not the refit.
+At the data-file semi-diameters, the exact profiles depart from their paraxial spheres by +3.733 µm (S6A), −416.800 µm (S7A), −146.557 µm (S13A), −15.348 µm (S14A), −250.978 µm (S22A), and +471.106 µm (S23A).
 
 ### 6.2 Aspheric surfaces at a glance
 
@@ -376,7 +395,7 @@ Together these material and geometric choices, with the double-cemented-doublet 
 3. HOYA Corp., *Optical Glass Catalog*, including M- (moldable) series. The OHARA pocket catalog's cross-reference list confirms six-digit code 851401 as HOYA M-TAFD305, exactly matching L21's (nd = 1.85135, νd = 40.10) and making this a direct catalog match rather than a family-level inference.
 4. Sumita Optical Glass Inc. and HIKARI Glass Co. product databases (cross-consulted for alternative matches to L21 at nd = 1.85135, νd = 40.10; HIKARI J-LASFH21 and Sumita K-VC91/K-VC99 offer equivalent specs).
 5. Fujifilm Corporation, XF 16-55mm F2.8 R LM WR product page and published specifications (for marketed focal-length range, close-focus distance, and element/group/aspherical/ED counts).
-6. Paraxial ray-trace verification and element-level analysis performed independently for this document (Python ABCD/y-ū trace; thick-lens element focal lengths; surface-method Petzval sum; aspheric sag evaluation with both patent odd+even convention and even-only least-squares refit; close-focus G4-translation solve; semi-diameter ray-envelope with on/off-axis rays, edge-thickness validation, cross-gap overlap validation, and rim-slope validation).
+6. Paraxial ray-trace verification and element-level analysis performed independently for this document (Python ABCD/y-ū trace; thick-lens element focal lengths; surface-method Petzval sum; exact patent odd/even aspheric sag evaluation; close-focus G4-translation solve; semi-diameter ray-envelope with on/off-axis rays, edge-thickness validation, cross-gap overlap validation, and rim-slope validation).
 
 ### Appendix: Summary of computational verification
 
@@ -408,7 +427,7 @@ Together these material and geometric choices, with the double-cemented-doublet 
 | ED count | 3 elements | 3 (2× S-FPL51, 1× S-FPM3) | ✓ |
 | Element count | 17 | 17 | ✓ |
 | Air-separated group count | 12 | 12 | ✓ |
-| Aspheric re-fit residuals (even-only, in companion data file) | — | max 11.2 μm at S22A rim, sub-3 μm elsewhere | ✓ |
+| Exact aspheric coefficient transcription | Table 4 | A4–A16 odd/even values retained; KA converted with K = KA − 1 | ✓ |
 | Close-focus G4 travel (MFD 0.30 m from image plane) | — | 0.70 mm (W) / 2.04 mm (M) / 4.55 mm (T); within DD28 budget | ✓ |
 | HOYA catalog cross-index for L21 (851401) | — | Matches M-TAFD305 exactly (OHARA 2018/2023 pocket catalogues list the cross-reference directly) | ✓ |
 | Data file paraxial EFL round-trip (re-traced from written surfaces) | patent | 16.492 / 31.063 / 53.447 mm — residuals ≤ 11 μm | ✓ |

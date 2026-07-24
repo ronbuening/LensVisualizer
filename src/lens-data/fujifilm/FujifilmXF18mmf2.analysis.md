@@ -183,29 +183,51 @@ L8 is the final optical element, the patent's "Lens A." It is a thick (5.30 mm) 
 
 The lens has 4 aspherical surfaces distributed across 2 glass-molded elements. The patent uses an extended aspherical sag formula that includes odd-order polynomial terms (A3, A5, A7, ..., up to A15) in addition to the standard even-order terms (A4, A6, ..., A16). The patent's conic constant is designated KA, which relates to the standard convention as K = KA − 1. Since h is the radial distance from the optical axis (always non-negative), both odd and even powers of h produce rotationally symmetric surface profiles — the use of odd-order terms does not break symmetry, it simply provides additional degrees of freedom for surface optimization.
 
-### 5.2 Refitting to Even-Order Format
+### 5.2 Exact Example 4 Coefficients
 
-The data file format supports only even-order coefficients (K, A4, A6, A8, A10, A12, A14). The odd-order terms in this patent carry significant sag contributions — for instance, the A5 term on S13 contributes over 8 mm of sag at the edge of the clear aperture, completely altering the surface profile relative to even-terms-only.
+The companion data file transcribes Table 8 directly and converts each patent conic with $K = K_A - 1$. S13 and S14 have no tabulated terms above A12, so their required A14 fields are zero.
 
-To resolve this, all four aspherical surfaces were refitted via least-squares optimization: the full patent sag curve (conic + all polynomial terms) was sampled at 200 radial points from h = 0 to h = sd, and a new set of even-order-only coefficients (K, A4–A14) was fitted to match. The refitted coefficients differ substantially from the direct patent values (K ≠ KA − 1, and all polynomial coefficients change), but they reproduce the patent's sag profile to sub-wavelength accuracy:
+| Term | S9A | S10A |
+|---|---:|---:|
+| A3 | −2.87083732E−04 | 1.18906335E−04 |
+| A4 | 1.05711740E−04 | −1.88109111E−04 |
+| A5 | −6.53027730E−05 | −2.34215137E−05 |
+| A6 | 6.68165534E−06 | 1.52087805E−05 |
+| A7 | 8.53227276E−07 | −1.00378688E−06 |
+| A8 | 2.32786056E−07 | −4.03960798E−08 |
+| A9 | −1.14759171E−07 | −3.86232149E−08 |
+| A10 | 5.33961887E−09 | 7.75211108E−09 |
+| A11 | 7.55941020E−10 | 3.22968768E−10 |
+| A12 | 1.48424669E−10 | 6.57664659E−12 |
+| A13 | −1.42751835E−12 | −5.75922797E−13 |
+| A14 | −7.22317200E−12 | −4.21518210E−12 |
+| A15 | 3.05071684E−13 | −5.22006545E−14 |
+| A16 | 3.44249052E−14 | 5.69869593E−14 |
 
-| Surface | Max sag error | RMS sag error |
-|---|---|---|
-| S9 (L5 front) | 0.072 µm | 0.030 µm |
-| S10 (L5 rear) | 0.025 µm | 0.010 µm |
-| S13 (L7 front) | 0.227 µm | 0.094 µm |
-| S14 (L7 rear) | 0.130 µm | 0.054 µm |
+| Term | S13A | S14A |
+|---|---:|---:|
+| A3 | 1.85057692E−03 | 5.21756700E−04 |
+| A4 | −4.82506210E−03 | −6.33880498E−04 |
+| A5 | 1.27004228E−03 | 1.83688280E−04 |
+| A6 | −9.11546904E−05 | −5.27618751E−06 |
+| A7 | −3.89232232E−06 | −1.61504338E−06 |
+| A8 | −8.50728357E−07 | 1.55286768E−07 |
+| A9 | 3.21279636E−07 | 4.00169628E−08 |
+| A10 | −1.416866834E−08 | −1.95650895E−08 |
+| A11 | −9.17275261E−10 | 2.66391220E−09 |
+| A12 | −2.40950739E−11 | −1.17572834E−10 |
+| A14 | 0 | 0 |
 
-These errors are well below manufacturing tolerances (typically ~1 µm for precision glass-molded aspheres) and below the shortest visible wavelength (~380 nm). The refitted surfaces are optically equivalent to the patent's specification.
+At the data-file semi-diameters, the exact profiles depart from their paraxial spheres by −82.367 µm (S9A), +55.663 µm (S10A), +473.799 µm (S13A), and +1034.025 µm (S14A).
 
 ### 5.3 Aspherical Surface Summary
 
-| Surface | Element | Refitted K | Patent KA | Role |
+| Surface | Element | Exact K | Patent KA | Role |
 |---|---|---|---|---|
-| S9 | L5 front | −674.6 | +4.82 | Spherical aberration correction at wide aperture |
-| S10 | L5 rear | −208.2 | −25.26 | Higher-order spherical + coma |
-| S13 | L7 front | −13.7 | −9.90 | Field curvature + distortion |
-| S14 | L7 rear | −19.1 | −9.86 | Field curvature + lateral color balance |
+| S9 | L5 front | +3.81697 | +4.81697 | Spherical aberration correction at wide aperture |
+| S10 | L5 rear | −26.25812 | −25.25812 | Higher-order spherical + coma |
+| S13 | L7 front | −10.89518 | −9.89518 | Field curvature + distortion |
+| S14 | L7 rear | −10.85793 | −9.85793 | Field curvature + lateral color balance |
 
 Both elements use OHARA S-LAH63 glass. This glass carries the S-prefix (environmentally safe composition). Fujifilm's product page explicitly confirms these are "glass-mold aspheric lenses." S-LAH63 was selected for its combination of high refractive index (1.803), moderate dispersion (νd = 40.45), and acceptable molding characteristics.
 
@@ -242,7 +264,7 @@ The patent does not list semi-diameters. SDs were estimated through a multi-step
 
 3. **Patent anchor points** from Table 17 — Re1 = 5.80 mm (S13A effective semi-diameter) and Re2 = 6.96 mm (S14A effective semi-diameter) — were used to calibrate the off-axis estimate. The paraxial chief ray overestimates heights by roughly 2× at the rear elements of this wide-angle retrofocus design due to pupil aberration.
 
-4. **Cross-gap sag intrusion** was the binding constraint at two locations: the S2–S3 gap (2.20 mm, limited to sd ≤ 6.8 mm by the strongly curved S2 at R = +8.9 mm) and the S12–S13A gap (2.40 mm, limited to sd ≤ 4.9 mm by the combined curvature of S12 and the aspherical S13A surface). The S12/S13A constraint is tighter than the patent's Re1 = 5.80 because the refitted aspherical surface, while matching sag to sub-micron accuracy, has the same physical shape as the patent's surface — the strongly curved L7 front and L6 rear simply close the gap rapidly at the rim.
+4. **Cross-gap sag intrusion** was the binding constraint at two locations: the S2–S3 gap (2.20 mm, limited to sd ≤ 6.8 mm by the strongly curved S2 at R = +8.9 mm) and the S12–S13A gap (2.40 mm, limited to sd ≤ 4.9 mm by the combined curvature of S12 and the exact aspherical S13A surface). The S12/S13A constraint is tighter than the patent's Re1 = 5.80 because the strongly curved L7 front and L6 rear close the gap rapidly at the rim.
 
 5. **Mechanical clearance** of 8% was applied above the raw beam footprint estimates.
 

@@ -23,6 +23,9 @@ Companion references:
 | [FujifilmX7018mmf28.data.ts](../src/lens-data/fujifilm/FujifilmX7018mmf28.data.ts) | 8A, 9A, 10A, 11A | Exact Example 1 Table 3 A3–A20; KA = 0 → K = −1 restores the patent paraboloid bases. |
 | [FujifilmXF50f1.data.ts](../src/lens-data/fujifilm/FujifilmXF50f1.data.ts) | 15A, 16A | Exact Example 3 Table 12 A4–A20 incl. odd A5–A19; zero A3 omitted. |
 | [FujifilmXF56mmf12.data.ts](../src/lens-data/fujifilm/FujifilmXF56mmf12.data.ts) | 13A, 14A | Exact Example 3 Table 9 A3–A20. |
+| [FujifilmXF1655mmf28R.data.ts](../src/lens-data/fujifilm/FujifilmXF1655mmf28R.data.ts) | 6A, 7A, 13A, 14A, 22A, 23A | Exact Example 1 Table 4 odd/even A4–A16; zero A3 omitted; KA converted with K = KA − 1. |
+| [Sigma1424mmf28DGHSM.data.ts](../src/lens-data/sigma/Sigma1424mmf28DGHSM.data.ts) | 5A, 6A | Exact Numerical Example 1 A3–A16; standard K = 0 retained. |
+| [FujifilmXF18mmf2.data.ts](../src/lens-data/fujifilm/FujifilmXF18mmf2.data.ts) | 9A, 10A, 13A, 14A | Exact Example 4 Table 8 odd/even coefficients; KA converted with K = KA − 1. |
 
 ## Backfill workflow
 
@@ -48,9 +51,6 @@ entirely). Residuals are the values documented in each analysis file.
 
 | Priority | Lens file | Surfaces | Complications / notes |
 |---|---|---|---|
-| 4 | [FujifilmXF1655mmf28R.data.ts](../src/lens-data/fujifilm/FujifilmXF1655mmf28R.data.ts) | all 6 aspheric surfaces | Odd orders A5–A15 non-zero on every surface; on S7A the A5 term alone is ~1.49 mm of rim sag. |
-| 5 | [Sigma1424mmf28DGHSM.data.ts](../src/lens-data/sigma/Sigma1424mmf28DGHSM.data.ts) | 5, 6 | Refit residuals 1.59 / 1.64 µm. Patent already uses standard K. |
-| 6 | [FujifilmXF18mmf2.data.ts](../src/lens-data/fujifilm/FujifilmXF18mmf2.data.ts) | 4 aspheric surfaces | Odd A3–A15; A5 on S13 contributes >8 mm edge sag. |
 | 7 | [FujifilmXF23mmf14RLMWR.data.ts](../src/lens-data/fujifilm/FujifilmXF23mmf14RLMWR.data.ts) | 4 aspheres | Prescription uniformly scaled to 23 mm — rescale Aₙ by 1/s^(n−1). Odd A5–A13. |
 | 8 | [FujifilmXF35mmf14R.data.ts](../src/lens-data/fujifilm/FujifilmXF35mmf14R.data.ts) | S12A, S13A(?) | Patent K = 0 in its own convention = paraboloid base → K = −1 here; polynomial encodes sphere-vs-parabola departure. |
 | 9 | [FujifilmGF23mmf4.data.ts](../src/lens-data/fujifilm/FujifilmGF23mmf4.data.ts) | see analysis | Odd terms through A15; patent even/odd terms partially cancel, so dropping odds is not an option. |

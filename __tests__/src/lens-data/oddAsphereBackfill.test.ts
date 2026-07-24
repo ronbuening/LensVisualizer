@@ -4,8 +4,11 @@ import ZeissTouit from "../../../src/lens-data/carl-zeiss-oberkochen/ZeissTouit5
 import FujifilmGF3570 from "../../../src/lens-data/fujifilm/FujifilmGF3570mmf4556.data.js";
 import FujifilmGFX100RF from "../../../src/lens-data/fujifilm/FujifilmGFX100RF35mmf4.data.js";
 import FujifilmX70 from "../../../src/lens-data/fujifilm/FujifilmX7018mmf28.data.js";
+import FujifilmXF1655 from "../../../src/lens-data/fujifilm/FujifilmXF1655mmf28R.data.js";
+import FujifilmXF18 from "../../../src/lens-data/fujifilm/FujifilmXF18mmf2.data.js";
 import FujifilmXF50 from "../../../src/lens-data/fujifilm/FujifilmXF50f1.data.js";
 import FujifilmXF56 from "../../../src/lens-data/fujifilm/FujifilmXF56mmf12.data.js";
+import Sigma1424 from "../../../src/lens-data/sigma/Sigma1424mmf28DGHSM.data.js";
 import type { AsphericCoefficients } from "../../../src/types/optics.js";
 
 /* Guards the exact odd/even patent transcriptions that replaced the even-order
@@ -113,5 +116,50 @@ describe("Fujifilm XF56mm f/1.2 odd-order backfill", () => {
     expect(
       Math.abs(departureMicrons(6.0, surfaceR(FujifilmXF56, "14A"), FujifilmXF56.asph["14A"]) - -211.838),
     ).toBeLessThanOrEqual(0.01);
+  });
+});
+
+describe("Fujifilm XF16-55mm f/2.8 odd-order backfill", () => {
+  it("matches the analysis-quoted exact edge departures", () => {
+    const expected = [
+      ["6A", 11.5, 3.733],
+      ["7A", 10.8, -416.8],
+      ["13A", 10.4, -146.557],
+      ["14A", 10.1, -15.348],
+      ["22A", 11.4, -250.978],
+      ["23A", 11.4, 471.106],
+    ] as const;
+    for (const [label, h, expectedMicrons] of expected) {
+      expect(
+        Math.abs(departureMicrons(h, surfaceR(FujifilmXF1655, label), FujifilmXF1655.asph[label]) - expectedMicrons),
+      ).toBeLessThanOrEqual(0.01);
+    }
+  });
+});
+
+describe("Sigma 14-24mm f/2.8 DG HSM odd-order backfill", () => {
+  it("matches the analysis-quoted exact edge departures", () => {
+    expect(
+      Math.abs(departureMicrons(17.5, surfaceR(Sigma1424, "5A"), Sigma1424.asph["5A"]) - 571.91),
+    ).toBeLessThanOrEqual(0.01);
+    expect(
+      Math.abs(departureMicrons(17.5, surfaceR(Sigma1424, "6A"), Sigma1424.asph["6A"]) - 881.809),
+    ).toBeLessThanOrEqual(0.01);
+  });
+});
+
+describe("Fujifilm XF18mm f/2 odd-order backfill", () => {
+  it("matches the analysis-quoted exact edge departures", () => {
+    const expected = [
+      ["9A", 6.3, -82.367],
+      ["10A", 6.0, 55.663],
+      ["13A", 4.8, 473.799],
+      ["14A", 6.5, 1034.025],
+    ] as const;
+    for (const [label, h, expectedMicrons] of expected) {
+      expect(
+        Math.abs(departureMicrons(h, surfaceR(FujifilmXF18, label), FujifilmXF18.asph[label]) - expectedMicrons),
+      ).toBeLessThanOrEqual(0.01);
+    }
   });
 });

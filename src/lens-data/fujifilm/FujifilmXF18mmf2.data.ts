@@ -10,15 +10,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  Focus: unit focusing (entire lens translates).                    ║
  * ║                                                                    ║
  * ║  NOTE ON ASPHERICAL COEFFICIENTS:                                  ║
- * ║    The patent uses an extended polynomial including odd-order       ║
- * ║    terms (A3, A5, A7, ..., A15) in addition to standard even-      ║
- * ║    order terms.  Since this format supports only even-order         ║
- * ║    coefficients (A4–A14), all four aspherical surfaces have been   ║
- * ║    REFITTED to even-order-only polynomials via least-squares       ║
- * ║    optimization against the patent's full sag curve.  Max sag      ║
- * ║    error across all surfaces is < 0.00023 mm (sub-wavelength).     ║
- * ║    The refitted K values differ from the patent's KA − 1           ║
- * ║    because K absorbs some of the odd-order contribution.           ║
+ * ║    The patent uses an extended polynomial including odd/even       ║
+ * ║    terms A3–A16. Exact Example 4 Table 8 coefficients are         ║
+ * ║    transcribed below, with the renderer conic K = KA − 1.          ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
  * ║    Patent does not list semi-diameters.  SDs estimated from        ║
@@ -186,47 +180,70 @@ const LENS_DATA = {
   ],
 
   /* ── Aspherical coefficients ──
-   *  REFITTED from patent's odd+even polynomial (A3–A16) to even-order-only (K, A4–A14).
-   *  K values differ from direct KA − 1 conversion because the refit absorbs odd-order
-   *  contributions into the conic and even polynomial terms.
-   *  Max sag fitting error: < 0.00023 mm across all four surfaces.
+   *  Exact Example 4 Table 8 odd/even coefficients, with K = KA − 1.
    */
   asph: {
     "9A": {
-      K: -674.58363251,
-      A4: 2.396466289e-4,
-      A6: -1.512296096e-5,
-      A8: 5.533886067e-7,
-      A10: -8.85660033e-9,
-      A12: 2.429110355e-11,
-      A14: 4.073476238e-13,
+      K: 3.81697393,
+      A3: -2.87083732e-4,
+      A4: 1.0571174e-4,
+      A5: -6.5302773e-5,
+      A6: 6.68165534e-6,
+      A7: 8.53227276e-7,
+      A8: 2.32786056e-7,
+      A9: -1.14759171e-7,
+      A10: 5.33961887e-9,
+      A11: 7.5594102e-10,
+      A12: 1.48424669e-10,
+      A13: -1.42751835e-12,
+      A14: -7.223172e-12,
+      A15: 3.05071684e-13,
+      A16: 3.44249052e-14,
     },
     "10A": {
-      K: -208.18298948,
-      A4: -7.084194949e-4,
-      A6: 4.173727713e-5,
-      A8: -1.802316624e-6,
-      A10: 5.542858977e-8,
-      A12: -9.573094646e-10,
-      A14: 6.698138304e-12,
+      K: -26.25812231,
+      A3: 1.18906335e-4,
+      A4: -1.88109111e-4,
+      A5: -2.34215137e-5,
+      A6: 1.52087805e-5,
+      A7: -1.00378688e-6,
+      A8: -4.03960798e-8,
+      A9: -3.86232149e-8,
+      A10: 7.75211108e-9,
+      A11: 3.22968768e-10,
+      A12: 6.57664659e-12,
+      A13: -5.75922797e-13,
+      A14: -4.2151821e-12,
+      A15: -5.22006545e-14,
+      A16: 5.69869593e-14,
     },
     "13A": {
-      K: -13.73498625,
-      A4: -3.027966226e-3,
-      A6: 2.369874274e-4,
-      A8: -1.180975859e-5,
-      A10: 3.610338391e-7,
-      A12: -6.139529993e-9,
-      A14: 4.314906773e-11,
+      K: -10.89517991,
+      A3: 1.85057692e-3,
+      A4: -4.8250621e-3,
+      A5: 1.27004228e-3,
+      A6: -9.11546904e-5,
+      A7: -3.89232232e-6,
+      A8: -8.50728357e-7,
+      A9: 3.21279636e-7,
+      A10: -1.416866834e-8,
+      A11: -9.17275261e-10,
+      A12: -2.40950739e-11,
+      A14: 0,
     },
     "14A": {
-      K: -19.06183962,
-      A4: -6.40949092e-4,
-      A6: 5.052975405e-5,
-      A8: -1.634066658e-6,
-      A10: 3.135979108e-8,
-      A12: -3.423886784e-10,
-      A14: 1.622962653e-12,
+      K: -10.8579312,
+      A3: 5.217567e-4,
+      A4: -6.33880498e-4,
+      A5: 1.8368828e-4,
+      A6: -5.27618751e-6,
+      A7: -1.61504338e-6,
+      A8: 1.55286768e-7,
+      A9: 4.00169628e-8,
+      A10: -1.95650895e-8,
+      A11: 2.6639122e-9,
+      A12: -1.17572834e-10,
+      A14: 0,
     },
   },
 
