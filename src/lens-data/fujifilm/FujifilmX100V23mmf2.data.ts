@@ -16,8 +16,15 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
  * ║    Patent does not list SDs. Estimated from ray height and Fig. 1 ║
  * ║    proportions, then capped at steep molded-asphere rims and thin ║
- * ║    air gaps. Rear elements (L32, L33) are limited by the 0.100 mm ║
- * ║    air gap.                                                       ║
+ * ║    air gaps.                                                      ║
+ * ║    G3 (L31–L33) was resized in the 2026-07-24 patent-figure       ║
+ * ║    audit. The old L32/L33 values (4.0–6.0 mm) could not pass an   ║
+ * ║    APS-C corner ray 4.86 mm ahead of the image plane; they had    ║
+ * ║    been shrunk against the 0.100 mm S12→S13 air gap, but that     ║
+ * ║    gap opens outward (flat S12, convex-to-image S13), so no       ║
+ * ║    intrusion limit applies. New values are measured off FIG. 2:   ║
+ * ║    L31 9.4, L32 9.3/11.0, L33 12.1 mm. L32's front sd is its      ║
+ * ║    optical aperture; the figure's 11.0 mm rectangle is the blank. ║
  * ║                                                                    ║
  * ║  NOTE ON CLOSE FOCUS:                                              ║
  * ║    Patent does not publish close-focus spacings for Example 1.    ║
@@ -177,12 +184,12 @@ const LENS_DATA = {
     { label: "8A", R: -33.47682, d: 1.1, nd: 1.0, elemId: 0, sd: 6.2 }, // L23 rear (asph) → air [variable gap]
 
     // ── G3: three singlets L31, L32, L33 (fixed during focus) ──
-    { label: "9A", R: 666.57127, d: 2.84, nd: 1.51633, elemId: 6, sd: 7.6 }, // L31 front (asph)
-    { label: "10A", R: 135.03773, d: 5.86, nd: 1.0, elemId: 0, sd: 7.6 }, // L31 rear (asph) → air
-    { label: "11", R: -15.17144, d: 0.74, nd: 1.69895, elemId: 7, sd: 6.0 }, // L32 front
-    { label: "12", R: 1e15, d: 0.1, nd: 1.0, elemId: 0, sd: 4.0 }, // L32 rear → air
-    { label: "13", R: 82.50113, d: 1.98, nd: 1.883, elemId: 8, sd: 4.0 }, // L33 front
-    { label: "14", R: 1e15, d: 4.861, nd: 1.0, elemId: 0, sd: 6.0 }, // L33 rear → image (BFD, air equiv.)
+    { label: "9A", R: 666.57127, d: 2.84, nd: 1.51633, elemId: 6, sd: 9.4 }, // L31 front (asph)
+    { label: "10A", R: 135.03773, d: 5.86, nd: 1.0, elemId: 0, sd: 9.4 }, // L31 rear (asph) → air
+    { label: "11", R: -15.17144, d: 0.74, nd: 1.69895, elemId: 7, sd: 9.3 }, // L32 front
+    { label: "12", R: 1e15, d: 0.1, nd: 1.0, elemId: 0, sd: 11.0 }, // L32 rear → air
+    { label: "13", R: 82.50113, d: 1.98, nd: 1.883, elemId: 8, sd: 12.1 }, // L33 front
+    { label: "14", R: 1e15, d: 4.861, nd: 1.0, elemId: 0, sd: 12.1 }, // L33 rear → image (BFD, air equiv.)
   ],
 
   /* ── Exact Example 1, Table 3 aspherical coefficients ── */

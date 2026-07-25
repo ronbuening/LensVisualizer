@@ -19,6 +19,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    Patent does not list semi-diameters. Estimated from combined   ║
  * ║    marginal + chief ray trace, then visually tuned against the     ║
  * ║    published Fujifilm lens configuration section.                  ║
+ * ║    G3 (L31, L32) was resized in the 2026-07-24 patent-figure      ║
+ * ║    audit: the old S13 sd = 8.20 mm could not pass an APS-C corner ║
+ * ║    ray only 5.09 mm ahead of the image plane. FIG. 1 draws L31 at ║
+ * ║    ~10.8 mm and L32 at ~12.7 mm semi-diameter. L32 matches the     ║
+ * ║    figure; L31 is capped at 9.3/9.6 mm because surface 10A's      ║
+ * ║    polynomial turns over near h = 9.7 mm and diverges past 10 mm. ║
  * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
@@ -159,10 +165,10 @@ const LENS_DATA = {
     { label: "9A", R: -10.81559, d: 4.493, nd: 1.0, elemId: 0, sd: 5.15 }, // L23 rear → air (asph) — variable gap
 
     // ── G3: singlet L31, singlet L32 ──
-    { label: "10A", R: -39.36209, d: 1.55, nd: 1.68201, elemId: 6, sd: 6.25 }, // L31 front (asph)
-    { label: "11A", R: 58.13827, d: 0.3, nd: 1.0, elemId: 0, sd: 6.55 }, // L31 rear → air (asph)
-    { label: "12", R: 124.77, d: 4.32, nd: 1.883, elemId: 7, sd: 7.55 }, // L32 front
-    { label: "13", R: -31.869, d: 5.093, nd: 1.0, elemId: 0, sd: 8.2 }, // L32 rear → image (air-equiv BFD, cover glass folded)
+    { label: "10A", R: -39.36209, d: 1.55, nd: 1.68201, elemId: 6, sd: 9.3 }, // L31 front (asph) — capped by polynomial turnover
+    { label: "11A", R: 58.13827, d: 0.3, nd: 1.0, elemId: 0, sd: 9.6 }, // L31 rear → air (asph)
+    { label: "12", R: 124.77, d: 4.32, nd: 1.883, elemId: 7, sd: 11.7 }, // L32 front
+    { label: "13", R: -31.869, d: 5.093, nd: 1.0, elemId: 0, sd: 12.7 }, // L32 rear → image (air-equiv BFD, cover glass folded)
   ],
 
   /* ── Aspherical coefficients ──

@@ -95,7 +95,7 @@ The glass (nd = 1.56867, νd = 58.50) does not match any standard entry in the O
 
 nd = 1.68201, νd = 31.43. Glass: unmatched moldable flint (no catalog match). f = −34.2 mm.
 
-L31 is the second aspherical element and carries the most extreme aspherical departure in the design. In the paraxial region, the element is biconcave (R₁₀ = −39.362 mm concave toward object; R₁₁ = +58.138 mm concave toward image), but the aspherical polynomial transforms the peripheral profile dramatically. At the data-file semi-diameters of 6.25 mm (S10) and 6.55 mm (S11), the exact patent profiles depart by −628.802 µm and −494.019 µm respectively from their paraxial sphere equivalents — departures that completely dominate the surface shape at the periphery.
+L31 is the second aspherical element and carries the most extreme aspherical departure in the design. In the paraxial region, the element is biconcave (R₁₀ = −39.362 mm concave toward object; R₁₁ = +58.138 mm concave toward image), but the aspherical polynomial transforms the peripheral profile dramatically. At the data-file semi-diameters of 9.30 mm (S10) and 9.60 mm (S11), the exact patent profiles depart by −1823.797 µm and −1653.712 µm respectively from their paraxial sphere equivalents — departures that completely dominate the surface shape at the periphery. Those semi-diameters are also where the transcription stops being usable: S10A's polynomial reaches its steepest slope near h = 9.6 mm, turns over just past it, and diverges beyond h = 10 mm, so the element cannot be drawn out to the ~10.8 mm semi-diameter FIG. 1 shows.
 
 This extreme aspherization is the hallmark of modern compact camera field-flattener designs. L31 sits far from the aperture stop (separated by the full 4.493 mm air gap that serves as the focus travel space), where chief-ray heights are at their maximum. At these heights, the aspherical profiles directly sculpt the wavefront to correct field curvature, astigmatism, and distortion simultaneously — tasks that would require multiple additional spherical elements in a conventional design. The patent specifically notes that aspherical surfaces in G3 prevent off-axis rays from being refracted excessively, facilitating compact wide-angle correction (¶0049).
 
@@ -190,7 +190,7 @@ The companion data file transcribes Example 1 Table 3 directly. Patent $K_A = 0$
 | A19 | −3.2671505E−10 | 3.9589140E−13 | −4.9469722E−17 | 3.2617438E−18 |
 | A20 | 2.3730773E−11 | −5.2542757E−14 | 9.7697856E−18 | −8.4650758E−20 |
 
-At the data-file semi-diameters, the exact profiles depart from the corresponding paraxial spheres by +247.177 µm (S8A, 4.75 mm), +367.516 µm (S9A, 5.15 mm), −628.802 µm (S10A, 6.25 mm), and −494.019 µm (S11A, 6.55 mm).
+At the data-file semi-diameters, the exact profiles depart from the corresponding paraxial spheres by +247.177 µm (S8A, 4.75 mm), +367.516 µm (S9A, 5.15 mm), −1823.797 µm (S10A, 9.30 mm), and −1653.712 µm (S11A, 9.60 mm).
 
 ### S8A and S9A — L23 (G2 trailing singlet)
 

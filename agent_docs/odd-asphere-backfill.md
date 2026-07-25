@@ -12,6 +12,10 @@ Companion references:
   conic conversion.
 - `__tests__/src/lens-data/oddAsphereBackfill.test.ts` — departure regression assertions for
   completed backfills; extend it with each new backfill.
+- [patent-figure-sd-audit.md](patent-figure-sd-audit.md) — the follow-up audit of these lenses'
+  semi-diameters and cross-section proportions against the same patent figures. Note that changing an
+  aspheric surface's `sd` moves the quoted rim departure, so the data file, the analysis prose, and the
+  test assertion have to be updated together.
 
 ## Completed reference backfills (July 2026)
 

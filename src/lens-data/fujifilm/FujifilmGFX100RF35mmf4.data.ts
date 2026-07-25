@@ -12,7 +12,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * Semi-diameters are inferred because Table 13 does not list clear apertures. The stop
  * semi-diameter is derived from the patent F-number and entrance-pupil geometry; element
  * clear apertures are conservative renderer apertures checked against edge thickness,
- * conic limits, and cross-gap sag intrusion.
+ * conic limits, and cross-gap sag intrusion. The 2026-07-24 patent-figure audit raised
+ * S16/S17 (L22) from 11.6/12.6 to 12.3/13.5 mm: the old pair fell just under the
+ * semi-diagonal a 44x33 corner ray needs 15.5 and 14.4 mm ahead of the image plane.
  *
  * Surface 15A carries the patent's exact odd/even aspherical coefficients (A4-A20,
  * including odd orders A5-A19). Earlier revisions stored an even-order least-squares
@@ -208,8 +210,8 @@ const LENS_DATA = {
     { label: "13A", R: -20.4535, d: 6.0, nd: 1.0, elemId: 0, sd: 11.4 },
     { label: "14A", R: -30.1885, d: 1.66, nd: 1.68863, elemId: 8, sd: 12.5 },
     { label: "15A", R: -137.7142, d: 6.55, nd: 1.0, elemId: 0, sd: 13.0 },
-    { label: "16", R: -14.3492, d: 1.14, nd: 1.51633, elemId: 9, sd: 11.6 },
-    { label: "17", R: -36.5121, d: 3.23, nd: 1.0, elemId: 0, sd: 12.6 },
+    { label: "16", R: -14.3492, d: 1.14, nd: 1.51633, elemId: 9, sd: 12.3 },
+    { label: "17", R: -36.5121, d: 3.23, nd: 1.0, elemId: 0, sd: 13.5 },
     { label: "18", R: 1e15, d: 5.76, nd: 1.92119, elemId: 10, sd: 25.8 },
     { label: "19", R: -69.9242, d: 5.3962, nd: 1.0, elemId: 0, sd: 25.8 },
   ],

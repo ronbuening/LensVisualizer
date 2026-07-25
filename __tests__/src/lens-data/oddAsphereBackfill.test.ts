@@ -103,10 +103,10 @@ describe("Fujifilm X70 18.5mm odd-order backfill", () => {
       Math.abs(departureMicrons(5.15, surfaceR(FujifilmX70, "9A"), FujifilmX70.asph["9A"]) - 367.516),
     ).toBeLessThanOrEqual(0.01);
     expect(
-      Math.abs(departureMicrons(6.25, surfaceR(FujifilmX70, "10A"), FujifilmX70.asph["10A"]) - -628.802),
+      Math.abs(departureMicrons(9.3, surfaceR(FujifilmX70, "10A"), FujifilmX70.asph["10A"]) - -1823.797),
     ).toBeLessThanOrEqual(0.01);
     expect(
-      Math.abs(departureMicrons(6.55, surfaceR(FujifilmX70, "11A"), FujifilmX70.asph["11A"]) - -494.019),
+      Math.abs(departureMicrons(9.6, surfaceR(FujifilmX70, "11A"), FujifilmX70.asph["11A"]) - -1653.712),
     ).toBeLessThanOrEqual(0.01);
   });
 });
@@ -350,8 +350,8 @@ describe("Fujifilm X100V 23mm f/2 odd-order backfill", () => {
     const expected = [
       ["7A", 6.3, 27.447],
       ["8A", 6.2, 94.584],
-      ["9A", 7.6, 277.252],
-      ["10A", 7.6, 193.097],
+      ["9A", 9.4, 662.051],
+      ["10A", 9.4, 563.937],
     ] as const;
     for (const [label, h, expectedMicrons] of expected) {
       expect(

@@ -16,6 +16,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    Values are validated against cross-gap sag intrusion, edge      ║
  * ║    thickness, and molded-asphere polynomial behavior; S11A stays  ║
  * ║    capped at 6.0 mm to avoid a steep polynomial rim.              ║
+ * ║    G3 (S12–S15) was enlarged in the 2026-07-24 patent-figure      ║
+ * ║    audit: the old values could not pass an APS-C corner ray from  ║
+ * ║    2.80 mm (S15) ahead of the image plane. FIG. 1 is a rotated,   ║
+ * ║    ray-overlaid scan that would not measure reliably, so the new  ║
+ * ║    values are set from the image-circle floor plus clearance      ║
+ * ║    rather than from the drawing.                                  ║
  * ║                                                                    ║
  * ║  NOTE ON ASPHERICAL COEFFICIENTS:                                  ║
  * ║    Patent uses Zd = C·h²/{1+√(1−K·C²h²)} + Σ Am·h^m (m=3..20).  ║
@@ -181,10 +187,10 @@ const LENS_DATA = {
     { label: "11A", R: 89.234, d: 5.13, nd: 1.0, elemId: 0, sd: 6.0 }, // L6 rear (asph) → air
 
     // ── G3: L7 (neg. meniscus) + L8 (plano-convex) ──
-    { label: "12", R: -12.593, d: 1.1, nd: 1.80809, elemId: 7, sd: 7.2 }, // L7 front
-    { label: "13", R: -45.06, d: 0.2, nd: 1.0, elemId: 0, sd: 7.8 }, // L7 rear → air
-    { label: "14", R: 46.628, d: 3.08, nd: 1.883, elemId: 8, sd: 8.2 }, // L8 front
-    { label: "15", R: 1e15, d: 2.8, nd: 1.0, elemId: 0, sd: 8.8 }, // L8 rear → air (BFD to PP)
+    { label: "12", R: -12.593, d: 1.1, nd: 1.80809, elemId: 7, sd: 8.0 }, // L7 front
+    { label: "13", R: -45.06, d: 0.2, nd: 1.0, elemId: 0, sd: 8.6 }, // L7 rear → air
+    { label: "14", R: 46.628, d: 3.08, nd: 1.883, elemId: 8, sd: 11.2 }, // L8 front
+    { label: "15", R: 1e15, d: 2.8, nd: 1.0, elemId: 0, sd: 11.9 }, // L8 rear → air (BFD to PP)
     // BFD from S15 to image plane ≈ 5.53 mm in air (includes air-equiv. of PP cover glass)
   ],
 
