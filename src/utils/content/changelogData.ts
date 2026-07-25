@@ -23,7 +23,7 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-07-24",
     type: "improvement",
-    summary: "Added odd-order aspheric support with exact patent aspheres for three lenses",
+    summary: "Added odd-order aspheric support with exact patent aspheres",
   },
   // ── 2026-07-23 ──────────────────────────────────────────────────
   {
