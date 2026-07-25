@@ -262,14 +262,26 @@ but the renderer draws the element silhouette out to `sd`, and patent figures dr
 single value that satisfies both. This audit resolved it toward the optical extent, and flagged the cases where the
 figure's rim is visibly a flange.
 
-## Recommended follow-ups
+## Follow-ups
 
-1. Add the image-circle coverage floor as a catalog-wide regression test. It is a two-line calculation, it needs no
-   patent, and it caught four wrong lenses in a set of 23 — the rest of the ~460-lens catalog has never been checked
-   against it.
-2. Work the "rear group runs small / front group runs large" pattern (§Systematic observations 1) as its own queue.
-   Doing it properly means re-deriving SDs from a real chief-ray trace at full field rather than from a drawing, which
-   is a larger job than this audit.
+The three checks are now repeatable commands, and the remaining work is queued:
+
+- `npm run audit:image-circle` — the coverage floor, over the whole catalog or named files.
+- `npm run audit:patent-figure` — the ENV/RIM photogrammetry.
+- `npm run audit:surface` — aspheric domain scan plus the validator with trial semi-diameters.
+- [patent-figure-sd-audit-procedure.md](patent-figure-sd-audit-procedure.md) — the step-by-step runbook.
+- [sd-audit-queue.md](sd-audit-queue.md) — the work queue.
+
+Run catalog-wide, the coverage floor flags twelve more lenses beyond the four fixed here (eight of them ultra-wides
+where the check's exit-pupil approximation is not trustworthy). Those are Section A of the queue.
+
+Still open, and larger than this audit:
+
+1. Work the "rear group runs small / front group runs large" pattern (§Systematic observations 1) properly, by
+   re-deriving semi-diameters from a real full-field chief-ray trace rather than from drawings. That would settle
+   Section B of the queue in one pass instead of lens by lens.
+2. Consider promoting the coverage floor to a regression test once Section A is drained, so new lens data cannot
+   reintroduce the fault.
 3. Source `JP 2015-161792 A`, and OCR the two image-only US applications.
 4. When a lens with quoted rim departures has its `sd` changed, the analysis prose, the `oddAsphereBackfill.test.ts`
    assertion and the data file all have to move together — three places, easy to miss.

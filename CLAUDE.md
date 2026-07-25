@@ -74,6 +74,9 @@ npm run test:coverage
 npm run generate:glass-reports
 npm run generate:mirror-reports
 npm run generate:mount-svgs
+npm run audit:image-circle      # semi-diameters that cannot cover their own image circle
+npm run audit:patent-figure     # measure a patent cross-section against a lens data file
+npm run audit:surface           # aspheric domain scan + validator with trial semi-diameters
 npm run typecheck
 npm run lint
 npm run lint:fix
@@ -102,6 +105,8 @@ Read only the relevant focused doc before changing that area:
 - `agent_docs/glass-relabel-followup.md` - per-lens catalog mismatch relabel queue and audit workflow pointers
 - `agent_docs/odd-asphere-backfill.md` - per-lens queue for replacing even-order asphere refits with exact patent odd-order coefficients
 - `agent_docs/patent-figure-sd-audit.md` - semi-diameter/cross-section audit of the odd-asphere lenses against their patent figures; method, per-lens results, and the image-circle coverage floor
+- `agent_docs/patent-figure-sd-audit-procedure.md` - step-by-step runbook for auditing one lens's semi-diameters against its patent figure
+- `agent_docs/sd-audit-queue.md` - semi-diameter work queue: image-circle floor failures, recorded figure/data shape deviations, and source blockers
 - `agent_docs/proprietary-glass-backfill.md` - patent line-index backfill workflow for unresolved proprietary glasses
 - `agent_docs/generated/` - generated glass, mirror fixture, and mount-SVG reports; refresh glass reports with
   `npm run generate:glass-reports`, hidden mirror fixture reports with `npm run generate:mirror-reports`, and the

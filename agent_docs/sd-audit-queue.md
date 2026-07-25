@@ -1,0 +1,90 @@
+# Semi-Diameter Audit Queue
+
+Work list for the semi-diameter / cross-section audit. Follow
+[patent-figure-sd-audit-procedure.md](patent-figure-sd-audit-procedure.md) for each row; the completed first pass is
+written up in [patent-figure-sd-audit.md](patent-figure-sd-audit.md).
+
+Take **Section A top-down** — those rows have physics behind them. Section B is figure-evidence only and is lower
+value per hour.
+
+Status values: `todo` · `in progress` · `done` · `blocked (reason)` · `no change (reason)`.
+
+## Section A — surfaces below the image-circle floor
+
+Regenerate this table at any time:
+
+```bash
+npm run audit:image-circle -- --markdown
+```
+
+A surface listed here cannot pass a corner ray to its own format. Rows marked **wide** have a half-field past ~42°,
+where the script's exit-pupil approximation stops being trustworthy — symmetric ultra-wides genuinely do have small
+rear elements, so those need a real chief-ray trace before anything is touched, and are parked at the bottom.
+
+| Lens | File | Patent | In `patents/` | Surfaces below floor (sd < floor) | Worst | Status |
+|---|---|---|---|---|---|---|
+| CARL ZEISS JENA BIOGON 35mm f/2.8 (pre-war) | `carl-zeiss-jena/ZeissBiogon35mmf28Prewar.data.ts` | US 2,084,309 | yes | 11 (12.40 < 15.19) | 2.79 mm | todo |
+| NIKON NIKKOR Z 50mm f/1.8 S | `nikon/NikonNikkorZ50f18S.data.ts` | JP WO2019/220618 A1 | yes (`WO2019220618A1.pdf`) | 25 (18.50 < 19.05), 26 (18.50 < 20.65) | 2.15 mm | todo |
+| LEICA SUMMILUX 28mm f/1.7 ASPH. (Leica Q) | `leica/Leica28mmf17.data.ts` | US 2016/0266350 A1 | yes | 21A (15.50 < 16.95) | 1.45 mm | todo |
+| OLYMPUS F.ZUIKO 35mm f/2.8 (Olympus XA) | `olympus/OlympusXAZuiko35mmf28.data.ts` | US 4,235,521 | yes | 11 (7.40 < 8.05) | 0.65 mm | todo |
+| RODENSTOCK GRANDAGON-N 90mm f/4.5 | `rodenstock/RodenstockGrandagonN90mmf45.data.ts` | DE 2444954 A1 | yes | 11 (20.20 < 28.85), 12 (25.20 < 33.46) | 8.65 mm | todo — **wide** |
+| SCHNEIDER SUPER-ANGULON 75mm f/5.6 | `schneider-kreuznach/SchneiderSuperAngulon75mmf56.data.ts` | US 3,376,091 | yes | 11 (17.00 < 22.76), 12 (18.50 < 26.23) | 7.73 mm | todo — **wide** |
+| RODENSTOCK GRANDAGON-N 75mm f/6.8 | `rodenstock/RodenstockGrandagonN75mmf68.data.ts` | DE 26 35 415 B1 | yes | 8 (10.60 < 12.33), 9 (15.80 < 23.20), 10 (19.00 < 25.37) | 7.40 mm | todo — **wide** |
+| RODENSTOCK GRANDAGON-N 65mm f/4.5 | `rodenstock/RodenstockGrandagonN65mmf45.data.ts` | DE 2444954 A1 | yes | 11 (14.40 < 21.64), 12 (18.00 < 25.09) | 7.24 mm | todo — **wide** |
+| CARL ZEISS HOLOGON 15mm f/8 | `carl-zeiss-oberkochen/ZeissHologon15mmf8.data.ts` | DE 1,241,637 B | yes | 4 (3.83 < 4.06), 5 (3.60 < 7.53), 6 (8.84 < 15.09) | 6.25 mm | todo — **wide** |
+| CARL ZEISS BIOGON 21mm f/4.5 | `carl-zeiss-oberkochen/ZeissBiogon21mmf45.data.ts` | US 2,721,499 | yes | 12 (6.72 < 11.72), 13 (7.98 < 14.07) | 6.09 mm | todo — **wide** |
+| RODENSTOCK GRANDAGON-N 75mm f/4.5 | `rodenstock/RodenstockGrandagonN75mmf45.data.ts` | DE 2444954 A1 | yes | 11 (16.80 < 21.57), 12 (21.00 < 25.04) | 4.77 mm | todo — **wide** |
+| SCHNEIDER TECHNIKA SUPER-ANGULON 75mm f/8 | `schneider-kreuznach/SchneiderTechnikaSuperAngulon75mmf8.data.ts` | JP S42-023896 | yes (`JPB 1967023896-000000.pdf`) | 9 (15.80 < 19.87), 10 (19.75 < 21.63) | 4.07 mm | todo — **wide** |
+
+Four lenses were cleared from this section on 2026-07-24: X100, X100V, X70, GFX100RF.
+
+### Not covered by the check
+
+`npm run audit:image-circle` skips 29 of 470 lenses: five production folded designs (the axial gap to the image plane
+is not the distance the ray travels), eight `reference/` mirror fixtures, and sixteen files with no `imageFormat`.
+Filling in `imageFormat` where the format is unambiguous — see
+[lens-mount-format-backfill.md](lens-mount-format-backfill.md) — brings those into scope for free.
+
+## Section B — figure-vs-data shape deviations (odd-asphere set)
+
+Measured during the first pass but **not acted on**: the evidence is photogrammetry only, at ±10–15%. `median` is
+whole-lens scale agreement; the listed elements are each element's ratio ÷ that median, so 1.00 would be a correct
+shape. Full context and figure-sheet references in [patent-figure-sd-audit.md](patent-figure-sd-audit.md).
+
+| Lens | median fig/data | Deviating elements | Status |
+|---|---|---|---|
+| GF 45mm f/2.8 | 0.96 | none beyond ±11% | no change (matches) |
+| XF 50mm f/1.0 | 0.99 | L2a 2.02, L2b/L2c 1.41, L1d 0.68 | todo |
+| GF 35-70mm | 0.99 | L31 1.51, L32 1.71, L11 0.79 | todo |
+| GF 100-200mm | 1.03 | L46 2.68, L47 2.31, L31–L33 ≈1.5, L13 0.59 | todo |
+| GF 23mm f/4 | 1.03 | L12 1.26, L11 1.17, L16 0.78 | todo |
+| XF 33mm f/1.4 | 1.04 | L22–L26 1.35–1.78, G1 all ≈0.80 | todo |
+| XF 23mm f/2 | 1.09 | L31 1.41, L32 1.41 | todo |
+| GFX100RF 35mm f/4 | 1.11 | front group unmeasurable (bracket contamination) | partial (rear fixed) |
+| XF 60mm f/2.4 | 1.12 | L11 0.80, L12 0.78, L22 1.19, L23 1.17 | todo |
+| XF 18mm f/2 | 1.16 | L8 1.80, L6 1.31 | todo |
+| GF 32-64mm | 1.20 | L32 1.78, L21g 1.41, L11/L12 ≈0.78 | todo |
+| XF 56mm f/1.2 | 1.23 | L21–L24 1.47–1.56, G1 all ≈0.75 | todo |
+| GF 20-35mm | 1.34 | L22 1.75, L21 1.39, L14 1.38 | todo |
+| XF 23mm f/1.4 | 0.96 | L23 1.65, L24 1.48, L22 1.42 | todo |
+| XF 16-55mm f/2.8 | 0.94 | L42/L43 ≈2.6, L41 0.24 — tail unreliable | todo |
+| XF 35mm f/1.4 | 1.37 | spread 0.41–1.24 | blocked (ray-overlaid figure would not measure) |
+| X100V 23mm f/2 | 1.49 | G2 ≈1.1–1.4 vs G1 | partial (rear fixed; G1/G2 blocked by edge thickness) |
+
+A caution before working this section: the same shape error recurs across it — rear groups drawn larger than we store
+them, front groups drawn smaller. That is the signature of sizing from a marginal-ray-plus-clearance rule, which
+under-counts chief-ray height near the image. Fixing it lens-by-lens off drawings will be slow and imprecise;
+re-deriving these from a real full-field chief-ray trace would settle the whole section at once and is probably the
+better investment.
+
+## Section C — source blockers
+
+Nothing can be audited on these until the source is available.
+
+| Lens | Blocker | Unblocks by |
+|---|---|---|
+| Zeiss Touit 50mm f/2.8 Macro | `JP 2015-161792 A` not in `patents/` | adding the PDF |
+| XF 16-55mm f/2.8 II | `US_2025234079_A1.pdf` has no text layer; Example 1's sheet not located | rendering pages to find it, or OCR |
+| GFX100RF 35mm f/4 (front group) | `US_2025362482_A1.pdf` has no text layer | OCR — FIG. 5 defines `hE2` as a surface's effective radius, so the tables may publish clear apertures outright |
+| Sigma 10-18mm f/2.8 | 図8 printed as a thumbnail; <20 px per element edge at 600 dpi | a higher-resolution copy of JP 2024-104911 A |
+| Sigma 14-24mm f/2.8 | 図1 exists only as the front-page abstract drawing (the drawing section starts at 図3) | a higher-resolution copy of JP 2018-189733 A |
