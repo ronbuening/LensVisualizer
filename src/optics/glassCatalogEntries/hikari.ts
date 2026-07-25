@@ -611,4 +611,22 @@ export const HIKARI_GLASS_ENTRIES: readonly GlassEntry[] = [
     code6: "804339",
     source: "Nikon/Hikari Zemax catalog 2017-11 via refractiveindex.info; E-LAFH2 page (formula 3 polynomial).",
   },
+  /* ────── Phase 35 Fujifilm GF 250mm coverage addition (July 2026) ────── */
+  {
+    name: "J-LAK7R",
+    vendor: "Hikari",
+    powerSeries: [
+      [2.68281356, 0],
+      [-0.012462194, 2],
+      [-0.000136478256, 4],
+      [0.0162751692, -2],
+      [0.000253121787, -4],
+      [0.000000172812439, -6],
+      [0.000000234124836, -8],
+    ],
+    nd: 1.6516,
+    vd: 58.618566,
+    PgF: 0.5401,
+    source: "Nikon/Hikari Zemax catalog 2017-11 via refractiveindex.info; J-LAK7R page (formula 3 power series).",
+  },
 ];

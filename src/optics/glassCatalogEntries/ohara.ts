@@ -1611,4 +1611,15 @@ export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
     code6: "621359",
     source: "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF), vendor-published discontinued-glass data.",
   },
+  /* ────── Phase 35 Fujifilm GF 250mm coverage addition (July 2026) ────── */
+  {
+    name: "S-LAL19",
+    vendor: "Ohara",
+    B: [0.973997577, 0.958186322, 1.20163359],
+    C: [0.00379332678, 0.0177574581, 83.79896],
+    nd: 1.72916,
+    vd: 54.095223,
+    PgF: 0.5436,
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info; S-LAL19 page.",
+  },
 ];
