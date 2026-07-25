@@ -77,6 +77,41 @@ describe("surface intersection helpers", () => {
     expect(result.t).toBeCloseTo(1.016, 12);
   });
 
+  it("intersects an odd-order aspheric sag surface at the analytic A3 height", () => {
+    const asph: AsphericCoefficients = { K: 0, A4: 0, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0, A3: 1e-3 };
+    const L = lensWithSurface(1e15, asph);
+    const result = intersectSagSurface({ origin: [2, 0, -1], direction: [0, 0, 1] }, 0, 0, L, { maxT: 5 });
+
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.radius).toBeCloseTo(2, 12);
+    expect(result.point[2]).toBeCloseTo(1e-3 * 2 ** 3, 12);
+    expect(result.t).toBeCloseTo(1.008, 12);
+  });
+
+  it("converges for a skew ray on a conic surface with mixed odd/even terms", () => {
+    const asph: AsphericCoefficients = {
+      K: -0.5,
+      A4: 1e-5,
+      A6: -2e-8,
+      A8: 0,
+      A10: 0,
+      A12: 0,
+      A14: 0,
+      A3: 5e-5,
+      A5: -3e-7,
+    };
+    const L = lensWithSurface(40, asph);
+    const direction = normalizeVector3([0.1, 0.05, 1]);
+    expect(direction).not.toBeNull();
+    const result = intersectSagSurface({ origin: [0, 0, -10], direction: direction! }, 0, 0, L, { maxT: 25 });
+
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.point[2]).toBeCloseTo(conicPolySag(result.radius, 40, asph), 10);
+    expect(Math.abs(result.residual)).toBeLessThan(1e-9);
+  });
+
   it("reports no bracket when the bounded segment cannot reach the surface", () => {
     const L = lensWithSurface(1e15);
     const result = intersectSagSurface(axialRay(0), 0, 10, L, { maxT: 5 });

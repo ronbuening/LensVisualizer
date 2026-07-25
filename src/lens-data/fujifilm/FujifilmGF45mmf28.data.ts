@@ -6,9 +6,8 @@ import type { LensDataInput } from "../../types/optics.js";
 // into an air-equivalent final image-space distance: 25.000 + 3.200 / 1.51680 + 4.617 = 31.726704641 mm.
 // Semi-diameters are inferred clear-aperture values. The patent does not publish CA/SD data; front entry
 // faces on surfaces 5, 7, 9, 15, and 16A are trimmed to avoid large visual overhangs against their local pairs.
-// The patent asphere uses odd and even polynomial terms from A3 through A12 with KA = 1 as a spherical base.
-// The LensVisualizer renderer supports even-order coefficients; surfaces 16A and 17A therefore use even-order
-// least-squares refits of the patent departures. Residuals are documented in the paired analysis file.
+// Surfaces 16A and 17A store the exact Example 1 odd/even polynomial terms
+// through A12. Patent KA = 1 converts to standard K = 0; zero A3 is omitted.
 
 const LENS_DATA = {
   key: "fujifilm-gf-45mm-f28-r-wr",
@@ -200,21 +199,29 @@ const LENS_DATA = {
   asph: {
     "16A": {
       K: 0,
-      A4: 9.140237671254482e-9,
-      A6: -3.2076146051124046e-8,
-      A8: 3.623455257819711e-10,
-      A10: -1.8067346582773748e-12,
-      A12: 4.565489086446384e-15,
-      A14: -4.062067928222134e-18,
+      A4: 2.5111094e-6,
+      A5: -8.1916033e-7,
+      A6: 3.0328098e-8,
+      A7: 4.4686427e-9,
+      A8: -2.4426688e-10,
+      A9: -1.0799226e-11,
+      A10: 6.563773e-13,
+      A11: 1.3638985e-14,
+      A12: -5.6762959e-16,
+      A14: 0,
     },
     "17A": {
       K: 0,
-      A4: 7.407770274535585e-6,
-      A6: -2.3805595017293367e-8,
-      A8: 2.2204232962354437e-10,
-      A10: -7.625401620201519e-13,
-      A12: 1.0407054139121728e-15,
-      A14: 4.381563145139462e-19,
+      A4: 1.0876283e-5,
+      A5: -1.3848879e-6,
+      A6: 1.6586534e-7,
+      A7: -7.3663085e-9,
+      A8: -3.4202876e-10,
+      A9: 5.5683892e-11,
+      A10: -1.3869137e-12,
+      A11: -7.6139587e-14,
+      A12: 3.4342285e-15,
+      A14: 0,
     },
   },
   var: {

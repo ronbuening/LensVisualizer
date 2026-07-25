@@ -75,7 +75,7 @@ where φ₁, φ₂ are the powers (1/f) of the two elements and ν₁, ν₂ are
 
 ## 7. Aspherical Surfaces
 
-A spherical surface is fully defined by one parameter, R. An **aspherical** surface adds a conic constant **K** and even-order polynomial coefficients **A4**, **A6**, **A8**, … that describe the departure from a sphere. The surface sag (depth at height *h* from the axis) is given by:
+A spherical surface is fully defined by one parameter, R. An **aspherical** surface adds a conic constant **K** and polynomial coefficients **A4**, **A6**, **A8**, … (typically even-order, though some patents also use odd orders like **A3** and **A5**) that describe the departure from a sphere. The surface sag (depth at height *h* from the axis) is given by:
 
 > **z(h) = (h²/R) / [1 + √(1 − (1+K)(h/R)²)] + A4·h⁴ + A6·h⁶ + A8·h⁸ + …**
 

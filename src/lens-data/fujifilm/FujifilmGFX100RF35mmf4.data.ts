@@ -12,13 +12,14 @@ import type { LensDataInput } from "../../types/optics.js";
  * Semi-diameters are inferred because Table 13 does not list clear apertures. The stop
  * semi-diameter is derived from the patent F-number and entrance-pupil geometry; element
  * clear apertures are conservative renderer apertures checked against edge thickness,
- * conic limits, and cross-gap sag intrusion.
+ * conic limits, and cross-gap sag intrusion. The 2026-07-24 patent-figure audit raised
+ * S16/S17 (L22) from 11.6/12.6 to 12.3/13.5 mm: the old pair fell just under the
+ * semi-diagonal a 44x33 corner ray needs 15.5 and 14.4 mm ahead of the image plane.
  *
- * Surface 15A contains odd-order aspherical coefficients in the patent. The current
- * renderer stores even-order aspheres only, so 15A is represented here by an even-order
- * least-squares refit over h = 0..13.0 mm. Refit residual: max 0.04 µm,
- * RMS 0.01 µm. The analysis file preserves the patent's
- * original odd-order coefficients.
+ * Surface 15A carries the patent's exact odd/even aspherical coefficients (A4-A20,
+ * including odd orders A5-A19). Earlier revisions stored an even-order least-squares
+ * refit (max residual 0.04 µm over h = 0..13.0 mm) while the renderer lacked
+ * odd-order support. The analysis file documents the full patent table.
  */
 
 const LENS_DATA = {
@@ -209,8 +210,8 @@ const LENS_DATA = {
     { label: "13A", R: -20.4535, d: 6.0, nd: 1.0, elemId: 0, sd: 11.4 },
     { label: "14A", R: -30.1885, d: 1.66, nd: 1.68863, elemId: 8, sd: 12.5 },
     { label: "15A", R: -137.7142, d: 6.55, nd: 1.0, elemId: 0, sd: 13.0 },
-    { label: "16", R: -14.3492, d: 1.14, nd: 1.51633, elemId: 9, sd: 11.6 },
-    { label: "17", R: -36.5121, d: 3.23, nd: 1.0, elemId: 0, sd: 12.6 },
+    { label: "16", R: -14.3492, d: 1.14, nd: 1.51633, elemId: 9, sd: 12.3 },
+    { label: "17", R: -36.5121, d: 3.23, nd: 1.0, elemId: 0, sd: 13.5 },
     { label: "18", R: 1e15, d: 5.76, nd: 1.92119, elemId: 10, sd: 25.8 },
     { label: "19", R: -69.9242, d: 5.3962, nd: 1.0, elemId: 0, sd: 25.8 },
   ],
@@ -252,17 +253,27 @@ const LENS_DATA = {
       A18: 1.7741841901e-18,
       A20: -2.0096774496e-21,
     },
+    // Exact patent odd/even coefficients (Table 15, KA = 7.0896629652 → K = KA − 1;
+    // A3 = 0 omitted; A7 uses the re-review-corrected 2.1858635689e-7).
     "15A": {
       K: 6.0896629652,
-      A4: -1.273921812305e-4,
-      A6: 6.225308367471e-7,
-      A8: -5.270017831864e-9,
-      A10: 8.497988104132e-11,
-      A12: -8.76772023499e-13,
-      A14: 4.28966910494e-15,
-      A16: -5.297188127984e-18,
-      A18: -2.446383729733e-20,
-      A20: 6.062789672869e-23,
+      A4: -1.0499566787e-4,
+      A5: -1.7524859132e-5,
+      A6: 4.5030349598e-6,
+      A7: 2.1858635689e-7,
+      A8: -1.8332704424e-7,
+      A9: 1.0104186656e-8,
+      A10: 3.2832007849e-9,
+      A11: -3.5373721277e-10,
+      A12: -2.6860875467e-11,
+      A13: 4.6941325681e-12,
+      A14: 6.2135840221e-14,
+      A15: -3.1574129484e-14,
+      A16: 4.8063364846e-16,
+      A17: 1.0713713899e-16,
+      A18: -3.3492681519e-18,
+      A19: -1.4581851029e-19,
+      A20: 6.0349230674e-21,
     },
   },
 

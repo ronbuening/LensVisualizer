@@ -519,7 +519,7 @@ The following terms appear throughout this article and correspond to specific fe
 
 **TRACKS FOCUS mode.** A variable-conjugate ray-trace mode that allows the user to change the object distance and observe how aberrations — including chromatic aberrations — shift as the lens is focused at different distances. Essential for evaluating whether a lens's APO correction holds from infinity to close focus.
 
-**K, A4, A6, A8 (Aspheric Coefficients).** The conic constant and even-order polynomial coefficients describing an aspheric surface profile. Displayed for aspheric elements in the prescription data. Aspheric surfaces provide additional degrees of freedom for aberration correction, including spherochromatism control in APO designs.
+**K, A4, A6, A8 (Aspheric Coefficients).** The conic constant and polynomial coefficients (typically even-order, sometimes odd) describing an aspheric surface profile. Displayed for aspheric elements in the prescription data. Aspheric surfaces provide additional degrees of freedom for aberration correction, including spherochromatism control in APO designs.
 
 **sd (Semi-Diameter).** The clear aperture radius of each surface in the prescription, defining the physical extent of each lens element through which rays pass.
 

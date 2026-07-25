@@ -11,18 +11,17 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  Focus: unit focus (entire lens moves, only BFD changes).         ║
  * ║                                                                    ║
  * ║  NOTE ON ASPHERICAL COEFFICIENTS:                                  ║
- * ║    Patent uses a non-standard sag equation with odd+even powers   ║
- * ║    (A3·h³ through A20·h²⁰) and a parabolic base (K_patent = 0).  ║
- * ║    Coefficients below are a least-squares refit to the standard   ║
- * ║    even-order-only sag equation with spherical base (K = 0).      ║
- * ║    Max residual: 0.44 µm (S10A), 0.35 µm (S11A) at sd = 8.0 mm. ║
+ * ║    Patent uses odd+even powers A3·h³ through A20·h²⁰ and KA = 0. ║
+ * ║    The exact Table 2 coefficients are stored below. Its conic    ║
+ * ║    convention converts to the standard renderer constant K = −1. ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
  * ║    Patent does not list semi-diameters. Estimated via combined     ║
  * ║    marginal ray (f/1.45) + chief ray (60% field) trace with ~5–8% ║
  * ║    clearance. Constrained by 52 mm filter thread (front group),   ║
  * ║    edge thickness ≥ 0.3 mm, and cross-gap sag overlap ≤ gap×1.1. ║
- * ║    S11A and S12 limited by tight 0.45 mm air gap.                 ║
+ * ║    S10A is limited to 8.4 mm by exact-profile rim slope; S11A    ║
+ * ║    and S12 are limited by the tight 0.45 mm air gap.             ║
  * ║                                                                    ║
  * ║  NOTE ON COVER GLASS:                                              ║
  * ║    Patent includes a 2.80 mm flat cover glass (nd = 1.51680,      ║
@@ -174,7 +173,7 @@ const LENS_DATA = {
     { label: "STO", R: 1e15, d: 3.2, nd: 1.0, elemId: 0, sd: 8.3 },
 
     // ── Rear Group GR (positive) ──
-    { label: "10A", R: -94.514, d: 2.5, nd: 1.5176, elemId: 5, sd: 8.5 },
+    { label: "10A", R: -94.514, d: 2.5, nd: 1.5176, elemId: 5, sd: 8.4 },
     { label: "11A", R: 45.548, d: 0.45, nd: 1.0, elemId: 0, sd: 6.5 },
 
     // ── Cemented triplet T1: L22 + L23 + L24 ──
@@ -185,39 +184,51 @@ const LENS_DATA = {
     // d = 21.98 mm: air-equivalent BFD to image (cover glass excluded)
   ],
 
-  /* ── Aspherical coefficients ──
-   *  Refitted from patent's odd+even polynomial (A3–A20) to standard even-only
-   *  format with spherical base (K = 0). Patent uses parabolic base (K_patent = 0)
-   *  with odd-order terms A3, A5, A7, ... that the renderer does not support.
-   *
-   *  Least-squares refit at sd = 8.0 mm:
-   *    S10A: max residual 0.44 µm, RMS 0.15 µm
-   *    S11A: max residual 0.35 µm, RMS 0.13 µm
+  /* ── Exact Example 1, Table 2 aspherical coefficients ──
+   *  Patent denominator sqrt(1 - KA*C²h²), so renderer K = KA - 1 = -1.
    */
   asph: {
     "10A": {
-      K: 0,
-      A4: 7.5398e-5,
-      A6: -4.9896e-5,
-      A8: 4.5017e-6,
-      A10: -2.3482e-7,
-      A12: 7.4625e-9,
-      A14: -1.4611e-10,
-      A16: 1.7093e-12,
-      A18: -1.0857e-14,
-      A20: 2.8399e-17,
+      K: -1,
+      A3: 1.4267934e-3,
+      A4: -1.6625706e-3,
+      A5: 7.1056683e-4,
+      A6: -9.1063817e-5,
+      A7: -6.7671475e-5,
+      A8: 3.1530346e-5,
+      A9: -2.7404199e-6,
+      A10: -1.2148981e-6,
+      A11: 2.9053673e-7,
+      A12: 6.3508375e-9,
+      A13: -7.9573382e-9,
+      A14: 4.5951622e-10,
+      A15: 9.3989975e-11,
+      A16: -9.7762088e-12,
+      A17: -4.3352953e-13,
+      A18: 7.1170331e-14,
+      A19: 2.5581917e-16,
+      A20: -1.6083703e-16,
     },
     "11A": {
-      K: 0,
-      A4: 1.897e-4,
-      A6: -5.6871e-5,
-      A8: 5.4658e-6,
-      A10: -3.0315e-7,
-      A12: 1.0355e-8,
-      A14: -2.2094e-10,
-      A16: 2.87e-12,
-      A18: -2.0759e-14,
-      A20: 6.4103e-17,
+      K: -1,
+      A3: 1.4075342e-3,
+      A4: -1.5407051e-3,
+      A5: 7.2833847e-4,
+      A6: -1.3764849e-4,
+      A7: -3.4723387e-5,
+      A8: 2.1553742e-5,
+      A9: -2.4723865e-6,
+      A10: -6.0987942e-7,
+      A11: 1.7824931e-7,
+      A12: -3.5081942e-9,
+      A13: -3.6689473e-9,
+      A14: 3.806084e-10,
+      A15: 2.1235855e-11,
+      A16: -5.4237286e-12,
+      A17: 1.6515932e-13,
+      A18: 2.1078707e-14,
+      A19: -1.6918406e-15,
+      A20: 3.4763829e-17,
     },
   },
 

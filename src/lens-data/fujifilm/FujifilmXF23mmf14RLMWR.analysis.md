@@ -156,16 +156,16 @@ Here C = 1/R. The patent's KA is equivalent to 1 + K in the common conic notatio
 | A13 | 1.5432811E-13 | 2.2843368E-13 | -6.6987628E-14 | 2.7496660E-13 |
 | A14 | -8.6065364E-15 | -1.1340132E-14 | 1.6259149E-17 | -6.8934430E-15 |
 
-The data renderer does not support odd-order aspherical terms. The `.data.ts` prescription therefore uses an even-order least-squares refit through A20 after uniform scaling to 23 mm. The fit was performed over the estimated clear semi-diameter of each aspherical surface.
+The `.data.ts` prescription stores this exact odd/even polynomial after uniform scaling to 23 mm. With scale factor $s = 0.973614465993$, each coefficient is transformed as $A_{n,\mathrm{scaled}} = A_{n,\mathrm{patent}} / s^{n-1}$; zero A3 terms remain omitted. This preserves the full Example 7 surface rather than approximating it with an even-order refit.
 
-| Surface | Fitted semi-diameter in scaled file (mm) | Max absolute residual (µm) | RMS residual (µm) |
-|---|---:|---:|---:|
-| 21A | 11.878 | 0.02 | 0.01 |
-| 22A | 11.878 | 0.06 | 0.02 |
-| 25A | 11.975 | 0.03 | 0.01 |
-| 26A | 11.975 | 0.08 | 0.03 |
+The exact scaled profiles give these departures from the corresponding paraxial spheres at the data-file semi-diameters:
 
-The residuals are small enough for layout and qualitative ray visualization. They should not be treated as a substitute for the original odd-order patent polynomial in wavefront-accurate optical design work.
+| Surface | Scaled semi-diameter | Exact departure |
+|---|---:|---:|
+| 21A | 11.87810 mm | −115.498 µm |
+| 22A | 11.87810 mm | +1057.587 µm |
+| 25A | 11.97546 mm | +222.423 µm |
+| 26A | 11.97546 mm | +354.395 µm |
 
 ## Conditional Expressions
 
@@ -201,7 +201,7 @@ The `.data.ts` file is scaled to the manufacturer-published 23 mm focal length. 
 
 $$23 / 23.623313748258 = 0.973614465993$$
 
-All radii, axial spacings, semi-diameters, focus-gap values, and asphere polynomial coefficients were scaled consistently. Refractive indices and Abbe numbers were not scaled. Patent cover-glass surfaces 27 and 28 were omitted, and their optical path was folded into the final BFD. The unscaled air-equivalent BFD is:
+All radii, axial spacings, semi-diameters, and focus-gap values were multiplied by $s$. Asphere coefficients were scaled with the dimensionally consistent inverse-power transform $A_{n,\mathrm{scaled}} = A_{n,\mathrm{patent}} / s^{n-1}$. Refractive indices and Abbe numbers were not scaled. Patent cover-glass surfaces 27 and 28 were omitted, and their optical path was folded into the final BFD. The unscaled air-equivalent BFD is:
 
 $$12.4725 + 2.8500 / 1.51680 + 0.2112 = 14.562656\,\text{mm}$$
 

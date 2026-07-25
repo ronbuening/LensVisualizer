@@ -188,7 +188,7 @@ $$
 
 with $C = 1/R$. In the project-standard conic equation, $K = K_A - 1$. Since every Example 10 asphere has $K_A = 1$, the project conic constant is **K = 0** for all aspherical surfaces.
 
-The patent includes odd powers A5, A7, and A9. The current renderer data model stores even powers only. The `.data.ts` file therefore uses an even-order least-squares refit over the selected rendering semi-diameter. The original patent coefficients remain summarized here:
+The patent includes odd powers A5, A7, and A9. The `.data.ts` file stores every Table 30 A4–A10 coefficient directly; zero A3 terms are omitted and schema-required A12/A14 are zero.
 
 | Surface |             A4 |             A5 |             A6 |             A7 |             A8 |             A9 |            A10 |
 | ------- | -------------: | -------------: | -------------: | -------------: | -------------: | -------------: | -------------: |
@@ -201,18 +201,18 @@ The patent includes odd powers A5, A7, and A9. The current renderer data model s
 | 22      | -2.2230188E-05 | -2.5662668E-06 | +6.2977636E-08 | +1.5501381E-08 | -1.3231686E-09 | +7.9174894E-11 | -4.3970839E-12 |
 | 23      | -1.4798556E-06 | -3.9669057E-06 | +1.9581443E-07 | +1.5953243E-08 | -8.6203549E-10 | -4.6746994E-11 | +2.4548978E-12 |
 
-The even-order refit residuals are small enough for diagrammatic rendering; they should not be treated as a replacement for the patent's full optical prescription in a production optical-design program.
+At the selected data-file semi-diameters, the exact profiles depart from their corresponding paraxial spheres by:
 
-| Data-file surface | Fit semi-diameter | RMS sag residual | Max absolute residual |
-| ----------------- | ----------------: | ---------------: | --------------------: |
-| 3A                |         15.000 mm |         3.314 µm |              9.233 µm |
-| 4A                |         14.000 mm |         1.876 µm |              5.256 µm |
-| 10A               |          8.400 mm |        0.0004 µm |             0.0014 µm |
-| 11A               |          8.400 mm |        0.0012 µm |             0.0034 µm |
-| 17A               |         10.500 mm |        0.0028 µm |             0.0085 µm |
-| 18A               |         10.500 mm |        0.0012 µm |             0.0037 µm |
-| 22A               |         13.400 mm |         1.661 µm |              4.837 µm |
-| 23A               |         13.865 mm |         0.725 µm |              2.265 µm |
+| Data-file surface | Semi-diameter | Exact departure |
+| ----------------- | ------------: | --------------: |
+| 3A                |     15.000 mm |    +577.975 µm |
+| 4A                |     14.000 mm |     −37.733 µm |
+| 10A               |      8.400 mm |    +308.149 µm |
+| 11A               |      8.400 mm |    +329.393 µm |
+| 17A               |     10.500 mm |     −96.106 µm |
+| 18A               |     10.500 mm |     +59.308 µm |
+| 22A               |     13.400 mm |   −1351.665 µm |
+| 23A               |     13.865 mm |    −542.723 µm |
 
 ## Conditional Expressions
 

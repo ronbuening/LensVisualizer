@@ -157,7 +157,7 @@ $$
 Zd = \frac{C h^2}{1 + \sqrt{1 - KA \cdot C^2 h^2}} + \sum_m A_m h^m
 $$
 
-Here `KA = 1.0000` for all four aspheres. Under this patent convention, KA = 1 corresponds to a spherical base term, equivalent to the standard conic constant K = 0. The polynomial contains both even and odd powers. A3 is zero on each surface, but A5, A7, A9, and A11 are nonzero; the patent aspheres are therefore not directly representable by the renderer's even-order-only format.
+Here `KA = 1.0000` for all four aspheres. Under this patent convention, KA = 1 corresponds to a spherical base term, equivalent to the standard conic constant K = 0. The polynomial contains both even and odd powers. A3 is zero on each surface and is omitted in the data file, while every nonzero A4–A12 term is stored directly.
 
 | Coefficient | Surface 20 | Surface 21 | Surface 25 | Surface 26 |
 |---|---:|---:|---:|---:|
@@ -171,14 +171,14 @@ Here `KA = 1.0000` for all four aspheres. Under this patent convention, KA = 1 c
 | A11 | 1.9268032E-12 | 2.2243703E-12 | -5.5852603E-12 | 8.1281733E-12 |
 | A12 | -1.9346120E-13 | -1.7496157E-13 | 2.0239815E-13 | -3.8055727E-13 |
 
-For the data file, each patent asphere was refit to an even-order A4-A20 polynomial over the inferred semi-diameter. The maximum refit residuals are small enough to be negligible for visualization:
+At the current inferred semi-diameters, the exact stored profiles give these departures from their corresponding paraxial spheres:
 
-| Data surface | Inferred SD | Patent departure at SD | Even-order refit max residual |
-|---|---:|---:|---:|
-| 20A | 10.60 mm | -116.75 µm | 0.005 µm |
-| 21A | 11.40 mm | +250.94 µm | 0.009 µm |
-| 25A | 10.20 mm | -120.87 µm | 0.002 µm |
-| 26A | 10.20 mm | +75.33 µm | 0.059 µm |
+| Data surface | Inferred SD | Exact departure |
+|---|---:|---:|
+| 20A | 11.0 mm | −138.385 µm |
+| 21A | 11.6 mm | +265.275 µm |
+| 25A | 10.7 mm | −158.032 µm |
+| 26A | 10.9 mm | +98.897 µm |
 
 ## Air Lenses
 

@@ -162,7 +162,29 @@ All element shapes are derived from the sign convention: R > 0 = convex toward o
 
 **Role:** The lens's sole aspherical element. Both surfaces carry polynomial departures from a spherical base, extending to 20th order with odd-power terms (A3, A5, A7…) in the patent's formulation. Positioned immediately behind the stop, L2a is the primary corrector for residual spherical aberration and higher-order coma.
 
-**Aspherical profile note:** The dominant aspherical contribution comes from A4 (≈5×10⁻⁵ on both surfaces). The patent's odd-order terms provide additional radial profile shaping — since h = √(x² + y²), odd powers of h remain rotationally symmetric. A3 = 0 on both surfaces, but A5 through A19 (odd) are non-zero and non-negligible. The data file includes only even-order coefficients A4–A14; odd-order terms and higher even terms (A16–A20) are omitted, making the aspherical profile approximate at large aperture heights.
+**Aspherical profile note:** The dominant aspherical contribution comes from A4 (≈5×10⁻⁵ on both surfaces). The patent's odd-order terms provide additional radial profile shaping — since h = √(x² + y²), odd powers of h remain rotationally symmetric. The data file transcribes the exact Table 12 coefficients through A20; A3 = 0 on both surfaces and is omitted.
+
+| Term | S15A | S16A |
+|---|---:|---:|
+| A4 | 5.0823068E−05 | 3.9661172E−05 |
+| A5 | 5.6696216E−06 | 7.3155985E−06 |
+| A6 | −1.1665918E−06 | −1.9241870E−06 |
+| A7 | 2.3011235E−07 | 2.0632606E−07 |
+| A8 | −8.5462646E−09 | 2.7709406E−08 |
+| A9 | −3.9871990E−09 | −6.9926396E−09 |
+| A10 | 5.8946218E−10 | −2.2702122E−11 |
+| A11 | 6.8551648E−12 | 9.8429055E−11 |
+| A12 | −7.4371184E−12 | −3.5432557E−12 |
+| A13 | 3.9451971E−13 | −7.7218349E−13 |
+| A14 | 3.7621265E−14 | 4.3918443E−14 |
+| A15 | −4.2785117E−15 | 3.5209637E−15 |
+| A16 | −2.5668735E−17 | −2.5005394E−16 |
+| A17 | 1.8252095E−17 | −8.7077803E−18 |
+| A18 | −4.3536351E−19 | 7.1579377E−19 |
+| A19 | −2.9072588E−20 | 9.0040531E−21 |
+| A20 | 1.1528202E−21 | −8.3059544E−22 |
+
+At the data-file semi-diameters, the exact profiles depart from their spherical bases by +1230.181 µm (S15A, 10.7 mm) and +632.133 µm (S16A, 9.9 mm).
 
 ### 3.8 — Elements 9–10 (L2b + L2c): Cemented Doublet D2
 
@@ -223,11 +245,9 @@ Rear-group semi-diameters are constrained by edge thickness requirements on the 
 
 The companion `.data.ts` file is at patent scale (f ≈ 49.549 mm, not rescaled to marketed 50 mm). Key limitations relative to the full patent prescription:
 
-1. **Aspherical coefficients truncated:** Only even-order A4–A14 included. The patent's odd-order terms (A5, A7, …, A19) and higher even terms (A16, A18, A20) are omitted. The aspherical surface profile is approximate, particularly at large aperture heights.
+1. **Back focal distance includes PP equivalent:** The last surface d = DD[22] + 2.850 (PP glass) + 1.000 (air) = 18.251 mm at infinity. The parallel plate (PP) itself is not modeled as separate surfaces.
 
-2. **Back focal distance includes PP equivalent:** The last surface d = DD[22] + 2.850 (PP glass) + 1.000 (air) = 18.251 mm at infinity. The parallel plate (PP) itself is not modeled as separate surfaces.
-
-3. **Variable gaps:** Two gaps change during focus — the stop-to-G2 gap ("STO") and the back focal distance ("22"). Their changes cancel exactly (−4.441 + 4.441 = 0).
+2. **Variable gaps:** Two gaps change during focus — the stop-to-G2 gap ("STO") and the back focal distance ("22"). Their changes cancel exactly (−4.441 + 4.441 = 0).
 
 ---
 

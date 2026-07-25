@@ -9,9 +9,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **470** lenses scanned (**462** visible)
-- **4272 / 5125** non-air surfaces use strict catalog Sellmeier data (83.4%)
-- **4302 / 5125** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 83.9%)
+- **473** lenses scanned (**465** visible)
+- **4308 / 5164** non-air surfaces use strict catalog Sellmeier data (83.4%)
+- **4338 / 5164** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 84.0%)
 - **2** mismatch surfaces in Sweep 1 across **2** lens files
 - **2** Sweep 1 surfaces have a matching untracked local patent PDF
 - **286** code-only missing-Sellmeier elements in Sweep 2
@@ -70,6 +70,7 @@ These are efficient follow-up targets after mismatch blockers because one or two
 | [SONY FE 85mm f/1.4 GM II](../../src/lens-data/sony/SonyFE85mmf14GMII.data.ts) | 92.9% (13/14) | 92.9% (13/14) | 1 | abbe: 1 |
 | [FUJIFILM FUJINON XF 56mm f/1.2 R WR](../../src/lens-data/fujifilm/FujifilmXF56mmf12RWR.data.ts) | 92.3% (12/13) | 92.3% (12/13) | 1 | abbe: 1 |
 | [NIKON AF-S NIKKOR 120-300mm f/2.8 E FL ED SR VR](../../src/lens-data/nikon/NikonNikkorAFS120300mmf28.data.ts) | 92.0% (23/25) | 92.0% (23/25) | 2 | abbe: 2 |
+| [FUJIFILM TCL-X100 33mm f/2 (Fujifilm X100)](../../src/lens-data/fujifilm/FujifilmX100TCLX100.data.ts) | 91.7% (11/12) | 91.7% (11/12) | 1 | abbe: 1 |
 | [NIKON 1 NIKKOR VR 10-30mm f/3.5-5.6](../../src/lens-data/nikon/Nikon1Nikkor1030mmf3556.data.ts) | 91.7% (11/12) | 91.7% (11/12) | 1 | abbe: 1 |
 | [Nikon AF Nikkor 20mm f/2.8D](../../src/lens-data/nikon/NikonAFNikkor20mmf28D.data.ts) | 91.7% (11/12) | 91.7% (11/12) | 1 | abbe: 1 |
 | [NIKON AF-S MICRO-NIKKOR 60mm f/2.8 G ED](../../src/lens-data/nikon/NikonAFSMicroNikkor60f28G.data.ts) | 91.7% (11/12) | 91.7% (11/12) | 1 | abbe: 1 |
@@ -143,6 +144,7 @@ These are efficient follow-up targets after mismatch blockers because one or two
 | [SCHNEIDER-KREUZNACH SUPER-ANGULON 90mm f/8](../../src/lens-data/schneider-kreuznach/SchneiderSuperAngulon90mmf8.data.ts) | 83.3% (5/6) | 83.3% (5/6) | 1 | abbe: 1 |
 | [SCHNEIDER-KREUZNACH TECHNIKA SUPER-ANGULON 75mm f/8](../../src/lens-data/schneider-kreuznach/SchneiderTechnikaSuperAngulon75mmf8.data.ts) | 83.3% (5/6) | 83.3% (5/6) | 1 | abbe: 1 |
 | [CANON ZOOM LENS 8.8-36.8mm f/1.8-2.8 (PowerShot G7 X)](../../src/lens-data/canon/CanonPowerShotG7X88368mmf1828.data.ts) | 81.8% (9/11) | 81.8% (9/11) | 2 | abbe: 2 |
+| [FUJIFILM SUPER EBC FUJINON 7.1-28.4mm f/2-2.8 (Fujifilm X10)](../../src/lens-data/fujifilm/FujifilmX1071284mmf228.data.ts) | 81.8% (9/11) | 81.8% (9/11) | 2 | abbe: 2 |
 | [LEICA SUMMILUX 28mm f/1.7 ASPH. (Leica Q, Q2, Q3)](../../src/lens-data/leica/Leica28mmf17.data.ts) | 81.8% (9/11) | 81.8% (9/11) | 2 | abbe: 2 |
 | [AGFA COLOR-MAGNOLAR II 100mm f/4.5](../../src/lens-data/agfa/AgfaColorMagnolarII100mmf45.data.ts) | 80.0% (4/5) | 40.0% (2/5) | 1 | abbe: 1 |
 | [CANON SERENAR 100mm f/3.5 I](../../src/lens-data/canon/CanonSerenar100mmf35.data.ts) | 80.0% (4/5) | 80.0% (4/5) | 1 | abbe: 1 |

@@ -251,4 +251,16 @@ export const CDGM_GLASS_ENTRIES: readonly GlassEntry[] = [
     code6: "625356",
     source: "CDGM H-F6 public datasheet, 2026 access; Sellmeier constants K1-L3, d-code 625356.",
   },
+  /* ────── Phase 35 Fujifilm GF 250mm coverage addition (July 2026) ────── */
+  {
+    name: "H-ZBAF52",
+    vendor: "CDGM",
+    B: [1.51688354, 0.211371553, 1.35763017],
+    C: [0.00857006565, 0.0370160061, 144.349229],
+    nd: 1.67003,
+    vd: 47.19506,
+    PgF: 0.5624,
+    code6: "670472",
+    source: "CDGM Zemax catalog 2022-06 via refractiveindex.info; H-ZBAF52 page.",
+  },
 ];

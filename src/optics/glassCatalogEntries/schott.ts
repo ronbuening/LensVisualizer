@@ -559,4 +559,16 @@ export const SCHOTT_GLASS_ENTRIES: readonly GlassEntry[] = [
     code6: "548458",
     source: "SCHOTT Optical Glass Datasheet LLF1, 2023-12-01; vendor Sellmeier coefficients.",
   },
+  /* ────── Phase 35 Fujifilm GF 250mm coverage addition (July 2026) ────── */
+  {
+    name: "N-LASF46B",
+    vendor: "Schott",
+    B: [2.17988922, 0.306495184, 1.56882437],
+    C: [0.0125805384, 0.0567191367, 105.316538],
+    nd: 1.90366,
+    vd: 31.32,
+    PgF: 0.5956,
+    code6: "904313",
+    source: "Schott Zemax catalog 2017-01-20b via refractiveindex.info; N-LASF46B page.",
+  },
 ];

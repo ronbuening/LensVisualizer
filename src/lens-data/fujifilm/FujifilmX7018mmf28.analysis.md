@@ -95,7 +95,7 @@ The glass (nd = 1.56867, νd = 58.50) does not match any standard entry in the O
 
 nd = 1.68201, νd = 31.43. Glass: unmatched moldable flint (no catalog match). f = −34.2 mm.
 
-L31 is the second aspherical element and carries the most extreme aspherical departure in the design. In the paraxial region, the element is biconcave (R₁₀ = −39.362 mm concave toward object; R₁₁ = +58.138 mm concave toward image), but the aspherical polynomial transforms the peripheral profile dramatically. At estimated semi-diameters of approximately 6.2 mm (S10) and 6.5 mm (S11), the aspherical departures reach approximately 1100 µm and 120 µm respectively relative to their paraxial sphere equivalents — departures that completely dominate the surface shape at the periphery.
+L31 is the second aspherical element and carries the most extreme aspherical departure in the design. In the paraxial region, the element is biconcave (R₁₀ = −39.362 mm concave toward object; R₁₁ = +58.138 mm concave toward image), but the aspherical polynomial transforms the peripheral profile dramatically. At the data-file semi-diameters of 9.30 mm (S10) and 9.60 mm (S11), the exact patent profiles depart by −1823.797 µm and −1653.712 µm respectively from their paraxial sphere equivalents — departures that completely dominate the surface shape at the periphery. Those semi-diameters are also where the transcription stops being usable: S10A's polynomial reaches its steepest slope near h = 9.6 mm, turns over just past it, and diverges beyond h = 10 mm, so the element cannot be drawn out to the ~10.8 mm semi-diameter FIG. 1 shows.
 
 This extreme aspherization is the hallmark of modern compact camera field-flattener designs. L31 sits far from the aperture stop (separated by the full 4.493 mm air gap that serves as the focus travel space), where chief-ray heights are at their maximum. At these heights, the aspherical profiles directly sculpt the wavefront to correct field curvature, astigmatism, and distortion simultaneously — tasks that would require multiple additional spherical elements in a conventional design. The patent specifically notes that aspherical surfaces in G3 prevent off-axis rays from being refracted excessively, facilitating compact wide-angle correction (¶0049).
 
@@ -165,9 +165,32 @@ where $C = 1/R$ is the paraxial curvature, $h$ is the radial height from the opt
 - **Odd-order terms:** The polynomial includes odd powers of $h$ (A3, A5, A7, …, A19) in addition to the standard even powers. These odd-order terms are non-standard — most commercial lens-design software and ray-tracing renderers support only even-order aspherics (A4, A6, …). The odd-order terms provide additional degrees of freedom for shaping the radial sag profile, allowing finer control over the wavefront correction at different zonal heights than even-order polynomials alone can achieve.
 - **Coefficient count:** Each surface carries 18 polynomial coefficients (A3 through A20), for a total of 72 aspherical degrees of freedom across the four surfaces.
 
-### Refit methodology
+### Exact patent coefficients
 
-The companion data file uses the standard even-order aspheric convention with $K = 0$ (spherical base) and coefficients A4 through A20. The patent's full sag profile (paraboloid base plus odd+even polynomial) was sampled densely across $h = [0, \text{SD}]$ for each surface, and a least-squares fit of the residual (patent sag minus spherical base sag) to the nine even-order terms (A4, A6, A8, A10, A12, A14, A16, A18, A20) was performed. Maximum fit residuals are approximately 0.1 µm on S8A, 0.5 µm on S9A, 7 µm on S10A, and 9 µm on S11A. The larger residuals on the G3 surfaces reflect the extreme aspherical departure and the significant odd-order contributions (A3 ≈ 7.2 × 10⁻³ on S10A, 5.6 × 10⁻³ on S11A) that even-order polynomials cannot fully reproduce. These residuals are acceptable for visualization purposes but are documented here for transparency.
+The companion data file transcribes Example 1 Table 3 directly. Patent $K_A = 0$ converts to renderer $K = -1$, preserving the paraboloid base, and every non-zero odd/even coefficient from A3 through A20 is retained:
+
+| Term | S8A | S9A | S10A | S11A |
+|---|---:|---:|---:|---:|
+| A3 | 1.3782299E−03 | 1.6676754E−03 | 7.1558711E−03 | 5.5995896E−03 |
+| A4 | −3.9906529E−03 | −2.4750326E−03 | −4.5021273E−03 | −2.8612644E−03 |
+| A5 | 3.0279366E−03 | 1.2407224E−03 | 5.5943157E−04 | 1.4221896E−04 |
+| A6 | −7.2335607E−04 | −2.8344250E−05 | 1.8141289E−04 | 1.3246894E−04 |
+| A7 | −5.2662171E−04 | −1.8838124E−04 | −6.8061703E−05 | −2.6896787E−05 |
+| A8 | 4.3174050E−04 | 5.2306441E−05 | 7.9699513E−07 | −1.3966448E−06 |
+| A9 | −1.0667147E−04 | 7.3270033E−06 | 2.4057863E−06 | 8.5583589E−07 |
+| A10 | −2.6123249E−05 | −5.7426490E−06 | −1.9151359E−07 | −3.0874398E−08 |
+| A11 | 3.1013165E−05 | 6.1758754E−07 | −4.5583276E−08 | −1.2225967E−08 |
+| A12 | −7.7837347E−06 | 2.4398960E−07 | 5.3485862E−09 | 9.4461070E−10 |
+| A13 | −1.7599849E−06 | −7.3886864E−08 | 5.5459375E−10 | 8.3855914E−11 |
+| A14 | 1.2281672E−06 | −1.4360895E−09 | −8.1148605E−11 | −9.9278279E−12 |
+| A15 | −9.1395399E−08 | 2.9375274E−09 | −4.5531991E−12 | −1.6287784E−13 |
+| A16 | −6.0784881E−08 | −1.9017547E−10 | 7.6779070E−13 | 4.3963915E−14 |
+| A17 | 1.2422264E−08 | −5.5363331E−11 | 2.2470633E−14 | −6.9690143E−16 |
+| A18 | 5.0707140E−10 | 5.8994028E−12 | −4.1664211E−15 | −6.2998485E−17 |
+| A19 | −3.2671505E−10 | 3.9589140E−13 | −4.9469722E−17 | 3.2617438E−18 |
+| A20 | 2.3730773E−11 | −5.2542757E−14 | 9.7697856E−18 | −8.4650758E−20 |
+
+At the data-file semi-diameters, the exact profiles depart from the corresponding paraxial spheres by +247.177 µm (S8A, 4.75 mm), +367.516 µm (S9A, 5.15 mm), −1823.797 µm (S10A, 9.30 mm), and −1653.712 µm (S11A, 9.60 mm).
 
 ### S8A and S9A — L23 (G2 trailing singlet)
 

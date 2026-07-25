@@ -59,7 +59,7 @@ jobs:
           node-version: "24.15.0"
           cache: npm
       - run: npm ci
-      - run: npm audit --audit-level=high
+      - run: npm run audit:dependencies
 
   build:
     runs-on: ubuntu-latest

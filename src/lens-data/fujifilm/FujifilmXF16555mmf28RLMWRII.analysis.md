@@ -182,7 +182,7 @@ Four elements are aspherical on both faces: L21 (surfaces 6 and 7), L31 (14 and 
 
 The patent's sag expression uses KA in the radical as `sqrt(1 − KA·C²h²)`. In the standard LensVisualizer convention this corresponds to `K = KA − 1`. Every Example 1 asphere has KA = 1.0000000, so the standard conic constant is K = 0 and the base conic is spherical.
 
-The patent includes odd polynomial powers A3, A5, A7, and A9 as well as even powers A4, A6, A8, and A10. LensVisualizer's current data format supports even-order polynomial terms only. The data file therefore uses even-order least-squares refits A4–A14 over the stored clear semi-diameters. The full patent coefficients from Table 3 are preserved below, and the refit error was checked numerically.
+The patent includes odd polynomial powers A3, A5, A7, and A9 as well as even powers A4, A6, A8, and A10. The data file stores the complete Table 3 polynomial directly on all eight surfaces. The two tabulated A3 values near $5\times10^{-20}$ are retained literally; the remaining zero A3 terms are omitted.
 
 | Surface | Element / face | KA | A3 | A4 | A5 | A6 | A7 | A8 | A9 | A10 |
 |---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
@@ -195,18 +195,18 @@ The patent includes odd polynomial powers A3, A5, A7, and A9 as well as even pow
 | 27A | L51 object | 1.0000000e+00 | 0.0000000e+00 | +1.3645834e-06 | +2.2386580e-06 | −3.1204780e-07 | +1.3901254e-08 | +1.9576814e-09 | −1.1400117e-10 | −3.3529432e-12 |
 | 28A | L51 image | 1.0000000e+00 | 0.0000000e+00 | +2.7872114e-05 | −1.7781958e-06 | +1.0818354e-08 | +1.1087568e-08 | +5.5540452e-10 | −1.3796432e-11 | −5.4619350e-12 |
 
-| Surface | Fit semi-diameter | Max refit residual | RMS residual |
-|---|---:|---:|---:|
-| 6A | 12.5 | 0.409 | 0.124 |
-| 7A | 10.1 | 0.097 | 0.030 |
-| 14A | 9.3 | 0.003 | 0.001 |
-| 15A | 9.8 | 0.011 | 0.003 |
-| 22A | 11.0 | 0.032 | 0.010 |
-| 23A | 11.0 | 0.010 | 0.003 |
-| 27A | 15.0 | 0.106 | 0.036 |
-| 28A | 15.3 | 0.179 | 0.053 |
+At the current data-file semi-diameters, the exact profiles have these departures from their corresponding paraxial spheres:
 
-The largest refit residual is at 6A and remains about 0.409 µm over the selected clear aperture. This is small enough for the SVG/raytrace viewer but should not be mistaken for the exact manufacturing asphere in the patent.
+| Surface | Semi-diameter | Exact departure |
+|---|---:|---:|
+| 6A | 12.5 mm | +377.281 µm |
+| 7A | 10.1 mm | +16.939 µm |
+| 14A | 9.8 mm | −126.997 µm |
+| 15A | 10.2 mm | +102.315 µm |
+| 22A | 11.4 mm | −486.404 µm |
+| 23A | 11.2 mm | −0.097 µm |
+| 27A | 14.7 mm | −451.562 µm |
+| 28A | 14.9 mm | −101.954 µm |
 
 ## Chromatic Correction Strategy
 

@@ -19,9 +19,8 @@ import type { LensDataInput } from "../../types/optics.js";
  *
  * NOTE ON ASPHERES:
  *   Patent surfaces 5 and 6 contain odd polynomial terms A3, A5, A7, ... A15. The viewer's
- *   asphere model supports even powers only, so surfaces 5A and 6A are stored as even-order
- *   least-squares refits over the 17.5 mm semi-diameter used here. The refit maximum residuals
- *   are 1.59 um (surface 5A) and 1.64 um (surface 6A); RMS residuals are 0.645 um and 0.665 um.
+ *   asphere model supports those terms directly, so surfaces 5A and 6A store the exact patent
+ *   odd/even A3-A16 coefficients.
  *   Surfaces 1A, 28A, and 29A retain the patent even-order coefficients directly.
  *
  * NOTE ON SEMI-DIAMETERS:
@@ -336,23 +335,37 @@ const LENS_DATA = {
     "1A": { K: 0, A4: 6.55174e-6, A6: -5.9525e-9, A8: 5.79271e-12, A10: -2.8862e-15, A12: 6.61914e-19, A14: 0, A16: 0 },
     "5A": {
       K: 0,
-      A4: 2.6355363351e-5,
-      A6: -4.898165343281e-7,
-      A8: 6.275895844833e-9,
-      A10: -4.342814520702e-11,
-      A12: 1.636386185271e-13,
-      A14: -3.190533830162e-16,
-      A16: 2.52843573901e-19,
+      A3: 1.93222e-4,
+      A4: -3.68159e-5,
+      A5: 5.25855e-6,
+      A6: -6.73333e-7,
+      A7: 9.17837e-8,
+      A8: -6.28671e-9,
+      A9: 3.30188e-11,
+      A10: 1.65903e-11,
+      A11: -7.27135e-13,
+      A12: 8.8693e-15,
+      A13: -2.15003e-17,
+      A14: -9.32433e-19,
+      A15: 2.26985e-19,
+      A16: -5.26081e-21,
     },
     "6A": {
       K: 0,
-      A4: 3.274258936137e-5,
-      A6: -4.599579768608e-7,
-      A8: 5.911256041307e-9,
-      A10: -4.247059464775e-11,
-      A12: 1.645702038134e-13,
-      A14: -3.268377966613e-16,
-      A16: 2.6162462446e-19,
+      A3: 1.94996e-4,
+      A4: -2.79917e-5,
+      A5: 3.65169e-6,
+      A6: -2.89294e-7,
+      A7: 5.54599e-8,
+      A8: -4.95413e-9,
+      A9: 4.32334e-12,
+      A10: 1.90161e-11,
+      A11: -8.8954e-13,
+      A12: 1.29484e-14,
+      A13: 5.98468e-17,
+      A14: -2.64408e-18,
+      A15: -2.71372e-19,
+      A16: 1.09024e-20,
     },
     "28A": {
       K: 0,

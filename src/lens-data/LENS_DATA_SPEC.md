@@ -677,6 +677,10 @@ asph: {
     A16:  0,             // 16th-order (optional)
     A18:  0,             // 18th-order (optional)
     A20:  0,             // 20th-order (optional)
+    // A3, A5, A7, ..., A19 — optional odd orders; include only when the patent
+    // provides them and they are non-zero (common in Fujifilm patents)
+    A5:  -3.2635e-06,    // 5th-order (optional)
+    A7:   3.1413e-08,    // 7th-order (optional)
   },
 }
 ```
@@ -685,12 +689,19 @@ asph: {
 ```
 Z(h) = (h²/R) / [1 + √(1 − (1+K)·(h/R)²)] + A4·h⁴ + A6·h⁶ + A8·h⁸ + A10·h¹⁰ + A12·h¹² + A14·h¹⁴
        [+ A16·h¹⁶ + A18·h¹⁸ + A20·h²⁰]   ← optional; omit or set 0 when unused
+       [+ A3·h³ + A5·h⁵ + A7·h⁷ + ... + A19·h¹⁹]   ← optional odd orders; omit when unused
 ```
 
 **Rules:**
 - Keys must match existing surface labels
 - Set unused required coefficients (A4–A14) to `0`
 - A16, A18, A20 are optional — include only when the patent specifies them; omit entirely when not used
+- Odd orders A3, A5, ..., A19 are optional — include only when the patent specifies a non-zero value; omit
+  zero-valued odd terms entirely. Since h is the radial height (h ≥ 0), odd powers remain rotationally
+  symmetric; they do not imply a decentered or anamorphic surface.
+- **Patent conic conversion:** Some patents (notably Fujifilm) write the conic denominator as
+  √(1 − KA·(h/R)²) without the (1+K) factor. Convert with K = KA − 1 before entering the data file
+  (KA = 1 → K = 0 spherical base).
 - For all-spherical designs: `asph: {}`
 - **Conic limit:** When K > 0 (hyperboloid), the surface semi-diameter must satisfy sd < |R| / √(1+K). The validator enforces sd ≤ 0.98 × this limit.
 

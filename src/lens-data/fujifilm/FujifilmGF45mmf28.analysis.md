@@ -217,16 +217,16 @@ Surface 16 is the weakly curved front surface of L2f. At h = 12 mm, the departur
 
 Surface 17 is the stronger rear surface of L2f and carries the main aspherical correction. The departure is approximately +27 µm at h = 8 mm, +66 µm at h = 10 mm, and +141 µm at h = 12 mm. At the modeled 19.0 mm clear semi-diameter, the departure reaches about +1.595 mm. The positive departure means the actual rear surface is less deeply concave than the spherical base at the rim, reducing excessive marginal refraction on this strong converging surface.
 
-### Even-order refit used in the data file
+### Data-file transcription
 
-LensVisualizer's current asphere model accepts even-order coefficients only. The data file therefore uses an even-order least-squares refit of the full patent departure, not a direct coefficient transcription. The fit was performed over each modeled semi-diameter and uses standard K = 0.
+The data file stores every nonzero A4–A12 term above directly, including the odd orders; zero A3 is omitted and schema-required A14 is zero. Both surfaces use standard K = 0.
 
-| Surface | Fit radius | Max residual | RMS residual | Edge departure, patent | Edge departure, refit |
-|---|---:|---:|---:|---:|---:|
-| 16A | 17.0 mm | 0.175 µm | 0.051 µm | +0.087712 mm | +0.087785 mm |
-| 17A | 19.0 mm | 0.111 µm | 0.050 µm | +1.594924 mm | +1.594817 mm |
+| Surface | Semi-diameter | Exact departure |
+|---|---:|---:|
+| 16A | 17.0 mm | +87.712 µm |
+| 17A | 19.0 mm | +1594.924 µm |
 
-These residuals are far below normal drafting or rendering significance. The analysis document preserves the original odd/even patent coefficients, while the data file stores the even-order refit required by the renderer.
+These edge departures provide regression checks for the direct patent transcription.
 
 ## Conditional Expressions
 

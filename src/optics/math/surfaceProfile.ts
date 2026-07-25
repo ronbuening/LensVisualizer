@@ -74,7 +74,7 @@ export function createSphericalProfile(R: number): SurfaceProfile {
  * Create a conic-polynomial aspheric surface profile.
  *
  * @param R - signed base radius in mm
- * @param asphere - conic constant and even-order polynomial coefficients
+ * @param asphere - conic constant and polynomial coefficients (even A4–A20 plus optional odd A3–A19)
  * @returns sag profile with finite-radius limits derived from the conic domain
  */
 export function createAsphericProfile(R: number, asphere: AsphericCoefficients): SurfaceProfile {

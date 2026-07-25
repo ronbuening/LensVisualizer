@@ -12,15 +12,19 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                    ║
  * ║  NOTE ON ASPHERICAL SURFACES:                                      ║
  * ║    Patent uses KA convention where KA = (1+K). All surfaces have  ║
- * ║    KA = 0 (paraboloid base, K = −1 standard). Patent polynomial   ║
- * ║    includes odd-order terms (A3–A19). Coefficients below are a    ║
- * ║    least-squares refit to even-only (A4–A20) with K = 0           ║
- * ║    (spherical base). Max refit residual: ~9 µm on S11A.           ║
+ * ║    KA = 0 (paraboloid base, K = −1 standard). The exact patent    ║
+ * ║    odd/even coefficients A3–A20 are transcribed below.            ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
  * ║    Patent does not list semi-diameters. Estimated from combined   ║
  * ║    marginal + chief ray trace, then visually tuned against the     ║
  * ║    published Fujifilm lens configuration section.                  ║
+ * ║    G3 (L31, L32) was resized in the 2026-07-24 patent-figure      ║
+ * ║    audit: the old S13 sd = 8.20 mm could not pass an APS-C corner ║
+ * ║    ray only 5.09 mm ahead of the image plane. FIG. 1 draws L31 at ║
+ * ║    ~10.8 mm and L32 at ~12.7 mm semi-diameter. L32 matches the     ║
+ * ║    figure; L31 is capped at 9.3/9.6 mm because surface 10A's      ║
+ * ║    polynomial turns over near h = 9.7 mm and diverges past 10 mm. ║
  * ║                                                                    ║
  * ║  IMPORTANT: This file describes ONLY the optical design:           ║
  * ║    ✓ Glass elements and surfaces (front element to image plane)   ║
@@ -161,65 +165,99 @@ const LENS_DATA = {
     { label: "9A", R: -10.81559, d: 4.493, nd: 1.0, elemId: 0, sd: 5.15 }, // L23 rear → air (asph) — variable gap
 
     // ── G3: singlet L31, singlet L32 ──
-    { label: "10A", R: -39.36209, d: 1.55, nd: 1.68201, elemId: 6, sd: 6.25 }, // L31 front (asph)
-    { label: "11A", R: 58.13827, d: 0.3, nd: 1.0, elemId: 0, sd: 6.55 }, // L31 rear → air (asph)
-    { label: "12", R: 124.77, d: 4.32, nd: 1.883, elemId: 7, sd: 7.55 }, // L32 front
-    { label: "13", R: -31.869, d: 5.093, nd: 1.0, elemId: 0, sd: 8.2 }, // L32 rear → image (air-equiv BFD, cover glass folded)
+    { label: "10A", R: -39.36209, d: 1.55, nd: 1.68201, elemId: 6, sd: 9.3 }, // L31 front (asph) — capped by polynomial turnover
+    { label: "11A", R: 58.13827, d: 0.3, nd: 1.0, elemId: 0, sd: 9.6 }, // L31 rear → air (asph)
+    { label: "12", R: 124.77, d: 4.32, nd: 1.883, elemId: 7, sd: 11.7 }, // L32 front
+    { label: "13", R: -31.869, d: 5.093, nd: 1.0, elemId: 0, sd: 12.7 }, // L32 rear → image (air-equiv BFD, cover glass folded)
   ],
 
   /* ── Aspherical coefficients ──
-   *  Original patent: KA = 0 (paraboloid base, K_std = −1), odd+even polynomial A3–A20.
-   *  Refit below: K = 0 (spherical base), even-only A4–A20.
-   *  Least-squares refit over h = [0, estimated SD]. Max residual ~9 µm on S11A.
+   *  Exact patent Table 3 coefficients: KA = 0 → K = −1, odd/even A3–A20.
    */
   asph: {
     "8A": {
-      K: 0,
-      A4: -7.63207e-5,
-      A6: -6.815212e-5,
-      A8: 3.257433e-5,
-      A10: -7.629299e-6,
-      A12: 1.097889e-6,
-      A14: -9.482027e-8,
-      A16: 4.805646e-9,
-      A18: -1.31934e-10,
-      A20: 1.515276e-12,
+      K: -1,
+      A3: 1.3782299e-3,
+      A4: -3.9906529e-3,
+      A5: 3.0279366e-3,
+      A6: -7.2335607e-4,
+      A7: -5.2662171e-4,
+      A8: 4.317405e-4,
+      A9: -1.0667147e-4,
+      A10: -2.6123249e-5,
+      A11: 3.1013165e-5,
+      A12: -7.7837347e-6,
+      A13: -1.7599849e-6,
+      A14: 1.2281672e-6,
+      A15: -9.1395399e-8,
+      A16: -6.0784881e-8,
+      A17: 1.2422264e-8,
+      A18: 5.070714e-10,
+      A19: -3.2671505e-10,
+      A20: 2.3730773e-11,
     },
     "9A": {
-      K: 0,
-      A4: 2.874787e-6,
-      A6: 8.775708e-6,
-      A8: 1.578907e-5,
-      A10: -4.786933e-6,
-      A12: 6.402272e-7,
-      A14: -4.567588e-8,
-      A16: 1.816831e-9,
-      A18: -3.811848e-11,
-      A20: 3.29365e-13,
+      K: -1,
+      A3: 1.6676754e-3,
+      A4: -2.4750326e-3,
+      A5: 1.2407224e-3,
+      A6: -2.834425e-5,
+      A7: -1.8838124e-4,
+      A8: 5.2306441e-5,
+      A9: 7.3270033e-6,
+      A10: -5.742649e-6,
+      A11: 6.1758754e-7,
+      A12: 2.439896e-7,
+      A13: -7.3886864e-8,
+      A14: -1.4360895e-9,
+      A15: 2.9375274e-9,
+      A16: -1.9017547e-10,
+      A17: -5.5363331e-11,
+      A18: 5.8994028e-12,
+      A19: 3.958914e-13,
+      A20: -5.2542757e-14,
     },
     "10A": {
-      K: 0,
-      A4: 5.997574e-7,
-      A6: 2.72218e-6,
-      A8: 7.312621e-6,
-      A10: -2.906363e-6,
-      A12: 3.244515e-7,
-      A14: -1.74115e-8,
-      A16: 5.000966e-10,
-      A18: -7.421171e-12,
-      A20: 4.480808e-14,
+      K: -1,
+      A3: 7.1558711e-3,
+      A4: -4.5021273e-3,
+      A5: 5.5943157e-4,
+      A6: 1.8141289e-4,
+      A7: -6.8061703e-5,
+      A8: 7.9699513e-7,
+      A9: 2.4057863e-6,
+      A10: -1.9151359e-7,
+      A11: -4.5583276e-8,
+      A12: 5.3485862e-9,
+      A13: 5.5459375e-10,
+      A14: -8.1148605e-11,
+      A15: -4.5531991e-12,
+      A16: 7.677907e-13,
+      A17: 2.2470633e-14,
+      A18: -4.1664211e-15,
+      A19: -4.9469722e-17,
+      A20: 9.7697856e-18,
     },
     "11A": {
-      K: 0,
-      A4: -1.21214e-9,
-      A6: -1.066351e-8,
-      A8: -7.52971e-8,
-      A10: -3.223344e-7,
-      A12: 3.279535e-8,
-      A14: -1.378669e-9,
-      A16: 2.918286e-11,
-      A18: -3.036122e-13,
-      A20: 1.206659e-15,
+      K: -1,
+      A3: 5.5995896e-3,
+      A4: -2.8612644e-3,
+      A5: 1.4221896e-4,
+      A6: 1.3246894e-4,
+      A7: -2.6896787e-5,
+      A8: -1.3966448e-6,
+      A9: 8.5583589e-7,
+      A10: -3.0874398e-8,
+      A11: -1.2225967e-8,
+      A12: 9.446107e-10,
+      A13: 8.3855914e-11,
+      A14: -9.9278279e-12,
+      A15: -1.6287784e-13,
+      A16: 4.3963915e-14,
+      A17: -6.9690143e-16,
+      A18: -6.2998485e-17,
+      A19: 3.2617438e-18,
+      A20: -8.4650758e-20,
     },
   },
 

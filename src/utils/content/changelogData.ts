@@ -19,6 +19,17 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-07-24 ──────────────────────────────────────────────────
+  {
+    date: "2026-07-24",
+    type: "lens",
+    summary: "Added the Fujifilm GF 250mm, TCL-X100, and X10 7.1-28.4mm lenses",
+  },
+  {
+    date: "2026-07-24",
+    type: "improvement",
+    summary: "Added odd-order aspheric support with exact patent aspheres",
+  },
   // ── 2026-07-23 ──────────────────────────────────────────────────
   {
     date: "2026-07-23",

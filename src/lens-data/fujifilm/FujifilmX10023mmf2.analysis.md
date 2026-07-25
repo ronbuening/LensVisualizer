@@ -136,17 +136,40 @@ where $C = 1/R$ is the paraxial curvature, $K$ is the conic constant, and $A_m$ 
 
 Two features of this equation deserve comment regarding the convention used in the companion data file.
 
-First, the conic term uses $1 - K \cdot C^2 h^2$ under the radical, rather than the standard $1 - (1+K) \cdot C^2 h^2$. In the patent's convention, $K = 0$ produces a parabolic base curve ($Z = C h^2 / 2$), whereas the standard convention uses $K = 0$ for a sphere. With $K = 0$ on both patent surfaces, the standard-convention equivalent would be $K_{\text{std}} = -1$ (a paraboloid). At the relevant semi-diameters (~6 mm), the sag difference between these two base curves is on the order of a few microns and is fully absorbed by the polynomial refit described below.
+First, the conic term uses $1 - K \cdot C^2 h^2$ under the radical, rather than the standard $1 - (1+K) \cdot C^2 h^2$. In the patent's convention, $K = 0$ produces a parabolic base curve ($Z = C h^2 / 2$), whereas the standard convention uses $K = 0$ for a sphere. Patent $K = 0$ therefore converts to standard-convention $K = -1$ on both surfaces.
 
-Second, the equation includes **odd-order terms** ($A_3$, $A_5$, $A_7$, etc.) in addition to the standard even-order terms. Since $h$ is defined as a radial distance from the optical axis ($h \geq 0$), terms like $A_3 h^3$ are rotationally symmetric and produce valid surface profiles. However, odd-order terms are not supported by the renderer's sag equation.
+Second, the equation includes **odd-order terms** ($A_3$, $A_5$, $A_7$, etc.) in addition to the standard even-order terms. Since $h$ is defined as a radial distance from the optical axis ($h \geq 0$), terms like $A_3 h^3$ are rotationally symmetric and produce valid surface profiles.
 
-**Coefficient refit.** For the companion data file, the full patent sag profile (parabolic base + odd+even polynomial) was evaluated at 500 height samples over $h \in [0,\, 6.0 \text{ mm}]$ (the estimated semi-diameter of L6). A least-squares fit was then performed against the standard sag equation with a spherical base ($K = 0$, standard convention) and even-order polynomial coefficients $A_4$ through $A_{20}$. The fit residuals are small: 0.16 µm maximum error for S10 and 0.73 µm for S11, well within manufacturing tolerance.
+### Exact patent coefficients
 
-Both surfaces have conic constant K = 0 (spherical base in standard convention) in the data file. The refitted even-order coefficients from the data file faithfully reproduce the patent's sag profiles within the usable aperture zone.
+The companion data file transcribes Example 1 Table 2 directly, including every A3–A20 term:
 
-The patent's polynomial is numerically ill-conditioned at heights above approximately 7 mm — individual terms reach magnitudes of hundreds of millimeters but cancel nearly perfectly — indicating that the polynomial was optimized for a smaller clear aperture than the raw marginal+chief ray estimate would suggest. The L6 semi-diameters in the data file are accordingly capped at 6.0 mm, where the polynomial remains well-behaved.
+| Term | S10A | S11A |
+|---|---:|---:|
+| A3 | +1.3592650E−04 | −3.6381176E−04 |
+| A4 | +3.7162356E−06 | +1.5137686E−03 |
+| A5 | −6.5383916E−05 | −1.4708597E−03 |
+| A6 | +1.2224508E−05 | +6.8718645E−04 |
+| A7 | −6.7024023E−07 | −1.7619011E−04 |
+| A8 | −7.0851318E−08 | +2.2970993E−05 |
+| A9 | −1.4834043E−09 | −1.2455617E−06 |
+| A10 | +4.6943650E−10 | +1.7608222E−07 |
+| A11 | +7.0944713E−11 | −6.3140576E−08 |
+| A12 | +4.0056802E−12 | +5.2054679E−09 |
+| A13 | −2.5358331E−13 | +6.6772864E−10 |
+| A14 | −6.2786396E−14 | −9.4611209E−11 |
+| A15 | −7.2519329E−15 | −3.2254692E−12 |
+| A16 | −6.2665147E−16 | +5.9858623E−13 |
+| A17 | −1.2454499E−16 | +2.3337864E−14 |
+| A18 | +7.5045399E−18 | −1.1788037E−15 |
+| A19 | +9.4871080E−18 | −3.5021994E−16 |
+| A20 | −7.9734604E−19 | +1.8725398E−17 |
 
-The rear surface S11 carries the dominant aspherical correction: its even-order polynomial coefficients are substantially larger than those of S10, indicating that S11 primarily corrects residual spherical aberration from the strong biconvex L5 and simultaneously controls field curvature and coma that accumulate across the post-stop elements. The front surface S10, with smaller coefficients, provides fine-tuning of the zonal balance.
+At the data-file semi-diameters, the exact profiles depart from the corresponding paraxial spheres by −246.111 µm (S10A, 6.4 mm) and −104.580 µm (S11A, 6.0 mm).
+
+The patent's polynomial is numerically ill-conditioned at heights above approximately 7 mm — individual terms reach magnitudes of hundreds of millimeters but cancel nearly perfectly — indicating that the polynomial was optimized for a smaller clear aperture than the raw marginal+chief ray estimate would suggest. The L6 semi-diameters in the data file are accordingly kept at 6.4 mm or below, where the polynomial remains well-behaved.
+
+The rear surface S11 carries the larger low-order polynomial coefficients, indicating that it primarily corrects residual spherical aberration from the strong biconvex L5 and simultaneously controls field curvature and coma that accumulate across the post-stop elements. The front surface S10 provides complementary zonal correction; despite its smaller low-order coefficients, the complete high-order polynomial produces the larger rim departure at its 6.4 mm data-file semi-diameter.
 
 ## Verification Summary
 

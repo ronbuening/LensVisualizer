@@ -215,7 +215,7 @@ $$
 Z(h) = \frac{(h^2/R)}{1 + \sqrt{1 - (1+K)(h/R)^2}} + A_4 h^4 + A_6 h^6 + \cdots,
 $$
 
-so the standard conic constant is $K = K_A - 1$. The patent includes odd-order polynomial terms through A15. Those odd terms are not currently represented by the LensVisualizer data schema, so the data file stores even-order least-squares refits over the selected semi-diameters rather than a direct copy of only the even coefficients. Directly dropping the odd terms would produce physically unacceptable sag errors because the patent's even and odd terms partially cancel.
+so the standard conic constant is $K = K_A - 1$. The patent includes odd-order polynomial terms through A15. The data file now stores the complete odd/even polynomial directly; this is important because the patent's even and odd terms partially cancel.
 
 Patent coefficients are:
 
@@ -226,16 +226,16 @@ Patent coefficients are:
 | 18 | 3.1749483E+00 | 0 | -2.0241709E-05 | 1.0107437E-05 | -6.5813373E-06 | 1.7046433E-06 | -2.1892518E-07 | 1.1207529E-08 | 4.5982414E-10 | -1.0981936E-10 | 1.1286182E-11 | -1.1325544E-12 | 8.4071210E-14 | -3.3942895E-15 | 5.5092813E-17 |
 | 19 | -4.9871650E+00 | 0 | -1.6116072E-05 | -1.5085955E-06 | 2.0396242E-06 | -1.2725118E-06 | 3.5828518E-07 | -5.2035910E-08 | 3.4286943E-09 | 4.4752370E-11 | -2.3342677E-11 | 1.4508103E-12 | -2.4220469E-14 | -8.0819177E-16 | 2.7188905E-17 |
 
-The data-file refits use the same standard conic constants but replace the full odd/even polynomial with an even-only approximation. The verified residuals over the selected semi-diameters are:
+The exact stored profiles give these departures from their corresponding paraxial spheres at the selected data-file semi-diameters:
 
-| Surface | Selected semi-diameter | Standard $K$ | Maximum sag residual | RMS sag residual |
-|---|---:|---:|---:|---:|
-| 3A | 14.5 mm | +1.3870981 | 0.00038 mm | 0.00016 mm |
-| 4A | 12.2 mm | −0.1517891 | 0.00023 mm | 0.00010 mm |
-| 18A | 16.5 mm | +2.1749483 | 0.00377 mm | 0.00071 mm |
-| 19A | 16.8 mm | −5.9871650 | 0.00851 mm | 0.00167 mm |
+| Surface | Selected semi-diameter | Standard $K$ | Exact departure |
+|---|---:|---:|---:|
+| 3A | 14.5 mm | +1.3870981 | +688.665 µm |
+| 4A | 12.2 mm | −0.1517891 | −631.897 µm |
+| 18A | 16.5 mm | +2.1749483 | −3174.943 µm |
+| 19A | 16.8 mm | −5.9871650 | −596.891 µm |
 
-The rear surface of L31 is the most demanding approximation because it combines a strong negative standard conic constant with significant higher-order correction. The refit error remains small relative to the element dimensions and is preferable to a direct unsupported odd-term transcription.
+Zero A3 terms are omitted in the data file, while every nonzero A4–A16 value from the patent table is retained.
 
 ## Conditional Expressions
 

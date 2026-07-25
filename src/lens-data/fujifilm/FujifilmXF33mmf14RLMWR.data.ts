@@ -23,10 +23,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * 16 and 17; the selected 8.94 mm shared SD leaves 4.131 mm of sag intrusion inside
  * the 4.600 mm air gap, under the 90% project limit.
  *
- * NOTE ON ASPHERES: The patent uses full even-and-odd polynomial aspheres through
- * A12. The renderer stores even-order coefficients only. The stored A4-A20 terms are
- * least-squares even-order refits over the inferred semi-diameters; maximum sag
- * residuals are <= 0.059 um over the modeled aperture.
+ * NOTE ON ASPHERES: Surfaces 20A, 21A, 25A, and 26A store the exact Example 3
+ * Table 12 odd/even polynomials through A12. The patent's KA = 1 converts to
+ * the standard spherical base K = 0; zero A3 terms are omitted.
  */
 
 const LENS_DATA = {
@@ -298,51 +297,55 @@ const LENS_DATA = {
   asph: {
     "20A": {
       K: 0,
-      A4: -6.4595645697e-6,
-      A6: -4.2890150229e-7,
-      A8: 2.0664269221e-8,
-      A10: -5.5762022642e-10,
-      A12: 9.5690190805e-12,
-      A14: -1.0609242951e-13,
-      A16: 7.3587997661e-16,
-      A18: -2.9010662688e-18,
-      A20: 4.9395845493e-21,
+      A4: -3.6981763e-6,
+      A5: -2.1333775e-6,
+      A6: -4.0513278e-8,
+      A7: 6.9611877e-8,
+      A8: -3.6341727e-9,
+      A9: -6.6036497e-10,
+      A10: 5.2747098e-11,
+      A11: 1.9268032e-12,
+      A12: -1.934612e-13,
+      A14: 0,
     },
     "21A": {
       K: 0,
-      A4: 2.2511742864e-5,
-      A6: -5.7849401837e-7,
-      A8: 2.1253029391e-8,
-      A10: -4.752478064e-10,
-      A12: 6.9274076892e-12,
-      A14: -6.5803777032e-14,
-      A16: 3.9236022311e-16,
-      A18: -1.3328417894e-18,
-      A20: 1.9576794419e-21,
+      A4: 2.5810155e-5,
+      A5: -2.3012241e-6,
+      A6: -2.3831105e-7,
+      A7: 8.5819314e-8,
+      A8: -2.2444614e-9,
+      A9: -7.8049185e-10,
+      A10: 4.626102e-11,
+      A11: 2.2243703e-12,
+      A12: -1.7496157e-13,
+      A14: 0,
     },
     "25A": {
       K: 0,
-      A4: -5.2093452501e-5,
-      A6: 1.8807850959e-6,
-      A8: -4.3564114759e-8,
-      A10: 7.4319153312e-10,
-      A12: -1.0005935237e-11,
-      A14: 9.9946404823e-14,
-      A16: -6.7373585075e-16,
-      A18: 2.6697783473e-18,
-      A20: -4.6584416588e-21,
+      A4: -5.1121685e-5,
+      A5: -1.7390876e-6,
+      A6: 3.0076039e-6,
+      A7: -3.3080366e-7,
+      A8: -7.1088611e-9,
+      A9: 2.5409968e-9,
+      A10: -5.9778978e-11,
+      A11: -5.5852603e-12,
+      A12: 2.0239815e-13,
+      A14: 0,
     },
     "26A": {
       K: 0,
-      A4: -7.756891956e-5,
-      A6: 6.0139878244e-6,
-      A8: -2.6563931223e-7,
-      A10: 7.8672143439e-9,
-      A12: -1.5245458538e-10,
-      A14: 1.898312341e-12,
-      A16: -1.4613535976e-14,
-      A18: 6.3235338677e-17,
-      A20: -1.175476014e-19,
+      A4: -1.2432057e-4,
+      A5: 4.1913962e-5,
+      A6: -5.5201108e-6,
+      A7: 2.6959548e-7,
+      A8: 2.163724e-8,
+      A9: -3.4446746e-9,
+      A10: 7.9300994e-11,
+      A11: 8.1281733e-12,
+      A12: -3.8055727e-13,
+      A14: 0,
     },
   },
 

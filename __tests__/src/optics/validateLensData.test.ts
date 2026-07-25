@@ -311,6 +311,37 @@ describe("validateLensData", () => {
     expect(errors.some((e) => e.includes('asph key "1"') && e.includes("A14"))).toBe(true);
   });
 
+  it("accepts finite odd-order aspheric coefficients", () => {
+    const data = makeValid({
+      asph: {
+        "1": { K: 0, A4: 1e-6, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0, A3: -2e-5, A5: 3e-7, A19: 1e-20 },
+      },
+    });
+    expect(validateLensData(data)).toEqual([]);
+  });
+
+  it("catches non-finite odd-order aspheric coefficients", () => {
+    const data = makeValid({
+      asph: {
+        "1": { K: 0, A4: 0, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0, A5: NaN },
+      },
+    });
+    const errors = validateLensData(data);
+    expect(errors.some((e) => e.includes('asph key "1"') && e.includes("non-finite optional coefficient A5"))).toBe(
+      true,
+    );
+  });
+
+  it("catches unknown aspheric coefficient keys", () => {
+    const data = makeValid({
+      asph: {
+        "1": { K: 0, A4: 0, A6: 0, A8: 0, A10: 0, A12: 0, A14: 0, A5x: 1e-7 },
+      },
+    });
+    const errors = validateLensData(data);
+    expect(errors.some((e) => e.includes('asph key "1"') && e.includes("unknown coefficient A5x"))).toBe(true);
+  });
+
   it("catches invalid var label reference", () => {
     const data = makeValid({
       var: { MISSING: [1, 2] },
