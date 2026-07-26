@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **473** lenses scanned
-- **5164** non-air surfaces examined
-- **5169** element glass declarations examined
-- **605** non-explicit-unmatched annotations did not resolve
-- **263** distinct unresolved glass-like tokens found
+- **475** lenses scanned
+- **5189** non-air surfaces examined
+- **5194** element glass declarations examined
+- **602** non-explicit-unmatched annotations did not resolve
+- **262** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -48,8 +48,7 @@ or per-lens patent backfills.
 | 773495 | 2 | 2 | |
 | 774492 | 2 | 1 | |
 | 784438 | 2 | 1 | |
-| 795286 | 2 | 2 | |
-| 795287 | 2 | 2 | |
+| 797455 | 2 | 2 | |
 | 807316 | 2 | 2 | |
 | 813252 | 2 | 1 | |
 | 856401 | 2 | 1 | |
@@ -121,6 +120,7 @@ or per-lens patent backfills.
 | 670572 | 1 | 1 | |
 | 670573 | 1 | 1 | |
 | 670574 | 1 | 1 | |
+| 670576 | 1 | 1 | |
 | 678322 | 1 | 1 | |
 | 680312 | 1 | 1 | |
 | 682366 | 1 | 1 | |
@@ -170,7 +170,6 @@ or per-lens patent backfills.
 | 787501 | 1 | 1 | |
 | 789457 | 1 | 1 | |
 | 792450 | 1 | 1 | |
-| 797455 | 1 | 1 | |
 | 800255 | 1 | 1 | |
 | 803404 | 1 | 1 | |
 | 803405 | 1 | 1 | |
@@ -463,15 +462,10 @@ or per-lens patent backfills.
 - [CARL ZEISS CONTAREX PLANAR 55mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissContarexPlanar55mmf14.data.ts) 7: `LaF10 (Schott 784438)`
 - [CARL ZEISS CONTAREX PLANAR 55mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissContarexPlanar55mmf14.data.ts) 9: `LaF10 (Schott 784438)`
 
-### 795286 — 2 occurrences
+### 797455 — 2 occurrences
 
-- [NIKON AF ZOOM-NIKKOR 28-80mm f/3.3-5.6 G](../../src/lens-data/nikon/NikonAFZoomNikkor2880mmf3356.data.ts) 10: `795286 - J-LAFH3 (HIKARI; no source-backed catalog match)`
-- [Nikon AI Zoom-Nikkor 50-135mm f/3.5S](../../src/lens-data/nikon/NikonAIZoomNikko50135mmf35S.data.ts) 22: `J-LAFH3 (HIKARI; 795286)`
-
-### 795287 — 2 occurrences
-
-- [NIKON AF-S NIKKOR 70-200mm f/2.8 G ED VR II](../../src/lens-data/nikon/NikonAFS70200mmf28GVRII.data.ts) 1: `J-LAFH3 (HIKARI; 795287, coefficients unavailable)`
-- [NIKON AF ZOOM-NIKKOR 28-85mm f/3.5-4.5](../../src/lens-data/nikon/NikonAFZoomNikkor2885mmf3545.data.ts) 25: `795287 - J-LAFH3 (Hikari; no source-backed catalog match)`
+- [NIKON AF ZOOM-NIKKOR 28-85mm f/3.5-4.5](../../src/lens-data/nikon/NikonAFZoomNikkor2885mmf3545.data.ts) 5: `797455 - TAF2 class (Hoya legacy; no exact catalog match)`
+- [NIKON AI ZOOM-NIKKOR 80-200mm f/4](../../src/lens-data/nikon/NikonAINikkor80200mmf4.data.ts) 19: `797455 — dense lanthanum glass class (catalog unresolved)`
 
 ### 807316 — 2 occurrences
 
@@ -776,6 +770,10 @@ or per-lens patent backfills.
 
 - [NIKON R-UW AF FISHEYE-NIKKOR 13mm f/2.8](../../src/lens-data/nikon/NikonRUWAFNikkor13mmf28.data.ts) 3: `J-LAK02 (HIKARI) / 670574 class, close`
 
+### 670576 — 1 occurrence
+
+- [NIKON AI ZOOM-NIKKOR 80-200mm f/4](../../src/lens-data/nikon/NikonAINikkor80200mmf4.data.ts) 15: `670576 — lanthanum crown class (catalog unresolved)`
+
 ### 678322 — 1 occurrence
 
 - [SONY FE 12-24mm f/2.8 GM](../../src/lens-data/sony/SonyFE1224mmf28GM.data.ts) 13: `678322 — dense flint (Schott SF-family adjacent; no exact public catalog match)`
@@ -971,10 +969,6 @@ or per-lens patent backfills.
 ### 792450 — 1 occurrence
 
 - [NIKON NIKKOR Z 24-70mm f/2.8 S](../../src/lens-data/nikon/NikonZ2470f28.data.ts) 26: `792450 — dense lanthanum crown (patent nd=1.79189, νd=45.04; no exact public catalog match)`
-
-### 797455 — 1 occurrence
-
-- [NIKON AF ZOOM-NIKKOR 28-85mm f/3.5-4.5](../../src/lens-data/nikon/NikonAFZoomNikkor2885mmf3545.data.ts) 5: `797455 - TAF2 class (Hoya legacy; no exact catalog match)`
 
 ### 800255 — 1 occurrence
 

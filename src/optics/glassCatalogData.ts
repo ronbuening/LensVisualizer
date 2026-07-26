@@ -359,6 +359,7 @@ const GLASS_CATALOG_SOURCE_ORDER = [
   "TIM11",
   "K-LaK9",
   "K-LaK11",
+  "J-LAFH3",
   "J-LAK7R",
   "N-LASF46B",
   "S-LAL19",

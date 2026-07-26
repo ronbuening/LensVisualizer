@@ -9,10 +9,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **473** lenses scanned
-- **390** total code-only elements found
-- **286** elements in this report
-- **116** distinct lens files affected
+- **475** lenses scanned
+- **412** total code-only elements found
+- **288** elements in this report
+- **117** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -48,6 +48,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 620586 | 2 | 1 | patents/US4303314.pdf | All representative rows reviewed |
 | 625356 | 2 | 1 | patents/US2959100.pdf | No reviewed-sidecar hit |
 | 666356 | 2 | 1 | patents/US20190265441A1.pdf | All representative rows reviewed |
+| 670576 | 2 | 2 | patents/US4497547.pdf<br>patents/US4452513.pdf | 1/2 representative rows reviewed |
 | 720521 | 2 | 2 | patents/US4124276.pdf | No reviewed-sidecar hit |
 | 744494 | 2 | 2 | patents/US3507558.pdf<br>patents/US3743384.pdf | All representative rows reviewed |
 | 748523 | 2 | 2 | patents/US5717527.pdf<br>patents/US5490012.pdf | No reviewed-sidecar hit |
@@ -126,7 +127,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 667322 | 1 | 1 | patents/US2983193.pdf | No reviewed-sidecar hit |
 | 670572 | 1 | 1 | patents/US20020075570A1.pdf | No reviewed-sidecar hit |
 | 670575 | 1 | 1 | patents/US5949588.pdf | All representative rows reviewed |
-| 670576 | 1 | 1 | patents/US4497547.pdf | All representative rows reviewed |
 | 672323 | 1 | 1 | patents/GB_850117_A.pdf | All representative rows reviewed |
 | 672389 | 1 | 1 | patents/US4497547.pdf | All representative rows reviewed |
 | 675348 | 1 | 1 | patents/JP2018180366A.pdf | All representative rows reviewed |
@@ -195,6 +195,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 794255 | 1 | 1 | patents/US7542219.pdf | No reviewed-sidecar hit |
 | 795286 | 1 | 1 | patents/US5717527.pdf | No reviewed-sidecar hit |
 | 796410 | 1 | 1 | patents/US4770511.pdf | All representative rows reviewed |
+| 797455 | 1 | 1 | patents/US4452513.pdf | No reviewed-sidecar hit |
 | 800255 | 1 | 1 | patents/JP2015041012A.pdf | No reviewed-sidecar hit |
 | 801454 | 1 | 1 | patents/US20130033768A1.pdf | No reviewed-sidecar hit |
 | 803404 | 1 | 1 | patents/US20140247506A1.pdf | All representative rows reviewed |
@@ -675,6 +676,13 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---|---|---|---|---|---|---|
 | 3L1 (G3 L1) | 12 | `Unmatched (670576 lanthanum-crown code; no confirmed current catalog)` | 1.67025 / 57.60 | No catalog entry | abbe | patents/US4497547.pdf | Reviewed sidecar hit |
 | 3L2 (G3 L2) | 13 | `Unmatched / S-NBH-class (672389 short-flint code)` | 1.67163 / 38.90 | No catalog entry | abbe | patents/US4497547.pdf | Reviewed sidecar hit |
+
+### [NIKON AI ZOOM-NIKKOR 80-200mm f/4](../../src/lens-data/nikon/NikonAINikkor80200mmf4.data.ts) - US 4,452,513,
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+|---|---|---|---|---|---|---|---|
+| L41 (G4 front positive) | 15 | `670576 — lanthanum crown class (catalog unresolved)` | 1.67025 / 57.60 | No catalog entry | abbe | patents/US4452513.pdf | No reviewed-sidecar hit |
+| L43 (G4 rear negative) | 19 | `797455 — dense lanthanum glass class (catalog unresolved)` | 1.79668 / 45.50 | No catalog entry | abbe | patents/US4452513.pdf | No reviewed-sidecar hit |
 
 ### [Nikon AI-S Zoom-Nikkor 35–70mm f/3.5](../../src/lens-data/nikon/NikonAIZoomNikkor3570mmf35.data.ts) - US 4,266,860,
 

@@ -7,7 +7,7 @@ available, it falls back to partial measured `nC`/`nF` line indices, dPgF-correc
 approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **344 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **345 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
 
 The July 23, 2026 Canon batch added OHARA S-TIH53WN from the vendor's April 2025 datasheet. The WN variant retains
 the conventional d-line index while publishing modified off-d-line indices and dispersion constants for
@@ -265,6 +265,12 @@ material index/Abbe deltas, so those labels remain explicit code-only rows.
 | ★ N-LASF46B | Schott | 904313 | Exact named assignment for L16; distinct from the same-code OHARA precedence entry |
 | ★ S-LAL19 | Ohara | — | Exact named assignment for L32 |
 | ★ H-ZBAF52 | CDGM | 670472 | Exact named assignment for L42 |
+
+**Phase 36 addition** (July 2026 — Nikon AI 80-200mm glass-coverage audit using the historical Nikon/Hikari Zemax catalog mirrored by refractiveindex.info; the entry round-trips through `assertCatalogConsistent`):
+
+| Glass | Vendor | Code | Notes |
+|---|---|---:|---|
+| ★ J-LAFH3 | Hikari | 795287 | Exact d-line match for the f/4 relay glass and reusable coverage for several existing Nikon prescriptions |
 
 **Phase 17 additions** (May 2026 — Hasselblad/Laowa/Leica/Minolta/Nikon six-digit missing-Sellmeier queue pass; all entries round-trip through `assertCatalogConsistent`):
 
