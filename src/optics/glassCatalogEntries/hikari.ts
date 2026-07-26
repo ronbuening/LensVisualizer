@@ -611,6 +611,26 @@ export const HIKARI_GLASS_ENTRIES: readonly GlassEntry[] = [
     code6: "804339",
     source: "Nikon/Hikari Zemax catalog 2017-11 via refractiveindex.info; E-LAFH2 page (formula 3 polynomial).",
   },
+  /* ────── Phase 36 Nikon AI 80-200mm coverage addition (July 2026) ────── */
+  {
+    name: "J-LAFH3",
+    vendor: "Hikari",
+    powerSeries: [
+      [3.1015892, 0],
+      [-0.013347498, 2],
+      [0.0364605893, -2],
+      [0.00326400857, -4],
+      [-0.000624213023, -6],
+      [0.000140210775, -8],
+      [-0.0000142247779, -10],
+      [0.000000658468818, -12],
+    ],
+    nd: 1.79504,
+    vd: 28.692277,
+    PgF: 0.6058,
+    code6: "795287",
+    source: "Nikon/Hikari Zemax catalog 2017-11 via refractiveindex.info; J-LAFH3 page (formula 3 power series).",
+  },
   /* ────── Phase 35 Fujifilm GF 250mm coverage addition (July 2026) ────── */
   {
     name: "J-LAK7R",
