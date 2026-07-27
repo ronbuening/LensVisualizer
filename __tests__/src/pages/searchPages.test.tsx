@@ -33,6 +33,7 @@ describe("search, author, and patent pages", () => {
   beforeEach(() => {
     clearBrowserState();
     installMatchMediaMock(false);
+    Object.defineProperty(window, "scrollTo", { writable: true, value: vi.fn() });
   });
 
   afterEach(() => cleanup());
@@ -161,7 +162,28 @@ describe("search, author, and patent pages", () => {
     );
 
     expect(screen.getByRole("heading", { level: 1, name: "Lens Patents by Country and Assignee" })).toBeTruthy();
-    expect(screen.getByRole("navigation", { name: "Patent country sections" })).toBeTruthy();
+    const countryNav = screen.getByRole("navigation", { name: "Patent country sections" });
+    const countryButton = within(countryNav).getByRole("button", {
+      name: `${country.jurisdiction.label} (${country.patentCount})`,
+    });
+    expect(countryButton.getAttribute("aria-expanded")).toBe("false");
+    expect(
+      within(countryNav).queryByRole("link", {
+        name: `${assignee.label} (${assignee.patents.length})`,
+      }),
+    ).toBeNull();
+
+    fireEvent.click(countryButton);
+
+    expect(countryButton.getAttribute("aria-expanded")).toBe("true");
+    const assigneeLink = within(countryNav).getByRole("link", {
+      name: `${assignee.label} (${assignee.patents.length})`,
+    });
+    const assigneeTarget = document.getElementById(assigneeLink.getAttribute("href")!.slice(1));
+    expect(assigneeTarget).toBeTruthy();
+    fireEvent.click(assigneeLink);
+    expect(window.scrollTo).toHaveBeenCalledTimes(1);
+
     const countrySection = document.getElementById(`patent-country-${country.jurisdiction.code.toLowerCase()}`);
     expect(countrySection).toBeTruthy();
     if (!countrySection) return;

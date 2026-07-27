@@ -22,6 +22,7 @@ import {
 import { collectionPageJsonLd, itemListJsonLd } from "../utils/seo/structuredData.js";
 import { LENS_LINK_BASE_STYLE, PAGE_BASE_STYLE } from "../utils/style/pageStyles.js";
 import { usePageThemeToggle } from "../utils/theme/usePageThemeToggle.js";
+import { patentPartyGroupAnchorId } from "./lensIndex/groupAnchors.js";
 
 interface PatentCardProps {
   patent: PatentRecord;
@@ -30,6 +31,8 @@ interface PatentCardProps {
 }
 
 const countryAnchorId = (code: string): string => `patent-country-${code.toLowerCase()}`;
+const assigneeAnchorId = (countryCode: string, assigneeId: string): string =>
+  patentPartyGroupAnchorId("assignee", `${countryCode}:${assigneeId}`);
 
 function PatentCard({ patent, groupedAssignee, theme: t }: PatentCardProps) {
   const otherAssignees = patent.assignees.filter((assignee) => assignee !== groupedAssignee);
@@ -156,7 +159,11 @@ export default function PatentsIndexPage() {
               items={PATENT_COUNTRY_GROUPS.map((country) => ({
                 id: country.jurisdiction.code,
                 label: `${country.jurisdiction.label} (${country.patentCount})`,
-                to: `#${countryAnchorId(country.jurisdiction.code)}`,
+                children: country.assignees.map((assignee) => ({
+                  id: `${country.jurisdiction.code}:${assignee.id}`,
+                  label: `${assignee.label} (${assignee.patents.length})`,
+                  to: `#${assigneeAnchorId(country.jurisdiction.code, assignee.id)}`,
+                })),
               }))}
               theme={t}
             />
@@ -186,6 +193,7 @@ export default function PatentsIndexPage() {
               {country.assignees.map((assignee) => (
                 <section
                   key={assignee.id}
+                  id={assigneeAnchorId(country.jurisdiction.code, assignee.id)}
                   style={{
                     background: t.panelBg,
                     border: `1px solid ${t.panelBorder}`,

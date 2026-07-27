@@ -4,7 +4,8 @@
  * Reuses the article table-of-contents panel format (`ArticleTOC`): a bordered panel with an
  * uppercase heading and a list of links with a left-border hover indicator. Items whose `to` starts
  * with `#` are in-page anchors (smooth-scroll to the matching element id); all other `to` values are
- * router paths. Used for the maker→mounts and mount→makers cross-links and the lens-library
+ * router paths. An item may instead contain child links, in which case it renders as an accessible
+ * expand/collapse button. Used for the maker→mounts and mount→makers cross-links and the lens-library
  * group-navigation sidebar.
  *
  * This component renders only the panel; placement (sticky column on wide screens vs. stacked above
@@ -21,7 +22,9 @@ export interface LinkListSidebarItem {
   id: string;
   label: string;
   /** Router path (e.g. `/mounts/nikon-f`) or in-page anchor (e.g. `#group-maker-nikon`). */
-  to: string;
+  to?: string;
+  /** Optional second-level links revealed by clicking this item's expand/collapse button. */
+  children?: LinkListSidebarItem[];
 }
 
 interface LinkListSidebarProps {
@@ -37,8 +40,18 @@ interface LinkListSidebarProps {
 
 export default function LinkListSidebar({ title, items, theme: t, ariaLabel, offsetTop = 88 }: LinkListSidebarProps) {
   const [hovered, setHovered] = useState<string | null>(null);
+  const [expanded, setExpanded] = useState<Set<string>>(() => new Set());
 
   if (items.length === 0) return null;
+
+  const toggleExpanded = (id: string) => {
+    setExpanded((current) => {
+      const next = new Set(current);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  };
 
   // In-page `#anchor` items smooth-scroll to the target id (offset to clear the header); route items use Link.
   const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, to: string) => {
@@ -78,7 +91,10 @@ export default function LinkListSidebar({ title, items, theme: t, ariaLabel, off
       <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
         {items.map((item) => {
           const active = hovered === item.id;
-          const isAnchor = item.to.startsWith("#");
+          const hasChildren = (item.children?.length ?? 0) > 0;
+          const isExpanded = expanded.has(item.id);
+          const itemTo = item.to;
+          const isAnchor = itemTo?.startsWith("#") ?? false;
           const linkStyle: React.CSSProperties = {
             display: "block",
             fontSize: 12,
@@ -96,15 +112,84 @@ export default function LinkListSidebar({ title, items, theme: t, ariaLabel, off
           };
           return (
             <li key={item.id} style={{ margin: "2px 0" }}>
-              {isAnchor ? (
-                <a href={item.to} onClick={(e) => handleAnchorClick(e, item.to)} style={linkStyle} {...hoverHandlers}>
+              {hasChildren ? (
+                <>
+                  <button
+                    type="button"
+                    aria-expanded={isExpanded}
+                    aria-controls={`sidebar-children-${item.id}`}
+                    onClick={() => toggleExpanded(item.id)}
+                    style={{
+                      ...linkStyle,
+                      width: "100%",
+                      background: "transparent",
+                      borderTop: "none",
+                      borderRight: "none",
+                      borderBottom: "none",
+                      textAlign: "left",
+                      cursor: "pointer",
+                      fontFamily: "inherit",
+                    }}
+                    {...hoverHandlers}
+                  >
+                    <span aria-hidden="true" style={{ display: "inline-block", width: 14 }}>
+                      {isExpanded ? "▾" : "▸"}
+                    </span>
+                    {item.label}
+                  </button>
+                  <ul
+                    id={`sidebar-children-${item.id}`}
+                    hidden={!isExpanded}
+                    style={{ listStyle: "none", padding: 0, margin: "2px 0 5px" }}
+                  >
+                    {item.children?.map((child) => {
+                      const childTo = child.to;
+                      if (!childTo) return null;
+                      const childActive = hovered === child.id;
+                      const childStyle: React.CSSProperties = {
+                        display: "block",
+                        fontSize: 11,
+                        lineHeight: 1.4,
+                        padding: "3px 6px 3px 20px",
+                        borderLeft: `2px solid ${childActive ? t.descLinkColor : "transparent"}`,
+                        color: childActive ? t.descLinkColor : t.descText,
+                        textDecoration: "none",
+                        transition: "color 0.15s, border-color 0.15s",
+                      };
+                      const childHoverHandlers = {
+                        onMouseEnter: () => setHovered(child.id),
+                        onMouseLeave: () => setHovered(null),
+                      };
+                      return (
+                        <li key={child.id} style={{ margin: "1px 0" }}>
+                          {childTo.startsWith("#") ? (
+                            <a
+                              href={childTo}
+                              onClick={(e) => handleAnchorClick(e, childTo)}
+                              style={childStyle}
+                              {...childHoverHandlers}
+                            >
+                              {child.label}
+                            </a>
+                          ) : (
+                            <Link to={childTo} style={childStyle} {...childHoverHandlers}>
+                              {child.label}
+                            </Link>
+                          )}
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </>
+              ) : isAnchor && itemTo ? (
+                <a href={itemTo} onClick={(e) => handleAnchorClick(e, itemTo)} style={linkStyle} {...hoverHandlers}>
                   {item.label}
                 </a>
-              ) : (
-                <Link to={item.to} style={linkStyle} {...hoverHandlers}>
+              ) : itemTo ? (
+                <Link to={itemTo} style={linkStyle} {...hoverHandlers}>
                   {item.label}
                 </Link>
-              )}
+              ) : null}
             </li>
           );
         })}
