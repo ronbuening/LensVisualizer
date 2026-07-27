@@ -26,6 +26,7 @@ both match the stored values within tolerance (nd ±0.005, vd ±3).
 Candidates:
 - **S-TIM35** (nd=1.69895, vd=30.13, Δnd=+0.0049, Δvd=-1.07)
 - **E-FD15** (nd=1.69895, vd=30.05, Δnd=+0.0049, Δvd=-1.15)
+- **SF15** (nd=1.69895, vd=30.00, Δnd=+0.0049, Δvd=-1.20)
 
 Surfaces:
 - [NIKON ULTRA-MICRO-NIKKOR 29.5mm f/1.2](../../src/lens-data/nikon/NikonUltraMicroNikkor295mmf12.data.ts) `6`: `SF8 class dense flint (patent e-line index stored)`

@@ -165,9 +165,10 @@ Element 2 is the primary diverging element in Group I and the second-strongest n
 
 Element 3 sits at the front of Group II₁, immediately after the large 12.1 mm air gap that separates Groups I and II. It carries only very weak negative power (f = −785 mm). Its individual surfaces are individually strong (−0.720 and +0.648) but nearly cancelling, which is a hallmark of a field-correction element. The nearly concentric meniscus shape allows it to contribute strongly to the correction of astigmatism and Petzval field curvature without significantly altering the system's axial power balance.
 
-**Glass identification:** N = 1.70154, V = 41.1 falls in the barium flint / lanthanum crown boundary (code 702411).
-No exact coefficient-backed catalog match is currently assigned; in particular, OHARA S-BAH10 is the distinct
-1.67003 / 47.23 glass and must not be used as this element's dispersion proxy.
+**Glass identification:** N = 1.70154, V = 41.1 is an exact coordinate match for **Sumita BASF7** (code 702411).
+Sumita's official all-glass catalog supplies a coefficient-backed equivalent for wavelength tracing. This does not
+establish Canon's historical melt supplier; in particular, OHARA S-BAH10 is the distinct 1.67003 / 47.23 glass and must
+not be used as this element's dispersion proxy.
 
 ### Element 4 — Positive Meniscus (Group II₁)
 

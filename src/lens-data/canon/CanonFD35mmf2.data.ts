@@ -67,7 +67,7 @@ const LENS_DATA = {
       nd: 1.70154,
       vd: 41.1,
       fl: -785.2,
-      glass: "Unmatched BaF 702411 (patent glass; no exact catalog match)",
+      glass: "BASF7 (Sumita coefficient-backed equivalent), 702411",
       role: "Weak negative field corrector at front of Group II₁; nearly concentric meniscus for astigmatism control",
     },
     {

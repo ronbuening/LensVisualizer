@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **475** lenses scanned
-- **5189** non-air surfaces examined
-- **5194** element glass declarations examined
-- **602** non-explicit-unmatched annotations did not resolve
-- **262** distinct unresolved glass-like tokens found
+- **479** lenses scanned
+- **5226** non-air surfaces examined
+- **5231** element glass declarations examined
+- **604** non-explicit-unmatched annotations did not resolve
+- **263** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -24,6 +24,7 @@ or per-lens patent backfills.
 | S-LAL61 | 4 | 3 | |
 | S-NPH7 | 4 | 4 | |
 | 516565 | 3 | 1 | |
+| 517696 | 3 | 2 | |
 | 585587 | 3 | 1 | |
 | 617540 | 3 | 2 | |
 | 670575 | 3 | 2 | |
@@ -34,12 +35,13 @@ or per-lens patent backfills.
 | 863248 | 3 | 1 | |
 | F8 | 3 | 3 | |
 | NBFD32 | 3 | 3 | |
+| S-APL1 | 3 | 2 | |
 | 514428 | 2 | 1 | |
-| 517696 | 2 | 1 | |
 | 531559 | 2 | 2 | |
 | 561453 | 2 | 2 | |
 | 569632 | 2 | 1 | |
 | 585594 | 2 | 1 | |
+| 614563 | 2 | 2 | |
 | 620586 | 2 | 1 | |
 | 666356 | 2 | 1 | |
 | 720521 | 2 | 2 | |
@@ -61,7 +63,6 @@ or per-lens patent backfills.
 | H-ZBAF4 | 2 | 1 | |
 | H-ZLAF4A | 2 | 1 | |
 | K-LAFK50 | 2 | 1 | |
-| S-APL1 | 2 | 1 | |
 | S-BSM36 | 2 | 1 | |
 | S-FPM5 | 2 | 2 | |
 | S-LAM73 | 2 | 1 | |
@@ -104,7 +105,6 @@ or per-lens patent backfills.
 | 606637 | 1 | 1 | |
 | 612313 | 1 | 1 | |
 | 612372 | 1 | 1 | |
-| 614563 | 1 | 1 | |
 | 624584 | 1 | 1 | |
 | 630346 | 1 | 1 | |
 | 639449 | 1 | 1 | |
@@ -272,6 +272,7 @@ or per-lens patent backfills.
 | SF3 | 1 | 1 | |
 | SK12 | 1 | 1 | |
 | SK4 | 1 | 1 | |
+| SK6 | 1 | 1 | |
 | SK7 | 1 | 1 | |
 | SK8 | 1 | 1 | |
 | TAF105 | 1 | 1 | |
@@ -331,6 +332,12 @@ or per-lens patent backfills.
 - [PANASONIC LUMIX S 35mm f/1.8](../../src/lens-data/panasonic/PanasonicS35mmf18.data.ts) 13A: `516565 — PGM moldable crown (patent nd=1.51602, νd=56.5; no exact public catalog match)`
 - [PANASONIC LUMIX S 35mm f/1.8](../../src/lens-data/panasonic/PanasonicS35mmf18.data.ts) 15A: `516565 — PGM moldable crown (same as L18, L31; no exact public catalog match)`
 - [PANASONIC LUMIX S 35mm f/1.8](../../src/lens-data/panasonic/PanasonicS35mmf18.data.ts) 17A: `516565 — PGM moldable crown (same as L18, L21; no exact public catalog match)`
+
+### 517696 — 3 occurrences
+
+- [NIKON ZOOM-NIKKOR AUTO 80-200mm f/4.5](../../src/lens-data/nikon/NikonAutoZoomNikkor80200mmf45.data.ts) 7: `517696 - legacy low-dispersion crown / S-APL1 class (vendor unresolved)`
+- [OLYMPUS OM ZUIKO 16mm f/3.5 Fisheye](../../src/lens-data/olympus/OlympusZuiko16mmf35.data.ts) 13: `517696 — S-APL1 / APL1-class low-index high-Abbe crown (OHARA; no public Sellmeier match)`
+- [OLYMPUS OM ZUIKO 16mm f/3.5 Fisheye](../../src/lens-data/olympus/OlympusZuiko16mmf35.data.ts) 16: `517696 — S-APL1 / APL1-class low-index high-Abbe crown (OHARA; no public Sellmeier match)`
 
 ### 585587 — 3 occurrences
 
@@ -392,15 +399,16 @@ or per-lens patent backfills.
 - [FUJIFILM FUJINON XF 23mm f/2.8 R WR](../../src/lens-data/fujifilm/FujifilmXF23mmf28RWR.data.ts) 6: `730322 - NBFD32 (HOYA dense barium flint; no Sellmeier catalog entry)`
 - [SIGMA 17-40mm f/1.8 DC | Art](../../src/lens-data/sigma/Sigma1740mmf18DCA.data.ts) 18: `NBFD32 (Hoya)`
 
+### S-APL1 — 3 occurrences
+
+- [NIKON ZOOM-NIKKOR AUTO 80-200mm f/4.5](../../src/lens-data/nikon/NikonAutoZoomNikkor80200mmf45.data.ts) 7: `517696 - legacy low-dispersion crown / S-APL1 class (vendor unresolved)`
+- [OLYMPUS OM ZUIKO 16mm f/3.5 Fisheye](../../src/lens-data/olympus/OlympusZuiko16mmf35.data.ts) 13: `517696 — S-APL1 / APL1-class low-index high-Abbe crown (OHARA; no public Sellmeier match)`
+- [OLYMPUS OM ZUIKO 16mm f/3.5 Fisheye](../../src/lens-data/olympus/OlympusZuiko16mmf35.data.ts) 16: `517696 — S-APL1 / APL1-class low-index high-Abbe crown (OHARA; no public Sellmeier match)`
+
 ### 514428 — 2 occurrences
 
 - [NIKON AF-S NIKKOR 20mm f/1.8 G ED](../../src/lens-data/nikon/NikonNikkorAFS20mmf18G.data.ts) 9: `514428 — patent cement layer (nd=1.51400, νd=42.8)`
 - [NIKON AF-S NIKKOR 20mm f/1.8 G ED](../../src/lens-data/nikon/NikonNikkorAFS20mmf18G.data.ts) 19: `514428 — patent cement layer (nd=1.51400, νd=42.8)`
-
-### 517696 — 2 occurrences
-
-- [OLYMPUS OM ZUIKO 16mm f/3.5 Fisheye](../../src/lens-data/olympus/OlympusZuiko16mmf35.data.ts) 13: `517696 — S-APL1 / APL1-class low-index high-Abbe crown (OHARA; no public Sellmeier match)`
-- [OLYMPUS OM ZUIKO 16mm f/3.5 Fisheye](../../src/lens-data/olympus/OlympusZuiko16mmf35.data.ts) 16: `517696 — S-APL1 / APL1-class low-index high-Abbe crown (OHARA; no public Sellmeier match)`
 
 ### 531559 — 2 occurrences
 
@@ -421,6 +429,11 @@ or per-lens patent backfills.
 
 - [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 20: `585594 — barium crown (patent nd=1.58547, nu_d=59.4)`
 - [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 22A: `585594 — barium crown (patent nd=1.58547, nu_d=59.4), XA element`
+
+### 614563 — 2 occurrences
+
+- [NIKON ZOOM-NIKKOR AUTO 80-200mm f/4.5](../../src/lens-data/nikon/NikonAutoZoomNikkor80200mmf45.data.ts) 3: `614563 - SK6 / BSM6 class (historical vendor unresolved)`
+- [SCHNEIDER-KREUZNACH SUPER-ANGULON 75mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderSuperAngulon75mmf56.data.ts) 8: `614563 — SSK-class dense barium crown (Schott historical; no exact public Sellmeier)`
 
 ### 620586 — 2 occurrences
 
@@ -526,11 +539,6 @@ or per-lens patent backfills.
 
 - [PANASONIC LEICA DG NOCTICRON 42.5mm f/1.2 ASPH POWER O.I.S.](../../src/lens-data/panasonic/PanasonicDGNocticron42mmf12.data.ts) 14A: `Moldable lanthanum, M-TAF / K-LaFK50 equivalent class`
 - [PANASONIC LEICA DG NOCTICRON 42.5mm f/1.2 ASPH POWER O.I.S.](../../src/lens-data/panasonic/PanasonicDGNocticron42mmf12.data.ts) 20A: `Moldable lanthanum, M-TAF / K-LaFK50 equivalent class`
-
-### S-APL1 — 2 occurrences
-
-- [OLYMPUS OM ZUIKO 16mm f/3.5 Fisheye](../../src/lens-data/olympus/OlympusZuiko16mmf35.data.ts) 13: `517696 — S-APL1 / APL1-class low-index high-Abbe crown (OHARA; no public Sellmeier match)`
-- [OLYMPUS OM ZUIKO 16mm f/3.5 Fisheye](../../src/lens-data/olympus/OlympusZuiko16mmf35.data.ts) 16: `517696 — S-APL1 / APL1-class low-index high-Abbe crown (OHARA; no public Sellmeier match)`
 
 ### S-BSM36 — 2 occurrences
 
@@ -705,10 +713,6 @@ or per-lens patent backfills.
 ### 612372 — 1 occurrence
 
 - [CARL ZEISS JENA TESSAR 50mm f/2.8](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaTessar50mmf28.data.ts) 3: `612372 F (≈ Schott F3 legacy)`
-
-### 614563 — 1 occurrence
-
-- [SCHNEIDER-KREUZNACH SUPER-ANGULON 75mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderSuperAngulon75mmf56.data.ts) 8: `614563 — SSK-class dense barium crown (Schott historical; no exact public Sellmeier)`
 
 ### 624584 — 1 occurrence
 
@@ -1377,6 +1381,10 @@ or per-lens patent backfills.
 ### SK4 — 1 occurrence
 
 - [CANON SERENAR 28mm f/3.5](../../src/lens-data/canon/CanonSerenar28mmf35.data.ts) 1: `SK4 (Schott)`
+
+### SK6 — 1 occurrence
+
+- [NIKON ZOOM-NIKKOR AUTO 80-200mm f/4.5](../../src/lens-data/nikon/NikonAutoZoomNikkor80200mmf45.data.ts) 3: `614563 - SK6 / BSM6 class (historical vendor unresolved)`
 
 ### SK7 — 1 occurrence
 

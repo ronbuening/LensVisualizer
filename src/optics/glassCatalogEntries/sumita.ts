@@ -113,6 +113,46 @@ export const SUMITA_GLASS_ENTRIES: readonly GlassEntry[] = [
       "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor formula-3 polynomial for LF2.",
   },
   {
+    name: "LF3",
+    vendor: "Sumita",
+    polynomial: [2.447569, -0.008447925, 0.01892628, 0.0004035555, 0.000009085234, 0.00000170526],
+    nd: 1.58215,
+    vd: 42.0,
+    code6: "582420",
+    source:
+      "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor formula-3 polynomial for LF3.",
+  },
+  {
+    name: "LAK6",
+    vendor: "Sumita",
+    polynomial: [2.651556, -0.01067848, 0.01708672, -0.00009282342, 0.00006097048, -0.000003549023],
+    nd: 1.6425,
+    vd: 58.1,
+    code6: "643581",
+    source:
+      "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor formula-3 polynomial for LAK6.",
+  },
+  {
+    name: "SF15",
+    vendor: "Sumita",
+    polynomial: [2.789566, -0.0101819, 0.02992534, 0.001830904, -0.0001095533, 0.00001421907],
+    nd: 1.69895,
+    vd: 30.0,
+    code6: "699300",
+    source:
+      "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor formula-3 polynomial for SF15.",
+  },
+  {
+    name: "BASF7",
+    vendor: "Sumita",
+    polynomial: [2.820636, -0.009775553, 0.02518764, 0.0005594941, 0.000005671245, 0.000002642464],
+    nd: 1.70154,
+    vd: 41.1,
+    code6: "702411",
+    source:
+      "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor formula-3 polynomial for BASF7.",
+  },
+  {
     name: "SK5",
     vendor: "Sumita",
     polynomial: [2.487388, -0.01016267, 0.01379582, 0.0001800715, -0.000002130549, 0.0000005629257],
