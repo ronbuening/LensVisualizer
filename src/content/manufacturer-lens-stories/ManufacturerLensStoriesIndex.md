@@ -16,12 +16,12 @@ This guide gathers those first-party articles in one place. Each company page li
 
 ## Browse by Company
 
-- **[Nikon — NIKKOR: The Thousand and One Nights](/articles/nikon-thousand-and-one-nights-index)** — all 98 tales in Nikon's current English index, ordered by tale number.
-- **[Fujifilm — One Lens, One Story](/articles/fujifilm-one-lens-one-story-index)** — 12 dated articles from 2015, sorted newest first.
-- **[SIGMA — Ohsone's Anecdotes](/articles/sigma-ohsones-anecdotes-index)** — ten numbered product tales by a SIGMA engineer.
+- **[Nikon — NIKKOR: The Thousand and One Nights](/articles/nikon-thousand-and-one-nights-index)** — all 98 tales in Nikon's current English index plus Research Report papers and corporate lens technology and design features.
+- **[Fujifilm — One Lens, One Story](/articles/fujifilm-one-lens-one-story-index)** — One Lens, One Story, The History of FUJINON, FUJINON Speed Lenses, and a GFX100RF fixed-lens development chapter.
+- **[SIGMA — Ohsone's Anecdotes](/articles/sigma-ohsones-anecdotes-index)** — Ohsone's ten product tales and the eight-part GROUND BREAKING history series.
 - **[Panasonic — LUMIX Lens Development Stories](/articles/panasonic-lumix-development-stories-index)** — Optical Design Department essays, LEICA DG Lens Stories, and other official developer features.
 - **[Pentax — Lens Development Stories](/articles/pentax-lens-development-stories-index)** — Star-series and Limited-lens developer interviews plus the official PENTAX STORY lens features.
-- **[Canon — RF Lens Developer Stories](/articles/canon-rf-lens-development-stories-index)** — eight product-planning, optical-design, and engineering interviews from Canon's RF Lens World.
+- **[Canon — RF Lens Developer Stories](/articles/canon-rf-lens-development-stories-index)** — RF Lens World interviews plus development features for the RF5.2mm Dual Fisheye and RF100–500mm.
 
 ## What Qualifies
 
@@ -29,4 +29,4 @@ The index is intentionally narrower than a general photography reading list. A c
 
 The match standard for Surface & Stop links is equally strict. A link appears only when the catalog contains the same lens generation, not merely a successor with the same focal length and aperture.
 
-This is a maintained research index, not an archive of the manufacturers' text. Links and catalog matches were checked on July 27, 2026.
+This is a maintained research index, not an archive of the manufacturers' text. Links and catalog matches are periodically rechecked.

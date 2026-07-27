@@ -1,7 +1,7 @@
 ---
 slug: fujifilm-one-lens-one-story-index
 title: "Fujifilm: One Lens, One Story"
-summary: A chronological index of Fujifilm's 12 official One Lens, One Story articles, with links to matching Surface & Stop lens diagrams.
+summary: A chronological index of Fujifilm's One Lens, One Story, History of FUJINON, and FUJINON Speed Lenses series, with links to matching Surface & Stop lens diagrams.
 tag: guide
 series: manufacturer-lens-stories
 seriesOrder: 2
@@ -28,3 +28,36 @@ Fujifilm's official _One Lens, One Story_ series ran for 12 installments in 2015
 | 2015-08-19 | XF14mmF2.8 R | [One Lens, One Story #1](https://www.fujifilm-x.com/global/stories/one-lens-one-story-1/) | — |
 
 The XF1.4X TC WR does not yet have its own Surface & Stop page. For installments 11 and 12, the catalog link therefore points to the exact XF50–140mmF2.8 lens used throughout both articles.
+
+## The History of FUJINON
+
+Fujifilm's seven-part _History of FUJINON_ traces its optical work from early glassmaking and large-format lenses through lens-design computation, EBC coatings, the GX680 system, and CM FUJINON lenses.
+
+| Published | Episode and subject | Official article |
+| --- | --- | --- |
+| 2015-08-10 | Episode 7 — CM FUJINON large-format lenses | [The History of FUJINON episode 7](https://www.fujifilm-x.com/global/stories/the-history-of-fujinon-episode7/) |
+| 2015-08-03 | Episode 6 — GX680 and its large image circle | [The History of FUJINON episode 6](https://www.fujifilm-x.com/global/stories/the-history-of-fujinon-episode6/) |
+| 2015-07-21 | Episode 5 — SLR cameras and viewfinder development | [The History of FUJINON episode 5](https://www.fujifilm-x.com/global/stories/the-history-of-fujinon-episode5/) |
+| 2015-07-02 | Episode 4 — EBC lens coatings | [The History of FUJINON episode 4](https://www.fujifilm-x.com/global/stories/the-history-of-fujinon-episode4/) |
+| 2015-06-26 | Episode 3 — lens design and the FUJIC computer | [The History of FUJINON episode 3](https://www.fujifilm-x.com/global/stories/the-history-of-fujinon-episode3/) |
+| 2015-06-05 | Episode 2 — large-format lenses and image quality | [The History of FUJINON episode 2](https://www.fujifilm-x.com/global/stories/the-history-of-fujinon-episode2/) |
+| 2015-06-05 | Episode 1 — the origins of FUJINON optical glass and lenses | [The History of FUJINON episode 1](https://www.fujifilm-x.com/global/stories/the-history-of-fujinon-episode1/) |
+
+## FUJINON Speed Lenses: Rebirth of the Legend
+
+_Rebirth of the Legend_ connects Fujifilm's 1950s FUJINON Speed Trio to its fast X-mount primes, explaining the continuity in design goals for sharpness, contrast, bokeh, and focal-length selection.
+
+| Published | Episode and lenses | Official article | Surface & Stop |
+| --- | --- | --- | --- |
+| 2015-05-22 | #4 — FUJINON 10cmF2 and XF90mmF2 R LM WR | [Rebirth of the Legend #4](https://www.fujifilm-x.com/global/stories/fujinon-speed-lenses-rebirth-of-the-legend-4/) | [XF90mmF2 R LM WR](/lens/fujifilm-xf90f2) |
+| 2015-05-15 | #3 — high-frequency contrast and XF35mmF1.4 R | [Rebirth of the Legend #3](https://www.fujifilm-x.com/global/stories/fujinon-speed-lenses-rebirth-of-the-legend-3/) | [XF35mmF1.4 R](/lens/fujifilm-xf35-f14-r) |
+| 2015-05-08 | #2 — FUJINON 3.5cmF2 and XF23mmF1.4 R | [Rebirth of the Legend #2](https://www.fujifilm-x.com/global/stories/fujinon-speed-lenses-rebirth-of-the-legend-2/) | [XF23mmF1.4 R](/lens/fujinon-xf-23mm-f14-r) |
+| 2015-05-05 | #1 — the FUJINON Speed Trio and fast XF primes | [Rebirth of the Legend #1](https://www.fujifilm-x.com/global/stories/fujinon-speed-lenses-rebirth-of-the-legend-1/) | [XF35mmF1.4 R](/lens/fujifilm-xf35-f14-r) |
+
+## GFX100RF Fixed-Lens Development
+
+One chapter of Fujifilm's five-part GFX100RF development story concentrates entirely on the camera's fixed 35mmF4 lens, including its compact optical layout, aspherical elements, leaf shutter, Nano GI coating, and autofocus mechanism.
+
+| Published | Lens | Official article | Surface & Stop |
+| --- | --- | --- | --- |
+| 2025-03-24 | GFX100RF 35mmF4 | [Development Story vol. 03: Newly Developed 35mm F4 Lens](https://www.fujifilm-x.com/en-us/stories/development-story-vol-03-newly-developed-35mm-f4-lens/) | — |

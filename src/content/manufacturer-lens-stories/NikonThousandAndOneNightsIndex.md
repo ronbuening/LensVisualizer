@@ -1,7 +1,7 @@
 ---
 slug: nikon-thousand-and-one-nights-index
 title: "Nikon: NIKKOR — The Thousand and One Nights"
-summary: A complete index of Nikon's 98 English Thousand and One Nights lens tales, with exact Surface & Stop catalog matches.
+summary: A complete index of Nikon's 98 English Thousand and One Nights lens tales and related research, technology, and design features, with exact Surface & Stop catalog matches.
 tag: guide
 series: manufacturer-lens-stories
 seriesOrder: 1
@@ -114,3 +114,22 @@ Nikon does not display a publication date on the current index or individual Eng
 | No. 3 | [W-Nikkor 3.5cm F1.8](https://imaging.nikon.com/imaging/information/story/0003/) | [W-Nikkor 3.5cm F1.8](/lens/nikon-w-nikkor-35mm-f18) |
 | No. 2 | [AI Nikkor 50mm F2](https://imaging.nikon.com/imaging/information/story/0002/) | — |
 | No. 1 | [NIKKOR-O 2.1cm F4](https://imaging.nikon.com/imaging/information/story/0001/) | [NIKKOR-O 2.1cm F4](/lens/nikon-nikkor-o-21mm-f4) |
+
+## Nikon Research Reports
+
+Nikon's corporate _Research Report_ series includes three detailed papers devoted to the development of NIKKOR Z lenses. These complement the more narrative Thousand and One Nights tales with discussions of optical targets, mechanisms, manufacturing, and evaluation.
+
+| Lens | Official report | Surface & Stop |
+| --- | --- | --- |
+| NIKKOR Z 28–135mm f/4 PZ | [Development of the NIKKOR Z 28–135mm f/4 PZ](https://www.nikon.com/company/technology/nrr/pdf/nrr_vol7_2025_03_e.pdf) | — |
+| NIKKOR Z 400mm f/2.8 TC VR S and 600mm f/4 TC VR S | [Development of the NIKKOR Z 400mm and 600mm TC lenses](https://www.nikon.com/company/technology/nrr/pdf/nrr_vol6_2024_02_e.pdf) | — |
+| NIKKOR Z 58mm f/0.95 S Noct | [Development of the NIKKOR Z 58mm f/0.95 S Noct](https://www.nikon.com/company/technology/nrr/pdf/nrr_vol2_2020_02_e.pdf) | [NIKKOR Z 58mm f/0.95 S Noct](/lens/nikon-z-58f095-noct) |
+
+## Additional NIKKOR Technology and Design Stories
+
+Two other Nikon corporate features document how lenses are evaluated and how the Z system's industrial design was developed.
+
+| Lenses or subject | Official article | Surface & Stop |
+| --- | --- | --- |
+| OPTIA evaluation and image simulation; examples include the NIKKOR Z 50mm f/1.8 S | [Analyzing NIKKOR lens characteristics](https://www.nikon.com/company/technology/stories/1909_optia/) | [NIKKOR Z 50mm f/1.8 S](/lens/nikkor-z-50f18s) |
+| NIKKOR Z system design and the 58mm f/0.95 S Noct | [Enhancing Optical Performance with a New Dimension of Craftsmanship: NIKKOR Z Lens](https://www.nikon.com/company/design/works/04_nikkor_z_lenses/) | [NIKKOR Z 58mm f/0.95 S Noct](/lens/nikon-z-58f095-noct) |
