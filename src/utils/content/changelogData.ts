@@ -22,6 +22,12 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-07-27 ──────────────────────────────────────────────────
   {
     date: "2026-07-27",
+    type: "article",
+    summary:
+      "Added manufacturer lens-story indexes with links to official articles and matching interactive lens diagrams",
+  },
+  {
+    date: "2026-07-27",
     type: "feature",
     summary: "Added a patent-number index grouped by country and assignee",
   },

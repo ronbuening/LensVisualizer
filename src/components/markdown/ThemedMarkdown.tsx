@@ -129,7 +129,7 @@ export default function ThemedMarkdown({
           );
         }
         return (
-          <a id={id} href={href} target={article ? undefined : "_blank"} rel="noopener noreferrer" style={linkStyle}>
+          <a id={id} href={href} target="_blank" rel="noopener noreferrer" style={linkStyle}>
             {children}
           </a>
         );
