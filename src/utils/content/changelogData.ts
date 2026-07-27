@@ -19,6 +19,12 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-07-27 ──────────────────────────────────────────────────
+  {
+    date: "2026-07-27",
+    type: "feature",
+    summary: "Added a patent-number index grouped by country and assignee",
+  },
   // ── 2026-07-26 ──────────────────────────────────────────────────
   {
     date: "2026-07-26",

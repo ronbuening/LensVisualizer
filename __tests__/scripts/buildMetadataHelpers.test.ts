@@ -252,6 +252,10 @@ describe("build metadata helpers", () => {
       publishedOn: "2026-03-19",
       lastModified: "2026-03-27",
     });
+    expect(routeFreshness["/patents"]).toEqual({
+      publishedOn: "2026-03-19",
+      lastModified: "2026-03-27",
+    });
     expect(routeFreshness["/articles/optics-primer"]).toEqual({
       publishedOn: "2026-03-18",
       lastModified: "2026-03-24",

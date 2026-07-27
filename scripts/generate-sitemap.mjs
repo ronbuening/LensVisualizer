@@ -23,6 +23,7 @@ function routePriority(route) {
   if (
     route === "/makers" ||
     route === "/authors" ||
+    route === "/patents" ||
     route === "/mounts" ||
     route === "/formats" ||
     route === "/articles"

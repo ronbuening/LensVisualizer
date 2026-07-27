@@ -21,6 +21,7 @@ build metadata.
 | `MakersIndexPage.tsx` | `src/pages/` | Maker index at `/makers`, lists makers with counts. |
 | `AuthorPage.tsx` | `src/pages/` | Author page at `/authors/:author`, grouping related patents by assignee or co-author. |
 | `AuthorsIndexPage.tsx` | `src/pages/` | Author index at `/authors`, listing represented patent authors with patent and lens counts and name/count sorting. |
+| `PatentsIndexPage.tsx` | `src/pages/` | Patent-number index at `/patents`, grouping unique source patents by publication country/jurisdiction and then assignee. |
 | `MountPage.tsx` | `src/pages/` | Mount page at `/mounts/:mountId`, lists lenses for one mount. |
 | `MountsIndexPage.tsx` | `src/pages/` | Mount index at `/mounts`, lists represented mounts with counts. |
 | `FormatPage.tsx` | `src/pages/` | Image-format page at `/formats/:formatId`, lists lenses for one format. |
@@ -55,8 +56,8 @@ The app uses React Router 7 with client-side routing plus static prerendering fo
 - `main.tsx` mounts `RouterProvider` with the browser router.
 - `entry-server.tsx` exports `render(url): { html, helmet }` using `StaticRouter` and `react-helmet-async`.
 - `scripts/generate-build-metadata.mjs` expands the concrete prerender route list into
-  `src/generated/build-metadata.json`, including homepage, search, lens, author, maker, mount, format, article, and
-  update routes.
+  `src/generated/build-metadata.json`, including homepage, search, lens, patent, author, maker, mount, format, article,
+  and update routes.
 - `scripts/prerender.mjs` reads that concrete route list, builds the SSR entry, validates it against
   `manifestPaths` exported from `entry-server.tsx`, and writes each route plus `404.html` into `dist/`.
 - `/compare/:slugA/:slugB` is routeable and SSR-capable, but it is intentionally excluded from the generated concrete
