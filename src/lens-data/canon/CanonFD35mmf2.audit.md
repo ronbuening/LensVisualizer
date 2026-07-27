@@ -34,3 +34,12 @@ Catalog version: local working tree, 2026-05-19
 - `npm run generate:glass-reports` - passed; the S-LAM51 relabel removed the former 700480-family row, while the unresolved 774492 rows remain in `six-digit-glass-codes-missing-sellmeier.generated.md`.
 - `npm run typecheck` - passed.
 - `npm run format:check` - passed.
+
+## 2026-07-26 - BASF7 catalog backfill
+
+- Reclassified L3 code `702411` as `BASF7 (Sumita coefficient-backed equivalent), 702411`.
+- Sumita's official 2025-11-07 all-glass Zemax catalog publishes the exact coordinate and a formula-3 polynomial.
+- Updated the analysis while retaining the historical-supplier caveat.
+- This relabel reuses the BASF7 catalog entry added during the Nikon 80-200mm f/4.5 glass audit.
+- `npm run generate:glass-reports` passed; L3 now resolves through BASF7 and the lens reaches 7/9 trusted and
+  Sellmeier coverage, with only the two `774492` rows remaining unresolved.

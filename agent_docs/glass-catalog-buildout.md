@@ -7,7 +7,7 @@ available, it falls back to partial measured `nC`/`nF` line indices, dPgF-correc
 approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **345 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **349 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
 
 The July 23, 2026 Canon batch added OHARA S-TIH53WN from the vendor's April 2025 datasheet. The WN variant retains
 the conventional d-line index while publishing modified off-d-line indices and dispersion constants for
@@ -271,6 +271,15 @@ material index/Abbe deltas, so those labels remain explicit code-only rows.
 | Glass | Vendor | Code | Notes |
 |---|---|---:|---|
 | ★ J-LAFH3 | Hikari | 795287 | Exact d-line match for the f/4 relay glass and reusable coverage for several existing Nikon prescriptions |
+
+**Phase 37 additions** (July 2026 — vintage Nikon patent pass using SUMITA's official 2025-11-07 all-glass Zemax catalog, including discontinued types; all four entries retain the vendor's formula-3 polynomials and round-trip through `assertCatalogConsistent`):
+
+| Glass | Vendor | Code | Notes |
+|---|---|---:|---|
+| ★ LF3 | Sumita | 582420 | Exact coordinate equivalent for L4 of the NIKKOR-O 2.1cm f/4 patent design |
+| ★ LAK6 | Sumita | 643581 | Exact coordinate equivalent for L8 of the NIKKOR-O 2.1cm f/4 patent design |
+| ★ SF15 | Sumita | 699300 | Exact coordinate equivalent for L14 of the ZOOM-NIKKOR Auto 80-200mm f/4.5 patent design |
+| ★ BASF7 | Sumita | 702411 | Exact coordinate equivalent for L15 of the ZOOM-NIKKOR Auto 80-200mm f/4.5 and L3 of the Canon FD 35mm f/2 patent designs |
 
 **Phase 17 additions** (May 2026 — Hasselblad/Laowa/Leica/Minolta/Nikon six-digit missing-Sellmeier queue pass; all entries round-trip through `assertCatalogConsistent`):
 
