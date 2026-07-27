@@ -19,7 +19,7 @@ This guide gathers those first-party articles in one place. Each company page li
 - **[Nikon — NIKKOR: The Thousand and One Nights](/articles/nikon-thousand-and-one-nights-index)** — all 98 tales in Nikon's current English index, ordered by tale number.
 - **[Fujifilm — One Lens, One Story](/articles/fujifilm-one-lens-one-story-index)** — 12 dated articles from 2015, sorted newest first.
 - **[SIGMA — Ohsone's Anecdotes](/articles/sigma-ohsones-anecdotes-index)** — ten numbered product tales by a SIGMA engineer.
-- **[Panasonic — LUMIX S 20–60mm Development Story](/articles/panasonic-lumix-development-stories-index)** — a three-part design series.
+- **[Panasonic — LUMIX Lens Development Stories](/articles/panasonic-lumix-development-stories-index)** — Optical Design Department essays, LEICA DG Lens Stories, and other official developer features.
 - **[Pentax — Lens Development Stories](/articles/pentax-lens-development-stories-index)** — Star-series and Limited-lens developer interviews plus the official PENTAX STORY lens features.
 - **[Canon — RF Lens Developer Stories](/articles/canon-rf-lens-development-stories-index)** — eight product-planning, optical-design, and engineering interviews from Canon's RF Lens World.
 
