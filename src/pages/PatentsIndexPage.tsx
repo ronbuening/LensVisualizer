@@ -17,6 +17,7 @@ import {
   PATENTS,
   PATENT_ASSIGNEE_FALLBACK,
   PATENT_COUNTRY_GROUPS,
+  espacenetPatentUrl,
   type PatentRecord,
 } from "../utils/catalog/patentCatalog.js";
 import { collectionPageJsonLd, itemListJsonLd } from "../utils/seo/structuredData.js";
@@ -45,7 +46,19 @@ function PatentCard({ patent, groupedAssignee, theme: t }: PatentCardProps) {
       }}
     >
       <h4 style={{ color: t.title, fontSize: "0.9rem", margin: "0 0 0.3rem" }}>
-        {patent.patentNumber}
+        <a
+          href={espacenetPatentUrl(patent.patentNumber)}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`${patent.patentNumber} in Espacenet (opens in a new tab)`}
+          title={`View ${patent.patentNumber} in Espacenet`}
+          style={{ color: t.descLinkColor, textDecoration: "none" }}
+        >
+          {patent.patentNumber}
+          <span aria-hidden="true" style={{ fontSize: "0.72rem", marginLeft: "0.25rem" }}>
+            ↗
+          </span>
+        </a>
         {patent.patentYear !== undefined && (
           <span style={{ color: t.label, fontSize: "0.68rem", marginLeft: "0.5rem", fontWeight: 400 }}>
             {patent.patentYear}
@@ -148,7 +161,8 @@ export default function PatentsIndexPage() {
         </p>
         <p style={{ color: t.label, fontSize: "0.7rem", lineHeight: 1.5, margin: "0 0 1.5rem" }}>
           Jointly assigned patents appear in each named assignee section. Patents without a published assignee are
-          collected under “{PATENT_ASSIGNEE_FALLBACK}.”
+          collected under “{PATENT_ASSIGNEE_FALLBACK}.” Patent numbers open their worldwide Espacenet record search in a
+          new tab.
         </p>
 
         <SidebarLayout

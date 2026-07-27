@@ -62,6 +62,18 @@ export const PATENT_ASSIGNEE_FALLBACK = "No named assignee or applicant";
 
 const patentNumberCollator = new Intl.Collator("en", { numeric: true, sensitivity: "base" });
 
+/**
+ * Build a worldwide Espacenet publication-number search URL.
+ *
+ * Espacenet accepts DOCDB-style identifiers without display punctuation and is
+ * flexible about omitted kind codes, which covers both modern publications and
+ * the historical patent-number formats represented in the catalog.
+ */
+export function espacenetPatentUrl(patentNumber: string): string {
+  const publicationNumber = patentNumber.toUpperCase().replace(/[^A-Z0-9]/g, "");
+  return `https://worldwide.espacenet.com/patent/search?q=${encodeURIComponent(`pn=${publicationNumber}`)}`;
+}
+
 /** Resolve the publication authority encoded at the start of a patent number. */
 export function patentJurisdiction(patentNumber: string): PatentJurisdiction {
   const code = patentNumber.trim().match(/^([A-Z]{2})\b/)?.[1] ?? "OTHER";

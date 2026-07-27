@@ -3,6 +3,7 @@ import type { LensSummary } from "../../../../src/utils/catalog/lensSummaries.js
 import {
   PATENT_ASSIGNEE_FALLBACK,
   buildPatentIndex,
+  espacenetPatentUrl,
   patentJurisdiction,
 } from "../../../../src/utils/catalog/patentCatalog.js";
 
@@ -11,6 +12,16 @@ function summary(overrides: Partial<LensSummary> & Pick<LensSummary, "key" | "na
 }
 
 describe("patent catalog", () => {
+  it("builds Espacenet publication-number searches from catalog display formats", () => {
+    expect(espacenetPatentUrl("US 2,819,651")).toBe("https://worldwide.espacenet.com/patent/search?q=pn%3DUS2819651");
+    expect(espacenetPatentUrl("WO 2021/246545 A1")).toBe(
+      "https://worldwide.espacenet.com/patent/search?q=pn%3DWO2021246545A1",
+    );
+    expect(espacenetPatentUrl("JP S56-140311")).toBe(
+      "https://worldwide.espacenet.com/patent/search?q=pn%3DJPS56140311",
+    );
+  });
+
   it("resolves represented patent authorities to country labels", () => {
     expect(patentJurisdiction("US 2,819,651")).toEqual({ code: "US", label: "United States" });
     expect(patentJurisdiction("JP 2014-145954 A")).toEqual({ code: "JP", label: "Japan" });

@@ -14,7 +14,7 @@ import AuthorsIndexPage from "../../../src/pages/AuthorsIndexPage.js";
 import PatentsIndexPage from "../../../src/pages/PatentsIndexPage.js";
 import CatalogSearchBox from "../../../src/components/search/CatalogSearchBox.js";
 import { AUTHORS, getAuthorByName, patentsForAuthor } from "../../../src/utils/catalog/authorCatalog.js";
-import { PATENTS, PATENT_COUNTRY_GROUPS } from "../../../src/utils/catalog/patentCatalog.js";
+import { PATENTS, PATENT_COUNTRY_GROUPS, espacenetPatentUrl } from "../../../src/utils/catalog/patentCatalog.js";
 import themes from "../../../src/utils/theme/themes.js";
 import { clearBrowserState, installMatchMediaMock, renderWithRouter } from "../../testUtils.js";
 
@@ -192,6 +192,12 @@ describe("search, author, and patent pages", () => {
     ).toBeTruthy();
     expect(within(countrySection).getByRole("heading", { level: 3, name: new RegExp(assignee.label) })).toBeTruthy();
     expect(screen.getAllByText(patent.patentNumber).length).toBeGreaterThan(0);
+    const patentDatabaseLink = screen.getAllByRole("link", {
+      name: `${patent.patentNumber} in Espacenet (opens in a new tab)`,
+    })[0];
+    expect(patentDatabaseLink.getAttribute("href")).toBe(espacenetPatentUrl(patent.patentNumber));
+    expect(patentDatabaseLink.getAttribute("target")).toBe("_blank");
+    expect(patentDatabaseLink.getAttribute("rel")).toBe("noopener noreferrer");
     expect(
       screen
         .getAllByRole("link", { name: new RegExp(patent.lenses[0].name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")) })
