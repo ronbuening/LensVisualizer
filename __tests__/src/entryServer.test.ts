@@ -17,6 +17,7 @@ import { IMAGE_FORMAT_OPTIONS, MOUNT_OPTIONS } from "../../src/pages/lensIndex/c
 import { getMountDetails } from "../../src/utils/catalog/mountDetails.js";
 import { getImageFormatDetails } from "../../src/utils/catalog/imageFormatDetails.js";
 import { AUTHORS, patentsForAuthor } from "../../src/utils/catalog/authorCatalog.js";
+import { PATENTS } from "../../src/utils/catalog/patentCatalog.js";
 import {
   deriveMaker,
   SITE_NAME,
@@ -43,6 +44,7 @@ const TEST_ARTICLE = ARTICLES[0];
 const TEST_AUTHOR = AUTHORS.find((author) => author.patentCount > 0)!;
 const TEST_AUTHOR_PATENT = patentsForAuthor(TEST_AUTHOR.name)[0];
 const TEST_PROFILED_AUTHOR = AUTHORS.find((author) => author.name === "Paul Rudolph")!;
+const TEST_PATENT = PATENTS[0];
 
 function escapeHtmlText(value: string): string {
   return value
@@ -76,6 +78,7 @@ describe("SSR render — all routes produce valid helmet output", () => {
     [`/makers/${TEST_MAKER_SLUG}`, "maker page"],
     ["/authors", "authors index"],
     [`/authors/${TEST_AUTHOR.slug}`, "author page"],
+    ["/patents", "patents index"],
     ["/mounts", "mounts index"],
     [`/mounts/${TEST_MOUNT.id}`, "mount page"],
     ["/formats", "formats index"],
@@ -102,6 +105,7 @@ describe("SSR render — content pages produce non-empty HTML", () => {
     [`/makers/${TEST_MAKER_SLUG}`, "maker page"],
     ["/authors", "authors index"],
     [`/authors/${TEST_AUTHOR.slug}`, "author page"],
+    ["/patents", "patents index"],
     ["/mounts", "mounts index"],
     [`/mounts/${TEST_MOUNT.id}`, "mount page"],
     ["/formats", "formats index"],
@@ -225,6 +229,18 @@ describe("SSR render — search and author pages", () => {
     expect(html).toContain("Biography");
     expect(html).toContain("foundational designers of modern photographic objectives");
     expect(html).toContain("ZEISS — History of camera and cine lenses");
+  });
+});
+
+describe("SSR render — patents index", () => {
+  it("renders the crawlable Country → Assignee patent index", () => {
+    const { helmet, html } = render("/patents");
+    expect(helmet.title.toString()).toContain("Lens Patents by Country and Assignee");
+    expect(helmet.link.toString()).toContain(`${SITE_URL}/patents`);
+    expect(helmet.script.toString()).toContain('"@type":"ItemList"');
+    expect(html).toContain(escapeHtmlText(TEST_PATENT.patentNumber));
+    expect(html).toContain(escapeHtmlText(TEST_PATENT.jurisdiction.label));
+    expect(html).toContain(`/lens/${TEST_PATENT.lenses[0].key}`);
   });
 });
 

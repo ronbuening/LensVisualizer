@@ -27,6 +27,7 @@ const routeManifest: RouteManifestEntry[] = [
   { path: "/makers/:maker", load: () => import("../pages/MakerPage.js") },
   { path: "/authors", load: () => import("../pages/AuthorsIndexPage.js") },
   { path: "/authors/:author", load: () => import("../pages/AuthorPage.js") },
+  { path: "/patents", load: () => import("../pages/PatentsIndexPage.js") },
   { path: "/mounts", load: () => import("../pages/MountsIndexPage.js") },
   { path: "/mounts/:mountId", load: () => import("../pages/MountPage.js") },
   { path: "/formats", load: () => import("../pages/FormatsIndexPage.js") },

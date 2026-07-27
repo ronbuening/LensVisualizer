@@ -15,6 +15,7 @@ interface IndexNavBarProps {
 const INDEX_LINKS = [
   { label: "Mounts", to: "/mounts" },
   { label: "Formats", to: "/formats" },
+  { label: "Patents", to: "/patents" },
   { label: "Authors", to: "/authors" },
   { label: "Relationships", to: "/relationships" },
   { label: "Articles", to: "/articles" },

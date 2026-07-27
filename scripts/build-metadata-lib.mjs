@@ -232,6 +232,7 @@ export function buildRouteFreshness({
   routeFreshness["/lenses"] = combineFreshnessEntries(allLensFreshness, fallbackDate);
   routeFreshness["/makers"] = combineFreshnessEntries([...allLensFreshness, makerDetailsFreshness], fallbackDate);
   routeFreshness["/authors"] = combineFreshnessEntries(allLensFreshness, fallbackDate);
+  routeFreshness["/patents"] = combineFreshnessEntries(allLensFreshness, fallbackDate);
   routeFreshness["/mounts"] = combineFreshnessEntries(allLensFreshness, fallbackDate);
   routeFreshness["/formats"] = combineFreshnessEntries(allLensFreshness, fallbackDate);
   routeFreshness["/articles"] = combineFreshnessEntries(allArticleFreshness, fallbackDate);

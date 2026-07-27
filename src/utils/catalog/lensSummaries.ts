@@ -4,7 +4,7 @@
  * Generated at build time by scripts/generate-build-metadata.mjs into
  * src/generated/lens-summaries.json by evaluating every `*.data.ts` module
  * and keeping only summary fields (name, maker, specs, marketing numbers,
- * patent attribution, mounts, format). Index-style pages (lens index, maker/mount/format pages,
+ * patent attribution, mounts, format). Index-style pages (lens/patent indexes, maker/mount/format pages,
  * updates, homepage cards) consume this instead of the full catalog, so they
  * do not ship the multi-megabyte prescription chunk.
  *

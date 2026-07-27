@@ -72,6 +72,7 @@ describe("static page renders", () => {
     const indexNav = screen.getByRole("navigation", { name: "Catalog indexes" });
     expect(within(indexNav).getByRole("link", { name: "Mounts" }).getAttribute("href")).toBe("/mounts");
     expect(within(indexNav).getByRole("link", { name: "Formats" }).getAttribute("href")).toBe("/formats");
+    expect(within(indexNav).getByRole("link", { name: "Patents" }).getAttribute("href")).toBe("/patents");
     expect(within(indexNav).getByRole("link", { name: "Authors" }).getAttribute("href")).toBe("/authors");
     expect(within(indexNav).getByRole("link", { name: "Articles" }).getAttribute("href")).toBe("/articles");
     expect(screen.getByText("Articles & Guides")).toBeTruthy();
