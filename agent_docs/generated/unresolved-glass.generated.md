@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **482** lenses scanned
-- **5277** non-air surfaces examined
-- **5282** element glass declarations examined
-- **605** non-explicit-unmatched annotations did not resolve
-- **264** distinct unresolved glass-like tokens found
+- **485** lenses scanned
+- **5318** non-air surfaces examined
+- **5323** element glass declarations examined
+- **602** non-explicit-unmatched annotations did not resolve
+- **262** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -110,7 +110,6 @@ or per-lens patent backfills.
 | 630346 | 1 | 1 | |
 | 639449 | 1 | 1 | |
 | 639451 | 1 | 1 | |
-| 640346 | 1 | 1 | |
 | 640353 | 1 | 1 | |
 | 640601 | 1 | 1 | |
 | 658397 | 1 | 1 | |
@@ -133,7 +132,6 @@ or per-lens patent backfills.
 | 700555 | 1 | 1 | |
 | 701301 | 1 | 1 | |
 | 713433 | 1 | 1 | |
-| 713539 | 1 | 1 | |
 | 720421 | 1 | 1 | |
 | 720504 | 1 | 1 | |
 | 721334 | 1 | 1 | |
@@ -735,10 +733,6 @@ or per-lens patent backfills.
 
 - [VIVITAR SERIES 1 35-85mm f/2.8 VMC](../../src/lens-data/vivitar/VivitarSeries13585mmf28.data.ts) 18: `639451 — BaSF52-type barium dense flint (no exact public catalog match)`
 
-### 640346 — 1 occurrence
-
-- [LEICA ELMARIT 90mm f/2.8](../../src/lens-data/leica/LeicaElmarit90mmf28.data.ts) 4: `640346 - F-family flint (patent nd=1.63980, vd=34.6; no exact public catalog match)`
-
 ### 640353 — 1 occurrence
 
 - [MINOLTA MD ROKKOR 45mm f/2](../../src/lens-data/minolta/MinoltaRokkor45mmf2MD.data.ts) 7: `640353 - medium flint (catalog unresolved)`
@@ -826,10 +820,6 @@ or per-lens patent backfills.
 ### 713433 — 1 occurrence
 
 - [VIVITAR SERIES 1 200mm f/3.0 VMC](../../src/lens-data/vivitar/VivitarSeries1200mmf3.data.ts) 10: `713433 — LaF/BaSF boundary glass (no exact public catalog match)`
-
-### 713539 — 1 occurrence
-
-- [OLYMPUS OM ZUIKO AUTO-W 21mm f/2](../../src/lens-data/olympus/OlympusZuikoAuto21mmf2.data.ts) 17: `713539 — LaK21 / LAC11-class lanthanum crown (no exact public catalog match)`
 
 ### 720421 — 1 occurrence
 

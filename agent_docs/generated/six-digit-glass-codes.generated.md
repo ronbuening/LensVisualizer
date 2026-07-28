@@ -9,48 +9,54 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **482** lenses scanned
-- **438** total code-only elements found
-- **438** elements in this report
-- **142** distinct lens files affected
+- **485** lenses scanned
+- **472** total code-only elements found
+- **472** elements in this report
+- **145** distinct lens files affected
 
 ## Codes by Frequency
 
 | Code | Elements | Lens files | localPatentStatus | reviewedSidecarStatus |
 |---|---:|---:|---|---|
 | 670571 | 10 | 5 | patents/US4871239.pdf<br>patents/JP2004109559A.pdf<br>patents/US4951078.pdf | 4/10 representative rows reviewed |
+| 847238 | 8 | 4 | patents/US20170068075A1.pdf<br>patents/US20010007512A1.pdf<br>patents/US20180164556A1.pdf<br>patents/US7804652.pdf | No reviewed-sidecar hit |
 | 593670 | 7 | 4 | patents/US20200142168A1.pdf<br>patents/WO2020136749A1.pdf<br>patents/JP2025052870A.pdf<br>patents/WO2023153076A1.pdf | No reviewed-sidecar hit |
+| 487702 | 6 | 4 | patents/JP2013054269A.pdf<br>patents/US20010007512A1.pdf<br>patents/US7804652.pdf | No reviewed-sidecar hit |
 | 493836 | 6 | 2 | patents/JP2004109559A.pdf | No reviewed-sidecar hit |
 | 593679 | 6 | 4 | patents/US5640277.pdf<br>patents/US20200142168A1.pdf<br>patents/WO2019097669A1.pdf<br>patents/WO2020136749A1.pdf | No reviewed-sidecar hit |
 | 797454 | 6 | 5 | patents/US5557473.pdf<br>patents/JPA 1999030748-000000.pdf<br>patents/US5528428.pdf<br>patents/US5579169.pdf | 2/6 representative rows reviewed |
+| 804466 | 6 | 3 | patents/US20010007512A1.pdf<br>patents/US20180164556A1.pdf<br>patents/US7804652.pdf | No reviewed-sidecar hit |
 | 486815 | 5 | 1 | patents/US3743384.pdf | All representative rows reviewed |
 | 796409 | 5 | 4 | patents/US5751485.pdf<br>patents/US4699475.pdf<br>patents/US5579169.pdf<br>patents/US5257137.pdf | 2/5 representative rows reviewed |
+| 497816 | 4 | 2 | patents/US20130222925A1.pdf<br>patents/US20180164556A1.pdf | No reviewed-sidecar hit |
 | 501565 | 4 | 2 | patents/US4189212.pdf<br>patents/US3743384.pdf | All representative rows reviewed |
+| 589612 | 4 | 4 | patents/US4452513.pdf<br>patents/US4223981.pdf<br>patents/US20170068075A1.pdf<br>patents/US7804652.pdf | No reviewed-sidecar hit |
 | 603607 | 4 | 4 | patents/JP2013054269A.pdf<br>patents/US4223981.pdf<br>patents/US20170068075A1.pdf | No reviewed-sidecar hit |
 | 662561 | 4 | 1 | patents/GB_850117_A.pdf | All representative rows reviewed |
 | 694533 | 4 | 3 | patents/US20200142168A1.pdf<br>patents/JP2019008031A.pdf<br>patents/WO2020136749A1.pdf | No reviewed-sidecar hit |
 | 738323 | 4 | 4 | patents/JP2013054269A.pdf<br>patents/US20190278068A1.pdf<br>patents/US20190265441A1.pdf<br>patents/WO2020136749A1.pdf | No reviewed-sidecar hit |
 | 744495 | 4 | 4 | patents/US20200142168A1.pdf<br>patents/US7508592.pdf<br>patents/WO2020136749A1.pdf<br>patents/JPWO2019049372A1.pdf | All representative rows reviewed |
+| 755275 | 4 | 3 | patents/US4223981.pdf<br>patents/US20010007512A1.pdf | No reviewed-sidecar hit |
 | 764485 | 4 | 4 | patents/JP2021047297A.pdf<br>patents/US20190278068A1.pdf<br>patents/US20190265441A1.pdf<br>patents/WO2023181666A1.pdf | No reviewed-sidecar hit |
-| 847238 | 4 | 2 | patents/US20170068075A1.pdf<br>patents/US20180164556A1.pdf | No reviewed-sidecar hit |
+| 805254 | 4 | 3 | patents/US4452513.pdf<br>patents/US7804652.pdf | No reviewed-sidecar hit |
+| 834372 | 4 | 3 | patents/US4110006.pdf<br>patents/US7804652.pdf | No reviewed-sidecar hit |
 | 863252 | 4 | 2 | patents/WO2021199923A1.pdf<br>patents/WO_2025263124_A1.pdf | All representative rows reviewed |
 | 911353 | 4 | 4 | patents/JP2013054269A.pdf<br>patents/US20230213745A1.pdf<br>patents/US20190278068A1.pdf | No reviewed-sidecar hit |
-| 487702 | 3 | 2 | patents/JP2013054269A.pdf | No reviewed-sidecar hit |
 | 504668 | 3 | 1 | patents/US3862794.pdf | No reviewed-sidecar hit |
 | 515546 | 3 | 3 | patents/JPA 1999030748-000000.pdf<br>patents/US3507558.pdf<br>patents/US3743384.pdf | 2/3 representative rows reviewed |
 | 516565 | 3 | 1 | patents/CN216772097U.pdf | All representative rows reviewed |
 | 585587 | 3 | 1 | patents/WO2024195273A1.pdf | All representative rows reviewed |
-| 589612 | 3 | 3 | patents/US4452513.pdf<br>patents/US4223981.pdf<br>patents/US20170068075A1.pdf | No reviewed-sidecar hit |
 | 617540 | 3 | 2 | patents/US5717527.pdf<br>patents/JPA 1999030748-000000.pdf | No reviewed-sidecar hit |
 | 620603 | 3 | 2 | patents/US4452513.pdf<br>patents/US4223981.pdf | No reviewed-sidecar hit |
 | 672472 | 3 | 1 | patents/US2084309.pdf | No reviewed-sidecar hit |
 | 697555 | 3 | 3 | patents/JP2013054269A.pdf<br>patents/US4277149.pdf<br>patents/US20170068075A1.pdf | No reviewed-sidecar hit |
 | 720503 | 3 | 1 | patents/WO2019097669A1.pdf | No reviewed-sidecar hit |
-| 755275 | 3 | 2 | patents/US4223981.pdf | No reviewed-sidecar hit |
+| 729547 | 3 | 3 | patents/JP2013054269A.pdf<br>patents/US20170068075A1.pdf<br>patents/US20010007512A1.pdf | No reviewed-sidecar hit |
+| 773496 | 3 | 3 | patents/JP2013054269A.pdf<br>patents/US20010007512A1.pdf<br>patents/US7804652.pdf | No reviewed-sidecar hit |
 | 777297 | 3 | 3 | patents/WO2021199923A1.pdf<br>patents/WO_2025263124_A1.pdf<br>patents/JP2023039817A.pdf | All representative rows reviewed |
 | 804339 | 3 | 2 | patents/US5751485.pdf<br>patents/US5717527.pdf | No reviewed-sidecar hit |
+| 806333 | 3 | 2 | patents/US20130222925A1.pdf<br>patents/WO2016136352A1.pdf | No reviewed-sidecar hit |
 | 816466 | 3 | 2 | patents/US20170068075A1.pdf<br>patents/US20180164556A1.pdf | No reviewed-sidecar hit |
-| 834372 | 3 | 2 | patents/US4110006.pdf | No reviewed-sidecar hit |
 | 861230 | 3 | 2 | patents/US5717527.pdf<br>patents/JPA 1999030748-000000.pdf | No reviewed-sidecar hit |
 | 863248 | 3 | 1 | patents/JP2023039817A.pdf | All representative rows reviewed |
 | 903357 | 3 | 3 | patents/WO2019097669A1.pdf<br>patents/JP2019008031A.pdf<br>patents/JPWO2020157904A1.pdf | No reviewed-sidecar hit |
@@ -58,15 +64,16 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 961323 | 3 | 1 | patents/WO2021200206A1.pdf | No reviewed-sidecar hit |
 | 001255 | 2 | 2 | patents/JP2022092388A.pdf<br>patents/WO2022097401A1.pdf | No reviewed-sidecar hit |
 | 051269 | 2 | 1 | patents/JP2021056407A.pdf | No reviewed-sidecar hit |
-| 497816 | 2 | 1 | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
 | 511605 | 2 | 1 | patents/US4258985.pdf | No reviewed-sidecar hit |
 | 514428 | 2 | 1 | patents/JP2016021011A.pdf | All representative rows reviewed |
 | 516641 | 2 | 2 | patents/US20030072086A1.pdf<br>patents/US20180164556A1.pdf | No reviewed-sidecar hit |
 | 517642 | 2 | 1 | patents/US4223981.pdf | No reviewed-sidecar hit |
+| 518590 | 2 | 2 | patents/US4223981.pdf<br>patents/US20010007512A1.pdf | No reviewed-sidecar hit |
 | 518603 | 2 | 2 | patents/US4770511.pdf<br>patents/US4699475.pdf | All representative rows reviewed |
 | 519699 | 2 | 1 | patents/WO2022097401A1.pdf | No reviewed-sidecar hit |
 | 531559 | 2 | 2 | patents/US20200142167A1.pdf<br>patents/WO2021039813A1.pdf | All representative rows reviewed |
 | 561453 | 2 | 2 | patents/US20020075570A1.pdf<br>patents/US3376091.pdf | 1/2 representative rows reviewed |
+| 567428 | 2 | 2 | patents/US20180164556A1.pdf<br>patents/US7804652.pdf | No reviewed-sidecar hit |
 | 569632 | 2 | 1 | Missing from untracked local patents/ references (US4025167, 4025167) | No reviewed-sidecar hit |
 | 583594 | 2 | 2 | patents/JP2013054269A.pdf | No reviewed-sidecar hit |
 | 585594 | 2 | 1 | patents/JP2023039817A.pdf | All representative rows reviewed |
@@ -79,7 +86,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 720347 | 2 | 2 | patents/WO2022097401A1.pdf<br>patents/WO2023153076A1.pdf | No reviewed-sidecar hit |
 | 720521 | 2 | 2 | patents/US4124276.pdf | No reviewed-sidecar hit |
 | 728285 | 2 | 2 | patents/JP2021056407A.pdf<br>patents/US20170068075A1.pdf | No reviewed-sidecar hit |
-| 729547 | 2 | 2 | patents/JP2013054269A.pdf<br>patents/US20170068075A1.pdf | No reviewed-sidecar hit |
 | 744494 | 2 | 2 | patents/US3507558.pdf<br>patents/US3743384.pdf | All representative rows reviewed |
 | 748523 | 2 | 2 | patents/US5717527.pdf<br>patents/US5490012.pdf | No reviewed-sidecar hit |
 | 755276 | 2 | 1 | patents/US4452513.pdf | No reviewed-sidecar hit |
@@ -87,7 +93,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 762404 | 2 | 1 | patents/US4258985.pdf | No reviewed-sidecar hit |
 | 774492 | 2 | 1 | patents/US3748022.pdf | All representative rows reviewed |
 | 804465 | 2 | 1 | patents/US20100194930A1.pdf | No reviewed-sidecar hit |
-| 805254 | 2 | 2 | patents/US4452513.pdf | No reviewed-sidecar hit |
+| 805255 | 2 | 2 | patents/US4223981.pdf<br>patents/US20130222925A1.pdf | No reviewed-sidecar hit |
 | 807316 | 2 | 2 | patents/US4764000.pdf<br>patents/US4871239.pdf | All representative rows reviewed |
 | 813252 | 2 | 1 | patents/US3591257.pdf | All representative rows reviewed |
 | 856401 | 2 | 1 | patents/WO_2025263124_A1.pdf | All representative rows reviewed |
@@ -107,9 +113,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 511509 | 1 | 1 | patents/US4266860.pdf | All representative rows reviewed |
 | 514530 | 1 | 1 | patents/JP2016021011A.pdf | All representative rows reviewed |
 | 517522 | 1 | 1 | patents/JP2014209144A.pdf | No reviewed-sidecar hit |
+| 517524 | 1 | 1 | patents/US20010007512A1.pdf | No reviewed-sidecar hit |
 | 517641 | 1 | 1 | patents/US4452513.pdf | No reviewed-sidecar hit |
 | 518523 | 1 | 1 | patents/US4871239.pdf | All representative rows reviewed |
-| 518590 | 1 | 1 | patents/US4223981.pdf | No reviewed-sidecar hit |
 | 518652 | 1 | 1 | patents/US2821112.pdf | No reviewed-sidecar hit |
 | 519573 | 1 | 1 | patents/20260118637.pdf | No reviewed-sidecar hit |
 | 523701 | 1 | 1 | patents/US20100194930A1.pdf | No reviewed-sidecar hit |
@@ -133,7 +139,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 561575 | 1 | 1 | patents/US2721499.pdf | All representative rows reviewed |
 | 564463 | 1 | 1 | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
 | 564608 | 1 | 1 | patents/US4223981.pdf | No reviewed-sidecar hit |
-| 567428 | 1 | 1 | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
+| 569560 | 1 | 1 | patents/US20130222925A1.pdf | No reviewed-sidecar hit |
 | 571560 | 1 | 1 | patents/WO_2025263124_A1.pdf | No reviewed-sidecar hit |
 | 573575 | 1 | 1 | patents/US2279384.pdf | No reviewed-sidecar hit |
 | 574425 | 1 | 1 | patents/FR_1066698_A.pdf | All representative rows reviewed |
@@ -145,6 +151,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 585417 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | No reviewed-sidecar hit |
 | 592670 | 1 | 1 | patents/US20150092100A1.pdf | No reviewed-sidecar hit |
 | 593343 | 1 | 1 | patents/US2838978.pdf | No reviewed-sidecar hit |
+| 593353 | 1 | 1 | patents/US7804652.pdf | No reviewed-sidecar hit |
 | 593355 | 1 | 1 | patents/JP2022033487A.pdf | No reviewed-sidecar hit |
 | 593686 | 1 | 1 | patents/JPWO2017138250A1.pdf | No reviewed-sidecar hit |
 | 595355 | 1 | 1 | patents/US5579169.pdf | No reviewed-sidecar hit |
@@ -208,6 +215,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 720502 | 1 | 1 | patents/JP2022092388A.pdf | No reviewed-sidecar hit |
 | 721334 | 1 | 1 | Missing from untracked local patents/ references (US4786152, 4786152) | No reviewed-sidecar hit |
 | 728261 | 1 | 1 | patents/US4523816.pdf | No reviewed-sidecar hit |
+| 728283 | 1 | 1 | patents/US20130222925A1.pdf | No reviewed-sidecar hit |
 | 728284 | 1 | 1 | patents/WO2020136749A1.pdf | No reviewed-sidecar hit |
 | 728403 | 1 | 1 | patents/US6560042.pdf | No reviewed-sidecar hit |
 | 738493 | 1 | 1 | patents/JP2022092388A.pdf | All representative rows reviewed |
@@ -242,7 +250,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 772493 | 1 | 1 | patents/US20230341664A1.pdf | All representative rows reviewed |
 | 772496 | 1 | 1 | patents/JPWO2019187633A1.pdf | No reviewed-sidecar hit |
 | 773495 | 1 | 1 | patents/US20190250367A1.pdf | No reviewed-sidecar hit |
-| 773496 | 1 | 1 | patents/JP2013054269A.pdf | No reviewed-sidecar hit |
 | 773497 | 1 | 1 | patents/US4110006.pdf | No reviewed-sidecar hit |
 | 773498 | 1 | 1 | patents/US4871239.pdf | All representative rows reviewed |
 | 773501 | 1 | 1 | patents/US4258985.pdf | No reviewed-sidecar hit |
@@ -252,6 +259,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 780509 | 1 | 1 | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
 | 781445 | 1 | 1 | patents/US4277149.pdf | No reviewed-sidecar hit |
 | 781446 | 1 | 1 | patents/JP2004109559A.pdf | All representative rows reviewed |
+| 785257 | 1 | 1 | patents/US7804652.pdf | No reviewed-sidecar hit |
 | 785261 | 1 | 1 | patents/US4303314.pdf | All representative rows reviewed |
 | 786275 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | No reviewed-sidecar hit |
 | 787501 | 1 | 1 | patents/DE_2157160_A1.pdf | No reviewed-sidecar hit |
@@ -270,16 +278,15 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 801454 | 1 | 1 | patents/US20130033768A1.pdf | No reviewed-sidecar hit |
 | 803404 | 1 | 1 | patents/US20140247506A1.pdf | All representative rows reviewed |
 | 803405 | 1 | 1 | patents/US20170351051A1.pdf | No reviewed-sidecar hit |
-| 804466 | 1 | 1 | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
 | 805252 | 1 | 1 | patents/US4258985.pdf | No reviewed-sidecar hit |
-| 805255 | 1 | 1 | patents/US4223981.pdf | No reviewed-sidecar hit |
 | 805410 | 1 | 1 | patents/US4871239.pdf | All representative rows reviewed |
-| 806333 | 1 | 1 | patents/WO2016136352A1.pdf | No reviewed-sidecar hit |
+| 806407 | 1 | 1 | patents/US20130222925A1.pdf | No reviewed-sidecar hit |
 | 808406 | 1 | 1 | patents/JP2023063766A.pdf | No reviewed-sidecar hit |
 | 808409 | 1 | 1 | patents/US20100194930A1.pdf | No reviewed-sidecar hit |
 | 810372 | 1 | 1 | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
 | 821426 | 1 | 1 | patents/US20100220400A1.pdf | All representative rows reviewed |
 | 831265 | 1 | 1 | patents/US3615126.pdf | No reviewed-sidecar hit |
+| 835427 | 1 | 1 | patents/US20130222925A1.pdf | No reviewed-sidecar hit |
 | 835447 | 1 | 1 | patents/CN205720849U.pdf | All representative rows reviewed |
 | 840433 | 1 | 1 | patents/US5528428.pdf | No reviewed-sidecar hit |
 | 847239 | 1 | 1 | No patent number parsed from lens metadata | No reviewed-sidecar hit |
@@ -578,7 +585,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
 |---|---|---|---|---|---|---|---|
-| L3 (Element 3) | 4 | `640346 - F-family flint (patent nd=1.63980, vd=34.6; no exact public catalog match)` | 1.63980 / 34.60 | No catalog entry | abbe | patents/US2995980.pdf | Reviewed sidecar hit |
+| L3 (Element 3) | 4 | `640346 - F-family flint (patent nd=1.63980, vd=34.6; no exact public catalog match)` | 1.63980 / 34.60 | E-FD7 (trusted Sellmeier) | sellmeier | patents/US2995980.pdf | Reviewed sidecar hit |
 
 ### [LEICA ELMARIT-R 28mm f/2.8](../../src/lens-data/leica/LeicaElmarit28mmf28.data.ts) - US 3,591,257
 
@@ -1249,6 +1256,34 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---|---|---|---|---|---|---|
 | L51 (Rear double-sided asphere) | 24A | `773495 - moldable lanthanum crown class (patent nd=1.77250, νd=49.5)` | 1.77250 / 49.50 | No catalog entry | abbe | patents/US20190250367A1.pdf | No reviewed-sidecar hit |
 
+### [PENTAX HD D FA645 35mm f/3.5 AL [IF]](../../src/lens-data/pentax/PentaxDFA64535mmf35AL.data.ts) - US 2001/0007512 A1
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+|---|---|---|---|---|---|---|---|
+| L1 (Element 1) | 1 | `773496 — lanthanum-flint class (vendor unresolved)` | 1.77250 / 49.60 | S-LAH66 (trusted Sellmeier) | sellmeier | patents/US20010007512A1.pdf | No reviewed-sidecar hit |
+| L2g (Element 2 glass substrate) | 3 | `729547 — lanthanum-crown class (vendor unresolved)` | 1.72916 / 54.70 | S-LAL18 (trusted Sellmeier) | sellmeier | patents/US20010007512A1.pdf | No reviewed-sidecar hit |
+| L3 (Element 3) | 6 | `755275 — dense-flint class (vendor unresolved)` | 1.75520 / 27.50 | E-FD4 (trusted Sellmeier) | sellmeier | patents/US20010007512A1.pdf | No reviewed-sidecar hit |
+| L4 (Element 4) | 8 | `517524 — crown-flint class (vendor unresolved)` | 1.51742 / 52.40 | S-NSL36 (trusted Sellmeier) | sellmeier | patents/US20010007512A1.pdf | No reviewed-sidecar hit |
+| L5 (Element 5) | 9 | `804466 — lanthanum-flint class (vendor unresolved)` | 1.80400 / 46.60 | S-LAH65 (trusted Sellmeier) | sellmeier | patents/US20010007512A1.pdf | No reviewed-sidecar hit |
+| L6 (Element 6) | 11 | `518590 — crown class (vendor unresolved)` | 1.51823 / 59.00 | S-NSL3 (trusted Sellmeier) | sellmeier | patents/US20010007512A1.pdf | No reviewed-sidecar hit |
+| L7 (Element 7) | 13 | `487702 — fluor-crown class (vendor unresolved)` | 1.48749 / 70.20 | S-FSL5 (trusted Sellmeier) | sellmeier | patents/US20010007512A1.pdf | No reviewed-sidecar hit |
+| L8 (Element 8) | 14 | `847238 — special dense-flint class (vendor unresolved)` | 1.84666 / 23.80 | S-TIH53 (trusted Sellmeier) | sellmeier | patents/US20010007512A1.pdf | No reviewed-sidecar hit |
+| L9 (Element 9) | 16 | `847238 — special dense-flint class (vendor unresolved)` | 1.84666 / 23.80 | S-TIH53 (trusted Sellmeier) | sellmeier | patents/US20010007512A1.pdf | No reviewed-sidecar hit |
+
+### [PENTAX HD D FA645 MACRO 90mm f/2.8 ED AW SR](../../src/lens-data/pentax/PentaxDFA64590mmf28EDAWSRMacro.data.ts) - US 2013/0222925 A1
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+|---|---|---|---|---|---|---|---|
+| L11 (Element L11) | 1 | `835427 - high-index lanthanum glass class (vendor unresolved)` | 1.83481 / 42.70 | S-LAH55 (trusted Sellmeier) | sellmeier | patents/US20130222925A1.pdf | No reviewed-sidecar hit |
+| L12 (Element L12) | 3 | `806333 - high-index lanthanum flint class (vendor unresolved)` | 1.80610 / 33.30 | NBFD15 (trusted Sellmeier) | sellmeier | patents/US20130222925A1.pdf | No reviewed-sidecar hit |
+| L13 (Element L13) | 5 | `497816 - ED fluorophosphate crown class (vendor unresolved)` | 1.49700 / 81.60 | S-FPL51 (trusted Sellmeier) | sellmeier | patents/US20130222925A1.pdf | No reviewed-sidecar hit |
+| L15 (Element L15) | 8 | `805255 - dense flint class (vendor unresolved)` | 1.80518 / 25.50 | H-ZF7LA (trusted Sellmeier) | sellmeier | patents/US20130222925A1.pdf | No reviewed-sidecar hit |
+| L16 (Element L16) | 11 | `728283 - dense flint class (vendor unresolved)` | 1.72825 / 28.30 | H-ZF4A (trusted Sellmeier) | sellmeier | patents/US20130222925A1.pdf | No reviewed-sidecar hit |
+| L17 (Element L17) | 12 | `497816 - ED fluorophosphate crown class (vendor unresolved)` | 1.49700 / 81.60 | S-FPL51 (trusted Sellmeier) | sellmeier | patents/US20130222925A1.pdf | No reviewed-sidecar hit |
+| L18 (Element L18) | 14 | `806407 - high-index lanthanum glass class (vendor unresolved)` | 1.80610 / 40.70 | NBFD13 (trusted Sellmeier) | sellmeier | patents/US20130222925A1.pdf | No reviewed-sidecar hit |
+| L22 (Element L22) | 18 | `806333 - high-index lanthanum flint class (vendor unresolved)` | 1.80610 / 33.30 | NBFD15 (trusted Sellmeier) | sellmeier | patents/US20130222925A1.pdf | No reviewed-sidecar hit |
+| L23 (Element L23) | 20 | `569560 - barium crown class (vendor unresolved)` | 1.56883 / 56.00 | N-BAK4 (trusted Sellmeier) | sellmeier | patents/US20130222925A1.pdf | No reviewed-sidecar hit |
+
 ### [PENTAX HD DA* 11-18mm f/2.8 ED DC AW](../../src/lens-data/pentax/PentaxD1118mmF28EDDCWR.data.ts) - US 2018/0164556 A1
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
@@ -1268,6 +1303,27 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L42 (Element 14) | 24 | `847238 dense-flint class (vendor unproven)` | 1.84666 / 23.80 | S-TIH53 (trusted Sellmeier) | sellmeier | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
 | L43 (Element 15) | 25 | `497816 ED-crown class (vendor unproven)` | 1.49700 / 81.60 | S-FPL51 (trusted Sellmeier) | sellmeier | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
 | L44 (Element 16) | 27A | `516641 crown class (vendor unproven)` | 1.51633 / 64.10 | K-BK7 (trusted Sellmeier) | sellmeier | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
+
+### [PENTAX SMC DA 17-70mm f/4 AL [IF] SDM](../../src/lens-data/pentax/PentaxDA1770mmf4ALSDM.data.ts) - US 7,804,652 B2
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+|---|---|---|---|---|---|---|---|
+| L1 (Element 1) | 1 | `847238 — dense flint (vendor unresolved)` | 1.84666 / 23.80 | S-TIH53 (trusted Sellmeier) | sellmeier | patents/US7804652.pdf | No reviewed-sidecar hit |
+| L3 (Element 3) | 4 | `773496 — high-index lanthanum flint (vendor unresolved)` | 1.77250 / 49.60 | S-LAH66 (trusted Sellmeier) | sellmeier | patents/US7804652.pdf | No reviewed-sidecar hit |
+| L4g (Element 4 glass substrate) | 7 | `804466 — high-index lanthanum flint (vendor unresolved)` | 1.80400 / 46.60 | S-LAH65 (trusted Sellmeier) | sellmeier | patents/US7804652.pdf | No reviewed-sidecar hit |
+| L5 (Element 5) | 9 | `804466 — high-index lanthanum flint (vendor unresolved)` | 1.80400 / 46.60 | S-LAH65 (trusted Sellmeier) | sellmeier | patents/US7804652.pdf | No reviewed-sidecar hit |
+| L6 (Element 6) | 11 | `834372 — dense lanthanum flint (vendor unresolved)` | 1.83400 / 37.20 | S-LAH60 (trusted Sellmeier) | sellmeier | patents/US7804652.pdf | No reviewed-sidecar hit |
+| L7 (Element 7) | 13 | `593353 — flint (vendor unresolved)` | 1.59270 / 35.30 | S-FTM16 (trusted Sellmeier) | sellmeier | patents/US7804652.pdf | No reviewed-sidecar hit |
+| L8 (Element 8) | 15 | `804466 — high-index lanthanum flint (vendor unresolved)` | 1.80400 / 46.60 | S-LAH65 (trusted Sellmeier) | sellmeier | patents/US7804652.pdf | No reviewed-sidecar hit |
+| L9 (Element 9) | 16 | `785257 — dense flint (vendor unresolved)` | 1.78472 / 25.70 | S-TIH11 (trusted Sellmeier) | sellmeier | patents/US7804652.pdf | No reviewed-sidecar hit |
+| L10 (Element 10) | 18 | `567428 — light flint (vendor unresolved)` | 1.56732 / 42.80 | S-TIL26 (trusted Sellmeier) | sellmeier | patents/US7804652.pdf | No reviewed-sidecar hit |
+| L11 (Element 11) | 20 | `589612 — barium crown (vendor unresolved)` | 1.58913 / 61.20 | S-BAL35 (trusted Sellmeier) | sellmeier | patents/US7804652.pdf | No reviewed-sidecar hit |
+| L12 (Element 12) | 21 | `805254 — dense flint (vendor unresolved)` | 1.80518 / 25.40 | S-TIH6 (trusted Sellmeier) | sellmeier | patents/US7804652.pdf | No reviewed-sidecar hit |
+| L13 (Element 13) | 23 | `847238 — dense flint (vendor unresolved)` | 1.84666 / 23.80 | S-TIH53 (trusted Sellmeier) | sellmeier | patents/US7804652.pdf | No reviewed-sidecar hit |
+| L14 (Element 14) | 24 | `804466 — high-index lanthanum flint (vendor unresolved)` | 1.80400 / 46.60 | S-LAH65 (trusted Sellmeier) | sellmeier | patents/US7804652.pdf | No reviewed-sidecar hit |
+| L15 (Element 15) | 26 | `487702 — fluor crown (vendor unresolved)` | 1.48749 / 70.20 | S-FSL5 (trusted Sellmeier) | sellmeier | patents/US7804652.pdf | No reviewed-sidecar hit |
+| L16g (Element 16 glass substrate) | 29 | `805254 — dense flint (vendor unresolved)` | 1.80518 / 25.40 | S-TIH6 (trusted Sellmeier) | sellmeier | patents/US7804652.pdf | No reviewed-sidecar hit |
+| L17 (Element 17) | 30 | `487702 — fluor crown (vendor unresolved)` | 1.48749 / 70.20 | S-FSL5 (trusted Sellmeier) | sellmeier | patents/US7804652.pdf | No reviewed-sidecar hit |
 
 ### [SAMYANG AF 18mm f/2.8 FE](../../src/lens-data/samyang/SamyangAF18mmf28.data.ts) - WO 2021/246545 A1
 

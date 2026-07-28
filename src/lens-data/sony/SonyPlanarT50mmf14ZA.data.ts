@@ -93,7 +93,7 @@ const LENS_DATA = {
       nd: 1.61293,
       vd: 37.0,
       fl: -38.8,
-      glass: "E-FD7 class (HOYA/HIKARI equivalent, 613/370)",
+      glass: "613370 - E-F3/S-TIM3 moderate flint (code equivalent)",
       apd: false,
       cemented: "G1R",
       role: "G1R corrector; cemented with L3, achromatizes via index step at nearly flat junction.",
