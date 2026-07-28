@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
- * ║  LENS DATA — HD PENTAX-DA* 11-18mm f/2.8 ED DC AW                         ║
+ * ║  LENS DATA — PENTAX HD DA* 11-18mm f/2.8 ED DC AW                         ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
  * ║  Data source: US 2018/0164556 A1, Numerical Example 1 (Takahiko Ohishi).   ║
  * ║  Probable production correlation; the patent does not identify the lens.   ║
@@ -31,7 +31,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    exact Snell/asphere traces of the on-axis pupil, the 60%-field bundle,   ║
  * ║    and the full-field chief ray across all infinity and reconstructed      ║
  * ║    close-focus states, then constrained by edge thickness, actual rim      ║
- * ║    slope, conic domain, cross-gap intrusion, and render-trim policy.        ║
+ * ║    slope, conic domain, cross-gap intrusion, and render-trim policy. The    ║
+ * ║    G2–G4 silhouette is tuned to the relative rim heights in patent Fig. 1. ║
  * ║                                                                            ║
  * ║  GLASS: The patent supplies nd and νd only. Neutral six-digit classes are  ║
  * ║    used because catalog equality does not prove the melt vendor. nC, nF,   ║
@@ -47,7 +48,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "pentax-da-11-18-f28",
   maker: "Pentax",
-  name: "PENTAX HD PENTAX-DA* 11-18mm f/2.8 ED DC AW",
+  name: "PENTAX HD DA* 11-18mm f/2.8 ED DC AW",
   subtitle: "US 2018/0164556 A1 Example 1 — probable production correlation",
   specs: [
     "16 ELEMENTS / 11 GROUPS",
@@ -305,28 +306,28 @@ const LENS_DATA = {
     { label: "10", R: -35.848, d: 12.448, nd: 1, elemId: 0, sd: 10 },
 
     // ── G2 ──
-    { label: "11", R: 93.549, d: 4.713, nd: 1.56732, elemId: 7, sd: 10.5 },
-    { label: "12", R: -17.723, d: 1.3, nd: 1.816, elemId: 8, sd: 10.5 },
-    { label: "13", R: -45.971, d: 0.2, nd: 1, elemId: 0, sd: 10.5 },
-    { label: "14", R: 73.588, d: 2.38, nd: 1.56406, elemId: 9, sd: 10.8 },
-    { label: "15", R: -181.972, d: 2.484, nd: 1, elemId: 0, sd: 10.8 },
-    { label: "16", R: -211.824, d: 2.315, nd: 1.497, elemId: 10, sd: 11 },
-    { label: "17", R: -46.263, d: 4.429, nd: 1, elemId: 0, sd: 11 },
+    { label: "11", R: 93.549, d: 4.713, nd: 1.56732, elemId: 7, sd: 9.6 },
+    { label: "12", R: -17.723, d: 1.3, nd: 1.816, elemId: 8, sd: 9.6 },
+    { label: "13", R: -45.971, d: 0.2, nd: 1, elemId: 0, sd: 9.6 },
+    { label: "14", R: 73.588, d: 2.38, nd: 1.56406, elemId: 9, sd: 9.5 },
+    { label: "15", R: -181.972, d: 2.484, nd: 1, elemId: 0, sd: 9.5 },
+    { label: "16", R: -211.824, d: 2.315, nd: 1.497, elemId: 10, sd: 9.5 },
+    { label: "17", R: -46.263, d: 4.429, nd: 1, elemId: 0, sd: 9.5 },
 
     // Runtime rebuilds the physical stop radius from nominalFno at every zoom position.
     { label: "STO", R: 1e15, d: 2.508, nd: 1, elemId: 0, sd: 9.2 },
 
     // ── G3 ──
-    { label: "19", R: -40.99, d: 1.35, nd: 1.804, elemId: 11, sd: 10.5 },
-    { label: "20", R: 24.622, d: 3.39, nd: 1.84666, elemId: 12, sd: 10.5 },
-    { label: "21", R: 16468.03, d: 10.392, nd: 1, elemId: 0, sd: 10.5 },
+    { label: "19", R: -40.99, d: 1.35, nd: 1.804, elemId: 11, sd: 9.5 },
+    { label: "20", R: 24.622, d: 3.39, nd: 1.84666, elemId: 12, sd: 9.5 },
+    { label: "21", R: 16468.03, d: 10.392, nd: 1, elemId: 0, sd: 9.5 },
 
     // ── G4 ──
-    { label: "22", R: 22.432, d: 5.634, nd: 1.43875, elemId: 13, sd: 11.7 },
-    { label: "23", R: -35.188, d: 0.467, nd: 1, elemId: 0, sd: 11.7 },
-    { label: "24", R: -64.205, d: 1.35, nd: 1.84666, elemId: 14, sd: 11.5 },
-    { label: "25", R: 37.567, d: 5.468, nd: 1.497, elemId: 15, sd: 11.5 },
-    { label: "26", R: -28.517, d: 0.15, nd: 1, elemId: 0, sd: 11.5 },
+    { label: "22", R: 22.432, d: 5.634, nd: 1.43875, elemId: 13, sd: 11 },
+    { label: "23", R: -35.188, d: 0.467, nd: 1, elemId: 0, sd: 11 },
+    { label: "24", R: -64.205, d: 1.35, nd: 1.84666, elemId: 14, sd: 10.8 },
+    { label: "25", R: 37.567, d: 5.468, nd: 1.497, elemId: 15, sd: 10.8 },
+    { label: "26", R: -28.517, d: 0.15, nd: 1, elemId: 0, sd: 10.8 },
     { label: "27A", R: -199.129, d: 2, nd: 1.51633, elemId: 16, sd: 11.7 },
     { label: "28A", R: -62.238, d: 38.14, nd: 1, elemId: 0, sd: 11.7 },
   ],

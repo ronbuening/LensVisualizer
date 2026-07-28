@@ -7,7 +7,7 @@ available, it falls back to partial measured `nC`/`nF` line indices, dPgF-correc
 approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **349 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **350 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
 
 The July 23, 2026 Canon batch added OHARA S-TIH53WN from the vendor's April 2025 datasheet. The WN variant retains
 the conventional d-line index while publishing modified off-d-line indices and dispersion constants for
@@ -280,6 +280,12 @@ material index/Abbe deltas, so those labels remain explicit code-only rows.
 | ★ LAK6 | Sumita | 643581 | Exact coordinate equivalent for L8 of the NIKKOR-O 2.1cm f/4 patent design |
 | ★ SF15 | Sumita | 699300 | Exact coordinate equivalent for L14 of the ZOOM-NIKKOR Auto 80-200mm f/4.5 patent design |
 | ★ BASF7 | Sumita | 702411 | Exact coordinate equivalent for L15 of the ZOOM-NIKKOR Auto 80-200mm f/4.5 and L3 of the Canon FD 35mm f/2 patent designs |
+
+**Phase 38 addition** (July 2026 — Pentax 11–18mm coverage audit using SUMITA's official 2025-11-07 all-glass Zemax catalog, including discontinued types; the entry retains the vendor's formula-3 polynomial and round-trips through `assertCatalogConsistent`):
+
+| Glass | Vendor | Code | Notes |
+|---|---|---:|---|
+| ★ K-BK7 | Sumita | 516641 | Exact coordinate equivalent for L44 of the Pentax HD DA* 11–18mm patent design and a reusable match for the existing Olympus prism annotation; the code match supplies dispersion coefficients without asserting the patent glass vendor |
 
 **Phase 17 additions** (May 2026 — Hasselblad/Laowa/Leica/Minolta/Nikon six-digit missing-Sellmeier queue pass; all entries round-trip through `assertCatalogConsistent`):
 

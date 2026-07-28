@@ -328,6 +328,10 @@ describe("resolveGlass", () => {
     expect(resolveGlass("517642")?.name).toBe("N-BK7");
   });
 
+  it("resolves the SUMITA K-BK7 coordinate from a code-only patent annotation", () => {
+    expect(resolveGlass("516641 crown class (vendor unproven)")?.name).toBe("K-BK7");
+  });
+
   it("resolves slash and hyphen six-digit code annotations", () => {
     expect(resolveGlass("Dense flint (855/252)")?.name).toBe("NBFD25");
     expect(resolveGlass("Heavy flint (770/297)")?.name).toBe("NBFD29");

@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════════════╗
- * ║ LENS DATA — PENTAX HD PENTAX-D FA 28-105mm f/3.5-5.6 ED DC WR                     ║
+ * ║ LENS DATA — PENTAX HD D FA 28-105mm f/3.5-5.6 ED DC WR                            ║
  * ╠══════════════════════════════════════════════════════════════════════════════════════╣
  * ║ Patent source: US 2017/0068075 A1, Numerical Embodiment 2, Tables 5–8.             ║
  * ║ Correlation target: HD PENTAX-D FA 28-105mm F3.5-5.6ED DC WR.                     ║
@@ -27,8 +27,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                                      ║
  * ║ Semi-diameters are inferred, not patent-published. They enclose the maximum of the   ║
  * ║ full on-axis marginal bundle and the 0.6-field, ±0.75-pupil paraxial bundles over    ║
- * ║ all three zoom states, with approximately 5–8% allowance, and were checked against  ║
- * ║ the proportions in patent Figs. 7 and 10. The fixed physical stop radius is          ║
+ * ║ all three zoom states with conservative allowance, then were checked against the     ║
+ * ║ proportions in patent Figs. 7 and 10. G2 and G4 rim heights are silhouette-          ║
+ * ║ tuned to Fig. 7 after the ray-envelope pass. The fixed physical stop radius is        ║
  * ║ 8.106239 mm, the mean radius implied independently by the three printed f-numbers.   ║
  * ║                                                                                      ║
  * ║ Patent Table 5 publishes nd and νd only. nC, nF, ng, and dPgF are intentionally      ║
@@ -46,7 +47,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "pentax-dfa-28-105-f3556-ed-dc-wr",
   maker: "Pentax",
-  name: "PENTAX HD PENTAX-D FA 28-105mm f/3.5-5.6 ED DC WR",
+  name: "PENTAX HD D FA 28-105mm f/3.5-5.6 ED DC WR",
   subtitle: "US 2017/0068075 A1 — Numerical Embodiment 2; production correlation inferred",
   specs: [
     "15 ELEMENTS / 11 GROUPS",
@@ -266,24 +267,24 @@ const LENS_DATA = {
     { label: "3", R: -518.616, d: 0.1, nd: 1, elemId: 0, sd: 19.2 },
     { label: "4", R: 49.637, d: 3.91, nd: 1.816, elemId: 3, sd: 19 },
     { label: "5", R: 79.494, d: 3.978, nd: 1, elemId: 0, sd: 18 },
-    { label: "6A", R: 81.778, d: 0.15, nd: 1.52972, elemId: 4, sd: 9.6 },
-    { label: "7", R: 64.271, d: 1.1, nd: 1.883, elemId: 5, sd: 9.6 },
-    { label: "8", R: 14.655, d: 5.69, nd: 1, elemId: 0, sd: 9.4 },
-    { label: "9", R: -43.844, d: 0.82, nd: 1.72916, elemId: 6, sd: 8.4 },
-    { label: "10", R: 47.989, d: 0.48, nd: 1, elemId: 0, sd: 8.4 },
-    { label: "11", R: 29.516, d: 4.71, nd: 1.72825, elemId: 7, sd: 8.5 },
-    { label: "12", R: -29.402, d: 0.71, nd: 1, elemId: 0, sd: 8.3 },
-    { label: "13", R: -21.069, d: 0.8, nd: 1.788, elemId: 8, sd: 8.1 },
-    { label: "14", R: -58.831, d: 17.516, nd: 1, elemId: 0, sd: 8.2 },
+    { label: "6A", R: 81.778, d: 0.15, nd: 1.52972, elemId: 4, sd: 10.2 },
+    { label: "7", R: 64.271, d: 1.1, nd: 1.883, elemId: 5, sd: 10.2 },
+    { label: "8", R: 14.655, d: 5.69, nd: 1, elemId: 0, sd: 10.2 },
+    { label: "9", R: -43.844, d: 0.82, nd: 1.72916, elemId: 6, sd: 9 },
+    { label: "10", R: 47.989, d: 0.48, nd: 1, elemId: 0, sd: 9 },
+    { label: "11", R: 29.516, d: 4.71, nd: 1.72825, elemId: 7, sd: 8.8 },
+    { label: "12", R: -29.402, d: 0.71, nd: 1, elemId: 0, sd: 8.8 },
+    { label: "13", R: -21.069, d: 0.8, nd: 1.788, elemId: 8, sd: 8.8 },
+    { label: "14", R: -58.831, d: 17.516, nd: 1, elemId: 0, sd: 8.8 },
     { label: "STO", R: 1e15, d: 0.91, nd: 1, elemId: 0, sd: 8.106239395 },
     { label: "16", R: 31.214, d: 2.75, nd: 1.6968, elemId: 9, sd: 8.8 },
     { label: "17", R: -171.68, d: 0.1, nd: 1, elemId: 0, sd: 8.9 },
     { label: "18", R: 28.446, d: 1.04, nd: 1.8, elemId: 10, sd: 8.9 },
     { label: "19", R: 13.443, d: 5.4, nd: 1.497, elemId: 11, sd: 8.9 },
     { label: "20", R: -100.868, d: 2.15, nd: 1, elemId: 0, sd: 8.9 },
-    { label: "21", R: -39.83, d: 0.8, nd: 1.60311, elemId: 12, sd: 8.2 },
-    { label: "22", R: 24.992, d: 1.72, nd: 1.84666, elemId: 13, sd: 8.2 },
-    { label: "23", R: 62.616, d: 9.416, nd: 1, elemId: 0, sd: 8.2 },
+    { label: "21", R: -39.83, d: 0.8, nd: 1.60311, elemId: 12, sd: 7.8 },
+    { label: "22", R: 24.992, d: 1.72, nd: 1.84666, elemId: 13, sd: 7.8 },
+    { label: "23", R: 62.616, d: 9.416, nd: 1, elemId: 0, sd: 7.8 },
     { label: "24A", R: 63.837, d: 6, nd: 1.58913, elemId: 14, sd: 10.3 },
     { label: "25A", R: -25.726, d: 0.77, nd: 1, elemId: 0, sd: 10.8 },
     { label: "26", R: -174.966, d: 1, nd: 1.72047, elemId: 15, sd: 10.8 },

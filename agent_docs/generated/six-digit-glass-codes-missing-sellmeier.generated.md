@@ -11,8 +11,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 - **482** lenses scanned
 - **438** total code-only elements found
-- **293** elements in this report
-- **118** distinct lens files affected
+- **291** elements in this report
+- **117** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -39,7 +39,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 863248 | 3 | 1 | patents/JP2023039817A.pdf | All representative rows reviewed |
 | 961323 | 3 | 1 | patents/WO2021200206A1.pdf | No reviewed-sidecar hit |
 | 514428 | 2 | 1 | patents/JP2016021011A.pdf | All representative rows reviewed |
-| 516641 | 2 | 2 | patents/US20030072086A1.pdf | No reviewed-sidecar hit |
 | 518603 | 2 | 2 | patents/US4770511.pdf<br>patents/US4699475.pdf | All representative rows reviewed |
 | 531559 | 2 | 2 | patents/US20200142167A1.pdf<br>patents/WO2021039813A1.pdf | All representative rows reviewed |
 | 561453 | 2 | 2 | patents/US20020075570A1.pdf<br>patents/US3376091.pdf | 1/2 representative rows reviewed |
@@ -86,13 +85,13 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 540509 | 1 | 1 | patents/GB_775944_A.pdf | No reviewed-sidecar hit |
 | 541468 | 1 | 1 | patents/US4124276.pdf | All representative rows reviewed |
 | 545486 | 1 | 1 | patents/CN116520542A.pdf | All representative rows reviewed |
-| 547460 | 1 | 1 | Missing from untracked local patents/ references (US20180164556A1, US20180164556, 20180164556) | No reviewed-sidecar hit |
+| 547460 | 1 | 1 | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
 | 553381 | 1 | 1 | patents/US7508592.pdf | All representative rows reviewed |
 | 553551 | 1 | 1 | patents/JP2023063766A.pdf | No reviewed-sidecar hit |
 | 553555 | 1 | 1 | patents/JP2022092388A.pdf | All representative rows reviewed |
 | 554381 | 1 | 1 | patents/US7359125.pdf | No reviewed-sidecar hit |
 | 561575 | 1 | 1 | patents/US2721499.pdf | All representative rows reviewed |
-| 564463 | 1 | 1 | Missing from untracked local patents/ references (US20180164556A1, US20180164556, 20180164556) | No reviewed-sidecar hit |
+| 564463 | 1 | 1 | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
 | 571560 | 1 | 1 | patents/WO_2025263124_A1.pdf | No reviewed-sidecar hit |
 | 573575 | 1 | 1 | patents/US2279384.pdf | No reviewed-sidecar hit |
 | 574425 | 1 | 1 | patents/FR_1066698_A.pdf | All representative rows reviewed |
@@ -186,7 +185,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 773530 | 1 | 1 | patents/CN110161666A.pdf | All representative rows reviewed |
 | 774494 | 1 | 1 | patents/WO_2025263124_A1.pdf | No reviewed-sidecar hit |
 | 775473 | 1 | 1 | patents/WO2022259649A1.pdf | No reviewed-sidecar hit |
-| 780509 | 1 | 1 | Missing from untracked local patents/ references (US20180164556A1, US20180164556, 20180164556) | No reviewed-sidecar hit |
+| 780509 | 1 | 1 | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
 | 781445 | 1 | 1 | patents/US4277149.pdf | No reviewed-sidecar hit |
 | 781446 | 1 | 1 | patents/JP2004109559A.pdf | All representative rows reviewed |
 | 786275 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | No reviewed-sidecar hit |
@@ -205,13 +204,13 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 805252 | 1 | 1 | patents/US4258985.pdf | No reviewed-sidecar hit |
 | 805410 | 1 | 1 | patents/US4871239.pdf | All representative rows reviewed |
 | 808406 | 1 | 1 | patents/JP2023063766A.pdf | No reviewed-sidecar hit |
-| 810372 | 1 | 1 | Missing from untracked local patents/ references (US20180164556A1, US20180164556, 20180164556) | No reviewed-sidecar hit |
+| 810372 | 1 | 1 | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
 | 821426 | 1 | 1 | patents/US20100220400A1.pdf | All representative rows reviewed |
 | 831265 | 1 | 1 | patents/US3615126.pdf | No reviewed-sidecar hit |
 | 835447 | 1 | 1 | patents/CN205720849U.pdf | All representative rows reviewed |
 | 840433 | 1 | 1 | patents/US5528428.pdf | No reviewed-sidecar hit |
 | 849401 | 1 | 1 | patents/US20170351051A1.pdf | No reviewed-sidecar hit |
-| 850440 | 1 | 1 | Missing from untracked local patents/ references (US20180164556A1, US20180164556, 20180164556) | No reviewed-sidecar hit |
+| 850440 | 1 | 1 | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
 | 852401 | 1 | 1 | patents/JPWO2019073744A1.pdf | No reviewed-sidecar hit |
 | 852402 | 1 | 1 | patents/WO2020136749A1.pdf | All representative rows reviewed |
 | 855399 | 1 | 1 | patents/JP2022092388A.pdf | All representative rows reviewed |
@@ -841,12 +840,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L2 (Element 2) | 3A | `Unmatched (moldable crown, 525/558 class)` | 1.52542 / 55.78 | No catalog entry | abbe | patents/US8994842.pdf | No reviewed-sidecar hit |
 | L7 (Element 7) | 13A | `Unmatched (moldable crown, 531/557 class)` | 1.53071 / 55.69 | No catalog entry | abbe | patents/US8994842.pdf | No reviewed-sidecar hit |
 
-### [OLYMPUS ZUIKO 9-36mm f/2-2.4 (Olympus E-10 / E-20)](../../src/lens-data/olympus/OlympusZuiko936mmf224.data.ts) - US 2003/0072086 A1
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
-|---|---|---|---|---|---|---|---|
-| P1 (24 mm path-splitter prism) | 27 | `Path-splitter prism glass (516/641, patent-listed)` | 1.51633 / 64.14 | No catalog entry | abbe | patents/US20030072086A1.pdf | No reviewed-sidecar hit |
-
 ### [OLYMPUS ZUIKO AUTO-FISHEYE 8mm f/2.8](../../src/lens-data/olympus/OlympusZuikoAutoFisheye8mmf28.data.ts) - DE 2157160 A1
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
@@ -945,16 +938,15 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---|---|---|---|---|---|---|
 | L51 (Rear double-sided asphere) | 24A | `773495 - moldable lanthanum crown class (patent nd=1.77250, νd=49.5)` | 1.77250 / 49.50 | No catalog entry | abbe | patents/US20190250367A1.pdf | No reviewed-sidecar hit |
 
-### [PENTAX HD PENTAX-DA* 11-18mm f/2.8 ED DC AW](../../src/lens-data/pentax/PentaxD1118mmF28EDDCWR.data.ts) - US 2018/0164556 A1
+### [PENTAX HD DA* 11-18mm f/2.8 ED DC AW](../../src/lens-data/pentax/PentaxD1118mmF28EDDCWR.data.ts) - US 2018/0164556 A1
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
 |---|---|---|---|---|---|---|---|
-| L12g (Element 2 (glass body)) | 3 | `Unmatched (780509 class; no defensible current-catalog identity recovered)` | 1.78000 / 50.90 | No catalog entry | abbe | Missing from untracked local patents/ references (US20180164556A1, US20180164556, 20180164556) | No reviewed-sidecar hit |
-| L13 (Element 4) | 6 | `Unmatched (810372 class; no defensible current-catalog identity recovered)` | 1.81000 / 37.20 | No catalog entry | abbe | Missing from untracked local patents/ references (US20180164556A1, US20180164556, 20180164556) | No reviewed-sidecar hit |
-| L14 (Element 5) | 8 | `547460 class (soft catalog neighborhood only; vendor unproven)` | 1.54732 / 46.00 | No catalog entry | abbe | Missing from untracked local patents/ references (US20180164556A1, US20180164556, 20180164556) | No reviewed-sidecar hit |
-| L15 (Element 6) | 9 | `Unmatched (850440 class; no defensible current-catalog identity recovered)` | 1.85000 / 44.00 | No catalog entry | abbe | Missing from untracked local patents/ references (US20180164556A1, US20180164556, 20180164556) | No reviewed-sidecar hit |
-| L23 (Element 9) | 14 | `Unmatched (564463 class; no defensible current-catalog identity recovered)` | 1.56406 / 46.30 | No catalog entry | abbe | Missing from untracked local patents/ references (US20180164556A1, US20180164556, 20180164556) | No reviewed-sidecar hit |
-| L44 (Element 16) | 27A | `516641 crown class (vendor unproven)` | 1.51633 / 64.10 | No catalog entry | abbe | Missing from untracked local patents/ references (US20180164556A1, US20180164556, 20180164556) | No reviewed-sidecar hit |
+| L12g (Element 2 (glass body)) | 3 | `Unmatched (780509 class; no defensible current-catalog identity recovered)` | 1.78000 / 50.90 | No catalog entry | abbe | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
+| L13 (Element 4) | 6 | `Unmatched (810372 class; no defensible current-catalog identity recovered)` | 1.81000 / 37.20 | No catalog entry | abbe | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
+| L14 (Element 5) | 8 | `547460 class (soft catalog neighborhood only; vendor unproven)` | 1.54732 / 46.00 | No catalog entry | abbe | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
+| L15 (Element 6) | 9 | `Unmatched (850440 class; no defensible current-catalog identity recovered)` | 1.85000 / 44.00 | No catalog entry | abbe | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
+| L23 (Element 9) | 14 | `Unmatched (564463 class; no defensible current-catalog identity recovered)` | 1.56406 / 46.30 | No catalog entry | abbe | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
 
 ### [SAMYANG AF 18mm f/2.8 FE](../../src/lens-data/samyang/SamyangAF18mmf28.data.ts) - WO 2021/246545 A1
 

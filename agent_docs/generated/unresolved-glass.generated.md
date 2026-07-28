@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **482** lenses scanned
 - **5277** non-air surfaces examined
 - **5282** element glass declarations examined
-- **607** non-explicit-unmatched annotations did not resolve
-- **265** distinct unresolved glass-like tokens found
+- **605** non-explicit-unmatched annotations did not resolve
+- **264** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -76,7 +76,6 @@ or per-lens patent backfills.
 | 498651 | 1 | 1 | |
 | 500660 | 1 | 1 | |
 | 514530 | 1 | 1 | |
-| 516641 | 1 | 1 | |
 | 518523 | 1 | 1 | |
 | 518635 | 1 | 1 | |
 | 529770 | 1 | 1 | |
@@ -600,10 +599,6 @@ or per-lens patent backfills.
 
 - [NIKON AF-S NIKKOR 20mm f/1.8 G ED](../../src/lens-data/nikon/NikonNikkorAFS20mmf18G.data.ts) 4: `514530 — patent UV-cure resin (nd=1.51380, νd=53.0)`
 
-### 516641 — 1 occurrence
-
-- [PENTAX HD PENTAX-DA* 11-18mm f/2.8 ED DC AW](../../src/lens-data/pentax/PentaxD1118mmF28EDDCWR.data.ts) 27A: `516641 crown class (vendor unproven)`
-
 ### 518523 — 1 occurrence
 
 - [MINOLTA AF 35-105mm f/3.5-4.5 New (v2)](../../src/lens-data/minolta/MinoltaAF35105mmf3545v2.data.ts) 21A: `518523 - thin hybrid aspheric layer (unresolved)`
@@ -646,7 +641,7 @@ or per-lens patent backfills.
 
 ### 547460 — 1 occurrence
 
-- [PENTAX HD PENTAX-DA* 11-18mm f/2.8 ED DC AW](../../src/lens-data/pentax/PentaxD1118mmF28EDDCWR.data.ts) 8: `547460 class (soft catalog neighborhood only; vendor unproven)`
+- [PENTAX HD DA* 11-18mm f/2.8 ED DC AW](../../src/lens-data/pentax/PentaxD1118mmF28EDDCWR.data.ts) 8: `547460 class (soft catalog neighborhood only; vendor unproven)`
 
 ### 552981 — 1 occurrence
 

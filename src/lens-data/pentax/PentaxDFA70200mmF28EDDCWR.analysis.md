@@ -1,4 +1,4 @@
-# PENTAX HD PENTAX-D FA★ 70-200mm f/2.8 ED DC AW
+# PENTAX HD D FA\* 70-200mm f/2.8 ED DC AW
 
 ## Patent Reference and Design Identification
 
@@ -88,7 +88,9 @@ into the model.
 
 The patent provides no semi-diameter table. Surface apertures are modeled values derived from exact spherical
 meridional tracing at all three infinity and reconstructed close-focus stations, with marginal, chief, and off-axis
-ray envelopes and comparison to Figure 1. They must not be read as manufacturer-published clear apertures.
+ray envelopes and comparison to Figure 1. The figure pass modestly narrows G1, G3, G4, and the front half of G5 while
+retaining the ray-bound G2 entrance and rear G5 surfaces. They must not be read as manufacturer-published clear
+apertures.
 
 ## Element-by-Element Analysis
 
@@ -225,7 +227,7 @@ L10 supplies most of the obvious positive form at the front of G3. Its high inde
 compact biconvex element. It is air-spaced from D4, allowing the internal distribution of G3 power to be adjusted
 while the group moves as a unit.
 
-The modeled edge thickness is most restrictive at L10, but remains positive at 0.868 mm under the final inferred
+The modeled edge thickness is most restrictive at L10, but remains positive at 1.190 mm under the final inferred
 semi-diameters. That is a geometry-validation result, not a manufacturing thickness specification.
 
 #### L11 — Positive Meniscus, convex to image
@@ -488,8 +490,8 @@ The surface-by-surface Petzval sum, computed as φ/(n·n′), is +1.321079809 ×
 project's signed paraxial Petzval radius of −756.957 mm. This is a paraxial field-curvature quantity and does not
 include astigmatic splitting or distortion.
 
-All six defined zoom/focus states pass the local geometry gate. The minimum modeled edge thickness is 0.868 mm, the
-maximum rim slope is 32.959°, and the highest shared-band cross-gap intrusion ratio is 0.978408. Mandatory marginal,
+All six defined zoom/focus states pass the local geometry gate. The minimum modeled edge thickness is 1.189762 mm, the
+maximum rim slope is 31.448°, and the highest shared-band cross-gap intrusion ratio is 0.978408. Mandatory marginal,
 chief, and close-focus rays are contained. Two extreme opposite-side telephoto off-axis samples are naturally
 vignetted. These checks validate the authored apertures as a renderable model; they do not convert inferred
 semi-diameters into source-published dimensions.

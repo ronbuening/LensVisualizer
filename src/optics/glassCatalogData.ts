@@ -339,6 +339,7 @@ const GLASS_CATALOG_SOURCE_ORDER = [
   "BAF9",
   "BAF11",
   "BK1",
+  "K-BK7",
   "F1",
   "FK5",
   "K5",

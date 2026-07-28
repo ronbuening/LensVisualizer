@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
- * ║ LENS DATA — PENTAX HD PENTAX-D FA★ 70-200mm f/2.8 ED DC AW                ║
+ * ║ LENS DATA — PENTAX HD D FA* 70-200mm f/2.8 ED DC AW                       ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
  * ║ Source: US 2016/0103303 A1, Numerical Embodiment 1 (Masakazu Saori /       ║
  * ║ Ricoh Imaging Company, Ltd.). The production correlation is strong but      ║
@@ -38,8 +38,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ spherical meridional tracing across all three zoom stations, including       ║
  * ║ on-axis marginal rays to the inferred 18.472651 mm stop radius, the default  ║
  * ║ 0.6-field off-axis fan, full-field chief rays, and on-axis 1.2 m focus.      ║
- * ║ Conservative clearance was added and the progression was checked against     ║
- * ║ Fig. 1. Two extreme opposite-side tele pupil samples are naturally vignetted.║
+ * ║ Conservative clearance was added and the progression was silhouette-tuned    ║
+ * ║ against Fig. 1. Two extreme opposite-side tele pupil samples are naturally    ║
+ * ║ vignetted.                                                                    ║
  * ║                                                                              ║
  * ║ Glass names and nC/nF/ng/dPgF are current OHARA catalog matches to the       ║
  * ║ patent nd/νd pairs; the patent itself publishes only nd and νd.              ║
@@ -50,7 +51,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "pentax-hd-d-fa-star-70-200mm-f28-ed-dc-aw",
   maker: "Pentax",
-  name: "PENTAX HD PENTAX-D FA★ 70-200mm f/2.8 ED DC AW",
+  name: "PENTAX HD D FA* 70-200mm f/2.8 ED DC AW",
   subtitle: "US 2016/0103303 A1 — Numerical Embodiment 1; strong production correlation",
   specs: [
     "19 ELEMENTS / 15 GROUPS (PATENT)",
@@ -373,13 +374,13 @@ const LENS_DATA = {
 
   /* ── Surface prescription ── */
   surfaces: [
-    { label: "1", R: 298.927, d: 2.3, nd: 1.834, elemId: 1, sd: 35 },
-    { label: "2", R: 83.202, d: 8.48, nd: 1.497, elemId: 2, sd: 35 },
-    { label: "3", R: 314.408, d: 0.5, nd: 1, elemId: 0, sd: 35 },
-    { label: "4", R: 99.969, d: 11.13, nd: 1.43875, elemId: 3, sd: 34.5 },
-    { label: "5", R: -278.717, d: 0.2, nd: 1, elemId: 0, sd: 34.5 },
-    { label: "6", R: 86.058, d: 7.57, nd: 1.59522, elemId: 4, sd: 33.3 },
-    { label: "7", R: 338.946, d: 3.3, nd: 1, elemId: 0, sd: 33.3 },
+    { label: "1", R: 298.927, d: 2.3, nd: 1.834, elemId: 1, sd: 34.5 },
+    { label: "2", R: 83.202, d: 8.48, nd: 1.497, elemId: 2, sd: 34.5 },
+    { label: "3", R: 314.408, d: 0.5, nd: 1, elemId: 0, sd: 34.5 },
+    { label: "4", R: 99.969, d: 11.13, nd: 1.43875, elemId: 3, sd: 34 },
+    { label: "5", R: -278.717, d: 0.2, nd: 1, elemId: 0, sd: 34 },
+    { label: "6", R: 86.058, d: 7.57, nd: 1.59522, elemId: 4, sd: 32.5 },
+    { label: "7", R: 338.946, d: 3.3, nd: 1, elemId: 0, sd: 32.5 },
     { label: "8", R: -820.899, d: 4.99, nd: 1.90366, elemId: 5, sd: 20.3 },
     { label: "9", R: -59.351, d: 1.2, nd: 1.816, elemId: 6, sd: 20.3 },
     { label: "10", R: 58.207, d: 4.98, nd: 1, elemId: 0, sd: 18.5 },
@@ -387,21 +388,21 @@ const LENS_DATA = {
     { label: "12", R: 47.206, d: 6.16, nd: 1.80518, elemId: 8, sd: 18.6 },
     { label: "13", R: -316.015, d: 2.47, nd: 1, elemId: 0, sd: 18.6 },
     { label: "14", R: -63.999, d: 1.1, nd: 1.83481, elemId: 9, sd: 18.4 },
-    { label: "15", R: 217.234, d: 27.09, nd: 1, elemId: 0, sd: 19.3 },
-    { label: "16", R: 182.634, d: 5.83, nd: 1.804, elemId: 10, sd: 21.7 },
-    { label: "17", R: -66.021, d: 0.2, nd: 1, elemId: 0, sd: 21.7 },
-    { label: "18", R: -195.611, d: 5.35, nd: 1.497, elemId: 11, sd: 21.1 },
-    { label: "19", R: -46.988, d: 1.3, nd: 1.84666, elemId: 12, sd: 21.1 },
-    { label: "20", R: -96.235, d: 8.58, nd: 1, elemId: 0, sd: 21.1 },
-    { label: "21", R: -56.165, d: 1.4, nd: 1.6134, elemId: 13, sd: 19.3 },
-    { label: "22", R: -102.414, d: 31.73, nd: 1, elemId: 0, sd: 19.3 },
+    { label: "15", R: 217.234, d: 27.09, nd: 1, elemId: 0, sd: 18.5 },
+    { label: "16", R: 182.634, d: 5.83, nd: 1.804, elemId: 10, sd: 21 },
+    { label: "17", R: -66.021, d: 0.2, nd: 1, elemId: 0, sd: 21 },
+    { label: "18", R: -195.611, d: 5.35, nd: 1.497, elemId: 11, sd: 20.5 },
+    { label: "19", R: -46.988, d: 1.3, nd: 1.84666, elemId: 12, sd: 20.5 },
+    { label: "20", R: -96.235, d: 8.58, nd: 1, elemId: 0, sd: 20.5 },
+    { label: "21", R: -56.165, d: 1.4, nd: 1.6134, elemId: 13, sd: 18.8 },
+    { label: "22", R: -102.414, d: 31.73, nd: 1, elemId: 0, sd: 18.8 },
     { label: "STO", R: 1e15, d: 1.2, nd: 1, elemId: 0, sd: 18.472650718 },
-    { label: "24", R: 35.843, d: 8.25, nd: 1.59522, elemId: 14, sd: 19.5 },
-    { label: "25", R: -1114.899, d: 2.65, nd: 1, elemId: 0, sd: 19.5 },
-    { label: "26", R: 33.094, d: 4.97, nd: 1.43875, elemId: 15, sd: 16.6 },
-    { label: "27", R: 101.917, d: 1.75, nd: 1, elemId: 0, sd: 16.6 },
-    { label: "28", R: -407.374, d: 1.3, nd: 1.7859, elemId: 16, sd: 15.5 },
-    { label: "29", R: 32.342, d: 14.77, nd: 1, elemId: 0, sd: 15.5 },
+    { label: "24", R: 35.843, d: 8.25, nd: 1.59522, elemId: 14, sd: 18.7 },
+    { label: "25", R: -1114.899, d: 2.65, nd: 1, elemId: 0, sd: 18.7 },
+    { label: "26", R: 33.094, d: 4.97, nd: 1.43875, elemId: 15, sd: 16 },
+    { label: "27", R: 101.917, d: 1.75, nd: 1, elemId: 0, sd: 16 },
+    { label: "28", R: -407.374, d: 1.3, nd: 1.7859, elemId: 16, sd: 15 },
+    { label: "29", R: 32.342, d: 14.77, nd: 1, elemId: 0, sd: 15 },
     { label: "30", R: 84.103, d: 5.95, nd: 1.59522, elemId: 17, sd: 14.7 },
     { label: "31", R: -84.103, d: 11.77, nd: 1, elemId: 0, sd: 14.7 },
     { label: "32", R: -29.143, d: 1.3, nd: 1.816, elemId: 18, sd: 13.6 },

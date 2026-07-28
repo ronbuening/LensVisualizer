@@ -1,3 +1,5 @@
+# PENTAX HD D FA 28-105mm f/3.5-5.6 ED DC WR
+
 ## Patent Reference and Design Identification
 
 **Patent:** US 2017/0068075 A1  
@@ -300,7 +302,7 @@ base spheres are:
 
 | Surface | Inferred semi-diameter | Model-edge departure | Actual rim angle |
 |---|---:|---:|---:|
-| 6A | 9.600 mm | +0.114493 mm | 9.467° |
+| 6A | 10.200 mm | +0.146711 mm | 10.474° |
 | 24A | 10.300 mm | −0.074701 mm | 9.452° |
 | 25A | 10.800 mm | +0.215927 mm | 18.786° |
 
@@ -347,8 +349,9 @@ recomputed group powers from the final prescription; Table 29 rounds the Embodim
 - **Stop:** The stop position is patent-published. Its physical semi-diameter, 8.106239 mm, is inferred as the mean of the
   three radii independently required by the printed f-numbers.
 - **Semi-diameters:** The patent does not publish clear apertures. The model semi-diameters were inferred from on-axis and
-  off-axis paraxial envelopes across all three states, expanded by approximately 5–8%, and checked against Figs. 7 and
-  10. They are modeling values, not source facts.
+  off-axis paraxial envelopes across all three states, given conservative clearance, and checked against Figs. 7 and
+  10. The Fig. 7 pass enlarged G2's hybrid front element to 10.2 mm, regularized the remaining G2 rims to 8.8–9.0 mm,
+  and reduced G4 to 7.8 mm. They are modeling values, not source facts.
 - **Focus:** No internal focus motion was reconstructed. The 0.5 m product specification is metadata only.
 - **Spectral data:** The patent publishes `nd` and `νd` but not `nC`, `nF`, `ng`, or `dPgF`; none were invented.
 - **Excluded planes:** No sensor cover glass, filter, inactive dummy plane, flare cutter, or mechanical plane occurs in
@@ -378,10 +381,10 @@ Surface-by-surface Petzval calculation using $\phi/(n n')$ yields a total of +1.
 Petzval radius of −797.075 mm under the model's sign convention. This is a paraxial field-curvature quantity, not a
 measurement of final image-plane flatness after higher-order correction.
 
-The inferred apertures pass the geometry checks for every defined zoom state. The minimum non-stop ray clearance is
-0.465134 mm, the minimum element rim thickness is 0.191084 mm in the L21 resin layer, the maximum actual rim angle is
-41.457°, and the largest cross-gap intrusion uses 67.816% of its physical gap. The aspherical conic limits are
-unrestrictive because all three surfaces use `K = 0`.
+The inferred apertures pass the geometry checks for every defined zoom state, and the representative on-axis,
+0.6-field, and full-field-chief bundles remain contained. The minimum element rim thickness is 0.179230 mm in the L21
+resin layer, the maximum actual rim angle is 44.108°, and the largest cross-gap intrusion uses 81.405% of its physical
+gap. The aspherical conic limits are unrestrictive because all three surfaces use `K = 0`.
 
 ## Sources
 

@@ -1,4 +1,4 @@
-# PENTAX HD PENTAX-DA\* 11-18mm f/2.8 ED DC AW
+# PENTAX HD DA\* 11-18mm f/2.8 ED DC AW
 
 ## Patent Reference and Design Identification
 
@@ -12,7 +12,7 @@
 **Title:** “Zooming Optical System”  
 **Embodiment analyzed:** Numerical Example 1
 
-This analysis treats Numerical Example 1 as the selected production correlation for the PENTAX HD PENTAX-DA\* 11-18mm f/2.8 ED DC AW. The patent does not name the production lens, and its published applicant is Takahiko Ohishi rather than Pentax Corporation, Ricoh Imaging, or another manufacturer. The relationship is therefore an authorial correlation fixed by the job card, not a manufacturer-confirmed identification.
+This analysis treats Numerical Example 1 as the selected production correlation for the PENTAX HD DA\* 11-18mm f/2.8 ED DC AW. The patent does not name the production lens, and its published applicant is Takahiko Ohishi rather than Pentax Corporation, Ricoh Imaging, or another manufacturer. The relationship is therefore an authorial correlation fixed by the job card, not a manufacturer-confirmed identification.
 
 Several independent characteristics support the correlation:
 
@@ -192,7 +192,7 @@ The L42/L43 cemented set has a computed standalone net EFL of −281.667074 mm. 
 
 #### L44 — Double-Aspherical Positive Meniscus
 
-**nd = 1.51633, νd = 64.1. Glass: 516641 crown class (vendor unproven). Isolated-in-air f = +174.474776 mm.**
+**nd = 1.51633, νd = 64.1. Glass: 516641 crown class (SUMITA K-BK7 coordinate equivalent; patent vendor unproven). Isolated-in-air f = +174.474776 mm.**
 
 L44 is a weak positive meniscus with aspherical surfaces on both sides. It closes the rear group after the low-dispersion/dense-flint sequence and supplies higher-order shape control near the image side without adding strong paraxial power.
 
@@ -217,7 +217,12 @@ The patent publishes only d-line refractive index and Abbe number. It does not i
 | 804466 class | 1.80400 | 46.6 | L31 | Exact nd/νd equivalents exist; vendor unproven |
 | 847238 dense-flint class | 1.84666 | 23.8 | L32, L42 | High-index, high-dispersion equivalents exist across several catalogs |
 | 439950 extreme-low-dispersion crown class | 1.43875 | 95.0 | L41 | An exact current OHARA-class equivalent exists; vendor unproven |
-| 516641 crown class | 1.51633 | 64.1 | L44 | Common crown-class equivalents exist; vendor unproven |
+| 516641 crown class | 1.51633 | 64.1 | L44 | Exact SUMITA K-BK7 catalog coordinate; patent vendor remains unproven |
+
+The catalog audit adds the vendor-published SUMITA K-BK7 dispersion polynomial for the exact 516641 coordinate. This
+raises the model from 9 to 10 coefficient-backed material entries without assigning SUMITA as the patent supplier.
+The five other unresolved optical-glass coordinates and the synthetic-resin layer remain on the Abbe fallback because
+the reviewed current and obsolete-inclusive catalogs do not provide equally defensible exact matches.
 
 The chromatic strategy is concentrated in the rear half of the system. G2 ends with the low-dispersion L24; G4 combines the extreme-low-dispersion L41 with the dense-flint/low-dispersion L42/L43 pair. This arrangement gives the design large dispersion differences without forcing the weak cemented D4 pair to carry much net power.
 
@@ -302,7 +307,14 @@ The matrix determinants agree with unity to numerical precision, and the indepen
 
 The aperture stop position is published, but its diameter is not. The model uses `nominalFno = 2.8`, allowing the runtime to derive a zoom-dependent physical stop requirement. The maximum independently traced requirement is 9.090387 mm semi-diameter at tele infinity; the authored 9.2 mm stop semi-diameter is a small model allowance and is not a patent dimension.
 
-The patent also omits clear semi-diameters. The final values were inferred from exact Snell/asphere traces and then tested at all three zoom stations at infinity and reconstructed close focus. The smallest representative-ray rim clearance is 0.109613 mm; the minimum element edge thickness is 0.287588 mm at the L12 resin layer; the maximum actual rim slope is 58.163° at surface 1A; and the largest positive cross-gap intrusion is 77.99% of the permitted 90% band. These figures validate the modeled geometry but do not convert the inferred apertures into source facts.
+The patent also omits clear semi-diameters. The final values were inferred from exact Snell/asphere traces and then
+tested at all three zoom stations at infinity and reconstructed close focus. Figure 1 was used as a relative silhouette:
+G2 surfaces 11–17 were tightened from 10.5–11.0 mm to 9.5–9.6 mm, G3 from 10.5 mm to 9.5 mm, and the spherical part
+of G4 from 11.5–11.7 mm to 10.8–11.0 mm. The limiting surface 10, the stop, and all four aspherical evaluation
+heights were retained. The smallest representative-ray rim clearance therefore remains 0.109613 mm; the minimum
+element edge thickness is 0.287588 mm at the L12 resin layer; the maximum actual rim slope is 58.163° at surface 1A;
+and the largest positive cross-gap intrusion is 77.99% of the permitted 90% band. These figures validate the modeled
+geometry but do not convert the inferred apertures into source facts.
 
 The complete-system prescription, cemented-set powers, group powers, focus reconstruction, pupil calculations, Petzval sum, and conditions were independently verified. The standalone focal lengths in the final data file are isolated-in-air constituent powers; they must not be substituted for cemented net powers when interpreting the patent’s conditional expressions.
 
