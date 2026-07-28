@@ -22,6 +22,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-07-27 ──────────────────────────────────────────────────
   {
     date: "2026-07-27",
+    type: "lens",
+    summary: "Added Pentax HD DA* 11-18mm, HD D FA 28-105mm, and HD D FA* 70-200mm zoom lenses",
+  },
+  {
+    date: "2026-07-27",
     type: "article",
     summary:
       "Added manufacturer lens-story indexes with links to official articles and matching interactive lens diagrams",
