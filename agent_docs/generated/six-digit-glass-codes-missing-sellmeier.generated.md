@@ -9,10 +9,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **482** lenses scanned
-- **438** total code-only elements found
-- **291** elements in this report
-- **117** distinct lens files affected
+- **485** lenses scanned
+- **472** total code-only elements found
+- **290** elements in this report
+- **116** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -119,7 +119,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 630581 | 1 | 1 | patents/JP2022100641A.pdf | No reviewed-sidecar hit |
 | 635232 | 1 | 1 | patents/US8081392.pdf | No reviewed-sidecar hit |
 | 639450 | 1 | 1 | patents/US3743384.pdf | All representative rows reviewed |
-| 640346 | 1 | 1 | patents/US2995980.pdf | All representative rows reviewed |
 | 640353 | 1 | 1 | patents/US4277149.pdf | No reviewed-sidecar hit |
 | 642581 | 1 | 1 | patents/US2721499.pdf | All representative rows reviewed |
 | 658397 | 1 | 1 | patents/JP2023039817A.pdf | No reviewed-sidecar hit |
@@ -415,12 +414,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
 |---|---|---|---|---|---|---|---|
 | L3 (Element 3) | 5 | `747274 - dense flint (patent nd=1.74710, vd=27.40; no exact public catalog match)` | 1.74710 / 27.40 | No catalog entry | abbe | patents/US3649104.pdf | Reviewed sidecar hit |
-
-### [LEICA ELMARIT 90mm f/2.8](../../src/lens-data/leica/LeicaElmarit90mmf28.data.ts) - US 2,995,980
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
-|---|---|---|---|---|---|---|---|
-| L3 (Element 3) | 4 | `640346 - F-family flint (patent nd=1.63980, vd=34.6; no exact public catalog match)` | 1.63980 / 34.60 | No catalog entry | abbe | patents/US2995980.pdf | Reviewed sidecar hit |
 
 ### [LEICA ELMARIT-R 28mm f/2.8](../../src/lens-data/leica/LeicaElmarit28mmf28.data.ts) - US 3,591,257
 

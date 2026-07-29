@@ -732,4 +732,24 @@ export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source:
       "Hoya Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published obsolete catalog row.",
   },
+  /* Phase 39 Pentax coverage additions (July 2026) */
+  {
+    name: "LAC8",
+    vendor: "Hoya",
+    polynomial: [2.8778537, -0.013832906, 0.020301185, 0.00027759871, 0.000005905983, 0.00000017747647],
+    nd: 1.713,
+    vd: 53.94,
+    code6: "713539",
+    source: "Hoya Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published catalog row.",
+  },
+  {
+    name: "E-FD7",
+    vendor: "Hoya",
+    polynomial: [2.6165865, -0.011427854, 0.022534361, 0.001551289, -0.00011769852, 0.000012401891],
+    nd: 1.6398,
+    vd: 34.57,
+    code6: "640346",
+    source:
+      "Hoya Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published obsolete catalog row.",
+  },
 ];

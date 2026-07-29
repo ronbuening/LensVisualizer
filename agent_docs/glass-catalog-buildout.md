@@ -7,7 +7,7 @@ available, it falls back to partial measured `nC`/`nF` line indices, dPgF-correc
 approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **350 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **352 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
 
 The July 23, 2026 Canon batch added OHARA S-TIH53WN from the vendor's April 2025 datasheet. The WN variant retains
 the conventional d-line index while publishing modified off-d-line indices and dispersion constants for
@@ -286,6 +286,18 @@ material index/Abbe deltas, so those labels remain explicit code-only rows.
 | Glass | Vendor | Code | Notes |
 |---|---|---:|---|
 | ★ K-BK7 | Sumita | 516641 | Exact coordinate equivalent for L44 of the Pentax HD DA* 11–18mm patent design and a reusable match for the existing Olympus prism annotation; the code match supplies dispersion coefficients without asserting the patent glass vendor |
+
+**Phase 39 additions** (July 2026 — Pentax 17–70mm and 90mm Macro coverage audit using HOYA's official
+2026-07-07 obsolete-inclusive Zemax catalog; both entries retain the vendor's formula-3 polynomial and round-trip
+through `assertCatalogConsistent`):
+
+| Glass | Vendor | Code | Notes |
+|---|---|---:|---|
+| ★ LAC8 | Hoya | 713539 | Exact coordinate equivalent for L2 of the Pentax SMC DA 17–70mm patent design; also the S-LAL8 class |
+| ★ E-FD7 | Hoya | 640346 | Exact coordinate equivalent for L14 and L21 of the Pentax HD D FA645 Macro 90mm patent design; also the S-TIM27 class |
+
+Adding the canonical E-FD7 row also exposed an older Sony 613370 annotation that used “E-FD7 class” for a different
+coordinate. That row was relabeled to the exact E-F3/S-TIM3 class so name resolution cannot select 640346.
 
 **Phase 17 additions** (May 2026 — Hasselblad/Laowa/Leica/Minolta/Nikon six-digit missing-Sellmeier queue pass; all entries round-trip through `assertCatalogConsistent`):
 

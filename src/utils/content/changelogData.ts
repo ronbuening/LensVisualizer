@@ -19,6 +19,12 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-07-28 ──────────────────────────────────────────────────
+  {
+    date: "2026-07-28",
+    type: "lens",
+    summary: "Added Pentax DA 17-70mm, D FA645 35mm, and D FA645 Macro 90mm lenses",
+  },
   // ── 2026-07-27 ──────────────────────────────────────────────────
   {
     date: "2026-07-27",

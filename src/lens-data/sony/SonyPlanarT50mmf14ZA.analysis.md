@@ -72,7 +72,7 @@ The glass selection is notable: $n_d = 1.851$, $\nu_d = 40.1$ falls in the dense
 
 ### L4 — Biconcave Negative (G1R, cemented with L3)
 
-$n_d = 1.612930$, $\nu_d = 37.0$. Glass: E-FD7 class (HOYA/HIKARI) — moderate flint. $f = -38.8$ mm.
+$n_d = 1.612930$, $\nu_d = 37.0$. Glass: E-F3/S-TIM3 class (code 613370) — moderate flint. $f = -38.8$ mm.
 
 L4 forms the rear half of the G1R cemented doublet. Its junction surface with L3 ($R_6 = -503.4$ mm) is nearly flat, meaning the chromatic correction of the L3–L4 pair arises primarily from the refractive-index step ($\Delta n_d = 1.851 - 1.613 = 0.238$) rather than from surface curvature at the junction. The rear surface of L4 ($R_7 = +25.007$ mm) is steeply curved and faces the large G1–G2 air gap.
 
@@ -125,7 +125,7 @@ Sony's marketing materials refer to "Glass-Molded Aspherical Lens Elements" for 
 | L1      | 1.834805 | 42.7    | S-LAH55V               | OHARA   | La high-index glass | Front collector; high-$n$ reduces surface angles |
 | L2      | 1.592703 | 35.5    | S-FTM16                | OHARA | Light flint | G1F diverging partner; achromatizes with L1 |
 | L3      | 1.851348 | 40.1    | E-LASFH13              | HIKARI  | La dense flint | Main positive element; asph front surface |
-| L4      | 1.612930 | 37.0    | E-FD7 class            | HOYA/HIKARI | Moderate flint | G1R corrector; cemented with L3 |
+| L4      | 1.612930 | 37.0    | E-F3 / S-TIM3 class    | HOYA/OHARA | Moderate flint | G1R corrector; cemented with L3 |
 | L5      | 1.647690 | 33.8    | S-TIF4 / SF2           | OHARA/Schott | Dense flint | Inner negative; strong flint for chromatic correction |
 | L6      | 1.883000 | 40.8    | S-LAH58                | OHARA   | La high-index glass | G2 powerhouse; highest $n_d$ in system |
 | L7      | 1.698950 | 30.1    | E-FD15 / SF15          | HIKARI/Schott | Dense flint | Field flattener; lowest $\nu_d$ in system |

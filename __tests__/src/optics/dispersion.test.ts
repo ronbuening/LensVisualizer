@@ -163,6 +163,20 @@ describe("glass catalog", () => {
     expect(evaluateSellmeier(nbfd29!, LINE_NM.d)).toBeCloseTo(1.77047, 5);
   });
 
+  it("evaluates and resolves the HOYA Pentax coverage entries", () => {
+    const expected: Array<[glass: string, code: string, nd: number]> = [
+      ["LAC8", "713539", 1.713],
+      ["E-FD7", "640346", 1.6398],
+    ];
+    for (const [glass, code, nd] of expected) {
+      const entry = resolveGlass(glass);
+      expect(entry?.name).toBe(glass);
+      expect(resolveGlass(code)?.name).toBe(glass);
+      expect(evaluateSellmeier(entry!, LINE_NM.d)).toBeCloseTo(nd, 5);
+      expect(evaluateSellmeier(entry!, LINE_NM.C)).toBeLessThan(evaluateSellmeier(entry!, LINE_NM.F));
+    }
+  });
+
   it("evaluates the SUMITA K-LaK9 and K-LaK11 catalog polynomials", () => {
     const expected: Array<[glass: string, code: string, nd: number]> = [
       ["K-LaK9", "691548", 1.691],
