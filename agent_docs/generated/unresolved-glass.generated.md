@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **485** lenses scanned
-- **5318** non-air surfaces examined
-- **5323** element glass declarations examined
-- **602** non-explicit-unmatched annotations did not resolve
-- **262** distinct unresolved glass-like tokens found
+- **488** lenses scanned
+- **5360** non-air surfaces examined
+- **5365** element glass declarations examined
+- **599** non-explicit-unmatched annotations did not resolve
+- **263** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -20,6 +20,7 @@ or per-lens patent backfills.
 |---|---:|---:|---|
 | 670571 | 10 | 5 | |
 | 493836 | 6 | 2 | |
+| 773495 | 4 | 3 | |
 | 863252 | 4 | 2 | |
 | S-LAL61 | 4 | 3 | |
 | S-NPH7 | 4 | 4 | |
@@ -47,14 +48,12 @@ or per-lens patent backfills.
 | 720521 | 2 | 2 | |
 | 755516 | 2 | 1 | |
 | 762404 | 2 | 1 | |
-| 773495 | 2 | 2 | |
 | 774492 | 2 | 1 | |
 | 784438 | 2 | 1 | |
 | 797455 | 2 | 2 | |
 | 807316 | 2 | 2 | |
 | 813252 | 2 | 1 | |
 | 856401 | 2 | 1 | |
-| 861231 | 2 | 1 | |
 | 882372 | 2 | 2 | |
 | E-FDS3HT | 2 | 1 | |
 | F7 | 2 | 2 | |
@@ -169,12 +168,14 @@ or per-lens patent backfills.
 | 787501 | 1 | 1 | |
 | 789457 | 1 | 1 | |
 | 792450 | 1 | 1 | |
+| 795454 | 1 | 1 | |
 | 800255 | 1 | 1 | |
 | 803404 | 1 | 1 | |
 | 803405 | 1 | 1 | |
 | 805252 | 1 | 1 | |
 | 805410 | 1 | 1 | |
 | 821426 | 1 | 1 | |
+| 834374 | 1 | 1 | |
 | 835447 | 1 | 1 | |
 | 840433 | 1 | 1 | |
 | 849401 | 1 | 1 | |
@@ -304,6 +305,13 @@ or per-lens patent backfills.
 - [MINOLTA AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) 4: `493836 - Minolta AD/ED fluorophosphate-type (nd=1.49310, vd=83.58; catalog unresolved)`
 - [MINOLTA AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) 21: `493836 - Minolta AD/ED fluorophosphate-type (nd=1.49310, vd=83.58; catalog unresolved)`
 - [MINOLTA AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) 27: `493836 - Minolta AD/ED fluorophosphate-type (nd=1.49310, vd=83.58; catalog unresolved)`
+
+### 773495 — 4 occurrences
+
+- [NIKON AI AF ZOOM-NIKKOR 24-120mm f/3.5-5.6 D IF](../../src/lens-data/nikon/NikonAFNikkor24120mmf3556D.data.ts) 15: `773495 — lanthanum crown / TAF class (vendor unresolved)`
+- [NIKON AI AF ZOOM-NIKKOR 24-120mm f/3.5-5.6 D IF](../../src/lens-data/nikon/NikonAFNikkor24120mmf3556D.data.ts) 25: `773495 — lanthanum crown / TAF class (vendor unresolved)`
+- [PENTAX HD D FA* 50mm f/1.4 SDM AW](../../src/lens-data/pentax/PentaxDFA50mmf14SDM.data.ts) 24A: `773495 - moldable lanthanum crown class (patent nd=1.77250, νd=49.5)`
+- [SIGMA 24mm f/1.4 DG DN | Art](../../src/lens-data/sigma/Sigma24mmf14ArtDN.data.ts) 15A: `773495 high-index lanthanum glass class (M-TAF105 equivalent class)`
 
 ### 863252 — 4 occurrences
 
@@ -459,11 +467,6 @@ or per-lens patent backfills.
 - [MINOLTA AF 28mm f/2](../../src/lens-data/minolta/MinoltaAF28mmf2.data.ts) 7: `762404 - lanthanum flint class (catalog unresolved)`
 - [MINOLTA AF 28mm f/2](../../src/lens-data/minolta/MinoltaAF28mmf2.data.ts) 7pp: `762404 - lanthanum flint class (catalog unresolved)`
 
-### 773495 — 2 occurrences
-
-- [PENTAX HD D FA* 50mm f/1.4 SDM AW](../../src/lens-data/pentax/PentaxDFA50mmf14SDM.data.ts) 24A: `773495 - moldable lanthanum crown class (patent nd=1.77250, νd=49.5)`
-- [SIGMA 24mm f/1.4 DG DN | Art](../../src/lens-data/sigma/Sigma24mmf14ArtDN.data.ts) 15A: `773495 high-index lanthanum glass class (M-TAF105 equivalent class)`
-
 ### 774492 — 2 occurrences
 
 - [CANON FD 35mm f/2 S.S.C. (I)](../../src/lens-data/canon/CanonFD35mmf2.data.ts) 9: `LaK (774492, probable thoriated)`
@@ -493,11 +496,6 @@ or per-lens patent backfills.
 
 - [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 14A: `856401 — lanthanum dense crown (patent nd=1.85612, νd=40.1)`
 - [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 25A: `856401 — lanthanum dense crown (patent nd=1.85612, νd=40.1)`
-
-### 861231 — 2 occurrences
-
-- [NIKON AF ZOOM-NIKKOR 28-85mm f/3.5-4.5](../../src/lens-data/nikon/NikonAFZoomNikkor2885mmf3545.data.ts) 8: `861231 - J-SFH2 (Hikari; no source-backed catalog match)`
-- [NIKON AF ZOOM-NIKKOR 28-85mm f/3.5-4.5](../../src/lens-data/nikon/NikonAFZoomNikkor2885mmf3545.data.ts) 10: `861231 - J-SFH2 (Hikari; no source-backed catalog match)`
 
 ### 882372 — 2 occurrences
 
@@ -969,6 +967,10 @@ or per-lens patent backfills.
 
 - [NIKON NIKKOR Z 24-70mm f/2.8 S](../../src/lens-data/nikon/NikonZ2470f28.data.ts) 26: `792450 — dense lanthanum crown (patent nd=1.79189, νd=45.04; no exact public catalog match)`
 
+### 795454 — 1 occurrence
+
+- [NIKON AI AF ZOOM-NIKKOR 24-120mm f/3.5-5.6 D IF](../../src/lens-data/nikon/NikonAFNikkor24120mmf3556D.data.ts) 34A: `795454 — LaSF class (catalog-near; vendor unresolved)`
+
 ### 800255 — 1 occurrence
 
 - [SONY SONNAR T* FE 35mm f/2.8 ZA](../../src/lens-data/sony/SonyFE35mmf28ZA.data.ts) 1: `800255 - dense flint (patent nd=1.80000, vd=25.46; no exact public catalog match)`
@@ -992,6 +994,10 @@ or per-lens patent backfills.
 ### 821426 — 1 occurrence
 
 - [NIKON AF-S NIKKOR 28-300mm f/3.5-5.6 G ED VR](../../src/lens-data/nikon/NikonNikkorAFS28300mmf3556G.data.ts) 34: `821426 — patent dense flint (nd=1.82080, νd=42.64; no public HIKARI/OHARA match found)`
+
+### 834374 — 1 occurrence
+
+- [NIKON AI AF ZOOM-NIKKOR 24-120mm f/3.5-5.6 D IF](../../src/lens-data/nikon/NikonAFNikkor24120mmf3556D.data.ts) 36: `834374 — LaSF/NBFD class (vendor unresolved)`
 
 ### 835447 — 1 occurrence
 

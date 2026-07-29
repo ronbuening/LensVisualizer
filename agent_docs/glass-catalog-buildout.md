@@ -7,7 +7,7 @@ available, it falls back to partial measured `nC`/`nF` line indices, dPgF-correc
 approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **352 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **356 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
 
 The July 23, 2026 Canon batch added OHARA S-TIH53WN from the vendor's April 2025 datasheet. The WN variant retains
 the conventional d-line index while publishing modified off-d-line indices and dispersion constants for
@@ -298,6 +298,16 @@ through `assertCatalogConsistent`):
 
 Adding the canonical E-FD7 row also exposed an older Sony 613370 annotation that used “E-FD7 class” for a different
 coordinate. That row was relabeled to the exact E-F3/S-TIM3 class so name resolution cannot select 640346.
+
+**Phase 40 additions** (July 2026 — Nikon AF zoom patent pass using Hikari's official 2023 optical-glass catalog;
+all four entries retain the vendor's formula-3 power series and round-trip through `assertCatalogConsistent`):
+
+| Glass | Vendor | Code | Notes |
+|---|---|---:|---|
+| ★ J-SFH2 | Hikari | 861231 | Current Hikari coordinate match for patent code 861230 in the 24–120mm design |
+| ★ J-SSK5 | Hikari | 658508 | Exact code and coordinate match for the 24–120mm rear group |
+| ★ J-K3 | Hikari | 518588 | Current Hikari coordinate match for patent code 518589 in the 24–120mm rear group |
+| ★ J-LAK01 | Hikari | 640602 | Current Hikari coordinate match for patent code 640601 in the 28–200mm front group |
 
 **Phase 17 additions** (May 2026 — Hasselblad/Laowa/Leica/Minolta/Nikon six-digit missing-Sellmeier queue pass; all entries round-trip through `assertCatalogConsistent`):
 

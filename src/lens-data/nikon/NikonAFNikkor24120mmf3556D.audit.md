@@ -1,0 +1,50 @@
+# Audit Log — Nikon AI AF Zoom-Nikkor 24-120mm f/3.5-5.6 D IF
+
+Patent: US 5,734,508 A, Working Example 1 / Figure 2.
+
+## 2026-07-29 — Patent-figure SD, display-name, and glass audit
+
+### Semi-diameter review
+
+Figure 2 does not publish a full clear-aperture table, so the values below remain figure-derived visualization
+estimates. The two explicit asphere apertures were preserved: surface 17A remains at `27.3 / 2 = 13.65 mm`, and
+surface 34A remains at `15.6 / 2 = 7.8 mm`.
+
+| Surfaces | Before | After | Figure evidence and constraint |
+|---|---:|---:|---|
+| 12–13 | 23.0, 22.5 mm | 34.0, 34.0 mm | Figure 2 shows the cemented front pair with the widest optical envelope in the system. |
+| 14–16 | 22.0, 21.3, 20.5 mm | 28.0, 28.0, 28.0 mm | The rear of the front pair and the following L13 are visibly smaller than the first two surfaces but substantially larger than the original model. |
+| 21–24 | 9.2, 8.9, 9.0, 8.5 mm | 11.5, 11.5, 11.5, 11.0 mm | Enlarged the central cemented/positive section to follow the Figure 2 envelope. Surface 20 remains smaller because a larger value causes a real 19→20 sag overlap. |
+| 36–38 | 7.8, 8.1, 8.6 mm | 11.0, 11.0, 11.0 mm | Enlarged the final cemented pair to match the visibly broader rear silhouette while staying below its edge-thickness limit. |
+
+The very large mechanical outlines around G1 and G3R were not treated as optical clear apertures. Candidate values
+that crossed spherical domains, produced negative edge thickness, or caused cross-gap overlap were rejected.
+The automated figure screener could not isolate this panel from its dense labels and group brackets without a
+crop-edge warning, so the changed elements were measured on the 300 dpi render and confirmed by eye.
+
+### Glass classification
+
+| Element | Before | After | Disposition |
+|---|---|---|---|
+| L11 | `861230 — dense flint class (vendor unresolved)` | `J-SFH2 (Hikari; patent code 861230)` | Current Hikari J-SFH2 retains the same `nd`; its code and rounded `νd` differ by one final digit. |
+| L12 | `713539 — LaK8/LAL8 class (vendor unresolved)` | `LAC8 (coordinate equivalent; patent code 713539)` | Exact published code/coordinate equivalent already present in the catalog; no supplier claim is made. |
+| L3R1 | `658508 — SSK5 class (vendor unresolved)` | `J-SSK5 (Hikari; patent code 658508)` | Exact Hikari code and optical-coordinate match. |
+| L3R4 | `518589 — K3/C3 class (vendor unresolved)` | `J-K3 (Hikari; patent code 518589)` | Current Hikari J-K3 retains the same `nd`; its code and rounded `νd` differ by one final digit. |
+
+Added the previously absent J-SFH2, J-SSK5, and J-K3 vendor formula-3 rows to the shared glass catalog. Other
+code-only glasses remain unresolved where no comparably strong, coefficient-backed match was found.
+
+### Metadata and analysis sync
+
+- Normalized the display name to separate the aperture from the `D` designation.
+- Updated the analysis glass table, element descriptions, patent-figure SD provenance, and Hikari catalog source.
+
+### Verification
+
+- Stored prescription: `npm run audit:surface -- <data-file>` — passed.
+- Image-circle floor: `npm run audit:image-circle -- <data-file>` — passed.
+- `npm test -- elementRenderDiagnostics` — passed (6 tests).
+- `npm run typecheck`, `npm run format:check`, and `npm run lint` — passed; lint retained three unrelated pre-existing warnings.
+- `npm run test` — passed (209 files, 2450 tests).
+- `npm run build` — passed (966 routes prerendered).
+- In-app browser screenshots were unavailable; visual comparison used the rendered 300 dpi patent page plus the passing full-catalog render diagnostics.
