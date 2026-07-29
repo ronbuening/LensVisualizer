@@ -7,7 +7,7 @@ available, it falls back to partial measured `nC`/`nF` line indices, dPgF-correc
 approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **356 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **358 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
 
 The July 23, 2026 Canon batch added OHARA S-TIH53WN from the vendor's April 2025 datasheet. The WN variant retains
 the conventional d-line index while publishing modified off-d-line indices and dispersion constants for
@@ -308,6 +308,14 @@ all four entries retain the vendor's formula-3 power series and round-trip throu
 | ★ J-SSK5 | Hikari | 658508 | Exact code and coordinate match for the 24–120mm rear group |
 | ★ J-K3 | Hikari | 518588 | Current Hikari coordinate match for patent code 518589 in the 24–120mm rear group |
 | ★ J-LAK01 | Hikari | 640602 | Current Hikari coordinate match for patent code 640601 in the 28–200mm front group |
+
+**Phase 41 additions** (July 2026 — generated coverage-opportunity follow-up using HOYA's official NBFD32
+characteristic sheet and current Zemax catalog, including obsolete glasses):
+
+| Glass | Vendor | Code | Notes |
+|---|---|---:|---|
+| ★ NBFD32 | Hoya | 730322 | Exact current catalog row used by Canon RF 50mm f/1.4 L VCM, Fujifilm XF 23mm f/2.8 R WR, and Sigma 17–40mm f/1.8 DC Art |
+| ★ E-ADF10 | Hoya | 613444 | Discontinued anomalous-dispersion flint used by Sigma 105mm f/1.4 Art; adding it also prompted correction of three stale E-ADF10 guesses |
 
 **Phase 17 additions** (May 2026 — Hasselblad/Laowa/Leica/Minolta/Nikon six-digit missing-Sellmeier queue pass; all entries round-trip through `assertCatalogConsistent`):
 

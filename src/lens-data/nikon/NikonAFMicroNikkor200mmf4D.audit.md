@@ -14,3 +14,10 @@ Patent: US 5,751,485, Ninth Embodiment / Table 9
 ### Verification
 
 - `npm test -- elementRenderDiagnostics`
+
+## 2026-07-29 - Glass coverage follow-up
+
+- Relabeled L1 and L7 from unresolved `804/339` class descriptions to coefficient-backed Hikari E-LAFH2.
+- The Hikari catalog row is an exact match for the patent's `nd=1.80384`, `vd=33.89`, and code `804339`; its
+  computed g-line index also agrees with the patent's stored `ng=1.83464`.
+- Synchronized both element narratives and the glass-identification table. No prescription or SD values changed.

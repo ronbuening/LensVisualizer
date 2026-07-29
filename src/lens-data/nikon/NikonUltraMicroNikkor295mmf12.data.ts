@@ -107,7 +107,7 @@ const LENS_DATA = {
       nd: 1.69402,
       vd: 31.2,
       fl: -40.64,
-      glass: "SF8 class dense flint (patent e-line index stored)",
+      glass: "Unmatched SF8-class dense flint (patent e-line index stored)",
       cemented: "T1",
       role: "Central negative flint member of the cemented triplet.",
     },

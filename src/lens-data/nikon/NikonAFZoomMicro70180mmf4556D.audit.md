@@ -31,3 +31,11 @@ Patent: US 5,717,527, seventh embodiment, Table 8.
 - `npm run format:check` — passed.
 - `npm run test` — passed.
 - `npm run lint` — passed.
+
+## 2026-07-29 — Glass coverage follow-up
+
+- Current Hikari J-SFH2 provides a source-backed coordinate successor for L1/L2: it retains `nd=1.86074`, while
+  current code `861231` / `vd=23.08` differs from the patent's `861230` / `vd=23.01` only in the last rounded digit.
+- Hikari E-LAFH2 is an exact code and coordinate match for L15 (`804339`, `nd=1.80384`, `vd=33.89`).
+- Relabeled all three elements and synchronized the analysis. This replaces the prior Abbe fallbacks with catalog
+  dispersion without changing the patent prescription.

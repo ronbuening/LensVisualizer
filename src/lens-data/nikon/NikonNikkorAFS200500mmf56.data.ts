@@ -259,9 +259,9 @@ const LENS_DATA = {
       nd: 1.64769,
       vd: 33.84,
       fl: 97.2,
-      glass: "E-ADF10 (HOYA)",
+      glass: "E-FD2 (HOYA; exact 648338 coordinate)",
       apd: false,
-      role: "Anomalous-dispersion flint; positive element in focus doublet (G5)",
+      role: "Dense flint; positive element in focus doublet (G5)",
       cemented: "D7",
     },
     {

@@ -14,3 +14,9 @@ Patent: US 4,806,000, Tables 1-2 / FIG. 15
 ### Verification
 
 - `npm test -- elementRenderDiagnostics`
+
+## 2026-07-29 - Glass documentation follow-up
+
+- Removed stale “no source-backed catalog match” wording from L5/L6. The local catalog now contains
+  coefficient-backed Hikari J-SFH2 at the exact stored `nd=1.86074` coordinate.
+- J-LAFH3 remains unresolved; no prescription or SD values changed.

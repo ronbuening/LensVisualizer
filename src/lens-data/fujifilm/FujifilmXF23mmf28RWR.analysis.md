@@ -61,7 +61,7 @@ Although its Abbe number is near the conventional crown/flint boundary, `νd = 4
 
 ### L21 - Biconcave Negative, first element of D1
 
-`nd = 1.73037, νd = 32.23. Glass: 730322 HOYA NBFD32 dense barium flint, no Sellmeier catalog entry. f = -7.93 mm.`
+`nd = 1.73037, νd = 32.23. Glass: coefficient-backed HOYA NBFD32 dense barium flint, code 730322. f = -7.93 mm.`
 
 L21 is the negative front member of the first rear cemented doublet. Its object-side surface, `R = -18.3310 mm`, is one of the two G2 object-side concave surfaces that satisfies Conditional Expression (1). The computed value is `f/Rf = -1.2362`.
 

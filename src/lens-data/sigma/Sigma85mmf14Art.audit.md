@@ -55,3 +55,10 @@ Patent: JP 2018-005099 A, Example 4
 
 - `npm run typecheck`
 - `npm run test -- lensDataTyping dispersion ElementInspector`
+
+## 2026-07-29 - Glass classification follow-up
+
+- Corrected L3 from the near but wrong E-ADF10 annotation to OHARA S-NBM51.
+- The stored `nd=1.61340`, `vd=44.27` coordinate exactly matches S-NBM51 (`613443`); HOYA E-ADF10 is the
+  adjacent but distinct `1.61310 / 44.36` row (`613444`).
+- Synchronized the analysis and source list. No prescription values changed.

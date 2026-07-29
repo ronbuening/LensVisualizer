@@ -249,6 +249,26 @@ export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source: "HOYA Optical Glass Catalogue NBFD29 PDF, HOYA20250701M.xlsm; formula-3 A0-A5 constants, d-code 770-297.",
   },
   {
+    name: "NBFD32",
+    vendor: "Hoya",
+    polynomial: [2.8989349, -0.013348892, 0.030163481, 0.0016257886, -0.000076966547, 0.000010143236],
+    nd: 1.73037,
+    vd: 32.23,
+    PgF: 0.5899,
+    code6: "730322",
+    source: "HOYA Optical Glass Catalogue NBFD32 PDF, HOYA20250701M.xlsm; formula-3 A0-A5 constants, d-code 730-322.",
+  },
+  {
+    name: "E-ADF10",
+    vendor: "Hoya",
+    polynomial: [2.5528983, -0.015709364, 0.015647688, 0.0014461641, -0.00014458879, 0.0000095275733],
+    nd: 1.6131,
+    vd: 44.36,
+    code6: "613444",
+    source:
+      "HOYA Zemax catalog 2026-07-07 including obsolete glasses; vendor formula-3 polynomial for discontinued E-ADF10.",
+  },
+  {
     name: "FDS24",
     vendor: "Hoya",
     polynomial: [3.5126327, -0.0153015, 0.053936061, 0.0034949369, -0.00017950295, 0.000034403181],

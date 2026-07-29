@@ -10,8 +10,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **488** lenses scanned
-- **497** total code-only elements found
-- **497** elements in this report
+- **491** total code-only elements found
+- **491** elements in this report
 - **148** distinct lens files affected
 
 ## Codes by Frequency
@@ -55,10 +55,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 729547 | 3 | 3 | patents/JP2013054269A.pdf<br>patents/US20170068075A1.pdf<br>patents/US20010007512A1.pdf | No reviewed-sidecar hit |
 | 773495 | 3 | 2 | patents/US5734508.pdf<br>patents/US20190250367A1.pdf | No reviewed-sidecar hit |
 | 777297 | 3 | 3 | patents/WO2021199923A1.pdf<br>patents/WO_2025263124_A1.pdf<br>patents/JP2023039817A.pdf | All representative rows reviewed |
-| 804339 | 3 | 2 | patents/US5751485.pdf<br>patents/US5717527.pdf | No reviewed-sidecar hit |
 | 806333 | 3 | 2 | patents/US20130222925A1.pdf<br>patents/WO2016136352A1.pdf | No reviewed-sidecar hit |
 | 816466 | 3 | 2 | patents/US20170068075A1.pdf<br>patents/US20180164556A1.pdf | No reviewed-sidecar hit |
-| 861230 | 3 | 2 | patents/US5717527.pdf<br>patents/JPA 1999030748-000000.pdf | No reviewed-sidecar hit |
 | 863248 | 3 | 1 | patents/JP2023039817A.pdf | All representative rows reviewed |
 | 903357 | 3 | 3 | patents/WO2019097669A1.pdf<br>patents/JP2019008031A.pdf<br>patents/JPWO2020157904A1.pdf | No reviewed-sidecar hit |
 | 946180 | 3 | 3 | patents/JP2021047297A.pdf<br>patents/WO2020136749A1.pdf<br>patents/US20140139720A1.pdf | No reviewed-sidecar hit |
@@ -723,9 +721,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
 |---|---|---|---|---|---|---|---|
-| L1 (Element 1) | 1 | `Unmatched dense lanthanum flint class (804/339 patent code)` | 1.80384 / 33.89 | No catalog entry | abbe | patents/US5751485.pdf | No reviewed-sidecar hit |
 | L4 (Element 4) | 6 | `Unmatched lanthanum flint class (796/409 patent code)` | 1.79631 / 40.90 | No catalog entry | abbe | patents/US5751485.pdf | No reviewed-sidecar hit |
-| L7 (Element 7) | 10 | `Unmatched dense lanthanum flint class (804/339 patent code)` | 1.80384 / 33.89 | No catalog entry | abbe | patents/US5751485.pdf | No reviewed-sidecar hit |
 
 ### [Nikon AF Nikkor 28mm f/2.8D](../../src/lens-data/nikon/NikonAFNikkor28mmf28D.data.ts) - US 5,557,473,
 
@@ -743,12 +739,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
 |---|---|---|---|---|---|---|---|
-| L1 (Element 1) | 1 | `861230 — high-index dense flint (patent nd=1.86074, νd=23.01; no source-backed catalog match)` | 1.86074 / 23.01 | No catalog entry | abbe | patents/US5717527.pdf | No reviewed-sidecar hit |
-| L2 (Element 2) | 3 | `861230 — high-index dense flint (patent nd=1.86074, νd=23.01; no source-backed catalog match)` | 1.86074 / 23.01 | No catalog entry | abbe | patents/US5717527.pdf | No reviewed-sidecar hit |
 | L3 (Element 3) | 5 | `Unmatched crown (617/540)` | 1.61720 / 54.01 | No catalog entry | abbe | patents/US5717527.pdf | No reviewed-sidecar hit |
 | L4 (Element 4) | 7 | `Unmatched dense flint (795/286)` | 1.79504 / 28.56 | No catalog entry | abbe | patents/US5717527.pdf | No reviewed-sidecar hit |
 | L6 (Element 6) | 11 | `Unmatched lanthanum crown (748/523)` | 1.74810 / 52.30 | No catalog entry | abbe | patents/US5717527.pdf | No reviewed-sidecar hit |
-| L15 (Element 15) | 27 | `Unmatched dense flint (804/339)` | 1.80384 / 33.89 | No catalog entry | abbe | patents/US5717527.pdf | No reviewed-sidecar hit |
 | L17 (Element 17) | 30 | `Unmatched dense flint (741/276)` | 1.74077 / 27.63 | No catalog entry | abbe | patents/US5717527.pdf | No reviewed-sidecar hit |
 
 ### [NIKON AF ZOOM-NIKKOR 28-200mm f/3.5-5.6 G IF-ED](../../src/lens-data/nikon/NikonAFZoomNikkor28200mmf3556GIFED.data.ts) - US 6,621,643 B2
@@ -771,7 +764,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L1 (Element 1) | 1 | `515546 - unmatched light crown` | 1.51454 / 54.55 | No catalog entry | abbe | patents/JPA 1999030748-000000.pdf | No reviewed-sidecar hit |
 | L2 (Element 2) | 3 | `797454 - high-index lanthanum flint class` | 1.79668 / 45.37 | No catalog entry | abbe | patents/JPA 1999030748-000000.pdf | No reviewed-sidecar hit |
 | L3 (Element 3) | 5 | `797454 - high-index lanthanum flint class` | 1.79668 / 45.37 | No catalog entry | abbe | patents/JPA 1999030748-000000.pdf | No reviewed-sidecar hit |
-| L4 (Element 4) | 7 | `861230 - dense flint class` | 1.86074 / 23.01 | No catalog entry | abbe | patents/JPA 1999030748-000000.pdf | No reviewed-sidecar hit |
 | L5 (Element 5) | 9 | `617540 - SSK-class crown` | 1.61720 / 54.01 | No catalog entry | abbe | patents/JPA 1999030748-000000.pdf | No reviewed-sidecar hit |
 | L6 (Element 6) | 11 | `617540 - SSK-class crown` | 1.61720 / 54.01 | No catalog entry | abbe | patents/JPA 1999030748-000000.pdf | No reviewed-sidecar hit |
 | L8 (Element 8) | 15 | `Moderate-dispersion flint class (613/370)` | 1.61293 / 36.98 | S-TIM3 (trusted Sellmeier) | sellmeier | patents/JPA 1999030748-000000.pdf | No reviewed-sidecar hit |

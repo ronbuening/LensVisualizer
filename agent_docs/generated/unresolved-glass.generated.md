@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **488** lenses scanned
 - **5360** non-air surfaces examined
 - **5365** element glass declarations examined
-- **599** non-explicit-unmatched annotations did not resolve
-- **263** distinct unresolved glass-like tokens found
+- **589** non-explicit-unmatched annotations did not resolve
+- **260** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -32,10 +32,8 @@ or per-lens patent backfills.
 | 744495 | 3 | 3 | |
 | 768492 | 3 | 2 | |
 | 797454 | 3 | 2 | |
-| 861230 | 3 | 2 | |
 | 863248 | 3 | 1 | |
 | F8 | 3 | 3 | |
-| NBFD32 | 3 | 3 | |
 | S-APL1 | 3 | 2 | |
 | 514428 | 2 | 1 | |
 | 531559 | 2 | 2 | |
@@ -135,7 +133,6 @@ or per-lens patent backfills.
 | 720504 | 1 | 1 | |
 | 721334 | 1 | 1 | |
 | 729577 | 1 | 1 | |
-| 730322 | 1 | 1 | |
 | 738493 | 1 | 1 | |
 | 744447 | 1 | 1 | |
 | 747274 | 1 | 1 | |
@@ -382,12 +379,6 @@ or per-lens patent backfills.
 - [NIKON AF ZOOM-NIKKOR 28-80mm f/3.5-5.6 D](../../src/lens-data/nikon/NikonAFZoomNikkor2880mmf3556.data.ts) 3: `797454 - high-index lanthanum flint class`
 - [NIKON AF ZOOM-NIKKOR 28-80mm f/3.5-5.6 D](../../src/lens-data/nikon/NikonAFZoomNikkor2880mmf3556.data.ts) 5: `797454 - high-index lanthanum flint class`
 
-### 861230 — 3 occurrences
-
-- [NIKON AF ZOOM-MICRO NIKKOR ED 70-180mm f/4.5-5.6D](../../src/lens-data/nikon/NikonAFZoomMicro70180mmf4556D.data.ts) 1: `861230 — high-index dense flint (patent nd=1.86074, νd=23.01; no source-backed catalog match)`
-- [NIKON AF ZOOM-MICRO NIKKOR ED 70-180mm f/4.5-5.6D](../../src/lens-data/nikon/NikonAFZoomMicro70180mmf4556D.data.ts) 3: `861230 — high-index dense flint (patent nd=1.86074, νd=23.01; no source-backed catalog match)`
-- [NIKON AF ZOOM-NIKKOR 28-80mm f/3.5-5.6 D](../../src/lens-data/nikon/NikonAFZoomNikkor2880mmf3556.data.ts) 7: `861230 - dense flint class`
-
 ### 863248 — 3 occurrences
 
 - [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 10: `863248 — ultra-dense flint (patent nd=1.86290, nu_d=24.8)`
@@ -399,12 +390,6 @@ or per-lens patent backfills.
 - [CARL ZEISS TESSAR 50mm f/3.5](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissTessar50mmf35.data.ts) 3: `F8 historical (Schott, discontinued)`
 - [NIKON ULTRA-MICRO-NIKKOR 29.5mm f/1.2](../../src/lens-data/nikon/NikonUltraMicroNikkor295mmf12.data.ts) 11: `F8 class light flint (patent e-line index stored)`
 - [OLYMPUS ZUIKO AUTO-ZOOM 85-250mm f/5](../../src/lens-data/olympus/OlympusZuikoAutoZoom85250mmf5.data.ts) 21: `F8 class (Hikari / HOYA)`
-
-### NBFD32 — 3 occurrences
-
-- [CANON RF 50mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF50mmf14LVCM.data.ts) 17: `NBFD32 (HOYA, 730-322)`
-- [FUJIFILM FUJINON XF 23mm f/2.8 R WR](../../src/lens-data/fujifilm/FujifilmXF23mmf28RWR.data.ts) 6: `730322 - NBFD32 (HOYA dense barium flint; no Sellmeier catalog entry)`
-- [SIGMA 17-40mm f/1.8 DC | Art](../../src/lens-data/sigma/Sigma1740mmf18DCA.data.ts) 18: `NBFD32 (Hoya)`
 
 ### S-APL1 — 3 occurrences
 
@@ -834,10 +819,6 @@ or per-lens patent backfills.
 ### 729577 — 1 occurrence
 
 - [LAOWA 65mm f/2.8 2× Ultra Macro APO](../../src/lens-data/laowa/Laowa65mmf28MacroAPO.data.ts) 16: `729577 — high-index lanthanum crown (patent nd=1.72916, νd=57.67; H-LAK52 matches nd but not νd)`
-
-### 730322 — 1 occurrence
-
-- [FUJIFILM FUJINON XF 23mm f/2.8 R WR](../../src/lens-data/fujifilm/FujifilmXF23mmf28RWR.data.ts) 6: `730322 - NBFD32 (HOYA dense barium flint; no Sellmeier catalog entry)`
 
 ### 738493 — 1 occurrence
 

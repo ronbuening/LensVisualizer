@@ -157,10 +157,22 @@ describe("glass catalog", () => {
   it("evaluates current HOYA NBFD source-sheet polynomial entries", () => {
     const nbfd25 = resolveGlass("NBFD25 (HOYA)");
     const nbfd29 = resolveGlass("NBFD29 (HOYA)");
+    const nbfd32 = resolveGlass("NBFD32 (HOYA)");
     expect(nbfd25).not.toBeNull();
     expect(nbfd29).not.toBeNull();
+    expect(nbfd32).not.toBeNull();
     expect(evaluateSellmeier(nbfd25!, LINE_NM.d)).toBeCloseTo(1.85451, 5);
     expect(evaluateSellmeier(nbfd29!, LINE_NM.d)).toBeCloseTo(1.77047, 5);
+    expect(evaluateSellmeier(nbfd32!, LINE_NM.d)).toBeCloseTo(1.73037, 5);
+    expect(resolveGlass("Dense flint (730/322)")?.name).toBe("NBFD32");
+  });
+
+  it("evaluates and resolves the HOYA E-ADF10 obsolete-catalog polynomial", () => {
+    const eAdf10 = resolveGlass("E-ADF10 (HOYA)");
+    expect(eAdf10?.name).toBe("E-ADF10");
+    expect(resolveGlass("613444")?.name).toBe("E-ADF10");
+    expect(evaluateSellmeier(eAdf10!, LINE_NM.d)).toBeCloseTo(1.6131, 5);
+    expect(evaluateSellmeier(eAdf10!, LINE_NM.C)).toBeLessThan(evaluateSellmeier(eAdf10!, LINE_NM.F));
   });
 
   it("evaluates and resolves the HOYA Pentax coverage entries", () => {

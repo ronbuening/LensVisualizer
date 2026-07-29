@@ -20,16 +20,27 @@ The candidate scan splits mismatches into two buckets:
 
 This file tracks the second bucket plus any cases from the first bucket that need authorial judgment (multiple candidates, or relabeling would change the lens-data file's narrative — e.g. the analysis.md companion file says "S-LAH79" and the candidate suggestion would invalidate that).
 
-## Current Status (June 2026, current catalog)
+## Current Status (July 2026, current catalog)
 
-- Catalog: **302 verified entries** in `src/optics/glassCatalogData.ts`.
-- Current mismatch and coverage counts live in the generated reports. After the 2026-06-29 Schott named-token pass,
-  `catalog-mismatches.generated.md` reports **0** catalog mismatches, and `sellmeier-coverage.generated.md` reports
-  **391** lenses, **4337** non-air surfaces, **3552** strict catalog Sellmeier surfaces (**81.9%**), and **3582**
-  trusted chromatic surfaces (**82.6%**).
-- `unresolvedGlassScan`: **602** non-explicit-unmatched annotations still do not resolve, covering **264** distinct
+- Catalog: **358 verified entries** in `src/optics/glassCatalogData.ts`.
+- `catalog-mismatches.generated.md` reports **0** catalog mismatches.
+- `sellmeier-coverage.generated.md` reports **488** lenses, **5360** non-air surfaces, **4508** strict catalog
+  Sellmeier surfaces (**84.1%**), and **4537** trusted chromatic surfaces (**84.6%**).
+- `unresolvedGlassScan`: **589** non-explicit-unmatched annotations still do not resolve, covering **260** distinct
   glass-like tokens.
 - The Phase 2/3 resolved tables below are historical audit trail. Use the generated reports above for the current queue before starting new relabel work; for patent-by-patent execution, start from [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md).
+
+## Resolved Phase 41 — July 2026 mismatch and coverage follow-up
+
+| Lens file(s) | Surface(s) | Old annotation | New annotation | Justification |
+|---|---|---|---|---|
+| [HasselbladHC120mmf4Macro.data.ts](../src/lens-data/hasselblad/HasselbladHC120mmf4Macro.data.ts) | L8 | `NBFD10 (HOYA)` | `S-LAH63 (OHARA coordinate match)` | Removes a false catalog match; S-LAH63 exactly matches the stored 1.80440 / 39.6 coordinate. |
+| [NikonUltraMicroNikkor295mmf12.data.ts](../src/lens-data/nikon/NikonUltraMicroNikkor295mmf12.data.ts) | L4 | `SF8 class...` | `Unmatched SF8-class...` | The patent stores an e-line index; explicit unmatched status prevents comparison to and application of a d-line catalog row. |
+| Nikon AF Micro 200mm and AF Zoom-Micro 70–180mm | L1, L7; L15 | unresolved `804339` descriptions | `E-LAFH2 (Hikari; patent code 804339)` | Exact Hikari code and 1.80384 / 33.89 coordinate. |
+| Nikon AF Zoom-Micro 70–180mm, AF 28–80mm, AF 28mm f/1.4D, and R-UW Micro 50mm | five elements at 1.86074 / 23.0–23.01 | unresolved/code-only dense-flint descriptions | `J-SFH2 (Hikari)` | Current J-SFH2 retains the exact index; code and rounded Abbe number differ by only the final digit. |
+| Canon RF 50mm f/1.4, Fujifilm XF 23mm f/2.8, Sigma 17–40mm f/1.8 | three NBFD32 elements | named but unresolved NBFD32 | catalog-backed `NBFD32` | Official HOYA formula-3 coefficients, code 730322, and exact 1.73037 / 32.23 coordinate. |
+| Nikon AF-S 200–500mm, Nikon AF-S 120–300mm, Sigma 85mm Art | three stale E-ADF10 guesses | `E-ADF10` | E-FD2, S-TIH1, S-NBM51 respectively | Each replacement matches the stored six-digit coordinate exactly; actual E-ADF10 is the distinct 613444 row. |
+| Sigma 105mm f/1.4 Art | L4 | named but unresolved `E-ADF10` | catalog-backed `E-ADF10` | Official HOYA obsolete-glass AGF polynomial at exact 1.61310 / 44.36 and code 613444. |
 
 ## Resolved Phase 3 — high-confidence relabels (audit trail)
 

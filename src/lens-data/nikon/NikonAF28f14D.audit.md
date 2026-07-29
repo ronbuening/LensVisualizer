@@ -26,3 +26,9 @@ Reviewed local untracked patent file `patents/US5315441.pdf`, Embodiment 1 / Tab
 ### Verification
 
 - Pending batch verification after the current Nikon audit pass.
+
+## 2026-07-29 Glass Coverage Follow-up
+
+- Relabeled L8b from an unresolved very-dense-flint note to coefficient-backed Hikari J-SFH2.
+- J-SFH2 retains the stored `nd=1.86074`; its published `vd=23.08` is within 0.08 of the patent's rounded `vd=23.0`.
+- L4b and L6a remain unresolved. No prescription, asphere, focus, or SD values changed.

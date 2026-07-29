@@ -19,33 +19,11 @@ both match the stored values within tolerance (nd ±0.005, vd ±3).
 - **No candidate**: relabel as `Unmatched (...reason)` and add a row to
   [glass-relabel-followup.md](../glass-relabel-followup.md) for per-lens patent verification.
 
-**Scope**: 2 mismatched surfaces across 2 unique groups.
-
-## stored (nd=1.69402, vd=31.20)  — 1 surface, current label resolves to N-SF8
-
-Candidates:
-- **S-TIM35** (nd=1.69895, vd=30.13, Δnd=+0.0049, Δvd=-1.07)
-- **E-FD15** (nd=1.69895, vd=30.05, Δnd=+0.0049, Δvd=-1.15)
-- **SF15** (nd=1.69895, vd=30.00, Δnd=+0.0049, Δvd=-1.20)
-
-Surfaces:
-- [NIKON ULTRA-MICRO-NIKKOR 29.5mm f/1.2](../../src/lens-data/nikon/NikonUltraMicroNikkor295mmf12.data.ts) `6`: `SF8 class dense flint (patent e-line index stored)`
-
-## stored (nd=1.80440, vd=39.60)  — 1 surface, current label resolves to NBFD10
-
-Candidates:
-- **S-LAH63Q** (nd=1.80440, vd=39.58, Δnd=+0.0000, Δvd=-0.02)
-- **S-LAH63** (nd=1.80440, vd=39.59, Δnd=-0.0000, Δvd=-0.01)
-- **NBFD3** (nd=1.80450, vd=39.63, Δnd=+0.0001, Δvd=+0.03)
-- **S-LAH53** (nd=1.80610, vd=40.93, Δnd=+0.0017, Δvd=+1.33)
-- **H-ZLAF52A** (nd=1.80610, vd=41.02, Δnd=+0.0017, Δvd=+1.42)
-
-Surfaces:
-- [HASSELBLAD HC Macro 120mm f/4](../../src/lens-data/hasselblad/HasselbladHC120mmf4Macro.data.ts) `16`: `NBFD10 (HOYA)`
+**Scope**: 0 mismatched surfaces across 0 unique groups.
 
 ---
 
 ## Summary
 
-- **2** (nd, vd) groups have at least one candidate (2 surfaces) — actionable relabels.
+- **0** (nd, vd) groups have at least one candidate (0 surfaces) — actionable relabels.
 - **0** (nd, vd) groups have NO candidate (0 surfaces) — needs patent verification or Unmatched relabeling.

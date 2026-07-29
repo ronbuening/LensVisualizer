@@ -52,7 +52,7 @@ L2 is identified as Lp1 in the patent's conditional-expression framework — the
 
 ### L3 — Negative Meniscus, Convex to Object (Lm1)
 
-nd = 1.61340, νd = 44.27. Glass: E-ADF10 (HOYA) — ADF-series flint. f = −164.3 mm. ΔPgF = −0.0053.
+nd = 1.61340, νd = 44.27. Glass: S-NBM51 (OHARA) — short flint. f = −164.3 mm. ΔPgF = −0.0053.
 
 L3 is the first negative element in G1 and bears the strongest negative ΔPgF of the three front negative elements (−0.0053). It acts as a secondary-spectrum corrector: paired with L2, it balances the g-line to F-line partial dispersion ratio against primary (F–C) achromatism, enabling correction of both first-order and second-order chromatic aberration simultaneously. The deviation is useful to the patent condition, but it remains inside the patent's ordinary-material PgF/νd range and is not highlighted as APD in the viewer.
 
@@ -150,7 +150,7 @@ The design uses 10 distinct glass types across 14 elements. The glass palette is
 |---------|--------|-------|--------|---------|------|--------|--------|
 | L1 | 1.72916 | 54.67 | 0.5452 | −0.0047 | TAC8 | HOYA | Lanthanum crown |
 | L2, L7 | 1.55032 | 75.50 | 0.5399 | +0.0275 | FCD705 | HOYA | SLD fluoro­phosphate crown |
-| L3 | 1.61340 | 44.27 | 0.5633 | −0.0053 | E-ADF10 | HOYA | ADF-series flint |
+| L3 | 1.61340 | 44.27 | 0.5633 | −0.0053 | S-NBM51 | OHARA | Short flint |
 | L4, L5, L11 | 1.73800 | 32.26 | 0.5898 | −0.0005 | J-KZFH9 | Hikari | KZFS-class short flint |
 | L6 | 1.92286 | 20.88 | 0.6388 | +0.0281 | E-FDS1-W | HOYA | Extra-dense flint |
 | L8, L12 | 1.88300 | 40.80 | 0.5654 | −0.0095 | TAFD30 | HOYA | Dense lanthanum flint |
@@ -265,6 +265,6 @@ The lens was later succeeded by the Sigma 85mm F1.4 DG DN | Art (A020, 2020), an
 
 - JP2018-5099A (J-PlatPat), Sigma Corporation, published 11 January 2018.
 - Sigma Corporation product page: 85mm F1.4 DG HSM | Art (A016), https://www.sigma-global.com/en/lenses/a016_85_14/
-- HOYA Corporation, Optical Glass Catalog (glass codes referenced: TAC8, FCD705, E-ADF10, E-FDS1-W, TAFD30, TAF105, E-FD15, M-TAFD305).
+- HOYA Corporation, Optical Glass Catalog (glass codes referenced: TAC8, FCD705, E-FDS1-W, TAFD30, TAF105, E-FD15, M-TAFD305).
 - Hikari Optical Glass Catalog (J-KZFH9).
-- OHARA Corporation, Optical Glass Catalog (S-NBH52).
+- OHARA Corporation, Optical Glass Catalog (S-NBM51, S-NBH52).

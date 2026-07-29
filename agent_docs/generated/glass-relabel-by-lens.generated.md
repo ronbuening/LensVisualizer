@@ -9,22 +9,11 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **2** mismatched surfaces across **2** lens files
-- **2** surfaces have at least one candidate
+- **0** mismatched surfaces across **0** lens files
+- **0** surfaces have at least one candidate
 - **0** surfaces have high-confidence candidate ranking
 - **0** surfaces have no catalog candidate and need patent review
 
-## Relabels by Lens
+## No Relabel Work
 
-### [HASSELBLAD HC Macro 120mm f/4](../../src/lens-data/hasselblad/HasselbladHC120mmf4Macro.data.ts) - JP 2004-302170 A
-
-| Surface | Current label | Stored nd/vd | Rejected as | Best candidate(s) | Confidence | Patent review |
-|---|---|---|---|---|---|---|
-| 16 | `NBFD10 (HOYA)` | 1.80440 / 39.60 | NBFD10 (Δnd=+0.0296) | S-LAH63Q (Δnd=+0.0000, Δvd=-0.02)<br>S-LAH63 (Δnd=-0.0000, Δvd=-0.01)<br>NBFD3 (Δnd=+0.0001, Δvd=+0.03) | Choose by context | Yes - choose candidate |
-
-### [NIKON ULTRA-MICRO-NIKKOR 29.5mm f/1.2](../../src/lens-data/nikon/NikonUltraMicroNikkor295mmf12.data.ts) - GB 1,050,055
-
-| Surface | Current label | Stored nd/vd | Rejected as | Best candidate(s) | Confidence | Patent review |
-|---|---|---|---|---|---|---|
-| 6 | `SF8 class dense flint (patent e-line index stored)` | 1.69402 / 31.20 | N-SF8 (Δnd=-0.0051) | S-TIM35 (Δnd=+0.0049, Δvd=-1.07)<br>E-FD15 (Δnd=+0.0049, Δvd=-1.15)<br>SF15 (Δnd=+0.0049, Δvd=-1.20) | Choose by context | Yes - choose candidate |
-
+Every catalog-resolved surface agrees with stored `nd` within tolerance.

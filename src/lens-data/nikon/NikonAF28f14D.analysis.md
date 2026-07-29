@@ -258,7 +258,7 @@ The mathematical height limit where the conic discriminant reaches zero is h = |
 
 - **L8b** (rear): nd = 1.86074, νd = 23.0, d = 1.50 mm.
   R₁(junction) = −21.000 mm, R₂ = −28.251 mm.
-  Negative meniscus, concave to object. Very dense, very dispersive flint glass. The nd/νd pair (1.86074 / 23.0) does not match any current OHARA, Schott, or HOYA catalog type exactly; it is likely a 1990s-era specialty glass, possibly from Sumita or a Nikon-specified melt.
+  Negative meniscus, concave to object. Very dense, very dispersive flint glass. The nd/νd pair (1.86074 / 23.0) matches current Hikari J-SFH2 in index and differs only by 0.08 in rounded Abbe number.
   Individual f = −105.1 mm (weakly negative).
 
 The L8 doublet as a whole has f = +34.77 mm (strongly positive). As the patent text explains, constituting the final positive element (L8) as a cemented doublet allows the designer to maintain a long back focus while suppressing distortion. The strongly positive L8a (nearly plano-convex in a very high-index glass) provides the final converging power needed to form the image, while L8b (in a very dense flint) controls chromatic aberration and acts as a field-flattener. The large index difference at the cemented junction (Δnd = 0.057) provides both chromatic correction and some residual monochromatic correction, while the high-index/low-Abbe flint helps control the lateral color and distortion that are characteristic of retrofocus wide-angle designs.
@@ -281,9 +281,9 @@ The L8 doublet as a whole has f = +34.77 mm (strongly positive). As the patent t
 | L6b | 1.75520 | 27.6 | OHARA S-TIH4 | Dense flint | Good |
 | L7 | 1.77279 | 49.4 | Same as L2 | Lanthanum crown | Close |
 | L8a | 1.80411 | 46.5 | Same as L5 | Lanthanum dense crown | Close |
-| L8b | 1.86074 | 23.0 | No current catalog match | Very dense flint | Unresolved |
+| L8b | 1.86074 | 23.0 | Hikari J-SFH2 coordinate match | Very dense flint | High |
 
-The unresolved glasses (L4b, L6a, L8b) likely correspond to 1990s-era OHARA, HOYA, Hikari, or Sumita types that have since been discontinued or reformulated as part of the industry-wide shift to lead-free and arsenic-free glass compositions. The patent's nd/νd values are design-exact values, and the actual production glasses would have been selected from available catalog types with melt-to-melt tolerances. Two glasses are used twice (L2/L7 and L5/L8a), reducing the number of distinct glass types to nine.
+The remaining unresolved glasses, L4b and L6a, likely correspond to 1990s-era types that have since been discontinued or reformulated as part of the industry-wide shift to lead-free and arsenic-free glass compositions. The patent's nd/νd values are design-exact values, and the actual production glasses would have been selected from available catalog types with melt-to-melt tolerances. Two glasses are used twice (L2/L7 and L5/L8a), reducing the number of distinct glass types to nine.
 
 ---
 

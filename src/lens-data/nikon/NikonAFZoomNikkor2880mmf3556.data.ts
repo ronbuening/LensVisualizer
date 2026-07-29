@@ -110,7 +110,7 @@ const LENS_DATA = {
       nd: 1.86074,
       vd: 23.01,
       fl: 69.647,
-      glass: "861230 - dense flint class",
+      glass: "J-SFH2 (Hikari; patent code 861230)",
       apd: false,
       role: "Positive closing element of G1; offsets part of the negative Petzval contribution of L2-L3.",
     },

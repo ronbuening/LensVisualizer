@@ -92,7 +92,7 @@ Like L1, L7 uses a dense flint glass for a positive element — the very high in
 
 ### L8 — Biconcave Negative
 
-$n_d = 1.80440$, $\nu_d = 39.6$. Glass: NBFD10 (HOYA) — lanthanum dense flint. $f = -39.1\text{ mm}$.
+$n_d = 1.80440$, $\nu_d = 39.6$. Glass: S-LAH63 (OHARA coordinate match) — lanthanum dense flint. $f = -39.1\text{ mm}$.
 
 L8 is the negative element of the rear group and carries the bulk of $G_2$'s diverging power. Condition (4) governs its image-side surface: $R_{N3}/f = R_{17}/f$. From the tabulated prescription, $R_{17}/f = 41.27/100 = 0.4127$, which satisfies the required range $0.35 < R_{N3}/f < 0.55$ comfortably. The patent's condition-value table reports $R_{N3}/f = 0.4578$ for Example 4; this value does not correspond to $R_{17}$ but instead matches $R_{18}/f = 45.78/100 = 0.4578$ exactly — evidently a transcription error in the condition table, as the three other examples all correctly cite the $R_{17}$ surface for this quantity. Both values satisfy condition (4); the prescription itself is unaffected. This condition maintains field flatness from infinity to 1:1 by preventing the strong negative field curvature that would arise if L8's diverging power were too concentrated (¶0023–¶0025). The high-index lanthanum dense flint glass ($n_d = 1.804$, $\nu_d = 39.6$) is unusual — combining high index with moderate dispersion — and enables strong negative power with moderate curvatures.
 
@@ -115,7 +115,7 @@ The glass palette of Example 4 uses 6 distinct glass types across 9 elements. Si
 | L5      | 1.77250 | 49.6    | S-LAH66 (OHARA)      | Lanthanum dense flint   | Positive meniscus, coma correction   |
 | L6      | 1.48749 | 70.2    | FC5 (HOYA)           | Fluorophosphate crown   | Chromatic corrector (lateral colour) |
 | L7      | 1.80518 | 25.5    | S-TIH6 (OHARA)       | Dense flint (SF6 class) | Positive collector in rear group     |
-| L8      | 1.80440 | 39.6    | NBFD10 (HOYA)        | Lanthanum dense flint   | Negative diverger, field flatness    |
+| L8      | 1.80440 | 39.6    | S-LAH63 (OHARA)      | Lanthanum dense flint   | Negative diverger, field flatness    |
 | L9      | 1.48749 | 70.2    | FC5 (HOYA)           | Fluorophosphate crown   | Field flattener, lateral colour      |
 
 All glass identifications carry high confidence ($\Delta n_d < 10^{-4}$, $\Delta\nu_d < 0.1$ against published catalog values).
@@ -205,4 +205,4 @@ An updated Mark II version was introduced with an improved leaf shutter mechanis
 2. Hasselblad HC Macro 4/120 II product page: https://www.hasselblad.com/h-system/lenses/hc-macro-4-120mm/
 3. Hasselblad HC Macro 4/120 II specifications (B&H Photo): 9 elements / 9 groups, f = 118.7 mm, f/4–f/45, MFD 0.39 m, 67 mm filter, 1410 g.
 4. Global Media Pro specification sheet: focal length 118.7 mm, diagonal angle of view 33°, coverage 56 × 41.5 mm at close range.
-5. Public optical glass catalogs: HOYA FC5, E-FD5, NBFD10, LAC14, E-SF3; OHARA S-BAH28, S-LAH66, S-TIH6.
+5. Public optical glass catalogs: HOYA FC5, E-FD5, LAC14, E-SF3; OHARA S-BAH28, S-LAH63, S-LAH66, S-TIH6.
