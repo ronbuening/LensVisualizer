@@ -64,7 +64,7 @@ The G1(+)–G2(−)–Stop–G3(+)–G4(−) power arrangement distributes posit
 | L8 | G3 | Biconvex Positive | 1.60300 | 65.47 | +40.6 | S-PHM53 (OHARA) |
 | L9 | G3 | Negative Meniscus | 1.84666 | 23.78 | −66.7 | S-TIH53 (OHARA) / N-SF57 (Schott) |
 | L10 | G4 | Negative Meniscus | 1.80518 | 25.43 | −45.3 | S-TIH6 (OHARA) / SF6 (Schott) |
-| L11 | G4 | Negative Meniscus | 1.80100 | 34.96 | −30.2 | NBFD3 (HOYA) |
+| L11 | G4 | Negative Meniscus | 1.80100 | 34.96 | −30.2 | J-LAF016 (Hikari) |
 | L12 | G4 | Positive Meniscus | 1.84666 | 23.78 | +24.0 | S-TIH53 (OHARA) / N-SF57 (Schott) |
 
 
@@ -140,7 +140,7 @@ L10 is a strong negative meniscus (convex to object) made from a dense flint gla
 
 **L11+L12 — Cemented Doublet (combined f ≈ +126.6 mm)**
 
-L11 (negative meniscus, nd = 1.80100, vd = 34.96) is cemented to L12 (positive meniscus, nd = 1.84666, vd = 23.78). L11's glass matches HOYA NBFD3 (nd = 1.80100, vd = 34.97, Δvd = 0.01) — a niobium-containing dense barium flint. This is a high-index glass in the lanthanum-dense-flint region of the glass map, providing strong negative power with moderate dispersion.
+L11 (negative meniscus, nd = 1.80100, vd = 34.96) is cemented to L12 (positive meniscus, nd = 1.84666, vd = 23.78). L11's glass matches Hikari J-LAF016 at the Nikon patent coordinate — a high-index lanthanum flint that provides strong negative power with moderate dispersion.
 
 L12 uses the same glass as L9 (S-TIH53 / N-SF57), a very high-index dense flint. The doublet's net positive power (f ≈ +126.6 mm) partially compensates for L10's strong negative contribution. The glass pairing has a moderate Abbe number difference (Δvd ≈ 11.2), which provides some chromatic correction — though far less than the classical achromat L8+L9 (Δvd = 41.7). The doublet's primary contribution is *monochromatic*: field curvature correction (Petzval sum control) and minimization of astigmatism. The use of two high-index, relatively low-vd glasses in a cemented pair is a design choice that prioritizes Petzval sum control (high nd reduces the Petzval contribution per unit power) while delegating the bulk of chromatic correction to the G3 achromatic doublet and ED element.
 
@@ -285,7 +285,7 @@ The 12 elements use a range of glass types spanning from low-index fluorophospha
 
 ### 6.2 Glass Identification Confidence
 
-Glasses matched with Δnd < 0.001 and Δvd < 0.5 are considered high-confidence identifications. The following elements have effectively exact catalog matches: L1 (S-LAH63Q / TAF3), L2 (K-SK18 / S-BSM18), L3 (TAFD5), L4 (S-BSL7 / N-BK7), L5 (S-TIM2), L6 (S-LAH58), L7 (J-FKH1), L8 (S-PHM53), L9 (S-TIH53), L10 (S-TIH6), L11 (HOYA NBFD3), L12 (S-TIH53).
+Glasses matched with Δnd < 0.001 and Δvd < 0.5 are considered high-confidence identifications. The following elements have effectively exact catalog matches: L1 (S-LAH63Q / TAF3), L2 (K-SK18 / S-BSM18), L3 (TAFD5), L4 (S-BSL7 / N-BK7), L5 (S-TIM2), L6 (S-LAH58), L7 (J-FKH1), L8 (S-PHM53), L9 (S-TIH53), L10 (S-TIH6), L11 (Hikari J-LAF016), L12 (S-TIH53).
 
 ### 6.3 Nano Crystal Coat
 

@@ -70,7 +70,7 @@ A BaSF51 identification is not reliable: modern Schott N-BASF51 is in a much hig
 
 ### L4 — Biconvex Positive, front member of the triplet-like rear system
 
-$n_e = 1.6241$, $\nu_e = 60.1$. Glass: SK16 / N-SK16 class, Schott legacy equivalent. $f = +36.46\ \mathrm{mm}$.
+$n_e = 1.6241$, $\nu_e = 60.1$. Glass: unmatched SK16-class e-line crown; N-SK16 is a d-line comparison only. $f = +36.46\ \mathrm{mm}$.
 
 L4 has $R_6 = +23.590\ \mathrm{mm}$ and $R_7 = -609.980\ \mathrm{mm}$. It is formally biconvex, but optically it behaves close to a plano-convex positive element because the rear surface is very weak. This places most of the element’s power on the front surface while leaving the surface adjacent to the stop nearly neutral.
 
@@ -86,11 +86,11 @@ This element provides the dominant negative Petzval and chromatic counterweight 
 
 ### L6 — Negative Meniscus, front element of D2
 
-$n_e = 1.6734$, $\nu_e = 46.9$. Glass: BaF13-class Schott legacy barium flint, inferred. $f = -19.24\ \mathrm{mm}$.
+$n_e = 1.6734$, $\nu_e = 46.9$. Glass: unmatched BaF13-class e-line barium flint. $f = -19.24\ \mathrm{mm}$.
 
 L6 is a thin negative meniscus with a nearly flat front surface, $R_{10} = +400.925\ \mathrm{mm}$, and a strongly curved cemented rear surface, $R_{11} = +12.530\ \mathrm{mm}$. Nearly all of its standalone negative power comes from the cemented interface geometry.
 
-At R11, the index step is $1.6940 - 1.6734 = +0.0206$ and the radius is positive, again giving a weak positive cemented-interface power. This is the second cemented surface targeted by the patent’s condition. The glass is better described as BaF13-class barium flint than as BaSF13 dense barium flint; the latter is a poorer class description for the stated dispersion.
+At R11, the index step is $1.6940 - 1.6734 = +0.0206$ and the radius is positive, again giving a weak positive cemented-interface power. This is the second cemented surface targeted by the patent’s condition. BaF13 describes the historical family region, but the e-line coordinate is not assigned a d-line catalog row.
 
 ### L7 — Biconvex Positive, rear element of D2
 
@@ -109,9 +109,9 @@ The patent tabulates $n_e$ and $\nu_e$, not $n_d$ and $\nu_d$. These values are 
 | L1 | 1.4892 | 69.9 | FK5 / N-FK5 class | High class match |
 | L2 | 1.6713 | 41.6 | BaSF6-class barium dense flint | Moderate inferred class |
 | L3 | 1.6299 | 38.8 | Unmatched flint / barium-flint position | Low; no confident public match |
-| L4 | 1.6241 | 60.1 | SK16 / N-SK16 class | Good class match |
+| L4 | 1.6241 | 60.1 | Unmatched SK16-class e-line crown | D-line comparison only |
 | L5 | 1.7046 | 34.6 | Unmatched dense flint | Low; no confident public match |
-| L6 | 1.6734 | 46.9 | BaF13-class barium flint | Moderate inferred class |
+| L6 | 1.6734 | 46.9 | Unmatched BaF13-class e-line barium flint | Historical family only |
 | L7 | 1.6940 | 54.6 | Unmatched LAK9-class e-line row | Good class match, not a d-line catalog row |
 
 The practical chromatic strategy is distributed. The front doublet D1 does not behave like a simple high-Abbe crown plus low-Abbe flint achromat; its two glasses are relatively close in both index and dispersion because the patent’s cemented-surface condition limits the index step. The same is true, more weakly, for D2. L5 supplies the strongest dense-flint counterweight in the triplet-like rear system.

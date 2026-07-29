@@ -76,7 +76,7 @@ const LENS_DATA = {
       nd: 1.90366,
       vd: 31.3,
       fl: -22.2,
-      glass: "S-LAH93 (OHARA)",
+      glass: "S-LAH95 (OHARA; exact patent coordinate match)",
       apd: false,
       role: "Variator lead (G2, L2a). High-index lanthanum flint for compact negative power and field curvature control.",
     },

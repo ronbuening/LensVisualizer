@@ -74,13 +74,13 @@ S-NSL36 is an ordinary crown glass — low index, moderate dispersion. In a retr
 | Property | Value |
 |---|---|
 | Surfaces | S3 (R = +20.152 mm), S4 (R = +296.161 mm) |
-| Glass | nd = 1.83400, νd = 37.16 → **OHARA S-LAH55V** (exact match) |
+| Glass | nd = 1.83400, νd = 37.16 → **OHARA S-LAH60** (exact coordinate match) |
 | Thickness | 2.20 mm |
 | Focal length | +25.8 mm |
 
 L2 is a positive meniscus with its convex side facing the object. The rear surface (R = +296 mm) is nearly flat. This is a high-index, moderate-dispersion lanthanum glass — a premium optical material that provides strong positive power with minimal contribution to field curvature.
 
-S-LAH55V is a compositional variant from OHARA's lanthanum heavy-crown (LAH) family. Its high index (1.834) allows the meniscus shape to achieve positive power with moderate curvatures. The Abbe number of 37.16 is low for a positive element — it places the glass in a dispersion range traditionally associated with flint glasses, though LAH glasses are classified as lanthanum crowns by chemical composition. This is acceptable here because the chromatic correction is primarily handled by the cemented doublet in G2.
+S-LAH60 is a high-index OHARA lanthanum glass. Its high index (1.834) allows the meniscus shape to achieve positive power with moderate curvatures, while its Abbe number of 37.16 places it in the dense-flint dispersion range. Chromatic correction is primarily handled by the cemented doublet in G2.
 
 **Optical role:** Partially compensates the divergence from L1 and begins converging the beam toward the aperture stop. The meniscus form reduces coma and astigmatism contributions compared to a biconvex shape at this position. Together with L1, G1 has a net weak negative or near-zero power that sets up the retrofocus geometry.
 
@@ -240,7 +240,7 @@ Seven of the eight glass types in Example 4 can be identified with exact matches
 | Element | nd | νd | Glass identification | Type | Role |
 |---|---|---|---|---|---|
 | L1 | 1.51742 | 52.43 | OHARA S-NSL36 (exact) | Normal crown | Front negative, low cost |
-| L2 | 1.83400 | 37.16 | OHARA S-LAH55V (exact) | Lanthanum crown | Positive meniscus, high index |
+| L2 | 1.83400 | 37.16 | OHARA S-LAH60 (exact coordinate) | Lanthanum dense flint | Positive meniscus, high index |
 | L3 | 1.64769 | 33.79 | HOYA E-FD2 (exact nd and νd) | Dense flint | Doublet negative, high dispersion |
 | L4 | 1.80400 | 46.57 | OHARA S-LAH65V (exact) | Lanthanum crown | Doublet positive, main power |
 | L5 | 1.80348 | 40.45 | OHARA S-LAH63 (exact) | Lanthanum crown | Aspheric positive (glass-mold) |

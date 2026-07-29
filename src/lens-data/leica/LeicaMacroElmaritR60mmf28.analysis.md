@@ -43,7 +43,7 @@ The focal lengths below are standalone in-air element focal lengths unless a cem
 
 ### L1 — Positive Meniscus, Convex to Object
 
-$n_e = 1.74795$, $\nu_e = 44.5$. Glass: LAF2 / S-LAM2 class, e-line catalog match; patent vendor not named. $f \approx +98.9$ mm.
+$n_e = 1.74795$, $\nu_e = 44.5$. Glass: unmatched LAF2-class e-line glass; S-LAM2 is a d-line comparison only. $f \approx +98.9$ mm.
 
 L1 is the front collector. Its first surface is the first substantial positive refracting surface in the system, while its weaker second surface bends the element into a positive meniscus rather than a biconvex lens. That bending reduces the third-order burden on the front element and helps keep coma and spherical aberration manageable before the beam reaches the cemented doublet.
 
@@ -53,7 +53,7 @@ The high index is important. A lower-index crown would require stronger curvatur
 
 L2: $n_e = 1.69282$, $\nu_e = 49.5$. Glass: unmatched 693/495 e-line glass; patent vendor not named. Standalone $f \approx +32.7$ mm.
 
-L3: $n_e = 1.67764$, $\nu_e = 32.0$. Glass: E-FD5 / S-TIM25 class, e-line catalog match; patent vendor not named. Standalone $f \approx -21.3$ mm.
+L3: $n_e = 1.67764$, $\nu_e = 32.0$. Glass: unmatched dense-flint e-line glass; E-FD5 and S-TIM25 are d-line comparisons only. Standalone $f \approx -21.3$ mm.
 
 Together L2 and L3 form the negative meniscus member in front of the diaphragm. The independently traced cemented-group focal length is about -134.7 mm at production scaling. L2 is positive by itself, but L3 has the stronger negative power and dominates the group. The cemented interface at $r_4$ is weak in power because the two indices differ by only 0.01518, but it is still useful chromatically because the Abbe-number separation is large: 49.5 versus 32.0.
 
@@ -91,9 +91,9 @@ The patent gives optical constants but does not name glass vendors. The column l
 
 | Element | Patent $n_e$ | Patent $\nu_e$ | Corrected identification | Status | Role |
 |---|---:|---:|---|---|---|
-| L1 | 1.74795 | 44.5 | LAF2 / S-LAM2 class | Strong e-line match | High-index front positive meniscus |
+| L1 | 1.74795 | 44.5 | Unmatched LAF2-class e-line glass | D-line comparison only | High-index front positive meniscus |
 | L2 | 1.69282 | 49.5 | Unmatched 693/495 e-line glass | Unresolved | Positive member of cemented negative doublet |
-| L3 | 1.67764 | 32.0 | E-FD5 / S-TIM25 class | Strong e-line match | Negative high-dispersion member of front doublet |
+| L3 | 1.67764 | 32.0 | Unmatched dense-flint e-line glass | D-line comparison only | Negative high-dispersion member of front doublet |
 | L4 | 1.74070 | 26.2 | Explicit unmatched dense flint, 741/262 e-line class | Unresolved | Rear negative flint, field and color correction |
 | L5 | 1.62287 | 60.1 | BACD16 / S-BSM16 class | Strong e-line match | Rear positive crown meniscus |
 | L6 | 1.61521 | 58.4 | BACD4 class | Strong e-line match | Final positive crown meniscus |

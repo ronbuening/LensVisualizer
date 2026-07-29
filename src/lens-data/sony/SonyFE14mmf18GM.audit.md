@@ -31,3 +31,13 @@ No new catalog entries were added. WO 2021/199923 A1 publishes nd/vd and effecti
 - Updated L3, L8, and L9 to `apd: "inferred"` because their patent nd/vd rows and production special-glass counts map to ED/Super-ED fluorophosphate classes. No patent dPgF or theta-gF values are assigned.
 - No R/d/nd/vd, spacing, high-index, or SD edits were needed in this pass.
 - Current generated glass reports show no active Sony catalog-mismatch row for this lens.
+
+## 2026-07-29 - Remaining catalog-mismatch disposition
+
+- Rechecked Numerical Example 1 / Table 1 in local `patents/WO2021199923A1.pdf`; the stored R, d, and patent
+  coordinates remain unchanged.
+- S3 `S-LAL18-class` -> `Unmatched (732547 patent e-line value...)` for 1.73234 / 54.70.
+- S24A `S-LAH89-class` -> `Unmatched (856401 patent e-line value...)` for 1.85639 / 40.10.
+- S26 `S-PHM52-class` -> `Unmatched (622639 patent e-line value...)` for 1.62228 / 63.90.
+- These family comparisons do not establish d-line catalog identities, so the analysis now preserves them only as
+  comparisons and the resolver no longer borrows their Sellmeier rows.

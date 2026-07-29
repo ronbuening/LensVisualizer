@@ -62,3 +62,9 @@ The solve treats the patent's published direction as authoritative and estimates
 | High-index status | L2 remains a high-index variator lead and L11 remains the UHR rear field-flattener. |
 | SDs | Kept existing ray-trace-derived SDs because the patent table has no clear-aperture column. |
 | Analysis | Synced stale S-TIH14 / S-TIH10 / S-LAH63Q analysis text to the current 859300 / J-LASF021 / K-VC89 labels. |
+
+## 2026-07-29 - Remaining catalog-mismatch audit
+
+- Rechecked JP 2021-179551 A Numerical Example 2 surface 3; stored `R`, `d`, `nd=1.90366`, and `νd=31.30` agree with the patent.
+- Relabeled L2 from `S-LAH93` to OHARA `S-LAH95`, the exact 904313 row.
+- Synchronized the analysis and removed unsupported cost/specific-gravity claims tied to the old identification. No geometry changed.

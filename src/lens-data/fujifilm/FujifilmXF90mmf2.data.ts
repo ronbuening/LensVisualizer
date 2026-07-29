@@ -199,7 +199,7 @@ const LENS_DATA = {
       nd: 1.51742,
       vd: 52.43,
       fl: -72.4,
-      glass: "S-NSL3 (OHARA)",
+      glass: "S-NSL36 (OHARA; exact patent coordinate match)",
       apd: false,
       role: "G33 field flattener — directs off-axis rays for telecentricity; shortens total track",
     },

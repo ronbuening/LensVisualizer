@@ -66,3 +66,10 @@ Changes made:
 - The stored `nd=1.64769`, `vd=33.84`, and code coordinate `648338` match E-FD2 exactly; discontinued E-ADF10
   is instead `1.61310 / 44.36` (`613444`).
 - Synchronized the analysis. This makes the lens fully catalog-backed without changing its prescription.
+
+## 2026-07-29 - Remaining catalog-mismatch audit
+
+- Rechecked JP 2014-209144 A Example 2 surfaces 7, 21, and 27; the patent rows (`-61.4135/1.5000`, `-54.0683/1.7000`, and `-106.5949/1.1000`) and stored `nd`/`νd` values agree.
+- Surfaces 7 and 27: canonicalized `TAC4 / S-LAL18` to exact-coordinate OHARA `S-LAL18` at 1.72916 / 54.67.
+- Surface 21: changed `S-LAH55V / TAFD5` to explicit `Unmatched (834373...)`; 1.83400 / 37.34 is patent-backed, but the table gives no vendor/type and several catalog families are plausible.
+- Synchronized the analysis. No prescription geometry changed.

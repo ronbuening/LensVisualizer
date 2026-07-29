@@ -161,8 +161,8 @@ L16 is a simple biconvex positive element that completes the IS sub-group's comb
 
 #### G4D — L17 + L18: Cemented Doublet (Biconcave + Biconvex)
 
-L17: $n_d$ = 1.51823, $\nu_d$ = 59.0. Glass: S-NSL36 (OHARA) — new light silicate crown.
-L18: $n_d$ = 1.62041, $\nu_d$ = 60.3. Glass: S-BSM28 (OHARA) — barium silicate crown. Doublet $f$ = +175.0 mm.
+L17: $n_d$ = 1.51823, $\nu_d$ = 59.0. Glass: S-NSL3 (OHARA) — light crown.
+L18: $n_d$ = 1.62041, $\nu_d$ = 60.3. Glass: S-BSM16 (OHARA) — barium crown. Doublet $f$ = +175.0 mm.
 
 The G4D doublet has an unusual construction: both glass types have similar Abbe numbers (59.0 and 60.3), meaning the cemented junction contributes almost no chromatic correction. Instead, this doublet functions primarily as a monochromatic corrector — its biconcave + biconvex form creates a coma-correcting meniscus-like compound element. The junction Δn (0.102) is modest but sufficient to control sagittal coma and field curvature at the exit of the G4 complex. The positive overall power (+175 mm) contributes convergence for the relay.
 
@@ -209,7 +209,7 @@ L22 is a strongly negative biconcave element. Its primary role is Petzval correc
 
 #### L23 — Plano-Convex Positive
 
-$n_d$ = 1.62041, $\nu_d$ = 60.3. Glass: S-BSM28 (OHARA) — barium silicate crown. $f$ = +73.0 mm.
+$n_d$ = 1.62041, $\nu_d$ = 60.3. Glass: S-BSM16 (OHARA) — barium crown. $f$ = +73.0 mm.
 
 L23 is a thick plano-convex element (R1 = +45.27, R2 = flat) that serves as a positive field lens. Positioned immediately ahead of the image plane with a back focal distance of 31.02 mm, it controls telecentricity — bending the off-axis ray bundles toward perpendicularity with the sensor, which is essential for uniform illumination across the field of a mirrorless camera sensor. The flat rear surface simplifies manufacturing and provides a clean reference surface for the rear seal.
 
@@ -235,8 +235,8 @@ The design employs 15 distinct glass types across 23 elements. Most glasses are 
 | L14 | NBFD15 (HOYA) | 1.80610 | 33.3 | Dense flint | — |
 | L15 | S-FSL5 (OHARA) | 1.48749 | 70.4 | Fluor-silicate crown | ΔPgF = +0.002 |
 | L16 | S-LAL8 (OHARA) | 1.71300 | 53.9 | Lanthanum crown | — |
-| L17 | S-NSL36 (OHARA) | 1.51823 | 59.0 | New light silicate crown | — |
-| L18, L23 | S-BSM28 (OHARA) | 1.62041 | 60.3 | Barium silicate crown | — |
+| L17 | S-NSL3 (OHARA) | 1.51823 | 59.0 | Light crown | — |
+| L18, L23 | S-BSM16 (OHARA) | 1.62041 | 60.3 | Barium crown | — |
 | L19 | S-TIH6 (OHARA) | 1.80518 | 25.5 | Titanium heavy flint | — |
 | L20 | E-FL5 (HOYA) | 1.58144 | 40.9 | Medium flint | — |
 | L22 | S-BAH28 (OHARA) | 1.72342 | 38.0 | Barium heavy flint | — |

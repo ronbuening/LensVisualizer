@@ -189,7 +189,7 @@ const LENS_DATA = {
       nd: 1.801,
       vd: 34.96,
       fl: -30.2,
-      glass: "NBFD3 (HOYA)",
+      glass: "J-LAF016 (Hikari; exact Nikon patent coordinate match)",
       apd: false,
       role: "Negative component of G4 cemented doublet; niobium-dense-barium-flint for Petzval sum control via high index.",
       cemented: "D4a",

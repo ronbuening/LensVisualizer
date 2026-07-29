@@ -132,7 +132,7 @@ const LENS_DATA = {
       nd: 1.83441,
       vd: 37.28,
       fl: -4.6,
-      glass: "S-LAH55VS (OHARA), probable",
+      glass: "M-NBFD10 (HOYA; exact molded-glass coordinate match)",
       role: "Last element before stop; 2× aspherical surfaces provide fine control of residual SA and coma accumulated through the preceding six elements. Asph departures: S11A +39 µm, S12A +122 µm (scaled).",
     },
 

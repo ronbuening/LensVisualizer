@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **488** lenses scanned
 - **5360** non-air surfaces examined
 - **5365** element glass declarations examined
-- **493** non-explicit-unmatched annotations did not resolve
-- **218** distinct unresolved glass-like tokens found
+- **497** non-explicit-unmatched annotations did not resolve
+- **219** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -20,6 +20,7 @@ or per-lens patent backfills.
 |---|---:|---:|---|
 | 670571 | 10 | 5 | |
 | 493836 | 6 | 2 | |
+| 773497 | 4 | 2 | |
 | 863252 | 4 | 2 | |
 | S-NPH7 | 4 | 4 | |
 | 516565 | 3 | 1 | |
@@ -108,6 +109,7 @@ or per-lens patent backfills.
 | 682366 | 1 | 1 | |
 | 683447 | 1 | 1 | |
 | 683548 | 1 | 1 | |
+| 685309 | 1 | 1 | |
 | 694312 | 1 | 1 | |
 | 694536 | 1 | 1 | |
 | 697558 | 1 | 1 | |
@@ -137,7 +139,6 @@ or per-lens patent backfills.
 | 770479 | 1 | 1 | |
 | 770494 | 1 | 1 | |
 | 772493 | 1 | 1 | |
-| 773497 | 1 | 1 | |
 | 773498 | 1 | 1 | |
 | 773501 | 1 | 1 | |
 | 773530 | 1 | 1 | |
@@ -260,6 +261,13 @@ or per-lens patent backfills.
 - [MINOLTA AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) 4: `493836 - Minolta AD/ED fluorophosphate-type (nd=1.49310, vd=83.58; catalog unresolved)`
 - [MINOLTA AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) 21: `493836 - Minolta AD/ED fluorophosphate-type (nd=1.49310, vd=83.58; catalog unresolved)`
 - [MINOLTA AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) 27: `493836 - Minolta AD/ED fluorophosphate-type (nd=1.49310, vd=83.58; catalog unresolved)`
+
+### 773497 — 4 occurrences
+
+- [OLYMPUS ZUIKO AUTO-MACRO 50mm f/2](../../src/lens-data/olympus/OlympusZuikoAutoMacro50mmf2.data.ts) 5: `773497 — lanthanum crown (patent coordinate; vendor unresolved)`
+- [OLYMPUS ZUIKO AUTO-MACRO 50mm f/2](../../src/lens-data/olympus/OlympusZuikoAutoMacro50mmf2.data.ts) 12: `773497 — lanthanum crown (patent coordinate; vendor unresolved)`
+- [OLYMPUS ZUIKO AUTO-MACRO 50mm f/2](../../src/lens-data/olympus/OlympusZuikoAutoMacro50mmf2.data.ts) 14: `773497 — lanthanum crown (patent coordinate; vendor unresolved)`
+- [OLYMPUS ZUIKO AUTO-MACRO 90mm f/2](../../src/lens-data/olympus/OlympusZuikoAutoMacro90mmf2.data.ts) 11: `773497 — TAFL3-class lanthanum crown (HOYA; no exact public catalog match)`
 
 ### 863252 — 4 occurrences
 
@@ -662,6 +670,10 @@ or per-lens patent backfills.
 
 - [NIKON AF-P DX NIKKOR 10-20mm f/4.5-5.6 G VR](../../src/lens-data/nikon/NikonAFPDX1020mmf4556G.data.ts) 7: `683548 - patent-specified glass (theta_gF=0.5501; unresolved)`
 
+### 685309 — 1 occurrence
+
+- [FUJIFILM FUJINON XF 16-55mm f/2.8 R LM WR](../../src/lens-data/fujifilm/FujifilmXF1655mmf28R.data.ts) 13A: `685309 — dense flint (patent coordinate; vendor unresolved)`
+
 ### 694312 — 1 occurrence
 
 - [SONY FE 14mm f/1.8 GM](../../src/lens-data/sony/SonyFE14mmf18GM.data.ts) 7: `694312 - short flint (Sony patent nd=1.69416, vd=31.2; no exact public catalog match)`
@@ -777,10 +789,6 @@ or per-lens patent backfills.
 ### 772493 — 1 occurrence
 
 - [FUJIFILM FUJINON GF 55mm f/1.7 R WR](../../src/lens-data/fujifilm/FujifilmGF55mmf17.data.ts) 11A: `772493 — molded lanthanum-crown class (no exact public catalog match)`
-
-### 773497 — 1 occurrence
-
-- [OLYMPUS ZUIKO AUTO-MACRO 90mm f/2](../../src/lens-data/olympus/OlympusZuikoAutoMacro90mmf2.data.ts) 11: `773497 — TAFL3-class lanthanum crown (HOYA; no exact public catalog match)`
 
 ### 773498 — 1 occurrence
 

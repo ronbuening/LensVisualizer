@@ -59,7 +59,7 @@ const LENS_DATA = {
       nd: 1.74795,
       vd: 44.5,
       fl: 98.92,
-      glass: "LAF2 / S-LAM2 class (e-line catalog match; patent vendor not named)",
+      glass: "Unmatched (LAF2-class patent e-line value; no verified d-line catalog identity)",
       role: "Front positive meniscus collector; high-index moderate-dispersion glass reduces curvature for the required front power.",
     },
     {
@@ -82,7 +82,7 @@ const LENS_DATA = {
       nd: 1.67764,
       vd: 32.0,
       fl: -21.3,
-      glass: "E-FD5 / S-TIM25 class (e-line catalog match; patent vendor not named)",
+      glass: "Unmatched (dense-flint patent e-line value; no verified d-line catalog identity)",
       cemented: "D1",
       role: "High-dispersion negative member of the front cemented doublet; supplies most of the doublet's negative power.",
     },

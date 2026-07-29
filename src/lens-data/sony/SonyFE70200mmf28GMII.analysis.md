@@ -72,9 +72,9 @@ L13 completes the front collector with additional positive power in the same flu
 
 #### L21 — Negative Meniscus, convex to object
 
-$n_d$ = 1.77621, $\nu_d$ = 49.6. Glass: S-LAH66 class (OHARA) — lanthanum crown. $f$ = −61.8 mm.
+$n_d$ = 1.77621, $\nu_d$ = 49.6. Glass: unmatched 776496 lanthanum glass; S-LAH66 is a family comparison only. $f$ = −61.8 mm.
 
-L21 is a single-element group with the strongest negative power of any variator sub-group ($f_{GR2}$ = −62.1 mm). It is the group with the largest absolute refractive power in the variator block, and per the patent's claim structure (¶0024, ¶0084), it is composed of a single lens — the minimum element count that keeps weight low while maintaining sufficient zoom leverage. The closest catalog match is OHARA S-LAH66 ($n_d$ = 1.77250, $\nu_d$ = 49.6), with $\Delta n_d$ = 0.004 and exact Abbe number agreement. With $\nu_d$ = 49.6 the glass sits at the crown–flint boundary in the lanthanum family, providing enough negative power for zooming without introducing excessive chromatic variation during zoom motion. The meniscus shape (both radii positive: R7 = +481.705, R8 = +43.542) bends the beam strongly at the rear surface where light exits to the long air gap d8 that follows.
+L21 is a single-element group with the strongest negative power of any variator sub-group ($f_{GR2}$ = −62.1 mm). OHARA S-LAH66 matches the Abbe number but misses the patent index by about 0.0037, so it remains a family comparison rather than supplying spectral coefficients. With $\nu_d$ = 49.6 the glass sits at the crown–flint boundary in the lanthanum family.
 
 ### GR3 — Second Variator (Moving, Negative)
 
@@ -192,7 +192,7 @@ The design employs glasses from at least two vendors (OHARA and HOYA), which is 
 | L11     | 1.77660 | 29.7    | Dense flint (777/297)      | Dense flint         | Uncertain  |
 | L12     | 1.43810 | 95.1    | S-FPL55 (OHARA) / FCD100 (HOYA) | Super ED crown  | Close      |
 | L13     | 1.43810 | 95.1    | S-FPL55 (OHARA) / FCD100 (HOYA) | Super ED crown  | Close      |
-| L21     | 1.77621 | 49.6    | S-LAH66 class (OHARA)     | Lanthanum crown     | Close      |
+| L21     | 1.77621 | 49.6    | Unmatched 776496; S-LAH66 comparison | Lanthanum glass | Unresolved |
 | L31     | 1.49845 | 81.6    | S-FPL51 class (OHARA)     | ED crown            | Close      |
 | L32     | 1.86290 | 24.8    | 863248 patent-code         | Ultra-dense flint   | Patent-code |
 | L41     | 1.79191 | 25.7    | Dense flint (792/257)      | Dense flint         | Uncertain  |
@@ -209,7 +209,7 @@ The design employs glasses from at least two vendors (OHARA and HOYA), which is 
 
 The chromatic correction strategy is built on three tiers of low-dispersion glass. The two Super ED elements (L12, L13, $\nu_d$ = 95.1) handle primary axial color correction in GR1, where the marginal ray height is largest. Three ED elements (L31, L51, L81, $\nu_d$ = 81.6) provide secondary color correction distributed across the variator, relay, and rear groups. The achromatizing partners are consistently ultra-high-dispersion dense flints: the 863248 patent-code glass ($\nu_d$ = 24.8) appears in three elements (L32, L52, L53), providing chromatic lever arms of 56.8 Abbe units against the ED crowns. The use of HOYA FD225 ($n_d$ = 2.009) in L82 pushes the index to the extreme high end of the glass map, allowing very compact negative elements at the rear of the system.
 
-Two elements — L11 (1.77660/29.7) and L41 (1.79191/25.7) — resist confident identification against any public catalog. The nearest matches (S-NPH4 / FD110 at $n_d$ = 1.78472, $\nu_d$ = 26.1) fall short on both index and Abbe number, suggesting proprietary melt compositions or deliberate obfuscation in the patent. L21 (1.77621/49.6) matches S-LAH66 (OHARA) in Abbe number exactly ($\nu_d$ = 49.6) with $\Delta n_d$ = 0.004, a reasonable class match for a lanthanum crown. Elements marked "Close" in confidence have $\Delta n_d$ in the range 0.001–0.004 from their nearest catalog match. For the Super ED elements (L12, L13), S-FPL55 from OHARA ($n_d$ = 1.43875, $\nu_d$ = 95.0) is the closer match by refractive index ($\Delta n_d$ = 0.00065), while HOYA FCD100 ($n_d$ = 1.43700, $\nu_d$ = 95.1) matches the Abbe number exactly ($\Delta \nu_d$ = 0). Either glass is plausible; Sony patents have used both OHARA and HOYA Super ED glasses in different designs. For the ED elements (L31, L51, L81), S-FPL51 / FCD1 ($n_d$ = 1.49700, $\nu_d$ = 81.6) is the clear family match, with the 0.0015 index offset likely reflecting a modified melt or patent obfuscation.
+L11 (1.77660/29.7), L21 (1.77621/49.6), and L41 (1.79191/25.7) resist confident identification against the public catalog. For L21, S-LAH66 matches the Abbe number but misses the index beyond the resolver tolerance. The family comparison is retained in prose while the data label stays explicitly unmatched. The Super ED and ED rows likewise remain class-level comparisons where the patent does not establish a unique vendor.
 
 
 ## Focus Mechanism

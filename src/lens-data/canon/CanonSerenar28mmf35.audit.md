@@ -11,3 +11,10 @@ Patent: US 2,645,974
 
 - Corrected L2 from `SK16 (Schott)` to `E-BAF8 (HOYA)`. E-BAF8 matches the patent's 1.62370 / 47.00 coordinate; N-SK16 has the same index region but νd = 60.32.
 - Synchronized the L2 analysis text and glass table. The separate BaF3 row remains in the generated review queue because it has no exact catalog candidate.
+
+## 2026-07-29 - Remaining unmatched-glass disposition
+
+- Rechecked the worked prescription in local `patents/US2645974.pdf`; S6 remains 1.57850 / 41.70 and its R/d
+  row is unchanged.
+- S6 `BaF3 (Schott)` -> explicit unmatched 579417 vintage barium flint. The current public BaF3 row does not
+  reproduce both patent coordinates, so the analysis now uses BaF3 only as a family comparison.

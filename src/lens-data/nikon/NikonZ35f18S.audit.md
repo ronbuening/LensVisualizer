@@ -36,3 +36,9 @@ Patent: JP 2019-090947 A, Example 4
 ## 2026-07-29 - Catalog expansion follow-up
 
 - Corrected L23 from probable `L-LAL14` to OHARA `L-LAL13`, the exact 1.69350 / 53.19 low-Tg row.
+
+## 2026-07-29 - Remaining catalog-mismatch audit
+
+- Rechecked JP 2019-090947 A Example 4 surface 11A; stored `R`, `d`, `nd=1.83441`, and `νd=37.28` agree with the patent.
+- Relabeled double-aspheric L17 from probable `S-LAH55VS` to HOYA `M-NBFD10`, whose molded-glass row is an exact coordinate match and is consistent with the element's manufacturing context.
+- Synchronized the analysis and removed the obsolete VS speculation. No geometry changed.

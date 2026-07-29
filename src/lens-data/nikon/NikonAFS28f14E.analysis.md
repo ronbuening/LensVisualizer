@@ -48,7 +48,7 @@ Although Gr1 is net positive (f₁ = +151.32 mm), its internal power sequence (�
 
 **Subgroup B (L13):** A single strong biconvex positive element in a high-dispersion glass (S-TIH53, nd = 1.84666, νd = 23.8). Despite its very low Abbe number, this element is not an ED glass — it serves a different purpose. Positioned after the two negative menisci, L13 partially cancels the negative distortion they introduced while also beginning to converge the diverging beam. The use of a high-index, high-dispersion glass here allows the necessary refractive power with relatively mild curvatures, reducing spherical aberration contribution. The patent's condition (6) requires Nd13 > 1.8, which L13 satisfies at 1.84666.
 
-**Subgroup C (L14 + L15, cemented doublet LS):** A negative cemented doublet consisting of a biconcave negative element (L14, S-BAL2) and a biconvex positive element (L15, S-LAH58 or equivalent). This is one of the most optically critical sub-assemblies in the design. The patent devotes three conditional expressions (conditions 1–3) entirely to governing the power balance between L14 and L15:
+**Subgroup C (L14 + L15, cemented doublet LS):** A negative cemented doublet consisting of a biconcave negative element (L14, unresolved 569560 barium crown) and a biconvex positive element (L15, S-LAH58 or equivalent). This is one of the most optically critical sub-assemblies in the design. The patent devotes three conditional expressions (conditions 1–3) entirely to governing the power balance between L14 and L15:
 
 - Condition (1): φ14/φ = −0.47 — L14's negative power is moderate relative to the system
 - Condition (2): φ15/φ = +0.25 — L15's positive power partially cancels L14
@@ -78,14 +78,14 @@ The following table presents glass identifications for all 14 elements, matched 
 | L12 (glass) | 1.71300 | 53.9 | S-BAL42 | OHARA | Barium crown | Base substrate of compound asphere |
 | L12 (resin) | 1.51380 | 53.0 | UV-curing resin | — | Composite | Thin layer (~0.05 mm), forms aspherical profile |
 | L13 | 1.84666 | 23.8 | S-TIH53 | OHARA | Dense flint | High-dispersion, high-index |
-| L14 | 1.56883 | 56.0 | S-BAL2 | OHARA | Barium crown | Cemented with L15 |
+| L14 | 1.56883 | 56.0 | 569560 | Vendor unresolved | Barium crown | Cemented with L15 |
 | L15 | 1.88300 | 40.8 | S-LAH58 | OHARA | Lanthanum crown | Cond. (4): nd > 1.8 ✓ |
 | L16 | 1.77250 | 49.6 | S-LAH55V | OHARA | Lanthanum crown | Low-CTE variant |
 | L21 | 1.72916 | 54.7 | S-LAL14 | OHARA | Lanthanum crown | |
 | L22 | 1.69680 | 55.5 | S-LAL14 | OHARA | Lanthanum crown | |
 | L23 | 1.59282 | 68.6 | **S-FPM2** | OHARA | **Fluorophosphate (ED)** | ΔPgF ≈ +0.014 |
 | L24 | 1.73800 | 32.3 | S-TIH14 | OHARA | Dense flint | Cond. (5): ΔθgF = 0.0007 |
-| L25 | 1.80610 | 33.3 | S-TIH6 | OHARA | Dense flint | |
+| L25 | 1.80610 | 33.3 | 806333 | Vendor unresolved | Dense flint | |
 | L26 | 1.83220 | 40.1 | L-LAH90 | OHARA | Lanthanum crown | Image-side aspherical |
 | L27 | 1.59282 | 68.6 | **S-FPM2** | OHARA | **Fluorophosphate (ED)** | Same glass as L23 |
 | L28 | 1.69350 | 53.2 | S-LAL8 | OHARA | Lanthanum crown | Both surfaces aspherical |
@@ -225,7 +225,7 @@ Focal lengths labeled "patent" are thick-lens values stated in the patent or ver
 | **L11** | Neg. meniscus, convex to object | −74.6 (TL) | S-TIH18 | First element of the negative entry subgroup. Gently bends wide-angle rays inward, beginning the beam divergence that creates the long back focal distance. The meniscus shape (convex toward the object) minimizes the angle of incidence on the front surface, reducing surface reflection losses and Seidel aberration contributions. |
 | **L12** | Neg. meniscus, convex to object (compound asphere) | −57.8 (patent) | S-BAL42 + resin | Second negative element continuing the beam divergence. The aspherical image-side surface (surface 5, hyperboloidal K = −1.81) provides the primary correction of distortion and field curvature across the 75° field. The compound construction places the asphere on a resin layer, allowing large departure (>500 µm) without compromising the glass substrate quality. The thick-lens compound focal length (−57.8 mm) was verified by 3-surface matrix computation. |
 | **L13** | Biconvex positive | +86.2 (TL) | S-TIH53 | Strong positive element that partially compensates the negative distortion of L11–L12 and begins converging the beam. The unusually high-dispersion glass (νd = 23.8) is chosen for its very high refractive index (1.847), which reduces surface curvatures and thus higher-order spherical aberration — the patent requires nd > 1.8 (condition 6). |
-| **L14** | Biconcave negative (cemented) | −60.8 (patent) | S-BAL2 | Negative component of the L14/L15 field-flattening cemented doublet. Contributes negative Petzval sum to flatten the field. Its power is governed by condition (1): φ14/φ = −0.47. |
+| **L14** | Biconcave negative (cemented) | −60.8 (patent) | 569560 barium crown | Negative component of the L14/L15 field-flattening cemented doublet. Contributes negative Petzval sum to flatten the field. Its power is governed by condition (1): φ14/φ = −0.47. |
 | **L15** | Biconvex positive (cemented) | +112.0 (patent) | S-LAH58 | Positive component of the cemented doublet. High-index (1.883) glass keeps cemented-interface curvature gentle, easing manufacturing and reducing aberration sensitivity. Governed by condition (2): φ15/φ = +0.25. The doublet composite has net negative focal length (−137.4 mm, verified). |
 | **L16** | Biconvex positive | +54.3 (patent) | S-LAH55V | Terminal positive element of Gr1. Converges the beam to reduce ray heights entering Gr2, enabling a more compact focusing group. Also drives Gr1 toward an afocal condition (f₁ = +151 mm), stabilizing aberration across the focus range. |
 
@@ -238,7 +238,7 @@ Focal lengths labeled "patent" are thick-lens values stated in the patent or ver
 | **L23** | Biconvex positive (cemented, **ED**) | +56.2 (TL) | **S-FPM2** | Positive ED element — first of two. Part of the pre-stop achromatic cemented pair with L24. The fluorophosphate glass's anomalous partial dispersion (ΔPgF ≈ +0.014) corrects secondary spectrum in axial chromatic aberration. |
 | **L24** | Biconcave negative (cemented) | −25.2 (TL) | S-TIH14 | Negative flint in the pre-stop achromatic pair. Its partial dispersion is nearly on the normal line (ΔPgF = 0.0007, condition 5), ensuring minimal secondary spectrum contribution at the stop location where marginal ray height is smallest. |
 | | *[Aperture Stop — ST]* | | | |
-| **L25** | Biconcave negative (cemented) | −19.8 (TL) | S-TIH6 | Negative flint in the post-stop achromatic pair, mirroring L24's role on the object side. This symmetry around the stop inherently cancels odd-order aberrations. |
+| **L25** | Biconcave negative (cemented) | −19.8 (TL) | 806333 dense flint | Negative flint in the post-stop achromatic pair, mirroring L24's role on the object side. This symmetry around the stop inherently cancels odd-order aberrations. |
 | **L26** | Biconvex positive (cemented, image-side asph) | +41.8 (TL) | L-LAH90 | Positive element with aspherical image-side surface (surface 23). Fine-tunes spherical aberration in the converging post-stop beam. Part of the L25/L26 cemented pair that mirrors L23/L24. |
 | **L27** | Biconvex positive (**ED**) | +33.6 (TL) | **S-FPM2** | Second ED element — same glass as L23. Positioned symmetrically opposite L23 relative to the stop, it corrects lateral chromatic aberration where the chief ray height is significant. This is the strongest positive element in Gr2, providing substantial convergence toward the image. |
 | **L28** | Pos. meniscus, convex to image (2× asph) | +99.8 (TL) | S-LAL8 | Final element before the image. Both surfaces aspherical — surface 26 has the largest departure in the design (−653 µm at the rim) and surface 27 uses an oblate ellipsoidal base (K = +1.61). Corrects coma and field curvature at the image periphery, critical for corner sharpness on high-resolution sensors. |

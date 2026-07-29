@@ -103,7 +103,7 @@ const LENS_DATA = {
       nd: 1.60718,
       vd: 37.8,
       fl: -34.14,
-      glass: "F5 class (Schott; patent e-line value stored)",
+      glass: "Unmatched (F5-class patent e-line value; no verified d-line catalog identity)",
       apd: false,
       role: "Dominant negative element; the r5 cemented junction is the diverging cemented surface described in the patent.",
       cemented: "D2",

@@ -41,3 +41,10 @@ Patent: JP 2016-090725 A, Example 9
 - Rechecked local `patents/JP2016090725A.pdf` OCR for Example 9 against the current data file, including the surface table, asphere-bearing rows, and cover-glass exclusion already documented in the analysis.
 - Retained all glass assignments. FCD100 remains the supported APD / super-ED element; NBFD15, TAFD35, S-BAL42, and the other catalog rows remain consistent with the patent nd/vd table.
 - No patent clear-aperture or semi-diameter table was found. Current SDs remain inferred from ray envelopes, field coverage, and drawing-safe element proportions.
+
+## 2026-07-29 - Remaining catalog-mismatch audit
+
+- Rechecked JP 2016-090725 A Example 9 surfaces 14 and 16; stored `R`, `d`, and 1.51742/52.15 plus 1.56883/56.04 coordinates agree with the patent.
+- Surface 14: replaced incorrect `S-NSL3` with code-first `517522` crown wording.
+- Surface 16: replaced incorrect `S-BAL2` with code-first `569560` barium-crown wording.
+- The patent does not identify either supplier, so the analysis now preserves coordinates without vendor claims. No geometry changed.

@@ -105,7 +105,7 @@ const LENS_DATA = {
       nd: 1.51742,
       vd: 52.4,
       fl: -24.3,
-      glass: "S-NSL3 (OHARA)",
+      glass: "S-NSL36 (OHARA; exact patent coordinate match)",
       apd: false,
       cemented: "D1",
       role: "Negative element of the first cemented doublet D1; low-index crown paired with high-index L6 for achromatic correction in the converging rear group.",

@@ -99,7 +99,7 @@ const LENS_DATA = {
       nd: 1.834,
       vd: 37.3,
       fl: -33.5,
-      glass: "S-LAH55 (OHARA)",
+      glass: "S-LAH60 (OHARA)",
       cemented: "D1",
       role: "High-index 'flint role' in D1; telephoto divergence at cemented interface.",
     },

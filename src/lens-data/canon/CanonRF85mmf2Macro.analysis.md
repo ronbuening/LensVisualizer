@@ -74,7 +74,7 @@ Achieving good correction in a 12-element, all-spherical design at f/2 with half
 | L7 | 13–14 | 1.72047 | 34.7 | Biconcave negative | −45.6 | S-TIH4 |
 | L8 | 15–16 | 1.80400 | 46.5 | Biconvex positive | +85.4 | TAFD30 / N-LASF44 |
 | L9 | 17–18 | 1.92286 | 20.9 | Positive meniscus (concave→obj) | +68.3 | PBH21 |
-| L10 | 19–20 | 1.83400 | 37.2 | Biconcave negative | −34.6 | S-LAH55 |
+| L10 | 19–20 | 1.83400 | 37.2 | Biconcave negative | −34.6 | S-LAH60 |
 | L11 | 21–22 | 1.83481 | 42.7 | Biconvex positive | +35.6 | S-LAH65 |
 | L12 | 23–24 | 1.84666 | 23.8 | Negative meniscus (concave→obj) | −63.3 | S-TIH53 |
 
@@ -100,7 +100,7 @@ This doublet serves multiple critical roles. Its position immediately after the 
 
 **L9 (PBH21, positive meniscus concave→object, fl = +68.3 mm):** A niobium phosphate glass with the highest refractive index in the system (nd = 1.923) and the lowest Abbe number (vd = 20.9). PBH21 exhibits anomalous partial dispersion, and its extreme dispersion makes it a potent chromatic corrector when paired with the UD element L3 across the system. Despite being a positive meniscus, its concave-toward-object orientation and high index allow it to introduce strong higher-order aberration contributions that balance those from the front group, particularly at close focus distances.
 
-**L10 (S-LAH55, biconcave negative, fl = −34.6 mm):** The strongest negative element in the system by focal length. Its symmetric biconcave form (R1 = −57.965, R2 = +57.965 mm — perfectly equal and opposite radii) is unusual and noteworthy: this bending factor of exactly q = 0 eliminates the shape-dependent coma contribution, leaving only the conjugate-dependent term. At the operational conjugate within the rear group, this results in very low residual coma from this element, making it function primarily as a Petzval corrector and spherical aberration generator. The equal-radius biconcave form is a classic design choice when the designer wants strong negative power with minimal off-axis asymmetric aberrations.
+**L10 (S-LAH60, biconcave negative, fl = −34.6 mm):** The strongest negative element in the system by focal length. Its symmetric biconcave form (R1 = −57.965, R2 = +57.965 mm — perfectly equal and opposite radii) is unusual and noteworthy: this bending factor of exactly q = 0 eliminates the shape-dependent coma contribution, leaving only the conjugate-dependent term. At the operational conjugate within the rear group, this results in very low residual coma from this element, making it function primarily as a Petzval corrector and spherical aberration generator. The equal-radius biconcave form is a classic design choice when the designer wants strong negative power with minimal off-axis asymmetric aberrations.
 
 **L11 (S-LAH65, biconvex positive, fl = +35.6 mm):** The strongest positive singlet in the system and the element identified in the patent as Gp — the positive lens adjacent to Gn (L12) at the object side (¶0048). The patent's conditional expression (7) states f2p/f = 0.431, confirmed by computation. This element provides the strong positive power needed near the image plane to correct magnification chromatic aberration and distortion aberration. Its biconvex form with substantial thickness (d = 9.02 mm) introduces significant principal plane separation, which the designer exploits to fine-tune the exit pupil position and telecentricity for the mirrorless sensor.
 
@@ -118,7 +118,7 @@ The 12 elements use ten distinct glass types spanning a wide range of the nd–v
 | S-TIM28 / FD60 | 1.689 | 31.1 | Titanium medium flint | L4 |
 | S-TIH4 | 1.720 | 34.7 | Titanium heavy flint | L7 |
 | TAFD30 / N-LASF44 | 1.804 | 46.5 | Lanthanum dense flint | L8 |
-| S-LAH55 | 1.834 | 37.2 | Lanthanum heavy flint | L10 |
+| S-LAH60 | 1.834 | 37.2 | Lanthanum heavy flint | L10 |
 | S-LAH65 | 1.835 | 42.7 | Lanthanum heavy flint | L11 |
 | S-TIH53 | 1.847 | 23.8 | Titanium heavy flint | L5, L12 |
 | S-LAH58 | 1.900 | 37.4 | Lanthanum heavy flint | L6 |

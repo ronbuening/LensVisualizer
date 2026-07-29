@@ -49,7 +49,7 @@ The high-dispersion flint glass ($\nu_d = 25.46$) pairs chromatically with the a
 
 ### L112 — Positive Meniscus, Concave to Object (Cemented to L111)
 
-$n_d = 1.83$, $\nu_d = 42.72$. Glass: high-index lanthanum (LASF class), 830/427 — S-LAH55V (OHARA) or TAFD5F (Hoya). $f = +99.9$ mm.
+$n_d = 1.83$, $\nu_d = 42.72$. Glass: unmatched patent-rounded high-index lanthanum glass, 830/427; S-LAH55V and TAFD5F are comparisons only. $f = +99.9$ mm.
 
 L112 is cemented to L111, sharing the junction surface at $R_2 = -85.23$ mm. It is a weakly positive meniscus ($R_1 = -85.23$ mm, $R_2 = -42.36$ mm), with both surfaces concave to the object. Its primary role is to provide partial achromatic correction in partnership with L111, while adding moderate positive power to the front group. The large Abbe number difference ($\Delta\nu_d = 42.72 - 25.46 = 17.26$) between L112 and L111 provides the dispersion lever for longitudinal chromatic aberration correction.
 
@@ -71,7 +71,7 @@ Given that both surfaces are aspherical, this element is almost certainly fabric
 
 ### L121 — Negative Meniscus, Convex to Object (2× Aspherical) — Focus Element
 
-$n_d = 1.58$, $\nu_d = 59.46$. Glass: barium crown, 580/595 class — L-BAL42 (OHARA), a confirmed PGM glass. $f = -27.8$ mm.
+$n_d = 1.58$, $\nu_d = 59.46$. Glass: unmatched patent-rounded molded crown, 580/595; L-BAL42 is a family comparison only. $f = -27.8$ mm.
 
 L121 constitutes the entirety of G2, the focus group. It is a negative meniscus with both radii positive ($R_1 = +119.57$ mm, $R_2 = +14.18$ mm), convex to the object, with both surfaces aspherical. The patent states a group focal length of $f_2 = -27.55$ mm (¶0084), and the conditional expression (4) requires $-1.91 \leq f_2/f \leq -0.57$; the realized value of $f_2/f = -0.76$ falls comfortably within this range (¶0084).
 
@@ -79,13 +79,13 @@ The patent places particular emphasis on the design of G2. The single-element co
 
 The aspherical surfaces on L121 are critical for maintaining image quality across the focus range. The front surface ($R = 119.57$ mm) has a very large aspherical departure relative to its spherical base (28.5% at $h = 5$ mm), indicating that the aspherical profile substantially redefines the surface shape. Both surfaces carry positive $A_4$ coefficients, steepening the marginal zone to preserve the diverging power at higher ray heights.
 
-L-BAL42 (OHARA) is a low-softening-temperature glass explicitly designed for PGM, with $n_d = 1.58313$ and $\nu_d = 59.46$ — matching the patent values after standard two-decimal truncation. Its moderate index and low dispersion make it well suited for a focus element that must maintain chromatic correction across the focus range.
+L-BAL42 is a useful low-softening PGM comparison, but the patent rounds the index to two decimal places and does not identify a supplier. The stored row therefore remains unmatched rather than borrowing L-BAL42's spectral model.
 
 During focusing from infinity to the close-focus distance of 350 mm, L121 moves 1.64 mm toward the image plane. The air gap D(6) ahead of L121 increases from 1.49 mm to 3.13 mm, while the air gap D(8) behind it decreases from 5.53 mm to 3.89 mm, conserving the total gap sum at 7.02 mm.
 
 ### L131 — Biconvex Positive (Cemented Front of G3 Doublet)
 
-$n_d = 1.83$, $\nu_d = 42.72$. Glass: high-index lanthanum (LASF class), 830/427 — S-LAH55V (OHARA) or TAFD5F (Hoya); same glass type as L112. $f = +10.5$ mm.
+$n_d = 1.83$, $\nu_d = 42.72$. Glass: unmatched patent-rounded high-index lanthanum glass, 830/427; same patent coordinate as L112. $f = +10.5$ mm.
 
 L131 is the strongest individual element in the entire system ($|f| = 10.5$ mm). Its biconvex shape ($R_1 = +51.20$ mm, $R_2 = -10.02$ mm) with a very steep rear surface concentrates most of G3's positive power. The thick center ($d = 5.36$ mm) — the thickest element in the design — is characteristic of Sonnar-derived relay constructions, where a dense positive high-index element collects the diverging beam from the focus group and reconverges it toward the image.
 
@@ -116,10 +116,10 @@ The design uses a palette of seven glass types. The patent truncates refractive 
 | Element | $n_d$ | $\nu_d$ | Code | Best candidate | Confidence |
 |---------|-------|--------|------|---------------|------------|
 | L111 | 1.80 | 25.46 | 800255 | Code-backed dense flint | No exact public coefficient-backed catalog match |
-| L112 | 1.83 | 42.72 | 830/427 | S-LAH55V (OHARA) / TAFD5F (Hoya) | High — exact $\nu_d$ match, standard La high-index |
+| L112 | 1.83 | 42.72 | 830/427 | Unmatched rounded lanthanum glass | Family comparisons only; vendor unresolved |
 | L113 | 1.76 | 49.24 | 760/492 | Lanthanum flint class (LAF), unresolved | Medium — no exact catalog match; PGM-compatible melt likely |
-| L121 | 1.58 | 59.46 | 580/595 | L-BAL42 (OHARA) | High — exact $\nu_d$ match, confirmed PGM glass |
-| L131 | 1.83 | 42.72 | 830/427 | S-LAH55V (OHARA) / TAFD5F (Hoya) | High — same glass as L112 |
+| L121 | 1.58 | 59.46 | 580/595 | Unmatched rounded molded crown | L-BAL42 comparison; vendor unresolved |
+| L131 | 1.83 | 42.72 | 830/427 | Unmatched rounded lanthanum glass | Same patent coordinate as L112 |
 | L132 | 1.63 | 34.57 | 630346 | Code-backed dense flint | No exact public coefficient-backed catalog match |
 | L133 | 1.68 | 31.16 | 680312 | Code-backed flint | No exact public coefficient-backed catalog match |
 

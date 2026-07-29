@@ -37,3 +37,9 @@ Patent: US 6,560,042 B2, Example 3
 
 - APD status remains `false`; the phosphate-crown and lanthanum elements are useful chromatic glasses but the patent does not provide partial-dispersion data.
 - No patent clear-aperture or semi-diameter table was found. Existing SDs remain unchanged after drawing review.
+
+## 2026-07-29 - Remaining catalog-mismatch audit
+
+- Rechecked US 6,560,042 B2 Example 3 surface 9; stored `R`, `d`, `nd=1.51742`, and `νd=52.40` agree with Table 3.
+- Relabeled L5 from `S-NSL3` to exact-coordinate OHARA `S-NSL36`.
+- Synchronized the analysis element description and glass table. No geometry changed.

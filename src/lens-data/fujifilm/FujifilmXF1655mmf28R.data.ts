@@ -195,7 +195,7 @@ const LENS_DATA = {
       nd: 1.68458,
       vd: 30.88,
       fl: 39.1,
-      glass: "Near OHARA L-TIM28 (685309)",
+      glass: "685309 — dense flint (patent coordinate; vendor unresolved)",
       apd: false,
       role: "Double-aspheric positive 'diverging-beam catcher' before the stop; limits downstream clear apertures and corrects spherical aberration at f/2.8",
     },

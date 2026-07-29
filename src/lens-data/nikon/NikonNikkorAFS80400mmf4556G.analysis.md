@@ -125,7 +125,7 @@ Nikon states the lens incorporates **four ED (Extra-low Dispersion) glass elemen
 | L11 | 1.90265 | 35.7 | 903357 | J-LASFH9 (Hikari) | Normal |
 | **L12** | **1.49782** | **82.6** | **498826** | **J-FKH1 (Hikari)** | **ED** |
 | **L13** | **1.43700** | **95.0** | **1437/950** | **FCD100 (HOYA)** | **Super ED** |
-| L21 | 1.80100 | 34.9 | 1801/349 | S-LAH52 (OHARA), exact | Normal |
+| L21 | 1.80100 | 34.9 | 801349 | J-LAF016 (Hikari), exact | Normal |
 | **L22** | **1.49782** | **82.6** | **498826** | **J-FKH1 (Hikari)** | **ED** |
 | L23 | 1.81600 | 46.6 | 1816/466 | S-LAH59 (OHARA), exact | Normal |
 | L24 | 1.80518 | 25.5 | 1805/255 | SF6 (Schott), exact | Normal |
@@ -169,7 +169,7 @@ G2 is the primary zoom variator. Despite being stationary during zooming, its st
 
 | Element | Shape | fl (mm) | Glass | Role |
 |---------|-------|---------|-------|------|
-| L21 | Biconvex | +74.0 | LaH dense flint (nd=1.801) | Front positive element of achromatic doublet |
+| L21 | Biconvex | +74.0 | J-LAF016 lanthanum flint (nd=1.801) | Front positive element of achromatic doublet |
 | L22 | Biconcave | −80.4 | **J-FKH1 ED glass** (nd=1.498, νd=82.6) | Negative ED element; lateral color correction |
 | L23 | Biconcave | −33.7 | Lanthanum dense flint (nd=1.816, νd=46.6) | **VR sub-group front** |
 | L24 | Pos. meniscus (convex to object) | +55.5 | Dense flint (nd=1.805, νd=25.5) | **VR sub-group rear** |

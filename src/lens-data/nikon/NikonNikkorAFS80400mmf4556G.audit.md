@@ -38,3 +38,9 @@ The patent gives only `nd`/`νd` rows. It has no `θgF`, `Pg,F`, or line-index t
 ### Verification
 
 - Pending batch verification after the current Nikon audit pass.
+
+## 2026-07-29 - Remaining catalog-mismatch audit
+
+- Rechecked US 2020/0049962 A1 Example 1 surface 6; stored `R`, `d`, `nd=1.80100`, and `νd=34.90` agree with the patent.
+- Relabeled L21 from incorrect OHARA `S-LAH52` to Hikari `J-LAF016`, the exact Nikon/Hikari 801349 coordinate.
+- Synchronized the analysis glass table. No prescription geometry changed.

@@ -12,3 +12,10 @@ Patent: US 2021/0072505 A1, Numerical Example 1
 ## 2026-07-29 - Catalog-coordinate correction
 
 - Corrected L9 from modern `S-NPH2` to historical OHARA `PBH21`, the exact 1.92286 / 20.90 row.
+
+## 2026-07-29 - Remaining catalog-coordinate correction
+
+- Rechecked Numerical Example 1 in local `patents/US20210072505A1.pdf`; S19 remains 1.83400 / 37.20 and its
+  R/d row is unchanged.
+- S19 `S-LAH55 (OHARA)` -> `S-LAH60 (OHARA)`, the exact same-vendor coordinate family. Synchronized the L10
+  element discussion and glass table.

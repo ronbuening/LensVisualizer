@@ -33,7 +33,7 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-07-29",
     type: "fix",
-    summary: "Fixed chromatic glass matching across the lens catalog",
+    summary: "Corrected remaining false glass matches across 42 patent-audited lenses",
   },
   // ── 2026-07-28 ──────────────────────────────────────────────────
   {

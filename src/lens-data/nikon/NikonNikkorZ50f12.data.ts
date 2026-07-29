@@ -267,7 +267,7 @@ const LENS_DATA = {
       nd: 1.5168,
       vd: 64.0,
       fl: -108.5,
-      glass: "S-NSL3 (OHARA)",
+      glass: "J-BK7 (Hikari; exact Nikon patent coordinate match)",
       apd: false,
       role: "Final optical element — aspherical front (S32A) for field correction",
     },

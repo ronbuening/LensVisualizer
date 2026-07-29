@@ -27,3 +27,11 @@ Patent: JP 2015-41012 A, Example 1
 - Existing R/d/nd/vd, high-index/code-backed labels, APD metadata, and estimated SD profile remain consistent with the patent-backed prescription and prior relabel pass.
 - No APD, high-index, glass-label, spacing, or SD edits were needed in this pass.
 - Current generated glass reports show no active Sony catalog-mismatch row for this lens.
+
+## 2026-07-29 - Patent-rounded glass disposition
+
+- Rechecked local `patents/JP2015041012A.pdf`, Example 1. Stored R, d, nd, and νd remain unchanged.
+- S2 and S9 `S-LAH55V (OHARA)` -> unmatched 830427 rounded lanthanum glass at 1.83000 / 42.72.
+- S7A `L-BAL42 (OHARA)` -> unmatched 580595 rounded molded crown at 1.58000 / 59.46.
+- The patent's two-decimal indices and undisclosed supplier do not support unique vendor identities. Synchronized
+  the analysis while retaining S-LAH55V/TAFD5F and L-BAL42 as comparisons.
