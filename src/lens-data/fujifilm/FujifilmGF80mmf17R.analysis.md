@@ -40,9 +40,9 @@ The overall Petzval sum of the design is +0.00127 mm$^{-1}$, giving a Petzval ra
 
 ### L11 — Positive Meniscus, convex toward object
 
-$n_d$ = 1.79952, $\nu_d$ = 42.25. Glass: S-NBH55 (OHARA). $f$ = +168.2 mm.
+$n_d$ = 1.79952, $\nu_d$ = 42.25. Glass: S-LAH52Q (OHARA). $f$ = +168.2 mm.
 
-L11 is the front collector element of G1. Its high-index glass (S-NBH55, a dense barium glass with moderate dispersion) permits strong positive curvature at the front surface ($R_1$ = +82.33 mm) without requiring extreme bending — the meniscus shape keeps the angle of incidence moderate across the aperture. As the first element in a fast $f$/1.7 system covering a 43.8 × 32.9 mm sensor, L11 must handle a wide marginal ray bundle while minimizing spherical aberration introduction. The meniscus form (convex toward the object) reduces the contribution to spherical aberration relative to a biconvex shape at this position.
+L11 is the front collector element of G1. Its high-index lanthanum glass S-LAH52Q permits strong positive curvature at the front surface ($R_1$ = +82.33 mm) without requiring extreme bending — the meniscus shape keeps the angle of incidence moderate across the aperture. As the first element in a fast $f$/1.7 system covering a 43.8 × 32.9 mm sensor, L11 must handle a wide marginal ray bundle while minimizing spherical aberration introduction. The meniscus form (convex toward the object) reduces the contribution to spherical aberration relative to a biconvex shape at this position.
 
 ### L12 — Negative Biconcave
 
@@ -121,7 +121,7 @@ The design uses twelve distinct glass types. The patent gives optical constants 
 
 | Element | Glass | Vendor | $n_d$ (patent) | $\nu_d$ (patent) | $\nu_d$ (catalog) | Δνd | Class / Role |
 |---------|-------|--------|-------|---------|---------|-----|-------------|
-| L11 | S-NBH55 | OHARA | 1.79952 | 42.25 | 42.24 | +0.01 | Dense barium high-index. Front collector. |
+| L11 | S-LAH52Q | OHARA | 1.79952 | 42.25 | 42.24 | +0.01 | High-index lanthanum glass. Front collector. |
 | L12 | S-TIH10 | OHARA | 1.72825 | 28.31 | 28.46 | −0.15 | Dense titanium flint. Chromatic corrector in G1. |
 | L21 | J-LASKH2 | Hikari | 1.75500 | 52.34 | 52.34 | 0 | Lanthanum crown. Focus group lead. |
 | L22 | S-FPL55 | OHARA | 1.43875 | 94.66 | 94.66 | 0 | Super-ED fluorophosphate. Pre-stop crown. |
@@ -136,7 +136,7 @@ The design uses twelve distinct glass types. The patent gives optical constants 
 
 The chromatic strategy centers on the two S-FPL55 super-ED elements (L22 and L24). S-FPL55 has one of the lowest dispersions of any commercially available optical glass ($\nu_d$ = 94.66) and exhibits significant positive anomalous partial dispersion, making it valuable for controlling secondary spectrum. By pairing each S-FPL55 element with a more dispersive partner in a cemented doublet — S-BAL2 ($\nu_d$ = 50.80) on the object side and E-FD5 ($\nu_d$ = 32.18) on the image side — the designer achieves large Abbe-number spreads (43.9 and 62.5 respectively) that provide powerful primary chromatic correction. The asymmetric doublet design (weaker correction pre-stop, stronger post-stop) likely reflects the asymmetric ray geometry: the post-stop marginal ray is already converging and carries more chromatic sensitivity.
 
-The three highest-index glasses in the design (K-VC89 at 1.810, the L31 code-labeled high-index glass at 1.883, and S-NBH55 at 1.800) all appear in high-power positive elements (L26, L31, and L11 respectively). High refractive index reduces the surface curvatures needed to achieve a given power, which suppresses higher-order spherical aberration and reduces sensitivity to manufacturing tolerances — important in a fast $f$/1.7 design.
+The three highest-index glasses in the design (K-VC89 at 1.810, the L31 code-labeled high-index glass at 1.883, and S-LAH52Q at 1.800) all appear in high-power positive elements (L26, L31, and L11 respectively). High refractive index reduces the surface curvatures needed to achieve a given power, which suppresses higher-order spherical aberration and reduces sensitivity to manufacturing tolerances — important in a fast $f$/1.7 design.
 
 
 ## Focus Mechanism

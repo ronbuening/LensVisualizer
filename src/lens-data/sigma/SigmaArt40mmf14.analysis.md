@@ -73,7 +73,7 @@ The combined Component X has a very long focal length (f ≈ +2527 mm by thick-e
 
 ### L6 (LY1) — Positive Meniscus, concave to object (Component Y, G1B, SLD)
 
-nd = 1.55032, νd = 75.50. Glass: M-FCD500 (HOYA) — PGM-compatible SLD fluorophosphate. f = +60.6 mm (standalone).
+nd = 1.55032, νd = 75.50. Glass: FCD705 (HOYA) — SLD fluorophosphate. f = +60.6 mm (standalone).
 
 L6 is the positive element of Component Y, the second cemented doublet in G1B. Its meniscus shape (both radii negative: R10 = −1641.7, R11 = −32.70 mm) curves concave to the object, with the strongly curved rear surface providing positive power. This is Sigma's SLD designation — a phosphate crown with νd = 75.50 and ΔPgF ≈ +0.028, offering low dispersion with moderate anomalous character. The Abbe-number ratio VY1/VY2 = 75.50/38.01 = 1.99 satisfies condition (3) (range 1.6–2.5), confirming that Component Y follows "old-type achromatism" (旧色消し) — a classical wide-Abbe-gap achromatic doublet where the primary role is high-order spherical aberration correction (¶0026).
 
@@ -137,9 +137,9 @@ L15 provides convergent power in the rear of G3, relaying the corrected beam tow
 
 ### L16 — Positive Meniscus (2× Aspherical), concave to object (G3)
 
-nd = 1.85135, νd = 40.10. Glass: S-NBH56 (OHARA) — niobium-phosphate dense crown. f = +74.1 mm.
+nd = 1.85135, νd = 40.10. Glass: M-TAFD305 (HOYA) — moldable high-index lanthanum/tantalum glass. f = +74.1 mm.
 
-L16 is the final element before the image plane and carries the design's only two aspherical surfaces (surfaces 28 and 29). Its meniscus shape (R28 = −430.04, R29 = −54.99 mm) is concave to the object, placing both aspherical surfaces in a region of high beam convergence where they can fine-tune the final wavefront. The niobium-dense-crown glass (S-NBH56) provides high refractive index (1.85135), enabling strong refractive power from moderate surface curvatures. The patent specifies that the aspherical surfaces provide progressively increasing negative power toward the periphery (¶0056), enabling spherical-aberration correction without degrading off-axis performance.
+L16 is the final element before the image plane and carries the design's only two aspherical surfaces (surfaces 28 and 29). Its meniscus shape (R28 = −430.04, R29 = −54.99 mm) is concave to the object, placing both aspherical surfaces in a region of high beam convergence where they can fine-tune the final wavefront. The moldable high-index glass M-TAFD305 provides high refractive index (1.85135), enabling strong refractive power from moderate surface curvatures. The patent specifies that the aspherical surfaces provide progressively increasing negative power toward the periphery (¶0056), enabling spherical-aberration correction without degrading off-axis performance.
 
 ## Glass Identification and Selection
 
@@ -151,19 +151,19 @@ The design uses eleven distinct glass types across sixteen elements, drawing fro
 | L2, L3, L12 | 1.43700 | 95.10 | +0.053 | FCD100 | HOYA | FLD | Fluorite-equivalent ED fluorophosphate |
 | L4, L13 | 1.64769 | 33.84 | +0.003 | E-FD2 | HOYA | Standard | Dense flint, achromatizing partner |
 | L5 | 1.83481 | 42.72 | −0.011 | S-LAH55V | OHARA | Standard | Lanthanum dense crown |
-| L6 | 1.55032 | 75.50 | +0.028 | M-FCD500 | HOYA | SLD | PGM fluorophosphate crown |
+| L6 | 1.55032 | 75.50 | +0.028 | FCD705 | HOYA | SLD | Fluorophosphate crown |
 | L7 | 1.60342 | 38.01 | ±0.000 | S-TIM5 | OHARA | Standard | Flint |
 | L9 | 1.92286 | 20.88 | +0.029 | S-NPH2 | OHARA | Standard | Super-dense lanthanum flint |
 | L10, L15 | 1.59282 | 68.63 | +0.015 | PCD51 | HOYA | SLD | Phosphate crown |
 | L11 | 1.58144 | 40.89 | +0.005 | E-FL5 | HOYA | Standard | Light flint |
 | L14 | 1.62588 | 35.74 | +0.006 | E-F1 | HOYA | Standard | Flint |
-| L16 | 1.85135 | 40.10 | −0.006 | S-NBH56 | OHARA | Standard | Niobium-phosphate dense crown |
+| L16 | 1.85135 | 40.10 | −0.006 | M-TAFD305 | HOYA | PGM | Moldable lanthanum/tantalum glass |
 
 The chromatic correction strategy employs a front-loaded secondary-spectrum architecture: the three FLD elements (L2, L3 in G1A and L12 in G3) carry the bulk of the anomalous dispersion correction, with their high positive ΔPgF (+0.053) used at positions of maximum chief-ray or marginal-ray height respectively. The three SLD elements (L6 in G1B, L10 and L15 in G2/G3) provide secondary support with moderate positive anomalous character (ΔPgF = +0.015 to +0.028), distributed across the central and rear regions.
 
-The use of HOYA M-FCD500 (L6) is notable — the "M-" prefix in the HOYA catalog denotes a glass formulated for precision glass molding (PGM), suggesting that L6 may be a molded element rather than conventionally polished. S-NBH56 (L16), by contrast, carries OHARA's "S-" prefix for standard polished glass; the aspherical manufacturing method on L16 is not determinable from the glass designation alone.
+The glass choices separate manufacturing roles cleanly: FCD705 at L6 supplies the low dispersion needed for color correction, while M-TAFD305 at the double-aspherical L16 is a HOYA precision-molding formulation suited to the compact rear element.
 
-The glass palette is split between HOYA and OHARA catalogs, with six of eleven distinct glasses from HOYA and five from OHARA. This balanced dual-vendor sourcing likely reflects the need for specific HOYA PGM formulations (M-FCD500) and specialty phosphate crowns (PCD51) not available in the OHARA line.
+The exact FCD705 and M-TAFD305 matches reinforce the use of HOYA low-dispersion and precision-molding formulations at the two corrected positions.
 
 ## Focus Mechanism
 
@@ -215,7 +215,7 @@ The dominant A4 coefficient is **negative**, meaning the surface develops progre
 
 Surface 29's A4 is **positive**, producing increasing positive departure at the rim. On a surface that is more strongly concave to the object (R = −54.99 mm), the positive departure flattens the surface at large heights relative to the base sphere. Since this is the exit surface (glass to air, φ = (1.0 − 1.85135)/R > 0), a flatter rim reduces the positive refractive power of this surface at the periphery. Combined with surface 28's increasing negative contribution, the net effect is that L16 develops progressively increasing negative power toward the field edge — precisely the "光軸から離れるほど負のパワーが強くなる非球面" described in ¶0056. This aspherical profile enables peripheral spherical-aberration correction without degrading off-axis performance, as the aspherical departure primarily affects the axial marginal ray while leaving oblique ray bundles largely unperturbed.
 
-Both surfaces use S-NBH56 glass (OHARA). The "S-" prefix in the OHARA catalog denotes standard polished glass, in contrast to OHARA's "L-" prefix which designates glasses specifically formulated for precision glass molding (PGM). The patent does not specify the aspherical manufacturing method. At nd = 1.85135, the element could be fabricated as a polished glass asphere, a hybrid composite (resin-on-glass), or a glass-molded element using PGM preforms if available for this composition. The element's rearmost position (small diameter, moderate aspherical departure) is compatible with any of these methods.
+Both surfaces use M-TAFD305 glass (HOYA). The "M-" prefix identifies a precision-molding formulation, making molded manufacture a natural fit for this small rear element, although the patent does not state the production method explicitly.
 
 ## Conditional Expressions
 
@@ -268,5 +268,5 @@ The patent was filed by inventor Yamanaka Kenji, with the publication appearing 
 - Sigma Corporation product page: "40mm F1.4 DG HSM | Art" — specifications, lens construction diagram, and technology descriptions. https://www.sigma-global.com/en/lenses/a018_40_14/
 - Sigma Corporation press release (September 2018): development announcement confirming cine-lens origin of the optical design.
 - Kazuto Yamaki (Sigma CEO), interview with Imaging Resource (September 2020): discussion of FLD glass equivalence to fluorite and Sigma's glass selection methodology.
-- HOYA Corporation optical glass catalog: FCD100, M-FCD500, PCD51, E-FD2, E-F1, E-FL5 catalog entries.
-- OHARA Corporation optical glass catalog (May 2023 pocket edition): S-LAH66, S-LAH55V, S-NPH2, S-TIM5, S-NBH56 catalog entries.
+- HOYA Corporation optical glass catalog: FCD100, FCD705, M-TAFD305, PCD51, E-FD2, E-F1, E-FL5 catalog entries.
+- OHARA Corporation optical glass catalog (May 2023 pocket edition): S-LAH66, S-LAH55V, S-NPH2, S-TIM5 catalog entries.

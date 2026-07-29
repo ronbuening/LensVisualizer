@@ -77,7 +77,7 @@ const LENS_DATA = {
       nd: 1.79952,
       vd: 42.25,
       fl: 168.2,
-      glass: "S-NBH55 (OHARA)",
+      glass: "S-LAH52Q (OHARA)",
       apd: false,
       role: "Front collector; high-index meniscus pre-converges beam into G1–G2 gap.",
     },

@@ -26,3 +26,7 @@ Patent: US 4,708,445, Embodiment 6
 - Search for `683447` found no exact coefficient-backed public match.
 - Updated analysis element notes, glass summary, and the production-scale prescription table.
 
+## 2026-07-29 — Dispersion-coordinate follow-up
+
+- Corrected L2 from `S-LAL59 (729/547)` to `S-LAL18 (OHARA; 729/547)`. S-LAL18 exactly matches 1.72916 / 54.68 and the embedded code; S-LAL59 has νd = 51.47.
+- Synchronized all L2 glass references in the analysis.

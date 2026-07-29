@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   allEntries,
+  assessCatalogGlassCompatibility,
   assertCatalogConsistent,
   catalogSize,
   evaluateSellmeier,
@@ -75,6 +76,12 @@ describe("glass catalog", () => {
     const nF = evaluateSellmeier(nbk7!, LINE_NM.F);
     const computedVd = (nd - 1) / (nF - nC);
     expect(Math.abs(computedVd - nbk7!.vd)).toBeLessThan(0.5);
+  });
+
+  it("requires both nd and vd compatibility before trusting a catalog glass", () => {
+    const nbk7 = resolveGlass("N-BK7")!;
+    expect(assessCatalogGlassCompatibility(nbk7, 1.5168, 64.17).compatible).toBe(true);
+    expect(assessCatalogGlassCompatibility(nbk7, 1.5168, 52.0).compatible).toBe(false);
   });
 
   it("catalog has at least the verified seed entries", () => {
@@ -186,6 +193,32 @@ describe("glass catalog", () => {
       expect(resolveGlass(code)?.name).toBe(glass);
       expect(evaluateSellmeier(entry!, LINE_NM.d)).toBeCloseTo(nd, 5);
       expect(evaluateSellmeier(entry!, LINE_NM.C)).toBeLessThan(evaluateSellmeier(entry!, LINE_NM.F));
+    }
+  });
+
+  it("evaluates the 2026 vendor named-glass coverage additions", () => {
+    const expected: Array<[glass: string, nd: number]> = [
+      ["BACD14", 1.60311],
+      ["BACD8", 1.611168],
+      ["E-F5", 1.60342],
+      ["E-F8", 1.59551],
+      ["E-FEL1", 1.54814],
+      ["FCD10A", 1.4586],
+      ["FCD500", 1.55397],
+      ["FCD915", 1.48071],
+      ["NBFD30", 1.85883],
+      ["TAF2", 1.7945],
+      ["TAF3D", 1.8042],
+      ["TAFD34", 1.85033],
+      ["TAFD5", 1.835],
+      ["S-APL1", 1.517277],
+      ["S-BSM36", 1.642495],
+      ["S-LAL61", 1.740999],
+    ];
+    for (const [glass, nd] of expected) {
+      const entry = resolveGlass(glass);
+      expect(entry?.name).toBe(glass);
+      expect(evaluateSellmeier(entry!, LINE_NM.d)).toBeCloseTo(nd, 5);
     }
   });
 
@@ -425,6 +458,16 @@ describe("makeSurfaceDispersion preference cascade", () => {
     expect(d.fn("G")).toBe(nd);
     expect(d.fn("B")).toBe(1.522);
     expect(d.fn("V")).toBe(1.529);
+  });
+
+  it("falls back to Abbe when nd matches but the catalog Abbe number does not", () => {
+    const d = makeSurfaceDispersion(
+      { R: 0, d: 0, sd: 0, label: "", nd: 1.5168, elemId: 1 },
+      { id: 1, name: "L1", label: "L1", type: "Test", nd: 1.5168, vd: 52, glass: "N-BK7" },
+      undefined,
+    );
+    expect(d.quality).toBe("abbe");
+    expect(d.glassEntry).toBeUndefined();
   });
 
   it("uses measured line indices when the catalog misses but nC/nF are present", () => {

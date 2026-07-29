@@ -33,7 +33,10 @@ import { mkdirSync, writeFileSync } from "node:fs";
 import buildLens from "../../../src/optics/buildLens.js";
 import {
   allEntries,
+  assessCatalogGlassCompatibility,
   evaluateSellmeier,
+  GLASS_ND_TOLERANCE,
+  GLASS_VD_TOLERANCE,
   LINE_NM,
   resolveGlass,
   type GlassEntry,
@@ -41,8 +44,8 @@ import {
 import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
 import type { LensData } from "../../../src/types/optics.js";
 
-const ND_TOLERANCE = 5e-3; // matches dispersion safety net
-const VD_TOLERANCE = 3.0; // absolute Abbe units; loose enough to allow melt variants
+const ND_TOLERANCE = GLASS_ND_TOLERANCE;
+const VD_TOLERANCE = GLASS_VD_TOLERANCE;
 const PGF_TOLERANCE = 0.02; // ΔPgF spread that's plausible across melt variants
 const REPORT_DIR = "agent_docs/generated";
 
@@ -160,8 +163,7 @@ describe("glass-relabel candidate scan", () => {
         if (!element?.glass) continue;
         const entry = resolveGlass(element.glass);
         if (!entry) continue;
-        const catalogNd = evaluateSellmeier(entry, LINE_NM.d);
-        if (Math.abs(catalogNd - surface.nd) <= ND_TOLERANCE) continue;
+        if (assessCatalogGlassCompatibility(entry, surface.nd, element.vd).compatible) continue;
         mismatches.push({
           filePath,
           lensName: data.name ?? data.key,

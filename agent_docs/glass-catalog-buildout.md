@@ -7,7 +7,13 @@ available, it falls back to partial measured `nC`/`nF` line indices, dPgF-correc
 approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **358 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **374 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+
+The July 29, 2026 coverage pass added 13 exact HOYA records from the vendor's current and obsolete-inclusive Zemax
+catalog: BACD14, BACD8, E-F5, E-F8, E-FEL1, FCD10A, FCD500, FCD915, NBFD30, TAF2, TAF3D, TAFD34, and TAFD5.
+The same source pass added OHARA S-APL1, S-BSM36, and S-LAL61 from the vendor's 2026-07-01 all-products catalog.
+The same pass strengthened runtime matching to require agreement in both nd and νd, preventing same-index glasses from
+different dispersion families from being accepted silently.
 
 The July 23, 2026 Canon batch added OHARA S-TIH53WN from the vendor's April 2025 datasheet. The WN variant retains
 the conventional d-line index while publishing modified off-d-line indices and dispersion constants for

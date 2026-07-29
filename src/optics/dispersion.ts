@@ -23,7 +23,13 @@
  */
 
 import type { ChromaticChannel, ElementData, RuntimeLens, SurfaceData, SurfaceSpectral } from "../types/optics.js";
-import { evaluateSellmeier, LINE_NM, resolveGlass, type GlassEntry } from "./glassCatalog.js";
+import {
+  assessCatalogGlassCompatibility,
+  evaluateSellmeier,
+  LINE_NM,
+  resolveGlass,
+  type GlassEntry,
+} from "./glassCatalog.js";
 
 /** Wavelength (nm) used when tracing each chromatic channel. */
 const CHANNEL_NM: Record<ChromaticChannel, number> = {
@@ -107,23 +113,19 @@ export function makeSurfaceDispersion(
   }
 
   // 2) Catalog Sellmeier — λ-accurate, the highest-fidelity remaining path.
-  //    Only trust the catalog when its d-line index agrees with the stored
-  //    surface.nd within a transcription tolerance. Lens-data files sometimes
+  //    Only trust the catalog when its d-line index and Abbe number agree with
+  //    the stored prescription within transcription tolerances. Lens-data files sometimes
   //    annotate glasses speculatively ("S-LAH79 (OHARA) probable") with stored
-  //    nd values that don't match the real catalog glass — in which case the
-  //    "probable" tag is wrong and the stored nd should win. Tolerance 5e-3
-  //    catches misidentifications while permitting normal transcription rounding.
+  //    coordinates that don't match the real catalog glass — in which case the
+  //    "probable" tag is wrong and the authored (nd, vd) pair should win.
   if (element?.glass) {
     const entry = resolveGlass(element.glass);
-    if (entry) {
-      const sellmeierNd = evaluateSellmeier(entry, LINE_NM.d);
-      if (Math.abs(sellmeierNd - surface.nd) <= 5e-3) {
-        const fn: SurfaceIndexFn = (ch) => evaluateSellmeier(entry, CHANNEL_NM[ch]);
-        return { fn, quality: "sellmeier", glassEntry: entry };
-      }
-      // Catalog match disagrees with surface.nd beyond rounding tolerance —
-      // the glass annotation is wrong. Fall through to the next cascade tier.
+    if (entry && assessCatalogGlassCompatibility(entry, surface.nd, element.vd).compatible) {
+      const fn: SurfaceIndexFn = (ch) => evaluateSellmeier(entry, CHANNEL_NM[ch]);
+      return { fn, quality: "sellmeier", glassEntry: entry };
     }
+    // Catalog match disagrees with the authored optical coordinates beyond
+    // rounding tolerance. Fall through to the next cascade tier.
   }
 
   // 3) Partial measured line indices on the element — exact at the listed lines.

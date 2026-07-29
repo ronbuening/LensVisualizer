@@ -11,8 +11,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 - **488** lenses scanned
 - **491** total code-only elements found
-- **293** elements in this report
-- **118** distinct lens files affected
+- **291** elements in this report
+- **117** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -195,7 +195,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 792450 | 1 | 1 | patents/WO2020136749A1.pdf | All representative rows reviewed |
 | 794255 | 1 | 1 | patents/US7542219.pdf | No reviewed-sidecar hit |
 | 795286 | 1 | 1 | patents/US5717527.pdf | No reviewed-sidecar hit |
-| 795454 | 1 | 1 | patents/US5734508.pdf | No reviewed-sidecar hit |
 | 796410 | 1 | 1 | patents/US4770511.pdf | All representative rows reviewed |
 | 797455 | 1 | 1 | patents/US4452513.pdf | No reviewed-sidecar hit |
 | 800255 | 1 | 1 | patents/JP2015041012A.pdf | No reviewed-sidecar hit |
@@ -217,7 +216,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 852402 | 1 | 1 | patents/WO2020136749A1.pdf | All representative rows reviewed |
 | 855399 | 1 | 1 | patents/JP2022092388A.pdf | All representative rows reviewed |
 | 856323 | 1 | 1 | patents/WO2021200206A1.pdf | No reviewed-sidecar hit |
-| 859300 | 1 | 1 | patents/JP2021179551A.pdf | No reviewed-sidecar hit |
 | 866450 | 1 | 1 | patents/CN116520542A.pdf | All representative rows reviewed |
 | 877370 | 1 | 1 | patents/US20160266350A1.pdf | All representative rows reviewed |
 | 882408 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | No reviewed-sidecar hit |
@@ -631,7 +629,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L22 (Element 5 — L22) | 20 | `Unmatched (840434 high-index glass)` | 1.84042 / 43.40 | No catalog entry | abbe | patents/US5734508.pdf | No reviewed-sidecar hit |
 | L25 (Element 8 — L25) | 25 | `773495 — lanthanum crown / TAF class (vendor unresolved)` | 1.77279 / 49.50 | No catalog entry | abbe | patents/US5734508.pdf | No reviewed-sidecar hit |
 | L3F3 (Element 11 — L3F3) | 30 | `Unmatched (796409 high-index crown)` | 1.79631 / 40.90 | No catalog entry | abbe | patents/US5734508.pdf | No reviewed-sidecar hit |
-| L3R2 (Element 13 — L3R2) | 34A | `795454 — LaSF class (catalog-near; vendor unresolved)` | 1.79668 / 45.40 | No catalog entry | abbe | patents/US5734508.pdf | No reviewed-sidecar hit |
 | L3R3 (Element 14 — L3R3) | 36 | `834374 — LaSF/NBFD class (vendor unresolved)` | 1.83400 / 37.40 | No catalog entry | abbe | patents/US5734508.pdf | No reviewed-sidecar hit |
 
 ### [NIKON AI NIKKOR 35mm f/2](../../src/lens-data/nikon/NikonAINikkor35mmf2.data.ts) - US 3,507,558
@@ -905,12 +902,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
 |---|---|---|---|---|---|---|---|
 | L16 (Element 16) | 28 | `Unmatched crown class (523/701, likely phosphate/fluorophosphate)` | 1.52300 / 70.10 | No catalog entry | abbe | patents/US20100194930A1.pdf | No reviewed-sidecar hit |
-
-### [PANASONIC LUMIX S 20-60mm f/3.5-5.6](../../src/lens-data/panasonic/PanasonicLumixS2060mmf3556.data.ts) - JP 2021-179551 A
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
-|---|---|---|---|---|---|---|---|
-| L4 (Element 4) | 6 | `859300 - high-index flint (patent nd=1.85883, vd=30.0)` | 1.85883 / 30.00 | No catalog entry | abbe | patents/JP2021179551A.pdf | No reviewed-sidecar hit |
 
 ### [PANASONIC LUMIX S 35mm f/1.8](../../src/lens-data/panasonic/PanasonicS35mmf18.data.ts) - CN 216772097U
 

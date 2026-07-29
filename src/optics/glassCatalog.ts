@@ -11,7 +11,7 @@
  *   n²(λ) = 1 + B1·λ²/(λ²−C1) + B2·λ²/(λ²−C2) + B3·λ²/(λ²−C3)
  *   where λ is in micrometres and C1..C3 are in micrometres².
  *
- * Coverage status: current source count 358 entries. See agent_docs/glass-catalog-buildout.md
+ * Coverage status: current source count 374 entries. See agent_docs/glass-catalog-buildout.md
  * for the addition history and sourcing playbook.
  *
  * All coefficients are vendor-published physical measurements. Each entry
@@ -26,6 +26,25 @@ import { LINE_NM } from "./spectralLines.js";
 
 export type { GlassEntry } from "./glassCatalogTypes.js";
 export { LINE_NM } from "./spectralLines.js";
+
+/** Maximum accepted d-line index delta between authored lens data and a catalog entry. */
+export const GLASS_ND_TOLERANCE = 5e-3;
+
+/**
+ * Maximum accepted Abbe-number delta between authored lens data and a catalog entry.
+ *
+ * Patent tables commonly round νd more heavily than nd, so this stays deliberately
+ * generous. It is still tight enough to reject same-index glasses from materially
+ * different dispersion families.
+ */
+export const GLASS_VD_TOLERANCE = 3;
+
+export interface CatalogGlassCompatibility {
+  readonly compatible: boolean;
+  readonly catalogNd: number;
+  readonly ndDiff: number;
+  readonly vdDiff: number | null;
+}
 
 /**
  * Evaluate the Sellmeier formula at wavelength λ (nm) for a catalog entry.
@@ -51,6 +70,29 @@ export function evaluateSellmeier(entry: GlassEntry, lambdaNm: number): number {
   const [C1, C2, C3] = entry.C;
   const n2 = 1 + (B1 * l2) / (l2 - C1) + (B2 * l2) / (l2 - C2) + (B3 * l2) / (l2 - C3);
   return Math.sqrt(n2);
+}
+
+/**
+ * Check whether a catalog glass is compatible with an authored (nd, νd) pair.
+ *
+ * nd alone is not enough to identify a dispersion curve: different glass
+ * families can share nearly the same d-line index while having very different
+ * Abbe numbers. When the lens data includes νd, require both coordinates.
+ */
+export function assessCatalogGlassCompatibility(
+  entry: GlassEntry,
+  storedNd: number,
+  storedVd: number | undefined,
+): CatalogGlassCompatibility {
+  const catalogNd = evaluateSellmeier(entry, LINE_NM.d);
+  const ndDiff = catalogNd - storedNd;
+  const vdDiff = storedVd === undefined ? null : entry.vd - storedVd;
+  return {
+    compatible: Math.abs(ndDiff) <= GLASS_ND_TOLERANCE && (vdDiff === null || Math.abs(vdDiff) <= GLASS_VD_TOLERANCE),
+    catalogNd,
+    ndDiff,
+    vdDiff,
+  };
 }
 
 /**

@@ -95,11 +95,11 @@ Its relatively high index and low Abbe number make it the high-dispersion partne
 
 #### L5 - Biconcave Negative, rear component of D2
 
-**nd = 1.51728, νd = 69.6. Glass: 517696 - legacy low-dispersion crown / S-APL1 class (vendor unresolved). Standalone f = -45.305 mm.**
+**nd = 1.51728, νd = 69.6. Glass: S-APL1 (OHARA; 517696). Standalone f = -45.305 mm.**
 
 L5 is the negative, low-dispersion member of D2. Its strong negative standalone power and high Abbe number contrast with L4's positive, more dispersive power. Together they form a negative achromatizing pair within the variator.
 
-The data file sets `apd: false` and carries no `nC`, `nF`, `ng`, or `dPgF`. The S-APL1-class wording is therefore a coordinate/class description only; it is not evidence for anomalous-dispersion performance.
+The data file sets `apd: false` and carries no `nC`, `nF`, `ng`, or `dPgF`. The exact S-APL1 identity is catalog-backed, but it is not evidence for anomalous-dispersion performance.
 
 #### L6 - Biconcave Negative
 
@@ -197,7 +197,7 @@ The patent publishes only d-line refractive indices and Abbe numbers. It does no
 | 614563 - SK6 / BSM6 class (historical vendor unresolved) | 1.61375 | 56.3 | L2 | legacy catalog coordinate match; vendor and melt not established |
 | 755275 - SF4 class (vendor unresolved) | 1.75520 | 27.5 | L3 | dense flint-class coordinate |
 | 689311 - SF8 class (vendor unresolved) | 1.68893 | 31.1 | L4 | flint-class coordinate |
-| 517696 - legacy low-dispersion crown / S-APL1 class (vendor unresolved) | 1.51728 | 69.6 | L5 | low-dispersion crown-class coordinate only |
+| S-APL1 (OHARA; 517696) | 1.51728 | 69.6 | L5 | catalog-backed low-dispersion crown |
 | 620363 - F2 class (vendor unresolved) | 1.62004 | 36.3 | L8 | flint-class coordinate |
 | 548459 - LLF1 class (vendor unresolved) | 1.54814 | 45.9 | L9 | light-flint-class coordinate |
 | 532489 - LLF6 class (vendor unresolved) | 1.53172 | 48.9 | L10 | light-flint-class coordinate |

@@ -22,13 +22,28 @@ This file tracks the second bucket plus any cases from the first bucket that nee
 
 ## Current Status (July 2026, current catalog)
 
-- Catalog: **358 verified entries** in `src/optics/glassCatalogData.ts`.
-- `catalog-mismatches.generated.md` reports **0** catalog mismatches.
-- `sellmeier-coverage.generated.md` reports **488** lenses, **5360** non-air surfaces, **4508** strict catalog
-  Sellmeier surfaces (**84.1%**), and **4537** trusted chromatic surfaces (**84.6%**).
-- `unresolvedGlassScan`: **589** non-explicit-unmatched annotations still do not resolve, covering **260** distinct
+- Catalog: **374 verified entries** in `src/optics/glassCatalogData.ts`.
+- `catalog-mismatches.generated.md` reports **33** dispersion-coordinate mismatches; runtime rejects all of them.
+- `sellmeier-coverage.generated.md` reports **488** lenses, **5360** non-air surfaces, **4499** strict catalog
+  Sellmeier surfaces (**83.9%**), and **4525** trusted chromatic surfaces (**84.4%**).
+- `unresolvedGlassScan`: **565** non-explicit-unmatched annotations still do not resolve, covering **239** distinct
   glass-like tokens.
 - The Phase 2/3 resolved tables below are historical audit trail. Use the generated reports above for the current queue before starting new relabel work; for patent-by-patent execution, start from [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md).
+
+## Resolved Phase 42 — July 2026 dispersion-aware follow-up
+
+| Lens file(s) | Surface(s) | Old annotation | New annotation | Justification |
+|---|---|---|---|---|
+| Fujifilm XF 50mm f/1.0 | L1a | `S-FPM3` | `S-TIL2` | Exact 1.54072 / 47.23 OHARA coordinate; S-FPM3 has νd = 74.70. |
+| Sigma 40mm f/1.4 Art | L6, L16 | `M-FCD500`; `S-NBH56` | `FCD705`; `M-TAFD305` | Both replacements exactly match the authored nd/νd pairs and retain the source-family/manufacturing context. |
+| Canon Serenar 28mm f/3.5 | L2 | `SK16` | `E-BAF8` | Exact 1.62370 / 47.00 coordinate; N-SK16 is a same-index but much lower-dispersion crown. |
+| Canon RF 24-240mm | L12 | `S-LAM3 type (720/437)` | `S-LAM52` | Exact embedded-code and 1.72000 / 43.69 coordinate match. |
+| Olympus Zuiko Auto-Macro 50mm f/2 | L2 | `S-LAL59 (729/547)` | `S-LAL18` | Exact embedded-code and 1.72916 / 54.68 coordinate match. |
+| Fujifilm GF 80mm f/1.7; GF 120mm f/4 Macro | L11; L23 | `S-NBH55`; `S-LAH52Q` | `S-LAH52Q`; `S-NBH55` | Corrects a swapped pair of near-equal-index OHARA glasses whose Abbe numbers differ by more than 12. |
+
+The runtime and generated reports now require both nd (±0.005) and νd (±3) compatibility before catalog Sellmeier
+data is trusted. This exposed 40 previously hidden same-index dispersion mismatches; the exact low-ambiguity rows above
+were corrected, while the remaining cases stay on the Abbe fallback and in the generated relabel queue.
 
 ## Resolved Phase 41 — July 2026 mismatch and coverage follow-up
 

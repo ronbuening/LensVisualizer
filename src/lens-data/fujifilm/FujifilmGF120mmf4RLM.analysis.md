@@ -87,11 +87,11 @@ L21 is the front element of the focusing group G2, a strongly negative biconcave
 
 **L22** — Biconcave Negative. nd = 1.51742, νd = 52.43. Glass: S-NSL36 (OHARA) — light silicate glass. f = −43.3 mm.
 
-**L23** — Biconvex Positive. nd = 1.80000, νd = 29.84. Glass: S-LAH52Q (OHARA) — high-index anomalous-dispersion lanthanum flint. f = +34.2 mm.
+**L23** — Biconvex Positive. nd = 1.80000, νd = 29.84. Glass: S-NBH55 (OHARA) — high-index niobium flint. f = +34.2 mm.
 
 **Doublet combined:** f = +148.3 mm (weakly positive).
 
-This doublet is the chromatic corrector for G2. The pairing is unusual: S-NSL36 is a moderate-dispersion silicate glass (νd = 52.43) while S-LAH52Q is a strongly dispersive lanthanum flint (νd = 29.84, θgF = 0.60178 — well above the normal line). The large Abbe difference (Δν ≈ 23) provides lateral chromatic aberration correction within G2. The doublet is net weakly positive, so the overall negative power of G2 comes predominantly from L21. The patent at ¶0135 states that this three-element negative-negative-positive structure in G2 suppresses variation in astigmatism during focusing.
+This doublet is the chromatic corrector for G2. The pairing is unusual: S-NSL36 is a moderate-dispersion silicate glass (νd = 52.43) while S-NBH55 is a strongly dispersive niobium flint (νd = 29.84, θgF = 0.60178 — well above the normal line). The large Abbe difference (Δν ≈ 23) provides lateral chromatic aberration correction within G2. The doublet is net weakly positive, so the overall negative power of G2 comes predominantly from L21. The patent at ¶0135 states that this three-element negative-negative-positive structure in G2 suppresses variation in astigmatism during focusing.
 
 ### L31+L32 — Cemented Doublet (D3 / G3, OIS Group)
 
@@ -151,7 +151,7 @@ All 14 glasses resolve to OHARA catalog entries with exact (Δnd = 0, Δνd < 0.
 | L14 | 1.85150 | 40.78 | 0.56958 | S-LAH85V | High-index lanthanum glass | Strong positive power, low SA |
 | L21 | 1.83481 | 42.72 | 0.56486 | S-LAH55V | High-index lanthanum glass | Primary diverger (G2) |
 | L22 | 1.51742 | 52.43 | 0.55649 | S-NSL36 | Light silicate glass | Chromatic corrector (G2) |
-| L23 | 1.80000 | 29.84 | 0.60178 | S-LAH52Q | High-index lanthanum flint | Chromatic corrector flint (G2) |
+| L23 | 1.80000 | 29.84 | 0.60178 | S-NBH55 | High-index niobium flint | Chromatic corrector flint (G2) |
 | L31 | 1.49700 | 81.54 | 0.53748 | S-FPL51 | ED fluorophosphate crown | OIS group chromatic corrector |
 | L32 | 1.72000 | 43.69 | 0.56995 | S-LAM52 | Lanthanum flint | Achromatic partner to L31 |
 | L41 | 1.70154 | 41.24 | 0.57664 | S-BAH27 | Barium flint | Focus group singlet (G4) |

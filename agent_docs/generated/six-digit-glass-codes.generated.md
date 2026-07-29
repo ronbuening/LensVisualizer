@@ -867,7 +867,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L23 (Element 6 — L23) | 21 | `689311 — high-dispersion flint class (vendor unresolved)` | 1.68893 / 31.10 | S-TIM28 (trusted Sellmeier) | sellmeier | patents/US5734508.pdf | No reviewed-sidecar hit |
 | L25 (Element 8 — L25) | 25 | `773495 — lanthanum crown / TAF class (vendor unresolved)` | 1.77279 / 49.50 | No catalog entry | abbe | patents/US5734508.pdf | No reviewed-sidecar hit |
 | L3F3 (Element 11 — L3F3) | 30 | `Unmatched (796409 high-index crown)` | 1.79631 / 40.90 | No catalog entry | abbe | patents/US5734508.pdf | No reviewed-sidecar hit |
-| L3R2 (Element 13 — L3R2) | 34A | `795454 — LaSF class (catalog-near; vendor unresolved)` | 1.79668 / 45.40 | No catalog entry | abbe | patents/US5734508.pdf | No reviewed-sidecar hit |
+| L3R2 (Element 13 — L3R2) | 34A | `795454 — LaSF class (catalog-near; vendor unresolved)` | 1.79668 / 45.40 | TAF2 (trusted Sellmeier) | sellmeier | patents/US5734508.pdf | No reviewed-sidecar hit |
 | L3R3 (Element 14 — L3R3) | 36 | `834374 — LaSF/NBFD class (vendor unresolved)` | 1.83400 / 37.40 | No catalog entry | abbe | patents/US5734508.pdf | No reviewed-sidecar hit |
 
 ### [NIKON AI NIKKOR 35mm f/2](../../src/lens-data/nikon/NikonAINikkor35mmf2.data.ts) - US 3,507,558
@@ -1237,7 +1237,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
 |---|---|---|---|---|---|---|---|
-| L4 (Element 4) | 6 | `859300 - high-index flint (patent nd=1.85883, vd=30.0)` | 1.85883 / 30.00 | No catalog entry | abbe | patents/JP2021179551A.pdf | No reviewed-sidecar hit |
+| L4 (Element 4) | 6 | `859300 - high-index flint (patent nd=1.85883, vd=30.0)` | 1.85883 / 30.00 | NBFD30 (trusted Sellmeier) | sellmeier | patents/JP2021179551A.pdf | No reviewed-sidecar hit |
 
 ### [PANASONIC LUMIX S 35mm f/1.8](../../src/lens-data/panasonic/PanasonicS35mmf18.data.ts) - CN 216772097U
 

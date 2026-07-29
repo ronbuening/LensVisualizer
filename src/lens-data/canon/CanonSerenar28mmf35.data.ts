@@ -71,7 +71,7 @@ const LENS_DATA = {
       nd: 1.6237,
       vd: 47.0,
       fl: 18.4,
-      glass: "SK16 (Schott)",
+      glass: "E-BAF8 (HOYA)",
       apd: false as const,
       cemented: "D1",
       role: "Front doublet positive — primary positive refracting element",

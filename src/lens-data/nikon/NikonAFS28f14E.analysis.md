@@ -82,7 +82,7 @@ The following table presents glass identifications for all 14 elements, matched 
 | L15 | 1.88300 | 40.8 | S-LAH58 | OHARA | Lanthanum crown | Cond. (4): nd > 1.8 ✓ |
 | L16 | 1.77250 | 49.6 | S-LAH55V | OHARA | Lanthanum crown | Low-CTE variant |
 | L21 | 1.72916 | 54.7 | S-LAL14 | OHARA | Lanthanum crown | |
-| L22 | 1.69680 | 55.5 | S-LAL61 | OHARA | Lanthanum crown | |
+| L22 | 1.69680 | 55.5 | S-LAL14 | OHARA | Lanthanum crown | |
 | L23 | 1.59282 | 68.6 | **S-FPM2** | OHARA | **Fluorophosphate (ED)** | ΔPgF ≈ +0.014 |
 | L24 | 1.73800 | 32.3 | S-TIH14 | OHARA | Dense flint | Cond. (5): ΔθgF = 0.0007 |
 | L25 | 1.80610 | 33.3 | S-TIH6 | OHARA | Dense flint | |
@@ -234,7 +234,7 @@ Focal lengths labeled "patent" are thick-lens values stated in the patent or ver
 | Element | Type | f (mm) | Glass | Optical Role |
 |---------|------|--------|-------|--------------|
 | **L21** | Pos. meniscus, convex to object | +93.9 (TL) | S-LAL14 | First element of Gr2. Gently converges the beam entering the rear group, sharing the positive power burden with L22 to minimize spherical aberration (patent paragraph [0042]). |
-| **L22** | Biconvex positive | +93.8 (TL) | S-LAL61 | Second positive element continuing the gradual convergence. Together with L21, this pair delivers the initial positive power of Gr2 with minimal higher-order aberration. |
+| **L22** | Biconvex positive | +93.8 (TL) | S-LAL14 | Second positive element continuing the gradual convergence. Together with L21, this pair delivers the initial positive power of Gr2 with minimal higher-order aberration. |
 | **L23** | Biconvex positive (cemented, **ED**) | +56.2 (TL) | **S-FPM2** | Positive ED element — first of two. Part of the pre-stop achromatic cemented pair with L24. The fluorophosphate glass's anomalous partial dispersion (ΔPgF ≈ +0.014) corrects secondary spectrum in axial chromatic aberration. |
 | **L24** | Biconcave negative (cemented) | −25.2 (TL) | S-TIH14 | Negative flint in the pre-stop achromatic pair. Its partial dispersion is nearly on the normal line (ΔPgF = 0.0007, condition 5), ensuring minimal secondary spectrum contribution at the stop location where marginal ray height is smallest. |
 | | *[Aperture Stop — ST]* | | | |

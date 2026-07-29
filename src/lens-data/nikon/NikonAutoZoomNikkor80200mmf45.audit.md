@@ -32,7 +32,7 @@ constrained them.
 | L14 | `699300 - SF15 class` | `SF15 (Sumita coefficient-backed equivalent), 699300` | Added the exact-code SF15 polynomial from Sumita's official all-glass catalog. |
 | L15 | `702411 - BASF7 class` | `BASF7 (Sumita coefficient-backed equivalent), 702411` | Added the exact-code BASF7 polynomial from the same catalog. |
 
-Codes `614563` (L2) and `517696` (L5) remain unresolved because no defensible public coefficient set was found. The
+Code `614563` (L2) remains unresolved because no defensible public coefficient set was found. The
 new equivalents are wavelength-tracing matches, not claims about Nikon's historical melt supplier.
 
 ### Focus audit
@@ -50,3 +50,9 @@ catalog metadata and close focus remains unmodeled, as disclosed in the data and
   warnings and no errors.
 - `npm run test` — passed, 207 files / 2440 tests.
 - `npm run build` — passed, including prerender and sitemap generation for 947 routes.
+
+## 2026-07-29 — S-APL1 catalog backfill
+
+- Replaced L5's provisional vendor-unresolved `517696` wording with `S-APL1 (OHARA; 517696)`.
+- The official OHARA 2026-07-01 all-products catalog supplies formula-3 coefficients and the exact 1.517277 / 69.563 coordinate.
+- Synchronized the element analysis and glass table; code `614563` remains the only unresolved row from the prior glass audit.

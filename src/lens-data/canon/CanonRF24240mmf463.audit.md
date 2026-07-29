@@ -79,3 +79,8 @@ Catalog version: 5c81522
 - Opened the data, analysis, and local patent PDF `patents/US20200142167A1.pdf`; local text confirms the queued rows at surfaces 10, 27, and 32.
 - Updated L6 to `E-FDS1 (HOYA)`, L15 to `S-NBH56 (OHARA)`, and L18 to `S-TIH6 (OHARA)`.
 - The lens remains below full Sellmeier coverage only because the previously audited code-only 531559 row and unmatched 593686 row still lack defensible coefficient-backed public matches.
+
+## 2026-07-29 - Dispersion-coordinate follow-up
+
+- Corrected L12 from `S-LAM3 type (720/437)` to `S-LAM52 (OHARA; 720/437)`. S-LAM52 is the exact 1.72000 / 43.69 catalog row encoded by the patent coordinate; S-LAM3 has νd = 47.93.
+- Synchronized the analysis narrative and glass table.

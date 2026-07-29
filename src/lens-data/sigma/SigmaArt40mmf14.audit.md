@@ -30,3 +30,9 @@ Patent: JP 2020-012952 A, Example 1
 ### Analysis sync
 
 - Updated affected element descriptions, glass table rows, and source notes.
+
+## 2026-07-29 — Dispersion-coordinate follow-up
+
+- Corrected L6 from `M-FCD500 (HOYA)` to `FCD705 (HOYA)`, the exact 1.55032 / 75.50 catalog match.
+- Corrected L16 from `S-NBH56 (OHARA)` to `M-TAFD305 (HOYA)`, the exact 1.85135 / 40.10 catalog match.
+- Synchronized the element narratives, glass table, manufacturing note, and sources.

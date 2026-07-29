@@ -15,7 +15,10 @@ import { mkdirSync, writeFileSync } from "node:fs";
 import buildLens from "../../../src/optics/buildLens.js";
 import {
   allEntries,
+  assessCatalogGlassCompatibility,
   evaluateSellmeier,
+  GLASS_ND_TOLERANCE,
+  GLASS_VD_TOLERANCE,
   LINE_NM,
   resolveGlass,
   type GlassEntry,
@@ -23,8 +26,8 @@ import {
 import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
 import type { LensData } from "../../../src/types/optics.js";
 
-const ND_TOLERANCE = 5e-3;
-const VD_TOLERANCE = 3.0;
+const ND_TOLERANCE = GLASS_ND_TOLERANCE;
+const VD_TOLERANCE = GLASS_VD_TOLERANCE;
 const PGF_TOLERANCE = 0.02;
 const REPORT_DIR = "agent_docs/generated";
 
@@ -209,9 +212,10 @@ describe("glass relabel by lens scan", () => {
         const entry = resolveGlass(element.glass);
         if (!entry) continue;
 
-        const catalogNd = evaluateSellmeier(entry, LINE_NM.d);
-        const catalogDiff = catalogNd - surface.nd;
-        if (Math.abs(catalogDiff) <= ND_TOLERANCE) continue;
+        const compatibility = assessCatalogGlassCompatibility(entry, surface.nd, element.vd);
+        if (compatibility.compatible) continue;
+        const catalogNd = compatibility.catalogNd;
+        const catalogDiff = compatibility.ndDiff;
 
         const embeddedCode = extractGlassCode(element.glass);
         rows.push({
@@ -286,7 +290,7 @@ describe("glass relabel by lens scan", () => {
     }
 
     mkdirSync(REPORT_DIR, { recursive: true });
-    writeFileSync(`${REPORT_DIR}/glass-relabel-by-lens.generated.md`, lines.join("\n") + "\n");
+    writeFileSync(`${REPORT_DIR}/glass-relabel-by-lens.generated.md`, `${lines.join("\n").trimEnd()}\n`);
 
     expect(lensKeys.length).toBeGreaterThanOrEqual(0);
   });

@@ -93,10 +93,10 @@ L1 is the front element and serves three purposes. First, its negative power com
 | Surfaces | r₃ = +1.8201 → r₄ = −1.7383 |
 | Center thickness | 0.0676 (norm) → 3.38 mm |
 | Glass | nd = 1.72916, νd = 54.68 |
-| Catalog match | OHARA S-LAL59 / HOYA LACL60 (lanthanum crown) |
+| Catalog match | OHARA S-LAL18 (lanthanum crown) |
 | Thick-lens focal length | +61.5 mm |
 
-L2 is a strong biconvex element made of lanthanum crown glass (OHARA S-LAL59, nd = 1.729, νd = 54.68) — a high-index, low-dispersion material that delivers positive power without introducing excessive chromatic aberration. The near-symmetrical radii (|r₃| ≈ |r₄|) help minimize coma from this element. Together, L1 + L2 form the patent's "first lens group" with a combined focal length of f_I = +157.7 mm — deliberately weak so that the marginal ray bundle emerging from Group I remains nearly collimated even when the group is extended for close-focus photography.
+L2 is a strong biconvex element made of lanthanum crown glass (OHARA S-LAL18, nd = 1.72916, νd = 54.68) — a high-index, low-dispersion material that delivers positive power without introducing excessive chromatic aberration. The near-symmetrical radii (|r₃| ≈ |r₄|) help minimize coma from this element. Together, L1 + L2 form the patent's "first lens group" with a combined focal length of f_I = +157.7 mm — deliberately weak so that the marginal ray bundle emerging from Group I remains nearly collimated even when the group is extended for close-focus photography.
 
 ### 4.3 L3 — Positive Meniscus (convex toward object)
 
@@ -191,7 +191,7 @@ The design uses seven distinct glass types. Four have exact matches in current c
 | Element(s) | nd | νd | Glass Code | Catalog Match | Glass Family |
 |---|---|---|---|---|---|
 | L1 | 1.60342 | 38.01 | 603/380 | Schott F5 / HOYA E-F5 | Flint |
-| L2 | 1.72916 | 54.68 | 729/547 | OHARA S-LAL59 / HOYA LACL60 | Lanthanum crown |
+| L2 | 1.72916 | 54.68 | 729/547 | OHARA S-LAL18 | Lanthanum crown |
 | L3, L7, L8 | 1.77250 | 49.66 | 773/497 | HOYA LAC14 | Lanthanum crown |
 | L4 | 1.58144 | 40.75 | 581408 | OHARA PBL25 | Short flint |
 | L5 | 1.68250 | 44.65 | 683447 | No exact coefficient-backed public match | Barium/lanthanum flint |
@@ -326,7 +326,7 @@ US 4,708,445 contains six embodiments. They all share the same three-group archi
 | 5 | Cemented doublet + meniscus + singlet + singlet (neg) | 9/8 | 24–28 | 17 surfaces, f_I = 4.05 |
 | **6** | **Cemented doublet + meniscus + cemented doublet** | **9/7** | **29–33** | **Production design** |
 
-Embodiment 6 distinguishes itself through a slightly different glass pairing in Group I: L2 uses a 729/547 lanthanum crown (nd = 1.72916, νd = 54.68 — OHARA S-LAL59 type) rather than the 713/538 glass (nd = 1.71300, νd = 53.84) used in Embodiments 1, 3, 4, and 5. This higher-index crown gives L2 a slightly longer focal length at the same surface curvatures, which appears to have been the final optimization for the production design. The overall Group I focal length of 3.15f places it between Embodiment 1's more aggressive 2.91f and Embodiment 5's conservative 4.05f.
+Embodiment 6 distinguishes itself through a slightly different glass pairing in Group I: L2 uses a 729/547 lanthanum crown (nd = 1.72916, νd = 54.68 — OHARA S-LAL18) rather than the 713/538 glass (nd = 1.71300, νd = 53.84) used in Embodiments 1, 3, 4, and 5. This higher-index crown gives L2 a slightly longer focal length at the same surface curvatures, which appears to have been the final optimization for the production design. The overall Group I focal length of 3.15f places it between Embodiment 1's more aggressive 2.91f and Embodiment 5's conservative 4.05f.
 
 Embodiment 6 also uses a slightly different glass for L6 (nd = 1.72000, νd = 46.03 — S-LAM61 / 720460) compared to most other embodiments (which use νd ≈ 41.98 — a 720420 glass). The higher Abbe number in Embodiment 6's L6 provides slightly better chromatic balance in the rear cemented doublet.
 
@@ -350,7 +350,7 @@ Surface numbering follows the patent convention (r₁ through r₁₆, d₁ thro
 |---|---|---|---|---|---|
 | r₁ | +60.32 | 1.39 | 1.60342 | L1 front | Neg. meniscus, F5 glass |
 | r₂ | +29.48 | 2.01 | 1.0 (air) | L1 rear | |
-| r₃ | +91.03 | 3.38 | 1.72916 | L2 front | Biconvex, S-LAL59 glass |
+| r₃ | +91.03 | 3.38 | 1.72916 | L2 front | Biconvex, S-LAL18 glass |
 | r₄ | −86.94 | 0.12 | 1.0 (air) | L2 rear | **Variable gap (focusing)** |
 | r₅ | +20.50 | 6.08 | 1.77250 | L3 front | Pos. meniscus, LAC14 glass |
 | r₆ | +37.71 | 1.52 | 1.0 (air) | L3 rear | |

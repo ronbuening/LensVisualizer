@@ -14,7 +14,12 @@
 import { describe, expect, it } from "vitest";
 import { mkdirSync, writeFileSync } from "node:fs";
 import buildLens from "../../../src/optics/buildLens.js";
-import { evaluateSellmeier, LINE_NM, resolveGlass } from "../../../src/optics/glassCatalog.js";
+import {
+  assessCatalogGlassCompatibility,
+  GLASS_ND_TOLERANCE,
+  GLASS_VD_TOLERANCE,
+  resolveGlass,
+} from "../../../src/optics/glassCatalog.js";
 import type { DispersionQuality } from "../../../src/optics/dispersion.js";
 import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
 import type { ElementData, LensData } from "../../../src/types/optics.js";
@@ -22,7 +27,6 @@ import type { ElementData, LensData } from "../../../src/types/optics.js";
 const modules = import.meta.glob<{ default: LensData }>("../../../src/lens-data/**/*.data.ts", { eager: true });
 
 const REPORT_DIR = "agent_docs/generated";
-const MISMATCH_TOLERANCE = 5e-3;
 const MAX_MISSING_DETAILS = 8;
 const COVERAGE_BUCKET_SIZE = 5;
 
@@ -91,11 +95,12 @@ function describeMissingSurface(surfaceNd: number, element: ElementData | undefi
     return isExplicitlyUnmatched(element.glass) ? "Explicit unmatched/proprietary annotation" : "No catalog match";
   }
 
-  const catalogNd = evaluateSellmeier(entry, LINE_NM.d);
-  const diff = catalogNd - surfaceNd;
-  if (Math.abs(diff) > MISMATCH_TOLERANCE) {
-    const sign = diff >= 0 ? "+" : "";
-    return `${entry.name} rejected by nd safety net (Δnd=${sign}${diff.toFixed(4)})`;
+  const compatibility = assessCatalogGlassCompatibility(entry, surfaceNd, element.vd);
+  if (!compatibility.compatible) {
+    const ndSign = compatibility.ndDiff >= 0 ? "+" : "";
+    const vdSign = compatibility.vdDiff !== null && compatibility.vdDiff >= 0 ? "+" : "";
+    const vdPart = compatibility.vdDiff === null ? "" : `, Δνd=${vdSign}${compatibility.vdDiff.toFixed(2)}`;
+    return `${entry.name} rejected by optical-coordinate safety net (Δnd=${ndSign}${compatibility.ndDiff.toFixed(4)}${vdPart})`;
   }
 
   return "Resolved catalog entry did not reach Sellmeier runtime path";
@@ -156,8 +161,8 @@ describe("Sellmeier coverage scan", () => {
 
         const element = surface.elemId ? elementById.get(surface.elemId) : undefined;
         const catalogEntry = element?.glass ? resolveGlass(element.glass) : null;
-        const catalogNd = catalogEntry ? evaluateSellmeier(catalogEntry, LINE_NM.d) : null;
-        const sellmeierEligible = catalogNd !== null && Math.abs(catalogNd - surface.nd) <= MISMATCH_TOLERANCE;
+        const sellmeierEligible =
+          catalogEntry !== null && assessCatalogGlassCompatibility(catalogEntry, surface.nd, element?.vd).compatible;
         const quality = L.indexByIdx?.[i]?.quality ?? "missing";
         const trustedChromatic = sellmeierEligible || quality === "lineIndices";
 
@@ -192,26 +197,27 @@ describe("Sellmeier coverage scan", () => {
         if (!element.glass) return false;
         const catalogEntry = resolveGlass(element.glass);
         if (!catalogEntry) return false;
-        const catalogNd = evaluateSellmeier(catalogEntry, LINE_NM.d);
         const elementSurfaces = L.S.map((surface, index) => ({ surface, index })).filter(
           ({ surface }) => surface.nd !== 1 && surface.elemId === element.id,
         );
         return (
           elementSurfaces.length > 0 &&
-          elementSurfaces.every(({ surface }) => Math.abs(catalogNd - surface.nd) <= MISMATCH_TOLERANCE)
+          elementSurfaces.every(
+            ({ surface }) => assessCatalogGlassCompatibility(catalogEntry, surface.nd, element.vd).compatible,
+          )
         );
       }).length;
       const fullyTrustedChromaticElements = L.elements.filter((element) => {
         if (!element.glass) return false;
         const catalogEntry = resolveGlass(element.glass);
-        const catalogNd = catalogEntry ? evaluateSellmeier(catalogEntry, LINE_NM.d) : null;
         const elementSurfaces = L.S.map((surface, index) => ({ surface, index })).filter(
           ({ surface }) => surface.nd !== 1 && surface.elemId === element.id,
         );
         return (
           elementSurfaces.length > 0 &&
           elementSurfaces.every(({ surface, index }) => {
-            const sellmeierEligible = catalogNd !== null && Math.abs(catalogNd - surface.nd) <= MISMATCH_TOLERANCE;
+            const sellmeierEligible =
+              catalogEntry !== null && assessCatalogGlassCompatibility(catalogEntry, surface.nd, element.vd).compatible;
             return sellmeierEligible || L.indexByIdx?.[index]?.quality === "lineIndices";
           })
         );
@@ -257,7 +263,9 @@ describe("Sellmeier coverage scan", () => {
     lines.push(
       "Strict Sellmeier coverage is still reported: a surface counts when its `glass` annotation resolves to a catalog entry",
     );
-    lines.push(`and the catalog d-line index agrees with the stored \`surface.nd\` within ${MISMATCH_TOLERANCE}.`);
+    lines.push(
+      `and its catalog coordinates agree with the authored prescription within nd ±${GLASS_ND_TOLERANCE} and νd ±${GLASS_VD_TOLERANCE}.`,
+    );
     lines.push("Trusted chromatic coverage additionally counts measured C/F/g line-index surfaces.");
     lines.push("");
     lines.push("**Regenerate this file** by running `npm test -- sellmeierCoverageScan`.");

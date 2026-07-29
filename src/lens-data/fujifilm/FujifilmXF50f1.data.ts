@@ -52,7 +52,7 @@ const LENS_DATA = {
       nd: 1.54072,
       vd: 47.23,
       fl: -76.1,
-      glass: "S-FPM3 (Ohara)",
+      glass: "S-TIL2 (OHARA)",
       role: "Front negative element — concave first surface diverges the on-axis beam before L1b. Part of the wide-conversion sub-structure (Gs1) that suppresses sagittal coma at the ~48 mm entrance pupil.",
     },
     {

@@ -172,7 +172,7 @@ const LENS_DATA = {
       nd: 1.6968,
       vd: 55.5,
       fl: 93.8,
-      glass: "S-LAL61 (OHARA)",
+      glass: "S-LAL14 (OHARA)",
       apd: false,
       role: "Second positive element continuing gradual convergence. Together with L21, delivers the initial positive power of Gr2 with minimal higher-order aberration.",
     },

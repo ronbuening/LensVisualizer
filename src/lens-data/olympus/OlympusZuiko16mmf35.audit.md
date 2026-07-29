@@ -26,3 +26,9 @@ Patent: US 3,850,509, Example 1
 ### Analysis sync
 
 - Updated the L6/L7b element text, glass table row, and catalog note.
+
+## 2026-07-29 — S-APL1 catalog backfill
+
+- Replaced the provisional `517696 ... no public Sellmeier match` annotations on L6 and L7b with `S-APL1 (OHARA; 517696)`.
+- The official OHARA 2026-07-01 all-products catalog supplies the discontinued glass's formula-3 coefficients and exact 1.517277 / 69.563 coordinate.
+- Synchronized the analysis element text, glass table, and source note.
