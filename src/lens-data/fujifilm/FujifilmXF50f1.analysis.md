@@ -73,7 +73,7 @@ All element shapes are derived from the sign convention: R > 0 = convex toward o
 
 **Role:** L1a is the concave-fronted negative element at the front of the production lens. As the first unit (Gs1) of the wide-conversion sub-structure, it diverges the on-axis beam before L1b reconverges it. The patent (¶0151) explains that this configuration reduces the angle of the maximum-field principal ray relative to the optical axis, suppressing sagittal coma. The concave front surface also helps correct spherical aberration (¶0153).
 
-**Glass:** nd = 1.54072, νd = 47.23 — exact match to **Ohara S-FPM3** (fluorophosphate crown). High-confidence identification.
+**Glass:** nd = 1.54072, νd = 47.23 — exact match to **OHARA S-TIL2** (titanium light flint). High-confidence identification.
 
 ### 3.2 — Element 2 (L1b): Biconvex Positive — ED Glass ①
 
@@ -260,7 +260,7 @@ The XF 50mm f/1.0 R WR is a 12-element, 9-group inner-focus prime with an f/1.0 
 - A **single doubly-aspherical element** (L2a) immediately behind the stop, carrying 20th-order polynomial figuring for residual aberration correction.
 - A **lightweight 5-element focusing group** with two cemented doublets for chromatic stability across the focus range.
 
-The design is all-glass, all-refractive — no diffractive surfaces, no hybrid resin aspherics, and no fluorite. Verified glass identifications: L1a = OHARA S-FPM3, L1d = OHARA S-NPH3 (both exact on nd, νd, θgF). The ED glass (L1b, L1c; nd = 1.59282, νd = 68.62) does not match any current Ohara catalog entry and remains unidentified.
+The design is all-glass, all-refractive — no diffractive surfaces, no hybrid resin aspherics, and no fluorite. Verified glass identifications: L1a = OHARA S-TIL2, L1d = OHARA S-NPH3 (both exact on nd, νd, θgF). The ED glass (L1b, L1c; nd = 1.59282, νd = 68.62) does not match any current Ohara catalog entry and remains unidentified.
 
 ---
 

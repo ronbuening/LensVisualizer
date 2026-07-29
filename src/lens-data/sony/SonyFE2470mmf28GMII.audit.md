@@ -46,3 +46,7 @@ Patent: WO 2023/181666 A1, Example 4
 - Existing R/d/nd/vd, zoom/focus spacings, high-index/code-backed labels, APD metadata, and SD profile remain consistent with the patent-backed prescription and prior relabel pass.
 - No APD, high-index, glass-label, spacing, or SD edits were needed in this pass.
 - Current generated glass reports show no active Sony catalog-mismatch row for this lens.
+
+## 2026-07-29 - Catalog expansion follow-up
+
+- Corrected L24 from `S-LAH79` to HOYA `TAFD40L-W`, the exact 2.00069 / 25.46 row.

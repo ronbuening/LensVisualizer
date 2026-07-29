@@ -11,7 +11,7 @@
  *   n²(λ) = 1 + B1·λ²/(λ²−C1) + B2·λ²/(λ²−C2) + B3·λ²/(λ²−C3)
  *   where λ is in micrometres and C1..C3 are in micrometres².
  *
- * Coverage status: current source count 352 entries. See agent_docs/glass-catalog-buildout.md
+ * Coverage status: current source count 407 entries. See agent_docs/glass-catalog-buildout.md
  * for the addition history and sourcing playbook.
  *
  * All coefficients are vendor-published physical measurements. Each entry
@@ -26,6 +26,25 @@ import { LINE_NM } from "./spectralLines.js";
 
 export type { GlassEntry } from "./glassCatalogTypes.js";
 export { LINE_NM } from "./spectralLines.js";
+
+/** Maximum accepted d-line index delta between authored lens data and a catalog entry. */
+export const GLASS_ND_TOLERANCE = 3e-3;
+
+/**
+ * Maximum accepted Abbe-number delta between authored lens data and a catalog entry.
+ *
+ * Patent tables commonly round νd more heavily than nd. A two-point window still
+ * accommodates ordinary tabular rounding while rejecting nearby glasses from
+ * meaningfully different dispersion families.
+ */
+export const GLASS_VD_TOLERANCE = 2;
+
+export interface CatalogGlassCompatibility {
+  readonly compatible: boolean;
+  readonly catalogNd: number;
+  readonly ndDiff: number;
+  readonly vdDiff: number | null;
+}
 
 /**
  * Evaluate the Sellmeier formula at wavelength λ (nm) for a catalog entry.
@@ -51,6 +70,29 @@ export function evaluateSellmeier(entry: GlassEntry, lambdaNm: number): number {
   const [C1, C2, C3] = entry.C;
   const n2 = 1 + (B1 * l2) / (l2 - C1) + (B2 * l2) / (l2 - C2) + (B3 * l2) / (l2 - C3);
   return Math.sqrt(n2);
+}
+
+/**
+ * Check whether a catalog glass is compatible with an authored (nd, νd) pair.
+ *
+ * nd alone is not enough to identify a dispersion curve: different glass
+ * families can share nearly the same d-line index while having very different
+ * Abbe numbers. When the lens data includes νd, require both coordinates.
+ */
+export function assessCatalogGlassCompatibility(
+  entry: GlassEntry,
+  storedNd: number,
+  storedVd: number | undefined,
+): CatalogGlassCompatibility {
+  const catalogNd = evaluateSellmeier(entry, LINE_NM.d);
+  const ndDiff = catalogNd - storedNd;
+  const vdDiff = storedVd === undefined ? null : entry.vd - storedVd;
+  return {
+    compatible: Math.abs(ndDiff) <= GLASS_ND_TOLERANCE && (vdDiff === null || Math.abs(vdDiff) <= GLASS_VD_TOLERANCE),
+    catalogNd,
+    ndDiff,
+    vdDiff,
+  };
 }
 
 /**
@@ -118,7 +160,7 @@ export function resolveGlass(glassString: string | undefined): GlassEntry | null
 
   // Pull out candidate tokens. We accept hyphenated catalog names like "S-FPL51"
   // and bare names like "BK7", plus 6-digit Schott codes.
-  const tokens: string[] = [...(glassString.match(/[A-Za-z][A-Za-z0-9-]*\d[A-Za-z0-9]*|\d{6}/g) ?? [])];
+  const tokens: string[] = [...(glassString.match(/[A-Za-z][A-Za-z0-9-]*\d[A-Za-z0-9-]*|\d{6}/g) ?? [])];
   for (const match of glassString.matchAll(/(^|[^\d])(\d{3})\s*[/-]\s*(\d{3})(?!\d)/g)) {
     tokens.push(`${match[2]}${match[3]}`);
   }
@@ -131,14 +173,22 @@ export function resolveGlass(glassString: string | undefined): GlassEntry | null
   }
   for (const tokRaw of tokens) {
     const tok = tokRaw.toUpperCase();
-    // Direct canonical match.
-    const direct = CATALOG.get(tok);
-    if (direct) return direct;
-    // Alias to canonical.
-    const aliased = ALIASES.get(tok);
-    if (aliased) {
-      const e = CATALOG.get(aliased.toUpperCase());
-      if (e) return e;
+    const candidates = [tok];
+    for (let hyphen = tok.lastIndexOf("-"); hyphen > 0; hyphen = tok.lastIndexOf("-", hyphen - 1)) {
+      candidates.push(tok.slice(0, hyphen));
+    }
+    for (const candidate of candidates) {
+      // Direct canonical match. Progressive suffix trimming preserves support
+      // for prose such as "S-FPL51-class" without losing real names such as
+      // "TAFD40L-W" and "MP-FCD500-20".
+      const direct = CATALOG.get(candidate);
+      if (direct) return direct;
+      // Alias to canonical.
+      const aliased = ALIASES.get(candidate);
+      if (aliased) {
+        const e = CATALOG.get(aliased.toUpperCase());
+        if (e) return e;
+      }
     }
     // 6-digit Schott code.
     if (/^\d{6}$/.test(tok)) {

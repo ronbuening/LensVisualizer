@@ -61,3 +61,10 @@ Changes made:
 ### Analysis sync
 
 - Updated the glass table and shared L26/L53 note to remove the stale M-TAFD305 identification.
+
+## 2026-07-29 - Glass classification follow-up
+
+- Corrected L22 from the false HOYA E-ADF10 annotation to OHARA S-TIH1.
+- The stored `nd=1.71736`, `vd=29.53`, and coordinate `717295` match S-TIH1 exactly; E-ADF10 is
+  `1.61310 / 44.36` (`613444`).
+- Synchronized the analysis. No prescription values changed.

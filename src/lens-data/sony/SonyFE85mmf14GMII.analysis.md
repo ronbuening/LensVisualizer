@@ -44,7 +44,7 @@ The total optical track is 123.8 mm for an 82.45 mm EFL, giving a track-to-focal
 
 ### L1 — Positive Meniscus, convex to object
 
-nd = 1.92286, νd = 20.9. Glass: S-NPH2 (OHARA) — ultra-high-index dense flint. f = +195.9 mm.
+nd = 1.92286, νd = 20.9. Glass: PBH21 (OHARA) — ultra-high-index dense flint. f = +195.9 mm.
 
 L1 is a high-index dense flint meniscus that serves as the front collector. Despite its very low Abbe number (extreme dispersion), its weakly positive power (f nearly 2.4× the system focal length) means its chromatic contribution is small. The choice of such a high refractive index (nd ≈ 1.92) allows the element to provide the needed converging action with gentle curvatures (R1 = 56.98, R2 = 79.67), reducing surface-induced higher-order aberrations. The meniscus shape (both radii positive, R1 < R2, convex toward object) steers the marginal ray inward without introducing excessive spherical aberration at f/1.4.
 
@@ -162,7 +162,7 @@ The design uses 13 distinct glass types across 14 elements (L6 and L11 share the
 
 | Element | nd | νd | Glass | Vendor | Class | Role |
 |---|---|---|---|---|---|---|
-| L1 | 1.92286 | 20.9 | S-NPH2 | OHARA | Dense flint | High-nd front collector |
+| L1 | 1.92286 | 20.9 | PBH21 | OHARA | Dense flint | High-nd front collector |
 | L2 | 1.49700 | 81.6 | S-FPL51 | OHARA | ED fluorophosphate | Primary + secondary spectrum correction |
 | L3 | 1.53775 | 74.7 | S-FPM3 | OHARA | ED phosphate crown | Additional low-dispersion positive power |
 | L4 | 1.85451 | 25.2 | S-NBH56 class | OHARA | Dense flint | Achromatizing negative in G1 |
@@ -180,7 +180,7 @@ The design uses 13 distinct glass types across 14 elements (L6 and L11 share the
 
 The chromatic correction strategy rests on three pillars. First, the two ED elements L2 (S-FPL51, νd = 81.6) and L3 (S-FPM3, νd = 74.7) in G1 provide the anomalous partial dispersion needed for secondary spectrum correction. These correspond to Sony's marketed "2 ED glass elements." Second, the focusing group G2 contains its own internal achromatization via the crown/flint doublet L8+L9, where L8 (S-PHM52, νd = 63.4) is a phosphate crown with positive anomalous partial dispersion, stabilizing both primary and secondary chromatic performance as the group translates during focusing. Third, the rear doublet L12+L13 with its extreme index gap (Δnd = 0.393) controls lateral color in the image periphery.
 
-The use of three ultra-high-index flint glasses — S-NPH2 (nd = 1.923), patent-code 986165 (nd = 1.986), and patent-code 870200 (nd = 1.870) — at positions L1, L12, and L14 is a distinctive signature of this design. These glasses allow strong optical power at each position with manageable curvatures, reducing the total element count and track length. The tradeoff is high dispersion (νd < 21 for all three), which must be compensated by the ED and crown elements elsewhere in the system.
+The use of three ultra-high-index flint glasses — PBH21 (nd = 1.923), patent-code 986165 (nd = 1.986), and patent-code 870200 (nd = 1.870) — at positions L1, L12, and L14 is a distinctive signature of this design. These glasses allow strong optical power at each position with manageable curvatures, reducing the total element count and track length. The tradeoff is high dispersion (νd < 21 for all three), which must be compensated by the ED and crown elements elsewhere in the system.
 
 ---
 
@@ -288,4 +288,4 @@ Glass identifications now use catalog entries for L1–L8, L10, L11, L13, and th
 
 1. WO 2025/239028 A1, "Imaging Optical System and Imaging Device," Sony Group Corporation, published November 20, 2025. Example 2 (Tables 6–10, Figure 6).
 2. Sony Electronics, "FE 85mm F1.4 GM II" product page and specifications (SEL85F14GM2), announced August 28, 2024.
-3. OHARA Inc., *Optical Glass Catalog*, current edition — glass identifications for S-NPH2, S-FPL51, S-FPM3, S-NBH56, S-NBH5, S-LAH89, S-LAH98, S-PHM52, S-LAH65V, S-FTM16, and S-BSL7.
+3. OHARA Inc., *Optical Glass Catalog*, current edition — glass identifications for PBH21, S-FPL51, S-FPM3, S-NBH56, S-NBH5, S-LAH89, S-LAH98, S-PHM52, S-LAH65V, S-FTM16, and S-BSL7.

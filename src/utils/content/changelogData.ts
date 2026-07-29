@@ -19,6 +19,22 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-07-29 ──────────────────────────────────────────────────
+  {
+    date: "2026-07-29",
+    type: "lens",
+    summary: "Added Nikon 12-24mm, 24-120mm, and 28-200mm AF zoom lenses",
+  },
+  {
+    date: "2026-07-29",
+    type: "improvement",
+    summary: "Expanded the optical glass catalog and tightened dispersion matching",
+  },
+  {
+    date: "2026-07-29",
+    type: "fix",
+    summary: "Fixed chromatic glass matching across the lens catalog",
+  },
   // ── 2026-07-28 ──────────────────────────────────────────────────
   {
     date: "2026-07-28",

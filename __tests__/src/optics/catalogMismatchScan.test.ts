@@ -2,9 +2,9 @@
  * Catalog-mismatch scanner.
  *
  * Walks every lens in the catalog and identifies surfaces where the element's
- * `glass` string resolves to a known catalog entry but the catalog Sellmeier
- * d-line index disagrees with the stored `surface.nd` by more than the safety-
- * net tolerance (5e-3) used in src/optics/dispersion.ts. These mismatches
+ * `glass` string resolves to a known catalog entry but its published (nd, νd)
+ * coordinates disagree with the authored prescription beyond the safety-net
+ * tolerances used in src/optics/dispersion.ts. These mismatches
  * indicate either:
  *
  *   (a) a speculative glass identification in the lens data that turned out to
@@ -23,11 +23,15 @@
 import { describe, it, expect } from "vitest";
 import { mkdirSync, writeFileSync } from "node:fs";
 import buildLens from "../../../src/optics/buildLens.js";
-import { resolveGlass, evaluateSellmeier, LINE_NM } from "../../../src/optics/glassCatalog.js";
+import {
+  assessCatalogGlassCompatibility,
+  GLASS_ND_TOLERANCE,
+  GLASS_VD_TOLERANCE,
+  resolveGlass,
+} from "../../../src/optics/glassCatalog.js";
 import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
 import type { LensData } from "../../../src/types/optics.js";
 
-const MISMATCH_TOLERANCE = 5e-3;
 const REPORT_DIR = "agent_docs/generated";
 
 interface Mismatch {
@@ -40,8 +44,11 @@ interface Mismatch {
   glassString: string;
   catalogName: string;
   storedNd: number;
+  storedVd: number | undefined;
   catalogNd: number;
-  diff: number;
+  catalogVd: number;
+  ndDiff: number;
+  vdDiff: number | null;
 }
 
 function toRepoRelativeLensPath(modulePath: string): string {
@@ -97,9 +104,8 @@ describe("catalog-mismatch scan", () => {
         if (!entry) continue;
         totalCatalogResolved++;
 
-        const catalogNd = evaluateSellmeier(entry, LINE_NM.d);
-        const diff = catalogNd - surface.nd;
-        if (Math.abs(diff) > MISMATCH_TOLERANCE) {
+        const compatibility = assessCatalogGlassCompatibility(entry, surface.nd, element.vd);
+        if (!compatibility.compatible) {
           mismatches.push({
             lensKey: data.key,
             lensName: data.name ?? data.key,
@@ -110,8 +116,11 @@ describe("catalog-mismatch scan", () => {
             glassString: element.glass,
             catalogName: entry.name,
             storedNd: surface.nd,
-            catalogNd,
-            diff,
+            storedVd: element.vd,
+            catalogNd: compatibility.catalogNd,
+            catalogVd: entry.vd,
+            ndDiff: compatibility.ndDiff,
+            vdDiff: compatibility.vdDiff,
           });
         }
       }
@@ -138,7 +147,7 @@ describe("catalog-mismatch scan", () => {
     lines.push("");
     lines.push("Surfaces where the element's `glass` string resolves to a vendor catalog entry");
     lines.push(
-      `but the catalog Sellmeier d-line index disagrees with the stored \`surface.nd\` by more than ${MISMATCH_TOLERANCE}.`,
+      `but its published coordinates disagree with the stored prescription beyond nd ±${GLASS_ND_TOLERANCE} or νd ±${GLASS_VD_TOLERANCE}.`,
     );
     lines.push("");
     lines.push(
@@ -201,12 +210,13 @@ describe("catalog-mismatch scan", () => {
         const patentSuffix = first.patentNumber ? ` — ${first.patentNumber}` : "";
         lines.push(`### [${first.lensName}](../../${first.filePath})${patentSuffix}`);
         lines.push("");
-        lines.push("| Surface | Glass annotation | Catalog match | Stored nd | Catalog nd | Δnd |");
-        lines.push("|---|---|---|---|---|---|");
+        lines.push("| Surface | Glass annotation | Catalog match | Stored nd/νd | Catalog nd/νd | Δnd | Δνd |");
+        lines.push("|---|---|---|---|---|---|---|");
         for (const m of list) {
-          const sign = m.diff >= 0 ? "+" : "";
+          const ndSign = m.ndDiff >= 0 ? "+" : "";
+          const vdSign = m.vdDiff !== null && m.vdDiff >= 0 ? "+" : "";
           lines.push(
-            `| ${m.surfaceLabel} | \`${m.glassString}\` | ${m.catalogName} | ${m.storedNd.toFixed(5)} | ${m.catalogNd.toFixed(5)} | ${sign}${m.diff.toFixed(4)} |`,
+            `| ${m.surfaceLabel} | \`${m.glassString}\` | ${m.catalogName} | ${m.storedNd.toFixed(5)} / ${m.storedVd?.toFixed(2) ?? "—"} | ${m.catalogNd.toFixed(5)} / ${m.catalogVd.toFixed(2)} | ${ndSign}${m.ndDiff.toFixed(4)} | ${m.vdDiff === null ? "—" : `${vdSign}${m.vdDiff.toFixed(2)}`} |`,
           );
         }
         lines.push("");
@@ -216,7 +226,7 @@ describe("catalog-mismatch scan", () => {
     // Vitest runs from the project root; this relative path is resolved against cwd.
     mkdirSync(REPORT_DIR, { recursive: true });
     const reportPath = `${REPORT_DIR}/catalog-mismatches.generated.md`;
-    writeFileSync(reportPath, lines.join("\n") + "\n");
+    writeFileSync(reportPath, `${lines.join("\n").trimEnd()}\n`);
 
     // Test always passes — this scan is observational, not a CI gate.
     expect(totalLenses).toBeGreaterThan(0);

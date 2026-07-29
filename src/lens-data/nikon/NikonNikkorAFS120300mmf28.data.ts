@@ -121,7 +121,7 @@ const LENS_DATA = {
       nd: 1.71736,
       vd: 29.53,
       fl: 192.7,
-      glass: "HOYA E-ADF10",
+      glass: "S-TIH1 (OHARA; exact 717295 coordinate)",
       apd: false,
       role: "Positive element of G2 cemented doublet; corrects monochromatic aberrations.",
       cemented: "J2",

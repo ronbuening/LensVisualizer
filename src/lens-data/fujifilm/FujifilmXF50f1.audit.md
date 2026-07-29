@@ -18,3 +18,8 @@ Patent: US 2021/0231927 A1, Example 3
 ### Analysis sync
 
 - Updated the L1d glass identification and verified-glass note.
+
+## 2026-07-29 — Dispersion-coordinate follow-up
+
+- Corrected L1a from `S-FPM3 (OHARA)` to `S-TIL2 (OHARA)`. S-TIL2 exactly matches the patent's 1.54072 / 47.23 coordinate; S-FPM3 has νd = 74.70.
+- Synchronized the element analysis and verified-glass note.

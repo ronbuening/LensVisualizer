@@ -7,7 +7,21 @@ available, it falls back to partial measured `nC`/`nF` line indices, dPgF-correc
 approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **352 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **407 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+
+The July 29, 2026 Phase 43 pass added 33 exact records from the official HOYA 2026-07-07 and OHARA 2026-07-01
+all-products Zemax catalogs. The HOYA additions are M-TAF101, TAC8, LAC14, M-BACD12, M-TAF105, M-TAF1, FD60,
+FF5, LBC3N, M-TAFD307, NBF1, TAFD40L-W, E-LAF7, FDS20-W, MP-FCD500-20, TAC6L, BACED5, M-FD80, PCD2, and
+TAC4. The OHARA additions are historical PBH21, L-LAH90, S-BSM25, S-BAL3, S-BAM12, S-LAL7Q, S-BAH32,
+S-BSM9, S-LAL52, L-LAH86, S-LAL21, S-TIM6, and L-LAL13. This larger coordinate set allowed the runtime
+compatibility window to tighten from nd ±0.005 / νd ±3 to nd ±0.003 / νd ±2 while increasing strict coverage from
+4499 to 4535 surfaces.
+
+The July 29, 2026 coverage pass added 13 exact HOYA records from the vendor's current and obsolete-inclusive Zemax
+catalog: BACD14, BACD8, E-F5, E-F8, E-FEL1, FCD10A, FCD500, FCD915, NBFD30, TAF2, TAF3D, TAFD34, and TAFD5.
+The same source pass added OHARA S-APL1, S-BSM36, and S-LAL61 from the vendor's 2026-07-01 all-products catalog.
+The same pass strengthened runtime matching to require agreement in both nd and νd, preventing same-index glasses from
+different dispersion families from being accepted silently.
 
 The July 23, 2026 Canon batch added OHARA S-TIH53WN from the vendor's April 2025 datasheet. The WN variant retains
 the conventional d-line index while publishing modified off-d-line indices and dispersion constants for
@@ -298,6 +312,24 @@ through `assertCatalogConsistent`):
 
 Adding the canonical E-FD7 row also exposed an older Sony 613370 annotation that used “E-FD7 class” for a different
 coordinate. That row was relabeled to the exact E-F3/S-TIM3 class so name resolution cannot select 640346.
+
+**Phase 40 additions** (July 2026 — Nikon AF zoom patent pass using Hikari's official 2023 optical-glass catalog;
+all four entries retain the vendor's formula-3 power series and round-trip through `assertCatalogConsistent`):
+
+| Glass | Vendor | Code | Notes |
+|---|---|---:|---|
+| ★ J-SFH2 | Hikari | 861231 | Current Hikari coordinate match for patent code 861230 in the 24–120mm design |
+| ★ J-SSK5 | Hikari | 658508 | Exact code and coordinate match for the 24–120mm rear group |
+| ★ J-K3 | Hikari | 518588 | Current Hikari coordinate match for patent code 518589 in the 24–120mm rear group |
+| ★ J-LAK01 | Hikari | 640602 | Current Hikari coordinate match for patent code 640601 in the 28–200mm front group |
+
+**Phase 41 additions** (July 2026 — generated coverage-opportunity follow-up using HOYA's official NBFD32
+characteristic sheet and current Zemax catalog, including obsolete glasses):
+
+| Glass | Vendor | Code | Notes |
+|---|---|---:|---|
+| ★ NBFD32 | Hoya | 730322 | Exact current catalog row used by Canon RF 50mm f/1.4 L VCM, Fujifilm XF 23mm f/2.8 R WR, and Sigma 17–40mm f/1.8 DC Art |
+| ★ E-ADF10 | Hoya | 613444 | Discontinued anomalous-dispersion flint used by Sigma 105mm f/1.4 Art; adding it also prompted correction of three stale E-ADF10 guesses |
 
 **Phase 17 additions** (May 2026 — Hasselblad/Laowa/Leica/Minolta/Nikon six-digit missing-Sellmeier queue pass; all entries round-trip through `assertCatalogConsistent`):
 

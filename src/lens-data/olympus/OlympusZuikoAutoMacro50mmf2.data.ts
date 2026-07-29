@@ -76,7 +76,7 @@ const LENS_DATA = {
       nd: 1.72916,
       vd: 54.68,
       fl: 61.5,
-      glass: "S-LAL59 (729/547)",
+      glass: "S-LAL18 (OHARA; 729/547)",
       apd: false,
       role: "Positive crown completing Group I achromat; Group I has weak positive power (f_I ≈ 158 mm) to keep marginal rays collimated during close focusing",
     },

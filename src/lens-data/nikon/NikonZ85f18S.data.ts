@@ -123,7 +123,7 @@ const LENS_DATA = {
       nd: 1.92286,
       vd: 20.88,
       fl: 76.6,
-      glass: "S-NPH2 (OHARA)",
+      glass: "PBH21 (OHARA; historical 923209)",
       apd: false,
       cemented: "D2",
       role: "Extreme-dispersion positive element in the Gr2 focus doublet. High nd/low νd enables strong power in a compact, lightweight element for AF speed.",

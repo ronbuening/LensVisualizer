@@ -55,3 +55,8 @@ Catalog version: 88dde1c
 - Updated [FujifilmGF80mmf17R.analysis.md](FujifilmGF80mmf17R.analysis.md) to describe L31 as a catalog-backed NHG glass.
 - Added H-ZLaF68L to the runtime catalog in [glassCatalogData.ts](../../optics/glassCatalogData.ts).
 - Batch verification is recorded in [six-digit-glass-codes-missing-sellmeier-reviewed.md](../../../agent_docs/generated/six-digit-glass-codes-missing-sellmeier-reviewed.md).
+
+## 2026-07-29 — Dispersion-coordinate follow-up
+
+- Corrected L11 from `S-NBH55 (OHARA)` to `S-LAH52Q (OHARA)`. S-LAH52Q exactly matches 1.79952 / 42.24; S-NBH55 is the distinct 1.80000 / 29.84 glass.
+- Synchronized the element narrative and glass summary.

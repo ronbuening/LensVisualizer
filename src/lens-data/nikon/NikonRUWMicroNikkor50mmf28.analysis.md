@@ -80,7 +80,7 @@ L2R2 supplies positive power and L2R3 supplies closely matched negative power wi
 
 ### L31 — Biconcave Negative, G3
 
-nd = 1.86074, νd = 23.0. Glass: unmatched J-SFH2 class (Hikari; 861230 region, no source-backed local catalog entry). f = -35.76 mm.
+nd = 1.86074, νd = 23.0. Glass: Hikari J-SFH2 coordinate successor to the 861230 patent region. f = -35.76 mm.
 
 L31 is the high-index, high-dispersion negative element at the entrance of G3. It forms the negative member of the positive core's internal correction structure. Its placement before the strong positive L32 helps control chromatic and spherical aberration while broadening the beam entering L32.
 
@@ -120,7 +120,7 @@ Because G4 is fixed relative to the image plane, this negative rear group is cen
 
 ## Glass Identification and Selection
 
-The design uses a small palette of high-index flint and dense-flint glasses plus one BK7-class crown plate. Catalog-backed labels are used where the current local catalog resolves to a coefficient-backed entry within the d-line tolerance. Hikari class names are retained as class notes where useful, but J-LASFH2 and J-SFH2 remain unmatched because no source-backed local catalog row is available. OHARA data were used as an independent cross-check, but L41 is not assigned to an OHARA catalog name because no current OHARA entry matches the patent coordinates closely.
+The design uses a small palette of high-index flint and dense-flint glasses plus one BK7-class crown plate. Catalog-backed labels are used where the current local catalog resolves to a coefficient-backed entry within the d-line tolerance. J-SFH2 is now catalog-backed at the L31 coordinate; J-LASFH2 remains an unmatched class note. OHARA data were used as an independent cross-check, but L41 is not assigned to an OHARA catalog name because no current OHARA entry matches the patent coordinates closely.
 
 | Element | nd | νd | Identification | Status | Optical role |
 |---|---:|---:|---|---|---|
@@ -129,7 +129,7 @@ The design uses a small palette of high-index flint and dense-flint glasses plus
 | L2R1 | 1.80518 | 25.4 | N-SF6 / S-TIH6 / J-SF6 class | Exact/class | Dense-flint positive meniscus |
 | L2R2 | 1.79668 | 45.4 | J-LASF017 close class | Close, not exact | Positive doublet component |
 | L2R3 | 1.71736 | 29.5 | SF1 / S-TIH1 / J-SF1 class | Exact/class | Negative doublet component |
-| L31 | 1.86074 | 23.0 | Unmatched J-SFH2 class | Unmatched | Dense-flint negative corrector |
+| L31 | 1.86074 | 23.0 | J-SFH2 (Hikari; 861230 coordinate successor) | Catalog-backed coordinate | Dense-flint negative corrector |
 | L32 | 1.79668 | 45.4 | J-LASF017 close class | Close, not exact | Main positive power element |
 | L33 | 1.79631 | 40.9 | Unmatched 796/409 glass | Unmatched | Weak positive exit meniscus |
 | L41 | 1.60717 | 40.3 | Unmatched 607/403 glass | Unmatched | Positive element in G4 |
@@ -200,6 +200,6 @@ This patent's contribution is not simply a sealed macro lens. It is a macro lens
 
 - US Patent 5,257,137, Suzuki and Hamanishi, "Photo-Taking Lens for an Underwater Camera," assigned to Nikon Corporation, granted October 26, 1993.
 - Nikon Imaging, "Evolution of NIKONOS," Camera Chronicle, for Nikonos RS system context and R-UW lens lineup.
-- Hikari Optical Glass Data spreadsheet, Nikon / Hikari, for J-BK7A, J-SF6/J-SF1 class equivalents, J-LASF017 catalog comparison, and negative checks on the unresolved J-LASFH2 and J-SFH2 class labels.
+- Hikari Optical Glass Catalog, for J-BK7A, J-SF6/J-SF1 class equivalents, J-LASF017 comparison, the coefficient-backed J-SFH2 coordinate, and the negative check on unresolved J-LASFH2.
 - OHARA optical glass catalog data, for S-glass comparison and negative checks on the unmatched L33 and L41 coordinates.
 - Production specification references for R-UW AF Micro-Nikkor 50mm f/2.8: 10 elements / 9 groups, f/2.8-f/22, 35° underwater field, 1:1 close focus, 88 mm attachment, 103 x 126 mm, approximately 1,100 g.

@@ -49,3 +49,7 @@ Patent: WO 2020/158622 A1, Example 3 / Table 3A
 | High-index status | L1 and L10 remain the high-index / UHR anchors identified by the patent nd values. |
 | SDs | Kept the existing ray-trace-derived SDs. With no patent clear-aperture table, those estimates remain the defensible source of record. |
 | Analysis | Synced the stale L4 note so it no longer claims that 808409 lacks a coefficient-backed catalog path. |
+
+## 2026-07-29 - Catalog-coordinate correction
+
+- Corrected L1 from modern `S-NPH2` to historical OHARA `PBH21`, the exact 1.92286 / 20.90 row.

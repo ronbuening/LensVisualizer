@@ -156,7 +156,7 @@ Twelve distinct glass types are used across the 16 elements. All identifications
 | L3 | 1.59522 | 67.7 | S-FPM2 | OHARA | 0.00000 | 0.04 | Fluorophosphate crown |
 | L4 | 1.85478 | 24.8 | S-NBH56 | OHARA | 0.00000 | 0.00 | Niobium heavy flint |
 | L5 | 1.84666 | 23.9 | S-TIH53 | OHARA | 0.00000 | 0.02 | Titanium dense flint |
-| L6, L10, L16 | 1.92286 | 20.9 | S-NPH2 | OHARA | 0.00000 | 0.02 | Niobium phosphate heavy flint |
+| L6, L10, L16 | 1.92286 | 20.9 | PBH21 | OHARA | 0.00000 | 0.02 | Niobium phosphate heavy flint |
 | L7 | 1.53172 | 48.8 | S-TIL6 | OHARA | 0.00000 | 0.04 | Titanium light flint |
 | L8 | 2.00069 | 25.5 | TAFD40 | HOYA | 0.00000 | 0.04 | Tantalum dense flint |
 | L9 | 1.53775 | 74.7 | S-FPM3 | OHARA | 0.00000 | 0.00 | Fluorophosphate crown |
@@ -186,7 +186,7 @@ B2 converges the diverging beam from B1 and delivers it to the relay groups behi
 
 - **L5** (S-TIH53, f = +72.07 mm): A biconvex positive singlet in titanium dense flint (nd = 1.847, νd = 23.9). This high-index, high-dispersion glass provides strong converging power in a compact element. Its low Abbe number means it contributes significant chromatic aberration of its own — corrected by the following cemented doublet.
 
-- **L6 + L7** (cemented doublet D1, f_net ≈ +∞ ... actually L6 f = −44.91, L7 f = +45.20 → near-zero net power): This is a classic achromatic corrector pair. L6 (S-NPH2, νd = 20.9) is a negative meniscus in very-high-index heavy flint, cemented to L7 (S-TIL6, νd = 48.8), a positive meniscus in light flint. The near-zero net power means this doublet functions primarily as a chromatic and spherical aberration corrector for L5, not as a power element. The large Δνd (48.8 − 20.9 = 27.9) between the cemented pair provides strong achromatization.
+- **L6 + L7** (cemented doublet D1, f_net ≈ +∞ ... actually L6 f = −44.91, L7 f = +45.20 → near-zero net power): This is a classic achromatic corrector pair. L6 (PBH21, νd = 20.9) is a negative meniscus in very-high-index heavy flint, cemented to L7 (S-TIL6, νd = 48.8), a positive meniscus in light flint. The near-zero net power means this doublet functions primarily as a chromatic and spherical aberration corrector for L5, not as a power element. The large Δνd (48.8 − 20.9 = 27.9) between the cemented pair provides strong achromatization.
 
 **B3 — Positive Relay Doublet (f = +52.20 mm)**
 
@@ -196,7 +196,7 @@ B2 converges the diverging beam from B1 and delivers it to the relay groups behi
 
 B4 is a cemented doublet that serves double duty: it provides negative power for the zoom system's power distribution, and it is the **image stabilization element** — during IS operation, the entire B4 unit shifts orthogonal to the optical axis. The flare cutting stop FS is located at the image-side end of B4.
 
-- **L10 + L11** (cemented doublet D3): L10 (S-NPH2, f = +31.50 mm) is a positive meniscus concave toward the object, cemented to L11 (S-LAH55V, f = −21.72 mm), a biconcave negative element. The net doublet power is negative (f ≈ −64 mm). The cemented construction is critical for IS — a cemented pair moves as a rigid unit without internal decentration, maintaining its corrected aberration state even when shifted off-axis. The Δνd between the pair (37.2 − 20.9 = 16.3) provides partial achromatization of the IS unit's negative power.
+- **L10 + L11** (cemented doublet D3): L10 (PBH21, f = +31.50 mm) is a positive meniscus concave toward the object, cemented to L11 (S-LAH55V, f = −21.72 mm), a biconcave negative element. The net doublet power is negative (f ≈ −64 mm). The cemented construction is critical for IS — a cemented pair moves as a rigid unit without internal decentration, maintaining its corrected aberration state even when shifted off-axis. The Δνd between the pair (37.2 − 20.9 = 16.3) provides partial achromatization of the IS unit's negative power.
 
 **B5 — Positive Rear Group / PL Unit (f = +51.49 mm)**
 
@@ -208,7 +208,7 @@ B5 is the largest subassembly, containing five elements in four groups. It serve
 
 - **L15** (L-LAH85V, f = −93.22 mm): The third aspherical element, discussed in detail in Section 3.3. Its double-aspherical surfaces provide field-dependent correction of residual astigmatism, field curvature, and distortion that cannot be addressed by the spherical elements alone.
 
-- **L16** (S-NPH2, f = +87.31 mm): A biconvex positive element in niobium phosphate heavy flint (nd = 1.923, νd = 20.9). The very high index allows a weak positive power to be realized with gentle curvatures, and its high-dispersion glass partially compensates any residual longitudinal chromatic aberration from the UD elements. L16 is the rearmost lens element and carries Canon's fluorine coating for environmental protection.
+- **L16** (PBH21, f = +87.31 mm): A biconvex positive element in niobium phosphate heavy flint (nd = 1.923, νd = 20.9). The very high index allows a weak positive power to be realized with gentle curvatures, and its high-dispersion glass partially compensates any residual longitudinal chromatic aberration from the UD elements. L16 is the rearmost lens element and carries Canon's fluorine coating for environmental protection.
 
 ### 4.3 Canon UD Element Identification
 
@@ -327,6 +327,6 @@ The Canon RF 15-35mm f/2.8 L IS USM represents a mature implementation of the ne
 - US 2020/0257181 A1, "Zoom Lens and Optical Apparatus," Yuichi Gyoda, Canon Kabushiki Kaisha, published August 13, 2020.
 - Canon U.S.A. product page: RF 15-35mm F2.8 L IS USM (accessed 2025).
 - Canon Europe specifications page: RF 15-35mm F2.8 L IS USM (accessed 2025).
-- OHARA optical glass catalog: S-BAL42, L-LAH85V, S-FPM2, S-NBH56, S-TIH53, S-NPH2, S-TIL6, S-FPM3, S-LAH55V, S-FPL51.
+- OHARA optical glass catalog: S-BAL42, L-LAH85V, S-FPM2, S-NBH56, S-TIH53, PBH21, S-TIL6, S-FPM3, S-LAH55V, S-FPL51.
 - HOYA optical glass catalog: TAFD40, FCD1, TAFD65.
 - Paraxial ray trace verification performed computationally (Python) against patent-stated focal lengths.

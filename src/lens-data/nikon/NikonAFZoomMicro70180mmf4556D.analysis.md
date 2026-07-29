@@ -39,11 +39,11 @@ The infinity-focus optical track is essentially constant at 212.213 mm across th
 
 G1 is the unit focusing group. It moves forward by 38.653 mm at the closest published setting, increasing the G1–G2 air gap $d_{10}$ from approximately 2.01 mm to 40.66 mm. The group has negative power, which keeps the front clear diameter manageable during the large focus extension. The patent's background discussion makes this negative-front-group rationale explicit by comparing oblique chief-ray behavior for positive and negative first groups [1].
 
-**L1 — Negative meniscus, convex to object.** $n_d = 1.86074$, $ν_d = 23.01$. Glass: high-index dense flint, patent code 861/230, with no source-backed catalog match currently retained. Standalone $f = -130.5$ mm.
+**L1 — Negative meniscus, convex to object.** $n_d = 1.86074$, $ν_d = 23.01$. Glass: Hikari J-SFH2 coordinate successor to patent code 861/230. Standalone $f = -130.5$ mm.
 
 L1 supplies the first negative bend in the focusing group. Its rear radius is much shorter than its front radius, so most of the element power comes from the rear surface. The very high refractive index keeps the radii from becoming still steeper.
 
-**L2 — Biconvex positive.** $n_d = 1.86074$, $ν_d = 23.01$. Glass: the same patent 861/230 high-index dense flint as L1. Standalone $f = +63.1$ mm.
+**L2 — Biconvex positive.** $n_d = 1.86074$, $ν_d = 23.01$. Glass: the same J-SFH2 / patent-code 861/230 coordinate as L1. Standalone $f = +63.1$ mm.
 
 L2 is nearly symmetric, with equal-magnitude front and rear radii. It offsets part of L1's negative power while keeping the front focusing group compact. Because L1 and L2 share the same high-dispersion glass family, their opposite powers partly balance first-order chromatic power, leaving the later cemented groups to handle residual correction.
 
@@ -101,7 +101,7 @@ L13 is the first powered lens after the stop. It begins the positive compensatio
 
 **L14 + L15 + L16 — Cemented triplet.** Combined focal length $f = +1048.2$ mm.
 
-L14 is a biconvex FK5-class crown element with $n_d = 1.48749$, $ν_d = 70.41$, standalone $f = +36.0$ mm. L15 is a biconcave dense flint with $n_d = 1.80384$, $ν_d = 33.89$, standalone $f = -23.2$ mm. L16 is a positive meniscus FK5-class crown element with $n_d = 1.48749$, $ν_d = 70.41$, standalone $f = +75.1$ mm.
+L14 is a biconvex FK5-class crown element with $n_d = 1.48749$, $ν_d = 70.41$, standalone $f = +36.0$ mm. L15 is a biconcave Hikari E-LAFH2 dense flint with $n_d = 1.80384$, $ν_d = 33.89$, exact code 804/339, and standalone $f = -23.2$ mm. L16 is a positive meniscus FK5-class crown element with $n_d = 1.48749$, $ν_d = 70.41$, standalone $f = +75.1$ mm.
 
 The triplet has very weak net power because the two crown positives are largely balanced by the central flint. Its role is correction: chromatic control, spherical correction, and off-axis aberration balancing in the rear relay.
 
@@ -119,7 +119,7 @@ The patent does not name glass manufacturers. The identifications below are cata
 
 | Patent code | Catalog / class annotation | Elements | Confidence | Notes |
 |---|---|---:|---|---|
-| 861/230 | high-index dense flint, no retained catalog match | L1, L2 | patent code only | The earlier TAFD25/J-LASFH13HS class note is no longer retained because public TAFD25 resolves to 1.90366 / 31.32, not the patent's 1.86074 / 23.01 row. |
+| 861/230 | J-SFH2 (Hikari coordinate successor) | L1, L2 | high coordinate confidence | Current J-SFH2 retains `nd=1.86074`; its code 861/231 and `νd=23.08` differ only in the final rounded digit from the patent row. |
 | 617/540 | unmatched crown | L3 | unmatched | No current public catalog match retained. |
 | 795/286 | unmatched dense flint | L4 | unmatched | No current public catalog match retained. |
 | 785/258 | SF11-class dense flint | L5, L7 | close | Schott SF11 is 1.78472 / 25.76; patent table uses 25.80. |
@@ -129,7 +129,7 @@ The patent does not name glass manufacturers. The identifications below are cata
 | 804/466 | S-LAH65V class | L10, L12, L18 | close | OHARA S-LAH65V is 1.80400 / 46.58. |
 | 805/255 | SF6-class dense flint | L11 | close | Schott SF6 is 1.80518 / 25.43. |
 | 697/556 | S-LAL14 | L13 | close | OHARA S-LAL14 is 1.69680 / 55.53; patent table uses 55.60. |
-| 804/339 | unmatched dense flint | L15 | unmatched | Treated by code only. |
+| 804/339 | E-LAFH2 (Hikari) | L15 | exact | Exact catalog code and `nd`/`νd` coordinate. |
 | 741/276 | unmatched dense flint | L17 | unmatched | Treated by code only. |
 
 The key chromatic correction pattern is not a single anomalous-dispersion material in Table 8, but repeated pairing of high-index flints with higher-Abbe crowns in the nearly stationary G2 and rear G4 correction groups. The production lens's stated ED element is therefore a production-level fact, while Table 8's exact glass list remains a patent disclosure with no ED-class Abbe number.
@@ -199,5 +199,5 @@ The Petzval sum, computed surface-by-surface as $Σ Φ/(n n')$, is +0.000504 mm$
 [2] Kouichi Ohshita, Nikon Corporation, “NIKKOR — The Thousand and One Nights, No. 18: AF Zoom-Micro Nikkor ED 70–180mm F4.5–5.6D.” https://imaging.nikon.com/imaging/information/story/0018/  
 [3] SCHOTT AG optical glass datasheets: SF11, SF6, and N-FK5.  
 [4] OHARA Corporation optical glass datasheets: S-BSM81, S-LAL14, and S-LAH65V.  
-[5] Patent Table 8 glass-code rows for the unmatched 861/230 high-index dense flint.  
+[5] Patent Table 8 glass-code rows, cross-checked against current Hikari J-SFH2 and historical E-LAFH2 catalog data.
 [6] Nikon AF Zoom-Micro Nikkor ED 70–180mm f/4.5–5.6D Instruction Manual, manufacturer manual mirror. https://www.manualslib.com/manual/111235/Nikon-Af-Zoom-Micro-Nikkor-Ed-70-180mm-F-4-5-5-6d.html

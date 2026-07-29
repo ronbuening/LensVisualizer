@@ -18,3 +18,10 @@ Patent: US 5,764,425, Example 4 / Table 4
 ### Analysis sync
 
 - Updated the L2 narrative and glass table to use the unbroken `804339` code label.
+
+## 2026-07-29 — Catalog coverage follow-up
+
+- The catalog now contains coefficient-backed historical Hikari E-LAFH2 at exact code `804339`,
+  `nd=1.80384`, and `vd=33.89`.
+- Confirmed that the existing data label resolves to E-LAFH2 and updated the stale analysis/audit narrative that
+  previously described the row as unresolved.

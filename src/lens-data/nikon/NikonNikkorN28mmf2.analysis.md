@@ -57,7 +57,7 @@ The computed EFL of 99.32 mm is within 0.7% of the patent's stated 100.0 mm, wel
 | Thick-lens focal length | −189.5 mm |
 | Shape | Both radii positive → meniscus convex to object side |
 
-**Glass identification:** The nd/Vd pair 1.62299/58.1 (six-digit code 623/581) matches Schott SK16 (nd = 1.62299, Vd = 58.14) almost exactly. An equivalent OHARA or HOYA designation from the 1970s Japanese catalog would have been available under a different trade name but with functionally identical optical constants. This is a barium silicate crown with moderate dispersion.
+**Glass identification:** The nd/Vd pair 1.62299/58.1 matches OHARA S-BSM15 (nd = 1.62299, Vd = 58.17) directly. This is a barium silicate crown with moderate dispersion.
 
 **Optical role:** L1 is the first element the patent's reversed Galilean converter encounters from the object side. Its negative meniscus form diverges the incoming beam, establishing the wide field of view characteristic of a retrofocus design. The convex-to-object shape keeps the angle of incidence on the front surface moderate, limiting surface contributions to spherical aberration and coma. The Seidel table confirms that surface 1 (r₁) contributes negligible spherical aberration (I = +0.020) and small positive coma (II = +0.029), while surface 2 (r₂) contributes substantial negative spherical aberration (I = −2.042) and positive coma (II = +0.403). The strong rear-surface contribution is a hallmark of steeply curved negative meniscus elements in retrofocus designs, and it is one of the aberration budgets the patent's five conditions are designed to manage.
 
@@ -93,7 +93,7 @@ The thick center section (d₃ = 16.434 mm) is notable. At the production 28 mm 
 | Thick-lens focal length | −149.4 mm |
 | Shape | Both radii positive → meniscus convex to object side |
 
-**Glass identification:** Same glass as L1 — Schott SK16 type (barium silicate crown).
+**Glass identification:** Same glass as L1 — OHARA S-BSM15 (barium silicate crown).
 
 **Optical role:** L3 is the second negative meniscus of the converter group. The patent explains the rationale for splitting the negative power across two separate elements (L1 and L3) rather than using a single strong negative element: "The use of two separate negative lenses such as the negative meniscus lenses L1 and L3 is directed to divide the share of refractive power in addition, thereby reducing the spherical aberration and coma."
 
@@ -243,7 +243,7 @@ The design uses nine glass elements drawn from seven distinct glass types. The g
 
 | Element | nd | Vd | Code | Probable Glass Type | Category |
 |---|---|---|---|---|---|
-| L1, L3 | 1.62299 | 58.1 | 623/581 | Schott SK16 / OHARA equiv. | Barium silicate crown |
+| L1, L3 | 1.62299 | 58.1 | 623/581 | OHARA S-BSM15 | Barium silicate crown |
 | L2 | 1.74400 | 44.9 | 1744/449 | Schott LAF2 / OHARA S-LAM2 | Lanthanum flint |
 | L4 | 1.77250 | 49.5 | 1772/495 | E-LASF016 / J-LASF016 / LACL60 class | Lanthanum crown |
 | L5, L6 | 1.51680 | 64.2 | 1517/642 | Schott BK7 / OHARA S-BSL7 | Borosilicate crown |

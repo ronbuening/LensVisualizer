@@ -9,10 +9,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **485** lenses scanned
-- **472** total code-only elements found
-- **290** elements in this report
-- **116** distinct lens files affected
+- **488** lenses scanned
+- **491** total code-only elements found
+- **286** elements in this report
+- **115** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -20,9 +20,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---:|---:|---|---|
 | 670571 | 10 | 5 | patents/US4871239.pdf<br>patents/JP2004109559A.pdf<br>patents/US4951078.pdf | 4/10 representative rows reviewed |
 | 493836 | 6 | 2 | patents/JP2004109559A.pdf | No reviewed-sidecar hit |
+| 796409 | 6 | 5 | patents/US5751485.pdf<br>patents/US5734508.pdf<br>patents/US4699475.pdf<br>patents/US5579169.pdf | 2/6 representative rows reviewed |
 | 797454 | 6 | 5 | patents/US5557473.pdf<br>patents/JPA 1999030748-000000.pdf<br>patents/US5528428.pdf<br>patents/US5579169.pdf | 2/6 representative rows reviewed |
 | 486815 | 5 | 1 | patents/US3743384.pdf | All representative rows reviewed |
-| 796409 | 5 | 4 | patents/US5751485.pdf<br>patents/US4699475.pdf<br>patents/US5579169.pdf<br>patents/US5257137.pdf | 2/5 representative rows reviewed |
 | 501565 | 4 | 2 | patents/US4189212.pdf<br>patents/US3743384.pdf | All representative rows reviewed |
 | 662561 | 4 | 1 | patents/GB_850117_A.pdf | All representative rows reviewed |
 | 744495 | 4 | 4 | patents/US20200142168A1.pdf<br>patents/US7508592.pdf<br>patents/WO2020136749A1.pdf<br>patents/JPWO2019049372A1.pdf | All representative rows reviewed |
@@ -34,8 +34,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 617540 | 3 | 2 | patents/US5717527.pdf<br>patents/JPA 1999030748-000000.pdf | No reviewed-sidecar hit |
 | 672472 | 3 | 1 | patents/US2084309.pdf | No reviewed-sidecar hit |
 | 777297 | 3 | 3 | patents/WO2021199923A1.pdf<br>patents/WO_2025263124_A1.pdf<br>patents/JP2023039817A.pdf | All representative rows reviewed |
-| 804339 | 3 | 2 | patents/US5751485.pdf<br>patents/US5717527.pdf | No reviewed-sidecar hit |
-| 861230 | 3 | 2 | patents/US5717527.pdf<br>patents/JPA 1999030748-000000.pdf | No reviewed-sidecar hit |
 | 863248 | 3 | 1 | patents/JP2023039817A.pdf | All representative rows reviewed |
 | 961323 | 3 | 1 | patents/WO2021200206A1.pdf | No reviewed-sidecar hit |
 | 514428 | 2 | 1 | patents/JP2016021011A.pdf | All representative rows reviewed |
@@ -57,8 +55,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 774492 | 2 | 1 | patents/US3748022.pdf | All representative rows reviewed |
 | 807316 | 2 | 2 | patents/US4764000.pdf<br>patents/US4871239.pdf | All representative rows reviewed |
 | 813252 | 2 | 1 | patents/US3591257.pdf | All representative rows reviewed |
+| 840434 | 2 | 1 | patents/US5734508.pdf | No reviewed-sidecar hit |
 | 856401 | 2 | 1 | patents/WO_2025263124_A1.pdf | All representative rows reviewed |
-| 870200 | 2 | 2 | patents/WO2023181666A1.pdf<br>patents/WO_2025239028_A1.pdf | All representative rows reviewed |
 | 930240 | 2 | 2 | patents/WO2021200206A1.pdf<br>patents/WO_2025263124_A1.pdf | No reviewed-sidecar hit |
 | 933209 | 2 | 2 | patents/WO2021199923A1.pdf<br>patents/JP2023039817A.pdf | All representative rows reviewed |
 | 009291 | 1 | 1 | patents/WO2021200206A1.pdf | No reviewed-sidecar hit |
@@ -107,6 +105,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 602352 | 1 | 1 | patents/GB_850117_A.pdf | All representative rows reviewed |
 | 603564 | 1 | 1 | patents/JP2022092388A.pdf | All representative rows reviewed |
 | 605382 | 1 | 1 | patents/US2279384.pdf | No reviewed-sidecar hit |
+| 606574 | 1 | 1 | patents/US6940655.pdf | No reviewed-sidecar hit |
 | 607403 | 1 | 1 | patents/US5257137.pdf | No reviewed-sidecar hit |
 | 611572 | 1 | 1 | patents/US2279384.pdf | No reviewed-sidecar hit |
 | 612313 | 1 | 1 | patents/US20210026133A1.pdf | All representative rows reviewed |
@@ -157,6 +156,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 741262 | 1 | 1 | patents/US3552833.pdf | No reviewed-sidecar hit |
 | 741276 | 1 | 1 | patents/US5717527.pdf | No reviewed-sidecar hit |
 | 744458 | 1 | 1 | patents/US2279384.pdf | No reviewed-sidecar hit |
+| 744496 | 1 | 1 | patents/US6940655.pdf | No reviewed-sidecar hit |
 | 747274 | 1 | 1 | patents/US3649104.pdf | All representative rows reviewed |
 | 749501 | 1 | 1 | patents/US4124276.pdf | All representative rows reviewed |
 | 749547 | 1 | 1 | patents/CN205720849U.pdf | All representative rows reviewed |
@@ -177,7 +177,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 770493 | 1 | 1 | Missing from untracked local patents/ references (WO2021246545A1, WO2021246545, 2021246545) | No reviewed-sidecar hit |
 | 770494 | 1 | 1 | patents/WO2023181666A1.pdf | No reviewed-sidecar hit |
 | 772493 | 1 | 1 | patents/US20230341664A1.pdf | All representative rows reviewed |
-| 773495 | 1 | 1 | patents/US20190250367A1.pdf | No reviewed-sidecar hit |
 | 773497 | 1 | 1 | patents/US4110006.pdf | No reviewed-sidecar hit |
 | 773498 | 1 | 1 | patents/US4871239.pdf | All representative rows reviewed |
 | 773501 | 1 | 1 | patents/US4258985.pdf | No reviewed-sidecar hit |
@@ -206,6 +205,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 810372 | 1 | 1 | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
 | 821426 | 1 | 1 | patents/US20100220400A1.pdf | All representative rows reviewed |
 | 831265 | 1 | 1 | patents/US3615126.pdf | No reviewed-sidecar hit |
+| 834374 | 1 | 1 | patents/US5734508.pdf | No reviewed-sidecar hit |
 | 835447 | 1 | 1 | patents/CN205720849U.pdf | All representative rows reviewed |
 | 840433 | 1 | 1 | patents/US5528428.pdf | No reviewed-sidecar hit |
 | 849401 | 1 | 1 | patents/US20170351051A1.pdf | No reviewed-sidecar hit |
@@ -214,7 +214,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 852402 | 1 | 1 | patents/WO2020136749A1.pdf | All representative rows reviewed |
 | 855399 | 1 | 1 | patents/JP2022092388A.pdf | All representative rows reviewed |
 | 856323 | 1 | 1 | patents/WO2021200206A1.pdf | No reviewed-sidecar hit |
-| 859300 | 1 | 1 | patents/JP2021179551A.pdf | No reviewed-sidecar hit |
 | 866450 | 1 | 1 | patents/CN116520542A.pdf | All representative rows reviewed |
 | 877370 | 1 | 1 | patents/US20160266350A1.pdf | All representative rows reviewed |
 | 882408 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | No reviewed-sidecar hit |
@@ -539,9 +538,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
 |---|---|---|---|---|---|---|---|
-| L1 (Element 1) | 1 | `Unmatched dense lanthanum flint class (804/339 patent code)` | 1.80384 / 33.89 | No catalog entry | abbe | patents/US5751485.pdf | No reviewed-sidecar hit |
 | L4 (Element 4) | 6 | `Unmatched lanthanum flint class (796/409 patent code)` | 1.79631 / 40.90 | No catalog entry | abbe | patents/US5751485.pdf | No reviewed-sidecar hit |
-| L7 (Element 7) | 10 | `Unmatched dense lanthanum flint class (804/339 patent code)` | 1.80384 / 33.89 | No catalog entry | abbe | patents/US5751485.pdf | No reviewed-sidecar hit |
 
 ### [Nikon AF Nikkor 28mm f/2.8D](../../src/lens-data/nikon/NikonAFNikkor28mmf28D.data.ts) - US 5,557,473,
 
@@ -553,12 +550,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
 |---|---|---|---|---|---|---|---|
-| L1 (Element 1) | 1 | `861230 — high-index dense flint (patent nd=1.86074, νd=23.01; no source-backed catalog match)` | 1.86074 / 23.01 | No catalog entry | abbe | patents/US5717527.pdf | No reviewed-sidecar hit |
-| L2 (Element 2) | 3 | `861230 — high-index dense flint (patent nd=1.86074, νd=23.01; no source-backed catalog match)` | 1.86074 / 23.01 | No catalog entry | abbe | patents/US5717527.pdf | No reviewed-sidecar hit |
 | L3 (Element 3) | 5 | `Unmatched crown (617/540)` | 1.61720 / 54.01 | No catalog entry | abbe | patents/US5717527.pdf | No reviewed-sidecar hit |
 | L4 (Element 4) | 7 | `Unmatched dense flint (795/286)` | 1.79504 / 28.56 | No catalog entry | abbe | patents/US5717527.pdf | No reviewed-sidecar hit |
 | L6 (Element 6) | 11 | `Unmatched lanthanum crown (748/523)` | 1.74810 / 52.30 | No catalog entry | abbe | patents/US5717527.pdf | No reviewed-sidecar hit |
-| L15 (Element 15) | 27 | `Unmatched dense flint (804/339)` | 1.80384 / 33.89 | No catalog entry | abbe | patents/US5717527.pdf | No reviewed-sidecar hit |
 | L17 (Element 17) | 30 | `Unmatched dense flint (741/276)` | 1.74077 / 27.63 | No catalog entry | abbe | patents/US5717527.pdf | No reviewed-sidecar hit |
 
 ### [NIKON AF ZOOM-NIKKOR 28-80mm f/3.5-5.6 D](../../src/lens-data/nikon/NikonAFZoomNikkor2880mmf3556.data.ts) - JP 1999-030748 A
@@ -568,7 +562,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L1 (Element 1) | 1 | `515546 - unmatched light crown` | 1.51454 / 54.55 | No catalog entry | abbe | patents/JPA 1999030748-000000.pdf | No reviewed-sidecar hit |
 | L2 (Element 2) | 3 | `797454 - high-index lanthanum flint class` | 1.79668 / 45.37 | No catalog entry | abbe | patents/JPA 1999030748-000000.pdf | No reviewed-sidecar hit |
 | L3 (Element 3) | 5 | `797454 - high-index lanthanum flint class` | 1.79668 / 45.37 | No catalog entry | abbe | patents/JPA 1999030748-000000.pdf | No reviewed-sidecar hit |
-| L4 (Element 4) | 7 | `861230 - dense flint class` | 1.86074 / 23.01 | No catalog entry | abbe | patents/JPA 1999030748-000000.pdf | No reviewed-sidecar hit |
 | L5 (Element 5) | 9 | `617540 - SSK-class crown` | 1.61720 / 54.01 | No catalog entry | abbe | patents/JPA 1999030748-000000.pdf | No reviewed-sidecar hit |
 | L6 (Element 6) | 11 | `617540 - SSK-class crown` | 1.61720 / 54.01 | No catalog entry | abbe | patents/JPA 1999030748-000000.pdf | No reviewed-sidecar hit |
 
@@ -584,6 +577,13 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
 |---|---|---|---|---|---|---|---|
 | L12 (L12) | 3 | `612313 — anomalous-dispersion flint class (patent nd=1.61155, νd=31.26, θgF=0.618; no exact public catalog match)` | 1.61155 / 31.26 | No catalog entry | abbe | patents/US20210026133A1.pdf | Reviewed sidecar hit |
+
+### [NIKON AF-S DX ZOOM-NIKKOR 12-24mm f/4 G IF-ED](../../src/lens-data/nikon/NikonAFSDXZoomNikkor1224mmf4GIFED.data.ts) - US 6,940,655 B2
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+|---|---|---|---|---|---|---|---|
+| L1 (Element 1) | 1A | `Unmatched (744496 class; nd=1.744429, vd=49.55)` | 1.74443 / 49.55 | No catalog entry | abbe | patents/US6940655.pdf | No reviewed-sidecar hit |
+| L11 (Element 11) | 19A | `Unmatched (606574 class; nd=1.606020, vd=57.44)` | 1.60602 / 57.44 | No catalog entry | abbe | patents/US6940655.pdf | No reviewed-sidecar hit |
 
 ### [NIKON AF-S NIKKOR 14-24mm f/2.8 G ED](../../src/lens-data/nikon/NikonNikkorAFS1424mmf28.data.ts) - US 7,359,125 B2
 
@@ -617,6 +617,15 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
 |---|---|---|---|---|---|---|---|
 | L54 (G5 rear aspherical negative lens) | 34 | `821426 — patent dense flint (nd=1.82080, νd=42.64; no public HIKARI/OHARA match found)` | 1.82080 / 42.64 | No catalog entry | abbe | patents/US20100220400A1.pdf | Reviewed sidecar hit |
+
+### [NIKON AI AF ZOOM-NIKKOR 24-120mm f/3.5-5.6 D IF](../../src/lens-data/nikon/NikonAFNikkor24120mmf3556D.data.ts) - US 5,734,508 A
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+|---|---|---|---|---|---|---|---|
+| L21g (Element 4b — L21 Glass Substrate) | 18 | `Unmatched (840434 high-index glass)` | 1.84042 / 43.40 | No catalog entry | abbe | patents/US5734508.pdf | No reviewed-sidecar hit |
+| L22 (Element 5 — L22) | 20 | `Unmatched (840434 high-index glass)` | 1.84042 / 43.40 | No catalog entry | abbe | patents/US5734508.pdf | No reviewed-sidecar hit |
+| L3F3 (Element 11 — L3F3) | 30 | `Unmatched (796409 high-index crown)` | 1.79631 / 40.90 | No catalog entry | abbe | patents/US5734508.pdf | No reviewed-sidecar hit |
+| L3R3 (Element 14 — L3R3) | 36 | `834374 — LaSF/NBFD class (vendor unresolved)` | 1.83400 / 37.40 | No catalog entry | abbe | patents/US5734508.pdf | No reviewed-sidecar hit |
 
 ### [NIKON AI NIKKOR 35mm f/2](../../src/lens-data/nikon/NikonAINikkor35mmf2.data.ts) - US 3,507,558
 
@@ -890,12 +899,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---|---|---|---|---|---|---|
 | L16 (Element 16) | 28 | `Unmatched crown class (523/701, likely phosphate/fluorophosphate)` | 1.52300 / 70.10 | No catalog entry | abbe | patents/US20100194930A1.pdf | No reviewed-sidecar hit |
 
-### [PANASONIC LUMIX S 20-60mm f/3.5-5.6](../../src/lens-data/panasonic/PanasonicLumixS2060mmf3556.data.ts) - JP 2021-179551 A
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
-|---|---|---|---|---|---|---|---|
-| L4 (Element 4) | 6 | `859300 - high-index flint (patent nd=1.85883, vd=30.0)` | 1.85883 / 30.00 | No catalog entry | abbe | patents/JP2021179551A.pdf | No reviewed-sidecar hit |
-
 ### [PANASONIC LUMIX S 35mm f/1.8](../../src/lens-data/panasonic/PanasonicS35mmf18.data.ts) - CN 216772097U
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
@@ -924,12 +927,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
 |---|---|---|---|---|---|---|---|
 | L8 (Element 8) | 13 | `Lanthanum flint (728/403, uncertain vendor)` | 1.72750 / 40.30 | No catalog entry | abbe | patents/US6560042.pdf | No reviewed-sidecar hit |
-
-### [PENTAX HD D FA* 50mm f/1.4 SDM AW](../../src/lens-data/pentax/PentaxDFA50mmf14SDM.data.ts) - US 2019/0250367 A1
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
-|---|---|---|---|---|---|---|---|
-| L51 (Rear double-sided asphere) | 24A | `773495 - moldable lanthanum crown class (patent nd=1.77250, νd=49.5)` | 1.77250 / 49.50 | No catalog entry | abbe | patents/US20190250367A1.pdf | No reviewed-sidecar hit |
 
 ### [PENTAX HD DA* 11-18mm f/2.8 ED DC AW](../../src/lens-data/pentax/PentaxD1118mmF28EDDCWR.data.ts) - US 2018/0164556 A1
 
@@ -1000,7 +997,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
 |---|---|---|---|---|---|---|---|
-| L11 (Element 1) | 1 | `Dense flint (870/200, uncertain — no OHARA catalog match)` | 1.86966 / 20.00 | No catalog entry | abbe | patents/WO2023181666A1.pdf | Reviewed sidecar hit |
 | L22 (Element 5) | 8A | `770494 — lanthanum crown (patent nd=1.77002, nu_d=49.4)` | 1.77002 / 49.40 | No catalog entry | abbe | patents/WO2023181666A1.pdf | No reviewed-sidecar hit |
 
 ### [SONY FE 24mm f/1.4 GM](../../src/lens-data/sony/SonyFE24mmf14GM.data.ts) - WO2019/073744 A1
@@ -1038,12 +1034,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L55 (Element 12) | 22A | `585594 — barium crown (patent nd=1.58547, nu_d=59.4), XA element` | 1.58547 / 59.40 | No catalog entry | abbe | patents/JP2023039817A.pdf | Reviewed sidecar hit |
 | L61 (Element 13) | 24 | `933209 — ultra-dense flint (patent nd=1.93323, nu_d=20.9)` | 1.93323 / 20.90 | No catalog entry | abbe | patents/JP2023039817A.pdf | Reviewed sidecar hit |
 | L62 (Element 14) | 25 | `658397 — short flint (patent nd=1.65803, nu_d=39.7)` | 1.65803 / 39.70 | No catalog entry | abbe | patents/JP2023039817A.pdf | No reviewed-sidecar hit |
-
-### [SONY FE 85mm f/1.4 GM II](../../src/lens-data/sony/SonyFE85mmf14GMII.data.ts) - WO 2025/239028 A1
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
-|---|---|---|---|---|---|---|---|
-| L14 (Element 14) | 25 | `870200 — dense flint (patent nd=1.86966, νd=20.0)` | 1.86966 / 20.00 | No catalog entry | abbe | patents/WO_2025239028_A1.pdf | Reviewed sidecar hit |
 
 ### [SONY PLANAR T* FE 50mm f/1.4 ZA](../../src/lens-data/sony/SonyPlanarFE50mmf14ZA.data.ts) - WO 2017/138250 A1
 

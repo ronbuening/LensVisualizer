@@ -77,6 +77,14 @@ under-counts chief-ray height near the image. Fixing it lens-by-lens off drawing
 re-deriving these from a real full-field chief-ray trace would settle the whole section at once and is probably the
 better investment.
 
+### Completed Nikon additions
+
+| Lens | Figure screen | Status |
+|---|---|---|
+| AF-S DX Zoom-Nikkor 12-24mm f/4 G IF-ED | Median 1.004; revised L2/L3 0.89 and L4 0.86 after normalization | done 2026-07-29; resin boundary capped by edge/sag validation |
+| AI AF Zoom-Nikkor 24-120mm f/3.5-5.6 D IF | Automated crop contaminated by dense labels/brackets; 300 dpi hand measurements used | done 2026-07-29; published 17A/34A apertures retained |
+| AF Zoom-Nikkor 28-200mm f/3.5-5.6 G IF-ED | Median 1.113; revised L12/L21 each 1.00 after normalization | done 2026-07-29 |
+
 ## Section C — source blockers
 
 Nothing can be audited on these until the source is available.

@@ -193,7 +193,7 @@ const LENS_DATA = {
       nd: 1.86074,
       vd: 23.0,
       fl: -105.1,
-      glass: "Very dense flint (no exact modern catalog match; possibly Sumita or Nikon-specified 1990s melt)",
+      glass: "J-SFH2 (Hikari coordinate match)",
       apd: false,
       role: "Rear element of cemented doublet L8. Very high-index, very dispersive flint (Δnd=0.057 at junction) provides both chromatic and monochromatic correction. Controls distortion and lateral color while maintaining back focus per patent text.",
       cemented: "L8",

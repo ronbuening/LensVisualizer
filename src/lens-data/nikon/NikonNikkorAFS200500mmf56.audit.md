@@ -59,3 +59,10 @@ Changes made:
 - Added Hikari J-FKH1 and Schott N-SSK5 to `glassCatalogData.ts`.
 - Relabeled L2/L3 to J-FKH1 and L10 to N-SSK5 in `NikonNikkorAFS200500mmf56.data.ts`.
 - Updated `NikonNikkorAFS200500mmf56.analysis.md` so the front ED elements and L2C doublet no longer read as unresolved code fallbacks.
+
+## 2026-07-29 - Glass classification follow-up
+
+- Corrected L16 from the false E-ADF10 annotation to HOYA E-FD2.
+- The stored `nd=1.64769`, `vd=33.84`, and code coordinate `648338` match E-FD2 exactly; discontinued E-ADF10
+  is instead `1.61310 / 44.36` (`613444`).
+- Synchronized the analysis. This makes the lens fully catalog-backed without changing its prescription.

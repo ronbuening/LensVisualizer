@@ -201,7 +201,7 @@ const LENS_DATA = {
       nd: 1.72,
       vd: 43.7,
       fl: 20.6,
-      glass: "S-LAM3 type (720/437)",
+      glass: "S-LAM52 (OHARA; 720/437)",
       apd: false,
       role: "IS doublet positive — provides net positive power to IS subunit Y",
       cemented: "D5",

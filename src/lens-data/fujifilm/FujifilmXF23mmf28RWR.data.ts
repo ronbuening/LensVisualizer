@@ -75,7 +75,7 @@ const LENS_DATA = {
       nd: 1.73037,
       vd: 32.23,
       fl: -7.93,
-      glass: "730322 - NBFD32 (HOYA dense barium flint; no Sellmeier catalog entry)",
+      glass: "NBFD32 (HOYA; 730322)",
       dPgF: 0.0004,
       cemented: "D1",
       role: "Negative high-dispersion front member of the first cemented doublet in G2.",

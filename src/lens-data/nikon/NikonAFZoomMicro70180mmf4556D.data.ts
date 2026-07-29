@@ -82,7 +82,7 @@ const LENS_DATA = {
       nd: 1.86074,
       vd: 23.01,
       fl: -130.5,
-      glass: "861230 — high-index dense flint (patent nd=1.86074, νd=23.01; no source-backed catalog match)",
+      glass: "J-SFH2 (Hikari; patent code 861230)",
       role: "Front high-index negative meniscus of the focusing group.",
     },
     {
@@ -93,7 +93,7 @@ const LENS_DATA = {
       nd: 1.86074,
       vd: 23.01,
       fl: 63.1,
-      glass: "861230 — high-index dense flint (patent nd=1.86074, νd=23.01; no source-backed catalog match)",
+      glass: "J-SFH2 (Hikari; patent code 861230)",
       role: "Symmetric positive lens that balances L1 within the front focus group.",
     },
     {
@@ -241,7 +241,7 @@ const LENS_DATA = {
       nd: 1.80384,
       vd: 33.89,
       fl: -23.2,
-      glass: "Unmatched dense flint (804/339)",
+      glass: "E-LAFH2 (Hikari; patent code 804339)",
       role: "Central flint member of the G4 cemented triplet.",
       cemented: "T1",
     },

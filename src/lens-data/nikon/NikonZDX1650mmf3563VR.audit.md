@@ -43,3 +43,7 @@ Figure / SD check:
 
 - Rendered Figure 15 from the local PDF, page 41.
 - The patent does not publish semi-diameters. The stored SD profile visually matches the compact DX zoom figure: broad front hybrid element, tighter G2 stop/VR region, narrow focusing element, and larger rear field-flattener. No SD edits were made.
+
+## 2026-07-29 - Catalog-coordinate correction
+
+- Corrected L12 from modern `S-NPH2` to historical OHARA `PBH21`, the exact 1.92286 / 20.88 row.

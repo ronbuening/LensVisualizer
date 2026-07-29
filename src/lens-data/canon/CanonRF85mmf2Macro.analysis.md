@@ -73,7 +73,7 @@ Achieving good correction in a 12-element, all-spherical design at f/2 with half
 | L5+L6 | 10–12 | — | — | Cemented doublet | +55.1 | — |
 | L7 | 13–14 | 1.72047 | 34.7 | Biconcave negative | −45.6 | S-TIH4 |
 | L8 | 15–16 | 1.80400 | 46.5 | Biconvex positive | +85.4 | TAFD30 / N-LASF44 |
-| L9 | 17–18 | 1.92286 | 20.9 | Positive meniscus (concave→obj) | +68.3 | S-NPH2 |
+| L9 | 17–18 | 1.92286 | 20.9 | Positive meniscus (concave→obj) | +68.3 | PBH21 |
 | L10 | 19–20 | 1.83400 | 37.2 | Biconcave negative | −34.6 | S-LAH55 |
 | L11 | 21–22 | 1.83481 | 42.7 | Biconvex positive | +35.6 | S-LAH65 |
 | L12 | 23–24 | 1.84666 | 23.8 | Negative meniscus (concave→obj) | −63.3 | S-TIH53 |
@@ -98,7 +98,7 @@ This doublet serves multiple critical roles. Its position immediately after the 
 
 **L8 (TAFD30 / N-LASF44, biconvex positive, fl = +85.4 mm):** A lanthanum dense flint element providing positive power in the rear group. Its nd/vd combination (1.804/46.5) places it in the high-index, moderate-dispersion region of the glass map, providing useful converging power without excessive chromatic contribution. Together with L9, it helps maintain the Petzval balance while keeping the beam collimated enough to traverse the remaining air gaps toward the rear of the lens.
 
-**L9 (S-NPH2, positive meniscus concave→object, fl = +68.3 mm):** A niobium phosphate glass with the highest refractive index in the system (nd = 1.923) and the lowest Abbe number (vd = 20.9). S-NPH2 exhibits anomalous partial dispersion, and its extreme dispersion makes it a potent chromatic corrector when paired with the UD element L3 across the system. Despite being a positive meniscus, its concave-toward-object orientation and high index allow it to introduce strong higher-order aberration contributions that balance those from the front group, particularly at close focus distances.
+**L9 (PBH21, positive meniscus concave→object, fl = +68.3 mm):** A niobium phosphate glass with the highest refractive index in the system (nd = 1.923) and the lowest Abbe number (vd = 20.9). PBH21 exhibits anomalous partial dispersion, and its extreme dispersion makes it a potent chromatic corrector when paired with the UD element L3 across the system. Despite being a positive meniscus, its concave-toward-object orientation and high index allow it to introduce strong higher-order aberration contributions that balance those from the front group, particularly at close focus distances.
 
 **L10 (S-LAH55, biconcave negative, fl = −34.6 mm):** The strongest negative element in the system by focal length. Its symmetric biconcave form (R1 = −57.965, R2 = +57.965 mm — perfectly equal and opposite radii) is unusual and noteworthy: this bending factor of exactly q = 0 eliminates the shape-dependent coma contribution, leaving only the conjugate-dependent term. At the operational conjugate within the rear group, this results in very low residual coma from this element, making it function primarily as a Petzval corrector and spherical aberration generator. The equal-radius biconcave form is a classic design choice when the designer wants strong negative power with minimal off-axis asymmetric aberrations.
 
@@ -122,7 +122,7 @@ The 12 elements use ten distinct glass types spanning a wide range of the nd–v
 | S-LAH65 | 1.835 | 42.7 | Lanthanum heavy flint | L11 |
 | S-TIH53 | 1.847 | 23.8 | Titanium heavy flint | L5, L12 |
 | S-LAH58 | 1.900 | 37.4 | Lanthanum heavy flint | L6 |
-| S-NPH2 | 1.923 | 20.9 | Niobium phosphate heavy flint | L9 |
+| PBH21 | 1.923 | 20.9 | Niobium phosphate heavy flint | L9 |
 
 The strategy follows a clear pattern: the front pre-stop group uses conventional, cost-effective crowns (S-BSM14 / N-SK14) for the outer elements and the premium UD glass (S-FPL51) for secondary spectrum correction, paired with a single titanium flint (S-TIM28) for achromatization. The post-stop doublet and rear group escalate to higher-index lanthanum and niobium glasses, where the increased refractive power per surface permits stronger aberration correction with fewer elements.
 
@@ -130,7 +130,7 @@ Two glasses with anomalous partial dispersion are present:
 
 - **S-FPL51** (L3): Strong positive APD. Canon's designation: UD (Ultra-low Dispersion). The fluorophosphate crown family lies well above the normal Pg,F line, enabling effective secondary spectrum correction when paired with high-dispersion flints.
 
-- **S-NPH2** (L9): Niobium phosphate heavy flint with known positive APD. The Pg,F value for S-NPH2 also deviates from the normal line, complementing S-FPL51 for apochromatic correction across the system.
+- **PBH21** (L9): Niobium phosphate heavy flint with known positive APD. The Pg,F value for PBH21 also deviates from the normal line, complementing S-FPL51 for apochromatic correction across the system.
 
 
 ## 6. Focusing Mechanism

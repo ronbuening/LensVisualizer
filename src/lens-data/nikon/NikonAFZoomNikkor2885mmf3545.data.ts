@@ -110,7 +110,7 @@ const LENS_DATA = {
       nd: 1.86074,
       vd: 23,
       fl: 130,
-      glass: "861231 - J-SFH2 (Hikari; no source-backed catalog match)",
+      glass: "J-SFH2 (Hikari; 861231)",
       role: "High-index dense flint positive meniscus at the rear of G1.",
     },
     {
@@ -121,7 +121,7 @@ const LENS_DATA = {
       nd: 1.86074,
       vd: 23,
       fl: -72.5,
-      glass: "861231 - J-SFH2 (Hikari; no source-backed catalog match)",
+      glass: "J-SFH2 (Hikari; 861231)",
       cemented: "T1",
       role: "Front dense-flint component of the G2 cemented triplet.",
     },

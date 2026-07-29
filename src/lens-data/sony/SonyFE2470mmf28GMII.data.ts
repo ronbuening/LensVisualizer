@@ -146,7 +146,7 @@ const LENS_DATA = {
       nd: 2.00069,
       vd: 25.5,
       fl: 27.7,
-      glass: "S-LAH79 (OHARA)",
+      glass: "TAFD40L-W (HOYA)",
       apd: false as const,
       role: "L2p — ultra-high-index compact positive; satisfies condition (6), nd > 1.955",
       cemented: "D2",

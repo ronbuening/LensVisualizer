@@ -198,11 +198,14 @@ The identical nd/νd pair (1.59282/68.62) appears in all four patent examples at
 | R₁ / R₂ | −8.4171 / −2.8176 |
 | nd / νd | 1.69350 / 53.20 |
 | Thick-lens fl | +135.0 mm (scaled) |
-| Glass ID | L-LAL14 (OHARA), probable. Near-match: Δnd = 0.000, Δνd = 0.14. Low-Tg La crown for PGM. |
+| Glass ID | L-LAL13 (OHARA). Exact 1.69350 / 53.19 low-Tg La crown for PGM. |
 
 L23 is the second aspherical element. Its meniscus shape (concave object, convex image) provides weak positive power (fl ≈ +135 mm) — much weaker than L22 — indicating its primary role is aberration correction, not power contribution.
 
-The glass identification as L-LAL14 (or the conventional S-LAL14) is rated as probable. The "L-" prefix in OHARA's nomenclature denotes low-softening-temperature glass specifically engineered for precision glass molding (PGM), which is the expected manufacturing method for aspherical elements in a mass-produced lens. The Δνd = 0.14 residual is slightly above the typical 0.1 threshold for an exact match but is consistent with the known tolerance ranges in patent glass data.
+The glass identification is L-LAL13. The "L-" prefix in OHARA's nomenclature denotes low-softening-temperature
+glass specifically engineered for precision glass molding (PGM), which is the expected manufacturing method for
+aspherical elements in a mass-produced lens. Its published 1.69350 / 53.19 coordinate agrees with the patent row
+within ordinary rounding.
 
 **Aspherical departure (surface 18, front):** K = +15.33 — a strongly hyperboloidal base surface. This is the most extreme conic constant in the entire design. At the 13.3 mm semi-diameter, the departure is −530 µm — for this concave surface (R < 0), the negative departure means the aspherical profile is *more* deeply concave than the parent sphere, curving further toward the object at the rim. The conic height limit check passes (sd/h_max = 0.29, well below the 0.98 maximum). The hyperboloidal base combined with the polynomial terms (A₄ = −2.06×10⁻¹) produces a surface with a complex inflection profile that corrects field-dependent aberrations (coma, astigmatism) introduced by the focus group's axial movement.
 

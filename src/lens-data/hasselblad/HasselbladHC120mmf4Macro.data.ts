@@ -144,7 +144,7 @@ const LENS_DATA = {
       nd: 1.8044,
       vd: 39.6,
       fl: -46.4,
-      glass: "NBFD10 (HOYA)",
+      glass: "S-LAH63 (OHARA coordinate match)",
       apd: false,
       role: "Rear-group negative; maintains field flatness from infinity to 1:1 (condition 4).",
     },

@@ -76,3 +76,7 @@ Local patent source: `patents/US20200012073A1.pdf` (untracked local file).
 | L9 / 15 | `dPgF` | absent | `0.092` | Patent Table 1 lists anomalous partial dispersibility `ΔθgF2 = 0.092` for the BR positive element. |
 
 No `nC`, `nF`, or `ng` rows were found in the extracted local patent text.
+
+## 2026-07-29 - Catalog-coordinate correction
+
+- Corrected L3 from modern `S-NPH2` to historical OHARA `PBH21`, the exact 1.92286 / 20.90 row.

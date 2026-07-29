@@ -63,7 +63,7 @@ The surface at the L3/L4 cemented interface is R6 = +29.317 mm. It is the load-b
 
 ### L5 — Positive Meniscus, convex to object
 
-nd = 1.86074, νd = 23.0. Glass: 861231 - J-SFH2 (Hikari; no source-backed catalog match). f = +130.0 mm.
+nd = 1.86074, νd = 23.0. Glass: coefficient-backed J-SFH2 (Hikari, 861231). f = +130.0 mm.
 
 L5 is a positive meniscus made from a very high-index, high-dispersion dense flint. Its positive power is modest, but its dispersion is not. It completes the front group’s chromatic balance after the strong negative L2 and the negative cemented doublet.
 
@@ -71,7 +71,7 @@ The narrow 0.250 mm air gap between L4 and L5 creates a near-contact rear subass
 
 ### L6 + L7 + L8 — Cemented Triplet in G2
 
-L6: nd = 1.86074, νd = 23.0. Glass: 861231 - J-SFH2 (Hikari; no source-backed catalog match). f = -72.5 mm standalone.
+L6: nd = 1.86074, νd = 23.0. Glass: coefficient-backed J-SFH2 (Hikari, 861231). f = -72.5 mm standalone.
 L7: nd = 1.48749, νd = 70.2. Glass: S-FSL5 (OHARA). f = +27.7 mm standalone.
 L8: nd = 1.58144, νd = 40.8. Glass: E-FL5 equivalent (legacy LF5 class). f = -121.8 mm standalone.
 Cemented triplet net focal length: +67.0 mm.
@@ -138,8 +138,8 @@ The patent gives refractive index and Abbe number only. It does not name glass c
 | L2 | 1.71700 | 48.1 | S-LAM3 (OHARA) | close catalog match |
 | L3 | 1.79668 | 45.5 | 797455 - TAF2 class (Hoya legacy; no exact catalog match) | class attribution; not uniquely catalog-resolved |
 | L4 | 1.80458 | 25.5 | S-TIH6 class (OHARA) | close class match |
-| L5 | 1.86074 | 23.0 | 861231 - J-SFH2 (Hikari; no source-backed catalog match) | unresolved six-digit class |
-| L6 | 1.86074 | 23.0 | 861231 - J-SFH2 (Hikari; no source-backed catalog match) | same glass as L5 |
+| L5 | 1.86074 | 23.0 | J-SFH2 (Hikari, 861231) | coefficient-backed coordinate |
+| L6 | 1.86074 | 23.0 | J-SFH2 (Hikari, 861231) | same glass as L5 |
 | L7 | 1.48749 | 70.2 | S-FSL5 (OHARA) | same glass as L1 |
 | L8 | 1.58144 | 40.8 | E-FL5 equivalent (legacy LF5 class) | catalog-backed equivalent |
 | L9 | 1.60311 | 60.7 | S-BSM14 (OHARA) | exact/close catalog match |
@@ -210,5 +210,5 @@ The optical design is more complex than a simple two-group standard zoom but rem
 - US Patent 4,806,000, "Zoom Lens Capable of Macro Photography," Nikon Corporation, granted February 21, 1989. Tables 1 and 2 provide the numerical prescription and variable spacings; Figs. 9, 10, and 15 show the four-group kinematics and lens construction.
 - Nikon-published product and compatibility literature for the AF Zoom-Nikkor 28-85mm f/3.5-4.5 family, used for production naming and marketed aperture range.
 - OHARA optical glass data sheets for S-FSL5, S-LAM3, S-TIH6/S-TIH11 class matches, S-BSM14, S-BSM10, and comparison against S-NSL3.
-- Hikari optical glass names for J-SFH2 and J-LAFH3 class checks; no source-backed Sellmeier entries were added for those classes.
+- Hikari optical glass data for coefficient-backed J-SFH2 and the unresolved J-LAFH3 class check.
 - Schott historical/catalog data for LF5/E-FL5 and N-BK7-class comparisons.

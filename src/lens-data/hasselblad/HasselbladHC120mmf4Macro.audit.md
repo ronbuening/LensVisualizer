@@ -39,3 +39,11 @@ Patent: JP 2004-302170 A, Example 4 / Table 4
 - Confirmed the high-index elements remain L7 `S-TIH6` and L8 `NBFD10 (HOYA)` (nd >= 1.8). `NBFD10` remains the only unresolved/Sellmeier-missing glass disposition for this lens.
 - Rendered and reviewed the patent drawing. The existing SD profile matches the macro layout: broad front group ahead of the stop, smaller rear negative/positive correction elements, and a final rear element sized for the 645 field. No SD edits were made.
 - Verification: `npm run generate:glass-reports`, `npm run typecheck`, `npm run format:check`, `npm run lint`, `npm run test`, and `git diff --check` passed.
+
+## 2026-07-29 - Catalog-mismatch follow-up
+
+- Rechecked L8 against Example 4 / Table 4: the stored `nd=1.80440`, `vd=39.6` row is correct.
+- Replaced the false `NBFD10 (HOYA)` annotation (`nd=1.83400`, `vd=37.34`) with coefficient-backed
+  `S-LAH63 (OHARA coordinate match)`, whose published coordinate is `nd=1.80440`, `vd=39.59`.
+- This is a catalog-coordinate identification, not a claim that Fuji procured OHARA glass for the production lens.
+- Synchronized the analysis and removed this lens from the catalog-mismatch queue.

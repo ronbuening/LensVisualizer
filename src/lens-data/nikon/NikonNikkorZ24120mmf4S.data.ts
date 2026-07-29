@@ -279,7 +279,7 @@ const LENS_DATA = {
       nd: 1.92286,
       vd: 20.88,
       fl: 74.7,
-      glass: "S-NPH2 (OHARA)",
+      glass: "PBH21 (OHARA; historical 923209)",
       apd: false,
       cemented: "D7",
       role: "Ultra-high-dispersion dense flint in G7 doublet (P1 element); final lateral color correction (Δνd ≈ 26 with L15)",

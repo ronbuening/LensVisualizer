@@ -68,3 +68,10 @@ Patent: JP 2019-144477 A, Numerical Example 1
 - `npm run format:check` - passed.
 - `npm run lint` - passed.
 - `npm run test` - passed.
+
+## 2026-07-29 - E-ADF10 catalog coverage
+
+- Added discontinued HOYA E-ADF10 from the manufacturer's 2026-07-07 Zemax catalog, including its published
+  formula-3 polynomial.
+- L4's exact `nd=1.61310`, `vd=44.36`, code `613444` coordinate now resolves to catalog dispersion.
+- No lens-data or prescription values changed.

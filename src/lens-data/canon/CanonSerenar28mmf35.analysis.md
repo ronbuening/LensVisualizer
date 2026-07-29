@@ -81,9 +81,9 @@ L1 serves as the front collector element. Its moderate positive power gathers th
 - **Shape:** Biconvex
 - **Radii:** R₃ = +0.472, R₄ = −3.000
 - **Thick-lens focal length:** +0.661f = +18.4 mm
-- **Glass:** nᵈ = 1.6237, νᵈ = 47.0 → **Schott SK16** (dense barium crown)
+- **Glass:** nᵈ = 1.6237, νᵈ = 47.0 → **HOYA E-BAF8** (barium flint)
 
-L2 is the positive component of the front cemented doublet. It is the most strongly powered element in the system. The dense barium crown (SK16) provides higher refractive index than L1, enabling strong positive power while the moderate Abbe number (47.0) allows partial chromatic correction when paired with the flint L3. The strong curvature of R₃ (+0.472) is the primary positive refracting surface of the front Gauss group.
+L2 is the positive component of the front cemented doublet. It is the most strongly powered element in the system. E-BAF8 provides higher refractive index than L1, enabling strong positive power while the moderate Abbe number (47.0) allows partial chromatic correction when paired with the flint L3. The strong curvature of R₃ (+0.472) is the primary positive refracting surface of the front Gauss group.
 
 ### 3.3 Element L3 — Front Cemented Negative (Group II, rear half)
 
@@ -134,7 +134,7 @@ The design uses only four distinct glass types across six elements:
 | Glass | Schott Designation | nᵈ | νᵈ | Six-Digit Code | Type | Elements |
 |-------|-------------------|------|------|---------------|------|----------|
 | SK4 | Barium crown | 1.5638 | 60.7 | 564/607 | Crown | L1 |
-| SK16 | Dense barium crown | 1.6237 | 47.0 | 624/470 | Crown | L2 |
+| E-BAF8 | Barium flint | 1.6237 | 47.0 | 624/470 | Crown-side doublet member | L2 |
 | F7 | Dense flint | 1.5955 | 39.2 | 596/392 | Flint | L3 |
 | BaF3 | Barium flint | 1.5785 | 41.7 | 579/417 | Flint | L4 |
 | SK14 | Dense barium crown | 1.6204 | 60.3 | 620/603 | Crown | L5, L6 |

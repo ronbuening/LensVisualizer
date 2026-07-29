@@ -138,7 +138,7 @@ const LENS_DATA = {
       nd: 1.8,
       vd: 29.84,
       fl: 34.2,
-      glass: "S-LAH52Q (OHARA)",
+      glass: "S-NBH55 (OHARA)",
       apd: false,
       cemented: "D2",
       role: "High-index lanthanum flint achromatic partner in G2; the D2 doublet is net weakly positive (f ≈ +148 mm).",

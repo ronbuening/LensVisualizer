@@ -136,7 +136,7 @@ const LENS_DATA = {
       nd: 1.86074,
       vd: 23.0,
       fl: -35.76,
-      glass: "Unmatched J-SFH2 class (Hikari; 861230 region, no source-backed catalog match)",
+      glass: "J-SFH2 (Hikari; patent coordinate 861230)",
       apd: false,
       role: "High-index dense flint at the entrance to the positive power core.",
     },

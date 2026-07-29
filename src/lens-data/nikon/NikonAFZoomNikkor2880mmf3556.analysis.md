@@ -55,7 +55,7 @@ Condition (5), $0.8 < r_6/\lvert f_1\rvert < 1.2$, specifically constrains L3's 
 
 ### L4 — Positive Meniscus, convex to object
 
-nd = 1.86074, νd = 23.01. Glass: 861230 - dense flint class. f = +69.647 mm.
+nd = 1.86074, νd = 23.01. Glass: J-SFH2 (Hikari coordinate successor to patent code 861230). f = +69.647 mm.
 
 L4 closes the negative zoom group with positive power. Its dense flint glass provides substantial positive refraction in a compact meniscus form and offsets part of the negative Petzval contribution from L2 and L3.
 
@@ -105,7 +105,7 @@ The patent gives nd and νd values but no catalog glass names. The data file the
 | ---------- | ------: | ----: | ------------------------------------------------ | ------------------------------------------- |
 | L1         | 1.51454 | 54.55 | 515546 - unmatched light crown                   | Weak front distortion corrector             |
 | L2, L3     | 1.79668 | 45.37 | 797454 - high-index lanthanum flint class        | Main G1 negative power                      |
-| L4         | 1.86074 | 23.01 | 861230 - dense flint class                       | Positive G1 Petzval balance                 |
+| L4         | 1.86074 | 23.01 | J-SFH2 (Hikari; patent code 861230)              | Positive G1 Petzval balance                 |
 | L5, L6     | 1.61720 | 54.01 | 617540 - SSK-class crown                         | Positive rear-group crown pair              |
 | L7         | 1.80518 | 25.41 | Dense flint / SF6-family class (805/254)         | Rear-group chromatic and Petzval correction |
 | L8         | 1.61293 | 36.98 | Moderate-dispersion flint class (613/370)        | Final relay and color trim                  |

@@ -156,7 +156,7 @@ coefficient-backed HOYA TAFD40 catalog equivalent; the patent does not identify 
 element of the cemented IS doublet.
 
 **L12** (surfaces 21–22): nd = 1.72000, νd = 43.7
-A **positive biconvex** element (f = +20.6 mm) in lanthanum flint glass (OHARA S-LAM3), cemented to L11.
+A **positive biconvex** element (f = +20.6 mm) in lanthanum glass (OHARA S-LAM52), cemented to L11.
 
 The L11/L12 cemented doublet has a combined focal length of approximately +41.5 mm (verified: thin-lens computation gives +41.61 mm, close to the patent's stated fy = +41.45 mm). The patent notes that all lenses in the second subunit are preferably spherical to simplify manufacturing by polishing—no aspherical surfaces are used in the IS group. This is important for manufacturing cost and for maintaining tight tolerances when the element is mounted on a moving gimbal mechanism.
 
@@ -289,7 +289,7 @@ These nd ≈ 2.0 glasses are expensive specialty materials, but their use is jus
 | L9 | 1.58144 | 40.8 | PBL25 (OHARA equivalent; 581408) | Barium crown |
 | L10 | 2.00100 | 29.1 | S-LAH99 (OHARA equivalent; 001291) | Ultra-high index dense flint |
 | L11 | 2.00069 | 25.5 | TAFD40 (HOYA equivalent; 001255) | Ultra-high index dense flint |
-| L12 | 1.72000 | 43.7 | S-LAM3 type | Lanthanum flint |
+| L12 | 1.72000 | 43.7 | S-LAM52 | Lanthanum glass |
 | L13 | 2.00100 | 29.1 | S-LAH99 (OHARA equivalent; 001291) | Ultra-high index dense flint |
 | L14 | 1.53110 | 55.9 | 531559 code | Barium light crown **(ASPH)** |
 | L15 | 1.85478 | 24.8 | S-TIH53W type | Short flint |

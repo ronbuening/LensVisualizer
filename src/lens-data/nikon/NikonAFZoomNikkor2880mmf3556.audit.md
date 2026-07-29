@@ -14,3 +14,10 @@ Patent: JP H11-030748 A, Example 1
 ### Verification
 
 - `npm test -- elementRenderDiagnostics`
+
+## 2026-07-29 - Glass coverage follow-up
+
+- Relabeled L4 from a code-only `861230` dense-flint description to coefficient-backed Hikari J-SFH2.
+- Current J-SFH2 retains the patent row's `nd=1.86074`; its `861231` code and `vd=23.08` differ from the patent's
+  `861230` / `vd=23.01` only in the final rounded digit.
+- Synchronized the analysis. No prescription or SD values changed.

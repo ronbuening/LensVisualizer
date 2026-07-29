@@ -81,7 +81,7 @@ const LENS_DATA = {
       nd: 1.6134,
       vd: 44.27,
       fl: -164.3,
-      glass: "E-ADF10 (HOYA)",
+      glass: "S-NBM51 (OHARA; exact 613443 coordinate)",
       apd: false,
       dPgF: -0.0053,
       role: "Secondary-spectrum corrector — strongest negative ΔPgF, paired with L2 for g-line correction",

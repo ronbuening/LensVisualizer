@@ -129,7 +129,7 @@ const LENS_DATA = {
       nd: 1.51728,
       vd: 69.6,
       fl: -45.305,
-      glass: "517696 - legacy low-dispersion crown / S-APL1 class (vendor unresolved)",
+      glass: "S-APL1 (OHARA; 517696)",
       apd: false,
       cemented: "D2",
       role: "Negative component of the variator cemented pair.",

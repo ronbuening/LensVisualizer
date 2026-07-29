@@ -21,7 +21,12 @@
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import buildLens from "../../../src/optics/buildLens.js";
-import { evaluateSellmeier, LINE_NM, resolveGlass } from "../../../src/optics/glassCatalog.js";
+import {
+  assessCatalogGlassCompatibility,
+  evaluateSellmeier,
+  LINE_NM,
+  resolveGlass,
+} from "../../../src/optics/glassCatalog.js";
 import type { DispersionQuality } from "../../../src/optics/dispersion.js";
 import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
 import type { LensData } from "../../../src/types/optics.js";
@@ -378,10 +383,12 @@ describe("six-digit glass-code scan", () => {
         const catalogEntry = resolveGlass(element.glass);
         const catalogNd = catalogEntry ? evaluateSellmeier(catalogEntry, LINE_NM.d) : null;
         const hasSellmeier =
-          catalogNd !== null &&
+          catalogEntry !== null &&
           L.S.some(
             (surface) =>
-              surface.nd !== 1.0 && surface.elemId === element.id && Math.abs(catalogNd - surface.nd) <= 5e-3,
+              surface.nd !== 1.0 &&
+              surface.elemId === element.id &&
+              assessCatalogGlassCompatibility(catalogEntry, surface.nd, element.vd).compatible,
           );
         rows.push({
           lensKey: data.key,

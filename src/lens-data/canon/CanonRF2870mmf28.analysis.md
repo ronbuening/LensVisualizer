@@ -159,7 +159,7 @@ Together, the four aspherical surfaces provide six degrees of freedom for aberra
 | L12 | 1.59522 | 67.7 | 595677 | S-BSM14 family | — |
 | L13 | 1.61340 | 44.3 | 613443 | S-BAH11 family | — |
 | L14 | 1.74400 | 44.8 | 744448 | S-LAL14 family | — |
-| L15 | 1.92286 | 20.9 | 923209 | S-NPH2 (OHARA) | — |
+| L15 | 1.92286 | 20.9 | 923209 | PBH21 (OHARA) | — |
 
 Glass identifications marked "family" are nearest-catalog matches based on six-digit glass codes. Exact catalog designations cannot be confirmed without full melt-sheet data from Canon's supplier.
 
@@ -179,7 +179,7 @@ Both aspherical elements use nd = 1.58313, νd = 59.4 (glass code 583594), match
 
 **L6** (nd = 2.00100, νd = 29.1) is an **ultra-high index dense flint** — one of the highest-index optical glasses commercially available. This extreme refractive index allows L6 to achieve strong positive power (f ≈ +41.5 mm) with relatively gentle surface curvatures, minimizing higher-order aberrations. Its position immediately after the stop makes it the primary positive element controlling spherical aberration correction at the design aperture.
 
-**L15** (nd = 1.92286, νd = 20.9) is an ultra-dense short flint, matching OHARA **S-NPH2**. Paired with L14 in the B7 cemented doublet, it provides achromatic correction for the rear group while contributing strong positive power (f ≈ +44 mm) to partially offset L14's negative contribution (f ≈ −32 mm).
+**L15** (nd = 1.92286, νd = 20.9) is an ultra-dense short flint, matching OHARA **PBH21**. Paired with L14 in the B7 cemented doublet, it provides achromatic correction for the rear group while contributing strong positive power (f ≈ +44 mm) to partially offset L14's negative contribution (f ≈ −32 mm).
 
 ---
 
@@ -229,7 +229,7 @@ Using a single lightweight element for focusing is critical for the **STM (Stepp
 
 ### B7 — Rear Negative Doublet (f = −120.17 mm)
 
-**L14 + L15** (Cemented doublet D3): L14 is a biconcave element in lanthanum crown (nd = 1.74400), providing strong negative power (f ≈ −32 mm). L15 is a biconvex element in ultra-dense short flint S-NPH2 (nd = 1.92286, νd = 20.9), providing strong positive power (f ≈ +44 mm). The net effect is moderate negative power (f = −120 mm) with achromatic correction.
+**L14 + L15** (Cemented doublet D3): L14 is a biconcave element in lanthanum crown (nd = 1.74400), providing strong negative power (f ≈ −32 mm). L15 is a biconvex element in ultra-dense short flint PBH21 (nd = 1.92286, νd = 20.9), providing strong positive power (f ≈ +44 mm). The net effect is moderate negative power (f = −120 mm) with achromatic correction.
 
 B7's position at the rear of the optical train, close to the image plane, means it has the most influence on **field curvature and distortion**. The Canon marketing material acknowledges that this lens relies on **electronic distortion correction** — the raw images show significant barrel distortion at the wide end (on the order of 10% or more at full field per the patent's aberration plots), which is corrected in-camera for JPEGs and via lens profiles for RAW converters.
 
@@ -332,4 +332,4 @@ The accompanying `CanonRF2870mmf28.data.ts` file encodes the first numerical exa
 1. US Patent Application Publication US 2024/0329367 A1, "Zoom Lens and Imaging Apparatus Including the Same," Yasuaki Hagiwara, Canon Kabushiki Kaisha, published October 3, 2024.
 2. Canon U.S.A., "RF28-70mm F2.8 IS STM" product page.
 3. Canon Europe, "RF 28-70mm F2.8 IS STM Specifications."
-4. OHARA Inc., Optical Glass Catalog (for S-FPL51, L-BAL42, S-NPH2 glass data).
+4. OHARA Inc., Optical Glass Catalog (for S-FPL51, L-BAL42, PBH21 glass data).

@@ -22,7 +22,10 @@ import buildLens from "../../../src/optics/buildLens.js";
 import type { DispersionQuality } from "../../../src/optics/dispersion.js";
 import {
   allEntries,
+  assessCatalogGlassCompatibility,
   evaluateSellmeier,
+  GLASS_ND_TOLERANCE,
+  GLASS_VD_TOLERANCE,
   LINE_NM,
   resolveGlass,
   type GlassEntry,
@@ -34,8 +37,8 @@ const modules = import.meta.glob<{ default: LensData }>("../../../src/lens-data/
 const REPORT_DIR = "agent_docs/generated";
 const PATENTS_DIR = "patents";
 const REVIEWED_SIDECAR = "agent_docs/generated/six-digit-glass-codes-missing-sellmeier-reviewed.md";
-const ND_TOLERANCE = 5e-3;
-const VD_TOLERANCE = 3.0;
+const ND_TOLERANCE = GLASS_ND_TOLERANCE;
+const VD_TOLERANCE = GLASS_VD_TOLERANCE;
 const PGF_TOLERANCE = 0.02;
 const TOP_CODE_COUNT = 25;
 const TOP_NAMED_TOKEN_COUNT = 25;
@@ -454,8 +457,8 @@ describe("glass coverage opportunities scan", () => {
 
         const element = surface.elemId ? elementById.get(surface.elemId) : undefined;
         const entry = element?.glass ? resolveGlass(element.glass) : null;
-        const catalogNd = entry ? evaluateSellmeier(entry, LINE_NM.d) : null;
-        const sellmeierEligible = catalogNd !== null && Math.abs(catalogNd - surface.nd) <= ND_TOLERANCE;
+        const sellmeierEligible =
+          entry !== null && assessCatalogGlassCompatibility(entry, surface.nd, element?.vd).compatible;
         const quality = L.indexByIdx?.[i]?.quality ?? "missing";
         const trustedChromatic = sellmeierEligible || quality === "lineIndices";
 
@@ -536,8 +539,7 @@ describe("glass coverage opportunities scan", () => {
         const hasSellmeierEligibleSurface =
           catalogEntry !== null &&
           elementSurfaces.some(({ surface }) => {
-            const catalogNd = evaluateSellmeier(catalogEntry, LINE_NM.d);
-            return Math.abs(catalogNd - surface.nd) <= ND_TOLERANCE;
+            return assessCatalogGlassCompatibility(catalogEntry, surface.nd, element.vd).compatible;
           });
 
         if (isCodeOnlyGlassAnnotation(element.glass)) {

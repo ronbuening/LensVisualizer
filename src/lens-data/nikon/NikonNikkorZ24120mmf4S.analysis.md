@@ -119,7 +119,7 @@ G7 is the final zoom group — a cemented negative doublet that acts as a negati
 
 - **L15** (nd = 1.77503, νd = 47.31, f ≈ −25.8 mm): A biconcave negative element with an aspherical front surface (*28). The aspherical departure is small (approximately +28 µm at sd 12.3 mm), fine-tuning the wavefront in the converging beam just before the image plane. The same glass (1.77503/47.31) appears in L3, suggesting it is a precision-moldable lanthanum crown suitable for PGM.
 
-- **L16** (nd = 1.92286, νd = 20.88, f ≈ +74.7 mm): A positive meniscus in extremely high-dispersion glass, tagged **P1**. The glass code matches **OHARA S-NPH2**, a dense flint with one of the highest refractive indices and lowest Abbe numbers in commercial production. Paired with L15 in the cemented doublet, the extreme Abbe number contrast (47.31 vs. 20.88, Δνd ≈ 26) provides a final stage of lateral color correction for off-axis beams at the image end.
+- **L16** (nd = 1.92286, νd = 20.88, f ≈ +74.7 mm): A positive meniscus in extremely high-dispersion glass, tagged **P1**. The glass code matches the historical **OHARA PBH21** row, a dense flint with an unusually high refractive index and low Abbe number. Paired with L15 in the cemented doublet, the extreme Abbe number contrast (47.31 vs. 20.88, Δνd ≈ 26) provides a final stage of lateral color correction for off-axis beams at the image end.
 
 ---
 
@@ -165,7 +165,7 @@ The following table summarizes the inferred glass identifications. Glasses label
 | L13 | 1.772500 | 49.62 | S-LAM66 (OHARA) | Likely | Lanthanum crown |
 | L14 | 1.553320 | 71.67 | **HOYA M-FCD500** | Confident | Moldable fluorophosphate ED glass |
 | L15 | 1.775030 | 47.31 | Same mold glass as L3 | Uncertain | Aspherical — shares glass with L3 |
-| L16 | 1.922860 | 20.88 | S-NPH2 (OHARA) | Confident | Ultra-high-dispersion dense flint |
+| L16 | 1.922860 | 20.88 | PBH21 (OHARA) | Confident | Ultra-high-dispersion dense flint |
 
 ### Glass Strategy Summary
 

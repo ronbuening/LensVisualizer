@@ -40,7 +40,7 @@ All optical surfaces are spherical. No aspherical-surface section is included be
 
 ### L1 - Negative Meniscus, convex to object, cemented with L2
 
-nd = 1.80384, νd = 33.89. Glass: unmatched dense lanthanum-flint class, patent code 804/339. f = -189.7 mm.
+nd = 1.80384, νd = 33.89. Glass: Hikari E-LAFH2, exact patent code 804/339. f = -189.7 mm.
 
 L1 is the negative flint member of the opening achromat. Its high refractive index and low Abbe number make it the dispersive partner for the ED crown L2. The two positive radii form a negative meniscus that is convex to the object side.
 
@@ -76,7 +76,7 @@ L6 starts the first cemented doublet in G2. Its steep rear junction surface at R
 
 ### L7 - Positive Meniscus, convex to object, cemented with L6
 
-nd = 1.80384, νd = 33.89. Glass: unmatched dense lanthanum-flint class, same patent code as L1. f = +73.7 mm.
+nd = 1.80384, νd = 33.89. Glass: Hikari E-LAFH2, same exact patent code as L1. f = +73.7 mm.
 
 L7 is the positive high-index member of the first G2 doublet. The L6-L7 cemented pair computes to f = -275.8 mm; by itself it is not the dominant negative component, but it participates in balancing coma and chromatic error before the stronger L8-L9 pair.
 
@@ -124,13 +124,13 @@ The patent publishes nd, νd, and ng values, not glass names. Catalog names belo
 
 | Element | Patent nd | Patent νd | Working identification | Match status | Role |
 |---|---:|---:|---|---|---|
-| L1 | 1.80384 | 33.89 | Unmatched dense lanthanum flint, 804/339 code | Unmatched | Negative flint member of front ED doublet |
+| L1 | 1.80384 | 33.89 | E-LAFH2 (Hikari), 804/339 code | Exact code and coordinate | Negative flint member of front ED doublet |
 | L2 | 1.49782 | 82.52 | J-FKH1-class FK fluorophosphate (Hikari) | Close / catalog-class | ED positive element |
 | L3 | 1.49782 | 82.52 | J-FKH1-class FK fluorophosphate (Hikari) | Close / catalog-class | ED positive element |
 | L4 | 1.79631 | 40.90 | Unmatched lanthanum flint, 796/409 code | Unmatched | G12 negative doublet member |
 | L5 | 1.60311 | 60.64 | S-BSM14 (OHARA) | Exact to listed nd/νd | G12 crown partner |
 | L6 | 1.62280 | 57.03 | S-BSM10-class (OHARA) | Close | G2 negative meniscus |
-| L7 | 1.80384 | 33.89 | Unmatched dense lanthanum flint, 804/339 code | Unmatched | G2 high-index partner |
+| L7 | 1.80384 | 33.89 | E-LAFH2 (Hikari), 804/339 code | Exact code and coordinate | G2 high-index partner |
 | L8 | 1.80518 | 25.41 | S-TIH6 (OHARA) | Close / essentially exact | Dense flint in dominant G2 doublet |
 | L9 | 1.62041 | 60.14 | S-BSM16-class (OHARA) | Close, not exact νd | G2 negative crown member |
 | L10 | 1.68893 | 31.08 | S-TIM28 (OHARA) | Close / essentially exact | GL flint member |

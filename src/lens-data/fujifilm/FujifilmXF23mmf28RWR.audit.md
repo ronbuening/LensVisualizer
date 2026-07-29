@@ -20,3 +20,10 @@ Patent: US 2026/0118637 A1, Example 4
 ### Analysis sync
 
 - Updated L21 and L26 glass descriptions and source wording in the companion analysis.
+
+## 2026-07-29 - NBFD32 catalog follow-up
+
+- Added the official HOYA NBFD32 formula-3 polynomial to the shared catalog.
+- Simplified L21 to `NBFD32 (HOYA; 730322)` and synchronized the analysis; the element now uses catalog dispersion
+  instead of the Abbe fallback.
+- The patent's `nd=1.73037`, `vd=32.23`, and `theta_g,F=0.5900` agree with HOYA's current characteristic sheet.
