@@ -93,9 +93,9 @@ L8 closes subgroup G1B, collecting the beam after the two cemented doublets. Its
 
 ### L9 — Biconvex Positive (G2, focus group)
 
-nd = 1.92286, νd = 20.88. Glass: S-NPH2 (OHARA) — super-dense lanthanum flint (highest nd in the system). f = +83.7 mm.
+nd = 1.92286, νd = 20.88. Glass: PBH21 (OHARA) — super-dense lanthanum flint (highest nd in the system). f = +83.7 mm.
 
-L9 is the leading element of the focus group G2. Its exceptionally high refractive index enables the requisite positive power with gentle surface curvatures (R15 = +90.44, R16 = −527.5 mm), which is critical for maintaining low aberration sensitivity across the focus range. Despite its very low Abbe number (20.88), S-NPH2 is a sound choice here: because the element sits close to the stop, its chief-ray height is low, limiting its lateral-color contribution. The axial-color burden of this high-dispersion singlet is managed by the surrounding SLD and FLD elements in G2 and G3.
+L9 is the leading element of the focus group G2. Its exceptionally high refractive index enables the requisite positive power with gentle surface curvatures (R15 = +90.44, R16 = −527.5 mm), which is critical for maintaining low aberration sensitivity across the focus range. Despite its very low Abbe number (20.88), PBH21 is a sound choice here: because the element sits close to the stop, its chief-ray height is low, limiting its lateral-color contribution. The axial-color burden of this high-dispersion singlet is managed by the surrounding SLD and FLD elements in G2 and G3.
 
 ### L10 — Biconvex Positive, cemented with L11 (G2 doublet)
 
@@ -153,7 +153,7 @@ The design uses eleven distinct glass types across sixteen elements, drawing fro
 | L5 | 1.83481 | 42.72 | −0.011 | S-LAH55V | OHARA | Standard | Lanthanum dense crown |
 | L6 | 1.55032 | 75.50 | +0.028 | FCD705 | HOYA | SLD | Fluorophosphate crown |
 | L7 | 1.60342 | 38.01 | ±0.000 | S-TIM5 | OHARA | Standard | Flint |
-| L9 | 1.92286 | 20.88 | +0.029 | S-NPH2 | OHARA | Standard | Super-dense lanthanum flint |
+| L9 | 1.92286 | 20.88 | +0.029 | PBH21 | OHARA | Standard | Super-dense lanthanum flint |
 | L10, L15 | 1.59282 | 68.63 | +0.015 | PCD51 | HOYA | SLD | Phosphate crown |
 | L11 | 1.58144 | 40.89 | +0.005 | E-FL5 | HOYA | Standard | Light flint |
 | L14 | 1.62588 | 35.74 | +0.006 | E-F1 | HOYA | Standard | Flint |
@@ -248,7 +248,7 @@ The patent's aberration strategy, as described in ¶0020–0056, can be summariz
 
 **Dual-doublet geometric and chromatic correction (G1B):** Component X (new achromatism) corrects field curvature while providing secondary chromatic correction; Component Y (old achromatism) corrects high-order spherical aberration using the strong refractive-index contrast at its cemented interface (¶0026). The dual-doublet approach grants two additional degrees of freedom compared to a single cemented group.
 
-**High-index focus group (G2):** L9's S-NPH2 glass (nd = 1.923) minimizes surface curvatures in the moving group, reducing focus-dependent aberration drift. The G2 cemented doublet (L10 + L11) trims residual axial color and astigmatism.
+**High-index focus group (G2):** L9's PBH21 glass (nd = 1.923) minimizes surface curvatures in the moving group, reducing focus-dependent aberration drift. The G2 cemented doublet (L10 + L11) trims residual axial color and astigmatism.
 
 **Concentric rear correction (G3):** The negative doublet L3a plus the concentric meniscus L14 implement an off-Gauss sagittal-coma correction strategy. L14's concentricity with the stop (R33/Ds33 = −1.52) is the patent's primary mechanism for achieving flat sagittal performance across the 56° field at F/1.4.
 
@@ -269,4 +269,4 @@ The patent was filed by inventor Yamanaka Kenji, with the publication appearing 
 - Sigma Corporation press release (September 2018): development announcement confirming cine-lens origin of the optical design.
 - Kazuto Yamaki (Sigma CEO), interview with Imaging Resource (September 2020): discussion of FLD glass equivalence to fluorite and Sigma's glass selection methodology.
 - HOYA Corporation optical glass catalog: FCD100, FCD705, M-TAFD305, PCD51, E-FD2, E-F1, E-FL5 catalog entries.
-- OHARA Corporation optical glass catalog (May 2023 pocket edition): S-LAH66, S-LAH55V, S-NPH2, S-TIM5 catalog entries.
+- OHARA Corporation optical glass catalog (May 2023 pocket edition): S-LAH66, S-LAH55V, PBH21, S-TIM5 catalog entries.

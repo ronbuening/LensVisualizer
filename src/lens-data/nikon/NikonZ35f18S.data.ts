@@ -170,7 +170,7 @@ const LENS_DATA = {
       nd: 1.6935,
       vd: 53.2,
       fl: 6.06,
-      glass: "L-LAL14 (OHARA), probable",
+      glass: "L-LAL13 (OHARA)",
       role: "Weak positive meniscus (convex image side); primary role is aberration correction, not power. 2× aspherical surfaces manage field curvature variation during focus. L-prefix = PGM glass. Asph departures: S18A −530 µm, S19A +218 µm (scaled).",
     },
 

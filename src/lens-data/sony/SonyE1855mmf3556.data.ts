@@ -126,7 +126,7 @@ const LENS_DATA = {
       nd: 1.92286,
       vd: 20.88,
       fl: 20.84,
-      glass: "S-NPH2 (OHARA)",
+      glass: "PBH21 (OHARA; historical 923209)",
       role: "Strong positive, very-low-Abbe element balancing chromatic power in G2.",
     },
     {

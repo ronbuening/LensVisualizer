@@ -94,7 +94,7 @@ The following table identifies each element's optical properties, glass identifi
 | L12 | Gr1 | 1.55032 | 75.50 | Fluorophosphate crown (see §4.3) | — | Pos. meniscus (convex obj.) | +114.2 |
 | L13 | Gr1 | 1.49700 | 81.61 | **S-FPL51** (confirmed) | OHARA | Biconvex positive | +91.6 |
 | L14 | Gr1 | 1.85025 | 30.05 | **H-ZLaF76** (confirmed) | CDGM | Biconcave negative | −64.7 |
-| L21 | Gr2 | 1.92286 | 20.88 | **S-NPH2** (confirmed) | OHARA | Biconvex positive | +76.6 |
+| L21 | Gr2 | 1.92286 | 20.88 | **PBH21** (confirmed) | OHARA | Biconvex positive | +76.6 |
 | L22 | Gr2 | 1.60342 | 38.01 | Flint (code 603380; see §4.3) | — | Biconcave negative | −36.7 |
 | L31 | Gr3 | 1.59349 | 67.00 | Phosphate crown (nearest: S-FPM2; see §4.3) | — | Biconvex positive | +67.9 |
 | L41 | Gr4 | 1.91082 | 35.25 | Lanthanum dense flint (code 911353; see §4.3) | — | Plano-convex positive | +48.0 |
@@ -117,7 +117,7 @@ Nikon specifies that the production lens contains **two ED (Extra-low Dispersion
 
 ### 4.3 Glass Notes
 
-Five lens elements can now be identified with coefficient-backed public catalog data: L11 (OHARA S-LAH66, nd = 1.77250, νd = 49.62), L13 (OHARA S-FPL51, nd = 1.49700, νd = 81.61), L14 (CDGM H-ZLaF76, nd = 1.85013, νd = 30.06), L21 (OHARA S-NPH2, nd = 1.92286, νd = 20.88), and L43 (Hikari J-LASFH22, nd = 1.84850, νd = 43.79). The cover glass (nd = 1.51680, νd = 64.20) is standard N-BK7 (Schott) or S-BSL7 (OHARA). The remaining elements are classified below by glass family with nearest catalog matches where possible.
+Five lens elements can now be identified with coefficient-backed public catalog data: L11 (OHARA S-LAH66, nd = 1.77250, νd = 49.62), L13 (OHARA S-FPL51, nd = 1.49700, νd = 81.61), L14 (CDGM H-ZLaF76, nd = 1.85013, νd = 30.06), L21 (OHARA PBH21, nd = 1.92286, νd = 20.88), and L43 (Hikari J-LASFH22, nd = 1.84850, νd = 43.79). The cover glass (nd = 1.51680, νd = 64.20) is standard N-BK7 (Schott) or S-BSL7 (OHARA). The remaining elements are classified below by glass family with nearest catalog matches where possible.
 
 **L12 (nd = 1.55032, νd = 75.50):** Fluorophosphate crown in the FK/FPL family. The six-digit code 550755 is close to several catalog entries — HIKARI J-FK5 and HOYA FCD515 are plausible matches, but the exact designation cannot be confirmed from publicly available catalog data. The glass is unambiguously a positive-anomalous-dispersion fluorophosphate, consistent with Nikon's ED classification.
 
@@ -161,8 +161,8 @@ The flint partner in the L13+L14 achromatic doublet. Its high refractive index a
 
 Group 2 is one of two focus groups. It consists of a single cemented doublet with a collective focal length of FL2 = −71.3 mm. During focusing from infinity to 0.8 m, Gr2 moves +3.838 mm toward the image plane.
 
-**L21 — S-NPH2 (nd = 1.92286, νd = 20.88), biconvex positive, FL ≈ +76.6 mm:**
-An extreme-index, extreme-dispersion glass. S-NPH2 has one of the highest refractive indices of any standard catalog glass (nd = 1.923) paired with one of the lowest Abbe numbers (νd = 20.88). In a focus group that must be lightweight and compact (for AF speed), using such an extreme glass allows strong optical power to be achieved with a minimum of material and curvature. L21 carries positive power within the overall-negative Gr2, and its extremely high dispersion is critical: the patent's conditional expressions (1) and (2) require that the Gr2 positive element have much higher refractive index and much lower Abbe number than the Gr3 positive element, creating a chromatic lever arm between the two focus groups.
+**L21 — PBH21 (nd = 1.92286, νd = 20.88), biconvex positive, FL ≈ +76.6 mm:**
+An extreme-index, extreme-dispersion glass. The historical PBH21 row pairs a very high refractive index (nd = 1.923) with a very low Abbe number (νd = 20.88). In a focus group that must be lightweight and compact (for AF speed), using such an extreme glass allows strong optical power to be achieved with a minimum of material and curvature. L21 carries positive power within the overall-negative Gr2, and its extremely high dispersion is critical: the patent's conditional expressions (1) and (2) require that the Gr2 positive element have much higher refractive index and much lower Abbe number than the Gr3 positive element, creating a chromatic lever arm between the two focus groups.
 
 **L22 — Flint (nd = 1.60342, νd = 38.01), biconcave negative, FL ≈ −36.7 mm:**
 The negative partner in the Gr2 doublet. L22 provides the dominant negative power of Gr2 (FL_L22 = −36.7 mm vs FL_L21 = +76.6 mm). Its moderate-dispersion flint glass complements L21's extreme dispersion to create a doublet that is achromatized within itself — minimizing the chromatic aberration shift that would otherwise occur when Gr2 moves during focusing. The patent notes that the cemented surface (R9 = −84.27) is concave toward the object, enabling coma control within the focus group.
@@ -244,7 +244,7 @@ The most technically interesting aspect of this focus mechanism is the chromatic
 - nd(2GrP) − nd(3GrP) = 1.92286 − 1.59349 = **0.33** (required > 0.2)
 - νd(3GrP) − νd(2GrP) = 67.00 − 20.88 = **46.12** (required > 40)
 
-The positive element in Gr2 (L21, S-NPH2) is an extreme-dispersion glass, while the positive element in Gr3 (L31, S-FPM2) is a low-dispersion glass. When both groups move during focusing, each group's chromatic contribution shifts — but because L21 and L31 have very different dispersion characteristics and move in opposite directions, their chromatic shifts partially cancel. This is the mechanism by which the patent achieves well-corrected color performance across the full focus range with only three elements in the focus groups.
+The positive element in Gr2 (L21, PBH21) is an extreme-dispersion glass, while the positive element in Gr3 (L31, S-FPM2) is a low-dispersion glass. When both groups move during focusing, each group's chromatic contribution shifts — but because L21 and L31 have very different dispersion characteristics and move in opposite directions, their chromatic shifts partially cancel. This is the mechanism by which the patent achieves well-corrected color performance across the full focus range with only three elements in the focus groups.
 
 ### 6.4 Multi-Focus System
 
@@ -298,6 +298,6 @@ Semi-diameters were computed as the marginal ray height with 8% mechanical clear
 1. JP2020-173366A, "Imaging optical system, imaging optical apparatus, and digital device" (撮像光学系，撮像光学装置及びデジタル機器). Filed 2019-04-11, published 2020-10-22. Japan Patent Office.
 2. Nikon Corporation, "NIKKOR Z 85mm f/1.8 S — Specifications." Nikon Global website, imaging.nikon.com.
 3. Nikon USA, "NIKKOR Z 85mm f/1.8 S — Product Page." nikonusa.com, product code 20090.
-4. OHARA Inc., Optical Glass Catalog. S-FPL51, S-LAH66, S-NPH2, S-FPM2, S-LAH65V datasheets.
+4. OHARA Inc., Optical Glass Catalog. S-FPL51, S-LAH66, PBH21, S-FPM2, S-LAH65V datasheets.
 5. HOYA Corporation, Optical Glass Catalog. TAFD45, E-FD4, E-F5, E-FD7 datasheets.
 6. Schott AG, Optical Glass Data Sheets. SF2 datasheet.

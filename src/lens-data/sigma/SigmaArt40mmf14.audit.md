@@ -36,3 +36,7 @@ Patent: JP 2020-012952 A, Example 1
 - Corrected L6 from `M-FCD500 (HOYA)` to `FCD705 (HOYA)`, the exact 1.55032 / 75.50 catalog match.
 - Corrected L16 from `S-NBH56 (OHARA)` to `M-TAFD305 (HOYA)`, the exact 1.85135 / 40.10 catalog match.
 - Synchronized the element narratives, glass table, manufacturing note, and sources.
+
+## 2026-07-29 - Catalog-coordinate correction
+
+- Corrected L9 from modern `S-NPH2` to historical OHARA `PBH21`, the exact 1.92286 / 20.88 row.

@@ -3,7 +3,7 @@
  *
  * Companion to __tests__/src/optics/catalogMismatchScan.test.ts. Where that scan reports
  * the *raw* mismatches (surfaces whose glass annotation resolves to a catalog
- * entry but disagrees with stored nd by more than 5e-3), this scan goes one
+ * entry but disagrees with the stored nd/vd beyond the runtime tolerance), this scan goes one
  * step further: for each mismatch, it searches the catalog for a *better*
  * candidate whose nd AND vd both match the stored values within tolerance.
  *

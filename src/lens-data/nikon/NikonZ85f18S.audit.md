@@ -24,3 +24,6 @@ Patent: JP 2020-173366 A, Example 3
 - Added Hikari J-LASFH22 to the glass catalog using the Hikari 2023 formula-3 power-series coefficients.
 - Updated the analysis notes to identify both catalog-backed glass assignments and keep the remaining unresolved codes unchanged.
 
+## 2026-07-29 - Catalog-coordinate correction
+
+- Corrected L21 from modern `S-NPH2` to historical OHARA `PBH21`, the exact 1.92286 / 20.88 row.

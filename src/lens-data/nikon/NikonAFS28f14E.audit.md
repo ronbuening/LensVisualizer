@@ -12,3 +12,7 @@ Patent: JP2017-227799A, Example 1
 
 - Corrected L22 from `S-LAL61 (OHARA)` to `S-LAL14 (OHARA)`. S-LAL14 exactly matches the authored 1.69680 / 55.5 coordinate; newly cataloged S-LAL61 is the distinct 1.74100 / 52.64 glass.
 - Synchronized both L22 analysis-table references.
+
+## 2026-07-29 - Catalog expansion follow-up
+
+- Corrected L26 from `S-LAH60V` to OHARA `L-LAH90`, the exact 1.83220 / 40.10 row.

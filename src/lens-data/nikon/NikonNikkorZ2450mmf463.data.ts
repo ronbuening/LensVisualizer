@@ -98,7 +98,7 @@ const LENS_DATA = {
       nd: 1.92286,
       vd: 20.88,
       fl: 86.6,
-      glass: "S-NPH2 (OHARA)",
+      glass: "PBH21 (OHARA; historical 923209)",
       apd: false,
       role: "Ultra-high-dispersion chromatic corrector in G1; convex toward object",
     },

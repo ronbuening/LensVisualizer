@@ -11,7 +11,7 @@
  *   n²(λ) = 1 + B1·λ²/(λ²−C1) + B2·λ²/(λ²−C2) + B3·λ²/(λ²−C3)
  *   where λ is in micrometres and C1..C3 are in micrometres².
  *
- * Coverage status: current source count 374 entries. See agent_docs/glass-catalog-buildout.md
+ * Coverage status: current source count 407 entries. See agent_docs/glass-catalog-buildout.md
  * for the addition history and sourcing playbook.
  *
  * All coefficients are vendor-published physical measurements. Each entry
@@ -28,16 +28,16 @@ export type { GlassEntry } from "./glassCatalogTypes.js";
 export { LINE_NM } from "./spectralLines.js";
 
 /** Maximum accepted d-line index delta between authored lens data and a catalog entry. */
-export const GLASS_ND_TOLERANCE = 5e-3;
+export const GLASS_ND_TOLERANCE = 3e-3;
 
 /**
  * Maximum accepted Abbe-number delta between authored lens data and a catalog entry.
  *
- * Patent tables commonly round νd more heavily than nd, so this stays deliberately
- * generous. It is still tight enough to reject same-index glasses from materially
- * different dispersion families.
+ * Patent tables commonly round νd more heavily than nd. A two-point window still
+ * accommodates ordinary tabular rounding while rejecting nearby glasses from
+ * meaningfully different dispersion families.
  */
-export const GLASS_VD_TOLERANCE = 3;
+export const GLASS_VD_TOLERANCE = 2;
 
 export interface CatalogGlassCompatibility {
   readonly compatible: boolean;
@@ -160,7 +160,7 @@ export function resolveGlass(glassString: string | undefined): GlassEntry | null
 
   // Pull out candidate tokens. We accept hyphenated catalog names like "S-FPL51"
   // and bare names like "BK7", plus 6-digit Schott codes.
-  const tokens: string[] = [...(glassString.match(/[A-Za-z][A-Za-z0-9-]*\d[A-Za-z0-9]*|\d{6}/g) ?? [])];
+  const tokens: string[] = [...(glassString.match(/[A-Za-z][A-Za-z0-9-]*\d[A-Za-z0-9-]*|\d{6}/g) ?? [])];
   for (const match of glassString.matchAll(/(^|[^\d])(\d{3})\s*[/-]\s*(\d{3})(?!\d)/g)) {
     tokens.push(`${match[2]}${match[3]}`);
   }
@@ -173,14 +173,22 @@ export function resolveGlass(glassString: string | undefined): GlassEntry | null
   }
   for (const tokRaw of tokens) {
     const tok = tokRaw.toUpperCase();
-    // Direct canonical match.
-    const direct = CATALOG.get(tok);
-    if (direct) return direct;
-    // Alias to canonical.
-    const aliased = ALIASES.get(tok);
-    if (aliased) {
-      const e = CATALOG.get(aliased.toUpperCase());
-      if (e) return e;
+    const candidates = [tok];
+    for (let hyphen = tok.lastIndexOf("-"); hyphen > 0; hyphen = tok.lastIndexOf("-", hyphen - 1)) {
+      candidates.push(tok.slice(0, hyphen));
+    }
+    for (const candidate of candidates) {
+      // Direct canonical match. Progressive suffix trimming preserves support
+      // for prose such as "S-FPL51-class" without losing real names such as
+      // "TAFD40L-W" and "MP-FCD500-20".
+      const direct = CATALOG.get(candidate);
+      if (direct) return direct;
+      // Alias to canonical.
+      const aliased = ALIASES.get(candidate);
+      if (aliased) {
+        const e = CATALOG.get(aliased.toUpperCase());
+        if (e) return e;
+      }
     }
     // 6-digit Schott code.
     if (/^\d{6}$/.test(tok)) {

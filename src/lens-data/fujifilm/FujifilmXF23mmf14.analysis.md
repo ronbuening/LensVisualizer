@@ -130,7 +130,7 @@ The 11.93 mm air gap after L112 is the largest in the system and defines the G11
 | S9 (L123 rear) | +13.753 | 0.25 → air | — | — |
 
 - **L122 glass:** S-LAH58 (OHARA) — dense lanthanum flint, biconvex positive (f ≈ +20.4 mm).
-- **L123 glass:** S-TIH6 (OHARA) — dense flint, negative meniscus (f ≈ −14.2 mm).
+- **L123 glass:** S-NPH1 (OHARA) — dense flint, negative meniscus (f ≈ −14.2 mm).
 - **Doublet combined EFL:** −116 mm (weakly negative). The doublet's primary function is chromatic correction rather than convergence.
 - **Role:** Corrects primary chromatic aberration from the high-power positive elements. The Abbe number difference (Δνd = 18.0) provides adequate color separation. The negative combined power also counteracts Petzval field curvature from L121.
 
@@ -207,7 +207,7 @@ The near-paraboloidal conic base (K = −0.90) provides a starting correction, w
 | S19 (front) | −91.051 | 1.20 | 1.80810 | 22.8 |
 | S20 (rear) | +249.640 | 12.60 → image | — | — |
 
-- **Glass:** S-TIH6 (OHARA) — same glass as L123.
+- **Glass:** S-NPH1 (OHARA) — same glass as L123.
 - **Shape:** Biconcave, weakly negative (f ≈ −82.4 mm).
 - **Role:** Fixed field-flattening element during focus adjustment (¶0051, ¶0057). Its negative power counteracts Petzval curvature from the strongly positive focus group. Suppresses variations in spherical aberration and field curvature during focus travel.
 
@@ -243,7 +243,7 @@ The design uses **eight distinct glass types** from the OHARA and HOYA catalogs.
 | 161.293 | S-TIM28 (OHARA) | 1.61293 | 37.0 | Titanium flint | L112 |
 | 200.069 | TAFD40 (HOYA) | 2.00069 | 25.5 | Ultra-high-index dense flint (APD) | L121 |
 | 188.300 | S-LAH58 (OHARA) | 1.88300 | 40.8 | Dense lanthanum flint | L122, L22, L24 |
-| 180.810 | S-TIH6 (OHARA) | 1.80810 | 22.8 | Dense flint | L123, L25 |
+| 180.810 | S-NPH1 (OHARA) | 1.80810 | 22.8 | Dense flint | L123, L25 |
 | 171.300 | S-LAL13 (OHARA) | 1.71300 | 53.9 | Lanthanum crown | L124 |
 | 180.348 | S-LAH63Q (OHARA) | 1.80348 | 40.4 | Dense LaF (PGM) | L21 |
 | 168.893 | S-TIM25 (OHARA) | 1.68893 | 31.1 | Dense flint | L23 |
@@ -251,7 +251,7 @@ The design uses **eight distinct glass types** from the OHARA and HOYA catalogs.
 Key observations:
 
 - **S-LAH58** (nd = 1.883, νd = 40.8) appears three times — in L122, L22, and L24 — all as the high-index positive element in cemented groups. Its combination of high nd and moderate dispersion makes it the workhorse positive glass.
-- **S-TIH6** (nd = 1.808, νd = 22.8) is used in both L123 and L25, the two high-dispersion negative elements.
+- **S-NPH1** (nd = 1.808, νd = 22.8) is used in both L123 and L25, the two high-dispersion negative elements.
 - **TAFD40** (nd = 2.001) is one of the highest-index optical glasses commercially available, produced by HOYA in their tantalum-based dense flint series. Its anomalous partial dispersion enables secondary spectrum correction critical at f/1.4.
 - **S-LAH63Q** is selected specifically for PGM (precision glass molding) — the "Q" suffix indicates low-Tg suitability for cost-effective aspherical surface manufacturing.
 

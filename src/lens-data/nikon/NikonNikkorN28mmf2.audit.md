@@ -31,3 +31,7 @@ Patent: US 3,736,049, Example 1
 ### Verification
 
 - Pending full Nikon batch verification.
+
+## 2026-07-29 - Catalog-coordinate correction
+
+- Corrected L1 and L3 from `SK16` to OHARA `S-BSM15`, the exact 1.62299 / 58.17 row.

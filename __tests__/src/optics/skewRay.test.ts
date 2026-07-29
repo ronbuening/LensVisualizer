@@ -450,7 +450,7 @@ describe("traceSkewRayChromatic", () => {
     // chromatic engine is intentionally self-consistent with the catalog, not with the
     // rounded scalar nd. Tolerance 1e-2 mm absorbs the accumulated transcription rounding
     // while still catching meaningful divergence (the safety net in dispersion.ts rejects
-    // catalog matches that disagree with surface.nd by more than 5e-3 per surface).
+    // catalog matches that disagree with the authored nd/vd beyond the runtime compatibility window).
     expect(chromatic.x).toBeCloseTo(monochromatic.x, 2);
     expect(chromatic.y).toBeCloseTo(monochromatic.y, 2);
     expect(chromatic.ux).toBeCloseTo(monochromatic.ux, 2);

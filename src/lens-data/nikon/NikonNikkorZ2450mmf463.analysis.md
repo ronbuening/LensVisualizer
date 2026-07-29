@@ -161,7 +161,7 @@ The eleven elements use just six distinct glass types (plus optical cement), ref
 |---|---|---|---|---|---|
 | L1a | 1.69680 | 55.46 | 697.555 | Unmatched barium crown; prior S-BSM10 label incompatible | Barium crown |
 | L1b | 1.53048 | 55.72 | 530.557 | COP resin (ZEONEX-type) | Plastic (cyclo-olefin polymer) |
-| L1c | 1.92286 | 20.88 | 923.209 | OHARA S-NPH2 | Ultra-high-dispersion flint |
+| L1c | 1.92286 | 20.88 | 923.209 | OHARA PBH21 | Ultra-high-dispersion flint |
 | L2a | 1.49700 | 81.61 | 497.816 | HOYA FCD1 / S-FPL51 | ED (fluorophosphate) |
 | L2b | 1.49700 | 81.61 | 497.816 | HOYA FCD1 / S-FPL51 | ED (fluorophosphate) |
 | (cement) | 1.51400 | 27.05 | — | UV-cure adhesive | Optical cement |
@@ -177,7 +177,7 @@ All ten glass identifications match catalog values to five decimal places in nd 
 
 **ED Glass (L2a, L2b).** Both ED elements use the same glass — HOYA FCD1 (or its OHARA equivalent S-FPL51). With νd = 81.61, this is a standard fluorophosphate ED glass that Nikon has used extensively across their Z-mount lineup. Placing both ED elements in the G2 front sub-group, where the marginal ray height is near maximum, provides the strongest possible leverage for axial chromatic correction.
 
-**Ultra-High-Dispersion Flint (L1c).** L1c uses S-NPH2 (νd = 20.88), one of the most dispersive conventional glasses available. Paired against L1a's unmatched barium crown (νd = 55.46), it forms a widely separated "air-spaced achromat" that corrects lateral chromatic aberration across the wide field angle. The Abbe number difference |νp − νn| = 34.57 satisfies the patent's condition (3) range of 34–40.
+**Ultra-High-Dispersion Flint (L1c).** L1c uses PBH21 (νd = 20.88), one of the most dispersive conventional glasses available. Paired against L1a's unmatched barium crown (νd = 55.46), it forms a widely separated "air-spaced achromat" that corrects lateral chromatic aberration across the wide field angle. The Abbe number difference |νp − νn| = 34.57 satisfies the patent's condition (3) range of 34–40.
 
 **Plastic Aspherics (L1b, L3b).** The choice of cyclo-olefin polymer (nd = 1.53048) for two aspherical elements is a deliberate cost and weight reduction strategy. COP resins such as Zeon's ZEONEX E48R (nd ≈ 1.53, νd ≈ 56) offer good optical clarity, low birefringence, and stable refractive index, at a fraction of the cost of molded glass aspherics. The tradeoff is greater thermal sensitivity (dn/dT ≈ −1.1 × 10⁻⁴/°C vs. ~10⁻⁶ for glass), which can shift focus in extreme temperatures. However, since both plastic elements carry weak net power (L1b ≈ −134 mm, L3b ≈ −915 mm), the thermal focus shift is minimal.
 
@@ -228,7 +228,7 @@ The surface-by-surface Petzval sum, computed using the standard formula P = Σ �
 
 This yields a Petzval radius of approximately **+630 mm** — indicating an essentially flat Petzval surface. For a lens covering an image half-diagonal of 21.7 mm, this represents excellent Petzval correction at the paraxial level.
 
-The near-zero Petzval sum arises from a careful balance of positive and negative element contributions. The strong positive elements (L2a, L2d, L4a) contribute positive Petzval, while the negative elements (L1a, L2e, L3a) contribute negative Petzval. The doublet L2b+L2c, with its near-zero net power, contributes minimally. The ultra-high-dispersion L1c element (S-NPH2, nd = 1.923) plays a key role: its high refractive index reduces its Petzval contribution per unit of power, allowing it to carry significant chromatic correction duty while adding relatively little field curvature.
+The near-zero Petzval sum arises from a careful balance of positive and negative element contributions. The strong positive elements (L2a, L2d, L4a) contribute positive Petzval, while the negative elements (L1a, L2e, L3a) contribute negative Petzval. The doublet L2b+L2c, with its near-zero net power, contributes minimally. The ultra-high-dispersion L1c element (PBH21, nd = 1.923) plays a key role: its high refractive index reduces its Petzval contribution per unit of power, allowing it to carry significant chromatic correction duty while adding relatively little field curvature.
 
 Despite the excellent paraxial Petzval correction, the patent's astigmatism plots (Figures 6A–6C) show tangential and sagittal field curvatures diverging toward the field edge, reaching approximately ±0.25 mm at maximum image height. This residual is dominated by higher-order field-dependent aberrations (oblique astigmatism) rather than Petzval curvature, which is typical for compact wide-angle zoom designs where the retrofocus front group introduces significant off-axis aberrations that the aspherical elements can only partially correct.
 

@@ -153,7 +153,7 @@ const LENS_DATA = {
       nd: 1.92286,
       vd: 20.9,
       fl: 68.3,
-      glass: "S-NPH2 (OHARA)",
+      glass: "PBH21 (OHARA; historical 923209)",
       apd: "inferred",
       apdNote:
         "Niobium phosphate heavy flint; highest nd in system (1.923). Known positive APD (Pg,F deviates from normal line).",

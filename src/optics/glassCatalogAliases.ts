@@ -101,12 +101,6 @@ export const ALIAS_RECORDS: readonly GlassAliasRecord[] = [
     note: "Ohara low-softening / PGM variant sharing the S-LAM60 optical constants.",
   },
   {
-    alias: "L-LAL13",
-    target: "S-LAL13",
-    kind: "catalog-variant",
-    note: "Ohara low-softening / PGM variant sharing the S-LAL13 optical constants.",
-  },
-  {
     alias: "L-LAL14",
     target: "S-LAL14",
     kind: "catalog-variant",

@@ -9,3 +9,6 @@ Patent: US 2021/0072505 A1, Numerical Example 1
 - Updated L7 to `N-KZFS8 (Schott)` for nd=1.72047, vd=34.70.
 - Updated L11 to `S-LAH55V (OHARA)` for nd=1.83481, vd=42.70.
 
+## 2026-07-29 - Catalog-coordinate correction
+
+- Corrected L9 from modern `S-NPH2` to historical OHARA `PBH21`, the exact 1.92286 / 20.90 row.

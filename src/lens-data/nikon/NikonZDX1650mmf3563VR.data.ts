@@ -103,7 +103,7 @@ const LENS_DATA = {
       nd: 1.92286,
       vd: 20.88,
       fl: 46.8,
-      glass: "S-NPH2 (OHARA)",
+      glass: "PBH21 (OHARA; historical 923209)",
       apd: false,
       role: "Ultra-high-index positive meniscus in G1; minimizes Petzval contribution while partially compensating L11 negative power",
     },

@@ -538,12 +538,16 @@ This is preferable to leaving a wrong vendor name in place. The chromatic disper
 
 ### Round-trip verification
 
-When the dispersion engine resolves a `glass:` string against a Sellmeier catalog, it should reject the resolution if the catalog's d-line index disagrees with the element's stored `nd` by more than a small tolerance (typical: 5e-3). This safety net catches accidental relabels but it is not a substitute for the author's own check.
+When the dispersion engine resolves a `glass:` string against a Sellmeier catalog, it rejects the resolution if the
+catalog coordinates disagree with the element's stored values by more than nd ±0.003 or νd ±2. This safety net catches
+accidental relabels but it is not a substitute for the author's own check.
 
 Before committing a `glass:` change, verify:
 
 1. The catalog entry exists for the named glass and the catalog's stored Sellmeier coefficients reproduce the catalog's listed `nd` to high precision (typical tolerance: 1e-4 — this is a property of the catalog, enforced in CI when present).
-2. The element's stored `(nd, νd)` agrees with the catalog's published `(nd, νd)` to within transcription tolerance (Δnd ≤ 5e-3, Δνd ≤ 1.0 for confident matches; wider thresholds with explicit caveat for soft matches).
+2. The element's stored `(nd, νd)` agrees with the catalog's published `(nd, νd)` to within the runtime window
+   (Δnd ≤ 0.003, Δνd ≤ 2.0); for confident named matches, prefer substantially smaller residuals and document any
+   non-exact family-level assignment.
 
 When neither holds, prefer the `Unmatched` form over a speculative match.
 
@@ -918,7 +922,13 @@ than 0.25 mm of hidden material trim.
 
 ### Glass-Annotation Audits (Non-Blocking)
 
-Glass-string mismatches are reported separately from the blocking validation above. When a `glass:` annotation resolves to a Sellmeier catalog entry whose listed `nd` disagrees with the element's stored `nd` by more than ~5e-3, the dispersion engine logs the mismatch and falls through to the lower-quality dispersion path rather than throwing. This non-blocking behavior is intentional: a wrong glass label is a data-quality issue worth fixing, but it should not break the lens. The companion catalog-mismatch and relabel-candidate scans (see project-internal docs) surface these for periodic auditing. The author's responsibility is to keep the annotation honest — relabel to a matching glass, or use the `Unmatched (...)` form (see **Glass Identification** above) when no public catalog matches.
+Glass-string mismatches are reported separately from the blocking validation above. When a `glass:` annotation resolves
+to a Sellmeier catalog entry but differs from the authored prescription by more than nd ±0.003 or νd ±2, the dispersion
+engine logs the mismatch and falls through to the lower-quality dispersion path rather than throwing. This non-blocking
+behavior is intentional: a wrong glass label is a data-quality issue worth fixing, but it should not break the lens. The
+companion catalog-mismatch and relabel-candidate scans (see project-internal docs) surface these for periodic auditing.
+The author's responsibility is to keep the annotation honest — relabel to a matching glass, or use the
+`Unmatched (...)` form (see **Glass Identification** above) when no public catalog matches.
 
 ---
 

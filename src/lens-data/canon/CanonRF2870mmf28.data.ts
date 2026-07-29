@@ -246,7 +246,7 @@ const LENS_DATA = {
       nd: 1.92286,
       vd: 20.9,
       fl: 44.3,
-      glass: "S-NPH2 (OHARA)",
+      glass: "PBH21 (OHARA; historical 923209)",
       apd: false,
       role: "Rear element of D3; ultra-dense short flint provides achromatic correction and positive power to offset L14.",
       cemented: "D3",

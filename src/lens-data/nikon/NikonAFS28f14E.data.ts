@@ -225,7 +225,7 @@ const LENS_DATA = {
       nd: 1.8322,
       vd: 40.1,
       fl: 41.8,
-      glass: "S-LAH60V (OHARA)",
+      glass: "L-LAH90 (OHARA)",
       apd: false,
       cemented: "D2",
       role: "Positive element with aspherical image-side surface (S23A). Fine-tunes spherical aberration in the converging post-stop beam. Part of the L25/L26 cemented pair mirroring L23/L24.",

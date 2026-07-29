@@ -33,3 +33,7 @@ Patent: US 2020/0257181 A1, Numerical Example 1
 - `npm test -- dispersion` — passed.
 - `npm run typecheck` — passed.
 - `npm run generate:glass-reports` — passed; lens removed from the relabel-by-lens queue.
+
+## 2026-07-29 - Catalog-coordinate correction
+
+- Corrected L6, L10, and L16 from modern `S-NPH2` to historical OHARA `PBH21`, the exact 1.92286 / 20.90 row.

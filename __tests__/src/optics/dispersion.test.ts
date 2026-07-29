@@ -5,6 +5,8 @@ import {
   assertCatalogConsistent,
   catalogSize,
   evaluateSellmeier,
+  GLASS_ND_TOLERANCE,
+  GLASS_VD_TOLERANCE,
   LINE_NM,
   resolveGlass,
 } from "../../../src/optics/glassCatalog.js";
@@ -84,8 +86,16 @@ describe("glass catalog", () => {
     expect(assessCatalogGlassCompatibility(nbk7, 1.5168, 52.0).compatible).toBe(false);
   });
 
+  it("uses the tightened catalog compatibility window", () => {
+    expect(GLASS_ND_TOLERANCE).toBe(0.003);
+    expect(GLASS_VD_TOLERANCE).toBe(2);
+    const nbk7 = resolveGlass("N-BK7")!;
+    expect(assessCatalogGlassCompatibility(nbk7, 1.5201, 64.17).compatible).toBe(false);
+    expect(assessCatalogGlassCompatibility(nbk7, 1.5168, 66.5).compatible).toBe(false);
+  });
+
   it("catalog has at least the verified seed entries", () => {
-    expect(catalogSize()).toBeGreaterThanOrEqual(180);
+    expect(catalogSize()).toBeGreaterThanOrEqual(407);
     expect(allEntries().some((e) => e.name === "N-BK7")).toBe(true);
     expect(allEntries().some((e) => e.name === "S-BSL7")).toBe(true);
     expect(allEntries().some((e) => e.name === "CaF2")).toBe(true);
@@ -214,6 +224,49 @@ describe("glass catalog", () => {
       ["S-APL1", 1.517277],
       ["S-BSM36", 1.642495],
       ["S-LAL61", 1.740999],
+    ];
+    for (const [glass, nd] of expected) {
+      const entry = resolveGlass(glass);
+      expect(entry?.name).toBe(glass);
+      expect(evaluateSellmeier(entry!, LINE_NM.d)).toBeCloseTo(nd, 5);
+    }
+  });
+
+  it("evaluates the phase 43 HOYA and OHARA catalog expansion", () => {
+    const expected: Array<[glass: string, nd: number]> = [
+      ["M-TAF101", 1.76802],
+      ["TAC8", 1.72916],
+      ["LAC14", 1.6968],
+      ["M-BACD12", 1.58313],
+      ["M-TAF105", 1.7725],
+      ["M-TAF1", 1.7725],
+      ["FD60", 1.80518],
+      ["FF5", 1.5927],
+      ["LBC3N", 1.60625],
+      ["M-TAFD307", 1.88202],
+      ["NBF1", 1.7433],
+      ["TAFD40L-W", 2.00069],
+      ["E-LAF7", 1.7495],
+      ["FDS20-W", 1.86966],
+      ["MP-FCD500-20", 1.55352],
+      ["TAC6L", 1.755],
+      ["BACED5", 1.65844],
+      ["M-FD80", 1.68893],
+      ["PCD2", 1.56873],
+      ["TAC4", 1.734],
+      ["PBH21", 1.922861],
+      ["L-LAH90", 1.8322],
+      ["S-BSM25", 1.658441],
+      ["S-BAL3", 1.571351],
+      ["S-BAM12", 1.6393],
+      ["S-LAL7Q", 1.6516],
+      ["S-BAH32", 1.669979],
+      ["S-BSM9", 1.614047],
+      ["S-LAL52", 1.669999],
+      ["L-LAH86", 1.902699],
+      ["S-LAL21", 1.703],
+      ["S-TIM6", 1.636358],
+      ["L-LAL13", 1.6935],
     ];
     for (const [glass, nd] of expected) {
       const entry = resolveGlass(glass);

@@ -133,7 +133,7 @@ const LENS_DATA = {
       nd: 1.9229,
       vd: 20.88,
       fl: 49.52,
-      glass: "S-NPH2 (OHARA)",
+      glass: "PBH21 (OHARA; historical 923209)",
       apd: false,
       role: "Very-high-index, very-high-dispersion meniscus; achromatic partner of G6 in GR2",
       cemented: "Db",

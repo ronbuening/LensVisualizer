@@ -111,7 +111,7 @@ The design uses 10 distinct glass types across 14 elements. Glass identification
 |---|---|---|---|---|---|
 | L1 | 1.61800 | 63.4 | 618/634 | S-PHM52 (OHARA) or equiv. | Phosphate crown |
 | L2 | 1.72047 | 34.7 | 720/347 | N-KZFS8 (Schott) | KZFS short flint |
-| L3 (Lp1) | 1.92286 | 20.9 | 923/209 | S-NPH2 (OHARA) | Ultra-high-index dense flint |
+| L3 (Lp1) | 1.92286 | 20.9 | 923/209 | PBH21 (OHARA) | Ultra-high-index dense flint |
 | L4 | 1.49700 | 81.5 | 497/815 | S-FPL51 (OHARA) | UD glass (fluorophosphate crown) |
 | L5 | 1.85478 | 24.8 | 855/248 | S-NBH56 (OHARA) | High-index niobium flint (aspherical) |
 | L6 | 1.85478 | 24.8 | 855/248 | S-NBH56 (OHARA) | High-index niobium flint |
@@ -173,7 +173,7 @@ The rear element of the front cemented doublet, a lanthanum flint with higher di
 ### Focusing Group — Unit L2 (movable)
 
 **Lens 3 (Lp1)** — Positive meniscus (fl = +134.4 mm), nd = 1.923, νd = 20.9.
-The first positive lens with anomalous partial dispersion (ΔθgF₁ = 0.008). This ultra-high-index dense flint (probably S-NPH2) is powerfully refracting in a meniscus form that minimizes surface aberrations. As a positive element with very high dispersion (νd = 20.9), L3 contributes significantly to primary longitudinal chromatic aberration — its strong wavelength-dependent power is then compensated by the negative flint elements (L5, L6) through conventional achromatization. However, L3's position in the design is driven primarily by its anomalous partial dispersion: even after the system's primary crown-flint chromatic balance is established, a secondary spectrum residual persists, and L3's modest ΔθgF = 0.008 provides a small but meaningful correction to this residual at the on-axis level. Its very high refractive index (1.923) keeps the Petzval contribution manageable despite the strong positive power.
+The first positive lens with anomalous partial dispersion (ΔθgF₁ = 0.008). This ultra-high-index dense flint (probably PBH21) is powerfully refracting in a meniscus form that minimizes surface aberrations. As a positive element with very high dispersion (νd = 20.9), L3 contributes significantly to primary longitudinal chromatic aberration — its strong wavelength-dependent power is then compensated by the negative flint elements (L5, L6) through conventional achromatization. However, L3's position in the design is driven primarily by its anomalous partial dispersion: even after the system's primary crown-flint chromatic balance is established, a secondary spectrum residual persists, and L3's modest ΔθgF = 0.008 provides a small but meaningful correction to this residual at the on-axis level. Its very high refractive index (1.923) keeps the Petzval contribution manageable despite the strong positive power.
 
 **Lens 4 (UD)** — Positive meniscus (fl = +97.8 mm), nd = 1.497, νd = 81.5.
 The UD (Ultra-low Dispersion) element, equivalent to S-FPL51 fluorophosphate. This is the strongest positive power contributor in the front half of L2 (fl = +97.8 mm), and its extremely low dispersion (νd = 81.5) means it introduces very little primary chromatic aberration per unit of refractive power — a highly efficient "crown" element. S-FPL51-class glasses also possess significant anomalous partial dispersion, making L4 a contributor to secondary spectrum correction alongside Lp1 and the BR element. The thick meniscus form (11.43 mm center thickness) also helps control spherical aberration and coma.

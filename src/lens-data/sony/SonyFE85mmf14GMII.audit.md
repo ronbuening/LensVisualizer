@@ -76,3 +76,7 @@ Catalog version: bb70259
 - Existing R/d/nd/vd, high-index/code-backed labels, APD metadata, and SD profile remain consistent with the patent-backed prescription and prior relabel pass.
 - No APD, high-index, glass-label, spacing, or SD edits were needed in this pass.
 - Current generated glass reports show no active Sony catalog-mismatch row for this lens.
+
+## 2026-07-29 - Catalog-coordinate correction
+
+- Corrected L1 from modern `S-NPH2` to historical OHARA `PBH21`, the exact 1.92286 / 20.90 row.

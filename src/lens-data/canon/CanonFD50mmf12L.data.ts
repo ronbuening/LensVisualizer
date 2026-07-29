@@ -109,7 +109,7 @@ const LENS_DATA = {
       nd: 1.63636,
       vd: 35.4,
       fl: -36.9,
-      glass: "OHARA S-TIM27 (636354)",
+      glass: "S-TIM6 (OHARA)",
       apd: false,
       cemented: "D1",
       role: "Negative meniscus cemented to L2; strong R5 provides Petzval correction; Δn=0.108 satisfies condition (7)",

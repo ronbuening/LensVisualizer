@@ -34,3 +34,7 @@ Patent: JP 2021-189377 A, Example 1
 ### Verification
 
 - Pending full Nikon batch verification.
+
+## 2026-07-29 - Catalog-coordinate correction
+
+- Corrected L1c from modern `S-NPH2` to historical OHARA `PBH21`, the exact 923209 coordinate.

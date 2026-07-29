@@ -9,7 +9,10 @@ resolve by name alone.
 
 ## Companion report: catalog mismatches
 
-Separate from the proprietary-glass list below, there is a second category of dispersion-quality issue: surfaces whose `glass` annotation **does** resolve to a vendor catalog entry but whose stored `surface.nd` disagrees with the catalog Sellmeier nd by more than the safety-net tolerance (5e-3) — typically because the annotation was a speculative guess (e.g. `"S-LAH79 (OHARA) probable"` when the real glass is something else).
+Separate from the proprietary-glass list below, there is a second category of dispersion-quality issue: surfaces whose
+`glass` annotation **does** resolve to a vendor catalog entry but whose stored `(nd, νd)` disagrees with the catalog
+coordinates beyond the safety-net tolerance (nd ±0.003 or νd ±2) — typically because the annotation was a speculative
+guess (e.g. `"S-LAH79 (OHARA) probable"` when the real glass is something else).
 
 The dispersion engine rejects these mismatches and falls through to the best lower-quality path available: direct line
 indices when present, otherwise dPgF-corrected/plain Abbe or constant index. The full per-surface list is auto-generated

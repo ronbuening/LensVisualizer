@@ -55,3 +55,7 @@ Patent: WO 2022/259649 A1, Example 5 / Table 5
 ### Analysis sync
 
 - Updated the glass-identification table to remove the stale M-TAFD305 nearest-neighbor wording.
+
+## 2026-07-29 - Catalog-coordinate correction
+
+- Corrected L16 from modern `S-NPH2` to historical OHARA `PBH21`, the exact 1.92286 / 20.88 row.

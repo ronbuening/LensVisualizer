@@ -68,3 +68,7 @@ Changes made:
 - Updated L13 to `S-LAH59 (OHARA)`.
 - Updated the L12/L13 ED pair to `J-PSKH1 (Hikari)` to improve Sellmeier coverage for the repeated 593/679 glass.
 - Remaining coverage gaps are unrelated no-catalog patent glasses at 157957/5374 and 182080/4251 plus existing code-only rows.
+
+## 2026-07-29 - Catalog-coordinate correction
+
+- Corrected L23 from modern `S-NPH2` to historical OHARA `PBH21`, the exact 1.92286 / 20.88 row.

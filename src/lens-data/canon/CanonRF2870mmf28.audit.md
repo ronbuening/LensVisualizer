@@ -14,3 +14,7 @@ Patent: US 2024/0329367 A1
 - Updated surface 8 to `S-LAH89 (OHARA)` for nd=1.85150, vd=40.80.
 - Updated surface 26 to `S-LAM2 (OHARA)` for nd=1.74400, vd=44.80.
 - Converted surface 15 to a code-only `770297` annotation in this May pass; the 2026-06-04 source pass later resolved it as HOYA NBFD29.
+
+## 2026-07-29 - Catalog-coordinate correction
+
+- Corrected L15 from modern `S-NPH2` to historical OHARA `PBH21`, the exact 1.92286 / 20.90 row.

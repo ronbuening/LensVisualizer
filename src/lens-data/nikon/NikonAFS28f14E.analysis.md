@@ -86,7 +86,7 @@ The following table presents glass identifications for all 14 elements, matched 
 | L23 | 1.59282 | 68.6 | **S-FPM2** | OHARA | **Fluorophosphate (ED)** | ΔPgF ≈ +0.014 |
 | L24 | 1.73800 | 32.3 | S-TIH14 | OHARA | Dense flint | Cond. (5): ΔθgF = 0.0007 |
 | L25 | 1.80610 | 33.3 | S-TIH6 | OHARA | Dense flint | |
-| L26 | 1.83220 | 40.1 | S-LAH60V | OHARA | Lanthanum crown | Image-side aspherical |
+| L26 | 1.83220 | 40.1 | L-LAH90 | OHARA | Lanthanum crown | Image-side aspherical |
 | L27 | 1.59282 | 68.6 | **S-FPM2** | OHARA | **Fluorophosphate (ED)** | Same glass as L23 |
 | L28 | 1.69350 | 53.2 | S-LAL8 | OHARA | Lanthanum crown | Both surfaces aspherical |
 
@@ -239,7 +239,7 @@ Focal lengths labeled "patent" are thick-lens values stated in the patent or ver
 | **L24** | Biconcave negative (cemented) | −25.2 (TL) | S-TIH14 | Negative flint in the pre-stop achromatic pair. Its partial dispersion is nearly on the normal line (ΔPgF = 0.0007, condition 5), ensuring minimal secondary spectrum contribution at the stop location where marginal ray height is smallest. |
 | | *[Aperture Stop — ST]* | | | |
 | **L25** | Biconcave negative (cemented) | −19.8 (TL) | S-TIH6 | Negative flint in the post-stop achromatic pair, mirroring L24's role on the object side. This symmetry around the stop inherently cancels odd-order aberrations. |
-| **L26** | Biconvex positive (cemented, image-side asph) | +41.8 (TL) | S-LAH60V | Positive element with aspherical image-side surface (surface 23). Fine-tunes spherical aberration in the converging post-stop beam. Part of the L25/L26 cemented pair that mirrors L23/L24. |
+| **L26** | Biconvex positive (cemented, image-side asph) | +41.8 (TL) | L-LAH90 | Positive element with aspherical image-side surface (surface 23). Fine-tunes spherical aberration in the converging post-stop beam. Part of the L25/L26 cemented pair that mirrors L23/L24. |
 | **L27** | Biconvex positive (**ED**) | +33.6 (TL) | **S-FPM2** | Second ED element — same glass as L23. Positioned symmetrically opposite L23 relative to the stop, it corrects lateral chromatic aberration where the chief ray height is significant. This is the strongest positive element in Gr2, providing substantial convergence toward the image. |
 | **L28** | Pos. meniscus, convex to image (2× asph) | +99.8 (TL) | S-LAL8 | Final element before the image. Both surfaces aspherical — surface 26 has the largest departure in the design (−653 µm at the rim) and surface 27 uses an oblate ellipsoidal base (K = +1.61). Corrects coma and field curvature at the image periphery, critical for corner sharpness on high-resolution sensors. |
 

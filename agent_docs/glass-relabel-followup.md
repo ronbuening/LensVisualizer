@@ -22,13 +22,31 @@ This file tracks the second bucket plus any cases from the first bucket that nee
 
 ## Current Status (July 2026, current catalog)
 
-- Catalog: **374 verified entries** in `src/optics/glassCatalogData.ts`.
-- `catalog-mismatches.generated.md` reports **33** dispersion-coordinate mismatches; runtime rejects all of them.
-- `sellmeier-coverage.generated.md` reports **488** lenses, **5360** non-air surfaces, **4499** strict catalog
-  Sellmeier surfaces (**83.9%**), and **4525** trusted chromatic surfaces (**84.4%**).
-- `unresolvedGlassScan`: **565** non-explicit-unmatched annotations still do not resolve, covering **239** distinct
-  glass-like tokens.
+- Catalog: **407 verified entries** in `src/optics/glassCatalogData.ts`.
+- `catalog-mismatches.generated.md` reports **69** dispersion-coordinate mismatches; runtime rejects all of them
+  under the tighter compatibility window.
+- `sellmeier-coverage.generated.md` reports **488** lenses, **5360** non-air surfaces, **4535** strict catalog
+  Sellmeier surfaces (**84.6%**), and **4551** trusted chromatic surfaces (**84.9%**).
+- `unresolvedGlassScan`: use the generated report for the current count; the total includes honest proprietary and
+  family-level annotations as well as actionable named tokens.
 - The Phase 2/3 resolved tables below are historical audit trail. Use the generated reports above for the current queue before starting new relabel work; for patent-by-patent execution, start from [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md).
+
+## Resolved Phase 43 — July 2026 catalog expansion and stricter matching
+
+The official HOYA/OHARA all-products catalogs supplied 33 additional coefficient-backed rows. Exact-coordinate
+relabels then corrected historical PBH21 rows previously called modern S-NPH2, plus L-LAH90, TAFD40L-W, S-NPH1,
+S-BSM15, S-TIM6, and L-LAL13 assignments. With those rows available, runtime matching tightened to nd ±0.003 and
+νd ±2 without losing aggregate coverage: strict Sellmeier coverage rose from 4499 to 4535 surfaces.
+
+| Lens file(s) | Surface(s) | Old annotation | New annotation | Justification |
+|---|---|---|---|---|
+| Canon RF 15-35, RF 28-70 STM, RF 85/1.2, RF 85/2; Nikon Z 16-50, 24-50, 24-120, 24-200, 85/1.8; Panasonic S Pro 50/1.4; Sigma 40/1.4; Sony E 18-55, FE 85 GM II, FE 90 Macro | 16 elements | `S-NPH2` at 1.92286 / 20.88–20.90 | historical `PBH21` | PBH21 is the exact 923209 row; modern S-NPH2 has νd ≈ 18.90. |
+| Nikon AF-S 28mm f/1.4 E | L26 | `S-LAH60V` | `L-LAH90` | Exact 1.83220 / 40.10 OHARA row. |
+| Sony FE 24-70mm f/2.8 GM II | L24 | `S-LAH79` | `TAFD40L-W` | Exact 2.00069 / 25.46 HOYA row. |
+| Fujifilm XF 23mm f/1.4 R | L123, L25 | `S-TIH6` | `S-NPH1` | Exact 1.80809 / 22.76 OHARA row. |
+| Nikon Nikkor-N Auto 28mm f/2 | L1, L3 | `SK16` | `S-BSM15` | Exact 1.62299 / 58.17 OHARA row; the old SK16 assignment was a different coordinate. |
+| Canon FD 50mm f/1.2 L | L3 | `S-TIM27` | `S-TIM6` | Exact 1.63636 / 35.39 OHARA row. |
+| Nikon Z 35mm f/1.8 S | L23 | probable `L-LAL14` | `L-LAL13` | Exact 1.69350 / 53.19 low-Tg OHARA row. |
 
 ## Resolved Phase 42 — July 2026 dispersion-aware follow-up
 
@@ -41,9 +59,10 @@ This file tracks the second bucket plus any cases from the first bucket that nee
 | Olympus Zuiko Auto-Macro 50mm f/2 | L2 | `S-LAL59 (729/547)` | `S-LAL18` | Exact embedded-code and 1.72916 / 54.68 coordinate match. |
 | Fujifilm GF 80mm f/1.7; GF 120mm f/4 Macro | L11; L23 | `S-NBH55`; `S-LAH52Q` | `S-LAH52Q`; `S-NBH55` | Corrects a swapped pair of near-equal-index OHARA glasses whose Abbe numbers differ by more than 12. |
 
-The runtime and generated reports now require both nd (±0.005) and νd (±3) compatibility before catalog Sellmeier
+The runtime and generated reports require both nd and νd compatibility before catalog Sellmeier
 data is trusted. This exposed 40 previously hidden same-index dispersion mismatches; the exact low-ambiguity rows above
-were corrected, while the remaining cases stay on the Abbe fallback and in the generated relabel queue.
+were corrected, while the remaining cases stay on the Abbe fallback and in the generated relabel queue. Phase 43
+subsequently tightened the window from nd ±0.005 / νd ±3 to nd ±0.003 / νd ±2.
 
 ## Resolved Phase 41 — July 2026 mismatch and coverage follow-up
 
@@ -125,7 +144,7 @@ Non-trivial cases worth special note:
 
 ## Pending — patent verification needed (no catalog candidate within tolerance)
 
-These (nd, vd) groups don't match any catalog glass within Δnd=0.005 / Δvd=3.0. The annotated glass is wrong AND there's no obvious better candidate in the current candidate report. For each, the right resolution is to:
+These (nd, vd) groups don't match any catalog glass within the current Δnd=0.003 / Δvd=2.0 window. The annotated glass is wrong AND there's no obvious better candidate in the current candidate report. For each, the right resolution is to:
 
 1. Open the lens patent prescription tables.
 2. Identify the correct glass at the cited surface (often listed by code or by vendor part number).

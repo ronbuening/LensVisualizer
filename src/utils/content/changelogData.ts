@@ -27,6 +27,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   },
   {
     date: "2026-07-29",
+    type: "improvement",
+    summary: "Expanded the optical glass catalog and tightened dispersion matching",
+  },
+  {
+    date: "2026-07-29",
     type: "fix",
     summary: "Fixed chromatic glass matching across the lens catalog",
   },
