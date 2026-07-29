@@ -79,7 +79,7 @@ const LENS_DATA = {
       nd: 1.834,
       vd: 37.16,
       fl: 25.8,
-      glass: "S-LAH55V (OHARA)",
+      glass: "S-LAH60 (OHARA)",
       apd: false,
       role: "Partially compensates L1 divergence, begins converging beam toward stop",
     },

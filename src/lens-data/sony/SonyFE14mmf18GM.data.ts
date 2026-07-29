@@ -69,7 +69,7 @@ const LENS_DATA = {
       nd: 1.73234,
       vd: 54.7,
       fl: -49.2208,
-      glass: "S-LAL18-class (OHARA; patent index aligns with catalog ne, 732/547)",
+      glass: "Unmatched (732547 patent e-line value; no verified d-line catalog identity)",
       role: "Shares the front negative power with L1 while using higher index to reduce surface curvature.",
     },
     {
@@ -201,7 +201,7 @@ const LENS_DATA = {
       nd: 1.85639,
       vd: 40.1,
       fl: -218.1765,
-      glass: "S-LAH89-class lanthanum flint (OHARA; patent index aligns with catalog ne, 856/401)",
+      glass: "Unmatched (856401 patent e-line value; no verified d-line catalog identity)",
       role: "Weak-base-power rear asphere for field-dependent correction behind the LA air lens.",
     },
     {
@@ -212,7 +212,7 @@ const LENS_DATA = {
       nd: 1.62228,
       vd: 63.9,
       fl: 166.8523,
-      glass: "S-PHM52-class phosphate crown (OHARA; soft match, 622/639)",
+      glass: "Unmatched (622639 patent e-line value; no verified d-line catalog identity)",
       role: "Stationary weak positive rear meniscus for final field and chief-ray-angle trim.",
     },
   ],

@@ -70,11 +70,11 @@ The $n_d/\nu_d$ pair (1.80100/35.0) is a coefficient-backed match to OHARA S-LAM
 
 ### L5 — Biconcave Negative (Element 5, Sub-group 20R, cemented with L6)
 
-$n_d = 1.51742$, $\nu_d = 52.4$. Glass: S-NSL3 (OHARA) — normal special low crown. $f = -24.3$ mm.
+$n_d = 1.51742$, $\nu_d = 52.4$. Glass: S-NSL36 (OHARA) — special low crown. $f = -24.3$ mm.
 
 L5 is the negative element of the first cemented doublet (D1) in sub-group 20R. Its biconcave shape ($R_1 = -43.1$ mm, $R_2 = +18.0$ mm) produces strong negative power. The relatively low refractive index ($n_d = 1.517$) and moderate Abbe number ($\nu_d = 52.4$) contrast sharply with its cemented partner L6. This combination — a low-index negative element cemented to a high-index positive element — is a classic achromatic configuration. In the doublet, L5 overcorrects chromatic aberration to balance L6's undercorrection, while the cemented interface ($R = +18.044$ mm) controls coma and spherical aberration.
 
-The $n_d/\nu_d$ pair (1.51742/52.4) matches OHARA S-NSL3 exactly. This glass sits in the low-index crown region of the glass map, consistent with its role as the dispersive-balancing partner to the high-index lanthanum crown L6.
+The $n_d/\nu_d$ pair (1.51742/52.4) matches OHARA S-NSL36. This glass sits in the low-index crown region of the glass map, consistent with its role as the dispersive-balancing partner to the high-index lanthanum crown L6.
 
 ### L6 — Biconvex Positive (Element 6, Sub-group 20R, cemented with L5)
 
@@ -122,7 +122,7 @@ The prescription uses a palette of seven distinct glasses across nine elements, 
 | L2 | 1.76182 | 26.5 | S-TIH14 | OHARA | Dense titanium flint; front group achromatizer |
 | L3 | 1.61800 | 63.4 | S-PHM52 | OHARA | Phosphate crown; lateral color control |
 | L4 | 1.80100 | 35.0 | S-LAM66 | OHARA | Lanthanum medium-dispersion glass; main front positive |
-| L5 | 1.51742 | 52.4 | S-NSL3 | OHARA | Normal special low crown; D1 negative partner |
+| L5 | 1.51742 | 52.4 | S-NSL36 | OHARA | Special low crown; D1 negative partner |
 | L6 | 1.80400 | 46.6 | S-LAH65 | OHARA | Lanthanum crown; D1 positive, strongest element |
 | L7 | 1.84666 | 23.8 | S-TIH53 | OHARA | Extra-dense titanium flint; Petzval corrector |
 | L8 | 1.72750 | 40.3 | 728/403 (uncertain) | — | Lanthanum flint; D2 positive, carries asphere |

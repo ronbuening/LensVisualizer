@@ -23,13 +23,35 @@ This file tracks the second bucket plus any cases from the first bucket that nee
 ## Current Status (July 2026, current catalog)
 
 - Catalog: **407 verified entries** in `src/optics/glassCatalogData.ts`.
-- `catalog-mismatches.generated.md` reports **69** dispersion-coordinate mismatches; runtime rejects all of them
-  under the tighter compatibility window.
-- `sellmeier-coverage.generated.md` reports **488** lenses, **5360** non-air surfaces, **4535** strict catalog
-  Sellmeier surfaces (**84.6%**), and **4551** trusted chromatic surfaces (**84.9%**).
+- `catalog-mismatches.generated.md` and `glass-relabel-by-lens.generated.md` report **0** remaining
+  dispersion-coordinate mismatches across **0** lens files.
+- `sellmeier-coverage.generated.md` reports **488** lenses, **5360** non-air surfaces, **4572** strict catalog
+  Sellmeier surfaces (**85.3%**), and **4588** trusted chromatic surfaces (**85.6%**).
+- **202** lenses are fully covered by strict Sellmeier data and **208** are fully covered by trusted chromatic data.
 - `unresolvedGlassScan`: use the generated report for the current count; the total includes honest proprietary and
   family-level annotations as well as actionable named tokens.
 - The Phase 2/3 resolved tables below are historical audit trail. Use the generated reports above for the current queue before starting new relabel work; for patent-by-patent execution, start from [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md).
+
+## Resolved Phase 44 — July 2026 complete mismatch audit
+
+All 69 surfaces in the regenerated mismatch queue were rechecked against local patent prescriptions and available
+vendor catalog data. No catalog rows were added: the 407-entry catalog already contained the defensible exact
+matches. The audit increased strict Sellmeier coverage from 4535 to 4572 surfaces and trusted coverage from 4551 to
+4588 surfaces while eliminating every unsafe catalog resolution.
+
+| Disposition | Surfaces | Result |
+|---|---:|---|
+| Catalog-resolved relabel, including safe code aliases | 37 | Correct vendor/catalog rows now supply spectral coefficients; examples include S-LAH60, S-NSL36, S-TIM25, J-LAF016, S-LAH65, historical PBH21, and exact code aliases. |
+| Code-first, unresolved | 5 | Patent coordinates are preserved without a production-supplier claim or a borrowed spectral model. |
+| Explicit `Unmatched` | 27 | E-line-authored, coarsely rounded, vintage, proprietary, or otherwise non-unique rows now stay on the Abbe fallback rather than borrowing a false catalog spectrum. |
+| **Total** | **69** | **0 remaining mismatch surfaces across 0 lenses.** |
+
+Every changed lens has a synchronized `*.analysis.md` sidecar and dated `*.audit.md` entry recording the surface,
+old/new label, patent example or table, and retained R/d/nd/νd evidence. No prescription geometry changed.
+
+Remaining work is no longer a mismatch blocker. The separate coverage reports still contain honest code-only and
+unresolved-token opportunities (currently 309 code-only missing-Sellmeier elements and 84 unresolved named-token
+elements), which require new coefficient sources or patent line-index evidence rather than relabeling guesses.
 
 ## Resolved Phase 43 — July 2026 catalog expansion and stricter matching
 
@@ -133,7 +155,9 @@ subsequently tightened the window from nd ±0.005 / νd ±3 to nd ±0.003 / νd 
 
 ## Pending — actionable relabels (single catalog candidate, vd matches)
 
-Run [glass-relabel-candidates.generated.md](generated/glass-relabel-candidates.generated.md) for the current list. Tackle candidates one lens at a time; each is a per-lens authoring decision that should be cross-checked against the lens's analysis.md or patent narrative when present.
+None remain in the current mismatch queue. If a future report introduces rows, run
+[glass-relabel-candidates.generated.md](generated/glass-relabel-candidates.generated.md) and tackle candidates one
+lens at a time, cross-checking the analysis sidecar and patent narrative.
 
 Non-trivial cases worth special note:
 
@@ -144,7 +168,8 @@ Non-trivial cases worth special note:
 
 ## Pending — patent verification needed (no catalog candidate within tolerance)
 
-These (nd, vd) groups don't match any catalog glass within the current Δnd=0.003 / Δvd=2.0 window. The annotated glass is wrong AND there's no obvious better candidate in the current candidate report. For each, the right resolution is to:
+None remain in the current mismatch queue. For any future (nd, vd) group without a candidate inside the
+Δnd=0.003 / Δvd=2.0 window, the right resolution is to:
 
 1. Open the lens patent prescription tables.
 2. Identify the correct glass at the cited surface (often listed by code or by vendor part number).

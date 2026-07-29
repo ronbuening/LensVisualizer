@@ -125,14 +125,13 @@ These two elements share identical glass. The nd/νd pair is a close coefficient
 
 **Identification: OHARA S-LAH66 (lanthanum crown)**. This high-index, moderate-dispersion glass provides strong refracting power while maintaining reasonable chromatic behavior. Using the same glass for L2 and L4 simplifies procurement and quality control in production, and is a characteristic Sonnar-design technique (the converging elements share the same glass type while the diverging element uses a high-dispersion partner).
 
-**L3 — nd = 1.68893, νd = 31.1 (six-digit code: 1689/311)**
+**L3 — nd = 1.68893, νd = 31.1 (six-digit code: 689311)**
 
 | Candidate | nd | νd | Δnd | Δνd | Confidence |
 |-----------|-----|-----|------|------|------------|
-| HOYA FD60 | 1.68893 | 31.16 | 0 | 0.06 | Exact match |
-| OHARA S-TIM28 | 1.68893 | 31.16 | 0 | 0.06 | Exact match |
+| OHARA S-TIM28 | 1.68893 | 31.08 | 0 | −0.02 | Exact coordinate match |
 
-**Identification: HOYA FD60 / OHARA S-TIM28 (dense flint)**. This is a high-dispersion flint glass, serving as the sole negative element in the front group. Its high dispersion (low Abbe number) is critical for chromatic correction — the patent's condition (2) explicitly constrains νd of L3 to the range 26.0–36.0, balancing on-axis chromatic aberration against chromatic coma.
+**Identification: OHARA S-TIM28 (dense flint, code 689311).** This is a high-dispersion flint glass, serving as the sole negative element in the front group. Its high dispersion (low Abbe number) is critical for chromatic correction — the patent's condition (2) explicitly constrains νd of L3 to the range 26.0–36.0, balancing on-axis chromatic aberration against chromatic coma.
 
 **L5 — nd = 1.62041, νd = 60.4 (six-digit code: 1620/604)**
 
@@ -285,7 +284,7 @@ The Nikon L35AF lens was designed in a competitive landscape dominated by Tessar
 
 - **Design type:** Sonnar-type / behind-diaphragm (derived from modified Tessar lineage per patent), 5 elements in 4 groups
 - **Aspherical surfaces:** None — the design is entirely spherical
-- **Glasses used:** Four distinct glass types from the HOYA/OHARA catalog families (LaK 8, S-LAH66, FD60, SK 16)
+- **Glasses used:** Four distinct catalog families (LaK 8, S-LAH66, S-TIM28, SK 16)
 - **Focus method:** Unit focus (entire lens translates forward), ~1.6 mm extension at 0.8 m; BFD increases from 26.007 mm to 27.608 mm
 - **Key innovation:** Careful chromatic coma correction through nine bounded parametric conditions governing glass dispersion, element bending, and power distribution
 - **Patent–production relationship:** f = 100 prescription scaled ×0.35 to production f = 35 mm

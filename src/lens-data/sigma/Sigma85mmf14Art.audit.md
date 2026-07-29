@@ -62,3 +62,11 @@ Patent: JP 2018-005099 A, Example 4
 - The stored `nd=1.61340`, `vd=44.27` coordinate exactly matches S-NBM51 (`613443`); HOYA E-ADF10 is the
   adjacent but distinct `1.61310 / 44.36` row (`613444`).
 - Synchronized the analysis and source list. No prescription values changed.
+
+## 2026-07-29 - Remaining catalog-coordinate correction
+
+- Rechecked Example 4 in local `patents/JP2018005099A.pdf`; S24 remains 1.67270 / 32.17 with its patent PgF
+  data and R/d values unchanged.
+- S24 `S-NBH52 (OHARA)` -> `S-TIM25 (OHARA)`, the exact same-vendor coordinate. S-NBH52 is the distinct
+  1.67300 / 38.15 row.
+- Synchronized the L13 element text, glass table, sourcing qualification, and references.

@@ -84,7 +84,7 @@ const LENS_DATA = {
       nd: 1.60752,
       vd: 38.1,
       fl: 181.7,
-      glass: "F5 class flint (patent e-line index stored)",
+      glass: "Unmatched (F5-class patent e-line value; no verified d-line catalog identity)",
       role: "Weak positive front-group corrector paired with L1 across the front assembly.",
     },
     {
@@ -119,7 +119,7 @@ const LENS_DATA = {
       nd: 1.69451,
       vd: 54.8,
       fl: 200.72,
-      glass: "LAK9 / S-LAL9 class lanthanum crown (patent e-line index stored)",
+      glass: "Unmatched (LAK9-class patent e-line value; no verified d-line catalog identity)",
       cemented: "T1",
       role: "Rear positive lanthanum-crown member of the cemented triplet.",
     },

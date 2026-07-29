@@ -164,7 +164,7 @@ L7 is a single negative meniscus (nd = 1.69680, νd = 55.52) that constitutes th
 
 During focusing from infinity to close distance, L7 moves from the object side toward the image side (gap D12 increases from 1.749 to 15.346 mm while D14 decreases from 22.105 to 8.507 mm). The net G2 group movement (D12 + D14 change) sums to essentially zero (−0.001 mm), confirming that L7's physical displacement is accommodated entirely by redistributing the air space between L6 and L8.
 
-The glass nd = 1.69680, νd = 55.52 is consistent with OHARA S-BAH27 or similar barium crown glasses. This glass class offers moderate refractive index and good chemical durability — practical considerations for a focus element subject to mechanical motion.
+The patent coordinate nd = 1.69680, νd = 55.52 is retained as code 697555. It round-trips to a lanthanum-crown catalog coordinate, but the patent does not identify a production vendor; the prior S-BAH27 description was numerically wrong.
 
 #### L8 — Positive Meniscus (Concave to Object)
 

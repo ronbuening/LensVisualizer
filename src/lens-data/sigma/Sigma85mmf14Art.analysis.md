@@ -122,7 +122,7 @@ The doublet is weakly negative overall (f = −207.8 mm), allowing it to functio
 
 ### L13 — Biconcave Negative (Field Flattener, Sm2)
 
-nd = 1.67270, νd = 32.17. Glass: S-NBH52 (OHARA) — niobium-phosphate flint. f = −66.7 mm. ΔPgF = +0.0058.
+nd = 1.67270, νd = 32.17. Glass: S-TIM25 (OHARA) — titanium flint. f = −66.7 mm. ΔPgF = +0.0058.
 
 L13 is an air-spaced negative biconcave element serving as the field flattener described in ¶0065. Its front surface (R = −73.54 mm) is the refracting surface Sm2 in the patent's conditional-expression framework. The patent's condition (7) governs the curvature balance between Sm1 and Sm2:
 
@@ -130,7 +130,7 @@ $$\frac{1/R_{Sm2}}{\phi_{Sm1} + \phi_{Sm2}} = \frac{1/(-73.54)}{(-0.01284) + (-0
 
 This value falls within the prescribed range of 0.50–0.90, confirming that the negative power is appropriately distributed between the two concave-to-object surfaces to balance coma correction against field flattening (¶0065–0067).
 
-S-NBH52 is the only OHARA glass in the design; all other elements use HOYA glasses. This may reflect specific thermal or transmission properties of S-NBH52 that the designer required for the field-flattener position, or it may indicate supply-chain considerations during prototype development.
+S-TIM25 is the only OHARA catalog row used in the data-file interpretation; all other resolved elements use HOYA or Hikari rows. The patent coordinates support the optical model but do not prove Sigma's production supplier.
 
 ### L14 — Biconvex Positive, Double Aspherical (PGM)
 
@@ -144,7 +144,7 @@ The aspherical profiles are discussed in detail in the Aspherical Surfaces secti
 
 ## Glass Identification and Selection
 
-The design uses 10 distinct glass types across 14 elements. The glass palette is overwhelmingly HOYA, with a single OHARA glass (S-NBH52 for L13). This is consistent with Sigma's historical glass sourcing for its Art-line lenses.
+The design uses 10 distinct glass types across 14 elements. The catalog interpretation is predominantly HOYA, with S-TIM25 supplying the exact 1.67270/32.17 row for L13; this should not be read as a production-sourcing claim.
 
 | Element | nd | νd | PgF | ΔPgF | Glass | Vendor | Family |
 |---------|--------|-------|--------|---------|------|--------|--------|
@@ -156,7 +156,7 @@ The design uses 10 distinct glass types across 14 elements. The glass palette is
 | L8, L12 | 1.88300 | 40.80 | 0.5654 | −0.0095 | TAFD30 | HOYA | Dense lanthanum flint |
 | L9 | 1.80420 | 46.50 | 0.5571 | −0.0075 | TAF105 | HOYA | Lanthanum flint |
 | L10 | 1.69895 | 30.05 | 0.6028 | +0.0086 | E-FD15 | HOYA | Dense flint |
-| L13 | 1.67270 | 32.17 | 0.5962 | +0.0058 | S-NBH52 | OHARA | Niobium-phosphate flint |
+| L13 | 1.67270 | 32.17 | 0.5962 | +0.0058 | S-TIM25 | OHARA | Titanium flint |
 | L14 | 1.85135 | 40.10 | 0.5694 | −0.0067 | M-TAFD305 | HOYA | Dense La-flint (PGM) |
 
 The chromatic correction strategy relies on patent-listed PgF values for every glass, but only three elements are highlighted as APD in the viewer:
@@ -267,4 +267,4 @@ The lens was later succeeded by the Sigma 85mm F1.4 DG DN | Art (A020, 2020), an
 - Sigma Corporation product page: 85mm F1.4 DG HSM | Art (A016), https://www.sigma-global.com/en/lenses/a016_85_14/
 - HOYA Corporation, Optical Glass Catalog (glass codes referenced: TAC8, FCD705, E-FDS1-W, TAFD30, TAF105, E-FD15, M-TAFD305).
 - Hikari Optical Glass Catalog (J-KZFH9).
-- OHARA Corporation, Optical Glass Catalog (S-NBM51, S-NBH52).
+- OHARA Corporation, Optical Glass Catalog (S-NBM51, S-TIM25).

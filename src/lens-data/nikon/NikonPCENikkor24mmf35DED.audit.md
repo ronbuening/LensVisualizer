@@ -9,3 +9,8 @@ Patent: JP 2008-151949A, Example 2
 - Updated surfaces 13 and 17 to `S-TIL1 (OHARA)` for nd=1.54814, vd=45.79.
 - Remaining coverage gaps are the existing UV-cure resin elements.
 
+## 2026-07-29 - Remaining catalog-mismatch audit
+
+- Rechecked JP 2008-151949 A Example 2 surface 4; stored `R`, `d`, `nd=1.80100`, and `νd=34.96` agree with the patent.
+- Relabeled L12 from incorrect OHARA `S-LAH63` to Hikari `J-LAF016`, the exact Nikon/Hikari 801349 coordinate.
+- Synchronized the analysis discussion and glass tables. No prescription geometry changed.

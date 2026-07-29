@@ -102,7 +102,7 @@ const LENS_DATA = {
       nd: 1.801,
       vd: 34.96,
       fl: -57.3,
-      glass: "S-LAH63 (OHARA)",
+      glass: "J-LAF016 (Hikari; exact Nikon patent coordinate match)",
       apd: false,
       role: "Second aplanatic meniscus; convex to object. High-dispersion negative element contributes chromatic correction term.",
     },

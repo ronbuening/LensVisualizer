@@ -102,7 +102,7 @@ const LENS_DATA = {
       nd: 1.77621,
       vd: 49.6,
       fl: -61.8,
-      glass: "S-LAH66 class (OHARA) — lanthanum crown",
+      glass: "Unmatched (776496 patent lanthanum-glass coordinate; vendor unresolved)",
       apd: false,
       role: "First variator (GR2) — single-element negative zoom group, strongest |power| in variator",
     },

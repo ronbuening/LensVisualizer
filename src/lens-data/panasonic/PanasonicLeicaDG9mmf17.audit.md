@@ -49,3 +49,10 @@ Patent: US 2023/0367186 A1, Example 1
 | APD | S-FPL51 rows inferred | unchanged | Patent lists nd/vd only; APD remains catalog-inferred. |
 | High-index status | L7 UHR, L10 high-index focus doublet row | unchanged | Patent nd values support the existing roles. |
 | SDs | ray-trace-derived estimates | unchanged | No patent clear-aperture column; existing proportions match the patent drawing envelope. |
+
+## 2026-07-29 - Remaining catalog-mismatch audit
+
+- Rechecked US 2023/0367186 A1 Example 1 surfaces 10 and 20; stored `R`, `d`, and the 1.75211/25.00 plus 1.62299/58.10 coordinates agree with Table 1.
+- Surface 10: changed `S-TIH4` to code-first `752251` dense-flint wording because the exact FF8 coordinate does not prove the patent supplier.
+- Surface 20: changed `S-PHM52Q` to exact-coordinate OHARA `S-BSM15`.
+- Synchronized the analysis and removed the old phosphate-crown claim. No geometry changed.

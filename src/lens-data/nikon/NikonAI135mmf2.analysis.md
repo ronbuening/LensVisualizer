@@ -94,7 +94,7 @@ The aperture stop is located in the 2.59 mm air gap between the rear surface of 
 | Center thickness | 2.74 mm (patent) / 3.7 mm (production) |
 | Focal length | −94.9 mm (patent) / −128.2 mm (production) |
 
-**Glass identification:** Matches HOYA FD60 (or its eco-equivalent E-FD60) with residuals of Δn_d = −0.00006, Δν_d = 0.0. This is a medium-index flint glass. Six-digit code: 626/391.
+**Glass identification:** Patent coordinate 626391, a medium-index barium flint. The public CDGM H-BaF8 row is a coefficient-backed code equivalent, but the patent does not identify the supplier.
 
 #### L3: Positive Meniscus
 
@@ -189,7 +189,7 @@ The six elements use only four distinct glass types:
 | Glass Code | n_d | ν_d | Elements | Catalog Match |
 |---|---|---|---|---|
 | 717/481 | 1.717 | 48.1 | L1 | OHARA S-LAM3 |
-| 626/391 | 1.626 | 39.1 | L2 | HOYA FD60 |
+| 626391 | 1.626 | 39.1 | L2 | Barium flint; vendor unresolved |
 | 589/612 | 1.589 | 61.2 | L3 | OHARA S-BAL35 / HOYA BACD5 |
 | 740/282 | 1.740 | 28.2 | L4 | HOYA FD110 |
 | 717/295 | 1.717 | 29.5 | L5, L6 | HOYA E-FD1 / Schott SF1 |

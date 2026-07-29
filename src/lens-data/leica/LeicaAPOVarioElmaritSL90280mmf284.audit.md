@@ -56,3 +56,10 @@ Patent: JP 2016-139125 A, Numerical Example 1
 - Retained all current glass assignments and APD flags. The seven APD elements remain supported by patent/catalog evidence: S-FPL55, J-PSKH4, S-FPL51, and S-FSL5 rows carry the documented anomalous-dispersion roles.
 - Retained the high-index and ultra-high-index rows, including S-LAH95 and S-LAH99, because the patent nd/vd values still match the catalog-backed assignments.
 - The patent provides radii, thicknesses, variable spacings, nd/vd, and asphere data for other embodiments, but no clear-aperture or semi-diameter table for Data 1. Current SDs remain visualization estimates constrained by edge thickness and cross-gap clearance.
+
+## 2026-07-29 - Remaining catalog-mismatch audit
+
+- Rechecked JP 2016-139125 A Example 1 surfaces 31, 32, and 41; the stored `R`, `d`, `nd`, and `νd` values match Data 1.
+- Relabeled L17 from `S-NSL36` to exact-coordinate OHARA `S-NSL3` at 1.51823 / 59.00.
+- Relabeled L18 and L23 from `S-BSM28` to exact-coordinate OHARA `S-BSM16` at 1.62041 / 60.30.
+- Synchronized the analysis descriptions and glass table. No prescription geometry changed.

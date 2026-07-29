@@ -85,9 +85,9 @@ The patent designates L5 as the positive lens L1$p$ (¶0046) — the positive ha
 
 ### L6 — Biconvex Positive
 
-$n_d = 1.75211$, $\nu_d = 25.0$. Glass: S-TIH4 (OHARA). $f = +51.5$ mm.
+$n_d = 1.75211$, $\nu_d = 25.0$. Glass: code 752251 dense flint (vendor unresolved). $f = +51.5$ mm.
 
-L6 is a weakly positive biconvex element ($R_1 = +52.55$, $R_2 = -144.27$) that closes the G1A subgroup. S-TIH4 is a dense titanium flint with very low Abbe number ($\nu_d = 25.0$), which at first appears counterintuitive in a corrected design. However, L6's weak power ($f = +51.5$ mm) means its chromatic contribution is modest, while its high refractive index ($n_d = 1.752$) provides surface curvature that helps correct residual higher-order aberrations — particularly tangential coma and astigmatism at wide field angles. Its position immediately before the stop allows it to act on the chief ray bundle with minimal vignetting.
+L6 is a weakly positive biconvex element ($R_1 = +52.55$, $R_2 = -144.27$) that closes the G1A subgroup. The patent gives code coordinate 752251 but no vendor type. Its very low Abbe number ($\nu_d = 25.0$) makes it a dense flint; L6's weak power ($f = +51.5$ mm) keeps its chromatic contribution modest, while its high refractive index ($n_d = 1.752$) helps correct residual higher-order aberrations near the stop.
 
 ### L7 — Negative Meniscus (UHR, bonded to L8)
 
@@ -137,9 +137,9 @@ The strong negative rear surface of L11 ($R = +12.65$ mm, concave toward image) 
 
 ### L12 — Biconvex Positive (field corrector)
 
-$n_d = 1.62299$, $\nu_d = 58.1$. Glass: S-PHM52Q (OHARA). $f = +40.2$ mm.
+$n_d = 1.62299$, $\nu_d = 58.1$. Glass: S-BSM15 (OHARA). $f = +40.2$ mm.
 
-L12 is the sole element of G3, the fixed rear positive group. Its biconvex form ($R_1 = +157.22$, $R_2 = -29.57$) concentrates power at the rear surface, producing a weakly positive field-correcting lens. S-PHM52Q is a phosphate crown similar in composition to S-PHM52 (L4) but with slightly different thermal and molding properties (the "Q" suffix in OHARA's naming indicates a variant optimized for specific processing).
+L12 is the sole element of G3, the fixed rear positive group. Its biconvex form ($R_1 = +157.22$, $R_2 = -29.57$) concentrates power at the rear surface, producing a weakly positive field-correcting lens. Its 1.62299 / 58.1 coordinate matches OHARA S-BSM15 rather than the former phosphate-crown assignment.
 
 Positioned close to the image plane with a large air gap behind it ($d_{25} = 10.43$ mm to the cover glass), L12 acts primarily as a field flattener and telecentric corrector. Its weak positive power helps control the chief ray angle at the sensor — critical for Micro Four Thirds sensors with on-chip microlenses that are sensitive to non-telecentric illumination. The patent constrains G3's axial extent via Inequality (14): $0.01 < \mathrm{DG3}/\mathrm{LL} < 0.10$, with Example 1 yielding 0.038.
 
@@ -154,13 +154,13 @@ The design uses an all-OHARA glass palette of 10 distinct glasses across 12 elem
 | L3 | S-FPL51 (OHARA) | 1.49700 | 81.6 | ED fluorophosphate | First ED element; lateral color correction in front group |
 | L4 | J-PSKH4 (Hikari) | 1.59349 | 67.0 | High-Abbe crown | High-$\nu_d$ negative in cemented doublet with L5 |
 | L5 | S-FTM16 (OHARA) | 1.59270 | 35.4 | Flint | Low-$\nu_d$ positive partner to L4; achromatization |
-| L6 | S-TIH4 (OHARA) | 1.75211 | 25.0 | Dense titanium flint | Weak positive; high-index higher-order correction |
+| L6 | 752251 (vendor unresolved) | 1.75211 | 25.0 | Dense flint | Weak positive; high-index higher-order correction |
 | L7 | S-LAH79 (OHARA) | 2.00100 | 29.1 | UHR lanthanum dense flint | Ultra-high-index negative; compactness + Petzval |
 | L8 | S-FPL51 (OHARA) | 1.49700 | 81.6 | ED fluorophosphate | Second ED element; axial color correction post-stop |
 | L9 | P-SK57Q1 (Schott, 586595) | 1.58575 | 59.5 | Barium crown | Moldable glass for double-aspheric positive |
 | L10 | FDS18 (HOYA) | 1.94595 | 18.0 | Super-dense flint | High-index positive in focus group doublet |
 | L11 | S-TIH53 (OHARA) | 1.84666 | 23.8 | Dense titanium flint | Strong negative in focus group; field curvature |
-| L12 | S-PHM52Q (OHARA) | 1.62299 | 58.1 | Phosphate crown | Field flattener / telecentric corrector |
+| L12 | S-BSM15 (OHARA) | 1.62299 | 58.1 | Barium crown | Field flattener / telecentric corrector |
 | Resin (×3) | UV-curable adhesive | 1.56732 | 42.8 | Optical cement | Bonds L4+L5, L7+L8, L10+L11 |
 
 The chromatic correction strategy employs two architecturally distinct achromatic pairs. In G1A, the L4 (J-PSKH4, $\nu_d = 67.0$) + L5 (S-FTM16, $\nu_d = 35.4$) bonded doublet provides a $\Delta\nu_d = 31.6$ split oriented toward correcting lateral chromatic aberration in the wide-angle field. In G1B, the L7 (S-LAH79, $\nu_d = 29.1$) + L8 (S-FPL51, $\nu_d = 81.6$) bonded doublet provides a $\Delta\nu_d = 52.5$ split — the largest in the design — oriented toward axial chromatic correction at the aperture stop. The two S-FPL51 elements (L3 and L8), positioned on opposite sides of the stop, provide symmetric anomalous partial dispersion correction for both axial and lateral secondary spectrum.

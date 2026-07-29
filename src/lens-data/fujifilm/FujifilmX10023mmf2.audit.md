@@ -25,3 +25,12 @@ Patent: US 2012/0069456 A1
   against the entering bundle, and repeated crops gave per-element ratios spanning 0.47-2.41.
 - No aspheric surface changed, so the quoted S10A/S11A rim departures are unaffected.
 - Full method and per-lens results: agent_docs/patent-figure-sd-audit.md.
+
+## 2026-07-29 - Remaining unmatched-glass disposition
+
+- Rechecked Example 1 / Table 2 in local `patents/US20120069456A1.pdf`; S10A remains 1.56865 / 58.60 and its
+  R/d/asphere values are unchanged.
+- S10A `S-BAL14 (OHARA)` -> explicit unmatched 569586 molded crown. K-VC89 remains a useful family
+  comparison, but the patent does not disclose a supplier and no local coefficient-backed row safely establishes
+  the identity.
+- Synchronized the L6 narrative, glass table, and source qualification.

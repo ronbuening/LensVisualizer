@@ -303,7 +303,7 @@ const LENS_DATA = {
       nd: 1.83481,
       vd: 42.7,
       fl: -32.0,
-      glass: "S-LAH60 type (835/427)",
+      glass: "S-LAH55 (OHARA; exact 835427 coordinate match, patent vendor unspecified)",
       apd: false,
       role: "Field corrector negative — field flattening and telecentricity",
       cemented: "D8",

@@ -49,3 +49,9 @@ Patent: JP 2020-118807 A, Example A
 ### Analysis sync
 
 - Updated the glass summary, D2 discussion, and correction note to use `S-LAH96`.
+
+## 2026-07-29 - Remaining catalog-mismatch audit
+
+- Rechecked JP 2020-118807 A Example A surface 9: `R=26.487`, `d=8.15`, `nd=1.85478`, and `νd=24.8` match the data file.
+- Relabeled L6 from `S-NPH5` to OHARA `S-NBH56`, the exact 855248 row. Removed the former unsupported phosphate/APD wording because the patent publishes no partial-dispersion value for this element.
+- Synchronized the glass table and D2 narrative. No prescription geometry changed.

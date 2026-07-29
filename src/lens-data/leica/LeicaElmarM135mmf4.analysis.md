@@ -65,7 +65,7 @@ BK7-class glass is consistent with the patent's stated economic objective. It is
 
 ### L4 — Biconcave negative flint
 
-$n_e = 1.60718$, $\nu_e = 37.8$; catalog equivalent: Schott F5 class, approximately $n_d = 1.60342$, $\nu_d = 38.03$. Standalone f = −34.1 mm after scaling.
+$n_e = 1.60718$, $\nu_e = 37.8$; unmatched F5-class e-line flint. The Schott F5 d-line row is a comparison only. Standalone f = −34.1 mm after scaling.
 
 L4 is the dominant negative element. The rear surface r6 is the steepest powered surface in the patent table, with normalized power about −3.282. Together, L3 and L4 form the thick negative meniscus that creates the telephoto shortening.
 
@@ -86,7 +86,7 @@ The patent publishes only e-line refractive indices and e-line Abbe numbers. It 
 | L1 | 1.57125 / 55.8 | N-BAK4: 1.56883 / 55.98 | BaK4 barium crown | High | Front positive collector |
 | L2 | 1.58403 / 41.4 | No exact public match; LF5-adjacent | Explicit unmatched 584/414 e-line light flint | Moderate | Weak negative in front doublet |
 | L3 | 1.51871 / 64.0 | N-BK7: 1.51680 / 64.17 | BK7 borosilicate crown | High | Strong positive in G2 |
-| L4 | 1.60718 / 37.8 | F5: 1.60342 / 38.03 | F5 ordinary flint | High | Main negative element |
+| L4 | 1.60718 / 37.8 | F5 d-line comparison: 1.60342 / 38.03 | Explicit unmatched F5-class e-line flint | High family confidence; no d-line identity | Main negative element |
 | L5 | 1.69416 / 30.9 | N-SF8 e-line class | Explicit unmatched SF8 dense flint class | High | Rear positive meniscus |
 
 The palette is conventional and economical: barium crown, borosilicate crown, light flint, ordinary flint, and dense flint. There is no evidence in the prescription for lanthanum crown or anomalous partial dispersion glass. That is consistent with the patent's stated objective of avoiding expensive very-high-index materials.

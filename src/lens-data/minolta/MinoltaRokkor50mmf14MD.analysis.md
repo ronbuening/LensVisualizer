@@ -92,7 +92,7 @@ The cemented doublet as a whole has a focal length of $f = -131.8$ mm — it is 
 
 ### L6 — Positive Meniscus, Concave to Object
 
-$n_d = 1.7810$, $\nu_d = 44.5$. Glass: nearest catalog match is **S-NBH55 (OHARA)** ($n_d = 1.78000$, $\nu_d = 43.95$; $\Delta n_d = 0.001$, $\Delta \nu_d = 0.55$). This may be a proprietary Minolta melt or a discontinued glass in the lanthanum crown/flint borderland. Confidence: near match, 781/445 family. $f = +95.5$ mm.
+$n_d = 1.7810$, $\nu_d = 44.5$. Glass: unmatched 781445 lanthanum glass; S-NBH55 is a nearby family comparison only. $f = +95.5$ mm.
 
 L6 is the principal positive element of the rear group. Both surfaces are concave toward the object (R10 = $-232.68$ mm, R11 = $-57.45$ mm), forming a meniscus that curves around the diverging beam exiting the doublet. R11 carries strong positive refractive power ($\Phi_{11} = +0.01359$) and is the primary surface responsible for re-converging the beam toward the image plane.
 
@@ -119,12 +119,12 @@ The design uses seven distinct glasses spanning the lanthanum crown, lanthanum f
 | L3 | 1.7006 | 30.1 | S-TIM35 class (OHARA) | Near ($\Delta n_d = 0.0017$) | Titanium flint; Petzval corrector |
 | L4 | 1.7552 | 27.5 | S-TIH4 (OHARA) | Exact | Dense titanium flint; doublet flint |
 | L5 | 1.7440 | 45.0 | S-LAM2 (OHARA) | Close ($\Delta \nu_d = 0.21$) | Lanthanum flint; doublet crown |
-| L6 | 1.7810 | 44.5 | S-NBH55 class (OHARA) | Near ($\Delta n_d = 0.001$) | Lanthanum crown; rear relay |
+| L6 | 1.7810 | 44.5 | Unmatched 781445 patent glass | Vendor unresolved | Lanthanum crown/flint borderland; rear relay |
 | L7 | 1.7200 | 50.2 | S-LAL10 (OHARA) | Exact | Lanthanum crown; rear collector |
 
 The chromatic strategy is straightforward: no ED or anomalous-dispersion glasses are used. Correction is achieved through the Abbe-number spread between the low-dispersion crowns ($\nu_d = 45$–$50$) and the high-dispersion flints ($\nu_d = 27$–$30$). The cemented doublet (L4 + L5) provides the primary achromatization, while the Abbe-number ordering across the front group (L1 at $\nu_d = 45.7$, L2 at $\nu_d = 46.3$, L3 at $\nu_d = 30.1$) manages lateral chromatic aberration as constrained by condition (6).
 
-Two glasses — L3 ($n_d = 1.7006$) and L6 ($n_d = 1.7810$) — do not match any current OHARA catalog entry within tight tolerance. These may represent discontinued melts, proprietary Minolta formulations, or intermediate catalog codes from the 1970s OHARA range. Both are identified to their glass family with reasonable confidence, and the discrepancies are small enough to have negligible effect on chromatic modeling.
+Two glasses — L3 ($n_d = 1.7006$) and L6 ($n_d = 1.7810$) — do not match any current catalog entry within tight tolerance. They remain family-level descriptions without borrowed catalog spectra.
 
 The Petzval sum of the complete system is $\Sigma = 0.001577$ mm$^{-1}$ (using the standard formula $\Sigma = \sum (n'_i - n_i) / (R_i \cdot n_i \cdot n'_i)$), yielding a Petzval radius of approximately 634 mm, or about 6.3× the focal length. This is a well-corrected value for a fast normal lens and reflects the benefit of using exclusively high-index glasses ($n_d > 1.70$) throughout the design.
 

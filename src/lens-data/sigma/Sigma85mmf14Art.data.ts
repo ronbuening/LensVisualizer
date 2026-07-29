@@ -217,7 +217,7 @@ const LENS_DATA = {
       nd: 1.6727,
       vd: 32.17,
       fl: -66.7,
-      glass: "S-NBH52 (OHARA)",
+      glass: "S-TIM25 (OHARA)",
       apd: false,
       dPgF: 0.0058,
       role: "Field flattener (Sm2) — distributes coma correction per condition (7), Petzval corrector",

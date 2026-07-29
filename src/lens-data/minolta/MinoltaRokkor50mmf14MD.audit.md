@@ -25,3 +25,10 @@ Patent: US 4,182,550
 
 - The patent gives no clear-aperture table.
 - Existing SDs remain inferred from the f/1.4 Gauss envelope and drawing proportions. No SD edits were made.
+
+## 2026-07-29 - Remaining unmatched-glass disposition
+
+- Rechecked Embodiment 2 / Table 2 in local `patents/US4182550.pdf`; S10 remains 1.78100 / 44.50 and its R/d
+  values are unchanged.
+- S10 `S-LAH51 (OHARA)` -> explicit unmatched 781445 patent glass. The companion analysis retains S-NBH55
+  only as a nearby family comparison and no longer supplies a catalog spectral identity.

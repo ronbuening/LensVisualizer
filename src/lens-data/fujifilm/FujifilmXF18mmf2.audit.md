@@ -14,3 +14,10 @@ Patent: US 2014/0240851 A1, Example 4
 ### Verification
 
 - `npm test -- elementRenderDiagnostics`
+
+## 2026-07-29 - Catalog-coordinate correction
+
+- Rechecked Example 4 in local `patents/US20140240851A1.pdf`; S3 remains 1.83400 / 37.16 and its R/d row is
+  unchanged.
+- S3 `S-LAH55V (OHARA)` -> `S-LAH60 (OHARA)`, the exact same-vendor coordinate. Synchronized the L2 element
+  discussion and glass table; the distinct L8 S-LAH55VS row was not changed.

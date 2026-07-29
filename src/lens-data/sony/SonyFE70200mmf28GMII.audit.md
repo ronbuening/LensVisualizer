@@ -40,3 +40,11 @@ Patent: JP 2023-039817 A, Example 2
 - Prior Table 6 glass corrections remain valid; the current generated glass reports show no active Sony catalog-mismatch row for this lens.
 - Updated L12 and L13 to `apd: "inferred"` for Super ED fluorophosphate class, and L31, L51, and L81 to `apd: "inferred"` for ED fluorophosphate class. The patent publishes nd/vd only for these rows, so no dPgF values are assigned.
 - No R/d/nd/vd, spacing, high-index, or SD edits were needed in this pass.
+
+## 2026-07-29 - Remaining unmatched-glass disposition
+
+- Rechecked Example 2 / Table 6 in local `patents/JP2023039817A.pdf`; S7 remains 1.77621 / 49.60 and its R/d
+  values are unchanged.
+- S7 `S-LAH66 class (OHARA)` -> explicit unmatched 776496 lanthanum-glass coordinate. S-LAH66 matches νd
+  but misses nd by about 0.0037, outside the resolver tolerance.
+- Synchronized the L21 element narrative and glass table while retaining S-LAH66 only as a family comparison.

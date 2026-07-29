@@ -66,7 +66,7 @@ const LENS_DATA = {
       nd: 1.62606,
       vd: 39.1,
       fl: -94.9,
-      glass: "HOYA FD60 (626/391)",
+      glass: "626391 — barium flint (patent coordinate; vendor unresolved)",
       cemented: "D1",
       role: "Flint component of achromatic doublet (Group II); Δν = 22.1 vs L3",
     },

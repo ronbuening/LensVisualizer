@@ -138,7 +138,7 @@ const LENS_DATA = {
       nd: 1.6968,
       vd: 55.52,
       fl: -68.8,
-      glass: "Barium crown (near S-BAH27)",
+      glass: "697555 — lanthanum crown (patent coordinate; vendor unresolved)",
       apd: false,
       role: "Focus group 1 (Gfo / G2). Moves toward image during close focus. Single-element construction minimises weight for fast AF.",
     },

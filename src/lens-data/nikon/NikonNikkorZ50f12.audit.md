@@ -45,3 +45,9 @@ Patent: WO 2021/241230 A1
 
 - Rechecked the local untracked `patents/` folder for WO 2021/241230 A1 / `241230`; no matching local PDF is present.
 - No glass or SD changes made. Patent figure/table review remains blocked until the source PDF or a verified local family equivalent is added.
+
+## 2026-07-29 - Remaining catalog-mismatch audit
+
+- The local source is now present. Rechecked WO 2021/241230 A1 Example 1 surface 32A; stored `R`, `d`, `nd=1.51680`, and `νd=64.00` agree with the patent.
+- Relabeled L44 from incorrect OHARA `S-NSL3` to Hikari `J-BK7`, the exact standard-crown coordinate in Nikon/Hikari context.
+- Synchronized the L44 analysis and glass summary. No prescription geometry changed.

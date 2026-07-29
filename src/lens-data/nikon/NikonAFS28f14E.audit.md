@@ -16,3 +16,10 @@ Patent: JP2017-227799A, Example 1
 ## 2026-07-29 - Catalog expansion follow-up
 
 - Corrected L26 from `S-LAH60V` to OHARA `L-LAH90`, the exact 1.83220 / 40.10 row.
+
+## 2026-07-29 - Remaining catalog-mismatch audit
+
+- Rechecked JP 2017-227799 A Example 1 surfaces 8 and 21; stored `R`, `d`, `nd`, and `νd` agree with the patent.
+- Surface 8: replaced speculative `S-BAL2` with explicit unmatched 569560 barium-crown wording because multiple vendors occupy the coordinate.
+- Surface 21: replaced `S-TIH6` with code-first `806333` dense flint; the coordinate matches coefficient-backed NBFD15, but the patent does not identify a vendor.
+- Synchronized the L14/L25 analysis entries. No geometry changed.

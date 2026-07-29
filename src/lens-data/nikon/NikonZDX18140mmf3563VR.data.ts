@@ -172,7 +172,7 @@ const LENS_DATA = {
       nd: 1.51742,
       vd: 52.2,
       fl: 32.5,
-      glass: "S-NSL3 (OHARA, Δνd ≈ 0.23)",
+      glass: "S-NSL36 (OHARA; patent coordinate match)",
       cemented: "H1",
       role: "Glass body of hybrid composite L31; positive power contributor",
     },

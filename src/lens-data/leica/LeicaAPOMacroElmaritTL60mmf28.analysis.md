@@ -117,7 +117,7 @@ The patent (¶0031) specifically recommends placing a double-aspheric positive e
 ### L31 + L32 — Cemented Doublet (Gr3, front)
 
 **L31:** nd = 1.91082, νd = 35.25. Glass: TAFD35 (HOYA) — dense lanthanum/tantalum flint (νd < 50). f = +35.7 mm (standalone in air).
-**L32:** nd = 1.51742, νd = 52.15. Glass: S-NSL3 (OHARA) — normal crown. f = −23.2 mm (standalone in air).
+**L32:** nd = 1.51742, νd = 52.15. Glass: code 517522 — crown, vendor unresolved. f = −23.2 mm (standalone in air).
 **Doublet:** f ≈ −67 mm (thick-lens ABCD computation).
 
 The cemented doublet L31+L32 is the leading element assembly of the fixed rear group Gr3. L31 is a positive meniscus convex toward the image, made of the highest-index glass in the entire design (nd = 1.91082). L32 is a biconcave negative element cemented to L31's rear, made of a much lower-index crown.
@@ -128,7 +128,7 @@ TAFD35 (nd = 1.91082) is one of the highest-index flints in the HOYA catalog. De
 
 ### L33 — Negative Meniscus, Concave to Object (Gr3)
 
-nd = 1.56883, νd = 56.04. Glass: S-BAL2 (OHARA) — barium light crown. f = −31.4 mm.
+nd = 1.56883, νd = 56.04. Glass: code 569560 — barium crown, vendor unresolved. f = −31.4 mm.
 
 L33 is a strong negative meniscus (R₁₇ = −15.0, R₁₈ = −95.8) that contributes the majority of the field-flattening correction. It sits 12.475 mm behind the cemented doublet — this large air gap is a signature feature of the design, providing the physical separation needed for L33's strong diverging power to act on the off-axis ray bundles effectively.
 
@@ -153,8 +153,8 @@ The gap between L33 and L34 is only 0.300 mm — the thinnest air space in the d
 | L22 | NBFD15 (HOYA) | 1.80610 | 33.27 | Dense flint | APO chromatic partner |
 | L23 | S-BAL42 (OHARA) | 1.58313 | 59.38 | Barium crown | Polished aspheric substrate |
 | L31 | TAFD35 (HOYA) | 1.91082 | 35.25 | Dense lanthanum/tantalum flint | High-index doublet component |
-| L32 | S-NSL3 (OHARA) | 1.51742 | 52.15 | Normal crown | Doublet diverger |
-| L33 | S-BAL2 (OHARA) | 1.56883 | 56.04 | Barium light crown | Field flattener |
+| L32 | 517522 (vendor unresolved) | 1.51742 | 52.15 | Crown | Doublet diverger |
+| L33 | 569560 (vendor unresolved) | 1.56883 | 56.04 | Barium crown | Field flattener |
 | L34 | S-LAL18 (OHARA) | 1.72916 | 54.67 | Lanthanum crown | Exit pupil / telecentric corrector |
 
 The chromatic correction strategy operates at two levels. Within Gr1, the triplet L11–L12–L13 spans Abbe numbers from 23.78 to 59.38, forming an achromatic front section that is nearly color-neutral. Within Gr2, the L21–L22 pair (νd = 95.10 vs 33.27, Δν = 61.83) provides the apochromatic correction that earns the "APO" designation. The super-ED glass FCD100 has strongly anomalous partial dispersion (ΔPgF ≈ +0.0564 per HOYA catalog), and its pairing with the dense flint NBFD15 enables three-wavelength color correction — bringing the d, C, and F (or g) lines to a substantially common focus.
@@ -244,6 +244,6 @@ The production lens was announced on 1 September 2016 as the sixth TL-mount lens
 
 1. JP 2016-090725 A (Konica Minolta, Inc. / Tanaka Hiroaki), published 23 May 2016. Full text and figures consulted.
 2. Leica Camera AG product specification: APO-Macro-Elmarit-TL 60 mm f/2.8 ASPH (11086/11087). Accessed via leica-camera.com.
-3. OHARA Inc. optical glass catalog (2018 edition). Used for glass identification of S-TIH53, S-BAL42, S-TIM28, S-NSL3, S-BAL2, S-LAL18.
+3. OHARA Inc. optical glass catalog (2018 edition). Used for glass identification of S-TIH53, S-BAL42, S-TIM28, and S-LAL18; the 517522 and 569560 rows remain vendor unresolved.
 4. HOYA Corporation optical glass catalog. Used for identification of FCD100 (nd = 1.43700, νd = 95.10), NBFD15, and TAFD35.
 5. PhotoArk review of the Leica APO-Macro-Elmarit-TL 60 mm f/2.8 (photoark.co.uk). Production behavior note regarding automatic aperture stop-down at closest focus.

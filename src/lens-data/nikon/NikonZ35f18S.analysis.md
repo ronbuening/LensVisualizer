@@ -141,11 +141,11 @@ L16 is one of the more steeply curved positive elements in Gr1, with an asymmetr
 | R₁ / R₂ | +4.1556 / +1.9836 |
 | nd / νd | 1.83441 / 37.28 |
 | Thick-lens fl | −102.5 mm (scaled) |
-| Glass ID | S-LAH55VS (OHARA), probable. Near-match: Δnd = 0.000, Δνd = 0.09. High-index La crown. |
+| Glass ID | M-NBFD10 (HOYA). Exact 1.83441 / 37.28 molded-glass coordinate match. |
 
 L17 is the first aspherical element — a thin negative meniscus in a high-index lanthanum glass, with both surfaces aspherical. Its position at the rear of Gr1, immediately before the stop, is strategically important: it is the last element the marginal ray encounters before the iris, and its aspherical surfaces provide fine control over the residual spherical aberration and coma that accumulate through the preceding six elements.
 
-The glass identification requires comment. The patent values (nd = 1.83441, νd = 37.28) match OHARA S-LAH55VS with Δνd = 0.09, which is within typical manufacturing tolerance. The "VS" suffix in OHARA's naming indicates a "Very Stable" variant optimized for precision molding — consistent with the aspherical surfaces on this element. However, an exact catalog-sheet confirmation was not available from the 2018 pocket catalog. The identification is rated as probable.
+The patent values (nd = 1.83441, νd = 37.28) exactly match HOYA M-NBFD10. The molded-glass designation is consistent with the element's two aspherical surfaces and removes the former speculative S-LAH55VS assignment.
 
 **Aspherical departure (surface 11, front):** K = −4.9288 (strongly prolate hyperbolic base curve). At the 13.1 mm semi-diameter, the total departure from a sphere is +39 µm — the surface is steeper than a sphere at the rim, adding material. The large negative conic constant flattens the base conic relative to a sphere, and the even-order polynomial terms (A₄ = −9.58×10⁻², A₆ = +5.04×10⁻¹, A₈ = −4.62×10⁻¹) produce a complex, non-monotonic departure profile.
 
@@ -249,7 +249,7 @@ The three aspherical elements (L17, L23, L31) account for six aspherical surface
 
 The aspherical departures escalate dramatically from front to rear: L17's surfaces are relatively mild (tens of µm), while L31's rear surface departs by nearly a millimeter from a sphere. This pattern reflects the increasing off-axis ray heights toward the image end of the lens, where field-dependent aberrations dominate and require proportionally larger corrections.
 
-Both L23 and L31 are identified with L-prefix (low-Tg) OHARA glasses, indicating precision glass molding. L17's glass (S-LAH55VS) has a "VS" designation suggesting it may also be produced by a precision process, though the S-prefix technically denotes conventional (polished) glass. The boundary between polished aspherics and molded aspherics in modern high-end lens production is fluid — computer-controlled grinding and polishing can achieve the departures seen on L17, while the larger departures on L23 and L31 strongly favor molding.
+L17 uses HOYA M-NBFD10, while L23 and L31 are identified with L-prefix (low-Tg) OHARA glasses. All three assignments are consistent with precision glass molding; the larger departures on L23 and L31 make that manufacturing route especially likely.
 
 ---
 

@@ -207,7 +207,7 @@ All 19 glasses are exact catalog matches (Δnd = 0.00000, Δνd ≤ 0.04 in all 
 | L3 | 1.77250 | 49.6 | 773/496 | S-LAH55V | OHARA | Lanthanum crown |
 | L4 | 1.76902 | 49.3 | 769/493 | MC-TAF101-100 | HOYA | Precision-molding lanthanum/tantalum glass |
 | L5 | 1.76385 | 48.5 | 764/485 | **S-LAH96** | **OHARA** | Lanthanum crown |
-| L6 | 1.85478 | 24.8 | 855/248 | S-NPH5 | OHARA | Heavy phosphate flint (APD) |
+| L6 | 1.85478 | 24.8 | 855/248 | S-NBH56 | OHARA | Dense flint |
 | L7 | 1.48749 | 70.2 | 487/702 | S-FSL5 | OHARA | Fluorophosphate crown |
 | L8 | 1.88300 | 40.8 | 883/408 | TAFD30 | HOYA | Lanthanum/tantalum dense flint |
 | L9 | 1.72916 | 54.7 | 729/547 | S-LAL18 | OHARA | Lanthanum crown |
@@ -234,11 +234,11 @@ Canon's specification lists "two UD elements and one Super UD element." These ma
 
 **L15 (S-FPL51, νd = 81.5):** The second UD element, in cemented doublet D5 within Group 4, paired with high-dispersion L16 (NBFD15, νd = 33.3). This provides additional secondary-spectrum correction in the rear group.
 
-The placement strategy is deliberate: all three anomalous-dispersion elements are concentrated in Groups 3 and 4, which handle the final image formation. The variator (Group 2) uses heavy phosphate flint (S-NPH5 in D2) and TAFD30 in D3 for its chromatic correction — the NPH glass contributes some anomalous dispersion benefit, but the primary secondary-spectrum correction is handled by the UD and Super UD elements in the rear groups where the converging beam is being brought to focus.
+The placement strategy is deliberate: the patent-backed anomalous-dispersion elements are concentrated in Groups 3 and 4, which handle final image formation. The variator (Group 2) uses dense flint (S-NBH56 in D2) and TAFD30 in D3 for chromatic balance, while the primary secondary-spectrum correction is handled by the UD and Super UD elements in the rear groups where the converging beam is brought to focus.
 
 ### 4.3 High-Index Flint Family
 
-The design uses multiple very high-index, high-dispersion glasses — L1 (S-NPH1, nd = 1.808), L6 (S-NPH5, nd = 1.855), and L19 (TAFD55, nd = 2.001). This family of roles is characterized by positive anomalous partial dispersion or high blue-violet dispersion, helping secondary-spectrum correction when paired with crown glasses in cemented doublets.
+The design uses multiple very high-index, high-dispersion glasses — L1 (S-NPH1, nd = 1.808), L6 (S-NBH56, nd = 1.855), and L19 (TAFD55, nd = 2.001). Their high index and dispersion support compact achromatic pairings; the patent does not publish direct partial-dispersion data for L6.
 
 ### 4.4 Ultra-High-Index Glass: L19 (nd = 2.001)
 
@@ -272,7 +272,7 @@ The variator is the heart of the zoom mechanism. Its strong negative power (f = 
 MC-TAF101-100 (nd = 1.769, νd = 49.3), f = −30.6 mm. The dramatic radius difference (R₁ = 167 mm, R₂ = 20.6 mm) creates a deeply curved meniscus that bends marginal rays outward aggressively. The aspherical front surface (S6) fine-tunes this divergence to control zonal spherical aberration.
 
 **Cemented Doublet D2 (L5 + L6):**
-An achromatic pair consisting of biconcave L5 (S-LAH96, nd = 1.764, νd = 48.5, f = −22.5 mm) cemented to biconvex L6 (S-NPH5, nd = 1.855, νd = 24.8, f = +20.5 mm). The doublet's combined focal length is +222 mm, providing gentle positive correction within the overwhelmingly negative variator.
+An achromatic pair consisting of biconcave L5 (S-LAH96, nd = 1.764, νd = 48.5, f = −22.5 mm) cemented to biconvex L6 (S-NBH56, nd = 1.855, νd = 24.8, f = +20.5 mm). The doublet's combined focal length is +222 mm, providing gentle positive correction within the overwhelmingly negative variator.
 
 **Cemented Doublet D3 (L7 + L8):**
 L7 is a positive meniscus (f = +71.5 mm) of S-FSL5 (nd = 1.487, νd = 70.2) — a low-index, low-dispersion fluorophosphate. L8 is a negative meniscus (f = −30.8 mm) of TAFD30 (nd = 1.883, νd = 40.8) with an aspherical rear surface (S13). The doublet's combined focal length is −54 mm, contributing additional negative power. Despite the individual elements having opposite signs, the pair works as a negative achromatic corrector. The asphere on S13 serves as a "clean-up" correction for oblique aberrations at the variator's exit, reducing coma and astigmatism that would otherwise degrade performance across the zoom range.

@@ -39,3 +39,10 @@ Patent: US 5,267,086, Example 1
 
 - APD status remains `false`; the soft-focus behavior is spherical-aberration design, not anomalous partial dispersion.
 - No patent clear-aperture or semi-diameter table was found. Existing SDs remain unchanged because the drawing supports the large front/small rear proportions.
+
+## 2026-07-29 - Remaining catalog-mismatch audit
+
+- Rechecked US 5,267,086 Example 1 surfaces 1 and 4 before the documented 0.85 scale; stored scaled `R`/`d` values and 1.65844/50.90 plus 1.72825/28.50 coordinates agree.
+- Relabeled L1 from false HOYA `BACD14` wording to Schott `N-SSK5`, exact code 658509 already recorded in the annotation.
+- Relabeled L3 from false HOYA `FD60` wording to OHARA `S-TIH10`, exact code 728285 already recorded in the annotation.
+- Synchronized the analysis. No geometry or scale changed.
