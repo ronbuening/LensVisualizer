@@ -515,6 +515,17 @@ describe("glass catalog", () => {
     expect(resolveGlass("BAF3")?.name).toBe("J-BAF3");
   });
 
+  it("evaluates the SUMITA K-SKLD5 molding-state catalog row", () => {
+    const entry = resolveGlass("K-SKLD5-M (SUMITA K-SKLD5(M) catalog equivalent)");
+    expect(entry?.name).toBe("K-SKLD5-M");
+    expect(entry?.vendor).toBe("Sumita");
+    expect(entry?.code6).toBeUndefined();
+    expect(evaluateSellmeier(entry!, LINE_NM.d)).toBeCloseTo(1.58606, 5);
+    expect(evaluateCatalogAbbeNumber(entry!)).toBeCloseTo(61.0, 1);
+    expect(resolveCompatibleGlass("K-SKLD5-M", 1.58636, 60.9)?.name).toBe("K-SKLD5-M");
+    expect(resolveGlass("586609")).toBeNull();
+  });
+
   it("evaluates explicit power-series catalog entries", () => {
     const hikariPskh1 = resolveGlass("593679 - fluorophosphate crown");
     expect(hikariPskh1?.name).toBe("J-PSKH1");

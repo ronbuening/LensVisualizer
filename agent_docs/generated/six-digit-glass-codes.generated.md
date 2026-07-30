@@ -10,9 +10,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **488** lenses scanned
-- **481** total code-only elements found
-- **481** elements in this report
-- **155** distinct lens files affected
+- **479** total code-only elements found
+- **479** elements in this report
+- **154** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -76,7 +76,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 581408 | 2 | 2 | patents/US6940655.pdf<br>patents/US4452513.pdf | No reviewed-sidecar hit |
 | 583594 | 2 | 2 | patents/JP2013054269A.pdf | No reviewed-sidecar hit |
 | 585594 | 2 | 1 | patents/JP2023039817A.pdf | All representative rows reviewed |
-| 586609 | 2 | 1 | patents/US7301711.pdf | No reviewed-sidecar hit |
 | 603380 | 2 | 1 | Missing from untracked local patents/ references (JP2020173366A, JP2020173366, 2020173366) | No reviewed-sidecar hit |
 | 620586 | 2 | 1 | patents/US4303314.pdf | All representative rows reviewed |
 | 625356 | 2 | 1 | patents/US2959100.pdf | No reviewed-sidecar hit |
@@ -1271,13 +1270,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L2 (Element 2) | 3 | `Unmatched lanthanum crown (682575; no exact current public catalog match)` | 1.68159 / 57.50 | No catalog entry | abbe | patents/US7542219.pdf | No reviewed-sidecar hit |
 | L3 (Element 3) | 5 | `Unmatched dense flint (794255; SF/S-TIH class)` | 1.79425 / 25.50 | No catalog entry | abbe | patents/US7542219.pdf | No reviewed-sidecar hit |
 | L4 (Element 4) | 7 | `Unmatched barium flint (676440; BaF/BaSF class)` | 1.67648 / 44.00 | No catalog entry | abbe | patents/US7542219.pdf | No reviewed-sidecar hit |
-
-### [PENTAX DA* 16-50mm f/2.8 ED AL[IF] SDM](../../src/lens-data/pentax/PentaxDA1650mmf28.data.ts) - US 7,301,711 B2
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
-|---|---|---|---|---|---|---|---|
-| L32 (Element 10) | 18 | `BSM-class (586/609, vendor uncertain)` | 1.58636 / 60.90 | No catalog entry | abbe | patents/US7301711.pdf | No reviewed-sidecar hit |
-| L44 (Element 15) | 27A | `BSM-class (586/609, vendor uncertain)` | 1.58636 / 60.90 | No catalog entry | abbe | patents/US7301711.pdf | No reviewed-sidecar hit |
 
 ### [PENTAX FA 31mm f/1.8 AL Limited](../../src/lens-data/pentax/PentaxFA31mmf18ALLtd.data.ts) - US 6,560,042 B2
 

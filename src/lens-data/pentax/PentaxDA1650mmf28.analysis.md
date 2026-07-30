@@ -139,7 +139,7 @@ The first of two ED elements. S-FPL51 is an extra-low dispersion fluorophosphate
 
 #### L32 — Positive Biconvex (Aspherical rear surface)
 
-nd = 1.58636, νd = 60.9. Glass: BSM-class (586/609) — barium silicate crown or phosphate crown; exact catalog match uncertain. f = +39.8 mm.
+nd = 1.58636, νd = 60.9. Glass: SUMITA K-SKLD5(M) catalog equivalent (production supplier unspecified). f = +39.8 mm.
 
 The strongest positive element in Group 30 and the second aspherical element in the system. The rear surface (surface 19*) carries the aspherical profile. This element provides the bulk of Group 30's convergent power (f = +39.8 mm versus f₃ = +92.6 mm for the group, indicating that L33 partially compensates).
 
@@ -175,7 +175,7 @@ The positive partner of the cemented doublet. S-FSL5 is a low-index, low-dispers
 
 #### L44 — Positive Meniscus with Double Aspherical Surfaces (concave to object)
 
-nd = 1.58636, νd = 60.9. Glass: BSM-class (586/609) — same glass as L32. f = +127.1 mm.
+nd = 1.58636, νd = 60.9. Glass: SUMITA K-SKLD5(M) catalog equivalent — same glass as L32. f = +127.1 mm.
 
 The final element of the system and the third aspherical element. Both surfaces (27* and 28*) carry aspherical profiles, making this a double-asphere. The meniscus form is concave to the object (R₁ = −500.000, nearly flat; R₂ = −65.096, moderately concave), with weak positive power (f = +127.1 mm). The patent text specifically recommends placing an aspherical surface on the most image-side element where off-axis ray bundles are most spread, enabling effective correction of coma, astigmatism, and distortion without disturbing on-axis performance.
 
@@ -199,14 +199,14 @@ The design uses 12 distinct optical materials (11 catalog glasses plus one asphe
 | S-TIM27 (OHARA) | 1.64769 | 33.8 | 647/338 | L23 | Titanium flint | Chromatic corrector within G2 |
 | S-LAH65V (OHARA) | 1.80400 | 46.6 | 804/466 | L24 | Lanthanum crown | Negative power + achromatizing in G2 |
 | S-FPL51 (OHARA) | 1.49700 | 81.6 | 497/816 | L31, L41 | Fluorophosphate crown (ED) | Primary chromatic correction |
-| BSM-class | 1.58636 | 60.9 | 586/609 | L32, L44 | Barium silicate crown | Aspherical substrates (moderate nd, low dispersion) |
+| K-SKLD5(M) catalog equivalent | 1.58636 | 60.9 | — | L32, L44 | Moldable crown | Aspherical substrates (moderate nd, low dispersion) |
 | S-LAH60 (OHARA) | 1.83400 | 37.2 | 834/372 | L33 | Lanthanum dense flint | Petzval corrector / chromatic balance |
 | S-TIH6 (OHARA) | 1.80518 | 25.4 | 805/254 | L42 | Dense flint | Achromatizing flint in G4 doublet |
 | S-FSL5 (OHARA) | 1.48749 | 70.2 | 487/702 | L43 | Fluorosilicate crown | Low-dispersion crown in G4 doublet |
 
 **Chromatic strategy:** The design relies on two ED elements (S-FPL51, νd = 81.6) positioned in Groups 30 and 40 — one behind the stop and one in the imaging relay. These are the "two special optical glass elements" referenced in the manufacturer's product description. The achromatizing strategy within each group uses conventional crown–flint pairings: S-TIH53/S-BAL42 in Group 10, S-LAH55V/S-TIM27 within Group 20, and S-TIH6/S-FSL5 in Group 40.
 
-**Note on the 586/609 glass:** The glass used for L32 and L44 (nd = 1.58636, νd = 60.9) does not precisely match any current OHARA S-type catalog entry. It falls in the barium silicate crown region of the nd–νd diagram. Given the Pentax–Tokina collaboration, it may be a Tokina-sourced melt, a Hoya equivalent, or a discontinued OHARA type. The six-digit code 586/609 is consistent with a moderate-index, moderate-dispersion crown suitable for precision glass molding — appropriate for the two aspherical substrates that use this glass.
+**Note on the 586/609 glass:** The patent does not name a supplier, but SUMITA's first-party all-glass catalog publishes the molding-state K-SKLD5(M) row at nd = 1.58606 and νd = 61.0. Its residual from the patent coordinate is only Δnd = −0.00030 and Δνd = +0.1, safely inside the runtime matching window. The vendor's base K-SKLD5 row is `1.58913 / 61.2`; the `(M)` row has its own coefficient polynomial and is the appropriate comparison. Its molding designation is also consistent with L32 and L44 serving as aspherical substrates, although the production supplier remains unspecified.
 
 ---
 

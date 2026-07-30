@@ -22,6 +22,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-07-30 ──────────────────────────────────────────────────
   {
     date: "2026-07-30",
+    type: "improvement",
+    summary: "Added coefficient-backed molding-glass dispersion for two Pentax aspherical elements",
+  },
+  {
+    date: "2026-07-30",
     type: "fix",
     summary: "Clarified two source-audited proprietary glass assignments without forcing unsafe catalog matches",
   },

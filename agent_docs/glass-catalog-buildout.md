@@ -7,7 +7,14 @@ available, it falls back to partial measured `nC`/`nF` line indices, dPgF-correc
 approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **431 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **432 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+
+The July 30, 2026 Phase 60 pass recovered SUMITA K-SKLD5(M), a molding-state coefficient row whose published
+`1.58606 / 61.0` coordinate safely reproduces both `586609` substrates in Pentax DA* 16-50mm Embodiment 6. The
+vendor polynomial round-trips to `1.586058 / 60.977`; its reused base-glass product code is deliberately omitted from
+the runtime entry so bare `589612` remains bound to its established coordinate. L32 and L44 now use explicit
+catalog-equivalent names with the production supplier unspecified. Strict/trusted coverage rose to 4665/4677 surfaces,
+and the active source-review queue fell to eight elements across seven code families.
 
 The July 30, 2026 Phase 59 pass cleared both Tier-A source reviews. Pentax FA 31mm code `728403` was rechecked across
 all three patent embodiments, and Sony Planar FE 50mm code `995293` was confirmed in a rendered Example 2 / Table 6.

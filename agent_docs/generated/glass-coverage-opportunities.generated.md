@@ -10,11 +10,11 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **488** lenses scanned (**480** visible)
-- **4663 / 5360** non-air surfaces use strict catalog Sellmeier data (87.0%)
-- **4675 / 5360** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 87.2%)
+- **4665 / 5360** non-air surfaces use strict catalog Sellmeier data (87.0%)
+- **4677 / 5360** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 87.3%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
-- **267** code-only missing-Sellmeier elements in Sweep 2: **10** active unreviewed, **52** explicitly disposed but missing a sidecar hit
+- **265** code-only missing-Sellmeier elements in Sweep 2: **8** active unreviewed, **52** explicitly disposed but missing a sidecar hit
 - **47** unresolved named-token elements in Sweep 2B, producing **47** token occurrences across **46** distinct tokens
 - **0** Tier A proprietary backfill rows in Sweep 3
 
@@ -45,6 +45,7 @@ These are efficient follow-up targets after mismatch blockers because one or two
 | [FUJIFILM FUJINON XF 16-55mm f/2.8 R LM WR](../../src/lens-data/fujifilm/FujifilmXF1655mmf28R.data.ts) | US 2016/0154221 A1 | [PDF](../../patents/US20160154221A1.pdf) | 94.1% (16/17) | 94.1% (16/17) | 1 | 13A (Element 8 (L31): `Unmatched (685309 dense flint; nearest public catalog row exceeds d-line tolerance)`) | abbe: 1 |
 | [NIKON NIKKOR Z DX 50-250mm f/4.5-6.3 VR](../../src/lens-data/nikon/NikonZDX50250mmf4564VR.data.ts) | WO2020/105107 A1 | [PDF](../../patents/JPWO2020105107A1.pdf) | 93.8% (15/16) | 93.8% (15/16) | 1 | 17 (L34: `Unmatched (902253 high-index dense flint; no exact public coefficient row)`) | abbe: 1 |
 | [PANASONIC LUMIX G VARIO 7-14mm f/4 ASPH.](../../src/lens-data/panasonic/PanasonicLumixGVario714mmf4.data.ts) | US 2010/0194930 A1 | [PDF](../../patents/US20100194930A1.pdf) | 93.8% (15/16) | 93.8% (15/16) | 1 | 28 (Element 16: `Unmatched crown class (523/701, likely phosphate/fluorophosphate)`) | abbe: 1 |
+| [PENTAX DA* 16-50mm f/2.8 ED AL[IF] SDM](../../src/lens-data/pentax/PentaxDA1650mmf28.data.ts) | US 7,301,711 B2 | [PDF](../../patents/US7301711.pdf) | 93.8% (15/16) | 93.8% (15/16) | 1 | 6A (Element 4 (resin): `UV-cure aspherical resin (not catalog glass)`) | abbe: 1 |
 | [PENTAX HD D FA 28-105mm f/3.5-5.6 ED DC WR](../../src/lens-data/pentax/PentaxDFA28105mmF3556EDDCWR.data.ts) | US 2017/0068075 A1 | [PDF](../../patents/US20170068075A1.pdf) | 93.8% (15/16) | 93.8% (15/16) | 1 | 6A (L21 synthetic-resin aspherical layer: `Unmatched (synthetic resin aspherical layer; nd=1.52972, νd=42.7)`) | abbe: 1 |
 | [CANON RF 50mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF50mmf14LVCM.data.ts) | US 2025/0251576 A1 | [PDF](../../patents/US-20250251576-A1.pdf) | 93.3% (14/15) | 93.3% (14/15) | 1 | 3A (Element 2 resin cap: `UV-cured optical resin (patent-listed nd/vd)`) | abbe: 1 |
 | [FUJIFILM FUJINON GF 32-64mm f/4 R LM WR](../../src/lens-data/fujifilm/FujifilmGF3264mmf4.data.ts) | US 10,191,246 B2 | [PDF](../../patents/US10191246.pdf) | 93.3% (14/15) | 93.3% (14/15) | 1 | 5 (L21 aspherical resin layer: `UV-curing aspherical resin (patent-listed)`) | abbe: 1 |
@@ -158,7 +159,6 @@ Add catalog entries only when public coefficient-backed vendor data is available
 
 | Code | Active elements | Lens files | localPatentStatus | Representative rows |
 |---|---:|---:|---|---|
-| 586609 | 2 | 1 | patents/US7301711.pdf | [PENTAX DA* 16-50mm f/2.8 ED AL[IF] SDM](../../src/lens-data/pentax/PentaxDA1650mmf28.data.ts) Element 10 (1.58636 / 60.90)<br>[PENTAX DA* 16-50mm f/2.8 ED AL[IF] SDM](../../src/lens-data/pentax/PentaxDA1650mmf28.data.ts) Element 15 (1.58636 / 60.90) |
 | 519573 | 1 | 1 | patents/20260118637.pdf | [ENNA MÜNCHEN LITHAGON 24mm f/4](../../src/lens-data/enna-munchen/EnnaMunchenLithagon24mmf4.data.ts) Element 4 (1.51895 / 57.30) |
 | 547460 | 1 | 1 | patents/US20180164556A1.pdf | [PENTAX HD DA* 11-18mm f/2.8 ED DC AW](../../src/lens-data/pentax/PentaxD1118mmF28EDDCWR.data.ts) Element 5 (1.54732 / 46.00) |
 | 678322 | 1 | 1 | patents/WO2021200206A1.pdf | [SONY FE 12-24mm f/2.8 GM](../../src/lens-data/sony/SonyFE1224mmf28GM.data.ts) L22 focus-group positive (1.67764 / 32.20) |

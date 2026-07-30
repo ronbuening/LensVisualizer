@@ -23,19 +23,31 @@ This file tracks the second bucket plus any cases from the first bucket that nee
 
 ## Current Status (July 2026, current catalog)
 
-- Catalog: **431 verified entries** in `src/optics/glassCatalogData.ts`.
+- Catalog: **432 verified entries** in `src/optics/glassCatalogData.ts`.
 - `catalog-mismatches.generated.md` and `glass-relabel-by-lens.generated.md` report **0** remaining
   dispersion-coordinate mismatches across **0** lens files. The mismatch report separately records **16 / 75**
   native e-line surfaces resolved through explicit names or aliases.
-- `sellmeier-coverage.generated.md` reports **488** lenses, **5360** non-air surfaces, **4663** strict catalog
-  Sellmeier surfaces (**87.0%**), and **4675** trusted chromatic surfaces (**87.2%**).
+- `sellmeier-coverage.generated.md` reports **488** lenses, **5360** non-air surfaces, **4665** strict catalog
+  Sellmeier surfaces (**87.0%**), and **4677** trusted chromatic surfaces (**87.3%**).
 - **226** lenses are fully covered by strict Sellmeier data and **231** are fully covered by trusted chromatic data.
-- `unresolvedGlassScan` reports **417** non-explicit-unmatched annotations and **174** distinct unresolved glass-like
+- `unresolvedGlassScan` reports **415** non-explicit-unmatched annotations and **174** distinct unresolved glass-like
   tokens. The total includes honest proprietary and family-level annotations as well as actionable named tokens.
-- The missing-Sellmeier six-digit report contains **267** code-only elements, now separated into **10** active
+- The missing-Sellmeier six-digit report contains **265** code-only elements, now separated into **8** active
   unreviewed rows, **52** explicit unmatched/unidentified dispositions missing both sidecar and companion-audit hits,
   and **205** rows with a recorded review.
 - The Phase 2/3 resolved tables below are historical audit trail. Use the generated reports above for the current queue before starting new relabel work; for patent-by-patent execution, start from [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md).
+
+## Resolved Phase 60 — July 2026 SUMITA molding-state recovery
+
+US 7,301,711 B2 Embodiment 6 / Table 6 was rendered and checked visually, confirming both Pentax DA* 16-50mm
+`586609` substrates at `1.58636 / 60.9`. SUMITA's discontinued-inclusive first-party catalog contains a distinct
+K-SKLD5(M) molding-state row at `1.58606 / 61.0`; its vendor polynomial round-trips to `1.586058 / 60.977`, safely
+inside the d-line matching window. The normalized `K-SKLD5-M` catalog entry intentionally omits the reused base-glass
+product code `589612`, so only explicit name evidence can resolve it.
+
+L32 and L44 now use that coefficient-backed catalog equivalent with the production supplier unspecified. Strict and
+trusted coverage each rose by two surfaces to 4665 and 4677, and the lens moved from 81.3% to 93.8% coverage. The
+remaining active queue contains eight elements across seven code families, all in Tiers D and E.
 
 ## Resolved Phase 59 — July 2026 Tier-A source review
 
