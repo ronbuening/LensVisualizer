@@ -10,10 +10,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **488** lenses scanned
-- **477** total code-only elements found
-- **263** elements in this report
-- **116** distinct lens files affected
-- **3** active unreviewed elements have no review-record hit or explicit disposition
+- **474** total code-only elements found
+- **260** elements in this report
+- **115** distinct lens files affected
+- **0** active unreviewed elements have no review-record hit or explicit disposition
 - **52** explicitly unmatched/unidentified elements lack a sidecar or audit-log hit and are recordkeeping follow-ups, not active identity guesses
 
 ## Prioritized Unreviewed Queue
@@ -25,8 +25,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 
 | Tier | Code | Active elements / lens files | Visible lenses | Strict surfaces | Completion candidates | Near-complete candidates | Local patent lenses | Representative rows |
 |---|---|---:|---:|---:|---|---|---:|---|
-| E | 569632 | 2 / 1 | 1 | 2 | — | — | 0/1 | [OLYMPUS ZUIKO AUTO-ZOOM 85-250mm f/5](../../src/lens-data/olympus/OlympusZuikoAutoZoom85250mmf5.data.ts) Element 4 (1.56873 / 63.20)<br>[OLYMPUS ZUIKO AUTO-ZOOM 85-250mm f/5](../../src/lens-data/olympus/OlympusZuikoAutoZoom85250mmf5.data.ts) Element 7 (1.56873 / 63.20) |
-| E | 498650 | 1 / 1 | 1 | 1 | — | — | 0/1 | [OLYMPUS ZUIKO AUTO-ZOOM 85-250mm f/5](../../src/lens-data/olympus/OlympusZuikoAutoZoom85250mmf5.data.ts) Element 10 (1.49831 / 65.00) |
 
 ## Codes by Frequency
 
@@ -49,7 +47,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 961323 | 3 | 1 | patents/WO2021200206A1.pdf | All representative rows reviewed |
 | 514428 | 2 | 1 | patents/JP2016021011A.pdf | All representative rows reviewed |
 | 531559 | 2 | 2 | patents/US20200142167A1.pdf<br>patents/WO2021039813A1.pdf | All representative rows reviewed |
-| 569632 | 2 | 1 | Missing from untracked local patents/ references (US4025167, 4025167) | No reviewed-sidecar hit |
 | 585594 | 2 | 1 | patents/JP2023039817A.pdf | All representative rows reviewed |
 | 620586 | 2 | 1 | patents/US4303314.pdf | All representative rows reviewed |
 | 625356 | 2 | 1 | patents/US2959100.pdf | No reviewed-sidecar hit |
@@ -72,7 +69,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 465658 | 1 | 1 | patents/US4189212.pdf | All representative rows reviewed |
 | 479587 | 1 | 1 | patents/US4773745.pdf | No reviewed-sidecar hit |
 | 487698 | 1 | 1 | patents/US3838911.pdf | All representative rows reviewed |
-| 498650 | 1 | 1 | Missing from untracked local patents/ references (US4025167, 4025167) | No reviewed-sidecar hit |
 | 504667 | 1 | 1 | patents/US2721499.pdf | All representative rows reviewed |
 | 514530 | 1 | 1 | patents/JP2016021011A.pdf | All representative rows reviewed |
 | 518523 | 1 | 1 | patents/US4871239.pdf | All representative rows reviewed |
@@ -852,14 +848,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | L2 (Element 2) | 3 | `Unmatched crown (504/668; vintage or proprietary)` | 1.50378 / 66.80 | No catalog entry | abbe | patents/US3862794.pdf | Reviewed sidecar hit |
 | L3 (Element 3) | 5 | `Unmatched crown (504/668; vintage or proprietary)` | 1.50378 / 66.80 | No catalog entry | abbe | patents/US3862794.pdf | Reviewed sidecar hit |
 | L4a (Element 4a) | 7 | `Unmatched crown (504/668; vintage or proprietary)` | 1.50378 / 66.80 | No catalog entry | abbe | patents/US3862794.pdf | Reviewed sidecar hit |
-
-### [OLYMPUS ZUIKO AUTO-ZOOM 85-250mm f/5](../../src/lens-data/olympus/OlympusZuikoAutoZoom85250mmf5.data.ts) - US 4,025,167
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
-|---|---|---|---|---|---|---|---|
-| L4 (Element 4) | 6 | `569632 — dense crown (patent glass code)` | 1.56873 / 63.20 | No catalog entry | abbe | Missing from untracked local patents/ references (US4025167, 4025167) | No reviewed-sidecar hit |
-| L7 (Element 7) | 11 | `569632 — dense crown (patent glass code)` | 1.56873 / 63.20 | No catalog entry | abbe | Missing from untracked local patents/ references (US4025167, 4025167) | No reviewed-sidecar hit |
-| L10 (Element 10) | 16 | `498650 — borosilicate crown (patent glass code)` | 1.49831 / 65.00 | No catalog entry | abbe | Missing from untracked local patents/ references (US4025167, 4025167) | No reviewed-sidecar hit |
 
 ### [OLYMPUS ZUIKO DIGITAL ED 14-35mm f/2.0 SWD](../../src/lens-data/olympus/OlympusMZuiko1435mmf2ED.data.ts) - US 8,081,392 B2
 

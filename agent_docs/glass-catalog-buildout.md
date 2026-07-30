@@ -7,7 +7,14 @@ available, it falls back to partial measured `nC`/`nF` line indices, dPgF-correc
 approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **432 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **434 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+
+The July 30, 2026 Phase 66 pass cleared the final active six-digit source blocker. A rendered primary scan of
+US 4,025,167 Embodiment 2 confirms Olympus 85-250mm L4/L7 at `1.56873 / 63.2` and L10 at `1.49831 / 65.0`.
+OHARA's official 2026-07-01 all-products AGF retains exact discontinued BAL22 (`569632`) and BSL3 (`498650`)
+formula-3 rows. Both polynomials were added and applied as catalog equivalents with production supplier unspecified.
+The lens is now 15/15 strict and trusted; global coverage rose to 4670/4682 surfaces, fully covered lens counts rose
+to 227/232, and the prioritized six-digit source-review queue is empty.
 
 The July 30, 2026 Phase 65 pass rendered US 5,734,508 Working Example 1 / Table 1 and confirmed Nikon AF 24-120mm
 L3R3 at `1.83400 / 37.4`. Legacy HOYA NBFD10 (`1.83400 / 37.34`) is the closest coefficient-backed row; SUMITA
@@ -168,6 +175,12 @@ coordinate residuals used to break ambiguity. Catalog validation now checks norm
 round trips for both nd and νd, and consistency between each six-digit code and its listed coordinates. Strict
 Sellmeier coverage increased from 4572 to 4581 surfaces, trusted coverage from 4588 to 4595 surfaces, fully strict
 lenses from 202 to 205, and fully trusted lenses from 208 to 210.
+
+The July 30, 2026 Phase 44 catalog addition recovered two exact discontinued OHARA rows from the vendor's official
+2026-07-01 all-products Zemax catalog. BAL22 (`569632`) supplies the two high-Abbe negative variator elements in
+Olympus's 85-250mm patent design, while BSL3 (`498650`) supplies its first relay positive. Both formula-3
+polynomials round-trip through `assertCatalogConsistent`; the annotations use them as optical equivalents without
+claiming Olympus's production supplier.
 
 The July 29, 2026 Phase 43 pass added 33 exact records from the official HOYA 2026-07-07 and OHARA 2026-07-01
 all-products Zemax catalogs. The HOYA additions are M-TAF101, TAC8, LAC14, M-BACD12, M-TAF105, M-TAF1, FD60,

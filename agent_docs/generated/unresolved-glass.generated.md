@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **488** lenses scanned
 - **5360** non-air surfaces examined
 - **5365** element glass declarations examined
-- **410** non-explicit-unmatched annotations did not resolve
-- **171** distinct unresolved glass-like tokens found
+- **407** non-explicit-unmatched annotations did not resolve
+- **169** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -26,7 +26,6 @@ or per-lens patent backfills.
 | 863248 | 3 | 1 | |
 | 514428 | 2 | 1 | |
 | 531559 | 2 | 2 | |
-| 569632 | 2 | 1 | |
 | 585594 | 2 | 1 | |
 | 614563 | 2 | 2 | |
 | 620586 | 2 | 1 | |
@@ -41,7 +40,6 @@ or per-lens patent backfills.
 | 856401 | 2 | 1 | |
 | S-LAM73 | 2 | 1 | |
 | 487698 | 1 | 1 | |
-| 498650 | 1 | 1 | |
 | 498651 | 1 | 1 | |
 | 514530 | 1 | 1 | |
 | 518523 | 1 | 1 | |
@@ -242,11 +240,6 @@ or per-lens patent backfills.
 - [CANON RF 24-240mm f/4-6.3 IS USM](../../src/lens-data/canon/CanonRF24240mmf463.data.ts) 25A: `531559 - moldable barium light crown (patent nd=1.53110, vd=55.9)`
 - [NIKON AF-P DX NIKKOR 10-20mm f/4.5-5.6 G VR](../../src/lens-data/nikon/NikonAFPDX1020mmf4556G.data.ts) 25: `531559 - patent-specified crown-like glass (theta_gF=0.5684; unresolved)`
 
-### 569632 — 2 occurrences
-
-- [OLYMPUS ZUIKO AUTO-ZOOM 85-250mm f/5](../../src/lens-data/olympus/OlympusZuikoAutoZoom85250mmf5.data.ts) 6: `569632 — dense crown (patent glass code)`
-- [OLYMPUS ZUIKO AUTO-ZOOM 85-250mm f/5](../../src/lens-data/olympus/OlympusZuikoAutoZoom85250mmf5.data.ts) 11: `569632 — dense crown (patent glass code)`
-
 ### 585594 — 2 occurrences
 
 - [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 20: `585594 — barium crown (patent nd=1.58547, nu_d=59.4)`
@@ -315,10 +308,6 @@ or per-lens patent backfills.
 ### 487698 — 1 occurrence
 
 - [OLYMPUS E.ZUIKO AUTO-T 135mm f/3.5](../../src/lens-data/olympus/OlympusZuiko135mmf35.data.ts) 3: `487698 — FK/FSL low-dispersion crown class (patent nd=1.48749, νd=69.8; no exact modern coefficient-backed match)`
-
-### 498650 — 1 occurrence
-
-- [OLYMPUS ZUIKO AUTO-ZOOM 85-250mm f/5](../../src/lens-data/olympus/OlympusZuikoAutoZoom85250mmf5.data.ts) 16: `498650 — borosilicate crown (patent glass code)`
 
 ### 498651 — 1 occurrence
 

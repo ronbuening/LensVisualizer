@@ -95,7 +95,7 @@ const LENS_DATA = {
       nd: 1.56873,
       vd: 63.2,
       fl: -127.7,
-      glass: "569632 — dense crown (patent glass code)",
+      glass: "BAL22 (OHARA catalog equivalent; production supplier unspecified; patent 569632)",
       role: "First negative variator element.",
     },
     {
@@ -130,7 +130,7 @@ const LENS_DATA = {
       nd: 1.56873,
       vd: 63.2,
       fl: -102.7,
-      glass: "569632 — dense crown (patent glass code)",
+      glass: "BAL22 (OHARA catalog equivalent; production supplier unspecified; patent 569632)",
       role: "Rear negative meniscus of the variator group.",
     },
     {
@@ -165,7 +165,7 @@ const LENS_DATA = {
       nd: 1.49831,
       vd: 65.0,
       fl: 75.1,
-      glass: "498650 — borosilicate crown (patent glass code)",
+      glass: "BSL3 (OHARA catalog equivalent; production supplier unspecified; patent 498650)",
       role: "First positive element of the fixed relay group.",
     },
     {

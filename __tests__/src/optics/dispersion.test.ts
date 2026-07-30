@@ -381,6 +381,34 @@ describe("glass catalog", () => {
     }
   });
 
+  it.each([
+    {
+      glass: "BAL22",
+      code: "569632",
+      nd: 1.568729,
+      vd: 63.162358,
+      nC: 1.5659707,
+      nF: 1.57497493,
+    },
+    {
+      glass: "BSL3",
+      code: "498650",
+      nd: 1.498308,
+      vd: 65.026785,
+      nC: 1.49594499,
+      nF: 1.50360811,
+    },
+  ])("reproduces OHARA's discontinued $glass row", ({ glass, code, nd, vd, nC, nF }) => {
+    const entry = resolveGlass(`${glass} (OHARA catalog equivalent)`);
+    expect(entry?.name).toBe(glass);
+    expect(entry?.code6).toBe(code);
+    expect(resolveGlass(code)?.name).toBe(glass);
+    expect(evaluateSellmeier(entry!, LINE_NM.C)).toBeCloseTo(nC, 6);
+    expect(evaluateSellmeier(entry!, LINE_NM.d)).toBeCloseTo(nd, 6);
+    expect(evaluateSellmeier(entry!, LINE_NM.F)).toBeCloseTo(nF, 6);
+    expect(evaluateCatalogAbbeNumber(entry!)).toBeCloseTo(vd, 5);
+  });
+
   it("evaluates the SUMITA K-LaK9 and K-LaK11 catalog polynomials", () => {
     const expected: Array<[glass: string, code: string, nd: number]> = [
       ["K-LaK9", "691548", 1.691],

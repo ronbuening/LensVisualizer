@@ -52,9 +52,9 @@ The patent's third and fourth conditional expressions act on $r_3$ and $r_5$, th
 
 ### L4 - Biconcave Negative
 
-nd = 1.56873, νd = 63.2. Glass: 569632 dense crown patent-code fallback. f = -127.7 mm.
+nd = 1.56873, νd = 63.2. Glass: BAL22 (OHARA catalog equivalent; production supplier unspecified; patent 569632). f = -127.7 mm.
 
-L4 opens the variator group. It is a biconcave negative element, with a very weak front radius and a stronger rear radius. The glass is not safely assignable to a single current manufacturer catalog entry from nd and νd alone. It is best treated as a 569632 dense crown or phosphate-crown-family glass-code fallback rather than as a named catalog glass.
+L4 opens the variator group. It is a biconcave negative element, with a very weak front radius and a stronger rear radius. OHARA's discontinued BAL22 row reproduces the patent coordinate exactly and supplies the coefficient model; the patent itself does not establish that Olympus procured OHARA glass.
 
 Its high Abbe number is notable for a negative variator element. The design uses negative power here without introducing the strong chromatic effect that would follow from a low-Abbe dense flint in the same position.
 
@@ -70,7 +70,7 @@ The flat front surface of L5 simplifies the element shape, while the strong ceme
 
 ### L7 - Negative Meniscus
 
-nd = 1.56873, νd = 63.2. Glass: 569632 dense crown patent-code fallback. f = -102.7 mm.
+nd = 1.56873, νd = 63.2. Glass: BAL22 (OHARA catalog equivalent; production supplier unspecified; patent 569632). f = -102.7 mm.
 
 L7 closes the negative variator group. Its front surface is strongly concave to the object, and its rear surface is much weaker. The element continues the high-Abbe negative-power strategy established by L4 and helps prepare the ray bundle for the compensator group.
 
@@ -86,9 +86,9 @@ The computed cemented focal length is +115.546 mm, matching the patent's $f_3 = 
 
 ### L10 - Biconvex Positive
 
-nd = 1.49831, νd = 65.0. Glass: 498650 borosilicate crown patent-code fallback. f = +75.1 mm.
+nd = 1.49831, νd = 65.0. Glass: BSL3 (OHARA catalog equivalent; production supplier unspecified; patent 498650). f = +75.1 mm.
 
-L10 is the first element of the fixed relay group. The nd/νd pair is a low-index crown-family glass, but no current public catalog match should be asserted as exact. It begins the relay's reconverging action after the moving afocal portion of the zoom.
+L10 is the first element of the fixed relay group. OHARA's discontinued BSL3 row is the exact 498650 coordinate and supplies the coefficient-backed dispersion curve, while the production supplier remains unspecified. It begins the relay's reconverging action after the moving afocal portion of the zoom.
 
 ### L11-L12 - Cemented Negative Relay Component
 
@@ -127,12 +127,12 @@ The patent gives nd and νd values but does not name glass vendors. Catalog name
 | L1 | 1.48749 | 70.2 | 487/702 | S-FSL5 / FK5 class | Low-index front crown |
 | L2 | 1.62041 | 60.3 | 620/603 | S-BSM16 / N-SK16 class | Positive crown in Group I achromat |
 | L3 | 1.78472 | 25.7 | 785/257 | S-TIH11 / SF11 class | Negative flint in Group I achromat |
-| L4, L7 | 1.56873 | 63.2 | 569632 | Dense crown code fallback | High-Abbe negative variator elements |
+| L4, L7 | 1.56873 | 63.2 | 569632 | OHARA BAL22 catalog equivalent; supplier unspecified | High-Abbe negative variator elements |
 | L5 | 1.76182 | 26.6 | 762/266 | FD140 / PBH14 class | Positive dense flint in reversed variator doublet |
 | L6 | 1.61800 | 63.4 | 618/634 | PSK53A / K-PSKn2 class | Negative high-Abbe partner in variator doublet |
 | L8 | 1.62012 | 49.7 | 620/497 | K-SSK9 / dense barium crown class | Positive compensator glass |
 | L9 | 1.72151 | 29.2 | 722/292 | S-TIH18 / FD18 class | Negative compensator flint |
-| L10 | 1.49831 | 65.0 | 498650 | Borosilicate crown code fallback | First relay positive element |
+| L10 | 1.49831 | 65.0 | 498650 | OHARA BSL3 catalog equivalent; supplier unspecified | First relay positive element |
 | L11 | 1.54739 | 53.6 | 547/536 | N-BALF5 / BAL5 class | Positive barium light flint in relay doublet |
 | L12 | 1.80610 | 40.9 | 806/409 | S-LAH53 class | High-index negative lanthanum flint |
 | L13 | 1.59551 | 39.2 | 596/392 | HOYA E-F8 catalog equivalent; supplier unspecified | Positive flint relay element |
@@ -231,3 +231,4 @@ The design is not a retrofocus lens, because its back focal distance is far shor
 5. HOYA optical glass cross-reference material for FD/BACD class comparisons.
 6. Sumita optical glass catalog for K-SSK9 and K-PSKn family comparisons.
 7. HOYA obsolete-inclusive optical-glass catalog for the coefficient-backed E-F8 row; Hikari references for J-LAF02 class comparisons.
+8. OHARA 2026-07-01 all-products Zemax catalog for the discontinued BAL22 and BSL3 coefficient rows.

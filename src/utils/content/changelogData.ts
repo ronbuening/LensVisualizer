@@ -23,6 +23,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-07-30",
     type: "improvement",
+    summary: "Added two recovered legacy glass curves to complete the remaining prioritized source queue",
+  },
+  {
+    date: "2026-07-30",
+    type: "improvement",
     summary: "Added coefficient-backed dense-flint dispersion to the Nikon 24-120mm AF zoom",
   },
   {

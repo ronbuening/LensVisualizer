@@ -23,19 +23,30 @@ This file tracks the second bucket plus any cases from the first bucket that nee
 
 ## Current Status (July 2026, current catalog)
 
-- Catalog: **432 verified entries** in `src/optics/glassCatalogData.ts`.
+- Catalog: **434 verified entries** in `src/optics/glassCatalogData.ts`.
 - `catalog-mismatches.generated.md` and `glass-relabel-by-lens.generated.md` report **0** remaining
   dispersion-coordinate mismatches across **0** lens files. The mismatch report separately records **16 / 75**
   native e-line surfaces resolved through explicit names or aliases.
-- `sellmeier-coverage.generated.md` reports **488** lenses, **5360** non-air surfaces, **4667** strict catalog
-  Sellmeier surfaces (**87.1%**), and **4679** trusted chromatic surfaces (**87.3%**).
-- **226** lenses are fully covered by strict Sellmeier data and **231** are fully covered by trusted chromatic data.
-- `unresolvedGlassScan` reports **410** non-explicit-unmatched annotations and **171** distinct unresolved glass-like
+- `sellmeier-coverage.generated.md` reports **488** lenses, **5360** non-air surfaces, **4670** strict catalog
+  Sellmeier surfaces (**87.1%**), and **4682** trusted chromatic surfaces (**87.4%**).
+- **227** lenses are fully covered by strict Sellmeier data and **232** are fully covered by trusted chromatic data.
+- `unresolvedGlassScan` reports **407** non-explicit-unmatched annotations and **169** distinct unresolved glass-like
   tokens. The total includes honest proprietary and family-level annotations as well as actionable named tokens.
-- The missing-Sellmeier six-digit report contains **263** code-only elements, now separated into **3** active
+- The missing-Sellmeier six-digit report contains **260** code-only elements, with **0** active
   unreviewed rows, **52** explicit unmatched/unidentified dispositions missing both sidecar and companion-audit hits,
   and **208** rows with a recorded review.
 - The Phase 2/3 resolved tables below are historical audit trail. Use the generated reports above for the current queue before starting new relabel work; for patent-by-patent execution, start from [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md).
+
+## Resolved Phase 66 — July 2026 Olympus legacy-catalog recovery
+
+The primary US 4,025,167 scan was retrieved, rendered, and checked visually, clearing the last source blocker.
+Embodiment 2 confirms Olympus 85-250mm L4/L7 at `1.56873 / 63.2` and L10 at `1.49831 / 65.0`. OHARA's official
+obsolete-inclusive all-products AGF contains exact discontinued rows: BAL22 publishes code `569632` and round-trips
+to `1.5687286 / 63.162358`; BSL3 publishes code `498650` and round-trips to `1.4983080 / 65.026785`.
+
+Both vendor polynomials were added to the catalog, and all three elements now use catalog-equivalent labels with the
+production supplier unspecified. The Olympus prescription is now 15/15 strict and trusted, raising global coverage
+to 4670/4682 surfaces and fully covered lens counts to 227/232. The prioritized six-digit source queue is empty.
 
 ## Resolved Phase 65 — July 2026 Nikon 834374 family recovery
 
