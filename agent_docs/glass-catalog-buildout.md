@@ -9,6 +9,13 @@ approximation. Current optics-engine boundaries are summarized in
 
 The catalog currently has **432 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
 
+The July 30, 2026 Phase 64 pass rendered JP 2023-039817 A Example 2 / Table 6 and confirmed Sony FE 70-200mm GM II
+L41 under explicit d-line headings at `1.79191 / 25.7`. No first-party coefficient row is compatible at the d line.
+Hikari J-SF11's superficially matching `1.791929` value is its e-line index; its d-line index is `1.784720`, so
+substituting that curve would mix reference systems. L41 is now explicitly unmatched on the patent Abbe fallback.
+Coverage remains 4666/4678 strict/trusted surfaces, and the active source-review queue is four elements across three
+code families.
+
 The July 30, 2026 Phase 63 pass rendered WO 2021/200206 A1 Example 2 / Table 6 and confirmed Sony FE 12-24mm L22
 at `1.67764 / 32.2`. No first-party coefficient row lies inside the compatibility window; the SF5/N-SF5 family is
 about `0.0049` too low in d-line index. The unsupported Schott-family attribution was removed, leaving an explicit

@@ -23,6 +23,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-07-30",
     type: "fix",
+    summary: "Source-audited a Sony dense flint without mixing d-line and e-line glass coordinates",
+  },
+  {
+    date: "2026-07-30",
+    type: "fix",
     summary: "Removed an unsupported SF-family attribution from the Sony 12-24mm zoom",
   },
   {

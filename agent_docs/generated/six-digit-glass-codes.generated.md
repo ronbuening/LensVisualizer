@@ -268,7 +268,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 788475 | 1 | 1 | patents/US4452513.pdf | No reviewed-sidecar hit |
 | 789284 | 1 | 1 | patents/JP2025052870A.pdf | No reviewed-sidecar hit |
 | 789457 | 1 | 1 | patents/US4182550.pdf | No reviewed-sidecar hit |
-| 792257 | 1 | 1 | patents/JP2023039817A.pdf | No reviewed-sidecar hit |
+| 792257 | 1 | 1 | patents/JP2023039817A.pdf | All representative rows reviewed |
 | 792450 | 1 | 1 | patents/WO2020136749A1.pdf | All representative rows reviewed |
 | 794255 | 1 | 1 | patents/US7542219.pdf | No reviewed-sidecar hit |
 | 795286 | 1 | 1 | patents/US5717527.pdf | No reviewed-sidecar hit |
@@ -1485,7 +1485,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L11 (Element 1) | 1 | `Dense flint (777/297, uncertain)` | 1.77660 / 29.70 | No catalog entry | abbe | patents/JP2023039817A.pdf | Reviewed sidecar hit |
 | L21 (Element 4) | 7 | `Unmatched (776496 patent lanthanum-glass coordinate; vendor unresolved)` | 1.77621 / 49.60 | No catalog entry | abbe | patents/JP2023039817A.pdf | No reviewed-sidecar hit |
 | L32 (Element 6) | 10 | `863248 — ultra-dense flint (patent nd=1.86290, nu_d=24.8)` | 1.86290 / 24.80 | No catalog entry | abbe | patents/JP2023039817A.pdf | Reviewed sidecar hit |
-| L41 (Element 7) | 12 | `Dense flint (792/257, uncertain)` | 1.79191 / 25.70 | No catalog entry | abbe | patents/JP2023039817A.pdf | No reviewed-sidecar hit |
+| L41 (Element 7) | 12 | `Unmatched 792257 dense flint (patent-listed; supplier unidentified)` | 1.79191 / 25.70 | No catalog entry | abbe | patents/JP2023039817A.pdf | Reviewed sidecar hit |
 | L52 (Element 9) | 17 | `863248 — ultra-dense flint (patent nd=1.86290, nu_d=24.8)` | 1.86290 / 24.80 | No catalog entry | abbe | patents/JP2023039817A.pdf | Reviewed sidecar hit |
 | L53 (Element 10) | 19 | `863248 — ultra-dense flint (patent nd=1.86290, nu_d=24.8)` | 1.86290 / 24.80 | No catalog entry | abbe | patents/JP2023039817A.pdf | Reviewed sidecar hit |
 | L54 (Element 11) | 20 | `585594 — barium crown (patent nd=1.58547, nu_d=59.4)` | 1.58547 / 59.40 | No catalog entry | abbe | patents/JP2023039817A.pdf | Reviewed sidecar hit |

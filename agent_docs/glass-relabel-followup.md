@@ -30,12 +30,24 @@ This file tracks the second bucket plus any cases from the first bucket that nee
 - `sellmeier-coverage.generated.md` reports **488** lenses, **5360** non-air surfaces, **4666** strict catalog
   Sellmeier surfaces (**87.1%**), and **4678** trusted chromatic surfaces (**87.3%**).
 - **226** lenses are fully covered by strict Sellmeier data and **231** are fully covered by trusted chromatic data.
-- `unresolvedGlassScan` reports **412** non-explicit-unmatched annotations and **172** distinct unresolved glass-like
+- `unresolvedGlassScan` reports **411** non-explicit-unmatched annotations and **172** distinct unresolved glass-like
   tokens. The total includes honest proprietary and family-level annotations as well as actionable named tokens.
-- The missing-Sellmeier six-digit report contains **264** code-only elements, now separated into **5** active
+- The missing-Sellmeier six-digit report contains **264** code-only elements, now separated into **4** active
   unreviewed rows, **52** explicit unmatched/unidentified dispositions missing both sidecar and companion-audit hits,
-  and **207** rows with a recorded review.
+  and **208** rows with a recorded review.
 - The Phase 2/3 resolved tables below are historical audit trail. Use the generated reports above for the current queue before starting new relabel work; for patent-by-patent execution, start from [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md).
+
+## Resolved Phase 64 — July 2026 Sony 792257 reference-line review
+
+JP 2023-039817 A Example 2 / Table 6 was rendered and checked visually, confirming Sony FE 70-200mm GM II L41
+under the explicit `ndi` / `νdi` headings at `1.79191 / 25.7`. The patent publishes no supplier, secondary line
+index, or partial dispersion, and current first-party coefficient catalogs contain no d-line row inside the runtime
+compatibility window.
+
+Hikari J-SF11 presents a tempting but invalid numerical coincidence: `1.791929` is its published e-line index, while
+its d-line index is `1.784720`. The L41 label is now explicitly unmatched rather than mixing reference systems.
+Coverage remains 4666 strict / 4678 trusted surfaces. The active queue fell to four elements across three code
+families.
 
 ## Resolved Phase 63 — July 2026 Sony 678322 source review
 

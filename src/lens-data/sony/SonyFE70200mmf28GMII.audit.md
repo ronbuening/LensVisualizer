@@ -57,3 +57,35 @@ Patent: JP 2023-039817 A, Example 2
   HOYA E-FEL6 is 1.53172 / 48.84 (532488), so it cannot represent this patent row; no exact
   coefficient-backed public catalog match was found.
 - Synchronized the element narrative, glass table, and source note. No prescription geometry changed.
+
+## 2026-07-30 — L41 / 792257 source review
+
+### Patent evidence
+
+- Rendered and visually checked local `patents/JP2023039817A.pdf`, PDF page 21, Example 2 / Table 6.
+- Surface 12 / L41 is explicitly listed under the table's `ndi` and `νdi` columns as `1.79191 / 25.7`.
+- The patent supplies no glass name, supplier, secondary line index, or partial-dispersion value for this row.
+
+### Catalog disposition
+
+- Current first-party OHARA, HOYA, SUMITA, and Hikari coefficient data contain no d-line glass inside the runtime
+  compatibility window.
+- Hikari J-SF11 has the superficially similar e-line coordinate `ne = 1.791929`, `νe = 25.43`, but its published
+  d-line coordinate is `nd = 1.784720`, `νd = 25.64`. Table 6 is explicitly d-line data, so that row is not a safe
+  match.
+- Replaced the uncertain family wording with
+  `Unmatched 792257 dense flint (patent-listed; supplier unidentified)`. Prescription geometry and optical
+  coordinates are unchanged; the element remains on its patent-coordinate Abbe fallback.
+
+### Analysis sync
+
+- Updated the L41 narrative and glass table to document the source-confirmed d-line coordinate and the rejected
+  reference-line coincidence.
+
+### Verification
+
+- `npm run generate:glass-reports` — passed (8 files / 10 tests); active source queue reduced to four elements
+  across three code families.
+- `npm test -- dispersion.test.ts lensDataTyping.test.ts validateLensData.test.ts buildLens.test.ts` — passed
+  (4 files / 237 tests).
+- `npm run typecheck`, `npm run format:check`, and `git diff --check` — passed.

@@ -92,9 +92,9 @@ L31 and L32 form a cemented doublet with a combined group focal length of $f_{GR
 
 #### L41 — Positive Meniscus, convex to object
 
-$n_d$ = 1.79191, $\nu_d$ = 25.7. Glass: dense flint (six-digit 792/257, no confident catalog match). $f$ = +192.5 mm.
+$n_d$ = 1.79191, $\nu_d$ = 25.7. Glass: unmatched 792257 dense flint (patent-listed; supplier unidentified). $f$ = +192.5 mm.
 
-L41 is a single positive meniscus element that forms the positive sub-group of the variator. Its role is to partially converge the beam exiting the two preceding negative groups, reducing the diameter of the axial bundle before it enters the fixed GR5 relay. At the wide-angle position, where the beam diameter in the variator is largest, L41 sits farthest from GR5 (d13 = 18.00 mm); at the telephoto end, it closes up to d13 = 1.49 mm. The patent notes (¶0035) that positioning the positive variator group on the image side of the variator block — where the axial ray height is highest at the wide end — is advantageous for reducing the diameter of subsequent groups. The nearest catalog matches — S-NPH4 (OHARA) and FD110 (HOYA), both at $n_d$ = 1.78472, $\nu_d$ = 26.1 — are offset by $\Delta n_d$ = 0.007, suggesting a proprietary formulation. The high refractive index allows strong curvature with minimal thickness and weight, consistent with the patent's emphasis on lightweight variator construction (¶0024).
+L41 is a single positive meniscus element that forms the positive sub-group of the variator. Its role is to partially converge the beam exiting the two preceding negative groups, reducing the diameter of the axial bundle before it enters the fixed GR5 relay. At the wide-angle position, where the beam diameter in the variator is largest, L41 sits farthest from GR5 (d13 = 18.00 mm); at the telephoto end, it closes up to d13 = 1.49 mm. The patent notes (¶0035) that positioning the positive variator group on the image side of the variator block — where the axial ray height is highest at the wide end — is advantageous for reducing the diameter of subsequent groups. Current first-party coefficient catalogs contain no d-line row inside the resolver window. Hikari J-SF11 reaches $n_e$ = 1.791929 at the e line, but its d-line coordinate is only $n_d$ = 1.784720, $\nu_d$ = 25.64; borrowing that curve would mix reference lines. The high refractive index allows strong curvature with minimal thickness and weight, consistent with the patent's emphasis on lightweight variator construction (¶0024).
 
 ### GR5 — Fixed Relay (Positive, Contains Aperture Stop)
 
@@ -195,7 +195,7 @@ The design employs glasses from at least two vendors (OHARA and HOYA), which is 
 | L21     | 1.77621 | 49.6    | Unmatched 776496; S-LAH66 comparison | Lanthanum glass | Unresolved |
 | L31     | 1.49845 | 81.6    | S-FPL51 class (OHARA)     | ED crown            | Close      |
 | L32     | 1.86290 | 24.8    | 863248 patent-code         | Ultra-dense flint   | Patent-code |
-| L41     | 1.79191 | 25.7    | Dense flint (792/257)      | Dense flint         | Uncertain  |
+| L41     | 1.79191 | 25.7    | Unmatched 792257            | Dense flint         | Unresolved |
 | L51     | 1.49856 | 81.6    | S-FPL51 class (OHARA)     | ED crown (moldable) | Close      |
 | L52     | 1.86290 | 24.8    | 863248 patent-code         | Ultra-dense flint   | Patent-code |
 | L53     | 1.86290 | 24.8    | 863248 patent-code         | Ultra-dense flint   | Patent-code |
@@ -209,7 +209,7 @@ The design employs glasses from at least two vendors (OHARA and HOYA), which is 
 
 The chromatic correction strategy is built on three tiers of low-dispersion glass. The two Super ED elements (L12, L13, $\nu_d$ = 95.1) handle primary axial color correction in GR1, where the marginal ray height is largest. Three ED elements (L31, L51, L81, $\nu_d$ = 81.6) provide secondary color correction distributed across the variator, relay, and rear groups. The achromatizing partners are consistently ultra-high-dispersion dense flints: the 863248 patent-code glass ($\nu_d$ = 24.8) appears in three elements (L32, L52, L53), providing chromatic lever arms of 56.8 Abbe units against the ED crowns. The use of HOYA FD225 ($n_d$ = 2.009) in L82 pushes the index to the extreme high end of the glass map, allowing very compact negative elements at the rear of the system.
 
-L11 (1.77660/29.7), L21 (1.77621/49.6), and L41 (1.79191/25.7) resist confident identification against the public catalog. For L21, S-LAH66 matches the Abbe number but misses the index beyond the resolver tolerance. The family comparison is retained in prose while the data label stays explicitly unmatched. The Super ED and ED rows likewise remain class-level comparisons where the patent does not establish a unique vendor.
+L11 (1.77660/29.7), L21 (1.77621/49.6), and L41 (1.79191/25.7) resist confident identification against the public catalog. For L21, S-LAH66 matches the Abbe number but misses the index beyond the resolver tolerance. For L41, the visually confirmed patent table explicitly uses d-line coordinates, rejecting the tempting J-SF11 e-line coincidence. These data labels stay explicitly unmatched. The Super ED and ED rows likewise remain class-level comparisons where the patent does not establish a unique vendor.
 
 
 ## Focus Mechanism

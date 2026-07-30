@@ -141,7 +141,7 @@ const LENS_DATA = {
       nd: 1.79191,
       vd: 25.7,
       fl: 192.5,
-      glass: "Dense flint (792/257, uncertain)",
+      glass: "Unmatched 792257 dense flint (patent-listed; supplier unidentified)",
       apd: false,
       role: "Third variator (GR4) — converges beam entering GR5 relay",
     },

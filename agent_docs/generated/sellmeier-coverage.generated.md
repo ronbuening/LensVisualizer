@@ -2214,7 +2214,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 1 | Element 1 | abbe | `Dense flint (777/297, uncertain)` | No catalog match |
 | 7 | Element 4 | abbe | `Unmatched (776496 patent lanthanum-glass coordinate; vendor unresolved)` | Explicit unmatched/proprietary annotation |
 | 10 | Element 6 | abbe | `863248 — ultra-dense flint (patent nd=1.86290, nu_d=24.8)` | No catalog match |
-| 12 | Element 7 | abbe | `Dense flint (792/257, uncertain)` | No catalog match |
+| 12 | Element 7 | abbe | `Unmatched 792257 dense flint (patent-listed; supplier unidentified)` | Explicit unmatched/proprietary annotation |
 | 17 | Element 9 | abbe | `863248 — ultra-dense flint (patent nd=1.86290, nu_d=24.8)` | No catalog match |
 | 19 | Element 10 | abbe | `863248 — ultra-dense flint (patent nd=1.86290, nu_d=24.8)` | No catalog match |
 | 20 | Element 11 | abbe | `585594 — barium crown (patent nd=1.58547, nu_d=59.4)` | No catalog match |
