@@ -161,7 +161,7 @@ const LENS_DATA = {
       nd: 1.8042,
       vd: 46.5,
       fl: 83.8,
-      glass: "TAF105 (HOYA)",
+      glass: "TAF3D (HOYA catalog equivalent for patent coordinate; production supplier unspecified)",
       apd: false,
       dPgF: -0.0075,
       cemented: "L9L10",

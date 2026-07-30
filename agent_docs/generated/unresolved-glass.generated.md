@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **488** lenses scanned
 - **5360** non-air surfaces examined
 - **5365** element glass declarations examined
-- **426** non-explicit-unmatched annotations did not resolve
-- **178** distinct unresolved glass-like tokens found
+- **423** non-explicit-unmatched annotations did not resolve
+- **177** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -22,7 +22,6 @@ or per-lens patent backfills.
 | 863252 | 4 | 2 | |
 | 516565 | 3 | 1 | |
 | 585587 | 3 | 1 | |
-| 670575 | 3 | 2 | |
 | 744495 | 3 | 3 | |
 | 863248 | 3 | 1 | |
 | 514428 | 2 | 1 | |
@@ -81,6 +80,7 @@ or per-lens patent backfills.
 | 667330 | 1 | 1 | |
 | 670572 | 1 | 1 | |
 | 670574 | 1 | 1 | |
+| 670575 | 1 | 1 | |
 | 678322 | 1 | 1 | |
 | 680312 | 1 | 1 | |
 | 682366 | 1 | 1 | |
@@ -195,7 +195,6 @@ or per-lens patent backfills.
 | SK4 | 1 | 1 | |
 | SK6 | 1 | 1 | |
 | SK7 | 1 | 1 | |
-| TAF105 | 1 | 1 | |
 
 ## Occurrences
 
@@ -226,12 +225,6 @@ or per-lens patent backfills.
 - [FUJIFILM FUJINON GF 30mm f/5.6 T/S](../../src/lens-data/fujifilm/FujifilmGF30mmf56TS.data.ts) 1A: `585587 — moldable aspherical glass (patent-listed; no exact public catalog match)`
 - [FUJIFILM FUJINON GF 30mm f/5.6 T/S](../../src/lens-data/fujifilm/FujifilmGF30mmf56TS.data.ts) 20A: `585587 — moldable aspherical glass (patent-listed; no exact public catalog match)`
 - [FUJIFILM FUJINON GF 30mm f/5.6 T/S](../../src/lens-data/fujifilm/FujifilmGF30mmf56TS.data.ts) 24A: `585587 — moldable aspherical glass (patent-listed; no exact public catalog match)`
-
-### 670575 — 3 occurrences
-
-- [NIKON AF ZOOM-NIKKOR 35-70mm f/2.8D](../../src/lens-data/nikon/NikonAFZoomNikkor3570mmf28D.data.ts) 3: `Lanthanum crown (670575; J-LAK02 class)`
-- [NIKON AF ZOOM-NIKKOR 35-70mm f/2.8D](../../src/lens-data/nikon/NikonAFZoomNikkor3570mmf28D.data.ts) 5: `Lanthanum crown (670575; J-LAK02 class)`
-- [NIKON Gyogyotto 20mm f/8](../../src/lens-data/nikon/NikonGyogyotto20mmf8.data.ts) 4: `670575 — Nikon patent glass (nd=1.67025, νd=57.53; no current public OHARA/SCHOTT catalog match within tolerance)`
 
 ### 744495 — 3 occurrences
 
@@ -484,6 +477,10 @@ or per-lens patent backfills.
 ### 670574 — 1 occurrence
 
 - [NIKON R-UW AF FISHEYE-NIKKOR 13mm f/2.8](../../src/lens-data/nikon/NikonRUWAFNikkor13mmf28.data.ts) 3: `J-LAK02 (HIKARI) / 670574 class, close`
+
+### 670575 — 1 occurrence
+
+- [NIKON Gyogyotto 20mm f/8](../../src/lens-data/nikon/NikonGyogyotto20mmf8.data.ts) 4: `670575 — Nikon patent glass (nd=1.67025, νd=57.53; no current public OHARA/SCHOTT catalog match within tolerance)`
 
 ### 678322 — 1 occurrence
 
@@ -940,8 +937,4 @@ or per-lens patent backfills.
 ### SK7 — 1 occurrence
 
 - [CANON SERENAR 35mm f/3.2](../../src/lens-data/canon/CanonSerenar35mmf32.data.ts) 3: `SK7 (Schott)`
-
-### TAF105 — 1 occurrence
-
-- [SIGMA 85mm f/1.4 DG HSM | Art](../../src/lens-data/sigma/Sigma85mmf14Art.data.ts) 17: `TAF105 (HOYA)`
 

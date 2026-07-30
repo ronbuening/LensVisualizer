@@ -64,13 +64,13 @@ E1 is the largest and most strongly exposed front element. It supplies the first
 
 ### E2 — Negative Meniscus, rear asphere (surfaces 3–4)
 
-nd = 1.58443, νd = 59.4. Glass: Unmatched 584/594 crown; the nearest current OHARA S-BAL42 row differs by Δnd = −0.00130. f = −69.590 mm.
+nd = 1.58443, νd = 59.4. Glass: OHARA S-BAL42 catalog equivalent; Δnd = -0.00130, production supplier unspecified. f = −69.590 mm.
 
 E2 is patent lens g2. Its image-side surface 4 is the design's only nonzero-conic asphere. The air space bounded by E1 surface 2 and E2 surface 3 is treated by the patent as a negative air lens and appears explicitly in conditions (4)–(6), rather than being merely mechanical clearance.
 
 ### E3 — Negative Meniscus, rear asphere (surfaces 5–6)
 
-nd = 1.85000, νd = 40.3. Glass: Unmatched 850/403 high-index flint; the nearest current HOYA M-TAFD305 row differs by Δnd = +0.00135 and Δνd = −0.20. f = −110.005 mm.
+nd = 1.85000, νd = 40.3. Glass: HOYA M-TAFD305 catalog equivalent; Δnd = +0.00135, Δνd = −0.20, production supplier unspecified. f = −110.005 mm.
 
 E3 completes the three consecutive negative lenses required by claim 6. Its image-side asphere helps distribute the front-unit bending and distortion correction rather than forcing all of the correction onto E1.
 
@@ -170,8 +170,8 @@ The patent publishes only d-line refractive index and Abbe number. Catalog names
 |  Element | Patent nd / νd | Catalog annotation                 | Match status                                       | Catalog ΔPg,F |
 | -------: | -------------: | ---------------------------------- | -------------------------------------------------- | ------------: |
 |       E1 | 1.77250 / 49.6 | OHARA S-LAH66                      | Exact coordinate; special-order catalog            |       −0.0092 |
-|       E2 | 1.58443 / 59.4 | Unmatched 584/594 crown            | Nearest S-BAL42 differs by Δnd = −0.00130          |             — |
-|       E3 | 1.85000 / 40.3 | Unmatched 850/403 high-index flint | Nearest HOYA M-TAFD305 differs by +0.00135 / −0.20 |             — |
+|       E2 | 1.58443 / 59.4 | OHARA S-BAL42                      | Catalog equivalent; Δnd = −0.00130                 |       −0.0020 |
+|       E3 | 1.85000 / 40.3 | HOYA M-TAFD305                     | Catalog equivalent; Δnd = +0.00135 / Δνd = −0.20  |       −0.0067 |
 |       E4 | 1.59522 / 67.7 | OHARA S-FPM2                       | Exact coordinate                                   |       +0.0123 |
 |       E5 | 1.43875 / 94.9 | OHARA S-FPL53                      | Exact coordinate; probable Super-UD-class position |       +0.0461 |
 |       E6 | 1.72047 / 34.7 | OHARA S-NBH8                       | Exact coordinate                                   |       −0.0019 |
@@ -185,7 +185,7 @@ The patent publishes only d-line refractive index and Abbe number. Catalog names
 |      E14 | 1.49700 / 81.5 | OHARA S-FPL51                      | Exact coordinate; probable UD-class position       |       +0.0280 |
 |      E16 | 1.58313 / 59.4 | OHARA S-BAL42                      | Exact coordinate                                   |       −0.0020 |
 
-The data file includes explicit catalog nC, nF, ng, and ΔPg,F values where those values were independently matched to the stored prescription. E7 instead resolves through the project's authoritative HOYA TAFD55 catalog entry, avoiding duplicate spectral constants. E2 and E3 remain Abbe-only because assigning spectral data from a nearby but nonmatching catalog row would imply unsupported precision.
+The data file includes explicit catalog nC, nF, ng, and ΔPg,F values where those values were independently matched to the stored prescription. E7 instead resolves through the project's authoritative HOYA TAFD55 catalog entry, avoiding duplicate spectral constants. E2 and E3 now resolve through coefficient-backed S-BAL42 and M-TAFD305 catalog equivalents. Their residuals are stated explicitly because the patent discloses only d-line coordinates, not production glass names.
 
 The repeated use of high-index lanthanum and dense-flint coordinates permits strong compact powers in L2 and L3. The two extreme low-dispersion positions are widely separated: E5 is negative in the front unit, while E14 is positive in L3. This is not a conventional cemented ED achromat; the design distributes axial and lateral chromatic correction across the zoom.
 

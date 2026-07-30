@@ -9,6 +9,15 @@ approximation. Current optics-engine boundaries are summarized in
 
 The catalog currently has **428 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
 
+The July 30, 2026 Phase 54 pass recovered five compatible equivalents already present in the catalog. Nikon AF
+35-70mm f/2.8D L2/L3 now use discontinued OHARA S-LAL52: the row is inside the d-line coordinate window and
+reproduces the patent's independent g-line index within 0.00017. Canon EF 11-24mm E2/E3 now use OHARA S-BAL42
+and HOYA M-TAFD305 after the rendered patent confirmed d-line coordinates and matching prescription rows. Sigma
+85mm f/1.4 Art L9 now uses HOYA TAF3D, whose exact `1.80420 / 46.50` coordinate and computed PgF of 0.55724
+reproduce the patent's 0.5571 value; the prior TAF105 label referred to a different glass. All three lenses are now
+fully covered. Coverage is 4659 / 5360 strict (86.9%) and 4671 / 5360 trusted (87.1%), with 223 fully strict and
+228 fully trusted lenses.
+
 The July 30, 2026 Phase 53 pass added nine exact legacy SUMITA rows from the vendor's discontinued-inclusive
 all-glass catalog: BAK2, BK4, F4, KF8, BAK1, F3, BAF12, LAFN10, and K-LaSKn1. The new coefficient rows upgrade
 eleven surfaces across eight audited prescriptions, with Fujifilm XF 23mm f/1.4 R LM WR, Olympus Zuiko Auto-Zoom

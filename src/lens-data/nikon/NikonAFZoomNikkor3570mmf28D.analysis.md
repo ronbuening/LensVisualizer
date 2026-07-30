@@ -40,15 +40,15 @@ L1 is a weak positive meniscus at the object side of the negative front group. I
 
 #### L2 - Negative Meniscus, Convex to Object
 
-nd = 1.67025, νd = 57.53. Glass: lanthanum crown, J-LAK02 class. f = -71.6 mm.
+nd = 1.67025, νd = 57.53. Glass: OHARA S-LAL52 catalog equivalent; production supplier unspecified. f = -71.6 mm.
 
 L2 supplies much of G1's diverging power. Its convex-front, concave-rear meniscus form is typical of a negative-lead SLR zoom: the rear surface carries the stronger curvature and produces the main negative refraction while the front surface keeps incidence angles manageable.
 
-The earlier generic crown identification has been tightened. Current HIKARI J-LAK02 lies close to the patent's 670/575 glass code, so L2 is best described as a J-LAK02-class lanthanum crown rather than an unmatched BAK/SK-type glass.
+The earlier J-LAK02 family comparison has been tightened. Discontinued OHARA S-LAL52 differs from the patent by only Δnd = -0.00025 and Δνd = -0.20, and its computed g-line index of 1.68449 reproduces the independent patent n(G) = 1.68466 anchor within 0.00017. It is therefore used as a coefficient-backed catalog equivalent without identifying the production supplier.
 
 #### L3 - Biconcave Negative
 
-nd = 1.67025, νd = 57.53. Glass: lanthanum crown, J-LAK02 class. f = -60.5 mm.
+nd = 1.67025, νd = 57.53. Glass: OHARA S-LAL52 catalog equivalent; production supplier unspecified. f = -60.5 mm.
 
 L3 uses the same glass as L2 and adds further negative power. Its front surface is very weak, while its rear surface provides the active curvature. Together L2 and L3 establish the negative first-group power without resorting to a very high-dispersion flint for the strongest negative components.
 
@@ -133,7 +133,7 @@ The patent publishes nd, νd, and n(G) values but does not name glass manufactur
 | Element(s)  | Patent nd | Patent νd | Catalog / class annotation        | Status                                                       |
 | ----------- | --------: | --------: | --------------------------------- | ------------------------------------------------------------ |
 | L1, L7, L15 |   1.80458 |     25.50 | Dense flint, S-TIH6/J-SF6 class   | close class match; not exact current S-TIH6                  |
-| L2, L3      |   1.67025 |     57.53 | J-LAK02-class lanthanum crown     | close HIKARI class match                                     |
+| L2, L3      |   1.67025 |     57.53 | S-LAL52 (OHARA catalog equivalent) | compatible nd/νd and g-line anchor; supplier unspecified    |
 | L4, L5, L10 |   1.86074 |     23.01 | J-SFH2 class (HIKARI)             | exact nd, small νd residual                                  |
 | L6, L8      |   1.48749 |     70.41 | N-FK5 (SCHOTT)                    | exact nd/νd match                                            |
 | L9          |   1.51835 |     60.23 | BALK3 (SUMITA catalog equivalent) | exact nd/ng and rounded νd agreement; supplier unspecified |
@@ -214,5 +214,6 @@ The patent is therefore historically useful even though its stabilizer was not c
 3. Nikon AF Zoom-Nikkor 35-70mm f/2.8D user-manual/specification material for production lens specifications: 35-70 mm, f/2.8, 15 elements / 12 groups, 62°-34°20' picture angle, 0.6 m normal minimum focus, 0.28 m macro, 1:4 macro reproduction ratio.
 4. SCHOTT, optical glass datasheets: N-FK5 and N-SK16.
 5. OHARA, optical glass datasheets: S-BAL35 and S-TIH6.
-6. HIKARI Glass, optical glass datasheets/catalog entries: J-SFH2, J-PKH1, J-SK16, and J-LAK02.
-7. SUMITA Optical Glass, discontinued-inclusive Zemax catalog, BALK3 coefficient row (518603); used as the optical equivalent for L9, not as a production-supplier attribution.
+6. HIKARI Glass, optical glass datasheets/catalog entries: J-SFH2, J-PKH1, and J-SK16.
+7. OHARA all-products Zemax catalog, discontinued S-LAL52 coefficient row; used as the optical equivalent for L2/L3, not as a production-supplier attribution.
+8. SUMITA Optical Glass, discontinued-inclusive Zemax catalog, BALK3 coefficient row (518603); used as the optical equivalent for L9, not as a production-supplier attribution.

@@ -98,7 +98,7 @@ L8 is the leading element of the focusing group G2 and the first element in subg
 
 ### L9/L10 — Cemented Doublet (G2A, positive meniscus + negative meniscus)
 
-**L9:** nd = 1.80420, νd = 46.50. Glass: TAF105 (HOYA) — lanthanum flint (νd < 50); also equivalent to S-LAH63 (OHARA). f = +83.8 mm (standalone).
+**L9:** nd = 1.80420, νd = 46.50. Glass: HOYA TAF3D catalog equivalent; production supplier unspecified. f = +83.8 mm (standalone).
 **L10:** nd = 1.69895, νd = 30.05. Glass: E-FD15 (HOYA) — dense flint. f = −60.3 mm (standalone).
 **Cemented doublet focal length:** f = −414.6 mm.
 
@@ -154,7 +154,7 @@ The design uses 10 distinct glass types across 14 elements. The catalog interpre
 | L4, L5, L11 | 1.73800 | 32.26 | 0.5898 | −0.0005 | J-KZFH9 | Hikari | KZFS-class short flint |
 | L6 | 1.92286 | 20.88 | 0.6388 | +0.0281 | E-FDS1-W | HOYA | Extra-dense flint |
 | L8, L12 | 1.88300 | 40.80 | 0.5654 | −0.0095 | TAFD30 | HOYA | Dense lanthanum flint |
-| L9 | 1.80420 | 46.50 | 0.5571 | −0.0075 | TAF105 | HOYA | Lanthanum flint |
+| L9 | 1.80420 | 46.50 | 0.5571 | −0.0075 | TAF3D catalog equivalent | HOYA | Lanthanum flint |
 | L10 | 1.69895 | 30.05 | 0.6028 | +0.0086 | E-FD15 | HOYA | Dense flint |
 | L13 | 1.67270 | 32.17 | 0.5962 | +0.0058 | S-TIM25 | OHARA | Titanium flint |
 | L14 | 1.85135 | 40.10 | 0.5694 | −0.0067 | M-TAFD305 | HOYA | Dense La-flint (PGM) |
@@ -265,6 +265,6 @@ The lens was later succeeded by the Sigma 85mm F1.4 DG DN | Art (A020, 2020), an
 
 - JP2018-5099A (J-PlatPat), Sigma Corporation, published 11 January 2018.
 - Sigma Corporation product page: 85mm F1.4 DG HSM | Art (A016), https://www.sigma-global.com/en/lenses/a016_85_14/
-- HOYA Corporation, Optical Glass Catalog (glass codes referenced: TAC8, FCD705, E-FDS1-W, TAFD30, TAF105, E-FD15, M-TAFD305).
+- HOYA Corporation, Optical Glass Catalog (glass codes referenced: TAC8, FCD705, E-FDS1-W, TAFD30, TAF3D, E-FD15, M-TAFD305).
 - Hikari Optical Glass Catalog (J-KZFH9).
 - OHARA Corporation, Optical Glass Catalog (S-NBM51, S-TIM25).

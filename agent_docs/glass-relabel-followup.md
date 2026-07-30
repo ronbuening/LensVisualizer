@@ -26,12 +26,23 @@ This file tracks the second bucket plus any cases from the first bucket that nee
 - Catalog: **428 verified entries** in `src/optics/glassCatalogData.ts`.
 - `catalog-mismatches.generated.md` and `glass-relabel-by-lens.generated.md` report **0** remaining
   dispersion-coordinate mismatches across **0** lens files.
-- `sellmeier-coverage.generated.md` reports **488** lenses, **5360** non-air surfaces, **4654** strict catalog
-  Sellmeier surfaces (**86.8%**), and **4666** trusted chromatic surfaces (**87.1%**).
-- **220** lenses are fully covered by strict Sellmeier data and **225** are fully covered by trusted chromatic data.
-- `unresolvedGlassScan` reports **426** non-explicit-unmatched annotations and **178** distinct unresolved glass-like
+- `sellmeier-coverage.generated.md` reports **488** lenses, **5360** non-air surfaces, **4659** strict catalog
+  Sellmeier surfaces (**86.9%**), and **4671** trusted chromatic surfaces (**87.1%**).
+- **223** lenses are fully covered by strict Sellmeier data and **228** are fully covered by trusted chromatic data.
+- `unresolvedGlassScan` reports **423** non-explicit-unmatched annotations and **177** distinct unresolved glass-like
   tokens. The total includes honest proprietary and family-level annotations as well as actionable named tokens.
 - The Phase 2/3 resolved tables below are historical audit trail. Use the generated reports above for the current queue before starting new relabel work; for patent-by-patent execution, start from [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md).
+
+## Resolved Phase 54 — July 2026 compatible-equivalent recovery
+
+Rendered patent tables confirmed five d-line surfaces suitable for coefficient-backed equivalents already in the
+catalog. Nikon AF 35-70mm f/2.8D L2/L3 now use discontinued OHARA S-LAL52, supported by compatible nd/νd and an
+independent patent g-line anchor. Canon EF 11-24mm E2/E3 now use OHARA S-BAL42 and HOYA M-TAFD305 inside the
+runtime safety window. Sigma 85mm f/1.4 Art L9 now uses exact-coordinate HOYA TAF3D, whose computed PgF also
+reproduces the patent value; the prior TAF105 name was a different glass.
+
+All annotations remain catalog equivalents with production suppliers unspecified. Strict and trusted coverage each
+rose by five surfaces, and all three affected lenses became fully covered without introducing a catalog mismatch.
 
 ## Resolved Phase 53 — July 2026 remaining SUMITA archive matches
 

@@ -25,6 +25,11 @@ export const CHANGELOG: ChangelogEntry[] = [
     type: "improvement",
     summary: "Expanded vintage-lens chromatic tracing with nine recovered SUMITA glass types",
   },
+  {
+    date: "2026-07-30",
+    type: "fix",
+    summary: "Corrected five patent-glass matches and completed chromatic coverage for three lenses",
+  },
   // ── 2026-07-29 ──────────────────────────────────────────────────
   {
     date: "2026-07-29",
