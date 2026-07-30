@@ -23,13 +23,7 @@
  */
 
 import type { ChromaticChannel, ElementData, RuntimeLens, SurfaceData, SurfaceSpectral } from "../types/optics.js";
-import {
-  assessCatalogGlassCompatibility,
-  evaluateSellmeier,
-  LINE_NM,
-  resolveGlass,
-  type GlassEntry,
-} from "./glassCatalog.js";
+import { evaluateSellmeier, LINE_NM, resolveCompatibleGlass, type GlassEntry } from "./glassCatalog.js";
 
 /** Wavelength (nm) used when tracing each chromatic channel. */
 const CHANNEL_NM: Record<ChromaticChannel, number> = {
@@ -119,8 +113,8 @@ export function makeSurfaceDispersion(
   //    coordinates that don't match the real catalog glass — in which case the
   //    "probable" tag is wrong and the authored (nd, vd) pair should win.
   if (element?.glass) {
-    const entry = resolveGlass(element.glass);
-    if (entry && assessCatalogGlassCompatibility(entry, surface.nd, element.vd).compatible) {
+    const entry = resolveCompatibleGlass(element.glass, surface.nd, element.vd);
+    if (entry) {
       const fn: SurfaceIndexFn = (ch) => evaluateSellmeier(entry, CHANNEL_NM[ch]);
       return { fn, quality: "sellmeier", glassEntry: entry };
     }

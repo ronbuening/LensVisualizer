@@ -21,12 +21,7 @@
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import buildLens from "../../../src/optics/buildLens.js";
-import {
-  assessCatalogGlassCompatibility,
-  evaluateSellmeier,
-  LINE_NM,
-  resolveGlass,
-} from "../../../src/optics/glassCatalog.js";
+import { evaluateSellmeier, LINE_NM, resolveCompatibleGlass, resolveGlass } from "../../../src/optics/glassCatalog.js";
 import type { DispersionQuality } from "../../../src/optics/dispersion.js";
 import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
 import type { LensData } from "../../../src/types/optics.js";
@@ -380,16 +375,15 @@ describe("six-digit glass-code scan", () => {
           });
         }
 
-        const catalogEntry = resolveGlass(element.glass);
+        const catalogEntry =
+          resolveCompatibleGlass(element.glass, element.nd, element.vd) ?? resolveGlass(element.glass);
         const catalogNd = catalogEntry ? evaluateSellmeier(catalogEntry, LINE_NM.d) : null;
-        const hasSellmeier =
-          catalogEntry !== null &&
-          L.S.some(
-            (surface) =>
-              surface.nd !== 1.0 &&
-              surface.elemId === element.id &&
-              assessCatalogGlassCompatibility(catalogEntry, surface.nd, element.vd).compatible,
-          );
+        const hasSellmeier = L.S.some(
+          (surface) =>
+            surface.nd !== 1.0 &&
+            surface.elemId === element.id &&
+            resolveCompatibleGlass(element.glass, surface.nd, element.vd) !== null,
+        );
         rows.push({
           lensKey: data.key,
           lensName: data.name ?? data.key,

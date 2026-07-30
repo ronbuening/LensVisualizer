@@ -118,12 +118,6 @@ export const ALIAS_RECORDS: readonly GlassAliasRecord[] = [
   { alias: "N-SF1", target: "SF1", kind: "legacy-name", note: "Route N-SF1 annotations to the cataloged SF1 row." },
   { alias: "N-SF6", target: "SF6", kind: "legacy-name", note: "Route N-SF6 annotations to the cataloged SF6 row." },
   {
-    alias: "J-BK7A",
-    target: "N-BK7",
-    kind: "vendor-equivalent",
-    note: "Nikon/Hikari J-BK7A annotations use the BK7 optical-constant class.",
-  },
-  {
     alias: "J-SF1",
     target: "SF1",
     kind: "vendor-equivalent",

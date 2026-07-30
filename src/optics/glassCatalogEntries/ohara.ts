@@ -135,13 +135,13 @@ export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
   {
     name: "S-BSL7",
     vendor: "Ohara",
-    B: [1.03773418, 0.231473863, 1.01072958],
-    C: [0.00611873959, 0.0202423191, 103.677302],
+    B: [1.1515019, 0.118583612, 1.26301359],
+    C: [0.010598413, -0.011822519, 129.617662],
     nd: 1.51633,
     vd: 64.14,
     PgF: 0.5349,
-    code6: "517641",
-    source: "Ohara optical glass catalog (S-BSL7 datasheet).",
+    code6: "516641",
+    source: "OHARA S-BSL7 detailed data sheet 25-04; vendor Sellmeier coefficients and d-line code.",
   },
   /* ────── Ohara — primary catalog vendor for this codebase ──────
    * S-FPL51 alone accounts for 74 declarations across the lens library; the

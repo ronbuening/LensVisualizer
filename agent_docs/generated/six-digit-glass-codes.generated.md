@@ -359,26 +359,26 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L1 (Element 1) | 1 | `834372 — dense lanthanum flint (catalog vendor unresolved)` | 1.83400 / 37.20 | S-LAH60 (trusted Sellmeier) | sellmeier | No patent number parsed from lens metadata | No reviewed-sidecar hit |
 | L2 (Element 2) | 3 | `583594 — barium/dense crown (catalog vendor unresolved)` | 1.58313 / 59.40 | S-BAL42 (trusted Sellmeier) | sellmeier | No patent number parsed from lens metadata | No reviewed-sidecar hit |
 | L3 (Element 3) | 5 | `805254 — dense flint (catalog vendor unresolved)` | 1.80518 / 25.40 | S-TIH6 (trusted Sellmeier) | sellmeier | No patent number parsed from lens metadata | No reviewed-sidecar hit |
-| L4 (Element 4) | 7 | `652585 — lanthanum crown (catalog vendor unresolved)` | 1.65160 / 58.60 | S-LAL7 (trusted Sellmeier) | sellmeier | No patent number parsed from lens metadata | No reviewed-sidecar hit |
+| L4 (Element 4) | 7 | `652585 — lanthanum crown (catalog vendor unresolved)` | 1.65160 / 58.60 | N-LAK7 (trusted Sellmeier) | sellmeier | No patent number parsed from lens metadata | No reviewed-sidecar hit |
 | L5 (Element 5) | 10 | `487702 — low-index fluor/light crown (catalog vendor unresolved)` | 1.48749 / 70.20 | S-FSL5 (trusted Sellmeier) | sellmeier | No patent number parsed from lens metadata | No reviewed-sidecar hit |
 | L6 (Element 6) | 12 | `487702 — low-index fluor/light crown (catalog vendor unresolved)` | 1.48749 / 70.20 | S-FSL5 (trusted Sellmeier) | sellmeier | No patent number parsed from lens metadata | No reviewed-sidecar hit |
 | L7 (Element 7) | 14 | `847239 — very dense high-dispersion flint (catalog vendor unresolved)` | 1.84666 / 23.90 | S-NPH53 (trusted Sellmeier) | sellmeier | No patent number parsed from lens metadata | No reviewed-sidecar hit |
 | L8 (Element 8) | 16 | `755275 — dense flint (catalog vendor unresolved)` | 1.75520 / 27.50 | E-FD4 (trusted Sellmeier) | sellmeier | No patent number parsed from lens metadata | No reviewed-sidecar hit |
 | L9 (Element 9) | 19 | `834372 — dense lanthanum flint (catalog vendor unresolved)` | 1.83400 / 37.20 | S-LAH60 (trusted Sellmeier) | sellmeier | No patent number parsed from lens metadata | No reviewed-sidecar hit |
-| L10 (Element 10) | 20 | `603607 — dense crown (catalog vendor unresolved)` | 1.60311 / 60.70 | S-BSM14 (trusted Sellmeier) | sellmeier | No patent number parsed from lens metadata | No reviewed-sidecar hit |
+| L10 (Element 10) | 20 | `603607 — dense crown (catalog vendor unresolved)` | 1.60311 / 60.70 | BACD14 (trusted Sellmeier) | sellmeier | No patent number parsed from lens metadata | No reviewed-sidecar hit |
 
 ### [CANON EF 28mm f/2.8 IS USM](../../src/lens-data/canon/CanonEF28mmf28ISUSM.data.ts) - JP 2013-054269 A
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
 |---|---|---|---|---|---|---|---|
 | L1 (Element 1) | 2 | `603606/603607 crown class (catalog vendor unresolved)` | 1.60311 / 60.60 | N-SK14 (trusted Sellmeier) | sellmeier | patents/JP2013054269A.pdf | No reviewed-sidecar hit |
-| L2 (Element 2) | 4 | `773496 lanthanum crown class (catalog vendor unresolved)` | 1.77250 / 49.60 | S-LAH66 (trusted Sellmeier) | sellmeier | patents/JP2013054269A.pdf | No reviewed-sidecar hit |
+| L2 (Element 2) | 4 | `773496 lanthanum crown class (catalog vendor unresolved)` | 1.77250 / 49.60 | N-LAF34 (trusted Sellmeier) | sellmeier | patents/JP2013054269A.pdf | No reviewed-sidecar hit |
 | L3 (Element 3) | 6 | `487702 low-index crown class (catalog vendor unresolved)` | 1.48749 / 70.20 | S-FSL5 (trusted Sellmeier) | sellmeier | patents/JP2013054269A.pdf | No reviewed-sidecar hit |
 | L4 (Element 4) | 8 | `911353 high-index lanthanum class (catalog vendor unresolved)` | 1.91082 / 35.30 | TAFD35 (trusted Sellmeier) | sellmeier | patents/JP2013054269A.pdf | No reviewed-sidecar hit |
 | L5 (Element 5) | 9 | `738323 flint class (catalog vendor unresolved)` | 1.73800 / 32.30 | J-KZFH9 (trusted Sellmeier) | sellmeier | patents/JP2013054269A.pdf | No reviewed-sidecar hit |
-| Gis (Element 6 — IS Group) | 12 | `729547 lanthanum crown class (catalog vendor unresolved)` | 1.72916 / 54.70 | S-LAL18 (trusted Sellmeier) | sellmeier | patents/JP2013054269A.pdf | No reviewed-sidecar hit |
+| Gis (Element 6 — IS Group) | 12 | `729547 lanthanum crown class (catalog vendor unresolved)` | 1.72916 / 54.70 | TAC8 (trusted Sellmeier) | sellmeier | patents/JP2013054269A.pdf | No reviewed-sidecar hit |
 | L7 (Element 7) | 14 | `740283 dense-flint class (catalog vendor unresolved)` | 1.74000 / 28.30 | S-TIH3 (trusted Sellmeier) | sellmeier | patents/JP2013054269A.pdf | No reviewed-sidecar hit |
-| L8 (Element 8) | 15 | `697555 lanthanum crown class (catalog vendor unresolved)` | 1.69680 / 55.50 | S-LAL14 (trusted Sellmeier) | sellmeier | patents/JP2013054269A.pdf | No reviewed-sidecar hit |
+| L8 (Element 8) | 15 | `697555 lanthanum crown class (catalog vendor unresolved)` | 1.69680 / 55.50 | LAC14 (trusted Sellmeier) | sellmeier | patents/JP2013054269A.pdf | No reviewed-sidecar hit |
 | L9 (Element 9) | 17A | `583594 molded-crown class (catalog vendor unresolved)` | 1.58313 / 59.40 | S-BAL42 (trusted Sellmeier) | sellmeier | patents/JP2013054269A.pdf | No reviewed-sidecar hit |
 
 ### [CANON EF-M 32mm f/1.4 STM](../../src/lens-data/canon/CanonEFM32mmf14STM.data.ts) - JP2018180366A
@@ -401,7 +401,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L3 (Element 3) | 5 | `LaSF dense lanthanum-flint patent class (773/497)` | 1.77250 / 49.70 | No catalog entry | abbe | patents/US4110006.pdf | No reviewed-sidecar hit |
 | L13 (Element 13) | 23 | `Dense lanthanum flint class (834/372)` | 1.83400 / 37.20 | S-LAH60 (trusted Sellmeier) | sellmeier | patents/US4110006.pdf | No reviewed-sidecar hit |
 | L17 (Element 17) | 30 | `Unmatched crown glass (534/555 vintage code)` | 1.53375 / 55.50 | No catalog entry | abbe | patents/US4110006.pdf | No reviewed-sidecar hit |
-| L18 (Element 18) | 32 | `Lanthanum flint class (800/422)` | 1.79952 / 42.20 | S-LAH52 (trusted Sellmeier) | sellmeier | patents/US4110006.pdf | No reviewed-sidecar hit |
+| L18 (Element 18) | 32 | `Lanthanum flint class (800/422)` | 1.79952 / 42.20 | S-LAH52Q (trusted Sellmeier) | sellmeier | patents/US4110006.pdf | No reviewed-sidecar hit |
 
 ### [CANON RF 100mm f/2.8 L MACRO IS USM](../../src/lens-data/canon/CanonRF100f28.data.ts) - JP2021-47297A
 
@@ -740,7 +740,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L3 (Element 3) | 5 | `701301 - dense flint (catalog unresolved)` | 1.70060 / 30.10 | No catalog entry | abbe | patents/US4277149.pdf | No reviewed-sidecar hit |
 | L4 (Element 4) | 7 | `640353 - medium flint (catalog unresolved)` | 1.63980 / 35.30 | No catalog entry | abbe | patents/US4277149.pdf | No reviewed-sidecar hit |
 | L5 (Element 5) | 8 | `755501 - lanthanum crown (catalog unresolved)` | 1.75450 / 50.10 | No catalog entry | abbe | patents/US4277149.pdf | No reviewed-sidecar hit |
-| L6 (Element 6) | 10 | `697555 - lanthanum crown (catalog unresolved)` | 1.69680 / 55.50 | S-LAL14 (trusted Sellmeier) | sellmeier | patents/US4277149.pdf | No reviewed-sidecar hit |
+| L6 (Element 6) | 10 | `697555 - lanthanum crown (catalog unresolved)` | 1.69680 / 55.50 | LAC14 (trusted Sellmeier) | sellmeier | patents/US4277149.pdf | No reviewed-sidecar hit |
 
 ### [MINOLTA MD ROKKOR 50mm f/1.4](../../src/lens-data/minolta/MinoltaRokkor50mmf14MD.data.ts) - US 4,182,550
 
@@ -791,14 +791,14 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
 |---|---|---|---|---|---|---|---|
-| L11a (Element 1 — L11 front member) | 1 | `847238 — dense flint class` | 1.84666 / 23.78 | S-TIH53 (trusted Sellmeier) | lineIndices | patents/US6621643.pdf | No reviewed-sidecar hit |
+| L11a (Element 1 — L11 front member) | 1 | `847238 — dense flint class` | 1.84666 / 23.78 | H-ZF52 (trusted Sellmeier) | lineIndices | patents/US6621643.pdf | No reviewed-sidecar hit |
 | L21g (Element 5 — L21 glass body) | 7 | `835427 — lanthanum flint class` | 1.83481 / 42.72 | S-LAH55 (trusted Sellmeier) | lineIndices | patents/US6621643.pdf | No reviewed-sidecar hit |
-| L22 (Element 6 — L22) | 9 | `773496 — lanthanum flint class` | 1.77250 / 49.61 | S-LAH66 (trusted Sellmeier) | lineIndices | patents/US6621643.pdf | No reviewed-sidecar hit |
+| L22 (Element 6 — L22) | 9 | `773496 — lanthanum flint class` | 1.77250 / 49.61 | N-LAF34 (trusted Sellmeier) | lineIndices | patents/US6621643.pdf | No reviewed-sidecar hit |
 | L23 (Element 7 — L23) | 11 | `808228 — very dense flint class` | 1.80809 / 22.76 | S-NPH1 (trusted Sellmeier) | lineIndices | patents/US6621643.pdf | No reviewed-sidecar hit |
-| L24 (Element 8 — L24) | 13 | `773496 — lanthanum flint class` | 1.77250 / 49.61 | S-LAH66 (trusted Sellmeier) | lineIndices | patents/US6621643.pdf | No reviewed-sidecar hit |
-| L33 (Element 11 — L33) | 20 | `847238 — dense flint class` | 1.84666 / 23.78 | S-TIH53 (trusted Sellmeier) | lineIndices | patents/US6621643.pdf | No reviewed-sidecar hit |
-| L1 (Element 12 — Gm L1) | 22A | `517641 — borosilicate crown class` | 1.51680 / 64.10 | S-BSL7 (trusted Sellmeier) | sellmeier | patents/US6621643.pdf | No reviewed-sidecar hit |
-| L2g (Element 14 — Gm L2 glass body) | 26 | `804466 — lanthanum flint class` | 1.80400 / 46.58 | S-LAH65 (trusted Sellmeier) | lineIndices | patents/US6621643.pdf | No reviewed-sidecar hit |
+| L24 (Element 8 — L24) | 13 | `773496 — lanthanum flint class` | 1.77250 / 49.61 | N-LAF34 (trusted Sellmeier) | lineIndices | patents/US6621643.pdf | No reviewed-sidecar hit |
+| L33 (Element 11 — L33) | 20 | `847238 — dense flint class` | 1.84666 / 23.78 | H-ZF52 (trusted Sellmeier) | lineIndices | patents/US6621643.pdf | No reviewed-sidecar hit |
+| L1 (Element 12 — Gm L1) | 22A | `517641 — borosilicate crown class` | 1.51680 / 64.10 | J-BK7A (trusted Sellmeier) | sellmeier | patents/US6621643.pdf | No reviewed-sidecar hit |
+| L2g (Element 14 — Gm L2 glass body) | 26 | `804466 — lanthanum flint class` | 1.80400 / 46.58 | H-ZLAF50D (trusted Sellmeier) | lineIndices | patents/US6621643.pdf | No reviewed-sidecar hit |
 
 ### [NIKON AF ZOOM-NIKKOR 28-80mm f/3.5-5.6 D](../../src/lens-data/nikon/NikonAFZoomNikkor2880mmf3556.data.ts) - JP 1999-030748 A
 
@@ -807,9 +807,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L1 (Element 1) | 1 | `515546 - unmatched light crown` | 1.51454 / 54.55 | No catalog entry | abbe | patents/JPA 1999030748-000000.pdf | No reviewed-sidecar hit |
 | L2 (Element 2) | 3 | `797454 - high-index lanthanum flint class` | 1.79668 / 45.37 | No catalog entry | abbe | patents/JPA 1999030748-000000.pdf | No reviewed-sidecar hit |
 | L3 (Element 3) | 5 | `797454 - high-index lanthanum flint class` | 1.79668 / 45.37 | No catalog entry | abbe | patents/JPA 1999030748-000000.pdf | No reviewed-sidecar hit |
-| L5 (Element 5) | 9 | `617540 - SSK-class crown` | 1.61720 / 54.01 | No catalog entry | abbe | patents/JPA 1999030748-000000.pdf | No reviewed-sidecar hit |
-| L6 (Element 6) | 11 | `617540 - SSK-class crown` | 1.61720 / 54.01 | No catalog entry | abbe | patents/JPA 1999030748-000000.pdf | No reviewed-sidecar hit |
-| L8 (Element 8) | 15 | `Moderate-dispersion flint class (613/370)` | 1.61293 / 36.98 | S-TIM3 (trusted Sellmeier) | sellmeier | patents/JPA 1999030748-000000.pdf | No reviewed-sidecar hit |
+| L5 (Element 5) | 9 | `617540 - SSK-class crown` | 1.61720 / 54.01 | K-SSK1 (trusted Sellmeier) | sellmeier | patents/JPA 1999030748-000000.pdf | No reviewed-sidecar hit |
+| L6 (Element 6) | 11 | `617540 - SSK-class crown` | 1.61720 / 54.01 | K-SSK1 (trusted Sellmeier) | sellmeier | patents/JPA 1999030748-000000.pdf | No reviewed-sidecar hit |
+| L8 (Element 8) | 15 | `Moderate-dispersion flint class (613/370)` | 1.61293 / 36.98 | E-F3 (trusted Sellmeier) | sellmeier | patents/JPA 1999030748-000000.pdf | No reviewed-sidecar hit |
 
 ### [NIKON AF-P DX NIKKOR 10-20mm f/4.5-5.6 G VR](../../src/lens-data/nikon/NikonAFPDX1020mmf4556G.data.ts) - WO2021039813A1
 
@@ -830,19 +830,19 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---|---|---|---|---|---|---|
 | L1 (Element 1) | 1A | `Unmatched (744496 class; nd=1.744429, vd=49.55)` | 1.74443 / 49.55 | No catalog entry | abbe | patents/US6940655.pdf | No reviewed-sidecar hit |
 | L2 (Element 2) | 3 | `581408 — optical-glass class (vendor unresolved)` | 1.58144 / 40.75 | PBL25 (trusted Sellmeier) | sellmeier | patents/US6940655.pdf | No reviewed-sidecar hit |
-| L3 (Element 3) | 4 | `773496 — lanthanum-flint class (vendor unresolved)` | 1.77250 / 49.61 | S-LAH66 (trusted Sellmeier) | sellmeier | patents/US6940655.pdf | No reviewed-sidecar hit |
+| L3 (Element 3) | 4 | `773496 — lanthanum-flint class (vendor unresolved)` | 1.77250 / 49.61 | N-LAF34 (trusted Sellmeier) | sellmeier | patents/US6940655.pdf | No reviewed-sidecar hit |
 | L4 (Element 4) | 7 | `755275 — dense-flint class (vendor unresolved)` | 1.75520 / 27.51 | E-FD4 (trusted Sellmeier) | sellmeier | patents/US6940655.pdf | No reviewed-sidecar hit |
 | L5 (Element 5) | 9 | `741527 — lanthanum-crown class (vendor unresolved)` | 1.74100 / 52.67 | LAK011 (trusted Sellmeier) | sellmeier | patents/US6940655.pdf | No reviewed-sidecar hit |
-| L6 (Element 6) | 10 | `548458 — light-flint class (vendor unresolved)` | 1.54814 / 45.79 | S-TIL1 (trusted Sellmeier) | sellmeier | patents/US6940655.pdf | No reviewed-sidecar hit |
-| L8 (Element 8) | 14 | `804466 — lanthanum-flint class (vendor unresolved)` | 1.80400 / 46.58 | S-LAH65 (trusted Sellmeier) | sellmeier | patents/US6940655.pdf | No reviewed-sidecar hit |
-| L9 (Element 9) | 16 | `804396 — dense-lanthanum-flint class (vendor unresolved)` | 1.80440 / 39.59 | S-LAH63 (trusted Sellmeier) | sellmeier | patents/US6940655.pdf | No reviewed-sidecar hit |
+| L6 (Element 6) | 10 | `548458 — light-flint class (vendor unresolved)` | 1.54814 / 45.79 | LLF1 (trusted Sellmeier) | sellmeier | patents/US6940655.pdf | No reviewed-sidecar hit |
+| L8 (Element 8) | 14 | `804466 — lanthanum-flint class (vendor unresolved)` | 1.80400 / 46.58 | H-ZLAF50D (trusted Sellmeier) | sellmeier | patents/US6940655.pdf | No reviewed-sidecar hit |
+| L9 (Element 9) | 16 | `804396 — dense-lanthanum-flint class (vendor unresolved)` | 1.80440 / 39.59 | S-LAH63Q (trusted Sellmeier) | sellmeier | patents/US6940655.pdf | No reviewed-sidecar hit |
 | L11 (Element 11) | 19A | `Unmatched (606574 class; nd=1.606020, vd=57.44)` | 1.60602 / 57.44 | No catalog entry | abbe | patents/US6940655.pdf | No reviewed-sidecar hit |
 
 ### [NIKON AF-S NIKKOR 120-300mm f/2.8 E FL ED SR VR](../../src/lens-data/nikon/NikonNikkorAFS120300mmf28.data.ts) - JP 2020-177057 A
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
 |---|---|---|---|---|---|---|---|
-| L23 (Element 6) | 9 | `697555 — lanthanum crown (patent coordinate; vendor unresolved)` | 1.69680 / 55.52 | S-LAL14 (trusted Sellmeier) | sellmeier | patents/JP2020177057A.pdf | No reviewed-sidecar hit |
+| L23 (Element 6) | 9 | `697555 — lanthanum crown (patent coordinate; vendor unresolved)` | 1.69680 / 55.52 | LAC14 (trusted Sellmeier) | sellmeier | patents/JP2020177057A.pdf | No reviewed-sidecar hit |
 
 ### [NIKON AF-S NIKKOR 14-24mm f/2.8 G ED](../../src/lens-data/nikon/NikonNikkorAFS1424mmf28.data.ts) - US 7,359,125 B2
 
@@ -918,11 +918,11 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
 |---|---|---|---|---|---|---|---|
-| L13 (Element 3 — L13) | 15 | `773495 — lanthanum crown / TAF class (vendor unresolved)` | 1.77279 / 49.50 | M-TAF105 (trusted Sellmeier) | sellmeier | patents/US5734508.pdf | No reviewed-sidecar hit |
+| L13 (Element 3 — L13) | 15 | `773495 — lanthanum crown / TAF class (vendor unresolved)` | 1.77279 / 49.50 | M-TAF1 (trusted Sellmeier) | sellmeier | patents/US5734508.pdf | No reviewed-sidecar hit |
 | L21g (Element 4b — L21 Glass Substrate) | 18 | `Unmatched (840434 high-index glass)` | 1.84042 / 43.40 | No catalog entry | abbe | patents/US5734508.pdf | No reviewed-sidecar hit |
 | L22 (Element 5 — L22) | 20 | `Unmatched (840434 high-index glass)` | 1.84042 / 43.40 | No catalog entry | abbe | patents/US5734508.pdf | No reviewed-sidecar hit |
 | L23 (Element 6 — L23) | 21 | `689311 — high-dispersion flint class (vendor unresolved)` | 1.68893 / 31.10 | S-TIM28 (trusted Sellmeier) | sellmeier | patents/US5734508.pdf | No reviewed-sidecar hit |
-| L25 (Element 8 — L25) | 25 | `773495 — lanthanum crown / TAF class (vendor unresolved)` | 1.77279 / 49.50 | M-TAF105 (trusted Sellmeier) | sellmeier | patents/US5734508.pdf | No reviewed-sidecar hit |
+| L25 (Element 8 — L25) | 25 | `773495 — lanthanum crown / TAF class (vendor unresolved)` | 1.77279 / 49.50 | M-TAF1 (trusted Sellmeier) | sellmeier | patents/US5734508.pdf | No reviewed-sidecar hit |
 | L3F3 (Element 11 — L3F3) | 30 | `Unmatched (796409 high-index crown)` | 1.79631 / 40.90 | No catalog entry | abbe | patents/US5734508.pdf | No reviewed-sidecar hit |
 | L3R2 (Element 13 — L3R2) | 34A | `795454 — LaSF class (catalog-near; vendor unresolved)` | 1.79668 / 45.40 | TAF2 (trusted Sellmeier) | sellmeier | patents/US5734508.pdf | No reviewed-sidecar hit |
 | L3R3 (Element 14 — L3R3) | 36 | `834374 — LaSF/NBFD class (vendor unresolved)` | 1.83400 / 37.40 | No catalog entry | abbe | patents/US5734508.pdf | No reviewed-sidecar hit |
@@ -993,8 +993,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---|---|---|---|---|---|---|
 | L11a (G1 front negative) | 1 | `805254 — dense flint class (catalog unresolved)` | 1.80518 / 25.40 | S-TIH6 (trusted Sellmeier) | sellmeier | patents/US4452513.pdf | No reviewed-sidecar hit |
 | L11b (G1 front positive) | 2 | `620603 — crown class (catalog unresolved)` | 1.62041 / 60.30 | N-SK16 (trusted Sellmeier) | sellmeier | patents/US4452513.pdf | No reviewed-sidecar hit |
-| L12 (G1 rear positive) | 4 | `517641 — crown class (catalog unresolved)` | 1.51680 / 64.10 | S-BSL7 (trusted Sellmeier) | sellmeier | patents/US4452513.pdf | No reviewed-sidecar hit |
-| L2a (G2 triplet front negative) | 6 | `788475 — dense lanthanum glass class (catalog unresolved)` | 1.78797 / 47.50 | N-LAF21 (trusted Sellmeier) | sellmeier | patents/US4452513.pdf | No reviewed-sidecar hit |
+| L12 (G1 rear positive) | 4 | `517641 — crown class (catalog unresolved)` | 1.51680 / 64.10 | J-BK7A (trusted Sellmeier) | sellmeier | patents/US4452513.pdf | No reviewed-sidecar hit |
+| L2a (G2 triplet front negative) | 6 | `788475 — dense lanthanum glass class (catalog unresolved)` | 1.78797 / 47.50 | TAF4 (trusted Sellmeier) | sellmeier | patents/US4452513.pdf | No reviewed-sidecar hit |
 | L2b (G2 triplet positive) | 7 | `755276 — dense flint class (catalog unresolved)` | 1.75520 / 27.60 | SF4 (trusted Sellmeier) | sellmeier | patents/US4452513.pdf | No reviewed-sidecar hit |
 | L2c (G2 triplet rear negative) | 8 | `581408 — light flint class (catalog unresolved)` | 1.58144 / 40.80 | PBL25 (trusted Sellmeier) | sellmeier | patents/US4452513.pdf | No reviewed-sidecar hit |
 | L22 (G2 rear negative) | 10 | `589612 — crown class (catalog unresolved)` | 1.58913 / 61.20 | S-BAL35 (trusted Sellmeier) | sellmeier | patents/US4452513.pdf | No reviewed-sidecar hit |
@@ -1009,7 +1009,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
 |---|---|---|---|---|---|---|---|
 | L1 (Element 1) | 1 | `564608 — dense barium crown class (catalog vendor unspecified)` | 1.56384 / 60.80 | N-SK11 (trusted Sellmeier) | sellmeier | patents/US4223981.pdf | No reviewed-sidecar hit |
-| L2a (Element 2) | 3 | `603607 — dense crown class (catalog vendor unspecified)` | 1.60311 / 60.70 | S-BSM14 (trusted Sellmeier) | sellmeier | patents/US4223981.pdf | No reviewed-sidecar hit |
+| L2a (Element 2) | 3 | `603607 — dense crown class (catalog vendor unspecified)` | 1.60311 / 60.70 | BACD14 (trusted Sellmeier) | sellmeier | patents/US4223981.pdf | No reviewed-sidecar hit |
 | L2b (Element 3) | 4 | `805255 — dense flint class (catalog vendor unspecified)` | 1.80518 / 25.50 | H-ZF7LA (trusted Sellmeier) | sellmeier | patents/US4223981.pdf | No reviewed-sidecar hit |
 | L3a (Element 4) | 6 | `755275 — dense flint class (catalog vendor unspecified)` | 1.75520 / 27.50 | E-FD4 (trusted Sellmeier) | sellmeier | patents/US4223981.pdf | No reviewed-sidecar hit |
 | L3b (Element 5) | 7 | `517642 — borosilicate crown class (catalog vendor unspecified)` | 1.51680 / 64.20 | N-BK7 (trusted Sellmeier) | sellmeier | patents/US4223981.pdf | No reviewed-sidecar hit |
@@ -1017,7 +1017,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L5a (Element 7) | 11 | `620603 — dense crown class (catalog vendor unspecified)` | 1.62041 / 60.30 | N-SK16 (trusted Sellmeier) | sellmeier | patents/US4223981.pdf | No reviewed-sidecar hit |
 | L5b (Element 8) | 12 | `755275 — dense flint class (catalog vendor unspecified)` | 1.75520 / 27.50 | E-FD4 (trusted Sellmeier) | sellmeier | patents/US4223981.pdf | No reviewed-sidecar hit |
 | L6 (Element 9) | 14 | `517642 — borosilicate crown class (catalog vendor unspecified)` | 1.51680 / 64.20 | N-BK7 (trusted Sellmeier) | sellmeier | patents/US4223981.pdf | No reviewed-sidecar hit |
-| L9 (Element 12) | 20 | `518590 — crown class (catalog vendor unspecified)` | 1.51823 / 59.00 | S-NSL3 (trusted Sellmeier) | sellmeier | patents/US4223981.pdf | No reviewed-sidecar hit |
+| L9 (Element 12) | 20 | `518590 — crown class (catalog vendor unspecified)` | 1.51823 / 59.00 | E-C3 (trusted Sellmeier) | sellmeier | patents/US4223981.pdf | No reviewed-sidecar hit |
 
 ### [Nikon AI-S Zoom-Nikkor 35–70mm f/3.5](../../src/lens-data/nikon/NikonAIZoomNikkor3570mmf35.data.ts) - US 4,266,860,
 
@@ -1063,7 +1063,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---|---|---|---|---|---|---|
 | L6 (Element 6) | 10 | `720502 - lanthanum crown (nd=1.720467, vd~50.2)` | 1.72047 / 50.20 | S-LAL10 (trusted Sellmeier) | sellmeier | patents/JP2022092388A.pdf | No reviewed-sidecar hit |
 | L9 (Element 9) | 14 | `855399 — high-index lanthanum (patent nd=1.854505, νd≈39.9; no exact public catalog match)` | 1.85451 / 39.90 | No catalog entry | abbe | patents/JP2022092388A.pdf | Reviewed sidecar hit |
-| L16 (Element 16) | 29 | `001255 - ultra-high-index dense flint (nd=2.00069, vd~25.5)` | 2.00069 / 25.50 | TAFD40 (trusted Sellmeier) | sellmeier | patents/JP2022092388A.pdf | No reviewed-sidecar hit |
+| L16 (Element 16) | 29 | `001255 - ultra-high-index dense flint (nd=2.00069, vd~25.5)` | 2.00069 / 25.50 | TAFD40L-W (trusted Sellmeier) | sellmeier | patents/JP2022092388A.pdf | No reviewed-sidecar hit |
 | L17 (Element 17 (VR)) | 31 | `553555 — borosilicate crown (patent nd=1.552981, νd≈55.5; no exact public catalog match)` | 1.55298 / 55.50 | No catalog entry | abbe | patents/JP2022092388A.pdf | Reviewed sidecar hit |
 | L19 (Element 19) | 34 | `603564 — medium crown (patent nd=1.60342, νd≈56.4; no exact public catalog match)` | 1.60342 / 56.40 | No catalog entry | abbe | patents/JP2022092388A.pdf | Reviewed sidecar hit |
 | L20 (Element 20) | 36 | `850323 - high-index lanthanum (nd=1.85026, vd~32.3)` | 1.85026 / 32.30 | S-LAH71 (trusted Sellmeier) | sellmeier | patents/JP2022092388A.pdf | No reviewed-sidecar hit |
@@ -1074,7 +1074,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
 |---|---|---|---|---|---|---|---|
-| L7 (Element 7) | 13 | `697555 — lanthanum crown (patent coordinate; vendor unresolved)` | 1.69680 / 55.52 | S-LAL14 (trusted Sellmeier) | sellmeier | patents/WO2024147268A1.pdf | No reviewed-sidecar hit |
+| L7 (Element 7) | 13 | `697555 — lanthanum crown (patent coordinate; vendor unresolved)` | 1.69680 / 55.52 | LAC14 (trusted Sellmeier) | sellmeier | patents/WO2024147268A1.pdf | No reviewed-sidecar hit |
 
 ### [NIKON NIKKOR Z 14-30mm f/4 S](../../src/lens-data/nikon/NikonNikkorZ1430mmf4S.data.ts) - JP 2019-008031 A
 
@@ -1129,10 +1129,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
 |---|---|---|---|---|---|---|---|
-| L22 (Element 6) | 9 | `Flint (code 603380)` | 1.60342 / 38.01 | F5 (trusted Sellmeier) | sellmeier | Missing from untracked local patents/ references (JP2020173366A, JP2020173366, 2020173366) | No reviewed-sidecar hit |
+| L22 (Element 6) | 9 | `Flint (code 603380)` | 1.60342 / 38.01 | E-F5 (trusted Sellmeier) | sellmeier | Missing from untracked local patents/ references (JP2020173366A, JP2020173366, 2020173366) | No reviewed-sidecar hit |
 | L41 (Element 8) | 14 | `Ultra-high-index La dense flint (code 911353)` | 1.91082 / 35.25 | TAFD35 (trusted Sellmeier) | sellmeier | Missing from untracked local patents/ references (JP2020173366A, JP2020173366, 2020173366) | No reviewed-sidecar hit |
 | L42 (Element 9) | 15 | `Dense flint (code 673322)` | 1.67270 / 32.17 | E-FD5 (trusted Sellmeier) | sellmeier | Missing from untracked local patents/ references (JP2020173366A, JP2020173366, 2020173366) | No reviewed-sidecar hit |
-| L44 (Element 11) | 18 | `Flint (code 603380, same as L22)` | 1.60342 / 38.01 | F5 (trusted Sellmeier) | sellmeier | Missing from untracked local patents/ references (JP2020173366A, JP2020173366, 2020173366) | No reviewed-sidecar hit |
+| L44 (Element 11) | 18 | `Flint (code 603380, same as L22)` | 1.60342 / 38.01 | E-F5 (trusted Sellmeier) | sellmeier | Missing from untracked local patents/ references (JP2020173366A, JP2020173366, 2020173366) | No reviewed-sidecar hit |
 
 ### [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../../src/lens-data/nikon/NikonZ105f28.data.ts) - WO 2022/097401 A1
 
@@ -1141,7 +1141,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L21 (Element 5) | 8 | `Phosphate crown (glass code 519699)` | 1.51860 / 69.89 | J-PKH1 (trusted Sellmeier) | sellmeier | patents/WO2022097401A1.pdf | No reviewed-sidecar hit |
 | L22 (Element 6) | 10 | `Lanthanum/titanium flint (glass code 720347)` | 1.72047 / 34.71 | N-KZFS8 (trusted Sellmeier) | sellmeier | patents/WO2022097401A1.pdf | No reviewed-sidecar hit |
 | L42 (Element 12) | 21 | `Phosphate crown (glass code 519699)` | 1.51860 / 69.89 | J-PKH1 (trusted Sellmeier) | sellmeier | patents/WO2022097401A1.pdf | No reviewed-sidecar hit |
-| L44 (Element 14) | 24 | `Ultra-high-index specialty (glass code 001255, nd > 2.0)` | 2.00069 / 25.46 | TAFD40 (trusted Sellmeier) | sellmeier | patents/WO2022097401A1.pdf | No reviewed-sidecar hit |
+| L44 (Element 14) | 24 | `Ultra-high-index specialty (glass code 001255, nd > 2.0)` | 2.00069 / 25.46 | TAFD40L-W (trusted Sellmeier) | sellmeier | patents/WO2022097401A1.pdf | No reviewed-sidecar hit |
 
 ### [NIKON NIKKOR-N 5cm f/1.1](../../src/lens-data/nikon/NikonN5cmf11.data.ts) - US 2,828,671
 
@@ -1247,7 +1247,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
 |---|---|---|---|---|---|---|---|
-| P1 (24 mm path-splitter prism) | 27 | `Path-splitter prism glass (516/641, patent-listed)` | 1.51633 / 64.14 | K-BK7 (trusted Sellmeier) | sellmeier | patents/US20030072086A1.pdf | No reviewed-sidecar hit |
+| P1 (24 mm path-splitter prism) | 27 | `Path-splitter prism glass (516/641, patent-listed)` | 1.51633 / 64.14 | S-BSL7 (trusted Sellmeier) | sellmeier | patents/US20030072086A1.pdf | No reviewed-sidecar hit |
 
 ### [OLYMPUS ZUIKO AUTO-FISHEYE 8mm f/2.8](../../src/lens-data/olympus/OlympusZuikoAutoFisheye8mmf28.data.ts) - DE 2157160 A1
 
@@ -1358,16 +1358,16 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
 |---|---|---|---|---|---|---|---|
-| L11 (G1 front negative element) | 1 | `847238 — optical-glass class (vendor unresolved)` | 1.84666 / 23.80 | S-TIH53 (trusted Sellmeier) | sellmeier | patents/US20170068075A1.pdf | No reviewed-sidecar hit |
+| L11 (G1 front negative element) | 1 | `847238 — optical-glass class (vendor unresolved)` | 1.84666 / 23.80 | H-ZF52 (trusted Sellmeier) | sellmeier | patents/US20170068075A1.pdf | No reviewed-sidecar hit |
 | L12 (G1 cemented positive element) | 2 | `816466 — optical-glass class (vendor unresolved)` | 1.81600 / 46.60 | S-LAH59 (trusted Sellmeier) | sellmeier | patents/US20170068075A1.pdf | No reviewed-sidecar hit |
 | L13 (G1 rear positive element) | 4 | `816466 — optical-glass class (vendor unresolved)` | 1.81600 / 46.60 | S-LAH59 (trusted Sellmeier) | sellmeier | patents/US20170068075A1.pdf | No reviewed-sidecar hit |
 | L21G (L21 glass body) | 7 | `883408 — optical-glass class (vendor unresolved)` | 1.88300 / 40.80 | S-LAH58 (trusted Sellmeier) | sellmeier | patents/US20170068075A1.pdf | No reviewed-sidecar hit |
-| L22 (G2 biconcave negative element) | 9 | `729547 — optical-glass class (vendor unresolved)` | 1.72916 / 54.70 | S-LAL18 (trusted Sellmeier) | sellmeier | patents/US20170068075A1.pdf | No reviewed-sidecar hit |
+| L22 (G2 biconcave negative element) | 9 | `729547 — optical-glass class (vendor unresolved)` | 1.72916 / 54.70 | TAC8 (trusted Sellmeier) | sellmeier | patents/US20170068075A1.pdf | No reviewed-sidecar hit |
 | L23 (G2 biconvex positive element) | 11 | `728285 — optical-glass class (vendor unresolved)` | 1.72825 / 28.50 | S-TIH10 (trusted Sellmeier) | sellmeier | patents/US20170068075A1.pdf | No reviewed-sidecar hit |
 | L24 (G2 rear negative element) | 13 | `788474 — optical-glass class (vendor unresolved)` | 1.78800 / 47.40 | J-LASF014 (trusted Sellmeier) | sellmeier | patents/US20170068075A1.pdf | No reviewed-sidecar hit |
-| L31 (G3 front positive element) | 16 | `697555 — optical-glass class (vendor unresolved)` | 1.69680 / 55.50 | S-LAL14 (trusted Sellmeier) | sellmeier | patents/US20170068075A1.pdf | No reviewed-sidecar hit |
-| L41 (G4 cemented negative element) | 21 | `603607 — optical-glass class (vendor unresolved)` | 1.60311 / 60.70 | S-BSM14 (trusted Sellmeier) | sellmeier | patents/US20170068075A1.pdf | No reviewed-sidecar hit |
-| L42 (G4 cemented positive element) | 22 | `847238 — optical-glass class (vendor unresolved)` | 1.84666 / 23.80 | S-TIH53 (trusted Sellmeier) | sellmeier | patents/US20170068075A1.pdf | No reviewed-sidecar hit |
+| L31 (G3 front positive element) | 16 | `697555 — optical-glass class (vendor unresolved)` | 1.69680 / 55.50 | LAC14 (trusted Sellmeier) | sellmeier | patents/US20170068075A1.pdf | No reviewed-sidecar hit |
+| L41 (G4 cemented negative element) | 21 | `603607 — optical-glass class (vendor unresolved)` | 1.60311 / 60.70 | BACD14 (trusted Sellmeier) | sellmeier | patents/US20170068075A1.pdf | No reviewed-sidecar hit |
+| L42 (G4 cemented positive element) | 22 | `847238 — optical-glass class (vendor unresolved)` | 1.84666 / 23.80 | H-ZF52 (trusted Sellmeier) | sellmeier | patents/US20170068075A1.pdf | No reviewed-sidecar hit |
 | L51 (G5 double-aspherical positive element) | 24A | `589612 — optical-glass class (vendor unresolved)` | 1.58913 / 61.20 | S-BAL35 (trusted Sellmeier) | sellmeier | patents/US20170068075A1.pdf | No reviewed-sidecar hit |
 | L53 (G5 cemented positive element) | 27 | `618634 — optical-glass class (vendor unresolved)` | 1.61800 / 63.40 | S-PHM52 (trusted Sellmeier) | sellmeier | patents/US20170068075A1.pdf | No reviewed-sidecar hit |
 
@@ -1381,15 +1381,15 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
 |---|---|---|---|---|---|---|---|
-| L1 (Element 1) | 1 | `773496 — lanthanum-flint class (vendor unresolved)` | 1.77250 / 49.60 | S-LAH66 (trusted Sellmeier) | sellmeier | patents/US20010007512A1.pdf | No reviewed-sidecar hit |
-| L2g (Element 2 glass substrate) | 3 | `729547 — lanthanum-crown class (vendor unresolved)` | 1.72916 / 54.70 | S-LAL18 (trusted Sellmeier) | sellmeier | patents/US20010007512A1.pdf | No reviewed-sidecar hit |
+| L1 (Element 1) | 1 | `773496 — lanthanum-flint class (vendor unresolved)` | 1.77250 / 49.60 | N-LAF34 (trusted Sellmeier) | sellmeier | patents/US20010007512A1.pdf | No reviewed-sidecar hit |
+| L2g (Element 2 glass substrate) | 3 | `729547 — lanthanum-crown class (vendor unresolved)` | 1.72916 / 54.70 | TAC8 (trusted Sellmeier) | sellmeier | patents/US20010007512A1.pdf | No reviewed-sidecar hit |
 | L3 (Element 3) | 6 | `755275 — dense-flint class (vendor unresolved)` | 1.75520 / 27.50 | E-FD4 (trusted Sellmeier) | sellmeier | patents/US20010007512A1.pdf | No reviewed-sidecar hit |
 | L4 (Element 4) | 8 | `517524 — crown-flint class (vendor unresolved)` | 1.51742 / 52.40 | S-NSL36 (trusted Sellmeier) | sellmeier | patents/US20010007512A1.pdf | No reviewed-sidecar hit |
-| L5 (Element 5) | 9 | `804466 — lanthanum-flint class (vendor unresolved)` | 1.80400 / 46.60 | S-LAH65 (trusted Sellmeier) | sellmeier | patents/US20010007512A1.pdf | No reviewed-sidecar hit |
-| L6 (Element 6) | 11 | `518590 — crown class (vendor unresolved)` | 1.51823 / 59.00 | S-NSL3 (trusted Sellmeier) | sellmeier | patents/US20010007512A1.pdf | No reviewed-sidecar hit |
+| L5 (Element 5) | 9 | `804466 — lanthanum-flint class (vendor unresolved)` | 1.80400 / 46.60 | H-ZLAF50D (trusted Sellmeier) | sellmeier | patents/US20010007512A1.pdf | No reviewed-sidecar hit |
+| L6 (Element 6) | 11 | `518590 — crown class (vendor unresolved)` | 1.51823 / 59.00 | E-C3 (trusted Sellmeier) | sellmeier | patents/US20010007512A1.pdf | No reviewed-sidecar hit |
 | L7 (Element 7) | 13 | `487702 — fluor-crown class (vendor unresolved)` | 1.48749 / 70.20 | S-FSL5 (trusted Sellmeier) | sellmeier | patents/US20010007512A1.pdf | No reviewed-sidecar hit |
-| L8 (Element 8) | 14 | `847238 — special dense-flint class (vendor unresolved)` | 1.84666 / 23.80 | S-TIH53 (trusted Sellmeier) | sellmeier | patents/US20010007512A1.pdf | No reviewed-sidecar hit |
-| L9 (Element 9) | 16 | `847238 — special dense-flint class (vendor unresolved)` | 1.84666 / 23.80 | S-TIH53 (trusted Sellmeier) | sellmeier | patents/US20010007512A1.pdf | No reviewed-sidecar hit |
+| L8 (Element 8) | 14 | `847238 — special dense-flint class (vendor unresolved)` | 1.84666 / 23.80 | H-ZF52 (trusted Sellmeier) | sellmeier | patents/US20010007512A1.pdf | No reviewed-sidecar hit |
+| L9 (Element 9) | 16 | `847238 — special dense-flint class (vendor unresolved)` | 1.84666 / 23.80 | H-ZF52 (trusted Sellmeier) | sellmeier | patents/US20010007512A1.pdf | No reviewed-sidecar hit |
 
 ### [PENTAX HD D FA645 MACRO 90mm f/2.8 ED AW SR](../../src/lens-data/pentax/PentaxDFA64590mmf28EDAWSRMacro.data.ts) - US 2013/0222925 A1
 
@@ -1397,10 +1397,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---|---|---|---|---|---|---|
 | L11 (Element L11) | 1 | `835427 - high-index lanthanum glass class (vendor unresolved)` | 1.83481 / 42.70 | S-LAH55 (trusted Sellmeier) | sellmeier | patents/US20130222925A1.pdf | No reviewed-sidecar hit |
 | L12 (Element L12) | 3 | `806333 - high-index lanthanum flint class (vendor unresolved)` | 1.80610 / 33.30 | NBFD15 (trusted Sellmeier) | sellmeier | patents/US20130222925A1.pdf | No reviewed-sidecar hit |
-| L13 (Element L13) | 5 | `497816 - ED fluorophosphate crown class (vendor unresolved)` | 1.49700 / 81.60 | S-FPL51 (trusted Sellmeier) | sellmeier | patents/US20130222925A1.pdf | No reviewed-sidecar hit |
+| L13 (Element L13) | 5 | `497816 - ED fluorophosphate crown class (vendor unresolved)` | 1.49700 / 81.60 | H-FK61 (trusted Sellmeier) | sellmeier | patents/US20130222925A1.pdf | No reviewed-sidecar hit |
 | L15 (Element L15) | 8 | `805255 - dense flint class (vendor unresolved)` | 1.80518 / 25.50 | H-ZF7LA (trusted Sellmeier) | sellmeier | patents/US20130222925A1.pdf | No reviewed-sidecar hit |
 | L16 (Element L16) | 11 | `728283 - dense flint class (vendor unresolved)` | 1.72825 / 28.30 | H-ZF4A (trusted Sellmeier) | sellmeier | patents/US20130222925A1.pdf | No reviewed-sidecar hit |
-| L17 (Element L17) | 12 | `497816 - ED fluorophosphate crown class (vendor unresolved)` | 1.49700 / 81.60 | S-FPL51 (trusted Sellmeier) | sellmeier | patents/US20130222925A1.pdf | No reviewed-sidecar hit |
+| L17 (Element L17) | 12 | `497816 - ED fluorophosphate crown class (vendor unresolved)` | 1.49700 / 81.60 | H-FK61 (trusted Sellmeier) | sellmeier | patents/US20130222925A1.pdf | No reviewed-sidecar hit |
 | L18 (Element L18) | 14 | `806407 - high-index lanthanum glass class (vendor unresolved)` | 1.80610 / 40.70 | NBFD13 (trusted Sellmeier) | sellmeier | patents/US20130222925A1.pdf | No reviewed-sidecar hit |
 | L22 (Element L22) | 18 | `806333 - high-index lanthanum flint class (vendor unresolved)` | 1.80610 / 33.30 | NBFD15 (trusted Sellmeier) | sellmeier | patents/US20130222925A1.pdf | No reviewed-sidecar hit |
 | L23 (Element L23) | 20 | `569560 - barium crown class (vendor unresolved)` | 1.56883 / 56.00 | N-BAK4 (trusted Sellmeier) | sellmeier | patents/US20130222925A1.pdf | No reviewed-sidecar hit |
@@ -1409,7 +1409,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
 |---|---|---|---|---|---|---|---|
-| L11 (Element 1) | 1A | `694532 class (vendor unproven)` | 1.69350 / 53.20 | S-LAL13 (trusted Sellmeier) | sellmeier | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
+| L11 (Element 1) | 1A | `694532 class (vendor unproven)` | 1.69350 / 53.20 | M-LAC130 (trusted Sellmeier) | sellmeier | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
 | L12g (Element 2 (glass body)) | 3 | `Unmatched (780509 class; no defensible current-catalog identity recovered)` | 1.78000 / 50.90 | No catalog entry | abbe | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
 | L13 (Element 4) | 6 | `Unmatched (810372 class; no defensible current-catalog identity recovered)` | 1.81000 / 37.20 | No catalog entry | abbe | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
 | L14 (Element 5) | 8 | `547460 class (soft catalog neighborhood only; vendor unproven)` | 1.54732 / 46.00 | No catalog entry | abbe | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
@@ -1417,31 +1417,31 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L21 (Element 7) | 11 | `567428 class (vendor unproven)` | 1.56732 / 42.80 | S-TIL26 (trusted Sellmeier) | sellmeier | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
 | L22 (Element 8) | 12 | `816466 class (vendor unproven)` | 1.81600 / 46.60 | S-LAH59 (trusted Sellmeier) | sellmeier | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
 | L23 (Element 9) | 14 | `Unmatched (564463 class; no defensible current-catalog identity recovered)` | 1.56406 / 46.30 | No catalog entry | abbe | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
-| L24 (Element 10) | 16 | `497816 ED-crown class (vendor unproven)` | 1.49700 / 81.60 | S-FPL51 (trusted Sellmeier) | sellmeier | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
-| L31 (Element 11) | 19 | `804466 class (vendor unproven)` | 1.80400 / 46.60 | S-LAH65 (trusted Sellmeier) | sellmeier | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
-| L32 (Element 12) | 20 | `847238 dense-flint class (vendor unproven)` | 1.84666 / 23.80 | S-TIH53 (trusted Sellmeier) | sellmeier | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
+| L24 (Element 10) | 16 | `497816 ED-crown class (vendor unproven)` | 1.49700 / 81.60 | H-FK61 (trusted Sellmeier) | sellmeier | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
+| L31 (Element 11) | 19 | `804466 class (vendor unproven)` | 1.80400 / 46.60 | H-ZLAF50D (trusted Sellmeier) | sellmeier | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
+| L32 (Element 12) | 20 | `847238 dense-flint class (vendor unproven)` | 1.84666 / 23.80 | H-ZF52 (trusted Sellmeier) | sellmeier | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
 | L41 (Element 13) | 22 | `439950 extreme-low-dispersion crown class (vendor unproven)` | 1.43875 / 95.00 | S-FPL53 (trusted Sellmeier) | sellmeier | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
-| L42 (Element 14) | 24 | `847238 dense-flint class (vendor unproven)` | 1.84666 / 23.80 | S-TIH53 (trusted Sellmeier) | sellmeier | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
-| L43 (Element 15) | 25 | `497816 ED-crown class (vendor unproven)` | 1.49700 / 81.60 | S-FPL51 (trusted Sellmeier) | sellmeier | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
-| L44 (Element 16) | 27A | `516641 crown class (vendor unproven)` | 1.51633 / 64.10 | K-BK7 (trusted Sellmeier) | sellmeier | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
+| L42 (Element 14) | 24 | `847238 dense-flint class (vendor unproven)` | 1.84666 / 23.80 | H-ZF52 (trusted Sellmeier) | sellmeier | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
+| L43 (Element 15) | 25 | `497816 ED-crown class (vendor unproven)` | 1.49700 / 81.60 | H-FK61 (trusted Sellmeier) | sellmeier | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
+| L44 (Element 16) | 27A | `516641 crown class (vendor unproven)` | 1.51633 / 64.10 | S-BSL7 (trusted Sellmeier) | sellmeier | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
 
 ### [PENTAX SMC DA 17-70mm f/4 AL [IF] SDM](../../src/lens-data/pentax/PentaxDA1770mmf4ALSDM.data.ts) - US 7,804,652 B2
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
 |---|---|---|---|---|---|---|---|
-| L1 (Element 1) | 1 | `847238 — dense flint (vendor unresolved)` | 1.84666 / 23.80 | S-TIH53 (trusted Sellmeier) | sellmeier | patents/US7804652.pdf | No reviewed-sidecar hit |
-| L3 (Element 3) | 4 | `773496 — high-index lanthanum flint (vendor unresolved)` | 1.77250 / 49.60 | S-LAH66 (trusted Sellmeier) | sellmeier | patents/US7804652.pdf | No reviewed-sidecar hit |
-| L4g (Element 4 glass substrate) | 7 | `804466 — high-index lanthanum flint (vendor unresolved)` | 1.80400 / 46.60 | S-LAH65 (trusted Sellmeier) | sellmeier | patents/US7804652.pdf | No reviewed-sidecar hit |
-| L5 (Element 5) | 9 | `804466 — high-index lanthanum flint (vendor unresolved)` | 1.80400 / 46.60 | S-LAH65 (trusted Sellmeier) | sellmeier | patents/US7804652.pdf | No reviewed-sidecar hit |
+| L1 (Element 1) | 1 | `847238 — dense flint (vendor unresolved)` | 1.84666 / 23.80 | H-ZF52 (trusted Sellmeier) | sellmeier | patents/US7804652.pdf | No reviewed-sidecar hit |
+| L3 (Element 3) | 4 | `773496 — high-index lanthanum flint (vendor unresolved)` | 1.77250 / 49.60 | N-LAF34 (trusted Sellmeier) | sellmeier | patents/US7804652.pdf | No reviewed-sidecar hit |
+| L4g (Element 4 glass substrate) | 7 | `804466 — high-index lanthanum flint (vendor unresolved)` | 1.80400 / 46.60 | H-ZLAF50D (trusted Sellmeier) | sellmeier | patents/US7804652.pdf | No reviewed-sidecar hit |
+| L5 (Element 5) | 9 | `804466 — high-index lanthanum flint (vendor unresolved)` | 1.80400 / 46.60 | H-ZLAF50D (trusted Sellmeier) | sellmeier | patents/US7804652.pdf | No reviewed-sidecar hit |
 | L6 (Element 6) | 11 | `834372 — dense lanthanum flint (vendor unresolved)` | 1.83400 / 37.20 | S-LAH60 (trusted Sellmeier) | sellmeier | patents/US7804652.pdf | No reviewed-sidecar hit |
 | L7 (Element 7) | 13 | `593353 — flint (vendor unresolved)` | 1.59270 / 35.30 | S-FTM16 (trusted Sellmeier) | sellmeier | patents/US7804652.pdf | No reviewed-sidecar hit |
-| L8 (Element 8) | 15 | `804466 — high-index lanthanum flint (vendor unresolved)` | 1.80400 / 46.60 | S-LAH65 (trusted Sellmeier) | sellmeier | patents/US7804652.pdf | No reviewed-sidecar hit |
-| L9 (Element 9) | 16 | `785257 — dense flint (vendor unresolved)` | 1.78472 / 25.70 | S-TIH11 (trusted Sellmeier) | sellmeier | patents/US7804652.pdf | No reviewed-sidecar hit |
+| L8 (Element 8) | 15 | `804466 — high-index lanthanum flint (vendor unresolved)` | 1.80400 / 46.60 | H-ZLAF50D (trusted Sellmeier) | sellmeier | patents/US7804652.pdf | No reviewed-sidecar hit |
+| L9 (Element 9) | 16 | `785257 — dense flint (vendor unresolved)` | 1.78472 / 25.70 | H-ZF13 (trusted Sellmeier) | sellmeier | patents/US7804652.pdf | No reviewed-sidecar hit |
 | L10 (Element 10) | 18 | `567428 — light flint (vendor unresolved)` | 1.56732 / 42.80 | S-TIL26 (trusted Sellmeier) | sellmeier | patents/US7804652.pdf | No reviewed-sidecar hit |
 | L11 (Element 11) | 20 | `589612 — barium crown (vendor unresolved)` | 1.58913 / 61.20 | S-BAL35 (trusted Sellmeier) | sellmeier | patents/US7804652.pdf | No reviewed-sidecar hit |
 | L12 (Element 12) | 21 | `805254 — dense flint (vendor unresolved)` | 1.80518 / 25.40 | S-TIH6 (trusted Sellmeier) | sellmeier | patents/US7804652.pdf | No reviewed-sidecar hit |
-| L13 (Element 13) | 23 | `847238 — dense flint (vendor unresolved)` | 1.84666 / 23.80 | S-TIH53 (trusted Sellmeier) | sellmeier | patents/US7804652.pdf | No reviewed-sidecar hit |
-| L14 (Element 14) | 24 | `804466 — high-index lanthanum flint (vendor unresolved)` | 1.80400 / 46.60 | S-LAH65 (trusted Sellmeier) | sellmeier | patents/US7804652.pdf | No reviewed-sidecar hit |
+| L13 (Element 13) | 23 | `847238 — dense flint (vendor unresolved)` | 1.84666 / 23.80 | H-ZF52 (trusted Sellmeier) | sellmeier | patents/US7804652.pdf | No reviewed-sidecar hit |
+| L14 (Element 14) | 24 | `804466 — high-index lanthanum flint (vendor unresolved)` | 1.80400 / 46.60 | H-ZLAF50D (trusted Sellmeier) | sellmeier | patents/US7804652.pdf | No reviewed-sidecar hit |
 | L15 (Element 15) | 26 | `487702 — fluor crown (vendor unresolved)` | 1.48749 / 70.20 | S-FSL5 (trusted Sellmeier) | sellmeier | patents/US7804652.pdf | No reviewed-sidecar hit |
 | L16g (Element 16 glass substrate) | 29 | `805254 — dense flint (vendor unresolved)` | 1.80518 / 25.40 | S-TIH6 (trusted Sellmeier) | sellmeier | patents/US7804652.pdf | No reviewed-sidecar hit |
 | L17 (Element 17) | 30 | `487702 — fluor crown (vendor unresolved)` | 1.48749 / 70.20 | S-FSL5 (trusted Sellmeier) | sellmeier | patents/US7804652.pdf | No reviewed-sidecar hit |
@@ -1504,7 +1504,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---|---|---|---|---|---|---|
 | L21 (Element 6) | 11 | `Dense flint (959/175, vendor uncertain — anomalous dispersion, θgF ≈ 0.660)` | 1.95906 / 17.47 | S-NPH3 (trusted Sellmeier) | sellmeier | patents/JPWO2019187633A1.pdf | No reviewed-sidecar hit |
 | L22 (Element 7) | 12 | `Lanthanum crown (772/496, class S-LAM)` | 1.77250 / 49.62 | E-LASF016 (trusted Sellmeier) | sellmeier | patents/JPWO2019187633A1.pdf | No reviewed-sidecar hit |
-| L31 (Element 9) | 17 | `Titanium flint (741/278, class S-TIH)` | 1.74077 / 27.76 | S-TIH13 (trusted Sellmeier) | sellmeier | patents/JPWO2019187633A1.pdf | No reviewed-sidecar hit |
+| L31 (Element 9) | 17 | `Titanium flint (741/278, class S-TIH)` | 1.74077 / 27.76 | E-FD13 (trusted Sellmeier) | sellmeier | patents/JPWO2019187633A1.pdf | No reviewed-sidecar hit |
 | L43 (Element 13) | 23 | `Lanthanum heavy flint (892/371, class S-LAH)` | 1.89190 / 37.13 | S-LAH92 (trusted Sellmeier) | sellmeier | patents/JPWO2019187633A1.pdf | No reviewed-sidecar hit |
 
 ### [SONY FE 14mm f/1.8 GM](../../src/lens-data/sony/SonyFE14mmf18GM.data.ts) - WO 2021/199923 A1
@@ -1592,7 +1592,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
 |---|---|---|---|---|---|---|---|
 | Lp1 (Element 2) | 3A | `High-index lanthanum crown, 851/401 class (uncertain)` | 1.85134 / 40.10 | M-TAFD305 (trusted Sellmeier) | sellmeier | patents/JPWO2017138250A1.pdf | No reviewed-sidecar hit |
-| Lp3 (Element 6) | 10 | `Fluorophosphate crown, 593/686 class (uncertain) — ED glass` | 1.59282 / 68.60 | FCD505 (trusted Sellmeier) | sellmeier | patents/JPWO2017138250A1.pdf | No reviewed-sidecar hit |
+| Lp3 (Element 6) | 10 | `Fluorophosphate crown, 593/686 class (uncertain) — ED glass` | 1.59282 / 68.60 | FCD515 (trusted Sellmeier) | sellmeier | patents/JPWO2017138250A1.pdf | No reviewed-sidecar hit |
 | L21 (Element 7) | 12 | `Ultra-high-index lanthanum-niobium heavy flint, 995/293 class (uncertain)` | 1.99502 / 29.30 | No catalog entry | abbe | patents/JPWO2017138250A1.pdf | No reviewed-sidecar hit |
 | L22 (Element 8) | 14 | `Ultra-high-dispersion titanium heavy flint, 946/179 class (uncertain)` | 1.94594 / 17.90 | H-ZF88 (trusted Sellmeier) | sellmeier | patents/JPWO2017138250A1.pdf | No reviewed-sidecar hit |
 

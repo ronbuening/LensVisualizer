@@ -33,11 +33,11 @@ import { mkdirSync, writeFileSync } from "node:fs";
 import buildLens from "../../../src/optics/buildLens.js";
 import {
   allEntries,
-  assessCatalogGlassCompatibility,
   evaluateSellmeier,
   GLASS_ND_TOLERANCE,
   GLASS_VD_TOLERANCE,
   LINE_NM,
+  resolveCompatibleGlass,
   resolveGlass,
   type GlassEntry,
 } from "../../../src/optics/glassCatalog.js";
@@ -161,9 +161,9 @@ describe("glass-relabel candidate scan", () => {
         if (surface.nd === 1.0) continue;
         const element = surface.elemId ? elementById.get(surface.elemId) : undefined;
         if (!element?.glass) continue;
+        if (resolveCompatibleGlass(element.glass, surface.nd, element.vd)) continue;
         const entry = resolveGlass(element.glass);
         if (!entry) continue;
-        if (assessCatalogGlassCompatibility(entry, surface.nd, element.vd).compatible) continue;
         mismatches.push({
           filePath,
           lensName: data.name ?? data.key,

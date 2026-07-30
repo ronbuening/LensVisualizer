@@ -6,6 +6,25 @@ import type { GlassEntry } from "../glassCatalogTypes.js";
 
 export const HIKARI_GLASS_ENTRIES: readonly GlassEntry[] = [
   {
+    name: "J-BK7A",
+    vendor: "Hikari",
+    powerSeries: [
+      [2.27110883, 0],
+      [-0.00938988354, 2],
+      [-0.000100277081, 4],
+      [0.0109572221, -2],
+      [0.000120210067, -4],
+      [0.00000331079774, -6],
+      [-0.0000000148235581, -8],
+    ],
+    nd: 1.5168,
+    vd: 64.14,
+    PgF: 0.5357,
+    code6: "517641",
+    source:
+      "Nikon/Hikari Optical Glass Catalog 2023, J-BK7A page; vendor formula-3 power-series coefficients and d-line code.",
+  },
+  {
     name: "J-LAK8",
     vendor: "Hikari",
     powerSeries: [

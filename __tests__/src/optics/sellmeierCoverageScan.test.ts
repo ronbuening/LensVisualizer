@@ -18,6 +18,7 @@ import {
   assessCatalogGlassCompatibility,
   GLASS_ND_TOLERANCE,
   GLASS_VD_TOLERANCE,
+  resolveCompatibleGlass,
   resolveGlass,
 } from "../../../src/optics/glassCatalog.js";
 import type { DispersionQuality } from "../../../src/optics/dispersion.js";
@@ -90,6 +91,9 @@ function formatQualityCounts(missingSurfaces: readonly MissingSurface[]): string
 function describeMissingSurface(surfaceNd: number, element: ElementData | undefined): string {
   if (!element?.glass) return "No glass annotation";
 
+  const compatibleEntry = resolveCompatibleGlass(element.glass, surfaceNd, element.vd);
+  if (compatibleEntry) return "Resolved compatible catalog entry did not reach Sellmeier runtime path";
+
   const entry = resolveGlass(element.glass);
   if (!entry) {
     return isExplicitlyUnmatched(element.glass) ? "Explicit unmatched/proprietary annotation" : "No catalog match";
@@ -160,9 +164,8 @@ describe("Sellmeier coverage scan", () => {
         nonAirSurfaces++;
 
         const element = surface.elemId ? elementById.get(surface.elemId) : undefined;
-        const catalogEntry = element?.glass ? resolveGlass(element.glass) : null;
-        const sellmeierEligible =
-          catalogEntry !== null && assessCatalogGlassCompatibility(catalogEntry, surface.nd, element?.vd).compatible;
+        const catalogEntry = resolveCompatibleGlass(element?.glass, surface.nd, element?.vd);
+        const sellmeierEligible = catalogEntry !== null;
         const quality = L.indexByIdx?.[i]?.quality ?? "missing";
         const trustedChromatic = sellmeierEligible || quality === "lineIndices";
 
@@ -195,29 +198,23 @@ describe("Sellmeier coverage scan", () => {
       const glassElements = L.elements.filter((element) => element.glass).length;
       const fullySellmeierElements = L.elements.filter((element) => {
         if (!element.glass) return false;
-        const catalogEntry = resolveGlass(element.glass);
-        if (!catalogEntry) return false;
         const elementSurfaces = L.S.map((surface, index) => ({ surface, index })).filter(
           ({ surface }) => surface.nd !== 1 && surface.elemId === element.id,
         );
         return (
           elementSurfaces.length > 0 &&
-          elementSurfaces.every(
-            ({ surface }) => assessCatalogGlassCompatibility(catalogEntry, surface.nd, element.vd).compatible,
-          )
+          elementSurfaces.every(({ surface }) => resolveCompatibleGlass(element.glass, surface.nd, element.vd) !== null)
         );
       }).length;
       const fullyTrustedChromaticElements = L.elements.filter((element) => {
         if (!element.glass) return false;
-        const catalogEntry = resolveGlass(element.glass);
         const elementSurfaces = L.S.map((surface, index) => ({ surface, index })).filter(
           ({ surface }) => surface.nd !== 1 && surface.elemId === element.id,
         );
         return (
           elementSurfaces.length > 0 &&
           elementSurfaces.every(({ surface, index }) => {
-            const sellmeierEligible =
-              catalogEntry !== null && assessCatalogGlassCompatibility(catalogEntry, surface.nd, element.vd).compatible;
+            const sellmeierEligible = resolveCompatibleGlass(element.glass, surface.nd, element.vd) !== null;
             return sellmeierEligible || L.indexByIdx?.[index]?.quality === "lineIndices";
           })
         );

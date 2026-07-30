@@ -20,6 +20,7 @@ import {
   GLASS_ND_TOLERANCE,
   GLASS_VD_TOLERANCE,
   LINE_NM,
+  resolveCompatibleGlass,
   resolveGlass,
   type GlassEntry,
 } from "../../../src/optics/glassCatalog.js";
@@ -208,12 +209,12 @@ describe("glass relabel by lens scan", () => {
 
         const element = surface.elemId ? elementById.get(surface.elemId) : undefined;
         if (!element?.glass) continue;
+        if (resolveCompatibleGlass(element.glass, surface.nd, element.vd)) continue;
 
         const entry = resolveGlass(element.glass);
         if (!entry) continue;
 
         const compatibility = assessCatalogGlassCompatibility(entry, surface.nd, element.vd);
-        if (compatibility.compatible) continue;
         const catalogNd = compatibility.catalogNd;
         const catalogDiff = compatibility.ndDiff;
 

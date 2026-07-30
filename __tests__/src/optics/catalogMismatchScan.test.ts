@@ -27,6 +27,7 @@ import {
   assessCatalogGlassCompatibility,
   GLASS_ND_TOLERANCE,
   GLASS_VD_TOLERANCE,
+  resolveCompatibleGlass,
   resolveGlass,
 } from "../../../src/optics/glassCatalog.js";
 import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
@@ -99,6 +100,12 @@ describe("catalog-mismatch scan", () => {
         const element = surface.elemId ? elementById.get(surface.elemId) : undefined;
         if (!element?.glass) continue;
         totalGlassDeclarations++;
+
+        const compatibleEntry = resolveCompatibleGlass(element.glass, surface.nd, element.vd);
+        if (compatibleEntry) {
+          totalCatalogResolved++;
+          continue;
+        }
 
         const entry = resolveGlass(element.glass);
         if (!entry) continue;
@@ -189,7 +196,7 @@ describe("catalog-mismatch scan", () => {
     if (mismatches.length === 0) {
       lines.push("## No mismatches");
       lines.push("");
-      lines.push("Every catalog-resolved surface agrees with its stored `nd` within tolerance. ✓");
+      lines.push("Every catalog-resolved surface agrees with its stored `nd` and `νd` within tolerance. ✓");
     } else {
       lines.push("## Mismatches by lens");
       lines.push("");

@@ -5,6 +5,59 @@
 import type { GlassEntry } from "../glassCatalogTypes.js";
 
 export const SUMITA_GLASS_ENTRIES: readonly GlassEntry[] = [
+  /* Phase 45: exact named/code opportunities from SUMITA's official
+   * 2025-11-07 all-glass Zemax catalog, including discontinued types.
+   */
+  {
+    name: "K-LaFK50",
+    vendor: "Sumita",
+    polynomial: [3.070131, -0.012037535, 0.023978866, 0.00056153238, -0.000010529871, 0.0000011710915],
+    nd: 1.772,
+    vd: 50,
+    code6: "772500",
+    source:
+      "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor formula-3 polynomial for K-LaFK50.",
+  },
+  {
+    name: "K-BaSF5",
+    vendor: "Sumita",
+    polynomial: [2.5165762, -0.01183779, 0.017631594, 0.00095834052, -0.000067623905, 0.0000062543393],
+    nd: 1.60323,
+    vd: 42.5,
+    code6: "603425",
+    source:
+      "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor formula-3 polynomial for K-BaSF5.",
+  },
+  {
+    name: "K-PSKn2",
+    vendor: "Sumita",
+    polynomial: [2.578886, -0.010381408, 0.014233563, 0.00012483021, 0.000017477672, -0.00000096204805],
+    nd: 1.618,
+    vd: 63.4,
+    code6: "618634",
+    source:
+      "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor formula-3 polynomial for K-PSKn2.",
+  },
+  {
+    name: "K-SSK1",
+    vendor: "Sumita",
+    polynomial: [2.5692173, -0.010022582, 0.016067095, 0.00039868115, -0.000015698671, 0.0000011774033],
+    nd: 1.6172,
+    vd: 54,
+    code6: "617540",
+    source:
+      "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor formula-3 polynomial for K-SSK1.",
+  },
+  {
+    name: "K-SSK9",
+    vendor: "Sumita",
+    polynomial: [2.5737917, -0.0093452955, 0.017645209, 0.00035765081, 0.0000011614434, 0.00000116034],
+    nd: 1.62012,
+    vd: 49.8,
+    code6: "620498",
+    source:
+      "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor formula-3 polynomial for K-SSK9.",
+  },
   {
     name: "K-LaK14",
     vendor: "Sumita",

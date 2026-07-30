@@ -22,11 +22,11 @@ import buildLens from "../../../src/optics/buildLens.js";
 import type { DispersionQuality } from "../../../src/optics/dispersion.js";
 import {
   allEntries,
-  assessCatalogGlassCompatibility,
   evaluateSellmeier,
   GLASS_ND_TOLERANCE,
   GLASS_VD_TOLERANCE,
   LINE_NM,
+  resolveCompatibleGlass,
   resolveGlass,
   type GlassEntry,
 } from "../../../src/optics/glassCatalog.js";
@@ -89,6 +89,7 @@ interface CoverageOpportunity {
   lensName: string;
   visible: boolean;
   patentNumber: string | null;
+  localPatent: PatentMatch;
   filePath: string;
   sellmeierSurfaces: number;
   trustedChromaticSurfaces: number;
@@ -230,6 +231,23 @@ function findLocalPatent(patentNumber: string | null, files: readonly string[]):
     path: `${PATENTS_DIR}/${best.file}`,
     status: "Matched untracked local patent PDF",
   };
+}
+
+function escapeTableCell(value: string): string {
+  return value.replace(/\|/g, "\\|").replace(/\r?\n/g, " ");
+}
+
+function missingSurfaceSummary(rows: readonly MissingSurface[]): string {
+  return rows
+    .map(
+      (row) =>
+        `${escapeTableCell(row.label)} (${escapeTableCell(row.elementLabel)}: \`${escapeTableCell(row.glassString || "no glass annotation")}\`)`,
+    )
+    .join("<br>");
+}
+
+function localPatentSummary(match: PatentMatch): string {
+  return match.path ? `[PDF](../../${match.path})` : escapeTableCell(match.status);
 }
 
 function extractGlassCode(annotation: string): EmbeddedCode | null {
@@ -456,9 +474,9 @@ describe("glass coverage opportunities scan", () => {
         totalNonAirSurfaces++;
 
         const element = surface.elemId ? elementById.get(surface.elemId) : undefined;
+        const compatibleEntry = resolveCompatibleGlass(element?.glass, surface.nd, element?.vd);
         const entry = element?.glass ? resolveGlass(element.glass) : null;
-        const sellmeierEligible =
-          entry !== null && assessCatalogGlassCompatibility(entry, surface.nd, element?.vd).compatible;
+        const sellmeierEligible = compatibleEntry !== null;
         const quality = L.indexByIdx?.[i]?.quality ?? "missing";
         const trustedChromatic = sellmeierEligible || quality === "lineIndices";
 
@@ -520,6 +538,7 @@ describe("glass coverage opportunities scan", () => {
         lensName: data.name ?? data.key,
         visible,
         patentNumber,
+        localPatent,
         filePath,
         sellmeierSurfaces,
         trustedChromaticSurfaces,
@@ -536,11 +555,9 @@ describe("glass coverage opportunities scan", () => {
         const qualities = elementSurfaces.map(({ index }) => L.indexByIdx?.[index]?.quality ?? "constant");
         const quality = [...new Set(qualities)].join(", ") || "no traced surfaces";
         const catalogEntry = resolveGlass(element.glass);
-        const hasSellmeierEligibleSurface =
-          catalogEntry !== null &&
-          elementSurfaces.some(({ surface }) => {
-            return assessCatalogGlassCompatibility(catalogEntry, surface.nd, element.vd).compatible;
-          });
+        const hasSellmeierEligibleSurface = elementSurfaces.some(
+          ({ surface }) => resolveCompatibleGlass(element.glass, surface.nd, element.vd) !== null,
+        );
 
         if (isCodeOnlyGlassAnnotation(element.glass)) {
           if (hasSellmeierEligibleSurface) continue;
@@ -629,6 +646,11 @@ describe("glass coverage opportunities scan", () => {
 
     const proprietaryRows = parseTierAProprietaryRows(patentFiles);
     const matchedRelabels = relabels.filter((row) => row.localPatent.path !== null).length;
+    const namedElementCount = new Set(
+      namedTokenRows.map(
+        (row) => `${row.filePath}|${row.elementName}|${row.glassString}|${row.storedNd}|${row.storedVd ?? ""}`,
+      ),
+    ).size;
 
     // Without the untracked local patents/ inventory, a rewrite would replace every
     // localPatentStatus with environment-dependent "Missing ..." churn and reorder
@@ -664,7 +686,9 @@ describe("glass coverage opportunities scan", () => {
     );
     lines.push(`- **${matchedRelabels}** Sweep 1 surfaces have a matching untracked local patent PDF`);
     lines.push(`- **${codeRows.length}** code-only missing-Sellmeier elements in Sweep 2`);
-    lines.push(`- **${namedTokenRows.length}** unresolved named-token elements in Sweep 2B`);
+    lines.push(
+      `- **${namedElementCount}** unresolved named-token elements in Sweep 2B, producing **${namedTokenRows.length}** token occurrences across **${namedTokenFrequency.size}** distinct tokens`,
+    );
     lines.push(`- **${proprietaryRows.length}** Tier A proprietary backfill rows in Sweep 3`);
     lines.push("");
 
@@ -699,12 +723,12 @@ describe("glass coverage opportunities scan", () => {
     );
     lines.push("");
     lines.push(
-      "| Lens | Trusted chromatic coverage | Strict Sellmeier coverage | Missing trusted surfaces | Missing quality mix |",
+      "| Lens | Patent | Local source | Trusted chromatic coverage | Strict Sellmeier coverage | Missing trusted surfaces | Missing surface details | Missing quality mix |",
     );
-    lines.push("|---|---:|---:|---:|---|");
+    lines.push("|---|---|---|---:|---:|---:|---|---|");
     for (const row of visibleNearComplete) {
       lines.push(
-        `| [${row.lensName}](../../${row.filePath}) | ${formatPercent(row.trustedChromaticSurfaces, row.nonAirSurfaces)} (${row.trustedChromaticSurfaces}/${row.nonAirSurfaces}) | ${formatPercent(row.sellmeierSurfaces, row.nonAirSurfaces)} (${row.sellmeierSurfaces}/${row.nonAirSurfaces}) | ${row.missingTrustedSurfaces.length} | ${qualityMix(row.missingTrustedSurfaces)} |`,
+        `| [${row.lensName}](../../${row.filePath}) | ${row.patentNumber ?? ""} | ${localPatentSummary(row.localPatent)} | ${formatPercent(row.trustedChromaticSurfaces, row.nonAirSurfaces)} (${row.trustedChromaticSurfaces}/${row.nonAirSurfaces}) | ${formatPercent(row.sellmeierSurfaces, row.nonAirSurfaces)} (${row.sellmeierSurfaces}/${row.nonAirSurfaces}) | ${row.missingTrustedSurfaces.length} | ${missingSurfaceSummary(row.missingTrustedSurfaces)} | ${qualityMix(row.missingTrustedSurfaces)} |`,
       );
     }
     lines.push("");
@@ -730,6 +754,12 @@ describe("glass coverage opportunities scan", () => {
         `| ${code} | ${rows.length} | ${lensCount} | ${summarizePatentStatus(rows)} | ${summarizeReviewedStatus(rows)} | ${reps} |`,
       );
     }
+    if (sortedCodeFrequency.length > TOP_CODE_COUNT) {
+      lines.push("");
+      lines.push(
+        `Showing the top ${TOP_CODE_COUNT} of ${sortedCodeFrequency.length} distinct codes; use the dedicated six-digit reports for the complete queue.`,
+      );
+    }
     lines.push("");
 
     lines.push("## Sweep 2B - Named Tokens Missing Catalog Resolution");
@@ -738,7 +768,7 @@ describe("glass coverage opportunities scan", () => {
       "These unresolved catalog-style labels are often better first catalog targets than already-reviewed proprietary six-digit rows.",
     );
     lines.push("");
-    lines.push("| Token | Elements | Lens files | localPatentStatus | Representative rows |");
+    lines.push("| Token | Token occurrences | Lens files | localPatentStatus | Representative rows |");
     lines.push("|---|---:|---:|---|---|");
     for (const [token, rows] of sortedNamedTokenFrequency.slice(0, TOP_NAMED_TOKEN_COUNT)) {
       const lensCount = new Set(rows.map((row) => row.filePath)).size;
@@ -750,6 +780,12 @@ describe("glass coverage opportunities scan", () => {
         )
         .join("<br>");
       lines.push(`| ${token} | ${rows.length} | ${lensCount} | ${summarizePatentStatus(rows)} | ${reps} |`);
+    }
+    if (sortedNamedTokenFrequency.length > TOP_NAMED_TOKEN_COUNT) {
+      lines.push("");
+      lines.push(
+        `Showing the top ${TOP_NAMED_TOKEN_COUNT} of ${sortedNamedTokenFrequency.length} distinct named tokens.`,
+      );
     }
     lines.push("");
 

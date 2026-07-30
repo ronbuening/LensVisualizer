@@ -22,15 +22,29 @@ This file tracks the second bucket plus any cases from the first bucket that nee
 
 ## Current Status (July 2026, current catalog)
 
-- Catalog: **407 verified entries** in `src/optics/glassCatalogData.ts`.
+- Catalog: **414 verified entries** in `src/optics/glassCatalogData.ts`.
 - `catalog-mismatches.generated.md` and `glass-relabel-by-lens.generated.md` report **0** remaining
   dispersion-coordinate mismatches across **0** lens files.
-- `sellmeier-coverage.generated.md` reports **488** lenses, **5360** non-air surfaces, **4572** strict catalog
-  Sellmeier surfaces (**85.3%**), and **4588** trusted chromatic surfaces (**85.6%**).
-- **202** lenses are fully covered by strict Sellmeier data and **208** are fully covered by trusted chromatic data.
+- `sellmeier-coverage.generated.md` reports **488** lenses, **5360** non-air surfaces, **4581** strict catalog
+  Sellmeier surfaces (**85.5%**), and **4595** trusted chromatic surfaces (**85.7%**).
+- **205** lenses are fully covered by strict Sellmeier data and **210** are fully covered by trusted chromatic data.
 - `unresolvedGlassScan`: use the generated report for the current count; the total includes honest proprietary and
   family-level annotations as well as actionable named tokens.
 - The Phase 2/3 resolved tables below are historical audit trail. Use the generated reports above for the current queue before starting new relabel work; for patent-by-patent execution, start from [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md).
+
+## Resolved Phase 45 — July 2026 resolver hardening and sourced coverage
+
+The runtime resolver now examines every explicit name, alias, and six-digit-code candidate in a glass annotation
+instead of rejecting the annotation solely because its first token is incompatible. Duplicate-code rows are
+disambiguated using vendor context and the authored nd/νd coordinates while the legacy single-result resolver remains
+deterministic for existing callers.
+
+Seven exact vendor rows were added from first-party coefficient sources, and OHARA S-BSL7's coefficients/code were
+corrected. These changes added nine strict Sellmeier surfaces and seven trusted chromatic surfaces, completed three
+additional strict lenses and two additional trusted lenses, and left the mismatch queue at zero. The separate
+code-only queue now contains 307 missing-Sellmeier elements. The named-token queue is reported more precisely as 76
+unresolved elements producing 78 token occurrences across 66 distinct tokens; the old 84 figure counted token
+occurrences as though they were elements.
 
 ## Resolved Phase 44 — July 2026 complete mismatch audit
 
@@ -50,8 +64,8 @@ Every changed lens has a synchronized `*.analysis.md` sidecar and dated `*.audit
 old/new label, patent example or table, and retained R/d/nd/νd evidence. No prescription geometry changed.
 
 Remaining work is no longer a mismatch blocker. The separate coverage reports still contain honest code-only and
-unresolved-token opportunities (currently 309 code-only missing-Sellmeier elements and 84 unresolved named-token
-elements), which require new coefficient sources or patent line-index evidence rather than relabeling guesses.
+unresolved-token opportunities, which require new coefficient sources or patent line-index evidence rather than
+relabeling guesses. Use the Current Status and Phase 45 sections above for current counts.
 
 ## Resolved Phase 43 — July 2026 catalog expansion and stricter matching
 

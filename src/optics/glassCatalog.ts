@@ -11,12 +11,12 @@
  *   n²(λ) = 1 + B1·λ²/(λ²−C1) + B2·λ²/(λ²−C2) + B3·λ²/(λ²−C3)
  *   where λ is in micrometres and C1..C3 are in micrometres².
  *
- * Coverage status: current source count 407 entries. See agent_docs/glass-catalog-buildout.md
+ * Coverage status: current source count 414 entries. See agent_docs/glass-catalog-buildout.md
  * for the addition history and sourcing playbook.
  *
  * All coefficients are vendor-published physical measurements. Each entry
- * cites its source. Verify by computing n at 587.5618 nm (d-line) and checking
- * agreement with the listed `nd` to within ~1e-5.
+ * cites its source. Catalog validation checks d-line index, Abbe number,
+ * spectral ordering, and the encoded coordinate when a six-digit code exists.
  */
 
 import { ALIASES } from "./glassCatalogAliases.js";
@@ -29,6 +29,12 @@ export { LINE_NM } from "./spectralLines.js";
 
 /** Maximum accepted d-line index delta between authored lens data and a catalog entry. */
 export const GLASS_ND_TOLERANCE = 3e-3;
+
+/** Maximum accepted catalog d-line round-trip error. */
+export const GLASS_CATALOG_ND_TOLERANCE = 1e-4;
+
+/** Maximum accepted catalog Abbe-number round-trip error. */
+export const GLASS_CATALOG_VD_TOLERANCE = 0.15;
 
 /**
  * Maximum accepted Abbe-number delta between authored lens data and a catalog entry.
@@ -72,6 +78,14 @@ export function evaluateSellmeier(entry: GlassEntry, lambdaNm: number): number {
   return Math.sqrt(n2);
 }
 
+/** Compute the d-line Abbe number directly from an entry's published dispersion coefficients. */
+export function evaluateCatalogAbbeNumber(entry: GlassEntry): number {
+  const nC = evaluateSellmeier(entry, LINE_NM.C);
+  const nd = evaluateSellmeier(entry, LINE_NM.d);
+  const nF = evaluateSellmeier(entry, LINE_NM.F);
+  return (nd - 1) / (nF - nC);
+}
+
 /**
  * Check whether a catalog glass is compatible with an authored (nd, νd) pair.
  *
@@ -96,23 +110,61 @@ export function assessCatalogGlassCompatibility(
 }
 
 /**
- * Validate that every catalog entry's Sellmeier coefficients reproduce the
- * stated nd at 587.5618 nm to within `tolerance`. Throws on the first failure
- * with a diagnostic message naming the offending entry.
+ * Validate that every catalog entry's coefficients reproduce the stated nd and
+ * νd, produce normally ordered visible-line indices, and agree with any listed
+ * six-digit coordinate. Throws on the first failure with a diagnostic message
+ * naming the offending entry.
  *
  * Run from a unit test (and optionally at module-load in development) so a bad
  * transcription is caught immediately rather than silently distorting traces.
  */
-export function assertCatalogConsistent(tolerance = 1e-4): void {
+export function assertCatalogConsistent(
+  ndTolerance = GLASS_CATALOG_ND_TOLERANCE,
+  vdTolerance = GLASS_CATALOG_VD_TOLERANCE,
+): void {
   for (const entry of RAW_CATALOG) {
-    const computed = evaluateSellmeier(entry, LINE_NM.d);
-    const diff = computed - entry.nd;
-    if (Math.abs(diff) > tolerance) {
+    const nC = evaluateSellmeier(entry, LINE_NM.C);
+    const nd = evaluateSellmeier(entry, LINE_NM.d);
+    const nF = evaluateSellmeier(entry, LINE_NM.F);
+    const ng = evaluateSellmeier(entry, LINE_NM.g);
+    const indices = [nC, nd, nF, ng];
+    if (!indices.every((value) => Number.isFinite(value) && value > 1) || !(nC < nd && nd < nF && nF < ng)) {
       throw new Error(
-        `Glass catalog inconsistency: ${entry.name} (${entry.vendor}) — Sellmeier-computed nd=${computed.toFixed(6)} ` +
-          `disagrees with listed nd=${entry.nd} by ${diff.toExponential(2)} (tolerance ${tolerance}). ` +
+        `Glass catalog inconsistency: ${entry.name} (${entry.vendor}) does not produce finite, normally ordered ` +
+          `C/d/F/g indices. Re-check the coefficient formula and wavelength units: ${entry.source}`,
+      );
+    }
+
+    const ndDiff = nd - entry.nd;
+    if (Math.abs(ndDiff) > ndTolerance) {
+      throw new Error(
+        `Glass catalog inconsistency: ${entry.name} (${entry.vendor}) — computed nd=${nd.toFixed(6)} ` +
+          `disagrees with listed nd=${entry.nd} by ${ndDiff.toExponential(2)} (tolerance ${ndTolerance}). ` +
           `Either the coefficients or the listed nd is wrong; re-check the source: ${entry.source}`,
       );
+    }
+
+    const computedVd = (nd - 1) / (nF - nC);
+    const vdDiff = computedVd - entry.vd;
+    if (Math.abs(vdDiff) > vdTolerance) {
+      throw new Error(
+        `Glass catalog inconsistency: ${entry.name} (${entry.vendor}) — computed vd=${computedVd.toFixed(4)} ` +
+          `disagrees with listed vd=${entry.vd} by ${vdDiff.toFixed(4)} (tolerance ${vdTolerance}). ` +
+          `Either the coefficients or the listed vd is wrong; re-check the source: ${entry.source}`,
+      );
+    }
+
+    if (entry.code6) {
+      const encodedIndex = Number(entry.code6.slice(0, 3));
+      const encodedNd = (encodedIndex < 300 ? 2 : 1) + encodedIndex / 1000;
+      const encodedVd = Number(entry.code6.slice(3)) / 10;
+      if (Math.abs(entry.nd - encodedNd) > 0.0015 || Math.abs(entry.vd - encodedVd) > 0.15) {
+        throw new Error(
+          `Glass catalog inconsistency: ${entry.name} (${entry.vendor}) — code ${entry.code6} encodes ` +
+            `approximately ${encodedNd.toFixed(3)} / ${encodedVd.toFixed(1)}, not listed ${entry.nd} / ${entry.vd}. ` +
+            `Re-check the code or catalog coordinates: ${entry.source}`,
+        );
+      }
     }
   }
 }
@@ -132,8 +184,154 @@ const CODE6_INDEX: ReadonlyMap<string, string> = (() => {
   return map;
 })();
 
+/** All vendor rows for each six-digit coordinate, including intentional cross-vendor duplicates. */
+const CODE6_CANDIDATES: ReadonlyMap<string, readonly GlassEntry[]> = (() => {
+  const map = new Map<string, GlassEntry[]>();
+  for (const entry of RAW_CATALOG) {
+    if (!entry.code6) continue;
+    map.set(entry.code6, [...(map.get(entry.code6) ?? []), entry]);
+  }
+  return map;
+})();
+
 function escapeRegExp(value: string): string {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function glassTokens(glassString: string): string[] {
+  const tokens = [...(glassString.match(/[A-Za-z][A-Za-z0-9-]*\d[A-Za-z0-9-]*|\d{6}/g) ?? [])];
+  for (const match of glassString.matchAll(/(^|[^\d])(\d{3})\s*[/-]\s*(\d{3})(?!\d)/g)) {
+    tokens.push(`${match[2]}${match[3]}`);
+  }
+  const upperGlassString = glassString.toUpperCase();
+  for (const alias of ALIASES.keys()) {
+    if (tokens.some((token) => token.toUpperCase() === alias)) continue;
+    if (new RegExp(`(^|[^A-Z0-9-])${escapeRegExp(alias)}(?=$|[^A-Z0-9-])`).test(upperGlassString)) {
+      tokens.push(alias);
+    }
+  }
+  return tokens;
+}
+
+interface GlassCandidateMatch {
+  readonly entry: GlassEntry;
+  readonly sourceRank: number;
+  readonly tokenRank: number;
+  readonly vendorRank: number;
+  readonly legacyPreferenceRank: number;
+}
+
+function candidateMatches(glassString: string): GlassCandidateMatch[] {
+  if (/\b(unmatched|unknown|proprietary|unidentified)\b/i.test(glassString)) return [];
+
+  const upperGlassString = glassString.toUpperCase();
+  const mentionedVendors = new Set(
+    RAW_CATALOG.map((entry) => entry.vendor).filter((vendor) => upperGlassString.includes(vendor.toUpperCase())),
+  );
+  const bestByName = new Map<string, GlassCandidateMatch>();
+  const add = (entry: GlassEntry, sourceRank: number, tokenRank: number, legacyPreferenceRank = 0): void => {
+    const match: GlassCandidateMatch = {
+      entry,
+      sourceRank,
+      tokenRank,
+      vendorRank: mentionedVendors.size === 0 || mentionedVendors.has(entry.vendor) ? 0 : 1,
+      legacyPreferenceRank,
+    };
+    const existing = bestByName.get(entry.name);
+    if (
+      !existing ||
+      match.sourceRank < existing.sourceRank ||
+      (match.sourceRank === existing.sourceRank && match.vendorRank < existing.vendorRank) ||
+      (match.sourceRank === existing.sourceRank &&
+        match.vendorRank === existing.vendorRank &&
+        match.tokenRank < existing.tokenRank) ||
+      (match.sourceRank === existing.sourceRank &&
+        match.vendorRank === existing.vendorRank &&
+        match.tokenRank === existing.tokenRank &&
+        match.legacyPreferenceRank < existing.legacyPreferenceRank)
+    ) {
+      bestByName.set(entry.name, match);
+    }
+  };
+
+  for (const [tokenRank, tokRaw] of glassTokens(glassString).entries()) {
+    const tok = tokRaw.toUpperCase();
+    const candidates = [tok];
+    for (let hyphen = tok.lastIndexOf("-"); hyphen > 0; hyphen = tok.lastIndexOf("-", hyphen - 1)) {
+      candidates.push(tok.slice(0, hyphen));
+    }
+    for (const candidate of candidates) {
+      const direct = CATALOG.get(candidate);
+      if (direct) add(direct, 0, tokenRank);
+      const aliased = ALIASES.get(candidate);
+      if (aliased) {
+        const entry = CATALOG.get(aliased.toUpperCase());
+        if (entry) add(entry, 1, tokenRank);
+      }
+    }
+    if (/^\d{6}$/.test(tok)) {
+      const codeEntries = CODE6_CANDIDATES.get(tok) ?? [];
+      const preferredName = CODE6_INDEX.get(tok);
+      for (const entry of codeEntries) {
+        add(entry, 2, tokenRank, entry.name === preferredName ? 0 : 1);
+      }
+    }
+  }
+
+  return [...bestByName.values()];
+}
+
+/**
+ * Resolve every catalog candidate named or encoded by a real-world glass string.
+ *
+ * This is useful for diagnostics that need to explain ambiguity. Runtime callers
+ * should normally use `resolveCompatibleGlass`, which also considers authored
+ * optical coordinates.
+ */
+export function resolveGlassCandidates(glassString: string | undefined): readonly GlassEntry[] {
+  if (!glassString) return [];
+  return candidateMatches(glassString)
+    .sort(
+      (a, b) =>
+        a.sourceRank - b.sourceRank ||
+        a.vendorRank - b.vendorRank ||
+        a.tokenRank - b.tokenRank ||
+        a.legacyPreferenceRank - b.legacyPreferenceRank ||
+        a.entry.name.localeCompare(b.entry.name),
+    )
+    .map(({ entry }) => entry);
+}
+
+/**
+ * Resolve the best catalog row that is compatible with the authored d-line coordinates.
+ *
+ * Unlike `resolveGlass`, this checks every explicit name, alias, and duplicate
+ * six-digit-code candidate. It therefore avoids discarding a valid later token
+ * merely because an earlier equivalent or class label is incompatible.
+ */
+export function resolveCompatibleGlass(
+  glassString: string | undefined,
+  storedNd: number,
+  storedVd: number | undefined,
+): GlassEntry | null {
+  if (!glassString) return null;
+  const compatible = candidateMatches(glassString)
+    .map((match) => ({
+      ...match,
+      compatibility: assessCatalogGlassCompatibility(match.entry, storedNd, storedVd),
+    }))
+    .filter(({ compatibility }) => compatibility.compatible)
+    .sort(
+      (a, b) =>
+        a.sourceRank - b.sourceRank ||
+        a.vendorRank - b.vendorRank ||
+        Math.abs(a.compatibility.ndDiff) - Math.abs(b.compatibility.ndDiff) ||
+        Math.abs(a.compatibility.vdDiff ?? 0) - Math.abs(b.compatibility.vdDiff ?? 0) ||
+        a.tokenRank - b.tokenRank ||
+        a.legacyPreferenceRank - b.legacyPreferenceRank ||
+        a.entry.name.localeCompare(b.entry.name),
+    );
+  return compatible[0]?.entry ?? null;
 }
 
 /**
@@ -160,17 +358,7 @@ export function resolveGlass(glassString: string | undefined): GlassEntry | null
 
   // Pull out candidate tokens. We accept hyphenated catalog names like "S-FPL51"
   // and bare names like "BK7", plus 6-digit Schott codes.
-  const tokens: string[] = [...(glassString.match(/[A-Za-z][A-Za-z0-9-]*\d[A-Za-z0-9-]*|\d{6}/g) ?? [])];
-  for (const match of glassString.matchAll(/(^|[^\d])(\d{3})\s*[/-]\s*(\d{3})(?!\d)/g)) {
-    tokens.push(`${match[2]}${match[3]}`);
-  }
-  const upperGlassString = glassString.toUpperCase();
-  for (const alias of ALIASES.keys()) {
-    if (tokens.some((token) => token.toUpperCase() === alias)) continue;
-    if (new RegExp(`(^|[^A-Z0-9-])${escapeRegExp(alias)}(?=$|[^A-Z0-9-])`).test(upperGlassString)) {
-      tokens.push(alias);
-    }
-  }
+  const tokens = glassTokens(glassString);
   for (const tokRaw of tokens) {
     const tok = tokRaw.toUpperCase();
     const candidates = [tok];

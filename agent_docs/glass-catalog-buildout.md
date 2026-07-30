@@ -7,7 +7,16 @@ available, it falls back to partial measured `nC`/`nF` line indices, dPgF-correc
 approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **407 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **414 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+
+The July 29, 2026 Phase 45 pass added seven direct vendor rows: Hikari J-BK7A; SUMITA K-LaFK50, K-BaSF5,
+K-PSKn2, K-SSK1, and K-SSK9; and CDGM D-K59. It also corrected the pre-existing OHARA S-BSL7 coefficients and
+six-digit code against OHARA's official 25-04 datasheet. Runtime matching now considers every name, alias, and
+duplicate-code candidate in an annotation and chooses only a coordinate-compatible row, with vendor context and
+coordinate residuals used to break ambiguity. Catalog validation now checks normal C/d/F/g index ordering, coefficient
+round trips for both nd and νd, and consistency between each six-digit code and its listed coordinates. Strict
+Sellmeier coverage increased from 4572 to 4581 surfaces, trusted coverage from 4588 to 4595 surfaces, fully strict
+lenses from 202 to 205, and fully trusted lenses from 208 to 210.
 
 The July 29, 2026 Phase 43 pass added 33 exact records from the official HOYA 2026-07-07 and OHARA 2026-07-01
 all-products Zemax catalogs. The HOYA additions are M-TAF101, TAC8, LAC14, M-BACD12, M-TAF105, M-TAF1, FD60,
@@ -50,12 +59,15 @@ three files only from a checkout where `patents/` is populated; elsewhere the ch
 
 The first cut of the catalog had nine entries. Six were wrong: when the Sellmeier coefficients were validated against the listed `nd` at 587.5618 nm via `assertCatalogConsistent`, four diverged by 5e-3 to 2e-2 — well outside any reasonable transcription tolerance. The values came from memory and were unreliable.
 
-The conclusion drove the design: **every entry must round-trip through `assertCatalogConsistent` (tolerance 1e-4) before being committed.** This is enforced by the unit test `every entry's Sellmeier coefficients reproduce the listed nd within 1e-4` in [__tests__/src/optics/dispersion.test.ts](../__tests__/src/optics/dispersion.test.ts). A bad transcription fails CI.
+The conclusion drove the design: **every entry must round-trip through `assertCatalogConsistent` before being
+committed.** The validator requires normally ordered finite C/d/F/g indices, nd agreement within 1e-4, νd agreement
+within 0.15, and a six-digit code consistent with the listed nd/νd when one is present. These checks are enforced in
+[__tests__/src/optics/dispersion.test.ts](../__tests__/src/optics/dispersion.test.ts), so a bad transcription fails CI.
 
 ## Prioritized Glasses to Add
 
 This original priority table was derived from `glass:` declarations when the catalog was much smaller. Keep it as a
-historical prioritization aid; use the generated reports above for the current 296-lens queue. Asterisks mark entries
+historical prioritization aid; use the generated reports above for the current 488-lens queue. Asterisks mark entries
 already in the catalog.
 
 | Glass | Lens-element occurrences | Vendor | Notes |
@@ -640,7 +652,9 @@ The 1e-4 round-trip test will catch any transcription error — never relax the 
    ```bash
    npm test -- dispersion.test.ts
    ```
-   The first test (`every entry's Sellmeier coefficients reproduce the listed nd within 1e-4`) fails immediately on a bad transcription, naming the offending glass and the diff. Tighten the value or fix the source — never relax the tolerance.
+   The catalog-integrity test fails immediately on invalid spectral ordering, an nd/νd coefficient round-trip error,
+   or a six-digit code that does not encode the listed coordinates. Fix the transcription or source — never relax the
+   tolerance to admit a bad row.
 
 6. **If the glass has a common informal alias** (`BSC7` for `S-BSL7`, `BK7` for `N-BK7`) add a structured entry to
    `ALIAS_RECORDS` in [src/optics/glassCatalogAliases.ts](../src/optics/glassCatalogAliases.ts), including the alias

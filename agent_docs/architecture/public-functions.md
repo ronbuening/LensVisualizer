@@ -78,7 +78,7 @@ Specialized optics modules are also public when work is in that domain:
 | --- | --- | --- |
 | `src/optics/projection.ts` | `resolveProjection`, `isFisheyeProjection`, `projectionImageHeightForAngle`, `projectionFieldAngleForImageHeight` | Projection model resolution and ideal image-height mapping. |
 | `src/optics/projection.ts` | `projectionLaunchSlopeForField`, `projectionLaunchVectorForFieldAngles`, `launchSurfaceForFieldDeg` | Safe field launch logic, including fisheye/vector launches. |
-| `src/optics/glassCatalog.ts` | `resolveGlass`, `evaluateSellmeier`, `allEntries`, `catalogSize`, `assertCatalogConsistent` | Glass lookup and Sellmeier evaluation. |
+| `src/optics/glassCatalog.ts` | `resolveGlass`, `resolveGlassCandidates`, `resolveCompatibleGlass`, `evaluateSellmeier`, `evaluateCatalogAbbeNumber`, `allEntries`, `catalogSize`, `assertCatalogConsistent` | Glass lookup, coordinate-aware resolution, and dispersion evaluation. |
 | `src/optics/dispersion.ts` | `makeSurfaceDispersion`, `buildSurfaceDispersionIndex`, `indexAt`, `summarizeDispersionQuality` | Per-surface chromatic index resolution. |
 | `src/optics/lensMovement.ts` | `ZERO_LENS_MOVEMENT`, `clampLensMovement`, `createLensMovementTransform`, `transformRayTraceResult` | Perspective-control shift/tilt transforms. |
 | `src/optics/diagramGeometry.ts` | `createCoordinateTransforms`, `computeElementRenderDiagnostics`, `computeElementShapes` | Convert optical geometry into SVG-ready coordinates and element shapes. |

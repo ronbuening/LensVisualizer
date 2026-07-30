@@ -263,4 +263,16 @@ export const CDGM_GLASS_ENTRIES: readonly GlassEntry[] = [
     code6: "670472",
     source: "CDGM Zemax catalog 2022-06 via refractiveindex.info; H-ZBAF52 page.",
   },
+  /* ────── Phase 45 Fujifilm GF 100–200mm coverage addition (July 2026) ────── */
+  {
+    name: "D-K59",
+    vendor: "CDGM",
+    B: [1.1209538, 0.152690608, 1.07502924],
+    C: [0.00657908073, 0.0235724778, 106.309977],
+    nd: 1.5176,
+    vd: 63.5,
+    PgF: 0.535,
+    code6: "518635",
+    source: "CDGM D-K59 public datasheet, 2026 access; Sellmeier constants K1-L3, d-code 518635.",
+  },
 ];

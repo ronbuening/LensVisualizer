@@ -16,10 +16,10 @@ with words like "probable" or "approx").
 - **488** lenses scanned
 - **5360** glass surfaces examined
 - **5353** surfaces with non-empty `glass` strings
-- **4572** of those resolved to a catalog entry
+- **4581** of those resolved to a catalog entry
 - **0** mismatches found (0.0% of resolved surfaces)
 - **0** distinct lens files affected
 
 ## No mismatches
 
-Every catalog-resolved surface agrees with its stored `nd` within tolerance. ✓
+Every catalog-resolved surface agrees with its stored `nd` and `νd` within tolerance. ✓

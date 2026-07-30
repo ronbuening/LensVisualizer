@@ -28,7 +28,7 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-07-29",
     type: "improvement",
-    summary: "Expanded the optical glass catalog and tightened dispersion matching",
+    summary: "Expanded the glass catalog with safer coordinate-aware dispersion matching",
   },
   {
     date: "2026-07-29",
