@@ -273,8 +273,17 @@ function hasAuditRecord(filePath: string, codes: readonly string[]): boolean {
   return codes.some((code) => auditText.includes(code));
 }
 
-function hasReviewRecord(row: CodeOnlyElement): boolean {
-  return row.reviewedStatus === "Reviewed sidecar hit" || row.auditReviewed;
+type ReviewRecordFields = Pick<CodeOnlyElement, "explicitlyUnmatched" | "reviewedStatus" | "auditReviewed">;
+
+function hasReviewRecord(row: ReviewRecordFields): boolean {
+  return row.explicitlyUnmatched || row.reviewedStatus === "Reviewed sidecar hit" || row.auditReviewed;
+}
+
+function reviewRecordStatus(row: ReviewRecordFields): string {
+  if (row.explicitlyUnmatched) return "Explicit disposition in data";
+  if (row.reviewedStatus === "Reviewed sidecar hit") return row.reviewedStatus;
+  if (row.auditReviewed) return "Audit-log hit";
+  return "No review-record hit";
 }
 
 function summarizePatentStatus(rows: readonly CodeOnlyElement[]): string {
@@ -285,14 +294,16 @@ function summarizePatentStatus(rows: readonly CodeOnlyElement[]): string {
 }
 
 function summarizeReviewedStatus(rows: readonly CodeOnlyElement[]): string {
-  const reviewed = rows.filter((row) => row.reviewedStatus === "Reviewed sidecar hit").length;
-  if (reviewed === rows.length) return "All representative rows reviewed";
-  if (reviewed > 0) return `${reviewed}/${rows.length} representative rows reviewed`;
-  return "No reviewed-sidecar hit";
+  const reviewed = rows.filter(hasReviewRecord).length;
+  const explicit = rows.filter((row) => row.explicitlyUnmatched).length;
+  if (explicit === rows.length) return "All rows explicitly disposed";
+  if (reviewed === rows.length) return "All rows have review records";
+  if (reviewed > 0) return `${reviewed}/${rows.length} rows have review records`;
+  return "No review-record hit";
 }
 
 function prioritizedUnreviewedCodes(rows: readonly CodeOnlyElement[]): PrioritizedCode[] {
-  const activeRows = rows.filter((row) => !hasReviewRecord(row) && !row.explicitlyUnmatched);
+  const activeRows = rows.filter((row) => !hasReviewRecord(row));
   const byCode = new Map<string, CodeOnlyElement[]>();
   for (const row of activeRows) {
     for (const code of row.codes) {
@@ -417,14 +428,16 @@ function renderReport(options: {
   lines.push(`- **${sortedRows.length}** elements in this report`);
   lines.push(`- **${affectedLenses.size}** distinct lens files affected`);
   if (options.includePrioritizedUnreviewedQueue) {
-    const activeUnreviewed = sortedRows.filter((row) => !hasReviewRecord(row) && !row.explicitlyUnmatched);
-    const unindexedDispositions = sortedRows.filter((row) => !hasReviewRecord(row) && row.explicitlyUnmatched);
+    const activeUnreviewed = sortedRows.filter((row) => !hasReviewRecord(row));
+    const explicitDispositions = sortedRows.filter((row) => row.explicitlyUnmatched);
+    const dispositionsWithoutReviewRecord = explicitDispositions.filter((row) => !hasReviewRecord(row));
     lines.push(
       `- **${activeUnreviewed.length}** active unreviewed elements have no review-record hit or explicit disposition`,
     );
     lines.push(
-      `- **${unindexedDispositions.length}** explicitly unmatched/unidentified elements lack a sidecar or audit-log hit and are recordkeeping follow-ups, not active identity guesses`,
+      `- **${explicitDispositions.length}** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions`,
     );
+    lines.push(`- **${dispositionsWithoutReviewRecord.length}** dispositions lack any review record`);
   }
   lines.push("");
 
@@ -467,7 +480,7 @@ function renderReport(options: {
   const frequency = codeFrequency(sortedRows);
   lines.push("## Codes by Frequency");
   lines.push("");
-  lines.push("| Code | Elements | Lens files | localPatentStatus | reviewedSidecarStatus |");
+  lines.push("| Code | Elements | Lens files | localPatentStatus | reviewRecordStatus |");
   lines.push("|---|---:|---:|---|---|");
   for (const [code, elementCount, lensCount] of frequency) {
     const rowsForCode = sortedRows.filter((row) => row.codes.includes(code));
@@ -494,7 +507,7 @@ function renderReport(options: {
     lines.push(`### [${first.lensName}](../../${first.filePath})${patentSuffix}`);
     lines.push("");
     lines.push(
-      "| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |",
+      "| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |",
     );
     lines.push("|---|---|---|---|---|---|---|---|");
     for (const row of lensRows) {
@@ -502,7 +515,7 @@ function renderReport(options: {
       const surfaces = row.surfaceRefs.map((surface) => surface.label).join(", ") || "element";
       const elementName = row.elementLabel ? `${row.elementName} (${row.elementLabel})` : row.elementName;
       lines.push(
-        `| ${elementName} | ${surfaces} | \`${row.glassString}\` | ${row.storedNd.toFixed(5)} / ${vd} | ${catalogStatus(row)} | ${qualitySummary(row)} | ${row.localPatent.path ?? row.localPatent.status} | ${row.reviewedStatus} |`,
+        `| ${elementName} | ${surfaces} | \`${row.glassString}\` | ${row.storedNd.toFixed(5)} / ${vd} | ${catalogStatus(row)} | ${qualitySummary(row)} | ${row.localPatent.path ?? row.localPatent.status} | ${reviewRecordStatus(row)} |`,
       );
     }
     lines.push("");
@@ -512,6 +525,23 @@ function renderReport(options: {
 }
 
 describe("six-digit glass-code scan", () => {
+  it("treats explicit unmatched annotations as self-recording review dispositions", () => {
+    expect(
+      hasReviewRecord({
+        explicitlyUnmatched: true,
+        reviewedStatus: "No reviewed-sidecar hit",
+        auditReviewed: false,
+      }),
+    ).toBe(true);
+    expect(
+      reviewRecordStatus({
+        explicitlyUnmatched: true,
+        reviewedStatus: "No reviewed-sidecar hit",
+        auditReviewed: false,
+      }),
+    ).toBe("Explicit disposition in data");
+  });
+
   it("matches spaced legacy patent numbers without substring collisions", () => {
     expect(patentSearchTokens("DE 1 228 820 B")).toEqual(["DE1228820B", "DE1228820", "1228820"]);
     expect(findLocalPatent("DE 1 228 820 B", ["20260118637.pdf", "DE_1228820_B.pdf"])).toEqual({

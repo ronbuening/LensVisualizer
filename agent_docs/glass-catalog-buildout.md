@@ -9,6 +9,15 @@ approximation. Current optics-engine boundaries are summarized in
 
 The catalog currently has **442 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
 
+The July 30, 2026 Phase 69 pass corrected the opportunity reports' review and material semantics. Explicit
+`Unmatched`, `Unknown`, `Proprietary`, and `Unidentified` annotations now count as self-recording review
+dispositions, closing the 52 rows that previously appeared as recordkeeping-only follow-ups despite already
+containing their disposition in lens data. The 260-row six-digit missing-Sellmeier inventory now reports zero active
+unreviewed rows, 113 explicit dispositions, and zero dispositions without a review record. Near-complete visible
+lenses are also split into true glass opportunities and non-glass or mixed-material gaps, with resin, cement, plastic,
+and other optical media labeled per surface. The resulting queue contains 85 glass-only lenses and 40 non-glass or
+mixed-material lenses. Optical coverage is unchanged at 4715/5360 strict and 4725/5360 trusted.
+
 The July 30, 2026 Phase 68 pass closed the named-token opportunity queue. Eight first-party rows were added:
 Hikari J-LAF04; OHARA S-BAL50; HOYA FCD600 and NBFD26; and CDGM H-BaF6, H-K9L, H-ZF1, and H-LaF6LA.
 Forty-one element annotations were then checked against their stored coordinates. Compatible rows received explicit

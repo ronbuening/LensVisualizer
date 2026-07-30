@@ -14,7 +14,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 - **260** elements in this report
 - **115** distinct lens files affected
 - **0** active unreviewed elements have no review-record hit or explicit disposition
-- **52** explicitly unmatched/unidentified elements lack a sidecar or audit-log hit and are recordkeeping follow-ups, not active identity guesses
+- **113** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
+- **0** dispositions lack any review record
 
 ## Prioritized Unreviewed Queue
 
@@ -28,263 +29,263 @@ Completion counts are conditional on finding a source-verified catalog identity 
 
 ## Codes by Frequency
 
-| Code | Elements | Lens files | localPatentStatus | reviewedSidecarStatus |
+| Code | Elements | Lens files | localPatentStatus | reviewRecordStatus |
 |---|---:|---:|---|---|
-| 796409 | 7 | 6 | patents/US5751485.pdf<br>patents/US5640277.pdf<br>patents/US5734508.pdf<br>patents/US4699475.pdf | All representative rows reviewed |
-| 493836 | 6 | 2 | patents/JP2004109559A.pdf | All representative rows reviewed |
-| 486815 | 5 | 1 | patents/US3743384.pdf | All representative rows reviewed |
-| 501565 | 4 | 2 | patents/US4189212.pdf<br>patents/US3743384.pdf | All representative rows reviewed |
-| 662561 | 4 | 1 | patents/GB_850117_A.pdf | All representative rows reviewed |
-| 744495 | 4 | 4 | patents/US20200142168A1.pdf<br>patents/US7508592.pdf<br>patents/WO2020136749A1.pdf<br>patents/JPWO2019049372A1.pdf | All representative rows reviewed |
-| 863252 | 4 | 2 | patents/WO2021199923A1.pdf<br>patents/WO_2025263124_A1.pdf | All representative rows reviewed |
-| 504668 | 3 | 1 | patents/US3862794.pdf | All representative rows reviewed |
-| 516565 | 3 | 1 | patents/CN216772097U.pdf | All representative rows reviewed |
-| 585587 | 3 | 1 | patents/WO2024195273A1.pdf | All representative rows reviewed |
-| 748523 | 3 | 3 | patents/US5640277.pdf<br>patents/US5717527.pdf<br>patents/US5490012.pdf | All representative rows reviewed |
-| 777297 | 3 | 3 | patents/WO2021199923A1.pdf<br>patents/WO_2025263124_A1.pdf<br>patents/JP2023039817A.pdf | All representative rows reviewed |
-| 856401 | 3 | 2 | patents/WO2021199923A1.pdf<br>patents/WO_2025263124_A1.pdf | All representative rows reviewed |
-| 863248 | 3 | 1 | patents/JP2023039817A.pdf | All representative rows reviewed |
-| 961323 | 3 | 1 | patents/WO2021200206A1.pdf | All representative rows reviewed |
-| 514428 | 2 | 1 | patents/JP2016021011A.pdf | All representative rows reviewed |
-| 531559 | 2 | 2 | patents/US20200142167A1.pdf<br>patents/WO2021039813A1.pdf | All representative rows reviewed |
-| 585594 | 2 | 1 | patents/JP2023039817A.pdf | All representative rows reviewed |
-| 620586 | 2 | 1 | patents/US4303314.pdf | All representative rows reviewed |
-| 625356 | 2 | 1 | patents/US2959100.pdf | No reviewed-sidecar hit |
-| 666356 | 2 | 1 | patents/US20190265441A1.pdf | All representative rows reviewed |
-| 720521 | 2 | 2 | patents/US4124276.pdf | No reviewed-sidecar hit |
-| 744494 | 2 | 2 | patents/US3507558.pdf<br>patents/US3743384.pdf | All representative rows reviewed |
-| 755516 | 2 | 1 | patents/JP2004109559A.pdf | No reviewed-sidecar hit |
-| 762404 | 2 | 1 | patents/US4258985.pdf | No reviewed-sidecar hit |
-| 774492 | 2 | 1 | patents/US3748022.pdf | All representative rows reviewed |
-| 781445 | 2 | 2 | patents/US4277149.pdf<br>patents/US4182550.pdf | No reviewed-sidecar hit |
-| 807316 | 2 | 2 | patents/US4764000.pdf<br>patents/US4871239.pdf | All representative rows reviewed |
-| 813252 | 2 | 1 | patents/US3591257.pdf | All representative rows reviewed |
-| 830427 | 2 | 1 | patents/JP2015041012A.pdf | No reviewed-sidecar hit |
-| 840434 | 2 | 1 | patents/US5734508.pdf | No reviewed-sidecar hit |
-| 930240 | 2 | 2 | patents/WO2021200206A1.pdf<br>patents/WO_2025263124_A1.pdf | No reviewed-sidecar hit |
-| 933209 | 2 | 2 | patents/WO2021199923A1.pdf<br>patents/JP2023039817A.pdf | All representative rows reviewed |
-| 009291 | 1 | 1 | patents/WO2021200206A1.pdf | No reviewed-sidecar hit |
-| 449670 | 1 | 1 | patents/GB_1050055_A.pdf | No reviewed-sidecar hit |
-| 460658 | 1 | 1 | patents/DE_3907928_A1.pdf | No reviewed-sidecar hit |
-| 465658 | 1 | 1 | patents/US4189212.pdf | All representative rows reviewed |
-| 479587 | 1 | 1 | patents/US4773745.pdf | No reviewed-sidecar hit |
-| 487698 | 1 | 1 | patents/US3838911.pdf | All representative rows reviewed |
-| 504667 | 1 | 1 | patents/US2721499.pdf | All representative rows reviewed |
-| 514530 | 1 | 1 | patents/JP2016021011A.pdf | All representative rows reviewed |
-| 518523 | 1 | 1 | patents/US4871239.pdf | All representative rows reviewed |
-| 518652 | 1 | 1 | patents/US2821112.pdf | No reviewed-sidecar hit |
-| 519573 | 1 | 1 | patents/DE_1228820_B.pdf | All representative rows reviewed |
-| 520642 | 1 | 1 | patents/DE_3907928_A1.pdf | No reviewed-sidecar hit |
-| 523701 | 1 | 1 | patents/US20100194930A1.pdf | No reviewed-sidecar hit |
-| 525558 | 1 | 1 | patents/US8994842.pdf | No reviewed-sidecar hit |
-| 525596 | 1 | 1 | patents/US3632190.pdf | No reviewed-sidecar hit |
-| 531557 | 1 | 1 | patents/US8994842.pdf | No reviewed-sidecar hit |
-| 531621 | 1 | 1 | patents/US3975089.pdf | No reviewed-sidecar hit |
-| 533489 | 1 | 1 | patents/US2084309.pdf | No reviewed-sidecar hit |
-| 534554 | 1 | 1 | patents/US3737214.pdf | All representative rows reviewed |
-| 534555 | 1 | 1 | patents/US4110006.pdf | All representative rows reviewed |
-| 534556 | 1 | 1 | patents/US20230367186A1.pdf | No reviewed-sidecar hit |
-| 540509 | 1 | 1 | patents/GB_775944_A.pdf | No reviewed-sidecar hit |
-| 541468 | 1 | 1 | patents/US4124276.pdf | All representative rows reviewed |
-| 545486 | 1 | 1 | patents/CN116520542A.pdf | All representative rows reviewed |
-| 553381 | 1 | 1 | patents/US7508592.pdf | All representative rows reviewed |
-| 553551 | 1 | 1 | patents/JP2023063766A.pdf | No reviewed-sidecar hit |
-| 553555 | 1 | 1 | patents/JP2022092388A.pdf | All representative rows reviewed |
-| 554381 | 1 | 1 | patents/US7359125.pdf | No reviewed-sidecar hit |
-| 561575 | 1 | 1 | patents/US2721499.pdf | All representative rows reviewed |
-| 564463 | 1 | 1 | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
-| 569560 | 1 | 1 | patents/JP2017227799A.pdf | No reviewed-sidecar hit |
-| 569586 | 1 | 1 | patents/US20120069456A1.pdf | No reviewed-sidecar hit |
-| 571560 | 1 | 1 | patents/WO_2025263124_A1.pdf | No reviewed-sidecar hit |
-| 574425 | 1 | 1 | patents/FR_1066698_A.pdf | All representative rows reviewed |
-| 575414 | 1 | 1 | patents/US2279384.pdf | No reviewed-sidecar hit |
-| 576414 | 1 | 1 | patents/US4124276.pdf | All representative rows reviewed |
-| 579417 | 1 | 1 | patents/US2645974.pdf | No reviewed-sidecar hit |
-| 580595 | 1 | 1 | patents/JP2015041012A.pdf | No reviewed-sidecar hit |
-| 585417 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | No reviewed-sidecar hit |
-| 593343 | 1 | 1 | patents/US2838978.pdf | No reviewed-sidecar hit |
-| 593355 | 1 | 1 | patents/JP2022033487A.pdf | No reviewed-sidecar hit |
-| 595355 | 1 | 1 | patents/US5579169.pdf | No reviewed-sidecar hit |
-| 595356 | 1 | 1 | patents/US4266860.pdf | All representative rows reviewed |
-| 595686 | 1 | 1 | patents/WO_2025263124_A1.pdf | No reviewed-sidecar hit |
-| 596670 | 1 | 1 | patents/WO_2025263124_A1.pdf | No reviewed-sidecar hit |
-| 602352 | 1 | 1 | patents/GB_850117_A.pdf | All representative rows reviewed |
-| 603564 | 1 | 1 | patents/JP2022092388A.pdf | All representative rows reviewed |
-| 605382 | 1 | 1 | patents/US2279384.pdf | No reviewed-sidecar hit |
-| 606574 | 1 | 1 | patents/US6940655.pdf | No reviewed-sidecar hit |
-| 607403 | 1 | 1 | patents/US5257137.pdf | No reviewed-sidecar hit |
-| 611572 | 1 | 1 | patents/US2279384.pdf | No reviewed-sidecar hit |
-| 612313 | 1 | 1 | patents/US20210026133A1.pdf | All representative rows reviewed |
-| 614563 | 1 | 1 | patents/US3376091.pdf | All representative rows reviewed |
-| 617443 | 1 | 1 | patents/JP2023039817A.pdf | No reviewed-sidecar hit |
-| 617540 | 1 | 1 | patents/US5717527.pdf | No reviewed-sidecar hit |
-| 621380 | 1 | 1 | patents/US2896506.pdf | All representative rows reviewed |
-| 622639 | 1 | 1 | patents/WO2021199923A1.pdf | No reviewed-sidecar hit |
-| 624584 | 1 | 1 | patents/JP2025052870A.pdf | All representative rows reviewed |
-| 625533 | 1 | 1 | patents/US2721499.pdf | All representative rows reviewed |
-| 630346 | 1 | 1 | patents/JP2015041012A.pdf | No reviewed-sidecar hit |
-| 630581 | 1 | 1 | patents/JP2022100641A.pdf | No reviewed-sidecar hit |
-| 635232 | 1 | 1 | patents/US8081392.pdf | No reviewed-sidecar hit |
-| 640353 | 1 | 1 | patents/US4277149.pdf | No reviewed-sidecar hit |
-| 642581 | 1 | 1 | patents/US2721499.pdf | All representative rows reviewed |
-| 650396 | 1 | 1 | patents/DE_3907928_A1.pdf | No reviewed-sidecar hit |
-| 658397 | 1 | 1 | patents/JP2023039817A.pdf | No reviewed-sidecar hit |
-| 662577 | 1 | 1 | patents/US2896506.pdf | All representative rows reviewed |
-| 667311 | 1 | 1 | patents/US20140247506A1.pdf | All representative rows reviewed |
-| 667322 | 1 | 1 | patents/US2983193.pdf | No reviewed-sidecar hit |
-| 670572 | 1 | 1 | patents/US20020075570A1.pdf | All representative rows reviewed |
-| 670575 | 1 | 1 | patents/US5949588.pdf | All representative rows reviewed |
-| 672323 | 1 | 1 | patents/GB_850117_A.pdf | All representative rows reviewed |
-| 672389 | 1 | 1 | patents/US4497547.pdf | All representative rows reviewed |
-| 675348 | 1 | 1 | patents/JP2018180366A.pdf | All representative rows reviewed |
-| 676440 | 1 | 1 | patents/US7542219.pdf | No reviewed-sidecar hit |
-| 678322 | 1 | 1 | patents/WO2021200206A1.pdf | All representative rows reviewed |
-| 680312 | 1 | 1 | patents/JP2015041012A.pdf | No reviewed-sidecar hit |
-| 682366 | 1 | 1 | Missing from untracked local patents/ references (US4518229, 4518229) | No reviewed-sidecar hit |
-| 682575 | 1 | 1 | patents/US7542219.pdf | No reviewed-sidecar hit |
-| 683309 | 1 | 1 | patents/US2983193.pdf | No reviewed-sidecar hit |
-| 683447 | 1 | 1 | patents/US4708445.pdf | All representative rows reviewed |
-| 683548 | 1 | 1 | patents/WO2021039813A1.pdf | All representative rows reviewed |
-| 685309 | 1 | 1 | patents/US20160154221A1.pdf | All representative rows reviewed |
-| 693495 | 1 | 1 | patents/US3552833.pdf | No reviewed-sidecar hit |
-| 693562 | 1 | 1 | patents/US2983193.pdf | No reviewed-sidecar hit |
-| 694312 | 1 | 1 | patents/WO2021199923A1.pdf | No reviewed-sidecar hit |
-| 694536 | 1 | 1 | patents/US4258985.pdf | No reviewed-sidecar hit |
-| 697558 | 1 | 1 | patents/US4258985.pdf | No reviewed-sidecar hit |
-| 700555 | 1 | 1 | patents/WO_2025263124_A1.pdf | No reviewed-sidecar hit |
-| 701301 | 1 | 1 | patents/US4277149.pdf | No reviewed-sidecar hit |
-| 713433 | 1 | 1 | patents/US3942876.pdf | No reviewed-sidecar hit |
-| 721334 | 1 | 1 | Missing from untracked local patents/ references (US4786152, 4786152) | No reviewed-sidecar hit |
-| 728261 | 1 | 1 | patents/US4523816.pdf | No reviewed-sidecar hit |
-| 728403 | 1 | 1 | patents/US6560042.pdf | All representative rows reviewed |
-| 732547 | 1 | 1 | patents/WO2021199923A1.pdf | No reviewed-sidecar hit |
-| 738493 | 1 | 1 | patents/JP2022092388A.pdf | All representative rows reviewed |
-| 740439 | 1 | 1 | patents/US2983193.pdf | No reviewed-sidecar hit |
-| 740458 | 1 | 1 | patents/US2983193.pdf | No reviewed-sidecar hit |
-| 740464 | 1 | 1 | patents/US2983193.pdf | No reviewed-sidecar hit |
-| 741262 | 1 | 1 | patents/US3552833.pdf | No reviewed-sidecar hit |
-| 741276 | 1 | 1 | patents/US5717527.pdf | No reviewed-sidecar hit |
-| 744458 | 1 | 1 | patents/US2279384.pdf | No reviewed-sidecar hit |
-| 744496 | 1 | 1 | patents/US6940655.pdf | No reviewed-sidecar hit |
-| 747274 | 1 | 1 | patents/US3649104.pdf | All representative rows reviewed |
-| 749501 | 1 | 1 | patents/US4124276.pdf | All representative rows reviewed |
-| 749547 | 1 | 1 | patents/CN205720849U.pdf | All representative rows reviewed |
-| 750251 | 1 | 1 | Missing from untracked local patents/ references (US4560253, 4560253) | No reviewed-sidecar hit |
-| 750501 | 1 | 1 | patents/US4277149.pdf | No reviewed-sidecar hit |
-| 750504 | 1 | 1 | patents/US4258985.pdf | No reviewed-sidecar hit |
-| 754260 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | No reviewed-sidecar hit |
-| 755501 | 1 | 1 | patents/US4277149.pdf | No reviewed-sidecar hit |
-| 757316 | 1 | 1 | No patent number parsed from lens metadata | No reviewed-sidecar hit |
-| 760492 | 1 | 1 | patents/JP2015041012A.pdf | No reviewed-sidecar hit |
-| 762271 | 1 | 1 | patents/US3743387.pdf | No reviewed-sidecar hit |
-| 764491 | 1 | 1 | patents/JP2023183894A.pdf | No reviewed-sidecar hit |
-| 767462 | 1 | 1 | patents/US3507558.pdf | All representative rows reviewed |
-| 768465 | 1 | 1 | patents/US3524697.pdf | All representative rows reviewed |
-| 769497 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | No reviewed-sidecar hit |
-| 770479 | 1 | 1 | patents/US2828671.pdf | All representative rows reviewed |
-| 770493 | 1 | 1 | Missing from untracked local patents/ references (WO2021246545A1, WO2021246545, 2021246545) | No reviewed-sidecar hit |
-| 772493 | 1 | 1 | patents/US20230341664A1.pdf | All representative rows reviewed |
-| 773498 | 1 | 1 | patents/US4871239.pdf | All representative rows reviewed |
-| 773501 | 1 | 1 | patents/US4258985.pdf | No reviewed-sidecar hit |
-| 773530 | 1 | 1 | patents/CN110161666A.pdf | All representative rows reviewed |
-| 774494 | 1 | 1 | patents/WO_2025263124_A1.pdf | No reviewed-sidecar hit |
-| 775473 | 1 | 1 | patents/WO2022259649A1.pdf | No reviewed-sidecar hit |
-| 776496 | 1 | 1 | patents/JP2023039817A.pdf | No reviewed-sidecar hit |
-| 780509 | 1 | 1 | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
-| 781446 | 1 | 1 | patents/JP2004109559A.pdf | No reviewed-sidecar hit |
-| 786275 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | No reviewed-sidecar hit |
-| 787501 | 1 | 1 | patents/DE_2157160_A1.pdf | No reviewed-sidecar hit |
-| 789457 | 1 | 1 | patents/US4182550.pdf | No reviewed-sidecar hit |
-| 792257 | 1 | 1 | patents/JP2023039817A.pdf | All representative rows reviewed |
-| 792450 | 1 | 1 | patents/WO2020136749A1.pdf | All representative rows reviewed |
-| 794255 | 1 | 1 | patents/US7542219.pdf | No reviewed-sidecar hit |
-| 795286 | 1 | 1 | patents/US5717527.pdf | No reviewed-sidecar hit |
-| 796410 | 1 | 1 | patents/US4770511.pdf | All representative rows reviewed |
-| 797455 | 1 | 1 | patents/US4452513.pdf | All representative rows reviewed |
-| 800255 | 1 | 1 | patents/JP2015041012A.pdf | No reviewed-sidecar hit |
-| 801454 | 1 | 1 | patents/US20130033768A1.pdf | No reviewed-sidecar hit |
-| 803404 | 1 | 1 | patents/US20140247506A1.pdf | All representative rows reviewed |
-| 803405 | 1 | 1 | patents/US20170351051A1.pdf | No reviewed-sidecar hit |
-| 805252 | 1 | 1 | patents/US4258985.pdf | No reviewed-sidecar hit |
-| 805410 | 1 | 1 | patents/US4871239.pdf | All representative rows reviewed |
-| 808406 | 1 | 1 | patents/JP2023063766A.pdf | No reviewed-sidecar hit |
-| 810372 | 1 | 1 | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
-| 821426 | 1 | 1 | patents/US20100220400A1.pdf | All representative rows reviewed |
-| 831265 | 1 | 1 | patents/US3615126.pdf | No reviewed-sidecar hit |
-| 835447 | 1 | 1 | patents/CN205720849U.pdf | All representative rows reviewed |
-| 840433 | 1 | 1 | patents/US5528428.pdf | No reviewed-sidecar hit |
-| 849401 | 1 | 1 | patents/US20170351051A1.pdf | No reviewed-sidecar hit |
-| 850440 | 1 | 1 | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
-| 852401 | 1 | 1 | patents/JPWO2019073744A1.pdf | No reviewed-sidecar hit |
-| 852402 | 1 | 1 | patents/WO2020136749A1.pdf | All representative rows reviewed |
-| 855399 | 1 | 1 | patents/JP2022092388A.pdf | All representative rows reviewed |
-| 856323 | 1 | 1 | patents/WO2021200206A1.pdf | No reviewed-sidecar hit |
-| 866450 | 1 | 1 | patents/CN116520542A.pdf | All representative rows reviewed |
-| 877370 | 1 | 1 | patents/US20160266350A1.pdf | All representative rows reviewed |
-| 882408 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | No reviewed-sidecar hit |
-| 902253 | 1 | 1 | patents/JPWO2020105107A1.pdf | All representative rows reviewed |
-| 903204 | 1 | 1 | patents/WO2021200206A1.pdf | No reviewed-sidecar hit |
-| 903354 | 1 | 1 | patents/JP2022092388A.pdf | All representative rows reviewed |
-| 904293 | 1 | 1 | patents/CN205720849U.pdf | All representative rows reviewed |
-| 910313 | 1 | 1 | patents/WO2021199923A1.pdf | No reviewed-sidecar hit |
-| 916364 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | No reviewed-sidecar hit |
-| 995293 | 1 | 1 | patents/JPWO2017138250A1.pdf | All representative rows reviewed |
+| 796409 | 7 | 6 | patents/US5751485.pdf<br>patents/US5640277.pdf<br>patents/US5734508.pdf<br>patents/US4699475.pdf | All rows explicitly disposed |
+| 493836 | 6 | 2 | patents/JP2004109559A.pdf | All rows have review records |
+| 486815 | 5 | 1 | patents/US3743384.pdf | All rows explicitly disposed |
+| 501565 | 4 | 2 | patents/US4189212.pdf<br>patents/US3743384.pdf | All rows have review records |
+| 662561 | 4 | 1 | patents/GB_850117_A.pdf | All rows have review records |
+| 744495 | 4 | 4 | patents/US20200142168A1.pdf<br>patents/US7508592.pdf<br>patents/WO2020136749A1.pdf<br>patents/JPWO2019049372A1.pdf | All rows have review records |
+| 863252 | 4 | 2 | patents/WO2021199923A1.pdf<br>patents/WO_2025263124_A1.pdf | All rows have review records |
+| 504668 | 3 | 1 | patents/US3862794.pdf | All rows explicitly disposed |
+| 516565 | 3 | 1 | patents/CN216772097U.pdf | All rows have review records |
+| 585587 | 3 | 1 | patents/WO2024195273A1.pdf | All rows have review records |
+| 748523 | 3 | 3 | patents/US5640277.pdf<br>patents/US5717527.pdf<br>patents/US5490012.pdf | All rows explicitly disposed |
+| 777297 | 3 | 3 | patents/WO2021199923A1.pdf<br>patents/WO_2025263124_A1.pdf<br>patents/JP2023039817A.pdf | All rows have review records |
+| 856401 | 3 | 2 | patents/WO2021199923A1.pdf<br>patents/WO_2025263124_A1.pdf | All rows have review records |
+| 863248 | 3 | 1 | patents/JP2023039817A.pdf | All rows have review records |
+| 961323 | 3 | 1 | patents/WO2021200206A1.pdf | All rows explicitly disposed |
+| 514428 | 2 | 1 | patents/JP2016021011A.pdf | All rows have review records |
+| 531559 | 2 | 2 | patents/US20200142167A1.pdf<br>patents/WO2021039813A1.pdf | All rows have review records |
+| 585594 | 2 | 1 | patents/JP2023039817A.pdf | All rows have review records |
+| 620586 | 2 | 1 | patents/US4303314.pdf | All rows have review records |
+| 625356 | 2 | 1 | patents/US2959100.pdf | All rows explicitly disposed |
+| 666356 | 2 | 1 | patents/US20190265441A1.pdf | All rows have review records |
+| 720521 | 2 | 2 | patents/US4124276.pdf | All rows have review records |
+| 744494 | 2 | 2 | patents/US3507558.pdf<br>patents/US3743384.pdf | All rows have review records |
+| 755516 | 2 | 1 | patents/JP2004109559A.pdf | All rows have review records |
+| 762404 | 2 | 1 | patents/US4258985.pdf | All rows have review records |
+| 774492 | 2 | 1 | patents/US3748022.pdf | All rows have review records |
+| 781445 | 2 | 2 | patents/US4277149.pdf<br>patents/US4182550.pdf | All rows have review records |
+| 807316 | 2 | 2 | patents/US4764000.pdf<br>patents/US4871239.pdf | All rows have review records |
+| 813252 | 2 | 1 | patents/US3591257.pdf | All rows have review records |
+| 830427 | 2 | 1 | patents/JP2015041012A.pdf | All rows explicitly disposed |
+| 840434 | 2 | 1 | patents/US5734508.pdf | All rows explicitly disposed |
+| 930240 | 2 | 2 | patents/WO2021200206A1.pdf<br>patents/WO_2025263124_A1.pdf | All rows have review records |
+| 933209 | 2 | 2 | patents/WO2021199923A1.pdf<br>patents/JP2023039817A.pdf | All rows have review records |
+| 009291 | 1 | 1 | patents/WO2021200206A1.pdf | All rows explicitly disposed |
+| 449670 | 1 | 1 | patents/GB_1050055_A.pdf | All rows explicitly disposed |
+| 460658 | 1 | 1 | patents/DE_3907928_A1.pdf | All rows explicitly disposed |
+| 465658 | 1 | 1 | patents/US4189212.pdf | All rows explicitly disposed |
+| 479587 | 1 | 1 | patents/US4773745.pdf | All rows explicitly disposed |
+| 487698 | 1 | 1 | patents/US3838911.pdf | All rows have review records |
+| 504667 | 1 | 1 | patents/US2721499.pdf | All rows have review records |
+| 514530 | 1 | 1 | patents/JP2016021011A.pdf | All rows have review records |
+| 518523 | 1 | 1 | patents/US4871239.pdf | All rows have review records |
+| 518652 | 1 | 1 | patents/US2821112.pdf | All rows explicitly disposed |
+| 519573 | 1 | 1 | patents/DE_1228820_B.pdf | All rows explicitly disposed |
+| 520642 | 1 | 1 | patents/DE_3907928_A1.pdf | All rows explicitly disposed |
+| 523701 | 1 | 1 | patents/US20100194930A1.pdf | All rows explicitly disposed |
+| 525558 | 1 | 1 | patents/US8994842.pdf | All rows explicitly disposed |
+| 525596 | 1 | 1 | patents/US3632190.pdf | All rows explicitly disposed |
+| 531557 | 1 | 1 | patents/US8994842.pdf | All rows explicitly disposed |
+| 531621 | 1 | 1 | patents/US3975089.pdf | All rows have review records |
+| 533489 | 1 | 1 | patents/US2084309.pdf | All rows explicitly disposed |
+| 534554 | 1 | 1 | patents/US3737214.pdf | All rows have review records |
+| 534555 | 1 | 1 | patents/US4110006.pdf | All rows explicitly disposed |
+| 534556 | 1 | 1 | patents/US20230367186A1.pdf | All rows have review records |
+| 540509 | 1 | 1 | patents/GB_775944_A.pdf | All rows explicitly disposed |
+| 541468 | 1 | 1 | patents/US4124276.pdf | All rows have review records |
+| 545486 | 1 | 1 | patents/CN116520542A.pdf | All rows have review records |
+| 553381 | 1 | 1 | patents/US7508592.pdf | All rows explicitly disposed |
+| 553551 | 1 | 1 | patents/JP2023063766A.pdf | All rows explicitly disposed |
+| 553555 | 1 | 1 | patents/JP2022092388A.pdf | All rows have review records |
+| 554381 | 1 | 1 | patents/US7359125.pdf | All rows have review records |
+| 561575 | 1 | 1 | patents/US2721499.pdf | All rows have review records |
+| 564463 | 1 | 1 | patents/US20180164556A1.pdf | All rows explicitly disposed |
+| 569560 | 1 | 1 | patents/JP2017227799A.pdf | All rows explicitly disposed |
+| 569586 | 1 | 1 | patents/US20120069456A1.pdf | All rows explicitly disposed |
+| 571560 | 1 | 1 | patents/WO_2025263124_A1.pdf | All rows have review records |
+| 574425 | 1 | 1 | patents/FR_1066698_A.pdf | All rows have review records |
+| 575414 | 1 | 1 | patents/US2279384.pdf | All rows explicitly disposed |
+| 576414 | 1 | 1 | patents/US4124276.pdf | All rows have review records |
+| 579417 | 1 | 1 | patents/US2645974.pdf | All rows explicitly disposed |
+| 580595 | 1 | 1 | patents/JP2015041012A.pdf | All rows explicitly disposed |
+| 585417 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | All rows have review records |
+| 593343 | 1 | 1 | patents/US2838978.pdf | All rows explicitly disposed |
+| 593355 | 1 | 1 | patents/JP2022033487A.pdf | All rows have review records |
+| 595355 | 1 | 1 | patents/US5579169.pdf | All rows explicitly disposed |
+| 595356 | 1 | 1 | patents/US4266860.pdf | All rows explicitly disposed |
+| 595686 | 1 | 1 | patents/WO_2025263124_A1.pdf | All rows have review records |
+| 596670 | 1 | 1 | patents/WO_2025263124_A1.pdf | All rows have review records |
+| 602352 | 1 | 1 | patents/GB_850117_A.pdf | All rows have review records |
+| 603564 | 1 | 1 | patents/JP2022092388A.pdf | All rows have review records |
+| 605382 | 1 | 1 | patents/US2279384.pdf | All rows explicitly disposed |
+| 606574 | 1 | 1 | patents/US6940655.pdf | All rows explicitly disposed |
+| 607403 | 1 | 1 | patents/US5257137.pdf | All rows explicitly disposed |
+| 611572 | 1 | 1 | patents/US2279384.pdf | All rows explicitly disposed |
+| 612313 | 1 | 1 | patents/US20210026133A1.pdf | All rows have review records |
+| 614563 | 1 | 1 | patents/US3376091.pdf | All rows have review records |
+| 617443 | 1 | 1 | patents/JP2023039817A.pdf | All rows have review records |
+| 617540 | 1 | 1 | patents/US5717527.pdf | All rows explicitly disposed |
+| 621380 | 1 | 1 | patents/US2896506.pdf | All rows explicitly disposed |
+| 622639 | 1 | 1 | patents/WO2021199923A1.pdf | All rows explicitly disposed |
+| 624584 | 1 | 1 | patents/JP2025052870A.pdf | All rows have review records |
+| 625533 | 1 | 1 | patents/US2721499.pdf | All rows have review records |
+| 630346 | 1 | 1 | patents/JP2015041012A.pdf | All rows have review records |
+| 630581 | 1 | 1 | patents/JP2022100641A.pdf | All rows explicitly disposed |
+| 635232 | 1 | 1 | patents/US8081392.pdf | All rows explicitly disposed |
+| 640353 | 1 | 1 | patents/US4277149.pdf | All rows have review records |
+| 642581 | 1 | 1 | patents/US2721499.pdf | All rows have review records |
+| 650396 | 1 | 1 | patents/DE_3907928_A1.pdf | All rows explicitly disposed |
+| 658397 | 1 | 1 | patents/JP2023039817A.pdf | All rows have review records |
+| 662577 | 1 | 1 | patents/US2896506.pdf | All rows explicitly disposed |
+| 667311 | 1 | 1 | patents/US20140247506A1.pdf | All rows have review records |
+| 667322 | 1 | 1 | patents/US2983193.pdf | All rows explicitly disposed |
+| 670572 | 1 | 1 | patents/US20020075570A1.pdf | All rows have review records |
+| 670575 | 1 | 1 | patents/US5949588.pdf | All rows have review records |
+| 672323 | 1 | 1 | patents/GB_850117_A.pdf | All rows have review records |
+| 672389 | 1 | 1 | patents/US4497547.pdf | All rows explicitly disposed |
+| 675348 | 1 | 1 | patents/JP2018180366A.pdf | All rows explicitly disposed |
+| 676440 | 1 | 1 | patents/US7542219.pdf | All rows explicitly disposed |
+| 678322 | 1 | 1 | patents/WO2021200206A1.pdf | All rows explicitly disposed |
+| 680312 | 1 | 1 | patents/JP2015041012A.pdf | All rows have review records |
+| 682366 | 1 | 1 | Missing from untracked local patents/ references (US4518229, 4518229) | All rows have review records |
+| 682575 | 1 | 1 | patents/US7542219.pdf | All rows explicitly disposed |
+| 683309 | 1 | 1 | patents/US2983193.pdf | All rows explicitly disposed |
+| 683447 | 1 | 1 | patents/US4708445.pdf | All rows explicitly disposed |
+| 683548 | 1 | 1 | patents/WO2021039813A1.pdf | All rows have review records |
+| 685309 | 1 | 1 | patents/US20160154221A1.pdf | All rows explicitly disposed |
+| 693495 | 1 | 1 | patents/US3552833.pdf | All rows explicitly disposed |
+| 693562 | 1 | 1 | patents/US2983193.pdf | All rows explicitly disposed |
+| 694312 | 1 | 1 | patents/WO2021199923A1.pdf | All rows have review records |
+| 694536 | 1 | 1 | patents/US4258985.pdf | All rows have review records |
+| 697558 | 1 | 1 | patents/US4258985.pdf | All rows have review records |
+| 700555 | 1 | 1 | patents/WO_2025263124_A1.pdf | All rows have review records |
+| 701301 | 1 | 1 | patents/US4277149.pdf | All rows have review records |
+| 713433 | 1 | 1 | patents/US3942876.pdf | All rows have review records |
+| 721334 | 1 | 1 | Missing from untracked local patents/ references (US4786152, 4786152) | All rows have review records |
+| 728261 | 1 | 1 | patents/US4523816.pdf | All rows explicitly disposed |
+| 728403 | 1 | 1 | patents/US6560042.pdf | All rows explicitly disposed |
+| 732547 | 1 | 1 | patents/WO2021199923A1.pdf | All rows explicitly disposed |
+| 738493 | 1 | 1 | patents/JP2022092388A.pdf | All rows have review records |
+| 740439 | 1 | 1 | patents/US2983193.pdf | All rows explicitly disposed |
+| 740458 | 1 | 1 | patents/US2983193.pdf | All rows explicitly disposed |
+| 740464 | 1 | 1 | patents/US2983193.pdf | All rows explicitly disposed |
+| 741262 | 1 | 1 | patents/US3552833.pdf | All rows explicitly disposed |
+| 741276 | 1 | 1 | patents/US5717527.pdf | All rows explicitly disposed |
+| 744458 | 1 | 1 | patents/US2279384.pdf | All rows explicitly disposed |
+| 744496 | 1 | 1 | patents/US6940655.pdf | All rows explicitly disposed |
+| 747274 | 1 | 1 | patents/US3649104.pdf | All rows have review records |
+| 749501 | 1 | 1 | patents/US4124276.pdf | All rows have review records |
+| 749547 | 1 | 1 | patents/CN205720849U.pdf | All rows have review records |
+| 750251 | 1 | 1 | Missing from untracked local patents/ references (US4560253, 4560253) | All rows have review records |
+| 750501 | 1 | 1 | patents/US4277149.pdf | All rows have review records |
+| 750504 | 1 | 1 | patents/US4258985.pdf | All rows have review records |
+| 754260 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | All rows have review records |
+| 755501 | 1 | 1 | patents/US4277149.pdf | All rows have review records |
+| 757316 | 1 | 1 | No patent number parsed from lens metadata | All rows explicitly disposed |
+| 760492 | 1 | 1 | patents/JP2015041012A.pdf | All rows explicitly disposed |
+| 762271 | 1 | 1 | patents/US3743387.pdf | All rows have review records |
+| 764491 | 1 | 1 | patents/JP2023183894A.pdf | All rows have review records |
+| 767462 | 1 | 1 | patents/US3507558.pdf | All rows have review records |
+| 768465 | 1 | 1 | patents/US3524697.pdf | All rows have review records |
+| 769497 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | All rows have review records |
+| 770479 | 1 | 1 | patents/US2828671.pdf | All rows have review records |
+| 770493 | 1 | 1 | Missing from untracked local patents/ references (WO2021246545A1, WO2021246545, 2021246545) | All rows explicitly disposed |
+| 772493 | 1 | 1 | patents/US20230341664A1.pdf | All rows have review records |
+| 773498 | 1 | 1 | patents/US4871239.pdf | All rows have review records |
+| 773501 | 1 | 1 | patents/US4258985.pdf | All rows have review records |
+| 773530 | 1 | 1 | patents/CN110161666A.pdf | All rows have review records |
+| 774494 | 1 | 1 | patents/WO_2025263124_A1.pdf | All rows have review records |
+| 775473 | 1 | 1 | patents/WO2022259649A1.pdf | All rows explicitly disposed |
+| 776496 | 1 | 1 | patents/JP2023039817A.pdf | All rows explicitly disposed |
+| 780509 | 1 | 1 | patents/US20180164556A1.pdf | All rows explicitly disposed |
+| 781446 | 1 | 1 | patents/JP2004109559A.pdf | All rows have review records |
+| 786275 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | All rows have review records |
+| 787501 | 1 | 1 | patents/DE_2157160_A1.pdf | All rows have review records |
+| 789457 | 1 | 1 | patents/US4182550.pdf | All rows have review records |
+| 792257 | 1 | 1 | patents/JP2023039817A.pdf | All rows explicitly disposed |
+| 792450 | 1 | 1 | patents/WO2020136749A1.pdf | All rows have review records |
+| 794255 | 1 | 1 | patents/US7542219.pdf | All rows explicitly disposed |
+| 795286 | 1 | 1 | patents/US5717527.pdf | All rows explicitly disposed |
+| 796410 | 1 | 1 | patents/US4770511.pdf | All rows explicitly disposed |
+| 797455 | 1 | 1 | patents/US4452513.pdf | All rows have review records |
+| 800255 | 1 | 1 | patents/JP2015041012A.pdf | All rows have review records |
+| 801454 | 1 | 1 | patents/US20130033768A1.pdf | All rows explicitly disposed |
+| 803404 | 1 | 1 | patents/US20140247506A1.pdf | All rows have review records |
+| 803405 | 1 | 1 | patents/US20170351051A1.pdf | All rows have review records |
+| 805252 | 1 | 1 | patents/US4258985.pdf | All rows have review records |
+| 805410 | 1 | 1 | patents/US4871239.pdf | All rows have review records |
+| 808406 | 1 | 1 | patents/JP2023063766A.pdf | All rows explicitly disposed |
+| 810372 | 1 | 1 | patents/US20180164556A1.pdf | All rows explicitly disposed |
+| 821426 | 1 | 1 | patents/US20100220400A1.pdf | All rows have review records |
+| 831265 | 1 | 1 | patents/US3615126.pdf | All rows explicitly disposed |
+| 835447 | 1 | 1 | patents/CN205720849U.pdf | All rows have review records |
+| 840433 | 1 | 1 | patents/US5528428.pdf | All rows have review records |
+| 849401 | 1 | 1 | patents/US20170351051A1.pdf | All rows have review records |
+| 850440 | 1 | 1 | patents/US20180164556A1.pdf | All rows explicitly disposed |
+| 852401 | 1 | 1 | patents/JPWO2019073744A1.pdf | All rows explicitly disposed |
+| 852402 | 1 | 1 | patents/WO2020136749A1.pdf | All rows have review records |
+| 855399 | 1 | 1 | patents/JP2022092388A.pdf | All rows have review records |
+| 856323 | 1 | 1 | patents/WO2021200206A1.pdf | All rows explicitly disposed |
+| 866450 | 1 | 1 | patents/CN116520542A.pdf | All rows have review records |
+| 877370 | 1 | 1 | patents/US20160266350A1.pdf | All rows have review records |
+| 882408 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | All rows have review records |
+| 902253 | 1 | 1 | patents/JPWO2020105107A1.pdf | All rows explicitly disposed |
+| 903204 | 1 | 1 | patents/WO2021200206A1.pdf | All rows explicitly disposed |
+| 903354 | 1 | 1 | patents/JP2022092388A.pdf | All rows have review records |
+| 904293 | 1 | 1 | patents/CN205720849U.pdf | All rows have review records |
+| 910313 | 1 | 1 | patents/WO2021199923A1.pdf | All rows have review records |
+| 916364 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | All rows have review records |
+| 995293 | 1 | 1 | patents/JPWO2017138250A1.pdf | All rows explicitly disposed |
 
 ## Elements by Lens
 
 ### [AGFA COLOR-MAGNOLAR II 100mm f/4.5](../../src/lens-data/agfa/AgfaColorMagnolarII100mmf45.data.ts) - GB 775,944
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L3 (Element 3) | 4 | `Unmatched (540/509 crown-flint-boundary glass; no public catalog match located)` | 1.54041 / 50.90 | No catalog entry | abbe | patents/GB_775944_A.pdf | No reviewed-sidecar hit |
+| L3 (Element 3) | 4 | `Unmatched (540/509 crown-flint-boundary glass; no public catalog match located)` | 1.54041 / 50.90 | No catalog entry | abbe | patents/GB_775944_A.pdf | Explicit disposition in data |
 
 ### [CANON 50mm f/2.8](../../src/lens-data/canon/Canon50mmf28.data.ts) - US 2,838,978
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L2 (Element 2) | 3 | `Unmatched (593/343 medium-index flint; nearest public catalog coordinates are non-unique)` | 1.59300 / 34.30 | No catalog entry | abbe | patents/US2838978.pdf | No reviewed-sidecar hit |
+| L2 (Element 2) | 3 | `Unmatched (593/343 medium-index flint; nearest public catalog coordinates are non-unique)` | 1.59300 / 34.30 | No catalog entry | abbe | patents/US2838978.pdf | Explicit disposition in data |
 
 ### [CANON EF-M 32mm f/1.4 STM](../../src/lens-data/canon/CanonEFM32mmf14STM.data.ts) - JP2018180366A
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L8 (LR negative member) | 13 | `Unmatched (675/348 partial-dispersion flint; patent nd=1.67542, vd=34.8, θgF=0.5825)` | 1.67542 / 34.80 | No catalog entry | abbe | patents/JP2018180366A.pdf | Reviewed sidecar hit |
+| L8 (LR negative member) | 13 | `Unmatched (675/348 partial-dispersion flint; patent nd=1.67542, vd=34.8, θgF=0.5825)` | 1.67542 / 34.80 | No catalog entry | abbe | patents/JP2018180366A.pdf | Explicit disposition in data |
 
 ### [CANON FD 35mm f/2 S.S.C. (I)](../../src/lens-data/canon/CanonFD35mmf2.data.ts) - US 3,748,022
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L5 (Element 5) | 9 | `LaK (774492, probable thoriated)` | 1.77370 / 49.20 | No catalog entry | abbe | patents/US3748022.pdf | Reviewed sidecar hit |
 | L8 (Element 8) | 14 | `LaK (774492, probable thoriated)` | 1.77370 / 49.20 | No catalog entry | abbe | patents/US3748022.pdf | Reviewed sidecar hit |
 
 ### [CANON NEW FD 150-600mm f/5.6L](../../src/lens-data/canon/CanonFD150600mmf56L.data.ts) - US 4,110,006
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L17 (Element 17) | 30 | `Unmatched (534555 vintage crown; no first-party coefficient row found)` | 1.53375 / 55.50 | No catalog entry | abbe | patents/US4110006.pdf | Reviewed sidecar hit |
+| L17 (Element 17) | 30 | `Unmatched (534555 vintage crown; no first-party coefficient row found)` | 1.53375 / 55.50 | No catalog entry | abbe | patents/US4110006.pdf | Explicit disposition in data |
 
 ### [CANON RF 24-240mm f/4-6.3 IS USM](../../src/lens-data/canon/CanonRF24240mmf463.data.ts) - US 2020/0142167 A1
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L14 (Element 14) | 25A | `531559 - moldable barium light crown (patent nd=1.53110, vd=55.9)` | 1.53110 / 55.90 | No catalog entry | abbe | patents/US20200142167A1.pdf | Reviewed sidecar hit |
 
 ### [CANON RF 50mm f/1.2 L USM](../../src/lens-data/canon/CanonRF50mmf12L.data.ts) - US 2019/0265441 A1
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | G5 (Element 5) | 8 | `666356 — dense flint (nd=1.66565, νd=35.64)` | 1.66565 / 35.64 | No catalog entry | abbe | patents/US20190265441A1.pdf | Reviewed sidecar hit |
 | G10 (Element 10) | 16 | `666356 — dense flint (nd=1.66565, νd=35.64)` | 1.66565 / 35.64 | No catalog entry | abbe | patents/US20190265441A1.pdf | Reviewed sidecar hit |
 
 ### [CANON SERENAR 28mm f/3.5](../../src/lens-data/canon/CanonSerenar28mmf35.data.ts) - US 2,645,974
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L4 (Element 4) | 6 | `Unmatched (579417 vintage barium flint; no exact public catalog identity)` | 1.57850 / 41.70 | No catalog entry | abbe | patents/US2645974.pdf | No reviewed-sidecar hit |
+| L4 (Element 4) | 6 | `Unmatched (579417 vintage barium flint; no exact public catalog identity)` | 1.57850 / 41.70 | No catalog entry | abbe | patents/US2645974.pdf | Explicit disposition in data |
 
 ### [CARL ZEISS BIOGON 21mm f/4.5](../../src/lens-data/carl-zeiss-oberkochen/ZeissBiogon21mmf45.data.ts) - US 2,721,499
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L1 (Element 1) | 1 | `BK crown (504/667)` | 1.50380 / 66.70 | No catalog entry | abbe | patents/US2721499.pdf | Reviewed sidecar hit |
 | L5 (Element 5) | 8 | `BaK/SK crown (561/575)` | 1.56093 / 57.50 | No catalog entry | abbe | patents/US2721499.pdf | Reviewed sidecar hit |
@@ -293,13 +294,13 @@ Completion counts are conditional on finding a source-verified catalog identity 
 
 ### [CARL ZEISS JENA BIOGON 35mm f/2.8 (pre-war)](../../src/lens-data/carl-zeiss-jena/ZeissBiogon35mmf28Prewar.data.ts) - US 2,084,309
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L7 (Element 7) | 10 | `Unmatched vintage Zeiss/Schott 533/489 (nd=1.5333, νd=48.9)` | 1.53330 / 48.90 | No catalog entry | abbe | patents/US2084309.pdf | No reviewed-sidecar hit |
+| L7 (Element 7) | 10 | `Unmatched vintage Zeiss/Schott 533/489 (nd=1.5333, νd=48.9)` | 1.53330 / 48.90 | No catalog entry | abbe | patents/US2084309.pdf | Explicit disposition in data |
 
 ### [CARL ZEISS JENA PANCOLAR 50mm f/2](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaPancolar50mmf2.data.ts) - GB 850,117 C
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L1 (Element 1) | 1 | `SSK / LaK (Jena in-house, 662/561)` | 1.66200 / 56.10 | No catalog entry | abbe | patents/GB_850117_A.pdf | Reviewed sidecar hit |
 | L2 (Element 2) | 3 | `SSK / LaK (Jena in-house, 662/561)` | 1.66200 / 56.10 | No catalog entry | abbe | patents/GB_850117_A.pdf | Reviewed sidecar hit |
@@ -310,38 +311,38 @@ Completion counts are conditional on finding a source-verified catalog identity 
 
 ### [CARL ZEISS JENA TESSAR 50mm f/2.8](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaTessar50mmf28.data.ts) - FR 1.066.698
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L3 (Element 3) | 5 | `574425 — light flint (no exact public catalog match)` | 1.57380 / 42.50 | No catalog entry | abbe | patents/FR_1066698_A.pdf | Reviewed sidecar hit |
 
 ### [ENNA MÜNCHEN LITHAGON 24mm f/4](../../src/lens-data/enna-munchen/EnnaMunchenLithagon24mmf4.data.ts) - DE 1 228 820 B
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L4 (Element 4) | 7 | `Unmatched 519573 crown glass (patent-listed; supplier unidentified)` | 1.51895 / 57.30 | No catalog entry | abbe | patents/DE_1228820_B.pdf | Reviewed sidecar hit |
+| L4 (Element 4) | 7 | `Unmatched 519573 crown glass (patent-listed; supplier unidentified)` | 1.51895 / 57.30 | No catalog entry | abbe | patents/DE_1228820_B.pdf | Explicit disposition in data |
 
 ### [ENNA MÜNCHEN LITHAGON 35mm f/3.5](../../src/lens-data/enna-munchen/EnnaMunchenLithagon35mmf35.data.ts) - US 2,821,112
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L1 (Element 1) | 1 | `Unmatched (518/652 crown class)` | 1.51821 / 65.20 | No catalog entry | abbe | patents/US2821112.pdf | No reviewed-sidecar hit |
+| L1 (Element 1) | 1 | `Unmatched (518/652 crown class)` | 1.51821 / 65.20 | No catalog entry | abbe | patents/US2821112.pdf | Explicit disposition in data |
 
 ### [ENNA MÜNCHEN ULTRA-LITHAGON 28mm f/3.5](../../src/lens-data/enna-munchen/EnnaMunchenUltraLithagon28mmf35.data.ts) - US 2,959,100
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L2 (Element 2) | 3 | `Unmatched legacy flint (625/356; exact catalog type unresolved)` | 1.62536 / 35.60 | No catalog entry | abbe | patents/US2959100.pdf | No reviewed-sidecar hit |
-| L4 (Element 4) | 7 | `Unmatched legacy flint (625/356; exact catalog type unresolved)` | 1.62536 / 35.60 | No catalog entry | abbe | patents/US2959100.pdf | No reviewed-sidecar hit |
+| L2 (Element 2) | 3 | `Unmatched legacy flint (625/356; exact catalog type unresolved)` | 1.62536 / 35.60 | No catalog entry | abbe | patents/US2959100.pdf | Explicit disposition in data |
+| L4 (Element 4) | 7 | `Unmatched legacy flint (625/356; exact catalog type unresolved)` | 1.62536 / 35.60 | No catalog entry | abbe | patents/US2959100.pdf | Explicit disposition in data |
 
 ### [FUJIFILM FUJINON 23mm f/2 (Fujifilm X100)](../../src/lens-data/fujifilm/FujifilmX10023mmf2.data.ts) - US 2012/0069456 A1
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L6 (Element 6) | 10A | `Unmatched (569586 patent molded crown; no exact public catalog identity)` | 1.56865 / 58.60 | No catalog entry | abbe | patents/US20120069456A1.pdf | No reviewed-sidecar hit |
+| L6 (Element 6) | 10A | `Unmatched (569586 patent molded crown; no exact public catalog identity)` | 1.56865 / 58.60 | No catalog entry | abbe | patents/US20120069456A1.pdf | Explicit disposition in data |
 
 ### [FUJIFILM FUJINON GF 30mm f/5.6 T/S](../../src/lens-data/fujifilm/FujifilmGF30mmf56TS.data.ts) - WO 2024/195273 A1
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L11 (Element L11) | 1A | `585587 — moldable aspherical glass (patent-listed; no exact public catalog match)` | 1.58480 / 58.71 | No catalog entry | abbe | patents/WO2024195273A1.pdf | Reviewed sidecar hit |
 | L25 (Element L25) | 20A | `585587 — moldable aspherical glass (patent-listed; no exact public catalog match)` | 1.58480 / 58.71 | No catalog entry | abbe | patents/WO2024195273A1.pdf | Reviewed sidecar hit |
@@ -349,65 +350,65 @@ Completion counts are conditional on finding a source-verified catalog identity 
 
 ### [FUJIFILM FUJINON GF 55mm f/1.7 R WR](../../src/lens-data/fujifilm/FujifilmGF55mmf17.data.ts) - US 2023/0341664 A1
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L24 (L24) | 11A | `772493 — molded lanthanum-crown class (no exact public catalog match)` | 1.77210 / 49.30 | No catalog entry | abbe | patents/US20230341664A1.pdf | Reviewed sidecar hit |
 
 ### [FUJIFILM FUJINON XF 16-55mm f/2.8 R LM WR](../../src/lens-data/fujifilm/FujifilmXF1655mmf28R.data.ts) - US 2016/0154221 A1
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L31 (Element 8 (L31)) | 13A | `Unmatched (685309 dense flint; nearest public catalog row exceeds d-line tolerance)` | 1.68458 / 30.88 | No catalog entry | abbe | patents/US20160154221A1.pdf | Reviewed sidecar hit |
+| L31 (Element 8 (L31)) | 13A | `Unmatched (685309 dense flint; nearest public catalog row exceeds d-line tolerance)` | 1.68458 / 30.88 | No catalog entry | abbe | patents/US20160154221A1.pdf | Explicit disposition in data |
 
 ### [FUJIFILM FUJINON XF 23mm f/2 R WR](../../src/lens-data/fujifilm/FujifilmXF23mmf2RWR.data.ts) - US 2017/0351051 A1
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L14 (L14 — biconcave double-asphere) | 7A | `849401 - high-index lanthanum flint (likely PGM aspheric melt; no exact public catalog match)` | 1.84887 / 40.12 | No catalog entry | abbe | patents/US20170351051A1.pdf | No reviewed-sidecar hit |
-| L21 (L21 — moving focus asphere) | 13A | `803405 - high-index lanthanum flint (likely PGM aspheric melt; no exact public catalog match)` | 1.80312 / 40.54 | No catalog entry | abbe | patents/US20170351051A1.pdf | No reviewed-sidecar hit |
+| L14 (L14 — biconcave double-asphere) | 7A | `849401 - high-index lanthanum flint (likely PGM aspheric melt; no exact public catalog match)` | 1.84887 / 40.12 | No catalog entry | abbe | patents/US20170351051A1.pdf | Audit-log hit |
+| L21 (L21 — moving focus asphere) | 13A | `803405 - high-index lanthanum flint (likely PGM aspheric melt; no exact public catalog match)` | 1.80312 / 40.54 | No catalog entry | abbe | patents/US20170351051A1.pdf | Audit-log hit |
 
 ### [FUJIFILM FUJINON XF 60mm f/2.4 R Macro](../../src/lens-data/fujifilm/FujifilmXF60mmf24R.data.ts) - US 2014/0247506 A1
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L14 (Element 4) | 6 | `667311 - dense flint (patent nd=1.66680, vd=31.1; no exact public catalog match)` | 1.66680 / 31.10 | No catalog entry | abbe | patents/US20140247506A1.pdf | Reviewed sidecar hit |
 | L17 (Element 7) | 12A | `803404 - PGM lanthanum heavy flint (patent nd=1.80348, vd=40.4; no exact public catalog match)` | 1.80348 / 40.40 | No catalog entry | abbe | patents/US20140247506A1.pdf | Reviewed sidecar hit |
 
 ### [HASSELBLAD HC 150mm f/3.2](../../src/lens-data/hasselblad/HasselbladHC150mmf32.data.ts) - US 2002/0075570 A1
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L5 (Element 5) | 9 | `670572 - lanthanum crown (converted d-line estimate from patent e-line data; no exact public catalog match)` | 1.67003 / 57.20 | No catalog entry | abbe | patents/US20020075570A1.pdf | Reviewed sidecar hit |
 
 ### [KODAK AERO EKTAR 6 in f/3.5](../../src/lens-data/kodak/KodakAeroEktar6inf35.data.ts) - US 2,983,193
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L1 (Element 1) | 1 | `Unmatched (Kodak proprietary high-index lanthanum flint, 740/458)` | 1.74000 / 45.80 | No catalog entry | abbe | patents/US2983193.pdf | No reviewed-sidecar hit |
-| L2 (Element 2) | 3 | `Unmatched (Kodak proprietary high-index crown, 693/562)` | 1.69300 / 56.20 | No catalog entry | abbe | patents/US2983193.pdf | No reviewed-sidecar hit |
-| L3 (Element 3) | 4 | `Unmatched (Kodak proprietary dense flint, 683/309)` | 1.68300 / 30.90 | No catalog entry | abbe | patents/US2983193.pdf | No reviewed-sidecar hit |
-| L4 (Element 4) | 6 | `Unmatched (Kodak proprietary dense flint, 667/322)` | 1.66700 / 32.20 | No catalog entry | abbe | patents/US2983193.pdf | No reviewed-sidecar hit |
-| L5 (Element 5) | 7 | `Unmatched (Kodak proprietary lanthanum flint, 740/439)` | 1.74000 / 43.90 | No catalog entry | abbe | patents/US2983193.pdf | No reviewed-sidecar hit |
-| L6 (Element 6) | 9 | `Unmatched (Kodak proprietary high-index lanthanum flint, 740/464)` | 1.74000 / 46.40 | No catalog entry | abbe | patents/US2983193.pdf | No reviewed-sidecar hit |
+| L1 (Element 1) | 1 | `Unmatched (Kodak proprietary high-index lanthanum flint, 740/458)` | 1.74000 / 45.80 | No catalog entry | abbe | patents/US2983193.pdf | Explicit disposition in data |
+| L2 (Element 2) | 3 | `Unmatched (Kodak proprietary high-index crown, 693/562)` | 1.69300 / 56.20 | No catalog entry | abbe | patents/US2983193.pdf | Explicit disposition in data |
+| L3 (Element 3) | 4 | `Unmatched (Kodak proprietary dense flint, 683/309)` | 1.68300 / 30.90 | No catalog entry | abbe | patents/US2983193.pdf | Explicit disposition in data |
+| L4 (Element 4) | 6 | `Unmatched (Kodak proprietary dense flint, 667/322)` | 1.66700 / 32.20 | No catalog entry | abbe | patents/US2983193.pdf | Explicit disposition in data |
+| L5 (Element 5) | 7 | `Unmatched (Kodak proprietary lanthanum flint, 740/439)` | 1.74000 / 43.90 | No catalog entry | abbe | patents/US2983193.pdf | Explicit disposition in data |
+| L6 (Element 6) | 9 | `Unmatched (Kodak proprietary high-index lanthanum flint, 740/464)` | 1.74000 / 46.40 | No catalog entry | abbe | patents/US2983193.pdf | Explicit disposition in data |
 
 ### [KODAK ENLARGING EKTAR 100mm f/4.5](../../src/lens-data/kodak/KodakEnlargingEktar100mmf45.data.ts) - US 2,279,384
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L1 (Element 1) | 1 | `Unmatched (vintage barium crown class, 611/572)` | 1.61100 / 57.20 | No catalog entry | abbe | patents/US2279384.pdf | No reviewed-sidecar hit |
-| L3 (Element 3) | 4 | `Unmatched (vintage dense flint class, 605/382)` | 1.60500 / 38.20 | No catalog entry | abbe | patents/US2279384.pdf | No reviewed-sidecar hit |
-| L4 (Element 4) | 6 | `Unmatched (vintage light flint class, 575/414)` | 1.57500 / 41.40 | No catalog entry | abbe | patents/US2279384.pdf | No reviewed-sidecar hit |
-| L5 (Element 5) | 7 | `Unmatched (vintage high-index lanthanum flint class, 744/458)` | 1.74400 / 45.80 | No catalog entry | abbe | patents/US2279384.pdf | No reviewed-sidecar hit |
+| L1 (Element 1) | 1 | `Unmatched (vintage barium crown class, 611/572)` | 1.61100 / 57.20 | No catalog entry | abbe | patents/US2279384.pdf | Explicit disposition in data |
+| L3 (Element 3) | 4 | `Unmatched (vintage dense flint class, 605/382)` | 1.60500 / 38.20 | No catalog entry | abbe | patents/US2279384.pdf | Explicit disposition in data |
+| L4 (Element 4) | 6 | `Unmatched (vintage light flint class, 575/414)` | 1.57500 / 41.40 | No catalog entry | abbe | patents/US2279384.pdf | Explicit disposition in data |
+| L5 (Element 5) | 7 | `Unmatched (vintage high-index lanthanum flint class, 744/458)` | 1.74400 / 45.80 | No catalog entry | abbe | patents/US2279384.pdf | Explicit disposition in data |
 
 ### [KONICA HEXANON 38mm f/2.8 (Konica C35)](../../src/lens-data/konica/KonicaHexanon38mmf28.data.ts) - US 3,615,126
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L4 (Element 4) | 6 | `Unmatched (high-index dense flint, 831/265)` | 1.83060 / 26.50 | No catalog entry | abbe | patents/US3615126.pdf | No reviewed-sidecar hit |
+| L4 (Element 4) | 6 | `Unmatched (high-index dense flint, 831/265)` | 1.83060 / 26.50 | No catalog entry | abbe | patents/US3615126.pdf | Explicit disposition in data |
 
 ### [LAOWA 12mm f/2.8 Zero-D](../../src/lens-data/laowa/Laowa12mmf28ZeroD.data.ts) - CN205720849U
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L1 (Element 1) | 1 | `749547 - high-index crown class (patent nd=1.74916, vd=54.67; unresolved)` | 1.74916 / 54.67 | No catalog entry | abbe | patents/CN205720849U.pdf | Reviewed sidecar hit |
 | L5 (Element 5) | 8 | `835447 - high-index lanthanum class (patent nd=1.83481, vd=44.72; unresolved)` | 1.83481 / 44.72 | No catalog entry | abbe | patents/CN205720849U.pdf | Reviewed sidecar hit |
@@ -415,64 +416,64 @@ Completion counts are conditional on finding a source-verified catalog identity 
 
 ### [LAOWA 58mm f/2.8 2× Ultra-Macro APO](../../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts) - CN 116520542 A
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L1 (Element 1) | 1 | `866450 - high-index lanthanum flint (patent nd=1.86665, vd=45.0)` | 1.86665 / 45.00 | No catalog entry | abbe | patents/CN116520542A.pdf | Reviewed sidecar hit |
 | L11 (Element 11) | 20 | `545486 - crown glass (patent nd=1.54517, vd=48.63)` | 1.54517 / 48.63 | No catalog entry | abbe | patents/CN116520542A.pdf | Reviewed sidecar hit |
 
 ### [LAOWA 65mm f/2.8 2× Ultra Macro APO](../../src/lens-data/laowa/Laowa65mmf28MacroAPO.data.ts) - CN 110161666A
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L3 (Element 3) | 4 | `773530 — high-index lanthanum crown (patent nd=1.77250, νd=53.00; no exact public catalog match)` | 1.77250 / 53.00 | No catalog entry | abbe | patents/CN110161666A.pdf | Reviewed sidecar hit |
 
 ### [LEICA ELCAN 50mm f/2](../../src/lens-data/leica/LeicaElcan50mmf2.data.ts) - US 3,649,104
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L3 (Element 3) | 5 | `747274 - dense flint (patent nd=1.74710, vd=27.40; no exact public catalog match)` | 1.74710 / 27.40 | No catalog entry | abbe | patents/US3649104.pdf | Reviewed sidecar hit |
 
 ### [LEICA ELMARIT-R 28mm f/2.8](../../src/lens-data/leica/LeicaElmarit28mmf28.data.ts) - US 3,591,257
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L4 (Element 4) | 6 | `813252 - high-index flint (patent nd=1.81265, vd=25.24; no exact public catalog match)` | 1.81265 / 25.24 | No catalog entry | abbe | patents/US3591257.pdf | Reviewed sidecar hit |
 | L7 (Element 7) | 11 | `813252 - high-index flint (patent nd=1.81265, vd=25.24; no exact public catalog match)` | 1.81265 / 25.24 | No catalog entry | abbe | patents/US3591257.pdf | Reviewed sidecar hit |
 
 ### [LEICA MACRO-ELMARIT-R 60mm f/2.8](../../src/lens-data/leica/LeicaMacroElmaritR60mmf28.data.ts) - US 3,552,833
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L2 (Element 2) | 3 | `Unmatched (693/495 e-line; positive member of front cemented doublet)` | 1.69282 / 49.50 | No catalog entry | abbe | patents/US3552833.pdf | No reviewed-sidecar hit |
-| L4 (Element 4) | 6 | `Unmatched (dense flint, 741/262 e-line; no close current HOYA/OHARA match)` | 1.74070 / 26.20 | No catalog entry | abbe | patents/US3552833.pdf | No reviewed-sidecar hit |
+| L2 (Element 2) | 3 | `Unmatched (693/495 e-line; positive member of front cemented doublet)` | 1.69282 / 49.50 | No catalog entry | abbe | patents/US3552833.pdf | Explicit disposition in data |
+| L4 (Element 4) | 6 | `Unmatched (dense flint, 741/262 e-line; no close current HOYA/OHARA match)` | 1.74070 / 26.20 | No catalog entry | abbe | patents/US3552833.pdf | Explicit disposition in data |
 
 ### [LEICA SUMMILUX 28mm f/1.7 ASPH. (Leica Q, Q2, Q3)](../../src/lens-data/leica/Leica28mmf17.data.ts) - US 2016/0266350 A1
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L6 (Element 6) | 12A | `877370 — high-index lanthanum glass (patent nd=1.87722, nu_d=37.0)` | 1.87722 / 37.00 | No catalog entry | abbe | patents/US20160266350A1.pdf | Reviewed sidecar hit |
 
 ### [MINOLTA AF 100mm f/2.8 Macro](../../src/lens-data/minolta/MinoltaAF100mmf28Macro.data.ts) - US 4,764,000
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L7 (Element 7) | 13 | `807316 - dense lanthanum flint (patent nd=1.80741, vd=31.59; unresolved)` | 1.80741 / 31.59 | No catalog entry | abbe | patents/US4764000.pdf | Reviewed sidecar hit |
 
 ### [MINOLTA AF 28mm f/2](../../src/lens-data/minolta/MinoltaAF28mmf2.data.ts) - US 4,258,985
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L1 (Element 1) | 1 | `694536 - lanthanum crown (catalog unresolved)` | 1.69350 / 53.61 | No catalog entry | abbe | patents/US4258985.pdf | No reviewed-sidecar hit |
-| L4a (Element 4) | 7 | `762404 - lanthanum flint class (catalog unresolved)` | 1.76200 / 40.38 | No catalog entry | abbe | patents/US4258985.pdf | No reviewed-sidecar hit |
-| L4b (Element 5) | 7pp | `762404 - lanthanum flint class (catalog unresolved)` | 1.76200 / 40.38 | No catalog entry | abbe | patents/US4258985.pdf | No reviewed-sidecar hit |
-| L5 (Element 6) | 9 | `750504 - dense lanthanum crown class (catalog unresolved)` | 1.74950 / 50.41 | No catalog entry | abbe | patents/US4258985.pdf | No reviewed-sidecar hit |
-| L6 (Element 7) | 11 | `805252 - dense flint (catalog unresolved)` | 1.80520 / 25.21 | No catalog entry | abbe | patents/US4258985.pdf | No reviewed-sidecar hit |
-| L7 (Element 8) | 13 | `773501 - lanthanum flint (catalog unresolved)` | 1.77250 / 50.14 | No catalog entry | abbe | patents/US4258985.pdf | No reviewed-sidecar hit |
-| L8 (Element 9) | 15 | `697558 - lanthanum crown (catalog unresolved)` | 1.69680 / 55.80 | No catalog entry | abbe | patents/US4258985.pdf | No reviewed-sidecar hit |
+| L1 (Element 1) | 1 | `694536 - lanthanum crown (catalog unresolved)` | 1.69350 / 53.61 | No catalog entry | abbe | patents/US4258985.pdf | Audit-log hit |
+| L4a (Element 4) | 7 | `762404 - lanthanum flint class (catalog unresolved)` | 1.76200 / 40.38 | No catalog entry | abbe | patents/US4258985.pdf | Audit-log hit |
+| L4b (Element 5) | 7pp | `762404 - lanthanum flint class (catalog unresolved)` | 1.76200 / 40.38 | No catalog entry | abbe | patents/US4258985.pdf | Audit-log hit |
+| L5 (Element 6) | 9 | `750504 - dense lanthanum crown class (catalog unresolved)` | 1.74950 / 50.41 | No catalog entry | abbe | patents/US4258985.pdf | Audit-log hit |
+| L6 (Element 7) | 11 | `805252 - dense flint (catalog unresolved)` | 1.80520 / 25.21 | No catalog entry | abbe | patents/US4258985.pdf | Audit-log hit |
+| L7 (Element 8) | 13 | `773501 - lanthanum flint (catalog unresolved)` | 1.77250 / 50.14 | No catalog entry | abbe | patents/US4258985.pdf | Audit-log hit |
+| L8 (Element 9) | 15 | `697558 - lanthanum crown (catalog unresolved)` | 1.69680 / 55.80 | No catalog entry | abbe | patents/US4258985.pdf | Audit-log hit |
 
 ### [MINOLTA AF 35-105mm f/3.5-4.5 New (v2)](../../src/lens-data/minolta/MinoltaAF35105mmf3545v2.data.ts) - US 4,871,239
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L4 (Element 4) | 6 | `773498 - dense lanthanum-flint boundary class (unresolved)` | 1.77250 / 49.77 | No catalog entry | abbe | patents/US4871239.pdf | Reviewed sidecar hit |
 | L10 (Element 10) | 17 | `807316 - high-index dense flint class (unresolved)` | 1.80741 / 31.59 | No catalog entry | abbe | patents/US4871239.pdf | Reviewed sidecar hit |
@@ -481,114 +482,114 @@ Completion counts are conditional on finding a source-verified catalog identity 
 
 ### [MINOLTA AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) - JP 2004-109559 A
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L2 (Element 2) | 2 | `493836 - Minolta AD/ED fluorophosphate-type (nd=1.49310, vd=83.58; catalog unresolved)` | 1.49310 / 83.58 | No catalog entry | abbe | patents/JP2004109559A.pdf | Reviewed sidecar hit |
 | L3 (Element 3) | 4 | `493836 - Minolta AD/ED fluorophosphate-type (nd=1.49310, vd=83.58; catalog unresolved)` | 1.49310 / 83.58 | No catalog entry | abbe | patents/JP2004109559A.pdf | Reviewed sidecar hit |
-| L6 (Element 6) | 10 | `755516 - high-index crown (unresolved)` | 1.75450 / 51.57 | No catalog entry | abbe | patents/JP2004109559A.pdf | No reviewed-sidecar hit |
-| L10 (Element 10) | 17 | `755516 - high-index crown (unresolved)` | 1.75450 / 51.57 | No catalog entry | abbe | patents/JP2004109559A.pdf | No reviewed-sidecar hit |
+| L6 (Element 6) | 10 | `755516 - high-index crown (unresolved)` | 1.75450 / 51.57 | No catalog entry | abbe | patents/JP2004109559A.pdf | Audit-log hit |
+| L10 (Element 10) | 17 | `755516 - high-index crown (unresolved)` | 1.75450 / 51.57 | No catalog entry | abbe | patents/JP2004109559A.pdf | Audit-log hit |
 | L12 (Element 12) | 21 | `493836 - Minolta AD/ED fluorophosphate-type (nd=1.49310, vd=83.58; catalog unresolved)` | 1.49310 / 83.58 | No catalog entry | abbe | patents/JP2004109559A.pdf | Reviewed sidecar hit |
-| L14 (Element 14) | 25 | `781446 - high-index mid-dispersion glass (unresolved)` | 1.78100 / 44.55 | No catalog entry | abbe | patents/JP2004109559A.pdf | No reviewed-sidecar hit |
+| L14 (Element 14) | 25 | `781446 - high-index mid-dispersion glass (unresolved)` | 1.78100 / 44.55 | No catalog entry | abbe | patents/JP2004109559A.pdf | Audit-log hit |
 | L15 (Element 15) | 27 | `493836 - Minolta AD/ED fluorophosphate-type (nd=1.49310, vd=83.58; catalog unresolved)` | 1.49310 / 83.58 | No catalog entry | abbe | patents/JP2004109559A.pdf | Reviewed sidecar hit |
 
 ### [MINOLTA AF APO Tele 200mm f/2.8](../../src/lens-data/minolta/MinoltaAF200mmf28.data.ts) - US 4,786,152
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L1 (Element 1) | 1 | `493836 - AD fluorophosphate crown (theta_gF = 0.539 patent-listed; catalog unresolved)` | 1.49310 / 83.55 | No catalog entry | abbe | Missing from untracked local patents/ references (US4786152, 4786152) | Reviewed sidecar hit |
 | L2 (Element 2) | 3 | `493836 - AD fluorophosphate crown (theta_gF = 0.539 patent-listed; catalog unresolved)` | 1.49310 / 83.55 | No catalog entry | abbe | Missing from untracked local patents/ references (US4786152, 4786152) | Reviewed sidecar hit |
-| L3 (Element 3) | 5 | `720521 - high-index lanthanum crown (catalog unresolved)` | 1.72000 / 52.14 | No catalog entry | abbe | Missing from untracked local patents/ references (US4786152, 4786152) | No reviewed-sidecar hit |
-| L4 (Element 4) | 7 | `721334 - dense lanthanum flint (catalog unresolved)` | 1.72100 / 33.40 | No catalog entry | abbe | Missing from untracked local patents/ references (US4786152, 4786152) | No reviewed-sidecar hit |
+| L3 (Element 3) | 5 | `720521 - high-index lanthanum crown (catalog unresolved)` | 1.72000 / 52.14 | No catalog entry | abbe | Missing from untracked local patents/ references (US4786152, 4786152) | Audit-log hit |
+| L4 (Element 4) | 7 | `721334 - dense lanthanum flint (catalog unresolved)` | 1.72100 / 33.40 | No catalog entry | abbe | Missing from untracked local patents/ references (US4786152, 4786152) | Audit-log hit |
 
 ### [MINOLTA AF APO TELE 300mm f/2.8](../../src/lens-data/minolta/MinoltaAF300mmf28.data.ts) - US 4,518,229
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L3 (Element 3) | 5 | `682366 - dense flint class (catalog unresolved)` | 1.68150 / 36.64 | No catalog entry | abbe | Missing from untracked local patents/ references (US4518229, 4518229) | No reviewed-sidecar hit |
+| L3 (Element 3) | 5 | `682366 - dense flint class (catalog unresolved)` | 1.68150 / 36.64 | No catalog entry | abbe | Missing from untracked local patents/ references (US4518229, 4518229) | Audit-log hit |
 
 ### [MINOLTA AF Zoom 35-70mm f/4](../../src/lens-data/minolta/MinoltaAF3570mmf4.data.ts) - US 4,560,253
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L5 (Component II-3) | 9 | `750251 - dense/fluor flint (catalog unresolved)` | 1.75000 / 25.14 | No catalog entry | abbe | Missing from untracked local patents/ references (US4560253, 4560253) | No reviewed-sidecar hit |
+| L5 (Component II-3) | 9 | `750251 - dense/fluor flint (catalog unresolved)` | 1.75000 / 25.14 | No catalog entry | abbe | Missing from untracked local patents/ references (US4560253, 4560253) | Audit-log hit |
 
 ### [MINOLTA MD ROKKOR 45mm f/2](../../src/lens-data/minolta/MinoltaRokkor45mmf2MD.data.ts) - US 4,277,149
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L1 (Element 1) | 1 | `781445 - lanthanum flint (catalog unresolved)` | 1.78100 / 44.50 | No catalog entry | abbe | patents/US4277149.pdf | No reviewed-sidecar hit |
-| L2 (Element 2) | 3 | `750501 - lanthanum crown (catalog unresolved)` | 1.74950 / 50.10 | No catalog entry | abbe | patents/US4277149.pdf | No reviewed-sidecar hit |
-| L3 (Element 3) | 5 | `701301 - dense flint (catalog unresolved)` | 1.70060 / 30.10 | No catalog entry | abbe | patents/US4277149.pdf | No reviewed-sidecar hit |
-| L4 (Element 4) | 7 | `640353 - medium flint (catalog unresolved)` | 1.63980 / 35.30 | No catalog entry | abbe | patents/US4277149.pdf | No reviewed-sidecar hit |
-| L5 (Element 5) | 8 | `755501 - lanthanum crown (catalog unresolved)` | 1.75450 / 50.10 | No catalog entry | abbe | patents/US4277149.pdf | No reviewed-sidecar hit |
+| L1 (Element 1) | 1 | `781445 - lanthanum flint (catalog unresolved)` | 1.78100 / 44.50 | No catalog entry | abbe | patents/US4277149.pdf | Audit-log hit |
+| L2 (Element 2) | 3 | `750501 - lanthanum crown (catalog unresolved)` | 1.74950 / 50.10 | No catalog entry | abbe | patents/US4277149.pdf | Audit-log hit |
+| L3 (Element 3) | 5 | `701301 - dense flint (catalog unresolved)` | 1.70060 / 30.10 | No catalog entry | abbe | patents/US4277149.pdf | Audit-log hit |
+| L4 (Element 4) | 7 | `640353 - medium flint (catalog unresolved)` | 1.63980 / 35.30 | No catalog entry | abbe | patents/US4277149.pdf | Audit-log hit |
+| L5 (Element 5) | 8 | `755501 - lanthanum crown (catalog unresolved)` | 1.75450 / 50.10 | No catalog entry | abbe | patents/US4277149.pdf | Audit-log hit |
 
 ### [MINOLTA MD ROKKOR 50mm f/1.4](../../src/lens-data/minolta/MinoltaRokkor50mmf14MD.data.ts) - US 4,182,550
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L1 (Element 1) | 1 | `789457 - high-index lanthanum flint (catalog unresolved)` | 1.78850 / 45.70 | No catalog entry | abbe | patents/US4182550.pdf | No reviewed-sidecar hit |
-| L6 (Element 6) | 10 | `Unmatched (781445 patent coordinate; vendor unresolved)` | 1.78100 / 44.50 | No catalog entry | abbe | patents/US4182550.pdf | No reviewed-sidecar hit |
+| L1 (Element 1) | 1 | `789457 - high-index lanthanum flint (catalog unresolved)` | 1.78850 / 45.70 | No catalog entry | abbe | patents/US4182550.pdf | Audit-log hit |
+| L6 (Element 6) | 10 | `Unmatched (781445 patent coordinate; vendor unresolved)` | 1.78100 / 44.50 | No catalog entry | abbe | patents/US4182550.pdf | Explicit disposition in data |
 
 ### [MINOLTA VARISOFT ROKKOR 85mm f/2.8](../../src/lens-data/minolta/MinoltaVarisoft85mmf28.data.ts) - US 4,124,276
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L1 (Element 1) | 1 | `749501 - lanthanum crown (catalog unresolved)` | 1.74950 / 50.10 | No catalog entry | abbe | patents/US4124276.pdf | Reviewed sidecar hit |
 | L3 (Element 3) | 5 | `541468 - light flint (catalog unresolved)` | 1.54072 / 46.80 | No catalog entry | abbe | patents/US4124276.pdf | Reviewed sidecar hit |
-| L4 (Element 4) | 6 | `720521 - lanthanum crown (catalog unresolved)` | 1.72000 / 52.10 | No catalog entry | abbe | patents/US4124276.pdf | No reviewed-sidecar hit |
+| L4 (Element 4) | 6 | `720521 - lanthanum crown (catalog unresolved)` | 1.72000 / 52.10 | No catalog entry | abbe | patents/US4124276.pdf | Audit-log hit |
 | L6 (Element 6) | 10 | `576414 - light flint (catalog unresolved)` | 1.57616 / 41.40 | No catalog entry | abbe | patents/US4124276.pdf | Reviewed sidecar hit |
 
 ### [NIKON AF MICRO-NIKKOR 200mm f/4D IF-ED](../../src/lens-data/nikon/NikonAFMicroNikkor200mmf4D.data.ts) - US 5,751,485
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L4 (Element 4) | 6 | `Unmatched lanthanum flint class (796/409 patent code)` | 1.79631 / 40.90 | No catalog entry | abbe | patents/US5751485.pdf | Reviewed sidecar hit |
+| L4 (Element 4) | 6 | `Unmatched lanthanum flint class (796/409 patent code)` | 1.79631 / 40.90 | No catalog entry | abbe | patents/US5751485.pdf | Explicit disposition in data |
 
 ### [NIKON AF NIKKOR 85mm f/1.4 D IF](../../src/lens-data/nikon/Nikon85f14D.data.ts) - US 5,640,277
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L2 (Element 3) | 5 | `Unmatched (796409 patent coordinate; vendor unresolved)` | 1.79631 / 40.90 | No catalog entry | abbe | patents/US5640277.pdf | Reviewed sidecar hit |
-| L8 (Element 10) | 19 | `Unmatched (748523 patent coordinate; vendor unresolved)` | 1.74810 / 52.30 | No catalog entry | abbe | patents/US5640277.pdf | Reviewed sidecar hit |
+| L2 (Element 3) | 5 | `Unmatched (796409 patent coordinate; vendor unresolved)` | 1.79631 / 40.90 | No catalog entry | abbe | patents/US5640277.pdf | Explicit disposition in data |
+| L8 (Element 10) | 19 | `Unmatched (748523 patent coordinate; vendor unresolved)` | 1.74810 / 52.30 | No catalog entry | abbe | patents/US5640277.pdf | Explicit disposition in data |
 
 ### [NIKON AF ZOOM-MICRO NIKKOR ED 70-180mm f/4.5-5.6D](../../src/lens-data/nikon/NikonAFZoomMicro70180mmf4556D.data.ts) - US 5,717,527
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L3 (Element 3) | 5 | `Unmatched crown (617/540)` | 1.61720 / 54.01 | No catalog entry | abbe | patents/US5717527.pdf | No reviewed-sidecar hit |
-| L4 (Element 4) | 7 | `Unmatched dense flint (795/286)` | 1.79504 / 28.56 | No catalog entry | abbe | patents/US5717527.pdf | No reviewed-sidecar hit |
-| L6 (Element 6) | 11 | `Unmatched lanthanum crown (748/523)` | 1.74810 / 52.30 | No catalog entry | abbe | patents/US5717527.pdf | Reviewed sidecar hit |
-| L17 (Element 17) | 30 | `Unmatched dense flint (741/276)` | 1.74077 / 27.63 | No catalog entry | abbe | patents/US5717527.pdf | No reviewed-sidecar hit |
+| L3 (Element 3) | 5 | `Unmatched crown (617/540)` | 1.61720 / 54.01 | No catalog entry | abbe | patents/US5717527.pdf | Explicit disposition in data |
+| L4 (Element 4) | 7 | `Unmatched dense flint (795/286)` | 1.79504 / 28.56 | No catalog entry | abbe | patents/US5717527.pdf | Explicit disposition in data |
+| L6 (Element 6) | 11 | `Unmatched lanthanum crown (748/523)` | 1.74810 / 52.30 | No catalog entry | abbe | patents/US5717527.pdf | Explicit disposition in data |
+| L17 (Element 17) | 30 | `Unmatched dense flint (741/276)` | 1.74077 / 27.63 | No catalog entry | abbe | patents/US5717527.pdf | Explicit disposition in data |
 
 ### [NIKON AF-P DX NIKKOR 10-20mm f/4.5-5.6 G VR](../../src/lens-data/nikon/NikonAFPDX1020mmf4556G.data.ts) - WO2021039813A1
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L13 (L13) | 7 | `683548 - patent-specified glass (theta_gF=0.5501; unresolved)` | 1.68348 / 54.80 | No catalog entry | abbe | patents/WO2021039813A1.pdf | Reviewed sidecar hit |
 | L41 (L41) | 25 | `531559 - patent-specified crown-like glass (theta_gF=0.5684; unresolved)` | 1.53110 / 55.91 | No catalog entry | abbe | patents/WO2021039813A1.pdf | Reviewed sidecar hit |
 
 ### [NIKON AF-P DX NIKKOR 70-300mm f/4.5-6.3 G ED VR](../../src/lens-data/nikon/NikonAFPDX70300mmf4563G.data.ts) - US 2021/0026133 A1
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L12 (L12) | 3 | `612313 — anomalous-dispersion flint class (patent nd=1.61155, νd=31.26, θgF=0.618; no exact public catalog match)` | 1.61155 / 31.26 | No catalog entry | abbe | patents/US20210026133A1.pdf | Reviewed sidecar hit |
 
 ### [NIKON AF-S DX ZOOM-NIKKOR 12-24mm f/4 G IF-ED](../../src/lens-data/nikon/NikonAFSDXZoomNikkor1224mmf4GIFED.data.ts) - US 6,940,655 B2
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L1 (Element 1) | 1A | `Unmatched (744496 class; nd=1.744429, vd=49.55)` | 1.74443 / 49.55 | No catalog entry | abbe | patents/US6940655.pdf | No reviewed-sidecar hit |
-| L11 (Element 11) | 19A | `Unmatched (606574 class; nd=1.606020, vd=57.44)` | 1.60602 / 57.44 | No catalog entry | abbe | patents/US6940655.pdf | No reviewed-sidecar hit |
+| L1 (Element 1) | 1A | `Unmatched (744496 class; nd=1.744429, vd=49.55)` | 1.74443 / 49.55 | No catalog entry | abbe | patents/US6940655.pdf | Explicit disposition in data |
+| L11 (Element 11) | 19A | `Unmatched (606574 class; nd=1.606020, vd=57.44)` | 1.60602 / 57.44 | No catalog entry | abbe | patents/US6940655.pdf | Explicit disposition in data |
 
 ### [NIKON AF-S NIKKOR 14-24mm f/2.8 G ED](../../src/lens-data/nikon/NikonNikkorAFS1424mmf28.data.ts) - US 7,359,125 B2
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L4 (Element 4) | 6 | `554381 — dense flint (patent nd=1.55389, nu_d=38.09)` | 1.55389 / 38.09 | No catalog entry | abbe | patents/US7359125.pdf | No reviewed-sidecar hit |
+| L4 (Element 4) | 6 | `554381 — dense flint (patent nd=1.55389, nu_d=38.09)` | 1.55389 / 38.09 | No catalog entry | abbe | patents/US7359125.pdf | Audit-log hit |
 
 ### [NIKON AF-S NIKKOR 20mm f/1.8 G ED](../../src/lens-data/nikon/NikonNikkorAFS20mmf18G.data.ts) - JP 2016-021011 A
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L12r (L12 resin layer) | 4 | `514530 — patent UV-cure resin (nd=1.51380, νd=53.0)` | 1.51380 / 53.00 | No catalog entry | abbe | patents/JP2016021011A.pdf | Reviewed sidecar hit |
 | C1 (LS cement layer) | 9 | `514428 — patent cement layer (nd=1.51400, νd=42.8)` | 1.51400 / 42.80 | No catalog entry | abbe | patents/JP2016021011A.pdf | Reviewed sidecar hit |
@@ -596,129 +597,129 @@ Completion counts are conditional on finding a source-verified catalog identity 
 
 ### [NIKON AF-S NIKKOR 24-70mm f/2.8 E ED VR](../../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) - US 2020/0142168 A1
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L11 (Element 1) | 1 | `744495 — lanthanum crown (patent nd=1.74389, νd=49.50; no exact public catalog match)` | 1.74389 / 49.50 | No catalog entry | abbe | patents/US20200142168A1.pdf | Reviewed sidecar hit |
 
 ### [NIKON AF-S NIKKOR 24-70mm f/2.8 G ED](../../src/lens-data/nikon/NikonAFS2470mmf28G.data.ts) - US 7,508,592 B2
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L1 (Element 1) | 1 | `744495 — unmatched high-index lanthanum-crown class (patent nd=1.744429, νd=49.52; no exact public catalog match)` | 1.74443 / 49.52 | No catalog entry | abbe | patents/US7508592.pdf | Reviewed sidecar hit |
-| L4r (Element 4 resin layer) | 7A | `553381 — unmatched UV-cure replicated resin (patent nd=1.55389, νd=38.09; not catalog glass)` | 1.55389 / 38.09 | No catalog entry | abbe | patents/US7508592.pdf | Reviewed sidecar hit |
+| L1 (Element 1) | 1 | `744495 — unmatched high-index lanthanum-crown class (patent nd=1.744429, νd=49.52; no exact public catalog match)` | 1.74443 / 49.52 | No catalog entry | abbe | patents/US7508592.pdf | Explicit disposition in data |
+| L4r (Element 4 resin layer) | 7A | `553381 — unmatched UV-cure replicated resin (patent nd=1.55389, νd=38.09; not catalog glass)` | 1.55389 / 38.09 | No catalog entry | abbe | patents/US7508592.pdf | Explicit disposition in data |
 
 ### [NIKON AF-S NIKKOR 28-300mm f/3.5-5.6 G ED VR](../../src/lens-data/nikon/NikonNikkorAFS28300mmf3556G.data.ts) - US 2010/0220400 A1
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L54 (G5 rear aspherical negative lens) | 34 | `821426 — patent dense flint (nd=1.82080, νd=42.64; no public HIKARI/OHARA match found)` | 1.82080 / 42.64 | No catalog entry | abbe | patents/US20100220400A1.pdf | Reviewed sidecar hit |
 
 ### [NIKON AF-S NIKKOR 28mm f/1.4 E ED](../../src/lens-data/nikon/NikonAFS28f14E.data.ts) - JP2017-227799A
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L14 (Element 4) | 8 | `Unmatched (569560 barium crown; patent coordinate is compatible with several vendors)` | 1.56883 / 56.00 | No catalog entry | abbe | patents/JP2017227799A.pdf | No reviewed-sidecar hit |
+| L14 (Element 4) | 8 | `Unmatched (569560 barium crown; patent coordinate is compatible with several vendors)` | 1.56883 / 56.00 | No catalog entry | abbe | patents/JP2017227799A.pdf | Explicit disposition in data |
 
 ### [NIKON AI AF ZOOM-NIKKOR 24-120mm f/3.5-5.6 D IF](../../src/lens-data/nikon/NikonAFNikkor24120mmf3556D.data.ts) - US 5,734,508 A
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L21g (Element 4b — L21 Glass Substrate) | 18 | `Unmatched (840434 high-index glass)` | 1.84042 / 43.40 | No catalog entry | abbe | patents/US5734508.pdf | No reviewed-sidecar hit |
-| L22 (Element 5 — L22) | 20 | `Unmatched (840434 high-index glass)` | 1.84042 / 43.40 | No catalog entry | abbe | patents/US5734508.pdf | No reviewed-sidecar hit |
-| L3F3 (Element 11 — L3F3) | 30 | `Unmatched (796409 high-index crown)` | 1.79631 / 40.90 | No catalog entry | abbe | patents/US5734508.pdf | Reviewed sidecar hit |
+| L21g (Element 4b — L21 Glass Substrate) | 18 | `Unmatched (840434 high-index glass)` | 1.84042 / 43.40 | No catalog entry | abbe | patents/US5734508.pdf | Explicit disposition in data |
+| L22 (Element 5 — L22) | 20 | `Unmatched (840434 high-index glass)` | 1.84042 / 43.40 | No catalog entry | abbe | patents/US5734508.pdf | Explicit disposition in data |
+| L3F3 (Element 11 — L3F3) | 30 | `Unmatched (796409 high-index crown)` | 1.79631 / 40.90 | No catalog entry | abbe | patents/US5734508.pdf | Explicit disposition in data |
 
 ### [NIKON AI NIKKOR 35mm f/2](../../src/lens-data/nikon/NikonAINikkor35mmf2.data.ts) - US 3,507,558
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L6 (Element 6) | 9 | `Legacy 744/494 lanthanum-flint class (exact melt uncertain)` | 1.74443 / 49.40 | No catalog entry | abbe | patents/US3507558.pdf | Reviewed sidecar hit |
 | L7 (Element 7) | 11 | `Legacy 767/462 dense lanthanum-flint class (exact melt uncertain)` | 1.76684 / 46.20 | No catalog entry | abbe | patents/US3507558.pdf | Reviewed sidecar hit |
 
 ### [Nikon AI Zoom-Nikkor 25-50mm f/4](../../src/lens-data/nikon/NikonAIZoomNikkor2550mmf4.data.ts) - US 4,189,212
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L6 (Element 6) | 12 | `K10 class (501/565)` | 1.50137 / 56.50 | No catalog entry | abbe | patents/US4189212.pdf | Reviewed sidecar hit |
 | L7 (Element 7) | 14 | `K10 class (501/565)` | 1.50137 / 56.50 | No catalog entry | abbe | patents/US4189212.pdf | Reviewed sidecar hit |
-| L9a (Element 9a) | 18 | `Unmatched 465/658 (FK/phosphate crown class)` | 1.46450 / 65.80 | No catalog entry | abbe | patents/US4189212.pdf | Reviewed sidecar hit |
+| L9a (Element 9a) | 18 | `Unmatched 465/658 (FK/phosphate crown class)` | 1.46450 / 65.80 | No catalog entry | abbe | patents/US4189212.pdf | Explicit disposition in data |
 | L9b (Element 9b) | 20 | `K10 class (501/565)` | 1.50137 / 56.50 | No catalog entry | abbe | patents/US4189212.pdf | Reviewed sidecar hit |
 
 ### [Nikon AI Zoom-Nikkor 35-200mm f/3.5-4.5S](../../src/lens-data/nikon/NikonAIZoomNikkor35200mmf3545S.data.ts) - US 4,770,511
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L12 (Element 12) | 24 | `Unmatched lanthanum-flint-region glass (796/410)` | 1.79631 / 40.98 | No catalog entry | abbe | patents/US4770511.pdf | Reviewed sidecar hit |
+| L12 (Element 12) | 24 | `Unmatched lanthanum-flint-region glass (796/410)` | 1.79631 / 40.98 | No catalog entry | abbe | patents/US4770511.pdf | Explicit disposition in data |
 
 ### [Nikon AI Zoom-Nikkor 35–105mm f/3.5–4.5S](../../src/lens-data/nikon/NikonAIZoomNikkor35105mmf3545.data.ts) - US 4,699,475
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L8 (Element 8) | 13 | `Unmatched (796/409 lanthanum flint; no current public catalog match verified)` | 1.79600 / 40.90 | No catalog entry | abbe | patents/US4699475.pdf | Reviewed sidecar hit |
-| L16 (Element 16) | 27 | `Unmatched (796/409 lanthanum flint; no current public catalog match verified)` | 1.79600 / 40.90 | No catalog entry | abbe | patents/US4699475.pdf | Reviewed sidecar hit |
+| L8 (Element 8) | 13 | `Unmatched (796/409 lanthanum flint; no current public catalog match verified)` | 1.79600 / 40.90 | No catalog entry | abbe | patents/US4699475.pdf | Explicit disposition in data |
+| L16 (Element 16) | 27 | `Unmatched (796/409 lanthanum flint; no current public catalog match verified)` | 1.79600 / 40.90 | No catalog entry | abbe | patents/US4699475.pdf | Explicit disposition in data |
 
 ### [Nikon AI Zoom-Nikkor 360-1200mm f/11 ED](../../src/lens-data/nikon/NikonAIZoomNikkor3601200mmf11ED.data.ts) - US 3,743,384
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L1 (Front ED-type singlet) | 1 | `Unmatched special low-dispersion glass (486/815; patent quartzite/ED-type)` | 1.48606 / 81.50 | No catalog entry | abbe | patents/US3743384.pdf | Reviewed sidecar hit |
-| L2 (Front triplet positive) | 3 | `Unmatched special low-dispersion glass (486/815; patent quartzite/ED-type)` | 1.48606 / 81.50 | No catalog entry | abbe | patents/US3743384.pdf | Reviewed sidecar hit |
-| L7 (Hyperchromatic doublet negative) | 11 | `Unmatched special low-dispersion glass (486/815; patent quartzite/ED-type)` | 1.48606 / 81.50 | No catalog entry | abbe | patents/US3743384.pdf | Reviewed sidecar hit |
-| L12 (Compensator second doublet positive) | 19 | `Unmatched special low-dispersion glass (486/815; patent quartzite/ED-type)` | 1.48606 / 81.50 | No catalog entry | abbe | patents/US3743384.pdf | Reviewed sidecar hit |
-| L15 (Relay triplet positive) | 24 | `Unmatched special low-dispersion glass (486/815; patent quartzite/ED-type)` | 1.48606 / 81.50 | No catalog entry | abbe | patents/US3743384.pdf | Reviewed sidecar hit |
-| L18 (Relay rear singlet) | 28 | `Unmatched light crown (501/565; catalog identity uncertain)` | 1.50137 / 56.50 | No catalog entry | abbe | patents/US3743384.pdf | Reviewed sidecar hit |
-| L19 (Telephoto rear doublet negative) | 30 | `Unmatched high-index crown/flint (744/494; catalog identity uncertain)` | 1.74443 / 49.40 | No catalog entry | abbe | patents/US3743384.pdf | Reviewed sidecar hit |
+| L1 (Front ED-type singlet) | 1 | `Unmatched special low-dispersion glass (486/815; patent quartzite/ED-type)` | 1.48606 / 81.50 | No catalog entry | abbe | patents/US3743384.pdf | Explicit disposition in data |
+| L2 (Front triplet positive) | 3 | `Unmatched special low-dispersion glass (486/815; patent quartzite/ED-type)` | 1.48606 / 81.50 | No catalog entry | abbe | patents/US3743384.pdf | Explicit disposition in data |
+| L7 (Hyperchromatic doublet negative) | 11 | `Unmatched special low-dispersion glass (486/815; patent quartzite/ED-type)` | 1.48606 / 81.50 | No catalog entry | abbe | patents/US3743384.pdf | Explicit disposition in data |
+| L12 (Compensator second doublet positive) | 19 | `Unmatched special low-dispersion glass (486/815; patent quartzite/ED-type)` | 1.48606 / 81.50 | No catalog entry | abbe | patents/US3743384.pdf | Explicit disposition in data |
+| L15 (Relay triplet positive) | 24 | `Unmatched special low-dispersion glass (486/815; patent quartzite/ED-type)` | 1.48606 / 81.50 | No catalog entry | abbe | patents/US3743384.pdf | Explicit disposition in data |
+| L18 (Relay rear singlet) | 28 | `Unmatched light crown (501/565; catalog identity uncertain)` | 1.50137 / 56.50 | No catalog entry | abbe | patents/US3743384.pdf | Explicit disposition in data |
+| L19 (Telephoto rear doublet negative) | 30 | `Unmatched high-index crown/flint (744/494; catalog identity uncertain)` | 1.74443 / 49.40 | No catalog entry | abbe | patents/US3743384.pdf | Explicit disposition in data |
 
 ### [Nikon AI Zoom-Nikkor 50-135mm f/3.5S](../../src/lens-data/nikon/NikonAIZoomNikko50135mmf35S.data.ts) - US 4,497,547
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| 3L2 (G3 L2) | 13 | `Unmatched / S-NBH-class (672389 short-flint code)` | 1.67163 / 38.90 | No catalog entry | abbe | patents/US4497547.pdf | Reviewed sidecar hit |
+| 3L2 (G3 L2) | 13 | `Unmatched / S-NBH-class (672389 short-flint code)` | 1.67163 / 38.90 | No catalog entry | abbe | patents/US4497547.pdf | Explicit disposition in data |
 
 ### [NIKON AI ZOOM-NIKKOR 80-200mm f/4](../../src/lens-data/nikon/NikonAINikkor80200mmf4.data.ts) - US 4,452,513,
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L43 (G4 rear negative) | 19 | `797455 — dense lanthanum glass class (catalog unresolved)` | 1.79668 / 45.50 | No catalog entry | abbe | patents/US4452513.pdf | Reviewed sidecar hit |
 
 ### [Nikon AI-S Zoom-Nikkor 35–70mm f/3.5](../../src/lens-data/nikon/NikonAIZoomNikkor3570mmf35.data.ts) - US 4,266,860,
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L4 (Element 4) | 7 | `Unmatched 595/356 light flint class` | 1.59507 / 35.60 | No catalog entry | abbe | patents/US4266860.pdf | Reviewed sidecar hit |
+| L4 (Element 4) | 7 | `Unmatched 595/356 light flint class` | 1.59507 / 35.60 | No catalog entry | abbe | patents/US4266860.pdf | Explicit disposition in data |
 
 ### [NIKON DODOTTO 400mm f/8](../../src/lens-data/nikon/NikonDodotto400mmf8.data.ts)
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L2 (Element 2) | 2 | `Unmatched dense flint (757/316 code, patent nd=1.75692 νd=31.62)` | 1.75692 / 31.62 | No catalog entry | abbe | No patent number parsed from lens metadata | No reviewed-sidecar hit |
+| L2 (Element 2) | 2 | `Unmatched dense flint (757/316 code, patent nd=1.75692 νd=31.62)` | 1.75692 / 31.62 | No catalog entry | abbe | No patent number parsed from lens metadata | Explicit disposition in data |
 
 ### [NIKON FISHEYE-NIKKOR 6mm f/2.8](../../src/lens-data/nikon/NikonFisheyeNikkor6mmf28.data.ts) - US 3,737,214
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L7 (Element 7) | 15 | `534554 — crown glass (patent nd=1.53375, νd=55.4; no current HIKARI catalog match)` | 1.53375 / 55.40 | No catalog entry | abbe | patents/US3737214.pdf | Reviewed sidecar hit |
 
 ### [NIKON FISHEYE-NIKKOR 6mm f/5.6](../../src/lens-data/nikon/NikonFisheyeNikkor6mmf56.data.ts) - US 3,524,697
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L8 (Patent L8) | 11 | `768465 — lanthanum flint patent melt (nd=1.76764, νd=46.5; no exact public catalog match)` | 1.76764 / 46.50 | No catalog entry | abbe | patents/US3524697.pdf | Reviewed sidecar hit |
 
 ### [NIKON Gyogyotto 20mm f/8](../../src/lens-data/nikon/NikonGyogyotto20mmf8.data.ts) - US 5,949,588
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L3 (Element 3) | 4 | `670575 — Nikon patent glass (nd=1.67025, νd=57.53; no current public OHARA/SCHOTT catalog match within tolerance)` | 1.67025 / 57.53 | No catalog entry | abbe | patents/US5949588.pdf | Reviewed sidecar hit |
 
 ### [NIKON NIKKOR 28mm f/2.8 (Nikon 28Ti)](../../src/lens-data/nikon/Nikon28Ti28mmf28.data.ts) - US 5,528,428
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L2a (Element 2) | 3 | `840433 - lanthanum flint (patent nd=1.84042, vd=43.30; no exact public catalog match)` | 1.84042 / 43.30 | No catalog entry | abbe | patents/US5528428.pdf | No reviewed-sidecar hit |
+| L2a (Element 2) | 3 | `840433 - lanthanum flint (patent nd=1.84042, vd=43.30; no exact public catalog match)` | 1.84042 / 43.30 | No catalog entry | abbe | patents/US5528428.pdf | Audit-log hit |
 
 ### [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) - JP2022-92388A
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L9 (Element 9) | 14 | `855399 — high-index lanthanum (patent nd=1.854505, νd≈39.9; no exact public catalog match)` | 1.85451 / 39.90 | No catalog entry | abbe | patents/JP2022092388A.pdf | Reviewed sidecar hit |
 | L17 (Element 17 (VR)) | 31 | `553555 — borosilicate crown (patent nd=1.552981, νd≈55.5; no exact public catalog match)` | 1.55298 / 55.50 | No catalog entry | abbe | patents/JP2022092388A.pdf | Reviewed sidecar hit |
@@ -728,13 +729,13 @@ Completion counts are conditional on finding a source-verified catalog identity 
 
 ### [NIKON NIKKOR Z 24-120mm f/4 S](../../src/lens-data/nikon/NikonNikkorZ24120mmf4S.data.ts) - WO 2022/259649 A1
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L3 (Element 3) | 4A | `Unmatched moldable lanthanum crown (775473; no exact public Sellmeier match)` | 1.77503 / 47.31 | No catalog entry | abbe | patents/WO2022259649A1.pdf | No reviewed-sidecar hit |
+| L3 (Element 3) | 4A | `Unmatched moldable lanthanum crown (775473; no exact public Sellmeier match)` | 1.77503 / 47.31 | No catalog entry | abbe | patents/WO2022259649A1.pdf | Explicit disposition in data |
 
 ### [NIKON NIKKOR Z 24-70mm f/2.8 S](../../src/lens-data/nikon/NikonZ2470f28.data.ts) - WO2020/136749 A1
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L21 (Element 4) | 6A | `744495 — moldable lanthanum crown (patent nd=1.74389, νd=49.53; no exact public catalog match)` | 1.74389 / 49.53 | No catalog entry | abbe | patents/WO2020136749A1.pdf | Reviewed sidecar hit |
 | L61 (Element 14) | 26 | `792450 — dense lanthanum crown (patent nd=1.79189, νd=45.04; no exact public catalog match)` | 1.79189 / 45.04 | No catalog entry | abbe | patents/WO2020136749A1.pdf | Reviewed sidecar hit |
@@ -742,145 +743,145 @@ Completion counts are conditional on finding a source-verified catalog identity 
 
 ### [NIKON NIKKOR Z 24-70mm f/4 S](../../src/lens-data/nikon/NikonNikkorZ2470mmf4S.data.ts) - WO2019/049372
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L21 (Element 3) | 4 | `744495 — PGM low-Tg lanthanum crown (patent nd=1.74353, νd=49.5; no exact public catalog match)` | 1.74353 / 49.50 | No catalog entry | abbe | patents/JPWO2019049372A1.pdf | Reviewed sidecar hit |
 
 ### [NIKON NIKKOR Z 35mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) - JP 2025-52870A
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L44 (Element 17) | 32A | `Barium crown / LaK family (624584, no exact catalog match)` | 1.62372 / 58.40 | No catalog entry | abbe | patents/JP2025052870A.pdf | Reviewed sidecar hit |
 
 ### [NIKON NIKKOR Z DX 50-250mm f/4.5-6.3 VR](../../src/lens-data/nikon/NikonZDX50250mmf4564VR.data.ts) - WO2020/105107 A1
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L34 (L34) | 17 | `Unmatched (902253 high-index dense flint; no exact public coefficient row)` | 1.90200 / 25.30 | No catalog entry | abbe | patents/JPWO2020105107A1.pdf | Reviewed sidecar hit |
+| L34 (L34) | 17 | `Unmatched (902253 high-index dense flint; no exact public coefficient row)` | 1.90200 / 25.30 | No catalog entry | abbe | patents/JPWO2020105107A1.pdf | Explicit disposition in data |
 
 ### [NIKON NIKKOR-N 5cm f/1.1](../../src/lens-data/nikon/NikonN5cmf11.data.ts) - US 2,828,671
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L3 (Element 3) | 5 | `770479 — lanthanum crown/flint patent glass (nd=1.77000, νd=47.9; no exact public catalog match)` | 1.77000 / 47.90 | No catalog entry | abbe | patents/US2828671.pdf | Reviewed sidecar hit |
 
 ### [NIKON R-UW AF FISHEYE-NIKKOR 13mm f/2.8](../../src/lens-data/nikon/NikonRUWAFNikkor13mmf28.data.ts) - US 5,579,169
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L4 (G41 positive doublet element) | 7 | `Unmatched dense flint (595355)` | 1.59507 / 35.50 | No catalog entry | abbe | patents/US5579169.pdf | No reviewed-sidecar hit |
-| L6 (G51 negative doublet element) | 10 | `Unmatched high-index flint (796409)` | 1.79631 / 40.90 | No catalog entry | abbe | patents/US5579169.pdf | Reviewed sidecar hit |
+| L4 (G41 positive doublet element) | 7 | `Unmatched dense flint (595355)` | 1.59507 / 35.50 | No catalog entry | abbe | patents/US5579169.pdf | Explicit disposition in data |
+| L6 (G51 negative doublet element) | 10 | `Unmatched high-index flint (796409)` | 1.79631 / 40.90 | No catalog entry | abbe | patents/US5579169.pdf | Explicit disposition in data |
 
 ### [NIKON R-UW AF MICRO-NIKKOR 50mm f/2.8](../../src/lens-data/nikon/NikonRUWMicroNikkor50mmf28.data.ts) - US 5,257,137
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L33 (G3 rear positive meniscus) | 14 | `Unmatched (796/409 lanthanum-flint region; no close current catalog match)` | 1.79631 / 40.90 | No catalog entry | abbe | patents/US5257137.pdf | Reviewed sidecar hit |
-| L41 (G4 positive corrector) | 16 | `Unmatched 607/403 medium-index flint (no exact public catalog match)` | 1.60717 / 40.30 | No catalog entry | abbe | patents/US5257137.pdf | No reviewed-sidecar hit |
+| L33 (G3 rear positive meniscus) | 14 | `Unmatched (796/409 lanthanum-flint region; no close current catalog match)` | 1.79631 / 40.90 | No catalog entry | abbe | patents/US5257137.pdf | Explicit disposition in data |
+| L41 (G4 positive corrector) | 16 | `Unmatched 607/403 medium-index flint (no exact public catalog match)` | 1.60717 / 40.30 | No catalog entry | abbe | patents/US5257137.pdf | Explicit disposition in data |
 
 ### [NIKON R-UW AF ZOOM-NIKKOR 20-35mm f/2.8](../../src/lens-data/nikon/NikonRUWAFZoomNikkor2035mmf28.data.ts) - US 5,490,012
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L9 (Element 9) | 17 | `Unmatched (748/523 lanthanum crown; historical/proprietary melt)` | 1.74810 / 52.30 | No catalog entry | abbe | patents/US5490012.pdf | Reviewed sidecar hit |
+| L9 (Element 9) | 17 | `Unmatched (748/523 lanthanum crown; historical/proprietary melt)` | 1.74810 / 52.30 | No catalog entry | abbe | patents/US5490012.pdf | Explicit disposition in data |
 
 ### [NIKON REFLEX-NIKKOR·C 500mm f/8](../../src/lens-data/nikon/NikonReflexNikkorC500mmf8.data.ts) - US 3,632,190
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L1 (Front corrector) | 1 | `Unmatched light crown (525/596; K5-class nearest)` | 1.52450 / 59.60 | No catalog entry | abbe | patents/US3632190.pdf | No reviewed-sidecar hit |
+| L1 (Front corrector) | 1 | `Unmatched light crown (525/596; K5-class nearest)` | 1.52450 / 59.60 | No catalog entry | abbe | patents/US3632190.pdf | Explicit disposition in data |
 
 ### [NIKON SERIES E 135mm f/2.8](../../src/lens-data/nikon/NikonSeriesE135mmf28.data.ts) - US 4,303,314
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L1 (Element 1) | 1 | `620586 — patent crown glass (nd=1.62041, νd=58.6; no catalog match verified)` | 1.62041 / 58.60 | No catalog entry | abbe | patents/US4303314.pdf | Reviewed sidecar hit |
 | L2 (Element 2) | 3 | `620586 — patent crown glass (nd=1.62041, νd=58.6; no catalog match verified)` | 1.62041 / 58.60 | No catalog entry | abbe | patents/US4303314.pdf | Reviewed sidecar hit |
 
 ### [NIKON ULTRA-MICRO-NIKKOR 29.5mm f/1.2](../../src/lens-data/nikon/NikonUltraMicroNikkor295mmf12.data.ts) - GB 1,050,055
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L3 (Element 3) | 5 | `Unmatched low-index crown 449/670 (patent e-line index stored)` | 1.44850 / 67.00 | No catalog entry | abbe | patents/GB_1050055_A.pdf | No reviewed-sidecar hit |
+| L3 (Element 3) | 5 | `Unmatched low-index crown 449/670 (patent e-line index stored)` | 1.44850 / 67.00 | No catalog entry | abbe | patents/GB_1050055_A.pdf | Explicit disposition in data |
 
 ### [NIKON W-NIKKOR 35mm f/1.8](../../src/lens-data/nikon/NikonWNikkor35mmf18.data.ts) - US 2,896,506
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L2 (Element 2) | 3 | `Unmatched (vintage high-index crown, 662/577)` | 1.66200 / 57.70 | No catalog entry | abbe | patents/US2896506.pdf | Reviewed sidecar hit |
-| L3 (Element 3) | 4 | `Unmatched (vintage light flint, 621/380)` | 1.62060 / 38.00 | No catalog entry | abbe | patents/US2896506.pdf | Reviewed sidecar hit |
+| L2 (Element 2) | 3 | `Unmatched (vintage high-index crown, 662/577)` | 1.66200 / 57.70 | No catalog entry | abbe | patents/US2896506.pdf | Explicit disposition in data |
+| L3 (Element 3) | 4 | `Unmatched (vintage light flint, 621/380)` | 1.62060 / 38.00 | No catalog entry | abbe | patents/US2896506.pdf | Explicit disposition in data |
 
 ### [OLYMPUS E.ZUIKO AUTO-T 135mm f/3.5](../../src/lens-data/olympus/OlympusZuiko135mmf35.data.ts) - US 3,838,911
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L2 (Element 2) | 3 | `487698 — FK/FSL low-dispersion crown class (patent nd=1.48749, νd=69.8; no exact modern coefficient-backed match)` | 1.48749 / 69.80 | No catalog entry | abbe | patents/US3838911.pdf | Reviewed sidecar hit |
 
 ### [OLYMPUS G.ZUIKO AUTO-S 55mm f/1.2](../../src/lens-data/olympus/OlympusZuikoAutoS55mmf12.data.ts) - US 3,743,387
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L3 (Element 3) | 5 | `762271 — NbF/SF dense flint family (patent nd=1.7618, νd=27.1; no exact public catalog match)` | 1.76180 / 27.10 | No catalog entry | abbe | patents/US3743387.pdf | No reviewed-sidecar hit |
+| L3 (Element 3) | 5 | `762271 — NbF/SF dense flint family (patent nd=1.7618, νd=27.1; no exact public catalog match)` | 1.76180 / 27.10 | No catalog entry | abbe | patents/US3743387.pdf | Audit-log hit |
 
 ### [OLYMPUS M.ZUIKO DIGITAL 14-42mm f/3.5-5.6 II R](../../src/lens-data/olympus/OlympusMZuiko1442mmf3556II.data.ts) - US 8,994,842 B2
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L2 (Element 2) | 3A | `Unmatched (moldable crown, 525/558 class)` | 1.52542 / 55.78 | No catalog entry | abbe | patents/US8994842.pdf | No reviewed-sidecar hit |
-| L7 (Element 7) | 13A | `Unmatched (moldable crown, 531/557 class)` | 1.53071 / 55.69 | No catalog entry | abbe | patents/US8994842.pdf | No reviewed-sidecar hit |
+| L2 (Element 2) | 3A | `Unmatched (moldable crown, 525/558 class)` | 1.52542 / 55.78 | No catalog entry | abbe | patents/US8994842.pdf | Explicit disposition in data |
+| L7 (Element 7) | 13A | `Unmatched (moldable crown, 531/557 class)` | 1.53071 / 55.69 | No catalog entry | abbe | patents/US8994842.pdf | Explicit disposition in data |
 
 ### [OLYMPUS ZUIKO AUTO-FISHEYE 8mm f/2.8](../../src/lens-data/olympus/OlympusZuikoAutoFisheye8mmf28.data.ts) - DE 2157160 A1
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L6 (Element 6) | 9 | `787501 — vintage high-index lanthanum flint (probable; no exact public catalog match)` | 1.78650 / 50.10 | No catalog entry | abbe | patents/DE_2157160_A1.pdf | No reviewed-sidecar hit |
+| L6 (Element 6) | 9 | `787501 — vintage high-index lanthanum flint (probable; no exact public catalog match)` | 1.78650 / 50.10 | No catalog entry | abbe | patents/DE_2157160_A1.pdf | Audit-log hit |
 
 ### [OLYMPUS ZUIKO AUTO-MACRO 50mm f/2](../../src/lens-data/olympus/OlympusZuikoAutoMacro50mmf2.data.ts) - US 4,708,445
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L5 (Element 5) | 9 | `Unmatched (683447 barium/lanthanum flint; no first-party coefficient row found)` | 1.68250 / 44.65 | No catalog entry | abbe | patents/US4708445.pdf | Reviewed sidecar hit |
+| L5 (Element 5) | 9 | `Unmatched (683447 barium/lanthanum flint; no first-party coefficient row found)` | 1.68250 / 44.65 | No catalog entry | abbe | patents/US4708445.pdf | Explicit disposition in data |
 
 ### [OLYMPUS ZUIKO AUTO-W 28mm f/2](../../src/lens-data/olympus/OlympusZuikoAutoW28mmf2.data.ts) - US 3,862,794
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L2 (Element 2) | 3 | `Unmatched crown (504/668; vintage or proprietary)` | 1.50378 / 66.80 | No catalog entry | abbe | patents/US3862794.pdf | Reviewed sidecar hit |
-| L3 (Element 3) | 5 | `Unmatched crown (504/668; vintage or proprietary)` | 1.50378 / 66.80 | No catalog entry | abbe | patents/US3862794.pdf | Reviewed sidecar hit |
-| L4a (Element 4a) | 7 | `Unmatched crown (504/668; vintage or proprietary)` | 1.50378 / 66.80 | No catalog entry | abbe | patents/US3862794.pdf | Reviewed sidecar hit |
+| L2 (Element 2) | 3 | `Unmatched crown (504/668; vintage or proprietary)` | 1.50378 / 66.80 | No catalog entry | abbe | patents/US3862794.pdf | Explicit disposition in data |
+| L3 (Element 3) | 5 | `Unmatched crown (504/668; vintage or proprietary)` | 1.50378 / 66.80 | No catalog entry | abbe | patents/US3862794.pdf | Explicit disposition in data |
+| L4a (Element 4a) | 7 | `Unmatched crown (504/668; vintage or proprietary)` | 1.50378 / 66.80 | No catalog entry | abbe | patents/US3862794.pdf | Explicit disposition in data |
 
 ### [OLYMPUS ZUIKO DIGITAL ED 14-35mm f/2.0 SWD](../../src/lens-data/olympus/OlympusMZuiko1435mmf2ED.data.ts) - US 8,081,392 B2
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L18 (Element 18) | 35 | `Unmatched proprietary short flint (635/232, condition-b APD glass)` | 1.63494 / 23.22 | No catalog entry | abbe | patents/US8081392.pdf | No reviewed-sidecar hit |
+| L18 (Element 18) | 35 | `Unmatched proprietary short flint (635/232, condition-b APD glass)` | 1.63494 / 23.22 | No catalog entry | abbe | patents/US8081392.pdf | Explicit disposition in data |
 
 ### [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) - US 2015/0268449 A1
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L2 (Element 2) | 3A | `585417 — light flint (patent nd=1.58542, nu_d=41.7)` | 1.58542 / 41.70 | No catalog entry | abbe | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | No reviewed-sidecar hit |
-| L3 (Element 3) | 5 | `882408 — high-index lanthanum glass (patent nd=1.88234, nu_d=40.8)` | 1.88234 / 40.80 | No catalog entry | abbe | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | No reviewed-sidecar hit |
-| L4 (Element 4) | 6 | `754260 — dense flint (patent nd=1.75409, nu_d=26.0)` | 1.75409 / 26.00 | No catalog entry | abbe | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | No reviewed-sidecar hit |
-| L5 (Element 5) | 8 | `916364 — high-index lanthanum glass (patent nd=1.91597, nu_d=36.4)` | 1.91597 / 36.40 | No catalog entry | abbe | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | No reviewed-sidecar hit |
-| L6 (Element 6) | 11 | `786275 — dense flint (patent nd=1.78630, nu_d=27.5)` | 1.78630 / 27.50 | No catalog entry | abbe | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | No reviewed-sidecar hit |
-| L7 (Element 7) | 12 | `769497 — lanthanum crown (patent nd=1.76864, nu_d=49.7)` | 1.76864 / 49.70 | No catalog entry | abbe | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | No reviewed-sidecar hit |
+| L2 (Element 2) | 3A | `585417 — light flint (patent nd=1.58542, nu_d=41.7)` | 1.58542 / 41.70 | No catalog entry | abbe | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | Audit-log hit |
+| L3 (Element 3) | 5 | `882408 — high-index lanthanum glass (patent nd=1.88234, nu_d=40.8)` | 1.88234 / 40.80 | No catalog entry | abbe | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | Audit-log hit |
+| L4 (Element 4) | 6 | `754260 — dense flint (patent nd=1.75409, nu_d=26.0)` | 1.75409 / 26.00 | No catalog entry | abbe | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | Audit-log hit |
+| L5 (Element 5) | 8 | `916364 — high-index lanthanum glass (patent nd=1.91597, nu_d=36.4)` | 1.91597 / 36.40 | No catalog entry | abbe | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | Audit-log hit |
+| L6 (Element 6) | 11 | `786275 — dense flint (patent nd=1.78630, nu_d=27.5)` | 1.78630 / 27.50 | No catalog entry | abbe | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | Audit-log hit |
+| L7 (Element 7) | 12 | `769497 — lanthanum crown (patent nd=1.76864, nu_d=49.7)` | 1.76864 / 49.70 | No catalog entry | abbe | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | Audit-log hit |
 
 ### [PANASONIC LEICA DG SUMMILUX 9mm f/1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG9mmf17.data.ts) - US 2023/0367186 A1
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L2 (Element 2) | 3A | `534556 — moldable crown (patent nd=1.53380, nu_d=55.6)` | 1.53380 / 55.60 | No catalog entry | abbe | patents/US20230367186A1.pdf | No reviewed-sidecar hit |
+| L2 (Element 2) | 3A | `534556 — moldable crown (patent nd=1.53380, nu_d=55.6)` | 1.53380 / 55.60 | No catalog entry | abbe | patents/US20230367186A1.pdf | Audit-log hit |
 
 ### [PANASONIC LUMIX G VARIO 7-14mm f/4 ASPH.](../../src/lens-data/panasonic/PanasonicLumixGVario714mmf4.data.ts) - US 2010/0194930 A1
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L16 (Element 16) | 28 | `Unmatched crown class (523/701, likely phosphate/fluorophosphate)` | 1.52300 / 70.10 | No catalog entry | abbe | patents/US20100194930A1.pdf | No reviewed-sidecar hit |
+| L16 (Element 16) | 28 | `Unmatched crown class (523/701, likely phosphate/fluorophosphate)` | 1.52300 / 70.10 | No catalog entry | abbe | patents/US20100194930A1.pdf | Explicit disposition in data |
 
 ### [PANASONIC LUMIX S 35mm f/1.8](../../src/lens-data/panasonic/PanasonicS35mmf18.data.ts) - CN 216772097U
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L18 (Element 8) | 13A | `516565 — PGM moldable crown (patent nd=1.51602, νd=56.5; no exact public catalog match)` | 1.51602 / 56.50 | No catalog entry | abbe | patents/CN216772097U.pdf | Reviewed sidecar hit |
 | L21 (Element 9) | 15A | `516565 — PGM moldable crown (same as L18, L31; no exact public catalog match)` | 1.51602 / 56.50 | No catalog entry | abbe | patents/CN216772097U.pdf | Reviewed sidecar hit |
@@ -888,182 +889,182 @@ Completion counts are conditional on finding a source-verified catalog identity 
 
 ### [PENTAX DA 70mm f/2.4 Limited](../../src/lens-data/pentax/PentaxDA70mmf24Limited.data.ts) - US 7,542,219 B2
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L2 (Element 2) | 3 | `Unmatched lanthanum crown (682575; no exact current public catalog match)` | 1.68159 / 57.50 | No catalog entry | abbe | patents/US7542219.pdf | No reviewed-sidecar hit |
-| L3 (Element 3) | 5 | `Unmatched dense flint (794255; SF/S-TIH class)` | 1.79425 / 25.50 | No catalog entry | abbe | patents/US7542219.pdf | No reviewed-sidecar hit |
-| L4 (Element 4) | 7 | `Unmatched barium flint (676440; BaF/BaSF class)` | 1.67648 / 44.00 | No catalog entry | abbe | patents/US7542219.pdf | No reviewed-sidecar hit |
+| L2 (Element 2) | 3 | `Unmatched lanthanum crown (682575; no exact current public catalog match)` | 1.68159 / 57.50 | No catalog entry | abbe | patents/US7542219.pdf | Explicit disposition in data |
+| L3 (Element 3) | 5 | `Unmatched dense flint (794255; SF/S-TIH class)` | 1.79425 / 25.50 | No catalog entry | abbe | patents/US7542219.pdf | Explicit disposition in data |
+| L4 (Element 4) | 7 | `Unmatched barium flint (676440; BaF/BaSF class)` | 1.67648 / 44.00 | No catalog entry | abbe | patents/US7542219.pdf | Explicit disposition in data |
 
 ### [PENTAX FA 31mm f/1.8 AL Limited](../../src/lens-data/pentax/PentaxFA31mmf18ALLtd.data.ts) - US 6,560,042 B2
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L8 (Element 8) | 13 | `Unmatched (728403 lanthanum flint; no public coefficient row inside the d-line safety window)` | 1.72750 / 40.30 | No catalog entry | abbe | patents/US6560042.pdf | Reviewed sidecar hit |
+| L8 (Element 8) | 13 | `Unmatched (728403 lanthanum flint; no public coefficient row inside the d-line safety window)` | 1.72750 / 40.30 | No catalog entry | abbe | patents/US6560042.pdf | Explicit disposition in data |
 
 ### [PENTAX HD DA* 11-18mm f/2.8 ED DC AW](../../src/lens-data/pentax/PentaxD1118mmF28EDDCWR.data.ts) - US 2018/0164556 A1
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L12g (Element 2 (glass body)) | 3 | `Unmatched (780509 class; no defensible current-catalog identity recovered)` | 1.78000 / 50.90 | No catalog entry | abbe | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
-| L13 (Element 4) | 6 | `Unmatched (810372 class; no defensible current-catalog identity recovered)` | 1.81000 / 37.20 | No catalog entry | abbe | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
-| L15 (Element 6) | 9 | `Unmatched (850440 class; no defensible current-catalog identity recovered)` | 1.85000 / 44.00 | No catalog entry | abbe | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
-| L23 (Element 9) | 14 | `Unmatched (564463 class; no defensible current-catalog identity recovered)` | 1.56406 / 46.30 | No catalog entry | abbe | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
+| L12g (Element 2 (glass body)) | 3 | `Unmatched (780509 class; no defensible current-catalog identity recovered)` | 1.78000 / 50.90 | No catalog entry | abbe | patents/US20180164556A1.pdf | Explicit disposition in data |
+| L13 (Element 4) | 6 | `Unmatched (810372 class; no defensible current-catalog identity recovered)` | 1.81000 / 37.20 | No catalog entry | abbe | patents/US20180164556A1.pdf | Explicit disposition in data |
+| L15 (Element 6) | 9 | `Unmatched (850440 class; no defensible current-catalog identity recovered)` | 1.85000 / 44.00 | No catalog entry | abbe | patents/US20180164556A1.pdf | Explicit disposition in data |
+| L23 (Element 9) | 14 | `Unmatched (564463 class; no defensible current-catalog identity recovered)` | 1.56406 / 46.30 | No catalog entry | abbe | patents/US20180164556A1.pdf | Explicit disposition in data |
 
 ### [RODENSTOCK APO-SIRONAR-W 150mm f/5.6](../../src/lens-data/rodenstock/RodenstockApoSironarW150mmf56.data.ts) - DE 3907928 A1
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L1 (Element 1) | 1 | `Unmatched (520642 patent-rounded crown; no unique catalog identity)` | 1.52000 / 64.20 | No catalog entry | abbe | patents/DE_3907928_A1.pdf | No reviewed-sidecar hit |
-| L6 (Element 6) | 9 | `Unmatched (460658 patent-rounded fluor-crown; no unique catalog identity)` | 1.46000 / 65.80 | No catalog entry | abbe | patents/DE_3907928_A1.pdf | No reviewed-sidecar hit |
-| L7 (Element 7) | 11 | `Unmatched (650396 patent-rounded short flint; no unique catalog identity)` | 1.65000 / 39.60 | No catalog entry | abbe | patents/DE_3907928_A1.pdf | No reviewed-sidecar hit |
+| L1 (Element 1) | 1 | `Unmatched (520642 patent-rounded crown; no unique catalog identity)` | 1.52000 / 64.20 | No catalog entry | abbe | patents/DE_3907928_A1.pdf | Explicit disposition in data |
+| L6 (Element 6) | 9 | `Unmatched (460658 patent-rounded fluor-crown; no unique catalog identity)` | 1.46000 / 65.80 | No catalog entry | abbe | patents/DE_3907928_A1.pdf | Explicit disposition in data |
+| L7 (Element 7) | 11 | `Unmatched (650396 patent-rounded short flint; no unique catalog identity)` | 1.65000 / 39.60 | No catalog entry | abbe | patents/DE_3907928_A1.pdf | Explicit disposition in data |
 
 ### [SAMYANG AF 18mm f/2.8 FE](../../src/lens-data/samyang/SamyangAF18mmf28.data.ts) - WO 2021/246545 A1
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L81 (L81 rear asphere) | 15A | `Unmatched lanthanum flint (770/493)` | 1.76951 / 49.30 | No catalog entry | abbe | Missing from untracked local patents/ references (WO2021246545A1, WO2021246545, 2021246545) | No reviewed-sidecar hit |
+| L81 (L81 rear asphere) | 15A | `Unmatched lanthanum flint (770/493)` | 1.76951 / 49.30 | No catalog entry | abbe | Missing from untracked local patents/ references (WO2021246545A1, WO2021246545, 2021246545) | Explicit disposition in data |
 
 ### [SCHNEIDER-KREUZNACH SUPER-ANGULON 75mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderSuperAngulon75mmf56.data.ts) - US 3,376,091
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L6 (Element 6) | 8 | `614563 — SSK-class dense barium crown (Schott historical; no exact public Sellmeier)` | 1.61375 / 56.30 | No catalog entry | abbe | patents/US3376091.pdf | Reviewed sidecar hit |
 
 ### [SCHNEIDER-KREUZNACH SUPER-SYMMAR HM 120mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderSuperSymmarHM120mmf56.data.ts) - US 4,773,745
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L6 (Element 8) | 13 | `Unmatched (479/587 low-index crown; vendor unspecified)` | 1.47870 / 58.70 | No catalog entry | abbe | patents/US4773745.pdf | No reviewed-sidecar hit |
+| L6 (Element 8) | 13 | `Unmatched (479/587 low-index crown; vendor unspecified)` | 1.47870 / 58.70 | No catalog entry | abbe | patents/US4773745.pdf | Explicit disposition in data |
 
 ### [SIGMA 35mm f/1.4 DG DN | Art](../../src/lens-data/sigma/SigmaDGDNA35mmf14.data.ts) - JP 2022-33487 A
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L5 (Element 5) | 8 | `593355 — heavy flint (vendor uncertain; no exact public catalog match)` | 1.59270 / 35.45 | No catalog entry | abbe | patents/JP2022033487A.pdf | No reviewed-sidecar hit |
+| L5 (Element 5) | 8 | `593355 — heavy flint (vendor uncertain; no exact public catalog match)` | 1.59270 / 35.45 | No catalog entry | abbe | patents/JP2022033487A.pdf | Audit-log hit |
 
 ### [SIGMA 50mm f/1.4 DG DN | Art](../../src/lens-data/sigma/SigmaDGDNArt50mmf14.data.ts) - JP 2023-183894 A
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L4 (Element 4) | 7A | `764491 — aspherical mold glass (no exact public catalog match; patent nd=1.76450, νd=49.10)` | 1.76450 / 49.10 | No catalog entry | abbe | patents/JP2023183894A.pdf | No reviewed-sidecar hit |
+| L4 (Element 4) | 7A | `764491 — aspherical mold glass (no exact public catalog match; patent nd=1.76450, νd=49.10)` | 1.76450 / 49.10 | No catalog entry | abbe | patents/JP2023183894A.pdf | Audit-log hit |
 
 ### [SONY FE 12-24mm f/2.8 GM](../../src/lens-data/sony/SonyFE1224mmf28GM.data.ts) - WO 2021/200206 A1
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L15 (L15 dense-flint positive) | 9 | `Unmatched (dense lanthanum flint, 856/323)` | 1.85649 / 32.30 | No catalog entry | abbe | patents/WO2021200206A1.pdf | No reviewed-sidecar hit |
-| L21 (L21 focus-group negative) | 12 | `Unmatched (ultra-dense short flint, 930/240)` | 1.93024 / 24.00 | No catalog entry | abbe | patents/WO2021200206A1.pdf | No reviewed-sidecar hit |
-| L22 (L22 focus-group positive) | 13 | `Unmatched 678322 dense flint (patent-listed; supplier unidentified)` | 1.67764 / 32.20 | No catalog entry | abbe | patents/WO2021200206A1.pdf | Reviewed sidecar hit |
-| L31 (L31 stop-region negative) | 16 | `Unmatched (ultra-dense lanthanum flint, 961/323)` | 1.96073 / 32.30 | No catalog entry | abbe | patents/WO2021200206A1.pdf | Reviewed sidecar hit |
-| L41 (L41 focus-group negative) | 20 | `Unmatched (ultra-dense lanthanum flint, 961/323)` | 1.96073 / 32.30 | No catalog entry | abbe | patents/WO2021200206A1.pdf | Reviewed sidecar hit |
-| L51 (L51 GP5 positive) | 23 | `Unmatched (ultra-dense short flint, 903/204)` | 1.90314 / 20.40 | No catalog entry | abbe | patents/WO2021200206A1.pdf | No reviewed-sidecar hit |
-| L52 (L52 GP5 negative) | 24 | `Unmatched (ultra-dense lanthanum flint, 961/323)` | 1.96073 / 32.30 | No catalog entry | abbe | patents/WO2021200206A1.pdf | Reviewed sidecar hit |
-| L54 (L54 La negative) | 28 | `Unmatched (ultra-high-index lanthanum flint, 009/291)` | 2.00912 / 29.10 | No catalog entry | abbe | patents/WO2021200206A1.pdf | No reviewed-sidecar hit |
+| L15 (L15 dense-flint positive) | 9 | `Unmatched (dense lanthanum flint, 856/323)` | 1.85649 / 32.30 | No catalog entry | abbe | patents/WO2021200206A1.pdf | Explicit disposition in data |
+| L21 (L21 focus-group negative) | 12 | `Unmatched (ultra-dense short flint, 930/240)` | 1.93024 / 24.00 | No catalog entry | abbe | patents/WO2021200206A1.pdf | Explicit disposition in data |
+| L22 (L22 focus-group positive) | 13 | `Unmatched 678322 dense flint (patent-listed; supplier unidentified)` | 1.67764 / 32.20 | No catalog entry | abbe | patents/WO2021200206A1.pdf | Explicit disposition in data |
+| L31 (L31 stop-region negative) | 16 | `Unmatched (ultra-dense lanthanum flint, 961/323)` | 1.96073 / 32.30 | No catalog entry | abbe | patents/WO2021200206A1.pdf | Explicit disposition in data |
+| L41 (L41 focus-group negative) | 20 | `Unmatched (ultra-dense lanthanum flint, 961/323)` | 1.96073 / 32.30 | No catalog entry | abbe | patents/WO2021200206A1.pdf | Explicit disposition in data |
+| L51 (L51 GP5 positive) | 23 | `Unmatched (ultra-dense short flint, 903/204)` | 1.90314 / 20.40 | No catalog entry | abbe | patents/WO2021200206A1.pdf | Explicit disposition in data |
+| L52 (L52 GP5 negative) | 24 | `Unmatched (ultra-dense lanthanum flint, 961/323)` | 1.96073 / 32.30 | No catalog entry | abbe | patents/WO2021200206A1.pdf | Explicit disposition in data |
+| L54 (L54 La negative) | 28 | `Unmatched (ultra-high-index lanthanum flint, 009/291)` | 2.00912 / 29.10 | No catalog entry | abbe | patents/WO2021200206A1.pdf | Explicit disposition in data |
 
 ### [SONY FE 14mm f/1.8 GM](../../src/lens-data/sony/SonyFE14mmf18GM.data.ts) - WO 2021/199923 A1
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L2 (Second negative meniscus) | 3 | `Unmatched (732547 patent e-line value; no verified d-line catalog identity)` | 1.73234 / 54.70 | No catalog entry | abbe | patents/WO2021199923A1.pdf | No reviewed-sidecar hit |
-| L4 (Positive contact partner) | 7 | `694312 - short flint (Sony patent nd=1.69416, vd=31.2; no exact public catalog match)` | 1.69416 / 31.20 | No catalog entry | abbe | patents/WO2021199923A1.pdf | No reviewed-sidecar hit |
-| L5 (LN front element) | 9 | `910313 - dense lanthanum flint (Sony patent nd=1.91048, vd=31.3; no exact public catalog match)` | 1.91048 / 31.30 | No catalog entry | abbe | patents/WO2021199923A1.pdf | No reviewed-sidecar hit |
-| L6 (LN rear element) | 10 | `Unmatched (777/297 dense short flint; no close OHARA public-catalog match)` | 1.77660 / 29.70 | No catalog entry | abbe | patents/WO2021199923A1.pdf | Reviewed sidecar hit |
+| L2 (Second negative meniscus) | 3 | `Unmatched (732547 patent e-line value; no verified d-line catalog identity)` | 1.73234 / 54.70 | No catalog entry | abbe | patents/WO2021199923A1.pdf | Explicit disposition in data |
+| L4 (Positive contact partner) | 7 | `694312 - short flint (Sony patent nd=1.69416, vd=31.2; no exact public catalog match)` | 1.69416 / 31.20 | No catalog entry | abbe | patents/WO2021199923A1.pdf | Audit-log hit |
+| L5 (LN front element) | 9 | `910313 - dense lanthanum flint (Sony patent nd=1.91048, vd=31.3; no exact public catalog match)` | 1.91048 / 31.30 | No catalog entry | abbe | patents/WO2021199923A1.pdf | Audit-log hit |
+| L6 (LN rear element) | 10 | `Unmatched (777/297 dense short flint; no close OHARA public-catalog match)` | 1.77660 / 29.70 | No catalog entry | abbe | patents/WO2021199923A1.pdf | Explicit disposition in data |
 | L10 (Rear doublet flint) | 18 | `863252 - dense flint (Sony patent nd=1.86252, vd=25.2; no exact public catalog match)` | 1.86252 / 25.20 | No catalog entry | abbe | patents/WO2021199923A1.pdf | Reviewed sidecar hit |
-| L11 (High-index relay positive) | 20 | `Unmatched (933/209 ultra-high-index short flint)` | 1.93323 / 20.90 | No catalog entry | abbe | patents/WO2021199923A1.pdf | Reviewed sidecar hit |
+| L11 (High-index relay positive) | 20 | `Unmatched (933/209 ultra-high-index short flint)` | 1.93323 / 20.90 | No catalog entry | abbe | patents/WO2021199923A1.pdf | Explicit disposition in data |
 | L12 (Negative Petzval element) | 22 | `863252 - dense flint (Sony patent nd=1.86252, vd=25.2; no exact public catalog match)` | 1.86252 / 25.20 | No catalog entry | abbe | patents/WO2021199923A1.pdf | Reviewed sidecar hit |
-| L13 (Rear aspherical negative element) | 24A | `Unmatched (856401 patent e-line value; no verified d-line catalog identity)` | 1.85639 / 40.10 | No catalog entry | abbe | patents/WO2021199923A1.pdf | Reviewed sidecar hit |
-| L14 (Rear field/telecentricity corrector) | 26 | `Unmatched (622639 patent e-line value; no verified d-line catalog identity)` | 1.62228 / 63.90 | No catalog entry | abbe | patents/WO2021199923A1.pdf | No reviewed-sidecar hit |
+| L13 (Rear aspherical negative element) | 24A | `Unmatched (856401 patent e-line value; no verified d-line catalog identity)` | 1.85639 / 40.10 | No catalog entry | abbe | patents/WO2021199923A1.pdf | Explicit disposition in data |
+| L14 (Rear field/telecentricity corrector) | 26 | `Unmatched (622639 patent e-line value; no verified d-line catalog identity)` | 1.62228 / 63.90 | No catalog entry | abbe | patents/WO2021199923A1.pdf | Explicit disposition in data |
 
 ### [SONY FE 24mm f/1.4 GM](../../src/lens-data/sony/SonyFE24mmf14GM.data.ts) - WO2019/073744 A1
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L27 (L27 rear XA element) | 21A | `Unmatched (lanthanum flint, 852/401; no exact public catalog match)` | 1.85235 / 40.10 | No catalog entry | abbe | patents/JPWO2019073744A1.pdf | No reviewed-sidecar hit |
+| L27 (L27 rear XA element) | 21A | `Unmatched (lanthanum flint, 852/401; no exact public catalog match)` | 1.85235 / 40.10 | No catalog entry | abbe | patents/JPWO2019073744A1.pdf | Explicit disposition in data |
 
 ### [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) - WO 2025/263124 A1
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L12 (Element 2) | 2 | `595686 — fluorophosphate crown (patent nd=1.59489, νd=68.6)` | 1.59489 / 68.60 | No catalog entry | abbe | patents/WO_2025263124_A1.pdf | No reviewed-sidecar hit |
-| L13 (Element 3) | 4 | `596670 - fluorophosphate crown (patent nd=1.59561, vd=67.0; no exact public catalog match)` | 1.59561 / 67.00 | No catalog entry | abbe | patents/WO_2025263124_A1.pdf | No reviewed-sidecar hit |
-| L21 (Element 4) | 6A | `774494 — lanthanum crown (patent nd=1.77373, νd=49.4)` | 1.77373 / 49.40 | No catalog entry | abbe | patents/WO_2025263124_A1.pdf | No reviewed-sidecar hit |
+| L12 (Element 2) | 2 | `595686 — fluorophosphate crown (patent nd=1.59489, νd=68.6)` | 1.59489 / 68.60 | No catalog entry | abbe | patents/WO_2025263124_A1.pdf | Audit-log hit |
+| L13 (Element 3) | 4 | `596670 - fluorophosphate crown (patent nd=1.59561, vd=67.0; no exact public catalog match)` | 1.59561 / 67.00 | No catalog entry | abbe | patents/WO_2025263124_A1.pdf | Audit-log hit |
+| L21 (Element 4) | 6A | `774494 — lanthanum crown (patent nd=1.77373, νd=49.4)` | 1.77373 / 49.40 | No catalog entry | abbe | patents/WO_2025263124_A1.pdf | Audit-log hit |
 | L22 (Element 5) | 8 | `777297 — dense flint (patent nd=1.77660, νd=29.7)` | 1.77660 / 29.70 | No catalog entry | abbe | patents/WO_2025263124_A1.pdf | Reviewed sidecar hit |
-| L23 (Element 6) | 9 | `930240 — ultra-high-index dense flint (patent nd=1.93024, νd=24.0)` | 1.93024 / 24.00 | No catalog entry | abbe | patents/WO_2025263124_A1.pdf | No reviewed-sidecar hit |
-| L24 (Element 7) | 11 | `700555 — barium crown (patent nd=1.69980, νd=55.5)` | 1.69980 / 55.50 | No catalog entry | abbe | patents/WO_2025263124_A1.pdf | No reviewed-sidecar hit |
+| L23 (Element 6) | 9 | `930240 — ultra-high-index dense flint (patent nd=1.93024, νd=24.0)` | 1.93024 / 24.00 | No catalog entry | abbe | patents/WO_2025263124_A1.pdf | Audit-log hit |
+| L24 (Element 7) | 11 | `700555 — barium crown (patent nd=1.69980, νd=55.5)` | 1.69980 / 55.50 | No catalog entry | abbe | patents/WO_2025263124_A1.pdf | Audit-log hit |
 | L31 (Element 8) | 14A | `856401 — lanthanum dense crown (patent nd=1.85612, νd=40.1)` | 1.85612 / 40.10 | No catalog entry | abbe | patents/WO_2025263124_A1.pdf | Reviewed sidecar hit |
-| L33 (Element 10) | 17 | `571560 — barium crown (patent nd=1.57125, νd=56.0)` | 1.57125 / 56.00 | No catalog entry | abbe | patents/WO_2025263124_A1.pdf | No reviewed-sidecar hit |
+| L33 (Element 10) | 17 | `571560 — barium crown (patent nd=1.57125, νd=56.0)` | 1.57125 / 56.00 | No catalog entry | abbe | patents/WO_2025263124_A1.pdf | Audit-log hit |
 | L44 (Element 14) | 23 | `863252 — dense flint (patent nd=1.86252, νd=25.2)` | 1.86252 / 25.20 | No catalog entry | abbe | patents/WO_2025263124_A1.pdf | Reviewed sidecar hit |
 | L45 (Element 15) | 25A | `856401 — lanthanum dense crown (patent nd=1.85612, νd=40.1)` | 1.85612 / 40.10 | No catalog entry | abbe | patents/WO_2025263124_A1.pdf | Reviewed sidecar hit |
 | L72 (Element 19) | 32 | `863252 — dense flint (patent nd=1.86252, νd=25.2)` | 1.86252 / 25.20 | No catalog entry | abbe | patents/WO_2025263124_A1.pdf | Reviewed sidecar hit |
 
 ### [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) - JP 2023-039817 A
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L11 (Element 1) | 1 | `Dense flint (777/297, uncertain)` | 1.77660 / 29.70 | No catalog entry | abbe | patents/JP2023039817A.pdf | Reviewed sidecar hit |
-| L21 (Element 4) | 7 | `Unmatched (776496 patent lanthanum-glass coordinate; vendor unresolved)` | 1.77621 / 49.60 | No catalog entry | abbe | patents/JP2023039817A.pdf | No reviewed-sidecar hit |
+| L21 (Element 4) | 7 | `Unmatched (776496 patent lanthanum-glass coordinate; vendor unresolved)` | 1.77621 / 49.60 | No catalog entry | abbe | patents/JP2023039817A.pdf | Explicit disposition in data |
 | L32 (Element 6) | 10 | `863248 — ultra-dense flint (patent nd=1.86290, nu_d=24.8)` | 1.86290 / 24.80 | No catalog entry | abbe | patents/JP2023039817A.pdf | Reviewed sidecar hit |
-| L41 (Element 7) | 12 | `Unmatched 792257 dense flint (patent-listed; supplier unidentified)` | 1.79191 / 25.70 | No catalog entry | abbe | patents/JP2023039817A.pdf | Reviewed sidecar hit |
+| L41 (Element 7) | 12 | `Unmatched 792257 dense flint (patent-listed; supplier unidentified)` | 1.79191 / 25.70 | No catalog entry | abbe | patents/JP2023039817A.pdf | Explicit disposition in data |
 | L52 (Element 9) | 17 | `863248 — ultra-dense flint (patent nd=1.86290, nu_d=24.8)` | 1.86290 / 24.80 | No catalog entry | abbe | patents/JP2023039817A.pdf | Reviewed sidecar hit |
 | L53 (Element 10) | 19 | `863248 — ultra-dense flint (patent nd=1.86290, nu_d=24.8)` | 1.86290 / 24.80 | No catalog entry | abbe | patents/JP2023039817A.pdf | Reviewed sidecar hit |
 | L54 (Element 11) | 20 | `585594 — barium crown (patent nd=1.58547, nu_d=59.4)` | 1.58547 / 59.40 | No catalog entry | abbe | patents/JP2023039817A.pdf | Reviewed sidecar hit |
 | L55 (Element 12) | 22A | `585594 — barium crown (patent nd=1.58547, nu_d=59.4), XA element` | 1.58547 / 59.40 | No catalog entry | abbe | patents/JP2023039817A.pdf | Reviewed sidecar hit |
 | L61 (Element 13) | 24 | `933209 — ultra-dense flint (patent nd=1.93323, nu_d=20.9)` | 1.93323 / 20.90 | No catalog entry | abbe | patents/JP2023039817A.pdf | Reviewed sidecar hit |
-| L62 (Element 14) | 25 | `658397 — short flint (patent nd=1.65803, nu_d=39.7)` | 1.65803 / 39.70 | No catalog entry | abbe | patents/JP2023039817A.pdf | No reviewed-sidecar hit |
-| L71 (Element 15) | 27 | `617443 — flint/crown-boundary glass (patent coordinate; vendor unspecified)` | 1.61669 / 44.30 | No catalog entry | abbe | patents/JP2023039817A.pdf | No reviewed-sidecar hit |
+| L62 (Element 14) | 25 | `658397 — short flint (patent nd=1.65803, nu_d=39.7)` | 1.65803 / 39.70 | No catalog entry | abbe | patents/JP2023039817A.pdf | Audit-log hit |
+| L71 (Element 15) | 27 | `617443 — flint/crown-boundary glass (patent coordinate; vendor unspecified)` | 1.61669 / 44.30 | No catalog entry | abbe | patents/JP2023039817A.pdf | Audit-log hit |
 
 ### [SONY PLANAR T* FE 50mm f/1.4 ZA](../../src/lens-data/sony/SonyPlanarFE50mmf14ZA.data.ts) - WO 2017/138250 A1
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L21 (Element 7) | 12 | `Unmatched (995293 ultra-high-index heavy flint; no public coefficient row inside the d-line safety window)` | 1.99502 / 29.30 | No catalog entry | abbe | patents/JPWO2017138250A1.pdf | Reviewed sidecar hit |
+| L21 (Element 7) | 12 | `Unmatched (995293 ultra-high-index heavy flint; no public coefficient row inside the d-line safety window)` | 1.99502 / 29.30 | No catalog entry | abbe | patents/JPWO2017138250A1.pdf | Explicit disposition in data |
 
 ### [SONY SONNAR T* E 24mm f/1.8 ZA](../../src/lens-data/sony/SonyFE24mmf18ZA.data.ts) - US 2013/0033768 A1
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L6 (G6) | 11A | `Unmatched (lanthanum dense crown, 801/454; likely restricted-catalog PGM formulation)` | 1.80100 / 45.45 | No catalog entry | abbe | patents/US20130033768A1.pdf | No reviewed-sidecar hit |
+| L6 (G6) | 11A | `Unmatched (lanthanum dense crown, 801/454; likely restricted-catalog PGM formulation)` | 1.80100 / 45.45 | No catalog entry | abbe | patents/US20130033768A1.pdf | Explicit disposition in data |
 
 ### [SONY SONNAR T* FE 35mm f/2.8 ZA](../../src/lens-data/sony/SonyFE35mmf28ZA.data.ts) - JP 2015-41012 A
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L111 (Element 1) | 1 | `800255 - dense flint (patent nd=1.80000, vd=25.46; no exact public catalog match)` | 1.80000 / 25.46 | No catalog entry | abbe | patents/JP2015041012A.pdf | No reviewed-sidecar hit |
-| L112 (Element 2) | 2 | `Unmatched (830427 patent-rounded lanthanum glass; vendor unresolved)` | 1.83000 / 42.72 | No catalog entry | abbe | patents/JP2015041012A.pdf | No reviewed-sidecar hit |
-| L113 (Element 3) | 5A | `Lanthanum flint (LAF class), 760/492 — unresolved; likely PGM-compatible proprietary melt` | 1.76000 / 49.24 | No catalog entry | abbe | patents/JP2015041012A.pdf | No reviewed-sidecar hit |
-| L121 (Element 4) | 7A | `Unmatched (580595 patent-rounded molded crown; vendor unresolved)` | 1.58000 / 59.46 | No catalog entry | abbe | patents/JP2015041012A.pdf | No reviewed-sidecar hit |
-| L131 (Element 5) | 9 | `Unmatched (830427 patent-rounded lanthanum glass; vendor unresolved)` | 1.83000 / 42.72 | No catalog entry | abbe | patents/JP2015041012A.pdf | No reviewed-sidecar hit |
-| L132 (Element 6) | 10 | `630346 - dense flint (patent nd=1.63000, vd=34.57; no exact public catalog match)` | 1.63000 / 34.57 | No catalog entry | abbe | patents/JP2015041012A.pdf | No reviewed-sidecar hit |
-| L133 (Element 7) | 12A | `680312 - dense flint (patent nd=1.68000, vd=31.16; no exact public catalog match)` | 1.68000 / 31.16 | No catalog entry | abbe | patents/JP2015041012A.pdf | No reviewed-sidecar hit |
+| L111 (Element 1) | 1 | `800255 - dense flint (patent nd=1.80000, vd=25.46; no exact public catalog match)` | 1.80000 / 25.46 | No catalog entry | abbe | patents/JP2015041012A.pdf | Audit-log hit |
+| L112 (Element 2) | 2 | `Unmatched (830427 patent-rounded lanthanum glass; vendor unresolved)` | 1.83000 / 42.72 | No catalog entry | abbe | patents/JP2015041012A.pdf | Explicit disposition in data |
+| L113 (Element 3) | 5A | `Lanthanum flint (LAF class), 760/492 — unresolved; likely PGM-compatible proprietary melt` | 1.76000 / 49.24 | No catalog entry | abbe | patents/JP2015041012A.pdf | Explicit disposition in data |
+| L121 (Element 4) | 7A | `Unmatched (580595 patent-rounded molded crown; vendor unresolved)` | 1.58000 / 59.46 | No catalog entry | abbe | patents/JP2015041012A.pdf | Explicit disposition in data |
+| L131 (Element 5) | 9 | `Unmatched (830427 patent-rounded lanthanum glass; vendor unresolved)` | 1.83000 / 42.72 | No catalog entry | abbe | patents/JP2015041012A.pdf | Explicit disposition in data |
+| L132 (Element 6) | 10 | `630346 - dense flint (patent nd=1.63000, vd=34.57; no exact public catalog match)` | 1.63000 / 34.57 | No catalog entry | abbe | patents/JP2015041012A.pdf | Audit-log hit |
+| L133 (Element 7) | 12A | `680312 - dense flint (patent nd=1.68000, vd=31.16; no exact public catalog match)` | 1.68000 / 31.16 | No catalog entry | abbe | patents/JP2015041012A.pdf | Audit-log hit |
 
 ### [VIVITAR SERIES 1 200mm f/3.0 VMC](../../src/lens-data/vivitar/VivitarSeries1200mmf3.data.ts) - US 3,942,876
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L5 (Element 5) | 10 | `713433 — LaF/BaSF boundary glass (no exact public catalog match)` | 1.71270 / 43.30 | No catalog entry | abbe | patents/US3942876.pdf | No reviewed-sidecar hit |
+| L5 (Element 5) | 10 | `713433 — LaF/BaSF boundary glass (no exact public catalog match)` | 1.71270 / 43.30 | No catalog entry | abbe | patents/US3942876.pdf | Audit-log hit |
 
 ### [VIVITAR SERIES 1 35-85mm f/2.8 VMC](../../src/lens-data/vivitar/VivitarSeries13585mmf28.data.ts) - US 3,975,089
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L2 (Element 2) | 3 | `531621 — BSM-type crown (no exact public catalog match)` | 1.53100 / 62.10 | No catalog entry | abbe | patents/US3975089.pdf | No reviewed-sidecar hit |
+| L2 (Element 2) | 3 | `531621 — BSM-type crown (no exact public catalog match)` | 1.53100 / 62.10 | No catalog entry | abbe | patents/US3975089.pdf | Audit-log hit |
 
 ### [VIVITAR SERIES 1 450mm f/4.5 VMC ASPHERICAL MIRROR](../../src/lens-data/vivitar/VivitarSeries1450mmf45.data.ts) - US 4,523,816
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L5 (G2 doublet 1 rear) | 7 | `Unmatched (dense flint 728/261; no official HOYA or SUMITA catalog match)` | 1.72800 / 26.10 | No catalog entry | abbe | patents/US4523816.pdf | No reviewed-sidecar hit |
+| L5 (G2 doublet 1 rear) | 7 | `Unmatched (dense flint 728/261; no official HOYA or SUMITA catalog match)` | 1.72800 / 26.10 | No catalog entry | abbe | patents/US4523816.pdf | Explicit disposition in data |
 
 ### [VOIGTLÄNDER NOKTON 50mm f/1.0](../../src/lens-data/voigtlander/VoigtlanderNokton50f1.data.ts) - JP2023063766A
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L6r (Element 8) | 14 | `Unmatched (553551 crown; patent nd=1.55298, νd=55.07)` | 1.55298 / 55.07 | No catalog entry | abbe | patents/JP2023063766A.pdf | No reviewed-sidecar hit |
-| L7 (Element 9) | 16A | `Unmatched (808406 high-index lanthanum glass; patent nd=1.80835, νd=40.55)` | 1.80835 / 40.55 | No catalog entry | abbe | patents/JP2023063766A.pdf | No reviewed-sidecar hit |
+| L6r (Element 8) | 14 | `Unmatched (553551 crown; patent nd=1.55298, νd=55.07)` | 1.55298 / 55.07 | No catalog entry | abbe | patents/JP2023063766A.pdf | Explicit disposition in data |
+| L7 (Element 9) | 16A | `Unmatched (808406 high-index lanthanum glass; patent nd=1.80835, νd=40.55)` | 1.80835 / 40.55 | No catalog entry | abbe | patents/JP2023063766A.pdf | Explicit disposition in data |
 
 ### [VOIGTLÄNDER ULTRON Vintage Line 28mm f/2 Aspherical](../../src/lens-data/voigtlander/VoigtlanderUltron28f2.data.ts) - JP2022-100641A
 
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L9 (Element 9 (Nnb)) | 15 | `Unmatched (630581 crown/APD candidate; patent nd=1.62999, νd=58.12)` | 1.62999 / 58.12 | No catalog entry | abbe | patents/JP2022100641A.pdf | No reviewed-sidecar hit |
+| L9 (Element 9 (Nnb)) | 15 | `Unmatched (630581 crown/APD candidate; patent nd=1.62999, νd=58.12)` | 1.62999 / 58.12 | No catalog entry | abbe | patents/JP2022100641A.pdf | Explicit disposition in data |
 

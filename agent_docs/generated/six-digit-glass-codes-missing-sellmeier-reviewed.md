@@ -2,11 +2,13 @@
 
 Manual sidecar for `six-digit-glass-codes-missing-sellmeier.generated.md`.
 Use this before starting another patent pass so recently reviewed lenses are not reopened unnecessarily.
+Annotations that explicitly say `Unmatched`, `Unknown`, `Proprietary`, or `Unidentified` are self-recording review
+dispositions in the generators. This sidecar remains the place for richer patent/source detail, but an explicit
+disposition no longer appears as missing paperwork merely because it lacks a duplicate sidecar or audit-log hit.
 
 Last verification for this batch, 2026-07-30:
 
-- `npm test -- dispersion.test.ts lensDataTyping.test.ts validateLensData.test.ts buildLens.test.ts` - 221 tests passed
-- `npm run generate:glass-reports` - passed
+- `npm run generate:glass-reports` - 8 files / 13 tests passed
 - `npm run typecheck` - passed
 - `npm run format:check` - passed
 

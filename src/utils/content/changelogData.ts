@@ -22,6 +22,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-07-30 ──────────────────────────────────────────────────
   {
     date: "2026-07-30",
+    type: "fix",
+    summary: "Separated glass-catalog opportunities from resin, cement, plastic, and other optical-media gaps",
+  },
+  {
+    date: "2026-07-30",
     type: "improvement",
     summary: "Closed the named-glass queue with eight sourced curves and safer catalog-equivalent labels",
   },

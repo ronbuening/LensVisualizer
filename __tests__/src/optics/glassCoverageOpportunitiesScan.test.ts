@@ -84,7 +84,10 @@ interface MissingSurface {
   elementLabel: string;
   glassString: string;
   quality: DispersionQuality | "missing";
+  materialKind: MissingMaterialKind;
 }
+
+type MissingMaterialKind = "glass" | "resin" | "cement" | "plastic" | "other";
 
 interface CoverageOpportunity {
   lensName: string;
@@ -244,7 +247,7 @@ function missingSurfaceSummary(rows: readonly MissingSurface[]): string {
   return rows
     .map(
       (row) =>
-        `${escapeTableCell(row.label)} (${escapeTableCell(row.elementLabel)}: \`${escapeTableCell(row.glassString || "no glass annotation")}\`)`,
+        `${escapeTableCell(row.label)} [${row.materialKind}] (${escapeTableCell(row.elementLabel)}: \`${escapeTableCell(row.glassString || "no glass annotation")}\`)`,
     )
     .join("<br>");
 }
@@ -337,6 +340,15 @@ function isExplicitlyUnmatched(glassString: string | undefined): boolean {
   return /\b(unmatched|unknown|proprietary|unidentified)\b/i.test(glassString ?? "");
 }
 
+function classifyMissingMaterial(elementLabel: string, glassString: string): MissingMaterialKind {
+  const description = `${elementLabel} ${glassString}`;
+  if (/\b(?:cement|cemented layer|adhesive|bond layer|bonding layer)\b/i.test(description)) return "cement";
+  if (/\b(?:plastic|pmma|polycarbonate)\b/i.test(description)) return "plastic";
+  if (/\b(?:resin|polymer|organic|replica layer)\b/i.test(description)) return "resin";
+  if (/\b(?:water|liquid|fluid)\b/i.test(description) || !glassString.trim()) return "other";
+  return "glass";
+}
+
 function namedOpportunityTokens(glassString: string): string[] {
   const tokens = glassString.match(/[A-Za-z][A-Za-z0-9-]*\d[A-Za-z0-9]*/g) ?? [];
   return [
@@ -396,8 +408,10 @@ function hasAuditRecord(filePath: string, codes: readonly string[]): boolean {
   return codes.some((code) => auditText.includes(code));
 }
 
-function hasReviewRecord(row: CodeOpportunity): boolean {
-  return row.reviewedStatus === "Reviewed sidecar hit" || row.auditReviewed;
+function hasReviewRecord(
+  row: Pick<CodeOpportunity, "explicitlyUnmatched" | "reviewedStatus" | "auditReviewed">,
+): boolean {
+  return row.explicitlyUnmatched || row.reviewedStatus === "Reviewed sidecar hit" || row.auditReviewed;
 }
 
 function summarizePatentStatus(rows: readonly { localPatent: PatentMatch }[]): string {
@@ -443,6 +457,26 @@ describe("glass coverage opportunities scan", () => {
       path: "patents/DE_1228820_B.pdf",
       status: "Matched untracked local patent PDF",
     });
+  });
+
+  it("separates glass opportunities from resin, cement, plastic, and other optical media", () => {
+    expect(classifyMissingMaterial("Element 2 synthetic-resin layer", "Proprietary optical resin")).toBe("resin");
+    expect(classifyMissingMaterial("Bond layer 1", "UV-curing adhesive")).toBe("cement");
+    expect(classifyMissingMaterial("Plastic corrector", "PMMA")).toBe("plastic");
+    expect(classifyMissingMaterial("Hybrid replica layer", "Unmatched optical medium")).toBe("resin");
+    expect(classifyMissingMaterial("Element 9", "Canon proprietary organic")).toBe("resin");
+    expect(classifyMissingMaterial("WTR", "")).toBe("other");
+    expect(classifyMissingMaterial("Element 4", "Unmatched barium crown")).toBe("glass");
+  });
+
+  it("treats explicit unmatched annotations as self-recording review dispositions", () => {
+    expect(
+      hasReviewRecord({
+        explicitlyUnmatched: true,
+        reviewedStatus: "No reviewed-sidecar hit",
+        auditReviewed: false,
+      }),
+    ).toBe(true);
   });
 
   it("emits a consolidated three-sweep opportunity report", () => {
@@ -512,19 +546,25 @@ describe("glass coverage opportunities scan", () => {
           totalTrustedChromaticSurfaces++;
         }
         if (!sellmeierEligible) {
+          const elementLabel = element?.label || element?.name || "element";
+          const glassString = element?.glass ?? "";
           missingSurfaces.push({
             label: surface.label ?? `surface[${i}]`,
-            elementLabel: element?.label || element?.name || "element",
-            glassString: element?.glass ?? "",
+            elementLabel,
+            glassString,
             quality,
+            materialKind: classifyMissingMaterial(elementLabel, glassString),
           });
         }
         if (!trustedChromatic) {
+          const elementLabel = element?.label || element?.name || "element";
+          const glassString = element?.glass ?? "";
           const missingSurface: MissingSurface = {
             label: surface.label ?? `surface[${i}]`,
-            elementLabel: element?.label || element?.name || "element",
-            glassString: element?.glass ?? "",
+            elementLabel,
+            glassString,
             quality,
+            materialKind: classifyMissingMaterial(elementLabel, glassString),
           };
           missingTrustedSurfaces.push(missingSurface);
         }
@@ -640,8 +680,15 @@ describe("glass coverage opportunities scan", () => {
         return a.missingTrustedSurfaces.length - b.missingTrustedSurfaces.length;
       });
 
-    const activeUnreviewedCodeRows = codeRows.filter((row) => !hasReviewRecord(row) && !row.explicitlyUnmatched);
-    const unindexedCodeDispositions = codeRows.filter((row) => !hasReviewRecord(row) && row.explicitlyUnmatched);
+    const activeUnreviewedCodeRows = codeRows.filter((row) => !hasReviewRecord(row));
+    const explicitCodeDispositions = codeRows.filter((row) => row.explicitlyUnmatched);
+    const dispositionsWithoutReviewRecord = explicitCodeDispositions.filter((row) => !hasReviewRecord(row));
+    const visibleNearCompleteGlass = visibleNearComplete.filter((row) =>
+      row.missingTrustedSurfaces.every((surface) => surface.materialKind === "glass"),
+    );
+    const visibleNearCompleteNonGlass = visibleNearComplete.filter((row) =>
+      row.missingTrustedSurfaces.some((surface) => surface.materialKind !== "glass"),
+    );
     const codeFrequency = new Map<string, CodeOpportunity[]>();
     for (const row of activeUnreviewedCodeRows) {
       for (const code of row.codes) {
@@ -718,7 +765,7 @@ describe("glass coverage opportunities scan", () => {
     );
     lines.push(`- **${matchedRelabels}** Sweep 1 surfaces have a matching untracked local patent PDF`);
     lines.push(
-      `- **${codeRows.length}** code-only missing-Sellmeier elements in Sweep 2: **${activeUnreviewedCodeRows.length}** active unreviewed, **${unindexedCodeDispositions.length}** explicitly disposed but missing a sidecar hit`,
+      `- **${codeRows.length}** code-only missing-Sellmeier elements in Sweep 2: **${activeUnreviewedCodeRows.length}** active unreviewed, **${explicitCodeDispositions.length}** self-recording explicit dispositions, **${dispositionsWithoutReviewRecord.length}** dispositions missing any review record`,
     );
     lines.push(
       `- **${namedElementCount}** unresolved named-token elements in Sweep 2B, producing **${namedTokenRows.length}** token occurrences across **${namedTokenFrequency.size}** distinct tokens`,
@@ -750,17 +797,34 @@ describe("glass coverage opportunities scan", () => {
     }
     lines.push("");
 
-    lines.push("## Near-Complete Visible Lenses");
+    lines.push("## Near-Complete Visible Lenses - Glass Opportunities");
     lines.push("");
     lines.push(
-      "These are efficient follow-up targets after mismatch blockers because one or two surfaces can make the whole lens chromatically trusted. Strict Sellmeier coverage remains shown separately.",
+      "These lenses are missing trusted chromatic data only on glass elements. One or two source-verified glass upgrades can make each lens fully trusted. Strict Sellmeier coverage remains shown separately.",
     );
     lines.push("");
     lines.push(
       "| Lens | Patent | Local source | Trusted chromatic coverage | Strict Sellmeier coverage | Missing trusted surfaces | Missing surface details | Missing quality mix |",
     );
     lines.push("|---|---|---|---:|---:|---:|---|---|");
-    for (const row of visibleNearComplete) {
+    for (const row of visibleNearCompleteGlass) {
+      lines.push(
+        `| [${row.lensName}](../../${row.filePath}) | ${row.patentNumber ?? ""} | ${localPatentSummary(row.localPatent)} | ${formatPercent(row.trustedChromaticSurfaces, row.nonAirSurfaces)} (${row.trustedChromaticSurfaces}/${row.nonAirSurfaces}) | ${formatPercent(row.sellmeierSurfaces, row.nonAirSurfaces)} (${row.sellmeierSurfaces}/${row.nonAirSurfaces}) | ${row.missingTrustedSurfaces.length} | ${missingSurfaceSummary(row.missingTrustedSurfaces)} | ${qualityMix(row.missingTrustedSurfaces)} |`,
+      );
+    }
+    lines.push("");
+
+    lines.push("## Near-Complete Visible Lenses - Non-Glass or Mixed-Material Gaps");
+    lines.push("");
+    lines.push(
+      "These rows contain resin, cement, plastic, liquid, or unclassified optical media. They are excluded from the glass-catalog priority list and need material-specific dispersion data.",
+    );
+    lines.push("");
+    lines.push(
+      "| Lens | Patent | Local source | Trusted chromatic coverage | Strict Sellmeier coverage | Missing trusted surfaces | Missing material details | Missing quality mix |",
+    );
+    lines.push("|---|---|---|---:|---:|---:|---|---|");
+    for (const row of visibleNearCompleteNonGlass) {
       lines.push(
         `| [${row.lensName}](../../${row.filePath}) | ${row.patentNumber ?? ""} | ${localPatentSummary(row.localPatent)} | ${formatPercent(row.trustedChromaticSurfaces, row.nonAirSurfaces)} (${row.trustedChromaticSurfaces}/${row.nonAirSurfaces}) | ${formatPercent(row.sellmeierSurfaces, row.nonAirSurfaces)} (${row.sellmeierSurfaces}/${row.nonAirSurfaces}) | ${row.missingTrustedSurfaces.length} | ${missingSurfaceSummary(row.missingTrustedSurfaces)} | ${qualityMix(row.missingTrustedSurfaces)} |`,
       );

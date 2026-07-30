@@ -32,10 +32,23 @@ This file tracks the second bucket plus any cases from the first bucket that nee
 - **235** lenses are fully covered by strict Sellmeier data and **239** are fully covered by trusted chromatic data.
 - `unresolvedGlassScan` reports **356** non-explicit-unmatched annotations and **113** distinct unresolved glass-like
   tokens. Sweep 2B reports **0** remaining unresolved catalog-style names; the residual total is code/prose inventory.
-- The missing-Sellmeier six-digit report contains **260** code-only elements, with **0** active
-  unreviewed rows, **52** explicit unmatched/unidentified dispositions missing both sidecar and companion-audit hits,
-  and **208** rows with a recorded review.
+- The missing-Sellmeier six-digit report contains **260** code-only elements, with **0** active unreviewed rows,
+  **113** self-recording explicit unmatched/unidentified dispositions, **147** other rows covered by sidecar or
+  companion-audit records, and **0** dispositions missing a review record.
 - The Phase 2/3 resolved tables below are historical audit trail. Use the generated reports above for the current queue before starting new relabel work; for patent-by-patent execution, start from [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md).
+
+## Resolved Phase 69 — July 2026 review-record and material classification
+
+The report generators now recognize an explicit `Unmatched`, `Unknown`, `Proprietary`, or `Unidentified` lens-data
+annotation as a review record in its own right. This closes the 52 recordkeeping-only rows that previously appeared to
+need duplicate sidecar or companion-audit entries even though the data already preserved the disposition. The full
+260-row missing-Sellmeier inventory remains available, but its active queue and missing-review count are both zero.
+
+The near-complete visible-lens report is now split by material. Glass-only gaps remain catalog candidates; resin,
+cement, plastic, liquid, unannotated, and mixed-material rows are listed separately with per-surface material labels.
+The regenerated queue contains 85 glass-only lenses and 40 non-glass or mixed-material lenses. This prevents
+compound-asphere layers and other non-glass media from inflating the optical-glass catalog queue. Coverage and
+catalog counts are unchanged.
 
 ## Resolved Phase 68 — July 2026 named-token closure
 
