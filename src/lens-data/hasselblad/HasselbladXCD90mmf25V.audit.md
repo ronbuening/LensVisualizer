@@ -61,3 +61,10 @@ Patent: JP 2022-99402 A, Example 1
 - Confirmed the high-index elements remain L5 `S-NPH5`, L6 `TAFD35`, and L8 `S-TIH53` (nd >= 1.8). L9 `L-BBH1` remains a low-Tg molded-asphere glass disposition rather than an APD/high-index row.
 - Rendered and reviewed the patent drawing. The current SDs match the compact first group, tiny focus doublet, larger rear relay, and large molded rear aspheric proportions. No SD edits were made.
 - Verification: `npm run generate:glass-reports`, `npm run typecheck`, `npm run format:check`, `npm run lint`, `npm run test`, and `git diff --check` passed.
+
+## 2026-07-30 - L-BBH1 identity correction
+
+- Rendered JP 2022-99402 A Example 1 / Table 1A and confirmed L9 at `nd=1.68863`, `νd=31.2`; the patent supplies no vendor glass name.
+- Rejected the prior OHARA `L-BBH1` attribution. OHARA's official all-products row is `2.101949 / 16.785097` and cannot represent this element.
+- Relabeled L9 to `E-FD8 (HOYA catalog equivalent; production supplier unspecified)`. The coefficient-backed `1.68893 / 31.16` row, code `689312`, reproduces the patent coordinate within rounding.
+- Removed the unsupported barium-borate and precision-molding claims from the analysis. The sources establish a double-aspherical element but do not establish its supplier or forming process.

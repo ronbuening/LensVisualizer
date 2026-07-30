@@ -64,3 +64,10 @@ Local patent source: `patents/JP2025052870A.pdf` (untracked local file).
 | L42 / S29 | `dPgF` | absent | `0.041` | Patent Example 1 row 29 lists `θgF = 0.6546`; subtracting the project normal line `0.6438 - 0.001682 * 17.98` gives `ΔPgF = +0.0410`. |
 
 No `nC`, `nF`, or `ng` rows were found in the extracted local patent text. The remaining unresolved six-digit rows in this lens are catalog/source issues rather than patent line-index rows.
+
+## 2026-07-30 - L-LAH85 identity correction
+
+- Rendered JP 2025-052870 A Example 1 / Table 1 and confirmed L32 at `nd=1.77503`, `νd=47.3`; the patent does not identify a vendor.
+- Rejected the prior OHARA `L-LAH85` attribution. OHARA's official all-products row is `1.854000 / 40.378368` and is incompatible with the patent coordinate.
+- Relabeled L32 to `M-TAF401 (HOYA catalog equivalent; production supplier unspecified)`. The coefficient-backed `1.77377 / 47.17` row is safely inside both compatibility limits.
+- Synchronized the analysis and limited the PGM claim to the separately identified L-PHM52 element. No prescription geometry or aspheric coefficients changed.

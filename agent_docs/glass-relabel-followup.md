@@ -27,15 +27,33 @@ This file tracks the second bucket plus any cases from the first bucket that nee
 - `catalog-mismatches.generated.md` and `glass-relabel-by-lens.generated.md` report **0** remaining
   dispersion-coordinate mismatches across **0** lens files. The mismatch report separately records **16 / 75**
   native e-line surfaces resolved through explicit names or aliases.
-- `sellmeier-coverage.generated.md` reports **488** lenses, **5360** non-air surfaces, **4670** strict catalog
-  Sellmeier surfaces (**87.1%**), and **4682** trusted chromatic surfaces (**87.4%**).
-- **227** lenses are fully covered by strict Sellmeier data and **232** are fully covered by trusted chromatic data.
-- `unresolvedGlassScan` reports **407** non-explicit-unmatched annotations and **169** distinct unresolved glass-like
+- `sellmeier-coverage.generated.md` reports **488** lenses, **5360** non-air surfaces, **4676** strict catalog
+  Sellmeier surfaces (**87.2%**), and **4688** trusted chromatic surfaces (**87.5%**).
+- **228** lenses are fully covered by strict Sellmeier data and **233** are fully covered by trusted chromatic data.
+- `unresolvedGlassScan` reports **401** non-explicit-unmatched annotations and **163** distinct unresolved glass-like
   tokens. The total includes honest proprietary and family-level annotations as well as actionable named tokens.
 - The missing-Sellmeier six-digit report contains **260** code-only elements, with **0** active
   unreviewed rows, **52** explicit unmatched/unidentified dispositions missing both sidecar and companion-audit hits,
   and **208** rows with a recorded review.
 - The Phase 2/3 resolved tables below are historical audit trail. Use the generated reports above for the current queue before starting new relabel work; for patent-by-patent execution, start from [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md).
+
+## Resolved Phase 67 — July 2026 incompatible named-token correction
+
+Five OHARA-style annotations were compared against the official 2026 all-products catalog and found to name entirely
+different glasses. Patent prescription checks retained the authored d-line coordinates but identified no production
+supplier. Existing coefficient rows provide safe optical equivalents for all six affected elements:
+
+| Prior name | Patent coordinate | Compatible curve | Affected elements |
+|---|---:|---|---|
+| S-LAM73 | 1.85659 / 40.1 | OHARA L-LAH85V | Sony FE 28-70mm L51, L73 |
+| L-BBH1 | 1.68863 / 31.2 | HOYA E-FD8 | Hasselblad XCD 90V L9 |
+| L-LAH83 | 1.77074 / 49.5 | HOYA M-TAF1 | Panasonic Leica 15mm L8 |
+| L-PHL1 | 1.58313 / 59.5 | HOYA M-BACD12 | Panasonic 20-60mm L10 |
+| L-LAH85 | 1.77503 / 47.3 | HOYA M-TAF401 | Nikon Z 35mm f/1.2 L32 |
+
+Every replacement is labeled as a catalog equivalent with production supplier unspecified. The analysis sidecars no
+longer infer composition or molding process from the rejected names. Six surfaces gained strict/trusted dispersion,
+the Hasselblad lens became fully covered, and the named-token queue fell from 47 to 41 elements.
 
 ## Resolved Phase 66 — July 2026 Olympus legacy-catalog recovery
 

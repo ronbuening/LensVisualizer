@@ -210,7 +210,7 @@ const LENS_DATA = {
       nd: 1.77503,
       vd: 47.3,
       fl: +93.4,
-      glass: "PGM lanthanum (775473, OHARA L-LAH85)",
+      glass: "M-TAF401 (HOYA catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Second PGM-molded asphere in F2. Front surface (s25) aspherical with highest-order coefficients (up to A16).",
     },

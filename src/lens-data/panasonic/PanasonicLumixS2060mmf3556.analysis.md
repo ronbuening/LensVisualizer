@@ -103,9 +103,9 @@ The patent notes (¶0091) that condition (3) — νL3d > 62 — governs the chro
 
 ### L10 — Biconcave Negative, Both Surfaces Aspherical (G4)
 
-nd = 1.58313, νd = 59.5. Glass: L-PHL1 (OHARA) — phosphate crown, precision-glass-moldable. f = −48.9 mm.
+nd = 1.58313, νd = 59.5. Glass: HOYA M-BACD12 catalog equivalent; the production supplier is unspecified. f = −48.9 mm.
 
-L10 constitutes the entire focus group (G4). Its double-aspheric biconcave form (R1 = −33.62, R2 = +191.02 mm) provides negative power with extensive aspherical correction on both surfaces. The "L-" prefix in L-PHL1 designates a moldable-grade glass, essential for economical double-aspheric production via precision glass molding.
+L10 constitutes the entire focus group (G4). Its double-aspheric biconcave form (R1 = −33.62, R2 = +191.02 mm) provides negative power with extensive aspherical correction on both surfaces. Official OHARA L-PHL1 is an incompatible $1.56455 / 60.82$ row; HOYA M-BACD12 is the exact-index, closest-Abbe coefficient row at $1.58313 / 59.46$. The patent does not identify the production supplier or forming process.
 
 As the sole focusing element, L10 translates toward the image during close focus. Its relatively weak power (f = −48.9 mm, |f4/fT| = 0.85, satisfying condition (4)) represents a deliberate balance between focus speed and stopping accuracy: a stronger focus group would require less travel for the same focus shift but would amplify positional errors, degrading focus precision. The patent discusses this trade explicitly (¶0096).
 
@@ -138,12 +138,12 @@ The glass palette for Example 2 draws predominantly from OHARA's catalog, with o
 | L7 | 1.49700 | 81.6 | S-FPL51 | OHARA | ED crown, relay positive (1st) |
 | L8 | 1.80610 | 33.3 | S-TIH4 | OHARA | Relay achromat partner, dense flint |
 | L9 | 1.49700 | 81.6 | S-FPL51 | OHARA | ED crown, relay positive (2nd) |
-| L10 | 1.58313 | 59.5 | L-PHL1 | OHARA | PGM, double-aspheric focus element |
+| L10 | 1.58313 | 59.5 | M-BACD12 catalog equivalent | Supplier not identified | Double-aspheric focus element |
 | L11 | 1.92286 | 20.9 | PBH21 catalog equivalent | Supplier not identified | UHR field flattener, ultra-high-index flint |
 
 **Chromatic strategy.** The design uses two distinct achromatic doublet pairs — one in G2 (L3+L4) and one in G3 (L8+L9) — augmented by the standalone ED biconvex L7 in G3. The G2 doublet corrects chromatic aberration in the variator, where the beam divergence is large and wavelength-dependent, while the G3 doublet and L7 handle chromatic correction in the relay group, where beam convergence toward the image is strongest. The use of three ED elements (all with νd > 68) is unusual in a lens at this price point and reflects the wide-angle demands of the 20 mm starting focal length.
 
-**Moldable glass usage.** Two elements (L6, L10) use precision-glass-moldable grades (K-VC89 and L-PHL1 respectively), enabling cost-effective production of the four aspherical surfaces. Both grades have glass transition temperatures (Tg) suitable for high-volume molding, which is essential for a lens positioned as an affordable kit zoom.
+**Aspherical-material usage.** L6 uses the moldable K-VC89 catalog family. L10 is also double-aspherical, but the patent publishes only its optical constants; M-BACD12 is used as a dispersion equivalent and should not be read as proof of the production material or manufacturing route.
 
 ## Focus Mechanism
 
@@ -226,7 +226,7 @@ The larger A4 coefficient (roughly 16× that of surface 11) indicates more aggre
 | A12 | −8.75404 × 10⁻¹² |
 | A14 | +6.41106 × 10⁻¹⁴ |
 
-The A4 coefficients on surfaces 18 and 19 (≈ 2.4 × 10⁻⁴) are roughly 100× larger than surface 11's A4 (2.4 × 10⁻⁶), and approximately 6× larger than surface 12's A4 (3.9 × 10⁻⁵), indicating substantially more aggressive aspherical departure. This is consistent with L10's dual role as both the focus element and the primary astigmatism / field-curvature corrector for the system. Because L10 moves during focus, the aspherical profiles must maintain good correction across its full range of axial positions — a demanding requirement that necessitates the higher-order terms (A10, A12, A14) seen in the coefficients. Both the L6 and L10 aspherics are inferred to be precision glass molded (PGM), based on their glass types (K-VC89 and L-PHL1).
+The A4 coefficients on surfaces 18 and 19 (≈ 2.4 × 10⁻⁴) are roughly 100× larger than surface 11's A4 (2.4 × 10⁻⁶), and approximately 6× larger than surface 12's A4 (3.9 × 10⁻⁵), indicating substantially more aggressive aspherical departure. This is consistent with L10's dual role as both the focus element and the primary astigmatism / field-curvature corrector for the system. Because L10 moves during focus, the aspherical profiles must maintain good correction across its full range of axial positions — a demanding requirement that necessitates the higher-order terms (A10, A12, A14) seen in the coefficients. The surface data establish the aspheres but do not identify L10's fabrication process.
 
 ## Conditional Expressions
 
@@ -257,6 +257,6 @@ The lens remains in production and is commonly bundled as a kit lens with the LU
 - JP 2021-179551 A (published 18 November 2021). Full prescription data, embodiment descriptions, and conditional expressions.
 - Panasonic LUMIX product page (panasonic.com): production specifications, element count, special element designations.
 - Panasonic blog, "S Series Lenses — Chapter 7: S 20–60mm F3.5–5.6" (shop.panasonic.com/blogs/lumix): design philosophy, group layout, video performance goals.
-- OHARA, HOYA, Hikari, and Sumita optical glass catalog data: glass identification for S-BAL35, S-LAH95, FCD515, J-LASF021, K-VC89, S-FPL51, S-TIH4, NBFD15, L-PHL1, discontinued PBH21, and unresolved code-only 859300.
+- OHARA, HOYA, Hikari, and Sumita optical glass catalog data: glass identification and compatible-curve checks for S-BAL35, S-LAH95, FCD515, J-LASF021, K-VC89, S-FPL51, S-TIH4, NBFD15, M-BACD12, discontinued PBH21, and unresolved code-only 859300.
 - HOYA Optical Glass data (refractiveindex.info): FCD515 identification (nd = 1.59282, νd = 68.63, dPgF = +0.0194).
 - HOYA news releases (hoya-opticalworld.com): TAFD25 cross-reference (nd = 1.90366, νd = 31.32) confirming S-LAH93 equivalence.

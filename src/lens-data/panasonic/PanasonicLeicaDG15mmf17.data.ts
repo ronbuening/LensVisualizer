@@ -144,7 +144,7 @@ const LENS_DATA = {
       nd: 1.77074,
       vd: 49.5,
       fl: 18.21,
-      glass: "L-LAH83 (OHARA)",
+      glass: "M-TAF1 (HOYA catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Field lens in focus group; nearly plano-convex shape redirects off-axis rays toward axis",
     },

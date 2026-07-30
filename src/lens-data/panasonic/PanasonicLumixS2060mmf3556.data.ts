@@ -179,7 +179,7 @@ const LENS_DATA = {
       nd: 1.58313,
       vd: 59.5,
       fl: -48.9,
-      glass: "L-PHL1 (OHARA)",
+      glass: "M-BACD12 (HOYA catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Focus element (G4). Double-aspheric PGM phosphate crown; translates toward image for close focus.",
     },

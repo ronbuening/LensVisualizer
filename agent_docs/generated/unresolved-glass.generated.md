@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **488** lenses scanned
 - **5360** non-air surfaces examined
 - **5365** element glass declarations examined
-- **407** non-explicit-unmatched annotations did not resolve
-- **169** distinct unresolved glass-like tokens found
+- **401** non-explicit-unmatched annotations did not resolve
+- **163** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -38,7 +38,6 @@ or per-lens patent backfills.
 | 807316 | 2 | 2 | |
 | 813252 | 2 | 1 | |
 | 856401 | 2 | 1 | |
-| S-LAM73 | 2 | 1 | |
 | 487698 | 1 | 1 | |
 | 498651 | 1 | 1 | |
 | 514530 | 1 | 1 | |
@@ -110,7 +109,6 @@ or per-lens patent backfills.
 | 773501 | 1 | 1 | |
 | 773530 | 1 | 1 | |
 | 774494 | 1 | 1 | |
-| 775473 | 1 | 1 | |
 | 777297 | 1 | 1 | |
 | 781445 | 1 | 1 | |
 | 781446 | 1 | 1 | |
@@ -161,10 +159,6 @@ or per-lens patent backfills.
 | H-ZLAF55C | 1 | 1 | |
 | H-ZLAF68N | 1 | 1 | |
 | H-ZLAF92 | 1 | 1 | |
-| L-BBH1 | 1 | 1 | |
-| L-LAH83 | 1 | 1 | |
-| L-LAH85 | 1 | 1 | |
-| L-PHL1 | 1 | 1 | |
 | N-BASF2 | 1 | 1 | |
 | N-LAK10 | 1 | 1 | |
 | N-LASF43 | 1 | 1 | |
@@ -299,11 +293,6 @@ or per-lens patent backfills.
 
 - [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 14A: `856401 — lanthanum dense crown (patent nd=1.85612, νd=40.1)`
 - [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 25A: `856401 — lanthanum dense crown (patent nd=1.85612, νd=40.1)`
-
-### S-LAM73 — 2 occurrences
-
-- [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 27A: `S-LAM73 (OHARA)`
-- [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 34: `S-LAM73 (OHARA)`
 
 ### 487698 — 1 occurrence
 
@@ -589,10 +578,6 @@ or per-lens patent backfills.
 
 - [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 6A: `774494 — lanthanum crown (patent nd=1.77373, νd=49.4)`
 
-### 775473 — 1 occurrence
-
-- [NIKON NIKKOR Z 35mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 25A: `PGM lanthanum (775473, OHARA L-LAH85)`
-
 ### 777297 — 1 occurrence
 
 - [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 8: `777297 — dense flint (patent nd=1.77660, νd=29.7)`
@@ -792,22 +777,6 @@ or per-lens patent backfills.
 ### H-ZLAF92 — 1 occurrence
 
 - [LAOWA 58mm f/2.8 2× Ultra-Macro APO](../../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts) 10: `H-ZLAF92 (CDGM)`
-
-### L-BBH1 — 1 occurrence
-
-- [HASSELBLAD XCD 90mm f/2.5 V](../../src/lens-data/hasselblad/HasselbladXCD90mmf25V.data.ts) 17A: `L-BBH1 (OHARA)`
-
-### L-LAH83 — 1 occurrence
-
-- [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) 14: `L-LAH83 (OHARA)`
-
-### L-LAH85 — 1 occurrence
-
-- [NIKON NIKKOR Z 35mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 25A: `PGM lanthanum (775473, OHARA L-LAH85)`
-
-### L-PHL1 — 1 occurrence
-
-- [PANASONIC LUMIX S 20-60mm f/3.5-5.6](../../src/lens-data/panasonic/PanasonicLumixS2060mmf3556.data.ts) 18A: `L-PHL1 (OHARA)`
 
 ### N-BASF2 — 1 occurrence
 

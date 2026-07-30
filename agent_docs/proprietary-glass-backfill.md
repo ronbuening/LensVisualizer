@@ -29,11 +29,9 @@ six-digit codes are ignored for those rows. The full per-surface mismatch list i
 
 For code-only rows, start with
 [six-digit-glass-codes-missing-sellmeier.generated.md](generated/six-digit-glass-codes-missing-sellmeier.generated.md).
-Its active A-E queue indexes both the manual sidecar and companion audit logs. That excludes 207 reviewed rows and
-separates 52 explicit unmatched/unidentified dispositions without a review-record hit, leaving five genuinely
-unreviewed elements across four code families. A/B/C rows combine local-patent readiness with visible-lens completion,
-near-complete, or repeated impact; E rows are source blocked. The full inventory remains in the same report for audit
-context.
+Its active A-E queue indexes both the manual sidecar and companion audit logs. That excludes 208 reviewed rows and
+separates 52 explicit unmatched/unidentified dispositions without a review-record hit, leaving no active unreviewed
+six-digit rows. The full inventory remains in the same report for audit context.
 
 The fix for a mismatch is one of:
 

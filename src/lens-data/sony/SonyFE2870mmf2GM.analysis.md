@@ -150,7 +150,9 @@ L45 is the strongest individual positive element in the design (f = +23.4 mm) an
 
 #### L51 — Negative Meniscus, Convex to Object (2× aspherical)
 
-nd = 1.85659, νd = 40.1. Glass: S-LAM73 (OHARA), provisional label from the patent's nd/νd pair. f = −41.9 mm.
+nd = 1.85659, νd = 40.1. Glass: OHARA L-LAH85V catalog equivalent; the production supplier is unspecified. f = −41.9 mm.
+
+The patent supplies only the d-line coordinate. Official OHARA S-LAM73 is a different glass at $n_d = 1.79360$, $\nu_d = 37.09$, while L-LAH85V ($1.85400 / 40.38$) lies inside the catalog compatibility window and provides the coefficient-backed dispersion curve used here.
 
 L51 is a single-element group that constitutes the first focus group (GMF1). It carries aspherical surfaces on both sides (surfaces 27 and 28). During focusing from infinity to close distance, G5 translates along the optical axis toward the image (¶0065), with travel increasing toward the tele end (d26 grows by +4.82 mm at tele close focus).
 
@@ -184,13 +186,13 @@ L72 completes the cemented doublet. The combination of L71 (nd = 2.000, νd = 16
 
 #### L73 — Negative Meniscus, Convex to Image
 
-nd = 1.85659, νd = 40.1. Glass: S-LAM73 (OHARA), provisional label from the patent's nd/νd pair. f = −71.9 mm.
+nd = 1.85659, νd = 40.1. Glass: OHARA L-LAH85V catalog equivalent; the production supplier is unspecified. f = −71.9 mm.
 
-L73 is the final optical element before the image plane (BFD = 15.53 mm at wide). Its meniscus shape convex to the image contributes to field curvature correction and helps maintain a short back focal distance (¶0044). The lanthanum glass S-LAM73 (νd = 40.1, below the conventional crown/flint boundary) provides moderate dispersion and high index, allowing the negative field-flattening power without excessive surface curvatures.
+L73 is the final optical element before the image plane (BFD = 15.53 mm at wide). Its meniscus shape convex to the image contributes to field curvature correction and helps maintain a short back focal distance (¶0044). The compatible L-LAH85V curve supplies moderate dispersion at high index, allowing the negative field-flattening power without excessive surface curvatures; the patent does not identify the production glass maker.
 
 ## Glass Identification and Selection
 
-The design uses 11 distinct glass types drawn almost entirely from the OHARA catalog, with one unresolved proprietary melt. The glass palette can be organized into three functional tiers:
+The design uses a mix of directly compatible catalog curves, catalog equivalents, and unresolved patent-coordinate rows. The patent itself publishes numeric optical constants rather than vendor glass names. The glass palette can be organized into three functional tiers:
 
 ### Ultra-low-dispersion group (Super ED)
 
@@ -229,11 +231,11 @@ The design makes aggressive use of ultra-high-index glasses. Four elements have 
 |:---|---:|---:|:---|:---|
 | 774494 lanthanum crown | 1.77373 | 49.4 | L21 | G2 aspherical meniscus |
 | 856401 lanthanum dense crown | 1.85612 | 40.1 | L31, L45 | Relay aspherical elements |
-| S-LAM73 (OHARA) | 1.85659 | 40.1 | L51, L73 | Focus group; rear field flattener |
+| L-LAH85V catalog equivalent | 1.85659 | 40.1 | L51, L73 | Focus group; rear field flattener; supplier unspecified |
 | 700555 barium crown | 1.69980 | 55.5 | L24 | G2 field flattener |
 | 571560 barium crown | 1.57125 | 56.0 | L33 | G3 Super ED partner |
 
-The lanthanum glasses and barium crowns fill the intermediate-index positions where moderate dispersion and high index are needed for aberration correction without the chromatic penalty of a full flint glass. Note that 856401 and S-LAM73 (both νd ≈ 40) fall below the conventional crown/flint boundary of νd ≈ 50, but their lanthanum-oxide composition and intermediate dispersion place them functionally between the ED crowns and the dense flints in this design. The 856401 glass (nd = 1.856) is used for both aspherical relay elements (L31 and L45), a choice likely driven by its suitability for precision glass molding — the XA manufacturing process requires glasses with appropriate thermal and mechanical properties for high-precision aspherical forming.
+The lanthanum-class and barium-crown rows fill the intermediate-index positions where moderate dispersion and high index are needed for aberration correction without the chromatic penalty of a full flint glass. The two $1.85659 / 40.1$ elements now use the compatible L-LAH85V curve without claiming that Sony bought that specific OHARA melt. The separate 856401 patent glass ($n_d = 1.856$) is used for both aspherical relay elements L31 and L45; its production identity remains unresolved.
 
 ## Aspherical Surfaces
 

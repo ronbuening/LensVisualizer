@@ -9,6 +9,14 @@ approximation. Current optics-engine boundaries are summarized in
 
 The catalog currently has **434 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
 
+The July 30, 2026 Phase 67 pass audited five unresolved OHARA-style names whose official catalog coordinates do not
+match the patent rows. Rendered or primary-text prescription checks confirmed six elements across Sony, Hasselblad,
+Panasonic, and Nikon. Existing coefficient-backed equivalents safely cover every row: L-LAH85V for two Sony
+`1.85659 / 40.1` elements, E-FD8 for Hasselblad `1.68863 / 31.2`, M-TAF1 for Panasonic `1.77074 / 49.5`,
+M-BACD12 for Panasonic `1.58313 / 59.5`, and M-TAF401 for Nikon `1.77503 / 47.3`. Each label now states that the
+production supplier is unspecified. Strict/trusted coverage rose to 4676/4688 surfaces, fully covered lens counts rose
+to 228/233, and the named-token queue fell to 41 elements across 41 distinct tokens.
+
 The July 30, 2026 Phase 66 pass cleared the final active six-digit source blocker. A rendered primary scan of
 US 4,025,167 Embodiment 2 confirms Olympus 85-250mm L4/L7 at `1.56873 / 63.2` and L10 at `1.49831 / 65.0`.
 OHARA's official 2026-07-01 all-products AGF retains exact discontinued BAL22 (`569632`) and BSL3 (`498650`)
