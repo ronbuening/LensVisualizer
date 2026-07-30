@@ -7,6 +7,15 @@ import type { GlassEntry } from "../glassCatalogTypes.js";
 export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
   /* Phase 45: first-party named-token audit additions. */
   {
+    name: "LAF3",
+    vendor: "Hoya",
+    polynomial: [2.8789799, -0.008729237, 0.024425656, 0.000045491773, 0.000042802928, -0.00000072834306],
+    nd: 1.717,
+    vd: 47.98,
+    code6: "717480",
+    source: "HOYA Zemax catalog 2026-07-07; vendor formula-3 polynomial for LAF3.",
+  },
+  {
     name: "FCD600",
     vendor: "Hoya",
     polynomial: [2.5009632, -0.0071951364, 0.014064825, 0.00021434104, 0.0000043873461, 0.00000048834355],

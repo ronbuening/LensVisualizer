@@ -9,9 +9,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **488** lenses scanned (**480** visible)
-- **4715 / 5360** non-air surfaces use strict catalog Sellmeier data (88.0%)
-- **4725 / 5360** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 88.2%)
+- **491** lenses scanned (**483** visible)
+- **4777 / 5423** non-air surfaces use strict catalog Sellmeier data (88.1%)
+- **4787 / 5423** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 88.3%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
 - **260** code-only missing-Sellmeier elements in Sweep 2: **0** active unreviewed, **113** self-recording explicit dispositions, **0** dispositions missing any review record
@@ -31,6 +31,7 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 
 | Lens | Patent | Local source | Trusted chromatic coverage | Strict Sellmeier coverage | Missing trusted surfaces | Missing surface details | Missing quality mix |
 |---|---|---|---:|---:|---:|---|---|
+| [PANASONIC LUMIX S PRO 70-200mm f/2.8 O.I.S.](../../src/lens-data/panasonic/PanasonicLumixSPro70200mmf28OIS.data.ts) | US 2021/0132345 A1 | [PDF](../../patents/US20210132345A1.pdf) | 95.5% (21/22) | 95.5% (21/22) | 1 | 30A [glass] (Element 15: `Unmatched (molded crown/asphere, nd=1.58578, vd=59.5)`) | abbe: 1 |
 | [NIKON NIKKOR Z 70-200mm f/2.8 VR S](../../src/lens-data/nikon/NikonNikkorZ70200f28.data.ts) | WO2020/105104 | [PDF](../../patents/WO_2020105104_A1.pdf) | 95.2% (20/21) | 95.2% (20/21) | 1 | 10 [glass] (Element 6: `Nikon SR glass (proprietary)`) | abbe: 1 |
 | [CANON NEW FD 150-600mm f/5.6L](../../src/lens-data/canon/CanonFD150600mmf56L.data.ts) | US 4,110,006 | [PDF](../../patents/US4110006.pdf) | 94.7% (18/19) | 94.7% (18/19) | 1 | 30 [glass] (Element 17: `Unmatched (534555 vintage crown; no first-party coefficient row found)`) | abbe: 1 |
 | [NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) | JPWO2020/157904 A1 | [PDF](../../patents/JPWO2020157904A1.pdf) | 94.7% (18/19) | 94.7% (18/19) | 1 | 32 [glass] (Element 18: `Unmatched lanthanum flint (patent nd=1.82080, νd=42.51; prior H-LAF3 attribution unsupported)`) | abbe: 1 |

@@ -24,8 +24,8 @@ Panasonic publishes lens-development material across several official regional a
 | 6 | LUMIX S 14–28mm F4–5.6 MACRO | [Read at Panasonic](https://www.panasonic.com/in/consumer/cameras-camcorders/lenses-learn/article/this-is-the-optical-design-department-sixth-edition.html) | — |
 | 5 | LUMIX S F1.8 prime series | [Read at Panasonic](https://www.panasonic.com/in/consumer/cameras-camcorders/lenses-learn/article/this-is-the-optical-design-department-fifth-edition.html) | [S 35mm F1.8](/lens/panasonic-lumix-s-35-f18) |
 | 4 | LUMIX S 70–300mm F4.5–5.6 MACRO O.I.S. | [Read at Panasonic](https://www.panasonic.com/in/consumer/cameras-camcorders/lenses-learn/article/this-is-the-optical-design-department-fourth-edition.html) | — |
-| 3 | LUMIX S PRO 70–200mm F2.8 O.I.S. | [Read at Panasonic](https://www.panasonic.com/in/consumer/cameras-camcorders/lenses-learn/article/this-is-the-optical-design-department-third-edition.html) | — |
-| 2 | LUMIX S PRO 24–70mm F2.8 | [Read at Panasonic](https://www.panasonic.com/in/consumer/cameras-camcorders/lenses-learn/article/this-is-the-optical-design-department-second-edition.html) | — |
+| 3 | LUMIX S PRO 70–200mm F2.8 O.I.S. | [Read at Panasonic](https://www.panasonic.com/in/consumer/cameras-camcorders/lenses-learn/article/this-is-the-optical-design-department-third-edition.html) | [S PRO 70–200mm F2.8 O.I.S.](/lens/panasonic-lumix-s-pro-70-200mm-f2-8-ois) |
+| 2 | LUMIX S PRO 24–70mm F2.8 | [Read at Panasonic](https://www.panasonic.com/in/consumer/cameras-camcorders/lenses-learn/article/this-is-the-optical-design-department-second-edition.html) | [S PRO 24–70mm F2.8](/lens/panasonic-lumix-s-pro-24-70mm-f28) |
 | 1 | LUMIX S PRO 50mm F1.4 | [Read at Panasonic](https://www.panasonic.com/in/consumer/cameras-camcorders/lenses-learn/article/this-is-the-optical-design-department-first-edition.html) | [S PRO 50mm F1.4](/lens/panasonic-lumix-s-pro-50-f14) |
 
 The fifth edition covers five F1.8 primes. Its Surface & Stop link points specifically to the exact 35mm lens currently in the catalog.

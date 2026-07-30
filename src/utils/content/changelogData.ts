@@ -22,6 +22,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-07-30 ──────────────────────────────────────────────────
   {
     date: "2026-07-30",
+    type: "lens",
+    summary: "Added Panasonic LUMIX S PRO 24-70mm and two 70-200mm zoom lenses",
+  },
+  {
+    date: "2026-07-30",
     type: "improvement",
     summary: "Expanded chromatic tracing with 35 source-verified optical-glass curves",
   },
