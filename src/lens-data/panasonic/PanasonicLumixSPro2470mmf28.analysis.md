@@ -1,13 +1,13 @@
 ## Patent Reference and Design Identification
 
-- **Patent:** US 2021/0055531 A1
-- **Priority:** 22 August 2019, JP 2019-152063
-- **Filed:** 21 August 2020
-- **Published:** 25 February 2021
-- **Inventors:** Genki Nakazawa; Takao Yamanaka; Yoshiaki Kurioka
-- **Applicant:** Panasonic Intellectual Property Management Co., Ltd.
-- **Title:** *Zoom Lens System, Image Capture Device, and Camera System*
-- **Embodiment analyzed:** First Embodiment / Numerical Example 1
+**Patent:** US 2021/0055531 A1
+**Priority:** 22 August 2019, JP 2019-152063
+**Filed:** 21 August 2020
+**Published:** 25 February 2021
+**Inventors:** Genki Nakazawa; Takao Yamanaka; Yoshiaki Kurioka
+**Applicant:** Panasonic Intellectual Property Management Co., Ltd.
+**Title:** *Zoom Lens System, Image Capture Device, and Camera System*
+**Embodiment analyzed:** First Embodiment / Numerical Example 1
 
 The prescription transcribes the first numerical example associated with Figure 1 and Tables 1–3E. The patent describes a seven-group, large-aperture zoom with a positive–negative–positive–positive–negative–negative–positive power sequence, a stop immediately before the first element of G3, and two independently moving negative focus groups [US 2021/0055531 A1, ¶0028–0049, ¶0160–0162].
 

@@ -1,14 +1,14 @@
 ## Patent Reference and Design Identification
 
-- **Patent:** US 2021/0132345 A1
-- **Application Number:** US 17/085,457
-- **Priority:** JP 2019-199522, 1 November 2019; JP 2020-164075, 29 September 2020
-- **Filed:** 30 October 2020
-- **Published:** 6 May 2021
-- **Inventors:** Takehiro Nishioka; Hisayuki Ii
-- **Applicant:** Panasonic Intellectual Property Management Co., Ltd.
-- **Title:** *Zoom Lens System, and Lens Barrel, Image Capture Device, and Camera System Including the Zoom Lens System*
-- **Embodiment analyzed:** Third embodiment / Third Example of Numerical Values, Tables 7, 8, and 9A–9D
+**Patent:** US 2021/0132345 A1
+**Application Number:** US 17/085,457
+**Priority:** JP 2019-199522, 1 November 2019; JP 2020-164075, 29 September 2020
+**Filed:** 30 October 2020
+**Published:** 6 May 2021
+**Inventors:** Takehiro Nishioka; Hisayuki Ii
+**Applicant:** Panasonic Intellectual Property Management Co., Ltd.
+**Title:** *Zoom Lens System, and Lens Barrel, Image Capture Device, and Camera System Including the Zoom Lens System*
+**Embodiment analyzed:** Third embodiment / Third Example of Numerical Values, Tables 7, 8, and 9A–9D
 
 The prescription is correlated with the PANASONIC LUMIX S PRO 70-200mm f/2.8 O.I.S. (S-E70200). The patent does not
 name the commercial lens, so the identification is a production correlation rather than a manufacturer confirmation.

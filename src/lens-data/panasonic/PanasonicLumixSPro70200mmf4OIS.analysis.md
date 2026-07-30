@@ -1,13 +1,13 @@
 ## Patent Reference and Design Identification
 
-- **Patent:** JP 2020-086133 A
-- **Application number:** 2018-220648
-- **Filed:** 2018-11-26
-- **Published:** 2020-06-04
-- **Inventors:** 佐藤 良祐; 小山 武久
-- **Applicant:** Sigma Corporation
-- **Title:** Variable-power imaging optical system (author translation of 変倍結像光学系)
-- **Embodiment analyzed:** Numerical Example 6
+**Patent:** JP 2020-086133 A
+**Application number:** 2018-220648
+**Filed:** 2018-11-26
+**Published:** 2020-06-04
+**Inventors:** 佐藤 良祐; 小山 武久
+**Applicant:** Sigma Corporation
+**Title:** Variable-power imaging optical system (author translation of 変倍結像光学系)
+**Embodiment analyzed:** Numerical Example 6
 
 The prescription is Numerical Example 6 of JP 2020-086133 A. The patent describes a fixed-overall-length zoom with seven functional power groups, internal focusing, and a transversely moving image-stabilization subgroup. The job card fixes this example as the production correlation for the PANASONIC LUMIX S PRO 70-200mm f/4 O.I.S. (S-R70200). The patent itself does not name the Panasonic product, and the applicant is Sigma Corporation rather than Panasonic; the correlation therefore remains an informed identification rather than manufacturer confirmation.
 
