@@ -117,7 +117,7 @@ const LENS_DATA = {
       nd: 1.755,
       vd: 52.4,
       fl: 51.0,
-      glass: "755524 — LaK lanthanum crown family (patent nd=1.7550, νd=52.4; no exact public catalog match)",
+      glass: "K-LaSKn1 (SUMITA catalog equivalent for patent coordinate; production supplier unspecified)",
       apd: false,
       cemented: "D1",
       role: "Positive crown in cemented doublet — chromatic corrector with L4",

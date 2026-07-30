@@ -37,7 +37,7 @@ The patent's preferred embodiments require the front positive element to have an
 
 ### L2 — Biconcave Negative, weak rear surface
 
-nd = 1.573, νd = 57.5. Glass: Unmatched vintage crown class, 573/575. f = -53.19 mm.
+nd = 1.573, νd = 57.5. Glass: SUMITA BAK1 catalog equivalent, code 573575; production supplier unspecified. f = -53.19 mm.
 
 L2 is the negative element cemented behind L1. The rear surface R3 = +280.1 mm is optically weak, so the element is nearly plano-concave in function even though both radii are finite. The element's principal job is not classical crown/flint achromatization, since its Abbe number is almost identical to that of L1.
 
@@ -74,7 +74,7 @@ The patent publishes only D-line refractive indices and Abbe numbers. It does no
 | Element | nd | νd | Code | Delivered glass label | Role |
 |---|---:|---:|---:|---|---|
 | L1 | 1.611 | 57.2 | 611/572 | Unmatched vintage high-index crown class | Front positive crown |
-| L2 | 1.573 | 57.5 | 573/575 | Unmatched vintage crown class | Front doublet negative partner |
+| L2 | 1.573 | 57.5 | 573/575 | SUMITA BAK1 catalog equivalent; production supplier unspecified | Front doublet negative partner |
 | L3 | 1.605 | 38.2 | 605/382 | Unmatched vintage dense-flint class | Central negative component |
 | L4 | 1.575 | 41.4 | 575/414 | Unmatched vintage light-flint class | Rear doublet negative partner |
 | L5 | 1.744 | 45.8 | 744/458 | Unmatched vintage high-index flint class | Rear positive high-index element |

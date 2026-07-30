@@ -265,6 +265,99 @@ export const SUMITA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source:
       "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor formula-3 polynomial for LLF4.",
   },
+  /* Phase 53: remaining exact legacy-code opportunities from the same
+   * discontinued-inclusive first-party catalog.
+   */
+  {
+    name: "BAK2",
+    vendor: "Sumita",
+    polynomial: [2.336261, -0.008306044, 0.01279594, 0.00008114414, 0.00001593741, -0.0000006018137],
+    nd: 1.53996,
+    vd: 59.7,
+    code6: "540597",
+    source:
+      "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor formula-3 polynomial for BAK2.",
+  },
+  {
+    name: "BK4",
+    vendor: "Sumita",
+    polynomial: [2.225753, -0.01066333, 0.009338604, 0.0003630767, -0.00003587824, 0.000001962176],
+    nd: 1.50048,
+    vd: 66,
+    code6: "500660",
+    source:
+      "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor formula-3 polynomial for BK4.",
+  },
+  {
+    name: "F4",
+    vendor: "Sumita",
+    polynomial: [2.544691, -0.008574103, 0.022583, 0.0007302724, -0.000006571532, 0.000003572909],
+    nd: 1.61659,
+    vd: 36.6,
+    code6: "617366",
+    source:
+      "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor formula-3 polynomial for F4.",
+  },
+  {
+    name: "KF8",
+    vendor: "Sumita",
+    polynomial: [2.247798, -0.009226319, 0.01212228, 0.00056587, -0.00004485595, 0.000004090514],
+    nd: 1.51118,
+    vd: 50.9,
+    code6: "511509",
+    source:
+      "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor formula-3 polynomial for KF8.",
+  },
+  {
+    name: "BAK1",
+    vendor: "Sumita",
+    polynomial: [2.43358, -0.008871693, 0.01382788, 0.0002675756, -0.000004117633, 0.0000004829731],
+    nd: 1.5725,
+    vd: 57.5,
+    code6: "573575",
+    source:
+      "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor formula-3 polynomial for BAK1.",
+  },
+  {
+    name: "F3",
+    vendor: "Sumita",
+    polynomial: [2.533758, -0.008391535, 0.02236729, 0.0006895157, -0.000005531281, 0.000003450032],
+    nd: 1.61293,
+    vd: 36.9,
+    code6: "613369",
+    source:
+      "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor formula-3 polynomial for F3.",
+  },
+  {
+    name: "BAF12",
+    vendor: "Sumita",
+    polynomial: [2.626369, -0.008182244, 0.02121297, 0.0001530835, 0.00004353733, -0.0000003169242],
+    nd: 1.6393,
+    vd: 45,
+    code6: "639450",
+    source:
+      "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor formula-3 polynomial for BAF12.",
+  },
+  {
+    name: "LAFN10",
+    vendor: "Sumita",
+    polynomial: [2.88438, -0.01084839, 0.0250872, 0.0006356858, 0.000004963628, 0.000002514032],
+    nd: 1.72016,
+    vd: 42.1,
+    code6: "720421",
+    source:
+      "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor formula-3 polynomial for LAFN10.",
+  },
+  {
+    name: "K-LaSKn1",
+    vendor: "Sumita",
+    polynomial: [3.0176028, -0.01512239, 0.021959514, 0.00052144528, -0.000018693935, 0.0000016369365],
+    nd: 1.755,
+    vd: 52.4,
+    code6: "755524",
+    source:
+      "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor formula-3 polynomial for K-LaSKn1.",
+  },
   /* ────── Sumita — APO-relevant K-prefix crowns ──────
    * K-GFK68 appears in the Voigtländer APO-Lanthar 50/2 prescription. Sumita
    * AGF entries use the polynomial Schott formula (form 1); B/C below are a

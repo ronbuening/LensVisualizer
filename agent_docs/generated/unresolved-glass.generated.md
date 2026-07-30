@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **488** lenses scanned
 - **5360** non-air surfaces examined
 - **5365** element glass declarations examined
-- **432** non-explicit-unmatched annotations did not resolve
-- **188** distinct unresolved glass-like tokens found
+- **426** non-explicit-unmatched annotations did not resolve
+- **178** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -44,16 +44,13 @@ or per-lens patent backfills.
 | 487698 | 1 | 1 | |
 | 498650 | 1 | 1 | |
 | 498651 | 1 | 1 | |
-| 500660 | 1 | 1 | |
 | 514530 | 1 | 1 | |
 | 518523 | 1 | 1 | |
 | 529770 | 1 | 1 | |
 | 531621 | 1 | 1 | |
 | 534554 | 1 | 1 | |
 | 534556 | 1 | 1 | |
-| 540597 | 1 | 1 | |
 | 541468 | 1 | 1 | |
-| 544601 | 1 | 1 | |
 | 545486 | 1 | 1 | |
 | 547460 | 1 | 1 | |
 | 552981 | 1 | 1 | |
@@ -72,7 +69,6 @@ or per-lens patent backfills.
 | 603423 | 1 | 1 | |
 | 603564 | 1 | 1 | |
 | 612313 | 1 | 1 | |
-| 612372 | 1 | 1 | |
 | 617443 | 1 | 1 | |
 | 624584 | 1 | 1 | |
 | 630346 | 1 | 1 | |
@@ -95,7 +91,6 @@ or per-lens patent backfills.
 | 700555 | 1 | 1 | |
 | 701301 | 1 | 1 | |
 | 713433 | 1 | 1 | |
-| 720421 | 1 | 1 | |
 | 720504 | 1 | 1 | |
 | 721334 | 1 | 1 | |
 | 729577 | 1 | 1 | |
@@ -108,7 +103,6 @@ or per-lens patent backfills.
 | 750504 | 1 | 1 | |
 | 754260 | 1 | 1 | |
 | 755501 | 1 | 1 | |
-| 755524 | 1 | 1 | |
 | 757479 | 1 | 1 | |
 | 762271 | 1 | 1 | |
 | 764491 | 1 | 1 | |
@@ -154,10 +148,8 @@ or per-lens patent backfills.
 | 933209 | 1 | 1 | |
 | BK3 | 1 | 1 | |
 | E-FPL51 | 1 | 1 | |
-| F3 | 1 | 1 | |
 | F7 | 1 | 1 | |
 | H-BAF6 | 1 | 1 | |
-| H-K2 | 1 | 1 | |
 | H-K8 | 1 | 1 | |
 | H-K9L | 1 | 1 | |
 | H-LAF51 | 1 | 1 | |
@@ -180,14 +172,12 @@ or per-lens patent backfills.
 | L-LAH83 | 1 | 1 | |
 | L-LAH85 | 1 | 1 | |
 | L-PHL1 | 1 | 1 | |
-| N-BAK2 | 1 | 1 | |
 | N-BASF2 | 1 | 1 | |
 | N-LAK10 | 1 | 1 | |
 | N-LASF43 | 1 | 1 | |
 | N-PK51 | 1 | 1 | |
 | N-SF2 | 1 | 1 | |
 | N-SK4 | 1 | 1 | |
-| S-BAL12 | 1 | 1 | |
 | S-BSL10 | 1 | 1 | |
 | S-BSM2 | 1 | 1 | |
 | S-FPM5 | 1 | 1 | |
@@ -347,10 +337,6 @@ or per-lens patent backfills.
 
 - [VIVITAR SERIES 1 35-85mm f/2.8 VMC](../../src/lens-data/vivitar/VivitarSeries13585mmf28.data.ts) 10: `498651 — BK3-type borosilicate crown (no exact public catalog match)`
 
-### 500660 — 1 occurrence
-
-- [OLYMPUS OM-SYSTEM ZUIKO AUTO-ZOOM 65-200mm f/4](../../src/lens-data/olympus/OlympusZuikoAutoZoom65200mmf4.data.ts) 17: `500660 crown class (CDGM H-K2 / OHARA BSL4)`
-
 ### 514530 — 1 occurrence
 
 - [NIKON AF-S NIKKOR 20mm f/1.8 G ED](../../src/lens-data/nikon/NikonNikkorAFS20mmf18G.data.ts) 4: `514530 — patent UV-cure resin (nd=1.51380, νd=53.0)`
@@ -375,17 +361,9 @@ or per-lens patent backfills.
 
 - [PANASONIC LEICA DG SUMMILUX 9mm f/1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG9mmf17.data.ts) 3A: `534556 — moldable crown (patent nd=1.53380, nu_d=55.6)`
 
-### 540597 — 1 occurrence
-
-- [FUJIFILM FUJINON XF 23mm f/1.4 R LM WR](../../src/lens-data/fujifilm/FujifilmXF23mmf14RLMWR.data.ts) 1: `540597 - barium crown (N-BAK2 / S-BAL12 class; vendor uncertain)`
-
 ### 541468 — 1 occurrence
 
 - [MINOLTA VARISOFT ROKKOR 85mm f/2.8](../../src/lens-data/minolta/MinoltaVarisoft85mmf28.data.ts) 5: `541468 - light flint (catalog unresolved)`
-
-### 544601 — 1 occurrence
-
-- [PENTAX DA 70mm f/2.4 Limited](../../src/lens-data/pentax/PentaxDA70mmf24Limited.data.ts) 8: `BaK2-class light barium crown (544601; soft catalog match)`
 
 ### 545486 — 1 occurrence
 
@@ -458,10 +436,6 @@ or per-lens patent backfills.
 ### 612313 — 1 occurrence
 
 - [NIKON AF-P DX NIKKOR 70-300mm f/4.5-6.3 G ED VR](../../src/lens-data/nikon/NikonAFPDX70300mmf4563G.data.ts) 3: `612313 — anomalous-dispersion flint class (patent nd=1.61155, νd=31.26, θgF=0.618; no exact public catalog match)`
-
-### 612372 — 1 occurrence
-
-- [CARL ZEISS JENA TESSAR 50mm f/2.8](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaTessar50mmf28.data.ts) 3: `612372 F (≈ Schott F3 legacy)`
 
 ### 617443 — 1 occurrence
 
@@ -551,10 +525,6 @@ or per-lens patent backfills.
 
 - [VIVITAR SERIES 1 200mm f/3.0 VMC](../../src/lens-data/vivitar/VivitarSeries1200mmf3.data.ts) 10: `713433 — LaF/BaSF boundary glass (no exact public catalog match)`
 
-### 720421 — 1 occurrence
-
-- [OLYMPUS G.ZUIKO AUTO-W 21mm f/3.5](../../src/lens-data/olympus/OlympusGZuikoAutoW21mmf35.data.ts) 1: `720421 — vintage lanthanum flint (patent nd=1.72000, νd=42.1; no exact public catalog match)`
-
 ### 720504 — 1 occurrence
 
 - [CARL ZEISS DISTAGON T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) 10: `LAK10 / N-LAK10 class (Schott, 720504; patent values retained)`
@@ -602,10 +572,6 @@ or per-lens patent backfills.
 ### 755501 — 1 occurrence
 
 - [MINOLTA MD ROKKOR 45mm f/2](../../src/lens-data/minolta/MinoltaRokkor45mmf2MD.data.ts) 8: `755501 - lanthanum crown (catalog unresolved)`
-
-### 755524 — 1 occurrence
-
-- [OLYMPUS G.ZUIKO AUTO-S 55mm f/1.2](../../src/lens-data/olympus/OlympusZuikoAutoS55mmf12.data.ts) 8: `755524 — LaK lanthanum crown family (patent nd=1.7550, νd=52.4; no exact public catalog match)`
 
 ### 757479 — 1 occurrence
 
@@ -787,10 +753,6 @@ or per-lens patent backfills.
 
 - [NIKON NIKKOR Z 24-70mm f/4 S](../../src/lens-data/nikon/NikonNikkorZ2470mmf4S.data.ts) 11A: `E-FPL51 (HOYA)`
 
-### F3 — 1 occurrence
-
-- [CARL ZEISS JENA TESSAR 50mm f/2.8](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaTessar50mmf28.data.ts) 3: `612372 F (≈ Schott F3 legacy)`
-
 ### F7 — 1 occurrence
 
 - [CARL ZEISS PRO-TESSAR 35mm f/3.2](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissProTessar35mmf32.data.ts) 10: `F7 (Schott)`
@@ -798,10 +760,6 @@ or per-lens patent backfills.
 ### H-BAF6 — 1 occurrence
 
 - [ENNA MÜNCHEN LITHAGON 24mm f/4](../../src/lens-data/enna-munchen/EnnaMunchenLithagon24mmf4.data.ts) 13: `H-BaF6 (CDGM) / barium-flint 608/462 class`
-
-### H-K2 — 1 occurrence
-
-- [OLYMPUS OM-SYSTEM ZUIKO AUTO-ZOOM 65-200mm f/4](../../src/lens-data/olympus/OlympusZuikoAutoZoom65200mmf4.data.ts) 17: `500660 crown class (CDGM H-K2 / OHARA BSL4)`
 
 ### H-K8 — 1 occurrence
 
@@ -891,10 +849,6 @@ or per-lens patent backfills.
 
 - [PANASONIC LUMIX S 20-60mm f/3.5-5.6](../../src/lens-data/panasonic/PanasonicLumixS2060mmf3556.data.ts) 18A: `L-PHL1 (OHARA)`
 
-### N-BAK2 — 1 occurrence
-
-- [FUJIFILM FUJINON XF 23mm f/1.4 R LM WR](../../src/lens-data/fujifilm/FujifilmXF23mmf14RLMWR.data.ts) 1: `540597 - barium crown (N-BAK2 / S-BAL12 class; vendor uncertain)`
-
 ### N-BASF2 — 1 occurrence
 
 - [CARL ZEISS DISTAGON T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) 3: `BASF2 / N-BASF2 class (Schott, 664358; patent νd retained)`
@@ -918,10 +872,6 @@ or per-lens patent backfills.
 ### N-SK4 — 1 occurrence
 
 - [ENNA MÜNCHEN ULTRA-LITHAGON 28mm f/3.5](../../src/lens-data/enna-munchen/EnnaMunchenUltraLithagon28mmf35.data.ts) 5: `N-SK4 (SCHOTT)`
-
-### S-BAL12 — 1 occurrence
-
-- [FUJIFILM FUJINON XF 23mm f/1.4 R LM WR](../../src/lens-data/fujifilm/FujifilmXF23mmf14RLMWR.data.ts) 1: `540597 - barium crown (N-BAK2 / S-BAL12 class; vendor uncertain)`
 
 ### S-BSL10 — 1 occurrence
 

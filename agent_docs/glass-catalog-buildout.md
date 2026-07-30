@@ -7,7 +7,15 @@ available, it falls back to partial measured `nC`/`nF` line indices, dPgF-correc
 approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **419 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **428 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+
+The July 30, 2026 Phase 53 pass added nine exact legacy SUMITA rows from the vendor's discontinued-inclusive
+all-glass catalog: BAK2, BK4, F4, KF8, BAK1, F3, BAF12, LAFN10, and K-LaSKn1. The new coefficient rows upgrade
+eleven surfaces across eight audited prescriptions, with Fujifilm XF 23mm f/1.4 R LM WR, Olympus Zuiko Auto-Zoom
+65-200mm f/4, and Olympus G.Zuiko Auto-W 21mm f/3.5 becoming fully covered. A pre-existing Pentax `BaK2-class`
+comparison was made explicitly unmatched because its distinct `544601` coordinate is outside the SUMITA BAK2
+safety window. Coverage is now 4654 / 5360 strict (86.8%) and 4666 / 5360 trusted (87.1%), with 220 fully strict
+and 225 fully trusted lenses.
 
 The July 30, 2026 Phase 52 pass recovered SUMITA BALK3, KF3, and LLF4 from the vendor's discontinued-inclusive
 all-glass AGF. Their coefficient rows resolve thirteen surfaces across the `518603`, `515546`, and `561453`

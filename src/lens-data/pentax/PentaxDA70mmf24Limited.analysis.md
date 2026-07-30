@@ -75,11 +75,11 @@ The νd = 44.0 value makes this a flint, not a crown, despite its barium-family 
 
 ### L5 — Positive Meniscus, convex to image, cemented to L4
 
-n_d = 1.54354, νd = 60.1. Glass: BaK2-class light barium crown, soft equivalent. f = +170.0 mm.
+n_d = 1.54354, νd = 60.1. Glass: unmatched 544601 light barium crown; not SUMITA BAK2. f = +170.0 mm.
 
 L5 is the weak positive crown member of the rear cemented pair. The L4-to-L5 cemented interface has a negative radius and a step down in refractive index, so the interface carries weak positive power; the doublet as a whole remains net negative. This is the important distinction: the L5 element is positive in isolation, but the cemented L4-L5 assembly functions as a negative rear subgroup component.
 
-The 544601 code is close to light barium crown/BaK territory but not an exact modern public catalog match, so the corrected data file uses a soft class label.
+The 544601 code is close to the light-barium-crown region but is not SUMITA BAK2 (540597) and has no exact public coefficient row, so the data file uses an explicit unmatched annotation.
 
 ### L6 — Biconvex Positive
 
@@ -99,7 +99,7 @@ The patent gives only nd and νd, not glass trade names or full dispersion data.
 | L2 | 1.68159 / 57.5 | Unmatched lanthanum crown, 682575 code class | class / inferred |
 | L3 | 1.79425 / 25.5 | Unmatched dense flint, 794255 code class | class / inferred |
 | L4 | 1.67648 / 44.0 | Unmatched barium flint, 676440 code class | class / inferred |
-| L5 | 1.54354 / 60.1 | Light barium crown / BaK2 region, 544601 code class | soft equivalent |
+| L5 | 1.54354 / 60.1 | Unmatched 544601 light barium crown; not SUMITA BAK2 | unresolved |
 | L6 | 1.80100 / 35.0 | OHARA S-LAM66 / Schott N-LASF45, 801350 | exact code match |
 
 The glass strategy is conventional rather than apochromatic. No element is ED, fluorite, or anomalous-partial-dispersion glass. The positive front elements use relatively high Abbe numbers to limit chromatic spread where the front collector is powerful. L3 and L4 provide higher-dispersion flint behavior for balancing. L6 uses high index to carry strong positive power while satisfying the patent's index/Abbe constraints.

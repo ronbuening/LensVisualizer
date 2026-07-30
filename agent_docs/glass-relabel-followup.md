@@ -23,15 +23,27 @@ This file tracks the second bucket plus any cases from the first bucket that nee
 
 ## Current Status (July 2026, current catalog)
 
-- Catalog: **419 verified entries** in `src/optics/glassCatalogData.ts`.
+- Catalog: **428 verified entries** in `src/optics/glassCatalogData.ts`.
 - `catalog-mismatches.generated.md` and `glass-relabel-by-lens.generated.md` report **0** remaining
   dispersion-coordinate mismatches across **0** lens files.
-- `sellmeier-coverage.generated.md` reports **488** lenses, **5360** non-air surfaces, **4643** strict catalog
-  Sellmeier surfaces (**86.6%**), and **4655** trusted chromatic surfaces (**86.8%**).
-- **217** lenses are fully covered by strict Sellmeier data and **222** are fully covered by trusted chromatic data.
-- `unresolvedGlassScan` reports **432** non-explicit-unmatched annotations and **188** distinct unresolved glass-like
+- `sellmeier-coverage.generated.md` reports **488** lenses, **5360** non-air surfaces, **4654** strict catalog
+  Sellmeier surfaces (**86.8%**), and **4666** trusted chromatic surfaces (**87.1%**).
+- **220** lenses are fully covered by strict Sellmeier data and **225** are fully covered by trusted chromatic data.
+- `unresolvedGlassScan` reports **426** non-explicit-unmatched annotations and **178** distinct unresolved glass-like
   tokens. The total includes honest proprietary and family-level annotations as well as actionable named tokens.
 - The Phase 2/3 resolved tables below are historical audit trail. Use the generated reports above for the current queue before starting new relabel work; for patent-by-patent execution, start from [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md).
+
+## Resolved Phase 53 — July 2026 remaining SUMITA archive matches
+
+Nine first-party legacy rows were transcribed from SUMITA's discontinued-inclusive all-glass catalog: BAK2, BK4,
+F4, KF8, BAK1, F3, BAF12, LAFN10, and K-LaSKn1. They upgrade eleven surfaces across eight audited prescriptions,
+including both halves of the Olympus 21mm f/2 split F4 element. All annotations identify the SUMITA row as a catalog
+equivalent and leave the production supplier unspecified.
+
+The expansion also exposed one unsafe prose match: Pentax DA 70mm L5 used `BaK2-class` for the distinct `544601`
+coordinate. That row is now explicitly unmatched so it cannot inherit SUMITA BAK2's `540597` curve. The net result is
+zero catalog mismatches, strict coverage rising from 4643 to 4654 surfaces, trusted coverage from 4655 to 4666, and
+three more fully covered lenses in each measure.
 
 ## Resolved Phase 52 — July 2026 legacy-family recovery and near-complete audit
 

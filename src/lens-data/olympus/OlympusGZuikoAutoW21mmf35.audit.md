@@ -25,3 +25,9 @@ Patent: US 3,884,556, Embodiment 3 / Claim 4
 ### Analysis sync
 
 - Updated the L1 paragraph and glass table row to use the normalized code label.
+
+## 2026-07-30 - SUMITA LAFN10 coefficient recovery
+
+- SUMITA's discontinued-inclusive all-glass catalog publishes LAFN10 at code `720421`, nd = 1.72016, νd = 42.1.
+- Relabeled L1 / S1 as a compatible coefficient-backed catalog equivalent while leaving the production supplier unspecified.
+- The Embodiment 3 prescription, stop placement, and inferred semi-diameters remain unchanged.

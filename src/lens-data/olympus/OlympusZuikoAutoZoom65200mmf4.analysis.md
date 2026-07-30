@@ -90,7 +90,7 @@ L9 is the dense-flint correcting element of Group III. The L8-L9 doublet has f =
 
 ### L10 - Plano-Convex Positive, relay component IVa front element
 
-nd = 1.50048, νd = 65.99. Glass: 500660 crown class (CDGM H-K2 / legacy BSL4 class). f = +52.9 mm.
+nd = 1.50048, νd = 65.99. Glass: SUMITA BK4 catalog equivalent, code 500660; production supplier unspecified. f = +52.9 mm.
 
 L10 sits immediately behind the aperture stop and supplies the strongest positive power in the relay. It begins the positive-negative IVa component that the patent requires to remain positive as a whole. Its low index and high Abbe number keep the front relay element chromatically mild despite its strong curvature.
 
@@ -129,7 +129,7 @@ The prescription uses eight glass families across fourteen elements. Several ide
 | S-LAM60 (OHARA) | 1.74320 | 49.31 | L4 | Current catalog value is close; patent value treated as legacy/rounding variant |
 | S-LAH66 class (OHARA) | 1.77250 | 49.66 | L6, L13 | Same nd as the modern S-LAH66 family; patent νd is slightly higher than current catalog values |
 | 511605 crown class | 1.51112 | 60.48 | L8, L14 | CDGM H-K6 / legacy NSL7 / Schott K7 class |
-| 500660 crown class | 1.50048 | 65.99 | L10 | CDGM H-K2 / legacy BSL4 / Schott BK4 class |
+| SUMITA BK4 catalog equivalent | 1.50048 | 65.99 | L10 | Exact code 500660 coordinate; production supplier unspecified |
 | S-LAH53 class (OHARA) | 1.80610 | 40.95 | L11 | S-LAH53-family lanthanum flint; patent value is numerical, not vendor-named |
 | S-NSL36 (OHARA) | 1.51742 | 52.41 | L12 | Same nd as current OHARA S-NSL36; patent νd is a close legacy value |
 

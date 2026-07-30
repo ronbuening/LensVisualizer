@@ -26,3 +26,9 @@ Patent: US 3,743,387
 ### Analysis sync
 
 - Updated the glass table rows for L3 and L5.
+
+## 2026-07-30 - SUMITA K-LaSKn1 coefficient recovery
+
+- SUMITA's discontinued-inclusive all-glass catalog publishes K-LaSKn1 at code `755524`, nd = 1.75500, νd = 52.4.
+- Relabeled L5 / S9 from a code-only family annotation to an exact coefficient-backed catalog equivalent while leaving the production supplier unspecified.
+- The patent prescription and inferred semi-diameters remain unchanged.

@@ -10,12 +10,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **488** lenses scanned (**480** visible)
-- **4643 / 5360** non-air surfaces use strict catalog Sellmeier data (86.6%)
-- **4655 / 5360** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 86.8%)
+- **4654 / 5360** non-air surfaces use strict catalog Sellmeier data (86.8%)
+- **4666 / 5360** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 87.1%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
-- **275** code-only missing-Sellmeier elements in Sweep 2
-- **53** unresolved named-token elements in Sweep 2B, producing **54** token occurrences across **53** distinct tokens
+- **267** code-only missing-Sellmeier elements in Sweep 2
+- **51** unresolved named-token elements in Sweep 2B, producing **51** token occurrences across **50** distinct tokens
 - **0** Tier A proprietary backfill rows in Sweep 3
 
 ## Sweep 1 - Relabel Mismatches
@@ -48,7 +48,6 @@ These are efficient follow-up targets after mismatch blockers because one or two
 | [PENTAX HD D FA 28-105mm f/3.5-5.6 ED DC WR](../../src/lens-data/pentax/PentaxDFA28105mmF3556EDDCWR.data.ts) | US 2017/0068075 A1 | [PDF](../../patents/US20170068075A1.pdf) | 93.8% (15/16) | 93.8% (15/16) | 1 | 6A (L21 synthetic-resin aspherical layer: `Unmatched (synthetic resin aspherical layer; nd=1.52972, νd=42.7)`) | abbe: 1 |
 | [CANON RF 50mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF50mmf14LVCM.data.ts) | US 2025/0251576 A1 | [PDF](../../patents/US-20250251576-A1.pdf) | 93.3% (14/15) | 93.3% (14/15) | 1 | 3A (Element 2 resin cap: `UV-cured optical resin (patent-listed nd/vd)`) | abbe: 1 |
 | [FUJIFILM FUJINON GF 32-64mm f/4 R LM WR](../../src/lens-data/fujifilm/FujifilmGF3264mmf4.data.ts) | US 10,191,246 B2 | [PDF](../../patents/US10191246.pdf) | 93.3% (14/15) | 93.3% (14/15) | 1 | 5 (L21 aspherical resin layer: `UV-curing aspherical resin (patent-listed)`) | abbe: 1 |
-| [FUJIFILM FUJINON XF 23mm f/1.4 R LM WR](../../src/lens-data/fujifilm/FujifilmXF23mmf14RLMWR.data.ts) | US 2022/0276464 A1 | [PDF](../../patents/US20220276464A1.pdf) | 93.3% (14/15) | 93.3% (14/15) | 1 | 1 (Element L11: `540597 - barium crown (N-BAK2 / S-BAL12 class; vendor uncertain)`) | abbe: 1 |
 | [FUJIFILM FUJINON XF 33mm f/1.4 R LM WR](../../src/lens-data/fujifilm/FujifilmXF33mmf14RLMWR.data.ts) | US 2022/0276464 A1 | [PDF](../../patents/US20220276464A1.pdf) | 93.3% (14/15) | 93.3% (14/15) | 1 | 20A (L26 focus Lp asphere: `Unmatched (853/406 dense lanthanum flint; near S-LAH89 / M-TAFD305 / D-ZLaF85 class)`) | abbe: 1 |
 | [NIKON ZOOM-NIKKOR AUTO 80-200mm f/4.5](../../src/lens-data/nikon/NikonAutoZoomNikkor80200mmf45.data.ts) | US 3,615,125 | [PDF](../../patents/US3615125.pdf) | 93.3% (14/15) | 93.3% (14/15) | 1 | 3 (Element 2: `614563 - SK6 / BSM6 class (historical vendor unresolved)`) | abbe: 1 |
 | [OLYMPUS ZUIKO DIGITAL ED 12-60mm f/2.8-4.0 SWD](../../src/lens-data/olympus/OlympusMZuiko1260mmf284ED.data.ts) | US 7,583,450 B2 | [PDF](../../patents/US7583450.pdf) | 93.3% (14/15) | 93.3% (14/15) | 1 | 6A (Element 4 resin layer: `Unmatched (UV-cured hybrid asphere resin; patent nd=1.51940)`) | abbe: 1 |
@@ -60,7 +59,6 @@ These are efficient follow-up targets after mismatch blockers because one or two
 | [FUJIFILM FUJINON GF 120mm f/4 R LM OIS WR Macro](../../src/lens-data/fujifilm/FujifilmGF120mmf4RLM.data.ts) | US 2018/0059384 A1 | [PDF](../../patents/US20180059384A1.pdf) | 92.9% (13/14) | 92.9% (13/14) | 1 | 6 (Element 4: `S-LAH85V (OHARA)`) | abbe: 1 |
 | [FUJIFILM FUJINON GF 55mm f/1.7 R WR](../../src/lens-data/fujifilm/FujifilmGF55mmf17.data.ts) | US 2023/0341664 A1 | [PDF](../../patents/US20230341664A1.pdf) | 92.9% (13/14) | 92.9% (13/14) | 1 | 11A (L24: `772493 — molded lanthanum-crown class (no exact public catalog match)`) | abbe: 1 |
 | [NIKON AF-P DX NIKKOR 70-300mm f/4.5-6.3 G ED VR](../../src/lens-data/nikon/NikonAFPDX70300mmf4563G.data.ts) | US 2021/0026133 A1 | [PDF](../../patents/US20210026133A1.pdf) | 92.9% (13/14) | 92.9% (13/14) | 1 | 3 (L12: `612313 — anomalous-dispersion flint class (patent nd=1.61155, νd=31.26, θgF=0.618; no exact public catalog match)`) | abbe: 1 |
-| [OLYMPUS OM-SYSTEM ZUIKO AUTO-ZOOM 65-200mm f/4](../../src/lens-data/olympus/OlympusZuikoAutoZoom65200mmf4.data.ts) | US 4,568,150 | Missing from untracked local patents/ references (US4568150, 4568150) | 92.9% (13/14) | 92.9% (13/14) | 1 | 17 (Element 10: `500660 crown class (CDGM H-K2 / OHARA BSL4)`) | abbe: 1 |
 | [SIGMA 85mm f/1.4 DG HSM | Art](../../src/lens-data/sigma/Sigma85mmf14Art.data.ts) | JP2018-5099A | [PDF](../../patents/JP2018005099A.pdf) | 92.9% (13/14) | 92.9% (13/14) | 1 | 17 (Element 9: `TAF105 (HOYA)`) | abbe: 1 |
 | [SIGMA 50mm f/1.4 DG DN | Art](../../src/lens-data/sigma/SigmaDGDNArt50mmf14.data.ts) | JP 2023-183894 A | [PDF](../../patents/JP2023183894A.pdf) | 92.9% (13/14) | 92.9% (13/14) | 1 | 7A (Element 4: `764491 — aspherical mold glass (no exact public catalog match; patent nd=1.76450, νd=49.10)`) | abbe: 1 |
 | [LAOWA 24mm f/14 2× Macro Probe](../../src/lens-data/laowa/Laowa24mmf14Probe.data.ts) | CN 210573001 U | [PDF](../../patents/CN210573001U.pdf) | 92.6% (25/27) | 92.6% (25/27) | 2 | 3 (Element 2: `H-ZLaF75B (CDGM, tentative)`)<br>44 (Element 26: `H-ZF2 (CDGM)`) | abbe: 2 |
@@ -76,6 +74,7 @@ These are efficient follow-up targets after mismatch blockers because one or two
 | [FUJIFILM FUJINON XF 56mm f/1.2 R](../../src/lens-data/fujifilm/FujifilmXF56mmf12.data.ts) | US 2015/0212302 A1 | [PDF](../../patents/US20150212302A1.pdf) | 90.9% (10/11) | 90.9% (10/11) | 1 | 16 (Element 9: `S-TIF6 (OHARA)`) | abbe: 1 |
 | [NIKON AF NIKKOR 28mm f/1.4 D](../../src/lens-data/nikon/NikonAF28f14D.data.ts) | US 5,315,441 | [PDF](../../patents/US5315441.pdf) | 90.9% (10/11) | 90.9% (10/11) | 1 | 12 (Element 7: `Unmatched LaM crown (patent nd=1.74810, νd=52.3; S-LAM7 is index-near only)`) | abbe: 1 |
 | [NIKON NIKKOR Z 35mm f/1.8 S](../../src/lens-data/nikon/NikonZ35f18S.data.ts) | JP 2019-090947A | [PDF](../../patents/JP2019090947A.pdf) | 90.9% (10/11) | 90.9% (10/11) | 1 | 16 (Element 9: `Fluorophosphate crown (family-level ID only)`) | abbe: 1 |
+| [OLYMPUS OM ZUIKO AUTO-W 21mm f/2](../../src/lens-data/olympus/OlympusZuikoAuto21mmf2.data.ts) | US 4,210,388 | [PDF](../../patents/US4210388.pdf) | 90.9% (10/11) | 90.9% (10/11) | 1 | 12 (Element 6: `593348 — LF7-class light flint (no exact public catalog match)`) | abbe: 1 |
 | [PANASONIC LUMIX S 20-60mm f/3.5-5.6](../../src/lens-data/panasonic/PanasonicLumixS2060mmf3556.data.ts) | JP 2021-179551 A | [PDF](../../patents/JP2021179551A.pdf) | 90.9% (10/11) | 90.9% (10/11) | 1 | 18A (Element 10: `L-PHL1 (OHARA)`) | abbe: 1 |
 | [PENTAX HD D FA 21mm f/2.4 ED Limited DC WR](../../src/lens-data/pentax/PentaxHDDFA21mmf24Limited.data.ts) | JP 2022-117775 A | [PDF](../../patents/JP2022117775A.pdf) | 90.9% (10/11) | 90.9% (10/11) | 1 | 3A (Element 2: `Unmatched (BAL/SK moldable crown; nearest S-BAL42/M-BACD12-type catalog glasses are about 1.583/59.4)`) | abbe: 1 |
 | [SAMYANG AF 35-150mm f/2-2.8 FE / L](../../src/lens-data/samyang/SamyangAF35150mmf228.data.ts) | US 2025/0231383 A1 | Missing from untracked local patents/ references (US20250231383A1, US20250231383, 20250231383) | 90.9% (20/22) | 90.9% (20/22) | 2 | 6A (L4 hybrid resin asphere: `UV-curable hybrid aspherical resin (patent nd=1.517, νd=52.0)`)<br>40A (L21 final dual-aspherical meniscus: `K-SKLD200 / K-SKLD120(M) neighborhood, proprietary crown class`) | abbe: 2 |
@@ -83,6 +82,7 @@ These are efficient follow-up targets after mismatch blockers because one or two
 | [NIKON AF-S NIKKOR 24-70mm f/2.8 E ED VR](../../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) | US 2020/0142168 A1 | [PDF](../../patents/US20200142168A1.pdf) | 90.5% (19/21) | 90.5% (19/21) | 2 | 1 (Element 1: `744495 — lanthanum crown (patent nd=1.74389, νd=49.50; no exact public catalog match)`)<br>3A (Element 2r: `UV-curing resin`) | abbe: 2 |
 | [CANON EF 28-90mm f/4-5.6 II USM](../../src/lens-data/canon/CanonEF2890mmf456II.data.ts) | JP 2009-282554 A | [PDF](../../patents/JP2009282554A.pdf) | 90.0% (9/10) | 90.0% (9/10) | 1 | 16 (Group 4 plastic negative asphere: `Unmatched (proprietary optical polymer; patent plastic-asphere class)`) | abbe: 1 |
 | [MINOLTA AF APO TELE 300mm f/2.8](../../src/lens-data/minolta/MinoltaAF300mmf28.data.ts) | US 4,518,229 | Missing from untracked local patents/ references (US4518229, 4518229) | 90.0% (9/10) | 90.0% (9/10) | 1 | 5 (Element 3: `682366 - dense flint class (catalog unresolved)`) | abbe: 1 |
+| [Nikon AI-S Zoom-Nikkor 35–70mm f/3.5](../../src/lens-data/nikon/NikonAIZoomNikkor3570mmf35.data.ts) | US 4,266,860, | [PDF](../../patents/US4266860.pdf) | 90.0% (9/10) | 90.0% (9/10) | 1 | 7 (Element 4: `Unmatched 595/356 light flint class`) | abbe: 1 |
 | [NIKON NIKKOR Z DX 16-50mm f/3.5-6.3 VR](../../src/lens-data/nikon/NikonZDX1650mmf3563VR.data.ts) | WO 2020/012638 A1 | [PDF](../../patents/JPWO2020012638A1.pdf) | 90.0% (9/10) | 90.0% (9/10) | 1 | 2 (Element 1r (resin layer): `UV-curable optical resin`) | abbe: 1 |
 | [OLYMPUS OM J. ZUIKO AUTO-W 24mm f/2](../../src/lens-data/olympus/OlympusZuiko24mmf2J.data.ts) | US 3,830,559 | [PDF](../../patents/US3830559.pdf) | 90.0% (9/10) | 90.0% (9/10) | 1 | 1 (Element 1: `J-LAF04 class (HIKARI), 757479`) | abbe: 1 |
 | [VOIGTLÄNDER ULTRON Vintage Line 28mm f/2 Aspherical](../../src/lens-data/voigtlander/VoigtlanderUltron28f2.data.ts) | JP2022-100641A | [PDF](../../patents/JP2022100641A.pdf) | 90.0% (9/10) | 90.0% (9/10) | 1 | 15 (Element 9 (Nnb): `Unmatched (630581 crown/APD candidate; patent nd=1.62999, νd=58.12)`) | abbe: 1 |
@@ -123,7 +123,7 @@ These are efficient follow-up targets after mismatch blockers because one or two
 | [CARL ZEISS JENA BIOGON 35mm f/2.8 (pre-war)](../../src/lens-data/carl-zeiss-jena/ZeissBiogon35mmf28Prewar.data.ts) | US 2,084,309 | [PDF](../../patents/US2084309.pdf) | 85.7% (6/7) | 85.7% (6/7) | 1 | 10 (Element 7: `Unmatched vintage Zeiss/Schott 533/489 (nd=1.5333, νd=48.9)`) | abbe: 1 |
 | [CARL ZEISS B-DISTAGON 35mm f/4 (Contarex)](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon35mmf4.data.ts) | US 3,038,380 | [PDF](../../patents/US3038380.pdf) | 85.7% (6/7) | 85.7% (6/7) | 1 | 2 (LII: `K10 (Schott)`) | abbe: 1 |
 | [NIKON AF ZOOM-NIKKOR 28-80mm f/3.3-5.6 G](../../src/lens-data/nikon/NikonAFZoomNikkor2880mmf3356.data.ts) | US 5,485,314 | [PDF](../../patents/US5485314.pdf) | 85.7% (6/7) | 85.7% (6/7) | 1 | 2 (L1 resin aspherical layer: `UV-curing optical resin (patent)`) | abbe: 1 |
-| [OLYMPUS G.ZUIKO AUTO-W 21mm f/3.5](../../src/lens-data/olympus/OlympusGZuikoAutoW21mmf35.data.ts) | US 3,884,556 | [PDF](../../patents/US3884556.pdf) | 85.7% (6/7) | 85.7% (6/7) | 1 | 1 (Element 1: `720421 — vintage lanthanum flint (patent nd=1.72000, νd=42.1; no exact public catalog match)`) | abbe: 1 |
+| [OLYMPUS G.ZUIKO AUTO-S 55mm f/1.2](../../src/lens-data/olympus/OlympusZuikoAutoS55mmf12.data.ts) | US 3,743,387 | [PDF](../../patents/US3743387.pdf) | 85.7% (6/7) | 85.7% (6/7) | 1 | 5 (Element 3: `762271 — NbF/SF dense flint family (patent nd=1.7618, νd=27.1; no exact public catalog match)`) | abbe: 1 |
 | [SONY E 20mm f/2.8](../../src/lens-data/sony/SonyE20mmf28.data.ts) | US 2014/0204265 A1 | [PDF](../../patents/US20140204265A1.pdf) | 85.7% (6/7) | 85.7% (6/7) | 1 | 2 (L1 aspherical resin layer: `Unmatched (proprietary aspherical resin; patent nd=1.534, νd=41.71)`) | abbe: 1 |
 | [CANON EF-S 10-22mm f/3.5-4.5 USM](../../src/lens-data/canon/CanonEFS1022mmf3545.data.ts) | US 2005/0286139 A1 | [PDF](../../patents/US20050286139A1.pdf) | 85.7% (12/14) | 85.7% (12/14) | 2 | 4 (G12 resin replica layer: `UV-cured replica resin (patent medium N3)`)<br>24 (L4 rear positive asphere: `Unmatched fluorophosphate crown (485700; nearest OHARA S-FSL5 class)`) | abbe: 2 |
 | [FUJIFILM FUJINON GF 20-35mm f/4 R WR](../../src/lens-data/fujifilm/FujifilmGF2035mmf4.data.ts) | US 2022/0236544 A1 | [PDF](../../patents/US20220236544A1.pdf) | 85.7% (12/14) | 85.7% (12/14) | 2 | 14 (L32: `H-LaF6L / lanthanum flint class (757/477)`)<br>17A (L34: `Unmatched (ED fluorophosphate, 496/813; near FCD1/S-FPL51 family)`) | abbe: 2 |
@@ -154,7 +154,6 @@ These are efficient follow-up targets after mismatch blockers because one or two
 | [LEICA ELMARIT-TL 18mm f/2.8 ASPH.](../../src/lens-data/leica/LeicaElmaritTL18mmf28.data.ts) | US 2020/0341238 A1 | [PDF](../../patents/US20200341238A1.pdf) | 80.0% (8/10) | 80.0% (8/10) | 2 | 7 (Bond layer 1: `UV-curing resin (not counted as a glass element)`)<br>11 (Bond layer 2: `UV-curing resin (not counted as a glass element)`) | abbe: 2 |
 | [NIKON AF NIKKOR 85mm f/1.4 D IF](../../src/lens-data/nikon/Nikon85f14D.data.ts) | US 5,640,277 | [PDF](../../patents/US5640277.pdf) | 80.0% (8/10) | 80.0% (8/10) | 2 | 5 (Element 3: `Unmatched (796409 patent coordinate; vendor unresolved)`)<br>19 (Element 10: `Unmatched (748523 patent coordinate; vendor unresolved)`) | abbe: 2 |
 | [Nikon AI Micro-Nikkor 105mm f/2.8S](../../src/lens-data/nikon/NikonAIMicroNikkor105mmf28S.data.ts) | US 4,392,724 | [PDF](../../patents/US4392724.pdf) | 80.0% (8/10) | 80.0% (8/10) | 2 | 12 (L31 G3 positive meniscus: `Unmatched (595/355 vintage flint; near FF5 / S-FTM16 class but higher nd)`)<br>16 (L33 G3 positive reconverger: `Unmatched (595/355 vintage flint; near FF5 / S-FTM16 class but higher nd)`) | abbe: 2 |
-| [Nikon AI-S Zoom-Nikkor 35–70mm f/3.5](../../src/lens-data/nikon/NikonAIZoomNikkor3570mmf35.data.ts) | US 4,266,860, | [PDF](../../patents/US4266860.pdf) | 80.0% (8/10) | 80.0% (8/10) | 2 | 7 (Element 4: `Unmatched 595/356 light flint class`)<br>12 (Element 7: `Unmatched 511/509 light crown class`) | abbe: 2 |
 | [OLYMPUS ZUIKO AUTO-FISHEYE 8mm f/2.8](../../src/lens-data/olympus/OlympusZuikoAutoFisheye8mmf28.data.ts) | DE 2157160 A1 | [PDF](../../patents/DE_2157160_A1.pdf) | 80.0% (8/10) | 80.0% (8/10) | 2 | 9 (Element 6: `787501 — vintage high-index lanthanum flint (probable; no exact public catalog match)`)<br>10 (Element 7: `603423 — BaSF5-class barium dense flint (no exact public catalog match)`) | abbe: 2 |
 | [SONY FE 24mm f/2.8 G](../../src/lens-data/sony/SonyFE24mmf28G.data.ts) | JP 2022-030896 A | [PDF](../../patents/JP2022030896A.pdf) | 80.0% (8/10) | 80.0% (8/10) | 2 | 4 (Element 2 resin layer: `Proprietary optical resin (patent nd=1.53610, vd=41.21)`)<br>12A (Element 6 resin layer: `Proprietary optical resin (patent nd=1.53610, vd=41.21)`) | abbe: 2 |
 
@@ -190,7 +189,7 @@ Add catalog entries only when public coefficient-backed vendor data is available
 | 569632 | 2 | 1 | Missing from untracked local patents/ references (US4025167, 4025167) | No reviewed-sidecar hit | [OLYMPUS ZUIKO AUTO-ZOOM 85-250mm f/5](../../src/lens-data/olympus/OlympusZuikoAutoZoom85250mmf5.data.ts) Element 4 (1.56873 / 63.20)<br>[OLYMPUS ZUIKO AUTO-ZOOM 85-250mm f/5](../../src/lens-data/olympus/OlympusZuikoAutoZoom85250mmf5.data.ts) Element 7 (1.56873 / 63.20) |
 | 585594 | 2 | 1 | patents/JP2023039817A.pdf | All representative rows reviewed | [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) Element 11 (1.58547 / 59.40)<br>[SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) Element 12 (1.58547 / 59.40) |
 
-Showing the top 25 of 211 distinct codes; use the dedicated six-digit reports for the complete queue.
+Showing the top 25 of 204 distinct codes; use the dedicated six-digit reports for the complete queue.
 
 ## Sweep 2B - Named Tokens Missing Catalog Resolution
 
@@ -202,7 +201,6 @@ These unresolved catalog-style labels are often better first catalog targets tha
 | BK3 | 1 | 1 | patents/US3975089.pdf | [VIVITAR SERIES 1 35-85mm f/2.8 VMC](../../src/lens-data/vivitar/VivitarSeries13585mmf28.data.ts) Element 6 (1.49800 / 65.10; abbe) |
 | E-FPL51 | 1 | 1 | patents/JPWO2019049372A1.pdf | [NIKON NIKKOR Z 24-70mm f/4 S](../../src/lens-data/nikon/NikonNikkorZ2470mmf4S.data.ts) Element 6 (1.55332 / 71.70; abbe) |
 | H-BAF6 | 1 | 1 | patents/20260118637.pdf | [ENNA MÜNCHEN LITHAGON 24mm f/4](../../src/lens-data/enna-munchen/EnnaMunchenLithagon24mmf4.data.ts) Element 7 (1.60801 / 46.20; abbe) |
-| H-K2 | 1 | 1 | Missing from untracked local patents/ references (US4568150, 4568150) | [OLYMPUS OM-SYSTEM ZUIKO AUTO-ZOOM 65-200mm f/4](../../src/lens-data/olympus/OlympusZuikoAutoZoom65200mmf4.data.ts) Element 10 (1.50048 / 65.99; abbe) |
 | H-K8 | 1 | 1 | patents/CN110161666A.pdf | [LAOWA 65mm f/2.8 2× Ultra Macro APO](../../src/lens-data/laowa/Laowa65mmf28MacroAPO.data.ts) Element 14 (1.51823 / 58.96; abbe) |
 | H-K9L | 1 | 1 | patents/CN205427291U.pdf | [LAOWA 15mm f/4 Wide Angle 1:1 Macro](../../src/lens-data/laowa/Laowa15mmf4Macro.data.ts) Element 7a (1.51680 / 64.20; abbe) |
 | H-LAF51 | 1 | 1 | patents/JP2014126652A.pdf | [SIGMA 50mm f/2.8 (Sigma DP3 Merrill)](../../src/lens-data/sigma/SigmaDP3M50mmf28.data.ts) Element 6 (1.83400 / 37.34; abbe) |
@@ -223,8 +221,9 @@ These unresolved catalog-style labels are often better first catalog targets tha
 | H-ZLAF92 | 1 | 1 | patents/CN116520542A.pdf | [LAOWA 58mm f/2.8 2× Ultra-Macro APO](../../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts) Element 6 (1.92286 / 20.88; abbe) |
 | L-BBH1 | 1 | 1 | patents/JP2022099402A.pdf | [HASSELBLAD XCD 90mm f/2.5 V](../../src/lens-data/hasselblad/HasselbladXCD90mmf25V.data.ts) Element 9 (1.68863 / 31.20; abbe) |
 | L-LAH83 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) Element 8 (1.77074 / 49.50; abbe) |
+| L-LAH85 | 1 | 1 | patents/JP2025052870A.pdf | [NIKON NIKKOR Z 35mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) Element 13 (1.77503 / 47.30; abbe) |
 
-Showing the top 25 of 53 distinct named tokens.
+Showing the top 25 of 50 distinct named tokens.
 
 ## Sweep 3 - Proprietary Line-Index Backfill
 

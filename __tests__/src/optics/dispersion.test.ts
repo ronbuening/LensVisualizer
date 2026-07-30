@@ -170,6 +170,15 @@ describe("glass catalog", () => {
     { name: "BALK3", code: "518603", nd: 1.51835, vd: 60.3 },
     { name: "KF3", code: "515546", nd: 1.51454, vd: 54.6 },
     { name: "LLF4", code: "561453", nd: 1.56138, vd: 45.3 },
+    { name: "BAK2", code: "540597", nd: 1.53996, vd: 59.7 },
+    { name: "BK4", code: "500660", nd: 1.50048, vd: 66 },
+    { name: "F4", code: "617366", nd: 1.61659, vd: 36.6 },
+    { name: "KF8", code: "511509", nd: 1.51118, vd: 50.9 },
+    { name: "BAK1", code: "573575", nd: 1.5725, vd: 57.5 },
+    { name: "F3", code: "613369", nd: 1.61293, vd: 36.9 },
+    { name: "BAF12", code: "639450", nd: 1.6393, vd: 45 },
+    { name: "LAFN10", code: "720421", nd: 1.72016, vd: 42.1 },
+    { name: "K-LaSKn1", code: "755524", nd: 1.755, vd: 52.4 },
   ])("reproduces SUMITA's official all-glass catalog row for $name", ({ name, code, nd, vd }) => {
     const entry = resolveGlass(`${name} (SUMITA)`);
     expect(entry?.name).toBe(name);

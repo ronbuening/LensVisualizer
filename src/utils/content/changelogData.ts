@@ -19,6 +19,12 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-07-30 ──────────────────────────────────────────────────
+  {
+    date: "2026-07-30",
+    type: "improvement",
+    summary: "Expanded vintage-lens chromatic tracing with nine recovered SUMITA glass types",
+  },
   // ── 2026-07-29 ──────────────────────────────────────────────────
   {
     date: "2026-07-29",

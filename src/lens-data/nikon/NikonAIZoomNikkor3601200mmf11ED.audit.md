@@ -30,3 +30,9 @@ Patent: US 3,743,384, Example I / Claim 4
 - SUMITA's discontinued-inclusive KF3 vendor polynomial resolves L14 at the exact `1.51454 / 54.6` coordinate.
 - Relabeled L14 as a KF3 optical equivalent while leaving the production supplier unspecified.
 - The other historical code families listed above remain unresolved; no prescription or zoom data changed.
+
+## 2026-07-30 - SUMITA F3 and BAF12 coefficient recovery
+
+- SUMITA's discontinued-inclusive all-glass catalog publishes F3 at code `613369`, nd = 1.61293, νd = 36.9, and BAF12 at code `639450`, nd = 1.63930, νd = 45.0.
+- Relabeled L11 and L17 as exact coefficient-backed catalog equivalents while leaving their production suppliers unspecified.
+- The `486815`, `501565`, and `744494` families remain unresolved; no prescription or zoom data changed.

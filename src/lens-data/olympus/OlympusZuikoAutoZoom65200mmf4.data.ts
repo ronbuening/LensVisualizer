@@ -171,7 +171,7 @@ const LENS_DATA = {
       nd: 1.50048,
       vd: 65.99,
       fl: 52.9,
-      glass: "500660 crown class (CDGM H-K2 / OHARA BSL4)",
+      glass: "BK4 (SUMITA catalog equivalent for patent coordinate; production supplier unspecified)",
       role: "Strong positive element at the front of relay component IVa.",
     },
     {

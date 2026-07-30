@@ -21,3 +21,9 @@ Patent: US 2022/0276464 A1, Example 7
 ### Analysis sync
 
 - Updated L11 and L26 glass language in the companion analysis to match the data file.
+
+## 2026-07-30 - SUMITA BAK2 coefficient recovery
+
+- SUMITA's discontinued-inclusive all-glass catalog publishes BAK2 at code `540597`, nd = 1.53996, νd = 59.7.
+- Relabeled L11 / S1 from a code/class annotation to `BAK2` as an exact catalog equivalent; the production supplier remains unspecified.
+- No prescription geometry or spectral-line metadata changed.

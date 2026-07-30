@@ -148,7 +148,7 @@ const LENS_DATA = {
       nd: 1.51118,
       vd: 50.9,
       fl: 58.02,
-      glass: "Unmatched 511/509 light crown class",
+      glass: "KF8 (SUMITA catalog equivalent for patent coordinate; production supplier unspecified)",
       apd: false,
       role: "Positive relay element in the second group.",
     },

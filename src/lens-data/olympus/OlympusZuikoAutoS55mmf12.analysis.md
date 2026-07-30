@@ -86,11 +86,11 @@ The patent lists refractive index (nd) and Abbe number (νd) for each of the sev
 | L2 | 1.8061 | 40.8 | 806.408 | Lanthanum dense flint (LaSF) | OHARA S-LAH53 | Δnd < 0.0001, Δνd = +0.1 |
 | L3 | 1.7618 | 27.1 | 762.271 | 762271 dense flint (NbF/SF) | No exact modern match | Code-labeled family ID |
 | L4 | 1.7283 | 28.5 | 728.285 | Titanium dense flint (SF) | OHARA S-TIH10 / SCHOTT SF10 | Δnd < 0.001, Δνd < 0.1 |
-| L5 | 1.7550 | 52.4 | 755.524 | 755524 lanthanum crown (LaK) | No exact modern match | Code-labeled family ID |
+| L5 | 1.7550 | 52.4 | 755.524 | SUMITA K-LaSKn1 catalog equivalent | Exact code coordinate; production supplier unspecified |
 | L6 | 1.7130 | 53.9 | 713.539 | Lanthanum crown (LaK) | SCHOTT N-LAK8 / HOYA LAC8 | Δnd < 0.001, Δνd < 0.1 |
 | L7 | 1.7130 | 53.9 | 713.539 | Lanthanum crown (LaK) | SCHOTT N-LAK8 / HOYA LAC8 | (same as L6) |
 
-For L2 and L4, the catalog matches are high-confidence with residuals under Δnd = 0.001 and Δνd = 0.1. For L1, the nearest modern equivalent is OHARA S-LAH65 (nd = 1.8040, νd = 46.57), which is close but shows a residual of Δnd = +0.001 — the patent value of 1.8030 may reflect a vintage melt formulation not precisely replicated in current catalogs. L3 and L5 do not have exact matches in modern OHARA or SCHOTT catalogs; both are identified at the family level. L6 and L7 share identical glass and are well-matched by SCHOTT N-LAK8 (nd = 1.71300, νd = 53.83).
+For L2 and L4, the catalog matches are high-confidence with residuals under Δnd = 0.001 and Δνd = 0.1. For L1, the nearest modern equivalent is OHARA S-LAH65 (nd = 1.8040, νd = 46.57), which is close but shows a residual of Δnd = +0.001 — the patent value of 1.8030 may reflect a vintage melt formulation not precisely replicated in current catalogs. L3 remains identified at the family level. L5 now has the exact SUMITA K-LaSKn1 code coordinate from the vendor's discontinued-inclusive catalog. L6 and L7 share identical glass and are well-matched by SCHOTT N-LAK8 (nd = 1.71300, νd = 53.83).
 
 All seven identifications should be understood as modern equivalents or family classifications, not as the exact melt designations used by Olympus in 1971–72.
 
