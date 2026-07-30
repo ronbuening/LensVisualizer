@@ -84,7 +84,7 @@ const LENS_DATA = {
       nd: 1.5955,
       vd: 39.2,
       fl: -13.6,
-      glass: "F7 (Schott)",
+      glass: "E-F8 (HOYA catalog equivalent for patent coordinate; production supplier unspecified)",
       apd: false as const,
       cemented: "D1",
       role: "Front doublet negative — chromatic correction and Gauss waist divergence",

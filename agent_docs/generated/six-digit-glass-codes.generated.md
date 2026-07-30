@@ -10,8 +10,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **488** lenses scanned
-- **499** total code-only elements found
-- **499** elements in this report
+- **498** total code-only elements found
+- **498** elements in this report
 - **156** distinct lens files affected
 
 ## Codes by Frequency
@@ -304,7 +304,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 810372 | 1 | 1 | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
 | 821426 | 1 | 1 | patents/US20100220400A1.pdf | All representative rows reviewed |
 | 831265 | 1 | 1 | patents/US3615126.pdf | No reviewed-sidecar hit |
-| 834373 | 1 | 1 | patents/JP2014209144A.pdf | No reviewed-sidecar hit |
 | 834374 | 1 | 1 | patents/US5734508.pdf | No reviewed-sidecar hit |
 | 835447 | 1 | 1 | patents/CN205720849U.pdf | All representative rows reviewed |
 | 840433 | 1 | 1 | patents/US5528428.pdf | No reviewed-sidecar hit |
@@ -827,7 +826,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
 |---|---|---|---|---|---|---|---|
 | L6 (Element 6) | 9 | `517522 — crown (patent nd=1.51742, νd=52.15)` | 1.51742 / 52.15 | E-CF6 (trusted Sellmeier) | sellmeier | patents/JP2014209144A.pdf | No reviewed-sidecar hit |
-| L14 (Element 14) | 21 | `Unmatched (834373 dense lanthanum flint; patent gives nd=1.83400, νd=37.34 but no vendor or type)` | 1.83400 / 37.34 | No catalog entry | abbe | patents/JP2014209144A.pdf | No reviewed-sidecar hit |
 
 ### [NIKON AF-S NIKKOR 20mm f/1.8 G ED](../../src/lens-data/nikon/NikonNikkorAFS20mmf18G.data.ts) - JP 2016-021011 A
 

@@ -167,7 +167,7 @@ G3 moves toward the object during zooming (d16 decreases from 23.8 mm to 2.0 mm 
 
 ### Group 4 (L4): Relay — Elements 13–15
 
-**E13 (biconvex ED, S-FPL51, nd = 1.497) cemented to E14 (negative meniscus, unmatched 834373 glass, nd = 1.834):** The third and final achromatic ED doublet. The patent gives E14's optical coordinates but no vendor type. The cemented combination is nearly afocal (fl ≈ −5,356 mm — very weakly negative), meaning its primary role is chromatic correction rather than power contribution. The strong positive power of E13 (+99.0 mm) is almost exactly cancelled by the negative power of E14 (−97.2 mm), leaving a residual that aggressively corrects chromatic aberration in the relay section of the zoom.
+**E13 (biconvex ED, S-FPL51, nd = 1.497) cemented to E14 (negative meniscus, NBFD10 catalog equivalent, nd = 1.834):** The third and final achromatic ED doublet. The patent gives E14's exact 834373 optical coordinate but no production vendor; HOYA's discontinued NBFD10 row supplies the matching coefficient-backed dispersion model. The cemented combination is nearly afocal (fl ≈ −5,356 mm — very weakly negative), meaning its primary role is chromatic correction rather than power contribution. The strong positive power of E13 (+99.0 mm) is almost exactly cancelled by the negative power of E14 (−97.2 mm), leaving a residual that aggressively corrects chromatic aberration in the relay section of the zoom.
 
 **E15 (positive meniscus, S-LAM60, nd = 1.743):** A standalone positive element (fl = +139.2 mm) that provides the actual positive power contribution of G4. Its meniscus shape (both radii positive) minimizes spherical aberration contribution while adding convergence to the beam before it reaches the aperture stop.
 

@@ -90,9 +90,9 @@ L2 is the positive component of the front cemented doublet. It is the most stron
 - **Shape:** Biconcave
 - **Radii:** R₄ = −3.000 (cemented junction), R₅ = +0.323
 - **Thick-lens focal length:** −0.488f = −13.6 mm
-- **Glass:** nᵈ = 1.5955, νᵈ = 39.2 → **Schott F7** (dense flint)
+- **Glass:** nᵈ = 1.5955, νᵈ = 39.2 → **HOYA E-F8 catalog equivalent** (production supplier unspecified)
 
-L3 is the negative component of the front doublet. Its strongly negative power (the second-strongest element) comes primarily from the tightly curved rear surface R₅ = +0.323, which is the concave exterior face of Group II facing the stop. This surface is critical: it provides the diverging power that, combined with the symmetrical Group III on the opposite side of the stop, enables the quasi-symmetrical aberration cancellation that is the hallmark of the double-Gauss form. The dense flint glass (F7, νᵈ = 39.2) provides chromatic compensation against L2's crown glass.
+L3 is the negative component of the front doublet. Its strongly negative power (the second-strongest element) comes primarily from the tightly curved rear surface R₅ = +0.323, which is the concave exterior face of Group II facing the stop. This surface is critical: it provides the diverging power that, combined with the symmetrical Group III on the opposite side of the stop, enables the quasi-symmetrical aberration cancellation that is the hallmark of the double-Gauss form. The patent's dense-flint coordinate is modeled with the exact HOYA E-F8 catalog equivalent (νᵈ = 39.2), providing chromatic compensation against L2's crown glass without asserting the historical production supplier.
 
 The cemented junction R₄ = −3.000 is very weakly curved — nearly flat. This means the L2–L3 interface contributes almost no optical power (the Petzval contribution of this surface is only +0.004), and its primary role is to allow chromatic correction through the glass dispersion difference across the bond. The near-flatness of this junction also simplifies manufacturing.
 
@@ -135,7 +135,7 @@ The design uses only four distinct glass types across six elements:
 |-------|-------------------|------|------|---------------|------|----------|
 | SK4 | Barium crown | 1.5638 | 60.7 | 564/607 | Crown | L1 |
 | E-BAF8 | Barium flint | 1.6237 | 47.0 | 624/470 | Crown-side doublet member | L2 |
-| F7 | Dense flint | 1.5955 | 39.2 | 596/392 | Flint | L3 |
+| E-F8 catalog equivalent | Dense flint | 1.5955 | 39.2 | 596/392 | Flint; production supplier unspecified | L3 |
 | Unmatched BaF3-class row | Barium flint | 1.5785 | 41.7 | 579/417 | Flint; no exact public catalog identity | L4 |
 | SK14 | Dense barium crown | 1.6204 | 60.3 | 620/603 | Crown | L5, L6 |
 

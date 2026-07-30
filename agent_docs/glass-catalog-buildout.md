@@ -9,6 +9,14 @@ approximation. Current optics-engine boundaries are summarized in
 
 The catalog currently has **414 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
 
+The July 30, 2026 Phase 50 pass recovered four exact-coordinate catalog-equivalent groups already covered by the
+414-entry catalog. Nikon's `834373` rows now use HOYA NBFD10 or M-NBFD10 according to their exact patent
+coordinates; Laowa's two unsupported H-ZLaF4A supplier labels now use HOYA TAFD5F; and the Canon Serenar 28mm's
+historical F7 label now uses HOYA E-F8. Every annotation leaves the production supplier unspecified. The pass added
+four net strict and trusted surfaces because one Nikon code row was already resolving through duplicate-code matching,
+bringing coverage to 4624 / 5360 strict (86.3%) and 4638 / 5360 trusted (86.5%). The Nikon AF-S 200-500mm is now
+fully covered.
+
 The July 30, 2026 Phase 49 pass audited six recurring patent coordinate families. Existing catalog rows safely cover
 three of them: six Nikon `797454` elements now use Hikari J-LASF017, five Canon/Olympus `773497` elements use
 Schott N-LAF34, and three vintage Zeiss `672472` elements use Schott N-BAF10. Every relabel is explicitly a catalog

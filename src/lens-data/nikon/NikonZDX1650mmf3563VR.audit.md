@@ -47,3 +47,12 @@ Figure / SD check:
 ## 2026-07-29 - Catalog-coordinate correction
 
 - Corrected L12 from modern `S-NPH2` to historical OHARA `PBH21`, the exact 1.92286 / 20.88 row.
+
+## 2026-07-30 - M-NBFD10 catalog-equivalent recovery
+
+- Rechecked WO 2020/012638 A1 Example 8, Table 8 on rendered patent page 34. Surface 6 remains
+  `R=14.5813`, `d=0.90`, `nd=1.834410`, `νd=37.28`, and `ng=1.863100`.
+- Relabeled L21 from unresolved code `834373` to `M-NBFD10 (HOYA catalog equivalent; production supplier
+  unspecified)`. HOYA's coefficient-backed row reproduces the patent coordinate exactly and carries code
+  `834373`.
+- Updated the L21 narrative and glass-selection table. No prescription geometry or supplier attribution changed.

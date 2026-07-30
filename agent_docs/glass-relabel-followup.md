@@ -26,12 +26,26 @@ This file tracks the second bucket plus any cases from the first bucket that nee
 - Catalog: **414 verified entries** in `src/optics/glassCatalogData.ts`.
 - `catalog-mismatches.generated.md` and `glass-relabel-by-lens.generated.md` report **0** remaining
   dispersion-coordinate mismatches across **0** lens files.
-- `sellmeier-coverage.generated.md` reports **488** lenses, **5360** non-air surfaces, **4620** strict catalog
-  Sellmeier surfaces (**86.2%**), and **4634** trusted chromatic surfaces (**86.5%**).
-- **212** lenses are fully covered by strict Sellmeier data and **217** are fully covered by trusted chromatic data.
-- `unresolvedGlassScan` reports **452** non-explicit-unmatched annotations and **199** distinct unresolved glass-like
+- `sellmeier-coverage.generated.md` reports **488** lenses, **5360** non-air surfaces, **4624** strict catalog
+  Sellmeier surfaces (**86.3%**), and **4638** trusted chromatic surfaces (**86.5%**).
+- **213** lenses are fully covered by strict Sellmeier data and **218** are fully covered by trusted chromatic data.
+- `unresolvedGlassScan` reports **449** non-explicit-unmatched annotations and **198** distinct unresolved glass-like
   tokens. The total includes honest proprietary and family-level annotations as well as actionable named tokens.
 - The Phase 2/3 resolved tables below are historical audit trail. Use the generated reports above for the current queue before starting new relabel work; for patent-by-patent execution, start from [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md).
+
+## Resolved Phase 50 — July 2026 exact catalog-equivalent recovery
+
+Four patent-coordinate groups were rechecked against rendered local patent tables and newly available catalog rows.
+Nikon AF-S 200-500mm E14 now uses discontinued HOYA NBFD10 for the exact `1.83400 / 37.34`, code `834373`
+coordinate, completing the lens's strict and trusted coverage. Nikon Z DX 16-50mm L21 uses HOYA M-NBFD10 for its
+exact `1.83441 / 37.28` variant. Laowa 24mm Probe L1/L25 use HOYA TAFD5F for `1.83481 / 42.72`, replacing an
+unsupported CDGM H-ZLaF4A supplier claim, and Canon Serenar 28mm L3 uses HOYA E-F8 for its printed
+`1.5955 / 39.2` coordinate instead of the unsupported Schott F7 attribution.
+
+All four annotations describe catalog equivalents and leave the production supplier unspecified. The pass added four
+net strict and trusted surfaces because Nikon Z DX L21's unbroken code already resolved through the duplicate-code
+resolver. Strict coverage rose from 4620 to 4624 surfaces, trusted coverage from 4634 to 4638, and one additional lens
+became fully covered in each measure.
 
 ## Resolved Phase 49 — July 2026 high-frequency code-family review
 

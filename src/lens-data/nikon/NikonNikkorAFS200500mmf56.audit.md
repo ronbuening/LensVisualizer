@@ -73,3 +73,12 @@ Changes made:
 - Surfaces 7 and 27: canonicalized `TAC4 / S-LAL18` to exact-coordinate OHARA `S-LAL18` at 1.72916 / 54.67.
 - Surface 21: changed `S-LAH55V / TAFD5` to explicit `Unmatched (834373...)`; 1.83400 / 37.34 is patent-backed, but the table gives no vendor/type and several catalog families are plausible.
 - Synchronized the analysis. No prescription geometry changed.
+
+## 2026-07-30 - NBFD10 catalog-equivalent recovery
+
+- Rechecked JP 2014-209144 A Example 2 surface 21 on rendered patent page 11: `R=-54.0683`, `d=1.7000`,
+  `nd=1.83400`, and `νd=37.34` remain unchanged.
+- Relabeled E14 from explicit unmatched `834373` to `NBFD10 (HOYA catalog equivalent; production supplier
+  unspecified)`. The official obsolete-inclusive HOYA coefficient row is exactly `1.83400 / 37.34` with code
+  `834373`.
+- Synchronized the E13/E14 analysis narrative. No prescription geometry or supplier attribution changed.

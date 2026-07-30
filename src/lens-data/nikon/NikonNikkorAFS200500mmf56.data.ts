@@ -234,7 +234,7 @@ const LENS_DATA = {
       nd: 1.834,
       vd: 37.34,
       fl: -97.2,
-      glass: "Unmatched (834373 dense lanthanum flint; patent gives nd=1.83400, νd=37.34 but no vendor or type)",
+      glass: "NBFD10 (HOYA catalog equivalent for patent 834373; production supplier unspecified)",
       apd: false,
       role: "Negative chromatic partner in near-afocal ED doublet (G4)",
       cemented: "D6",

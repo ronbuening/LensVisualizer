@@ -18,3 +18,11 @@ Patent: US 2,645,974
   row is unchanged.
 - S6 `BaF3 (Schott)` -> explicit unmatched 579417 vintage barium flint. The current public BaF3 row does not
   reproduce both patent coordinates, so the analysis now uses BaF3 only as a family comparison.
+
+## 2026-07-30 - E-F8 catalog-equivalent recovery
+
+- Rechecked the worked prescription on rendered US 2,645,974 page 3. L3 remains `nd=1.5955`, `νd=39.2`;
+  the patent does not name a production glass vendor.
+- Relabeled the unsupported `F7 (Schott)` claim to HOYA `E-F8` as a catalog equivalent. The official
+  coefficient-backed row is `1.59551 / 39.22` with code `596392`, matching the patent's printed precision.
+- Synchronized the L3 narrative and glass table. No prescription geometry changed.

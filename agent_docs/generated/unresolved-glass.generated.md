@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **488** lenses scanned
 - **5360** non-air surfaces examined
 - **5365** element glass declarations examined
-- **452** non-explicit-unmatched annotations did not resolve
-- **199** distinct unresolved glass-like tokens found
+- **449** non-explicit-unmatched annotations did not resolve
+- **198** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -41,9 +41,7 @@ or per-lens patent backfills.
 | 807316 | 2 | 2 | |
 | 813252 | 2 | 1 | |
 | 856401 | 2 | 1 | |
-| F7 | 2 | 2 | |
 | H-ZBAF4 | 2 | 1 | |
-| H-ZLAF4A | 2 | 1 | |
 | S-LAM73 | 2 | 1 | |
 | SK3 | 2 | 2 | |
 | 487698 | 1 | 1 | |
@@ -166,6 +164,7 @@ or per-lens patent backfills.
 | BK3 | 1 | 1 | |
 | E-FPL51 | 1 | 1 | |
 | F3 | 1 | 1 | |
+| F7 | 1 | 1 | |
 | H-BAF6 | 1 | 1 | |
 | H-K2 | 1 | 1 | |
 | H-K8 | 1 | 1 | |
@@ -346,20 +345,10 @@ or per-lens patent backfills.
 - [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 14A: `856401 — lanthanum dense crown (patent nd=1.85612, νd=40.1)`
 - [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 25A: `856401 — lanthanum dense crown (patent nd=1.85612, νd=40.1)`
 
-### F7 — 2 occurrences
-
-- [CANON SERENAR 28mm f/3.5](../../src/lens-data/canon/CanonSerenar28mmf35.data.ts) 4: `F7 (Schott)`
-- [CARL ZEISS PRO-TESSAR 35mm f/3.2](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissProTessar35mmf32.data.ts) 10: `F7 (Schott)`
-
 ### H-ZBAF4 — 2 occurrences
 
 - [CANON RF 20mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF20mmf14LVCM.data.ts) 17: `H-ZBaF4 (CDGM, close match)`
 - [CANON RF 20mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF20mmf14LVCM.data.ts) 27: `H-ZBaF4 (CDGM, close match)`
-
-### H-ZLAF4A — 2 occurrences
-
-- [LAOWA 24mm f/14 2× Macro Probe](../../src/lens-data/laowa/Laowa24mmf14Probe.data.ts) 1: `H-ZLaF4A (CDGM)`
-- [LAOWA 24mm f/14 2× Macro Probe](../../src/lens-data/laowa/Laowa24mmf14Probe.data.ts) 46: `H-ZLaF4A (CDGM)`
 
 ### S-LAM73 — 2 occurrences
 
@@ -850,6 +839,10 @@ or per-lens patent backfills.
 ### F3 — 1 occurrence
 
 - [CARL ZEISS JENA TESSAR 50mm f/2.8](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaTessar50mmf28.data.ts) 3: `612372 F (≈ Schott F3 legacy)`
+
+### F7 — 1 occurrence
+
+- [CARL ZEISS PRO-TESSAR 35mm f/3.2](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissProTessar35mmf32.data.ts) 10: `F7 (Schott)`
 
 ### H-BAF6 — 1 occurrence
 
