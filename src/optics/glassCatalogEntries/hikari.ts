@@ -5,6 +5,44 @@
 import type { GlassEntry } from "../glassCatalogTypes.js";
 
 export const HIKARI_GLASS_ENTRIES: readonly GlassEntry[] = [
+  /* Phase 45: first-party named-token audit additions. */
+  {
+    name: "J-LAF04",
+    vendor: "Hikari",
+    powerSeries: [
+      [3.01765567, 0],
+      [-0.0144029325, 2],
+      [-0.000173403131, 4],
+      [0.0241938931, -2],
+      [0.00050291378, -4],
+      [-0.000000118295424, -6],
+      [0.00000126171561, -8],
+    ],
+    nd: 1.757,
+    vd: 47.86,
+    code6: "757479",
+    source:
+      "Hikari Optical Glass Catalog 2025-06, J-LAF04 page; vendor formula-3 power-series coefficients and d-code 757479.",
+  },
+  {
+    name: "J-BK7A",
+    vendor: "Hikari",
+    powerSeries: [
+      [2.27110883, 0],
+      [-0.00938988354, 2],
+      [-0.000100277081, 4],
+      [0.0109572221, -2],
+      [0.000120210067, -4],
+      [0.00000331079774, -6],
+      [-0.0000000148235581, -8],
+    ],
+    nd: 1.5168,
+    vd: 64.14,
+    PgF: 0.5357,
+    code6: "517641",
+    source:
+      "Nikon/Hikari Optical Glass Catalog 2023, J-BK7A page; vendor formula-3 power-series coefficients and d-line code.",
+  },
   {
     name: "J-LAK8",
     vendor: "Hikari",
@@ -81,14 +119,23 @@ export const HIKARI_GLASS_ENTRIES: readonly GlassEntry[] = [
     source: "Hikari Optical Glass Catalog 2023, J-KZFH9 page (formula 3 power series, d-code 738323).",
   },
   {
-    name: "BAF3",
+    name: "J-BAF3",
     vendor: "Hikari",
-    polynomial: [2.438682, 0.001609961, 0.02688829, -0.002446579, 0.0003965661, -0.00001973046],
+    powerSeries: [
+      [2.45448839, 0],
+      [-0.00867148963, 2],
+      [-0.00010471524, 4],
+      [0.0176039752, -2],
+      [0.000154610243, -4],
+      [0.0000559918259, -6],
+      [-0.00000501297284, -8],
+      [0.00000031755799, -10],
+    ],
     nd: 1.58267,
-    vd: 46.476929,
-    PgF: 0.5673,
+    vd: 46.48,
+    PgF: 0.5663,
     code6: "583465",
-    source: "Nikon/Hikari Zemax catalog 2017-11 via refractiveindex.info; BAF3 page (formula 3 polynomial).",
+    source: "Hikari Optical Glass Catalog 2023, J-BAF3 page (formula 3 power series, d-code 583465).",
   },
   {
     name: "J-LAK10",

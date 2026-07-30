@@ -69,3 +69,13 @@ Patent: WO 2022/097401 A1, expected source for the current prescription
 
 - Rechecked the local untracked `patents/` folder for WO 2022/097401 A1 / `097401`; no matching local PDF is present.
 - No glass or SD changes made. Patent figure/table review remains blocked until the source PDF or a verified local family equivalent is added.
+
+## 2026-07-29 - Incompatible named-label audit
+
+- Located and rendered the now-present `patents/WO2022097401A1.pdf`. Example 1, Table 1 confirms
+  surface 11 (`R=28.6090`, `d=2.660`) and surface 22 (`R=23.8970`, `d=3.210`) at
+  `nd=1.94595`, `νd=17.98`, matching L23 and L43.
+- Replaced the incompatible `E-FDS3HT (Hikari)` annotations with HOYA FDS18 catalog equivalents
+  (946180), while retaining the patent's unspecified supplier. HOYA E-FDS3 is 2.10420 / 17.02;
+  FDS18 exactly matches 1.94595 / 17.98.
+- Synchronized the glass-identification table. No prescription geometry changed.

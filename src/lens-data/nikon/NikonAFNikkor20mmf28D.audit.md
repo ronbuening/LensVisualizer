@@ -26,3 +26,9 @@ Reviewed local untracked patent file `patents/US4690517.pdf`, Table 1 / First Em
 ### Verification
 
 - Pending batch verification after the current Nikon audit pass.
+
+## 2026-07-30 Hikari Catalog Recovery
+
+- Added Hikari's official 2023 J-BAF3 power-series row for L6. The catalog publishes nd = 1.582670,
+  νd = 46.48, and d-code 583465, matching the patent coordinate.
+- Kept the existing lens annotation and analysis prose; they now resolve to the coefficient-backed row.

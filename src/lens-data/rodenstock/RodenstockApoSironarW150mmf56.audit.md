@@ -14,3 +14,13 @@ Patent: DE 3907928 A1, Table 5
 ### Verification
 
 - `npm test -- elementRenderDiagnostics`
+
+## 2026-07-29 - Patent-rounded glass disposition
+
+- Rechecked local `patents/DE_3907928_A1.pdf`, Table 5. The reconstruction's R, d, nd, and νd values remain
+  unchanged.
+- S1 `N-BK7 class` -> unmatched rounded crown at 1.520 / 64.2.
+- S9 `FK3 class` -> unmatched rounded fluor-crown at 1.460 / 65.8.
+- S11 `N-KZFS5 class` -> unmatched rounded short flint at 1.650 / 39.6.
+- Table 5's coarse rounding cannot establish unique catalog rows; the analysis now treats those names as family
+  comparisons only.

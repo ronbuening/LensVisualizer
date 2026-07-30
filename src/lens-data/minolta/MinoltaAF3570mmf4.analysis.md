@@ -57,15 +57,15 @@ Because the center thickness is only 0.150 mm, the data file models the resin la
 
 ### L3 — Component II-1: Biconvex Positive
 
-$n_d = 1.67000$, $\nu_d = 57.07$. Glass: `670571` lanthanum crown. Standalone $f = +46.02$ mm.
+$n_d = 1.67000$, $\nu_d = 57.07$. Glass model: coefficient-backed OHARA S-LAL52, a catalog-equivalent to patent code `670571`; the patent does not identify the supplier. Standalone $f = +46.02$ mm.
 
 The first component of Group II is a biconvex positive element with $R_5=+35.910$ mm and $R_6=-210.680$ mm. The front surface carries most of the power, while the rear surface is weakly curved. This element begins the rear group’s convergence after the variable inter-group air space.
 
-The previous draft identified the glass as HOYA LaC3. That specific catalog match was not verified from the available current manufacturer cross-reference data. The safe description is a high-Abbe lanthanum crown-like glass with optical code `670571`. L3 and L4 use the same glass, which simplifies the rear positive section and keeps the principal positive power in relatively low-dispersion material.
+The previous draft identified the glass as HOYA LaC3. That specific catalog match was not verified. Official OHARA data instead provide discontinued S-LAL52 at the same d-line index and only 0.258 higher in Abbe number, so S-LAL52 supplies the dispersion model without asserting that OHARA supplied the production glass. L3 and L4 use the same material, which simplifies the rear positive section and keeps the principal positive power in relatively low-dispersion glass.
 
 ### L4 — Component II-2: Positive Meniscus, Convex to Object
 
-$n_d = 1.67000$, $\nu_d = 57.07$. Glass: `670571` lanthanum crown. Standalone $f = +46.76$ mm.
+$n_d = 1.67000$, $\nu_d = 57.07$. Glass model: coefficient-backed OHARA S-LAL52, a catalog-equivalent to patent code `670571`; the patent does not identify the supplier. Standalone $f = +46.76$ mm.
 
 The fourth component is a positive meniscus with $R_7=+23.426$ mm and $R_8=+88.401$ mm. It shares the same glass as L3 and has nearly the same standalone focal length. The strongly curved front surface is the most powerful converging surface in the rear positive section.
 
@@ -98,8 +98,8 @@ The glass table below reflects current catalog cross-checking rather than a one-
 | L1 | 1.74400 | 44.93 | 744/449 | LAF2 / N-LAF2 / S-LAM2 class | Strong class match; exact vendor uncertain. |
 | L2g | 1.71736 | 29.42 | 717/294-295 | E-FD1L / N-SF1 / S-TIH1 class | Corrects the prior LaSF3 / S-LAH53 misidentification. |
 | L2r | 1.52000 | 51.06 | — | Thin transparent resin layer | Patent-listed material class only. |
-| L3 | 1.67000 | 57.07 | 670571 | Lanthanum crown-like glass | Prior LaC3 label not verified. |
-| L4 | 1.67000 | 57.07 | 670571 | Lanthanum crown-like glass | Same glass as L3. |
+| L3 | 1.67000 | 57.07 | 670571 | S-LAL52 catalog-equivalent | Coefficient-backed OHARA model; supplier unspecified. |
+| L4 | 1.67000 | 57.07 | 670571 | S-LAL52 catalog-equivalent | Same modeled glass as L3. |
 | L5 | 1.75000 | 25.14 | 750251 | Dense/fluor flint | Closest current HOYA table entry is FF8 at 752/251, not exact. |
 | L6 | 1.67270 | 32.22 | 673/322 | E-FD5 / N-SF5 / S-TIM25 class | Strong cross-reference match. |
 

@@ -32,13 +32,13 @@ The patent does not specify an aperture-stop location or clear apertures. For re
 
 ### L1 — Negative Meniscus, concave to object
 
-ne = 1.74687, νd = 27.7. Glass: SF13-class dense flint. f = −275.43 mm scaled.
+ne = 1.74687, νd = 27.7. Glass: S-TIH13-class dense flint. f = −275.43 mm scaled.
 
 L1 is a weak negative meniscus with both radii negative. Its standalone focal length is much longer than the complete lens, so it acts as a correction element rather than as a major power carrier. The patent's first condition constrains r2/r1, confirming that the bending of this element is load-bearing for astigmatism and field-curvature control.
 
 ### L2 — Weak Biconvex Positive
 
-ne = 1.60752, νd = 38.1. Glass: F5-class flint. f = +181.70 mm scaled.
+ne = 1.60752, νe = 38.1. Glass: unmatched F5-class e-line flint. f = +181.70 mm scaled.
 
 L2 is a broad, nearly symmetric biconvex element. It completes the weak front corrector. The use of a flint-like glass in a positive element is not incidental: the front section is not a simple field lens, but part of the chromatic and oblique-aberration balance of the whole objective.
 
@@ -54,7 +54,7 @@ L3 is the strongest positive element in the triplet. No current public OHARA, Sc
 
 L4 is the central negative member of the triplet. It supplies the high-dispersion negative power needed to balance the two positive triplet members and contributes a major part of the triplet's Petzval and longitudinal-color correction.
 
-**L5 — Weak Biconvex Positive.** ne = 1.69451, νd = 54.8. Glass: LAK9 / S-LAL9-class lanthanum crown. f = +200.72 mm scaled.
+**L5 — Weak Biconvex Positive.** ne = 1.69451, νe = 54.8. Glass: unmatched LAK9-class e-line lanthanum crown; S-LAL9 is a d-line comparison only. f = +200.72 mm scaled.
 
 L5 is a high-index, moderate-dispersion positive element. Its rear radius is very long, so the element is only weakly biconvex. It completes the positive-negative-positive cemented triplet and helps hold the triplet close to afocal while still contributing higher-order correction.
 
@@ -68,7 +68,7 @@ L6 is a plano-convex positive singlet with a flat rear face. It is the strongest
 
 The L7-L8 cemented doublet has an isolated EFL of +274.8 patent units, or +81.06 mm after scaling. It is a positive achromat-like group placed deep in the high-power rear assembly.
 
-**L7 — Negative Meniscus.** ne = 1.59865, νd = 39.3. Glass: F8-class light flint. f = −101.81 mm scaled.
+**L7 — Negative Meniscus.** ne = 1.59865, νd = 39.3. Glass: unmatched F8-class light flint; no d-line catalog model is applied to the stored e-line index. f = −101.81 mm scaled.
 
 L7 is the negative flint member of the doublet. Its two positive radii make it a meniscus whose negative power is set by the stronger rear curvature at the cemented interface.
 
@@ -88,13 +88,13 @@ The patent labels the refractive-index column n_e and the Abbe-number column νd
 
 | Element | Patent ne | νd | Identification used | Basis |
 |---|---:|---:|---|---|
-| L1 | 1.74687 | 27.7 | SF13-class dense flint | Legacy SF13 / OHARA S-TIH13-class 741/278 region |
-| L2 | 1.60752 | 38.1 | F5-class flint | Legacy F5 603/380 region |
+| L1 | 1.74687 | 27.7 | S-TIH13-class dense flint | Legacy S-TIH13 / OHARA S-TIH13-class 741/278 region |
+| L2 | 1.60752 | 38.1 | Unmatched F5-class e-line flint | D-line catalog row not assigned |
 | L3 | 1.44850 | 67.0 | Unmatched low-index crown | No confident public-catalog match; coded as 449/670 |
 | L4 | 1.69402 | 31.2 | SF8-class dense flint | Legacy SF8 689/313 region |
-| L5 | 1.69451 | 54.8 | LAK9 / S-LAL9-class lanthanum crown | OHARA S-LAL9-class 691/548 region |
+| L5 | 1.69451 | 54.8 | Unmatched LAK9-class e-line lanthanum crown | S-LAL9 is a comparison only |
 | L6 | 1.62598 | 57.9 | SK15 / S-BSM15-class barium crown | OHARA S-BSM15-class 623/582 region |
-| L7 | 1.59865 | 39.3 | F8-class light flint | Legacy F8 596/392 region |
+| L7 | 1.59865 | 39.3 | Unmatched F8-class light flint | Stored e-line value; d-line E-F8 is not applied |
 | L8 | 1.43498 | 94.9 | Calcium fluoride / CaF2 | Malitson CaF2 e-line calculation gives ne ≈ 1.43494, νd ≈ 95.0 |
 | L9 | 1.51871 | 64.1 | BK7 / S-BSL7-class borosilicate crown | BK7 / OHARA S-BSL7-class 516/641 region |
 

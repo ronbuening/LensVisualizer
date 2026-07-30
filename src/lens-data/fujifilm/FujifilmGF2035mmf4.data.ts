@@ -143,7 +143,7 @@ const LENS_DATA = {
       nd: 1.757,
       vd: 47.71,
       fl: -14.57,
-      glass: "H-LaF6L / lanthanum flint class (757/477)",
+      glass: "H-LaF6LA (CDGM catalog match; production glass unspecified)",
       role: "Central high-index negative member of the G3 triplet.",
       cemented: "T1",
     },

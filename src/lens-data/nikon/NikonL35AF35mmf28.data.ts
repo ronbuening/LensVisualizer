@@ -88,7 +88,7 @@ const LENS_DATA = {
       nd: 1.68893,
       vd: 31.1,
       fl: -12.9,
-      glass: "FD60 / S-TIM28 (1689/311)",
+      glass: "S-TIM28 (OHARA; exact 689311 coordinate match)",
       apd: false,
       role: "Strongly negative biconcave. High-dispersion flint for chromatic correction; dispersion bounded by condition (2) to avoid chromatic coma.",
     },

@@ -23,3 +23,12 @@ Patent: US 4,560,253, Example 2 / Table 2
 - The patent gives no per-surface clear apertures.
 - Existing SDs remain inferred visualization apertures. The front negative hybrid, rear positive group, stop placement, and compact f/4 zoom proportions remain consistent with the patent drawing, so no SD edits were made.
 
+## 2026-07-29 - `670571` catalog-equivalent review
+
+- Rechecked Table 2 L3/L4 at `nd = 1.67000`, `vd = 57.07`; both stored prescription rows remain unchanged.
+- Official OHARA all-products data publish discontinued S-LAL52 with coefficients at `nd = 1.669999`,
+  `vd = 57.327972`, code `670573`.
+- Relabeled both unresolved `670571` annotations to
+  `S-LAL52 (OHARA catalog-equivalent to 670571; patent vendor unspecified)`. The exact d-line agreement
+  and `+0.258` Abbe difference justify the optical model, but not a supplier attribution.
+- Synchronized both element narratives and the glass table. No geometry, APD status, or semi-diameter changed.

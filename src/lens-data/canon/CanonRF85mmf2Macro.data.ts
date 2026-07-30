@@ -167,7 +167,7 @@ const LENS_DATA = {
       nd: 1.834,
       vd: 37.2,
       fl: -34.6,
-      glass: "S-LAH55 (OHARA)",
+      glass: "S-LAH60 (OHARA)",
       apd: false,
       role: "Strongest negative element in system. Equal-and-opposite radii (R = ±57.965) eliminate shape-dependent coma; functions primarily as Petzval corrector.",
     },

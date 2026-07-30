@@ -101,7 +101,7 @@ const LENS_DATA = {
       nd: 1.8515,
       vd: 40.78,
       fl: 62.4,
-      glass: "S-LAH85V (OHARA)",
+      glass: "L-LAH85V (OHARA catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "High-index lanthanum meniscus; strong positive power at rear of G1, prepares beam for G2.",
     },

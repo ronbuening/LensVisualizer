@@ -33,3 +33,9 @@ Patent: US 4,266,860, Second Embodiment / Claim 8
 ### Verification
 
 - Pending full Nikon batch verification.
+
+## 2026-07-30 - SUMITA KF8 coefficient recovery
+
+- SUMITA's discontinued-inclusive all-glass catalog publishes KF8 at code `511509`, nd = 1.51118, νd = 50.9.
+- Relabeled L7 from an explicit unmatched light-crown annotation to an exact KF8 catalog equivalent; the production supplier remains unspecified.
+- The other unresolved rows and all prescription geometry remain unchanged.

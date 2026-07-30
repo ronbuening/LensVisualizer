@@ -70,11 +70,11 @@ The $n_d/\nu_d$ pair (1.80100/35.0) is a coefficient-backed match to OHARA S-LAM
 
 ### L5 — Biconcave Negative (Element 5, Sub-group 20R, cemented with L6)
 
-$n_d = 1.51742$, $\nu_d = 52.4$. Glass: S-NSL3 (OHARA) — normal special low crown. $f = -24.3$ mm.
+$n_d = 1.51742$, $\nu_d = 52.4$. Glass: S-NSL36 (OHARA) — special low crown. $f = -24.3$ mm.
 
 L5 is the negative element of the first cemented doublet (D1) in sub-group 20R. Its biconcave shape ($R_1 = -43.1$ mm, $R_2 = +18.0$ mm) produces strong negative power. The relatively low refractive index ($n_d = 1.517$) and moderate Abbe number ($\nu_d = 52.4$) contrast sharply with its cemented partner L6. This combination — a low-index negative element cemented to a high-index positive element — is a classic achromatic configuration. In the doublet, L5 overcorrects chromatic aberration to balance L6's undercorrection, while the cemented interface ($R = +18.044$ mm) controls coma and spherical aberration.
 
-The $n_d/\nu_d$ pair (1.51742/52.4) matches OHARA S-NSL3 exactly. This glass sits in the low-index crown region of the glass map, consistent with its role as the dispersive-balancing partner to the high-index lanthanum crown L6.
+The $n_d/\nu_d$ pair (1.51742/52.4) matches OHARA S-NSL36. This glass sits in the low-index crown region of the glass map, consistent with its role as the dispersive-balancing partner to the high-index lanthanum crown L6.
 
 ### L6 — Biconvex Positive (Element 6, Sub-group 20R, cemented with L5)
 
@@ -98,9 +98,9 @@ The Petzval sum of the entire system is $\Sigma = 0.00319$ mm$^{-1}$, yielding a
 
 ### L8 — Biconvex Positive, 1× Asph (Element 8, Sub-group 20R, cemented with L7)
 
-$n_d = 1.72750$, $\nu_d = 40.3$. Glass: lanthanum flint, 728/403 code (vendor uncertain). $f = +29.4$ mm.
+$n_d = 1.72750$, $\nu_d = 40.3$. Glass: unmatched 728403 lanthanum flint (vendor uncertain). $f = +29.4$ mm.
 
-L8 is the positive partner in the second cemented doublet (D2) and carries the lens's only aspherical surface on its rear face (surface 14, labeled "14*" in the patent). The biconvex shape ($R_1 = +36.7$ mm, $R_2 = -48.5$ mm) is gently curved relative to L7's stronger surfaces. The glass code 728/403 falls in the lanthanum flint region; no exact match was found in current OHARA, HOYA, Schott, or Sumita catalogs, suggesting it may be a legacy or proprietary melt. The nearest catalog candidate is HOYA NBFD13 ($n_d = 1.72440$, $\nu_d = 40.8$), but with $\Delta n_d = 0.003$ this exceeds the threshold for a confident match. The $n_d/\nu_d$ pair is internally consistent across all three patent embodiments (Tables 1–3 all list $n_d = 1.72750$, $\nu_d = 40.3$ at this position).
+L8 is the positive partner in the second cemented doublet (D2) and carries the lens's only aspherical surface on its rear face (surface 14, labeled "14*" in the patent). The biconvex shape ($R_1 = +36.7$ mm, $R_2 = -48.5$ mm) is gently curved relative to L7's stronger surfaces. The glass code 728403 falls in the lanthanum flint region; no safe match was found in the expanded current and discontinued-inclusive first-party coefficient sources. The closest reviewed HOYA/OHARA rows, M-LAF81 and L-LAM69, are both $n_d = 1.73077$, $\nu_d = 40.50$, missing the patent index by $+0.00327$ and therefore falling outside the runtime's $\pm 0.003$ d-line guard. The $n_d/\nu_d$ pair is internally consistent across all three patent embodiments (Tables 1–3 all list $n_d = 1.72750$, $\nu_d = 40.3$ at this position), so the prescription remains unchanged and the annotation is explicitly unmatched.
 
 The aspherical surface on L8's rear face is the defining "AL" feature of the lens name ("AL" = aspherical lens). The patent describes this as a glass-molded aspherical surface, which Ricoh Imaging's product literature confirms. Because the aspherical surface is at the cemented doublet's rear — behind the stop and in converging light — it acts primarily as a distortion and field-curvature corrector. The patent's condition (6) specifically governs this surface's contribution to the distortion coefficient (see §Aspherical Surfaces below).
 
@@ -122,10 +122,10 @@ The prescription uses a palette of seven distinct glasses across nine elements, 
 | L2 | 1.76182 | 26.5 | S-TIH14 | OHARA | Dense titanium flint; front group achromatizer |
 | L3 | 1.61800 | 63.4 | S-PHM52 | OHARA | Phosphate crown; lateral color control |
 | L4 | 1.80100 | 35.0 | S-LAM66 | OHARA | Lanthanum medium-dispersion glass; main front positive |
-| L5 | 1.51742 | 52.4 | S-NSL3 | OHARA | Normal special low crown; D1 negative partner |
+| L5 | 1.51742 | 52.4 | S-NSL36 | OHARA | Special low crown; D1 negative partner |
 | L6 | 1.80400 | 46.6 | S-LAH65 | OHARA | Lanthanum crown; D1 positive, strongest element |
 | L7 | 1.84666 | 23.8 | S-TIH53 | OHARA | Extra-dense titanium flint; Petzval corrector |
-| L8 | 1.72750 | 40.3 | 728/403 (uncertain) | — | Lanthanum flint; D2 positive, carries asphere |
+| L8 | 1.72750 | 40.3 | Unmatched 728403 | — | Lanthanum flint; D2 positive, carries asphere |
 | L9 | 1.77250 | 49.6 | S-LAH66 | OHARA | Lanthanum crown; rear field element |
 
 The chromatic correction strategy pairs high-dispersion elements (L2 at $\nu_d = 26.5$, L7 at $\nu_d = 23.8$) against low-dispersion positives. L3's phosphate crown ($\nu_d = 63.4$) in the negative front group is the highest-Abbe-number glass in the prescription and controls lateral color across the wide field — a correction that would normally require the glass to be in a positive element but which, in the diverging front group of a retrofocus design, can be achieved through a negative element at a position where chief-ray heights are large. S-PHM52 has a small positive anomalous partial dispersion ($\Delta P_{gF} = +0.005$), well below the threshold for ED classification but useful at the margin for secondary-spectrum control.

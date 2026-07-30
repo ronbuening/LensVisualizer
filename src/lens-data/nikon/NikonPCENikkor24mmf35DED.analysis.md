@@ -77,7 +77,7 @@ Standalone element focal lengths: glass body f ≈ −55.5 mm; resin layer f ≈
 
 **L12 — Negative Meniscus** (Surfaces 4–5)
 
-A high-index lanthanum glass (nd = 1.8010, νd = 34.96; S-LAH63) meniscus, convex to the object. This is the second aplanatic surface in the cascade, continuing the gradual inward bending of off-axis beams. Its relatively high dispersion (νd ≈ 35) is intentional: the negative power combined with higher dispersion contributes a chromatic correction term that partially offsets the axial color introduced by the positive elements downstream.
+A high-index lanthanum glass (nd = 1.8010, νd = 34.96; Hikari J-LAF016) meniscus, convex to the object. This is the second aplanatic surface in the cascade, continuing the gradual inward bending of off-axis beams. Its relatively high dispersion (νd ≈ 35) is intentional: the negative power combined with higher dispersion contributes a chromatic correction term that partially offsets the axial color introduced by the positive elements downstream.
 
 Standalone element focal length: f ≈ −57.3 mm.
 
@@ -199,7 +199,7 @@ The design uses 9 distinct glass types (plus the UV-cure resin), with three elem
 |-----------|------|------|:------:|---------------|:----------:|
 | L11, L18 | 1.80400 | 46.58 | 804/466 | OHARA S-LAH58 | Exact |
 | L11r, L13r (resin) | 1.55389 | 38.09 | 554/381 | UV-cure resin | — |
-| L12 | 1.80100 | 34.96 | 801/350 | OHARA S-LAH63 | Exact (Δνd = 0.01) |
+| L12 | 1.80100 | 34.96 | 801349 | Hikari J-LAF016 | Exact |
 | L13 glass | 1.58313 | 59.38 | 583/594 | OHARA S-BAL42 | Exact |
 | L14 | 1.58144 | 40.75 | 581/408 | OHARA S-TIH14 | Exact |
 | L15, L21, L23 | 1.49700 | 81.61 | 497/816 | OHARA S-FPL51 | Exact (ED) |
@@ -268,7 +268,7 @@ All estimated SDs were validated against edge thickness (minimum 0.18 mm for res
 
 The computed Petzval sum is **+0.00389 mm⁻¹**, yielding a Petzval radius of approximately **257 mm**. This is a relatively well-controlled value for a retrofocus wide-angle, reflecting the careful balance between the negative front subgroup and the positive rear groups. For context, the diagonal half-image-height on an FX sensor is approximately 21.6 mm; the Petzval sag at the image corner is about 0.91 mm — a moderate value that the design's astigmatism correction is expected to balance.
 
-Retrofocus designs inherently tend toward inward-curving (positive Petzval) fields because the net positive power is concentrated toward the rear. The three ED elements (all with low refractive index, nd ≈ 1.497) contribute disproportionately to the Petzval sum because each surface's Petzval contribution scales as φ/(n·n'), and lower-index media amplify this ratio. This is a known tradeoff of fluorophosphate ED glasses, and the designer has compensated with the high-index glasses elsewhere (S-LAH58, S-LAH60, S-LAH63) whose large n values suppress their Petzval contributions.
+Retrofocus designs inherently tend toward inward-curving (positive Petzval) fields because the net positive power is concentrated toward the rear. The three ED elements (all with low refractive index, nd ≈ 1.497) contribute disproportionately to the Petzval sum because each surface's Petzval contribution scales as φ/(n·n'), and lower-index media amplify this ratio. This is a known tradeoff of fluorophosphate ED glasses, and the designer has compensated with high-index glasses elsewhere, including J-LAF016 and the S-LAH family, whose large n values suppress their Petzval contributions.
 
 ---
 
@@ -305,7 +305,7 @@ While the patent itself describes a generic wide-angle lens design without expli
 | Element | f (mm) | Glass | Primary Role |
 |---------|-------:|-------|--------------|
 | L11 | −39.9 | S-LAH58 + resin | Front aplanatic meniscus; aspherical distortion control |
-| L12 | −57.3 | S-LAH63 | Second aplanatic meniscus; chromatic balance (high dispersion) |
+| L12 | −57.3 | J-LAF016 | Second aplanatic meniscus; chromatic balance (high dispersion) |
 | L13 | −114.7 | S-BAL42 + resin | Third aplanatic meniscus; aspherical field correction |
 | L14 | +37.8 | S-TIH14 | Positive power; partial beam convergence |
 | L15 | −32.8 | S-FPL51 (ED) | ED negative; axial/lateral color + APD correction |

@@ -51,7 +51,7 @@ The patent's design argument is that the long-conjugate-side negative menisci $N
 
 ### L2 — Positive Meniscus, concave toward object (Group II / B)
 
-nd = 1.66446, νd = 35.84. Glass: BASF2 / N-BASF2 class (Schott, catalog-near equivalent). f = +189.54 mm.
+nd = 1.66446, νd = 35.84. Glass: HIKARI J-BASF2 catalog equivalent; production supplier unspecified. f = +189.54 mm.
 
 L2 is a thick, weak positive meniscus. Its normalized standalone power is very small; its main function is not simple image formation but relaxation of the front-group ray geometry. Together, L1 and L2 form a weakly diverging front group with a verified combined focal length of -80.81 mm at the 28.8 mm scale.
 
@@ -83,7 +83,7 @@ The doublet L4a/L4b has a verified in-situ group focal length of +38.24 mm when 
 
 ### L4c — Biconvex Positive, air-spaced singlet in Group A
 
-nd = 1.72000, νd = 50.42. Glass: LAK10 / N-LAK10 class (Schott, catalog-near equivalent). f = +45.29 mm.
+nd = 1.72000, νd = 50.42. Glass: HOYA LAC10 catalog equivalent; production supplier unspecified. f = +45.29 mm.
 
 L4c is an air-spaced positive collector behind the cemented doublet. Its front surface is relatively weak and its rear surface is more strongly curved, placing useful positive power immediately before the central stop space.
 
@@ -120,10 +120,10 @@ The patent gives refractive index and Abbe number values but does not print Scho
 | Element | Patent nd | Patent νd | Catalog-near glass label | Optical use |
 |---|---:|---:|---|---|
 | L1 | 1.63854 | 55.38 | SK18A / N-SK18 class | relaxed front negative meniscus |
-| L2 | 1.66446 | 35.84 | BASF2 / N-BASF2 class | weak thick front collector |
+| L2 | 1.66446 | 35.84 | HIKARI J-BASF2 equivalent | weak thick front collector |
 | L3, L4a | 1.74400 | 44.77 | LAF2 / N-LAF2 class | negative meniscus plus strong positive doublet member |
 | L4b | 1.60562 | 43.92 | BAF4 / N-BAF4 class | negative cemented partner |
-| L4c | 1.72000 | 50.42 | LAK10 / N-LAK10 class | pre-stop positive collector |
+| L4c | 1.72000 | 50.42 | HOYA LAC10 equivalent | pre-stop positive collector |
 | L5 | 1.80518 | 25.43 | SF6 legacy | strong dense-flint post-stop negative |
 | L6 | 1.71300 | 53.85 | LAK8 / N-LAK8 class | rear positive meniscus |
 | L7 | 1.78831 | 47.37 | LAF21 / N-LAF21 class | final positive meniscus |
@@ -198,4 +198,4 @@ Because the patent does not publish clear apertures, the semi-diameters in the d
 - DE 2359156 A1, "Lichtstarkes photographisches Objektiv mit großem Bildwinkel," Erhard Glatzel / Carl Zeiss, filed 28 November 1973, published 12 June 1975. Primary source for the prescription, figures, conditional expressions, and aspherical-family discussion.
 - Carl Zeiss, "Distagon T* f/2 - 28 mm," Contax/Yashica data sheet, Cat. No. 10 48 43. Source for production focal length, image format, angular field, and 9-element / 8-group production data.
 - Yashica / Carl Zeiss, "Interchangeable Carl Zeiss T* Lenses," historical Contax/Yashica lens literature. Source for the production 9-element / 8-group listing, close-range floating correction, 74° angular field, 0.24 m minimum focus, f/2-f/22 aperture range, 55 mm filter thread, dimensions, and weight.
-- SCHOTT optical glass catalog data for N-SK18, N-BASF2, N-LAF2, N-BAF4, N-LAK10, SF6, N-LAK8, and N-LAF21 families. Used only as catalog-near glass identification support; patent nd and νd values remain authoritative in the data file.
+- SCHOTT, HIKARI, and HOYA optical-glass catalog data for the coordinate-compatible families listed above. These rows provide dispersion models only; the patent nd and νd values remain authoritative and the production suppliers are not established.

@@ -64,7 +64,7 @@ The positive element is a flint rather than the crown member of a conventional a
 
 ### L4 — Biconcave Negative, rear member of first cemented doublet
 
-nd = 1.51454, νd = 54.62. Glass: legacy 515/546 crown/light-flint class; exact Nikon/Hikari melt not identified. f = −38.2 mm.
+nd = 1.51454, νd = 54.62. Glass: KF3 (SUMITA catalog equivalent for the patent coordinate; production supplier unspecified). f = −38.2 mm.
 
 L4 completes the positive meniscus doublet in front of the stop. The cemented surface r6 is negative and has $|r_6| = 1.5278f$, satisfying the patent condition $\infty > |r_6| \ge 0.5f$.
 
@@ -113,7 +113,7 @@ The patent gives only nd and νd values, not manufacturer glass names. Nikon's g
 | L1 | 1.71300 / 53.9 | S-LAL8 / N-LAK8-class lanthanum crown | confident class match |
 | L2 | 1.51680 / 64.2 | N-BK7-class borosilicate crown | confident class match |
 | L3 | 1.66755 / 41.9 | Hikari J-BASF6 / BaSF6-class dense barium flint | close catalog match |
-| L4 | 1.51454 / 54.62 | legacy 515/546 crown or light-flint class | exact melt uncertain |
+| L4 | 1.51454 / 54.62 | KF3 (SUMITA catalog equivalent) | coefficient-backed optical equivalent; production melt uncertain |
 | L5 | 1.78470 / 26.1 | Schott SF56A-class dense flint | close catalog match |
 | L6 | 1.74443 / 49.4 | legacy 744/494 lanthanum flint | exact melt uncertain |
 | L7 | 1.76684 / 46.2 | legacy 767/462 dense lanthanum flint | exact melt uncertain |

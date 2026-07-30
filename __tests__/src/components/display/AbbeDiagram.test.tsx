@@ -60,4 +60,15 @@ describe("AbbeDiagram", () => {
     render(<AbbeDiagram L={lensWithGlassMap()} t={themes.dark} showGlassType={true} onToggleGlassType={vi.fn()} />);
     expect(screen.getByText("Dense flint").getAttribute("text-anchor")).toBe("end");
   });
+
+  it("labels a native e-line glass map with e-line axes", () => {
+    const baseLens = lensWithGlassMap();
+    const lens = {
+      ...baseLens,
+      elements: baseLens.elements.map((element) => ({ ...element, indexReference: "e" as const })),
+    } as RuntimeLens;
+    render(<AbbeDiagram L={lens} t={themes.dark} showGlassType={true} onToggleGlassType={vi.fn()} />);
+    expect(screen.getByText("Abbe number Ve \u2192")).toBeTruthy();
+    expect(screen.getByText("Refractive index Ne")).toBeTruthy();
+  });
 });

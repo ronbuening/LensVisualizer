@@ -7,7 +7,205 @@ available, it falls back to partial measured `nC`/`nF` line indices, dPgF-correc
 approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **407 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **442 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+
+The July 30, 2026 Phase 69 pass corrected the opportunity reports' review and material semantics. Explicit
+`Unmatched`, `Unknown`, `Proprietary`, and `Unidentified` annotations now count as self-recording review
+dispositions, closing the 52 rows that previously appeared as recordkeeping-only follow-ups despite already
+containing their disposition in lens data. The 260-row six-digit missing-Sellmeier inventory now reports zero active
+unreviewed rows, 113 explicit dispositions, and zero dispositions without a review record. Near-complete visible
+lenses are also split into true glass opportunities and non-glass or mixed-material gaps, with resin, cement, plastic,
+and other optical media labeled per surface. The resulting queue contains 85 glass-only lenses and 40 non-glass or
+mixed-material lenses. Optical coverage is unchanged at 4715/5360 strict and 4725/5360 trusted.
+
+The July 30, 2026 Phase 68 pass closed the named-token opportunity queue. Eight first-party rows were added:
+Hikari J-LAF04; OHARA S-BAL50; HOYA FCD600 and NBFD26; and CDGM H-BaF6, H-K9L, H-ZF1, and H-LaF6LA.
+Forty-one element annotations were then checked against their stored coordinates. Compatible rows received explicit
+catalog-equivalent labels with the production supplier unspecified; incompatible names were replaced by safer
+equivalents or explicit unmatched dispositions. The named-token queue fell from 41 distinct tokens to zero, strict
+coverage rose to 4715/5360 surfaces, trusted coverage rose to 4725/5360, and fully covered lens counts rose to
+235 strict / 239 trusted.
+
+The July 30, 2026 Phase 67 pass audited five unresolved OHARA-style names whose official catalog coordinates do not
+match the patent rows. Rendered or primary-text prescription checks confirmed six elements across Sony, Hasselblad,
+Panasonic, and Nikon. Existing coefficient-backed equivalents safely cover every row: L-LAH85V for two Sony
+`1.85659 / 40.1` elements, E-FD8 for Hasselblad `1.68863 / 31.2`, M-TAF1 for Panasonic `1.77074 / 49.5`,
+M-BACD12 for Panasonic `1.58313 / 59.5`, and M-TAF401 for Nikon `1.77503 / 47.3`. Each label now states that the
+production supplier is unspecified. Strict/trusted coverage rose to 4676/4688 surfaces, fully covered lens counts rose
+to 228/233, and the named-token queue fell to 41 elements across 41 distinct tokens.
+
+The July 30, 2026 Phase 66 pass cleared the final active six-digit source blocker. A rendered primary scan of
+US 4,025,167 Embodiment 2 confirms Olympus 85-250mm L4/L7 at `1.56873 / 63.2` and L10 at `1.49831 / 65.0`.
+OHARA's official 2026-07-01 all-products AGF retains exact discontinued BAL22 (`569632`) and BSL3 (`498650`)
+formula-3 rows. Both polynomials were added and applied as catalog equivalents with production supplier unspecified.
+The lens is now 15/15 strict and trusted; global coverage rose to 4670/4682 surfaces, fully covered lens counts rose
+to 227/232, and the prioritized six-digit source-review queue is empty.
+
+The July 30, 2026 Phase 65 pass rendered US 5,734,508 Working Example 1 / Table 1 and confirmed Nikon AF 24-120mm
+L3R3 at `1.83400 / 37.4`. Legacy HOYA NBFD10 (`1.83400 / 37.34`) is the closest coefficient-backed row; SUMITA
+K-LaSFn14 and OHARA S-LAH60 independently confirm the same family. L3R3 now uses NBFD10 as a catalog equivalent
+with production supplier unspecified. Strict/trusted coverage rose to 4667/4679 surfaces, and the active
+source-review queue now contains only three Olympus elements across two code families.
+
+The July 30, 2026 Phase 64 pass rendered JP 2023-039817 A Example 2 / Table 6 and confirmed Sony FE 70-200mm GM II
+L41 under explicit d-line headings at `1.79191 / 25.7`. No first-party coefficient row is compatible at the d line.
+Hikari J-SF11's superficially matching `1.791929` value is its e-line index; its d-line index is `1.784720`, so
+substituting that curve would mix reference systems. L41 is now explicitly unmatched on the patent Abbe fallback.
+Coverage remains 4666/4678 strict/trusted surfaces, and the active source-review queue is four elements across three
+code families.
+
+The July 30, 2026 Phase 63 pass rendered WO 2021/200206 A1 Example 2 / Table 6 and confirmed Sony FE 12-24mm L22
+at `1.67764 / 32.2`. No first-party coefficient row lies inside the compatibility window; the SF5/N-SF5 family is
+about `0.0049` too low in d-line index. The unsupported Schott-family attribution was removed, leaving an explicit
+unmatched `678322` annotation on the patent Abbe fallback. Coverage remains 4666/4678 strict/trusted surfaces, and
+the active source-review queue is five elements across four code families.
+
+The July 30, 2026 Phase 62 pass confirmed Pentax HD DA* 11-18mm L14's `1.54732 / 46.0` coordinate in rendered
+US 2018/0164556 A1 Table 1. OHARA PBL1/S-TIL1, HOYA E-FEL1, Schott LLF1, and SUMITA LLF1 all publish the same
+coefficient-backed family near `1.54814 / 45.8–45.9`; their evaluated trace-line curves are materially
+interchangeable. L14 now uses the closest-Abbe HOYA E-FEL1 row as a catalog equivalent while leaving the production
+supplier unspecified. Coverage rose to 4666/4678 strict/trusted surfaces, and the active source-review queue is six
+elements across five code families.
+
+The July 30, 2026 Phase 61 pass rendered DE 1 228 820 B's sole claim table and confirmed Enna Lithagon 24mm L4 at
+`1.51895 / 57.3`. Because the patent publishes no supplier, catalog name, line index, or partial dispersion, nearby
+coefficient-backed OHARA, HOYA, and SUMITA crowns cannot be distinguished safely. The unsupported K4-family wording
+was replaced with an explicit unmatched `519573` crown annotation while preserving the patent Abbe fallback. The
+generated-report patent parser was also corrected for internally spaced legacy publication numbers. Coverage remains
+4665/4677 strict/trusted surfaces, and the active source-review queue is seven elements across six code families.
+
+The July 30, 2026 Phase 60 pass recovered SUMITA K-SKLD5(M), a molding-state coefficient row whose published
+`1.58606 / 61.0` coordinate safely reproduces both `586609` substrates in Pentax DA* 16-50mm Embodiment 6. The
+vendor polynomial round-trips to `1.586058 / 60.977`; its reused base-glass product code is deliberately omitted from
+the runtime entry so bare `589612` remains bound to its established coordinate. L32 and L44 now use explicit
+catalog-equivalent names with the production supplier unspecified. Strict/trusted coverage rose to 4665/4677 surfaces,
+and the active source-review queue fell to eight elements across seven code families.
+
+The July 30, 2026 Phase 59 pass cleared both Tier-A source reviews. Pentax FA 31mm code `728403` was rechecked across
+all three patent embodiments, and Sony Planar FE 50mm code `995293` was confirmed in a rendered Example 2 / Table 6.
+Neither has line-index or partial-dispersion data, and the nearest reviewed first-party coefficient rows miss the
+runtime d-line index guard. Both elements now carry explicit unmatched annotations; Sony's unsupported CDGM H-ZLaF92
+and composition claims were also removed. The active source-review queue is now 10 elements across eight code
+families, with no Tier-A rows remaining and both prescriptions preserving their patent Abbe fallbacks.
+
+The July 30, 2026 Phase 58 pass turned the remaining six-digit inventory into an execution queue instead of a
+frequency list dominated by already-reviewed rows. Of 267 code-only elements still missing Sellmeier data, 12 are
+active unreviewed rows, 52 already carry an explicit unmatched/unidentified disposition but lack a sidecar or
+companion-audit hit, and the other 203 have recorded reviews. The generated missing-Sellmeier report groups the 12
+active rows into 10 code families and ranks them A-E by visible-lens completion impact, near-complete impact, repeated
+surface reach, and local patent availability. Two A-tier codes have a local patent and could each complete one visible lens if a
+source-verified identity or measured line data is found; reviewed and explicitly disposed rows remain in the full
+inventory but cannot crowd those targets out of the active queue.
+
+The July 30, 2026 Phase 57 pass added genuine native e-line compatibility. Catalog coefficients are evaluated at
+C′/e/F′ for `indexReference: "e"` rows, while six-digit codes stay d-line-only and explicit `Unmatched` annotations
+remain closed. Sixteen of 75 protected e-line surfaces now use name-verified catalog Sellmeier curves across Leica,
+Nikon, and Rodenstock prescriptions. The physical chromatic trace still evaluates those curves at the shared C/d/F/g
+wavelengths; unmatched e-line fallbacks continue to retain authored ne in their reference channel. Coverage is now
+4663 / 5360 strict (87.0%) and 4675 / 5360 trusted (87.2%), with 226 fully strict and 231 fully trusted lenses.
+
+The July 30, 2026 Phase 56 pass added three first-party rows: Hikari J-BAF3 from the 2023 optical-glass catalog and
+CDGM H-ZF2/H-ZLaF75B from rendered vendor datasheets. The bare historical `BAF3` token now aliases to J-BAF3,
+while the established `673322` code-only precedence remains unchanged for cross-vendor compatibility. Fujifilm GF
+120mm L14 was corrected from the nonexistent S-LAH85V name to a compatible L-LAH85V catalog-equivalent annotation
+with the production supplier unspecified. Four surfaces gained strict/trusted dispersion, completing the Nikon AF
+20mm f/2.8D, Fujifilm GF 120mm, and Laowa 24mm Probe. Coverage is now 4647 / 5360 strict (86.7%) and 4659 /
+5360 trusted (86.9%), with 226 fully strict and 231 fully trusted lenses.
+
+The July 30, 2026 Phase 55 pass made reference-line compatibility explicit. `ElementData.indexReference` now records
+whether the historical `nd` / `vd` slots contain ordinary d-line coordinates or retained patent `ne` / `νe` values.
+The runtime resolver, mismatch/candidate scans, ambiguity report, consolidated opportunity report, and coverage report
+all exclude native e-line elements from the d-line catalog safety net; the element inspector and Abbe map also display
+the authored d/e reference. Seventy-five surfaces across twelve audited
+prescriptions are now protected structurally, including three verified rows in the otherwise mixed Sony FE 14mm
+table. This removed sixteen previously counted d-line Sellmeier substitutions without reducing the number of fully
+covered lenses. Honest coverage is 4643 / 5360 strict (86.6%) and 4655 / 5360 trusted (86.8%), with 223 fully strict
+and 228 fully trusted lenses.
+
+The July 30, 2026 Phase 54 pass recovered five compatible equivalents already present in the catalog. Nikon AF
+35-70mm f/2.8D L2/L3 now use discontinued OHARA S-LAL52: the row is inside the d-line coordinate window and
+reproduces the patent's independent g-line index within 0.00017. Canon EF 11-24mm E2/E3 now use OHARA S-BAL42
+and HOYA M-TAFD305 after the rendered patent confirmed d-line coordinates and matching prescription rows. Sigma
+85mm f/1.4 Art L9 now uses HOYA TAF3D, whose exact `1.80420 / 46.50` coordinate and computed PgF of 0.55724
+reproduce the patent's 0.5571 value; the prior TAF105 label referred to a different glass. All three lenses are now
+fully covered. Coverage is 4659 / 5360 strict (86.9%) and 4671 / 5360 trusted (87.1%), with 223 fully strict and
+228 fully trusted lenses.
+
+The July 30, 2026 Phase 53 pass added nine exact legacy SUMITA rows from the vendor's discontinued-inclusive
+all-glass catalog: BAK2, BK4, F4, KF8, BAK1, F3, BAF12, LAFN10, and K-LaSKn1. The new coefficient rows upgrade
+eleven surfaces across eight audited prescriptions, with Fujifilm XF 23mm f/1.4 R LM WR, Olympus Zuiko Auto-Zoom
+65-200mm f/4, and Olympus G.Zuiko Auto-W 21mm f/3.5 becoming fully covered. A pre-existing Pentax `BaK2-class`
+comparison was made explicitly unmatched because its distinct `544601` coordinate is outside the SUMITA BAK2
+safety window. Coverage is now 4654 / 5360 strict (86.8%) and 4666 / 5360 trusted (87.1%), with 220 fully strict
+and 225 fully trusted lenses.
+
+The July 30, 2026 Phase 52 pass recovered SUMITA BALK3, KF3, and LLF4 from the vendor's discontinued-inclusive
+all-glass AGF. Their coefficient rows resolve thirteen surfaces across the `518603`, `515546`, and `561453`
+coordinate families; independent line-index anchors also confirm BALK3 at the mercury-g line and LLF4 at the
+helium-e line. Four more surfaces now use safe catalog equivalents already in source: HOYA MC-TAF101-100 for Sony
+`770494`, OHARA S-LAM2 for Olympus `744447`, and OHARA S-LAL52 for two Nikon `670576` rows. Canon `534555`,
+Fujifilm `685309`, Nikon `902253`, Olympus `683447`, and Sony's e-line `856401` case were explicitly audited without
+forcing unsafe nearest neighbors. Coverage is now 4643 / 5360 strict (86.6%) and 4655 / 5360 trusted (86.8%), with
+217 fully strict and 222 fully trusted lenses.
+
+The July 30, 2026 Phase 51 pass added two first-party legacy rows: SUMITA SK3 from the vendor's discontinued-inclusive
+all-glass AGF and CDGM H-ZBaF4 from the vendor's June 2022 optical-glass datasheet. SK3 upgrades the matching
+Rodenstock Grandagon-N 75mm and 90mm elements, adding two strict Sellmeier surfaces and one net trusted surface
+because the 75mm row already carried measured C/F/g indices. H-ZBaF4 was deliberately not assigned to Canon's nearby
+`1.66565 / 35.6` glass: CDGM publishes `ΔPgF = +0.0042`, while the Canon patent gives approximately `-0.0026`.
+The Canon RF 20mm rows are now explicitly unmatched, and the RF 50mm code `666356` was also reviewed and rejected
+for the same sign conflict. Coverage is now 4626 / 5360 strict (86.3%) and 4639 / 5360 trusted (86.5%).
+
+The July 30, 2026 Phase 50 pass recovered four exact-coordinate catalog-equivalent groups already covered by the
+414-entry catalog. Nikon's `834373` rows now use HOYA NBFD10 or M-NBFD10 according to their exact patent
+coordinates; Laowa's two unsupported H-ZLaF4A supplier labels now use HOYA TAFD5F; and the Canon Serenar 28mm's
+historical F7 label now uses HOYA E-F8. Every annotation leaves the production supplier unspecified. The pass added
+four net strict and trusted surfaces because one Nikon code row was already resolving through duplicate-code matching,
+bringing coverage to 4624 / 5360 strict (86.3%) and 4638 / 5360 trusted (86.5%). The Nikon AF-S 200-500mm is now
+fully covered.
+
+The July 30, 2026 Phase 49 pass audited six recurring patent coordinate families. Existing catalog rows safely cover
+three of them: six Nikon `797454` elements now use Hikari J-LASF017, five Canon/Olympus `773497` elements use
+Schott N-LAF34, and three vintage Zeiss `672472` elements use Schott N-BAF10. Every relabel is explicitly a catalog
+equivalent with the production supplier unidentified. Olympus `504668`, Nikon `748523`, and Sony `961323` remain
+unmatched because their nearest public coefficient rows miss the d-line tolerance. The pass added fourteen strict and
+trusted surfaces, bringing coverage to 4620 / 5360 strict (86.2%) and 4634 / 5360 trusted (86.5%), without expanding
+the 414-entry catalog.
+
+The July 30, 2026 Phase 48 pass audited the unsafe `S-NPH7`, plain `H-LAF3`, and `H-LAK53A` annotations one row at a
+time. Six exact-coordinate rows now use existing coefficient-backed equivalents: TAFD40 (001255), S-LAH99
+(001291, also selected by patent partial dispersion), historical PBH21 (923209), N-LASF44 (804465), N-LAK33B
+(755523), and TAC8 (729547). The Sony `2.00009 / 16.5` and Nikon `1.82080 / 42.51` rows are explicitly unmatched
+because no public coefficient row reproduces their patent coordinates closely enough. Strict coverage rose from 4600
+to 4606 surfaces and trusted coverage from 4614 to 4620 without expanding the 414-entry catalog.
+
+The July 30, 2026 Phase 47 pass recovered four legacy-name elements through existing coefficient-backed catalog
+equivalents. Two historical Schott `SK18` rows in the Canon Serenar 50mm f/1.8 now use SUMITA K-SK18, and two
+`F8`-coordinate rows use HOYA E-F8. Each annotation leaves the patent supplier unspecified. The Nikon Ultra-Micro
+29.5mm's e-line F8-class row was explicitly marked unmatched so a d-line catalog model cannot be applied accidentally.
+
+The July 29, 2026 Phase 46 pass audited the three highest-frequency remaining six-digit families. Ten Minolta
+`670571` elements now use discontinued OHARA S-LAL52 as a coefficient-backed catalog equivalent: the official
+all-products row has the same d-line index (`1.669999` versus patent `1.67000`) and only `+0.258` higher Abbe number.
+The annotations explicitly leave the production supplier unspecified. Nikon `796409` (seven elements) and Minolta
+`493836` (six elements) remain unresolved after patent-row checks and searches of official OHARA, HOYA, Hikari, and
+Sumita coefficient data; neither family was forced to a nearest neighbor. Strict coverage increased from 4586 to
+4596 surfaces, trusted coverage from 4600 to 4610, and one additional lens became fully covered in each measure.
+
+The July 29, 2026 Phase 45 pass added seven direct vendor rows: Hikari J-BK7A; SUMITA K-LaFK50, K-BaSF5,
+K-PSKn2, K-SSK1, and K-SSK9; and CDGM D-K59. It also corrected the pre-existing OHARA S-BSL7 coefficients and
+six-digit code against OHARA's official 25-04 datasheet. Runtime matching now considers every name, alias, and
+duplicate-code candidate in an annotation and chooses only a coordinate-compatible row, with vendor context and
+coordinate residuals used to break ambiguity. Catalog validation now checks normal C/d/F/g index ordering, coefficient
+round trips for both nd and νd, and consistency between each six-digit code and its listed coordinates. Strict
+Sellmeier coverage increased from 4572 to 4581 surfaces, trusted coverage from 4588 to 4595 surfaces, fully strict
+lenses from 202 to 205, and fully trusted lenses from 208 to 210.
+
+The July 30, 2026 Phase 44 catalog addition recovered two exact discontinued OHARA rows from the vendor's official
+2026-07-01 all-products Zemax catalog. BAL22 (`569632`) supplies the two high-Abbe negative variator elements in
+Olympus's 85-250mm patent design, while BSL3 (`498650`) supplies its first relay positive. Both formula-3
+polynomials round-trip through `assertCatalogConsistent`; the annotations use them as optical equivalents without
+claiming Olympus's production supplier.
 
 The July 29, 2026 Phase 43 pass added 33 exact records from the official HOYA 2026-07-07 and OHARA 2026-07-01
 all-products Zemax catalogs. The HOYA additions are M-TAF101, TAC8, LAC14, M-BACD12, M-TAF105, M-TAF1, FD60,
@@ -35,8 +233,9 @@ The generated reports in [`generated/`](generated/) are the current work queues:
 - [catalog-mismatches.generated.md](generated/catalog-mismatches.generated.md) — labels that resolve to a catalog entry but disagree with stored `nd`; regenerate with `npm test -- catalogMismatchScan`.
 - [glass-relabel-candidates.generated.md](generated/glass-relabel-candidates.generated.md) — candidate relabel targets for mismatches; regenerate with `npm test -- glassRelabelCandidatesScan`.
 - [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md) — per-lens patent-audit work queue combining mismatches and candidates; regenerate with `npm test -- glassRelabelByLensScan`.
+- [glass-ambiguities.generated.md](generated/glass-ambiguities.generated.md) — every element annotation with multiple coordinate-compatible catalog rows, including the selected row and exact resolver tie-break; regenerate with `npm test -- glassAmbiguityScan`.
 - [six-digit-glass-codes.generated.md](generated/six-digit-glass-codes.generated.md) — lenses/elements whose `glass` annotation still has only a six-digit code rather than an actual glass type; regenerate with `npm test -- sixDigitGlassCodeScan`.
-- [six-digit-glass-codes-missing-sellmeier.generated.md](generated/six-digit-glass-codes-missing-sellmeier.generated.md) — code-only elements that do not reach trusted catalog Sellmeier data; regenerated by the same `sixDigitGlassCodeScan`.
+- [six-digit-glass-codes-missing-sellmeier.generated.md](generated/six-digit-glass-codes-missing-sellmeier.generated.md) — code-only elements that do not reach trusted catalog Sellmeier data, with an A-E impact-ranked active unreviewed queue that excludes sidecar hits and explicit dispositions; regenerated by the same `sixDigitGlassCodeScan`.
 - [sellmeier-coverage.generated.md](generated/sellmeier-coverage.generated.md) — completeness-ranked lens coverage using trusted chromatic coverage while retaining strict catalog Sellmeier counts; regenerate with `npm test -- sellmeierCoverageScan`.
 - [glass-coverage-opportunities.generated.md](generated/glass-coverage-opportunities.generated.md) — ranked three-sweep work queue that also records whether each relabel row has a matching untracked local patent PDF under `patents/`; regenerate with `npm test -- glassCoverageOpportunitiesScan`.
 
@@ -50,12 +249,15 @@ three files only from a checkout where `patents/` is populated; elsewhere the ch
 
 The first cut of the catalog had nine entries. Six were wrong: when the Sellmeier coefficients were validated against the listed `nd` at 587.5618 nm via `assertCatalogConsistent`, four diverged by 5e-3 to 2e-2 — well outside any reasonable transcription tolerance. The values came from memory and were unreliable.
 
-The conclusion drove the design: **every entry must round-trip through `assertCatalogConsistent` (tolerance 1e-4) before being committed.** This is enforced by the unit test `every entry's Sellmeier coefficients reproduce the listed nd within 1e-4` in [__tests__/src/optics/dispersion.test.ts](../__tests__/src/optics/dispersion.test.ts). A bad transcription fails CI.
+The conclusion drove the design: **every entry must round-trip through `assertCatalogConsistent` before being
+committed.** The validator requires normally ordered finite C/d/F/g indices, nd agreement within 1e-4, νd agreement
+within 0.15, and a six-digit code consistent with the listed nd/νd when one is present. These checks are enforced in
+[__tests__/src/optics/dispersion.test.ts](../__tests__/src/optics/dispersion.test.ts), so a bad transcription fails CI.
 
 ## Prioritized Glasses to Add
 
 This original priority table was derived from `glass:` declarations when the catalog was much smaller. Keep it as a
-historical prioritization aid; use the generated reports above for the current 296-lens queue. Asterisks mark entries
+historical prioritization aid; use the generated reports above for the current 488-lens queue. Asterisks mark entries
 already in the catalog.
 
 | Glass | Lens-element occurrences | Vendor | Notes |
@@ -392,7 +594,7 @@ This pass also corrected the S-LAH88 `code6` value from `916316` to `917316`, ma
 | ★ FK3 | Schott | 2 | Legacy fluor crown from Schott 2017 Zemax data |
 | ★ N-BALF5 | Schott | 2 | Barium light flint |
 
-`F7`, `SK7`, `SK18`, `H-LAF3`, and `H-ZLAF4A` remain unresolved after this pass because the checked public catalog sources did not provide an exact coefficient-backed row. `BSC3` remained unresolved at the time but was later routed to Hoya E-C3 in Phase 23. `TAFD35L` was added as an alias to the already-cataloged `TAFD35` 911/353 optical constants rather than duplicating an entry.
+`F7`, `SK7`, `SK18`, `H-LAF3`, and `H-ZLAF4A` remained unresolved after this historical pass because the checked public catalog sources did not provide an exact coefficient-backed row. Later per-lens work recovered `SK18` through a catalog equivalent and split the plain `H-LAF3` cases between one exact equivalent and one honest unmatched row. `BSC3` remained unresolved at the time but was later routed to Hoya E-C3 in Phase 23. `TAFD35L` was added as an alias to the already-cataloged `TAFD35` 911/353 optical constants rather than duplicating an entry.
 
 **Phase 13 additions** (May 2026 — next-five glass relabel audit; all entries round-trip through `assertCatalogConsistent`; sourced from refractiveindex.info mirrors of HOYA/Ohara Zemax data so patent-code rows can resolve to catalog glass instead of six-digit fallbacks):
 
@@ -545,7 +747,7 @@ Phase 9 deliberately left several high-frequency names unresolved because their 
 | ★ NBFD3 | Hoya | 8 | Added in Phase 10. Current annotations still span several nd/vd regions, so mismatch rows must be relabeled or marked unmatched per lens. |
 | ★ TAFD40 | Hoya | 3 | Added in Phase 7 as formula-3 polynomial |
 | S-TIF6 | Ohara | 2 | **Skip** — not in refractiveindex.info 2017 catalog |
-| S-NPH7 | Ohara | 6 | **Skip for direct add** — public Ohara tables list S-NPH7 as nd=1.77830/vd=23.91, but current annotations use high-index nd≈2.0 values; needs per-lens relabeling |
+| S-NPH7 | Ohara | 6 | **Skip for direct add** — public Ohara tables list S-NPH7 as nd=1.77830/vd=23.91, while the high-index annotations used unrelated coordinates; Phase 48 completed their per-lens relabel/unmatched audit |
 | N-SK18 | Schott | 2 | **Skip** — not in refractiveindex.info 2017 catalog |
 
 **Phase 4 additions not in the original table** (sourced from survey of 127 lens files, Apr 2026):
@@ -640,7 +842,9 @@ The 1e-4 round-trip test will catch any transcription error — never relax the 
    ```bash
    npm test -- dispersion.test.ts
    ```
-   The first test (`every entry's Sellmeier coefficients reproduce the listed nd within 1e-4`) fails immediately on a bad transcription, naming the offending glass and the diff. Tighten the value or fix the source — never relax the tolerance.
+   The catalog-integrity test fails immediately on invalid spectral ordering, an nd/νd coefficient round-trip error,
+   or a six-digit code that does not encode the listed coordinates. Fix the transcription or source — never relax the
+   tolerance to admit a bad row.
 
 6. **If the glass has a common informal alias** (`BSC7` for `S-BSL7`, `BK7` for `N-BK7`) add a structured entry to
    `ALIAS_RECORDS` in [src/optics/glassCatalogAliases.ts](../src/optics/glassCatalogAliases.ts), including the alias
@@ -666,6 +870,6 @@ The catalog never needs to be exhaustive. Diminishing returns kick in after the 
 
 1. The headline regression cases (Voigtländer APO-Lanthar 50/2, Leica APO 35/2 / 43/2) hit Sellmeier on every glass surface.
 2. `summarizeDispersionQuality(L)` returns `"sellmeier"` (not `"abbe"`) for the great majority of catalog lenses.
-3. Remaining unmatched glasses are genuinely proprietary (Sumita unidentified, "anomalous high-index flint" without a catalog name), or are catalog names used inconsistently across multiple nd/vd regions (notably NBFD3, TAFD25, and the current S-NPH7 annotations), or are absent from the rii.info 2017 archive — those should be resolved per lens or backfilled with patent-published `nC`/`nF`/`ng`.
+3. Remaining unmatched glasses are genuinely proprietary (Sumita unidentified, "anomalous high-index flint" without a catalog name), or are catalog names used inconsistently across multiple nd/vd regions (notably NBFD3 and TAFD25), or are absent from the rii.info 2017 archive — those should be resolved per lens or backfilled with patent-published `nC`/`nF`/`ng`.
 
 For per-lens audits that consume the catalog (relabeling, mismatch resolution, `dPgF`/line-index enrichment), follow [lens-patent-audit.md](lens-patent-audit.md).

@@ -139,7 +139,7 @@ to the image plane during the patent's close-focus sequence.
 
 ### L41 — Front positive singlet of G4
 
-**`nd = 1.67025`, `νd = 57.6`. Glass: 670576 — lanthanum crown class (catalog unresolved).
+**`nd = 1.67025`, `νd = 57.6`. Glass: S-LAL52 (OHARA catalog equivalent for patent 670576; production supplier unspecified).
 `f = +75.948 mm`.**
 
 L41 is a strongly curved positive meniscus and supplies the principal positive power at the entrance to the fixed relay.
@@ -198,7 +198,7 @@ optical constants.
 | 755276 — dense flint class | 1.75520 | 27.6 | L2b, L3b |
 | 581408 — light flint class | 1.58144 | 40.8 | L2c |
 | 589612 — crown class | 1.58913 | 61.2 | L22 |
-| 670576 — lanthanum crown class | 1.67025 | 57.6 | L41 |
+| S-LAL52 (OHARA catalog equivalent for patent 670576) | 1.67025 | 57.6 | L41 |
 | J-LAFH3 (HIKARI; 795287 match to patent 795286 class) | 1.79504 | 28.6 | L42 |
 | 797455 — dense lanthanum glass class | 1.79668 | 45.5 | L43 |
 | 583465 — barium flint class | 1.58267 | 46.5 | L44 |

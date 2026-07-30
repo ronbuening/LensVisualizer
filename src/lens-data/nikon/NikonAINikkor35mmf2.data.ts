@@ -97,7 +97,7 @@ const LENS_DATA = {
       nd: 1.51454,
       vd: 54.62,
       fl: -38.17,
-      glass: "Legacy 515/546 crown/light-flint class (exact melt uncertain)",
+      glass: "KF3 (SUMITA catalog equivalent for patent coordinate; production supplier unspecified)",
       apd: false,
       role: "Negative member of the pre-stop cemented doublet; r6 is the patent's outer-coma correction surface.",
       cemented: "D1",

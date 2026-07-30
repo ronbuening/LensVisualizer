@@ -181,7 +181,7 @@ const LENS_DATA = {
       nd: 1.68863,
       vd: 31.2,
       fl: -45.8,
-      glass: "L-BBH1 (OHARA)",
+      glass: "E-FD8 (HOYA catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "PGM aspherical field flattener; both surfaces aspherical. Satisfies condition (7): fG3n/f = −0.51.",
     },

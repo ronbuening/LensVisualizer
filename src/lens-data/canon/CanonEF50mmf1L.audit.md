@@ -19,7 +19,7 @@ Other glass annotations verified correct or not in catalog:
 - L4, L7, L9, L10: `S-LAH58 (OHARA)` (nd=1.883, vd=40.8) — catalog entry present, Sellmeier Δnd < 1e-5. No change.
 - L6: `S-TIH53 (OHARA)` (nd=1.84666, vd=23.9) — catalog entry present, Sellmeier Δnd < 1e-5. No change.
 - L8: `S-TIH6 (OHARA)` (nd=1.80518, vd=25.4) — catalog entry present, Sellmeier Δnd < 1e-5. No change.
-- L11: `S-BSL10 (OHARA)` (nd=1.55963, vd=61.2) — family identification plausible; S-BSL10 not in project catalog, falls back to Abbe approximation. Not flagged by mismatch scan.
+- L11: `S-BAL50 (OHARA catalog equivalent; production supplier unspecified)` (nd=1.55963, vd=61.2) — coefficient-backed 560612 row added in the named-token audit.
 
 ### Phase 2 — Retained-information audit
 
@@ -69,4 +69,4 @@ All passed. Catalog mismatch scan: canon-ef-50f10l surfaces 1 and 3 no longer ap
 
 ### Remaining disposition
 
-- L11 `S-BSL10 (OHARA)` remains outside current Sellmeier coverage and was not part of this relabel.
+- L11 now uses the coefficient-backed S-BAL50 catalog equivalent; the production supplier remains unspecified.

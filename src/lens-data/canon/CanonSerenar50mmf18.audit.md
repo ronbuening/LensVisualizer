@@ -35,3 +35,12 @@ Patent: US 2,681,594 C, Claim 3
 ### Analysis sync
 
 - Updated the L2 prose and glass summary to treat the row as a vintage 626/391 barium-dense-flint class, not a modern HOYA BAFD7 match.
+
+## 2026-07-30 — Historical SK18 catalog-equivalent recovery
+
+- Visually rechecked Claim 3 in local `patents/US2681594.pdf`; L5 and L6 are both `nd=1.6385`, `νd=55.5`.
+- Relabeled both historical Schott SK18 annotations to coefficient-backed SUMITA K-SK18, whose official
+  obsolete-inclusive row is `nd=1.63854`, `νd=55.5`, code `639555`.
+- Each annotation explicitly identifies K-SK18 as a catalog equivalent and leaves the patent glass supplier
+  unspecified.
+- Synchronized the element analysis and glass summary; no prescription geometry or authored optical constants changed.

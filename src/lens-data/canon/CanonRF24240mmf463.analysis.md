@@ -297,7 +297,7 @@ These nd ≈ 2.0 glasses are expensive specialty materials, but their use is jus
 | L17 | 1.49700 | 81.5 | S-FPL51 type | Fluorophosphate crown **(UD)** |
 | L18 | 1.80518 | 25.4 | S-TIH10 type | Heavy flint |
 | L19 | 1.63854 | 55.4 | S-BSM18 type | Barium crown |
-| L20 | 1.83481 | 42.7 | S-LAH60 type | Lanthanum dense flint |
+| L20 | 1.83481 | 42.7 | S-LAH55 (835427 coordinate match) | Lanthanum dense flint |
 | L21 | 1.84666 | 23.8 | S-TIH53 type | Heavy flint |
 
 *Note: Glass identifications are based on 6-digit nd/νd code matching against major catalogs. Canon may use proprietary melt equivalents; the catalog names here indicate the glass type and optical properties.*

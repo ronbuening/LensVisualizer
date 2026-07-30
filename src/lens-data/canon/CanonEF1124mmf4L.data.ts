@@ -81,7 +81,7 @@ const LENS_DATA = {
       nd: 1.58443,
       vd: 59.4,
       fl: -69.589879,
-      glass: "Unmatched (584/594 crown; nearest OHARA S-BAL42 has Δnd = -0.00130)",
+      glass: "S-BAL42 (OHARA catalog equivalent for patent coordinate; production supplier unspecified)",
       role: "Second negative meniscus; its object-side surface and the rear surface of E1 form the patent's negative air lens.",
     },
     {
@@ -92,7 +92,7 @@ const LENS_DATA = {
       nd: 1.85,
       vd: 40.3,
       fl: -110.004777,
-      glass: "Unmatched (850/403 high-index flint; nearest HOYA M-TAFD305 has Δnd = +0.00135, Δνd = -0.20)",
+      glass: "M-TAFD305 (HOYA catalog equivalent for patent coordinate; production supplier unspecified)",
       role: "Third consecutive negative meniscus; completes the patent's claimed front three-negative sequence.",
     },
     {

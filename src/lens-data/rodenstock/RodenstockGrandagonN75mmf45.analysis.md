@@ -73,8 +73,8 @@ The resulting front-triplet focal length is +50.9 mm in the d-line data model. T
 
 ### L5 + L6 + L7 — Rear Cemented Triplet
 
-`L5: nd = 1.58313, νd = 59.3. Glass: SK12 (Schott legacy dense crown). f = −27.0 mm.`
-`L6: nd = 1.60881, νd = 58.9. Glass: SK3 (Schott legacy dense crown). f = +13.2 mm.`
+`L5: nd = 1.58313, νd = 59.3. Glass: OHARA S-BAL42 catalog equivalent; production supplier unspecified. f = −27.0 mm.`
+`L6: nd = 1.60881, νd = 58.9. Glass: SK3 (SUMITA catalog equivalent; historical production supplier unspecified). f = +13.2 mm.`
 `L7: nd = 1.66672, νd = 48.4. Glass: BaF11 (Schott legacy barium flint). f = −49.3 mm.`
 
 The rear triplet is the image-side positive group. It has a net d-line focal length of +42.1 mm and is the stronger of the two cemented triplets. L6 is the strongest individual element in the lens and provides most of the group convergence.
@@ -99,12 +99,12 @@ The patent publishes e-line optical constants. The data file stores d-line value
 | L2 | 1.6776 / 31.97 | 1.67270 / 32.21 | SF5, Schott | High |
 | L3 | 1.6251 / 52.86 | 1.62229 / 53.27 | SSK2 / N-SSK2 class, Schott | High |
 | L4 | 1.5629 / 46.88 | ≈1.5600 / ≈47.1 | Unmatched short-flint / barium-crown boundary | Low |
-| L5 | 1.5855 / 59.19 | 1.58313 / 59.3 | SK12, Schott legacy | High |
-| L6 | 1.6113 / 58.65 | 1.60881 / 58.9 | SK3, Schott legacy | High |
+| L5 | 1.5855 / 59.19 | 1.58313 / 59.3 | S-BAL42, OHARA equivalent | High |
+| L6 | 1.6113 / 58.65 | 1.60881 / 58.9 | SK3, SUMITA catalog equivalent | High |
 | L7 | 1.6700 / 48.13 | 1.66672 / 48.4 | BaF11, Schott legacy | High |
 | L8 | 1.4891 / 70.22 | 1.48749 / 70.4 | FK5 / N-FK5 class, Schott | High |
 
-The design uses five crowns and three flints by Abbe-number classification. FK3, SSK2, SK12, SK3, and FK5 are the crowns. SF5, L4, and BaF11 are the flint-side glasses. The outer field lenses use the lowest-index glasses in the design, which gives negative Petzval contribution without requiring high-index lanthanum glass. This is consistent with the patent's stated requirement that no element exceed refractive index 1.7.
+The design uses five crowns and three flints by Abbe-number classification. L5 is modeled with the coordinate-compatible S-BAL42 curve. The outer field lenses use the lowest-index glasses in the design, which gives negative Petzval contribution without requiring high-index lanthanum glass.
 
 The e-line surface-by-surface Petzval sum is:
 
@@ -164,4 +164,4 @@ Rodenstock's published Grandagon-N line separated the f/4.5 eight-element lenses
 - Rodenstock Photo Optics / LINOS, *Lenses for Analog Professional Photography*, Grandagon-N data sheets and Focus-Mount table.
 - SCHOTT, *Optical Glass* catalog, 2003 edition, optical-constant conventions and current/legacy Schott glass positions.
 - SCHOTT, *Optical Glass Inquiry Glass Collection Datasheets*, 2019 edition, FK3 data sheet.
-- Sumita legacy optical-glass tables for Schott-type FK5, SF5, SK12, SK3, and BaF11 line indices.
+- SUMITA's official all-glass catalog for the SK3 dispersion polynomial and legacy optical-glass tables for the remaining Schott-type line indices.

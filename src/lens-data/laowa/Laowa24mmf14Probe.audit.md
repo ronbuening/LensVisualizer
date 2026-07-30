@@ -59,3 +59,22 @@ Patent: CN 210573001 U, Example 1
 
 - `npm run generate:glass-reports` — passed.
 - `npm run typecheck`, `npm run format:check`, `npm run lint`, `npm run test`, and `npm run build` — passed.
+
+## 2026-07-30 — TAFD5F catalog-equivalent recovery
+
+### Phase 1 — Glass correction
+
+- Rechecked CN 210573001 U Example 1 on rendered patent pages 8 and 10. L1 and L25 remain
+  `nd=1.83481`, `νd=42.72`; the patent does not name a production glass vendor.
+- Relabeled both unsupported `H-ZLaF4A (CDGM)` supplier claims to HOYA `TAFD5F` catalog equivalents. The
+  coefficient-backed TAFD5F row reproduces `1.83481 / 42.72` exactly; the annotations explicitly leave the
+  production supplier unspecified.
+- Updated the glass palette and both element narratives. No prescription geometry changed.
+
+## 2026-07-30 — CDGM datasheet recovery
+
+- Added the official CDGM H-ZLaF75B and H-ZF2 Sellmeier rows after checking their rendered datasheets.
+- Removed the tentative qualifier from P1's H-ZLaF75B annotation. The datasheet confirms nd = 1.90366; its
+  νd = 31.42 remains compatible with the patent's 31.31 value.
+- L24's exact 1.67270 / 32.17 H-ZF2 annotation now resolves directly to the CDGM coefficient row.
+- No prescription geometry changed.

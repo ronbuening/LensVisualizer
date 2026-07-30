@@ -55,7 +55,7 @@ L2 completes the positive collector pair. Together L1 and L2 have a paraxial gro
 
 ### L3 — Negative Meniscus, Convex to Object
 
-nd = 1.77250, νd = 49.7. Glass: LaSF dense lanthanum-flint patent class. f = -356.75 mm.
+nd = 1.77250, νd = 49.7. Glass: N-LAF34 catalog equivalent (Schott; patent code 773497, supplier not identified). f = -356.75 mm.
 
 L3 begins the negative Galilean diverger sub-group III. The patent's glass-class table assigns Example 4's G3 to LaSF, so this element should not be described as LaF even though its Abbe number is relatively high for a flint-family glass.
 
@@ -127,9 +127,9 @@ This doublet is the strongest explicit low-dispersion/flint pairing in the rear 
 
 ### L17 — Biconcave Negative
 
-nd = 1.53375, νd = 55.5. Glass: unmatched vintage crown code. f = -123.09 mm.
+nd = 1.53375, νd = 55.5. Glass: unmatched 534555 vintage crown; no first-party coefficient row found. f = -123.09 mm.
 
-L17 is a standalone negative field-correction element after the long 43.2 mm air gap. No current public glass catalog match was found close enough to justify a specific vendor label, so the data file records it as an unmatched crown-family glass.
+L17 is a standalone negative field-correction element after the long 43.2 mm air gap. A search of the available current and discontinued-inclusive first-party catalogs found no coefficient row close enough to justify a specific vendor label, so the data file preserves the unbroken 534555 code as an explicit unmatched crown-family glass.
 
 ### L18 + L19 — Final Cemented Doublet
 
@@ -146,7 +146,7 @@ The patent does not name modern vendor catalog glasses. The data file therefore 
 | Code | nd | νd | Elements | Data-file glass identification | Notes |
 |---|---:|---:|---|---|---|
 | 487/701 | 1.48749 | 70.1 | L1, L2, L12, L14 | FK fluorosilicate crown class | N-FK5 / S-FSL5-class pair; low-dispersion positive power |
-| 773/497 | 1.77250 | 49.7 | L3 | LaSF patent class | Patent table assigns G3 to LaSF in Example 4 |
+| 773/497 | 1.77250 | 49.7 | L3 | N-LAF34 catalog equivalent | Patent table assigns G3 to LaSF in Example 4; supplier not identified |
 | 806/409 | 1.80610 | 40.9 | L4 | LaSF / S-LAH53-class | Dense lanthanum-flint diverger |
 | 434/951 | 1.43387 | 95.1 | L5, L6 | CaF2 fluorite | Movable focusing group IV |
 | 516/641 | 1.51633 | 64.1 | L7 | BK7 / S-BSL7 class | Weak rear sub-group V |
@@ -156,7 +156,7 @@ The patent does not name modern vendor catalog glasses. The data file therefore 
 | 834/372 | 1.83400 | 37.2 | L13 | Dense lanthanum flint class | Compensator cemented partner |
 | 497/813 | 1.49700 | 81.3 | L15 | UD fluorophosphate crown class | Rear low-dispersion achromat component |
 | 596/392 | 1.59551 | 39.2 | L16 | Light flint / F8 class | Rear achromat partner |
-| 534/555 | 1.53375 | 55.5 | L17 | Unmatched crown glass | No specific catalog label asserted |
+| 534555 | 1.53375 | 55.5 | L17 | Explicit unmatched vintage crown | No first-party coefficient row found |
 | 800/422 | 1.79952 | 42.2 | L18 | Lanthanum flint class | Final doublet negative component |
 | 620/363 | 1.62004 | 36.3 | L19 | F2 flint class | Final doublet positive component |
 

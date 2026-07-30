@@ -9,7 +9,7 @@ Patent: US 3,975,089, Table I / Fig. 1
 - Reviewed local patent file `patents/US3975089.pdf` against `VivitarSeries13585mmf28.data.ts`.
 - Updated L2 to `531621 — BSM-type crown (no exact public catalog match)` so the six-digit patent code is explicit.
 - Updated L5 from a generic `LaSF5` label to `834373 — dense flint (M-NBFD10 catalog match; LaSF5/S-LAH60 class)`. The local 834373/M-NBFD10 row is a much closer Sellmeier match to the patent's 1.834 / 37.3 glass than the generic family name.
-- Updated L6 to `498651 — BK3-type borosilicate crown (no exact public catalog match)` so the patent row is preserved without implying a current catalog coefficient match.
+- L6 now uses OHARA BSL3 as the nearest coefficient-backed catalog equivalent for 1.49800 / 65.10; the production supplier remains unspecified.
 - Updated L11 to `639451 — BaSF52-type barium dense flint (no exact public catalog match)` so the six-digit patent code is explicit.
 
 ### Phase 2 — Prescription, SD, APD, and high-index review

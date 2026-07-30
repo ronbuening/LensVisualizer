@@ -104,7 +104,7 @@ const LENS_DATA = {
       nd: 1.910823,
       vd: 35.25,
       fl: -12.85,
-      glass: "S-NBH53 (OHARA)",
+      glass: "TAFD35 (HOYA catalog-equivalent; patent vendor unspecified)",
       role: "High-index diverging front element of the negative variator group G2.",
     },
     {

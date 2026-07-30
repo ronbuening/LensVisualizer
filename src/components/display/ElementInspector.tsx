@@ -114,6 +114,7 @@ function elementDispersionRows(info: ElementData, L: RuntimeLens): ElementDisper
 }
 
 export default function ElementInspector({ info, L, t, showChromatic, onOpenAsphericCompare }: ElementInspectorProps) {
+  const indexReference = info.indexReference ?? "d";
   const foldedSurfaceRows = surfaceIndexesForElement(info, L)
     .map((idx) => ({ surface: L.S[idx], summary: surfaceSummary(L.S[idx]) }))
     .filter((row): row is { surface: SurfaceData; summary: string } => Boolean(row.summary));
@@ -211,11 +212,14 @@ export default function ElementInspector({ info, L, t, showChromatic, onOpenAsph
       <div style={{ fontSize: 10.5, color: t.elemType, marginBottom: 5, transition: "color 0.3s" }}>{info.type}</div>
       <div style={INSPECTOR_GRID}>
         <div>
-          <span style={{ color: t.propLabel }}>nd = </span>
+          <span style={{ color: t.propLabel }}>n{indexReference} = </span>
           <span style={{ color: t.value }}>{info.nd}</span>
         </div>
         <div>
-          <span style={{ color: t.propLabel }}>{"\u03bd"}d = </span>
+          <span style={{ color: t.propLabel }}>
+            {"\u03bd"}
+            {indexReference} ={" "}
+          </span>
           <span style={{ color: t.value }}>{info.vd}</span>
         </div>
         <div>
@@ -276,17 +280,37 @@ export default function ElementInspector({ info, L, t, showChromatic, onOpenAsph
                 </span>
               </div>
               <div>
-                <span style={{ color: t.propLabel }}>nF{"\u2212"}nC = </span>
+                <span style={{ color: t.propLabel }}>
+                  {indexReference === "e" && row.quality !== "sellmeier" ? "nF′−nC′" : "nF−nC"} ={" "}
+                </span>
                 <span style={{ color: t.value }}>{(row.indices.B - row.indices.R).toFixed(5)}</span>
               </div>
               <div style={{ gridColumn: "1 / -1" }}>
                 {CHROMATIC_CHANNEL_ORDER.map((ch, idx) => {
                   const color =
                     ch === "R" ? t.rayChromR : ch === "G" ? t.rayChromG : ch === "B" ? t.rayChromB : t.rayChromV;
+                  const usesNativeELineChannels = indexReference === "e" && row.quality !== "sellmeier";
+                  const indexLabel = usesNativeELineChannels
+                    ? ch === "R"
+                      ? "nC′"
+                      : ch === "G"
+                        ? "n\u2091"
+                        : ch === "B"
+                          ? "nF′"
+                          : chromaticChannelIndexLabel(ch)
+                    : chromaticChannelIndexLabel(ch);
+                  const wavelengthLabel =
+                    usesNativeELineChannels && ch === "R"
+                      ? "Cadmium C′-line 643.8 nm"
+                      : usesNativeELineChannels && ch === "G"
+                        ? "Authored mercury e-line reference (546.1 nm)"
+                        : usesNativeELineChannels && ch === "B"
+                          ? "Cadmium F′-line 480.0 nm"
+                          : CHROMATIC_CHANNEL_METADATA[ch].wavelengthLabel;
                   return (
                     <span key={ch} style={{ marginLeft: idx === 0 ? 0 : 10, whiteSpace: "nowrap" }}>
-                      <span style={{ color: t.propLabel }}>{chromaticChannelIndexLabel(ch)} </span>
-                      <span style={{ color }} title={CHROMATIC_CHANNEL_METADATA[ch].wavelengthLabel}>
+                      <span style={{ color: t.propLabel }}>{indexLabel} </span>
+                      <span style={{ color }} title={wavelengthLabel}>
                         {row.indices[ch].toFixed(5)}
                       </span>
                     </span>

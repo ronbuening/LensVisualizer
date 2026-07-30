@@ -5,6 +5,49 @@
 import type { GlassEntry } from "../glassCatalogTypes.js";
 
 export const CDGM_GLASS_ENTRIES: readonly GlassEntry[] = [
+  /* Phase 45: first-party named-token audit additions. */
+  {
+    name: "H-BaF6",
+    vendor: "CDGM",
+    polynomial: [2.5324222, -0.0091374479, 0.018161344, 0.00046488999, -0.0000097702362, 0.0000024656267],
+    nd: 1.60801,
+    vd: 46.2,
+    code6: "608462",
+    source:
+      "CDGM Optical Glass Data Sheet, September 2021, H-BaF6 page 174; vendor formula-3 polynomial and d-code 608462.",
+  },
+  {
+    name: "H-K9L",
+    vendor: "CDGM",
+    B: [0.614555251, 0.656775017, 1.02699346],
+    C: [0.0145987884, 0.00287769588, 107.653051],
+    nd: 1.5168,
+    vd: 64.2,
+    code6: "517642",
+    source:
+      "CDGM Optical Glass Data Sheet, September 2021, H-K9L page 74; vendor Sellmeier constants K1-L3 and d-code 517642.",
+  },
+  {
+    name: "H-ZF1",
+    vendor: "CDGM",
+    polynomial: [2.636187, -0.0097034146, 0.025550262, 0.0010061041, -0.000042521904, 0.0000090637539],
+    nd: 1.64769,
+    vd: 33.84,
+    code6: "648338",
+    source:
+      "CDGM Optical Glass Data Sheet, September 2021, H-ZF1 page 190; vendor formula-3 polynomial and d-code 648338.",
+  },
+  {
+    name: "H-LaF6LA",
+    vendor: "CDGM",
+    B: [1.12023521, 0.897573526, 1.3665486],
+    C: [0.00335766705, 0.0227710735, 92.0376324],
+    nd: 1.757,
+    vd: 47.71,
+    code6: "757477",
+    source:
+      "CDGM Optical Glass Data Sheet, September 2021, H-LaF6LA page 245; vendor Sellmeier constants K1-L3 and d-code 757477.",
+  },
   {
     name: "H-ZF88",
     vendor: "CDGM",
@@ -48,6 +91,29 @@ export const CDGM_GLASS_ENTRIES: readonly GlassEntry[] = [
     PgF: 0.5955,
     code6: "667331",
     source: "CDGM H-ZF39 public datasheet, 2026 access; Sellmeier constants K1-L3, d-code 667331.",
+  },
+  {
+    name: "H-ZF2",
+    vendor: "CDGM",
+    B: [0.16764338, 1.54335076, 1.17313123],
+    C: [0.0605177711, 0.0118524273, 113.6711],
+    nd: 1.6727,
+    vd: 32.17,
+    PgF: 0.5982,
+    code6: "673322",
+    source:
+      "CDGM Optical Glass Data Sheet, August 2021, H-ZF2 page 194; vendor Sellmeier-1 constants K1-L3 and d-code 673322.",
+  },
+  {
+    name: "H-ZLaF75B",
+    vendor: "CDGM",
+    B: [0.322804345, 2.16371144, 1.59867722],
+    C: [0.055262706, 0.0124574436, 108.245897],
+    nd: 1.90366,
+    vd: 31.42,
+    PgF: 0.5943,
+    code6: "904314",
+    source: "CDGM H-ZLaF75B public datasheet, September 2024; vendor Sellmeier-1 constants K1-L3 and d-code 904314.",
   },
   /* ────── Phase 12 high-frequency unresolved-token additions (May 2026) ──────
    * Direct coefficient-backed names from the unresolved-glass report. Entries
@@ -262,5 +328,29 @@ export const CDGM_GLASS_ENTRIES: readonly GlassEntry[] = [
     PgF: 0.5624,
     code6: "670472",
     source: "CDGM Zemax catalog 2022-06 via refractiveindex.info; H-ZBAF52 page.",
+  },
+  /* ────── Phase 45 Fujifilm GF 100–200mm coverage addition (July 2026) ────── */
+  {
+    name: "D-K59",
+    vendor: "CDGM",
+    B: [1.1209538, 0.152690608, 1.07502924],
+    C: [0.00657908073, 0.0235724778, 106.309977],
+    nd: 1.5176,
+    vd: 63.5,
+    PgF: 0.535,
+    code6: "518635",
+    source: "CDGM D-K59 public datasheet, 2026 access; Sellmeier constants K1-L3, d-code 518635.",
+  },
+  {
+    name: "H-ZBaF4",
+    vendor: "CDGM",
+    B: [0.151466661, 1.54020133, 1.18737385],
+    C: [0.0571831045, 0.0111587138, 120.128948],
+    nd: 1.66426,
+    vd: 35.48,
+    PgF: 0.5895,
+    code6: "664355",
+    source:
+      "CDGM Optical Glass Data Sheet, June 2022, H-ZBaF4 page 183; vendor Sellmeier-1 constants K1-L3 and d-code 664355.",
   },
 ];

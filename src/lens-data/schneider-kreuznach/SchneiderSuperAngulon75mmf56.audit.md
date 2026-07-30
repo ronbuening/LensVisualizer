@@ -41,3 +41,8 @@ APD status remains `false` for all elements. The patent describes ordinary wide-
 - `npm run lint` - passed.
 - `npm run test` - passed.
 
+## 2026-07-30 SUMITA LLF4 coefficient recovery
+
+- SUMITA's discontinued-inclusive LLF4 vendor polynomial resolves L4 at the exact `1.56138 / 45.3` coordinate.
+- Relabeled L4 as an LLF4 optical equivalent while leaving Schneider's production supplier unspecified.
+- L6 (`614563`) remains unresolved; no prescription or semi-diameter values changed.

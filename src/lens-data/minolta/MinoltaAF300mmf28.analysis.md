@@ -85,11 +85,11 @@ L7 is cemented to L6 and supplies the opposing crown component of the L6+L7 pair
 
 ### L8 — Biconcave Negative Moving Singlet
 
-nd = 1.67000, νd = 57.07. Glass: `670571` high-index crown / lanthanum-crown class. f = −76.94 mm.
+nd = 1.67000, νd = 57.07. Glass model: coefficient-backed OHARA S-LAL52, a catalog-equivalent to patent code `670571`; the patent does not identify the supplier. f = −76.94 mm.
 
 L8 is the principal negative-power element of the moving II-2 subunit. It dominates the subunit's net focal length of −74.055 mm. Its rear surface is the strongest negative Petzval contributor in the system, with a surface-by-surface Petzval term of −0.00601 mm⁻¹.
 
-The glass has a high refractive index and moderate Abbe number, consistent with a high-index crown or lanthanum-crown class. No authoritative catalog identity has been verified.
+The glass has a high refractive index and moderate Abbe number, consistent with S-LAL52's lanthanum-crown family. S-LAL52 is used as a coefficient-backed optical model, not as a claim that OHARA supplied the production glass.
 
 ### L9 — Biconvex Positive, First Component of Final Doublet
 
@@ -114,7 +114,7 @@ The patent gives refractive index and Abbe number but no manufacturer glass name
 | 654339  |   1.65446 |     33.86 | Hikari SF9 public code match; production vendor not asserted  | L4, L10    |
 | 603/607 |   1.60311 |     60.74 | S-BSM14 class, close OHARA vintage match                      | L5, L7, L9 |
 | 717/294 |   1.71736 |     29.42 | S-TIH1 class, close OHARA vintage match                       | L6         |
-| 670571 |   1.67000 |     57.07 | High-index crown / lanthanum-crown class            | L8         |
+| 670571 |   1.67000 |     57.07 | S-LAL52 (OHARA catalog-equivalent; supplier unspecified)     | L8         |
 
 The two front positive glasses are the key chromatic correction elements. Minolta/Konica Minolta literature describes AD, or anomalous-dispersion, glass in this lens, but the patent does not publish partial-dispersion ratios, C/F/g-line indices, or ΔPgF values. The analysis therefore treats anomalous partial dispersion as a production-literature inference rather than a patent-quantified value.
 

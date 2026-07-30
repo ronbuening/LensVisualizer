@@ -69,6 +69,13 @@ describe("ElementInspector", () => {
     expect(screen.getByText("1.518")).toBeTruthy();
   });
 
+  it("labels native e-line element coordinates with the authored reference", () => {
+    const eLineElement: ElementData = { ...basicElement, indexReference: "e" };
+    render(<ElementInspector info={eLineElement} L={mockLens} t={mockTheme} showChromatic={false} />);
+    expect(screen.getByText("ne =")).toBeTruthy();
+    expect(screen.getByText("\u03bde =")).toBeTruthy();
+  });
+
   it("renders glass type", () => {
     render(<ElementInspector info={basicElement} L={mockLens} t={mockTheme} showChromatic={false} />);
     expect(screen.getByText("S-BSL7")).toBeTruthy();
@@ -146,6 +153,34 @@ describe("ElementInspector", () => {
     expect(screen.getByText("1.50000").getAttribute("title")).toBe("d-line 587.6 nm");
     expect(screen.getByText("1.51000").getAttribute("title")).toBe("F-line 486.1 nm");
     expect(screen.getByText("1.51500").getAttribute("title")).toBe("g-line 435.8 nm");
+  });
+
+  it("labels an e-line-compatible Sellmeier trace with physical C/d/F/g wavelengths", () => {
+    const chromaticLens = {
+      ...mockLens,
+      S: [{ label: "1", R: 100, d: 5, nd: 1.51872, sd: 10, elemId: basicElement.id }],
+      ES: [[basicElement.id, 0, 0] as [number, number, number]],
+      indexByIdx: {
+        0: {
+          quality: "sellmeier",
+          glassEntry: { name: "N-BK7" },
+          fn: (channel: ChromaticChannel) => ({ R: 1.51432, G: 1.5168, B: 1.52238, V: 1.52668 })[channel],
+        },
+      },
+    } as unknown as RuntimeLens;
+
+    render(
+      <ElementInspector
+        info={{ ...basicElement, nd: 1.51872, vd: 63.96, indexReference: "e", glass: "N-BK7" }}
+        L={chromaticLens}
+        t={mockTheme}
+        showChromatic={true}
+      />,
+    );
+
+    expect(screen.getByText("1.51432").getAttribute("title")).toBe("C-line 656.3 nm");
+    expect(screen.getByText("1.51680").getAttribute("title")).toBe("d-line 587.6 nm");
+    expect(screen.getByText("1.52238").getAttribute("title")).toBe("F-line 486.1 nm");
   });
 });
 

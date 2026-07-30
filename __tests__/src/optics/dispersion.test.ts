@@ -4,11 +4,15 @@ import {
   assessCatalogGlassCompatibility,
   assertCatalogConsistent,
   catalogSize,
+  evaluateCatalogAbbeNumber,
   evaluateSellmeier,
+  explainCompatibleGlassResolution,
   GLASS_ND_TOLERANCE,
   GLASS_VD_TOLERANCE,
   LINE_NM,
+  resolveCompatibleGlass,
   resolveGlass,
+  resolveGlassCandidates,
 } from "../../../src/optics/glassCatalog.js";
 import { ALIAS_RECORDS } from "../../../src/optics/glassCatalogAliases.js";
 import { DUPLICATE_CODE6_PRECEDENCE } from "../../../src/optics/glassCatalogData.js";
@@ -23,7 +27,7 @@ function build(raw: object): RuntimeLens {
 }
 
 describe("glass catalog", () => {
-  it("every entry's Sellmeier coefficients reproduce the listed nd within 1e-4", () => {
+  it("every entry reproduces its listed nd, vd, and code coordinate", () => {
     expect(() => assertCatalogConsistent(1e-4)).not.toThrow();
   });
 
@@ -70,6 +74,17 @@ describe("glass catalog", () => {
     expect(evaluateSellmeier(entry!, LINE_NM.g)).toBeCloseTo(1.89403, 5);
   });
 
+  it("S-BSL7 reproduces the published OHARA 25-04 line indices and Abbe number", () => {
+    const entry = resolveGlass("S-BSL7 (OHARA)");
+    expect(entry?.name).toBe("S-BSL7");
+    expect(entry?.code6).toBe("516641");
+    expect(evaluateSellmeier(entry!, LINE_NM.C)).toBeCloseTo(1.51386, 5);
+    expect(evaluateSellmeier(entry!, LINE_NM.d)).toBeCloseTo(1.51633, 5);
+    expect(evaluateSellmeier(entry!, LINE_NM.F)).toBeCloseTo(1.52191, 4);
+    expect(evaluateSellmeier(entry!, LINE_NM.g)).toBeCloseTo(1.52621, 5);
+    expect(evaluateCatalogAbbeNumber(entry!)).toBeCloseTo(64.14, 2);
+  });
+
   it("computed Abbe number for N-BK7 matches the catalog vd within 0.5", () => {
     const nbk7 = resolveGlass("N-BK7");
     expect(nbk7).not.toBeNull();
@@ -86,6 +101,35 @@ describe("glass catalog", () => {
     expect(assessCatalogGlassCompatibility(nbk7, 1.5168, 52.0).compatible).toBe(false);
   });
 
+  it("matches explicit e-line names at the C′/e/F′ coordinates", () => {
+    const nbk7 = resolveGlass("N-BK7")!;
+    expect(evaluateSellmeier(nbk7, LINE_NM.e)).toBeCloseTo(1.51872, 5);
+    expect(evaluateCatalogAbbeNumber(nbk7, "e")).toBeCloseTo(63.96, 2);
+
+    const compatibility = assessCatalogGlassCompatibility(nbk7, 1.51872, 63.96, "e");
+    expect(compatibility).toMatchObject({
+      compatible: true,
+      referenceLine: "e",
+    });
+    expect(compatibility.catalogIndex).toBeCloseTo(1.51872, 5);
+    expect(compatibility.abbeDiff).toBeCloseTo(0, 2);
+    expect(resolveCompatibleGlass("N-BK7", 1.51872, 63.96, "e")?.name).toBe("N-BK7");
+    expect(explainCompatibleGlassResolution("N-BK7", 1.51872, 63.96, "e")).toMatchObject({
+      selected: { name: "N-BK7" },
+      criterion: "only-compatible",
+    });
+  });
+
+  it("does not interpret d-line six-digit codes as e-line coordinates", () => {
+    expect(resolveCompatibleGlass("517642 — crown glass", 1.51872, 63.96, "e")).toBeNull();
+    expect(explainCompatibleGlassResolution("517642 — crown glass", 1.51872, 63.96, "e")).toMatchObject({
+      selected: null,
+      candidates: [],
+      criterion: "none",
+      reason: "No coordinate-compatible catalog candidate.",
+    });
+  });
+
   it("uses the tightened catalog compatibility window", () => {
     expect(GLASS_ND_TOLERANCE).toBe(0.003);
     expect(GLASS_VD_TOLERANCE).toBe(2);
@@ -95,7 +139,7 @@ describe("glass catalog", () => {
   });
 
   it("catalog has at least the verified seed entries", () => {
-    expect(catalogSize()).toBeGreaterThanOrEqual(407);
+    expect(catalogSize()).toBeGreaterThanOrEqual(414);
     expect(allEntries().some((e) => e.name === "N-BK7")).toBe(true);
     expect(allEntries().some((e) => e.name === "S-BSL7")).toBe(true);
     expect(allEntries().some((e) => e.name === "CaF2")).toBe(true);
@@ -143,6 +187,68 @@ describe("glass catalog", () => {
     expect(tafd45).not.toBeNull();
     expect(evaluateSellmeier(tafd45!, LINE_NM.d)).toBeCloseTo(1.95375, 5);
     expect(evaluateSellmeier(tafd45!, LINE_NM.C)).toBeLessThan(evaluateSellmeier(tafd45!, LINE_NM.F));
+  });
+
+  it.each([
+    { name: "K-LaFK50", code: "772500", nd: 1.772, vd: 50 },
+    { name: "K-BaSF5", code: "603425", nd: 1.60323, vd: 42.5 },
+    { name: "K-PSKn2", code: "618634", nd: 1.618, vd: 63.4 },
+    { name: "K-SSK1", code: "617540", nd: 1.6172, vd: 54 },
+    { name: "K-SSK9", code: "620498", nd: 1.62012, vd: 49.8 },
+    { name: "SK3", code: "609589", nd: 1.60881, vd: 58.9 },
+    { name: "BALK3", code: "518603", nd: 1.51835, vd: 60.3 },
+    { name: "KF3", code: "515546", nd: 1.51454, vd: 54.6 },
+    { name: "LLF4", code: "561453", nd: 1.56138, vd: 45.3 },
+    { name: "BAK2", code: "540597", nd: 1.53996, vd: 59.7 },
+    { name: "BK4", code: "500660", nd: 1.50048, vd: 66 },
+    { name: "F4", code: "617366", nd: 1.61659, vd: 36.6 },
+    { name: "KF8", code: "511509", nd: 1.51118, vd: 50.9 },
+    { name: "BAK1", code: "573575", nd: 1.5725, vd: 57.5 },
+    { name: "F3", code: "613369", nd: 1.61293, vd: 36.9 },
+    { name: "BAF12", code: "639450", nd: 1.6393, vd: 45 },
+    { name: "LAFN10", code: "720421", nd: 1.72016, vd: 42.1 },
+    { name: "K-LaSKn1", code: "755524", nd: 1.755, vd: 52.4 },
+  ])("reproduces SUMITA's official all-glass catalog row for $name", ({ name, code, nd, vd }) => {
+    const entry = resolveGlass(`${name} (SUMITA)`);
+    expect(entry?.name).toBe(name);
+    expect(entry?.code6).toBe(code);
+    expect(evaluateSellmeier(entry!, LINE_NM.d)).toBeCloseTo(nd, 4);
+    expect(evaluateCatalogAbbeNumber(entry!)).toBeCloseTo(vd, 0);
+  });
+
+  it("reproduces independent patent line-index anchors for the recovered SUMITA rows", () => {
+    const balk3 = resolveGlass("BALK3 (SUMITA)");
+    const llf4 = resolveGlass("LLF4 (SUMITA)");
+    expect(evaluateSellmeier(balk3!, LINE_NM.g)).toBeCloseTo(1.52897, 5);
+    expect(evaluateSellmeier(llf4!, 546.074)).toBeCloseTo(1.56433, 5);
+  });
+
+  it("reproduces CDGM's official D-K59 catalog row", () => {
+    const entry = resolveGlass("CDGM D-K59 (518635)");
+    expect(entry?.name).toBe("D-K59");
+    expect(entry?.code6).toBe("518635");
+    expect(evaluateSellmeier(entry!, LINE_NM.d)).toBeCloseTo(1.5176, 5);
+    expect(evaluateCatalogAbbeNumber(entry!)).toBeCloseTo(63.5, 1);
+  });
+
+  it("reproduces CDGM's official H-ZBaF4 datasheet row", () => {
+    const entry = resolveGlass("H-ZBaF4 (CDGM)");
+    expect(entry?.name).toBe("H-ZBaF4");
+    expect(entry?.code6).toBe("664355");
+    expect(resolveGlass("664355")?.name).toBe("H-ZBaF4");
+    expect(evaluateSellmeier(entry!, LINE_NM.C)).toBeCloseTo(1.65878, 5);
+    expect(evaluateSellmeier(entry!, LINE_NM.d)).toBeCloseTo(1.66426, 5);
+    expect(evaluateSellmeier(entry!, LINE_NM.F)).toBeCloseTo(1.6775, 5);
+    expect(evaluateSellmeier(entry!, LINE_NM.g)).toBeCloseTo(1.688535, 5);
+    expect(evaluateCatalogAbbeNumber(entry!)).toBeCloseTo(35.48, 2);
+  });
+
+  it("reproduces Hikari's official J-BK7A catalog row", () => {
+    const entry = resolveGlass("J-BK7A (HIKARI)");
+    expect(entry?.name).toBe("J-BK7A");
+    expect(entry?.code6).toBe("517641");
+    expect(evaluateSellmeier(entry!, LINE_NM.d)).toBeCloseTo(1.5168, 5);
+    expect(evaluateCatalogAbbeNumber(entry!)).toBeCloseTo(64.14, 1);
   });
 
   it("evaluates the historical OHARA glasses in the Canon EF 200mm f/1.8 patent", () => {
@@ -275,6 +381,34 @@ describe("glass catalog", () => {
     }
   });
 
+  it.each([
+    {
+      glass: "BAL22",
+      code: "569632",
+      nd: 1.568729,
+      vd: 63.162358,
+      nC: 1.5659707,
+      nF: 1.57497493,
+    },
+    {
+      glass: "BSL3",
+      code: "498650",
+      nd: 1.498308,
+      vd: 65.026785,
+      nC: 1.49594499,
+      nF: 1.50360811,
+    },
+  ])("reproduces OHARA's discontinued $glass row", ({ glass, code, nd, vd, nC, nF }) => {
+    const entry = resolveGlass(`${glass} (OHARA catalog equivalent)`);
+    expect(entry?.name).toBe(glass);
+    expect(entry?.code6).toBe(code);
+    expect(resolveGlass(code)?.name).toBe(glass);
+    expect(evaluateSellmeier(entry!, LINE_NM.C)).toBeCloseTo(nC, 6);
+    expect(evaluateSellmeier(entry!, LINE_NM.d)).toBeCloseTo(nd, 6);
+    expect(evaluateSellmeier(entry!, LINE_NM.F)).toBeCloseTo(nF, 6);
+    expect(evaluateCatalogAbbeNumber(entry!)).toBeCloseTo(vd, 5);
+  });
+
   it("evaluates the SUMITA K-LaK9 and K-LaK11 catalog polynomials", () => {
     const expected: Array<[glass: string, code: string, nd: number]> = [
       ["K-LaK9", "691548", 1.691],
@@ -392,6 +526,57 @@ describe("glass catalog", () => {
     expect(resolveGlass("625356")?.name).toBe("H-F6");
   });
 
+  it("evaluates the source-verified exact-name sweep entries", () => {
+    const expected = [
+      { glass: "J-BAF3", vendor: "Hikari", code: "583465", nd: 1.58267, vd: 46.48 },
+      { glass: "H-ZF2", vendor: "CDGM", code: "673322", nd: 1.6727, vd: 32.17 },
+      { glass: "H-ZLaF75B", vendor: "CDGM", code: "904314", nd: 1.90366, vd: 31.42 },
+    ] as const;
+    for (const datasheet of expected) {
+      const entry = resolveGlass(datasheet.glass);
+      expect(entry?.name).toBe(datasheet.glass);
+      expect(entry?.vendor).toBe(datasheet.vendor);
+      expect(entry?.code6).toBe(datasheet.code);
+      expect(evaluateSellmeier(entry!, LINE_NM.d)).toBeCloseTo(datasheet.nd, 5);
+      expect(evaluateCatalogAbbeNumber(entry!)).toBeCloseTo(datasheet.vd, 1);
+    }
+    expect(resolveGlass("BAF3")?.name).toBe("J-BAF3");
+  });
+
+  it("evaluates the first-party named-token audit entries", () => {
+    const expected = [
+      { glass: "J-LAF04", vendor: "Hikari", code: "757479", nd: 1.757, vd: 47.86 },
+      { glass: "S-BAL50", vendor: "Ohara", code: "560612", nd: 1.559625, vd: 61.172671 },
+      { glass: "FCD600", vendor: "Hoya", code: "594605", nd: 1.5941, vd: 60.47 },
+      { glass: "NBFD26", vendor: "Hoya", code: "834260", nd: 1.83401, vd: 25.97 },
+      { glass: "H-BaF6", vendor: "CDGM", code: "608462", nd: 1.60801, vd: 46.2 },
+      { glass: "H-K9L", vendor: "CDGM", code: "517642", nd: 1.5168, vd: 64.2 },
+      { glass: "H-ZF1", vendor: "CDGM", code: "648338", nd: 1.64769, vd: 33.84 },
+      { glass: "H-LaF6LA", vendor: "CDGM", code: "757477", nd: 1.757, vd: 47.71 },
+    ] as const;
+    for (const datasheet of expected) {
+      const entry = resolveGlass(datasheet.glass);
+      expect(entry?.name).toBe(datasheet.glass);
+      expect(entry?.vendor).toBe(datasheet.vendor);
+      expect(entry?.code6).toBe(datasheet.code);
+      expect(evaluateSellmeier(entry!, LINE_NM.d)).toBeCloseTo(datasheet.nd, 5);
+      expect(evaluateCatalogAbbeNumber(entry!)).toBeCloseTo(datasheet.vd, 1);
+    }
+    expect(resolveGlass("517642")?.name).toBe("N-BK7");
+    expect(resolveGlass("648338")?.name).toBe("S-TIM22");
+  });
+
+  it("evaluates the SUMITA K-SKLD5 molding-state catalog row", () => {
+    const entry = resolveGlass("K-SKLD5-M (SUMITA K-SKLD5(M) catalog equivalent)");
+    expect(entry?.name).toBe("K-SKLD5-M");
+    expect(entry?.vendor).toBe("Sumita");
+    expect(entry?.code6).toBeUndefined();
+    expect(evaluateSellmeier(entry!, LINE_NM.d)).toBeCloseTo(1.58606, 5);
+    expect(evaluateCatalogAbbeNumber(entry!)).toBeCloseTo(61.0, 1);
+    expect(resolveCompatibleGlass("K-SKLD5-M", 1.58636, 60.9)?.name).toBe("K-SKLD5-M");
+    expect(resolveGlass("586609")).toBeNull();
+  });
+
   it("evaluates explicit power-series catalog entries", () => {
     const hikariPskh1 = resolveGlass("593679 - fluorophosphate crown");
     expect(hikariPskh1?.name).toBe("J-PSKH1");
@@ -440,8 +625,43 @@ describe("resolveGlass", () => {
     expect(resolveGlass("517642")?.name).toBe("N-BK7");
   });
 
-  it("resolves the SUMITA K-BK7 coordinate from a code-only patent annotation", () => {
-    expect(resolveGlass("516641 crown class (vendor unproven)")?.name).toBe("K-BK7");
+  it("preserves explicit duplicate-code precedence for legacy resolution", () => {
+    expect(resolveGlass("516641 crown class (vendor unproven)")?.name).toBe("S-BSL7");
+  });
+
+  it("exposes every duplicate-code candidate", () => {
+    expect(resolveGlassCandidates("516641").map((entry) => entry.name)).toEqual(["S-BSL7", "K-BK7"]);
+  });
+
+  it("uses vendor context and coordinates to disambiguate duplicate codes", () => {
+    expect(resolveCompatibleGlass("516641 (SUMITA)", 1.5163, 64.11)?.name).toBe("K-BK7");
+    expect(resolveCompatibleGlass("516641 (OHARA)", 1.51633, 64.14)?.name).toBe("S-BSL7");
+  });
+
+  it("explains compatible candidates using the same runtime ranking", () => {
+    const explanation = explainCompatibleGlassResolution("516641 (SUMITA)", 1.5163, 64.11);
+    expect(explanation.selected?.name).toBe("K-BK7");
+    expect(explanation.candidates.map(({ entry }) => entry.name)).toEqual(["K-BK7", "S-BSL7"]);
+    expect(explanation.candidates[0]).toMatchObject({
+      source: "code",
+      matchedToken: "516641",
+      vendorMatch: true,
+      legacyCodePreferred: false,
+    });
+    expect(explanation.criterion).toBe("vendor-context");
+    expect(explanation.reason).toBe("Annotation vendor context matches Sumita.");
+  });
+
+  it("reports why an earlier direct name wins a compatible multi-name annotation", () => {
+    const explanation = explainCompatibleGlassResolution("S-BSL7 / N-BK7", 1.5168, 64.1);
+    expect(explanation.candidates.length).toBeGreaterThan(1);
+    expect(explanation.selected?.name).toBe(resolveCompatibleGlass("S-BSL7 / N-BK7", 1.5168, 64.1)?.name);
+    expect(["index-residual", "abbe-residual", "token-order", "canonical-name-order"]).toContain(explanation.criterion);
+  });
+
+  it("can select a compatible later token when the first named glass is incompatible", () => {
+    expect(resolveGlass("S-LAH55 / S-LAH60")?.name).toBe("S-LAH55");
+    expect(resolveCompatibleGlass("S-LAH55 / S-LAH60", 1.834, 37.16)?.name).toBe("S-LAH60");
   });
 
   it("resolves slash and hyphen six-digit code annotations", () => {
@@ -521,6 +741,47 @@ describe("makeSurfaceDispersion preference cascade", () => {
     );
     expect(d.quality).toBe("abbe");
     expect(d.glassEntry).toBeUndefined();
+  });
+
+  it("uses an explicit e-line-compatible catalog curve at physical C/d/F/g wavelengths", () => {
+    const d = makeSurfaceDispersion(
+      { R: 0, d: 0, sd: 0, label: "", nd: 1.51872, elemId: 1 },
+      {
+        id: 1,
+        name: "L1",
+        label: "L1",
+        type: "Test",
+        nd: 1.51872,
+        vd: 63.96,
+        indexReference: "e",
+        glass: "N-BK7",
+      },
+      undefined,
+    );
+    expect(d.quality).toBe("sellmeier");
+    expect(d.glassEntry?.name).toBe("N-BK7");
+    expect(d.fn("G")).toBeCloseTo(1.5168, 5);
+    expect(d.fn("G")).not.toBeCloseTo(1.51872, 5);
+  });
+
+  it("keeps authored ne in the fallback G channel when no e-line catalog name is trusted", () => {
+    const d = makeSurfaceDispersion(
+      { R: 0, d: 0, sd: 0, label: "", nd: 1.51872, elemId: 1 },
+      {
+        id: 1,
+        name: "L1",
+        label: "L1",
+        type: "Test",
+        nd: 1.51872,
+        vd: 63.96,
+        indexReference: "e",
+        glass: "Unmatched crown",
+      },
+      undefined,
+    );
+    expect(d.quality).toBe("abbe");
+    expect(d.glassEntry).toBeUndefined();
+    expect(d.fn("G")).toBe(1.51872);
   });
 
   it("uses measured line indices when the catalog misses but nC/nF are present", () => {

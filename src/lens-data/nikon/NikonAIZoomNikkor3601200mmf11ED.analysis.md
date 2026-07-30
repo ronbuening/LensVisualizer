@@ -106,7 +106,7 @@ The third group moves rearward with the variator to preserve the image plane. It
 #### L10-L11 — Cemented Doublet, Positive
 
 L10: nd = 1.62041, νd = 60.3. Glass: N-SK16 / S-BSM16 class. f = +226.0 mm.
-L11: nd = 1.61293, νd = 36.9. Glass: unmatched flint (613/369; catalog identity uncertain). f = -651.0 mm.
+L11: nd = 1.61293, νd = 36.9. Glass: SUMITA F3 catalog equivalent, code 613369; production supplier unspecified. f = -651.0 mm.
 Net: f = +348.8 mm.
 
 The component is a positive meniscus system concave toward the object. The patent states that this shape controls astigmatism and coma at intermediate focal lengths, where this type of zoom is otherwise prone to imbalance.
@@ -125,7 +125,7 @@ The relay group has seven elements in four air-separated components. Its compute
 
 #### L14 — Biconvex Positive
 
-nd = 1.51454, νd = 54.6. Glass: unmatched crown (515/546; catalog identity uncertain). f = +420.1 mm.
+nd = 1.51454, νd = 54.6. Glass: KF3 (SUMITA catalog equivalent; production supplier unspecified). f = +420.1 mm.
 
 L14 is the relay entrance singlet. It contributes moderate positive power ahead of the near-afocal chromatic-correction triplet.
 
@@ -133,7 +133,7 @@ L14 is the relay entrance singlet. It contributes moderate positive power ahead 
 
 L15: nd = 1.48606, νd = 81.5. Glass: unmatched special low-dispersion glass (486/815; patent quartzite/ED-type). f = +167.4 mm.
 L16: nd = 1.74400, νd = 44.9. Glass: LaF2 / N-LAF2 class. f = -101.8 mm.
-L17: nd = 1.63930, νd = 45.0. Glass: unmatched barium flint (639/450; catalog identity uncertain). f = +290.1 mm.
+L17: nd = 1.63930, νd = 45.0. Glass: SUMITA BAF12 catalog equivalent, code 639450; production supplier unspecified. f = +290.1 mm.
 Net: f ≈ -37,500 mm.
 
 The triplet is essentially neutral in first-order power. Its role is chromatic correction within the relay beam rather than focal-length generation. That is why the standalone net focal length is tens of meters while the individual surfaces remain strongly curved.
@@ -165,9 +165,9 @@ The prescription uses thirteen distinct nd/νd pairs across twenty elements. The
 | Barium crown 589/512 | 1.58875 | 51.2 | L8 | Historical BAL7-class; not resolved to a current recommended public entry |
 | N-BK7 / S-BSL7 class | 1.51680 | 64.2 | L9 | Catalog class match by code |
 | N-SK16 / S-BSM16 class | 1.62041 | 60.3 | L10 | Catalog class match by code |
-| Flint 613/369 | 1.61293 | 36.9 | L11 | Unmatched in checked current recommended tables |
-| Crown 515/546 | 1.51454 | 54.6 | L14 | Unmatched in checked current recommended tables |
-| Barium flint 639/450 | 1.63930 | 45.0 | L17 | Unmatched in checked current recommended tables |
+| SUMITA F3 catalog equivalent | 1.61293 | 36.9 | L11 | Exact code 613369 coordinate; production supplier unspecified |
+| KF3 catalog equivalent | 1.51454 | 54.6 | L14 | Exact coordinate in SUMITA's discontinued-inclusive catalog; supplier unspecified |
+| SUMITA BAF12 catalog equivalent | 1.63930 | 45.0 | L17 | Exact code 639450 coordinate; production supplier unspecified |
 | Light crown 501/565 | 1.50137 | 56.5 | L18 | Unmatched in checked current recommended tables |
 | High-index 744/494 | 1.74443 | 49.4 | L19 | Unmatched in checked current recommended tables |
 | F5 / S-TIM5 class | 1.60342 | 38.0 | L20 | Catalog class match by code |

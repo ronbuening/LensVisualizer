@@ -62,3 +62,22 @@ The solve treats the patent's published direction as authoritative and estimates
 | High-index status | L2 remains a high-index variator lead and L11 remains the UHR rear field-flattener. |
 | SDs | Kept existing ray-trace-derived SDs because the patent table has no clear-aperture column. |
 | Analysis | Synced stale S-TIH14 / S-TIH10 / S-LAH63Q analysis text to the current 859300 / J-LASF021 / K-VC89 labels. |
+
+## 2026-07-29 - Remaining catalog-mismatch audit
+
+- Rechecked JP 2021-179551 A Numerical Example 2 surface 3; stored `R`, `d`, `nd=1.90366`, and `νd=31.30` agree with the patent.
+- Relabeled L2 from `S-LAH93` to OHARA `S-LAH95`, the exact 904313 row.
+- Synchronized the analysis and removed unsupported cost/specific-gravity claims tied to the old identification. No geometry changed.
+
+## 2026-07-30 - Unsafe named-token cleanup
+
+- Replaced L11's unsupported `S-NPH7 (OHARA)` label with discontinued OHARA `PBH21`, the exact coefficient-backed 923209 catalog row for the patent's 1.92286 / 20.90 coordinate.
+- Kept the production supplier unspecified because Numerical Example 2 publishes nd/νd but not a glass maker.
+- Synchronized the analysis and source list; no prescription geometry changed.
+
+## 2026-07-30 - L-PHL1 identity correction
+
+- Rendered JP 2021-179551 A Numerical Example 2 and confirmed L10 at `nd=1.58313`, `νd=59.5`; the patent does not name a glass vendor.
+- Rejected the prior OHARA `L-PHL1` attribution. OHARA's official all-products row is `1.564550 / 60.818065`, well outside the d-line index guard.
+- Relabeled L10 to `M-BACD12 (HOYA catalog equivalent; production supplier unspecified)`. HOYA's coefficient row is the exact-index, closest-Abbe match at `1.58313 / 59.46`.
+- Synchronized the analysis and removed unsupported claims about L10's composition and forming process. No geometry or focus data changed.

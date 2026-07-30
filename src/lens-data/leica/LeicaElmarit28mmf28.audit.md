@@ -14,3 +14,18 @@ Patent: US 3,591,257
 - Synced the companion analysis and L7 role text so they no longer describe L4/L7 as resolved SF6 catalog glass.
 - Rechecked APD/high-index status: no partial-dispersion data or APO claim are present, so all elements remain non-APD. L3, L4/L7, and L6 remain high-index/high-dispersion historical glass roles based on the patent constants.
 - No patent clear-aperture or semi-diameter table was found. Existing SDs remain inferred from f/2.8 ray envelopes and the patent drawing's relative element apertures.
+
+## 2026-07-29 - E-line catalog-mismatch disposition
+
+- Rechecked Example 3 in local `patents/US3591257.pdf`; stored R, d, ne, and νe remain unchanged.
+- S5 `LaF21 (SCHOTT)` -> explicit unmatched LaF21-class e-line glass at 1.79227 / 47.15.
+- S13 `F2 (SCHOTT)` -> explicit unmatched F2-class e-line glass at 1.62408 / 36.11.
+- The modern N-LAF21 and F2 d-line rows remain useful comparisons but are not assigned as spectral identities.
+  Synchronized the companion analysis accordingly.
+
+## 2026-07-30 - Reference-line metadata
+
+- Added `indexReference: "e"` to all eight elements because the stored `nd` / `vd` slots preserve patent
+  `ne` / `νe` values.
+- The runtime and generated reports now reject d-line catalog substitution structurally rather than relying on annotation wording.
+- No source values or prescription geometry changed.

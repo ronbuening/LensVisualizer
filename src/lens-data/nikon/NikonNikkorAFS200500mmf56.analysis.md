@@ -101,7 +101,7 @@ The table below lists all 19 elements with their optical properties, computed fo
 | 2 | 1.49782 | 82.57 | 498/826 | Biconvex | +205.2 | Hikari J-FKH1 ED fluorophosphate | Hikari [ED] |
 | 3 | 1.49782 | 82.57 | 498/826 | Biconvex | +236.7 | Hikari J-FKH1 ED fluorophosphate | Hikari [ED] |
 | 4 | 1.60342 | 38.01 | 603/380 | Neg. Meniscus | +115.7 | S-TIM5 | OHARA |
-| 5 | 1.72916 | 54.67 | 729/547 | Biconcave | −57.4 | TAC4 / S-LAL18 | HOYA / OHARA |
+| 5 | 1.72916 | 54.67 | 729/547 | Biconcave | −57.4 | S-LAL18 | OHARA |
 | 6 | 1.51742 | 52.15 | 517/522 | Biconcave | −71.6 | 517522 crown | — |
 | 7 | 1.80518 | 25.46 | 805/255 | Pos. Meniscus | +104.1 | S-TIH6 | OHARA |
 | 8 | 1.74330 | 49.22 | 743/492 | Biconcave | −143.2 | S-LAM60 | OHARA |
@@ -110,10 +110,10 @@ The table below lists all 19 elements with their optical properties, computed fo
 | 11 | 1.90366 | 31.31 | 904/313 | Pos. Meniscus | −209.5 | S-LAH95 | OHARA |
 | 12 | 1.48749 | 70.44 | 487/704 | Biconvex | +71.6 | N-FK5 / E-FEL1 | Schott / HOYA |
 | 13 | 1.49700 | 81.61 | 497/816 | Biconvex | +99.0 | S-FPL51 / FCD1 | OHARA / HOYA [ED] |
-| 14 | 1.83400 | 37.34 | 834/373 | Neg. Meniscus | −97.2 | S-LAH55V / TAFD5 | OHARA / HOYA |
+| 14 | 1.83400 | 37.34 | 834/373 | Neg. Meniscus | −97.2 | Unmatched dense lanthanum flint | Vendor unresolved |
 | 15 | 1.74330 | 49.22 | 743/492 | Pos. Meniscus | +139.2 | S-LAM60 | OHARA |
 | 16 | 1.64769 | 33.84 | 648/338 | Biconvex | +97.2 | E-FD2 | HOYA |
-| 17 | 1.72916 | 54.67 | 729/547 | Biconcave | −42.8 | TAC4 / S-LAL18 | HOYA / OHARA |
+| 17 | 1.72916 | 54.67 | 729/547 | Biconcave | −42.8 | S-LAL18 | OHARA |
 | 18 | 1.58144 | 40.89 | 581/409 | Neg. Meniscus | +131.4 | E-FL5 | HOYA |
 | 19 | 1.83481 | 42.72 | 835/427 | Neg. Meniscus | −121.7 | S-LAH55 | OHARA |
 
@@ -145,7 +145,7 @@ The front group collectively has strong positive power, as befits the front elem
 
 This is the most complex group, containing seven elements organized into three subgroups.
 
-**L2A — Elements 4+5 (cemented doublet, fl = −113.6 mm):** E4 is a negative meniscus of moderate-index flint (S-TIM5), cemented to E5, a biconcave crown (TAC4). This negative doublet conditions the beam angle entering the VR group. Its negative meniscus-biconcave configuration generates strong divergence while keeping the exiting chief ray angle manageable for the downstream VR elements.
+**L2A — Elements 4+5 (cemented doublet, fl = −113.6 mm):** E4 is a negative meniscus of moderate-index flint (S-TIM5), cemented to E5, a biconcave crown (S-LAL18). This negative doublet conditions the beam angle entering the VR group. Its negative meniscus-biconcave configuration generates strong divergence while keeping the exiting chief ray angle manageable for the downstream VR elements.
 
 **L2B (VR Group) — Elements 6+7 (cemented doublet) + E8 (singlet), combined fl = −86.1 mm:** This is the image-stabilization group that shifts perpendicular to the optical axis during vibration reduction.
 
@@ -167,7 +167,7 @@ G3 moves toward the object during zooming (d16 decreases from 23.8 mm to 2.0 mm 
 
 ### Group 4 (L4): Relay — Elements 13–15
 
-**E13 (biconvex ED, S-FPL51, nd = 1.497) cemented to E14 (negative meniscus, S-LAH55V, nd = 1.834):** The third and final achromatic ED doublet. The cemented combination is nearly afocal (fl ≈ −5,356 mm — very weakly negative), meaning its primary role is chromatic correction rather than power contribution. The strong positive power of E13 (+99.0 mm) is almost exactly cancelled by the negative power of E14 (−97.2 mm), leaving a residual that aggressively corrects chromatic aberration in the relay section of the zoom.
+**E13 (biconvex ED, S-FPL51, nd = 1.497) cemented to E14 (negative meniscus, NBFD10 catalog equivalent, nd = 1.834):** The third and final achromatic ED doublet. The patent gives E14's exact 834373 optical coordinate but no production vendor; HOYA's discontinued NBFD10 row supplies the matching coefficient-backed dispersion model. The cemented combination is nearly afocal (fl ≈ −5,356 mm — very weakly negative), meaning its primary role is chromatic correction rather than power contribution. The strong positive power of E13 (+99.0 mm) is almost exactly cancelled by the negative power of E14 (−97.2 mm), leaving a residual that aggressively corrects chromatic aberration in the relay section of the zoom.
 
 **E15 (positive meniscus, S-LAM60, nd = 1.743):** A standalone positive element (fl = +139.2 mm) that provides the actual positive power contribution of G4. Its meniscus shape (both radii positive) minimizes spherical aberration contribution while adding convergence to the beam before it reaches the aperture stop.
 
@@ -179,7 +179,7 @@ The stop is positioned between G4 and G5, moving independently during zoom (para
 
 ### Group 5 (L5): Focus Group — Elements 16–17
 
-**E16 (biconvex, E-FD2, nd = 1.648, vd = 33.84) cemented to E17 (biconcave, TAC4, nd = 1.729, vd = 54.67):** This negative cemented doublet (fl = −78.3 mm) is the internal focusing group. It serves a dual mechanical role: it moves toward the object during zoom (claim 1 explicitly lists the fifth group among the zoom-moving groups), and it translates toward the image for close-focus. The gaps d25 (stop↔L5) and d28 (L5↔L6) change in equal and opposite amounts during focus, while both also change independently during zoom:
+**E16 (biconvex, E-FD2, nd = 1.648, vd = 33.84) cemented to E17 (biconcave, S-LAL18, nd = 1.729, vd = 54.67):** This negative cemented doublet (fl = −78.3 mm) is the internal focusing group. It serves a dual mechanical role: it moves toward the object during zoom (claim 1 explicitly lists the fifth group among the zoom-moving groups), and it translates toward the image for close-focus. The gaps d25 (stop↔L5) and d28 (L5↔L6) change in equal and opposite amounts during focus, while both also change independently during zoom:
 
 | Position | d25 (mm) | d28 (mm) | Sum (mm) |
 |:---------|:--------:|:--------:|:--------:|
@@ -192,7 +192,7 @@ The sum d25 + d28 remains constant at each zoom position, confirming unit focus:
 
 The choice of a negative focus group is significant. As the group moves toward the image, it reduces the system's overall positive power, which has the effect of extending the conjugate toward closer objects. This is the opposite of the more common approach of moving a positive group forward, but it has the advantage of keeping the focus group compact and close to the stop — where both the axial and marginal beams pass through a relatively narrow zone. The patent notes (paragraph [0017]) that this proximity to the stop means the focus group diameter need not be excessively large, enabling a more compact and lightweight IF mechanism.
 
-The glass pairing is unusual: E16 uses HOYA E-FD2, a dense flint with low Abbe number (33.84). Despite being the positive element in the doublet, it is a flint-type glass. E17 is a crown (TAC4, vd = 54.67). This "reversed" pairing (flint-positive, crown-negative) is deliberate: it provides chromatic correction with the correct sign while maintaining the required negative net power for the focus mechanism.
+The glass pairing is unusual: E16 uses HOYA E-FD2, a dense flint with low Abbe number (33.84). Despite being the positive element in the doublet, it is a flint-type glass. E17 is an S-LAL18 crown (vd = 54.67). This "reversed" pairing (flint-positive, crown-negative) is deliberate: it provides chromatic correction with the correct sign while maintaining the required negative net power for the focus mechanism.
 
 ### Group 6 (L6): Fixed Rear — Elements 18–19
 

@@ -84,3 +84,9 @@ Catalog version: 5c81522
 
 - Corrected L12 from `S-LAM3 type (720/437)` to `S-LAM52 (OHARA; 720/437)`. S-LAM52 is the exact 1.72000 / 43.69 catalog row encoded by the patent coordinate; S-LAM3 has νd = 47.93.
 - Synchronized the analysis narrative and glass table.
+
+## 2026-07-29 - Remaining catalog-mismatch audit
+
+- Rechecked US 2020/0142167 A1 Example 1 surface 35: `R=-53.590`, `d=1.28`, `nd=1.83481`, and `νd=42.7` match the data file.
+- Relabeled L20 from `S-LAH60 type (835/427)` to standard OHARA `S-LAH55`, the exact 835427 coordinate. The patent does not specify a vacuum-melt variant, so the non-V formulation is used.
+- Synchronized the analysis glass table. No prescription geometry changed.

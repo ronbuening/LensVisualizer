@@ -32,7 +32,7 @@ Table 5 gives the surface-7 air space as `d7 = 8.60` mm and separately gives `Bl
 
 ### L1 — Positive Meniscus, convex to object
 
-`nd = 1.52`, `νd = 64.2`. Glass: N-BK7 class, Schott-equivalent after patent rounding. `f = +297.3 mm`.
+`nd = 1.52`, `νd = 64.2`. Glass: unmatched patent-rounded crown; N-BK7 is a family comparison only. `f = +297.3 mm`.
 
 L1 is a weak positive meniscus with `R1 = +32.66` mm and `R2 = +39.24` mm. Its role is front collection with limited individual power. The claim condition `R2 > R3` is satisfied because `39.24 > 32.90`.
 
@@ -62,7 +62,7 @@ The diaphragm is positioned in the air space between L4 and the rear group. For 
 
 **L5:** `nd = 1.43384`, `νd = 95.23`. Glass: inferred CaF2-class medium. `f = +177.9 mm` in the selected reconstruction.
 
-**L6:** `nd = 1.46`, `νd = 65.8`. Glass: FK3 / fluor-crown class, Schott legacy-equivalent after patent rounding. `f = +109.6 mm`.
+**L6:** `nd = 1.46`, `νd = 65.8`. Glass: unmatched patent-rounded fluor-crown; FK3 is a family comparison only. `f = +109.6 mm`.
 
 Surface 8 in Table 5 lists only a radius, `R8 = −163.71` mm, and omits thickness, refractive index, and Abbe number. That omission is the source of the principal reconstruction problem. The data file chooses a CaF2-class medium for surface 8 to 9 and solves its center thickness to match the printed system focal length. The resulting thickness is `d8 = 2.640884` mm.
 
@@ -72,7 +72,7 @@ The L5+L6 reconstructed cemented group has a standalone focal length of approxim
 
 ### L7+L8 — Final Cemented Doublet and Rear Field Corrector
 
-**L7:** `nd = 1.65`, `νd = 39.6`. Glass: N-KZFS5 / KZFS-class short flint special, Schott-equivalent after patent rounding. `f = +54.2 mm`.
+**L7:** `nd = 1.65`, `νd = 39.6`. Glass: unmatched patent-rounded short flint; N-KZFS5 is a family comparison only. `f = +54.2 mm`.
 
 **L8:** `nd = 1.62`, `νd = 53.2`. Glass: unmatched dense crown / short-flint class. `f = −45.5 mm`.
 
@@ -86,13 +86,13 @@ The following assignments are class-level identifications from rounded patent va
 
 | Element | Patent or reconstructed `nd` | `νd` | Assignment used | Status |
 |---|---:|---:|---|---|
-| L1 | 1.52 | 64.2 | N-BK7 class | Schott-equivalent after rounding |
+| L1 | 1.52 | 64.2 | N-BK7-class comparison | Unmatched patent-rounded row |
 | L2 | 1.62 | 63.5 | N-PSK53A / phosphate-crown class | Schott-equivalent after rounding |
 | L3 | 1.69 | 49.6 | Dense lanthanum/barium flint class | Unmatched |
 | L4 | 1.50 | 56.4 | K10 crown class | Schott-equivalent after rounding |
 | L5 | 1.43384 | 95.23 | CaF2 class | Inferred by EFL reconciliation |
-| L6 | 1.46 | 65.8 | FK3 / fluor-crown class | Legacy Schott-equivalent after rounding |
-| L7 | 1.65 | 39.6 | N-KZFS5 / KZFS class | Schott-equivalent after rounding |
+| L6 | 1.46 | 65.8 | FK3 / fluor-crown comparison | Unmatched patent-rounded row |
+| L7 | 1.65 | 39.6 | N-KZFS5 / KZFS comparison | Unmatched patent-rounded row |
 | L8 | 1.62 | 53.2 | Dense crown / short-flint class | Unmatched |
 
 The chromatic strategy is consistent with an apochromatic large-format lens: low-dispersion and anomalous-partial-dispersion glass classes appear in the rear group, while a phosphate-crown/high-index-flint doublet provides front-group chromatic correction. However, the patent table does not publish `nC`, `nF`, `ng`, `PgF`, or `ΔPgF` values. Any secondary-spectrum discussion must therefore remain inferential rather than spectrally proven from the patent data alone.

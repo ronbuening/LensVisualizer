@@ -58,11 +58,11 @@ Optically, L3 gives the forward group enough residual positive power to reach $f
 
 ### L4 — Negative Meniscus, crown-flint class
 
-$n_d = 1.51454$, $\nu_d = 54.6$. Glass: KF3-class crown-flint, no current public catalog match asserted. $f = -73.841$ mm at production scale.
+$n_d = 1.51454$, $\nu_d = 54.6$. Glass: KF3 (SUMITA catalog equivalent; production supplier unspecified). $f = -73.841$ mm at production scale.
 
 L4 is the main divergent component of the rear group. Its front radius, $r_7 = -19.722$ at patent scale, is the strongest curvature in the design. After scaling, that radius is $-35.500$ mm. This strong negative surface is the primary cause of the telephoto shortening effect and a principal source of the rear group's pincushion-distortion tendency.
 
-The prior draft described this element as a generic light crown. That was too loose. The optical constants are closer to an older KF crown-flint region than to the S-TIL25 comparison previously suggested. Because no authoritative current vendor catalog entry was found that matches both $n_d = 1.51454$ and $\nu_d = 54.6$ closely, the data file uses a class-level label rather than a false exact glass name.
+The prior draft described this element as a generic light crown. SUMITA's discontinued-inclusive catalog now supplies a coefficient-backed KF3 row at the exact $n_d = 1.51454$, $\nu_d = 54.6$ coordinate. The label records KF3 as the optical equivalent without claiming SUMITA supplied Nikon's production melt.
 
 ### L5 — Biconvex Positive, high-index flint / TAF-LaSF class
 
@@ -79,7 +79,7 @@ The prior draft called this glass a lanthanum crown. That classification was inc
 | L1 | 1.50032 | 81.9 | ED fluorophosphate crown | Unmatched; near S-FPL51/FCD1 code 497/816 but higher $n_d$ | Low-dispersion positive collector |
 | L2 | 1.74950 | 35.0 | Lanthanum flint, LAFN7/E-LAF7 class | Close to Schott LAFN7 / HOYA E-LAF7 class | Achromatizing negative partner to L1 |
 | L3 | 1.65844 | 50.8 | Dense barium crown, SSK5/S-BSM25 class | Good catalog-class match | Forward-group power and aberration balance |
-| L4 | 1.51454 | 54.6 | KF3-class crown-flint | Class-level only; no exact current catalog match asserted | Main rear telephoto diverger |
+| L4 | 1.51454 | 54.6 | KF3 (SUMITA catalog equivalent) | Exact catalog coordinate; production supplier unspecified | Main rear telephoto diverger |
 | L5 | 1.79668 | 45.4 | TAF/LaSF-class high-index flint | Soft class match only; not a crown | Rear positive distortion corrector |
 
 The essential chromatic strategy is the L1-L2 pairing. L1 supplies positive power with very low dispersion; L2 supplies high-index, higher-dispersion negative power. The Abbe-number ratio $81.9/35.0 = 2.34$ gives the pair much greater chromatic leverage than a conventional crown/flint achromat. The patent's Condition (II) then makes that pairing geometrically effective by forcing the achromatizing surfaces to have nearly equal curvature and a very small air gap.

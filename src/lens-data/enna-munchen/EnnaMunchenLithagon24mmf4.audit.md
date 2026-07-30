@@ -2,6 +2,32 @@
 
 Patent: DE 1 228 820 B, sole claimed prescription
 
+## 2026-07-30 - Glass-code source review
+
+### Patent verification
+
+- Rendered and visually reviewed page 1 of local `patents/DE_1228820_B.pdf`.
+- The sole claim table prints L4 at `nd = 1.51895`, `vd = 57.3`, confirming the stored prescription coordinate.
+- The patent supplies no glassmaker, glass name, secondary line index, or partial-dispersion value.
+
+### Catalog disposition
+
+- Rechecked the current and discontinued-inclusive first-party OHARA, HOYA, and SUMITA coefficient catalogs.
+- OHARA NSL2/S-NSL2, OHARA NSL3/S-NSL3, HOYA E-C3, and SUMITA K3 provide nearby crown curves, but the patent has no independent spectral or supplier evidence that selects one.
+- Replaced the unsupported `K4-class` attribution with explicit `Unmatched 519573 crown glass` wording. L4 intentionally remains on its patent-coordinate Abbe fallback.
+
+### Report correction
+
+- Corrected the generated-report patent parser to retain spaces inside legacy publication numbers. `DE 1 228 820 B` now resolves to `patents/DE_1228820_B.pdf` instead of colliding with an unrelated filename containing the single digit previously parsed from the subtitle.
+
+### Verification
+
+- `npm run generate:glass-reports` — 8 files / 10 tests passed.
+- `npm test -- dispersion.test.ts lensDataTyping.test.ts validateLensData.test.ts buildLens.test.ts` — 4 files / 237 tests passed.
+- `npm run typecheck`
+- `npm run format:check`
+- `git diff --check`
+
 ## 2026-07-04 - Semi-diameter patent-diagram review
 
 ### Phase 2 - Retained-information audit

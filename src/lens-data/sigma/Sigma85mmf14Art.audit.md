@@ -62,3 +62,18 @@ Patent: JP 2018-005099 A, Example 4
 - The stored `nd=1.61340`, `vd=44.27` coordinate exactly matches S-NBM51 (`613443`); HOYA E-ADF10 is the
   adjacent but distinct `1.61310 / 44.36` row (`613444`).
 - Synchronized the analysis and source list. No prescription values changed.
+
+## 2026-07-29 - Remaining catalog-coordinate correction
+
+- Rechecked Example 4 in local `patents/JP2018005099A.pdf`; S24 remains 1.67270 / 32.17 with its patent PgF
+  data and R/d values unchanged.
+- S24 `S-NBH52 (OHARA)` -> `S-TIM25 (OHARA)`, the exact same-vendor coordinate. S-NBH52 is the distinct
+  1.67300 / 38.15 row.
+- Synchronized the L13 element text, glass table, sourcing qualification, and references.
+
+## 2026-07-30 - L9 catalog identity correction
+
+- Rendered Example 4 in local `patents/JP2018005099A.pdf`, PDF page 19. S17 remains nd = 1.80420, νd = 46.50, PgF = 0.5571 with its R/d row unchanged.
+- The prior `TAF105` label was not a valid match: current M-TAF105 is the distinct `1.77250 / 49.50` row.
+- HOYA TAF3D is the exact `1.80420 / 46.50` catalog coordinate and evaluates to PgF = 0.55724, independently reproducing the patent partial-dispersion value.
+- Relabeled L9 as a TAF3D catalog equivalent while leaving the production supplier unspecified. No prescription data changed.

@@ -23,3 +23,9 @@ Patent: US 7,898,744 B2
 
 - Re-searched the local untracked `patents/` folder for US 7,898,744 B2 / `7898744`; no matching PDF was present.
 - No substitute patent was used, no glass labels were changed, and no figure/SD check was possible without the cited patent file.
+
+## 2026-07-29 - Remaining catalog-mismatch audit
+
+- The local source is now present. Rechecked US 7,898,744 B2 Example 2 surface 20; the stored `R`, `d`, `nd=1.80100`, and `νd=34.96` agree with the patent row.
+- Relabeled L11 from incorrect HOYA `NBFD3` to Hikari `J-LAF016`, the exact 801349 Nikon/Hikari coordinate.
+- Synchronized the element discussion and catalog summary. No prescription geometry changed.

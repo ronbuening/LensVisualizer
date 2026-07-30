@@ -126,7 +126,7 @@ const LENS_DATA = {
       nd: 1.781,
       vd: 44.5,
       fl: 47.8,
-      glass: "S-LAH51 (OHARA)",
+      glass: "Unmatched (781445 patent coordinate; vendor unresolved)",
       apd: false,
       role: "Rear relay positive meniscus (concave to object); R11 carries strong positive power re-converging the diverging beam from the doublet toward the image plane.",
     },

@@ -33,3 +33,10 @@ Patent: DE 26 35 415 B1 / DT 26 35 415 B1, Example 1
 - `npm test -- dispersion` — passed.
 - `npm run generate:glass-reports` — passed; `catalog-mismatches.generated.md` now reports 0 mismatches.
 - `npm run typecheck && npm run format:check && npm run lint && npm run test` — passed.
+
+## 2026-07-30 - Reference-line metadata
+
+- Added `indexReference: "e"` to all six elements because the stored `nd` / `vd` slots preserve patent
+  `ne` / `νe` values.
+- The runtime and generated reports now reject d-line catalog substitution structurally rather than relying on annotation wording.
+- No source values or prescription geometry changed.

@@ -58,12 +58,11 @@ Historical glass tables place the 570/481 pair in the KzF4 short-flint region. B
 
 ### L4 — Biconcave Negative (Lens IV)
 
-$n_d = 1.51454$, $
-u_d = 54.7$. Glass: KF3 / NSL33 class, crown-flint. $f = -16.8$ mm.
+$n_d = 1.51454$, $\nu_d = 54.7$. Glass: KF3 (SUMITA catalog equivalent). $f = -16.8$ mm.
 
 L4 is the strongly negative front component of the rear doublet. R6 = −0.13344F is the tightest radius in the prescription, and the cemented interface R7 = +0.35220F forms the collective contact surface named in the patent. The element is biconcave under the patent's sign convention.
 
-The 515/547 pair is catalog-resolvable as a KF3 / NSL33 type rather than an unmatched crown. In this design it provides the lower-index, lower-dispersion negative half of the rear telephoto doublet.
+The 515/547 pair matches SUMITA's discontinued-inclusive KF3 coefficient row (catalog code 515546) within the patent's rounding. This is an optical-equivalence assignment; the production supplier remains unspecified. In this design it provides the lower-index, lower-dispersion negative half of the rear telephoto doublet.
 
 ### L5 — Biconvex Positive (Lens V)
 
@@ -84,7 +83,7 @@ u_d$ | Code | Identification | Optical role |
 | L1 | 1.51633 | 64.0 | 516/640 | BK7 class, probable Schott legacy crown | Low-dispersion positive element in front doublet |
 | L2 | 1.62606 | 39.1 | 626/391 | BASF1 / BAM21 class barium flint | High-dispersion negative element in front doublet |
 | L3 | 1.57041 | 48.1 | 570/481 | Probable KzF4 short-flint class | Main positive-power singlet |
-| L4 | 1.51454 | 54.7 | 515/547 | KF3 / NSL33 class | Strong negative element in rear doublet |
+| L4 | 1.51454 | 54.7 | 515/547 | KF3 (SUMITA catalog equivalent) | Strong negative element in rear doublet |
 | L5 | 1.60729 | 49.2 | 607/492 | BAM5 class barium middle glass | Positive partner in rear negative doublet |
 
 The chromatic design relies on a wide front crown/flint split of 24.9 Abbe units in L1 + L2, a moderate-dispersion positive power element in L3, and a narrower 5.5-unit split in the rear doublet. The rear doublet is therefore not an independently aggressive achromat; it is part of a system-level balance that also controls astigmatism, field curvature, and distortion through its concave-concave exterior surfaces.

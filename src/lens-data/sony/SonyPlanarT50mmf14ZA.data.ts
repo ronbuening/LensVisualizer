@@ -106,7 +106,7 @@ const LENS_DATA = {
       nd: 1.64769,
       vd: 33.8,
       fl: -19.3,
-      glass: "S-TIF4 (OHARA)",
+      glass: "S-TIM22 (OHARA catalog equivalent; production glass unspecified)",
       apd: false,
       cemented: "Da",
       role: "Strongest negative element; inner negative of G2, controls high-order spherical aberration.",

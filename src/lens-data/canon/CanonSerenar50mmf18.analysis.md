@@ -137,9 +137,9 @@ The glass is an ordinary crown (K10), one of the simplest and cheapest optical g
 | Glass | nd = 1.6385, νd = 55.5 |
 | Thickness | d = 0.165 |
 | Element focal length | +26.1 mm (at 50 mm scale) |
-| Glass match | **Schott SK18 / SK18A** (nd = 1.6385, νd = 55.4) — essentially exact |
+| Glass match | **SUMITA K-SK18** (nd = 1.63854, νd = 55.5) — coefficient-backed catalog equivalent to historical Schott SK18; patent supplier unspecified |
 
-L5 is the convex component of the rear doublet. It provides the dominant positive power in Group III. The glass (SK18 type) is a dense barium crown with moderately high index and low dispersion. Notably, the Abbe number difference between L4 and L5 is only Δνd ≈ 1.0 — far too small for effective achromatization. This confirms that the rear doublet's cemented interface serves primarily for the Petzval balancing and spherical aberration redistribution described in the patent, rather than for chromatic correction. The large Δnd of 0.137 between L4 and L5 drives the refractive power at the junction, while chromatic correction for the rear half of the system is carried primarily by the curvatures and air spacings rather than by the cemented interface.
+L5 is the convex component of the rear doublet. It provides the dominant positive power in Group III. Its historical SK18-type coordinate is modeled with coefficient-backed SUMITA K-SK18 without claiming that SUMITA supplied the patent glass. This dense barium crown has moderately high index and low dispersion. Notably, the Abbe number difference between L4 and L5 is only Δνd ≈ 1.0 — far too small for effective achromatization. This confirms that the rear doublet's cemented interface serves primarily for the Petzval balancing and spherical aberration redistribution described in the patent, rather than for chromatic correction. The large Δnd of 0.137 between L4 and L5 drives the refractive power at the junction, while chromatic correction for the rear half of the system is carried primarily by the curvatures and air spacings rather than by the cemented interface.
 
 **Interface curvature:** The cemented surface r₇ = +0.4380 is convex toward the object side, as required by the patent claims. The patent further specifies that the ratio |r₄|/|r₇| should be "substantially 5 to 1." The actual ratio is 2.100/0.438 = 4.79, close to the claimed 5:1. This ratio controls the balance of spherical aberration correction between the two cemented interfaces.
 
@@ -151,9 +151,9 @@ L5 is the convex component of the rear doublet. It provides the dominant positiv
 | Glass | nd = 1.6385, νd = 55.5 |
 | Thickness | d = 0.070 |
 | Element focal length | +63.7 mm (at 50 mm scale) |
-| Glass match | **Schott SK18 / SK18A** (nd = 1.6385, νd = 55.4) — same glass as L5 |
+| Glass match | **SUMITA K-SK18** (nd = 1.63854, νd = 55.5) — same catalog-equivalent model as L5 |
 
-L6 is the rear collector, a weakly biconvex positive element using the same SK18-type glass as L5. Its role is to provide the final convergence needed to form the image. Its relatively gentle curvatures (compared to the inner elements) minimize the introduction of higher-order aberrations at the edge of the system. Using the same glass as L5 simplifies manufacturing logistics — a practical consideration that early Japanese lens makers were attentive to.
+L6 is the rear collector, a weakly biconvex positive element using the same K-SK18 catalog-equivalent model as L5. Its role is to provide the final convergence needed to form the image. Its relatively gentle curvatures (compared to the inner elements) minimize the introduction of higher-order aberrations at the edge of the system. Using the same historical glass coordinate as L5 simplifies manufacturing logistics — a practical consideration that early Japanese lens makers were attentive to.
 
 ---
 
@@ -183,10 +183,10 @@ The Canon Serenar 50mm f/1.8 uses **unit focusing**: the entire optical assembly
 | L2 | 1.6261 | 39.1 | 626/391 | Unmatched vintage barium dense flint; not modern HOYA BAFD7 | Code-family only |
 | L3 | 1.7400 | 28.2 | 740/282 | OHARA S-TIH3 | Exact |
 | L4 | 1.5014 | 56.5 | 501/565 | Schott K10 (1.5014/56.4) | Excellent |
-| L5 | 1.6385 | 55.5 | 639/555 | Schott SK18/SK18A (1.6385/55.4) | Excellent |
-| L6 | 1.6385 | 55.5 | 639/555 | Schott SK18/SK18A (1.6385/55.4) | Excellent |
+| L5 | 1.6385 | 55.5 | 639/555 | SUMITA K-SK18 catalog equivalent (1.63854/55.5) | Coefficient-backed equivalent |
+| L6 | 1.6385 | 55.5 | 639/555 | SUMITA K-SK18 catalog equivalent (1.63854/55.5) | Coefficient-backed equivalent |
 
-Four of the six elements match Schott catalog glasses with high confidence. L3 now uses the coefficient-backed OHARA S-TIH3 label. L2 remains a code-family barium dense flint assignment because no current public catalog row round-trips 1.6261 / 39.1, and modern HOYA BAFD7 is a different 702/412 glass. These are modern catalog designations; the specific glass names available in 1950 would have differed.
+Five of the six elements have coefficient-backed catalog matches or coordinate-equivalent models. L5 and L6 use SUMITA K-SK18 as the public spectral model for the patent's historical SK18 coordinate without asserting the production supplier. L3 uses coefficient-backed OHARA S-TIH3. L2 remains a code-family barium dense flint assignment because no current public catalog row round-trips 1.6261 / 39.1, and modern HOYA BAFD7 is a different 702/412 glass. These are modern catalog designations; the specific glass names available in 1950 would have differed.
 
 It is worth noting that L5 and L6 share the same glass type. This is a practical simplification: using a single glass for two elements reduces procurement complexity and melt-lot variability — an important consideration for a lens produced in large volume. Third-party estimates place total production of the Serenar 50mm f/1.8 at approximately 90,000 to over 100,000 units (Kitchingman, 2008; klassik-cameras.de).
 

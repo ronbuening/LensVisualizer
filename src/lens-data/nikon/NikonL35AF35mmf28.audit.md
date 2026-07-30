@@ -19,3 +19,9 @@ Patent: US 4,457,596, Embodiment 1
 ### Analysis sync
 
 - Updated the L2/L4 glass discussion from historical TAF5 wording to the coefficient-backed S-LAH66 relabel.
+
+## 2026-07-29 - Remaining catalog-mismatch audit
+
+- Rechecked US 4,457,596 Embodiment 1 surface 5 before the documented 0.350007 scale: `R=-264.361`, `d=2.5762`, `nd=1.68893`, and `νd=31.1` agree with the stored scaled row.
+- Relabeled L3 from the invalid `FD60 / S-TIM28 (1689/311)` wording to OHARA `S-TIM28`, whose exact code is 689311.
+- Synchronized the L3 analysis and code table. No geometry or scale changed.

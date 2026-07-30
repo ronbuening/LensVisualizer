@@ -46,15 +46,15 @@ The patent's central architectural feature is the third air space between Group 
 
 ### L1 — Positive Meniscus, Convex to Object
 
-$n_d = 1.6716$, $\nu_d = 47.2$. Glass: unmatched vintage Zeiss/Schott high-index medium-dispersion glass, code 672/472. Standalone $f = +114.876$ mm at patent scale (+40.111 mm scaled).
+$n_d = 1.6716$, $\nu_d = 47.2$. Glass: N-BAF10 catalog equivalent (Schott; vintage coordinate 672472, supplier not identified). Standalone $f = +114.876$ mm at patent scale (+40.111 mm scaled).
 
 L1 is a thick positive meniscus with R1 = +53.46 mm and R2 = +157.23 mm on the patent scale. Its two positive radii give a convex-to-object meniscus form, while the stronger first surface supplies most of the positive power. At the scaled 35 mm size its center thickness is 4.501 mm.
 
-The element works as the front collector for the wide-angle bundle. The relatively high index reduces the required surface curvature for this amount of front positive power. The exact 1930s Schott catalog designation was not assigned in this revision because no current public Schott catalog entry matches $n_d = 1.6716$, $\nu_d = 47.2$ within a conservative tolerance.
+The element works as the front collector for the wide-angle bundle. The relatively high index reduces the required surface curvature for this amount of front positive power. The exact 1930s designation remains unidentified, but current Schott N-BAF10 at 1.67003 / 47.11 is inside the guarded resolver window (Δnd = −0.00157, Δνd = −0.09) and supplies a catalog-equivalent spectrum.
 
 ### L2 — Positive Meniscus, Front Element of Cemented Triplet
 
-$n_d = 1.6716$, $\nu_d = 47.2$. Glass: same unmatched vintage Zeiss/Schott 672/472 glass as L1. Standalone $f = +98.278$ mm at patent scale (+34.315 mm scaled).
+$n_d = 1.6716$, $\nu_d = 47.2$. Glass: same N-BAF10 catalog-equivalent 672472 glass as L1. Standalone $f = +98.278$ mm at patent scale (+34.315 mm scaled).
 
 L2 begins the second group. It is a convexo-concave positive meniscus with R3 = +33.33 mm and R4 = +62.89 mm. The patent explicitly describes this slot as a convexo-concave lens in a cemented meniscus group.
 
@@ -82,11 +82,11 @@ $n_d = 1.4645$, $\nu_d = 65.7$. Glass: FK3 (Schott). Standalone $f = -97.714$ mm
 
 L5 begins the third group. Its R7 = +417.60 mm front surface is very weak, while R8 = +40.88 mm is much stronger; the resulting meniscus is net negative when considered alone. The patent states that the element facing the second air space is negative and has a lower refractive index than the positive lens to which it is cemented.
 
-The FK3-to-672/472 cemented interface at R8 provides a second chromatic-correction lever, weaker than the L3/L4 pair but located farther back in the system. This helps trim residual axial and lateral color after the front triplet.
+The FK3-to-672472/N-BAF10-equivalent cemented interface at R8 provides a second chromatic-correction lever, weaker than the L3/L4 pair but located farther back in the system. This helps trim residual axial and lateral color after the front triplet.
 
 ### L6 — Thick Biconvex Positive, Rear Element of Cemented Rear Doublet
 
-$n_d = 1.6716$, $\nu_d = 47.2$. Glass: unmatched vintage Zeiss/Schott 672/472 glass. Standalone $f = +45.866$ mm at patent scale (+16.015 mm scaled).
+$n_d = 1.6716$, $\nu_d = 47.2$. Glass: N-BAF10 catalog-equivalent vintage 672472 glass. Standalone $f = +45.866$ mm at patent scale (+16.015 mm scaled).
 
 L6 is the thick dominant positive element of the lens. Its front cemented surface R8 = +40.88 mm and rear surface R9 = −78.62 mm form a biconvex positive lens, and its patent-scale center thickness of 37.74 mm is the largest in the prescription. Scaled to 35 mm, this is a 13.177 mm-thick element.
 
@@ -106,7 +106,7 @@ No current public Schott catalog match was assigned for $n_d = 1.5333$, $\nu_d =
 
 | Glass slot | Patent $n_d$ | Patent $\nu_d$ | Data-file identification | Elements | Verification status |
 |---|---:|---:|---|---|---|
-| A | 1.6716 | 47.2 | Unmatched vintage Zeiss/Schott 672/472 | L1, L2, L6 | No current public catalog match assigned |
+| A | 1.6716 | 47.2 | N-BAF10 catalog equivalent (672472) | L1, L2, L6 | Exact vintage designation and supplier unidentified |
 | B | 1.4645 | 65.7 | FK3 (Schott) | L3, L5 | Confirmed against SCHOTT inquiry-glass data |
 | C | 1.6890 | 31.0 | SF8 / N-SF8 equivalent (Schott) | L4 | Modern SCHOTT N-SF8 matches within transcription tolerance |
 | D | 1.5333 | 48.9 | Unmatched vintage Zeiss/Schott 533/489 | L7 | No current public catalog match assigned |

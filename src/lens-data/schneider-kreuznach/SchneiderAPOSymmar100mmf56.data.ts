@@ -106,7 +106,7 @@ const LENS_DATA = {
       nd: 1.52855,
       vd: 76.98,
       fl: 142.0,
-      glass: "529770 — N-PK51 (Schott phosphate crown; no local Sellmeier)",
+      glass: "S-FPM4 (OHARA catalog equivalent; production supplier unspecified)",
       apd: "patent",
       apdNote:
         "Patent requires anomalous partial dispersion for the stop-flanking positive meniscus; N-PK51 is the principal low-dispersion corrector.",

@@ -62,7 +62,7 @@ const LENS_DATA = {
       nd: 1.6668,
       vd: 33.0,
       fl: -34.1,
-      glass: "Dense flint [667330] — OHARA SF19",
+      glass: "H-ZF39 (CDGM catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Negative meniscus, convex toward object. Deliberately low-index glass per condition (5): n3 < 1.67 to improve Petzval sum. R6 is primary SA corrector in front group.",
     },

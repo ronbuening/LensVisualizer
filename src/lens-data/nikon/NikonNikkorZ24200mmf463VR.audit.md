@@ -72,3 +72,9 @@ Changes made:
 ## 2026-07-29 - Catalog-coordinate correction
 
 - Corrected L23 from modern `S-NPH2` to historical OHARA `PBH21`, the exact 1.92286 / 20.88 row.
+
+## 2026-07-30 - Unsafe named-token cleanup
+
+- Removed the speculative CDGM `H-LAF3` attribution from L61. Patent Table 1 gives nd=1.82080 and νd=42.51 but no supplier.
+- The nearest coefficient-backed public row shares the d-line index but misses the Abbe number; without patent line indices or partial dispersion, applying that spectrum would be an unsupported quality trade. L61 is now explicitly `Unmatched`.
+- Synchronized the analysis; no prescription geometry changed.

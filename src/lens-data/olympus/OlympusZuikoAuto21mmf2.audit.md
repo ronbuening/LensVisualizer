@@ -49,3 +49,17 @@ Patent: US 4,210,388, Example 1
 ### Analysis sync
 
 - Updated the affected element descriptions to use catalog-backed labels or six-digit code labels consistently.
+
+## 2026-07-29 - Remaining unmatched-glass disposition
+
+- Rechecked Example 1 in local `patents/US4210388.pdf`; S7 and S9 remain 1.61659 / 36.60 and their R/d rows
+  are unchanged.
+- Both `F2 / TIF1` labels -> explicit unmatched 617366 patent flint coordinates. Neither current catalog row
+  reproduces the patent pair closely enough to establish a vendor identity.
+- Synchronized the split-element narrative and glass-family table.
+
+## 2026-07-30 - SUMITA F4 coefficient recovery
+
+- SUMITA's discontinued-inclusive all-glass catalog publishes F4 at code `617366`, nd = 1.61659, νd = 36.6.
+- Relabeled L4a / S7 and L4b / S9 from explicit unmatched annotations to F4 exact catalog equivalents; the production supplier remains unspecified.
+- No prescription, stop, or semi-diameter data changed.

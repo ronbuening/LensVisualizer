@@ -54,7 +54,7 @@ const LENS_DATA = {
       nd: 1.53996,
       vd: 59.73,
       fl: -70.881,
-      glass: "540597 - barium crown (N-BAK2 / S-BAL12 class; vendor uncertain)",
+      glass: "BAK2 (SUMITA catalog equivalent for patent coordinate; production supplier unspecified)",
       apd: false,
       role: "Front weak negative collector; opens the wide-angle ray bundle.",
     },

@@ -10,3 +10,11 @@ Patent: US 5,257,137, Embodiment 1
 - Kept J-LASFH2, 796/409, and 607/403 rows unresolved because this pass found no comparably strong catalog evidence
   for those materials.
 - No prescription, semi-diameter, or movement values changed.
+
+## 2026-07-29 - `796409` coefficient-source review
+
+- Visually rechecked Example 1 Table 1 row 14 at `nd = 1.79631`, `vd = 40.9`; the stored radius and
+  thickness match the printed prescription.
+- Official OHARA, HOYA, Hikari, and Sumita coefficient catalogs contain no exact `796409` row.
+  The nearby named lanthanum-flint families do not reproduce both coordinates.
+- Retained the explicit unmatched `796409` annotation. No supplier, catalog model, or geometry changed.

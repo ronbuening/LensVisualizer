@@ -72,7 +72,7 @@ The first surface is weakly convex and the cemented rear surface is much stronge
 
 ### L2 - Biconvex Positive
 
-`nd = 1.67000, νd = 57.07. Glass: unresolved 670571 high-index crown or lanthanum-crown class. f = +59.4 mm.`
+`nd = 1.67000, νd = 57.07. Glass model: coefficient-backed OHARA S-LAL52, a catalog-equivalent to patent code 670571; the patent does not identify the supplier. f = +59.4 mm.`
 
 L2 is the main positive component in the front cemented doublet. It carries positive power with relatively low dispersion while L1 supplies the flint partner. The cemented L1/L2 doublet is only weakly positive as a standalone component, with a computed EFL of about **+195.8 mm**, showing that it is primarily an achromatizing and aberration-shaping component rather than a simple strong collector.
 
@@ -92,7 +92,7 @@ Although its Abbe number is near the crown/flint boundary, the element should be
 
 ### L5 - Nearly Plano-Concave Negative
 
-`nd = 1.67000, νd = 57.07. Glass: unresolved 670571 high-index crown or lanthanum-crown class. f = -50.5 mm.`
+`nd = 1.67000, νd = 57.07. Glass model: coefficient-backed OHARA S-LAL52, a catalog-equivalent to patent code 670571; the patent does not identify the supplier. f = -50.5 mm.`
 
 L5 is a weaker negative element in Group II. Its first surface, r8 = -1357.755 mm, is almost plane in paraxial effect, so the element behaves as a nearly plano-concave negative lens. It continues the negative action of the variator with less power than L4.
 
@@ -116,7 +116,7 @@ Its high Abbe number keeps the trailing negative power of Group II from adding e
 
 ### L8 - Biconvex Positive
 
-`nd = 1.67000, νd = 57.07. Glass: unresolved 670571 high-index crown or lanthanum-crown class. f = +27.6 mm.`
+`nd = 1.67000, νd = 57.07. Glass model: coefficient-backed OHARA S-LAL52, a catalog-equivalent to patent code 670571; the patent does not identify the supplier. f = +27.6 mm.`
 
 L8 is the first element of Group III-F. It is a strong positive biconvex relay element immediately behind the aperture region. It reconverges the beam after the negative variator and establishes much of Group III's positive power.
 
@@ -169,7 +169,7 @@ The patent gives refractive index and Abbe number, not glass trade names. Exact 
 | Element(s) | Patent nd / νd | Six-digit code | Identification used here | Role |
 |---|---:|---:|---|---|
 | L1, L6 | 1.84666 / 23.83 | 847/238 | SF57-class dense flint; exact Schott SF57 match | High-index, high-dispersion flint for front achromat and Group II chromatic balance |
-| L2, L5, L8 | 1.67000 / 57.07 | 670571 | Unresolved high-index crown / lanthanum-crown class | Positive power and moderate negative corrective power |
+| L2, L5, L8 | 1.67000 / 57.07 | 670571 | S-LAL52 (OHARA catalog-equivalent; supplier unspecified) | Coefficient-backed model for positive power and moderate negative corrective power |
 | L3 | 1.69680 / 56.47 | 697565 | H-LAK12 (CDGM equivalent to old LAL64 family) | Additional front-group positive power |
 | L4 | 1.77250 / 49.77 | 773498 | Unresolved dense lanthanum-flint or crown/flint-boundary class | Strong negative variator power |
 | L7 | 1.61800 / 63.39 | 618/634 | N-PSK53A-class high-Abbe crown; exact Schott N-PSK53A match | High-Abbe negative corrector at rear of Group II |

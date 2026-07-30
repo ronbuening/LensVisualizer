@@ -21,15 +21,10 @@
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import buildLens from "../../../src/optics/buildLens.js";
-import {
-  assessCatalogGlassCompatibility,
-  evaluateSellmeier,
-  LINE_NM,
-  resolveGlass,
-} from "../../../src/optics/glassCatalog.js";
+import { evaluateSellmeier, LINE_NM, resolveCompatibleGlass, resolveGlass } from "../../../src/optics/glassCatalog.js";
 import type { DispersionQuality } from "../../../src/optics/dispersion.js";
 import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
-import type { LensData } from "../../../src/types/optics.js";
+import type { LensData, RefractiveIndexReferenceLine } from "../../../src/types/optics.js";
 
 const modules = import.meta.glob<{ default: LensData }>("../../../src/lens-data/**/*.data.ts", { eager: true });
 const REPORT_DIR = "agent_docs/generated";
@@ -50,6 +45,7 @@ interface PatentMatch {
 interface CodeOnlyElement {
   lensKey: string;
   lensName: string;
+  visible: boolean;
   patentNumber: string | null;
   filePath: string;
   elementId: number;
@@ -60,12 +56,29 @@ interface CodeOnlyElement {
   codes: string[];
   storedNd: number;
   storedVd: number | undefined;
+  indexReference: RefractiveIndexReferenceLine;
   catalogName: string | null;
   catalogNd: number | null;
   ndDiff: number | null;
   hasSellmeier: boolean;
+  lensNonAirSurfaces: number;
+  lensSellmeierSurfaces: number;
+  explicitlyUnmatched: boolean;
   localPatent: PatentMatch;
   reviewedStatus: string;
+  auditReviewed: boolean;
+}
+
+interface PrioritizedCode {
+  code: string;
+  tier: "A" | "B" | "C" | "D" | "E";
+  rows: CodeOnlyElement[];
+  lensCount: number;
+  visibleLensCount: number;
+  localPatentLensCount: number;
+  strictSurfaceGain: number;
+  completionCandidates: string[];
+  nearCompleteCandidates: string[];
 }
 
 function toRepoRelativeLensPath(modulePath: string): string {
@@ -79,7 +92,7 @@ function extractPatentNumber(subtitle: string | undefined): string | null {
 }
 
 const patentReferencePattern =
-  /\b(?:Patent\s+)?((?:JPWO|WO|US|JP|DE|GB|FR|CH|CN)\s*\d[\d,./-]*(?:\s*(?:A1|A|B2|B1|B|C\d?|U))?)/i;
+  /\b(?:Patent\s+)?((?:JPWO|WO|US|JP|DE|GB|FR|CH|CN)\s*\d(?:[\d,./-]|\s+(?=\d))*(?:\s*(?:A1|A|B2|B1|B|C\d?|U))?)/i;
 
 function extractPatentReference(value: string): string | null {
   const match = value.match(patentReferencePattern);
@@ -192,6 +205,10 @@ function isCodeOnlyGlassAnnotation(glassString: string): boolean {
   return extractSixDigitCodes(glassString).length > 0 && !hasActualGlassTypeToken(glassString);
 }
 
+function isExplicitlyUnmatched(glassString: string): boolean {
+  return /\b(unmatched|unknown|proprietary|unidentified)\b/i.test(glassString);
+}
+
 function formatNdDiff(diff: number | null): string {
   if (diff === null) return "";
   const sign = diff >= 0 ? "+" : "";
@@ -206,6 +223,7 @@ function qualitySummary(row: CodeOnlyElement): string {
 function catalogStatus(row: CodeOnlyElement): string {
   if (row.catalogName === null) return "No catalog entry";
   if (row.hasSellmeier) return `${row.catalogName} (trusted Sellmeier)`;
+  if (row.indexReference === "e") return `${row.catalogName} context only (e-line prescription)`;
   return `${row.catalogName} rejected (Δnd=${formatNdDiff(row.ndDiff)})`;
 }
 
@@ -248,6 +266,26 @@ function reviewedSidecarStatus(filePath: string, codes: readonly string[], sidec
   return hits.length > 0 ? "Reviewed sidecar hit" : "No reviewed-sidecar hit";
 }
 
+function hasAuditRecord(filePath: string, codes: readonly string[]): boolean {
+  const auditPath = filePath.replace(/\.data\.ts$/, ".audit.md");
+  if (!existsSync(auditPath)) return false;
+  const auditText = readFileSync(auditPath, "utf8");
+  return codes.some((code) => auditText.includes(code));
+}
+
+type ReviewRecordFields = Pick<CodeOnlyElement, "explicitlyUnmatched" | "reviewedStatus" | "auditReviewed">;
+
+function hasReviewRecord(row: ReviewRecordFields): boolean {
+  return row.explicitlyUnmatched || row.reviewedStatus === "Reviewed sidecar hit" || row.auditReviewed;
+}
+
+function reviewRecordStatus(row: ReviewRecordFields): string {
+  if (row.explicitlyUnmatched) return "Explicit disposition in data";
+  if (row.reviewedStatus === "Reviewed sidecar hit") return row.reviewedStatus;
+  if (row.auditReviewed) return "Audit-log hit";
+  return "No review-record hit";
+}
+
 function summarizePatentStatus(rows: readonly CodeOnlyElement[]): string {
   const paths = [...new Set(rows.map((row) => row.localPatent.path).filter((path): path is string => path !== null))];
   if (paths.length > 0) return paths.slice(0, MAX_RELEVANT_PATENTS).join("<br>");
@@ -256,10 +294,111 @@ function summarizePatentStatus(rows: readonly CodeOnlyElement[]): string {
 }
 
 function summarizeReviewedStatus(rows: readonly CodeOnlyElement[]): string {
-  const reviewed = rows.filter((row) => row.reviewedStatus === "Reviewed sidecar hit").length;
-  if (reviewed === rows.length) return "All representative rows reviewed";
-  if (reviewed > 0) return `${reviewed}/${rows.length} representative rows reviewed`;
-  return "No reviewed-sidecar hit";
+  const reviewed = rows.filter(hasReviewRecord).length;
+  const explicit = rows.filter((row) => row.explicitlyUnmatched).length;
+  if (explicit === rows.length) return "All rows explicitly disposed";
+  if (reviewed === rows.length) return "All rows have review records";
+  if (reviewed > 0) return `${reviewed}/${rows.length} rows have review records`;
+  return "No review-record hit";
+}
+
+function prioritizedUnreviewedCodes(rows: readonly CodeOnlyElement[]): PrioritizedCode[] {
+  const activeRows = rows.filter((row) => !hasReviewRecord(row));
+  const byCode = new Map<string, CodeOnlyElement[]>();
+  for (const row of activeRows) {
+    for (const code of row.codes) {
+      const codeRows = byCode.get(code) ?? [];
+      codeRows.push(row);
+      byCode.set(code, codeRows);
+    }
+  }
+
+  return [...byCode.entries()]
+    .map<PrioritizedCode>(([code, codeRows]) => {
+      const byLens = new Map<string, CodeOnlyElement[]>();
+      for (const row of codeRows) {
+        const lensRows = byLens.get(row.filePath) ?? [];
+        lensRows.push(row);
+        byLens.set(row.filePath, lensRows);
+      }
+
+      let visibleLensCount = 0;
+      let localPatentLensCount = 0;
+      let strictSurfaceGain = 0;
+      const completionCandidates: string[] = [];
+      const nearCompleteCandidates: string[] = [];
+      for (const lensRows of byLens.values()) {
+        const first = lensRows[0];
+        const lensStrictGain = lensRows.reduce(
+          (count, row) => count + row.surfaceRefs.filter((surface) => surface.quality !== "sellmeier").length,
+          0,
+        );
+        strictSurfaceGain += lensStrictGain;
+        if (first.localPatent.path !== null) localPatentLensCount++;
+        if (!first.visible) continue;
+        visibleLensCount++;
+
+        const missingSellmeier = first.lensNonAirSurfaces - first.lensSellmeierSurfaces;
+        const currentCoverage = first.lensSellmeierSurfaces / Math.max(1, first.lensNonAirSurfaces);
+        if (lensStrictGain >= missingSellmeier) {
+          completionCandidates.push(first.lensName);
+        } else if (missingSellmeier <= 2 && currentCoverage >= 0.8) {
+          nearCompleteCandidates.push(first.lensName);
+        }
+      }
+
+      const tier: PrioritizedCode["tier"] =
+        localPatentLensCount > 0 && completionCandidates.length > 0
+          ? "A"
+          : localPatentLensCount > 0 && nearCompleteCandidates.length > 0
+            ? "B"
+            : localPatentLensCount > 0 && (codeRows.length > 1 || byLens.size > 1)
+              ? "C"
+              : localPatentLensCount > 0
+                ? "D"
+                : "E";
+      return {
+        code,
+        tier,
+        rows: codeRows,
+        lensCount: byLens.size,
+        visibleLensCount,
+        localPatentLensCount,
+        strictSurfaceGain,
+        completionCandidates: completionCandidates.sort((a, b) => a.localeCompare(b)),
+        nearCompleteCandidates: nearCompleteCandidates.sort((a, b) => a.localeCompare(b)),
+      };
+    })
+    .sort(
+      (a, b) =>
+        a.tier.localeCompare(b.tier) ||
+        b.completionCandidates.length - a.completionCandidates.length ||
+        b.nearCompleteCandidates.length - a.nearCompleteCandidates.length ||
+        b.localPatentLensCount - a.localPatentLensCount ||
+        b.strictSurfaceGain - a.strictSurfaceGain ||
+        b.lensCount - a.lensCount ||
+        a.code.localeCompare(b.code),
+    );
+}
+
+function summarizeLensNames(names: readonly string[]): string {
+  if (names.length === 0) return "—";
+  const shown = names.slice(0, 3).map((name) => name.replace(/\|/g, "\\|"));
+  const suffix = names.length > shown.length ? `<br>+${names.length - shown.length} more` : "";
+  return shown.join("<br>") + suffix;
+}
+
+function representativeRows(rows: readonly CodeOnlyElement[]): string {
+  return rows
+    .slice()
+    .sort((a, b) => a.lensName.localeCompare(b.lensName) || a.elementId - b.elementId)
+    .slice(0, 3)
+    .map(
+      (row) =>
+        `[${row.lensName.replace(/\|/g, "\\|")}](../../${row.filePath}) ${(row.elementLabel || row.elementName).replace(/\|/g, "\\|")} ` +
+        `(${row.storedNd.toFixed(5)} / ${row.storedVd?.toFixed(2) ?? "?"})`,
+    )
+    .join("<br>");
 }
 
 function renderReport(options: {
@@ -269,6 +408,7 @@ function renderReport(options: {
   rows: readonly CodeOnlyElement[];
   totalLenses: number;
   totalCodeOnlyElements: number;
+  includePrioritizedUnreviewedQueue?: boolean;
 }): string {
   const sortedRows = sortRows(options.rows);
   const affectedLenses = new Set(sortedRows.map((row) => row.filePath));
@@ -287,6 +427,18 @@ function renderReport(options: {
   lines.push(`- **${options.totalCodeOnlyElements}** total code-only elements found`);
   lines.push(`- **${sortedRows.length}** elements in this report`);
   lines.push(`- **${affectedLenses.size}** distinct lens files affected`);
+  if (options.includePrioritizedUnreviewedQueue) {
+    const activeUnreviewed = sortedRows.filter((row) => !hasReviewRecord(row));
+    const explicitDispositions = sortedRows.filter((row) => row.explicitlyUnmatched);
+    const dispositionsWithoutReviewRecord = explicitDispositions.filter((row) => !hasReviewRecord(row));
+    lines.push(
+      `- **${activeUnreviewed.length}** active unreviewed elements have no review-record hit or explicit disposition`,
+    );
+    lines.push(
+      `- **${explicitDispositions.length}** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions`,
+    );
+    lines.push(`- **${dispositionsWithoutReviewRecord.length}** dispositions lack any review record`);
+  }
   lines.push("");
 
   if (sortedRows.length === 0) {
@@ -296,10 +448,39 @@ function renderReport(options: {
     return lines.join("\n") + "\n";
   }
 
+  if (options.includePrioritizedUnreviewedQueue) {
+    const priorityRows = prioritizedUnreviewedCodes(sortedRows);
+    lines.push("## Prioritized Unreviewed Queue");
+    lines.push("");
+    lines.push(
+      "This queue excludes sidecar/audit-log review hits and annotations already marked unmatched, unknown, proprietary, or unidentified.",
+    );
+    lines.push(
+      "Tiers are deterministic: A has a local patent and could complete a visible lens; B has a local patent and affects a near-complete visible lens;",
+    );
+    lines.push(
+      "C has a local patent plus repeated impact; D has one local-patent-backed row; E is blocked on a local patent source.",
+    );
+    lines.push(
+      "Completion counts are conditional on finding a source-verified catalog identity or measured line data for every listed occurrence of that code.",
+    );
+    lines.push("");
+    lines.push(
+      "| Tier | Code | Active elements / lens files | Visible lenses | Strict surfaces | Completion candidates | Near-complete candidates | Local patent lenses | Representative rows |",
+    );
+    lines.push("|---|---|---:|---:|---:|---|---|---:|---|");
+    for (const row of priorityRows) {
+      lines.push(
+        `| ${row.tier} | ${row.code} | ${row.rows.length} / ${row.lensCount} | ${row.visibleLensCount} | ${row.strictSurfaceGain} | ${summarizeLensNames(row.completionCandidates)} | ${summarizeLensNames(row.nearCompleteCandidates)} | ${row.localPatentLensCount}/${row.lensCount} | ${representativeRows(row.rows)} |`,
+      );
+    }
+    lines.push("");
+  }
+
   const frequency = codeFrequency(sortedRows);
   lines.push("## Codes by Frequency");
   lines.push("");
-  lines.push("| Code | Elements | Lens files | localPatentStatus | reviewedSidecarStatus |");
+  lines.push("| Code | Elements | Lens files | localPatentStatus | reviewRecordStatus |");
   lines.push("|---|---:|---:|---|---|");
   for (const [code, elementCount, lensCount] of frequency) {
     const rowsForCode = sortedRows.filter((row) => row.codes.includes(code));
@@ -326,7 +507,7 @@ function renderReport(options: {
     lines.push(`### [${first.lensName}](../../${first.filePath})${patentSuffix}`);
     lines.push("");
     lines.push(
-      "| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |",
+      "| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |",
     );
     lines.push("|---|---|---|---|---|---|---|---|");
     for (const row of lensRows) {
@@ -334,7 +515,7 @@ function renderReport(options: {
       const surfaces = row.surfaceRefs.map((surface) => surface.label).join(", ") || "element";
       const elementName = row.elementLabel ? `${row.elementName} (${row.elementLabel})` : row.elementName;
       lines.push(
-        `| ${elementName} | ${surfaces} | \`${row.glassString}\` | ${row.storedNd.toFixed(5)} / ${vd} | ${catalogStatus(row)} | ${qualitySummary(row)} | ${row.localPatent.path ?? row.localPatent.status} | ${row.reviewedStatus} |`,
+        `| ${elementName} | ${surfaces} | \`${row.glassString}\` | ${row.storedNd.toFixed(5)} / ${vd} | ${catalogStatus(row)} | ${qualitySummary(row)} | ${row.localPatent.path ?? row.localPatent.status} | ${reviewRecordStatus(row)} |`,
       );
     }
     lines.push("");
@@ -344,6 +525,31 @@ function renderReport(options: {
 }
 
 describe("six-digit glass-code scan", () => {
+  it("treats explicit unmatched annotations as self-recording review dispositions", () => {
+    expect(
+      hasReviewRecord({
+        explicitlyUnmatched: true,
+        reviewedStatus: "No reviewed-sidecar hit",
+        auditReviewed: false,
+      }),
+    ).toBe(true);
+    expect(
+      reviewRecordStatus({
+        explicitlyUnmatched: true,
+        reviewedStatus: "No reviewed-sidecar hit",
+        auditReviewed: false,
+      }),
+    ).toBe("Explicit disposition in data");
+  });
+
+  it("matches spaced legacy patent numbers without substring collisions", () => {
+    expect(patentSearchTokens("DE 1 228 820 B")).toEqual(["DE1228820B", "DE1228820", "1228820"]);
+    expect(findLocalPatent("DE 1 228 820 B", ["20260118637.pdf", "DE_1228820_B.pdf"])).toEqual({
+      path: "patents/DE_1228820_B.pdf",
+      status: "Matched untracked local patent PDF",
+    });
+  });
+
   it("emits reports for code-only glass annotations", () => {
     const rows: CodeOnlyElement[] = [];
     const patentFiles = patentInventory();
@@ -354,6 +560,7 @@ describe("six-digit glass-code scan", () => {
       const raw = mod.default;
       if (!raw?.key) continue;
       const data: LensData = { ...LENS_DEFAULTS, ...raw } as LensData;
+      const visible = data.visible !== false;
       const patentNumber = extractPatentNumber(data.subtitle);
       const localPatent = findLocalPatent(patentNumber, patentFiles);
       totalLenses++;
@@ -366,6 +573,10 @@ describe("six-digit glass-code scan", () => {
       }
 
       const filePath = toRepoRelativeLensPath(path);
+      const lensNonAirSurfaces = L.S.filter((surface) => surface.nd !== 1.0).length;
+      const lensSellmeierSurfaces = L.S.filter(
+        (surface, index) => surface.nd !== 1.0 && L.indexByIdx?.[index]?.quality === "sellmeier",
+      ).length;
 
       for (const element of L.elements) {
         if (!element.glass || !isCodeOnlyGlassAnnotation(element.glass)) continue;
@@ -380,19 +591,20 @@ describe("six-digit glass-code scan", () => {
           });
         }
 
-        const catalogEntry = resolveGlass(element.glass);
+        const catalogEntry =
+          resolveCompatibleGlass(element.glass, element.nd, element.vd, element.indexReference) ??
+          resolveGlass(element.glass);
         const catalogNd = catalogEntry ? evaluateSellmeier(catalogEntry, LINE_NM.d) : null;
-        const hasSellmeier =
-          catalogEntry !== null &&
-          L.S.some(
-            (surface) =>
-              surface.nd !== 1.0 &&
-              surface.elemId === element.id &&
-              assessCatalogGlassCompatibility(catalogEntry, surface.nd, element.vd).compatible,
-          );
+        const hasSellmeier = L.S.some(
+          (surface) =>
+            surface.nd !== 1.0 &&
+            surface.elemId === element.id &&
+            resolveCompatibleGlass(element.glass, surface.nd, element.vd, element.indexReference) !== null,
+        );
         rows.push({
           lensKey: data.key,
           lensName: data.name ?? data.key,
+          visible,
           patentNumber,
           filePath,
           elementId: element.id,
@@ -403,12 +615,17 @@ describe("six-digit glass-code scan", () => {
           codes: extractSixDigitCodes(element.glass),
           storedNd: element.nd,
           storedVd: element.vd,
+          indexReference: element.indexReference ?? "d",
           catalogName: catalogEntry?.name ?? null,
           catalogNd,
           ndDiff: catalogNd === null ? null : catalogNd - element.nd,
           hasSellmeier,
+          lensNonAirSurfaces,
+          lensSellmeierSurfaces,
+          explicitlyUnmatched: isExplicitlyUnmatched(element.glass),
           localPatent,
           reviewedStatus: reviewedSidecarStatus(filePath, extractSixDigitCodes(element.glass), reviewedSidecarText),
+          auditReviewed: hasAuditRecord(filePath, extractSixDigitCodes(element.glass)),
         });
       }
     }
@@ -448,16 +665,21 @@ describe("six-digit glass-code scan", () => {
         title: "Six-Digit Glass Code Elements Missing Sellmeier Data",
         description: [
           "Subset of [six-digit-glass-codes.generated.md](six-digit-glass-codes.generated.md) where no associated",
-          "element surface resolves to trusted catalog Sellmeier data through the nd safety net.",
+          "element surface resolves to trusted catalog Sellmeier data through the reference-line safety net.",
           "These are the highest-priority code-only rows for catalog additions, aliases, or explicit `Unmatched` notes.",
         ],
         regenerateCommand: "npm test -- sixDigitGlassCodeScan",
         rows: noSellmeierRows,
         totalLenses,
         totalCodeOnlyElements: rows.length,
+        includePrioritizedUnreviewedQueue: true,
       }),
     );
 
+    const prioritized = prioritizedUnreviewedCodes(noSellmeierRows);
+    expect(prioritized.every((group) => group.rows.every((row) => !row.explicitlyUnmatched))).toBe(true);
+    expect(prioritized.every((group) => group.rows.every((row) => !hasReviewRecord(row)))).toBe(true);
+    expect(prioritized.map((group) => group.tier).join("")).toMatch(/^A*B*C*D*E*$/);
     expect(totalLenses).toBeGreaterThan(0);
   });
 });

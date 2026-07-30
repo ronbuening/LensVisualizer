@@ -21,3 +21,17 @@ Patent: JP H11-030748 A, Example 1
 - Current J-SFH2 retains the patent row's `nd=1.86074`; its `861231` code and `vd=23.08` differ from the patent's
   `861230` / `vd=23.01` only in the final rounded digit.
 - Synchronized the analysis. No prescription or SD values changed.
+
+## 2026-07-30 - `797454` catalog-equivalent review
+
+- Rechecked both patent rows at `nd = 1.79668`, `vd = 45.37`.
+- Hikari J-LASF017 (`1.79500 / 45.31`, code `795453`) is inside the runtime safety window and is the closest
+  coefficient-backed catalog row in the reviewed public data (`delta nd = -0.00168`, `delta vd = -0.06`).
+- Relabeled both elements as J-LASF017 catalog equivalents while leaving the production supplier unidentified.
+  Synchronized the analysis; no prescription, zoom, focus, aperture, or semi-diameter values changed.
+
+## 2026-07-30 SUMITA KF3 coefficient recovery
+
+- Added SUMITA's discontinued-inclusive KF3 vendor polynomial at catalog code `515546`.
+- Relabeled L1 to the KF3 optical equivalent; its `1.51454 / 54.55` coordinate agrees within patent rounding.
+- The production supplier remains unspecified, and no prescription or zoom data changed.

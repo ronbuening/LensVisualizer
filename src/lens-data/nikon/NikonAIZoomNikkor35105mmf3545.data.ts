@@ -200,7 +200,7 @@ const LENS_DATA = {
       nd: 1.518,
       vd: 60.3,
       fl: 47.0,
-      glass: "Unmatched (518/603 light crown; legacy crown code not catalog-resolved)",
+      glass: "BALK3 (SUMITA catalog equivalent for patent coordinate; production supplier unspecified)",
       role: "Main positive singlet in the rear relay group.",
     },
     {

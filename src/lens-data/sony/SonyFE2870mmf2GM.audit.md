@@ -71,3 +71,16 @@ The patent prescription table [Table 1], PDF page 24, publishes refractive index
 - Existing R/d/nd/vd, zoom/focus spacings, high-index/code-backed labels, APD metadata, and SD profile remain consistent with the patent-backed prescription and prior relabel pass.
 - No APD, high-index, glass-label, spacing, or SD edits were needed in this pass.
 - Current generated glass reports show no active Sony catalog-mismatch row for this lens.
+
+## 2026-07-30 - Unsafe named-token cleanup
+
+- Rechecked L71 against rendered patent Table 1: the row remains nd=2.00009 and νd=16.5, with no vendor glass name.
+- Removed the unsupported `S-NPH7 (OHARA)` attribution. No coefficient-backed public catalog row reproduces this extreme coordinate closely enough to justify borrowed Sellmeier data, so L71 is now explicitly `Unmatched`.
+- Synchronized the analysis; no prescription geometry or semi-diameter changed.
+
+## 2026-07-30 - S-LAM73 identity correction
+
+- Rechecked the image-only patent prescription for L51 and L73: both rows are `nd=1.85659`, `νd=40.1`, and the patent does not name a glass vendor.
+- Rejected the prior OHARA `S-LAM73` attribution. OHARA's official 2026 all-products row is `1.793600 / 37.089450`, far outside the stored patent coordinate.
+- Relabeled both elements to `L-LAH85V (OHARA catalog equivalent; production supplier unspecified)`. Its coefficient row is `1.854000 / 40.378368`, inside the runtime compatibility window.
+- Synchronized the analysis and removed the unsupported production-material claim. No geometry or semi-diameter changed.

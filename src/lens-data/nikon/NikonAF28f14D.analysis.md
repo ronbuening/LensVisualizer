@@ -164,7 +164,7 @@ L3 is a thin negative meniscus in a low-dispersion fluorophosphate crown glass. 
 
 - **L4b** (rear): nd = 1.51454, νd = 54.6, d = 1.50 mm.
   R₁(junction) = −15.690 mm, R₂ = +462.539 mm.
-  Negative meniscus, concave to object (the rear surface at R₂ = 462.5 mm is essentially flat). Another glass with no exact modern catalog match. The nd/νd pair (1.51454 / 54.6) places it in the crown-flint boundary region.
+  Negative meniscus, concave to object (the rear surface at R₂ = 462.5 mm is essentially flat). The nd/νd pair (1.51454 / 54.6) exactly matches SUMITA's discontinued-inclusive KF3 coefficient row; this is an optical-equivalence assignment, not a production-supplier claim.
   Individual f = −29.5 mm (negative).
 
 The cemented doublet L4 as a whole has f = −87.89 mm (negative). The two glasses have very similar refractive indices (Δnd = 0.004) but meaningfully different dispersions (Δνd = 15.3). This means the cemented junction surface has almost no optical power for monochromatic aberrations (the nd values nearly match), but it provides significant chromatic correction via the dispersion difference. This is a classic achromatic corrector configuration. The patent text identifies L4 as a "double-concave negative lens" in the generic design description, though the actual Embodiment 1 realization is this cemented compound meniscus.
@@ -275,7 +275,7 @@ The L8 doublet as a whole has f = +34.77 mm (strongly positive). As the patent t
 | L2 | 1.77279 | 49.4 | OHARA S-LAM66 type | Lanthanum crown | Close |
 | L3 | 1.48749 | 70.4 | Schott FK5 / OHARA S-FSL5 | Fluorophosphate crown | Exact |
 | L4a | 1.51860 | 69.9 | Hikari J-PKH1 (519699) | Phosphate crown | Exact |
-| L4b | 1.51454 | 54.6 | No current catalog match | Crown/light flint | Unresolved |
+| L4b | 1.51454 | 54.6 | KF3 (SUMITA catalog equivalent) | Crown/light flint | Exact coordinate; supplier unspecified |
 | L5 | 1.80411 | 46.5 | OHARA S-LAH55 / Schott LASF35 | Lanthanum dense crown | Close |
 | L6a | 1.74810 | 52.3 | Unmatched LaM crown; S-LAM7 index-near only | Lanthanum crown | Explicit unmatched |
 | L6b | 1.75520 | 27.6 | OHARA S-TIH4 | Dense flint | Good |

@@ -24,3 +24,15 @@ Patent: US 3,743,384, Example I / Claim 4
 - The repeated `486/815` low-dispersion material remains explicitly unmatched. The patent describes a special/quartzite-type material but does not publish C-, F-, or g-line indices or a modern catalog name.
 - Other unresolved historical pairs (`613/369`, `515/546`, `639/450`, `501/565`, `744/494`) remain code/family-level descriptions pending a coefficient-backed catalog source.
 - `npm run generate:glass-reports` passed with unresolved rows tracked as coverage opportunities.
+
+## 2026-07-30 SUMITA KF3 coefficient recovery
+
+- SUMITA's discontinued-inclusive KF3 vendor polynomial resolves L14 at the exact `1.51454 / 54.6` coordinate.
+- Relabeled L14 as a KF3 optical equivalent while leaving the production supplier unspecified.
+- The other historical code families listed above remain unresolved; no prescription or zoom data changed.
+
+## 2026-07-30 - SUMITA F3 and BAF12 coefficient recovery
+
+- SUMITA's discontinued-inclusive all-glass catalog publishes F3 at code `613369`, nd = 1.61293, νd = 36.9, and BAF12 at code `639450`, nd = 1.63930, νd = 45.0.
+- Relabeled L11 and L17 as exact coefficient-backed catalog equivalents while leaving their production suppliers unspecified.
+- The `486815`, `501565`, and `744494` families remain unresolved; no prescription or zoom data changed.

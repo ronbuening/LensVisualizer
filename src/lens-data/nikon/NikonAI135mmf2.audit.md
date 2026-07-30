@@ -18,3 +18,9 @@ Patent: US 4,062,630, Example V
 ### Analysis sync
 
 - Updated the L1 glass identification and summary table.
+
+## 2026-07-29 - Remaining catalog-mismatch audit
+
+- Rechecked US 4,062,630 Example V surface 3: `R=38.148`, `d=2.74`, `nd=1.62606`, and `νd=39.1` agree with the data.
+- Replaced false `HOYA FD60` wording with code-first `626391` barium flint. Public CDGM H-BaF8 is a coefficient-backed code equivalent, but the patent does not identify its supplier.
+- Synchronized the analysis identification and code table. No geometry changed.

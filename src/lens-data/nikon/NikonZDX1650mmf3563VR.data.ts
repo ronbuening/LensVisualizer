@@ -115,7 +115,7 @@ const LENS_DATA = {
       nd: 1.83441,
       vd: 37.28,
       fl: -32.8,
-      glass: "834373 - dense lanthanum flint (M-NBFD10 code match; patent nd=1.83441, vd=37.28)",
+      glass: "M-NBFD10 (HOYA catalog equivalent for patent 834373; production supplier unspecified)",
       apd: false,
       role: "Flint partner in G2a achromatic doublet; aspherical front surface corrects zonal spherical aberration",
       cemented: "Ja",

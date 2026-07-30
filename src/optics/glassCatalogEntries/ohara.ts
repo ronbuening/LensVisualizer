@@ -5,6 +5,40 @@
 import type { GlassEntry } from "../glassCatalogTypes.js";
 
 export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
+  /* Phase 45: first-party named-token audit additions. */
+  {
+    name: "S-BAL50",
+    vendor: "Ohara",
+    polynomial: [2.3982661, -0.010222781, 0.012110445, 0.00037767581, -0.000027339021, 0.0000015701891],
+    nd: 1.559625,
+    vd: 61.172671,
+    code6: "560612",
+    source:
+      "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF); vendor formula-3 polynomial for discontinued S-BAL50.",
+  },
+  /* Phase 44: exact legacy rows from OHARA's official 2026-07-01
+   * all-products Zemax catalog for the Olympus 85-250mm source audit.
+   */
+  {
+    name: "BAL22",
+    vendor: "Ohara",
+    polynomial: [2.428819, -0.01160085, 0.01108574, 0.00063122, -0.00006395123, 0.000003440011],
+    nd: 1.568729,
+    vd: 63.162358,
+    code6: "569632",
+    source:
+      "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF); vendor formula-3 polynomial for discontinued BAL22.",
+  },
+  {
+    name: "BSL3",
+    vendor: "Ohara",
+    polynomial: [2.2187568, -0.010447185, 0.0095904498, 0.00028540943, -0.000019183741, 0.00000097004548],
+    nd: 1.498308,
+    vd: 65.026785,
+    code6: "498650",
+    source:
+      "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF); vendor formula-3 polynomial for discontinued BSL3.",
+  },
   /* Phase 43: exact named and patent-coordinate rows from OHARA's
    * official 2026-07-01 all-products Zemax catalog.
    */
@@ -135,13 +169,13 @@ export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
   {
     name: "S-BSL7",
     vendor: "Ohara",
-    B: [1.03773418, 0.231473863, 1.01072958],
-    C: [0.00611873959, 0.0202423191, 103.677302],
+    B: [1.1515019, 0.118583612, 1.26301359],
+    C: [0.010598413, -0.011822519, 129.617662],
     nd: 1.51633,
     vd: 64.14,
     PgF: 0.5349,
-    code6: "517641",
-    source: "Ohara optical glass catalog (S-BSL7 datasheet).",
+    code6: "516641",
+    source: "OHARA S-BSL7 detailed data sheet 25-04; vendor Sellmeier coefficients and d-line code.",
   },
   /* ────── Ohara — primary catalog vendor for this codebase ──────
    * S-FPL51 alone accounts for 74 declarations across the lens library; the

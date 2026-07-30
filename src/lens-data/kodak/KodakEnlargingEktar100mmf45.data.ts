@@ -53,7 +53,7 @@ const LENS_DATA = {
       nd: 1.573,
       vd: 57.5,
       fl: -53.19,
-      glass: "Unmatched (vintage barium light-crown class, 573/575)",
+      glass: "BAK1 (SUMITA catalog equivalent for patent coordinate; production supplier unspecified)",
       role: "Low-power negative partner in the front doublet; its matched dispersion leaves R2 chiefly for rim-ray correction.",
       cemented: "D1",
     },

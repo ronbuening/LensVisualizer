@@ -199,7 +199,7 @@ const LENS_DATA = {
       nd: 1.834,
       vd: 37.2,
       fl: -21.72,
-      glass: "S-LAH55V (OHARA)",
+      glass: "S-LAH60 (OHARA)",
       cemented: "D3",
       role: "Dominant negative element of IS unit; B4 shifts orthogonal to axis for image stabilization.",
     },

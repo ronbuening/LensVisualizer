@@ -284,11 +284,11 @@ L41 is a weak positive meniscus providing gentle convergence as the rays enter t
 | R (own surfaces) | +87.924 / −127.680 | −127.680 / +40.898 |
 | Center thickness | 5.700 mm | 1.800 mm |
 | nd / νd | 1.90265 / 35.8 | 1.61266 / 44.5 |
-| Glass (catalog match) | Hikari J-LASFH9 | OHARA S-NBM52 or HIKARI E-CF6 |
+| Glass (catalog match) | Hikari J-LASFH9 | SCHOTT N-KZFS4 equivalent |
 | Thin-lens focal length | +57.7 mm | −50.6 mm |
 | **Doublet combined** | **−409.4 mm** | |
 
-This cemented doublet is the primary chromatic corrector of the rear group. L42 uses the highest-index glass in the entire rear section (nd = 1.90265), identified as Hikari J-LASFH9 — a lanthanum-containing ultra-high-index crown. L43 uses S-NBM52 or equivalent, a niobium barium flint with νd = 44.5. The patent's conditional expression (6) evaluates L43: θgF + 0.0021 × νd = 0.657, confirming its anomalous partial dispersion contributes to secondary spectrum correction.
+This cemented doublet is the primary chromatic corrector of the rear group. L42 uses the highest-index glass in the entire rear section (nd = 1.90265), identified as Hikari J-LASFH9. L43 uses the coefficient-compatible SCHOTT N-KZFS4 curve; the patent does not establish the production supplier. The patent's conditional expression (6) evaluates L43: θgF + 0.0021 × νd = 0.657, confirming its anomalous partial dispersion contributes to secondary spectrum correction.
 
 The doublet's net power is weakly negative (−409.4 mm), so its primary contribution is chromatic rather than refractive — a classic achromatic corrector role.
 
@@ -300,13 +300,13 @@ The doublet's net power is weakly negative (−409.4 mm), so its primary contrib
 | R₁ / R₂ (base) | −64.588 / +423.874 |
 | Center thickness | 1.800 mm |
 | nd / νd | 1.51680 / 64.0 |
-| Glass (inferred) | OHARA S-NSL3 or S-NSL36 |
+| Glass | Hikari J-BK7 |
 | Thin-lens focal length | −108.5 mm |
 | Aspherical surface | **Surface 33\*** (front) |
 
 L44 is the final optical element before the filter plate — a biconcave negative lens (両凹負レンズ). R₁ = −64.59 mm (concave to incoming light) and R₂ = +423.87 mm (concave to outgoing light): both surfaces are concave in their respective orientations, satisfying the definition of biconcave per the standard sign convention. The rear concavity is weak (|R₂| is 6.6× larger than |R₁|), so most of the element's negative power is concentrated on the front surface. That front surface (33\*) carries a strongly oblate aspherical profile (κ = +9.479) that deepens the concavity further toward the rim.
 
-L44's role is critical: positioned at the very end of the optical path (before only the filter plate), it is the last element to shape the wavefront before image formation. The aspherical surface corrects residual higher-order aberrations — particularly field curvature and astigmatism — that would otherwise degrade corner performance on the full-frame sensor. Its low-index glass (S-NSL3, nd = 1.51680) keeps the Petzval contribution of this negative element modest while allowing the aspherical surface to be ground or molded into a relatively soft glass.
+L44's role is critical: positioned at the very end of the optical path (before only the filter plate), it is the last element to shape the wavefront before image formation. The aspherical surface corrects residual higher-order aberrations — particularly field curvature and astigmatism — that would otherwise degrade corner performance on the full-frame sensor. Its low-index Hikari J-BK7 glass (nd = 1.51680) keeps the Petzval contribution of this negative element modest.
 
 The 10.81 mm air gap from L44 to the filter plate is part of the back focal distance.
 
@@ -333,8 +333,8 @@ The following table presents each unique glass type used in Example 1, the numbe
 | 1.76450 | 49.1 | L32 | OHARA S-LAH96 | Exact | High-index lanthanum glass |
 | 1.61800 | 63.3 | L41 | OHARA S-PHM52 | Exact | Phosphate crown |
 | 1.90265 | 35.8 | L42 | Hikari J-LASFH9 | Exact | Ultra-high-index lanthanum crown |
-| 1.61266 | 44.5 | L43 | OHARA S-NBM52 / HIKARI E-CF6 | Exact | Niobium barium flint |
-| 1.51680 | 64.0 | L44 | OHARA S-NSL3 | Close | Standard crown |
+| 1.61266 | 44.5 | L43 | SCHOTT N-KZFS4 equivalent | Compatible | Production supplier unspecified |
+| 1.51680 | 64.0 | L44 | Hikari J-BK7 | Exact | Standard crown |
 | 1.51680 | 63.9 | FL (filter) | OHARA S-NSL36 | Exact | Standard crown |
 
 ### 5.1 The ED Glass Question

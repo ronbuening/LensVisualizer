@@ -100,7 +100,7 @@ At the 6.0 mm semi-diameters used by the data file, the exact profiles depart fr
 
 **L22 + L23 + L24 — Cemented Triplet T1**
 L22: nd = 1.88300, νd = 40.8. Glass: S-LAH66 (OHARA). f = +16.6 mm.
-L23: nd = 1.66680, νd = 33.0. Glass: S-TIF6 (OHARA). f = −14.0 mm.
+L23: nd = 1.66680, νd = 33.0. Glass: CDGM H-ZF39 catalog equivalent; production supplier unspecified. f = −14.0 mm.
 L24: nd = 1.88300, νd = 40.8. Glass: S-LAH66 (OHARA). f = +22.7 mm.
 The optical heart of the rear group. Its positive/negative/positive structure with all three elements cemented eliminates air-glass interfaces, which is critical at f/1.2 where even small surface reflections can generate visible ghost images and flare. The two positive elements both use S-LAH66 (nd = 1.883), giving the triplet high positive power in a compact package.
 
@@ -144,7 +144,7 @@ The Petzval sum for the complete lens is 0.00345, corresponding to a Petzval rad
 | L16 | 1.67300 | 38.2 | 673382 | S-NBH52 (OHARA) | Exact |
 | L21 | 1.58313 | 59.4 | 583/594 | L-BAL42 (OHARA) — PGM | Probable |
 | L22 | 1.88300 | 40.8 | 883/408 | S-LAH66 (OHARA) | Exact |
-| L23 | 1.66680 | 33.0 | 667/330 | S-TIF6 (OHARA) | Exact |
+| L23 | 1.66680 | 33.0 | 667/330 | H-ZF39 (CDGM equivalent) | Exact coordinates |
 | L24 | 1.88300 | 40.8 | 883/408 | S-LAH66 (OHARA) | Exact |
 | L25 | 1.48749 | 70.2 | 487/702 | S-FSL5 (OHARA) | Exact |
 | PP | 1.51680 | 64.2 | 517/642 | S-BSL7 (OHARA) / N-BK7 | Cover glass |

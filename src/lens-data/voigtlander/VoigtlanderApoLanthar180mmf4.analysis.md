@@ -79,7 +79,7 @@ Together, the three S-FPL51 menisci provide a combined group focal length of f�
 
 ### L21 — Negative Meniscus, convex to object (G2, cemented with L22)
 
-nd = 1.83400, νd = 37.3. Glass: S-LAH55 (OHARA) — lanthanum-aluminosilicate dense crown. f = −33.5 mm (thin-lens).
+nd = 1.83400, νd = 37.3. Glass: S-LAH60 (OHARA) — lanthanum dense flint. f = −33.5 mm (thin-lens).
 
 L21 forms the front element of the first cemented doublet in G2 (R₁ = +124.264, R₂ = +22.803, d = 2.00 mm). Despite its high refractive index (1.834), it functions as the "flint" role in this doublet — its relatively low Abbe number (37.3) makes it the dispersive partner to L22's low-dispersion crown. The high index allows strong curvature at the cemented interface (R = 22.803 mm) while keeping the surface sag manageable.
 
@@ -91,7 +91,7 @@ nd = 1.48749, νd = 70.4. Glass: S-FSL5 (OHARA) — fluorine crown. f = +63.6 mm
 
 L22 is the "crown" partner of the first cemented doublet (cemented face at R = 22.803 mm, exit at R = +86.224, d = 6.87 mm). Its low index (1.487) and high Abbe number (70.4) make it the chromatic counterweight to L21's dispersion. The doublet as a whole has a net focal length of −70.4 mm and is nearly achromatic in the primary spectrum: its combined φ/ν residual is only −0.58 × 10⁻³ mm⁻¹.
 
-The choice of S-FSL5 rather than a more common crown (e.g., S-BSL7 / N-BK7) is notable. S-FSL5's low refractive index (1.487) maximizes the index step at the cemented junction with S-LAH55 (Δn = 1.834 − 1.487 = 0.347), producing strong negative power at the interface without requiring extreme curvatures. A higher-index crown would reduce this Δn and necessitate steeper curves to achieve the same divergence. S-FSL5's anomalous partial dispersion (ΔPgF = +0.0022) is modest — near the Schott normal line — so the secondary-spectrum correction in D1 derives primarily from the glass-power pairing rather than from anomalous-dispersion matching.
+The choice of S-FSL5 rather than a more common crown (e.g., S-BSL7 / N-BK7) is notable. S-FSL5's low refractive index (1.487) maximizes the index step at the cemented junction with S-LAH60 (Δn = 1.834 − 1.487 = 0.347), producing strong negative power at the interface without requiring extreme curvatures. A higher-index crown would reduce this Δn and necessitate steeper curves to achieve the same divergence. S-FSL5's anomalous partial dispersion (ΔPgF = +0.0022) is modest — near the Schott normal line — so the secondary-spectrum correction in D1 derives primarily from the glass-power pairing rather than from anomalous-dispersion matching.
 
 ### L23 — Near-Plano-Concave Negative (G2, cemented with L24)
 
@@ -134,7 +134,7 @@ All six distinct glasses in this design are exact matches to OHARA catalog entri
 | Element(s) | Glass | nd | νd | Type | Role |
 |------------|-------|----|----|------|------|
 | L11, L12, L13 | S-FPL51 (OHARA) | 1.49700 | 81.6 | ED fluorophosphate crown | Ultra-low dispersion front group; primary APO contributor |
-| L21 | S-LAH55 (OHARA) | 1.83400 | 37.3 | Lanthanum dense crown | High-index "flint role" in D1; telephoto divergence |
+| L21 | S-LAH60 (OHARA) | 1.83400 | 37.3 | Lanthanum dense flint | High-index flint role in D1; telephoto divergence |
 | L22 | S-FSL5 (OHARA) | 1.48749 | 70.4 | Fluorine crown | Low-index crown in D1; maximizes Δn at cemented interface |
 | L23, L32 | S-LAH53 (OHARA) | 1.80610 | 40.7 | Lanthanum dense crown | Negative power in reversed doublets; telephoto + APO |
 | L24 | S-TIH10 (OHARA) | 1.72825 | 28.3 | Titanium dense flint | Positive flint in reversed D2; secondary-spectrum correction |
@@ -144,7 +144,7 @@ The glass palette clusters into two functional families:
 
 **Ultra-low-dispersion crowns (νd > 70):** S-FPL51 and S-FSL5 provide the low-dispersion refractive power that anchors the chromatic correction. S-FPL51 in particular has strongly anomalous positive partial dispersion (ΔPgF ≈ +0.035), meaning its blue-to-green dispersion ratio deviates from the Schott normal line. This anomalous dispersion is the mechanism by which the design attacks the secondary spectrum — the residual longitudinal color shift between the C-line, d-line, and F-line focuses that an ordinary achromat cannot eliminate.
 
-**Dense flints and dense crowns (νd < 42):** S-LAH55, S-LAH53, S-TIH10, and S-TIH6 provide the high-dispersion counterweights. The patent uses three of OHARA's lanthanum-aluminosilicate (LAH) glasses in addition to two titanium-flint (TIH) glasses. The lanthanum glasses combine high index with moderate Abbe numbers (37–41), making them effective at creating large refractive-index steps at cemented interfaces without requiring extremely thick elements. The titanium flints (νd = 25–28) provide the strongest dispersion in the system and are deployed in the unusual positive-flint configuration that drives the secondary-spectrum correction.
+**Dense flints and dense crowns (νd < 42):** S-LAH60, S-LAH53, S-TIH10, and S-TIH6 provide the high-dispersion counterweights. The lanthanum glasses combine high index with moderate Abbe numbers (37–41), making them effective at creating large refractive-index steps at cemented interfaces without requiring extremely thick elements. The titanium flints (νd = 25–28) provide the strongest dispersion in the system and are deployed in the unusual positive-flint configuration that drives the secondary-spectrum correction.
 
 ## Focus Mechanism
 
@@ -190,7 +190,7 @@ The total first-order chromatic residual Σ(φ/ν) for the full system is −0.3
 
 ### Petzval sum
 
-The computed Petzval sum is −0.000185 mm⁻¹, corresponding to a Petzval radius of −5411 mm — essentially flat. This near-zero Petzval sum is achieved through the balance of positive and negative powers across high-index glasses: the strong negative elements in G2 (S-LAH55, S-LAH53) contribute large negative Petzval terms that offset the positive contributions from the front group and rear corrector. The extremely flat Petzval surface is favorable for a telephoto lens, as it reduces the field curvature that would otherwise require the photographer to stop down significantly for sharp corners.
+The computed Petzval sum is −0.000185 mm⁻¹, corresponding to a Petzval radius of −5411 mm — essentially flat. This near-zero Petzval sum is achieved through the balance of positive and negative powers across high-index glasses: the strong negative elements in G2 (S-LAH60, S-LAH53) contribute large negative Petzval terms that offset the positive contributions from the front group and rear corrector. The extremely flat Petzval surface is favorable for a telephoto lens, as it reduces the field curvature that would otherwise require the photographer to stop down significantly for sharp corners.
 
 ## Conditional Expressions
 
@@ -222,4 +222,4 @@ The designer's approach in Example 1 — using three matched S-FPL51 menisci rat
 
 - JP 2003-270529 A (P2003-270529A), 「望遠レンズ」, Cosina Co., Ltd. / 蓬田 祥寿. Published 2003-09-25. Primary source for optical prescription, group architecture, conditional expressions, and aberration diagrams.
 - Cosina Co., Ltd. product specifications for the Voigtländer APO-Lanthar 180mm f/4 SL Close Focus. Manufacturer source for production specifications: 9 elements / 7 groups, f/4, MFD 1.2 m, 9 aperture blades, 49 mm filter thread, overall length ~79 mm.
-- OHARA Inc. optical glass catalog (current edition). Referenced for S-FPL51, S-LAH55, S-FSL5, S-LAH53, S-TIH10, S-TIH6 refractive indices, Abbe numbers, and partial-dispersion data.
+- OHARA Inc. optical glass catalog (current edition). Referenced for S-FPL51, S-LAH60, S-FSL5, S-LAH53, S-TIH10, S-TIH6 refractive indices, Abbe numbers, and partial-dispersion data.

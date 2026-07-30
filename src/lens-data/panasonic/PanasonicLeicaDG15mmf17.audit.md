@@ -49,3 +49,10 @@ Patent: US 2015/0268449 A1, Numerical Example 2
 | Glass labels | May code-backed relabels | unchanged | L2-L7 remain patent-code labels where public catalog candidates are not unique enough. |
 | High-index status | L5 ultra-high-index role | unchanged | Patent nd = 1.91597 supports the UHR/Petzval-controller note. |
 | SDs | ray-trace-derived estimates | unchanged | No patent clear-aperture column; current front/rear proportions remain visually plausible. |
+
+## 2026-07-30 - L-LAH83 identity correction
+
+- Rechecked US 2015/0268449 A1 Numerical Example 2 / Table 6. Surface 14, L8 is `nd=1.77074`, `νd=49.5`; the table names no vendor glass.
+- Rejected the prior OHARA `L-LAH83` attribution. OHARA's official all-products row is `1.864000 / 40.577742`, outside the compatibility window.
+- Relabeled L8 to `M-TAF1 (HOYA catalog equivalent; production supplier unspecified)`. The discontinued HOYA coefficient row is `1.77250 / 49.46` and is compatible with the patent coordinate.
+- Synchronized the analysis and removed the unsupported PGM claim. No prescription geometry or semi-diameter changed.

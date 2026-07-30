@@ -152,7 +152,7 @@ const LENS_DATA = {
       nd: 1.67,
       vd: 57.07,
       fl: -37.88,
-      glass: "670571 - moderate-index crown (unresolved)",
+      glass: "S-LAL52 (OHARA catalog-equivalent to 670571; patent vendor unspecified)",
       apd: false,
       cemented: "D2",
       role: "Negative crown member of the Gr2 doublet; supplies most of the doublet's net negative power while offsetting part of L7 dispersion.",

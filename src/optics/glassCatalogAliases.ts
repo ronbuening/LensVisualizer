@@ -118,12 +118,6 @@ export const ALIAS_RECORDS: readonly GlassAliasRecord[] = [
   { alias: "N-SF1", target: "SF1", kind: "legacy-name", note: "Route N-SF1 annotations to the cataloged SF1 row." },
   { alias: "N-SF6", target: "SF6", kind: "legacy-name", note: "Route N-SF6 annotations to the cataloged SF6 row." },
   {
-    alias: "J-BK7A",
-    target: "N-BK7",
-    kind: "vendor-equivalent",
-    note: "Nikon/Hikari J-BK7A annotations use the BK7 optical-constant class.",
-  },
-  {
     alias: "J-SF1",
     target: "SF1",
     kind: "vendor-equivalent",
@@ -146,6 +140,12 @@ export const ALIAS_RECORDS: readonly GlassAliasRecord[] = [
     target: "SF11",
     kind: "vendor-equivalent",
     note: "Nikon/Hikari J-SF11 annotations use the 785/258 dense-flint optical-constant class.",
+  },
+  {
+    alias: "BAF3",
+    target: "J-BAF3",
+    kind: "legacy-name",
+    note: "Historical bare BAF3 annotations route to Hikari's current J-BAF3 catalog row.",
   },
   { alias: "SF8", target: "N-SF8", kind: "legacy-name", note: "Legacy Schott name superseded by N-SF8." },
   { alias: "LAF21", target: "N-LAF21", kind: "legacy-name", note: "Legacy Schott name superseded by N-LAF21." },

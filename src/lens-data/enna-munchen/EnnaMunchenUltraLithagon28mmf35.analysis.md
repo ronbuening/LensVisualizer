@@ -44,11 +44,11 @@ Both radii are negative, so the element is a positive meniscus concave toward th
 
 ### L3 — Biconvex Positive
 
-$nd = 1.61272$, $νd = 58.6$. Glass: N-SK4 (SCHOTT). $f = +30.5$ mm.
+$nd = 1.61272$, $νd = 58.6$. Glass: HOYA BACD4 catalog equivalent; production supplier unspecified. $f = +30.5$ mm.
 
 L3 is the first element of part H and the strongest positive element in the rear assembly. It begins the converging rear system after the large F-S and S-H separations. Its biconvex form distributes refraction between two surfaces and reduces the burden that would otherwise fall on a single strongly curved positive surface.
 
-The $nd/νd$ pair matches SCHOTT N-SK4 within the precision of the patent table.
+The $nd/νd$ pair matches HOYA BACD4 within the precision of the patent table.
 
 ### L4 — Positive Meniscus, convex to object
 
@@ -82,7 +82,7 @@ The patent gives refractive indices and Abbe numbers only. It does not list glas
 |---|---:|---:|---|---|
 | L1 | 1.62280 | 56.9 | S-BSM10 equivalent / legacy SK10-class | Good equivalent; exact historical vendor unproven |
 | L2 | 1.62536 | 35.6 | Unmatched legacy flint, 625/356 | Exact catalog type unresolved |
-| L3 | 1.61272 | 58.6 | N-SK4 (SCHOTT) | Direct catalog match |
+| L3 | 1.61272 | 58.6 | BACD4 (HOYA equivalent) | Direct coordinate match; supplier unspecified |
 | L4 | 1.62536 | 35.6 | Unmatched legacy flint, 625/356 | Exact catalog type unresolved |
 | L5 | 1.75520 | 27.5 | SF4 (SCHOTT) | Direct catalog match |
 | L6 | 1.61720 | 54.0 | J-SSK1 equivalent / legacy SSK1-class | Good equivalent; exact historical vendor unproven |
@@ -148,7 +148,7 @@ The design should therefore be described as a patent-grounded Enna three-part re
 ## Sources
 
 1. US Patent 2,959,100, Hans Lautenbacher, "Wide Angle Photographic Objective," granted November 8, 1960. Example 1, Table I, is the transcribed prescription source.
-2. SCHOTT, Optical Glass Datasheet N-SK4, used to verify the L3 $nd/νd$ match.
+2. HOYA optical-glass catalog, BACD4, used to verify the L3 $nd/νd$ match.
 3. SCHOTT, Optical Glass Datasheet SF4, used to verify the L5 $nd/νd$ match.
 4. OHARA, S-BSM10 catalog entry, used as the closest documented equivalent for L1.
 5. HIKARI, J-SSK1 catalog sheet, used as the closest documented equivalent for L6.

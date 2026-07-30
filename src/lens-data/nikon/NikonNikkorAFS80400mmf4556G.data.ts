@@ -106,7 +106,7 @@ const LENS_DATA = {
       nd: 1.801,
       vd: 34.9,
       fl: 74.0,
-      glass: "S-LAH52 (OHARA)",
+      glass: "J-LAF016 (Hikari; exact Nikon patent coordinate match)",
       apd: false,
       cemented: "D2",
       role: "Positive flint of G2 achromatic doublet",

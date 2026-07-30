@@ -118,7 +118,7 @@ G3 is the most complex group, containing five elements in three air-separated co
 
 **L31 — Biconvex positive, front surface aspherical — the AS-ED element**
 - Radii: R₁ = +25.884 (aspherical), R₂ = −254.632
-- Glass: nd = 1.55332, νd = 71.7 → **E-FPL51 (HOYA)** or L-FPL51 (OHARA equivalent)
+- Glass: nd = 1.55332, νd = 71.7 → **M-FCD500 (HOYA)** or L-FPL51 (OHARA equivalent)
 - Center thickness: 4.05 mm
 - Element focal length: +42.7 mm (thick lens)
 - Aspherical surface: K = 0 (spherical base, patent κ = 1)
@@ -214,7 +214,7 @@ The design uses 10 distinct glass types across 14 elements (plus one filter glas
 
 Nikon's marketing identifies **two** ED glass elements:
 
-1. **L31 (νd = 71.7):** The AS-ED element. Fluorophosphate ED glass (E-FPL51 or equivalent). APD classification: inferred.
+1. **L31 (νd = 71.7):** The AS-ED element. Fluorophosphate ED glass (M-FCD500 or equivalent). APD classification: inferred.
 2. **L35 (νd = 67.9):** The non-aspherical ED element. Confirmed match J-PSKH1 (Hikari). APD classification: inferred.
 
 ### 5.3 Ultra-High Index Glass
@@ -299,7 +299,7 @@ The 0.30 m minimum focus distance is exceptional for a standard zoom. The G4 foc
 | L21 | Neg. meniscus (1× asph) | 1.74353 | 49.5 | −24.0 | Uncertain (see §10) |
 | L22 | Biconcave neg. | 1.75500 | 52.3 | −51.8 | J-LASKH2 |
 | L23 | Pos. meniscus | 2.00069 | 25.5 | +44.6 | TAFD40 (HOYA) |
-| L31 | Biconvex pos. (1× asph, AS-ED) | 1.55332 | 71.7 | +42.7 | E-FPL51 |
+| L31 | Biconvex pos. (1× asph, AS-ED) | 1.55332 | 71.7 | +42.7 | M-FCD500 |
 | L32 | Neg. meniscus | 1.83481 | 42.7 | −65.1 | S-LAH55V |
 | L33 | Biconvex pos. | 1.61800 | 63.3 | +36.6 | S-PHM52 |
 | L34 | Biconcave neg. | 1.81600 | 46.6 | −13.9 | S-LAH59 |

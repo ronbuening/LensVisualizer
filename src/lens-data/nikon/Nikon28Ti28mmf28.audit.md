@@ -41,3 +41,11 @@ Reviewed `patents/US5528428.pdf`, Embodiment 3 / Table 3. The relevant six-digit
 ### Remaining disposition
 
 - L2 and L4 remain code-backed unresolved rows after public catalog search.
+
+## 2026-07-30 — `797454` catalog-equivalent review
+
+- Rechecked L4 at `nd = 1.79668`, `vd = 45.37`.
+- Hikari J-LASF017 (`1.79500 / 45.31`, code `795453`) is inside the runtime safety window and is the closest
+  coefficient-backed catalog row in the reviewed public data (`delta nd = -0.00168`, `delta vd = -0.06`).
+- Relabeled L4 as a J-LASF017 catalog equivalent while leaving the production supplier unidentified. Synchronized
+  the analysis; no prescription, focus, aperture, or semi-diameter values changed.

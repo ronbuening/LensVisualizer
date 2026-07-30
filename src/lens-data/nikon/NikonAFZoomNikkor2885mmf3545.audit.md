@@ -20,3 +20,9 @@ Patent: US 4,806,000, Tables 1-2 / FIG. 15
 - Removed stale “no source-backed catalog match” wording from L5/L6. The local catalog now contains
   coefficient-backed Hikari J-SFH2 at the exact stored `nd=1.86074` coordinate.
 - J-LAFH3 remains unresolved; no prescription or SD values changed.
+
+## 2026-07-30 SUMITA BALK3 coefficient recovery
+
+- Added SUMITA's discontinued-inclusive BALK3 vendor polynomial at catalog code `518603`.
+- Relabeled L12 to the BALK3 optical equivalent at the exact stored `1.51835 / 60.3` coordinate.
+- The production supplier remains unspecified, and no prescription or semi-diameter values changed.

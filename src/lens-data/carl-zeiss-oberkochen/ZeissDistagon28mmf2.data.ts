@@ -69,7 +69,7 @@ const LENS_DATA = {
       nd: 1.66446,
       vd: 35.84,
       fl: 189.54,
-      glass: "BASF2 / N-BASF2 class (Schott, 664358; patent νd retained)",
+      glass: "J-BASF2 (HIKARI catalog equivalent; production supplier unspecified; patent νd retained)",
       role: "Thick, low-power positive meniscus completing the object-side B group.",
     },
     {
@@ -115,7 +115,7 @@ const LENS_DATA = {
       nd: 1.72,
       vd: 50.42,
       fl: 45.29,
-      glass: "LAK10 / N-LAK10 class (Schott, 720504; patent values retained)",
+      glass: "LAC10 (HOYA catalog equivalent; production supplier unspecified; patent values retained)",
       role: "Secondary positive collector immediately ahead of the central stop space.",
     },
     {

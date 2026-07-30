@@ -74,9 +74,9 @@ L6 is the dense-flint member of the L5/L6 cemented doublet. Its standalone power
 
 ### L7 — Positive Meniscus in L2
 
-nd = 1.51118, νd = 50.9. Glass: Unmatched 511/509 light crown class. f = +58.02 mm.
+nd = 1.51118, νd = 50.9. Glass: SUMITA KF8 catalog equivalent, code 511509; production supplier unspecified. f = +58.02 mm.
 
-L7 is a positive relay meniscus placed immediately behind the L5/L6 doublet. Its nd/νd pair does not match a current public OHARA, Hoya, Schott, Hikari, CDGM, or Sumita catalog entry within a confident tolerance. The correct treatment is therefore an explicit unmatched light-crown class label, not a forced catalog assignment.
+L7 is a positive relay meniscus placed immediately behind the L5/L6 doublet. SUMITA's discontinued-inclusive catalog publishes KF8 at the exact code 511509 coordinate, providing a coefficient-backed catalog equivalent without identifying the production supplier.
 
 ### L8 — Positive Meniscus in L2
 
@@ -106,7 +106,7 @@ L10 is the rear positive element and completes the final convergence to the imag
 | L4 | 1.59507 | 35.6 | Unmatched 595/356 light flint | L12 close-correction element |
 | L5 | 1.62041 | 60.3 | S-BSM16 / SK16 class | Cemented doublet crown |
 | L6 | 1.80518 | 25.5 | S-TIH6 / SF6 class | Cemented doublet flint |
-| L7 | 1.51118 | 50.9 | Unmatched 511/509 light crown | Positive relay meniscus |
+| L7 | 1.51118 | 50.9 | SUMITA KF8 catalog equivalent, code 511509 | Positive relay meniscus |
 | L8 | 1.51680 | 64.2 | BK7-type borosilicate crown; not exact current OHARA S-BSL7 | Positive relay meniscus |
 | L9 | 1.80518 | 25.5 | S-TIH6 / SF6 class | Field flattener / chromatic corrector |
 | L10 | 1.64831 | 33.8 | 648/338 dense flint, unresolved catalog identity | Rear converging element |

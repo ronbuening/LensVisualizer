@@ -24,3 +24,9 @@ Patent: US 2,279,384, Example 6
 ### Verification
 
 - `npm test -- elementRenderDiagnostics`
+
+## 2026-07-30 - SUMITA BAK1 coefficient recovery
+
+- US 2,279,384 Example 6 gives L2 at nd = 1.573, νd = 57.5.
+- SUMITA's discontinued-inclusive all-glass catalog publishes BAK1 at code `573575`, nd = 1.57250, νd = 57.5.
+- Relabeled L2 as a compatible coefficient-backed BAK1 catalog equivalent; the production supplier remains unspecified and the prescription is unchanged.

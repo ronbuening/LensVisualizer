@@ -25,3 +25,11 @@ Patent: US 4,786,152, Embodiment 3 / Table 3
 - The patent gives no per-surface clear apertures.
 - Existing semi-diameters remain estimated rendering apertures. They taper rationally through the large front group, clear the f/2.8 marginal envelope, and keep plausible edge/sag spacing relative to the patent drawing, so no SD edits were made.
 
+## 2026-07-29 - `493836` coefficient-source review
+
+- Rechecked Embodiment 3 L1/L2 at `nd = 1.49310`, `vd = 83.55`, `theta_gF = 0.539`; the patent remains
+  the source for the stored `dPgF = 0.0358` values.
+- Official OHARA, HOYA, Hikari, and Sumita coefficient catalogs contain no exact `493836` row.
+  Nearby FCD1/S-FPL51-class glasses are not exact and are not supplier proof.
+- Retained both explicit `493836` Minolta AD fluorophosphate labels, patent-backed APD status, and
+  patent-derived partial dispersion. No glass name or geometry was changed.

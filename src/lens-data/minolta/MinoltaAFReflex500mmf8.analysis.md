@@ -63,7 +63,7 @@ The glass is ordinary BK7-family borosilicate crown. It is used here for normal 
 
 ### M1 / L5 — Shared Primary Mangin Blank and Clear Central Relay Plug (r3/r4/r5 and r11/r12)
 
-$n_d = 1.67000$, $\nu_d = 57.07$. Glass: `670571` lanthanum-crown-class glass. Primary Mangin unit $f = +110.34$ mm; clear central plug, considered as a refractive element in air, $f = -1636.42$ mm.
+$n_d = 1.67000$, $\nu_d = 57.07$. Glass model: coefficient-backed OHARA S-LAL52, a catalog-equivalent to patent code `670571`; the patent does not identify the supplier. Primary Mangin unit $f = +110.34$ mm; clear central plug, considered as a refractive element in air, $f = -1636.42$ mm.
 
 The annular outer part of this blank is the primary Mangin mirror. Light enters through r3, reflects from the silvered concave rear surface r4, and exits again through the same physical front face, listed as r5 on the return pass. The silvered r4 surface is the system's main converging mirror.
 
@@ -71,7 +71,7 @@ The central portion of the same blank remains clear and is encountered later as 
 
 This dual radial use is analytically important. Treating r11–r12 as a separate, full-diameter lens would overstate the glass count and would make the rear relay physically collide with the annular primary. In the data file, M1 is the annular shell with an inner clear radius; L5 is the smaller central plug, with the same radii, glass, and axial stations.
 
-The 1.67000 / 57.07 glass does not match a public catalog entry closely enough for a firm vendor assignment. The family identification as lanthanum crown is secure; the catalog name is withheld rather than forced.
+Official OHARA data place discontinued S-LAL52 at the same d-line index and only 0.258 higher in Abbe number. It is therefore a strong coefficient-backed optical model for the `670571` patent material, while the supplier remains deliberately unspecified.
 
 ### M2 — Secondary Mangin Mirror (r6 → r7 → r8)
 
@@ -89,7 +89,7 @@ The rear relay is a cemented triplet with net $f = +120.71$ mm. Its third member
 |---|---:|---:|---:|---|---:|---|
 | L3 | r9–r10 | 1.71300 | 53.93 | LAC8 / N-LAK8 class lanthanum crown | +33.08 mm | Strong positive relay element |
 | L4 | r10–r11 | 1.51680 | 64.20 | BSC7 / N-BK7 class borosilicate crown | −48.72 mm | Negative middle relay member |
-| L5 | r11-r12 | 1.67000 | 57.07 | `670571` lanthanum-crown class | -1636.42 mm | Nearly afocal central plug and aberration spacer |
+| L5 | r11-r12 | 1.67000 | 57.07 | S-LAL52 catalog-equivalent to `670571` | -1636.42 mm | Nearly afocal central plug and aberration spacer |
 
 The steep cemented interface at r10 is the strongest refractive surface in the relay. L3 supplies most of the relay's positive power, L4 counterbalances it and helps control aberration, and L5 contributes little standalone power but is part of the rear correction because it is traversed after the secondary reflection.
 
@@ -97,7 +97,7 @@ Because most of the system's axial power is reflective, this cemented group is n
 
 ### L6 — Rear Negative Meniscus / Field Corrector (r13–r14)
 
-$n_d = 1.67000$, $\nu_d = 57.07$. Glass: `670571` lanthanum-crown-class glass, same family as the primary blank. Standalone $f = -97.15$ mm.
+$n_d = 1.67000$, $\nu_d = 57.07$. Glass model: S-LAL52 catalog-equivalent to patent code `670571`, the same modeled material as the primary blank. Standalone $f = -97.15$ mm.
 
 L6 is the rear negative meniscus. Its front surface r13 is the strongest negative Petzval contributor in the refractive portion of the lens. The element counterbalances the positive relay and helps keep the 35 mm image field acceptably flat for a long catadioptric objective.
 
@@ -118,7 +118,7 @@ The patent supplies only $n_d$ and $\nu_d$ values, not manufacturer glass names.
 | Patent glass | Code | Where used | Catalog interpretation | Comment |
 |---|---:|---|---|---|
 | 1.51680 / 64.20 | 517/642 | L1, M2, L4, filter | Hoya BSC7 / Schott N-BK7 / CDGM H-K9L class | Standard borosilicate crown; exact code match to Hoya BSC7 and CDGM H-K9L, near-identical N-BK7 family. |
-| 1.67000 / 57.07 | 670571 | M1/L5, L6 | Lanthanum crown; exact public catalog assignment withheld. | Family secure, exact vendor assignment withheld. |
+| 1.67000 / 57.07 | 670571 | M1/L5, L6 | S-LAL52 coefficient-backed catalog-equivalent. | OHARA model; production supplier unspecified. |
 | 1.71300 / 53.93 | 713/539 | L3 | Hoya LAC8 / Schott N-LAK8 / Ohara S-LAL8 / Sumita K-LaK8 class | Lanthanum crown positive relay glass. |
 
 No ED, fluorite, or anomalous-partial-dispersion glass is present. That is expected for a mirror-dominant telephoto: most axial color is avoided by reflection rather than by a complex refractive achromat. The refractive glass selection mainly corrects residual aberrations and the Petzval balance left by the mirrors.

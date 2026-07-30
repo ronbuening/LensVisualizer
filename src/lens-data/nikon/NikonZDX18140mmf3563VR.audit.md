@@ -12,3 +12,10 @@ Patent: WO 2022/264542 A1
 - Updated L51 to `J-LASFH9 (Hikari)` for nd=1.90265, vd=35.77.
 - Remaining coverage misses are the two UV-curing resin aspheric layers.
 
+## 2026-07-29 - Remaining catalog-coordinate correction
+
+- Rechecked the prescription in local `patents/WO2022264542A1.pdf`; S16 remains 1.51742 / 52.20 and its R/d
+  values are unchanged.
+- S16 `S-NSL3 (OHARA)` -> `S-NSL36 (OHARA)`. S-NSL36 is the matching 51752x same-vendor family; S-NSL3 is
+  the distinct 1.51823 / 58.90 row.
+- Synchronized the hybrid-asphere substrate discussion, glass table, and source list.

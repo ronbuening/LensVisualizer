@@ -75,9 +75,9 @@ L5 is cemented to L4 at the R8 = +13.211 mm junction surface. Its rear surface i
 
 ### L6 — Weakly Positive Aspherical Meniscus, Convex to Object (G2 rear)
 
-nd = 1.56865, νd = 58.6. Glass: K-VC89 (Sumita). f = +178.3 mm (paraxial).
+nd = 1.56865, νd = 58.6. Glass: unmatched molded barium crown; K-VC89 is a family comparison only. f = +178.3 mm (paraxial).
 
-L6 is the sole aspherical element in the system, with both surfaces (S10, S11) carrying aspherical profiles. Its paraxial radii are R10 = +47.945 mm and R11 = +89.234 mm, forming a weakly positive meniscus with convex surface toward the object. The patent (¶0094) specifies that "the shape of a paraxial region of the lens L6 is a convex surface facing the object side." K-VC89 is a Sumita barium-crown–class glass with moderate index and low dispersion (νd = 58.6), suitable for a glass-molded aspherical element. Fujifilm's specification explicitly states the aspherical element is "glass moulded" (GMo), indicating a precision-glass-molding process rather than a hybrid resin layer or polished glass asphere.
+L6 is the sole aspherical element in the system, with both surfaces (S10, S11) carrying aspherical profiles. Its paraxial radii are R10 = +47.945 mm and R11 = +89.234 mm, forming a weakly positive meniscus with convex surface toward the object. The patent specifies the shape and 1.56865/58.6 coordinate but not a vendor. K-VC89 is a useful molded-crown comparison, not a verified production-glass identity.
 
 The paraxial focal length of +178.3 mm indicates that L6 contributes only weak positive power to the system; its primary purpose is aberration correction through its aspherical profiles, not refractive power. The patent positions L6 between the cemented doublet (L4/L5) in G2 and the negative meniscus (L7) in G3, a location the patent identifies as optimal (¶0091): placing the aspherical lens before the cemented doublet would compromise field curvature correction, while placing it after L7 would compromise spherical aberration correction.
 
@@ -106,7 +106,7 @@ The design uses a constrained glass palette dominated by a single ultra-high-ind
 | L3 | 1.88300 | 40.8 | S-LAH58 | OHARA | Lanthanum crown | Post-stop positive (G2) |
 | L4 | 1.59270 | 35.3 | S-FTM16 | OHARA | Titanium flint | Achromatic negative (G2 doublet) |
 | L5 | 1.88300 | 40.8 | S-LAH58 | OHARA | Lanthanum crown | Primary positive (G2 doublet) |
-| L6 | 1.56865 | 58.6 | K-VC89 | Sumita | Barium crown (GMo) | Aspherical corrector (G2) |
+| L6 | 1.56865 | 58.6 | Unmatched 569586 molded crown | Vendor unresolved | Barium crown (GMo) | Aspherical corrector (G2) |
 | L7 | 1.80809 | 22.8 | S-NBH55 | OHARA | Niobium-barium flint | Diverger / lateral color (G3) |
 | L8 | 1.88300 | 40.8 | S-LAH58 | OHARA | Lanthanum crown | Field lens / telecentricity (G3) |
 
@@ -210,4 +210,4 @@ The Petzval sum of +0.00534 mm⁻¹ (Petzval radius −187 mm) is consistent wit
 - Fujifilm X100F official specifications: https://fujifilm-x.com/en-us/products/cameras/x100f/specifications — confirming 23mm f/2, 8 elements in 6 groups, 1 aspherical glass moulded lens, 10 cm MFD.
 - Fujifilm X100 launch specification (Photography Blog, February 2011): confirming "6 groups 8 lenses (1 aspherical glass moulded lens included)."
 - OHARA optical glass catalog (pocket edition, 2023): S-TIH13 (nd = 1.74077, νd = 27.8), S-LAH58 (nd = 1.88300, νd = 40.8), S-FTM16 (nd = 1.59270, νd = 35.3), S-NBH55 (nd = 1.80809, νd = 22.8).
-- Sumita optical glass catalog: K-VC89 (nd = 1.56865, νd = 58.6).
+- Sumita optical glass catalog: K-VC89 family comparison for the unresolved 1.56865/58.6 patent row.

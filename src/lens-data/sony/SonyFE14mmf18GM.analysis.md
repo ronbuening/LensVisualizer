@@ -40,7 +40,7 @@ Surface 1 has a spherical-base conic with polynomial correction. Surface 2 uses 
 
 ### L2 — Negative Meniscus
 
-nd = 1.73234, νd = 54.7. Glass: S-LAL18-class OHARA equivalent; the patent index aligns with catalog ne. f = -49.22 mm.
+ne = 1.73234, νe = 54.7. Glass: unmatched 732547 e-line crown; S-LAL18 is only a nearby d-line comparison. f = -49.22 mm.
 
 L2 shares the negative front power with L1. The verified ratio f(L1)/f(L2) = 1.022 shows that the first two negative menisci carry nearly equal standalone paraxial power. The higher index of L2 allows the same approximate negative power with less severe curvature than would be required from a lower-index crown.
 
@@ -102,15 +102,15 @@ L12 is the negative element preceding the strongest negative air lens in G2. Its
 
 ### L13 — Biconcave Negative, Aspherical on Both Surfaces
 
-nd = 1.85639, νd = 40.1. Glass: S-LAH89-class lanthanum flint; the patent index aligns with catalog ne. f = -218.18 mm.
+ne = 1.85639, νe = 40.1. Glass: unmatched 856401 e-line lanthanum flint; S-LAH89 is only a nearby d-line comparison. f = -218.18 mm.
 
 L13 has weak base paraxial power but large aspherical coefficients. It is therefore better understood as a field-dependent correction element than as a strong thin-lens power element. Its location after the LA air lens gives it leverage over astigmatism, distortion, and residual field curvature.
 
 ### L14 — Rear Positive Meniscus
 
-nd = 1.62228, νd = 63.9. Glass: S-PHM52-class phosphate crown, soft OHARA match. f = +166.85 mm.
+ne = 1.62228, νe = 63.9. Glass: unmatched 622639 e-line crown; S-PHM52 is only a nearby d-line comparison. f = +166.85 mm.
 
-L14 is stationary during focusing and sits behind the moving G2F subgroup. Its weak positive power and rear placement are consistent with final field flattening and chief-ray-angle trimming at the sensor side. The closest authoritative match is S-PHM52-class, but it is not an exact stored-index substitution; the label is therefore a catalog-class identification rather than a claim that the patent used that exact catalog melt.
+L14 is stationary during focusing and sits behind the moving G2F subgroup. Its weak positive power and rear placement are consistent with final field flattening and chief-ray-angle trimming at the sensor side. S-PHM52 is a useful family comparison, but the patent row is e-line-authored and does not establish a d-line catalog identity.
 
 ## Glass Identification and Selection
 
@@ -119,7 +119,7 @@ The patent's refractive-index column is labeled nd, but several entries align ex
 | Element | Patent index / νd | Corrected glass identification | Confidence | Role |
 |---|---:|---|---|---|
 | L1 | 1.58547 / 59.5 | S-BAL42-class OHARA equivalent, not S-BAL41 | High class match | Low-density front negative meniscus |
-| L2 | 1.73234 / 54.7 | S-LAL18-class OHARA equivalent | High class match | Second negative meniscus |
+| L2 | 1.73234 / 54.7 | Unmatched 732547 e-line crown; S-LAL18 comparison | E-line only | Second negative meniscus |
 | L3 | 1.59489 / 68.6 | S-FPM2-class ED fluorophosphate | Soft match | Front-group lateral-color correction |
 | L4 | 1.69416 / 31.2 | 694312 short flint | Patent-code fallback | Positive contact partner to L3 |
 | L5 | 1.91048 / 31.3 | 910313 dense lanthanum flint, not S-LAH79 | Patent-code fallback | Negative element of LN |
@@ -130,8 +130,8 @@ The patent's refractive-index column is labeled nd, but several entries align ex
 | L10 | 1.86252 / 25.2 | 863252 dense flint | Patent-code fallback | Flint in rear doublet |
 | L11 | 1.93323 / 20.9 | Unmatched 933/209 ultra-high-index short flint | Unmatched | Strong high-index positive relay |
 | L12 | 1.86252 / 25.2 | 863252 dense flint | Patent-code fallback | Negative Petzval element |
-| L13 | 1.85639 / 40.1 | S-LAH89-class lanthanum flint | High class match | Rear aspherical field corrector |
-| L14 | 1.62228 / 63.9 | S-PHM52-class phosphate crown | Soft match | Rear field/chief-ray correction |
+| L13 | 1.85639 / 40.1 | Unmatched 856401 e-line lanthanum flint | E-line only | Rear aspherical field corrector |
+| L14 | 1.62228 / 63.9 | Unmatched 622639 e-line crown | E-line only | Rear field/chief-ray correction |
 
 Several superficially plausible identifiers should be avoided: S-BAL41 does not match L1's index/dispersion pair, S-LAH79 is not the correct dense-lanthanum-flint neighbor for L5, and the S-TIM28 / S-LAH95 / S-NBH56 soft labels resolve to catalog d-line entries that do not round-trip these patent rows. The data file therefore keeps L4, L5, L10, and L12 as code-only patent glasses until a coefficient-backed exact match is available.
 

@@ -40,3 +40,10 @@ Patent: JP WO2020/105107 A1, Example 1
 ### Verification
 
 - Pending full Nikon batch verification.
+
+## 2026-07-30 - Remaining 902253 source audit
+
+- Rechecked L34 at `nd = 1.90200`, `vd = 25.3` against the expanded current and discontinued-inclusive catalogs.
+- No coefficient-backed public row is inside the runtime d-line safety window; the historical J-LASFH24 family
+  comparison does not establish an exact dispersion curve.
+- Reworded L34 as explicit unmatched `902253`; no prescription, zoom, focus, or semi-diameter values changed.

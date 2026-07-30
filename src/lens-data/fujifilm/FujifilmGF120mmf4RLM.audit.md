@@ -40,3 +40,11 @@ Patent: US 2018/0059384 A1, Example 1
 
 - Corrected L23 from `S-LAH52Q (OHARA)` to `S-NBH55 (OHARA)`. S-NBH55 exactly matches 1.80000 / 29.84; S-LAH52Q is the distinct 1.79952 / 42.24 glass.
 - Synchronized the element narrative and glass summary.
+
+## 2026-07-30 — L14 catalog-equivalent recovery
+
+- Replaced the nonexistent `S-LAH85V` name with `L-LAH85V (OHARA catalog equivalent; production supplier
+  unspecified)`.
+- The patent retains 1.85150 / 40.78. Current OHARA L-LAH85V publishes 1.85400 / 40.38, which is inside the
+  resolver's compatibility window but is not claimed as the production glass.
+- Synchronized the element narrative and corrected the prior claim that all 14 rows were exact OHARA matches.

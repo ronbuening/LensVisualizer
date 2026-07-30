@@ -37,3 +37,10 @@ Patent: US 2020/0257181 A1, Numerical Example 1
 ## 2026-07-29 - Catalog-coordinate correction
 
 - Corrected L6, L10, and L16 from modern `S-NPH2` to historical OHARA `PBH21`, the exact 1.92286 / 20.90 row.
+
+## 2026-07-29 - Remaining catalog-coordinate correction
+
+- Rechecked Numerical Example 1 / Table 1 in local `patents/US20200257181A1.pdf`; S19 remains
+  1.83400 / 37.20 and its R/d row is unchanged.
+- S19 `S-LAH55V (OHARA)` -> `S-LAH60 (OHARA)`, the exact same-vendor coordinate family. Synchronized the L11
+  analysis table, IS-doublet text, and source list.

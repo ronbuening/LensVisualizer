@@ -90,7 +90,7 @@ L2 shares the same lanthanum special flint glass as L1 and continues the positiv
 | Surfaces | R5 = +84.27, R6 = +17.73 |
 | Shape | Negative meniscus, convex toward object |
 | Glass | nd = 1.6668, νd = 33.0 — **Dense flint** [667330] |
-| Catalog match | OHARA SF19 (per Cavina); also HOYA FD60 |
+| Catalog match | CDGM H-ZF39 coefficient-backed equivalent; production supplier unspecified |
 | Thick-lens focal length | −34.1 mm |
 
 L3 is the most optically critical element in the front group and the subject of patent condition (5): n3 < 1.67. This is a deliberately *low*-index glass for a negative element — counterintuitive in a design that otherwise maximizes refractive index everywhere. The patent explains the rationale: using a comparatively low refractive index in L3 improves the Petzval sum by reducing the negative Petzval contribution's magnitude relative to what a higher-index flint would produce. The surface at R6 (+17.73 mm) is the sharpest curvature in the entire front group and generates the largest negative spherical aberration in the front half (I = −0.60 at surface 6), serving as the front group's primary SA corrector.
@@ -156,7 +156,7 @@ The use of only five distinct glass types across seven elements — with L1 = L2
 | Element(s) | nd | νd | 6-Digit Code | OHARA (old catalog) | HOYA equivalent | Family |
 |---|---|---|---|---|---|---|
 | L1, L2 | 1.78800 | 47.4 | 788474 | LASF014 | NBFD13 | Lanthanum special flint |
-| L3 | 1.66680 | 33.0 | 667330 | SF19 | FD60 | Dense flint |
+| L3 | 1.66680 | 33.0 | 667330 | H-ZF39 equivalent | CDGM | Dense flint |
 | L4 | 1.80518 | 25.4 | 805254 | SF6 | FDS6 | Dense flint |
 | L5, L7 | 1.77250 | 49.6 | 773496 | LASF016 | NBFD10 | Lanthanum special flint |
 | L6 | 1.86300 | 41.5 | 863415 | LASF07 | TAFD25 | Lanthanum special flint |

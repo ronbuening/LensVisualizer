@@ -111,7 +111,7 @@ This cemented meniscus pair has a computed focal length of −301.9mm. Its weak 
 
 #### L14 — Biconvex Positive
 
-nd = 1.518, νd = 60.3. Glass: unmatched 518/603 light crown. f = +47.0mm.
+nd = 1.518, νd = 60.3. Glass: BALK3 (SUMITA catalog equivalent; production supplier unspecified). f = +47.0mm.
 
 L14 is the main positive singlet in G32. It adds strong positive relay power at a rear-group location where chief-ray height remains significant. The exact catalog identity has not been resolved from current public catalogs, so the data file labels it as unmatched rather than forcing a speculative vendor name.
 
@@ -135,7 +135,7 @@ The glass table avoids circular catalog assignment. Exact current OHARA matches 
 | 1.796 / 40.9 | Unmatched 796/409 lanthanum flint | L8, L16 | Not forced to S-LAH52; S-LAH52 is closer to 800/422 and is materially different in Abbe number. |
 | 1.568 / 56.0 | N-BAK4 / S-BAL14 class, 569/560-563 | L11 | Rounded barium-crown class, not an exact stored-index match. |
 | 1.563 / 60.8 | BACD11 / N-SK11 / S-BAL41 class, 564/608-607 | L12, L15 | Cross-reference match. |
-| 1.518 / 60.3 | Unmatched 518/603 light crown | L14 | No confident current catalog match was assigned. |
+| 1.518 / 60.3 | BALK3 (SUMITA catalog equivalent) | L14 | Exact catalog coordinate within patent rounding; supplier unspecified. |
 
 The design uses conventional crown/flint achromatization. It does not contain ED, fluorite, or anomalous-partial-dispersion glass in the modern sense.
 

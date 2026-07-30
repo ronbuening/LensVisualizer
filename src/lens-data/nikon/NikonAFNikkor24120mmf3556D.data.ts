@@ -245,7 +245,7 @@ const LENS_DATA = {
       nd: 1.834,
       vd: 37.4,
       fl: -18.604546,
-      glass: "834374 — LaSF/NBFD class (vendor unresolved)",
+      glass: "NBFD10 (HOYA catalog equivalent; production supplier unspecified; patent 834374)",
       cemented: "C4",
       role: "Negative front component of the final Petzval-balancing cemented pair.",
     },

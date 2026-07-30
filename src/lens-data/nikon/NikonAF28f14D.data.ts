@@ -113,7 +113,7 @@ const LENS_DATA = {
       nd: 1.51454,
       vd: 54.6,
       fl: -29.5,
-      glass: "Crown-flint boundary (no exact modern catalog match; 1990s-era type)",
+      glass: "KF3 (SUMITA catalog equivalent for patent coordinate; production supplier unspecified)",
       apd: false,
       role: "Rear element of cemented doublet L4. Nearly index-matched to L4a (Δnd=0.004) to suppress monochromatic junction aberrations; dispersion difference (Δνd=15.3) provides achromatic correction for G2.",
       cemented: "L4",

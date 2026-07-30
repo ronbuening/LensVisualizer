@@ -69,11 +69,11 @@ The class label is coordinate-based. The patent gives no manufacturer or melt na
 
 #### L2 - Biconvex Positive, front component of D1
 
-**nd = 1.61375, νd = 56.3. Glass: 614563 - SK6 / BSM6 class (historical vendor unresolved). Standalone f = +119.347 mm.**
+**nd = 1.61375, νd = 56.3. Glass: unmatched 614563 historical crown; the prior SK6 / BSM6 annotation is not coefficient-backed. Standalone f = +119.347 mm.**
 
 L2 is cemented directly to L3. Its positive standalone power is opposed by the negative component, producing a D1 cemented-pair EFL of +634.830 mm. The pair is therefore only weakly positive in situ compared with either isolated component.
 
-A legacy OHARA BSM6 row and the corresponding Schott SK6 class match the stored index exactly and differ in Abbe number by only 0.1. This is a coordinate-class match; the patent does not identify the historical glass vendor or melt.
+No first-party coefficient row matching both stored coordinates was located in the current vendor sources. The patent does not identify the historical glass vendor or melt.
 
 #### L3 - Biconcave Negative, rear component of D1
 
@@ -194,7 +194,7 @@ The patent publishes only d-line refractive indices and Abbe numbers. It does no
 | Data-file glass annotation | nd | νd | Elements | Interpretation |
 |---|---:|---:|---|---|
 | 620603 - SK16 class (vendor unresolved) | 1.62041 | 60.3 | L1, L6, L7 | medium-index crown-class coordinate |
-| 614563 - SK6 / BSM6 class (historical vendor unresolved) | 1.61375 | 56.3 | L2 | legacy catalog coordinate match; vendor and melt not established |
+| Unmatched 614563 historical crown | 1.61375 | 56.3 | L2 | prior SK6 / BSM6 annotation not coefficient-backed |
 | 755275 - SF4 class (vendor unresolved) | 1.75520 | 27.5 | L3 | dense flint-class coordinate |
 | 689311 - SF8 class (vendor unresolved) | 1.68893 | 31.1 | L4 | flint-class coordinate |
 | S-APL1 (OHARA; 517696) | 1.51728 | 69.6 | L5 | catalog-backed low-dispersion crown |

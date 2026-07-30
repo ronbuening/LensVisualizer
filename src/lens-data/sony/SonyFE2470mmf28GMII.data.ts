@@ -121,7 +121,7 @@ const LENS_DATA = {
       nd: 1.77002,
       vd: 49.4,
       fl: -83.9,
-      glass: "770494 — lanthanum crown (patent nd=1.77002, nu_d=49.4)",
+      glass: "MC-TAF101-100 (HOYA catalog equivalent for patent 770494; production supplier unspecified)",
       apd: false as const,
       role: "Aspherical corrector plate within variator; coma and astigmatism control",
     },

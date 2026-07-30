@@ -82,7 +82,7 @@ L6 is the positive partner in the G2 cemented doublet. Its high refractive index
 
 ### L7 — Biconvex Positive
 
-$N_e = 1.56433$, $\nu_d = 45.3$. Glass: **561453 barium light flint** — no confirmed coefficient-backed public catalog match; likely a proprietary or discontinued melt. $f = +83.4$ mm.
+$N_e = 1.56433$, $\nu_d = 45.3$. Glass: **LLF4 (SUMITA catalog equivalent)** — the recovered coefficients reproduce the patent e-line index; production supplier unspecified. $f = +83.4$ mm.
 
 L7 is the front element of G3 and the only biconvex element in the design ($R_1 = +121.0$ mm, $R_2 = -74.8$ mm). Positioned immediately behind the aperture stop, it collects the diverging cone from G2 and begins reconverging it toward the image plane. The biconvex form provides strong positive power with relatively balanced refraction across both surfaces, minimizing spherical aberration contribution at this point in the optical train. The moderate-dispersion glass ($\nu_d = 45.3$) places L7 between the crown and flint families — an unusual choice that allows fine-tuning of the chromatic balance in G3 without the extreme curvatures that a high-$\nu_d$ crown would require.
 
@@ -111,14 +111,14 @@ The design uses 6 distinct glass types across 9 elements. Two elements (L2, L4) 
 | L3 | 1.69416 | 31.2 | E-FD8 (689312) | HOYA | Achromatizing flint partner to L2 in G1 |
 | L5 | 1.67380 | 57.2 | 670572 lanthanum crown | Uncertain | Crown partner in G2 cemented doublet |
 | L6 | 1.83932 | 37.2 | S-LAH60 | OHARA | High-$n$ lanthanum crown in G2 cemented doublet |
-| L7 | 1.56433 | 45.3 | 561453 barium light flint | Uncertain | Biconvex positive; main relay power in G3 |
+| L7 | 1.56433 | 45.3 | LLF4 catalog equivalent (561453) | SUMITA coefficients; supplier unspecified | Biconvex positive; main relay power in G3 |
 | L8 | 1.72538 | 34.7 | S-NBH8 (≡ N-KZFS8) | OHARA | KZFS-class; anomalous $\Delta P_{gF}$ for secondary spectrum correction |
 
 The chromatic strategy is layered. Primary achromatization in G1 uses the classic ED-crown / dense-flint pairing (S-FPL51 paired with HOYA E-FD8). The G2 cemented doublet provides local achromatization of the focusing group. In G3, the KZFS-class S-NBH8 at L8 addresses secondary spectrum — the residual longitudinal color that persists after primary correction. This three-tier chromatic architecture is essential for a 150 mm lens covering the 645 format, where the image diagonal is 1.6× that of 135 format and chromatic errors scale proportionally.
 
 The patent's Condition 6 ($N_e + 0.015\nu_d > 2.58$) selects specifically for the ED glasses at L2 and L4 — it defines a curve in the $N_e$–$\nu_d$ diagram that excludes ordinary crowns and accepts only fluorophosphate or fluorite-class materials. S-FPL51 satisfies this comfortably at $1.498 + 0.015 \times 81.6 = 2.722$.
 
-For L5 and L7, where the patent's e-line indices do not match any single current catalog entry within tight tolerance, the glasses may be proprietary Fujinon melts, early-catalog designations since superseded, or glasses from vendors (HIKARI, Sumita, CDGM) whose catalog data was not publicly indexed at the time of filing. L5 is therefore kept as the unresolved 670572 code rather than a named catalog glass. L7 at 561453 remains unconfirmed, so the six-digit code is reported in lieu of a catalog name. L3 now uses the coefficient-backed HOYA E-FD8 entry because the stored d-line conversion matches the 689312 code family.
+L5 remains the unresolved 670572 code because its patent e-line coordinate has no coefficient-backed identity within tight tolerance. L7 is now resolved to the SUMITA LLF4 optical equivalent: the recovered vendor polynomial evaluates to $N_e = 1.56433$, exactly reproducing the patent line-index anchor. This does not establish that SUMITA supplied the production melt. L3 uses the coefficient-backed HOYA E-FD8 entry because the stored d-line conversion matches the 689312 code family.
 
 ## Focus Mechanism
 

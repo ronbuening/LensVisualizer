@@ -143,7 +143,7 @@ const LENS_DATA = {
       nd: 1.55332,
       vd: 71.7,
       fl: 42.7,
-      glass: "E-FPL51 (HOYA)",
+      glass: "M-FCD500 (HOYA catalog equivalent; production supplier unspecified)",
       apd: "inferred",
       apdNote: "νd = 71.7, fluorophosphate ED — Nikon's AS-ED designation (aspherical + ED in one element)",
       role: "G3 lead — AS-ED element, post-stop spherical and axial chromatic aberration correction",

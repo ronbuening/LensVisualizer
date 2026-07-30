@@ -185,7 +185,7 @@ const LENS_DATA = {
       nd: 1.67025,
       vd: 57.6,
       fl: 75.948,
-      glass: "670576 — lanthanum crown class (catalog unresolved)",
+      glass: "S-LAL52 (OHARA catalog equivalent for patent 670576; production supplier unspecified)",
       role: "Front positive singlet of the fixed relay group.",
     },
     {

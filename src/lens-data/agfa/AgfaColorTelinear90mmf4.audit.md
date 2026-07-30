@@ -26,3 +26,9 @@ Patent: US 2,819,651, single worked example
 ### Verification
 
 - `npm test -- elementRenderDiagnostics`
+
+## 2026-07-30 SUMITA KF3 coefficient recovery
+
+- Added SUMITA's discontinued-inclusive KF3 vendor polynomial at catalog code `515546`.
+- Relabeled L4 to the KF3 optical equivalent; its `1.51454 / 54.7` coordinate agrees within patent rounding.
+- The production supplier remains unspecified, and no prescription geometry changed.

@@ -96,7 +96,7 @@ const LENS_DATA = {
       nd: 1.8061,
       vd: 40.97,
       fl: -36.86,
-      glass: "J-LASF03 / N-LASF43 class (catalog-equivalent dense lanthanum flint)",
+      glass: "S-LAH53 (OHARA catalog equivalent; production supplier unspecified)",
       cemented: "H2",
       role: "Glass substrate of the second composite negative meniscus in G1.",
     },

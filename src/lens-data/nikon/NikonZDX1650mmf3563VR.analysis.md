@@ -61,7 +61,7 @@ The use of PBH21 here also lowers the Petzval contribution of G1: because Petzva
 
 ### L21 — Negative Meniscus, Aspherical (G2a, front element of cemented doublet)
 
-nd = 1.83441, νd = 37.28, ng = 1.86310. Glass: dense lanthanum flint code 834373, still unresolved after catalog search. f = −32.8 mm (standalone, in air).
+nd = 1.83441, νd = 37.28, ng = 1.86310. Glass: HOYA M-NBFD10 catalog equivalent for patent code 834373; production supplier unspecified. f = −32.8 mm (standalone, in air).
 
 L21 is a negative meniscus with its convex surface facing the object. Its front surface (surface 6) is aspherical (K = 0, polynomial corrections to 10th order). In situ within the G2a cemented doublet, L21 serves as the high-index flint partner to L22's lanthanum crown. Its νd = 37.28 places it firmly in flint territory, and the negative power of this meniscus, combined with the positive power of L22 behind it, produces a net positive cemented doublet (f ≈ +27.6 mm) that corrects axial chromatic aberration in the stop region.
 
@@ -132,7 +132,7 @@ The glass palette for this 9-element design uses 6 distinct glass types plus one
 | L11 body | 1.83481 | 42.73 | 835427 | S-LAH55 / J-LASF05 | Wide-angle diverger substrate |
 | L11r resin | 1.56093 | 36.64 | — | Optical resin | Hybrid asphere correction layer |
 | L12 | 1.92286 | 20.88 | 923/209 | PBH21 (OHARA) | High-index Petzval reducer in G1 |
-| L21 | 1.83441 | 37.28 | 834373 | Unresolved dense LaF class | Flint partner in G2a achromat |
+| L21 | 1.83441 | 37.28 | 834373 | M-NBFD10 catalog equivalent | Flint partner in G2a achromat |
 | L22 | 1.75500 | 52.34 | 755523 | J-LASKH2 (Hikari) | Crown partner in G2a achromat |
 | L23 | 1.95375 | 32.33 | 954/323 | S-LAH98 (OHARA) | High-index flint in G2b achromat + VR |
 | L24 | 1.49700 | 81.61 | 497/816 | S-FPL51 / FCD1 | ED crown in G2b achromat |
@@ -142,7 +142,7 @@ The glass palette for this 9-element design uses 6 distinct glass types plus one
 
 The chromatic strategy centers on the G2b doublet (L23 + L24). The Abbe number contrast of Δνd ≈ 49.3 is the largest in the system, and the ED glass (L24) provides anomalous partial dispersion for secondary spectrum reduction. The G2a doublet (L21 + L22) provides a secondary achromatic correction site with a more modest Δνd ≈ 15.1. Together, these two cemented pairs — both positioned near the aperture stop where axial ray bundles are tallest — control longitudinal chromatic aberration across the full zoom range.
 
-The catalog-backed identifications now include OHARA S-LAH55 / Hikari J-LASF05 for L11, Hikari J-LASKH2 for L22, Hikari Q-LASFPH3S for L25, OHARA PBH21 for L12, and OHARA S-LAH98 for L23/L41. The ED element L24 matches both OHARA S-FPL51 (νd = 81.54) and HOYA FCD1 (νd = 81.61); the closer νd match favors FCD1, but both are standard ED fluorophosphate crowns with interchangeable optical behavior. L21 (834373) and L31 (801455) remain code-labeled dense lanthanum flints until a public coefficient-backed source is found.
+The catalog-backed identifications now include OHARA S-LAH55 / Hikari J-LASF05 for L11, HOYA M-NBFD10 as an exact-coordinate equivalent for L21, Hikari J-LASKH2 for L22, Hikari Q-LASFPH3S for L25, OHARA PBH21 for L12, and OHARA S-LAH98 for L23/L41. The ED element L24 matches both OHARA S-FPL51 (νd = 81.54) and HOYA FCD1 (νd = 81.61); the closer νd match favors FCD1, but both are standard ED fluorophosphate crowns with interchangeable optical behavior. L31 (801455) remains a code-labeled dense lanthanum flint until a public coefficient-backed source is found.
 
 ## Focus Mechanism
 

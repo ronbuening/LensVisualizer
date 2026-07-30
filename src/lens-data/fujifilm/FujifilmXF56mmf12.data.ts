@@ -161,7 +161,7 @@ const LENS_DATA = {
       nd: 1.6668,
       vd: 33.0,
       fl: -14.0,
-      glass: "S-TIF6 (OHARA)",
+      glass: "H-ZF39 (CDGM catalog equivalent; production supplier unspecified)",
       apd: false,
       cemented: "T1",
       role: "Central negative of triplet; chromatic and spherical aberration corrector",

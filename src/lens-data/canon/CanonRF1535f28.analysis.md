@@ -160,7 +160,7 @@ Twelve distinct glass types are used across the 16 elements. All identifications
 | L7 | 1.53172 | 48.8 | S-TIL6 | OHARA | 0.00000 | 0.04 | Titanium light flint |
 | L8 | 2.00069 | 25.5 | TAFD40 | HOYA | 0.00000 | 0.04 | Tantalum dense flint |
 | L9 | 1.53775 | 74.7 | S-FPM3 | OHARA | 0.00000 | 0.00 | Fluorophosphate crown |
-| L11 | 1.83400 | 37.2 | S-LAH55V | OHARA | 0.00000 | 0.04 | Lanthanum dense flint |
+| L11 | 1.83400 | 37.2 | S-LAH60 | OHARA | 0.00000 | 0.04 | Lanthanum dense flint |
 | L12, L13 | 1.49700 | 81.6 | FCD1 / S-FPL51 | HOYA / OHARA | 0.00000 | 0.01–0.06 | **Fluorophosphate crown (UD)** |
 | L14 | 2.05090 | 26.9 | TAFD65 | HOYA | 0.00000 | 0.04 | Tantalum dense flint |
 
@@ -196,7 +196,7 @@ B2 converges the diverging beam from B1 and delivers it to the relay groups behi
 
 B4 is a cemented doublet that serves double duty: it provides negative power for the zoom system's power distribution, and it is the **image stabilization element** — during IS operation, the entire B4 unit shifts orthogonal to the optical axis. The flare cutting stop FS is located at the image-side end of B4.
 
-- **L10 + L11** (cemented doublet D3): L10 (PBH21, f = +31.50 mm) is a positive meniscus concave toward the object, cemented to L11 (S-LAH55V, f = −21.72 mm), a biconcave negative element. The net doublet power is negative (f ≈ −64 mm). The cemented construction is critical for IS — a cemented pair moves as a rigid unit without internal decentration, maintaining its corrected aberration state even when shifted off-axis. The Δνd between the pair (37.2 − 20.9 = 16.3) provides partial achromatization of the IS unit's negative power.
+- **L10 + L11** (cemented doublet D3): L10 (PBH21, f = +31.50 mm) is a positive meniscus concave toward the object, cemented to L11 (S-LAH60, f = −21.72 mm), a biconcave negative element. The net doublet power is negative (f ≈ −64 mm). The cemented construction is critical for IS — a cemented pair moves as a rigid unit without internal decentration, maintaining its corrected aberration state even when shifted off-axis. The Δνd between the pair (37.2 − 20.9 = 16.3) provides partial achromatization of the IS unit's negative power.
 
 **B5 — Positive Rear Group / PL Unit (f = +51.49 mm)**
 
@@ -327,6 +327,6 @@ The Canon RF 15-35mm f/2.8 L IS USM represents a mature implementation of the ne
 - US 2020/0257181 A1, "Zoom Lens and Optical Apparatus," Yuichi Gyoda, Canon Kabushiki Kaisha, published August 13, 2020.
 - Canon U.S.A. product page: RF 15-35mm F2.8 L IS USM (accessed 2025).
 - Canon Europe specifications page: RF 15-35mm F2.8 L IS USM (accessed 2025).
-- OHARA optical glass catalog: S-BAL42, L-LAH85V, S-FPM2, S-NBH56, S-TIH53, PBH21, S-TIL6, S-FPM3, S-LAH55V, S-FPL51.
+- OHARA optical glass catalog: S-BAL42, L-LAH85V, S-FPM2, S-NBH56, S-TIH53, PBH21, S-TIL6, S-FPM3, S-LAH60, S-FPL51.
 - HOYA optical glass catalog: TAFD40, FCD1, TAFD65.
 - Paraxial ray trace verification performed computationally (Python) against patent-stated focal lengths.

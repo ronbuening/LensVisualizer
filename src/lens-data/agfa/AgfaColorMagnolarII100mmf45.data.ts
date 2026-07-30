@@ -71,7 +71,7 @@ const LENS_DATA = {
       nd: 1.56138,
       vd: 45.3,
       fl: -93.8423,
-      glass: "LLF4 class (Sumita legacy catalog; Schott-type)",
+      glass: "LLF4 (SUMITA catalog equivalent for patent coordinate; production supplier unspecified)",
       nC: 1.55768,
       nF: 1.57008,
       ng: 1.57711,

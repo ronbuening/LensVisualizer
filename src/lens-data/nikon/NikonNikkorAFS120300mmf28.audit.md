@@ -68,3 +68,25 @@ Changes made:
 - The stored `nd=1.71736`, `vd=29.53`, and coordinate `717295` match S-TIH1 exactly; E-ADF10 is
   `1.61310 / 44.36` (`613444`).
 - Synchronized the analysis. No prescription values changed.
+
+## 2026-07-29 - Remaining catalog-mismatch audit
+
+JP 2020-177057 A Example 1 was rechecked at surfaces 6, 9, 11, 24, 36, and 42; each stored `R`, `d`, `nd`, and `νd` agrees with the patent table.
+
+| Surface | Before | After | Patent coordinate / disposition |
+|---|---|---|---|
+| 6 | `S-LAM52 (≈N-KZFS8)` | `N-KZFS8` | 1.720467 / 34.71 with θgF=0.583; exact KZFS/APD match. |
+| 9 | `S-TIM35` | `697555` unresolved lanthanum crown | 1.69680 / 55.52; nearby vendors differ and the patent names none. |
+| 11, 24, 42 | `S-LAH52` | `S-LAH65` | Exact OHARA 1.80400 / 46.60 coordinate. |
+| 36 | `S-LAH63Q type` | `S-TIH6` | Exact OHARA 1.80518 / 25.41 coordinate. |
+
+- Synchronized all affected analysis claims. No prescription geometry changed.
+
+## 2026-07-29 - Incompatible named-label audit
+
+- Rechecked JP 2020-177057 A Example 1, Table 1, surface 45: `R=-70.85350`, `d=2.000`,
+  `nd=1.900430`, and `νd=37.38` match the stored L59 prescription.
+- Replaced `OHARA S-LAH75` with `TAFD37A (HOYA catalog-equivalent; patent vendor unspecified)`.
+  Current OHARA S-LAH75 is 1.873996 / 35.26 and is incompatible; HOYA TAFD37A exactly matches the
+  patent coordinate (900374).
+- Synchronized the L59 glass table and element narrative. No prescription geometry changed.

@@ -111,7 +111,7 @@ L33 is a positive meniscus immediately before the stop. It conditions the ray bu
 
 ### L34 — Negative Meniscus, convex to object
 
-nd = 1.90200, νd = 25.3. Glass: **902253 high-index dense flint, J-LASFH24 class**. f = **−60.4 mm**.
+nd = 1.90200, νd = 25.3. Glass: explicit unmatched **902253 high-index dense flint**; no exact public coefficient row. f = **−60.4 mm**.
 
 L34 is the first powered element after the stop and is negative. Its high index and high dispersion make it a compact post-stop corrector for spherical, coma, and pupil-related residuals.
 
@@ -166,7 +166,7 @@ The patent publishes nd and νd, not glass names. The data file uses resolver-ba
 | L31 | 1.49700 | 81.6 | J-FK01A (Hikari) | sole ED-class element in Example 1; APD inferred from glass class |
 | L32 | 1.85026 | 32.4 | J-LASF021 (Hikari) | ED doublet flint partner |
 | L33 | 1.51823 | 58.8 | E-C3 / S-NSL3 / J-K3 class | pre-stop crown meniscus |
-| L34 | 1.90200 | 25.3 | 902253 high-index dense flint / J-LASFH24 class | no exact public catalog match |
+| L34 | 1.90200 | 25.3 | Explicit unmatched 902253 high-index dense flint | no exact public coefficient row |
 | L35 | 1.74400 | 44.8 | S-LAM2 / J-LAF2 class | positive relay glass |
 | L36 | 1.79500 | 45.3 | J-LASF017 (Hikari) | final GP2 positive glass |
 | L41 | 1.80518 | 25.4 | H-ZF7LA / S-TIH6 / J-SF6 class | positive focus-doublet member |

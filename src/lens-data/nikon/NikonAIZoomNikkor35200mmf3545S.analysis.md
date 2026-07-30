@@ -120,7 +120,7 @@ L13 supplies weak positive power behind the biconcave L12. Its concave-to-object
 
 ### L14 — Cemented positive-negative rear doublet
 
-L14a: nd = 1.51835, νd = 60.34. Glass: unmatched crown glass, code 518/603. f = +38.3 mm.
+L14a: nd = 1.51835, νd = 60.34. Glass: BALK3 (SUMITA catalog equivalent; production supplier unspecified). f = +38.3 mm.
 L14b: nd = 1.78797, νd = 47.53. Glass: LAH64-class lanthanum flint, near-match. f = -74.3 mm.
 Cemented doublet focal length: approximately +79.2 mm.
 
@@ -143,7 +143,7 @@ The patent supplies only nd and νd values, not named glass codes. The following
 | L8 | 1.51860 | 70.08 | PKH1-class phosphate crown | High class confidence |
 | L11 | 1.62041 | 60.29 | S-BSM16 / J-SK16 / N-SK16 class | High |
 | L12 | 1.79631 | 40.98 | Unmatched 796/410 lanthanum-flint-region glass | Unmatched |
-| L14a | 1.51835 | 60.34 | Unmatched 518/603 crown glass | Unmatched |
+| L14a | 1.51835 | 60.34 | BALK3 (SUMITA catalog equivalent) | Exact catalog coordinate within patent rounding |
 | L14b | 1.78797 | 47.53 | LAH64-class lanthanum flint | Near-match |
 
 The chromatic strategy is concentrated in three regions. The front L1/L2 cemented doublet pairs a dense flint with a fluorophosphate crown, giving a large Abbe separation at the first collector group. G2 uses two cemented doublets to control lateral color while the variator introduces large magnification change. G3 and G4 then use dense flint / low-dispersion crown pairings to flatten the field and keep axial color manageable across a 5.7x zoom ratio.

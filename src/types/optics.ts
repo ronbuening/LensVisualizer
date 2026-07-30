@@ -153,6 +153,9 @@ export interface AsphericCoefficients {
   A19?: number;
 }
 
+/** Spectral reference used by an element's authored refractive index and Abbe number. */
+export type RefractiveIndexReferenceLine = "d" | "e";
+
 export interface ElementData {
   id: number;
   name: string;
@@ -160,6 +163,11 @@ export interface ElementData {
   type: string;
   nd: number;
   vd?: number;
+  /**
+   * Spectral reference for the authored `nd` / `vd` fields. Defaults to the
+   * helium d line; use `"e"` when those schema slots preserve patent ne / νe.
+   */
+  indexReference?: RefractiveIndexReferenceLine;
   fl?: number;
   glass?: string;
   role?: string;

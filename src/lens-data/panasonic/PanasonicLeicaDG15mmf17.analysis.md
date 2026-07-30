@@ -85,9 +85,9 @@ Together, the L6+L7 doublet is a powerful achromatic unit at the front of the fo
 
 ### L8 — Biconvex Positive
 
-nd = 1.77074, νd = 49.5. Glass: L-LAH83 (OHARA) — high-index lanthanum, PGM-grade. f = +18.21 mm.
+nd = 1.77074, νd = 49.5. Glass: HOYA M-TAF1 catalog equivalent; the production supplier is unspecified. f = +18.21 mm.
 
-L8 is the final element of the focusing group G2. Its nearly plano-convex shape (R_front = +5230, nearly flat; R_rear = −14.07, strongly curved) concentrates all the positive power on the rear surface. This geometry is characteristic of a field-lens element that redirects off-axis ray bundles toward the optical axis without introducing substantial spherical aberration to the on-axis beam. L8's lanthanum glass (νd = 49.5) matches L7's dispersion closely (Δνd < 0.3), minimizing color imbalance within the moving focus group. L-LAH83 provides the closest catalog match (Δnd = 0.002, Δνd = 0.1); TAF1 (HOYA) has identical catalog properties and is an equivalent candidate.
+L8 is the final element of the focusing group G2. Its nearly plano-convex shape (R_front = +5230, nearly flat; R_rear = −14.07, strongly curved) concentrates all the positive power on the rear surface. This geometry is characteristic of a field-lens element that redirects off-axis ray bundles toward the optical axis without introducing substantial spherical aberration to the on-axis beam. L8's lanthanum-class glass (νd = 49.5) matches L7's dispersion closely (Δνd < 0.3), minimizing color imbalance within the moving focus group. Official OHARA L-LAH83 is an incompatible $1.86400 / 40.58$ row; discontinued HOYA M-TAF1 ($1.77250 / 49.46$) lies inside the compatibility window and supplies the modeled curve.
 
 The G2 unit comprising L6+L7+L8 has a combined focal length of +16.64 mm. During focusing from infinity to the 0.20 m minimum focus distance, this entire unit translates forward along the optical axis (toward the object side), as described in ¶0062 and indicated by the arrow in FIG. 3.
 
@@ -112,7 +112,7 @@ L9's dense flint glass (νd = 29.0) also contributes to lateral chromatic aberra
 | L5 | 1.91597 | 36.4 | 916364 patent-code | — | Ultra-high-index La glass | Petzval control, high-nd positive |
 | L6 | 1.78630 | 27.5 | 786275 patent-code | — | Dense flint | Chromatic corrector in focus group |
 | L7 | 1.76864 | 49.7 | 769497 patent-code | — | Lanthanum crown | Achromatic partner to L6 |
-| L8 | 1.77074 | 49.5 | L-LAH83 | OHARA | High-index lanthanum (PGM) | Field lens in focus group |
+| L8 | 1.77074 | 49.5 | M-TAF1 catalog equivalent | Supplier not identified | High-index lanthanum-class field lens |
 | L9 | 1.69748 | 29.0 | E-FD15 class | HOYA | Dense flint | Aspherical field-flattener |
 
 The glass palette spans a wide refractive-index range: from nd = 1.499 (L1, ED crown) to nd = 1.916 (L5, ultra-high-index), satisfying condition (7): nd_MMAX − nd_MMIN = 0.42. The patent explains (¶0123–0130) that this spread is essential to control spherical aberration across a range of field angles without increasing the element count. The maximum-index element (L5) is placed closest to the image side within the front unit, where it suppresses the Petzval sum contribution; the minimum-index element (L1) is placed at the front, where its low index minimizes surface reflection losses at the large entrance aperture.

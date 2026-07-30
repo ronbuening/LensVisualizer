@@ -137,7 +137,7 @@ const LENS_DATA = {
       nd: 1.56865,
       vd: 58.6,
       fl: 178.3,
-      glass: "S-BAL14 (OHARA)",
+      glass: "Unmatched (569586 patent molded crown; no exact public catalog identity)",
       apd: false,
       role: "G2 rear — glass-molded aspherical corrector for SA and field curvature",
     },

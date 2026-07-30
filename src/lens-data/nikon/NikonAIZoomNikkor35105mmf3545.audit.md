@@ -41,3 +41,17 @@ Patent: US 4,699,475, Seventh Embodiment / Table 7
 - Exact or close catalog-class labels were retained where the patent-rounded values support them.
 - L8/L16 (`796/409`) and L14 (`518/603`) remain intentionally unresolved because no coefficient-backed public catalog entry was verified for those exact values.
 - `npm run generate:glass-reports` passed with these entries represented as unresolved coverage items, not catalog mismatches.
+
+## 2026-07-29 — `796409` coefficient-source review
+
+- Visually rechecked the Table 7 `1.79631 / 40.9` rows used by L8 and L16; their stored radii and
+  thicknesses remain patent-consistent.
+- Official OHARA, HOYA, Hikari, and Sumita coefficient catalogs contain no exact `796409` row.
+  The nearest named high-index families either miss the d-line guard or belong at materially different coordinates.
+- Retained both explicit unmatched `796409` annotations. No supplier, catalog model, or geometry changed.
+
+## 2026-07-30 SUMITA BALK3 coefficient recovery
+
+- SUMITA's discontinued-inclusive BALK3 vendor polynomial resolves L14 at the patent-rounded `1.518 / 60.3` coordinate.
+- Relabeled L14 as a BALK3 optical equivalent while leaving the production supplier unspecified.
+- Both `796409` elements remain unresolved; no prescription or zoom data changed.

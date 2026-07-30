@@ -72,7 +72,7 @@ The image circle diameter at 28 mm focal length and 75° total field is 2 × 28 
 - **Shape:** Positive meniscus, convex toward object
 - **Radii:** R₁ = +0.603, R₂ = +2.595 (both centers of curvature to the right)
 - **Thick-lens focal length:** +1.376f = +38.4 mm
-- **Glass:** nᵈ = 1.5638, νᵈ = 60.7 → **Schott SK4** (barium crown)
+- **Glass:** nᵈ = 1.5638, νᵈ = 60.7 → **OHARA S-BAL41 catalog equivalent**; production supplier unspecified
 
 L1 serves as the front collector element. Its moderate positive power gathers the wide-angle light cone and begins converging it toward the stop. The meniscus shape — strongly curved front surface, weakly curved rear — contributes positive power while keeping the Petzval contribution moderate. The high Abbe number (60.7) means this element introduces minimal chromatic aberration despite its significant power. The choice of a barium crown (SK-type) rather than a simple borosilicate crown provides the slightly elevated refractive index (1.564 vs. ~1.517 for BK7) needed to achieve the required power with gentler curvatures.
 
@@ -90,9 +90,9 @@ L2 is the positive component of the front cemented doublet. It is the most stron
 - **Shape:** Biconcave
 - **Radii:** R₄ = −3.000 (cemented junction), R₅ = +0.323
 - **Thick-lens focal length:** −0.488f = −13.6 mm
-- **Glass:** nᵈ = 1.5955, νᵈ = 39.2 → **Schott F7** (dense flint)
+- **Glass:** nᵈ = 1.5955, νᵈ = 39.2 → **HOYA E-F8 catalog equivalent** (production supplier unspecified)
 
-L3 is the negative component of the front doublet. Its strongly negative power (the second-strongest element) comes primarily from the tightly curved rear surface R₅ = +0.323, which is the concave exterior face of Group II facing the stop. This surface is critical: it provides the diverging power that, combined with the symmetrical Group III on the opposite side of the stop, enables the quasi-symmetrical aberration cancellation that is the hallmark of the double-Gauss form. The dense flint glass (F7, νᵈ = 39.2) provides chromatic compensation against L2's crown glass.
+L3 is the negative component of the front doublet. Its strongly negative power (the second-strongest element) comes primarily from the tightly curved rear surface R₅ = +0.323, which is the concave exterior face of Group II facing the stop. This surface is critical: it provides the diverging power that, combined with the symmetrical Group III on the opposite side of the stop, enables the quasi-symmetrical aberration cancellation that is the hallmark of the double-Gauss form. The patent's dense-flint coordinate is modeled with the exact HOYA E-F8 catalog equivalent (νᵈ = 39.2), providing chromatic compensation against L2's crown glass without asserting the historical production supplier.
 
 The cemented junction R₄ = −3.000 is very weakly curved — nearly flat. This means the L2–L3 interface contributes almost no optical power (the Petzval contribution of this surface is only +0.004), and its primary role is to allow chromatic correction through the glass dispersion difference across the bond. The near-flatness of this junction also simplifies manufacturing.
 
@@ -101,11 +101,11 @@ The cemented junction R₄ = −3.000 is very weakly curved — nearly flat. Thi
 - **Shape:** Biconcave
 - **Radii:** R₆ = −0.331, R₇ = +0.798
 - **Thick-lens focal length:** −0.402f = −11.2 mm
-- **Glass:** nᵈ = 1.5785, νᵈ = 41.7 → **Schott BaF3** (barium flint)
+- **Glass:** nᵈ = 1.5785, νᵈ = 41.7 → **unmatched vintage barium flint** (BaF3-class comparison)
 
 L4 is the negative component of the rear cemented doublet, and it is the strongest negative element in the system. Its front surface R₆ = −0.331 is the concave face of Group III facing the stop, forming the mirror-image companion to L3's rear surface R₅. Together, these two strongly concave surfaces flanking the stop create the classic Gauss "waist" and are the primary sites for correcting spherical aberration and coma at large aperture.
 
-The choice of barium flint (BaF3) rather than a conventional dense flint for L4 is notable. BaF3 has a slightly lower refractive index (1.5785) and a slightly higher Abbe number (41.7) than L3's F7 (1.5955, 39.2). This asymmetry between the front and rear Gauss doublets — different glass types, different thicknesses — is a deliberate departure from perfect symmetry that Ito exploits to correct higher-order aberrations and field curvature across the 75° field.
+The choice of a moderate-index barium-flint-class row rather than a conventional dense flint for L4 is notable. The patent gives 1.5785/41.7 but does not establish the modern Schott BaF3 catalog row. This asymmetry between the front and rear Gauss doublets — different glass coordinates and thicknesses — is a deliberate departure from perfect symmetry.
 
 ### 3.5 Element L5 — Rear Cemented Positive (Group III, rear half)
 
@@ -133,10 +133,10 @@ The design uses only four distinct glass types across six elements:
 
 | Glass | Schott Designation | nᵈ | νᵈ | Six-Digit Code | Type | Elements |
 |-------|-------------------|------|------|---------------|------|----------|
-| SK4 | Barium crown | 1.5638 | 60.7 | 564/607 | Crown | L1 |
+| S-BAL41 equivalent | Barium crown | 1.5638 | 60.7 | 564/607 | Crown | L1 |
 | E-BAF8 | Barium flint | 1.6237 | 47.0 | 624/470 | Crown-side doublet member | L2 |
-| F7 | Dense flint | 1.5955 | 39.2 | 596/392 | Flint | L3 |
-| BaF3 | Barium flint | 1.5785 | 41.7 | 579/417 | Flint | L4 |
+| E-F8 catalog equivalent | Dense flint | 1.5955 | 39.2 | 596/392 | Flint; production supplier unspecified | L3 |
+| Unmatched BaF3-class row | Barium flint | 1.5785 | 41.7 | 579/417 | Flint; no exact public catalog identity | L4 |
 | SK14 | Dense barium crown | 1.6204 | 60.3 | 620/603 | Crown | L5, L6 |
 
 All five glass types were standard Schott catalog offerings of the era. Canon, like most Japanese manufacturers in the early 1950s, would have used equivalent domestic melts — likely from Ohara or HOYA. The patent lists nᵈ and νᵈ values that match the Schott catalog exactly, which was common practice: designers specified glasses by their Schott equivalents regardless of which foundry actually produced the melt.

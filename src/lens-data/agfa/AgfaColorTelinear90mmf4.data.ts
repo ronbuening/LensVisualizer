@@ -95,7 +95,7 @@ const LENS_DATA = {
       nd: 1.51454,
       vd: 54.7,
       fl: -16.7808,
-      glass: "KF3 / NSL33 class (legacy crown-flint, 515/547)",
+      glass: "KF3 (SUMITA catalog equivalent for patent coordinate; production supplier unspecified)",
       role: "Strong negative front component of the rear telephoto doublet.",
       cemented: "D2",
     },

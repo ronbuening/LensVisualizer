@@ -14,3 +14,9 @@ Patent: DE 2444954 A1, Claim 3 / Example 3
 ### Verification
 
 - `npm test -- elementRenderDiagnostics`
+
+## 2026-07-30 - SK3 catalog recovery
+
+- Verified SUMITA SK3 in the vendor's 2025-11-07 all-glass catalog, including its formula-3 dispersion polynomial and the exact `1.60881 / 58.9` d-line coordinate.
+- Relabeled L6 as a SUMITA catalog equivalent while leaving the historical production supplier unspecified.
+- The existing patent-derived C/F/g line indices remain stored and independently support the catalog assignment. No prescription geometry changed.

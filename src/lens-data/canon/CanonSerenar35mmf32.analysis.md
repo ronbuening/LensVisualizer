@@ -90,7 +90,7 @@ All six glasses match standard Schott dense crown (SK) and light flint (LF) cata
 | Element | nd | νd | Six-Digit Code | Best Match | Δnd (×10⁻⁴) | Δνd |
 |---------|------|------|----------------|------------|-------------|-----|
 | L1 | 1.5891 | 61.2 | 589/612 | **Schott SK5** | 0.0 | −0.1 |
-| L2 | 1.6073 | 59.5 | 607/595 | **Schott SK7** | 0.0 | +0.1 |
+| L2 | 1.6073 | 59.5 | 607/595 | **SUMITA K-SK7 catalog equivalent** | 0.0 | +0.1 |
 | L3 | 1.5785 | 41.7 | 578/417 | **Schott LF5 or LF7** | −29 / +35 | +1.2 / +0.2 |
 | L4 | 1.5785 | 41.7 | 578/417 | **Schott LF5 or LF7** | (same) | (same) |
 | L5 | 1.6031 | 60.7 | 603/607 | **Schott SK14** | 0.0 | +0.1 |
@@ -116,14 +116,14 @@ Notably, the design uses four distinct crown glasses rather than consolidating t
 
 L1 is a gently converging positive meniscus that serves as the front collecting element. Its meniscus form (both surfaces convex toward the object, with the front surface much more strongly curved) is a deliberate choice to reduce the angle of incidence on each surface, keeping higher-order spherical aberration contributions low. The relatively weak power (f ≈ 1.5× the system focal length) means this element contributes modest convergence while introducing minimal aberration — consistent with Ito's philosophy of distributing power across many surfaces.
 
-### L2 — Front Doublet Positive Element (SK7-type)
+### L2 — Front Doublet Positive Element (K-SK7 equivalent)
 
 | Property | Value |
 |----------|-------|
 | Shape | Biconvex |
 | Radii | R₃ = +0.4501, R₄ = −2.3268 |
 | Thickness | 0.1428 |
-| Glass | nd = 1.6073, νd = 59.5 (SK7) |
+| Glass | nd = 1.6073, νd = 59.5 (SUMITA K-SK7 equivalent; supplier unspecified) |
 | Focal length | f = +0.633 (scaled: +22.6 mm) |
 
 L2 is the most powerful single element in the system: a thick biconvex crown with a focal length of roughly 0.63× the system EFL. It forms the front (convergent) component of the object-side cemented doublet L₁. The strong front radius R₃ = +0.4501 is the primary refracting surface responsible for bending the marginal ray inward toward the stop. The patent emphasizes that the magnitude of R₃ must fall between 0.4 and 0.5 times the focal length — this is a key design parameter controlling the balance between spherical aberration and coma.

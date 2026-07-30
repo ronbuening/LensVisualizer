@@ -651,6 +651,16 @@ describe("validateLensData", () => {
     expect(errors.some((e) => e.includes("elemId 999"))).toBe(true);
   });
 
+  it("accepts d/e element index references and rejects unknown spectral lines", () => {
+    const eLine = makeValid();
+    (eLine.elements as Array<Record<string, unknown>>)[0].indexReference = "e";
+    expect(validateLensData(eLine)).toEqual([]);
+
+    const invalid = makeValid();
+    (invalid.elements as Array<Record<string, unknown>>)[0].indexReference = "C";
+    expect(validateLensData(invalid).some((error) => error.includes('indexReference must be "d" or "e"'))).toBe(true);
+  });
+
   it("reports multiple errors at once", () => {
     const data = makeValid();
     delete data.key;

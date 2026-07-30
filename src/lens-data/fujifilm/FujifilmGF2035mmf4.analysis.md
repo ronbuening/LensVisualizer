@@ -100,7 +100,7 @@ HOYA's public cross-reference and refractiveindex.info coefficient page both pla
 ### L31 + L32 + L33 - Stop-adjacent cemented triplet
 
 L31: nd = 1.48749, νd = 70.44. Glass: N-FK5 / S-FSL5 class. f = +27.87 mm standalone.  
-L32: nd = 1.75700, νd = 47.71. Glass: H-LaF6L / lanthanum-flint class. f = -14.57 mm standalone.  
+L32: nd = 1.75700, νd = 47.71. Glass: CDGM H-LaF6LA catalog match; production glass unspecified. f = -14.57 mm standalone.
 L33: nd = 1.49700, νd = 81.61. Glass: N-PK52A / FCD1 / S-FPL51-class ED. f = +39.08 mm standalone.  
 Cemented triplet focal length: -351.58 mm.
 
@@ -155,7 +155,7 @@ The patent does not print manufacturer glass names, so the identification must b
 | L21           |       1.91082 / 35.25 | HOYA TAFD35                                   | High                                   |
 | L22           |       1.68863 / 31.20 | HOYA E-FD8 / M-FD80, 689312                   | Code-family coefficient-backed match   |
 | L31           |       1.48749 / 70.44 | N-FK5 / S-FSL5 class                          | Moderate-high                          |
-| L32           |       1.75700 / 47.71 | H-LaF6L / lanthanum-flint class               | Moderate                               |
+| L32           |       1.75700 / 47.71 | CDGM H-LaF6LA catalog match                    | High; production supplier unspecified  |
 | L34           |       1.49648 / 81.30 | Unmatched ED fluorophosphate near 497/816     | Unresolved exact vendor                |
 | L41           |       1.90366 / 31.31 | N-LASF46B / TAFD25 / S-LAH95 class            | High as class                          |
 | L43           |       1.69350 / 53.20 | HOYA MP-/MC-LAC130 precision-molding class    | High                                   |

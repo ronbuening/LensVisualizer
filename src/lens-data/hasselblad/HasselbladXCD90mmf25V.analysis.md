@@ -18,7 +18,7 @@ This patent is filed by Panasonic IP Management, not by Hasselblad (Victor Hasse
 1. **Focal length.** The patent's EFL = 71.28 mm. Scaling by the factor $90/71.28 = 1.2626$ yields 90.0 mm, matching the production focal length exactly. The Hasselblad product page also cites a 71 mm full-frame equivalent focal length.
 2. **Maximum aperture.** The patent's F/2.56 corresponds to the marketed f/2.5 (typical rounding from a design value).
 3. **Element and group count.** The patent describes 9 elements. Counting air-separated groups: L1 | L2–L3 | L4 | L5–L6 | L7–L8 | L9 yields 6 groups. Hasselblad states "nine elements in six groups."
-4. **Special elements.** The patent places one ED glass (S-FPL51 class, $\nu_d = 81.6$) at L2 and one double-aspherical element at L9 made from a moldable glass (L-BBH1 class). Hasselblad describes "one ED element and one specially made large-diameter aspherical element."
+4. **Special elements.** The patent places one ED glass (S-FPL51 class, $\nu_d = 81.6$) at L2 and one double-aspherical element at L9. Hasselblad describes "one ED element and one specially made large-diameter aspherical element."
 5. **Focus mechanism.** The patent's G2 (L5–L6 cemented doublet) moves toward the image during close focus, with G1 and G3 fixed. Hasselblad describes "a lighter, smaller focusing lens group" driven by a linear stepping motor — consistent with the compact two-element cemented focus group.
 6. **Half-field angle.** The patent's 17.10° matches Hasselblad's stated 34° diagonal field of view (half = 17°).
 7. **Scaled image height.** $21.633 \times 1.2626 = 27.31\;\text{mm}$, versus the medium-format half-diagonal of 27.39 mm — a 0.08 mm discrepancy, well within design tolerance.
@@ -122,13 +122,13 @@ S-TIH53 ($\nu_d = 23.8$) is a high-dispersion dense flint — the same glass fam
 
 ### L9 — Negative Meniscus, Convex to Image (2× Aspherical)
 
-$n_d = 1.68863$, $\nu_d = 31.2$. Glass: L-BBH1 (OHARA) — moldable barium borate glass. $f = −36.3\;\text{mm}$.
+$n_d = 1.68863$, $\nu_d = 31.2$. Glass: HOYA E-FD8 catalog equivalent; the production supplier is unspecified. $f = −36.3\;\text{mm}$.
 
 L9 is the "specially made large-diameter aspherical element" described by Hasselblad. Both surfaces are aspherical. It is the rearmost glass element, positioned 12.31 mm after L8 and 10.68 mm (plus cover glass) before the image plane — deep in the diverging beam where field-angle-dependent aberrations (field curvature, astigmatism, distortion) are most pronounced and most accessible to aspherical correction.
 
 The meniscus form (R1 = −16.52, R2 = −51.60) is convex toward the image, consistent with the patent's description (¶0034). The negative focal length ($f = −36.3\;\text{mm}$) satisfies condition (7): $f_\text{G3n}/f = -36.3/71.28 = -0.509$, within the required range $-1.2 < f_\text{G3n}/f < -0.2$.
 
-**Glass and manufacturing.** L-BBH1 is an OHARA low-Tg (L-prefix) glass specifically formulated for precision glass molding (PGM). The low glass transition temperature allows the aspherical profiles to be directly pressed into the glass during hot molding, rather than requiring expensive diamond-turning or polishing of a free-form surface. This is consistent with Hasselblad's description of the element as "specially made" — the mold itself is the precision tool, and each element is formed to the aspherical specification in a single pressing operation.
+**Glass and manufacturing.** The patent row is $1.68863 / 31.2$ and does not name a vendor. Official OHARA L-BBH1 is an incompatible $2.10195 / 16.79$ glass. HOYA E-FD8 ($1.68893 / 31.16$, code 689312) reproduces the patent coordinate within rounding and supplies the coefficient-backed curve used by the model. The patent and product description establish a specially made large-diameter asphere, but they do not establish whether it was molded, polished, or supplied by HOYA.
 
 ---
 
@@ -144,11 +144,11 @@ The meniscus form (R1 = −16.52, R2 = −51.60) is convex toward the image, con
 | L6 | 1.91082 | 35.2 | HOYA TAFD35 | Hoya | Ultra-high-index glass, focus group negative |
 | L7 | 1.69680 | 55.5 | S-LAL14 | OHARA | Lanthanum crown, relay positive |
 | L8 | 1.84666 | 23.8 | S-TIH53 | OHARA | Dense flint, relay achromatiser |
-| L9 | 1.68863 | 31.2 | L-BBH1 | OHARA | **PGM moldable** barium borate, aspherical field flattener |
+| L9 | 1.68863 | 31.2 | E-FD8 catalog equivalent | Supplier not identified | Double-aspherical field flattener |
 
-The glass palette divides naturally into three functional tiers. In G1, the ED crown S-FPL51 paired with HOYA NBFD29 provides primary chromatic and secondary-spectrum correction. In G2, the reverse-dispersion pair (ultra-high-dispersion S-NPH4 positive + HOYA TAFD35 negative) ensures chromatically stable inner focusing. In G3, the conventional S-LAL14/S-TIH53 achromatic pair handles relay colour correction, while the PGM-moldable L-BBH1 enables cost-effective aspherical field flattening.
+The glass palette divides naturally into three functional tiers. In G1, the ED crown S-FPL51 paired with HOYA NBFD29 provides primary chromatic and secondary-spectrum correction. In G2, the reverse-dispersion pair (ultra-high-dispersion S-NPH4 positive + HOYA TAFD35 negative) ensures chromatically stable inner focusing. In G3, the conventional S-LAL14/S-TIH53 achromatic pair handles relay colour correction, while the coefficient-backed E-FD8 equivalent models the double-aspherical field flattener.
 
-Five of the nine elements use confirmed OHARA catalog glasses, three use coefficient-backed HOYA catalog glasses, and one element (L9) uses a confirmed OHARA PGM glass. The three cemented interfaces (L2–L3, L5–L6, L7–L8) are modelled in the patent as thin layers with $n_d = 1.56732$, $\nu_d = 42.8$, and $d = 0.01\;\text{mm}$, consistent with a UV-cure optical adhesive (¶0022, ¶0025, ¶0028).
+Five of the nine elements use compatible OHARA catalog curves, while the remaining catalog-equivalent curves come from HOYA; those names describe optical equivalents rather than confirmed production suppliers. The three cemented interfaces (L2–L3, L5–L6, L7–L8) are modelled in the patent as thin layers with $n_d = 1.56732$, $\nu_d = 42.8$, and $d = 0.01\;\text{mm}$, consistent with a UV-cure optical adhesive (¶0022, ¶0025, ¶0028).
 
 ---
 
@@ -253,7 +253,7 @@ This surface is the closest optical element to the image plane (only 10.68 mm of
 
 ### Manufacturing Method
 
-Both aspherical surfaces are on L9, which uses OHARA L-BBH1 — a glass with the "L-" prefix denoting low glass-transition temperature, specifically formulated for precision glass molding (PGM). In PGM, a precision-machined mold (typically tungsten carbide or silicon carbide) with the inverse aspherical profile is heated above the glass's softening point, and the glass preform is pressed into shape in a single operation. This method produces aspherical surfaces with sub-micron form accuracy at a fraction of the cost of conventional polishing or diamond-turning, and is the standard manufacturing route for high-volume consumer and professional camera lenses with molded aspherics.
+Both aspherical surfaces are on L9. The optical model uses HOYA E-FD8 as a coordinate-compatible dispersion equivalent, but neither that substitution nor the "specially made" product wording proves the production supplier or forming process. The element could have been molded or finished by an asphere-polishing process; the available sources do not distinguish those routes.
 
 ---
 
@@ -293,4 +293,4 @@ The Hasselblad XCD 2,5/90V production lens builds on this optical foundation by 
 - Hasselblad product page: "XCD 2,5/90V." https://www.hasselblad.com/x-system/lenses/xcd-90v/. Specifications for element/group count, ED and aspherical element count, focal length, MFD, and focus mechanism description.
 - Hasselblad XCD 90V datasheet (PDF). Focal length 90 mm, equivalent 71 mm, 34° diagonal FOV, 9 elements / 6 groups.
 - DPReview forum thread: "Hasselblad Lens Manufacturers List," October 2025. Community discussion of Panasonic patent attribution for XCD V-series lenses.
-- OHARA Pocket Catalog, May 2023 edition. Glass identification for S-LAH55V, S-FPL51, S-NPH4, S-LAL14, S-TIH53, L-BBH1.
+- OHARA Pocket Catalog, May 2023 edition, and HOYA coefficient catalog data. Used to check the compatible catalog curves and to reject the prior L-BBH1 attribution for L9.

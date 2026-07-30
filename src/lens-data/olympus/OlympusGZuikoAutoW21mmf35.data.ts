@@ -64,7 +64,7 @@ const LENS_DATA = {
       nd: 1.72,
       vd: 42.1,
       fl: 90.84,
-      glass: "720421 — vintage lanthanum flint (patent nd=1.72000, νd=42.1; no exact public catalog match)",
+      glass: "LAFN10 (SUMITA catalog equivalent for patent coordinate; production supplier unspecified)",
       apd: false,
       role: "Front positive meniscus for retrofocus ray-angle and distortion control.",
     },

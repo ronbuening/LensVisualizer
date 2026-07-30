@@ -34,15 +34,15 @@ import buildLens from "../../../src/optics/buildLens.js";
 import {
   allEntries,
   assessCatalogGlassCompatibility,
-  evaluateSellmeier,
+  evaluateCatalogAbbeNumber,
   GLASS_ND_TOLERANCE,
   GLASS_VD_TOLERANCE,
-  LINE_NM,
+  resolveCompatibleGlass,
   resolveGlass,
   type GlassEntry,
 } from "../../../src/optics/glassCatalog.js";
 import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
-import type { LensData } from "../../../src/types/optics.js";
+import type { LensData, RefractiveIndexReferenceLine } from "../../../src/types/optics.js";
 
 const ND_TOLERANCE = GLASS_ND_TOLERANCE;
 const VD_TOLERANCE = GLASS_VD_TOLERANCE;
@@ -76,6 +76,7 @@ interface Mismatch {
   storedNd: number;
   storedVd: number | undefined;
   storedDPgF: number | undefined;
+  referenceLine: RefractiveIndexReferenceLine;
   embeddedCode: { raw: string; nd: number; vd: number } | null;
 }
 
@@ -103,26 +104,30 @@ function partialDispersionPgF(vd: number, dPgF: number): number {
 
 function findCandidates(
   entries: readonly GlassEntry[],
-  entryNd: Map<string, number>,
   storedNd: number,
   storedVd: number | undefined,
   storedDPgF: number | undefined,
   embeddedCode: { nd: number; vd: number } | null,
+  referenceLine: RefractiveIndexReferenceLine,
 ): Candidate[] {
   const lensPgF =
-    storedVd !== undefined && storedDPgF !== undefined ? partialDispersionPgF(storedVd, storedDPgF) : null;
+    referenceLine === "d" && storedVd !== undefined && storedDPgF !== undefined
+      ? partialDispersionPgF(storedVd, storedDPgF)
+      : null;
   const ranked = entries.map<Candidate>((e) => {
-    const candNd = entryNd.get(e.name)!;
-    const ndDiff = candNd - storedNd;
-    const vdDiff = storedVd === undefined ? null : e.vd - storedVd;
+    const compatibility = assessCatalogGlassCompatibility(e, storedNd, storedVd, referenceLine);
+    const candNd = compatibility.catalogIndex;
+    const candidateAbbe = referenceLine === "d" ? e.vd : evaluateCatalogAbbeNumber(e, "e");
+    const ndDiff = compatibility.indexDiff;
+    const vdDiff = compatibility.abbeDiff;
     const pgfDiff = lensPgF !== null && e.PgF !== undefined ? e.PgF - lensPgF : null;
     let codeDistance: number | null = null;
-    if (embeddedCode !== null) {
+    if (referenceLine === "d" && embeddedCode !== null) {
       // Distance combines |Δnd|*1000 (3-digit precision) + |Δvd|*10 (1-digit precision)
       // so each axis contributes proportionally to its code resolution.
-      codeDistance = Math.abs(candNd - embeddedCode.nd) * 1000 + Math.abs(e.vd - embeddedCode.vd) * 10;
+      codeDistance = Math.abs(candNd - embeddedCode.nd) * 1000 + Math.abs(candidateAbbe - embeddedCode.vd) * 10;
     }
-    return { name: e.name, nd: candNd, vd: e.vd, pgf: e.PgF, ndDiff, vdDiff, pgfDiff, codeDistance };
+    return { name: e.name, nd: candNd, vd: candidateAbbe, pgf: e.PgF, ndDiff, vdDiff, pgfDiff, codeDistance };
   });
 
   return ranked
@@ -140,7 +145,6 @@ function findCandidates(
 describe("glass-relabel candidate scan", () => {
   it("emits a report of catalog-relabel candidates for every mismatched surface", () => {
     const entries = allEntries();
-    const entryNd = new Map(entries.map((e) => [e.name, evaluateSellmeier(e, LINE_NM.d)]));
 
     const mismatches: Mismatch[] = [];
     for (const [path, mod] of Object.entries(modules)) {
@@ -161,9 +165,9 @@ describe("glass-relabel candidate scan", () => {
         if (surface.nd === 1.0) continue;
         const element = surface.elemId ? elementById.get(surface.elemId) : undefined;
         if (!element?.glass) continue;
+        if (resolveCompatibleGlass(element.glass, surface.nd, element.vd, element.indexReference)) continue;
         const entry = resolveGlass(element.glass);
         if (!entry) continue;
-        if (assessCatalogGlassCompatibility(entry, surface.nd, element.vd).compatible) continue;
         mismatches.push({
           filePath,
           lensName: data.name ?? data.key,
@@ -173,7 +177,8 @@ describe("glass-relabel candidate scan", () => {
           storedNd: surface.nd,
           storedVd: element.vd,
           storedDPgF: element.dPgF,
-          embeddedCode: extractGlassCode(element.glass),
+          referenceLine: element.indexReference ?? "d",
+          embeddedCode: element.indexReference === "e" ? null : extractGlassCode(element.glass),
         });
       }
     }
@@ -184,13 +189,13 @@ describe("glass-relabel candidate scan", () => {
     const byStored = new Map<string, Mismatch[]>();
     for (const m of mismatches) {
       const codeKey = m.embeddedCode?.raw ?? "-";
-      const key = `${m.storedNd.toFixed(5)}|${m.storedVd?.toFixed(2) ?? "?"}|${codeKey}`;
+      const key = `${m.referenceLine}|${m.storedNd.toFixed(5)}|${m.storedVd?.toFixed(2) ?? "?"}|${codeKey}`;
       const list = byStored.get(key) ?? [];
       list.push(m);
       byStored.set(key, list);
     }
 
-    const sortedKeys = [...byStored.keys()].sort((a, b) => parseFloat(a) - parseFloat(b));
+    const sortedKeys = [...byStored.keys()].sort((a, b) => a.localeCompare(b));
 
     let withCandidates = 0;
     let withoutCandidates = 0;
@@ -201,8 +206,8 @@ describe("glass-relabel candidate scan", () => {
     lines.push("# Glass Relabel Candidates (auto-generated)");
     lines.push("");
     lines.push("Companion to [catalog-mismatches.generated.md](catalog-mismatches.generated.md). For each rejected");
-    lines.push("catalog mismatch, this report searches the catalog for a *better* candidate whose nd AND vd");
-    lines.push(`both match the stored values within tolerance (nd ±${ND_TOLERANCE}, vd ±${VD_TOLERANCE}).`);
+    lines.push("catalog mismatch, this report searches the catalog for a *better* candidate whose reference index and");
+    lines.push(`Abbe number both match within tolerance (Δn ±${ND_TOLERANCE}, Δν ±${VD_TOLERANCE}).`);
     lines.push("");
     lines.push("**Regenerate** with `npm test -- glassRelabelCandidatesScan`.");
     lines.push("");
@@ -228,7 +233,8 @@ describe("glass-relabel candidate scan", () => {
       const storedVd = group[0].storedVd;
       const storedDPgF = group[0].storedDPgF;
       const embeddedCode = group[0].embeddedCode;
-      const candidates = findCandidates(entries, entryNd, storedNd, storedVd, storedDPgF, embeddedCode);
+      const referenceLine = group[0].referenceLine;
+      const candidates = findCandidates(entries, storedNd, storedVd, storedDPgF, embeddedCode, referenceLine);
       const rejected = group[0].catalogName;
 
       const lensPgF =
@@ -240,7 +246,7 @@ describe("glass-relabel candidate scan", () => {
       const headingExtra = headingExtras.length > 0 ? ` [${headingExtras.join(", ")}]` : "";
 
       lines.push(
-        `## stored (nd=${storedNd.toFixed(5)}, vd=${storedVd?.toFixed(2) ?? "?"})${headingExtra}  ` +
+        `## stored (${referenceLine}: n=${storedNd.toFixed(5)}, ν=${storedVd?.toFixed(2) ?? "?"})${headingExtra}  ` +
           `— ${group.length} surface${group.length > 1 ? "s" : ""}, current label resolves to ${rejected}`,
       );
       lines.push("");
@@ -255,7 +261,7 @@ describe("glass-relabel candidate scan", () => {
         for (const c of candidates) {
           const ndSign = c.ndDiff >= 0 ? "+" : "";
           const vdSign = c.vdDiff !== null && c.vdDiff >= 0 ? "+" : "";
-          const vdPart = c.vdDiff === null ? "" : `, Δvd=${vdSign}${c.vdDiff.toFixed(2)}`;
+          const vdPart = c.vdDiff === null ? "" : `, Δν=${vdSign}${c.vdDiff.toFixed(2)}`;
           let pgfPart = "";
           if (c.pgfDiff !== null) {
             const pgfSign = c.pgfDiff >= 0 ? "+" : "";
@@ -266,7 +272,7 @@ describe("glass-relabel candidate scan", () => {
             codePart = `, codeΔ=${c.codeDistance.toFixed(1)}`;
           }
           lines.push(
-            `- **${c.name}** (nd=${c.nd.toFixed(5)}, vd=${c.vd.toFixed(2)}, Δnd=${ndSign}${c.ndDiff.toFixed(4)}${vdPart}${pgfPart}${codePart})`,
+            `- **${c.name}** (n${referenceLine}=${c.nd.toFixed(5)}, ν${referenceLine}=${c.vd.toFixed(2)}, Δn=${ndSign}${c.ndDiff.toFixed(4)}${vdPart}${pgfPart}${codePart})`,
           );
         }
       }

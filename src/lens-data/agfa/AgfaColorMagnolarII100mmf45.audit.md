@@ -25,3 +25,9 @@ Patent: GB 775,944, sole numerical example
 ### Verification
 
 - `npm test -- elementRenderDiagnostics`
+
+## 2026-07-30 SUMITA LLF4 coefficient recovery
+
+- Added SUMITA's discontinued-inclusive LLF4 vendor polynomial at catalog code `561453`.
+- Relabeled L2 to the LLF4 optical equivalent at the exact stored `1.56138 / 45.3` coordinate.
+- The production supplier remains unspecified, and no prescription geometry changed.

@@ -105,7 +105,7 @@ L2 is a strong biconvex element made of lanthanum crown glass (OHARA S-LAL18, nd
 | Surfaces | r₅ = +0.4099 → r₆ = +0.7540 |
 | Center thickness | 0.1216 (norm) → 6.08 mm |
 | Glass | nd = 1.77250, νd = 49.66 |
-| Catalog match | HOYA LAC14 (lanthanum crown, 773/497) |
+| Glass identity | N-LAF34 catalog equivalent for 773497; supplier unresolved |
 | Thick-lens focal length | +50.4 mm |
 
 L3 is the thickest element in the system, forming the front half of Patent Group II. Despite the group being collectively negative, L3 itself is strongly positive. This is a characteristic feature of Gauss and modified-Gauss designs: the inner positive meniscus works with the adjacent negative element (L4) to create a powerful diverging pair while keeping individual surface curvatures moderate. The high-index glass (nd = 1.773) keeps surface curvatures relatively gentle for the strong power delivered.
@@ -129,10 +129,10 @@ L4 is a thin, strongly negative meniscus that dominates Group II's overall negat
 | Surfaces | r₉ = −0.4730 → r₁₀ = +4.6709 (junction) |
 | Center thickness | 0.0216 (norm) → 1.08 mm |
 | Glass | nd = 1.68250, νd = 44.65 |
-| Catalog match | 683447; no exact coefficient-backed public catalog match; barium/lanthanum flint family |
+| Catalog match | Explicit unmatched 683447; no first-party coefficient row found; barium/lanthanum flint family |
 | Thick-lens focal length | −31.4 mm |
 
-L5 is the negative component of the first cemented doublet in Group III, located immediately behind the stop. Its strongly concave front surface (r₉) faces the stop gap and provides diverging power that, together with the converging L6, forms a meniscus doublet of overall negative power (f = −154.6 mm). The cemented junction at r₁₀ has a very weak curvature (R = 4.67f = 233.6 mm), indicating that the primary purpose of the cementation is chromatic correction via the refractive index step (Δn = 1.72000 − 1.68250 = 0.0375 at the junction) rather than power contribution. The 683447 glass does not have a precise coefficient-backed public catalog match; it is likely a 1980s-era OHARA or HOYA type that has since been discontinued or reformulated.
+L5 is the negative component of the first cemented doublet in Group III, located immediately behind the stop. Its strongly concave front surface (r₉) faces the stop gap and provides diverging power that, together with the converging L6, forms a meniscus doublet of overall negative power (f = −154.6 mm). The cemented junction at r₁₀ has a very weak curvature (R = 4.67f = 233.6 mm), indicating that the primary purpose of the cementation is chromatic correction via the refractive index step (Δn = 1.72000 − 1.68250 = 0.0375 at the junction) rather than power contribution. The 683447 glass has no verified first-party coefficient row in the reviewed current and discontinued-inclusive sources, so its supplier and precise catalog identity remain unresolved.
 
 ### 4.6 L6 — Biconvex Positive (cemented with L5)
 
@@ -153,10 +153,10 @@ L6 is the positive component of the L5+L6 doublet. With a thick center (4.65 mm)
 | Surfaces | r₁₂ = −1.6505 → r₁₃ = −0.5942 |
 | Center thickness | 0.0573 (norm) → 2.87 mm |
 | Glass | nd = 1.77250, νd = 49.66 |
-| Catalog match | HOYA LAC14 (lanthanum crown, 773/497) |
+| Glass identity | N-LAF34 catalog equivalent for 773497; supplier unresolved |
 | Thick-lens focal length | +58.7 mm |
 
-L7 is an air-spaced positive meniscus singlet between the two cemented doublets of Group III. Both radii are negative, making this a rear-concave meniscus that "wraps around" the converging beam. Its primary roles are Petzval curvature correction (the meniscus shape adds positive power with a reduced Petzval contribution compared to a biconvex lens) and astigmatism balancing for macro photography at intermediate magnifications. The same 773/497 glass as L3 and L8.
+L7 is an air-spaced positive meniscus singlet between the two cemented doublets of Group III. Both radii are negative, making this a rear-concave meniscus that "wraps around" the converging beam. Its primary roles are Petzval curvature correction (the meniscus shape adds positive power with a reduced Petzval contribution compared to a biconvex lens) and astigmatism balancing for macro photography at intermediate magnifications. It shares the 773497 coordinate and N-LAF34 catalog-equivalent model with L3 and L8.
 
 ### 4.8 L8 — Biconvex Positive (cemented with L9)
 
@@ -165,7 +165,7 @@ L7 is an air-spaced positive meniscus singlet between the two cemented doublets 
 | Surfaces | r₁₄ = +3.5444 → r₁₅ = −0.6641 (junction) |
 | Center thickness | 0.0845 (norm) → 4.23 mm |
 | Glass | nd = 1.77250, νd = 49.66 |
-| Catalog match | HOYA LAC14 (lanthanum crown, 773/497) |
+| Glass identity | N-LAF34 catalog equivalent for 773497; supplier unresolved |
 | Thick-lens focal length | +36.5 mm |
 
 L8 is the positive component of the rear cemented doublet (L8+L9), which terminates the entire optical system. This is the strongest positive element in the design (f = +36.5 mm), providing the final convergence needed to bring rays to focus. The cemented doublet L8+L9 together has a focal length of +120.1 mm, contributing net positive power while correcting lateral chromatic aberration through the crown/flint glass pairing.
@@ -192,13 +192,13 @@ The design uses seven distinct glass types. Four have exact matches in current c
 |---|---|---|---|---|---|
 | L1 | 1.60342 | 38.01 | 603/380 | Schott F5 / HOYA E-F5 | Flint |
 | L2 | 1.72916 | 54.68 | 729/547 | OHARA S-LAL18 | Lanthanum crown |
-| L3, L7, L8 | 1.77250 | 49.66 | 773/497 | HOYA LAC14 | Lanthanum crown |
+| L3, L7, L8 | 1.77250 | 49.66 | N-LAF34 catalog equivalent (773497) | Supplier unresolved | Lanthanum crown |
 | L4 | 1.58144 | 40.75 | 581408 | OHARA PBL25 | Short flint |
-| L5 | 1.68250 | 44.65 | 683447 | No exact coefficient-backed public match | Barium/lanthanum flint |
+| L5 | 1.68250 | 44.65 | Explicit unmatched 683447 | No first-party coefficient row found | Barium/lanthanum flint |
 | L6 | 1.72000 | 46.03 | 720460 | OHARA S-LAM61 | Lanthanum crown/flint border |
 | L9 | 1.75520 | 27.51 | 755/275 | Schott SF4 / OHARA S-TIH4 / HOYA FD4 | Dense flint |
 
-Three elements (L3, L7, L8) share the same glass — HOYA LAC14 type (nd = 1.773, νd = 49.66) — which simplifies procurement. This lanthanum crown glass has both high index and moderate Abbe number, making it useful for high-power elements where some dispersion is tolerable.
+Three elements (L3, L7, L8) share the same 773497 lanthanum-crown coordinate (nd = 1.773, νd = 49.66). Schott N-LAF34 reproduces the d-line index and differs by only −0.04 in Abbe number, so it is used as a coefficient-backed catalog equivalent. The patent does not identify the production supplier.
 
 The six-digit glass codes given above are manufacturer-agnostic identifiers (first three digits = (nd − 1) × 1000, last three = νd × 10). Olympus, as a Japanese manufacturer, most likely sourced glass from OHARA or HOYA. The catalog names given above reflect exact matches where available; for L5, the unbroken 683447 code remains the authoritative identifier for future catalog backfill.
 
@@ -352,15 +352,15 @@ Surface numbering follows the patent convention (r₁ through r₁₆, d₁ thro
 | r₂ | +29.48 | 2.01 | 1.0 (air) | L1 rear | |
 | r₃ | +91.03 | 3.38 | 1.72916 | L2 front | Biconvex, S-LAL18 glass |
 | r₄ | −86.94 | 0.12 | 1.0 (air) | L2 rear | **Variable gap (focusing)** |
-| r₅ | +20.50 | 6.08 | 1.77250 | L3 front | Pos. meniscus, LAC14 glass |
+| r₅ | +20.50 | 6.08 | 1.77250 | L3 front | Pos. meniscus, N-LAF34 equivalent |
 | r₆ | +37.71 | 1.52 | 1.0 (air) | L3 rear | |
 | r₇ | +248.9 | 1.17 | 1.58144 | L4 front | Neg. meniscus, PBL25 / 581408 glass |
 | r₈ | +19.29 | 10.16 | 1.0 (air) | L4 rear | **Contains aperture stop** |
-| r₉ | −23.66 | 1.08 | 1.68250 | L5 front | Biconcave, unresolved 683447 glass |
+| r₉ | −23.66 | 1.08 | 1.68250 | L5 front | Biconcave, explicitly unmatched 683447 glass |
 | r₁₀ | +233.6 | 4.65 | 1.72000 | L5/L6 junction | Cemented; S-LAM61 / 720460 glass |
 | r₁₁ | −35.52 | 0.10 | 1.0 (air) | L6 rear | |
-| r₁₂ | −82.55 | 2.87 | 1.77250 | L7 front | Pos. meniscus, LAC14 glass |
+| r₁₂ | −82.55 | 2.87 | 1.77250 | L7 front | Pos. meniscus, N-LAF34 equivalent |
 | r₁₃ | −29.72 | 0.10 | 1.0 (air) | L7 rear | |
-| r₁₄ | +177.3 | 4.23 | 1.77250 | L8 front | Biconvex, LAC14 glass |
+| r₁₄ | +177.3 | 4.23 | 1.77250 | L8 front | Biconvex, N-LAF34 equivalent |
 | r₁₅ | −33.22 | 1.28 | 1.75520 | L8/L9 junction | Cemented; SF4 glass |
 | r₁₆ | −215.7 | 38.37 | 1.0 (air) | L9 rear | BFD to image plane |

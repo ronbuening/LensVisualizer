@@ -19,6 +19,22 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-07-30 ──────────────────────────────────────────────────
+  {
+    date: "2026-07-30",
+    type: "improvement",
+    summary: "Expanded chromatic tracing with 35 source-verified optical-glass curves",
+  },
+  {
+    date: "2026-07-30",
+    type: "fix",
+    summary: "Corrected patent-glass identities without forcing speculative catalog matches",
+  },
+  {
+    date: "2026-07-30",
+    type: "fix",
+    summary: "Made native e-line prescriptions use reference-safe catalog dispersion",
+  },
   // ── 2026-07-29 ──────────────────────────────────────────────────
   {
     date: "2026-07-29",
@@ -28,12 +44,12 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-07-29",
     type: "improvement",
-    summary: "Expanded the optical glass catalog and tightened dispersion matching",
+    summary: "Expanded the glass catalog with safer coordinate-aware dispersion matching",
   },
   {
     date: "2026-07-29",
     type: "fix",
-    summary: "Fixed chromatic glass matching across the lens catalog",
+    summary: "Corrected remaining false glass matches across 42 patent-audited lenses",
   },
   // ── 2026-07-28 ──────────────────────────────────────────────────
   {

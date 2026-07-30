@@ -68,11 +68,11 @@ The production lens — like many industrial and endoscopic optics — appears t
 
 ## Glass Palette
 
-The prescription uses 10 distinct glass types. Laowa is a Chinese company, and CDGM (Chengdu Guangming) is the most likely glass vendor; nine of the ten nd/νd pairs match confirmed CDGM catalog entries from the 2022-06 Zemax catalog. The tenth (nd = 1.90366, νd = 31.31) matches Schott N-LASF46B exactly and would fall in CDGM's H-ZLaF family, but the specific CDGM catalog name (listed here as H-ZLaF75B) has not been independently confirmed against a published datasheet and should be treated as tentative. Cross-vendor equivalents from OHARA and Schott are listed for reference.
+The prescription uses 10 distinct glass types. Laowa is a Chinese company, and CDGM (Chengdu Guangming) is the most likely glass vendor. CDGM's published H-ZLaF75B datasheet confirms nd = 1.90366 and νd = 31.42, compatible with the patent's rounded 1.90366 / 31.31 coordinate. Cross-vendor equivalents from OHARA and Schott are listed for reference.
 
 | nd | νd | CDGM match | Class | Cross-reference | Used in |
 |---|---|---|---|---|---|
-| 1.83481 | 42.72 | H-ZLaF4A | Lanthanum flint | S-LAH55 (OHARA) | L1, L25 |
+| 1.83481 | 42.72 | TAFD5F catalog equivalent | Lanthanum flint | S-LAH55 (OHARA) | L1, L25 |
 | 1.90366 | 31.31 | H-ZLaF75B | Dense lanthanum flint | N-LASF46B (Schott) | P1 rod lens |
 | 1.49700 | 81.61 | **H-FK61** | **ED fluorophosphate** | S-FPL51 (OHARA) | L3, L21 |
 | 1.84666 | 23.78 | H-ZF88A | Dense flint | S-TIH53 (OHARA) | L4, L5, P2, P3, L8, L9, L16, L17, L20, Foc/L23 |
@@ -101,7 +101,7 @@ The two ED elements (L3 and L21) are the elements Laowa markets as "Extra Low Di
 
 #### L1 — Negative Meniscus, convex to object
 
-nd = 1.83481, νd = 42.72. Glass: H-ZLaF4A (CDGM). f = −5.4 mm.
+nd = 1.83481, νd = 42.72. Glass: HOYA TAFD5F catalog equivalent; production supplier unspecified. f = −5.4 mm.
 
 L1 is the front element of the entire system and the first element the light encounters after entering the narrow barrel tip. It is a strongly negative meniscus (both radii positive: R₁ = +8.731, R₂ = +2.810 mm) with its concave surface facing the image side. Its focal length of −5.4 mm gives it the strongest individual power of any element in the system.
 
@@ -260,7 +260,7 @@ L24 is a moderately strong biconcave negative element (R₁ = −17.67, R₂ = +
 
 #### L25 — Plano-Convex Positive
 
-nd = 1.83481, νd = 42.72. Glass: H-ZLaF4A (CDGM). f = +55.9 mm.
+nd = 1.83481, νd = 42.72. Glass: HOYA TAFD5F catalog equivalent; production supplier unspecified. f = +55.9 mm.
 
 L25 is the last optical element before the image plane, a plano-convex lens with a flat front surface (R₁ = ∞) and a convex rear surface (R₂ = −46.7 mm). It acts as a field flattener, and its positive power helps control the exit-pupil position for digital sensor compatibility. The glass is the same lanthanum flint used in L1, bookending the system with a matched glass type that helps balance residual chromatic aberration.
 
@@ -322,4 +322,4 @@ The production lens has spawned two further generations — the Laowa 24mm T14 P
 - Laowa product page: Laowa 24mm f/14 2× Macro Probe. Specifications: 27 elements / 19 groups, 2 ED elements, 1 ERI element, f/14–f/40, 85° angle of view, 474 g.
 - Newsshooter review (2018-10-15): confirms three-section architecture (Objective + Relay + Macro) and 27 elements / 19 groups.
 - Nature TTL review (2018-09-05): confirms 27 elements / 19 groups, 2 ED + 1 ERI elements.
-- CDGM optical glass catalog (2022-06 Zemax catalog, via refractiveindex.info). Used for glass identification; 9 of 10 nd/νd pairs confirmed against published catalog data. The H-ZLaF75B identification for nd = 1.90366 / νd = 31.31 is tentative.
+- CDGM optical glass catalog and public H-ZLaF75B datasheet. Used to confirm all 10 glass families, including H-ZLaF75B at nd = 1.90366 / νd = 31.42 and H-ZF2 at 1.67270 / 32.17.

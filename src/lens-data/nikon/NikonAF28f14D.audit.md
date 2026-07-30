@@ -32,3 +32,9 @@ Reviewed local untracked patent file `patents/US5315441.pdf`, Embodiment 1 / Tab
 - Relabeled L8b from an unresolved very-dense-flint note to coefficient-backed Hikari J-SFH2.
 - J-SFH2 retains the stored `nd=1.86074`; its published `vd=23.08` is within 0.08 of the patent's rounded `vd=23.0`.
 - L4b and L6a remain unresolved. No prescription, asphere, focus, or SD values changed.
+
+## 2026-07-30 SUMITA KF3 coefficient recovery
+
+- SUMITA's discontinued-inclusive KF3 vendor polynomial resolves L4b at the exact `1.51454 / 54.6` coordinate.
+- Relabeled L4b as a KF3 optical equivalent while leaving the production supplier unspecified.
+- L6a remains unresolved; no prescription, asphere, focus, or semi-diameter values changed.

@@ -72,12 +72,12 @@ G1 is the most critical element in the design. As the positive lens "Lp" closest
 G2 forms the negative component of the front cemented doublet. Its lower refractive index (1.689 vs. 1.804) and high dispersion (νd = 31.1) create a classic achromatic correction at the cemented junction: the index difference at the junction surface generates negative chromatic contribution that partially offsets the positive chromatic aberration from G1's front surface. The combined doublet D1 is very weakly negative (f_D1 ≈ −1810 mm), meaning the pair functions nearly as a thick, aberration-corrected window that introduces almost no net refraction — all the convergence from G1 is essentially undone by G2. This deliberate power balance prioritizes aberration correction over convergence at the very front of the lens.
 
 **G3 — Positive Meniscus**
-- Glass: S-NPH7 (OHARA), nd = 2.00100, νd = 29.13
+- Glass: S-LAH99 catalog equivalent (OHARA; patent supplier not identified), nd = 2.00100, νd = 29.13
 - Focal length: +42.80 mm
 - Radii: R1 = +42.184 mm, R2 = +2510.576 mm (near-plano rear)
 - Center thickness: 7.47 mm
 
-G3 is optically the most remarkable element in the design. Its glass — S-NPH7 — is an ultra-high-index niobium phosphate heavy flint with nd = 2.001, one of the highest commercially available refractive indices. Both radii are positive (meniscus form, concave toward the image), but the rear surface is essentially flat (R2 ≈ 2511 mm), so the element functions as a near-plano-convex with all power concentrated at the front surface. The extremely high refractive index allows a relatively gentle curvature (R1 = 42.2 mm) to produce substantial power (f = +42.8 mm). This is the primary converging element of the front group. The high refractive index means that for a given surface power φ = (n−1)/R, the factor (n−1) = 1.001 is very large, so R can be proportionally larger, which reduces higher-order aberrations. The tradeoff is severe chromatic aberration (νd = 29.1 is very dispersive), which must be compensated elsewhere. The strong front curvature constrains the practical SD to approximately 23 mm due to edge thickness limits: at larger apertures, the front surface sag exceeds the center thickness.
+G3 is optically the most remarkable element in the design. Its 001291 coordinate is catalog-equivalent to OHARA S-LAH99, an ultra-high-index dense lanthanum flint with nd = 2.001; the patent's ΔθgF = +0.0050 also agrees with the S-LAH99 partial-dispersion row more closely than the same-coordinate HOYA TAFD55 alternative. Both radii are positive (meniscus form, concave toward the image), but the rear surface is essentially flat (R2 ≈ 2511 mm), so the element functions as a near-plano-convex with all power concentrated at the front surface. The extremely high refractive index allows a relatively gentle curvature (R1 = 42.2 mm) to produce substantial power (f = +42.8 mm). This is the primary converging element of the front group. The high refractive index means that for a given surface power φ = (n−1)/R, the factor (n−1) = 1.001 is very large, so R can be proportionally larger, which reduces higher-order aberrations. The tradeoff is severe chromatic aberration (νd = 29.1 is very dispersive), which must be compensated elsewhere. The strong front curvature constrains the practical SD to approximately 23 mm due to edge thickness limits: at larger apertures, the front surface sag exceeds the center thickness.
 
 **G4 — Negative Meniscus**
 - Glass: S-NBH5 (OHARA), nd = 1.65412, νd = 39.68
@@ -169,7 +169,7 @@ The air gap immediately after G11 (surface 19, d = 1.95 mm at infinity, expandin
 - Cemented with G13 (Doublet D5)
 
 **G13 — Biconcave Negative**
-- Glass: S-TIM1 (OHARA), nd = 1.59551, νd = 39.24
+- Glass: S-TIM8 (OHARA), nd = 1.59551, νd = 39.24
 - Focal length: −40.55 mm
 - Radii: R1 = −60.531 mm, R2 = +40.560 mm
 - Center thickness: 1.54 mm

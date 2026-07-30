@@ -5,6 +5,25 @@
 import type { GlassEntry } from "../glassCatalogTypes.js";
 
 export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
+  /* Phase 45: first-party named-token audit additions. */
+  {
+    name: "FCD600",
+    vendor: "Hoya",
+    polynomial: [2.5009632, -0.0071951364, 0.014064825, 0.00021434104, 0.0000043873461, 0.00000048834355],
+    nd: 1.5941,
+    vd: 60.47,
+    code6: "594605",
+    source: "HOYA Zemax catalog 2026-07-07; vendor formula-3 polynomial for FCD600.",
+  },
+  {
+    name: "NBFD26",
+    vendor: "Hoya",
+    polynomial: [3.2218201, -0.015366364, 0.043038744, 0.0030180924, -0.00019606389, 0.000026446283],
+    nd: 1.83401,
+    vd: 25.97,
+    code6: "834260",
+    source: "HOYA Zemax catalog 2026-07-07; vendor formula-3 polynomial for NBFD26.",
+  },
   /* Phase 43: exact named and patent-coordinate rows from HOYA's
    * 2026-07-07 current/obsolete-inclusive Zemax catalog.
    */

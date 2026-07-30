@@ -108,7 +108,7 @@ const LENS_DATA = {
       nd: 1.54354,
       vd: 60.1,
       fl: 175.7,
-      glass: "BaK2-class light barium crown (544601; soft catalog match)",
+      glass: "Unmatched (544601 light barium crown; not SUMITA BAK2)",
       cemented: "D1",
       role: "Weak positive crown member cemented to L4; the L4-L5 pair is net negative in situ.",
     },

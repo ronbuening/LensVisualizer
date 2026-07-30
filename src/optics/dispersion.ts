@@ -8,7 +8,7 @@
  *
  *   1. Air (nd === 1.0)                         → constant 1.0
  *   2. Complete measured nC/nF/ng on the element → exact at the traced lines
- *   3. Catalog Sellmeier (resolved by glass)    → λ-accurate at any wavelength
+ *   3. Compatible catalog Sellmeier             → λ-accurate at any wavelength
  *   4. Measured nC/nF on the element            → exact C/F, estimated g
  *   5. Abbe approximation (the legacy path)     → unchanged fallback
  *
@@ -17,19 +17,17 @@
  * λ-accurate at any wavelength; the line-indices path uses measured `ng` when
  * present and extrapolates from `dPgF` otherwise; the Abbe path uses the
  * Schott normal-line partial dispersion plus `dPgF` to estimate `ng`.
+ * Native e-line fallback elements retain their authored `ne` in the internal G
+ * reference channel. When an explicit catalog name reproduces the authored
+ * ne/ve coordinates at C′/e/F′, the Sellmeier path restores the physical
+ * C/d/F/g channel wavelengths used across the full optical train.
  *
  * Resolution happens once per lens load (`buildLens`) and is cached as a
  * per-surface closure so the hot ray-trace loop pays no repeated overhead.
  */
 
 import type { ChromaticChannel, ElementData, RuntimeLens, SurfaceData, SurfaceSpectral } from "../types/optics.js";
-import {
-  assessCatalogGlassCompatibility,
-  evaluateSellmeier,
-  LINE_NM,
-  resolveGlass,
-  type GlassEntry,
-} from "./glassCatalog.js";
+import { evaluateSellmeier, LINE_NM, resolveCompatibleGlass, type GlassEntry } from "./glassCatalog.js";
 
 /** Wavelength (nm) used when tracing each chromatic channel. */
 const CHANNEL_NM: Record<ChromaticChannel, number> = {
@@ -113,23 +111,24 @@ export function makeSurfaceDispersion(
   }
 
   // 2) Catalog Sellmeier — λ-accurate, the highest-fidelity remaining path.
-  //    Only trust the catalog when its d-line index and Abbe number agree with
-  //    the stored prescription within transcription tolerances. Lens-data files sometimes
+  //    Trust d-line entries when nd/vd agree at C/d/F, and e-line entries when
+  //    an explicit name or alias reproduces ne/ve at C′/e/F′.
+  //    Lens-data files sometimes
   //    annotate glasses speculatively ("S-LAH79 (OHARA) probable") with stored
   //    coordinates that don't match the real catalog glass — in which case the
   //    "probable" tag is wrong and the authored (nd, vd) pair should win.
   if (element?.glass) {
-    const entry = resolveGlass(element.glass);
-    if (entry && assessCatalogGlassCompatibility(entry, surface.nd, element.vd).compatible) {
+    const entry = resolveCompatibleGlass(element.glass, surface.nd, element.vd, element.indexReference);
+    if (entry) {
       const fn: SurfaceIndexFn = (ch) => evaluateSellmeier(entry, CHANNEL_NM[ch]);
       return { fn, quality: "sellmeier", glassEntry: entry };
     }
-    // Catalog match disagrees with the authored optical coordinates beyond
-    // rounding tolerance. Fall through to the next cascade tier.
+    // Catalog match disagrees with the authored optical coordinates, or an
+    // e-line annotation has only a d-line six-digit code. Fall through.
   }
 
   // 3) Partial measured line indices on the element — exact at the listed lines.
-  //    Falls back to surface.nd at the d-line (G) and to a partial-dispersion
+  //    Falls back to surface.nd at the authored reference (G) and to a partial-dispersion
   //    estimate at the g-line (V) when ng is not measured.
   if (spectral?.nC !== undefined && spectral?.nF !== undefined) {
     return makeLineIndicesDispersion(surface, element, spectral);

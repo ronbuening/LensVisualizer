@@ -39,3 +39,11 @@ Patent: US 5,717,527, seventh embodiment, Table 8.
 - Hikari E-LAFH2 is an exact code and coordinate match for L15 (`804339`, `nd=1.80384`, `vd=33.89`).
 - Relabeled all three elements and synchronized the analysis. This replaces the prior Abbe fallbacks with catalog
   dispersion without changing the patent prescription.
+
+## 2026-07-30 - `748523` family review
+
+- Rechecked the L5 patent row at `nd = 1.74810`, `vd = 52.30`.
+- No reviewed public coefficient row reproduces both coordinates within the runtime safety window. The closest
+  plausible rows are around `1.741 / 52.6` or `1.755 / 52.3`, outside the accepted d-line residual.
+- Retained the explicit unmatched `748523` annotation without a supplier or APD claim. No prescription, zoom,
+  focus, aperture, or semi-diameter values changed.

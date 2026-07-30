@@ -69,14 +69,14 @@ The patent provides nd, vd, and θgF for each element. Matching these against th
 | L11 | 1.51633 | 64.14 | 0.53531 | S-BSL7 (OHARA) | 516/641 | Exact |
 | L12 | 1.49700 | 81.61 | 0.53887 | FCD1 (HOYA) | 497/816 | Exact (nd/vd/θgF) |
 | L13 | 1.59522 | 67.73 | 0.54426 | S-FPM2 (OHARA) | 595/677 | Exact |
-| L14 | 1.74950 | 35.33 | 0.58189 | S-NBH53 (OHARA) | 750/353 | Exact |
+| L14 | 1.74950 | 35.33 | 0.58189 | S-NBH51 (OHARA) | 750/353 | Exact |
 | L21 | 1.92286 | 18.90 | 0.64960 | S-NPH2 (OHARA) | 923/189 | Exact |
 | L22 | 1.63854 | 55.38 | 0.54858 | S-BAM4 (OHARA) | 639/554 | Exact (nd/vd) |
 | L31 | 1.59522 | 67.73 | 0.54426 | S-FPM2 (OHARA) | 595/677 | Exact (same as L13) |
 | L32 | 1.83481 | 42.72 | 0.56486 | S-LAH55VS (OHARA) | 835/427 | Exact |
 | L33 | 1.67270 | 32.10 | 0.59891 | S-TIM22 (OHARA) | 673/321 | Exact |
 | L34 | 1.71300 | 53.87 | 0.54587 | S-LAM60 (OHARA) | 713/539 | Exact |
-| L35 | 1.51742 | 52.43 | 0.55649 | S-NSL3 (OHARA) or E-ADF10 (HOYA) | 517/524 | Exact |
+| L35 | 1.51742 | 52.43 | 0.55649 | S-NSL36 (OHARA) | 517/524 | Exact |
 | PP | 1.51633 | 64.14 | 0.53531 | S-BSL7 (OHARA) | 516/641 | Exact |
 
 All glasses except L12 and possibly L35 are identifiable as OHARA types, consistent with Fujifilm's established supply chain preference for OHARA optical glass.

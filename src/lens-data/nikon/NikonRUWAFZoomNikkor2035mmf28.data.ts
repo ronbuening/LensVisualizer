@@ -81,7 +81,7 @@ const LENS_DATA = {
       nd: 1.79668,
       vd: 45.4,
       fl: -60.7,
-      glass: "Unmatched (797/454 high-index flint; Hoya TAF-class possible)",
+      glass: "J-LASF017 (Hikari catalog-equivalent to patent 797454; supplier not identified)",
       role: "Front negative element of the G2 compensator.",
     },
     {

@@ -82,7 +82,7 @@ const LENS_DATA = {
       nd: 1.61272,
       vd: 58.6,
       fl: 30.525,
-      glass: "N-SK4 (SCHOTT)",
+      glass: "BACD4 (HOYA catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Primary positive element at the front of the rear main part H.",
     },

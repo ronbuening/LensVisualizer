@@ -21,3 +21,13 @@ Patent: US 5,751,485, Ninth Embodiment / Table 9
 - The Hikari catalog row is an exact match for the patent's `nd=1.80384`, `vd=33.89`, and code `804339`; its
   computed g-line index also agrees with the patent's stored `ng=1.83464`.
 - Synchronized both element narratives and the glass-identification table. No prescription or SD values changed.
+
+## 2026-07-29 - `796409` coefficient-source review
+
+- Rendered and visually checked the patent prescription. Table 9 row 6 confirms L4 at
+  `R = 79.0168`, `d = 2.5`, `nd = 1.79631`, and `vd = 40.90`, matching the stored row.
+- Official OHARA, HOYA, Hikari, and Sumita coefficient catalogs contain no exact `796409` row.
+  OHARA S-LAH52 is `1.799516 / 42.225007`, outside the runtime d-line tolerance, while Hikari
+  J-LASF03 is a materially different `1.80610 / 40.97`.
+- Retained L4's explicit unmatched `796409` lanthanum-flint-class annotation. No supplier,
+  nearest-neighbor model, prescription geometry, or spectral claim changed.

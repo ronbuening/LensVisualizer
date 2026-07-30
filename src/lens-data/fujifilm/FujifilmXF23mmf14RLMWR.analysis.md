@@ -36,9 +36,9 @@ G3 has weak negative net power, f3 = -163.8 mm, and remains stationary. It conta
 
 ### L11 -- Biconcave Negative, nearly plano-concave
 
-nd = 1.53996, νd = 59.73. Glass: 540597 barium crown, N-BAK2 / S-BAL12 class, vendor uncertain. f = -72.8 mm.
+nd = 1.53996, νd = 59.73. Glass: SUMITA BAK2 catalog equivalent, code 540597; production supplier unspecified. f = -72.8 mm.
 
-L11 is the weak front negative element. Its object-side radius is very long, R = -887.4776 mm, so most of the element's negative power comes from the rear surface, R = +41.1494 mm. This satisfies the patent's preferred configuration in which the object-side lens of G1 can be a negative lens with a concave surface facing the image side. The glass identification is intentionally cautious: the patent value exactly matches the 540597 barium-crown code more closely than public S-BAL12 data, so the data file records the code and class rather than a single asserted vendor.
+L11 is the weak front negative element. Its object-side radius is very long, R = -887.4776 mm, so most of the element's negative power comes from the rear surface, R = +41.1494 mm. This satisfies the patent's preferred configuration in which the object-side lens of G1 can be a negative lens with a concave surface facing the image side. SUMITA's discontinued-inclusive catalog publishes BAK2 at code 540597 and nd = 1.53996, νd = 59.7, making it an exact coefficient-backed catalog equivalent for the patent coordinate without identifying the production supplier.
 
 ### L12 + L13 -- Cemented Doublet, net negative
 
@@ -109,7 +109,7 @@ L32 is the final powered element and the dominant negative component of G3. Its 
 
 | Element(s) | Patent nd | Patent νd | Catalog/class identification | Status | Optical role |
 |---|---:|---:|---|---|---|
-| L11 | 1.53996 | 59.73 | 540597 barium crown, N-BAK2 / S-BAL12 class | code/class, vendor uncertain | Front negative collector |
+| L11 | 1.53996 | 59.73 | SUMITA BAK2, code 540597 | exact catalog equivalent; production supplier unspecified | Front negative collector |
 | L12, L14, L16 | 1.88300 | 40.80 | S-LAH58-class lanthanum dense flint | near-exact | High-index positive power in G1 |
 | L13 | 1.80809 | 22.76 | S-NPH1 / 808-228 short flint | exact public match | High-dispersion negative in front achromat |
 | L15 | 1.59270 | 35.31 | S-FTM16 | exact public match | Flint member of G1 triplet |
@@ -226,4 +226,4 @@ Semi-diameters are not published in the patent. The data file uses ray-envelope-
 - FUJIFILM Corporation, official specifications for FUJINON XF23mmF1.4 R LM WR. Manufacturer-published values used for production focal length, f-number, element/group count, special-element count, focus range, magnification, aperture blades, dimensions, weight, and filter size.
 - OHARA optical glass catalog pages for S-LAH58, S-NPH1/S-NPH3 class, S-FTM16, S-TIL6, S-TIH1, and S-LAL14 matches.
 - HOYA optical glass catalog data for FCD505, NBFD13 / M-NBFD130, and M-FD80-class glasses.
-- Schott catalog reference for the N-BAK2 / 540-597 barium-crown class used to qualify L11's vendor-uncertain match.
+- SUMITA 2025-11-07 discontinued-inclusive all-glass Zemax catalog for the BAK2 / 540597 coefficient row used as L11's catalog equivalent.

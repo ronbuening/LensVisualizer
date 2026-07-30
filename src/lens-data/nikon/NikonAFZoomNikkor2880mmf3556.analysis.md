@@ -31,7 +31,7 @@ Zooming is performed by changing the G1-G2 air gap $d_8$. From wide to mid and t
 
 ### L1 — Biconvex Positive
 
-nd = 1.51454, νd = 54.55. Glass: 515546 - unmatched light crown. f = +231.956 mm.
+nd = 1.51454, νd = 54.55. Glass: KF3 (SUMITA catalog equivalent for patent coordinate). f = +231.956 mm.
 
 L1 is a weak positive front corrector. Its object-side surface is much more strongly curved than its image-side surface, satisfying the patent's L1 shape-factor condition. It bends the off-axis chief ray inward before the ray reaches the stronger negative surfaces of L2 and L3, reducing wide-end distortion without an aspherical surface.
 
@@ -39,7 +39,7 @@ The element is deliberately low index. Condition (3), $N_1 < 1.53$, limits L1 po
 
 ### L2 — Negative Meniscus, convex to object
 
-nd = 1.79668, νd = 45.37. Glass: 797454 - high-index lanthanum flint class. f = -35.468 mm.
+nd = 1.79668, νd = 45.37. Glass: J-LASF017 catalog equivalent (Hikari; patent code 797454, supplier not identified). f = -35.468 mm.
 
 L2 is the principal negative element in G1. The rear surface has the shorter radius and carries most of the element's negative refraction. The high index keeps the surface curvatures moderate for the required negative power, while the Abbe number places the element in flint territory despite the lanthanum-class index.
 
@@ -47,7 +47,7 @@ In surface-by-surface Petzval accounting, L2 contributes a strong negative term.
 
 ### L3 — Negative Meniscus, convex to object
 
-nd = 1.79668, νd = 45.37. Glass: 797454 - high-index lanthanum flint class. f = -63.191 mm.
+nd = 1.79668, νd = 45.37. Glass: J-LASF017 catalog equivalent (Hikari; patent code 797454, supplier not identified). f = -63.191 mm.
 
 L3 is the second negative meniscus of G1 and uses the same glass as L2. Splitting the negative power over L2 and L3 reduces the aberration burden on either element and gives the designer an additional control surface for telephoto-end spherical aberration.
 
@@ -103,8 +103,8 @@ The patent gives nd and νd values but no catalog glass names. The data file the
 
 | Element(s) |      nd |    νd | Identification used                              | Role                                        |
 | ---------- | ------: | ----: | ------------------------------------------------ | ------------------------------------------- |
-| L1         | 1.51454 | 54.55 | 515546 - unmatched light crown                   | Weak front distortion corrector             |
-| L2, L3     | 1.79668 | 45.37 | 797454 - high-index lanthanum flint class        | Main G1 negative power                      |
+| L1         | 1.51454 | 54.55 | KF3 (SUMITA catalog equivalent; supplier unspecified) | Weak front distortion corrector             |
+| L2, L3     | 1.79668 | 45.37 | J-LASF017 catalog equivalent (patent 797454)     | Main G1 negative power                      |
 | L4         | 1.86074 | 23.01 | J-SFH2 (Hikari; patent code 861230)              | Positive G1 Petzval balance                 |
 | L5, L6     | 1.61720 | 54.01 | 617540 - SSK-class crown                         | Positive rear-group crown pair              |
 | L7         | 1.80518 | 25.41 | Dense flint / SF6-family class (805/254)         | Rear-group chromatic and Petzval correction |

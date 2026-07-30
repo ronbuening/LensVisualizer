@@ -24,3 +24,11 @@ Patent: WO 2024/147268 A1
 - Re-searched the local untracked `patents/` folder for WO 2024/147268 A1 / `147268`; no matching PDF was present.
 - Rendered and inspected local `US20240192474A1.pdf` as a possible nearby publication; it is a Canon/Iwamoto zoom patent, not the cited Nikon Z 135mm Plena family, so it was not used.
 - No glass labels were changed, and no figure/SD check was possible without the cited patent file.
+
+## 2026-07-29 - Local-patent glass disposition
+
+- The cited source is now available locally as untracked `patents/WO2024147268A1.pdf`. Rechecked the worked
+  prescription row; S13 remains 1.69680 / 55.52 and its R/d values are unchanged.
+- S13 `Barium crown (near S-BAH27)` -> code-first `697555 — lanthanum crown (patent coordinate; vendor
+  unresolved)`. The coordinate round-trips to the catalog code, while S-BAH27 is numerically unrelated.
+- Synchronized the focus-element analysis and preserved supplier uncertainty.

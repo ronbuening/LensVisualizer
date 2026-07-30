@@ -92,7 +92,7 @@ nd = 1.80518, νd = 25.4. Glass: S-TIH6 (OHARA; exact d-line code 805254). f = +
 
 #### 3L1 + 3L2 - Cemented doublet, net negative meniscus
 
-3L1: nd = 1.67025, νd = 57.6. Glass: unmatched 670576 lanthanum-crown code; no confirmed current catalog match. f = -46.84 mm.
+3L1: nd = 1.67025, νd = 57.6. Glass: S-LAL52 (OHARA catalog equivalent for patent 670576; production supplier unspecified). f = -46.84 mm.
 3L2: nd = 1.67163, νd = 38.9. Glass: unmatched / S-NBH-class 672389 short-flint code. f = +82.22 mm.
 
 The compensator is a cemented negative/positive doublet with net focal length -112.00 mm. The near equality of the two refractive indices means that the cemented interface contributes very little d-line power; its purpose is primarily chromatic, using the Abbe-number difference between the two glasses.
@@ -164,7 +164,7 @@ The prescription uses conventional high-index crowns, barium crowns/flints, dens
 | 2L1 | 1.69680 | 55.6 | S-LAL14 class (OHARA) | Class / rounded | High-index variator negative |
 | 2L2 | 1.78797 | 47.5 | S-LAH64 class (OHARA) | Class | Lanthanum flint variator negative |
 | 2L3 | 1.80518 | 25.4 | S-TIH6 (OHARA; 805254) | Exact | Dense-flint variator positive |
-| 3L1 | 1.67025 | 57.6 | Unmatched 670576 code | Unmatched | Compensator negative member |
+| 3L1 | 1.67025 | 57.6 | S-LAL52 (OHARA catalog equivalent) | Close catalog coordinate | Compensator negative member |
 | 3L2 | 1.67163 | 38.9 | Unmatched / S-NBH-class 672389 code | Class / unmatched | Compensator positive chromatic member |
 | 4L1 | 1.71300 | 54.0 | S-LAL8 class (OHARA) | Class / rounded | Leading master positive |
 | 4L2 | 1.56384 | 60.8 | N-SK11 / BACD11 class, 564608 code | Class | Dense crown cemented member |

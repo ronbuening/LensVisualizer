@@ -111,7 +111,7 @@ This element is a glass-molded hybrid: a UV-curable resin layer is bonded to the
 
 **Resin layer (L31r):** nd = 1.56093, νd = 36.64. The object-side surface S15 is aspherical. Center thickness 0.150 mm.
 
-**Glass body (L31g):** nd = 1.51742, νd = 52.20. Glass: S-NSL3 (OHARA) — normal crown (catalog νd = 52.43, Δνd ≈ 0.23 from patent value). R₁₆ = 17.341 (junction with resin), R₁₇ = −499.849 (nearly flat rear). Center thickness 3.350 mm.
+**Glass body (L31g):** nd = 1.51742, νd = 52.20. Glass: S-NSL36 (OHARA) — normal crown and the matching 51752x catalog family. R₁₆ = 17.341 (junction with resin), R₁₇ = −499.849 (nearly flat rear). Center thickness 3.350 mm.
 
 Combined f(L31) ≈ +31 mm (paraxial, in-air).
 
@@ -199,7 +199,7 @@ The glass palette comprises 15 distinct glass types plus one UV-curable resin, d
 | L23 | 1.80809 | 22.74 | J-SFH1 (Hikari) | Dense flint | Achromatizing positive in variator |
 | L24 | 1.77250 | 49.62 | S-LAH66 (OHARA) | Dense lanthanum flint | Negative field corrector in variator |
 | L31r, L35r | 1.56093 | 36.64 | UV-curable resin | Composite asph layer | Carries aspherical departure |
-| L31g | 1.51742 | 52.20 | S-NSL3 (OHARA, Δνd ≈ 0.23) | Normal crown | Substrate for hybrid asphere |
+| L31g | 1.51742 | 52.20 | S-NSL36 (OHARA; patent coordinate match) | Normal crown | Substrate for hybrid asphere |
 | L32 | 1.60342 | 38.03 | S-TIM5 (OHARA) | Titanium flint | Weak positive in G3 |
 | L33, L41 | 2.00100 | 29.12 | S-LAH79 (OHARA) | Ultra-high-index LaF | High-index flint for cemented doublets |
 | L35g, PP | 1.51680 | 64.14 | S-BSL7 (OHARA) | Borosilicate crown | Substrate for VR asphere; cover glass |
@@ -340,6 +340,6 @@ All values agree to within rounding precision of the three-decimal-place patent 
 
 1. WO 2022/264542 A1 (WIPO), "Variable-Magnification Optical System, Optical Apparatus, and Method for Manufacturing Variable-Magnification Optical System," Nikon Corporation, published 22 December 2022. Example 1, Table 1.
 2. Nikon USA product page, NIKKOR Z DX 18-140mm f/3.5-6.3 VR (product code 20104). Accessed May 2026. https://www.nikonusa.com/p/nikkor-z-dx-18-140mm-f35-63-vr/20104/overview
-3. OHARA optical glass catalog (current online edition). Glass designations S-TIH6, S-FSL5, S-LAH55V, S-LAM2, S-LAH66, S-NSL3, S-TIM5, S-LAH79, S-BSL7, S-LAH65V.
+3. OHARA optical glass catalog (current online edition). Glass designations S-TIH6, S-FSL5, S-LAH55V, S-LAM2, S-LAH66, S-NSL36, S-TIM5, S-LAH79, S-BSL7, S-LAH65V.
 4. Hikari optical glass catalog 2023. Glass designations J-SFH1, J-BASF6, J-LASFH9.
 4. Schott optical glass catalog (current online edition). Glass designation SF57.

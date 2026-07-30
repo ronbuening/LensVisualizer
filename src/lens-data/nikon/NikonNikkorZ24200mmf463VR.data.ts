@@ -289,7 +289,8 @@ const LENS_DATA = {
       nd: 1.8208,
       vd: 42.51,
       fl: -84.3,
-      glass: "Lanthanum flint (182080/4251, uncertain — possibly CDGM H-LAF3)",
+      glass:
+        "Unmatched lanthanum flint (patent nd=1.82080, νd=42.51; prior H-LAF3 attribution unsupported)",
       apd: false,
       role: "Rear field corrector negative — asph S33A corrects field curvature/astigmatism. Part of G6 air lens.",
     },

@@ -37,3 +37,9 @@ Patent: CN 116520542 A, Example 2
 
 - `npm run generate:glass-reports` - passed.
 - `npm run typecheck`, `npm run format:check`, `npm run lint`, `npm run test`, and `npm run build` - passed.
+
+## 2026-07-30 - Unsafe named-token cleanup
+
+- Replaced L4's unresolved `H-LAK53A (CDGM)` attribution with HOYA `TAC8`, the current first-party coefficient-backed catalog equivalent that exactly reproduces the patent's 1.72916 / 54.67 coordinate and code 729547.
+- The patent table does not identify a production supplier, so the annotation records catalog equivalence rather than asserting HOYA manufacture.
+- Synchronized the analysis; no prescription geometry changed.

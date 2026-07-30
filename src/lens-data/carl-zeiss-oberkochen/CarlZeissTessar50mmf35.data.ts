@@ -79,7 +79,7 @@ const LENS_DATA = {
       nd: 1.59551,
       vd: 39.2,
       fl: -15.57,
-      glass: "F8 historical (Schott, discontinued)",
+      glass: "E-F8 (HOYA catalog-equivalent to historical Schott F8; patent supplier unspecified)",
       apd: false,
       role: "Asymmetric biconcave diverging element; principal field-flattener via strong negative Petzval contribution; |R₃|/|R₄| = 2.74",
     },
