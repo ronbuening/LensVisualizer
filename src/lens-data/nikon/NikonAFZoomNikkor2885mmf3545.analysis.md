@@ -98,7 +98,7 @@ Because G3 is fixed relative to the image plane, this doublet provides a stable 
 
 ### L12 — Biconcave Negative Singlet
 
-nd = 1.51835, νd = 60.3. Glass: 518603 - unmatched crown (closest current S-NSL3 differs in nu_d). f = -40.8 mm.
+nd = 1.51835, νd = 60.3. Glass: BALK3 (SUMITA catalog equivalent; production supplier unspecified). f = -40.8 mm.
 
 L12 supplies most of the third group’s negative optical power. It is a biconcave element with R19 = -51.601 mm and R20 = +36.052 mm, positioned immediately before the G3-G4 variable air gap. This makes it a principal beam-shaping element before the rear relay group.
 
@@ -145,7 +145,7 @@ The patent gives refractive index and Abbe number only. It does not name glass c
 | L9 | 1.60311 | 60.7 | S-BSM14 (OHARA) | exact/close catalog match |
 | L10 | 1.78470 | 26.1 | S-TIH11 class (OHARA) | close class match |
 | L11 | 1.51680 | 64.1 | S-BSL7 / N-BK7 class | standard borosilicate crown class |
-| L12 | 1.51835 | 60.3 | 518603 - unmatched crown (closest current S-NSL3 differs in nu_d) | unresolved; S-NSL3 is not a close νd match |
+| L12 | 1.51835 | 60.3 | BALK3 (SUMITA catalog equivalent) | Exact catalog coordinate; production supplier unspecified |
 | L13 | 1.58913 | 61.2 | SK5 type (589/612) | class match |
 | L14 | 1.62280 | 57.0 | S-BSM10 (OHARA) | close catalog match |
 | L15 | 1.79504 | 28.6 | 795287 - J-LAFH3 (Hikari; no source-backed catalog match) | unresolved six-digit class |

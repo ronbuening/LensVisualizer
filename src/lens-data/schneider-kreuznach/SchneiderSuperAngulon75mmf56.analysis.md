@@ -105,7 +105,7 @@ Chromatically, L3 is paired in achromatization with both L2 and L4: the cemented
 
 ### L4 — Thin Biconcave Negative (Inner Negative of Front Triplet)
 
-$n_d = 1.56138$, $\nu_d = 45.3$. Glass: **BaLF-class barium light flint (561453)** — historical Schott-family code-only row. $f = -36.1$.
+$n_d = 1.56138$, $\nu_d = 45.3$. Glass: **LLF4 (SUMITA catalog equivalent)** — production supplier unspecified. $f = -36.1$.
 
 L4 is a very thin biconcave negative element ($d_5 = 1.48$) at the rear of the front cemented triplet, with surfaces $r_5 = -21.48$ (cemented junction with L3) and $r_6 = +360.27$ (the nearly flat rear surface facing the diaphragm space). It is the innermost element of the front half, immediately adjacent to the aperture stop. The opposite signs of $r_5$ (negative) and $r_6$ (positive) confirm the biconcave shape — both exterior surfaces are concave — though $r_6$ is so weakly curved that the element is effectively plano-concave. The patent describes these inner negative elements as "concave toward the diaphragm space," referring to the element's dominant concavity: the strongly curved $r_5$ surface has its concavity directed toward the image and diaphragm side.
 
@@ -113,7 +113,7 @@ The extreme thinness of L4 is one of the patent's key innovations. The text stat
 
 L4 has the lowest refractive index in the front triplet ($n_d = 1.561$), completing the progressive index gradient. Its role is primarily that of a **field-correcting element**: the nearly flat rear surface ($r_6 = +360.27$, effectively a plane) allows L4 to act as a weak negative corrector at the edge of the triplet without introducing significant additional spherical aberration. Its location adjacent to the diaphragm — where marginal ray heights are smallest but chief ray heights are largest — means its power primarily affects the oblique (off-axis) aberrations rather than on-axis aberrations.
 
-The glass identification is code-family only. The combination $n_d = 1.561$, $\nu_d = 45.3$ (code 561453) falls in the barium light flint (BaLF) region of the Abbe diagram. No exact coefficient-backed public catalog row is present in the project for this pair, so the data file deliberately keeps it as a code-only historical Schott-family row. The relatively low Abbe number ($\nu_d = 45.3$) places it on the flintier side of the crown–flint boundary, providing controlled dispersion at the junction with L3.
+The combination $n_d = 1.56138$, $\nu_d = 45.3$ (code 561453) exactly matches SUMITA's discontinued-inclusive LLF4 coefficient row. The catalog row supplies a trustworthy dispersion curve, but the assignment remains an optical equivalent because the historical Schneider production supplier is not named. The relatively low Abbe number places it on the flintier side of the crown–flint boundary, providing controlled dispersion at the junction with L3.
 
 ### L5 — Thin Biconcave Negative (Inner Negative of Rear Triplet)
 
@@ -166,7 +166,7 @@ Unlike L1 (FK3 fluorophosphate crown), L8 uses a different crown glass: $n_d = 1
 | L1 | 1.46450 | 65.8 | FK3 | Schott | Exact | Fluorophosphate crown, low-index field lens |
 | L2 | 1.71700 | 47.9 | LaF3 / S-LAM3 optical equivalent (717479) | Schott / OHARA equivalent | Exact optical match | Lanthanum flint, high-index outer negative |
 | L3 | 1.61405 | 55.1 | SSK class / Hikari SK9 optical equivalent (614551) | Schott historical / Hikari equivalent | Exact optical match | Dense barium crown, central positive |
-| L4 | 1.56138 | 45.3 | BaLF class (561453) | Schott historical | Code-only | Barium light flint, thin biconcave inner corrector |
+| L4 | 1.56138 | 45.3 | LLF4 catalog equivalent (561453) | SUMITA coefficients; supplier unspecified | Exact coordinate | Barium light flint, thin biconcave inner corrector |
 | L5 | 1.56883 | 56.0 | BaK4 / S-BAL14 optical equivalent | Schott / OHARA equivalent | High | Barium crown, thin biconcave inner corrector |
 | L6 | 1.61375 | 56.3 | SSK class (614563) | Schott historical | Code-only | Dense barium crown, central positive |
 | L7 | 1.70181 | 41.1 | BaSF class / S-BAH27 or BAFD7 optical equivalent (702411) | Schott historical / OHARA-HOYA equivalent | High | Barium dense flint, high-index outer negative |

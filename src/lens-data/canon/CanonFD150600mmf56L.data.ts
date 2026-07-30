@@ -230,7 +230,7 @@ const LENS_DATA = {
       nd: 1.53375,
       vd: 55.5,
       fl: -123.09,
-      glass: "Unmatched crown glass (534/555 vintage code)",
+      glass: "Unmatched (534555 vintage crown; no first-party coefficient row found)",
       role: "Standalone negative field-correction element in group VIII.",
     },
     {

@@ -112,7 +112,7 @@ const LENS_DATA = {
       nd: 1.6825,
       vd: 44.65,
       fl: -31.4,
-      glass: "683447 — barium/lanthanum flint family (patent nd=1.68250, νd=44.65; no exact public catalog match)",
+      glass: "Unmatched (683447 barium/lanthanum flint; no first-party coefficient row found)",
       apd: false,
       cemented: "Da",
       role: "Negative component of rear cemented meniscus doublet (L5+L6); chromatic/field correction immediately behind stop",

@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **488** lenses scanned
 - **5360** non-air surfaces examined
 - **5365** element glass declarations examined
-- **445** non-explicit-unmatched annotations did not resolve
-- **195** distinct unresolved glass-like tokens found
+- **432** non-explicit-unmatched annotations did not resolve
+- **188** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -27,7 +27,6 @@ or per-lens patent backfills.
 | 863248 | 3 | 1 | |
 | 514428 | 2 | 1 | |
 | 531559 | 2 | 2 | |
-| 561453 | 2 | 2 | |
 | 569632 | 2 | 1 | |
 | 585594 | 2 | 1 | |
 | 614563 | 2 | 2 | |
@@ -86,13 +85,10 @@ or per-lens patent backfills.
 | 667330 | 1 | 1 | |
 | 670572 | 1 | 1 | |
 | 670574 | 1 | 1 | |
-| 670576 | 1 | 1 | |
 | 678322 | 1 | 1 | |
 | 680312 | 1 | 1 | |
 | 682366 | 1 | 1 | |
-| 683447 | 1 | 1 | |
 | 683548 | 1 | 1 | |
-| 685309 | 1 | 1 | |
 | 694312 | 1 | 1 | |
 | 694536 | 1 | 1 | |
 | 697558 | 1 | 1 | |
@@ -104,7 +100,6 @@ or per-lens patent backfills.
 | 721334 | 1 | 1 | |
 | 729577 | 1 | 1 | |
 | 738493 | 1 | 1 | |
-| 744447 | 1 | 1 | |
 | 747274 | 1 | 1 | |
 | 749501 | 1 | 1 | |
 | 749547 | 1 | 1 | |
@@ -120,7 +115,6 @@ or per-lens patent backfills.
 | 768465 | 1 | 1 | |
 | 769497 | 1 | 1 | |
 | 770479 | 1 | 1 | |
-| 770494 | 1 | 1 | |
 | 772493 | 1 | 1 | |
 | 773498 | 1 | 1 | |
 | 773501 | 1 | 1 | |
@@ -152,7 +146,6 @@ or per-lens patent backfills.
 | 866450 | 1 | 1 | |
 | 877370 | 1 | 1 | |
 | 882408 | 1 | 1 | |
-| 902253 | 1 | 1 | |
 | 903354 | 1 | 1 | |
 | 904293 | 1 | 1 | |
 | 910313 | 1 | 1 | |
@@ -271,11 +264,6 @@ or per-lens patent backfills.
 
 - [CANON RF 24-240mm f/4-6.3 IS USM](../../src/lens-data/canon/CanonRF24240mmf463.data.ts) 25A: `531559 - moldable barium light crown (patent nd=1.53110, vd=55.9)`
 - [NIKON AF-P DX NIKKOR 10-20mm f/4.5-5.6 G VR](../../src/lens-data/nikon/NikonAFPDX1020mmf4556G.data.ts) 25: `531559 - patent-specified crown-like glass (theta_gF=0.5684; unresolved)`
-
-### 561453 — 2 occurrences
-
-- [HASSELBLAD HC 150mm f/3.2](../../src/lens-data/hasselblad/HasselbladHC150mmf32.data.ts) 12: `561453 - barium light flint (patent e-line Ne=1.56433, vd=45.3; no exact public catalog match)`
-- [SCHNEIDER-KREUZNACH SUPER-ANGULON 75mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderSuperAngulon75mmf56.data.ts) 5: `561453 — BaLF-class barium light flint (Schott historical; no exact public Sellmeier)`
 
 ### 569632 — 2 occurrences
 
@@ -523,10 +511,6 @@ or per-lens patent backfills.
 
 - [NIKON R-UW AF FISHEYE-NIKKOR 13mm f/2.8](../../src/lens-data/nikon/NikonRUWAFNikkor13mmf28.data.ts) 3: `J-LAK02 (HIKARI) / 670574 class, close`
 
-### 670576 — 1 occurrence
-
-- [NIKON AI ZOOM-NIKKOR 80-200mm f/4](../../src/lens-data/nikon/NikonAINikkor80200mmf4.data.ts) 15: `670576 — lanthanum crown class (catalog unresolved)`
-
 ### 678322 — 1 occurrence
 
 - [SONY FE 12-24mm f/2.8 GM](../../src/lens-data/sony/SonyFE1224mmf28GM.data.ts) 13: `678322 — dense flint (Schott SF-family adjacent; no exact public catalog match)`
@@ -539,17 +523,9 @@ or per-lens patent backfills.
 
 - [MINOLTA AF APO TELE 300mm f/2.8](../../src/lens-data/minolta/MinoltaAF300mmf28.data.ts) 5: `682366 - dense flint class (catalog unresolved)`
 
-### 683447 — 1 occurrence
-
-- [OLYMPUS ZUIKO AUTO-MACRO 50mm f/2](../../src/lens-data/olympus/OlympusZuikoAutoMacro50mmf2.data.ts) 9: `683447 — barium/lanthanum flint family (patent nd=1.68250, νd=44.65; no exact public catalog match)`
-
 ### 683548 — 1 occurrence
 
 - [NIKON AF-P DX NIKKOR 10-20mm f/4.5-5.6 G VR](../../src/lens-data/nikon/NikonAFPDX1020mmf4556G.data.ts) 7: `683548 - patent-specified glass (theta_gF=0.5501; unresolved)`
-
-### 685309 — 1 occurrence
-
-- [FUJIFILM FUJINON XF 16-55mm f/2.8 R LM WR](../../src/lens-data/fujifilm/FujifilmXF1655mmf28R.data.ts) 13A: `685309 — dense flint (patent coordinate; vendor unresolved)`
 
 ### 694312 — 1 occurrence
 
@@ -594,10 +570,6 @@ or per-lens patent backfills.
 ### 738493 — 1 occurrence
 
 - [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) 45: `738493 — lanthanum crown (patent nd=1.73800, νd≈49.3; no exact public catalog match)`
-
-### 744447 — 1 occurrence
-
-- [OLYMPUS ZUIKO AUTO-MACRO 90mm f/2](../../src/lens-data/olympus/OlympusZuikoAutoMacro90mmf2.data.ts) 9: `744447 — LAF7-class lanthanum flint (HOYA; no exact public catalog match)`
 
 ### 747274 — 1 occurrence
 
@@ -658,10 +630,6 @@ or per-lens patent backfills.
 ### 770479 — 1 occurrence
 
 - [NIKON NIKKOR-N 5cm f/1.1](../../src/lens-data/nikon/NikonN5cmf11.data.ts) 5: `770479 — lanthanum crown/flint patent glass (nd=1.77000, νd=47.9; no exact public catalog match)`
-
-### 770494 — 1 occurrence
-
-- [SONY FE 24-70mm f/2.8 GM II](../../src/lens-data/sony/SonyFE2470mmf28GMII.data.ts) 8A: `770494 — lanthanum crown (patent nd=1.77002, nu_d=49.4)`
 
 ### 772493 — 1 occurrence
 
@@ -786,10 +754,6 @@ or per-lens patent backfills.
 ### 882408 — 1 occurrence
 
 - [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) 5: `882408 — high-index lanthanum glass (patent nd=1.88234, nu_d=40.8)`
-
-### 902253 — 1 occurrence
-
-- [NIKON NIKKOR Z DX 50-250mm f/4.5-6.3 VR](../../src/lens-data/nikon/NikonZDX50250mmf4564VR.data.ts) 17: `902253 — high-index dense flint (J-LASFH24 class; no exact public catalog match)`
 
 ### 903354 — 1 occurrence
 

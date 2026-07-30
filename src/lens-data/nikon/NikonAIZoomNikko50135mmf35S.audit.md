@@ -33,3 +33,11 @@ Patent: US 4,497,547, Example 1
 ### Verification
 
 - Pending full Nikon batch verification.
+
+## 2026-07-30 - Patent 670576 catalog-equivalent recovery
+
+- Rechecked 3L1 against the patent row `nd = 1.67025`, `vd = 57.6`.
+- Discontinued OHARA S-LAL52 (`1.669999 / 57.327972`, code `670573`) is the closest coefficient-backed row and
+  is inside the runtime d-line safety window.
+- Relabeled 3L1 as the S-LAL52 optical equivalent while leaving the production supplier unspecified.
+  The `672389` and `796410` rows remain unresolved; no prescription or zoom data changed.

@@ -29,3 +29,9 @@ Patent: JP H11-030748 A, Example 1
   coefficient-backed catalog row in the reviewed public data (`delta nd = -0.00168`, `delta vd = -0.06`).
 - Relabeled both elements as J-LASF017 catalog equivalents while leaving the production supplier unidentified.
   Synchronized the analysis; no prescription, zoom, focus, aperture, or semi-diameter values changed.
+
+## 2026-07-30 SUMITA KF3 coefficient recovery
+
+- Added SUMITA's discontinued-inclusive KF3 vendor polynomial at catalog code `515546`.
+- Relabeled L1 to the KF3 optical equivalent; its `1.51454 / 54.55` coordinate agrees within patent rounding.
+- The production supplier remains unspecified, and no prescription or zoom data changed.

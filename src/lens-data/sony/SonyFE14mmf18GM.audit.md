@@ -41,3 +41,10 @@ No new catalog entries were added. WO 2021/199923 A1 publishes nd/vd and effecti
 - S26 `S-PHM52-class` -> `Unmatched (622639 patent e-line value...)` for 1.62228 / 63.90.
 - These family comparisons do not establish d-line catalog identities, so the analysis now preserves them only as
   comparisons and the resolver no longer borrows their Sellmeier rows.
+
+## 2026-07-30 - Remaining 856401 line-reference audit
+
+- Rechecked S24A against the expanded catalog. OHARA L-LAH85V is a nearby d-line coordinate, but the patent
+  publishes `Ne = 1.85639` at the helium-e line and does not identify a glass or provide a d-line conversion.
+- Kept S24A explicit unmatched `856401`; assigning L-LAH85V would conflate e-line and d-line coordinates.
+- No prescription, asphere, focus, aperture, or semi-diameter values changed.

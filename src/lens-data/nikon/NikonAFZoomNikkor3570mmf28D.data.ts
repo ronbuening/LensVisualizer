@@ -179,7 +179,7 @@ const LENS_DATA = {
       vd: 60.23,
       fl: 126.7,
       ng: 1.52897,
-      glass: "Unmatched crown (518602 code; BaLKN3-like legacy region)",
+      glass: "BALK3 (SUMITA catalog equivalent for patent coordinate; production supplier unspecified)",
       apd: false,
       role: "Weak positive meniscus closing G2.",
     },

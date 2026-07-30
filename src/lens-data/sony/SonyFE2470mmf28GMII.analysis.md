@@ -72,7 +72,7 @@ nd = 1.72916, νd = 54.7. Glass: S-LAL18 (OHARA) — lanthanum crown. f = −34.
 L21 is the first negative element encountered by the converging beam from Gr1. Its strongly curved rear surface (R2 = 17.636 mm) provides most of its negative power and redirects the converging cone into a strongly diverging beam. The lanthanum crown glass provides a good balance of index and dispersion for managing the Petzval sum contribution.
 
 **L22 — Negative Meniscus (convex to object, 2× Asph)**
-nd = 1.77002, νd = 49.4. Glass: 770494 patent-code lanthanum crown; no unique public catalog match found. f = −83.9 mm.
+nd = 1.77002, νd = 49.4. Glass: MC-TAF101-100 (HOYA catalog equivalent for patent 770494; production supplier unspecified). f = −83.9 mm.
 
 L22 is the only aspherical element in Gr2, with both surfaces (S8 and S9) carrying aspherical coefficients. The aspherical departures on both surfaces are negative (flatter than the spherical base) at the clear aperture, providing −76 µm on S8 and −68 µm on S9 of departure. This pair of aspherical corrections addresses the coma and astigmatism that arise from the strongly diverging beam passing through the variator at wide-angle settings. The weak base curvature on S8 (R = 307.0 mm, nearly flat) allows the aspheric polynomial to dominate the surface profile, effectively creating a Schmidt-plate-like corrector within the variator.
 
@@ -179,7 +179,7 @@ The design uses 12 distinct glass types across its 20 elements. Glass identifica
 | L12 | 1.61800 | 63.4 | S-PHM52 (OHARA) | Phosphate crown with +ΔPgF | L1p — ED element |
 | L13 | 1.76385 | 48.5 | Lanthanum crown (764/485, uncertain) | Lanthanum crown | Positive power carrier |
 | L21 | 1.72916 | 54.7 | S-LAL18 (OHARA) | Lanthanum crown | Variator negative |
-| L22 | 1.77002 | 49.4 | 770494 patent-code | Lanthanum crown | Aspheric aberration corrector |
+| L22 | 1.77002 | 49.4 | MC-TAF101-100 (HOYA catalog equivalent) | Lanthanum crown | Aspheric aberration corrector |
 | L23 | 1.63854 | 55.4 | Crown (639/554, uncertain) | Crown | Achromatizing partner |
 | L24 | 2.00069 | 25.5 | TAFD40L-W (HOYA) | Ultra-high-index lanthanum dense flint | L2p compact positive |
 | L25 | 1.61800 | 63.4 | S-PHM52 (OHARA) | Phosphate crown | Beam management |

@@ -40,11 +40,11 @@ The center thickness is 7.157 mm at the 100 mm scale, or 7.16% of the focal leng
 
 ### L2 - Weakly Biconcave Negative Flint
 
-$n_d = 1.56138$, $\nu_d = 45.3$. Glass: LLF4 class (Sumita legacy catalog; Schott-type). Standalone in-air $f = -93.84$ mm.
+$n_d = 1.56138$, $\nu_d = 45.3$. Glass: LLF4 (SUMITA catalog equivalent). Standalone in-air $f = -93.84$ mm.
 
 L2 is the negative partner of the first cemented doublet. Its rear surface, $r_3 = +551.2448$ mm at the scaled prescription, is extremely weak, so the element behaves almost like a cemented plano-concave flint. Its purpose is not to dominate the group power, but to temper the strong positive crown and provide the higher dispersion side of the achromatic pair.
 
-The prior draft treated this glass as unmatched. That was too conservative. The pair $n_d = 1.56138$, $\nu_d = 45.3$ is an exact LLF4-class entry in a Sumita legacy glass table, identified there as a Schott-type glass. Because the patent is German and does not name a supplier, the safer wording is class-level rather than a claim that Agfa used Sumita glass.
+The prior draft treated this glass as unmatched. That was too conservative. The pair $n_d = 1.56138$, $\nu_d = 45.3$ is the exact coordinate of SUMITA's discontinued-inclusive LLF4 coefficient row. Because the patent is German and does not name a supplier, this is recorded as an optical catalog equivalent rather than a claim that Agfa used SUMITA glass.
 
 ### L3 - Biconcave Negative Central Singlet
 
@@ -79,7 +79,7 @@ The patent lists only $n_d$ and $\nu_d$ values; it does not name the glass manuf
 | Elements | $n_d$ | $\nu_d$ | Identification used | Basis |
 |---|---:|---:|---|---|
 | L1, L5 | 1.62041 | 60.3 | SK16 / N-SK16 class (Schott) | Exact modern Schott N-SK16 index; legacy SK16 value is identical at patent precision |
-| L2 | 1.56138 | 45.3 | LLF4 class (Sumita legacy catalog; Schott-type) | Exact index and Abbe match in legacy Sumita table |
+| L2 | 1.56138 | 45.3 | LLF4 (SUMITA catalog equivalent) | Exact index and Abbe match in the discontinued-inclusive SUMITA catalog |
 | L3 | 1.54041 | 50.9 | Unmatched 540/509 glass | No confident public catalog match located |
 | L4 | 1.52310 | 50.9 | KF5 class (Sumita legacy catalog; Schott-type) | Exact index and Abbe match in legacy Sumita table |
 

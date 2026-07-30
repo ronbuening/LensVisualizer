@@ -23,15 +23,33 @@ This file tracks the second bucket plus any cases from the first bucket that nee
 
 ## Current Status (July 2026, current catalog)
 
-- Catalog: **416 verified entries** in `src/optics/glassCatalogData.ts`.
+- Catalog: **419 verified entries** in `src/optics/glassCatalogData.ts`.
 - `catalog-mismatches.generated.md` and `glass-relabel-by-lens.generated.md` report **0** remaining
   dispersion-coordinate mismatches across **0** lens files.
-- `sellmeier-coverage.generated.md` reports **488** lenses, **5360** non-air surfaces, **4626** strict catalog
-  Sellmeier surfaces (**86.3%**), and **4639** trusted chromatic surfaces (**86.5%**).
-- **213** lenses are fully covered by strict Sellmeier data and **218** are fully covered by trusted chromatic data.
-- `unresolvedGlassScan` reports **445** non-explicit-unmatched annotations and **195** distinct unresolved glass-like
+- `sellmeier-coverage.generated.md` reports **488** lenses, **5360** non-air surfaces, **4643** strict catalog
+  Sellmeier surfaces (**86.6%**), and **4655** trusted chromatic surfaces (**86.8%**).
+- **217** lenses are fully covered by strict Sellmeier data and **222** are fully covered by trusted chromatic data.
+- `unresolvedGlassScan` reports **432** non-explicit-unmatched annotations and **188** distinct unresolved glass-like
   tokens. The total includes honest proprietary and family-level annotations as well as actionable named tokens.
 - The Phase 2/3 resolved tables below are historical audit trail. Use the generated reports above for the current queue before starting new relabel work; for patent-by-patent execution, start from [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md).
+
+## Resolved Phase 52 — July 2026 legacy-family recovery and near-complete audit
+
+SUMITA BALK3, KF3, and LLF4 were transcribed from the vendor's discontinued-inclusive all-glass AGF, expanding the
+catalog from 416 to 419 entries. The three rows resolve thirteen surfaces across the `518603`, `515546`, and `561453`
+families. BALK3 also reproduces the independent mercury-g index stored on the Nikon AF 35-70mm f/2.8D, while LLF4
+reproduces the Hasselblad HC 150mm patent's helium-e index exactly. All relabels are optical catalog equivalents and
+leave the production supplier unspecified.
+
+The near-complete-lens review added four more safe surfaces from existing rows: Sony FE 24-70mm GM II `770494` now
+uses HOYA MC-TAF101-100, Olympus Macro 90mm `744447` uses OHARA S-LAM2, and two Nikon `670576` rows use
+discontinued OHARA S-LAL52. Canon FD 150-600mm `534555`, Fujifilm XF 16-55mm `685309`, Nikon Z DX 50-250mm
+`902253`, and Olympus Macro 50mm `683447` remain explicit unmatched after source review. Sony FE 14mm `856401`
+also remains unmatched because its patent value is helium-e-line data and the nearby catalog candidate is d-line.
+
+This pass added seventeen strict Sellmeier surfaces and sixteen trusted chromatic surfaces. Strict coverage rose from
+4626 to 4643, trusted coverage from 4639 to 4655, and four additional lenses became fully covered in each measure.
+The generated sidecar now marks every representative row in the five targeted incomplete code families as reviewed.
 
 ## Resolved Phase 51 — July 2026 source-backed legacy catalog tranche
 

@@ -233,7 +233,7 @@ const LENS_DATA = {
       nd: 1.51835,
       vd: 60.34,
       fl: 38.3,
-      glass: "Unmatched crown glass (518/603)",
+      glass: "BALK3 (SUMITA catalog equivalent for patent coordinate; production supplier unspecified)",
       cemented: "D4",
       role: "Positive half of the rear cemented corrector.",
     },

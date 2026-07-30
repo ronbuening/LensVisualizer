@@ -7,7 +7,16 @@ available, it falls back to partial measured `nC`/`nF` line indices, dPgF-correc
 approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **416 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **419 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+
+The July 30, 2026 Phase 52 pass recovered SUMITA BALK3, KF3, and LLF4 from the vendor's discontinued-inclusive
+all-glass AGF. Their coefficient rows resolve thirteen surfaces across the `518603`, `515546`, and `561453`
+coordinate families; independent line-index anchors also confirm BALK3 at the mercury-g line and LLF4 at the
+helium-e line. Four more surfaces now use safe catalog equivalents already in source: HOYA MC-TAF101-100 for Sony
+`770494`, OHARA S-LAM2 for Olympus `744447`, and OHARA S-LAL52 for two Nikon `670576` rows. Canon `534555`,
+Fujifilm `685309`, Nikon `902253`, Olympus `683447`, and Sony's e-line `856401` case were explicitly audited without
+forcing unsafe nearest neighbors. Coverage is now 4643 / 5360 strict (86.6%) and 4655 / 5360 trusted (86.8%), with
+217 fully strict and 222 fully trusted lenses.
 
 The July 30, 2026 Phase 51 pass added two first-party legacy rows: SUMITA SK3 from the vendor's discontinued-inclusive
 all-glass AGF and CDGM H-ZBaF4 from the vendor's June 2022 optical-glass datasheet. SK3 upgrades the matching

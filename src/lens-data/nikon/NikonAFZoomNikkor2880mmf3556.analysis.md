@@ -31,7 +31,7 @@ Zooming is performed by changing the G1-G2 air gap $d_8$. From wide to mid and t
 
 ### L1 — Biconvex Positive
 
-nd = 1.51454, νd = 54.55. Glass: 515546 - unmatched light crown. f = +231.956 mm.
+nd = 1.51454, νd = 54.55. Glass: KF3 (SUMITA catalog equivalent for patent coordinate). f = +231.956 mm.
 
 L1 is a weak positive front corrector. Its object-side surface is much more strongly curved than its image-side surface, satisfying the patent's L1 shape-factor condition. It bends the off-axis chief ray inward before the ray reaches the stronger negative surfaces of L2 and L3, reducing wide-end distortion without an aspherical surface.
 
@@ -103,7 +103,7 @@ The patent gives nd and νd values but no catalog glass names. The data file the
 
 | Element(s) |      nd |    νd | Identification used                              | Role                                        |
 | ---------- | ------: | ----: | ------------------------------------------------ | ------------------------------------------- |
-| L1         | 1.51454 | 54.55 | 515546 - unmatched light crown                   | Weak front distortion corrector             |
+| L1         | 1.51454 | 54.55 | KF3 (SUMITA catalog equivalent; supplier unspecified) | Weak front distortion corrector             |
 | L2, L3     | 1.79668 | 45.37 | J-LASF017 catalog equivalent (patent 797454)     | Main G1 negative power                      |
 | L4         | 1.86074 | 23.01 | J-SFH2 (Hikari; patent code 861230)              | Positive G1 Petzval balance                 |
 | L5, L6     | 1.61720 | 54.01 | 617540 - SSK-class crown                         | Positive rear-group crown pair              |

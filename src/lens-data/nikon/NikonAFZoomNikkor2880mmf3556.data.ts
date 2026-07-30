@@ -74,7 +74,7 @@ const LENS_DATA = {
       nd: 1.51454,
       vd: 54.55,
       fl: 231.956,
-      glass: "515546 - unmatched light crown",
+      glass: "KF3 (SUMITA catalog equivalent for patent coordinate; production supplier unspecified)",
       apd: false,
       role: "Weak front positive corrector in the negative zoom group; reduces wide-angle distortion before the strong negative menisci.",
     },

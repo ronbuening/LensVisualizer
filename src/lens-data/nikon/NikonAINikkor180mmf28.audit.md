@@ -30,3 +30,9 @@ Patent: US 4,338,001, Embodiment 2
 ### Verification
 
 - Pending full Nikon batch verification.
+
+## 2026-07-30 SUMITA KF3 coefficient recovery
+
+- Added SUMITA's discontinued-inclusive KF3 vendor polynomial at catalog code `515546`.
+- Relabeled L4 to the KF3 optical equivalent at the exact stored `1.51454 / 54.6` coordinate.
+- The production supplier remains unspecified, and no prescription geometry changed.

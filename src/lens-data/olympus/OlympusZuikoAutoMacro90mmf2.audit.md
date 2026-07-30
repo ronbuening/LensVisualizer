@@ -57,3 +57,10 @@ Patent: US 4,792,219, Embodiment 3
   number, within the runtime safety window.
 - Relabeled L6 as an N-LAF34 catalog equivalent while leaving the production supplier unidentified. Synchronized
   the analysis; no prescription, focus, aperture, APD, or semi-diameter values changed.
+
+## 2026-07-30 - Patent 744447 catalog-equivalent recovery
+
+- Rechecked L5 against the patent row `nd = 1.74400`, `vd = 44.73`.
+- OHARA S-LAM2 (`1.743997 / 44.79`) reproduces the index and differs by only `+0.06` in Abbe number.
+- Relabeled L5 as the coefficient-backed S-LAM2 optical equivalent while leaving the production supplier
+  unspecified. No prescription, focus, aperture, APD, or semi-diameter values changed.

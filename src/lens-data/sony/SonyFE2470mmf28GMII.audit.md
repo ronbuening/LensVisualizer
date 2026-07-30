@@ -50,3 +50,11 @@ Patent: WO 2023/181666 A1, Example 4
 ## 2026-07-29 - Catalog expansion follow-up
 
 - Corrected L24 from `S-LAH79` to HOYA `TAFD40L-W`, the exact 2.00069 / 25.46 row.
+
+## 2026-07-30 - Patent 770494 catalog-equivalent recovery
+
+- Rechecked L22 at the patent coordinate `nd = 1.77002`, `vd = 49.4`.
+- HOYA MC-TAF101-100 (`1.76902 / 49.29`, code `769493`) is the closest coefficient-backed catalog row and is
+  inside the runtime d-line safety window.
+- Relabeled L22 as the MC-TAF101-100 optical equivalent while leaving the production supplier unspecified.
+  No prescription, asphere, zoom, focus, aperture, or semi-diameter values changed.

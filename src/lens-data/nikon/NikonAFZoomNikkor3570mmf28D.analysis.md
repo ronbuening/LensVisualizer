@@ -82,9 +82,9 @@ L8 is a standalone positive variator element using the same low-dispersion glass
 
 #### L9 - Positive Meniscus, Convex to Object
 
-nd = 1.51835, νd = 60.23. Glass: unmatched crown (518/602 code; BaLKN3-like legacy region). f = +126.7 mm.
+nd = 1.51835, νd = 60.23. Glass: BALK3 (SUMITA catalog equivalent; production supplier unspecified). f = +126.7 mm.
 
-L9 is a weak positive meniscus at the rear of G2. It shapes the pupil and marginal-ray slope entering the stop region. The patent glass falls near the 518602 glass-code region sometimes associated with legacy BaLKN3-type crowns. Because no primary manufacturer datasheet was found that confirms the exact legacy identity, the data file leaves L9 as an unmatched crown rather than assigning a catalog glass name.
+L9 is a weak positive meniscus at the rear of G2. It shapes the pupil and marginal-ray slope entering the stop region. SUMITA's discontinued-inclusive BALK3 row shares its exact $n_d$ and reproduces the stored $n_g = 1.52897$; its catalog $\nu_d = 60.3$ differs only by patent rounding. The assignment is therefore coefficient-backed optical equivalence, while the production supplier remains unspecified.
 
 ### Group 3 - Negative Compensator / Patent VR Group (f3 = -45.0 mm)
 
@@ -136,7 +136,7 @@ The patent publishes nd, νd, and n(G) values but does not name glass manufactur
 | L2, L3      |   1.67025 |     57.53 | J-LAK02-class lanthanum crown     | close HIKARI class match                                     |
 | L4, L5, L10 |   1.86074 |     23.01 | J-SFH2 class (HIKARI)             | exact nd, small νd residual                                  |
 | L6, L8      |   1.48749 |     70.41 | N-FK5 (SCHOTT)                    | exact nd/νd match                                            |
-| L9          |   1.51835 |     60.23 | Unmatched crown, 518602 code      | no primary manufacturer confirmation for exact legacy identity |
+| L9          |   1.51835 |     60.23 | BALK3 (SUMITA catalog equivalent) | exact nd/ng and rounded νd agreement; supplier unspecified |
 | L11, L12    |   1.51860 |     69.98 | J-PKH1 class (HIKARI)             | exact nd, small νd residual                                  |
 | L13         |   1.58913 |     61.09 | S-BAL35 class (OHARA)             | exact nd, small νd residual                                  |
 | L14         |   1.62041 |     60.14 | J-SK16 / N-SK16 class             | exact nd, small νd residual                                  |
@@ -215,4 +215,4 @@ The patent is therefore historically useful even though its stabilizer was not c
 4. SCHOTT, optical glass datasheets: N-FK5 and N-SK16.
 5. OHARA, optical glass datasheets: S-BAL35 and S-TIH6.
 6. HIKARI Glass, optical glass datasheets/catalog entries: J-SFH2, J-PKH1, J-SK16, and J-LAK02.
-7. Legacy glass-code cross-reference material for the 518602 crown region, treated only as secondary context; L9 remains unmatched without a primary manufacturer confirmation.
+7. SUMITA Optical Glass, discontinued-inclusive Zemax catalog, BALK3 coefficient row (518603); used as the optical equivalent for L9, not as a production-supplier attribution.

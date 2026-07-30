@@ -56,3 +56,10 @@ Figure / SD check:
 - Confirmed L6 `S-LAH60` is the only nd >= 1.8 high-index element. L5 (`670572`) and L7 (`561453`) remain explicit code-only / unresolved public-catalog dispositions.
 - Re-reviewed Figure 1. The existing SD profile matches the telephoto envelope and the patent has no SD table, so no SD edits were made.
 - Verification: `npm run generate:glass-reports`, `npm run typecheck`, `npm run format:check`, `npm run lint`, `npm run test`, and `git diff --check` passed.
+
+## 2026-07-30 SUMITA LLF4 coefficient recovery
+
+- SUMITA's discontinued-inclusive LLF4 polynomial evaluates to `Ne = 1.56433` at the helium-e line, exactly
+  reproducing the patent's independent L7 line-index anchor.
+- Relabeled L7 as an LLF4 optical equivalent while leaving the production supplier unspecified.
+- L5 (`670572`) remains unresolved; no prescription, focus, or semi-diameter values changed.

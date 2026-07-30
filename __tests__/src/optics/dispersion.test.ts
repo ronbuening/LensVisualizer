@@ -167,12 +167,22 @@ describe("glass catalog", () => {
     { name: "K-SSK1", code: "617540", nd: 1.6172, vd: 54 },
     { name: "K-SSK9", code: "620498", nd: 1.62012, vd: 49.8 },
     { name: "SK3", code: "609589", nd: 1.60881, vd: 58.9 },
+    { name: "BALK3", code: "518603", nd: 1.51835, vd: 60.3 },
+    { name: "KF3", code: "515546", nd: 1.51454, vd: 54.6 },
+    { name: "LLF4", code: "561453", nd: 1.56138, vd: 45.3 },
   ])("reproduces SUMITA's official all-glass catalog row for $name", ({ name, code, nd, vd }) => {
     const entry = resolveGlass(`${name} (SUMITA)`);
     expect(entry?.name).toBe(name);
     expect(entry?.code6).toBe(code);
     expect(evaluateSellmeier(entry!, LINE_NM.d)).toBeCloseTo(nd, 4);
     expect(evaluateCatalogAbbeNumber(entry!)).toBeCloseTo(vd, 0);
+  });
+
+  it("reproduces independent patent line-index anchors for the recovered SUMITA rows", () => {
+    const balk3 = resolveGlass("BALK3 (SUMITA)");
+    const llf4 = resolveGlass("LLF4 (SUMITA)");
+    expect(evaluateSellmeier(balk3!, LINE_NM.g)).toBeCloseTo(1.52897, 5);
+    expect(evaluateSellmeier(llf4!, 546.074)).toBeCloseTo(1.56433, 5);
   });
 
   it("reproduces CDGM's official D-K59 catalog row", () => {

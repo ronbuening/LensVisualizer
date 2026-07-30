@@ -52,3 +52,11 @@ The visible display name was corrected from `NIKON AI ZOOM-NIKKOR 80-200mm f/4 S
 - `npm run lint` — passed with 3 pre-existing warnings.
 - `npm run test` — passed (207 files, 2440 tests).
 - `npm run build` — passed (942 routes prerendered).
+
+## 2026-07-30 - Patent 670576 catalog-equivalent recovery
+
+- Rechecked L41 against the patent row `nd = 1.67025`, `vd = 57.6`.
+- Discontinued OHARA S-LAL52 (`1.669999 / 57.327972`, code `670573`) is the closest coefficient-backed row and
+  is inside the runtime d-line safety window.
+- Relabeled L41 as the S-LAL52 optical equivalent while leaving the production supplier unspecified.
+  L43 remains unresolved; no prescription, zoom, or semi-diameter values changed.

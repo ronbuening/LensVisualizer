@@ -125,7 +125,7 @@ The relay group has seven elements in four air-separated components. Its compute
 
 #### L14 — Biconvex Positive
 
-nd = 1.51454, νd = 54.6. Glass: unmatched crown (515/546; catalog identity uncertain). f = +420.1 mm.
+nd = 1.51454, νd = 54.6. Glass: KF3 (SUMITA catalog equivalent; production supplier unspecified). f = +420.1 mm.
 
 L14 is the relay entrance singlet. It contributes moderate positive power ahead of the near-afocal chromatic-correction triplet.
 
@@ -166,7 +166,7 @@ The prescription uses thirteen distinct nd/νd pairs across twenty elements. The
 | N-BK7 / S-BSL7 class | 1.51680 | 64.2 | L9 | Catalog class match by code |
 | N-SK16 / S-BSM16 class | 1.62041 | 60.3 | L10 | Catalog class match by code |
 | Flint 613/369 | 1.61293 | 36.9 | L11 | Unmatched in checked current recommended tables |
-| Crown 515/546 | 1.51454 | 54.6 | L14 | Unmatched in checked current recommended tables |
+| KF3 catalog equivalent | 1.51454 | 54.6 | L14 | Exact coordinate in SUMITA's discontinued-inclusive catalog; supplier unspecified |
 | Barium flint 639/450 | 1.63930 | 45.0 | L17 | Unmatched in checked current recommended tables |
 | Light crown 501/565 | 1.50137 | 56.5 | L18 | Unmatched in checked current recommended tables |
 | High-index 744/494 | 1.74443 | 49.4 | L19 | Unmatched in checked current recommended tables |

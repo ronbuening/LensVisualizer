@@ -94,7 +94,7 @@ const LENS_DATA = {
       nd: 1.56138,
       vd: 45.3,
       fl: -27.1,
-      glass: "561453 — BaLF-class barium light flint (Schott historical; no exact public Sellmeier)",
+      glass: "LLF4 (SUMITA catalog equivalent for patent coordinate; production supplier unspecified)",
       apd: false as const,
       cemented: "TF",
       role: "Inner negative of front triplet, adjacent to diaphragm. Extremely thin (patent constraint: d₅+d₇ ≤ 0.03f); concave toward the diaphragm to suppress coma, astigmatism, and field curvature.",

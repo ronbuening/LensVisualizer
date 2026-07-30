@@ -22,3 +22,11 @@ Patent: US 4,110,006, Example 4
   Abbe digit (`delta vd = -0.08`).
 - Relabeled L3 as an N-LAF34 catalog equivalent while leaving the production supplier unidentified. Synchronized
   the analysis; no prescription, zoom, focus, aperture, or semi-diameter values changed.
+
+## 2026-07-30 - Remaining 534555 source audit
+
+- Rechecked Example 4: L17 remains `nd = 1.53375`, `vd = 55.5`.
+- Current and discontinued-inclusive first-party catalog searches found no coefficient row within the runtime
+  d-line safety window.
+- Reworded L17 as explicit unmatched `534555`; no supplier or approximate catalog curve was assigned, and no
+  prescription or semi-diameter values changed.

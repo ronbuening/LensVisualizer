@@ -139,7 +139,7 @@ const LENS_DATA = {
       nd: 1.56093,
       vd: 45.3,
       fl: 83.4,
-      glass: "561453 - barium light flint (patent e-line Ne=1.56433, vd=45.3; no exact public catalog match)",
+      glass: "LLF4 (SUMITA catalog equivalent for patent coordinate; production supplier unspecified)",
       apd: false,
       role: "Front element of G3; reconverges the diverging cone from G2 toward the image.",
     },

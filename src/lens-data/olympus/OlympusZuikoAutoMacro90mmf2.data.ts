@@ -107,7 +107,7 @@ const LENS_DATA = {
       nd: 1.744,
       vd: 44.73,
       fl: 168.4,
-      glass: "744447 — LAF7-class lanthanum flint (HOYA; no exact public catalog match)",
+      glass: "S-LAM2 (OHARA catalog equivalent for patent 744447; production supplier unspecified)",
       apd: false,
       role: "Lanthanum flint meniscus — Petzval sum contribution, moderate positive power",
     },

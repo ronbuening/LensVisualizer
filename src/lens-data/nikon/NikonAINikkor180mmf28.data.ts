@@ -74,7 +74,7 @@ const LENS_DATA = {
       nd: 1.51454,
       vd: 54.6,
       fl: -73.841,
-      glass: "KF3-class crown-flint (obsolete Schott KF3-type; nd=1.51454, νd≈54.6)",
+      glass: "KF3 (SUMITA catalog equivalent for patent coordinate; production supplier unspecified)",
       role: "Primary divergent rear telephoto element; shortens total track and drives the rear-group distortion balance.",
     },
     {

@@ -44,3 +44,10 @@ Patent: US 4,708,445, Embodiment 6
   number, within the runtime safety window.
 - Relabeled L3, L7, and L8 as N-LAF34 catalog equivalents while leaving the production supplier unidentified.
   Synchronized the analysis and prescription table; no geometry changed.
+
+## 2026-07-30 - Remaining 683447 source audit
+
+- Rechecked L5 at `nd = 1.68250`, `vd = 44.65` against the expanded current and discontinued-inclusive catalogs.
+- No verified first-party coefficient row is inside the runtime d-line safety window; family cross-references alone
+  do not justify borrowing a dispersion curve.
+- Reworded L5 as explicit unmatched `683447`; no prescription, focus, aperture, or semi-diameter values changed.

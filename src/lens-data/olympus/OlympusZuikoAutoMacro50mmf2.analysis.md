@@ -129,10 +129,10 @@ L4 is a thin, strongly negative meniscus that dominates Group II's overall negat
 | Surfaces | r₉ = −0.4730 → r₁₀ = +4.6709 (junction) |
 | Center thickness | 0.0216 (norm) → 1.08 mm |
 | Glass | nd = 1.68250, νd = 44.65 |
-| Catalog match | 683447; no exact coefficient-backed public catalog match; barium/lanthanum flint family |
+| Catalog match | Explicit unmatched 683447; no first-party coefficient row found; barium/lanthanum flint family |
 | Thick-lens focal length | −31.4 mm |
 
-L5 is the negative component of the first cemented doublet in Group III, located immediately behind the stop. Its strongly concave front surface (r₉) faces the stop gap and provides diverging power that, together with the converging L6, forms a meniscus doublet of overall negative power (f = −154.6 mm). The cemented junction at r₁₀ has a very weak curvature (R = 4.67f = 233.6 mm), indicating that the primary purpose of the cementation is chromatic correction via the refractive index step (Δn = 1.72000 − 1.68250 = 0.0375 at the junction) rather than power contribution. The 683447 glass does not have a precise coefficient-backed public catalog match; it is likely a 1980s-era OHARA or HOYA type that has since been discontinued or reformulated.
+L5 is the negative component of the first cemented doublet in Group III, located immediately behind the stop. Its strongly concave front surface (r₉) faces the stop gap and provides diverging power that, together with the converging L6, forms a meniscus doublet of overall negative power (f = −154.6 mm). The cemented junction at r₁₀ has a very weak curvature (R = 4.67f = 233.6 mm), indicating that the primary purpose of the cementation is chromatic correction via the refractive index step (Δn = 1.72000 − 1.68250 = 0.0375 at the junction) rather than power contribution. The 683447 glass has no verified first-party coefficient row in the reviewed current and discontinued-inclusive sources, so its supplier and precise catalog identity remain unresolved.
 
 ### 4.6 L6 — Biconvex Positive (cemented with L5)
 
@@ -194,7 +194,7 @@ The design uses seven distinct glass types. Four have exact matches in current c
 | L2 | 1.72916 | 54.68 | 729/547 | OHARA S-LAL18 | Lanthanum crown |
 | L3, L7, L8 | 1.77250 | 49.66 | N-LAF34 catalog equivalent (773497) | Supplier unresolved | Lanthanum crown |
 | L4 | 1.58144 | 40.75 | 581408 | OHARA PBL25 | Short flint |
-| L5 | 1.68250 | 44.65 | 683447 | No exact coefficient-backed public match | Barium/lanthanum flint |
+| L5 | 1.68250 | 44.65 | Explicit unmatched 683447 | No first-party coefficient row found | Barium/lanthanum flint |
 | L6 | 1.72000 | 46.03 | 720460 | OHARA S-LAM61 | Lanthanum crown/flint border |
 | L9 | 1.75520 | 27.51 | 755/275 | Schott SF4 / OHARA S-TIH4 / HOYA FD4 | Dense flint |
 
@@ -356,7 +356,7 @@ Surface numbering follows the patent convention (r₁ through r₁₆, d₁ thro
 | r₆ | +37.71 | 1.52 | 1.0 (air) | L3 rear | |
 | r₇ | +248.9 | 1.17 | 1.58144 | L4 front | Neg. meniscus, PBL25 / 581408 glass |
 | r₈ | +19.29 | 10.16 | 1.0 (air) | L4 rear | **Contains aperture stop** |
-| r₉ | −23.66 | 1.08 | 1.68250 | L5 front | Biconcave, unresolved 683447 glass |
+| r₉ | −23.66 | 1.08 | 1.68250 | L5 front | Biconcave, explicitly unmatched 683447 glass |
 | r₁₀ | +233.6 | 4.65 | 1.72000 | L5/L6 junction | Cemented; S-LAM61 / 720460 glass |
 | r₁₁ | −35.52 | 0.10 | 1.0 (air) | L6 rear | |
 | r₁₂ | −82.55 | 2.87 | 1.77250 | L7 front | Pos. meniscus, N-LAF34 equivalent |

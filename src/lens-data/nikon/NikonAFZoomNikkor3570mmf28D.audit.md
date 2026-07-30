@@ -14,3 +14,10 @@ Patent: US 6,320,698 B1, Example 3 / Table 3
 ### Verification
 
 - `npm test -- elementRenderDiagnostics`
+
+## 2026-07-30 SUMITA BALK3 coefficient recovery
+
+- SUMITA's discontinued-inclusive BALK3 polynomial shares L9's exact `nd = 1.51835` and reproduces its independent
+  `ng = 1.52897` anchor; `vd = 60.3` agrees with the patent-rounded `60.23`.
+- Relabeled L9 as a BALK3 optical equivalent while leaving the production supplier unspecified.
+- No prescription, zoom, focus, or semi-diameter values changed.

@@ -124,7 +124,7 @@ const LENS_DATA = {
       nd: 1.67025,
       vd: 57.6,
       fl: -46.84,
-      glass: "Unmatched (670576 lanthanum-crown code; no confirmed current catalog)",
+      glass: "S-LAL52 (OHARA catalog equivalent for patent 670576; production supplier unspecified)",
       cemented: "D2",
       role: "Negative member of the compensator doublet.",
     },

@@ -192,7 +192,7 @@ const LENS_DATA = {
       nd: 1.51835,
       vd: 60.3,
       fl: -40.8,
-      glass: "518603 - unmatched crown (closest current S-NSL3 differs in nu_d)",
+      glass: "BALK3 (SUMITA catalog equivalent for patent coordinate; production supplier unspecified)",
       role: "Strong negative singlet providing most of G3's negative power.",
     },
     {

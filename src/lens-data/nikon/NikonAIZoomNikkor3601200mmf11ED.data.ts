@@ -235,7 +235,7 @@ const LENS_DATA = {
       nd: 1.51454,
       vd: 54.6,
       fl: 420.1,
-      glass: "Unmatched crown (515/546; catalog identity uncertain)",
+      glass: "KF3 (SUMITA catalog equivalent for patent coordinate; production supplier unspecified)",
       role: "Entrance positive singlet of the telephoto relay.",
     },
     {
