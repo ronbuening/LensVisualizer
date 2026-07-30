@@ -379,7 +379,7 @@ const LENS_DATA = {
       nd: 1.90043,
       vd: 37.38,
       fl: -59.6,
-      glass: "OHARA S-LAH75",
+      glass: "TAFD37A (HOYA catalog-equivalent; patent vendor unspecified)",
       apd: false,
       role: "Final field-flattening element; corrects Petzval curvature and exit pupil position.",
     },

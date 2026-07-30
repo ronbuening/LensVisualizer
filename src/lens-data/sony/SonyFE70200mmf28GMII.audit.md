@@ -48,3 +48,12 @@ Patent: JP 2023-039817 A, Example 2
 - S7 `S-LAH66 class (OHARA)` -> explicit unmatched 776496 lanthanum-glass coordinate. S-LAH66 matches νd
   but misses nd by about 0.0037, outside the resolver tolerance.
 - Synchronized the L21 element narrative and glass table while retaining S-LAH66 only as a family comparison.
+
+## 2026-07-29 - Incompatible named-label audit
+
+- Rechecked JP 2023-039817 A Example 2, Table 6, surface 27: `R=53.755`, `d=6.52`,
+  `nd=1.61669`, and `νd=44.3` match the stored L71 prescription.
+- Replaced the incompatible `E-FEL6 class (HOYA)` annotation with unresolved code `617443`.
+  HOYA E-FEL6 is 1.53172 / 48.84 (532488), so it cannot represent this patent row; no exact
+  coefficient-backed public catalog match was found.
+- Synchronized the element narrative, glass table, and source note. No prescription geometry changed.

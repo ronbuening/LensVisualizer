@@ -158,7 +158,7 @@ Two of the lens's four XD Linear Motors are dedicated to driving GR6.
 
 #### L71 — Biconvex Positive
 
-$n_d$ = 1.61669, $\nu_d$ = 44.3. Glass: E-FEL6 class (HOYA) — eco-friendly flint, or equivalent ($\Delta n_d$ = 0.0001 from catalog). $f$ = +50.5 mm.
+$n_d$ = 1.61669, $\nu_d$ = 44.3. Glass: unresolved 617443 patent-coordinate glass at the flint/crown boundary; the patent does not identify a supplier. $f$ = +50.5 mm.
 
 L71 is a single biconvex positive element forming the second focus group ($f_{GR7}$ = +50.8 mm). During focusing, GR7 moves toward the object side — opposite to GR6's direction. This counter-motion is the essence of the floating focus mechanism: by varying the separation between GR6 (negative) and GR7 (positive), the system adjusts focus while simultaneously correcting for the spherical aberration and field curvature shifts that would occur with single-group focusing. The patent states (¶0039) that this dual-group arrangement allows the lens to maintain high optical performance from infinity to close focus.
 
@@ -203,7 +203,7 @@ The design employs glasses from at least two vendors (OHARA and HOYA), which is 
 | L55     | 1.58547 | 59.4    | 585594 patent-code         | Barium crown (XA)   | Patent-code |
 | L61     | 1.93323 | 20.9    | 933209 patent-code         | Ultra-dense flint   | Patent-code |
 | L62     | 1.65803 | 39.7    | 658397 patent-code         | Short flint         | Patent-code |
-| L71     | 1.61669 | 44.3    | E-FEL6 class (HOYA)        | Eco flint (617/443) | Close      |
+| L71     | 1.61669 | 44.3    | 617443 patent coordinate   | Flint/crown boundary | Unresolved |
 | L81     | 1.49845 | 81.6    | S-FPL51 class (OHARA)     | ED crown            | Close      |
 | L82     | 2.00912 | 29.1    | FD225 (HOYA)               | Ultra-dense flint   | Exact      |
 
@@ -330,4 +330,4 @@ The design also reflects Sony's vertically integrated glass and manufacturing ca
 2. Sony Corporation, "FE 70-200mm F2.8 GM OSS II" official product specifications, https://www.sony.com/.
 3. OpticalLimits review of the Sony FE 70-200mm f/2.8 GM OSS II, June 2024.
 4. OHARA and HOYA optical glass catalogs, checked during the 2026-05-20 audit; L32/L52/L53, L54/L55, L61, and L62 remain patent-code labels where no unique coefficient-backed public match was found.
-5. HOYA Optical Glass catalog (FD110, FD225, FCD100, E-FEL6).
+5. HOYA Optical Glass catalog (FD110, FD225, and FCD100); its E-FEL6 row was checked and rejected for L71.

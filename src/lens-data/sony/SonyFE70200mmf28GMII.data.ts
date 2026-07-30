@@ -242,7 +242,7 @@ const LENS_DATA = {
       nd: 1.61669,
       vd: 44.3,
       fl: 50.5,
-      glass: "E-FEL6 class (HOYA) — eco flint",
+      glass: "617443 — flint/crown-boundary glass (patent coordinate; vendor unspecified)",
       apd: false,
       role: "2nd focus group (GR7) — floating-focus counter-motion positive element",
     },

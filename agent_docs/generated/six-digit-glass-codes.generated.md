@@ -10,8 +10,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **488** lenses scanned
-- **521** total code-only elements found
-- **521** elements in this report
+- **522** total code-only elements found
+- **522** elements in this report
 - **158** distinct lens files affected
 
 ## Codes by Frequency
@@ -182,6 +182,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 613370 | 1 | 1 | patents/JPA 1999030748-000000.pdf | No reviewed-sidecar hit |
 | 613586 | 1 | 1 | patents/US4303314.pdf | All representative rows reviewed |
 | 614563 | 1 | 1 | patents/US3376091.pdf | No reviewed-sidecar hit |
+| 617443 | 1 | 1 | patents/JP2023039817A.pdf | No reviewed-sidecar hit |
 | 618634 | 1 | 1 | patents/US20170068075A1.pdf | No reviewed-sidecar hit |
 | 621380 | 1 | 1 | patents/US2896506.pdf | All representative rows reviewed |
 | 622639 | 1 | 1 | patents/WO2021199923A1.pdf | No reviewed-sidecar hit |
@@ -1573,6 +1574,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L55 (Element 12) | 22A | `585594 — barium crown (patent nd=1.58547, nu_d=59.4), XA element` | 1.58547 / 59.40 | No catalog entry | abbe | patents/JP2023039817A.pdf | Reviewed sidecar hit |
 | L61 (Element 13) | 24 | `933209 — ultra-dense flint (patent nd=1.93323, nu_d=20.9)` | 1.93323 / 20.90 | No catalog entry | abbe | patents/JP2023039817A.pdf | Reviewed sidecar hit |
 | L62 (Element 14) | 25 | `658397 — short flint (patent nd=1.65803, nu_d=39.7)` | 1.65803 / 39.70 | No catalog entry | abbe | patents/JP2023039817A.pdf | No reviewed-sidecar hit |
+| L71 (Element 15) | 27 | `617443 — flint/crown-boundary glass (patent coordinate; vendor unspecified)` | 1.61669 / 44.30 | No catalog entry | abbe | patents/JP2023039817A.pdf | No reviewed-sidecar hit |
 
 ### [SONY FE 85mm f/1.4 GM II](../../src/lens-data/sony/SonyFE85mmf14GMII.data.ts) - WO 2025/239028 A1
 

@@ -10,12 +10,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **488** lenses scanned (**480** visible)
-- **4581 / 5360** non-air surfaces use strict catalog Sellmeier data (85.5%)
-- **4595 / 5360** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 85.7%)
+- **4586 / 5360** non-air surfaces use strict catalog Sellmeier data (85.6%)
+- **4600 / 5360** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 85.8%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
-- **307** code-only missing-Sellmeier elements in Sweep 2
-- **76** unresolved named-token elements in Sweep 2B, producing **78** token occurrences across **66** distinct tokens
+- **308** code-only missing-Sellmeier elements in Sweep 2
+- **70** unresolved named-token elements in Sweep 2B, producing **72** token occurrences across **62** distinct tokens
 - **0** Tier A proprietary backfill rows in Sweep 3
 
 ## Sweep 1 - Relabel Mismatches
@@ -31,7 +31,6 @@ These are efficient follow-up targets after mismatch blockers because one or two
 
 | Lens | Patent | Local source | Trusted chromatic coverage | Strict Sellmeier coverage | Missing trusted surfaces | Missing surface details | Missing quality mix |
 |---|---|---|---:|---:|---:|---|---|
-| [NIKON AF-S NIKKOR 120-300mm f/2.8 E FL ED SR VR](../../src/lens-data/nikon/NikonNikkorAFS120300mmf28.data.ts) | JP 2020-177057 A | [PDF](../../patents/JP2020177057A.pdf) | 96.0% (24/25) | 96.0% (24/25) | 1 | 45 (Element 25: `OHARA S-LAH75`) | abbe: 1 |
 | [CANON RF 24-105mm f/2.8 L IS USM Z](../../src/lens-data/canon/CanonRF24105mmf28Z.data.ts) | US 2024/0192474 A1 | [PDF](../../patents/US20240192474A1.pdf) | 95.8% (23/24) | 95.8% (23/24) | 1 | 22A (Element 12 (resin): `UV-curing optical resin (replica aspheric)`) | abbe: 1 |
 | [NIKON NIKKOR Z 70-200mm f/2.8 VR S](../../src/lens-data/nikon/NikonNikkorZ70200f28.data.ts) | WO2020/105104 | [PDF](../../patents/WO_2020105104_A1.pdf) | 95.2% (20/21) | 95.2% (20/21) | 1 | 10 (Element 6: `Nikon SR glass (proprietary)`) | abbe: 1 |
 | [NIKON 1 NIKKOR VR 10-100mm f/4-5.6](../../src/lens-data/nikon/Nikon1Nikkor10100mmf4VR.data.ts) | US 2020/0348497 A1 | [PDF](../../patents/US20200348497A1.pdf) | 95.0% (19/20) | 95.0% (19/20) | 1 | 6A (L21 resin: `Patent-listed compound asphere resin`) | abbe: 1 |
@@ -76,10 +75,8 @@ These are efficient follow-up targets after mismatch blockers because one or two
 | [CANON EF 50mm f/1.0 L USM](../../src/lens-data/canon/CanonEF50mmf1L.data.ts) | US 4,717,245 | [PDF](../../patents/US4717245.pdf) | 90.9% (10/11) | 90.9% (10/11) | 1 | 19 (Element 11: `S-BSL10 (OHARA)`) | abbe: 1 |
 | [CANON EF-S 18-55mm f/3.5-5.6 IS](../../src/lens-data/canon/CanonEFS1855mmf3556IS.data.ts) | US 2007/0058265 A1 | [PDF](../../patents/US20070058265A1.pdf) | 90.9% (10/11) | 90.9% (10/11) | 1 | 18 (Element 10: `Unmatched (583/302 flint; obsolete HOYA E-F3-class candidate)`) | abbe: 1 |
 | [FUJIFILM FUJINON XF 56mm f/1.2 R](../../src/lens-data/fujifilm/FujifilmXF56mmf12.data.ts) | US 2015/0212302 A1 | [PDF](../../patents/US20150212302A1.pdf) | 90.9% (10/11) | 90.9% (10/11) | 1 | 16 (Element 9: `S-TIF6 (OHARA)`) | abbe: 1 |
-| [FUJIFILM FUJINON XF 90mm f/2 R LM WR](../../src/lens-data/fujifilm/FujifilmXF90mmf2.data.ts) | US 2016/0274335 A1 | [PDF](../../patents/US20160274335A1.pdf) | 90.9% (10/11) | 90.9% (10/11) | 1 | 6 (Element 4: `S-NBH53 (OHARA)`) | abbe: 1 |
 | [NIKON NIKKOR Z 35mm f/1.8 S](../../src/lens-data/nikon/NikonZ35f18S.data.ts) | JP 2019-090947A | [PDF](../../patents/JP2019090947A.pdf) | 90.9% (10/11) | 90.9% (10/11) | 1 | 16 (Element 9: `Fluorophosphate crown (family-level ID only)`) | abbe: 1 |
 | [PENTAX HD D FA 21mm f/2.4 ED Limited DC WR](../../src/lens-data/pentax/PentaxHDDFA21mmf24Limited.data.ts) | JP 2022-117775 A | [PDF](../../patents/JP2022117775A.pdf) | 90.9% (10/11) | 90.9% (10/11) | 1 | 3A (Element 2: `Unmatched (BAL/SK moldable crown; nearest S-BAL42/M-BACD12-type catalog glasses are about 1.583/59.4)`) | abbe: 1 |
-| [SONY E 18-55mm f/3.5-5.6 OSS](../../src/lens-data/sony/SonyE1855mmf3556.data.ts) | US 2011/0273780 A1 | [PDF](../../patents/US20110273780A1.pdf) | 90.9% (10/11) | 90.9% (10/11) | 1 | 4 (Element 3: `S-NBH53 (OHARA)`) | abbe: 1 |
 | [SAMYANG AF 35-150mm f/2-2.8 FE / L](../../src/lens-data/samyang/SamyangAF35150mmf228.data.ts) | US 2025/0231383 A1 | Missing from untracked local patents/ references (US20250231383A1, US20250231383, 20250231383) | 90.9% (20/22) | 90.9% (20/22) | 2 | 6A (L4 hybrid resin asphere: `UV-curable hybrid aspherical resin (patent nd=1.517, νd=52.0)`)<br>40A (L21 final dual-aspherical meniscus: `K-SKLD200 / K-SKLD120(M) neighborhood, proprietary crown class`) | abbe: 2 |
 | [CANON RF 24-240mm f/4-6.3 IS USM](../../src/lens-data/canon/CanonRF24240mmf463.data.ts) | US 2020/0142167 A1 | [PDF](../../patents/US20200142167A1.pdf) | 90.5% (19/21) | 90.5% (19/21) | 2 | 25A (Element 14: `531559 - moldable barium light crown (patent nd=1.53110, vd=55.9)`)<br>28 (Element 16: `Unmatched (593686 borosilicate crown; catalog S-BSM81 does not round-trip patent nd=1.59282, vd=68.6)`) | abbe: 2 |
 | [NIKON AF-S NIKKOR 24-70mm f/2.8 E ED VR](../../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) | US 2020/0142168 A1 | [PDF](../../patents/US20200142168A1.pdf) | 90.5% (19/21) | 90.5% (19/21) | 2 | 1 (Element 1: `744495 — lanthanum crown (patent nd=1.74389, νd=49.50; no exact public catalog match)`)<br>3A (Element 2r: `UV-curing resin`) | abbe: 2 |
@@ -112,7 +109,6 @@ These are efficient follow-up targets after mismatch blockers because one or two
 | [SONY SONNAR T* E 24mm f/1.8 ZA](../../src/lens-data/sony/SonyFE24mmf18ZA.data.ts) | US 2013/0033768 A1 | [PDF](../../patents/US20130033768A1.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 11A (G6: `Unmatched (lanthanum dense crown, 801/454; likely restricted-catalog PGM formulation)`) | abbe: 1 |
 | [CANON EF 11-24mm f/4 L USM](../../src/lens-data/canon/CanonEF1124mmf4L.data.ts) | US 2015/0146085 A1 | [PDF](../../patents/US20150146085A1.pdf) | 87.5% (14/16) | 87.5% (14/16) | 2 | 3 (Element 2: `Unmatched (584/594 crown; nearest OHARA S-BAL42 has Δnd = -0.00130)`)<br>5 (Element 3: `Unmatched (850/403 high-index flint; nearest HOYA M-TAFD305 has Δnd = +0.00135, Δνd = -0.20)`) | abbe: 2 |
 | [NIKON AF-S NIKKOR 24-70mm f/2.8 G ED](../../src/lens-data/nikon/NikonAFS2470mmf28G.data.ts) | US 7,508,592 B2 | [PDF](../../patents/US7508592.pdf) | 87.5% (14/16) | 87.5% (14/16) | 2 | 1 (Element 1: `744495 — unmatched high-index lanthanum-crown class (patent nd=1.744429, νd=49.52; no exact public catalog match)`)<br>7A (Element 4 resin layer: `553381 — unmatched UV-cure replicated resin (patent nd=1.55389, νd=38.09; not catalog glass)`) | abbe: 2 |
-| [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../../src/lens-data/nikon/NikonZ105f28.data.ts) | WO 2022/097401 A1 | [PDF](../../patents/WO2022097401A1.pdf) | 87.5% (14/16) | 87.5% (14/16) | 2 | 11 (Element 7: `E-FDS3HT (Hikari) or equiv.`)<br>22 (Element 13: `E-FDS3HT (Hikari) or equiv.`) | abbe: 2 |
 | [NIKON AF-S NIKKOR 28mm f/1.4 E ED](../../src/lens-data/nikon/NikonAFS28f14E.data.ts) | JP2017-227799A | [PDF](../../patents/JP2017227799A.pdf) | 86.7% (13/15) | 86.7% (13/15) | 2 | 4 (Element 2 (resin): `UV-curing resin (composite)`)<br>8 (Element 4: `Unmatched (569560 barium crown; patent coordinate is compatible with several vendors)`) | abbe: 2 |
 | [NIKON PC-E NIKKOR 24mm f/3.5 D ED](../../src/lens-data/nikon/NikonPCENikkor24mmf35DED.data.ts) | JP 2008-151949A | [PDF](../../patents/JP2008151949A.pdf) | 86.7% (13/15) | 86.7% (13/15) | 2 | 2 (Element 1 (resin layer): `UV-cure resin`)<br>7 (Element 3 (resin layer): `UV-cure resin`) | abbe: 2 |
 | [Canon FD 28mm f/2.8 S.C.](../../src/lens-data/canon/CanonFD28mmf28.data.ts) | US 4,046,459 | [PDF](../../patents/US4046459A.pdf) | 85.7% (6/7) | 85.7% (6/7) | 1 | 3 (Element 2: `BaF5 class (legacy 607/493 barium flint/crown-boundary glass)`) | abbe: 1 |
@@ -189,7 +185,7 @@ Add catalog entries only when public coefficient-backed vendor data is available
 | 670576 | 2 | 2 | patents/US4452513.pdf<br>patents/US4497547.pdf | 1/2 representative rows reviewed | [NIKON AI ZOOM-NIKKOR 80-200mm f/4](../../src/lens-data/nikon/NikonAINikkor80200mmf4.data.ts) G4 front positive (1.67025 / 57.60)<br>[Nikon AI Zoom-Nikkor 50-135mm f/3.5S](../../src/lens-data/nikon/NikonAIZoomNikko50135mmf35S.data.ts) G3 L1 (1.67025 / 57.60) |
 | 720521 | 2 | 2 | patents/US4124276.pdf | No reviewed-sidecar hit | [MINOLTA AF APO Tele 200mm f/2.8](../../src/lens-data/minolta/MinoltaAF200mmf28.data.ts) Element 3 (1.72000 / 52.14)<br>[MINOLTA VARISOFT ROKKOR 85mm f/2.8](../../src/lens-data/minolta/MinoltaVarisoft85mmf28.data.ts) Element 4 (1.72000 / 52.10) |
 
-Showing the top 25 of 219 distinct codes; use the dedicated six-digit reports for the complete queue.
+Showing the top 25 of 220 distinct codes; use the dedicated six-digit reports for the complete queue.
 
 ## Sweep 2B - Named Tokens Missing Catalog Resolution
 
@@ -200,15 +196,12 @@ These unresolved catalog-style labels are often better first catalog targets tha
 | S-NPH7 | 4 | 4 | patents/US20230213745A1.pdf<br>patents/US20190265441A1.pdf<br>patents/JP2021179551A.pdf<br>patents/WO_2025263124_A1.pdf | [CANON RF 135mm f/1.8 L IS USM](../../src/lens-data/canon/CanonRF135f18.data.ts) Element 14 (2.00069 / 25.50; abbe)<br>[CANON RF 50mm f/1.2 L USM](../../src/lens-data/canon/CanonRF50mmf12L.data.ts) Element 3 (2.00100 / 29.13; abbe)<br>[PANASONIC LUMIX S 20-60mm f/3.5-5.6](../../src/lens-data/panasonic/PanasonicLumixS2060mmf3556.data.ts) Element 11 (1.92286 / 20.90; abbe) |
 | H-LAF3 | 2 | 2 | patents/CN205427291U.pdf<br>patents/JPWO2020157904A1.pdf | [LAOWA 15mm f/4 Wide Angle 1:1 Macro](../../src/lens-data/laowa/Laowa15mmf4Macro.data.ts) Element 7b (1.80420 / 46.50; abbe)<br>[NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) Element 18 (1.82080 / 42.51; abbe) |
 | H-LAK53A | 2 | 2 | patents/US-20250389929-A1.pdf<br>patents/CN116520542A.pdf | [CANON RF 20mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF20mmf14LVCM.data.ts) G4 (1.75500 / 52.30; abbe)<br>[LAOWA 58mm f/2.8 2× Ultra-Macro APO](../../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts) Element 4 (1.72916 / 54.67; abbe) |
-| S-NBH53 | 2 | 2 | patents/US20160274335A1.pdf<br>patents/US20110273780A1.pdf | [FUJIFILM FUJINON XF 90mm f/2 R LM WR](../../src/lens-data/fujifilm/FujifilmXF90mmf2.data.ts) Element 4 (1.74950 / 35.33; abbe)<br>[SONY E 18-55mm f/3.5-5.6 OSS](../../src/lens-data/sony/SonyE1855mmf3556.data.ts) Element 3 (1.91082 / 35.25; abbe) |
 | SK3 | 2 | 2 | patents/DE_2444954_A1.pdf | [RODENSTOCK GRANDAGON-N 75mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN75mmf45.data.ts) Element 6 (1.60881 / 58.90; lineIndices)<br>[RODENSTOCK GRANDAGON-N 90mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN90mmf45.data.ts) Element 6 (1.60881 / 58.86; abbe) |
-| E-FDS3HT | 2 | 1 | patents/WO2022097401A1.pdf | [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../../src/lens-data/nikon/NikonZ105f28.data.ts) Element 7 (1.94595 / 17.98; abbe)<br>[NIKON NIKKOR Z MC 105mm f/2.8 VR S](../../src/lens-data/nikon/NikonZ105f28.data.ts) Element 13 (1.94595 / 17.98; abbe) |
 | H-ZBAF4 | 2 | 1 | patents/US-20250389929-A1.pdf | [CANON RF 20mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF20mmf14LVCM.data.ts) G10 (1.66565 / 35.60; abbe)<br>[CANON RF 20mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF20mmf14LVCM.data.ts) G16 (1.66565 / 35.60; abbe) |
 | H-ZLAF4A | 2 | 1 | patents/CN210573001U.pdf | [LAOWA 24mm f/14 2× Macro Probe](../../src/lens-data/laowa/Laowa24mmf14Probe.data.ts) Element 1 (1.83481 / 42.72; abbe)<br>[LAOWA 24mm f/14 2× Macro Probe](../../src/lens-data/laowa/Laowa24mmf14Probe.data.ts) Element 27 (1.83481 / 42.72; abbe) |
 | S-LAM73 | 2 | 1 | patents/WO_2025263124_A1.pdf | [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) Element 16 (1.85659 / 40.10; abbe)<br>[SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) Element 20 (1.85659 / 40.10; abbe) |
 | SK18 | 2 | 1 | patents/US2681594.pdf | [CANON SERENAR 50mm f/1.8](../../src/lens-data/canon/CanonSerenar50mmf18.data.ts) Element 5 (1.63850 / 55.50; abbe)<br>[CANON SERENAR 50mm f/1.8](../../src/lens-data/canon/CanonSerenar50mmf18.data.ts) Element 6 (1.63850 / 55.50; abbe) |
 | BK3 | 1 | 1 | patents/US3975089.pdf | [VIVITAR SERIES 1 35-85mm f/2.8 VMC](../../src/lens-data/vivitar/VivitarSeries13585mmf28.data.ts) Element 6 (1.49800 / 65.10; abbe) |
-| E-FEL6 | 1 | 1 | patents/JP2023039817A.pdf | [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) Element 15 (1.61669 / 44.30; abbe) |
 | E-FPL51 | 1 | 1 | patents/JPWO2019049372A1.pdf | [NIKON NIKKOR Z 24-70mm f/4 S](../../src/lens-data/nikon/NikonNikkorZ2470mmf4S.data.ts) Element 6 (1.55332 / 71.70; abbe) |
 | H-BAF6 | 1 | 1 | patents/20260118637.pdf | [ENNA MÜNCHEN LITHAGON 24mm f/4](../../src/lens-data/enna-munchen/EnnaMunchenLithagon24mmf4.data.ts) Element 7 (1.60801 / 46.20; abbe) |
 | H-K2 | 1 | 1 | Missing from untracked local patents/ references (US4568150, 4568150) | [OLYMPUS OM-SYSTEM ZUIKO AUTO-ZOOM 65-200mm f/4](../../src/lens-data/olympus/OlympusZuikoAutoZoom65200mmf4.data.ts) Element 10 (1.50048 / 65.99; abbe) |
@@ -222,8 +215,11 @@ These unresolved catalog-style labels are often better first catalog targets tha
 | H-LAK7 | 1 | 1 | patents/CN205427291U.pdf | [LAOWA 15mm f/4 Wide Angle 1:1 Macro](../../src/lens-data/laowa/Laowa15mmf4Macro.data.ts) Element 1 (1.77250 / 49.62; abbe) |
 | H-QF50 | 1 | 1 | patents/CN110161666A.pdf | [LAOWA 65mm f/2.8 2× Ultra Macro APO](../../src/lens-data/laowa/Laowa65mmf28MacroAPO.data.ts) Element 2 (1.60342 / 38.01; abbe) |
 | H-ZF1 | 1 | 1 | patents/CN205427291U.pdf | [LAOWA 15mm f/4 Wide Angle 1:1 Macro](../../src/lens-data/laowa/Laowa15mmf4Macro.data.ts) Element 8 (1.64769 / 33.84; abbe) |
+| H-ZF2 | 1 | 1 | patents/CN210573001U.pdf | [LAOWA 24mm f/14 2× Macro Probe](../../src/lens-data/laowa/Laowa24mmf14Probe.data.ts) Element 26 (1.67270 / 32.17; abbe) |
+| H-ZF52A | 1 | 1 | patents/US20160266350A1.pdf | [LEICA SUMMILUX 28mm f/1.7 ASPH. (Leica Q, Q2, Q3)](../../src/lens-data/leica/Leica28mmf17.data.ts) Element 11 (1.68250 / 33.00; abbe) |
+| H-ZF72 | 1 | 1 | patents/CN116520542A.pdf | [LAOWA 58mm f/2.8 2× Ultra-Macro APO](../../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts) Element 5 (1.83327 / 25.02; abbe) |
 
-Showing the top 25 of 66 distinct named tokens.
+Showing the top 25 of 62 distinct named tokens.
 
 ## Sweep 3 - Proprietary Line-Index Backfill
 

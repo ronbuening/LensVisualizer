@@ -168,7 +168,7 @@ Three elements in Example 1 use glasses from the KZFS ("short flint special") or
 | L56 | 2.001000 | 29.12 | — | S-LAH99 / TAFD55 (001291, HRI) | exact | High |
 | L57 | 1.804000 | 46.60 | — | OHARA S-LAH65 | exact | High |
 | L58 | 1.487490 | 70.31 | — | OHARA S-FSL5 / Schott N-FK5 family | Δνd ≈ 0.08–0.13 | High |
-| L59 | 1.900430 | 37.38 | — | OHARA S-LAH75 | exact | High |
+| L59 | 1.900430 | 37.38 | — | HOYA TAFD37A catalog-equivalent (patent vendor unspecified) | exact coordinate | High |
 
 L26 and L53 share the same glass (nd = 1.870705, νd = 40.73). This pair round-trips to HOYA TAFD32, code 871/407, in the project catalog. The earlier M-TAFD305 wording belonged to a different 851/401 HOYA moldable glass and is not the correct catalog identity for these Nikon rows.
 
@@ -240,7 +240,7 @@ G5 is the largest group (9 elements, 7 sub-groups) and contains the aperture sto
 
 **L57+L58 (cemented doublet, f = +107 mm):** L57 (negative meniscus, S-LAH65) is cemented to L58 (biconvex positive, S-FPL7-type, νd = 70.31). This achromatic positive doublet continues the beam convergence toward the image plane. L58's high Abbe number indicates an ED-adjacent glass, contributing to the low residual chromatic aberration characteristic of this design.
 
-**L59 (biconcave negative, S-LAH75, f = −60 mm):** The final element, a field-flattening negative lens. Positioned close to the image plane, it primarily corrects Petzval field curvature and adjusts the exit pupil position for compatibility with digital sensor microlens arrays.
+**L59 (biconcave negative, TAFD37A catalog-equivalent, f = −60 mm):** The final element, a field-flattening negative lens. Its patent coordinate (nd = 1.900430, νd = 37.38) matches HOYA TAFD37A; the patent does not establish the production supplier. Positioned close to the image plane, it primarily corrects Petzval field curvature and adjusts the exit pupil position for compatibility with digital sensor microlens arrays.
 
 ---
 

@@ -114,7 +114,7 @@ The patent lists 10 distinct glass types across the 16 elements. The table below
 | C | 1.59319 | 67.90 | — | L13, L14, L33 | Hikari J-PSKH1 (nd=1.593, νd=67.9) | Phosphate crown |
 | D | 1.51860 | 69.89 | — | L21, L42 | No exact catalog match (glass code 519699) | Phosphate crown (FK/PK region) |
 | E | 1.72047 | 34.71 | — | L22 | Glass code 720347 — OHARA region (S-TIH or S-LAH family) | Lanthanum/titanium flint |
-| F | 1.94595 | 17.98 | — | L23, L43 | Hikari E-FDS3HT (nd=1.946, νd=18.0) or equivalent | Ultra-high-index dense flint |
+| F | 1.94595 | 17.98 | — | L23, L43 | HOYA FDS18 catalog-equivalent (946180; patent vendor unspecified) | Ultra-high-index dense flint |
 | G | 1.95375 | 32.33 | — | L41 | OHARA S-LAH98 (nd=1.954, νd=32.33) | Lanthanum dense crown (extreme index) |
 | H | 2.00069 | 25.46 | — | L44 | No exact catalog match (glass code 001255) | Ultra-high-index specialty glass (nd > 2.0) |
 | I | 1.80440 | 39.61 | — | L45 | OHARA S-LAH63 (nd=1.804, νd=39.58; Q variant available) | Lanthanum dense crown |

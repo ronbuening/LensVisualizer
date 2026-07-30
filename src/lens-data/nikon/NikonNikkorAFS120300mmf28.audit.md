@@ -81,3 +81,12 @@ JP 2020-177057 A Example 1 was rechecked at surfaces 6, 9, 11, 24, 36, and 42; e
 | 36 | `S-LAH63Q type` | `S-TIH6` | Exact OHARA 1.80518 / 25.41 coordinate. |
 
 - Synchronized all affected analysis claims. No prescription geometry changed.
+
+## 2026-07-29 - Incompatible named-label audit
+
+- Rechecked JP 2020-177057 A Example 1, Table 1, surface 45: `R=-70.85350`, `d=2.000`,
+  `nd=1.900430`, and `νd=37.38` match the stored L59 prescription.
+- Replaced `OHARA S-LAH75` with `TAFD37A (HOYA catalog-equivalent; patent vendor unspecified)`.
+  Current OHARA S-LAH75 is 1.873996 / 35.26 and is incompatible; HOYA TAFD37A exactly matches the
+  patent coordinate (900374).
+- Synchronized the L59 glass table and element narrative. No prescription geometry changed.

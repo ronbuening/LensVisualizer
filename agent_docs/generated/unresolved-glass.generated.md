@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **488** lenses scanned
 - **5360** non-air surfaces examined
 - **5365** element glass declarations examined
-- **488** non-explicit-unmatched annotations did not resolve
-- **212** distinct unresolved glass-like tokens found
+- **483** non-explicit-unmatched annotations did not resolve
+- **209** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -46,14 +46,12 @@ or per-lens patent backfills.
 | 807316 | 2 | 2 | |
 | 813252 | 2 | 1 | |
 | 856401 | 2 | 1 | |
-| E-FDS3HT | 2 | 1 | |
 | F7 | 2 | 2 | |
 | H-LAF3 | 2 | 2 | |
 | H-LAK53A | 2 | 2 | |
 | H-ZBAF4 | 2 | 1 | |
 | H-ZLAF4A | 2 | 1 | |
 | S-LAM73 | 2 | 1 | |
-| S-NBH53 | 2 | 2 | |
 | SK18 | 2 | 1 | |
 | SK3 | 2 | 2 | |
 | 182080 | 1 | 1 | |
@@ -89,6 +87,7 @@ or per-lens patent backfills.
 | 603564 | 1 | 1 | |
 | 612313 | 1 | 1 | |
 | 612372 | 1 | 1 | |
+| 617443 | 1 | 1 | |
 | 624584 | 1 | 1 | |
 | 630346 | 1 | 1 | |
 | 639451 | 1 | 1 | |
@@ -174,7 +173,6 @@ or per-lens patent backfills.
 | 930240 | 1 | 1 | |
 | 933209 | 1 | 1 | |
 | BK3 | 1 | 1 | |
-| E-FEL6 | 1 | 1 | |
 | E-FPL51 | 1 | 1 | |
 | F3 | 1 | 1 | |
 | H-BAF6 | 1 | 1 | |
@@ -213,7 +211,6 @@ or per-lens patent backfills.
 | S-BSL10 | 1 | 1 | |
 | S-BSM2 | 1 | 1 | |
 | S-FPM5 | 1 | 1 | |
-| S-LAH75 | 1 | 1 | |
 | S-LAH85V | 1 | 1 | |
 | S-NBM52 | 1 | 1 | |
 | S-NPH85 | 1 | 1 | |
@@ -398,11 +395,6 @@ or per-lens patent backfills.
 - [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 14A: `856401 — lanthanum dense crown (patent nd=1.85612, νd=40.1)`
 - [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 25A: `856401 — lanthanum dense crown (patent nd=1.85612, νd=40.1)`
 
-### E-FDS3HT — 2 occurrences
-
-- [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../../src/lens-data/nikon/NikonZ105f28.data.ts) 11: `E-FDS3HT (Hikari) or equiv.`
-- [NIKON NIKKOR Z MC 105mm f/2.8 VR S](../../src/lens-data/nikon/NikonZ105f28.data.ts) 22: `E-FDS3HT (Hikari) or equiv.`
-
 ### F7 — 2 occurrences
 
 - [CANON SERENAR 28mm f/3.5](../../src/lens-data/canon/CanonSerenar28mmf35.data.ts) 4: `F7 (Schott)`
@@ -432,11 +424,6 @@ or per-lens patent backfills.
 
 - [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 27A: `S-LAM73 (OHARA)`
 - [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 34: `S-LAM73 (OHARA)`
-
-### S-NBH53 — 2 occurrences
-
-- [FUJIFILM FUJINON XF 90mm f/2 R LM WR](../../src/lens-data/fujifilm/FujifilmXF90mmf2.data.ts) 6: `S-NBH53 (OHARA)`
-- [SONY E 18-55mm f/3.5-5.6 OSS](../../src/lens-data/sony/SonyE1855mmf3556.data.ts) 4: `S-NBH53 (OHARA)`
 
 ### SK18 — 2 occurrences
 
@@ -579,6 +566,10 @@ or per-lens patent backfills.
 ### 612372 — 1 occurrence
 
 - [CARL ZEISS JENA TESSAR 50mm f/2.8](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaTessar50mmf28.data.ts) 3: `612372 F (≈ Schott F3 legacy)`
+
+### 617443 — 1 occurrence
+
+- [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 27: `617443 — flint/crown-boundary glass (patent coordinate; vendor unspecified)`
 
 ### 624584 — 1 occurrence
 
@@ -920,10 +911,6 @@ or per-lens patent backfills.
 
 - [VIVITAR SERIES 1 35-85mm f/2.8 VMC](../../src/lens-data/vivitar/VivitarSeries13585mmf28.data.ts) 10: `498651 — BK3-type borosilicate crown (no exact public catalog match)`
 
-### E-FEL6 — 1 occurrence
-
-- [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 27: `E-FEL6 class (HOYA) — eco flint`
-
 ### E-FPL51 — 1 occurrence
 
 - [NIKON NIKKOR Z 24-70mm f/4 S](../../src/lens-data/nikon/NikonNikkorZ2470mmf4S.data.ts) 11A: `E-FPL51 (HOYA)`
@@ -1075,10 +1062,6 @@ or per-lens patent backfills.
 ### S-FPM5 — 1 occurrence
 
 - [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 29A: `S-FPM5 (OHARA)`
-
-### S-LAH75 — 1 occurrence
-
-- [NIKON AF-S NIKKOR 120-300mm f/2.8 E FL ED SR VR](../../src/lens-data/nikon/NikonNikkorAFS120300mmf28.data.ts) 45: `OHARA S-LAH75`
 
 ### S-LAH85V — 1 occurrence
 

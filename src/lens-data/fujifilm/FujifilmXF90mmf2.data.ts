@@ -109,7 +109,7 @@ const LENS_DATA = {
       nd: 1.7495,
       vd: 35.33,
       fl: -58.8,
-      glass: "S-NBH53 (OHARA)",
+      glass: "S-NBH51 (OHARA)",
       apd: false,
       cemented: "D1",
       role: "High-dispersion corrector — achromatizes G1 at cemented junction with L13",
