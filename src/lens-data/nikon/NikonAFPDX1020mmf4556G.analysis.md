@@ -42,7 +42,7 @@ The patent describes L11 as a hybrid/composite aspherical lens. Surface 1 is the
 
 ### L12 — Hybrid Negative Meniscus, Convex to Object, Composite Asphere
 
-Resin layer: **nd = 1.55389, νd = 38.09. Glass: patent-specified resin/polymer layer. In-air resin-layer f = -484.48 mm.** Glass body: **nd = 1.80610, νd = 40.97. Glass: J-LASF03 / N-LASF43 class, catalog-equivalent dense lanthanum flint. In-air glass-body f = -36.86 mm.** Composite L12 f = **-34.21 mm**.
+Resin layer: **nd = 1.55389, νd = 38.09. Glass: patent-specified resin/polymer layer. In-air resin-layer f = -484.48 mm.** Glass body: **nd = 1.80610, νd = 40.97. Glass: OHARA S-LAH53 catalog equivalent; production supplier unspecified. In-air glass-body f = -36.86 mm.** Composite L12 f = **-34.21 mm**.
 
 L12 is the second front-group negative meniscus. It distributes the first group's negative power over two large concave-leading elements rather than forcing the first element to carry the whole retrofocus burden.
 
@@ -129,7 +129,7 @@ The patent publishes nd, νd, and θgF; it does not name commercial glass produc
 | L11 glass body | 1.77250 | 49.62 | 0.5518 | J-LASF016 / N-LAF34 class | Catalog-equivalent high-index lanthanum flint. |
 | L11 resin | 1.56093 | 36.64 | 0.5931 | Resin / polymer | Patent-specified composite layer. |
 | L12 resin | 1.55389 | 38.09 | 0.5928 | Resin / polymer | Patent-specified composite layer. |
-| L12 glass body | 1.80610 | 40.97 | 0.5688 | J-LASF03 / N-LASF43 class | Catalog-equivalent dense lanthanum flint. |
+| L12 glass body | 1.80610 | 40.97 | 0.5688 | OHARA S-LAH53 equivalent | Coefficient-backed; production supplier unspecified. |
 | L13 | 1.68348 | 54.80 | 0.5501 | 683548 patent-specified glass | Conditional partial-dispersion element; no coefficient-backed public match found. |
 | L14 | 1.71736 | 29.57 | 0.6036 | J-SF1 class | Dense flint balancing element. |
 | L21 | 1.72825 | 28.38 | 0.6069 | J-SF10 class | Dense flint positive doublet member. |

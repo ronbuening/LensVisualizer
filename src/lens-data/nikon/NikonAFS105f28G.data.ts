@@ -66,7 +66,7 @@ const LENS_DATA = {
       nd: 1.61272,
       vd: 58.75,
       fl: 95.0,
-      glass: "S-BSM2 (OHARA)",
+      glass: "BACD4 (HOYA catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Second positive element; barium crown provides moderate index, low dispersion.",
     },

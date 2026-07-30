@@ -284,11 +284,11 @@ L41 is a weak positive meniscus providing gentle convergence as the rays enter t
 | R (own surfaces) | +87.924 / −127.680 | −127.680 / +40.898 |
 | Center thickness | 5.700 mm | 1.800 mm |
 | nd / νd | 1.90265 / 35.8 | 1.61266 / 44.5 |
-| Glass (catalog match) | Hikari J-LASFH9 | OHARA S-NBM52 or HIKARI E-CF6 |
+| Glass (catalog match) | Hikari J-LASFH9 | SCHOTT N-KZFS4 equivalent |
 | Thin-lens focal length | +57.7 mm | −50.6 mm |
 | **Doublet combined** | **−409.4 mm** | |
 
-This cemented doublet is the primary chromatic corrector of the rear group. L42 uses the highest-index glass in the entire rear section (nd = 1.90265), identified as Hikari J-LASFH9 — a lanthanum-containing ultra-high-index crown. L43 uses S-NBM52 or equivalent, a niobium barium flint with νd = 44.5. The patent's conditional expression (6) evaluates L43: θgF + 0.0021 × νd = 0.657, confirming its anomalous partial dispersion contributes to secondary spectrum correction.
+This cemented doublet is the primary chromatic corrector of the rear group. L42 uses the highest-index glass in the entire rear section (nd = 1.90265), identified as Hikari J-LASFH9. L43 uses the coefficient-compatible SCHOTT N-KZFS4 curve; the patent does not establish the production supplier. The patent's conditional expression (6) evaluates L43: θgF + 0.0021 × νd = 0.657, confirming its anomalous partial dispersion contributes to secondary spectrum correction.
 
 The doublet's net power is weakly negative (−409.4 mm), so its primary contribution is chromatic rather than refractive — a classic achromatic corrector role.
 
@@ -333,7 +333,7 @@ The following table presents each unique glass type used in Example 1, the numbe
 | 1.76450 | 49.1 | L32 | OHARA S-LAH96 | Exact | High-index lanthanum glass |
 | 1.61800 | 63.3 | L41 | OHARA S-PHM52 | Exact | Phosphate crown |
 | 1.90265 | 35.8 | L42 | Hikari J-LASFH9 | Exact | Ultra-high-index lanthanum crown |
-| 1.61266 | 44.5 | L43 | OHARA S-NBM52 / HIKARI E-CF6 | Exact | Niobium barium flint |
+| 1.61266 | 44.5 | L43 | SCHOTT N-KZFS4 equivalent | Compatible | Production supplier unspecified |
 | 1.51680 | 64.0 | L44 | Hikari J-BK7 | Exact | Standard crown |
 | 1.51680 | 63.9 | FL (filter) | OHARA S-NSL36 | Exact | Standard crown |
 

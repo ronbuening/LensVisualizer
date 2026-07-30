@@ -45,7 +45,7 @@ The focal lengths below are **standalone in-air thin-lens values**, scaled to th
 
 ### L1 — Positive Meniscus Front Element
 
-**nd = 1.757, νd = 47.9. Glass: J-LAF04 class (HIKARI), 757479. f ≈ +80.7 mm.**
+**nd = 1.757, νd = 47.9. Glass: HIKARI J-LAF04 catalog match, 757479; production glass unspecified. f ≈ +80.7 mm.**
 
 L1 is the positive meniscus at the front of the retrofocus system. The patent assigns it two functions: correction of distortion and coma, and the use of a suitable Abbe number to reduce magnification chromatic aberration. In a wide-angle retrofocus lens this first element also limits how severely the negative front group must bend oblique bundles.
 
@@ -139,7 +139,7 @@ The patent gives only refractive index and Abbe number, not commercial glass nam
 
 | Element(s) | Patent nd / νd | Code | Catalog-equivalent identification | Confidence | Optical use |
 |---|---:|---|---|---|---|
-| L1 | 1.757 / 47.9 | 757479 | J-LAF04 class (HIKARI) | High | High-index front meniscus; distortion/coma/lateral-color |
+| L1 | 1.757 / 47.9 | 757479 | J-LAF04 (HIKARI catalog match) | High | High-index front meniscus; distortion/coma/lateral-color |
 | L2, L3 | 1.620 / 60.3 | 620603 | N-SK16 (SCHOTT) / S-BSM16 (OHARA) | High | Low-dispersion negative menisci in front retrofocus section |
 | L4 | 1.670 / 57.3 | 670573 | S-LAL52 (OHARA) / E-LAK02 (HIKARI) | Moderate–high | Higher-index final negative meniscus in front group |
 | L5, L7 | 1.773 / 49.6 | 773496 | S-LAH66 class (OHARA) | High | Dense LaF-class glass in cemented correction doublets |

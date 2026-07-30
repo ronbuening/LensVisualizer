@@ -84,7 +84,7 @@ The aperture stop is located in the air gap between G1 and G2, at 14.509 mm behi
 
 ### L5 — Biconcave Negative (G2, cemented with L6)
 
-$n_d = 1.647690$, $\nu_d = 33.8$. Glass: S-TIF4 (OHARA) / SF2 (Schott) equivalent — dense flint. $f = -19.3$ mm.
+$n_d = 1.647690$, $\nu_d = 33.8$. Glass: S-TIM22 (OHARA) / SF2 (Schott) equivalent — dense flint. $f = -19.3$ mm.
 
 L5 is the first element of the rear focus group and the strongest negative element in the entire system. Its short focal length ($-19.3$ mm) provides the strong negative power needed at this position. In the double-Gauss lineage, this element occupies the classic "inner negative" position immediately behind the stop, where it encounters the most divergent off-axis ray bundles. Its role is threefold: to provide the negative power that the rear group's overall positive-power balance requires, to create the high-order spherical aberration contributions that cancel against L6, and to introduce lateral colour that the cemented interface with L6 corrects.
 
@@ -126,7 +126,7 @@ Sony's marketing materials refer to "Glass-Molded Aspherical Lens Elements" for 
 | L2      | 1.592703 | 35.5    | S-FTM16                | OHARA | Light flint | G1F diverging partner; achromatizes with L1 |
 | L3      | 1.851348 | 40.1    | E-LASFH13              | HIKARI  | La dense flint | Main positive element; asph front surface |
 | L4      | 1.612930 | 37.0    | E-F3 / S-TIM3 class    | HOYA/OHARA | Moderate flint | G1R corrector; cemented with L3 |
-| L5      | 1.647690 | 33.8    | S-TIF4 / SF2           | OHARA/Schott | Dense flint | Inner negative; strong flint for chromatic correction |
+| L5      | 1.647690 | 33.8    | S-TIM22 / SF2           | OHARA/Schott | Dense flint | Inner negative; strong flint for chromatic correction |
 | L6      | 1.883000 | 40.8    | S-LAH58                | OHARA   | La high-index glass | G2 powerhouse; highest $n_d$ in system |
 | L7      | 1.698950 | 30.1    | E-FD15 / SF15          | HIKARI/Schott | Dense flint | Field flattener; lowest $\nu_d$ in system |
 | L8      | 1.768015 | 49.2    | E-LASKH2               | HIKARI  | La crown      | Final positive; asph rear; highest $\nu_d$ in G2 |

@@ -133,7 +133,7 @@ const LENS_DATA = {
       nd: 1.834,
       vd: 37.34,
       fl: +30.9,
-      glass: "H-LAF51 (CDGM) or J-LASF019 (Hikari) — unconfirmed",
+      glass: "NBFD10 (HOYA catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Asymmetric biconvex relay that brings the D1 diverging beam to a net-convergent state in G1B. Front surface stronger than rear. Rear surface (surface 11) defines the variable air gap d11 that changes during focusing.",
     },

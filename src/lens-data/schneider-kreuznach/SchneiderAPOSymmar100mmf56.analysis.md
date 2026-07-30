@@ -83,11 +83,11 @@ The patent explicitly requires that L3 be made of glass with anomalous partial d
 
 ### L4 — Positive Meniscus (Concave to Object)
 
-$n_e = 1.5302$, $\nu_e = 76.6$ → $n_d = 1.52855$, $\nu_d = 76.98$. Glass: N-PK51 (Schott, code 529770) — phosphate crown, strong positive anomalous partial dispersion ($\Delta P_{g,F} \approx +0.0252$). $f_d = +142.0$ mm.
+$n_e = 1.5302$, $\nu_e = 76.6$ → $n_d = 1.52855$, $\nu_d = 76.98$. Glass: OHARA S-FPM4 coefficient-backed catalog equivalent; production supplier unspecified. The patent assigns strong positive anomalous partial dispersion ($\Delta P_{g,F} \approx +0.0252$). $f_d = +142.0$ mm.
 
 L4 is the rear positive meniscus, the mirror-image counterpart to L3 across the stop. Both surfaces are concave toward the object ($r_6 = -46.19$ mm, $r_7 = -28.98$ mm), with the rear surface more strongly curved. Like L3, the meniscus shape contributes positive power while enabling off-axis aberration correction through the strongly curved air gap that faces the stop.
 
-N-PK51 is one of Schott's premier anomalous-dispersion crowns, with $\Delta P_{g,F} \approx +0.025$ — substantially larger than the anomalous dispersion of the unidentified Glass 3 used in L3. This asymmetry between the two meniscus glasses is deliberate: by giving L4 stronger anomalous dispersion than L3, the designer introduces a controlled asymmetry in the secondary-spectrum correction on either side of the stop, which can be used to balance residual chromatic field aberrations (lateral color) that a perfectly symmetric design would not correct. The very high Abbe number ($\nu_e = 76.6$) also makes L4 the lowest-dispersion element in the system, minimizing primary chromatic contribution from the most powerful off-axis surfaces.
+S-FPM4 supplies a coordinate-compatible dispersion curve for L4; the patent, not the catalog-equivalent name, is the authority for the row's anomalous-partial-dispersion requirement. This asymmetry between the two meniscus glasses is deliberate: by giving L4 stronger anomalous dispersion than L3, the designer can balance residual chromatic field aberrations. The very high Abbe number also makes L4 the lowest-dispersion element in the system.
 
 ### L5 — Negative Meniscus (Rear Doublet, Inner Element)
 
@@ -112,13 +112,13 @@ The design uses four distinct glasses, with two glasses shared symmetrically acr
 | S-PHM53 | 1.6052 | 65.1 | 1.60311 | 65.44 | OHARA S-PHM53 | L1, L6 | +0.0045 |
 | N-BALF5 | 1.5498 | 53.3 | 1.54739 | 53.63 | Schott N-BALF5 | L2, L5 | Near-normal |
 | Unmatched | 1.5223 | 69.5 | ~1.52055 | ~69.9 | Phosphate crown class | L3 | Positive (est.) |
-| N-PK51 | 1.5302 | 76.6 | 1.52855 | 76.98 | Schott N-PK51 (529770) | L4 | +0.0252 |
+| S-FPM4 equivalent | 1.5302 | 76.6 | 1.52855 | 76.98 | OHARA S-FPM4 | L4 | Patent: +0.0252 |
 
-The classical approach to apochromatic correction in symmetric large-format objectives (as described in the patent's cited prior art, DE PS 1 258 134) placed KzFS-type "short flint" glass — characterized by negative anomalous partial dispersion and high antimony content — in the negative elements of the cemented doublets. The patent's Example 2 inverts this: anomalous-dispersion glass appears in the positive elements L1 and L6 (S-PHM53, with positive $\Delta\theta_{g,F}$) and in both meniscuses L3 and L4 (both with positive $\Delta\theta_{g,F}$, L4 being the stronger contributor via N-PK51). The negative elements L2 and L5 use N-BALF5, a conventional barium light flint with near-normal partial dispersion.
+The classical approach to apochromatic correction in symmetric large-format objectives (as described in the patent's cited prior art, DE PS 1 258 134) placed KzFS-type "short flint" glass — characterized by negative anomalous partial dispersion and high antimony content — in the negative elements of the cemented doublets. The patent's Example 2 inverts this: anomalous-dispersion glass appears in the positive elements L1 and L6 (S-PHM53, with positive $\Delta\theta_{g,F}$) and in both meniscuses L3 and L4 (both with positive $\Delta\theta_{g,F}$, L4 being the stronger contributor via S-FPM4). The negative elements L2 and L5 use N-BALF5, a conventional barium light flint with near-normal partial dispersion.
 
 This inversion is the patent's central innovation. By concentrating the chromatic correction duty on the four positive elements rather than the two negative ones, the designer gained additional degrees of freedom in the refractive power distribution of the cemented doublets. The patent notes that this "relieve[d] the strain" on the outer doublets, allowing a power combination that substantially reduced coma and field curvature compared to the predecessor Symmar designs (column 2, lines 43–50). A practical consequence is that all six elements are free of lead, arsenic, and antimony — an explicitly stated design objective.
 
-The deliberate use of different anomalous-dispersion glasses for L3 (e-line code class ~522/695) and L4 (N-PK51, code 529770) breaks the perfect symmetry of the chromatic correction. In a symmetric design, lateral color is zero by construction, but residual secondary spectrum is doubled. By giving the rear meniscus (L4) substantially more anomalous dispersion than the front meniscus (L3), the designer can tune the balance of secondary spectrum across the field, trading marginal amounts of lateral color for improved field-wide sharpness — a trade-off that is especially valuable in large-format lenses designed to cover generous image circles for tilt/shift movements.
+The deliberate use of different anomalous-dispersion glasses for L3 (e-line code class ~522/695) and L4 (S-FPM4, code 529770) breaks the perfect symmetry of the chromatic correction. In a symmetric design, lateral color is zero by construction, but residual secondary spectrum is doubled. By giving the rear meniscus (L4) substantially more anomalous dispersion than the front meniscus (L3), the designer can tune the balance of secondary spectrum across the field, trading marginal amounts of lateral color for improved field-wide sharpness — a trade-off that is especially valuable in large-format lenses designed to cover generous image circles for tilt/shift movements.
 
 ## Semi-Diameter Constraints and Mechanical Vignetting
 
@@ -156,7 +156,7 @@ The Schneider Symmar lineage traces to the Dagor, designed by Emil von Hoegh in 
 
 The patent's Example 2 represents a departure from the earlier APO-Symmar models (which used short-flint glass for the negative doublet elements, per Example 1 and the third variant in the patent). By moving the anomalous-dispersion burden to the positive elements, Example 2 achieves the same level of secondary-spectrum correction while using an entirely environment-friendly glass palette. This formulation aligns with the "L" designation in the later APO-Symmar L product line, which Schneider described as "using new environmentally friendly glass compositions."
 
-The patent contains four distinct numerical prescriptions sharing the same 6/4 quasi-symmetric Plasmat architecture: Examples 1 and 3 (column 4, column 5) use $n_e = 1.6808$ / $\nu_e = 55.1$ and $n_e = 1.6167$ / $\nu_e = 44.2$ — values consistent with denser crowns and heavier flints typical of the original APO-Symmar. Example 2 (column 5) and a fourth prescription in Claim 6 (column 8) both use the environmentally-friendly glass palette. The Claim 6 prescription simplifies the glass selection further by using the same glass (N-PK51) for both meniscuses L3 and L4, achieving perfect glass symmetry across the stop — whereas Example 2 uses a distinct (unidentified) phosphate crown for L3.
+The patent contains four distinct numerical prescriptions sharing the same 6/4 quasi-symmetric Plasmat architecture: Examples 1 and 3 (column 4, column 5) use $n_e = 1.6808$ / $\nu_e = 55.1$ and $n_e = 1.6167$ / $\nu_e = 44.2$ — values consistent with denser crowns and heavier flints typical of the original APO-Symmar. Example 2 (column 5) and a fourth prescription in Claim 6 (column 8) both use the environmentally-friendly glass palette. The Claim 6 prescription simplifies the glass selection further by using the same glass (S-FPM4) for both meniscuses L3 and L4, achieving perfect glass symmetry across the stop — whereas Example 2 uses a distinct (unidentified) phosphate crown for L3.
 
 ## Verification Summary
 
@@ -189,7 +189,7 @@ Semi-diameters were validated against five independent constraints: sd/|R| < 0.9
 ## Sources
 
 1. US 6,028,720 — R. Wartmann, U. Schauss, "High Resolution Objective for Large-Format Photography," Jos. Schneider Optische Werke Kreuznach GmbH & Co. KG. Granted February 22, 2000. Priority DE 197 54 758 (December 10, 1997).
-2. Schott AG, *Optical Glass Datasheet Collection* (May 2019 / January 2017 editions) — datasheets for N-BALF5, N-PK51.
-3. OHARA GmbH, *S-PHM53 Datasheet* (January 2025) — code(d) 603655, code(e) 605651.
+2. Schott AG, *Optical Glass Datasheet Collection* (May 2019 / January 2017 editions) — datasheet for N-BALF5.
+3. OHARA optical-glass catalog data for S-PHM53 and the coordinate-compatible S-FPM4 dispersion model.
 4. Schneider-Kreuznach, *Large Format Lenses* product brochure (undated, circa 2000s), via Linhof.com archival PDF — APO-Symmar specifications (6 elements / 4 groups, 72° coverage, image circles by focal length).
 5. LargeFormatPhotography.info, *Large Format Lens Specifications Database* — APO-Symmar 100mm: 6/4, f/5.6, 145 mm image circle.

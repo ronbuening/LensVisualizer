@@ -189,7 +189,7 @@ const LENS_DATA = {
       nd: 1.64769,
       vd: 33.8,
       fl: -55.6,
-      glass: "N-SF2 (SCHOTT)",
+      glass: "SF2 (SCHOTT legacy catalog match; production glass unspecified)",
       role: "First negative component of GR2b; helps place negative power at the image side of the focus group.",
     },
     {

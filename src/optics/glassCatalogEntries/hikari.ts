@@ -5,6 +5,25 @@
 import type { GlassEntry } from "../glassCatalogTypes.js";
 
 export const HIKARI_GLASS_ENTRIES: readonly GlassEntry[] = [
+  /* Phase 45: first-party named-token audit additions. */
+  {
+    name: "J-LAF04",
+    vendor: "Hikari",
+    powerSeries: [
+      [3.01765567, 0],
+      [-0.0144029325, 2],
+      [-0.000173403131, 4],
+      [0.0241938931, -2],
+      [0.00050291378, -4],
+      [-0.000000118295424, -6],
+      [0.00000126171561, -8],
+    ],
+    nd: 1.757,
+    vd: 47.86,
+    code6: "757479",
+    source:
+      "Hikari Optical Glass Catalog 2025-06, J-LAF04 page; vendor formula-3 power-series coefficients and d-code 757479.",
+  },
   {
     name: "J-BK7A",
     vendor: "Hikari",

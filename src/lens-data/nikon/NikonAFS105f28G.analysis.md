@@ -68,7 +68,7 @@ The all-spherical design is notable for a 2006-era macro lens of this complexity
 | Property | Value |
 |----------|-------|
 | Shape | Positive meniscus, convex to object (R₁ = +49.73, R₂ = +328.13) |
-| Glass | nd = 1.6127, νd = 58.75 → OHARA S-BSM2 (barium crown) |
+| Glass | nd = 1.6127, νd = 58.75 → HOYA BACD4 catalog equivalent; production supplier unspecified |
 | Center thickness | 5.044 mm |
 | Focal length | +95.0 mm |
 | Role | Second positive element with stronger curvature than L1. The barium crown glass provides moderate index with low dispersion. The meniscus form reduces the angle of incidence at the strongly curved front surface, which controls higher-order spherical aberration. Together with L1, this element provides the bulk of G1's positive power. |
@@ -264,7 +264,7 @@ The cemented doublet construction of the VR group is specifically called out in 
 | Element | nd | νd | Catalog Match | Glass Family | APD |
 |---------|------|-------|---------------|--------------|-----|
 | L1 | 1.7725 | 49.61 | S-LAH66 (OHARA) | Lanthanum crown | Normal |
-| L2 | 1.6127 | 58.75 | S-BSM2 (OHARA) | Barium crown | Normal |
+| L2 | 1.6127 | 58.75 | BACD4 (HOYA equivalent) | Barium crown | Normal |
 | L3 | 1.7174 | 29.52 | S-TIH1 (OHARA) | Heavy flint | Normal |
 | L4 | 1.7725 | 49.61 | S-LAH66 (OHARA) | Lanthanum crown | Normal |
 | L5 | 1.5827 | 46.43 | BAF3 (Schott) | Barium flint | Normal |

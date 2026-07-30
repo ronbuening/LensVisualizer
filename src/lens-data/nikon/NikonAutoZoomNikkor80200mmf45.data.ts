@@ -90,7 +90,7 @@ const LENS_DATA = {
       nd: 1.61375,
       vd: 56.3,
       fl: 119.347,
-      glass: "614563 - SK6 / BSM6 class (historical vendor unresolved)",
+      glass: "Unmatched (614563 historical crown; prior SK6 / BSM6 annotation not coefficient-backed)",
       apd: false,
       cemented: "D1",
       role: "Positive component of the fixed first-group cemented pair.",

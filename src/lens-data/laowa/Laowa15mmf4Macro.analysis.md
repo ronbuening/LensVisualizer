@@ -14,7 +14,7 @@ The patent presents three numerical embodiments. **Example 2** (第二实施例,
 3. **Half-field angle.** $\omega = 55.199°$, yielding a full field of $110.4°$ — consistent with the marketed $110°$ angle of view.
 4. **Focus mechanism.** Example 2 employs two moving positive groups (SF and MF) achieving a maximum magnification of $0.7836\times$ at closest focus (¶0065). The production lens extends this to $1{:}1$ magnification through greater mechanical focus travel. The patent's dual-group floating focus architecture matches the production description of "internal focusing."
 5. **Patent timing.** Filed April 2015, with the production lens announced in mid-2015 and shipping from late 2015 — consistent with the utility model patent being filed during the pre-production engineering phase.
-6. **Special glass count.** Example 2 uses three distinct high-refractive-index glass types (904313-class LaF, H-ZLAF2, H-ZF52) and one low-dispersion crown type (H-QK3L), matching the production marketing claim of "three High Refractive elements and one Extra-low Dispersion element" when counted by distinct glass type.
+6. **Special glass count.** Example 2 uses three distinct high-refractive-index coordinate families (904313, 911353, and 847238) and one low-dispersion crown family. Catalog-equivalent names support dispersion modeling but do not establish production melts.
 
 ## Optical Architecture
 
@@ -36,13 +36,13 @@ The production lens includes a $\pm 6$ mm vertical shift mechanism for perspecti
 
 ### L1 — Positive Meniscus, Convex to Object
 
-$n_d = 1.77250$, $\nu_d = 49.62$. Glass: H-LAK7 (CDGM) — lanthanum crown. $f = +177.6$ mm.
+$n_d = 1.77250$, $\nu_d = 49.62$. Glass: SCHOTT N-LAF34 catalog equivalent; production supplier unspecified. $f = +177.6$ mm.
 
 L1 is a thick ($ct = 3.92$ mm) lanthanum crown meniscus with moderate positive power. As the first element in a retrofocus design, it collects the incoming wide-angle beam ($2\omega = 110°$) and begins the gradual convergence process. The meniscus shape (both radii positive, $R_1 = +51.18$, $R_2 = +78.92$) minimizes surface reflection losses at steep incidence angles and controls coma contribution at the extreme field angles. The relatively high index of 1.77 allows the element to maintain a compact diameter despite the wide field coverage. The 77 mm filter thread of the production lens constrains the maximum semi-diameter of this element.
 
 ### L2 — Negative Meniscus, Convex to Object (HR)
 
-$n_d = 1.91082$, $\nu_d = 35.25$. Glass: H-ZLAF2 (CDGM) — heavy lanthanum flint, high-refractive. $f = -29.1$ mm.
+$n_d = 1.91082$, $\nu_d = 35.25$. Glass: HOYA TAFD35 catalog equivalent; production supplier unspecified. $f = -29.1$ mm.
 
 L2 is the first of the strongly negative elements that establish the retrofocus character of the design. With both radii positive ($R_3 = +24.95$, $R_4 = +12.53$) but $|R_{front}| > |R_{rear}|$, the element diverges incident rays. The high refractive index ($n_d = 1.911$) is essential: a strong negative meniscus at this position must contribute substantial diverging power without introducing excessive higher-order aberrations, and high-index glass reduces the surface curvatures required for a given power. The relatively low Abbe number ($\nu_d = 35.25$) compounds the chromatic impact: as a negative element, L2 contributes overcorrecting longitudinal chromatic aberration ($\phi/\nu < 0$), and the low Abbe number amplifies this contribution per unit of optical power. Together with L3, these two negative meniscus elements produce the dominant overcorrecting chromatic contribution in the front group, which is counterbalanced downstream by the positive ED elements and the inverted L4 doublet.
 
@@ -55,7 +55,7 @@ L3 is the strongest single negative element in the design. Its power distributio
 ### L4 — Cemented Doublet (Negative)
 
 **L4a:** $n_d = 1.84666$, $\nu_d = 23.78$. Glass: H-ZF52 (CDGM) — dense flint (SF57 equivalent, Schott). $f = +23.4$ mm.
-**L4b:** $n_d = 1.72916$, $\nu_d = 54.67$. Glass: H-LAK5A (CDGM) — lanthanum crown. $f = -15.4$ mm.
+**L4b:** $n_d = 1.72916$, $\nu_d = 54.67$. Glass: HOYA TAC8 catalog equivalent; production supplier unspecified. $f = -15.4$ mm.
 **Combined doublet:** $f \approx -48.3$ mm.
 
 This cemented doublet is unusual in its glass pairing: the flint element (L4a, $\nu_d = 23.78$) is the positive-power component, while the crown (L4b, $\nu_d = 54.67$) is the negative-power component. This is the reverse of a classical achromatic doublet. In a conventional negative element, the chromatic contribution would be overcorrecting ($\phi/\nu < 0$). Here, the inverted glass assignment flips the chromatic sign: the low-$\nu$ flint-positive component contributes far more undercorrecting chromatic aberration per unit of power than the crown-negative component overcorrects, so the doublet produces a net *undercorrecting* chromatic contribution despite having net negative optical power ($f = -48.3$ mm). This acts as a deliberate counterbalance to the strong overcorrection introduced by the negative meniscus elements L2 and L3 upstream. The nearly flat front surface of L4a ($R_7 = +213.0$) accepts light from the large air gap after L3 with minimal surface deviation, while the strongly curved cemented junction ($R_8 = -21.64$) and L4b's rear surface ($R_9 = +23.90$) provide the optical power.
@@ -108,17 +108,17 @@ The design uses 7 distinct glass types drawn from the CDGM (成都光明, Chengd
 
 | Element(s) | Glass | nd | νd | Category | Cross-reference |
 |:---:|:---:|:---:|:---:|:---|:---|
-| L1 | H-LAK7 | 1.77250 | 49.62 | Lanthanum crown | N-LAK33B (Schott) |
-| L2 | H-ZLAF2 | 1.91082 | 35.25 | Heavy La flint (HR) | — |
+| L1 | N-LAF34 | 1.77250 | 49.62 | Lanthanum flint equivalent | SCHOTT |
+| L2 | TAFD35 | 1.91082 | 35.25 | Heavy La flint (HR) | HOYA |
 | L3, L5, L9a | S-LAH95 / TAFD25 class | 1.90366 | 31.31 | Heavy La flint (HR) | 904313 catalog-backed class |
 | L4a | H-ZF52 | 1.84666 | 23.78 | Dense flint (HR) | SF57 (Schott) |
-| L4b | H-LAK5A | 1.72916 | 54.67 | Lanthanum crown | ~S-LAL54 (OHARA) |
+| L4b | TAC8 | 1.72916 | 54.67 | Lanthanum crown | HOYA |
 | L6, L9b | H-QK3L | 1.48749 | 70.44 | Low-dispersion crown | CDGM catalog match |
 | L7a | H-K9L | 1.51680 | 64.20 | Borosilicate crown | N-BK7 (Schott) |
 | L7b | N-LASF44 catalog equivalent | 1.80420 | 46.50 | Lanthanum flint | Exact 804465 coordinate; supplier not identified |
 | L8 | H-ZF1 | 1.64769 | 33.84 | Flint | SF2 (Schott) |
 
-**High-refractive (HR) glasses:** Three distinct types with $n_d > 1.84$ are used across five elements: 904313-class glass ($n_d = 1.904$) in L3, L5, and L9a; H-ZLAF2 ($n_d = 1.911$) in L2; and H-ZF52 ($n_d = 1.847$) in L4a. The production lens marketing refers to "three High Refractive elements," likely counting the three distinct HR glass types. These high-index glasses enable the strong negative meniscus elements (L2, L3) to achieve the required diverging power with physically compact curvatures, and provide the thick dispersive element (L5) and the rear corrector (L9a) with their characteristic high optical-path contributions.
+**High-refractive (HR) glasses:** Three distinct coordinate families with $n_d > 1.84$ are used across five elements: 904313 in L3, L5, and L9a; 911353 in L2; and 847238 in L4a. TAFD35 supplies the coefficient-backed equivalent for L2. These high-index glasses enable the strong negative meniscus elements to achieve the required diverging power with compact curvatures.
 
 **Extra-low-dispersion glass:** H-QK3L ($n_d = 1.487$, $\nu_d = 70.44$) is used in L6 and L9b — the two principal positive corrector elements. The marketing refers to "one Extra-low Dispersion element," counting the single low-dispersion glass type. These crown elements are placed at optically strategic locations: L6 at the rear of the front group (where it provides the main positive collecting power with minimal chromatic spread) and L9b at the final element (where it corrects lateral color and field curvature close to the image plane).
 

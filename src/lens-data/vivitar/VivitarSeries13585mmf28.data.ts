@@ -137,7 +137,7 @@ const LENS_DATA = {
       nd: 1.498,
       vd: 65.1,
       fl: -19.2,
-      glass: "498651 — BK3-type borosilicate crown (no exact public catalog match)",
+      glass: "BSL3 (OHARA catalog equivalent; production supplier unspecified)",
       apd: false,
       cemented: "D2",
       role: "Low-index crown element of Group III compensator doublet.",

@@ -118,7 +118,7 @@ G4 is the most complex group in the design, with five elements forming three air
 
 #### L41 — Negative Meniscus, Convex to Object (cemented, front of doublet D4)
 
-nd = 2.00912, νd = 29.1. Glass: S-NPH85 (OHARA), provisional label from the patent's nd/νd pair. f = −71.8 mm.
+nd = 2.00912, νd = 29.1. Glass: unmatched 009291 patent glass; the prior S-NPH85 annotation is not coefficient-backed. f = −71.8 mm.
 
 L41 uses the highest refractive index glass in the entire design (nd = 2.009), an ultra-dense flint. Its role in the cemented doublet with the Super ED L42 is chromatic: the enormous index and low Abbe number provide the strong dispersion needed to achromatize the long-throw S-FPL55 element behind it. The meniscus shape keeps the angle of incidence moderate on both surfaces despite the extreme index.
 
@@ -162,11 +162,11 @@ L51's negative power means that as it moves rearward during close focus, it incr
 
 #### L61 — Biconvex Positive (2× aspherical)
 
-nd = 1.59456, νd = 66.9. Glass: S-FPM5 (OHARA), provisional label from the patent's nd/νd pair. f = +68.3 mm.
+nd = 1.59456, νd = 66.9. Glass: HIKARI J-PSKH4 catalog equivalent; production supplier unspecified. f = +68.3 mm.
 
 L61 constitutes the second focus group (GMF2), which is also the most image-side movable group in the intermediate group GM (hence GMR). During close focus, G6 moves toward the object — opposite to G5's direction (¶0065). This opposing motion of a negative and a positive focus group is the essence of Sony's floating focus: the two groups' aberration contributions partially cancel during focusing, suppressing spherical aberration and field curvature variation at close distances (¶0045).
 
-L61 uses a moderate-index fluorophosphate crown (S-FPM5, νd = 66.9) and carries aspherical surfaces on both sides (surfaces 29 and 30). The fluorophosphate glass aids chromatic correction in the focus section, and the aspherical surfaces allow the element to maintain field flatness across the focus range. L61 is driven by the remaining two of the four XD linear motors.
+L61 uses a moderate-index fluorophosphate crown (J-PSKH4, νd = 66.9) and carries aspherical surfaces on both sides (surfaces 29 and 30). The fluorophosphate glass aids chromatic correction in the focus section, and the aspherical surfaces allow the element to maintain field flatness across the focus range. L61 is driven by the remaining two of the four XD linear motors.
 
 ### Group 7 — Rear Group / GR (L71–L73)
 
@@ -200,7 +200,7 @@ The design uses a mix of directly compatible catalog curves, catalog equivalents
 |:---|---:|---:|:---|:---|
 | S-FPL55 (OHARA) | 1.43810 | 95.1 | L32, L42, L43 | Primary chromatic correction; three Super ED elements |
 
-S-FPL55 (νd = 95.1, ΔP~g,F~ ≈ +0.035) is the workhorse ED glass of the design. Three elements — one in G3 and two in G4 — deploy this glass to suppress both primary and secondary axial chromatic aberration at the F/2 aperture. Each S-FPL55 element is cemented to a high-dispersion partner (571560 barium crown, S-NPH85, and 863252 dense flint respectively), creating three achromatic doublets distributed across the relay section. This distributed approach, rather than concentrating all the ED correction in a single cemented group, spreads the chromatic workload and prevents any one surface from bearing excessive stress or generating high-order chromatic residuals.
+S-FPL55 (νd = 95.1, ΔP~g,F~ ≈ +0.035) is the workhorse ED glass of the design. Three elements — one in G3 and two in G4 — deploy this glass to suppress both primary and secondary axial chromatic aberration at the F/2 aperture. Each S-FPL55 element is cemented to a high-dispersion partner (571560 barium crown, unresolved 009291 patent glass, and 863252 dense flint respectively), creating three achromatic doublets distributed across the relay section. This distributed approach, rather than concentrating all the ED correction in a single cemented group, spreads the chromatic workload and prevents any one surface from bearing excessive stress or generating high-order chromatic residuals.
 
 ### Fluorophosphate crowns (ED candidates)
 
@@ -208,7 +208,7 @@ S-FPL55 (νd = 95.1, ΔP~g,F~ ≈ +0.035) is the workhorse ED glass of the desig
 |:---|---:|---:|:---|:---|
 | 595686 fluorophosphate crown | 1.59489 | 68.6 | L12 | G1 achromatization; probable ED element |
 | 596670 fluorophosphate crown | 1.59561 | 67.0 | L13 | G1 positive power; no exact public catalog match |
-| S-FPM5 (OHARA) | 1.59456 | 66.9 | L61 | Focus group GMF2 |
+| J-PSKH4 (HIKARI equivalent) | 1.59456 | 66.9 | L61 | Focus group GMF2 |
 
 The fluorophosphate crowns (νd ≈ 67–69) have modest anomalous partial dispersion and contribute to secondary-spectrum correction, particularly in G1 (where the large aperture bundle demands careful chromatism management) and in the focus group G6. Sony's marketing specifies "one ED element"; the most likely candidate is L12 (595686, νd = 68.6), which is cemented to the ultra-dense flint L11 in a classic chromatic correction pair at the front of the lens. The identification is inferred — the patent does not explicitly designate which elements Sony classifies as "ED" versus "Super ED."
 
@@ -219,7 +219,7 @@ The fluorophosphate crowns (νd ≈ 67–69) have modest anomalous partial dispe
 | Proprietary (≈S-NPH1W) | 1.95825 | 18.0 | L11 | G1 chromatic counterweight |
 | 930240 ultra-high-index dense flint | 1.93024 | 24.0 | L23 | G2 variator doublet |
 | Unmatched ultra-high-index dense flint | 2.00009 | 16.5 | L71 | GR lateral color correction |
-| S-NPH85 (OHARA) | 2.00912 | 29.1 | L41 | G4 Super ED partner |
+| Unmatched 009291 patent glass | 2.00912 | 29.1 | L41 | G4 Super ED partner |
 | 777297 dense flint | 1.77660 | 29.7 | L22 | G2 variator doublet |
 | 863252 dense flint | 1.86252 | 25.2 | L44, L72 | G4 Super ED partner; GR lateral color |
 

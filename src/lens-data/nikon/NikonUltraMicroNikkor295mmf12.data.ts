@@ -74,7 +74,7 @@ const LENS_DATA = {
       vd: 27.7,
       indexReference: "e",
       fl: -275.43,
-      glass: "SF13 class dense flint (patent e-line index stored)",
+      glass: "S-TIH13 (OHARA catalog equivalent; production supplier unspecified; patent e-line index stored)",
       role: "Weak negative front meniscus; front corrector for oblique aberrations.",
     },
     {

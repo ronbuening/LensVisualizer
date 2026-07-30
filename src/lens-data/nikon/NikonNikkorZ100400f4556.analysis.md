@@ -123,7 +123,7 @@ The production lens achieves minimum focus distances of 0.75 m at 100 mm and 0.9
 | L8 | 1.741000 | 741526 code; no exact catalog match | 52.6 | Negative | G3 |
 | L9 | 1.854505 | 855399 code; no exact public catalog match | 39.9 | Positive | G3 |
 | L10 | 1.755000 | S-LAH97 | 52.3 | Negative | G3 |
-| L11 | 1.593190 | S-SK14 | 60.5 | Positive | G4 |
+| L11 | 1.593190 | FCD600 | 60.5 | Positive | G4 |
 | L14 | 1.806100 | S-LAH53 | 40.9 | Negative | G4 |
 | L15 | 1.808090 | S-NPH1 | 22.8 | Positive | G4 |
 | L16 | 2.000690 | 001255 code; no exact catalog match | 25.5 | Negative | G4 |

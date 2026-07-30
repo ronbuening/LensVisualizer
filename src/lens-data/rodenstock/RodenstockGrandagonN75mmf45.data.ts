@@ -101,7 +101,7 @@ const LENS_DATA = {
       nd: 1.58313,
       vd: 59.3,
       fl: -27.0,
-      glass: "SK12 (Schott legacy dense crown)",
+      glass: "S-BAL42 (OHARA catalog equivalent; production supplier unspecified)",
       nC: 1.58014,
       nF: 1.58997,
       ng: 1.59532,

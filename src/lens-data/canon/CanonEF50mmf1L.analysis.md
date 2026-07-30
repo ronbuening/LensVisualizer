@@ -167,7 +167,7 @@ The lens uses seven distinct glass types. The dominant material is a dense lanth
 | L8 | 1.80518 | 25.4 | 1805/254 | S-TIH6 (OHARA) / SF6 (SCHOTT) | Dense flint |
 | L9 | 1.88300 | 40.8 | 1883/408 | S-LAH58 (OHARA) | Dense lanthanum flint |
 | L10 | 1.88300 | 40.8 | 1883/408 | S-LAH58 (OHARA) | Dense lanthanum flint |
-| L11 | 1.55963 | 61.2 | 1559/612 | S-BSL10 (OHARA) / N-SK5 (SCHOTT) | Borosilicate crown |
+| L11 | 1.55963 | 61.2 | 1559/612 | S-BAL50 (OHARA) / N-SK5 (SCHOTT) | Borosilicate crown |
 
 Glass identifications are family-level matches based on nd/vd pairs; exact production glass designations may differ from these catalog assignments, particularly for the 1883/408 glass which could be S-LAH58, S-LAH59, or an equivalent from HOYA (TAFD5 series). Canon was known to source glass from multiple suppliers in this era.
 
@@ -291,7 +291,7 @@ L10 is the primary converging element in the rear group. Its nearly flat front s
 
 **Shape:** Positive meniscus, convex toward front (R1 = +142.39, R2 = +961.53)
 **Focal length (standalone):** +298 mm (weak positive)
-**Glass:** S-BSL10 type (nd = 1.559, vd = 61.2)
+**Glass:** S-BAL50 type (nd = 1.559, vd = 61.2)
 
 L11 is the last element and acts as a field flattener and residual aberration corrector. Its weak positive power fine-tunes the field curvature, and the low-dispersion crown glass (vd = 61.2) ensures that this final correction does not introduce chromatic aberration. The meniscus shape with a nearly flat rear surface (R = 961.5) produces minimal distortion of the converging beam.
 

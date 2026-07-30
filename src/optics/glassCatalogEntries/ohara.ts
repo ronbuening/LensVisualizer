@@ -5,6 +5,17 @@
 import type { GlassEntry } from "../glassCatalogTypes.js";
 
 export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
+  /* Phase 45: first-party named-token audit additions. */
+  {
+    name: "S-BAL50",
+    vendor: "Ohara",
+    polynomial: [2.3982661, -0.010222781, 0.012110445, 0.00037767581, -0.000027339021, 0.0000015701891],
+    nd: 1.559625,
+    vd: 61.172671,
+    code6: "560612",
+    source:
+      "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF); vendor formula-3 polynomial for discontinued S-BAL50.",
+  },
   /* Phase 44: exact legacy rows from OHARA's official 2026-07-01
    * all-products Zemax catalog for the Olympus 85-250mm source audit.
    */

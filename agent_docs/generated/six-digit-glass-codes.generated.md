@@ -952,11 +952,11 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L2a (Element 2) | 3 | `603607 — dense crown class (catalog vendor unspecified)` | 1.60311 / 60.70 | BACD14 (trusted Sellmeier) | sellmeier | patents/US4223981.pdf | No reviewed-sidecar hit |
 | L2b (Element 3) | 4 | `805255 — dense flint class (catalog vendor unspecified)` | 1.80518 / 25.50 | H-ZF7LA (trusted Sellmeier) | sellmeier | patents/US4223981.pdf | No reviewed-sidecar hit |
 | L3a (Element 4) | 6 | `755275 — dense flint class (catalog vendor unspecified)` | 1.75520 / 27.50 | E-FD4 (trusted Sellmeier) | sellmeier | patents/US4223981.pdf | No reviewed-sidecar hit |
-| L3b (Element 5) | 7 | `517642 — borosilicate crown class (catalog vendor unspecified)` | 1.51680 / 64.20 | N-BK7 (trusted Sellmeier) | sellmeier | patents/US4223981.pdf | No reviewed-sidecar hit |
+| L3b (Element 5) | 7 | `517642 — borosilicate crown class (catalog vendor unspecified)` | 1.51680 / 64.20 | H-K9L (trusted Sellmeier) | sellmeier | patents/US4223981.pdf | No reviewed-sidecar hit |
 | L4 (Element 6) | 9 | `589612 — dense barium crown class (catalog vendor unspecified)` | 1.58913 / 61.20 | S-BAL35 (trusted Sellmeier) | sellmeier | patents/US4223981.pdf | No reviewed-sidecar hit |
 | L5a (Element 7) | 11 | `620603 — dense crown class (catalog vendor unspecified)` | 1.62041 / 60.30 | N-SK16 (trusted Sellmeier) | sellmeier | patents/US4223981.pdf | No reviewed-sidecar hit |
 | L5b (Element 8) | 12 | `755275 — dense flint class (catalog vendor unspecified)` | 1.75520 / 27.50 | E-FD4 (trusted Sellmeier) | sellmeier | patents/US4223981.pdf | No reviewed-sidecar hit |
-| L6 (Element 9) | 14 | `517642 — borosilicate crown class (catalog vendor unspecified)` | 1.51680 / 64.20 | N-BK7 (trusted Sellmeier) | sellmeier | patents/US4223981.pdf | No reviewed-sidecar hit |
+| L6 (Element 9) | 14 | `517642 — borosilicate crown class (catalog vendor unspecified)` | 1.51680 / 64.20 | H-K9L (trusted Sellmeier) | sellmeier | patents/US4223981.pdf | No reviewed-sidecar hit |
 | L9 (Element 12) | 20 | `518590 — crown class (catalog vendor unspecified)` | 1.51823 / 59.00 | E-C3 (trusted Sellmeier) | sellmeier | patents/US4223981.pdf | No reviewed-sidecar hit |
 
 ### [Nikon AI-S Zoom-Nikkor 35–70mm f/3.5](../../src/lens-data/nikon/NikonAIZoomNikkor3570mmf35.data.ts) - US 4,266,860,

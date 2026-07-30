@@ -199,7 +199,7 @@ const LENS_DATA = {
       nd: 1.59319,
       vd: 60.5,
       fl: 129.2,
-      glass: "S-SK14 (OHARA)",
+      glass: "FCD600 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Symmetric biconvex relay element. Begins reconverging the divergent beam from G3.",
     },
     {

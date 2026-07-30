@@ -199,7 +199,7 @@ const LENS_DATA = {
       nd: 1.55963,
       vd: 61.2,
       fl: 148.8,
-      glass: "S-BSL10 (OHARA)",
+      glass: "S-BAL50 (OHARA catalog equivalent; production supplier unspecified)",
       apd: false,
       apdNote: "",
       role: "Weak positive meniscus — field flattener and residual aberration corrector; fixed element in the floating focus mechanism.",

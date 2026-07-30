@@ -80,7 +80,7 @@ L25 is the strongest positive single element in GR2 and is located at the image-
 
 ### L26 — Negative Meniscus, convex to object
 
-$n_d = 1.64769$, $ν_d = 33.8$. Glass: N-SF2 (Schott). Standalone $f = -55.60$ mm.
+$n_d = 1.64769$, $ν_d = 33.8$. Glass: SF2 (Schott). Standalone $f = -55.60$ mm.
 
 L26 is the first negative component of GR2b. Its meniscus form, with both radii positive, places stronger curvature on the rear side and contributes negative power after the positive GR2a cluster. The patent identifies the use of at least two consecutive negative components in GR2b as a way to control astigmatism, coma, and lateral color while keeping the optical system short (¶0031, ¶0037).
 
@@ -111,7 +111,7 @@ The design uses ten glass entries across thirteen elements. Nine are catalog-res
 | TAFD33 class (Hoya) | 1.88100 | 40.1 | L15 | High-index lanthanum-flint class positive element |
 | S-TIH13 (Ohara) | 1.74077 | 27.8 | L22 | Dense flint; GR2a doublet partner |
 | S-NBH53V (Ohara) | 1.73800 | 32.3 | L24 | Niobium-borate flint; GR2a doublet partner |
-| N-SF2 (Schott) | 1.64769 | 33.8 | L26 | Dense flint; first GR2b negative component |
+| SF2 (Schott) | 1.64769 | 33.8 | L26 | Dense flint; first GR2b negative component |
 | Unmatched lanthanum-flint type | 1.85235 | 40.1 | L27 | Rear XA negative element; no exact authoritative catalog match |
 | PCD40 (Hoya) | 1.61997 | 63.9 | L31 | Phosphate-crown rear protective / field element |
 
@@ -186,5 +186,5 @@ The data-file clear apertures are not patent values. They are engineering estima
 1. WO 2019/073744 A1 / JP WO2019/073744 A1, Sony Corporation, “撮像レンズおよび撮像装置,” Numerical Example 1, Tables 1-5 and Table 26.
 2. Sony Corporation, FE 24mm F1.4 GM / SEL24F14GM official specifications and product information.
 3. Ohara optical glass catalog entries for S-FPL51, S-LAH99-class, S-TIH11, S-TIH13, and S-NBH53V $n_d/ν_d$ matches.
-4. Schott optical glass datasheet for N-SF2.
+4. Schott optical glass datasheet for SF2.
 5. Hoya optical glass catalog/product data for MC-TAF115 class, TAFD33 class, and PCD40.

@@ -59,7 +59,7 @@ const LENS_DATA = {
       nd: 1.5638,
       vd: 60.7,
       fl: 38.4,
-      glass: "SK4 (Schott)",
+      glass: "S-BAL41 (OHARA catalog equivalent; production supplier unspecified)",
       apd: false as const,
       role: "Front positive collector — gathers wide-angle cone toward stop",
     },

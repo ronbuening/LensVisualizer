@@ -169,7 +169,7 @@ The air gap immediately after G11 (surface 19, d = 1.95 mm at infinity, expandin
 - Cemented with G13 (Doublet D5)
 
 **G13 — Biconcave Negative**
-- Glass: S-TIM1 (OHARA), nd = 1.59551, νd = 39.24
+- Glass: S-TIM8 (OHARA), nd = 1.59551, νd = 39.24
 - Focal length: −40.55 mm
 - Radii: R1 = −60.531 mm, R2 = +40.560 mm
 - Center thickness: 1.54 mm

@@ -111,7 +111,7 @@ The computed paraxial BFL (1.162) agrees with the patent-stated s′ (1.16) to w
 | Surfaces | r₁ = +1.01065, r₂ = +3.19587 |
 | Thickness | 0.13640 (4.77 mm production) |
 | Glass | nd = 1.74000, νd = 28.2 |
-| Identification | **Schott SF3** (nd = 1.74000, νd = 28.30) — exact nd match |
+| Identification | **OHARA S-TIH3 catalog equivalent** (nd = 1.74000, νd = 28.30) — exact nd match; production supplier unspecified |
 
 L_I is the first element of the cemented front doublet. It is a positive meniscus of dense flint glass (high index, high dispersion) with both surfaces convex toward the subject. The front radius (+1.01065f ≈ +35.4 mm) is relatively steep, making this the largest-diameter element and the most prominent physical feature of the Pro-Tessar. The rear radius (+3.19587f ≈ +111.9 mm) is much flatter, forming the cemented junction with L_II.
 
@@ -190,7 +190,7 @@ L_V also contributes to **field curvature control**. Its Petzval contribution is
 | Surfaces | r₁₂ = −1.15040, r₁₃ = +0.464608 |
 | Thickness | 0.03683 (1.29 mm production) |
 | Glass | nd = 1.62536, νd = 35.6 |
-| Identification | **Schott F7** (nd = 1.62588, νd = 35.70) or **F13** (nd = 1.62588, νd = 35.58) — near-exact |
+| Identification | **CDGM H-F6 catalog equivalent** (nd = 1.62495, νd = 35.59) — coordinate-compatible; production supplier unspecified |
 | Focal length | −18.4 mm (production) |
 
 L_VII is the strongest negative element in the entire system, with a focal length of only −18.4 mm. It is the biconcave "middle lens" of the original Tessar architecture — the element that in Paul Rudolph's 1902 design provided the critical negative power and field-flattening function between the front positive element and the rear cemented group.
@@ -233,18 +233,18 @@ The cemented doublet L_VIII + L_IX together has a focal length of approximately 
 
 | Element | nd | νd | Six-Digit Code | Identification | Confidence |
 |---------|------|------|----------------|----------------|------------|
-| L_I | 1.74000 | 28.2 | 740.282 | Schott SF3 (dense flint) | Exact nd |
+| L_I | 1.74000 | 28.2 | 740.282 | OHARA S-TIH3 catalog equivalent | Exact nd |
 | L_II | 1.74400 | 44.9 | 744.449 | Schott LaF2 (lanthanum flint) | Exact nd |
 | L_III | 1.50378 | 66.7 | 503.667 | Schott PK1 (phosphate crown) | Near-exact |
 | L_IV | 1.50378 | 66.7 | 503.667 | Schott PK1 (phosphate crown) | Near-exact |
 | L_V | 1.74400 | 44.9 | 744.449 | Schott LaF2 (lanthanum flint) | Exact nd |
-| L_VII | 1.62536 | 35.6 | 625.356 | Schott F7 or F13 (flint) | Near-exact |
+| L_VII | 1.62536 | 35.6 | 625.356 | CDGM H-F6 catalog equivalent | Compatible |
 | L_VIII | 1.54869 | 45.4 | 548.454 | Schott LLF7 (light-light flint) | Near-exact |
 | L_IX | 1.72000 | 50.3 | 720.503 | Schott LaK10 (lanthanum crown) | Exact |
 
 The glass palette is notable for its heavy use of lanthanum glass types — three of the eight elements use lanthanum glasses (LaF2 for L_II and L_V, LaK10 for L_IX). By 1955, lanthanum glasses were still relatively modern materials; their presence here reflects Zeiss's access to Schott's advanced glass catalog and Dr. Lange's willingness to exploit these newer high-index types for aberration control.
 
-Six distinct glass types are used across eight glass elements: SF3, LaF2, PK1, F7, LLF7, and LaK10. However, only four melt batches are needed, since two types are each shared by two elements — PK1 for both L_III and L_IV, and LaF2 for both L_II and L_V. This glass commonality simplifies manufacturing and procurement.
+Six distinct glass-coordinate families are used across eight glass elements. S-TIH3 and H-F6 provide coefficient-backed catalog equivalents for the two legacy dense-flint rows; they do not establish the production suppliers. Only four repeated coordinate sets are needed, since PK1 is shared by L_III and L_IV and LaF2 by L_II and L_V.
 
 ## 7. Focusing Mechanism
 

@@ -42,7 +42,7 @@ The Petzval sum is $0.001002\text{ mm}^{-1}$ (normalised), corresponding to a Pe
 
 ### L1 — Equi-Biconvex Positive
 
-$n_d = 1.76182$, $\nu_d = 26.5$. Glass: E-SF3 (HOYA). $f = +89.5\text{ mm}$.
+$n_d = 1.76182$, $\nu_d = 26.5$. Glass: OHARA S-TIH14 catalog equivalent; production supplier unspecified. $f = +89.5\text{ mm}$.
 
 L1 is a weakly positive equi-biconvex element ($R_1 = +135.67$, $R_2 = -135.67$) that serves as the front collector of the First Front Group. Despite its symmetric biconvex shape, it is made from a dense flint glass with high index ($n_d = 1.762$) and strong dispersion ($\nu_d = 26.5$) — an unusual choice for a positive element, where low-dispersion crown glasses are more typical. This selection reflects the patent's strategy of controlling chromatic aberration through the interaction of L1 with the strongly negative L2 immediately behind it: L1 contributes positive longitudinal chromatic aberration that L2 partially cancels. The high index also keeps surface curvatures gentle, minimising higher-order spherical aberration at the entrance of the system where beam diameters are largest.
 
@@ -108,7 +108,7 @@ The glass palette of Example 4 uses 6 distinct glass types across 9 elements. Si
 
 | Element | $n_d$   | $\nu_d$ | Likely Glass         | Type                    | Role in Design                       |
 |---------|---------|---------|----------------------|-------------------------|--------------------------------------|
-| L1      | 1.76182 | 26.5    | E-SF3 (HOYA)         | Dense flint             | High-index front collector           |
+| L1      | 1.76182 | 26.5    | S-TIH14 (OHARA equivalent) | Dense flint        | High-index front collector           |
 | L2      | 1.72342 | 38.0    | S-BAH28 (OHARA)      | Dense barium flint      | Strong negative, SA/chromatic control|
 | L3      | 1.69680 | 55.6    | LAC14 (HOYA)         | Lanthanum crown         | Strong positive, low chromatic load  |
 | L4      | 1.67270 | 32.2    | E-FD5 (HOYA)         | Dense flint             | Near-stop negative, SA control       |
@@ -205,4 +205,4 @@ An updated Mark II version was introduced with an improved leaf shutter mechanis
 2. Hasselblad HC Macro 4/120 II product page: https://www.hasselblad.com/h-system/lenses/hc-macro-4-120mm/
 3. Hasselblad HC Macro 4/120 II specifications (B&H Photo): 9 elements / 9 groups, f = 118.7 mm, f/4–f/45, MFD 0.39 m, 67 mm filter, 1410 g.
 4. Global Media Pro specification sheet: focal length 118.7 mm, diagonal angle of view 33°, coverage 56 × 41.5 mm at close range.
-5. Public optical glass catalogs: HOYA FC5, E-FD5, LAC14, E-SF3; OHARA S-BAH28, S-LAH63, S-LAH66, S-TIH6.
+5. Public optical glass catalogs: HOYA FC5, E-FD5, LAC14; OHARA S-BAH28, S-LAH63, S-LAH66, S-TIH6, S-TIH14.

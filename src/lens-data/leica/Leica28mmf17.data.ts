@@ -180,7 +180,7 @@ const LENS_DATA = {
       nd: 1.6825,
       vd: 33.0,
       fl: -27.8,
-      glass: "H-ZF52A (CDGM)",
+      glass: "Unmatched (patent nd=1.68250, νd=33.00; prior H-ZF52A annotation rejected on dispersion)",
       apd: false,
       role: "Aspherical field-flattener; shortens BFD for compact body",
     },

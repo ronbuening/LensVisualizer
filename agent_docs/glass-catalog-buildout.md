@@ -7,7 +7,15 @@ available, it falls back to partial measured `nC`/`nF` line indices, dPgF-correc
 approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **434 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **442 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+
+The July 30, 2026 Phase 68 pass closed the named-token opportunity queue. Eight first-party rows were added:
+Hikari J-LAF04; OHARA S-BAL50; HOYA FCD600 and NBFD26; and CDGM H-BaF6, H-K9L, H-ZF1, and H-LaF6LA.
+Forty-one element annotations were then checked against their stored coordinates. Compatible rows received explicit
+catalog-equivalent labels with the production supplier unspecified; incompatible names were replaced by safer
+equivalents or explicit unmatched dispositions. The named-token queue fell from 41 distinct tokens to zero, strict
+coverage rose to 4715/5360 surfaces, trusted coverage rose to 4725/5360, and fully covered lens counts rose to
+235 strict / 239 trusted.
 
 The July 30, 2026 Phase 67 pass audited five unresolved OHARA-style names whose official catalog coordinates do not
 match the patent rows. Rendered or primary-text prescription checks confirmed six elements across Sony, Hasselblad,

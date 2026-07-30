@@ -60,7 +60,7 @@ const LENS_DATA = {
       nd: 1.76182,
       vd: 26.5,
       fl: 106.2,
-      glass: "E-SF3 (HOYA)",
+      glass: "S-TIH14 (OHARA catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Front collector; high-index dense flint keeps curvatures gentle at largest beam diameter.",
     },

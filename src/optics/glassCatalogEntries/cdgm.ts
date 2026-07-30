@@ -5,6 +5,49 @@
 import type { GlassEntry } from "../glassCatalogTypes.js";
 
 export const CDGM_GLASS_ENTRIES: readonly GlassEntry[] = [
+  /* Phase 45: first-party named-token audit additions. */
+  {
+    name: "H-BaF6",
+    vendor: "CDGM",
+    polynomial: [2.5324222, -0.0091374479, 0.018161344, 0.00046488999, -0.0000097702362, 0.0000024656267],
+    nd: 1.60801,
+    vd: 46.2,
+    code6: "608462",
+    source:
+      "CDGM Optical Glass Data Sheet, September 2021, H-BaF6 page 174; vendor formula-3 polynomial and d-code 608462.",
+  },
+  {
+    name: "H-K9L",
+    vendor: "CDGM",
+    B: [0.614555251, 0.656775017, 1.02699346],
+    C: [0.0145987884, 0.00287769588, 107.653051],
+    nd: 1.5168,
+    vd: 64.2,
+    code6: "517642",
+    source:
+      "CDGM Optical Glass Data Sheet, September 2021, H-K9L page 74; vendor Sellmeier constants K1-L3 and d-code 517642.",
+  },
+  {
+    name: "H-ZF1",
+    vendor: "CDGM",
+    polynomial: [2.636187, -0.0097034146, 0.025550262, 0.0010061041, -0.000042521904, 0.0000090637539],
+    nd: 1.64769,
+    vd: 33.84,
+    code6: "648338",
+    source:
+      "CDGM Optical Glass Data Sheet, September 2021, H-ZF1 page 190; vendor formula-3 polynomial and d-code 648338.",
+  },
+  {
+    name: "H-LaF6LA",
+    vendor: "CDGM",
+    B: [1.12023521, 0.897573526, 1.3665486],
+    C: [0.00335766705, 0.0227710735, 92.0376324],
+    nd: 1.757,
+    vd: 47.71,
+    code6: "757477",
+    source:
+      "CDGM Optical Glass Data Sheet, September 2021, H-LaF6LA page 245; vendor Sellmeier constants K1-L3 and d-code 757477.",
+  },
   {
     name: "H-ZF88",
     vendor: "CDGM",

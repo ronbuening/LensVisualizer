@@ -22,6 +22,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-07-30 ──────────────────────────────────────────────────
   {
     date: "2026-07-30",
+    type: "improvement",
+    summary: "Closed the named-glass queue with eight sourced curves and safer catalog-equivalent labels",
+  },
+  {
+    date: "2026-07-30",
     type: "fix",
     summary: "Corrected five incompatible glass-name assignments and added safe dispersion equivalents",
   },

@@ -62,7 +62,7 @@ L1's front radius of 131 mm is deliberately gentle. With the production lens hav
 
 #### L2 — Positive Meniscus, convex to object (cemented with L1)
 
-$n_d = 1.60342$, $\nu_d = 38.01$. Glass: H-QF50 (CDGM) — light flint. $f = +142.0$ mm.
+$n_d = 1.60342$, $\nu_d = 38.01$. Glass: HOYA E-F5 catalog equivalent; production supplier unspecified. $f = +142.0$ mm.
 
 L2 is cemented to L1, sharing the junction surface at R = +55.57. Its rear surface (R = +154.25) is more weakly curved than the junction, yielding net positive power. The pairing of a negative crown (L1) with a positive flint (L2) is an achromatic doublet with reversed power distribution compared to the conventional Fraunhofer form (which uses a positive crown and negative flint). The net result is extremely weak positive power ($f_{D1} \approx +1686$ mm) — the doublet is nearly afocal. Its primary purpose is chromatic pre-correction: the $\Delta\nu_d = 63.39 - 38.01 = 25.38$ between the crown and flint provides a controlled amount of longitudinal color correction that seeds the apochromatic performance developed by G2 and G3.
 
@@ -168,11 +168,11 @@ The use of expensive FK61-class ED glass in a negative element, where ordinary f
 
 #### L14 — Plano-Convex Positive
 
-$n_d = 1.51823$, $\nu_d = 58.96$. Glass: H-K8 (CDGM) — crown glass. $f = +51.8$ mm.
+$n_d = 1.51823$, $\nu_d = 58.96$. Glass: HOYA E-C3 catalog equivalent; production supplier unspecified. $f = +51.8$ mm.
 
 L14 is the rearmost optical element. It has a curved front surface (R = +26.85) and a flat rear surface (R = ∞), making it a plano-convex field flattener. Sitting 12.30 mm ahead of the sensor cover glass (or approximately 15.3 mm ahead of the sensor plane), it is the last refractive element the beam passes through.
 
-L14's function is straightforward field flattening. At this position near the image plane, the beam heights are small but the chief-ray angle is significant, and L14's positive power bends the marginal and chief rays to flatten the image surface and reduce telecentricity departure. The low-index, low-dispersion crown glass (H-K8 is approximately equivalent to Schott K7) minimizes any chromatic disturbance introduced so close to the image.
+L14's function is straightforward field flattening. At this position near the image plane, the beam heights are small but the chief-ray angle is significant, and L14's positive power bends the marginal and chief rays to flatten the image surface and reduce telecentricity departure. The low-index, low-dispersion E-C3-equivalent crown minimizes any chromatic disturbance introduced so close to the image.
 
 The center thickness of L14 is 7.0 mm — relatively thick for a crown element of this diameter. This thickness likely serves both optical (allowing the curved front surface to provide adequate sag without edge-thickness violations) and mechanical purposes (providing a robust rear barrel element for the internal-focus mechanism).
 
@@ -185,7 +185,7 @@ The following table summarizes the glass palette. Laowa, being a Chinese manufac
 | Element | $n_d$ | $\nu_d$ | Best CDGM Match | Equivalent | Class | Confidence |
 |---------|-------|---------|-----------------|------------|-------|------------|
 | L1 | 1.61800 | 63.39 | S-PHM52 | OHARA | Phosphate crown | High |
-| L2 | 1.60342 | 38.01 | H-QF50 | — | Light flint | High |
+| L2 | 1.60342 | 38.01 | E-F5 | HOYA | Light flint | High; supplier unspecified |
 | L3 | 1.77250 | 53.00 | 773530 — high-index lanthanum crown | — | Lanthanum crown | Uncertain |
 | L4 | 1.49700 | 81.61 | H-FK61 | S-FPL51 / FCD1 | ED fluorophosphate crown | High |
 | L5 | 1.80518 | 25.46 | H-ZF7LA | CDGM | Dense flint | High |
@@ -193,11 +193,11 @@ The following table summarizes the glass palette. Laowa, being a Chinese manufac
 | L7 | 1.80420 | 46.50 | H-ZLAF50D | CDGM | Lanthanum dense flint | High |
 | L8 | 1.49700 | 81.61 | H-FK61 | S-FPL51 / FCD1 | ED fluorophosphate crown | High |
 | L9 | 1.92286 | 20.88 | H-ZF72A | N-SF66 / S-NPH2 | Super-dense flint | High |
-| L10 | 1.72916 | 57.67 | 729577 — high-index lanthanum crown | — | Lanthanum crown | Uncertain ($\Delta\nu_d = +3.0$ vs H-LAK52) |
+| L10 | 1.72916 | 57.67 | Unmatched 729577 high-index crown | — | Lanthanum crown | Prior H-LAK52 candidate rejected ($\Delta\nu_d = +3.0$) |
 | L11 | 1.76182 | 26.61 | S-TIH14 | OHARA | Dense flint | High |
 | L12 | 1.90366 | 31.31 | S-LAH95 / TAFD25 class | 904313 class | Lanthanum dense flint | High |
 | L13 | 1.49700 | 81.61 | H-FK61 | S-FPL51 / FCD1 | ED fluorophosphate crown | High |
-| L14 | 1.51823 | 58.96 | H-K8 | ≈ K7 | Crown | High |
+| L14 | 1.51823 | 58.96 | E-C3 | HOYA | Crown | High; supplier unspecified |
 
 **Notes on uncertain identifications.** L3 and L10 have $(n_d, \nu_d)$ combinations that do not precisely match any widely published CDGM catalog entry. For L3 ($n_d = 1.77250$, $\nu_d = 53.00$), the nearest CDGM glass is H-LAK51 at $\nu_d \approx 49.6$ — a discrepancy of +3.4 in Abbe number. For L10 ($n_d = 1.72916$, $\nu_d = 57.67$), H-LAK52 matches the refractive index exactly but has $\nu_d = 54.68$ — a discrepancy of +3.0. Both offsets are too large for confident identification, so the data file preserves them as explicit six-digit patent-code rows for future catalog auto-upgrade instead of resolving them to H-LAK51/H-LAK52. These may be proprietary melts, less-commonly-published CDGM grades, or idealized values in the patent text. In both cases the Abbe numbers are higher (lower dispersion) than the nearest standard catalog glasses at the same index, which would slightly favor the chromatic correction.
 

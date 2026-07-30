@@ -59,7 +59,7 @@ const LENS_DATA = {
       nd: 1.64,
       vd: 60.1,
       fl: -60.5,
-      glass: "LaK family (640601, CDGM H-LAK3)",
+      glass: "S-BSM81 (OHARA catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Front diverging meniscus; begins negative AF subgroup. Image-side surface R1 = 31.1 mm is the steepest convex surface in the front section.",
     },

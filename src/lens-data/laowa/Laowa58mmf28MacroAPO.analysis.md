@@ -71,8 +71,8 @@ L4 is a positive meniscus ($R_1 = +24.62$, $R_2 = +43.39$) with strong curvature
 
 ### L5+L6 — Cemented Doublet (Negative–Positive)
 
-**L5:** $n_d = 1.83327$, $\nu_d = 25.02$. Glass: H-ZF72 (CDGM) — dense flint. $f = -12.4$ mm.
-**L6:** $n_d = 1.92286$, $\nu_d = 20.88$. Glass: H-ZLAF92 (CDGM) — ultra-high refractive index dense flint. $f = +14.6$ mm.
+**L5:** $n_d = 1.83327$, $\nu_d = 25.02$. Glass: HOYA NBFD26 catalog equivalent; production supplier unspecified. $f = -12.4$ mm.
+**L6:** $n_d = 1.92286$, $\nu_d = 20.88$. Glass: OHARA PBH21 catalog equivalent; production supplier unspecified. $f = +14.6$ mm.
 **Doublet:** $f = -97.5$ mm (weakly negative).
 
 This cemented doublet is the most optically distinctive sub-assembly in the design. L5 is a strongly negative biconcave element ($R_1 = -39.00$, $R_2 = +14.26$) of dense flint glass. L6 is a strongly positive biconvex element ($R_1 = +14.26$, $R_2 = -203.48$) of ultra-high refractive index glass — the highest $n_d$ in the entire lens at 1.92286. The junction surface ($R = 14.26$ mm) is shared, and the refractive index step across the cement is $\Delta n_d = +0.090$ (from 1.833 to 1.923), producing a strongly refracting internal surface.
@@ -95,7 +95,7 @@ The two doublets (L5+L6 and L7+L8) together form a "double-doublet" corrector im
 
 ### L9 — Biconvex Positive
 
-$n_d = 1.89782$, $\nu_d = 29.90$. Glass: H-ZLAF68N (CDGM) — high refractive index lanthanum flint. $f = +43.5$ mm.
+$n_d = 1.89782$, $\nu_d = 29.90$. The prior H-ZLAF68N annotation is rejected because CDGM's published row is 1.883 / 39.2. The patent glass remains unmatched. $f = +43.5$ mm.
 
 L9 is a nearly plano-convex element ($R_1 = +684.0$, essentially flat front; $R_2 = -41.37$, strongly curved rear) of high-index glass, positioned as the last refracting element before the aperture stop. Its front surface contributes almost no power; the rear surface delivers all of the element's $+43.5$ mm focal length. This asymmetric form concentrates the bending on the image-side surface, where the beam is already strongly converging. L9's high refractive index ($n_d = 1.90$) minimizes Petzval contribution per unit of power, contributing to the flat field correction essential for macro work. Its moderate Abbe number ($\nu_d = 29.9$) means it introduces some chromatic aberration, which is balanced by the upstream ED doublets.
 
@@ -114,7 +114,7 @@ L10 is the first element of G3 and a moderately strong negative meniscus ($R_1 =
 ### L11+L12 — Cemented Doublet (Negative–Positive)
 
 **L11:** $n_d = 1.54517$, $\nu_d = 48.63$. Glass: 545486 code-only crown glass. $f = -24.9$ mm.
-**L12:** $n_d = 1.86602$, $\nu_d = 41.79$. Glass: H-ZLAF55C (CDGM) — high refractive index lanthanum flint. $f = +18.2$ mm.
+**L12:** $n_d = 1.86602$, $\nu_d = 41.79$. The prior H-ZLAF55C annotation is rejected because CDGM's published row is 1.835 / 42.7. The patent glass remains unmatched. $f = +18.2$ mm.
 **Doublet:** $f = +57.0$ mm (moderately positive).
 
 This is the third cemented doublet in the design and the only one with net positive power ($f = +57.0$ mm). It is positioned well behind the stop in the diverging beam of G3. L11 is a relatively low-index biconcave negative element ($R_1 = -31.18$, $R_2 = +24.25$) of light crown glass. L12 is a high-index biconvex positive element ($R_1 = +24.25$, $R_2 = -40.73$) of lanthanum flint. The Abbe number separation is only $\Delta\nu_d = 6.8$ — far smaller than the $\Delta\nu_d > 20$ typical of achromatic doublets. Moreover, the sign convention is inverted relative to a traditional achromat: the negative element (L11) has the higher Abbe number (lower dispersion, $\nu_d = 48.6$) and the positive element (L12) has the lower Abbe number (higher dispersion, $\nu_d = 41.8$). In a standard achromat the positive element is the low-dispersion crown and the negative element is the high-dispersion flint; here those roles are swapped. This means the doublet does not achromatize in the normal sense — both elements push chromatic aberration in the same direction. The purpose of this configuration is to provide a specific sign and magnitude of chromatic contribution that, combined with the ED elements elsewhere in the system, yields the overall secondary spectrum correction required for APO performance. The net positive power from this doublet partially compensates for L10's negative contribution, shaping G3's overall field flattening without fully canceling its diverging effect.
@@ -146,14 +146,14 @@ All fourteen elements match CDGM (Chengdu Guangming) catalog glasses with residu
 | L2 | 1.78472 | 25.72 | H-ZF13 | S-TIH11 (OHARA) | Dense flint |
 | L3 | 1.49700 | 81.61 | H-FK61 | FCD1 (HOYA), S-FPL51 (OHARA) | ED fluorophosphate |
 | L4 | 1.72916 | 54.67 | TAC8 catalog equivalent | S-LAL18 (OHARA) shares the coordinate | Lanthanum crown |
-| L5 | 1.83327 | 25.02 | H-ZF72 | — | Dense flint |
-| L6 | 1.92286 | 20.88 | H-ZLAF92 | S-NPH53 (OHARA) | Ultra-high index dense flint |
+| L5 | 1.83327 | 25.02 | NBFD26 catalog equivalent | HOYA | Dense flint |
+| L6 | 1.92286 | 20.88 | PBH21 catalog equivalent | OHARA | Ultra-high index dense flint |
 | L7 | 1.84666 | 23.78 | H-ZF52 | S-TIH53 (OHARA) | Dense flint |
 | L8 | 1.49700 | 81.61 | H-FK61 | FCD1 (HOYA), S-FPL51 (OHARA) | ED fluorophosphate |
-| L9 | 1.89782 | 29.90 | H-ZLAF68N | — | High-index lanthanum flint |
+| L9 | 1.89782 | 29.90 | Unmatched 898299 patent glass | H-ZLAF68N rejected | High-index flint region |
 | L10 | 1.79391 | 47.17 | Unmatched lanthanum flint; not catalog H-LAF4 | — | Lanthanum flint |
 | L11 | 1.54517 | 48.63 | 545486 code-only | — | Light crown |
-| L12 | 1.86602 | 41.79 | H-ZLAF55C | TAFD40 (HOYA) | High-index lanthanum flint |
+| L12 | 1.86602 | 41.79 | Unmatched 866418 patent glass | H-ZLAF55C rejected | High-index flint region |
 | L13 | 1.49700 | 81.61 | H-FK61 | FCD1 (HOYA), S-FPL51 (OHARA) | ED fluorophosphate |
 | L14 | 1.49700 | 81.61 | H-FK61 | FCD1 (HOYA), S-FPL51 (OHARA) | ED fluorophosphate |
 
@@ -184,7 +184,7 @@ The remaining three H-FK61 elements (L3, L13, L14) reinforce the APO correction 
 
 **Chromatic stability across focus.** A critical challenge for any macro lens achieving 2× magnification is maintaining chromatic correction as the conjugate ratio changes from $m = 0$ (infinity) to $m = -2$ (2× macro). The axial color balance that holds at infinity need not hold at 2×, because the ray heights and angles through each element change substantially. This design addresses the problem by distributing ED glass across both moving groups: G2 contains L3 and L8 (within the L7+L8 doublet), while G3 contains L13 and L14. When G2 advances 47 mm forward and G3 advances 8 mm, both groups carry their own chromatic correction with them, preserving the overall balance. The G1 pre-corrector (L1+L2) — a weakly diverging lanthanum flint + dense flint pair — provides a fixed chromatic baseline that does not change with focus. The aberration plots in the patent (Fig. 4) show well-corrected spherical aberration across the g, d, and C lines at infinity, 1×, and 2× magnification, confirming that the multi-group ED distribution maintains APO performance throughout the focus range.
 
-**The role of the non-ED doublets.** The L5+L6 doublet (H-ZF72 + H-ZLAF92, both dense flints with $\Delta\nu_d = 4.86$) and the L11+L12 doublet (545486 code-only crown + H-ZLAF55C, $\Delta\nu_d = 6.84$) are not traditional achromats — their Abbe number separations are too small. Instead, these pairs contribute to monochromatic aberration control (spherical aberration, coma, field curvature) while making deliberate, small chromatic contributions whose signs are set by the designer to fine-tune the overall secondary spectrum balance. The inverted sign convention in L11+L12 — where the negative element has lower dispersion than the positive element — places a specific chromatic residual into G3 that, together with L13's ED correction, yields the desired three-wavelength color balance at the image plane.
+**The role of the non-ED doublets.** The L5+L6 doublet (modeled with NBFD26 and PBH21 equivalents, $\Delta\nu_d = 4.86$) and the L11+L12 doublet (545486 code-only crown plus unmatched 866418 glass, $\Delta\nu_d = 6.84$) are not traditional achromats — their Abbe-number separations are too small. Instead, these pairs contribute primarily to monochromatic aberration control while making smaller chromatic contributions.
 
 
 ## Focus Mechanism

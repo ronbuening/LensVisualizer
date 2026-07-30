@@ -254,7 +254,7 @@ const LENS_DATA = {
       nd: 1.61266,
       vd: 44.5,
       fl: -50.6,
-      glass: "S-NBM52 (OHARA)",
+      glass: "N-KZFS4 (SCHOTT catalog equivalent; production supplier unspecified)",
       apd: false,
       role: "Chromatic corrector — cemented doublet D2 flint, cond. (6) satisfied",
       cemented: "D2",

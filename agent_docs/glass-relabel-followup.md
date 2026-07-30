@@ -23,19 +23,38 @@ This file tracks the second bucket plus any cases from the first bucket that nee
 
 ## Current Status (July 2026, current catalog)
 
-- Catalog: **434 verified entries** in `src/optics/glassCatalogData.ts`.
+- Catalog: **442 verified entries** in `src/optics/glassCatalogData.ts`.
 - `catalog-mismatches.generated.md` and `glass-relabel-by-lens.generated.md` report **0** remaining
-  dispersion-coordinate mismatches across **0** lens files. The mismatch report separately records **16 / 75**
+  dispersion-coordinate mismatches across **0** lens files. The mismatch report separately records **17 / 75**
   native e-line surfaces resolved through explicit names or aliases.
-- `sellmeier-coverage.generated.md` reports **488** lenses, **5360** non-air surfaces, **4676** strict catalog
-  Sellmeier surfaces (**87.2%**), and **4688** trusted chromatic surfaces (**87.5%**).
-- **228** lenses are fully covered by strict Sellmeier data and **233** are fully covered by trusted chromatic data.
-- `unresolvedGlassScan` reports **401** non-explicit-unmatched annotations and **163** distinct unresolved glass-like
-  tokens. The total includes honest proprietary and family-level annotations as well as actionable named tokens.
+- `sellmeier-coverage.generated.md` reports **488** lenses, **5360** non-air surfaces, **4715** strict catalog
+  Sellmeier surfaces (**88.0%**), and **4725** trusted chromatic surfaces (**88.2%**).
+- **235** lenses are fully covered by strict Sellmeier data and **239** are fully covered by trusted chromatic data.
+- `unresolvedGlassScan` reports **356** non-explicit-unmatched annotations and **113** distinct unresolved glass-like
+  tokens. Sweep 2B reports **0** remaining unresolved catalog-style names; the residual total is code/prose inventory.
 - The missing-Sellmeier six-digit report contains **260** code-only elements, with **0** active
   unreviewed rows, **52** explicit unmatched/unidentified dispositions missing both sidecar and companion-audit hits,
   and **208** rows with a recorded review.
 - The Phase 2/3 resolved tables below are historical audit trail. Use the generated reports above for the current queue before starting new relabel work; for patent-by-patent execution, start from [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md).
+
+## Resolved Phase 68 — July 2026 named-token closure
+
+The full named-token queue was compared with first-party OHARA, HOYA, Hikari, SUMITA, CDGM, and Schott-backed
+catalog coordinates. Eight missing coefficient rows were added:
+
+| Vendor | Added rows |
+|---|---|
+| Hikari | J-LAF04 |
+| OHARA | S-BAL50 |
+| HOYA | FCD600, NBFD26 |
+| CDGM | H-BaF6, H-K9L, H-ZF1, H-LaF6LA |
+
+Forty-one element annotations were updated. Names whose official row was incompatible with the patent coordinate
+were not added as aliases; they were replaced by coordinate-compatible catalog equivalents or explicit unmatched
+dispositions. Every equivalent states that the production supplier is unspecified. This completed Canon EF 50mm
+f/1.0, Fujifilm XF 56mm f/1.2, Hasselblad HC Macro 120mm, Olympus OM 24mm f/2, and several other near-complete
+prescriptions. Sweep 2B is now empty, catalog mismatches remain at zero, and strict/trusted coverage gained 39/37
+surfaces respectively.
 
 ## Resolved Phase 67 — July 2026 incompatible named-token correction
 

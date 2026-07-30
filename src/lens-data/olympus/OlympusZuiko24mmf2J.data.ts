@@ -62,7 +62,7 @@ const LENS_DATA = {
       nd: 1.757,
       vd: 47.9,
       fl: 80.7,
-      glass: "J-LAF04 class (HIKARI), 757479",
+      glass: "J-LAF04 (HIKARI catalog match; production glass unspecified), 757479",
       apd: false,
       role: "Front positive meniscus; distortion, coma, and lateral-color moderation",
     },

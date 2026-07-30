@@ -19,7 +19,14 @@ import { SPECIAL_GLASS_ENTRIES } from "./glassCatalogEntries/special.js";
 export type { GlassEntry } from "./glassCatalogTypes.js";
 
 const GLASS_CATALOG_SOURCE_ORDER = [
+  "J-LAF04",
+  "S-BAL50",
+  "FCD600",
+  "NBFD26",
+  "H-BaF6",
+  "H-LaF6LA",
   "N-BK7",
+  "H-K9L",
   "S-BSL7",
   "CaF2",
   "SiO2",
@@ -58,6 +65,7 @@ const GLASS_CATALOG_SOURCE_ORDER = [
   "S-FPM3",
   "S-BAL35",
   "S-TIM22",
+  "H-ZF1",
   "S-NPH1",
   "S-TIM2",
   "S-TIM3",
@@ -474,6 +482,7 @@ const GLASS_CATALOG_ENTRIES_BY_NAME: ReadonlyMap<string, GlassEntry> = new Map(
  * resolver uses these explicit winners before adding non-duplicate code lookups.
  */
 export const DUPLICATE_CODE6_PRECEDENCE: ReadonlyMap<string, string> = new Map([
+  ["517642", "N-BK7"],
   ["516641", "S-BSL7"],
   ["497816", "S-FPL51"],
   ["729547", "S-LAL18"],

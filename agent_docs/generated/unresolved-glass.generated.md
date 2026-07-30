@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **488** lenses scanned
 - **5360** non-air surfaces examined
 - **5365** element glass declarations examined
-- **401** non-explicit-unmatched annotations did not resolve
-- **163** distinct unresolved glass-like tokens found
+- **356** non-explicit-unmatched annotations did not resolve
+- **113** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -27,7 +27,6 @@ or per-lens patent backfills.
 | 514428 | 2 | 1 | |
 | 531559 | 2 | 2 | |
 | 585594 | 2 | 1 | |
-| 614563 | 2 | 2 | |
 | 620586 | 2 | 1 | |
 | 666356 | 2 | 1 | |
 | 720521 | 2 | 2 | |
@@ -39,10 +38,8 @@ or per-lens patent backfills.
 | 813252 | 2 | 1 | |
 | 856401 | 2 | 1 | |
 | 487698 | 1 | 1 | |
-| 498651 | 1 | 1 | |
 | 514530 | 1 | 1 | |
 | 518523 | 1 | 1 | |
-| 529770 | 1 | 1 | |
 | 531621 | 1 | 1 | |
 | 534554 | 1 | 1 | |
 | 534556 | 1 | 1 | |
@@ -64,16 +61,14 @@ or per-lens patent backfills.
 | 603423 | 1 | 1 | |
 | 603564 | 1 | 1 | |
 | 612313 | 1 | 1 | |
+| 614563 | 1 | 1 | |
 | 617443 | 1 | 1 | |
 | 624584 | 1 | 1 | |
 | 630346 | 1 | 1 | |
 | 639451 | 1 | 1 | |
 | 640353 | 1 | 1 | |
-| 640601 | 1 | 1 | |
 | 658397 | 1 | 1 | |
-| 664358 | 1 | 1 | |
 | 667311 | 1 | 1 | |
-| 667330 | 1 | 1 | |
 | 670572 | 1 | 1 | |
 | 670574 | 1 | 1 | |
 | 670575 | 1 | 1 | |
@@ -86,9 +81,7 @@ or per-lens patent backfills.
 | 700555 | 1 | 1 | |
 | 701301 | 1 | 1 | |
 | 713433 | 1 | 1 | |
-| 720504 | 1 | 1 | |
 | 721334 | 1 | 1 | |
-| 729577 | 1 | 1 | |
 | 738493 | 1 | 1 | |
 | 747274 | 1 | 1 | |
 | 749501 | 1 | 1 | |
@@ -98,7 +91,6 @@ or per-lens patent backfills.
 | 750504 | 1 | 1 | |
 | 754260 | 1 | 1 | |
 | 755501 | 1 | 1 | |
-| 757479 | 1 | 1 | |
 | 762271 | 1 | 1 | |
 | 764491 | 1 | 1 | |
 | 768465 | 1 | 1 | |
@@ -139,48 +131,6 @@ or per-lens patent backfills.
 | 916364 | 1 | 1 | |
 | 930240 | 1 | 1 | |
 | 933209 | 1 | 1 | |
-| BK3 | 1 | 1 | |
-| E-FPL51 | 1 | 1 | |
-| F7 | 1 | 1 | |
-| H-BAF6 | 1 | 1 | |
-| H-K8 | 1 | 1 | |
-| H-K9L | 1 | 1 | |
-| H-LAF51 | 1 | 1 | |
-| H-LAF6L | 1 | 1 | |
-| H-LAK3 | 1 | 1 | |
-| H-LAK52 | 1 | 1 | |
-| H-LAK5A | 1 | 1 | |
-| H-LAK7 | 1 | 1 | |
-| H-QF50 | 1 | 1 | |
-| H-ZF1 | 1 | 1 | |
-| H-ZF52A | 1 | 1 | |
-| H-ZF72 | 1 | 1 | |
-| H-ZLAF2 | 1 | 1 | |
-| H-ZLAF55C | 1 | 1 | |
-| H-ZLAF68N | 1 | 1 | |
-| H-ZLAF92 | 1 | 1 | |
-| N-BASF2 | 1 | 1 | |
-| N-LAK10 | 1 | 1 | |
-| N-LASF43 | 1 | 1 | |
-| N-PK51 | 1 | 1 | |
-| N-SF2 | 1 | 1 | |
-| N-SK4 | 1 | 1 | |
-| S-BSL10 | 1 | 1 | |
-| S-BSM2 | 1 | 1 | |
-| S-FPM5 | 1 | 1 | |
-| S-NBM52 | 1 | 1 | |
-| S-NPH85 | 1 | 1 | |
-| S-SK14 | 1 | 1 | |
-| S-TIF4 | 1 | 1 | |
-| S-TIF6 | 1 | 1 | |
-| S-TIM1 | 1 | 1 | |
-| SF13 | 1 | 1 | |
-| SF19 | 1 | 1 | |
-| SF3 | 1 | 1 | |
-| SK12 | 1 | 1 | |
-| SK4 | 1 | 1 | |
-| SK6 | 1 | 1 | |
-| SK7 | 1 | 1 | |
 
 ## Occurrences
 
@@ -239,11 +189,6 @@ or per-lens patent backfills.
 - [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 20: `585594 — barium crown (patent nd=1.58547, nu_d=59.4)`
 - [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 22A: `585594 — barium crown (patent nd=1.58547, nu_d=59.4), XA element`
 
-### 614563 — 2 occurrences
-
-- [NIKON ZOOM-NIKKOR AUTO 80-200mm f/4.5](../../src/lens-data/nikon/NikonAutoZoomNikkor80200mmf45.data.ts) 3: `614563 - SK6 / BSM6 class (historical vendor unresolved)`
-- [SCHNEIDER-KREUZNACH SUPER-ANGULON 75mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderSuperAngulon75mmf56.data.ts) 8: `614563 — SSK-class dense barium crown (Schott historical; no exact public Sellmeier)`
-
 ### 620586 — 2 occurrences
 
 - [NIKON SERIES E 135mm f/2.8](../../src/lens-data/nikon/NikonSeriesE135mmf28.data.ts) 1: `620586 — patent crown glass (nd=1.62041, νd=58.6; no catalog match verified)`
@@ -298,10 +243,6 @@ or per-lens patent backfills.
 
 - [OLYMPUS E.ZUIKO AUTO-T 135mm f/3.5](../../src/lens-data/olympus/OlympusZuiko135mmf35.data.ts) 3: `487698 — FK/FSL low-dispersion crown class (patent nd=1.48749, νd=69.8; no exact modern coefficient-backed match)`
 
-### 498651 — 1 occurrence
-
-- [VIVITAR SERIES 1 35-85mm f/2.8 VMC](../../src/lens-data/vivitar/VivitarSeries13585mmf28.data.ts) 10: `498651 — BK3-type borosilicate crown (no exact public catalog match)`
-
 ### 514530 — 1 occurrence
 
 - [NIKON AF-S NIKKOR 20mm f/1.8 G ED](../../src/lens-data/nikon/NikonNikkorAFS20mmf18G.data.ts) 4: `514530 — patent UV-cure resin (nd=1.51380, νd=53.0)`
@@ -309,10 +250,6 @@ or per-lens patent backfills.
 ### 518523 — 1 occurrence
 
 - [MINOLTA AF 35-105mm f/3.5-4.5 New (v2)](../../src/lens-data/minolta/MinoltaAF35105mmf3545v2.data.ts) 21A: `518523 - thin hybrid aspheric layer (unresolved)`
-
-### 529770 — 1 occurrence
-
-- [SCHNEIDER-KREUZNACH APO-SYMMAR 100mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderAPOSymmar100mmf56.data.ts) 6: `529770 — N-PK51 (Schott phosphate crown; no local Sellmeier)`
 
 ### 531621 — 1 occurrence
 
@@ -398,6 +335,10 @@ or per-lens patent backfills.
 
 - [NIKON AF-P DX NIKKOR 70-300mm f/4.5-6.3 G ED VR](../../src/lens-data/nikon/NikonAFPDX70300mmf4563G.data.ts) 3: `612313 — anomalous-dispersion flint class (patent nd=1.61155, νd=31.26, θgF=0.618; no exact public catalog match)`
 
+### 614563 — 1 occurrence
+
+- [SCHNEIDER-KREUZNACH SUPER-ANGULON 75mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderSuperAngulon75mmf56.data.ts) 8: `614563 — SSK-class dense barium crown (Schott historical; no exact public Sellmeier)`
+
 ### 617443 — 1 occurrence
 
 - [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 27: `617443 — flint/crown-boundary glass (patent coordinate; vendor unspecified)`
@@ -418,25 +359,13 @@ or per-lens patent backfills.
 
 - [MINOLTA MD ROKKOR 45mm f/2](../../src/lens-data/minolta/MinoltaRokkor45mmf2MD.data.ts) 7: `640353 - medium flint (catalog unresolved)`
 
-### 640601 — 1 occurrence
-
-- [NIKON NIKKOR Z 35mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 1: `LaK family (640601, CDGM H-LAK3)`
-
 ### 658397 — 1 occurrence
 
 - [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 25: `658397 — short flint (patent nd=1.65803, nu_d=39.7)`
 
-### 664358 — 1 occurrence
-
-- [CARL ZEISS DISTAGON T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) 3: `BASF2 / N-BASF2 class (Schott, 664358; patent νd retained)`
-
 ### 667311 — 1 occurrence
 
 - [FUJIFILM FUJINON XF 60mm f/2.4 R Macro](../../src/lens-data/fujifilm/FujifilmXF60mmf24R.data.ts) 6: `667311 - dense flint (patent nd=1.66680, vd=31.1; no exact public catalog match)`
-
-### 667330 — 1 occurrence
-
-- [CANON New FD 50mm f/1.2](../../src/lens-data/canon/CanonFDn50f12.data.ts) 5: `Dense flint [667330] — OHARA SF19`
 
 ### 670572 — 1 occurrence
 
@@ -486,17 +415,9 @@ or per-lens patent backfills.
 
 - [VIVITAR SERIES 1 200mm f/3.0 VMC](../../src/lens-data/vivitar/VivitarSeries1200mmf3.data.ts) 10: `713433 — LaF/BaSF boundary glass (no exact public catalog match)`
 
-### 720504 — 1 occurrence
-
-- [CARL ZEISS DISTAGON T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) 10: `LAK10 / N-LAK10 class (Schott, 720504; patent values retained)`
-
 ### 721334 — 1 occurrence
 
 - [MINOLTA AF APO Tele 200mm f/2.8](../../src/lens-data/minolta/MinoltaAF200mmf28.data.ts) 7: `721334 - dense lanthanum flint (catalog unresolved)`
-
-### 729577 — 1 occurrence
-
-- [LAOWA 65mm f/2.8 2× Ultra Macro APO](../../src/lens-data/laowa/Laowa65mmf28MacroAPO.data.ts) 16: `729577 — high-index lanthanum crown (patent nd=1.72916, νd=57.67; H-LAK52 matches nd but not νd)`
 
 ### 738493 — 1 occurrence
 
@@ -533,10 +454,6 @@ or per-lens patent backfills.
 ### 755501 — 1 occurrence
 
 - [MINOLTA MD ROKKOR 45mm f/2](../../src/lens-data/minolta/MinoltaRokkor45mmf2MD.data.ts) 8: `755501 - lanthanum crown (catalog unresolved)`
-
-### 757479 — 1 occurrence
-
-- [OLYMPUS OM J. ZUIKO AUTO-W 24mm f/2](../../src/lens-data/olympus/OlympusZuiko24mmf2J.data.ts) 1: `J-LAF04 class (HIKARI), 757479`
 
 ### 762271 — 1 occurrence
 
@@ -697,172 +614,4 @@ or per-lens patent backfills.
 ### 933209 — 1 occurrence
 
 - [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 24: `933209 — ultra-dense flint (patent nd=1.93323, nu_d=20.9)`
-
-### BK3 — 1 occurrence
-
-- [VIVITAR SERIES 1 35-85mm f/2.8 VMC](../../src/lens-data/vivitar/VivitarSeries13585mmf28.data.ts) 10: `498651 — BK3-type borosilicate crown (no exact public catalog match)`
-
-### E-FPL51 — 1 occurrence
-
-- [NIKON NIKKOR Z 24-70mm f/4 S](../../src/lens-data/nikon/NikonNikkorZ2470mmf4S.data.ts) 11A: `E-FPL51 (HOYA)`
-
-### F7 — 1 occurrence
-
-- [CARL ZEISS PRO-TESSAR 35mm f/3.2](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissProTessar35mmf32.data.ts) 10: `F7 (Schott)`
-
-### H-BAF6 — 1 occurrence
-
-- [ENNA MÜNCHEN LITHAGON 24mm f/4](../../src/lens-data/enna-munchen/EnnaMunchenLithagon24mmf4.data.ts) 13: `H-BaF6 (CDGM) / barium-flint 608/462 class`
-
-### H-K8 — 1 occurrence
-
-- [LAOWA 65mm f/2.8 2× Ultra Macro APO](../../src/lens-data/laowa/Laowa65mmf28MacroAPO.data.ts) 23: `H-K8 (CDGM)`
-
-### H-K9L — 1 occurrence
-
-- [LAOWA 15mm f/4 Wide Angle 1:1 Macro](../../src/lens-data/laowa/Laowa15mmf4Macro.data.ts) 15: `H-K9L (CDGM)`
-
-### H-LAF51 — 1 occurrence
-
-- [SIGMA 50mm f/2.8 (Sigma DP3 Merrill)](../../src/lens-data/sigma/SigmaDP3M50mmf28.data.ts) 10: `H-LAF51 (CDGM) or J-LASF019 (Hikari) — unconfirmed`
-
-### H-LAF6L — 1 occurrence
-
-- [FUJIFILM FUJINON GF 20-35mm f/4 R WR](../../src/lens-data/fujifilm/FujifilmGF2035mmf4.data.ts) 14: `H-LaF6L / lanthanum flint class (757/477)`
-
-### H-LAK3 — 1 occurrence
-
-- [NIKON NIKKOR Z 35mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 1: `LaK family (640601, CDGM H-LAK3)`
-
-### H-LAK52 — 1 occurrence
-
-- [LAOWA 65mm f/2.8 2× Ultra Macro APO](../../src/lens-data/laowa/Laowa65mmf28MacroAPO.data.ts) 16: `729577 — high-index lanthanum crown (patent nd=1.72916, νd=57.67; H-LAK52 matches nd but not νd)`
-
-### H-LAK5A — 1 occurrence
-
-- [LAOWA 15mm f/4 Wide Angle 1:1 Macro](../../src/lens-data/laowa/Laowa15mmf4Macro.data.ts) 8: `H-LAK5A (CDGM)`
-
-### H-LAK7 — 1 occurrence
-
-- [LAOWA 15mm f/4 Wide Angle 1:1 Macro](../../src/lens-data/laowa/Laowa15mmf4Macro.data.ts) 1: `H-LAK7 (CDGM)`
-
-### H-QF50 — 1 occurrence
-
-- [LAOWA 65mm f/2.8 2× Ultra Macro APO](../../src/lens-data/laowa/Laowa65mmf28MacroAPO.data.ts) 2: `H-QF50 (CDGM)`
-
-### H-ZF1 — 1 occurrence
-
-- [LAOWA 15mm f/4 Wide Angle 1:1 Macro](../../src/lens-data/laowa/Laowa15mmf4Macro.data.ts) 18: `H-ZF1 (CDGM)`
-
-### H-ZF52A — 1 occurrence
-
-- [LEICA SUMMILUX 28mm f/1.7 ASPH. (Leica Q, Q2, Q3)](../../src/lens-data/leica/Leica28mmf17.data.ts) 20A: `H-ZF52A (CDGM)`
-
-### H-ZF72 — 1 occurrence
-
-- [LAOWA 58mm f/2.8 2× Ultra-Macro APO](../../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts) 9: `H-ZF72 (CDGM)`
-
-### H-ZLAF2 — 1 occurrence
-
-- [LAOWA 15mm f/4 Wide Angle 1:1 Macro](../../src/lens-data/laowa/Laowa15mmf4Macro.data.ts) 3: `H-ZLAF2 (CDGM)`
-
-### H-ZLAF55C — 1 occurrence
-
-- [LAOWA 58mm f/2.8 2× Ultra-Macro APO](../../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts) 21: `H-ZLAF55C (CDGM)`
-
-### H-ZLAF68N — 1 occurrence
-
-- [LAOWA 58mm f/2.8 2× Ultra-Macro APO](../../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts) 15: `H-ZLAF68N (CDGM)`
-
-### H-ZLAF92 — 1 occurrence
-
-- [LAOWA 58mm f/2.8 2× Ultra-Macro APO](../../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts) 10: `H-ZLAF92 (CDGM)`
-
-### N-BASF2 — 1 occurrence
-
-- [CARL ZEISS DISTAGON T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) 3: `BASF2 / N-BASF2 class (Schott, 664358; patent νd retained)`
-
-### N-LAK10 — 1 occurrence
-
-- [CARL ZEISS DISTAGON T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) 10: `LAK10 / N-LAK10 class (Schott, 720504; patent values retained)`
-
-### N-LASF43 — 1 occurrence
-
-- [NIKON AF-P DX NIKKOR 10-20mm f/4.5-5.6 G VR](../../src/lens-data/nikon/NikonAFPDX1020mmf4556G.data.ts) 5: `J-LASF03 / N-LASF43 class (catalog-equivalent dense lanthanum flint)`
-
-### N-PK51 — 1 occurrence
-
-- [SCHNEIDER-KREUZNACH APO-SYMMAR 100mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderAPOSymmar100mmf56.data.ts) 6: `529770 — N-PK51 (Schott phosphate crown; no local Sellmeier)`
-
-### N-SF2 — 1 occurrence
-
-- [SONY FE 24mm f/1.4 GM](../../src/lens-data/sony/SonyFE24mmf14GM.data.ts) 19: `N-SF2 (SCHOTT)`
-
-### N-SK4 — 1 occurrence
-
-- [ENNA MÜNCHEN ULTRA-LITHAGON 28mm f/3.5](../../src/lens-data/enna-munchen/EnnaMunchenUltraLithagon28mmf35.data.ts) 5: `N-SK4 (SCHOTT)`
-
-### S-BSL10 — 1 occurrence
-
-- [CANON EF 50mm f/1.0 L USM](../../src/lens-data/canon/CanonEF50mmf1L.data.ts) 19: `S-BSL10 (OHARA)`
-
-### S-BSM2 — 1 occurrence
-
-- [NIKON AF-S VR MICRO-NIKKOR 105mm f/2.8 G IF-ED](../../src/lens-data/nikon/NikonAFS105f28G.data.ts) 3: `S-BSM2 (OHARA)`
-
-### S-FPM5 — 1 occurrence
-
-- [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 29A: `S-FPM5 (OHARA)`
-
-### S-NBM52 — 1 occurrence
-
-- [NIKON NIKKOR Z 50mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ50f12.data.ts) 30: `S-NBM52 (OHARA)`
-
-### S-NPH85 — 1 occurrence
-
-- [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 19: `S-NPH85 (OHARA)`
-
-### S-SK14 — 1 occurrence
-
-- [NIKON NIKKOR Z 100-400mm f/4.5-5.6 VR S](../../src/lens-data/nikon/NikonNikkorZ100400f4556.data.ts) 18: `S-SK14 (OHARA)`
-
-### S-TIF4 — 1 occurrence
-
-- [SONY PLANAR T* 50mm f/1.4 ZA SSM](../../src/lens-data/sony/SonyPlanarT50mmf14ZA.data.ts) 9: `S-TIF4 (OHARA)`
-
-### S-TIF6 — 1 occurrence
-
-- [FUJIFILM FUJINON XF 56mm f/1.2 R](../../src/lens-data/fujifilm/FujifilmXF56mmf12.data.ts) 16: `S-TIF6 (OHARA)`
-
-### S-TIM1 — 1 occurrence
-
-- [CANON RF 50mm f/1.2 L USM](../../src/lens-data/canon/CanonRF50mmf12L.data.ts) 21: `S-TIM1 (OHARA)`
-
-### SF13 — 1 occurrence
-
-- [NIKON ULTRA-MICRO-NIKKOR 29.5mm f/1.2](../../src/lens-data/nikon/NikonUltraMicroNikkor295mmf12.data.ts) 1: `SF13 class dense flint (patent e-line index stored)`
-
-### SF19 — 1 occurrence
-
-- [CANON New FD 50mm f/1.2](../../src/lens-data/canon/CanonFDn50f12.data.ts) 5: `Dense flint [667330] — OHARA SF19`
-
-### SF3 — 1 occurrence
-
-- [CARL ZEISS PRO-TESSAR 35mm f/3.2](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissProTessar35mmf32.data.ts) 1: `SF3 (Schott)`
-
-### SK12 — 1 occurrence
-
-- [RODENSTOCK GRANDAGON-N 75mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN75mmf45.data.ts) 7: `SK12 (Schott legacy dense crown)`
-
-### SK4 — 1 occurrence
-
-- [CANON SERENAR 28mm f/3.5](../../src/lens-data/canon/CanonSerenar28mmf35.data.ts) 1: `SK4 (Schott)`
-
-### SK6 — 1 occurrence
-
-- [NIKON ZOOM-NIKKOR AUTO 80-200mm f/4.5](../../src/lens-data/nikon/NikonAutoZoomNikkor80200mmf45.data.ts) 3: `614563 - SK6 / BSM6 class (historical vendor unresolved)`
-
-### SK7 — 1 occurrence
-
-- [CANON SERENAR 35mm f/3.2](../../src/lens-data/canon/CanonSerenar35mmf32.data.ts) 3: `SK7 (Schott)`
 

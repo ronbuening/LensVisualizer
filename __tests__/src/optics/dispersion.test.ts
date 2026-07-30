@@ -543,6 +543,29 @@ describe("glass catalog", () => {
     expect(resolveGlass("BAF3")?.name).toBe("J-BAF3");
   });
 
+  it("evaluates the first-party named-token audit entries", () => {
+    const expected = [
+      { glass: "J-LAF04", vendor: "Hikari", code: "757479", nd: 1.757, vd: 47.86 },
+      { glass: "S-BAL50", vendor: "Ohara", code: "560612", nd: 1.559625, vd: 61.172671 },
+      { glass: "FCD600", vendor: "Hoya", code: "594605", nd: 1.5941, vd: 60.47 },
+      { glass: "NBFD26", vendor: "Hoya", code: "834260", nd: 1.83401, vd: 25.97 },
+      { glass: "H-BaF6", vendor: "CDGM", code: "608462", nd: 1.60801, vd: 46.2 },
+      { glass: "H-K9L", vendor: "CDGM", code: "517642", nd: 1.5168, vd: 64.2 },
+      { glass: "H-ZF1", vendor: "CDGM", code: "648338", nd: 1.64769, vd: 33.84 },
+      { glass: "H-LaF6LA", vendor: "CDGM", code: "757477", nd: 1.757, vd: 47.71 },
+    ] as const;
+    for (const datasheet of expected) {
+      const entry = resolveGlass(datasheet.glass);
+      expect(entry?.name).toBe(datasheet.glass);
+      expect(entry?.vendor).toBe(datasheet.vendor);
+      expect(entry?.code6).toBe(datasheet.code);
+      expect(evaluateSellmeier(entry!, LINE_NM.d)).toBeCloseTo(datasheet.nd, 5);
+      expect(evaluateCatalogAbbeNumber(entry!)).toBeCloseTo(datasheet.vd, 1);
+    }
+    expect(resolveGlass("517642")?.name).toBe("N-BK7");
+    expect(resolveGlass("648338")?.name).toBe("S-TIM22");
+  });
+
   it("evaluates the SUMITA K-SKLD5 molding-state catalog row", () => {
     const entry = resolveGlass("K-SKLD5-M (SUMITA K-SKLD5(M) catalog equivalent)");
     expect(entry?.name).toBe("K-SKLD5-M");

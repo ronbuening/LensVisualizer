@@ -150,7 +150,7 @@ L10 carries substantially more power than the G2 doublet. It is a thick, strongl
 
 ### Group 5: Field Flattener (L11, f = −27.84 mm)
 
-**L11 — Negative Meniscus (f = −27.8 mm)** — both surfaces aspherical (Surfaces 20A and 21A). Glass: H-ZF52A (CDGM) dense flint.
+**L11 — Negative Meniscus (f = −27.8 mm)** — both surfaces aspherical (Surfaces 20A and 21A). The patent gives nd = 1.68250 and νd = 33.00; the prior H-ZF52A annotation is rejected because CDGM's published row is 1.847 / 23.8. This glass remains unmatched.
 
 L11 is the final optical element before the sensor cover glass. Its strong negative power shortens the back focal distance, allowing the overall lens to be more compact, while the strongly concave front surface bends the image field back toward flatness. Surface 20A has K = −1.070 (hyperboloid) — the only non-zero conic constant in the design — providing zone-dependent correction for astigmatism and field curvature at the extreme corners of the full-frame sensor.
 

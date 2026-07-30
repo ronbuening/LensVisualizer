@@ -262,7 +262,7 @@ L4 is biconcave (R₇ < 0, R₈ > 0 from within L4); L5 is biconvex (R₈ > 0, R
 
 An asymmetric biconvex lens with the front surface more strongly curved. EFL = +30.87 mm.
 
-**Glass:** nd = 1.83400, Vd = 37.34. No exact match confirmed in major catalogs. Candidate glasses from secondary sources include **CDGM H-LAF51** or **Hikari J-LASF019** (both at nd = 1.83400, Vd = 37.34), but neither is confirmed for this lens. The identification is uncertain.
+**Glass:** nd = 1.83400, Vd = 37.34. HOYA NBFD10 is an exact coefficient-backed catalog equivalent. The patent does not identify the production supplier or melt.
 
 **Role:** L6 provides the convergence needed to bring the L4+L5 diverging beam into a net-converging state within G1B. Its asymmetry (stronger front surface) contributes coma correction against the doublet's aberration profile. The variable gap d11 is immediately behind L6 — during close focusing, L6 moves with G1 while G2 remains stationary.
 
@@ -368,7 +368,7 @@ For context, the uncorrected thin-lens Petzval sum for the same focal length is 
 | L3 | 1.80610 | 33.27 | Hoya NBFD15 | High | Exact public catalog match |
 | L4 | 1.90366 | 31.32 | Ohara S-LAH95 | High | Exact match |
 | L5 | 1.83481 | 42.72 | Ohara S-LAH55 | High | Exact match |
-| L6 | 1.83400 | 37.34 | CDGM H-LAF51 or Hikari J-LASF019 | Low | No confirmed major-catalog match |
+| L6 | 1.83400 | 37.34 | HOYA NBFD10 catalog equivalent | High | Exact coordinate match; production supplier unspecified |
 | L7 | 1.62004 | 36.30 | Hoya CF6 | Moderate | ΔVd ≈ +0.04 |
 | L8 | 1.84666 | 23.78 | Schott SF57 / Ohara S-TIH53 | High | Exact match |
 | L9 | 1.80420 | 46.50 | Ohara S-LAH65 | Moderate | Δnd = +0.0002 |

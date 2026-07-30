@@ -32,7 +32,7 @@ The patent does not specify an aperture-stop location or clear apertures. For re
 
 ### L1 — Negative Meniscus, concave to object
 
-ne = 1.74687, νd = 27.7. Glass: SF13-class dense flint. f = −275.43 mm scaled.
+ne = 1.74687, νd = 27.7. Glass: S-TIH13-class dense flint. f = −275.43 mm scaled.
 
 L1 is a weak negative meniscus with both radii negative. Its standalone focal length is much longer than the complete lens, so it acts as a correction element rather than as a major power carrier. The patent's first condition constrains r2/r1, confirming that the bending of this element is load-bearing for astigmatism and field-curvature control.
 
@@ -88,7 +88,7 @@ The patent labels the refractive-index column n_e and the Abbe-number column νd
 
 | Element | Patent ne | νd | Identification used | Basis |
 |---|---:|---:|---|---|
-| L1 | 1.74687 | 27.7 | SF13-class dense flint | Legacy SF13 / OHARA S-TIH13-class 741/278 region |
+| L1 | 1.74687 | 27.7 | S-TIH13-class dense flint | Legacy S-TIH13 / OHARA S-TIH13-class 741/278 region |
 | L2 | 1.60752 | 38.1 | Unmatched F5-class e-line flint | D-line catalog row not assigned |
 | L3 | 1.44850 | 67.0 | Unmatched low-index crown | No confident public-catalog match; coded as 449/670 |
 | L4 | 1.69402 | 31.2 | SF8-class dense flint | Legacy SF8 689/313 region |

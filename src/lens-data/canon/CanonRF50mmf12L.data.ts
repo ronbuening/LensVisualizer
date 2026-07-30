@@ -250,7 +250,7 @@ const LENS_DATA = {
       nd: 1.59551,
       vd: 39.24,
       fl: -40.55,
-      glass: "S-TIM1 (OHARA)",
+      glass: "S-TIM8 (OHARA catalog equivalent; production glass unspecified)",
       apd: false,
       apdNote: "",
       dPgF: 0.0023,

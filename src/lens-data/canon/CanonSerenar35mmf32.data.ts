@@ -69,7 +69,7 @@ const LENS_DATA = {
       nd: 1.6073,
       vd: 59.5,
       fl: 22.6,
-      glass: "SK7 (Schott)",
+      glass: "K-SK7 (SUMITA catalog equivalent; production supplier unspecified)",
       apd: false as const,
       cemented: "D1",
       role: "Front doublet crown — strongest element; primary convergence before stop.",
