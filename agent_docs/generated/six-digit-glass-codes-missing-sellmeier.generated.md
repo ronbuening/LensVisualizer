@@ -1,7 +1,7 @@
 # Six-Digit Glass Code Elements Missing Sellmeier Data (auto-generated)
 
 Subset of [six-digit-glass-codes.generated.md](six-digit-glass-codes.generated.md) where no associated
-element surface resolves to trusted catalog Sellmeier data through the nd safety net.
+element surface resolves to trusted catalog Sellmeier data through the reference-line safety net.
 These are the highest-priority code-only rows for catalog additions, aliases, or explicit `Unmatched` notes.
 
 **Regenerate this file** by running `npm test -- sixDigitGlassCodeScan`.
@@ -13,6 +13,28 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 - **481** total code-only elements found
 - **267** elements in this report
 - **117** distinct lens files affected
+- **12** active unreviewed elements have no review-record hit or explicit disposition
+- **52** explicitly unmatched/unidentified elements lack a sidecar or audit-log hit and are recordkeeping follow-ups, not active identity guesses
+
+## Prioritized Unreviewed Queue
+
+This queue excludes sidecar/audit-log review hits and annotations already marked unmatched, unknown, proprietary, or unidentified.
+Tiers are deterministic: A has a local patent and could complete a visible lens; B has a local patent and affects a near-complete visible lens;
+C has a local patent plus repeated impact; D has one local-patent-backed row; E is blocked on a local patent source.
+Completion counts are conditional on finding a source-verified catalog identity or measured line data for every listed occurrence of that code.
+
+| Tier | Code | Active elements / lens files | Visible lenses | Strict surfaces | Completion candidates | Near-complete candidates | Local patent lenses | Representative rows |
+|---|---|---:|---:|---:|---|---|---:|---|
+| A | 728403 | 1 / 1 | 1 | 1 | PENTAX FA 31mm f/1.8 AL Limited | — | 1/1 | [PENTAX FA 31mm f/1.8 AL Limited](../../src/lens-data/pentax/PentaxFA31mmf18ALLtd.data.ts) Element 8 (1.72750 / 40.30) |
+| A | 995293 | 1 / 1 | 1 | 1 | SONY PLANAR T* FE 50mm f/1.4 ZA | — | 1/1 | [SONY PLANAR T* FE 50mm f/1.4 ZA](../../src/lens-data/sony/SonyPlanarFE50mmf14ZA.data.ts) Element 7 (1.99502 / 29.30) |
+| C | 586609 | 2 / 1 | 1 | 2 | — | — | 1/1 | [PENTAX DA* 16-50mm f/2.8 ED AL[IF] SDM](../../src/lens-data/pentax/PentaxDA1650mmf28.data.ts) Element 10 (1.58636 / 60.90)<br>[PENTAX DA* 16-50mm f/2.8 ED AL[IF] SDM](../../src/lens-data/pentax/PentaxDA1650mmf28.data.ts) Element 15 (1.58636 / 60.90) |
+| D | 519573 | 1 / 1 | 1 | 1 | — | — | 1/1 | [ENNA MÜNCHEN LITHAGON 24mm f/4](../../src/lens-data/enna-munchen/EnnaMunchenLithagon24mmf4.data.ts) Element 4 (1.51895 / 57.30) |
+| D | 547460 | 1 / 1 | 1 | 1 | — | — | 1/1 | [PENTAX HD DA* 11-18mm f/2.8 ED DC AW](../../src/lens-data/pentax/PentaxD1118mmF28EDDCWR.data.ts) Element 5 (1.54732 / 46.00) |
+| D | 678322 | 1 / 1 | 1 | 1 | — | — | 1/1 | [SONY FE 12-24mm f/2.8 GM](../../src/lens-data/sony/SonyFE1224mmf28GM.data.ts) L22 focus-group positive (1.67764 / 32.20) |
+| D | 792257 | 1 / 1 | 1 | 1 | — | — | 1/1 | [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) Element 7 (1.79191 / 25.70) |
+| D | 834374 | 1 / 1 | 1 | 1 | — | — | 1/1 | [NIKON AI AF ZOOM-NIKKOR 24-120mm f/3.5-5.6 D IF](../../src/lens-data/nikon/NikonAFNikkor24120mmf3556D.data.ts) Element 14 — L3R3 (1.83400 / 37.40) |
+| E | 569632 | 2 / 1 | 1 | 2 | — | — | 0/1 | [OLYMPUS ZUIKO AUTO-ZOOM 85-250mm f/5](../../src/lens-data/olympus/OlympusZuikoAutoZoom85250mmf5.data.ts) Element 4 (1.56873 / 63.20)<br>[OLYMPUS ZUIKO AUTO-ZOOM 85-250mm f/5](../../src/lens-data/olympus/OlympusZuikoAutoZoom85250mmf5.data.ts) Element 7 (1.56873 / 63.20) |
+| E | 498650 | 1 / 1 | 1 | 1 | — | — | 0/1 | [OLYMPUS ZUIKO AUTO-ZOOM 85-250mm f/5](../../src/lens-data/olympus/OlympusZuikoAutoZoom85250mmf5.data.ts) Element 10 (1.49831 / 65.00) |
 
 ## Codes by Frequency
 

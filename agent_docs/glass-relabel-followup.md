@@ -32,7 +32,23 @@ This file tracks the second bucket plus any cases from the first bucket that nee
 - **226** lenses are fully covered by strict Sellmeier data and **231** are fully covered by trusted chromatic data.
 - `unresolvedGlassScan` reports **419** non-explicit-unmatched annotations and **174** distinct unresolved glass-like
   tokens. The total includes honest proprietary and family-level annotations as well as actionable named tokens.
+- The missing-Sellmeier six-digit report contains **267** code-only elements, now separated into **12** active
+  unreviewed rows, **52** explicit unmatched/unidentified dispositions missing both sidecar and companion-audit hits,
+  and **203** rows with a recorded review.
 - The Phase 2/3 resolved tables below are historical audit trail. Use the generated reports above for the current queue before starting new relabel work; for patent-by-patent execution, start from [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md).
+
+## Resolved Phase 58 — July 2026 prioritized six-digit review queue
+
+The six-digit missing-Sellmeier report now filters reviewed-sidecar hits and explicit unmatched/proprietary
+dispositions out of its active review queue. Companion audit logs are also indexed, preventing already-audited rows
+from reappearing merely because the manual sidecar was not synchronized. The remaining 12 elements are grouped into
+10 code families and ranked in deterministic A-E tiers: visible-lens completion with a local patent, near-complete
+visible-lens impact, repeated impact with a local patent, single local-patent rows, then source-blocked rows.
+
+Two A-tier codes could each complete one visible lens if patent review and first-party coefficient data establish a
+safe identity; one C-tier code covers two elements in one lens. The full frequency and per-lens inventories remain
+below the new queue for audit context, and the consolidated opportunity report now shows only active unreviewed rows
+in Sweep 2. This was a prioritization/tooling pass, so catalog and coverage totals did not change.
 
 ## Resolved Phase 57 — July 2026 native e-line catalog compatibility
 

@@ -110,8 +110,10 @@ interface CodeOpportunity {
   storedNd: number;
   storedVd: number | undefined;
   quality: string;
+  explicitlyUnmatched: boolean;
   localPatent: PatentMatch;
   reviewedStatus: string;
+  auditReviewed: boolean;
 }
 
 interface NamedTokenOpportunity {
@@ -387,18 +389,22 @@ function reviewedSidecarStatus(filePath: string, codes: readonly string[], sidec
   return hits.length > 0 ? "Reviewed sidecar hit" : "No reviewed-sidecar hit";
 }
 
+function hasAuditRecord(filePath: string, codes: readonly string[]): boolean {
+  const auditPath = filePath.replace(/\.data\.ts$/, ".audit.md");
+  if (!existsSync(auditPath)) return false;
+  const auditText = readFileSync(auditPath, "utf8");
+  return codes.some((code) => auditText.includes(code));
+}
+
+function hasReviewRecord(row: CodeOpportunity): boolean {
+  return row.reviewedStatus === "Reviewed sidecar hit" || row.auditReviewed;
+}
+
 function summarizePatentStatus(rows: readonly { localPatent: PatentMatch }[]): string {
   const paths = [...new Set(rows.map((row) => row.localPatent.path).filter((path): path is string => path !== null))];
   if (paths.length > 0) return paths.slice(0, MAX_RELEVANT_PATENTS).join("<br>");
   const statuses = [...new Set(rows.map((row) => row.localPatent.status))];
   return statuses.slice(0, MAX_RELEVANT_PATENTS).join("<br>");
-}
-
-function summarizeReviewedStatus(rows: readonly CodeOpportunity[]): string {
-  const reviewed = rows.filter((row) => row.reviewedStatus === "Reviewed sidecar hit").length;
-  if (reviewed === rows.length) return "All representative rows reviewed";
-  if (reviewed > 0) return `${reviewed}/${rows.length} representative rows reviewed`;
-  return "No reviewed-sidecar hit";
 }
 
 function parseTierAProprietaryRows(patentFiles: readonly string[]): ProprietaryOpportunity[] {
@@ -583,8 +589,10 @@ describe("glass coverage opportunities scan", () => {
             storedNd: element.nd,
             storedVd: element.vd,
             quality,
+            explicitlyUnmatched: isExplicitlyUnmatched(element.glass),
             localPatent,
             reviewedStatus: reviewedSidecarStatus(filePath, codes, reviewedSidecarText),
+            auditReviewed: hasAuditRecord(filePath, codes),
           });
           continue;
         }
@@ -624,8 +632,10 @@ describe("glass coverage opportunities scan", () => {
         return a.missingTrustedSurfaces.length - b.missingTrustedSurfaces.length;
       });
 
+    const activeUnreviewedCodeRows = codeRows.filter((row) => !hasReviewRecord(row) && !row.explicitlyUnmatched);
+    const unindexedCodeDispositions = codeRows.filter((row) => !hasReviewRecord(row) && row.explicitlyUnmatched);
     const codeFrequency = new Map<string, CodeOpportunity[]>();
-    for (const row of codeRows) {
+    for (const row of activeUnreviewedCodeRows) {
       for (const code of row.codes) {
         const list = codeFrequency.get(code) ?? [];
         list.push(row);
@@ -633,6 +643,10 @@ describe("glass coverage opportunities scan", () => {
       }
     }
     const sortedCodeFrequency = [...codeFrequency.entries()].sort((a, b) => {
+      const localPatentDiff =
+        Number(b[1].some((row) => row.localPatent.path !== null)) -
+        Number(a[1].some((row) => row.localPatent.path !== null));
+      if (localPatentDiff !== 0) return localPatentDiff;
       const countDiff = b[1].length - a[1].length;
       if (countDiff !== 0) return countDiff;
       const lensDiff = new Set(b[1].map((row) => row.filePath)).size - new Set(a[1].map((row) => row.filePath)).size;
@@ -695,7 +709,9 @@ describe("glass coverage opportunities scan", () => {
       `- **${relabels.length}** mismatch surfaces in Sweep 1 across **${new Set(relabels.map((row) => row.filePath)).size}** lens files`,
     );
     lines.push(`- **${matchedRelabels}** Sweep 1 surfaces have a matching untracked local patent PDF`);
-    lines.push(`- **${codeRows.length}** code-only missing-Sellmeier elements in Sweep 2`);
+    lines.push(
+      `- **${codeRows.length}** code-only missing-Sellmeier elements in Sweep 2: **${activeUnreviewedCodeRows.length}** active unreviewed, **${unindexedCodeDispositions.length}** explicitly disposed but missing a sidecar hit`,
+    );
     lines.push(
       `- **${namedElementCount}** unresolved named-token elements in Sweep 2B, producing **${namedTokenRows.length}** token occurrences across **${namedTokenFrequency.size}** distinct tokens`,
     );
@@ -743,26 +759,27 @@ describe("glass coverage opportunities scan", () => {
     }
     lines.push("");
 
-    lines.push("## Sweep 2 - Code-Only Missing Sellmeier");
+    lines.push("## Sweep 2 - Active Unreviewed Code-Only Rows");
     lines.push("");
+    lines.push(
+      "Sidecar/audit-log review hits and explicit unmatched/proprietary dispositions are excluded. The dedicated six-digit missing-Sellmeier report provides the full impact-ranked A-E queue.",
+    );
     lines.push(
       "Add catalog entries only when public coefficient-backed vendor data is available and `assertCatalogConsistent` passes.",
     );
     lines.push("");
-    lines.push("| Code | Elements | Lens files | localPatentStatus | reviewedSidecarStatus | Representative rows |");
-    lines.push("|---|---:|---:|---|---|---|");
+    lines.push("| Code | Active elements | Lens files | localPatentStatus | Representative rows |");
+    lines.push("|---|---:|---:|---|---|");
     for (const [code, rows] of sortedCodeFrequency.slice(0, TOP_CODE_COUNT)) {
       const lensCount = new Set(rows.map((row) => row.filePath)).size;
       const reps = rows
         .slice(0, 3)
         .map(
           (row) =>
-            `[${row.lensName}](../../${row.filePath}) ${row.elementName} (${row.storedNd.toFixed(5)} / ${row.storedVd?.toFixed(2) ?? "?"})`,
+            `[${escapeTableCell(row.lensName)}](../../${row.filePath}) ${escapeTableCell(row.elementName)} (${row.storedNd.toFixed(5)} / ${row.storedVd?.toFixed(2) ?? "?"})`,
         )
         .join("<br>");
-      lines.push(
-        `| ${code} | ${rows.length} | ${lensCount} | ${summarizePatentStatus(rows)} | ${summarizeReviewedStatus(rows)} | ${reps} |`,
-      );
+      lines.push(`| ${code} | ${rows.length} | ${lensCount} | ${summarizePatentStatus(rows)} | ${reps} |`);
     }
     if (sortedCodeFrequency.length > TOP_CODE_COUNT) {
       lines.push("");

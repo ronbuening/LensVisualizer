@@ -45,6 +45,7 @@ interface PatentMatch {
 interface CodeOnlyElement {
   lensKey: string;
   lensName: string;
+  visible: boolean;
   patentNumber: string | null;
   filePath: string;
   elementId: number;
@@ -60,8 +61,24 @@ interface CodeOnlyElement {
   catalogNd: number | null;
   ndDiff: number | null;
   hasSellmeier: boolean;
+  lensNonAirSurfaces: number;
+  lensSellmeierSurfaces: number;
+  explicitlyUnmatched: boolean;
   localPatent: PatentMatch;
   reviewedStatus: string;
+  auditReviewed: boolean;
+}
+
+interface PrioritizedCode {
+  code: string;
+  tier: "A" | "B" | "C" | "D" | "E";
+  rows: CodeOnlyElement[];
+  lensCount: number;
+  visibleLensCount: number;
+  localPatentLensCount: number;
+  strictSurfaceGain: number;
+  completionCandidates: string[];
+  nearCompleteCandidates: string[];
 }
 
 function toRepoRelativeLensPath(modulePath: string): string {
@@ -188,6 +205,10 @@ function isCodeOnlyGlassAnnotation(glassString: string): boolean {
   return extractSixDigitCodes(glassString).length > 0 && !hasActualGlassTypeToken(glassString);
 }
 
+function isExplicitlyUnmatched(glassString: string): boolean {
+  return /\b(unmatched|unknown|proprietary|unidentified)\b/i.test(glassString);
+}
+
 function formatNdDiff(diff: number | null): string {
   if (diff === null) return "";
   const sign = diff >= 0 ? "+" : "";
@@ -245,6 +266,17 @@ function reviewedSidecarStatus(filePath: string, codes: readonly string[], sidec
   return hits.length > 0 ? "Reviewed sidecar hit" : "No reviewed-sidecar hit";
 }
 
+function hasAuditRecord(filePath: string, codes: readonly string[]): boolean {
+  const auditPath = filePath.replace(/\.data\.ts$/, ".audit.md");
+  if (!existsSync(auditPath)) return false;
+  const auditText = readFileSync(auditPath, "utf8");
+  return codes.some((code) => auditText.includes(code));
+}
+
+function hasReviewRecord(row: CodeOnlyElement): boolean {
+  return row.reviewedStatus === "Reviewed sidecar hit" || row.auditReviewed;
+}
+
 function summarizePatentStatus(rows: readonly CodeOnlyElement[]): string {
   const paths = [...new Set(rows.map((row) => row.localPatent.path).filter((path): path is string => path !== null))];
   if (paths.length > 0) return paths.slice(0, MAX_RELEVANT_PATENTS).join("<br>");
@@ -259,6 +291,105 @@ function summarizeReviewedStatus(rows: readonly CodeOnlyElement[]): string {
   return "No reviewed-sidecar hit";
 }
 
+function prioritizedUnreviewedCodes(rows: readonly CodeOnlyElement[]): PrioritizedCode[] {
+  const activeRows = rows.filter((row) => !hasReviewRecord(row) && !row.explicitlyUnmatched);
+  const byCode = new Map<string, CodeOnlyElement[]>();
+  for (const row of activeRows) {
+    for (const code of row.codes) {
+      const codeRows = byCode.get(code) ?? [];
+      codeRows.push(row);
+      byCode.set(code, codeRows);
+    }
+  }
+
+  return [...byCode.entries()]
+    .map<PrioritizedCode>(([code, codeRows]) => {
+      const byLens = new Map<string, CodeOnlyElement[]>();
+      for (const row of codeRows) {
+        const lensRows = byLens.get(row.filePath) ?? [];
+        lensRows.push(row);
+        byLens.set(row.filePath, lensRows);
+      }
+
+      let visibleLensCount = 0;
+      let localPatentLensCount = 0;
+      let strictSurfaceGain = 0;
+      const completionCandidates: string[] = [];
+      const nearCompleteCandidates: string[] = [];
+      for (const lensRows of byLens.values()) {
+        const first = lensRows[0];
+        const lensStrictGain = lensRows.reduce(
+          (count, row) => count + row.surfaceRefs.filter((surface) => surface.quality !== "sellmeier").length,
+          0,
+        );
+        strictSurfaceGain += lensStrictGain;
+        if (first.localPatent.path !== null) localPatentLensCount++;
+        if (!first.visible) continue;
+        visibleLensCount++;
+
+        const missingSellmeier = first.lensNonAirSurfaces - first.lensSellmeierSurfaces;
+        const currentCoverage = first.lensSellmeierSurfaces / Math.max(1, first.lensNonAirSurfaces);
+        if (lensStrictGain >= missingSellmeier) {
+          completionCandidates.push(first.lensName);
+        } else if (missingSellmeier <= 2 && currentCoverage >= 0.8) {
+          nearCompleteCandidates.push(first.lensName);
+        }
+      }
+
+      const tier: PrioritizedCode["tier"] =
+        localPatentLensCount > 0 && completionCandidates.length > 0
+          ? "A"
+          : localPatentLensCount > 0 && nearCompleteCandidates.length > 0
+            ? "B"
+            : localPatentLensCount > 0 && (codeRows.length > 1 || byLens.size > 1)
+              ? "C"
+              : localPatentLensCount > 0
+                ? "D"
+                : "E";
+      return {
+        code,
+        tier,
+        rows: codeRows,
+        lensCount: byLens.size,
+        visibleLensCount,
+        localPatentLensCount,
+        strictSurfaceGain,
+        completionCandidates: completionCandidates.sort((a, b) => a.localeCompare(b)),
+        nearCompleteCandidates: nearCompleteCandidates.sort((a, b) => a.localeCompare(b)),
+      };
+    })
+    .sort(
+      (a, b) =>
+        a.tier.localeCompare(b.tier) ||
+        b.completionCandidates.length - a.completionCandidates.length ||
+        b.nearCompleteCandidates.length - a.nearCompleteCandidates.length ||
+        b.localPatentLensCount - a.localPatentLensCount ||
+        b.strictSurfaceGain - a.strictSurfaceGain ||
+        b.lensCount - a.lensCount ||
+        a.code.localeCompare(b.code),
+    );
+}
+
+function summarizeLensNames(names: readonly string[]): string {
+  if (names.length === 0) return "—";
+  const shown = names.slice(0, 3).map((name) => name.replace(/\|/g, "\\|"));
+  const suffix = names.length > shown.length ? `<br>+${names.length - shown.length} more` : "";
+  return shown.join("<br>") + suffix;
+}
+
+function representativeRows(rows: readonly CodeOnlyElement[]): string {
+  return rows
+    .slice()
+    .sort((a, b) => a.lensName.localeCompare(b.lensName) || a.elementId - b.elementId)
+    .slice(0, 3)
+    .map(
+      (row) =>
+        `[${row.lensName.replace(/\|/g, "\\|")}](../../${row.filePath}) ${(row.elementLabel || row.elementName).replace(/\|/g, "\\|")} ` +
+        `(${row.storedNd.toFixed(5)} / ${row.storedVd?.toFixed(2) ?? "?"})`,
+    )
+    .join("<br>");
+}
+
 function renderReport(options: {
   title: string;
   description: string[];
@@ -266,6 +397,7 @@ function renderReport(options: {
   rows: readonly CodeOnlyElement[];
   totalLenses: number;
   totalCodeOnlyElements: number;
+  includePrioritizedUnreviewedQueue?: boolean;
 }): string {
   const sortedRows = sortRows(options.rows);
   const affectedLenses = new Set(sortedRows.map((row) => row.filePath));
@@ -284,6 +416,16 @@ function renderReport(options: {
   lines.push(`- **${options.totalCodeOnlyElements}** total code-only elements found`);
   lines.push(`- **${sortedRows.length}** elements in this report`);
   lines.push(`- **${affectedLenses.size}** distinct lens files affected`);
+  if (options.includePrioritizedUnreviewedQueue) {
+    const activeUnreviewed = sortedRows.filter((row) => !hasReviewRecord(row) && !row.explicitlyUnmatched);
+    const unindexedDispositions = sortedRows.filter((row) => !hasReviewRecord(row) && row.explicitlyUnmatched);
+    lines.push(
+      `- **${activeUnreviewed.length}** active unreviewed elements have no review-record hit or explicit disposition`,
+    );
+    lines.push(
+      `- **${unindexedDispositions.length}** explicitly unmatched/unidentified elements lack a sidecar or audit-log hit and are recordkeeping follow-ups, not active identity guesses`,
+    );
+  }
   lines.push("");
 
   if (sortedRows.length === 0) {
@@ -291,6 +433,35 @@ function renderReport(options: {
     lines.push("");
     lines.push("No element glass annotations match this report's criteria.");
     return lines.join("\n") + "\n";
+  }
+
+  if (options.includePrioritizedUnreviewedQueue) {
+    const priorityRows = prioritizedUnreviewedCodes(sortedRows);
+    lines.push("## Prioritized Unreviewed Queue");
+    lines.push("");
+    lines.push(
+      "This queue excludes sidecar/audit-log review hits and annotations already marked unmatched, unknown, proprietary, or unidentified.",
+    );
+    lines.push(
+      "Tiers are deterministic: A has a local patent and could complete a visible lens; B has a local patent and affects a near-complete visible lens;",
+    );
+    lines.push(
+      "C has a local patent plus repeated impact; D has one local-patent-backed row; E is blocked on a local patent source.",
+    );
+    lines.push(
+      "Completion counts are conditional on finding a source-verified catalog identity or measured line data for every listed occurrence of that code.",
+    );
+    lines.push("");
+    lines.push(
+      "| Tier | Code | Active elements / lens files | Visible lenses | Strict surfaces | Completion candidates | Near-complete candidates | Local patent lenses | Representative rows |",
+    );
+    lines.push("|---|---|---:|---:|---:|---|---|---:|---|");
+    for (const row of priorityRows) {
+      lines.push(
+        `| ${row.tier} | ${row.code} | ${row.rows.length} / ${row.lensCount} | ${row.visibleLensCount} | ${row.strictSurfaceGain} | ${summarizeLensNames(row.completionCandidates)} | ${summarizeLensNames(row.nearCompleteCandidates)} | ${row.localPatentLensCount}/${row.lensCount} | ${representativeRows(row.rows)} |`,
+      );
+    }
+    lines.push("");
   }
 
   const frequency = codeFrequency(sortedRows);
@@ -351,6 +522,7 @@ describe("six-digit glass-code scan", () => {
       const raw = mod.default;
       if (!raw?.key) continue;
       const data: LensData = { ...LENS_DEFAULTS, ...raw } as LensData;
+      const visible = data.visible !== false;
       const patentNumber = extractPatentNumber(data.subtitle);
       const localPatent = findLocalPatent(patentNumber, patentFiles);
       totalLenses++;
@@ -363,6 +535,10 @@ describe("six-digit glass-code scan", () => {
       }
 
       const filePath = toRepoRelativeLensPath(path);
+      const lensNonAirSurfaces = L.S.filter((surface) => surface.nd !== 1.0).length;
+      const lensSellmeierSurfaces = L.S.filter(
+        (surface, index) => surface.nd !== 1.0 && L.indexByIdx?.[index]?.quality === "sellmeier",
+      ).length;
 
       for (const element of L.elements) {
         if (!element.glass || !isCodeOnlyGlassAnnotation(element.glass)) continue;
@@ -390,6 +566,7 @@ describe("six-digit glass-code scan", () => {
         rows.push({
           lensKey: data.key,
           lensName: data.name ?? data.key,
+          visible,
           patentNumber,
           filePath,
           elementId: element.id,
@@ -405,8 +582,12 @@ describe("six-digit glass-code scan", () => {
           catalogNd,
           ndDiff: catalogNd === null ? null : catalogNd - element.nd,
           hasSellmeier,
+          lensNonAirSurfaces,
+          lensSellmeierSurfaces,
+          explicitlyUnmatched: isExplicitlyUnmatched(element.glass),
           localPatent,
           reviewedStatus: reviewedSidecarStatus(filePath, extractSixDigitCodes(element.glass), reviewedSidecarText),
+          auditReviewed: hasAuditRecord(filePath, extractSixDigitCodes(element.glass)),
         });
       }
     }
@@ -446,16 +627,21 @@ describe("six-digit glass-code scan", () => {
         title: "Six-Digit Glass Code Elements Missing Sellmeier Data",
         description: [
           "Subset of [six-digit-glass-codes.generated.md](six-digit-glass-codes.generated.md) where no associated",
-          "element surface resolves to trusted catalog Sellmeier data through the nd safety net.",
+          "element surface resolves to trusted catalog Sellmeier data through the reference-line safety net.",
           "These are the highest-priority code-only rows for catalog additions, aliases, or explicit `Unmatched` notes.",
         ],
         regenerateCommand: "npm test -- sixDigitGlassCodeScan",
         rows: noSellmeierRows,
         totalLenses,
         totalCodeOnlyElements: rows.length,
+        includePrioritizedUnreviewedQueue: true,
       }),
     );
 
+    const prioritized = prioritizedUnreviewedCodes(noSellmeierRows);
+    expect(prioritized.every((group) => group.rows.every((row) => !row.explicitlyUnmatched))).toBe(true);
+    expect(prioritized.every((group) => group.rows.every((row) => !hasReviewRecord(row)))).toBe(true);
+    expect(prioritized.map((group) => group.tier).join("")).toMatch(/^A*B*C*D*E*$/);
     expect(totalLenses).toBeGreaterThan(0);
   });
 });
