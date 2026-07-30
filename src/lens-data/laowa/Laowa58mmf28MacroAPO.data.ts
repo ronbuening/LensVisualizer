@@ -100,7 +100,7 @@ const LENS_DATA = {
       nd: 1.72916,
       vd: 54.67,
       fl: 73.7,
-      glass: "H-LAK53A (CDGM)",
+      glass: "TAC8 (HOYA catalog-equivalent to patent 729547; supplier not identified)",
       apd: false,
       role: "Positive meniscus convex to object; shares convergence burden with L3, controls coma",
     },

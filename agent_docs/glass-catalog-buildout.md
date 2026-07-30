@@ -9,6 +9,13 @@ approximation. Current optics-engine boundaries are summarized in
 
 The catalog currently has **414 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
 
+The July 30, 2026 Phase 48 pass audited the unsafe `S-NPH7`, plain `H-LAF3`, and `H-LAK53A` annotations one row at a
+time. Six exact-coordinate rows now use existing coefficient-backed equivalents: TAFD40 (001255), S-LAH99
+(001291, also selected by patent partial dispersion), historical PBH21 (923209), N-LASF44 (804465), N-LAK33B
+(755523), and TAC8 (729547). The Sony `2.00009 / 16.5` and Nikon `1.82080 / 42.51` rows are explicitly unmatched
+because no public coefficient row reproduces their patent coordinates closely enough. Strict coverage rose from 4600
+to 4606 surfaces and trusted coverage from 4614 to 4620 without expanding the 414-entry catalog.
+
 The July 30, 2026 Phase 47 pass recovered four legacy-name elements through existing coefficient-backed catalog
 equivalents. Two historical Schott `SK18` rows in the Canon Serenar 50mm f/1.8 now use SUMITA K-SK18, and two
 `F8`-coordinate rows use HOYA E-F8. Each annotation leaves the patent supplier unspecified. The Nikon Ultra-Micro
@@ -418,7 +425,7 @@ This pass also corrected the S-LAH88 `code6` value from `916316` to `917316`, ma
 | ★ FK3 | Schott | 2 | Legacy fluor crown from Schott 2017 Zemax data |
 | ★ N-BALF5 | Schott | 2 | Barium light flint |
 
-`F7`, `SK7`, `SK18`, `H-LAF3`, and `H-ZLAF4A` remain unresolved after this pass because the checked public catalog sources did not provide an exact coefficient-backed row. `BSC3` remained unresolved at the time but was later routed to Hoya E-C3 in Phase 23. `TAFD35L` was added as an alias to the already-cataloged `TAFD35` 911/353 optical constants rather than duplicating an entry.
+`F7`, `SK7`, `SK18`, `H-LAF3`, and `H-ZLAF4A` remained unresolved after this historical pass because the checked public catalog sources did not provide an exact coefficient-backed row. Later per-lens work recovered `SK18` through a catalog equivalent and split the plain `H-LAF3` cases between one exact equivalent and one honest unmatched row. `BSC3` remained unresolved at the time but was later routed to Hoya E-C3 in Phase 23. `TAFD35L` was added as an alias to the already-cataloged `TAFD35` 911/353 optical constants rather than duplicating an entry.
 
 **Phase 13 additions** (May 2026 — next-five glass relabel audit; all entries round-trip through `assertCatalogConsistent`; sourced from refractiveindex.info mirrors of HOYA/Ohara Zemax data so patent-code rows can resolve to catalog glass instead of six-digit fallbacks):
 
@@ -571,7 +578,7 @@ Phase 9 deliberately left several high-frequency names unresolved because their 
 | ★ NBFD3 | Hoya | 8 | Added in Phase 10. Current annotations still span several nd/vd regions, so mismatch rows must be relabeled or marked unmatched per lens. |
 | ★ TAFD40 | Hoya | 3 | Added in Phase 7 as formula-3 polynomial |
 | S-TIF6 | Ohara | 2 | **Skip** — not in refractiveindex.info 2017 catalog |
-| S-NPH7 | Ohara | 6 | **Skip for direct add** — public Ohara tables list S-NPH7 as nd=1.77830/vd=23.91, but current annotations use high-index nd≈2.0 values; needs per-lens relabeling |
+| S-NPH7 | Ohara | 6 | **Skip for direct add** — public Ohara tables list S-NPH7 as nd=1.77830/vd=23.91, while the high-index annotations used unrelated coordinates; Phase 48 completed their per-lens relabel/unmatched audit |
 | N-SK18 | Schott | 2 | **Skip** — not in refractiveindex.info 2017 catalog |
 
 **Phase 4 additions not in the original table** (sourced from survey of 127 lens files, Apr 2026):
@@ -694,6 +701,6 @@ The catalog never needs to be exhaustive. Diminishing returns kick in after the 
 
 1. The headline regression cases (Voigtländer APO-Lanthar 50/2, Leica APO 35/2 / 43/2) hit Sellmeier on every glass surface.
 2. `summarizeDispersionQuality(L)` returns `"sellmeier"` (not `"abbe"`) for the great majority of catalog lenses.
-3. Remaining unmatched glasses are genuinely proprietary (Sumita unidentified, "anomalous high-index flint" without a catalog name), or are catalog names used inconsistently across multiple nd/vd regions (notably NBFD3, TAFD25, and the current S-NPH7 annotations), or are absent from the rii.info 2017 archive — those should be resolved per lens or backfilled with patent-published `nC`/`nF`/`ng`.
+3. Remaining unmatched glasses are genuinely proprietary (Sumita unidentified, "anomalous high-index flint" without a catalog name), or are catalog names used inconsistently across multiple nd/vd regions (notably NBFD3 and TAFD25), or are absent from the rii.info 2017 archive — those should be resolved per lens or backfilled with patent-published `nC`/`nF`/`ng`.
 
 For per-lens audits that consume the catalog (relabeling, mismatch resolution, `dPgF`/line-index enrichment), follow [lens-patent-audit.md](lens-patent-audit.md).

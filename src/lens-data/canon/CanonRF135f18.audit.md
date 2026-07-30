@@ -125,3 +125,9 @@ No APO language added or removed — no dPgF or line-index data available from t
 - **770297 glass:** Resolved in the 2026-06-04 source pass as HOYA NBFD29.
 - **N-SF66 / E-FDS1 (923/209):** Appears in multiple Canon and Nikon files. Schott N-SF66 Sellmeier is publicly available. Adding it to the catalog would upgrade L8 and L10 from Abbe approx to full Sellmeier.
 - **S-LAH58 family (911/353):** Resolved by existing HOYA TAFD35 catalog data where the stored nd/vd pair matches the TAFD35 row.
+
+## 2026-07-30 — Unsafe named-token cleanup
+
+- Replaced L14's unsupported `S-NPH7 (OHARA)` label with `TAFD40`, the coefficient-backed HOYA catalog equivalent for code 001255 and the patent's 2.00069 / 25.5 coordinate.
+- The patent does not name the glass supplier, so the new annotation records equivalence rather than asserting that Canon used HOYA glass.
+- Synchronized the analysis; no prescription geometry or authored nd/νd values changed.

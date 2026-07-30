@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **488** lenses scanned
 - **5360** non-air surfaces examined
 - **5365** element glass declarations examined
-- **468** non-explicit-unmatched annotations did not resolve
-- **206** distinct unresolved glass-like tokens found
+- **460** non-explicit-unmatched annotations did not resolve
+- **202** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -21,7 +21,6 @@ or per-lens patent backfills.
 | 493836 | 6 | 2 | |
 | 773497 | 4 | 2 | |
 | 863252 | 4 | 2 | |
-| S-NPH7 | 4 | 4 | |
 | 516565 | 3 | 1 | |
 | 585587 | 3 | 1 | |
 | 670575 | 3 | 2 | |
@@ -45,13 +44,10 @@ or per-lens patent backfills.
 | 813252 | 2 | 1 | |
 | 856401 | 2 | 1 | |
 | F7 | 2 | 2 | |
-| H-LAF3 | 2 | 2 | |
-| H-LAK53A | 2 | 2 | |
 | H-ZBAF4 | 2 | 1 | |
 | H-ZLAF4A | 2 | 1 | |
 | S-LAM73 | 2 | 1 | |
 | SK3 | 2 | 2 | |
-| 182080 | 1 | 1 | |
 | 487698 | 1 | 1 | |
 | 498650 | 1 | 1 | |
 | 498651 | 1 | 1 | |
@@ -250,13 +246,6 @@ or per-lens patent backfills.
 - [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 23: `863252 — dense flint (patent nd=1.86252, νd=25.2)`
 - [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 32: `863252 — dense flint (patent nd=1.86252, νd=25.2)`
 
-### S-NPH7 — 4 occurrences
-
-- [CANON RF 135mm f/1.8 L IS USM](../../src/lens-data/canon/CanonRF135f18.data.ts) 24: `S-NPH7 (OHARA)`
-- [CANON RF 50mm f/1.2 L USM](../../src/lens-data/canon/CanonRF50mmf12L.data.ts) 4: `S-NPH7 (OHARA)`
-- [PANASONIC LUMIX S 20-60mm f/3.5-5.6](../../src/lens-data/panasonic/PanasonicLumixS2060mmf3556.data.ts) 20: `S-NPH7 (OHARA)`
-- [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 31: `S-NPH7 (OHARA)`
-
 ### 516565 — 3 occurrences
 
 - [PANASONIC LUMIX S 35mm f/1.8](../../src/lens-data/panasonic/PanasonicS35mmf18.data.ts) 13A: `516565 — PGM moldable crown (patent nd=1.51602, νd=56.5; no exact public catalog match)`
@@ -378,16 +367,6 @@ or per-lens patent backfills.
 - [CANON SERENAR 28mm f/3.5](../../src/lens-data/canon/CanonSerenar28mmf35.data.ts) 4: `F7 (Schott)`
 - [CARL ZEISS PRO-TESSAR 35mm f/3.2](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissProTessar35mmf32.data.ts) 10: `F7 (Schott)`
 
-### H-LAF3 — 2 occurrences
-
-- [LAOWA 15mm f/4 Wide Angle 1:1 Macro](../../src/lens-data/laowa/Laowa15mmf4Macro.data.ts) 16: `H-LAF3 (CDGM)`
-- [NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) 32: `Lanthanum flint (182080/4251, uncertain — possibly CDGM H-LAF3)`
-
-### H-LAK53A — 2 occurrences
-
-- [CANON RF 20mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF20mmf14LVCM.data.ts) 7: `H-LaK53A (CDGM)`
-- [LAOWA 58mm f/2.8 2× Ultra-Macro APO](../../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts) 7: `H-LAK53A (CDGM)`
-
 ### H-ZBAF4 — 2 occurrences
 
 - [CANON RF 20mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF20mmf14LVCM.data.ts) 17: `H-ZBaF4 (CDGM, close match)`
@@ -407,10 +386,6 @@ or per-lens patent backfills.
 
 - [RODENSTOCK GRANDAGON-N 75mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN75mmf45.data.ts) 8: `SK3 (Schott legacy dense crown)`
 - [RODENSTOCK GRANDAGON-N 90mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN90mmf45.data.ts) 8: `SK3 / H-ZK4 class (Schott/CDGM equivalent)`
-
-### 182080 — 1 occurrence
-
-- [NIKON NIKKOR Z 24-200mm f/4-6.3 VR](../../src/lens-data/nikon/NikonNikkorZ24200mmf463VR.data.ts) 32: `Lanthanum flint (182080/4251, uncertain — possibly CDGM H-LAF3)`
 
 ### 487698 — 1 occurrence
 

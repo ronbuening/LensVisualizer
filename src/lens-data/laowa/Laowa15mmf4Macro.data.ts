@@ -155,7 +155,7 @@ const LENS_DATA = {
       nd: 1.8042,
       vd: 46.5,
       fl: -9.6,
-      glass: "H-LAF3 (CDGM)",
+      glass: "N-LASF44 (Schott catalog-equivalent to patent 804465; supplier not identified)",
       apd: false,
       cemented: "D2",
       role: "Negative flint in achromatic doublet; net doublet f ≈ −34.7 mm provides chromatically corrected divergence",

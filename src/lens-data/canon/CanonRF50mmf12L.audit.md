@@ -92,3 +92,9 @@ Figure / SD check:
 
 - Rendered Figure 3 from the local PDF, page 4. Figure 3 is the matching Example 2 cross-section.
 - The patent text does not publish effective diameters. The stored SD profile visually matches the f/1.2 figure envelope, with the largest front elements, a narrowed stop-adjacent front group, and a broad rear group. No SD edits were made.
+
+## 2026-07-30 - Unsafe named-token cleanup
+
+- Replaced G3's unsupported `S-NPH7 (OHARA)` label with coefficient-backed OHARA `S-LAH99`, catalog code 001291.
+- S-LAH99 reproduces the patent's 2.00100 / 29.13 coordinate, and its published PgF=0.5997 agrees with the patent-derived PgF=0.5998 from ΔθgF=+0.0050. The same-coordinate HOYA TAFD55 row has PgF=0.5986.
+- The patent still does not identify the production supplier, so the data calls S-LAH99 a catalog equivalent. No prescription geometry changed.

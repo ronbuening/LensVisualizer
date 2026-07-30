@@ -68,3 +68,9 @@ The solve treats the patent's published direction as authoritative and estimates
 - Rechecked JP 2021-179551 A Numerical Example 2 surface 3; stored `R`, `d`, `nd=1.90366`, and `νd=31.30` agree with the patent.
 - Relabeled L2 from `S-LAH93` to OHARA `S-LAH95`, the exact 904313 row.
 - Synchronized the analysis and removed unsupported cost/specific-gravity claims tied to the old identification. No geometry changed.
+
+## 2026-07-30 - Unsafe named-token cleanup
+
+- Replaced L11's unsupported `S-NPH7 (OHARA)` label with discontinued OHARA `PBH21`, the exact coefficient-backed 923209 catalog row for the patent's 1.92286 / 20.90 coordinate.
+- Kept the production supplier unspecified because Numerical Example 2 publishes nd/νd but not a glass maker.
+- Synchronized the analysis and source list; no prescription geometry changed.

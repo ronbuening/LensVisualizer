@@ -57,7 +57,7 @@ The third of the three consecutive front negative lenses, and the only Super UD 
 
 ### G4+G5 — Cemented Doublet (positive net, f = +56.66 mm)
 
-**G4** — Biconvex positive. nd = 1.75500, νd = 52.3. Glass: H-LaK53A (CDGM) — lanthanum crown. f = +24.46 mm.
+**G4** — Biconvex positive. nd = 1.75500, νd = 52.3. Glass: N-LAK33B catalog equivalent (Schott, code 755523; patent supplier not identified) — lanthanum crown. f = +24.46 mm.
 
 **G5** — Negative meniscus, concave to object. nd = 1.85478, νd = 24.8. Glass: S-NBH56 (Ohara) — dense niobium flint. f = −42.84 mm. θgF = 0.6122 (patent Table 2).
 
@@ -124,7 +124,7 @@ Glass identification was checked against manufacturer catalog data from Ohara, H
 | G1 | 1.60311 | 60.6 | S-BSM14 | Ohara | 0.00000 | −0.02 | Exact |
 | G2 | 1.58313 | 59.4 | J-SK12 | Hikari | 0.00000 | 0.00 | Exact |
 | G3 | 1.43875 | 94.7 | S-FPL55 | Ohara | 0.00000 | +0.08 | Exact |
-| G4 | 1.75500 | 52.3 | H-LaK53A | CDGM | 0.00000 | 0.00 | Exact |
+| G4 | 1.75500 | 52.3 | N-LAK33B catalog equivalent | Supplier not identified | 0.00000 | 0.00 | Exact |
 | G5 | 1.85478 | 24.8 | S-NBH56 | Ohara | 0.00001 | +0.01 | Exact |
 | G6 | 1.90043 | 37.4 | TAFD37A | Hoya | 0.00000 | +0.04 | Exact |
 | G7 | 1.54072 | 47.2 | S-TIL2 | Ohara | 0.00000 | −0.01 | Exact |
@@ -251,4 +251,4 @@ The patent's prior-art reference to JP 2023-008471 (¶0002) describes a three-gr
 
 - US 2025/0389929 A1, "Optical System and Imaging Apparatus Including Same," Saito, Canon Kabushiki Kaisha, published Dec. 25, 2025. Primary source for all prescription data, conditional expressions, and design rationale.
 - Canon official specifications: Canon's regional RF 20mm F1.4L VCM specification pages. Source for production full-frame coverage, 84°/62°/94° angle of view, 15/11 element-group count, 1× Super UD / 2× UD / 1× BR / 2× GMo special optics, 0.20 m MFD, 0.19× maximum magnification, 11-blade diaphragm, and absence of optical image stabilization.
-- Glass catalogs: Ohara (S-BSM14, S-FPL55, S-NBH56, S-TIL2, S-LAH65VS), Hoya (TAFD37A, TAFD40-W, NBFD29, FCD515), Hikari (J-SK12, J-FK01A), CDGM (H-LaK53A, H-ZBaF4). Accessed via the `opticalglass` Python library for catalog cross-referencing.
+- Glass catalogs: Ohara (S-BSM14, S-FPL55, S-NBH56, S-TIL2, S-LAH65VS), Hoya (TAFD37A, TAFD40-W, NBFD29, FCD515), Hikari (J-SK12, J-FK01A), Schott (N-LAK33B), and CDGM (H-ZBaF4). Accessed via the `opticalglass` Python library for catalog cross-referencing.

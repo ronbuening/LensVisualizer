@@ -81,7 +81,7 @@ The aperture stop is located in the air space between the SF and MF groups, at s
 ### L7 — Cemented Doublet (Negative)
 
 **L7a:** $n_d = 1.51680$, $\nu_d = 64.20$. Glass: H-K9L (CDGM) — borosilicate crown (N-BK7 equivalent, Schott). $f = +15.9$ mm.
-**L7b:** $n_d = 1.80420$, $\nu_d = 46.50$. Glass: H-LAF3 (CDGM) — lanthanum flint (LaF3 equivalent, Schott). $f = -9.6$ mm.
+**L7b:** $n_d = 1.80420$, $\nu_d = 46.50$. Glass: N-LASF44 catalog equivalent (Schott, code 804465; patent supplier not identified) — lanthanum flint. $f = -9.6$ mm.
 **Combined doublet:** $f \approx -34.7$ mm.
 
 L7 is a classic achromatic doublet in the negative sense: a positive crown (L7a) cemented to a stronger negative flint (L7b), yielding net negative power with chromatically corrected dispersion. The biconvex crown (L7a, $R_{15} = +24.19$, cemented at $R_{16} = -11.42$) and the biconcave flint (L7b, cemented at $R_{16}$, rear $R_{17} = +27.17$) produce an achromatized negative group that controls the ray bundle immediately after the aperture stop. This position is critical for controlling chromatic coma and lateral color across the wide field. The L7a glass (H-K9L, the BK7 equivalent) is the lowest-index and most common optical glass in the design — its use here reflects the doublet's role as a precision chromatic corrector rather than a power element.
@@ -115,7 +115,7 @@ The design uses 7 distinct glass types drawn from the CDGM (成都光明, Chengd
 | L4b | H-LAK5A | 1.72916 | 54.67 | Lanthanum crown | ~S-LAL54 (OHARA) |
 | L6, L9b | H-QK3L | 1.48749 | 70.44 | Low-dispersion crown | CDGM catalog match |
 | L7a | H-K9L | 1.51680 | 64.20 | Borosilicate crown | N-BK7 (Schott) |
-| L7b | H-LAF3 | 1.80420 | 46.50 | Lanthanum flint | LaF3 (Schott) |
+| L7b | N-LASF44 catalog equivalent | 1.80420 | 46.50 | Lanthanum flint | Exact 804465 coordinate; supplier not identified |
 | L8 | H-ZF1 | 1.64769 | 33.84 | Flint | SF2 (Schott) |
 
 **High-refractive (HR) glasses:** Three distinct types with $n_d > 1.84$ are used across five elements: 904313-class glass ($n_d = 1.904$) in L3, L5, and L9a; H-ZLAF2 ($n_d = 1.911$) in L2; and H-ZF52 ($n_d = 1.847$) in L4a. The production lens marketing refers to "three High Refractive elements," likely counting the three distinct HR glass types. These high-index glasses enable the strong negative meniscus elements (L2, L3) to achieve the required diverging power with physically compact curvatures, and provide the thick dispersive element (L5) and the rear corrector (L9a) with their characteristic high optical-path contributions.

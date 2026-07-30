@@ -113,7 +113,7 @@ The aspherical profiles on surfaces 18 and 19 are the most aggressive in the sys
 
 ### L11 — Positive Meniscus, Convex to Image (G5, L5a)
 
-nd = 1.92286, νd = 20.9. Glass: S-NPH7 (OHARA) — ultra-high-refractive-index flint. f = +121.0 mm.
+nd = 1.92286, νd = 20.9. Glass: discontinued OHARA PBH21 catalog equivalent (code 923209; patent supplier not identified) — ultra-high-refractive-index flint. f = +121.0 mm.
 
 L11 is the sole element of G5 and is the UHR (Ultra High Refractive Index) element identified in Panasonic's marketing materials. It remains stationary during both zoom and focus, serving as a fixed field flattener and teleconverter at the rear of the system. Its meniscus shape concave to the object (R1 = −44.50, R2 = −32.79 mm, both negative, with |R2| < |R1|) places the more strongly curved surface toward the sensor, matching the converging beam geometry.
 
@@ -139,7 +139,7 @@ The glass palette for Example 2 draws predominantly from OHARA's catalog, with o
 | L8 | 1.80610 | 33.3 | S-TIH4 | OHARA | Relay achromat partner, dense flint |
 | L9 | 1.49700 | 81.6 | S-FPL51 | OHARA | ED crown, relay positive (2nd) |
 | L10 | 1.58313 | 59.5 | L-PHL1 | OHARA | PGM, double-aspheric focus element |
-| L11 | 1.92286 | 20.9 | S-NPH7 | OHARA | UHR field flattener, ultra-high-index flint |
+| L11 | 1.92286 | 20.9 | PBH21 catalog equivalent | Supplier not identified | UHR field flattener, ultra-high-index flint |
 
 **Chromatic strategy.** The design uses two distinct achromatic doublet pairs — one in G2 (L3+L4) and one in G3 (L8+L9) — augmented by the standalone ED biconvex L7 in G3. The G2 doublet corrects chromatic aberration in the variator, where the beam divergence is large and wavelength-dependent, while the G3 doublet and L7 handle chromatic correction in the relay group, where beam convergence toward the image is strongest. The use of three ED elements (all with νd > 68) is unusual in a lens at this price point and reflects the wide-angle demands of the 20 mm starting focal length.
 
@@ -257,6 +257,6 @@ The lens remains in production and is commonly bundled as a kit lens with the LU
 - JP 2021-179551 A (published 18 November 2021). Full prescription data, embodiment descriptions, and conditional expressions.
 - Panasonic LUMIX product page (panasonic.com): production specifications, element count, special element designations.
 - Panasonic blog, "S Series Lenses — Chapter 7: S 20–60mm F3.5–5.6" (shop.panasonic.com/blogs/lumix): design philosophy, group layout, video performance goals.
-- OHARA, HOYA, Hikari, and Sumita optical glass catalog data: glass identification for S-BAL35, S-LAH95, FCD515, J-LASF021, K-VC89, S-FPL51, S-TIH4, NBFD15, L-PHL1, S-NPH7, and unresolved code-only 859300.
+- OHARA, HOYA, Hikari, and Sumita optical glass catalog data: glass identification for S-BAL35, S-LAH95, FCD515, J-LASF021, K-VC89, S-FPL51, S-TIH4, NBFD15, L-PHL1, discontinued PBH21, and unresolved code-only 859300.
 - HOYA Optical Glass data (refractiveindex.info): FCD515 identification (nd = 1.59282, νd = 68.63, dPgF = +0.0194).
 - HOYA news releases (hoya-opticalworld.com): TAFD25 cross-reference (nd = 1.90366, νd = 31.32) confirming S-LAH93 equivalence.

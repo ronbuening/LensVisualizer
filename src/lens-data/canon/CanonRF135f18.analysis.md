@@ -196,9 +196,9 @@ L3c is the most element-rich subunit with 6 elements in 4 groups and a net posit
 - Role: D4 provides converging power while correcting chromatic aberration in the rear group. The N-SK14 crown is a conventional borosilicate — not a low-dispersion exotic — indicating that the secondary spectrum correction in the rear group is less critical than in L1, where the UD elements handle the primary chromatic burden.
 
 **L14 (Element 14)** — Biconvex positive, standalone.
-- Glass: nd = **2.00069**, νd = 25.5 — ultra-high-index dense flint (OHARA S-NPH7).
+- Glass: nd = **2.00069**, νd = 25.5 — TAFD40 catalog-equivalent ultra-high-index dense flint (code 001255; patent supplier not identified).
 - Focal length: +42.3 mm.
-- Role: This is the most optically remarkable element in the lens. With nd ≈ 2.0, S-NPH7 is among the highest-index optical glasses commercially available. Its use here as a **positive** element (despite being a "flint" by catalog classification) is deliberate: the extremely high index allows strong positive curvature with moderate surface angles, keeping the angular deviation per surface small and thereby reducing higher-order spherical aberration and coma contributions. Critically, its high index also produces a large **negative** Petzval contribution per unit of positive power — the Petzval sum contribution is φ/n, and with n ≈ 2.0 and a strongly positive φ, the Petzval contribution is only φ/2.0, roughly half what a conventional crown glass (n ≈ 1.5) would contribute for the same power. This is Canon's primary mechanism for controlling field curvature in this all-spherical design.
+- Role: This is the most optically remarkable element in the lens. With nd ≈ 2.0, the 001255 glass sits among the highest-index catalog coordinates used in photographic optics. Its use here as a **positive** element is deliberate: the extremely high index allows strong positive curvature with moderate surface angles, keeping the angular deviation per surface small and thereby reducing higher-order spherical aberration and coma contributions. Critically, its high index also produces a large **negative** Petzval contribution per unit of positive power — the Petzval sum contribution is φ/n, and with n ≈ 2.0 and a strongly positive φ, the Petzval contribution is only φ/2.0, roughly half what a conventional crown glass (n ≈ 1.5) would contribute for the same power. This is Canon's primary mechanism for controlling field curvature in this all-spherical design.
 
 **L15 + L16 (Elements 15–16)** — Cemented doublet D5.
 - L15 (crown): nd = 1.65844, νd = 50.9 — Schott N-SSK5 catalog-equivalent extra-dense crown, biconcave (fl = −31.2 mm).
@@ -230,9 +230,9 @@ The design uses **12 unique glass types** across 17 elements:
 | 1.84666 | 23.8 | S-TIH53 | 2 | L1, L13 | High-index dense flint |
 | 1.91082 | 35.3 | HOYA TAFD35 equivalent (911353) | 1 | L11 | IS unit negative element |
 | 1.92286 | 20.9 | N-SF66 / E-FDS1 (923/209) | 2 | L8, L10 | Ultra-high-index flint (D3 and IS) |
-| 2.00069 | 25.5 | S-NPH7 | 1 | L14 | Ultra-high-index Petzval corrector |
+| 2.00069 | 25.5 | TAFD40 catalog equivalent (001255) | 1 | L14 | Ultra-high-index Petzval corrector |
 
-The glass selection is aggressive by any standard. The use of S-NPH7 (nd ≈ 2.0) and N-SF66 / E-FDS1-class glass (nd ≈ 1.923) places extreme demands on manufacturing homogeneity and thermal stability — these ultra-high-index glasses are expensive and difficult to fabricate in large diameters. Their deployment here reflects Canon's willingness to accept higher materials cost in exchange for wavefront performance in an all-spherical design.
+The glass selection is aggressive by any standard. The use of 001255-class glass (nd ≈ 2.0) and N-SF66 / E-FDS1-class glass (nd ≈ 1.923) places extreme demands on manufacturing homogeneity and thermal stability. Their deployment reflects the wavefront-performance priorities of this all-spherical design; the patent does not identify the production glass suppliers.
 
 ---
 
@@ -299,7 +299,7 @@ The Canon RF 135mm f/1.8 L IS USM, as embodied in Example 4 of US 2023/0213745 A
 
 **A two-element image stabilization subunit** (L3b) uses very high-index glasses (average nd = 1.917) to minimize Petzval sum variation during IS decentration, satisfying the patent's primary design inequality.
 
-**Field curvature control** relies primarily on the ultra-high-index L14 (S-NPH7, nd ≈ 2.0) and strategic negative power distribution rather than a dedicated field-flattening lens, though L17 serves as a mild final corrector.
+**Field curvature control** relies primarily on the ultra-high-index L14 (001255 / TAFD40 catalog-equivalent, nd ≈ 2.0) and strategic negative power distribution rather than a dedicated field-flattening lens, though L17 serves as a mild final corrector.
 
 The result is a lens that multiple independent test laboratories have described as among the sharpest ever tested at any focal length — an achievement made all the more remarkable by the absence of aspherical surfaces.
 

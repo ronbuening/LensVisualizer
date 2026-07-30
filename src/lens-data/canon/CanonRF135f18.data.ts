@@ -224,7 +224,7 @@ const LENS_DATA = {
       nd: 2.00069,
       vd: 25.5,
       fl: 42.3,
-      glass: "S-NPH7 (OHARA)",
+      glass: "TAFD40 (HOYA catalog-equivalent to patent 001255; supplier not identified)",
       apd: false,
       role: "Ultra-high-index (nd ≈ 2.0) positive element — strongest Petzval corrector. High nd yields Petzval contribution of φ/2.0, roughly half that of a conventional crown. Primary mechanism for field curvature control.",
     },

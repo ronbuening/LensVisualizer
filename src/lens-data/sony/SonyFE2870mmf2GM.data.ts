@@ -280,7 +280,7 @@ const LENS_DATA = {
       nd: 2.00009,
       vd: 16.5,
       fl: +39.8,
-      glass: "S-NPH7 (OHARA)",
+      glass: "Unmatched ultra-high-index dense flint (patent nd=2.00009, νd=16.5; prior S-NPH7 attribution unsupported)",
       apd: false,
       cemented: "D6",
       role: "Second-highest index (nd = 2.000), lowest νd in design; lateral color correction at image periphery",

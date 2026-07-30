@@ -95,7 +95,7 @@ const LENS_DATA = {
       nd: 1.755,
       vd: 52.3,
       fl: 24.46,
-      glass: "H-LaK53A (CDGM)",
+      glass: "N-LAK33B (Schott catalog-equivalent to patent 755523; supplier not identified)",
       cemented: "D1",
       role: "High-index lanthanum crown positive component of the first cemented achromat.",
     },

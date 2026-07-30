@@ -191,7 +191,7 @@ const LENS_DATA = {
       nd: 1.92286,
       vd: 20.9,
       fl: 121.0,
-      glass: "S-NPH7 (OHARA)",
+      glass: "PBH21 (OHARA discontinued catalog-equivalent to patent 923209; supplier not identified)",
       apd: false,
       role: "Fixed field flattener (G5, L5a). UHR element; stationary during zoom and focus. Corrects residual field curvature.",
     },

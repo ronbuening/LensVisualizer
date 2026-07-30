@@ -103,7 +103,7 @@ const LENS_DATA = {
       nd: 2.001,
       vd: 29.13,
       fl: 42.8,
-      glass: "S-NPH7 (OHARA)",
+      glass: "S-LAH99 (OHARA catalog-equivalent to patent 001291; supplier not identified)",
       apd: "inferred",
       apdNote: "Patent-listed ΔθgF = +0.0050.",
       dPgF: 0.005,

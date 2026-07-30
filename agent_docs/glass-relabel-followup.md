@@ -26,12 +26,29 @@ This file tracks the second bucket plus any cases from the first bucket that nee
 - Catalog: **414 verified entries** in `src/optics/glassCatalogData.ts`.
 - `catalog-mismatches.generated.md` and `glass-relabel-by-lens.generated.md` report **0** remaining
   dispersion-coordinate mismatches across **0** lens files.
-- `sellmeier-coverage.generated.md` reports **488** lenses, **5360** non-air surfaces, **4596** strict catalog
-  Sellmeier surfaces (**85.7%**), and **4610** trusted chromatic surfaces (**86.0%**).
-- **210** lenses are fully covered by strict Sellmeier data and **215** are fully covered by trusted chromatic data.
+- `sellmeier-coverage.generated.md` reports **488** lenses, **5360** non-air surfaces, **4606** strict catalog
+  Sellmeier surfaces (**85.9%**), and **4620** trusted chromatic surfaces (**86.2%**).
+- **211** lenses are fully covered by strict Sellmeier data and **216** are fully covered by trusted chromatic data.
 - `unresolvedGlassScan`: use the generated report for the current count; the total includes honest proprietary and
   family-level annotations as well as actionable named tokens.
 - The Phase 2/3 resolved tables below are historical audit trail. Use the generated reports above for the current queue before starting new relabel work; for patent-by-patent execution, start from [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md).
+
+## Resolved Phase 48 — July 2026 unsafe named-token cleanup
+
+The four `S-NPH7` annotations were audited independently. Canon RF 135mm L14 now uses TAFD40 for the exact 001255
+coordinate; Canon RF 50mm G3 uses S-LAH99 for 001291, with its patent-derived PgF also favoring the OHARA row over
+the same-coordinate HOYA alternative; and Panasonic 20-60mm L11 uses historical PBH21 for 923209. Sony 28-70mm
+L71 remains explicitly unmatched at `2.00009 / 16.5` because no public coefficient row reproduces that extreme
+coordinate.
+
+The two plain `H-LAF3` annotations split the same way: Laowa 15mm L7b now uses exact-coordinate N-LASF44 (804465),
+while Nikon 24-200mm L61 remains explicitly unmatched because the nearest public row does not reproduce both patent
+coordinates closely enough. Canon RF 20mm G4 now uses exact-coordinate N-LAK33B (755523), and Laowa 58mm L4 uses
+exact-coordinate TAC8 (729547), removing both unsupported `H-LAK53A` supplier claims. Every catalog relabel is
+described as an equivalent with the production supplier left unidentified.
+
+This pass added six strict and six trusted surfaces without adding catalog entries. Strict coverage rose from 4600
+to 4606 surfaces, trusted coverage from 4614 to 4620, and one additional lens became fully covered in each measure.
 
 ## Resolved Phase 47 — July 2026 legacy-name recovery
 

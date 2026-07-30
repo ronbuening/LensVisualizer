@@ -65,7 +65,7 @@ L3 is the first element of G2 and the first of four H-FK61 ED elements in the de
 
 ### L4 — Positive Meniscus, Convex to Object
 
-$n_d = 1.72916$, $\nu_d = 54.67$. Glass: H-LAK53A (CDGM) — lanthanum crown. $f = +73.7$ mm.
+$n_d = 1.72916$, $\nu_d = 54.67$. Glass: TAC8 catalog equivalent (HOYA, code 729547; patent supplier not identified) — lanthanum crown. $f = +73.7$ mm.
 
 L4 is a positive meniscus ($R_1 = +24.62$, $R_2 = +43.39$) with strong curvature on both surfaces. Its lanthanum crown glass provides a good balance of moderate dispersion and high refractive index, allowing significant power contribution without excessive chromatism. L4 shares the convergence burden with L3, and its meniscus form (both surfaces convex to object) helps control coma and oblique spherical aberration. The combination of L3 (low-index, low-dispersion) and L4 (moderate-index, moderate-dispersion) distributes the primary positive power of G2's front sub-group across two elements with complementary dispersion characteristics.
 
@@ -145,7 +145,7 @@ All fourteen elements match CDGM (Chengdu Guangming) catalog glasses with residu
 | L1 | 1.86665 | 45.00 | 866450 code-only | — | Lanthanum flint |
 | L2 | 1.78472 | 25.72 | H-ZF13 | S-TIH11 (OHARA) | Dense flint |
 | L3 | 1.49700 | 81.61 | H-FK61 | FCD1 (HOYA), S-FPL51 (OHARA) | ED fluorophosphate |
-| L4 | 1.72916 | 54.67 | H-LAK53A | S-LAL18 (OHARA) | Lanthanum crown |
+| L4 | 1.72916 | 54.67 | TAC8 catalog equivalent | S-LAL18 (OHARA) shares the coordinate | Lanthanum crown |
 | L5 | 1.83327 | 25.02 | H-ZF72 | — | Dense flint |
 | L6 | 1.92286 | 20.88 | H-ZLAF92 | S-NPH53 (OHARA) | Ultra-high index dense flint |
 | L7 | 1.84666 | 23.78 | H-ZF52 | S-TIH53 (OHARA) | Dense flint |

@@ -172,7 +172,7 @@ G7 is fixed relative to the image plane during zooming (¶0066). Since it is the
 
 #### L71 — Positive Meniscus, Convex to Image (cemented, front of doublet D6)
 
-nd = 2.00009, νd = 16.5. Glass: S-NPH7 (OHARA), provisional label from the patent's nd/νd pair. f = +39.8 mm.
+nd = 2.00009, νd = 16.5. Glass: unmatched ultra-high-index dense flint; the patent gives only nd/νd, and the prior S-NPH7 attribution is unsupported. f = +39.8 mm.
 
 L71 has the second-highest refractive index in the design (nd = 2.000) and the lowest Abbe number (νd = 16.5). This ultra-dense flint is paired in a cemented doublet with L72 to correct lateral chromatic aberration at the image periphery. Its meniscus shape (convex to image) and positive focal length are unusual for a dense flint — the high index allows a positive element with moderate curvatures. The cemented pair L71+L72 acts as a chromatic corrector positioned where off-axis rays are tallest, maximizing the leverage for lateral color correction.
 
@@ -216,7 +216,7 @@ The fluorophosphate crowns (νd ≈ 67–69) have modest anomalous partial dispe
 |:---|---:|---:|:---|:---|
 | Proprietary (≈S-NPH1W) | 1.95825 | 18.0 | L11 | G1 chromatic counterweight |
 | 930240 ultra-high-index dense flint | 1.93024 | 24.0 | L23 | G2 variator doublet |
-| S-NPH7 (OHARA) | 2.00009 | 16.5 | L71 | GR lateral color correction |
+| Unmatched ultra-high-index dense flint | 2.00009 | 16.5 | L71 | GR lateral color correction |
 | S-NPH85 (OHARA) | 2.00912 | 29.1 | L41 | G4 Super ED partner |
 | 777297 dense flint | 1.77660 | 29.7 | L22 | G2 variator doublet |
 | 863252 dense flint | 1.86252 | 25.2 | L44, L72 | G4 Super ED partner; GR lateral color |

@@ -14,3 +14,9 @@ Patent: US 2025/0389929 A1, Numerical Example 2
 ### Verification
 
 - `npm test -- elementRenderDiagnostics`
+
+## 2026-07-30 - Unsafe named-token cleanup
+
+- Rechecked Numerical Example 2 G4 at nd=1.75500 and νd=52.3. The patent does not name a supplier.
+- Replaced the unresolved `H-LaK53A (CDGM)` attribution with Schott `N-LAK33B`, the coefficient-backed catalog equivalent that exactly reproduces the 755523 coordinate.
+- Synchronized the analysis and source list; no prescription geometry or semi-diameter changed.

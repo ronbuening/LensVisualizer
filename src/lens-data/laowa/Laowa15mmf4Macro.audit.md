@@ -58,3 +58,9 @@ Patent: CN 205427291 U, Example 2
 
 - `npm run generate:glass-reports` — passed.
 - `npm run typecheck`, `npm run format:check`, `npm run lint`, `npm run test`, and `npm run build` — passed.
+
+## 2026-07-30 — Unsafe named-token cleanup
+
+- Replaced L7b's unsupported `H-LAF3 (CDGM)` label with Schott `N-LASF44`, a coefficient-backed catalog equivalent that exactly reproduces the patent's 1.80420 / 46.50 coordinate and code 804465.
+- The patent table does not name a supplier, so the annotation records catalog equivalence without asserting Schott manufacture.
+- Synchronized the analysis; no prescription geometry changed.
