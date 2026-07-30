@@ -9,6 +9,11 @@ approximation. Current optics-engine boundaries are summarized in
 
 The catalog currently has **414 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
 
+The July 30, 2026 Phase 47 pass recovered four legacy-name elements through existing coefficient-backed catalog
+equivalents. Two historical Schott `SK18` rows in the Canon Serenar 50mm f/1.8 now use SUMITA K-SK18, and two
+`F8`-coordinate rows use HOYA E-F8. Each annotation leaves the patent supplier unspecified. The Nikon Ultra-Micro
+29.5mm's e-line F8-class row was explicitly marked unmatched so a d-line catalog model cannot be applied accidentally.
+
 The July 29, 2026 Phase 46 pass audited the three highest-frequency remaining six-digit families. Ten Minolta
 `670571` elements now use discontinued OHARA S-LAL52 as a coefficient-backed catalog equivalent: the official
 all-products row has the same d-line index (`1.669999` versus patent `1.67000`) and only `+0.258` higher Abbe number.

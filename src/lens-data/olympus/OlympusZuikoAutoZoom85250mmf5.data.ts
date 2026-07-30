@@ -200,7 +200,7 @@ const LENS_DATA = {
       nd: 1.59551,
       vd: 39.2,
       fl: 52.1,
-      glass: "F8 class (Hikari / HOYA)",
+      glass: "E-F8 (HOYA catalog-equivalent to F8 class; patent supplier unspecified)",
       role: "Strong positive relay element after the long relay air gap.",
     },
     {

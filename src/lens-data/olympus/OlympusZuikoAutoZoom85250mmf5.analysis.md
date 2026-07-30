@@ -102,7 +102,7 @@ The component has net negative power even though the front element is positive. 
 
 ### L13 - Biconvex Positive
 
-nd = 1.59551, νd = 39.2. Glass: F8 class (Hikari / HOYA). f = +52.1 mm.
+nd = 1.59551, νd = 39.2. Glass: HOYA E-F8 catalog equivalent to the patent's F8-class coordinate; supplier unspecified. f = +52.1 mm.
 
 L13 is the strong positive element after the long relay air gap. Its low Abbe number is deliberate in context: it is a positive flint-class element, used not for low dispersion but for balancing the chromatic and Petzval behavior of the relay. Its placement after the 39.0 mm airspace gives it strong leverage over the converging relay beam.
 
@@ -135,7 +135,7 @@ The patent gives nd and νd values but does not name glass vendors. Catalog name
 | L10 | 1.49831 | 65.0 | 498650 | Borosilicate crown code fallback | First relay positive element |
 | L11 | 1.54739 | 53.6 | 547/536 | N-BALF5 / BAL5 class | Positive barium light flint in relay doublet |
 | L12 | 1.80610 | 40.9 | 806/409 | S-LAH53 class | High-index negative lanthanum flint |
-| L13 | 1.59551 | 39.2 | 596/392 | F8 class | Positive flint relay element |
+| L13 | 1.59551 | 39.2 | 596/392 | HOYA E-F8 catalog equivalent; supplier unspecified | Positive flint relay element |
 | L14 | 1.72000 | 43.7 | 720/437 | J-LAF02 class | Negative lanthanum-flint relay element |
 | L15 | 1.56384 | 60.8 | 564/608 | N-SK11 / BACD11 class | Final positive crown relay element |
 
@@ -230,4 +230,4 @@ The design is not a retrofocus lens, because its back focal distance is far shor
 4. SCHOTT optical glass data sheets for N-BALF5 and N-SK11 class references.
 5. HOYA optical glass cross-reference material for FD/BACD class comparisons.
 6. Sumita optical glass catalog for K-SSK9 and K-PSKn family comparisons.
-7. Hikari optical glass references for J-F8 and J-LAF02 class comparisons.
+7. HOYA obsolete-inclusive optical-glass catalog for the coefficient-backed E-F8 row; Hikari references for J-LAF02 class comparisons.

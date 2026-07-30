@@ -33,3 +33,12 @@ Catalog version: local working tree, 2026-06-25
 - `npm run format:check` - passed.
 - `npm run test -- __tests__/src/lens-data/lensDataTyping.test.ts __tests__/src/optics/validateLensData.test.ts __tests__/src/optics/buildLens.test.ts` - passed (3 files, 143 tests).
 - `npm run test` - failed outside this audit's edits: stale/generated route metadata is missing Rodenstock lens routes, and the existing Sonnar 50/1.5 skew-ray chromatic assertion differs by 0.0011856 mm.
+
+## 2026-07-30 - Historical F8 catalog-equivalent recovery
+
+- Rechecked the authored CH 314381 Example 1 coordinate for L2: `nd=1.59551`, `νd=39.2`.
+- Relabeled the unresolved historical Schott F8 annotation to HOYA E-F8 as a catalog-equivalent spectral model.
+  HOYA's obsolete-inclusive catalog gives `nd=1.59551`, `νd=39.22`, code `596392`, and formula-3 coefficients.
+- The data and analysis explicitly leave the original patent supplier unspecified; no claim is made that HOYA supplied
+  the historical melt.
+- No prescription geometry or authored optical constants changed.

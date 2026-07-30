@@ -33,6 +33,14 @@ This file tracks the second bucket plus any cases from the first bucket that nee
   family-level annotations as well as actionable named tokens.
 - The Phase 2/3 resolved tables below are historical audit trail. Use the generated reports above for the current queue before starting new relabel work; for patent-by-patent execution, start from [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md).
 
+## Resolved Phase 47 — July 2026 legacy-name recovery
+
+Two Canon Serenar historical `SK18` elements now use coefficient-backed SUMITA K-SK18 as a catalog equivalent, and
+the Carl Zeiss Tessar 50mm f/3.5 plus Olympus Zuiko Auto-Zoom 85-250mm f/5 each use coefficient-backed HOYA E-F8
+for their exact `1.59551 / 39.2` F8-class coordinate. All four annotations leave the original supplier unspecified.
+The Nikon Ultra-Micro 29.5mm F8-class row remains unresolved because it stores an e-line index; it now carries an
+explicit `Unmatched` marker to prevent accidental d-line resolution.
+
 ## Resolved Phase 46 — July 2026 high-frequency code-family review
 
 The five Minolta lenses using `670571` now resolve ten elements through coefficient-backed discontinued OHARA

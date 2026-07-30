@@ -124,7 +124,7 @@ A combined-ray estimate (entrance pupil plus the chief-ray excursion at the fiel
 Figure 1 shows the lens drawn to scale at the 50 mm production size. Glasses are identified by Schott designation (see §7); the diaphragm sits in the central air gap *b* between L2 and L3.
 
 ![Figure 1: Layout cross-section](fig1_layout.png)
-*Figure 1 — Layout cross-section of the four elements at production scale (f = 50 mm). L1 (blue, SK16): front positive meniscus. L2 (orange, historical F8): asymmetric biconcave middle element. L3 (yellow, LF5) + L4 (green, BAF10): cemented rear doublet. Axial dimensions are in millimeters from the L1 front vertex; the dashed center line marks the optical axis. The diaphragm is shown at its inferred position in the second air gap *b*, placed 71 % of the way from r₄ toward r₅ to clear the strongly curved r₄ surface.*
+*Figure 1 — Layout cross-section of the four elements at production scale (f = 50 mm). L1 (blue, SK16): front positive meniscus. L2 (orange, historical F8 coordinate modeled with HOYA E-F8): asymmetric biconcave middle element. L3 (yellow, LF5) + L4 (green, BAF10): cemented rear doublet. Axial dimensions are in millimeters from the L1 front vertex; the dashed center line marks the optical axis. The diaphragm is shown at its inferred position in the second air gap *b*, placed 71 % of the way from r₄ toward r₅ to clear the strongly curved r₄ surface.*
 
 ### 6.1 L1 — positive front meniscus (Schott N-SK16, n_d = 1.62041, ν_d = 60.3)
 
@@ -134,13 +134,13 @@ Two design choices are notable here. First, the positive meniscus form is a refi
 
 The glass — a moderately dense crown with a high Abbe number near 60 — is chosen to give L1 enough refractive power without dispersing the chromatic budget unnecessarily.
 
-### 6.2 L2 — asymmetric biconcave middle element (Schott "F8" historical, n_d = 1.59551, ν_d = 39.2)
+### 6.2 L2 — asymmetric biconcave middle element (historical Schott F8 coordinate; HOYA E-F8 catalog model, n_d = 1.59551, ν_d = 39.2)
 
 L2 is the diverging middle element, the optical heart of any Tessar. It is *biconcave* with strongly asymmetric radii: R₃ = −69.81 (only weakly concave toward the object) and R₄ = +25.49 (strongly concave toward the image, and the most strongly curved air-contact surface in the entire prescription — the cement surface R₆ = +21.76 is slightly tighter still, but it is internal to the doublet rather than at an air-glass interface). The ratio |R₃|/|R₄| = 2.74 is a quantity the patent claims explicitly (see §10): R₃ must be at least 2.2 times more weakly curved than R₄.
 
 L2's computed thick-lens focal length is **−31.14 mm at f = 100, i.e. −15.57 mm at production**. Its center thickness is small (1.778 mm at f = 100; 0.89 mm at production scale) — typical for the middle Tessar element, which derives its strong negative power from large surface curvature differences rather than from glass thickness.
 
-The choice of F8 — a conventional flint glass of relatively high dispersion (ν_d = 39.2) — pairs naturally with the higher-Abbe crown of L1 to balance primary chromatic aberration across the object/image conjugate.
+The historical F8 coordinate is modeled with coefficient-backed HOYA E-F8, whose published `nd = 1.59551` and `νd = 39.22` reproduce the patent row without asserting the original supplier. This conventional flint of relatively high dispersion pairs naturally with the higher-Abbe crown of L1 to balance primary chromatic aberration across the object/image conjugate.
 
 The patent further specifies that the diaphragm sits in the second air gap *b* — i.e., between L2 and the rear cemented doublet — and that this gap is small in absolute terms (b/f ≤ 7.5 %). This places the stop close enough to L2's rear vertex to keep the chief ray angles compatible with the strongly curved R₄ surface.
 
@@ -173,11 +173,11 @@ Cross-referencing the patent's tabulated (n_d, ν_d) pairs against the principal
 | Element | Patent n_d | Patent ν_d | Schott (modern) | Status | Cross-catalog matches |
 |---|---|---|---|---|---|
 | L1 | 1.62041 | 60.3 | **N-SK16** (dense crown) | In current production | HOYA BACD16; OHARA S-BSM16; Sumita K-VC78; Hikari Q-SK16 |
-| L2 | 1.59551 | 39.2 | **F8** (historical / discontinued) | Withdrawn from Schott catalog | HOYA FF8 / E-FL5 / FD140; OHARA PBL35Y |
+| L2 | 1.59551 | 39.2 | **HOYA E-F8** catalog equivalent to historical Schott F8 | Coefficient-backed equivalent; supplier unspecified | Exact public d-line coordinate and vendor polynomial |
 | L3 | 1.58144 | 40.8 | **LF5** (light flint) | In current production | HOYA E-FL2 / FF5; OHARA PBL26Y |
 | L4 | 1.67003 | 47.2 | **N-BAF10** (barium flint) | In current production | HOYA BAF11 (close, Δn_d ≈ 0.003); OHARA S-BAH11; Sumita K-BAF11 |
 
-For all four elements the match between the patent value and the modern catalog refractive index is at the fifth decimal place or better. The single case requiring a footnote is L2: Schott's historical "F8" was a current-production conventional flint in 1952 but was eventually withdrawn from the catalog in favor of more environmentally compliant successors. The cross-catalog matches (HOYA FF8, OHARA PBL35Y) preserve both n_d and ν_d to within the customary ±0.0005 / ±0.2 catalog tolerance, so a faithful reproduction of the design is straightforward in modern glass.
+For all four elements the match between the patent value and the selected public catalog refractive index is at the fifth decimal place or better. L2 requires the historical caveat: Schott F8 was later withdrawn, while HOYA E-F8 publishes the same `1.59551 / 39.22` d-line coordinate and a full formula-3 polynomial. The catalog model supplies defensible spectral behavior but does not prove that HOYA supplied the original patent glass.
 
 Figure 2 places the four glasses on the standard Abbe diagram alongside other Schott catalog glasses, with the patent's two explicit constraints — n_d < 1.70 (per element) and mean n_d < 1.62 (across the whole design) — drawn as dashed limits.
 
@@ -235,7 +235,7 @@ The surface-by-surface Petzval sum, Σ (n′ − n)/(n n′ R), evaluates at pro
 | Group | Petzval × 1000 (units mm⁻¹) | Sign and role |
 |---|---|---|
 | L1 (SK16) | +12.13 | Positive — natural for a positive crown |
-| L2 (F8 hist.) | −19.99 | Strongly negative — the principal field-flattener |
+| L2 (historical F8 / E-F8 model) | −19.99 | Strongly negative — the principal field-flattener |
 | L3+L4 doublet | +10.33 | Positive — natural for net-positive doublet |
 | **System** | **+ 2.48** | **Net positive but small** |
 
@@ -245,14 +245,14 @@ A Petzval radius of approximately 4 × f_sys is in the moderate-flatness range f
 
 ### 9.3 Chromatic correction
 
-A full thick-lens trace through the prescription using modern Schott Sellmeier coefficients (N-SK16, N-BAF10, and LF5; LF5 also serves as the dispersion-curve stand-in for L2's historical F8, which is no longer in catalog) yields:
+A full thick-lens trace through the prescription using coefficient-backed catalog dispersion, including HOYA E-F8 for L2's historical F8 coordinate, yields:
 
 | Aberration | Computed (production scale) |
 |---|---|
 | Primary chromatic (focus shift F-line to C-line) | ≈ −0.14 mm (≈ −0.27 % of EFL) |
 | Secondary spectrum (focus shift g-line to d-line) | ≈ −0.58 mm (≈ −1.17 % of EFL) |
 
-These are approximate values: the modern N-prefix Schott versions are designed to match their lead-bearing 1950s predecessors on n_d and ν_d to within standard catalog tolerance (typically Δn_d < 0.001 across the visible), but the full dispersion curves can differ slightly, and substituting LF5 for the historical F8 introduces an additional small error. Both numbers are nevertheless typical of a well-corrected achromat built from conventional (non-anomalous-dispersion, non-fluorite) glasses. The achromatic balance here is a *system* property: the rear cemented doublet alone has a thin-lens residual Σ φ_i/ν_i of about 1.7 % of its own power (it does not by itself satisfy the standard achromatic condition Σ φ_i/ν_i = 0), and the front L1 + middle L2 combination contributes the compensating chromatic correction in the opposite direction so that the whole-system primary chromatic comes out small. The secondary spectrum is the irreducible residual at this glass complement and is what the lanthanum-crown designs of the same era could partially improve on.
+These are approximate values: modern catalog-equivalent dispersion curves can differ slightly from their lead-bearing 1950s predecessors even when n_d and ν_d agree. HOYA E-F8 is therefore a defensible spectral model, not proof of the original melt. Both numbers are nevertheless typical of a well-corrected achromat built from conventional (non-anomalous-dispersion, non-fluorite) glasses. The achromatic balance here is a *system* property: the rear cemented doublet alone has a thin-lens residual Σ φ_i/ν_i of about 1.7 % of its own power (it does not by itself satisfy the standard achromatic condition Σ φ_i/ν_i = 0), and the front L1 + middle L2 combination contributes the compensating chromatic correction in the opposite direction so that the whole-system primary chromatic comes out small. The secondary spectrum is the irreducible residual at this glass complement and is what the lanthanum-crown designs of the same era could partially improve on.
 
 ---
 
@@ -344,7 +344,7 @@ Neither design is "better" on absolute grounds; they reflect different prioritie
 This document represents a thorough but inevitably partial reading of the patent. The following items deserve explicit caveats:
 
 * **Focal length and f-number of Example 1.** The patent does not explicitly state the focal length of Example 1 in millimeters; it normalizes to f ≈ 100 mm and gives radii and thicknesses in units of f. The patent body does explicitly state the example's aperture ratio (1:3.5) and field (±24°), and the formal claim states the broader aperture criterion (faster than 1:3.8). The 50 mm production identification rests on the historical match between this patent and the Contax production Tessar 50/3.5, with the 50/3.5 designation taken from Zeiss production records rather than from the patent text itself.
-* **L2 glass identification.** The historical "F8" listed in 1952 Schott data was discontinued and removed from later catalog editions. The modern equivalents (HOYA FF8 / E-FL5; OHARA PBL35Y) preserve n_d and ν_d to within standard catalog tolerance, but a precise reproduction of the original glass's full Sellmeier dispersion behavior (and any minor anomalous-partial-dispersion characteristics) would require access to historical Schott manufacturing data not used in this analysis.
+* **L2 glass identification.** The historical "F8" listed in 1952 Schott data was discontinued and removed from later catalog editions. HOYA E-F8 exactly reproduces the patent's rounded d-line coordinate and supplies a public formula-3 polynomial, so it is used as the catalog-equivalent spectral model. A precise reconstruction of the original melt would still require historical Schott manufacturing data not used in this analysis.
 * **Stop position within the air gap *b*.** The patent body text states that the diaphragm sits in the second air gap but does not give an exact axial position within that gap. Independent cross-gap sag analysis shows that the strongly curved r₄ surface (R = +25.49 at f = 100) requires the iris to be placed no closer than approximately 3.2 mm from r₄ (at the f = 100 normalization) to avoid physical interference between the surface sag and the iris mechanism at full aperture. The stop is accordingly placed at 71 % of the gap — 3.50 mm from r₄ and 1.43 mm from r₅ — which is consistent with the iris mark in patent Fig. 1. The actual production iris placement may differ by a small fraction of a millimeter from this estimate.
 * **Aberration analysis is paraxial.** This document verifies the patent's paraxial claims (focal length, BFD, element powers, Petzval sum, primary chromatic, secondary spectrum) and infers from them what can be inferred. Verifying the patent's full formal claim of *spherical, comatic, chromatic, and astigmatic* correction would require finite-aperture ray tracing at multiple field positions and multiple wavelengths, which is outside the scope of this analysis. The chromatic component is verified explicitly (§9.3); the other three corrections are taken on the patent's own assertion, which is consistent with the design's known production reputation and with the form-factor analysis presented here.
 * **Robert Richter's biographical details.** Richter's role at the post-war Oberkochen company is well-established in the secondary literature on Zeiss optical design, but a primary-source document confirming the precise dates of his post-war reassignment to Oberkochen was not consulted for this analysis. The patent itself confirms that he was at the Heidenheim/Oberkochen operation by mid-1953.
@@ -373,4 +373,4 @@ None of these caveats affects any of the quantitative claims verified in §10 or
 
 **Patent itself:** Swiss Patent CH 314381, "Photographisches Objektiv," Carl Zeiss, Heidenheim a.d. Brenz; inventors G. Lange and R. Richter; priority Germany 21 July 1952; Swiss filing 24 June 1953; published 31 July 1956. The German priority application underlies the published Swiss patent text used in this analysis.
 
-**Glass-catalog data:** Refractive-index and dispersion data for Schott N-SK16, N-BAF10, and LF5 are taken from the Schott optical-glass catalog as compiled in the public-domain Sellmeier-coefficient tables maintained at https://refractiveindex.info. Cross-references to HOYA, OHARA, Sumita, and Hikari catalogs are drawn from those manufacturers' published 2020s glass-equivalence tables.
+**Glass-catalog data:** Refractive-index and dispersion data for Schott N-SK16, N-BAF10, and LF5 are taken from the Schott optical-glass catalog as compiled in the public-domain Sellmeier-coefficient tables maintained at https://refractiveindex.info. The L2 spectral model uses the official HOYA obsolete-inclusive Zemax row for E-F8. Other cross-references to HOYA, OHARA, Sumita, and Hikari catalogs are drawn from those manufacturers' published glass-equivalence tables.

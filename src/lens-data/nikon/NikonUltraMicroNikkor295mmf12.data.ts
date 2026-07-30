@@ -142,7 +142,7 @@ const LENS_DATA = {
       nd: 1.59865,
       vd: 39.3,
       fl: -101.81,
-      glass: "F8 class light flint (patent e-line index stored)",
+      glass: "Unmatched (F8-class light flint; patent e-line index stored)",
       cemented: "D1",
       role: "Negative flint member of the rear cemented doublet.",
     },

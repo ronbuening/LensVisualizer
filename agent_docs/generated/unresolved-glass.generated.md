@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **488** lenses scanned
 - **5360** non-air surfaces examined
 - **5365** element glass declarations examined
-- **473** non-explicit-unmatched annotations did not resolve
-- **208** distinct unresolved glass-like tokens found
+- **468** non-explicit-unmatched annotations did not resolve
+- **206** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -28,7 +28,6 @@ or per-lens patent backfills.
 | 744495 | 3 | 3 | |
 | 797454 | 3 | 2 | |
 | 863248 | 3 | 1 | |
-| F8 | 3 | 3 | |
 | 514428 | 2 | 1 | |
 | 531559 | 2 | 2 | |
 | 561453 | 2 | 2 | |
@@ -51,7 +50,6 @@ or per-lens patent backfills.
 | H-ZBAF4 | 2 | 1 | |
 | H-ZLAF4A | 2 | 1 | |
 | S-LAM73 | 2 | 1 | |
-| SK18 | 2 | 1 | |
 | SK3 | 2 | 2 | |
 | 182080 | 1 | 1 | |
 | 487698 | 1 | 1 | |
@@ -295,12 +293,6 @@ or per-lens patent backfills.
 - [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 17: `863248 — ultra-dense flint (patent nd=1.86290, nu_d=24.8)`
 - [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 19: `863248 — ultra-dense flint (patent nd=1.86290, nu_d=24.8)`
 
-### F8 — 3 occurrences
-
-- [CARL ZEISS TESSAR 50mm f/3.5](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissTessar50mmf35.data.ts) 3: `F8 historical (Schott, discontinued)`
-- [NIKON ULTRA-MICRO-NIKKOR 29.5mm f/1.2](../../src/lens-data/nikon/NikonUltraMicroNikkor295mmf12.data.ts) 11: `F8 class light flint (patent e-line index stored)`
-- [OLYMPUS ZUIKO AUTO-ZOOM 85-250mm f/5](../../src/lens-data/olympus/OlympusZuikoAutoZoom85250mmf5.data.ts) 21: `F8 class (Hikari / HOYA)`
-
 ### 514428 — 2 occurrences
 
 - [NIKON AF-S NIKKOR 20mm f/1.8 G ED](../../src/lens-data/nikon/NikonNikkorAFS20mmf18G.data.ts) 9: `514428 — patent cement layer (nd=1.51400, νd=42.8)`
@@ -410,11 +402,6 @@ or per-lens patent backfills.
 
 - [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 27A: `S-LAM73 (OHARA)`
 - [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 34: `S-LAM73 (OHARA)`
-
-### SK18 — 2 occurrences
-
-- [CANON SERENAR 50mm f/1.8](../../src/lens-data/canon/CanonSerenar50mmf18.data.ts) 7: `SK18 (Schott)`
-- [CANON SERENAR 50mm f/1.8](../../src/lens-data/canon/CanonSerenar50mmf18.data.ts) 9: `SK18 (Schott)`
 
 ### SK3 — 2 occurrences
 

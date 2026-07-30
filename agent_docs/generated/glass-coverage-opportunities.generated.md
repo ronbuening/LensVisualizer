@@ -10,12 +10,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **488** lenses scanned (**480** visible)
-- **4596 / 5360** non-air surfaces use strict catalog Sellmeier data (85.7%)
-- **4610 / 5360** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 86.0%)
+- **4600 / 5360** non-air surfaces use strict catalog Sellmeier data (85.8%)
+- **4614 / 5360** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 86.1%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
 - **298** code-only missing-Sellmeier elements in Sweep 2
-- **70** unresolved named-token elements in Sweep 2B, producing **72** token occurrences across **62** distinct tokens
+- **68** unresolved named-token elements in Sweep 2B, producing **70** token occurrences across **61** distinct tokens
 - **0** Tier A proprietary backfill rows in Sweep 3
 
 ## Sweep 1 - Relabel Mismatches
@@ -200,7 +200,6 @@ These unresolved catalog-style labels are often better first catalog targets tha
 | H-ZBAF4 | 2 | 1 | patents/US-20250389929-A1.pdf | [CANON RF 20mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF20mmf14LVCM.data.ts) G10 (1.66565 / 35.60; abbe)<br>[CANON RF 20mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF20mmf14LVCM.data.ts) G16 (1.66565 / 35.60; abbe) |
 | H-ZLAF4A | 2 | 1 | patents/CN210573001U.pdf | [LAOWA 24mm f/14 2× Macro Probe](../../src/lens-data/laowa/Laowa24mmf14Probe.data.ts) Element 1 (1.83481 / 42.72; abbe)<br>[LAOWA 24mm f/14 2× Macro Probe](../../src/lens-data/laowa/Laowa24mmf14Probe.data.ts) Element 27 (1.83481 / 42.72; abbe) |
 | S-LAM73 | 2 | 1 | patents/WO_2025263124_A1.pdf | [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) Element 16 (1.85659 / 40.10; abbe)<br>[SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) Element 20 (1.85659 / 40.10; abbe) |
-| SK18 | 2 | 1 | patents/US2681594.pdf | [CANON SERENAR 50mm f/1.8](../../src/lens-data/canon/CanonSerenar50mmf18.data.ts) Element 5 (1.63850 / 55.50; abbe)<br>[CANON SERENAR 50mm f/1.8](../../src/lens-data/canon/CanonSerenar50mmf18.data.ts) Element 6 (1.63850 / 55.50; abbe) |
 | BK3 | 1 | 1 | patents/US3975089.pdf | [VIVITAR SERIES 1 35-85mm f/2.8 VMC](../../src/lens-data/vivitar/VivitarSeries13585mmf28.data.ts) Element 6 (1.49800 / 65.10; abbe) |
 | E-FPL51 | 1 | 1 | patents/JPWO2019049372A1.pdf | [NIKON NIKKOR Z 24-70mm f/4 S](../../src/lens-data/nikon/NikonNikkorZ2470mmf4S.data.ts) Element 6 (1.55332 / 71.70; abbe) |
 | H-BAF6 | 1 | 1 | patents/20260118637.pdf | [ENNA MÜNCHEN LITHAGON 24mm f/4](../../src/lens-data/enna-munchen/EnnaMunchenLithagon24mmf4.data.ts) Element 7 (1.60801 / 46.20; abbe) |
@@ -218,8 +217,9 @@ These unresolved catalog-style labels are often better first catalog targets tha
 | H-ZF2 | 1 | 1 | patents/CN210573001U.pdf | [LAOWA 24mm f/14 2× Macro Probe](../../src/lens-data/laowa/Laowa24mmf14Probe.data.ts) Element 26 (1.67270 / 32.17; abbe) |
 | H-ZF52A | 1 | 1 | patents/US20160266350A1.pdf | [LEICA SUMMILUX 28mm f/1.7 ASPH. (Leica Q, Q2, Q3)](../../src/lens-data/leica/Leica28mmf17.data.ts) Element 11 (1.68250 / 33.00; abbe) |
 | H-ZF72 | 1 | 1 | patents/CN116520542A.pdf | [LAOWA 58mm f/2.8 2× Ultra-Macro APO](../../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts) Element 5 (1.83327 / 25.02; abbe) |
+| H-ZK4 | 1 | 1 | patents/DE_2444954_A1.pdf | [RODENSTOCK GRANDAGON-N 90mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN90mmf45.data.ts) Element 6 (1.60881 / 58.86; abbe) |
 
-Showing the top 25 of 62 distinct named tokens.
+Showing the top 25 of 61 distinct named tokens.
 
 ## Sweep 3 - Proprietary Line-Index Backfill
 
