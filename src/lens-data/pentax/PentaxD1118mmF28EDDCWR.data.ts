@@ -136,7 +136,7 @@ const LENS_DATA = {
       nd: 1.54732,
       vd: 46,
       fl: 21.259099,
-      glass: "547460 class (soft catalog neighborhood only; vendor unproven)",
+      glass: "E-FEL1 (HOYA catalog equivalent; production supplier unspecified; patent 547460)",
       apd: false,
       cemented: "D1",
       role: "Positive member of the patent-defined positive cemented lens in G1",

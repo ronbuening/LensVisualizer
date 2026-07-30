@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **488** lenses scanned
 - **5360** non-air surfaces examined
 - **5365** element glass declarations examined
-- **414** non-explicit-unmatched annotations did not resolve
-- **174** distinct unresolved glass-like tokens found
+- **413** non-explicit-unmatched annotations did not resolve
+- **173** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -51,7 +51,6 @@ or per-lens patent backfills.
 | 534556 | 1 | 1 | |
 | 541468 | 1 | 1 | |
 | 545486 | 1 | 1 | |
-| 547460 | 1 | 1 | |
 | 552981 | 1 | 1 | |
 | 553555 | 1 | 1 | |
 | 554381 | 1 | 1 | |
@@ -358,10 +357,6 @@ or per-lens patent backfills.
 ### 545486 — 1 occurrence
 
 - [LAOWA 58mm f/2.8 2× Ultra-Macro APO](../../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts) 20: `545486 - crown glass (patent nd=1.54517, vd=48.63)`
-
-### 547460 — 1 occurrence
-
-- [PENTAX HD DA* 11-18mm f/2.8 ED DC AW](../../src/lens-data/pentax/PentaxD1118mmF28EDDCWR.data.ts) 8: `547460 class (soft catalog neighborhood only; vendor unproven)`
 
 ### 552981 — 1 occurrence
 

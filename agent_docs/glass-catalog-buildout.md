@@ -9,6 +9,13 @@ approximation. Current optics-engine boundaries are summarized in
 
 The catalog currently has **432 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
 
+The July 30, 2026 Phase 62 pass confirmed Pentax HD DA* 11-18mm L14's `1.54732 / 46.0` coordinate in rendered
+US 2018/0164556 A1 Table 1. OHARA PBL1/S-TIL1, HOYA E-FEL1, Schott LLF1, and SUMITA LLF1 all publish the same
+coefficient-backed family near `1.54814 / 45.8–45.9`; their evaluated trace-line curves are materially
+interchangeable. L14 now uses the closest-Abbe HOYA E-FEL1 row as a catalog equivalent while leaving the production
+supplier unspecified. Coverage rose to 4666/4678 strict/trusted surfaces, and the active source-review queue is six
+elements across five code families.
+
 The July 30, 2026 Phase 61 pass rendered DE 1 228 820 B's sole claim table and confirmed Enna Lithagon 24mm L4 at
 `1.51895 / 57.3`. Because the patent publishes no supplier, catalog name, line index, or partial dispersion, nearby
 coefficient-backed OHARA, HOYA, and SUMITA crowns cannot be distinguished safely. The unsupported K4-family wording

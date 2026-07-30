@@ -10,11 +10,11 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **488** lenses scanned (**480** visible)
-- **4665 / 5360** non-air surfaces use strict catalog Sellmeier data (87.0%)
-- **4677 / 5360** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 87.3%)
+- **4666 / 5360** non-air surfaces use strict catalog Sellmeier data (87.1%)
+- **4678 / 5360** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 87.3%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
-- **265** code-only missing-Sellmeier elements in Sweep 2: **7** active unreviewed, **52** explicitly disposed but missing a sidecar hit
+- **264** code-only missing-Sellmeier elements in Sweep 2: **6** active unreviewed, **52** explicitly disposed but missing a sidecar hit
 - **47** unresolved named-token elements in Sweep 2B, producing **47** token occurrences across **46** distinct tokens
 - **0** Tier A proprietary backfill rows in Sweep 3
 
@@ -159,7 +159,6 @@ Add catalog entries only when public coefficient-backed vendor data is available
 
 | Code | Active elements | Lens files | localPatentStatus | Representative rows |
 |---|---:|---:|---|---|
-| 547460 | 1 | 1 | patents/US20180164556A1.pdf | [PENTAX HD DA* 11-18mm f/2.8 ED DC AW](../../src/lens-data/pentax/PentaxD1118mmF28EDDCWR.data.ts) Element 5 (1.54732 / 46.00) |
 | 678322 | 1 | 1 | patents/WO2021200206A1.pdf | [SONY FE 12-24mm f/2.8 GM](../../src/lens-data/sony/SonyFE1224mmf28GM.data.ts) L22 focus-group positive (1.67764 / 32.20) |
 | 792257 | 1 | 1 | patents/JP2023039817A.pdf | [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) Element 7 (1.79191 / 25.70) |
 | 834374 | 1 | 1 | patents/US5734508.pdf | [NIKON AI AF ZOOM-NIKKOR 24-120mm f/3.5-5.6 D IF](../../src/lens-data/nikon/NikonAFNikkor24120mmf3556D.data.ts) Element 14 — L3R3 (1.83400 / 37.40) |

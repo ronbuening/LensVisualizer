@@ -27,15 +27,27 @@ This file tracks the second bucket plus any cases from the first bucket that nee
 - `catalog-mismatches.generated.md` and `glass-relabel-by-lens.generated.md` report **0** remaining
   dispersion-coordinate mismatches across **0** lens files. The mismatch report separately records **16 / 75**
   native e-line surfaces resolved through explicit names or aliases.
-- `sellmeier-coverage.generated.md` reports **488** lenses, **5360** non-air surfaces, **4665** strict catalog
-  Sellmeier surfaces (**87.0%**), and **4677** trusted chromatic surfaces (**87.3%**).
+- `sellmeier-coverage.generated.md` reports **488** lenses, **5360** non-air surfaces, **4666** strict catalog
+  Sellmeier surfaces (**87.1%**), and **4678** trusted chromatic surfaces (**87.3%**).
 - **226** lenses are fully covered by strict Sellmeier data and **231** are fully covered by trusted chromatic data.
-- `unresolvedGlassScan` reports **414** non-explicit-unmatched annotations and **174** distinct unresolved glass-like
+- `unresolvedGlassScan` reports **413** non-explicit-unmatched annotations and **173** distinct unresolved glass-like
   tokens. The total includes honest proprietary and family-level annotations as well as actionable named tokens.
-- The missing-Sellmeier six-digit report contains **265** code-only elements, now separated into **7** active
+- The missing-Sellmeier six-digit report contains **264** code-only elements, now separated into **6** active
   unreviewed rows, **52** explicit unmatched/unidentified dispositions missing both sidecar and companion-audit hits,
   and **206** rows with a recorded review.
 - The Phase 2/3 resolved tables below are historical audit trail. Use the generated reports above for the current queue before starting new relabel work; for patent-by-patent execution, start from [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md).
+
+## Resolved Phase 62 — July 2026 Pentax shared-family recovery
+
+US 2018/0164556 A1 Numerical Example 1 / Table 1 was rendered and checked visually, confirming Pentax HD DA* 11-18mm
+L14 at `1.54732 / 46.0`. The patent names no supplier and provides no secondary line indices, but four independent
+vendor catalogs converge on the same LLF1-family curve around `1.54814 / 45.8–45.9`: OHARA PBL1/S-TIL1, HOYA
+E-FEL1, Schott LLF1, and SUMITA LLF1.
+
+HOYA E-FEL1 has the smallest Abbe residual, and its curve differs from Schott LLF1 and OHARA S-TIL1 by at most about
+`0.000032` at the evaluated trace lines. L14 now uses E-FEL1 as a coefficient-backed catalog equivalent with the
+production supplier unspecified. Strict/trusted coverage rose to 4666/4678 surfaces, the lens improved from 10/16 to
+11/16 covered elements, and the active queue fell to six elements across five code families.
 
 ## Resolved Phase 61 — July 2026 Enna legacy-crown source review
 

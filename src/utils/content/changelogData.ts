@@ -22,6 +22,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-07-30 ──────────────────────────────────────────────────
   {
     date: "2026-07-30",
+    type: "improvement",
+    summary: "Added coefficient-backed light-flint dispersion for the Pentax 11-18mm zoom",
+  },
+  {
+    date: "2026-07-30",
     type: "fix",
     summary: "Source-audited an Enna legacy crown and corrected spaced German patent matching",
   },

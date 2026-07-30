@@ -98,7 +98,7 @@ In system terms, L13 strengthens the negative front block while leaving the fina
 
 #### L14 — Positive Member of the G1 Cemented Pair
 
-**nd = 1.54732, νd = 46.0. Glass: 547460 class (soft catalog neighborhood only; vendor unproven). Isolated-in-air f = +21.259099 mm.**
+**nd = 1.54732, νd = 46.0. Glass: E-FEL1 (HOYA catalog equivalent; production supplier unspecified; patent 547460). Isolated-in-air f = +21.259099 mm.**
 
 L14 is a strongly positive biconvex element. Its isolated power is considerably stronger than the net power of the complete cemented pair because the bonded L15 element supplies opposing power at the shared surface.
 
@@ -208,7 +208,7 @@ The patent publishes only d-line refractive index and Abbe number. It does not i
 | Unmatched 780509 class | 1.78000 | 50.9 | L12g | No defensible current-catalog identity recovered |
 | Synthetic resin layer | 1.52972 | 42.7 | L12r | Patent-defined resin; optical-glass catalog matching is inapplicable |
 | Unmatched 810372 class | 1.81000 | 37.2 | L13 | No defensible current-catalog identity recovered |
-| 547460 class | 1.54732 | 46.0 | L14 | Only a soft neighborhood match; a vendor glass is not asserted |
+| E-FEL1 catalog equivalent (patent 547460) | 1.54732 | 46.0 | L14 | Shared LLF1-family coordinate; HOYA row selected by smallest Abbe residual, production supplier unspecified |
 | Unmatched 850440 class | 1.85000 | 44.0 | L15 | No defensible current-catalog identity recovered |
 | 567428 class | 1.56732 | 42.8 | L21 | Exact nd/νd equivalents exist; vendor unproven |
 | 816466 class | 1.81600 | 46.6 | L22 | Exact nd/νd equivalents exist; vendor unproven |
@@ -219,10 +219,13 @@ The patent publishes only d-line refractive index and Abbe number. It does not i
 | 439950 extreme-low-dispersion crown class | 1.43875 | 95.0 | L41 | An exact current OHARA-class equivalent exists; vendor unproven |
 | 516641 crown class | 1.51633 | 64.1 | L44 | Exact SUMITA K-BK7 catalog coordinate; patent vendor remains unproven |
 
-The catalog audit adds the vendor-published SUMITA K-BK7 dispersion polynomial for the exact 516641 coordinate. This
-raises the model from 9 to 10 coefficient-backed material entries without assigning SUMITA as the patent supplier.
-The five other unresolved optical-glass coordinates and the synthetic-resin layer remain on the Abbe fallback because
-the reviewed current and obsolete-inclusive catalogs do not provide equally defensible exact matches.
+The catalog audit adds the vendor-published SUMITA K-BK7 dispersion polynomial for the exact 516641 coordinate. A
+later source review also assigns L14 to the shared LLF1-family curve: OHARA PBL1/S-TIL1, HOYA E-FEL1, and SUMITA LLF1
+all publish effectively interchangeable `1.54814 / 45.8–45.9` coordinates, and E-FEL1 has the smallest Abbe residual
+against the patent row. This raises the model from 9 to 11 coefficient-backed material entries without assigning
+either catalog maker as the production supplier. The four other unresolved optical-glass coordinates and the
+synthetic-resin layer remain on the Abbe fallback because the reviewed current and obsolete-inclusive catalogs do not
+provide equally defensible matches.
 
 The chromatic strategy is concentrated in the rear half of the system. G2 ends with the low-dispersion L24; G4 combines the extreme-low-dispersion L41 with the dense-flint/low-dispersion L42/L43 pair. This arrangement gives the design large dispersion differences without forcing the weak cemented D4 pair to carry much net power.
 

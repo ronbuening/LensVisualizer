@@ -10,8 +10,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **488** lenses scanned
-- **479** total code-only elements found
-- **479** elements in this report
+- **478** total code-only elements found
+- **478** elements in this report
 - **154** distinct lens files affected
 
 ## Codes by Frequency
@@ -129,7 +129,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 540509 | 1 | 1 | patents/GB_775944_A.pdf | No reviewed-sidecar hit |
 | 541468 | 1 | 1 | patents/US4124276.pdf | All representative rows reviewed |
 | 545486 | 1 | 1 | patents/CN116520542A.pdf | All representative rows reviewed |
-| 547460 | 1 | 1 | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
 | 548458 | 1 | 1 | patents/US6940655.pdf | No reviewed-sidecar hit |
 | 553381 | 1 | 1 | patents/US7508592.pdf | All representative rows reviewed |
 | 553551 | 1 | 1 | patents/JP2023063766A.pdf | No reviewed-sidecar hit |
@@ -1335,7 +1334,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L11 (Element 1) | 1A | `694532 class (vendor unproven)` | 1.69350 / 53.20 | M-LAC130 (trusted Sellmeier) | sellmeier | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
 | L12g (Element 2 (glass body)) | 3 | `Unmatched (780509 class; no defensible current-catalog identity recovered)` | 1.78000 / 50.90 | No catalog entry | abbe | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
 | L13 (Element 4) | 6 | `Unmatched (810372 class; no defensible current-catalog identity recovered)` | 1.81000 / 37.20 | No catalog entry | abbe | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
-| L14 (Element 5) | 8 | `547460 class (soft catalog neighborhood only; vendor unproven)` | 1.54732 / 46.00 | No catalog entry | abbe | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
 | L15 (Element 6) | 9 | `Unmatched (850440 class; no defensible current-catalog identity recovered)` | 1.85000 / 44.00 | No catalog entry | abbe | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
 | L21 (Element 7) | 11 | `567428 class (vendor unproven)` | 1.56732 / 42.80 | S-TIL26 (trusted Sellmeier) | sellmeier | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
 | L22 (Element 8) | 12 | `816466 class (vendor unproven)` | 1.81600 / 46.60 | S-LAH59 (trusted Sellmeier) | sellmeier | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
