@@ -14,3 +14,10 @@ Patent: DE 2444954 A1, Claim 4 / worked data set 4
 ### Verification
 
 - `npm test -- elementRenderDiagnostics`
+
+## 2026-07-30 - Reference-line metadata
+
+- Added `indexReference: "e"` to all eight elements because the stored `nd` / `vd` slots preserve patent
+  `ne` / `νe` values.
+- The runtime and generated reports now reject d-line catalog substitution structurally rather than relying on annotation wording.
+- No source values or prescription geometry changed.

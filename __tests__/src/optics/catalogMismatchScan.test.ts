@@ -17,6 +17,8 @@
  * through to the Abbe approximation. This test outputs a report to
  * `agent_docs/generated/catalog-mismatches.generated.md` so the team can decide
  * per-case whether to relabel the glass or update the stored `nd`.
+ * Native e-line prescription coordinates are counted separately and excluded
+ * from d-line numeric comparison.
  *
  * Always passes — its job is to surface the data, not to gate CI.
  */
@@ -73,6 +75,7 @@ describe("catalog-mismatch scan", () => {
     let totalSurfaces = 0;
     let totalGlassDeclarations = 0;
     let totalCatalogResolved = 0;
+    let referenceLineExcluded = 0;
 
     for (const [path, mod] of Object.entries(modules)) {
       const raw = mod.default;
@@ -100,8 +103,12 @@ describe("catalog-mismatch scan", () => {
         const element = surface.elemId ? elementById.get(surface.elemId) : undefined;
         if (!element?.glass) continue;
         totalGlassDeclarations++;
+        if (element.indexReference === "e") {
+          referenceLineExcluded++;
+          continue;
+        }
 
-        const compatibleEntry = resolveCompatibleGlass(element.glass, surface.nd, element.vd);
+        const compatibleEntry = resolveCompatibleGlass(element.glass, surface.nd, element.vd, element.indexReference);
         if (compatibleEntry) {
           totalCatalogResolved++;
           continue;
@@ -111,7 +118,7 @@ describe("catalog-mismatch scan", () => {
         if (!entry) continue;
         totalCatalogResolved++;
 
-        const compatibility = assessCatalogGlassCompatibility(entry, surface.nd, element.vd);
+        const compatibility = assessCatalogGlassCompatibility(entry, surface.nd, element.vd, element.indexReference);
         if (!compatibility.compatible) {
           mismatches.push({
             lensKey: data.key,
@@ -156,6 +163,7 @@ describe("catalog-mismatch scan", () => {
     lines.push(
       `but its published coordinates disagree with the stored prescription beyond nd ±${GLASS_ND_TOLERANCE} or νd ±${GLASS_VD_TOLERANCE}.`,
     );
+    lines.push("Native e-line prescription coordinates are excluded from this d-line comparison.");
     lines.push("");
     lines.push(
       "These are rejected by the safety net in [src/optics/dispersion.ts](../../src/optics/dispersion.ts) — the",
@@ -172,6 +180,7 @@ describe("catalog-mismatch scan", () => {
     lines.push(`- **${totalLenses}** lenses scanned`);
     lines.push(`- **${totalSurfaces}** glass surfaces examined`);
     lines.push(`- **${totalGlassDeclarations}** surfaces with non-empty \`glass\` strings`);
+    lines.push(`- **${referenceLineExcluded}** native e-line surfaces excluded from d-line catalog comparison`);
     lines.push(`- **${totalCatalogResolved}** of those resolved to a catalog entry`);
     lines.push(
       `- **${mismatches.length}** mismatches found (${((mismatches.length / Math.max(1, totalCatalogResolved)) * 100).toFixed(1)}% of resolved surfaces)`,

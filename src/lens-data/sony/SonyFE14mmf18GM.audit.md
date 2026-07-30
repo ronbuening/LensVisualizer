@@ -48,3 +48,11 @@ No new catalog entries were added. WO 2021/199923 A1 publishes nd/vd and effecti
   publishes `Ne = 1.85639` at the helium-e line and does not identify a glass or provide a d-line conversion.
 - Kept S24A explicit unmatched `856401`; assigning L-LAH85V would conflate e-line and d-line coordinates.
 - No prescription, asphere, focus, aperture, or semi-diameter values changed.
+
+## 2026-07-30 - Reference-line metadata
+
+- Added `indexReference: "e"` to L2, L13, and L14, the three Table 1 rows already verified as native e-line values.
+- Other elements remain on the default d-line reference; this mixed assignment follows the retained source audit instead
+  of treating the whole prescription as one spectral convention.
+- The runtime and generated reports now reject d-line catalog substitution for those three rows structurally. No source
+  values or prescription geometry changed.

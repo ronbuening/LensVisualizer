@@ -90,8 +90,11 @@ function formatQualityCounts(missingSurfaces: readonly MissingSurface[]): string
 
 function describeMissingSurface(surfaceNd: number, element: ElementData | undefined): string {
   if (!element?.glass) return "No glass annotation";
+  if (element.indexReference === "e") {
+    return "Authored e-line coordinates are ineligible for d-line catalog matching";
+  }
 
-  const compatibleEntry = resolveCompatibleGlass(element.glass, surfaceNd, element.vd);
+  const compatibleEntry = resolveCompatibleGlass(element.glass, surfaceNd, element.vd, element.indexReference);
   if (compatibleEntry) return "Resolved compatible catalog entry did not reach Sellmeier runtime path";
 
   const entry = resolveGlass(element.glass);
@@ -99,7 +102,7 @@ function describeMissingSurface(surfaceNd: number, element: ElementData | undefi
     return isExplicitlyUnmatched(element.glass) ? "Explicit unmatched/proprietary annotation" : "No catalog match";
   }
 
-  const compatibility = assessCatalogGlassCompatibility(entry, surfaceNd, element.vd);
+  const compatibility = assessCatalogGlassCompatibility(entry, surfaceNd, element.vd, element.indexReference);
   if (!compatibility.compatible) {
     const ndSign = compatibility.ndDiff >= 0 ? "+" : "";
     const vdSign = compatibility.vdDiff !== null && compatibility.vdDiff >= 0 ? "+" : "";
@@ -164,7 +167,7 @@ describe("Sellmeier coverage scan", () => {
         nonAirSurfaces++;
 
         const element = surface.elemId ? elementById.get(surface.elemId) : undefined;
-        const catalogEntry = resolveCompatibleGlass(element?.glass, surface.nd, element?.vd);
+        const catalogEntry = resolveCompatibleGlass(element?.glass, surface.nd, element?.vd, element?.indexReference);
         const sellmeierEligible = catalogEntry !== null;
         const quality = L.indexByIdx?.[i]?.quality ?? "missing";
         const trustedChromatic = sellmeierEligible || quality === "lineIndices";
@@ -203,7 +206,10 @@ describe("Sellmeier coverage scan", () => {
         );
         return (
           elementSurfaces.length > 0 &&
-          elementSurfaces.every(({ surface }) => resolveCompatibleGlass(element.glass, surface.nd, element.vd) !== null)
+          elementSurfaces.every(
+            ({ surface }) =>
+              resolveCompatibleGlass(element.glass, surface.nd, element.vd, element.indexReference) !== null,
+          )
         );
       }).length;
       const fullyTrustedChromaticElements = L.elements.filter((element) => {
@@ -214,7 +220,8 @@ describe("Sellmeier coverage scan", () => {
         return (
           elementSurfaces.length > 0 &&
           elementSurfaces.every(({ surface, index }) => {
-            const sellmeierEligible = resolveCompatibleGlass(element.glass, surface.nd, element.vd) !== null;
+            const sellmeierEligible =
+              resolveCompatibleGlass(element.glass, surface.nd, element.vd, element.indexReference) !== null;
             return sellmeierEligible || L.indexByIdx?.[index]?.quality === "lineIndices";
           })
         );
@@ -263,6 +270,7 @@ describe("Sellmeier coverage scan", () => {
     lines.push(
       `and its catalog coordinates agree with the authored prescription within nd ±${GLASS_ND_TOLERANCE} and νd ±${GLASS_VD_TOLERANCE}.`,
     );
+    lines.push("Native e-line prescription coordinates are excluded from the d-line catalog safety net.");
     lines.push("Trusted chromatic coverage additionally counts measured C/F/g line-index surfaces.");
     lines.push("");
     lines.push("**Regenerate this file** by running `npm test -- sellmeierCoverageScan`.");

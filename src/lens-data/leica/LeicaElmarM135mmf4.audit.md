@@ -16,3 +16,10 @@ Patent: DE 1 183 707 B, single worked prescription
   νe=37.80 and its R/d values are unchanged.
 - S5 `F5 class (Schott)` -> explicit unmatched F5-class e-line flint. The modern F5 d-line row remains a
   comparison only. Synchronized the L4 element description and glass table.
+
+## 2026-07-30 - Reference-line metadata
+
+- Added `indexReference: "e"` to all five elements because the stored `nd` / `vd` slots preserve patent
+  `ne` / `νe` values.
+- The runtime and generated reports now reject d-line catalog substitution structurally rather than relying on annotation wording.
+- No source values or prescription geometry changed.

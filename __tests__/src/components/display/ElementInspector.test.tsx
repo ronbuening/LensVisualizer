@@ -69,6 +69,13 @@ describe("ElementInspector", () => {
     expect(screen.getByText("1.518")).toBeTruthy();
   });
 
+  it("labels native e-line element coordinates with the authored reference", () => {
+    const eLineElement: ElementData = { ...basicElement, indexReference: "e" };
+    render(<ElementInspector info={eLineElement} L={mockLens} t={mockTheme} showChromatic={false} />);
+    expect(screen.getByText("ne =")).toBeTruthy();
+    expect(screen.getByText("\u03bde =")).toBeTruthy();
+  });
+
   it("renders glass type", () => {
     render(<ElementInspector info={basicElement} L={mockLens} t={mockTheme} showChromatic={false} />);
     expect(screen.getByText("S-BSL7")).toBeTruthy();

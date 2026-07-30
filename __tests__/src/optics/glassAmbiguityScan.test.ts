@@ -118,10 +118,15 @@ describe("glass ambiguity scan", () => {
       for (const element of lens.elements) {
         if (!element.glass || element.nd === 1) continue;
         totalGlassElements++;
-        const explanation = explainCompatibleGlassResolution(element.glass, element.nd, element.vd);
+        const explanation = explainCompatibleGlassResolution(
+          element.glass,
+          element.nd,
+          element.vd,
+          element.indexReference,
+        );
         if (explanation.candidates.length < 2 || !explanation.selected) continue;
 
-        const runtimeSelection = resolveCompatibleGlass(element.glass, element.nd, element.vd);
+        const runtimeSelection = resolveCompatibleGlass(element.glass, element.nd, element.vd, element.indexReference);
         expect(explanation.selected.name).toBe(runtimeSelection?.name);
 
         rows.push({

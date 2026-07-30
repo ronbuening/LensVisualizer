@@ -64,6 +64,9 @@ The constructor validates lens data and constructs a frozen `RuntimeLens` with:
 - Zoom metadata: positions, EFLs, EPs, half-fields, tracing half-fields, y-ratios, and back focal distances.
 - Stop data: physical stop SD, blade stub fraction, stop housing SD, and f-stop series.
 - Element/group/doublet/aspheric/variable maps for runtime lookup.
+- Per-surface dispersion resolvers. Catalog Sellmeier substitution requires d-line-authored element coordinates;
+  `ElementData.indexReference: "e"` preserves native patent `ne` / `νe` while excluding the element from the d-line
+  catalog safety net.
 - Folded-path metadata: resolved `opticalPath`, explicit `imagePlane`, `isFoldedOptics`, and normalized surface/image-plane
   normals when mirror data opts into the generalized model.
 - Folded entrance/exit pupil geometry derived from generalized real-ray stop and full-system basis traces, with finite
@@ -374,7 +377,7 @@ These functions feed `AsphericComparisonOverlay.tsx` exclusively and must not be
 
 ## Validation And Rendering Geometry
 
-`validateLensData.ts` checks required fields, references, STO presence, element edge thickness, SD consistency, rim slope,
+`validateLensData.ts` checks required fields, references, STO presence, the d/e `indexReference` enum, element edge thickness, SD consistency, rim slope,
 boundary-surface cross-gap overlap, conic limits, and zoom field consistency. Elements that span more than one surface
 (via `fromSurface`/`toSurface`) and stops marked `stopPlacement: "inside-element"` are validated against tighter rules:
 explicit spans must be ordered and confined to one `elemId`, internal stops must be flat with `nd` matching the

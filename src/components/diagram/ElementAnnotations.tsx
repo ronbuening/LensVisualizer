@@ -57,7 +57,7 @@ const ElementAnnotations = memo(function ElementAnnotations({
         );
       })}
 
-      {/* Abbe number (νd) badges — color-coded by dispersion class:
+      {/* Authored Abbe-number badges (νd or νe) — color-coded by dispersion class:
        * <35 = high dispersion (flint), 35-55 = normal, >55 = low dispersion (crown/ED) */}
       {showChromatic &&
         shapes.map(({ eid, z1, z2 }) => {

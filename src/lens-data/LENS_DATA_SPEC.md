@@ -469,8 +469,9 @@ Each entry in the `elements` array describes one physical glass element.
   name:     "L1",                           // REQUIRED: short name
   label:    "Element 1",                    // REQUIRED: display label
   type:     "Biconvex Positive",            // REQUIRED: optical shape/type description
-  nd:       1.90525,                        // REQUIRED: refractive index (d-line, 587.6 nm)
-  vd:       35.04,                          // recommended: Abbe number (optional in type; needed for inspector display)
+  nd:       1.90525,                        // REQUIRED: refractive index at indexReference (d-line by default)
+  vd:       35.04,                          // recommended: Abbe number at indexReference
+  indexReference: "d",                      // optional: "d" (default) or "e" for retained patent ne / νe values
   fl:       119.3,                          // recommended: focal length in mm (optional in type; needed for inspector display)
   glass:    "LaSF (LASF35 melt)",           // recommended: glass name/catalog (optional in type; needed for inspector display)
   apd:      false,                          // optional: false | "patent" | "inferred"
@@ -489,10 +490,17 @@ Each entry in the `elements` array describes one physical glass element.
 **Spectral-data notes (chromatic modeling).** Store `nC`, `nF`, `ng`, and `dPgF` directly on the
 element; there is no authored `spectral` wrapper. The chromatic-aberration ray trace consults
 data in this preference order: air → complete explicit `nC`/`nF`/`ng` → catalog Sellmeier
-resolved from `glass` → partial explicit `nC`/`nF` → `dPgF`-corrected Abbe → plain Abbe
+resolved from `glass` for d-line-authored coordinates → partial explicit `nC`/`nF` →
+`dPgF`-corrected Abbe → plain Abbe
 (`nd` + `vd` only), then constant index when `vd` is unavailable. Each level falls back to the
 next. For apochromatic designs where the patent publishes partial dispersion or line indices,
 prefer transcribing them.
+
+`indexReference` describes what the schema's historical `nd` / `vd` slots actually contain. Omit it (or use `"d"`)
+for ordinary d-line data. Use `"e"` only when the stored values preserve a source's native `ne` / `νe` coordinates.
+Native e-line elements are excluded from d-line catalog compatibility and Sellmeier substitution even when their glass
+annotation names a catalog family. Do not mark an element merely because the source also publishes an e-line anchor,
+or when the data file has already converted the source values to d-line coordinates.
 
 **Common `type` values:**
 - `"Biconvex Positive"`, `"Biconcave Negative"`
@@ -539,8 +547,9 @@ This is preferable to leaving a wrong vendor name in place. The chromatic disper
 ### Round-trip verification
 
 When the dispersion engine resolves a `glass:` string against a Sellmeier catalog, it rejects the resolution if the
-catalog coordinates disagree with the element's stored values by more than nd ±0.003 or νd ±2. This safety net catches
-accidental relabels but it is not a substitute for the author's own check.
+element uses native e-line coordinates, or if the catalog coordinates disagree with the element's stored d-line values
+by more than nd ±0.003 or νd ±2. This safety net catches accidental relabels but it is not a substitute for the
+author's own check.
 
 Before committing a `glass:` change, verify:
 
@@ -548,6 +557,8 @@ Before committing a `glass:` change, verify:
 2. The element's stored `(nd, νd)` agrees with the catalog's published `(nd, νd)` to within the runtime window
    (Δnd ≤ 0.003, Δνd ≤ 2.0); for confident named matches, prefer substantially smaller residuals and document any
    non-exact family-level assignment.
+3. The source and stored values use the d-line reference. If the prescription retains `ne` / `νe`, set
+   `indexReference: "e"` and keep any catalog name as family context only.
 
 When neither holds, prefer the `Unmatched` form over a speculative match.
 
@@ -911,7 +922,8 @@ doublets: [
 15. `innerSd` must be finite, non-negative, and smaller than `sd`
 16. `interaction.type` must be `"refract"`, `"reflect"`, or `"block"`; side fields must be valid enum values; `normal` vectors must have finite `z` and `y` components; tilted flat mirror backing planes must repeat the reflective face normal
 17. `opticalPath.mode` must be `"sequential"` or `"auto"`; `surfaceOrder` labels must exist; `imagePlane` point/normal fields must be finite; `maxInteractions` must be a positive integer large enough for the declared path
-18. Perspective-control ranges, projection metadata, aberration-control gaps, explicit element spans, rim slope, edge thickness, and the remaining numeric bounds described above
+18. Element `indexReference`, when present, must be `"d"` or `"e"`
+19. Perspective-control ranges, projection metadata, aberration-control gaps, explicit element spans, rim slope, edge thickness, and the remaining numeric bounds described above
 
 On failure, `buildLens()` throws with all errors listed.
 
@@ -941,7 +953,7 @@ When transcribing from an optical patent:
 3. **Aspherical coefficients** — Copy from the asph table. Watch for scientific notation format differences between patents
 4. **Variable gaps** — Look for "variable spacing" tables showing values at different object distances
 5. **Elements** — Derive from the surface data: consecutive surfaces with the same glass (nd > 1) form one element. Cemented elements share a boundary surface
-6. **Glass identification** — See the **Glass Identification** section above for canonical `glass:` formats, the `Unmatched (...)` convention for proprietary glass, and round-trip verification expectations. Match `nd`/`νd` pairs against vendor catalogs (Ohara, Schott, Hoya, Sumita, CDGM) and prefer the vendor whose name the patent uses; when the patent is silent, prefer the vendor consistent with the rest of the lens. When the patent publishes anomalous partial dispersion data (`PgF`/`ΔPgF`) or per-element line indices (`nC`, `nF`, `ng`), transcribe them onto the element block — these enable higher-fidelity chromatic modeling than `nd`/`vd` alone
+6. **Glass identification** — See the **Glass Identification** section above for canonical `glass:` formats, the `Unmatched (...)` convention for proprietary glass, and round-trip verification expectations. Confirm whether the source coordinates are d-line or e-line before matching them against vendor catalogs. Set `indexReference: "e"` when `nd`/`vd` preserve native `ne`/`νe`; do not set it after an explicit e-to-d conversion. Match d-line `nd`/`νd` pairs against vendor catalogs (Ohara, Schott, Hoya, Sumita, CDGM) and prefer the vendor whose name the patent uses; when the patent is silent, prefer the vendor consistent with the rest of the lens. When the patent publishes anomalous partial dispersion data (`PgF`/`ΔPgF`) or per-element line indices (`nC`, `nF`, `ng`), transcribe them onto the element block — these enable higher-fidelity chromatic modeling than `nd`/`vd` alone
 7. **Focal length** — Use the patent's stated EFL, or compute from the prescription via paraxial ray trace
 8. **F-number** — Use the patent's stated f-number. If the patent gives the stop diameter, compute `f/# = EFL / (2 × EP_SD)`
 9. **Scaling** — If the patent prescription is at a different focal length than production (e.g., f=100 in patent, f=50 production), apply a uniform scale factor `s` to all `R`, `d`, `sd`, image-plane coordinates, and other dimensional spacings. Transform each aspherical polynomial coefficient as `A_p,scaled = A_p,patent / s^(p-1)`; keep `K` unchanged. Document the scale factor and coefficient transform in the file header

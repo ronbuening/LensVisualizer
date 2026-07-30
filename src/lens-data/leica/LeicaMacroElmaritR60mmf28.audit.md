@@ -16,3 +16,10 @@ Patent: US 3,552,833, sole numerical prescription / claim table
 - S1 `LAF2 / S-LAM2 class` -> explicit unmatched LAF2-class e-line glass at 1.74795 / 44.50.
 - S4 `E-FD5 / S-TIM25 class` -> explicit unmatched dense-flint e-line glass at 1.67764 / 32.00.
 - The d-line catalog names remain comparisons only. Synchronized the element descriptions and glass table.
+
+## 2026-07-30 - Reference-line metadata
+
+- Added `indexReference: "e"` to all six elements because the stored `nd` / `vd` slots preserve patent
+  `ne` / `νe` values.
+- The runtime and generated reports now reject d-line catalog substitution structurally rather than relying on annotation wording.
+- No source values or prescription geometry changed.

@@ -24,7 +24,7 @@ import buildLens from "../../../src/optics/buildLens.js";
 import { evaluateSellmeier, LINE_NM, resolveCompatibleGlass, resolveGlass } from "../../../src/optics/glassCatalog.js";
 import type { DispersionQuality } from "../../../src/optics/dispersion.js";
 import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
-import type { LensData } from "../../../src/types/optics.js";
+import type { LensData, RefractiveIndexReferenceLine } from "../../../src/types/optics.js";
 
 const modules = import.meta.glob<{ default: LensData }>("../../../src/lens-data/**/*.data.ts", { eager: true });
 const REPORT_DIR = "agent_docs/generated";
@@ -55,6 +55,7 @@ interface CodeOnlyElement {
   codes: string[];
   storedNd: number;
   storedVd: number | undefined;
+  indexReference: RefractiveIndexReferenceLine;
   catalogName: string | null;
   catalogNd: number | null;
   ndDiff: number | null;
@@ -201,6 +202,7 @@ function qualitySummary(row: CodeOnlyElement): string {
 function catalogStatus(row: CodeOnlyElement): string {
   if (row.catalogName === null) return "No catalog entry";
   if (row.hasSellmeier) return `${row.catalogName} (trusted Sellmeier)`;
+  if (row.indexReference === "e") return `${row.catalogName} context only (e-line prescription)`;
   return `${row.catalogName} rejected (Δnd=${formatNdDiff(row.ndDiff)})`;
 }
 
@@ -376,13 +378,14 @@ describe("six-digit glass-code scan", () => {
         }
 
         const catalogEntry =
-          resolveCompatibleGlass(element.glass, element.nd, element.vd) ?? resolveGlass(element.glass);
+          resolveCompatibleGlass(element.glass, element.nd, element.vd, element.indexReference) ??
+          resolveGlass(element.glass);
         const catalogNd = catalogEntry ? evaluateSellmeier(catalogEntry, LINE_NM.d) : null;
         const hasSellmeier = L.S.some(
           (surface) =>
             surface.nd !== 1.0 &&
             surface.elemId === element.id &&
-            resolveCompatibleGlass(element.glass, surface.nd, element.vd) !== null,
+            resolveCompatibleGlass(element.glass, surface.nd, element.vd, element.indexReference) !== null,
         );
         rows.push({
           lensKey: data.key,
@@ -397,6 +400,7 @@ describe("six-digit glass-code scan", () => {
           codes: extractSixDigitCodes(element.glass),
           storedNd: element.nd,
           storedVd: element.vd,
+          indexReference: element.indexReference ?? "d",
           catalogName: catalogEntry?.name ?? null,
           catalogNd,
           ndDiff: catalogNd === null ? null : catalogNd - element.nd,

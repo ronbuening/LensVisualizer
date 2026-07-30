@@ -22,3 +22,10 @@ Patent: US 3,591,257
 - S13 `F2 (SCHOTT)` -> explicit unmatched F2-class e-line glass at 1.62408 / 36.11.
 - The modern N-LAF21 and F2 d-line rows remain useful comparisons but are not assigned as spectral identities.
   Synchronized the companion analysis accordingly.
+
+## 2026-07-30 - Reference-line metadata
+
+- Added `indexReference: "e"` to all eight elements because the stored `nd` / `vd` slots preserve patent
+  `ne` / `νe` values.
+- The runtime and generated reports now reject d-line catalog substitution structurally rather than relying on annotation wording.
+- No source values or prescription geometry changed.

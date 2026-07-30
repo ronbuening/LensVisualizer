@@ -668,6 +668,9 @@ export default function validateLensData(data: UntrustedLensData): string[] {
     }
     if (elemIds.has(e.id)) errors.push(`Duplicate element id: ${e.id}`);
     elemIds.add(e.id);
+    if (e.indexReference !== undefined && e.indexReference !== "d" && e.indexReference !== "e") {
+      errors.push(`elements[${i}]: indexReference must be "d" or "e" when provided`);
+    }
   }
 
   /* ── Surface elemId values reference valid element IDs or 0 (air) ── */

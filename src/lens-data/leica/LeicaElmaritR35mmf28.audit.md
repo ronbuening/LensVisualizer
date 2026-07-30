@@ -15,3 +15,10 @@ Patent: FR 1 471 493, single numerical prescription
 - S6 `SK16 / N-SK16 class` -> explicit unmatched SK16-class e-line crown at 1.62410 / 60.10.
 - S10 `BaF13-class` -> explicit unmatched BaF13-class e-line barium flint at 1.67340 / 46.90.
 - Modern d-line catalog rows remain family comparisons only; the companion analysis now states that distinction.
+
+## 2026-07-30 - Reference-line metadata
+
+- Added `indexReference: "e"` to all seven elements because the stored `nd` / `vd` slots preserve patent
+  `ne` / `νe` values.
+- The runtime and generated reports now reject d-line catalog substitution structurally rather than relying on annotation wording.
+- No source values or prescription geometry changed.

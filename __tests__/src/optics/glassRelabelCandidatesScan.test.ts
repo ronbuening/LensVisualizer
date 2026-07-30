@@ -161,7 +161,8 @@ describe("glass-relabel candidate scan", () => {
         if (surface.nd === 1.0) continue;
         const element = surface.elemId ? elementById.get(surface.elemId) : undefined;
         if (!element?.glass) continue;
-        if (resolveCompatibleGlass(element.glass, surface.nd, element.vd)) continue;
+        if (element.indexReference === "e") continue;
+        if (resolveCompatibleGlass(element.glass, surface.nd, element.vd, element.indexReference)) continue;
         const entry = resolveGlass(element.glass);
         if (!entry) continue;
         mismatches.push({

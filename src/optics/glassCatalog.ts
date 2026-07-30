@@ -23,6 +23,7 @@ import { ALIASES } from "./glassCatalogAliases.js";
 import { DUPLICATE_CODE6_PRECEDENCE, RAW_CATALOG } from "./glassCatalogData.js";
 import type { GlassEntry } from "./glassCatalogTypes.js";
 import { LINE_NM } from "./spectralLines.js";
+import type { RefractiveIndexReferenceLine } from "../types/optics.js";
 
 export type { GlassEntry } from "./glassCatalogTypes.js";
 export { LINE_NM } from "./spectralLines.js";
@@ -47,6 +48,9 @@ export const GLASS_VD_TOLERANCE = 2;
 
 export interface CatalogGlassCompatibility {
   readonly compatible: boolean;
+  /** Whether the authored coordinates use the catalog's d-line reference. */
+  readonly referenceLineCompatible: boolean;
+  readonly referenceLine: RefractiveIndexReferenceLine;
   readonly catalogNd: number;
   readonly ndDiff: number;
   readonly vdDiff: number | null;
@@ -120,7 +124,10 @@ export function evaluateCatalogAbbeNumber(entry: GlassEntry): number {
 }
 
 /**
- * Check whether a catalog glass is compatible with an authored (nd, νd) pair.
+ * Check whether a catalog glass is compatible with an authored refractive-index pair.
+ *
+ * Catalog coordinates are d-line values. An authored e-line pair must not be
+ * compared numerically against them or inherit their Sellmeier curve.
  *
  * nd alone is not enough to identify a dispersion curve: different glass
  * families can share nearly the same d-line index while having very different
@@ -130,12 +137,19 @@ export function assessCatalogGlassCompatibility(
   entry: GlassEntry,
   storedNd: number,
   storedVd: number | undefined,
+  referenceLine: RefractiveIndexReferenceLine = "d",
 ): CatalogGlassCompatibility {
   const catalogNd = evaluateSellmeier(entry, LINE_NM.d);
   const ndDiff = catalogNd - storedNd;
   const vdDiff = storedVd === undefined ? null : entry.vd - storedVd;
+  const referenceLineCompatible = referenceLine === "d";
   return {
-    compatible: Math.abs(ndDiff) <= GLASS_ND_TOLERANCE && (vdDiff === null || Math.abs(vdDiff) <= GLASS_VD_TOLERANCE),
+    compatible:
+      referenceLineCompatible &&
+      Math.abs(ndDiff) <= GLASS_ND_TOLERANCE &&
+      (vdDiff === null || Math.abs(vdDiff) <= GLASS_VD_TOLERANCE),
+    referenceLineCompatible,
+    referenceLine,
     catalogNd,
     ndDiff,
     vdDiff,
@@ -362,11 +376,13 @@ function compatibleCandidateMatches(
   glassString: string,
   storedNd: number,
   storedVd: number | undefined,
+  referenceLine: RefractiveIndexReferenceLine,
 ): RankedCompatibleGlassCandidate[] {
+  if (referenceLine !== "d") return [];
   return candidateMatches(glassString)
     .map((match) => ({
       ...match,
-      compatibility: assessCatalogGlassCompatibility(match.entry, storedNd, storedVd),
+      compatibility: assessCatalogGlassCompatibility(match.entry, storedNd, storedVd, referenceLine),
     }))
     .filter(({ compatibility }) => compatibility.compatible)
     .sort(
@@ -452,11 +468,20 @@ export function explainCompatibleGlassResolution(
   glassString: string | undefined,
   storedNd: number,
   storedVd: number | undefined,
+  referenceLine: RefractiveIndexReferenceLine = "d",
 ): CompatibleGlassResolution {
   if (!glassString) {
     return { selected: null, candidates: [], criterion: "none", reason: "No glass annotation." };
   }
-  const ranked = compatibleCandidateMatches(glassString, storedNd, storedVd);
+  if (referenceLine !== "d") {
+    return {
+      selected: null,
+      candidates: [],
+      criterion: "none",
+      reason: `Authored ${referenceLine}-line coordinates are not eligible for the d-line catalog safety net.`,
+    };
+  }
+  const ranked = compatibleCandidateMatches(glassString, storedNd, storedVd, referenceLine);
   const selection = candidateSelectionReason(ranked);
   return {
     selected: ranked[0]?.entry ?? null,
@@ -485,9 +510,10 @@ export function resolveCompatibleGlass(
   glassString: string | undefined,
   storedNd: number,
   storedVd: number | undefined,
+  referenceLine: RefractiveIndexReferenceLine = "d",
 ): GlassEntry | null {
   if (!glassString) return null;
-  return compatibleCandidateMatches(glassString, storedNd, storedVd)[0]?.entry ?? null;
+  return compatibleCandidateMatches(glassString, storedNd, storedVd, referenceLine)[0]?.entry ?? null;
 }
 
 /**

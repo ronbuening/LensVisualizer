@@ -14,9 +14,11 @@ Separate from the proprietary-glass list below, there is a second category of di
 coordinates beyond the safety-net tolerance (nd ±0.003 or νd ±2) — typically because the annotation was a speculative
 guess (e.g. `"S-LAH79 (OHARA) probable"` when the real glass is something else).
 
-The dispersion engine rejects these mismatches and falls through to the best lower-quality path available: direct line
-indices when present, otherwise dPgF-corrected/plain Abbe or constant index. The full per-surface list is auto-generated
-and lives in [catalog-mismatches.generated.md](generated/catalog-mismatches.generated.md). Regenerate it with
+The dispersion engine rejects these mismatches and native e-line coordinates (`indexReference: "e"`), then falls
+through to the best lower-quality path available: direct line indices when present, otherwise dPgF-corrected/plain
+Abbe or constant index. Native e-line rows are excluded from d-line mismatch/relabel candidate queues rather than
+being offered misleading nearest neighbors. The full per-surface mismatch list is auto-generated and lives in
+[catalog-mismatches.generated.md](generated/catalog-mismatches.generated.md). Regenerate it with
 `npm test -- catalogMismatchScan`. Candidate relabels live in
 [glass-relabel-candidates.generated.md](generated/glass-relabel-candidates.generated.md), regenerated with
 `npm test -- glassRelabelCandidatesScan`; unresolved non-matching tokens live in
@@ -54,6 +56,10 @@ nF: 1.49978,   // F-line (486.1 nm) refractive index
 ng: 1.50387,   // g-line (435.8 nm) — optional but recommended for APO designs
 dPgF: 0.0376,  // anomalous partial dispersion deviation (often listed separately)
 ```
+
+When the prescription itself publishes `ne` / `νe` and those values are retained in the historical `nd` / `vd` slots,
+also set `indexReference: "e"`. Omit the field for d-line values and for prescriptions already converted from e-line
+to d-line. This metadata prevents d-line catalog substitution while preserving the source prescription unchanged.
 
 The dispersion cascade in [src/optics/dispersion.ts](../src/optics/dispersion.ts) honors these immediately. With `nC`/`nF` populated the surface upgrades from `abbe` to `lineIndices` quality, and the LCA inset's quality badge will reflect the change.
 

@@ -22,6 +22,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-07-30 ──────────────────────────────────────────────────
   {
     date: "2026-07-30",
+    type: "fix",
+    summary: "Prevented native e-line patent indices from borrowing incompatible d-line glass curves",
+  },
+  {
+    date: "2026-07-30",
     type: "improvement",
     summary: "Expanded vintage-lens chromatic tracing with nine recovered SUMITA glass types",
   },

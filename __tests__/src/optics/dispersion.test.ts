@@ -101,6 +101,23 @@ describe("glass catalog", () => {
     expect(assessCatalogGlassCompatibility(nbk7, 1.5168, 52.0).compatible).toBe(false);
   });
 
+  it("rejects e-line coordinates from the d-line catalog safety net", () => {
+    const nbk7 = resolveGlass("N-BK7")!;
+    const compatibility = assessCatalogGlassCompatibility(nbk7, 1.5168, 64.17, "e");
+    expect(compatibility).toMatchObject({
+      compatible: false,
+      referenceLineCompatible: false,
+      referenceLine: "e",
+    });
+    expect(resolveCompatibleGlass("N-BK7", 1.5168, 64.17, "e")).toBeNull();
+    expect(explainCompatibleGlassResolution("N-BK7", 1.5168, 64.17, "e")).toMatchObject({
+      selected: null,
+      candidates: [],
+      criterion: "none",
+      reason: "Authored e-line coordinates are not eligible for the d-line catalog safety net.",
+    });
+  });
+
   it("uses the tightened catalog compatibility window", () => {
     expect(GLASS_ND_TOLERANCE).toBe(0.003);
     expect(GLASS_VD_TOLERANCE).toBe(2);
@@ -633,6 +650,26 @@ describe("makeSurfaceDispersion preference cascade", () => {
     );
     expect(d.quality).toBe("abbe");
     expect(d.glassEntry).toBeUndefined();
+  });
+
+  it("falls back to authored e-line coordinates instead of borrowing a d-line catalog curve", () => {
+    const d = makeSurfaceDispersion(
+      { R: 0, d: 0, sd: 0, label: "", nd: 1.5168, elemId: 1 },
+      {
+        id: 1,
+        name: "L1",
+        label: "L1",
+        type: "Test",
+        nd: 1.5168,
+        vd: 64.17,
+        indexReference: "e",
+        glass: "N-BK7",
+      },
+      undefined,
+    );
+    expect(d.quality).toBe("abbe");
+    expect(d.glassEntry).toBeUndefined();
+    expect(d.fn("G")).toBe(1.5168);
   });
 
   it("uses measured line indices when the catalog misses but nC/nF are present", () => {

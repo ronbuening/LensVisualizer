@@ -474,7 +474,12 @@ describe("glass coverage opportunities scan", () => {
         totalNonAirSurfaces++;
 
         const element = surface.elemId ? elementById.get(surface.elemId) : undefined;
-        const compatibleEntry = resolveCompatibleGlass(element?.glass, surface.nd, element?.vd);
+        const compatibleEntry = resolveCompatibleGlass(
+          element?.glass,
+          surface.nd,
+          element?.vd,
+          element?.indexReference,
+        );
         const entry = element?.glass ? resolveGlass(element.glass) : null;
         const sellmeierEligible = compatibleEntry !== null;
         const quality = L.indexByIdx?.[i]?.quality ?? "missing";
@@ -510,6 +515,7 @@ describe("glass coverage opportunities scan", () => {
         if (!entry) continue;
 
         if (sellmeierEligible) continue;
+        if (element.indexReference === "e") continue;
 
         relabels.push({
           lensKey: data.key,
@@ -556,7 +562,8 @@ describe("glass coverage opportunities scan", () => {
         const quality = [...new Set(qualities)].join(", ") || "no traced surfaces";
         const catalogEntry = resolveGlass(element.glass);
         const hasSellmeierEligibleSurface = elementSurfaces.some(
-          ({ surface }) => resolveCompatibleGlass(element.glass, surface.nd, element.vd) !== null,
+          ({ surface }) =>
+            resolveCompatibleGlass(element.glass, surface.nd, element.vd, element.indexReference) !== null,
         );
 
         if (isCodeOnlyGlassAnnotation(element.glass)) {

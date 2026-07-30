@@ -29,3 +29,10 @@ No new catalog entries were added. The issue is reference-line convention, not m
 - Retained the e-line-vs-d-line `Unmatched (...)` labels for SF10/SF11/SF2-class rows. This remains a reference-line protection issue, not a missing transcription.
 - Rechecked APD/high-index status: the patent gives no partial-dispersion data, so all elements remain non-APD. The high-index flint and lanthanum-flint roles remain supported by the patent e-line constants.
 - No patent clear-aperture or semi-diameter table was found. Current SDs remain estimates checked against the patent Fig. 2 proportions.
+
+## 2026-07-30 - Reference-line metadata
+
+- Added `indexReference: "e"` to all six elements because the stored `nd` / `vd` slots preserve patent
+  `ne` / `νe` values.
+- The runtime and generated reports now reject d-line catalog substitution structurally rather than relying on annotation wording.
+- No source values or prescription geometry changed.

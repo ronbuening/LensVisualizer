@@ -24,3 +24,10 @@ Patent: GB 1,050,055, Example 1
 - Retained L7 on the Abbe path and added an explicit `Unmatched` marker because its stored `ne=1.59865` is an e-line
   prescription value; applying HOYA E-F8's d-line polynomial would mix reference wavelengths.
 - Synchronized the analysis. No prescription geometry or authored optical constants changed.
+
+## 2026-07-30 - Reference-line metadata
+
+- Added `indexReference: "e"` to all nine elements because the stored `nd` / `vd` slots preserve patent
+  `ne` / `νe` values.
+- The runtime and generated reports now reject d-line catalog substitution structurally rather than relying on annotation wording.
+- No source values or prescription geometry changed.

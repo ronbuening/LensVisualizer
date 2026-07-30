@@ -3,6 +3,7 @@
 Completeness-ranked view of the lens catalog using trusted chromatic coverage.
 Strict Sellmeier coverage is still reported: a surface counts when its `glass` annotation resolves to a catalog entry
 and its catalog coordinates agree with the authored prescription within nd ±0.003 and νd ±2.
+Native e-line prescription coordinates are excluded from the d-line catalog safety net.
 Trusted chromatic coverage additionally counts measured C/F/g line-index surfaces.
 
 **Regenerate this file** by running `npm test -- sellmeierCoverageScan`.
@@ -18,10 +19,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 - **223** visible lenses fully covered by strict Sellmeier data
 - **5** lenses fully covered only after measured line-index data
 - **5** visible lenses fully covered only after measured line-index data
-- **4659 / 5360** non-air surfaces use strict catalog Sellmeier data
-- **86.9%** strict Sellmeier surface coverage overall
-- **4671 / 5360** non-air surfaces use trusted chromatic data
-- **87.1%** trusted chromatic coverage overall
+- **4643 / 5360** non-air surfaces use strict catalog Sellmeier data
+- **86.6%** strict Sellmeier surface coverage overall
+- **4655 / 5360** non-air surfaces use trusted chromatic data
+- **86.8%** trusted chromatic coverage overall
 
 ## Fully Strict Sellmeier Lenses
 
@@ -455,93 +456,93 @@ Fully strict and line-index-complete trusted lenses are listed above; this table
 | 177 | [AGFA SOLAGON 50mm f/2](../../src/lens-data/agfa/AgfaSolagon50mmf2.data.ts) | 66.7% | 66.7% | 4/6 | 4/6 | 2 | abbe: 2 |
 | 178 | [CANON SERENAR 28mm f/3.5](../../src/lens-data/canon/CanonSerenar28mmf35.data.ts) | 66.7% | 66.7% | 4/6 | 4/6 | 2 | abbe: 2 |
 | 179 | [CANON SERENAR 50mm f/1.8](../../src/lens-data/canon/CanonSerenar50mmf18.data.ts) | 66.7% | 66.7% | 4/6 | 4/6 | 2 | abbe: 2 |
-| 180 | [RODENSTOCK SIRONAR-N 100mm f/5.6](../../src/lens-data/rodenstock/RodenstockSironarN100mmf56.data.ts) | 66.7% | 66.7% | 4/6 | 4/6 | 2 | abbe: 2 |
-| 181 | [SCHNEIDER-KREUZNACH APO-SYMMAR 100mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderAPOSymmar100mmf56.data.ts) | 66.7% | 66.7% | 4/6 | 4/6 | 2 | abbe: 2 |
-| 182 | [NIKON AF-S NIKKOR 58mm f/1.4 G](../../src/lens-data/nikon/Nikon58f14GDesignCandidate.data.ts) | 66.7% | 66.7% | 6/9 | 6/9 | 3 | abbe: 3 |
-| 183 | [OLYMPUS ZUIKO AUTO-W 28mm f/2](../../src/lens-data/olympus/OlympusZuikoAutoW28mmf2.data.ts) | 66.7% | 66.7% | 6/9 | 6/9 | 3 | abbe: 3 |
-| 184 | [HASSELBLAD XCD 90mm f/2.5 V](../../src/lens-data/hasselblad/HasselbladXCD90mmf25V.data.ts) | 66.7% | 66.7% | 8/9 | 8/9 | 4 | constant: 3, abbe: 1 |
-| 185 | [NIKON NIKKOR Z 24-50mm f/4-6.3](../../src/lens-data/nikon/NikonNikkorZ2450mmf463.data.ts) | 66.7% | 66.7% | 8/12 | 8/12 | 4 | abbe: 4 |
-| 186 | [NIKON AF-S NIKKOR 18-35mm f/3.5-4.5 G ED](../../src/lens-data/nikon/NikonAFSNikkor1835mmf3545GED.data.ts) | 66.7% | 66.7% | 12/18 | 12/18 | 6 | abbe: 6 |
+| 180 | [SCHNEIDER-KREUZNACH APO-SYMMAR 100mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderAPOSymmar100mmf56.data.ts) | 66.7% | 66.7% | 4/6 | 4/6 | 2 | abbe: 2 |
+| 181 | [NIKON AF-S NIKKOR 58mm f/1.4 G](../../src/lens-data/nikon/Nikon58f14GDesignCandidate.data.ts) | 66.7% | 66.7% | 6/9 | 6/9 | 3 | abbe: 3 |
+| 182 | [OLYMPUS ZUIKO AUTO-W 28mm f/2](../../src/lens-data/olympus/OlympusZuikoAutoW28mmf2.data.ts) | 66.7% | 66.7% | 6/9 | 6/9 | 3 | abbe: 3 |
+| 183 | [HASSELBLAD XCD 90mm f/2.5 V](../../src/lens-data/hasselblad/HasselbladXCD90mmf25V.data.ts) | 66.7% | 66.7% | 8/9 | 8/9 | 4 | constant: 3, abbe: 1 |
+| 184 | [NIKON NIKKOR Z 24-50mm f/4-6.3](../../src/lens-data/nikon/NikonNikkorZ2450mmf463.data.ts) | 66.7% | 66.7% | 8/12 | 8/12 | 4 | abbe: 4 |
+| 185 | [NIKON AF-S NIKKOR 18-35mm f/3.5-4.5 G ED](../../src/lens-data/nikon/NikonAFSNikkor1835mmf3545GED.data.ts) | 66.7% | 66.7% | 12/18 | 12/18 | 6 | abbe: 6 |
 |  | **60-64.9% coverage** |  |  |  |  |  |  |
-| 187 | [MINOLTA AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) | 63.2% | 63.2% | 12/19 | 12/19 | 7 | abbe: 7 |
-| 188 | [FUJIFILM FUJINON 23mm f/2 (Fujifilm X100V)](../../src/lens-data/fujifilm/FujifilmX100V23mmf2.data.ts) | 62.5% | 62.5% | 5/8 | 5/8 | 3 | abbe: 3 |
-| 189 | [NIKON NIKKOR Z 40mm f/2](../../src/lens-data/nikon/NikonNikkorZ40mmf2.data.ts) | 62.5% | 62.5% | 5/8 | 5/8 | 3 | abbe: 3 |
-| 190 | [SONY PLANAR T* 50mm f/1.4 ZA SSM](../../src/lens-data/sony/SonyPlanarT50mmf14ZA.data.ts) | 62.5% | 62.5% | 5/8 | 5/8 | 3 | abbe: 3 |
-| 191 | [NIKON AF-P DX NIKKOR 10-20mm f/4.5-5.6 G VR](../../src/lens-data/nikon/NikonAFPDX1020mmf4556G.data.ts) | 62.5% | 62.5% | 10/16 | 10/16 | 6 | abbe: 6 |
-| 192 | [PENTAX HD DA* 11-18mm f/2.8 ED DC AW](../../src/lens-data/pentax/PentaxD1118mmF28EDDCWR.data.ts) | 62.5% | 62.5% | 10/16 | 10/16 | 6 | abbe: 6 |
-| 193 | [NIKON NIKKOR Z 58mm f/0.95 S Noct](../../src/lens-data/nikon/NikonZ58f095SNoct.data.ts) | 61.1% | 61.1% | 11/17 | 11/17 | 7 | abbe: 6, constant: 1 |
-| 194 | [AGFA COLOR-TELINEAR 90mm f/4](../../src/lens-data/agfa/AgfaColorTelinear90mmf4.data.ts) | 60.0% | 60.0% | 3/5 | 3/5 | 2 | abbe: 2 |
-| 195 | [NIKON AI NIKKOR 180mm f/2.8 ED](../../src/lens-data/nikon/NikonAINikkor180mmf28.data.ts) | 60.0% | 60.0% | 3/5 | 3/5 | 2 | abbe: 2 |
-| 196 | [NIKON R-UW AF FISHEYE-NIKKOR 13mm f/2.8](../../src/lens-data/nikon/NikonRUWAFNikkor13mmf28.data.ts) | 60.0% | 60.0% | 6/10 | 6/10 | 4 | abbe: 4 |
-| 197 | [NIKON AF-S NIKKOR 28-300mm f/3.5-5.6 G ED VR](../../src/lens-data/nikon/NikonNikkorAFS28300mmf3556G.data.ts) | 60.0% | 60.0% | 12/20 | 12/20 | 8 | abbe: 8 |
-| 198 | [Nikon AI Zoom-Nikkor 360-1200mm f/11 ED](../../src/lens-data/nikon/NikonAIZoomNikkor3601200mmf11ED.data.ts) | 60.0% | 60.0% | 12/20 | 12/20 | 8 | abbe: 8 |
+| 186 | [MINOLTA AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) | 63.2% | 63.2% | 12/19 | 12/19 | 7 | abbe: 7 |
+| 187 | [FUJIFILM FUJINON 23mm f/2 (Fujifilm X100V)](../../src/lens-data/fujifilm/FujifilmX100V23mmf2.data.ts) | 62.5% | 62.5% | 5/8 | 5/8 | 3 | abbe: 3 |
+| 188 | [NIKON NIKKOR Z 40mm f/2](../../src/lens-data/nikon/NikonNikkorZ40mmf2.data.ts) | 62.5% | 62.5% | 5/8 | 5/8 | 3 | abbe: 3 |
+| 189 | [SONY PLANAR T* 50mm f/1.4 ZA SSM](../../src/lens-data/sony/SonyPlanarT50mmf14ZA.data.ts) | 62.5% | 62.5% | 5/8 | 5/8 | 3 | abbe: 3 |
+| 190 | [NIKON AF-P DX NIKKOR 10-20mm f/4.5-5.6 G VR](../../src/lens-data/nikon/NikonAFPDX1020mmf4556G.data.ts) | 62.5% | 62.5% | 10/16 | 10/16 | 6 | abbe: 6 |
+| 191 | [PENTAX HD DA* 11-18mm f/2.8 ED DC AW](../../src/lens-data/pentax/PentaxD1118mmF28EDDCWR.data.ts) | 62.5% | 62.5% | 10/16 | 10/16 | 6 | abbe: 6 |
+| 192 | [NIKON NIKKOR Z 58mm f/0.95 S Noct](../../src/lens-data/nikon/NikonZ58f095SNoct.data.ts) | 61.1% | 61.1% | 11/17 | 11/17 | 7 | abbe: 6, constant: 1 |
+| 193 | [AGFA COLOR-TELINEAR 90mm f/4](../../src/lens-data/agfa/AgfaColorTelinear90mmf4.data.ts) | 60.0% | 60.0% | 3/5 | 3/5 | 2 | abbe: 2 |
+| 194 | [NIKON AI NIKKOR 180mm f/2.8 ED](../../src/lens-data/nikon/NikonAINikkor180mmf28.data.ts) | 60.0% | 60.0% | 3/5 | 3/5 | 2 | abbe: 2 |
+| 195 | [NIKON R-UW AF FISHEYE-NIKKOR 13mm f/2.8](../../src/lens-data/nikon/NikonRUWAFNikkor13mmf28.data.ts) | 60.0% | 60.0% | 6/10 | 6/10 | 4 | abbe: 4 |
+| 196 | [NIKON AF-S NIKKOR 28-300mm f/3.5-5.6 G ED VR](../../src/lens-data/nikon/NikonNikkorAFS28300mmf3556G.data.ts) | 60.0% | 60.0% | 12/20 | 12/20 | 8 | abbe: 8 |
+| 197 | [Nikon AI Zoom-Nikkor 360-1200mm f/11 ED](../../src/lens-data/nikon/NikonAIZoomNikkor3601200mmf11ED.data.ts) | 60.0% | 60.0% | 12/20 | 12/20 | 8 | abbe: 8 |
 |  | **55-59.9% coverage** |  |  |  |  |  |  |
-| 199 | [LAOWA 15mm f/4 Wide Angle 1:1 Macro](../../src/lens-data/laowa/Laowa15mmf4Macro.data.ts) | 58.3% | 58.3% | 7/12 | 7/12 | 5 | abbe: 5 |
-| 200 | [CANON 50mm f/1.2](../../src/lens-data/canon/Canon50mmf12.data.ts) | 57.1% | 57.1% | 4/7 | 4/7 | 3 | abbe: 3 |
-| 201 | [CARL ZEISS CONTAREX PLANAR 55mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissContarexPlanar55mmf14.data.ts) | 57.1% | 57.1% | 4/7 | 4/7 | 3 | abbe: 3 |
-| 202 | [NIKON W-NIKKOR 35mm f/1.8](../../src/lens-data/nikon/NikonWNikkor35mmf18.data.ts) | 57.1% | 57.1% | 4/7 | 4/7 | 3 | abbe: 3 |
-| 203 | [NIKON NIKKOR Z 135mm f/1.8 S Plena](../../src/lens-data/nikon/NikonZ135f18.data.ts) | 56.3% | 56.3% | 9/16 | 9/16 | 7 | abbe: 7 |
+| 198 | [LAOWA 15mm f/4 Wide Angle 1:1 Macro](../../src/lens-data/laowa/Laowa15mmf4Macro.data.ts) | 58.3% | 58.3% | 7/12 | 7/12 | 5 | abbe: 5 |
+| 199 | [CANON 50mm f/1.2](../../src/lens-data/canon/Canon50mmf12.data.ts) | 57.1% | 57.1% | 4/7 | 4/7 | 3 | abbe: 3 |
+| 200 | [CARL ZEISS CONTAREX PLANAR 55mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissContarexPlanar55mmf14.data.ts) | 57.1% | 57.1% | 4/7 | 4/7 | 3 | abbe: 3 |
+| 201 | [NIKON W-NIKKOR 35mm f/1.8](../../src/lens-data/nikon/NikonWNikkor35mmf18.data.ts) | 57.1% | 57.1% | 4/7 | 4/7 | 3 | abbe: 3 |
+| 202 | [NIKON NIKKOR Z 135mm f/1.8 S Plena](../../src/lens-data/nikon/NikonZ135f18.data.ts) | 56.3% | 56.3% | 9/16 | 9/16 | 7 | abbe: 7 |
 |  | **50-54.9% coverage** |  |  |  |  |  |  |
-| 204 | [Nikon AI Zoom-Nikkor 25-50mm f/4](../../src/lens-data/nikon/NikonAIZoomNikkor2550mmf4.data.ts) | 54.5% | 54.5% | 6/11 | 6/11 | 5 | abbe: 5 |
-| 205 | [CARL ZEISS HOLOGON 15mm f/8 (Contarex Hologon / Leica M)](../../src/lens-data/carl-zeiss-oberkochen/ZeissHologon15mmf8.data.ts) | 50.0% | 50.0% | 2/3 | 2/3 | 2 | abbe: 2 |
-| 206 | [NIKON SERIES E 135mm f/2.8](../../src/lens-data/nikon/NikonSeriesE135mmf28.data.ts) | 50.0% | 50.0% | 2/4 | 2/4 | 2 | abbe: 2 |
-| 207 | [CANON SERENAR 35mm f/3.2](../../src/lens-data/canon/CanonSerenar35mmf32.data.ts) | 50.0% | 50.0% | 3/6 | 3/6 | 3 | abbe: 3 |
-| 208 | [CARL ZEISS JENA SONNAR 50mm f/2](../../src/lens-data/carl-zeiss-jena/ZeissJenaSonnar50f2.data.ts) | 50.0% | 50.0% | 3/6 | 3/6 | 3 | abbe: 3 |
-| 209 | [NIKON NIKKOR 35mm f/2.8 (Nikon 35Ti)](../../src/lens-data/nikon/Nikon35Ti35mmf28.data.ts) | 50.0% | 50.0% | 3/6 | 3/6 | 3 | abbe: 3 |
-| 210 | [MINOLTA AF APO Tele 200mm f/2.8](../../src/lens-data/minolta/MinoltaAF200mmf28.data.ts) | 50.0% | 50.0% | 4/8 | 4/8 | 4 | abbe: 4 |
-| 211 | [NIKON NIKKOR Z 28mm f/2.8](../../src/lens-data/nikon/NikonZ28f28.data.ts) | 50.0% | 50.0% | 5/10 | 5/10 | 5 | abbe: 5 |
-| 212 | [LAOWA 58mm f/2.8 2× Ultra-Macro APO](../../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts) | 50.0% | 50.0% | 7/14 | 7/14 | 7 | abbe: 7 |
+| 203 | [Nikon AI Zoom-Nikkor 25-50mm f/4](../../src/lens-data/nikon/NikonAIZoomNikkor2550mmf4.data.ts) | 54.5% | 54.5% | 6/11 | 6/11 | 5 | abbe: 5 |
+| 204 | [CARL ZEISS HOLOGON 15mm f/8 (Contarex Hologon / Leica M)](../../src/lens-data/carl-zeiss-oberkochen/ZeissHologon15mmf8.data.ts) | 50.0% | 50.0% | 2/3 | 2/3 | 2 | abbe: 2 |
+| 205 | [NIKON SERIES E 135mm f/2.8](../../src/lens-data/nikon/NikonSeriesE135mmf28.data.ts) | 50.0% | 50.0% | 2/4 | 2/4 | 2 | abbe: 2 |
+| 206 | [CANON SERENAR 35mm f/3.2](../../src/lens-data/canon/CanonSerenar35mmf32.data.ts) | 50.0% | 50.0% | 3/6 | 3/6 | 3 | abbe: 3 |
+| 207 | [CARL ZEISS JENA SONNAR 50mm f/2](../../src/lens-data/carl-zeiss-jena/ZeissJenaSonnar50f2.data.ts) | 50.0% | 50.0% | 3/6 | 3/6 | 3 | abbe: 3 |
+| 208 | [NIKON NIKKOR 35mm f/2.8 (Nikon 35Ti)](../../src/lens-data/nikon/Nikon35Ti35mmf28.data.ts) | 50.0% | 50.0% | 3/6 | 3/6 | 3 | abbe: 3 |
+| 209 | [MINOLTA AF APO Tele 200mm f/2.8](../../src/lens-data/minolta/MinoltaAF200mmf28.data.ts) | 50.0% | 50.0% | 4/8 | 4/8 | 4 | abbe: 4 |
+| 210 | [NIKON NIKKOR Z 28mm f/2.8](../../src/lens-data/nikon/NikonZ28f28.data.ts) | 50.0% | 50.0% | 5/10 | 5/10 | 5 | abbe: 5 |
+| 211 | [LAOWA 58mm f/2.8 2× Ultra-Macro APO](../../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts) | 50.0% | 50.0% | 7/14 | 7/14 | 7 | abbe: 7 |
 |  | **45-49.9% coverage** |  |  |  |  |  |  |
-| 213 | [SONY FE 12-24mm f/2.8 GM](../../src/lens-data/sony/SonyFE1224mmf28GM.data.ts) | 47.1% | 47.1% | 8/17 | 8/17 | 9 | abbe: 9 |
-| 214 | [NIKON AF-S DX NIKKOR 55-200mm f/4-5.6 G ED VR II](../../src/lens-data/nikon/NikonAFSDX55200mmf456G.data.ts) | 46.2% | 46.2% | 6/13 | 6/13 | 7 | abbe: 7 |
+| 212 | [SONY FE 12-24mm f/2.8 GM](../../src/lens-data/sony/SonyFE1224mmf28GM.data.ts) | 47.1% | 47.1% | 8/17 | 8/17 | 9 | abbe: 9 |
+| 213 | [NIKON AF-S DX NIKKOR 55-200mm f/4-5.6 G ED VR II](../../src/lens-data/nikon/NikonAFSDX55200mmf456G.data.ts) | 46.2% | 46.2% | 6/13 | 6/13 | 7 | abbe: 7 |
 |  | **40-44.9% coverage** |  |  |  |  |  |  |
-| 215 | [LEICA ELMARIT 90mm f/2.8](../../src/lens-data/leica/LeicaElmarit90mmf28.data.ts) | 40.0% | 40.0% | 2/5 | 2/5 | 3 | abbe: 3 |
-| 216 | [VOIGTLÄNDER HELIAR (Symmetric) f/4](../../src/lens-data/voigtlander/VoigtlanderHeliar.data.ts) | 40.0% | 40.0% | 2/5 | 2/5 | 3 | abbe: 3 |
+| 214 | [LEICA ELMARIT 90mm f/2.8](../../src/lens-data/leica/LeicaElmarit90mmf28.data.ts) | 40.0% | 40.0% | 2/5 | 2/5 | 3 | abbe: 3 |
+| 215 | [VOIGTLÄNDER HELIAR (Symmetric) f/4](../../src/lens-data/voigtlander/VoigtlanderHeliar.data.ts) | 40.0% | 40.0% | 2/5 | 2/5 | 3 | abbe: 3 |
 |  | **35-39.9% coverage** |  |  |  |  |  |  |
-| 217 | [CARL ZEISS BIOGON 21mm f/4.5](../../src/lens-data/carl-zeiss-oberkochen/ZeissBiogon21mmf45.data.ts) | 37.5% | 37.5% | 3/8 | 3/8 | 5 | abbe: 5 |
-| 218 | [LEICA ELMARIT-R 28mm f/2.8](../../src/lens-data/leica/LeicaElmarit28mmf28.data.ts) | 37.5% | 37.5% | 3/8 | 3/8 | 5 | abbe: 5 |
-| 219 | [SONY FE 14mm f/1.8 GM](../../src/lens-data/sony/SonyFE14mmf18GM.data.ts) | 35.7% | 35.7% | 5/14 | 5/14 | 9 | abbe: 9 |
+| 216 | [CARL ZEISS BIOGON 21mm f/4.5](../../src/lens-data/carl-zeiss-oberkochen/ZeissBiogon21mmf45.data.ts) | 37.5% | 37.5% | 3/8 | 3/8 | 5 | abbe: 5 |
+| 217 | [SONY FE 14mm f/1.8 GM](../../src/lens-data/sony/SonyFE14mmf18GM.data.ts) | 35.7% | 35.7% | 5/14 | 5/14 | 9 | abbe: 9 |
 |  | **30-34.9% coverage** |  |  |  |  |  |  |
-| 220 | [ENNA MÜNCHEN ULTRA-LITHAGON 28mm f/3.5](../../src/lens-data/enna-munchen/EnnaMunchenUltraLithagon28mmf35.data.ts) | 33.3% | 33.3% | 2/6 | 2/6 | 4 | abbe: 4 |
-| 221 | [LEICA MACRO-ELMARIT-R 60mm f/2.8](../../src/lens-data/leica/LeicaMacroElmaritR60mmf28.data.ts) | 33.3% | 33.3% | 2/6 | 2/6 | 4 | abbe: 4 |
-| 222 | [MINOLTA VARISOFT ROKKOR 85mm f/2.8](../../src/lens-data/minolta/MinoltaVarisoft85mmf28.data.ts) | 33.3% | 33.3% | 2/6 | 2/6 | 4 | abbe: 4 |
-| 223 | [PENTAX DA 70mm f/2.4 Limited](../../src/lens-data/pentax/PentaxDA70mmf24Limited.data.ts) | 33.3% | 33.3% | 2/6 | 2/6 | 4 | abbe: 4 |
-| 224 | [VOIGTLÄNDER ULTRON 50mm f/2](../../src/lens-data/voigtlander/VoigtlanderUltron50f2.data.ts) | 33.3% | 33.3% | 2/6 | 2/6 | 4 | abbe: 4 |
-| 225 | [NIKON ULTRA-MICRO-NIKKOR 29.5mm f/1.2](../../src/lens-data/nikon/NikonUltraMicroNikkor295mmf12.data.ts) | 33.3% | 33.3% | 3/9 | 3/9 | 6 | abbe: 6 |
-| 226 | [SIGMA 85mm f/1.4 DG DN | Art](../../src/lens-data/sigma/SigmaDGDNA85mmf14.data.ts) | 33.3% | 33.3% | 5/15 | 5/15 | 10 | abbe: 10 |
-| 227 | [VOIGTLÄNDER APO-LANTHAR 50mm f/2.0 Aspherical](../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.ts) | 30.0% | 30.0% | 3/10 | 3/10 | 7 | abbe: 7 |
+| 218 | [ENNA MÜNCHEN ULTRA-LITHAGON 28mm f/3.5](../../src/lens-data/enna-munchen/EnnaMunchenUltraLithagon28mmf35.data.ts) | 33.3% | 33.3% | 2/6 | 2/6 | 4 | abbe: 4 |
+| 219 | [MINOLTA VARISOFT ROKKOR 85mm f/2.8](../../src/lens-data/minolta/MinoltaVarisoft85mmf28.data.ts) | 33.3% | 33.3% | 2/6 | 2/6 | 4 | abbe: 4 |
+| 220 | [PENTAX DA 70mm f/2.4 Limited](../../src/lens-data/pentax/PentaxDA70mmf24Limited.data.ts) | 33.3% | 33.3% | 2/6 | 2/6 | 4 | abbe: 4 |
+| 221 | [VOIGTLÄNDER ULTRON 50mm f/2](../../src/lens-data/voigtlander/VoigtlanderUltron50f2.data.ts) | 33.3% | 33.3% | 2/6 | 2/6 | 4 | abbe: 4 |
+| 222 | [SIGMA 85mm f/1.4 DG DN | Art](../../src/lens-data/sigma/SigmaDGDNA85mmf14.data.ts) | 33.3% | 33.3% | 5/15 | 5/15 | 10 | abbe: 10 |
+| 223 | [VOIGTLÄNDER APO-LANTHAR 50mm f/2.0 Aspherical](../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.ts) | 30.0% | 30.0% | 3/10 | 3/10 | 7 | abbe: 7 |
 |  | **25-29.9% coverage** |  |  |  |  |  |  |
-| 228 | [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) | 29.4% | 29.4% | 5/17 | 5/17 | 12 | abbe: 12 |
-| 229 | [RODENSTOCK APO-SIRONAR-W 150mm f/5.6](../../src/lens-data/rodenstock/RodenstockApoSironarW150mmf56.data.ts) | 25.0% | 25.0% | 2/8 | 2/8 | 6 | abbe: 6 |
-| 230 | [RODENSTOCK GRANDAGON-N 65mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN65mmf45.data.ts) | 25.0% | 25.0% | 2/8 | 2/8 | 6 | abbe: 6 |
+| 224 | [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) | 29.4% | 29.4% | 5/17 | 5/17 | 12 | abbe: 12 |
+| 225 | [RODENSTOCK APO-SIRONAR-W 150mm f/5.6](../../src/lens-data/rodenstock/RodenstockApoSironarW150mmf56.data.ts) | 25.0% | 25.0% | 2/8 | 2/8 | 6 | abbe: 6 |
 |  | **20-24.9% coverage** |  |  |  |  |  |  |
-| 231 | [MINOLTA AF 28mm f/2](../../src/lens-data/minolta/MinoltaAF28mmf2.data.ts) | 22.2% | 22.2% | 2/9 | 2/9 | 7 | abbe: 7 |
-| 232 | [KODAK ENLARGING EKTAR 100mm f/4.5](../../src/lens-data/kodak/KodakEnlargingEktar100mmf45.data.ts) | 20.0% | 20.0% | 1/5 | 1/5 | 4 | abbe: 4 |
-| 233 | [LEICA ELMAR-M 135mm f/4](../../src/lens-data/leica/LeicaElmarM135mmf4.data.ts) | 20.0% | 20.0% | 1/5 | 1/5 | 4 | abbe: 4 |
+| 226 | [MINOLTA AF 28mm f/2](../../src/lens-data/minolta/MinoltaAF28mmf2.data.ts) | 22.2% | 22.2% | 2/9 | 2/9 | 7 | abbe: 7 |
+| 227 | [KODAK ENLARGING EKTAR 100mm f/4.5](../../src/lens-data/kodak/KodakEnlargingEktar100mmf45.data.ts) | 20.0% | 20.0% | 1/5 | 1/5 | 4 | abbe: 4 |
 |  | **15-19.9% coverage** |  |  |  |  |  |  |
-| 234 | [MINOLTA MD ROKKOR 45mm f/2](../../src/lens-data/minolta/MinoltaRokkor45mmf2MD.data.ts) | 16.7% | 16.7% | 1/6 | 1/6 | 5 | abbe: 5 |
-| 235 | [FUJIFILM FUJINON XF 50mm f/1.0 R WR](../../src/lens-data/fujifilm/FujifilmXF50f1.data.ts) | 16.7% | 16.7% | 2/12 | 2/12 | 10 | abbe: 10 |
-| 236 | [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) | 15.0% | 15.0% | 3/20 | 3/20 | 17 | abbe: 17 |
+| 228 | [MINOLTA MD ROKKOR 45mm f/2](../../src/lens-data/minolta/MinoltaRokkor45mmf2MD.data.ts) | 16.7% | 16.7% | 1/6 | 1/6 | 5 | abbe: 5 |
+| 229 | [FUJIFILM FUJINON XF 50mm f/1.0 R WR](../../src/lens-data/fujifilm/FujifilmXF50f1.data.ts) | 16.7% | 16.7% | 2/12 | 2/12 | 10 | abbe: 10 |
+| 230 | [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) | 15.0% | 15.0% | 3/20 | 3/20 | 17 | abbe: 17 |
 |  | **10-14.9% coverage** |  |  |  |  |  |  |
-| 237 | [CARL ZEISS JENA SONNAR 50mm f/1.5](../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.ts) | 14.3% | 14.3% | 1/7 | 1/7 | 6 | abbe: 6 |
-| 238 | [LEICA ELMARIT-R 35mm f/2.8](../../src/lens-data/leica/LeicaElmaritR35mmf28.data.ts) | 14.3% | 14.3% | 1/7 | 1/7 | 6 | abbe: 6 |
-| 239 | [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) | 11.1% | 11.1% | 1/9 | 1/9 | 8 | abbe: 8 |
+| 231 | [CARL ZEISS JENA SONNAR 50mm f/1.5](../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.ts) | 14.3% | 14.3% | 1/7 | 1/7 | 6 | abbe: 6 |
+| 232 | [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) | 11.1% | 11.1% | 1/9 | 1/9 | 8 | abbe: 8 |
 |  | **0-4.9% coverage** |  |  |  |  |  |  |
-| 240 | [REFERENCE Maksutov Cassegrain Meniscus](../../src/lens-data/reference/ReferenceMaksutovCassegrainMeniscus.data.ts) *(hidden)* | 0.0% | 0.0% | 0/3 | 0/3 | 1 | abbe: 1 |
-| 241 | [REFERENCE Mangin Second-Surface Mirror](../../src/lens-data/reference/ReferenceManginSecondSurfaceMirror.data.ts) *(hidden)* | 0.0% | 0.0% | 0/1 | 0/1 | 1 | abbe: 1 |
-| 242 | [NIKON UV-NIKKOR AUTO 55mm f/4](../../src/lens-data/nikon/NikonUvNikkor55mmf4.data.ts) | 0.0% | 0.0% | 0/3 | 0/3 | 3 | abbe: 3 |
-| 243 | [CARL ZEISS JENA TESSAR 144mm f/5.5](../../src/lens-data/carl-zeiss-jena/ZeissTessar144f55.data.ts) | 0.0% | 0.0% | 0/4 | 0/4 | 4 | abbe: 4 |
-| 244 | [LEICA ELCAN 50mm f/2](../../src/lens-data/leica/LeicaElcan50mmf2.data.ts) | 0.0% | 0.0% | 0/4 | 0/4 | 4 | abbe: 4 |
-| 245 | [LEICA ELMARIT-M 135mm f/2.8](../../src/lens-data/leica/LeicaElmaritM135mmf28.data.ts) | 0.0% | 0.0% | 0/5 | 0/5 | 5 | abbe: 5 |
-| 246 | [CARL ZEISS JENA PANCOLAR 50mm f/2](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaPancolar50mmf2.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | abbe: 6 |
-| 247 | [KODAK AERO EKTAR 6 in f/3.5](../../src/lens-data/kodak/KodakAeroEktar6inf35.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | abbe: 6 |
-| 248 | [LEICA SUMMICRON-M 50mm f/2](../../src/lens-data/leica/LeicaSummicronV550mmf2.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | abbe: 6 |
-| 249 | [LEICA SUMMICRON-R 50mm f/2](../../src/lens-data/leica/LeicaSummicronR50mmf2.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | abbe: 6 |
-| 250 | [RODENSTOCK GRANDAGON-N 75mm f/6.8](../../src/lens-data/rodenstock/RodenstockGrandagonN75mmf68.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | abbe: 6 |
-| 251 | [SCHNEIDER-KREUZNACH SUPER-SYMMAR XL 110mm f/5.6 ASPHERIC](../../src/lens-data/schneider-kreuznach/SchneiderSuperSymmarXL110mmf56.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | abbe: 6 |
-| 252 | [CARL ZEISS PLANAR T* 50mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissPlanarT50mmf14.data.ts) | 0.0% | 0.0% | 0/7 | 0/7 | 7 | abbe: 7 |
-| 253 | [SONY SONNAR T* FE 35mm f/2.8 ZA](../../src/lens-data/sony/SonyFE35mmf28ZA.data.ts) | 0.0% | 0.0% | 0/7 | 0/7 | 7 | abbe: 7 |
-| 254 | [CARL ZEISS PRO-TESSAR 35mm f/3.2](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissProTessar35mmf32.data.ts) | 0.0% | 0.0% | 0/8 | 0/8 | 8 | abbe: 8 |
+| 233 | [REFERENCE Maksutov Cassegrain Meniscus](../../src/lens-data/reference/ReferenceMaksutovCassegrainMeniscus.data.ts) *(hidden)* | 0.0% | 0.0% | 0/3 | 0/3 | 1 | abbe: 1 |
+| 234 | [REFERENCE Mangin Second-Surface Mirror](../../src/lens-data/reference/ReferenceManginSecondSurfaceMirror.data.ts) *(hidden)* | 0.0% | 0.0% | 0/1 | 0/1 | 1 | abbe: 1 |
+| 235 | [NIKON UV-NIKKOR AUTO 55mm f/4](../../src/lens-data/nikon/NikonUvNikkor55mmf4.data.ts) | 0.0% | 0.0% | 0/3 | 0/3 | 3 | abbe: 3 |
+| 236 | [CARL ZEISS JENA TESSAR 144mm f/5.5](../../src/lens-data/carl-zeiss-jena/ZeissTessar144f55.data.ts) | 0.0% | 0.0% | 0/4 | 0/4 | 4 | abbe: 4 |
+| 237 | [LEICA ELCAN 50mm f/2](../../src/lens-data/leica/LeicaElcan50mmf2.data.ts) | 0.0% | 0.0% | 0/4 | 0/4 | 4 | abbe: 4 |
+| 238 | [LEICA ELMAR-M 135mm f/4](../../src/lens-data/leica/LeicaElmarM135mmf4.data.ts) | 0.0% | 0.0% | 0/5 | 0/5 | 5 | abbe: 5 |
+| 239 | [LEICA ELMARIT-M 135mm f/2.8](../../src/lens-data/leica/LeicaElmaritM135mmf28.data.ts) | 0.0% | 0.0% | 0/5 | 0/5 | 5 | abbe: 5 |
+| 240 | [CARL ZEISS JENA PANCOLAR 50mm f/2](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaPancolar50mmf2.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | abbe: 6 |
+| 241 | [KODAK AERO EKTAR 6 in f/3.5](../../src/lens-data/kodak/KodakAeroEktar6inf35.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | abbe: 6 |
+| 242 | [LEICA MACRO-ELMARIT-R 60mm f/2.8](../../src/lens-data/leica/LeicaMacroElmaritR60mmf28.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | abbe: 6 |
+| 243 | [LEICA SUMMICRON-M 50mm f/2](../../src/lens-data/leica/LeicaSummicronV550mmf2.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | abbe: 6 |
+| 244 | [LEICA SUMMICRON-R 50mm f/2](../../src/lens-data/leica/LeicaSummicronR50mmf2.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | abbe: 6 |
+| 245 | [RODENSTOCK GRANDAGON-N 75mm f/6.8](../../src/lens-data/rodenstock/RodenstockGrandagonN75mmf68.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | abbe: 6 |
+| 246 | [RODENSTOCK SIRONAR-N 100mm f/5.6](../../src/lens-data/rodenstock/RodenstockSironarN100mmf56.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | abbe: 6 |
+| 247 | [SCHNEIDER-KREUZNACH SUPER-SYMMAR XL 110mm f/5.6 ASPHERIC](../../src/lens-data/schneider-kreuznach/SchneiderSuperSymmarXL110mmf56.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | abbe: 6 |
+| 248 | [CARL ZEISS PLANAR T* 50mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissPlanarT50mmf14.data.ts) | 0.0% | 0.0% | 0/7 | 0/7 | 7 | abbe: 7 |
+| 249 | [LEICA ELMARIT-R 35mm f/2.8](../../src/lens-data/leica/LeicaElmaritR35mmf28.data.ts) | 0.0% | 0.0% | 0/7 | 0/7 | 7 | abbe: 7 |
+| 250 | [SONY SONNAR T* FE 35mm f/2.8 ZA](../../src/lens-data/sony/SonyFE35mmf28ZA.data.ts) | 0.0% | 0.0% | 0/7 | 0/7 | 7 | abbe: 7 |
+| 251 | [CARL ZEISS PRO-TESSAR 35mm f/3.2](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissProTessar35mmf32.data.ts) | 0.0% | 0.0% | 0/8 | 0/8 | 8 | abbe: 8 |
+| 252 | [LEICA ELMARIT-R 28mm f/2.8](../../src/lens-data/leica/LeicaElmarit28mmf28.data.ts) | 0.0% | 0.0% | 0/8 | 0/8 | 8 | abbe: 8 |
+| 253 | [RODENSTOCK GRANDAGON-N 65mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN65mmf45.data.ts) | 0.0% | 0.0% | 0/8 | 0/8 | 8 | abbe: 8 |
+| 254 | [NIKON ULTRA-MICRO-NIKKOR 29.5mm f/1.2](../../src/lens-data/nikon/NikonUltraMicroNikkor295mmf12.data.ts) | 0.0% | 0.0% | 0/9 | 0/9 | 9 | abbe: 9 |
 
 ## Missing Surface Details
 
@@ -1742,13 +1743,6 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 3 | Element 2 | abbe | `Unmatched vintage barium dense flint (626391; not modern HOYA BAFD7 702412)` | Explicit unmatched/proprietary annotation |
 | 6 | Element 4 | abbe | `K10 (Schott)` | No catalog match |
 
-### [RODENSTOCK SIRONAR-N 100mm f/5.6](../../src/lens-data/rodenstock/RodenstockSironarN100mmf56.data.ts) - 66.7% trusted (4/6); 66.7% Sellmeier (4/6) - DE 27
-
-| Surface | Element | Runtime quality | Glass annotation | Reason |
-|---|---|---|---|---|
-| 2 | Element 2 | abbe | `Unmatched (vintage light-flint / BaLF-class; patent e-line values stored)` | Explicit unmatched/proprietary annotation |
-| 8 | Element 5 | abbe | `Unmatched (vintage light-flint / BaLF-class; patent e-line values stored)` | Explicit unmatched/proprietary annotation |
-
 ### [SCHNEIDER-KREUZNACH APO-SYMMAR 100mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderAPOSymmar100mmf56.data.ts) - 66.7% trusted (4/6); 66.7% Sellmeier (4/6) - US 6,028,720
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
@@ -2097,28 +2091,18 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 9 | Element 6 | abbe | `SK-type dense crown (625/533)` | No catalog match |
 | 12 | Element 8 | abbe | `LaK/SK crown (642/581)` | No catalog match |
 
-### [LEICA ELMARIT-R 28mm f/2.8](../../src/lens-data/leica/LeicaElmarit28mmf28.data.ts) - 37.5% trusted (3/8); 37.5% Sellmeier (3/8) - US 3,591,257
-
-| Surface | Element | Runtime quality | Glass annotation | Reason |
-|---|---|---|---|---|
-| 5 | Element 3 | abbe | `Unmatched (LaF21-class patent e-line value; no verified d-line catalog identity)` | Explicit unmatched/proprietary annotation |
-| 6 | Element 4 | abbe | `813252 - high-index flint (patent nd=1.81265, vd=25.24; no exact public catalog match)` | No catalog match |
-| 10 | Element 6 | abbe | `LaF10 (SCHOTT)` | No catalog match |
-| 11 | Element 7 | abbe | `813252 - high-index flint (patent nd=1.81265, vd=25.24; no exact public catalog match)` | No catalog match |
-| 13 | Element 8 | abbe | `Unmatched (F2-class patent e-line value; no verified d-line catalog identity)` | Explicit unmatched/proprietary annotation |
-
 ### [SONY FE 14mm f/1.8 GM](../../src/lens-data/sony/SonyFE14mmf18GM.data.ts) - 35.7% trusted (5/14); 35.7% Sellmeier (5/14) - WO 2021/199923 A1
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 3 | Second negative meniscus | abbe | `Unmatched (732547 patent e-line value; no verified d-line catalog identity)` | Explicit unmatched/proprietary annotation |
+| 3 | Second negative meniscus | abbe | `Unmatched (732547 patent e-line value; no verified d-line catalog identity)` | Authored e-line coordinates are ineligible for d-line catalog matching |
 | 7 | Positive contact partner | abbe | `694312 - short flint (Sony patent nd=1.69416, vd=31.2; no exact public catalog match)` | No catalog match |
 | 9 | LN front element | abbe | `910313 - dense lanthanum flint (Sony patent nd=1.91048, vd=31.3; no exact public catalog match)` | No catalog match |
 | 10 | LN rear element | abbe | `Unmatched (777/297 dense short flint; no close OHARA public-catalog match)` | Explicit unmatched/proprietary annotation |
 | 18 | Rear doublet flint | abbe | `863252 - dense flint (Sony patent nd=1.86252, vd=25.2; no exact public catalog match)` | No catalog match |
 | 20 | High-index relay positive | abbe | `Unmatched (933/209 ultra-high-index short flint)` | Explicit unmatched/proprietary annotation |
 | 22 | Negative Petzval element | abbe | `863252 - dense flint (Sony patent nd=1.86252, vd=25.2; no exact public catalog match)` | No catalog match |
-| 24A | Rear aspherical negative element | abbe | `Unmatched (856401 patent e-line value; no verified d-line catalog identity)` | Explicit unmatched/proprietary annotation |
+| 24A | Rear aspherical negative element | abbe | `Unmatched (856401 patent e-line value; no verified d-line catalog identity)` | Authored e-line coordinates are ineligible for d-line catalog matching |
 | ... | ... | ... | ... | 1 more missing surface |
 
 ### [ENNA MÜNCHEN ULTRA-LITHAGON 28mm f/3.5](../../src/lens-data/enna-munchen/EnnaMunchenUltraLithagon28mmf35.data.ts) - 33.3% trusted (2/6); 33.3% Sellmeier (2/6) - US 2,959,100
@@ -2129,15 +2113,6 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 5 | Element 3 | abbe | `N-SK4 (SCHOTT)` | No catalog match |
 | 7 | Element 4 | abbe | `Unmatched legacy flint (625/356; exact catalog type unresolved)` | Explicit unmatched/proprietary annotation |
 | 11 | Element 6 | abbe | `J-SSK1 equivalent (HIKARI; legacy SSK1-class, patent nd/vd)` | No catalog match |
-
-### [LEICA MACRO-ELMARIT-R 60mm f/2.8](../../src/lens-data/leica/LeicaMacroElmaritR60mmf28.data.ts) - 33.3% trusted (2/6); 33.3% Sellmeier (2/6) - US 3,552,833
-
-| Surface | Element | Runtime quality | Glass annotation | Reason |
-|---|---|---|---|---|
-| 1 | Element 1 | abbe | `Unmatched (LAF2-class patent e-line value; no verified d-line catalog identity)` | Explicit unmatched/proprietary annotation |
-| 3 | Element 2 | abbe | `Unmatched (693/495 e-line; positive member of front cemented doublet)` | Explicit unmatched/proprietary annotation |
-| 4 | Element 3 | abbe | `Unmatched (dense-flint patent e-line value; no verified d-line catalog identity)` | Explicit unmatched/proprietary annotation |
-| 6 | Element 4 | abbe | `Unmatched (dense flint, 741/262 e-line; no close current HOYA/OHARA match)` | Explicit unmatched/proprietary annotation |
 
 ### [MINOLTA VARISOFT ROKKOR 85mm f/2.8](../../src/lens-data/minolta/MinoltaVarisoft85mmf28.data.ts) - 33.3% trusted (2/6); 33.3% Sellmeier (2/6) - US 4,124,276
 
@@ -2165,17 +2140,6 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 7 | Element 4 | abbe | `F/BaF type (barium flint)` | No catalog match |
 | 8 | Element 5 | abbe | `LaK9 type (high-index crown — possibly La₂O₃ or ThO₂ formulation)` | No catalog match |
 | 10 | Element 6 | abbe | `LaF type (high-index lanthanum flint or thorium flint)` | No catalog match |
-
-### [NIKON ULTRA-MICRO-NIKKOR 29.5mm f/1.2](../../src/lens-data/nikon/NikonUltraMicroNikkor295mmf12.data.ts) - 33.3% trusted (3/9); 33.3% Sellmeier (3/9) - GB 1,050,055
-
-| Surface | Element | Runtime quality | Glass annotation | Reason |
-|---|---|---|---|---|
-| 1 | Element 1 | abbe | `SF13 class dense flint (patent e-line index stored)` | No catalog match |
-| 3 | Element 2 | abbe | `Unmatched (F5-class patent e-line value; no verified d-line catalog identity)` | Explicit unmatched/proprietary annotation |
-| 5 | Element 3 | abbe | `Unmatched low-index crown 449/670 (patent e-line index stored)` | Explicit unmatched/proprietary annotation |
-| 6 | Element 4 | abbe | `Unmatched SF8-class dense flint (patent e-line index stored)` | Explicit unmatched/proprietary annotation |
-| 7 | Element 5 | abbe | `Unmatched (LAK9-class patent e-line value; no verified d-line catalog identity)` | Explicit unmatched/proprietary annotation |
-| 11 | Element 7 | abbe | `Unmatched (F8-class light flint; patent e-line index stored)` | Explicit unmatched/proprietary annotation |
 
 ### [SIGMA 85mm f/1.4 DG DN | Art](../../src/lens-data/sigma/SigmaDGDNA85mmf14.data.ts) - 33.3% trusted (5/15); 33.3% Sellmeier (5/15) - JP 2021-85935
 
@@ -2228,17 +2192,6 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 11 | Element 7 | abbe | `Unmatched (650396 patent-rounded short flint; no unique catalog identity)` | Explicit unmatched/proprietary annotation |
 | 12 | Element 8 | abbe | `Unmatched (dense crown / short-flint class; patent-rounded nd=1.62, vd=53.2)` | Explicit unmatched/proprietary annotation |
 
-### [RODENSTOCK GRANDAGON-N 65mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN65mmf45.data.ts) - 25.0% trusted (2/8); 25.0% Sellmeier (2/8) - DE 2444954 A1
-
-| Surface | Element | Runtime quality | Glass annotation | Reason |
-|---|---|---|---|---|
-| 3 | Element 2 | abbe | `Unmatched (SF5-class dense flint; patent e-line values)` | Explicit unmatched/proprietary annotation |
-| 4 | Element 3 | abbe | `SSK2 class (Schott dense special crown; patent e-line values)` | No catalog match |
-| 5 | Element 4 | abbe | `Unmatched barium-flint / short-flint class (patent e-line values)` | Explicit unmatched/proprietary annotation |
-| 7 | Element 5 | abbe | `Unmatched barium crown / BaK class (patent e-line values)` | Explicit unmatched/proprietary annotation |
-| 8 | Element 6 | abbe | `Unmatched dense crown, SK-class (patent e-line values)` | Explicit unmatched/proprietary annotation |
-| 9 | Element 7 | abbe | `Unmatched high-index barium-flint class (patent e-line values; Claim 4 prints v_e = 46.13)` | Explicit unmatched/proprietary annotation |
-
 ### [MINOLTA AF 28mm f/2](../../src/lens-data/minolta/MinoltaAF28mmf2.data.ts) - 22.2% trusted (2/9); 22.2% Sellmeier (2/9) - US 4,258,985
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
@@ -2259,15 +2212,6 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 4 | Element 3 | abbe | `Unmatched (vintage dense flint class, 605/382)` | Explicit unmatched/proprietary annotation |
 | 6 | Element 4 | abbe | `Unmatched (vintage light flint class, 575/414)` | Explicit unmatched/proprietary annotation |
 | 7 | Element 5 | abbe | `Unmatched (vintage high-index lanthanum flint class, 744/458)` | Explicit unmatched/proprietary annotation |
-
-### [LEICA ELMAR-M 135mm f/4](../../src/lens-data/leica/LeicaElmarM135mmf4.data.ts) - 20.0% trusted (1/5); 20.0% Sellmeier (1/5) - DE 1
-
-| Surface | Element | Runtime quality | Glass annotation | Reason |
-|---|---|---|---|---|
-| 1 | Element 1 | abbe | `Unmatched (barium crown; patent e-line value stored)` | Explicit unmatched/proprietary annotation |
-| 2 | Element 2 | abbe | `Unmatched (584/414 e-line light-flint class; LF5-adjacent, no exact public catalog match)` | Explicit unmatched/proprietary annotation |
-| 5 | Element 4 | abbe | `Unmatched (F5-class patent e-line value; no verified d-line catalog identity)` | Explicit unmatched/proprietary annotation |
-| 7 | Element 5 | abbe | `Unmatched SF8-class dense flint (Schott e-line source values; patent ne=1.69416, νe=30.9)` | Explicit unmatched/proprietary annotation |
 
 ### [MINOLTA MD ROKKOR 45mm f/2](../../src/lens-data/minolta/MinoltaRokkor45mmf2MD.data.ts) - 16.7% trusted (1/6); 16.7% Sellmeier (1/6) - US 4,277,149
 
@@ -2318,17 +2262,6 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 8 | Element 6 | abbe | `Unmatched (SSK51-class very dense crown, near N-SSK5; patent nd=1.6578, νd=51.2)` | Explicit unmatched/proprietary annotation |
 | 9 | Element 7 | abbe | `Unmatched (vintage Schott/Jena crown, patent nd=1.5488, νd=63.0)` | Explicit unmatched/proprietary annotation |
 
-### [LEICA ELMARIT-R 35mm f/2.8](../../src/lens-data/leica/LeicaElmaritR35mmf28.data.ts) - 14.3% trusted (1/7); 14.3% Sellmeier (1/7) - FR 1,471,493
-
-| Surface | Element | Runtime quality | Glass annotation | Reason |
-|---|---|---|---|---|
-| 3 | Element 2 | abbe | `BaSF6-class (Schott legacy barium dense flint, inferred; patent n_e)` | No catalog match |
-| 4 | Element 3 | abbe | `Unmatched (flint/barium-flint position; no confident public catalog match; patent n_e)` | Explicit unmatched/proprietary annotation |
-| 6 | Element 4 | abbe | `Unmatched (SK16-class patent e-line value; no verified d-line catalog identity)` | Explicit unmatched/proprietary annotation |
-| 8 | Element 5 | abbe | `Unmatched (dense flint; no confident public catalog match; patent n_e)` | Explicit unmatched/proprietary annotation |
-| 10 | Element 6 | abbe | `Unmatched (BaF13-class patent e-line value; no verified d-line catalog identity)` | Explicit unmatched/proprietary annotation |
-| 11 | Element 7 | abbe | `Unmatched (LAK9-class lanthanum crown; patent e-line value stored)` | Explicit unmatched/proprietary annotation |
-
 ### [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) - 11.1% trusted (1/9); 11.1% Sellmeier (1/9) - US 2015/0268449 A1
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
@@ -2368,15 +2301,25 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 5 | Element 3 | abbe | `747274 - dense flint (patent nd=1.74710, vd=27.40; no exact public catalog match)` | No catalog match |
 | 7 | Element 4 | abbe | `≈LAFN7 (lanthanum flint)` | No catalog match |
 
+### [LEICA ELMAR-M 135mm f/4](../../src/lens-data/leica/LeicaElmarM135mmf4.data.ts) - 0.0% trusted (0/5); 0.0% Sellmeier (0/5) - DE 1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `Unmatched (barium crown; patent e-line value stored)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 2 | Element 2 | abbe | `Unmatched (584/414 e-line light-flint class; LF5-adjacent, no exact public catalog match)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 4 | Element 3 | abbe | `N-BK7 / BK7 class (Schott; patent e-line value stored)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 5 | Element 4 | abbe | `Unmatched (F5-class patent e-line value; no verified d-line catalog identity)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 7 | Element 5 | abbe | `Unmatched SF8-class dense flint (Schott e-line source values; patent ne=1.69416, νe=30.9)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+
 ### [LEICA ELMARIT-M 135mm f/2.8](../../src/lens-data/leica/LeicaElmaritM135mmf28.data.ts) - 0.0% trusted (0/5); 0.0% Sellmeier (0/5) - US 3,108,152
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 1 | Element 1 | abbe | `Leitz proprietary / N-SK16-class crown (e-line source values)` | Explicit unmatched/proprietary annotation |
-| 3 | Element 2 | abbe | `Leitz proprietary / N-SK16-class crown (e-line source values)` | Explicit unmatched/proprietary annotation |
-| 5 | Element 3 | abbe | `Unmatched vintage BaK/SK-class crown (patent e-line values)` | Explicit unmatched/proprietary annotation |
-| 6 | Element 4 | abbe | `Unmatched (SF5-class dense flint; e-line source values)` | Explicit unmatched/proprietary annotation |
-| 8 | Element 5 | abbe | `Unmatched SF8-class dense flint (Schott e-line source values; patent ne=1.69416, νe=30.9)` | Explicit unmatched/proprietary annotation |
+| 1 | Element 1 | abbe | `Leitz proprietary / N-SK16-class crown (e-line source values)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 3 | Element 2 | abbe | `Leitz proprietary / N-SK16-class crown (e-line source values)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 5 | Element 3 | abbe | `Unmatched vintage BaK/SK-class crown (patent e-line values)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 6 | Element 4 | abbe | `Unmatched (SF5-class dense flint; e-line source values)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 8 | Element 5 | abbe | `Unmatched SF8-class dense flint (Schott e-line source values; patent ne=1.69416, νe=30.9)` | Authored e-line coordinates are ineligible for d-line catalog matching |
 
 ### [CARL ZEISS JENA PANCOLAR 50mm f/2](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaPancolar50mmf2.data.ts) - 0.0% trusted (0/6); 0.0% Sellmeier (0/6) - GB 850,117 C
 
@@ -2400,6 +2343,17 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 7 | Element 5 | abbe | `Unmatched (Kodak proprietary lanthanum flint, 740/439)` | Explicit unmatched/proprietary annotation |
 | 9 | Element 6 | abbe | `Unmatched (Kodak proprietary high-index lanthanum flint, 740/464)` | Explicit unmatched/proprietary annotation |
 
+### [LEICA MACRO-ELMARIT-R 60mm f/2.8](../../src/lens-data/leica/LeicaMacroElmaritR60mmf28.data.ts) - 0.0% trusted (0/6); 0.0% Sellmeier (0/6) - US 3,552,833
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `Unmatched (LAF2-class patent e-line value; no verified d-line catalog identity)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 3 | Element 2 | abbe | `Unmatched (693/495 e-line; positive member of front cemented doublet)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 4 | Element 3 | abbe | `Unmatched (dense-flint patent e-line value; no verified d-line catalog identity)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 6 | Element 4 | abbe | `Unmatched (dense flint, 741/262 e-line; no close current HOYA/OHARA match)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 8 | Element 5 | abbe | `BACD16 / S-BSM16 class (e-line catalog match; patent vendor not named)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 10 | Element 6 | abbe | `BACD4 class (e-line catalog match; patent vendor not named)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+
 ### [LEICA SUMMICRON-M 50mm f/2](../../src/lens-data/leica/LeicaSummicronV550mmf2.data.ts) - 0.0% trusted (0/6); 0.0% Sellmeier (0/6) - US 4,123,144
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
@@ -2415,34 +2369,45 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 1 | Element 1 | abbe | `Unmatched (Schott SF10 e-line constants; patent ne=1.73430, ve=28.19 stored as nd/vd)` | Explicit unmatched/proprietary annotation |
-| 3 | Element 2 | abbe | `ZBaF17 / BaSF6-class (CDGM/Schott equivalent; patent ne/νe values stored as nd/vd)` | No catalog match |
-| 4 | Element 3 | abbe | `Unmatched (Schott SF11 e-line constants; patent ne=1.79190, ve=25.55 stored as nd/vd)` | Explicit unmatched/proprietary annotation |
-| 7 | Element 4 | abbe | `Unmatched (Schott SF2 e-line constants; patent ne=1.65222, ve=33.60 stored as nd/vd)` | Explicit unmatched/proprietary annotation |
-| 8 | Element 5 | abbe | `Unmatched (LaF21/N-LAF21-class lanthanum flint; patent ne=1.79227, νe=47.15)` | Explicit unmatched/proprietary annotation |
-| 10 | Element 6 | abbe | `Unmatched (LaF21/N-LAF21-class lanthanum flint; patent ne=1.79227, νe=47.15)` | Explicit unmatched/proprietary annotation |
+| 1 | Element 1 | abbe | `Unmatched (Schott SF10 e-line constants; patent ne=1.73430, ve=28.19 stored as nd/vd)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 3 | Element 2 | abbe | `ZBaF17 / BaSF6-class (CDGM/Schott equivalent; patent ne/νe values stored as nd/vd)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 4 | Element 3 | abbe | `Unmatched (Schott SF11 e-line constants; patent ne=1.79190, ve=25.55 stored as nd/vd)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 7 | Element 4 | abbe | `Unmatched (Schott SF2 e-line constants; patent ne=1.65222, ve=33.60 stored as nd/vd)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 8 | Element 5 | abbe | `Unmatched (LaF21/N-LAF21-class lanthanum flint; patent ne=1.79227, νe=47.15)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 10 | Element 6 | abbe | `Unmatched (LaF21/N-LAF21-class lanthanum flint; patent ne=1.79227, νe=47.15)` | Authored e-line coordinates are ineligible for d-line catalog matching |
 
 ### [RODENSTOCK GRANDAGON-N 75mm f/6.8](../../src/lens-data/rodenstock/RodenstockGrandagonN75mmf68.data.ts) - 0.0% trusted (0/6); 0.0% Sellmeier (0/6) - DE 26
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 1 | Element 1 | abbe | `Unmatched (K5/N-K5-class crown; DE2635415 lists n_e=1.5246, v_e=59.22)` | Explicit unmatched/proprietary annotation |
-| 3 | Element 2 | abbe | `Unmatched (legacy dense flint; DE2635415 lists n_e=1.7343, v_e=28.47)` | Explicit unmatched/proprietary annotation |
-| 4 | Element 3 | abbe | `Unmatched (BaF8/J-BAF8-class glass; DE2635415 lists n_e=1.6269, v_e=46.71)` | Explicit unmatched/proprietary annotation |
-| 6 | Element 4 | abbe | `Unmatched (BaSF4-class glass; DE2635415 lists n_e=1.6541, v_e=38.86)` | Explicit unmatched/proprietary annotation |
-| 7 | Element 5 | abbe | `Unmatched (legacy dense flint; DE2635415 lists n_e=1.7273, v_e=29.02)` | Explicit unmatched/proprietary annotation |
-| 9 | Element 6 | abbe | `Unmatched (K5/N-K5-class crown; DE2635415 lists n_e=1.5246, v_e=59.22)` | Explicit unmatched/proprietary annotation |
+| 1 | Element 1 | abbe | `Unmatched (K5/N-K5-class crown; DE2635415 lists n_e=1.5246, v_e=59.22)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 3 | Element 2 | abbe | `Unmatched (legacy dense flint; DE2635415 lists n_e=1.7343, v_e=28.47)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 4 | Element 3 | abbe | `Unmatched (BaF8/J-BAF8-class glass; DE2635415 lists n_e=1.6269, v_e=46.71)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 6 | Element 4 | abbe | `Unmatched (BaSF4-class glass; DE2635415 lists n_e=1.6541, v_e=38.86)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 7 | Element 5 | abbe | `Unmatched (legacy dense flint; DE2635415 lists n_e=1.7273, v_e=29.02)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 9 | Element 6 | abbe | `Unmatched (K5/N-K5-class crown; DE2635415 lists n_e=1.5246, v_e=59.22)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+
+### [RODENSTOCK SIRONAR-N 100mm f/5.6](../../src/lens-data/rodenstock/RodenstockSironarN100mmf56.data.ts) - 0.0% trusted (0/6); 0.0% Sellmeier (0/6) - DE 27
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `N-SK14 (SCHOTT; patent e-line values stored)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 2 | Element 2 | abbe | `Unmatched (vintage light-flint / BaLF-class; patent e-line values stored)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 4 | Element 3 | abbe | `N-BK7 (SCHOTT; patent e-line values stored)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 6 | Element 4 | abbe | `N-BK7 (SCHOTT; patent e-line values stored)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 8 | Element 5 | abbe | `Unmatched (vintage light-flint / BaLF-class; patent e-line values stored)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 9 | Element 6 | abbe | `N-SK14 (SCHOTT; patent e-line values stored)` | Authored e-line coordinates are ineligible for d-line catalog matching |
 
 ### [SCHNEIDER-KREUZNACH SUPER-SYMMAR XL 110mm f/5.6 ASPHERIC](../../src/lens-data/schneider-kreuznach/SchneiderSuperSymmarXL110mmf56.data.ts) - 0.0% trusted (0/6); 0.0% Sellmeier (0/6) - US 5,870,234
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 1 | Element 1 | abbe | `Unmatched (Schott KF9; patent e-line ne=1.52583, ve=51.25 stored as nd/vd)` | Explicit unmatched/proprietary annotation |
-| 3 | Element 2 | abbe | `Unmatched (Schott N-LAK33B; patent e-line ne=1.75844, ve=52.09 stored as nd/vd)` | Explicit unmatched/proprietary annotation |
-| 5 | Element 3 | abbe | `Unmatched (Schott N-LAK33B; patent e-line ne=1.75844, ve=52.09 stored as nd/vd)` | Explicit unmatched/proprietary annotation |
-| 7 | Element 4 | abbe | `Unmatched (Schott N-SK5; patent e-line ne=1.59142, ve=61.03 stored as nd/vd)` | Explicit unmatched/proprietary annotation |
-| 8 | Element 5 | abbe | `Unmatched (Schott F2-class; patent e-line ne=1.62408, ve=36.12 stored as nd/vd)` | Explicit unmatched/proprietary annotation |
-| 10 | Element 6 | abbe | `Unmatched (Schott K10; patent e-line ne=1.50349, ve=56.13 stored as nd/vd)` | Explicit unmatched/proprietary annotation |
+| 1 | Element 1 | abbe | `Unmatched (Schott KF9; patent e-line ne=1.52583, ve=51.25 stored as nd/vd)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 3 | Element 2 | abbe | `Unmatched (Schott N-LAK33B; patent e-line ne=1.75844, ve=52.09 stored as nd/vd)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 5 | Element 3 | abbe | `Unmatched (Schott N-LAK33B; patent e-line ne=1.75844, ve=52.09 stored as nd/vd)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 7 | Element 4 | abbe | `Unmatched (Schott N-SK5; patent e-line ne=1.59142, ve=61.03 stored as nd/vd)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 8 | Element 5 | abbe | `Unmatched (Schott F2-class; patent e-line ne=1.62408, ve=36.12 stored as nd/vd)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 10 | Element 6 | abbe | `Unmatched (Schott K10; patent e-line ne=1.50349, ve=56.13 stored as nd/vd)` | Authored e-line coordinates are ineligible for d-line catalog matching |
 
 ### [CARL ZEISS PLANAR T* 50mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissPlanarT50mmf14.data.ts) - 0.0% trusted (0/7); 0.0% Sellmeier (0/7) - US 3,874,771
 
@@ -2455,6 +2420,18 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 8 | Element 5 | abbe | `LaF 21 (SCHOTT)` | No catalog match |
 | 10 | Element 6 | abbe | `LaF 21 (SCHOTT)` | No catalog match |
 | 12 | Element 7 | abbe | `LaF 2 (SCHOTT)` | No catalog match |
+
+### [LEICA ELMARIT-R 35mm f/2.8](../../src/lens-data/leica/LeicaElmaritR35mmf28.data.ts) - 0.0% trusted (0/7); 0.0% Sellmeier (0/7) - FR 1,471,493
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `FK5 / N-FK5 class (Schott legacy; patent n_e)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 3 | Element 2 | abbe | `BaSF6-class (Schott legacy barium dense flint, inferred; patent n_e)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 4 | Element 3 | abbe | `Unmatched (flint/barium-flint position; no confident public catalog match; patent n_e)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 6 | Element 4 | abbe | `Unmatched (SK16-class patent e-line value; no verified d-line catalog identity)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 8 | Element 5 | abbe | `Unmatched (dense flint; no confident public catalog match; patent n_e)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 10 | Element 6 | abbe | `Unmatched (BaF13-class patent e-line value; no verified d-line catalog identity)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 11 | Element 7 | abbe | `Unmatched (LAK9-class lanthanum crown; patent e-line value stored)` | Authored e-line coordinates are ineligible for d-line catalog matching |
 
 ### [SONY SONNAR T* FE 35mm f/2.8 ZA](../../src/lens-data/sony/SonyFE35mmf28ZA.data.ts) - 0.0% trusted (0/7); 0.0% Sellmeier (0/7) - JP 2015-41012 A
 
@@ -2480,4 +2457,44 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 10 | Element 6 (L_VII) | abbe | `F7 (Schott)` | No catalog match |
 | 12 | Element 7 (L_VIII) | abbe | `LLF7 (Schott)` | No catalog match |
 | 13 | Element 8 (L_IX) | abbe | `LaK10 (Schott)` | No catalog match |
+
+### [LEICA ELMARIT-R 28mm f/2.8](../../src/lens-data/leica/LeicaElmarit28mmf28.data.ts) - 0.0% trusted (0/8); 0.0% Sellmeier (0/8) - US 3,591,257
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `SK16 (SCHOTT)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 3 | Element 2 | abbe | `SK16 (SCHOTT)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 5 | Element 3 | abbe | `Unmatched (LaF21-class patent e-line value; no verified d-line catalog identity)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 6 | Element 4 | abbe | `813252 - high-index flint (patent nd=1.81265, vd=25.24; no exact public catalog match)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 8 | Element 5 | abbe | `SK16 (SCHOTT)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 10 | Element 6 | abbe | `LaF10 (SCHOTT)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 11 | Element 7 | abbe | `813252 - high-index flint (patent nd=1.81265, vd=25.24; no exact public catalog match)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 13 | Element 8 | abbe | `Unmatched (F2-class patent e-line value; no verified d-line catalog identity)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+
+### [RODENSTOCK GRANDAGON-N 65mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN65mmf45.data.ts) - 0.0% trusted (0/8); 0.0% Sellmeier (0/8) - DE 2444954 A1
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `FK3 class (Schott legacy fluorite crown; patent e-line values)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 3 | Element 2 | abbe | `Unmatched (SF5-class dense flint; patent e-line values)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 4 | Element 3 | abbe | `SSK2 class (Schott dense special crown; patent e-line values)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 5 | Element 4 | abbe | `Unmatched barium-flint / short-flint class (patent e-line values)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 7 | Element 5 | abbe | `Unmatched barium crown / BaK class (patent e-line values)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 8 | Element 6 | abbe | `Unmatched dense crown, SK-class (patent e-line values)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 9 | Element 7 | abbe | `Unmatched high-index barium-flint class (patent e-line values; Claim 4 prints v_e = 46.13)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 11 | Element 8 | abbe | `FK5 / N-FK5 class (Schott fluorite crown; patent e-line values)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+
+### [NIKON ULTRA-MICRO-NIKKOR 29.5mm f/1.2](../../src/lens-data/nikon/NikonUltraMicroNikkor295mmf12.data.ts) - 0.0% trusted (0/9); 0.0% Sellmeier (0/9) - GB 1,050,055
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `SF13 class dense flint (patent e-line index stored)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 3 | Element 2 | abbe | `Unmatched (F5-class patent e-line value; no verified d-line catalog identity)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 5 | Element 3 | abbe | `Unmatched low-index crown 449/670 (patent e-line index stored)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 6 | Element 4 | abbe | `Unmatched SF8-class dense flint (patent e-line index stored)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 7 | Element 5 | abbe | `Unmatched (LAK9-class patent e-line value; no verified d-line catalog identity)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 9 | Element 6 | abbe | `SK15 / S-BSM15 class barium crown (patent e-line index stored)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 11 | Element 7 | abbe | `Unmatched (F8-class light flint; patent e-line index stored)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| 12 | Element 8 | abbe | `Calcium fluoride / CaF2 (patent e-line index stored)` | Authored e-line coordinates are ineligible for d-line catalog matching |
+| ... | ... | ... | ... | 1 more missing surface |
 

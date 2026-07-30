@@ -25,13 +25,25 @@ This file tracks the second bucket plus any cases from the first bucket that nee
 
 - Catalog: **428 verified entries** in `src/optics/glassCatalogData.ts`.
 - `catalog-mismatches.generated.md` and `glass-relabel-by-lens.generated.md` report **0** remaining
-  dispersion-coordinate mismatches across **0** lens files.
-- `sellmeier-coverage.generated.md` reports **488** lenses, **5360** non-air surfaces, **4659** strict catalog
-  Sellmeier surfaces (**86.9%**), and **4671** trusted chromatic surfaces (**87.1%**).
+  dispersion-coordinate mismatches across **0** lens files. The mismatch report separately records **75** native
+  e-line surfaces excluded from d-line comparison.
+- `sellmeier-coverage.generated.md` reports **488** lenses, **5360** non-air surfaces, **4643** strict catalog
+  Sellmeier surfaces (**86.6%**), and **4655** trusted chromatic surfaces (**86.8%**).
 - **223** lenses are fully covered by strict Sellmeier data and **228** are fully covered by trusted chromatic data.
 - `unresolvedGlassScan` reports **423** non-explicit-unmatched annotations and **177** distinct unresolved glass-like
   tokens. The total includes honest proprietary and family-level annotations as well as actionable named tokens.
 - The Phase 2/3 resolved tables below are historical audit trail. Use the generated reports above for the current queue before starting new relabel work; for patent-by-patent execution, start from [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md).
+
+## Resolved Phase 55 — July 2026 reference-line safety
+
+The schema now records native e-line coordinates with `ElementData.indexReference: "e"`. The catalog resolver and all
+coordinate-aware reports refuse to compare those values with d-line catalog coordinates, so an e-line family name or
+six-digit-looking annotation can no longer borrow a d-line Sellmeier curve accidentally.
+
+Seventy-five surfaces across twelve audited prescriptions were marked. Sixteen had previously passed the purely
+numeric d-line window; removing those false substitutions reduced the honest strict/trusted totals without changing
+the fully covered lens counts. Native e-line rows are excluded from mismatch and relabel queues because they require a
+source-backed e-to-d conversion, direct line indices, or a future e-line-aware catalog path—not a nearest d-line name.
 
 ## Resolved Phase 54 — July 2026 compatible-equivalent recovery
 

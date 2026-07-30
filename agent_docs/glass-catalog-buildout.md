@@ -9,6 +9,16 @@ approximation. Current optics-engine boundaries are summarized in
 
 The catalog currently has **428 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
 
+The July 30, 2026 Phase 55 pass made reference-line compatibility explicit. `ElementData.indexReference` now records
+whether the historical `nd` / `vd` slots contain ordinary d-line coordinates or retained patent `ne` / `νe` values.
+The runtime resolver, mismatch/candidate scans, ambiguity report, consolidated opportunity report, and coverage report
+all exclude native e-line elements from the d-line catalog safety net; the element inspector and Abbe map also display
+the authored d/e reference. Seventy-five surfaces across twelve audited
+prescriptions are now protected structurally, including three verified rows in the otherwise mixed Sony FE 14mm
+table. This removed sixteen previously counted d-line Sellmeier substitutions without reducing the number of fully
+covered lenses. Honest coverage is 4643 / 5360 strict (86.6%) and 4655 / 5360 trusted (86.8%), with 223 fully strict
+and 228 fully trusted lenses.
+
 The July 30, 2026 Phase 54 pass recovered five compatible equivalents already present in the catalog. Nikon AF
 35-70mm f/2.8D L2/L3 now use discontinued OHARA S-LAL52: the row is inside the d-line coordinate window and
 reproduces the patent's independent g-line index within 0.00017. Canon EF 11-24mm E2/E3 now use OHARA S-BAL42

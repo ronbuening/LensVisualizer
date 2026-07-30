@@ -40,3 +40,9 @@ APD status remains `false` for all elements. The patent describes low-refractivi
 - `npm run lint` - passed.
 - `npm run test` - passed.
 
+## 2026-07-30 - Reference-line metadata
+
+- Added `indexReference: "e"` to all six elements because the stored `nd` / `vd` slots preserve patent
+  `ne` / `νe` values.
+- The runtime and generated reports now reject d-line catalog substitution structurally rather than relying on annotation wording.
+- No source values or prescription geometry changed.

@@ -209,12 +209,13 @@ describe("glass relabel by lens scan", () => {
 
         const element = surface.elemId ? elementById.get(surface.elemId) : undefined;
         if (!element?.glass) continue;
-        if (resolveCompatibleGlass(element.glass, surface.nd, element.vd)) continue;
+        if (element.indexReference === "e") continue;
+        if (resolveCompatibleGlass(element.glass, surface.nd, element.vd, element.indexReference)) continue;
 
         const entry = resolveGlass(element.glass);
         if (!entry) continue;
 
-        const compatibility = assessCatalogGlassCompatibility(entry, surface.nd, element.vd);
+        const compatibility = assessCatalogGlassCompatibility(entry, surface.nd, element.vd, element.indexReference);
         const catalogNd = compatibility.catalogNd;
         const catalogDiff = compatibility.ndDiff;
 
