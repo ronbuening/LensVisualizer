@@ -29,9 +29,9 @@ six-digit codes are ignored for those rows. The full per-surface mismatch list i
 
 For code-only rows, start with
 [six-digit-glass-codes-missing-sellmeier.generated.md](generated/six-digit-glass-codes-missing-sellmeier.generated.md).
-Its active A-E queue indexes both the manual sidecar and companion audit logs. That excludes 203 reviewed rows and
-separates 52 explicit unmatched/unidentified dispositions without a review-record hit, leaving 12 genuinely
-unreviewed elements across 10 code families. A/B/C rows combine local-patent readiness with visible-lens completion,
+Its active A-E queue indexes both the manual sidecar and companion audit logs. That excludes 204 reviewed rows and
+separates 52 explicit unmatched/unidentified dispositions without a review-record hit, leaving 11 genuinely
+unreviewed elements across nine code families. A/B/C rows combine local-patent readiness with visible-lens completion,
 near-complete, or repeated impact; E rows are source blocked. The full inventory remains in the same report for audit
 context.
 
@@ -131,6 +131,7 @@ Rows removed from Tier A after local patent review:
 | `672472` | 1 file / 3 elements: [ZeissBiogon35mmf28Prewar.data.ts](../src/lens-data/carl-zeiss-jena/ZeissBiogon35mmf28Prewar.data.ts) | US 2,084,309 prints three vintage `1.6716 / 47.2` elements in its worked example; the row was rendered and checked visually. | Relabeled to Schott N-BAF10 (`1.67003 / 47.11`, code `670471`) as a coefficient-backed catalog equivalent within the runtime safety window. The historical production supplier remains unidentified. |
 | `748523` | 3 files / 3 elements: [Nikon85f14D.data.ts](../src/lens-data/nikon/Nikon85f14D.data.ts), [NikonAFZoomMicro70180mmf4556D.data.ts](../src/lens-data/nikon/NikonAFZoomMicro70180mmf4556D.data.ts), and [NikonRUWAFZoomNikkor2035mmf28.data.ts](../src/lens-data/nikon/NikonRUWAFZoomNikkor2035mmf28.data.ts) | The reviewed Nikon rows print `nd = 1.74810`, `vd = 52.30`; the US 5,640,277 Example 2 row was rendered and checked visually. | No reviewed coefficient row reproduces both coordinates within the runtime safety window. Candidates near `1.741 / 52.6` or `1.755 / 52.3` miss the d-line tolerance, so the annotations remain explicitly unmatched. |
 | `961323` | 1 file / 3 elements: [SonyFE1224mmf28GM.data.ts](../src/lens-data/sony/SonyFE1224mmf28GM.data.ts) | WO 2021/200206 A1 Example 2 prints three `1.96073 / 32.3` rows; the corresponding FIG. 6 layout was rendered and checked visually. | No reviewed coefficient row reproduces both coordinates within the runtime safety window. S-LAH98 and TAFD45 share the approximate Abbe value but their `1.95375` d-line index is too far away, so the annotations remain explicitly unmatched. |
+| `728403` | 1 file / 1 element: [PentaxFA31mmf18ALLtd.data.ts](../src/lens-data/pentax/PentaxFA31mmf18ALLtd.data.ts) | US 6,560,042 B2 Tables 1-3 consistently print `1.72750 / 40.3` for the positive aspherical doublet partner; Table 3 was rendered and checked visually. | No reviewed coefficient row reproduces both coordinates inside the runtime safety window. HOYA M-LAF81 and OHARA L-LAM69 are `1.73077 / 40.50`, missing the d-line limit by about `0.00027`; L8 remains explicit unmatched. |
 
 ## Workflow
 

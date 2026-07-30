@@ -14,7 +14,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 - **4675 / 5360** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 87.2%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
-- **267** code-only missing-Sellmeier elements in Sweep 2: **12** active unreviewed, **52** explicitly disposed but missing a sidecar hit
+- **267** code-only missing-Sellmeier elements in Sweep 2: **11** active unreviewed, **52** explicitly disposed but missing a sidecar hit
 - **47** unresolved named-token elements in Sweep 2B, producing **47** token occurrences across **46** distinct tokens
 - **0** Tier A proprietary backfill rows in Sweep 3
 
@@ -96,7 +96,7 @@ These are efficient follow-up targets after mismatch blockers because one or two
 | [NIKON NIKKOR Z 26mm f/2.8](../../src/lens-data/nikon/NikonZ26f28.data.ts) | WO 2023/190222 A1 | [PDF](../../patents/WO2023190222A1.pdf) | 88.9% (8/9) | 88.9% (8/9) | 1 | 14A (Element 8a (resin): `UV-curing resin (composite asphere)`) | abbe: 1 |
 | [OLYMPUS ZUIKO AUTO-MACRO 50mm f/2](../../src/lens-data/olympus/OlympusZuikoAutoMacro50mmf2.data.ts) | US 4,708,445 | [PDF](../../patents/US4708445.pdf) | 88.9% (8/9) | 88.9% (8/9) | 1 | 9 (Element 5: `Unmatched (683447 barium/lanthanum flint; no first-party coefficient row found)`) | abbe: 1 |
 | [PENTAX DA 21mm f/3.2 AL Limited](../../src/lens-data/pentax/PentaxDA21mmf32Limited.data.ts) | US 7,411,746 B2 | [PDF](../../patents/US7411746.pdf) | 88.9% (8/9) | 88.9% (8/9) | 1 | 12A (Hybrid resin layer: `Compound UV-curing resin (patent; no catalog glass match)`) | abbe: 1 |
-| [PENTAX FA 31mm f/1.8 AL Limited](../../src/lens-data/pentax/PentaxFA31mmf18ALLtd.data.ts) | US 6,560,042 B2 | [PDF](../../patents/US6560042.pdf) | 88.9% (8/9) | 88.9% (8/9) | 1 | 13 (Element 8: `Lanthanum flint (728/403, uncertain vendor)`) | abbe: 1 |
+| [PENTAX FA 31mm f/1.8 AL Limited](../../src/lens-data/pentax/PentaxFA31mmf18ALLtd.data.ts) | US 6,560,042 B2 | [PDF](../../patents/US6560042.pdf) | 88.9% (8/9) | 88.9% (8/9) | 1 | 13 (Element 8: `Unmatched (728403 lanthanum flint; no public coefficient row inside the d-line safety window)`) | abbe: 1 |
 | [SONY E 35mm f/1.8 OSS](../../src/lens-data/sony/SonyE35mmf18.data.ts) | JP 2014-89352 A | [PDF](../../patents/JP2014089352A.pdf) | 88.9% (8/9) | 88.9% (8/9) | 1 | 4A (L113 composite resin layer: `UV-curable optical resin (patent nd=1.540, νd=41.200)`) | abbe: 1 |
 | [NIKON NIKKOR Z 50mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ50f12.data.ts) | WO 2021/241230 A1 | [PDF](../../patents/WO2021241230A1.pdf) | 88.2% (15/17) | 88.2% (15/17) | 2 | 5 (Element 3 (L13): `Unmatched (patent nd=1.55298/vd=55.10; no public catalog candidate)`)<br>30 (Element 16 (L43): `S-NBM52 (OHARA)`) | abbe: 2 |
 | [FUJIFILM FUJINON 23mm f/2 (Fujifilm X100)](../../src/lens-data/fujifilm/FujifilmX10023mmf2.data.ts) | US 2012/0069456 A1 | [PDF](../../patents/US20120069456A1.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 10A (Element 6: `Unmatched (569586 patent molded crown; no exact public catalog identity)`) | abbe: 1 |
@@ -162,7 +162,6 @@ Add catalog entries only when public coefficient-backed vendor data is available
 | 519573 | 1 | 1 | patents/20260118637.pdf | [ENNA MÜNCHEN LITHAGON 24mm f/4](../../src/lens-data/enna-munchen/EnnaMunchenLithagon24mmf4.data.ts) Element 4 (1.51895 / 57.30) |
 | 547460 | 1 | 1 | patents/US20180164556A1.pdf | [PENTAX HD DA* 11-18mm f/2.8 ED DC AW](../../src/lens-data/pentax/PentaxD1118mmF28EDDCWR.data.ts) Element 5 (1.54732 / 46.00) |
 | 678322 | 1 | 1 | patents/WO2021200206A1.pdf | [SONY FE 12-24mm f/2.8 GM](../../src/lens-data/sony/SonyFE1224mmf28GM.data.ts) L22 focus-group positive (1.67764 / 32.20) |
-| 728403 | 1 | 1 | patents/US6560042.pdf | [PENTAX FA 31mm f/1.8 AL Limited](../../src/lens-data/pentax/PentaxFA31mmf18ALLtd.data.ts) Element 8 (1.72750 / 40.30) |
 | 792257 | 1 | 1 | patents/JP2023039817A.pdf | [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) Element 7 (1.79191 / 25.70) |
 | 834374 | 1 | 1 | patents/US5734508.pdf | [NIKON AI AF ZOOM-NIKKOR 24-120mm f/3.5-5.6 D IF](../../src/lens-data/nikon/NikonAFNikkor24120mmf3556D.data.ts) Element 14 — L3R3 (1.83400 / 37.40) |
 | 995293 | 1 | 1 | patents/JPWO2017138250A1.pdf | [SONY PLANAR T* FE 50mm f/1.4 ZA](../../src/lens-data/sony/SonyPlanarFE50mmf14ZA.data.ts) Element 7 (1.99502 / 29.30) |

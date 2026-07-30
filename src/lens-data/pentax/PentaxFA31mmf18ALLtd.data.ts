@@ -144,7 +144,7 @@ const LENS_DATA = {
       nd: 1.7275,
       vd: 40.3,
       fl: +29.4,
-      glass: "Lanthanum flint (728/403, uncertain vendor)",
+      glass: "Unmatched (728403 lanthanum flint; no public coefficient row inside the d-line safety window)",
       apd: false,
       cemented: "D2",
       role: "Positive partner in the second cemented doublet D2; carries the single glass-molded aspherical surface on its rear face for distortion and field curvature correction.",

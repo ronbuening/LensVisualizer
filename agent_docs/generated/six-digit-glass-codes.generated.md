@@ -222,7 +222,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 728261 | 1 | 1 | patents/US4523816.pdf | No reviewed-sidecar hit |
 | 728283 | 1 | 1 | patents/US20130222925A1.pdf | No reviewed-sidecar hit |
 | 728284 | 1 | 1 | patents/WO2020136749A1.pdf | No reviewed-sidecar hit |
-| 728403 | 1 | 1 | patents/US6560042.pdf | No reviewed-sidecar hit |
+| 728403 | 1 | 1 | patents/US6560042.pdf | All representative rows reviewed |
 | 732547 | 1 | 1 | patents/WO2021199923A1.pdf | No reviewed-sidecar hit |
 | 738493 | 1 | 1 | patents/JP2022092388A.pdf | All representative rows reviewed |
 | 740283 | 1 | 1 | patents/JP2013054269A.pdf | No reviewed-sidecar hit |
@@ -1283,7 +1283,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
 |---|---|---|---|---|---|---|---|
-| L8 (Element 8) | 13 | `Lanthanum flint (728/403, uncertain vendor)` | 1.72750 / 40.30 | No catalog entry | abbe | patents/US6560042.pdf | No reviewed-sidecar hit |
+| L8 (Element 8) | 13 | `Unmatched (728403 lanthanum flint; no public coefficient row inside the d-line safety window)` | 1.72750 / 40.30 | No catalog entry | abbe | patents/US6560042.pdf | Reviewed sidecar hit |
 
 ### [PENTAX HD D FA 28-105mm f/3.5-5.6 ED DC WR](../../src/lens-data/pentax/PentaxDFA28105mmF3556EDDCWR.data.ts) - US 2017/0068075 A1
 

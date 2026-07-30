@@ -9,6 +9,11 @@ approximation. Current optics-engine boundaries are summarized in
 
 The catalog currently has **431 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
 
+The July 30, 2026 Phase 59 pass rechecked Pentax FA 31mm code `728403` across all three patent embodiments and the
+expanded first-party coefficient sources. No safe public catalog identity exists: the nearest reviewed rows miss the
+runtime d-line index guard. L8 is now explicitly unmatched, leaving the active source-review queue at 11 elements
+across nine code families while preserving the patent's Abbe fallback.
+
 The July 30, 2026 Phase 58 pass turned the remaining six-digit inventory into an execution queue instead of a
 frequency list dominated by already-reviewed rows. Of 267 code-only elements still missing Sellmeier data, 12 are
 active unreviewed rows, 52 already carry an explicit unmatched/unidentified disposition but lack a sidecar or

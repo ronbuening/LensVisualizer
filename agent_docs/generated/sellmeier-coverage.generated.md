@@ -972,7 +972,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 13 | Element 8 | abbe | `Lanthanum flint (728/403, uncertain vendor)` | No catalog match |
+| 13 | Element 8 | abbe | `Unmatched (728403 lanthanum flint; no public coefficient row inside the d-line safety window)` | Explicit unmatched/proprietary annotation |
 
 ### [SONY E 35mm f/1.8 OSS](../../src/lens-data/sony/SonyE35mmf18.data.ts) - 88.9% trusted (8/9); 88.9% Sellmeier (8/9) - JP 2014-89352 A
 

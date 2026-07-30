@@ -13,7 +13,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 - **481** total code-only elements found
 - **267** elements in this report
 - **117** distinct lens files affected
-- **12** active unreviewed elements have no review-record hit or explicit disposition
+- **11** active unreviewed elements have no review-record hit or explicit disposition
 - **52** explicitly unmatched/unidentified elements lack a sidecar or audit-log hit and are recordkeeping follow-ups, not active identity guesses
 
 ## Prioritized Unreviewed Queue
@@ -25,7 +25,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 
 | Tier | Code | Active elements / lens files | Visible lenses | Strict surfaces | Completion candidates | Near-complete candidates | Local patent lenses | Representative rows |
 |---|---|---:|---:|---:|---|---|---:|---|
-| A | 728403 | 1 / 1 | 1 | 1 | PENTAX FA 31mm f/1.8 AL Limited | — | 1/1 | [PENTAX FA 31mm f/1.8 AL Limited](../../src/lens-data/pentax/PentaxFA31mmf18ALLtd.data.ts) Element 8 (1.72750 / 40.30) |
 | A | 995293 | 1 / 1 | 1 | 1 | SONY PLANAR T* FE 50mm f/1.4 ZA | — | 1/1 | [SONY PLANAR T* FE 50mm f/1.4 ZA](../../src/lens-data/sony/SonyPlanarFE50mmf14ZA.data.ts) Element 7 (1.99502 / 29.30) |
 | C | 586609 | 2 / 1 | 1 | 2 | — | — | 1/1 | [PENTAX DA* 16-50mm f/2.8 ED AL[IF] SDM](../../src/lens-data/pentax/PentaxDA1650mmf28.data.ts) Element 10 (1.58636 / 60.90)<br>[PENTAX DA* 16-50mm f/2.8 ED AL[IF] SDM](../../src/lens-data/pentax/PentaxDA1650mmf28.data.ts) Element 15 (1.58636 / 60.90) |
 | D | 519573 | 1 / 1 | 1 | 1 | — | — | 1/1 | [ENNA MÜNCHEN LITHAGON 24mm f/4](../../src/lens-data/enna-munchen/EnnaMunchenLithagon24mmf4.data.ts) Element 4 (1.51895 / 57.30) |
@@ -170,7 +169,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 713433 | 1 | 1 | patents/US3942876.pdf | No reviewed-sidecar hit |
 | 721334 | 1 | 1 | Missing from untracked local patents/ references (US4786152, 4786152) | No reviewed-sidecar hit |
 | 728261 | 1 | 1 | patents/US4523816.pdf | No reviewed-sidecar hit |
-| 728403 | 1 | 1 | patents/US6560042.pdf | No reviewed-sidecar hit |
+| 728403 | 1 | 1 | patents/US6560042.pdf | All representative rows reviewed |
 | 732547 | 1 | 1 | patents/WO2021199923A1.pdf | No reviewed-sidecar hit |
 | 738493 | 1 | 1 | patents/JP2022092388A.pdf | All representative rows reviewed |
 | 740439 | 1 | 1 | patents/US2983193.pdf | No reviewed-sidecar hit |
@@ -929,7 +928,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
 |---|---|---|---|---|---|---|---|
-| L8 (Element 8) | 13 | `Lanthanum flint (728/403, uncertain vendor)` | 1.72750 / 40.30 | No catalog entry | abbe | patents/US6560042.pdf | No reviewed-sidecar hit |
+| L8 (Element 8) | 13 | `Unmatched (728403 lanthanum flint; no public coefficient row inside the d-line safety window)` | 1.72750 / 40.30 | No catalog entry | abbe | patents/US6560042.pdf | Reviewed sidecar hit |
 
 ### [PENTAX HD DA* 11-18mm f/2.8 ED DC AW](../../src/lens-data/pentax/PentaxD1118mmF28EDDCWR.data.ts) - US 2018/0164556 A1
 

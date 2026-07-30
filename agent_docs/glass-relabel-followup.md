@@ -30,12 +30,22 @@ This file tracks the second bucket plus any cases from the first bucket that nee
 - `sellmeier-coverage.generated.md` reports **488** lenses, **5360** non-air surfaces, **4663** strict catalog
   Sellmeier surfaces (**87.0%**), and **4675** trusted chromatic surfaces (**87.2%**).
 - **226** lenses are fully covered by strict Sellmeier data and **231** are fully covered by trusted chromatic data.
-- `unresolvedGlassScan` reports **419** non-explicit-unmatched annotations and **174** distinct unresolved glass-like
+- `unresolvedGlassScan` reports **418** non-explicit-unmatched annotations and **174** distinct unresolved glass-like
   tokens. The total includes honest proprietary and family-level annotations as well as actionable named tokens.
-- The missing-Sellmeier six-digit report contains **267** code-only elements, now separated into **12** active
+- The missing-Sellmeier six-digit report contains **267** code-only elements, now separated into **11** active
   unreviewed rows, **52** explicit unmatched/unidentified dispositions missing both sidecar and companion-audit hits,
-  and **203** rows with a recorded review.
+  and **204** rows with a recorded review.
 - The Phase 2/3 resolved tables below are historical audit trail. Use the generated reports above for the current queue before starting new relabel work; for patent-by-patent execution, start from [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md).
+
+## Resolved Phase 59 — July 2026 Tier-A source review
+
+Pentax FA 31mm L8's `728403` coordinate was rechecked in all three US 6,560,042 B2 embodiments, including a rendered
+Table 3. Expanded current and discontinued-inclusive first-party catalogs contain no coefficient row inside the
+runtime safety window. HOYA M-LAF81 and OHARA L-LAM69 are both `1.73077 / 40.50`, missing the d-line index limit by
+about `0.00027`, so the prescription remains on its patent Abbe fallback with an explicit unmatched annotation.
+
+The active queue is now 11 elements across nine code families; `728403` remains visible in the full inventory with a
+review record but cannot crowd the remaining source targets.
 
 ## Resolved Phase 58 — July 2026 prioritized six-digit review queue
 
