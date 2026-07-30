@@ -14,7 +14,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 - **4675 / 5360** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 87.2%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
-- **267** code-only missing-Sellmeier elements in Sweep 2: **11** active unreviewed, **52** explicitly disposed but missing a sidecar hit
+- **267** code-only missing-Sellmeier elements in Sweep 2: **10** active unreviewed, **52** explicitly disposed but missing a sidecar hit
 - **47** unresolved named-token elements in Sweep 2B, producing **47** token occurrences across **46** distinct tokens
 - **0** Tier A proprietary backfill rows in Sweep 3
 
@@ -64,7 +64,7 @@ These are efficient follow-up targets after mismatch blockers because one or two
 | [FUJIFILM TCL-X100 33mm f/2 (Fujifilm X100)](../../src/lens-data/fujifilm/FujifilmX100TCLX100.data.ts) | US 2015/0226942 A1 | Missing from untracked local patents/ references (US20150226942A1, US20150226942, 20150226942) | 91.7% (11/12) | 91.7% (11/12) | 1 | 18A (Master L36: `Unmatched (nd=1.56865, νd=58.6; no authoritative catalog match)`) | abbe: 1 |
 | [NIKON NIKKOR Z 85mm f/1.8 S](../../src/lens-data/nikon/NikonZ85f18S.data.ts) | JP2020-173366A | Missing from untracked local patents/ references (JP2020173366A, JP2020173366, 2020173366) | 91.7% (11/12) | 91.7% (11/12) | 1 | 3 (Element 2: `Fluorophosphate crown (ED)`) | abbe: 1 |
 | [PANASONIC LEICA DG SUMMILUX 9mm f/1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG9mmf17.data.ts) | US 2023/0367186 A1 | [PDF](../../patents/US20230367186A1.pdf) | 91.7% (11/12) | 91.7% (11/12) | 1 | 3A (Element 2: `534556 — moldable crown (patent nd=1.53380, nu_d=55.6)`) | abbe: 1 |
-| [SONY PLANAR T* FE 50mm f/1.4 ZA](../../src/lens-data/sony/SonyPlanarFE50mmf14ZA.data.ts) | WO 2017/138250 A1 | [PDF](../../patents/JPWO2017138250A1.pdf) | 91.7% (11/12) | 91.7% (11/12) | 1 | 12 (Element 7: `Ultra-high-index lanthanum-niobium heavy flint, 995/293 class (uncertain)`) | abbe: 1 |
+| [SONY PLANAR T* FE 50mm f/1.4 ZA](../../src/lens-data/sony/SonyPlanarFE50mmf14ZA.data.ts) | WO 2017/138250 A1 | [PDF](../../patents/JPWO2017138250A1.pdf) | 91.7% (11/12) | 91.7% (11/12) | 1 | 12 (Element 7: `Unmatched (995293 ultra-high-index heavy flint; no public coefficient row inside the d-line safety window)`) | abbe: 1 |
 | [CANON EF 50mm f/1.0 L USM](../../src/lens-data/canon/CanonEF50mmf1L.data.ts) | US 4,717,245 | [PDF](../../patents/US4717245.pdf) | 90.9% (10/11) | 90.9% (10/11) | 1 | 19 (Element 11: `S-BSL10 (OHARA)`) | abbe: 1 |
 | [CANON EF-S 18-55mm f/3.5-5.6 IS](../../src/lens-data/canon/CanonEFS1855mmf3556IS.data.ts) | US 2007/0058265 A1 | [PDF](../../patents/US20070058265A1.pdf) | 90.9% (10/11) | 90.9% (10/11) | 1 | 18 (Element 10: `Unmatched (583/302 flint; obsolete HOYA E-F3-class candidate)`) | abbe: 1 |
 | [FUJIFILM FUJINON XF 56mm f/1.2 R](../../src/lens-data/fujifilm/FujifilmXF56mmf12.data.ts) | US 2015/0212302 A1 | [PDF](../../patents/US20150212302A1.pdf) | 90.9% (10/11) | 90.9% (10/11) | 1 | 16 (Element 9: `S-TIF6 (OHARA)`) | abbe: 1 |
@@ -164,7 +164,6 @@ Add catalog entries only when public coefficient-backed vendor data is available
 | 678322 | 1 | 1 | patents/WO2021200206A1.pdf | [SONY FE 12-24mm f/2.8 GM](../../src/lens-data/sony/SonyFE1224mmf28GM.data.ts) L22 focus-group positive (1.67764 / 32.20) |
 | 792257 | 1 | 1 | patents/JP2023039817A.pdf | [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) Element 7 (1.79191 / 25.70) |
 | 834374 | 1 | 1 | patents/US5734508.pdf | [NIKON AI AF ZOOM-NIKKOR 24-120mm f/3.5-5.6 D IF](../../src/lens-data/nikon/NikonAFNikkor24120mmf3556D.data.ts) Element 14 — L3R3 (1.83400 / 37.40) |
-| 995293 | 1 | 1 | patents/JPWO2017138250A1.pdf | [SONY PLANAR T* FE 50mm f/1.4 ZA](../../src/lens-data/sony/SonyPlanarFE50mmf14ZA.data.ts) Element 7 (1.99502 / 29.30) |
 | 569632 | 2 | 1 | Missing from untracked local patents/ references (US4025167, 4025167) | [OLYMPUS ZUIKO AUTO-ZOOM 85-250mm f/5](../../src/lens-data/olympus/OlympusZuikoAutoZoom85250mmf5.data.ts) Element 4 (1.56873 / 63.20)<br>[OLYMPUS ZUIKO AUTO-ZOOM 85-250mm f/5](../../src/lens-data/olympus/OlympusZuikoAutoZoom85250mmf5.data.ts) Element 7 (1.56873 / 63.20) |
 | 498650 | 1 | 1 | Missing from untracked local patents/ references (US4025167, 4025167) | [OLYMPUS ZUIKO AUTO-ZOOM 85-250mm f/5](../../src/lens-data/olympus/OlympusZuikoAutoZoom85250mmf5.data.ts) Element 10 (1.49831 / 65.00) |
 

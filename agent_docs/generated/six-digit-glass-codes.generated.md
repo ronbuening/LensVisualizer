@@ -321,7 +321,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 954323 | 1 | 1 | patents/US20190265441A1.pdf | No reviewed-sidecar hit |
 | 959175 | 1 | 1 | patents/JPWO2019187633A1.pdf | No reviewed-sidecar hit |
 | 986165 | 1 | 1 | patents/WO_2025239028_A1.pdf | No reviewed-sidecar hit |
-| 995293 | 1 | 1 | patents/JPWO2017138250A1.pdf | No reviewed-sidecar hit |
+| 995293 | 1 | 1 | patents/JPWO2017138250A1.pdf | All representative rows reviewed |
 
 ## Elements by Lens
 
@@ -1523,7 +1523,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---|---|---|---|---|---|---|
 | Lp1 (Element 2) | 3A | `High-index lanthanum crown, 851/401 class (uncertain)` | 1.85134 / 40.10 | M-TAFD305 (trusted Sellmeier) | sellmeier | patents/JPWO2017138250A1.pdf | No reviewed-sidecar hit |
 | Lp3 (Element 6) | 10 | `Fluorophosphate crown, 593/686 class (uncertain) — ED glass` | 1.59282 / 68.60 | FCD515 (trusted Sellmeier) | sellmeier | patents/JPWO2017138250A1.pdf | No reviewed-sidecar hit |
-| L21 (Element 7) | 12 | `Ultra-high-index lanthanum-niobium heavy flint, 995/293 class (uncertain)` | 1.99502 / 29.30 | No catalog entry | abbe | patents/JPWO2017138250A1.pdf | No reviewed-sidecar hit |
+| L21 (Element 7) | 12 | `Unmatched (995293 ultra-high-index heavy flint; no public coefficient row inside the d-line safety window)` | 1.99502 / 29.30 | No catalog entry | abbe | patents/JPWO2017138250A1.pdf | Reviewed sidecar hit |
 | L22 (Element 8) | 14 | `Ultra-high-dispersion titanium heavy flint, 946/179 class (uncertain)` | 1.94594 / 17.90 | H-ZF88 (trusted Sellmeier) | sellmeier | patents/JPWO2017138250A1.pdf | No reviewed-sidecar hit |
 
 ### [SONY SONNAR T* E 24mm f/1.8 ZA](../../src/lens-data/sony/SonyFE24mmf18ZA.data.ts) - US 2013/0033768 A1

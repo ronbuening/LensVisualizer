@@ -134,7 +134,8 @@ const LENS_DATA = {
       nd: 1.99502,
       vd: 29.3,
       fl: -37.6,
-      glass: "Ultra-high-index lanthanum-niobium heavy flint, 995/293 class (uncertain)",
+      glass:
+        "Unmatched (995293 ultra-high-index heavy flint; no public coefficient row inside the d-line safety window)",
       apd: false,
       role: "Focus group negative — ultra-high index (nd ≈ 2.0) per conditional (1). Keeps curvatures gentle despite strong power, suppressing SA and coma during focus travel.",
     },

@@ -22,6 +22,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-07-30 ──────────────────────────────────────────────────
   {
     date: "2026-07-30",
+    type: "fix",
+    summary: "Clarified two source-audited proprietary glass assignments without forcing unsafe catalog matches",
+  },
+  {
+    date: "2026-07-30",
     type: "improvement",
     summary: "Added sourced Hikari and CDGM dispersion data for four glass-name gaps",
   },

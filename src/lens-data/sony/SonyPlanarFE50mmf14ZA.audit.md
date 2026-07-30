@@ -25,3 +25,23 @@ Patent: WO 2017/138250 A1, Example 2
 - Existing R/d/nd/vd, high-index labels, and estimated SD profile remain consistent with the patent-backed prescription and prior relabel pass.
 - Updated Lp3 from `apd: false` to `apd: "inferred"` to match its existing fluorophosphate positive-delta-PgF note. The patent does not publish spectral partial dispersion data.
 - Current generated glass reports show no active Sony catalog-mismatch row for this lens.
+
+## 2026-07-30 — 995293 source review
+
+### Patent evidence
+
+- Rendered physical page 15 of local `patents/JPWO2017138250A1.pdf` and visually checked Example 2 / Table 6.
+- Surface 12, the front surface of L21, prints `R = -243.918`, `D = 1.800`, `nd = 1.99502`, and `νd = 29.3`, matching the data file.
+- Text and table review found no published `nC`, `nF`, `ng`, partial-dispersion value, glass name, composition, or supplier for this row.
+
+### Catalog review
+
+- Rechecked current and discontinued-inclusive first-party coefficient data from OHARA, HOYA, Hikari, and SUMITA, plus the project catalog.
+- The nearest plausible public rows are OHARA S-LAH99/S-LAH99W (`2.001000 / 29.139473`), HOYA TAFD55/TAFD55-W (`2.00100 / 29.13`), and Hikari J-LASFH16/J-LASFH16HS (`2.001 / 29.12`).
+- Each misses the patent d-line index by about `+0.00598`, outside the resolver's `±0.003` safety window. None can be assigned as a coefficient-backed equivalent.
+- The previous tentative CDGM H-ZLaF92 attribution was coordinate-incompatible (`1.92286 / 20.88`) and was removed.
+
+### Disposition
+
+- L21 remains on the patent Abbe fallback with an explicit unmatched `995293` annotation.
+- Removed the unsupported lanthanum-niobium composition and vendor-class claims from the data and analysis files.

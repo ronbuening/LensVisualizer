@@ -30,11 +30,11 @@ This file tracks the second bucket plus any cases from the first bucket that nee
 - `sellmeier-coverage.generated.md` reports **488** lenses, **5360** non-air surfaces, **4663** strict catalog
   Sellmeier surfaces (**87.0%**), and **4675** trusted chromatic surfaces (**87.2%**).
 - **226** lenses are fully covered by strict Sellmeier data and **231** are fully covered by trusted chromatic data.
-- `unresolvedGlassScan` reports **418** non-explicit-unmatched annotations and **174** distinct unresolved glass-like
+- `unresolvedGlassScan` reports **417** non-explicit-unmatched annotations and **174** distinct unresolved glass-like
   tokens. The total includes honest proprietary and family-level annotations as well as actionable named tokens.
-- The missing-Sellmeier six-digit report contains **267** code-only elements, now separated into **11** active
+- The missing-Sellmeier six-digit report contains **267** code-only elements, now separated into **10** active
   unreviewed rows, **52** explicit unmatched/unidentified dispositions missing both sidecar and companion-audit hits,
-  and **204** rows with a recorded review.
+  and **205** rows with a recorded review.
 - The Phase 2/3 resolved tables below are historical audit trail. Use the generated reports above for the current queue before starting new relabel work; for patent-by-patent execution, start from [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md).
 
 ## Resolved Phase 59 — July 2026 Tier-A source review
@@ -44,8 +44,14 @@ Table 3. Expanded current and discontinued-inclusive first-party catalogs contai
 runtime safety window. HOYA M-LAF81 and OHARA L-LAM69 are both `1.73077 / 40.50`, missing the d-line index limit by
 about `0.00027`, so the prescription remains on its patent Abbe fallback with an explicit unmatched annotation.
 
-The active queue is now 11 elements across nine code families; `728403` remains visible in the full inventory with a
-review record but cannot crowd the remaining source targets.
+Sony Planar FE 50mm L21's `995293` coordinate was then confirmed visually in WO 2017/138250 A1 Example 2 / Table 6.
+No line-index or partial-dispersion data accompanies it. OHARA S-LAH99, HOYA TAFD55, and Hikari J-LASFH16 all miss
+the patent d-line index by about `+0.00598`, while the prior tentative CDGM H-ZLaF92 attribution is plainly
+coordinate-incompatible. The unsupported vendor and composition claims were removed, and L21 is now explicitly
+unmatched.
+
+The active queue is now 10 elements across eight code families, with no Tier-A rows remaining. `728403` and `995293`
+remain visible in the full inventory with review records but cannot crowd the remaining source targets.
 
 ## Resolved Phase 58 — July 2026 prioritized six-digit review queue
 

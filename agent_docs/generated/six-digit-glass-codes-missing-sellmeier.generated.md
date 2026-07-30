@@ -13,7 +13,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 - **481** total code-only elements found
 - **267** elements in this report
 - **117** distinct lens files affected
-- **11** active unreviewed elements have no review-record hit or explicit disposition
+- **10** active unreviewed elements have no review-record hit or explicit disposition
 - **52** explicitly unmatched/unidentified elements lack a sidecar or audit-log hit and are recordkeeping follow-ups, not active identity guesses
 
 ## Prioritized Unreviewed Queue
@@ -25,7 +25,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 
 | Tier | Code | Active elements / lens files | Visible lenses | Strict surfaces | Completion candidates | Near-complete candidates | Local patent lenses | Representative rows |
 |---|---|---:|---:|---:|---|---|---:|---|
-| A | 995293 | 1 / 1 | 1 | 1 | SONY PLANAR T* FE 50mm f/1.4 ZA | — | 1/1 | [SONY PLANAR T* FE 50mm f/1.4 ZA](../../src/lens-data/sony/SonyPlanarFE50mmf14ZA.data.ts) Element 7 (1.99502 / 29.30) |
 | C | 586609 | 2 / 1 | 1 | 2 | — | — | 1/1 | [PENTAX DA* 16-50mm f/2.8 ED AL[IF] SDM](../../src/lens-data/pentax/PentaxDA1650mmf28.data.ts) Element 10 (1.58636 / 60.90)<br>[PENTAX DA* 16-50mm f/2.8 ED AL[IF] SDM](../../src/lens-data/pentax/PentaxDA1650mmf28.data.ts) Element 15 (1.58636 / 60.90) |
 | D | 519573 | 1 / 1 | 1 | 1 | — | — | 1/1 | [ENNA MÜNCHEN LITHAGON 24mm f/4](../../src/lens-data/enna-munchen/EnnaMunchenLithagon24mmf4.data.ts) Element 4 (1.51895 / 57.30) |
 | D | 547460 | 1 / 1 | 1 | 1 | — | — | 1/1 | [PENTAX HD DA* 11-18mm f/2.8 ED DC AW](../../src/lens-data/pentax/PentaxD1118mmF28EDDCWR.data.ts) Element 5 (1.54732 / 46.00) |
@@ -242,7 +241,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 904293 | 1 | 1 | patents/CN205720849U.pdf | All representative rows reviewed |
 | 910313 | 1 | 1 | patents/WO2021199923A1.pdf | No reviewed-sidecar hit |
 | 916364 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | No reviewed-sidecar hit |
-| 995293 | 1 | 1 | patents/JPWO2017138250A1.pdf | No reviewed-sidecar hit |
+| 995293 | 1 | 1 | patents/JPWO2017138250A1.pdf | All representative rows reviewed |
 
 ## Elements by Lens
 
@@ -1047,7 +1046,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
 |---|---|---|---|---|---|---|---|
-| L21 (Element 7) | 12 | `Ultra-high-index lanthanum-niobium heavy flint, 995/293 class (uncertain)` | 1.99502 / 29.30 | No catalog entry | abbe | patents/JPWO2017138250A1.pdf | No reviewed-sidecar hit |
+| L21 (Element 7) | 12 | `Unmatched (995293 ultra-high-index heavy flint; no public coefficient row inside the d-line safety window)` | 1.99502 / 29.30 | No catalog entry | abbe | patents/JPWO2017138250A1.pdf | Reviewed sidecar hit |
 
 ### [SONY SONNAR T* E 24mm f/1.8 ZA](../../src/lens-data/sony/SonyFE24mmf18ZA.data.ts) - US 2013/0033768 A1
 

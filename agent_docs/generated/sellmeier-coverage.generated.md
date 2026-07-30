@@ -775,7 +775,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 12 | Element 7 | abbe | `Ultra-high-index lanthanum-niobium heavy flint, 995/293 class (uncertain)` | No catalog match |
+| 12 | Element 7 | abbe | `Unmatched (995293 ultra-high-index heavy flint; no public coefficient row inside the d-line safety window)` | Explicit unmatched/proprietary annotation |
 
 ### [CANON EF 50mm f/1.0 L USM](../../src/lens-data/canon/CanonEF50mmf1L.data.ts) - 90.9% trusted (10/11); 90.9% Sellmeier (10/11) - US 4,717,245
 
