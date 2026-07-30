@@ -69,9 +69,9 @@ L5 is the rear-side counterpart to L4 in position, but not in dispersion. Its pa
 
 ### L6 — Biconvex Positive, Rear Triplet Middle Element
 
-nd = 1.60881, νd = 58.86. Glass: SK3 / H-ZK4 class. f = +16.0 mm.
+nd = 1.60881, νd = 58.86. Glass: SK3 (SUMITA catalog equivalent; historical production supplier unspecified). f = +16.0 mm.
 
-L6 is the strongest individual positive element in the lens. The d-line pair nd = 1.60881 and νd = 58.86 corresponds to the SK3 / H-ZK4 class. Modern N-SK4 is a different nearby glass at approximately nd = 1.61272 and νd = 58.6, so SK4 is not the preferred identification for this element.
+L6 is the strongest individual positive element in the lens. SUMITA's published SK3 row reproduces the d-line pair nd = 1.60881 and νd = 58.9; the 0.04 Abbe residual is rounding in the patent-derived value. Modern N-SK4 is a different nearby glass at approximately nd = 1.61272 and νd = 58.6, so SK4 is not the preferred identification for this element.
 
 ### L7 — Negative Meniscus, Rear Triplet Outer Element
 
@@ -96,11 +96,11 @@ The patent's native spectral convention is e-line. The data file stores d-line v
 | L3      |    1.6251 |     52.86 | SSK2 / N-SSK2, Schott     |  1.62229 |  53.27 | Direct class match           |
 | L4      |    1.5629 |     46.88 | LLF3 / QF2 class          | ≈1.56091 | ≈46.78 | Inferred; close d-code match |
 | L5      |    1.5855 |     59.19 | SK12 / S-BAL42 class      |  1.58313 |  59.38 | Cross-reference match        |
-| L6      |    1.6113 |     58.65 | SK3 / H-ZK4 class         |  1.60881 |  58.86 | Cross-reference match        |
+| L6      |    1.6113 |     58.65 | SK3, SUMITA equivalent    |  1.60881 |  58.86 | Coefficient-backed match     |
 | L7      |    1.6700 |     48.13 | BaF11 / S-BAH11 class     |  1.66672 |  48.33 | Cross-reference match        |
 | L8      |    1.4891 |     70.22 | N-FK5 / FK5, Schott       |  1.48749 |  70.41 | Direct Schott match          |
 
-The SK3 / H-ZK4 class is the best match for L6. A SK4-class assignment is too high in refractive index for the stored d-line values and would not match the patent-derived pair as closely.
+SUMITA SK3 is the coefficient-backed catalog equivalent for L6. A SK4-class assignment is too high in refractive index for the stored d-line values and would not match the patent-derived pair as closely. The production supplier is not established by the patent.
 
 L4 remains the lowest-confidence glass assignment. The numerical pair is close to the LLF3 / QF2 cross-reference class, but it is safer to retain the "class" and "inferred" wording than to assert a recovered Schott catalog identity.
 
@@ -142,4 +142,5 @@ The patent description lists special examples for f = 90, f = 75, and f = 60, bu
 - DE 2444954 A1, "Achtlinsiges Weitwinkelobjektiv," Optische Werke G. Rodenstock, published 1 April 1976.
 - Rodenstock / LINOS Grandagon-N large-format lens documentation for production family matching.
 - SCHOTT Optical Glass datasheets and inquiry-glass data for FK3, SF5, SSK2 / N-SSK2, and N-FK5 / FK5.
+- SUMITA official all-glass catalog, 2025-11-07, for the SK3 formula-3 dispersion polynomial.
 - HOYA Glass Cross Reference Index and CDGM cross-reference tables for equivalent glass-class assignments.

@@ -10,12 +10,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **488** lenses scanned (**480** visible)
-- **4624 / 5360** non-air surfaces use strict catalog Sellmeier data (86.3%)
-- **4638 / 5360** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 86.5%)
+- **4626 / 5360** non-air surfaces use strict catalog Sellmeier data (86.3%)
+- **4639 / 5360** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 86.5%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
 - **284** code-only missing-Sellmeier elements in Sweep 2
-- **57** unresolved named-token elements in Sweep 2B, producing **59** token occurrences across **56** distinct tokens
+- **53** unresolved named-token elements in Sweep 2B, producing **54** token occurrences across **53** distinct tokens
 - **0** Tier A proprietary backfill rows in Sweep 3
 
 ## Sweep 1 - Relabel Mismatches
@@ -108,7 +108,8 @@ These are efficient follow-up targets after mismatch blockers because one or two
 | [MINOLTA AF 100mm f/2.8 Macro](../../src/lens-data/minolta/MinoltaAF100mmf28Macro.data.ts) | US 4,764,000 | [PDF](../../patents/US4764000.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 13 (Element 7: `807316 - dense lanthanum flint (patent nd=1.80741, vd=31.59; unresolved)`) | abbe: 1 |
 | [NIKON AF ZOOM-NIKKOR 28-80mm f/3.5-5.6 D](../../src/lens-data/nikon/NikonAFZoomNikkor2880mmf3556.data.ts) | JP 1999-030748 A | [PDF](../../patents/JPA 1999030748-000000.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 1 (Element 1: `515546 - unmatched light crown`) | abbe: 1 |
 | [OLYMPUS H.ZUIKO AUTO-W 24mm f/2.8](../../src/lens-data/olympus/OlympusZuiko24mmf28.data.ts) | US 3,884,556 | [PDF](../../patents/US3884556.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 9 (Element 5a: `Unmatched (dense flint 762/271; current SF14-family catalogs are nd≈1.76182, vd≈26.5–26.6)`) | abbe: 1 |
-| [RODENSTOCK GRANDAGON-N 75mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN75mmf45.data.ts) | DE 2444954 A1 | [PDF](../../patents/DE_2444954_A1.pdf) | 87.5% (7/8) | 62.5% (5/8) | 1 | 5 (Element 4: `Unmatched (short-flint / barium-crown boundary; patent ne=1.5629, ve=46.88)`) | abbe: 1 |
+| [RODENSTOCK GRANDAGON-N 75mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN75mmf45.data.ts) | DE 2444954 A1 | [PDF](../../patents/DE_2444954_A1.pdf) | 87.5% (7/8) | 75.0% (6/8) | 1 | 5 (Element 4: `Unmatched (short-flint / barium-crown boundary; patent ne=1.5629, ve=46.88)`) | abbe: 1 |
+| [RODENSTOCK GRANDAGON-N 90mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN90mmf45.data.ts) | DE 2444954 A1 | [PDF](../../patents/DE_2444954_A1.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 5 (Element 4: `LLF3 / QF2 class (inferred, d-code 561468)`) | abbe: 1 |
 | [SCHNEIDER-KREUZNACH SUPER-SYMMAR HM 120mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderSuperSymmarHM120mmf56.data.ts) | US 4,773,745 | [PDF](../../patents/US4773745.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 13 (Element 8: `Unmatched (479/587 low-index crown; vendor unspecified)`) | abbe: 1 |
 | [SONY SONNAR T* E 24mm f/1.8 ZA](../../src/lens-data/sony/SonyFE24mmf18ZA.data.ts) | US 2013/0033768 A1 | [PDF](../../patents/US20130033768A1.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 11A (G6: `Unmatched (lanthanum dense crown, 801/454; likely restricted-catalog PGM formulation)`) | abbe: 1 |
 | [CANON EF 11-24mm f/4 L USM](../../src/lens-data/canon/CanonEF1124mmf4L.data.ts) | US 2015/0146085 A1 | [PDF](../../patents/US20150146085A1.pdf) | 87.5% (14/16) | 87.5% (14/16) | 2 | 3 (Element 2: `Unmatched (584/594 crown; nearest OHARA S-BAL42 has Δnd = -0.00130)`)<br>5 (Element 3: `Unmatched (850/403 high-index flint; nearest HOYA M-TAFD305 has Δnd = +0.00135, Δνd = -0.20)`) | abbe: 2 |
@@ -196,8 +197,6 @@ These unresolved catalog-style labels are often better first catalog targets tha
 
 | Token | Token occurrences | Lens files | localPatentStatus | Representative rows |
 |---|---:|---:|---|---|
-| SK3 | 2 | 2 | patents/DE_2444954_A1.pdf | [RODENSTOCK GRANDAGON-N 75mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN75mmf45.data.ts) Element 6 (1.60881 / 58.90; lineIndices)<br>[RODENSTOCK GRANDAGON-N 90mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN90mmf45.data.ts) Element 6 (1.60881 / 58.86; abbe) |
-| H-ZBAF4 | 2 | 1 | patents/US-20250389929-A1.pdf | [CANON RF 20mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF20mmf14LVCM.data.ts) G10 (1.66565 / 35.60; abbe)<br>[CANON RF 20mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF20mmf14LVCM.data.ts) G16 (1.66565 / 35.60; abbe) |
 | S-LAM73 | 2 | 1 | patents/WO_2025263124_A1.pdf | [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) Element 16 (1.85659 / 40.10; abbe)<br>[SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) Element 20 (1.85659 / 40.10; abbe) |
 | BK3 | 1 | 1 | patents/US3975089.pdf | [VIVITAR SERIES 1 35-85mm f/2.8 VMC](../../src/lens-data/vivitar/VivitarSeries13585mmf28.data.ts) Element 6 (1.49800 / 65.10; abbe) |
 | E-FPL51 | 1 | 1 | patents/JPWO2019049372A1.pdf | [NIKON NIKKOR Z 24-70mm f/4 S](../../src/lens-data/nikon/NikonNikkorZ2470mmf4S.data.ts) Element 6 (1.55332 / 71.70; abbe) |
@@ -216,13 +215,15 @@ These unresolved catalog-style labels are often better first catalog targets tha
 | H-ZF2 | 1 | 1 | patents/CN210573001U.pdf | [LAOWA 24mm f/14 2× Macro Probe](../../src/lens-data/laowa/Laowa24mmf14Probe.data.ts) Element 26 (1.67270 / 32.17; abbe) |
 | H-ZF52A | 1 | 1 | patents/US20160266350A1.pdf | [LEICA SUMMILUX 28mm f/1.7 ASPH. (Leica Q, Q2, Q3)](../../src/lens-data/leica/Leica28mmf17.data.ts) Element 11 (1.68250 / 33.00; abbe) |
 | H-ZF72 | 1 | 1 | patents/CN116520542A.pdf | [LAOWA 58mm f/2.8 2× Ultra-Macro APO](../../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts) Element 5 (1.83327 / 25.02; abbe) |
-| H-ZK4 | 1 | 1 | patents/DE_2444954_A1.pdf | [RODENSTOCK GRANDAGON-N 90mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN90mmf45.data.ts) Element 6 (1.60881 / 58.86; abbe) |
 | H-ZLAF2 | 1 | 1 | patents/CN205427291U.pdf | [LAOWA 15mm f/4 Wide Angle 1:1 Macro](../../src/lens-data/laowa/Laowa15mmf4Macro.data.ts) Element 2 (1.91082 / 35.25; abbe) |
 | H-ZLAF55C | 1 | 1 | patents/CN116520542A.pdf | [LAOWA 58mm f/2.8 2× Ultra-Macro APO](../../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts) Element 12 (1.86602 / 41.79; abbe) |
 | H-ZLAF68N | 1 | 1 | patents/CN116520542A.pdf | [LAOWA 58mm f/2.8 2× Ultra-Macro APO](../../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts) Element 9 (1.89782 / 29.90; abbe) |
 | H-ZLAF75B | 1 | 1 | patents/CN210573001U.pdf | [LAOWA 24mm f/14 2× Macro Probe](../../src/lens-data/laowa/Laowa24mmf14Probe.data.ts) Element 2 (1.90366 / 31.31; abbe) |
+| H-ZLAF92 | 1 | 1 | patents/CN116520542A.pdf | [LAOWA 58mm f/2.8 2× Ultra-Macro APO](../../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts) Element 6 (1.92286 / 20.88; abbe) |
+| L-BBH1 | 1 | 1 | patents/JP2022099402A.pdf | [HASSELBLAD XCD 90mm f/2.5 V](../../src/lens-data/hasselblad/HasselbladXCD90mmf25V.data.ts) Element 9 (1.68863 / 31.20; abbe) |
+| L-LAH83 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) Element 8 (1.77074 / 49.50; abbe) |
 
-Showing the top 25 of 56 distinct named tokens.
+Showing the top 25 of 53 distinct named tokens.
 
 ## Sweep 3 - Proprietary Line-Index Backfill
 

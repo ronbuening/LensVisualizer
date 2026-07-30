@@ -119,7 +119,7 @@ const LENS_DATA = {
       nd: 1.60881,
       vd: 58.86,
       fl: 15.97,
-      glass: "SK3 / H-ZK4 class (Schott/CDGM equivalent)",
+      glass: "SK3 (SUMITA catalog equivalent for patent coordinate; historical production supplier unspecified)",
       cemented: "T2",
       role: "Strong positive element in the rear triplet.",
     },

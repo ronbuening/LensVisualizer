@@ -23,15 +23,28 @@ This file tracks the second bucket plus any cases from the first bucket that nee
 
 ## Current Status (July 2026, current catalog)
 
-- Catalog: **414 verified entries** in `src/optics/glassCatalogData.ts`.
+- Catalog: **416 verified entries** in `src/optics/glassCatalogData.ts`.
 - `catalog-mismatches.generated.md` and `glass-relabel-by-lens.generated.md` report **0** remaining
   dispersion-coordinate mismatches across **0** lens files.
-- `sellmeier-coverage.generated.md` reports **488** lenses, **5360** non-air surfaces, **4624** strict catalog
-  Sellmeier surfaces (**86.3%**), and **4638** trusted chromatic surfaces (**86.5%**).
+- `sellmeier-coverage.generated.md` reports **488** lenses, **5360** non-air surfaces, **4626** strict catalog
+  Sellmeier surfaces (**86.3%**), and **4639** trusted chromatic surfaces (**86.5%**).
 - **213** lenses are fully covered by strict Sellmeier data and **218** are fully covered by trusted chromatic data.
-- `unresolvedGlassScan` reports **449** non-explicit-unmatched annotations and **198** distinct unresolved glass-like
+- `unresolvedGlassScan` reports **445** non-explicit-unmatched annotations and **195** distinct unresolved glass-like
   tokens. The total includes honest proprietary and family-level annotations as well as actionable named tokens.
 - The Phase 2/3 resolved tables below are historical audit trail. Use the generated reports above for the current queue before starting new relabel work; for patent-by-patent execution, start from [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md).
+
+## Resolved Phase 51 — July 2026 source-backed legacy catalog tranche
+
+SUMITA SK3 and CDGM H-ZBaF4 were transcribed from first-party coefficient sources, expanding the catalog from 414 to
+416 entries. SK3 safely resolves the matching Rodenstock Grandagon-N 75mm and 90mm elements as catalog equivalents
+while leaving the historical production supplier unspecified. The two rows add two strict Sellmeier surfaces and one
+net trusted surface because the 75mm element already stored measured C/F/g line indices.
+
+CDGM H-ZBaF4 was not forced onto Canon's nearby `1.66565 / 35.6` elements. Its official datasheet publishes code
+`664355`, `PgF = 0.5895`, and `ΔPgF = +0.0042`; Canon RF 20mm G10 instead has patent `θgF = 0.5824` and
+`ΔθgF ≈ -0.0026`. G10/G16 are now explicitly unmatched so the runtime retains the patent fallback. Canon RF 50mm
+code `666356` was likewise reviewed and retained: its code, index, and patent-family `ΔθgF = -0.0018` all reject the
+CDGM row. Strict coverage rose from 4624 to 4626 and trusted coverage from 4638 to 4639.
 
 ## Resolved Phase 50 — July 2026 exact catalog-equivalent recovery
 

@@ -7,7 +7,15 @@ available, it falls back to partial measured `nC`/`nF` line indices, dPgF-correc
 approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **414 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **416 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+
+The July 30, 2026 Phase 51 pass added two first-party legacy rows: SUMITA SK3 from the vendor's discontinued-inclusive
+all-glass AGF and CDGM H-ZBaF4 from the vendor's June 2022 optical-glass datasheet. SK3 upgrades the matching
+Rodenstock Grandagon-N 75mm and 90mm elements, adding two strict Sellmeier surfaces and one net trusted surface
+because the 75mm row already carried measured C/F/g indices. H-ZBaF4 was deliberately not assigned to Canon's nearby
+`1.66565 / 35.6` glass: CDGM publishes `ΔPgF = +0.0042`, while the Canon patent gives approximately `-0.0026`.
+The Canon RF 20mm rows are now explicitly unmatched, and the RF 50mm code `666356` was also reviewed and rejected
+for the same sign conflict. Coverage is now 4626 / 5360 strict (86.3%) and 4639 / 5360 trusted (86.5%).
 
 The July 30, 2026 Phase 50 pass recovered four exact-coordinate catalog-equivalent groups already covered by the
 414-entry catalog. Nikon's `834373` rows now use HOYA NBFD10 or M-NBFD10 according to their exact patent

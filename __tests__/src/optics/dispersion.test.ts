@@ -166,6 +166,7 @@ describe("glass catalog", () => {
     { name: "K-PSKn2", code: "618634", nd: 1.618, vd: 63.4 },
     { name: "K-SSK1", code: "617540", nd: 1.6172, vd: 54 },
     { name: "K-SSK9", code: "620498", nd: 1.62012, vd: 49.8 },
+    { name: "SK3", code: "609589", nd: 1.60881, vd: 58.9 },
   ])("reproduces SUMITA's official all-glass catalog row for $name", ({ name, code, nd, vd }) => {
     const entry = resolveGlass(`${name} (SUMITA)`);
     expect(entry?.name).toBe(name);
@@ -180,6 +181,18 @@ describe("glass catalog", () => {
     expect(entry?.code6).toBe("518635");
     expect(evaluateSellmeier(entry!, LINE_NM.d)).toBeCloseTo(1.5176, 5);
     expect(evaluateCatalogAbbeNumber(entry!)).toBeCloseTo(63.5, 1);
+  });
+
+  it("reproduces CDGM's official H-ZBaF4 datasheet row", () => {
+    const entry = resolveGlass("H-ZBaF4 (CDGM)");
+    expect(entry?.name).toBe("H-ZBaF4");
+    expect(entry?.code6).toBe("664355");
+    expect(resolveGlass("664355")?.name).toBe("H-ZBaF4");
+    expect(evaluateSellmeier(entry!, LINE_NM.C)).toBeCloseTo(1.65878, 5);
+    expect(evaluateSellmeier(entry!, LINE_NM.d)).toBeCloseTo(1.66426, 5);
+    expect(evaluateSellmeier(entry!, LINE_NM.F)).toBeCloseTo(1.6775, 5);
+    expect(evaluateSellmeier(entry!, LINE_NM.g)).toBeCloseTo(1.688535, 5);
+    expect(evaluateCatalogAbbeNumber(entry!)).toBeCloseTo(35.48, 2);
   });
 
   it("reproduces Hikari's official J-BK7A catalog row", () => {

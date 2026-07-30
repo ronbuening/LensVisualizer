@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **488** lenses scanned
 - **5360** non-air surfaces examined
 - **5365** element glass declarations examined
-- **449** non-explicit-unmatched annotations did not resolve
-- **198** distinct unresolved glass-like tokens found
+- **445** non-explicit-unmatched annotations did not resolve
+- **195** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -41,9 +41,7 @@ or per-lens patent backfills.
 | 807316 | 2 | 2 | |
 | 813252 | 2 | 1 | |
 | 856401 | 2 | 1 | |
-| H-ZBAF4 | 2 | 1 | |
 | S-LAM73 | 2 | 1 | |
-| SK3 | 2 | 2 | |
 | 487698 | 1 | 1 | |
 | 498650 | 1 | 1 | |
 | 498651 | 1 | 1 | |
@@ -180,7 +178,6 @@ or per-lens patent backfills.
 | H-ZF2 | 1 | 1 | |
 | H-ZF52A | 1 | 1 | |
 | H-ZF72 | 1 | 1 | |
-| H-ZK4 | 1 | 1 | |
 | H-ZLAF2 | 1 | 1 | |
 | H-ZLAF55C | 1 | 1 | |
 | H-ZLAF68N | 1 | 1 | |
@@ -345,20 +342,10 @@ or per-lens patent backfills.
 - [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 14A: `856401 — lanthanum dense crown (patent nd=1.85612, νd=40.1)`
 - [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 25A: `856401 — lanthanum dense crown (patent nd=1.85612, νd=40.1)`
 
-### H-ZBAF4 — 2 occurrences
-
-- [CANON RF 20mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF20mmf14LVCM.data.ts) 17: `H-ZBaF4 (CDGM, close match)`
-- [CANON RF 20mm f/1.4 L VCM](../../src/lens-data/canon/CanonRF20mmf14LVCM.data.ts) 27: `H-ZBaF4 (CDGM, close match)`
-
 ### S-LAM73 — 2 occurrences
 
 - [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 27A: `S-LAM73 (OHARA)`
 - [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 34: `S-LAM73 (OHARA)`
-
-### SK3 — 2 occurrences
-
-- [RODENSTOCK GRANDAGON-N 75mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN75mmf45.data.ts) 8: `SK3 (Schott legacy dense crown)`
-- [RODENSTOCK GRANDAGON-N 90mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN90mmf45.data.ts) 8: `SK3 / H-ZK4 class (Schott/CDGM equivalent)`
 
 ### 487698 — 1 occurrence
 
@@ -903,10 +890,6 @@ or per-lens patent backfills.
 ### H-ZF72 — 1 occurrence
 
 - [LAOWA 58mm f/2.8 2× Ultra-Macro APO](../../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts) 9: `H-ZF72 (CDGM)`
-
-### H-ZK4 — 1 occurrence
-
-- [RODENSTOCK GRANDAGON-N 90mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN90mmf45.data.ts) 8: `SK3 / H-ZK4 class (Schott/CDGM equivalent)`
 
 ### H-ZLAF2 — 1 occurrence
 

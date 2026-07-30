@@ -81,7 +81,7 @@ A weakly negative meniscus placed immediately before the aperture stop. Its low 
 
 **G9** — Meniscus, concave to object, weakly positive. nd = 1.57060, νd = 20.1. Glass: Unmatched — Canon BR (Blue Spectrum Refractive) organic material. f = +304.54 mm. θgF = 0.7782 (patent Table 2).
 
-**G10** — Biconcave negative. nd = 1.66565, νd = 35.6. Glass: H-ZBaF4 (CDGM), Close match (Δnd = +0.00139, Δνd = +0.13). f = −53.51 mm. θgF = 0.5824 (patent Table 2).
+**G10** — Biconcave negative. nd = 1.66565, νd = 35.6. Glass: unmatched patent dense flint. f = −53.51 mm. θgF = 0.5824 (patent Table 2). CDGM H-ZBaF4 is close in nd/νd but is rejected because its published ΔPgF = +0.0042 conflicts with the patent's approximately −0.0026.
 
 This cemented triplet is the chromatic correction heart of the design. G8, at nd = 2.00069, is the highest-index element in the system, contributing powerful positive refraction while its ultra-high dispersion (νd = 25.5) would normally produce severe axial chromatic aberration. The BR organic layer G9 — a 0.70 mm thick layer with anomalous partial dispersion (ΔθgFp = +0.1443, satisfying conditional expression (15): 0.050 < ΔθgFp < 0.250) — selectively converges shorter wavelengths toward the g-line, compensating for the excessive secondary spectrum that primary achromatization alone cannot correct (¶0085–¶0086, ¶0115–¶0119). G10 is the negative achromatizing partner, satisfying both CE(6) (ΔθgFn = −0.0026) and CE(7) (Ndn line value = −0.1033), within the prescribed ranges.
 
@@ -111,13 +111,13 @@ The second GMo aspherical element, and the only element with two aspherical surf
 
 **G15** — Biconvex positive (near plano-convex). nd = 1.59282, νd = 68.6. Glass: FCD515 (Hoya) — fluorophosphate crown. f = +46.39 mm.
 
-**G16** — Biconcave negative. nd = 1.66565, νd = 35.6. Glass: H-ZBaF4 (CDGM), Close match (Δnd = +0.00139, Δνd = +0.13). f = −29.75 mm.
+**G16** — Biconcave negative. nd = 1.66565, νd = 35.6. Glass: unmatched patent dense flint. f = −29.75 mm. The repeated coordinate alone is insufficient to borrow CDGM H-ZBaF4's incompatible Sellmeier curve.
 
 L3 consists of this single cemented doublet acting as a negative field-flattening group. The positive element G15 uses a mid-dispersion fluorophosphate crown, while G16 (same glass as G10) provides the dominant negative power. The negative net focal length of L3 increases the exit angle of off-axis rays, reducing the required diameter of L3 (¶0049) and contributing to the compact 76.5 × 99.3 mm form factor. The Petzval contribution of this negative rear group partially cancels the positive Petzval sum of L1+L2, yielding a computed system Petzval radius of approximately 443 mm.
 
 ## Glass Identification and Selection
 
-Glass identification was checked against manufacturer catalog data from Ohara, Hoya, Schott, Sumita, Hikari, and CDGM using nd/νd matching at the d-line (587.6 nm). The identifications below are catalog matches or explicitly marked unmatched/close; the Canon BR layer remains proprietary and unmatched.
+Glass identification was checked against manufacturer catalog data from Ohara, Hoya, Schott, Sumita, Hikari, and CDGM using nd/νd matching at the d-line (587.6 nm), with patent partial dispersion used where available. The identifications below are catalog matches or explicitly marked unmatched.
 
 | Element | nd | νd | Best Match | Catalog | Δnd | Δνd | Label |
 |---|---|---|---|---|---|---|---|
@@ -130,15 +130,15 @@ Glass identification was checked against manufacturer catalog data from Ohara, H
 | G7 | 1.54072 | 47.2 | S-TIL2 | Ohara | 0.00000 | −0.01 | Exact |
 | G8 | 2.00069 | 25.5 | TAFD40-W | Hoya | 0.00000 | +0.05 | Exact |
 | G9 | 1.57060 | 20.1 | — | — | — | — | Unmatched (Canon BR organic) |
-| G10 | 1.66565 | 35.6 | H-ZBaF4 | CDGM | +0.00139 | +0.13 | Close |
+| G10 | 1.66565 | 35.6 | — | — | — | — | Unmatched; H-ZBaF4 ΔPgF conflict |
 | G11 | 1.49700 | 81.7 | J-FK01A | Hikari | 0.00000 | +0.09 | Exact |
 | G12 | 1.77047 | 29.7 | NBFD29 | Hoya | 0.00001 | −0.02 | Exact |
 | G13 | 1.49700 | 81.7 | J-FK01A | Hikari | 0.00000 | +0.09 | Exact |
 | G14 | 1.80400 | 46.5 | S-LAH65VS | Ohara | 0.00000 | −0.01 | Exact — dense lanthanum flint |
 | G15 | 1.59282 | 68.6 | FCD515 | Hoya | 0.00000 | 0.00 | Exact |
-| G16 | 1.66565 | 35.6 | H-ZBaF4 | CDGM | +0.00139 | +0.13 | Close |
+| G16 | 1.66565 | 35.6 | — | — | — | — | Unmatched; repeated patent coordinate |
 
-The glass palette draws from four vendors (Ohara, Hoya, Hikari, CDGM), with no Schott or Sumita glasses identified. Fourteen of sixteen elements yield exact or near-exact catalog matches. G9 is the Canon BR organic proprietary material with no catalog equivalent. G10 and G16 share the same glass code (nd = 1.66565, νd = 35.6); H-ZBaF4 from CDGM is the closest match, labeled Close due to a +0.00139 index residual.
+Thirteen of sixteen elements have coefficient-backed catalog matches from Ohara, Hoya, Hikari, or Schott. G9 is Canon's proprietary BR organic material. G10 and G16 share the patent coordinate nd = 1.66565, νd = 35.6, but the newly source-verified CDGM H-ZBaF4 row is not a safe equivalent: its nd/νd pair is nearby while its published PgF = 0.5895 and ΔPgF = +0.0042 conflict with G10's patent θgF = 0.5824 and ΔθgF ≈ −0.0026. Both rows therefore retain the patent Abbe/partial-dispersion fallback rather than receiving an incorrect catalog Sellmeier curve.
 
 Canon's published special-element designations map onto the prescription as follows (element positions are inferred from glass identity):
 
@@ -251,4 +251,4 @@ The patent's prior-art reference to JP 2023-008471 (¶0002) describes a three-gr
 
 - US 2025/0389929 A1, "Optical System and Imaging Apparatus Including Same," Saito, Canon Kabushiki Kaisha, published Dec. 25, 2025. Primary source for all prescription data, conditional expressions, and design rationale.
 - Canon official specifications: Canon's regional RF 20mm F1.4L VCM specification pages. Source for production full-frame coverage, 84°/62°/94° angle of view, 15/11 element-group count, 1× Super UD / 2× UD / 1× BR / 2× GMo special optics, 0.20 m MFD, 0.19× maximum magnification, 11-blade diaphragm, and absence of optical image stabilization.
-- Glass catalogs: Ohara (S-BSM14, S-FPL55, S-NBH56, S-TIL2, S-LAH65VS), Hoya (TAFD37A, TAFD40-W, NBFD29, FCD515), Hikari (J-SK12, J-FK01A), Schott (N-LAK33B), and CDGM (H-ZBaF4). Accessed via the `opticalglass` Python library for catalog cross-referencing.
+- Glass catalogs: Ohara (S-BSM14, S-FPL55, S-NBH56, S-TIL2, S-LAH65VS), Hoya (TAFD37A, TAFD40-W, NBFD29, FCD515), Hikari (J-SK12, J-FK01A), and Schott (N-LAK33B). CDGM Optical Glass Data Sheet, June 2022, H-ZBaF4 page 183, was used to reject that nearby row on partial-dispersion evidence.

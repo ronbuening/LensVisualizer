@@ -275,4 +275,16 @@ export const CDGM_GLASS_ENTRIES: readonly GlassEntry[] = [
     code6: "518635",
     source: "CDGM D-K59 public datasheet, 2026 access; Sellmeier constants K1-L3, d-code 518635.",
   },
+  {
+    name: "H-ZBaF4",
+    vendor: "CDGM",
+    B: [0.151466661, 1.54020133, 1.18737385],
+    C: [0.0571831045, 0.0111587138, 120.128948],
+    nd: 1.66426,
+    vd: 35.48,
+    PgF: 0.5895,
+    code6: "664355",
+    source:
+      "CDGM Optical Glass Data Sheet, June 2022, H-ZBaF4 page 183; vendor Sellmeier-1 constants K1-L3 and d-code 664355.",
+  },
 ];

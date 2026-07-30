@@ -116,7 +116,7 @@ const LENS_DATA = {
       nd: 1.60881,
       vd: 58.9,
       fl: 13.2,
-      glass: "SK3 (Schott legacy dense crown)",
+      glass: "SK3 (SUMITA catalog equivalent for patent coordinate; historical production supplier unspecified)",
       nC: 1.60567,
       nF: 1.61601,
       ng: 1.62163,

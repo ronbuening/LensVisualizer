@@ -225,6 +225,16 @@ export const SUMITA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source:
       "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor formula-3 polynomial for SK5.",
   },
+  {
+    name: "SK3",
+    vendor: "Sumita",
+    polynomial: [2.546263, -0.009716546, 0.01512279, 0.0001633951, 0.000008385144, -0.0000001104283],
+    nd: 1.60881,
+    vd: 58.9,
+    code6: "609589",
+    source:
+      "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor formula-3 polynomial for SK3.",
+  },
   /* ────── Sumita — APO-relevant K-prefix crowns ──────
    * K-GFK68 appears in the Voigtländer APO-Lanthar 50/2 prescription. Sumita
    * AGF entries use the polynomial Schott formula (form 1); B/C below are a
