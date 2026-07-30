@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **488** lenses scanned
 - **5360** non-air surfaces examined
 - **5365** element glass declarations examined
-- **411** non-explicit-unmatched annotations did not resolve
-- **172** distinct unresolved glass-like tokens found
+- **410** non-explicit-unmatched annotations did not resolve
+- **171** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -127,7 +127,6 @@ or per-lens patent backfills.
 | 805252 | 1 | 1 | |
 | 805410 | 1 | 1 | |
 | 821426 | 1 | 1 | |
-| 834374 | 1 | 1 | |
 | 835447 | 1 | 1 | |
 | 840433 | 1 | 1 | |
 | 849401 | 1 | 1 | |
@@ -660,10 +659,6 @@ or per-lens patent backfills.
 ### 821426 — 1 occurrence
 
 - [NIKON AF-S NIKKOR 28-300mm f/3.5-5.6 G ED VR](../../src/lens-data/nikon/NikonNikkorAFS28300mmf3556G.data.ts) 34: `821426 — patent dense flint (nd=1.82080, νd=42.64; no public HIKARI/OHARA match found)`
-
-### 834374 — 1 occurrence
-
-- [NIKON AI AF ZOOM-NIKKOR 24-120mm f/3.5-5.6 D IF](../../src/lens-data/nikon/NikonAFNikkor24120mmf3556D.data.ts) 36: `834374 — LaSF/NBFD class (vendor unresolved)`
 
 ### 835447 — 1 occurrence
 

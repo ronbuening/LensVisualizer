@@ -22,6 +22,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-07-30 ──────────────────────────────────────────────────
   {
     date: "2026-07-30",
+    type: "improvement",
+    summary: "Added coefficient-backed dense-flint dispersion to the Nikon 24-120mm AF zoom",
+  },
+  {
+    date: "2026-07-30",
     type: "fix",
     summary: "Source-audited a Sony dense flint without mixing d-line and e-line glass coordinates",
   },

@@ -143,7 +143,7 @@ The numerical radii define a negative meniscus with an objectwise convex first s
 
 ### C4 — L3R3 and L3R4, Final Cemented Pair
 
-**L3R3:** `nd = 1.83400`, `νd = 37.4`. Glass: `834374 — LaSF/NBFD class (vendor unresolved)`. `f = -18.604546 mm`.
+**L3R3:** `nd = 1.83400`, `νd = 37.4`. Glass: `NBFD10 (HOYA catalog equivalent; production supplier unspecified; patent 834374)`. `f = -18.604546 mm`.
 
 **L3R4:** `nd = 1.51823`, `νd = 58.9`. Glass: `J-K3 (Hikari; patent code 518589)`. `f = +25.816330 mm`.
 
@@ -153,7 +153,7 @@ The patent places this compound lens at the imagewise end of G3R and explicitly 
 
 ## Glass Identification and Selection
 
-The patent supplies `nd` and `νd` but does not name glass manufacturers or publish per-element `nC`, `nF`, `ng`, Sellmeier coefficients, or `dPgF`. Four rows can nevertheless be tied to published catalog coordinates: patent code 658508 is an exact Hikari J-SSK5 match; 861230 and 518589 are one rounding digit from current J-SFH2 and J-K3 while retaining the same `nd` and rounded `νd`; and 713539 is the exact published LAC8 coordinate. The remaining materials keep code-level or explicit `Unmatched (...)` descriptions.
+The patent supplies `nd` and `νd` but does not name glass manufacturers or publish per-element `nC`, `nF`, `ng`, Sellmeier coefficients, or `dPgF`. Five rows can nevertheless be tied to published catalog coordinates: patent code 658508 is an exact Hikari J-SSK5 match; 861230 and 518589 are one rounding digit from current J-SFH2 and J-K3 while retaining the same `nd` and rounded `νd`; 713539 is the exact published LAC8 coordinate; and 834374 rounds safely to legacy HOYA NBFD10 at `1.83400 / 37.34`. SUMITA K-LaSFn14 and OHARA S-LAH60 independently place the same glass family at `1.83400 / 37.3` and `1.83400 / 37.16`, respectively, while the patent establishes no production supplier. The remaining materials keep code-level or explicit `Unmatched (...)` descriptions.
 
 | Elements | `nd` | `νd` | Data-file identification |
 |---|---:|---:|---|
@@ -168,7 +168,7 @@ The patent supplies `nd` and `νd` but does not name glass manufacturers or publ
 | L3F3 | 1.79631 | 40.9 | Unmatched 796409 high-index crown |
 | L3R1 | 1.65844 | 50.8 | J-SSK5; exact Hikari/patent code 658508 |
 | L3R2 | 1.79668 | 45.4 | 795454 — LaSF class, catalog-near and vendor unresolved |
-| L3R3 | 1.83400 | 37.4 | 834374 — LaSF/NBFD class, vendor unresolved |
+| L3R3 | 1.83400 | 37.4 | NBFD10 catalog equivalent; production supplier unspecified |
 | L3R4 | 1.51823 | 58.9 | J-K3; current Hikari code 518588, patent code 518589 |
 
 Nikon's archived product specification lists no ED elements. The prescription likewise contains no glass whose identification is asserted as ED, and the absent spectral fields prevent a defensible claim of anomalous partial dispersion or apochromatic correction. Chromatic interpretation is limited to the broad dispersion relationships supported by `nd` and `νd`.

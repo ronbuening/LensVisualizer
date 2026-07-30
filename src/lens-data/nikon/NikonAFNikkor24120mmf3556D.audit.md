@@ -57,3 +57,36 @@ code-only glasses remain unresolved where no comparably strong, coefficient-back
   Nearby named high-index families do not reproduce both coordinates and do not establish a supplier.
 - Retained L3F3's explicit unmatched `796409` annotation. No catalog model, prescription geometry,
   focus reconstruction, or spectral claim changed.
+
+## 2026-07-30 — `834374` coefficient-equivalent recovery
+
+### Patent evidence
+
+- Rendered and visually checked local `patents/US5734508.pdf`, PDF page 31, Working Example 1 / Table 1 continued.
+- Surface 36 / L3R3 is printed as `R = -83.063`, `d = 1.70`, `νd = 37.4`, and `nd = 1.83400`, matching the
+  stored prescription.
+- The patent defines the table values as D-line index and Abbe number but names no glass supplier and publishes no
+  secondary line index or partial-dispersion value for this row.
+
+### Catalog disposition
+
+- Legacy HOYA NBFD10 publishes `nd = 1.83400`, `νd = 37.34` with a vendor formula-3 polynomial already verified in
+  the shared catalog. The `834373` catalog code differs from the patent-derived `834374` only because the patent
+  rounds the Abbe number to one decimal.
+- Independent first-party catalogs corroborate the family: SUMITA K-LaSFn14 publishes `1.83400 / 37.3`, and OHARA
+  S-LAH60 publishes `1.83400 / 37.16`.
+- Relabeled L3R3 to `NBFD10 (HOYA catalog equivalent; production supplier unspecified; patent 834374)`.
+  Prescription geometry and optical coordinates are unchanged.
+
+### Analysis sync
+
+- Updated the L3R3 description, glass inventory, and catalog-evidence paragraph. The wording treats NBFD10 as the
+  coefficient model, not a claim about Nikon's production procurement.
+
+### Verification
+
+- `npm run generate:glass-reports` — passed (8 files / 10 tests); strict/trusted coverage rose to 12/16 elements
+  for this lens and 4667/4679 surfaces overall.
+- `npm test -- dispersion.test.ts lensDataTyping.test.ts validateLensData.test.ts buildLens.test.ts` — passed
+  (4 files / 237 tests).
+- `npm run typecheck`, `npm run format:check`, and `git diff --check` — passed.

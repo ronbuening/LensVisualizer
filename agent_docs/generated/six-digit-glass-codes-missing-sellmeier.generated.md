@@ -10,10 +10,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **488** lenses scanned
-- **478** total code-only elements found
-- **264** elements in this report
+- **477** total code-only elements found
+- **263** elements in this report
 - **116** distinct lens files affected
-- **4** active unreviewed elements have no review-record hit or explicit disposition
+- **3** active unreviewed elements have no review-record hit or explicit disposition
 - **52** explicitly unmatched/unidentified elements lack a sidecar or audit-log hit and are recordkeeping follow-ups, not active identity guesses
 
 ## Prioritized Unreviewed Queue
@@ -25,7 +25,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 
 | Tier | Code | Active elements / lens files | Visible lenses | Strict surfaces | Completion candidates | Near-complete candidates | Local patent lenses | Representative rows |
 |---|---|---:|---:|---:|---|---|---:|---|
-| D | 834374 | 1 / 1 | 1 | 1 | — | — | 1/1 | [NIKON AI AF ZOOM-NIKKOR 24-120mm f/3.5-5.6 D IF](../../src/lens-data/nikon/NikonAFNikkor24120mmf3556D.data.ts) Element 14 — L3R3 (1.83400 / 37.40) |
 | E | 569632 | 2 / 1 | 1 | 2 | — | — | 0/1 | [OLYMPUS ZUIKO AUTO-ZOOM 85-250mm f/5](../../src/lens-data/olympus/OlympusZuikoAutoZoom85250mmf5.data.ts) Element 4 (1.56873 / 63.20)<br>[OLYMPUS ZUIKO AUTO-ZOOM 85-250mm f/5](../../src/lens-data/olympus/OlympusZuikoAutoZoom85250mmf5.data.ts) Element 7 (1.56873 / 63.20) |
 | E | 498650 | 1 / 1 | 1 | 1 | — | — | 0/1 | [OLYMPUS ZUIKO AUTO-ZOOM 85-250mm f/5](../../src/lens-data/olympus/OlympusZuikoAutoZoom85250mmf5.data.ts) Element 10 (1.49831 / 65.00) |
 
@@ -216,7 +215,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 810372 | 1 | 1 | patents/US20180164556A1.pdf | No reviewed-sidecar hit |
 | 821426 | 1 | 1 | patents/US20100220400A1.pdf | All representative rows reviewed |
 | 831265 | 1 | 1 | patents/US3615126.pdf | No reviewed-sidecar hit |
-| 834374 | 1 | 1 | patents/US5734508.pdf | No reviewed-sidecar hit |
 | 835447 | 1 | 1 | patents/CN205720849U.pdf | All representative rows reviewed |
 | 840433 | 1 | 1 | patents/US5528428.pdf | No reviewed-sidecar hit |
 | 849401 | 1 | 1 | patents/US20170351051A1.pdf | No reviewed-sidecar hit |
@@ -632,7 +630,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | L21g (Element 4b — L21 Glass Substrate) | 18 | `Unmatched (840434 high-index glass)` | 1.84042 / 43.40 | No catalog entry | abbe | patents/US5734508.pdf | No reviewed-sidecar hit |
 | L22 (Element 5 — L22) | 20 | `Unmatched (840434 high-index glass)` | 1.84042 / 43.40 | No catalog entry | abbe | patents/US5734508.pdf | No reviewed-sidecar hit |
 | L3F3 (Element 11 — L3F3) | 30 | `Unmatched (796409 high-index crown)` | 1.79631 / 40.90 | No catalog entry | abbe | patents/US5734508.pdf | Reviewed sidecar hit |
-| L3R3 (Element 14 — L3R3) | 36 | `834374 — LaSF/NBFD class (vendor unresolved)` | 1.83400 / 37.40 | No catalog entry | abbe | patents/US5734508.pdf | No reviewed-sidecar hit |
 
 ### [NIKON AI NIKKOR 35mm f/2](../../src/lens-data/nikon/NikonAINikkor35mmf2.data.ts) - US 3,507,558
 

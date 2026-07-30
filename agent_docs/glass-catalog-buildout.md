@@ -9,6 +9,12 @@ approximation. Current optics-engine boundaries are summarized in
 
 The catalog currently has **432 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
 
+The July 30, 2026 Phase 65 pass rendered US 5,734,508 Working Example 1 / Table 1 and confirmed Nikon AF 24-120mm
+L3R3 at `1.83400 / 37.4`. Legacy HOYA NBFD10 (`1.83400 / 37.34`) is the closest coefficient-backed row; SUMITA
+K-LaSFn14 and OHARA S-LAH60 independently confirm the same family. L3R3 now uses NBFD10 as a catalog equivalent
+with production supplier unspecified. Strict/trusted coverage rose to 4667/4679 surfaces, and the active
+source-review queue now contains only three Olympus elements across two code families.
+
 The July 30, 2026 Phase 64 pass rendered JP 2023-039817 A Example 2 / Table 6 and confirmed Sony FE 70-200mm GM II
 L41 under explicit d-line headings at `1.79191 / 25.7`. No first-party coefficient row is compatible at the d line.
 Hikari J-SF11's superficially matching `1.791929` value is its e-line index; its d-line index is `1.784720`, so

@@ -27,15 +27,26 @@ This file tracks the second bucket plus any cases from the first bucket that nee
 - `catalog-mismatches.generated.md` and `glass-relabel-by-lens.generated.md` report **0** remaining
   dispersion-coordinate mismatches across **0** lens files. The mismatch report separately records **16 / 75**
   native e-line surfaces resolved through explicit names or aliases.
-- `sellmeier-coverage.generated.md` reports **488** lenses, **5360** non-air surfaces, **4666** strict catalog
-  Sellmeier surfaces (**87.1%**), and **4678** trusted chromatic surfaces (**87.3%**).
+- `sellmeier-coverage.generated.md` reports **488** lenses, **5360** non-air surfaces, **4667** strict catalog
+  Sellmeier surfaces (**87.1%**), and **4679** trusted chromatic surfaces (**87.3%**).
 - **226** lenses are fully covered by strict Sellmeier data and **231** are fully covered by trusted chromatic data.
-- `unresolvedGlassScan` reports **411** non-explicit-unmatched annotations and **172** distinct unresolved glass-like
+- `unresolvedGlassScan` reports **410** non-explicit-unmatched annotations and **171** distinct unresolved glass-like
   tokens. The total includes honest proprietary and family-level annotations as well as actionable named tokens.
-- The missing-Sellmeier six-digit report contains **264** code-only elements, now separated into **4** active
+- The missing-Sellmeier six-digit report contains **263** code-only elements, now separated into **3** active
   unreviewed rows, **52** explicit unmatched/unidentified dispositions missing both sidecar and companion-audit hits,
   and **208** rows with a recorded review.
 - The Phase 2/3 resolved tables below are historical audit trail. Use the generated reports above for the current queue before starting new relabel work; for patent-by-patent execution, start from [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md).
+
+## Resolved Phase 65 — July 2026 Nikon 834374 family recovery
+
+US 5,734,508 Working Example 1 / Table 1 was rendered and checked visually, confirming Nikon AF 24-120mm L3R3 at
+`1.83400 / 37.4`. Legacy HOYA NBFD10 publishes the exact d-line index and `νd = 37.34`; SUMITA K-LaSFn14 and OHARA
+S-LAH60 independently corroborate the same `1.83400 / 37.x` family. The one-digit code difference reflects the
+patent's one-decimal Abbe rounding.
+
+L3R3 now uses NBFD10 as a coefficient-backed catalog equivalent while leaving Nikon's production supplier
+unspecified. Strict/trusted coverage rose to 4667/4679 surfaces, and the lens improved from 11/16 to 12/16 covered
+elements. The active queue now contains only the three Olympus elements across two code families.
 
 ## Resolved Phase 64 — July 2026 Sony 792257 reference-line review
 

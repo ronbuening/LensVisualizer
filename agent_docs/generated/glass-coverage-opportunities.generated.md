@@ -10,11 +10,11 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **488** lenses scanned (**480** visible)
-- **4666 / 5360** non-air surfaces use strict catalog Sellmeier data (87.1%)
-- **4678 / 5360** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 87.3%)
+- **4667 / 5360** non-air surfaces use strict catalog Sellmeier data (87.1%)
+- **4679 / 5360** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 87.3%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
-- **264** code-only missing-Sellmeier elements in Sweep 2: **4** active unreviewed, **52** explicitly disposed but missing a sidecar hit
+- **263** code-only missing-Sellmeier elements in Sweep 2: **3** active unreviewed, **52** explicitly disposed but missing a sidecar hit
 - **47** unresolved named-token elements in Sweep 2B, producing **47** token occurrences across **46** distinct tokens
 - **0** Tier A proprietary backfill rows in Sweep 3
 
@@ -159,7 +159,6 @@ Add catalog entries only when public coefficient-backed vendor data is available
 
 | Code | Active elements | Lens files | localPatentStatus | Representative rows |
 |---|---:|---:|---|---|
-| 834374 | 1 | 1 | patents/US5734508.pdf | [NIKON AI AF ZOOM-NIKKOR 24-120mm f/3.5-5.6 D IF](../../src/lens-data/nikon/NikonAFNikkor24120mmf3556D.data.ts) Element 14 — L3R3 (1.83400 / 37.40) |
 | 569632 | 2 | 1 | Missing from untracked local patents/ references (US4025167, 4025167) | [OLYMPUS ZUIKO AUTO-ZOOM 85-250mm f/5](../../src/lens-data/olympus/OlympusZuikoAutoZoom85250mmf5.data.ts) Element 4 (1.56873 / 63.20)<br>[OLYMPUS ZUIKO AUTO-ZOOM 85-250mm f/5](../../src/lens-data/olympus/OlympusZuikoAutoZoom85250mmf5.data.ts) Element 7 (1.56873 / 63.20) |
 | 498650 | 1 | 1 | Missing from untracked local patents/ references (US4025167, 4025167) | [OLYMPUS ZUIKO AUTO-ZOOM 85-250mm f/5](../../src/lens-data/olympus/OlympusZuikoAutoZoom85250mmf5.data.ts) Element 10 (1.49831 / 65.00) |
 
