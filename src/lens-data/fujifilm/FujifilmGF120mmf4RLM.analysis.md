@@ -71,9 +71,9 @@ Despite containing two individually strong elements, the doublet as a combined u
 
 ### L14 — Positive Meniscus, Convex to Object
 
-nd = 1.85150, νd = 40.78. Glass: S-LAH85V (OHARA) — high-index lanthanum glass. f = +62.4 mm.
+nd = 1.85150, νd = 40.78. Glass: L-LAH85V (OHARA catalog equivalent; production supplier unspecified) — high-index lanthanum glass. f = +62.4 mm.
 
-L14 is the rearmost element of G1, a strongly positive meniscus (R₁ = +47.52, R₂ = +429.86) made of high-index S-LAH85V glass. The high refractive index (nd = 1.852) allows this element to carry substantial positive power with reduced surface curvatures, which limits higher-order spherical aberration contributions. Its meniscus shape (both radii have the same sign) bends the converging beam gently toward the axis, preparing the ray bundle for the diverging G2 group.
+L14 is the rearmost element of G1, a strongly positive meniscus (R₁ = +47.52, R₂ = +429.86). Its patent coordinate lies within the catalog compatibility window of OHARA L-LAH85V (1.85400 / 40.38), but the patent does not identify the production supplier. The high refractive index (nd = 1.852) allows this element to carry substantial positive power with reduced surface curvatures, which limits higher-order spherical aberration contributions. Its meniscus shape (both radii have the same sign) bends the converging beam gently toward the axis, preparing the ray bundle for the diverging G2 group.
 
 The conditional expression (10) in the patent governs the air-lens shape between L13's rear surface (R = +39.06) and L14's front surface (R = +47.52). The computed value of (L13r − L14f)/(L13r + L14f) = −0.0976 satisfies expression (10), indicating that this air space is designed to balance longitudinal chromatic aberration against spherical aberration.
 
@@ -141,14 +141,14 @@ The flat rear surface of L52 (R = ∞) simplifies manufacture and mounting, and 
 
 ## Glass Identification and Selection
 
-All 14 glasses resolve to OHARA catalog entries with exact (Δnd = 0, Δνd < 0.02) matches, consistent with Fujifilm's established sourcing relationship with OHARA for their GFX lens series.
+Thirteen of the 14 glasses resolve to catalog entries with exact or near-rounded patent coordinates. L14 is the sole catalog-equivalent assignment: its 1.85150 / 40.78 patent coordinate is compatible with OHARA L-LAH85V at 1.85400 / 40.38, while the production supplier remains unspecified.
 
 | Element | nd | νd | θgF | Glass (OHARA) | Class | Role |
 |---|---|---|---|---|---|---|
 | L11 | 1.48749 | 70.24 | 0.53007 | S-FSL5 | Fluorosilicate crown | Low-aberration front element |
 | L12 | 1.49700 | 81.54 | 0.53748 | S-FPL51 | ED fluorophosphate crown | Primary chromatic corrector (G1) |
 | L13 | 1.74950 | 35.28 | 0.58704 | S-NBH51 | Niobium-barium heavy flint | Achromatic partner to L12 |
-| L14 | 1.85150 | 40.78 | 0.56958 | S-LAH85V | High-index lanthanum glass | Strong positive power, low SA |
+| L14 | 1.85150 | 40.78 | 0.56958 | L-LAH85V catalog equivalent | High-index lanthanum glass | Strong positive power, low SA |
 | L21 | 1.83481 | 42.72 | 0.56486 | S-LAH55V | High-index lanthanum glass | Primary diverger (G2) |
 | L22 | 1.51742 | 52.43 | 0.55649 | S-NSL36 | Light silicate glass | Chromatic corrector (G2) |
 | L23 | 1.80000 | 29.84 | 0.60178 | S-NBH55 | High-index niobium flint | Chromatic corrector flint (G2) |

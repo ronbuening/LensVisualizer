@@ -22,6 +22,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-07-30 ──────────────────────────────────────────────────
   {
     date: "2026-07-30",
+    type: "improvement",
+    summary: "Added sourced Hikari and CDGM dispersion data for four glass-name gaps",
+  },
+  {
+    date: "2026-07-30",
     type: "fix",
     summary: "Prevented native e-line patent indices from borrowing incompatible d-line glass curves",
   },

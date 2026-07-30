@@ -70,3 +70,11 @@ Patent: CN 210573001 U, Example 1
   coefficient-backed TAFD5F row reproduces `1.83481 / 42.72` exactly; the annotations explicitly leave the
   production supplier unspecified.
 - Updated the glass palette and both element narratives. No prescription geometry changed.
+
+## 2026-07-30 — CDGM datasheet recovery
+
+- Added the official CDGM H-ZLaF75B and H-ZF2 Sellmeier rows after checking their rendered datasheets.
+- Removed the tentative qualifier from P1's H-ZLaF75B annotation. The datasheet confirms nd = 1.90366; its
+  νd = 31.42 remains compatible with the patent's 31.31 value.
+- L24's exact 1.67270 / 32.17 H-ZF2 annotation now resolves directly to the CDGM coefficient row.
+- No prescription geometry changed.

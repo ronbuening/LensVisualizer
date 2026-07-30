@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **488** lenses scanned
 - **5360** non-air surfaces examined
 - **5365** element glass declarations examined
-- **423** non-explicit-unmatched annotations did not resolve
-- **177** distinct unresolved glass-like tokens found
+- **419** non-explicit-unmatched annotations did not resolve
+- **174** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -160,13 +160,11 @@ or per-lens patent backfills.
 | H-LAK7 | 1 | 1 | |
 | H-QF50 | 1 | 1 | |
 | H-ZF1 | 1 | 1 | |
-| H-ZF2 | 1 | 1 | |
 | H-ZF52A | 1 | 1 | |
 | H-ZF72 | 1 | 1 | |
 | H-ZLAF2 | 1 | 1 | |
 | H-ZLAF55C | 1 | 1 | |
 | H-ZLAF68N | 1 | 1 | |
-| H-ZLAF75B | 1 | 1 | |
 | H-ZLAF92 | 1 | 1 | |
 | L-BBH1 | 1 | 1 | |
 | L-LAH83 | 1 | 1 | |
@@ -181,7 +179,6 @@ or per-lens patent backfills.
 | S-BSL10 | 1 | 1 | |
 | S-BSM2 | 1 | 1 | |
 | S-FPM5 | 1 | 1 | |
-| S-LAH85V | 1 | 1 | |
 | S-NBM52 | 1 | 1 | |
 | S-NPH85 | 1 | 1 | |
 | S-SK14 | 1 | 1 | |
@@ -798,10 +795,6 @@ or per-lens patent backfills.
 
 - [LAOWA 15mm f/4 Wide Angle 1:1 Macro](../../src/lens-data/laowa/Laowa15mmf4Macro.data.ts) 18: `H-ZF1 (CDGM)`
 
-### H-ZF2 — 1 occurrence
-
-- [LAOWA 24mm f/14 2× Macro Probe](../../src/lens-data/laowa/Laowa24mmf14Probe.data.ts) 44: `H-ZF2 (CDGM)`
-
 ### H-ZF52A — 1 occurrence
 
 - [LEICA SUMMILUX 28mm f/1.7 ASPH. (Leica Q, Q2, Q3)](../../src/lens-data/leica/Leica28mmf17.data.ts) 20A: `H-ZF52A (CDGM)`
@@ -821,10 +814,6 @@ or per-lens patent backfills.
 ### H-ZLAF68N — 1 occurrence
 
 - [LAOWA 58mm f/2.8 2× Ultra-Macro APO](../../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts) 15: `H-ZLAF68N (CDGM)`
-
-### H-ZLAF75B — 1 occurrence
-
-- [LAOWA 24mm f/14 2× Macro Probe](../../src/lens-data/laowa/Laowa24mmf14Probe.data.ts) 3: `H-ZLaF75B (CDGM, tentative)`
 
 ### H-ZLAF92 — 1 occurrence
 
@@ -881,10 +870,6 @@ or per-lens patent backfills.
 ### S-FPM5 — 1 occurrence
 
 - [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) 29A: `S-FPM5 (OHARA)`
-
-### S-LAH85V — 1 occurrence
-
-- [FUJIFILM FUJINON GF 120mm f/4 R LM OIS WR Macro](../../src/lens-data/fujifilm/FujifilmGF120mmf4RLM.data.ts) 6: `S-LAH85V (OHARA)`
 
 ### S-NBM52 — 1 occurrence
 

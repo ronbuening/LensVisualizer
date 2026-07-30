@@ -68,7 +68,7 @@ The production lens — like many industrial and endoscopic optics — appears t
 
 ## Glass Palette
 
-The prescription uses 10 distinct glass types. Laowa is a Chinese company, and CDGM (Chengdu Guangming) is the most likely glass vendor; nine of the ten nd/νd pairs match confirmed CDGM catalog entries from the 2022-06 Zemax catalog. The tenth (nd = 1.90366, νd = 31.31) matches Schott N-LASF46B exactly and would fall in CDGM's H-ZLaF family, but the specific CDGM catalog name (listed here as H-ZLaF75B) has not been independently confirmed against a published datasheet and should be treated as tentative. Cross-vendor equivalents from OHARA and Schott are listed for reference.
+The prescription uses 10 distinct glass types. Laowa is a Chinese company, and CDGM (Chengdu Guangming) is the most likely glass vendor. CDGM's published H-ZLaF75B datasheet confirms nd = 1.90366 and νd = 31.42, compatible with the patent's rounded 1.90366 / 31.31 coordinate. Cross-vendor equivalents from OHARA and Schott are listed for reference.
 
 | nd | νd | CDGM match | Class | Cross-reference | Used in |
 |---|---|---|---|---|---|
@@ -322,4 +322,4 @@ The production lens has spawned two further generations — the Laowa 24mm T14 P
 - Laowa product page: Laowa 24mm f/14 2× Macro Probe. Specifications: 27 elements / 19 groups, 2 ED elements, 1 ERI element, f/14–f/40, 85° angle of view, 474 g.
 - Newsshooter review (2018-10-15): confirms three-section architecture (Objective + Relay + Macro) and 27 elements / 19 groups.
 - Nature TTL review (2018-09-05): confirms 27 elements / 19 groups, 2 ED + 1 ERI elements.
-- CDGM optical glass catalog (2022-06 Zemax catalog, via refractiveindex.info). Used for glass identification; 9 of 10 nd/νd pairs confirmed against published catalog data. The H-ZLaF75B identification for nd = 1.90366 / νd = 31.31 is tentative.
+- CDGM optical glass catalog and public H-ZLaF75B datasheet. Used to confirm all 10 glass families, including H-ZLaF75B at nd = 1.90366 / νd = 31.42 and H-ZF2 at 1.67270 / 32.17.

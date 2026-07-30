@@ -23,16 +23,28 @@ This file tracks the second bucket plus any cases from the first bucket that nee
 
 ## Current Status (July 2026, current catalog)
 
-- Catalog: **428 verified entries** in `src/optics/glassCatalogData.ts`.
+- Catalog: **431 verified entries** in `src/optics/glassCatalogData.ts`.
 - `catalog-mismatches.generated.md` and `glass-relabel-by-lens.generated.md` report **0** remaining
   dispersion-coordinate mismatches across **0** lens files. The mismatch report separately records **75** native
   e-line surfaces excluded from d-line comparison.
-- `sellmeier-coverage.generated.md` reports **488** lenses, **5360** non-air surfaces, **4643** strict catalog
-  Sellmeier surfaces (**86.6%**), and **4655** trusted chromatic surfaces (**86.8%**).
-- **223** lenses are fully covered by strict Sellmeier data and **228** are fully covered by trusted chromatic data.
-- `unresolvedGlassScan` reports **423** non-explicit-unmatched annotations and **177** distinct unresolved glass-like
+- `sellmeier-coverage.generated.md` reports **488** lenses, **5360** non-air surfaces, **4647** strict catalog
+  Sellmeier surfaces (**86.7%**), and **4659** trusted chromatic surfaces (**86.9%**).
+- **226** lenses are fully covered by strict Sellmeier data and **231** are fully covered by trusted chromatic data.
+- `unresolvedGlassScan` reports **419** non-explicit-unmatched annotations and **174** distinct unresolved glass-like
   tokens. The total includes honest proprietary and family-level annotations as well as actionable named tokens.
 - The Phase 2/3 resolved tables below are historical audit trail. Use the generated reports above for the current queue before starting new relabel work; for patent-by-patent execution, start from [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md).
+
+## Resolved Phase 56 — July 2026 first-party exact-name recovery
+
+Hikari J-BAF3 and CDGM H-ZF2/H-ZLaF75B were transcribed from current first-party coefficient sources. The CDGM
+datasheets were rendered and checked visually before their Sellmeier constants were added. The historical bare BAF3
+name remains usable through a canonical J-BAF3 alias, and code-only `673322` annotations retain their prior
+cross-vendor precedence.
+
+Fujifilm GF 120mm L14's nonexistent S-LAH85V label was replaced with a compatible OHARA L-LAH85V catalog
+equivalent while explicitly leaving the production supplier unknown. Together, the four recovered surfaces complete
+the Nikon AF 20mm f/2.8D, Fujifilm GF 120mm, and Laowa 24mm Probe. Strict/trusted coverage rose to 4647/4659
+surfaces, with 226/231 fully covered lenses and zero catalog mismatches.
 
 ## Resolved Phase 55 — July 2026 reference-line safety
 

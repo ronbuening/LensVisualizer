@@ -49,6 +49,29 @@ export const CDGM_GLASS_ENTRIES: readonly GlassEntry[] = [
     code6: "667331",
     source: "CDGM H-ZF39 public datasheet, 2026 access; Sellmeier constants K1-L3, d-code 667331.",
   },
+  {
+    name: "H-ZF2",
+    vendor: "CDGM",
+    B: [0.16764338, 1.54335076, 1.17313123],
+    C: [0.0605177711, 0.0118524273, 113.6711],
+    nd: 1.6727,
+    vd: 32.17,
+    PgF: 0.5982,
+    code6: "673322",
+    source:
+      "CDGM Optical Glass Data Sheet, August 2021, H-ZF2 page 194; vendor Sellmeier-1 constants K1-L3 and d-code 673322.",
+  },
+  {
+    name: "H-ZLaF75B",
+    vendor: "CDGM",
+    B: [0.322804345, 2.16371144, 1.59867722],
+    C: [0.055262706, 0.0124574436, 108.245897],
+    nd: 1.90366,
+    vd: 31.42,
+    PgF: 0.5943,
+    code6: "904314",
+    source: "CDGM H-ZLaF75B public datasheet, September 2024; vendor Sellmeier-1 constants K1-L3 and d-code 904314.",
+  },
   /* ────── Phase 12 high-frequency unresolved-token additions (May 2026) ──────
    * Direct coefficient-backed names from the unresolved-glass report. Entries
    * without public dispersion coefficients remain unresolved until a vendor

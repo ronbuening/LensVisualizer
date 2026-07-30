@@ -486,6 +486,23 @@ describe("glass catalog", () => {
     expect(resolveGlass("625356")?.name).toBe("H-F6");
   });
 
+  it("evaluates the source-verified exact-name sweep entries", () => {
+    const expected = [
+      { glass: "J-BAF3", vendor: "Hikari", code: "583465", nd: 1.58267, vd: 46.48 },
+      { glass: "H-ZF2", vendor: "CDGM", code: "673322", nd: 1.6727, vd: 32.17 },
+      { glass: "H-ZLaF75B", vendor: "CDGM", code: "904314", nd: 1.90366, vd: 31.42 },
+    ] as const;
+    for (const datasheet of expected) {
+      const entry = resolveGlass(datasheet.glass);
+      expect(entry?.name).toBe(datasheet.glass);
+      expect(entry?.vendor).toBe(datasheet.vendor);
+      expect(entry?.code6).toBe(datasheet.code);
+      expect(evaluateSellmeier(entry!, LINE_NM.d)).toBeCloseTo(datasheet.nd, 5);
+      expect(evaluateCatalogAbbeNumber(entry!)).toBeCloseTo(datasheet.vd, 1);
+    }
+    expect(resolveGlass("BAF3")?.name).toBe("J-BAF3");
+  });
+
   it("evaluates explicit power-series catalog entries", () => {
     const hikariPskh1 = resolveGlass("593679 - fluorophosphate crown");
     expect(hikariPskh1?.name).toBe("J-PSKH1");

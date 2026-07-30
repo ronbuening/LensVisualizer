@@ -141,6 +141,12 @@ export const ALIAS_RECORDS: readonly GlassAliasRecord[] = [
     kind: "vendor-equivalent",
     note: "Nikon/Hikari J-SF11 annotations use the 785/258 dense-flint optical-constant class.",
   },
+  {
+    alias: "BAF3",
+    target: "J-BAF3",
+    kind: "legacy-name",
+    note: "Historical bare BAF3 annotations route to Hikari's current J-BAF3 catalog row.",
+  },
   { alias: "SF8", target: "N-SF8", kind: "legacy-name", note: "Legacy Schott name superseded by N-SF8." },
   { alias: "LAF21", target: "N-LAF21", kind: "legacy-name", note: "Legacy Schott name superseded by N-LAF21." },
   { alias: "LA-F21", target: "N-LAF21", kind: "legacy-name", note: "Alternate legacy token for N-LAF21." },

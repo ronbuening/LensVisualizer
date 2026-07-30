@@ -7,7 +7,15 @@ available, it falls back to partial measured `nC`/`nF` line indices, dPgF-correc
 approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **428 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **431 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+
+The July 30, 2026 Phase 56 pass added three first-party rows: Hikari J-BAF3 from the 2023 optical-glass catalog and
+CDGM H-ZF2/H-ZLaF75B from rendered vendor datasheets. The bare historical `BAF3` token now aliases to J-BAF3,
+while the established `673322` code-only precedence remains unchanged for cross-vendor compatibility. Fujifilm GF
+120mm L14 was corrected from the nonexistent S-LAH85V name to a compatible L-LAH85V catalog-equivalent annotation
+with the production supplier unspecified. Four surfaces gained strict/trusted dispersion, completing the Nikon AF
+20mm f/2.8D, Fujifilm GF 120mm, and Laowa 24mm Probe. Coverage is now 4647 / 5360 strict (86.7%) and 4659 /
+5360 trusted (86.9%), with 226 fully strict and 231 fully trusted lenses.
 
 The July 30, 2026 Phase 55 pass made reference-line compatibility explicit. `ElementData.indexReference` now records
 whether the historical `nd` / `vd` slots contain ordinary d-line coordinates or retained patent `ne` / `νe` values.

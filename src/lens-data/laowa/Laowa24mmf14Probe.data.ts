@@ -88,7 +88,7 @@ const LENS_DATA = {
       nd: 1.90366,
       vd: 31.31,
       fl: 11.0,
-      glass: "H-ZLaF75B (CDGM, tentative)",
+      glass: "H-ZLaF75B (CDGM)",
       apd: false,
       role: "Hopkins-type rod lens; converts to 45° prism in Ex. 2–3",
     },
