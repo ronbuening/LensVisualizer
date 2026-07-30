@@ -6,6 +6,7 @@ import {
   catalogSize,
   evaluateCatalogAbbeNumber,
   evaluateSellmeier,
+  explainCompatibleGlassResolution,
   GLASS_ND_TOLERANCE,
   GLASS_VD_TOLERANCE,
   LINE_NM,
@@ -495,6 +496,27 @@ describe("resolveGlass", () => {
   it("uses vendor context and coordinates to disambiguate duplicate codes", () => {
     expect(resolveCompatibleGlass("516641 (SUMITA)", 1.5163, 64.11)?.name).toBe("K-BK7");
     expect(resolveCompatibleGlass("516641 (OHARA)", 1.51633, 64.14)?.name).toBe("S-BSL7");
+  });
+
+  it("explains compatible candidates using the same runtime ranking", () => {
+    const explanation = explainCompatibleGlassResolution("516641 (SUMITA)", 1.5163, 64.11);
+    expect(explanation.selected?.name).toBe("K-BK7");
+    expect(explanation.candidates.map(({ entry }) => entry.name)).toEqual(["K-BK7", "S-BSL7"]);
+    expect(explanation.candidates[0]).toMatchObject({
+      source: "code",
+      matchedToken: "516641",
+      vendorMatch: true,
+      legacyCodePreferred: false,
+    });
+    expect(explanation.criterion).toBe("vendor-context");
+    expect(explanation.reason).toBe("Annotation vendor context matches Sumita.");
+  });
+
+  it("reports why an earlier direct name wins a compatible multi-name annotation", () => {
+    const explanation = explainCompatibleGlassResolution("S-BSL7 / N-BK7", 1.5168, 64.1);
+    expect(explanation.candidates.length).toBeGreaterThan(1);
+    expect(explanation.selected?.name).toBe(resolveCompatibleGlass("S-BSL7 / N-BK7", 1.5168, 64.1)?.name);
+    expect(["nd-residual", "vd-residual", "token-order", "canonical-name-order"]).toContain(explanation.criterion);
   });
 
   it("can select a compatible later token when the first named glass is incompatible", () => {

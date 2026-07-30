@@ -52,6 +52,39 @@ export interface CatalogGlassCompatibility {
   readonly vdDiff: number | null;
 }
 
+export type GlassResolutionMatchSource = "name" | "alias" | "code";
+export type GlassResolutionCriterion =
+  | "none"
+  | "only-compatible"
+  | "source-priority"
+  | "vendor-context"
+  | "nd-residual"
+  | "vd-residual"
+  | "token-order"
+  | "duplicate-code-precedence"
+  | "canonical-name-order";
+
+/** One coordinate-compatible resolver candidate with its diagnostic ranking evidence. */
+export interface CompatibleGlassCandidate {
+  readonly entry: GlassEntry;
+  readonly compatibility: CatalogGlassCompatibility;
+  readonly source: GlassResolutionMatchSource;
+  readonly matchedToken: string;
+  readonly tokenRank: number;
+  /** `null` means the annotation did not name any catalog vendor. */
+  readonly vendorMatch: boolean | null;
+  /** Only meaningful for duplicate six-digit-code candidates. */
+  readonly legacyCodePreferred: boolean | null;
+}
+
+/** Full diagnostic explanation for coordinate-aware glass resolution. */
+export interface CompatibleGlassResolution {
+  readonly selected: GlassEntry | null;
+  readonly candidates: readonly CompatibleGlassCandidate[];
+  readonly criterion: GlassResolutionCriterion;
+  readonly reason: string;
+}
+
 /**
  * Evaluate the Sellmeier formula at wavelength λ (nm) for a catalog entry.
  * Returns the refractive index n(λ).
@@ -215,11 +248,20 @@ function glassTokens(glassString: string): string[] {
 
 interface GlassCandidateMatch {
   readonly entry: GlassEntry;
+  readonly source: GlassResolutionMatchSource;
+  readonly matchedToken: string;
   readonly sourceRank: number;
   readonly tokenRank: number;
   readonly vendorRank: number;
+  readonly vendorMatch: boolean | null;
   readonly legacyPreferenceRank: number;
 }
+
+const GLASS_MATCH_SOURCE_RANK: Readonly<Record<GlassResolutionMatchSource, number>> = {
+  name: 0,
+  alias: 1,
+  code: 2,
+};
 
 function candidateMatches(glassString: string): GlassCandidateMatch[] {
   if (/\b(unmatched|unknown|proprietary|unidentified)\b/i.test(glassString)) return [];
@@ -229,12 +271,22 @@ function candidateMatches(glassString: string): GlassCandidateMatch[] {
     RAW_CATALOG.map((entry) => entry.vendor).filter((vendor) => upperGlassString.includes(vendor.toUpperCase())),
   );
   const bestByName = new Map<string, GlassCandidateMatch>();
-  const add = (entry: GlassEntry, sourceRank: number, tokenRank: number, legacyPreferenceRank = 0): void => {
+  const add = (
+    entry: GlassEntry,
+    source: GlassResolutionMatchSource,
+    matchedToken: string,
+    tokenRank: number,
+    legacyPreferenceRank = 0,
+  ): void => {
+    const vendorMatch = mentionedVendors.size === 0 ? null : mentionedVendors.has(entry.vendor);
     const match: GlassCandidateMatch = {
       entry,
-      sourceRank,
+      source,
+      matchedToken,
+      sourceRank: GLASS_MATCH_SOURCE_RANK[source],
       tokenRank,
-      vendorRank: mentionedVendors.size === 0 || mentionedVendors.has(entry.vendor) ? 0 : 1,
+      vendorRank: vendorMatch === false ? 1 : 0,
+      vendorMatch,
       legacyPreferenceRank,
     };
     const existing = bestByName.get(entry.name);
@@ -262,18 +314,18 @@ function candidateMatches(glassString: string): GlassCandidateMatch[] {
     }
     for (const candidate of candidates) {
       const direct = CATALOG.get(candidate);
-      if (direct) add(direct, 0, tokenRank);
+      if (direct) add(direct, "name", candidate, tokenRank);
       const aliased = ALIASES.get(candidate);
       if (aliased) {
         const entry = CATALOG.get(aliased.toUpperCase());
-        if (entry) add(entry, 1, tokenRank);
+        if (entry) add(entry, "alias", candidate, tokenRank);
       }
     }
     if (/^\d{6}$/.test(tok)) {
       const codeEntries = CODE6_CANDIDATES.get(tok) ?? [];
       const preferredName = CODE6_INDEX.get(tok);
       for (const entry of codeEntries) {
-        add(entry, 2, tokenRank, entry.name === preferredName ? 0 : 1);
+        add(entry, "code", tok, tokenRank, entry.name === preferredName ? 0 : 1);
       }
     }
   }
@@ -302,20 +354,16 @@ export function resolveGlassCandidates(glassString: string | undefined): readonl
     .map(({ entry }) => entry);
 }
 
-/**
- * Resolve the best catalog row that is compatible with the authored d-line coordinates.
- *
- * Unlike `resolveGlass`, this checks every explicit name, alias, and duplicate
- * six-digit-code candidate. It therefore avoids discarding a valid later token
- * merely because an earlier equivalent or class label is incompatible.
- */
-export function resolveCompatibleGlass(
-  glassString: string | undefined,
+interface RankedCompatibleGlassCandidate extends GlassCandidateMatch {
+  readonly compatibility: CatalogGlassCompatibility;
+}
+
+function compatibleCandidateMatches(
+  glassString: string,
   storedNd: number,
   storedVd: number | undefined,
-): GlassEntry | null {
-  if (!glassString) return null;
-  const compatible = candidateMatches(glassString)
+): RankedCompatibleGlassCandidate[] {
+  return candidateMatches(glassString)
     .map((match) => ({
       ...match,
       compatibility: assessCatalogGlassCompatibility(match.entry, storedNd, storedVd),
@@ -331,7 +379,115 @@ export function resolveCompatibleGlass(
         a.legacyPreferenceRank - b.legacyPreferenceRank ||
         a.entry.name.localeCompare(b.entry.name),
     );
-  return compatible[0]?.entry ?? null;
+}
+
+function glassMatchSourceLabel(source: GlassResolutionMatchSource): string {
+  if (source === "name") return "direct name";
+  if (source === "alias") return "alias";
+  return "six-digit code";
+}
+
+function candidateSelectionReason(candidates: readonly RankedCompatibleGlassCandidate[]): {
+  criterion: GlassResolutionCriterion;
+  reason: string;
+} {
+  const selected = candidates[0];
+  if (!selected) return { criterion: "none", reason: "No coordinate-compatible catalog candidate." };
+  if (candidates.length === 1) {
+    return { criterion: "only-compatible", reason: "Only coordinate-compatible catalog candidate." };
+  }
+
+  const runnerUp = candidates[1];
+  if (selected.sourceRank !== runnerUp.sourceRank) {
+    return {
+      criterion: "source-priority",
+      reason: `${glassMatchSourceLabel(selected.source)} evidence outranks ${glassMatchSourceLabel(runnerUp.source)} evidence.`,
+    };
+  }
+  if (selected.vendorRank !== runnerUp.vendorRank) {
+    return { criterion: "vendor-context", reason: `Annotation vendor context matches ${selected.entry.vendor}.` };
+  }
+
+  const selectedNdResidual = Math.abs(selected.compatibility.ndDiff);
+  const runnerUpNdResidual = Math.abs(runnerUp.compatibility.ndDiff);
+  if (selectedNdResidual !== runnerUpNdResidual) {
+    return {
+      criterion: "nd-residual",
+      reason: `Smallest d-line residual (${selectedNdResidual.toFixed(9)} vs ${runnerUpNdResidual.toFixed(9)}).`,
+    };
+  }
+
+  const selectedVdResidual = Math.abs(selected.compatibility.vdDiff ?? 0);
+  const runnerUpVdResidual = Math.abs(runnerUp.compatibility.vdDiff ?? 0);
+  if (selectedVdResidual !== runnerUpVdResidual) {
+    return {
+      criterion: "vd-residual",
+      reason: `Smallest Abbe-number residual (${selectedVdResidual.toFixed(4)} vs ${runnerUpVdResidual.toFixed(4)}).`,
+    };
+  }
+  if (selected.tokenRank !== runnerUp.tokenRank) {
+    return {
+      criterion: "token-order",
+      reason: `Earlier annotation token (${selected.matchedToken} before ${runnerUp.matchedToken}).`,
+    };
+  }
+  if (selected.legacyPreferenceRank !== runnerUp.legacyPreferenceRank) {
+    return {
+      criterion: "duplicate-code-precedence",
+      reason: "Configured duplicate-code precedence breaks an otherwise equal match.",
+    };
+  }
+  return {
+    criterion: "canonical-name-order",
+    reason: `Stable canonical-name ordering breaks an otherwise equal match (${selected.entry.name} before ${runnerUp.entry.name}).`,
+  };
+}
+
+/**
+ * Explain every coordinate-compatible candidate and why the resolver selected the first one.
+ *
+ * Generated audits use this rather than duplicating runtime ranking rules.
+ */
+export function explainCompatibleGlassResolution(
+  glassString: string | undefined,
+  storedNd: number,
+  storedVd: number | undefined,
+): CompatibleGlassResolution {
+  if (!glassString) {
+    return { selected: null, candidates: [], criterion: "none", reason: "No glass annotation." };
+  }
+  const ranked = compatibleCandidateMatches(glassString, storedNd, storedVd);
+  const selection = candidateSelectionReason(ranked);
+  return {
+    selected: ranked[0]?.entry ?? null,
+    candidates: ranked.map((candidate) => ({
+      entry: candidate.entry,
+      compatibility: candidate.compatibility,
+      source: candidate.source,
+      matchedToken: candidate.matchedToken,
+      tokenRank: candidate.tokenRank,
+      vendorMatch: candidate.vendorMatch,
+      legacyCodePreferred: candidate.source === "code" ? candidate.legacyPreferenceRank === 0 : null,
+    })),
+    criterion: selection.criterion,
+    reason: selection.reason,
+  };
+}
+
+/**
+ * Resolve the best catalog row that is compatible with the authored d-line coordinates.
+ *
+ * Unlike `resolveGlass`, this checks every explicit name, alias, and duplicate
+ * six-digit-code candidate. It therefore avoids discarding a valid later token
+ * merely because an earlier equivalent or class label is incompatible.
+ */
+export function resolveCompatibleGlass(
+  glassString: string | undefined,
+  storedNd: number,
+  storedVd: number | undefined,
+): GlassEntry | null {
+  if (!glassString) return null;
+  return compatibleCandidateMatches(glassString, storedNd, storedVd)[0]?.entry ?? null;
 }
 
 /**
