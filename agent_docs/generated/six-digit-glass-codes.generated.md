@@ -115,7 +115,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 517524 | 1 | 1 | patents/US20010007512A1.pdf | No reviewed-sidecar hit |
 | 518523 | 1 | 1 | patents/US4871239.pdf | All representative rows reviewed |
 | 518652 | 1 | 1 | patents/US2821112.pdf | No reviewed-sidecar hit |
-| 519573 | 1 | 1 | patents/20260118637.pdf | No reviewed-sidecar hit |
+| 519573 | 1 | 1 | patents/DE_1228820_B.pdf | All representative rows reviewed |
 | 520642 | 1 | 1 | patents/DE_3907928_A1.pdf | No reviewed-sidecar hit |
 | 523701 | 1 | 1 | patents/US20100194930A1.pdf | No reviewed-sidecar hit |
 | 525558 | 1 | 1 | patents/US8994842.pdf | No reviewed-sidecar hit |
@@ -481,11 +481,11 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---|---|---|---|---|---|---|
 | L3 (Element 3) | 5 | `574425 — light flint (no exact public catalog match)` | 1.57380 / 42.50 | No catalog entry | abbe | patents/FR_1066698_A.pdf | Reviewed sidecar hit |
 
-### [ENNA MÜNCHEN LITHAGON 24mm f/4](../../src/lens-data/enna-munchen/EnnaMunchenLithagon24mmf4.data.ts) - DE 1
+### [ENNA MÜNCHEN LITHAGON 24mm f/4](../../src/lens-data/enna-munchen/EnnaMunchenLithagon24mmf4.data.ts) - DE 1 228 820 B
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
 |---|---|---|---|---|---|---|---|
-| L4 (Element 4) | 7 | `K4-class crown (legacy 519/573)` | 1.51895 / 57.30 | No catalog entry | abbe | patents/20260118637.pdf | No reviewed-sidecar hit |
+| L4 (Element 4) | 7 | `Unmatched 519573 crown glass (patent-listed; supplier unidentified)` | 1.51895 / 57.30 | No catalog entry | abbe | patents/DE_1228820_B.pdf | Reviewed sidecar hit |
 
 ### [ENNA MÜNCHEN LITHAGON 35mm f/3.5](../../src/lens-data/enna-munchen/EnnaMunchenLithagon35mmf35.data.ts) - US 2,821,112
 

@@ -29,9 +29,9 @@ six-digit codes are ignored for those rows. The full per-surface mismatch list i
 
 For code-only rows, start with
 [six-digit-glass-codes-missing-sellmeier.generated.md](generated/six-digit-glass-codes-missing-sellmeier.generated.md).
-Its active A-E queue indexes both the manual sidecar and companion audit logs. That excludes 205 reviewed rows and
-separates 52 explicit unmatched/unidentified dispositions without a review-record hit, leaving eight genuinely
-unreviewed elements across seven code families. A/B/C rows combine local-patent readiness with visible-lens completion,
+Its active A-E queue indexes both the manual sidecar and companion audit logs. That excludes 206 reviewed rows and
+separates 52 explicit unmatched/unidentified dispositions without a review-record hit, leaving seven genuinely
+unreviewed elements across six code families. A/B/C rows combine local-patent readiness with visible-lens completion,
 near-complete, or repeated impact; E rows are source blocked. The full inventory remains in the same report for audit
 context.
 
@@ -134,6 +134,7 @@ Rows removed from Tier A after local patent review:
 | `728403` | 1 file / 1 element: [PentaxFA31mmf18ALLtd.data.ts](../src/lens-data/pentax/PentaxFA31mmf18ALLtd.data.ts) | US 6,560,042 B2 Tables 1-3 consistently print `1.72750 / 40.3` for the positive aspherical doublet partner; Table 3 was rendered and checked visually. | No reviewed coefficient row reproduces both coordinates inside the runtime safety window. HOYA M-LAF81 and OHARA L-LAM69 are `1.73077 / 40.50`, missing the d-line limit by about `0.00027`; L8 remains explicit unmatched. |
 | `995293` | 1 file / 1 element: [SonyPlanarFE50mmf14ZA.data.ts](../src/lens-data/sony/SonyPlanarFE50mmf14ZA.data.ts) | WO 2017/138250 A1 Example 2 / Table 6 prints `1.99502 / 29.3` for L21; the table was rendered and checked visually. No line-index or partial-dispersion value is published. | No reviewed coefficient row is inside the runtime safety window. S-LAH99, TAFD55, and J-LASFH16 miss the d-line index by about `+0.00598`, while H-ZLaF92 is coordinate-incompatible. L21 remains explicit unmatched with no vendor or composition claim. |
 | `586609` | 1 file / 2 elements: [PentaxDA1650mmf28.data.ts](../src/lens-data/pentax/PentaxDA1650mmf28.data.ts) | US 7,301,711 B2 Embodiment 6 / Table 6 prints `1.58636 / 60.9` for both aspherical substrates; the table was rendered and checked visually. | Added SUMITA K-SKLD5(M) from the first-party all-glass catalog. Its molding-state polynomial round-trips to `1.586058 / 60.977`, safely matching both rows; the annotations retain the production-supplier caveat. |
+| `519573` | 1 file / 1 element: [EnnaMunchenLithagon24mmf4.data.ts](../src/lens-data/enna-munchen/EnnaMunchenLithagon24mmf4.data.ts) | DE 1 228 820 B's sole claim table prints `1.51895 / 57.3` for L4; the table was rendered and checked visually. No supplier, glass name, secondary line index, or partial dispersion is published. | Nearby OHARA NSL2/NSL3, HOYA E-C3, and SUMITA K3 coefficient rows cannot be distinguished from the patent evidence. Removed the unsupported K4-family claim and retained an explicit unmatched crown annotation on the patent Abbe fallback. |
 
 ## Workflow
 

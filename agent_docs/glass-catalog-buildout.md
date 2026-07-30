@@ -9,6 +9,13 @@ approximation. Current optics-engine boundaries are summarized in
 
 The catalog currently has **432 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
 
+The July 30, 2026 Phase 61 pass rendered DE 1 228 820 B's sole claim table and confirmed Enna Lithagon 24mm L4 at
+`1.51895 / 57.3`. Because the patent publishes no supplier, catalog name, line index, or partial dispersion, nearby
+coefficient-backed OHARA, HOYA, and SUMITA crowns cannot be distinguished safely. The unsupported K4-family wording
+was replaced with an explicit unmatched `519573` crown annotation while preserving the patent Abbe fallback. The
+generated-report patent parser was also corrected for internally spaced legacy publication numbers. Coverage remains
+4665/4677 strict/trusted surfaces, and the active source-review queue is seven elements across six code families.
+
 The July 30, 2026 Phase 60 pass recovered SUMITA K-SKLD5(M), a molding-state coefficient row whose published
 `1.58606 / 61.0` coordinate safely reproduces both `586609` substrates in Pentax DA* 16-50mm Embodiment 6. The
 vendor polynomial round-trips to `1.586058 / 60.977`; its reused base-glass product code is deliberately omitted from

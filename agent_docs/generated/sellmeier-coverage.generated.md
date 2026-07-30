@@ -1212,7 +1212,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 |---|---|---|---|---|
 | 4 | Element 3 | abbe | `K10 (Schott)` | No catalog match |
 
-### [SCHNEIDER-KREUZNACH SUPER-ANGULON 90mm f/8](../../src/lens-data/schneider-kreuznach/SchneiderSuperAngulon90mmf8.data.ts) - 83.3% trusted (5/6); 83.3% Sellmeier (5/6) - DE 975
+### [SCHNEIDER-KREUZNACH SUPER-ANGULON 90mm f/8](../../src/lens-data/schneider-kreuznach/SchneiderSuperAngulon90mmf8.data.ts) - 83.3% trusted (5/6); 83.3% Sellmeier (5/6) - DE 975 637 C
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
@@ -1282,7 +1282,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 20A | Element L25 | abbe | `585587 — moldable aspherical glass (patent-listed; no exact public catalog match)` | No catalog match |
 | 24A | Element L31 | abbe | `585587 — moldable aspherical glass (patent-listed; no exact public catalog match)` | No catalog match |
 
-### [LAOWA 12mm f/2.8 Zero-D](../../src/lens-data/laowa/Laowa12mmf28ZeroD.data.ts) - 81.3% trusted (13/16); 81.3% Sellmeier (13/16)
+### [LAOWA 12mm f/2.8 Zero-D](../../src/lens-data/laowa/Laowa12mmf28ZeroD.data.ts) - 81.3% trusted (13/16); 81.3% Sellmeier (13/16) - CN205720849U
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
@@ -1581,7 +1581,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 17 | G10 | abbe | `Unmatched (patent dense flint; CDGM H-ZBaF4 rejected by partial dispersion)` | Explicit unmatched/proprietary annotation |
 | 27 | G16 | abbe | `Unmatched (patent dense flint; CDGM H-ZBaF4 rejected by partial dispersion)` | Explicit unmatched/proprietary annotation |
 
-### [PANASONIC LUMIX S 35mm f/1.8](../../src/lens-data/panasonic/PanasonicS35mmf18.data.ts) - 72.7% trusted (8/11); 72.7% Sellmeier (8/11)
+### [PANASONIC LUMIX S 35mm f/1.8](../../src/lens-data/panasonic/PanasonicS35mmf18.data.ts) - 72.7% trusted (8/11); 72.7% Sellmeier (8/11) - CN 216772097U
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
@@ -1603,11 +1603,11 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 8 | Element 5 | abbe | `LLF6 (Schott, ≈)` | No catalog match |
 | 9 | Element 6 | abbe | `KzFS2 (Schott)` | No catalog match |
 
-### [ENNA MÜNCHEN LITHAGON 24mm f/4](../../src/lens-data/enna-munchen/EnnaMunchenLithagon24mmf4.data.ts) - 71.4% trusted (5/7); 71.4% Sellmeier (5/7) - DE 1
+### [ENNA MÜNCHEN LITHAGON 24mm f/4](../../src/lens-data/enna-munchen/EnnaMunchenLithagon24mmf4.data.ts) - 71.4% trusted (5/7); 71.4% Sellmeier (5/7) - DE 1 228 820 B
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 7 | Element 4 | abbe | `K4-class crown (legacy 519/573)` | No catalog match |
+| 7 | Element 4 | abbe | `Unmatched 519573 crown glass (patent-listed; supplier unidentified)` | Explicit unmatched/proprietary annotation |
 | 13 | Element 7 | abbe | `H-BaF6 (CDGM) / barium-flint 608/462 class` | No catalog match |
 
 ### [FUJIFILM FUJINON 18.5mm f/2.8 (Fujifilm X70)](../../src/lens-data/fujifilm/FujifilmX7018mmf28.data.ts) - 71.4% trusted (5/7); 71.4% Sellmeier (5/7) - US 2017/0075089 A1
@@ -1659,7 +1659,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 10 | Element 5 | abbe | `S-TIH family / FD series (OHARA / HOYA)` | No catalog match |
 | 13 | Element 7 | abbe | `BaCD / SK family (various)` | No catalog match |
 
-### [LAOWA 65mm f/2.8 2× Ultra Macro APO](../../src/lens-data/laowa/Laowa65mmf28MacroAPO.data.ts) - 71.4% trusted (10/14); 71.4% Sellmeier (10/14)
+### [LAOWA 65mm f/2.8 2× Ultra Macro APO](../../src/lens-data/laowa/Laowa65mmf28MacroAPO.data.ts) - 71.4% trusted (10/14); 71.4% Sellmeier (10/14) - CN 110161666A
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
@@ -1747,7 +1747,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 3 | Element 2 | abbe | `Unmatched vintage barium dense flint (626391; not modern HOYA BAFD7 702412)` | Explicit unmatched/proprietary annotation |
 | 6 | Element 4 | abbe | `K10 (Schott)` | No catalog match |
 
-### [RODENSTOCK SIRONAR-N 100mm f/5.6](../../src/lens-data/rodenstock/RodenstockSironarN100mmf56.data.ts) - 66.7% trusted (4/6); 66.7% Sellmeier (4/6) - DE 27
+### [RODENSTOCK SIRONAR-N 100mm f/5.6](../../src/lens-data/rodenstock/RodenstockSironarN100mmf56.data.ts) - 66.7% trusted (4/6); 66.7% Sellmeier (4/6) - DE 27 29 831 B1
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
@@ -1925,7 +1925,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 28 | Relay rear singlet | abbe | `Unmatched light crown (501/565; catalog identity uncertain)` | Explicit unmatched/proprietary annotation |
 | 30 | Telephoto rear doublet negative | abbe | `Unmatched high-index crown/flint (744/494; catalog identity uncertain)` | Explicit unmatched/proprietary annotation |
 
-### [LAOWA 15mm f/4 Wide Angle 1:1 Macro](../../src/lens-data/laowa/Laowa15mmf4Macro.data.ts) - 58.3% trusted (7/12); 58.3% Sellmeier (7/12)
+### [LAOWA 15mm f/4 Wide Angle 1:1 Macro](../../src/lens-data/laowa/Laowa15mmf4Macro.data.ts) - 58.3% trusted (7/12); 58.3% Sellmeier (7/12) - CN 205427291 U
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
@@ -2038,7 +2038,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 14A | Element 7 | abbe | `S-BAL 41 (OHARA)` | No catalog match |
 | 18 | Element 9 | abbe | `S-TIM 22 (OHARA)` | No catalog match |
 
-### [LAOWA 58mm f/2.8 2× Ultra-Macro APO](../../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts) - 50.0% trusted (7/14); 50.0% Sellmeier (7/14)
+### [LAOWA 58mm f/2.8 2× Ultra-Macro APO](../../src/lens-data/laowa/Laowa58mmf28MacroAPO.data.ts) - 50.0% trusted (7/14); 50.0% Sellmeier (7/14) - CN 116520542 A
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
@@ -2265,7 +2265,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 6 | Element 4 | abbe | `Unmatched (vintage light flint class, 575/414)` | Explicit unmatched/proprietary annotation |
 | 7 | Element 5 | abbe | `Unmatched (vintage high-index lanthanum flint class, 744/458)` | Explicit unmatched/proprietary annotation |
 
-### [LEICA ELMAR-M 135mm f/4](../../src/lens-data/leica/LeicaElmarM135mmf4.data.ts) - 20.0% trusted (1/5); 20.0% Sellmeier (1/5) - DE 1
+### [LEICA ELMAR-M 135mm f/4](../../src/lens-data/leica/LeicaElmarM135mmf4.data.ts) - 20.0% trusted (1/5); 20.0% Sellmeier (1/5) - DE 1 183 707 B
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
@@ -2427,7 +2427,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 8 | Element 5 | abbe | `Unmatched (LaF21/N-LAF21-class lanthanum flint; patent ne=1.79227, νe=47.15)` | Explicit unmatched/proprietary annotation |
 | 10 | Element 6 | abbe | `Unmatched (LaF21/N-LAF21-class lanthanum flint; patent ne=1.79227, νe=47.15)` | Explicit unmatched/proprietary annotation |
 
-### [RODENSTOCK GRANDAGON-N 75mm f/6.8](../../src/lens-data/rodenstock/RodenstockGrandagonN75mmf68.data.ts) - 0.0% trusted (0/6); 0.0% Sellmeier (0/6) - DE 26
+### [RODENSTOCK GRANDAGON-N 75mm f/6.8](../../src/lens-data/rodenstock/RodenstockGrandagonN75mmf68.data.ts) - 0.0% trusted (0/6); 0.0% Sellmeier (0/6) - DE 26 35 415 B1
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|

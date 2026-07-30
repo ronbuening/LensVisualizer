@@ -92,7 +92,7 @@ function extractPatentNumber(subtitle: string | undefined): string | null {
 }
 
 const patentReferencePattern =
-  /\b(?:Patent\s+)?((?:JPWO|WO|US|JP|DE|GB|FR|CH|CN)\s*\d[\d,./-]*(?:\s*(?:A1|A|B2|B1|B|C\d?|U))?)/i;
+  /\b(?:Patent\s+)?((?:JPWO|WO|US|JP|DE|GB|FR|CH|CN)\s*\d(?:[\d,./-]|\s+(?=\d))*(?:\s*(?:A1|A|B2|B1|B|C\d?|U))?)/i;
 
 function extractPatentReference(value: string): string | null {
   const match = value.match(patentReferencePattern);
@@ -512,6 +512,14 @@ function renderReport(options: {
 }
 
 describe("six-digit glass-code scan", () => {
+  it("matches spaced legacy patent numbers without substring collisions", () => {
+    expect(patentSearchTokens("DE 1 228 820 B")).toEqual(["DE1228820B", "DE1228820", "1228820"]);
+    expect(findLocalPatent("DE 1 228 820 B", ["20260118637.pdf", "DE_1228820_B.pdf"])).toEqual({
+      path: "patents/DE_1228820_B.pdf",
+      status: "Matched untracked local patent PDF",
+    });
+  });
+
   it("emits reports for code-only glass annotations", () => {
     const rows: CodeOnlyElement[] = [];
     const patentFiles = patentInventory();

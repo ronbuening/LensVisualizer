@@ -13,7 +13,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 - **479** total code-only elements found
 - **265** elements in this report
 - **116** distinct lens files affected
-- **8** active unreviewed elements have no review-record hit or explicit disposition
+- **7** active unreviewed elements have no review-record hit or explicit disposition
 - **52** explicitly unmatched/unidentified elements lack a sidecar or audit-log hit and are recordkeeping follow-ups, not active identity guesses
 
 ## Prioritized Unreviewed Queue
@@ -25,7 +25,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 
 | Tier | Code | Active elements / lens files | Visible lenses | Strict surfaces | Completion candidates | Near-complete candidates | Local patent lenses | Representative rows |
 |---|---|---:|---:|---:|---|---|---:|---|
-| D | 519573 | 1 / 1 | 1 | 1 | — | — | 1/1 | [ENNA MÜNCHEN LITHAGON 24mm f/4](../../src/lens-data/enna-munchen/EnnaMunchenLithagon24mmf4.data.ts) Element 4 (1.51895 / 57.30) |
 | D | 547460 | 1 / 1 | 1 | 1 | — | — | 1/1 | [PENTAX HD DA* 11-18mm f/2.8 ED DC AW](../../src/lens-data/pentax/PentaxD1118mmF28EDDCWR.data.ts) Element 5 (1.54732 / 46.00) |
 | D | 678322 | 1 / 1 | 1 | 1 | — | — | 1/1 | [SONY FE 12-24mm f/2.8 GM](../../src/lens-data/sony/SonyFE1224mmf28GM.data.ts) L22 focus-group positive (1.67764 / 32.20) |
 | D | 792257 | 1 / 1 | 1 | 1 | — | — | 1/1 | [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) Element 7 (1.79191 / 25.70) |
@@ -82,7 +81,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 514530 | 1 | 1 | patents/JP2016021011A.pdf | All representative rows reviewed |
 | 518523 | 1 | 1 | patents/US4871239.pdf | All representative rows reviewed |
 | 518652 | 1 | 1 | patents/US2821112.pdf | No reviewed-sidecar hit |
-| 519573 | 1 | 1 | patents/20260118637.pdf | No reviewed-sidecar hit |
+| 519573 | 1 | 1 | patents/DE_1228820_B.pdf | All representative rows reviewed |
 | 520642 | 1 | 1 | patents/DE_3907928_A1.pdf | No reviewed-sidecar hit |
 | 523701 | 1 | 1 | patents/US20100194930A1.pdf | No reviewed-sidecar hit |
 | 525558 | 1 | 1 | patents/US8994842.pdf | No reviewed-sidecar hit |
@@ -325,11 +324,11 @@ Completion counts are conditional on finding a source-verified catalog identity 
 |---|---|---|---|---|---|---|---|
 | L3 (Element 3) | 5 | `574425 — light flint (no exact public catalog match)` | 1.57380 / 42.50 | No catalog entry | abbe | patents/FR_1066698_A.pdf | Reviewed sidecar hit |
 
-### [ENNA MÜNCHEN LITHAGON 24mm f/4](../../src/lens-data/enna-munchen/EnnaMunchenLithagon24mmf4.data.ts) - DE 1
+### [ENNA MÜNCHEN LITHAGON 24mm f/4](../../src/lens-data/enna-munchen/EnnaMunchenLithagon24mmf4.data.ts) - DE 1 228 820 B
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewedSidecarStatus |
 |---|---|---|---|---|---|---|---|
-| L4 (Element 4) | 7 | `K4-class crown (legacy 519/573)` | 1.51895 / 57.30 | No catalog entry | abbe | patents/20260118637.pdf | No reviewed-sidecar hit |
+| L4 (Element 4) | 7 | `Unmatched 519573 crown glass (patent-listed; supplier unidentified)` | 1.51895 / 57.30 | No catalog entry | abbe | patents/DE_1228820_B.pdf | Reviewed sidecar hit |
 
 ### [ENNA MÜNCHEN LITHAGON 35mm f/3.5](../../src/lens-data/enna-munchen/EnnaMunchenLithagon35mmf35.data.ts) - US 2,821,112
 

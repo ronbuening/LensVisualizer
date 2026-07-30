@@ -30,12 +30,25 @@ This file tracks the second bucket plus any cases from the first bucket that nee
 - `sellmeier-coverage.generated.md` reports **488** lenses, **5360** non-air surfaces, **4665** strict catalog
   Sellmeier surfaces (**87.0%**), and **4677** trusted chromatic surfaces (**87.3%**).
 - **226** lenses are fully covered by strict Sellmeier data and **231** are fully covered by trusted chromatic data.
-- `unresolvedGlassScan` reports **415** non-explicit-unmatched annotations and **174** distinct unresolved glass-like
+- `unresolvedGlassScan` reports **414** non-explicit-unmatched annotations and **174** distinct unresolved glass-like
   tokens. The total includes honest proprietary and family-level annotations as well as actionable named tokens.
-- The missing-Sellmeier six-digit report contains **265** code-only elements, now separated into **8** active
+- The missing-Sellmeier six-digit report contains **265** code-only elements, now separated into **7** active
   unreviewed rows, **52** explicit unmatched/unidentified dispositions missing both sidecar and companion-audit hits,
-  and **205** rows with a recorded review.
+  and **206** rows with a recorded review.
 - The Phase 2/3 resolved tables below are historical audit trail. Use the generated reports above for the current queue before starting new relabel work; for patent-by-patent execution, start from [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md).
+
+## Resolved Phase 61 — July 2026 Enna legacy-crown source review
+
+DE 1 228 820 B's sole claim table was rendered and checked visually, confirming Enna Lithagon 24mm L4 at
+`1.51895 / 57.3`. The patent names neither a glass supplier nor a catalog identity and supplies no independent line
+index or partial-dispersion anchor. OHARA NSL2/NSL3, HOYA E-C3, and SUMITA K3 all provide nearby coefficient-backed
+crown curves, but selecting one would be speculative.
+
+The unsupported `K4-class` attribution was replaced by an explicit unmatched `519573` crown annotation, preserving
+the patent-coordinate Abbe fallback. The report parser now retains internal spaces in legacy patent numbers, so this
+lens resolves to `patents/DE_1228820_B.pdf` rather than an unrelated filename containing the previously parsed
+single digit. Coverage is unchanged at 4665 strict / 4677 trusted surfaces; the active queue fell to seven elements
+across six families.
 
 ## Resolved Phase 60 — July 2026 SUMITA molding-state recovery
 

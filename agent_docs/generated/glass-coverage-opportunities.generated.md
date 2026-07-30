@@ -14,7 +14,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 - **4677 / 5360** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 87.3%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
-- **265** code-only missing-Sellmeier elements in Sweep 2: **8** active unreviewed, **52** explicitly disposed but missing a sidecar hit
+- **265** code-only missing-Sellmeier elements in Sweep 2: **7** active unreviewed, **52** explicitly disposed but missing a sidecar hit
 - **47** unresolved named-token elements in Sweep 2B, producing **47** token occurrences across **46** distinct tokens
 - **0** Tier A proprietary backfill rows in Sweep 3
 
@@ -134,7 +134,7 @@ These are efficient follow-up targets after mismatch blockers because one or two
 | [NIKON REFLEX-NIKKOR 500mm f/8 (New)](../../src/lens-data/nikon/NikonReflexNikkor500mmf8New.data.ts) | US 4,666,259 A | [PDF](../../patents/US4666259.pdf) | 83.3% (5/6) | 83.3% (5/6) | 1 | 13 (Third rear corrector element: `Unmatched (lanthanum dense flint, patent 796/410; nearest current class S-LAH52 / K-LaSFn3)`) | abbe: 1 |
 | [NIKON REFLEX-NIKKOR·C 500mm f/8](../../src/lens-data/nikon/NikonReflexNikkorC500mmf8.data.ts) | US 3,632,190 | [PDF](../../patents/US3632190.pdf) | 83.3% (5/6) | 83.3% (5/6) | 1 | 1 (Front corrector: `Unmatched light crown (525/596; K5-class nearest)`) | abbe: 1 |
 | [OLYMPUS F.ZUIKO AUTO-T 200mm f/5](../../src/lens-data/olympus/OlympusZuikoAutoT200mmf5.data.ts) | US 3,804,494 | Missing from untracked local patents/ references (US3804494, 3804494) | 83.3% (5/6) | 83.3% (5/6) | 1 | 4 (Element 3: `K10 (Schott)`) | abbe: 1 |
-| [SCHNEIDER-KREUZNACH SUPER-ANGULON 90mm f/8](../../src/lens-data/schneider-kreuznach/SchneiderSuperAngulon90mmf8.data.ts) | DE 975 | [PDF](../../patents/DE_975637_C.pdf) | 83.3% (5/6) | 83.3% (5/6) | 1 | 4 (Element 3: `Unmatched (560/470 light-flint position; probable historical Schott LLF3)`) | abbe: 1 |
+| [SCHNEIDER-KREUZNACH SUPER-ANGULON 90mm f/8](../../src/lens-data/schneider-kreuznach/SchneiderSuperAngulon90mmf8.data.ts) | DE 975 637 C | [PDF](../../patents/DE_975637_C.pdf) | 83.3% (5/6) | 83.3% (5/6) | 1 | 4 (Element 3: `Unmatched (560/470 light-flint position; probable historical Schott LLF3)`) | abbe: 1 |
 | [SCHNEIDER-KREUZNACH TECHNIKA SUPER-ANGULON 75mm f/8](../../src/lens-data/schneider-kreuznach/SchneiderTechnikaSuperAngulon75mmf8.data.ts) |  | No patent number parsed from lens metadata/reference | 83.3% (5/6) | 83.3% (5/6) | 1 | 4 (Element 3: `Unmatched (560/470 light-flint position; probable historical Schott LLF3)`) | abbe: 1 |
 | [VIVITAR SERIES 1 200mm f/3.0 VMC](../../src/lens-data/vivitar/VivitarSeries1200mmf3.data.ts) | US 3,942,876 | [PDF](../../patents/US3942876.pdf) | 83.3% (5/6) | 83.3% (5/6) | 1 | 10 (Element 5: `713433 — LaF/BaSF boundary glass (no exact public catalog match)`) | abbe: 1 |
 | [FUJIFILM SUPER EBC FUJINON 7.1-28.4mm f/2-2.8 (Fujifilm X10)](../../src/lens-data/fujifilm/FujifilmX1071284mmf228.data.ts) | US 2014/0133036 A1 | Missing from untracked local patents/ references (US20140133036A1, US20140133036, 20140133036) | 81.8% (9/11) | 81.8% (9/11) | 2 | 11A (G3 front asphere: `Unmatched (nd=1.803603, νd=40.28)`)<br>16A (G3 negative asphere: `Unmatched (nd=1.803603, νd=40.28)`) | abbe: 2 |
@@ -159,7 +159,6 @@ Add catalog entries only when public coefficient-backed vendor data is available
 
 | Code | Active elements | Lens files | localPatentStatus | Representative rows |
 |---|---:|---:|---|---|
-| 519573 | 1 | 1 | patents/20260118637.pdf | [ENNA MÜNCHEN LITHAGON 24mm f/4](../../src/lens-data/enna-munchen/EnnaMunchenLithagon24mmf4.data.ts) Element 4 (1.51895 / 57.30) |
 | 547460 | 1 | 1 | patents/US20180164556A1.pdf | [PENTAX HD DA* 11-18mm f/2.8 ED DC AW](../../src/lens-data/pentax/PentaxD1118mmF28EDDCWR.data.ts) Element 5 (1.54732 / 46.00) |
 | 678322 | 1 | 1 | patents/WO2021200206A1.pdf | [SONY FE 12-24mm f/2.8 GM](../../src/lens-data/sony/SonyFE1224mmf28GM.data.ts) L22 focus-group positive (1.67764 / 32.20) |
 | 792257 | 1 | 1 | patents/JP2023039817A.pdf | [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) Element 7 (1.79191 / 25.70) |
@@ -176,7 +175,7 @@ These unresolved catalog-style labels are often better first catalog targets tha
 | S-LAM73 | 2 | 1 | patents/WO_2025263124_A1.pdf | [SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) Element 16 (1.85659 / 40.10; abbe)<br>[SONY FE 28-70mm f/2 GM](../../src/lens-data/sony/SonyFE2870mmf2GM.data.ts) Element 20 (1.85659 / 40.10; abbe) |
 | BK3 | 1 | 1 | patents/US3975089.pdf | [VIVITAR SERIES 1 35-85mm f/2.8 VMC](../../src/lens-data/vivitar/VivitarSeries13585mmf28.data.ts) Element 6 (1.49800 / 65.10; abbe) |
 | E-FPL51 | 1 | 1 | patents/JPWO2019049372A1.pdf | [NIKON NIKKOR Z 24-70mm f/4 S](../../src/lens-data/nikon/NikonNikkorZ2470mmf4S.data.ts) Element 6 (1.55332 / 71.70; abbe) |
-| H-BAF6 | 1 | 1 | patents/20260118637.pdf | [ENNA MÜNCHEN LITHAGON 24mm f/4](../../src/lens-data/enna-munchen/EnnaMunchenLithagon24mmf4.data.ts) Element 7 (1.60801 / 46.20; abbe) |
+| H-BAF6 | 1 | 1 | patents/DE_1228820_B.pdf | [ENNA MÜNCHEN LITHAGON 24mm f/4](../../src/lens-data/enna-munchen/EnnaMunchenLithagon24mmf4.data.ts) Element 7 (1.60801 / 46.20; abbe) |
 | H-K8 | 1 | 1 | patents/CN110161666A.pdf | [LAOWA 65mm f/2.8 2× Ultra Macro APO](../../src/lens-data/laowa/Laowa65mmf28MacroAPO.data.ts) Element 14 (1.51823 / 58.96; abbe) |
 | H-K9L | 1 | 1 | patents/CN205427291U.pdf | [LAOWA 15mm f/4 Wide Angle 1:1 Macro](../../src/lens-data/laowa/Laowa15mmf4Macro.data.ts) Element 7a (1.51680 / 64.20; abbe) |
 | H-LAF51 | 1 | 1 | patents/JP2014126652A.pdf | [SIGMA 50mm f/2.8 (Sigma DP3 Merrill)](../../src/lens-data/sigma/SigmaDP3M50mmf28.data.ts) Element 6 (1.83400 / 37.34; abbe) |

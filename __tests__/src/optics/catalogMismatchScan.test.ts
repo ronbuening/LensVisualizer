@@ -64,7 +64,7 @@ function toRepoRelativeLensPath(modulePath: string): string {
 
 function extractPatentNumber(subtitle: string | undefined): string | null {
   const match = subtitle?.match(
-    /\b(?:Patent\s+)?((?:JPWO|WO|US|JP|DE|GB|FR|CH)\s*\d[\d,./-]*(?:\s*(?:A1|A|B2|B1|B|C\d?))?)/i,
+    /\b(?:Patent\s+)?((?:JPWO|WO|US|JP|DE|GB|FR|CH|CN)\s*\d(?:[\d,./-]|\s+(?=\d))*(?:\s*(?:A1|A|B2|B1|B|C\d?|U))?)/i,
   );
   return match?.[1].replace(/\s+/g, " ").trim() ?? null;
 }

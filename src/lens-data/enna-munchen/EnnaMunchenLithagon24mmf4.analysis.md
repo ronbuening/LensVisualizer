@@ -61,11 +61,11 @@ The six-digit code 625/356 should not be converted into an asserted historical S
 
 ### L4 - Biconvex Positive
 
-$nd = 1.51895$, $\nu_d = 57.3$. Glass: 519/573 vintage crown class; exact catalog name unconfirmed. $f = +48.88$ mm at 24 mm scale.
+$nd = 1.51895$, $\nu_d = 57.3$. Glass: unmatched 519/573 crown glass; supplier and catalog identity unconfirmed. $f = +48.88$ mm at 24 mm scale.
 
 L4 is the first positive element of group H. Its biconvex form distributes positive power across both surfaces and begins the convergence of the main rear system. It is closely followed by L5, separated by only 0.264 mm after scaling.
 
-No exact current catalog match was located for the 519/573 pair in the authoritative modern glass catalogs checked for this review. The data file therefore labels L4 by its six-digit code and vintage crown class rather than assigning a specific historical Schott name.
+The patent prints only the d-line index and Abbe number and does not identify a glassmaker, glass name, line index, or partial-dispersion value. Multiple current coefficient-backed crowns fall inside the broad coordinate safety window, but no source evidence distinguishes among them. The data file therefore keeps an explicit unmatched 519573 crown annotation rather than assigning a specific historical or modern catalog name.
 
 ### L5 - Positive Meniscus, convex to object
 
@@ -96,7 +96,7 @@ The numerical pair $nd = 1.60801$, $\nu_d = 46.2$ is an exact current-catalog ma
 | L1 | 1.51680 | 64.2 | N-BK7 (Schott) | Exact current Schott match |
 | L2 | 1.62041 | 60.3 | N-SK16 (Schott) | Exact current Schott match |
 | L3 | 1.62536 | 35.6 | H-F6/F6 (CDGM equivalent), 625/356 vintage flint | Exact current CDGM equivalent; historical name unconfirmed |
-| L4 | 1.51895 | 57.3 | 519/573 vintage crown class | No current exact catalog match located; historical name unconfirmed |
+| L4 | 1.51895 | 57.3 | Unmatched 519573 crown glass | Patent coordinates verified; supplier and catalog identity unresolved |
 | L5 | 1.62374 | 47.0 | J-BAF8 (Hikari equivalent), 624/470 barium-flint class | Exact current Hikari-equivalent code match |
 | L6 | 1.78470 | 26.1 | SF56A (Schott) | Exact current Schott match |
 | L7 | 1.60801 | 46.2 | H-BaF6 (CDGM equivalent), 608/462 barium-flint class | Exact current CDGM-equivalent match; not an exact current Schott match |
