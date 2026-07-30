@@ -49,3 +49,14 @@ Patent: US 4,871,239, Example 3 / claim 29
 
 - No additional glass-label, APD, or high-index-status changes were needed.
 - The patent gives no per-surface clear apertures. Existing SDs remain inferred from the zoom envelope, inserted stop, element edge thickness, and corrected spacing geometry, so no SD edits were made.
+
+## 2026-07-29 - Repeated `670571` catalog-equivalent review
+
+- Rechecked the Claim 29 rows for L2, L5, and L8 at `nd = 1.67000`, `vd = 57.07`; their stored radii,
+  thicknesses, and optical coordinates still match the patent.
+- Official OHARA all-products data publish discontinued S-LAL52 with coefficient-backed dispersion,
+  `nd = 1.669999`, `vd = 57.327972`, and code `670573`.
+- Relabeled the three explicit unresolved `670571` annotations to
+  `S-LAL52 (OHARA catalog-equivalent to 670571; patent vendor unspecified)`. The exact d-line agreement
+  and `+0.258` Abbe difference support the optical model, but do not prove that OHARA supplied the glass.
+- Synchronized the analysis prose and table. No prescription geometry, APD status, or semi-diameter changed.

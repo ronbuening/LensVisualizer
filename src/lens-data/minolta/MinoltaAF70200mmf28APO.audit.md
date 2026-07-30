@@ -49,3 +49,16 @@ Patent: JP 2004-109559 A, Example 1
 
 - The patent gives no per-surface clear apertures.
 - Existing SDs remain inferred visualization apertures constrained by the zoom envelope and f/2.8 telephoto proportions. No SD edits were made.
+
+## 2026-07-29 - High-frequency code-family review
+
+- Rechecked Example 1 L8 at `nd = 1.67000`, `vd = 57.07`. Official OHARA all-products data publish
+  discontinued S-LAL52 at `nd = 1.669999`, `vd = 57.327972`, with vendor coefficients and code `670573`.
+- Relabeled L8 from unresolved `670571` prose to
+  `S-LAL52 (OHARA catalog-equivalent to 670571; patent vendor unspecified)`. The model is a
+  coordinate-supported catalog equivalent, not a production-supplier claim.
+- Rechecked the four L2/L3/L12/L15 `493836` rows. The patent confirms `nd = 1.49310`, `vd = 83.58`,
+  but publishes no line indices or partial-dispersion ratio for these rows. Official OHARA, HOYA, Hikari,
+  and Sumita coefficient catalogs contain no exact `493836` row, so their explicit Minolta AD/ED labels
+  remain unresolved rather than being forced to FCD1 or S-FPL51.
+- Synchronized the L8 analysis text and table. No prescription geometry, APD status, or semi-diameter changed.

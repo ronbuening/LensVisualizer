@@ -25,12 +25,24 @@ This file tracks the second bucket plus any cases from the first bucket that nee
 - Catalog: **414 verified entries** in `src/optics/glassCatalogData.ts`.
 - `catalog-mismatches.generated.md` and `glass-relabel-by-lens.generated.md` report **0** remaining
   dispersion-coordinate mismatches across **0** lens files.
-- `sellmeier-coverage.generated.md` reports **488** lenses, **5360** non-air surfaces, **4581** strict catalog
-  Sellmeier surfaces (**85.5%**), and **4595** trusted chromatic surfaces (**85.7%**).
-- **205** lenses are fully covered by strict Sellmeier data and **210** are fully covered by trusted chromatic data.
+- `sellmeier-coverage.generated.md` reports **488** lenses, **5360** non-air surfaces, **4596** strict catalog
+  Sellmeier surfaces (**85.7%**), and **4610** trusted chromatic surfaces (**86.0%**).
+- **210** lenses are fully covered by strict Sellmeier data and **215** are fully covered by trusted chromatic data.
 - `unresolvedGlassScan`: use the generated report for the current count; the total includes honest proprietary and
   family-level annotations as well as actionable named tokens.
 - The Phase 2/3 resolved tables below are historical audit trail. Use the generated reports above for the current queue before starting new relabel work; for patent-by-patent execution, start from [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md).
+
+## Resolved Phase 46 — July 2026 high-frequency code-family review
+
+The five Minolta lenses using `670571` now resolve ten elements through coefficient-backed discontinued OHARA
+S-LAL52. The vendor row reproduces the patent d-line index and differs by only `+0.258` in Abbe number; every
+annotation calls it a catalog equivalent and leaves the production supplier unspecified.
+
+The next two families were source-reviewed but deliberately not relabeled. Six Nikon files use `796409`
+(`1.79631 / 40.90`), for which official OHARA, HOYA, Hikari, and Sumita coefficient catalogs contain no exact row.
+Two Minolta files use proprietary `493836` fluorophosphate glass (`1.49310 / 83.55–83.58`); the 200mm patent provides
+`theta_gF = 0.539`, already captured as `dPgF`, but neither patent establishes a public catalog identity. Their
+generated-report sidecar rows now record the completed review so future passes do not reopen them without new sources.
 
 ## Resolved Phase 45 — July 2026 resolver hardening and sourced coverage
 

@@ -99,6 +99,13 @@ Rows removed from Tier A after local patent review:
 | [nikon/NikonZ28f28.data.ts](../src/lens-data/nikon/NikonZ28f28.data.ts) | WO2022/071249 A1 | `patents/WO2022071249A1.pdf` (untracked local file) | Rechecked 2026-06-08. Local PDF is image-only under `pdftotext`; rendered Example 2 pages show the UV-curing resin row as `nd=1.56093`, `νd=36.64` only, with no `nC`, `nF`, `ng`, `θgF`, or `dPgF` rows in the prescription, asphere, or variable-gap tables. No data change. |
 | [nikon/NikonNikkorZ50f18S.data.ts](../src/lens-data/nikon/NikonNikkorZ50f18S.data.ts) | WO2019/220618 A1 | `patents/WO2019220618A1.pdf` (untracked local file) | Rechecked 2026-06-08. Local PDF is image-only under `pdftotext`; rendered Example 9 Table 9 lists only `R`, `D`, `nd`, and `νd`. The resin row `6*` is `nd=1.56093`, `νd=36.6`; no `nC`, `nF`, `ng`, `θgF`, or `dPgF` rows were found, and the dummy/virtual surfaces have no glass material to enrich. No data change. |
 
+## Reviewed high-frequency proprietary families
+
+| Code | Lens files | Patent evidence | Outcome |
+|---|---:|---|---|
+| `493836` | 2 | Minolta AF 200mm US 4,786,152 gives `nd = 1.49310`, `vd = 83.55`, and `theta_gF = 0.539`; Minolta AF 70-200mm JP 2004-109559 gives four `1.49310 / 83.58` rows without partial dispersion. | No exact row exists in the reviewed official OHARA, HOYA, Hikari, or Sumita coefficient catalogs. Retained explicit Minolta AD/ED labels; the 200mm keeps its patent-derived `dPgF`, while the 70-200mm remains APD-inferred. |
+| `796409` | 6 | Six Nikon patents independently print `nd = 1.79631`, `vd = 40.90` across seven elements. | No exact coefficient-backed vendor row was found. Retained explicit unmatched labels rather than borrowing S-LAH52, J-LASF03, or another nearby high-index family. |
+
 ## Workflow
 
 Run the four-phase procedure in [lens-patent-audit.md](lens-patent-audit.md). Phase 3 (spectral enrichment) is the active phase for this queue — populate `dPgF`, `nC`, `nF`, and `ng` on the matching element from the patent's prescription tables. The audit guide also covers the `*.audit.md` log convention so the change is traceable.

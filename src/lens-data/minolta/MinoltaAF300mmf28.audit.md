@@ -24,3 +24,12 @@ Patent: US 4,518,229, Example 8 / Tables 8-9
 - The patent does not publish a stop coordinate or per-surface clear apertures.
 - Existing SDs remain inferred from the f/2.9 marginal envelope, the 114 mm production filter constraint, edge thickness, and signed cross-gap sag. They match the large telephoto front collector and smaller inner-focus/rear groups in the patent drawing, so no SD edits were made.
 
+## 2026-07-29 - `670571` catalog-equivalent review
+
+- Rechecked Table 8 L8 at `nd = 1.67000`, `vd = 57.07`; its stored prescription row remains unchanged.
+- Official OHARA all-products data publish discontinued S-LAL52 with coefficients at `nd = 1.669999`,
+  `vd = 57.327972`, code `670573`.
+- Relabeled L8 from unresolved `670571` class prose to
+  `S-LAL52 (OHARA catalog-equivalent to 670571; patent vendor unspecified)`. This selects a
+  coefficient-backed dispersion model without claiming an OHARA production blank.
+- Synchronized the analysis narrative and table. No geometry, APD status, or semi-diameter changed.

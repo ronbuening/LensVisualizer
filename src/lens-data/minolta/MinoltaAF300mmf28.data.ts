@@ -148,7 +148,7 @@ const LENS_DATA = {
       nd: 1.67,
       vd: 57.07,
       fl: -76.94,
-      glass: "670571 - high-index crown / lanthanum-crown class (catalog unresolved)",
+      glass: "S-LAL52 (OHARA catalog-equivalent to 670571; patent vendor unspecified)",
       role: "Primary negative-power element of the moving focus subunit II-2.",
     },
     {

@@ -9,6 +9,14 @@ approximation. Current optics-engine boundaries are summarized in
 
 The catalog currently has **414 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
 
+The July 29, 2026 Phase 46 pass audited the three highest-frequency remaining six-digit families. Ten Minolta
+`670571` elements now use discontinued OHARA S-LAL52 as a coefficient-backed catalog equivalent: the official
+all-products row has the same d-line index (`1.669999` versus patent `1.67000`) and only `+0.258` higher Abbe number.
+The annotations explicitly leave the production supplier unspecified. Nikon `796409` (seven elements) and Minolta
+`493836` (six elements) remain unresolved after patent-row checks and searches of official OHARA, HOYA, Hikari, and
+Sumita coefficient data; neither family was forced to a nearest neighbor. Strict coverage increased from 4586 to
+4596 surfaces, trusted coverage from 4600 to 4610, and one additional lens became fully covered in each measure.
+
 The July 29, 2026 Phase 45 pass added seven direct vendor rows: Hikari J-BK7A; SUMITA K-LaFK50, K-BaSF5,
 K-PSKn2, K-SSK1, and K-SSK9; and CDGM D-K59. It also corrected the pre-existing OHARA S-BSL7 coefficients and
 six-digit code against OHARA's official 25-04 datasheet. Runtime matching now considers every name, alias, and

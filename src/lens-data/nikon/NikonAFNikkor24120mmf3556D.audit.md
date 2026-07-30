@@ -48,3 +48,12 @@ code-only glasses remain unresolved where no comparably strong, coefficient-back
 - `npm run test` — passed (209 files, 2450 tests).
 - `npm run build` — passed (966 routes prerendered).
 - In-app browser screenshots were unavailable; visual comparison used the rendered 300 dpi patent page plus the passing full-catalog render diagnostics.
+
+## 2026-07-29 - `796409` coefficient-source review
+
+- Rendered and visually checked the prescription. Working Example 1 row 30 confirms L3F3 at
+  `R = -21.224`, `d = 1.8`, `nd = 1.79631`, and `vd = 40.9`, matching the stored row.
+- Official OHARA, HOYA, Hikari, and Sumita coefficient catalogs contain no exact `796409` row.
+  Nearby named high-index families do not reproduce both coordinates and do not establish a supplier.
+- Retained L3F3's explicit unmatched `796409` annotation. No catalog model, prescription geometry,
+  focus reconstruction, or spectral claim changed.

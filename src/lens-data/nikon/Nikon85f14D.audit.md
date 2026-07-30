@@ -36,3 +36,13 @@ Patent: US 5,640,277
   without assigning a speculative supplier.
 - Removed S19's former inferred-APD flag because it depended on the rejected S-LAM60 identity and the patent
   publishes no partial-dispersion evidence.
+
+## 2026-07-29 - `796409` coefficient-source review
+
+- Visually rechecked Example 2 row 5 at `nd = 1.79631`, `vd = 40.90`; the stored radius and thickness
+  also match the printed table.
+- Official OHARA, HOYA, Hikari, and Sumita coefficient catalogs contain no exact `796409` row.
+  OHARA S-LAH52 is `1.799516 / 42.225007`, outside the runtime d-line tolerance, while Hikari J-LASF03
+  is a materially different `1.80610 / 40.97`.
+- Retained the explicit unmatched `796409` annotation. No supplier or nearest-neighbor glass was assigned,
+  and no prescription geometry changed.

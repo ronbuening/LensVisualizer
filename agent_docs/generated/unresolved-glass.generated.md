@@ -11,14 +11,13 @@ or per-lens patent backfills.
 - **488** lenses scanned
 - **5360** non-air surfaces examined
 - **5365** element glass declarations examined
-- **483** non-explicit-unmatched annotations did not resolve
-- **209** distinct unresolved glass-like tokens found
+- **473** non-explicit-unmatched annotations did not resolve
+- **208** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
 | Token | Occurrences | Lens files | Notes |
 |---|---:|---:|---|
-| 670571 | 10 | 5 | |
 | 493836 | 6 | 2 | |
 | 773497 | 4 | 2 | |
 | 863252 | 4 | 2 | |
@@ -229,19 +228,6 @@ or per-lens patent backfills.
 | TAFL3 | 1 | 1 | |
 
 ## Occurrences
-
-### 670571 — 10 occurrences
-
-- [MINOLTA AF APO TELE 300mm f/2.8](../../src/lens-data/minolta/MinoltaAF300mmf28.data.ts) 14: `670571 - high-index crown / lanthanum-crown class (catalog unresolved)`
-- [MINOLTA AF 35-105mm f/3.5-4.5 New (v2)](../../src/lens-data/minolta/MinoltaAF35105mmf3545v2.data.ts) 2: `670571 - high-index crown / lanthanum-crown class (unresolved)`
-- [MINOLTA AF 35-105mm f/3.5-4.5 New (v2)](../../src/lens-data/minolta/MinoltaAF35105mmf3545v2.data.ts) 8: `670571 - high-index crown / lanthanum-crown class (unresolved)`
-- [MINOLTA AF 35-105mm f/3.5-4.5 New (v2)](../../src/lens-data/minolta/MinoltaAF35105mmf3545v2.data.ts) 14: `670571 - high-index crown / lanthanum-crown class (unresolved)`
-- [MINOLTA AF Zoom 35-70mm f/4](../../src/lens-data/minolta/MinoltaAF3570mmf4.data.ts) 5: `670571 - lanthanum crown (historic catalog match unresolved)`
-- [MINOLTA AF Zoom 35-70mm f/4](../../src/lens-data/minolta/MinoltaAF3570mmf4.data.ts) 7: `670571 - lanthanum crown (historic catalog match unresolved)`
-- [MINOLTA AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) 13: `670571 - moderate-index crown (unresolved)`
-- [MINOLTA AF Reflex 500mm f/8](../../src/lens-data/minolta/MinoltaAFReflex500mmf8.data.ts) M1F: `670571 - lanthanum crown (catalog unresolved)`
-- [MINOLTA AF Reflex 500mm f/8](../../src/lens-data/minolta/MinoltaAFReflex500mmf8.data.ts) L5F: `670571 - lanthanum crown (catalog unresolved)`
-- [MINOLTA AF Reflex 500mm f/8](../../src/lens-data/minolta/MinoltaAFReflex500mmf8.data.ts) 13: `670571 - lanthanum crown (catalog unresolved)`
 
 ### 493836 — 6 occurrences
 

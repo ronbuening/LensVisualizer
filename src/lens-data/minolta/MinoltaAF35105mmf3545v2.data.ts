@@ -77,7 +77,7 @@ const LENS_DATA = {
       nd: 1.67,
       vd: 57.07,
       fl: 59.4,
-      glass: "670571 - high-index crown / lanthanum-crown class (unresolved)",
+      glass: "S-LAL52 (OHARA catalog-equivalent to 670571; patent vendor unspecified)",
       cemented: "D1",
       role: "Positive crown member of the front cemented achromat.",
     },
@@ -111,7 +111,7 @@ const LENS_DATA = {
       nd: 1.67,
       vd: 57.07,
       fl: -50.5,
-      glass: "670571 - high-index crown / lanthanum-crown class (unresolved)",
+      glass: "S-LAL52 (OHARA catalog-equivalent to 670571; patent vendor unspecified)",
       role: "Weaker negative variator element with nearly plano front surface.",
     },
     {
@@ -144,7 +144,7 @@ const LENS_DATA = {
       nd: 1.67,
       vd: 57.07,
       fl: 27.6,
-      glass: "670571 - high-index crown / lanthanum-crown class (unresolved)",
+      glass: "S-LAL52 (OHARA catalog-equivalent to 670571; patent vendor unspecified)",
       role: "Strong positive lead element of Group III-F.",
     },
     {

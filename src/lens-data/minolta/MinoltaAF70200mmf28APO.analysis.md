@@ -104,7 +104,7 @@ Its very high index lets the variator remain compact. Its high dispersion would 
 
 ### L8 - Biconcave Negative, Cemented to L7
 
-$n_d = 1.67000$, $ν_d = 57.07$. Glass: 670571 moderate-index crown, unresolved. Standalone $f = -37.88$ mm.
+$n_d = 1.67000$, $ν_d = 57.07$. Glass model: coefficient-backed OHARA S-LAL52, a catalog-equivalent to patent code `670571`; the patent does not identify the supplier. Standalone $f = -37.88$ mm.
 
 L8 is the negative member of the L7-L8 doublet. The pair traces to approximately $f = -52.00$ mm. The higher Abbe number relative to L7 offsets part of L7's dispersion while preserving a compact negative component within Gr2.
 
@@ -200,7 +200,7 @@ The patent publishes only $n_d$ and $ν_d$. It does not publish vendor names, $n
 | L5 | 1.69680 / 56.47 | H-LAK12 (CDGM equivalent; patent 697565) | Medium | Cross-referenced to old LAL64 family; not supplier proof |
 | L6, L10 | 1.75450 / 51.57 | 755516 high-index crown | Low-medium | No exact public match retained |
 | L7, L9 | 1.84666 / 23.82 | FDS90 / N-SF57 / S-TIH53 class | Medium-high | Very high-index dense flint in Gr2 |
-| L8 | 1.67000 / 57.07 | 670571 moderate-index crown | Low | Negative member of Gr2 doublet |
+| L8 | 1.67000 / 57.07 | S-LAL52 (OHARA catalog-equivalent to `670571`) | Medium | Coefficient-backed negative member of Gr2 doublet; supplier unspecified |
 | L11 | 1.61800 / 63.39 | N-PSK53A / PCD4 / S-PHM52 class | High | Positive relay glass |
 | L13 | 1.74950 / 35.04 | HOYA E-LAF7 / N-LAF7 class | High | Negative partner to L12 |
 | L14 | 1.78100 / 44.55 | 781446 high-index mid-dispersion | Low | Weak stop-side negative |
