@@ -11,8 +11,8 @@ or per-lens patent backfills.
 - **488** lenses scanned
 - **5360** non-air surfaces examined
 - **5365** element glass declarations examined
-- **413** non-explicit-unmatched annotations did not resolve
-- **173** distinct unresolved glass-like tokens found
+- **412** non-explicit-unmatched annotations did not resolve
+- **172** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -80,7 +80,6 @@ or per-lens patent backfills.
 | 670572 | 1 | 1 | |
 | 670574 | 1 | 1 | |
 | 670575 | 1 | 1 | |
-| 678322 | 1 | 1 | |
 | 680312 | 1 | 1 | |
 | 682366 | 1 | 1 | |
 | 683548 | 1 | 1 | |
@@ -473,10 +472,6 @@ or per-lens patent backfills.
 ### 670575 — 1 occurrence
 
 - [NIKON Gyogyotto 20mm f/8](../../src/lens-data/nikon/NikonGyogyotto20mmf8.data.ts) 4: `670575 — Nikon patent glass (nd=1.67025, νd=57.53; no current public OHARA/SCHOTT catalog match within tolerance)`
-
-### 678322 — 1 occurrence
-
-- [SONY FE 12-24mm f/2.8 GM](../../src/lens-data/sony/SonyFE1224mmf28GM.data.ts) 13: `678322 — dense flint (Schott SF-family adjacent; no exact public catalog match)`
 
 ### 680312 — 1 occurrence
 

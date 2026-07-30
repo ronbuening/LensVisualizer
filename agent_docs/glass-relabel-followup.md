@@ -30,12 +30,23 @@ This file tracks the second bucket plus any cases from the first bucket that nee
 - `sellmeier-coverage.generated.md` reports **488** lenses, **5360** non-air surfaces, **4666** strict catalog
   Sellmeier surfaces (**87.1%**), and **4678** trusted chromatic surfaces (**87.3%**).
 - **226** lenses are fully covered by strict Sellmeier data and **231** are fully covered by trusted chromatic data.
-- `unresolvedGlassScan` reports **413** non-explicit-unmatched annotations and **173** distinct unresolved glass-like
+- `unresolvedGlassScan` reports **412** non-explicit-unmatched annotations and **172** distinct unresolved glass-like
   tokens. The total includes honest proprietary and family-level annotations as well as actionable named tokens.
-- The missing-Sellmeier six-digit report contains **264** code-only elements, now separated into **6** active
+- The missing-Sellmeier six-digit report contains **264** code-only elements, now separated into **5** active
   unreviewed rows, **52** explicit unmatched/unidentified dispositions missing both sidecar and companion-audit hits,
-  and **206** rows with a recorded review.
+  and **207** rows with a recorded review.
 - The Phase 2/3 resolved tables below are historical audit trail. Use the generated reports above for the current queue before starting new relabel work; for patent-by-patent execution, start from [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md).
+
+## Resolved Phase 63 — July 2026 Sony 678322 source review
+
+WO 2021/200206 A1 Example 2 / Table 6 was rendered and checked visually, confirming Sony FE 12-24mm L22 at
+`1.67764 / 32.2`. The patent publishes no supplier, secondary line index, or partial dispersion. The expanded
+first-party coefficient catalogs contain no row inside the runtime compatibility window; SF5/N-SF5 and their
+cross-vendor equivalents are centered near `1.6727 / 32.2`, missing the patent d-line index by about `0.0049`.
+
+The unsupported Schott SF-family attribution was removed, and L22 now carries an explicit unmatched `678322`
+dense-flint annotation on its patent Abbe fallback. Coverage remains 4666 strict / 4678 trusted surfaces. The active
+queue fell to five elements across four code families.
 
 ## Resolved Phase 62 — July 2026 Pentax shared-family recovery
 

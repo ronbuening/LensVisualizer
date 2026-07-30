@@ -9,6 +9,12 @@ approximation. Current optics-engine boundaries are summarized in
 
 The catalog currently has **432 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
 
+The July 30, 2026 Phase 63 pass rendered WO 2021/200206 A1 Example 2 / Table 6 and confirmed Sony FE 12-24mm L22
+at `1.67764 / 32.2`. No first-party coefficient row lies inside the compatibility window; the SF5/N-SF5 family is
+about `0.0049` too low in d-line index. The unsupported Schott-family attribution was removed, leaving an explicit
+unmatched `678322` annotation on the patent Abbe fallback. Coverage remains 4666/4678 strict/trusted surfaces, and
+the active source-review queue is five elements across four code families.
+
 The July 30, 2026 Phase 62 pass confirmed Pentax HD DA* 11-18mm L14's `1.54732 / 46.0` coordinate in rendered
 US 2018/0164556 A1 Table 1. OHARA PBL1/S-TIL1, HOYA E-FEL1, Schott LLF1, and SUMITA LLF1 all publish the same
 coefficient-backed family near `1.54814 / 45.8–45.9`; their evaluated trace-line curves are materially

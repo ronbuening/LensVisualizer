@@ -2055,7 +2055,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 |---|---|---|---|---|
 | 9 | L15 dense-flint positive | abbe | `Unmatched (dense lanthanum flint, 856/323)` | Explicit unmatched/proprietary annotation |
 | 12 | L21 focus-group negative | abbe | `Unmatched (ultra-dense short flint, 930/240)` | Explicit unmatched/proprietary annotation |
-| 13 | L22 focus-group positive | abbe | `678322 — dense flint (Schott SF-family adjacent; no exact public catalog match)` | No catalog match |
+| 13 | L22 focus-group positive | abbe | `Unmatched 678322 dense flint (patent-listed; supplier unidentified)` | Explicit unmatched/proprietary annotation |
 | 16 | L31 stop-region negative | abbe | `Unmatched (ultra-dense lanthanum flint, 961/323)` | Explicit unmatched/proprietary annotation |
 | 20 | L41 focus-group negative | abbe | `Unmatched (ultra-dense lanthanum flint, 961/323)` | Explicit unmatched/proprietary annotation |
 | 23 | L51 GP5 positive | abbe | `Unmatched (ultra-dense short flint, 903/204)` | Explicit unmatched/proprietary annotation |

@@ -13,7 +13,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 - **478** total code-only elements found
 - **264** elements in this report
 - **116** distinct lens files affected
-- **6** active unreviewed elements have no review-record hit or explicit disposition
+- **5** active unreviewed elements have no review-record hit or explicit disposition
 - **52** explicitly unmatched/unidentified elements lack a sidecar or audit-log hit and are recordkeeping follow-ups, not active identity guesses
 
 ## Prioritized Unreviewed Queue
@@ -25,7 +25,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 
 | Tier | Code | Active elements / lens files | Visible lenses | Strict surfaces | Completion candidates | Near-complete candidates | Local patent lenses | Representative rows |
 |---|---|---:|---:|---:|---|---|---:|---|
-| D | 678322 | 1 / 1 | 1 | 1 | — | — | 1/1 | [SONY FE 12-24mm f/2.8 GM](../../src/lens-data/sony/SonyFE1224mmf28GM.data.ts) L22 focus-group positive (1.67764 / 32.20) |
 | D | 792257 | 1 / 1 | 1 | 1 | — | — | 1/1 | [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) Element 7 (1.79191 / 25.70) |
 | D | 834374 | 1 / 1 | 1 | 1 | — | — | 1/1 | [NIKON AI AF ZOOM-NIKKOR 24-120mm f/3.5-5.6 D IF](../../src/lens-data/nikon/NikonAFNikkor24120mmf3556D.data.ts) Element 14 — L3R3 (1.83400 / 37.40) |
 | E | 569632 | 2 / 1 | 1 | 2 | — | — | 0/1 | [OLYMPUS ZUIKO AUTO-ZOOM 85-250mm f/5](../../src/lens-data/olympus/OlympusZuikoAutoZoom85250mmf5.data.ts) Element 4 (1.56873 / 63.20)<br>[OLYMPUS ZUIKO AUTO-ZOOM 85-250mm f/5](../../src/lens-data/olympus/OlympusZuikoAutoZoom85250mmf5.data.ts) Element 7 (1.56873 / 63.20) |
@@ -145,7 +144,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 672389 | 1 | 1 | patents/US4497547.pdf | All representative rows reviewed |
 | 675348 | 1 | 1 | patents/JP2018180366A.pdf | All representative rows reviewed |
 | 676440 | 1 | 1 | patents/US7542219.pdf | No reviewed-sidecar hit |
-| 678322 | 1 | 1 | patents/WO2021200206A1.pdf | No reviewed-sidecar hit |
+| 678322 | 1 | 1 | patents/WO2021200206A1.pdf | All representative rows reviewed |
 | 680312 | 1 | 1 | patents/JP2015041012A.pdf | No reviewed-sidecar hit |
 | 682366 | 1 | 1 | Missing from untracked local patents/ references (US4518229, 4518229) | No reviewed-sidecar hit |
 | 682575 | 1 | 1 | patents/US7542219.pdf | No reviewed-sidecar hit |
@@ -970,7 +969,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 |---|---|---|---|---|---|---|---|
 | L15 (L15 dense-flint positive) | 9 | `Unmatched (dense lanthanum flint, 856/323)` | 1.85649 / 32.30 | No catalog entry | abbe | patents/WO2021200206A1.pdf | No reviewed-sidecar hit |
 | L21 (L21 focus-group negative) | 12 | `Unmatched (ultra-dense short flint, 930/240)` | 1.93024 / 24.00 | No catalog entry | abbe | patents/WO2021200206A1.pdf | No reviewed-sidecar hit |
-| L22 (L22 focus-group positive) | 13 | `678322 — dense flint (Schott SF-family adjacent; no exact public catalog match)` | 1.67764 / 32.20 | No catalog entry | abbe | patents/WO2021200206A1.pdf | No reviewed-sidecar hit |
+| L22 (L22 focus-group positive) | 13 | `Unmatched 678322 dense flint (patent-listed; supplier unidentified)` | 1.67764 / 32.20 | No catalog entry | abbe | patents/WO2021200206A1.pdf | Reviewed sidecar hit |
 | L31 (L31 stop-region negative) | 16 | `Unmatched (ultra-dense lanthanum flint, 961/323)` | 1.96073 / 32.30 | No catalog entry | abbe | patents/WO2021200206A1.pdf | Reviewed sidecar hit |
 | L41 (L41 focus-group negative) | 20 | `Unmatched (ultra-dense lanthanum flint, 961/323)` | 1.96073 / 32.30 | No catalog entry | abbe | patents/WO2021200206A1.pdf | Reviewed sidecar hit |
 | L51 (L51 GP5 positive) | 23 | `Unmatched (ultra-dense short flint, 903/204)` | 1.90314 / 20.40 | No catalog entry | abbe | patents/WO2021200206A1.pdf | No reviewed-sidecar hit |
