@@ -22,15 +22,15 @@ import buildLens from "../../../src/optics/buildLens.js";
 import type { DispersionQuality } from "../../../src/optics/dispersion.js";
 import {
   allEntries,
-  evaluateSellmeier,
+  assessCatalogGlassCompatibility,
+  evaluateCatalogAbbeNumber,
   GLASS_ND_TOLERANCE,
   GLASS_VD_TOLERANCE,
-  LINE_NM,
   resolveCompatibleGlass,
   resolveGlass,
   type GlassEntry,
 } from "../../../src/optics/glassCatalog.js";
-import type { LensData } from "../../../src/types/optics.js";
+import type { LensData, RefractiveIndexReferenceLine } from "../../../src/types/optics.js";
 
 const modules = import.meta.glob<{ default: LensData }>("../../../src/lens-data/**/*.data.ts", { eager: true });
 
@@ -73,6 +73,7 @@ interface RelabelOpportunity {
   glassString: string;
   storedNd: number;
   storedVd: number | undefined;
+  referenceLine: RefractiveIndexReferenceLine;
   catalogName: string;
   candidates: Candidate[];
   localPatent: PatentMatch;
@@ -265,25 +266,29 @@ function partialDispersionPgF(vd: number, dPgF: number): number {
 
 function findCandidates(
   entries: readonly GlassEntry[],
-  entryNd: ReadonlyMap<string, number>,
   storedNd: number,
   storedVd: number | undefined,
   storedDPgF: number | undefined,
   embeddedCode: EmbeddedCode | null,
+  referenceLine: RefractiveIndexReferenceLine,
 ): Candidate[] {
   const lensPgF =
-    storedVd !== undefined && storedDPgF !== undefined ? partialDispersionPgF(storedVd, storedDPgF) : null;
+    referenceLine === "d" && storedVd !== undefined && storedDPgF !== undefined
+      ? partialDispersionPgF(storedVd, storedDPgF)
+      : null;
 
   return entries
     .map<Candidate>((entry) => {
-      const nd = entryNd.get(entry.name)!;
-      const ndDiff = nd - storedNd;
-      const vdDiff = storedVd === undefined ? null : entry.vd - storedVd;
+      const compatibility = assessCatalogGlassCompatibility(entry, storedNd, storedVd, referenceLine);
+      const nd = compatibility.catalogIndex;
+      const candidateAbbe = referenceLine === "d" ? entry.vd : evaluateCatalogAbbeNumber(entry, "e");
+      const ndDiff = compatibility.indexDiff;
+      const vdDiff = compatibility.abbeDiff;
       const pgfDiff = lensPgF !== null && entry.PgF !== undefined ? entry.PgF - lensPgF : null;
       const codeDistance =
-        embeddedCode === null
+        referenceLine === "e" || embeddedCode === null
           ? null
-          : Math.abs(nd - embeddedCode.nd) * 1000 + Math.abs(entry.vd - embeddedCode.vd) * 10;
+          : Math.abs(nd - embeddedCode.nd) * 1000 + Math.abs(candidateAbbe - embeddedCode.vd) * 10;
       return { name: entry.name, ndDiff, vdDiff, pgfDiff, codeDistance };
     })
     .filter(
@@ -353,8 +358,8 @@ function formatPercent(numerator: number, denominator: number): string {
 function formatCandidate(candidate: Candidate): string {
   const ndSign = candidate.ndDiff >= 0 ? "+" : "";
   const vdSign = candidate.vdDiff !== null && candidate.vdDiff >= 0 ? "+" : "";
-  const vdPart = candidate.vdDiff === null ? "" : `, Δvd=${vdSign}${candidate.vdDiff.toFixed(2)}`;
-  return `${candidate.name} (Δnd=${ndSign}${candidate.ndDiff.toFixed(4)}${vdPart})`;
+  const vdPart = candidate.vdDiff === null ? "" : `, Δν=${vdSign}${candidate.vdDiff.toFixed(2)}`;
+  return `${candidate.name} (Δn=${ndSign}${candidate.ndDiff.toFixed(4)}${vdPart})`;
 }
 
 function candidateSummary(candidates: readonly Candidate[]): string {
@@ -428,7 +433,6 @@ function parseTierAProprietaryRows(patentFiles: readonly string[]): ProprietaryO
 describe("glass coverage opportunities scan", () => {
   it("emits a consolidated three-sweep opportunity report", () => {
     const entries = allEntries();
-    const entryNd = new Map(entries.map((entry) => [entry.name, evaluateSellmeier(entry, LINE_NM.d)]));
     const patentFiles = patentInventory();
 
     const relabels: RelabelOpportunity[] = [];
@@ -515,8 +519,6 @@ describe("glass coverage opportunities scan", () => {
         if (!entry) continue;
 
         if (sellmeierEligible) continue;
-        if (element.indexReference === "e") continue;
-
         relabels.push({
           lensKey: data.key,
           lensName: data.name ?? data.key,
@@ -527,14 +529,15 @@ describe("glass coverage opportunities scan", () => {
           glassString: element.glass,
           storedNd: surface.nd,
           storedVd: element.vd,
+          referenceLine: element.indexReference ?? "d",
           catalogName: entry.name,
           candidates: findCandidates(
             entries,
-            entryNd,
             surface.nd,
             element.vd,
             element.dPgF,
-            extractGlassCode(element.glass),
+            element.indexReference === "e" ? null : extractGlassCode(element.glass),
+            element.indexReference ?? "d",
           ),
           localPatent,
         });
@@ -706,9 +709,9 @@ describe("glass coverage opportunities scan", () => {
     );
     lines.push("");
     lines.push(
-      "| Lens | Patent | Surface | Current label | Stored nd/vd | Best candidate(s) | localPatentPath | localPatentStatus |",
+      "| Lens | Patent | Surface | Ref | Current label | Stored n/ν | Best candidate(s) | localPatentPath | localPatentStatus |",
     );
-    lines.push("|---|---|---|---|---|---|---|---|");
+    lines.push("|---|---|---|---|---|---|---|---|---|");
     for (const row of relabels.sort((a, b) => {
       const localDiff = Number(Boolean(b.localPatent.path)) - Number(Boolean(a.localPatent.path));
       if (localDiff !== 0) return localDiff;
@@ -718,7 +721,7 @@ describe("glass coverage opportunities scan", () => {
     })) {
       const vd = row.storedVd === undefined ? "?" : row.storedVd.toFixed(2);
       lines.push(
-        `| [${row.lensName}](../../${row.filePath})${row.visible ? "" : " *(hidden)*"} | ${row.patentNumber ?? ""} | ${row.surfaceLabel} | \`${row.glassString}\` | ${row.storedNd.toFixed(5)} / ${vd} | ${candidateSummary(row.candidates)} | ${row.localPatent.path ?? ""} | ${row.localPatent.status} |`,
+        `| [${row.lensName}](../../${row.filePath})${row.visible ? "" : " *(hidden)*"} | ${row.patentNumber ?? ""} | ${row.surfaceLabel} | ${row.referenceLine} | \`${row.glassString}\` | ${row.storedNd.toFixed(5)} / ${vd} | ${candidateSummary(row.candidates)} | ${row.localPatent.path ?? ""} | ${row.localPatent.status} |`,
       );
     }
     lines.push("");

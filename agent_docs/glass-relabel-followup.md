@@ -25,14 +25,25 @@ This file tracks the second bucket plus any cases from the first bucket that nee
 
 - Catalog: **431 verified entries** in `src/optics/glassCatalogData.ts`.
 - `catalog-mismatches.generated.md` and `glass-relabel-by-lens.generated.md` report **0** remaining
-  dispersion-coordinate mismatches across **0** lens files. The mismatch report separately records **75** native
-  e-line surfaces excluded from d-line comparison.
-- `sellmeier-coverage.generated.md` reports **488** lenses, **5360** non-air surfaces, **4647** strict catalog
-  Sellmeier surfaces (**86.7%**), and **4659** trusted chromatic surfaces (**86.9%**).
+  dispersion-coordinate mismatches across **0** lens files. The mismatch report separately records **16 / 75**
+  native e-line surfaces resolved through explicit names or aliases.
+- `sellmeier-coverage.generated.md` reports **488** lenses, **5360** non-air surfaces, **4663** strict catalog
+  Sellmeier surfaces (**87.0%**), and **4675** trusted chromatic surfaces (**87.2%**).
 - **226** lenses are fully covered by strict Sellmeier data and **231** are fully covered by trusted chromatic data.
 - `unresolvedGlassScan` reports **419** non-explicit-unmatched annotations and **174** distinct unresolved glass-like
   tokens. The total includes honest proprietary and family-level annotations as well as actionable named tokens.
 - The Phase 2/3 resolved tables below are historical audit trail. Use the generated reports above for the current queue before starting new relabel work; for patent-by-patent execution, start from [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md).
+
+## Resolved Phase 57 — July 2026 native e-line catalog compatibility
+
+The resolver now derives catalog `ne` and `νe` from C′/e/F′ for elements marked `indexReference: "e"`. Only explicit
+catalog names and aliases are eligible; d-line six-digit codes and explicit `Unmatched` annotations cannot opt in.
+Once matched, the catalog curve supplies the shared physical C/d/F/g trace wavelengths, while an unmatched e-line
+fallback still preserves authored ne in its reference channel.
+
+Sixteen of 75 e-line surfaces now use name-verified catalog curves. The generated coverage report lists every recovered
+row and its authored/catalog ne/νe round trip. Strict and trusted coverage each rose by 16 surfaces to 4663 and 4675,
+with no new mismatches and no change to the already-complete lens totals.
 
 ## Resolved Phase 56 — July 2026 first-party exact-name recovery
 

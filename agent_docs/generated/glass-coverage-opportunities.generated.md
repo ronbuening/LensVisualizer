@@ -10,8 +10,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **488** lenses scanned (**480** visible)
-- **4647 / 5360** non-air surfaces use strict catalog Sellmeier data (86.7%)
-- **4659 / 5360** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 86.9%)
+- **4663 / 5360** non-air surfaces use strict catalog Sellmeier data (87.0%)
+- **4675 / 5360** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 87.2%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
 - **267** code-only missing-Sellmeier elements in Sweep 2
@@ -22,8 +22,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 Patent PDFs under `patents/` are untracked local references. A missing local patent status is a source blocker for the requested first sweep.
 
-| Lens | Patent | Surface | Current label | Stored nd/vd | Best candidate(s) | localPatentPath | localPatentStatus |
-|---|---|---|---|---|---|---|---|
+| Lens | Patent | Surface | Ref | Current label | Stored n/ν | Best candidate(s) | localPatentPath | localPatentStatus |
+|---|---|---|---|---|---|---|---|---|
 
 ## Near-Complete Visible Lenses
 

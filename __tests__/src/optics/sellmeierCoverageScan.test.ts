@@ -4,8 +4,7 @@
  * Walks every lens in the catalog and reports how completely each lens is
  * backed by strict catalog Sellmeier data. This uses the same safety net as
  * src/optics/dispersion.ts: a glass annotation must resolve to a catalog entry
- * and the catalog d-line index must agree with the stored surface.nd closely
- * enough for the runtime to trust it.
+ * and the catalog coordinates must agree with the authored d- or e-line pair.
  *
  * Always passes — its job is to emit an authoring report, not to gate CI.
  *
@@ -55,6 +54,19 @@ interface CoverageRow {
   missingTrustedSurfaces: MissingSurface[];
 }
 
+interface ELineCatalogMatch {
+  lensName: string;
+  filePath: string;
+  surfaceLabel: string;
+  elementLabel: string;
+  glassString: string;
+  catalogName: string;
+  storedIndex: number;
+  storedAbbe: number | undefined;
+  catalogIndex: number;
+  catalogAbbe: number | null;
+}
+
 function toRepoRelativeLensPath(modulePath: string): string {
   const lensDataIndex = modulePath.indexOf("src/lens-data/");
   return lensDataIndex >= 0 ? modulePath.slice(lensDataIndex) : modulePath.replace(/^(\.\.\/)+/, "");
@@ -90,9 +102,6 @@ function formatQualityCounts(missingSurfaces: readonly MissingSurface[]): string
 
 function describeMissingSurface(surfaceNd: number, element: ElementData | undefined): string {
   if (!element?.glass) return "No glass annotation";
-  if (element.indexReference === "e") {
-    return "Authored e-line coordinates are ineligible for d-line catalog matching";
-  }
 
   const compatibleEntry = resolveCompatibleGlass(element.glass, surfaceNd, element.vd, element.indexReference);
   if (compatibleEntry) return "Resolved compatible catalog entry did not reach Sellmeier runtime path";
@@ -104,10 +113,12 @@ function describeMissingSurface(surfaceNd: number, element: ElementData | undefi
 
   const compatibility = assessCatalogGlassCompatibility(entry, surfaceNd, element.vd, element.indexReference);
   if (!compatibility.compatible) {
-    const ndSign = compatibility.ndDiff >= 0 ? "+" : "";
-    const vdSign = compatibility.vdDiff !== null && compatibility.vdDiff >= 0 ? "+" : "";
-    const vdPart = compatibility.vdDiff === null ? "" : `, Δνd=${vdSign}${compatibility.vdDiff.toFixed(2)}`;
-    return `${entry.name} rejected by optical-coordinate safety net (Δnd=${ndSign}${compatibility.ndDiff.toFixed(4)}${vdPart})`;
+    const referenceLine = compatibility.referenceLine;
+    const indexSign = compatibility.indexDiff >= 0 ? "+" : "";
+    const abbeSign = compatibility.abbeDiff !== null && compatibility.abbeDiff >= 0 ? "+" : "";
+    const abbePart =
+      compatibility.abbeDiff === null ? "" : `, Δν${referenceLine}=${abbeSign}${compatibility.abbeDiff.toFixed(2)}`;
+    return `${entry.name} rejected by optical-coordinate safety net (Δn${referenceLine}=${indexSign}${compatibility.indexDiff.toFixed(4)}${abbePart})`;
   }
 
   return "Resolved catalog entry did not reach Sellmeier runtime path";
@@ -146,6 +157,9 @@ function lineIndexSurfaceCount(row: CoverageRow): number {
 describe("Sellmeier coverage scan", () => {
   it("emits a completeness-ordered report for the lens catalog", () => {
     const rows: CoverageRow[] = [];
+    const eLineMatches: ELineCatalogMatch[] = [];
+    let eLineSurfaces = 0;
+    let eLineSellmeierSurfaces = 0;
 
     for (const [path, mod] of Object.entries(modules)) {
       const raw = mod.default;
@@ -167,6 +181,7 @@ describe("Sellmeier coverage scan", () => {
         nonAirSurfaces++;
 
         const element = surface.elemId ? elementById.get(surface.elemId) : undefined;
+        if (element?.indexReference === "e") eLineSurfaces++;
         const catalogEntry = resolveCompatibleGlass(element?.glass, surface.nd, element?.vd, element?.indexReference);
         const sellmeierEligible = catalogEntry !== null;
         const quality = L.indexByIdx?.[i]?.quality ?? "missing";
@@ -174,6 +189,25 @@ describe("Sellmeier coverage scan", () => {
 
         if (sellmeierEligible) {
           sellmeierSurfaces++;
+          if (element?.indexReference === "e" && catalogEntry) {
+            eLineSellmeierSurfaces++;
+            const compatibility = assessCatalogGlassCompatibility(catalogEntry, surface.nd, element.vd, "e");
+            eLineMatches.push({
+              lensName: data.name ?? data.key,
+              filePath: toRepoRelativeLensPath(path),
+              surfaceLabel: surface.label ?? `surface[${i}]`,
+              elementLabel: element.label || element.name,
+              glassString: element.glass ?? "",
+              catalogName: catalogEntry.name,
+              storedIndex: surface.nd,
+              storedAbbe: element.vd,
+              catalogIndex: compatibility.catalogIndex,
+              catalogAbbe:
+                compatibility.abbeDiff === null || element.vd === undefined
+                  ? null
+                  : element.vd + compatibility.abbeDiff,
+            });
+          }
         }
         if (trustedChromatic) {
           trustedChromaticSurfaces++;
@@ -268,9 +302,11 @@ describe("Sellmeier coverage scan", () => {
       "Strict Sellmeier coverage is still reported: a surface counts when its `glass` annotation resolves to a catalog entry",
     );
     lines.push(
-      `and its catalog coordinates agree with the authored prescription within nd ±${GLASS_ND_TOLERANCE} and νd ±${GLASS_VD_TOLERANCE}.`,
+      `and its catalog coordinates agree with the authored prescription within Δn ±${GLASS_ND_TOLERANCE} and Δν ±${GLASS_VD_TOLERANCE}.`,
     );
-    lines.push("Native e-line prescription coordinates are excluded from the d-line catalog safety net.");
+    lines.push(
+      "D-line rows compare C/d/F coordinates; native e-line rows compare C′/e/F′ and require an explicit name or alias.",
+    );
     lines.push("Trusted chromatic coverage additionally counts measured C/F/g line-index surfaces.");
     lines.push("");
     lines.push("**Regenerate this file** by running `npm test -- sellmeierCoverageScan`.");
@@ -300,6 +336,25 @@ describe("Sellmeier coverage scan", () => {
     lines.push(
       `- **${formatPercent(totalTrustedChromaticSurfaces, totalNonAirSurfaces)}** trusted chromatic coverage overall`,
     );
+    lines.push(
+      `- **${eLineSellmeierSurfaces} / ${eLineSurfaces}** native e-line surfaces use name-verified catalog Sellmeier data`,
+    );
+    lines.push("");
+
+    lines.push("## Native E-Line Catalog Matches");
+    lines.push("");
+    lines.push(
+      "These rows use explicit names or aliases whose catalog coefficients reproduce the authored C′/e/F′ coordinates.",
+    );
+    lines.push("Six-digit codes are not considered because their encoded coordinates are nd/νd.");
+    lines.push("");
+    lines.push("| Lens | Surface | Element | Annotation | Catalog | Stored ne/νe | Catalog ne/νe |");
+    lines.push("|---|---|---|---|---|---|---|");
+    for (const row of eLineMatches) {
+      lines.push(
+        `| [${row.lensName}](../../${row.filePath}) | ${row.surfaceLabel} | ${row.elementLabel} | \`${row.glassString}\` | ${row.catalogName} | ${row.storedIndex.toFixed(5)} / ${row.storedAbbe?.toFixed(2) ?? "—"} | ${row.catalogIndex.toFixed(5)} / ${row.catalogAbbe?.toFixed(2) ?? "—"} |`,
+      );
+    }
     lines.push("");
 
     lines.push("## Fully Strict Sellmeier Lenses");

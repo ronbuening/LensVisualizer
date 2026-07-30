@@ -101,20 +101,32 @@ describe("glass catalog", () => {
     expect(assessCatalogGlassCompatibility(nbk7, 1.5168, 52.0).compatible).toBe(false);
   });
 
-  it("rejects e-line coordinates from the d-line catalog safety net", () => {
+  it("matches explicit e-line names at the C′/e/F′ coordinates", () => {
     const nbk7 = resolveGlass("N-BK7")!;
-    const compatibility = assessCatalogGlassCompatibility(nbk7, 1.5168, 64.17, "e");
+    expect(evaluateSellmeier(nbk7, LINE_NM.e)).toBeCloseTo(1.51872, 5);
+    expect(evaluateCatalogAbbeNumber(nbk7, "e")).toBeCloseTo(63.96, 2);
+
+    const compatibility = assessCatalogGlassCompatibility(nbk7, 1.51872, 63.96, "e");
     expect(compatibility).toMatchObject({
-      compatible: false,
-      referenceLineCompatible: false,
+      compatible: true,
       referenceLine: "e",
     });
-    expect(resolveCompatibleGlass("N-BK7", 1.5168, 64.17, "e")).toBeNull();
-    expect(explainCompatibleGlassResolution("N-BK7", 1.5168, 64.17, "e")).toMatchObject({
+    expect(compatibility.catalogIndex).toBeCloseTo(1.51872, 5);
+    expect(compatibility.abbeDiff).toBeCloseTo(0, 2);
+    expect(resolveCompatibleGlass("N-BK7", 1.51872, 63.96, "e")?.name).toBe("N-BK7");
+    expect(explainCompatibleGlassResolution("N-BK7", 1.51872, 63.96, "e")).toMatchObject({
+      selected: { name: "N-BK7" },
+      criterion: "only-compatible",
+    });
+  });
+
+  it("does not interpret d-line six-digit codes as e-line coordinates", () => {
+    expect(resolveCompatibleGlass("517642 — crown glass", 1.51872, 63.96, "e")).toBeNull();
+    expect(explainCompatibleGlassResolution("517642 — crown glass", 1.51872, 63.96, "e")).toMatchObject({
       selected: null,
       candidates: [],
       criterion: "none",
-      reason: "Authored e-line coordinates are not eligible for the d-line catalog safety net.",
+      reason: "No coordinate-compatible catalog candidate.",
     });
   });
 
@@ -582,7 +594,7 @@ describe("resolveGlass", () => {
     const explanation = explainCompatibleGlassResolution("S-BSL7 / N-BK7", 1.5168, 64.1);
     expect(explanation.candidates.length).toBeGreaterThan(1);
     expect(explanation.selected?.name).toBe(resolveCompatibleGlass("S-BSL7 / N-BK7", 1.5168, 64.1)?.name);
-    expect(["nd-residual", "vd-residual", "token-order", "canonical-name-order"]).toContain(explanation.criterion);
+    expect(["index-residual", "abbe-residual", "token-order", "canonical-name-order"]).toContain(explanation.criterion);
   });
 
   it("can select a compatible later token when the first named glass is incompatible", () => {
@@ -669,24 +681,45 @@ describe("makeSurfaceDispersion preference cascade", () => {
     expect(d.glassEntry).toBeUndefined();
   });
 
-  it("falls back to authored e-line coordinates instead of borrowing a d-line catalog curve", () => {
+  it("uses an explicit e-line-compatible catalog curve at physical C/d/F/g wavelengths", () => {
     const d = makeSurfaceDispersion(
-      { R: 0, d: 0, sd: 0, label: "", nd: 1.5168, elemId: 1 },
+      { R: 0, d: 0, sd: 0, label: "", nd: 1.51872, elemId: 1 },
       {
         id: 1,
         name: "L1",
         label: "L1",
         type: "Test",
-        nd: 1.5168,
-        vd: 64.17,
+        nd: 1.51872,
+        vd: 63.96,
         indexReference: "e",
         glass: "N-BK7",
       },
       undefined,
     );
+    expect(d.quality).toBe("sellmeier");
+    expect(d.glassEntry?.name).toBe("N-BK7");
+    expect(d.fn("G")).toBeCloseTo(1.5168, 5);
+    expect(d.fn("G")).not.toBeCloseTo(1.51872, 5);
+  });
+
+  it("keeps authored ne in the fallback G channel when no e-line catalog name is trusted", () => {
+    const d = makeSurfaceDispersion(
+      { R: 0, d: 0, sd: 0, label: "", nd: 1.51872, elemId: 1 },
+      {
+        id: 1,
+        name: "L1",
+        label: "L1",
+        type: "Test",
+        nd: 1.51872,
+        vd: 63.96,
+        indexReference: "e",
+        glass: "Unmatched crown",
+      },
+      undefined,
+    );
     expect(d.quality).toBe("abbe");
     expect(d.glassEntry).toBeUndefined();
-    expect(d.fn("G")).toBe(1.5168);
+    expect(d.fn("G")).toBe(1.51872);
   });
 
   it("uses measured line indices when the catalog misses but nC/nF are present", () => {

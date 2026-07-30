@@ -1,8 +1,8 @@
 # Catalog Mismatches (auto-generated)
 
 Surfaces where the element's `glass` string resolves to a vendor catalog entry
-but its published coordinates disagree with the stored prescription beyond nd ±0.003 or νd ±2.
-Native e-line prescription coordinates are excluded from this d-line comparison.
+but its published coordinates disagree with the stored prescription beyond Δn ±0.003 or Δν ±2.
+D-line rows compare C/d/F coordinates; native e-line rows compare C′/e/F′ coordinates.
 
 These are rejected by the safety net in [src/optics/dispersion.ts](../../src/optics/dispersion.ts) — the
 dispersion cascade falls through to Abbe rather than trust a misidentified glass label. This
@@ -17,11 +17,11 @@ with words like "probable" or "approx").
 - **488** lenses scanned
 - **5360** glass surfaces examined
 - **5353** surfaces with non-empty `glass` strings
-- **75** native e-line surfaces excluded from d-line catalog comparison
-- **4647** of those resolved to a catalog entry
+- **16 / 75** native e-line surfaces resolve by explicit name or alias
+- **4663** of those resolved to a catalog entry
 - **0** mismatches found (0.0% of resolved surfaces)
 - **0** distinct lens files affected
 
 ## No mismatches
 
-Every catalog-resolved surface agrees with its stored `nd` and `νd` within tolerance. ✓
+Every catalog-resolved surface agrees with its stored reference index and Abbe number. ✓

@@ -3,6 +3,7 @@
  *
  * Walks every lens in the catalog and identifies surfaces where the element's
  * `glass` string resolves to a known catalog entry but its published (nd, νd)
+ * or (ne, νe)
  * coordinates disagree with the authored prescription beyond the safety-net
  * tolerances used in src/optics/dispersion.ts. These mismatches
  * indicate either:
@@ -17,8 +18,8 @@
  * through to the Abbe approximation. This test outputs a report to
  * `agent_docs/generated/catalog-mismatches.generated.md` so the team can decide
  * per-case whether to relabel the glass or update the stored `nd`.
- * Native e-line prescription coordinates are counted separately and excluded
- * from d-line numeric comparison.
+ * Native e-line coordinates are compared at C′/e/F′. Their six-digit-looking
+ * tokens are never treated as catalog codes because those encode nd/νd.
  *
  * Always passes — its job is to surface the data, not to gate CI.
  */
@@ -27,6 +28,7 @@ import { mkdirSync, writeFileSync } from "node:fs";
 import buildLens from "../../../src/optics/buildLens.js";
 import {
   assessCatalogGlassCompatibility,
+  evaluateCatalogAbbeNumber,
   GLASS_ND_TOLERANCE,
   GLASS_VD_TOLERANCE,
   resolveCompatibleGlass,
@@ -46,6 +48,7 @@ interface Mismatch {
   surfaceIdx: number;
   glassString: string;
   catalogName: string;
+  referenceLine: "d" | "e";
   storedNd: number;
   storedVd: number | undefined;
   catalogNd: number;
@@ -75,7 +78,8 @@ describe("catalog-mismatch scan", () => {
     let totalSurfaces = 0;
     let totalGlassDeclarations = 0;
     let totalCatalogResolved = 0;
-    let referenceLineExcluded = 0;
+    let eLineSurfaces = 0;
+    let eLineCatalogResolved = 0;
 
     for (const [path, mod] of Object.entries(modules)) {
       const raw = mod.default;
@@ -103,14 +107,13 @@ describe("catalog-mismatch scan", () => {
         const element = surface.elemId ? elementById.get(surface.elemId) : undefined;
         if (!element?.glass) continue;
         totalGlassDeclarations++;
-        if (element.indexReference === "e") {
-          referenceLineExcluded++;
-          continue;
-        }
+        const referenceLine = element.indexReference ?? "d";
+        if (referenceLine === "e") eLineSurfaces++;
 
         const compatibleEntry = resolveCompatibleGlass(element.glass, surface.nd, element.vd, element.indexReference);
         if (compatibleEntry) {
           totalCatalogResolved++;
+          if (referenceLine === "e") eLineCatalogResolved++;
           continue;
         }
 
@@ -129,10 +132,11 @@ describe("catalog-mismatch scan", () => {
             surfaceIdx: i,
             glassString: element.glass,
             catalogName: entry.name,
+            referenceLine,
             storedNd: surface.nd,
             storedVd: element.vd,
             catalogNd: compatibility.catalogNd,
-            catalogVd: entry.vd,
+            catalogVd: evaluateCatalogAbbeNumber(entry, referenceLine),
             ndDiff: compatibility.ndDiff,
             vdDiff: compatibility.vdDiff,
           });
@@ -161,9 +165,9 @@ describe("catalog-mismatch scan", () => {
     lines.push("");
     lines.push("Surfaces where the element's `glass` string resolves to a vendor catalog entry");
     lines.push(
-      `but its published coordinates disagree with the stored prescription beyond nd ±${GLASS_ND_TOLERANCE} or νd ±${GLASS_VD_TOLERANCE}.`,
+      `but its published coordinates disagree with the stored prescription beyond Δn ±${GLASS_ND_TOLERANCE} or Δν ±${GLASS_VD_TOLERANCE}.`,
     );
-    lines.push("Native e-line prescription coordinates are excluded from this d-line comparison.");
+    lines.push("D-line rows compare C/d/F coordinates; native e-line rows compare C′/e/F′ coordinates.");
     lines.push("");
     lines.push(
       "These are rejected by the safety net in [src/optics/dispersion.ts](../../src/optics/dispersion.ts) — the",
@@ -180,7 +184,9 @@ describe("catalog-mismatch scan", () => {
     lines.push(`- **${totalLenses}** lenses scanned`);
     lines.push(`- **${totalSurfaces}** glass surfaces examined`);
     lines.push(`- **${totalGlassDeclarations}** surfaces with non-empty \`glass\` strings`);
-    lines.push(`- **${referenceLineExcluded}** native e-line surfaces excluded from d-line catalog comparison`);
+    lines.push(
+      `- **${eLineCatalogResolved} / ${eLineSurfaces}** native e-line surfaces resolve by explicit name or alias`,
+    );
     lines.push(`- **${totalCatalogResolved}** of those resolved to a catalog entry`);
     lines.push(
       `- **${mismatches.length}** mismatches found (${((mismatches.length / Math.max(1, totalCatalogResolved)) * 100).toFixed(1)}% of resolved surfaces)`,
@@ -205,7 +211,7 @@ describe("catalog-mismatch scan", () => {
     if (mismatches.length === 0) {
       lines.push("## No mismatches");
       lines.push("");
-      lines.push("Every catalog-resolved surface agrees with its stored `nd` and `νd` within tolerance. ✓");
+      lines.push("Every catalog-resolved surface agrees with its stored reference index and Abbe number. ✓");
     } else {
       lines.push("## Mismatches by lens");
       lines.push("");
@@ -226,13 +232,13 @@ describe("catalog-mismatch scan", () => {
         const patentSuffix = first.patentNumber ? ` — ${first.patentNumber}` : "";
         lines.push(`### [${first.lensName}](../../${first.filePath})${patentSuffix}`);
         lines.push("");
-        lines.push("| Surface | Glass annotation | Catalog match | Stored nd/νd | Catalog nd/νd | Δnd | Δνd |");
-        lines.push("|---|---|---|---|---|---|---|");
+        lines.push("| Surface | Ref | Glass annotation | Catalog match | Stored n/ν | Catalog n/ν | Δn | Δν |");
+        lines.push("|---|---|---|---|---|---|---|---|");
         for (const m of list) {
           const ndSign = m.ndDiff >= 0 ? "+" : "";
           const vdSign = m.vdDiff !== null && m.vdDiff >= 0 ? "+" : "";
           lines.push(
-            `| ${m.surfaceLabel} | \`${m.glassString}\` | ${m.catalogName} | ${m.storedNd.toFixed(5)} / ${m.storedVd?.toFixed(2) ?? "—"} | ${m.catalogNd.toFixed(5)} / ${m.catalogVd.toFixed(2)} | ${ndSign}${m.ndDiff.toFixed(4)} | ${m.vdDiff === null ? "—" : `${vdSign}${m.vdDiff.toFixed(2)}`} |`,
+            `| ${m.surfaceLabel} | ${m.referenceLine} | \`${m.glassString}\` | ${m.catalogName} | ${m.storedNd.toFixed(5)} / ${m.storedVd?.toFixed(2) ?? "—"} | ${m.catalogNd.toFixed(5)} / ${m.catalogVd.toFixed(2)} | ${ndSign}${m.ndDiff.toFixed(4)} | ${m.vdDiff === null ? "—" : `${vdSign}${m.vdDiff.toFixed(2)}`} |`,
           );
         }
         lines.push("");

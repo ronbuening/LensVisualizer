@@ -490,7 +490,7 @@ Each entry in the `elements` array describes one physical glass element.
 **Spectral-data notes (chromatic modeling).** Store `nC`, `nF`, `ng`, and `dPgF` directly on the
 element; there is no authored `spectral` wrapper. The chromatic-aberration ray trace consults
 data in this preference order: air → complete explicit `nC`/`nF`/`ng` → catalog Sellmeier
-resolved from `glass` for d-line-authored coordinates → partial explicit `nC`/`nF` →
+resolved from a coordinate-compatible `glass` name → partial explicit `nC`/`nF` →
 `dPgF`-corrected Abbe → plain Abbe
 (`nd` + `vd` only), then constant index when `vd` is unavailable. Each level falls back to the
 next. For apochromatic designs where the patent publishes partial dispersion or line indices,
@@ -498,9 +498,10 @@ prefer transcribing them.
 
 `indexReference` describes what the schema's historical `nd` / `vd` slots actually contain. Omit it (or use `"d"`)
 for ordinary d-line data. Use `"e"` only when the stored values preserve a source's native `ne` / `νe` coordinates.
-Native e-line elements are excluded from d-line catalog compatibility and Sellmeier substitution even when their glass
-annotation names a catalog family. Do not mark an element merely because the source also publishes an e-line anchor,
-or when the data file has already converted the source values to d-line coordinates.
+Native e-line elements can use catalog Sellmeier data only when an explicit glass name or alias reproduces their
+`ne` / `νe` pair at C′/e/F′. Six-digit catalog codes remain d-line-only because they encode `nd` / `νd`. Do not mark
+an element merely because the source also publishes an e-line anchor, or when the data file has already converted the
+source values to d-line coordinates.
 
 **Common `type` values:**
 - `"Biconvex Positive"`, `"Biconcave Negative"`
@@ -547,18 +548,19 @@ This is preferable to leaving a wrong vendor name in place. The chromatic disper
 ### Round-trip verification
 
 When the dispersion engine resolves a `glass:` string against a Sellmeier catalog, it rejects the resolution if the
-element uses native e-line coordinates, or if the catalog coordinates disagree with the element's stored d-line values
-by more than nd ±0.003 or νd ±2. This safety net catches accidental relabels but it is not a substitute for the
-author's own check.
+catalog coordinates disagree with the element's stored reference pair by more than Δn ±0.003 or Δν ±2. D-line rows
+are compared at C/d/F; native e-line rows are compared at C′/e/F′ and require an explicit name or alias. This safety
+net catches accidental relabels but it is not a substitute for the author's own check.
 
 Before committing a `glass:` change, verify:
 
 1. The catalog entry exists for the named glass and the catalog's stored Sellmeier coefficients reproduce the catalog's listed `nd` to high precision (typical tolerance: 1e-4 — this is a property of the catalog, enforced in CI when present).
-2. The element's stored `(nd, νd)` agrees with the catalog's published `(nd, νd)` to within the runtime window
-   (Δnd ≤ 0.003, Δνd ≤ 2.0); for confident named matches, prefer substantially smaller residuals and document any
+2. The element's stored reference pair agrees with the catalog coefficients to within the runtime window
+   (Δn ≤ 0.003, Δν ≤ 2.0); for confident named matches, prefer substantially smaller residuals and document any
    non-exact family-level assignment.
-3. The source and stored values use the d-line reference. If the prescription retains `ne` / `νe`, set
-   `indexReference: "e"` and keep any catalog name as family context only.
+3. The source reference is identified correctly. If the prescription retains `ne` / `νe`, set
+   `indexReference: "e"` and use only an explicit name or alias that round-trips at C′/e/F′. Do not rely on a
+   six-digit d-line code for an e-line row.
 
 When neither holds, prefer the `Unmatched` form over a speculative match.
 
@@ -953,7 +955,7 @@ When transcribing from an optical patent:
 3. **Aspherical coefficients** — Copy from the asph table. Watch for scientific notation format differences between patents
 4. **Variable gaps** — Look for "variable spacing" tables showing values at different object distances
 5. **Elements** — Derive from the surface data: consecutive surfaces with the same glass (nd > 1) form one element. Cemented elements share a boundary surface
-6. **Glass identification** — See the **Glass Identification** section above for canonical `glass:` formats, the `Unmatched (...)` convention for proprietary glass, and round-trip verification expectations. Confirm whether the source coordinates are d-line or e-line before matching them against vendor catalogs. Set `indexReference: "e"` when `nd`/`vd` preserve native `ne`/`νe`; do not set it after an explicit e-to-d conversion. Match d-line `nd`/`νd` pairs against vendor catalogs (Ohara, Schott, Hoya, Sumita, CDGM) and prefer the vendor whose name the patent uses; when the patent is silent, prefer the vendor consistent with the rest of the lens. When the patent publishes anomalous partial dispersion data (`PgF`/`ΔPgF`) or per-element line indices (`nC`, `nF`, `ng`), transcribe them onto the element block — these enable higher-fidelity chromatic modeling than `nd`/`vd` alone
+6. **Glass identification** — See the **Glass Identification** section above for canonical `glass:` formats, the `Unmatched (...)` convention for proprietary glass, and round-trip verification expectations. Confirm whether the source coordinates are d-line or e-line before matching them against vendor catalogs. Set `indexReference: "e"` when `nd`/`vd` preserve native `ne`/`νe`; do not set it after an explicit e-to-d conversion. Match d-line `nd`/`νd` pairs at C/d/F and explicit e-line names/aliases at C′/e/F′ against vendor catalogs (Ohara, Schott, Hoya, Sumita, CDGM); six-digit codes are d-line-only. Prefer the vendor whose name the patent uses; when the patent is silent, prefer the vendor consistent with the rest of the lens. When the patent publishes anomalous partial dispersion data (`PgF`/`ΔPgF`) or per-element line indices (`nC`, `nF`, `ng`), transcribe them onto the element block — these enable higher-fidelity chromatic modeling than `nd`/`vd` alone
 7. **Focal length** — Use the patent's stated EFL, or compute from the prescription via paraxial ray trace
 8. **F-number** — Use the patent's stated f-number. If the patent gives the stop diameter, compute `f/# = EFL / (2 × EP_SD)`
 9. **Scaling** — If the patent prescription is at a different focal length than production (e.g., f=100 in patent, f=50 production), apply a uniform scale factor `s` to all `R`, `d`, `sd`, image-plane coordinates, and other dimensional spacings. Transform each aspherical polynomial coefficient as `A_p,scaled = A_p,patent / s^(p-1)`; keep `K` unchanged. Document the scale factor and coefficient transform in the file header

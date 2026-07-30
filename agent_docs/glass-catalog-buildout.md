@@ -9,6 +9,13 @@ approximation. Current optics-engine boundaries are summarized in
 
 The catalog currently has **431 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
 
+The July 30, 2026 Phase 57 pass added genuine native e-line compatibility. Catalog coefficients are evaluated at
+C′/e/F′ for `indexReference: "e"` rows, while six-digit codes stay d-line-only and explicit `Unmatched` annotations
+remain closed. Sixteen of 75 protected e-line surfaces now use name-verified catalog Sellmeier curves across Leica,
+Nikon, and Rodenstock prescriptions. The physical chromatic trace still evaluates those curves at the shared C/d/F/g
+wavelengths; unmatched e-line fallbacks continue to retain authored ne in their reference channel. Coverage is now
+4663 / 5360 strict (87.0%) and 4675 / 5360 trusted (87.2%), with 226 fully strict and 231 fully trusted lenses.
+
 The July 30, 2026 Phase 56 pass added three first-party rows: Hikari J-BAF3 from the 2023 optical-glass catalog and
 CDGM H-ZF2/H-ZLaF75B from rendered vendor datasheets. The bare historical `BAF3` token now aliases to J-BAF3,
 while the established `673322` code-only precedence remains unchanged for cross-vendor compatibility. Fujifilm GF

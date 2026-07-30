@@ -1,8 +1,8 @@
 # Glass Relabel Candidates (auto-generated)
 
 Companion to [catalog-mismatches.generated.md](catalog-mismatches.generated.md). For each rejected
-catalog mismatch, this report searches the catalog for a *better* candidate whose nd AND vd
-both match the stored values within tolerance (nd ±0.003, vd ±2).
+catalog mismatch, this report searches the catalog for a *better* candidate whose reference index and
+Abbe number both match within tolerance (Δn ±0.003, Δν ±2).
 
 **Regenerate** with `npm test -- glassRelabelCandidatesScan`.
 

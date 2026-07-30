@@ -28,7 +28,7 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-07-30",
     type: "fix",
-    summary: "Prevented native e-line patent indices from borrowing incompatible d-line glass curves",
+    summary: "Added reference-safe catalog dispersion for native e-line patent prescriptions",
   },
   {
     date: "2026-07-30",

@@ -49,8 +49,8 @@ const CRITERION_LABELS: Readonly<Record<GlassResolutionCriterion, string>> = {
   "only-compatible": "Only compatible candidate",
   "source-priority": "Evidence-source priority",
   "vendor-context": "Vendor context",
-  "nd-residual": "Smallest d-line residual",
-  "vd-residual": "Smallest Abbe residual",
+  "index-residual": "Smallest reference-index residual",
+  "abbe-residual": "Smallest Abbe residual",
   "token-order": "Annotation token order",
   "duplicate-code-precedence": "Duplicate-code precedence",
   "canonical-name-order": "Stable canonical-name order",
@@ -81,7 +81,9 @@ function vendorContextLabel(candidate: CompatibleGlassCandidate): string {
 }
 
 function candidateDescription(candidate: CompatibleGlassCandidate): string {
-  const vdDiff = candidate.compatibility.vdDiff === null ? "n/a" : formatSigned(candidate.compatibility.vdDiff, 4);
+  const abbeDiff =
+    candidate.compatibility.abbeDiff === null ? "n/a" : formatSigned(candidate.compatibility.abbeDiff, 4);
+  const referenceLine = candidate.compatibility.referenceLine;
   const legacyCode =
     candidate.legacyCodePreferred === null
       ? ""
@@ -91,8 +93,16 @@ function candidateDescription(candidate: CompatibleGlassCandidate): string {
   return (
     `**${candidate.entry.name}** (${candidate.entry.vendor}; ${sourceLabel(candidate)} ` +
     `\`${candidate.matchedToken}\`; ${vendorContextLabel(candidate)}; ` +
-    `Δnd=${formatSigned(candidate.compatibility.ndDiff, 9)}; Δνd=${vdDiff}${legacyCode})`
+    `Δn${referenceLine}=${formatSigned(candidate.compatibility.indexDiff, 9)}; ` +
+    `Δν${referenceLine}=${abbeDiff}${legacyCode})`
   );
+}
+
+function criterionLabel(row: AmbiguousElement): string {
+  if (row.criterion !== "index-residual") return CRITERION_LABELS[row.criterion];
+  return row.candidates[0]?.compatibility.referenceLine === "d"
+    ? "Smallest d-line residual"
+    : "Smallest e-line index residual";
 }
 
 describe("glass ambiguity scan", () => {
@@ -166,12 +176,14 @@ describe("glass ambiguity scan", () => {
       "Lens elements whose annotation produces two or more catalog candidates inside the runtime compatibility guard.",
     );
     lines.push(
-      `All candidates agree with the authored coordinates within nd ±${GLASS_ND_TOLERANCE} and νd ±${GLASS_VD_TOLERANCE};`,
+      `All candidates agree with the authored d- or e-line coordinates within Δn ±${GLASS_ND_TOLERANCE} and Δν ±${GLASS_VD_TOLERANCE};`,
     );
     lines.push("the selected row follows the same ordering used by `resolveCompatibleGlass`.");
     lines.push("");
     lines.push("Resolver priority is: direct name before alias before six-digit code; matching vendor context;");
-    lines.push("smallest |Δnd|; smallest |Δνd|; annotation token order; duplicate-code precedence; canonical name.");
+    lines.push(
+      "smallest reference-index residual; smallest Abbe residual; annotation token order; duplicate-code precedence; canonical name.",
+    );
     lines.push("");
     lines.push("**Regenerate this file** by running `npm test -- glassAmbiguityScan`.");
     lines.push("Regenerate the full glass report set with `npm run generate:glass-reports`.");
@@ -194,7 +206,7 @@ describe("glass ambiguity scan", () => {
     lines.push("## Ambiguous Elements");
     lines.push("");
     lines.push(
-      "| Lens / element | Annotation | Stored nd / νd | Selected and reason | Compatible candidates in resolver order |",
+      "| Lens / element | Annotation | Stored reference n / ν | Selected and reason | Compatible candidates in resolver order |",
     );
     lines.push("|---|---|---:|---|---|");
     for (const row of rows) {
@@ -203,7 +215,7 @@ describe("glass ambiguity scan", () => {
       const surfaces = row.surfaces.join(", ") || "none";
       const candidates = row.candidates.map(candidateDescription).join("<br>");
       lines.push(
-        `| [${escapeMarkdownCell(row.lensName)}](../../${row.filePath})<br>${escapeMarkdownCell(elementLabel)}; surfaces ${surfaces} | \`${escapeMarkdownCell(row.glassString)}\` | ${row.storedNd.toFixed(5)} / ${storedVd} | **${row.selectedName}**<br>${CRITERION_LABELS[row.criterion]}: ${row.reason} | ${candidates} |`,
+        `| [${escapeMarkdownCell(row.lensName)}](../../${row.filePath})<br>${escapeMarkdownCell(elementLabel)}; surfaces ${surfaces} | \`${escapeMarkdownCell(row.glassString)}\` | ${row.storedNd.toFixed(5)} / ${storedVd} | **${row.selectedName}**<br>${criterionLabel(row)}: ${row.reason} | ${candidates} |`,
       );
     }
     lines.push("");

@@ -280,18 +280,33 @@ export default function ElementInspector({ info, L, t, showChromatic, onOpenAsph
                 </span>
               </div>
               <div>
-                <span style={{ color: t.propLabel }}>nF{"\u2212"}nC = </span>
+                <span style={{ color: t.propLabel }}>
+                  {indexReference === "e" && row.quality !== "sellmeier" ? "nF′−nC′" : "nF−nC"} ={" "}
+                </span>
                 <span style={{ color: t.value }}>{(row.indices.B - row.indices.R).toFixed(5)}</span>
               </div>
               <div style={{ gridColumn: "1 / -1" }}>
                 {CHROMATIC_CHANNEL_ORDER.map((ch, idx) => {
                   const color =
                     ch === "R" ? t.rayChromR : ch === "G" ? t.rayChromG : ch === "B" ? t.rayChromB : t.rayChromV;
-                  const indexLabel = ch === "G" && indexReference === "e" ? "n\u2091" : chromaticChannelIndexLabel(ch);
+                  const usesNativeELineChannels = indexReference === "e" && row.quality !== "sellmeier";
+                  const indexLabel = usesNativeELineChannels
+                    ? ch === "R"
+                      ? "nC′"
+                      : ch === "G"
+                        ? "n\u2091"
+                        : ch === "B"
+                          ? "nF′"
+                          : chromaticChannelIndexLabel(ch)
+                    : chromaticChannelIndexLabel(ch);
                   const wavelengthLabel =
-                    ch === "G" && indexReference === "e"
-                      ? "Authored mercury e-line reference (546.1 nm)"
-                      : CHROMATIC_CHANNEL_METADATA[ch].wavelengthLabel;
+                    usesNativeELineChannels && ch === "R"
+                      ? "Cadmium C′-line 643.8 nm"
+                      : usesNativeELineChannels && ch === "G"
+                        ? "Authored mercury e-line reference (546.1 nm)"
+                        : usesNativeELineChannels && ch === "B"
+                          ? "Cadmium F′-line 480.0 nm"
+                          : CHROMATIC_CHANNEL_METADATA[ch].wavelengthLabel;
                   return (
                     <span key={ch} style={{ marginLeft: idx === 0 ? 0 : 10, whiteSpace: "nowrap" }}>
                       <span style={{ color: t.propLabel }}>{indexLabel} </span>

@@ -16,4 +16,4 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## No Relabel Work
 
-Every catalog-resolved surface agrees with stored `nd` within tolerance.
+Every catalog-resolved surface agrees with its stored reference coordinates.

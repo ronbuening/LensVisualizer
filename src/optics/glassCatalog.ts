@@ -28,7 +28,7 @@ import type { RefractiveIndexReferenceLine } from "../types/optics.js";
 export type { GlassEntry } from "./glassCatalogTypes.js";
 export { LINE_NM } from "./spectralLines.js";
 
-/** Maximum accepted d-line index delta between authored lens data and a catalog entry. */
+/** Maximum accepted d- or e-line index delta between authored lens data and a catalog entry. */
 export const GLASS_ND_TOLERANCE = 3e-3;
 
 /** Maximum accepted catalog d-line round-trip error. */
@@ -40,7 +40,7 @@ export const GLASS_CATALOG_VD_TOLERANCE = 0.15;
 /**
  * Maximum accepted Abbe-number delta between authored lens data and a catalog entry.
  *
- * Patent tables commonly round νd more heavily than nd. A two-point window still
+ * Patent tables commonly round Abbe numbers more heavily than reference indices. A two-point window still
  * accommodates ordinary tabular rounding while rejecting nearby glasses from
  * meaningfully different dispersion families.
  */
@@ -48,11 +48,18 @@ export const GLASS_VD_TOLERANCE = 2;
 
 export interface CatalogGlassCompatibility {
   readonly compatible: boolean;
-  /** Whether the authored coordinates use the catalog's d-line reference. */
-  readonly referenceLineCompatible: boolean;
   readonly referenceLine: RefractiveIndexReferenceLine;
+  /** Catalog index evaluated at the authored d or e reference line. */
+  readonly catalogIndex: number;
+  /** Catalog index minus the authored reference index. */
+  readonly indexDiff: number;
+  /** Catalog Abbe number minus the authored vd or ve. */
+  readonly abbeDiff: number | null;
+  /** @deprecated Use catalogIndex. Kept for report compatibility. */
   readonly catalogNd: number;
+  /** @deprecated Use indexDiff. Kept for report compatibility. */
   readonly ndDiff: number;
+  /** @deprecated Use abbeDiff. Kept for report compatibility. */
   readonly vdDiff: number | null;
 }
 
@@ -62,8 +69,8 @@ export type GlassResolutionCriterion =
   | "only-compatible"
   | "source-priority"
   | "vendor-context"
-  | "nd-residual"
-  | "vd-residual"
+  | "index-residual"
+  | "abbe-residual"
   | "token-order"
   | "duplicate-code-precedence"
   | "canonical-name-order";
@@ -115,23 +122,41 @@ export function evaluateSellmeier(entry: GlassEntry, lambdaNm: number): number {
   return Math.sqrt(n2);
 }
 
-/** Compute the d-line Abbe number directly from an entry's published dispersion coefficients. */
-export function evaluateCatalogAbbeNumber(entry: GlassEntry): number {
-  const nC = evaluateSellmeier(entry, LINE_NM.C);
-  const nd = evaluateSellmeier(entry, LINE_NM.d);
-  const nF = evaluateSellmeier(entry, LINE_NM.F);
-  return (nd - 1) / (nF - nC);
+interface ReferenceCoordinateWavelengths {
+  readonly reference: number;
+  readonly red: number;
+  readonly blue: number;
+}
+
+const REFERENCE_COORDINATE_WAVELENGTHS: Readonly<Record<RefractiveIndexReferenceLine, ReferenceCoordinateWavelengths>> =
+  {
+    d: { reference: LINE_NM.d, red: LINE_NM.C, blue: LINE_NM.F },
+    e: { reference: LINE_NM.e, red: LINE_NM.CPrime, blue: LINE_NM.FPrime },
+  };
+
+/** Compute vd or ve directly from an entry's published dispersion coefficients. */
+export function evaluateCatalogAbbeNumber(
+  entry: GlassEntry,
+  referenceLine: RefractiveIndexReferenceLine = "d",
+): number {
+  const wavelengths = REFERENCE_COORDINATE_WAVELENGTHS[referenceLine];
+  const nRed = evaluateSellmeier(entry, wavelengths.red);
+  const nReference = evaluateSellmeier(entry, wavelengths.reference);
+  const nBlue = evaluateSellmeier(entry, wavelengths.blue);
+  return (nReference - 1) / (nBlue - nRed);
 }
 
 /**
  * Check whether a catalog glass is compatible with an authored refractive-index pair.
  *
- * Catalog coordinates are d-line values. An authored e-line pair must not be
- * compared numerically against them or inherit their Sellmeier curve.
+ * Catalog entries store d-line summary coordinates, but their published
+ * coefficients can also reproduce native e-line coordinates. Compatibility
+ * therefore compares nd/vd at C/d/F or ne/ve at C′/e/F′ as authored.
  *
- * nd alone is not enough to identify a dispersion curve: different glass
+ * A reference index alone is not enough to identify a dispersion curve: different glass
  * families can share nearly the same d-line index while having very different
- * Abbe numbers. When the lens data includes νd, require both coordinates.
+ * Abbe numbers. When the lens data includes an Abbe number, require both
+ * coordinates at the same reference line.
  */
 export function assessCatalogGlassCompatibility(
   entry: GlassEntry,
@@ -139,20 +164,21 @@ export function assessCatalogGlassCompatibility(
   storedVd: number | undefined,
   referenceLine: RefractiveIndexReferenceLine = "d",
 ): CatalogGlassCompatibility {
-  const catalogNd = evaluateSellmeier(entry, LINE_NM.d);
-  const ndDiff = catalogNd - storedNd;
-  const vdDiff = storedVd === undefined ? null : entry.vd - storedVd;
-  const referenceLineCompatible = referenceLine === "d";
+  const wavelengths = REFERENCE_COORDINATE_WAVELENGTHS[referenceLine];
+  const catalogIndex = evaluateSellmeier(entry, wavelengths.reference);
+  const catalogAbbe = referenceLine === "d" ? entry.vd : evaluateCatalogAbbeNumber(entry, "e");
+  const indexDiff = catalogIndex - storedNd;
+  const abbeDiff = storedVd === undefined ? null : catalogAbbe - storedVd;
   return {
     compatible:
-      referenceLineCompatible &&
-      Math.abs(ndDiff) <= GLASS_ND_TOLERANCE &&
-      (vdDiff === null || Math.abs(vdDiff) <= GLASS_VD_TOLERANCE),
-    referenceLineCompatible,
+      Math.abs(indexDiff) <= GLASS_ND_TOLERANCE && (abbeDiff === null || Math.abs(abbeDiff) <= GLASS_VD_TOLERANCE),
     referenceLine,
-    catalogNd,
-    ndDiff,
-    vdDiff,
+    catalogIndex,
+    indexDiff,
+    abbeDiff,
+    catalogNd: catalogIndex,
+    ndDiff: indexDiff,
+    vdDiff: abbeDiff,
   };
 }
 
@@ -378,8 +404,8 @@ function compatibleCandidateMatches(
   storedVd: number | undefined,
   referenceLine: RefractiveIndexReferenceLine,
 ): RankedCompatibleGlassCandidate[] {
-  if (referenceLine !== "d") return [];
   return candidateMatches(glassString)
+    .filter((match) => referenceLine === "d" || match.source !== "code")
     .map((match) => ({
       ...match,
       compatibility: assessCatalogGlassCompatibility(match.entry, storedNd, storedVd, referenceLine),
@@ -389,8 +415,8 @@ function compatibleCandidateMatches(
       (a, b) =>
         a.sourceRank - b.sourceRank ||
         a.vendorRank - b.vendorRank ||
-        Math.abs(a.compatibility.ndDiff) - Math.abs(b.compatibility.ndDiff) ||
-        Math.abs(a.compatibility.vdDiff ?? 0) - Math.abs(b.compatibility.vdDiff ?? 0) ||
+        Math.abs(a.compatibility.indexDiff) - Math.abs(b.compatibility.indexDiff) ||
+        Math.abs(a.compatibility.abbeDiff ?? 0) - Math.abs(b.compatibility.abbeDiff ?? 0) ||
         a.tokenRank - b.tokenRank ||
         a.legacyPreferenceRank - b.legacyPreferenceRank ||
         a.entry.name.localeCompare(b.entry.name),
@@ -424,21 +450,24 @@ function candidateSelectionReason(candidates: readonly RankedCompatibleGlassCand
     return { criterion: "vendor-context", reason: `Annotation vendor context matches ${selected.entry.vendor}.` };
   }
 
-  const selectedNdResidual = Math.abs(selected.compatibility.ndDiff);
-  const runnerUpNdResidual = Math.abs(runnerUp.compatibility.ndDiff);
-  if (selectedNdResidual !== runnerUpNdResidual) {
+  const selectedIndexResidual = Math.abs(selected.compatibility.indexDiff);
+  const runnerUpIndexResidual = Math.abs(runnerUp.compatibility.indexDiff);
+  if (selectedIndexResidual !== runnerUpIndexResidual) {
+    const referenceLine = selected.compatibility.referenceLine;
     return {
-      criterion: "nd-residual",
-      reason: `Smallest d-line residual (${selectedNdResidual.toFixed(9)} vs ${runnerUpNdResidual.toFixed(9)}).`,
+      criterion: "index-residual",
+      reason:
+        (referenceLine === "d" ? "Smallest d-line residual " : `Smallest ${referenceLine}-line index residual `) +
+        `(${selectedIndexResidual.toFixed(9)} vs ${runnerUpIndexResidual.toFixed(9)}).`,
     };
   }
 
-  const selectedVdResidual = Math.abs(selected.compatibility.vdDiff ?? 0);
-  const runnerUpVdResidual = Math.abs(runnerUp.compatibility.vdDiff ?? 0);
-  if (selectedVdResidual !== runnerUpVdResidual) {
+  const selectedAbbeResidual = Math.abs(selected.compatibility.abbeDiff ?? 0);
+  const runnerUpAbbeResidual = Math.abs(runnerUp.compatibility.abbeDiff ?? 0);
+  if (selectedAbbeResidual !== runnerUpAbbeResidual) {
     return {
-      criterion: "vd-residual",
-      reason: `Smallest Abbe-number residual (${selectedVdResidual.toFixed(4)} vs ${runnerUpVdResidual.toFixed(4)}).`,
+      criterion: "abbe-residual",
+      reason: `Smallest Abbe-number residual (${selectedAbbeResidual.toFixed(4)} vs ${runnerUpAbbeResidual.toFixed(4)}).`,
     };
   }
   if (selected.tokenRank !== runnerUp.tokenRank) {
@@ -473,14 +502,6 @@ export function explainCompatibleGlassResolution(
   if (!glassString) {
     return { selected: null, candidates: [], criterion: "none", reason: "No glass annotation." };
   }
-  if (referenceLine !== "d") {
-    return {
-      selected: null,
-      candidates: [],
-      criterion: "none",
-      reason: `Authored ${referenceLine}-line coordinates are not eligible for the d-line catalog safety net.`,
-    };
-  }
   const ranked = compatibleCandidateMatches(glassString, storedNd, storedVd, referenceLine);
   const selection = candidateSelectionReason(ranked);
   return {
@@ -500,10 +521,12 @@ export function explainCompatibleGlassResolution(
 }
 
 /**
- * Resolve the best catalog row that is compatible with the authored d-line coordinates.
+ * Resolve the best catalog row that is compatible with the authored d- or e-line coordinates.
  *
  * Unlike `resolveGlass`, this checks every explicit name, alias, and duplicate
- * six-digit-code candidate. It therefore avoids discarding a valid later token
+ * six-digit-code candidate for d-line prescriptions. E-line prescriptions use
+ * only explicit names and aliases because catalog six-digit codes encode d-line
+ * coordinates. The resolver therefore avoids discarding a valid later token
  * merely because an earlier equivalent or class label is incompatible.
  */
 export function resolveCompatibleGlass(

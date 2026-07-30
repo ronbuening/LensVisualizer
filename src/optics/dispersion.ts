@@ -8,7 +8,7 @@
  *
  *   1. Air (nd === 1.0)                         → constant 1.0
  *   2. Complete measured nC/nF/ng on the element → exact at the traced lines
- *   3. Catalog Sellmeier (d-line prescriptions) → λ-accurate at any wavelength
+ *   3. Compatible catalog Sellmeier             → λ-accurate at any wavelength
  *   4. Measured nC/nF on the element            → exact C/F, estimated g
  *   5. Abbe approximation (the legacy path)     → unchanged fallback
  *
@@ -18,7 +18,9 @@
  * present and extrapolates from `dPgF` otherwise; the Abbe path uses the
  * Schott normal-line partial dispersion plus `dPgF` to estimate `ng`.
  * Native e-line fallback elements retain their authored `ne` in the internal G
- * reference channel; they never enter the d-line Sellmeier path.
+ * reference channel. When an explicit catalog name reproduces the authored
+ * ne/ve coordinates at C′/e/F′, the Sellmeier path restores the physical
+ * C/d/F/g channel wavelengths used across the full optical train.
  *
  * Resolution happens once per lens load (`buildLens`) and is cached as a
  * per-surface closure so the hot ray-trace loop pays no repeated overhead.
@@ -109,8 +111,8 @@ export function makeSurfaceDispersion(
   }
 
   // 2) Catalog Sellmeier — λ-accurate, the highest-fidelity remaining path.
-  //    Only trust the d-line catalog when the authored element is also d-line
-  //    and its index and Abbe number agree within transcription tolerances.
+  //    Trust d-line entries when nd/vd agree at C/d/F, and e-line entries when
+  //    an explicit name or alias reproduces ne/ve at C′/e/F′.
   //    Lens-data files sometimes
   //    annotate glasses speculatively ("S-LAH79 (OHARA) probable") with stored
   //    coordinates that don't match the real catalog glass — in which case the
@@ -121,12 +123,12 @@ export function makeSurfaceDispersion(
       const fn: SurfaceIndexFn = (ch) => evaluateSellmeier(entry, CHANNEL_NM[ch]);
       return { fn, quality: "sellmeier", glassEntry: entry };
     }
-    // Catalog match disagrees with the authored optical coordinates, or the
-    // authored pair is e-line rather than d-line. Fall through to the next tier.
+    // Catalog match disagrees with the authored optical coordinates, or an
+    // e-line annotation has only a d-line six-digit code. Fall through.
   }
 
   // 3) Partial measured line indices on the element — exact at the listed lines.
-  //    Falls back to surface.nd at the d-line (G) and to a partial-dispersion
+  //    Falls back to surface.nd at the authored reference (G) and to a partial-dispersion
   //    estimate at the g-line (V) when ng is not measured.
   if (spectral?.nC !== undefined && spectral?.nF !== undefined) {
     return makeLineIndicesDispersion(surface, element, spectral);
