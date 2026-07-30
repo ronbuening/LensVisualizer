@@ -22,78 +22,18 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-07-30 ──────────────────────────────────────────────────
   {
     date: "2026-07-30",
-    type: "fix",
-    summary: "Separated glass-catalog opportunities from resin, cement, plastic, and other optical-media gaps",
-  },
-  {
-    date: "2026-07-30",
     type: "improvement",
-    summary: "Closed the named-glass queue with eight sourced curves and safer catalog-equivalent labels",
+    summary: "Expanded chromatic tracing with 35 source-verified optical-glass curves",
   },
   {
     date: "2026-07-30",
     type: "fix",
-    summary: "Corrected five incompatible glass-name assignments and added safe dispersion equivalents",
-  },
-  {
-    date: "2026-07-30",
-    type: "improvement",
-    summary: "Added two recovered legacy glass curves to complete the remaining prioritized source queue",
-  },
-  {
-    date: "2026-07-30",
-    type: "improvement",
-    summary: "Added coefficient-backed dense-flint dispersion to the Nikon 24-120mm AF zoom",
+    summary: "Corrected patent-glass identities without forcing speculative catalog matches",
   },
   {
     date: "2026-07-30",
     type: "fix",
-    summary: "Source-audited a Sony dense flint without mixing d-line and e-line glass coordinates",
-  },
-  {
-    date: "2026-07-30",
-    type: "fix",
-    summary: "Removed an unsupported SF-family attribution from the Sony 12-24mm zoom",
-  },
-  {
-    date: "2026-07-30",
-    type: "improvement",
-    summary: "Added coefficient-backed light-flint dispersion for the Pentax 11-18mm zoom",
-  },
-  {
-    date: "2026-07-30",
-    type: "fix",
-    summary: "Source-audited an Enna legacy crown and corrected spaced German patent matching",
-  },
-  {
-    date: "2026-07-30",
-    type: "improvement",
-    summary: "Added coefficient-backed molding-glass dispersion for two Pentax aspherical elements",
-  },
-  {
-    date: "2026-07-30",
-    type: "fix",
-    summary: "Clarified two source-audited proprietary glass assignments without forcing unsafe catalog matches",
-  },
-  {
-    date: "2026-07-30",
-    type: "improvement",
-    summary: "Added sourced Hikari and CDGM dispersion data for four glass-name gaps",
-  },
-  {
-    date: "2026-07-30",
-    type: "fix",
-    summary: "Added reference-safe catalog dispersion for native e-line patent prescriptions",
-  },
-  {
-    date: "2026-07-30",
-    type: "improvement",
-    summary: "Expanded vintage-lens chromatic tracing with nine recovered SUMITA glass types",
-  },
-  {
-    date: "2026-07-30",
-    type: "fix",
-    summary: "Corrected five patent-glass matches and completed chromatic coverage for three lenses",
+    summary: "Made native e-line prescriptions use reference-safe catalog dispersion",
   },
   // ── 2026-07-29 ──────────────────────────────────────────────────
   {
