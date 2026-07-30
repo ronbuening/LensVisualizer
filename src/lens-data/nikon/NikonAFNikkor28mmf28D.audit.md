@@ -26,3 +26,11 @@ Reviewed local untracked patent file `patents/US5557473.pdf`, Third Embodiment /
 ### Verification
 
 - Pending batch verification after the current Nikon audit pass.
+
+## 2026-07-30 - `797454` catalog-equivalent review
+
+- Rendered and visually rechecked Third Embodiment / Table 5. L3 remains `nd = 1.79668`, `vd = 45.4`.
+- Hikari J-LASF017 (`1.79500 / 45.31`, code `795453`) is inside the runtime safety window and is the closest
+  coefficient-backed catalog row in the reviewed public data (`delta nd = -0.00168`, `delta vd = -0.09`).
+- Relabeled L3 as a J-LASF017 catalog equivalent while leaving the production supplier unidentified. Synchronized
+  the analysis; no prescription, focus, aperture, or semi-diameter values changed.

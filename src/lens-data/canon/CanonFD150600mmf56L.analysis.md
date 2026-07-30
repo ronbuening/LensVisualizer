@@ -55,7 +55,7 @@ L2 completes the positive collector pair. Together L1 and L2 have a paraxial gro
 
 ### L3 — Negative Meniscus, Convex to Object
 
-nd = 1.77250, νd = 49.7. Glass: LaSF dense lanthanum-flint patent class. f = -356.75 mm.
+nd = 1.77250, νd = 49.7. Glass: N-LAF34 catalog equivalent (Schott; patent code 773497, supplier not identified). f = -356.75 mm.
 
 L3 begins the negative Galilean diverger sub-group III. The patent's glass-class table assigns Example 4's G3 to LaSF, so this element should not be described as LaF even though its Abbe number is relatively high for a flint-family glass.
 
@@ -146,7 +146,7 @@ The patent does not name modern vendor catalog glasses. The data file therefore 
 | Code | nd | νd | Elements | Data-file glass identification | Notes |
 |---|---:|---:|---|---|---|
 | 487/701 | 1.48749 | 70.1 | L1, L2, L12, L14 | FK fluorosilicate crown class | N-FK5 / S-FSL5-class pair; low-dispersion positive power |
-| 773/497 | 1.77250 | 49.7 | L3 | LaSF patent class | Patent table assigns G3 to LaSF in Example 4 |
+| 773/497 | 1.77250 | 49.7 | L3 | N-LAF34 catalog equivalent | Patent table assigns G3 to LaSF in Example 4; supplier not identified |
 | 806/409 | 1.80610 | 40.9 | L4 | LaSF / S-LAH53-class | Dense lanthanum-flint diverger |
 | 434/951 | 1.43387 | 95.1 | L5, L6 | CaF2 fluorite | Movable focusing group IV |
 | 516/641 | 1.51633 | 64.1 | L7 | BK7 / S-BSL7 class | Weak rear sub-group V |

@@ -50,11 +50,11 @@ The patent's condition (5), d1/fW = 0.970, is mechanically important. A thinner 
 
 ### L2 - Negative Meniscus (G2)
 
-nd = 1.79668, νd = 45.4. Glass: Unmatched 797/454 high-index flint; Hoya TAF-class possible. f = -60.7 mm.
+nd = 1.79668, νd = 45.4. Glass: J-LASF017 catalog equivalent (Hikari; patent code 797454, supplier not identified). f = -60.7 mm.
 
 L2 is the first element of the compensator. Its object-side convex negative-meniscus form follows the patent's requirement that the most object-side negative lens in G2 be a meniscus lens, reducing wide-end distortion and controlling coma. The high index keeps the element thin while giving substantial negative power.
 
-The glass cannot be assigned confidently to a current public catalog name from nd/νd alone. It should be treated as a 797/454 high-index flint family glass unless a period Nikon/OHARA/HOYA melt table is found.
+The exact historical glass cannot be assigned confidently from nd/νd alone. Current Hikari J-LASF017 is inside the resolver's guarded window (1.79500 / 45.31), so it supplies a catalog-equivalent spectrum while the production supplier remains unidentified.
 
 ### L3 - Nearly Plano-Concave Negative (G2)
 
@@ -125,7 +125,7 @@ The design uses conventional high-index crown and flint glasses; it does not use
 | Element | nd | νd | Working glass identification | Confidence | Optical role |
 |---|---:|---:|---|---|---|
 | L1, P | 1.51680 | 64.1 | N-BK7 (Schott), BK7 class | Exact to patent nd/νd | Water window and rear plate |
-| L2 | 1.79668 | 45.4 | Unmatched 797/454 high-index flint; Hoya TAF-class possible | Uncertain | Negative compensator power |
+| L2 | 1.79668 | 45.4 | J-LASF017 catalog equivalent (797454) | Supplier not identified | Negative compensator power |
 | L3 | 1.77279 | 49.4 | M-TAF1 class (Hoya, 773/494) | Class match | Negative compensator power |
 | L4 | 1.71736 | 29.5 | N-SF1 / S-TIH1 class | Exact/class | Positive dense-flint corrector in G2 |
 | L5 | 1.66755 | 42.0 | J-BASF6 / BAH26 class (668419) | Exact/class | Front positive element of G3a |

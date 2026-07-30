@@ -70,7 +70,7 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.7,
       fl: -356.75,
-      glass: "LaSF dense lanthanum-flint patent class (773/497)",
+      glass: "N-LAF34 (Schott catalog-equivalent to patent 773497; supplier not identified)",
       role: "First negative element of the Galilean diverging sub-group III.",
     },
     {

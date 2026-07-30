@@ -28,3 +28,11 @@ Catalog version: local working tree, 2026-06-25
 ### Verification
 
 - Temporary Zeiss Jena diagnostic test - passed; runtime trim diagnostics empty for this lens.
+
+## 2026-07-30 - `672472` catalog-equivalent review
+
+- Rendered and visually rechecked the single worked example. L1, L2, and L6 remain `nd = 1.6716`, `vd = 47.2`.
+- Schott N-BAF10 (`1.67003 / 47.11`, code `670471`) is inside the runtime safety window and is the closest
+  coefficient-backed catalog row in the reviewed public data (`delta nd = -0.00157`, `delta vd = -0.09`).
+- Relabeled all three elements as N-BAF10 catalog equivalents while leaving the historical production supplier
+  unidentified. Synchronized the analysis; no scaled prescription, stop, aperture, or semi-diameter values changed.

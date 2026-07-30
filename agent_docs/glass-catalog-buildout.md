@@ -9,6 +9,14 @@ approximation. Current optics-engine boundaries are summarized in
 
 The catalog currently has **414 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
 
+The July 30, 2026 Phase 49 pass audited six recurring patent coordinate families. Existing catalog rows safely cover
+three of them: six Nikon `797454` elements now use Hikari J-LASF017, five Canon/Olympus `773497` elements use
+Schott N-LAF34, and three vintage Zeiss `672472` elements use Schott N-BAF10. Every relabel is explicitly a catalog
+equivalent with the production supplier unidentified. Olympus `504668`, Nikon `748523`, and Sony `961323` remain
+unmatched because their nearest public coefficient rows miss the d-line tolerance. The pass added fourteen strict and
+trusted surfaces, bringing coverage to 4620 / 5360 strict (86.2%) and 4634 / 5360 trusted (86.5%), without expanding
+the 414-entry catalog.
+
 The July 30, 2026 Phase 48 pass audited the unsafe `S-NPH7`, plain `H-LAF3`, and `H-LAK53A` annotations one row at a
 time. Six exact-coordinate rows now use existing coefficient-backed equivalents: TAFD40 (001255), S-LAH99
 (001291, also selected by patent partial dispersion), historical PBH21 (923209), N-LASF44 (804465), N-LAK33B

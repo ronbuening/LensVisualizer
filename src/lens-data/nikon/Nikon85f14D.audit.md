@@ -46,3 +46,11 @@ Patent: US 5,640,277
   is a materially different `1.80610 / 40.97`.
 - Retained the explicit unmatched `796409` annotation. No supplier or nearest-neighbor glass was assigned,
   and no prescription geometry changed.
+
+## 2026-07-30 - `748523` family review
+
+- Rendered and visually rechecked Example 2. S19 remains `nd = 1.74810`, `vd = 52.30`.
+- No reviewed public coefficient row reproduces both coordinates within the runtime safety window. The closest
+  plausible rows are around `1.741 / 52.6` or `1.755 / 52.3`, outside the accepted d-line residual.
+- Retained the explicit unmatched `748523` annotation without a supplier or APD claim. No prescription geometry
+  changed.

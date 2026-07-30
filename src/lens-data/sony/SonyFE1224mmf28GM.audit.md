@@ -14,3 +14,12 @@ Patent: WO 2021/200206 A1, Example 2 / FIG. 6
 ### Verification
 
 - `npm test -- elementRenderDiagnostics`
+
+## 2026-07-30 - `961323` family review
+
+- Rechecked Example 2 / Table 6 and visually confirmed the corresponding FIG. 6 layout. All three affected rows
+  remain `nd = 1.96073`, `vd = 32.3`.
+- No reviewed public coefficient row reproduces both coordinates within the runtime safety window. S-LAH98 and
+  TAFD45 are close in Abbe number but their `nd = 1.95375` index is too far from the patent row.
+- Retained the explicit unmatched `961323` annotation without a supplier claim. No prescription, zoom, focus,
+  aperture, or semi-diameter values changed.

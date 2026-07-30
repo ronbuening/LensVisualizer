@@ -49,3 +49,11 @@ Patent: US 4,792,219, Embodiment 3
 ### Analysis sync
 
 - Updated the L1-L8 element descriptions and the glass summary table to match the data-file labels.
+
+## 2026-07-30 - `773497` catalog-equivalent review
+
+- Rechecked L6 at the patent coordinate `nd = 1.77250`, `vd = 49.7`.
+- Schott N-LAF34 (`1.77250 / 49.62`, code `773496`) retains the exact index and differs by only `-0.08` in Abbe
+  number, within the runtime safety window.
+- Relabeled L6 as an N-LAF34 catalog equivalent while leaving the production supplier unidentified. Synchronized
+  the analysis; no prescription, focus, aperture, APD, or semi-diameter values changed.

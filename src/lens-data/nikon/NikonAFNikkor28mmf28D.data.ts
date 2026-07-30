@@ -83,7 +83,7 @@ const LENS_DATA = {
       nd: 1.79668,
       vd: 45.4,
       fl: 23.98,
-      glass: "797454 — unmatched high-index lanthanum dense flint (patent nd=1.79668, νd=45.4; no exact public catalog match)",
+      glass: "J-LASF017 (Hikari catalog-equivalent to patent 797454; supplier not identified)",
       role: "Strong first rear-group converger; begins recovery from the front group's divergent beam.",
     },
     {

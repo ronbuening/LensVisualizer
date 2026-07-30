@@ -123,7 +123,7 @@ const LENS_DATA = {
       nd: 1.79668,
       vd: 45.4,
       fl: -49.6,
-      glass: "Unmatched lanthanum dense flint (797454)",
+      glass: "J-LASF017 (Hikari catalog-equivalent to patent 797454; supplier not identified)",
       cemented: "G4",
       role: "High-index negative rear component of G4; contributes Petzval correction.",
     },

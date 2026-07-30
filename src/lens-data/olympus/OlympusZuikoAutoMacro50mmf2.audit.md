@@ -36,3 +36,11 @@ Patent: US 4,708,445, Embodiment 6
 - Rechecked US 4,708,445 Embodiment 6 surfaces 5, 12, and 14 after the documented normalization scale; all three rows retain the patent's 1.77250 / 49.66 coordinate and the stored `R`/`d` values.
 - Replaced the false HOYA `LAC14` attribution on L3, L7, and L8 with code-first `773497` lanthanum-crown wording. The nearest coefficient-backed rows are 773496 and do not establish the patent supplier.
 - Synchronized all three analysis sections and the prescription table. No geometry changed.
+
+## 2026-07-30 - `773497` catalog-equivalent review
+
+- Revisited the three `1.77250 / 49.66` rows against the full coefficient-backed catalog.
+- Schott N-LAF34 (`1.77250 / 49.62`, code `773496`) retains the exact index and differs by only `-0.04` in Abbe
+  number, within the runtime safety window.
+- Relabeled L3, L7, and L8 as N-LAF34 catalog equivalents while leaving the production supplier unidentified.
+  Synchronized the analysis and prescription table; no geometry changed.

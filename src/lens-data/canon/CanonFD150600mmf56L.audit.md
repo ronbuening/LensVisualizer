@@ -14,3 +14,11 @@ Patent: US 4,110,006, Example 4
 ### Verification
 
 - `npm test -- elementRenderDiagnostics`
+
+## 2026-07-30 - `773497` catalog-equivalent review
+
+- Rendered and visually rechecked Example 4. L3 remains `nd = 1.77250`, `vd = 49.7`.
+- Schott N-LAF34 (`1.77250 / 49.62`, code `773496`) retains the exact index and differs only by the final rounded
+  Abbe digit (`delta vd = -0.08`).
+- Relabeled L3 as an N-LAF34 catalog equivalent while leaving the production supplier unidentified. Synchronized
+  the analysis; no prescription, zoom, focus, aperture, or semi-diameter values changed.

@@ -62,13 +62,13 @@ The S-LAL7 identification is firm at the precision needed here: Ohara publishes 
 
 ### L₃ — Biconvex Positive
 
-nd = 1.79668, νd = 45.4. Glass: Unmatched lanthanum dense flint. f = +23.98 mm.
+nd = 1.79668, νd = 45.4. Glass: J-LASF017 catalog equivalent (Hikari; patent code 797454, supplier not identified). f = +23.98 mm.
 
 L₃ is the strongest positive element in the system and the first element of G₂. It receives a diverged beam after the long G₁–G₂ separation and begins the main rear-group convergence. Its biconvex form, R₆ = +26.626 mm and R₇ = −60.568 mm, concentrates most of the bending at the front surface.
 
 The rear radius of L₃ is governed by condition (5), −9 ≤ r₆/f ≤ −0.9. Example 3 gives r₆/f = −2.118, matching the patent's condition table. The patent identifies this radius as part of the lower-frame coma correction mechanism.
 
-The patent glass at nd = 1.79668 and νd = 45.4 is not matched exactly in the current manufacturer catalogs checked for this review. It is best described as an unmatched high-index lanthanum flint rather than forced into a named current glass. The data file therefore uses an explicit `Unmatched (...)` annotation.
+The patent glass at nd = 1.79668 and νd = 45.4 is not matched exactly in the current manufacturer catalogs checked for this review. Hikari J-LASF017 at 1.79500 / 45.31 is nevertheless inside the resolver's guarded nd/νd window, so the data uses it as a coefficient-backed catalog equivalent without claiming it was Nikon's production melt.
 
 ### L₄ — Biconcave Negative
 
@@ -106,7 +106,7 @@ The glass palette is conventional for a compact 1990s all-spherical retrofocus l
 | ------- | --------: | --------: | ------------------------------------------------------- | -------------------------------------------- | ----------------------------------- |
 | L₁      |   1.64831 |      33.8 | SF2-class dense flint; exact catalog identity uncertain | Schott SF2 / N-SF2 class close but not exact | Weak front positive                 |
 | L₂      |   1.65160 |      58.5 | S-LAL7 (Ohara)                                          | Exact nd, rounded νd                         | Strong front negative               |
-| L₃      |   1.79668 |      45.4 | Unmatched lanthanum dense flint                         | No exact current catalog match found         | Strong rear positive                |
+| L₃      |   1.79668 |      45.4 | J-LASF017 catalog equivalent (797454)                   | Supplier not identified                      | Strong rear positive                |
 | L₄      |   1.78470 |      26.1 | SF56A (Schott)                                          | Exact nd, rounded νd                         | Rear negative / Petzval correction  |
 | L₅      |   1.69680 |      55.6 | S-LAL14 (Ohara)                                         | Exact nd, rounded νd                         | Positive meniscus / rear correction |
 | L₆      |   1.71300 |      54.0 | S-LAL8 (Ohara)                                          | Exact nd, rounded νd                         | Final positive element              |

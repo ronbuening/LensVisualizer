@@ -26,12 +26,28 @@ This file tracks the second bucket plus any cases from the first bucket that nee
 - Catalog: **414 verified entries** in `src/optics/glassCatalogData.ts`.
 - `catalog-mismatches.generated.md` and `glass-relabel-by-lens.generated.md` report **0** remaining
   dispersion-coordinate mismatches across **0** lens files.
-- `sellmeier-coverage.generated.md` reports **488** lenses, **5360** non-air surfaces, **4606** strict catalog
-  Sellmeier surfaces (**85.9%**), and **4620** trusted chromatic surfaces (**86.2%**).
-- **211** lenses are fully covered by strict Sellmeier data and **216** are fully covered by trusted chromatic data.
-- `unresolvedGlassScan`: use the generated report for the current count; the total includes honest proprietary and
-  family-level annotations as well as actionable named tokens.
+- `sellmeier-coverage.generated.md` reports **488** lenses, **5360** non-air surfaces, **4620** strict catalog
+  Sellmeier surfaces (**86.2%**), and **4634** trusted chromatic surfaces (**86.5%**).
+- **212** lenses are fully covered by strict Sellmeier data and **217** are fully covered by trusted chromatic data.
+- `unresolvedGlassScan` reports **452** non-explicit-unmatched annotations and **199** distinct unresolved glass-like
+  tokens. The total includes honest proprietary and family-level annotations as well as actionable named tokens.
 - The Phase 2/3 resolved tables below are historical audit trail. Use the generated reports above for the current queue before starting new relabel work; for patent-by-patent execution, start from [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md).
+
+## Resolved Phase 49 — July 2026 high-frequency code-family review
+
+Six recurring coordinate families were audited against their local patent rows and the full coefficient-backed
+catalog. Nikon `797454` (`1.79668 / 45.37–45.4`) now uses Hikari J-LASF017 as a catalog equivalent across six
+elements in five files. Canon/Olympus `773497` (`1.77250 / 49.66–49.7`) now uses Schott N-LAF34 across five
+elements in three files, and three vintage Zeiss `672472` elements (`1.6716 / 47.2`) now use Schott N-BAF10. Each
+annotation leaves the production supplier unidentified and stays inside the resolver's coordinate safety window.
+
+Three other families remain explicitly unmatched after the same review: Olympus `504668` (`1.50378 / 66.8`),
+Nikon `748523` (`1.74810 / 52.30`), and Sony `961323` (`1.96073 / 32.3`). Their nearest public coefficient rows
+miss the d-line tolerance, so no supplier or partial-dispersion identity was inferred. The generated review sidecar
+now marks every representative row complete.
+
+This pass added fourteen strict and trusted surfaces without adding catalog entries. Strict coverage rose from 4606
+to 4620 surfaces, trusted coverage from 4620 to 4634, and one additional lens became fully covered in each measure.
 
 ## Resolved Phase 48 — July 2026 unsafe named-token cleanup
 

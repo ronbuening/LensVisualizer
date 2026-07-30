@@ -65,7 +65,7 @@ L3 continues the negative front-group action. Its power is similar to L2, but it
 
 L4: $n_d = 1.59507$, $\nu_d = 35.5$. Glass: unmatched dense flint, 595355 code. $f = +19.4$ mm.
 
-L5: $n_d = 1.79668$, $\nu_d = 45.4$. Glass: unmatched lanthanum dense flint, 797454 code. $f = -49.6$ mm.
+L5: $n_d = 1.79668$, $\nu_d = 45.4$. Glass: J-LASF017 catalog equivalent (Hikari; patent code 797454, supplier not identified). $f = -49.6$ mm.
 
 G4 has a computed net focal length of +38.77 mm. The biconvex L4 provides the dominant positive power. L5 is a high-index negative meniscus cemented behind it, with its concave surface facing the object. This matches the patent's description of G42 and satisfies the index-difference condition $n_{42}-n_{41} > 0.15$ with a computed value of 0.20161.
 
@@ -107,7 +107,7 @@ The patent gives only refractive index and Abbe number, not manufacturer glass n
 | L2 | 1.67025 | 57.5 | J-LAK02 / 670574 lanthanum crown class | Close |
 | L3 | 1.69680 | 55.6 | S-LAL14 / 697555 lanthanum crown class | High |
 | L4 | 1.59507 | 35.5 | Dense flint, 595355 code | Unmatched current catalog |
-| L5 | 1.79668 | 45.4 | Lanthanum dense flint, 797454 code | Unmatched current catalog |
+| L5 | 1.79668 | 45.4 | J-LASF017 catalog equivalent, 797454 | Coefficient-backed near equivalent |
 | L6 | 1.79631 | 40.9 | High-index flint, 796409 code | Unmatched current catalog |
 | L7 | 1.51860 | 69.9 | J-PKH1 phosphate crown | High |
 | L8 | 1.51680 | 69.9 | Phosphate crown near J-PKH1, 517699 code | Unmatched exact catalog |

@@ -11,21 +11,19 @@ or per-lens patent backfills.
 - **488** lenses scanned
 - **5360** non-air surfaces examined
 - **5365** element glass declarations examined
-- **460** non-explicit-unmatched annotations did not resolve
-- **202** distinct unresolved glass-like tokens found
+- **452** non-explicit-unmatched annotations did not resolve
+- **199** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
 | Token | Occurrences | Lens files | Notes |
 |---|---:|---:|---|
 | 493836 | 6 | 2 | |
-| 773497 | 4 | 2 | |
 | 863252 | 4 | 2 | |
 | 516565 | 3 | 1 | |
 | 585587 | 3 | 1 | |
 | 670575 | 3 | 2 | |
 | 744495 | 3 | 3 | |
-| 797454 | 3 | 2 | |
 | 863248 | 3 | 1 | |
 | 514428 | 2 | 1 | |
 | 531559 | 2 | 2 | |
@@ -219,7 +217,6 @@ or per-lens patent backfills.
 | SK6 | 1 | 1 | |
 | SK7 | 1 | 1 | |
 | TAF105 | 1 | 1 | |
-| TAFL3 | 1 | 1 | |
 
 ## Occurrences
 
@@ -231,13 +228,6 @@ or per-lens patent backfills.
 - [MINOLTA AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) 4: `493836 - Minolta AD/ED fluorophosphate-type (nd=1.49310, vd=83.58; catalog unresolved)`
 - [MINOLTA AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) 21: `493836 - Minolta AD/ED fluorophosphate-type (nd=1.49310, vd=83.58; catalog unresolved)`
 - [MINOLTA AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) 27: `493836 - Minolta AD/ED fluorophosphate-type (nd=1.49310, vd=83.58; catalog unresolved)`
-
-### 773497 — 4 occurrences
-
-- [OLYMPUS ZUIKO AUTO-MACRO 50mm f/2](../../src/lens-data/olympus/OlympusZuikoAutoMacro50mmf2.data.ts) 5: `773497 — lanthanum crown (patent coordinate; vendor unresolved)`
-- [OLYMPUS ZUIKO AUTO-MACRO 50mm f/2](../../src/lens-data/olympus/OlympusZuikoAutoMacro50mmf2.data.ts) 12: `773497 — lanthanum crown (patent coordinate; vendor unresolved)`
-- [OLYMPUS ZUIKO AUTO-MACRO 50mm f/2](../../src/lens-data/olympus/OlympusZuikoAutoMacro50mmf2.data.ts) 14: `773497 — lanthanum crown (patent coordinate; vendor unresolved)`
-- [OLYMPUS ZUIKO AUTO-MACRO 90mm f/2](../../src/lens-data/olympus/OlympusZuikoAutoMacro90mmf2.data.ts) 11: `773497 — TAFL3-class lanthanum crown (HOYA; no exact public catalog match)`
 
 ### 863252 — 4 occurrences
 
@@ -269,12 +259,6 @@ or per-lens patent backfills.
 - [NIKON AF-S NIKKOR 24-70mm f/2.8 E ED VR](../../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) 1: `744495 — lanthanum crown (patent nd=1.74389, νd=49.50; no exact public catalog match)`
 - [NIKON NIKKOR Z 24-70mm f/4 S](../../src/lens-data/nikon/NikonNikkorZ2470mmf4S.data.ts) 4: `744495 — PGM low-Tg lanthanum crown (patent nd=1.74353, νd=49.5; no exact public catalog match)`
 - [NIKON NIKKOR Z 24-70mm f/2.8 S](../../src/lens-data/nikon/NikonZ2470f28.data.ts) 6A: `744495 — moldable lanthanum crown (patent nd=1.74389, νd=49.53; no exact public catalog match)`
-
-### 797454 — 3 occurrences
-
-- [NIKON NIKKOR 28mm f/2.8 (Nikon 28Ti)](../../src/lens-data/nikon/Nikon28Ti28mmf28.data.ts) 9: `797454 — discontinued lanthanum glass (no exact public catalog match)`
-- [NIKON AF ZOOM-NIKKOR 28-80mm f/3.5-5.6 D](../../src/lens-data/nikon/NikonAFZoomNikkor2880mmf3556.data.ts) 3: `797454 - high-index lanthanum flint class`
-- [NIKON AF ZOOM-NIKKOR 28-80mm f/3.5-5.6 D](../../src/lens-data/nikon/NikonAFZoomNikkor2880mmf3556.data.ts) 5: `797454 - high-index lanthanum flint class`
 
 ### 863248 — 3 occurrences
 
@@ -1070,8 +1054,4 @@ or per-lens patent backfills.
 ### TAF105 — 1 occurrence
 
 - [SIGMA 85mm f/1.4 DG HSM | Art](../../src/lens-data/sigma/Sigma85mmf14Art.data.ts) 17: `TAF105 (HOYA)`
-
-### TAFL3 — 1 occurrence
-
-- [OLYMPUS ZUIKO AUTO-MACRO 90mm f/2](../../src/lens-data/olympus/OlympusZuikoAutoMacro90mmf2.data.ts) 11: `773497 — TAFL3-class lanthanum crown (HOYA; no exact public catalog match)`
 

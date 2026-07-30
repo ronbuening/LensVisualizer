@@ -119,7 +119,7 @@ const LENS_DATA = {
       nd: 1.7725,
       vd: 49.66,
       fl: 64.5,
-      glass: "773497 — TAFL3-class lanthanum crown (HOYA; no exact public catalog match)",
+      glass: "N-LAF34 (Schott catalog-equivalent to patent 773497; supplier not identified)",
       apd: false,
       role: "Highest-index crown — principal imaging power of Group II, Petzval/spherical control",
     },
