@@ -25,13 +25,12 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║   the printed BF/TLo condition pass.                                     ║
  * ║                                                                            ║
  * ║ SEMI-DIAMETERS:                                                           ║
- * ║   Surface 10A uses the patent Sag2b-derived effective semi-height         ║
- * ║   8.229002 mm. Figure 5 supplies the relative silhouette; other SDs are  ║
- * ║   rounded from exact d-line accepted-ray envelopes at infinity and the   ║
- * ║   reconstructed 0.7 m state. Surface 11A contains rays admitted by 10A.  ║
- * ║   The resulting field-edge bundle is vignetted at 10A, consistent with   ║
- * ║   the patent-defined effective diameter; layout controls do not hide     ║
- * ║   invalid geometry.                                                       ║
+ * ║   The patent Sag2b value defines an 8.229002 mm effective evaluation     ║
+ * ║   radius on 10A, not the physical glass edge. Figure 5 and Cosina's      ║
+ * ║   production cross-section supply the relative silhouette and rim       ║
+ * ║   continuity; both L12 faces therefore use a 10.15 mm physical SD.       ║
+ * ║   Other SDs are rounded from exact d-line accepted-ray envelopes at      ║
+ * ║   infinity and the reconstructed 0.7 m state.                            ║
  * ║                                                                            ║
  * ║ GLASS DATA:                                                               ║
  * ║   nd, νd, and dPgF are patent values. Named glasses are compatible     ║
@@ -63,7 +62,7 @@ const LENS_DATA = {
   lensMounts: ["leica-m"],
   imageFormat: "135-full-frame",
   patentNumber: "JP 2026-121744 A",
-  patentAuthors: ["三島 望"],
+  patentAuthors: ["Nozomu Mishima"],
   patentAssignees: ["Cosina Co., Ltd."],
   patentYear: 2026,
   elementCount: 6,
@@ -156,15 +155,15 @@ const LENS_DATA = {
 
   surfaces: [
     { label: "1", R: 13.403, d: 3.11, nd: 1.91082, elemId: 1, sd: 7.9 },
-    { label: "2", R: -179.549, d: 0.9, nd: 1.80809, elemId: 2, sd: 7.6 },
-    { label: "3", R: 15.453, d: 3.1, nd: 1.0, elemId: 0, sd: 6.0 },
+    { label: "2", R: -179.549, d: 0.9, nd: 1.80809, elemId: 2, sd: 7.9 },
+    { label: "3", R: 15.453, d: 3.1, nd: 1.0, elemId: 0, sd: 7.9 },
     { label: "STO", R: 1e15, d: 2.64, nd: 1.0, elemId: 0, sd: 3.961125955704 },
-    { label: "5", R: -14.459, d: 0.9, nd: 1.6134, elemId: 3, sd: 5.2 },
-    { label: "6", R: 42.264, d: 2.45, nd: 1.883, elemId: 4, sd: 5.8 },
+    { label: "5", R: -14.459, d: 0.9, nd: 1.6134, elemId: 3, sd: 6.2 },
+    { label: "6", R: 42.264, d: 2.45, nd: 1.883, elemId: 4, sd: 6.2 },
     { label: "7", R: -42.264, d: 0.25, nd: 1.0, elemId: 0, sd: 6.2 },
-    { label: "8", R: 31.099, d: 3.67, nd: 1.497, elemId: 5, sd: 7.8 },
+    { label: "8", R: 31.099, d: 3.67, nd: 1.497, elemId: 5, sd: 8.3 },
     { label: "9", R: -31.099, d: 5.8, nd: 1.0, elemId: 0, sd: 8.3 },
-    { label: "10A", R: -25.356, d: 2.1, nd: 1.51633, elemId: 6, sd: 8.229002133065 },
+    { label: "10A", R: -25.356, d: 2.1, nd: 1.51633, elemId: 6, sd: 10.15 },
     { label: "11A", R: -100.0, d: 15.11, nd: 1.0, elemId: 0, sd: 10.15 },
   ],
 

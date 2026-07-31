@@ -99,6 +99,9 @@ Table 9's printed `TLo = 21.83 mm` is incompatible with the 24.92 mm surface-spa
 
 ## Asphere and geometry audit
 
+The table below records the initial Stage 4 effective-aperture interpretation. The later repository follow-up
+supersedes surface 10A's physical SD while retaining 8.229002 mm as the patent's Sag2b evaluation radius.
+
 | Surface | Modeled semi-height | Total sag | Spherical-base sag | Polynomial departure | Rim angle |
 |---|---:|---:|---:|---:|---:|
 | 10A | 8.229002133065 mm | -3.440000000000 mm | -1.372458562297 mm | -2.067541437702 mm | 48.153260° |
@@ -187,29 +190,32 @@ group. The stored stop is synchronized to that value instead of retaining the sm
 ### Semi-diameter follow-up
 
 Figure 5 establishes the relative silhouette but is not drawn to a reliable axial scale, so it was used together with
-the exact accepted-ray envelope rather than as a standalone measurement source. The ordinary clear apertures were
-rounded inward only where the trace retained meaningful clearance. The patent-derived 10A semi-height and
-ray-containing 11A semi-height remain unchanged; the stored stop is synchronized separately to the exact f/3.58
-runtime derivation.
+Cosina's production cross-section and the exact accepted-ray envelope rather than as a standalone measurement source.
+The ordinary clear apertures were rounded against the ray envelope, then enlarged where necessary to preserve the
+production drawing's physical rim continuity. All faces of L9 and L10, surfaces 8/9 on L11, and surfaces 10A/11A on
+L12 now share their respective edge heights. The stored stop is synchronized separately to the exact f/3.58 runtime
+derivation.
 
-| Surface | Prior SD | Final SD | Largest accepted | Final clearance |
-|---|---:|---:|---:|---:|
-| 1 | 8.0 | 7.9 | 7.784272 | 0.115728 |
-| 2 | 7.7 | 7.6 | 7.486030 | 0.113970 |
-| 3 | 6.1 | 6.0 | 5.911866 | 0.088134 |
-| STO | 3.902205 | 3.961126 | exact f/3.58 derivation | — |
-| 5 | 5.2 | 5.2 | 4.583260 | 0.616740 |
-| 6 | 6.4 | 5.8 | 5.364448 | 0.435552 |
-| 7 | 7.0 | 6.2 | 5.884608 | 0.315392 |
-| 8 | 8.4 | 7.8 | 6.705426 | 1.094574 |
-| 9 | 8.8 | 8.3 | 7.260228 | 1.039772 |
-| 10A | 8.229002 | 8.229002 | 8.226267 | 0.002735 |
-| 11A | 10.15 | 10.15 | 10.018803 | 0.131197 |
+| Surface | Original replacement SD | First follow-up SD | Final rim SD |
+|---|---:|---:|---:|
+| 1 | 8.0 | 7.9 | 7.9 |
+| 2 | 7.7 | 7.6 | 7.9 |
+| 3 | 6.1 | 6.0 | 7.9 |
+| STO | 3.902205 | 3.961126 | 3.961126 |
+| 5 | 5.2 | 5.2 | 6.2 |
+| 6 | 6.4 | 5.8 | 6.2 |
+| 7 | 7.0 | 6.2 | 6.2 |
+| 8 | 8.4 | 7.8 | 8.3 |
+| 9 | 8.8 | 8.3 | 8.3 |
+| 10A | 8.229002 | 8.229002 | 10.15 |
+| 11A | 10.15 | 10.15 | 10.15 |
 
-The 2-focus × 9-field × 49-pupil exact grid accepts 814 of 882 rays with either the prior or final ordinary SDs:
-the silhouette changes do not reject a ray that previously reached the image plane. They redistribute first-clip
-locations only among the same 68 already-vignetted edge samples. Surface 10A remains the tightest accepted-ray
-clearance and the controlling rear aperture.
+The patent describes Sag2b as the sag to surface 10A's effective diameter. Solving Sag2b = 3.44 mm still gives the
+8.229002 mm evaluation radius, but that ray-defined radius is no longer conflated with the physical edge. At the final
+10.15 mm rim, surface 10A has −5.382466 mm total sag, −3.262306 mm polynomial departure, and a 36.0608° rim angle.
+The common L12 edge thickness is 4.720926 mm. Every visual follow-up relative to the first pass enlarges a surface, so
+no previously accepted ray can be newly rejected; the final boundary scan leaves 0.029139 mm of clearance at 11A for
+its largest accepted sample. The aperture stop and rear physical rim remain the controlling vignetting boundaries.
 
 ### Final glass classification
 

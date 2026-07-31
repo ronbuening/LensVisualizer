@@ -6,7 +6,7 @@
 **Application:** Japanese patent application 2025-4694
 **Filed:** 2025-01-14
 **Published:** 2026-07-27
-**Inventor:** 三島 望
+**Inventor:** Nozomu Mishima
 **Applicant:** Cosina Co., Ltd.
 **Title:** 光学レンズ系 (*Optical Lens System*)
 **Embodiment analyzed:** Example 3 / 第3実施形態
@@ -136,7 +136,7 @@ with $C=1/R$. Its tabulated K is already the standard convention, so K = 0 denot
 | 10A | 0 | −5.5781E−04 | +2.2937E−06 | −6.1771E−08 | +1.0322E−09 | −4.0737E−12 |
 | 11A | 0 | −4.1509E−04 | +2.7671E−06 | −2.4381E−08 | +2.5192E−10 | −8.7175E−13 |
 
-The patent defines Sag2b on surface 10A. Solving the complete asphere equation for |Z| = 3.44 mm gives a verified effective semi-height of 8.229002 mm, which is used as the surface semi-diameter. At that height, the polynomial departure from the spherical base is −2.067541 mm and the element retains 3.918655 mm of common-band edge thickness.
+The patent defines Sag2b on surface 10A at its effective diameter. Solving the complete asphere equation for |Z| = 3.44 mm gives a verified effective evaluation semi-height of 8.229002 mm. This is not treated as the physical glass edge: Figure 5 and Cosina's production cross-section show the two L12 faces meeting at a common rim, so both stored semi-diameters are 10.15 mm. At the patent evaluation height, the polynomial departure from the spherical base is −2.067541 mm. At the physical rim, surface 10A has total sag −5.382466 mm and polynomial departure −3.262306 mm; L12 retains 4.720926 mm of common-band edge thickness.
 
 Surface 11A uses an inferred and ray-validated semi-diameter of 10.15 mm. At that modeled height, its total sag is −2.761540 mm, its spherical-base sag is −0.516446 mm, and its polynomial departure is −2.245094 mm. On both surfaces the negative A4 term drives the peripheral sag farther in the negative axial direction than the spherical base; the higher orders temper that departure across the usable aperture.
 
@@ -170,7 +170,7 @@ The prescription spacings establish a physical surface-1-to-surface-11 track of 
 
 The aperture-stop axial location is patent-published. Its physical semi-diameter, 3.961126 mm, is inferred by launching the f/3.58 entrance-pupil marginal ray through the exact front group to the stop. It is not a tabulated patent dimension.
 
-The patent does not publish ordinary clear semi-diameters. Surface 10A is derived from the patent-defined Sag2b. Figure 5 establishes the relative element silhouette, while dense exact marginal- and chief-ray envelopes at infinity and the reconstructed 0.7 m state establish safe lower bounds for the other surfaces. The rounded SDs were then checked for edge thickness, actual rim slope, cross-gap, off-axis containment, and rendering. Surface 10A remains the modeled limiting rear aperture; preceding surfaces do not introduce an artificial earlier stop.
+The patent does not publish ordinary clear semi-diameters. Its Sag2b value establishes an 8.229002 mm effective evaluation radius on surface 10A, while Figure 5 and Cosina's production cross-section establish the relative silhouette and which adjacent faces share a physical rim. Dense exact marginal- and chief-ray envelopes at infinity and the reconstructed 0.7 m state establish safe lower bounds. The rounded SDs keep every face within L9, L10, L11, and L12 at its element or cemented-group rim height instead of forming artificial pointed edges. They were then checked for edge thickness, actual rim slope, cross-gap, off-axis containment, and rendering. The aperture stop and the rear physical rim remain the modeled vignetting boundaries; no earlier surface is undersized.
 
 No sensor cover glass, protective filter, inactive dummy plane, flare cutter, or mechanical component is included. No omitted plate required an air-equivalent spacing correction. No uniform scaling was applied, and the asphere coefficients were not transformed.
 
@@ -190,7 +190,7 @@ The final TypeScript arrays reproduce the patent's principal paraxial quantities
 | Modeled f-number | 3.580000 | 3.58 |
 | Petzval sum | +0.00503516 mm⁻¹ | Surface-by-surface φ/(n·n′) computation |
 
-Sequential height/reduced-angle basis tracing and independent ABCD composition produce the same system matrix, with determinant 1.000000 in air. All common-band element edge thicknesses remain positive. The largest verified rim slope is 48.1533° at surface 10A, and the final model passes the documented local cross-gap, containment, and zero-hidden-trim checks.
+Sequential height/reduced-angle basis tracing and independent ABCD composition produce the same system matrix, with determinant 1.000000 in air. All common-band element edge thicknesses remain positive. The largest verified rim slope is 36.1159° at surface 1, and the final model passes the documented local cross-gap, containment, and zero-hidden-trim checks.
 
 ## Sources and References
 
