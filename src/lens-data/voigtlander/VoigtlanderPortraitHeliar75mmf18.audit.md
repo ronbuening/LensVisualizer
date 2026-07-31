@@ -274,3 +274,25 @@ regenerated independent calculation. The package exposes Over–Sharp–Under fr
 the base prescription and centered runtime default; these positions map to patent Minus–Sharp–Plus.
 
 **READY_FOR_BATCH**
+
+## 2026-07-31 — Patent-figure semi-diameter follow-up
+
+Figure 5 on patent page 17 was rendered at high resolution and measured against the prescription's axial scale. The
+original semi-diameters made all three groups visibly fuller than the published section. The group envelopes were
+therefore tightened without changing any patent radius, spacing, material, stop, or control state:
+
+| Surfaces | Previous `sd` | Revised `sd` |
+|---|---:|---:|
+| 1–3 | 22.0 mm | 18.7 mm |
+| 4–6 | 17.0 mm | 15.0 mm |
+| 8–10 | 15.0 mm | 13.2 mm |
+
+The revised values reproduce the three measured figure envelopes to within the raster-reading precision. The stop
+semi-diameter remains the calculated f/1.8 aperture. Trial surface-domain validation and the image-circle audit both
+pass with zero undersized surfaces.
+
+Final repository verification for this follow-up passed `audit:surface`, `audit:image-circle`,
+`generate:glass-reports`, `format:check`, `typecheck`, lint with zero errors and three pre-existing warnings, all 213 test
+files / 2,527 tests, and the 984-route production build. The in-app browser exposed no runnable browser session, so the
+final application-page visual check could not be repeated; the high-resolution patent measurement, geometry validator,
+and built SVG data are the recorded comparison evidence.

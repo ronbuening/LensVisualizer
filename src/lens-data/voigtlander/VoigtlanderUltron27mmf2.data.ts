@@ -3,7 +3,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
- * ║ LENS DATA — VOIGTLÄNDER ULTRON X 27mm f/2                                 ║
+ * ║ LENS DATA — VOIGTLÄNDER ULTRON 27mm f/2                                   ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
  * ║ Data source: JP 2024-167569 A, Example 1 (Cosina Co., Ltd.; Tatsuya         ║
  * ║ Moriyama). Six elements in four groups; all refracting surfaces spherical.  ║
@@ -27,8 +27,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ STOP AND SEMI-DIAMETERS:                                                    ║
  * ║ - The patent omits clear apertures. STO sd = 5.71192 mm is derived from     ║
  * ║   the patent F-number 2.0441 and the traced entrance pupil.                 ║
- * ║ - Lens-surface SDs are modeled from marginal/chief-ray envelopes, the       ║
- * ║   official Cosina section silhouette, and current geometry constraints.     ║
+ * ║ - Group-envelope maxima are measured from patent Fig. 1 (7.8 / 6.8 /       ║
+ * ║   8.0 / 9.2 mm); within-element rim proportions remain preserved.            ║
  * ║ - The selected SDs preserve positive edge thickness, actual rim slopes      ║
  * ║   below the current limit, cross-gap clearance, and representative          ║
  * ║   off-axis-ray containment at infinity and close focus.                     ║
@@ -48,7 +48,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "voigtlander-ultron-27mm-f2",
   maker: "Voigtländer",
-  name: "VOIGTLÄNDER ULTRON X 27mm f/2",
+  name: "VOIGTLÄNDER ULTRON 27mm f/2",
   subtitle: "JP 2024-167569 A Example 1 — production correlation to ULTRON 27mm F2 X-mount",
   specs: [
     "6 ELEMENTS / 4 GROUPS",
@@ -176,17 +176,17 @@ const LENS_DATA = {
 
   /* ── Surface prescription ── */
   surfaces: [
-    { label: "1", R: 19.193, d: 3.1, nd: 1.90043, elemId: 1, sd: 9.0 },
-    { label: "2", R: -59.566, d: 0.9, nd: 1.76181, elemId: 2, sd: 9.0 },
-    { label: "3", R: 32.202, d: 2.1, nd: 1.0, elemId: 0, sd: 8.0 },
+    { label: "1", R: 19.193, d: 3.1, nd: 1.90043, elemId: 1, sd: 7.8 },
+    { label: "2", R: -59.566, d: 0.9, nd: 1.76181, elemId: 2, sd: 7.8 },
+    { label: "3", R: 32.202, d: 2.1, nd: 1.0, elemId: 0, sd: 6.9 },
     { label: "STO", R: 1e15, d: 4.84, nd: 1.0, elemId: 0, sd: 5.71192 },
-    { label: "5", R: -10.126, d: 1.2, nd: 1.84666, elemId: 3, sd: 7.4 },
-    { label: "6", R: 61.183, d: 3.87, nd: 1.90043, elemId: 4, sd: 8.5 },
-    { label: "7", R: -12.772, d: 0.15, nd: 1.0, elemId: 0, sd: 8.4 },
-    { label: "8", R: 430.535, d: 2.3, nd: 2.001, elemId: 5, sd: 10.5 },
-    { label: "9", R: -33.211, d: 3.89, nd: 1.0, elemId: 0, sd: 10.5 },
-    { label: "10", R: -12.646, d: 0.9, nd: 1.65411, elemId: 6, sd: 10.1 },
-    { label: "11", R: -23.288, d: 15.2788, nd: 1.0, elemId: 0, sd: 11.5 },
+    { label: "5", R: -10.126, d: 1.2, nd: 1.84666, elemId: 3, sd: 5.9 },
+    { label: "6", R: 61.183, d: 3.87, nd: 1.90043, elemId: 4, sd: 6.8 },
+    { label: "7", R: -12.772, d: 0.15, nd: 1.0, elemId: 0, sd: 6.7 },
+    { label: "8", R: 430.535, d: 2.3, nd: 2.001, elemId: 5, sd: 8.0 },
+    { label: "9", R: -33.211, d: 3.89, nd: 1.0, elemId: 0, sd: 8.0 },
+    { label: "10", R: -12.646, d: 0.9, nd: 1.65411, elemId: 6, sd: 8.1 },
+    { label: "11", R: -23.288, d: 15.2788, nd: 1.0, elemId: 0, sd: 9.2 },
   ],
 
   asph: {},

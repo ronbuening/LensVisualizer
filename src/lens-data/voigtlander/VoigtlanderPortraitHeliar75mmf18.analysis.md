@@ -280,8 +280,8 @@ $BFD/EFL=0.641810$ is below one, so it is not retrofocus. Surface-by-surface Pet
 $\phi/(n n')$ gives a signed sum of +0.002916318626 mm⁻¹, equivalent to −342.898060 mm under the $-1/\Sigma P$
 convention.
 
-The semi-diameters are modeling inferences because the patent omits clear apertures. They are 22.0 mm for G1, 17.0 mm
-for G2, and 15.0 mm for G3, constrained by Cosina's optical section and ray-bundle checks. The physical stop
+The semi-diameters are modeling inferences because the patent omits clear apertures. They are 18.7 mm for G1, 15.0 mm
+for G2, and 13.2 mm for G3, measured from patent Figure 5 and checked against ray bundles. The physical stop
 semi-diameter of 13.246083 mm is inferred from the sharp-state paraxial entrance pupil required by F/1.858, following
 the LensVisualizer stop convention; it is not a patent-published dimension.
 

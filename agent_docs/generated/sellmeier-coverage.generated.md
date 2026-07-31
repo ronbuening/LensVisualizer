@@ -11,17 +11,17 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **496** lenses scanned
-- **488** visible lenses scanned
-- **244** lenses fully covered by trusted chromatic data
-- **244** visible lenses fully covered by trusted chromatic data
-- **239** lenses fully covered by strict Sellmeier data
-- **239** visible lenses fully covered by strict Sellmeier data
-- **5** lenses fully covered only after measured line-index data
-- **5** visible lenses fully covered only after measured line-index data
-- **4825 / 5481** non-air surfaces use strict catalog Sellmeier data
-- **88.0%** strict Sellmeier surface coverage overall
-- **4836 / 5481** non-air surfaces use trusted chromatic data
+- **497** lenses scanned
+- **489** visible lenses scanned
+- **245** lenses fully covered by trusted chromatic data
+- **245** visible lenses fully covered by trusted chromatic data
+- **241** lenses fully covered by strict Sellmeier data
+- **241** visible lenses fully covered by strict Sellmeier data
+- **4** lenses fully covered only after measured line-index data
+- **4** visible lenses fully covered only after measured line-index data
+- **4832 / 5487** non-air surfaces use strict catalog Sellmeier data
+- **88.1%** strict Sellmeier surface coverage overall
+- **4842 / 5487** non-air surfaces use trusted chromatic data
 - **88.2%** trusted chromatic coverage overall
 - **17 / 75** native e-line surfaces use name-verified catalog Sellmeier data
 
@@ -274,7 +274,9 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [RODENSTOCK RODAGON-WA 80mm f/4](../../src/lens-data/rodenstock/RodenstockRodagonWA80mmf4.data.ts) | 6/6 | 6 | 6/6 |
 | [SIGMA 16.6mm f/4 (Sigma DP1x)](../../src/lens-data/sigma/Sigma16mmf4DP1X.data.ts) | 6/6 | 6 | 6/6 |
 | [VIVITAR SERIES 1 135mm f/2.3 AUTO TELEPHOTO](../../src/lens-data/vivitar/VivitarSeries1135mmf23.data.ts) | 6/6 | 6 | 6/6 |
+| [VOIGTLÄNDER COLOR-SKOPAR 35mm f/3.5 Aspherical VM](../../src/lens-data/voigtlander/VoigtlanderColorSkopar35mmf35Aspherical.data.ts) | 6/6 | 6 | 6/6 |
 | [VOIGTLÄNDER PORTRAIT HELIAR 75mm f/1.8](../../src/lens-data/voigtlander/VoigtlanderPortraitHeliar75mmf18.data.ts) | 6/6 | 6 | 6/6 |
+| [VOIGTLÄNDER ULTRON 27mm f/2](../../src/lens-data/voigtlander/VoigtlanderUltron27mmf2.data.ts) | 6/6 | 6 | 6/6 |
 | [CANON EF 28mm f/2.8](../../src/lens-data/canon/CanonEF28mmf28.data.ts) | 5/5 | 5 | 5/5 |
 | [KONICA HEXANON AR 35mm f/2.8](../../src/lens-data/konica/KonicaHexanonAR35mmf28.data.ts) | 5/5 | 5 | 5/5 |
 | [NIKON AI NIKKOR 135mm f/2.8](../../src/lens-data/nikon/NikonAI135mmf28.data.ts) | 5/5 | 5 | 5/5 |
@@ -304,7 +306,6 @@ These lenses are complete for chromatic tracing but not strict catalog-Sellmeier
 | [CANON EF 24-70mm f/2.8 L USM](../../src/lens-data/canon/CanonEF2470mmf28L.data.ts) | 16/16 | 13/16 | 16 | 13/16 | 3 | Line indices |
 | [TAMRON SP 90mm f/2.8 Di MACRO 1:1 VC USD (F004)](../../src/lens-data/tamron/TamronSP90mmf28Di.data.ts) | 14/14 | 12/14 | 14 | 12/14 | 2 | Line indices |
 | [PANASONIC LUMIX G 25mm f/1.7 ASPH.](../../src/lens-data/panasonic/PanasonicLumixG25mmf17.data.ts) | 8/8 | 6/8 | 8 | 6/8 | 2 | Line indices |
-| [VOIGTLÄNDER ULTRON X 27mm f/2](../../src/lens-data/voigtlander/VoigtlanderUltron27mmf2.data.ts) | 6/6 | 5/6 | 6 | 5/6 | 1 | Line indices |
 
 ## Incomplete Lenses by Completeness
 

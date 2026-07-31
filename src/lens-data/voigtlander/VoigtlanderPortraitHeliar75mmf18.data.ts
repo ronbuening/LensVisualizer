@@ -16,8 +16,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    8.730 / 5.730 mm. No refocus path is invented.                  ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
- * ║    The patent omits clear apertures. Group SDs are inferred from   ║
- * ║    the official Cosina optical section, then checked with exact    ║
+ * ║    The patent omits clear apertures. Group SDs are measured from   ║
+ * ║    Fig. 5 (18.7 / 15.0 / 13.2 mm), then checked with exact         ║
  * ║    marginal/chief-ray bundles and current geometry constraints.    ║
  * ║    The air-stop SD is inferred from the sharp-state paraxial       ║
  * ║    F/1.858 pupil model.                                            ║
@@ -146,16 +146,16 @@ const LENS_DATA = {
 
   /* ── Surface prescription: patent Example 2, sharp/infinity base ── */
   surfaces: [
-    { label: "1", R: 45.111, d: 9.0, nd: 1.883, elemId: 1, sd: 22.0 },
-    { label: "2", R: -130.0, d: 2.5, nd: 1.84666, elemId: 2, sd: 22.0 },
-    { label: "3", R: 300.0, d: 8.73, nd: 1.0, elemId: 0, sd: 22.0 },
-    { label: "4", R: -60.111, d: 8.0, nd: 1.80518, elemId: 3, sd: 17.0 },
-    { label: "5", R: -29.5, d: 5.2, nd: 1.64769, elemId: 4, sd: 17.0 },
-    { label: "6", R: 29.777, d: 4.0, nd: 1.0, elemId: 0, sd: 17.0 },
+    { label: "1", R: 45.111, d: 9.0, nd: 1.883, elemId: 1, sd: 18.7 },
+    { label: "2", R: -130.0, d: 2.5, nd: 1.84666, elemId: 2, sd: 18.7 },
+    { label: "3", R: 300.0, d: 8.73, nd: 1.0, elemId: 0, sd: 18.7 },
+    { label: "4", R: -60.111, d: 8.0, nd: 1.80518, elemId: 3, sd: 15.0 },
+    { label: "5", R: -29.5, d: 5.2, nd: 1.64769, elemId: 4, sd: 15.0 },
+    { label: "6", R: 29.777, d: 4.0, nd: 1.0, elemId: 0, sd: 15.0 },
     { label: "STO", R: 1e15, d: 2.6, nd: 1.0, elemId: 0, sd: 13.246083 },
-    { label: "8", R: 75.555, d: 2.55, nd: 1.78472, elemId: 5, sd: 15.0 },
-    { label: "9", R: 26.05, d: 9.0, nd: 1.883, elemId: 6, sd: 15.0 },
-    { label: "10", R: -80.111, d: 47.08, nd: 1.0, elemId: 0, sd: 15.0 },
+    { label: "8", R: 75.555, d: 2.55, nd: 1.78472, elemId: 5, sd: 13.2 },
+    { label: "9", R: 26.05, d: 9.0, nd: 1.883, elemId: 6, sd: 13.2 },
+    { label: "10", R: -80.111, d: 47.08, nd: 1.0, elemId: 0, sd: 13.2 },
   ],
 
   asph: {},

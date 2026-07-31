@@ -204,3 +204,35 @@ calculations were rerun after those edits and remained unchanged. The pair is cl
 batch-integration checks.
 
 **READY_FOR_BATCH**
+
+## 2026-07-31 — Patent-figure, naming, and glass follow-up
+
+Figure 1 on patent page 13 was rendered at high resolution and measured from the prescription's 23.25 mm glass-track
+scale. Leader lines prevent reliable automatic envelope extraction, so the four group rims were read directly from the
+rendered section. The following coherent group envelopes replace the oversized provisional values:
+
+| Surfaces | Previous `sd` values | Revised `sd` values |
+|---|---|---:|
+| 1–3 | 9.0 / 9.0 / 8.0 mm | 7.8 / 7.8 / 6.9 mm |
+| 5–7 | 7.4 / 8.5 / 8.4 mm | 5.9 / 6.8 / 6.7 mm |
+| 8–9 | 10.5 / 10.5 mm | 8.0 / 8.0 mm |
+| 10–11 | 10.1 / 11.5 mm | 8.1 / 9.2 mm |
+
+Each element's existing front/rear rim relationship was scaled to the measured group envelope and rounded to 0.1 mm.
+The stop remains at its calculated f/2 semi-diameter. Trial surface-domain validation and the image-circle audit both
+pass with zero undersized surfaces.
+
+The display name was corrected from `VOIGTLÄNDER ULTRON X 27mm f/2` to Cosina's official product order,
+`VOIGTLÄNDER ULTRON 27mm f/2`; X-mount remains explicit in the subtitle and mount metadata.
+
+The glass audit also identified the only strict-dispersion gap in the three-lens set: J-SF14. Its official Hikari
+catalog row was added with code 762266, `nd` 1.76182, `νd` 26.58, `PgF` 0.6127, and the published nine-term refractive
+index formula. J-SF14 now resolves directly to source-backed dispersion, making all six Ultron elements strict catalog
+matches. The duplicate numeric code shared with HOYA FD140 is resolved explicitly to the first source-order entry,
+J-SF14; exact glass names remain unambiguous.
+
+Final repository verification for this follow-up passed `audit:surface`, `audit:image-circle`,
+`generate:glass-reports`, `format:check`, `typecheck`, lint with zero errors and three pre-existing warnings, all 213 test
+files / 2,527 tests, and the 984-route production build. The in-app browser exposed no runnable browser session, so the
+final application-page visual check could not be repeated; the high-resolution patent measurement, geometry validator,
+and built SVG data are the recorded comparison evidence.

@@ -1,4 +1,4 @@
-# VOIGTLÄNDER ULTRON X 27mm f/2
+# VOIGTLÄNDER ULTRON 27mm f/2
 
 ## Patent Reference and Design Identification
 
@@ -132,7 +132,7 @@ At νd = 39.68, the corrected bounds are 1.642824 to 1.692824; L4 at nd = 1.6541
 
 No dimensional scaling is applied. The patent radii, thicknesses, refractive indices, and Abbe numbers are retained directly, and no asphere-coefficient transformation is applicable.
 
-The patent does not publish clear semi-diameters. The physical stop semi-diameter of 5.71192 mm is inferred from the modeled entrance pupil and the patent f-number of 2.0441. The remaining surface semi-diameters are modeling values constrained by first-order marginal and chief rays, Cosina's production section, edge thickness, actual rim slope, cross-gap clearance, and off-axis containment. They must not be read as patent-published clear apertures.
+The patent does not publish clear semi-diameters. The physical stop semi-diameter of 5.71192 mm is inferred from the modeled entrance pupil and the patent f-number of 2.0441. The remaining surface semi-diameters are modeling values scaled to patent Figure 1's four group-envelope maxima of 7.8, 6.8, 8.0, and 9.2 mm while preserving the existing within-element rim proportions, then checked against first-order marginal and chief rays, edge thickness, actual rim slope, cross-gap clearance, and off-axis containment. They must not be read as patent-published clear apertures.
 
 No sensor cover glass, filter, inactive dummy plane, flare cutter, or mechanical part appears in the sequential model. No omitted plate requires an air-equivalent spacing correction. The manufacturer's 23.5 mm overall length is a mechanical mount-to-front dimension and is not directly comparable with the patent's 38.5290 mm first-optical-surface-to-image-plane track.
 

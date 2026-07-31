@@ -85,6 +85,14 @@ better investment.
 | AI AF Zoom-Nikkor 24-120mm f/3.5-5.6 D IF | Automated crop contaminated by dense labels/brackets; 300 dpi hand measurements used | done 2026-07-29; published 17A/34A apertures retained |
 | AF Zoom-Nikkor 28-200mm f/3.5-5.6 G IF-ED | Median 1.113; revised L12/L21 each 1.00 after normalization | done 2026-07-29 |
 
+### Completed Voigtländer additions
+
+| Lens | Figure screen | Status |
+|---|---|---|
+| PORTRAIT HELIAR 75mm f/1.8 | Figure 5 automated and 300 dpi readings agreed on 18.7 / 15.0 / 13.2 mm group envelopes | done 2026-07-31; zero image-circle-floor failures |
+| ULTRON 27mm f/2 | Figure 1 leader lines required 300 dpi hand measurements; existing within-element rim ratios retained | done 2026-07-31; zero image-circle-floor failures |
+| COLOR-SKOPAR 35mm f/3.5 Aspherical VM | Figure 1 hand measurements tightened G1–G3; aspheric rear group retained at its validated limits | done 2026-07-31; zero image-circle-floor failures |
+
 ## Section C — source blockers
 
 Nothing can be audited on these until the source is available.
