@@ -51,7 +51,7 @@ const LENS_DATA = {
   lensMounts: ["canon-ef"],
   imageFormat: "135-full-frame",
   patentNumber: "JP 2013-054269 A",
-  patentAuthors: ["中原 誠"],
+  patentAuthors: ["Makoto Nakahara"],
   patentAssignees: ["Canon Inc."],
   patentYear: 2013,
   elementCount: 9,

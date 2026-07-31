@@ -2,15 +2,23 @@
 
 ## Patent Reference and Design Identification
 
-- **Patent:** JP 2021-076829 A
-- **Application Number:** JP 2020-164074
-- **Priority:** 2019-11-01
-- **Filed:** 2020-09-29
-- **Published:** 2021-05-20
-- **Inventor:** Takahiro Kitaguchi
-- **Applicant:** Panasonic Intellectual Property Management Co., Ltd.
-- **Title:** Imaging optical system, imaging apparatus, and camera system
-- **Embodiment analyzed:** Embodiment 1 / Numerical Example 1
+**Patent:** JP 2021-076829 A
+
+**Application Number:** JP 2020-164074
+
+**Priority:** 2019-11-01
+
+**Filed:** 2020-09-29
+
+**Published:** 2021-05-20
+
+**Inventor:** Takahiro Kitaguchi
+
+**Applicant:** Panasonic Intellectual Property Management Co., Ltd.
+
+**Title:** Imaging optical system, imaging apparatus, and camera system
+
+**Embodiment analyzed:** Embodiment 1 / Numerical Example 1
 
 The prescription represents Numerical Example 1 of JP 2021-076829 A. The publication does not name the commercial
 S-R1635 lens, so the association with the PANASONIC LUMIX S PRO 16-35mm f/4 is a production-correlation inference rather

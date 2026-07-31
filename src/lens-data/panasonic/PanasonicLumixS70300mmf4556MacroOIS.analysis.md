@@ -1,13 +1,20 @@
 ## Patent Reference and Design Identification
 
-- **Patent:** JP 2022-125453 A
-- **Application number:** JP 2021-023041
-- **Filed:** February 17, 2021
-- **Published:** August 29, 2022
-- **Inventors:** Takahiro Kitada; Takehiro Nishioka; Yoshio Matsumura; Takakazu Bito
-- **Applicant:** Panasonic Intellectual Property Management Co., Ltd.
-- **Title:** Zoom lens system, imaging apparatus including the same, and interchangeable lens apparatus
-- **Embodiment analyzed:** Embodiment 1 / Numerical Example 1
+**Patent:** JP 2022-125453 A
+
+**Application number:** JP 2021-023041
+
+**Filed:** February 17, 2021
+
+**Published:** August 29, 2022
+
+**Inventors:** Takahiro Kitada; Takehiro Nishioka; Yoshio Matsumura; Takakazu Bito
+
+**Applicant:** Panasonic Intellectual Property Management Co., Ltd.
+
+**Title:** Zoom lens system, imaging apparatus including the same, and interchangeable lens apparatus
+
+**Embodiment analyzed:** Embodiment 1 / Numerical Example 1
 
 The prescription is identified with the production **PANASONIC LUMIX S 70-300mm f/4.5-5.6 MACRO O.I.S.** by convergent evidence rather than by an explicit manufacturer statement that the patent table is the literal production prescription.
 
