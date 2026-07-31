@@ -8,7 +8,7 @@
 - **Output stem:** `VoigtlanderPortraitHeliar75mmf18`
 - **Scaling:** none
 - **Focus status:** `PUBLISHED`
-- **Authored aberration-control scope:** full Plus–Sharp–Minus range, with Sharp as the centered default
+- **Authored aberration-control scope:** full production Over–Sharp–Under range, mapped to patent Minus–Sharp–Plus
 
 The fixed patent and embodiment were not substituted. The prior audit was not used for the independent extraction,
 convention check, or first calculation pass. It was consulted only after the fresh results had been established.
@@ -113,11 +113,11 @@ The in-situ G2+G3 value includes the published air and stop region. It is not an
 
 ### Control states, pupils, and focus
 
-| State | U3 | EFL | BFL | Entrance-pupil SD | F-number |
+| Patent / production state | U3 | EFL | BFL | Entrance-pupil SD | F-number |
 |---|---:|---:|---:|---:|---:|
-| Plus | 5.730 mm | 72.732995314 mm | 51.895715150 mm | 18.048302412 mm | 2.014953918 |
-| Sharp | 8.730 mm | 73.355535261 mm | 47.080342974 mm | 19.740456555 mm | 1.857999967 |
-| Minus | 11.730 mm | 73.988824161 mm | 42.181827195 mm | 21.782740276 mm | 1.698336004 |
+| Plus / Under | 5.730 mm | 72.732995314 mm | 51.895715150 mm | 18.048302412 mm | 2.014953918 |
+| Sharp / normal | 8.730 mm | 73.355535261 mm | 47.080342974 mm | 19.740456555 mm | 1.857999967 |
+| Minus / Over | 11.730 mm | 73.988824161 mm | 42.181827195 mm | 21.782740276 mm | 1.698336004 |
 
 With the physical stop fixed, the Plus and Minus exposure shifts are +0.233993 EV and −0.259257 EV relative to Sharp.
 Both are below one-third EV in magnitude. The physical stop semi-diameter required by the sharp-state paraxial F/1.858
@@ -217,13 +217,28 @@ The complete vendor-by-vendor residual table is in the companion CSV.
 
 - **Old:** the runtime variable contained only Sharp and Minus, `[8.730, 11.730]`, because the former two-position
   schema could not keep Sharp as the default while also exposing Plus.
-- **Corrected:** the centered variable contains `[5.730, 8.730, 11.730]`, with labels Plus, Sharp, and Minus at signed
-  control positions −1, 0, and +1. The base surface remains the published Sharp spacing of 8.730 mm.
+- **Initial centered integration:** the centered variable contained `[5.730, 8.730, 11.730]`, with patent-state labels
+  Plus, Sharp, and Minus at signed control positions −1, 0, and +1. The base surface remained the published Sharp spacing
+  of 8.730 mm.
 - **Source location:** patent Table 8 on page 11 and spherical-aberration plots in Figs. 6–8.
 - **Independent evidence:** the rendered source gives U3 = 5.730 / 8.730 / 11.730 mm for the Plus / zero / Minus states;
   the two endpoint offsets from Sharp are both exactly 3.000 mm.
 - **Downstream consequences:** data header, control description and labels, variable tuple, analysis scope, and audit
   state descriptions were updated. No optical prescription value or independently calculated state changed.
+
+### 7. Production ring labels and direction
+
+- **Old:** the slider followed patent table order, with Plus / U3 = 5.730 mm on the left and Minus / U3 = 11.730 mm on
+  the right. Those source-state names did not match the production lens's Over / Under ring.
+- **Corrected:** the slider follows the physical ring from left to right: Over / Sharp / Under. Its tuple is
+  `[11.730, 8.730, 5.730]`, so Over maps to patent Minus, Sharp remains the centered default, and Under maps to patent
+  Plus.
+- **Source location:** Cosina's PORTRAIT HELIAR 75mm F1.8 E-mount instruction manual, page 5, and patent Table 8 on
+  page 11.
+- **Independent evidence:** the manual diagram prints `← over | under →`; physical inspection confirms that the front
+  group moves forward toward Over and backward toward Under, corresponding to increasing and decreasing U3.
+- **Downstream consequences:** production-facing labels, slider tuple order, data header, analysis state mapping, and
+  audit state descriptions were corrected. The three published spacings and all optical calculations are unchanged.
 
 No patent radius, spacing, index, Abbe number, focus row, control row, element count, group count, or surface sign was
 corrected. No source value was scaled. No dummy plane, cover plate, filter, or generic cement layer was retained.
@@ -248,14 +263,14 @@ Repository integration checks completed on 2026-07-31:
 - `npm run typecheck`: pass.
 - `npm run format:check`: pass.
 - `npm run lint`: pass with zero errors and three pre-existing warnings outside this lens package.
-- `npm run test`: pass, 212 test files and 2,525 tests.
+- `npm run test`: pass, 213 test files and 2,526 tests.
 - `npm run generate:glass-reports`: pass, eight test files and 13 tests.
 - `npm run build`: pass, including metadata generation, the production bundle, and 981 prerendered routes.
 
 ## Final decision
 
-The corrected data and analysis pair agree with the fixed patent embodiment and with the regenerated independent
-calculation. The package exposes the full published Plus–Sharp–Minus range while preserving Sharp as the base
-prescription and centered runtime default.
+The corrected data and analysis pair agree with the fixed patent embodiment, the production control-ring order, and the
+regenerated independent calculation. The package exposes Over–Sharp–Under from left to right while preserving Sharp as
+the base prescription and centered runtime default; these positions map to patent Minus–Sharp–Plus.
 
 **READY_FOR_BATCH**

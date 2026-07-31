@@ -211,21 +211,23 @@ computed paraxial focus shift.
 The patent varies U3, the air gap between the rear surface of G1 and the front surface of G2. Three published positions
 are given:
 
-| Patent state | U3 | Computed EFL | Computed BFL from surface 10 |
-|---|---:|---:|---:|
-| Plus | 5.730 mm | 72.732995 mm | 51.895715 mm |
-| Sharp | 8.730 mm | 73.355535 mm | 47.080343 mm |
-| Minus | 11.730 mm | 73.988824 mm | 42.181827 mm |
+| Patent state | Production ring position | U3 | Computed EFL | Computed BFL from surface 10 |
+|---|---|---:|---:|---:|
+| Plus | Under | 5.730 mm | 72.732995 mm | 51.895715 mm |
+| Sharp | Sharp / normal | 8.730 mm | 73.355535 mm | 47.080343 mm |
+| Minus | Over | 11.730 mm | 73.988824 mm | 42.181827 mm |
 
 The EFL changes by about 1.256 mm across the full published range, while the paraxial best-image location
 moves by several millimeters. Relative to the sharp-state image gap, the Plus state shifts the paraxial image by
 +4.815372 mm and the Minus state by −4.898516 mm if no refocusing is applied. This agrees with Cosina's instruction to
 check focus after operating the control ring.
 
-The centered aberration control exposes the full published range while retaining Sharp as the base prescription and
-default. Its signed positions are −1 for Plus at U3 = 5.730 mm, 0 for Sharp at U3 = 8.730 mm, and +1 for Minus at
-U3 = 11.730 mm. All three source positions are therefore runtime states, and the stored three-point variable reproduces
-the patent values exactly on both sides of the centered default.
+The patent's Plus and Minus state names are not the labels printed on the production control ring. Cosina's instruction
+manual places Over to the left of center and Under to the right. The production-facing slider follows that order: −1 is
+Over at U3 = 11.730 mm, 0 is Sharp at U3 = 8.730 mm, and +1 is Under at U3 = 5.730 mm. Thus Over maps to the patent's
+Minus state and Under maps to its Plus state. All three source positions remain exact runtime states, Sharp remains the
+base prescription and default, and the reversed three-point tuple mirrors the physical lens rather than the patent table
+order.
 
 The patent does not publish which physical barrel member is axially anchored or a compensating image-side trajectory.
 No coupled refocus movement is therefore invented. With the physical stop held at the inferred sharp-state value, the
@@ -297,6 +299,8 @@ correction and contains no inactive optical plane.
 - Japan Patent Office, **JP 2026-120386 A**, “Optical Lens System,” published 2026-07-22, especially ¶0020–0022,
   ¶0047–0070, Tables 5–8, and Figs. 5–8.
 - Cosina, [VOIGTLÄNDER PORTRAIT HELIAR 75mm F1.8 — Sony E mount](https://www.cosina.co.jp/voigtlander/en/e-mount/portrait-heliar-75mm-f1-8/).
+- Cosina, [PORTRAIT HELIAR 75mm F1.8 E-mount instruction manual](https://www.cosina.co.jp/wp/wp-content/uploads/2025/06/E-75_18-ENG-V1_0.pdf),
+  p. 5 (production Over / Under ring order).
 - Cosina, [VOIGTLÄNDER PORTRAIT HELIAR 75mm F1.8 — Nikon Z mount](https://www.cosina.co.jp/voigtlander/en/z-mount/portrait-heliar-75mm-f1-8/).
 - Cosina, [VOIGTLÄNDER PORTRAIT HELIAR 75mm F1.8 — Canon RF mount](https://www.cosina.co.jp/voigtlander/en/rf-mount-lenses/portrait-heliar-75mm-f1-8/).
 - Authoritative catalog coordinates checked through OHARA, HOYA, SCHOTT, HIKARI, CDGM, and SUMITA official optical-glass

@@ -10,10 +10,10 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  Focus status: PUBLISHED — unit focus; all groups translate.       ║
  * ║                                                                    ║
  * ║  NOTE ON ABERRATION CONTROL:                                       ║
- * ║    The patent publishes U3 = 5.730 / 8.730 / 11.730 mm for        ║
- * ║    PLUS / SHARP / MINUS. The centered control exposes all three    ║
- * ║    source positions as −1 / 0 / +1 while preserving SHARP as the   ║
- * ║    base prescription and default. No refocus path is invented.     ║
+ * ║    Patent states PLUS / SHARP / MINUS use U3 = 5.730 / 8.730 /    ║
+ * ║    11.730 mm. The production ring reverses that source order:      ║
+ * ║    OVER / SHARP / UNDER maps to −1 / 0 / +1 and U3 = 11.730 /    ║
+ * ║    8.730 / 5.730 mm. No refocus path is invented.                  ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                           ║
  * ║    The patent omits clear apertures. Group SDs are inferred from   ║
@@ -170,14 +170,14 @@ const LENS_DATA = {
   aberrationControl: {
     label: "S.A.",
     description:
-      "Published G1-G2 gap control with PLUS U3=5.730 mm, SHARP U3=8.730 mm, and MINUS U3=11.730 mm. " +
-      "SHARP is the centered default; refocus remains independent.",
-    minLabel: "PLUS",
+      "Production ring order: OVER maps to patent MINUS at U3=11.730 mm, SHARP uses U3=8.730 mm, " +
+      "and UNDER maps to patent PLUS at U3=5.730 mm. Refocus remains independent.",
+    minLabel: "OVER",
     centerLabel: "SHARP",
-    maxLabel: "MINUS",
+    maxLabel: "UNDER",
     step: 0.001,
     var: {
-      "3": [5.73, 8.73, 11.73],
+      "3": [11.73, 8.73, 5.73],
     },
     varLabels: [["3", "U3"]],
   },
