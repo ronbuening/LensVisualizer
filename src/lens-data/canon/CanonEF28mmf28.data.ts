@@ -4,7 +4,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ╔══════════════════════════════════════════════════════════════════════════════╗
  * ║ LENS DATA — CANON EF 28mm f/2.8                                            ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
- * ║ Source: JP S62-078520 A, Numerical Example 1 (Canon Inc.; 松下 敬).         ║
+ * ║ Source: JP S62-078520 A, Numerical Example 1 (Canon Inc.).                 ║
+ * ║ Inventor: Takashi Matsushita.                                              ║
  * ║ Production correlation: Canon EF 28mm f/2.8, marketed April 1987.          ║
  * ║ Five elements / five groups; patent surface R2 is aspherical.              ║
  * ║ Canon identifies a molded-glass aspherical first element in production.    ║
@@ -61,7 +62,7 @@ const LENS_DATA = {
   lensMounts: ["canon-ef"],
   imageFormat: "135-full-frame",
   patentNumber: "JP S62-078520 A",
-  patentAuthors: ["松下 敬"],
+  patentAuthors: ["Takashi Matsushita"],
   patentAssignees: ["Canon Inc."],
   patentYear: 1987,
   elementCount: 5,

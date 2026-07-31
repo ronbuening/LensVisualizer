@@ -4,7 +4,7 @@
 **Application Number:** 昭60-219515
 **Filed:** 2 October 1985
 **Published:** 10 April 1987
-**Inventor:** 松下 敬
+**Inventor:** Takashi Matsushita
 **Applicant:** Canon Inc.
 **Title:** *Wide-angle lens having an aspherical surface* (`非球面を有した広角レンズ`)
 **Embodiment analyzed:** Numerical Example 1

@@ -4,7 +4,7 @@
 **Application number:** 2018-220648
 **Filed:** 2018-11-26
 **Published:** 2020-06-04
-**Inventors:** 佐藤 良祐; 小山 武久
+**Inventors:** Ryosuke Sato; Takehisa Koyama
 **Applicant:** Sigma Corporation
 **Title:** Variable-power imaging optical system (author translation of 変倍結像光学系)
 **Embodiment analyzed:** Numerical Example 6

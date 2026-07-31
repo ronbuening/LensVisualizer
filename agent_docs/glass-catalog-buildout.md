@@ -7,7 +7,13 @@ available, it falls back to partial measured `nC`/`nF` line indices, dPgF-correc
 approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **442 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **443 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+
+The July 31, 2026 Phase 70 pass added SUMITA K-LaSFn23 from the manufacturer's Ver. 14.01.00 per-glass datasheet.
+Its formula-3 polynomial reproduces the published `nC = 1.90341`, `nd = 1.91100`, `nF = 1.92928`, and
+`ng = 1.94437` row. The Panasonic LUMIX S PRO 16-35mm f/4 L12 annotation now uses it as a catalog equivalent while
+retaining the patent's `nd = 1.91082` and leaving the production supplier unspecified. That lens's strict and trusted
+coverage rose from 4/13 to 5/13 surfaces; the regenerated catalog totals are 4814/5469 strict and 4824/5469 trusted.
 
 The July 30, 2026 Phase 69 pass corrected the opportunity reports' review and material semantics. Explicit
 `Unmatched`, `Unknown`, `Proprietary`, and `Unidentified` annotations now count as self-recording review

@@ -57,7 +57,7 @@ const LENS_DATA = {
   lensMounts: ["l-mount"],
   imageFormat: "135-full-frame",
   patentNumber: "JP 2020-086133 A",
-  patentAuthors: ["佐藤 良祐", "小山 武久"],
+  patentAuthors: ["Ryosuke Sato", "Takehisa Koyama"],
   patentAssignees: ["Sigma Corporation"],
   patentYear: 2020,
   elementCount: 23,

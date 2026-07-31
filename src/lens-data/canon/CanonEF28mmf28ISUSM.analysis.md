@@ -2,13 +2,20 @@
 
 ## Patent Reference and Design Identification
 
-**Patent:** JP 2013-054269 A  
-**Application Number:** JP 2011-193667  
-**Filed:** 2011-09-06  
-**Published:** 2013-03-21  
-**Inventor:** 中原 誠  
-**Applicant:** Canon Inc.  
-**Title:** Optical system and image pickup apparatus having the same (descriptive translation)  
+**Patent:** JP 2013-054269 A
+
+**Application Number:** JP 2011-193667
+
+**Filed:** 2011-09-06
+
+**Published:** 2013-03-21
+
+**Inventor:** Makoto Nakahara
+
+**Applicant:** Canon Inc.
+
+**Title:** Optical system and image pickup apparatus having the same (descriptive translation)
+
 **Embodiment analyzed:** Numerical Example 1
 
 Numerical Example 1 is treated as the fixed production correlation for the CANON EF 28mm f/2.8 IS USM. The patent

@@ -19,6 +19,12 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-07-31 ──────────────────────────────────────────────────
+  {
+    date: "2026-07-31",
+    type: "lens",
+    summary: "Added three Panasonic LUMIX S zoom lenses from 16-35mm through 70-300mm",
+  },
   // ── 2026-07-30 ──────────────────────────────────────────────────
   {
     date: "2026-07-30",
