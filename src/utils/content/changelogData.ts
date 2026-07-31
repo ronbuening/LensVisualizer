@@ -27,11 +27,6 @@ export const CHANGELOG: ChangelogEntry[] = [
   },
   {
     date: "2026-07-31",
-    type: "fix",
-    summary: "Matched the Portrait Heliar aberration slider to its physical Over/Under ring",
-  },
-  {
-    date: "2026-07-31",
     type: "lens",
     summary: "Added Voigtländer Portrait Heliar 75mm f/1.8 with its full soft-focus range",
   },
