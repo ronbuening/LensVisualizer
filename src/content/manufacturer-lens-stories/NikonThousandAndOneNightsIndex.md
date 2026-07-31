@@ -8,7 +8,7 @@ seriesOrder: 1
 toc: true
 ---
 
-# Nikon: NIKKOR — The Thousand and One Nights
+## Nikon: NIKKOR — The Thousand and One Nights
 
 Nikon describes _NIKKOR — The Thousand and One Nights_ as a serial history of NIKKOR lens design and manufacture. Its current English [series index](https://imaging.nikon.com/imaging/information/story/) contains 98 tales, ranging from famous production lenses to enlarging optics, compact-camera lenses, accessories, and unusual experiments.
 
@@ -46,17 +46,17 @@ Nikon does not display a publication date on the current index or individual Eng
 | No. 71 | [AI Zoom-Nikkor 35–105mm f/3.5–4.5S](https://imaging.nikon.com/imaging/information/story/0071/) | [AI Zoom-Nikkor 35–105mm](/lens/nikon-ai-zoom-nikkor-35-105mm-f3-5-4-5s) |
 | No. 70 | [AI Nikkor 300mm f/4.5S](https://imaging.nikon.com/imaging/information/story/0070/) | — |
 | No. 69 | [Medical-Nikkor 120mm f/4 IF](https://imaging.nikon.com/imaging/information/story/0069/) | — |
-| No. 68 | [AF-S DX Zoom-Nikkor 12–24mm f/4G IF-ED](https://imaging.nikon.com/imaging/information/story/0068/) | — |
+| No. 68 | [AF-S DX Zoom-Nikkor 12–24mm f/4G IF-ED](https://imaging.nikon.com/imaging/information/story/0068/) | [AF-S DX Zoom-Nikkor 12–24mm](/lens/nikon-af-s-dx-zoom-nikkor-12-24mm-f4g-if-ed) |
 | No. 67 | [AI AF-S Zoom-Nikkor 80–200mm f/2.8D IF-ED](https://imaging.nikon.com/imaging/information/story/0067/) | — |
 | No. 66 | [AI Nikkor 400mm f/3.5 IF-ED](https://imaging.nikon.com/imaging/information/story/0066/) | — |
-| No. 65 | [AF Zoom-Nikkor 28–200mm f/3.5–5.6G IF-ED](https://imaging.nikon.com/imaging/information/story/0065/) | — |
+| No. 65 | [AF Zoom-Nikkor 28–200mm f/3.5–5.6G IF-ED](https://imaging.nikon.com/imaging/information/story/0065/) | [AF Zoom-Nikkor 28–200mm](/lens/nikkor-af-28-200-f3556-g-if-ed) |
 | No. 64 | [EL-Nikkor 80mm f/5.6N](https://imaging.nikon.com/imaging/information/story/0064/) | — |
 | No. 63 | [AF Zoom-Nikkor 28–80mm f/3.3–5.6G](https://imaging.nikon.com/imaging/information/story/0063/) | [AF Zoom-Nikkor 28–80mm](/lens/nikon-af-zoom-nikkor-28-80mm-f33-56g) |
 | No. 62 | [Zoom-Nikkor Auto 50–300mm f/4.5](https://imaging.nikon.com/imaging/information/story/0062/) | — |
 | No. 61 | [AI Zoom-NIKKOR 50–135mm f/3.5S](https://imaging.nikon.com/imaging/information/story/0061/) | [AI Zoom-Nikkor 50–135mm](/lens/nikon-ai-zoom-nikkor-50-135mm-f35s) |
 | No. 60 | [AI NIKKOR 50mm f/1.8S](https://imaging.nikon.com/imaging/information/story/0060/) | — |
 | No. 59 | [AI Nikkor 105mm f/1.8S](https://imaging.nikon.com/imaging/information/story/0059/) | — |
-| No. 58 | [AI AF Zoom-Nikkor 24–120mm f/3.5–5.6D (IF)](https://imaging.nikon.com/imaging/information/story/0058/) | — |
+| No. 58 | [AI AF Zoom-Nikkor 24–120mm f/3.5–5.6D (IF)](https://imaging.nikon.com/imaging/information/story/0058/) | [AI AF Zoom-Nikkor 24–120mm](/lens/nikon-ai-af-zoom-nikkor-24-120-f35-56d) |
 | No. 57 | [AI Nikkor 28mm f/2.8S](https://imaging.nikon.com/imaging/information/story/0057/) | [AI Nikkor 28mm f/2.8S](/lens/nikon-ai-nikkor-28mm-f28s) |
 | No. 56 | [Auto NIKKOR WIDE-ZOOM 3.5–8.5cm f/2.8–4](https://imaging.nikon.com/imaging/information/story/0056/) | — |
 | No. 55 | [AI Nikkor 18mm f/4](https://imaging.nikon.com/imaging/information/story/0055/) | — |

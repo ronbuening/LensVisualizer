@@ -22,6 +22,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-07-31 ──────────────────────────────────────────────────
   {
     date: "2026-07-31",
+    type: "article",
+    summary: "Added Leica and Tamron lens histories to the manufacturer story index",
+  },
+  {
+    date: "2026-07-31",
     type: "lens",
     summary: "Added three Panasonic LUMIX S zoom lenses from 16-35mm through 70-300mm",
   },

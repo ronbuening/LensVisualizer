@@ -86,7 +86,7 @@ When the chief-ray angle at the sensor corners exceeds the sensor's design toler
 
 ### The classic example: Rangefinder wides on digital bodies
 
-A well-known illustration of CRA mismatch is the behavior of rangefinder-type wide-angle lenses — such as the Leica Elmarit-M 28 mm or the Zeiss Biogon 21 mm — on digital bodies [^7]. These designs were conceived for film and place the rear optical group close to the image plane, producing steep corner CRAs. On digital sensors optimized for the more moderate CRA profiles of SLR-type retrofocus wide-angles, the result is visible corner color casts — a direct consequence of the mismatch between lens and sensor.
+A well-known illustration of CRA mismatch is the behavior of rangefinder-type wide-angle lenses — such as the Leica Elmarit-M 28 mm or the [Zeiss Biogon 21 mm](/lens/zeiss-biogon-21-f45) — on digital bodies [^7]. These designs were conceived for film and place the rear optical group close to the image plane, producing steep corner CRAs. On digital sensors optimized for the more moderate CRA profiles of SLR-type retrofocus wide-angles, the result is visible corner color casts — a direct consequence of the mismatch between lens and sensor.
 
 ## CRA Matching and Microlens Offset Optimization
 

@@ -10,7 +10,7 @@ toc: true
 
 # Lens Stories from the Manufacturers
 
-Nikon's _NIKKOR — The Thousand and One Nights_ is the best-known manufacturer-written lens history, but it is not the only one. Fujifilm and SIGMA produced named series of their own, while Canon, Panasonic, and Pentax published smaller collections of developer interviews and design stories.
+Nikon's _NIKKOR — The Thousand and One Nights_ is the best-known manufacturer-written lens history, but it is not the only one. Fujifilm and SIGMA produced named series of their own; Canon, Panasonic, and Pentax published smaller collections of developer interviews and design stories; and Leica and Tamron maintain substantial first-party lens histories.
 
 This guide gathers those first-party articles in one place. Each company page links to the original manufacturer article and, when the exact lens is available in the Surface & Stop catalog, to its interactive cross-section.
 
@@ -22,6 +22,8 @@ This guide gathers those first-party articles in one place. Each company page li
 - **[Panasonic — LUMIX Lens Development Stories](/articles/panasonic-lumix-development-stories-index)** — Optical Design Department essays, LEICA DG Lens Stories, and other official developer features.
 - **[Pentax — Lens Development Stories](/articles/pentax-lens-development-stories-index)** — Star-series and Limited-lens developer interviews plus the official PENTAX STORY lens features.
 - **[Canon — RF Lens Developer Stories](/articles/canon-rf-lens-development-stories-index)** — RF Lens World interviews plus development features for the RF5.2mm Dual Fisheye and RF100–500mm.
+- **[Leica — Centennial Lens Stories](/articles/leica-centennial-lens-stories-index)** — lens milestones from Leica's official 2025 centennial timeline, from the Summicron to the APO-Telyt-R.
+- **[Tamron — Lens Development Histories](/articles/tamron-lens-development-histories-index)** — the company's lens timeline plus its updated 90mm Macro and all-in-one zoom histories.
 
 ## What Qualifies
 

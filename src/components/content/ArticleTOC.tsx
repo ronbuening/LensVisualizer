@@ -68,8 +68,10 @@ export function resolveActiveHeadingId(
   offsetTop: number,
   getTop: (id: string) => number | null,
   activationPadding = 12,
+  atDocumentEnd = false,
 ): string | null {
   if (ids.length === 0) return null;
+  if (atDocumentEnd) return ids.at(-1) ?? null;
   const activationLine = offsetTop + activationPadding;
   let nextId = ids[0] ?? null;
   for (const id of ids) {
@@ -83,39 +85,47 @@ export function resolveActiveHeadingId(
 function useActiveHeading(ids: string[], offsetTop: number): string | null {
   const [activeId, setActiveId] = useState<string | null>(null);
   useEffect(() => {
-    if (typeof window === "undefined" || typeof IntersectionObserver === "undefined" || ids.length === 0) return;
+    if (typeof window === "undefined" || ids.length === 0) return;
     const elements = ids.map((id) => document.getElementById(id)).filter((el): el is HTMLElement => el !== null);
     if (elements.length === 0) return;
 
     const rootTopOffset = Math.max(offsetTop, ARTICLE_SCROLL_MARGIN_TOP);
     const resolveActiveId = () => {
+      const documentHeight = document.documentElement.scrollHeight;
+      const atDocumentEnd =
+        documentHeight > window.innerHeight && window.scrollY + window.innerHeight >= documentHeight - 1;
       const nextId = resolveActiveHeadingId(
         ids,
         offsetTop,
         (id) => document.getElementById(id)?.getBoundingClientRect().top ?? null,
+        12,
+        atDocumentEnd,
       );
       if (nextId) {
         setActiveId((current) => (current === nextId ? current : nextId));
       }
     };
-    const observer = new IntersectionObserver(
-      () => {
-        resolveActiveId();
-      },
-      {
-        rootMargin: `-${rootTopOffset}px 0px ${TOC_OBSERVER_BOTTOM_ROOT_MARGIN} 0px`,
-        threshold: TOC_OBSERVER_THRESHOLDS,
-      },
-    );
+    const observer =
+      typeof IntersectionObserver === "undefined"
+        ? null
+        : new IntersectionObserver(
+            () => {
+              resolveActiveId();
+            },
+            {
+              rootMargin: `-${rootTopOffset}px 0px ${TOC_OBSERVER_BOTTOM_ROOT_MARGIN} 0px`,
+              threshold: TOC_OBSERVER_THRESHOLDS,
+            },
+          );
 
-    for (const el of elements) observer.observe(el);
+    for (const el of elements) observer?.observe(el);
     const onScrollOrResize = () => resolveActiveId();
     window.addEventListener("scroll", onScrollOrResize, { passive: true });
     window.addEventListener("resize", onScrollOrResize);
     resolveActiveId();
 
     return () => {
-      observer.disconnect();
+      observer?.disconnect();
       window.removeEventListener("scroll", onScrollOrResize);
       window.removeEventListener("resize", onScrollOrResize);
     };
@@ -190,6 +200,7 @@ export default function ArticleTOC({
               <a
                 href={`#${h.id}`}
                 onClick={(e) => handleClick(e, h.id)}
+                aria-current={isActive ? "location" : undefined}
                 style={{
                   display: "block",
                   fontSize: h.level === 2 ? 12 : 11,

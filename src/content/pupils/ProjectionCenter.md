@@ -41,7 +41,7 @@ The point from which these angular relationships are measured — the vertex of 
 
 ## Finding the Entrance Pupil for Panoramic Stitching
 
-For the minority of lenses that publish entrance-pupil position data, setup is straightforward. The Leica APO-Summicron-M 35 f/2 ASPH., for example, specifies 13.8 mm in front of the bayonet mount [^5]. Set the panorama head's adjustment rail so that the rotation axis falls at that point.
+For the minority of lenses that publish entrance-pupil position data, setup is straightforward. The [Leica APO-Summicron-M 35 f/2 ASPH.](/lens/leica-apo-summicron-m-35f2), for example, specifies 13.8 mm in front of the bayonet mount [^5]. Set the panorama head's adjustment rail so that the rotation axis falls at that point.
 
 For lenses that do not publish this information — which is most of them — the entrance-pupil position can be found empirically using the **two-target method**:
 

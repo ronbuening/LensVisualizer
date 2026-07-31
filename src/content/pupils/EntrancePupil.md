@@ -44,7 +44,7 @@ where $f$ is the effective focal length and $D_{\text{EP}}$ is the diameter of t
 
 This means that two lenses with identical physical iris diameters can have different f-numbers if their front groups magnify the stop differently. Consider a concrete example: a lens with a physical iris opening of 12 mm and a front group that magnifies the stop by a factor of 2×. The entrance pupil is $12 \times 2 = 24$ mm. If the lens has a focal length of 48 mm, the f-number is $48 / 24 = f/2$. A different lens with the same 12 mm iris but a front group providing 1.5× magnification presents an 18 mm entrance pupil. At the same 48 mm focal length, this lens would be $48 / 18 \approx f/2.7$.
 
-As a real-world reference, Leica publishes the entrance-pupil **position** for the APO-Summicron-M 35 f/2 ASPH.: 13.8 mm in front of the bayonet mount [^3]. (Leica does not directly publish the entrance-pupil diameter, but it follows from the f-number relation: $D_{\text{EP}} = 35 / 2 = 17.5$ mm.) That 17.5 mm disk is what you see looking into the front of the lens — regardless of the physical iris dimensions inside.
+As a real-world reference, Leica publishes the entrance-pupil **position** for the [APO-Summicron-M 35 f/2 ASPH.](/lens/leica-apo-summicron-m-35f2): 13.8 mm in front of the bayonet mount [^3]. (Leica does not directly publish the entrance-pupil diameter, but it follows from the f-number relation: $D_{\text{EP}} = 35 / 2 = 17.5$ mm.) That 17.5 mm disk is what you see looking into the front of the lens — regardless of the physical iris dimensions inside.
 
 ## When the Entrance Pupil and the Physical Stop Coincide
 
