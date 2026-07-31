@@ -267,7 +267,7 @@ const LENS_DATA = {
       nd: 2.00912,
       vd: 29.1,
       fl: -84.5,
-      glass: "FD225 (HOYA) — ultra-high-index dense flint",
+      glass: "Unmatched (ultra-high-index lanthanum flint, 009/291; prior FD225 annotation rejected)",
       apd: false,
       role: "Rearmost element — telecentricity and Petzval field control",
     },

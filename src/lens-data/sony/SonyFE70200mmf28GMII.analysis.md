@@ -176,7 +176,11 @@ L81 is an ED glass element in a negative role — an unusual but deliberate choi
 
 #### L82 — Negative Meniscus, convex to image
 
-$n_d$ = 2.00912, $\nu_d$ = 29.1. Glass: FD225 (HOYA) — ultra-high-index dense flint, exact catalog match. $f$ = −84.5 mm.
+$n_d$ = 2.00912, $\nu_d$ = 29.1. Glass: unmatched 009/291 ultra-high-index lanthanum-flint class. $f$ = −84.5 mm.
+
+The patent supplies the optical coordinate but not a supplier identity. HOYA FD225 was previously assigned here,
+but its official $n_d = 1.80809$, $\nu_d = 22.76$ row is incompatible with L82. No current catalog entry falls
+within the project's index and Abbe tolerances, so the model retains the patent values on the Abbe fallback path.
 
 L82 is the rearmost glass element, made of the highest-index glass in the system ($n_d$ = 2.009). The meniscus shape (both radii negative: R31 = −44.639, R32 = −95.059) curves toward the image, creating a divergent effect on the converging beam. Its primary role is to control the exit pupil position and telecentricity for the digital sensor, while contributing additional negative Petzval curvature. The ultra-high index minimizes the surface curvatures needed for a given power, keeping the element thin and the sag manageable at the ~32 mm semi-diameter.
 
@@ -205,9 +209,9 @@ The design employs glasses from at least two vendors (OHARA and HOYA), which is 
 | L62     | 1.65803 | 39.7    | 658397 patent-code         | Short flint         | Patent-code |
 | L71     | 1.61669 | 44.3    | 617443 patent coordinate   | Flint/crown boundary | Unresolved |
 | L81     | 1.49845 | 81.6    | S-FPL51 class (OHARA)     | ED crown            | Close      |
-| L82     | 2.00912 | 29.1    | FD225 (HOYA)               | Ultra-dense flint   | Exact      |
+| L82     | 2.00912 | 29.1    | Unmatched 009/291 class    | Ultra-dense flint   | Patent coordinate |
 
-The chromatic correction strategy is built on three tiers of low-dispersion glass. The two Super ED elements (L12, L13, $\nu_d$ = 95.1) handle primary axial color correction in GR1, where the marginal ray height is largest. Three ED elements (L31, L51, L81, $\nu_d$ = 81.6) provide secondary color correction distributed across the variator, relay, and rear groups. The achromatizing partners are consistently ultra-high-dispersion dense flints: the 863248 patent-code glass ($\nu_d$ = 24.8) appears in three elements (L32, L52, L53), providing chromatic lever arms of 56.8 Abbe units against the ED crowns. The use of HOYA FD225 ($n_d$ = 2.009) in L82 pushes the index to the extreme high end of the glass map, allowing very compact negative elements at the rear of the system.
+The chromatic correction strategy is built on three tiers of low-dispersion glass. The two Super ED elements (L12, L13, $\nu_d$ = 95.1) handle primary axial color correction in GR1, where the marginal ray height is largest. Three ED elements (L31, L51, L81, $\nu_d$ = 81.6) provide secondary color correction distributed across the variator, relay, and rear groups. The achromatizing partners are consistently ultra-high-dispersion dense flints: the 863248 patent-code glass ($\nu_d$ = 24.8) appears in three elements (L32, L52, L53), providing chromatic lever arms of 56.8 Abbe units against the ED crowns. L82's unmatched patent-coordinate glass pushes the index to the extreme high end of the glass map, allowing a compact negative element at the rear of the system without implying a catalog identity the source does not establish.
 
 L11 (1.77660/29.7), L21 (1.77621/49.6), and L41 (1.79191/25.7) resist confident identification against the public catalog. For L21, S-LAH66 matches the Abbe number but misses the index beyond the resolver tolerance. For L41, the visually confirmed patent table explicitly uses d-line coordinates, rejecting the tempting J-SF11 e-line coincidence. These data labels stay explicitly unmatched. The Super ED and ED rows likewise remain class-level comparisons where the patent does not establish a unique vendor.
 
@@ -330,4 +334,4 @@ The design also reflects Sony's vertically integrated glass and manufacturing ca
 2. Sony Corporation, "FE 70-200mm F2.8 GM OSS II" official product specifications, https://www.sony.com/.
 3. OpticalLimits review of the Sony FE 70-200mm f/2.8 GM OSS II, June 2024.
 4. OHARA and HOYA optical glass catalogs, checked during the 2026-05-20 audit; L32/L52/L53, L54/L55, L61, and L62 remain patent-code labels where no unique coefficient-backed public match was found.
-5. HOYA Optical Glass catalog (FD110, FD225, and FCD100); its E-FEL6 row was checked and rejected for L71.
+5. HOYA Optical Glass catalog (FD110, FD225, and FCD100); its E-FEL6 row was checked and rejected for L71, and its FD225 row was checked and rejected for L82.
