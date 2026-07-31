@@ -23,19 +23,26 @@ This file tracks the second bucket plus any cases from the first bucket that nee
 
 ## Current Status (July 2026, current catalog)
 
-- Catalog: **442 verified entries** in `src/optics/glassCatalogData.ts`.
+- Catalog: **443 verified entries** in `src/optics/glassCatalogData.ts`.
 - `catalog-mismatches.generated.md` and `glass-relabel-by-lens.generated.md` report **0** remaining
   dispersion-coordinate mismatches across **0** lens files. The mismatch report separately records **17 / 75**
   native e-line surfaces resolved through explicit names or aliases.
-- `sellmeier-coverage.generated.md` reports **488** lenses, **5360** non-air surfaces, **4715** strict catalog
-  Sellmeier surfaces (**88.0%**), and **4725** trusted chromatic surfaces (**88.2%**).
-- **235** lenses are fully covered by strict Sellmeier data and **239** are fully covered by trusted chromatic data.
+- `sellmeier-coverage.generated.md` reports **494** lenses, **5469** non-air surfaces, **4814** strict catalog
+  Sellmeier surfaces (**88.0%**), and **4824** trusted chromatic surfaces (**88.2%**).
+- **238** lenses are fully covered by strict Sellmeier data and **242** are fully covered by trusted chromatic data.
 - `unresolvedGlassScan` reports **356** non-explicit-unmatched annotations and **113** distinct unresolved glass-like
   tokens. Sweep 2B reports **0** remaining unresolved catalog-style names; the residual total is code/prose inventory.
-- The missing-Sellmeier six-digit report contains **260** code-only elements, with **0** active unreviewed rows,
-  **113** self-recording explicit unmatched/unidentified dispositions, **147** other rows covered by sidecar or
+- The missing-Sellmeier six-digit report contains **265** code-only elements, with **0** active unreviewed rows,
+  **118** self-recording explicit unmatched/unidentified dispositions, **147** other rows covered by sidecar or
   companion-audit records, and **0** dispositions missing a review record.
 - The Phase 2/3 resolved tables below are historical audit trail. Use the generated reports above for the current queue before starting new relabel work; for patent-by-patent execution, start from [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md).
+
+## Resolved Phase 70 — July 2026 K-LaSFn23 catalog addition
+
+- Added SUMITA K-LaSFn23 from the manufacturer's Ver. 14.01.00 per-glass datasheet.
+- Relabeled Panasonic LUMIX S PRO 16-35mm f/4 L12 as a coefficient-backed catalog equivalent while retaining the
+  patent index and leaving the production supplier unspecified.
+- Regenerated all glass reports; the active mismatch and unresolved named-token queues remain empty.
 
 ## Resolved Phase 69 — July 2026 review-record and material classification
 

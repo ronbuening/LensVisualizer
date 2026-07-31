@@ -187,6 +187,7 @@ const GLASS_CATALOG_SOURCE_ORDER = [
   "E-FD8",
   "FF8",
   "TAFD35",
+  "K-LaSFn23",
   "H-ZLaF68L",
   "S-LAH96",
   "H-ZF88",

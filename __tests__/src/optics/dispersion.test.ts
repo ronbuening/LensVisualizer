@@ -423,6 +423,18 @@ describe("glass catalog", () => {
     }
   });
 
+  it("reproduces SUMITA's official K-LaSFn23 datasheet row", () => {
+    const entry = resolveGlass("K-LaSFn23 (SUMITA catalog equivalent)");
+    expect(entry?.name).toBe("K-LaSFn23");
+    expect(entry?.code6).toBe("911352");
+    expect(resolveGlass("911352")?.name).toBe("K-LaSFn23");
+    expect(evaluateSellmeier(entry!, LINE_NM.C)).toBeCloseTo(1.90341, 5);
+    expect(evaluateSellmeier(entry!, LINE_NM.d)).toBeCloseTo(1.911, 5);
+    expect(evaluateSellmeier(entry!, LINE_NM.F)).toBeCloseTo(1.92928, 5);
+    expect(evaluateSellmeier(entry!, LINE_NM.g)).toBeCloseTo(1.94437, 5);
+    expect(evaluateCatalogAbbeNumber(entry!)).toBeCloseTo(35.2, 1);
+  });
+
   it("evaluates and resolves the current HOYA M-TAFD51 polynomial entry", () => {
     const mTafd51 = resolveGlass("M-TAFD51 (HOYA; 821/427 catalog match)");
     expect(mTafd51?.name).toBe("M-TAFD51");

@@ -9,12 +9,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **491** lenses scanned (**483** visible)
-- **4777 / 5423** non-air surfaces use strict catalog Sellmeier data (88.1%)
-- **4787 / 5423** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 88.3%)
+- **494** lenses scanned (**486** visible)
+- **4814 / 5469** non-air surfaces use strict catalog Sellmeier data (88.0%)
+- **4824 / 5469** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 88.2%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
-- **260** code-only missing-Sellmeier elements in Sweep 2: **0** active unreviewed, **113** self-recording explicit dispositions, **0** dispositions missing any review record
+- **265** code-only missing-Sellmeier elements in Sweep 2: **0** active unreviewed, **118** self-recording explicit dispositions, **0** dispositions missing any review record
 - **0** unresolved named-token elements in Sweep 2B, producing **0** token occurrences across **0** distinct tokens
 - **0** Tier A proprietary backfill rows in Sweep 3
 
@@ -42,6 +42,7 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [NIKON NIKKOR Z 50mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ50f12.data.ts) | WO 2021/241230 A1 | [PDF](../../patents/WO2021241230A1.pdf) | 94.1% (16/17) | 94.1% (16/17) | 1 | 5 [glass] (Element 3 (L13): `Unmatched (patent nd=1.55298/vd=55.10; no public catalog candidate)`) | abbe: 1 |
 | [NIKON NIKKOR Z DX 50-250mm f/4.5-6.3 VR](../../src/lens-data/nikon/NikonZDX50250mmf4564VR.data.ts) | WO2020/105107 A1 | [PDF](../../patents/JPWO2020105107A1.pdf) | 93.8% (15/16) | 93.8% (15/16) | 1 | 17 [glass] (L34: `Unmatched (902253 high-index dense flint; no exact public coefficient row)`) | abbe: 1 |
 | [PANASONIC LUMIX G VARIO 7-14mm f/4 ASPH.](../../src/lens-data/panasonic/PanasonicLumixGVario714mmf4.data.ts) | US 2010/0194930 A1 | [PDF](../../patents/US20100194930A1.pdf) | 93.8% (15/16) | 93.8% (15/16) | 1 | 28 [glass] (Element 16: `Unmatched crown class (523/701, likely phosphate/fluorophosphate)`) | abbe: 1 |
+| [PANASONIC LUMIX S 24-105mm f/4 MACRO O.I.S.](../../src/lens-data/panasonic/PanasonicLumixS24105mmf4MacroOIS.data.ts) | JP 2020-118738 A | [PDF](../../patents/JP2020118738A.pdf) | 93.8% (15/16) | 93.8% (15/16) | 1 | 16A [glass] (Element 8: `Unmatched (688311; M-FD80 / S-TIM28 / J-SF8 class)`) | abbe: 1 |
 | [FUJIFILM FUJINON XF 33mm f/1.4 R LM WR](../../src/lens-data/fujifilm/FujifilmXF33mmf14RLMWR.data.ts) | US 2022/0276464 A1 | [PDF](../../patents/US20220276464A1.pdf) | 93.3% (14/15) | 93.3% (14/15) | 1 | 20A [glass] (L26 focus Lp asphere: `Unmatched (853/406 dense lanthanum flint; near S-LAH89 / M-TAFD305 / D-ZLaF85 class)`) | abbe: 1 |
 | [NIKON ZOOM-NIKKOR AUTO 80-200mm f/4.5](../../src/lens-data/nikon/NikonAutoZoomNikkor80200mmf45.data.ts) | US 3,615,125 | [PDF](../../patents/US3615125.pdf) | 93.3% (14/15) | 93.3% (14/15) | 1 | 3 [glass] (Element 2: `Unmatched (614563 historical crown; prior SK6 / BSM6 annotation not coefficient-backed)`) | abbe: 1 |
 | [SIGMA 20mm f/1.4 DG HSM | Art](../../src/lens-data/sigma/Sigma20mmf14DGHSMArt.data.ts) | JP 2019-117419 A | [PDF](../../patents/JP2019117419A.pdf) | 93.3% (14/15) | 93.3% (14/15) | 1 | 26A [glass] (Element 15: `Unmatched 764491 - moldable lanthanum-crown class (patent nd=1.76450, vd=49.10; not catalog L-LAM69)`) | abbe: 1 |

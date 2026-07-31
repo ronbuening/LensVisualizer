@@ -5,6 +5,19 @@
 import type { GlassEntry } from "../glassCatalogTypes.js";
 
 export const SUMITA_GLASS_ENTRIES: readonly GlassEntry[] = [
+  /* Phase 70: exact first-party datasheet opportunity found during the
+   * Panasonic LUMIX S 16-35mm f/4 glass audit.
+   */
+  {
+    name: "K-LaSFn23",
+    vendor: "Sumita",
+    polynomial: [3.5274271, -0.01463666, 0.040395739, 0.0015517485, -0.000046386509, 0.0000091517458],
+    nd: 1.911,
+    vd: 35.2,
+    PgF: 0.583,
+    code6: "911352",
+    source: "SUMITA K-LaSFn23 optical-glass datasheet, catalog Ver. 14.01.00; vendor formula-3 polynomial A0-A5.",
+  },
   /* Phase 45: exact named/code opportunities from SUMITA's official
    * 2025-11-07 all-glass Zemax catalog, including discontinued types.
    */

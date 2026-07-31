@@ -9,12 +9,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **491** lenses scanned
-- **526** total code-only elements found
-- **260** elements in this report
-- **115** distinct lens files affected
+- **494** lenses scanned
+- **548** total code-only elements found
+- **265** elements in this report
+- **116** distinct lens files affected
 - **0** active unreviewed elements have no review-record hit or explicit disposition
-- **113** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
+- **118** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
 - **0** dispositions lack any review record
 
 ## Prioritized Unreviewed Queue
@@ -99,6 +99,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 571560 | 1 | 1 | patents/WO_2025263124_A1.pdf | All rows have review records |
 | 574425 | 1 | 1 | patents/FR_1066698_A.pdf | All rows have review records |
 | 575414 | 1 | 1 | patents/US2279384.pdf | All rows explicitly disposed |
+| 575560 | 1 | 1 | patents/JP2021076829A.pdf | All rows explicitly disposed |
 | 576414 | 1 | 1 | patents/US4124276.pdf | All rows have review records |
 | 579417 | 1 | 1 | patents/US2645974.pdf | All rows explicitly disposed |
 | 580595 | 1 | 1 | patents/JP2015041012A.pdf | All rows explicitly disposed |
@@ -147,6 +148,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 683447 | 1 | 1 | patents/US4708445.pdf | All rows explicitly disposed |
 | 683548 | 1 | 1 | patents/WO2021039813A1.pdf | All rows have review records |
 | 685309 | 1 | 1 | patents/US20160154221A1.pdf | All rows explicitly disposed |
+| 691536 | 1 | 1 | patents/JP2021076829A.pdf | All rows explicitly disposed |
 | 693495 | 1 | 1 | patents/US3552833.pdf | All rows explicitly disposed |
 | 693562 | 1 | 1 | patents/US2983193.pdf | All rows explicitly disposed |
 | 694312 | 1 | 1 | patents/WO2021199923A1.pdf | All rows have review records |
@@ -154,10 +156,12 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 697558 | 1 | 1 | patents/US4258985.pdf | All rows have review records |
 | 700555 | 1 | 1 | patents/WO_2025263124_A1.pdf | All rows have review records |
 | 701301 | 1 | 1 | patents/US4277149.pdf | All rows have review records |
+| 712525 | 1 | 1 | patents/JP2021076829A.pdf | All rows explicitly disposed |
 | 713433 | 1 | 1 | patents/US3942876.pdf | All rows have review records |
 | 721334 | 1 | 1 | Missing from untracked local patents/ references (US4786152, 4786152) | All rows have review records |
 | 728261 | 1 | 1 | patents/US4523816.pdf | All rows explicitly disposed |
 | 728403 | 1 | 1 | patents/US6560042.pdf | All rows explicitly disposed |
+| 730262 | 1 | 1 | patents/JP2021076829A.pdf | All rows explicitly disposed |
 | 732547 | 1 | 1 | patents/WO2021199923A1.pdf | All rows explicitly disposed |
 | 738493 | 1 | 1 | patents/JP2022092388A.pdf | All rows have review records |
 | 740439 | 1 | 1 | patents/US2983193.pdf | All rows explicitly disposed |
@@ -227,6 +231,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 903204 | 1 | 1 | patents/WO2021200206A1.pdf | All rows explicitly disposed |
 | 903354 | 1 | 1 | patents/JP2022092388A.pdf | All rows have review records |
 | 904293 | 1 | 1 | patents/CN205720849U.pdf | All rows have review records |
+| 907303 | 1 | 1 | patents/JP2021076829A.pdf | All rows explicitly disposed |
 | 910313 | 1 | 1 | patents/WO2021199923A1.pdf | All rows have review records |
 | 916364 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | All rows have review records |
 | 995293 | 1 | 1 | patents/JPWO2017138250A1.pdf | All rows explicitly disposed |
@@ -886,6 +891,16 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | L18 (Element 8) | 13A | `516565 — PGM moldable crown (patent nd=1.51602, νd=56.5; no exact public catalog match)` | 1.51602 / 56.50 | No catalog entry | abbe | patents/CN216772097U.pdf | Reviewed sidecar hit |
 | L21 (Element 9) | 15A | `516565 — PGM moldable crown (same as L18, L31; no exact public catalog match)` | 1.51602 / 56.50 | No catalog entry | abbe | patents/CN216772097U.pdf | Reviewed sidecar hit |
 | L31 (Element 10) | 17A | `516565 — PGM moldable crown (same as L18, L21; no exact public catalog match)` | 1.51602 / 56.50 | No catalog entry | abbe | patents/CN216772097U.pdf | Reviewed sidecar hit |
+
+### [PANASONIC LUMIX S PRO 16-35mm f/4](../../src/lens-data/panasonic/PanasonicLumixSPro1635mmf4.data.ts) - JP 2021-076829 A
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L1 (Element 1) | 1 | `Unmatched (691536; lanthanum-crown class)` | 1.69144 / 53.60 | No catalog entry | abbe | patents/JP2021076829A.pdf | Explicit disposition in data |
+| L2 (Element 2 glass substrate) | 3 | `Unmatched (712525; lanthanum-crown class)` | 1.71181 / 52.50 | No catalog entry | abbe | patents/JP2021076829A.pdf | Explicit disposition in data |
+| L4 (Element 4) | 8 | `Unmatched (730262; dense-flint class)` | 1.72960 / 26.20 | No catalog entry | abbe | patents/JP2021076829A.pdf | Explicit disposition in data |
+| L5 (Element 5) | 10A | `Unmatched (575560; barium-crown class)` | 1.57469 / 56.00 | No catalog entry | abbe | patents/JP2021076829A.pdf | Explicit disposition in data |
+| L6 (Element 6) | 13 | `Unmatched (907303; ultra-high-index flint class)` | 1.90698 / 30.30 | No catalog entry | abbe | patents/JP2021076829A.pdf | Explicit disposition in data |
 
 ### [PENTAX DA 70mm f/2.4 Limited](../../src/lens-data/pentax/PentaxDA70mmf24Limited.data.ts) - US 7,542,219 B2
 
