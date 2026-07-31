@@ -5,8 +5,8 @@
  * validating state-dependent thicknesses before tracing.
  */
 
-import type { VarRange } from "../../types/optics.js";
-import { formatCacheNumber, normalizeControlT } from "../math/numerics.js";
+import type { AberrationVarRange, VarRange } from "../../types/optics.js";
+import { clamp, formatCacheNumber, normalizeControlT } from "../math/numerics.js";
 import type { PreparedStateCache } from "./cache.js";
 import type { CompiledStateSurface, EngineLens, Plane3, PreparedOpticalState } from "../types.js";
 import { Optics2PreparationError } from "../types.js";
@@ -33,8 +33,9 @@ export function preparedStateCacheKey(lens: EngineLens, focusT: number, zoomT: n
 /**
  * Compile current optical state for tracing, diagram geometry, and analysis.
  *
- * Focus, zoom, and aberration controls are validated/clamped to `[0, 1]`, then
- * applied to variable surface gaps. Ordinary lenses require non-negative axial
+ * Focus and zoom are clamped to `[0, 1]`. Aberration controls use `[0, 1]` for
+ * legacy two-position ranges or `[-1, 1]` when a center position is declared, then
+ * all controls are applied to variable surface gaps. Ordinary lenses require non-negative axial
  * thicknesses; folded systems may use negative z deltas because the path can turn.
  *
  * @param lens - normalized engine lens
@@ -53,7 +54,7 @@ export function prepareState(
 ): PreparedOpticalState {
   const focusT = normalizePreparedControl(focusTInput, "focusT");
   const zoomT = normalizePreparedControl(zoomTInput, "zoomT");
-  const aberrationT = normalizePreparedControl(aberrationTInput, "aberrationT");
+  const aberrationT = normalizePreparedAberrationControl(aberrationTInput, lens.aberrationControl?.centerLabel != null);
   const cacheKey = preparedStateCacheKey(lens, focusT, zoomT, aberrationT);
   const cached = options.cache?.get(cacheKey);
   if (cached) return cached;
@@ -109,10 +110,17 @@ function normalizePreparedControl(value: number, label: string): number {
   }
 }
 
+function normalizePreparedAberrationControl(value: number, centered: boolean): number {
+  if (!Number.isFinite(value)) {
+    throw new Optics2PreparationError("invalid-control", "aberrationT must be finite");
+  }
+  return clamp(value, centered ? -1 : 0, 1);
+}
+
 function resolvePreparedThickness(
   baseThickness: number,
   focusRange: VarRange | undefined,
-  aberrationRange: VarRange | undefined,
+  aberrationRange: AberrationVarRange | undefined,
   isZoom: boolean,
   focusT: number,
   zoomT: number,

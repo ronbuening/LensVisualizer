@@ -7,7 +7,12 @@ available, it falls back to partial measured `nC`/`nF` line indices, dPgF-correc
 approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **443 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **444 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+
+The July 31, 2026 Phase 71 pass added Hikari J-SF14 from Nikon/Hikari's official 2023-09-01 optical-glass data
+workbook. Its vendor nine-term power-series curve reproduces the published C/d/F/g indices and `26.58` Abbe number,
+upgrading the Voigtländer Ultron 27mm f/2 from measured-line-only coverage to strict catalog dispersion on all six
+elements.
 
 The July 31, 2026 Phase 70 pass added SUMITA K-LaSFn23 from the manufacturer's Ver. 14.01.00 per-glass datasheet.
 Its formula-3 polynomial reproduces the published `nC = 1.90341`, `nd = 1.91100`, `nF = 1.92928`, and

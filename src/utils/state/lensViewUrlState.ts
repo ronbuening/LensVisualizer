@@ -120,7 +120,7 @@ export function parseLensViewQuery(search: string): LensViewQueryState {
   const params = new URLSearchParams(search);
   const state: LensViewQueryState = {
     focus: parseUnitParam(params, "focus"),
-    aberration: parseUnitParam(params, "aberration"),
+    aberration: parseClampedParam(params, "aberration", [-1, 1]),
     aperture: parseUnitParam(params, "aperture"),
     zoom: parseZoomParam(params),
   };
@@ -189,7 +189,7 @@ export function buildLensViewQuery({
   if (usesV1ViewState) params.set("v", "1");
   if (zoom != null && zoom > 0) params.set("zoom", String(zoom));
   if (focus != null && focus > 0) params.set("focus", focus.toFixed(3));
-  if (!comparing && aberration != null && aberration > 0) params.set("aberration", aberration.toFixed(3));
+  if (!comparing && aberration != null && Math.abs(aberration) > 1e-9) params.set("aberration", aberration.toFixed(3));
   if (aperture != null && aperture > 0) params.set("aperture", aperture.toFixed(3));
   if (shift != null && Math.abs(shift) > 1e-9) params.set("shift", shift.toFixed(2));
   if (tilt != null && Math.abs(tilt) > 1e-9) params.set("tilt", tilt.toFixed(2));

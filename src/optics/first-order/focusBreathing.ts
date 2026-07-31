@@ -24,7 +24,7 @@ import { traceParaxialSurfaces2 } from "../math/paraxial.js";
  * @returns current effective focal length in mm
  */
 export function eflAtFocus2(focusT: number, zoomT: number, L: RuntimeLens, aberrationT = 0): number {
-  if (focusT < FOCUS_INFINITY_THRESHOLD && aberrationT <= 0) {
+  if (focusT < FOCUS_INFINITY_THRESHOLD && aberrationT === 0) {
     return L.isZoom && L.zoomEFLs ? interpolateZoomArray(zoomT, L.zoomEFLs) : L.EFL;
   }
   const state = prepareState(normalizeRuntimeLens(L), focusT, zoomT, aberrationT);

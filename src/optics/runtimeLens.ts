@@ -370,6 +370,7 @@ export default function buildLens(data: LensData): RuntimeLens {
         label: data.aberrationControl.label,
         description: data.aberrationControl.description,
         minLabel: data.aberrationControl.minLabel,
+        centerLabel: data.aberrationControl.centerLabel,
         maxLabel: data.aberrationControl.maxLabel,
         step: data.aberrationControl.step,
         varByIdx: buildVarIndex(data.aberrationControl.var, labelIdx),

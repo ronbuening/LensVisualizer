@@ -300,7 +300,7 @@ function lerpZoomArray(zoomT: number, arr: number[]): number {
  * @returns effective focal length in mm
  */
 export function eflAtFocus(focusT: number, zoomT: number, L: RuntimeLens, aberrationT = 0): number {
-  if (focusT < FOCUS_INFINITY_THRESHOLD && aberrationT <= 0) {
+  if (focusT < FOCUS_INFINITY_THRESHOLD && aberrationT === 0) {
     return L.isZoom ? eflAtZoom(zoomT, L) : L.EFL;
   }
   const S = stateSurfaces(focusT, zoomT, L, aberrationT);

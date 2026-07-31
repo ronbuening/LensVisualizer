@@ -85,6 +85,17 @@ describe("glass catalog", () => {
     expect(evaluateCatalogAbbeNumber(entry!)).toBeCloseTo(64.14, 2);
   });
 
+  it("J-SF14 reproduces the published Hikari line indices and Abbe number", () => {
+    const entry = resolveGlass("J-SF14 (HIKARI)");
+    expect(entry?.name).toBe("J-SF14");
+    expect(entry?.code6).toBe("762266");
+    expect(evaluateSellmeier(entry!, LINE_NM.C)).toBeCloseTo(1.75358, 5);
+    expect(evaluateSellmeier(entry!, LINE_NM.d)).toBeCloseTo(1.76182, 5);
+    expect(evaluateSellmeier(entry!, LINE_NM.F)).toBeCloseTo(1.782237, 5);
+    expect(evaluateSellmeier(entry!, LINE_NM.g)).toBeCloseTo(1.799796, 5);
+    expect(evaluateCatalogAbbeNumber(entry!)).toBeCloseTo(26.58, 2);
+  });
+
   it("computed Abbe number for N-BK7 matches the catalog vd within 0.5", () => {
     const nbk7 = resolveGlass("N-BK7");
     expect(nbk7).not.toBeNull();

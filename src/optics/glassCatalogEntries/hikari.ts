@@ -44,6 +44,26 @@ export const HIKARI_GLASS_ENTRIES: readonly GlassEntry[] = [
       "Nikon/Hikari Optical Glass Catalog 2023, J-BK7A page; vendor formula-3 power-series coefficients and d-line code.",
   },
   {
+    name: "J-SF14",
+    vendor: "Hikari",
+    powerSeries: [
+      [2.98193445, 0],
+      [-0.012659384, 2],
+      [0.0370386685, -2],
+      [0.00296054842, -4],
+      [-0.000481643932, -6],
+      [0.000114549779, -8],
+      [-0.0000116507463, -10],
+      [0.000000568089035, -12],
+    ],
+    nd: 1.76182,
+    vd: 26.58,
+    PgF: 0.6127,
+    code6: "762266",
+    source:
+      "Nikon/Hikari Optical Glass Data 2023-09-01 workbook, J-SF14 row; vendor nine-term power-series coefficients and d-line code.",
+  },
+  {
     name: "J-LAK8",
     vendor: "Hikari",
     powerSeries: [

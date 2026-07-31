@@ -169,6 +169,7 @@ function compileAberrationControl(
     label: control.label,
     description: control.description,
     minLabel: control.minLabel,
+    centerLabel: control.centerLabel,
     maxLabel: control.maxLabel,
     step: control.step,
     varBySurfaceIndex: compileVariableGaps(control.var, labelToSurfaceIndex, "aberrationControl.var"),

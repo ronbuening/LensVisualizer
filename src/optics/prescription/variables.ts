@@ -5,7 +5,7 @@
  * for RuntimeLens and prepared engine states.
  */
 
-import type { VarRange } from "../../types/optics.js";
+import type { AberrationPositionRange, AberrationVarRange, VarRange } from "../../types/optics.js";
 import { lerp } from "../math/numerics.js";
 import { resolveLabel } from "./labels.js";
 
@@ -17,12 +17,12 @@ import { resolveLabel } from "./labels.js";
  * @param context - field name used in label-resolution errors
  * @returns frozen surface-index keyed variable ranges
  */
-export function compileVariableGaps(
-  variableGaps: Record<string, VarRange> | undefined,
+export function compileVariableGaps<T extends VarRange | AberrationVarRange>(
+  variableGaps: Record<string, T> | undefined,
   labelToSurfaceIndex: Readonly<Record<string, number>>,
   context = "var",
-): Readonly<Record<number, VarRange>> {
-  const out: Record<number, VarRange> = {};
+): Readonly<Record<number, T>> {
+  const out: Record<number, T> = {};
   for (const [label, range] of Object.entries(variableGaps ?? {})) {
     out[resolveLabel(label, labelToSurfaceIndex, context)] = freezeRange(range);
   }
@@ -88,6 +88,34 @@ export function resolveVariableThickness(
 }
 
 /**
+ * Resolve an aberration-controlled gap at the current control and zoom positions.
+ *
+ * Legacy two-position controls use normalized `0..1` travel. Three-position controls
+ * use signed `-1..1` travel so their center position remains the universal default `0`.
+ *
+ * @param baseThickness - authored default thickness in mm
+ * @param range - optional two- or three-position aberration range
+ * @param isZoom - whether the lens uses zoom-indexed ranges
+ * @param controlT - normalized or signed aberration control
+ * @param zoomT - normalized zoom control
+ * @returns current aberration-controlled thickness in mm
+ */
+export function resolveAberrationThickness(
+  baseThickness: number,
+  range: AberrationVarRange | undefined,
+  isZoom: boolean,
+  controlT: number,
+  zoomT: number,
+): number {
+  if (!range) return baseThickness;
+  const positions = isZoom
+    ? interpolateAberrationPositionsAtZoom(range as AberrationPositionRange[], zoomT)
+    : (range as AberrationPositionRange);
+  if (positions.length === 2) return lerp(positions[0], positions[1], controlT);
+  return controlT <= 0 ? lerp(positions[1], positions[0], -controlT) : lerp(positions[1], positions[2], controlT);
+}
+
+/**
  * Combine focus and aberration variable ranges for one surface gap.
  *
  * Aberration control is applied as a delta from the base thickness after focus
@@ -105,7 +133,7 @@ export function resolveVariableThickness(
 export function resolveControlledThickness(
   baseThickness: number,
   focusRange: VarRange | undefined,
-  aberrationRange: VarRange | undefined,
+  aberrationRange: AberrationVarRange | undefined,
   isZoom: boolean,
   focusT: number,
   zoomT: number,
@@ -113,15 +141,32 @@ export function resolveControlledThickness(
 ): number {
   const focusThickness = resolveVariableThickness(baseThickness, focusRange, isZoom, focusT, zoomT);
   if (!aberrationRange) return focusThickness;
-  const aberrationThickness = resolveVariableThickness(baseThickness, aberrationRange, isZoom, aberrationT, zoomT);
+  const aberrationThickness = resolveAberrationThickness(baseThickness, aberrationRange, isZoom, aberrationT, zoomT);
   return focusThickness + (aberrationThickness - baseThickness);
 }
 
-function freezeRange(range: VarRange): VarRange {
+function interpolateAberrationPositionsAtZoom(
+  zoomRanges: AberrationPositionRange[],
+  zoomT: number,
+): AberrationPositionRange {
+  if (zoomRanges.length === 0) return [0, 0];
+  if (zoomRanges.length === 1) return zoomRanges[0];
+  const position = zoomT * (zoomRanges.length - 1);
+  const index = Math.min(Math.floor(position), zoomRanges.length - 2);
+  const fraction = position - index;
+  const from = zoomRanges[index];
+  const to = zoomRanges[index + 1];
+  if (from.length === 3 && to.length === 3) {
+    return [lerp(from[0], to[0], fraction), lerp(from[1], to[1], fraction), lerp(from[2], to[2], fraction)];
+  }
+  return [lerp(from[0], to[0], fraction), lerp(from[1], to[1], fraction)];
+}
+
+function freezeRange<T extends VarRange | AberrationVarRange>(range: T): T {
   if (Array.isArray(range[0])) {
     return Object.freeze(
-      (range as [number, number][]).map((pair) => Object.freeze([...pair] as [number, number])),
-    ) as unknown as VarRange;
+      (range as AberrationPositionRange[]).map((positions) => Object.freeze([...positions])),
+    ) as unknown as T;
   }
-  return Object.freeze([range[0], range[1]] as [number, number]) as unknown as VarRange;
+  return Object.freeze([...range]) as unknown as T;
 }

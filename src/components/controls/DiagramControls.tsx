@@ -173,7 +173,13 @@ export default function DiagramControls({
     `${value > 0 ? "+" : ""}${value.toFixed(digits)} ${unit}`;
   const aberrationValue = (() => {
     const min = Number(L.aberrationControl?.minLabel);
+    const center = Number(L.aberrationControl?.centerLabel);
     const max = Number(L.aberrationControl?.maxLabel);
+    if (L.aberrationControl?.centerLabel && Number.isFinite(min) && Number.isFinite(center) && Number.isFinite(max)) {
+      return (aberrationT <= 0 ? center + (center - min) * aberrationT : center + (max - center) * aberrationT).toFixed(
+        1,
+      );
+    }
     if (Number.isFinite(min) && Number.isFinite(max)) return (min + (max - min) * aberrationT).toFixed(1);
     return `${Math.round(aberrationT * 100)}%`;
   })();
@@ -301,10 +307,12 @@ export default function DiagramControls({
           displayValue={aberrationValue}
           value={aberrationT}
           step={L.aberrationControl.step ?? 0.01}
+          min={L.aberrationControl.centerLabel ? -1 : 0}
           onPointerDown={beginInteraction}
           onChange={handleAberrationChange}
           onPointerUp={handlePointerUp}
-          minLabel={L.aberrationControl.minLabel ?? "normal"}
+          minLabel={L.aberrationControl.minLabel ?? (L.aberrationControl.centerLabel ? "min" : "normal")}
+          centerLabel={L.aberrationControl.centerLabel}
           maxLabel={L.aberrationControl.maxLabel ?? "max"}
           flexBasis="230px"
         >

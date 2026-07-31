@@ -52,7 +52,8 @@ the left of the existing ray controls; mobile uses left/right arrow buttons to p
 the cardinal control set.
 
 Lens-specific aberration controls are declared by `LensData.aberrationControl`. `DiagramControls` renders them only when
-present, using the data-provided label, endpoint labels, step, and readout labels.
+present, using the data-provided label, endpoint labels, optional center label, step, and readout labels. Controls with
+a center label use signed `-1..1` travel with the center/default at `0`; controls without one retain `0..1` travel.
 
 ## Display Components
 

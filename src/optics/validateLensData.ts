@@ -919,6 +919,12 @@ export default function validateLensData(data: UntrustedLensData): string[] {
     } else {
       if (typeof control.label !== "string" || control.label.trim() === "")
         errors.push("aberrationControl.label must be a non-empty string");
+      const hasCenterPosition = control.centerLabel !== undefined;
+      if (
+        control.centerLabel !== undefined &&
+        (typeof control.centerLabel !== "string" || control.centerLabel.trim() === "")
+      )
+        errors.push("aberrationControl.centerLabel must be a non-empty string");
       if (control.step !== undefined && (typeof control.step !== "number" || control.step <= 0))
         errors.push("aberrationControl.step must be a positive number");
       const ranges = control.var;
@@ -930,33 +936,64 @@ export default function validateLensData(data: UntrustedLensData): string[] {
             errors.push(`aberrationControl.var["${label}"]: surface label not found`);
             continue;
           }
+          const expectedPositionCount = hasCenterPosition ? 3 : 2;
+          const positionDescription = hasCenterPosition ? "[minimum, center, maximum]" : "[normal, maximum]";
+          const positionNames = hasCenterPosition ? ["minimum", "center", "maximum"] : ["normal", "maximum"];
           if (isZoom) {
             if (!Array.isArray(range) || range.length !== nz)
               errors.push(
-                `aberrationControl.var["${label}"]: expected array of ${nz} [normal, maximum] pairs (one per zoom position)`,
+                `aberrationControl.var["${label}"]: expected array of ${nz} ${positionDescription} arrays (one per zoom position)`,
               );
             else {
               for (let zi = 0; zi < nz; zi++) {
-                if (!Array.isArray(range[zi]) || range[zi].length !== 2) {
-                  errors.push(`aberrationControl.var["${label}"][${zi}]: expected [normal, maximum] array of length 2`);
+                if (!Array.isArray(range[zi]) || range[zi].length !== expectedPositionCount) {
+                  errors.push(
+                    `aberrationControl.var["${label}"][${zi}]: expected ${positionDescription} array of length ${expectedPositionCount}`,
+                  );
                 } else {
-                  if (range[zi][0] < 0)
-                    errors.push(`aberrationControl.var["${label}"][${zi}]: normal=${range[zi][0]} is negative`);
-                  if (range[zi][1] < 0)
-                    errors.push(`aberrationControl.var["${label}"][${zi}]: maximum=${range[zi][1]} is negative`);
+                  for (let pi = 0; pi < expectedPositionCount; pi++) {
+                    const value = range[zi][pi];
+                    if (typeof value !== "number" || !Number.isFinite(value)) {
+                      errors.push(
+                        `aberrationControl.var["${label}"][${zi}]: ${positionNames[pi]} must be a finite number`,
+                      );
+                    } else if (value < 0) {
+                      errors.push(
+                        `aberrationControl.var["${label}"][${zi}]: ${positionNames[pi]}=${value} is negative`,
+                      );
+                    }
+                  }
                 }
               }
             }
-          } else if (!Array.isArray(range) || range.length !== 2) {
-            errors.push(`aberrationControl.var["${label}"]: expected [normal, maximum] array of length 2`);
+          } else if (!Array.isArray(range) || range.length !== expectedPositionCount) {
+            errors.push(
+              `aberrationControl.var["${label}"]: expected ${positionDescription} array of length ${expectedPositionCount}`,
+            );
           } else {
-            if (range[0] < 0) errors.push(`aberrationControl.var["${label}"]: normal=${range[0]} is negative`);
-            if (range[1] < 0) errors.push(`aberrationControl.var["${label}"]: maximum=${range[1]} is negative`);
+            for (let pi = 0; pi < expectedPositionCount; pi++) {
+              const value = range[pi];
+              if (typeof value !== "number" || !Number.isFinite(value)) {
+                errors.push(`aberrationControl.var["${label}"]: ${positionNames[pi]} must be a finite number`);
+              } else if (value < 0) {
+                errors.push(`aberrationControl.var["${label}"]: ${positionNames[pi]}=${value} is negative`);
+              }
+            }
           }
           const surfD = data.surfaces[labelToIdx[label]].d;
-          const normal = firstInfinityThickness(range, isZoom);
-          if (typeof surfD === "number" && typeof normal === "number" && Math.abs(surfD - normal) > 1e-6)
-            errors.push(`aberrationControl.var["${label}"]: surface d=${surfD} does not match normal value ${normal}`);
+          const firstPositions = isZoom && Array.isArray(range) ? range[0] : range;
+          const defaultThickness =
+            Array.isArray(firstPositions) && typeof firstPositions[hasCenterPosition ? 1 : 0] === "number"
+              ? firstPositions[hasCenterPosition ? 1 : 0]
+              : null;
+          if (
+            typeof surfD === "number" &&
+            typeof defaultThickness === "number" &&
+            Math.abs(surfD - defaultThickness) > 1e-6
+          )
+            errors.push(
+              `aberrationControl.var["${label}"]: surface d=${surfD} does not match ${hasCenterPosition ? "center" : "normal"} value ${defaultThickness}`,
+            );
         }
       }
       if (Array.isArray(control.varLabels)) {
