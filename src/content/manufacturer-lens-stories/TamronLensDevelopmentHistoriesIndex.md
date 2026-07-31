@@ -16,6 +16,14 @@ Tamron maintains three complementary first-party histories. Its brand timeline c
 
 The official [Tamron Lens History](https://www.tamron.com/global/consumer/brandsite/history/) begins with the 135mm F4.5 Model 280 from 1958 and follows the company's interchangeable lenses through the mirrorless era. It records model numbers, dates, and technologies including interchangeable mounts, telephoto and mirror lenses, Adaptall, SP, autofocus, vibration compensation, and current Di III designs.
 
+Three lenses in that larger timeline currently have exact catalog matches:
+
+| Introduced | Lens | Surface & Stop |
+| --- | --- | --- |
+| 2012 | SP 90mm F2.8 Di Macro 1:1 VC USD (F004) | [SP 90mm F2.8 Di Macro (F004)](/lens/tamron-sp-90mm-f2-8-di-macro-vc-usd-f004) |
+| 2009 | SP AF 60mm F2 Di II LD [IF] Macro 1:1 (G005) | [SP AF 60mm F2 Di II Macro (G005)](/lens/tamron-sp-af-60mm-f2-di-ii-macro) |
+| 2003 | SP AF 180mm F3.5 Di LD [IF] Macro 1:1 (B01) | [SP AF 180mm F3.5 Di Macro (B01)](/lens/tamron-sp-af-180mm-f35-di) |
+
 Because this is a broad catalog rather than a single-lens article, the two lineage features below provide the more detailed development narratives.
 
 ## The 90mm Macro Lineage
@@ -26,7 +34,7 @@ Tamron's [History of the 90mm Macro Lens](https://www.tamron.com/global/consumer
 | --- | --- | --- | --- |
 | 2024 | 90mm F2.8 Di III Macro VXD | F072 | — |
 | 2016 | SP 90mm F2.8 Di Macro 1:1 VC USD | F017 | — |
-| 2012 | SP 90mm F2.8 Di Macro 1:1 VC USD | F004 | — |
+| 2012 | SP 90mm F2.8 Di Macro 1:1 VC USD | F004 | [SP 90mm F2.8 Di Macro (F004)](/lens/tamron-sp-90mm-f2-8-di-macro-vc-usd-f004) |
 | 2004 | SP AF 90mm F2.8 Di Macro 1:1 | 272E | — |
 | 1999 | SP AF 90mm F2.8 Macro 1:1 | 172E | — |
 | 1996 | SP AF 90mm F2.8 Macro 1:1 | 72E | — |

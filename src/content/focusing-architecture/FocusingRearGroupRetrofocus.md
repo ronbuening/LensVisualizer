@@ -29,7 +29,7 @@ During focusing from infinity to close range, the rear group moves toward the ob
 
 The [Nikon 28mm f/1.4E](/lens/nikon-afs-28f14e) uses a two-group rear-focusing strategy, with the rear positive group moving toward the object side during focusing from infinity to close range.
 
-The predecessor 28mm f/1.4D [^2] used a more complex focusing system: three groups moving at two distinct rates, with a differential cam mechanism coupling their motions. The newer 28mm f/1.4E trades this multi-rate complexity for modern optical technology — three aspherical elements (versus one in the predecessor) and two ED elements provide additional degrees of freedom for higher-order aberration control with a simpler single-rate rear-focus mechanism — a tradeoff documented in wide-angle cinematographic objectives by Neil [^3].
+The predecessor [28mm f/1.4D](/lens/nikkor-28f14d) [^2] used a more complex focusing system: three groups moving at two distinct rates, with a differential cam mechanism coupling their motions. The newer 28mm f/1.4E trades this multi-rate complexity for modern optical technology — three aspherical elements (versus one in the predecessor) and two ED elements provide additional degrees of freedom for higher-order aberration control with a simpler single-rate rear-focus mechanism — a tradeoff documented in wide-angle cinematographic objectives by Neil [^3].
 
 This represents a broader trend in modern lens design: **advances in glass and aspherical manufacturing technology can offset the loss of mechanical degrees of freedom**, allowing simpler focusing mechanisms where multi-group predecessors once required differential cam systems.
 

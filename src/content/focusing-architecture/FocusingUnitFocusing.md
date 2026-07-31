@@ -33,7 +33,7 @@ Two important consequences follow from these equations:
 
 **Coma drives spherical aberration change.** A lens with small residual coma at its design conjugate will resist spherical aberration degradation at close focus. This is why the quasi-symmetric Double Gauss form — whose structural symmetry inherently suppresses coma — has historically been the most successful architecture for unit-focused fast normal primes [^3] [^4].
 
-**Astigmatism and Petzval sum drive coma change.** The relationship $3S_{III} + S_{IV}$ controls how rapidly coma degrades with conjugate shift. Strongly asymmetric designs (retrofocus wide-angles, telephoto constructions) carry large residual coma and astigmatism by virtue of their asymmetry, and suffer correspondingly severe degradation under unit focusing at close range. The predecessor patent for the Nikon 28mm f/1.4D [^5] states this explicitly: unit focusing an inverse telephoto wide-angle produces "excessively corrected" astigmatism and "insufficiently corrected" spherical aberration at short range.
+**Astigmatism and Petzval sum drive coma change.** The relationship $3S_{III} + S_{IV}$ controls how rapidly coma degrades with conjugate shift. Strongly asymmetric designs (retrofocus wide-angles, telephoto constructions) carry large residual coma and astigmatism by virtue of their asymmetry, and suffer correspondingly severe degradation under unit focusing at close range. The predecessor patent for the [Nikon 28mm f/1.4D](/lens/nikkor-28f14d) [^5] states this explicitly: unit focusing an inverse telephoto wide-angle produces "excessively corrected" astigmatism and "insufficiently corrected" spherical aberration at short range.
 
 ## Advantages
 

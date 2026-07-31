@@ -281,7 +281,7 @@ Leica produced approximately 17,051 lenses across the production run from 1975 t
 
 ### 7.5 The proliferation of "APO" branding from the 1980s onward
 
-Through the 1980s and 1990s, every major manufacturer extended apochromatic branding into telephoto and macro lines. Leica added the APO-Summicron-R 180mm f/2 (1994) and the APO-Summicron-M series. Zeiss issued the **Apo Sonnar T\* 2/135** for SLR mounts (announced September 2012, delivered from December 2012; 11 elements in 8 groups with anomalous partial dispersion glass and a floating-element system; manufactured in Oberkochen) [^34]. Canon launched the EF 200mm f/1.8L USM and later the EF 200mm f/2L IS USM with fluorite elements. Nikon offered the AF Micro-Nikkor 200mm f/4D IF-ED as its apochromatic-class macro lens of the F-mount era.
+Through the 1980s and 1990s, every major manufacturer extended apochromatic branding into telephoto and macro lines. Leica added the APO-Summicron-R 180mm f/2 (1994) and the APO-Summicron-M series. Zeiss issued the **Apo Sonnar T\* 2/135** for SLR mounts (announced September 2012, delivered from December 2012; 11 elements in 8 groups with anomalous partial dispersion glass and a floating-element system; manufactured in Oberkochen) [^34]. Canon launched the [EF 200mm f/1.8L USM](/lens/canon-ef-200mm-f1-8-l-usm) and later the [EF 200mm f/2L IS USM](/lens/canon-ef-200mm-f2l-is-usm) with fluorite elements. Nikon offered the [AF Micro-Nikkor 200mm f/4D IF-ED](/lens/nikon-af-micro-nikkor-200mm-f4d) as its apochromatic-class macro lens of the F-mount era.
 
 ### 7.6 Modern mirrorless-era apochromats
 
@@ -291,7 +291,7 @@ The combination of mirrorless cameras (with no mirror box constraint on rear-ele
 
 - **Macro APO-Lanthar 65mm f/2 Aspherical** (Sony FE, 2017; Nikon Z, 2022): 10 elements in 8 groups, one double-sided aspherical element, five elements with abnormal partial dispersion, 1:2 maximum magnification at 31 cm minimum focusing distance, 10-blade aperture [^28].
 - **Macro APO-Lanthar 110mm f/2.5** (Sony FE, 2019): 14 elements in 12 groups, three-group floating optical system, 1:1 life-size maximum magnification at 0.35 m, 10-blade aperture [^29].
-- **APO-Lanthar 50mm f/2 Aspherical** (Sony FE, Nikon Z, 2019): two aspherical elements, five elements with abnormal partial dispersion, integrated floating-focus system, 12-blade aperture [^30].
+- **[APO-Lanthar 50mm f/2 Aspherical](/lens/apo-lanthar-50f2)** (Sony FE, Nikon Z, 2019): two aspherical elements, five elements with abnormal partial dispersion, integrated floating-focus system, 12-blade aperture [^30].
 
 Cosina's published specifications for the modern APO-Lanthar lenses show unusually aggressive use of abnormal-partial-dispersion glass (five such elements in both the 65mm f/2 and the 50mm f/2) and floating groups, making them strong candidates for APO verification through patent-prescription reconstruction and wavelength-resolved ray tracing in Surface & Stop [^28].
 

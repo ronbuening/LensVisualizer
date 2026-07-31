@@ -13,7 +13,7 @@ seriesOrder: 5
 
 In dual-side focusing, two lens groups — one on each side of the aperture stop — move independently during focusing, typically at different rates or in different directions. This provides **two independent degrees of freedom** for aberration correction at each focus position, making it the only single-lens architecture capable of maintaining high image quality across extreme conjugate ranges (infinity to 1:1 macro and beyond). The barrel does not extend.
 
-This architecture is the modern realization of Nikon's **Close-Range Correction (CRC) system**, conceived in 1967 by Zenji Wakimoto and first implemented by Yoshiyuki Shimizu for the Nikkor-N Auto 24mm f/2.8 [^1].
+This architecture is the modern realization of Nikon's **Close-Range Correction (CRC) system**, conceived in 1967 by Zenji Wakimoto and first implemented by Yoshiyuki Shimizu for the [Nikkor-N Auto 24mm f/2.8](/lens/nikkor-24f28) [^1].
 
 ## How It Works
 

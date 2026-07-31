@@ -205,7 +205,7 @@ The Micro-Nikkor 105mm f/2.8G VR confronts the most demanding conjugate range of
 
 The solution is dual-side focusing: **two groups, one before and one after the aperture stop, move independently at different rates**. In the patent example, the lens is divided into four groups: fixed positive G1, moving negative G2 (ahead of the stop), aperture stop, moving positive G3 (behind the stop), fixed negative G4. During focusing from infinity to close range, G2 moves toward the image side and G3 moves toward the object side.
 
-This architecture is the modern realization of Nikon's **Close-Range Correction (CRC) system**, conceived in 1967 by Zenji Wakimoto and executed in its first implementation by Yoshiyuki Shimizu for the Nikkor-N Auto 24mm f/2.8 [^15]. Wakimoto's original insight was remarkably precise: he identified a variable air space whose change affected the astigmatism sum without disturbing the spherical aberration sum, then used that air space as a correcting degree of freedom during focusing.
+This architecture is the modern realization of Nikon's **Close-Range Correction (CRC) system**, conceived in 1967 by Zenji Wakimoto and executed in its first implementation by Yoshiyuki Shimizu for the [Nikkor-N Auto 24mm f/2.8](/lens/nikkor-24f28) [^15]. Wakimoto's original insight was remarkably precise: he identified a variable air space whose change affected the astigmatism sum without disturbing the spherical aberration sum, then used that air space as a correcting degree of freedom during focusing.
 
 ### Aberration Rationale
 
@@ -257,7 +257,7 @@ This architecture is dictated by the lens's **inverse telephoto (retrofocus) des
 
 ### Evolution from the 28mm f/1.4D
 
-The predecessor 28mm f/1.4D [^18] used a more mechanically complex focusing system: three groups moved during focusing at **two** distinct rates. The newer 28mm f/1.4E trades this multi-rate complexity for modern optical technology. Three aspherical elements and two ED elements provide the additional degrees of freedom needed to control higher-order aberration residuals across the conjugate range with a simpler single-rate rear-focus mechanism.
+The predecessor [28mm f/1.4D](/lens/nikkor-28f14d) [^18] used a more mechanically complex focusing system: three groups moved during focusing at **two** distinct rates. The newer 28mm f/1.4E trades this multi-rate complexity for modern optical technology. Three aspherical elements and two ED elements provide the additional degrees of freedom needed to control higher-order aberration residuals across the conjugate range with a simpler single-rate rear-focus mechanism.
 
 This represents a broader trend in modern lens design: **advances in glass and aspherical manufacturing technology can offset the loss of mechanical degrees of freedom**.
 
