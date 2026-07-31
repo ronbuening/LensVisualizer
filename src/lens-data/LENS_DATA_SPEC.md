@@ -790,14 +790,15 @@ for ordinary focus floating groups; those remain in `var`.
 
 ```javascript
 aberrationControl: {
-  label: "SOFT",          // slider label
+  label: "SA CONTROL",    // slider label
   description: "Varies d_B0 for spherical-aberration control.",
-  minLabel: "0",          // optional endpoint label
-  maxLabel: "3",          // optional endpoint label
+  minLabel: "UNDER",      // optional endpoint label
+  centerLabel: "SHARP",   // optional center/default label; enables signed travel
+  maxLabel: "OVER",       // optional endpoint label
   step: 0.001,            // optional normalized slider step
   var: {
-    "9": [2.074, 6.962],  // [minimum/sharp, maximum effect]
-    "11": [64.427, 53.951],
+    "9": [1.8, 2.074, 6.962],  // [minimum, center/default, maximum]
+    "11": [65.0, 64.427, 53.951],
   },
   varLabels: [
     ["9", "D(B0)"],
@@ -806,12 +807,17 @@ aberrationControl: {
 },
 ```
 
-The base surface table must represent the minimum-control state, and each controlled surface's first value must match
-the corresponding surface `d`. Runtime thickness combines the current focus/zoom spacing with the aberration-control
-delta from the base surface value, so the control can be layered with focus travel without overloading focus `var`.
+Without `centerLabel`, each range remains the existing `[normal, maximum]` pair, the slider uses `0..1`, and the base
+surface table must match the first value. When `centerLabel` is present, every range is a
+`[minimum, center/default, maximum]` triple, the slider uses `-1..1`, and the base surface table must match the center
+value. The signed form keeps the sharp center at the default control value `0` while allowing under- and over-correction
+on opposite sides. For zoom lenses, supply one pair or triple per `zoomPositions` entry using the same form throughout.
 
-The URL parameter is `aberration`, a normalized `0..1` value. It is single-lens state only; comparison mode omits it
-because each lens' control scale is mechanism-specific.
+Runtime thickness combines the current focus/zoom spacing with the aberration-control delta from the base surface value,
+so the control can be layered with focus travel without overloading focus `var`.
+
+The URL parameter is `aberration`: `0..1` for the two-position form and `-1..1` for the centered form. It is single-lens
+state only; comparison mode omits it because each lens' control scale is mechanism-specific.
 
 ---
 

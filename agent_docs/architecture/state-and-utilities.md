@@ -53,8 +53,9 @@ shareable view state:
 - Unknown `v` values ignore v1-only params while continuing to honor stable slider params.
 - `shift` and `tilt` are clamped against each lens' `perspectiveControl` config at render time; lenses without that
   config resolve both values to zero.
-- `aberration` is a normalized single-lens control for lenses that declare `aberrationControl`; comparison mode does not
-  share it because the cam meaning is lens-specific.
+- `aberration` is a normalized single-lens control for lenses that declare `aberrationControl`; ordinary controls use
+  `0..1`, while optional centered controls use `-1..1` with `0` as their default. Comparison mode does not share it
+  because the cam meaning is lens-specific.
 - `ai` is reserved for future analysis-tab item state and should not be used until a concrete tab item UI exists.
 - Ray density intentionally stays out of this URL surface and persists only through localStorage preferences.
 

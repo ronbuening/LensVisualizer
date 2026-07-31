@@ -65,6 +65,55 @@ describe("validateLensData", () => {
     expect(validateLensData(makeValid())).toEqual([]);
   });
 
+  it("accepts optional centered aberration-control positions with the authored center as default", () => {
+    const data = makeValid({
+      aberrationControl: {
+        label: "SA CONTROL",
+        minLabel: "UNDER",
+        centerLabel: "SHARP",
+        maxLabel: "OVER",
+        var: { STO: [1, 2, 3] },
+      },
+    });
+
+    expect(validateLensData(data)).toEqual([]);
+  });
+
+  it("keeps legacy two-position aberration controls valid", () => {
+    const data = makeValid({
+      aberrationControl: {
+        label: "SOFT",
+        var: { STO: [2, 3] },
+      },
+    });
+
+    expect(validateLensData(data)).toEqual([]);
+  });
+
+  it("requires triples and a center-matching base thickness when centerLabel is declared", () => {
+    const wrongLength = validateLensData(
+      makeValid({
+        aberrationControl: {
+          label: "SA CONTROL",
+          centerLabel: "SHARP",
+          var: { STO: [2, 3] },
+        },
+      }),
+    );
+    const wrongCenter = validateLensData(
+      makeValid({
+        aberrationControl: {
+          label: "SA CONTROL",
+          centerLabel: "SHARP",
+          var: { STO: [1, 2.5, 3] },
+        },
+      }),
+    );
+
+    expect(wrongLength.some((error) => error.includes("[minimum, center, maximum] array of length 3"))).toBe(true);
+    expect(wrongCenter.some((error) => error.includes("does not match center value 2.5"))).toBe(true);
+  });
+
   it("catches missing required string fields", () => {
     const data = makeValid();
     delete data.key;

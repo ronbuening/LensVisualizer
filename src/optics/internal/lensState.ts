@@ -6,6 +6,7 @@
  */
 
 import type {
+  AberrationVarRange,
   AnnotationData,
   AsphericCoefficients,
   ElementData,
@@ -15,6 +16,7 @@ import type {
   SurfaceSpectral,
   VarRange,
 } from "../../types/optics.js";
+import { resolveAberrationThickness } from "../prescription/variables.js";
 
 /**
  * Build a surface-label to zero-based index map.
@@ -58,11 +60,11 @@ export function buildAsphereIndex(
  * @param labelIdx - surface-label lookup
  * @returns index-keyed variable gap ranges
  */
-export function buildVarIndex(
-  variableGaps: Record<string, VarRange> | undefined,
+export function buildVarIndex<T extends VarRange | AberrationVarRange>(
+  variableGaps: Record<string, T> | undefined,
   labelIdx: Record<string, number>,
-): Record<number, VarRange> {
-  const varByIdx: Record<number, VarRange> = {};
+): Record<number, T> {
+  const varByIdx: Record<number, T> = {};
   for (const [label, range] of Object.entries(variableGaps || {})) {
     const idx = labelIdx[label];
     if (idx !== undefined) varByIdx[idx] = range;
@@ -238,7 +240,7 @@ export function resolveVariableThickness(
 export function resolveControlledThickness(
   baseThickness: number,
   focusRange: VarRange | undefined,
-  aberrationRange: VarRange | undefined,
+  aberrationRange: AberrationVarRange | undefined,
   isZoom: boolean,
   focusT: number,
   zoomT: number,
@@ -246,7 +248,7 @@ export function resolveControlledThickness(
 ): number {
   const focusThickness = resolveVariableThickness(baseThickness, focusRange, isZoom, focusT, zoomT);
   if (!aberrationRange) return focusThickness;
-  const aberrationThickness = resolveVariableThickness(baseThickness, aberrationRange, isZoom, aberrationT, zoomT);
+  const aberrationThickness = resolveAberrationThickness(baseThickness, aberrationRange, isZoom, aberrationT, zoomT);
   return focusThickness + (aberrationThickness - baseThickness);
 }
 
@@ -268,7 +270,7 @@ export function buildStateSurfaces(
   isZoom: boolean,
   focusT: number,
   zoomT: number,
-  aberrationVarByIdx: Record<number, VarRange> = {},
+  aberrationVarByIdx: Record<number, AberrationVarRange> = {},
   aberrationT = 0,
 ): SurfaceData[] {
   return surfaces.map((surface, index) => ({

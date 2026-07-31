@@ -23,6 +23,7 @@ interface SliderControlProps {
   onPointerDown?: () => void;
   onPointerUp?: () => void;
   minLabel: string;
+  centerLabel?: string;
   maxLabel: string;
   disabled?: boolean;
   disabledReason?: string;
@@ -53,6 +54,7 @@ export default function SliderControl({
   onPointerDown,
   onPointerUp,
   minLabel,
+  centerLabel,
   maxLabel,
   disabled = false,
   disabledReason,
@@ -76,6 +78,23 @@ export default function SliderControl({
     cursor: disabled ? "not-allowed" : "pointer",
     accentColor: disabled ? t.focusEndpoint : t.sliderAccent,
   };
+  const rangeInput = (
+    <input
+      aria-label={label}
+      type="range"
+      min={min}
+      max={max}
+      step={step}
+      value={value}
+      disabled={disabled}
+      onPointerDown={disabled ? undefined : onPointerDown}
+      onChange={(e) => {
+        if (!disabled) onChange?.(parseFloat(e.target.value));
+      }}
+      onPointerUp={disabled ? undefined : onPointerUp}
+      style={centerLabel ? { ...sliderStyle, width: "100%" } : sliderStyle}
+    />
+  );
 
   return (
     <div
@@ -104,21 +123,14 @@ export default function SliderControl({
       </div>
       <div style={sliderRowStyle} title={disabled ? disabledReason : undefined}>
         <span style={{ fontSize: 9, color: t.focusEndpoint }}>{minLabel}</span>
-        <input
-          aria-label={label}
-          type="range"
-          min={min}
-          max={max}
-          step={step}
-          value={value}
-          disabled={disabled}
-          onPointerDown={disabled ? undefined : onPointerDown}
-          onChange={(e) => {
-            if (!disabled) onChange?.(parseFloat(e.target.value));
-          }}
-          onPointerUp={disabled ? undefined : onPointerUp}
-          style={sliderStyle}
-        />
+        {centerLabel ? (
+          <div style={{ flex: 1, minWidth: 0 }}>
+            {rangeInput}
+            <div style={{ marginTop: 5, textAlign: "center", fontSize: 9, color: t.focusEndpoint }}>{centerLabel}</div>
+          </div>
+        ) : (
+          rangeInput
+        )}
         <span style={{ fontSize: 9, color: t.focusEndpoint }}>{maxLabel}</span>
       </div>
       {children}

@@ -25,6 +25,23 @@ function buildMinoltaVarisoft(): RuntimeLens {
   return buildLens({ ...LENS_DEFAULTS, ...MinoltaVarisoftRaw } as LensData);
 }
 
+function buildCenteredVarisoft(): RuntimeLens {
+  return buildLens({
+    ...LENS_DEFAULTS,
+    ...MinoltaVarisoftRaw,
+    aberrationControl: {
+      ...MinoltaVarisoftRaw.aberrationControl,
+      minLabel: "UNDER",
+      centerLabel: "SHARP",
+      maxLabel: "OVER",
+      var: {
+        "9": [1.5, 2.074, 6.962],
+        "11": [65, 64.427, 53.951],
+      },
+    },
+  } as LensData);
+}
+
 function surfaceIndex(L: RuntimeLens, label: string): number {
   const index = L.S.findIndex((surface) => surface.label === label);
   expect(index, `surface ${label} should exist`).toBeGreaterThanOrEqual(0);
@@ -115,6 +132,20 @@ describe("Minolta Varisoft 85mm f/2.8 focus model", () => {
 
     const softParaxialFocus = traceToImage(1, 0, 0, 0, L, 1);
     expect(softParaxialFocus).toBeCloseTo(0, 2);
+  });
+
+  it("supports under/sharp/over travel while keeping sharp as the default", () => {
+    const L = buildCenteredVarisoft();
+    const dB0 = surfaceIndex(L, "9");
+    const bfd = surfaceIndex(L, "11");
+
+    expect(L.aberrationControl?.centerLabel).toBe("SHARP");
+    expect(thick(dB0, 0, 0, L)).toBeCloseTo(2.074, 8);
+    expect(thick(bfd, 0, 0, L)).toBeCloseTo(64.427, 8);
+    expect(thick(dB0, 0, 0, L, -1)).toBeCloseTo(1.5, 8);
+    expect(thick(bfd, 0, 0, L, -1)).toBeCloseTo(65, 8);
+    expect(thick(dB0, 0, 0, L, 1)).toBeCloseTo(6.962, 8);
+    expect(thick(bfd, 0, 0, L, 1)).toBeCloseTo(53.951, 8);
   });
 
   it("applies the soft-focus ring to spherical aberration diagnostics", () => {

@@ -239,14 +239,16 @@ export interface AberrationControlConfig {
   label: string;
   description?: string;
   minLabel?: string;
+  /** Optional centered/default position at control value 0; enables signed -1..1 travel. */
+  centerLabel?: string;
   maxLabel?: string;
   step?: number;
-  var: Record<string, VarRange>;
+  var: Record<string, AberrationVarRange>;
   varLabels?: [string, string][];
 }
 
 export interface ResolvedAberrationControlConfig extends Omit<AberrationControlConfig, "var" | "varLabels"> {
-  varByIdx: Record<number, VarRange>;
+  varByIdx: Record<number, AberrationVarRange>;
   varLabels: [number, string][];
 }
 
@@ -258,6 +260,12 @@ export type ZoomVarRange = [number, number][];
 
 /** Variable gap: prime or zoom */
 export type VarRange = PrimeVarRange | ZoomVarRange;
+
+/** Aberration-control positions: legacy [normal, maximum] or centered [minimum, center, maximum]. */
+export type AberrationPositionRange = [number, number] | [number, number, number];
+
+/** Aberration-control positions for a prime, or one position tuple per zoom position. */
+export type AberrationVarRange = AberrationPositionRange | AberrationPositionRange[];
 
 /** Complete lens data object (after defaults merging) */
 export interface LensData {

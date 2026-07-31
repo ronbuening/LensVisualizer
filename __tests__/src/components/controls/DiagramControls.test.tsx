@@ -5,7 +5,7 @@ import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import DiagramControls from "../../../../src/components/controls/DiagramControls.js";
 import buildLens from "../../../../src/optics/buildLens.js";
 import themes from "../../../../src/utils/theme/themes.js";
-import type { RuntimeLens } from "../../../../src/types/optics.js";
+import type { LensData, RuntimeLens } from "../../../../src/types/optics.js";
 import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
 
 afterEach(() => cleanup());
@@ -90,6 +90,33 @@ describe("DiagramControls", () => {
     const sliders = screen.getAllByRole("slider");
     fireEvent.change(sliders[1], { target: { value: "0.5" } });
     expect(callbacks.onAberrationChange).toHaveBeenCalledWith(0.5);
+  });
+
+  it("shows signed travel and a center label for centered aberration controls", () => {
+    const source = LENS_CATALOG["varisoft-rokkor-85f28"];
+    const L = buildLens({
+      ...source,
+      aberrationControl: {
+        ...source.aberrationControl!,
+        minLabel: "UNDER",
+        centerLabel: "SHARP",
+        maxLabel: "OVER",
+        var: {
+          "9": [1.5, 2.074, 6.962],
+          "11": [65, 64.427, 53.951],
+        },
+      },
+    } as LensData);
+    const { callbacks } = renderControls(L);
+
+    expect(screen.getByText("SHARP")).toBeTruthy();
+    const slider = screen.getByRole("slider", { name: "SOFT" }) as HTMLInputElement;
+    expect(slider.min).toBe("-1");
+    expect(slider.max).toBe("1");
+    expect(slider.value).toBe("0");
+
+    fireEvent.change(slider, { target: { value: "-0.5" } });
+    expect(callbacks.onAberrationChange).toHaveBeenCalledWith(-0.5);
   });
 
   it("snaps shift and tilt controls to zero near the reset point", () => {

@@ -130,8 +130,8 @@ Authoring rules that matter most:
 ### Aberration-Control Lenses
 
 For lenses with a real soft-focus or spherical-aberration-control ring, declare `aberrationControl` instead of folding
-that motion into focus `var`. The field is a normalized slider from 0 to 1 with lens-specific labels and one or more
-controlled surface spacings:
+that motion into focus `var`. The ordinary form is a normalized slider from 0 to 1 with lens-specific labels and one or
+more controlled surface spacings:
 
 ```typescript
 aberrationControl: {
@@ -149,8 +149,14 @@ aberrationControl: {
 },
 ```
 
-Use this only for an independent optical control, not for ordinary floating focus. The base surface table should match
-the minimum/sharp setting, and every controlled surface's first value must match its surface `d`.
+Use this only for an independent optical control, not for ordinary floating focus. In this two-position form, the base
+surface table should match the minimum/sharp setting, and every controlled surface's first value must match its surface
+`d`.
+
+For controls that move through under-corrected, sharp, and over-corrected positions, add `centerLabel: "SHARP"` and use
+`[minimum, center/default, maximum]` triples. The centered slider runs from `-1` to `1`, defaults to `0`, and requires
+each base surface `d` to match the triple's center value. Omitting `centerLabel` preserves the existing two-position
+`[normal, maximum]` behavior.
 
 ### Semi-Diameter Troubleshooting
 

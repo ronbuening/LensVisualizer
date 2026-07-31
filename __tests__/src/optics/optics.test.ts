@@ -22,7 +22,7 @@ import {
   FOCUS_INFINITY_THRESHOLD,
 } from "../../../src/optics/optics.js";
 import type { RuntimeLens, LensData, ChromaticChannel, RayTraceResult } from "../../../src/types/optics.js";
-import { resolveVariableThickness } from "../../../src/optics/prescription/variables.js";
+import { resolveAberrationThickness, resolveVariableThickness } from "../../../src/optics/prescription/variables.js";
 import {
   buildChromaticPositiveElementLens,
   buildGhostClippingLens,
@@ -707,6 +707,29 @@ describe("thick — zoom edge cases", () => {
     expect(resolveVariableThickness(5.0, range, true, 0, 0)).toBe(5.0);
     expect(resolveVariableThickness(5.0, range, true, 1, 0)).toBe(8.0);
     expect(resolveVariableThickness(5.0, range, true, 0.5, 0.5)).toBe(6.5);
+  });
+});
+
+describe("centered aberration-control interpolation", () => {
+  it("uses signed travel around the authored center/default position", () => {
+    const range: [number, number, number] = [2, 5, 11];
+
+    expect(resolveAberrationThickness(5, range, false, -1, 0)).toBe(2);
+    expect(resolveAberrationThickness(5, range, false, -0.5, 0)).toBe(3.5);
+    expect(resolveAberrationThickness(5, range, false, 0, 0)).toBe(5);
+    expect(resolveAberrationThickness(5, range, false, 0.5, 0)).toBe(8);
+    expect(resolveAberrationThickness(5, range, false, 1, 0)).toBe(11);
+  });
+
+  it("interpolates all three positions across zoom", () => {
+    const range: [number, number, number][] = [
+      [2, 5, 11],
+      [4, 7, 15],
+    ];
+
+    expect(resolveAberrationThickness(5, range, true, -1, 0.5)).toBe(3);
+    expect(resolveAberrationThickness(5, range, true, 0, 0.5)).toBe(6);
+    expect(resolveAberrationThickness(5, range, true, 1, 0.5)).toBe(13);
   });
 });
 

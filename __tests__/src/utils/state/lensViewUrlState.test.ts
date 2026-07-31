@@ -135,6 +135,14 @@ describe("lensViewUrlState", () => {
     expect(params.toString()).toBe("shift=-11.50&tilt=8.25");
   });
 
+  it("round-trips signed centered aberration control positions", () => {
+    const parsed = parseLensViewQuery("?aberration=-0.625");
+    expect(parsed.aberration).toBe(-0.625);
+
+    const params = buildLensViewQuery({ aberration: -0.625 });
+    expect(params.toString()).toBe("aberration=-0.625");
+  });
+
   it("clamps adversarial shift/tilt values to the movement envelope", () => {
     const huge = parseLensViewQuery("?shift=1e12&tilt=1e12");
     expect(huge.shift).toBe(MOVEMENT_SHIFT_ENVELOPE_MM[1]);

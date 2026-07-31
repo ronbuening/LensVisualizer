@@ -9,6 +9,7 @@ import type { DispersionQuality } from "./dispersion.js";
 import type { GlassEntry } from "./glassCatalog.js";
 import type {
   AberrationControlConfig,
+  AberrationVarRange,
   AsphericCoefficients,
   ChromaticChannel,
   ElementData,
@@ -128,7 +129,7 @@ export interface VariableSpec {
 
 /** Aberration-control variable-gap metadata resolved to surface indices. */
 export interface AberrationControlSpec extends Omit<AberrationControlConfig, "var" | "varLabels"> {
-  varBySurfaceIndex: Readonly<Record<number, VarRange>>;
+  varBySurfaceIndex: Readonly<Record<number, AberrationVarRange>>;
   varLabels: readonly (readonly [number, string])[];
 }
 
