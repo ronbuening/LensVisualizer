@@ -22,6 +22,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-07-31 ──────────────────────────────────────────────────
   {
     date: "2026-07-31",
+    type: "feature",
+    summary: "Added centered sharp positions for under/over aberration-control lenses",
+  },
+  {
+    date: "2026-07-31",
     type: "article",
     summary: "Added Leica and Tamron lens histories to the manufacturer story index",
   },
