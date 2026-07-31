@@ -27,6 +27,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   },
   {
     date: "2026-07-31",
+    type: "lens",
+    summary: "Added Voigtländer Portrait Heliar 75mm f/1.8 with its full soft-focus range",
+  },
+  {
+    date: "2026-07-31",
     type: "article",
     summary: "Added Leica and Tamron lens histories to the manufacturer story index",
   },

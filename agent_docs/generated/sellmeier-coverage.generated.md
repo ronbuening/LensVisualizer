@@ -11,17 +11,17 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **494** lenses scanned
-- **486** visible lenses scanned
-- **242** lenses fully covered by trusted chromatic data
-- **242** visible lenses fully covered by trusted chromatic data
-- **238** lenses fully covered by strict Sellmeier data
-- **238** visible lenses fully covered by strict Sellmeier data
+- **495** lenses scanned
+- **487** visible lenses scanned
+- **243** lenses fully covered by trusted chromatic data
+- **243** visible lenses fully covered by trusted chromatic data
+- **239** lenses fully covered by strict Sellmeier data
+- **239** visible lenses fully covered by strict Sellmeier data
 - **4** lenses fully covered only after measured line-index data
 - **4** visible lenses fully covered only after measured line-index data
-- **4814 / 5469** non-air surfaces use strict catalog Sellmeier data
+- **4820 / 5475** non-air surfaces use strict catalog Sellmeier data
 - **88.0%** strict Sellmeier surface coverage overall
-- **4824 / 5469** non-air surfaces use trusted chromatic data
+- **4830 / 5475** non-air surfaces use trusted chromatic data
 - **88.2%** trusted chromatic coverage overall
 - **17 / 75** native e-line surfaces use name-verified catalog Sellmeier data
 
@@ -274,6 +274,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [RODENSTOCK RODAGON-WA 80mm f/4](../../src/lens-data/rodenstock/RodenstockRodagonWA80mmf4.data.ts) | 6/6 | 6 | 6/6 |
 | [SIGMA 16.6mm f/4 (Sigma DP1x)](../../src/lens-data/sigma/Sigma16mmf4DP1X.data.ts) | 6/6 | 6 | 6/6 |
 | [VIVITAR SERIES 1 135mm f/2.3 AUTO TELEPHOTO](../../src/lens-data/vivitar/VivitarSeries1135mmf23.data.ts) | 6/6 | 6 | 6/6 |
+| [VOIGTLÄNDER PORTRAIT HELIAR 75mm f/1.8](../../src/lens-data/voigtlander/VoigtlanderPortraitHeliar75mmf18.data.ts) | 6/6 | 6 | 6/6 |
 | [CANON EF 28mm f/2.8](../../src/lens-data/canon/CanonEF28mmf28.data.ts) | 5/5 | 5 | 5/5 |
 | [KONICA HEXANON AR 35mm f/2.8](../../src/lens-data/konica/KonicaHexanonAR35mmf28.data.ts) | 5/5 | 5 | 5/5 |
 | [NIKON AI NIKKOR 135mm f/2.8](../../src/lens-data/nikon/NikonAI135mmf28.data.ts) | 5/5 | 5 | 5/5 |
