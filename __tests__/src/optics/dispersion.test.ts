@@ -446,6 +446,18 @@ describe("glass catalog", () => {
     expect(evaluateCatalogAbbeNumber(entry!)).toBeCloseTo(35.2, 1);
   });
 
+  it("reproduces HOYA's official FD225 catalog row", () => {
+    const entry = resolveGlass("FD225 (HOYA catalog equivalent)");
+    expect(entry?.name).toBe("FD225");
+    expect(entry?.code6).toBe("808228");
+    expect(resolveGlass("808228")?.name).toBe("S-NPH1");
+    expect(evaluateSellmeier(entry!, LINE_NM.C)).toBeCloseTo(1.79799008, 5);
+    expect(evaluateSellmeier(entry!, LINE_NM.d)).toBeCloseTo(1.80808857, 5);
+    expect(evaluateSellmeier(entry!, LINE_NM.F)).toBeCloseTo(1.83348808, 5);
+    expect(evaluateSellmeier(entry!, LINE_NM.g)).toBeCloseTo(1.85580398, 5);
+    expect(evaluateCatalogAbbeNumber(entry!)).toBeCloseTo(22.76, 2);
+  });
+
   it("evaluates and resolves the current HOYA M-TAFD51 polynomial entry", () => {
     const mTafd51 = resolveGlass("M-TAFD51 (HOYA; 821/427 catalog match)");
     expect(mTafd51?.name).toBe("M-TAFD51");

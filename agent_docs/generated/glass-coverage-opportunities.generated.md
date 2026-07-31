@@ -10,8 +10,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **497** lenses scanned (**489** visible)
-- **4832 / 5487** non-air surfaces use strict catalog Sellmeier data (88.1%)
-- **4842 / 5487** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 88.2%)
+- **4831 / 5487** non-air surfaces use strict catalog Sellmeier data (88.0%)
+- **4841 / 5487** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 88.2%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
 - **265** code-only missing-Sellmeier elements in Sweep 2: **0** active unreviewed, **118** self-recording explicit dispositions, **0** dispositions missing any review record
@@ -106,6 +106,7 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [SCHNEIDER-KREUZNACH SUPER-ANGULON 90mm f/8](../../src/lens-data/schneider-kreuznach/SchneiderSuperAngulon90mmf8.data.ts) | DE 975 637 C | [PDF](../../patents/DE_975637_C.pdf) | 83.3% (5/6) | 83.3% (5/6) | 1 | 4 [glass] (Element 3: `Unmatched (560/470 light-flint position; probable historical Schott LLF3)`) | abbe: 1 |
 | [SCHNEIDER-KREUZNACH TECHNIKA SUPER-ANGULON 75mm f/8](../../src/lens-data/schneider-kreuznach/SchneiderTechnikaSuperAngulon75mmf8.data.ts) |  | No patent number parsed from lens metadata/reference | 83.3% (5/6) | 83.3% (5/6) | 1 | 4 [glass] (Element 3: `Unmatched (560/470 light-flint position; probable historical Schott LLF3)`) | abbe: 1 |
 | [VIVITAR SERIES 1 200mm f/3.0 VMC](../../src/lens-data/vivitar/VivitarSeries1200mmf3.data.ts) | US 3,942,876 | [PDF](../../patents/US3942876.pdf) | 83.3% (5/6) | 83.3% (5/6) | 1 | 10 [glass] (Element 5: `713433 — LaF/BaSF boundary glass (no exact public catalog match)`) | abbe: 1 |
+| [VOIGTLÄNDER COLOR-SKOPAR 35mm f/3.5 Aspherical](../../src/lens-data/voigtlander/VoigtlanderColorSkopar35mmf35Aspherical.data.ts) | JP 2026-121744 A | [PDF](../../patents/JPA 2026121744-000000.pdf) | 83.3% (5/6) | 83.3% (5/6) | 1 | 5 [glass] (L10f — Rear negative: `Unmatched (613443 negative anomalous-dispersion class; closest S-NBM51)`) | abbe: 1 |
 | [VIVITAR SERIES 1 35-85mm f/2.8 VMC](../../src/lens-data/vivitar/VivitarSeries13585mmf28.data.ts) | US 3,975,089 | [PDF](../../patents/US3975089.pdf) | 83.3% (10/12) | 83.3% (10/12) | 2 | 3 [glass] (Element 2: `531621 — BSM-type crown (no exact public catalog match)`)<br>18 [glass] (Element 11: `639451 — BaSF52-type barium dense flint (no exact public catalog match)`) | abbe: 2 |
 | [FUJIFILM SUPER EBC FUJINON 7.1-28.4mm f/2-2.8 (Fujifilm X10)](../../src/lens-data/fujifilm/FujifilmX1071284mmf228.data.ts) | US 2014/0133036 A1 | Missing from untracked local patents/ references (US20140133036A1, US20140133036, 20140133036) | 81.8% (9/11) | 81.8% (9/11) | 2 | 11A [glass] (G3 front asphere: `Unmatched (nd=1.803603, νd=40.28)`)<br>16A [glass] (G3 negative asphere: `Unmatched (nd=1.803603, νd=40.28)`) | abbe: 2 |
 | [LEICA SUMMILUX 28mm f/1.7 ASPH. (Leica Q, Q2, Q3)](../../src/lens-data/leica/Leica28mmf17.data.ts) | US 2016/0266350 A1 | [PDF](../../patents/US20160266350A1.pdf) | 81.8% (9/11) | 81.8% (9/11) | 2 | 12A [glass] (Element 6: `877370 — high-index lanthanum glass (patent nd=1.87722, nu_d=37.0)`)<br>20A [glass] (Element 11: `Unmatched (patent nd=1.68250, νd=33.00; prior H-ZF52A annotation rejected on dispersion)`) | abbe: 2 |

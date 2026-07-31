@@ -7,7 +7,14 @@ available, it falls back to partial measured `nC`/`nF` line indices, dPgF-correc
 approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **444 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **445 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+
+The July 31, 2026 Phase 72 pass added HOYA FD225 from the manufacturer's official 2026-07-07 Zemax catalog. Its
+vendor formula-3 polynomial reproduces the published C/d/F/g indices and 22.76 Abbe number. The Voigtländer
+Color-Skopar 35mm f/3.5 Aspherical replacement now uses coefficient-backed catalog dispersion on five of its six
+elements; only the patent's unmatched 613443 negative anomalous-dispersion class remains on the fallback path. Adding
+the real FD225 row also exposed and removed a stale Sony FE 70-200mm f/2.8 GM OSS II assignment: that lens's
+2.00912/29.10 rear glass is now explicitly unmatched because it is incompatible with FD225 and has no catalog candidate.
 
 The July 31, 2026 Phase 71 pass added Hikari J-SF14 from Nikon/Hikari's official 2023-09-01 optical-glass data
 workbook. Its vendor nine-term power-series curve reproduces the published C/d/F/g indices and `26.58` Abbe number,

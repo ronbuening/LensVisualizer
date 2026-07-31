@@ -767,7 +767,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L11a (Element 1 — L11 front member) | 1 | `847238 — dense flint class` | 1.84666 / 23.78 | H-ZF52 (trusted Sellmeier) | lineIndices | patents/US6621643.pdf | No review-record hit |
 | L21g (Element 5 — L21 glass body) | 7 | `835427 — lanthanum flint class` | 1.83481 / 42.72 | S-LAH55 (trusted Sellmeier) | lineIndices | patents/US6621643.pdf | No review-record hit |
 | L22 (Element 6 — L22) | 9 | `773496 — lanthanum flint class` | 1.77250 / 49.61 | N-LAF34 (trusted Sellmeier) | lineIndices | patents/US6621643.pdf | No review-record hit |
-| L23 (Element 7 — L23) | 11 | `808228 — very dense flint class` | 1.80809 / 22.76 | S-NPH1 (trusted Sellmeier) | lineIndices | patents/US6621643.pdf | No review-record hit |
+| L23 (Element 7 — L23) | 11 | `808228 — very dense flint class` | 1.80809 / 22.76 | FD225 (trusted Sellmeier) | lineIndices | patents/US6621643.pdf | No review-record hit |
 | L24 (Element 8 — L24) | 13 | `773496 — lanthanum flint class` | 1.77250 / 49.61 | N-LAF34 (trusted Sellmeier) | lineIndices | patents/US6621643.pdf | No review-record hit |
 | L33 (Element 11 — L33) | 20 | `847238 — dense flint class` | 1.84666 / 23.78 | H-ZF52 (trusted Sellmeier) | lineIndices | patents/US6621643.pdf | No review-record hit |
 | L1 (Element 12 — Gm L1) | 22A | `517641 — borosilicate crown class` | 1.51680 / 64.10 | J-BK7A (trusted Sellmeier) | sellmeier | patents/US6621643.pdf | No review-record hit |

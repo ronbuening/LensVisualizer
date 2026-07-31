@@ -1,304 +1,203 @@
+# VOIGTLÄNDER COLOR-SKOPAR 35mm f/3.5 Aspherical
+
 ## Patent Reference and Design Identification
 
 **Patent:** JP 2026-121744 A
-**Application number:** JP 2025-004694
-**Filed:** January 14, 2025
-**Published:** July 27, 2026
-**Inventor:** 三島 豊
+**Application:** Japanese patent application 2025-4694
+**Filed:** 2025-01-14
+**Published:** 2026-07-27
+**Inventor:** 三島 望
 **Applicant:** Cosina Co., Ltd.
-**Title:** Optical Lens System (光学レンズ系)
-**Embodiment analyzed:** Example 1 / First Embodiment
+**Title:** 光学レンズ系 (*Optical Lens System*)
+**Embodiment analyzed:** Example 3 / 第3実施形態
 
-The prescription represents the first embodiment of Cosina's compact interchangeable-lens optical system. The patent
-publishes a design focal length of 35.66 mm, an f-number of 3.61, and a 30.86° half field, corresponding to a 61.72°
-full field (¶0021). The final data model preserves the source scale and computes a Gaussian focal length of
-35.663874742 mm from the transcribed surfaces; no focal-length scaling has been applied.
+The prescription transcribes Example 3 of JP 2026-121744 A at the patent's original scale. The patent does not identify a commercial product, so the association with the production VOIGTLÄNDER COLOR-SKOPAR 35mm f/3.5 ASPHERICAL remains a production-correlation inference rather than a manufacturer-confirmed statement.
 
-The selected embodiment is correlated with the production **VOIGTLÄNDER COLOR-SKOPAR 35mm f/3.5 Aspherical VM** by
-several convergent features:
+The identification rests on several convergent points:
 
-1. Both have six elements in four air-separated groups.
-2. The patent's 35.66 mm, f/3.61 design closely matches the marketed 35 mm, f/3.5 specification.
-3. The patent's 61.72° full field closely matches Cosina's published 61.6° angle of view.
-4. Both use a double-sided aspherical final element.
-5. Cosina describes three anomalous-partial-dispersion glass elements, while the patent publishes element-level
-   $\Delta P_{gF}$ values and imposes partial-dispersion conditions on the rear optical system.
-6. The production lens is a full-frame VM-mount lens, consistent with the patent's stated interchangeable-camera-lens
-   application and its 35 mm-class image field.
+1. Example 3 has a computed effective focal length of 35.741015 mm and a published f-number of 3.58, closely corresponding to the marketed 35 mm f/3.5 designation.
+2. The patent gives a 30.75° half field, or 61.50° full field; Cosina specifies 61.6°.
+3. Both the prescription and production specification use six elements in four groups.
+4. The prescription's final element has two aspherical surfaces; Cosina specifies one double-sided aspherical element.
+5. The patent prescribes unit focusing by translating the complete optical system. Cosina specifies manual focusing and 0.7 m rangefinder coupling, but does not publish an internal-focus mechanism that would contradict the patent architecture.
+6. The patent application was filed on 2025-01-14, one month before Cosina announced the lens on 2025-02-14. The production release followed on 2025-03-27.
 
-This is a production correlation rather than a statement that Cosina has publicly identified the patent as the product's
-prescription. The production lens was released on March 27, 2025. Its marketed 35 mm focal length, f/3.5 aperture,
-61.6° angle of view, 0.7 m minimum focus, and 14 mm mechanical length remain separate from the patent model's exact
-optical quantities and reference planes.
+The marketed focal length and aperture remain separate from the design quantities. The data file therefore stores 35 mm and f/3.5 as product specifications, while using 35.741015 mm and f/3.58 for the modeled optical system and pupil geometry.
 
 ## Optical Architecture
 
-The lens is a compact, stop-centered wide-angle prime rather than a retrofocus or telephoto construction. Its four
-physical groups form the sequence
+Example 3 is a compact, all-refractive, rectilinear wide-angle prime. It contains six elements in four air-spaced groups, arranged from object to image as a positive cemented doublet, the aperture stop, a negative cemented doublet, a positive singlet, and a negative aspherical meniscus. In the patent's grouping, these are G1, STO, G2a, and G2b; G2b contains the final two singlets.
 
-$$
-\text{positive cemented doublet} \; | \; \mathrm{STO} \; | \;
-\text{negative cemented doublet} \; | \; \text{positive singlet} \; | \; \text{negative aspherical meniscus}.
-$$
+G1 is the positive cemented L9 doublet. Its computed cemented-group equivalent focal length in air is +42.12674 mm. G2a is the cemented L10 doublet and remains net negative, with a cemented-group equivalent focal length in air of −73.90504 mm. G2b combines the positive L11 with the negative L12 at their published separation and remains net positive, with a subsystem equivalent focal length in air of +51.58930 mm. These group and subsystem powers are distinct from the standalone focal lengths of the individual elements and from their behavior inside the complete six-element system.
 
-The patent describes the same system hierarchically as positive group G1, the aperture stop, and group G2; G2 is divided
-into negative subgroup G2a and positive subgroup G2b (¶0022–¶0026). G2b contains the positive L3 singlet and negative
-L4 meniscus, but their combined paraxial power remains positive.
+The design is neither telephoto nor retrofocus under the stated TL/EFL and BFD/EFL criteria. Its infinity first-surface-to-image length is 40.03 mm, giving TL/EFL = 1.1200 rather than a value below unity. Its infinity back focal distance is 15.1083 mm, substantially shorter than the 35.7410 mm EFL rather than longer than it.
 
-Independent thick-lens calculation gives the following net focal lengths:
-
-| Optical unit | Computed focal length |
-|---|---:|
-| Cemented G1 (L1f + L1r) | +40.472275965 mm |
-| Cemented G2a (L2f + L2r) | −54.992797118 mm |
-| G2b (L3 + L4 in situ) | +43.777889632 mm |
-| Complete lens | +35.663874742 mm |
-
-These are system or subgroup powers, not sums of the standalone element focal lengths. The positive G1 doublet collects
-the entering bundle before the stop. The negative G2a doublet then changes the ray slopes and chromatic balance ahead of
-the strong positive L3. The final negative meniscus reduces the net power of G2b while contributing substantial
-field-dependent surface shaping through its two aspheres. The patent specifically attributes the rear aspherical negative
-lens to correction of coma and astigmatism in the compact wide-angle system (¶0026).
-
-The fixed S1-to-S11 vertex track is 24.92 mm. With the 15.11 mm infinity image gap, the modeled optical total is
-40.03 mm. This optical length is not comparable directly with Cosina's 14 mm mechanical length from the mount surface,
-because the two quantities use different endpoints and include different portions of the product.
-
-The stop location is published between G1 and G2. Its clear semi-diameter is not published; the data model uses an
-inferred 3.858166062 mm stop semi-diameter, solved from the computed focal length and the modeled f/3.61 entrance pupil.
-Most lens-surface semi-diameters are inferred rather than patent-tabulated. Surface 10A is the exception: the patent's
-$Sag_{2b}=3.29$ mm value and the corrected asphere polynomial give a physical pre-reversal root of 8.296654461 mm, stored
-as 8.30 mm at source-appropriate precision. Surface 11A uses an inferred 9.50 mm clear semi-diameter to contain the
-published full-field chief ray. The remaining values were constrained by the optical section, ray envelopes, edge
-thickness, actual aspherical rim slope, and inter-element clearance.
-
-No sensor cover glass, optical filter, dummy plane, flare cutter, or mechanical part is included. Cosina supplies a thin
-protective filter with the production lens, but it is an external accessory and is not part of Example 1's optical
-prescription.
+The principal architectural feature is the strong rear correction concentrated in L11 and the double-sided aspherical L12. The patent states that the image-side negative meniscus is used to correct coma and astigmatism while retaining a short overall system (¶0075, ¶0081). The optical section in Figure 5 shows this rear meniscus immediately ahead of the rear air space to the image plane.
 
 ## Element-by-Element Analysis
 
-### L1f — Biconvex Positive Front Member
+### G1 — Cemented L9 Positive Doublet
 
-**nd = 1.90043, νd = 37.37. Glass: TAFD37A-class (HOYA code 900374; vendor not specified by patent). Standalone f =
-+14.482304821 mm. $\Delta P_{gF}=-0.004$.**
+#### L9f — Biconvex Positive
 
-L1f carries strong positive standalone power and forms the front member of cemented doublet L1. Its high refractive index
-allows the front group to obtain substantial power in a short axial space. The patent requires at least one positive
-lens in G1 or G2 to have $n_d>1.88$ and identifies high index as useful in balancing spherical aberration, coma, and the
-Petzval sum (¶0012, ¶0039). L1f satisfies that condition with $n_d=1.90043$.
+**nd = 1.91082, νd = 35.25. Glass: TAFD35 catalog equivalent. Standalone f = +13.799161 mm.**
 
-Its standalone focal length describes the isolated two-surface element in its actual incident and emergent media. Once
-cemented to L1r, the doublet's net focal length is a much weaker +40.472275965 mm; the cemented result, rather than the
-standalone +14.48 mm value, governs G1's system behavior.
+L9f supplies the dominant positive power at the front of the system. HOYA TAFD35 matches the patent's nd and νd exactly, and its catalog ΔPgF differs from the patent's rounded value by 0.0003. The model therefore uses the catalog's complete coefficient-backed curve while retaining the patent's nd, νd, and dPgF metadata. This is a catalog-equivalent optical match, not a claim about the production supplier.
 
-### L1r — Biconcave Negative Rear Member of L1
+The element is not a +13.8 mm lens in system use. Its strong standalone positive power is moderated by the cemented negative L9r, producing the much weaker +42.12674 mm equivalent focal length of the complete L9 doublet. This distinction is important because the doublet, rather than either element in isolation, constitutes G1.
 
-**nd = 1.80518, νd = 25.45. Glass: S-TIH6-class (OHARA code 805254; patent νd = 25.45). Standalone f =
-−19.949512755 mm. $\Delta P_{gF}=+0.013$.**
+#### L9r — Biconcave Negative
 
-L1r is cemented directly to L1f and opposes part of its strong positive power. The large dispersion contrast between
-L1f and L1r, together with L1r's positive partial-dispersion deviation, gives the front doublet a means of controlling
-longitudinal color without introducing another air-spaced group. The exact distribution of higher-order chromatic
-correction is an inference from the prescription; the patent publishes the glass parameters but does not assign a
-separate aberration contribution to each front member.
+**nd = 1.80809, νd = 22.76. Glass: FD225 catalog equivalent. Standalone f = −17.571227 mm.**
 
-The S-TIH6-class identification is a catalog equivalence, not a patent-specified vendor. OHARA's current catalog gives
-the same index and a νd value of 25.42, 0.03 below the patent's rounded 25.45.
+L9r is cemented directly to L9f at surface 2. HOYA FD225 is an exact nd/νd match and closely matches the patent's rounded positive ΔPgF. Its official formula-3 polynomial, added to the project catalog from HOYA's 2026-07-07 data, reproduces the published C-, d-, F-, and g-line indices. The model uses that complete curve as a catalog equivalent without asserting that HOYA supplied the production element.
 
-### L2f — Biconcave Negative Front Member of G2a
+The negative member reduces the net power of the front pair and supplies an opposing dispersion contribution. The patent does not assign a named aberration function to L9r individually; its role as an achromatizing and power-balancing partner is a modeling interpretation of the cemented pair and its verified paraxial powers.
 
-**nd = 1.61340, νd = 44.27. Glass: S-NBM51-class (OHARA code 613443; vendor not specified by patent). Standalone f =
-−26.611184710 mm. $\Delta P_{gF}=-0.005$.**
+### G2a — Cemented L10 Negative Doublet
 
-L2f begins the negative G2a cemented subgroup immediately behind the stop. It supplies most of the pair's negative
-standalone power. The patent makes this element's material properties explicit conditions: $n_d<1.62$ and
-$\Delta P_{gF}\leq-0.005$ (claim 5; ¶0037). The Example 1 values meet both boundaries.
+#### L10f — Biconcave Negative
 
-The six-digit pair 613443 resolves exactly to the OHARA S-NBM51 catalog class in $n_d$ and νd. Because the patent does
-not name a vendor, the data retains a class designation rather than asserting that the production element is made from
-OHARA S-NBM51.
+**nd = 1.61340, νd = 44.27. Glass: Unmatched (613443 negative anomalous-dispersion class; closest S-NBM51). Standalone f = −17.457979 mm.**
 
-### L2r — Biconvex Positive Rear Member of G2a
+L10f begins the negative G2a sub-group immediately behind the stop. The patent specifically constrains this member to nd < 1.62 and ΔPgF ≤ −0.005 (claim 5; ¶0086). The stored values, 1.61340 and −0.005, meet those limits at the patent's stated precision.
 
-**nd = 1.87070, νd = 40.73. Glass: TAFD32-class (HOYA code 871407; vendor not specified by patent). Standalone f =
-+42.875834998 mm. $\Delta P_{gF}=-0.007$.**
+No public catalog glass matches all three stored quantities exactly. OHARA S-NBM51 is the closest six-digit and optical-class candidate, but its residual partial-dispersion difference is too large to justify an exact vendor identity. The data file therefore retains an explicit `Unmatched` class label and does not invent C-, F-, or g-line indices.
 
-L2r is cemented to L2f. Its positive power moderates the negative front member, leaving the complete G2a doublet with a
-computed focal length of −54.992797118 mm. The cemented pair therefore remains negative even though its rear member is
-positive.
+#### L10r — Biconvex Positive
 
-The high index keeps the positive correction compact, while its negative partial-dispersion deviation complements the
-strong positive deviation of L3 farther to the rear. That complement is a prescription-level chromatic strategy; it is
-not evidence by itself that the complete lens is apochromatic.
+**nd = 1.88300, νd = 40.81. Glass: TAFD30 catalog equivalent. Standalone f = +24.261811 mm.**
 
-### L3 — Biconvex Positive Singlet
+L10r is the positive cemented partner at surface 6. HOYA TAFD30 matches nd and νd at the patent's precision and closely matches its rounded ΔPgF. The model therefore uses the complete catalog curve as an optical equivalent while leaving the production supplier unspecified.
 
-**nd = 1.55032, νd = 75.50. Glass: FCD705-class (HOYA code 550755; vendor not specified by patent). Standalone f =
-+29.059720752 mm. $\Delta P_{gF}=+0.028$.**
+Although L10r is positive by itself, the complete cemented L10 subgroup is negative when evaluated in air with its published thicknesses. Its verified equivalent focal length is −73.90504 mm, agreeing with the patent's f2a = −73.89 mm. The pair therefore provides a relatively weak negative redistribution of power behind the stop rather than functioning as a standalone positive collector.
 
-L3 is the strongest positive element in G2b and the shortest-focal-length positive lens used in the patent's subgroup
-power condition. Its low dispersion and comparatively large positive $\Delta P_{gF}$ distinguish it from the dense,
-lower-Abbe glasses used in the cemented doublets.
+### G2b — Positive Rear Sub-Group
 
-The patent requires a G2b positive lens to satisfy $\Delta P_{gF}>+0.015$ (claim 6; ¶0038). L3 exceeds that threshold at
-+0.028. Its computed +29.059720752 mm standalone focal length, combined with G2a's −54.992797118 mm focal length, gives
-$f_{2a}/f_{2bp}=-1.892406248$.
+#### L11 — Biconvex Positive
 
-### L4 — Double-Sided Aspherical Negative Meniscus
+**nd = 1.49700, νd = 81.61. Glass: FCD1 catalog equivalent. Standalone f = +31.911859 mm.**
 
-**nd = 1.58313, νd = 59.46. Glass: M-BACD12-class (HOYA code 583595; vendor not specified by patent). Standalone f =
-−65.995539517 mm. $\Delta P_{gF}=-0.001$.**
+L11 is the strongest positive element in G2b and directly reproduces the patent's f2bp = 31.91 mm. Its very high Abbe number and positive ΔPgF are central to the prescription's dispersion strategy. HOYA FCD1 matches nd and νd exactly and matches the rounded patent ΔPgF within 0.0004, so the model uses its complete catalog curve as an optical equivalent while leaving the production supplier unspecified.
 
-L4 is the final element and is a negative meniscus concave toward the object. Both surfaces, 10A and 11A, are aspherical.
-The element's standalone negative power reduces L3's positive power, but the combined G2b subgroup remains positive at
-+43.777889632 mm.
+The patent requires the positive G2b glass to have ΔPgF > +0.015 (claim 6). L11's value is +0.037. This provides a partial-dispersion behavior opposite in sign to the negative L10f member and supports secondary-spectrum control without justifying an apochromatic classification.
 
-Its position near the image side gives its surface departures strong leverage over oblique bundles. The patent identifies
-this rear aspherical negative meniscus as the principal structural measure for correcting coma and astigmatism while
-retaining compactness and a wide field (¶0006, ¶0009, ¶0026). The data does not infer a manufacturing process; the
-M-BACD12 label is a catalog class, not evidence that the element is a particular molded-glass product.
+#### L12 — Negative Meniscus, Double-Sided Aspherical
+
+**nd = 1.51633, νd = 64.06. Glass: S-BSL7 / K-BK7 catalog-equivalent borosilicate crown class. Standalone f = −66.426138 mm.**
+
+L12 is a negative meniscus with both surfaces aspherical. Its object-side surface is concave toward the object, as required by the patent (¶0075). The element is placed close to the image plane, where its negative power and high-order surface departures can alter off-axis ray geometry with comparatively modest paraxial power.
+
+The patent explicitly associates this element with coma and astigmatism correction (¶0075, ¶0081). L12 does not make the isolated G2b subsystem negative: L11 and L12 together, at their published separation and with air on both sides, have a verified equivalent focal length of +51.58930 mm. The standalone −66.426138 mm value, the positive G2b subsystem result, and L12's behavior inside the complete lens describe different optical quantities.
+
+The nd and six-digit 516641 position correspond to a BK7-family borosilicate crown, but the patent's rounded ΔPgF = 0.000 does not establish a unique vendor glass. The data file therefore names the compatible S-BSL7 / K-BK7 family, leaves the production supplier unspecified, and allows deterministic catalog resolution without presenting it as a unique identification.
 
 ## Glass Identification and Selection
 
-The patent publishes $n_d$, νd, and $\Delta P_{gF}$ for each element but does not name glass manufacturers. The stored
-glass names are therefore catalog classes or equivalents. HOYA's cross-reference table notes that matching six-digit
-codes do not guarantee identical glass composition across vendors, so these labels should not be read as patent-specified
-materials.
+The final data file preserves the patent's nd, νd, and rounded ΔPgF values on all six elements. It does not duplicate catalog-derived C-, F-, and g-line indices: compatible labels resolve to complete catalog curves, while the unmatched L10f retains the patent's dPgF-aware fallback. Every named match is an optical equivalent rather than a production-supplier claim.
 
-| Element | Stored class | nd | νd | ΔPgF | Catalog status |
+| Element | Stored glass label | nd | νd | ΔPgF | Identification status |
 |---|---|---:|---:|---:|---|
-| L1f | TAFD37A-class | 1.90043 | 37.37 | −0.004 | Exact HOYA code pair 900374 |
-| L1r | S-TIH6-class | 1.80518 | 25.45 | +0.013 | Exact nd; catalog νd = 25.42 |
-| L2f | S-NBM51-class | 1.61340 | 44.27 | −0.005 | Exact OHARA code pair 613443 |
-| L2r | TAFD32-class | 1.87070 | 40.73 | −0.007 | Exact HOYA code pair 871407 |
-| L3 | FCD705-class | 1.55032 | 75.50 | +0.028 | Exact HOYA code pair 550755 |
-| L4 | M-BACD12-class | 1.58313 | 59.46 | −0.001 | Exact HOYA code pair 583595 |
+| L9f | TAFD35 catalog equivalent | 1.91082 | 35.25 | −0.003 | Complete HOYA catalog curve; supplier unspecified |
+| L9r | FD225 catalog equivalent | 1.80809 | 22.76 | +0.021 | Complete HOYA catalog curve; supplier unspecified |
+| L10f | Unmatched 613443 negative anomalous-dispersion class | 1.61340 | 44.27 | −0.005 | Closest to S-NBM51; no exact identity asserted |
+| L10r | TAFD30 catalog equivalent | 1.88300 | 40.81 | −0.009 | Complete HOYA catalog curve; supplier unspecified |
+| L11 | FCD1 catalog equivalent | 1.49700 | 81.61 | +0.037 | Complete HOYA catalog curve; supplier unspecified |
+| L12 | S-BSL7 / K-BK7 catalog-equivalent class | 1.51633 | 64.06 | 0.000 | Complete catalog curve; vendor not uniquely identified |
 
-The palette separates two dense positive/negative cemented pairs from a low-dispersion positive singlet and a moderate-
-index rear meniscus. L3 supplies the highest νd and largest positive $\Delta P_{gF}$, while L1r and L2r carry substantial
-opposite or complementary deviations. Cosina markets three anomalous-partial-dispersion glass elements, but it does not
-map that count to patent element labels. The analysis therefore preserves all six published $\Delta P_{gF}$ values and
-does not designate a particular trio as manufacturer-confirmed.
-
-No APO designation is inferred. The published partial-dispersion data supports discussion of deliberate secondary-
-spectrum control, but neither the patent nor the production source characterizes the lens as apochromatic.
+The palette combines dense positive glasses, high-index flints, a negative anomalous-partial-dispersion class, and a high-Abbe positive crown glass. The strongest verified chromatic pairing is between L10f at ΔPgF = −0.005 and L11 at ΔPgF = +0.037. The patent singles out those two signs in its conditions, while the front cemented pair provides additional dispersion balancing. These data support discussion of anomalous partial dispersion, but not an APO designation.
 
 ## Focus Mechanism
 
-The patent specifies whole-lens unit focusing for near objects (¶0019 and claim 8). Example 1 publishes two axial states:
+The patent states that all lens elements translate together during focusing (claim 8; ¶0019). Internal separations and the stop position therefore remain fixed. The only variable distance in the data file is the final air space from surface 11A to the image plane.
 
-| State | Object distance D0 | Rear image gap D11 |
-|---|---:|---:|
-| Infinity | Infinity | 15.11 mm |
-| Patent close state | 450.00 mm | 18.19 mm |
+| State | Object plane to surface 1 | Surface 11A to image plane | Status |
+|---|---:|---:|---|
+| Infinity | ∞ | 15.110000 mm | Patent-published base state |
+| Production minimum focus | 657.913289 mm | 17.166711 mm | Constrained reconstruction for 0.7 m object-to-image distance |
+| Patent close row | 450.000000 mm | 18.20 mm published; 18.203778 mm recomputed | Published source state, retained in audit rather than used as UI endpoint |
 
-Because the complete optical assembly translates as a unit, the LensVisualizer model keeps the internal prescription
-fixed and varies only the final air gap from 15.11 to 18.19 mm. The resulting modeled travel is 3.08 mm. This is a
-**PUBLISHED** focus state, not a constrained reconstruction.
+The production model interprets Cosina's 0.7 m minimum focusing distance in the conventional image-plane-referenced sense. The patent's D0 value is instead measured from the object plane to the first lens surface. The production endpoint in the data file is consequently a `CONSTRAINED_RECONSTRUCTION`, solved under the patent's unit-focus mechanism rather than copied from a patent row.
 
-The production lens is specified for a 0.7 m minimum focus and rangefinder coupling from infinity to 0.7 m. The patent's
-0.45 m row is retained as an optical-source endpoint; it is not presented as the production rangefinder-coupled limit.
-The source's rounded 450 mm / 18.19 mm pair leaves a 0.161142604 mm first-order conjugate-matrix residual. The values are
-nevertheless transcribed rather than adjusted, because the patent state is the numerical authority.
+At 0.7 m, the stored image-space spacing changes by 2.056711 mm from the patent-published 15.11 mm base value to 17.166711 mm. Relative to the independently computed infinity BFD of 15.108305 mm, the paraxial conjugate shift is 2.058407 mm. The paraxial magnification is −0.05759. These are computed model results, not manufacturer specifications. The patent's separate 450 mm D0 row gives a published 3.09 mm spacing increase and a computed magnification of −0.08661.
 
 ## Aspherical Surfaces
 
-L4 carries aspheres on surfaces 10A and 11A. The patent uses the standard rotationally symmetric conic-polynomial form
+Surfaces 10A and 11A are the two faces of L12. The patent uses the standard conic-constant form
 
 $$
-z(h)=\frac{c h^2}{1+\sqrt{1-(1+K)c^2h^2}}
-+A_4h^4+A_6h^6+A_8h^8+A_{10}h^{10}+A_{12}h^{12},
-\qquad c=\frac{1}{R}.
+Z(h)=\frac{C h^2}{1+\sqrt{1-(1+K)C^2h^2}}+A_4h^4+A_6h^6+A_8h^8+A_{10}h^{10}+A_{12}h^{12},
 $$
 
-Both surfaces have $K=0$, so the base conic is spherical and no conic-convention conversion is required. The
-coefficients are unscaled source values in millimetre-based units:
+with $C=1/R$. Its tabulated K is already the standard convention, so K = 0 denotes a spherical base and no conversion is applied. No scaling was used; the coefficients therefore remain at patent scale. The patent publishes no term above A12; all higher polynomial orders remain zero in the model.
 
-| Coefficient | 10A | 11A |
-|---|---:|---:|
-| R | −33.247 mm | −250.000 mm |
-| K | 0 | 0 |
-| A4 | -5.3761e-4 | -4.1065e-4 |
-| A6 | +1.7189e-6 | +2.4139e-6 |
-| A8 | -5.7399e-8 | -2.4264e-8 |
-| A10 | +7.9869e-10 | +2.4208e-10 |
-| A12 | -1.8531e-12 | -7.3037e-13 |
+| Surface | K | A4 | A6 | A8 | A10 | A12 |
+|---|---:|---:|---:|---:|---:|---:|
+| 10A | 0 | −5.5781E−04 | +2.2937E−06 | −6.1771E−08 | +1.0322E−09 | −4.0737E−12 |
+| 11A | 0 | −4.1509E−04 | +2.7671E−06 | −2.4381E−08 | +2.5192E−10 | −8.7175E−13 |
 
-The final model uses 8.30 mm on 10A and 9.50 mm on 11A. At 8.30 mm, 10A has a sag of −3.293748508 mm,
-matching the patent's printed $Sag_{2b}=3.29$ mm within source precision. It departs from its base sphere by
-−2.241049386 mm and reaches an actual rim-slope angle of 48.253027°. Surface 11A departs from its base sphere by
-−2.125295350 mm at 9.50 mm and has a 33.185646° rim angle. These departures are quoted only at the stored,
-geometry-validated semi-diameters.
+The patent defines Sag2b on surface 10A. Solving the complete asphere equation for |Z| = 3.44 mm gives a verified effective semi-height of 8.229002 mm, which is used as the surface semi-diameter. At that height, the polynomial departure from the spherical base is −2.067541 mm and the element retains 3.918655 mm of common-band edge thickness.
 
-The corrected 10A polynomial has two roots for an absolute sag of 3.29 mm. The 8.296654461 mm root occurs before the
-profile's slope reversal and remains below the validator's rim-slope limit. The second root, 11.317748444 mm, occurs
-after the reversal and has a 72.487370° rim angle, so it is rejected as a physical clear-aperture interpretation.
+Surface 11A uses an inferred and ray-validated semi-diameter of 10.15 mm. At that modeled height, its total sag is −2.761540 mm, its spherical-base sag is −0.516446 mm, and its polynomial departure is −2.245094 mm. On both surfaces the negative A4 term drives the peripheral sag farther in the negative axial direction than the spherical base; the higher orders temper that departure across the usable aperture.
 
 ## Chromatic Correction Strategy
 
-The design uses cemented positive/negative pairs on both sides of the stop and a low-dispersion positive singlet in the
-rear positive subgroup. The front L1 doublet combines a high-index positive member with a strongly dispersive negative
-member. G2a combines a negative S-NBM51-class member with a high-index positive TAFD32-class member, but remains net
-negative. L3 then supplies positive power with νd = 75.50 and $\Delta P_{gF}=+0.028$.
+The selected embodiment uses both index/Abbe pairing in cemented doublets and sign-opposed anomalous partial dispersion behind the stop. L9f and L9r form a dense positive/negative front pair. L10f and L10r form a net-negative pair, while L11 supplies high-Abbe positive power before the final aspherical meniscus.
 
-The patent's conditions deliberately constrain both the negative G2a material and the positive G2b material. In first-
-order terms, the sign contrast between L2f/L2r and L3 partial-dispersion deviations provides degrees of freedom beyond a
-simple Abbe-number achromat. The data supports that limited statement; it does not establish apochromatic correction or
-quantify residual secondary spectrum at the image plane.
+The patent's most explicit chromatic controls are the L10f limits nd < 1.62 and ΔPgF ≤ −0.005 and the L11 limit ΔPgF > +0.015. The selected values are 1.61340, −0.005, and +0.037. This opposition allows the designer to alter secondary color independently of the ordinary νd balance. Catalog coefficients now provide full curves for L9f, L9r, L10r, L11, and L12; only L10f falls back to the patent's nd/νd/dPgF description.
+
+Cosina markets the production lens as using three anomalous-partial-dispersion glass elements. That product statement is not used to relabel individual patent elements beyond what the patent and catalog audit support.
 
 ## Conditional Expressions
 
-The patent defines nine principal conditions. The following table distinguishes the patent's own tabulated values from
-the sequential prescription where the source combines incompatible states or reference planes.
+The patent gives nine design conditions. Example 3 satisfies conditions 2–9 at the stated source precision. Condition 1 contains an internal reference-plane contradiction in Table 9.
 
-| Condition | Evaluated value | Result and interpretation |
+| Condition | Example 3 value | Assessment |
 |---|---:|---|
-| (1) $BF/TL_o>0.8$ | 18.19 / 21.84 = 0.832875458 | Passes using the patent table's mixed close-state BF and tabulated $TL_o$. The sequential close ratio is 18.19 / 24.92 = 0.729935795 and does not pass. |
-| (2) $TL/f\leq1.15$ | 40.03 / 35.66 = 1.122546270 | Passes. |
-| (3) $\omega>30.5^\circ$ | 30.86° | Passes. |
-| (4) $f_{2a}/f_{2bp}\geq-2.4$ | −54.992797118 / 29.059720752 = −1.892406248 | Passes from the final arrays. |
-| (5) $Sag_{2b}/TL\geq0.08$ | 3.29 / 40.03 = 0.082188359 | Passes. |
-| (6) $n_{d,2am}<1.62$ | 1.61340 | Passes. |
-| (7) $\Delta P_{gF,2am}\leq-0.005$ | −0.005 | Passes at equality. |
-| (8) $\Delta P_{gF,2bp}>+0.015$ | +0.028 | Passes. |
-| (9) $n_{d,h}>1.88$ | 1.90043 | Passes through L1f. |
+| BF/TLo > 0.8 | Printed: 18.20/21.83 = 0.8337 | Passes only in the internally mixed Table 9 row |
+| TL/f ≤ 1.15 | 40.03/35.74 = 1.1200 | Pass |
+| ω > 30.5° | 30.75° | Pass |
+| f2a/f2bp ≥ −2.4 | −73.89/31.91 = −2.3156 | Pass |
+| Sag2b/TL ≥ 0.08 | 3.44/40.03 = 0.08594 | Pass |
+| nd2am < 1.62 | 1.61340 | Pass |
+| ΔPgF2am ≤ −0.005 | −0.005 | Pass at stated precision |
+| ΔPgF2bp > +0.015 | +0.037 | Pass |
+| At least one positive lens nd > 1.88 | L9f = 1.91082; L10r = 1.88300 | Pass |
 
-Condition (1) contains a source-level reference-state contradiction: Table 1 combines the close-state BF with a
-$TL_o$ value obtained by subtracting it from the infinity-state total length. Condition (5) passes once the Table 1
-value is read correctly as $Sag_{2b}=3.29$ mm. The sequential model preserves the printed surface table and does not
-alter radii or spacings to force a condition.
+The prescription spacings establish a physical surface-1-to-surface-11 track of 24.92 mm. Table 9's TLo = 21.83 mm is exactly 40.03 mm minus the close-state BF of 18.20 mm, thereby combining the infinity total length with a close-focus back focus. With consistent planes, BF/track is 0.6063 at infinity and approximately 0.7305 at the patent's 450 mm state. The data file preserves the physical prescription and does not alter any spacing to force condition 1 to pass.
+
+## Modeling Disclosures
+
+The aperture-stop axial location is patent-published. Its physical semi-diameter, 3.961126 mm, is inferred by launching the f/3.58 entrance-pupil marginal ray through the exact front group to the stop. It is not a tabulated patent dimension.
+
+The patent does not publish ordinary clear semi-diameters. Surface 10A is derived from the patent-defined Sag2b. Figure 5 establishes the relative element silhouette, while dense exact marginal- and chief-ray envelopes at infinity and the reconstructed 0.7 m state establish safe lower bounds for the other surfaces. The rounded SDs were then checked for edge thickness, actual rim slope, cross-gap, off-axis containment, and rendering. Surface 10A remains the modeled limiting rear aperture; preceding surfaces do not introduce an artificial earlier stop.
+
+No sensor cover glass, protective filter, inactive dummy plane, flare cutter, or mechanical component is included. No omitted plate required an air-equivalent spacing correction. No uniform scaling was applied, and the asphere coefficients were not transformed.
+
+The production 0.7 m focus state is a disclosed constrained reconstruction. The patent's own infinity and 450 mm rows remain source facts, while the production endpoint is a solved model state. The Table 9 TLo/BF inconsistency is retained as a source error rather than silently reconciled.
 
 ## Verification Summary
 
-Independent reduced-angle tracing and an ABCD calculation agree on the final prescription's first-order properties:
+The final TypeScript arrays reproduce the patent's principal paraxial quantities within source precision:
 
-| Quantity | Computed result |
-|---|---:|
-| Gaussian focal length | 35.663874742 mm |
-| Back focal length from 11A | 15.121084285 mm |
-| Modeled f-number | 3.610000000 |
-| Entrance-pupil semi-diameter | 4.939594840 mm |
-| Physical stop semi-diameter | 3.858166062 mm |
-| S1-to-S11 vertex track | 24.920000000 mm |
-| Infinity optical total | 40.030000000 mm |
-| $TL/EFL$ | 1.122424310 |
-| $BFD/EFL$ | 0.423678025 |
-| Petzval sum $\sum \phi/(n n')$ | +0.005270846491 mm⁻¹ |
+| Quantity | Verified result | Published or stored comparison |
+|---|---:|---:|
+| Effective focal length | 35.741015 mm | 35.74 mm |
+| Infinity back focal distance | 15.108305 mm | 15.11 mm |
+| Surface-1-to-surface-11 track | 24.920000 mm | Direct spacing sum |
+| Infinity first-surface-to-image length | 40.030000 mm | 40.03 mm |
+| Patent D0 = 450 mm image distance | 18.203778 mm | 18.20 mm |
+| Modeled f-number | 3.580000 | 3.58 |
+| Petzval sum | +0.00503516 mm⁻¹ | Surface-by-surface φ/(n·n′) computation |
 
-Under the project definitions, the lens is not telephoto because $TL/EFL>1$, and it is not retrofocus because
-$BFD/EFL<1$. The computed focal length differs from the patent's rounded 35.66 mm by 0.003875 mm, and the computed BFL
-differs from the printed infinity D11 by 0.011084 mm.
+Sequential height/reduced-angle basis tracing and independent ABCD composition produce the same system matrix, with determinant 1.000000 in air. All common-band element edge thicknesses remain positive. The largest verified rim slope is 48.1533° at surface 10A, and the final model passes the documented local cross-gap, containment, and zero-hidden-trim checks.
 
-The validated geometry has a minimum element edge thickness of 1.398579426 mm and a maximum actual rim angle of
-48.253027° at 10A. Exact ray-envelope checks were performed on axis and at ±18.516° at infinity, on axis at the
-published 0.45 m state, and for the chief ray at the published ±30.86° half field. The 28 tested rays remain within the
-authored semi-diameters. This is not a claim of complete full-field aberration performance.
+## Sources and References
 
-## Sources
-
-- Cosina Co., Ltd., **JP 2026-121744 A**, “Optical Lens System,” published July 27, 2026, Example 1 / First Embodiment.
-- Cosina, [COLOR-SKOPAR 35mm F3.5 Aspherical — official product page](https://www.cosina.co.jp/voigtlander/en/vm-mount/color-skopar-35mm-f3-5-aspherical/).
-- Cosina, [COLOR-SKOPAR 35mm F3.5 Aspherical VM release-date notice](https://www.cosina.co.jp/news/%E3%83%95%E3%82%A9%E3%82%AF%E3%83%88%E3%83%AC%E3%83%B3%E3%83%80%E3%83%BCcolor-skopar-35mm-f3-5-aspherical-vm-%E7%99%BA%E5%A3%B2%E6%97%A5%E3%81%AE%E3%81%8A%E7%9F%A5%E3%82%89%E3%81%9B/).
-- HOYA Optics, [Glass Cross Reference Index](https://www.hoyaoptics.eu/glass-cross-reference-index).
-- OHARA Inc., [Glass Type catalog](https://www.ohara-inc.co.jp/en/product/01000/).
+- Japan Patent Office, JP 2026-121744 A, *光学レンズ系*, Example 3, published 2026-07-27.
+- Cosina, “COLOR-SKOPAR 35mm F3.5 Aspherical,” official product page: <https://www.cosina.co.jp/voigtlander/en/vm-mount/color-skopar-35mm-f3-5-aspherical/>.
+- Cosina, *COLOR-SKOPAR 35mm F3.5 Aspherical VM Instruction Manual*, version 1.0, March 2025: <https://www.cosina.co.jp/wp/wp-content/uploads/2025/03/VM-35_35-ENG-V1_0.pdf>.
+- Cosina, product announcement, 2025-02-14: <https://www.cosina.co.jp/news/フォクトレンダーcolor-skopar-35mm-f3-5-aspherical-vm-発売/>.
+- Cosina, release-date notice, 2025-03-10: <https://www.cosina.co.jp/news/フォクトレンダーcolor-skopar-35mm-f3-5-aspherical-vm-発売日のお知らせ/>.
+- HOYA, *Optical Glass Data*, official workbook dated 2026-06-01, and official obsolete-inclusive Zemax catalog dated 2026-07-07.
+- OHARA, SCHOTT, HIKARI, CDGM, and Sumita official optical-glass catalogs and data sheets.

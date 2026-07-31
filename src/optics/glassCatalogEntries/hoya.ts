@@ -702,6 +702,15 @@ export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source: "Hoya Zemax catalog 2017-04-01 via refractiveindex.info; TAFD35 page (formula 3 polynomial).",
   },
   {
+    name: "FD225",
+    vendor: "Hoya",
+    polynomial: [3.1189869, -0.015820772, 0.044425024, 0.0035834882, -0.00023943449, 0.000038756542],
+    nd: 1.80809,
+    vd: 22.76,
+    code6: "808228",
+    source: "HOYA Zemax catalog 2026-07-07; vendor formula-3 polynomial for FD225.",
+  },
+  {
     name: "LAC13",
     vendor: "Hoya",
     polynomial: [2.8125316, -0.012915271, 0.019960339, 0.00019877888, 0.000017647061, -0.00000044767632],
