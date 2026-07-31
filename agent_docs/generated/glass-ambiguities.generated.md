@@ -12,8 +12,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **495** lenses scanned
-- **5467** glass elements examined
+- **496** lenses scanned
+- **5473** glass elements examined
 - **1292** elements have multiple coordinate-compatible candidates
 - **304** lens files are affected
 

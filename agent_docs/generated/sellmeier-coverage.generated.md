@@ -11,17 +11,17 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **495** lenses scanned
-- **487** visible lenses scanned
-- **243** lenses fully covered by trusted chromatic data
-- **243** visible lenses fully covered by trusted chromatic data
+- **496** lenses scanned
+- **488** visible lenses scanned
+- **244** lenses fully covered by trusted chromatic data
+- **244** visible lenses fully covered by trusted chromatic data
 - **239** lenses fully covered by strict Sellmeier data
 - **239** visible lenses fully covered by strict Sellmeier data
-- **4** lenses fully covered only after measured line-index data
-- **4** visible lenses fully covered only after measured line-index data
-- **4820 / 5475** non-air surfaces use strict catalog Sellmeier data
+- **5** lenses fully covered only after measured line-index data
+- **5** visible lenses fully covered only after measured line-index data
+- **4825 / 5481** non-air surfaces use strict catalog Sellmeier data
 - **88.0%** strict Sellmeier surface coverage overall
-- **4830 / 5475** non-air surfaces use trusted chromatic data
+- **4836 / 5481** non-air surfaces use trusted chromatic data
 - **88.2%** trusted chromatic coverage overall
 - **17 / 75** native e-line surfaces use name-verified catalog Sellmeier data
 
@@ -304,6 +304,7 @@ These lenses are complete for chromatic tracing but not strict catalog-Sellmeier
 | [CANON EF 24-70mm f/2.8 L USM](../../src/lens-data/canon/CanonEF2470mmf28L.data.ts) | 16/16 | 13/16 | 16 | 13/16 | 3 | Line indices |
 | [TAMRON SP 90mm f/2.8 Di MACRO 1:1 VC USD (F004)](../../src/lens-data/tamron/TamronSP90mmf28Di.data.ts) | 14/14 | 12/14 | 14 | 12/14 | 2 | Line indices |
 | [PANASONIC LUMIX G 25mm f/1.7 ASPH.](../../src/lens-data/panasonic/PanasonicLumixG25mmf17.data.ts) | 8/8 | 6/8 | 8 | 6/8 | 2 | Line indices |
+| [VOIGTLÄNDER ULTRON X 27mm f/2](../../src/lens-data/voigtlander/VoigtlanderUltron27mmf2.data.ts) | 6/6 | 5/6 | 6 | 5/6 | 1 | Line indices |
 
 ## Incomplete Lenses by Completeness
 
