@@ -1,3 +1,4 @@
+import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import {
   ARTICLE_SCROLL_MARGIN_TOP,
@@ -41,6 +42,11 @@ describe("resolveActiveHeadingId", () => {
     ]);
 
     const active = resolveActiveHeadingId(ids, 80, (id) => tops.get(id) ?? null);
+    expect(active).toBe("summary");
+  });
+
+  it("selects the final heading when the document bottom is reached", () => {
+    const active = resolveActiveHeadingId(["intro", "details", "summary"], 80, () => 400, 12, true);
     expect(active).toBe("summary");
   });
 
@@ -98,5 +104,38 @@ describe("extractTOCHeadings", () => {
   it("returns an empty array for markdown without h2/h3", () => {
     const md = ["# Only top", "Some paragraph.", "#### Too deep"].join("\n");
     expect(extractTOCHeadings(md)).toEqual([]);
+  });
+
+  it("includes every Fujifilm lens-story section", () => {
+    const raw = readFileSync(
+      new URL("../../../../src/content/manufacturer-lens-stories/FujifilmOneLensOneStoryIndex.md", import.meta.url)
+        .pathname,
+      "utf8",
+    );
+    const markdown = raw.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n*/, "");
+
+    expect(extractTOCHeadings(markdown).map((heading) => heading.text)).toEqual([
+      "One Lens, One Story",
+      "The History of FUJINON",
+      "FUJINON Speed Lenses: Rebirth of the Legend",
+      "GFX100RF Fixed-Lens Development",
+    ]);
+    expect(markdown).toContain("[GFX100RF 35mmF4](/lens/fujifilm-gfx100rf-35mm-f4)");
+  });
+
+  it("includes the Sigma series and table indexes", () => {
+    const raw = readFileSync(
+      new URL("../../../../src/content/manufacturer-lens-stories/SigmaOhsonesAnecdotesIndex.md", import.meta.url)
+        .pathname,
+      "utf8",
+    );
+    const markdown = raw.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n*/, "");
+
+    expect(extractTOCHeadings(markdown).map((heading) => heading.text)).toEqual([
+      "Ohsone's Anecdotes",
+      "Episode index",
+      "GROUND BREAKING",
+      "Volume index",
+    ]);
   });
 });

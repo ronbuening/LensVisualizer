@@ -16,6 +16,8 @@ _Ohsone's Anecdotes_ is SIGMA's closest counterpart to Nikon's long-running seri
 
 SIGMA's current English pages identify the episode number but do not display a publication date. The list therefore follows the official publication sequence, newest episode first.
 
+### Episode index
+
 | Sequence | Lens or subject | Official article | Surface & Stop |
 | --- | --- | --- | --- |
 | Episode 10 | Ultra-telephoto lenses, part 3: ultrasonic motors, zooms, and mirrorless | [Read at SIGMA](https://www.sigma-global.com/en/our-community/sein/ohsone/ultratelephotolenses_3/) | — |
@@ -32,6 +34,8 @@ SIGMA's current English pages identify the episode number but do not display a p
 ## GROUND BREAKING
 
 SIGMA's eight-part _GROUND BREAKING_ collection covers the products, materials, and manufacturing decisions that shaped the company. It ranges from the YS interchangeable mount and ultra-wide zoom development to SLD glass, the dp0 Quattro, and the APS-C 30mm F1.4.
+
+### Volume index
 
 | Sequence | Lens, product, or subject | Official article | Surface & Stop |
 | --- | --- | --- | --- |

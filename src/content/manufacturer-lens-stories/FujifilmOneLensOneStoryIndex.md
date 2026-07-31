@@ -10,6 +10,8 @@ toc: true
 
 # Fujifilm: One Lens, One Story
 
+## One Lens, One Story
+
 Fujifilm's official _One Lens, One Story_ series ran for 12 installments in 2015. The compact essays explain the design intent behind early XF lenses and the XF1.4X teleconverter. The list below is sorted by the publication date shown on each Fujifilm page, newest first.
 
 | Published | Lens or product | Official article | Surface & Stop |
@@ -60,4 +62,4 @@ One chapter of Fujifilm's five-part GFX100RF development story concentrates enti
 
 | Published | Lens | Official article | Surface & Stop |
 | --- | --- | --- | --- |
-| 2025-03-24 | GFX100RF 35mmF4 | [Development Story vol. 03: Newly Developed 35mm F4 Lens](https://www.fujifilm-x.com/en-us/stories/development-story-vol-03-newly-developed-35mm-f4-lens/) | — |
+| 2025-03-24 | GFX100RF 35mmF4 | [Development Story vol. 03: Newly Developed 35mm F4 Lens](https://www.fujifilm-x.com/en-us/stories/development-story-vol-03-newly-developed-35mm-f4-lens/) | [GFX100RF 35mmF4](/lens/fujifilm-gfx100rf-35mm-f4) |
