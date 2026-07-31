@@ -139,6 +139,7 @@ Bug reports, documentation fixes, lens corrections, and new prescriptions are we
 ### For contributors and maintainers
 
 - [Contributor guide](CONTRIBUTING.md)
+- [Security policy and vulnerability reporting](SECURITY.md)
 - [Agent/developer docs index](agent_docs/README.md)
 - [Lens data format](src/lens-data/LENS_DATA_SPEC.md)
 - [Lens analysis format](src/lens-data/LENS_ANALYSIS_SPEC.md)

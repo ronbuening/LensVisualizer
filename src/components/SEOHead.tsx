@@ -13,6 +13,7 @@ import {
   SOCIAL_IMAGE_URL,
   SOCIAL_IMAGE_WIDTH,
 } from "../utils/catalog/lensMetadata.js";
+import { serializeJsonLd } from "../utils/seo/serializeJsonLd.js";
 
 export interface JsonLdSchema {
   [key: string]: unknown;
@@ -80,7 +81,7 @@ export default function SEOHead({
 
       {jsonLdEntries.map((entry, index) => (
         <script key={index} type="application/ld+json">
-          {JSON.stringify(entry)}
+          {serializeJsonLd(entry)}
         </script>
       ))}
     </Helmet>
