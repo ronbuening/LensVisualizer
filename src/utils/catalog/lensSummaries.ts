@@ -68,12 +68,12 @@ interface RecentLensEntry {
   date: string;
 }
 
-/** All visible lenses sorted newest-first by publication date. */
+/** All visible lenses in the commit-aware publication order generated at build time. */
 const ALL_LENSES_BY_DATE: RecentLensEntry[] = Object.entries(
-  buildMeta.lensFreshness as Record<string, { publishedOn: string; lastModified: string }>,
+  buildMeta.lensFreshness as Record<string, { publishedOn: string; lastModified: string; publicationOrder: number }>,
 )
   .filter(([key]) => LENS_SUMMARIES[key]?.visible)
-  .sort(([, a], [, b]) => b.publishedOn.localeCompare(a.publishedOn))
+  .sort(([, a], [, b]) => a.publicationOrder - b.publicationOrder)
   .map(([key, freshness]) => ({ key, date: freshness.publishedOn }));
 
 /** Up to 7 most recently added lenses, newest-first. */

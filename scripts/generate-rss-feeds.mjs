@@ -66,12 +66,14 @@ function requiredString(value, label) {
 
 function formatRssDate(isoDate, label = "date") {
   const value = requiredString(isoDate, label);
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) {
-    throw new Error(`RSS ${label} must use YYYY-MM-DD, found "${value}".`);
+  const dateOnly = /^\d{4}-\d{2}-\d{2}$/.test(value);
+  const isoTimestamp = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{3})?(?:Z|[+-]\d{2}:\d{2})$/.test(value);
+  if (!dateOnly && !isoTimestamp) {
+    throw new Error(`RSS ${label} must use YYYY-MM-DD or an ISO 8601 timestamp, found "${value}".`);
   }
 
-  const date = new Date(`${value}T00:00:00Z`);
-  if (Number.isNaN(date.valueOf()) || date.toISOString().slice(0, 10) !== value) {
+  const date = new Date(dateOnly ? `${value}T00:00:00Z` : value);
+  if (Number.isNaN(date.valueOf()) || (dateOnly && date.toISOString().slice(0, 10) !== value)) {
     throw new Error(`RSS ${label} is not a valid calendar date: "${value}".`);
   }
   return date.toUTCString();
@@ -84,8 +86,16 @@ function compareStrings(a, b) {
 }
 
 function newestFirst(a, b) {
-  const byDate = compareStrings(b.publishedOn, a.publishedOn);
-  return byDate || compareStrings(a.url, b.url);
+  if (Number.isInteger(a.publicationOrder) && Number.isInteger(b.publicationOrder)) {
+    const byGeneratedOrder = a.publicationOrder - b.publicationOrder;
+    if (byGeneratedOrder) return byGeneratedOrder;
+  }
+
+  const byTimestamp = compareStrings(b.publishedAt ?? b.publishedOn, a.publishedAt ?? a.publishedOn);
+  if (byTimestamp) return byTimestamp;
+  const byCommit = compareStrings(b.publishedCommit ?? "", a.publishedCommit ?? "");
+  if (byCommit) return byCommit;
+  return compareStrings(a.title, b.title) || compareStrings(a.url, b.url);
 }
 
 function normalizeLimit(limit) {
@@ -129,7 +139,17 @@ function buildLensFeedItems(buildMeta, lensSummaries, limit = DEFAULT_FEED_LIMIT
         title: requiredString(summary.name, `lens name for "${key}"`),
         url: canonicalPageUrl(`/lens/${key}`),
         publishedOn: requiredString(freshness?.publishedOn, `publishedOn for lens "${key}"`),
+        publishedAt:
+          typeof freshness?.publishedAt === "string" && freshness.publishedAt.trim()
+            ? freshness.publishedAt.trim()
+            : freshness?.publishedOn,
+        publishedCommit: freshness?.publishedCommit,
         lastModified: requiredString(freshness?.lastModified, `lastModified for lens "${key}"`),
+        lastModifiedAt:
+          typeof freshness?.lastModifiedAt === "string" && freshness.lastModifiedAt.trim()
+            ? freshness.lastModifiedAt.trim()
+            : freshness?.lastModified,
+        publicationOrder: freshness?.publicationOrder,
         description: lensDescription(summary),
         category: typeof summary.maker === "string" && summary.maker.trim() ? summary.maker.trim() : undefined,
       };
@@ -153,7 +173,17 @@ function buildArticleFeedItems(buildMeta, limit = DEFAULT_FEED_LIMIT) {
         title,
         url: canonicalPageUrl(`/articles/${slug}`),
         publishedOn: requiredString(article.publishedOn, `publishedOn for article "${slug}"`),
+        publishedAt:
+          typeof article.publishedAt === "string" && article.publishedAt.trim()
+            ? article.publishedAt.trim()
+            : article.publishedOn,
+        publishedCommit: article.publishedCommit,
         lastModified: requiredString(article.lastModified, `lastModified for article "${slug}"`),
+        lastModifiedAt:
+          typeof article.lastModifiedAt === "string" && article.lastModifiedAt.trim()
+            ? article.lastModifiedAt.trim()
+            : article.lastModified,
+        publicationOrder: article.publicationOrder,
         description:
           typeof article.summary === "string" && article.summary.trim()
             ? article.summary.trim()
@@ -179,22 +209,22 @@ function renderRssFeed({ title, description, feedUrl, homeUrl, items }) {
     requiredString(item.title, "item title");
     const url = requiredString(item.url, `URL for "${item.title}"`);
     requiredString(item.description, `description for "${item.title}"`);
-    formatRssDate(item.publishedOn, `publishedOn for "${item.title}"`);
-    formatRssDate(item.lastModified, `lastModified for "${item.title}"`);
+    formatRssDate(item.publishedAt ?? item.publishedOn, `publishedAt for "${item.title}"`);
+    formatRssDate(item.lastModifiedAt ?? item.lastModified, `lastModifiedAt for "${item.title}"`);
     if (seenUrls.has(url)) throw new Error(`RSS feed contains duplicate item URL "${url}".`);
     seenUrls.add(url);
   }
 
-  const lastBuildDate = items.reduce(
-    (latest, item) => (item.lastModified > latest ? item.lastModified : latest),
-    items[0].lastModified,
-  );
+  const lastBuildDate = items.reduce((latest, item) => {
+    const itemModifiedAt = item.lastModifiedAt ?? item.lastModified;
+    return itemModifiedAt > latest ? itemModifiedAt : latest;
+  }, items[0].lastModifiedAt ?? items[0].lastModified);
   const itemXml = items.map(
     (item) => `    <item>
       <title>${escapeXml(item.title)}</title>
       <link>${escapeXml(item.url)}</link>
       <guid isPermaLink="true">${escapeXml(item.url)}</guid>
-      <pubDate>${formatRssDate(item.publishedOn, `publishedOn for "${item.title}"`)}</pubDate>
+      <pubDate>${formatRssDate(item.publishedAt ?? item.publishedOn, `publishedAt for "${item.title}"`)}</pubDate>
       <description>${escapeXml(item.description)}</description>${
         item.category ? `\n      <category>${escapeXml(item.category)}</category>` : ""
       }

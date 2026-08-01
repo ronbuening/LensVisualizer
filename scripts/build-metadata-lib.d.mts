@@ -1,6 +1,10 @@
 export interface FreshnessEntry {
   publishedOn: string;
+  publishedAt?: string;
+  publishedCommit?: string | null;
   lastModified: string;
+  lastModifiedAt?: string;
+  lastModifiedCommit?: string | null;
 }
 
 export interface LensFreshnessInput {
@@ -13,8 +17,13 @@ export interface LensFreshnessInput {
 
 export interface ArticleFreshnessInput {
   slug: string;
+  title?: string;
   publishedOn: string;
+  publishedAt?: string;
+  publishedCommit?: string | null;
   lastModified: string;
+  lastModifiedAt?: string;
+  lastModifiedCommit?: string | null;
 }
 
 export interface AuthorRouteInput {
@@ -89,6 +98,10 @@ export function combineFreshnessEntries(
   entries: Array<FreshnessEntry | null | undefined>,
   fallbackDate: string,
 ): FreshnessEntry;
+
+export function comparePublicationEntries<
+  T extends FreshnessEntry & { name?: string; title?: string; key?: string; slug?: string },
+>(a: T, b: T): number;
 
 export function assertFreshnessDiversity(options: {
   lenses: LensFreshnessInput[];

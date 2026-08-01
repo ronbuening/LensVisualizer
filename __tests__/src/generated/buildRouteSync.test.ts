@@ -11,13 +11,23 @@ import buildMeta from "../../../src/generated/build-metadata.json";
  */
 describe("build-route-sync", () => {
   it("every lens key has freshness metadata", () => {
-    const freshness = buildMeta.lensFreshness as Record<string, { publishedOn: string; lastModified: string }>;
+    const freshness = buildMeta.lensFreshness as Record<
+      string,
+      { publishedOn: string; publishedAt: string; lastModified: string; publicationOrder: number }
+    >;
 
     for (const key of buildMeta.lensKeys) {
       expect(freshness[key]).toBeDefined();
       expect(freshness[key].publishedOn).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+      expect(freshness[key].publishedAt).toMatch(/^\d{4}-\d{2}-\d{2}T/);
       expect(freshness[key].lastModified).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+      expect(Number.isInteger(freshness[key].publicationOrder)).toBe(true);
     }
+    expect(
+      Object.values(freshness)
+        .map((entry) => entry.publicationOrder)
+        .sort((a, b) => a - b),
+    ).toEqual(Array.from({ length: buildMeta.lensKeys.length }, (_, index) => index));
   });
 
   it("every shipped maker slug is registered in the runtime prefix table", () => {
@@ -73,10 +83,19 @@ describe("build-route-sync", () => {
     }
   });
 
-  it("articles include published and modified dates", () => {
-    for (const article of buildMeta.articles as { publishedOn: string; lastModified: string }[]) {
+  it("articles include timestamped publication metadata in generated order", () => {
+    for (const [index, article] of (
+      buildMeta.articles as {
+        publishedOn: string;
+        publishedAt: string;
+        lastModified: string;
+        publicationOrder: number;
+      }[]
+    ).entries()) {
       expect(article.publishedOn).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+      expect(article.publishedAt).toMatch(/^\d{4}-\d{2}-\d{2}T/);
       expect(article.lastModified).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+      expect(article.publicationOrder).toBe(index);
     }
   });
 

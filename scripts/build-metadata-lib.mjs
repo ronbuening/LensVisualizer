@@ -44,7 +44,7 @@ export function assertFullGitHistory({ cwd, execFileImpl = execFileSync, allowFe
 }
 
 /**
- * Parse `git log --format=%aI` output into published + modified dates.
+ * Parse `git log --format=%cI%x09%H` output into publication metadata.
  *
  * `git log` returns newest-first, so the first line is the most recent
  * commit and the last line is the oldest reachable commit for the file.
@@ -57,9 +57,42 @@ export function parseGitLogDates(raw) {
 
   if (lines.length === 0) return null;
 
+  const parseLine = (line) => {
+    const [committedAt, commit = null] = line.split("\t");
+    const timestamp = new Date(committedAt);
+    if (Number.isNaN(timestamp.valueOf())) return null;
+    return {
+      on: committedAt.slice(0, 10),
+      at: timestamp.toISOString(),
+      commit: commit || null,
+    };
+  };
+  const entries = lines.map(parseLine).filter(Boolean);
+  if (entries.length === 0) return null;
+
+  const latest = entries[0];
+  const earliest = entries[entries.length - 1];
+
   return {
-    publishedOn: lines[lines.length - 1].slice(0, 10),
-    lastModified: lines[0].slice(0, 10),
+    publishedOn: earliest.on,
+    publishedAt: earliest.at,
+    publishedCommit: earliest.commit,
+    lastModified: latest.on,
+    lastModifiedAt: latest.at,
+    lastModifiedCommit: latest.commit,
+  };
+}
+
+function fallbackFreshness(fallbackDate) {
+  if (!fallbackDate) return null;
+  const fallbackAt = new Date(`${fallbackDate}T00:00:00Z`).toISOString();
+  return {
+    publishedOn: fallbackDate,
+    publishedAt: fallbackAt,
+    publishedCommit: null,
+    lastModified: fallbackDate,
+    lastModifiedAt: fallbackAt,
+    lastModifiedCommit: null,
   };
 }
 
@@ -69,11 +102,14 @@ export function parseGitLogDates(raw) {
 export function getGitFileFreshness(filePath, { cwd, fallbackDate, exec, execFileImpl = execFileSync } = {}) {
   try {
     const raw = exec
-      ? exec(`git log --follow --format=%aI -- "${filePath}"`, { cwd, encoding: "utf-8" }).trim()
-      : execFileImpl("git", ["log", "--follow", "--format=%aI", "--", filePath], { cwd, encoding: "utf-8" }).trim();
-    return parseGitLogDates(raw) ?? (fallbackDate ? { publishedOn: fallbackDate, lastModified: fallbackDate } : null);
+      ? exec(`git log --follow --format=%cI%x09%H -- "${filePath}"`, { cwd, encoding: "utf-8" }).trim()
+      : execFileImpl("git", ["log", "--follow", "--format=%cI%x09%H", "--", filePath], {
+          cwd,
+          encoding: "utf-8",
+        }).trim();
+    return parseGitLogDates(raw) ?? fallbackFreshness(fallbackDate);
   } catch {
-    return fallbackDate ? { publishedOn: fallbackDate, lastModified: fallbackDate } : null;
+    return fallbackFreshness(fallbackDate);
   }
 }
 
@@ -83,28 +119,25 @@ export function getGitFileFreshness(filePath, { cwd, fallbackDate, exec, execFil
  */
 export function getGitFileFreshnessSafe(filePath, { cwd, fallbackDate, execFileImpl = execFileSync } = {}) {
   try {
-    const raw = execFileImpl("git", ["log", "--follow", "--format=%aI", "--", filePath], {
+    const raw = execFileImpl("git", ["log", "--follow", "--format=%cI%x09%H", "--", filePath], {
       cwd,
       encoding: "utf-8",
     }).trim();
-    return parseGitLogDates(raw) ?? (fallbackDate ? { publishedOn: fallbackDate, lastModified: fallbackDate } : null);
+    return parseGitLogDates(raw) ?? fallbackFreshness(fallbackDate);
   } catch {
-    return fallbackDate ? { publishedOn: fallbackDate, lastModified: fallbackDate } : null;
+    return fallbackFreshness(fallbackDate);
   }
 }
 
 export async function getGitFileFreshnessAsync(filePath, { cwd, fallbackDate } = {}) {
   try {
-    const { stdout } = await execFileAsync("git", ["log", "--follow", "--format=%aI", "--", filePath], {
+    const { stdout } = await execFileAsync("git", ["log", "--follow", "--format=%cI%x09%H", "--", filePath], {
       cwd,
       encoding: "utf-8",
     });
-    return (
-      parseGitLogDates(stdout.trim()) ??
-      (fallbackDate ? { publishedOn: fallbackDate, lastModified: fallbackDate } : null)
-    );
+    return parseGitLogDates(stdout.trim()) ?? fallbackFreshness(fallbackDate);
   } catch {
-    return fallbackDate ? { publishedOn: fallbackDate, lastModified: fallbackDate } : null;
+    return fallbackFreshness(fallbackDate);
   }
 }
 
@@ -121,7 +154,7 @@ export function getFirstGitFileFreshness(filePaths, { cwd, fallbackDate, exec, e
     if (freshness) return freshness;
   }
 
-  return fallbackDate ? { publishedOn: fallbackDate, lastModified: fallbackDate } : null;
+  return fallbackFreshness(fallbackDate);
 }
 
 export async function getFirstGitFileFreshnessAsync(filePaths, { cwd, fallbackDate } = {}) {
@@ -130,7 +163,7 @@ export async function getFirstGitFileFreshnessAsync(filePaths, { cwd, fallbackDa
     if (freshness) return freshness;
   }
 
-  return fallbackDate ? { publishedOn: fallbackDate, lastModified: fallbackDate } : null;
+  return fallbackFreshness(fallbackDate);
 }
 
 export async function mapLimit(items, limit, mapper) {
@@ -154,19 +187,48 @@ export async function mapLimit(items, limit, mapper) {
 export function combineFreshnessEntries(entries, fallbackDate) {
   const valid = entries.filter(Boolean);
   if (valid.length === 0) {
-    return { publishedOn: fallbackDate, lastModified: fallbackDate };
+    return fallbackFreshness(fallbackDate);
   }
 
-  return {
-    publishedOn: valid.reduce(
-      (earliest, entry) => (entry.publishedOn < earliest ? entry.publishedOn : earliest),
-      valid[0].publishedOn,
-    ),
-    lastModified: valid.reduce(
-      (latest, entry) => (entry.lastModified > latest ? entry.lastModified : latest),
-      valid[0].lastModified,
-    ),
+  const earliest = valid.reduce((candidate, entry) => {
+    const candidateAt = candidate.publishedAt ?? candidate.publishedOn;
+    const entryAt = entry.publishedAt ?? entry.publishedOn;
+    return entryAt < candidateAt ? entry : candidate;
+  }, valid[0]);
+  const latest = valid.reduce((candidate, entry) => {
+    const candidateAt = candidate.lastModifiedAt ?? candidate.lastModified;
+    const entryAt = entry.lastModifiedAt ?? entry.lastModified;
+    return entryAt > candidateAt ? entry : candidate;
+  }, valid[0]);
+  const combined = {
+    publishedOn: earliest.publishedOn,
+    lastModified: latest.lastModified,
   };
+
+  if (earliest.publishedAt) combined.publishedAt = earliest.publishedAt;
+  if ("publishedCommit" in earliest) combined.publishedCommit = earliest.publishedCommit;
+  if (latest.lastModifiedAt) combined.lastModifiedAt = latest.lastModifiedAt;
+  if ("lastModifiedCommit" in latest) combined.lastModifiedCommit = latest.lastModifiedCommit;
+  return combined;
+}
+
+/**
+ * Sort publishable entries newest-first. Entries from the same commit retain
+ * alphabetical display-name order, with a stable id as the final tie-break.
+ */
+export function comparePublicationEntries(a, b) {
+  const aTimestamp = a.publishedAt ?? a.publishedOn;
+  const bTimestamp = b.publishedAt ?? b.publishedOn;
+  if (aTimestamp < bTimestamp) return 1;
+  if (aTimestamp > bTimestamp) return -1;
+
+  const aCommit = a.publishedCommit ?? "";
+  const bCommit = b.publishedCommit ?? "";
+  if (aCommit !== bCommit) return bCommit.localeCompare(aCommit);
+
+  const aLabel = a.name ?? a.title ?? a.key ?? a.slug ?? "";
+  const bLabel = b.name ?? b.title ?? b.key ?? b.slug ?? "";
+  return aLabel.localeCompare(bLabel) || String(a.key ?? a.slug ?? "").localeCompare(String(b.key ?? b.slug ?? ""));
 }
 
 function assertPublishedDateDiversity(label, entries, { minimumEntries, minimumDistinctDates }) {
@@ -219,10 +281,15 @@ export function buildRouteFreshness({
 }) {
   const routeFreshness = {};
   const allLensFreshness = lenses.map((lens) => lens.freshness);
-  const allArticleFreshness = articles.map((article) => ({
+  const articleFreshness = (article) => ({
     publishedOn: article.publishedOn,
+    ...(article.publishedAt ? { publishedAt: article.publishedAt } : {}),
+    ...(Object.hasOwn(article, "publishedCommit") ? { publishedCommit: article.publishedCommit } : {}),
     lastModified: article.lastModified,
-  }));
+    ...(article.lastModifiedAt ? { lastModifiedAt: article.lastModifiedAt } : {}),
+    ...(Object.hasOwn(article, "lastModifiedCommit") ? { lastModifiedCommit: article.lastModifiedCommit } : {}),
+  });
+  const allArticleFreshness = articles.map(articleFreshness);
 
   routeFreshness["/"] = combineFreshnessEntries(
     [...allLensFreshness, ...allArticleFreshness, makerDetailsFreshness],
@@ -240,10 +307,7 @@ export function buildRouteFreshness({
   routeFreshness["/relationships"] = combineFreshnessEntries(allLensFreshness, fallbackDate);
 
   for (const article of articles) {
-    routeFreshness[`/articles/${article.slug}`] = {
-      publishedOn: article.publishedOn,
-      lastModified: article.lastModified,
-    };
+    routeFreshness[`/articles/${article.slug}`] = articleFreshness(article);
   }
 
   for (const lens of lenses) {

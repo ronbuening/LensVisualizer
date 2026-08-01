@@ -85,13 +85,16 @@ describe("RSS feed generation", () => {
     expect(feeds.lenses).toContain("US &lt;123&gt;");
 
     expect(itemLinks(articles)).toEqual([
-      "https://surfaceandstop.com/articles/series-part-a/",
       "https://surfaceandstop.com/articles/series-part-b/",
+      "https://surfaceandstop.com/articles/series-part-a/",
     ]);
     expect(articles.querySelectorAll("item")).toHaveLength(2);
     expect(feeds.articles).toContain("Surface &amp; Stop &lt;Primer&gt;");
     expect(feeds.articles).not.toContain("\u0001");
-    expect(articles.querySelector("item description")?.textContent).toBe(
+    const fallbackDescription = Array.from(articles.querySelectorAll("item")).find(
+      (item) => item.querySelector("link")?.textContent === "https://surfaceandstop.com/articles/series-part-a/",
+    );
+    expect(fallbackDescription?.querySelector("description")?.textContent).toBe(
       "Read Surface & Stop <Primer> on Surface & Stop.",
     );
   });
@@ -101,6 +104,7 @@ describe("RSS feed generation", () => {
       slug: `article-${String(index).padStart(2, "0")}`,
       title: `Article ${index}`,
       summary: `Summary ${index}`,
+      publicationOrder: index,
       ...freshness("2026-04-02"),
     }));
     const items = buildArticleFeedItems({ lensFreshness: {}, articles }, 50);
@@ -108,6 +112,67 @@ describe("RSS feed generation", () => {
     expect(items).toHaveLength(50);
     expect(items[0].url).toBe("https://surfaceandstop.com/articles/article-00/");
     expect(items.at(-1)?.url).toBe("https://surfaceandstop.com/articles/article-49/");
+  });
+
+  it("uses commit timestamps for ordering and alphabetizes items from the same commit", () => {
+    const orderedMeta: FeedBuildMetadata = {
+      lensFreshness: {
+        early: {
+          ...freshness("2026-04-02"),
+          publishedAt: "2026-04-02T14:00:00.000Z",
+          publishedCommit: "commit-early",
+        },
+        "late-zulu": {
+          ...freshness("2026-04-02"),
+          publishedAt: "2026-04-02T18:00:00.000Z",
+          publishedCommit: "commit-late",
+        },
+        "late-alpha": {
+          ...freshness("2026-04-02"),
+          publishedAt: "2026-04-02T18:00:00.000Z",
+          publishedCommit: "commit-late",
+        },
+      },
+      articles: [
+        {
+          slug: "early-article",
+          title: "Early Article",
+          ...freshness("2026-04-02"),
+          publishedAt: "2026-04-02T14:00:00.000Z",
+          publishedCommit: "commit-early",
+        },
+        {
+          slug: "late-zulu-article",
+          title: "Zulu Late Article",
+          ...freshness("2026-04-02"),
+          publishedAt: "2026-04-02T18:00:00.000Z",
+          publishedCommit: "commit-late",
+        },
+        {
+          slug: "late-alpha-article",
+          title: "Alpha Late Article",
+          ...freshness("2026-04-02"),
+          publishedAt: "2026-04-02T18:00:00.000Z",
+          publishedCommit: "commit-late",
+        },
+      ],
+    };
+    const summaries: FeedLensSummary[] = [
+      { key: "early", name: "Early Lens", visible: true },
+      { key: "late-zulu", name: "Zulu Late Lens", visible: true },
+      { key: "late-alpha", name: "Alpha Late Lens", visible: true },
+    ];
+
+    const items = buildLensFeedItems(orderedMeta, summaries);
+    const articleItems = buildArticleFeedItems(orderedMeta);
+
+    expect(items.map((item) => item.title)).toEqual(["Alpha Late Lens", "Zulu Late Lens", "Early Lens"]);
+    expect(articleItems.map((item) => item.title)).toEqual([
+      "Alpha Late Article",
+      "Zulu Late Article",
+      "Early Article",
+    ]);
+    expect(formatRssDate(items[0].publishedAt!)).toBe("Thu, 02 Apr 2026 18:00:00 GMT");
   });
 
   it("keeps GUID and publication date stable when an item is edited", () => {

@@ -1,6 +1,11 @@
 export interface FeedFreshness {
   publishedOn: string;
+  publishedAt?: string;
+  publishedCommit?: string | null;
   lastModified: string;
+  lastModifiedAt?: string;
+  lastModifiedCommit?: string | null;
+  publicationOrder?: number;
 }
 
 export interface FeedArticle extends FeedFreshness {
