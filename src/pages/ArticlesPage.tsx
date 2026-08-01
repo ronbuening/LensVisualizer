@@ -16,6 +16,7 @@ import { collectionPageJsonLd, itemListJsonLd } from "../utils/seo/structuredDat
 import { usePageThemeToggle } from "../utils/theme/usePageThemeToggle.js";
 import { ARTICLES, ARTICLE_SERIES } from "../utils/content/homepageContent.js";
 import { PAGE_BASE_STYLE } from "../utils/style/pageStyles.js";
+import { ARTICLE_FEED_PATH } from "../utils/content/feedMetadata.js";
 
 export default function ArticlesPage() {
   const { theme: t, themeMode, highContrast, toggleTheme, toggleHC } = usePageThemeToggle();
@@ -68,7 +69,14 @@ export default function ArticlesPage() {
           All Articles
         </h1>
         <p style={{ fontSize: "0.875rem", color: t.muted, marginBottom: "2rem" }}>
-          {ARTICLES.length} articles and guides about optical design and lens engineering.
+          {ARTICLES.length} articles and guides about optical design and lens engineering.{" "}
+          <a
+            href={ARTICLE_FEED_PATH}
+            type="application/rss+xml"
+            style={{ color: t.descLinkColor, textDecoration: "none" }}
+          >
+            Subscribe to New Articles
+          </a>
         </p>
 
         {(() => {

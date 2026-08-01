@@ -8,6 +8,7 @@ import { SITE_NAME, SITE_URL } from "../utils/catalog/lensMetadata.js";
 import { collectionPageJsonLd } from "../utils/seo/structuredData.js";
 import { ALL_LENSES_BY_DATE, LENS_SUMMARIES } from "../utils/catalog/lensSummaries.js";
 import { formatDisplayDate } from "../utils/content/changelogHelpers.js";
+import { LENS_FEED_PATH } from "../utils/content/feedMetadata.js";
 
 export default function UpdatesPage() {
   const isWide = useMediaQuery("(min-width: 720px)");
@@ -83,6 +84,19 @@ export default function UpdatesPage() {
               >
                 Lenses Added
               </h2>
+              <a
+                href={LENS_FEED_PATH}
+                type="application/rss+xml"
+                style={{
+                  display: "inline-block",
+                  color: t.descLinkColor,
+                  textDecoration: "none",
+                  fontSize: "0.8rem",
+                  marginBottom: "0.75rem",
+                }}
+              >
+                Subscribe to New Lenses
+              </a>
               <div style={{ maxHeight: isWide ? "72vh" : "60vh", overflowY: "auto", paddingRight: "0.25rem" }}>
                 {ALL_LENSES_BY_DATE.map((e) => {
                   const lens = LENS_SUMMARIES[e.key];

@@ -46,6 +46,7 @@ import useLensIndexFilters from "./lensIndex/useLensIndexFilters.js";
 import { lensLinkFromLibrary } from "./lensIndex/clusterLinks.js";
 import type { LensLibraryBreadcrumbContext } from "./lensIndex/clusterLinks.js";
 import { parseLensIndexUrlState, parseLensIndexViewMode, serializeLensIndexUrlState } from "./lensIndex/urlState.js";
+import { LENS_FEED_PATH } from "../utils/content/feedMetadata.js";
 
 export default function LensIndexPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -297,6 +298,20 @@ export default function LensIndexPage() {
           >
             Browse by Format
           </Link>
+          <a
+            href={LENS_FEED_PATH}
+            type="application/rss+xml"
+            style={{
+              color: t.descLinkColor,
+              textDecoration: "none",
+              border: `1px solid ${t.panelBorder}`,
+              borderRadius: 4,
+              padding: "0.35rem 0.65rem",
+              fontSize: "0.8rem",
+            }}
+          >
+            Subscribe to New Lenses
+          </a>
         </nav>
         <div
           style={{

@@ -86,6 +86,9 @@ describe("page, markdown, and breadcrumb coverage", () => {
     expect(screen.getByRole("heading", { name: "Updates" })).toBeTruthy();
     expect(screen.getByRole("heading", { name: "Changelog" })).toBeTruthy();
     expect(screen.getByRole("heading", { name: "Lenses Added" })).toBeTruthy();
+    expect(screen.getByRole("link", { name: "Subscribe to New Lenses" }).getAttribute("href")).toBe(
+      "/feeds/lenses.xml",
+    );
     expect(screen.getByText(CHANGELOG[0].summary)).toBeTruthy();
     expect(screen.getByRole("link", { name: "Lens Library" })).toBeTruthy();
     if (firstLensEntry) {

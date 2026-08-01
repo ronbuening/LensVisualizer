@@ -18,4 +18,9 @@ describe("deployment security headers", () => {
     const scriptPolicy = headers.match(/script-src ([^;]+)/)?.[1];
     expect(scriptPolicy).not.toMatch(/'unsafe-inline'|'unsafe-eval'/);
   });
+
+  it.each(["/feeds/lenses.xml", "/feeds/articles.xml"])("serves %s with the RSS MIME type", (path) => {
+    const escapedPath = path.replaceAll("/", "\\/");
+    expect(headers).toMatch(new RegExp(`${escapedPath}\\s+Content-Type: application/rss\\+xml; charset=UTF-8`));
+  });
 });

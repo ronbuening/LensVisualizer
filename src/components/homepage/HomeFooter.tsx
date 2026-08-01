@@ -4,6 +4,7 @@
 
 import { Link } from "react-router";
 import type { Theme } from "../../types/theme.js";
+import { ARTICLE_FEED_PATH, LENS_FEED_PATH } from "../../utils/content/feedMetadata.js";
 
 interface HomeFooterProps {
   theme: Theme;
@@ -43,6 +44,12 @@ export default function HomeFooter({ theme: t }: HomeFooterProps) {
       <Link to="/articles/about-site" style={linkStyle}>
         About Surface & Stop
       </Link>
+      <a href={LENS_FEED_PATH} type="application/rss+xml" style={linkStyle}>
+        New Lenses RSS
+      </a>
+      <a href={ARTICLE_FEED_PATH} type="application/rss+xml" style={linkStyle}>
+        New Articles RSS
+      </a>
       <a href="/sitemap.xml" style={linkStyle}>
         Sitemap
       </a>

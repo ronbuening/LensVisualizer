@@ -64,6 +64,8 @@ The app uses React Router 7 with client-side routing plus static prerendering fo
   route list and prerender coverage check because arbitrary comparison pairs are noindex client/deep-link pages.
 - `scripts/generate-sitemap.mjs` consumes the same route list and route freshness map from
   `src/generated/build-metadata.json`.
+- `scripts/generate-rss-feeds.mjs` consumes the build metadata plus generated lens summaries and writes the 50 newest
+  visible lenses and articles to `dist/feeds/lenses.xml` and `dist/feeds/articles.xml`.
 - `scripts/seo-audit.mjs` audits the built/prerendered output.
 
 `ClientOnly.tsx` wraps browser-only interactive components. `LensPage` and `ComparePage` pass crawlable fallback content
@@ -95,6 +97,18 @@ Article markdown files live in `src/content/**/*.md`. Their frontmatter flows th
 `src/utils/content/homepageContent.ts` and joined to the generated metadata there.
 
 Lens description markdown files live beside lens data files as `*.analysis.md` and render in `DescriptionPanel.tsx`.
+
+## RSS Feeds
+
+The RSS feeds are static build artifacts rather than React routes. `npm run build` writes RSS 2.0 files at
+`/feeds/lenses.xml` and `/feeds/articles.xml` after prerendering and sitemap generation. Feed items use the same
+git-derived `publishedOn` dates as the Updates and Articles pages, permanent canonical page URLs as GUIDs, summary-only
+descriptions, and a 50-item limit. Article series members appear as individual items; hidden lenses are excluded.
+
+The shared HTML template advertises both feeds with absolute RSS autodiscovery links. Visible subscription links live on
+the homepage and the corresponding Lens Library, Updates, and Articles pages. The feed URLs stay out of the route
+manifest and sitemap because Cloudflare Pages serves them directly from `dist/` with MIME overrides from
+`public/_headers`.
 
 ## Article Series
 

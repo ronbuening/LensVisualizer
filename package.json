@@ -8,8 +8,9 @@
   },
   "scripts": {
     "dev": "node scripts/generate-build-metadata.mjs && vite",
-    "build": "node scripts/organize-lens-data.mjs && node scripts/generate-build-metadata.mjs && vite build && node scripts/prerender.mjs && node scripts/generate-sitemap.mjs",
+    "build": "node scripts/organize-lens-data.mjs && node scripts/generate-build-metadata.mjs && vite build && node scripts/prerender.mjs && node scripts/generate-sitemap.mjs && node scripts/generate-rss-feeds.mjs",
     "generate:metadata": "node scripts/organize-lens-data.mjs && node scripts/generate-build-metadata.mjs",
+    "generate:feeds": "node scripts/generate-rss-feeds.mjs",
     "organize:lens-data": "node scripts/organize-lens-data.mjs",
     "preview": "vite preview",
     "pretest": "node scripts/generate-build-metadata.mjs",

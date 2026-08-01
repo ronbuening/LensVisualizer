@@ -18,6 +18,12 @@ import { join } from "node:path";
 const ROOT = join(import.meta.dirname, "..");
 const DIST_DIR = join(ROOT, "dist");
 const META_PATH = join(ROOT, "src", "generated", "build-metadata.json");
+const SITE_URL = "https://surfaceandstop.com";
+const FEED_LIMIT = 50;
+const FEEDS = [
+  { name: "lens", file: "lenses.xml", url: `${SITE_URL}/feeds/lenses.xml` },
+  { name: "article", file: "articles.xml", url: `${SITE_URL}/feeds/articles.xml` },
+];
 
 let errors = 0;
 let warnings = 0;
@@ -68,6 +74,9 @@ function auditSitemap(routes) {
   if (!content.includes('<?xml version="1.0"')) {
     error("sitemap.xml is not valid XML");
   }
+  if (content.includes(`${SITE_URL}/feeds/`)) {
+    error("sitemap.xml should not include RSS feed URLs");
+  }
 
   /* Verify every route appears in the sitemap */
   let missing = 0;
@@ -111,6 +120,94 @@ function auditSitemap(routes) {
   if (lastmodMismatches === 0) {
     ok("sitemap.xml lastmod values match build metadata");
   }
+}
+
+function compareStrings(a, b) {
+  if (a < b) return -1;
+  if (a > b) return 1;
+  return 0;
+}
+
+function expectedFeedUrls(buildMeta, feedName) {
+  const entries =
+    feedName === "lens"
+      ? Object.entries(buildMeta.lensFreshness).map(([key, freshness]) => ({
+          url: `${SITE_URL}/lens/${key}`,
+          publishedOn: freshness.publishedOn,
+        }))
+      : buildMeta.articles.map((article) => ({
+          url: `${SITE_URL}/articles/${article.slug}`,
+          publishedOn: article.publishedOn,
+        }));
+
+  return entries
+    .sort((a, b) => compareStrings(b.publishedOn, a.publishedOn) || compareStrings(a.url, b.url))
+    .slice(0, FEED_LIMIT)
+    .map((entry) => entry.url);
+}
+
+function auditRssFeeds(buildMeta) {
+  console.log("\n[RSS feeds]");
+
+  for (const feed of FEEDS) {
+    const path = join(DIST_DIR, "feeds", feed.file);
+    if (!existsSync(path)) {
+      error(`${feed.file} not found in dist/feeds/`);
+      continue;
+    }
+
+    const xml = readFileSync(path, "utf-8");
+    if (!xml.startsWith('<?xml version="1.0" encoding="UTF-8"?>')) {
+      error(`${feed.file} is missing its XML declaration`);
+    }
+    if (!xml.includes('<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">')) {
+      error(`${feed.file} is missing its RSS 2.0 root or Atom namespace`);
+    }
+    if (!xml.includes(`<atom:link href="${feed.url}" rel="self" type="application/rss+xml"/>`)) {
+      error(`${feed.file} is missing its canonical Atom self-link`);
+    }
+
+    const itemBlocks = [...xml.matchAll(/<item>([\s\S]*?)<\/item>/g)].map((match) => match[1]);
+    const itemUrls = itemBlocks.map((block) => block.match(/<link>(.*?)<\/link>/)?.[1] ?? "");
+    const guidUrls = itemBlocks.map((block) => block.match(/<guid isPermaLink="true">(.*?)<\/guid>/)?.[1] ?? "");
+    const expectedUrls = expectedFeedUrls(buildMeta, feed.name);
+
+    if (JSON.stringify(itemUrls) !== JSON.stringify(expectedUrls)) {
+      error(`${feed.file} items do not match the expected newest ${expectedUrls.length} canonical URLs`);
+    }
+    if (JSON.stringify(guidUrls) !== JSON.stringify(itemUrls)) {
+      error(`${feed.file} GUIDs must match their canonical item links`);
+    }
+    if (new Set(itemUrls).size !== itemUrls.length) {
+      error(`${feed.file} contains duplicate item links`);
+    }
+    if (itemBlocks.some((block) => !/<pubDate>[^<]+<\/pubDate>/.test(block))) {
+      error(`${feed.file} contains an item without a publication date`);
+    }
+
+    ok(`${feed.file} contains ${itemUrls.length} unique, correctly ordered items`);
+  }
+}
+
+function auditFeedDiscovery() {
+  console.log("\n[RSS discovery]");
+  const homepagePath = join(DIST_DIR, "index.html");
+  if (!existsSync(homepagePath)) {
+    error("Homepage missing; cannot audit RSS discovery");
+    return;
+  }
+
+  const html = readFileSync(homepagePath, "utf-8");
+  for (const feed of FEEDS) {
+    const escapedUrl = feed.url.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const discoveryPattern = new RegExp(
+      `<link[^>]*rel="alternate"[^>]*type="application/rss\\+xml"[^>]*href="${escapedUrl}"[^>]*>`,
+    );
+    if (!discoveryPattern.test(html)) {
+      error(`Homepage is missing autodiscovery for ${feed.url}`);
+    }
+  }
+  ok("Homepage advertises both RSS feeds");
 }
 
 function auditAllPrerenderedPages(routes) {
@@ -369,6 +466,8 @@ console.log(
 
 auditRobotsTxt();
 auditSitemap(routes);
+auditRssFeeds(buildMeta);
+auditFeedDiscovery();
 auditAllPrerenderedPages(routes);
 auditLensPages(lensKeys);
 auditInternalLinks(lensKeys, articleSlugs, makerSlugs, mountIds, formatIds, authors);

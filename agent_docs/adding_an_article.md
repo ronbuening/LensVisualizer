@@ -37,7 +37,9 @@ toc: true                           # optional — shows the hovering table of c
 | `seriesOrder` | optional | Sort order within the series. `0` marks the landing/index page; primers are `1, 2, 3…` |
 | `toc` | optional | When `true`, renders `ArticleTOC` — the floating right-side outline with scrollspy. Recommended for long pieces with ≥3 H2 sections. |
 
-> **Dates are automatic.** `publishedOn` and `lastModified` are derived from git history at build time. Do not add them to frontmatter.
+> **Dates and RSS publication are automatic.** `publishedOn` and `lastModified` are derived from git history at build
+> time. Do not add them to frontmatter. Every article, including each series member, enters `/feeds/articles.xml`; its
+> `summary` becomes the feed description, with a title-based fallback when the summary is absent.
 
 ---
 
@@ -135,6 +137,7 @@ Then confirm:
 - `src/generated/build-metadata.json` lists the new slug under `articles[]` and `/articles/{slug}` under `routes[]`
 - `dist/articles/{slug}/index.html` exists (prerendered)
 - `dist/sitemap.xml` includes `https://surfaceandstop.com/articles/{slug}` at priority 0.6
+- `dist/feeds/articles.xml` includes the article while it remains among the 50 newest publications
 - For TOC-enabled articles, grep the prerendered HTML for `id="…"` on H2/H3 elements to confirm `rehype-slug` ran
 
 ---

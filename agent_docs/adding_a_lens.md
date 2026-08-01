@@ -11,6 +11,10 @@
 
 No manual imports or catalog edits required.
 
+On `npm run build`, every visible lens is also eligible for `/feeds/lenses.xml`. The feed contains the 50 newest visible
+lenses by the same git-derived publication date used on `/updates`; `visible: false` fixtures are excluded. Maker, the
+first three `specs`, and patent metadata provide the summary shown by feed readers.
+
 The organizer moves only the root-level `.data.ts` file and its same-stem `.analysis.md`. It does not move
 `.audit.md`; create or relocate an audit log separately in the final maker folder. If authoring directly inside a maker
 folder, use `../../types/optics.js` instead of the template's root-level `../types/optics.js` import.

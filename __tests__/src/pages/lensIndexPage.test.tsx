@@ -49,6 +49,10 @@ describe("LensIndexPage", () => {
   it("opens the custom filter panel and filters by maker and patent year", () => {
     renderLensIndexPage();
 
+    expect(screen.getByRole("link", { name: "Subscribe to New Lenses" }).getAttribute("href")).toBe(
+      "/feeds/lenses.xml",
+    );
+
     fireEvent.click(screen.getByRole("button", { name: "Custom Filter" }));
 
     expect(screen.getByText("Focal Length")).toBeTruthy();
