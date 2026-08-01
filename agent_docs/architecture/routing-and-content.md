@@ -110,7 +110,10 @@ Lens description markdown files live beside lens data files as `*.analysis.md` a
 
 The RSS feeds are static build artifacts rather than React routes. `npm run build` writes RSS 2.0 files at
 `/feeds/lenses.xml` and `/feeds/articles.xml` after prerendering and sitemap generation. Feed items use the same
-git-derived `publishedOn` dates as the Updates and Articles pages, permanent canonical page URLs as GUIDs, summary-only
+git-derived publication metadata as the Updates and Articles pages: the date remains available as `publishedOn`, while
+`publishedAt` and `publishedCommit` preserve the exact first-commit timestamp and identity. Newest commits sort first,
+including multiple commits from one day; lenses or articles introduced by the same commit sort alphabetically by display
+name/title. RSS `pubDate` uses the exact timestamp. Items use permanent canonical page URLs as GUIDs, summary-only
 descriptions, and a 50-item limit. Item links and GUIDs use the same trailing-slash page URLs as the sitemap and HTML
 canonical tags. Article series members appear as individual items; hidden lenses are excluded.
 
@@ -138,8 +141,9 @@ Metadata generation is split across:
   `src/generated/maker-prefixes.json`.
 
 Freshness collection uses `execFile`/`execFileSync` argument arrays rather than shell strings and bounded async
-concurrency for the git calls. Keep generated route and freshness artifacts stable unless a content change intentionally
-updates them.
+concurrency for the git calls. It records the committer timestamp and hash for the first and latest commits, then assigns
+a generated `publicationOrder` shared by page lists and RSS feeds. Keep generated route and freshness artifacts stable
+unless a content change intentionally updates them.
 
 ## Route Change Checklist
 

@@ -134,14 +134,23 @@ function expectedFeedUrls(buildMeta, feedName) {
       ? Object.entries(buildMeta.lensFreshness).map(([key, freshness]) => ({
           url: canonicalPageUrl(`/lens/${key}`),
           publishedOn: freshness.publishedOn,
+          publishedAt: freshness.publishedAt,
+          publicationOrder: freshness.publicationOrder,
         }))
       : buildMeta.articles.map((article) => ({
           url: canonicalPageUrl(`/articles/${article.slug}`),
           publishedOn: article.publishedOn,
+          publishedAt: article.publishedAt,
+          publicationOrder: article.publicationOrder,
         }));
 
   return entries
-    .sort((a, b) => compareStrings(b.publishedOn, a.publishedOn) || compareStrings(a.url, b.url))
+    .sort(
+      (a, b) =>
+        (a.publicationOrder ?? Number.MAX_SAFE_INTEGER) - (b.publicationOrder ?? Number.MAX_SAFE_INTEGER) ||
+        compareStrings(b.publishedAt ?? b.publishedOn, a.publishedAt ?? a.publishedOn) ||
+        compareStrings(a.url, b.url),
+    )
     .slice(0, FEED_LIMIT)
     .map((entry) => entry.url);
 }

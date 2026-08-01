@@ -3,6 +3,7 @@ import {
   assertFreshnessDiversity,
   assertFullGitHistory,
   buildRouteFreshness,
+  comparePublicationEntries,
   combineFreshnessEntries,
   getFirstGitFileFreshness,
   getGitFileFreshness,
@@ -61,13 +62,52 @@ describe("build metadata helpers", () => {
 
   it("parses git log output into published and modified dates", () => {
     const dates = parseGitLogDates(
-      ["2026-03-27T10:00:00-04:00", "2026-03-25T10:00:00-04:00", "2026-03-19T10:00:00-04:00"].join("\n"),
+      [
+        "2026-03-27T10:00:00-04:00\tcommit-c",
+        "2026-03-25T10:00:00-04:00\tcommit-b",
+        "2026-03-19T10:00:00-04:00\tcommit-a",
+      ].join("\n"),
     );
 
     expect(dates).toEqual({
       publishedOn: "2026-03-19",
+      publishedAt: "2026-03-19T14:00:00.000Z",
+      publishedCommit: "commit-a",
       lastModified: "2026-03-27",
+      lastModifiedAt: "2026-03-27T14:00:00.000Z",
+      lastModifiedCommit: "commit-c",
     });
+  });
+
+  it("orders later same-day commits first and alphabetizes entries from one commit", () => {
+    const entries = [
+      {
+        key: "early",
+        name: "Early Lens",
+        publishedOn: "2026-03-27",
+        publishedAt: "2026-03-27T14:00:00.000Z",
+        publishedCommit: "commit-early",
+        lastModified: "2026-03-27",
+      },
+      {
+        key: "z-late",
+        name: "Zulu Late Lens",
+        publishedOn: "2026-03-27",
+        publishedAt: "2026-03-27T18:00:00.000Z",
+        publishedCommit: "commit-late",
+        lastModified: "2026-03-27",
+      },
+      {
+        key: "a-late",
+        name: "Alpha Late Lens",
+        publishedOn: "2026-03-27",
+        publishedAt: "2026-03-27T18:00:00.000Z",
+        publishedCommit: "commit-late",
+        lastModified: "2026-03-27",
+      },
+    ];
+
+    expect(entries.sort(comparePublicationEntries).map((entry) => entry.key)).toEqual(["a-late", "z-late", "early"]);
   });
 
   it("falls back when git history is unavailable", () => {
@@ -80,7 +120,11 @@ describe("build metadata helpers", () => {
 
     expect(dates).toEqual({
       publishedOn: "2026-03-27",
+      publishedAt: "2026-03-27T00:00:00.000Z",
+      publishedCommit: null,
       lastModified: "2026-03-27",
+      lastModifiedAt: "2026-03-27T00:00:00.000Z",
+      lastModifiedCommit: null,
     });
   });
 
@@ -92,7 +136,7 @@ describe("build metadata helpers", () => {
           throw new Error("missing");
         }
         if (command.includes('"old-path.md"')) {
-          return ["2026-03-27T10:00:00-04:00", "2026-03-19T10:00:00-04:00"].join("\n");
+          return ["2026-03-27T10:00:00-04:00\tcommit-b", "2026-03-19T10:00:00-04:00\tcommit-a"].join("\n");
         }
         throw new Error(`unexpected command: ${command}`);
       },
@@ -100,7 +144,11 @@ describe("build metadata helpers", () => {
 
     expect(dates).toEqual({
       publishedOn: "2026-03-19",
+      publishedAt: "2026-03-19T14:00:00.000Z",
+      publishedCommit: "commit-a",
       lastModified: "2026-03-27",
+      lastModifiedAt: "2026-03-27T14:00:00.000Z",
+      lastModifiedCommit: "commit-b",
     });
   });
 
@@ -110,16 +158,20 @@ describe("build metadata helpers", () => {
       fallbackDate: "2026-03-27",
       execFileImpl: (...args: unknown[]) => {
         calls.push(args);
-        return ["2026-03-27T10:00:00-04:00", "2026-03-19T10:00:00-04:00"].join("\n");
+        return ["2026-03-27T10:00:00-04:00\tcommit-b", "2026-03-19T10:00:00-04:00\tcommit-a"].join("\n");
       },
     });
 
     expect(dates).toEqual({
       publishedOn: "2026-03-19",
+      publishedAt: "2026-03-19T14:00:00.000Z",
+      publishedCommit: "commit-a",
       lastModified: "2026-03-27",
+      lastModifiedAt: "2026-03-27T14:00:00.000Z",
+      lastModifiedCommit: "commit-b",
     });
     expect(calls[0][0]).toBe("git");
-    expect(calls[0][1]).toEqual(["log", "--follow", "--format=%aI", "--", "path with spaces.md"]);
+    expect(calls[0][1]).toEqual(["log", "--follow", "--format=%cI%x09%H", "--", "path with spaces.md"]);
   });
 
   it("maps with bounded concurrency while preserving result order", async () => {

@@ -2,8 +2,8 @@
  * Pre-build metadata generator.
  *
  * Produces src/generated/build-metadata.json with:
- *   - lensFreshness: mapping of lens catalog key → first-published and last-modified dates
- *   - articles: array of article metadata extracted from markdown frontmatter + git dates
+ *   - lensFreshness: mapping of lens catalog key → git freshness + commit-aware publication order
+ *   - articles: array of frontmatter + git freshness metadata in commit-aware publication order
  *   - lensKeys: sorted array of all visible lens catalog keys
  *   - makerSlugs: sorted array of unique maker URL slugs
  *   - mountIds / formatIds: sorted arrays of used taxonomy ids
@@ -26,6 +26,7 @@ import {
   assertFreshnessDiversity,
   assertFullGitHistory,
   buildRouteFreshness,
+  comparePublicationEntries,
   getFirstGitFileFreshnessAsync,
   getGitFileFreshnessAsync,
   mapLimit,
@@ -209,13 +210,19 @@ async function collectArticles(fallbackDate) {
       seriesOrder: Number.isFinite(seriesOrder) ? seriesOrder : undefined,
       toc: meta.toc === "true" || undefined,
       publishedOn: freshness.publishedOn,
+      publishedAt: freshness.publishedAt,
+      publishedCommit: freshness.publishedCommit,
       lastModified: freshness.lastModified,
+      lastModifiedAt: freshness.lastModifiedAt,
+      lastModifiedCommit: freshness.lastModifiedCommit,
       file,
     };
   });
 
-  // Sort newest-first by date
-  return articles.filter(Boolean).sort((a, b) => b.publishedOn.localeCompare(a.publishedOn));
+  return articles
+    .filter(Boolean)
+    .sort(comparePublicationEntries)
+    .map((article, publicationOrder) => ({ ...article, publicationOrder }));
 }
 
 /* ── Main ─────────────────────────────────────────────────────────────── */
@@ -258,7 +265,14 @@ async function main() {
     makerDetailsFreshness,
     fallbackDate,
   });
-  const lensFreshness = Object.fromEntries(lenses.map((lens) => [lens.key, lens.freshness]));
+  const lensPublicationOrder = new Map(
+    [...lenses]
+      .sort((a, b) => comparePublicationEntries({ ...a.freshness, ...a }, { ...b.freshness, ...b }))
+      .map((lens, index) => [lens.key, index]),
+  );
+  const lensFreshness = Object.fromEntries(
+    lenses.map((lens) => [lens.key, { ...lens.freshness, publicationOrder: lensPublicationOrder.get(lens.key) }]),
+  );
   const metadata = {
     lensFreshness,
     articles,
