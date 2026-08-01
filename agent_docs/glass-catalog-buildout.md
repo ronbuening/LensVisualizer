@@ -7,7 +7,15 @@ available, it falls back to partial measured `nC`/`nF` line indices, dPgF-correc
 approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **445 verified entries** in source as of July 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **447 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+
+The August 1, 2026 Phase 73 pass added exact first-party curves for CDGM H-K9LGT and Hikari J-PSKH8 while auditing
+the three new Voigtländer lenses. H-K9LGT's June 2022 vendor Sellmeier row separates the exact `GT` type from the
+existing H-K9L row even though both share the 517642 d-code and coefficients. Hikari's 2022-07-01 J-PSKH8 data sheet
+supplies the nine-term power series for the APO-Lanthar 28mm's 628592 element. That lens rises from 10/12 to 11/12
+strict catalog coverage and remains 12/12 with its measured line indices; only the explicitly unmatched 806407 L16
+class lacks a compatible public coefficient row. Global coverage is now 4858/5515 strict and 4869/5515 trusted,
+with zero catalog-coordinate mismatches.
 
 The July 31, 2026 Phase 72 pass added HOYA FD225 from the manufacturer's official 2026-07-07 Zemax catalog. Its
 vendor formula-3 polynomial reproduces the published C/d/F/g indices and 22.76 Abbe number. The Voigtländer

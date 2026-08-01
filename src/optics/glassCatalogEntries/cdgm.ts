@@ -28,6 +28,18 @@ export const CDGM_GLASS_ENTRIES: readonly GlassEntry[] = [
       "CDGM Optical Glass Data Sheet, September 2021, H-K9L page 74; vendor Sellmeier constants K1-L3 and d-code 517642.",
   },
   {
+    name: "H-K9LGT",
+    vendor: "CDGM",
+    B: [0.614555251, 0.656775017, 1.02699346],
+    C: [0.0145987884, 0.00287769588, 107.653051],
+    nd: 1.5168,
+    vd: 64.2,
+    PgF: 0.5359,
+    code6: "517642",
+    source:
+      "CDGM Optical Glass Data Sheet, June 2022, H-K9LGT page 79; vendor Sellmeier constants K1-L3 and d-code 517642.",
+  },
+  {
     name: "H-ZF1",
     vendor: "CDGM",
     polynomial: [2.636187, -0.0097034146, 0.025550262, 0.0010061041, -0.000042521904, 0.0000090637539],

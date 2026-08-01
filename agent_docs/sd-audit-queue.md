@@ -92,6 +92,9 @@ better investment.
 | PORTRAIT HELIAR 75mm f/1.8 | Figure 5 automated and 300 dpi readings agreed on 18.7 / 15.0 / 13.2 mm group envelopes | done 2026-07-31; zero image-circle-floor failures |
 | ULTRON 27mm f/2 | Figure 1 leader lines required 300 dpi hand measurements; existing within-element rim ratios retained | done 2026-07-31; zero image-circle-floor failures |
 | COLOR-SKOPAR 35mm f/3.5 Aspherical VM | Figure 1 hand measurements tightened G1–G3; aspheric rear group retained at its validated limits | done 2026-07-31; zero image-circle-floor failures |
+| APO-LANTHAR 28mm f/2 Aspherical VM | Figure 3 relative-height pass set L10–L16 to 9.5 / 8.5 / 8.6 / 9.0 / 10.4 / 10.6 / 12.0 mm envelopes | done 2026-08-01; zero image-circle-floor failures |
+| APO-ULTRON 90mm f/2 VM | Figure 1 relative-height pass set the L11–L31 taper to 23.0 / 21.0 / 18.5 / 16.5 / 16.0 / 12.3 / 12.0 mm | done 2026-08-01; zero image-circle-floor failures |
+| COLOR-SKOPAR 28mm f/2.8 Aspherical | Exact Example 3 Figure 6 hand measurements set L1/J1 to an 8.1 / 6.2 mm equal-rim envelope | done 2026-08-01; zero image-circle-floor failures |
 
 ## Section C — source blockers
 
