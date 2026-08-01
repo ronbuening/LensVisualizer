@@ -11,18 +11,18 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **497** lenses scanned
-- **489** visible lenses scanned
-- **244** lenses fully covered by trusted chromatic data
-- **244** visible lenses fully covered by trusted chromatic data
-- **240** lenses fully covered by strict Sellmeier data
-- **240** visible lenses fully covered by strict Sellmeier data
-- **4** lenses fully covered only after measured line-index data
-- **4** visible lenses fully covered only after measured line-index data
-- **4831 / 5487** non-air surfaces use strict catalog Sellmeier data
-- **88.0%** strict Sellmeier surface coverage overall
-- **4841 / 5487** non-air surfaces use trusted chromatic data
-- **88.2%** trusted chromatic coverage overall
+- **500** lenses scanned
+- **492** visible lenses scanned
+- **247** lenses fully covered by trusted chromatic data
+- **247** visible lenses fully covered by trusted chromatic data
+- **242** lenses fully covered by strict Sellmeier data
+- **242** visible lenses fully covered by strict Sellmeier data
+- **5** lenses fully covered only after measured line-index data
+- **5** visible lenses fully covered only after measured line-index data
+- **4858 / 5515** non-air surfaces use strict catalog Sellmeier data
+- **88.1%** strict Sellmeier surface coverage overall
+- **4869 / 5515** non-air surfaces use trusted chromatic data
+- **88.3%** trusted chromatic coverage overall
 - **17 / 75** native e-line surfaces use name-verified catalog Sellmeier data
 
 ## Native E-Line Catalog Matches
@@ -234,6 +234,8 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [SIGMA 30mm f/2.8 (Sigma DP2 Merrill)](../../src/lens-data/sigma/SigmaDp2M30mmf28.data.ts) | 8/8 | 8 | 8/8 |
 | [SIGMA 45mm f/2.8 DG DN | Contemporary](../../src/lens-data/sigma/Sigma45mmf28DGDN.data.ts) | 8/8 | 8 | 8/8 |
 | [SIGMA 60mm f/2.8 DN | Art](../../src/lens-data/sigma/Sigma60mmf28DN.data.ts) | 8/8 | 8 | 8/8 |
+| [VOIGTLÄNDER APO-ULTRON 90mm f/2 VM](../../src/lens-data/voigtlander/VoigtlanderAPOUltron90mmf2VM.data.ts) | 8/8 | 8 | 8/8 |
+| [VOIGTLÄNDER COLOR-SKOPAR 28mm f/2.8 Aspherical](../../src/lens-data/voigtlander/VoigtlanderColorSkopar28mmf28.data.ts) | 8/8 | 8 | 8/8 |
 | [CANON EF-M 22mm f/2 STM](../../src/lens-data/canon/CanonEFM22mmf2STM.data.ts) | 7/7 | 7 | 7/7 |
 | [FUJIFILM FUJINON-Z 43-75mm f/3.5-4.5](../../src/lens-data/fujifilm/FujifilmFujinonZ4375mmf3545.data.ts) | 7/7 | 7 | 7/7 |
 | [FUJIFILM SUPER EBC FUJINON 45mm f/4 (Fujifilm GA645W/GA645Wi Professional)](../../src/lens-data/fujifilm/FujifilmGA645WidePro45mmf4.data.ts) | 7/7 | 7 | 7/7 |
@@ -304,6 +306,7 @@ These lenses are complete for chromatic tracing but not strict catalog-Sellmeier
 | [CANON EF-S 17-55mm f/2.8 IS USM](../../src/lens-data/canon/CanonEFS1755mmf28IS.data.ts) | 21/21 | 19/21 | 21 | 19/21 | 2 | Line indices |
 | [CANON EF 24-70mm f/2.8 L USM](../../src/lens-data/canon/CanonEF2470mmf28L.data.ts) | 16/16 | 13/16 | 16 | 13/16 | 3 | Line indices |
 | [TAMRON SP 90mm f/2.8 Di MACRO 1:1 VC USD (F004)](../../src/lens-data/tamron/TamronSP90mmf28Di.data.ts) | 14/14 | 12/14 | 14 | 12/14 | 2 | Line indices |
+| [VOIGTLÄNDER APO-LANTHAR 28mm f/2 Aspherical VM](../../src/lens-data/voigtlander/VoigtlanderAPOLanthar28mmf2Aspherical.data.ts) | 12/12 | 11/12 | 12 | 11/12 | 1 | Line indices |
 | [PANASONIC LUMIX G 25mm f/1.7 ASPH.](../../src/lens-data/panasonic/PanasonicLumixG25mmf17.data.ts) | 8/8 | 6/8 | 8 | 6/8 | 2 | Line indices |
 
 ## Incomplete Lenses by Completeness

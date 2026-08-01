@@ -120,6 +120,26 @@ export const HIKARI_GLASS_ENTRIES: readonly GlassEntry[] = [
       "Nikon/Hikari Zemax catalog 2017-11 via refractiveindex.info; Hikari Optical Glass Catalog 2023, J-PSKH4 page (formula 3 power series, d-code 593670).",
   },
   {
+    name: "J-PSKH8",
+    vendor: "Hikari",
+    powerSeries: [
+      [2.60815614, 0],
+      [-0.00816775932, 2],
+      [0, 4],
+      [0.0150613778, -2],
+      [0.000369238186, -4],
+      [-0.000011118003, -6],
+      [0.00000141616753, -8],
+      [-0.0000000652373713, -10],
+      [0.00000000698536029, -12],
+    ],
+    nd: 1.62846,
+    vd: 59.17,
+    PgF: 0.5557,
+    code6: "628592",
+    source: "Hikari J-PSKH8 data sheet, 2022-07-01; vendor power-series coefficients and d-code 628592.",
+  },
+  {
     name: "J-KZFH9",
     vendor: "Hikari",
     powerSeries: [

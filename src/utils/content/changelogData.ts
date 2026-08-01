@@ -19,6 +19,12 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-08-01 ──────────────────────────────────────────────────
+  {
+    date: "2026-08-01",
+    type: "lens",
+    summary: "Added Voigtländer APO-Lanthar 28mm, APO-Ultron 90mm, and Color-Skopar 28mm",
+  },
   // ── 2026-07-31 ──────────────────────────────────────────────────
   {
     date: "2026-07-31",
