@@ -142,7 +142,7 @@ The direct table geometry gives `LB = 23.64 mm` and `Lf = 29.60 mm`; the patent'
 
 ## Modeling Inferences and Source Corrections
 
-The patent does not publish a physical stop diameter or clear semi-diameters. The model's stop semi-diameter of 11.423277 mm is inferred from the actual prescription's entrance-pupil geometry and the published F/2.05. The element semi-diameters are likewise modeling values constrained by the patent optical section, marginal and chief rays, the published 21.63 mm image height, and the production barrel envelope. They are not presented as patent table values.
+The patent does not publish a physical stop diameter or clear semi-diameters. The model's stop semi-diameter of 11.423277 mm is inferred from the actual prescription's entrance-pupil geometry and the published F/2.05. The element semi-diameters are likewise modeling values constrained by the patent optical section, marginal and chief rays, the published 21.63 mm image height, and the production barrel envelope. Their front-to-rear 23.0 / 21.0 / 18.5 / 16.5 / 16.0 / 12.3 / 12.0 mm rim sequence follows the relative element heights in Figure 1. They are not presented as patent table values.
 
 The inferred apertures retain positive edge thickness, remain within the applicable spherical rim-slope limits, and avoid shared-band intrusion across the air gaps. These geometry checks support the rendered model but do not establish production clear-aperture dimensions.
 

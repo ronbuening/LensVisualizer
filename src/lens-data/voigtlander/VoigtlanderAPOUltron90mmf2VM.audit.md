@@ -35,8 +35,9 @@ The correlation remains convergent rather than explicit: neither the patent nor 
 |---|---|---|---|---|---|
 | Production APD allocation | `L11.apd: false`; `L14.apd: "inferred"`; prose inferred six positions mainly from glass class and the six-of-eight statement | `L11.apd: "inferred"`; `L14.apd: false`; final mapped positions are L11, L12, L13, L15, L16, and L31 | Cosina official product-page lens diagram and six-of-eight statement; JP 2026-8235 A, Example 1 optical topology | The product diagram marks positions 1, 2, 3, 5, 6, and 8. Example 1 has an exact positional/topological match, including the cemented J1 pair | Updated element metadata, APD notes, glass table, correlation evidence, and chromatic-strategy prose. Prescription, EFL, powers, focus, Petzval, and geometry are unchanged |
 | Production-correlation header | Header listed “whole-lens extension” among production-correlation evidence | Header now lists the matching all-spherical topology. Unit focus remains explicitly a patent-published model property | Patent Claim 7 and paragraph 0042; Cosina product/manual documentation | The patent publishes whole-system extension, while the manufacturer material checked does not explicitly state the internal optical motion | Header wording only. `focusDescription`, focus status, and the published surface-16 spacing states remain unchanged |
+| Figure-derived semi-diameters | Front elements tapered too gradually in the rendered diagram | Revised the element envelopes to 23.0 / 21.0 / 18.5 / 16.5 / 16.0 / 12.3 / 12.0 mm from L11 through L31 | JP 2026-8235 A, Figure 1 | High-resolution relative rim-height measurements, checked against the supplied current diagram | The silhouette now follows Figure 1's progressively stronger front-group taper; first-order optics are unchanged |
 
-No radius, spacing, index, Abbe number, surface label, element/group count, stop position, semi-diameter, focal-length field, focus spacing, or patent attribution required correction. A 2026-08-01 high-resolution check of patent Fig. 1 calibrated the scale from the active glass span rather than its leader-line brackets: the measured element envelopes differ from the stored SDs by at most about 12%, inside the runbook's approximate 15% drawing-noise band, so no SD edit was justified.
+No radius, spacing, index, Abbe number, surface label, element/group count, stop position, focal-length field, focus spacing, or patent attribution required correction. The first high-resolution check treated the element-envelope differences as drawing noise, but comparison with the supplied rendered diagram showed that their sequence accumulated into a visibly shallower taper. A second relative-height pass therefore adopted the Figure 1 proportions listed above.
 
 ## Source contradiction retained
 
@@ -115,12 +116,11 @@ Petzval was recomputed at every refracting interface as `φ/(n·n′)`, includin
 
 ## Geometry and rendering gate
 
-- Minimum positive edge thickness: `0.627901995304 mm` at L21.
-- Maximum actual spherical rim angle: `47.075657027°` at surface 11, below the current 64.2° limit.
-- Largest positive cross-gap margin use: `0.527765111862` of the allowed 90% intrusion margin, at surface 8 to 9.
+- The final 23.0-to-12.0 mm rim sequence passes the repository surface validator with no edge-thickness, rim-slope, shared-gap, or stop-split errors.
+- The image-circle audit reports no undersized surfaces.
 - Every sampled 0.6-field and full-field bundle avoids first clipping at the cemented interface.
 - The all-spherical design has no conic-domain or asphere-departure check.
-- The independent geometry proxy requires no hidden trim. The repository's production `computeElementRenderDiagnostics()` was unavailable and remains a local integration check.
+- The supplied rendered diagram and patent Figure 1 were compared directly for the second-pass relative-height adjustment.
 
 ## Fresh glass audit
 

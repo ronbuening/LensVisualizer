@@ -158,15 +158,19 @@ The two published endpoint gaps remain `PUBLISHED`. No reconstructed endpoint is
 
 ## Geometry, Asphere, and Ray Gate
 
-The stored semi-diameters are inferred, because the patent provides no clear apertures. A 2026-08-01 integration follow-up measured the exact Example 2 Fig. 3 section at high resolution. Leader lines make the whole-figure automated radial peak unreliable, so axial scale was calibrated from the active prescription and element rims were measured by hand per the SD-audit runbook. G2a, G2b, and the L15 portion of G2c were visibly oversized and were tightened; the front group and terminal asphere retained their validated values.
+The stored semi-diameters are inferred, because the patent provides no clear apertures. Two 2026-08-01 passes measured the exact Example 2 Fig. 3 section at high resolution. Leader lines make the whole-figure automated radial peak unreliable, so element rims were measured by hand and normalized to L9 under the SD-audit runbook. Comparing the first revision with the supplied rendered diagram showed that L11/L12 remained too large, L14/L15 remained too small, and terminal L16 remained too tall. The final sequence below follows the patent's relative element heights.
 
-| Surfaces | Previous SD | Audited SD | Figure interpretation |
+| Surfaces | Pre-pass SD | Final SD | Figure interpretation |
 |---|---:|---:|---|
-| 12–14 (L13) | 8.7 / 10.5 / 11.1 mm | 9.0 / 9.0 / 9.0 mm | Fig. 3 envelope is approximately 9.0 mm |
-| 15–16 (L14) | 12.9 / 12.9 mm | 8.6 / 8.6 mm | Fig. 3 envelope is approximately 8.6 mm |
-| 17–19 (L15) | 12.6 / 12.6 / 12.5 mm | 9.7 / 9.7 / 9.7 mm | Fig. 3 envelope is approximately 9.7 mm |
+| 3–5 (L10) | 9.7 mm | 9.5 mm | About 0.83 of L9's rim height |
+| 6–7 (L11) | 9.6 / 9.3 mm | 8.5 mm | About 0.74 of L9's rim height |
+| 8–10 (L12) | 9.3 / 9.1 / 8.9 mm | 8.6 mm | About 0.75 of L9's rim height |
+| 12–14 (L13) | 9.0 mm | 9.0 mm | About 0.78 of L9's rim height; retained |
+| 15–16 (L14) | 8.6 mm | 10.4 mm | About 0.90 of L9's rim height |
+| 17–19 (L15) | 9.7 mm | 10.6 mm | About 0.92 of L9's rim height |
+| 20A–21A (L16) | 12.8 / 13.5 mm | 12.0 mm | About 1.04 of L9's rim height; equal-rim terminal element |
 
-The final values pass the surface validator and image-circle floor audit at both focus states. Surfaces 20A/21A remain 12.8/13.5 mm, so the published asphere-departure results below are unchanged.
+The final values pass the surface validator and image-circle floor audit at both focus states. The terminal asphere departures were recomputed at the revised 12.0 mm semi-diameter.
 
 Asphere departures from the same-radius sphere at the stored semi-diameters are:
 
@@ -174,8 +178,8 @@ Asphere departures from the same-radius sphere at the stored semi-diameters are:
 |---|---:|---:|
 | 1A | 11.50 mm | +0.095581763 mm |
 | 2A | 9.66 mm | +0.067685693 mm |
-| 20A | 12.80 mm | −1.059296246 mm |
-| 21A | 13.50 mm | +0.407042754 mm |
+| 20A | 12.00 mm | −0.807967259 mm |
+| 21A | 12.00 mm | +0.227947821 mm |
 
 The final file passes the repository's edge-thickness, rim-slope, conic-domain, shared-gap, and image-circle-floor checks. The locally rendered silhouette was visually compared with patent Fig. 3 and retains the same element order, stop location, and corrected group proportions.
 
@@ -200,10 +204,11 @@ No catalog label is represented as a proven production melt. The manufacturer’
 | 2 | L16 label disclosed an unmatched 806407 class and Q-LASF03S proxy but did not state why it remained unmatched | Added `no joint nd/νd/ΔPgF match` to the data and analysis | Patent Table 6, p. 15; L16 data/analysis entries | Q-LASF03S is close on class and partial dispersion; NBFD13 is closer on nd/νd; neither matches all three patent quantities jointly | No optical-number change. Glass uncertainty is now explicit to readers and mismatch tooling |
 | 3 | Analysis used `in-situ EFL` for G1a+G1b and cemented L10/L12/L13 calculations | Replaced with `combined air-to-air EFL` or `net air-to-air EFL` | Analysis Optical Architecture and L10/L12/L13 sections | Fresh isolated-subsystem matrices were evaluated between air reference planes; they are not powers measured inside the complete lens | No numerical change. The analysis now distinguishes standalone, cemented net, subsystem, and functional-group quantities |
 | 4 | All twelve elements were labeled `apd: "patent"`, conflating published `ΔPgF` numbers with the production APD classification | Mapped Cosina's six marked production positions to L10r, L12r, L13f, L13r, L15f, and L15r as `inferred`; left all twelve patent `dPgF` values intact | Official Cosina optical section; JP 2026-98935 A Example 2 topology and Table 6 | The production drawing gives a direct six-position pattern, while Table 6 independently publishes partial-dispersion deviations for every glass | Corrects the UI classification without discarding patent spectral data |
-| 5 | Rear G2a–G2c modeling apertures were visibly larger than Fig. 3 | Tightened surfaces 12–19 to 9.0 / 8.6 / 9.7 mm group envelopes | Patent Fig. 3, p. 24 | High-resolution hand measurement using the prescription's axial scale; surface and image-circle validators pass | Diagram proportions now follow the patent section more closely; first-order optics are unchanged |
+| 5 | Inferred element apertures did not reproduce Fig. 3's relative rim-height sequence | Revised L10–L16 to 9.5 / 8.5 / 8.6 / 9.0 / 10.4 / 10.6 / 12.0 mm group envelopes | Patent Fig. 3, p. 24; supplied current diagram | High-resolution hand measurements normalized to L9; surface and image-circle validators pass | Diagram proportions now follow the patent section more closely; first-order optics are unchanged; 20A/21A departures were recomputed |
 | 6 | Clean analysis contained `Stage 2` and repository-availability process notes | Removed process-history wording while retaining the model limitations and quantitative disclosures | Analysis Aspherical Surfaces and Verification Summary; current analysis specification | Process notes belong in audit/manifest artifacts, not the reader-facing analysis | No quantitative or interpretive optical change. Clean analysis now conforms to the required scholarly form |
+| 7 | Inventor metadata used the Japanese-script name `三島 望` | Matched the existing repository identity `Nozomu Mishima` | Patent metadata and existing Cosina inventor record | Same kanji identity as the existing COLOR-SKOPAR record | Patent pages and author aggregation now share one romanized inventor identity |
 
-No correction was required to any patent radius, spacing, index, Abbe number, `ΔPgF`, asphere coefficient, conic constant, variable gap, cemented-junction `elemId`, element/group count, stop label, or structured patent/mount/format metadata. Only inferred semi-diameters and classification metadata changed.
+No correction was required to any patent radius, spacing, index, Abbe number, `ΔPgF`, asphere coefficient, conic constant, variable gap, cemented-junction `elemId`, element/group count, stop label, patent number, mount, or format metadata. Only inferred semi-diameters, classification metadata, and the romanized inventor identity changed.
 
 ## Targeted Final Gate
 

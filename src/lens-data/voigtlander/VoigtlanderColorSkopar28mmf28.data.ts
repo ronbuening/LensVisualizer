@@ -24,7 +24,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║    inferred from the calibrated F/2.85 stop, exact marginal/chief   ║
  * ║    ray envelopes through 60% of the verified full field, Cosina's  ║
  * ║    patent Fig. 6 proportions, and geometry limits. The front L1/J1 ║
- * ║    apertures were tightened to match that exact Example 3 section. ║
+ * ║    apertures use the figure's 1.31:1 rim-height ratio, with equal   ║
+ * ║    6.2 mm semi-diameters across all three J1 surfaces.              ║
  * ║    They are modeling values, not patent-transcribed apertures.      ║
  * ║                                                                    ║
  * ║  The patent omits sensor cover glass, filters, and dust plates;     ║
@@ -57,7 +58,7 @@ const LENS_DATA = {
   lensMounts: ["leica-m", "leica-ltm"],
   imageFormat: "135-full-frame",
   patentNumber: "JP 2024-107941 A",
-  patentAuthors: ["蓬田 祥寿", "柴田 裕輝"],
+  patentAuthors: ["Yoshihisa Yomogida", "Yuki Shibata"],
   patentAssignees: ["Cosina Co., Ltd."],
   patentYear: 2024,
   elementCount: 8,
@@ -207,7 +208,7 @@ const LENS_DATA = {
     { label: "2", R: 22.861, d: 1.591, nd: 1.0, elemId: 0, sd: 8.1 },
     { label: "3", R: 18.267, d: 3.21, nd: 1.91082, elemId: 2, sd: 6.2 },
     { label: "4", R: -32.627, d: 1.265, nd: 1.84666, elemId: 3, sd: 6.2 },
-    { label: "5", R: 60.333, d: 2.106, nd: 1.0, elemId: 0, sd: 7.0 },
+    { label: "5", R: 60.333, d: 2.106, nd: 1.0, elemId: 0, sd: 6.2 },
     { label: "STO", R: 1e15, d: 2.75, nd: 1.0, elemId: 0, sd: 4.740662 },
     { label: "7", R: -13.657, d: 0.9, nd: 1.68893, elemId: 4, sd: 6.8 },
     { label: "8", R: 27.628, d: 3.35, nd: 1.883, elemId: 5, sd: 7.0 },

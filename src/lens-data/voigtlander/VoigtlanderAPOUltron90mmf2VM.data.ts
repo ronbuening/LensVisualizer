@@ -16,9 +16,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║                                                                          ║
  * ║ Semi-diameters: the patent does not tabulate clear apertures. The STO    ║
  * ║ radius is inferred paraxially from the published F/2.05 (11.423277mm).   ║
- * ║ Element SDs are modeling values derived from the Figure 1 optical        ║
- * ║ section scale, marginal/chief-ray envelopes, the published image height, ║
- * ║ and the production barrel diameter. They were checked for edge           ║
+ * ║ Element SDs follow the relative rim-height sequence in patent Figure 1,   ║
+ * ║ constrained by marginal/chief-ray envelopes and published image height.  ║
+ * ║ They were checked for edge                                                ║
  * ║ thickness, actual spherical rim slope, shared-band cross-gap intrusion,  ║
  * ║ off-axis clipping location, and render-trim geometry.                    ║
  * ║                                                                          ║
@@ -176,20 +176,20 @@ const LENS_DATA = {
   surfaces: [
     { label: "1", R: 87.907, d: 4.04, nd: 1.60311, elemId: 1, sd: 23 },
     { label: "2", R: 534.257, d: 0.2, nd: 1, elemId: 0, sd: 23 },
-    { label: "3", R: 32.865, d: 6.68, nd: 1.497, elemId: 2, sd: 22 },
-    { label: "4", R: 90.48, d: 0.3, nd: 1, elemId: 0, sd: 21.3 },
-    { label: "5", R: 37.52, d: 5.99, nd: 1.497, elemId: 3, sd: 20.2 },
-    { label: "6", R: 218.824, d: 2.27, nd: 1, elemId: 0, sd: 19.7 },
-    { label: "7", R: 2532.276, d: 1.6, nd: 1.68893, elemId: 4, sd: 18 },
-    { label: "8", R: 83.415, d: 2.56, nd: 1, elemId: 0, sd: 18 },
-    { label: "9", R: 270.511, d: 4.56, nd: 1.92286, elemId: 5, sd: 17 },
-    { label: "10", R: -73.97, d: 1.4, nd: 1.77047, elemId: 6, sd: 17 },
-    { label: "11", R: 23.216, d: 7, nd: 1, elemId: 0, sd: 17 },
+    { label: "3", R: 32.865, d: 6.68, nd: 1.497, elemId: 2, sd: 21 },
+    { label: "4", R: 90.48, d: 0.3, nd: 1, elemId: 0, sd: 21 },
+    { label: "5", R: 37.52, d: 5.99, nd: 1.497, elemId: 3, sd: 18.5 },
+    { label: "6", R: 218.824, d: 2.27, nd: 1, elemId: 0, sd: 18.5 },
+    { label: "7", R: 2532.276, d: 1.6, nd: 1.68893, elemId: 4, sd: 16.5 },
+    { label: "8", R: 83.415, d: 2.56, nd: 1, elemId: 0, sd: 16.5 },
+    { label: "9", R: 270.511, d: 4.56, nd: 1.92286, elemId: 5, sd: 16 },
+    { label: "10", R: -73.97, d: 1.4, nd: 1.77047, elemId: 6, sd: 16 },
+    { label: "11", R: 23.216, d: 7, nd: 1, elemId: 0, sd: 16 },
     { label: "STO", R: 1e15, d: 9.01, nd: 1, elemId: 0, sd: 11.423277 },
-    { label: "13", R: 45.076, d: 4.58, nd: 1.51823, elemId: 7, sd: 13.2 },
-    { label: "14", R: -45.076, d: 8.95, nd: 1, elemId: 0, sd: 13.2 },
-    { label: "15", R: -30.274, d: 1.25, nd: 1.437, elemId: 8, sd: 12.5 },
-    { label: "16", R: -300, d: 27.39997, nd: 1, elemId: 0, sd: 12.5 },
+    { label: "13", R: 45.076, d: 4.58, nd: 1.51823, elemId: 7, sd: 12.3 },
+    { label: "14", R: -45.076, d: 8.95, nd: 1, elemId: 0, sd: 12.3 },
+    { label: "15", R: -30.274, d: 1.25, nd: 1.437, elemId: 8, sd: 12 },
+    { label: "16", R: -300, d: 27.39997, nd: 1, elemId: 0, sd: 12 },
   ],
 
   asph: {},

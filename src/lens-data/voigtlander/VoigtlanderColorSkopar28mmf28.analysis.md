@@ -6,7 +6,7 @@
 **Application Number:** P2023-12149\
 **Filed:** January 30, 2023\
 **Published:** August 9, 2024\
-**Inventors:** 蓬田 祥寿; 柴田 裕輝\
+**Inventors:** Yoshihisa Yomogida; Yuki Shibata\
 **Applicant:** Cosina Co., Ltd.\
 **Title:** 撮像レンズ (*Imaging Lens*)
 **Embodiment analyzed:** Example 3
@@ -31,7 +31,7 @@ Independent first-order calculation gives Gf a positive isolated focal length of
 
 The design is best described as a compact asymmetric rangefinder wide-angle. Its first-surface-to-image track is 46.729mm, so `TL/EFL = 1.616907`; it is not telephoto under the `TL/EFL < 1` definition. Its back focal distance is 19.545058mm, so `BFD/EFL = 0.676294`; it is not retrofocus under the `BFD > EFL` definition. The negative front element is therefore a local power-distribution feature rather than evidence that the complete system is retrofocus.
 
-The patent places the stop explicitly between surfaces 5 and 7. Its diameter is not published. The data file uses a physical stop semi-diameter of 4.740662mm, inferred from the modeled F/2.85 entrance pupil. The patent also publishes no clear-aperture or semi-diameter table. All surface semi-diameters in the model are inferred from the calibrated stop, exact marginal and chief-ray envelopes through 60% of the verified field, Cosina's optical-section proportions, and the geometry constraints of the validator. They are modeling values, not patent facts.
+The patent places the stop explicitly between surfaces 5 and 7. Its diameter is not published. The data file uses a physical stop semi-diameter of 4.740662mm, inferred from the modeled F/2.85 entrance pupil. The patent also publishes no clear-aperture or semi-diameter table. All surface semi-diameters in the model are inferred from the calibrated stop, exact marginal and chief-ray envelopes through 60% of the verified field, Cosina's optical-section proportions, and the geometry constraints of the validator. In particular, the 8.1mm L1 rim and equal 6.2mm J1 rims reproduce Figure 6's approximately 1.31:1 height ratio. They are modeling values, not patent facts.
 
 Paragraph 0022 states that wavelength-cut filters, dust-protection glass, and similar sensor-side plates are omitted from the numerical examples. No plate or dummy surface has been inserted, and the final 19.545mm air spacing remains the image-side spacing in the data. No scale factor is applied: the marketed 28mm designation remains separate from the 28.900239mm design EFL, and the asphere coefficients are unscaled.
 
@@ -173,7 +173,7 @@ The patent's published 32.85mm value is the authoritative result for condition 4
 
 Sequential height/reduced-angle tracing and an independent ABCD basis reconstruction produce identical first-to-last matrices to machine precision, with determinant 1. The Petzval sum is evaluated surface by surface as $\phi/(n n')$; its sign and equivalent radius depend on the stated project convention.
 
-The inferred geometry passes the applicable model checks at the single defined infinity state. All element edge thicknesses remain positive; the smallest is 0.656438mm at L2. The largest actual modeled rim-slope angle is 31.513° at 13A, below the 64.2° limit. All shared-band air gaps pass the cross-gap intrusion test, and the 123-ray containment check through 60% of the verified field leaves a minimum non-stop surface margin of 0.389215mm. These checks establish model validity, not a claim that the patent publishes or guarantees those clear apertures.
+The inferred geometry passes the applicable surface and image-circle checks at the single defined infinity state. All element edge thicknesses remain positive, the modeled rims stay within the slope and conic-domain limits, the shared-band air gaps pass the cross-gap intrusion test, and no surface falls below the image-circle floor. These checks establish model validity, not a claim that the patent publishes or guarantees those clear apertures.
 
 No source prescription value was corrected. The narrative BFD of 19.54mm is treated as a rounded or truncated presentation of the 19.545mm table spacing. No sensor plate, filter, inactive dummy plane, close-focus row, or scale transformation has been added.
 

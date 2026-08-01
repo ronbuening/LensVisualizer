@@ -4,7 +4,7 @@
 **Application Number:** JP 2024-212943\
 **Filed:** 2024-12-06\
 **Published:** 2026-06-18\
-**Inventor:** 三島 望\
+**Inventor:** Nozomu Mishima\
 **Applicant:** Cosina Co., Ltd.\
 **Title:** 光学レンズ系 (*Optical lens system*)
 **Embodiment analyzed:** Example 2 (第2実施形態; Fig. 3, Tables 5–8)
@@ -201,8 +201,8 @@ The patent gives no clear apertures. The stored semi-diameters are model-derived
 |---|---:|---:|
 | 1A | 11.50 mm | +0.095582 mm |
 | 2A | 9.66 mm | +0.067686 mm |
-| 20A | 12.80 mm | −1.059296 mm |
-| 21A | 13.50 mm | +0.407043 mm |
+| 20A | 12.00 mm | −0.807967 mm |
+| 21A | 12.00 mm | +0.227948 mm |
 
 The front pair shapes the wide-angle entrance bundle and is the limiting region for full-field vignetting. The rear pair, especially 20A, provides stronger higher-order correction near the image plane. These functional descriptions are modeling interpretations; the patent publishes the surfaces and coefficients but does not assign a separate aberration term to each coefficient.
 
@@ -259,7 +259,7 @@ The final data file was checked against the patent tables and independently trac
 
 The discrepancies between Table 5 and the raw prescription are retained rather than silently reconciled. A source-precision sensitivity analysis does not bring the patent's 28.84 mm EFL or 18.21 mm BFL inside the range produced by the printed prescription.
 
-The stop diameter is not published. The authored `STO.sd` of 7.914161 mm is an inference selected to make the 29.126006 mm model operate at F/2.06; it is not a measured production aperture. The remaining semi-diameters are also model-derived. Their targeted validation found a minimum element edge thickness of 0.157873 mm, a maximum actual rim angle of 41.5412°, a minimum shared-gap margin of 0.042794 mm, valid positive-K conic domains, and no locally required hidden render trim.
+The stop diameter is not published. The authored `STO.sd` of 7.914161 mm is an inference selected to make the 29.126006 mm model operate at F/2.06; it is not a measured production aperture. The remaining semi-diameters are also model-derived. Their relative sequence was measured from Figure 3 and the final values pass the repository's edge-thickness, rim-slope, conic-domain, shared-gap, and image-circle-floor checks at both focus states.
 
 At the full 37.02° half field, the verified sampled pupil range is approximately −0.40 to +0.70. The front aspheric meniscus limits negative-side pupil samples, while L14 limits the most positive samples. This is a model-containment result, not a manufacturer vignetting specification.
 

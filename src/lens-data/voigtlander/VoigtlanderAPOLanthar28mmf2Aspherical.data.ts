@@ -20,7 +20,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ SEMI-DIAMETERS: inferred from the modeled F/2.06 stop, exact        ║
  * ║ meridional marginal/chief-ray envelopes through 37.02° half field, ║
  * ║ hand measurements of patent Fig. 3, and current geometry rules.     ║
- * ║ Fig. 3 specifically constrains G2a–G2c to the tighter values below. ║
+ * ║ Relative element heights follow Fig. 3: L11/L12 are smaller than    ║
+ * ║ L10, while L14/L15 step up behind L13 and L16 is only slightly      ║
+ * ║ taller than the front L9 element.                                   ║
  * ║                                                                    ║
  * ║ STOP: the patent omits its diameter. STO sd = 7.9141613257 mm      ║
  * ║ enforces F/2.06 against the 29.1260062712 mm paraxial EFL computed ║
@@ -56,7 +58,7 @@ const LENS_DATA = {
   lensMounts: ["leica-m"],
   imageFormat: "135-full-frame",
   patentNumber: "JP 2026-98935 A",
-  patentAuthors: ["三島 望"],
+  patentAuthors: ["Nozomu Mishima"],
   patentAssignees: ["Cosina Co., Ltd."],
   patentYear: 2026,
   elementCount: 12,
@@ -292,25 +294,25 @@ const LENS_DATA = {
   surfaces: [
     { label: "1A", R: 120.686, d: 1.2, nd: 1.5168, elemId: 1, sd: 11.5 },
     { label: "2A", R: 18.667, d: 5.17, nd: 1.0, elemId: 0, sd: 9.66 },
-    { label: "3", R: -26.163, d: 3.1, nd: 1.8515, elemId: 2, sd: 9.7 },
-    { label: "4", R: -17.394, d: 1.0, nd: 1.7888, elemId: 3, sd: 9.7 },
-    { label: "5", R: -45.31, d: 0.3, nd: 1.0, elemId: 0, sd: 9.7 },
-    { label: "6", R: 35.585, d: 3.33, nd: 2.001, elemId: 4, sd: 9.6 },
-    { label: "7", R: -500.0, d: 0.31, nd: 1.0, elemId: 0, sd: 9.3 },
-    { label: "8", R: 51.264, d: 3.86, nd: 1.90043, elemId: 5, sd: 9.3 },
-    { label: "9", R: -51.262, d: 1.0, nd: 1.85451, elemId: 6, sd: 9.1 },
-    { label: "10", R: 98.206, d: 3.84, nd: 1.0, elemId: 0, sd: 8.9 },
+    { label: "3", R: -26.163, d: 3.1, nd: 1.8515, elemId: 2, sd: 9.5 },
+    { label: "4", R: -17.394, d: 1.0, nd: 1.7888, elemId: 3, sd: 9.5 },
+    { label: "5", R: -45.31, d: 0.3, nd: 1.0, elemId: 0, sd: 9.5 },
+    { label: "6", R: 35.585, d: 3.33, nd: 2.001, elemId: 4, sd: 8.5 },
+    { label: "7", R: -500.0, d: 0.31, nd: 1.0, elemId: 0, sd: 8.5 },
+    { label: "8", R: 51.264, d: 3.86, nd: 1.90043, elemId: 5, sd: 8.6 },
+    { label: "9", R: -51.262, d: 1.0, nd: 1.85451, elemId: 6, sd: 8.6 },
+    { label: "10", R: 98.206, d: 3.84, nd: 1.0, elemId: 0, sd: 8.6 },
     { label: "STO", R: 1e15, d: 3.83, nd: 1.0, elemId: 0, sd: 7.914161325746969 },
     { label: "12", R: -19.549, d: 1.0, nd: 1.72047, elemId: 7, sd: 9.0 },
     { label: "13", R: 17.5, d: 5.84, nd: 1.62846, elemId: 8, sd: 9.0 },
     { label: "14", R: -34.531, d: 0.3, nd: 1.0, elemId: 0, sd: 9.0 },
-    { label: "15", R: 36.135, d: 4.92, nd: 1.90525, elemId: 9, sd: 8.6 },
-    { label: "16", R: -36.135, d: 0.15, nd: 1.0, elemId: 0, sd: 8.6 },
-    { label: "17", R: 580.103, d: 5.15, nd: 1.55032, elemId: 10, sd: 9.7 },
-    { label: "18", R: -19.0, d: 1.0, nd: 1.72047, elemId: 11, sd: 9.7 },
-    { label: "19", R: 161.504, d: 5.64, nd: 1.0, elemId: 0, sd: 9.7 },
-    { label: "20A", R: -116.659, d: 2.1, nd: 1.8061, elemId: 12, sd: 12.8 },
-    { label: "21A", R: 1000.0, d: 18.21, nd: 1.0, elemId: 0, sd: 13.5 },
+    { label: "15", R: 36.135, d: 4.92, nd: 1.90525, elemId: 9, sd: 10.4 },
+    { label: "16", R: -36.135, d: 0.15, nd: 1.0, elemId: 0, sd: 10.4 },
+    { label: "17", R: 580.103, d: 5.15, nd: 1.55032, elemId: 10, sd: 10.6 },
+    { label: "18", R: -19.0, d: 1.0, nd: 1.72047, elemId: 11, sd: 10.6 },
+    { label: "19", R: 161.504, d: 5.64, nd: 1.0, elemId: 0, sd: 10.6 },
+    { label: "20A", R: -116.659, d: 2.1, nd: 1.8061, elemId: 12, sd: 12 },
+    { label: "21A", R: 1000.0, d: 18.21, nd: 1.0, elemId: 0, sd: 12 },
   ],
 
   asph: {

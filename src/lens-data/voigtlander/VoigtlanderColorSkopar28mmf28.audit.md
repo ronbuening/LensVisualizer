@@ -119,7 +119,13 @@ The d-line prescription, element powers, matrix, EFL, principal planes, BFD, Pet
    - **Independent evidence:** Exact finite-ray trace through the modeled stop center to the published 21.63 mm image height.
    - **Consequence:** The condition remains satisfied; only the epistemic wording changed.
 
-No source prescription value, surface label, spacing, index, Abbe number, asphere coefficient, stop size, focus status, mount, format, or focal-length field was changed. The inferred front-group semi-diameters were subsequently corrected in the integration follow-up below.
+4. **Inventor identities**
+   - **Old:** Structured and reader-facing metadata used the Japanese-script names `蓬田 祥寿` and `柴田 裕輝`.
+   - **Corrected:** The names now use the existing repository identities `Yoshihisa Yomogida` and `Yuki Shibata`.
+   - **Source:** Patent metadata and existing Cosina inventor records in the lens catalog.
+   - **Consequence:** Author aggregation no longer creates duplicate Japanese-script identities for these inventors.
+
+No source prescription value, surface label, spacing, index, Abbe number, asphere coefficient, stop size, focus status, mount, format, or focal-length field was changed. The inferred front-group semi-diameters were subsequently corrected in the integration follow-up below, and inventor metadata was romanized without changing the patent attribution.
 
 ## 2026-08-01 Patent-Figure SD Follow-up
 
@@ -129,9 +135,9 @@ The exact Example 3 optical section is patent Fig. 6 on page 17. At high resolut
 |---|---:|---:|---|
 | 1–2 (L1) | 10.2 / 10.2 mm | 8.1 / 8.1 mm | Fig. 6 front singlet envelope is approximately 8.1 mm |
 | 3–4 (L2/front J1) | 8.0 / 7.6 mm | 6.2 / 6.2 mm | Fig. 6 doublet front/interface envelope is approximately 6.2 mm |
-| 5 (rear J1) | 7.6 mm | 7.0 mm | Rear doublet rim opens slightly toward the stop |
+| 5 (rear J1) | 7.6 mm | 6.2 mm | Screenshot-informed recheck shows an equal-rim cemented group |
 
-The remaining groups already match the figure within the drawing tolerance. The final values pass the surface validator and image-circle floor audit. The 11.2 mm rear asphere SDs are unchanged, so their departure values remain valid.
+The current diagram exposed the residual step at the rear of J1. Rechecking the exact patent section gives an approximately 1.31:1 L1-to-J1 height ratio and equal-height rims across all three J1 surfaces, so surface 5 was reduced from the first-pass 7.0 mm value to 6.2 mm. The remaining groups already match the figure within the drawing tolerance. The final values pass the surface validator and image-circle floor audit. The 11.2 mm rear asphere SDs are unchanged, so their departure values remain valid.
 
 ## Geometry and render gate
 
