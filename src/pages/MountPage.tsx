@@ -39,11 +39,11 @@ export default function MountPage() {
   const { mountId } = useParams<{ mountId: string }>();
   const { theme: t, themeMode, highContrast, toggleTheme, toggleHC } = usePageThemeToggle();
 
-  if (!isLensMountId(mountId)) return <Navigate to="/mounts" replace />;
+  if (!isLensMountId(mountId)) return <Navigate to="/mounts/" replace />;
 
   const mount = LENS_MOUNT_BY_ID[mountId];
   const lenses = lensesForMount(mountId);
-  if (lenses.length === 0) return <Navigate to="/mounts" replace />;
+  if (lenses.length === 0) return <Navigate to="/mounts/" replace />;
   const details = getMountDetails(mountId);
   const mountSpec = MOUNT_SPECS[mountId];
   const diagramSpec = mountSpec?.mvpStatus === "not_applicable" ? undefined : mountSpec;
@@ -85,7 +85,7 @@ export default function MountPage() {
           Home
         </Link>
         <span style={{ color: t.muted, margin: "0 0.35em" }}>/</span>
-        <Link to="/mounts" style={{ color: t.descLinkColor, textDecoration: "none" }}>
+        <Link to="/mounts/" style={{ color: t.descLinkColor, textDecoration: "none" }}>
           Mounts
         </Link>
         <span style={{ color: t.muted, margin: "0 0.35em" }}>/</span>
@@ -137,7 +137,7 @@ export default function MountPage() {
             {lenses.map((entry) => (
               <Link
                 key={entry.key}
-                to={lensLinkFromMount(entry.key, mountId)}
+                {...lensLinkFromMount(entry.key, mountId)}
                 style={{ ...LENS_LINK_BASE_STYLE, color: t.descLinkColor }}
               >
                 {entry.data.name}

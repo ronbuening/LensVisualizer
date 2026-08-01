@@ -328,7 +328,7 @@ describe("lensPageDescription", () => {
 
 describe("lensCanonicalURL", () => {
   it("returns SITE_URL/lens/<key>", () => {
-    expect(lensCanonicalURL("nikkor-z-50mm")).toBe(`${SITE_URL}/lens/nikkor-z-50mm`);
+    expect(lensCanonicalURL("nikkor-z-50mm")).toBe(`${SITE_URL}/lens/nikkor-z-50mm/`);
   });
 });
 
@@ -336,7 +336,7 @@ describe("lensCanonicalURL", () => {
 
 describe("makerCanonicalURL", () => {
   it("returns SITE_URL/makers/<slug>", () => {
-    expect(makerCanonicalURL("nikon")).toBe(`${SITE_URL}/makers/nikon`);
+    expect(makerCanonicalURL("nikon")).toBe(`${SITE_URL}/makers/nikon/`);
   });
 });
 
@@ -349,8 +349,8 @@ describe("lensJsonLd", () => {
     expect(ld["@context"]).toBe("https://schema.org");
     expect(ld["@type"]).toBe("TechArticle");
     expect(ld.headline).toBe(lens.name);
-    expect(ld.url).toBe(`${SITE_URL}/lens/nikkor-z-50mm`);
-    expect(ld.mainEntityOfPage).toBe(`${SITE_URL}/lens/nikkor-z-50mm`);
+    expect(ld.url).toBe(`${SITE_URL}/lens/nikkor-z-50mm/`);
+    expect(ld.mainEntityOfPage).toBe(`${SITE_URL}/lens/nikkor-z-50mm/`);
     expect((ld.author as Record<string, unknown>).name).toBe("Ron Buening");
     expect((ld.publisher as Record<string, unknown>).name).toBe(SITE_NAME);
     expect(((ld.isBasedOn as Record<string, unknown>) || {}).name).toBe("US Patent 2019/0234567");
@@ -414,6 +414,6 @@ describe("comparePageDescription", () => {
 
 describe("compareCanonicalURL", () => {
   it("returns SITE_URL/compare/<slugA>/<slugB>", () => {
-    expect(compareCanonicalURL("nikkor-z-50mm", "nokton-50mm")).toBe(`${SITE_URL}/compare/nikkor-z-50mm/nokton-50mm`);
+    expect(compareCanonicalURL("nikkor-z-50mm", "nokton-50mm")).toBe(`${SITE_URL}/compare/nikkor-z-50mm/nokton-50mm/`);
   });
 });

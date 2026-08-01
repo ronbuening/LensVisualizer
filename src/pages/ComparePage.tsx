@@ -32,7 +32,7 @@ function LensSummary({ lensKey }: { lensKey: string }) {
   return (
     <section style={{ marginBottom: "1.5rem" }}>
       <h2 style={{ fontSize: "1rem", fontWeight: 600, marginBottom: "0.25rem" }}>
-        <Link to={`/lens/${lensKey}`} style={NAV_LINK_STYLE}>
+        <Link to={`/lens/${lensKey}/`} style={NAV_LINK_STYLE}>
           {lens.name}
         </Link>
       </h2>
@@ -51,7 +51,7 @@ export default function ComparePage() {
   const { slugA, slugB } = useParams<{ slugA: string; slugB: string }>();
 
   if (!slugA || !slugB || !LENS_CATALOG[slugA] || !LENS_CATALOG[slugB]) {
-    return <Navigate to="/lenses" replace />;
+    return <Navigate to="/lenses/" replace />;
   }
 
   const lensA = LENS_CATALOG[slugA];
@@ -75,7 +75,7 @@ export default function ComparePage() {
                 Home
               </Link>
               {" / "}
-              <Link to="/lenses" style={NAV_LINK_STYLE}>
+              <Link to="/lenses/" style={NAV_LINK_STYLE}>
                 Lenses
               </Link>
               {" / Compare"}

@@ -167,7 +167,7 @@ describe("useComparisonOrchestration", () => {
 
     expect(dispatch).toHaveBeenCalledWith({ type: ENTER_COMPARE, catalogKeys: ["lens-a", "lens-b", "lens-c"] });
     expect(resetSticky).toHaveBeenCalledTimes(1);
-    expect(navigate).toHaveBeenCalledWith("/compare/lens-a/lens-b", { replace: false });
+    expect(navigate).toHaveBeenCalledWith("/compare/lens-a/lens-b/", { replace: false });
 
     rerender({
       state: buildState({ comparing: true, lensKeyA: "lens-a", lensKeyB: "lens-b" }),
@@ -234,6 +234,6 @@ describe("useComparisonOrchestration", () => {
       shiftA: 4,
       tiltA: -3,
     });
-    expect(navigate).toHaveBeenCalledWith("/lens/lens-a", { replace: false });
+    expect(navigate).toHaveBeenCalledWith("/lens/lens-a/", { replace: false });
   });
 });

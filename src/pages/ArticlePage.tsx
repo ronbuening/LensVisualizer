@@ -31,7 +31,7 @@ export default function ArticlePage() {
   }, [slug]);
 
   if (!slug || !ARTICLE_CONTENT[slug]) {
-    return <Navigate to="/articles" replace />;
+    return <Navigate to="/articles/" replace />;
   }
 
   const entry = ARTICLE_CONTENT[slug];
@@ -44,9 +44,9 @@ export default function ArticlePage() {
   // When the user arrived from the start-here guide (and this isn't a series
   // member — series context takes precedence), thread back through it.
   const startHereRef =
-    !seriesLanding && fromStartHere ? { path: "/articles/start-here", label: "Getting Started" } : null;
+    !seriesLanding && fromStartHere ? { path: "/articles/start-here/", label: "Getting Started" } : null;
 
-  const backPath = seriesLanding ? seriesLanding.linkTo : startHereRef ? startHereRef.path : "/articles";
+  const backPath = seriesLanding ? seriesLanding.linkTo : startHereRef ? startHereRef.path : "/articles/";
   const backLabel = seriesLanding ? seriesLanding.title : startHereRef ? startHereRef.label : "All Articles";
 
   const breadcrumbs = [
@@ -85,7 +85,7 @@ export default function ArticlePage() {
           Home
         </Link>
         <span style={{ color: t.muted, margin: "0 0.35em" }}>/</span>
-        <Link to="/articles" style={{ color: t.descLinkColor, textDecoration: "none" }}>
+        <Link to="/articles/" style={{ color: t.descLinkColor, textDecoration: "none" }}>
           Articles
         </Link>
         {seriesLanding && (

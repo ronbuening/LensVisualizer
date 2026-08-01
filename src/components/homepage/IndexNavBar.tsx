@@ -6,6 +6,7 @@
  */
 
 import { Link } from "react-router";
+import { canonicalPagePath } from "../../utils/seo/siteUrls.js";
 import type { Theme } from "../../types/theme.js";
 
 interface IndexNavBarProps {
@@ -43,7 +44,7 @@ export default function IndexNavBar({ theme: t }: IndexNavBarProps) {
         Browse indexes
       </span>
       {INDEX_LINKS.map((item) => (
-        <Link key={item.to} to={item.to} style={{ color: t.descLinkColor, textDecoration: "none" }}>
+        <Link key={item.to} to={canonicalPagePath(item.to)} style={{ color: t.descLinkColor, textDecoration: "none" }}>
           {item.label}
         </Link>
       ))}

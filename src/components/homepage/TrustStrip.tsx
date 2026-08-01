@@ -1,4 +1,5 @@
 import { Link } from "react-router";
+import { canonicalPagePath } from "../../utils/seo/siteUrls.js";
 import type { Theme } from "../../types/theme.js";
 import { ARTICLES } from "../../utils/content/homepageContent.js";
 import useMediaQuery from "../../utils/useMediaQuery.js";
@@ -53,7 +54,7 @@ export default function TrustStrip({ theme: t }: TrustStripProps) {
         }}
       >
         {links.map(({ label, to }) => (
-          <Link key={to} to={to} style={{ color: t.descLinkColor, textDecoration: "none" }}>
+          <Link key={to} to={canonicalPagePath(to)} style={{ color: t.descLinkColor, textDecoration: "none" }}>
             {label}
           </Link>
         ))}

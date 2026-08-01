@@ -116,13 +116,15 @@ describe("LensIndexPage", () => {
     expect(screen.getByRole("button", { name: "By Patent Year ↓" })).toBeTruthy();
 
     fireEvent.click(screen.getByRole("button", { name: "By Mount" }));
-    expect(screen.getByRole("link", { name: "Nikon Z" }).getAttribute("href")).toBe("/mounts/nikon-z");
-    expect(screen.getByRole("link", { name: "Sony E" }).getAttribute("href")).toBe("/mounts/sony-fe");
+    expect(screen.getByRole("link", { name: "Nikon Z" }).getAttribute("href")).toBe("/mounts/nikon-z/");
+    expect(screen.getByRole("link", { name: "Sony E" }).getAttribute("href")).toBe("/mounts/sony-fe/");
     expect(screen.getByText("Unknown Mount")).toBeTruthy();
     expect(screen.getAllByRole("link", { name: /VOIGTLÄNDER APO-LANTHAR 50mm f\/2\.0 Aspherical/i }).length).toBe(2);
 
     fireEvent.click(screen.getByRole("button", { name: "By Format" }));
-    expect(screen.getByRole("link", { name: "135 / Full-frame" }).getAttribute("href")).toBe("/formats/135-full-frame");
+    expect(screen.getByRole("link", { name: "135 / Full-frame" }).getAttribute("href")).toBe(
+      "/formats/135-full-frame/",
+    );
     expect(screen.getByText("Unknown Format")).toBeTruthy();
   });
 
@@ -153,7 +155,7 @@ describe("LensIndexPage", () => {
       name: new RegExp(multiInventorEntry!.data.name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")),
     });
     expect(inventorLensLinks).toHaveLength(multiInventorEntry!.data.patentAuthors!.length);
-    expect(inventorLensLinks[0].getAttribute("href")).toContain("returnTo=%2Flenses%3Fgroup%3Dinventor");
+    expect(inventorLensLinks[0].getAttribute("href")).toMatch(/^\/lens\/[^/]+\/$/);
 
     fireEvent.click(screen.getByRole("button", { name: "By Assignee" }));
 
@@ -171,10 +173,10 @@ describe("LensIndexPage", () => {
       name: new RegExp(multiAssigneeEntry!.data.name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")),
     });
     expect(assigneeLensLinks).toHaveLength(multiAssigneeEntry!.data.patentAssignees!.length);
-    expect(assigneeLensLinks[0].getAttribute("href")).toContain("returnTo=%2Flenses%3Fgroup%3Dassignee");
+    expect(assigneeLensLinks[0].getAttribute("href")).toMatch(/^\/lens\/[^/]+\/$/);
   });
 
-  it("hydrates grouping and filters from the URL and preserves a return path in lens links", async () => {
+  it("hydrates grouping and filters from the URL while keeping lens hrefs canonical", async () => {
     renderLensIndexPage("/lenses?group=mount&mounts=nikon-z");
 
     expect(screen.getByRole("button", { name: "By Mount" })).toBeTruthy();
@@ -185,11 +187,7 @@ describe("LensIndexPage", () => {
 
     const lensLink = screen.getByRole("link", { name: /NIKON NIKKOR Z 26mm f\/2.8/i });
     const href = lensLink.getAttribute("href") ?? "";
-    expect(href).toContain("/lens/nikon-z-26f28");
-    expect(href).toContain("from=lenses");
-    expect(href).toContain("context=mount");
-    expect(href).toContain("id=nikon-z");
-    expect(href).toContain("returnTo=%2Flenses%3Fgroup%3Dmount%26mounts%3Dnikon-z");
+    expect(href).toBe("/lens/nikon-z-26f28/");
   });
 
   it("shows hidden reference fixtures in the debug URL view", async () => {
@@ -220,8 +218,7 @@ describe("LensIndexPage", () => {
 
     const fixtureLink = screen.getByRole("link", { name: /REFERENCE Newtonian Side Focus/i });
     const href = fixtureLink.getAttribute("href") ?? "";
-    expect(href).toContain("/lens/reference-newtonian-side-focus");
-    expect(href).toContain("returnTo=%2Flenses%3Fview%3Dall");
+    expect(href).toBe("/lens/reference-newtonian-side-focus/");
   });
 
   it("filters by lens mount and image format", () => {

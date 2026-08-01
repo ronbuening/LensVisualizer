@@ -5,6 +5,7 @@
  */
 
 import { Helmet } from "react-helmet-async";
+import { normalizeSitePageUrl } from "../utils/seo/siteUrls.js";
 import {
   SITE_NAME,
   SOCIAL_IMAGE_ALT,
@@ -53,6 +54,7 @@ export default function SEOHead({
   socialImageHeight = SOCIAL_IMAGE_HEIGHT,
   jsonLd,
 }: SEOHeadProps) {
+  const normalizedCanonicalURL = canonicalURL ? normalizeSitePageUrl(canonicalURL) : undefined;
   const jsonLdEntries = normalizeJsonLd(jsonLd);
 
   return (
@@ -60,12 +62,12 @@ export default function SEOHead({
       <title>{title}</title>
       <meta name="description" content={description} />
       {robots && <meta name="robots" content={robots} />}
-      {canonicalURL && <link rel="canonical" href={canonicalURL} />}
+      {normalizedCanonicalURL && <link rel="canonical" href={normalizedCanonicalURL} />}
 
       <meta property="og:type" content={ogType} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
-      {canonicalURL && <meta property="og:url" content={canonicalURL} />}
+      {normalizedCanonicalURL && <meta property="og:url" content={normalizedCanonicalURL} />}
       <meta property="og:site_name" content={SITE_NAME} />
       {socialImageURL && <meta property="og:image" content={socialImageURL} />}
       {socialImageAlt && <meta property="og:image:alt" content={socialImageAlt} />}

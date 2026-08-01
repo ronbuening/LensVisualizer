@@ -10,6 +10,7 @@ import { Link } from "react-router";
 import type { Theme } from "../../types/theme.js";
 import { formatDisplayDate } from "../../utils/content/changelogHelpers.js";
 import type { SeriesSummary } from "../../utils/content/homepageContent.js";
+import { canonicalPagePath } from "../../utils/seo/siteUrls.js";
 
 interface SeriesCardProps {
   series: SeriesSummary;
@@ -30,7 +31,7 @@ export default function SeriesCard({ series, theme: t }: SeriesCardProps) {
         background: t.panelBg,
       }}
     >
-      <Link to={landing.linkTo} style={{ textDecoration: "none", display: "block" }}>
+      <Link to={canonicalPagePath(landing.linkTo)} style={{ textDecoration: "none", display: "block" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.3rem" }}>
           <span style={{ fontSize: "0.875rem", fontWeight: 600, color: t.descLinkColor }}>{landing.title}</span>
           <span
@@ -67,7 +68,7 @@ export default function SeriesCard({ series, theme: t }: SeriesCardProps) {
           {otherMembers.map((m) => (
             <li key={m.slug} style={{ margin: "0.2rem 0" }}>
               <Link
-                to={m.linkTo}
+                to={canonicalPagePath(m.linkTo)}
                 style={{
                   fontSize: "0.75rem",
                   color: t.descLinkColor,

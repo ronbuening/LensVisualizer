@@ -9,8 +9,8 @@
 
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
+import { canonicalPageUrl } from "./site-url.mjs";
 
-const SITE_URL = "https://surfaceandstop.com";
 const META_PATH = join(import.meta.dirname, "..", "src", "generated", "build-metadata.json");
 const DIST_DIR = join(import.meta.dirname, "..", "dist");
 
@@ -56,7 +56,7 @@ function generateSitemap() {
   const routeFreshness = buildMeta.routeFreshness || {};
 
   const urls = routes.map((route) => ({
-    loc: `${SITE_URL}${route}`,
+    loc: canonicalPageUrl(route),
     lastmod: routeFreshness[route]?.lastModified || new Date().toISOString().split("T")[0],
     priority: routePriority(route),
   }));

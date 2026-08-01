@@ -10,6 +10,7 @@ import type { Theme } from "../../types/theme.js";
 import { SUMMARY_KEYS, LENS_SUMMARIES, RECENT_LENS_KEYS } from "../../utils/catalog/lensSummaries.js";
 import { deriveMaker } from "../../utils/catalog/lensMetadata.js";
 import useMediaQuery from "../../utils/useMediaQuery.js";
+import { canonicalPagePath } from "../../utils/seo/siteUrls.js";
 
 interface QuickNavCardsProps {
   theme: Theme;
@@ -61,7 +62,7 @@ export default function QuickNavCards({ theme: t }: QuickNavCardsProps) {
       }}
     >
       {cards.map((card) => (
-        <Link key={card.to} to={card.to} style={cardStyle()}>
+        <Link key={card.to} to={canonicalPagePath(card.to)} style={cardStyle()}>
           <div style={{ fontSize: "0.9rem", fontWeight: 600, color: t.descLinkColor, marginBottom: "0.35rem" }}>
             {card.title}
           </div>

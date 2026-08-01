@@ -91,7 +91,7 @@ export default function MakersIndexPage() {
               style={{ padding: "1rem 0.75rem", marginBottom: "0.75rem", borderBottom: `1px solid ${t.panelBorder}` }}
             >
               <Link
-                to={`/makers/${maker.slug}`}
+                to={`/makers/${maker.slug}/`}
                 style={{ color: t.descLinkColor, textDecoration: "none", fontSize: "1rem", fontWeight: 600 }}
               >
                 {maker.display}

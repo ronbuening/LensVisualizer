@@ -119,7 +119,7 @@ function PatentCard({ patent, currentAuthor, theme: t }: PatentCardProps) {
       </p>
       <div style={{ borderTop: `1px solid ${t.panelDivider}`, paddingTop: "0.35rem" }}>
         {patent.lenses.map((lens) => (
-          <Link key={lens.key} to={`/lens/${lens.key}`} style={{ ...LENS_LINK_BASE_STYLE, color: t.descLinkColor }}>
+          <Link key={lens.key} to={`/lens/${lens.key}/`} style={{ ...LENS_LINK_BASE_STYLE, color: t.descLinkColor }}>
             {lens.name}
             {lens.specs?.length ? (
               <span style={{ color: t.label, fontSize: "0.68rem", marginLeft: "0.5rem" }}>
@@ -139,7 +139,7 @@ export default function AuthorPage() {
   const { theme: t, themeMode, highContrast, toggleTheme, toggleHC } = usePageThemeToggle();
   const author = authorSlug ? getAuthorBySlug(authorSlug) : undefined;
 
-  if (!author) return <Navigate to="/authors" replace />;
+  if (!author) return <Navigate to="/authors/" replace />;
 
   const biography = getAuthorBiography(author.name);
   const patents = patentsForAuthor(author.name);
@@ -196,7 +196,7 @@ export default function AuthorPage() {
           Home
         </Link>
         <span style={{ color: t.muted, margin: "0 0.35em" }}>/</span>
-        <Link to="/authors" style={{ color: t.descLinkColor, textDecoration: "none" }}>
+        <Link to="/authors/" style={{ color: t.descLinkColor, textDecoration: "none" }}>
           Authors
         </Link>
         <span style={{ color: t.muted, margin: "0 0.35em" }}>/</span>
@@ -212,7 +212,7 @@ export default function AuthorPage() {
         {biography && <AuthorBiographySection biography={biography} theme={t} />}
         <p style={{ marginBottom: "1rem" }}>
           <Link
-            to={`/relationships?focus=author:${author.slug}`}
+            to={`/relationships/#focus=author:${author.slug}`}
             style={{ color: t.descLinkColor, textDecoration: "none", fontSize: "0.75rem" }}
           >
             View in relationship map →

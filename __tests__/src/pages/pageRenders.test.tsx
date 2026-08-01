@@ -70,11 +70,11 @@ describe("static page renders", () => {
     expect(screen.getByRole("link", { name: "Search" }).style.width).toBe("30px");
     expect(screen.getByRole("link", { name: "Search" }).style.height).toBe("30px");
     const indexNav = screen.getByRole("navigation", { name: "Catalog indexes" });
-    expect(within(indexNav).getByRole("link", { name: "Mounts" }).getAttribute("href")).toBe("/mounts");
-    expect(within(indexNav).getByRole("link", { name: "Formats" }).getAttribute("href")).toBe("/formats");
-    expect(within(indexNav).getByRole("link", { name: "Patents" }).getAttribute("href")).toBe("/patents");
-    expect(within(indexNav).getByRole("link", { name: "Authors" }).getAttribute("href")).toBe("/authors");
-    expect(within(indexNav).getByRole("link", { name: "Articles" }).getAttribute("href")).toBe("/articles");
+    expect(within(indexNav).getByRole("link", { name: "Mounts" }).getAttribute("href")).toBe("/mounts/");
+    expect(within(indexNav).getByRole("link", { name: "Formats" }).getAttribute("href")).toBe("/formats/");
+    expect(within(indexNav).getByRole("link", { name: "Patents" }).getAttribute("href")).toBe("/patents/");
+    expect(within(indexNav).getByRole("link", { name: "Authors" }).getAttribute("href")).toBe("/authors/");
+    expect(within(indexNav).getByRole("link", { name: "Articles" }).getAttribute("href")).toBe("/articles/");
     expect(screen.getByText("Articles & Guides")).toBeTruthy();
     expect(screen.getByText(HOMEPAGE_ARTICLES[0].title)).toBeTruthy();
     const bodyText = document.body.textContent ?? "";
@@ -96,7 +96,7 @@ describe("static page renders", () => {
     );
 
     await waitFor(() => {
-      expect(screen.getByText(`/lens/${lensKey}`)).toBeTruthy();
+      expect(screen.getByText(`/lens/${lensKey}/`)).toBeTruthy();
     });
   });
 
@@ -112,7 +112,7 @@ describe("static page renders", () => {
     );
 
     await waitFor(() => {
-      expect(screen.getByText(`/compare/${slugA}/${slugB}?focus=0.4&aperture=0.2&zoom=70`)).toBeTruthy();
+      expect(screen.getByText(`/compare/${slugA}/${slugB}/?focus=0.4&aperture=0.2&zoom=70`)).toBeTruthy();
     });
   });
 

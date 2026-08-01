@@ -9,6 +9,7 @@
 import buildMeta from "../../generated/build-metadata.json";
 import { LENS_SUMMARIES, SUMMARY_KEYS } from "./lensSummaries.js";
 import type { LensSummary } from "./lensSummaries.js";
+import { canonicalPagePath } from "../seo/siteUrls.js";
 
 export interface AuthorMetadata {
   name: string;
@@ -58,7 +59,7 @@ export function getAuthorByName(name: string): AuthorMetadata | undefined {
 /** Return the canonical in-app URL for a named inventor when one exists. */
 export function authorPathForName(name: string): string | undefined {
   const author = getAuthorByName(name);
-  return author ? `/authors/${author.slug}` : undefined;
+  return author ? canonicalPagePath(`/authors/${author.slug}`) : undefined;
 }
 
 /**

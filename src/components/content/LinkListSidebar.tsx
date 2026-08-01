@@ -16,6 +16,7 @@
 import { useState } from "react";
 import { Link } from "react-router";
 import type { Theme } from "../../types/theme.js";
+import { canonicalPagePath } from "../../utils/seo/siteUrls.js";
 
 export interface LinkListSidebarItem {
   /** Stable React key + hover id. */
@@ -172,7 +173,7 @@ export default function LinkListSidebar({ title, items, theme: t, ariaLabel, off
                               {child.label}
                             </a>
                           ) : (
-                            <Link to={childTo} style={childStyle} {...childHoverHandlers}>
+                            <Link to={canonicalPagePath(childTo)} style={childStyle} {...childHoverHandlers}>
                               {child.label}
                             </Link>
                           )}
@@ -186,7 +187,7 @@ export default function LinkListSidebar({ title, items, theme: t, ariaLabel, off
                   {item.label}
                 </a>
               ) : itemTo ? (
-                <Link to={itemTo} style={linkStyle} {...hoverHandlers}>
+                <Link to={canonicalPagePath(itemTo)} style={linkStyle} {...hoverHandlers}>
                   {item.label}
                 </Link>
               ) : null}

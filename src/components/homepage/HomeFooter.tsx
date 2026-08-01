@@ -29,19 +29,19 @@ export default function HomeFooter({ theme: t }: HomeFooterProps) {
         flexWrap: "wrap",
       }}
     >
-      <Link to="/lenses" style={linkStyle}>
+      <Link to="/lenses/" style={linkStyle}>
         Lens Library
       </Link>
-      <Link to="/makers" style={linkStyle}>
+      <Link to="/makers/" style={linkStyle}>
         Makers
       </Link>
-      <Link to="/articles" style={linkStyle}>
+      <Link to="/articles/" style={linkStyle}>
         Articles
       </Link>
-      <Link to="/updates" style={linkStyle}>
+      <Link to="/updates/" style={linkStyle}>
         Updates
       </Link>
-      <Link to="/articles/about-site" style={linkStyle}>
+      <Link to="/articles/about-site/" style={linkStyle}>
         About Surface & Stop
       </Link>
       <a href={LENS_FEED_PATH} type="application/rss+xml" style={linkStyle}>

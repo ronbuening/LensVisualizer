@@ -51,10 +51,11 @@ the site.
 
 ## Locked Design Decisions (do not re-litigate while implementing)
 
-1. **One static route `/relationships`; focus entity in a query param** `?focus=<role>:<slug>`,
-   e.g. `/relationships?focus=author:ludwig-bertele` or `?focus=assignee:canon-inc`. One
-   prerendered page, no per-entity routes, no sitemap bloat, and recentering is just a
-   `setSearchParams` call. Canonical URL is always `${SITE_URL}/relationships` (no query).
+1. **One static route `/relationships`; focus entity in a fragment** `#focus=<role>:<slug>`,
+   e.g. `/relationships/#focus=author:ludwig-bertele`. One prerendered page, no per-entity
+   routes or sitemap bloat, and fragments keep interactive state out of the crawlable URL set.
+   Legacy `?focus=` links are normalized after hydration. Canonical URL is always
+   `${SITE_URL}/relationships/`.
 2. **Assignees get build-generated slugs**, exactly like authors already do, emitted as a new
    `assignees` array in `src/generated/build-metadata.json`. Runtime never invents slugs.
 3. **Graph data comes from `LENS_SUMMARIES` only** (lightweight generated catalog) — never from
@@ -64,8 +65,8 @@ the site.
    correct, not a bug.
 5. **Layout is deterministic and collision-free by construction**: evenly spaced ring slots,
    radii grow with node count. No iterative force layout.
-6. **Recentering pushes history** (default `setSearchParams` behavior — do NOT pass
-   `{ replace: true }`), so Back retraces the user's exploration path.
+6. **Recentering pushes history** with `navigate`; only legacy query normalization uses
+   `{ replace: true }`, so Back retraces the user's exploration path.
 7. **Patent detail selection is component state, not URL state** (only `focus` is shareable).
 8. **Reuse existing theme tokens only.** Do not add new theme tokens unless truly stuck; if you
    must, follow `agent_docs/theme_tokens.md` and update all four variants.
@@ -210,7 +211,7 @@ export interface RelationshipGraph {
   edges: { from: string; to: string }[]; // center→patent plus patent→party
 }
 
-/** Parse "?focus=" values like "author:ludwig-bertele". Returns undefined for
+/** Parse focus values like "author:ludwig-bertele". Returns undefined for
  *  anything malformed or unknown so callers can fall back to the picker. */
 export function resolveFocusParam(raw: string | null): PartyRef | undefined;
 
@@ -576,30 +577,30 @@ rationale.
 
 ```
 URL                                   → rendered content
-/relationships                        → intro + full picker + "most connected" link columns
-/relationships?focus=author:<slug>    → compact picker + map centered on that author
-/relationships?focus=assignee:<slug>  → compact picker + map centered on that assignee
-/relationships?focus=<garbage>        → same as no focus (silent fallback to picker)
+/relationships/                       → intro + full picker + "most connected" link columns
+/relationships/#focus=author:<slug>   → compact picker + map centered on that author
+/relationships/#focus=assignee:<slug> → compact picker + map centered on that assignee
+/relationships/#focus=<garbage>       → same as no focus (silent fallback to picker)
 ```
 
 **SSR-safety pattern (copy exactly; this is Locked Decision 9).** The prerenderer renders
-`/relationships` with NO query string. If the first client render read the query directly, a
-shared link with `?focus=` would hydrate different content than the server HTML and React would
-log a mismatch and re-render. Gate all query-dependent content behind a mounted flag:
+`/relationships` with no focus state. If the first client render read the fragment directly, a
+shared focused link would hydrate different content than the server HTML and React would log a
+mismatch and re-render. Gate all fragment-dependent content behind a mounted flag.
 
 ```tsx
-const [searchParams, setSearchParams] = useSearchParams();
+const location = useLocation();
 const [mounted, setMounted] = useState(false);
 useEffect(() => setMounted(true), []);
+const focusParam = new URLSearchParams(location.hash.replace(/^#/, "")).get("focus");
 /* Server render and first client render agree (no focus); the real focus
  * appears one paint after hydration. Same mechanism as ClientOnly.tsx. */
-const focus = mounted ? resolveFocusParam(searchParams.get("focus")) : undefined;
+const focus = mounted ? resolveFocusParam(focusParam) : undefined;
 const graph = useMemo(() => (focus ? buildRelationshipGraph(focus) : undefined), [focus]);
 ```
 
-- Recenter handler: `setFocusParty(ref)` does
-  `setSearchParams({ focus: ref.role + ":" + ref.slug })` (NO `replace` option) and clears the
-  selected patent state. Picker `onPick` uses the same handler.
+- Recenter handler navigates to `/relationships/#focus=<role>:<slug>` without `replace` and
+  clears the selected patent state. Picker `onPick` uses the same handler.
 - Selected patent: `useState<string | null>(null)`; render `PatentDetailCard` below the map when
   set (look the node up in `graph.patents`).
 - Map header row when focused: `<h2>` with the center name, a role chip, and — when
@@ -610,10 +611,9 @@ const graph = useMemo(() => (focus ? buildRelationshipGraph(focus) : undefined),
   - Full picker.
   - Two link columns: "Most-connected inventors" and "Most-connected assignees" — top 12 of
     each index by `patentCount`, each an ordinary
-    `<Link to={"/relationships?focus=author:" + slug}>` (crawlable, and they exercise the
-    query-param path).
+    `<Link to={"/relationships/#focus=author:" + slug}>`.
 - SEO: `SEOHead` with title `Patent Relationship Map — ${SITE_NAME}`, description mentioning
-  the inventor/assignee counts, `canonicalURL = ${SITE_URL}/relationships`,
+  the inventor/assignee counts, `canonicalURL = ${SITE_URL}/relationships/`,
   `collectionPageJsonLd` + `breadcrumbJsonLd` (Home → Relationships), copying
   `AuthorsIndexPage.tsx` usage. The head does NOT change with `focus` (canonical stays static).
 - PageNavBar breadcrumb: Home / Relationship map.
@@ -632,17 +632,17 @@ const graph = useMemo(() => (focus ? buildRelationshipGraph(focus) : undefined),
 5. `IndexNavBar.tsx`: add `{ label: "Relationships", to: "/relationships" }` after the Authors
    entry.
 6. `AuthorPage.tsx`: under the patent-count paragraph, add
-   `<Link to={"/relationships?focus=author:" + author.slug}>View in relationship map →</Link>`
+   `<Link to={"/relationships/#focus=author:" + author.slug}>View in relationship map →</Link>`
    styled with `t.descLinkColor`, fontSize 0.75rem.
 7. `AuthorsIndexPage.tsx`: one sentence in the intro paragraph linking to `/relationships`.
 8. Page tests (`relationshipMapPage.test.tsx`) following `pageRenders.test.tsx` conventions
    (mock `SEOHead`, use `clearBrowserState`, `installMatchMediaMock`, `renderWithRouter`, and the
    `LocationEcho` trick):
    - `/relationships` renders the h1, picker input, and both "most-connected" columns.
-   - `/relationships?focus=author:<real slug from AUTHORS[0]>` — after `waitFor`, the map
+   - `/relationships/#focus=author:<real slug from AUTHORS[0]>` — after `waitFor`, the map
      `role="img"` element appears with an aria-label containing the author name.
-   - `?focus=nonsense` renders the intro (no `role="img"`).
-   - Clicking a party node updates the location query (assert via `LocationEcho`) and renders
+   - `#focus=nonsense` renders the intro (no `role="img"`).
+   - Clicking a party node updates the location fragment (assert via `LocationEcho`) and renders
      the new center's aria-label after rerender.
    - Clicking a patent node shows the detail card; its lens link href starts with `/lens/`.
 
@@ -653,7 +653,7 @@ const graph = useMemo(() => (focus ? buildRelationshipGraph(focus) : undefined),
   without updating `generate-build-metadata.mjs` will fail the build." Steps 2 and 3 must land
   together. `__tests__/src/generated/buildRouteSync.test.ts` also enforces this — run it.
 - Do NOT add `/relationships` to `CLIENT_ONLY_PATTERNS` in `scripts/prerender.mjs` — the
-  no-focus state prerenders fine; only query-dependent content is client-gated.
+  no-focus state prerenders fine; only fragment-dependent content is client-gated.
 - `react-helmet-async` pages need `HelmetProvider` in tests — mock `SEOHead` instead, as
   `pageRenders.test.tsx` does.
 - The generated metadata is gitignored; run `npm run generate:metadata` after step 3/4 before
@@ -671,7 +671,7 @@ After `npm run build`, ALL of these must hold:
 - `grep '"/relationships"' src/generated/build-metadata.json` → present in `routes` and
   `routeFreshness`.
 - `dist/relationships/index.html` exists and contains `Patent Relationship Map` and at least one
-  `href="/relationships?focus=` link.
+  `href="/relationships/#focus=` link.
 - `grep -c "relationships" dist/sitemap.xml` ≥ 1.
 - `npm run seo:audit` passes.
 - Manual QA on `npm run dev`: open `/relationships`, pick an inventor → map renders; click an

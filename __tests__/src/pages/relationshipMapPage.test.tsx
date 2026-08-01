@@ -23,7 +23,7 @@ vi.mock("../../../src/components/SEOHead.js", () => ({
 
 function LocationEcho() {
   const location = useLocation();
-  return <div data-testid="location-echo">{`${location.pathname}${location.search}`}</div>;
+  return <div data-testid="location-echo">{`${location.pathname}${location.search}${location.hash}`}</div>;
 }
 
 function renderRoutes(initialEntry: string, routes: ReactElement) {
@@ -74,7 +74,7 @@ describe("RelationshipMapPage", () => {
   it("renders the map for a valid author focus", async () => {
     const slug = connectedAuthorSlug();
     const author = AUTHORS.find((a) => a.slug === slug)!;
-    renderRoutes(`/relationships?focus=author:${slug}`, PAGE_ROUTE);
+    renderRoutes(`/relationships/#focus=author:${slug}`, PAGE_ROUTE);
     await waitFor(() => {
       const map = screen.getByRole("img");
       expect(map.getAttribute("aria-label")).toContain(author.name);
@@ -82,28 +82,28 @@ describe("RelationshipMapPage", () => {
   });
 
   it("falls back to the intro for a garbage focus", async () => {
-    renderRoutes("/relationships?focus=nonsense", PAGE_ROUTE);
+    renderRoutes("/relationships/#focus=nonsense", PAGE_ROUTE);
     await waitFor(() => {
       expect(screen.getByRole("heading", { level: 1, name: /Patent Relationship Map/ })).toBeDefined();
     });
     expect(screen.queryByRole("img")).toBeNull();
   });
 
-  it("updates the URL query when a party node is clicked", async () => {
+  it("updates the URL fragment when a party node is clicked", async () => {
     const slug = connectedAuthorSlug();
-    renderRoutes(`/relationships?focus=author:${slug}`, PAGE_ROUTE);
+    renderRoutes(`/relationships/#focus=author:${slug}`, PAGE_ROUTE);
     const partyButtons = await screen.findAllByRole("button", { name: /Recenter map on/ });
     fireEvent.click(partyButtons[0]);
     await waitFor(() => {
-      expect(screen.getByTestId("location-echo").textContent).toMatch(/focus=(author|assignee)%3A/);
+      expect(screen.getByTestId("location-echo").textContent).toMatch(/#focus=(author|assignee):/);
     });
   });
 
   it("links the breadcrumb back to the relationships home when focused", async () => {
     const slug = connectedAuthorSlug();
-    renderRoutes(`/relationships?focus=author:${slug}`, PAGE_ROUTE);
+    renderRoutes(`/relationships/#focus=author:${slug}`, PAGE_ROUTE);
     const crumb = await screen.findByRole("link", { name: "Relationship map" });
-    expect(crumb.getAttribute("href")).toBe("/relationships");
+    expect(crumb.getAttribute("href")).toBe("/relationships/");
     fireEvent.click(crumb);
     await waitFor(() => {
       expect(screen.getByRole("heading", { level: 1, name: /Patent Relationship Map/ })).toBeDefined();
@@ -118,7 +118,7 @@ describe("RelationshipMapPage", () => {
 
   it("shows the patent detail card with a working lens link when a patent is clicked", async () => {
     const slug = connectedAuthorSlug();
-    renderRoutes(`/relationships?focus=author:${slug}`, PAGE_ROUTE);
+    renderRoutes(`/relationships/#focus=author:${slug}`, PAGE_ROUTE);
     const patentButtons = await screen.findAllByRole("button", { name: /^Patent / });
     fireEvent.click(patentButtons[0]);
     await waitFor(() => {
@@ -126,5 +126,13 @@ describe("RelationshipMapPage", () => {
     });
     const lensLink = document.querySelector('a[href^="/lens/"]');
     expect(lensLink).not.toBeNull();
+  });
+
+  it("normalizes a legacy focus query to the fragment form", async () => {
+    const slug = connectedAuthorSlug();
+    renderRoutes(`/relationships?focus=author:${slug}`, PAGE_ROUTE);
+    await waitFor(() => {
+      expect(screen.getByTestId("location-echo").textContent).toBe(`/relationships/#focus=author:${slug}`);
+    });
   });
 });

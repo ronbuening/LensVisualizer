@@ -49,7 +49,7 @@ export default function LensPage() {
   const { slug } = useParams<{ slug: string }>();
 
   if (!slug || !LENS_CATALOG[slug]) {
-    return <Navigate to="/lenses" replace />;
+    return <Navigate to="/lenses/" replace />;
   }
 
   const lens = LENS_CATALOG[slug];
@@ -86,11 +86,11 @@ export default function LensPage() {
                 Home
               </Link>
               {" / "}
-              <Link to="/lenses" style={NAV_LINK_STYLE}>
+              <Link to="/lenses/" style={NAV_LINK_STYLE}>
                 Lenses
               </Link>
               {" / "}
-              <Link to={`/makers/${maker.slug}`} style={NAV_LINK_STYLE}>
+              <Link to={`/makers/${maker.slug}/`} style={NAV_LINK_STYLE}>
                 {maker.display}
               </Link>
               {` / ${lens.name}`}

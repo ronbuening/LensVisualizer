@@ -4,6 +4,7 @@ import type { Theme } from "../../types/theme.js";
 import { PAGE_BASE_STYLE } from "../../utils/style/pageStyles.js";
 import { usePageThemeToggle } from "../../utils/theme/usePageThemeToggle.js";
 import PageNavBar from "./PageNavBar.js";
+import { canonicalPagePath } from "../../utils/seo/siteUrls.js";
 
 interface StaticPageBreadcrumb {
   label: string;
@@ -37,7 +38,7 @@ export default function StaticPageShell({ breadcrumbs, children }: StaticPageShe
           <span key={`${breadcrumb.to ?? breadcrumb.label}-${index}`}>
             {index > 0 && <span style={{ color: t.muted, margin: "0 0.35em" }}>/</span>}
             {breadcrumb.to ? (
-              <Link to={breadcrumb.to} style={{ color: t.descLinkColor, textDecoration: "none" }}>
+              <Link to={canonicalPagePath(breadcrumb.to)} style={{ color: t.descLinkColor, textDecoration: "none" }}>
                 {breadcrumb.label}
               </Link>
             ) : (

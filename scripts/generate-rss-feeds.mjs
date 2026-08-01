@@ -8,9 +8,9 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
+import { SITE_URL, canonicalPageUrl } from "./site-url.mjs";
 
 const SITE_NAME = "Surface & Stop";
-const SITE_URL = "https://surfaceandstop.com";
 const DEFAULT_FEED_LIMIT = 50;
 const ROOT = join(import.meta.dirname, "..");
 const META_PATH = join(ROOT, "src", "generated", "build-metadata.json");
@@ -127,7 +127,7 @@ function buildLensFeedItems(buildMeta, lensSummaries, limit = DEFAULT_FEED_LIMIT
 
       return {
         title: requiredString(summary.name, `lens name for "${key}"`),
-        url: `${SITE_URL}/lens/${key}`,
+        url: canonicalPageUrl(`/lens/${key}`),
         publishedOn: requiredString(freshness?.publishedOn, `publishedOn for lens "${key}"`),
         lastModified: requiredString(freshness?.lastModified, `lastModified for lens "${key}"`),
         description: lensDescription(summary),
@@ -151,7 +151,7 @@ function buildArticleFeedItems(buildMeta, limit = DEFAULT_FEED_LIMIT) {
       const title = requiredString(article.title, `article title for "${slug}"`);
       return {
         title,
-        url: `${SITE_URL}/articles/${slug}`,
+        url: canonicalPageUrl(`/articles/${slug}`),
         publishedOn: requiredString(article.publishedOn, `publishedOn for article "${slug}"`),
         lastModified: requiredString(article.lastModified, `lastModified for article "${slug}"`),
         description:
@@ -230,14 +230,14 @@ function generateRssFeeds(buildMeta, lensSummaries, { limit = DEFAULT_FEED_LIMIT
       title: lensDefinition.title,
       description: lensDefinition.description,
       feedUrl: lensFeedUrl,
-      homeUrl: `${SITE_URL}${lensDefinition.homePath}`,
+      homeUrl: canonicalPageUrl(lensDefinition.homePath),
       items: buildLensFeedItems(buildMeta, lensSummaries, limit),
     }),
     articles: renderRssFeed({
       title: articleDefinition.title,
       description: articleDefinition.description,
       feedUrl: articleFeedUrl,
-      homeUrl: `${SITE_URL}${articleDefinition.homePath}`,
+      homeUrl: canonicalPageUrl(articleDefinition.homePath),
       items: buildArticleFeedItems(buildMeta, limit),
     }),
   };

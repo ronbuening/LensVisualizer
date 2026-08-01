@@ -75,8 +75,8 @@ describe("RSS feed generation", () => {
       "https://surfaceandstop.com/feeds/lenses.xml",
     );
     expect(itemLinks(lenses)).toEqual([
-      "https://surfaceandstop.com/lens/lens-a",
-      "https://surfaceandstop.com/lens/lens-b",
+      "https://surfaceandstop.com/lens/lens-a/",
+      "https://surfaceandstop.com/lens/lens-b/",
     ]);
     expect(lenses.querySelectorAll("item")).toHaveLength(2);
     expect(lenses.querySelector("item guid")?.getAttribute("isPermaLink")).toBe("true");
@@ -85,8 +85,8 @@ describe("RSS feed generation", () => {
     expect(feeds.lenses).toContain("US &lt;123&gt;");
 
     expect(itemLinks(articles)).toEqual([
-      "https://surfaceandstop.com/articles/series-part-a",
-      "https://surfaceandstop.com/articles/series-part-b",
+      "https://surfaceandstop.com/articles/series-part-a/",
+      "https://surfaceandstop.com/articles/series-part-b/",
     ]);
     expect(articles.querySelectorAll("item")).toHaveLength(2);
     expect(feeds.articles).toContain("Surface &amp; Stop &lt;Primer&gt;");
@@ -106,8 +106,8 @@ describe("RSS feed generation", () => {
     const items = buildArticleFeedItems({ lensFreshness: {}, articles }, 50);
 
     expect(items).toHaveLength(50);
-    expect(items[0].url).toBe("https://surfaceandstop.com/articles/article-00");
-    expect(items.at(-1)?.url).toBe("https://surfaceandstop.com/articles/article-49");
+    expect(items[0].url).toBe("https://surfaceandstop.com/articles/article-00/");
+    expect(items.at(-1)?.url).toBe("https://surfaceandstop.com/articles/article-49/");
   });
 
   it("keeps GUID and publication date stable when an item is edited", () => {

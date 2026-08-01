@@ -8,10 +8,10 @@
 import type { LensData } from "../../types/optics.js";
 import buildMeta from "../../generated/build-metadata.json";
 import makerPrefixes from "../../generated/maker-prefixes.json";
+import { canonicalPageUrl, SITE_URL } from "../seo/siteUrls.js";
 import { lensPatentReference } from "./lensPatentMetadata.js";
 
 const SITE_NAME = "Surface & Stop";
-const SITE_URL = "https://surfaceandstop.com";
 const SOCIAL_IMAGE_PATH = "/branding/social-dark.png";
 const SOCIAL_IMAGE_URL = `${SITE_URL}${SOCIAL_IMAGE_PATH}`;
 const SOCIAL_IMAGE_ALT = "Surface & Stop social card featuring the site's lens mark with RGB ray traces.";
@@ -95,22 +95,22 @@ export function lensPageDescription(lens: LensData): string {
 
 /** Canonical URL for a lens page. */
 export function lensCanonicalURL(lensKey: string): string {
-  return `${SITE_URL}/lens/${lensKey}`;
+  return canonicalPageUrl(`/lens/${lensKey}`);
 }
 
 /** Canonical URL for a maker page. */
 export function makerCanonicalURL(makerSlug: string): string {
-  return `${SITE_URL}/makers/${makerSlug}`;
+  return canonicalPageUrl(`/makers/${makerSlug}`);
 }
 
 /** Canonical URL for a mount page. */
 export function mountCanonicalURL(mountId: string): string {
-  return `${SITE_URL}/mounts/${mountId}`;
+  return canonicalPageUrl(`/mounts/${mountId}`);
 }
 
 /** Canonical URL for an image-format page. */
 export function formatCanonicalURL(formatId: string): string {
-  return `${SITE_URL}/formats/${formatId}`;
+  return canonicalPageUrl(`/formats/${formatId}`);
 }
 
 /** Generate JSON-LD structured data for a lens page. */

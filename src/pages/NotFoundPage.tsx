@@ -41,7 +41,7 @@ export default function NotFoundPage() {
           Go to Surface & Stop
         </Link>
         <span style={{ margin: "0 1rem", color: t.label }}>|</span>
-        <Link to="/lenses" style={{ color: t.descLinkColor }}>
+        <Link to="/lenses/" style={{ color: t.descLinkColor }}>
           Browse all lenses
         </Link>
       </div>

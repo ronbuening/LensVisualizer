@@ -104,7 +104,7 @@ export default function UpdatesPage() {
                   return (
                     <Link
                       key={e.key}
-                      to={`/lens/${e.key}`}
+                      to={`/lens/${e.key}/`}
                       style={{
                         display: "block",
                         padding: "0.75rem 1rem",
@@ -146,9 +146,9 @@ export default function UpdatesPage() {
           >
             {[
               { to: "/", label: "Home" },
-              { to: "/lenses", label: "Lens Library" },
-              { to: "/makers", label: "Makers" },
-              { to: "/articles", label: "Articles" },
+              { to: "/lenses/", label: "Lens Library" },
+              { to: "/makers/", label: "Makers" },
+              { to: "/articles/", label: "Articles" },
             ].map(({ to, label }) => (
               <Link key={to} to={to} style={{ color: t.descLinkColor, textDecoration: "none", fontSize: "0.75rem" }}>
                 {label}

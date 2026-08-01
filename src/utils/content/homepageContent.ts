@@ -18,6 +18,7 @@
  */
 
 import buildMetaRaw from "../../generated/build-metadata.json";
+import { canonicalPagePath } from "../seo/siteUrls.js";
 
 /** Shape of an entry in build-metadata.json → articles[]. Declared here because
  *  optional fields (series/seriesOrder/toc) may be absent from the JSON schema
@@ -122,7 +123,7 @@ export const ARTICLES: HomepageArticle[] = buildMeta.articles
     title: a.title,
     date: a.publishedOn,
     summary: a.summary,
-    linkTo: `/articles/${a.slug}`,
+    linkTo: canonicalPagePath(`/articles/${a.slug}`),
     lastModified: a.lastModified,
     tag: a.tag as HomepageArticle["tag"],
     series: a.series,

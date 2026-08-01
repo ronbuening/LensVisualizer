@@ -66,7 +66,7 @@ export default function PageNavBar({
       </div>
 
       <div style={{ display: "flex", alignItems: "center", gap: 4, flexShrink: 0, marginLeft: 12 }}>
-        <Link to="/search" aria-label="Search" style={headerSearchBtn(t)}>
+        <Link to="/search/" aria-label="Search" style={headerSearchBtn(t)}>
           ⌕
         </Link>
         <div style={toggleGroup(t)}>

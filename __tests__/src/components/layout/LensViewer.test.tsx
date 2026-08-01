@@ -255,7 +255,7 @@ describe("LensViewer", () => {
     fireEvent.click(screen.getByText("switch A"));
 
     expect(mocks.dispatch).toHaveBeenCalledWith({ type: "SET_LENS_A", key: "sonnar-50f15" });
-    expect(mocks.navigate).toHaveBeenCalledWith("/lens/sonnar-50f15", { replace: true });
+    expect(mocks.navigate).toHaveBeenCalledWith("/lens/sonnar-50f15/", { replace: true });
   });
 
   it("navigates compare route lens switches and swaps", () => {
@@ -273,8 +273,8 @@ describe("LensViewer", () => {
     fireEvent.click(screen.getByText("switch B"));
     fireEvent.click(screen.getByText("swap"));
 
-    expect(mocks.navigate).toHaveBeenCalledWith("/compare/apo-lanthar-50f2/apo-lanthar-50f2", { replace: true });
-    expect(mocks.navigate).toHaveBeenCalledWith("/compare/sonnar-50f15/apo-lanthar-50f2", { replace: true });
+    expect(mocks.navigate).toHaveBeenCalledWith("/compare/apo-lanthar-50f2/apo-lanthar-50f2/", { replace: true });
+    expect(mocks.navigate).toHaveBeenCalledWith("/compare/sonnar-50f15/apo-lanthar-50f2/", { replace: true });
   });
 
   it("falls back from invalid desktop views before passing props to chrome and content", () => {

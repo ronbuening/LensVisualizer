@@ -187,7 +187,7 @@ export default function LensIndexPage() {
     customFilter,
     bounds: filterBounds,
   });
-  const returnTo = currentLensIndexSearch ? `/lenses?${currentLensIndexSearch}` : "/lenses";
+  const returnTo = currentLensIndexSearch ? `/lenses/?${currentLensIndexSearch}` : "/lenses/";
   const hrefForLens = useCallback(
     (lensKey: string, context?: LensLibraryBreadcrumbContext) => lensLinkFromLibrary(lensKey, returnTo, context),
     [returnTo],
@@ -273,7 +273,7 @@ export default function LensIndexPage() {
           }}
         >
           <Link
-            to="/mounts"
+            to="/mounts/"
             style={{
               color: t.descLinkColor,
               textDecoration: "none",
@@ -286,7 +286,7 @@ export default function LensIndexPage() {
             Browse by Mount
           </Link>
           <Link
-            to="/formats"
+            to="/formats/"
             style={{
               color: t.descLinkColor,
               textDecoration: "none",

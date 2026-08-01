@@ -51,7 +51,7 @@ describe("search, author, and patent pages", () => {
     expect(screen.getByRole("heading", { name: "Search the Catalog" })).toBeTruthy();
     expect(screen.getByRole("heading", { name: /Patent numbers/ })).toBeTruthy();
     expect(screen.getByRole("link", { name: /US 2,819,651/ }).getAttribute("href")).toBe(
-      "/lens/agfa-color-telinear-90mm-f4",
+      "/lens/agfa-color-telinear-90mm-f4/",
     );
   });
 
@@ -66,11 +66,11 @@ describe("search, author, and patent pages", () => {
     expect(screen.getByRole("searchbox").style.fontSize).toBe("16px");
     fireEvent.change(screen.getByRole("searchbox"), { target: { value: "AGFA COLOR-TELINEAR 90mm f/4" } });
     expect(screen.getByRole("link", { name: /AGFA COLOR-TELINEAR 90mm f\/4/ }).getAttribute("href")).toBe(
-      "/lens/agfa-color-telinear-90mm-f4",
+      "/lens/agfa-color-telinear-90mm-f4/",
     );
     fireEvent.submit(screen.getByRole("search"));
 
-    await waitFor(() => expect(screen.getByText("/lens/agfa-color-telinear-90mm-f4")).toBeTruthy());
+    await waitFor(() => expect(screen.getByText("/lens/agfa-color-telinear-90mm-f4/")).toBeTruthy());
   });
 
   it("renders an author patent page and switches to co-author sections", () => {
@@ -137,7 +137,7 @@ describe("search, author, and patent pages", () => {
 
     expect(screen.getByRole("heading", { level: 1, name: "Lens Patent Authors" })).toBeTruthy();
     expect(screen.getByRole("link", { name: alphabeticalAuthors[0].name }).getAttribute("href")).toBe(
-      `/authors/${alphabeticalAuthors[0].slug}`,
+      `/authors/${alphabeticalAuthors[0].slug}/`,
     );
     expect(document.querySelector("main a[href^='/authors/']")?.textContent).toBe(alphabeticalAuthors[0].name);
 
@@ -201,7 +201,7 @@ describe("search, author, and patent pages", () => {
     expect(
       screen
         .getAllByRole("link", { name: new RegExp(patent.lenses[0].name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")) })
-        .some((link) => link.getAttribute("href") === `/lens/${patent.lenses[0].key}`),
+        .some((link) => link.getAttribute("href") === `/lens/${patent.lenses[0].key}/`),
     ).toBe(true);
     expect(PATENTS.length).toBeGreaterThan(PATENT_COUNTRY_GROUPS.length);
   });

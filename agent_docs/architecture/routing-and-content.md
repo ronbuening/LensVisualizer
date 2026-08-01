@@ -30,16 +30,17 @@ build metadata.
 | `ArticlesPage.tsx` | `src/pages/` | Article archive at `/articles`. |
 | `ArticlePage.tsx` | `src/pages/` | Article page at `/articles/:slug`. |
 | `UpdatesPage.tsx` | `src/pages/` | Recently added lens/update page. |
-| `RelationshipMapPage.tsx` | `src/pages/` | Patent relationship map at `/relationships`; the focus inventor/assignee lives in a `?focus=<role>:<slug>` query param (see below). |
+| `RelationshipMapPage.tsx` | `src/pages/` | Patent relationship map at `/relationships`; the focus inventor/assignee lives in a `#focus=<role>:<slug>` fragment (see below). |
 | `NotFoundPage.tsx` | `src/pages/` | Catch-all 404. |
 
-`RelationshipMapPage` is one static route whose content is driven by a query param rather than a path param: with no
+`RelationshipMapPage` is one static route whose content is driven by a fragment rather than a path param: with no
 `focus` it renders the intro + entity picker + "most-connected" link columns (this is the prerendered SEO state), and with
-a valid `?focus=<role>:<slug>` it builds and renders the interactive ego graph. The prerenderer only ever emits the
-no-focus HTML, so all query-dependent content is gated behind a `mounted` flag (the same mechanism as `ClientOnly.tsx`) to
-keep the server render and first client render identical; the real focus appears one paint after hydration. Recentering
-uses `setSearchParams` without `replace`, so browser Back retraces the exploration path. The canonical URL is always
-`/relationships` (no query). Assignee slugs come from the build-generated `assignees` array in `build-metadata.json`
+a valid `#focus=<role>:<slug>` it builds and renders the interactive ego graph. The prerenderer only ever emits the
+no-focus HTML, so all fragment-dependent content is gated behind a `mounted` flag (the same mechanism as `ClientOnly.tsx`)
+to keep the server render and first client render identical; the real focus appears one paint after hydration.
+Recentering pushes a new fragment, so browser Back retraces the exploration path without exposing separate query URLs to
+crawlers. Legacy `?focus=` links are read and replaced with the fragment form after hydration. The canonical URL is
+always `/relationships/`. Assignee slugs come from the build-generated `assignees` array in `build-metadata.json`
 (alongside `authors`); assignees have no dedicated pages.
 
 ## Static Page Shells
@@ -68,12 +69,19 @@ The app uses React Router 7 with client-side routing plus static prerendering fo
   visible lenses and articles to `dist/feeds/lenses.xml` and `dist/feeds/articles.xml`.
 - `scripts/seo-audit.mjs` audits the built/prerendered output.
 
+The generated metadata continues to use slashless route identifiers such as `/lenses` as lookup keys. Public page URLs
+use Cloudflare Pages' directory-index form: `/` for the homepage and a trailing slash for every other prerendered route.
+`src/utils/seo/siteUrls.ts` owns runtime normalization, while `scripts/site-url.mjs` applies the same contract to build
+artifacts. Sitemap locations, canonical and Open Graph URLs, JSON-LD, RSS item links, and crawlable internal links must
+all use that direct-`200` form. Static files such as `/sitemap.xml` and `/feeds/lenses.xml` retain filename URLs.
+
 `ClientOnly.tsx` wraps browser-only interactive components. `LensPage` and `ComparePage` pass crawlable fallback content
 for SSR and replace it with `LensViewer` after hydration.
 
 ## SEO Metadata
 
 - `SEOHead.tsx` sets page title, meta tags, Open Graph, Twitter Card, canonical URL, and JSON-LD.
+- `src/utils/seo/siteUrls.ts` owns the public trailing-slash URL contract for application pages.
 - `src/utils/catalog/lensMetadata.ts` owns lens page titles, descriptions, canonical URLs, maker extraction, and lens JSON-LD.
 - `src/utils/seo/structuredData.ts` owns page-level JSON-LD helpers.
 - Maker prefixes are generated from the script-owned source of truth in `scripts/maker-prefixes.mjs` into
@@ -103,7 +111,8 @@ Lens description markdown files live beside lens data files as `*.analysis.md` a
 The RSS feeds are static build artifacts rather than React routes. `npm run build` writes RSS 2.0 files at
 `/feeds/lenses.xml` and `/feeds/articles.xml` after prerendering and sitemap generation. Feed items use the same
 git-derived `publishedOn` dates as the Updates and Articles pages, permanent canonical page URLs as GUIDs, summary-only
-descriptions, and a 50-item limit. Article series members appear as individual items; hidden lenses are excluded.
+descriptions, and a 50-item limit. Item links and GUIDs use the same trailing-slash page URLs as the sitemap and HTML
+canonical tags. Article series members appear as individual items; hidden lenses are excluded.
 
 The shared HTML template advertises both feeds with absolute RSS autodiscovery links. Visible subscription links live on
 the homepage and the corresponding Lens Library, Updates, and Articles pages. The feed URLs stay out of the route

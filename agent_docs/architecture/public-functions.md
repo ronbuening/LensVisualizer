@@ -124,6 +124,7 @@ state. Keep slider-dependent analysis out of `buildLens()`.
 | `src/utils/content/changelogHelpers.ts` | `formatDisplayDate`, `groupChangelogByDate`, `CHANGELOG_TYPE_LABELS` | Changelog display helpers. |
 | `src/utils/seo/structuredData.ts` | `publisherJsonLd`, `websiteJsonLd`, `webApplicationJsonLd`, `datasetJsonLd`, `collectionPageJsonLd`, `itemListJsonLd`, `breadcrumbJsonLd`, `articleJsonLd` | Shared JSON-LD builders. |
 | `src/utils/seo/structuredData.ts` | `getLensFreshness`, `getRouteFreshness` | Build-metadata freshness lookup for SEO. |
+| `src/utils/seo/siteUrls.ts` | `canonicalPagePath`, `canonicalPageUrl`, `normalizeSitePageUrl` | Normalize application-page paths and absolute URLs to Cloudflare Pages' trailing-slash direct-`200` form while preserving static-file URLs. |
 
 ## Routing And SSR APIs
 
