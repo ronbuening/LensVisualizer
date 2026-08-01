@@ -7,9 +7,9 @@
 import type { LensData } from "../types/optics.js";
 import type { BuildURLSliders } from "../utils/state/parseComparisonParams.js";
 import { encodeSliderParams } from "../utils/state/parseComparisonParams.js";
+import { canonicalPagePath, canonicalPageUrl } from "../utils/seo/siteUrls.js";
 
 const SITE_NAME = "Surface & Stop";
-const SITE_URL = "https://surfaceandstop.com";
 
 /**
  * Build a pathname-based comparison URL.
@@ -17,12 +17,12 @@ const SITE_URL = "https://surfaceandstop.com";
  * @param slugA   — first lens key
  * @param slugB   — second lens key
  * @param sliders — optional slider values { zoom, focus, aperture }
- * @returns URL path (e.g. "/compare/slugA/slugB?focus=0.300")
+ * @returns URL path (e.g. "/compare/slugA/slugB/?focus=0.300")
  */
 export function buildComparePath(slugA: string, slugB: string, sliders: BuildURLSliders = {}): string {
   const params = encodeSliderParams(sliders);
   const search = params.toString() ? `?${params.toString()}` : "";
-  return `/compare/${encodeURIComponent(slugA)}/${encodeURIComponent(slugB)}${search}`;
+  return canonicalPagePath(`/compare/${encodeURIComponent(slugA)}/${encodeURIComponent(slugB)}${search}`);
 }
 
 /** Title for a comparison page. */
@@ -38,5 +38,5 @@ export function comparePageDescription(lensA: LensData, lensB: LensData): string
 
 /** Canonical URL for a comparison page. */
 export function compareCanonicalURL(slugA: string, slugB: string): string {
-  return `${SITE_URL}/compare/${slugA}/${slugB}`;
+  return canonicalPageUrl(`/compare/${slugA}/${slugB}`);
 }

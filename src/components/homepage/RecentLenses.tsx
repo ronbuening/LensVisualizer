@@ -41,7 +41,7 @@ export default function RecentLenses({ entries, theme: t, showUpdatesLink }: Rec
         return (
           <Link
             key={e.key}
-            to={`/lens/${e.key}`}
+            to={`/lens/${e.key}/`}
             style={{
               display: "block",
               padding: "0.75rem 1rem",
@@ -65,7 +65,7 @@ export default function RecentLenses({ entries, theme: t, showUpdatesLink }: Rec
       })}
       {showUpdatesLink && (
         <Link
-          to="/updates"
+          to="/updates/"
           style={{
             display: "inline-block",
             marginTop: "0.75rem",

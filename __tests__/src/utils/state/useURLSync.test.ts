@@ -172,7 +172,7 @@ describe("useURLSync — updateURLWithSliders (debounced)", () => {
     });
 
     const lastCall = replaceStateSpy.mock.calls[replaceStateSpy.mock.calls.length - 1];
-    expect(lastCall[2]).toBe(`/lens/${CATALOG_KEYS[0]}?focus=0.500`);
+    expect(lastCall[2]).toBe(`/lens/${CATALOG_KEYS[0]}/?focus=0.500`);
   });
 
   it("preserves route path and appends shareable view state on lens pages", () => {
@@ -196,7 +196,7 @@ describe("useURLSync — updateURLWithSliders (debounced)", () => {
     });
 
     const lastCall = replaceStateSpy.mock.calls[replaceStateSpy.mock.calls.length - 1];
-    expect(lastCall[2]).toBe(`/lens/${CATALOG_KEYS[0]}?v=1&el=3&gm=1&ad=1&tab=coma`);
+    expect(lastCall[2]).toBe(`/lens/${CATALOG_KEYS[0]}/?v=1&el=3&gm=1&ad=1&tab=coma`);
   });
 
   it("uses shared overlay params and per-pane element params on compare pages", () => {
@@ -224,7 +224,7 @@ describe("useURLSync — updateURLWithSliders (debounced)", () => {
     });
 
     const lastCall = replaceStateSpy.mock.calls[replaceStateSpy.mock.calls.length - 1];
-    expect(lastCall[2]).toBe(`/compare/${lensKeyA}/${lensKeyB}?v=1&a_el=2&b_el=4&gm=1&ad=1&tab=distortion`);
+    expect(lastCall[2]).toBe(`/compare/${lensKeyA}/${lensKeyB}/?v=1&a_el=2&b_el=4&gm=1&ad=1&tab=distortion`);
   });
 
   it("hydrates URL view state on browser navigation", () => {
@@ -488,7 +488,7 @@ describe("useURLSync — comparison mode slider URL", () => {
     });
 
     const lastCall = replaceStateSpy.mock.calls[replaceStateSpy.mock.calls.length - 1];
-    expect(lastCall[2]).toBe(`/compare/${lensKeyA}/${lensKeyB}?focus=0.400&aperture=0.200`);
+    expect(lastCall[2]).toBe(`/compare/${lensKeyA}/${lensKeyB}/?focus=0.400&aperture=0.200`);
   });
 
   it("encodes shared zoom for comparison mode after debounce", () => {

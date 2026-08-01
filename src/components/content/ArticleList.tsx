@@ -38,7 +38,7 @@ export default function ArticleList({ articles, theme: t, showMoreLink }: Articl
       ))}
       {showMoreLink && (
         <Link
-          to="/articles"
+          to="/articles/"
           style={{
             display: "inline-block",
             marginTop: "0.75rem",

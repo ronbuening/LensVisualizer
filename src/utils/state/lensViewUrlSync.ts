@@ -5,6 +5,7 @@ import { SET_SHARED_ZOOM_T, SET_ZOOM_T } from "./lensReducer.js";
 import { focalLengthToZoomT, zoomTToFocalLength, type ZoomConvertibleLens } from "./zoomConversion.js";
 import type { LensAction, LensState } from "../../types/state.js";
 import type { RuntimeLens } from "../../types/optics.js";
+import { canonicalPagePath } from "../seo/siteUrls.js";
 
 /**
  * lensViewUrlSync — bridges reducer-shaped LensState to the URL surface
@@ -77,7 +78,7 @@ export function buildRouteLensViewUrl(
   currentSearch: string,
   isComparePage = false,
 ): string {
-  return `${pathname}${buildLensViewSearch(state, comparisonLenses, currentSearch, isComparePage)}`;
+  return canonicalPagePath(`${pathname}${buildLensViewSearch(state, comparisonLenses, currentSearch, isComparePage)}`);
 }
 
 export function buildLegacyLensViewUrl(

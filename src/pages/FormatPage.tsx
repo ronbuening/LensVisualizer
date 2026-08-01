@@ -18,11 +18,11 @@ export default function FormatPage() {
   const { formatId } = useParams<{ formatId: string }>();
   const { theme: t, themeMode, highContrast, toggleTheme, toggleHC } = usePageThemeToggle();
 
-  if (!isImageFormatId(formatId)) return <Navigate to="/formats" replace />;
+  if (!isImageFormatId(formatId)) return <Navigate to="/formats/" replace />;
 
   const format = IMAGE_FORMAT_BY_ID[formatId];
   const lenses = lensesForImageFormat(formatId);
-  if (lenses.length === 0) return <Navigate to="/formats" replace />;
+  if (lenses.length === 0) return <Navigate to="/formats/" replace />;
   const details = getImageFormatDetails(formatId);
 
   const seoDescription = details
@@ -61,7 +61,7 @@ export default function FormatPage() {
           Home
         </Link>
         <span style={{ color: t.muted, margin: "0 0.35em" }}>/</span>
-        <Link to="/formats" style={{ color: t.descLinkColor, textDecoration: "none" }}>
+        <Link to="/formats/" style={{ color: t.descLinkColor, textDecoration: "none" }}>
           Formats
         </Link>
         <span style={{ color: t.muted, margin: "0 0.35em" }}>/</span>
@@ -96,7 +96,7 @@ export default function FormatPage() {
           {lenses.map((entry) => (
             <Link
               key={entry.key}
-              to={lensLinkFromFormat(entry.key, formatId)}
+              {...lensLinkFromFormat(entry.key, formatId)}
               style={{ ...LENS_LINK_BASE_STYLE, color: t.descLinkColor }}
             >
               {entry.data.name}

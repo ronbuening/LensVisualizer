@@ -60,7 +60,7 @@ function lookupPartyRef(name: string, role: PartyRole): PartyRef | undefined {
 }
 
 /**
- * Parse "?focus=" values like "author:ludwig-bertele". Returns undefined for
+ * Parse relationship focus values like "author:ludwig-bertele". Returns undefined for
  * anything malformed or unknown so callers can fall back to the picker.
  */
 export function resolveFocusParam(raw: string | null): PartyRef | undefined {

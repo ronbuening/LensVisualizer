@@ -173,7 +173,7 @@ export function isValidLensLibraryReturnPath(path: string, bounds: FilterBounds)
   if (!path.startsWith("/lenses")) return false;
   try {
     const url = new URL(path, "https://surfaceandstop.com");
-    if (url.pathname !== "/lenses") return false;
+    if (url.pathname !== "/lenses" && url.pathname !== "/lenses/") return false;
     parseLensIndexUrlState(url.search, bounds);
     return true;
   } catch {

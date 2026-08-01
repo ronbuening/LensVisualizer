@@ -52,6 +52,7 @@ import useOverlays from "../hooks/useOverlays.js";
 import ViewerChrome from "./lensViewer/ViewerChrome.js";
 import ViewerContent from "./lensViewer/ViewerContent.js";
 import ViewerOverlays from "./lensViewer/ViewerOverlays.js";
+import { canonicalPagePath } from "../../utils/seo/siteUrls.js";
 
 const ABOUT_ME_MD = stripFrontmatter(_ABOUT_ME_MD);
 const ABOUT_SITE_MD = stripFrontmatter(_ABOUT_SITE_MD);
@@ -194,9 +195,9 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
     (key: string) => {
       dispatch({ type: SET_LENS_A, key });
       if (isComparePage) {
-        void navigate(`/compare/${key}/${lensKeyB}`, { replace: true });
+        void navigate(canonicalPagePath(`/compare/${key}/${lensKeyB}`), { replace: true });
       } else if (isLensPage && !state.lens.comparing) {
-        void navigate(`/lens/${key}`, { replace: true });
+        void navigate(canonicalPagePath(`/lens/${key}`), { replace: true });
       }
     },
     [dispatch, isLensPage, isComparePage, lensKeyB, state.lens.comparing, navigate],
@@ -206,7 +207,7 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
     (key: string) => {
       dispatch({ type: SET_LENS_B, key });
       if (isComparePage) {
-        void navigate(`/compare/${lensKeyA}/${key}`, { replace: true });
+        void navigate(canonicalPagePath(`/compare/${lensKeyA}/${key}`), { replace: true });
       }
     },
     [dispatch, isComparePage, lensKeyA, navigate],
@@ -215,7 +216,7 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
   const swapLenses = useCallback(() => {
     dispatch({ type: SWAP_LENSES });
     if (isComparePage) {
-      void navigate(`/compare/${lensKeyB}/${lensKeyA}`, { replace: true });
+      void navigate(canonicalPagePath(`/compare/${lensKeyB}/${lensKeyA}`), { replace: true });
     }
   }, [dispatch, isComparePage, lensKeyA, lensKeyB, navigate]);
 

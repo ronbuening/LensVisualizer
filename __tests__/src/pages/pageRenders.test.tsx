@@ -70,15 +70,17 @@ describe("static page renders", () => {
     expect(screen.getByRole("link", { name: "Search" }).style.width).toBe("30px");
     expect(screen.getByRole("link", { name: "Search" }).style.height).toBe("30px");
     const indexNav = screen.getByRole("navigation", { name: "Catalog indexes" });
-    expect(within(indexNav).getByRole("link", { name: "Mounts" }).getAttribute("href")).toBe("/mounts");
-    expect(within(indexNav).getByRole("link", { name: "Formats" }).getAttribute("href")).toBe("/formats");
-    expect(within(indexNav).getByRole("link", { name: "Patents" }).getAttribute("href")).toBe("/patents");
-    expect(within(indexNav).getByRole("link", { name: "Authors" }).getAttribute("href")).toBe("/authors");
-    expect(within(indexNav).getByRole("link", { name: "Articles" }).getAttribute("href")).toBe("/articles");
+    expect(within(indexNav).getByRole("link", { name: "Mounts" }).getAttribute("href")).toBe("/mounts/");
+    expect(within(indexNav).getByRole("link", { name: "Formats" }).getAttribute("href")).toBe("/formats/");
+    expect(within(indexNav).getByRole("link", { name: "Patents" }).getAttribute("href")).toBe("/patents/");
+    expect(within(indexNav).getByRole("link", { name: "Authors" }).getAttribute("href")).toBe("/authors/");
+    expect(within(indexNav).getByRole("link", { name: "Articles" }).getAttribute("href")).toBe("/articles/");
     expect(screen.getByText("Articles & Guides")).toBeTruthy();
     expect(screen.getByText(HOMEPAGE_ARTICLES[0].title)).toBeTruthy();
     const bodyText = document.body.textContent ?? "";
     expect(bodyText.indexOf("Patent-derived optical models")).toBeGreaterThan(bodyText.indexOf("Articles & Guides"));
+    expect(screen.getByRole("link", { name: "New Lenses RSS" }).getAttribute("href")).toBe("/feeds/lenses.xml");
+    expect(screen.getByRole("link", { name: "New Articles RSS" }).getAttribute("href")).toBe("/feeds/articles.xml");
     expect(screen.getByRole("link", { name: "Sitemap" }).getAttribute("href")).toBe("/sitemap.xml");
   });
 
@@ -94,7 +96,7 @@ describe("static page renders", () => {
     );
 
     await waitFor(() => {
-      expect(screen.getByText(`/lens/${lensKey}`)).toBeTruthy();
+      expect(screen.getByText(`/lens/${lensKey}/`)).toBeTruthy();
     });
   });
 
@@ -110,7 +112,7 @@ describe("static page renders", () => {
     );
 
     await waitFor(() => {
-      expect(screen.getByText(`/compare/${slugA}/${slugB}?focus=0.4&aperture=0.2&zoom=70`)).toBeTruthy();
+      expect(screen.getByText(`/compare/${slugA}/${slugB}/?focus=0.4&aperture=0.2&zoom=70`)).toBeTruthy();
     });
   });
 
@@ -124,6 +126,9 @@ describe("static page renders", () => {
 
     expect(screen.getByText("All Articles")).toBeTruthy();
     expect(screen.getAllByText(ARTICLES[0].title).length).toBeGreaterThan(0);
+    expect(screen.getByRole("link", { name: "Subscribe to New Articles" }).getAttribute("href")).toBe(
+      "/feeds/articles.xml",
+    );
     expect(scrollTo).toHaveBeenCalledWith({ top: 0, left: 0 });
   });
 

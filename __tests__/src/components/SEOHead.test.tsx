@@ -41,6 +41,8 @@ describe("SEOHead", () => {
     );
 
     const meta = helmet.meta.toString();
+    expect(helmet.link.toString()).toContain('href="https://surfaceandstop.com/example/"');
+    expect(meta).toContain('property="og:url" content="https://surfaceandstop.com/example/"');
     expect(meta).toContain('name="twitter:card" content="summary_large_image"');
     expect(meta).toContain('property="og:image" content="https://surfaceandstop.com/og/example.png"');
     expect(meta).toContain('property="og:image:alt" content="Example alt"');

@@ -9,7 +9,8 @@
 import { Link } from "react-router";
 import { getMakerDetails } from "../../utils/catalog/makerDetails.js";
 import { isImageFormatId, isLensMountId } from "../../utils/catalog/lensTaxonomy.js";
-import type { LensLibraryBreadcrumbContext } from "./clusterLinks.js";
+import type { LensLibraryBreadcrumbContext, LensLinkTarget } from "./clusterLinks.js";
+import { canonicalPagePath } from "../../utils/seo/siteUrls.js";
 import { LENS_LINK_BASE_STYLE, SECTION_HEADING_BASE_STYLE } from "./styles.js";
 import {
   focalSectionAnchorId,
@@ -42,10 +43,16 @@ function LensEntryLink({
   text: string;
   meta: string | null;
   theme: Theme;
-  hrefForLens: (lensKey: string, context?: LensLibraryBreadcrumbContext) => string;
+  hrefForLens: (lensKey: string, context?: LensLibraryBreadcrumbContext) => LensLinkTarget;
 }) {
+  const target = hrefForLens(lensKey);
   return (
-    <Link key={lensKey} to={hrefForLens(lensKey)} style={{ ...LENS_LINK_BASE_STYLE, color: theme.descLinkColor }}>
+    <Link
+      key={lensKey}
+      to={target.to}
+      state={target.state}
+      style={{ ...LENS_LINK_BASE_STYLE, color: theme.descLinkColor }}
+    >
       {text}
       {meta && <span style={{ color: theme.label, fontSize: "0.75rem", marginLeft: "0.5rem" }}>— {meta}</span>}
     </Link>
@@ -59,7 +66,7 @@ function MakerSections({
 }: {
   groups: MakerGroup[];
   theme: Theme;
-  hrefForLens: (lensKey: string, context?: LensLibraryBreadcrumbContext) => string;
+  hrefForLens: (lensKey: string, context?: LensLibraryBreadcrumbContext) => LensLinkTarget;
 }) {
   return (
     <>
@@ -68,7 +75,7 @@ function MakerSections({
         return (
           <section key={group.slug} id={makerGroupAnchorId(group.slug)}>
             <h2 style={{ ...SECTION_HEADING_BASE_STYLE, borderBottom: `1px solid ${theme.panelBorder}` }}>
-              <Link to={`/makers/${group.slug}`} style={{ color: "inherit", textDecoration: "none" }}>
+              <Link to={`/makers/${group.slug}/`} style={{ color: "inherit", textDecoration: "none" }}>
                 {group.display}
               </Link>
               <span style={{ color: theme.label, fontSize: "0.75rem", marginLeft: "0.5rem", fontWeight: 400 }}>
@@ -112,7 +119,7 @@ function FocalSections({
 }: {
   sections: PrimeZoomSection[];
   theme: Theme;
-  hrefForLens: (lensKey: string, context?: LensLibraryBreadcrumbContext) => string;
+  hrefForLens: (lensKey: string, context?: LensLibraryBreadcrumbContext) => LensLinkTarget;
 }) {
   return (
     <>
@@ -180,7 +187,7 @@ function PatentPartySections({
   groups: PatentPartyGroup[];
   role: "inventor" | "assignee";
   theme: Theme;
-  hrefForLens: (lensKey: string, context?: LensLibraryBreadcrumbContext) => string;
+  hrefForLens: (lensKey: string, context?: LensLibraryBreadcrumbContext) => LensLinkTarget;
 }) {
   return (
     <>
@@ -215,7 +222,7 @@ function PatentYearSections({
 }: {
   groups: YearGroup[];
   theme: Theme;
-  hrefForLens: (lensKey: string, context?: LensLibraryBreadcrumbContext) => string;
+  hrefForLens: (lensKey: string, context?: LensLibraryBreadcrumbContext) => LensLinkTarget;
 }) {
   return (
     <>
@@ -250,7 +257,7 @@ function MountSections({
 }: {
   groups: MountGroup[];
   theme: Theme;
-  hrefForLens: (lensKey: string, context?: LensLibraryBreadcrumbContext) => string;
+  hrefForLens: (lensKey: string, context?: LensLibraryBreadcrumbContext) => LensLinkTarget;
 }) {
   return (
     <>
@@ -258,7 +265,7 @@ function MountSections({
         <section key={group.id} id={mountGroupAnchorId(group.id)}>
           <h2 style={{ ...SECTION_HEADING_BASE_STYLE, borderBottom: `1px solid ${theme.panelBorder}` }}>
             {isLensMountId(group.id) ? (
-              <Link to={`/mounts/${group.id}`} style={{ color: "inherit", textDecoration: "none" }}>
+              <Link to={`/mounts/${group.id}/`} style={{ color: "inherit", textDecoration: "none" }}>
                 {group.label}
               </Link>
             ) : (
@@ -293,7 +300,7 @@ function ImageFormatSections({
 }: {
   groups: ImageFormatGroup[];
   theme: Theme;
-  hrefForLens: (lensKey: string, context?: LensLibraryBreadcrumbContext) => string;
+  hrefForLens: (lensKey: string, context?: LensLibraryBreadcrumbContext) => LensLinkTarget;
 }) {
   return (
     <>
@@ -301,7 +308,7 @@ function ImageFormatSections({
         <section key={group.id} id={formatGroupAnchorId(group.id)}>
           <h2 style={{ ...SECTION_HEADING_BASE_STYLE, borderBottom: `1px solid ${theme.panelBorder}` }}>
             {isImageFormatId(group.id) ? (
-              <Link to={`/formats/${group.id}`} style={{ color: "inherit", textDecoration: "none" }}>
+              <Link to={`/formats/${group.id}/`} style={{ color: "inherit", textDecoration: "none" }}>
                 {group.label}
               </Link>
             ) : (
@@ -339,7 +346,7 @@ export default function LensIndexResults({
   mountGroups,
   imageFormatGroups,
   theme,
-  hrefForLens = (lensKey) => `/lens/${lensKey}`,
+  hrefForLens = (lensKey) => ({ to: canonicalPagePath(`/lens/${lensKey}`) }),
 }: {
   groupMode: GroupMode;
   makerGroups: MakerGroup[];
@@ -350,7 +357,7 @@ export default function LensIndexResults({
   mountGroups: MountGroup[];
   imageFormatGroups: ImageFormatGroup[];
   theme: Theme;
-  hrefForLens?: (lensKey: string, context?: LensLibraryBreadcrumbContext) => string;
+  hrefForLens?: (lensKey: string, context?: LensLibraryBreadcrumbContext) => LensLinkTarget;
 }) {
   if (groupMode === "maker") return <MakerSections groups={makerGroups} theme={theme} hrefForLens={hrefForLens} />;
   if (groupMode === "inventor") {

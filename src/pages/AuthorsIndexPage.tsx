@@ -75,7 +75,7 @@ export default function AuthorsIndexPage() {
         <p style={{ color: t.muted, fontSize: "0.8rem", lineHeight: 1.5, marginBottom: "1.5rem" }}>
           {AUTHORS.length} named inventors represented in the Surface &amp; Stop catalog. Explore how they connect
           through shared patents in the{" "}
-          <Link to="/relationships" style={{ color: t.descLinkColor, textDecoration: "none" }}>
+          <Link to="/relationships/" style={{ color: t.descLinkColor, textDecoration: "none" }}>
             patent relationship map
           </Link>
           .
@@ -120,7 +120,7 @@ export default function AuthorsIndexPage() {
               }}
             >
               <Link
-                to={`/authors/${author.slug}`}
+                to={`/authors/${author.slug}/`}
                 style={{ color: t.descLinkColor, textDecoration: "none", fontSize: "0.9rem", fontWeight: 600 }}
               >
                 {author.name}

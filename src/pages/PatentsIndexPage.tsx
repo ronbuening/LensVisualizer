@@ -95,7 +95,7 @@ function PatentCard({ patent, groupedAssignee, theme: t }: PatentCardProps) {
 
       <div style={{ paddingTop: "0.15rem" }}>
         {patent.lenses.map((lens) => (
-          <Link key={lens.key} to={`/lens/${lens.key}`} style={{ ...LENS_LINK_BASE_STYLE, color: t.descLinkColor }}>
+          <Link key={lens.key} to={`/lens/${lens.key}/`} style={{ ...LENS_LINK_BASE_STYLE, color: t.descLinkColor }}>
             {lens.name}
             {lens.specs?.length ? (
               <span style={{ color: t.label, fontSize: "0.68rem", marginLeft: "0.5rem" }}>

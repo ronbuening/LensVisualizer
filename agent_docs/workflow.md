@@ -42,4 +42,6 @@ CI enforces the same checks via `.github/workflows/quality.yml` — failing them
 - Builds use the normal pipeline and deploy the generated `dist/` output.
 - Base path set to `/` in `vite.config.js` because Cloudflare Pages serves the production site from the domain root
 - Quality checks run on PRs via `.github/workflows/quality.yml` (lint, format, typecheck, test, npm audit, build)
-- Build pipeline: `generate-build-metadata.mjs` (routes + metadata) → `vite build` → `prerender.mjs` (SSR static HTML + manifest validation) → `generate-sitemap.mjs` (reads routes from `src/generated/build-metadata.json`)
+- Build pipeline: `generate-build-metadata.mjs` (routes + metadata) → `vite build` → `prerender.mjs` (SSR static HTML +
+  manifest validation) → `generate-sitemap.mjs` → `generate-rss-feeds.mjs` (writes both static RSS feeds from generated
+  metadata)

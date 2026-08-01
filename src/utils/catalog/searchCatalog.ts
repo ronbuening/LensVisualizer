@@ -9,6 +9,7 @@ import { AUTHORS } from "./authorCatalog.js";
 import type { AuthorMetadata } from "./authorCatalog.js";
 import { LENS_SUMMARIES, SUMMARY_KEYS } from "./lensSummaries.js";
 import type { LensSummary } from "./lensSummaries.js";
+import { canonicalPagePath } from "../seo/siteUrls.js";
 
 export interface LensNameSearchMatch {
   type: "lens";
@@ -116,13 +117,13 @@ export function exactSearchTarget(query: string): string | null {
 
   const lensMatches = SUMMARY_KEYS.filter(
     (key) => normalizeSearchText(LENS_SUMMARIES[key].name) === normalizedQuery,
-  ).map((key) => `/lens/${key}`);
+  ).map((key) => canonicalPagePath(`/lens/${key}`));
   const patentMatches = SUMMARY_KEYS.filter((key) => {
     const patent = LENS_SUMMARIES[key].patentNumber;
     return patent ? normalizeSearchText(patent).replaceAll(" ", "") === compactQuery : false;
-  }).map((key) => `/lens/${key}`);
-  const authorMatches = AUTHORS.filter((author) => normalizeSearchText(author.name) === normalizedQuery).map(
-    (author) => `/authors/${author.slug}`,
+  }).map((key) => canonicalPagePath(`/lens/${key}`));
+  const authorMatches = AUTHORS.filter((author) => normalizeSearchText(author.name) === normalizedQuery).map((author) =>
+    canonicalPagePath(`/authors/${author.slug}`),
   );
   const targets = [...new Set([...lensMatches, ...patentMatches, ...authorMatches])];
   return targets.length === 1 ? targets[0] : null;

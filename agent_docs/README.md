@@ -15,6 +15,8 @@ links outward only when the task crosses boundaries.
   [`lens-data-integration-handoff.md`](lens-data-integration-handoff.md), patent audits, semi-diameter diagram audits,
   articles, changelog, comments, and gotchas.
 - Glass catalog workflow docs at the root — catalog buildout, relabel follow-up, and proprietary-glass backfill.
+- [`seo-optimization-plan.md`](seo-optimization-plan.md) — staged production rollout, Search Console triage,
+  index-quality decisions, performance work, monitoring, required inputs, and acceptance criteria for SEO follow-ups.
 - Agent instruction guidance at the root — [`agent-md-best-practices.md`](agent-md-best-practices.md) for general
   AGENTS.md files and [`claude-md-best-practices.md`](claude-md-best-practices.md) for Claude-specific files.
 - Root-level project docs: [`../TRACE_MODEL_IMPROVEMENT_PLAN.md`](../TRACE_MODEL_IMPROVEMENT_PLAN.md) (historical

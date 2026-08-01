@@ -1,5 +1,6 @@
 import buildMeta from "../../generated/build-metadata.json";
 import { SITE_NAME, SITE_URL } from "../catalog/lensMetadata.js";
+import { canonicalPageUrl, normalizeSitePageUrl } from "./siteUrls.js";
 
 interface FreshnessEntry {
   publishedOn: string;
@@ -103,7 +104,7 @@ export function datasetJsonLd({
       "@type": "Dataset",
       name,
       description,
-      url,
+      url: normalizeSitePageUrl(url),
       creator: publisherRef(),
       publisher: publisherRef(),
       isPartOf: {
@@ -133,7 +134,7 @@ export function collectionPageJsonLd({
       "@type": "CollectionPage",
       name,
       description,
-      url,
+      url: normalizeSitePageUrl(url),
       isPartOf: {
         "@type": "WebSite",
         name: SITE_NAME,
@@ -158,13 +159,13 @@ export function itemListJsonLd({
     "@context": "https://schema.org",
     "@type": "ItemList",
     name,
-    url,
+    url: normalizeSitePageUrl(url),
     numberOfItems: items.length,
     itemListElement: items.map((item, index) => ({
       "@type": "ListItem",
       position: index + 1,
       name: item.name,
-      url: item.url,
+      url: normalizeSitePageUrl(item.url),
     })),
   };
 }
@@ -177,7 +178,7 @@ export function breadcrumbJsonLd(items: BreadcrumbEntry[]): Record<string, unkno
       "@type": "ListItem",
       position: index + 1,
       name: item.name,
-      item: item.url,
+      item: normalizeSitePageUrl(item.url),
     })),
   };
 }
@@ -191,7 +192,7 @@ export function articleJsonLd({
   description: string;
   slug: string;
 }): Record<string, unknown> {
-  const url = `${SITE_URL}/articles/${slug}`;
+  const url = canonicalPageUrl(`/articles/${slug}`);
   return withFreshness(
     {
       "@context": "https://schema.org",

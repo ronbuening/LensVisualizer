@@ -37,7 +37,7 @@ describe("structuredData helpers", () => {
     });
 
     expect(schema["@type"]).toBe("CollectionPage");
-    expect(schema.url).toBe(`${SITE_URL}/lenses`);
+    expect(schema.url).toBe(`${SITE_URL}/lenses/`);
     expect(schema.datePublished).toMatch(/^\d{4}-\d{2}-\d{2}$/);
     expect(schema.dateModified).toMatch(/^\d{4}-\d{2}-\d{2}$/);
   });
@@ -66,7 +66,7 @@ describe("structuredData helpers", () => {
     });
 
     expect(schema["@type"]).toBe("Dataset");
-    expect(schema.url).toBe(`${SITE_URL}/lenses`);
+    expect(schema.url).toBe(`${SITE_URL}/lenses/`);
     expect(schema.dateModified).toMatch(/^\d{4}-\d{2}-\d{2}$/);
   });
 
@@ -79,7 +79,7 @@ describe("structuredData helpers", () => {
     });
 
     expect(schema["@type"]).toBe("Article");
-    expect(schema.url).toBe(`${SITE_URL}/articles/${article.slug}`);
+    expect(schema.url).toBe(`${SITE_URL}/articles/${article.slug}/`);
     expect(schema.datePublished).toMatch(/^\d{4}-\d{2}-\d{2}$/);
     expect(schema.dateModified).toMatch(/^\d{4}-\d{2}-\d{2}$/);
   });
@@ -91,6 +91,6 @@ describe("structuredData helpers", () => {
     ]);
 
     expect(schema["@type"]).toBe("BreadcrumbList");
-    expect((schema.itemListElement as Array<Record<string, unknown>>)[1].item).toBe(`${SITE_URL}/articles`);
+    expect((schema.itemListElement as Array<Record<string, unknown>>)[1].item).toBe(`${SITE_URL}/articles/`);
   });
 });

@@ -116,7 +116,7 @@ export default function PatentDetailCard({
 
       <div style={{ borderTop: `1px solid ${t.panelDivider}`, paddingTop: "0.35rem" }}>
         {patent.lenses.map((lens) => (
-          <Link key={lens.key} to={`/lens/${lens.key}`} style={{ ...LENS_LINK_BASE_STYLE, color: t.descLinkColor }}>
+          <Link key={lens.key} to={`/lens/${lens.key}/`} style={{ ...LENS_LINK_BASE_STYLE, color: t.descLinkColor }}>
             {lens.name}
             {lens.specs?.length ? (
               <span style={{ color: t.label, fontSize: "0.68rem", marginLeft: "0.5rem" }}>

@@ -29,6 +29,8 @@ import { useLensCtx, useLensDispatch } from "../../utils/state/LensContext.js";
 import { SET_DARK, SET_HIGH_CONTRAST } from "../../utils/state/lensReducer.js";
 import { FILTER_BOUNDS } from "../../pages/lensIndex/catalog.js";
 import { isValidLensLibraryReturnPath } from "../../pages/lensIndex/urlState.js";
+import type { LensBreadcrumbSource, LensNavigationState } from "../../pages/lensIndex/clusterLinks.js";
+import { canonicalPagePath } from "../../utils/seo/siteUrls.js";
 import {
   darkPreferenceFromThemeMode,
   nextThemeMode,
@@ -44,18 +46,25 @@ interface BreadcrumbBarProps {
   lensKey: string;
 }
 
-type BreadcrumbSource =
-  | {
-      type: "lenses";
-      returnTo: string;
-      context?:
-        | { type: "mount"; id: keyof typeof LENS_MOUNT_BY_ID }
-        | { type: "format"; id: keyof typeof IMAGE_FORMAT_BY_ID };
-    }
-  | { type: "mount"; id: keyof typeof LENS_MOUNT_BY_ID }
-  | { type: "format"; id: keyof typeof IMAGE_FORMAT_BY_ID };
+function validBreadcrumbSource(source: LensBreadcrumbSource | undefined): LensBreadcrumbSource | null {
+  if (!source) return null;
+  if (source.type === "lenses") {
+    if (!isValidLensLibraryReturnPath(source.returnTo, FILTER_BOUNDS)) return null;
+    if (source.context?.type === "mount" && !isLensMountId(source.context.id)) return null;
+    if (source.context?.type === "format" && !isImageFormatId(source.context.id)) return null;
+    return { ...source, returnTo: canonicalPagePath(source.returnTo) };
+  }
+  if (source.type === "mount" && isLensMountId(source.id)) return source;
+  if (source.type === "format" && isImageFormatId(source.id)) return source;
+  return null;
+}
 
-function sourceFromSearch(search: string): BreadcrumbSource | null {
+function sourceFromState(state: unknown): LensBreadcrumbSource | null {
+  if (!state || typeof state !== "object" || !("lensBreadcrumb" in state)) return null;
+  return validBreadcrumbSource((state as LensNavigationState).lensBreadcrumb);
+}
+
+function sourceFromSearch(search: string): LensBreadcrumbSource | null {
   const params = new URLSearchParams(search);
   const from = params.get("from");
   const id = params.get("id");
@@ -102,7 +111,7 @@ export default function BreadcrumbBar({ theme: t, isWide, lensKey }: BreadcrumbB
   if (!lensA) return null;
 
   const maker = deriveMaker(lensA.name, lensA.maker);
-  const source = sourceFromSearch(location.search);
+  const source = sourceFromState(location.state) ?? sourceFromSearch(location.search);
   const padding = isWide ? "6px 24px" : "6px 12px";
 
   const linkStyle: React.CSSProperties = {
@@ -141,7 +150,7 @@ export default function BreadcrumbBar({ theme: t, isWide, lensKey }: BreadcrumbB
           <span style={separatorStyle}>/</span>
           {comparing && lensB ? (
             <>
-              <Link to="/lenses" style={linkStyle}>
+              <Link to="/lenses/" style={linkStyle}>
                 Lenses
               </Link>
               <span style={separatorStyle}>/</span>
@@ -158,15 +167,15 @@ export default function BreadcrumbBar({ theme: t, isWide, lensKey }: BreadcrumbB
                   </Link>
                   <span style={separatorStyle}>/</span>
                   {source.context?.type === "mount" ? (
-                    <Link to={`/mounts/${source.context.id}`} style={linkStyle}>
+                    <Link to={`/mounts/${source.context.id}/`} style={linkStyle}>
                       {LENS_MOUNT_BY_ID[source.context.id].label}
                     </Link>
                   ) : source.context?.type === "format" ? (
-                    <Link to={`/formats/${source.context.id}`} style={linkStyle}>
+                    <Link to={`/formats/${source.context.id}/`} style={linkStyle}>
                       {IMAGE_FORMAT_BY_ID[source.context.id].label}
                     </Link>
                   ) : (
-                    <Link to={`/makers/${maker.slug}`} style={linkStyle}>
+                    <Link to={`/makers/${maker.slug}/`} style={linkStyle}>
                       {maker.display}
                     </Link>
                   )}
@@ -175,11 +184,11 @@ export default function BreadcrumbBar({ theme: t, isWide, lensKey }: BreadcrumbB
                 </>
               ) : source?.type === "mount" ? (
                 <>
-                  <Link to="/mounts" style={linkStyle}>
+                  <Link to="/mounts/" style={linkStyle}>
                     Mounts
                   </Link>
                   <span style={separatorStyle}>/</span>
-                  <Link to={`/mounts/${source.id}`} style={linkStyle}>
+                  <Link to={`/mounts/${source.id}/`} style={linkStyle}>
                     {LENS_MOUNT_BY_ID[source.id].label}
                   </Link>
                   <span style={separatorStyle}>/</span>
@@ -187,11 +196,11 @@ export default function BreadcrumbBar({ theme: t, isWide, lensKey }: BreadcrumbB
                 </>
               ) : source?.type === "format" ? (
                 <>
-                  <Link to="/formats" style={linkStyle}>
+                  <Link to="/formats/" style={linkStyle}>
                     Formats
                   </Link>
                   <span style={separatorStyle}>/</span>
-                  <Link to={`/formats/${source.id}`} style={linkStyle}>
+                  <Link to={`/formats/${source.id}/`} style={linkStyle}>
                     {IMAGE_FORMAT_BY_ID[source.id].label}
                   </Link>
                   <span style={separatorStyle}>/</span>
@@ -199,11 +208,11 @@ export default function BreadcrumbBar({ theme: t, isWide, lensKey }: BreadcrumbB
                 </>
               ) : (
                 <>
-                  <Link to="/makers" style={linkStyle}>
+                  <Link to="/makers/" style={linkStyle}>
                     Makers
                   </Link>
                   <span style={separatorStyle}>/</span>
-                  <Link to={`/makers/${maker.slug}`} style={linkStyle}>
+                  <Link to={`/makers/${maker.slug}/`} style={linkStyle}>
                     {maker.display}
                   </Link>
                   <span style={separatorStyle}>/</span>
@@ -215,7 +224,7 @@ export default function BreadcrumbBar({ theme: t, isWide, lensKey }: BreadcrumbB
         </div>
 
         <div style={{ display: "flex", alignItems: "center", gap: 4, marginLeft: 12, flexShrink: 0 }}>
-          <Link to="/search" aria-label="Search" style={headerSearchBtn(t)}>
+          <Link to="/search/" aria-label="Search" style={headerSearchBtn(t)}>
             ⌕
           </Link>
           <button

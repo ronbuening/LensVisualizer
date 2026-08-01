@@ -21,6 +21,7 @@ import {
 } from "./comparisonReducer.js";
 import type { FocusPairResult, AperturePairResult, ZoomPairResult, MovementPairResult } from "./comparisonSliders.js";
 import type { LensState, LensAction } from "../types/state.js";
+import { canonicalPagePath } from "../utils/seo/siteUrls.js";
 
 export { isComparisonOk } from "./useComparisonMode.js";
 export type { ComparisonLensesResult } from "./useComparisonMode.js";
@@ -130,7 +131,7 @@ export default function useComparisonOrchestration({
         lensKeyA === lensKeyB && catalogKeys.length > 1
           ? catalogKeys[(catalogKeys.indexOf(lensKeyA) + 1) % catalogKeys.length]
           : lensKeyB;
-      void navigate(`/compare/${lensKeyA}/${autoB}`, { replace: false });
+      void navigate(canonicalPagePath(`/compare/${lensKeyA}/${autoB}`), { replace: false });
     } else {
       dispatch({
         type: EXIT_COMPARE,
@@ -138,7 +139,7 @@ export default function useComparisonOrchestration({
         stopdownA: aperturePair?.stopdownA,
         ...(movementPair ? { shiftA: movementPair.shiftA, tiltA: movementPair.tiltA } : {}),
       });
-      void navigate(`/lens/${lensKeyA}`, { replace: false });
+      void navigate(canonicalPagePath(`/lens/${lensKeyA}`), { replace: false });
     }
   }, [
     comparing,

@@ -8,6 +8,7 @@ import { Link } from "react-router";
 import type { Theme } from "../../types/theme.js";
 import { formatDisplayDate } from "../../utils/content/changelogHelpers.js";
 import type { HomepageArticle } from "../../utils/content/homepageContent.js";
+import { canonicalPagePath } from "../../utils/seo/siteUrls.js";
 
 interface ArticleCardProps {
   article: HomepageArticle;
@@ -23,7 +24,7 @@ const TAG_COLORS: Record<string, string> = {
 export default function ArticleCard({ article, theme: t }: ArticleCardProps) {
   return (
     <Link
-      to={article.linkTo}
+      to={canonicalPagePath(article.linkTo)}
       style={{
         display: "block",
         padding: "0.875rem 1rem",

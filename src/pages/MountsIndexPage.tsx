@@ -71,7 +71,7 @@ export default function MountsIndexPage() {
               style={{ padding: "1rem 0.75rem", marginBottom: "0.75rem", borderBottom: `1px solid ${t.panelBorder}` }}
             >
               <Link
-                to={`/mounts/${mount.id}`}
+                to={`/mounts/${mount.id}/`}
                 style={{ color: t.descLinkColor, textDecoration: "none", fontSize: "1rem", fontWeight: 600 }}
               >
                 {mount.label}

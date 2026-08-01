@@ -17,6 +17,7 @@ import PVDiagram from "../diagram/PVDiagram.js";
 import LocaDiagram from "../diagram/LocaDiagram.js";
 import MTFDiagram from "../diagram/MTFDiagram.js";
 import type { Theme } from "../../types/theme.js";
+import { canonicalPagePath } from "../../utils/seo/siteUrls.js";
 
 type MarkdownVariant = "article" | "description";
 
@@ -108,7 +109,7 @@ export default function ThemedMarkdown({
 
         if (article && href?.startsWith("/lens/")) {
           return (
-            <a id={id} href={href} target="_blank" rel="noopener noreferrer" style={linkStyle}>
+            <a id={id} href={canonicalPagePath(href)} target="_blank" rel="noopener noreferrer" style={linkStyle}>
               {children}
             </a>
           );
@@ -116,7 +117,7 @@ export default function ThemedMarkdown({
         if (article && href?.startsWith("/")) {
           const state = isStartHere && href.startsWith("/articles/") ? { fromStartHere: true } : undefined;
           return (
-            <Link id={id} to={href} state={state} style={linkStyle}>
+            <Link id={id} to={canonicalPagePath(href)} state={state} style={linkStyle}>
               {children}
             </Link>
           );

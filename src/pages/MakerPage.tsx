@@ -45,10 +45,10 @@ export default function MakerPage() {
   const { maker } = useParams<{ maker: string }>();
   const { theme: t, themeMode, highContrast, toggleTheme, toggleHC } = usePageThemeToggle();
 
-  if (!maker) return <Navigate to="/makers" replace />;
+  if (!maker) return <Navigate to="/makers/" replace />;
 
   const lenses = lensesForMaker(maker);
-  if (lenses.length === 0) return <Navigate to="/makers" replace />;
+  if (lenses.length === 0) return <Navigate to="/makers/" replace />;
 
   const displayName = makerDisplayName(maker) ?? deriveMaker(lenses[0].data.name, lenses[0].data.maker).display;
   const details = getMakerDetails(maker);
@@ -89,7 +89,7 @@ export default function MakerPage() {
           Home
         </Link>
         <span style={{ color: t.muted, margin: "0 0.35em" }}>/</span>
-        <Link to="/makers" style={{ color: t.descLinkColor, textDecoration: "none" }}>
+        <Link to="/makers/" style={{ color: t.descLinkColor, textDecoration: "none" }}>
           Makers
         </Link>
         <span style={{ color: t.muted, margin: "0 0.35em" }}>/</span>
@@ -141,7 +141,7 @@ export default function MakerPage() {
           <div style={{ borderTop: `1px solid ${t.panelBorder}`, paddingTop: "1rem" }}>
             {lenses.length > 0 ? (
               lenses.map(({ key, data }) => (
-                <Link key={key} to={`/lens/${key}`} style={{ ...LENS_LINK_BASE_STYLE, color: t.descLinkColor }}>
+                <Link key={key} to={`/lens/${key}/`} style={{ ...LENS_LINK_BASE_STYLE, color: t.descLinkColor }}>
                   {data.name}
                   {data.specs && data.specs.length > 0 && (
                     <span style={{ color: t.label, fontSize: "0.75rem", marginLeft: "0.5rem" }}>

@@ -21,8 +21,8 @@ describe("catalog search", () => {
   });
 
   it("resolves exact unambiguous entries directly", () => {
-    expect(exactSearchTarget("AGFA COLOR-TELINEAR 90mm f/4")).toBe("/lens/agfa-color-telinear-90mm-f4");
-    expect(exactSearchTarget("US 2,819,651")).toBe("/lens/agfa-color-telinear-90mm-f4");
+    expect(exactSearchTarget("AGFA COLOR-TELINEAR 90mm f/4")).toBe("/lens/agfa-color-telinear-90mm-f4/");
+    expect(exactSearchTarget("US 2,819,651")).toBe("/lens/agfa-color-telinear-90mm-f4/");
     expect(exactSearchTarget("Carl Baur")).toMatch(/^\/authors\//);
     expect(exactSearchTarget("not in the catalog")).toBeNull();
   });

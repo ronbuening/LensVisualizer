@@ -89,7 +89,7 @@ export default function CatalogSearchResults({ query, theme: t }: CatalogSearchR
 
       <ResultSection title="Lens names" count={results.lenses.length} theme={t}>
         {results.lenses.slice(0, RESULT_LIMIT).map((match) => (
-          <Link key={match.key} to={`/lens/${match.key}`} style={resultLinkStyle(t)}>
+          <Link key={match.key} to={`/lens/${match.key}/`} style={resultLinkStyle(t)}>
             <span>{match.data.name}</span>
             {match.data.specs?.length ? (
               <span style={{ color: t.label, fontSize: "0.7rem", marginLeft: "0.5rem" }}>
@@ -102,7 +102,7 @@ export default function CatalogSearchResults({ query, theme: t }: CatalogSearchR
 
       <ResultSection title="Patent numbers" count={results.patents.length} theme={t}>
         {results.patents.slice(0, RESULT_LIMIT).map((match) => (
-          <Link key={match.key} to={`/lens/${match.key}`} style={resultLinkStyle(t)}>
+          <Link key={match.key} to={`/lens/${match.key}/`} style={resultLinkStyle(t)}>
             <span>{match.data.patentNumber}</span>
             <span style={{ color: t.label, fontSize: "0.7rem", marginLeft: "0.5rem" }}>— {match.data.name}</span>
           </Link>
@@ -111,7 +111,7 @@ export default function CatalogSearchResults({ query, theme: t }: CatalogSearchR
 
       <ResultSection title="Authors" count={results.authors.length} theme={t}>
         {results.authors.slice(0, RESULT_LIMIT).map(({ author }) => (
-          <Link key={author.slug} to={`/authors/${author.slug}`} style={resultLinkStyle(t)}>
+          <Link key={author.slug} to={`/authors/${author.slug}/`} style={resultLinkStyle(t)}>
             <span>{author.name}</span>
             <span style={{ color: t.label, fontSize: "0.7rem", marginLeft: "0.5rem" }}>
               — {author.patentCount} {author.patentCount === 1 ? "patent" : "patents"}

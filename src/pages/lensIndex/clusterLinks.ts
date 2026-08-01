@@ -3,24 +3,51 @@
  */
 
 import type { ImageFormatId, LensMountId } from "../../utils/catalog/lensTaxonomy.js";
+import { canonicalPagePath } from "../../utils/seo/siteUrls.js";
 
 export type LensLibraryBreadcrumbContext = { type: "mount"; id: LensMountId } | { type: "format"; id: ImageFormatId };
 
-export function lensLinkFromLibrary(lensKey: string, returnTo: string, context?: LensLibraryBreadcrumbContext): string {
-  const params = new URLSearchParams({ from: "lenses", returnTo });
-  if (context) {
-    params.set("context", context.type);
-    params.set("id", context.id);
-  }
-  return `/lens/${lensKey}?${params.toString()}`;
+export type LensBreadcrumbSource =
+  | { type: "lenses"; returnTo: string; context?: LensLibraryBreadcrumbContext }
+  | { type: "mount"; id: LensMountId }
+  | { type: "format"; id: ImageFormatId };
+
+export interface LensNavigationState {
+  lensBreadcrumb: LensBreadcrumbSource;
 }
 
-export function lensLinkFromMount(lensKey: string, mountId: LensMountId): string {
-  const params = new URLSearchParams({ from: "mount", id: mountId });
-  return `/lens/${lensKey}?${params.toString()}`;
+export interface LensLinkTarget {
+  to: string;
+  state?: LensNavigationState;
 }
 
-export function lensLinkFromFormat(lensKey: string, formatId: ImageFormatId): string {
-  const params = new URLSearchParams({ from: "format", id: formatId });
-  return `/lens/${lensKey}?${params.toString()}`;
+export function lensLinkFromLibrary(
+  lensKey: string,
+  returnTo: string,
+  context?: LensLibraryBreadcrumbContext,
+): LensLinkTarget {
+  return {
+    to: canonicalPagePath(`/lens/${lensKey}`),
+    state: {
+      lensBreadcrumb: {
+        type: "lenses",
+        returnTo: canonicalPagePath(returnTo),
+        ...(context ? { context } : {}),
+      },
+    },
+  };
+}
+
+export function lensLinkFromMount(lensKey: string, mountId: LensMountId): LensLinkTarget {
+  return {
+    to: canonicalPagePath(`/lens/${lensKey}`),
+    state: { lensBreadcrumb: { type: "mount", id: mountId } },
+  };
+}
+
+export function lensLinkFromFormat(lensKey: string, formatId: ImageFormatId): LensLinkTarget {
+  return {
+    to: canonicalPagePath(`/lens/${lensKey}`),
+    state: { lensBreadcrumb: { type: "format", id: formatId } },
+  };
 }

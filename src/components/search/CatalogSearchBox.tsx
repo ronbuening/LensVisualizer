@@ -12,6 +12,7 @@ import { Link, useNavigate } from "react-router";
 import type { Theme } from "../../types/theme.js";
 import { exactSearchTarget, searchCatalog } from "../../utils/catalog/searchCatalog.js";
 import type { CatalogSearchMatch } from "../../utils/catalog/searchCatalog.js";
+import { canonicalPagePath } from "../../utils/seo/siteUrls.js";
 
 interface CatalogSearchBoxProps {
   theme: Theme;
@@ -28,20 +29,20 @@ function suggestionDetails(match: CatalogSearchMatch): { label: string; meta: st
     return {
       label: match.author.name,
       meta: `Author · ${match.author.patentCount} ${match.author.patentCount === 1 ? "patent" : "patents"}`,
-      to: `/authors/${match.author.slug}`,
+      to: canonicalPagePath(`/authors/${match.author.slug}`),
     };
   }
   if (match.type === "patent") {
     return {
       label: match.data.patentNumber ?? "Patent",
       meta: `Patent · ${match.data.name}`,
-      to: `/lens/${match.key}`,
+      to: canonicalPagePath(`/lens/${match.key}`),
     };
   }
   return {
     label: match.data.name,
     meta: "Lens",
-    to: `/lens/${match.key}`,
+    to: canonicalPagePath(`/lens/${match.key}`),
   };
 }
 
@@ -76,11 +77,11 @@ export default function CatalogSearchBox({
   const handleSubmit = (event: SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!normalizedQuery) {
-      void navigate("/search");
+      void navigate(canonicalPagePath("/search"));
       return;
     }
     const exactTarget = exactSearchTarget(normalizedQuery);
-    void navigate(exactTarget ?? `/search?q=${encodeURIComponent(normalizedQuery)}`);
+    void navigate(exactTarget ?? canonicalPagePath(`/search?q=${encodeURIComponent(normalizedQuery)}`));
   };
 
   return (
@@ -176,7 +177,7 @@ export default function CatalogSearchBox({
             <p style={{ color: t.muted, fontSize: "0.75rem", margin: "0.25rem" }}>No catalog matches.</p>
           )}
           <Link
-            to={`/search?q=${encodeURIComponent(normalizedQuery)}`}
+            to={canonicalPagePath(`/search?q=${encodeURIComponent(normalizedQuery)}`)}
             style={{ display: "inline-block", color: t.descLinkColor, fontSize: "0.72rem", margin: "0.5rem 0.35rem 0" }}
           >
             View all results →

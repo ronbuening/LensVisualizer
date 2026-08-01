@@ -2,16 +2,18 @@
  * Patent Relationship Map page — /relationships
  *
  * Draws a two-ring "ego graph" around a focus inventor or assignee chosen via
- * the `?focus=<role>:<slug>` query param. With no focus it renders an intro,
+ * the `#focus=<role>:<slug>` fragment. With no focus it renders an intro,
  * entity picker, and "most-connected" link columns — this no-focus state is the
- * prerendered SEO content. Query-dependent content is gated behind a mounted
- * flag so the server render (no query) and the first client render agree, then
+ * prerendered SEO content. Fragment-dependent content is gated behind a mounted
+ * flag so the server render (no fragment) and the first client render agree, then
  * the real focus appears one paint after hydration (same idea as ClientOnly).
- * Only `focus` is URL state; the selected patent is component state.
+ * Legacy `?focus=` links remain readable and are replaced with the fragment
+ * form after hydration. Only `focus` is URL state; the selected patent is
+ * component state.
  */
 
 import { useEffect, useMemo, useState } from "react";
-import { Link, useSearchParams } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import SEOHead from "../components/SEOHead.js";
 import PageNavBar from "../components/layout/PageNavBar.js";
 import RelationshipMap from "../components/relationshipMap/RelationshipMap.js";
@@ -24,6 +26,7 @@ import { SITE_NAME, SITE_URL } from "../utils/catalog/lensMetadata.js";
 import { breadcrumbJsonLd, collectionPageJsonLd } from "../utils/seo/structuredData.js";
 import { PAGE_BASE_STYLE } from "../utils/style/pageStyles.js";
 import { usePageThemeToggle } from "../utils/theme/usePageThemeToggle.js";
+import { canonicalPagePath, canonicalPageUrl } from "../utils/seo/siteUrls.js";
 
 const TOP_COUNT = 12;
 
@@ -35,7 +38,8 @@ function topByPatents<T extends { name: string; slug: string; patentCount: numbe
 }
 
 export default function RelationshipMapPage() {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const location = useLocation();
+  const navigate = useNavigate();
   const { theme: t, themeMode, highContrast, toggleTheme, toggleHC } = usePageThemeToggle();
 
   const [mounted, setMounted] = useState(false);
@@ -45,18 +49,25 @@ export default function RelationshipMapPage() {
 
   /* Server render and first client render agree (no focus); the real focus
    * appears one paint after hydration. Same mechanism as ClientOnly.tsx. */
-  const focus = mounted ? resolveFocusParam(searchParams.get("focus")) : undefined;
+  const hashFocus = new URLSearchParams(location.hash.replace(/^#/, "")).get("focus");
+  const legacyQueryFocus = new URLSearchParams(location.search).get("focus");
+  const focus = mounted ? resolveFocusParam(hashFocus ?? legacyQueryFocus) : undefined;
   const graph = useMemo(() => (focus ? buildRelationshipGraph(focus) : undefined), [focus]);
+
+  useEffect(() => {
+    if (!mounted || hashFocus || !resolveFocusParam(legacyQueryFocus)) return;
+    void navigate(`${canonicalPagePath("/relationships")}#focus=${legacyQueryFocus}`, { replace: true });
+  }, [hashFocus, legacyQueryFocus, mounted, navigate]);
 
   const setFocusParty = (ref: PartyRef) => {
     setSelectedPatentId(null);
-    setSearchParams({ focus: `${ref.role}:${ref.slug}` });
+    void navigate(`${canonicalPagePath("/relationships")}#focus=${ref.role}:${ref.slug}`);
   };
 
   const topAuthors = useMemo(() => topByPatents(AUTHORS), []);
   const topAssignees = useMemo(() => topByPatents(ASSIGNEES), []);
 
-  const canonicalURL = `${SITE_URL}/relationships`;
+  const canonicalURL = canonicalPageUrl("/relationships");
   const seoDescription = `Explore how ${AUTHORS.length} optical inventors and ${ASSIGNEES.length} assignees connect through shared lens patents in an interactive relationship map.`;
 
   const selectedPatent = graph && selectedPatentId ? graph.patents.find((p) => p.id === selectedPatentId) : undefined;
@@ -93,7 +104,7 @@ export default function RelationshipMapPage() {
         </Link>
         <span style={{ color: t.muted, margin: "0 0.35em" }}>/</span>
         {focus ? (
-          <Link to="/relationships" style={{ color: t.descLinkColor, textDecoration: "none" }}>
+          <Link to="/relationships/" style={{ color: t.descLinkColor, textDecoration: "none" }}>
             Relationship map
           </Link>
         ) : (
@@ -126,7 +137,7 @@ export default function RelationshipMapPage() {
               </h2>
               {graph.center.hasPage && (
                 <Link
-                  to={`/authors/${focus.slug}`}
+                  to={`/authors/${focus.slug}/`}
                   style={{ color: t.descLinkColor, textDecoration: "none", fontSize: "0.75rem" }}
                 >
                   View patent list page →
@@ -190,7 +201,7 @@ export default function RelationshipMapPage() {
                   {topAuthors.map((author) => (
                     <li key={author.slug} style={{ marginBottom: "0.35rem" }}>
                       <Link
-                        to={`/relationships?focus=author:${author.slug}`}
+                        to={`/relationships/#focus=author:${author.slug}`}
                         style={{ color: t.descLinkColor, textDecoration: "none", fontSize: "0.82rem" }}
                       >
                         {author.name}
@@ -209,7 +220,7 @@ export default function RelationshipMapPage() {
                   {topAssignees.map((assignee) => (
                     <li key={assignee.slug} style={{ marginBottom: "0.35rem" }}>
                       <Link
-                        to={`/relationships?focus=assignee:${assignee.slug}`}
+                        to={`/relationships/#focus=assignee:${assignee.slug}`}
                         style={{ color: t.descLinkColor, textDecoration: "none", fontSize: "0.82rem" }}
                       >
                         {assignee.name}

@@ -14,10 +14,16 @@
 
 import { readFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
+import { SITE_URL, canonicalPagePath, canonicalPageUrl } from "./site-url.mjs";
 
 const ROOT = join(import.meta.dirname, "..");
 const DIST_DIR = join(ROOT, "dist");
 const META_PATH = join(ROOT, "src", "generated", "build-metadata.json");
+const FEED_LIMIT = 50;
+const FEEDS = [
+  { name: "lens", file: "lenses.xml", url: `${SITE_URL}/feeds/lenses.xml` },
+  { name: "article", file: "articles.xml", url: `${SITE_URL}/feeds/articles.xml` },
+];
 
 let errors = 0;
 let warnings = 0;
@@ -68,11 +74,14 @@ function auditSitemap(routes) {
   if (!content.includes('<?xml version="1.0"')) {
     error("sitemap.xml is not valid XML");
   }
+  if (content.includes(`${SITE_URL}/feeds/`)) {
+    error("sitemap.xml should not include RSS feed URLs");
+  }
 
   /* Verify every route appears in the sitemap */
   let missing = 0;
   for (const route of routes) {
-    const url = `https://surfaceandstop.com${route}`;
+    const url = canonicalPageUrl(route);
     if (!content.includes(url)) {
       error(`sitemap.xml missing URL: ${url}`);
       missing++;
@@ -93,7 +102,7 @@ function auditSitemap(routes) {
   let lastmodMismatches = 0;
 
   for (const route of routes) {
-    const loc = `https://surfaceandstop.com${route}`;
+    const loc = canonicalPageUrl(route);
     const expectedLastmod = routeFreshness[route]?.lastModified;
     if (!expectedLastmod) {
       error(`routeFreshness missing lastModified for ${route}`);
@@ -111,6 +120,94 @@ function auditSitemap(routes) {
   if (lastmodMismatches === 0) {
     ok("sitemap.xml lastmod values match build metadata");
   }
+}
+
+function compareStrings(a, b) {
+  if (a < b) return -1;
+  if (a > b) return 1;
+  return 0;
+}
+
+function expectedFeedUrls(buildMeta, feedName) {
+  const entries =
+    feedName === "lens"
+      ? Object.entries(buildMeta.lensFreshness).map(([key, freshness]) => ({
+          url: canonicalPageUrl(`/lens/${key}`),
+          publishedOn: freshness.publishedOn,
+        }))
+      : buildMeta.articles.map((article) => ({
+          url: canonicalPageUrl(`/articles/${article.slug}`),
+          publishedOn: article.publishedOn,
+        }));
+
+  return entries
+    .sort((a, b) => compareStrings(b.publishedOn, a.publishedOn) || compareStrings(a.url, b.url))
+    .slice(0, FEED_LIMIT)
+    .map((entry) => entry.url);
+}
+
+function auditRssFeeds(buildMeta) {
+  console.log("\n[RSS feeds]");
+
+  for (const feed of FEEDS) {
+    const path = join(DIST_DIR, "feeds", feed.file);
+    if (!existsSync(path)) {
+      error(`${feed.file} not found in dist/feeds/`);
+      continue;
+    }
+
+    const xml = readFileSync(path, "utf-8");
+    if (!xml.startsWith('<?xml version="1.0" encoding="UTF-8"?>')) {
+      error(`${feed.file} is missing its XML declaration`);
+    }
+    if (!xml.includes('<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">')) {
+      error(`${feed.file} is missing its RSS 2.0 root or Atom namespace`);
+    }
+    if (!xml.includes(`<atom:link href="${feed.url}" rel="self" type="application/rss+xml"/>`)) {
+      error(`${feed.file} is missing its canonical Atom self-link`);
+    }
+
+    const itemBlocks = [...xml.matchAll(/<item>([\s\S]*?)<\/item>/g)].map((match) => match[1]);
+    const itemUrls = itemBlocks.map((block) => block.match(/<link>(.*?)<\/link>/)?.[1] ?? "");
+    const guidUrls = itemBlocks.map((block) => block.match(/<guid isPermaLink="true">(.*?)<\/guid>/)?.[1] ?? "");
+    const expectedUrls = expectedFeedUrls(buildMeta, feed.name);
+
+    if (JSON.stringify(itemUrls) !== JSON.stringify(expectedUrls)) {
+      error(`${feed.file} items do not match the expected newest ${expectedUrls.length} canonical URLs`);
+    }
+    if (JSON.stringify(guidUrls) !== JSON.stringify(itemUrls)) {
+      error(`${feed.file} GUIDs must match their canonical item links`);
+    }
+    if (new Set(itemUrls).size !== itemUrls.length) {
+      error(`${feed.file} contains duplicate item links`);
+    }
+    if (itemBlocks.some((block) => !/<pubDate>[^<]+<\/pubDate>/.test(block))) {
+      error(`${feed.file} contains an item without a publication date`);
+    }
+
+    ok(`${feed.file} contains ${itemUrls.length} unique, correctly ordered items`);
+  }
+}
+
+function auditFeedDiscovery() {
+  console.log("\n[RSS discovery]");
+  const homepagePath = join(DIST_DIR, "index.html");
+  if (!existsSync(homepagePath)) {
+    error("Homepage missing; cannot audit RSS discovery");
+    return;
+  }
+
+  const html = readFileSync(homepagePath, "utf-8");
+  for (const feed of FEEDS) {
+    const escapedUrl = feed.url.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const discoveryPattern = new RegExp(
+      `<link[^>]*rel="alternate"[^>]*type="application/rss\\+xml"[^>]*href="${escapedUrl}"[^>]*>`,
+    );
+    if (!discoveryPattern.test(html)) {
+      error(`Homepage is missing autodiscovery for ${feed.url}`);
+    }
+  }
+  ok("Homepage advertises both RSS feeds");
 }
 
 function auditAllPrerenderedPages(routes) {
@@ -137,12 +234,42 @@ function auditAllPrerenderedPages(routes) {
     }
 
     /* Canonical URL */
+    const expectedCanonical = canonicalPageUrl(route);
     if (!html.includes('rel="canonical"')) {
       error(`${route}: No canonical URL`);
     } else {
       const canonicalMatch = html.match(/<link[^>]*rel="canonical"[^>]*href="([^"]+)"/);
-      if (canonicalMatch?.[1]?.includes("?")) {
-        error(`${route}: Canonical URL should not include query params: ${canonicalMatch[1]}`);
+      if (canonicalMatch?.[1] !== expectedCanonical) {
+        error(`${route}: Canonical URL should be ${expectedCanonical}, found ${canonicalMatch?.[1] || "missing"}`);
+      }
+    }
+
+    const ogUrlMatch = html.match(/<meta[^>]*property="og:url"[^>]*content="([^"]+)"/);
+    if (ogUrlMatch?.[1] !== expectedCanonical) {
+      error(`${route}: og:url should be ${expectedCanonical}, found ${ogUrlMatch?.[1] || "missing"}`);
+    }
+
+    for (const match of html.matchAll(/<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)) {
+      let schema;
+      try {
+        schema = JSON.parse(match[1]);
+      } catch {
+        error(`${route}: JSON-LD is not valid JSON`);
+        continue;
+      }
+      const pending = [schema];
+      while (pending.length > 0) {
+        const value = pending.pop();
+        if (typeof value === "string" && value.startsWith(`${SITE_URL}/`)) {
+          const path = value.slice(SITE_URL.length);
+          if (canonicalPagePath(path) !== path) {
+            error(`${route}: JSON-LD contains a redirecting same-site URL: ${value}`);
+          }
+        } else if (Array.isArray(value)) {
+          pending.push(...value);
+        } else if (value && typeof value === "object") {
+          pending.push(...Object.values(value));
+        }
       }
     }
 
@@ -160,7 +287,38 @@ function auditAllPrerenderedPages(routes) {
     checked++;
   }
 
-  ok(`Checked ${checked}/${routes.length} pages for title, description, canonical`);
+  ok(`Checked ${checked}/${routes.length} pages for metadata and deployment-canonical URLs`);
+}
+
+function auditCanonicalInternalLinks(routes) {
+  console.log("\n[Deployment-canonical internal links]");
+  let checked = 0;
+
+  for (const route of routes) {
+    const pagePath = routeToFile(route);
+    if (!existsSync(pagePath)) continue;
+    const html = readFileSync(pagePath, "utf-8");
+
+    for (const match of html.matchAll(/<a\b[^>]*\bhref="([^"]+)"/g)) {
+      const href = match[1];
+      if (!href.startsWith("/") || href.startsWith("//")) continue;
+      checked++;
+
+      if (canonicalPagePath(href) !== href) {
+        error(`${route}: Internal link would redirect on Cloudflare Pages: ${href}`);
+      }
+
+      const url = new URL(href, SITE_URL);
+      if (url.searchParams.has("from") || url.searchParams.has("returnTo")) {
+        error(`${route}: Internal link exposes navigation-only query state: ${href}`);
+      }
+      if (url.pathname === "/relationships/" && url.searchParams.has("focus")) {
+        error(`${route}: Relationship focus should use a fragment, not a query param: ${href}`);
+      }
+    }
+  }
+
+  ok(`Checked ${checked} same-site link occurrences for direct 200 URL forms`);
 }
 
 function auditLensPages(lensKeys) {
@@ -227,7 +385,7 @@ function auditInternalLinks(lensKeys, articleSlugs, makerSlugs, mountIds = [], f
     const html = readFileSync(lensesPage, "utf-8");
     let foundLinks = 0;
     for (const key of lensKeys) {
-      if (html.includes(`href="/lens/${key}`)) {
+      if (html.includes(`href="/lens/${key}/"`)) {
         foundLinks++;
       } else {
         error(`/lenses page missing link to /lens/${key}`);
@@ -244,7 +402,7 @@ function auditInternalLinks(lensKeys, articleSlugs, makerSlugs, mountIds = [], f
     const html = readFileSync(articlesPage, "utf-8");
     let foundLinks = 0;
     for (const slug of articleSlugs) {
-      if (html.includes(`href="/articles/${slug}"`)) {
+      if (html.includes(`href="/articles/${slug}/"`)) {
         foundLinks++;
       } else {
         error(`/articles page missing link to /articles/${slug}`);
@@ -261,7 +419,7 @@ function auditInternalLinks(lensKeys, articleSlugs, makerSlugs, mountIds = [], f
     const html = readFileSync(makersPage, "utf-8");
     let foundLinks = 0;
     for (const slug of makerSlugs) {
-      if (html.includes(`href="/makers/${slug}"`)) {
+      if (html.includes(`href="/makers/${slug}/"`)) {
         foundLinks++;
       } else {
         error(`/makers page missing link to /makers/${slug}`);
@@ -278,7 +436,7 @@ function auditInternalLinks(lensKeys, articleSlugs, makerSlugs, mountIds = [], f
     const html = readFileSync(mountsPage, "utf-8");
     let foundLinks = 0;
     for (const id of mountIds) {
-      if (html.includes(`href="/mounts/${id}"`)) {
+      if (html.includes(`href="/mounts/${id}/"`)) {
         foundLinks++;
       } else {
         error(`/mounts page missing link to /mounts/${id}`);
@@ -295,7 +453,7 @@ function auditInternalLinks(lensKeys, articleSlugs, makerSlugs, mountIds = [], f
     const html = readFileSync(formatsPage, "utf-8");
     let foundLinks = 0;
     for (const id of formatIds) {
-      if (html.includes(`href="/formats/${id}"`)) {
+      if (html.includes(`href="/formats/${id}/"`)) {
         foundLinks++;
       } else {
         error(`/formats page missing link to /formats/${id}`);
@@ -312,7 +470,7 @@ function auditInternalLinks(lensKeys, articleSlugs, makerSlugs, mountIds = [], f
     const html = readFileSync(authorsPage, "utf-8");
     let foundLinks = 0;
     for (const author of authors) {
-      if (html.includes(`href="/authors/${author.slug}"`)) {
+      if (html.includes(`href="/authors/${author.slug}/"`)) {
         foundLinks++;
       } else {
         error(`/authors page missing link to /authors/${author.slug}`);
@@ -369,7 +527,10 @@ console.log(
 
 auditRobotsTxt();
 auditSitemap(routes);
+auditRssFeeds(buildMeta);
+auditFeedDiscovery();
 auditAllPrerenderedPages(routes);
+auditCanonicalInternalLinks(routes);
 auditLensPages(lensKeys);
 auditInternalLinks(lensKeys, articleSlugs, makerSlugs, mountIds, formatIds, authors);
 audit404();
