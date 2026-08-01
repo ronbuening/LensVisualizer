@@ -78,6 +78,7 @@ const GLASS_CATALOG_SOURCE_ORDER = [
   "S-NPH53",
   "S-LAH51",
   "S-TIM28",
+  "L-TIM28P",
   "S-BSM14",
   "SF6",
   "SF4",

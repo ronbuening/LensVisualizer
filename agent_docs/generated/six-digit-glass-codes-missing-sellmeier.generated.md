@@ -9,12 +9,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **500** lenses scanned
-- **554** total code-only elements found
-- **265** elements in this report
-- **116** distinct lens files affected
+- **503** lenses scanned
+- **569** total code-only elements found
+- **267** elements in this report
+- **117** distinct lens files affected
 - **0** active unreviewed elements have no review-record hit or explicit disposition
-- **118** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
+- **120** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
 - **0** dispositions lack any review record
 
 ## Prioritized Unreviewed Queue
@@ -199,6 +199,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 781446 | 1 | 1 | patents/JP2004109559A.pdf | All rows have review records |
 | 786275 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | All rows have review records |
 | 787501 | 1 | 1 | patents/DE_2157160_A1.pdf | All rows have review records |
+| 788474 | 1 | 1 | patents/JPA 2022012964-000000.pdf | All rows explicitly disposed |
 | 789457 | 1 | 1 | patents/US4182550.pdf | All rows have review records |
 | 792257 | 1 | 1 | patents/JP2023039817A.pdf | All rows explicitly disposed |
 | 792450 | 1 | 1 | patents/WO2020136749A1.pdf | All rows have review records |
@@ -218,6 +219,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 831265 | 1 | 1 | patents/US3615126.pdf | All rows explicitly disposed |
 | 835447 | 1 | 1 | patents/CN205720849U.pdf | All rows have review records |
 | 840433 | 1 | 1 | patents/US5528428.pdf | All rows have review records |
+| 842433 | 1 | 1 | patents/JPA 2022012964-000000.pdf | All rows explicitly disposed |
 | 849401 | 1 | 1 | patents/US20170351051A1.pdf | All rows have review records |
 | 850440 | 1 | 1 | patents/US20180164556A1.pdf | All rows explicitly disposed |
 | 852401 | 1 | 1 | patents/JPWO2019073744A1.pdf | All rows explicitly disposed |
@@ -1076,6 +1078,13 @@ Completion counts are conditional on finding a source-verified catalog identity 
 |---|---|---|---|---|---|---|---|
 | L6r (Element 8) | 14 | `Unmatched (553551 crown; patent nd=1.55298, νd=55.07)` | 1.55298 / 55.07 | No catalog entry | abbe | patents/JP2023063766A.pdf | Explicit disposition in data |
 | L7 (Element 9) | 16A | `Unmatched (808406 high-index lanthanum glass; patent nd=1.80835, νd=40.55)` | 1.80835 / 40.55 | No catalog entry | abbe | patents/JP2023063766A.pdf | Explicit disposition in data |
+
+### [VOIGTLÄNDER NOKTON Vintage Line 50mm f/1.5 Aspherical II VM](../../src/lens-data/voigtlander/VoigtlanderNokton50mmf15AsphericalVM.data.ts) - JP 2022-012964 A
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L3 (Element 3) | 5 | `Unmatched (nd=1.84202, vd=43.34; code 842433)` | 1.84202 / 43.34 | No catalog entry | abbe | patents/JPA 2022012964-000000.pdf | Explicit disposition in data |
+| L7 (Element 7) | 13 | `Unmatched (nd=1.79316, vd=47.24; near 788474/475 lanthanum-flint class)` | 1.79316 / 47.24 | No catalog entry | abbe | patents/JPA 2022012964-000000.pdf | Explicit disposition in data |
 
 ### [VOIGTLÄNDER ULTRON Vintage Line 28mm f/2 Aspherical](../../src/lens-data/voigtlander/VoigtlanderUltron28f2.data.ts) - JP2022-100641A
 

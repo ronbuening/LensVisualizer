@@ -1811,4 +1811,16 @@ export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
     code6: "741527",
     source: "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF), vendor-published catalog data.",
   },
+  /* ────── Phase 36 Voigtländer 50mm f/1.5 coverage addition (August 2026) ────── */
+  {
+    name: "L-TIM28P",
+    vendor: "Ohara",
+    B: [1.53013396, 0.24536228, 1.78233031],
+    C: [0.0114236857, 0.0555101852, 179.0743],
+    nd: 1.694529,
+    vd: 30.655992,
+    PgF: 0.599274,
+    source:
+      "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF); vendor Sellmeier coefficients for special-order L-TIM28P.",
+  },
 ];
