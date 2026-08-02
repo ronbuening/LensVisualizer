@@ -96,6 +96,16 @@ describe("glass catalog", () => {
     expect(evaluateCatalogAbbeNumber(entry!)).toBeCloseTo(26.58, 2);
   });
 
+  it("L-TIM28P reproduces the published OHARA line indices and Abbe number", () => {
+    const entry = resolveGlass("L-TIM28P (OHARA)");
+    expect(entry?.name).toBe("L-TIM28P");
+    expect(evaluateSellmeier(entry!, LINE_NM.C)).toBeCloseTo(1.687955, 6);
+    expect(evaluateSellmeier(entry!, LINE_NM.d)).toBeCloseTo(1.694529, 6);
+    expect(evaluateSellmeier(entry!, LINE_NM.F)).toBeCloseTo(1.710611, 6);
+    expect(evaluateSellmeier(entry!, LINE_NM.g)).toBeCloseTo(1.724188, 6);
+    expect(evaluateCatalogAbbeNumber(entry!)).toBeCloseTo(30.655992, 5);
+  });
+
   it("computed Abbe number for N-BK7 matches the catalog vd within 0.5", () => {
     const nbk7 = resolveGlass("N-BK7");
     expect(nbk7).not.toBeNull();

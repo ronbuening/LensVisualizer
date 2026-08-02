@@ -7,7 +7,15 @@ available, it falls back to partial measured `nC`/`nF` line indices, dPgF-correc
 approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **447 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **448 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+
+The August 1, 2026 Phase 74 pass audited the three newly integrated Voigtländer VM primes against current first-party
+vendor catalogs. The APO-Lanthar 50mm and Nokton 75mm already resolve every element through compatible
+coefficient-backed coordinate classes. The Nokton Vintage Line 50mm retains three explicit unmatched patent glasses,
+but its named final-element material, OHARA L-TIM28P, was a recoverable gap. OHARA's 2026-07-01 all-products AGF
+supplies the special-order glass's exact Sellmeier curve, which reproduces the lens's independently stored C/d/F/g
+indices. Adding that row raises the lens from 4/8 to 5/8 strict coverage without changing its 5/8 trusted coverage.
+Global coverage is now 4878/5538 strict and 4889/5538 trusted, with zero catalog-coordinate mismatches.
 
 The August 1, 2026 Phase 73 pass added exact first-party curves for CDGM H-K9LGT and Hikari J-PSKH8 while auditing
 the three new Voigtländer lenses. H-K9LGT's June 2022 vendor Sellmeier row separates the exact `GT` type from the
