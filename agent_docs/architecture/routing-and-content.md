@@ -113,7 +113,9 @@ The RSS feeds are static build artifacts rather than React routes. `npm run buil
 git-derived publication metadata as the Updates and Articles pages: the date remains available as `publishedOn`, while
 `publishedAt` and `publishedCommit` preserve the exact first-commit timestamp and identity. Newest commits sort first,
 including multiple commits from one day; lenses or articles introduced by the same commit sort alphabetically by display
-name/title. RSS `pubDate` uses the exact timestamp. Items use permanent canonical page URLs as GUIDs, summary-only
+name/title. Before new content is committed, its date-only Git fallback sorts ahead of committed content from that same
+date so local Recently Added lists reflect the active addition; its exact commit timestamp takes over after commit. RSS
+`pubDate` uses the exact timestamp. Items use permanent canonical page URLs as GUIDs, summary-only
 descriptions, and a 50-item limit. Item links and GUIDs use the same trailing-slash page URLs as the sitemap and HTML
 canonical tags. Article series members appear as individual items; hidden lenses are excluded.
 

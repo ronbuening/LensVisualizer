@@ -215,8 +215,16 @@ export function combineFreshnessEntries(entries, fallbackDate) {
 /**
  * Sort publishable entries newest-first. Entries from the same commit retain
  * alphabetical display-name order, with a stable id as the final tie-break.
+ * An entry without Git history represents newly added local content, so it
+ * leads committed entries from the same fallback date until it is committed.
  */
 export function comparePublicationEntries(a, b) {
+  if (a.publishedOn === b.publishedOn) {
+    const aUsesFallback = a.publishedCommit === null;
+    const bUsesFallback = b.publishedCommit === null;
+    if (aUsesFallback !== bUsesFallback) return aUsesFallback ? -1 : 1;
+  }
+
   const aTimestamp = a.publishedAt ?? a.publishedOn;
   const bTimestamp = b.publishedAt ?? b.publishedOn;
   if (aTimestamp < bTimestamp) return 1;
