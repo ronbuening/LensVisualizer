@@ -25,6 +25,7 @@ import {
 import { useActiveHoliday } from "./useActiveHoliday.js";
 import type { HolidayTheme } from "./holidayThemes.js";
 import type { Theme } from "../../types/theme.js";
+import { subscribeToMediaQuery } from "../mediaQuery.js";
 
 interface PageThemeToggle {
   theme: Theme;
@@ -51,8 +52,7 @@ export function usePageThemeToggle(): PageThemeToggle {
     const mq = window.matchMedia("(prefers-color-scheme: dark)");
     setSystemDark(mq.matches);
     const handler = (e: MediaQueryListEvent) => setSystemDark(e.matches);
-    mq.addEventListener("change", handler);
-    return () => mq.removeEventListener("change", handler);
+    return subscribeToMediaQuery(mq, handler);
   }, []);
 
   const persist = useCallback((mode: ThemeMode, hc: boolean) => {

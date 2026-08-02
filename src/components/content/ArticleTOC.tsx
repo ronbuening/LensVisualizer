@@ -12,6 +12,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { extractHeadingsFromAst } from "../markdown/extractHeadingsFromAst.js";
 import type { Theme } from "../../types/theme.js";
+import { subscribeToMediaQuery } from "../../utils/mediaQuery.js";
 
 export interface TOCHeading {
   /** 2 or 3 — h2 vs h3 nesting level */
@@ -56,8 +57,7 @@ function useMediaQueryMatch(query: string): boolean {
     const mql = window.matchMedia(query);
     const handler = () => setMatches(mql.matches);
     handler();
-    mql.addEventListener("change", handler);
-    return () => mql.removeEventListener("change", handler);
+    return subscribeToMediaQuery(mql, handler);
   }, [query]);
   return matches;
 }

@@ -32,11 +32,13 @@ export default function AboutFooter({
   return (
     <div
       style={{
-        ...headerStrip(t, { padding: "12px 16px" }),
+        ...headerStrip(t, { padding: "12px 10px" }),
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        gap: 10,
+        flexWrap: "wrap",
+        columnGap: 6,
+        rowGap: 8,
       }}
     >
       <AboutButtonRow

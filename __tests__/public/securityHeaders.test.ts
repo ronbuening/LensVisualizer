@@ -19,6 +19,16 @@ describe("deployment security headers", () => {
     expect(scriptPolicy).not.toMatch(/'unsafe-inline'|'unsafe-eval'/);
   });
 
+  it.each(["https://gc.zgo.at", "https://static.cloudflareinsights.com"])(
+    "allows the deployed analytics script %s",
+    (source) => expect(headers.match(/script-src ([^;]+)/)?.[1]).toContain(source),
+  );
+
+  it.each(["https://ronbuening.goatcounter.com", "https://cloudflareinsights.com"])(
+    "allows the deployed analytics endpoint %s",
+    (source) => expect(headers.match(/connect-src ([^;]+)/)?.[1]).toContain(source),
+  );
+
   it.each(["/feeds/lenses.xml", "/feeds/articles.xml"])("serves %s with the RSS MIME type", (path) => {
     const escapedPath = path.replaceAll("/", "\\/");
     expect(headers).toMatch(new RegExp(`${escapedPath}\\s+Content-Type: application/rss\\+xml; charset=UTF-8`));

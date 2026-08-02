@@ -29,7 +29,7 @@ describe("AboutFooter", () => {
     const onOpenAboutSite = vi.fn();
     const onOpenAboutAuthor = vi.fn();
 
-    render(
+    const { container } = render(
       <AboutFooter
         theme={themes.dark}
         isWide={false}
@@ -39,6 +39,8 @@ describe("AboutFooter", () => {
         onOpenAboutAuthor={onOpenAboutAuthor}
       />,
     );
+
+    expect((container.firstElementChild as HTMLElement).style.flexWrap).toBe("wrap");
 
     fireEvent.click(screen.getByRole("button", { name: /Optics/i }));
     fireEvent.click(screen.getByRole("button", { name: /Aberrations/i }));
