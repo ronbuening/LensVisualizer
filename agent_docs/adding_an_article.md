@@ -38,8 +38,8 @@ toc: true                           # optional — shows the hovering table of c
 | `toc` | optional | When `true`, renders `ArticleTOC` — the floating right-side outline with scrollspy. Recommended for long pieces with ≥3 H2 sections. |
 
 > **Dates and RSS publication are automatic.** `publishedOn`, the exact publication timestamp, and `lastModified` are
-> derived from git history at build time. Do not add them to frontmatter. Later commits sort ahead of earlier commits on
-> the same day; articles added in one commit retain title-alphabetical order. Every article, including each series member,
+> derived from git history at build time. Do not add them to frontmatter. Commits on the same day sort earliest-to-latest;
+> articles added in one commit retain title-alphabetical order. Every article, including each series member,
 > enters `/feeds/articles.xml`; its `summary` becomes the feed description, with a title-based fallback when the summary
 > is absent.
 

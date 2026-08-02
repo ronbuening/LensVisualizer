@@ -148,7 +148,8 @@ function expectedFeedUrls(buildMeta, feedName) {
     .sort(
       (a, b) =>
         (a.publicationOrder ?? Number.MAX_SAFE_INTEGER) - (b.publicationOrder ?? Number.MAX_SAFE_INTEGER) ||
-        compareStrings(b.publishedAt ?? b.publishedOn, a.publishedAt ?? a.publishedOn) ||
+        compareStrings(b.publishedOn, a.publishedOn) ||
+        compareStrings(a.publishedAt ?? a.publishedOn, b.publishedAt ?? b.publishedOn) ||
         compareStrings(a.url, b.url),
     )
     .slice(0, FEED_LIMIT)

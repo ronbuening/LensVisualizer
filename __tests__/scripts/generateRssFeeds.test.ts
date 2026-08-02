@@ -114,9 +114,14 @@ describe("RSS feed generation", () => {
     expect(items.at(-1)?.url).toBe("https://surfaceandstop.com/articles/article-49/");
   });
 
-  it("uses commit timestamps for ordering and alphabetizes items from the same commit", () => {
+  it("orders same-day commits earliest-first and alphabetizes items from the same commit", () => {
     const orderedMeta: FeedBuildMetadata = {
       lensFreshness: {
+        "next-day": {
+          ...freshness("2026-04-03"),
+          publishedAt: "2026-04-03T12:00:00.000Z",
+          publishedCommit: "commit-next-day",
+        },
         early: {
           ...freshness("2026-04-02"),
           publishedAt: "2026-04-02T14:00:00.000Z",
@@ -134,6 +139,13 @@ describe("RSS feed generation", () => {
         },
       },
       articles: [
+        {
+          slug: "next-day-article",
+          title: "Next Day Article",
+          ...freshness("2026-04-03"),
+          publishedAt: "2026-04-03T12:00:00.000Z",
+          publishedCommit: "commit-next-day",
+        },
         {
           slug: "early-article",
           title: "Early Article",
@@ -158,6 +170,7 @@ describe("RSS feed generation", () => {
       ],
     };
     const summaries: FeedLensSummary[] = [
+      { key: "next-day", name: "Next Day Lens", visible: true },
       { key: "early", name: "Early Lens", visible: true },
       { key: "late-zulu", name: "Zulu Late Lens", visible: true },
       { key: "late-alpha", name: "Alpha Late Lens", visible: true },
@@ -166,13 +179,19 @@ describe("RSS feed generation", () => {
     const items = buildLensFeedItems(orderedMeta, summaries);
     const articleItems = buildArticleFeedItems(orderedMeta);
 
-    expect(items.map((item) => item.title)).toEqual(["Alpha Late Lens", "Zulu Late Lens", "Early Lens"]);
+    expect(items.map((item) => item.title)).toEqual([
+      "Next Day Lens",
+      "Early Lens",
+      "Alpha Late Lens",
+      "Zulu Late Lens",
+    ]);
     expect(articleItems.map((item) => item.title)).toEqual([
+      "Next Day Article",
+      "Early Article",
       "Alpha Late Article",
       "Zulu Late Article",
-      "Early Article",
     ]);
-    expect(formatRssDate(items[0].publishedAt!)).toBe("Thu, 02 Apr 2026 18:00:00 GMT");
+    expect(formatRssDate(items[1].publishedAt!)).toBe("Thu, 02 Apr 2026 14:00:00 GMT");
   });
 
   it("keeps GUID and publication date stable when an item is edited", () => {

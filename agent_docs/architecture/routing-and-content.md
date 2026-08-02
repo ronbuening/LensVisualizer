@@ -111,11 +111,11 @@ Lens description markdown files live beside lens data files as `*.analysis.md` a
 The RSS feeds are static build artifacts rather than React routes. `npm run build` writes RSS 2.0 files at
 `/feeds/lenses.xml` and `/feeds/articles.xml` after prerendering and sitemap generation. Feed items use the same
 git-derived publication metadata as the Updates and Articles pages: the date remains available as `publishedOn`, while
-`publishedAt` and `publishedCommit` preserve the exact first-commit timestamp and identity. Newest commits sort first,
-including multiple commits from one day; lenses or articles introduced by the same commit sort alphabetically by display
-name/title. RSS `pubDate` uses the exact timestamp. Items use permanent canonical page URLs as GUIDs, summary-only
-descriptions, and a 50-item limit. Item links and GUIDs use the same trailing-slash page URLs as the sitemap and HTML
-canonical tags. Article series members appear as individual items; hidden lenses are excluded.
+`publishedAt` and `publishedCommit` preserve the exact first-commit timestamp and identity. Newer calendar dates sort
+first, while commits within one day sort earliest-to-latest; lenses or articles introduced by the same commit sort
+alphabetically by display name/title. RSS `pubDate` uses the exact timestamp. Items use permanent canonical page URLs as
+GUIDs, summary-only descriptions, and a 50-item limit. Item links and GUIDs use the same trailing-slash page URLs as the
+sitemap and HTML canonical tags. Article series members appear as individual items; hidden lenses are excluded.
 
 The shared HTML template advertises both feeds with absolute RSS autodiscovery links. Visible subscription links live on
 the homepage and the corresponding Lens Library, Updates, and Articles pages. The feed URLs stay out of the route

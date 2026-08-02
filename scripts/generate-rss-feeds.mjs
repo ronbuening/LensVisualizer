@@ -91,9 +91,11 @@ function newestFirst(a, b) {
     if (byGeneratedOrder) return byGeneratedOrder;
   }
 
-  const byTimestamp = compareStrings(b.publishedAt ?? b.publishedOn, a.publishedAt ?? a.publishedOn);
+  const byDate = compareStrings(b.publishedOn, a.publishedOn);
+  if (byDate) return byDate;
+  const byTimestamp = compareStrings(a.publishedAt ?? a.publishedOn, b.publishedAt ?? b.publishedOn);
   if (byTimestamp) return byTimestamp;
-  const byCommit = compareStrings(b.publishedCommit ?? "", a.publishedCommit ?? "");
+  const byCommit = compareStrings(a.publishedCommit ?? "", b.publishedCommit ?? "");
   if (byCommit) return byCommit;
   return compareStrings(a.title, b.title) || compareStrings(a.url, b.url);
 }
