@@ -36,9 +36,11 @@ const LENS_DATA = {
   subtitle: "JP 2023-049919 A Example 1 — Cosina / Yuki Shibata",
   specs: [
     "7 ELEMENTS / 7 GROUPS",
-    "MODELED EFL 87.26 mm",
-    "PUBLISHED F/2.88",
-    "2ω = 27.44°",
+    "EFL 87.261 mm MODEL / 87.30 mm PATENT",
+    "90 mm / f/2.8 MARKETED",
+    "F/2.88 / 2ω = 27.44° PATENT",
+    "27.4° VM / 27.5° SL IIs MARKETED AOV",
+    "5 APD ELEMENTS (MANUFACTURER-MARKED)",
     "ALL-SPHERICAL UNIT FOCUS",
   ],
 
@@ -65,6 +67,7 @@ const LENS_DATA = {
       vd: 54.67,
       fl: 80.72666,
       glass: "TAC8 (HOYA optical equivalent; patent vendor unspecified)",
+      apd: false,
       role: "Front positive collector in the five-element positive front functional group.",
     },
     {
@@ -76,6 +79,9 @@ const LENS_DATA = {
       vd: 95.1,
       fl: 96.75289,
       glass: "FCD100 (HOYA optical equivalent; patent vendor unspecified)",
+      apd: "inferred",
+      apdNote:
+        "Cosina's production diagram marks L2 as abnormal partial dispersion; the patent supplies no line indices or dPgF.",
       role: "Very-low-index, high-Abbe positive element satisfying patent Conditions 1 and 2.",
     },
     {
@@ -87,6 +93,9 @@ const LENS_DATA = {
       vd: 95.1,
       fl: 86.3251,
       glass: "FCD100 (HOYA optical equivalent; patent vendor unspecified)",
+      apd: "inferred",
+      apdNote:
+        "Cosina's production diagram marks L3 as abnormal partial dispersion; the patent supplies no line indices or dPgF.",
       role: "Second very-low-index, high-Abbe positive element satisfying patent Conditions 1 and 2.",
     },
     {
@@ -98,6 +107,9 @@ const LENS_DATA = {
       vd: 39.68,
       fl: -29.83801,
       glass: "N-KZFS5 (SCHOTT optical equivalent; patent vendor unspecified)",
+      apd: "inferred",
+      apdNote:
+        "Cosina's production diagram marks L4 as abnormal partial dispersion; the patent supplies no line indices or dPgF.",
       role: "Strong negative meniscus that begins the negative portion of the front functional group.",
     },
     {
@@ -109,6 +121,9 @@ const LENS_DATA = {
       vd: 31.32,
       fl: -83.55088,
       glass: "N-LASF46B (SCHOTT optical equivalent; patent vendor unspecified)",
+      apd: "inferred",
+      apdNote:
+        "Cosina's production diagram marks L5 as abnormal partial dispersion; the patent supplies no line indices or dPgF.",
       role: "Compact high-index negative meniscus immediately ahead of the aperture stop.",
     },
     {
@@ -120,6 +135,7 @@ const LENS_DATA = {
       vd: 43.94,
       fl: 28.61083,
       glass: "NBFD11 (HOYA optical equivalent; patent vendor unspecified)",
+      apd: false,
       role: "Strong positive element of the separated rear functional group.",
     },
     {
@@ -131,6 +147,9 @@ const LENS_DATA = {
       vd: 47.35,
       fl: -42.8487,
       glass: "J-LASF014 (Hikari optical equivalent; patent vendor unspecified)",
+      apd: "inferred",
+      apdNote:
+        "Cosina's production diagram marks L7 as abnormal partial dispersion; the patent supplies no line indices or dPgF.",
       role: "Rear negative meniscus completing the positive rear functional group.",
     },
   ],

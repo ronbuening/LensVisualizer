@@ -1671,7 +1671,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---|---|---|---|---|---|---|
 | L5 (G2 doublet 1 rear) | 7 | `Unmatched (dense flint 728/261; no official HOYA or SUMITA catalog match)` | 1.72800 / 26.10 | No catalog entry | abbe | patents/US4523816.pdf | Explicit disposition in data |
 
-### [VOIGTLÄNDER APO-LANTHAR 50mm f/3.5 Type II VM](../../src/lens-data/voigtlander/VoigtlanderAPOLanthar50mmf35VM.data.ts) - JP 2025-108279 A
+### [VOIGTLÄNDER APO-LANTHAR 50mm f/3.5 (Type II) VM](../../src/lens-data/voigtlander/VoigtlanderAPOLanthar50mmf35VM.data.ts) - JP 2025-108279 A
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|

@@ -40,7 +40,15 @@ const LENS_DATA = {
   maker: "Voigtländer",
   name: "VOIGTLÄNDER NOKTON 60mm f/0.95",
   subtitle: "JP 2021-076740 A Example 2 — Cosina production correlation",
-  specs: ["11 ELEMENTS / 8 GROUPS", "f = 58.145 mm", "F/0.93 DESIGN", "2ω = 21.58°", "ALL-SPHERICAL"],
+  specs: [
+    "11 ELEMENTS / 8 GROUPS",
+    "EFL 58.145 mm MODEL / 58.15 mm PATENT",
+    "60 mm / f/0.95 MARKETED",
+    "F/0.93 / 2ω = 21.58° PATENT",
+    "21.5° MARKETED AOV",
+    "2 APD ELEMENTS (MANUFACTURER-MARKED)",
+    "ALL-SPHERICAL",
+  ],
 
   focalLengthMarketing: 60,
   focalLengthDesign: 58.145372162408336,

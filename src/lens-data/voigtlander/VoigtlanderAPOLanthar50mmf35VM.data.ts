@@ -2,7 +2,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
- * ║  LENS DATA — VOIGTLÄNDER APO-LANTHAR 50mm f/3.5 TYPE II VM                ║
+ * ║  LENS DATA — VOIGTLÄNDER APO-LANTHAR 50mm f/3.5 (TYPE II) VM              ║
  * ╠══════════════════════════════════════════════════════════════════════════════╣
  * ║  Data source: JP 2025-108279 A, Example 1 (Cosina Co., Ltd.).              ║
  * ║  Native-scale 49.10 mm f/3.56 all-spherical prescription.                  ║
@@ -31,13 +31,14 @@ import type { LensDataInput } from "../../types/optics.js";
 const LENS_DATA = {
   key: "voigtlander-apo-lanthar-50mm-f35-vm",
   maker: "Voigtländer",
-  name: "VOIGTLÄNDER APO-LANTHAR 50mm f/3.5 Type II VM",
+  name: "VOIGTLÄNDER APO-LANTHAR 50mm f/3.5 (Type II) VM",
   subtitle: "JP 2025-108279 A Example 1 — shared Type I / Type II optical prescription",
   specs: [
     "8 ELEMENTS / 6 GROUPS",
-    "f = 49.101 mm (DESIGN)",
-    "F/3.56 (DESIGN)",
-    "2ω = 47.88° (PATENT)",
+    "EFL 49.101 mm MODEL / 49.10 mm PATENT",
+    "50 mm / f/3.5 MARKETED",
+    "F/3.56 / 2ω = 47.88° PATENT",
+    "45.7° MARKETED AOV",
     "4 APD ELEMENTS (MANUFACTURER-MARKED)",
   ],
 
@@ -49,7 +50,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "JP 2025-108279 A",
   patentAuthors: ["Yoshihisa Yomogida", "Yuki Shibata"],
-  patentAssignees: ["株式会社コシナ"],
+  patentAssignees: ["Cosina Co., Ltd."],
   patentYear: 2025,
   elementCount: 8,
   groupCount: 6,
@@ -92,7 +93,7 @@ const LENS_DATA = {
       glass: "729547 — lanthanum crown; vendor identity not unique",
       apd: false,
       role: "Positive member of the front cemented doublet.",
-      cemented: "D1",
+      cemented: "L3/L4",
     },
     {
       id: 4,
@@ -107,7 +108,7 @@ const LENS_DATA = {
       apdNote:
         "Cosina's optical section marks L4 as anomalous partial dispersion; the patent supplies no line indices or dPgF.",
       role: "Negative member of the front cemented doublet, concave toward the stop.",
-      cemented: "D1",
+      cemented: "L3/L4",
     },
     {
       id: 5,
@@ -120,7 +121,7 @@ const LENS_DATA = {
       glass: "567428 — FL6/S-TIL26-class light flint; vendor identity not unique",
       apd: false,
       role: "Negative member of the rear cemented doublet, concave toward the stop.",
-      cemented: "D2",
+      cemented: "L5/L6",
     },
     {
       id: 6,
@@ -135,7 +136,7 @@ const LENS_DATA = {
       apdNote:
         "Cosina's optical section marks L6 as anomalous partial dispersion; the patent supplies no line indices or dPgF.",
       role: "Very-low-dispersion positive member of the rear cemented doublet.",
-      cemented: "D2",
+      cemented: "L5/L6",
     },
     {
       id: 7,
@@ -190,11 +191,9 @@ const LENS_DATA = {
   groups: [
     { text: "G1F", fromSurface: "3", toSurface: "7" },
     { text: "G1B", fromSurface: "9", toSurface: "13" },
+    { text: "G1", fromSurface: "3", toSurface: "13" },
   ],
-  doublets: [
-    { text: "D1", fromSurface: "5", toSurface: "7" },
-    { text: "D2", fromSurface: "9", toSurface: "11" },
-  ],
+  doublets: [],
 
   closeFocusM: 0.35,
   focusDescription:

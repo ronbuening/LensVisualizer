@@ -174,3 +174,18 @@ The repository silhouette was compared again with Example 2 Figure 7 on PDF page
 and surface-10 apertures remain the renderer-safe values that most closely preserve the patent outline; no hidden trim
 or undersized image-circle surface remains. No further SD correction was supported. Inventor metadata now reuses the
 repository's established `Yasuyuki Sugano` romanization.
+
+## Screenshot and label audit — 2026-08-02
+
+The supplied renderer view was checked against Example 2 Figure 7 and Cosina's official optical section. The front
+taper, stop-adjacent L4, rear cemented pair, and final double-aspherical element remain inside the procedure's 15%
+no-change band. The renderer-safe surface-8 and surface-10 values remain the closest valid outline.
+
+- No semi-diameter changed.
+- Figure 7's previously omitted `102A` (L5/L6) and `102B` (L7/LE) subgroup labels are now included.
+- The product name and two-aspherical-surface count remain correct.
+- The header now distinguishes modeled, patent, and marketed focal/aperture values and the 46.58° patent field from
+  Cosina's 46.3° marketed angle of view.
+
+Verification: `audit:image-circle`, `audit:surface`, production render diagnostics, glass reports, typecheck, formatting,
+lint, full tests, and production build all pass.

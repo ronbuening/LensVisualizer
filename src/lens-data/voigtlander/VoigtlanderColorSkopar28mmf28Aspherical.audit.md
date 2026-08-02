@@ -282,3 +282,17 @@ index model because the patent omitted its Abbe number.
 A fresh post-commit render was checked again against Example 1 Figures 1 and 4. The front meniscus, compact cemented
 pair, stop opening, and three-element rear progression remain aligned with the patent drawing. The stored apertures pass
 `audit:image-circle` and the production render-diagnostics test, so no SD correction was supported.
+
+## Screenshot and label audit — 2026-08-02
+
+The supplied repository screenshot was checked against Example 1 Figures 1 and 4 and Cosina's official production
+SVG. The relative diameters of the front menisci, cemented pair, three rear elements, and final asphere remain within
+the procedure's 15% no-change band, so no SD edit is defensible.
+
+- No semi-diameter changed.
+- The product name, seven-element/six-group count, and two aspherical-surface labels remain correct.
+- The header now distinguishes the modeled 29.430 mm EFL from the patent's rounded 29.4 mm and separates patent
+  F/2.88 from the marketed 28 mm, f/2.8, and 74.8° angle-of-view values.
+
+Verification: `audit:image-circle`, `audit:surface`, production render diagnostics, glass reports, typecheck, formatting,
+lint, full tests, and production build all pass.

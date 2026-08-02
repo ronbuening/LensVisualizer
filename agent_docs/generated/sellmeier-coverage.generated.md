@@ -234,7 +234,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [SIGMA 30mm f/2.8 (Sigma DP2 Merrill)](../../src/lens-data/sigma/SigmaDp2M30mmf28.data.ts) | 8/8 | 8 | 8/8 |
 | [SIGMA 45mm f/2.8 DG DN | Contemporary](../../src/lens-data/sigma/Sigma45mmf28DGDN.data.ts) | 8/8 | 8 | 8/8 |
 | [SIGMA 60mm f/2.8 DN | Art](../../src/lens-data/sigma/Sigma60mmf28DN.data.ts) | 8/8 | 8 | 8/8 |
-| [VOIGTLÄNDER APO-LANTHAR 50mm f/3.5 Type II VM](../../src/lens-data/voigtlander/VoigtlanderAPOLanthar50mmf35VM.data.ts) | 8/8 | 8 | 8/8 |
+| [VOIGTLÄNDER APO-LANTHAR 50mm f/3.5 (Type II) VM](../../src/lens-data/voigtlander/VoigtlanderAPOLanthar50mmf35VM.data.ts) | 8/8 | 8 | 8/8 |
 | [VOIGTLÄNDER APO-ULTRON 90mm f/2 VM](../../src/lens-data/voigtlander/VoigtlanderAPOUltron90mmf2VM.data.ts) | 8/8 | 8 | 8/8 |
 | [VOIGTLÄNDER COLOR-SKOPAR 28mm f/2.8 Aspherical](../../src/lens-data/voigtlander/VoigtlanderColorSkopar28mmf28.data.ts) | 8/8 | 8 | 8/8 |
 | [CANON EF-M 22mm f/2 STM](../../src/lens-data/canon/CanonEFM22mmf2STM.data.ts) | 7/7 | 7 | 7/7 |

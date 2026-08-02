@@ -317,3 +317,17 @@ A fresh post-commit render was checked again against Example 2 Figure 5. The rev
 diameter progression without gap trim, while the unchanged front groups preserve the required f/0.93 beam. The final
 surface set passes `audit:surface`, `audit:image-circle`, and the production render-diagnostics test. No further SD
 correction was supported.
+
+## Screenshot and label audit — 2026-08-02
+
+The supplied renderer view was compared again with Example 2 Figure 5 and Cosina's official optical section. The
+large front trio, narrowing middle unit, and revised rear progression preserve both sources within the procedure's
+15% no-change band, with no renewed trim or aperture-floor issue.
+
+- No semi-diameter changed.
+- The product name, eleven-element/eight-group count, and all-spherical label remain correct.
+- The header now separates the modeled/patent focal length, marketed 60 mm f/0.95 designation, patent F/0.93 and
+  21.58° field, marketed 21.5° angle of view, and the two manufacturer-marked APD positions at L2 and L7.
+
+Verification: `audit:image-circle`, `audit:surface`, production render diagnostics, glass reports, typecheck, formatting,
+lint, full tests, and production build all pass.

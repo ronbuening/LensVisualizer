@@ -276,3 +276,17 @@ The repository silhouette was compared again with Example 3 Figure 5 on PDF page
 opening, cemented rear pair, and final aspherical meniscus remain consistent with the source drawing. `audit:image-circle`
 and the production render-diagnostics test pass, so no SD correction was supported. Inventor metadata now reuses the
 repository's established `Hirokazu Shimada` and `Yasuyuki Sugano` romanizations.
+
+## Screenshot and label audit — 2026-08-02
+
+The supplied renderer view was compared again with Example 3 Figure 5 and Cosina's official section. Its diameter
+taper, stop placement, rear cemented pair, and final asphere remain within the procedure's 15% no-change band.
+
+- No semi-diameter changed.
+- The product name, seven-element/six-group count, and two-aspherical-surface label remain correct.
+- The header now separates the modeled 74.503 mm / patent 74.5 mm focal length from the marketed 75 mm, identifies
+  patent F/1.54 and 32.0° separately from marketed f/1.5 and 32.6°, and records L2-L4 as the three APD positions
+  supported collectively by the patent and manufacturer diagram.
+
+Verification: `audit:image-circle`, `audit:surface`, production render diagnostics, glass reports, typecheck, formatting,
+lint, full tests, and production build all pass.

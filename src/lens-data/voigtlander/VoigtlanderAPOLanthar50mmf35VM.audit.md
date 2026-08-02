@@ -186,3 +186,19 @@ The repository silhouette was compared again with Example 1 Figure 1 on PDF page
 height taper, compact L5/L6 pair, and wider L7/L8 rear pair; the higher-precision Cosina SVG fit remains internally
 consistent. `audit:image-circle` and the production render-diagnostics test pass, so no SD correction was supported.
 Inventor metadata now reuses the repository's established `Yoshihisa Yomogida` and `Yuki Shibata` romanizations.
+
+## Screenshot and label audit — 2026-08-02
+
+The supplied diagram confirms the existing manufacturer-SVG fit; its surface heights remain within about 0.0051 mm
+of the fitted Cosina section and also remain within the patent drawing's lower-precision tolerance.
+
+- No semi-diameter changed.
+- The display name is corrected from `VOIGTLÄNDER APO-LANTHAR 50mm f/3.5 Type II VM` to
+  `VOIGTLÄNDER APO-LANTHAR 50mm f/3.5 (Type II) VM`, following Cosina's product styling.
+- Figure 1's complete `G1` label and its `G1F` / `G1B` subdivisions are now represented. The unsupported `D1` / `D2`
+  diagram labels were removed; cemented membership remains identified factually as L3/L4 and L5/L6.
+- The applicant now reuses the established romanized `Cosina Co., Ltd.` entry.
+- The header now separates modeled, patent, and marketed focal, aperture, and angle-of-view values.
+
+Verification: `audit:image-circle`, `audit:surface`, production render diagnostics, glass reports, typecheck, formatting,
+lint, full tests, and production build all pass.

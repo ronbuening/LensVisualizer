@@ -47,9 +47,10 @@ const LENS_DATA = {
   subtitle: "JP 2023-032663 A Example 1 — production-correlated rigid unit-focus model",
   specs: [
     "7 ELEMENTS / 6 GROUPS",
-    "f = 29.430 mm (DESIGN)",
-    "F/2.88 (DESIGN)",
-    "74.8° MARKETED ANGLE OF VIEW",
+    "EFL 29.430 mm MODEL / 29.4 mm PATENT",
+    "28 mm / f/2.8 MARKETED",
+    "F/2.88 PATENT",
+    "74.8° MARKETED AOV",
     "2 ASPHERICAL SURFACES",
   ],
 

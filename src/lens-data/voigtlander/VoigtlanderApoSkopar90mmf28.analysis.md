@@ -14,7 +14,7 @@
 The prescription is the first numerical example of JP 2023-049919 A. It is associated here with the VOIGTLÄNDER APO-SKOPAR 90mm f/2.8 production design in its VM and SL IIs forms. This is a production correlation based on convergent technical evidence; the cited manufacturer material does not identify the patent or state that Example 1 is the production prescription.
 
 1. Example 1 contains seven elements in seven air-spaced groups, matching both production versions.
-2. Cosina's official VM and SL IIs optical diagrams are identical to one another and match Example 1's seven-element topology, meniscus sequence, stop placement, and separated rear pair.
+2. Cosina's official VM and SL IIs optical diagrams are identical to one another and match Example 1's seven-element topology, meniscus sequence, stop placement, and separated rear pair. They mark L2, L3, L4, L5, and L7 as abnormal-partial-dispersion positions.
 3. The patent gives a design focal length of 87.30 mm, F/2.88, and a 27.44° full field. These values correspond to the marketed 90 mm and f/2.8 specifications, with published angles of view of 27.4° for the VM version and 27.5° for the SL IIs version.
 4. The patent publishes unit focusing: all internal spacings remain fixed while the image-side gap increases. Cosina describes both production lenses as extending the complete lens assembly for focusing.
 5. At the patent's close state, the object plane lies 800 mm before surface 1 and the image plane lies 50.34 mm after surface 15. After reference-plane normalization, the full object-to-image distance is 896.53 mm, consistent with a marketed 0.9 m minimum focus distance.
@@ -61,13 +61,15 @@ L3 repeats the optical position of L2 and independently satisfies the same two p
 
 Together, L2 and L3 provide two high-Abbe positive components within the front group. The patent attributes the use of at least two such positive lenses to axial-color correction and to permitting a shorter back focus without relying on aspheres. The stored data support that statement only at the nd/νd level; they do not establish partial-dispersion behavior.
 
+Cosina's matched production diagram marks L2 and L3 as two of the five abnormal-partial-dispersion positions. Their `apd` metadata is therefore recorded as a manufacturer-derived inference, without assigning line indices or a numerical `dPgF`.
+
 ### L4 — Negative Meniscus, convex to object
 
 **nd = 1.65412, νd = 39.68. Glass: N-KZFS5 optical equivalent; patent vendor unspecified. Standalone f = −29.83801 mm.**
 
 L4 is the strongest negative standalone element in the lens. Its negative power sharply offsets the three preceding positive menisci and begins the negative portion of the front functional group described in ¶0032.
 
-The glass label identifies a compatible public curve, not a confirmed production material. No dPgF or line-index data are stored, so the model does not treat L4 as independently demonstrated anomalous-dispersion glass.
+The glass label identifies a compatible public curve, not a confirmed production material. Cosina marks this production position as abnormal partial dispersion, so the positional association is recorded as inferred; no dPgF or line-index data are stored.
 
 ### L5 — Negative Meniscus, convex to object
 
@@ -76,6 +78,8 @@ The glass label identifies a compatible public curve, not a confirmed production
 L5 is a thin, high-index negative meniscus immediately before the aperture stop. Its high index permits useful negative power with relatively moderate surface curvature and a 1.20 mm center thickness.
 
 In Example 1, L5 is a singlet. This distinguishes it from Examples 2 and 3, in which the corresponding negative component is formed as a cemented pair. The selected embodiment therefore preserves the seven-element, seven-group construction rather than the more complex sibling arrangements (¶0026, ¶0036, ¶0046).
+
+The matched production diagram also marks L5 as abnormal partial dispersion. The data records that manufacturer-derived position while leaving the quantitative spectral fields unset.
 
 ### L6 — Biconvex Positive
 
@@ -93,6 +97,8 @@ L7 is the final refractive element. Its two negative radii form an image-convex 
 
 The last surface is weakly curved, with R = −388.64 mm. The published infinity image plane lies 39.64 mm behind that surface; this final air gap is also the sole focus variable in the data model.
 
+Cosina marks L7 as the fifth abnormal-partial-dispersion position in the production section. As with L2-L5, this is stored as an inferred positional label rather than patent-published spectral data.
+
 ## Glass Identification and Selection
 
 The patent publishes nd and νd but no manufacturer glass names, line indices, Sellmeier coefficients, or anomalous-partial-dispersion values. The data file uses compatible public curves as optical equivalents while explicitly leaving the patent's production suppliers unspecified.
@@ -106,7 +112,7 @@ The patent publishes nd and νd but no manufacturer glass names, line indices, S
 | NBFD11 optical equivalent | 1.78590 | 43.94 | L6 | Compatible HOYA curve; supplier not identified |
 | J-LASF014 optical equivalent | 1.78800 | 47.35 | L7 | Compatible Hikari curve; supplier not identified |
 
-The product name contains “APO,” and Cosina's product literature describes abnormal-partial-dispersion glass in the production lenses. That product-level statement is not converted into element-level patent data here. Because the selected example supplies only nd and νd, the model does not assign `apd`, nC, nF, ng, or dPgF and does not claim that its Abbe-only spectral model independently demonstrates apochromatic correction.
+The product name contains “APO,” and Cosina's optical section identifies L2, L3, L4, L5, and L7 as the five abnormal-partial-dispersion positions. The model records those exact diagram mappings as `apd: "inferred"`; they are not represented as patent claims or supplier identifications. Because the selected example supplies only nd and νd, the model assigns no nC, nF, ng, or dPgF and does not claim that its Abbe-only spectral model independently demonstrates apochromatic correction.
 
 ## Focus Mechanism
 

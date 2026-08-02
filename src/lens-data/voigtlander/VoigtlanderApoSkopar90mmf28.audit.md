@@ -144,3 +144,17 @@ unspecified. Strict Sellmeier coverage remains 7/7, with no change to patent `nd
 A fresh post-commit render was checked again against Example 1 Figure 1. The five front menisci and separated rear pair
 retain the patent's relative heights and edge progression. The stored apertures pass `audit:image-circle` and the
 production render-diagnostics test, so no SD correction was supported.
+
+## Screenshot and label audit — 2026-08-02
+
+The supplied repository screenshot was compared side by side with patent Example 1 Figure 1 and Cosina's official
+optical-section SVG. The front taper and rear-pair proportions remain within the procedure's 15% no-change band; no
+surface has strong enough figure evidence for another SD edit.
+
+- No semi-diameter changed.
+- L2, L3, L4, L5, and L7 now carry manufacturer-derived `apd: "inferred"` labels, matching the five marked positions
+  in Cosina's section without inventing line indices or `dPgF`.
+- The header now separates modeled, patent, and marketed focal, aperture, and angle-of-view values.
+
+Verification: `audit:image-circle`, `audit:surface`, production render diagnostics, glass reports, typecheck, formatting,
+lint, full tests, and production build all pass.
