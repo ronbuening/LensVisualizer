@@ -15,6 +15,7 @@ function installGoatCounterMock() {
 }
 
 afterEach(() => {
+  vi.useRealTimers();
   vi.unstubAllEnvs();
   resetErrorBeaconSessionForTests();
   delete window.goatcounter;
@@ -74,6 +75,25 @@ describe("reportErrorBeacon", () => {
     expect(count).toHaveBeenCalledWith({
       path: "/_error/error-boundary",
       title: "error-boundary: string reason",
+      event: true,
+    });
+  });
+
+  it("queues startup errors until the async analytics script is ready", () => {
+    vi.useFakeTimers();
+    vi.stubEnv("PROD", true);
+    window.goatcounter = {};
+
+    reportErrorBeacon("route-error-boundary", new Error("startup failed"), "/lens/test-lens");
+
+    const count = vi.fn();
+    window.goatcounter.count = count;
+    vi.advanceTimersByTime(100);
+
+    expect(count).toHaveBeenCalledOnce();
+    expect(count).toHaveBeenCalledWith({
+      path: "/_error/lens-test-lens",
+      title: "route-error-boundary: startup failed",
       event: true,
     });
   });

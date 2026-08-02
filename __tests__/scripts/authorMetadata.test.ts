@@ -17,6 +17,15 @@ describe("author metadata generation", () => {
     expect(authors).toEqual([{ name: "Ada Example", slug: "ada-example", lensKeys: ["a", "b", "c"], patentCount: 2 }]);
   });
 
+  it("counts attributed fallback records when a patent number is missing", () => {
+    const authors = buildAuthorMetadata([
+      { key: "a", patentAuthors: ["Ada Example"], visible: true },
+      { key: "b", patentAuthors: ["Ada Example"], visible: true },
+    ]);
+
+    expect(authors[0]).toMatchObject({ lensKeys: ["a", "b"], patentCount: 2 });
+  });
+
   it("adds stable suffixes for colliding and non-ASCII slug bases", () => {
     const authors = buildAuthorMetadata([
       { key: "a", patentAuthors: ["José Test"], visible: true },
@@ -55,6 +64,19 @@ describe("assignee metadata generation", () => {
     ]);
 
     expect(assignees.map((a: { name: string }) => a.name)).toEqual(["Nikon Corp."]);
+  });
+
+  it("rebuilds the assignee count when another attributed lens is added", () => {
+    const firstBuild = buildAssigneeMetadata([
+      { key: "a", patentNumber: "US 1", patentAssignees: ["Canon Inc."], visible: true },
+    ]);
+    const nextBuild = buildAssigneeMetadata([
+      { key: "a", patentNumber: "US 1", patentAssignees: ["Canon Inc."], visible: true },
+      { key: "b", patentNumber: "US 2", patentAssignees: ["Canon Inc."], visible: true },
+    ]);
+
+    expect(firstBuild[0]).toMatchObject({ lensKeys: ["a"], patentCount: 1 });
+    expect(nextBuild[0]).toMatchObject({ lensKeys: ["a", "b"], patentCount: 2 });
   });
 
   it("adds stable suffixes for assignee names that slugify identically", () => {

@@ -18,6 +18,7 @@
  */
 
 import { useEffect, useState } from "react";
+import { subscribeToMediaQuery } from "../../utils/mediaQuery.js";
 
 interface SidebarLayoutProps {
   /** The sidebar panel, or `null`/`false` to render the content full-width. */
@@ -43,8 +44,7 @@ function useMediaQueryMatch(query: string): boolean {
     const mql = window.matchMedia(query);
     const handler = () => setMatches(mql.matches);
     handler();
-    mql.addEventListener("change", handler);
-    return () => mql.removeEventListener("change", handler);
+    return subscribeToMediaQuery(mql, handler);
   }, [query]);
   return matches;
 }

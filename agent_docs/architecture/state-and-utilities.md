@@ -122,6 +122,7 @@ Style modules live under `src/utils/style/`.
 | --- | --- |
 | `featureFlags.ts` | Feature flag controls. |
 | `errorReporting.ts` | Builds prefilled GitHub issue URLs with component, lens, stack, and browser context. |
+| `errorBeacon.ts` | Reports boundary, window, and rejection errors as privacy-sanitized GoatCounter events; startup events wait briefly for the async analytics script instead of being dropped. |
 | `useMediaQuery.ts` | Responsive breakpoint hook. |
 | `appConfig.ts` | Application-level constants. |
 | `perfProbe.ts` | Dev-only timing wrapper that logs a `console.table` summary every 10 calls; no-op in production. |

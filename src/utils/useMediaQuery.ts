@@ -6,6 +6,7 @@
  * (desktop vs mobile at 900px).
  */
 import { useState, useEffect } from "react";
+import { subscribeToMediaQuery } from "./mediaQuery.js";
 
 export default function useMediaQuery(query: string): boolean {
   const [matches, setMatches] = useState<boolean>(() =>
@@ -16,8 +17,7 @@ export default function useMediaQuery(query: string): boolean {
     /* Re-sync on query change — the lazy initial state only runs for the first query */
     setMatches(mql.matches);
     const handler = (e: MediaQueryListEvent): void => setMatches(e.matches);
-    mql.addEventListener("change", handler);
-    return () => mql.removeEventListener("change", handler);
+    return subscribeToMediaQuery(mql, handler);
   }, [query]);
   return matches;
 }

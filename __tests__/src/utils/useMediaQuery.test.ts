@@ -103,4 +103,31 @@ describe("useMediaQuery", () => {
     rerender({ q: "(min-width: 600px)" });
     expect(result.current).toBe(true);
   });
+
+  it("falls back to the legacy WebKit listener API", () => {
+    const legacyListeners: ((event: MediaQueryListEvent) => void)[] = [];
+    const addListener = vi.fn((handler: (event: MediaQueryListEvent) => void) => legacyListeners.push(handler));
+    const removeListener = vi.fn((handler: (event: MediaQueryListEvent) => void) => {
+      const index = legacyListeners.indexOf(handler);
+      if (index >= 0) legacyListeners.splice(index, 1);
+    });
+    vi.stubGlobal(
+      "matchMedia",
+      vi.fn(() => ({
+        matches: false,
+        media: "(min-width: 900px)",
+        addListener,
+        removeListener,
+      })),
+    );
+
+    const { result, unmount } = renderHook(() => useMediaQuery("(min-width: 900px)"));
+    expect(addListener).toHaveBeenCalledTimes(1);
+    act(() => legacyListeners[0]({ matches: true } as MediaQueryListEvent));
+    expect(result.current).toBe(true);
+
+    unmount();
+    expect(removeListener).toHaveBeenCalledTimes(1);
+    expect(legacyListeners).toHaveLength(0);
+  });
 });
