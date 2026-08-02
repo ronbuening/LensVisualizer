@@ -311,6 +311,7 @@ const GLASS_CATALOG_SOURCE_ORDER = [
   "J-BK7",
   "BK7G18",
   "P-SK57Q1",
+  "P-SK60",
   "M-PCD51",
   "SK9",
   "E-BAF8",

@@ -9,12 +9,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **503** lenses scanned (**495** visible)
-- **4878 / 5538** non-air surfaces use strict catalog Sellmeier data (88.1%)
-- **4889 / 5538** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 88.3%)
+- **506** lenses scanned (**498** visible)
+- **4897 / 5563** non-air surfaces use strict catalog Sellmeier data (88.0%)
+- **4908 / 5563** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 88.2%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
-- **267** code-only missing-Sellmeier elements in Sweep 2: **0** active unreviewed, **120** self-recording explicit dispositions, **0** dispositions missing any review record
+- **272** code-only missing-Sellmeier elements in Sweep 2: **0** active unreviewed, **125** self-recording explicit dispositions, **0** dispositions missing any review record
 - **0** unresolved named-token elements in Sweep 2B, producing **0** token occurrences across **0** distinct tokens
 - **0** Tier A proprietary backfill rows in Sweep 3
 
@@ -94,6 +94,7 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [CARL ZEISS B-DISTAGON 35mm f/4 (Contarex)](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon35mmf4.data.ts) | US 3,038,380 | [PDF](../../patents/US3038380.pdf) | 85.7% (6/7) | 85.7% (6/7) | 1 | 2 [glass] (LII: `K10 (Schott)`) | abbe: 1 |
 | [ENNA MÜNCHEN LITHAGON 24mm f/4](../../src/lens-data/enna-munchen/EnnaMunchenLithagon24mmf4.data.ts) | DE 1 228 820 B | [PDF](../../patents/DE_1228820_B.pdf) | 85.7% (6/7) | 85.7% (6/7) | 1 | 7 [glass] (Element 4: `Unmatched 519573 crown glass (patent-listed; supplier unidentified)`) | abbe: 1 |
 | [OLYMPUS G.ZUIKO AUTO-S 55mm f/1.2](../../src/lens-data/olympus/OlympusZuikoAutoS55mmf12.data.ts) | US 3,743,387 | [PDF](../../patents/US3743387.pdf) | 85.7% (6/7) | 85.7% (6/7) | 1 | 5 [glass] (Element 3: `762271 — NbF/SF dense flint family (patent nd=1.7618, νd=27.1; no exact public catalog match)`) | abbe: 1 |
+| [VOIGTLÄNDER COLOR-SKOPAR 28mm f/2.8 Aspherical SL IIs](../../src/lens-data/voigtlander/VoigtlanderColorSkopar28mmf28Aspherical.data.ts) | JP 2023-032663 A | [PDF](../../patents/JPA 2023032663-000000.pdf) | 85.7% (6/7) | 85.7% (6/7) | 1 | 5 [glass] (Cemented biconcave member: `Unmatched (nd inferred from published FL; νd omitted by patent)`) | constant: 1 |
 | [LAOWA 65mm f/2.8 2× Ultra Macro APO](../../src/lens-data/laowa/Laowa65mmf28MacroAPO.data.ts) | CN 110161666A | [PDF](../../patents/CN110161666A.pdf) | 85.7% (12/14) | 85.7% (12/14) | 2 | 4 [glass] (Element 3: `773530 — high-index lanthanum crown (patent nd=1.77250, νd=53.00; no exact public catalog match)`)<br>16 [glass] (Element 10: `Unmatched (patent nd=1.72916, νd=57.67; prior H-LAK52 candidate rejected on dispersion)`) | abbe: 2 |
 | [NIKON AF-S NIKKOR 105mm f/1.4 E ED](../../src/lens-data/nikon/NikonNikkor105f14E.data.ts) | WO2019/116563 A1 | [PDF](../../patents/JPWO2019116563A1.pdf) | 85.7% (12/14) | 85.7% (12/14) | 2 | 8 [glass] (Element 5: `Specialty APD glass (Nikon)`)<br>14 [glass] (Element 9: `Specialty high-dispersion flint`) | abbe: 2 |
 | [SONY FE 24mm f/1.4 GM](../../src/lens-data/sony/SonyFE24mmf14GM.data.ts) | WO2019/073744 A1 | [PDF](../../patents/JPWO2019073744A1.pdf) | 84.6% (11/13) | 84.6% (11/13) | 2 | 1A [glass] (L11 front XA element: `MC-TAF115 class (Hoya; close match, stored nd=1.77002)`)<br>21A [glass] (L27 rear XA element: `Unmatched (lanthanum flint, 852/401; no exact public catalog match)`) | abbe: 2 |

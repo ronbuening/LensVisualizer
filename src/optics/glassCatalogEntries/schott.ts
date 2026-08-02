@@ -421,6 +421,18 @@ export const SCHOTT_GLASS_ENTRIES: readonly GlassEntry[] = [
     code6: "586595",
     source: "Schott Zemax catalog 2017-01-20b via refractiveindex.info; P-SK57Q1 page.",
   },
+  /* ────── Phase 75 Voigtländer three-lens coverage addition (August 2026) ────── */
+  {
+    name: "P-SK60",
+    vendor: "Schott",
+    B: [1.40790442, 0.143381417, 1.16513947],
+    C: [0.00784382378, 0.0287769365, 105.373397],
+    nd: 1.61035,
+    vd: 57.9,
+    PgF: 0.5427,
+    code6: "610579",
+    source: "SCHOTT P-SK60 optical-glass datasheet, official SCHOTT Advanced Optics PDF, accessed 2026-08-02.",
+  },
   {
     name: "N-SF8",
     vendor: "Schott",

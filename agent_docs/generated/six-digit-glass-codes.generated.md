@@ -9,10 +9,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **503** lenses scanned
-- **569** total code-only elements found
-- **569** elements in this report
-- **162** distinct lens files affected
+- **506** lenses scanned
+- **574** total code-only elements found
+- **574** elements in this report
+- **163** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -155,6 +155,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 575414 | 1 | 1 | patents/US2279384.pdf | All rows explicitly disposed |
 | 575560 | 1 | 1 | patents/JP2021076829A.pdf | All rows explicitly disposed |
 | 576414 | 1 | 1 | patents/US4124276.pdf | All rows have review records |
+| 578671 | 1 | 1 | patents/JPA 2021076740-000000.pdf | All rows explicitly disposed |
 | 579417 | 1 | 1 | patents/US2645974.pdf | All rows explicitly disposed |
 | 580595 | 1 | 1 | patents/JP2015041012A.pdf | All rows explicitly disposed |
 | 581409 | 1 | 1 | patents/JPWO2020158622A1.pdf | No review-record hit |
@@ -200,7 +201,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 648338 | 1 | 1 | patents/JP_2026120386_A.pdf | All rows have review records |
 | 650396 | 1 | 1 | patents/DE_3907928_A1.pdf | All rows explicitly disposed |
 | 652585 | 1 | 1 | No patent number parsed from lens metadata | No review-record hit |
+| 656337 | 1 | 1 | patents/JPA 2021076740-000000.pdf | All rows explicitly disposed |
 | 658397 | 1 | 1 | patents/JP2023039817A.pdf | All rows have review records |
+| 662331 | 1 | 1 | patents/JPA 2021076740-000000.pdf | All rows explicitly disposed |
 | 662577 | 1 | 1 | patents/US2896506.pdf | All rows explicitly disposed |
 | 667311 | 1 | 1 | patents/US20140247506A1.pdf | All rows have review records |
 | 667322 | 1 | 1 | patents/US2983193.pdf | All rows explicitly disposed |
@@ -316,11 +319,13 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 851401 | 1 | 1 | patents/JPWO2017138250A1.pdf | No review-record hit |
 | 852401 | 1 | 1 | patents/JPWO2019073744A1.pdf | All rows explicitly disposed |
 | 852402 | 1 | 1 | patents/WO2020136749A1.pdf | All rows have review records |
+| 852428 | 1 | 1 | patents/JPA 2021076740-000000.pdf | All rows explicitly disposed |
 | 854404 | 1 | 1 | patents/US20190278068A1.pdf | All rows have review records |
 | 855399 | 1 | 1 | patents/JP2022092388A.pdf | All rows have review records |
 | 856323 | 1 | 1 | patents/WO2021200206A1.pdf | All rows explicitly disposed |
 | 866450 | 1 | 1 | patents/CN116520542A.pdf | All rows have review records |
 | 871407 | 1 | 1 | patents/JP2020118738A.pdf | No review-record hit |
+| 876363 | 1 | 1 | patents/JPA 2021076740-000000.pdf | All rows explicitly disposed |
 | 877370 | 1 | 1 | patents/US20160266350A1.pdf | All rows have review records |
 | 882408 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | All rows have review records |
 | 892371 | 1 | 1 | patents/JPWO2019187633A1.pdf | No review-record hit |
@@ -1680,6 +1685,16 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---|---|---|---|---|---|---|
 | L6r (Element 8) | 14 | `Unmatched (553551 crown; patent nd=1.55298, νd=55.07)` | 1.55298 / 55.07 | No catalog entry | abbe | patents/JP2023063766A.pdf | Explicit disposition in data |
 | L7 (Element 9) | 16A | `Unmatched (808406 high-index lanthanum glass; patent nd=1.80835, νd=40.55)` | 1.80835 / 40.55 | No catalog entry | abbe | patents/JP2023063766A.pdf | Explicit disposition in data |
+
+### [VOIGTLÄNDER NOKTON 60mm f/0.95](../../src/lens-data/voigtlander/VoigtlanderNokton60mmf95.data.ts) - JP 2021-076740 A
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L1 (Element 1) | 1 | `Unmatched (656337 medium-flint class)` | 1.65568 / 33.69 | No catalog entry | abbe | patents/JPA 2021076740-000000.pdf | Explicit disposition in data |
+| L3 (Element 3) | 5 | `Unmatched (852428 high-index lanthanum-crown class)` | 1.85167 / 42.76 | No catalog entry | abbe | patents/JPA 2021076740-000000.pdf | Explicit disposition in data |
+| L5 (Element 5) | 9 | `Unmatched (578671 low-dispersion crown class)` | 1.57774 / 67.11 | No catalog entry | abbe | patents/JPA 2021076740-000000.pdf | Explicit disposition in data |
+| L7 (Element 7) | 13 | `Unmatched (662331 APD flint; maker-marked, line data unpublished)` | 1.66172 / 33.13 | No catalog entry | abbe | patents/JPA 2021076740-000000.pdf | Explicit disposition in data |
+| L8 (Element 8) | 14 | `Unmatched (876363 high-index lanthanum-flint class)` | 1.87648 / 36.27 | No catalog entry | abbe | patents/JPA 2021076740-000000.pdf | Explicit disposition in data |
 
 ### [VOIGTLÄNDER NOKTON Vintage Line 50mm f/1.5 Aspherical II VM](../../src/lens-data/voigtlander/VoigtlanderNokton50mmf15AsphericalVM.data.ts) - JP 2022-012964 A
 
