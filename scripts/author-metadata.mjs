@@ -54,7 +54,11 @@ function buildPatentPartyMetadata(lensSummaries, field) {
     for (const name of lens[field] ?? []) {
       const existing = records.get(name) ?? { lensKeys: new Set(), patentNumbers: new Set() };
       existing.lensKeys.add(lens.key);
-      if (lens.patentNumber) existing.patentNumbers.add(lens.patentNumber);
+      /* Keep the count aligned with patentsForParty(): an attributed lens with
+       * no explicit publication number still becomes its own fallback patent
+       * record instead of silently contributing zero to the party's count. */
+      const patentIdentity = lens.patentNumber?.trim() || `lens:${lens.key}`;
+      existing.patentNumbers.add(patentIdentity);
       records.set(name, existing);
     }
   }

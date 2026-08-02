@@ -36,6 +36,12 @@ describe("buildRelationshipGraph invariants", () => {
 
       // Every lens yields a patent record, so there is always ≥ 1 patent.
       expect(graph.patents.length).toBeGreaterThan(0);
+      const generatedParty =
+        ref.role === "author"
+          ? AUTHORS.find((author) => author.slug === ref.slug)
+          : ASSIGNEES.find((assignee) => assignee.slug === ref.slug);
+      expect(graph.patents.length).toBe(generatedParty?.patentCount);
+      expect(graph.center.patentIds.length).toBe(generatedParty?.patentCount);
 
       // Parties never contain the center.
       expect(graph.parties.some((party) => party.id === centerId)).toBe(false);

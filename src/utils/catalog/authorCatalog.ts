@@ -88,8 +88,10 @@ export function patentsForParty(name: string, role: "author" | "assignee"): Auth
     const names = role === "author" ? lens.patentAuthors : lens.patentAssignees;
     if (!names?.includes(name)) continue;
 
-    const patentNumber = lens.patentNumber ?? `Patent source for ${lens.name}`;
-    const record = patents.get(patentNumber) ?? {
+    const explicitPatentNumber = lens.patentNumber?.trim();
+    const patentIdentity = explicitPatentNumber || `lens:${key}`;
+    const patentNumber = explicitPatentNumber || `Patent source for ${lens.name}`;
+    const record = patents.get(patentIdentity) ?? {
       patentNumber,
       patentYear: lens.patentYear,
       authors: new Set<string>(),
@@ -100,7 +102,7 @@ export function patentsForParty(name: string, role: "author" | "assignee"): Auth
     for (const author of lens.patentAuthors ?? []) record.authors.add(author);
     for (const assignee of lens.patentAssignees ?? []) record.assignees.add(assignee);
     record.lenses.push({ key, name: lens.name, specs: lens.specs });
-    patents.set(patentNumber, record);
+    patents.set(patentIdentity, record);
   }
 
   return [...patents.values()]
