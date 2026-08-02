@@ -51,7 +51,7 @@ const LENS_DATA = {
   lensMounts: ["leica-m"],
   imageFormat: "135-full-frame",
   patentNumber: "JP 2020-122918 A",
-  patentAuthors: ["島田 博和", "菅野 靖之"],
+  patentAuthors: ["Hirokazu Shimada", "Yasuyuki Sugano"],
   patentAssignees: ["Cosina Co., Ltd."],
   patentYear: 2020,
   elementCount: 7,

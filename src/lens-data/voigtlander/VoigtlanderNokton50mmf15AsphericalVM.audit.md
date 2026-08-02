@@ -167,3 +167,10 @@ the reviewed current OHARA, HOYA, HIKARI, SUMITA, Schott, and CDGM rows do not j
 
 The display name is corrected to
 `VOIGTLÄNDER NOKTON Vintage Line 50mm f/1.5 Aspherical II VM`, matching Cosina's product-family name.
+
+## Second SD audit — 2026-08-02
+
+The repository silhouette was compared again with Example 2 Figure 7 on PDF page 27. The previously corrected surface-8
+and surface-10 apertures remain the renderer-safe values that most closely preserve the patent outline; no hidden trim
+or undersized image-circle surface remains. No further SD correction was supported. Inventor metadata now reuses the
+repository's established `Yasuyuki Sugano` romanization.

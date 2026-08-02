@@ -48,7 +48,7 @@ const LENS_DATA = {
   lensMounts: ["leica-m"],
   imageFormat: "135-full-frame",
   patentNumber: "JP 2025-108279 A",
-  patentAuthors: ["蓬田 祥寿", "柴田 裕輝"],
+  patentAuthors: ["Yoshihisa Yomogida", "Yuki Shibata"],
   patentAssignees: ["株式会社コシナ"],
   patentYear: 2025,
   elementCount: 8,

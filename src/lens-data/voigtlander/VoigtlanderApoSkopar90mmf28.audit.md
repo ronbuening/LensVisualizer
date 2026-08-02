@@ -138,3 +138,9 @@ inventor metadata consistently uses the established `Yuki Shibata` romanization.
 All seven elements already had coordinate-compatible catalog coverage. Their labels now state the actual optical
 equivalents—TAC8, FCD100, N-KZFS5, N-LASF46B, NBFD11, and J-LASF014—while leaving every production supplier
 unspecified. Strict Sellmeier coverage remains 7/7, with no change to patent `nd` or `νd` values.
+
+## Second SD audit — 2026-08-02
+
+A fresh post-commit render was checked again against Example 1 Figure 1. The five front menisci and separated rear pair
+retain the patent's relative heights and edge progression. The stored apertures pass `audit:image-circle` and the
+production render-diagnostics test, so no SD correction was supported.

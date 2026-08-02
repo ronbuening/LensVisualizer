@@ -46,7 +46,7 @@ const LENS_DATA = {
   lensMounts: ["leica-m"],
   imageFormat: "135-full-frame",
   patentNumber: "JP 2022-012964 A",
-  patentAuthors: ["菅野 靖之"],
+  patentAuthors: ["Yasuyuki Sugano"],
   patentAssignees: ["Cosina Co., Ltd."],
   patentYear: 2022,
   elementCount: 8,

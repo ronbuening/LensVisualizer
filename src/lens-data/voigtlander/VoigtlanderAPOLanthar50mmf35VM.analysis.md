@@ -6,7 +6,7 @@
 **Application number:** 特願2024-2112
 **Filed:** 2024-01-10
 **Published:** 2025-07-23
-**Inventors:** 蓬田 祥寿; 柴田 裕輝
+**Inventors:** Yoshihisa Yomogida; Yuki Shibata
 **Applicant:** 株式会社コシナ
 **Title:** 光学レンズ系 (Optical lens system)
 **Embodiment analyzed:** Example 1 / 第1実施形態

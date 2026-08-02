@@ -4,7 +4,7 @@
 **Application Number:** JP 2020-115167
 **Filed:** 2020-07-02
 **Published:** 2022-01-18
-**Inventor:** 菅野 靖之
+**Inventor:** Yasuyuki Sugano
 **Applicant:** Cosina Co., Ltd.
 **Title:** Large-Aperture Imaging Lens (大口径撮像レンズ)
 **Embodiment analyzed:** Example 2

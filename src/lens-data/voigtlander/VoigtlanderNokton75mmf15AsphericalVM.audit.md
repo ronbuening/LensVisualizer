@@ -18,7 +18,7 @@ The final handoff contains eight files, including the mandatory unmodified paten
 
 The rendered patent was treated as authoritative for the prescription and equation:
 
-- Page 1 confirms publication JP 2020-122918 A, application JP 2019-015796, filing date 2019-01-31, publication date 2020-08-13, applicant Cosina Co., Ltd., and inventors 島田 博和 and 菅野 靖之.
+- Page 1 confirms publication JP 2020-122918 A, application JP 2019-015796, filing date 2019-01-31, publication date 2020-08-13, applicant Cosina Co., Ltd., and inventors Hirokazu Shimada and Yasuyuki Sugano.
 - Page 10 gives the standard conic-plus-even-polynomial sag equation with `sqrt(1 - (1 + K)c²h²)`. The tabulated `K` is therefore already the standard conic constant.
 - Page 12, Table 5 gives Example 3 at `FL = 74.5`, `FNO = 1.54`, and `W = 16.0°`; Table 6 gives the two aspheric surfaces and coefficients.
 - Page 15, Figure 5 confirms the seven-element/six-group layout, rear cemented pair, and final double-sided asphere. Figure 7 gives `TT = 90.872 mm`, `f = 74.500 mm`, and rounded `TT/f = 1.22`.
@@ -269,3 +269,10 @@ The glass review remains unchanged. Every element already has coefficient-backed
 vendor-neutral coordinate match, and the patent does not name production suppliers. The display name is corrected to
 `VOIGTLÄNDER NOKTON Vintage Line 75mm f/1.5 Aspherical VM`, preserving Cosina's product-token order and placing
 the mount suffix last.
+
+## Second SD audit — 2026-08-02
+
+The repository silhouette was compared again with Example 3 Figure 5 on PDF page 15. Its front-to-rear taper, stop
+opening, cemented rear pair, and final aspherical meniscus remain consistent with the source drawing. `audit:image-circle`
+and the production render-diagnostics test pass, so no SD correction was supported. Inventor metadata now reuses the
+repository's established `Hirokazu Shimada` and `Yasuyuki Sugano` romanizations.

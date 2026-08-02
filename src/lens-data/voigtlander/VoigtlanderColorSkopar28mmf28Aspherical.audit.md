@@ -276,3 +276,9 @@ N-LAF34, H-FK61, TAFD32, H-ZF52, J-PSKH4, and P-SK60. The patent does not identi
 is explicitly an optical equivalent. P-SK60 is newly added from SCHOTT's official coefficients and exactly reproduces
 the final element's `1.61035 / 57.90` position. Strict Sellmeier coverage rises from 5/7 to 6/7; Ln1 remains a constant-
 index model because the patent omitted its Abbe number.
+
+## Second SD audit — 2026-08-02
+
+A fresh post-commit render was checked again against Example 1 Figures 1 and 4. The front meniscus, compact cemented
+pair, stop opening, and three-element rear progression remain aligned with the patent drawing. The stored apertures pass
+`audit:image-circle` and the production render-diagnostics test, so no SD correction was supported.

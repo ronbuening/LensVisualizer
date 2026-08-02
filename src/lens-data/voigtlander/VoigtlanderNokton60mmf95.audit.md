@@ -310,3 +310,10 @@ are coordinate-compatible HOYA optical equivalents for L2, L4, L6, and L10 respe
 the patent vendor unspecified. The five genuinely unresolved positions remain `Unmatched`, and the existing S-LAH58
 equivalents for L9 and L11 remain unchanged. Strict Sellmeier coverage therefore rises from 2/11 to 6/11 without changing
 any patent `nd` or `νd` value.
+
+## Second SD audit — 2026-08-02
+
+A fresh post-commit render was checked again against Example 2 Figure 5. The revised rear group now follows the drawing's
+diameter progression without gap trim, while the unchanged front groups preserve the required f/0.93 beam. The final
+surface set passes `audit:surface`, `audit:image-circle`, and the production render-diagnostics test. No further SD
+correction was supported.
