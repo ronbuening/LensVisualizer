@@ -7,7 +7,15 @@ available, it falls back to partial measured `nC`/`nF` line indices, dPgF-correc
 approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **448 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **449 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+
+The August 2, 2026 Phase 75 pass audited the three newly integrated Voigtländer lenses against the retained vendor
+catalogs. Compatible existing rows now identify the optical equivalents that were previously left as numeric classes,
+while still leaving each production supplier unspecified. SCHOTT P-SK60 was the one recoverable catalog gap: its
+official coefficients exactly reproduce the Color-Skopar 28mm's final `1.61035 / 57.90` aspherical element. The new row
+raises that lens from 5/7 to 6/7 strict coverage; its remaining constant-index element lacks a published Abbe number.
+The Nokton 60mm also rises from 2/11 to 6/11 strict coverage by naming four compatible existing HOYA curves. The
+APO-Skopar 90mm remains fully covered at 7/7, now with explicit source-qualified optical-equivalent labels.
 
 The August 1, 2026 Phase 74 pass audited the three newly integrated Voigtländer VM primes against current first-party
 vendor catalogs. The APO-Lanthar 50mm and Nokton 75mm already resolve every element through compatible

@@ -32,9 +32,10 @@ const LENS_DATA = {
   subtitle: "JP 2022-012964 A — Example 2 — production correlation",
   specs: [
     "8 ELEMENTS / 7 GROUPS",
-    "f = 49.60 mm DESIGN / 50 mm MARKETED",
-    "F/1.43 DESIGN / f/1.5 MARKETED",
-    "2ω = 46.58°",
+    "EFL 49.598 mm MODEL / 49.60 mm PATENT",
+    "50 mm / f/1.5 MARKETED",
+    "F/1.43 / 2ω = 46.58° PATENT",
+    "46.3° MARKETED AOV",
     "2 ASPHERICAL SURFACES",
     "PUBLISHED UNIT FOCUS",
   ],
@@ -46,7 +47,7 @@ const LENS_DATA = {
   lensMounts: ["leica-m"],
   imageFormat: "135-full-frame",
   patentNumber: "JP 2022-012964 A",
-  patentAuthors: ["菅野 靖之"],
+  patentAuthors: ["Yasuyuki Sugano"],
   patentAssignees: ["Cosina Co., Ltd."],
   patentYear: 2022,
   elementCount: 8,
@@ -208,6 +209,8 @@ const LENS_DATA = {
   /* ── Group annotations ── */
   groups: [
     { text: "FRONT 101", fromSurface: "1", toSurface: "8" },
+    { text: "102A", fromSurface: "10", toSurface: "12" },
+    { text: "102B", fromSurface: "13", toSurface: "16A" },
     { text: "REAR 102", fromSurface: "10", toSurface: "16A" },
   ],
   doublets: [{ text: "Ja", fromSurface: "10", toSurface: "12" }],

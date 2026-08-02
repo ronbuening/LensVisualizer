@@ -110,6 +110,29 @@ describe("build metadata helpers", () => {
     expect(entries.sort(comparePublicationEntries).map((entry) => entry.key)).toEqual(["a-late", "z-late", "early"]);
   });
 
+  it("orders an untracked fallback entry before committed entries from the same date", () => {
+    const entries = [
+      {
+        key: "committed",
+        name: "Committed Lens",
+        publishedOn: "2026-03-27",
+        publishedAt: "2026-03-27T18:00:00.000Z",
+        publishedCommit: "commit-late",
+        lastModified: "2026-03-27",
+      },
+      {
+        key: "untracked",
+        name: "Untracked Lens",
+        publishedOn: "2026-03-27",
+        publishedAt: "2026-03-27T00:00:00.000Z",
+        publishedCommit: null,
+        lastModified: "2026-03-27",
+      },
+    ];
+
+    expect(entries.sort(comparePublicationEntries).map((entry) => entry.key)).toEqual(["untracked", "committed"]);
+  });
+
   it("falls back when git history is unavailable", () => {
     const dates = getGitFileFreshness("missing-file.ts", {
       fallbackDate: "2026-03-27",

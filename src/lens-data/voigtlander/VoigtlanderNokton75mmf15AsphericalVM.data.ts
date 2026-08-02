@@ -38,9 +38,11 @@ const LENS_DATA = {
   subtitle: "JP 2020-122918 A — Example 3; production correlation",
   specs: [
     "7 ELEMENTS / 6 GROUPS",
-    "f = 74.503 mm (DESIGN)",
-    "F/1.54 (DESIGN)",
-    "2ω = 32.0°",
+    "EFL 74.503 mm MODEL / 74.5 mm PATENT",
+    "75 mm / f/1.5 MARKETED",
+    "F/1.54 / 2ω = 32.0° PATENT",
+    "32.6° MARKETED AOV",
+    "3 APD ELEMENTS (PATENT / MANUFACTURER)",
     "2 ASPHERICAL SURFACES",
   ],
 
@@ -51,7 +53,7 @@ const LENS_DATA = {
   lensMounts: ["leica-m"],
   imageFormat: "135-full-frame",
   patentNumber: "JP 2020-122918 A",
-  patentAuthors: ["島田 博和", "菅野 靖之"],
+  patentAuthors: ["Hirokazu Shimada", "Yasuyuki Sugano"],
   patentAssignees: ["Cosina Co., Ltd."],
   patentYear: 2020,
   elementCount: 7,

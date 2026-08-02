@@ -1,4 +1,4 @@
-# VOIGTLÄNDER APO-LANTHAR 50mm f/3.5 Type II VM
+# VOIGTLÄNDER APO-LANTHAR 50mm f/3.5 (Type II) VM
 
 ## Patent Reference and Design Identification
 
@@ -6,14 +6,14 @@
 **Application number:** 特願2024-2112
 **Filed:** 2024-01-10
 **Published:** 2025-07-23
-**Inventors:** 蓬田 祥寿; 柴田 裕輝
-**Applicant:** 株式会社コシナ
+**Inventors:** Yoshihisa Yomogida; Yuki Shibata
+**Applicant:** Cosina Co., Ltd.
 **Title:** 光学レンズ系 (Optical lens system)
 **Embodiment analyzed:** Example 1 / 第1実施形態
 
 The data file transcribes Example 1 at the patent's native scale. The example is an eight-element, six-group, all-spherical design with a computed effective focal length of 49.101 mm and a published f-number of 3.56. These exact design values are kept separate from the production designation of 50mm f/3.5.
 
-The identification with the production VOIGTLÄNDER APO-LANTHAR 50mm f/3.5 Type II VM rests on convergent evidence rather than an explicit manufacturer statement that Example 1 is the released prescription. Type I uses the same published optical section, but the modeled 0.35 m close-focus metadata is specific to Type II:
+The identification with the production VOIGTLÄNDER APO-LANTHAR 50mm f/3.5 (Type II) VM rests on convergent evidence rather than an explicit manufacturer statement that Example 1 is the released prescription. Type I uses the same published optical section, but the modeled 0.35 m close-focus metadata is specific to Type II:
 
 1. Example 1 and the production lens both have eight elements in six groups and no aspherical surfaces.
 2. The computed 49.101 mm focal length and f/3.56 aperture correspond closely to the marketed 50mm f/3.5 class.
@@ -22,7 +22,7 @@ The identification with the production VOIGTLÄNDER APO-LANTHAR 50mm f/3.5 Type 
 5. The patent was filed in January 2024; Cosina announced the product in July 2024 and released it on 2024-08-29.
 6. The Type I and Type II product pages show the same optical construction while publishing different mechanical minimum-focus endpoints.
 
-The prescription therefore represents the common optical formula rather than the exterior Type I and Type II barrel variants.
+The prescription therefore represents the common optical formula rather than the exterior Type I and Type II barrel variants. The diagram annotations follow Figure 1 directly: the central `G1` group is divided into front and rear subgroups `G1F` and `G1B`.
 
 ## Optical Architecture
 
@@ -60,7 +60,7 @@ Cosina's production section marks the corresponding position as an anomalous-par
 
 L2 begins the front half of the positive core. Its high index satisfies the patent condition requiring at least one front-core positive element with `nd > 1.72`. The patent states that this index level permits weaker surface curvatures than a lower-index alternative, limiting sagittal and tangential coma while supporting a compact assembly (¶0010, ¶0040).
 
-### D1 — Cemented L3/L4 Pair
+### Cemented L3/L4 Pair
 
 **L3:** `nd = 1.72916`, `νd = 54.67`. Glass: `729547 — lanthanum crown; vendor identity not unique`. Standalone `f = +17.606 mm`.
 **L4:** `nd = 1.60342`, `νd = 38.01`. Glass: `603380 — F5-class flint; vendor identity not unique`. Standalone `f = −15.657 mm`.
@@ -69,7 +69,7 @@ L3 is a strong biconvex positive element cemented to the biconcave L4. The inter
 
 L4 presents its stop-side surface as a concavity toward the aperture, matching the patent's defining geometry for the cemented core pairs. The manufacturer section marks the corresponding element as a special-dispersion position, but the available sources do not support a numerical anomalous-dispersion claim.
 
-### D2 — Cemented L5/L6 Pair
+### Cemented L5/L6 Pair
 
 **L5:** `nd = 1.56732`, `νd = 42.84`. Glass: `567428 — FL6/S-TIL26-class light flint; vendor identity not unique`. Standalone `f = −35.344 mm`.
 **L6:** `nd = 1.49700`, `νd = 81.61`. Glass: `497816 — FCD1/S-FPL51/N-PK52A-class fluorophosphate crown; vendor identity not unique`. Standalone `f = +65.801 mm`.
@@ -100,10 +100,10 @@ The patent identifies the optical materials only by d-line index and Abbe number
 |---|---:|---:|---|---|
 | L1 | 1.48749 | 70.44 | 487704 low-dispersion crown | Front outer negative meniscus |
 | L2 | 1.88300 | 40.81 | 883408 high-index lanthanum crown | Front-core positive meniscus |
-| L3 | 1.72916 | 54.67 | 729547 lanthanum crown | Positive member of D1 |
-| L4 | 1.60342 | 38.01 | 603380 F5-class flint | Negative member of D1 |
-| L5 | 1.56732 | 42.84 | 567428 FL6/S-TIL26-class light flint | Negative member of D2 |
-| L6 | 1.49700 | 81.61 | 497816 fluorophosphate crown class | Positive member of D2 |
+| L3 | 1.72916 | 54.67 | 729547 lanthanum crown | Positive member of cemented L3/L4 pair |
+| L4 | 1.60342 | 38.01 | 603380 F5-class flint | Negative member of cemented L3/L4 pair |
+| L5 | 1.56732 | 42.84 | 567428 FL6/S-TIL26-class light flint | Negative member of cemented L5/L6 pair |
+| L6 | 1.49700 | 81.61 | 497816 fluorophosphate crown class | Positive member of cemented L5/L6 pair |
 | L7 | 1.71300 | 53.94 | 713539 LAK8/LAC8-class lanthanum crown | Rear-core positive collector |
 | L8 | 1.68893 | 31.16 | 689312 FD8/SF8/S-TIM28-class dense flint | Rear outer negative meniscus |
 
@@ -145,6 +145,6 @@ The 0.01 mm discrepancy between the 36.58 mm Table 1 OAL and the 36.59 mm sum of
 
 - Cosina Co., Ltd., JP 2025-108279 A, Example 1, Tables 1–2 and Figures 1–2, published 2025-07-23.
 - Cosina, [VOIGTLÄNDER APO-LANTHAR 50mm F3.5 Type I VM product page](https://www.cosina.co.jp/voigtlander/en/vm-mount/apo-lanthar-50mm-f3-5-type-i/).
-- Cosina, [VOIGTLÄNDER APO-LANTHAR 50mm F3.5 Type II VM product page](https://www.cosina.co.jp/voigtlander/vm-mount/apo-lanthar-50mm-f3-5-type-ii/).
+- Cosina, [VOIGTLÄNDER APO-LANTHAR 50mm F3.5 (Type II) VM product page](https://www.cosina.co.jp/voigtlander/vm-mount/apo-lanthar-50mm-f3-5-type-ii/).
 - Cosina, official `VM-50_35_apo-LDe.svg` optical-section drawing.
 - OHARA, HOYA, Schott, HIKARI, CDGM, and Sumita current optical-glass catalogs, as tabulated in the accompanying glass audit.

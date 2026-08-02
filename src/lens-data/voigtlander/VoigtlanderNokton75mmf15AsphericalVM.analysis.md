@@ -6,7 +6,7 @@
 **Application number:** JP 2019-015796
 **Filed:** 2019-01-31
 **Published:** 2020-08-13
-**Inventors:** 島田 博和; 菅野 靖之
+**Inventors:** Hirokazu Shimada; Yasuyuki Sugano
 **Applicant:** Cosina Co., Ltd.
 **Title:** Large-aperture lens (大口径レンズ)
 **Embodiment analyzed:** Example 3 (第3実施例), Figure 5, Tables 5–6

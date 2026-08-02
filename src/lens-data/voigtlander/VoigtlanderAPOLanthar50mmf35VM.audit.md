@@ -16,7 +16,7 @@ The patent and embodiment were not changed. The first pass was performed from th
 
 The rendered Japanese publication establishes the following Example 1 source facts:
 
-- Front page: JP 2025-108279 A, application 特願2024-2112, filed 2024-01-10, published 2025-07-23, applicant 株式会社コシナ, inventors 蓬田 祥寿 and 柴田 裕輝.
+- Front page: JP 2025-108279 A, application 特願2024-2112, filed 2024-01-10, published 2025-07-23, applicant 株式会社コシナ, inventors Yoshihisa Yomogida and Yuki Shibata.
 - Patent p. 5, ¶0024: `f = 49.10 mm`, `Fno = 3.56`, and half field `ω = 23.94°`.
 - Patent pp. 5–6, ¶0025–0030: eight elements, six air-spaced groups, two cemented pairs, one stop, all spherical, and whole-lens unit focusing toward the object.
 - Patent p. 7, Table 1: `BF = 33.14 mm`, `OAL = 36.58 mm`, `fsy = 32.96 mm`, `Hf = 6.92 mm`, and `Hr = 5.09 mm`.
@@ -179,3 +179,26 @@ fit would reduce confidence rather than improve it.
 The display name is now `VOIGTLÄNDER APO-LANTHAR 50mm f/3.5 Type II VM`. Cosina publishes separate Type I and
 Type II product names; the prescription is shared, but this record's 0.35 m close-focus metadata identifies Type II.
 The prior generic display name did not make that distinction and placed `VM` in a non-product-name position.
+
+## Second SD audit — 2026-08-02
+
+The repository silhouette was compared again with Example 1 Figure 1 on PDF page 22. It reproduces the source's front
+height taper, compact L5/L6 pair, and wider L7/L8 rear pair; the higher-precision Cosina SVG fit remains internally
+consistent. `audit:image-circle` and the production render-diagnostics test pass, so no SD correction was supported.
+Inventor metadata now reuses the repository's established `Yoshihisa Yomogida` and `Yuki Shibata` romanizations.
+
+## Screenshot and label audit — 2026-08-02
+
+The supplied diagram confirms the existing manufacturer-SVG fit; its surface heights remain within about 0.0051 mm
+of the fitted Cosina section and also remain within the patent drawing's lower-precision tolerance.
+
+- No semi-diameter changed.
+- The display name is corrected from `VOIGTLÄNDER APO-LANTHAR 50mm f/3.5 Type II VM` to
+  `VOIGTLÄNDER APO-LANTHAR 50mm f/3.5 (Type II) VM`, following Cosina's product styling.
+- Figure 1's complete `G1` label and its `G1F` / `G1B` subdivisions are now represented. The unsupported `D1` / `D2`
+  diagram labels were removed; cemented membership remains identified factually as L3/L4 and L5/L6.
+- The applicant now reuses the established romanized `Cosina Co., Ltd.` entry.
+- The header now separates modeled, patent, and marketed focal, aperture, and angle-of-view values.
+
+Verification: `audit:image-circle`, `audit:surface`, production render diagnostics, glass reports, typecheck, formatting,
+lint, full tests, and production build all pass.
