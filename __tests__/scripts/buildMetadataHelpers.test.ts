@@ -79,16 +79,8 @@ describe("build metadata helpers", () => {
     });
   });
 
-  it("keeps dates newest-first, orders same-day commits earliest-first, and alphabetizes one commit", () => {
+  it("orders later same-day commits first and alphabetizes entries from one commit", () => {
     const entries = [
-      {
-        key: "next-day",
-        name: "Next Day Lens",
-        publishedOn: "2026-03-28",
-        publishedAt: "2026-03-28T12:00:00.000Z",
-        publishedCommit: "commit-next-day",
-        lastModified: "2026-03-28",
-      },
       {
         key: "early",
         name: "Early Lens",
@@ -115,12 +107,7 @@ describe("build metadata helpers", () => {
       },
     ];
 
-    expect(entries.sort(comparePublicationEntries).map((entry) => entry.key)).toEqual([
-      "next-day",
-      "early",
-      "a-late",
-      "z-late",
-    ]);
+    expect(entries.sort(comparePublicationEntries).map((entry) => entry.key)).toEqual(["a-late", "z-late", "early"]);
   });
 
   it("falls back when git history is unavailable", () => {

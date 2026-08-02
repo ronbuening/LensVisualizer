@@ -6,7 +6,7 @@
 - Added HTML autodiscovery, contextual subscription links, Cloudflare MIME headers, and feed-aware SEO auditing.
 - Kept feeds out of React routing and sitemap generation.
 - Refined publication metadata to retain the exact first-commit timestamp and commit identity.
-- Ordered same-day additions by commit time, earliest first, while preserving alphabetical title/name order within each
+- Ordered same-day additions by commit time, newest first, while preserving alphabetical title/name order within each
   commit across recent-content pages and both feeds.
 - Emitted exact RSS `pubDate` timestamps and synchronized the SEO audit with the generated publication order.
 

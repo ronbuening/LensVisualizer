@@ -213,22 +213,18 @@ export function combineFreshnessEntries(entries, fallbackDate) {
 }
 
 /**
- * Sort publishable entries by newest calendar date, then by same-day commit
- * time from earliest to latest. Entries from the same commit retain
+ * Sort publishable entries newest-first. Entries from the same commit retain
  * alphabetical display-name order, with a stable id as the final tie-break.
  */
 export function comparePublicationEntries(a, b) {
-  const byDate = b.publishedOn.localeCompare(a.publishedOn);
-  if (byDate) return byDate;
-
   const aTimestamp = a.publishedAt ?? a.publishedOn;
   const bTimestamp = b.publishedAt ?? b.publishedOn;
-  if (aTimestamp < bTimestamp) return -1;
-  if (aTimestamp > bTimestamp) return 1;
+  if (aTimestamp < bTimestamp) return 1;
+  if (aTimestamp > bTimestamp) return -1;
 
   const aCommit = a.publishedCommit ?? "";
   const bCommit = b.publishedCommit ?? "";
-  if (aCommit !== bCommit) return aCommit.localeCompare(bCommit);
+  if (aCommit !== bCommit) return bCommit.localeCompare(aCommit);
 
   const aLabel = a.name ?? a.title ?? a.key ?? a.slug ?? "";
   const bLabel = b.name ?? b.title ?? b.key ?? b.slug ?? "";
