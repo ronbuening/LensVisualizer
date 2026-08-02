@@ -12,12 +12,14 @@
  */
 
 import { createBrowserRouter } from "react-router";
+import RouteErrorBoundary from "./components/errors/RouteErrorBoundary.js";
 import routeManifest from "./routes/routeManifest.js";
 import { loadChunkWithReload } from "./utils/chunkLoadRetry.js";
 
 const router = createBrowserRouter(
   routeManifest.map(({ path, load }) => ({
     path,
+    ErrorBoundary: RouteErrorBoundary,
     lazy: async () => ({ Component: (await loadChunkWithReload(load)).default }),
   })),
 );

@@ -3,7 +3,8 @@
  * Injected by the GoatCounter script tag in index.html.
  */
 interface GoatCounter {
-  count(opts: { path: string; title?: string; referrer?: string; event?: boolean }): void;
+  count?(opts: { path: string; title?: string; referrer?: string; event?: boolean }): void;
+  path?: string | (() => string);
 }
 
 interface Window {

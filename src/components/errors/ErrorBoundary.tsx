@@ -172,6 +172,15 @@ export function ErrorDisplay({ error, context, onRetry, title = "Rendering Error
   );
 }
 
+/** Render the shared error card as a full-page fallback when app chrome is unavailable. */
+export function FullPageErrorDisplay(props: ErrorDisplayProps) {
+  return (
+    <div style={BOUNDARY_WRAPPER}>
+      <ErrorDisplay {...props} />
+    </div>
+  );
+}
+
 /**
  * Top-level React error boundary.
  * Wraps the entire app in main.jsx.  Catches unhandled render-phase errors.
@@ -199,17 +208,15 @@ export default class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBo
   render() {
     if (!this.state.error) return this.props.children;
     return (
-      <div style={BOUNDARY_WRAPPER}>
-        <ErrorDisplay
-          error={this.state.error}
-          context={{
-            component: "ErrorBoundary (top-level)",
-            componentStack: this.state.componentStack || undefined,
-          }}
-          title="Rendering Error"
-          onRetry={() => this.setState({ error: null, componentStack: null })}
-        />
-      </div>
+      <FullPageErrorDisplay
+        error={this.state.error}
+        context={{
+          component: "ErrorBoundary (top-level)",
+          componentStack: this.state.componentStack || undefined,
+        }}
+        title="Rendering Error"
+        onRetry={() => this.setState({ error: null, componentStack: null })}
+      />
     );
   }
 }

@@ -55,6 +55,8 @@ always `/relationships/`. Assignee slugs come from the build-generated `assignee
 The app uses React Router 7 with client-side routing plus static prerendering for SEO:
 
 - `main.tsx` mounts `RouterProvider` with the browser router.
+- `router.tsx` assigns `RouteErrorBoundary` to every browser route so render, effect, and lazy-chunk failures use the
+  shared stack-aware error display and prefilled GitHub issue flow instead of React Router's generic fallback.
 - `entry-server.tsx` exports `render(url): { html, helmet }` using `StaticRouter` and `react-helmet-async`.
 - `scripts/generate-build-metadata.mjs` expands the concrete prerender route list into
   `src/generated/build-metadata.json`, including homepage, search, lens, patent, author, maker, mount, format, article,

@@ -5,15 +5,27 @@
  * so error rates and offending lens keys become visible in the existing
  * analytics dashboard without new infrastructure. Messages are sanitized
  * (URLs, emails, and long opaque tokens stripped) and truncated before
- * sending, and beacons are deduped and capped per session so a render loop
- * cannot flood analytics.
+ * sending. Startup events wait briefly for the async analytics script, and
+ * beacons are deduped and capped per session so a render loop cannot flood
+ * analytics.
  */
 
 const MAX_MESSAGE_LENGTH = 120;
 const MAX_KEY_LENGTH = 60;
 const MAX_BEACONS_PER_SESSION = 20;
+const RETRY_INTERVAL_MS = 100;
+const RETRY_LIMIT = 300;
+
+interface ErrorBeacon {
+  path: string;
+  title: string;
+  event: true;
+}
 
 const sentPaths = new Set<string>();
+const pendingBeacons = new Map<string, ErrorBeacon>();
+let retryTimer: number | null = null;
+let retryAttempts = 0;
 
 /**
  * Strip potential PII and noise from an error message before it leaves the
@@ -59,10 +71,45 @@ function describeError(error: unknown): string {
   }
 }
 
+function sendErrorBeacon(beacon: ErrorBeacon): boolean {
+  if (typeof window === "undefined" || !window.goatcounter?.count) return false;
+  try {
+    window.goatcounter.count(beacon);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function stopRetryTimer(): void {
+  if (retryTimer !== null && typeof window !== "undefined") window.clearInterval(retryTimer);
+  retryTimer = null;
+  retryAttempts = 0;
+}
+
+function flushPendingBeacons(): void {
+  for (const [path, beacon] of pendingBeacons) {
+    if (!sendErrorBeacon(beacon)) continue;
+    pendingBeacons.delete(path);
+    sentPaths.add(path);
+  }
+  if (pendingBeacons.size === 0) stopRetryTimer();
+}
+
+function schedulePendingBeaconFlush(): void {
+  if (typeof window === "undefined" || retryTimer !== null) return;
+  retryTimer = window.setInterval(() => {
+    retryAttempts += 1;
+    flushPendingBeacons();
+    if (retryAttempts >= RETRY_LIMIT) stopRetryTimer();
+  }, RETRY_INTERVAL_MS);
+}
+
 /**
  * Send one GoatCounter event for a runtime error. No-op outside production
- * builds, when the analytics script is unavailable, for repeat errors on the
- * same synthetic path, and once the per-session cap is reached.
+ * builds, for repeat errors on the same synthetic path, and once the
+ * per-session cap is reached. If the async analytics script is still loading,
+ * retain the event for up to 30 seconds and flush it once count() is ready.
  *
  * @param source - where the error was caught (boundary or listener name)
  * @param error - the caught error or rejection reason
@@ -70,19 +117,24 @@ function describeError(error: unknown): string {
  */
 export function reportErrorBeacon(source: string, error: unknown, lensKey?: string): void {
   if (!import.meta.env.PROD) return;
-  if (typeof window === "undefined" || !window.goatcounter?.count) return;
+  if (typeof window === "undefined") return;
+  flushPendingBeacons();
   const path = `/_error/${errorBeaconKey(lensKey || source)}`;
-  if (sentPaths.has(path) || sentPaths.size >= MAX_BEACONS_PER_SESSION) return;
-  sentPaths.add(path);
-  try {
-    window.goatcounter.count({
-      path,
-      title: sanitizeErrorMessage(`${source}: ${describeError(error)}`),
-      event: true,
-    });
-  } catch {
-    /* Telemetry must never throw back into the app. */
+  if (sentPaths.has(path) || pendingBeacons.has(path)) return;
+  if (sentPaths.size + pendingBeacons.size >= MAX_BEACONS_PER_SESSION) return;
+
+  const beacon: ErrorBeacon = {
+    path,
+    title: sanitizeErrorMessage(`${source}: ${describeError(error)}`),
+    event: true,
+  };
+  if (sendErrorBeacon(beacon)) {
+    sentPaths.add(path);
+    return;
   }
+
+  pendingBeacons.set(path, beacon);
+  schedulePendingBeaconFlush();
 }
 
 /**
@@ -101,5 +153,7 @@ export function installGlobalErrorBeacons(): void {
 
 /** Reset per-session dedupe state — for tests only. */
 export function resetErrorBeaconSessionForTests(): void {
+  stopRetryTimer();
   sentPaths.clear();
+  pendingBeacons.clear();
 }
