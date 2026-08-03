@@ -7,7 +7,16 @@ available, it falls back to partial measured `nC`/`nF` line indices, dPgF-correc
 approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **449 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **456 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+
+The August 3, 2026 Phase 76 pass added seven first-party Hikari curves while auditing the Nikon AF-S NIKKOR 500mm
+f/5.6E PF ED VR: J-KZFH1, J-LASF08A, J-SF2, J-LASF09A, J-F2, J-LF7, and J-LF5. The June 2025 vendor catalog's
+power-series coefficients raise the audited Hikari-name prescription from 10/21 to 19/21 strict coverage; its direct
+line indices already supplied 19/21 trusted coverage. Relative to the pre-audit committed prescription, strict and
+trusted coverage both rise from 17/21 to 19/21. Only the two explicitly proprietary bonded PF materials remain on the
+patent-derived fallback. The same audit corrected its display name and reduced APD classification from every modeled
+medium to the anomalous PF material and three production-correlated ED elements. Regenerated global coverage is
+4918/5584 strict and 4929/5584 trusted, with zero catalog-coordinate mismatches.
 
 The August 2, 2026 Phase 75 pass audited the three newly integrated Voigtländer lenses against the retained vendor
 catalogs. Compatible existing rows now identify the optical equivalents that were previously left as numeric classes,

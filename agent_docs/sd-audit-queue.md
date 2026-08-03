@@ -84,6 +84,7 @@ better investment.
 | AF-S DX Zoom-Nikkor 12-24mm f/4 G IF-ED | Median 1.004; revised L2/L3 0.89 and L4 0.86 after normalization | done 2026-07-29; resin boundary capped by edge/sag validation |
 | AI AF Zoom-Nikkor 24-120mm f/3.5-5.6 D IF | Automated crop contaminated by dense labels/brackets; 300 dpi hand measurements used | done 2026-07-29; published 17A/34A apertures retained |
 | AF Zoom-Nikkor 28-200mm f/3.5-5.6 G IF-ED | Median 1.113; revised L12/L21 each 1.00 after normalization | done 2026-07-29 |
+| AF-S NIKKOR 500mm f/5.6E PF ED VR | Figure 3 at 600 dpi / 7.5 px/mm; tightened L15/L16, G2, C31, VR1, and CL31 outlines | done 2026-08-03; zero image-circle-floor failures |
 
 ### Completed Voigtländer additions
 

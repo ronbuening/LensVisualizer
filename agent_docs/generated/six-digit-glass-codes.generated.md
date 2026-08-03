@@ -10,9 +10,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **507** lenses scanned
-- **576** total code-only elements found
-- **576** elements in this report
-- **164** distinct lens files affected
+- **574** total code-only elements found
+- **574** elements in this report
+- **163** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -85,7 +85,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 583594 | 2 | 2 | patents/JP2013054269A.pdf | No review-record hit |
 | 585594 | 2 | 1 | patents/JP2023039817A.pdf | All rows have review records |
 | 593686 | 2 | 2 | patents/JP2020086133A.pdf<br>patents/JPWO2017138250A1.pdf | No review-record hit |
-| 613445 | 2 | 1 | Missing from untracked local patents/ references (JP2018017857A, JP2018017857, 2018017857) | All rows explicitly disposed |
 | 620586 | 2 | 1 | patents/US4303314.pdf | All rows have review records |
 | 625356 | 2 | 1 | patents/US2959100.pdf | All rows explicitly disposed |
 | 666356 | 2 | 1 | patents/US20190265441A1.pdf | All rows have review records |
@@ -876,13 +875,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L14 (Element 4) | 8 | `Unmatched (569560 barium crown; patent coordinate is compatible with several vendors)` | 1.56883 / 56.00 | No catalog entry | abbe | patents/JP2017227799A.pdf | Explicit disposition in data |
 | L25 (Element 11) | 21 | `806333 — dense flint (patent coordinate; vendor unresolved)` | 1.80610 / 33.30 | NBFD15 (trusted Sellmeier) | sellmeier | patents/JP2017227799A.pdf | Audit-log hit |
 
-### [NIKON AF-S NIKKOR 500mm f/5.6 E PF ED VR](../../src/lens-data/nikon/NikonAFSNikkor500mmf56EPFEDVR.data.ts) - JP 2018-017857 A
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L13 (L13) | 4 | `Unmatched (613445 anomalous-dispersion class; patent θgF = 0.5640)` | 1.61266 / 44.46 | No catalog entry | abbe | Missing from untracked local patents/ references (JP2018017857A, JP2018017857, 2018017857) | Explicit disposition in data |
-| L39 (L39) | 30 | `Unmatched (613445 anomalous-dispersion class; patent θgF = 0.5640)` | 1.61266 / 44.46 | No catalog entry | abbe | Missing from untracked local patents/ references (JP2018017857A, JP2018017857, 2018017857) | Explicit disposition in data |
-
 ### [NIKON AF-S NIKKOR 70-200mm f/2.8 E FL ED VR](../../src/lens-data/nikon/NikonNikkorAFS70200mmf28E.data.ts) - WO 2019/097669 A1
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
@@ -1402,8 +1394,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L11 (G1 front negative element) | 1 | `847238 — optical-glass class (vendor unresolved)` | 1.84666 / 23.80 | H-ZF52 (trusted Sellmeier) | sellmeier | patents/US20170068075A1.pdf | No review-record hit |
-| L12 (G1 cemented positive element) | 2 | `816466 — optical-glass class (vendor unresolved)` | 1.81600 / 46.60 | S-LAH59 (trusted Sellmeier) | sellmeier | patents/US20170068075A1.pdf | No review-record hit |
-| L13 (G1 rear positive element) | 4 | `816466 — optical-glass class (vendor unresolved)` | 1.81600 / 46.60 | S-LAH59 (trusted Sellmeier) | sellmeier | patents/US20170068075A1.pdf | No review-record hit |
+| L12 (G1 cemented positive element) | 2 | `816466 — optical-glass class (vendor unresolved)` | 1.81600 / 46.60 | J-LASF09A (trusted Sellmeier) | sellmeier | patents/US20170068075A1.pdf | No review-record hit |
+| L13 (G1 rear positive element) | 4 | `816466 — optical-glass class (vendor unresolved)` | 1.81600 / 46.60 | J-LASF09A (trusted Sellmeier) | sellmeier | patents/US20170068075A1.pdf | No review-record hit |
 | L21G (L21 glass body) | 7 | `883408 — optical-glass class (vendor unresolved)` | 1.88300 / 40.80 | S-LAH58 (trusted Sellmeier) | sellmeier | patents/US20170068075A1.pdf | No review-record hit |
 | L22 (G2 biconcave negative element) | 9 | `729547 — optical-glass class (vendor unresolved)` | 1.72916 / 54.70 | TAC8 (trusted Sellmeier) | sellmeier | patents/US20170068075A1.pdf | No review-record hit |
 | L23 (G2 biconvex positive element) | 11 | `728285 — optical-glass class (vendor unresolved)` | 1.72825 / 28.50 | S-TIH10 (trusted Sellmeier) | sellmeier | patents/US20170068075A1.pdf | No review-record hit |
@@ -1457,7 +1449,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L13 (Element 4) | 6 | `Unmatched (810372 class; no defensible current-catalog identity recovered)` | 1.81000 / 37.20 | No catalog entry | abbe | patents/US20180164556A1.pdf | Explicit disposition in data |
 | L15 (Element 6) | 9 | `Unmatched (850440 class; no defensible current-catalog identity recovered)` | 1.85000 / 44.00 | No catalog entry | abbe | patents/US20180164556A1.pdf | Explicit disposition in data |
 | L21 (Element 7) | 11 | `567428 class (vendor unproven)` | 1.56732 / 42.80 | S-TIL26 (trusted Sellmeier) | sellmeier | patents/US20180164556A1.pdf | No review-record hit |
-| L22 (Element 8) | 12 | `816466 class (vendor unproven)` | 1.81600 / 46.60 | S-LAH59 (trusted Sellmeier) | sellmeier | patents/US20180164556A1.pdf | No review-record hit |
+| L22 (Element 8) | 12 | `816466 class (vendor unproven)` | 1.81600 / 46.60 | J-LASF09A (trusted Sellmeier) | sellmeier | patents/US20180164556A1.pdf | No review-record hit |
 | L23 (Element 9) | 14 | `Unmatched (564463 class; no defensible current-catalog identity recovered)` | 1.56406 / 46.30 | No catalog entry | abbe | patents/US20180164556A1.pdf | Explicit disposition in data |
 | L24 (Element 10) | 16 | `497816 ED-crown class (vendor unproven)` | 1.49700 / 81.60 | H-FK61 (trusted Sellmeier) | sellmeier | patents/US20180164556A1.pdf | No review-record hit |
 | L31 (Element 11) | 19 | `804466 class (vendor unproven)` | 1.80400 / 46.60 | H-ZLAF50D (trusted Sellmeier) | sellmeier | patents/US20180164556A1.pdf | No review-record hit |

@@ -10,11 +10,11 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **507** lenses scanned
-- **576** total code-only elements found
-- **274** elements in this report
-- **119** distinct lens files affected
+- **574** total code-only elements found
+- **272** elements in this report
+- **118** distinct lens files affected
 - **0** active unreviewed elements have no review-record hit or explicit disposition
-- **127** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
+- **125** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
 - **0** dispositions lack any review record
 
 ## Prioritized Unreviewed Queue
@@ -49,7 +49,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 514428 | 2 | 1 | patents/JP2016021011A.pdf | All rows have review records |
 | 531559 | 2 | 2 | patents/US20200142167A1.pdf<br>patents/WO2021039813A1.pdf | All rows have review records |
 | 585594 | 2 | 1 | patents/JP2023039817A.pdf | All rows have review records |
-| 613445 | 2 | 1 | Missing from untracked local patents/ references (JP2018017857A, JP2018017857, 2018017857) | All rows explicitly disposed |
 | 620586 | 2 | 1 | patents/US4303314.pdf | All rows have review records |
 | 625356 | 2 | 1 | patents/US2959100.pdf | All rows explicitly disposed |
 | 666356 | 2 | 1 | patents/US20190265441A1.pdf | All rows have review records |
@@ -632,13 +631,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L14 (Element 4) | 8 | `Unmatched (569560 barium crown; patent coordinate is compatible with several vendors)` | 1.56883 / 56.00 | No catalog entry | abbe | patents/JP2017227799A.pdf | Explicit disposition in data |
-
-### [NIKON AF-S NIKKOR 500mm f/5.6 E PF ED VR](../../src/lens-data/nikon/NikonAFSNikkor500mmf56EPFEDVR.data.ts) - JP 2018-017857 A
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L13 (L13) | 4 | `Unmatched (613445 anomalous-dispersion class; patent θgF = 0.5640)` | 1.61266 / 44.46 | No catalog entry | abbe | Missing from untracked local patents/ references (JP2018017857A, JP2018017857, 2018017857) | Explicit disposition in data |
-| L39 (L39) | 30 | `Unmatched (613445 anomalous-dispersion class; patent θgF = 0.5640)` | 1.61266 / 44.46 | No catalog entry | abbe | Missing from untracked local patents/ references (JP2018017857A, JP2018017857, 2018017857) | Explicit disposition in data |
 
 ### [NIKON AI AF ZOOM-NIKKOR 24-120mm f/3.5-5.6 D IF](../../src/lens-data/nikon/NikonAFNikkor24120mmf3556D.data.ts) - US 5,734,508 A
 
