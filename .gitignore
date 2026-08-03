@@ -10,6 +10,9 @@ src/generated/
 patents/*
 !patents/.gitkeep
 
+# Local in-progress lens workflow artifacts
+/in_progress/
+
 # Dependencies
 node_modules/
 npm-debug.log*
