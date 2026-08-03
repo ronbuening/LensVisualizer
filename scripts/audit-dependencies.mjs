@@ -9,27 +9,7 @@
  */
 import { execFileSync } from "node:child_process";
 
-const ALLOWLIST = new Map([
-  [
-    "GHSA-qwww-vcr4-c8h2",
-    "react-router RSC-mode CSRF bypass. The vulnerable code path is the RSC " +
-      "server-action request handler; this site is a client-rendered SPA with " +
-      "build-time prerendering, ships no RSC server, and defines no actions, so " +
-      "the path is unreachable. The patched release (react-router 8.3.0) requires " +
-      "React 19 - remove this entry when the React 19 / react-router 8 upgrade lands.",
-  ],
-  [
-    "GHSA-mh99-v99m-4gvg",
-    "brace-expansion OOM DoS, reached only through minimatch glob expansion in " +
-      "dev-only lint tooling (eslint, @eslint/eslintrc, @eslint/config-array, " +
-      "eslint-plugin-react); nothing in the shipped site depends on it. No fixed " +
-      "release exists on the eslint 9 line (@eslint/eslintrc has no patched version " +
-      "and eslint-plugin-react does not yet support eslint 10, which carries the " +
-      "fix). A brace-expansion@5 override was tried and breaks minimatch@3 at " +
-      "runtime. Remove this entry once eslint-plugin-react supports eslint 10 and " +
-      "eslint is upgraded.",
-  ],
-]);
+const ALLOWLIST = new Map();
 
 const FAIL_SEVERITIES = new Set(["high", "critical"]);
 

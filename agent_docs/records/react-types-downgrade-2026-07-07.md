@@ -1,5 +1,10 @@
 # React Types Downgrade to 18 Line (2026-07-07)
 
+> Resolved 2026-08-03: the runtime, DOM renderer, and type packages moved together to React 19.2.8. React Helmet Async
+> 3.0.0 now delegates metadata to React 19's native hoisting, and `entry-server.tsx` extracts the hoisted metadata for
+> the existing static-prerender pipeline. The notes below preserve the reason the earlier mixed-version state was
+> reverted.
+
 ## Summary
 
 - `package.json` paired the React 18 runtime (`react`/`react-dom` `^18.3.1`) with React 19 type packages
