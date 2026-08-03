@@ -78,6 +78,21 @@ Verified in code on 2026-07-06:
 - **Folded trace diagnostics readout** — public `RayTraceResult.diagnostics` plus a compact
   development readout (ML backlog item 1).
 
+## Active Engine Capability Work
+
+### F26. Rotationally symmetric diffractive phase surfaces
+
+- [ ] Effort: L · Active on `ronbuening/AddFresnelLenses`
+
+What: a vendor-neutral radial optical-path polynomial on a refracting surface, including wavelength-scaled paraxial
+power, exact generalized-Snell ray interaction, chromatic behavior, and production authoring support for Nikon PF,
+Canon DO, and equivalent kinoform elements.
+
+The complete files-to-touch inventory, data-type contract, physical sign convention, staged steps, test gates, concrete
+JP2018017857A Example 2 acceptance values, gotchas, performance target, out-of-scope boundary, and rollback procedure
+are maintained in [`agent_docs/diffractive-phase-surfaces-plan.md`](agent_docs/diffractive-phase-surfaces-plan.md).
+That focused plan is the execution detail for this F26 entry; update both status markers when the feature ships.
+
 ---
 
 ## Tier 1 — Quick Wins (S)

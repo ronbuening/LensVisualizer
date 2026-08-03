@@ -617,6 +617,53 @@ from ordinary front-to-rear ordering in the file header and companion analysis.
 }
 ```
 
+### Diffractive Phase Surfaces (`diffractive`)
+
+Use `diffractive` when a patent supplies a rotationally symmetric optical-path/phase polynomial for a Nikon PF,
+Canon DO, or equivalent kinoform surface. This is surface-interaction data, not geometric aspheric sag: it changes ray
+direction and first-order power but does not change the surface outline, normal, edge thickness, or rim-slope checks.
+
+```javascript
+{
+  label: "8",
+  R: 159.3794,
+  d: 0.3,
+  nd: 1.5571,
+  elemId: 9,
+  sd: 35.5,
+  diffractive: {
+    kind: "radial-polynomial",
+    referenceWavelengthNm: 587.6,
+    diffractionOrder: 1,
+    terms: [
+      { radialPower: 2, coefficient: -4.25304e-5 },
+      { radialPower: 4, coefficient: 3e-10 },
+    ],
+  },
+}
+```
+
+The coefficient convention is `W(h) = Σ Cp h^p` in millimeters, with radial height `h` in millimeters and
+`Cp` in `mm^(1-p)`. The engine applies `diffractionOrder × wavelength/referenceWavelengthNm × dW/dh` as a tangential
+optical-momentum kick. Thus the paraxial quadratic power is
+`phiD = -2 × C2 × diffractionOrder × wavelength/referenceWavelengthNm`. Preserve coefficients, wavelength, and order
+exactly as published; do not convert them to aspheric coefficients or fold diffractive power into a glass index.
+
+Rules:
+
+- `kind` is currently exactly `"radial-polynomial"`.
+- `referenceWavelengthNm` must be finite and in `[100, 2000]`.
+- `diffractionOrder` must be a non-zero integer in `[-16, 16]`.
+- `terms` must have 1–16 non-zero finite coefficients with unique, strictly increasing integer `radialPower` values in
+  `[2, 32]`. Omit zero-valued terms.
+- The initial feature supports phase data on refracting surfaces only. Do not combine it with `reflect` or `block`.
+- The data models the authored/design order geometrically. It does not model blaze efficiency, phase wrapping, energy
+  split into other orders, diffraction-limited MTF/PSF, coatings, scatter, or flare.
+- Bonded PF/DO stacks may require additional `elements` entries for optically distinct thin media. Keep the published
+  physical count in `elementCount`, and document the modeling entries in the lens header and companion analysis.
+- If the prescription is scaled by linear factor `s`, scale a term of radial power `p` as `Cp/s^(p-1)`; wavelength and
+  diffraction order do not scale.
+
 ### Sign Conventions
 
 | Value | Meaning |
@@ -931,7 +978,9 @@ doublets: [
 16. `interaction.type` must be `"refract"`, `"reflect"`, or `"block"`; side fields must be valid enum values; `normal` vectors must have finite `z` and `y` components; tilted flat mirror backing planes must repeat the reflective face normal
 17. `opticalPath.mode` must be `"sequential"` or `"auto"`; `surfaceOrder` labels must exist; `imagePlane` point/normal fields must be finite; `maxInteractions` must be a positive integer large enough for the declared path
 18. Element `indexReference`, when present, must be `"d"` or `"e"`
-19. Perspective-control ranges, projection metadata, aberration-control gaps, explicit element spans, rim slope, edge thickness, and the remaining numeric bounds described above
+19. `diffractive`, when present, must satisfy the radial-polynomial kind, wavelength/order bounds, canonical sorted term
+    list, and refracting-surface restriction described above
+20. Perspective-control ranges, projection metadata, aberration-control gaps, explicit element spans, rim slope, edge thickness, and the remaining numeric bounds described above
 
 On failure, `buildLens()` throws with all errors listed.
 
