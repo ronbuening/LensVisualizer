@@ -22,6 +22,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-08-03 ─────────────────────────────────
   {
     date: "2026-08-03",
+    type: "lens",
+    summary: "Added Nikon 180-400mm and NIKKOR Z 180-600mm supertelephoto zooms",
+  },
+  {
+    date: "2026-08-03",
     type: "fix",
     summary: "Corrected Nikon 500mm PF geometry, glass badges, and product naming",
   },

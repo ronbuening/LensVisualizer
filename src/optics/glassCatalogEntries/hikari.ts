@@ -831,6 +831,25 @@ export const HIKARI_GLASS_ENTRIES: readonly GlassEntry[] = [
     source: "Hikari Optical Glass Catalog 2025-06, J-KZFH1 page; vendor power-series coefficients and d-line code.",
   },
   {
+    name: "J-KZFH4",
+    vendor: "Hikari",
+    powerSeries: [
+      [2.37404487, 0],
+      [-0.0107631771, 2],
+      [-0.000128642692, 4],
+      [0.0135709369, -2],
+      [0.000255765647, -4],
+      [-0.00000223388334, -6],
+      [0.000000491067955, -8],
+    ],
+    nd: 1.552981,
+    vd: 55.07,
+    PgF: 0.5447,
+    code6: "553551",
+    source:
+      "Nikon/Hikari Optical Glass Data 2023-09-01 workbook, J-KZFH4 row; vendor power-series coefficients and d-line code.",
+  },
+  {
     name: "J-LASF08A",
     vendor: "Hikari",
     powerSeries: [

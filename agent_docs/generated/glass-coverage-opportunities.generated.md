@@ -9,12 +9,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **507** lenses scanned (**499** visible)
-- **4918 / 5584** non-air surfaces use strict catalog Sellmeier data (88.1%)
-- **4929 / 5584** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 88.3%)
+- **509** lenses scanned (**501** visible)
+- **4963 / 5636** non-air surfaces use strict catalog Sellmeier data (88.1%)
+- **4974 / 5636** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 88.3%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
-- **272** code-only missing-Sellmeier elements in Sweep 2: **0** active unreviewed, **125** self-recording explicit dispositions, **0** dispositions missing any review record
+- **274** code-only missing-Sellmeier elements in Sweep 2: **2** active unreviewed, **125** self-recording explicit dispositions, **0** dispositions missing any review record
 - **0** unresolved named-token elements in Sweep 2B, producing **0** token occurrences across **0** distinct tokens
 - **0** Tier A proprietary backfill rows in Sweep 3
 
@@ -129,6 +129,7 @@ These rows contain resin, cement, plastic, liquid, or unclassified optical media
 
 | Lens | Patent | Local source | Trusted chromatic coverage | Strict Sellmeier coverage | Missing trusted surfaces | Missing material details | Missing quality mix |
 |---|---|---|---:|---:|---:|---|---|
+| [NIKON NIKKOR Z 180-600mm f/5.6-6.3 VR](../../src/lens-data/nikon/NikonNikkorZ180600mmf5663VR.data.ts) | WO 2024/062958 A1 | [PDF](../../patents/WO2024062958A1.pdf) | 96.2% (25/26) | 96.2% (25/26) | 1 | 42A [resin] (Element L25r: `Unmatched (optical resin layer)`) | abbe: 1 |
 | [CANON RF 24-105mm f/2.8 L IS USM Z](../../src/lens-data/canon/CanonRF24105mmf28Z.data.ts) | US 2024/0192474 A1 | [PDF](../../patents/US20240192474A1.pdf) | 95.8% (23/24) | 95.8% (23/24) | 1 | 22A [resin] (Element 12 (resin): `UV-curing optical resin (replica aspheric)`) | abbe: 1 |
 | [NIKON 1 NIKKOR VR 10-100mm f/4-5.6](../../src/lens-data/nikon/Nikon1Nikkor10100mmf4VR.data.ts) | US 2020/0348497 A1 | [PDF](../../patents/US20200348497A1.pdf) | 95.0% (19/20) | 95.0% (19/20) | 1 | 6A [resin] (L21 resin: `Patent-listed compound asphere resin`) | abbe: 1 |
 | [NIKON AF-S NIKKOR 16-35mm f/4 G ED VR](../../src/lens-data/nikon/NikonNikkorAFS1635mmf4.data.ts) | US 2010/0238560 A1 | [PDF](../../patents/US20100238560A1.pdf) | 94.4% (17/18) | 94.4% (17/18) | 1 | 6 [resin] (Element 3r: `UV-cure resin`) | abbe: 1 |
@@ -177,6 +178,8 @@ Add catalog entries only when public coefficient-backed vendor data is available
 
 | Code | Active elements | Lens files | localPatentStatus | Representative rows |
 |---|---:|---:|---|---|
+| 618625 | 1 | 1 | patents/WO2019131993A1.pdf | [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14.data.ts) Element L43 (1.61817 / 62.52) |
+| 727547 | 1 | 1 | patents/WO2019131993A1.pdf | [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14.data.ts) Element L21 (1.72672 / 54.74) |
 
 ## Sweep 2B - Named Tokens Missing Catalog Resolution
 
