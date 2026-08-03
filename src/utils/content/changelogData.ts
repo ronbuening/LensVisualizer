@@ -22,6 +22,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-08-02 ──────────────────────────────────────────────────
   {
     date: "2026-08-02",
+    type: "improvement",
+    summary: "Added five Nikon designer biographies and prepared Samsung NX mount diagrams",
+  },
+  {
+    date: "2026-08-02",
     type: "lens",
     summary: "Added Voigtländer Nokton 60mm, Color-Skopar 28mm, and APO-Skopar 90mm",
   },
