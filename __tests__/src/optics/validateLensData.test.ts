@@ -203,6 +203,28 @@ describe("validateLensData", () => {
     expect(validateLensData(makeValid({ visible: false }))).toEqual([]);
   });
 
+  it("accepts canonical optical-configuration metadata", () => {
+    expect(
+      validateLensData(
+        makeValid({
+          opticalConfiguration: { groupKey: "test-lens-family", label: "TC OUT", order: 0 },
+        }),
+      ),
+    ).toEqual([]);
+  });
+
+  it("rejects malformed optical-configuration metadata", () => {
+    const wrongShape = validateLensData(makeValid({ opticalConfiguration: [] }));
+    expect(wrongShape.some((error) => error.includes('"opticalConfiguration" must be an object'))).toBe(true);
+
+    const invalidFields = validateLensData(
+      makeValid({ opticalConfiguration: { groupKey: " ", label: 4, order: 0.5 } }),
+    );
+    expect(invalidFields.some((error) => error.includes("opticalConfiguration.groupKey"))).toBe(true);
+    expect(invalidFields.some((error) => error.includes("opticalConfiguration.label"))).toBe(true);
+    expect(invalidFields.some((error) => error.includes("opticalConfiguration.order"))).toBe(true);
+  });
+
   it("accepts canonical lens mount and image-format metadata", () => {
     expect(validateLensData(makeValid({ lensMounts: ["nikon-z", "sony-fe"], imageFormat: "135-full-frame" }))).toEqual(
       [],

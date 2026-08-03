@@ -14,6 +14,7 @@
 
 import summariesJson from "../../generated/lens-summaries.json";
 import buildMeta from "../../generated/build-metadata.json";
+import type { OpticalConfigurationData } from "../../types/optics.js";
 import type { LensMountId, ImageFormatId } from "./lensTaxonomy.js";
 
 export interface LensSummary {
@@ -31,6 +32,7 @@ export interface LensSummary {
   patentYear?: number;
   lensMounts?: LensMountId[];
   imageFormat?: ImageFormatId;
+  opticalConfiguration?: OpticalConfigurationData;
   visible: boolean;
 }
 
@@ -50,6 +52,7 @@ const SUMMARY_KEYS: string[] = LENS_SUMMARY_LIST.filter((summary) => summary.vis
 /* Mirrors isDebugLensKey in lensCatalog.ts */
 function isDebugSummaryKey(key: string): boolean {
   const summary = LENS_SUMMARIES[key];
+  if (!summary.visible && summary.opticalConfiguration !== undefined) return false;
   return (
     !summary.visible ||
     key.startsWith("reference-") ||

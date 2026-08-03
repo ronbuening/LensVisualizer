@@ -145,7 +145,7 @@ describe("SingleLensContent", () => {
     effectiveDesktopView: "both" as const,
     showDesktopToggle: true,
     mobileView: "diagram" as const,
-    lensKeyA: "test-lens-a",
+    lensKey: "test-lens-a",
     markdown: "# Test Analysis",
   };
 
@@ -221,9 +221,9 @@ describe("SingleLensContent", () => {
 
   /* Passes lensKey through */
 
-  it("passes lensKeyA to the diagram panel", () => {
+  it("passes lensKey to the diagram panel", () => {
     const state = makeState();
-    renderWithLensContext(<SingleLensContent {...baseProps} lensKeyA="my-special-lens" />, { state });
+    renderWithLensContext(<SingleLensContent {...baseProps} lensKey="my-special-lens" />, { state });
 
     expect(screen.getByText("DiagramPanel:my-special-lens")).toBeDefined();
   });

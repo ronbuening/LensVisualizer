@@ -16,10 +16,15 @@
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
-import { useMemo, useCallback } from "react";
+import { useMemo, useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
-import { ALL_CATALOG_KEYS, LENS_CATALOG, CATALOG_KEYS } from "../../utils/catalog/lensCatalog.js";
+import {
+  ALL_CATALOG_KEYS,
+  LENS_CATALOG,
+  CATALOG_KEYS,
+  opticalConfigurationOptionsForKey,
+} from "../../utils/catalog/lensCatalog.js";
 import useLensAnalysisMarkdown from "../hooks/useLensAnalysisMarkdown.js";
 import usePreferences from "../../utils/state/usePreferences.js";
 import useURLSync from "../../utils/state/useURLSync.js";
@@ -46,6 +51,7 @@ import {
   SWAP_LENSES,
   SET_MOBILE_VIEW,
   SET_DESKTOP_VIEW,
+  SET_SELECTED_ELEMENT,
 } from "../../utils/state/lensReducer.js";
 import useComparisonOrchestration from "../../comparison/useComparisonOrchestration.js";
 import useOverlays from "../hooks/useOverlays.js";
@@ -114,6 +120,25 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
   } = rays;
   const { sharedFocusT, sharedStopdownT, sharedZoomT, sharedShiftMm, sharedTiltDeg } = sharedSliders;
   const { showAbout, showAboutSite, showOpticsPrimer, showAberrationsPrimer } = overlays;
+
+  /* Alternate prescriptions are viewer-local: the canonical catalog lens and URL remain unchanged. */
+  const configurationOptions = useMemo(
+    () => (comparing ? [] : opticalConfigurationOptionsForKey(lensKeyA)),
+    [comparing, lensKeyA],
+  );
+  const [selectedConfigurationKey, setSelectedConfigurationKey] = useState(lensKeyA);
+  useEffect(() => setSelectedConfigurationKey(lensKeyA), [lensKeyA]);
+  const diagramLensKey = configurationOptions.some((option) => option.key === selectedConfigurationKey)
+    ? selectedConfigurationKey
+    : lensKeyA;
+  const switchOpticalConfiguration = useCallback(
+    (key: string) => {
+      if (!configurationOptions.some((option) => option.key === key)) return;
+      setSelectedConfigurationKey(key);
+      dispatch({ type: SET_SELECTED_ELEMENT, panelId: "main", elementId: null });
+    },
+    [configurationOptions, dispatch],
+  );
 
   /* ── Comparison mode orchestration ── */
   const {
@@ -301,6 +326,9 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
                 onOpenAberrationsPrimer={openAberrationsPrimer}
                 catalogKeys={viewerCatalogKeys}
                 catalogNames={catalogNames}
+                configurationOptions={configurationOptions}
+                activeConfigurationKey={diagramLensKey}
+                onConfigurationChange={switchOpticalConfiguration}
                 controlsBarProps={controlsBarProps}
                 mobileView={mobileView}
                 onMobileViewChange={(val) => dispatch({ type: SET_MOBILE_VIEW, mobileView: val })}
@@ -318,6 +346,7 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
                 comparing={comparing}
                 lensKeyA={lensKeyA}
                 lensKeyB={lensKeyB}
+                diagramLensKey={diagramLensKey}
                 comparisonLenses={comparisonLenses}
                 focusPair={focusPair}
                 aperturePair={aperturePair}

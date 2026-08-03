@@ -36,6 +36,20 @@ vi.mock("../../../../src/utils/featureFlags.js", async (importOriginal) => {
   return { ...actual, ENABLE_ANALYSIS_VIEW: true };
 });
 
+vi.mock("../../../../src/utils/catalog/lensCatalog.js", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("../../../../src/utils/catalog/lensCatalog.js")>();
+  return {
+    ...actual,
+    opticalConfigurationOptionsForKey: (key: string) =>
+      key === "apo-lanthar-50f2"
+        ? [
+            { key, label: "OPTIC A", order: 0 },
+            { key: "apo-lanthar-50f2-optic-b", label: "OPTIC B", order: 1 },
+          ]
+        : [],
+  };
+});
+
 vi.mock("react-router", () => ({
   useNavigate: () => mocks.navigate,
   // useActiveHoliday reads the location; pin ?holiday=none for a deterministic theme.
@@ -116,6 +130,9 @@ vi.mock("../../../../src/components/layout/lensViewer/ViewerChrome.js", () => ({
     onToggleCompare,
     onMobileViewChange,
     onDesktopViewChange,
+    configurationOptions,
+    activeConfigurationKey,
+    onConfigurationChange,
   }: {
     comparing: boolean;
     lensKeyA: string;
@@ -129,6 +146,9 @@ vi.mock("../../../../src/components/layout/lensViewer/ViewerChrome.js", () => ({
     onToggleCompare: () => void;
     onMobileViewChange: (value: "diagram" | "description") => void;
     onDesktopViewChange: (value: "diagram" | "both" | "analysis") => void;
+    configurationOptions: ReadonlyArray<{ key: string; label: string }>;
+    activeConfigurationKey: string;
+    onConfigurationChange: (key: string) => void;
   }) => (
     <div data-testid="viewer-chrome">
       <span data-testid="chrome-mode">{comparing ? "compare" : "single"}</span>
@@ -138,6 +158,12 @@ vi.mock("../../../../src/components/layout/lensViewer/ViewerChrome.js", () => ({
       <span data-testid="catalog-count">{catalogKeys.length}</span>
       <span data-testid="desktop-view">{effectiveDesktopView}</span>
       <span data-testid="desktop-toggle">{showDesktopToggle ? "shown" : "hidden"}</span>
+      <span data-testid="active-configuration">{activeConfigurationKey}</span>
+      {configurationOptions.map((option) => (
+        <button key={option.key} onClick={() => onConfigurationChange(option.key)}>
+          {option.label}
+        </button>
+      ))}
       <button onClick={() => onSwitchLensA("sonnar-50f15")}>switch A</button>
       <button onClick={() => onSwitchLensB("apo-lanthar-50f2")}>switch B</button>
       <button onClick={onSwapLenses}>swap</button>
@@ -155,18 +181,21 @@ vi.mock("../../../../src/components/layout/lensViewer/ViewerContent.js", () => (
     mobileView,
     markdown,
     onSliderPointerUp,
+    diagramLensKey,
   }: {
     comparing: boolean;
     effectiveDesktopView: string;
     mobileView: string;
     markdown: string | null;
     onSliderPointerUp: () => void;
+    diagramLensKey: string;
   }) => (
     <div data-testid="viewer-content">
       <span data-testid="content-mode">{comparing ? "compare-content" : "single-content"}</span>
       <span data-testid="content-desktop">{effectiveDesktopView}</span>
       <span data-testid="content-mobile">{mobileView}</span>
       <span data-testid="markdown-state">{markdown ? "markdown" : "none"}</span>
+      <span data-testid="diagram-lens-key">{diagramLensKey}</span>
       <button onClick={onSliderPointerUp}>slider up</button>
     </div>
   ),
@@ -231,6 +260,27 @@ describe("LensViewer", () => {
 
     fireEvent.click(screen.getByText("slider up"));
     expect(mocks.updateURLWithSliders).toHaveBeenCalledTimes(1);
+  });
+
+  it("switches a configured diagram without changing the canonical lens", () => {
+    const baseKey = "apo-lanthar-50f2";
+    const alternateKey = `${baseKey}-optic-b`;
+    mocks.state = makeState({ lens: { ...makeState().lens, lensKeyA: baseKey } });
+
+    render(<LensViewer initialLensKey={baseKey} />);
+
+    expect(screen.getByTestId("active-configuration").textContent).toBe(baseKey);
+    expect(screen.getByTestId("diagram-lens-key").textContent).toBe(baseKey);
+    fireEvent.click(screen.getByRole("button", { name: "OPTIC B" }));
+
+    expect(screen.getByTestId("active-configuration").textContent).toBe(alternateKey);
+    expect(screen.getByTestId("diagram-lens-key").textContent).toBe(alternateKey);
+    expect(mocks.dispatch).toHaveBeenCalledWith({
+      type: "SET_SELECTED_ELEMENT",
+      panelId: "main",
+      elementId: null,
+    });
+    expect(mocks.navigate).not.toHaveBeenCalled();
   });
 
   it("uses a fixed-height desktop app shell with a scroll-contained content slot", () => {

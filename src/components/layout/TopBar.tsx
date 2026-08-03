@@ -4,7 +4,8 @@
  */
 
 import type { Theme } from "../../types/theme.js";
-import { headerStrip, labelStyle as makeLabelStyle } from "../../utils/style/styles.js";
+import { headerStrip, labelStyle as makeLabelStyle, toggleBtn, toggleGroup } from "../../utils/style/styles.js";
+import type { OpticalConfigurationOption } from "../../utils/catalog/lensCatalog.js";
 import AboutButtonRow from "../display/AboutButtonRow.js";
 import LensSelector from "../controls/LensSelector.js";
 
@@ -25,6 +26,9 @@ interface TopBarProps {
   onOpenAberrationsPrimer: () => void;
   catalogKeys: string[];
   catalogNames: Record<string, string>;
+  configurationOptions: ReadonlyArray<OpticalConfigurationOption>;
+  activeConfigurationKey: string;
+  onConfigurationChange: (key: string) => void;
 }
 
 export default function TopBar({
@@ -44,6 +48,9 @@ export default function TopBar({
   onOpenAberrationsPrimer,
   catalogKeys,
   catalogNames,
+  configurationOptions,
+  activeConfigurationKey,
+  onConfigurationChange,
 }: TopBarProps) {
   const lStyle = makeLabelStyle(t);
 
@@ -68,6 +75,28 @@ export default function TopBar({
         onChange={onSwitchLensA}
         style={selectorStyle}
       />
+
+      {!comparing && configurationOptions.length > 1 && (
+        <>
+          <span style={lStyle}>CONFIG</span>
+          <div role="group" aria-label="Optical configuration" style={toggleGroup(t)}>
+            {configurationOptions.map((option, index) => (
+              <button
+                key={option.key}
+                type="button"
+                aria-pressed={activeConfigurationKey === option.key}
+                onClick={() => onConfigurationChange(option.key)}
+                style={toggleBtn(t, activeConfigurationKey === option.key, {
+                  hasRightBorder: index < configurationOptions.length - 1,
+                  padding: isWide ? "5px 10px" : "5px 7px",
+                })}
+              >
+                {option.label}
+              </button>
+            ))}
+          </div>
+        </>
+      )}
 
       {comparing && (
         <button

@@ -24,6 +24,7 @@ interface ViewerContentProps {
   comparing: boolean;
   lensKeyA: string;
   lensKeyB: string;
+  diagramLensKey: string;
   comparisonLenses: ComparisonLensesResult;
   focusPair: FocusPairResult | null;
   aperturePair: AperturePairResult | null;
@@ -59,6 +60,7 @@ export default function ViewerContent({
   comparing,
   lensKeyA,
   lensKeyB,
+  diagramLensKey,
   comparisonLenses,
   focusPair,
   aperturePair,
@@ -128,7 +130,7 @@ export default function ViewerContent({
       effectiveDesktopView={effectiveDesktopView}
       showDesktopToggle={showDesktopToggle}
       mobileView={mobileView}
-      lensKeyA={lensKeyA}
+      lensKey={diagramLensKey}
       markdown={markdown}
     />
   );

@@ -112,6 +112,7 @@ Keep it normalized even when the product's official styling varies by source:
 |-------|------|---------|-------------|
 | `maker` | `string` | | Manufacturer name (e.g. `"Nikon"`, `"Voigtländer"`). Used for maker pages and SEO metadata. If omitted, derived from the lens `name` via prefix matching. |
 | `visible` | `boolean` | `true` | Controls whether the lens appears in the UI catalog. Set to `false` to hide a lens from the dropdown without removing its data file. |
+| `opticalConfiguration` | `object` | | Links complete prescriptions that are switchable optical states of one catalog lens. See Alternate Optical Configurations below. |
 | `subtitle` | `string` | | Compact patent/example/design-correlation context. Used as the UI-header fallback when structured patent metadata is unavailable and retained by several corpus reports for source/example matching. |
 | `specs` | `string[]` | | Spec strings displayed in header |
 | `focalLengthMarketing` | `number \| [number, number]` | | Marketed/nominal focal length in mm. Single number for primes (e.g. `50`); `[wide, tele]` tuple for zooms (e.g. `[70, 200]`). |
@@ -141,6 +142,31 @@ Keep it normalized even when the product's official styling varies by source:
 | `zoomLabels` | `string[]` | | Optional endpoint labels for zoom slider |
 | `apertureBlades` | `number` | | Number of aperture blades (reserved for future polygonal bokeh rendering) |
 | `apertureBladeRoundedness` | `number` | | Blade roundedness 0–1 (reserved; 0 = straight polygon, 1 = circular) |
+
+---
+
+### Alternate Optical Configurations
+
+Use `opticalConfiguration` when one catalog lens has multiple complete prescriptions that a viewer should switch
+between, such as an integrated teleconverter, removable optical module, or another reconfigurable optical path:
+
+```ts
+opticalConfiguration: {
+  groupKey: "stable-family-identifier",
+  label: "TC OUT",
+  order: 0,
+},
+```
+
+- Every member must use the same non-empty `groupKey`, a compact non-empty `label`, and a unique non-negative integer
+  `order`. The viewer derives the toggle from these records; lenses that omit the field are unchanged.
+- Author each member as a complete, independently valid prescription. Do not store only a surface delta or combine
+  numerical groups from different patent examples unless the source explicitly defines that combination.
+- Keep exactly one member catalog-visible. Set `visible: false` on alternate data-only members so they do not appear as
+  separate lenses, patents, debug fixtures, routes, or SEO entries. The visible member remains the canonical page and
+  supplies the shared analysis prose.
+- Record material source differences between configurations in each file's header and `subtitle`. A shared
+  `groupKey` communicates a UI relationship, not that the source necessarily publishes a matched before/after pair.
 
 ---
 

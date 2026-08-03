@@ -17,6 +17,7 @@ import { SET_RAY_TOGGLE } from "../../../utils/state/lensReducer.js";
 import { headerStrip, toggleBtn, toggleGroup } from "../../../utils/style/styles.js";
 import type { Theme } from "../../../types/theme.js";
 import type { DesktopView, MobileView } from "../../../types/state.js";
+import type { OpticalConfigurationOption } from "../../../utils/catalog/lensCatalog.js";
 
 interface ViewerChromeProps {
   theme: Theme;
@@ -35,6 +36,9 @@ interface ViewerChromeProps {
   onOpenAberrationsPrimer: () => void;
   catalogKeys: string[];
   catalogNames: Record<string, string>;
+  configurationOptions: ReadonlyArray<OpticalConfigurationOption>;
+  activeConfigurationKey: string;
+  onConfigurationChange: (key: string) => void;
   controlsBarProps: Omit<ComponentProps<typeof ControlsBar>, "compact" | "showScaleMode">;
   mobileView: MobileView;
   onMobileViewChange: (value: MobileView) => void;
@@ -61,6 +65,9 @@ export default function ViewerChrome({
   onOpenAberrationsPrimer,
   catalogKeys,
   catalogNames,
+  configurationOptions,
+  activeConfigurationKey,
+  onConfigurationChange,
   controlsBarProps,
   mobileView,
   onMobileViewChange,
@@ -123,6 +130,9 @@ export default function ViewerChrome({
         onOpenAberrationsPrimer={onOpenAberrationsPrimer}
         catalogKeys={catalogKeys}
         catalogNames={catalogNames}
+        configurationOptions={configurationOptions}
+        activeConfigurationKey={activeConfigurationKey}
+        onConfigurationChange={onConfigurationChange}
       />
 
       {comparing && <ControlsBar {...controlsBarProps} compact={false} showScaleMode={true} />}

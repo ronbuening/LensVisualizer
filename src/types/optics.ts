@@ -285,6 +285,16 @@ export type AberrationPositionRange = [number, number] | [number, number, number
 /** Aberration-control positions for a prime, or one position tuple per zoom position. */
 export type AberrationVarRange = AberrationPositionRange | AberrationPositionRange[];
 
+/** Links complete prescriptions that represent switchable optical states of one catalog lens. */
+export interface OpticalConfigurationData {
+  /** Stable family identifier shared by every prescription in the switchable set. */
+  groupKey: string;
+  /** Compact user-facing toggle label, such as "TC OUT" or "TC IN". */
+  label: string;
+  /** Deterministic left-to-right toggle order. */
+  order: number;
+}
+
 /** Complete lens data object (after defaults merging) */
 export interface LensData {
   key: string;
@@ -308,6 +318,7 @@ export interface LensData {
   elementCount?: number;
   groupCount?: number;
   visible?: boolean;
+  opticalConfiguration?: OpticalConfigurationData;
   perspectiveControl?: PerspectiveControlConfig;
   projection?: LensProjectionConfig;
   opticalPath?: OpticalPathData;

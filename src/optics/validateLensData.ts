@@ -96,6 +96,28 @@ function validatePerspectiveControl(value: unknown, errors: string[]): void {
   }
 }
 
+function validateOpticalConfiguration(value: unknown, errors: string[]): void {
+  if (!value || typeof value !== "object" || Array.isArray(value)) {
+    errors.push(`"opticalConfiguration" must be an object when provided`);
+    return;
+  }
+
+  const config = value as Record<string, unknown>;
+  for (const field of ["groupKey", "label"] as const) {
+    if (typeof config[field] !== "string" || config[field].trim().length === 0) {
+      errors.push(`"opticalConfiguration.${field}" must be a non-empty string`);
+    }
+  }
+  if (
+    typeof config.order !== "number" ||
+    !isFinite(config.order) ||
+    config.order < 0 ||
+    Math.round(config.order) !== config.order
+  ) {
+    errors.push(`"opticalConfiguration.order" must be a non-negative integer`);
+  }
+}
+
 function validateProjection(value: unknown, errors: string[]): void {
   if (!value || typeof value !== "object" || Array.isArray(value)) {
     errors.push(`"projection" must be an object when provided`);
@@ -639,6 +661,7 @@ export default function validateLensData(data: UntrustedLensData): string[] {
   /* ── Optional boolean fields ── */
   if (data.visible !== undefined && typeof data.visible !== "boolean")
     errors.push(`"visible" must be a boolean (got ${typeof data.visible})`);
+  if (data.opticalConfiguration !== undefined) validateOpticalConfiguration(data.opticalConfiguration, errors);
   if (data.perspectiveControl !== undefined) validatePerspectiveControl(data.perspectiveControl, errors);
   if (data.projection !== undefined) validateProjection(data.projection, errors);
   if (data.lensMounts !== undefined) validateLensMounts(data.lensMounts, errors);
