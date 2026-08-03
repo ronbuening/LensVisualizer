@@ -19,9 +19,9 @@ and the SSR prerenderer, so several build steps must stay consistent.
 1. Create `src/pages/YourPage.tsx`:
    - Functional component, inline styles with theme tokens, module header comment
      (see `agent_docs/commenting_guide.md`).
-   - SEO head tags via `react-helmet-async` — copy the `<Helmet>` usage from an existing simple
-     page (e.g. `UpdatesPage.tsx`) including title, description, and canonical URL. Check
-     `src/utils/` for existing SEO helper utilities before hand-writing meta tags.
+   - SEO head tags via the shared `SEOHead` component, which uses React 19 metadata hoisting through
+     `react-helmet-async`. Include a title, description, and canonical URL; check `src/utils/` for existing SEO helper
+     utilities before hand-writing metadata.
 2. Add the entry to `routeManifest.tsx` with a **static import**, above the `*` catch-all.
    - Do NOT use `React.lazy` here: `entry-server.tsx` prerenders with synchronous
      `renderToString`, which cannot resolve lazy components — prerendered pages would lose their

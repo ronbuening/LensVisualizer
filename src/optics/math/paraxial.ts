@@ -7,6 +7,7 @@
 
 import { FLAT_R_THRESHOLD } from "../constants.js";
 import type { CompiledStateSurface } from "../types.js";
+import { diffractiveParaxialPower } from "./diffractivePhase.js";
 
 /**
  * First-order ray state at a surface vertex plane.
@@ -62,7 +63,7 @@ export function transferParaxialRay2({ y, u, n }: ParaxialState, distance: numbe
  */
 export function interactParaxialSurface2(
   { y, u, n }: ParaxialState,
-  surface: Pick<CompiledStateSurface, "R" | "nd" | "interaction">,
+  surface: Pick<CompiledStateSurface, "R" | "nd" | "interaction" | "diffractive">,
   {
     allowReflect = false,
     requireSameIndexRefraction = false,
@@ -79,10 +80,11 @@ export function interactParaxialSurface2(
 
   const nextN = surface.nd === 1 ? 1 : surface.nd;
   if (requireSameIndexRefraction && Math.abs(nextN - n) > 1e-12) return null;
-  if (nextN === n) return { y, u, n };
+  const refractivePower = Math.abs(surface.R) < FLAT_R_THRESHOLD ? (nextN - n) / surface.R : 0;
+  const phasePower = diffractiveParaxialPower(surface.diffractive);
+  if (nextN === n && phasePower === 0) return { y, u, n };
 
-  const refractedU =
-    Math.abs(surface.R) < FLAT_R_THRESHOLD ? (n * u - (y * (nextN - n)) / surface.R) / nextN : (n * u) / nextN;
+  const refractedU = (n * u - y * (refractivePower + phasePower)) / nextN;
   return { y, u: refractedU, n: nextN };
 }
 

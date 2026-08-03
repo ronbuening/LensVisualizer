@@ -137,16 +137,16 @@ async function prerender() {
     /* Inject rendered content and head tags into the template */
     let pageHtml = template;
 
-    /* Replace the default <title> with helmet's title + meta */
-    pageHtml = pageHtml.replace(/<title>.*?<\/title>/, headTags);
-
-    /* Remove default meta tags that helmet replaces */
+    /* Remove template defaults before injecting React's self-closing metadata tags. */
     pageHtml = pageHtml.replace(/\s*<meta\s+name="description"[^>]*\/>/g, "");
     pageHtml = pageHtml.replace(/\s*<link\s+rel="canonical"[^>]*\/>/g, "");
     pageHtml = pageHtml.replace(/\s*<!--\s*Open Graph\s*-->/g, "");
     pageHtml = pageHtml.replace(/\s*<meta\s+property="og:[^"]*"[^>]*\/>/g, "");
     pageHtml = pageHtml.replace(/\s*<!--\s*Twitter Card\s*-->/g, "");
     pageHtml = pageHtml.replace(/\s*<meta\s+name="twitter:[^"]*"[^>]*\/>/g, "");
+
+    /* Replace the default <title> with the route-specific head tags. */
+    pageHtml = pageHtml.replace(/<title>.*?<\/title>/, headTags);
 
     /* Inject app HTML into the root div */
     pageHtml = pageHtml.replace('<div id="root"></div>', `<div id="root">${appHtml}</div>`);
@@ -172,13 +172,13 @@ async function prerender() {
     .join("\n    ");
 
   let fourOhFourHtml = template;
-  fourOhFourHtml = fourOhFourHtml.replace(/<title>.*?<\/title>/, notFoundHeadTags);
   fourOhFourHtml = fourOhFourHtml.replace(/\s*<meta\s+name="description"[^>]*\/>/g, "");
   fourOhFourHtml = fourOhFourHtml.replace(/\s*<link\s+rel="canonical"[^>]*\/>/g, "");
   fourOhFourHtml = fourOhFourHtml.replace(/\s*<!--\s*Open Graph\s*-->/g, "");
   fourOhFourHtml = fourOhFourHtml.replace(/\s*<meta\s+property="og:[^"]*"[^>]*\/>/g, "");
   fourOhFourHtml = fourOhFourHtml.replace(/\s*<!--\s*Twitter Card\s*-->/g, "");
   fourOhFourHtml = fourOhFourHtml.replace(/\s*<meta\s+name="twitter:[^"]*"[^>]*\/>/g, "");
+  fourOhFourHtml = fourOhFourHtml.replace(/<title>.*?<\/title>/, notFoundHeadTags);
   fourOhFourHtml = fourOhFourHtml.replace('<div id="root"></div>', `<div id="root">${notFoundHtml}</div>`);
   writeFileSync(join(DIST_DIR, "404.html"), fourOhFourHtml, "utf-8");
 }

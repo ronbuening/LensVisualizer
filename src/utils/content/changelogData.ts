@@ -19,6 +19,17 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-08-03 ─────────────────────────────────
+  {
+    date: "2026-08-03",
+    type: "feature",
+    summary: "Added wavelength-aware diffractive optics to the engine for our 500th lens",
+  },
+  {
+    date: "2026-08-03",
+    type: "lens",
+    summary: "Added the Nikon AF-S 500mm f/5.6E PF and NIKKOR Z 180-600mm supertelephotos",
+  },
   // ── 2026-08-02 ──────────────────────────────────────────────────
   {
     date: "2026-08-02",

@@ -16,7 +16,9 @@ import type {
   ResolvedImagePlane,
   ResolvedOpticalPath,
   SurfaceInteraction,
+  DiffractivePhaseSurface,
 } from "../../types/optics.js";
+import { DEFAULT_PHASE_WAVELENGTH_NM, diffractiveRefractedDirection } from "../math/diffractivePhase.js";
 import { FLAT_R_THRESHOLD, conicPolySag } from "./surfaceMath.js";
 import {
   intersectSagSurface,
@@ -39,6 +41,7 @@ export interface ExactTraceSurface {
   sd?: number;
   innerSd?: number;
   interaction?: SurfaceInteraction;
+  diffractive?: DiffractivePhaseSurface;
 }
 
 /** Minimal RuntimeLens-shaped lens object needed by exact surface tracing. */
@@ -95,6 +98,7 @@ export interface ExactSurfaceTraceOptions {
    */
   launchBoundT?: number;
   indexAtSurface?: (surfaceIdx: number, nd: number) => number;
+  wavelengthNm?: number;
 }
 
 /** One exact surface hit recorded by the RuntimeLens-shaped tracer. */
@@ -107,7 +111,7 @@ export interface ExactSurfaceTraceHit {
   radius: number;
   clipped: boolean;
   fallback: boolean;
-  failureReason: SurfaceIntersectionFailureReason | "totalInternalReflection" | null;
+  failureReason: SurfaceIntersectionFailureReason | "totalInternalReflection" | "nonPropagatingDiffractionOrder" | null;
   clipReason?: FoldedPathClipReason;
 }
 
@@ -128,6 +132,7 @@ export interface ExactSurfaceTraceResult {
   failureReason:
     | SurfaceIntersectionFailureReason
     | "totalInternalReflection"
+    | "nonPropagatingDiffractionOrder"
     | "loopDetected"
     | "maxInteractions"
     | null;
@@ -281,6 +286,7 @@ export function traceExactSurfaceStackVector(
     stopOnClip = false,
     launchBoundT,
     indexAtSurface,
+    wavelengthNm = DEFAULT_PHASE_WAVELENGTH_NM,
   }: ExactSurfaceTraceOptions = {},
 ): ExactSurfaceTraceResult {
   if (shouldUseGeneralizedTrace(lens, stopAt)) {
@@ -297,6 +303,7 @@ export function traceExactSurfaceStackVector(
         stopOnClip,
         launchBoundT,
         indexAtSurface,
+        wavelengthNm,
       },
     );
   }
@@ -379,24 +386,29 @@ export function traceExactSurfaceStackVector(
     if (hitClipped && stopOnClip && !ghost) break;
 
     const nn = indexAtSurface ? indexAtSurface(i, surface.nd) : surface.nd === 1.0 ? 1.0 : surface.nd;
-    if (nn !== n) {
+    if (nn !== n || surface.diffractive) {
       if (hitClipped && Math.abs(surface.R) < FLAT_R_THRESHOLD && radius * radius > surface.R * surface.R) {
         // Ghost ray beyond the mathematical sphere extent: propagate straight.
       } else {
-        const refracted = refractDirection(direction, normal, n, nn);
+        const refracted = surface.diffractive
+          ? diffractiveRefractedDirection(direction, normal, point, n, nn, surface.diffractive, wavelengthNm)
+          : refractDirection(direction, normal, n, nn);
         if (refracted === null) {
           clipped = true;
-          failureReason = "totalInternalReflection";
-          pushClipEvent(clipEvents, lens, i, "total-internal-reflection", failureReason);
+          failureReason = surface.diffractive ? "nonPropagatingDiffractionOrder" : "totalInternalReflection";
+          const failureClipReason = surface.diffractive
+            ? "non-propagating-diffraction-order"
+            : "total-internal-reflection";
+          pushClipEvent(clipEvents, lens, i, failureClipReason, failureReason);
           hits[hits.length - 1] = {
             ...hits[hits.length - 1],
             clipped: true,
             failureReason,
-            clipReason: "total-internal-reflection",
+            clipReason: failureClipReason,
           };
           if (!ghost) break;
         } else {
-          direction = refracted;
+          direction = [refracted[0], refracted[1], refracted[2]];
         }
       }
     }
@@ -536,6 +548,7 @@ interface GeneralizedTraceOptions {
   stopOnClip: boolean;
   launchBoundT?: number;
   indexAtSurface?: (surfaceIdx: number, nd: number) => number;
+  wavelengthNm: number;
 }
 
 interface ImagePlaneIntersection {
@@ -566,6 +579,7 @@ function traceGeneralizedSurfaceStackVector(
     stopOnClip,
     launchBoundT,
     indexAtSurface,
+    wavelengthNm,
   }: GeneralizedTraceOptions,
 ): ExactSurfaceTraceResult {
   const path = lens.opticalPath;
@@ -790,23 +804,28 @@ function traceGeneralizedSurfaceStackVector(
       direction = reflectDirection(direction, normal);
     } else {
       const nn = resolvedNextIndex(nextSurfaceIdx, incidentSide, surface, lens, indexAtSurface);
-      if (nn !== n) {
+      if (nn !== n || surface.diffractive) {
         const orientedNormal = incidentSide === "front" ? normal : ([-normal[0], -normal[1], -normal[2]] as Vector3);
-        const refracted = refractDirection(direction, orientedNormal, n, nn);
+        const refracted = surface.diffractive
+          ? diffractiveRefractedDirection(direction, orientedNormal, point, n, nn, surface.diffractive, wavelengthNm)
+          : refractDirection(direction, orientedNormal, n, nn);
         if (refracted === null) {
           clipped = true;
-          failureReason = "totalInternalReflection";
+          failureReason = surface.diffractive ? "nonPropagatingDiffractionOrder" : "totalInternalReflection";
           terminationReason = "trace-failure";
-          pushClipEvent(clipEvents, lens, nextSurfaceIdx, "total-internal-reflection", failureReason);
+          const failureClipReason = surface.diffractive
+            ? "non-propagating-diffraction-order"
+            : "total-internal-reflection";
+          pushClipEvent(clipEvents, lens, nextSurfaceIdx, failureClipReason, failureReason);
           hits[hits.length - 1] = {
             ...hits[hits.length - 1],
             clipped: true,
             failureReason,
-            clipReason: "total-internal-reflection",
+            clipReason: failureClipReason,
           };
           if (!ghost) break;
         } else {
-          direction = refracted;
+          direction = [refracted[0], refracted[1], refracted[2]];
         }
       }
       n = nn;
@@ -1181,6 +1200,7 @@ function isPassiveAutoSurface(
   if (!hit.ok) return true;
   const surface = lens.S[surfaceIdx];
   if (surface.interaction && surface.interaction.type !== "refract") return false;
+  if (surface.diffractive) return false;
   const incidentSide = incidentSideFor(direction, hit.normal);
   const nextIndex = resolvedNextIndex(surfaceIdx, incidentSide, surface, lens, indexAtSurface);
   return Math.abs(nextIndex - refractiveIndex) <= 1e-12;

@@ -54,6 +54,9 @@ function renderChrome(dispatch = vi.fn()) {
         onOpenAberrationsPrimer={vi.fn()}
         catalogKeys={["nokton-50f1", "apo-lanthar-50f2"]}
         catalogNames={{ "nokton-50f1": "Nokton", "apo-lanthar-50f2": "APO-Lanthar" }}
+        configurationOptions={[]}
+        activeConfigurationKey="nokton-50f1"
+        onConfigurationChange={vi.fn()}
         controlsBarProps={{
           theme: themes.dark,
           showOnAxis: true,

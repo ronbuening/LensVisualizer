@@ -65,6 +65,44 @@ describe("validateLensData", () => {
     expect(validateLensData(makeValid())).toEqual([]);
   });
 
+  it("accepts a canonical radial diffractive phase surface", () => {
+    const data = makeValid();
+    (data.surfaces as Record<string, unknown>[])[0].diffractive = {
+      kind: "radial-polynomial",
+      referenceWavelengthNm: 587.6,
+      diffractionOrder: 1,
+      terms: [
+        { radialPower: 2, coefficient: -4.25304e-5 },
+        { radialPower: 4, coefficient: 3e-10 },
+      ],
+    };
+    expect(validateLensData(data)).toEqual([]);
+  });
+
+  it("rejects malformed, non-canonical, and reflective diffractive phase data", () => {
+    const data = makeValid();
+    (data.surfaces as Record<string, any>[])[0] = {
+      ...(data.surfaces as Record<string, any>[])[0],
+      interaction: { type: "reflect" },
+      diffractive: {
+        kind: "vendor-pf",
+        referenceWavelengthNm: 0,
+        diffractionOrder: 0.5,
+        terms: [
+          { radialPower: 4, coefficient: 0 },
+          { radialPower: 2, coefficient: Number.NaN },
+        ],
+      },
+    };
+    const errors = validateLensData(data);
+    expect(errors.some((error) => error.includes('kind must be "radial-polynomial"'))).toBe(true);
+    expect(errors.some((error) => error.includes("referenceWavelengthNm"))).toBe(true);
+    expect(errors.some((error) => error.includes("diffractionOrder"))).toBe(true);
+    expect(errors.some((error) => error.includes("strictly increasing"))).toBe(true);
+    expect(errors.filter((error) => error.includes("coefficient")).length).toBe(2);
+    expect(errors.some((error) => error.includes("only valid on refracting surfaces"))).toBe(true);
+  });
+
   it("accepts optional centered aberration-control positions with the authored center as default", () => {
     const data = makeValid({
       aberrationControl: {
@@ -163,6 +201,28 @@ describe("validateLensData", () => {
   it("accepts boolean visible field", () => {
     expect(validateLensData(makeValid({ visible: true }))).toEqual([]);
     expect(validateLensData(makeValid({ visible: false }))).toEqual([]);
+  });
+
+  it("accepts canonical optical-configuration metadata", () => {
+    expect(
+      validateLensData(
+        makeValid({
+          opticalConfiguration: { groupKey: "test-lens-family", label: "TC OUT", order: 0 },
+        }),
+      ),
+    ).toEqual([]);
+  });
+
+  it("rejects malformed optical-configuration metadata", () => {
+    const wrongShape = validateLensData(makeValid({ opticalConfiguration: [] }));
+    expect(wrongShape.some((error) => error.includes('"opticalConfiguration" must be an object'))).toBe(true);
+
+    const invalidFields = validateLensData(
+      makeValid({ opticalConfiguration: { groupKey: " ", label: 4, order: 0.5 } }),
+    );
+    expect(invalidFields.some((error) => error.includes("opticalConfiguration.groupKey"))).toBe(true);
+    expect(invalidFields.some((error) => error.includes("opticalConfiguration.label"))).toBe(true);
+    expect(invalidFields.some((error) => error.includes("opticalConfiguration.order"))).toBe(true);
   });
 
   it("accepts canonical lens mount and image-format metadata", () => {

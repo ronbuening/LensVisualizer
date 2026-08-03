@@ -25,12 +25,12 @@ lens data; analysis tabs use current focus, zoom, and aperture state.
 | --- | --- |
 | `src/optics/prescription/` | Lens-data normalization, runtime-lens conversion, labels, variables, aspheres, interactions, groups, and dispersion descriptors. |
 | `src/optics/state/` | `PreparedOpticalState` compilation and caches for current focus/zoom/aberration state. Caches must include every optical input that changes results. |
-| `src/optics/math/` | Vector math, paraxial stepping, surface profiles, and surface intersection routines. Engine-native failures use typed statuses. |
+| `src/optics/math/` | Vector math, paraxial stepping, surface profiles, diffractive phase-polynomial evaluation, and surface intersection routines. Engine-native failures use typed statuses. |
 | `src/optics/trace/` | Sequential and generalized/folded exact tracing, aperture checks, stop tracing, runtime result adapters, and folded diagnostics. |
 | `src/optics/field/` | Projection-aware field launch, chief-ray solving, entrance-pupil state, field/image-height inversion, and chief-ray diagnostics. |
 | `src/optics/first-order/` | System matrix, cardinal elements, focus breathing, effective f-number, and first-order pupil helpers. |
 | `src/optics/chromatic/` | Wavelength/index resolution, chromatic tracing, dispersion adapters, and quality summaries. |
-| `src/optics/diagram/` | SVG coordinate transforms, element shape/render diagnostics, aspheric overlay paths, and second-surface mirror coating accent paths. |
+| `src/optics/diagram/` | SVG coordinate transforms, element shape/render diagnostics, aspheric overlay paths, second-surface mirror coating accents, and semantic diffractive-phase accents. |
 | `src/optics/analysis/` | Analysis facades and state-aware wrappers for summary metrics, aberration, distortion, vignetting, pupil, bokeh, group movement, and LCA display helpers. |
 | `src/optics/buildLens.ts`, `src/optics/optics.ts`, focused `src/optics/*.ts` public modules | Stable import paths for app code and tests over the engine implementation. |
 | `lensMovement.ts` | Pure 2D perspective-control movement helpers for clamping shift/tilt and transforming rendered points/rays. |
@@ -86,6 +86,30 @@ published 120° coverage. The override only changes `halfField`; `tracingHalfFie
 value so rendered ray bundles stay safely within what real surfaces can carry.
 
 `paraxialTrace()` is exported for low-level first-order tracing tests.
+
+### Diffractive Phase Surfaces
+
+An optional `SurfaceData.diffractive` field represents a rotationally symmetric optical-path polynomial for Nikon PF,
+Canon DO, and equivalent kinoform interfaces. The public authoring contract is documented in
+`src/lens-data/LENS_DATA_SPEC.md`; `src/optics/math/diffractivePhase.ts` owns compilation and the shared physical
+convention.
+
+- `W(h) = Σ Cp h^p` is optical path in millimeters, not geometric sag. Phase data never changes intersections,
+  surface normals, lens outlines, or edge-thickness validation.
+- Paraxial construction, Petzval, sequential exact tracing, generalized/folded tracing, and the temporary internal
+  compatibility tracer all use the same phase kernel. A phase interface remains active even when its two media have
+  the same refractive index.
+- Monochrome construction and tracing use the d line. Chromatic adapters pass the selected channel wavelength, so the
+  phase contribution scales by `diffractionOrder × wavelength / referenceWavelengthNm` in addition to ordinary glass
+  dispersion.
+- The exact interaction applies the tangent-plane projection of the authored global radial derivative through
+  generalized Snell momentum. A non-propagating authored order returns the typed
+  `nonPropagatingDiffractionOrder` / `non-propagating-diffraction-order` failure.
+- Normal surfaces retain the cheap `diffractive === null` fast path. Compiled sparse terms are frozen once during
+  normalization and evaluated without per-hit arrays or closures.
+
+The geometric-ray feature models only the authored diffraction order. It does not simulate blaze efficiency,
+multi-order energy, interference, PSF/MTF, groove microstructure, scatter, or characteristic PF flare.
 
 ## optics.ts
 
@@ -377,8 +401,9 @@ These functions feed `AsphericComparisonOverlay.tsx` exclusively and must not be
 
 ## Validation And Rendering Geometry
 
-`validateLensData.ts` checks required fields, references, STO presence, the d/e `indexReference` enum, element edge thickness, SD consistency, rim slope,
-boundary-surface cross-gap overlap, conic limits, and zoom field consistency. Elements that span more than one surface
+`validateLensData.ts` checks required fields, references, STO presence, the d/e `indexReference` enum, diffractive
+phase-polynomial bounds/canonical ordering, element edge thickness, SD consistency, rim slope, boundary-surface
+cross-gap overlap, conic limits, and zoom field consistency. Elements that span more than one surface
 (via `fromSurface`/`toSurface`) and stops marked `stopPlacement: "inside-element"` are validated against tighter rules:
 explicit spans must be ordered and confined to one `elemId`, internal stops must be flat with `nd` matching the
 containing glass, and every interior surface inside a multi-surface element must itself be a flagged internal stop.

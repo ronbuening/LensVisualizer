@@ -131,6 +131,15 @@ Authoring rules that matter most:
 - Run `npm run generate:mirror-reports` after adding or materially changing a hidden mirror fixture so the generated authoring matrix stays current.
 - Expect analysis guardrails: mirror-safe spherical aberration and related blur helpers can run, while tabs that still assume a sequential front-to-rear paraxial model are hidden for folded systems.
 
+### Diffractive PF / DO / Kinoform Lenses
+
+When a patent publishes a radial phase or optical-path polynomial, put it in the surface-local `diffractive` field
+documented in `LENS_DATA_SPEC.md`; never convert it to aspheric sag or hide its power in a refractive index. Preserve
+every bonded medium transition, and use `elementCount` for the marketed physical count when thin optically distinct
+phase media require extra modeling entries. The diagram marks the interface with a semantic `P` accent while retaining
+the authored spherical/aspheric outline. Companion analyses must distinguish geometric tracing of the authored order
+from unmodeled efficiency, multi-order flare, and wave-optics behavior.
+
 ### Aberration-Control Lenses
 
 For lenses with a real soft-focus or spherical-aberration-control ring, declare `aberrationControl` instead of folding

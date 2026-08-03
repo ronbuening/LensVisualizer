@@ -6,6 +6,7 @@
 
 import type { CompiledStateSurface, Vec3 } from "../types.js";
 import { dot, normalize, reflect, refract, scale } from "../math/vector.js";
+import { diffractiveRefractedDirection } from "../math/diffractivePhase.js";
 
 /** Side of a surface reached by an incoming ray relative to the compiled normal. */
 export type IncidentSide = "front" | "rear";
@@ -58,6 +59,20 @@ export function reflectedDirection(direction: Vec3, normal: Vec3): Vec3 | null {
  */
 export function refractedDirection(direction: Vec3, normal: Vec3, nFrom: number, nTo: number): Vec3 | null {
   return refract(direction, normal, nFrom, nTo);
+}
+
+/** Refract and apply one compiled radial phase order through generalized Snell momentum. */
+export function phaseRefractedDirection(
+  direction: Vec3,
+  normal: Vec3,
+  point: Vec3,
+  nFrom: number,
+  nTo: number,
+  surface: Pick<CompiledStateSurface, "diffractive">,
+  wavelengthNm: number,
+): Vec3 | null {
+  if (!surface.diffractive) return refractedDirection(direction, normal, nFrom, nTo);
+  return diffractiveRefractedDirection(direction, normal, point, nFrom, nTo, surface.diffractive, wavelengthNm);
 }
 
 /**

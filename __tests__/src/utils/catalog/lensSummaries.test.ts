@@ -48,6 +48,7 @@ describe("lensSummaries parity with lensCatalog", () => {
       expect(summary.patentYear).toBe(data.patentYear);
       expect(summary.lensMounts).toEqual(data.lensMounts);
       expect(summary.imageFormat).toBe(data.imageFormat);
+      expect(summary.opticalConfiguration).toEqual(data.opticalConfiguration);
       expect(summary.visible).toBe(data.visible !== false);
     }
   });

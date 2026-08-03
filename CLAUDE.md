@@ -11,8 +11,8 @@ prerendered for SEO and deployed to Cloudflare Pages.
 
 ## Tech Stack
 
-- React 18 functional components + TypeScript strict mode
-- React Router 7, Vite 6, Vitest, Testing Library
+- React 19 functional components + TypeScript strict mode
+- React Router 8, Vite 8, Vitest, Testing Library
 - Inline SVG rendering only; no canvas for lens diagrams
 - Inline styles only; no CSS files or UI libraries
 - `react-helmet-async` for SEO metadata

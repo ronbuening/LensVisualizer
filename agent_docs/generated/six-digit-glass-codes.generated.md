@@ -9,10 +9,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **506** lenses scanned
-- **574** total code-only elements found
-- **574** elements in this report
-- **163** distinct lens files affected
+- **508** lenses scanned
+- **575** total code-only elements found
+- **575** elements in this report
+- **164** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -85,6 +85,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 583594 | 2 | 2 | patents/JP2013054269A.pdf | No review-record hit |
 | 585594 | 2 | 1 | patents/JP2023039817A.pdf | All rows have review records |
 | 593686 | 2 | 2 | patents/JP2020086133A.pdf<br>patents/JPWO2017138250A1.pdf | No review-record hit |
+| 606437 | 2 | 2 | patents/WO2024062958A1.pdf<br>patents/US20210132345A1.pdf | No review-record hit |
 | 620586 | 2 | 1 | patents/US4303314.pdf | All rows have review records |
 | 625356 | 2 | 1 | patents/US2959100.pdf | All rows explicitly disposed |
 | 666356 | 2 | 1 | patents/US20190265441A1.pdf | All rows have review records |
@@ -174,7 +175,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 603564 | 1 | 1 | patents/JP2022092388A.pdf | All rows have review records |
 | 603606 | 1 | 1 | patents/JP2013054269A.pdf | No review-record hit |
 | 605382 | 1 | 1 | patents/US2279384.pdf | All rows explicitly disposed |
-| 606437 | 1 | 1 | patents/US20210132345A1.pdf | No review-record hit |
 | 606574 | 1 | 1 | patents/US6940655.pdf | All rows explicitly disposed |
 | 607403 | 1 | 1 | patents/US5257137.pdf | All rows explicitly disposed |
 | 611572 | 1 | 1 | patents/US2279384.pdf | All rows explicitly disposed |
@@ -1048,6 +1048,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L12 (Element 2) | 3 | `694533 — high-index crown (patent nd=1.69370, νd=53.32)` | 1.69370 / 53.32 | LAC13 (trusted Sellmeier) | sellmeier | patents/JP2019008031A.pdf | Audit-log hit |
 | L14 (Element 4) | 7 | `903357 — dense flint (patent nd=1.90265, νd=35.73)` | 1.90265 / 35.73 | J-LASFH9 (trusted Sellmeier) | sellmeier | patents/JP2019008031A.pdf | Audit-log hit |
 
+### [NIKON NIKKOR Z 180-600mm f/5.6-6.3 VR](../../src/lens-data/nikon/NikonNikkorZ180600mmf5663VR.data.ts) - WO 2024/062958 A1
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L13 (Element L13) | 23 | `606437 — barium-flint class` | 1.60562 / 43.71 | N-BAF4 (trusted Sellmeier) | sellmeier | patents/WO2024062958A1.pdf | No review-record hit |
+
 ### [NIKON NIKKOR Z 24-120mm f/4 S](../../src/lens-data/nikon/NikonNikkorZ24120mmf4S.data.ts) - WO 2022/259649 A1
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
@@ -1394,8 +1400,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L11 (G1 front negative element) | 1 | `847238 — optical-glass class (vendor unresolved)` | 1.84666 / 23.80 | H-ZF52 (trusted Sellmeier) | sellmeier | patents/US20170068075A1.pdf | No review-record hit |
-| L12 (G1 cemented positive element) | 2 | `816466 — optical-glass class (vendor unresolved)` | 1.81600 / 46.60 | S-LAH59 (trusted Sellmeier) | sellmeier | patents/US20170068075A1.pdf | No review-record hit |
-| L13 (G1 rear positive element) | 4 | `816466 — optical-glass class (vendor unresolved)` | 1.81600 / 46.60 | S-LAH59 (trusted Sellmeier) | sellmeier | patents/US20170068075A1.pdf | No review-record hit |
+| L12 (G1 cemented positive element) | 2 | `816466 — optical-glass class (vendor unresolved)` | 1.81600 / 46.60 | J-LASF09A (trusted Sellmeier) | sellmeier | patents/US20170068075A1.pdf | No review-record hit |
+| L13 (G1 rear positive element) | 4 | `816466 — optical-glass class (vendor unresolved)` | 1.81600 / 46.60 | J-LASF09A (trusted Sellmeier) | sellmeier | patents/US20170068075A1.pdf | No review-record hit |
 | L21G (L21 glass body) | 7 | `883408 — optical-glass class (vendor unresolved)` | 1.88300 / 40.80 | S-LAH58 (trusted Sellmeier) | sellmeier | patents/US20170068075A1.pdf | No review-record hit |
 | L22 (G2 biconcave negative element) | 9 | `729547 — optical-glass class (vendor unresolved)` | 1.72916 / 54.70 | TAC8 (trusted Sellmeier) | sellmeier | patents/US20170068075A1.pdf | No review-record hit |
 | L23 (G2 biconvex positive element) | 11 | `728285 — optical-glass class (vendor unresolved)` | 1.72825 / 28.50 | S-TIH10 (trusted Sellmeier) | sellmeier | patents/US20170068075A1.pdf | No review-record hit |
@@ -1449,7 +1455,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L13 (Element 4) | 6 | `Unmatched (810372 class; no defensible current-catalog identity recovered)` | 1.81000 / 37.20 | No catalog entry | abbe | patents/US20180164556A1.pdf | Explicit disposition in data |
 | L15 (Element 6) | 9 | `Unmatched (850440 class; no defensible current-catalog identity recovered)` | 1.85000 / 44.00 | No catalog entry | abbe | patents/US20180164556A1.pdf | Explicit disposition in data |
 | L21 (Element 7) | 11 | `567428 class (vendor unproven)` | 1.56732 / 42.80 | S-TIL26 (trusted Sellmeier) | sellmeier | patents/US20180164556A1.pdf | No review-record hit |
-| L22 (Element 8) | 12 | `816466 class (vendor unproven)` | 1.81600 / 46.60 | S-LAH59 (trusted Sellmeier) | sellmeier | patents/US20180164556A1.pdf | No review-record hit |
+| L22 (Element 8) | 12 | `816466 class (vendor unproven)` | 1.81600 / 46.60 | J-LASF09A (trusted Sellmeier) | sellmeier | patents/US20180164556A1.pdf | No review-record hit |
 | L23 (Element 9) | 14 | `Unmatched (564463 class; no defensible current-catalog identity recovered)` | 1.56406 / 46.30 | No catalog entry | abbe | patents/US20180164556A1.pdf | Explicit disposition in data |
 | L24 (Element 10) | 16 | `497816 ED-crown class (vendor unproven)` | 1.49700 / 81.60 | H-FK61 (trusted Sellmeier) | sellmeier | patents/US20180164556A1.pdf | No review-record hit |
 | L31 (Element 11) | 19 | `804466 class (vendor unproven)` | 1.80400 / 46.60 | H-ZLAF50D (trusted Sellmeier) | sellmeier | patents/US20180164556A1.pdf | No review-record hit |

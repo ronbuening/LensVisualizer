@@ -5,7 +5,8 @@
  * exact trace facade is available.
  */
 
-import type { ParaxialTraceResult } from "../../types/optics.js";
+import type { DiffractivePhaseSurface, ParaxialTraceResult } from "../../types/optics.js";
+import { diffractiveParaxialPower } from "../math/diffractivePhase.js";
 import { FLAT_R_THRESHOLD } from "./surfaceMath.js";
 
 interface TraceSurface {
@@ -14,6 +15,7 @@ interface TraceSurface {
   d: number;
   sd?: number;
   interaction?: { type?: "refract" | "reflect" | "block" };
+  diffractive?: DiffractivePhaseSurface;
 }
 
 /** Paraxial ray state used during runtime-lens construction. */
@@ -82,10 +84,11 @@ export function interactParaxialSurface(
 
   const nextN = surface.nd === 1.0 ? 1.0 : surface.nd;
   if (requireSameIndexRefraction && Math.abs(nextN - n) > 1e-12) return null;
-  if (nextN === n) return { y, u, n };
+  const refractivePower = Math.abs(surface.R) < FLAT_R_THRESHOLD ? (nextN - n) / surface.R : 0;
+  const phasePower = diffractiveParaxialPower(surface.diffractive);
+  if (nextN === n && phasePower === 0) return { y, u, n };
 
-  const refractedU =
-    Math.abs(surface.R) < FLAT_R_THRESHOLD ? (n * u - (y * (nextN - n)) / surface.R) / nextN : (n * u) / nextN;
+  const refractedU = (n * u - y * (refractivePower + phasePower)) / nextN;
   return { y, u: refractedU, n: nextN };
 }
 

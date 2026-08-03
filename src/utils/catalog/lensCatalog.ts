@@ -9,6 +9,12 @@ import LENS_DEFAULTS from "../../lens-data/defaults.js";
 import { loadChunkWithReload } from "../chunkLoadRetry.js";
 import type { LensData } from "../../types/optics.js";
 
+export interface OpticalConfigurationOption {
+  key: string;
+  label: string;
+  order: number;
+}
+
 /* Eagerly import all lens data files under src/lens-data/ — Vite resolves the glob at build time.
  * Each module's default export is a LENS_DATA object; defaults are merged
  * underneath so per-lens values take precedence. */
@@ -28,6 +34,7 @@ function sortLensKeysByName(keys: string[]): string[] {
 
 function isDebugLensKey(key: string): boolean {
   const data = LENS_CATALOG[key];
+  if (data.visible === false && data.opticalConfiguration !== undefined) return false;
   return (
     data.visible === false ||
     key.startsWith("reference-") ||
@@ -46,6 +53,25 @@ const CATALOG_KEYS: string[] = ALL_CATALOG_KEYS.filter((k) => LENS_CATALOG[k].vi
 
 /* Debug/reference lenses sorted alphabetically by display name. */
 const DEBUG_CATALOG_KEYS: string[] = ALL_CATALOG_KEYS.filter(isDebugLensKey);
+
+const OPTICAL_CONFIGURATION_OPTIONS_BY_GROUP = new Map<string, OpticalConfigurationOption[]>();
+for (const key of ALL_CATALOG_KEYS) {
+  const config = LENS_CATALOG[key].opticalConfiguration;
+  if (!config) continue;
+  const options = OPTICAL_CONFIGURATION_OPTIONS_BY_GROUP.get(config.groupKey) ?? [];
+  options.push({ key, label: config.label, order: config.order });
+  OPTICAL_CONFIGURATION_OPTIONS_BY_GROUP.set(config.groupKey, options);
+}
+for (const options of OPTICAL_CONFIGURATION_OPTIONS_BY_GROUP.values()) {
+  options.sort((a, b) => a.order - b.order || a.label.localeCompare(b.label) || a.key.localeCompare(b.key));
+}
+
+/** Ordered alternate prescriptions available for the supplied catalog key. */
+function opticalConfigurationOptionsForKey(key: string): ReadonlyArray<OpticalConfigurationOption> {
+  const groupKey = LENS_CATALOG[key]?.opticalConfiguration?.groupKey;
+  if (!groupKey) return [];
+  return OPTICAL_CONFIGURATION_OPTIONS_BY_GROUP.get(groupKey) ?? [];
+}
 
 /* Analysis markdown is code-split: the non-eager glob maps each file to a
  * dynamic importer, so ~10 MB of prose is fetched per lens on demand instead
@@ -114,6 +140,7 @@ export {
   CATALOG_KEYS,
   DEBUG_CATALOG_KEYS,
   isDebugLensKey,
+  opticalConfigurationOptionsForKey,
   hasMdForKey,
   cachedMdForKey,
   loadMdForKey,

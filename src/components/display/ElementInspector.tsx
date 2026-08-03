@@ -82,6 +82,12 @@ function surfaceSummary(surface: SurfaceData): string | null {
     if (interaction.normal) pieces.push(`normal ${fmtNormal(interaction.normal)}`);
   }
   if (surface.innerSd !== undefined) pieces.push(`innerSd ${fmtMm(surface.innerSd)}`);
+  if (surface.diffractive) {
+    const order = surface.diffractive.diffractionOrder;
+    pieces.push(
+      `diffractive radial phase, order ${order > 0 ? "+" : ""}${order}, λ₀ ${fmtNumber(surface.diffractive.referenceWavelengthNm)} nm`,
+    );
+  }
   if (pieces.length === 0) return null;
   return pieces.join(", ");
 }

@@ -7,7 +7,23 @@ available, it falls back to partial measured `nC`/`nF` line indices, dPgF-correc
 approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **449 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **457 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+
+The August 3, 2026 Phase 77 pass added Hikari J-KZFH4 from Nikon/Hikari's first-party 2023-09-01 optical-glass data
+workbook while auditing the two new Nikon supertelephoto zooms. The exact vendor power-series row resolves the AF-S
+180-400mm's 1.55298/55.07 focus-group element; compatible existing J-SFH1, S-LAM2, and FDS24 rows resolve three more
+elements, raising that lens from 16/26 to 20/26 strict and trusted coverage. Exact HOYA TAF3D raises the NIKKOR Z
+180-600mm from 24/26 to 25/26; only its optical-resin layer remains outside the glass catalog. Regenerated global
+coverage is 4963/5636 strict and 4974/5636 trusted, with zero catalog-coordinate mismatches.
+
+The August 3, 2026 Phase 76 pass added seven first-party Hikari curves while auditing the Nikon AF-S NIKKOR 500mm
+f/5.6E PF ED VR: J-KZFH1, J-LASF08A, J-SF2, J-LASF09A, J-F2, J-LF7, and J-LF5. The June 2025 vendor catalog's
+power-series coefficients raise the audited Hikari-name prescription from 10/21 to 19/21 strict coverage; its direct
+line indices already supplied 19/21 trusted coverage. Relative to the pre-audit committed prescription, strict and
+trusted coverage both rise from 17/21 to 19/21. Only the two explicitly proprietary bonded PF materials remain on the
+patent-derived fallback. The same audit corrected its display name and reduced APD classification from every modeled
+medium to the anomalous PF material and three production-correlated ED elements. Regenerated global coverage is
+4918/5584 strict and 4929/5584 trusted, with zero catalog-coordinate mismatches.
 
 The August 2, 2026 Phase 75 pass audited the three newly integrated Voigtländer lenses against the retained vendor
 catalogs. Compatible existing rows now identify the optical equivalents that were previously left as numeric classes,

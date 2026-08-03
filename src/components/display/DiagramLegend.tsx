@@ -56,6 +56,7 @@ export default function DiagramLegend({
   onOpenAbbeDiagram,
 }: DiagramLegendProps) {
   const hasAbbeData = L.elements.some((e) => e.vd != null);
+  const hasDiffractiveSurface = L.S?.some((surface) => surface.diffractive !== undefined) ?? false;
   const axisSpreads = chromaticRayFanSpreads ?? { onAxis: chromaticRayFanSpread, offAxis: null };
   const activeChannelCount = [chromR, chromG, chromB, chromV].filter(Boolean).length;
   const hasMetricAxis = showOnAxis || showOffAxis !== "off";
@@ -115,6 +116,21 @@ export default function DiagramLegend({
             </svg>
             <span style={{ color: t.legendText }}>Aspheric surface</span>
           </div>
+          {hasDiffractiveSurface && (
+            <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+              <svg width="11" height="11" viewBox="0 0 11 11" aria-hidden="true">
+                <path
+                  d="M5,1 Q2,5.5 5,10"
+                  fill="none"
+                  stroke={t.asphStroke}
+                  strokeWidth={1.6}
+                  strokeDasharray="1,3"
+                  strokeLinecap="round"
+                />
+              </svg>
+              <span style={{ color: t.legendText }}>Diffractive phase surface</span>
+            </div>
+          )}
           <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
             <div style={{ width: 3, height: 11, background: t.stop, borderRadius: 1 }} />
             <span style={{ color: t.legendText }}>Stop</span>

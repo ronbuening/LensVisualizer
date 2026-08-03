@@ -4,10 +4,12 @@ import { describe, it, expect, afterEach, vi } from "vitest";
 import { render, screen, cleanup } from "@testing-library/react";
 import ElementInspector from "../../../../src/components/display/ElementInspector.js";
 import buildLens from "../../../../src/optics/buildLens.js";
+import nikonPf500Data from "../../../../src/lens-data/nikon/NikonAFSNikkor500mmf56EPFEDVR.data.js";
+import LENS_DEFAULTS from "../../../../src/lens-data/defaults.js";
 import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
 
 afterEach(() => cleanup());
-import type { ChromaticChannel, RuntimeLens, ElementData } from "../../../../src/types/optics.js";
+import type { ChromaticChannel, RuntimeLens, ElementData, LensData } from "../../../../src/types/optics.js";
 import type { Theme } from "../../../../src/types/theme.js";
 
 const mockTheme = {
@@ -122,6 +124,16 @@ describe("ElementInspector", () => {
     expect(screen.getByText(/refract, active both, normal z=1 y=1/)).toBeTruthy();
     expect(screen.getByText("Image plane IMG:")).toBeTruthy();
     expect(screen.getByText(/z=35 mm y=25 mm normal z=0 y=1/)).toBeTruthy();
+  });
+
+  it("discloses a selected element's diffractive phase surface", () => {
+    const L = buildLens({ ...LENS_DEFAULTS, ...nikonPf500Data } as LensData);
+    const info = L.elements.find((element) => element.id === 6)!;
+
+    render(<ElementInspector info={info} L={L} t={mockTheme} showChromatic={false} />);
+
+    expect(screen.getByText("8:")).toBeTruthy();
+    expect(screen.getByText(/diffractive radial phase, order \+1, λ₀ 587\.6 nm/)).toBeTruthy();
   });
 
   it("shows resolved chromatic indices and quality instead of recomputing an Abbe-only fallback", () => {

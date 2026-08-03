@@ -66,6 +66,7 @@ const SUMMARY_FIELDS = [
   "patentYear",
   "lensMounts",
   "imageFormat",
+  "opticalConfiguration",
 ];
 
 /**

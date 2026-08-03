@@ -87,7 +87,7 @@
   when angular cells exceed the slope-launch domain
 - Cross-gap overlap is often the binding constraint when increasing SDs on extreme wide-angle lenses — thin air gaps between strongly curved boundary surfaces set the practical SD limit
 - Layout tuning (`scFill`, `yScFill`, `maxAspectRatio`, `lensShiftFrac`) is a final visual calibration pass after the prescription and SDs already validate. Use it to better match published optical sections, not to paper over bad geometry
-- `@types/react` / `@types/react-dom` must stay on the 18 line to match the React 18 runtime — the 19 types permit
-  patterns that fail silently at runtime (ref-as-prop without `forwardRef`, `use`/`useActionState`). A React 19
-  upgrade is blocked on replacing `react-helmet-async` (unmaintained; peer deps exclude React 19); see
-  `agent_docs/records/react-types-downgrade-2026-07-07.md`
+- Keep `react`, `react-dom`, `@types/react`, and `@types/react-dom` on the same React 19 line. `react-helmet-async` 3
+  delegates metadata to React 19's native hoisting, so its old SSR context is intentionally empty; prerender metadata
+  must continue through the boundary/extraction path in `src/entry-server.tsx`. See
+  `agent_docs/records/react-types-downgrade-2026-07-07.md` for the resolved React 18-era mismatch.

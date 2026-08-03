@@ -177,4 +177,34 @@ describe("DiagramLegend", () => {
     expect(screen.queryByText("On-axis rays (tracks focus)")).toBeNull();
     expect(screen.queryByText("Vignetted (ghost)")).toBeNull();
   });
+
+  it("discloses the diffractive phase accent only for lenses that use it", () => {
+    const phaseLens = {
+      ...lens(),
+      S: [{ diffractive: { kind: "radial-polynomial" } }],
+    } as RuntimeLens;
+
+    const { rerender } = renderLegend({ L: phaseLens });
+    expect(screen.getByText("Diffractive phase surface")).toBeTruthy();
+
+    rerender(
+      <DiagramLegend
+        L={lens()}
+        t={themes.dark}
+        isWide={true}
+        zoomT={0}
+        showOnAxis={false}
+        showOffAxis="off"
+        showChromatic={false}
+        chromR={false}
+        chromG={false}
+        chromB={false}
+        chromV={false}
+        chromaticRayFanSpread={null}
+        rayTracksF={false}
+        legendExpanded={true}
+      />,
+    );
+    expect(screen.queryByText("Diffractive phase surface")).toBeNull();
+  });
 });

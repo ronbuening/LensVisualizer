@@ -10,7 +10,8 @@ import { FLAT_R_THRESHOLD } from "../constants.js";
 import type { PreparedOpticalState, Ray3, Vec3 } from "../types.js";
 import { evaluateAperture } from "./aperture.js";
 import { pushClipEvent } from "./foldedDiagnostics.js";
-import { refractedDirection } from "./interactions.js";
+import { phaseRefractedDirection, refractedDirection } from "./interactions.js";
+import { DEFAULT_PHASE_WAVELENGTH_NM } from "../math/diffractivePhase.js";
 import { intersectStateSurface, sequentialSurfaceMaxT } from "./pathPlanner.js";
 import type { EngineTraceResult, TraceFailureReason, TraceHit, TraceOptions } from "./types.js";
 import {
@@ -57,6 +58,7 @@ export function traceSequential(
     stopOnClip = false,
     launchBoundT,
     indexAtSurface,
+    wavelengthNm = DEFAULT_PHASE_WAVELENGTH_NM,
   } = options;
 
   const total = state.surfaces.length;
@@ -127,18 +129,23 @@ export function traceSequential(
      * n(lambda), while air stays exactly 1. */
     const nn = indexAtSurface ? indexAtSurface(i, surface.nd) : surface.nd === 1 ? 1 : surface.nd;
     let stopAfterHit = false;
-    if (nn !== n) {
+    if (nn !== n || surface.diffractive) {
       if (hitClipped && Math.abs(surface.R) < FLAT_R_THRESHOLD && radius * radius > surface.R * surface.R) {
         // Ghost ray beyond the mathematical sphere extent: preserve legacy straight propagation.
       } else {
-        const refracted = refractedDirection(direction, normal, n, nn);
+        const refracted = surface.diffractive
+          ? phaseRefractedDirection(direction, normal, point, n, nn, surface, wavelengthNm)
+          : refractedDirection(direction, normal, n, nn);
         if (refracted === null) {
           clipped = true;
-          failureReason = "totalInternalReflection";
-          pushClipEvent(clipEvents, state, i, "total-internal-reflection", failureReason);
+          failureReason = surface.diffractive ? "nonPropagatingDiffractionOrder" : "totalInternalReflection";
+          const failureClipReason = surface.diffractive
+            ? "non-propagating-diffraction-order"
+            : "total-internal-reflection";
+          pushClipEvent(clipEvents, state, i, failureClipReason, failureReason);
           traceHit.clipped = true;
           traceHit.failureReason = failureReason;
-          traceHit.clipReason = "total-internal-reflection";
+          traceHit.clipReason = failureClipReason;
           stopAfterHit = !ghost;
         } else {
           direction = refracted;

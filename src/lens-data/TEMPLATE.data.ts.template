@@ -201,6 +201,8 @@ const LENS_DATA = {
    *    elemId  (number, REQUIRED)  Element ID this surface belongs to — 0 for air interfaces
    *    sd      (number, REQUIRED)  Outer semi-diameter (half clear aperture) in mm
    *    innerSd (number, optional)  Inner inactive radius for annular apertures/holes; must be < sd
+   *    diffractive (object, optional) Rotationally symmetric optical-path polynomial for PF/DO/kinoform surfaces.
+   *                                  This is phase interaction data, not aspheric sag. See LENS_DATA_SPEC.md.
    *    interaction (object, optional)  Folded-path behavior:
    *      type: "refract" | "reflect" | "block"   (default "refract")
    *      incidentSide?: "front" | "rear" | "both"  (default both)
@@ -311,6 +313,20 @@ const LENS_DATA = {
    *    { label: "9",   R: 1e15,    d: 6.55, nd: 1.804,   elemId: 5, sd: ... },  // Glass front
    *    { label: "10",  R: -17.503, d: 0.14, nd: 1.56093, elemId: 6, sd: ... },  // Glass/resin junction
    *    { label: "11A", R: -16.276, d: ...,  nd: 1.0,     elemId: 0, sd: ... },  // Resin rear (asph) → air
+   *
+   *  Diffractive phase-surface pattern (PF / DO / kinoform):
+   *    Keep every bonded medium transition in the prescription. The phase polynomial
+   *    lives on its physical interface and does not go in `asph`.
+   *    { label: "8", R: 159.3794, d: 0.3, nd: 1.5571, elemId: 9, sd: 35.5,
+   *      diffractive: {
+   *        kind: "radial-polynomial", referenceWavelengthNm: 587.6, diffractionOrder: 1,
+   *        terms: [
+   *          { radialPower: 2, coefficient: -4.25304e-5 },
+   *          { radialPower: 4, coefficient: 3e-10 },
+   *        ],
+   *      } }
+   *    If bonded phase media add modeling entries beyond the marketed physical count,
+   *    keep `elementCount` at the published count and explain the extra entries.
    *
    *  Why: without fromSurface/toSurface, buildLens.ts finds the FIRST surface with each
    *  elemId and uses (index, index+1) as the rendered span. Tagging rear or air surfaces

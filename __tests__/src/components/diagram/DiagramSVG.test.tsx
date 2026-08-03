@@ -12,6 +12,8 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import type { ComponentProps } from "react";
 import DiagramSVG from "../../../../src/components/diagram/DiagramSVG.js";
+import nikonPf500Data from "../../../../src/lens-data/nikon/NikonAFSNikkor500mmf56EPFEDVR.data.js";
+import LENS_DEFAULTS from "../../../../src/lens-data/defaults.js";
 import buildLens from "../../../../src/optics/buildLens.js";
 import { computeElementShapes } from "../../../../src/optics/diagramGeometry.js";
 import { doLayout } from "../../../../src/optics/optics.js";
@@ -19,7 +21,7 @@ import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
 import themes from "../../../../src/utils/theme/themes.js";
 import { installMatchMediaMock } from "../../../testUtils.js";
 import type { RaySegment } from "../../../../src/components/diagram/diagramSvgTypes.js";
-import type { RuntimeLens, ElementShape } from "../../../../src/types/optics.js";
+import type { RuntimeLens, ElementShape, LensData } from "../../../../src/types/optics.js";
 
 const { mockApertureStop } = vi.hoisted(() => ({
   mockApertureStop: vi.fn(),
@@ -176,6 +178,18 @@ describe("DiagramSVG", () => {
     const desc = svg?.querySelector("desc")?.textContent ?? "";
     expect(desc).toContain("1-element");
     expect(desc).toContain("on-axis rays");
+  });
+
+  it("uses the marketed physical element count in the accessible description", () => {
+    const physicalCountLens = {
+      ...baseLens,
+      data: { ...baseLens.data, elementCount: 19 },
+    } as RuntimeLens;
+    const { container } = render(
+      <DiagramSVG {...baseDiagramSvgProps({ L: physicalCountLens, shapes: [baseShape], onHover, onSelect })} />,
+    );
+
+    expect(container.querySelector("desc")?.textContent).toContain("19-element");
   });
 
   it("describes hidden ray layers when no overlays are shown", () => {
@@ -594,6 +608,38 @@ describe("DiagramSVG", () => {
     expect(Number(coating?.getAttribute("stroke-width"))).toBeGreaterThan(themes.dark.asphStrokeWidth);
     expect(coating?.getAttribute("stroke-dasharray")).toBe("3,2");
     expect(label?.textContent).toBe("S");
+  });
+
+  it("renders a distinct semantic accent for a diffractive phase surface", () => {
+    const L = buildLens({ ...LENS_DEFAULTS, ...nikonPf500Data } as LensData);
+    const layout = doLayout(0, 0, L);
+    const sx = (z: number) => z + 100;
+    const sy = (y: number) => 300 + y;
+    const shapes = computeElementShapes(L, layout.z, sx, sy);
+    const { container } = render(
+      <DiagramSVG
+        {...baseDiagramSvgProps({
+          L,
+          sx,
+          sy,
+          zPos: layout.z,
+          IMG_MM: layout.imgZ,
+          shapes,
+          currentPhysStopSD: L.stopPhysSD,
+          onHover,
+          onSelect,
+        })}
+      />,
+    );
+
+    const phaseSurfaceIndex = L.labelIdx["8"];
+    const accent = container.querySelector(`[data-testid="surface-accent-diffractive-phase-${phaseSurfaceIndex}"]`);
+    const label = container.querySelector(
+      `[data-testid="surface-accent-label-diffractive-phase-${phaseSurfaceIndex}"]`,
+    );
+    expect(accent?.getAttribute("stroke")).toBe(themes.dark.asphStroke);
+    expect(accent?.getAttribute("stroke-dasharray")).toBe("1,3");
+    expect(label?.textContent).toBe("P");
   });
 
   it("switches into grab-mode event wiring when zoom-pan is active", () => {

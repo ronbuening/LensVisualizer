@@ -263,6 +263,7 @@ function isPassiveAutoSurface(
   if (!hit.ok) return true;
   const surface = state.surfaces[surfaceIndex];
   if (surface.interaction.type !== "refract") return false;
+  if (surface.diffractive) return false;
   const side = incidentSideFor(direction, hit.normal);
   const nextIndex = resolvedNextIndex(surfaceIndex, side, surface, state.surfaces, indexAtSurface);
   const aperture = evaluateAperture(state, surface, hit.radius);

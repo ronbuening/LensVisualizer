@@ -2,11 +2,9 @@
  * Integration tests for SSR rendering, route matching, and SEO metadata.
  *
  * Calls the real `render(url)` function from entry-server.tsx and asserts
- * on HTML content and react-helmet-async metadata for representative routes.
+ * on HTML content and React 19 native metadata for representative routes.
  *
- * Runs in Node environment (not jsdom) because react-helmet-async uses
- * client-side behavior in browser-like environments, which prevents the
- * server-side helmet context from being populated.
+ * Runs in Node environment so the production SSR metadata-hoisting path is exercised.
  */
 
 import { describe, it, expect } from "vitest";
@@ -67,7 +65,7 @@ describe("SSR test preconditions", () => {
 
 /* ── All routes produce valid helmet metadata ── */
 
-describe("SSR render — all routes produce valid helmet output", () => {
+describe("SSR render — all routes produce valid head output", () => {
   const routes = [
     ["/", "home"],
     ["/search", "search"],
@@ -91,6 +89,17 @@ describe("SSR render — all routes produce valid helmet output", () => {
     expect(helmet).not.toBeNull();
     expect(helmet.title.toString()).toContain("<title");
     expect(helmet.meta.toString()).toContain('name="description"');
+  });
+});
+
+describe("SSR render — native metadata extraction", () => {
+  it("keeps head metadata and JSON-LD out of the hydrated body markup", () => {
+    const { html, helmet } = render("/");
+    expect(helmet.title.toString()).toContain("<title");
+    expect(helmet.script.toString()).toContain('type="application/ld+json"');
+    expect(html).not.toContain("<title");
+    expect(html).not.toContain('type="application/ld+json"');
+    expect(html).not.toContain("data-prerender-body");
   });
 });
 

@@ -7,11 +7,15 @@ import PanelErrorBoundary from "../../../../src/components/errors/PanelErrorBoun
 
 /* Suppress React error boundary console noise */
 let errorSpy: ReturnType<typeof vi.spyOn>;
+// jsdom forwards expected render exceptions through its virtual console unless the window event is handled.
+const preventExpectedWindowError = (event: ErrorEvent) => event.preventDefault();
 beforeEach(() => {
   errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+  window.addEventListener("error", preventExpectedWindowError);
 });
 afterEach(() => {
   cleanup();
+  window.removeEventListener("error", preventExpectedWindowError);
   errorSpy.mockRestore();
 });
 

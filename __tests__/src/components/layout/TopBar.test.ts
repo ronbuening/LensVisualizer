@@ -36,6 +36,9 @@ const baseProps: ComponentProps<typeof TopBar> = {
     "lens-b": "Lens Two",
     "lens-c": "Lens Three",
   },
+  configurationOptions: [],
+  activeConfigurationKey: "lens-a",
+  onConfigurationChange: vi.fn(),
 };
 
 describe("TopBar", () => {
@@ -89,5 +92,23 @@ describe("TopBar", () => {
 
     fireEvent.click(screen.getByRole("button", { name: "COMPARE" }));
     expect(baseProps.onToggleCompare).toHaveBeenCalledTimes(1);
+  });
+
+  it("shows and wires optical-configuration options only in single-lens mode", () => {
+    render(
+      createElement(TopBar, {
+        ...baseProps,
+        comparing: false,
+        configurationOptions: [
+          { key: "lens-a", label: "OPTIC A", order: 0 },
+          { key: "lens-a-optic-b", label: "OPTIC B", order: 1 },
+        ],
+      }),
+    );
+
+    expect(screen.getByRole("group", { name: "Optical configuration" })).toBeTruthy();
+    expect(screen.getByRole("button", { name: "OPTIC A" }).getAttribute("aria-pressed")).toBe("true");
+    fireEvent.click(screen.getByRole("button", { name: "OPTIC B" }));
+    expect(baseProps.onConfigurationChange).toHaveBeenCalledWith("lens-a-optic-b");
   });
 });

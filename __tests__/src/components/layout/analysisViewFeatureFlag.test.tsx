@@ -70,7 +70,7 @@ describe("ENABLE_ANALYSIS_VIEW disabled behavior", () => {
       effectiveDesktopView: "both" as const,
       showDesktopToggle: true,
       mobileView: "description" as const,
-      lensKeyA: "lens-a",
+      lensKey: "lens-a",
       markdown: "# Analysis",
     };
 
@@ -103,6 +103,9 @@ describe("ENABLE_ANALYSIS_VIEW disabled behavior", () => {
         onOpenAberrationsPrimer={vi.fn()}
         catalogKeys={["lens-a", "lens-b"]}
         catalogNames={{ "lens-a": "Lens A", "lens-b": "Lens B" }}
+        configurationOptions={[]}
+        activeConfigurationKey="lens-a"
+        onConfigurationChange={vi.fn()}
         controlsBarProps={{
           theme: themes.dark,
           showOnAxis: true,

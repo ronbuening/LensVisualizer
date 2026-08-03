@@ -7,6 +7,22 @@
 
 import type { ImageFormatId, LensMountId } from "../utils/catalog/lensTaxonomy.js";
 
+/** One sparse coefficient in a rotationally symmetric optical-path polynomial W(h). */
+export interface RadialPhaseTerm {
+  /** Radial exponent p in W(h) = sum(Cp * h^p). */
+  radialPower: number;
+  /** Optical-path coefficient Cp in mm^(1-p), with h expressed in millimeters. */
+  coefficient: number;
+}
+
+/** Geometric-ray model of one authored diffraction order on a rotationally symmetric surface. */
+export interface DiffractivePhaseSurface {
+  kind: "radial-polynomial";
+  referenceWavelengthNm: number;
+  diffractionOrder: number;
+  terms: RadialPhaseTerm[];
+}
+
 export interface SurfaceData {
   label: string;
   R: number;
@@ -17,6 +33,7 @@ export interface SurfaceData {
   elemId: number;
   stopPlacement?: "inside-element";
   interaction?: SurfaceInteraction;
+  diffractive?: DiffractivePhaseSurface;
 }
 
 export type SurfaceIncidentSide = "front" | "rear" | "both";
@@ -82,6 +99,7 @@ export type FoldedPathClipReason =
   | "inactive-side-block"
   | "intersection-failure"
   | "total-internal-reflection"
+  | "non-propagating-diffraction-order"
   | "loop-detected"
   | "max-interactions";
 
@@ -267,6 +285,16 @@ export type AberrationPositionRange = [number, number] | [number, number, number
 /** Aberration-control positions for a prime, or one position tuple per zoom position. */
 export type AberrationVarRange = AberrationPositionRange | AberrationPositionRange[];
 
+/** Links complete prescriptions that represent switchable optical states of one catalog lens. */
+export interface OpticalConfigurationData {
+  /** Stable family identifier shared by every prescription in the switchable set. */
+  groupKey: string;
+  /** Compact user-facing toggle label, such as "TC OUT" or "TC IN". */
+  label: string;
+  /** Deterministic left-to-right toggle order. */
+  order: number;
+}
+
 /** Complete lens data object (after defaults merging) */
 export interface LensData {
   key: string;
@@ -290,6 +318,7 @@ export interface LensData {
   elementCount?: number;
   groupCount?: number;
   visible?: boolean;
+  opticalConfiguration?: OpticalConfigurationData;
   perspectiveControl?: PerspectiveControlConfig;
   projection?: LensProjectionConfig;
   opticalPath?: OpticalPathData;
@@ -532,7 +561,7 @@ export interface SurfaceAccentPathData {
   pathD: string;
   labelX: number;
   labelY: number;
-  kind: "second-surface-coating";
+  kind: "second-surface-coating" | "diffractive-phase";
 }
 
 export interface ElementShape {

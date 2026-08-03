@@ -112,6 +112,7 @@ Keep it normalized even when the product's official styling varies by source:
 |-------|------|---------|-------------|
 | `maker` | `string` | | Manufacturer name (e.g. `"Nikon"`, `"Voigtländer"`). Used for maker pages and SEO metadata. If omitted, derived from the lens `name` via prefix matching. |
 | `visible` | `boolean` | `true` | Controls whether the lens appears in the UI catalog. Set to `false` to hide a lens from the dropdown without removing its data file. |
+| `opticalConfiguration` | `object` | | Links complete prescriptions that are switchable optical states of one catalog lens. See Alternate Optical Configurations below. |
 | `subtitle` | `string` | | Compact patent/example/design-correlation context. Used as the UI-header fallback when structured patent metadata is unavailable and retained by several corpus reports for source/example matching. |
 | `specs` | `string[]` | | Spec strings displayed in header |
 | `focalLengthMarketing` | `number \| [number, number]` | | Marketed/nominal focal length in mm. Single number for primes (e.g. `50`); `[wide, tele]` tuple for zooms (e.g. `[70, 200]`). |
@@ -141,6 +142,31 @@ Keep it normalized even when the product's official styling varies by source:
 | `zoomLabels` | `string[]` | | Optional endpoint labels for zoom slider |
 | `apertureBlades` | `number` | | Number of aperture blades (reserved for future polygonal bokeh rendering) |
 | `apertureBladeRoundedness` | `number` | | Blade roundedness 0–1 (reserved; 0 = straight polygon, 1 = circular) |
+
+---
+
+### Alternate Optical Configurations
+
+Use `opticalConfiguration` when one catalog lens has multiple complete prescriptions that a viewer should switch
+between, such as an integrated teleconverter, removable optical module, or another reconfigurable optical path:
+
+```ts
+opticalConfiguration: {
+  groupKey: "stable-family-identifier",
+  label: "TC OUT",
+  order: 0,
+},
+```
+
+- Every member must use the same non-empty `groupKey`, a compact non-empty `label`, and a unique non-negative integer
+  `order`. The viewer derives the toggle from these records; lenses that omit the field are unchanged.
+- Author each member as a complete, independently valid prescription. Do not store only a surface delta or combine
+  numerical groups from different patent examples unless the source explicitly defines that combination.
+- Keep exactly one member catalog-visible. Set `visible: false` on alternate data-only members so they do not appear as
+  separate lenses, patents, debug fixtures, routes, or SEO entries. The visible member remains the canonical page and
+  supplies the shared analysis prose.
+- Record material source differences between configurations in each file's header and `subtitle`. A shared
+  `groupKey` communicates a UI relationship, not that the source necessarily publishes a matched before/after pair.
 
 ---
 
@@ -617,6 +643,53 @@ from ordinary front-to-rear ordering in the file header and companion analysis.
 }
 ```
 
+### Diffractive Phase Surfaces (`diffractive`)
+
+Use `diffractive` when a patent supplies a rotationally symmetric optical-path/phase polynomial for a Nikon PF,
+Canon DO, or equivalent kinoform surface. This is surface-interaction data, not geometric aspheric sag: it changes ray
+direction and first-order power but does not change the surface outline, normal, edge thickness, or rim-slope checks.
+
+```javascript
+{
+  label: "8",
+  R: 159.3794,
+  d: 0.3,
+  nd: 1.5571,
+  elemId: 9,
+  sd: 35.5,
+  diffractive: {
+    kind: "radial-polynomial",
+    referenceWavelengthNm: 587.6,
+    diffractionOrder: 1,
+    terms: [
+      { radialPower: 2, coefficient: -4.25304e-5 },
+      { radialPower: 4, coefficient: 3e-10 },
+    ],
+  },
+}
+```
+
+The coefficient convention is `W(h) = Σ Cp h^p` in millimeters, with radial height `h` in millimeters and
+`Cp` in `mm^(1-p)`. The engine applies `diffractionOrder × wavelength/referenceWavelengthNm × dW/dh` as a tangential
+optical-momentum kick. Thus the paraxial quadratic power is
+`phiD = -2 × C2 × diffractionOrder × wavelength/referenceWavelengthNm`. Preserve coefficients, wavelength, and order
+exactly as published; do not convert them to aspheric coefficients or fold diffractive power into a glass index.
+
+Rules:
+
+- `kind` is currently exactly `"radial-polynomial"`.
+- `referenceWavelengthNm` must be finite and in `[100, 2000]`.
+- `diffractionOrder` must be a non-zero integer in `[-16, 16]`.
+- `terms` must have 1–16 non-zero finite coefficients with unique, strictly increasing integer `radialPower` values in
+  `[2, 32]`. Omit zero-valued terms.
+- The initial feature supports phase data on refracting surfaces only. Do not combine it with `reflect` or `block`.
+- The data models the authored/design order geometrically. It does not model blaze efficiency, phase wrapping, energy
+  split into other orders, diffraction-limited MTF/PSF, coatings, scatter, or flare.
+- Bonded PF/DO stacks may require additional `elements` entries for optically distinct thin media. Keep the published
+  physical count in `elementCount`, and document the modeling entries in the lens header and companion analysis.
+- If the prescription is scaled by linear factor `s`, scale a term of radial power `p` as `Cp/s^(p-1)`; wavelength and
+  diffraction order do not scale.
+
 ### Sign Conventions
 
 | Value | Meaning |
@@ -931,7 +1004,9 @@ doublets: [
 16. `interaction.type` must be `"refract"`, `"reflect"`, or `"block"`; side fields must be valid enum values; `normal` vectors must have finite `z` and `y` components; tilted flat mirror backing planes must repeat the reflective face normal
 17. `opticalPath.mode` must be `"sequential"` or `"auto"`; `surfaceOrder` labels must exist; `imagePlane` point/normal fields must be finite; `maxInteractions` must be a positive integer large enough for the declared path
 18. Element `indexReference`, when present, must be `"d"` or `"e"`
-19. Perspective-control ranges, projection metadata, aberration-control gaps, explicit element spans, rim slope, edge thickness, and the remaining numeric bounds described above
+19. `diffractive`, when present, must satisfy the radial-polynomial kind, wavelength/order bounds, canonical sorted term
+    list, and refracting-surface restriction described above
+20. Perspective-control ranges, projection metadata, aberration-control gaps, explicit element spans, rim slope, edge thickness, and the remaining numeric bounds described above
 
 On failure, `buildLens()` throws with all errors listed.
 

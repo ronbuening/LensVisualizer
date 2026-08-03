@@ -12,8 +12,8 @@ vi.mock("../../../../../src/comparison/ComparisonContent.js", () => ({
 }));
 
 vi.mock("../../../../../src/components/layout/SingleLensContent.js", () => ({
-  default: ({ lensKeyA, markdown }: { lensKeyA: string; markdown?: string | null }) => (
-    <div data-testid="single-lens-content">{`${lensKeyA}:${markdown ?? ""}`}</div>
+  default: ({ lensKey, markdown }: { lensKey: string; markdown?: string | null }) => (
+    <div data-testid="single-lens-content">{`${lensKey}:${markdown ?? ""}`}</div>
   ),
 }));
 
@@ -24,6 +24,7 @@ function baseProps() {
     comparing: false,
     lensKeyA: "lens-a",
     lensKeyB: "lens-b",
+    diagramLensKey: "lens-a-configured",
     comparisonLenses: null,
     focusPair: null,
     aperturePair: null,
@@ -59,7 +60,7 @@ afterEach(() => cleanup());
 describe("ViewerContent", () => {
   it("routes non-comparison mode to the single-lens content", () => {
     render(<ViewerContent {...baseProps()} />);
-    expect(screen.getByTestId("single-lens-content").textContent).toBe("lens-a:notes");
+    expect(screen.getByTestId("single-lens-content").textContent).toBe("lens-a-configured:notes");
     expect(screen.queryByTestId("comparison-content")).toBeNull();
   });
 

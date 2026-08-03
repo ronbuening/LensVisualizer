@@ -14,6 +14,7 @@ import {
 } from "./internal/exactSurfaceTrace.js";
 import { traceSurfacesParaxial } from "./internal/traceSurfaces.js";
 import { stateSurfaces, thick } from "./layout.js";
+import { CHROMATIC_CHANNEL_WAVELENGTH_NM } from "./constants.js";
 
 /** Public skew-ray result at the return/image plane. */
 export interface SkewRayTraceResult {
@@ -118,6 +119,7 @@ function traceRayExactCore(
       indexAtSurface: channel
         ? (i, nd) => L.indexByIdx?.[i]?.fn(channel) ?? wavelengthNd(nd, L.vdByIdx[i], channel)
         : undefined,
+      wavelengthNm: channel ? CHROMATIC_CHANNEL_WAVELENGTH_NM[channel] : undefined,
     },
   );
 
@@ -208,6 +210,7 @@ function traceSkewRayExactCore(
       indexAtSurface: channel
         ? (i, nd) => L.indexByIdx?.[i]?.fn(channel) ?? wavelengthNd(nd, L.vdByIdx[i], channel)
         : undefined,
+      wavelengthNm: channel ? CHROMATIC_CHANNEL_WAVELENGTH_NM[channel] : undefined,
     },
   );
 
@@ -241,6 +244,7 @@ function traceSkewRayVectorExactCore(
       indexAtSurface: channel
         ? (i, nd) => L.indexByIdx?.[i]?.fn(channel) ?? wavelengthNd(nd, L.vdByIdx[i], channel)
         : undefined,
+      wavelengthNm: channel ? CHROMATIC_CHANNEL_WAVELENGTH_NM[channel] : undefined,
     },
   );
 
@@ -623,6 +627,7 @@ function traceRayVectorExactCore(
       indexAtSurface: channel
         ? (i, nd) => L.indexByIdx?.[i]?.fn(channel) ?? wavelengthNd(nd, L.vdByIdx[i], channel)
         : undefined,
+      wavelengthNm: channel ? CHROMATIC_CHANNEL_WAVELENGTH_NM[channel] : undefined,
     },
   );
 
