@@ -66,7 +66,8 @@ export function computeOffAxisTraceGeometry({
   // Fisheye lenses launch at the declared field and let the optics helper
   // promote to vector geometry when the field exceeds the slope-safe cone.
   // Rectilinear lenses keep the pre-existing safe-zone clamp.
-  const fieldFrac = isFisheye || halfDeg <= 0 ? L.offAxisFieldFrac : L.offAxisFieldFrac * (tracingDeg / halfDeg);
+  const rectilinearTraceScale = halfDeg > 0 && Number.isFinite(tracingDeg) ? Math.min(1, tracingDeg / halfDeg) : 1;
+  const fieldFrac = isFisheye ? L.offAxisFieldFrac : L.offAxisFieldFrac * rectilinearTraceScale;
   const geometry = computeProjectionAwareOffAxisFieldGeometry(
     L,
     zPos,

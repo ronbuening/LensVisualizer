@@ -17,6 +17,7 @@ import LENS_DEFAULTS from "../../../../src/lens-data/defaults.js";
 import type { LensData, RuntimeLens } from "../../../../src/types/optics.js";
 import SonnarRaw from "../../../../src/lens-data/carl-zeiss-jena/ZeissSonnar50f15.data.js";
 import NikonFisheye6mmf28Raw from "../../../../src/lens-data/nikon/NikonFisheyeNikkor6mmf28.data.js";
+import Nikon500mmPFRaw from "../../../../src/lens-data/nikon/NikonAFSNikkor500mmf56EPFEDVR.data.js";
 import { computeOffAxisTraceGeometry } from "../../../../src/components/hooks/offAxisRayUtils.js";
 
 vi.mock("../../../../src/utils/featureFlags.js", async (importOriginal) => {
@@ -26,6 +27,7 @@ vi.mock("../../../../src/utils/featureFlags.js", async (importOriginal) => {
 
 const Sonnar = { ...LENS_DEFAULTS, ...SonnarRaw } as LensData;
 const NikonFisheye6mmf28 = { ...LENS_DEFAULTS, ...NikonFisheye6mmf28Raw } as LensData;
+const Nikon500mmPF = { ...LENS_DEFAULTS, ...Nikon500mmPFRaw } as LensData;
 
 function buildTestFixture(focusT = 0, zoomT = 0, data: LensData = Sonnar) {
   const L = buildLens(data);
@@ -146,6 +148,55 @@ describe("useOffAxisRays", () => {
     expect(geometry?.kind).toBe("slope");
     expect(geometry?.fieldAngleDeg).toBeCloseTo(tracingHalfFieldAtZoom(0, L) * L.offAxisFieldFrac, 5);
     expect(geometry?.fieldAngleDeg).toBeLessThan(halfFieldAtZoom(0, L) * L.offAxisFieldFrac);
+  });
+
+  it("keeps Nikon 500mm PF off-axis geometry inside its smaller declared field", () => {
+    const { L, zPos, IMG_MM, sx, sy, clampedRayEnd, currentPhysStopSD, currentEPSD } = buildTestFixture(
+      0,
+      0,
+      Nikon500mmPF,
+    );
+    const halfFieldDeg = halfFieldAtZoom(0, L);
+
+    expect(tracingHalfFieldAtZoom(0, L)).toBeGreaterThan(halfFieldDeg);
+
+    const geometry = computeOffAxisTraceGeometry({
+      L,
+      zPos,
+      IMG_MM,
+      focusT: 0,
+      zoomT: 0,
+      sx,
+      sy,
+      showOffAxis: "trueAngle",
+    });
+
+    expect(geometry?.kind).toBe("slope");
+    expect(geometry?.fieldAngleDeg).toBeCloseTo(halfFieldDeg * L.offAxisFieldFrac, 8);
+
+    const { result } = renderHook(() =>
+      useOffAxisRays({
+        L,
+        zPos,
+        IMG_MM,
+        focusT: 0,
+        zoomT: 0,
+        sx,
+        sy,
+        clampedRayEnd,
+        currentPhysStopSD,
+        currentEPSD,
+        rayDensity: "normal",
+        rayTracksF: false,
+        focusK: 0,
+        showOffAxis: "trueAngle",
+        lensKey: Nikon500mmPF.key,
+      }),
+    );
+
+    expect(result.current.error).toBeNull();
+    expect(result.current.segments).toHaveLength(L.offAxisFractions.length);
+    expect(result.current.segments.some((segment) => segment.sp.length > 0 || segment.gp.length > 0)).toBe(true);
   });
 
   it("uses diagnostic ray sampling when requested", () => {
