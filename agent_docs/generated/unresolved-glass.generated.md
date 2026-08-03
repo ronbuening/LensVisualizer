@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **509** lenses scanned
-- **5636** non-air surfaces examined
-- **5641** element glass declarations examined
-- **355** non-explicit-unmatched annotations did not resolve
-- **115** distinct unresolved glass-like tokens found
+- **508** lenses scanned
+- **5610** non-air surfaces examined
+- **5615** element glass declarations examined
+- **353** non-explicit-unmatched annotations did not resolve
+- **113** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -63,7 +63,6 @@ or per-lens patent backfills.
 | 612313 | 1 | 1 | |
 | 614563 | 1 | 1 | |
 | 617443 | 1 | 1 | |
-| 618625 | 1 | 1 | |
 | 624584 | 1 | 1 | |
 | 630346 | 1 | 1 | |
 | 639451 | 1 | 1 | |
@@ -83,7 +82,6 @@ or per-lens patent backfills.
 | 701301 | 1 | 1 | |
 | 713433 | 1 | 1 | |
 | 721334 | 1 | 1 | |
-| 727547 | 1 | 1 | |
 | 738493 | 1 | 1 | |
 | 747274 | 1 | 1 | |
 | 749501 | 1 | 1 | |
@@ -345,10 +343,6 @@ or per-lens patent backfills.
 
 - [SONY FE 70-200mm f/2.8 GM OSS II](../../src/lens-data/sony/SonyFE70200mmf28GMII.data.ts) 27: `617443 — flint/crown-boundary glass (patent coordinate; vendor unspecified)`
 
-### 618625 — 1 occurrence
-
-- [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14.data.ts) 33: `618625 - crown class`
-
 ### 624584 — 1 occurrence
 
 - [NIKON NIKKOR Z 35mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) 32A: `Barium crown / LaK family (624584, no exact catalog match)`
@@ -424,10 +418,6 @@ or per-lens patent backfills.
 ### 721334 — 1 occurrence
 
 - [MINOLTA AF APO Tele 200mm f/2.8](../../src/lens-data/minolta/MinoltaAF200mmf28.data.ts) 7: `721334 - dense lanthanum flint (catalog unresolved)`
-
-### 727547 — 1 occurrence
-
-- [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14.data.ts) 17: `727547 - lanthanum crown class`
 
 ### 738493 — 1 occurrence
 

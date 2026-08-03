@@ -22,18 +22,13 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-08-03 ─────────────────────────────────
   {
     date: "2026-08-03",
-    type: "lens",
-    summary: "Added Nikon 180-400mm and NIKKOR Z 180-600mm supertelephoto zooms",
-  },
-  {
-    date: "2026-08-03",
-    type: "fix",
-    summary: "Corrected Nikon 500mm PF geometry, glass badges, and product naming",
+    type: "feature",
+    summary: "Added wavelength-aware diffractive optics to the engine for our 500th lens",
   },
   {
     date: "2026-08-03",
     type: "lens",
-    summary: "Added the Nikon AF-S 500mm f/5.6E PF ED VR with wavelength-aware PF tracing",
+    summary: "Added the Nikon AF-S 500mm f/5.6E PF and NIKKOR Z 180-600mm supertelephotos",
   },
   // ── 2026-08-02 ──────────────────────────────────────────────────
   {

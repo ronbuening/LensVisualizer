@@ -9,12 +9,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **509** lenses scanned (**501** visible)
-- **4963 / 5636** non-air surfaces use strict catalog Sellmeier data (88.1%)
-- **4974 / 5636** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 88.3%)
+- **508** lenses scanned (**500** visible)
+- **4943 / 5610** non-air surfaces use strict catalog Sellmeier data (88.1%)
+- **4954 / 5610** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 88.3%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
-- **274** code-only missing-Sellmeier elements in Sweep 2: **2** active unreviewed, **125** self-recording explicit dispositions, **0** dispositions missing any review record
+- **272** code-only missing-Sellmeier elements in Sweep 2: **0** active unreviewed, **125** self-recording explicit dispositions, **0** dispositions missing any review record
 - **0** unresolved named-token elements in Sweep 2B, producing **0** token occurrences across **0** distinct tokens
 - **0** Tier A proprietary backfill rows in Sweep 3
 
@@ -178,8 +178,6 @@ Add catalog entries only when public coefficient-backed vendor data is available
 
 | Code | Active elements | Lens files | localPatentStatus | Representative rows |
 |---|---:|---:|---|---|
-| 618625 | 1 | 1 | patents/WO2019131993A1.pdf | [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14.data.ts) Element L43 (1.61817 / 62.52) |
-| 727547 | 1 | 1 | patents/WO2019131993A1.pdf | [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14.data.ts) Element L21 (1.72672 / 54.74) |
 
 ## Sweep 2B - Named Tokens Missing Catalog Resolution
 

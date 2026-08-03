@@ -9,11 +9,11 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **509** lenses scanned
-- **591** total code-only elements found
-- **274** elements in this report
-- **119** distinct lens files affected
-- **2** active unreviewed elements have no review-record hit or explicit disposition
+- **508** lenses scanned
+- **575** total code-only elements found
+- **272** elements in this report
+- **118** distinct lens files affected
+- **0** active unreviewed elements have no review-record hit or explicit disposition
 - **125** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
 - **0** dispositions lack any review record
 
@@ -26,8 +26,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 
 | Tier | Code | Active elements / lens files | Visible lenses | Strict surfaces | Completion candidates | Near-complete candidates | Local patent lenses | Representative rows |
 |---|---|---:|---:|---:|---|---|---:|---|
-| D | 618625 | 1 / 1 | 1 | 1 | — | — | 1/1 | [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14.data.ts) Element L43 (1.61817 / 62.52) |
-| D | 727547 | 1 / 1 | 1 | 1 | — | — | 1/1 | [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14.data.ts) Element L21 (1.72672 / 54.74) |
 
 ## Codes by Frequency
 
@@ -123,7 +121,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 614563 | 1 | 1 | patents/US3376091.pdf | All rows have review records |
 | 617443 | 1 | 1 | patents/JP2023039817A.pdf | All rows have review records |
 | 617540 | 1 | 1 | patents/US5717527.pdf | All rows explicitly disposed |
-| 618625 | 1 | 1 | patents/WO2019131993A1.pdf | No review-record hit |
 | 621380 | 1 | 1 | patents/US2896506.pdf | All rows explicitly disposed |
 | 622639 | 1 | 1 | patents/WO2021199923A1.pdf | All rows explicitly disposed |
 | 624584 | 1 | 1 | patents/JP2025052870A.pdf | All rows have review records |
@@ -165,7 +162,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 712525 | 1 | 1 | patents/JP2021076829A.pdf | All rows explicitly disposed |
 | 713433 | 1 | 1 | patents/US3942876.pdf | All rows have review records |
 | 721334 | 1 | 1 | Missing from untracked local patents/ references (US4786152, 4786152) | All rows have review records |
-| 727547 | 1 | 1 | patents/WO2019131993A1.pdf | No review-record hit |
 | 728261 | 1 | 1 | patents/US4523816.pdf | All rows explicitly disposed |
 | 728403 | 1 | 1 | patents/US6560042.pdf | All rows explicitly disposed |
 | 730262 | 1 | 1 | patents/JP2021076829A.pdf | All rows explicitly disposed |
@@ -602,13 +598,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L4 (Element 4) | 6 | `554381 — dense flint (patent nd=1.55389, nu_d=38.09)` | 1.55389 / 38.09 | No catalog entry | abbe | patents/US7359125.pdf | Audit-log hit |
-
-### [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14.data.ts) - WO 2019/131993 A1
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L21 (Element L21) | 17 | `727547 - lanthanum crown class` | 1.72672 / 54.74 | No catalog entry | abbe | patents/WO2019131993A1.pdf | No review-record hit |
-| L43 (Element L43) | 33 | `618625 - crown class` | 1.61817 / 62.52 | No catalog entry | abbe | patents/WO2019131993A1.pdf | No review-record hit |
 
 ### [NIKON AF-S NIKKOR 20mm f/1.8 G ED](../../src/lens-data/nikon/NikonNikkorAFS20mmf18G.data.ts) - JP 2016-021011 A
 
