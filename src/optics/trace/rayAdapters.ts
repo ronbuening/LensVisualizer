@@ -18,6 +18,7 @@ import {
 } from "./runtimeRayResult.js";
 import { traceSequential } from "./sequentialTrace.js";
 import type { EngineTraceResult, TraceOptions } from "./types.js";
+import { CHROMATIC_CHANNEL_WAVELENGTH_NM } from "../constants.js";
 
 /** Vector ray input for RuntimeLens adapters, with optional finite launch search bound. */
 export interface VectorRayTraceInput2 {
@@ -423,6 +424,7 @@ function traceOptions(
     stopOnClip: true,
     directionNormalized,
     indexAtSurface: channel ? (i, nd) => state.lens.dispersion[i]?.indexAt(channel) ?? nd : undefined,
+    wavelengthNm: channel ? CHROMATIC_CHANNEL_WAVELENGTH_NM[channel] : undefined,
   };
   optionsCache.byKey.set(key, options);
   optionsCache.lastStopSD = stopSD;

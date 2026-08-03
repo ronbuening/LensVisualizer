@@ -14,7 +14,7 @@ links outward only when the task crosses boundaries.
 - Lens/content workflow docs at the root — lens authoring, the copy-ready
   [`lens-data-integration-handoff.md`](lens-data-integration-handoff.md), patent audits, semi-diameter diagram audits,
   articles, changelog, comments, and gotchas.
-- [`diffractive-phase-surfaces-plan.md`](diffractive-phase-surfaces-plan.md) — active staged implementation plan and
+- [`diffractive-phase-surfaces-plan.md`](diffractive-phase-surfaces-plan.md) — shipped implementation record and
   engine/data contract for rotationally symmetric Nikon PF, Canon DO, and equivalent kinoform phase surfaces.
 - Glass catalog workflow docs at the root — catalog buildout, relabel follow-up, and proprietary-glass backfill.
 - [`seo-optimization-plan.md`](seo-optimization-plan.md) — staged production rollout, Search Console triage,

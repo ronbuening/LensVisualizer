@@ -19,9 +19,11 @@ import {
   isSurfaceSideActive,
   orientedRefractionNormal,
   reflectedDirection,
+  phaseRefractedDirection,
   refractedDirection,
   resolvedNextIndex,
 } from "./interactions.js";
+import { DEFAULT_PHASE_WAVELENGTH_NM } from "../math/diffractivePhase.js";
 import {
   findNearestGeneralizedSurfaceHit,
   generalizedHitTolerance,
@@ -101,6 +103,7 @@ export function traceGeneralized(
     stopOnClip = false,
     launchBoundT,
     indexAtSurface,
+    wavelengthNm = DEFAULT_PHASE_WAVELENGTH_NM,
   } = options;
 
   const explicitOrder = state.lens.opticalPath.surfaceOrder ?? null;
@@ -312,18 +315,24 @@ export function traceGeneralized(
       }
     } else {
       const nn = resolvedNextIndex(nextSurfaceIndex, side, surface, state.surfaces, indexAtSurface);
-      if (nn !== n) {
-        const refracted = refractedDirection(direction, orientedRefractionNormal(normal, side), n, nn);
+      if (nn !== n || surface.diffractive) {
+        const orientedNormal = orientedRefractionNormal(normal, side);
+        const refracted = surface.diffractive
+          ? phaseRefractedDirection(direction, orientedNormal, point, n, nn, surface, wavelengthNm)
+          : refractedDirection(direction, orientedNormal, n, nn);
         if (refracted === null) {
           clipped = true;
-          failureReason = "totalInternalReflection";
+          failureReason = surface.diffractive ? "nonPropagatingDiffractionOrder" : "totalInternalReflection";
           terminationReason = "trace-failure";
-          pushClipEvent(clipEvents, state, nextSurfaceIndex, "total-internal-reflection", failureReason);
+          const failureClipReason = surface.diffractive
+            ? "non-propagating-diffraction-order"
+            : "total-internal-reflection";
+          pushClipEvent(clipEvents, state, nextSurfaceIndex, failureClipReason, failureReason);
           hits[hits.length - 1] = {
             ...hits[hits.length - 1],
             clipped: true,
             failureReason,
-            clipReason: "total-internal-reflection",
+            clipReason: failureClipReason,
           };
           if (!ghost) break;
         } else {

@@ -21,6 +21,7 @@ import type {
   VariableSpec,
 } from "../types.js";
 import { createSurfaceProfile } from "../math/surfaceProfile.js";
+import { compileDiffractivePhase } from "../math/diffractivePhase.js";
 import { compileAspheres } from "./aspheres.js";
 import { compileSurfaceDispersions } from "./dispersion.js";
 import { compileAnnotations, compileElements } from "./groups.js";
@@ -114,6 +115,7 @@ function compileSurfaces(
         elemId: surface.elemId,
         stopPlacement: surface.stopPlacement ?? null,
         asphere,
+        diffractive: compileDiffractivePhase(surface.diffractive),
         interaction: compileSurfaceInteraction(surface.interaction),
         profile: createSurfaceProfile(surface, asphere ?? undefined),
         source: Object.freeze({ ...sourceSurfaces[physicalIndex] }),

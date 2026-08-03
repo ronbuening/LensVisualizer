@@ -5,8 +5,16 @@ import {
   computeElementShapes,
 } from "../../../src/optics/diagramGeometry.js";
 import buildLens from "../../../src/optics/buildLens.js";
+import nikonPf500Data from "../../../src/lens-data/nikon/NikonAFSNikkor500mmf56EPFEDVR.data.js";
+import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
 import { doLayout, SVG_PATH_SUBDIVISIONS } from "../../../src/optics/optics.js";
-import type { RuntimeLens, AsphericCoefficients, ElementSpan, SurfaceData } from "../../../src/types/optics.js";
+import type {
+  RuntimeLens,
+  AsphericCoefficients,
+  ElementSpan,
+  SurfaceData,
+  LensData,
+} from "../../../src/types/optics.js";
 import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -810,6 +818,22 @@ describe("computeElementShapes", () => {
     expect(pathCoords(coating?.pathD ?? "")).toHaveLength(SVG_PATH_SUBDIVISIONS + 1);
     expect(Number.isFinite(coating?.labelX)).toBe(true);
     expect(Number.isFinite(coating?.labelY)).toBe(true);
+  });
+
+  it("emits a semantic phase accent without changing the authored spherical profile", () => {
+    const L = buildLens({ ...LENS_DEFAULTS, ...nikonPf500Data } as LensData);
+    const layout = doLayout(0, 0, L);
+    const shapes = computeElementShapes(L, layout.z, sx, sy);
+    const phaseSurfaceIndex = L.labelIdx["8"];
+    const phaseShape = shapes.find((shape) => shape.eid === L.S[phaseSurfaceIndex].elemId);
+    const phaseAccent = phaseShape?.surfaceAccentPaths.find(
+      (path) => path.kind === "diffractive-phase" && path.surfIdx === phaseSurfaceIndex,
+    );
+
+    expect(L.asphByIdx[phaseSurfaceIndex]).toBeUndefined();
+    expect(phaseAccent).toBeDefined();
+    expect(phaseAccent?.pathD).toMatch(/^M/);
+    expect(pathCoords(phaseAccent?.pathD ?? "")).toHaveLength(SVG_PATH_SUBDIVISIONS + 1);
   });
 
   it("splits annular second-surface coating accents around the clear central opening", () => {

@@ -12,6 +12,7 @@ import type {
   AberrationVarRange,
   AsphericCoefficients,
   ChromaticChannel,
+  DiffractivePhaseSurface,
   ElementData,
   LensData,
   LensProjectionConfig,
@@ -65,6 +66,23 @@ export interface CompiledSurfaceInteraction {
   source: SurfaceInteraction | null;
 }
 
+/** Precomputed sparse term used by the phase-gradient hot path. */
+export interface CompiledRadialPhaseTerm {
+  radialPower: number;
+  coefficient: number;
+  derivativeCoefficient: number;
+}
+
+/** Immutable compiled form of a radial diffractive optical-path polynomial. */
+export interface CompiledDiffractivePhase {
+  kind: "radial-polynomial";
+  referenceWavelengthNm: number;
+  diffractionOrder: number;
+  quadraticCoefficient: number;
+  terms: readonly CompiledRadialPhaseTerm[];
+  source: DiffractivePhaseSurface;
+}
+
 /** Physical surface record after labels, interactions, aspheres, and profiles are compiled. */
 export interface CompiledSurface {
   physicalIndex: number;
@@ -77,6 +95,7 @@ export interface CompiledSurface {
   elemId: number;
   stopPlacement: "inside-element" | null;
   asphere: AsphericCoefficients | null;
+  diffractive: CompiledDiffractivePhase | null;
   interaction: CompiledSurfaceInteraction;
   profile: SurfaceProfile;
   source: SurfaceData;

@@ -46,6 +46,7 @@ import type {
   ParaxialTraceResult,
 } from "../types/optics.js";
 import { ENABLE_UNIFORM_SCALING } from "../utils/featureFlags.js";
+import { diffractivePetzvalContribution } from "./math/diffractivePhase.js";
 
 /**
  * Paraxial ray trace through a surface array.
@@ -773,11 +774,12 @@ export default function buildLens(data: LensData): RuntimeLens {
   let petzvalSum = 0;
   let nPetz = 1.0;
   for (let i = 0; i < N; i++) {
-    const { R, nd } = S[i];
+    const { R, nd, diffractive } = S[i];
     const nNext = nd === 1.0 ? 1.0 : nd;
     if (nNext !== nPetz && Math.abs(R) < FLAT_R_THRESHOLD) {
       petzvalSum += (nNext - nPetz) / (nNext * nPetz * R);
     }
+    petzvalSum += diffractivePetzvalContribution(diffractive, nPetz, nNext);
     nPetz = nNext;
   }
 

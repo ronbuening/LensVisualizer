@@ -16,6 +16,7 @@ import type { Ray3, Vec3 } from "../types.js";
 export type TraceFailureReason =
   | SurfaceIntersectionFailureReason
   | "totalInternalReflection"
+  | "nonPropagatingDiffractionOrder"
   | "loopDetected"
   | "maxInteractions";
 
@@ -71,6 +72,8 @@ export interface TraceOptions {
   stopOnClip?: boolean;
   launchBoundT?: number;
   indexAtSurface?: (surfaceIndex: number, nd: number) => number;
+  /** Wavelength used by diffractive phase surfaces; defaults to the helium d line. */
+  wavelengthNm?: number;
   directionNormalized?: boolean;
 }
 

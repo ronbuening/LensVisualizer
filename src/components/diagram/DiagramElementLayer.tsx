@@ -114,8 +114,8 @@ const DiagramElementLayer = memo(function DiagramElementLayer({
             d={pathD}
             fill="none"
             stroke={t.silveredSurfaceHalo}
-            strokeWidth={t.silveredSurfaceHaloWidth}
-            strokeDasharray="3,2"
+            strokeWidth={kind === "diffractive-phase" ? t.asphStrokeWidth + 2 : t.silveredSurfaceHaloWidth}
+            strokeDasharray={kind === "diffractive-phase" ? "1,3" : "3,2"}
             strokeLinecap="round"
             strokeLinejoin="round"
             opacity={0.95}
@@ -126,9 +126,9 @@ const DiagramElementLayer = memo(function DiagramElementLayer({
             data-testid={`surface-accent-${kind}-${surfIdx}`}
             d={pathD}
             fill="none"
-            stroke={t.silveredSurfaceStroke}
-            strokeWidth={t.silveredSurfaceStrokeWidth}
-            strokeDasharray="3,2"
+            stroke={kind === "diffractive-phase" ? t.asphStroke : t.silveredSurfaceStroke}
+            strokeWidth={kind === "diffractive-phase" ? t.asphStrokeWidth : t.silveredSurfaceStrokeWidth}
+            strokeDasharray={kind === "diffractive-phase" ? "1,3" : "3,2"}
             strokeLinecap="round"
             strokeLinejoin="round"
             style={{ pointerEvents: "none" }}
@@ -162,7 +162,7 @@ const DiagramElementLayer = memo(function DiagramElementLayer({
             x={labelX}
             y={labelY}
             textAnchor="middle"
-            fill={t.silveredSurfaceLabel}
+            fill={kind === "diffractive-phase" ? t.asphLabel : t.silveredSurfaceLabel}
             stroke={t.silveredSurfaceHalo}
             strokeWidth={3}
             paintOrder="stroke fill"
@@ -171,7 +171,7 @@ const DiagramElementLayer = memo(function DiagramElementLayer({
             fontWeight={700}
             style={{ pointerEvents: "none", letterSpacing: 0 }}
           >
-            S
+            {kind === "diffractive-phase" ? "P" : "S"}
           </text>
         )),
       )}

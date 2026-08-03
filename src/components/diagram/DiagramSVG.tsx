@@ -172,7 +172,7 @@ const DiagramSVG = memo(function DiagramSVG({
     showCardinals ? "cardinal element markers" : null,
   ].filter((layer): layer is string => layer !== null);
   const description =
-    `Cross-section of the ${L.elements.length}-element ${lensDisplayName} with ray tracing` +
+    `Cross-section of the ${L.data.elementCount ?? L.elements.length}-element ${lensDisplayName} with ray tracing` +
     (shownLayers.length > 0 ? `, showing ${shownLayers.join(", ")}.` : "; all ray layers hidden.");
 
   return (

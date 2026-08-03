@@ -9,10 +9,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **506** lenses scanned
-- **574** total code-only elements found
-- **574** elements in this report
-- **163** distinct lens files affected
+- **507** lenses scanned
+- **576** total code-only elements found
+- **576** elements in this report
+- **164** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -85,6 +85,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 583594 | 2 | 2 | patents/JP2013054269A.pdf | No review-record hit |
 | 585594 | 2 | 1 | patents/JP2023039817A.pdf | All rows have review records |
 | 593686 | 2 | 2 | patents/JP2020086133A.pdf<br>patents/JPWO2017138250A1.pdf | No review-record hit |
+| 613445 | 2 | 1 | Missing from untracked local patents/ references (JP2018017857A, JP2018017857, 2018017857) | All rows explicitly disposed |
 | 620586 | 2 | 1 | patents/US4303314.pdf | All rows have review records |
 | 625356 | 2 | 1 | patents/US2959100.pdf | All rows explicitly disposed |
 | 666356 | 2 | 1 | patents/US20190265441A1.pdf | All rows have review records |
@@ -874,6 +875,13 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---|---|---|---|---|---|---|
 | L14 (Element 4) | 8 | `Unmatched (569560 barium crown; patent coordinate is compatible with several vendors)` | 1.56883 / 56.00 | No catalog entry | abbe | patents/JP2017227799A.pdf | Explicit disposition in data |
 | L25 (Element 11) | 21 | `806333 — dense flint (patent coordinate; vendor unresolved)` | 1.80610 / 33.30 | NBFD15 (trusted Sellmeier) | sellmeier | patents/JP2017227799A.pdf | Audit-log hit |
+
+### [NIKON AF-S NIKKOR 500mm f/5.6 E PF ED VR](../../src/lens-data/nikon/NikonAFSNikkor500mmf56EPFEDVR.data.ts) - JP 2018-017857 A
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L13 (L13) | 4 | `Unmatched (613445 anomalous-dispersion class; patent θgF = 0.5640)` | 1.61266 / 44.46 | No catalog entry | abbe | Missing from untracked local patents/ references (JP2018017857A, JP2018017857, 2018017857) | Explicit disposition in data |
+| L39 (L39) | 30 | `Unmatched (613445 anomalous-dispersion class; patent θgF = 0.5640)` | 1.61266 / 44.46 | No catalog entry | abbe | Missing from untracked local patents/ references (JP2018017857A, JP2018017857, 2018017857) | Explicit disposition in data |
 
 ### [NIKON AF-S NIKKOR 70-200mm f/2.8 E FL ED VR](../../src/lens-data/nikon/NikonNikkorAFS70200mmf28E.data.ts) - WO 2019/097669 A1
 

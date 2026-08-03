@@ -19,6 +19,12 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-08-03 ─────────────────────────────────
+  {
+    date: "2026-08-03",
+    type: "lens",
+    summary: "Added the Nikon AF-S 500mm f/5.6E PF ED VR with wavelength-aware PF tracing",
+  },
   // ── 2026-08-02 ──────────────────────────────────────────────────
   {
     date: "2026-08-02",

@@ -138,17 +138,27 @@ export function computeElementShapesForState2(
 
     for (const surfaceIndex of [s1, s2]) {
       const surface = state.surfaces[surfaceIndex];
+      const trim = surfaceIndex === s1 ? trim1 : trim2;
+      const [labelX, labelY] = screenPoint(renderedSurfaceZ2(surface, trim), trim);
       if (surface.interaction.type === "reflect" && surface.interaction.mirrorKind === "second-surface") {
         /* The coating accent is visual only; reflection/refraction behavior stays in interaction data. */
-        const trim = surfaceIndex === s1 ? trim1 : trim2;
         const innerTrim = Math.min(trim, Math.max(0, surface.innerSd ?? 0));
-        const [labelX, labelY] = screenPoint(renderedSurfaceZ2(surface, trim), trim);
         surfaceAccentPaths.push({
           surfIdx: surfaceIndex,
           pathD: surfaceMaterialPath(surfaceIndex, trim, innerTrim),
           labelX,
           labelY: labelY + 10,
           kind: "second-surface-coating",
+        });
+      }
+      if (surface.diffractive) {
+        /* A phase accent describes interaction semantics; the physical outline remains the authored spherical sag. */
+        surfaceAccentPaths.push({
+          surfIdx: surfaceIndex,
+          pathD: surfacePath(surfaceIndex, trim),
+          labelX,
+          labelY: labelY + 10,
+          kind: "diffractive-phase",
         });
       }
     }

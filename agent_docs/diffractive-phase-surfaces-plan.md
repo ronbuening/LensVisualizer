@@ -1,6 +1,6 @@
 # Diffractive Phase-Surface Implementation Plan
 
-- Status: **active — schema and engine implementation in progress**
+- Status: **shipped — implemented and production-verified 2026-08-03**
 - Initial target: Nikon AF-S NIKKOR 500mm f/5.6E PF ED VR, JP2018017857A Example 2
 - Reusable target: rotationally symmetric Nikon PF, Canon DO, and equivalent patent-described kinoform surfaces
 
@@ -42,6 +42,18 @@ The feature is ready for this lens when all of the following are true:
    bonded PF media needed by the prescription.
 7. The full quality gate and production build pass, including metadata, prerender, SEO, render diagnostics, and corpus
    exact-trace tests.
+
+## Completion Evidence
+
+- JP2018017857A Example 2 builds at EFL 489.709445 mm, BFD 64.398175 mm, F/5.75019, and 279.32418 mm track.
+- Removing only the phase field produces the independent controls EFL 538.940703 mm and BFD 79.501045 mm.
+- Focused coverage pins phase math/validation, equal-index handling, forward/reverse reciprocity, typed non-propagating
+  orders, paraxial construction, exact meridional/skew compatibility, every displayed chromatic channel, SVG accent,
+  inspector disclosure, and physical element-count semantics.
+- The full suite passed 220 files / 2,579 tests; typecheck, format, lint (zero errors), production build, 996-route
+  prerender, sitemap/RSS generation, and SEO audit all passed.
+- An alternating 9-sample benchmark of 12,000 exact rays per sample measured 202.253 ms phase-on versus 200.438 ms
+  phase-off median on the same 33-surface prescription: 0.91% overhead. The temporary measurement harness was removed.
 
 ## Data-Type Contract
 
@@ -97,8 +109,8 @@ phiD(lambda) = -2 * C2 * diffractionOrder * lambda / referenceWavelength
 
 so the reduced meridional angle changes by `qOut = qIn - phiD*y`, equivalently
 `qOut = qIn + scale(lambda)*dW/dy`. The exact tracer adds that same signed gradient to tangential optical momentum
-before solving the outgoing normal component. Front incidence uses the authored gradient; rear incidence negates it
-to preserve reciprocity.
+before solving the outgoing normal component. The physical surface gradient keeps the same global radial sign from
+either side; applying it to the reversed ray restores the original path and preserves reciprocity.
 
 Contract constraints:
 
@@ -122,9 +134,9 @@ power; do not allocate arrays or closures per ray hit.
 
 - The polynomial is an optical-path/phase function, not geometric sag. It does not change intersection geometry,
   surface normals, element outlines, edge-thickness validation, or the material sequence.
-- The radial coordinate is `h = hypot(x, y)` on the surface. The gradient direction is the surface-radial tangent,
-  obtained by projecting the outward aperture vector into the tangent plane and normalizing it. On axis the gradient
-  is exactly zero.
+- The radial coordinate is `h = hypot(x, y)` on the surface. The surface gradient is the tangent-plane projection of
+  the global radial derivative; it is not renormalized, because that projection is the derivative of authored `h` on
+  the curved interface. On axis the gradient is exactly zero.
 - Exact refraction uses generalized Snell tangential momentum in one operation:
   `pT,out = pT,in + signedScale * grad(W)`. The outgoing normal component is the positive transmitted root in the
   oriented surface-normal direction. If `|pT,out| > nOut`, the requested order is non-propagating; return a typed
@@ -215,7 +227,7 @@ Steps:
 2. Implement a pure generalized-Snell interaction that combines refractive and radial phase gradients in one solve.
    Refractive-only surfaces retain the existing fast helper.
 3. Use the combined interaction in sequential and generalized prepared-state tracers, applying phase even across equal
-   indices and reversing its sign for rear incidence.
+   indices and using the same physical radial-gradient sign for rear incidence.
 4. Mirror the behavior in `internal/exactSurfaceTrace.ts` until the runtime constructor no longer depends on that path.
 5. Add exact meridional/skew small-angle convergence tests, rotational-symmetry tests, front/rear reciprocity tests,
    a same-index phase-plate test, a typed non-propagating-order test, and sequential/generalized parity tests.

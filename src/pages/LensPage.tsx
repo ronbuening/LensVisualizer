@@ -124,7 +124,11 @@ export default function LensPage() {
             {lens.elements && lens.elements.length > 0 && (
               <section style={{ marginBottom: "1rem" }}>
                 <h2 style={{ fontSize: "0.95rem", fontWeight: 600, marginBottom: "0.5rem" }}>
-                  Optical Elements ({lens.elements.length})
+                  Optical Elements ({lens.elementCount ?? lens.elements.length} physical
+                  {lens.elementCount !== undefined && lens.elementCount !== lens.elements.length
+                    ? `; ${lens.elements.length} modeled media`
+                    : ""}
+                  )
                 </h2>
                 <table style={SPEC_TABLE_STYLE}>
                   <thead>

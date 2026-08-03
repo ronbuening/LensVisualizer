@@ -7,6 +7,22 @@
 
 import type { ImageFormatId, LensMountId } from "../utils/catalog/lensTaxonomy.js";
 
+/** One sparse coefficient in a rotationally symmetric optical-path polynomial W(h). */
+export interface RadialPhaseTerm {
+  /** Radial exponent p in W(h) = sum(Cp * h^p). */
+  radialPower: number;
+  /** Optical-path coefficient Cp in mm^(1-p), with h expressed in millimeters. */
+  coefficient: number;
+}
+
+/** Geometric-ray model of one authored diffraction order on a rotationally symmetric surface. */
+export interface DiffractivePhaseSurface {
+  kind: "radial-polynomial";
+  referenceWavelengthNm: number;
+  diffractionOrder: number;
+  terms: RadialPhaseTerm[];
+}
+
 export interface SurfaceData {
   label: string;
   R: number;
@@ -17,6 +33,7 @@ export interface SurfaceData {
   elemId: number;
   stopPlacement?: "inside-element";
   interaction?: SurfaceInteraction;
+  diffractive?: DiffractivePhaseSurface;
 }
 
 export type SurfaceIncidentSide = "front" | "rear" | "both";
@@ -82,6 +99,7 @@ export type FoldedPathClipReason =
   | "inactive-side-block"
   | "intersection-failure"
   | "total-internal-reflection"
+  | "non-propagating-diffraction-order"
   | "loop-detected"
   | "max-interactions";
 
@@ -532,7 +550,7 @@ export interface SurfaceAccentPathData {
   pathD: string;
   labelX: number;
   labelY: number;
-  kind: "second-surface-coating";
+  kind: "second-surface-coating" | "diffractive-phase";
 }
 
 export interface ElementShape {
