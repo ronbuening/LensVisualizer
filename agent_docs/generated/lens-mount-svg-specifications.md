@@ -50,6 +50,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
 | [`pentax-645`](#pentax-645--pentax-645) | bayonet | 70.87 mm | 61 mm | `renderable` | 1 |
 | [`pentax-67`](#pentax-67--pentax-67) | bayonet | 84.95 mm | 72 mm | `renderable` | 1 |
 | [`pentax-k`](#pentax-k--pentax-k) | bayonet | 45.46 mm | 44 mm | `mvp_complete` | 7 |
+| [`samsung-nx`](#samsung-nx--samsung-nx) | bayonet | 25.5 mm | 42 mm | `renderable` | 1 |
 | [`sigma-sa`](#sigma-sa--sigma-sa) | bayonet | 44 mm | 44 mm | `renderable` | 1 |
 | [`sony-a`](#sony-a--sony-a) | bayonet | 44.5 mm | 49.7 mm | `mvp_complete` | 1 |
 | [`sony-fe`](#sony-fe--sony-e) | bayonet | 18 mm | 46.1 mm | `mvp_complete` | 1 |
@@ -58887,6 +58888,1971 @@ None — fully electronic.
 
 - US4017878A supports the three-claw bayonet/lock embodiment, US4357089A supports the KA opposed contact bank, and US4939532A supports the AF joint shaft plus data/power contacts; exact production throat, lug spans, contact pad dimensions/clocking, and later KAF/KAF2 terminal functions remain normalized to secondary imagery. _(Upgrade to an official Pentax/Ricoh K-mount drawing or measured sample.)_
 - Contact count grows across KA (6) → KAF (7) → KAF2 (9); contactCount records the KA baseline. _(Expose per-variant contact counts when variant selection drives the figure.)_
+
+### `samsung-nx` — Samsung NX
+
+| Field | Value |
+|---|---|
+| Mount ID | `samsung-nx` |
+| Display label | Samsung NX |
+| Project note | Samsung NX APS-C mirrorless bayonet mount. |
+| Research status | `partial` |
+| MVP status | `renderable` |
+| Mount mechanism | `bayonet` (lock `sprung_detent`) |
+| Base profile | `samsung-nx/base` |
+| Selected MVP profile | `samsung-nx/base` |
+| Variant strategy | `base_only` |
+
+#### Base and variant profile matrix
+
+| Profile ID | Type | Applies to | Adds | Removes | Changes |
+|---|---|---|---|---|---|
+| `samsung-nx/base` | base | Samsung NX lenses and APS-C NX bodies, 2010–2015 | three-sector short-register bayonet; eight-contact fully electronic interface; body-side sprung lock pin and red mounting index | mechanical aperture and autofocus couplings | single base interface; NX Mini uses the separate, incompatible NX-M mount |
+
+#### Dimensional summary
+
+| Field | Value | Unit |
+|---|---|---|
+| Flange focal distance | 25.5 (`secondary`) | mm |
+| Nominal throat diameter | 42 (`secondary`) | mm |
+| Effective clear aperture | 42 (`secondary`) | mm |
+| Camera mount outer diameter | 52 (`photo_scaled`) | mm |
+| Lens mount outer diameter | 50 (`photo_scaled`) | mm |
+| Contact count | 8 (`photo_scaled`) | count |
+| Lock rotation | 60 (`photo_scaled`) | deg |
+| Lock direction | clockwise (`official`) | — |
+
+#### Figures (selected profile `samsung-nx/base`)
+
+**Camera-side front view** — viewBox `-32 -33 64 65` ([standalone SVG](mounts/samsung-nx-camera-front.svg))
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 -33 64 65" role="img" aria-labelledby="samsung-nx-base-camera_side_front-title samsung-nx-base-camera_side_front-desc"><title id="samsung-nx-base-camera_side_front-title">Samsung NX mount — camera-side front view (base)</title><desc id="samsung-nx-base-camera_side_front-desc">Samsung NX bayonet mount, camera-side front view. Flange focal distance 25.5 mm, nominal throat 42 mm. Profile samsung-nx/base.</desc><metadata>{"mountId":"samsung-nx","profileId":"samsung-nx/base","view":"camera_side_front","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.3" y1="0" x2="1.3" y2="0" stroke="#8a94a0" stroke-width="0.384" fill="none" /><line x1="0" y1="-1.3" x2="0" y2="1.3" stroke="#8a94a0" stroke-width="0.384" fill="none" /><line x1="0" y1="-26" x2="0" y2="-27.56" stroke="#8a94a0" stroke-width="0.384" fill="none" /></g><g data-layer="camera-side-metal"><path d="M0,-26 A26,26 0 1 1 0,26 A26,26 0 1 1 0,-26 Z M0,-21 A21,21 0 1 1 0,21 A21,21 0 1 1 0,-21 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-26 A26,26 0 1 1 0,26 A26,26 0 1 1 0,-26 Z M0,-21 A21,21 0 1 1 0,21 A21,21 0 1 1 0,-21 Z" stroke="#6b7a8f" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /><path d="M0,-21 A21,21 0 1 1 0,21 A21,21 0 1 1 0,-21 Z" stroke="#2f80c4" stroke-width="0.288" fill="none" /><circle cx="13.479" cy="-19.25" r="0.9" stroke="#7f8c3a" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /><circle cx="13.479" cy="19.25" r="0.9" stroke="#7f8c3a" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /><circle cx="-13.479" cy="19.25" r="0.9" stroke="#7f8c3a" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /><circle cx="-13.479" cy="-19.25" r="0.9" stroke="#7f8c3a" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-core-interface"><path d="M3.647,-20.681 L4.081,-23.143 A23.5,23.5 0 0 1 18.002,-15.106 L16.087,-13.499 A21,21 0 0 0 3.647,-20.681 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M3.647,-20.681 L4.081,-23.143 A23.5,23.5 0 0 1 18.002,-15.106 L16.087,-13.499 A21,21 0 0 0 3.647,-20.681 Z" stroke="#2a9d8f" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /><circle cx="22" cy="0" r="0.91" fill="#d1495b" fill-opacity="0.12" /><circle cx="22" cy="0" r="0.91" stroke="#d1495b" stroke-width="0.384" fill="none" stroke-dasharray="0.6 1.6" /><path d="M16.087,13.499 L18.002,15.106 A23.5,23.5 0 0 1 4.081,23.143 L3.647,20.681 A21,21 0 0 0 16.087,13.499 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M16.087,13.499 L18.002,15.106 A23.5,23.5 0 0 1 4.081,23.143 L3.647,20.681 A21,21 0 0 0 16.087,13.499 Z" stroke="#2a9d8f" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /><path d="M-20.698,11.95 L-22.098,14.626 L-23.716,11.824 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M-20.698,11.95 L-22.098,14.626 L-23.716,11.824 Z" stroke="#e8853a" stroke-width="0.384" fill="none" stroke-dasharray="0.6 1.6" /><path d="M-20.987,-0.733 L-23.486,-0.82 A23.5,23.5 0 0 1 -17.464,-15.725 L-15.606,-14.052 A21,21 0 0 0 -20.987,-0.733 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-20.987,-0.733 L-23.486,-0.82 A23.5,23.5 0 0 1 -17.464,-15.725 L-15.606,-14.052 A21,21 0 0 0 -20.987,-0.733 Z" stroke="#2a9d8f" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /></g><g data-layer="camera-side-variant-electrical"><path d="M0.626,-17.589 L0.726,-20.387 A20.4,20.4 0 0 1 2.118,-20.29 L1.828,-17.505 A17.6,17.6 0 0 0 0.626,-17.589 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M0.626,-17.589 L0.726,-20.387 A20.4,20.4 0 0 1 2.118,-20.29 L1.828,-17.505 A17.6,17.6 0 0 0 0.626,-17.589 Z" stroke="#8a5cd1" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /><path d="M3.219,-17.303 L3.732,-20.056 A20.4,20.4 0 0 1 5.094,-19.754 L4.395,-17.042 A17.6,17.6 0 0 0 3.219,-17.303 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M3.219,-17.303 L3.732,-20.056 A20.4,20.4 0 0 1 5.094,-19.754 L4.395,-17.042 A17.6,17.6 0 0 0 3.219,-17.303 Z" stroke="#8a5cd1" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /><path d="M5.742,-16.637 L6.655,-19.284 A20.4,20.4 0 0 1 7.958,-18.784 L6.866,-16.206 A17.6,17.6 0 0 0 5.742,-16.637 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M5.742,-16.637 L6.655,-19.284 A20.4,20.4 0 0 1 7.958,-18.784 L6.866,-16.206 A17.6,17.6 0 0 0 5.742,-16.637 Z" stroke="#8a5cd1" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /><path d="M8.138,-15.606 L9.432,-18.088 A20.4,20.4 0 0 1 10.647,-17.401 L9.186,-15.013 A17.6,17.6 0 0 0 8.138,-15.606 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M8.138,-15.606 L9.432,-18.088 A20.4,20.4 0 0 1 10.647,-17.401 L9.186,-15.013 A17.6,17.6 0 0 0 8.138,-15.606 Z" stroke="#8a5cd1" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /><path d="M-9.316,-14.932 L-10.798,-17.308 A20.4,20.4 0 0 1 -9.59,-18.005 L-8.274,-15.534 A17.6,17.6 0 0 0 -9.316,-14.932 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-9.316,-14.932 L-10.798,-17.308 A20.4,20.4 0 0 1 -9.59,-18.005 L-8.274,-15.534 A17.6,17.6 0 0 0 -9.316,-14.932 Z" stroke="#8a5cd1" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /><path d="M-7.007,-16.145 L-8.121,-18.714 A20.4,20.4 0 0 1 -6.823,-19.225 L-5.887,-16.586 A17.6,17.6 0 0 0 -7.007,-16.145 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-7.007,-16.145 L-8.121,-18.714 A20.4,20.4 0 0 1 -6.823,-19.225 L-5.887,-16.586 A17.6,17.6 0 0 0 -7.007,-16.145 Z" stroke="#8a5cd1" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /><path d="M-4.543,-17.003 L-5.266,-19.709 A20.4,20.4 0 0 1 -3.906,-20.022 L-3.37,-17.274 A17.6,17.6 0 0 0 -4.543,-17.003 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-4.543,-17.003 L-5.266,-19.709 A20.4,20.4 0 0 1 -3.906,-20.022 L-3.37,-17.274 A17.6,17.6 0 0 0 -4.543,-17.003 Z" stroke="#8a5cd1" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /><path d="M-1.98,-17.488 L-2.295,-20.27 A20.4,20.4 0 0 1 -0.904,-20.38 L-0.78,-17.583 A17.6,17.6 0 0 0 -1.98,-17.488 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-1.98,-17.488 L-2.295,-20.27 A20.4,20.4 0 0 1 -0.904,-20.38 L-0.78,-17.583 A17.6,17.6 0 0 0 -1.98,-17.488 Z" stroke="#8a5cd1" stroke-width="0.384" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-30.72" y1="-29.75" x2="-26.72" y2="-29.75" stroke="#2f80c4" stroke-width="0.455" /><text x="-25.68" y="-29.022" font-size="2.08" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-30.72" y1="-26.63" x2="-26.72" y2="-26.63" stroke="#6b7a8f" stroke-width="0.455" /><text x="-25.68" y="-25.902" font-size="2.08" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-30.72" y1="-23.51" x2="-26.72" y2="-23.51" stroke="#2a9d8f" stroke-width="0.455" /><text x="-25.68" y="-22.782" font-size="2.08" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-30.72" y1="-20.39" x2="-26.72" y2="-20.39" stroke="#d1495b" stroke-width="0.455" /><text x="-25.68" y="-19.662" font-size="2.08" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-30.72" y1="-17.27" x2="-26.72" y2="-17.27" stroke="#e8853a" stroke-width="0.455" /><text x="-25.68" y="-16.542" font-size="2.08" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-30.72" y1="-14.15" x2="-26.72" y2="-14.15" stroke="#8a5cd1" stroke-width="0.455" /><text x="-25.68" y="-13.422" font-size="2.08" fill="#8a5cd1" font-family="sans-serif">Electrical contact</text><line x1="-30.72" y1="-11.03" x2="-26.72" y2="-11.03" stroke="#7f8c3a" stroke-width="0.455" /><text x="-25.68" y="-10.302" font-size="2.08" fill="#7f8c3a" font-family="sans-serif">Screws / seals</text><line x1="-30.72" y1="-7.91" x2="-26.72" y2="-7.91" stroke="#8a94a0" stroke-width="0.455" /><text x="-25.68" y="-7.182" font-size="2.08" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
+
+**Lens-side rear view** — viewBox `-31 -32 62 63` ([standalone SVG](mounts/samsung-nx-lens-rear.svg))
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-31 -32 62 63" role="img" aria-labelledby="samsung-nx-base-lens_side_rear-title samsung-nx-base-lens_side_rear-desc"><title id="samsung-nx-base-lens_side_rear-title">Samsung NX mount — lens-side rear view (base)</title><desc id="samsung-nx-base-lens_side_rear-desc">Samsung NX bayonet mount, lens-side rear view. Flange focal distance 25.5 mm, nominal throat 42 mm. Profile samsung-nx/base.</desc><metadata>{"mountId":"samsung-nx","profileId":"samsung-nx/base","view":"lens_side_rear","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-1.25" y1="0" x2="1.25" y2="0" stroke="#8a94a0" stroke-width="0.372" fill="none" /><line x1="0" y1="-1.25" x2="0" y2="1.25" stroke="#8a94a0" stroke-width="0.372" fill="none" /><line x1="0" y1="-25" x2="0" y2="-26.5" stroke="#8a94a0" stroke-width="0.372" fill="none" /></g><g data-layer="lens-side-metal"><path d="M0,-25 A25,25 0 1 1 0,25 A25,25 0 1 1 0,-25 Z M0,-20 A20,20 0 1 1 0,20 A20,20 0 1 1 0,-20 Z" fill="#6b7a8f" fill-opacity="0.12" fill-rule="evenodd" /><path d="M0,-25 A25,25 0 1 1 0,25 A25,25 0 1 1 0,-25 Z M0,-20 A20,20 0 1 1 0,20 A20,20 0 1 1 0,-20 Z" stroke="#6b7a8f" stroke-width="0.372" fill="none" stroke-dasharray="4 2" /><path d="M0,-20 A20,20 0 1 1 0,20 A20,20 0 1 1 0,-20 Z" stroke="#2f80c4" stroke-width="0.372" fill="none" stroke-dasharray="4 2" /></g><g data-layer="lens-side-core-interface"><path d="M15.606,-14.052 L17.464,-15.725 A23.5,23.5 0 0 1 23.486,-0.82 L20.987,-0.733 A21,21 0 0 0 15.606,-14.052 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M15.606,-14.052 L17.464,-15.725 A23.5,23.5 0 0 1 23.486,-0.82 L20.987,-0.733 A21,21 0 0 0 15.606,-14.052 Z" stroke="#2a9d8f" stroke-width="0.372" fill="none" stroke-dasharray="4 2" /><path d="M19.919,11.5 L22.821,11.378 L21.264,14.074 Z" fill="#e8853a" fill-opacity="0.12" /><path d="M19.919,11.5 L22.821,11.378 L21.264,14.074 Z" stroke="#e8853a" stroke-width="0.372" fill="none" stroke-dasharray="0.6 1.6" /><path d="M-3.647,20.681 L-4.081,23.143 A23.5,23.5 0 0 1 -18.002,15.106 L-16.087,13.499 A21,21 0 0 0 -3.647,20.681 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-3.647,20.681 L-4.081,23.143 A23.5,23.5 0 0 1 -18.002,15.106 L-16.087,13.499 A21,21 0 0 0 -3.647,20.681 Z" stroke="#2a9d8f" stroke-width="0.372" fill="none" stroke-dasharray="4 2" /><circle cx="-22" cy="0" r="0.875" fill="#d1495b" fill-opacity="0.12" /><circle cx="-22" cy="0" r="0.875" stroke="#d1495b" stroke-width="0.372" fill="none" stroke-dasharray="0.6 1.6" /><path d="M-16.087,-13.499 L-18.002,-15.106 A23.5,23.5 0 0 1 -4.081,-23.143 L-3.647,-20.681 A21,21 0 0 0 -16.087,-13.499 Z" fill="#2a9d8f" fill-opacity="0.12" /><path d="M-16.087,-13.499 L-18.002,-15.106 A23.5,23.5 0 0 1 -4.081,-23.143 L-3.647,-20.681 A21,21 0 0 0 -16.087,-13.499 Z" stroke="#2a9d8f" stroke-width="0.372" fill="none" stroke-dasharray="4 2" /></g><g data-layer="lens-side-variant-electrical"><path d="M-1.98,-17.488 L-2.295,-20.27 A20.4,20.4 0 0 1 -0.904,-20.38 L-0.78,-17.583 A17.6,17.6 0 0 0 -1.98,-17.488 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-1.98,-17.488 L-2.295,-20.27 A20.4,20.4 0 0 1 -0.904,-20.38 L-0.78,-17.583 A17.6,17.6 0 0 0 -1.98,-17.488 Z" stroke="#8a5cd1" stroke-width="0.372" fill="none" stroke-dasharray="4 2" /><path d="M-4.543,-17.003 L-5.266,-19.709 A20.4,20.4 0 0 1 -3.906,-20.022 L-3.37,-17.274 A17.6,17.6 0 0 0 -4.543,-17.003 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-4.543,-17.003 L-5.266,-19.709 A20.4,20.4 0 0 1 -3.906,-20.022 L-3.37,-17.274 A17.6,17.6 0 0 0 -4.543,-17.003 Z" stroke="#8a5cd1" stroke-width="0.372" fill="none" stroke-dasharray="4 2" /><path d="M-7.007,-16.145 L-8.121,-18.714 A20.4,20.4 0 0 1 -6.823,-19.225 L-5.887,-16.586 A17.6,17.6 0 0 0 -7.007,-16.145 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-7.007,-16.145 L-8.121,-18.714 A20.4,20.4 0 0 1 -6.823,-19.225 L-5.887,-16.586 A17.6,17.6 0 0 0 -7.007,-16.145 Z" stroke="#8a5cd1" stroke-width="0.372" fill="none" stroke-dasharray="4 2" /><path d="M-9.316,-14.932 L-10.798,-17.308 A20.4,20.4 0 0 1 -9.59,-18.005 L-8.274,-15.534 A17.6,17.6 0 0 0 -9.316,-14.932 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M-9.316,-14.932 L-10.798,-17.308 A20.4,20.4 0 0 1 -9.59,-18.005 L-8.274,-15.534 A17.6,17.6 0 0 0 -9.316,-14.932 Z" stroke="#8a5cd1" stroke-width="0.372" fill="none" stroke-dasharray="4 2" /><path d="M8.138,-15.606 L9.432,-18.088 A20.4,20.4 0 0 1 10.647,-17.401 L9.186,-15.013 A17.6,17.6 0 0 0 8.138,-15.606 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M8.138,-15.606 L9.432,-18.088 A20.4,20.4 0 0 1 10.647,-17.401 L9.186,-15.013 A17.6,17.6 0 0 0 8.138,-15.606 Z" stroke="#8a5cd1" stroke-width="0.372" fill="none" stroke-dasharray="4 2" /><path d="M5.742,-16.637 L6.655,-19.284 A20.4,20.4 0 0 1 7.958,-18.784 L6.866,-16.206 A17.6,17.6 0 0 0 5.742,-16.637 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M5.742,-16.637 L6.655,-19.284 A20.4,20.4 0 0 1 7.958,-18.784 L6.866,-16.206 A17.6,17.6 0 0 0 5.742,-16.637 Z" stroke="#8a5cd1" stroke-width="0.372" fill="none" stroke-dasharray="4 2" /><path d="M3.219,-17.303 L3.732,-20.056 A20.4,20.4 0 0 1 5.094,-19.754 L4.395,-17.042 A17.6,17.6 0 0 0 3.219,-17.303 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M3.219,-17.303 L3.732,-20.056 A20.4,20.4 0 0 1 5.094,-19.754 L4.395,-17.042 A17.6,17.6 0 0 0 3.219,-17.303 Z" stroke="#8a5cd1" stroke-width="0.372" fill="none" stroke-dasharray="4 2" /><path d="M0.626,-17.589 L0.726,-20.387 A20.4,20.4 0 0 1 2.118,-20.29 L1.828,-17.505 A17.6,17.6 0 0 0 0.626,-17.589 Z" fill="#8a5cd1" fill-opacity="0.12" /><path d="M0.626,-17.589 L0.726,-20.387 A20.4,20.4 0 0 1 2.118,-20.29 L1.828,-17.505 A17.6,17.6 0 0 0 0.626,-17.589 Z" stroke="#8a5cd1" stroke-width="0.372" fill="none" stroke-dasharray="4 2" /></g><g aria-hidden="true"><line x1="-29.76" y1="-28.85" x2="-25.76" y2="-28.85" stroke="#2f80c4" stroke-width="0.441" /><text x="-24.752" y="-28.144" font-size="2.016" fill="#2f80c4" font-family="sans-serif">Throat / opening</text><line x1="-29.76" y1="-25.826" x2="-25.76" y2="-25.826" stroke="#6b7a8f" stroke-width="0.441" /><text x="-24.752" y="-25.12" font-size="2.016" fill="#6b7a8f" font-family="sans-serif">Mount ring</text><line x1="-29.76" y1="-22.802" x2="-25.76" y2="-22.802" stroke="#2a9d8f" stroke-width="0.441" /><text x="-24.752" y="-22.096" font-size="2.016" fill="#2a9d8f" font-family="sans-serif">Bayonet lug / slot</text><line x1="-29.76" y1="-19.778" x2="-25.76" y2="-19.778" stroke="#d1495b" stroke-width="0.441" /><text x="-24.752" y="-19.072" font-size="2.016" fill="#d1495b" font-family="sans-serif">Lock pin / notch</text><line x1="-29.76" y1="-16.754" x2="-25.76" y2="-16.754" stroke="#e8853a" stroke-width="0.441" /><text x="-24.752" y="-16.048" font-size="2.016" fill="#e8853a" font-family="sans-serif">Index mark</text><line x1="-29.76" y1="-13.73" x2="-25.76" y2="-13.73" stroke="#8a5cd1" stroke-width="0.441" /><text x="-24.752" y="-13.024" font-size="2.016" fill="#8a5cd1" font-family="sans-serif">Electrical contact</text><line x1="-29.76" y1="-10.706" x2="-25.76" y2="-10.706" stroke="#8a94a0" stroke-width="0.441" /><text x="-24.752" y="-10" font-size="2.016" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text></g></svg>
+
+**Axial / register schematic** — viewBox `-32 -36 39 68` ([standalone SVG](mounts/samsung-nx-axial.svg))
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 -36 39 68" role="img" aria-labelledby="samsung-nx-base-axial_section-title samsung-nx-base-axial_section-desc"><title id="samsung-nx-base-axial_section-title">Samsung NX mount — axial / register schematic (base)</title><desc id="samsung-nx-base-axial_section-desc">Samsung NX bayonet mount, axial / register schematic. Flange focal distance 25.5 mm, nominal throat 42 mm. Profile samsung-nx/base.</desc><metadata>{"mountId":"samsung-nx","profileId":"samsung-nx/base","view":"axial_section","schemaVersion":"1.3"}</metadata><g data-layer="datum-axis"><line x1="-25.5" y1="0" x2="1.2" y2="0" stroke="#8a94a0" stroke-width="0.25" fill="none" /><line x1="0" y1="-26" x2="0" y2="26" stroke="#8a94a0" stroke-width="0.25" fill="none" /></g><g data-layer="axial-section"><text x="-25.5" y="-15.675" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">sensor film plane</text><line x1="-25.5" y1="-14.175" x2="-25.5" y2="14.175" stroke="#2bb0c4" stroke-width="0.188" fill="none" /><line x1="0" y1="-26" x2="0" y2="26" stroke="#2bb0c4" stroke-width="0.25" fill="none" stroke-dasharray="4 2" /><text x="0" y="-27.5" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">flange datum</text><line x1="0.5" y1="-19" x2="0.5" y2="19" stroke="#2bb0c4" stroke-width="0.25" fill="none" stroke-dasharray="4 2" /><text x="0.5" y="-20.5" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">electrical contact plane</text><line x1="1.2" y1="-23.5" x2="1.2" y2="23.5" stroke="#2bb0c4" stroke-width="0.25" fill="none" stroke-dasharray="4 2" /><text x="1.2" y="-25" font-size="2.4" text-anchor="middle" fill="#2bb0c4" font-family="sans-serif">bayonet lug engagement</text></g><g aria-hidden="true"><line x1="-31.22" y1="-32.6" x2="-27.22" y2="-32.6" stroke="#8a94a0" stroke-width="0.476" /><text x="-26.132" y="-31.838" font-size="2.176" fill="#8a94a0" font-family="sans-serif">Datum &amp; axis</text><line x1="-31.22" y1="-29.336" x2="-27.22" y2="-29.336" stroke="#2bb0c4" stroke-width="0.476" /><text x="-26.132" y="-28.574" font-size="2.176" fill="#2bb0c4" font-family="sans-serif">Register plane</text></g></svg>
+
+#### Camera-side front-view geometry
+
+| Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
+|---|---|---|---|---|---|---|---|
+| `body-throat` | body_throat | `samsung-nx/base` | 0° | 0° | 360° | 0 | 21 |
+| `body-mount-ring` | mount_ring | `samsung-nx/base` | 0° | 0° | 360° | 21 | 26 |
+| `body-slot-1` | bayonet_receiving_slot | `samsung-nx/base` | 30° | 10° | 50° | 21 | 23.5 |
+| `body-slot-2` | bayonet_receiving_slot | `samsung-nx/base` | 150° | 130° | 170° | 21 | 23.5 |
+| `body-slot-3` | bayonet_receiving_slot | `samsung-nx/base` | 292° | 272° | 312° | 21 | 23.5 |
+| `body-index-mark` | index_mark | `samsung-nx/base` | 240° | unknown | unknown | unknown | 26.5 |
+| `body-lock-pin` | lock_pin | `samsung-nx/base` | 90° | unknown | unknown | unknown | 22 |
+
+#### Lens-side rear-view geometry
+
+| Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
+|---|---|---|---|---|---|---|---|
+| `lens-throat` | lens_throat | `samsung-nx/base` | 0° | 0° | 360° | 0 | 20 |
+| `lens-mount-ring` | lens_mount_ring | `samsung-nx/base` | 0° | 0° | 360° | 20 | 25 |
+| `lens-lug-1` | bayonet_lug | `samsung-nx/base` | 30° | 10° | 50° | 21 | 23.5 |
+| `lens-lug-2` | bayonet_lug | `samsung-nx/base` | 150° | 130° | 170° | 21 | 23.5 |
+| `lens-lug-3` | bayonet_lug | `samsung-nx/base` | 292° | 272° | 312° | 21 | 23.5 |
+| `lens-index-mark` | index_mark | `samsung-nx/base` | 240° | unknown | unknown | unknown | 25.5 |
+| `lens-lock-notch` | lock_notch | `samsung-nx/base` | 90° | unknown | unknown | unknown | 22 |
+
+#### Electrical contacts
+
+| Side | No. | Profile | Center angle | Radius | Function |
+|---|---|---|---|---|---|
+| body | 1 | `samsung-nx/base` | 330° | 19 |  |
+| body | 2 | `samsung-nx/base` | 338.5° | 19 |  |
+| body | 3 | `samsung-nx/base` | 347° | 19 |  |
+| body | 4 | `samsung-nx/base` | 355.5° | 19 |  |
+| body | 5 | `samsung-nx/base` | 4° | 19 |  |
+| body | 6 | `samsung-nx/base` | 12.5° | 19 |  |
+| body | 7 | `samsung-nx/base` | 21° | 19 |  |
+| body | 8 | `samsung-nx/base` | 29.5° | 19 |  |
+| lens | 1 | `samsung-nx/base` | 330° | 19 |  |
+| lens | 2 | `samsung-nx/base` | 338.5° | 19 |  |
+| lens | 3 | `samsung-nx/base` | 347° | 19 |  |
+| lens | 4 | `samsung-nx/base` | 355.5° | 19 |  |
+| lens | 5 | `samsung-nx/base` | 4° | 19 |  |
+| lens | 6 | `samsung-nx/base` | 12.5° | 19 |  |
+| lens | 7 | `samsung-nx/base` | 21° | 19 |  |
+| lens | 8 | `samsung-nx/base` | 29.5° | 19 |  |
+
+#### Mechanical couplings
+
+None — fully electronic.
+
+#### Axial stack
+
+| Plane | z (mm) | Diameter (mm) |
+|---|---|---|
+| `flange_datum` | 0 | 52 |
+| `bayonet_lug_engagement` | 1.2 | 47 |
+| `electrical_contact_plane` | 0.5 | 38 |
+| `sensor_film_plane` | -25.5 | 28.35 |
+
+#### Machine-readable mount block
+
+```json
+{
+  "mountId": "samsung-nx",
+  "displayLabel": "Samsung NX",
+  "projectNote": "Samsung NX APS-C mirrorless bayonet mount.",
+  "researchStatus": "partial",
+  "mvpStatus": "renderable",
+  "mechanism": "bayonet",
+  "lockType": "sprung_detent",
+  "mvp": {
+    "requiredViews": [
+      "camera_side_front_view",
+      "lens_side_rear_view",
+      "axial_register_schematic"
+    ],
+    "requirementLevels": {
+      "mvpRequired": [
+        "flange_focal_distance_mm",
+        "nominal_throat_diameter_mm",
+        "camera_mount_outer_diameter_mm"
+      ],
+      "conditionalCoreRequired": [
+        "bayonet_lugs",
+        "lock_pin",
+        "index_mark"
+      ],
+      "variantRequired": [
+        "electrical_contacts"
+      ],
+      "mvpOptional": [
+        "mount_screws"
+      ],
+      "referenceGrade": [
+        "exact_lug_geometry",
+        "contact_pitch",
+        "mount_outer_diameter"
+      ]
+    },
+    "profileModel": {
+      "baseProfileId": "samsung-nx/base",
+      "selectedMvpProfileId": "samsung-nx/base",
+      "variantStrategy": "base_only",
+      "variantProfiles": [
+        {
+          "profileId": "samsung-nx/base",
+          "profileType": "base",
+          "appliesTo": "Samsung NX lenses and APS-C NX bodies, 2010–2015",
+          "adds": [
+            "three-sector short-register bayonet",
+            "eight-contact fully electronic interface",
+            "body-side sprung lock pin and red mounting index"
+          ],
+          "removes": [
+            "mechanical aperture and autofocus couplings"
+          ],
+          "changes": [
+            "single base interface; NX Mini uses the separate, incompatible NX-M mount"
+          ],
+          "cameraSideOverlayLayers": [
+            "camera-side-variant-electrical"
+          ],
+          "lensSideOverlayLayers": [
+            "lens-side-variant-electrical"
+          ],
+          "status": "partial",
+          "sourceRefs": [
+            "snx-1",
+            "snx-2"
+          ]
+        }
+      ]
+    }
+  },
+  "coreDimensions": {
+    "flangeFocalDistanceMm": {
+      "value": 25.5,
+      "status": "secondary",
+      "sourceRefs": [
+        "snx-1"
+      ]
+    },
+    "nominalThroatDiameterMm": {
+      "value": 42,
+      "status": "secondary",
+      "sourceRefs": [
+        "snx-1"
+      ]
+    },
+    "effectiveClearApertureMm": {
+      "value": 42,
+      "status": "secondary",
+      "sourceRefs": [
+        "snx-1"
+      ]
+    },
+    "cameraMountOuterDiameterMm": {
+      "value": 52,
+      "status": "photo_scaled",
+      "sourceRefs": [
+        "snx-2"
+      ]
+    },
+    "lensMountOuterDiameterMm": {
+      "value": 50,
+      "status": "photo_scaled",
+      "sourceRefs": [
+        "snx-2"
+      ]
+    },
+    "contactCount": {
+      "value": 8,
+      "status": "photo_scaled",
+      "sourceRefs": [
+        "snx-2"
+      ]
+    }
+  },
+  "lockGeometry": {
+    "insertionAngleDeg": {
+      "value": 0,
+      "status": "photo_scaled",
+      "sourceRefs": [
+        "snx-2"
+      ]
+    },
+    "lockAngleDeg": {
+      "value": 60,
+      "status": "photo_scaled",
+      "sourceRefs": [
+        "snx-2"
+      ]
+    },
+    "lockRotationDeg": {
+      "value": 60,
+      "status": "photo_scaled",
+      "sourceRefs": [
+        "snx-2"
+      ]
+    },
+    "lockRotationDirection": {
+      "value": "clockwise",
+      "status": "official",
+      "sourceRefs": [
+        "snx-2"
+      ]
+    }
+  },
+  "cameraSideFeatures": [
+    {
+      "featureId": "body-throat",
+      "featureType": "body_throat",
+      "profileId": "samsung-nx/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 360,
+        "status": "secondary",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 21,
+        "status": "secondary",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "depthMm": {
+        "value": "not_applicable",
+        "status": "not_applicable",
+        "sourceRefs": []
+      },
+      "matesWith": "",
+      "shapeNotes": "42 mm throat opening"
+    },
+    {
+      "featureId": "body-mount-ring",
+      "featureType": "mount_ring",
+      "profileId": "samsung-nx/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 360,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 21,
+        "status": "secondary",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 26,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "depthMm": {
+        "value": "not_applicable",
+        "status": "not_applicable",
+        "sourceRefs": []
+      },
+      "matesWith": "",
+      "shapeNotes": "visible body mount ring"
+    },
+    {
+      "featureId": "body-slot-1",
+      "featureType": "bayonet_receiving_slot",
+      "profileId": "samsung-nx/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 30,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 10,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 50,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 21,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 23.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "depthMm": {
+        "value": 1.8,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "matesWith": "lens-lug-1",
+      "shapeNotes": "Samsung NX three-sector bayonet, photo-scaled from NX10/NX100 manual illustrations"
+    },
+    {
+      "featureId": "body-slot-2",
+      "featureType": "bayonet_receiving_slot",
+      "profileId": "samsung-nx/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 150,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 130,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 170,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 21,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 23.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "depthMm": {
+        "value": 1.8,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "matesWith": "lens-lug-2",
+      "shapeNotes": "Samsung NX three-sector bayonet, photo-scaled from NX10/NX100 manual illustrations"
+    },
+    {
+      "featureId": "body-slot-3",
+      "featureType": "bayonet_receiving_slot",
+      "profileId": "samsung-nx/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 292,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 272,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 312,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 21,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 23.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "depthMm": {
+        "value": 1.8,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "matesWith": "lens-lug-3",
+      "shapeNotes": "Samsung NX three-sector bayonet, photo-scaled from NX10/NX100 manual illustrations"
+    },
+    {
+      "featureId": "body-index-mark",
+      "featureType": "index_mark",
+      "profileId": "samsung-nx/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 240,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "startAngleDeg": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "endAngleDeg": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 26.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "depthMm": {
+        "value": "not_applicable",
+        "status": "not_applicable",
+        "sourceRefs": []
+      },
+      "matesWith": "lens-index-mark",
+      "shapeNotes": "red mounting index shown on the camera body"
+    },
+    {
+      "featureId": "body-lock-pin",
+      "featureType": "lock_pin",
+      "profileId": "samsung-nx/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 90,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "startAngleDeg": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "endAngleDeg": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 22,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "depthMm": {
+        "value": 1.8,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "matesWith": "lens-lock-notch",
+      "shapeNotes": "lock pin/notch beside the body-side lens-release control"
+    }
+  ],
+  "lensSideFeatures": [
+    {
+      "featureId": "lens-throat",
+      "featureType": "lens_throat",
+      "profileId": "samsung-nx/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 360,
+        "status": "secondary",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 20,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "thicknessMm": {
+        "value": "not_applicable",
+        "status": "not_applicable",
+        "sourceRefs": []
+      },
+      "matesWith": "",
+      "shapeNotes": "rear opening"
+    },
+    {
+      "featureId": "lens-mount-ring",
+      "featureType": "lens_mount_ring",
+      "profileId": "samsung-nx/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 360,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 20,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 25,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "thicknessMm": {
+        "value": "not_applicable",
+        "status": "not_applicable",
+        "sourceRefs": []
+      },
+      "matesWith": "",
+      "shapeNotes": "lens flange ring"
+    },
+    {
+      "featureId": "lens-lug-1",
+      "featureType": "bayonet_lug",
+      "profileId": "samsung-nx/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 30,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 10,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 50,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 21,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 23.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "thicknessMm": {
+        "value": 1.8,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "matesWith": "body-slot-1",
+      "shapeNotes": "Samsung NX three-sector bayonet, photo-scaled from NX10/NX100 manual illustrations"
+    },
+    {
+      "featureId": "lens-lug-2",
+      "featureType": "bayonet_lug",
+      "profileId": "samsung-nx/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 150,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 130,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 170,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 21,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 23.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "thicknessMm": {
+        "value": 1.8,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "matesWith": "body-slot-2",
+      "shapeNotes": "Samsung NX three-sector bayonet, photo-scaled from NX10/NX100 manual illustrations"
+    },
+    {
+      "featureId": "lens-lug-3",
+      "featureType": "bayonet_lug",
+      "profileId": "samsung-nx/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 292,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "startAngleDeg": {
+        "value": 272,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "endAngleDeg": {
+        "value": 312,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": 21,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 23.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "thicknessMm": {
+        "value": 1.8,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "matesWith": "body-slot-3",
+      "shapeNotes": "Samsung NX three-sector bayonet, photo-scaled from NX10/NX100 manual illustrations"
+    },
+    {
+      "featureId": "lens-index-mark",
+      "featureType": "index_mark",
+      "profileId": "samsung-nx/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 240,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "startAngleDeg": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "endAngleDeg": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 25.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "thicknessMm": {
+        "value": "not_applicable",
+        "status": "not_applicable",
+        "sourceRefs": []
+      },
+      "matesWith": "body-index-mark",
+      "shapeNotes": "aligns with body index"
+    },
+    {
+      "featureId": "lens-lock-notch",
+      "featureType": "lock_notch",
+      "profileId": "samsung-nx/base",
+      "count": 1,
+      "centerAngleDeg": {
+        "value": 90,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "startAngleDeg": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "endAngleDeg": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "innerRadiusMm": {
+        "value": "unknown",
+        "status": "unknown",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "outerRadiusMm": {
+        "value": 22,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "thicknessMm": {
+        "value": 1.8,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "matesWith": "body-lock-pin",
+      "shapeNotes": "receives body lock pin"
+    }
+  ],
+  "axialStack": [
+    {
+      "planeId": "flange_datum",
+      "zPositionMm": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "thicknessMm": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "diameterMm": {
+        "value": 52,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      }
+    },
+    {
+      "planeId": "bayonet_lug_engagement",
+      "zPositionMm": {
+        "value": 1.2,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "thicknessMm": {
+        "value": 1.8,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "diameterMm": {
+        "value": 47,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      }
+    },
+    {
+      "planeId": "electrical_contact_plane",
+      "zPositionMm": {
+        "value": 0.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "thicknessMm": {
+        "value": 0.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "diameterMm": {
+        "value": 38,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      }
+    },
+    {
+      "planeId": "sensor_film_plane",
+      "zPositionMm": {
+        "value": -25.5,
+        "status": "secondary",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "thicknessMm": {
+        "value": 0,
+        "status": "secondary",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      },
+      "diameterMm": {
+        "value": 28.35,
+        "status": "secondary",
+        "sourceRefs": [
+          "snx-1",
+          "snx-2"
+        ]
+      }
+    }
+  ],
+  "contacts": [
+    {
+      "side": "body",
+      "contactNo": 1,
+      "profileId": "samsung-nx/base",
+      "centerAngleDeg": {
+        "value": 330,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 19,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "heightMm": {
+        "value": 2.8,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0.4,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "body",
+      "contactNo": 2,
+      "profileId": "samsung-nx/base",
+      "centerAngleDeg": {
+        "value": 338.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 19,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "heightMm": {
+        "value": 2.8,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0.4,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "body",
+      "contactNo": 3,
+      "profileId": "samsung-nx/base",
+      "centerAngleDeg": {
+        "value": 347,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 19,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "heightMm": {
+        "value": 2.8,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0.4,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "body",
+      "contactNo": 4,
+      "profileId": "samsung-nx/base",
+      "centerAngleDeg": {
+        "value": 355.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 19,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "heightMm": {
+        "value": 2.8,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0.4,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "body",
+      "contactNo": 5,
+      "profileId": "samsung-nx/base",
+      "centerAngleDeg": {
+        "value": 4,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 19,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "heightMm": {
+        "value": 2.8,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0.4,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "body",
+      "contactNo": 6,
+      "profileId": "samsung-nx/base",
+      "centerAngleDeg": {
+        "value": 12.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 19,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "heightMm": {
+        "value": 2.8,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0.4,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "body",
+      "contactNo": 7,
+      "profileId": "samsung-nx/base",
+      "centerAngleDeg": {
+        "value": 21,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 19,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "heightMm": {
+        "value": 2.8,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0.4,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "body",
+      "contactNo": 8,
+      "profileId": "samsung-nx/base",
+      "centerAngleDeg": {
+        "value": 29.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 19,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "heightMm": {
+        "value": 2.8,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0.4,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "lens",
+      "contactNo": 1,
+      "profileId": "samsung-nx/base",
+      "centerAngleDeg": {
+        "value": 330,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 19,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "heightMm": {
+        "value": 2.8,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "lens",
+      "contactNo": 2,
+      "profileId": "samsung-nx/base",
+      "centerAngleDeg": {
+        "value": 338.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 19,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "heightMm": {
+        "value": 2.8,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "lens",
+      "contactNo": 3,
+      "profileId": "samsung-nx/base",
+      "centerAngleDeg": {
+        "value": 347,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 19,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "heightMm": {
+        "value": 2.8,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "lens",
+      "contactNo": 4,
+      "profileId": "samsung-nx/base",
+      "centerAngleDeg": {
+        "value": 355.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 19,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "heightMm": {
+        "value": 2.8,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "lens",
+      "contactNo": 5,
+      "profileId": "samsung-nx/base",
+      "centerAngleDeg": {
+        "value": 4,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 19,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "heightMm": {
+        "value": 2.8,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "lens",
+      "contactNo": 6,
+      "profileId": "samsung-nx/base",
+      "centerAngleDeg": {
+        "value": 12.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 19,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "heightMm": {
+        "value": 2.8,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "lens",
+      "contactNo": 7,
+      "profileId": "samsung-nx/base",
+      "centerAngleDeg": {
+        "value": 21,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 19,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "heightMm": {
+        "value": 2.8,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "function": ""
+    },
+    {
+      "side": "lens",
+      "contactNo": 8,
+      "profileId": "samsung-nx/base",
+      "centerAngleDeg": {
+        "value": 29.5,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "centerRadiusMm": {
+        "value": 19,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "widthMm": {
+        "value": 1.3,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "heightMm": {
+        "value": 2.8,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "shape": "pad",
+      "protrusionMm": {
+        "value": 0,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "function": ""
+    }
+  ],
+  "mechanicalCouplings": [],
+  "screwsGasketsBaffles": [
+    {
+      "featureId": "body-mount-screws",
+      "featureType": "mount_screws",
+      "side": "body",
+      "count": {
+        "value": 4,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "pcdMm": {
+        "value": 47,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "diameterMm": {
+        "value": 1.8,
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "centerAnglesDeg": {
+        "value": [
+          35,
+          145,
+          215,
+          325
+        ],
+        "status": "photo_scaled",
+        "sourceRefs": [
+          "snx-2"
+        ]
+      },
+      "shape": "round"
+    }
+  ],
+  "svgLayers": {
+    "mvpRequired": [
+      "datum-axis",
+      "camera-side-metal",
+      "lens-side-metal",
+      "axial-section",
+      "uncertainty"
+    ],
+    "conditionalCoreRequired": [
+      "clear-aperture",
+      "camera-side-core-interface",
+      "lens-side-core-interface"
+    ],
+    "variantRequired": [
+      "camera-side-variant-electrical",
+      "lens-side-variant-electrical"
+    ]
+  },
+  "sourceRefs": [
+    {
+      "ref": "snx-1",
+      "sourceType": "secondary",
+      "citation": "“Samsung NX-mount,” Wikipedia. Accessed 2026-08-02.",
+      "liveUrl": "https://en.wikipedia.org/wiki/Samsung_NX-mount",
+      "archiveUrl": "http://web.archive.org/web/20260623060500/https://en.wikipedia.org/wiki/Samsung_NX-mount",
+      "archiveDate": "2026-06-23",
+      "appliesTo": "25.5 mm flange focal distance, 42 mm mount diameter, APS-C NX identity",
+      "confidence": "medium"
+    },
+    {
+      "ref": "snx-2",
+      "sourceType": "official",
+      "citation": "Samsung NX10 User Manual, version 1.3, pp. 17 and 21. Accessed 2026-08-02.",
+      "liveUrl": "https://www.samsung.com/ca/support/model/EV-NX10ZZBABCA/",
+      "archiveUrl": "https://nxfiles.nx.tc/files/NX10/Manual/NX10_English.pdf",
+      "archiveDate": "2026-08-02",
+      "appliesTo": "clockwise attachment, mount/index/release arrangement, and visual layout of the three bayonet sectors and eight electrical contacts",
+      "confidence": "medium"
+    }
+  ],
+  "openQuestions": [
+    {
+      "issue": "NX mount outer diameters, lug spans/angles, lock rotation, contact pitch, and screw circle are photo-scaled; no production mechanical drawing was located.",
+      "affectedFields": [
+        "coreDimensions.cameraMountOuterDiameterMm",
+        "coreDimensions.lensMountOuterDiameterMm",
+        "cameraSideFeatures",
+        "lensSideFeatures",
+        "lockGeometry",
+        "contacts",
+        "screwsGasketsBaffles"
+      ],
+      "candidateValues": [],
+      "resolution": "Upgrade from a Samsung service drawing or measured NX body/lens sample."
+    },
+    {
+      "issue": "The commonly published 42 mm mount diameter is secondary-sourced and should be checked against metrology.",
+      "affectedFields": [
+        "coreDimensions.nominalThroatDiameterMm",
+        "coreDimensions.effectiveClearApertureMm"
+      ],
+      "candidateValues": [
+        "42 mm"
+      ],
+      "resolution": "Confirm whether 42 mm denotes the clear throat or another mount-diameter convention."
+    }
+  ],
+  "schemaVersion": "1.3",
+  "coordinateConvention": {
+    "units": "mm_deg",
+    "zDatum": "flange_datum",
+    "zPositive": "toward_lens",
+    "angleZero": "top_dead_center_camera_front_view",
+    "anglePositive": "clockwise_camera_front_view",
+    "storedAngleFrame": "camera_front_view",
+    "lensRearMirror": "theta_out = (360 - theta) mod 360",
+    "angleSpanRule": "clockwise_sweep_start_to_end_mod_360"
+  },
+  "render": {
+    "unitMapping": "1_user_unit_per_mm",
+    "marginFraction": 0.1,
+    "numericPrecision": 3,
+    "views": {
+      "cameraSideFront": {
+        "viewBox": "-32 -33 64 65"
+      },
+      "lensSideRear": {
+        "viewBox": "-31 -32 62 63"
+      },
+      "axialSection": {
+        "viewBox": "-32 -36 39 68"
+      }
+    }
+  },
+  "metadata": {
+    "title": "Samsung NX mount",
+    "desc": "Samsung NX mount — flange focal distance 25.5 mm, nominal throat 42 mm.",
+    "view": "unknown",
+    "profileId": "samsung-nx/base"
+  }
+}
+```
+
+#### Sources
+
+| Ref | Type | Citation | Archive | Captured | Confidence |
+|---|---|---|---|---|---|
+| `snx-1` | secondary | “Samsung NX-mount,” Wikipedia. Accessed 2026-08-02. | [snapshot](http://web.archive.org/web/20260623060500/https://en.wikipedia.org/wiki/Samsung_NX-mount) | 2026-06-23 | medium |
+| `snx-2` | official | Samsung NX10 User Manual, version 1.3, pp. 17 and 21. Accessed 2026-08-02. | [snapshot](https://nxfiles.nx.tc/files/NX10/Manual/NX10_English.pdf) | 2026-08-02 | medium |
+
+#### Open questions
+
+- NX mount outer diameters, lug spans/angles, lock rotation, contact pitch, and screw circle are photo-scaled; no production mechanical drawing was located. _(Upgrade from a Samsung service drawing or measured NX body/lens sample.)_
+- The commonly published 42 mm mount diameter is secondary-sourced and should be checked against metrology. _(Confirm whether 42 mm denotes the clear throat or another mount-diameter convention.)_
 
 ### `sigma-sa` — Sigma SA
 

@@ -45,6 +45,7 @@ import PENTAX_110_MOUNT from "./pentax-110.mount.js";
 import PENTAX_645_MOUNT from "./pentax-645.mount.js";
 import PENTAX_67_MOUNT from "./pentax-67.mount.js";
 import PENTAX_K_MOUNT from "./pentax-k.mount.js";
+import SAMSUNG_NX_MOUNT from "./samsung-nx.mount.js";
 import SIGMA_SA_MOUNT from "./sigma-sa.mount.js";
 import SONY_A_MOUNT from "./sony-a.mount.js";
 import SONY_E_MOUNT from "./sony-fe.mount.js";
@@ -86,6 +87,7 @@ export const MOUNT_SPECS: Partial<Record<LensMountId, MountSpec>> = {
   "pentax-645": normalizeMountSpec(PENTAX_645_MOUNT),
   "pentax-67": normalizeMountSpec(PENTAX_67_MOUNT),
   "pentax-k": normalizeMountSpec(PENTAX_K_MOUNT),
+  "samsung-nx": normalizeMountSpec(SAMSUNG_NX_MOUNT),
   "sigma-sa": normalizeMountSpec(SIGMA_SA_MOUNT),
   "sony-a": normalizeMountSpec(SONY_A_MOUNT),
   "sony-fe": normalizeMountSpec(SONY_E_MOUNT),
