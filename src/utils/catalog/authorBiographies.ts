@@ -156,6 +156,72 @@ export const AUTHOR_BIOGRAPHIES = {
       },
     ],
   },
+  "Masaki Isshiki": {
+    summary:
+      "Masaki Isshiki (1927–2019) was a Nikon optical designer, software pioneer, and later professor of engineering. After joining Nippon Kogaku in 1949, he helped establish the company's computer-aided lens-design system while developing photographic optics. His work included telephoto and wide-angle objectives and the extraordinary 230-degree SAP Fisheye-Nikkor 6.2 mm f/5.6. In 1988 he became a professor at Tokyo Polytechnic University and devoted his later career to training optical engineers.",
+    sources: [
+      {
+        label: "Nikon — NIKKOR: The Thousand and One Nights No. 79",
+        url: "https://imaging.nikon.com/imaging/information/story/0079/",
+      },
+      {
+        label: "Nikon — NIKKOR: The Thousand and One Nights No. 48",
+        url: "https://imaging.nikon.com/imaging/information/story/0048/",
+      },
+    ],
+  },
+  "Takashi Higuchi": {
+    summary:
+      "Takashi Higuchi was a Nikon optical designer and a pioneer of the modern wide-angle zoom. Around 1960 he devised a negative-positive two-group layout that achieved zooming and focusing with the minimum two powered groups. Nikon describes the invention as a breakthrough that prompted optics manufacturers worldwide to pursue the same architecture, which remains foundational to normal and wide-angle zooms. Higuchi designed Nikon's early Zoom-Nikkor objectives and later managed the company's Sagamihara plant.",
+    sources: [
+      {
+        label: "Nikon — NIKKOR: The Thousand and One Nights No. 56",
+        url: "https://imaging.nikon.com/imaging/information/story/0056/",
+      },
+      {
+        label: "Nikon — NIKKOR: The Thousand and One Nights No. 62",
+        url: "https://imaging.nikon.com/imaging/information/story/0062/",
+      },
+    ],
+  },
+  "Soichi Nakamura": {
+    summary:
+      "Soichi Nakamura was a renowned Nikon optical designer and design leader who carried forward Takashi Higuchi's negative-positive wide-angle zoom tradition. His work in this catalog spans wide-angle, telephoto, and extreme-range zooms, while Nikon also credits him with leading the 400 mm f/3.5 IF-ED supertelephoto program and directing the company's first wide-angle autofocus zoom. In 1994 Nakamura and two colleagues received a Japan Institute of Invention and Innovation prize for internal-focusing supertelephoto lenses.",
+    sources: [
+      {
+        label: "Nikon — NIKKOR: The Thousand and One Nights No. 93",
+        url: "https://imaging.nikon.com/imaging/information/story/0093/",
+      },
+      {
+        label: "Nikon — NIKKOR: The Thousand and One Nights No. 66",
+        url: "https://imaging.nikon.com/imaging/information/story/0066/",
+      },
+    ],
+  },
+  "Kiyoshi Hayashi": {
+    summary:
+      "Kiyoshi Hayashi was a Nikon optical designer, mentor, and one of the primary designers behind the AI NIKKOR generation. His first objective, the 200 mm f/2 IF-ED, achieved an unprecedented specification and led to further internal-focusing supertelephoto work. He also became the third-generation steward of Nikon's negative-positive wide-angle zoom method and trained later designers. In 1994 Hayashi and two colleagues received a Japan Institute of Invention and Innovation prize for their internal-focusing supertelephoto inventions.",
+    sources: [
+      {
+        label: "Nikon — NIKKOR: The Thousand and One Nights No. 31",
+        url: "https://imaging.nikon.com/imaging/information/story/0031/",
+      },
+      {
+        label: "Nikon — NIKKOR: The Thousand and One Nights No. 93",
+        url: "https://imaging.nikon.com/imaging/information/story/0093/",
+      },
+    ],
+  },
+  "Yoshinari Hamanishi": {
+    summary:
+      "Yoshinari Hamanishi, whose given name Nikon renders as Yoshinori, was a Nikon optical designer and teacher of lens-design theory. He inherited zoom-design methods from Soichi Nakamura and applied them to several popular AI and autofocus telephoto zooms. Hamanishi also advanced Micro-Nikkor design by combining a fast Gaussian objective with floating correction for close-range performance. Nikon describes him as an authority on zoom solution curves who later took responsibility for training other optical designers.",
+    sources: [
+      {
+        label: "Nikon — NIKKOR: The Thousand and One Nights No. 26",
+        url: "https://imaging.nikon.com/imaging/information/story/0026/",
+      },
+    ],
+  },
   "Haruo Sato": {
     summary:
       "Haruo Sato is a Nikon optical designer and one of the principal authors documenting NIKKOR design history in the company’s Thousand and One Nights series. He joined Nikon in 1985 and, only six months later, was assigned his first lens: the Ai AF Zoom Nikkor 24–50 mm f/3.3–4.5S, Nikon’s first wide-angle autofocus zoom. His later patent record spans compact consumer zooms, professional ultra-wide zooms, supertelephotos, and fast prime lenses.",
