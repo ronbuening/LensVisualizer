@@ -45,6 +45,19 @@ Verification: gate passed (223 files / 2609 tests).
 
 Verification: gate passed (223 files / 2609 tests).
 
+### D3 — real deployment topology
+
+- `agent_docs/workflow.md` Deployment section now describes both targets: Cloudflare Pages as canonical production
+  and `.github/workflows/deploy.yml` (GitHub Pages) as an active mirror triggered by a successful Quality Checks run
+  on `main`. Replaces the previous "former/legacy workflow" wording, which contradicted the maintainer decision and
+  the workflow's actual `workflow_run` trigger.
+- Called out that `public/_headers` and `public/_redirects` are Cloudflare-only, so the mirror serves without CSP,
+  COOP/CORP, Permissions-Policy, Referrer-Policy, `X-Content-Type-Options`, `X-Frame-Options`, or the SPA `200`
+  rewrites; canonical URLs mitigate duplicate-content SEO.
+- CLAUDE.md/agents.md Verification paragraph updated to mention the mirror.
+
+Verification: gate passed (223 files / 2609 tests).
+
 ## Follow-ups
 
 - Remaining Stage 1 items tracked in the plan; later stages untouched.

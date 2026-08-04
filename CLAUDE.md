@@ -210,7 +210,8 @@ fresh clone. Run `npm run generate:metadata` first only when running lint alone 
 files) or when stray root-level lens files need organizing.
 
 Run `npm run build` for route, metadata, lens-data organization, SEO, article, or sitemap changes. Production deploys
-through Cloudflare Pages; see `agent_docs/workflow.md`.
+through Cloudflare Pages, with a GitHub Pages mirror that serves without the `public/_headers` security headers; see
+`agent_docs/workflow.md`.
 
 ## Compaction Instructions
 

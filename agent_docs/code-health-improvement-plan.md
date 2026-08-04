@@ -693,7 +693,7 @@ Verification: gate passes (path-existence half of docDrift covers the new refs).
 
 ### D3. Document the real deployment topology (Cloudflare production + GitHub Pages mirror)
 
-- [ ] Effort: S · Impact: med · Risk: low
+- [x] Effort: S · Impact: med · Risk: low
 
 Maintainer decision: Cloudflare Pages is production; `.github/workflows/deploy.yml` (GitHub Pages)
 is a mirror/backup. Docs currently say only "Cloudflare Pages"; the repo carries both platforms'
