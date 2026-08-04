@@ -33,6 +33,7 @@ State modules live under `src/utils/state/`.
 | `lensViewUrlSync.ts` | Bridges reducer `LensState` to the URL surface and converts focal length ↔ `zoomT` against the loaded lens(es). |
 | `parseComparisonParams.ts` | Legacy comparison query parsing (kept for backward compat). Also exports `parseLensKeysFromSearch` for callers that have already parsed view state. |
 | `zoomConversion.ts` | Focal length to/from zoom slider conversion. |
+| `authorSortPreference.ts` | Guarded localStorage persistence for the author directory's alphabetical/patent-count sort. |
 
 `rayDensity` is a local preference, not a shareable URL parameter. Keep its runtime guard in `src/types/state.ts`,
 load/save handling in `preferences.ts` / `usePreferences.ts`, and reducer field guard in sync when adding density modes.

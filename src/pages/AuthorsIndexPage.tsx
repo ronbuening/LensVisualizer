@@ -5,7 +5,7 @@
  * linking to the generated patent aggregation page for each author.
  */
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router";
 import SEOHead from "../components/SEOHead.js";
 import PageNavBar from "../components/layout/PageNavBar.js";
@@ -15,12 +15,16 @@ import { SITE_NAME, SITE_URL } from "../utils/catalog/lensMetadata.js";
 import { collectionPageJsonLd, itemListJsonLd } from "../utils/seo/structuredData.js";
 import { PAGE_BASE_STYLE } from "../utils/style/pageStyles.js";
 import { toggleBtn, toggleGroup } from "../utils/style/styles.js";
+import {
+  DEFAULT_AUTHOR_SORT,
+  loadAuthorSortPreference,
+  saveAuthorSortPreference,
+  type AuthorSort,
+} from "../utils/state/authorSortPreference.js";
 import { usePageThemeToggle } from "../utils/theme/usePageThemeToggle.js";
 
-type AuthorSort = "alphabetical" | "patents";
-
 export default function AuthorsIndexPage() {
-  const [sortBy, setSortBy] = useState<AuthorSort>("alphabetical");
+  const [sortBy, setSortBy] = useState<AuthorSort>(DEFAULT_AUTHOR_SORT);
   const { theme: t, themeMode, highContrast, toggleTheme, toggleHC } = usePageThemeToggle();
   const seoDescription = `Browse ${AUTHORS.length} named optical patent authors and open their related patents and interactive lens diagrams.`;
   const sortedAuthors = useMemo(
@@ -32,6 +36,15 @@ export default function AuthorsIndexPage() {
       ),
     [sortBy],
   );
+
+  useEffect(() => {
+    setSortBy(loadAuthorSortPreference());
+  }, []);
+
+  const selectSort = (sort: AuthorSort) => {
+    setSortBy(sort);
+    saveAuthorSortPreference(sort);
+  };
 
   return (
     <div style={{ backgroundColor: t.bg, color: t.body, minHeight: "100vh" }}>
@@ -99,7 +112,7 @@ export default function AuthorsIndexPage() {
                   key={option.value}
                   type="button"
                   aria-pressed={selected}
-                  onClick={() => setSortBy(option.value)}
+                  onClick={() => selectSort(option.value)}
                   style={toggleBtn(t, selected, { hasRightBorder: index === 0, padding: "0.45rem 0.7rem" })}
                 >
                   {option.label}

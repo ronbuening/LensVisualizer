@@ -16,6 +16,7 @@ import CatalogSearchBox from "../../../src/components/search/CatalogSearchBox.js
 import { getAuthorBiography } from "../../../src/utils/catalog/authorBiographies.js";
 import { AUTHORS, getAuthorByName, patentsForAuthor } from "../../../src/utils/catalog/authorCatalog.js";
 import { PATENTS, PATENT_COUNTRY_GROUPS, espacenetPatentUrl } from "../../../src/utils/catalog/patentCatalog.js";
+import { AUTHOR_SORT_PREFERENCE_KEY } from "../../../src/utils/state/authorSortPreference.js";
 import themes from "../../../src/utils/theme/themes.js";
 import { clearBrowserState, installMatchMediaMock, renderWithRouter } from "../../testUtils.js";
 
@@ -146,6 +147,47 @@ describe("search, author, and patent pages", () => {
 
     expect(screen.getByRole("button", { name: "Patent count" }).getAttribute("aria-pressed")).toBe("true");
     expect(document.querySelector("main a[href^='/authors/']")?.textContent).toBe(authorsByPatentCount[0].name);
+    expect(localStorage.getItem(AUTHOR_SORT_PREFERENCE_KEY)).toBe("patents");
+  });
+
+  it("restores the author sort preference on a later visit", async () => {
+    localStorage.setItem(AUTHOR_SORT_PREFERENCE_KEY, "patents");
+    const authorsByPatentCount = [...AUTHORS].sort(
+      (left, right) => right.patentCount - left.patentCount || left.name.localeCompare(right.name),
+    );
+
+    renderWithRouter(
+      <HelmetProvider>
+        <Routes>
+          <Route path="/authors" element={<AuthorsIndexPage />} />
+        </Routes>
+      </HelmetProvider>,
+      { initialEntries: ["/authors"] },
+    );
+
+    await waitFor(() =>
+      expect(screen.getByRole("button", { name: "Patent count" }).getAttribute("aria-pressed")).toBe("true"),
+    );
+    expect(document.querySelector("main a[href^='/authors/']")?.textContent).toBe(authorsByPatentCount[0].name);
+  });
+
+  it("falls back to alphabetical sorting for an invalid stored preference", async () => {
+    localStorage.setItem(AUTHOR_SORT_PREFERENCE_KEY, "newest-first");
+    const alphabeticalAuthors = [...AUTHORS].sort((left, right) => left.name.localeCompare(right.name));
+
+    renderWithRouter(
+      <HelmetProvider>
+        <Routes>
+          <Route path="/authors" element={<AuthorsIndexPage />} />
+        </Routes>
+      </HelmetProvider>,
+      { initialEntries: ["/authors"] },
+    );
+
+    await waitFor(() =>
+      expect(screen.getByRole("button", { name: "Alphabetical" }).getAttribute("aria-pressed")).toBe("true"),
+    );
+    expect(document.querySelector("main a[href^='/authors/']")?.textContent).toBe(alphabeticalAuthors[0].name);
   });
 
   it("labels author index entries that include a curated biography", () => {
