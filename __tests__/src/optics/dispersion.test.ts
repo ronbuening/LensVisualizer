@@ -96,6 +96,21 @@ describe("glass catalog", () => {
     expect(evaluateCatalogAbbeNumber(entry!)).toBeCloseTo(26.58, 2);
   });
 
+  it.each([
+    { name: "J-SK12", code: "583594", nd: 1.58313, vd: 59.42 },
+    { name: "J-LAK14", code: "697555", nd: 1.6968, vd: 55.52 },
+    { name: "J-LAK18", code: "729546", nd: 1.72916, vd: 54.61 },
+    { name: "J-LASF016", code: "773496", nd: 1.7725, vd: 49.62 },
+    { name: "J-LASFH24", code: "902253", nd: 1.902, vd: 25.26 },
+  ])("$name reproduces the Nikon/Hikari workbook coordinate", (datasheet) => {
+    const entry = resolveGlass(datasheet.name);
+    expect(entry?.name).toBe(datasheet.name);
+    expect(entry?.vendor).toBe("Hikari");
+    expect(entry?.code6).toBe(datasheet.code);
+    expect(evaluateSellmeier(entry!, LINE_NM.d)).toBeCloseTo(datasheet.nd, 5);
+    expect(evaluateCatalogAbbeNumber(entry!)).toBeCloseTo(datasheet.vd, 2);
+  });
+
   it("L-TIM28P reproduces the published OHARA line indices and Abbe number", () => {
     const entry = resolveGlass("L-TIM28P (OHARA)");
     expect(entry?.name).toBe("L-TIM28P");

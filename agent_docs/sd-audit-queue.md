@@ -85,6 +85,7 @@ better investment.
 | AI AF Zoom-Nikkor 24-120mm f/3.5-5.6 D IF | Automated crop contaminated by dense labels/brackets; 300 dpi hand measurements used | done 2026-07-29; published 17A/34A apertures retained |
 | AF Zoom-Nikkor 28-200mm f/3.5-5.6 G IF-ED | Median 1.113; revised L12/L21 each 1.00 after normalization | done 2026-07-29 |
 | AF-S NIKKOR 500mm f/5.6E PF ED VR | Figure 3 at 600 dpi / 7.5 px/mm; tightened L15/L16, G2, C31, VR1, and CL31 outlines | done 2026-08-03; zero image-circle-floor failures |
+| AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR | Figures 7/9; rear master pair measured about 12.9 mm, engaged Lx7/Lx8 enlarged to validated figure envelope | done 2026-08-03; both TC states have zero image-circle-floor failures |
 
 ### Completed Voigtländer additions
 
