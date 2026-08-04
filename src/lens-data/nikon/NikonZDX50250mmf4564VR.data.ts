@@ -163,7 +163,7 @@ const LENS_DATA = {
       nd: 1.902,
       vd: 25.3,
       fl: -60.4,
-      glass: "Unmatched (902253 high-index dense flint; no exact public coefficient row)",
+      glass: "J-LASFH24 (Hikari catalog equivalent; production supplier unspecified)",
       role: "High-index post-stop negative corrector in GP2.",
     },
     {

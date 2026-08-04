@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **508** lenses scanned
-- **5610** non-air surfaces examined
-- **5615** element glass declarations examined
-- **353** non-explicit-unmatched annotations did not resolve
-- **113** distinct unresolved glass-like tokens found
+- **510** lenses scanned
+- **5672** non-air surfaces examined
+- **5677** element glass declarations examined
+- **366** non-explicit-unmatched annotations did not resolve
+- **122** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -28,14 +28,22 @@ or per-lens patent backfills.
 | 531559 | 2 | 2 | |
 | 585594 | 2 | 1 | |
 | 620586 | 2 | 1 | |
+| 627376 | 2 | 2 | |
+| 633315 | 2 | 2 | |
 | 666356 | 2 | 1 | |
+| 690570 | 2 | 2 | |
 | 720521 | 2 | 2 | |
+| 726548 | 2 | 2 | |
 | 755516 | 2 | 1 | |
 | 762404 | 2 | 1 | |
 | 774492 | 2 | 1 | |
 | 784438 | 2 | 1 | |
+| 804238 | 2 | 2 | |
+| 806418 | 2 | 2 | |
 | 807316 | 2 | 2 | |
 | 813252 | 2 | 1 | |
+| 815233 | 2 | 2 | |
+| 819287 | 2 | 2 | |
 | 856401 | 2 | 1 | |
 | 487698 | 1 | 1 | |
 | 514530 | 1 | 1 | |
@@ -105,6 +113,7 @@ or per-lens patent backfills.
 | 781445 | 1 | 1 | |
 | 781446 | 1 | 1 | |
 | 786275 | 1 | 1 | |
+| 786406 | 1 | 1 | |
 | 787501 | 1 | 1 | |
 | 789457 | 1 | 1 | |
 | 792450 | 1 | 1 | |
@@ -194,15 +203,35 @@ or per-lens patent backfills.
 - [NIKON SERIES E 135mm f/2.8](../../src/lens-data/nikon/NikonSeriesE135mmf28.data.ts) 1: `620586 — patent crown glass (nd=1.62041, νd=58.6; no catalog match verified)`
 - [NIKON SERIES E 135mm f/2.8](../../src/lens-data/nikon/NikonSeriesE135mmf28.data.ts) 3: `620586 — patent crown glass (nd=1.62041, νd=58.6; no catalog match verified)`
 
+### 627376 — 2 occurrences
+
+- [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14.data.ts) 48: `627376 flint class (catalog unresolved)`
+- [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR — TC 1.4x Engaged](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14TCIn.data.ts) 60: `627376 flint class (catalog unresolved)`
+
+### 633315 — 2 occurrences
+
+- [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14.data.ts) 36: `633315 flint class (catalog unresolved)`
+- [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR — TC 1.4x Engaged](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14TCIn.data.ts) 36: `633315 flint class (catalog unresolved)`
+
 ### 666356 — 2 occurrences
 
 - [CANON RF 50mm f/1.2 L USM](../../src/lens-data/canon/CanonRF50mmf12L.data.ts) 8: `666356 — dense flint (nd=1.66565, νd=35.64)`
 - [CANON RF 50mm f/1.2 L USM](../../src/lens-data/canon/CanonRF50mmf12L.data.ts) 16: `666356 — dense flint (nd=1.66565, νd=35.64)`
 
+### 690570 — 2 occurrences
+
+- [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14.data.ts) 42: `690570 crown class (catalog unresolved)`
+- [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR — TC 1.4x Engaged](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14TCIn.data.ts) 42: `690570 crown class (catalog unresolved)`
+
 ### 720521 — 2 occurrences
 
 - [MINOLTA AF APO Tele 200mm f/2.8](../../src/lens-data/minolta/MinoltaAF200mmf28.data.ts) 5: `720521 - high-index lanthanum crown (catalog unresolved)`
 - [MINOLTA VARISOFT ROKKOR 85mm f/2.8](../../src/lens-data/minolta/MinoltaVarisoft85mmf28.data.ts) 6: `720521 - lanthanum crown (catalog unresolved)`
+
+### 726548 — 2 occurrences
+
+- [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14.data.ts) 38: `726548 lanthanum crown class (catalog unresolved)`
+- [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR — TC 1.4x Engaged](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14TCIn.data.ts) 38: `726548 lanthanum crown class (catalog unresolved)`
 
 ### 755516 — 2 occurrences
 
@@ -224,6 +253,16 @@ or per-lens patent backfills.
 - [CARL ZEISS CONTAREX PLANAR 55mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissContarexPlanar55mmf14.data.ts) 7: `LaF10 (Schott 784438)`
 - [CARL ZEISS CONTAREX PLANAR 55mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissContarexPlanar55mmf14.data.ts) 9: `LaF10 (Schott 784438)`
 
+### 804238 — 2 occurrences
+
+- [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14.data.ts) 20: `804238 very-dense flint class (catalog unresolved)`
+- [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR — TC 1.4x Engaged](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14TCIn.data.ts) 20: `804238 very-dense flint class (catalog unresolved)`
+
+### 806418 — 2 occurrences
+
+- [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14.data.ts) 47: `806418 lanthanum flint class (catalog unresolved)`
+- [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR — TC 1.4x Engaged](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14TCIn.data.ts) 59: `806418 lanthanum flint class (catalog unresolved)`
+
 ### 807316 — 2 occurrences
 
 - [MINOLTA AF 100mm f/2.8 Macro](../../src/lens-data/minolta/MinoltaAF100mmf28Macro.data.ts) 13: `807316 - dense lanthanum flint (patent nd=1.80741, vd=31.59; unresolved)`
@@ -233,6 +272,16 @@ or per-lens patent backfills.
 
 - [LEICA ELMARIT-R 28mm f/2.8](../../src/lens-data/leica/LeicaElmarit28mmf28.data.ts) 6: `813252 - high-index flint (patent nd=1.81265, vd=25.24; no exact public catalog match)`
 - [LEICA ELMARIT-R 28mm f/2.8](../../src/lens-data/leica/LeicaElmarit28mmf28.data.ts) 11: `813252 - high-index flint (patent nd=1.81265, vd=25.24; no exact public catalog match)`
+
+### 815233 — 2 occurrences
+
+- [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14.data.ts) 35: `815233 dense flint class (catalog unresolved)`
+- [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR — TC 1.4x Engaged](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14TCIn.data.ts) 35: `815233 dense flint class (catalog unresolved)`
+
+### 819287 — 2 occurrences
+
+- [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14.data.ts) 44: `819287 dense flint class (catalog unresolved)`
+- [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR — TC 1.4x Engaged](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14TCIn.data.ts) 44: `819287 dense flint class (catalog unresolved)`
 
 ### 856401 — 2 occurrences
 
@@ -510,6 +559,10 @@ or per-lens patent backfills.
 ### 786275 — 1 occurrence
 
 - [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) 11: `786275 — dense flint (patent nd=1.78630, nu_d=27.5)`
+
+### 786406 — 1 occurrence
+
+- [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR — TC 1.4x Engaged](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14TCIn.data.ts) 49: `786406 lanthanum crown/flint class (catalog unresolved)`
 
 ### 787501 — 1 occurrence
 

@@ -9,12 +9,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **508** lenses scanned (**500** visible)
-- **4943 / 5610** non-air surfaces use strict catalog Sellmeier data (88.1%)
-- **4954 / 5610** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 88.3%)
+- **510** lenses scanned (**501** visible)
+- **4993 / 5672** non-air surfaces use strict catalog Sellmeier data (88.0%)
+- **5004 / 5672** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 88.2%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
-- **272** code-only missing-Sellmeier elements in Sweep 2: **0** active unreviewed, **125** self-recording explicit dispositions, **0** dispositions missing any review record
+- **288** code-only missing-Sellmeier elements in Sweep 2: **17** active unreviewed, **124** self-recording explicit dispositions, **0** dispositions missing any review record
 - **0** unresolved named-token elements in Sweep 2B, producing **0** token occurrences across **0** distinct tokens
 - **0** Tier A proprietary backfill rows in Sweep 3
 
@@ -40,7 +40,6 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [FUJIFILM FUJINON XF 16-55mm f/2.8 R LM WR](../../src/lens-data/fujifilm/FujifilmXF1655mmf28R.data.ts) | US 2016/0154221 A1 | [PDF](../../patents/US20160154221A1.pdf) | 94.1% (16/17) | 94.1% (16/17) | 1 | 13A [glass] (Element 8 (L31): `Unmatched (685309 dense flint; nearest public catalog row exceeds d-line tolerance)`) | abbe: 1 |
 | [NIKON NIKKOR Z 35mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ35mmf12S.data.ts) | JP 2025-52870A | [PDF](../../patents/JP2025052870A.pdf) | 94.1% (16/17) | 94.1% (16/17) | 1 | 32A [glass] (Element 17: `Barium crown / LaK family (624584, no exact catalog match)`) | abbe: 1 |
 | [NIKON NIKKOR Z 50mm f/1.2 S](../../src/lens-data/nikon/NikonNikkorZ50f12.data.ts) | WO 2021/241230 A1 | [PDF](../../patents/WO2021241230A1.pdf) | 94.1% (16/17) | 94.1% (16/17) | 1 | 5 [glass] (Element 3 (L13): `Unmatched (patent nd=1.55298/vd=55.10; no public catalog candidate)`) | abbe: 1 |
-| [NIKON NIKKOR Z DX 50-250mm f/4.5-6.3 VR](../../src/lens-data/nikon/NikonZDX50250mmf4564VR.data.ts) | WO2020/105107 A1 | [PDF](../../patents/JPWO2020105107A1.pdf) | 93.8% (15/16) | 93.8% (15/16) | 1 | 17 [glass] (L34: `Unmatched (902253 high-index dense flint; no exact public coefficient row)`) | abbe: 1 |
 | [PANASONIC LUMIX G VARIO 7-14mm f/4 ASPH.](../../src/lens-data/panasonic/PanasonicLumixGVario714mmf4.data.ts) | US 2010/0194930 A1 | [PDF](../../patents/US20100194930A1.pdf) | 93.8% (15/16) | 93.8% (15/16) | 1 | 28 [glass] (Element 16: `Unmatched crown class (523/701, likely phosphate/fluorophosphate)`) | abbe: 1 |
 | [PANASONIC LUMIX S 24-105mm f/4 MACRO O.I.S.](../../src/lens-data/panasonic/PanasonicLumixS24105mmf4MacroOIS.data.ts) | JP 2020-118738 A | [PDF](../../patents/JP2020118738A.pdf) | 93.8% (15/16) | 93.8% (15/16) | 1 | 16A [glass] (Element 8: `Unmatched (688311; M-FD80 / S-TIM28 / J-SF8 class)`) | abbe: 1 |
 | [FUJIFILM FUJINON XF 33mm f/1.4 R LM WR](../../src/lens-data/fujifilm/FujifilmXF33mmf14RLMWR.data.ts) | US 2022/0276464 A1 | [PDF](../../patents/US20220276464A1.pdf) | 93.3% (14/15) | 93.3% (14/15) | 1 | 20A [glass] (L26 focus Lp asphere: `Unmatched (853/406 dense lanthanum flint; near S-LAH89 / M-TAFD305 / D-ZLaF85 class)`) | abbe: 1 |
@@ -178,6 +177,15 @@ Add catalog entries only when public coefficient-backed vendor data is available
 
 | Code | Active elements | Lens files | localPatentStatus | Representative rows |
 |---|---:|---:|---|---|
+| 627376 | 2 | 2 | patents/WO2019131993A1.pdf | [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14.data.ts) Element L410 (1.62730 / 37.62)<br>[NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR — TC 1.4x Engaged](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14TCIn.data.ts) Element L410 (1.62730 / 37.62) |
+| 633315 | 2 | 2 | patents/WO2019131993A1.pdf | [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14.data.ts) Element L44 (1.63288 / 31.50)<br>[NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR — TC 1.4x Engaged](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14TCIn.data.ts) Element L44 (1.63288 / 31.50) |
+| 690570 | 2 | 2 | patents/WO2019131993A1.pdf | [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14.data.ts) Element L47 (1.68991 / 56.97)<br>[NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR — TC 1.4x Engaged](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14TCIn.data.ts) Element L47 (1.68991 / 56.97) |
+| 726548 | 2 | 2 | patents/WO2019131993A1.pdf | [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14.data.ts) Element L45 (1.72567 / 54.80)<br>[NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR — TC 1.4x Engaged](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14TCIn.data.ts) Element L45 (1.72567 / 54.80) |
+| 804238 | 2 | 2 | patents/WO2019131993A1.pdf | [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14.data.ts) Element L23 (1.80379 / 23.82)<br>[NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR — TC 1.4x Engaged](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14TCIn.data.ts) Element L23 (1.80379 / 23.82) |
+| 806418 | 2 | 2 | patents/WO2019131993A1.pdf | [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14.data.ts) Element L49 (1.80592 / 41.79)<br>[NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR — TC 1.4x Engaged](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14TCIn.data.ts) Element L49 (1.80592 / 41.79) |
+| 815233 | 2 | 2 | patents/WO2019131993A1.pdf | [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14.data.ts) Element L43 (1.81511 / 23.33)<br>[NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR — TC 1.4x Engaged](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14TCIn.data.ts) Element L43 (1.81511 / 23.33) |
+| 819287 | 2 | 2 | patents/WO2019131993A1.pdf | [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14.data.ts) Element L48 (1.81945 / 28.67)<br>[NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR — TC 1.4x Engaged](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14TCIn.data.ts) Element L48 (1.81945 / 28.67) |
+| 786406 | 1 | 1 | patents/WO2019131993A1.pdf | [NIKON AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR — TC 1.4x Engaged](../../src/lens-data/nikon/NikonAFSNikkor180400mmf4ETC14TCIn.data.ts) Element Lx2 (1.78605 / 40.63) |
 
 ## Sweep 2B - Named Tokens Missing Catalog Resolution
 

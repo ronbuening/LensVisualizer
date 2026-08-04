@@ -7,7 +7,15 @@ available, it falls back to partial measured `nC`/`nF` line indices, dPgF-correc
 approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **457 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **462 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+
+The August 3, 2026 Phase 78 pass added five exact Hikari curves from Nikon/Hikari's first-party 2023-09-01
+optical-glass workbook while auditing the AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR: J-SK12, J-LAK14,
+J-LAK18, J-LASF016, and J-LASFH24. The TC-out prescription rises from 14/27 to 19/27 strict and trusted coverage;
+the TC-in configuration rises from 19/35 to 25/35 because J-LAK18 appears in both the master lens and converter.
+The recovered J-LASFH24 curve also closes the previously reviewed `902253` gap in the NIKKOR Z DX 50-250mm,
+making that lens fully catalog-covered. The regenerated catalog totals are 4993/5672 strict and 5004/5672 trusted,
+with zero catalog-coordinate mismatches.
 
 The August 3, 2026 Phase 77 pass added Hikari J-KZFH4 from Nikon/Hikari's first-party 2023-09-01 optical-glass data
 workbook while auditing the two new Nikon supertelephoto zooms. The exact vendor power-series row resolves the AF-S

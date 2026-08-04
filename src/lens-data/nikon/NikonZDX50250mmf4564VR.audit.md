@@ -47,3 +47,11 @@ Patent: JP WO2020/105107 A1, Example 1
 - No coefficient-backed public row is inside the runtime d-line safety window; the historical J-LASFH24 family
   comparison does not establish an exact dispersion curve.
 - Reworded L34 as explicit unmatched `902253`; no prescription, zoom, focus, or semi-diameter values changed.
+
+## 2026-08-03 - J-LASFH24 catalog recovery
+
+- Nikon/Hikari's first-party 2023-09-01 optical-glass workbook supplies the previously unavailable J-LASFH24
+  power-series row, whose `1.90200 / 25.26` coordinate and `902253` code match L34.
+- Reclassified L34 as a Hikari catalog equivalent while leaving the production supplier unspecified. No prescription,
+  zoom, focus, or semi-diameter values changed.
+- The lens now has strict and trusted catalog dispersion on all 16 glass elements.
