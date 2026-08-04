@@ -9,6 +9,7 @@
 **Published:** 15 August 2019
 **Inventor:** Minoru Murayama (Tokyo, JP)
 **Applicant:** Minoru Murayama (Tokyo, JP)
+**Assignee:** Ricoh Co., Ltd. (assignment recorded on the filing date)
 **Title:** Imaging Lens System and Imaging Apparatus Incorporating the Same
 **Embodiment analyzed:** Example 1 (FIG. 1, FIG. 31)
 

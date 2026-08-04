@@ -7,7 +7,7 @@
 **Filed:** 1959-02-10
 **Published:** 1964-11-14
 **Inventor:** Saburo Murakami
-**Applicant:** Nippon Kogaku Kogyo Kabushiki Kaisha
+**Applicant:** Nippon Kogaku K.K. (source romanization: Nippon Kogaku Kogyo Kabushiki Kaisha)
 **Title:** Photographic lens (写真レンズ)
 **Embodiment analyzed:** Embodiment 1
 

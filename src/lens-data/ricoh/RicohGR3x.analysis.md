@@ -3,7 +3,8 @@
 ## US 2022/0026670 A1 — Example 3 (Production Design)
 
 **Patent:** US 2022/0026670 A1, *Imaging Lens, Camera, and Portable Information Terminal Apparatus*
-**Inventor:** Kazuyasu Ohashi (individual applicant, Chiba, Japan)
+**Inventor / Applicant:** Kazuyasu Ohashi (Chiba, Japan)
+**Assignee:** Ricoh Co., Ltd. (assignment recorded before publication)
 **Priority:** March 7, 2019 (JP 2019-041727)
 **PCT filed:** February 17, 2020 (PCT/JP2020/006106)
 **Published:** January 27, 2022
@@ -24,7 +25,7 @@ Example 3 from US 2022/0026670 A1 is identified as the production design for the
 | Image circle | 28.4 mm diagonal (Y′ = 14.2 mm) | APS-C (23.5 × 15.6 mm, diag ≈ 28.2 mm) | ✓ |
 | Half angle of view | 28.3° | ~28.3° (40 mm equiv.) | ✓ |
 
-**Note on patent attribution:** The US publication lists the inventor Kazuyasu Ohashi as the individual applicant — no company is named. The connection to Ricoh is established through convergence of product specifications, not explicit assignment. The patent's detailed description of a portable information terminal apparatus with collapsible lens barrel and 24-megapixel-class sensor directly corresponds to the GR IIIx product. The inventor has prior optical patents in the compact camera and interchangeable lens space.
+**Note on patent attribution:** The US publication lists Kazuyasu Ohashi as the applicant, while the USPTO assignment record documents transfer to Ricoh Co., Ltd. before publication. The patent's detailed description of a portable information terminal apparatus with collapsible lens barrel and 24-megapixel-class sensor directly corresponds to the GR IIIx product.
 
 ---
 

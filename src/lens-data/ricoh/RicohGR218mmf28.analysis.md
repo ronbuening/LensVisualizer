@@ -6,9 +6,10 @@
 **Inventor:** Kazuyasu Ohashi (Funabashi-shi, JP)
 **Priority:** JP 2012-127431, June 4, 2012
 **Filed:** May 31, 2013
+**Assignee:** Ricoh Co., Ltd. (assignment recorded on the filing date)
 **Embodiment analyzed:** Example 3
 **Production lens:** Ricoh GR (2013), Ricoh GR II (2015)  
-**Note:** The published application lists no corporate assignee; the inventor filed individually. The described designs are clearly intended for Ricoh compact cameras and portable information terminals.
+**Note:** The publication lists the inventor as applicant, while the USPTO assignment record documents transfer to Ricoh Co., Ltd. on the filing date.
 
 ---
 

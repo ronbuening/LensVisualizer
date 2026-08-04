@@ -6,9 +6,10 @@
 **Inventor:** Kazunori Ohno (Omiya City, Japan).
 **Filed:** March 8, 2001 (US). **Priority:** March 28, 2000 (JP 2000-089202).
 **Published:** December 13, 2001.
+**Assignee:** Fuji Photo Optical Co., Ltd. (assignment recorded on the filing date).
 **Embodiment analyzed:** Embodiment 3 (Table 3, Figs. 4A–4C).
 
-The patent is not assigned to a corporate entity, but Kazunori Ohno is a career lens designer at Fuji Photo Optical Co., Ltd. (later Fujinon Corporation, now a division of Fujifilm). His name appears on multiple Fujifilm-assigned patents spanning zoom lenses, viewfinder optics, and imaging objectives (e.g., US 5,179,472 assigned to Fuji Photo Optical; US 8,514,504 assigned to Fujifilm Corporation). A Fujifilm corporate blog identifies "Kazunori Oono" (alternate romanization of 大野) as a former Senior Manager of the Optical Device Division. The Hasselblad H-system lenses are manufactured by Fujifilm under the SUPER-EBC Fujinon designation.
+The USPTO assignment record documents transfer from Kazunori Ohno to Fuji Photo Optical Co., Ltd. on the filing date, with an effective date one day earlier. Fuji Photo Optical later became Fujinon Corporation and then part of Fujifilm. The Hasselblad H-system lenses are manufactured by Fujifilm under the SUPER-EBC Fujinon designation.
 
 The identification of Embodiment 3 with the Hasselblad HC 80mm f/2.8 rests on the following convergent evidence:
 

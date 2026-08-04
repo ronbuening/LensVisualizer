@@ -54,7 +54,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 2004/0223070 A1",
   patentAuthors: ["Takashi Shirasuna"],
-  patentAssignees: [],
+  patentAssignees: ["Canon Inc."],
   patentYear: 2004,
   elementCount: 10,
   groupCount: 9,

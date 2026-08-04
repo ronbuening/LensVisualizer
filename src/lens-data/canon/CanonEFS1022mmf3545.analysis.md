@@ -9,7 +9,7 @@
 **Published:** December 29, 2005  
 **Priority:** JP 2004-187856, filed June 25, 2004  
 **Inventor:** Takeshi Nishimura  
-**Applicant / Assignee:** Not printed in the U.S. publication excerpt; Canon attribution follows from the production-lens match and Canon's published EF-S 10-22mm specifications.  
+**Assignee:** Canon Inc. (assigned to Canon Kabushiki Kaisha on the filing date)\
 **Embodiment analyzed:** Numerical Fifth Embodiment (¶0107; Fig. 9; aberration plots Figs. 10A-10C)
 
 The Fifth Embodiment of US 2005/0286139 A1 is the closest published prescription match to the Canon EF-S 10-22mm f/3.5-4.5 USM. The identification is not based on a single signature but on a set of mutually consistent features.

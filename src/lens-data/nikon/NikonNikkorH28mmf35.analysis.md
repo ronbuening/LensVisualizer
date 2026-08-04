@@ -7,7 +7,7 @@
 **Filed:** December 26, 1958  
 **Published:** December 10, 1963  
 **Inventor:** Wakimoto Zenji (脇本善司)  
-**Applicant:** Nippon Kogaku Kogyo K.K. (日本光学工業株式会社)  
+**Applicant:** Nippon Kogaku K.K. (日本光学工業株式会社; source romanization: Nippon Kogaku Kogyo K.K.)\
 **Title:** 広角写真レンズ (Wide-Angle Photographic Lens)  
 **Embodiment analyzed:** Sole worked example
 

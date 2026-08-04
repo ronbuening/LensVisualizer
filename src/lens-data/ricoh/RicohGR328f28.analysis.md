@@ -4,7 +4,7 @@
 
 **Patent:** US 2019/0154946 A1, "Imaging Lens, Camera, and Portable Information Terminal Device"
 **Applicant / Inventor:** Kazuyasu Ohashi (Chiba, JP)
-**Assignee:** Not listed in the publication. Ohashi has a long record of lens patents assigned to Ricoh Co., Ltd. (e.g., EP2708930B1, US9864167B2, US20060193062A1), and the described design matches the Ricoh GR III. Assignment was likely recorded separately at the USPTO.
+**Assignee:** Ricoh Co., Ltd. (assignment recorded on the filing date)
 **Priority:** JP 2017-225118 (22 November 2017)
 **Filed (US):** 26 September 2018
 **Published:** 23 May 2019

@@ -49,7 +49,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 2020/0301101 A1",
   patentAuthors: ["Yoichi Nomura"],
-  patentAssignees: [],
+  patentAssignees: ["Ricoh Co., Ltd."],
   patentYear: 2020,
   elementCount: 12,
   groupCount: 10,

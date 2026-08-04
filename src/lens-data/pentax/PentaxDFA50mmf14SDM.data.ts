@@ -49,7 +49,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 2019/0250367 A1",
   patentAuthors: ["Minoru Murayama"],
-  patentAssignees: [],
+  patentAssignees: ["Ricoh Co., Ltd."],
   patentYear: 2019,
   elementCount: 15,
   groupCount: 9,
