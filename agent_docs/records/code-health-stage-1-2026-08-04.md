@@ -18,12 +18,22 @@
 - Deviation from the spec's literal wording: the map/command comments were reworded slightly to match the
   surrounding style (sentence-style comments, aligned `#` column) rather than pasted verbatim.
 
-## Verification
+Verification: gate passed (223 files / 2606 tests).
 
-- `npm run typecheck` — passed
-- `npm run format:check` — passed
-- `npm run lint` — passed
-- `npm run test` — passed (223 files, 2606 tests)
+### N10 — doc-drift guard over commands, project map, script inventory
+
+- `__tests__/docDrift.test.ts` gained three assertions: every `npm run X` in CLAUDE.md exists in
+  `package.json`; every non-lifecycle script appears in the Commands fence; every top-level `src/` and
+  `src/components/` directory appears in the Project Map fence.
+- Lifecycle hooks are detected as `pre<script>` where `<script>` itself exists, so `preview` is still required
+  to be documented while `pretest`/`pretypecheck`/`pretest:coverage` are exempt.
+- Deviation: the repo has no `@types/node` — only the hand-written `__tests__/node-builtins.d.ts` shim — so
+  directory detection uses `readdirSync` + `statSync().isDirectory()` instead of `withFileTypes`. The shim was
+  left untouched.
+- Mutation-checked: deleting a Commands line, renaming a documented script, and deleting the `search/` map line
+  each fail the intended new assertion.
+
+Verification: gate passed (223 files / 2609 tests).
 
 ## Follow-ups
 

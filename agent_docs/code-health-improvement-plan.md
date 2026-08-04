@@ -349,7 +349,7 @@ Verification: gate passes.
 
 ### N10. Extend the doc-drift guard to commands, project map, and script inventory
 
-- [ ] Effort: S · Impact: med-high · Risk: none
+- [x] Effort: S · Impact: med-high · Risk: none
 
 `__tests__/docDrift.test.ts` checks only (a) `agents.md` ≡ CLAUDE.md and (b) inline-backtick paths
 exist. It never scans fenced code blocks, so the Project Map and Commands blocks are unguarded —
