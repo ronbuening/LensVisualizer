@@ -16,8 +16,11 @@ excluded during the audit.
 
 ## How To Use This Plan
 
-- Tiers are ordered **greatest impact + least risk first**. Execute tiers roughly in order; items
-  within a tier are independent unless a "Depends on" line says otherwise.
+- Execute the **Implementation Order** below from top to bottom. It is dependency-ordered so each
+  branch lands after the tests, shared seams, and generator baselines it relies on.
+- The detailed item specifications retain their N/X/D/U/C/G identifiers for branch and history
+  tracking. Their specification sections are grouped only to keep related reference material easy
+  to find; those groups are not an execution order.
 - Pick ONE item per branch. Do not combine items. Do not fix unrelated things you notice — file
   them here instead.
 - Every item ends with the same gate:
@@ -37,17 +40,81 @@ excluded during the audit.
 Effort: **S** ≤ half day · **M** 1–2 days · **L** 2+ days.
 Status: `[ ]` open · `[x]` done · `[-]` rejected (keep entry, note why).
 
+## Implementation Order
+
+This sequence is authoritative. Finish each numbered stage before starting the next; within a
+stage, follow the listed order unless an item's own verification uncovers a blocker.
+
+### Stage 1 — Establish the repository and generator baseline
+
+1. **D1** — correct CLAUDE.md/agents.md commands and project map.
+2. **N10** — add the doc-drift guard against that corrected baseline.
+3. **D2 → D3 → D4** — bring architecture, deployment, and shipped-plan records current.
+4. **D7 → D9** — make metadata parsing loud and remove the unsafe legacy git helper before
+   later publication-order work.
+5. **D8** — remove the dead changelog component before page-shell consolidation touches the same
+   area.
+6. **D10** — settle glass naming/report output before byte-diff-gated glass refactors.
+
+### Stage 2 — Land regression nets before behavior or structure changes
+
+1. **N1 → N2 → N3 → N4** — catalog parity, URL contracts, and configuration invariants.
+2. **N6 → N7 → N8 → N9** — trace goldens and direct catalog/content coverage.
+3. **G12** — add the folded-diffractive fixture and generalized-trace assertions before changing
+   the shared interaction code.
+
+The aspheric schema item deliberately moves out of this stage: single-sourcing the coefficient
+schema changes runtime math implementation and therefore belongs after the golden trace net.
+
+### Stage 3 — Fix verified user-visible and API defects
+
+1. **X1 → X2 → X3 → X4 → X5 → X6** — visual, navigation, accessibility, and
+   heading/anchor fixes.
+2. **X7 → X8 → X9** — deterministic catalog ordering and public metadata labels/dates.
+3. **X10 → X11 → X12 → X13** — settle tokenizer semantics before scan reuse, then close
+   the chromatic API trap and relationship-map failure boundary.
+
+### Stage 4 — Consolidate engine foundations and report generators
+
+1. **G1** — centralize normalization caching so subsequent engine work uses one prepared lens.
+2. **N5** — single-source the aspheric coefficient schema and derive validation/math/tests from it.
+3. **G2 → G3 → G4 → G5 → G6 → G7** — consolidate trace interaction, paraxial,
+   chromatic, and resolver primitives in dependency order.
+4. **G8 → G9** — move scans onto the settled shared primitives, then remove compatibility types
+   and dead exports.
+5. **G10 → G11** — perform guarded trace-loop readability work and harden audit scripts.
+6. **D5** — slim generated reports only after their generators and shared scan library have
+   stabilized.
+
+### Stage 5 — Consolidate the catalog data layer
+
+1. **C6 → C4 → C7** — settle shared metadata/ref types, text/hash helpers, and role vocabulary.
+2. **C2 → C1 → C3** — consolidate grouping and patent aggregation, then precompute the author
+   directory over the shared records.
+3. **C5 → C9 → C10** — optimize search and single-source publication/feed ordering contracts.
+
+### Stage 6 — Consolidate UI on the settled data and state seams
+
+1. **U1 → U2** — establish the shared responsive hook, then migrate compatible static pages.
+2. **U3 → U4** — extract patent-attribution components and shared visual vocabulary.
+3. **U5 → U6** — standardize dropdown behavior and the repeated filter template.
+4. **U7** — add URL-shareable optical configuration and compare reachability last, after catalog,
+   shell, and URL-state contracts are stable.
+
+Items D6, C8, and G13 are rejected below and are not part of the implementation sequence.
+
 ## Maintainer Decisions (recorded 2026-08-04)
 
 Answers from the maintainer that shape this plan. Do not re-litigate these during execution:
 
 1. **Deployment:** Cloudflare Pages is production; the GitHub Pages workflow
    (`.github/workflows/deploy.yml`) is a mirror/backup. Docs should describe the dual setup (D3).
-2. **Generated reports/benchmarks:** slim the payloads but keep everything agents read committed
-   (D5, D6). Do NOT gitignore reports.
-3. **Patent/author subsystem:** will keep expanding — consolidate aggressively now (Tier 5, U3).
+2. **Generated reports/benchmarks:** slim generated report payloads through D5, but keep everything
+   agents read committed. D6's benchmark premise was later rejected; do NOT gitignore reports or
+   benchmark records.
+3. **Patent/author subsystem:** will keep expanding — consolidate aggressively in Stages 5–6.
 4. **Engine internals:** behavior-preserving refactors are in scope when gated by the golden trace
-   suite, full test run, and generated-report byte-diffs (Tier 6).
+   suite, full test run, and generated-report byte-diffs (Stage 4).
 5. **Badge tints:** fix forward — make the designed tints actually render (X1).
 6. **Publication dates:** standardize on UTC everywhere (X8).
 7. **TC configuration state:** make it URL-shareable and reachable in compare mode (U7).
@@ -82,10 +149,11 @@ The audit explicitly confirmed these are in good shape; do not spend branches on
 
 ---
 
-## Tier 1 — Safety Nets (N-series) · test-only, zero regression risk
+## N-Series Specifications — Safety Nets and Foundational Invariants
 
-These add missing regression nets around code that already shipped. They cannot break behavior and
-they protect every later tier. Do these first.
+These add missing regression nets around code that already shipped. N5 is the exception: it now
+single-sources a runtime coefficient schema and therefore executes in Stage 4 after the trace
+goldens, rather than with the test-only items.
 
 ### N1. Author/assignee patent-count parity test (the #639 bug class)
 
@@ -164,25 +232,42 @@ Steps:
 
 Verification: gate passes; editing one shared surface in only one file fails the parity test.
 
-### N5. Odd-asphere sag/derivative consistency property test
+### N5. Single-source the aspheric coefficient schema; derive sag, slope, validation, and tests
 
-- [ ] Effort: S · Impact: med · Risk: none
+- [ ] Effort: M · Impact: high · Risk: med (runtime math refactor; golden/benchmark gated)
 
 The A3–A20 coefficient set is hand-synchronized across four expansions: the type
 (`src/types/optics.ts` ~148–172), validator lists (`src/optics/validateLensData.ts` ~37–55), the
 unrolled sag polynomial (`src/optics/internal/surfaceMath.ts` ~56–79), and the separately unrolled
-derivative (~101–124). Missing one spot when adding a coefficient makes surface normals disagree
-with sag — rays refract off a shape whose gradient is wrong, producing plausible wrong aberrations
-with no crash.
+derivative (~101–124). Adding a test with its own hard-coded coefficient list would create a fifth
+copy and would still miss a future coefficient omitted from both math paths.
+
+This is no longer a test-only safety-net item. Execute it in Stage 4, after N6 has expanded the
+golden trace suite, and keep it on its own branch.
 
 Steps:
-1. In `__tests__/src/optics/internal/surfaceIntersection.test.ts`, add a property test: build a
-   coefficient object with EVERY key in the validator's known-coefficient list nonzero; assert
-   `sagSlopeRaw` matches a central-difference derivative of `conicPolySag` to 1e-8 across a sweep
-   of h values (include h near the domain edge).
+1. Add a small shared schema module under `src/types/` containing one ordered descriptor list for
+   `K` and every A3–A20 term. Each polynomial descriptor records its key, power, parity, and whether
+   the field is required. Derive the required/optional `AsphericCoefficients` keys from this list
+   and re-export the type from `src/types/optics.ts` to preserve existing imports.
+2. Make `validateLensData.ts` derive its required, optional, and known-key checks from the same
+   descriptor list. No validator-local coefficient array remains.
+3. Make `conicPolySag` and `sagSlopeRaw` evaluate polynomial terms from the ordered descriptors,
+   preserving the existing even/odd accumulation order and the separately handled conic `K`
+   term. Do not combine the conic-domain clamp with polynomial evaluation.
+4. Add descriptor-driven term-isolation tests: every polynomial descriptor is set nonzero by
+   itself and checked against its analytic sag and derivative. Add a combined-term central-
+   difference sweep only inside the valid conic domain, using an adaptive step plus combined
+   absolute/relative tolerance. Test the intentional invalid-domain clamp separately; do not take
+   a finite difference across the clamp boundary.
+5. Measure `npm run benchmark:optics-rendering` before/after because sag/slope are hot trace
+   functions. If descriptor iteration causes a material regression, keep the descriptor as the
+   source of truth but compile active ordered term evaluators once per normalized surface rather
+   than restoring hand-maintained lists.
 
-Verification: gate passes; zeroing one term in only the derivative unroll fails the test.
-Out of scope: rewriting the unrolls as loops (bit-identical unrolls were kept deliberately).
+Verification: gate passes; N6 golden values are unchanged unless a reviewed pre-existing math bug
+is exposed; validator tests cover every descriptor; zeroing any one sag or slope contribution
+fails its term-isolation case; benchmark change is within noise or documented and approved.
 
 ### N6. Golden-value trace coverage for July's new physics; trace hidden configuration members
 
@@ -276,14 +361,14 @@ Steps:
    exist in `package.json` scripts; (2) every non-`pre*` script in `package.json` must appear in
    CLAUDE.md's Commands fence; (3) every top-level directory of `src/` and `src/components/` must
    appear in the Project Map fence.
-2. Land D1 first (or in the same branch) so the new assertions start green.
+2. Land D1 on its own preceding branch so the new assertions start green.
 
 Depends on: D1.
 Verification: gate passes; deleting a Commands line from CLAUDE.md fails the test.
 
 ---
 
-## Tier 2 — User-Visible Bug Fixes (X-series) · small, low-risk, verified wins
+## X-Series Specifications — User-Visible and API Bug Fixes
 
 Real defects found by the audit. Each is a small branch with a test where the N-series doesn't
 already cover it.
@@ -318,39 +403,35 @@ Verification: gate passes; new unit test; screenshots or manual check noted in t
 Out of scope: promoting the badge palette to theme tokens (file under D-series follow-up if
 wanted; requires `agent_docs/theme_tokens.md` four-variant procedure).
 
-### X2. Unified scroll + hash-anchor navigation (fixes RSS deep links; adds missing scroll-to-top) **[changelog]**
+### X2. Make `/updates#entry` RSS deep links hash-safe **[changelog]**
 
-- [ ] Effort: M · Impact: med-high · Risk: low-med
+- [ ] Effort: S · Impact: med · Risk: low
 
-Two related defects:
-(a) The #644 changelog feed links to `/updates#<entryId>` (`scripts/generate-rss-feeds.mjs` ~221),
-but `src/pages/UpdatesPage.tsx:16-18` unconditionally `window.scrollTo({top: 0})` on mount,
-undoing the browser's native anchor scroll — the flagship "exact entry links" feature works only by
-viewport accident.
-(b) Only 3 of 16 pages scroll to top on SPA navigation (`ArticlePage`, `ArticlesPage`,
-`UpdatesPage` hand-rolled effects); with `createBrowserRouter` and no `<ScrollRestoration>`,
-clicking an author at the bottom of `/authors` opens the detail page mid-scroll.
+The #644 changelog feed links to `/updates#<entryId>` (`scripts/generate-rss-feeds.mjs` ~221), but
+`src/pages/UpdatesPage.tsx:16-18` unconditionally calls `window.scrollTo({top: 0})` on mount,
+undoing the browser's native anchor scroll. The earlier proposal to move all scrolling into
+`src/main.tsx`'s pathname-only GoatCounter subscription was unsafe: hash-only navigation is not a
+pathname change, the subscription can run before a lazy route commits, and it would define an
+unreviewed back/forward restoration policy for every route.
 
 Steps:
-1. In `src/main.tsx`, inside the existing `router.subscribe` path-change block (the GoatCounter
-   `_gcLastPath` branch): on path change, if `location.hash` is empty, `window.scrollTo(0, 0)`;
-   if a hash is present, attempt `document.getElementById(hash.slice(1))?.scrollIntoView()` after
-   paint.
-2. Delete the three per-page scroll effects (`ArticlePage.tsx` ~29–31, `ArticlesPage.tsx` ~25–27,
-   `UpdatesPage.tsx` ~16–18).
+1. Keep this fix local to `UpdatesPage`. Read `useLocation().hash`; when it is empty, retain the
+   page's existing scroll-to-top behavior. When present, decode the fragment safely and, after the
+   page commit, call `scrollIntoView()` on the matching entry instead of calling `scrollTo(0, 0)`.
+   Cancel any queued animation-frame callback during cleanup.
+2. Do not change the GoatCounter subscription in `main.tsx`, the article-page effects, or unrelated
+   route scroll behavior in this item.
 3. Add one sentence to `agent_docs/changelog.md`: shipped changelog summaries are append-only —
    editing one changes its public anchor and RSS GUID (`changelogEntryId` hashes
    `date|type|summary`).
-4. jsdom test spying `window.scrollTo`: navigation without hash resets; navigation with hash does
-   not reset; `/patents#...` deep link still resolves (existing `searchPages.test.tsx` sidebar
-   test is the partial net for anchors).
+4. Add page tests for a cold `/updates#<real-entry-id>` render, same-page hash navigation, an
+   encoded fragment, and the no-hash scroll-to-top case. Assert the target's `scrollIntoView`, not
+   merely the absence of `window.scrollTo`.
 
-Verification: gate passes; manual check: open `/updates#<some-entry-id>` cold and confirm the
-entry is scrolled into view; navigate index → detail and confirm top position.
-Gotchas: `RelationshipMapPage` reads `location.hash` for focus state — confirm the new hash branch
-does not fight it (that page's hash is not an element id; `getElementById` returns null and no
-scroll occurs — assert this in the test).
-Rollback: revert branch; per-page effects return.
+Verification: gate passes; manually cold-load one feed URL and follow a second entry link while
+already on `/updates`; both targets become visible inside the changelog's scroll container.
+Out of scope: site-wide scroll restoration. Add that only with a router-level design covering
+PUSH/REPLACE/POP navigation, lazy-route commit timing, and saved-position behavior.
 
 ### X3. Relationship map SVG: `role="group"` + keyboard-focus visibility **[changelog]**
 
@@ -570,7 +651,7 @@ Verification: gate passes; test shows picker still renders when the map throws.
 
 ---
 
-## Tier 3 — Docs & Repo Hygiene (D-series) · low risk, high leverage for agent workflows
+## D-Series Specifications — Docs and Repository Hygiene
 
 CLAUDE.md is the agent contract; the audit found the entire July catalog subsystem invisible from
 it. These are cheap, safe, and compound with every future agent task.
@@ -640,7 +721,9 @@ was never created (coverage actually lives in `opticsEngineMath.test.ts` ~15–8
 
 Steps:
 1. `git mv agent_docs/relationship-map-plan.md agent_docs/records/relationship-map-plan.md`;
-   update the CLAUDE.md index line to "shipped implementation record (2026-07-22)" (+ agents.md).
+   update the CLAUDE.md index line to "shipped implementation record (2026-07-22)" (+ agents.md),
+   then update every remaining repo reference to the moved path, including this plan's
+   Verified Healthy note.
 2. Delete the traceMode paragraph from TRACE_MODEL_IMPROVEMENT_PLAN.md.
 3. Correct the test-location sentence in `agent_docs/diffractive-phase-surfaces-plan.md`.
 
@@ -667,30 +750,13 @@ Steps (one report per commit, verifying consumers after each):
 4. Regenerate everything: `npm run generate:glass-reports && npm run generate:mirror-reports &&
    npm run generate:mount-svgs`.
 
-Verification: gate passes; `wc -c agent_docs/generated/*` shows every committed file < 300 KB;
-scan tests still pass in a checkout WITHOUT `patents/` (deterministic-skip behavior preserved —
-`agent_docs/gotchas.md:46`).
+Verification: gate passes;
+`find agent_docs/generated -type f -size +300k -print` returns no committed file; scan tests still
+pass in a checkout WITHOUT `patents/` (deterministic-skip behavior preserved —
+`agent_docs/gotchas.md:46`). This reduces the current checkout and future blob growth; it does not
+reclaim the historical blobs while history rewriting remains out of scope.
 Out of scope: history rewrite (separate decision, not urgent); gitignoring anything.
 Rollback: revert branch; regenerate.
-
-### D6. Shrink benchmark run payloads
-
-- [ ] Effort: S · Impact: med · Risk: low
-
-`agent_docs/benchmarks/runs` holds 14 JSON files, 12 MB, 424k lines (~37k lines/run — raw
-per-sample arrays the report never reads; it uses aggregates of the newest 10). The retention
-policy caps count, not size.
-
-Steps:
-1. In the benchmark writer (`src/benchmarks/` + its script entry), store per-scenario aggregates
-   (mean/median/p95/min/max, sample count) and drop raw sample arrays; keep schema versioned.
-2. Update `agent_docs/benchmarks/README.md` policy text.
-3. Regenerate one run to confirm the report renders identically in structure.
-
-Verification: gate passes; a fresh run file is < 50 KB; `npm run benchmark:optics-rendering`
-completes and the report generator consumes the new shape (its test:
-`benchmarkOpticsRenderingScript.test.ts`).
-Out of scope: pruning existing history.
 
 ### D7. Loud failures for silently dropped articles
 
@@ -753,10 +819,10 @@ Verification: gate passes; `npm run generate:glass-reports` diff shows only casi
 
 ---
 
-## Tier 4 — UI Consolidation (U-series) · the shared seams the new pages need
+## U-Series Specifications — UI Consolidation
 
 Maintainer confirmed the patent/author area keeps expanding — build the seams now so the next
-feature lands once, not three times. Order matters: U1 → U2 → U3/U4, then the rest freely.
+feature lands once, not three times. Follow the Stage 6 order after the catalog seams settle.
 
 ### U1. One media-query hook (the #639 four-file bug, fixed structurally)
 
@@ -904,7 +970,7 @@ Verification: gate passes.
 
 ### U7. Make TC/optical-configuration state URL-shareable and compare-reachable **[changelog]**
 
-- [ ] Effort: M · Impact: med · Risk: low
+- [ ] Effort: M · Impact: med · Risk: med (lens identity, URL hydration, hidden catalog keys)
 
 Maintainer decision: change the deliberate viewer-local design. Today
 `LensViewer.tsx` ~124–141 keeps `selectedConfigurationKey` in component state (comment: "the
@@ -913,16 +979,25 @@ canonical catalog lens and URL remain unchanged"), so a shared URL always reprod
 comparison (hidden keys already work if hand-typed via the `needsHiddenCatalog` branch ~87–92).
 
 Steps:
-1. Add a `cfg` URL-state field via the standard mechanism — read `agent_docs/adding_url_state.md`
-   FIRST. Gotcha (`agent_docs/gotchas.md:72`): "Adding a new shareable view-state field requires
-   three coordinated edits" — `VIEW_STATE_FIELDS` entry, `src/types/state.ts` slices, and the
-   parse/build branch. Validate the value against `opticalConfigurationOptionsForKey(lensKeyA)`;
-   fall back to the canonical key when invalid.
-2. Hydrate `selectedConfigurationKey` from it; write back on toggle.
-3. Surface configuration variants in the compare picker so `/compare/tc-in/tc-out` is reachable
-   from UI (group members from `lensCatalog.ts` ~57–74).
-4. Tests: URL round-trip (mimic `lensViewUrlState.test.ts`), toggle-updates-URL, compare-picker
-   listing (extend `LensViewer.test.tsx` ~262–276).
+1. Treat configuration as lens identity, not panel state. Add `selectedConfigurationKey` to
+   `LensSlice` and a dedicated reducer action/reset path. Add `configurationKey?: string` to
+   `URLState`, but **do not** add it to `VIEW_STATE_FIELDS`: that table is applied wholesale to
+   `PanelsSlice` by `APPLY_URL_VIEW_STATE` and is only appropriate for panel/view fields.
+2. Add `cfg` as a custom-encoded v1 query field in `lensViewUrlState.ts`. The generic parser may
+   accept only a bounded, syntactically valid key; perform catalog-aware validation at the
+   lens-aware initialization/popstate boundary against
+   `opticalConfigurationOptionsForKey(lensKeyA)`. Invalid, cross-group, or stale values fall back
+   to the canonical key and are removed on the next URL write.
+3. Hydrate the valid value in the initial reducer state so a fresh shared URL does not render the
+   wrong prescription for a frame. Switching the canonical lens resets configuration before URL
+   serialization; toggling configuration clears selected-element state and writes `cfg`.
+4. Keep compare identity in the route: `/compare/<variant-key>/<variant-key>`, with no ambiguous
+   single `cfg` query applying to two panels. Expand compare-selector options from visible catalog
+   keys plus their `opticalConfiguration` group members, and pass that same expanded allow-list to
+   route parsing/state initialization. Do not expose unrelated hidden debug/reference fixtures.
+5. Tests: custom-field URL round-trip and invalid-value removal; fresh-tab initialization;
+   back/forward hydration; canonical-lens reset; compare picker lists group variants; selecting a
+   hidden variant navigates to and reloads the expected compare route.
 
 Verification: gate passes; share a TC-IN URL into a fresh tab and confirm TC-IN renders.
 Out of scope: per-configuration analysis caching changes (prepared-state caches already key on the
@@ -930,7 +1005,7 @@ runtime lens object).
 
 ---
 
-## Tier 5 — Catalog Data-Layer Consolidation (C-series) · one source of truth per concept
+## C-Series Specifications — Catalog Data-Layer Consolidation
 
 The area keeps expanding (maintainer decision) — every future patent feature pays these seams.
 Do C1 before C3; N3's pin tests before C4.
@@ -1060,29 +1135,6 @@ not change emitted anchor strings** (N3 pins them). Document the mapping in `gro
 Depends on: N3.
 Verification: gate passes; N3 pins unchanged.
 
-### C8. Delete the canonical-URL twin; one `SITE_NAME`; fix the hardcoded origin
-
-- [ ] Effort: S · Impact: med-high · Risk: low
-
-`scripts/site-url.mjs` is a byte-level twin of `src/utils/seo/siteUrls.ts` (SITE_URL, 24-entry
-extension set, `canonicalPagePath/Url`) consumed by sitemap/RSS/seo-audit — only the TS side is
-tested. The duplication rationale lapsed: scripts already import project TS directly
-(`generate-rss-feeds.mjs` ~11–12), and `siteUrls.ts` is import-free. Also: `SITE_NAME` defined 3×
-(`lensMetadata.ts` ~14, `comparisonURLSync.ts` ~12, `generate-rss-feeds.mjs` ~15); a hardcoded
-origin in `lensIndex/urlState.ts` ~175 bypasses `SITE_URL`.
-
-Steps:
-1. Replace `scripts/site-url.mjs` contents with re-exports from `../src/utils/seo/siteUrls.ts`
-   (keep the file so the three consumers don't change).
-2. Export `SITE_NAME` from one place (`lensMetadata.ts` already exports it) and import elsewhere.
-3. `urlState.ts` ~175: use `SITE_URL`.
-4. Update the stale intentional-duplication note in
-   `agent_docs/architecture/routing-and-content.md` ~79.
-
-Verification: gate passes; `npm run build` (sitemap + RSS + seo pipeline all run);
-`diff <(git show HEAD:dist-paths) …` not needed — instead byte-diff `dist/sitemap.xml` and
-`dist/feeds/*.xml` before/after the change: identical.
-
 ### C9. One publication-order comparator
 
 - [ ] Effort: S · Impact: med · Risk: low
@@ -1116,11 +1168,12 @@ Verification: gate passes; `npm run build && npm run seo:audit` clean;
 
 ---
 
-## Tier 6 — Engine & Scripts Consolidation (G-series) · behavior-preserving, gated
+## G-Series Specifications — Engine and Script Consolidation
 
 Maintainer decision: in scope, each gated by the golden trace suite, the full test run, and
-generated-report byte-diffs. Do G1 first (it de-risks everything by making normalization cheap),
-then G2–G9 in any order; G13 last (highest complexity). For any item touching trace numerics, run
+generated-report byte-diffs. Follow Stage 4 exactly: G1 and N5 establish the shared runtime
+foundations; G2–G7 settle primitives; G8/G9 then consolidate their scan consumers; G10/G11 follow;
+D5 changes report shapes last. For any item touching trace numerics, run
 `npm run benchmark:optics-rendering` before/after per the EFFICIENCY plan's measurement policy if
 a perf claim is made.
 
@@ -1272,8 +1325,8 @@ Steps:
 2. Convert scans ONE per commit; after each, regenerate and assert the generated .md is
    byte-identical (`git diff --exit-code agent_docs/generated/<file>`).
 
-Depends on: X10, G4, G7 step 1. Coordinate with D5 (report slimming) — if D5 lands first, the
-byte-diff target is the slimmed output.
+Depends on: X10, G4, G7 step 1. G8 must land before D5 so each scan conversion can still prove
+behavior preservation against the current full-detail report baseline.
 Verification: per-commit byte-identical reports; gate passes; combined scan wall-time noted.
 
 ### G9. Type/dead-code cleanup: `SurfaceDispersion` name collision, dead `indexAt`, deprecated trio
@@ -1321,47 +1374,37 @@ validation (finite page ≥ 1, crop = four numbers in [0,1], `--sd` finite > 0);
 invoking `audit-image-circle` on a known lens to lock the loader contract.
 Verification: gate passes; each script runs against one lens with a relative AND an absolute path.
 
-### G12. Guard (or fixture-validate) diffractive surfaces in folded systems
+### G12. Fixture-validate diffractive surfaces in folded systems
 
-- [ ] Effort: S · Impact: med-low · Risk: low
+- [ ] Effort: M · Impact: med · Risk: low-med (test fixture may expose an existing trace defect)
 
-`validateLensData.ts` ~732–737 rejects diffractive only on reflect/block surfaces — a refracting
-phase surface inside a folded `opticalPath` system validates, but the generalized tracers' phase
-branches have ZERO test coverage, and house style keeps folded interactions guarded until
-fixture-backed (CLAUDE.md Core Working Rules).
-
-Steps — either (a) guard-first: extend validation to reject `diffractive` when
-`data.opticalPath !== undefined`, with a message pointing here; or (b) validate: add a hidden
-reference fixture (mimic `src/lens-data/reference/` mirror fixtures) with a flat same-index phase
-plate ahead of a fold plus a reciprocity assertion through `traceGeneralized`, then leave
-validation permissive. (a) is the S-effort default; (b) upgrades it later.
-Verification: gate passes; if (a), a synthetic folded+DOE fixture fails validation with the new
-message; `npm run generate:mirror-reports` unchanged.
-
-### G13. Cache git freshness in metadata generation (~600 subprocesses per dev/test run)
-
-- [ ] Effort: M · Impact: med · Risk: med
-
-Every `npm run dev`/`pretest`/`pretypecheck` spawns a `git log --follow` per lens/content file
-(513 + 41 via `mapLimit(8)`, `build-metadata-lib.mjs` ~132–142) plus serial `git show` per
-tracked article (`generate-build-metadata.mjs` ~133–160) — the largest fixed cost in the edit-test
-loop, recomputed from scratch, growing weekly.
+`validateLensData.ts` ~732–737 correctly rejects diffractive data on reflect/block surfaces while
+allowing a refracting phase surface in a folded `opticalPath`. The generalized tracers implement
+that combination, but their phase branches have no folded fixture coverage. Rejecting every
+folded+diffractive prescription would remove currently accepted behavior without evidence that
+the implementation is wrong, so validation must remain permissive.
 
 Steps:
-1. Cache keyed on `git rev-parse HEAD` + a digest of `git status --porcelain`: write
-   `src/generated/git-freshness-cache.json` (gitignored dir already); reuse when key matches.
-2. Batch `collectTrackedArticlePathsBySlug` into one `git grep -l "^slug:" HEAD -- src/content` +
-   `git show` only for needed files.
-3. THE TRAP is `--follow` rename semantics — do not replace per-file `--follow` with a single
-   `--name-status` pass in this item; the cache alone removes the repeat cost.
-   `assertFreshnessDiversity` stays as the safety net.
-4. Tests: cache hit/miss behavior in `buildMetadataHelpers.test.ts` (existing parsing suite is
-   the regression bed); a dirty-file edit must invalidate.
+1. Add a hidden reference fixture under `src/lens-data/reference/` with a flat same-index phase
+   plate before a simple fold. Give it an explicit `opticalPath`/`surfaceOrder`, conservative
+   apertures, and analytically predictable geometry.
+2. Trace the fixture through both generalized trace surfaces that contain phase/refraction logic.
+   Assert the expected diffraction-direction change, successful traversal of the fold, finite
+   image-plane intercept, and matching results between the two generalized entry points. Do not
+   impose a naive same-order reverse-ray reciprocity assertion on the phase surface; reversing a
+   grating path requires the physically reciprocal order/sign convention.
+3. Add a zero-phase-order/control assertion showing that the same folded fixture reduces to its
+   ordinary refractive behavior, including forward/reverse agreement across the non-phase control
+   path. Keep the existing validation rejection for attaching `diffractive` directly to
+   reflect/block interactions.
+4. Register the hidden fixture exactly like the existing mirror references and regenerate the
+   mirror report. Review and commit the expected new fixture row; do not require a byte-identical
+   report when the fixture inventory intentionally grows.
 
-Verification: gate passes; second consecutive `npm run generate:metadata` completes with zero
-`git log` subprocesses (assert via a counter/env flag or timing note in the branch record);
-`build-metadata.json` byte-identical across cached/uncached runs on a clean tree.
-Rollback: revert; generation falls back to full recompute.
+Verification: gate passes; focused generalized-trace and mirror suites pass;
+`npm run generate:mirror-reports` contains only the reviewed fixture addition. Land this before
+G2 so the fixture protects extraction of the shared phase-aware interaction block.
+Out of scope: adding a production folded DOE lens or broadening complex folded-system analysis.
 
 ---
 
@@ -1371,15 +1414,27 @@ Rollback: revert; generation falls back to full recompute.
   the monolith; the single file is simpler for tooling and the merge-conflict cost is acceptable.
   Do not re-propose without new evidence (e.g. conflict frequency data).
 
-## Sequencing Summary
+- [-] **D6: shrink benchmark runs by dropping raw sample arrays** — rejected 2026-08-04
+  because persisted schema-2 records already contain only per-cell aggregates, not raw timing
+  arrays. The report reads those per-cell medians to recompute summaries and identify the slowest
+  lens/scenario cases. Reaching the proposed 50 KB target would require a separately designed
+  loss of diagnostic capability, not the no-op described by D6. Keeping current records has no
+  runtime or correctness effect; it only retains the existing repository payload.
 
-1. **Tier 1 (N1–N10)** in any order — N10 after/with D1.
-2. **Tier 2 (X1–X13)** in any order — X11 after X10.
-3. **Tier 3 (D1–D10)** in any order — D5 coordinates with G8.
-4. **Tier 4:** U1 → U2 → U3/U4 → U5/U6/U7.
-5. **Tier 5:** N1/N3 before C1/C2/C4/C7; C1 before C3; X7 before C1.
-6. **Tier 6:** G1 first; G2–G6 freely; X10 → G7 → G8 → G9; G10–G12 freely; G13 last.
+- [-] **C8: merge script/runtime URL and site-name constants** — rejected 2026-08-04. The current
+  duplication is small and covered end-to-end by build/SEO tests. The proposed shared
+  `SITE_NAME` source (`lensMetadata.ts`) is not safe for plain Node consumers because importing it
+  pulls JSON and `.js`-to-`.ts` dependencies into build scripts. Removing C8 leaves a modest drift
+  risk and the hardcoded same-site base used only for URL parsing; N2 guards that validator's
+  behavior. Reconsider only around a new import-free `siteIdentity.ts` contract.
+
+- [-] **G13: cache git freshness metadata** — rejected 2026-08-04. The proposed cache key hashed
+  `HEAD` plus `git status --porcelain`, which records dirty paths/statuses but not their changing
+  contents and can therefore reuse stale metadata while a dirty file is edited repeatedly.
+  Removing G13 preserves correctness at the cost of the existing metadata-generation time. A
+  future proposal must either bypass the cache for dirty trees or content-hash staged, unstaged,
+  and relevant untracked inputs.
 
 Cross-plan note: anything here that grows into a feature (e.g. U7 follow-ons) moves to
 `FEATURE_ADDITION_PLAN.md`; new perf findings join `EFFICIENCY_IMPROVEMENT_PLAN.md`'s series
-instead of this file once this plan's tiers close out.
+instead of this file once this plan's stages close out.
