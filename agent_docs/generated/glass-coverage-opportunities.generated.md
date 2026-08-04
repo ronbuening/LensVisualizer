@@ -9,12 +9,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **510** lenses scanned (**501** visible)
-- **4993 / 5672** non-air surfaces use strict catalog Sellmeier data (88.0%)
-- **5004 / 5672** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 88.2%)
+- **513** lenses scanned (**504** visible)
+- **5007 / 5690** non-air surfaces use strict catalog Sellmeier data (88.0%)
+- **5018 / 5690** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 88.2%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
-- **288** code-only missing-Sellmeier elements in Sweep 2: **17** active unreviewed, **124** self-recording explicit dispositions, **0** dispositions missing any review record
+- **291** code-only missing-Sellmeier elements in Sweep 2: **17** active unreviewed, **127** self-recording explicit dispositions, **0** dispositions missing any review record
 - **0** unresolved named-token elements in Sweep 2B, producing **0** token occurrences across **0** distinct tokens
 - **0** Tier A proprietary backfill rows in Sweep 3
 
@@ -103,6 +103,7 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [NIKON REFLEX-NIKKOR 500mm f/8 (New)](../../src/lens-data/nikon/NikonReflexNikkor500mmf8New.data.ts) | US 4,666,259 A | [PDF](../../patents/US4666259.pdf) | 83.3% (5/6) | 83.3% (5/6) | 1 | 13 [glass] (Third rear corrector element: `Unmatched (lanthanum dense flint, patent 796/410; nearest current class S-LAH52 / K-LaSFn3)`) | abbe: 1 |
 | [NIKON REFLEX-NIKKOR·C 500mm f/8](../../src/lens-data/nikon/NikonReflexNikkorC500mmf8.data.ts) | US 3,632,190 | [PDF](../../patents/US3632190.pdf) | 83.3% (5/6) | 83.3% (5/6) | 1 | 1 [glass] (Front corrector: `Unmatched light crown (525/596; K5-class nearest)`) | abbe: 1 |
 | [OLYMPUS F.ZUIKO AUTO-T 200mm f/5](../../src/lens-data/olympus/OlympusZuikoAutoT200mmf5.data.ts) | US 3,804,494 | Missing from untracked local patents/ references (US3804494, 3804494) | 83.3% (5/6) | 83.3% (5/6) | 1 | 4 [glass] (Element 3: `K10 (Schott)`) | abbe: 1 |
+| [SAMSUNG 20mm f/2.8](../../src/lens-data/samsung/Samsung20mmf28.data.ts) | US 2012/0056976 A1 | [PDF](../../patents/US20120056976A1.pdf) | 83.3% (5/6) | 83.3% (5/6) | 1 | 10 [glass] (Element 6: `Unmatched (nd=1.68997, vd=53.0; no close public catalog identity is uniquely defensible)`) | abbe: 1 |
 | [SCHNEIDER-KREUZNACH APO-SYMMAR 100mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderAPOSymmar100mmf56.data.ts) | US 6,028,720 | [PDF](../../patents/US6028720.pdf) | 83.3% (5/6) | 83.3% (5/6) | 1 | 4 [glass] (Element 3: `Unmatched (phosphate crown class, ne=1.5223, ve=69.5; no public catalog match — possible special melt or discontinued glass)`) | abbe: 1 |
 | [SCHNEIDER-KREUZNACH SUPER-ANGULON 90mm f/8](../../src/lens-data/schneider-kreuznach/SchneiderSuperAngulon90mmf8.data.ts) | DE 975 637 C | [PDF](../../patents/DE_975637_C.pdf) | 83.3% (5/6) | 83.3% (5/6) | 1 | 4 [glass] (Element 3: `Unmatched (560/470 light-flint position; probable historical Schott LLF3)`) | abbe: 1 |
 | [SCHNEIDER-KREUZNACH TECHNIKA SUPER-ANGULON 75mm f/8](../../src/lens-data/schneider-kreuznach/SchneiderTechnikaSuperAngulon75mmf8.data.ts) |  | No patent number parsed from lens metadata/reference | 83.3% (5/6) | 83.3% (5/6) | 1 | 4 [glass] (Element 3: `Unmatched (560/470 light-flint position; probable historical Schott LLF3)`) | abbe: 1 |
@@ -116,6 +117,7 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [CANON SERENAR 100mm f/3.5 I](../../src/lens-data/canon/CanonSerenar100mmf35.data.ts) | DE 1,022,027 B | [PDF](../../patents/DE_1022027_B.pdf) | 80.0% (4/5) | 80.0% (4/5) | 1 | 6 [glass] (Member III: `Legacy KF2 / crown-flint class (526/510, current catalog name uncertain)`) | abbe: 1 |
 | [NIKON 35mm f/2.8 (Nikon L35AF)](../../src/lens-data/nikon/NikonL35AF35mmf28.data.ts) | US 4,457,596 | [PDF](../../patents/US4457596.pdf) | 80.0% (4/5) | 80.0% (4/5) | 1 | 1 [glass] (Element 1: `LaK 8 (1713/540)`) | abbe: 1 |
 | [OLYMPUS E.ZUIKO AUTO-T 135mm f/3.5](../../src/lens-data/olympus/OlympusZuiko135mmf35.data.ts) | US 3,838,911 | [PDF](../../patents/US3838911.pdf) | 80.0% (4/5) | 80.0% (4/5) | 1 | 3 [glass] (Element 2: `487698 — FK/FSL low-dispersion crown class (patent nd=1.48749, νd=69.8; no exact modern coefficient-backed match)`) | abbe: 1 |
+| [SAMSUNG 30mm f/2](../../src/lens-data/samsung/Samsung30mmf2.data.ts) | US 2010/0149663 A1 | [PDF](../../patents/US20100149663A1.pdf) | 80.0% (4/5) | 80.0% (4/5) | 1 | 3 [glass] (Element 2: `Unmatched (684316 dense-flint class; vendor unresolved)`) | abbe: 1 |
 | [FUJIFILM FUJINON XF 23mm f/2 R WR](../../src/lens-data/fujifilm/FujifilmXF23mmf2RWR.data.ts) | US 2017/0351051 A1 | [PDF](../../patents/US20170351051A1.pdf) | 80.0% (8/10) | 80.0% (8/10) | 2 | 7A [glass] (L14 — biconcave double-asphere: `849401 - high-index lanthanum flint (likely PGM aspheric melt; no exact public catalog match)`)<br>13A [glass] (L21 — moving focus asphere: `803405 - high-index lanthanum flint (likely PGM aspheric melt; no exact public catalog match)`) | abbe: 2 |
 | [NIKON AF NIKKOR 85mm f/1.4 D IF](../../src/lens-data/nikon/Nikon85f14D.data.ts) | US 5,640,277 | [PDF](../../patents/US5640277.pdf) | 80.0% (8/10) | 80.0% (8/10) | 2 | 5 [glass] (Element 3: `Unmatched (796409 patent coordinate; vendor unresolved)`)<br>19 [glass] (Element 10: `Unmatched (748523 patent coordinate; vendor unresolved)`) | abbe: 2 |
 | [Nikon AI Micro-Nikkor 105mm f/2.8S](../../src/lens-data/nikon/NikonAIMicroNikkor105mmf28S.data.ts) | US 4,392,724 | [PDF](../../patents/US4392724.pdf) | 80.0% (8/10) | 80.0% (8/10) | 2 | 12 [glass] (L31 G3 positive meniscus: `Unmatched (595/355 vintage flint; near FF5 / S-FTM16 class but higher nd)`)<br>16 [glass] (L33 G3 positive reconverger: `Unmatched (595/355 vintage flint; near FF5 / S-FTM16 class but higher nd)`) | abbe: 2 |

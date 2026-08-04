@@ -7,7 +7,15 @@ available, it falls back to partial measured `nC`/`nF` line indices, dPgF-correc
 approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **462 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **463 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+
+The August 4, 2026 Phase 79 pass audited the three new Samsung primes and added HOYA MP-LAC8-30 from the
+manufacturer's 2017 Zemax catalog mirrored by refractiveindex.info. Its formula-3 polynomial supplies a compatible
+curve for the 45mm f/1.8's `1.71390 / 53.2` L2 position; existing Hikari Q-LASFPH3S supplies the adjacent
+`1.79824 / 45.1` L3 curve. Both are labeled as optical equivalents with the production supplier unspecified. The
+20mm remains 5/6 covered and the 30mm remains 4/5 covered; the 45mm rises from 3/7 to 5/7. The remaining three
+Samsung gaps have no uniquely defensible public coefficient source. Regenerated global coverage is 5007/5690 strict
+and 5018/5690 trusted, with zero catalog-coordinate mismatches.
 
 The August 3, 2026 Phase 78 pass added five exact Hikari curves from Nikon/Hikari's first-party 2023-09-01
 optical-glass workbook while auditing the AF-S NIKKOR 180-400mm f/4E TC1.4 FL ED VR: J-SK12, J-LAK14,

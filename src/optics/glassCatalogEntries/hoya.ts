@@ -1113,4 +1113,15 @@ export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source:
       "Hoya Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), vendor-published obsolete catalog row.",
   },
+  /* Phase 79 Samsung coverage addition (August 2026) */
+  {
+    name: "MP-LAC8-30",
+    vendor: "Hoya",
+    polynomial: [2.8827498, -0.015740789, 0.017707976, 0.0010483265, -0.000098332811, 0.0000054828685],
+    nd: 1.7133,
+    vd: 53.95,
+    code6: "713539",
+    source:
+      "Hoya Zemax catalog 2017-04-01 via refractiveindex.info; discontinued MP-LAC8-30 page (formula 3 polynomial).",
+  },
 ];
