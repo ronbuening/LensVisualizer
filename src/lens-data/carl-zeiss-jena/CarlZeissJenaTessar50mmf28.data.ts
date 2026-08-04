@@ -45,7 +45,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "FR 1.066.698",
   patentAuthors: [],
-  patentAssignees: ["VEB Optik Carl Zeiss Jena"],
+  patentAssignees: ["VEB Carl Zeiss Jena"],
   patentYear: 1952,
   elementCount: 4,
   groupCount: 3,

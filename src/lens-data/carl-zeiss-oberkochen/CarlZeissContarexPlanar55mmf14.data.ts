@@ -45,7 +45,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "DE 1,170,157 B",
   patentAuthors: ["Johannes Berger", "Günther Lange"],
-  patentAssignees: ["Carl Zeiss SMT GmbH"],
+  patentAssignees: ["Carl-Zeiss-Stiftung"],
   patentYear: 1964,
   elementCount: 7,
   groupCount: 5,

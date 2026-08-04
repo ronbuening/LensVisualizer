@@ -45,7 +45,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 3,874,771",
   patentAuthors: ["Karl-Heinrich Behrens", "Erhard Glatzel"],
-  patentAssignees: ["Carl Zeiss AG"],
+  patentAssignees: ["Carl-Zeiss-Stiftung"],
   patentYear: 1975,
   elementCount: 7,
   groupCount: 6,

@@ -52,7 +52,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "CH 314381",
   patentAuthors: ["Günther Lange", "Robert Richter"],
-  patentAssignees: ["Carl Zeiss"],
+  patentAssignees: ["Carl-Zeiss-Stiftung"],
   patentYear: 1956,
   elementCount: 4,
   groupCount: 3,

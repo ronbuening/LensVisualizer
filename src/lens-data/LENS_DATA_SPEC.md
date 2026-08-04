@@ -231,6 +231,8 @@ patentAssignees: ["Canon Inc."],
   when the source names no individual inventor, and `patentAssignees: []` only when it identifies no assignee or applicant.
 - Do not add filing dates, priority numbers, attorneys, agents, examiners, translators, or current patent owners to these
   fields. `patentYear` remains the year of the source publication or grant named by `patentNumber`.
+- Build metadata generation checks curated historical assignee aliases and legal-form start years. These checks flag
+  impossible or non-canonical values for source review; they never infer or rewrite an assignee automatically.
 
 ## Projection Metadata
 

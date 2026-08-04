@@ -42,7 +42,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "DE 1,268,404",
   patentAuthors: ["Erwin Konschack", "Günther Lange"],
-  patentAssignees: ["Carl Zeiss SMT GmbH"],
+  patentAssignees: ["Carl-Zeiss-Stiftung"],
   patentYear: 1968,
   elementCount: 4,
   groupCount: 4,

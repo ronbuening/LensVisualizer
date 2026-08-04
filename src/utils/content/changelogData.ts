@@ -22,6 +22,16 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-08-04 ─────────────────────────────────
   {
     date: "2026-08-04",
+    type: "feature",
+    summary: "Expanded author pages with biography labels, saved sorting, and assignee filters",
+  },
+  {
+    date: "2026-08-04",
+    type: "fix",
+    summary: "Corrected and consolidated historical patent assignees across the lens catalog",
+  },
+  {
+    date: "2026-08-04",
     type: "lens",
     summary: "Added the Samsung 20mm f/2.8, 30mm f/2, and 45mm f/1.8 NX primes",
   },
