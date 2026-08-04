@@ -658,7 +658,7 @@ it. These are cheap, safe, and compound with every future agent task.
 
 ### D1. CLAUDE.md: missing commands, project-map entries, build description (+ agents.md sync)
 
-- [ ] Effort: S · Impact: med-high · Risk: low
+- [x] Effort: S · Impact: med-high · Risk: low
 
 CLAUDE.md's Commands fence omits `generate:feeds`, `generate:holiday-branding`,
 `audit:dependencies`, `benchmark:optics-rendering`; describes `build` without its RSS step; and

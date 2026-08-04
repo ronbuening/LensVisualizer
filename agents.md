@@ -44,6 +44,7 @@ src/components/           - React UI components and hooks
   markdown/               - Shared markdown renderer
   mount/                  - Mount interface diagram components (MountDiagram, panel)
   relationshipMap/        - patent relationship map (radial layout engine + SVG renderer + picker)
+  search/                 - Catalog search box and results list
 src/comparison/           - Comparison mode feature module
 src/optics/               - Pure optical engine and analysis helpers
   math/ trace/ field/     - Vector math, exact tracing, projection-aware field launch
@@ -55,6 +56,7 @@ src/utils/                - State, URL sync, themes, catalog, SEO, metadata util
 src/lens-data/            - Auto-registered `*.data.ts` prescriptions and `*.analysis.md` notes
 src/mounts/               - Mount diagram `*.mount.ts` specs, barrel, schema, and authoring guide
 src/content/              - Auto-registered markdown articles and static content
+src/benchmarks/           - Optics/render benchmark harness (npm run benchmark:optics-rendering)
 scripts/                  - Metadata, prerender, sitemap, SEO, and lens-data build helpers
 __tests__/                - Vitest unit/component/script tests
 agent_docs/               - Focused architecture, workflow, generated-report, and historical guidance
@@ -65,8 +67,9 @@ agent_docs/               - Focused architecture, workflow, generated-report, an
 ```bash
 npm install
 npm run dev                # Generate metadata, then start Vite on http://localhost:5173
-npm run build              # Organize lens data, generate metadata, build, prerender, sitemap
+npm run build              # Organize lens data, generate metadata, build, prerender, sitemap, RSS feeds
 npm run generate:metadata  # Organize lens data and refresh src/generated/build-metadata.json
+npm run generate:feeds     # Rebuild dist/feeds/ RSS from metadata, lens summaries, changelog
 npm run organize:lens-data # Move stray root-level lens files into maker folders
 npm run preview
 npm run test
@@ -74,9 +77,12 @@ npm run test:coverage
 npm run generate:glass-reports
 npm run generate:mirror-reports
 npm run generate:mount-svgs
-npm run audit:image-circle      # semi-diameters that cannot cover their own image circle
-npm run audit:patent-figure     # measure a patent cross-section against a lens data file
-npm run audit:surface           # aspheric domain scan + validator with trial semi-diameters
+npm run generate:holiday-branding   # Recolor the base marks into public/branding/holiday/
+npm run audit:dependencies          # Fail on non-allowlisted high/critical npm advisories
+npm run audit:image-circle          # semi-diameters that cannot cover their own image circle
+npm run audit:patent-figure         # measure a patent cross-section against a lens data file
+npm run audit:surface               # aspheric domain scan + validator with trial semi-diameters
+npm run benchmark:optics-rendering  # On-demand optics/render benchmark (not part of build or test)
 npm run typecheck
 npm run lint
 npm run lint:fix
