@@ -97,8 +97,17 @@ JSON-LD helpers live under `src/utils/seo/`.
 | Module | Purpose |
 | --- | --- |
 | `lensCatalog.ts` | Auto-registers lens data and lens analysis markdown via `import.meta.glob`. |
+| `lensSummaries.ts` | Generated lightweight lens metadata and freshness lists for index-style pages that must not ship prescriptions. |
 | `lensTaxonomy.ts` | Canonical lens mount ids and image-format dimensions used by lens data and the lens index. |
 | `lensMetadata.ts` | SEO metadata, maker extraction, page titles/descriptions, canonical URLs, JSON-LD helpers. |
+| `lensPatentMetadata.ts` | Patent subtitle, inventor attribution, and patent-reference derivation (re-exported by `lensMetadata.ts`). |
+| `authorCatalog.ts` | Generated inventor directory: slug/name lookup, patents per party, assignee/co-author grouping. |
+| `assigneeCatalog.ts` | Generated assignee directory with slug and name lookup. |
+| `authorAssignees.ts` | Author directory entries stratified by assignee, plus the assignee filter used by `/authors`. |
+| `authorBiographies.ts` | Curated inventor biographies with sources, keyed by author name. |
+| `patentCatalog.ts` | Patent index built from lens summaries: records, jurisdiction labels, country/assignee groups, Espacenet URLs. |
+| `searchCatalog.ts` | Ranked lens-name/patent-number/author search over generated metadata. |
+| `relationshipGraph.ts` | Focus-party patent relationship graph consumed by the relationship map page. |
 | `makerDetails.ts` | Maker display names, descriptions, and metadata. |
 | `mountDetails.ts` | Mount display names, descriptions, and metadata. |
 | `imageFormatDetails.ts` | Image-format display names, dimensions, descriptions, and metadata. |

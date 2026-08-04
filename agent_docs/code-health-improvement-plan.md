@@ -675,7 +675,7 @@ Verification: gate passes (docDrift is part of `npm run test`).
 
 ### D2. Architecture docs: document the July catalog/search APIs
 
-- [ ] Effort: S · Impact: med · Risk: low
+- [x] Effort: S · Impact: med · Risk: low
 
 `agent_docs/architecture/state-and-utilities.md`'s catalog table (~92–110) is missing all eight
 July modules (`authorCatalog`, `patentCatalog`, `assigneeCatalog`, `authorAssignees`,

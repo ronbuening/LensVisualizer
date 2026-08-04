@@ -126,6 +126,26 @@ state. Keep slider-dependent analysis out of `buildLens()`.
 | `src/utils/seo/structuredData.ts` | `getLensFreshness`, `getRouteFreshness` | Build-metadata freshness lookup for SEO. |
 | `src/utils/seo/siteUrls.ts` | `canonicalPagePath`, `canonicalPageUrl`, `normalizeSitePageUrl` | Normalize application-page paths and absolute URLs to Cloudflare Pages' trailing-slash direct-`200` form while preserving static-file URLs. |
 
+## Search And Patent-Attribution APIs
+
+Derived entirely from generated metadata (`src/generated/build-metadata.json`, `lens-summaries.json`), so index,
+author, patent, search, and relationship-map pages never load full prescriptions.
+
+| Module | Public Function Or Surface | Use |
+| --- | --- | --- |
+| `src/utils/catalog/searchCatalog.ts` | `searchCatalog(query)`, `CatalogSearchResults`, `CatalogSearchMatch` | Ranked lens-name, patent-number, and author matches for the search box and `/search`. |
+| `src/utils/catalog/searchCatalog.ts` | `normalizeSearchText`, `exactSearchTarget` | Diacritic/punctuation-insensitive query normalization and exact-hit route shortcut. |
+| `src/utils/catalog/authorCatalog.ts` | `AUTHORS`, `AuthorMetadata` | Generated inventor directory (name, slug, patent/lens counts, lens keys). |
+| `src/utils/catalog/authorCatalog.ts` | `getAuthorBySlug`, `getAuthorByName`, `authorPathForName` | Author lookups and `/authors/:slug` path derivation. |
+| `src/utils/catalog/authorCatalog.ts` | `patentsForParty(name, role)`, `patentsForAuthor`, `groupAuthorPatents`, `AuthorPatent`, `AuthorGroupMode` | Patents credited to an inventor or assignee, grouped by assignee or co-author. |
+| `src/utils/catalog/assigneeCatalog.ts` | `ASSIGNEES`, `getAssigneeBySlug`, `getAssigneeByName`, `AssigneeMetadata` | Generated assignee directory and lookups. |
+| `src/utils/catalog/authorAssignees.ts` | `AUTHOR_DIRECTORY_ENTRIES`, `AUTHOR_ASSIGNEE_STRATA`, `filterAuthorsByAssignee`, `ALL_AUTHOR_ASSIGNEES`, `UNASSIGNED_AUTHORS` | Assignee-stratified author directory and its filter vocabulary for `/authors`. |
+| `src/utils/catalog/authorBiographies.ts` | `AUTHOR_BIOGRAPHIES`, `getAuthorBiography`, `AuthorBiography` | Curated inventor biographies with citation sources. |
+| `src/utils/catalog/patentCatalog.ts` | `PATENTS`, `PATENT_COUNTRY_GROUPS`, `PatentRecord`, `buildPatentIndex` | Patent index derived from lens summaries, grouped by jurisdiction and assignee. |
+| `src/utils/catalog/patentCatalog.ts` | `patentJurisdiction`, `espacenetPatentUrl`, `PATENT_ASSIGNEE_FALLBACK` | Jurisdiction code/label parsing, Espacenet deep links, and the unnamed-assignee bucket label. |
+| `src/utils/catalog/lensPatentMetadata.ts` | `lensPatentAttribution`, `lensDisplaySubtitle`, `lensPatentReference` | Patent subtitle/attribution derivation shared by lens pages and cards (also re-exported by `lensMetadata.ts`). |
+| `src/utils/catalog/relationshipGraph.ts` | `buildRelationshipGraph(focus)`, `resolveFocusParam`, `RelationshipGraph`, `PartyRef` | Focus-party patent/party graph and `#focus=` parameter parsing for `/relationships`. |
+
 ## Routing And SSR APIs
 
 | Module | Public Function Or Surface | Use |

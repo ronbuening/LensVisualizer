@@ -35,6 +35,16 @@ Verification: gate passed (223 files / 2606 tests).
 
 Verification: gate passed (223 files / 2609 tests).
 
+### D2 — architecture docs for the July catalog/search APIs
+
+- `state-and-utilities.md` catalog table gained nine rows: `lensSummaries`, `lensPatentMetadata`,
+  `authorCatalog`, `assigneeCatalog`, `authorAssignees`, `authorBiographies`, `patentCatalog`, `searchCatalog`,
+  `relationshipGraph`.
+- `public-functions.md` gained a "Search And Patent-Attribution APIs" table between the catalog/SEO and
+  routing sections, listing the stable exports of those modules (verified against each file's `export`s).
+
+Verification: gate passed (223 files / 2609 tests).
+
 ## Follow-ups
 
 - Remaining Stage 1 items tracked in the plan; later stages untouched.
