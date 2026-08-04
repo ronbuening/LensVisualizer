@@ -20,7 +20,7 @@ build metadata.
 | `MakerPage.tsx` | `src/pages/` | Maker page at `/makers/:maker`, lists maker lenses. |
 | `MakersIndexPage.tsx` | `src/pages/` | Maker index at `/makers`, lists makers with counts. |
 | `AuthorPage.tsx` | `src/pages/` | Author page at `/authors/:author`, grouping related patents by assignee or co-author. |
-| `AuthorsIndexPage.tsx` | `src/pages/` | Author index at `/authors`, listing represented patent authors with patent and lens counts and name/count sorting. |
+| `AuthorsIndexPage.tsx` | `src/pages/` | Author index at `/authors`, listing represented patent authors with patent/lens counts, persisted name/count sorting, and assignee-company strata/filtering. |
 | `PatentsIndexPage.tsx` | `src/pages/` | Patent-number index at `/patents`, grouping unique source patents by publication country/jurisdiction and then assignee. |
 | `MountPage.tsx` | `src/pages/` | Mount page at `/mounts/:mountId`, lists lenses for one mount. |
 | `MountsIndexPage.tsx` | `src/pages/` | Mount index at `/mounts`, lists represented mounts with counts. |

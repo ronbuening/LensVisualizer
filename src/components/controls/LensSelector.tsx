@@ -16,11 +16,22 @@ interface LensSelectorProps {
   options: { key: string; label: string }[];
   onChange: (key: string) => void;
   style?: React.CSSProperties;
+  id?: string;
+  ariaLabel?: string;
 }
 
 const ITEM_HEIGHT = 32;
 
-export default function LensSelector({ theme: t, isWide, value, options, onChange, style }: LensSelectorProps) {
+export default function LensSelector({
+  theme: t,
+  isWide,
+  value,
+  options,
+  onChange,
+  style,
+  id,
+  ariaLabel,
+}: LensSelectorProps) {
   const [open, setOpen] = useState(false);
   const [hoveredKey, setHoveredKey] = useState<string | null>(null);
   const [dropdownPos, setDropdownPos] = useState<{
@@ -78,7 +89,16 @@ export default function LensSelector({ theme: t, isWide, value, options, onChang
 
   return (
     <>
-      <button ref={triggerRef} onClick={open ? () => setOpen(false) : openDropdown} style={triggerStyle}>
+      <button
+        ref={triggerRef}
+        id={id}
+        type="button"
+        aria-label={ariaLabel}
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        onClick={open ? () => setOpen(false) : openDropdown}
+        style={triggerStyle}
+      >
         {selectedLabel}
       </button>
       <DropdownPanel
@@ -89,37 +109,41 @@ export default function LensSelector({ theme: t, isWide, value, options, onChang
         onClose={() => setOpen(false)}
         theme={t}
       >
-        {options.map((o) => {
-          const isSelected = o.key === value;
-          const isHovered = o.key === hoveredKey;
-          return (
-            <div
-              key={o.key}
-              onMouseDown={() => handleSelect(o.key)}
-              onMouseEnter={() => setHoveredKey(o.key)}
-              onMouseLeave={() => setHoveredKey(null)}
-              style={{
-                height: ITEM_HEIGHT,
-                lineHeight: `${ITEM_HEIGHT}px`,
-                padding: "0 12px",
-                cursor: "pointer",
-                fontSize: isWide ? 13 : 12,
-                letterSpacing: "0.06em",
-                color: isSelected ? t.sliderAccent : t.selectorText,
-                backgroundColor: isSelected ? `${t.sliderAccent}20` : isHovered ? t.selectorHover : "transparent",
-                fontWeight: isSelected ? "bold" : "normal",
-                whiteSpace: "nowrap",
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-                boxSizing: "border-box",
-                borderLeft: isSelected ? `2px solid ${t.sliderAccent}` : "2px solid transparent",
-                transition: "background-color 0.1s",
-              }}
-            >
-              {o.label}
-            </div>
-          );
-        })}
+        <div role="listbox" aria-label={ariaLabel ? `${ariaLabel} options` : undefined}>
+          {options.map((o) => {
+            const isSelected = o.key === value;
+            const isHovered = o.key === hoveredKey;
+            return (
+              <div
+                key={o.key}
+                role="option"
+                aria-selected={isSelected}
+                onMouseDown={() => handleSelect(o.key)}
+                onMouseEnter={() => setHoveredKey(o.key)}
+                onMouseLeave={() => setHoveredKey(null)}
+                style={{
+                  height: ITEM_HEIGHT,
+                  lineHeight: `${ITEM_HEIGHT}px`,
+                  padding: "0 12px",
+                  cursor: "pointer",
+                  fontSize: isWide ? 13 : 12,
+                  letterSpacing: "0.06em",
+                  color: isSelected ? t.sliderAccent : t.selectorText,
+                  backgroundColor: isSelected ? `${t.sliderAccent}20` : isHovered ? t.selectorHover : "transparent",
+                  fontWeight: isSelected ? "bold" : "normal",
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  boxSizing: "border-box",
+                  borderLeft: isSelected ? `2px solid ${t.sliderAccent}` : "2px solid transparent",
+                  transition: "background-color 0.1s",
+                }}
+              >
+                {o.label}
+              </div>
+            );
+          })}
+        </div>
       </DropdownPanel>
     </>
   );

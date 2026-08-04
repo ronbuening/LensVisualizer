@@ -14,6 +14,11 @@ import AuthorsIndexPage from "../../../src/pages/AuthorsIndexPage.js";
 import PatentsIndexPage from "../../../src/pages/PatentsIndexPage.js";
 import CatalogSearchBox from "../../../src/components/search/CatalogSearchBox.js";
 import { getAuthorBiography } from "../../../src/utils/catalog/authorBiographies.js";
+import {
+  AUTHOR_ASSIGNEE_STRATA,
+  AUTHOR_DIRECTORY_ENTRIES,
+  filterAuthorsByAssignee,
+} from "../../../src/utils/catalog/authorAssignees.js";
 import { AUTHORS, getAuthorByName, patentsForAuthor } from "../../../src/utils/catalog/authorCatalog.js";
 import { PATENTS, PATENT_COUNTRY_GROUPS, espacenetPatentUrl } from "../../../src/utils/catalog/patentCatalog.js";
 import { AUTHOR_SORT_PREFERENCE_KEY } from "../../../src/utils/state/authorSortPreference.js";
@@ -38,7 +43,10 @@ describe("search, author, and patent pages", () => {
     Object.defineProperty(window, "scrollTo", { writable: true, value: vi.fn() });
   });
 
-  afterEach(() => cleanup());
+  afterEach(() => {
+    cleanup();
+    vi.restoreAllMocks();
+  });
 
   it("renders patent results from a punctuation-free URL query", () => {
     renderWithRouter(
@@ -188,6 +196,78 @@ describe("search, author, and patent pages", () => {
       expect(screen.getByRole("button", { name: "Alphabetical" }).getAttribute("aria-pressed")).toBe("true"),
     );
     expect(document.querySelector("main a[href^='/authors/']")?.textContent).toBe(alphabeticalAuthors[0].name);
+  });
+
+  it("stratifies and filters authors by patent assignee", () => {
+    const assignee = AUTHOR_ASSIGNEE_STRATA.find((entry) => entry.authorCount > 1);
+    expect(assignee).toBeDefined();
+    if (!assignee) return;
+    const expectedAuthors = filterAuthorsByAssignee(AUTHOR_DIRECTORY_ENTRIES, assignee.slug);
+
+    const rendered = renderWithRouter(
+      <HelmetProvider>
+        <Routes>
+          <Route path="/authors" element={<AuthorsIndexPage />} />
+        </Routes>
+      </HelmetProvider>,
+      { initialEntries: ["/authors"] },
+    );
+
+    const companyFilter = screen.getByRole("button", { name: "Company / assignee" });
+    vi.spyOn(window, "innerWidth", "get").mockReturnValue(800);
+    vi.spyOn(window, "innerHeight", "get").mockReturnValue(900);
+    vi.spyOn(companyFilter, "getBoundingClientRect").mockReturnValue({
+      bottom: 100,
+      height: 32,
+      left: 700,
+      right: 1060,
+      top: 68,
+      width: 360,
+      x: 700,
+      y: 68,
+      toJSON: () => ({}),
+    });
+    expect(companyFilter.getAttribute("aria-expanded")).toBe("false");
+    fireEvent.click(companyFilter);
+    expect(companyFilter.getAttribute("aria-expanded")).toBe("true");
+    const optionsPanel = screen.getByRole("listbox", { name: "Company / assignee options" }).parentElement;
+    expect(optionsPanel?.style.left).toBe("432px");
+    expect(optionsPanel?.style.maxHeight).toBe("300px");
+    const assigneeOption = screen.getByRole("option", {
+      name: `${assignee.name} (${assignee.authorCount} authors · ${assignee.patentCount} ${assignee.patentCount === 1 ? "patent" : "patents"})`,
+    });
+    fireEvent.mouseDown(assigneeOption);
+
+    expect(screen.getByRole("status").textContent).toBe(
+      `${assignee.authorCount} of ${AUTHORS.length} authors shown for ${assignee.name}.`,
+    );
+    const shownAuthorNames = [...document.querySelectorAll<HTMLAnchorElement>("main a[href^='/authors/']")].map(
+      (link) => link.textContent,
+    );
+    expect(shownAuthorNames).toHaveLength(assignee.authorCount);
+    expect(new Set(shownAuthorNames)).toEqual(new Set(expectedAuthors.map((entry) => entry.author.name)));
+    expect(
+      screen
+        .getAllByRole("link", { name: assignee.name })
+        .every((link) => link.getAttribute("href") === `/relationships/#focus=assignee:${assignee.slug}`),
+    ).toBe(true);
+
+    rendered.unmount();
+    renderWithRouter(
+      <HelmetProvider>
+        <Routes>
+          <Route path="/authors" element={<AuthorsIndexPage />} />
+        </Routes>
+      </HelmetProvider>,
+      { initialEntries: ["/authors"] },
+    );
+
+    expect(screen.getByRole("button", { name: "Company / assignee" }).textContent).toBe(
+      `All companies and assignees (${AUTHORS.length} authors)`,
+    );
+    expect(screen.getByRole("status").textContent).toBe(
+      `${AUTHORS.length} authors across ${AUTHOR_ASSIGNEE_STRATA.length} named assignees.`,
+    );
   });
 
   it("labels author index entries that include a curated biography", () => {
