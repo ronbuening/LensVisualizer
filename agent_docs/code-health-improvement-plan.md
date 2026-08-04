@@ -792,7 +792,7 @@ Verification: gate passes; `grep -rn ChangelogBox src __tests__` → no hits.
 
 ### D9. Remove the injection-shaped `exec` option from git-freshness helpers
 
-- [ ] Effort: S · Impact: low · Risk: low
+- [x] Effort: S · Impact: low · Risk: low
 
 `build-metadata-lib.mjs` ~102–114: `getGitFileFreshness` still supports a legacy `exec` option
 that shell-interpolates the file path; `getGitFileFreshnessSafe` (~120–130) duplicates the

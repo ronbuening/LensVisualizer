@@ -164,7 +164,7 @@ describe("build metadata helpers", () => {
   it("falls back when git history is unavailable", () => {
     const dates = getGitFileFreshness("missing-file.ts", {
       fallbackDate: "2026-03-27",
-      exec: () => {
+      execFileImpl: () => {
         throw new Error("git failure");
       },
     });
@@ -182,14 +182,15 @@ describe("build metadata helpers", () => {
   it("tries alternate history paths before falling back", () => {
     const dates = getFirstGitFileFreshness(["new-path.md", "old-path.md"], {
       fallbackDate: "2026-03-27",
-      exec: (command) => {
-        if (command.includes('"new-path.md"')) {
+      execFileImpl: (_file, args) => {
+        const filePath = args[args.length - 1];
+        if (filePath === "new-path.md") {
           throw new Error("missing");
         }
-        if (command.includes('"old-path.md"')) {
+        if (filePath === "old-path.md") {
           return ["2026-03-27T10:00:00-04:00\tcommit-b", "2026-03-19T10:00:00-04:00\tcommit-a"].join("\n");
         }
-        throw new Error(`unexpected command: ${command}`);
+        throw new Error(`unexpected path: ${filePath}`);
       },
     });
 

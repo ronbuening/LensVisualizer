@@ -48,16 +48,6 @@ export function getGitFileFreshness(
   options?: {
     cwd?: string;
     fallbackDate?: string;
-    exec?: (command: string, options: { cwd?: string; encoding: string }) => string;
-    execFileImpl?: ExecFileSyncLike;
-  },
-): FreshnessEntry | null;
-
-export function getGitFileFreshnessSafe(
-  filePath: string,
-  options?: {
-    cwd?: string;
-    fallbackDate?: string;
     execFileImpl?: ExecFileSyncLike;
   },
 ): FreshnessEntry | null;
@@ -75,7 +65,6 @@ export function getFirstGitFileFreshness(
   options?: {
     cwd?: string;
     fallbackDate?: string;
-    exec?: (command: string, options: { cwd?: string; encoding: string }) => string;
     execFileImpl?: ExecFileSyncLike;
   },
 ): FreshnessEntry | null;

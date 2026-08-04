@@ -91,6 +91,18 @@ Verification: gate passed (223 files / 2614 tests); `npm run build` passed (1008
 URLs, feeds written); regenerated `build-metadata.json` is byte-identical to the pre-refactor output; a temporary
 `src/content/temp-broken-fixture.md` without `title` failed generation with a message naming the file.
 
+### D9 — drop the injection-shaped `exec` option
+
+- `getGitFileFreshness` no longer accepts `exec` (which shell-interpolated the file path); it always uses execFile.
+- `getGitFileFreshnessSafe` deleted — it was a byte-for-byte duplicate of the remaining branch. It had no callers
+  outside the lib, so no production call site changed.
+- `getFirstGitFileFreshness` lost its `exec` pass-through; `build-metadata-lib.d.mts` updated to match.
+- The two tests that exercised the string branch now inject `execFileImpl` and assert on the argv path instead of a
+  quoted command string.
+
+Verification: gate passed (223 files / 2614 tests); `grep -n "exec(" scripts/build-metadata-lib.mjs` returns nothing
+and no `getGitFileFreshnessSafe` references remain.
+
 ## Follow-ups
 
 - Remaining Stage 1 items tracked in the plan; later stages untouched.

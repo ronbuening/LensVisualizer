@@ -100,26 +100,11 @@ function fallbackFreshness(fallbackDate) {
 
 /**
  * Read published + modified dates for a file from git history.
+ *
+ * Always execFile, so file paths are passed as arguments rather than
+ * interpolated into a shell command.
  */
-export function getGitFileFreshness(filePath, { cwd, fallbackDate, exec, execFileImpl = execFileSync } = {}) {
-  try {
-    const raw = exec
-      ? exec(`git log --follow --format=%cI%x09%H -- "${filePath}"`, { cwd, encoding: "utf-8" }).trim()
-      : execFileImpl("git", ["log", "--follow", "--format=%cI%x09%H", "--", filePath], {
-          cwd,
-          encoding: "utf-8",
-        }).trim();
-    return parseGitLogDates(raw) ?? fallbackFreshness(fallbackDate);
-  } catch {
-    return fallbackFreshness(fallbackDate);
-  }
-}
-
-/**
- * Read published + modified dates with execFile so file paths are passed as
- * arguments rather than interpolated into a shell command.
- */
-export function getGitFileFreshnessSafe(filePath, { cwd, fallbackDate, execFileImpl = execFileSync } = {}) {
+export function getGitFileFreshness(filePath, { cwd, fallbackDate, execFileImpl = execFileSync } = {}) {
   try {
     const raw = execFileImpl("git", ["log", "--follow", "--format=%cI%x09%H", "--", filePath], {
       cwd,
@@ -150,9 +135,9 @@ export async function getGitFileFreshnessAsync(filePath, { cwd, fallbackDate } =
  * has not been committed yet: the new path has no git history, while the old
  * tracked path still carries the original publication date.
  */
-export function getFirstGitFileFreshness(filePaths, { cwd, fallbackDate, exec, execFileImpl = execFileSync } = {}) {
+export function getFirstGitFileFreshness(filePaths, { cwd, fallbackDate, execFileImpl = execFileSync } = {}) {
   for (const filePath of filePaths) {
-    const freshness = getGitFileFreshness(filePath, { cwd, exec, execFileImpl });
+    const freshness = getGitFileFreshness(filePath, { cwd, execFileImpl });
     if (freshness) return freshness;
   }
 
