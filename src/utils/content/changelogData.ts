@@ -22,6 +22,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-08-03 ─────────────────────────────────
   {
     date: "2026-08-03",
+    type: "lens",
+    summary: "Added the Nikon AF-S 180-400mm f/4E TC1.4 FL ED VR with switchable TC views",
+  },
+  {
+    date: "2026-08-03",
     type: "feature",
     summary: "Added wavelength-aware diffractive optics to the engine for our 500th lens",
   },
