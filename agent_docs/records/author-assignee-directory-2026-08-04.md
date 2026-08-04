@@ -1,8 +1,8 @@
-# Author and Assignee Directory Improvements
+# Author, Assignee, and Feed Improvements
 
 ## Summary
 
-- Improved the patent-author directory, thin-page indexing policy, and historical assignee metadata on
+- Improved the patent-author directory, thin-page indexing policy, historical assignee metadata, and update feeds on
   `ronbuening/NewSearchImprovements`.
 
 ## Changes
@@ -14,6 +14,8 @@
 - Normalized and backfilled patent assignees across the catalog, including canonical historical Zeiss entities.
 - Added a build-time audit for known Zeiss aliases and legal-form start years without automatic metadata rewrites.
 - Added separate changelog entries for the author-page features and assignee corrections.
+- Added a changelog RSS feed with exact-entry permalinks, HTML autodiscovery, visible subscription links, deployment
+  headers, and SEO auditing.
 
 ## Verification
 
@@ -22,6 +24,7 @@
 - `npm run lint` — passed
 - `npm run test` — passed, 223 files / 2,605 tests
 - `npm run build` — passed, 1,008 routes prerendered
+- `npm run seo:audit` — passed, including 50 unique changelog items and all three autodiscovery links
 
 ## Follow-ups
 

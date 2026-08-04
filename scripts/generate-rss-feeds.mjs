@@ -1,13 +1,15 @@
 /**
  * Build-time RSS 2.0 feed generator.
  *
- * Reads the git-derived publication metadata and lightweight lens summaries,
- * then writes deterministic article and lens feeds into dist/feeds/.
+ * Reads the git-derived publication metadata, lightweight lens summaries, and
+ * curated changelog, then writes deterministic feeds into dist/feeds/.
  */
 
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
+import { CHANGELOG } from "../src/utils/content/changelogData.ts";
+import { changelogEntryId } from "../src/utils/content/changelogHelpers.ts";
 import { SITE_URL, canonicalPageUrl } from "./site-url.mjs";
 
 const SITE_NAME = "Surface & Stop";
@@ -29,6 +31,12 @@ const FEED_DEFINITIONS = {
     description: "Recently published articles and guides about optical design, lens history, and lens engineering.",
     feedPath: "/feeds/articles.xml",
     homePath: "/articles",
+  },
+  changelog: {
+    title: `${SITE_NAME} — Changelog`,
+    description: "New features, fixes, improvements, articles, and catalog updates from Surface & Stop.",
+    feedPath: "/feeds/changelog.xml",
+    homePath: "/updates",
   },
 };
 
@@ -195,6 +203,35 @@ function buildArticleFeedItems(buildMeta, limit = DEFAULT_FEED_LIMIT) {
     .slice(0, boundedLimit);
 }
 
+function buildChangelogFeedItems(entries = CHANGELOG, limit = DEFAULT_FEED_LIMIT) {
+  const boundedLimit = normalizeLimit(limit);
+  if (!Array.isArray(entries)) {
+    throw new Error("Changelog RSS source must contain an array.");
+  }
+
+  return entries
+    .map((entry, publicationOrder) => {
+      const date = requiredString(entry?.date, `date for changelog entry ${publicationOrder + 1}`);
+      const type = requiredString(entry?.type, `type for changelog entry ${publicationOrder + 1}`);
+      const summary = requiredString(entry?.summary, `summary for changelog entry ${publicationOrder + 1}`);
+      const normalizedEntry = { date, type, summary };
+
+      return {
+        title: summary,
+        url: `${canonicalPageUrl("/updates")}#${changelogEntryId(normalizedEntry)}`,
+        publishedOn: date,
+        publishedAt: date,
+        lastModified: date,
+        lastModifiedAt: date,
+        publicationOrder,
+        description: summary,
+        category: type,
+      };
+    })
+    .sort(newestFirst)
+    .slice(0, boundedLimit);
+}
+
 function renderRssFeed({ title, description, feedUrl, homeUrl, items }) {
   requiredString(title, "channel title");
   requiredString(description, "channel description");
@@ -249,11 +286,13 @@ function renderRssFeed({ title, description, feedUrl, homeUrl, items }) {
   ].join("\n");
 }
 
-function generateRssFeeds(buildMeta, lensSummaries, { limit = DEFAULT_FEED_LIMIT } = {}) {
+function generateRssFeeds(buildMeta, lensSummaries, { limit = DEFAULT_FEED_LIMIT, changelogEntries = CHANGELOG } = {}) {
   const lensDefinition = FEED_DEFINITIONS.lenses;
   const articleDefinition = FEED_DEFINITIONS.articles;
+  const changelogDefinition = FEED_DEFINITIONS.changelog;
   const lensFeedUrl = `${SITE_URL}${lensDefinition.feedPath}`;
   const articleFeedUrl = `${SITE_URL}${articleDefinition.feedPath}`;
+  const changelogFeedUrl = `${SITE_URL}${changelogDefinition.feedPath}`;
 
   return {
     lenses: renderRssFeed({
@@ -270,6 +309,13 @@ function generateRssFeeds(buildMeta, lensSummaries, { limit = DEFAULT_FEED_LIMIT
       homeUrl: canonicalPageUrl(articleDefinition.homePath),
       items: buildArticleFeedItems(buildMeta, limit),
     }),
+    changelog: renderRssFeed({
+      title: changelogDefinition.title,
+      description: changelogDefinition.description,
+      feedUrl: changelogFeedUrl,
+      homeUrl: canonicalPageUrl(changelogDefinition.homePath),
+      items: buildChangelogFeedItems(changelogEntries, limit),
+    }),
   };
 }
 
@@ -285,6 +331,7 @@ function writeRssFeeds({ distDir = DIST_DIR, metadataPath = META_PATH, lensSumma
   mkdirSync(feedsDir, { recursive: true });
   writeFileSync(join(feedsDir, "lenses.xml"), feeds.lenses, "utf-8");
   writeFileSync(join(feedsDir, "articles.xml"), feeds.articles, "utf-8");
+  writeFileSync(join(feedsDir, "changelog.xml"), feeds.changelog, "utf-8");
   console.log(`RSS feeds written to ${feedsDir} (${DEFAULT_FEED_LIMIT} entries maximum per feed)`);
 }
 
@@ -296,6 +343,7 @@ export {
   FEED_DEFINITIONS,
   SITE_URL,
   buildArticleFeedItems,
+  buildChangelogFeedItems,
   buildLensFeedItems,
   escapeXml,
   formatRssDate,

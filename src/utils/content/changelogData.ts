@@ -23,6 +23,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-08-04",
     type: "feature",
+    summary: "Added an RSS feed for site features, fixes, and improvements",
+  },
+  {
+    date: "2026-08-04",
+    type: "feature",
     summary: "Expanded author pages with biography labels, saved sorting, and assignee filters",
   },
   {

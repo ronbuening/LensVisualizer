@@ -32,6 +32,12 @@ export interface FeedLensSummary {
   visible: boolean;
 }
 
+export interface FeedChangelogEntry {
+  date: string;
+  type: "feature" | "fix" | "lens" | "improvement" | "article";
+  summary: string;
+}
+
 export interface RssFeedItem extends FeedFreshness {
   title: string;
   url: string;
@@ -42,7 +48,7 @@ export interface RssFeedItem extends FeedFreshness {
 export const DEFAULT_FEED_LIMIT: number;
 export const SITE_URL: string;
 export const FEED_DEFINITIONS: Record<
-  "lenses" | "articles",
+  "lenses" | "articles" | "changelog",
   { title: string; description: string; feedPath: string; homePath: string }
 >;
 
@@ -54,6 +60,7 @@ export function buildLensFeedItems(
   limit?: number,
 ): RssFeedItem[];
 export function buildArticleFeedItems(buildMeta: FeedBuildMetadata, limit?: number): RssFeedItem[];
+export function buildChangelogFeedItems(entries?: FeedChangelogEntry[], limit?: number): RssFeedItem[];
 export function renderRssFeed(options: {
   title: string;
   description: string;
@@ -64,6 +71,6 @@ export function renderRssFeed(options: {
 export function generateRssFeeds(
   buildMeta: FeedBuildMetadata,
   lensSummaries: FeedLensSummary[],
-  options?: { limit?: number },
-): { lenses: string; articles: string };
+  options?: { limit?: number; changelogEntries?: FeedChangelogEntry[] },
+): { lenses: string; articles: string; changelog: string };
 export function writeRssFeeds(options?: { distDir?: string; metadataPath?: string; lensSummariesPath?: string }): void;

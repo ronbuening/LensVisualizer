@@ -90,7 +90,11 @@ describe("page, markdown, and breadcrumb coverage", () => {
     expect(screen.getByRole("link", { name: "Subscribe to New Lenses" }).getAttribute("href")).toBe(
       "/feeds/lenses.xml",
     );
+    expect(screen.getByRole("link", { name: "Subscribe to Changelog" }).getAttribute("href")).toBe(
+      "/feeds/changelog.xml",
+    );
     expect(screen.getByText(CHANGELOG[0].summary)).toBeTruthy();
+    expect(screen.getByText(CHANGELOG[0].summary).parentElement?.id).toMatch(/^changelog-2026-08-04-feature-/);
     expect(screen.getByRole("link", { name: "Lens Library" })).toBeTruthy();
     if (firstLensEntry) {
       expect(screen.getByText(LENS_CATALOG[firstLensEntry.key].name)).toBeTruthy();

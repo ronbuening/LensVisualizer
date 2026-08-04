@@ -81,6 +81,7 @@ describe("static page renders", () => {
     expect(bodyText.indexOf("Patent-derived optical models")).toBeGreaterThan(bodyText.indexOf("Articles & Guides"));
     expect(screen.getByRole("link", { name: "New Lenses RSS" }).getAttribute("href")).toBe("/feeds/lenses.xml");
     expect(screen.getByRole("link", { name: "New Articles RSS" }).getAttribute("href")).toBe("/feeds/articles.xml");
+    expect(screen.getByRole("link", { name: "Changelog RSS" }).getAttribute("href")).toBe("/feeds/changelog.xml");
     expect(screen.getByRole("link", { name: "Sitemap" }).getAttribute("href")).toBe("/sitemap.xml");
   });
 

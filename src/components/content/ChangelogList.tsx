@@ -3,6 +3,7 @@ import { CHANGELOG } from "../../utils/content/changelogData.js";
 import {
   CHANGELOG_TYPE_COLORS,
   CHANGELOG_TYPE_LABELS,
+  changelogEntryId,
   formatDisplayDate,
   groupChangelogByDate,
 } from "../../utils/content/changelogHelpers.js";
@@ -34,39 +35,43 @@ export default function ChangelogList({ theme: t, entries = CHANGELOG, maxHeight
             {formatDisplayDate(date)}
           </div>
 
-          {dateEntries.map((entry, i) => (
-            <div
-              key={i}
-              style={{
-                display: "flex",
-                alignItems: "flex-start",
-                gap: "0.5rem",
-                padding: "0.5rem 0.75rem",
-                marginBottom: "0.35rem",
-                borderRadius: 6,
-                border: `1px solid ${t.panelBorder}`,
-                background: t.panelBg,
-              }}
-            >
-              <span
+          {dateEntries.map((entry) => {
+            const entryId = changelogEntryId(entry);
+            return (
+              <div
+                id={entryId}
+                key={entryId}
                 style={{
-                  flexShrink: 0,
-                  fontSize: "0.6rem",
-                  padding: "1px 6px",
-                  borderRadius: 3,
-                  background: `${CHANGELOG_TYPE_COLORS[entry.type]}22`,
-                  color: CHANGELOG_TYPE_COLORS[entry.type],
-                  letterSpacing: "0.06em",
-                  textTransform: "uppercase",
-                  fontWeight: 600,
-                  marginTop: "0.15rem",
+                  display: "flex",
+                  alignItems: "flex-start",
+                  gap: "0.5rem",
+                  padding: "0.5rem 0.75rem",
+                  marginBottom: "0.35rem",
+                  borderRadius: 6,
+                  border: `1px solid ${t.panelBorder}`,
+                  background: t.panelBg,
                 }}
               >
-                {CHANGELOG_TYPE_LABELS[entry.type]}
-              </span>
-              <span style={{ fontSize: "0.8rem", color: t.body, lineHeight: 1.4 }}>{entry.summary}</span>
-            </div>
-          ))}
+                <span
+                  style={{
+                    flexShrink: 0,
+                    fontSize: "0.6rem",
+                    padding: "1px 6px",
+                    borderRadius: 3,
+                    background: `${CHANGELOG_TYPE_COLORS[entry.type]}22`,
+                    color: CHANGELOG_TYPE_COLORS[entry.type],
+                    letterSpacing: "0.06em",
+                    textTransform: "uppercase",
+                    fontWeight: 600,
+                    marginTop: "0.15rem",
+                  }}
+                >
+                  {CHANGELOG_TYPE_LABELS[entry.type]}
+                </span>
+                <span style={{ fontSize: "0.8rem", color: t.body, lineHeight: 1.4 }}>{entry.summary}</span>
+              </div>
+            );
+          })}
         </div>
       ))}
     </div>

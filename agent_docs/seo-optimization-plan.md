@@ -43,7 +43,7 @@ The Search Console screenshot captured before these changes reported:
 
 ### Actions
 
-1. Smoke-test both RSS feeds for HTTP 200, RSS MIME type, valid XML, current entries, and homepage autodiscovery.
+1. Smoke-test all three RSS feeds for HTTP 200, RSS MIME type, valid XML, current entries, and homepage autodiscovery.
 2. Test representative home, lens, article, author, maker, mount, format, patent, updates, and relationship URLs.
 3. Confirm canonical trailing-slash page URLs return 200 directly.
 4. Confirm legacy non-trailing-slash URLs redirect once to the canonical form.

@@ -15,3 +15,6 @@
 
 /feeds/articles.xml
   Content-Type: application/rss+xml; charset=UTF-8
+
+/feeds/changelog.xml
+  Content-Type: application/rss+xml; charset=UTF-8

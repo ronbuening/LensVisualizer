@@ -69,15 +69,16 @@ The app uses React Router 8 with client-side routing plus static prerendering fo
   route list and prerender coverage check because arbitrary comparison pairs are noindex client/deep-link pages.
 - `scripts/generate-sitemap.mjs` consumes the same route list and route freshness map from
   `src/generated/build-metadata.json`, then omits any prerendered route whose robots metadata contains `noindex`.
-- `scripts/generate-rss-feeds.mjs` consumes the build metadata plus generated lens summaries and writes the 50 newest
-  visible lenses and articles to `dist/feeds/lenses.xml` and `dist/feeds/articles.xml`.
+- `scripts/generate-rss-feeds.mjs` consumes the build metadata, generated lens summaries, and curated changelog. It
+  writes the 50 newest entries to `dist/feeds/lenses.xml`, `dist/feeds/articles.xml`, and
+  `dist/feeds/changelog.xml`.
 - `scripts/seo-audit.mjs` audits the built/prerendered output.
 
 The generated metadata continues to use slashless route identifiers such as `/lenses` as lookup keys. Public page URLs
 use Cloudflare Pages' directory-index form: `/` for the homepage and a trailing slash for every other prerendered route.
 `src/utils/seo/siteUrls.ts` owns runtime normalization, while `scripts/site-url.mjs` applies the same contract to build
 artifacts. Sitemap locations, canonical and Open Graph URLs, JSON-LD, RSS item links, and crawlable internal links must
-all use that direct-`200` form. Static files such as `/sitemap.xml` and `/feeds/lenses.xml` retain filename URLs.
+all use that direct-`200` form. Static files such as `/sitemap.xml` and files under `/feeds/` retain filename URLs.
 
 `ClientOnly.tsx` wraps browser-only interactive components. `LensPage` and `ComparePage` pass crawlable fallback content
 for SSR and replace it with `LensViewer` after hydration.
@@ -113,18 +114,21 @@ Lens description markdown files live beside lens data files as `*.analysis.md` a
 ## RSS Feeds
 
 The RSS feeds are static build artifacts rather than React routes. `npm run build` writes RSS 2.0 files at
-`/feeds/lenses.xml` and `/feeds/articles.xml` after prerendering and sitemap generation. Feed items use the same
-git-derived publication metadata as the Updates and Articles pages: the date remains available as `publishedOn`, while
-`publishedAt` and `publishedCommit` preserve the exact first-commit timestamp and identity. Newest commits sort first,
-including multiple commits from one day; lenses or articles introduced by the same commit sort alphabetically by display
-name/title. Before new content is committed, its date-only Git fallback sorts ahead of committed content from that same
-date so local Recently Added lists reflect the active addition; its exact commit timestamp takes over after commit. RSS
-`pubDate` uses the exact timestamp. Items use permanent canonical page URLs as GUIDs, summary-only
-descriptions, and a 50-item limit. Item links and GUIDs use the same trailing-slash page URLs as the sitemap and HTML
-canonical tags. Article series members appear as individual items; hidden lenses are excluded.
+`/feeds/lenses.xml`, `/feeds/articles.xml`, and `/feeds/changelog.xml` after prerendering and sitemap generation. Lens and
+article items use the same git-derived publication metadata as the Updates and Articles pages: the date remains available
+as `publishedOn`, while `publishedAt` and `publishedCommit` preserve the exact first-commit timestamp and identity. Newest
+commits sort first, including multiple commits from one day; lenses or articles introduced by the same commit sort
+alphabetically by display name/title. Before new content is committed, its date-only Git fallback sorts ahead of
+committed content from that same date so local Recently Added lists reflect the active addition; its exact commit
+timestamp takes over after commit. RSS `pubDate` uses the exact timestamp.
 
-The shared HTML template advertises both feeds with absolute RSS autodiscovery links. Visible subscription links live on
-the homepage and the corresponding Lens Library, Updates, and Articles pages. The feed URLs stay out of the route
+Changelog items come from `src/utils/content/changelogData.ts` in its curated newest-first order. Their permanent GUIDs
+and links use deterministic fragment IDs shared with `ChangelogList`, so each item opens the matching entry on
+`/updates/`. All feeds use summary-only descriptions and a 50-item limit. Page item links use the same trailing-slash URLs
+as the sitemap and HTML canonical tags. Article series members appear as individual items; hidden lenses are excluded.
+
+The shared HTML template advertises all three feeds with absolute RSS autodiscovery links. Visible subscription links
+live on the homepage and the corresponding Lens Library, Updates, and Articles pages. The feed URLs stay out of the route
 manifest and sitemap because Cloudflare Pages serves them directly from `dist/` with MIME overrides from
 `public/_headers`.
 

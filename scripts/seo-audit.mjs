@@ -14,6 +14,7 @@
 
 import { readFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
+import { buildChangelogFeedItems } from "./generate-rss-feeds.mjs";
 import { SITE_URL, canonicalPagePath, canonicalPageUrl } from "./site-url.mjs";
 import { htmlHasNoindexDirective } from "./sitemap-lib.mjs";
 
@@ -24,6 +25,7 @@ const FEED_LIMIT = 50;
 const FEEDS = [
   { name: "lens", file: "lenses.xml", url: `${SITE_URL}/feeds/lenses.xml` },
   { name: "article", file: "articles.xml", url: `${SITE_URL}/feeds/articles.xml` },
+  { name: "changelog", file: "changelog.xml", url: `${SITE_URL}/feeds/changelog.xml` },
 ];
 
 let errors = 0;
@@ -153,6 +155,10 @@ function compareStrings(a, b) {
 }
 
 function expectedFeedUrls(buildMeta, feedName) {
+  if (feedName === "changelog") {
+    return buildChangelogFeedItems(undefined, FEED_LIMIT).map((entry) => entry.url);
+  }
+
   const entries =
     feedName === "lens"
       ? Object.entries(buildMeta.lensFreshness).map(([key, freshness]) => ({
@@ -240,7 +246,7 @@ function auditFeedDiscovery() {
       error(`Homepage is missing autodiscovery for ${feed.url}`);
     }
   }
-  ok("Homepage advertises both RSS feeds");
+  ok(`Homepage advertises all ${FEEDS.length} RSS feeds`);
 }
 
 function auditAllPrerenderedPages(routes) {

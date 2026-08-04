@@ -29,8 +29,11 @@ describe("deployment security headers", () => {
     (source) => expect(headers.match(/connect-src ([^;]+)/)?.[1]).toContain(source),
   );
 
-  it.each(["/feeds/lenses.xml", "/feeds/articles.xml"])("serves %s with the RSS MIME type", (path) => {
-    const escapedPath = path.replaceAll("/", "\\/");
-    expect(headers).toMatch(new RegExp(`${escapedPath}\\s+Content-Type: application/rss\\+xml; charset=UTF-8`));
-  });
+  it.each(["/feeds/lenses.xml", "/feeds/articles.xml", "/feeds/changelog.xml"])(
+    "serves %s with the RSS MIME type",
+    (path) => {
+      const escapedPath = path.replaceAll("/", "\\/");
+      expect(headers).toMatch(new RegExp(`${escapedPath}\\s+Content-Type: application/rss\\+xml; charset=UTF-8`));
+    },
+  );
 });
