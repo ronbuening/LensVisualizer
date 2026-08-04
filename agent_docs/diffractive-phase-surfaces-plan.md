@@ -157,7 +157,8 @@ Files to touch:
 - **New:** `src/optics/math/diffractivePhase.ts`
 - **Modified:** `src/optics/prescription/normalizeLensData.ts`, `src/optics/validateLensData.ts`
 - **Modified:** `__tests__/src/optics/validateLensData.test.ts`
-- **New:** `__tests__/src/optics/math/diffractivePhase.test.ts`
+- **Phase-kernel coverage (as shipped):** `__tests__/src/optics/opticsEngineMath.test.ts` — the planned standalone
+  `diffractivePhase.test.ts` was never created; the kernel tests live in the shared engine-math suite instead.
 
 Reference to mimic: `AsphericCoefficients`, `compileAspheres()`, and the asphere validation block, while keeping phase
 data surface-local because it changes interaction physics rather than profile geometry.

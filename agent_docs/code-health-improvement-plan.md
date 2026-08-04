@@ -126,7 +126,7 @@ The audit explicitly confirmed these are in good shape; do not spend branches on
 
 - **Relationship-map layout engine** (`src/components/relationshipMap/layout.ts`): pure, no module
   state, no `Math.random`/`Date`, determinism directly tested. Implementation matches
-  `agent_docs/relationship-map-plan.md` with its one deviation self-documented.
+  `agent_docs/records/relationship-map-plan.md` with its one deviation self-documented.
 - **Reference-safe glass matching** (#623) is enforced coherently: the single filter in
   `src/optics/glassCatalog.ts` (~line 408) plus `assessCatalogGlassCompatibility`'s dual-line
   table; all 15+ scan call sites pass `element.indexReference` correctly.
@@ -711,7 +711,7 @@ Verification: gate passes.
 
 ### D4. Move `relationship-map-plan.md` to records; fix stale plan references
 
-- [ ] Effort: S · Impact: low · Risk: low
+- [x] Effort: S · Impact: low · Risk: low
 
 The relationship-map plan is marked "SHIPPED 2026-07-22" but CLAUDE.md indexes it as a live
 implementation plan. Two more stale records found: `TRACE_MODEL_IMPROVEMENT_PLAN.md` "Current

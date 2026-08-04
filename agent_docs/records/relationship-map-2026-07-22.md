@@ -3,7 +3,7 @@
 Branch: `ronbuening/RelationMapping`
 Ship date: 2026-07-22
 
-Implements the F25 patent relationship map per `agent_docs/relationship-map-plan.md`. New static route
+Implements the F25 patent relationship map per `agent_docs/records/relationship-map-plan.md`. New static route
 `/relationships` draws a two-ring ego graph (center party → their patents → other named
 inventors/assignees) as inline SVG, with query-param focus, recentering, and a patent detail card.
 

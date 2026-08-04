@@ -58,6 +58,20 @@ Verification: gate passed (223 files / 2609 tests).
 
 Verification: gate passed (223 files / 2609 tests).
 
+### D4 — shipped-plan records and stale references
+
+- `git mv agent_docs/relationship-map-plan.md agent_docs/records/relationship-map-plan.md`; updated every reference
+  (CLAUDE.md/agents.md index line, `FEATURE_ADDITION_PLAN.md`, this plan's Verified Healthy note, and the
+  2026-07-22 branch record). The CLAUDE.md entry now reads "shipped implementation record (2026-07-22)" and sits
+  with the other `agent_docs/records/` entries.
+- `TRACE_MODEL_IMPROVEMENT_PLAN.md`: deleted the legacy vertex-plane/`traceMode.ts` bullet from Current State, and
+  also the Test Strategy bullet citing the equally nonexistent `__tests__/src/optics/traceMode.test.ts` (extra to
+  the spec's step 2, same stale-file class — both files are gone from the tree).
+- `agent_docs/diffractive-phase-surfaces-plan.md`: the promised `diffractivePhase.test.ts` now points at the real
+  coverage in `__tests__/src/optics/opticsEngineMath.test.ts`.
+
+Verification: gate passed (223 files / 2609 tests).
+
 ## Follow-ups
 
 - Remaining Stage 1 items tracked in the plan; later stages untouched.

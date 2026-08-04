@@ -118,9 +118,9 @@ Read only the relevant focused doc before changing that area:
   `npm run generate:glass-reports`, hidden mirror fixture reports with `npm run generate:mirror-reports`, and the
   mount SVG specifications with `npm run generate:mount-svgs`
 - `agent_docs/records/exact-surface-trace.md` - historical staged implementation notes for the exact trace rollout
+- `agent_docs/records/relationship-map-plan.md` - shipped implementation record (2026-07-22) for the F25 patent relationship map page
 - `TRACE_MODEL_IMPROVEMENT_PLAN.md` - current/historical fisheye projection, vector launch, and bounding-sphere trace status
 - `FEATURE_ADDITION_PLAN.md` - single source of truth for planned features (absorbed the analysis-options and mirror-lens backlogs; archives under `agent_docs/records/`)
-- `agent_docs/relationship-map-plan.md` - self-contained implementation plan for the F25 patent relationship map page
 - `EFFICIENCY_IMPROVEMENT_PLAN.md` - task-by-task redundancy cleanup and performance backlog with verification gates
 - `agent_docs/code-health-improvement-plan.md` - prioritized code-health/refactoring backlog from the 2026-08-04
   six-subsystem audit of the July expansion (safety nets, bug fixes, docs/hygiene, UI/catalog/engine consolidation)
