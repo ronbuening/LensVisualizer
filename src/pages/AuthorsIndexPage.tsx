@@ -9,6 +9,7 @@ import { useMemo, useState } from "react";
 import { Link } from "react-router";
 import SEOHead from "../components/SEOHead.js";
 import PageNavBar from "../components/layout/PageNavBar.js";
+import { getAuthorBiography } from "../utils/catalog/authorBiographies.js";
 import { AUTHORS } from "../utils/catalog/authorCatalog.js";
 import { SITE_NAME, SITE_URL } from "../utils/catalog/lensMetadata.js";
 import { collectionPageJsonLd, itemListJsonLd } from "../utils/seo/structuredData.js";
@@ -78,7 +79,7 @@ export default function AuthorsIndexPage() {
           <Link to="/relationships/" style={{ color: t.descLinkColor, textDecoration: "none" }}>
             patent relationship map
           </Link>
-          .
+          . Profiles with a curated biography are labeled below.
         </p>
 
         <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1.25rem" }}>
@@ -119,12 +120,32 @@ export default function AuthorsIndexPage() {
                 padding: "0.8rem",
               }}
             >
-              <Link
-                to={`/authors/${author.slug}/`}
-                style={{ color: t.descLinkColor, textDecoration: "none", fontSize: "0.9rem", fontWeight: 600 }}
-              >
-                {author.name}
-              </Link>
+              <div style={{ display: "flex", alignItems: "center", flexWrap: "wrap", gap: "0.45rem" }}>
+                <Link
+                  to={`/authors/${author.slug}/`}
+                  style={{ color: t.descLinkColor, textDecoration: "none", fontSize: "0.9rem", fontWeight: 600 }}
+                >
+                  {author.name}
+                </Link>
+                {getAuthorBiography(author.name) && (
+                  <span
+                    aria-label="Curated biography available"
+                    style={{
+                      background: t.toggleActiveBg,
+                      border: `1px solid ${t.toggleActiveBorder}`,
+                      borderRadius: 3,
+                      color: t.toggleActiveText,
+                      fontSize: "0.58rem",
+                      fontWeight: 600,
+                      letterSpacing: "0.06em",
+                      padding: "1px 6px",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    Biography
+                  </span>
+                )}
+              </div>
               <div style={{ color: t.label, fontSize: "0.7rem", marginTop: "0.3rem" }}>
                 {author.patentCount} {author.patentCount === 1 ? "patent" : "patents"} · {author.lensKeys.length}{" "}
                 {author.lensKeys.length === 1 ? "lens diagram" : "lens diagrams"}

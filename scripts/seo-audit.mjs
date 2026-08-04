@@ -15,6 +15,7 @@
 import { readFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import { SITE_URL, canonicalPagePath, canonicalPageUrl } from "./site-url.mjs";
+import { htmlHasNoindexDirective } from "./sitemap-lib.mjs";
 
 const ROOT = join(import.meta.dirname, "..");
 const DIST_DIR = join(ROOT, "dist");
@@ -78,9 +79,16 @@ function auditSitemap(routes) {
     error("sitemap.xml should not include RSS feed URLs");
   }
 
-  /* Verify every route appears in the sitemap */
-  let missing = 0;
+  const indexableRoutes = [];
+  const noindexRoutes = [];
   for (const route of routes) {
+    const html = readFileSync(routeToFile(route), "utf-8");
+    (htmlHasNoindexDirective(html) ? noindexRoutes : indexableRoutes).push(route);
+  }
+
+  /* Verify every indexable route, and no noindex route, appears in the sitemap. */
+  let missing = 0;
+  for (const route of indexableRoutes) {
     const url = canonicalPageUrl(route);
     if (!content.includes(url)) {
       error(`sitemap.xml missing URL: ${url}`);
@@ -88,7 +96,19 @@ function auditSitemap(routes) {
     }
   }
   if (missing === 0) {
-    ok(`sitemap.xml contains all ${routes.length} URLs`);
+    ok(`sitemap.xml contains all ${indexableRoutes.length} indexable URLs`);
+  }
+
+  let includedNoindex = 0;
+  for (const route of noindexRoutes) {
+    const url = canonicalPageUrl(route);
+    if (content.includes(url)) {
+      error(`sitemap.xml includes noindex URL: ${url}`);
+      includedNoindex++;
+    }
+  }
+  if (includedNoindex === 0) {
+    ok(`sitemap.xml excludes all ${noindexRoutes.length} noindex URLs`);
   }
 
   const routeFreshness = buildMeta.routeFreshness || {};
@@ -101,7 +121,11 @@ function auditSitemap(routes) {
   }
   let lastmodMismatches = 0;
 
-  for (const route of routes) {
+  if (sitemapBlocks.length !== indexableRoutes.length) {
+    error(`sitemap.xml contains ${sitemapBlocks.length} URLs; expected ${indexableRoutes.length}`);
+  }
+
+  for (const route of indexableRoutes) {
     const loc = canonicalPageUrl(route);
     const expectedLastmod = routeFreshness[route]?.lastModified;
     if (!expectedLastmod) {

@@ -136,16 +136,17 @@ does not currently provide a stable, standalone search landing page. Keep its re
 
 ### Author pages
 
-The generated catalog currently contains 368 author pages. Of those, 206 represent a single patent, while only 19
-authors have curated biographies. If thin author pages appear disproportionately in the excluded set, choose one of
-these policies:
+The generated catalog currently contains 375 author pages. Of those, 210 represent a single patent, while 24 authors
+have curated biographies.
 
-1. Enrich important authors with sourced biographies and design context.
-2. Keep bibliographically useful pages indexable when their patent and lens relationships provide distinct value.
-3. Consolidate or `noindex,follow` pages that add no standalone value beyond a single lens page.
+The adopted policy keeps pages indexable when they have a curated biography, more than one patent, or more than one
+lens diagram. Biography-less pages that only restate one patent and one lens are marked `noindex,follow` but remain
+prerendered and available through the author directory and internal navigation. Sitemap generation reads the rendered
+robots metadata and excludes those noindex URLs automatically.
 
-The choice requires editorial judgment about whether Surface & Stop wants comprehensive inventor records or a smaller
-curated author index. Do not generate generic biographies merely to increase word count.
+Continue enriching important authors with sourced biographies and design context. Do not generate generic biographies
+merely to increase word count. Revisit the threshold if Search Console shows that a supposedly thin author page has
+meaningful query demand, backlinks, or other standalone value.
 
 ### Content review
 
@@ -223,6 +224,5 @@ Google notes that a sitemap improves discovery but does not guarantee crawling o
 - [ ] 5xx crawl timestamp and Cloudflare evidence supplied, if available
 - [ ] Core Web Vitals report supplied
 - [ ] PageSpeed Insights reports supplied
-- [ ] Editorial decision made for thin author pages if they form a material exclusion pattern
-- [ ] Approval given before adding production CI monitoring or changing indexation policy
-
+- [x] Editorial decision made for thin author pages if they form a material exclusion pattern
+- [x] Approval given before adding production CI monitoring or changing indexation policy

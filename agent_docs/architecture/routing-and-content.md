@@ -68,7 +68,7 @@ The app uses React Router 8 with client-side routing plus static prerendering fo
 - `/compare/:slugA/:slugB` is routeable and SSR-capable, but it is intentionally excluded from the generated concrete
   route list and prerender coverage check because arbitrary comparison pairs are noindex client/deep-link pages.
 - `scripts/generate-sitemap.mjs` consumes the same route list and route freshness map from
-  `src/generated/build-metadata.json`.
+  `src/generated/build-metadata.json`, then omits any prerendered route whose robots metadata contains `noindex`.
 - `scripts/generate-rss-feeds.mjs` consumes the build metadata plus generated lens summaries and writes the 50 newest
   visible lenses and articles to `dist/feeds/lenses.xml` and `dist/feeds/articles.xml`.
 - `scripts/seo-audit.mjs` audits the built/prerendered output.

@@ -13,6 +13,7 @@ import AuthorPage from "../../../src/pages/AuthorPage.js";
 import AuthorsIndexPage from "../../../src/pages/AuthorsIndexPage.js";
 import PatentsIndexPage from "../../../src/pages/PatentsIndexPage.js";
 import CatalogSearchBox from "../../../src/components/search/CatalogSearchBox.js";
+import { getAuthorBiography } from "../../../src/utils/catalog/authorBiographies.js";
 import { AUTHORS, getAuthorByName, patentsForAuthor } from "../../../src/utils/catalog/authorCatalog.js";
 import { PATENTS, PATENT_COUNTRY_GROUPS, espacenetPatentUrl } from "../../../src/utils/catalog/patentCatalog.js";
 import themes from "../../../src/utils/theme/themes.js";
@@ -145,6 +146,32 @@ describe("search, author, and patent pages", () => {
 
     expect(screen.getByRole("button", { name: "Patent count" }).getAttribute("aria-pressed")).toBe("true");
     expect(document.querySelector("main a[href^='/authors/']")?.textContent).toBe(authorsByPatentCount[0].name);
+  });
+
+  it("labels author index entries that include a curated biography", () => {
+    const profiledAuthor = getAuthorByName("Paul Rudolph");
+    const unprofiledAuthor = AUTHORS.find((author) => !getAuthorBiography(author.name));
+    expect(profiledAuthor).toBeDefined();
+    expect(unprofiledAuthor).toBeDefined();
+    if (!profiledAuthor || !unprofiledAuthor) return;
+
+    renderWithRouter(
+      <HelmetProvider>
+        <Routes>
+          <Route path="/authors" element={<AuthorsIndexPage />} />
+        </Routes>
+      </HelmetProvider>,
+      { initialEntries: ["/authors"] },
+    );
+
+    const profiledCard = screen.getByRole("link", { name: profiledAuthor.name }).parentElement;
+    const unprofiledCard = screen.getByRole("link", { name: unprofiledAuthor.name }).parentElement;
+    expect(profiledCard).toBeTruthy();
+    expect(unprofiledCard).toBeTruthy();
+    if (!profiledCard || !unprofiledCard) return;
+
+    expect(within(profiledCard).getByLabelText("Curated biography available").textContent).toBe("Biography");
+    expect(within(unprofiledCard).queryByLabelText("Curated biography available")).toBeNull();
   });
 
   it("renders patents in Country → Assignee sections with lens links", () => {

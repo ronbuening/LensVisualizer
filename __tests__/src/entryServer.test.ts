@@ -15,6 +15,7 @@ import { IMAGE_FORMAT_OPTIONS, MOUNT_OPTIONS } from "../../src/pages/lensIndex/c
 import { getMountDetails } from "../../src/utils/catalog/mountDetails.js";
 import { getImageFormatDetails } from "../../src/utils/catalog/imageFormatDetails.js";
 import { AUTHORS, patentsForAuthor } from "../../src/utils/catalog/authorCatalog.js";
+import { getAuthorBiography } from "../../src/utils/catalog/authorBiographies.js";
 import { PATENTS } from "../../src/utils/catalog/patentCatalog.js";
 import {
   deriveMaker,
@@ -42,6 +43,12 @@ const TEST_ARTICLE = ARTICLES[0];
 const TEST_AUTHOR = AUTHORS.find((author) => author.patentCount > 0)!;
 const TEST_AUTHOR_PATENT = patentsForAuthor(TEST_AUTHOR.name)[0];
 const TEST_PROFILED_AUTHOR = AUTHORS.find((author) => author.name === "Paul Rudolph")!;
+const TEST_THIN_AUTHOR = AUTHORS.find(
+  (author) => author.patentCount === 1 && author.lensKeys.length === 1 && !getAuthorBiography(author.name),
+)!;
+const TEST_UNPROFILED_RICH_AUTHOR = AUTHORS.find(
+  (author) => (author.patentCount > 1 || author.lensKeys.length > 1) && !getAuthorBiography(author.name),
+)!;
 const TEST_PATENT = PATENTS[0];
 
 function escapeHtmlText(value: string): string {
@@ -60,6 +67,8 @@ describe("SSR test preconditions", () => {
     expect(CATALOG_KEYS.length).toBeGreaterThan(0);
     expect(TEST_MAKER_SLUG).toBeTruthy();
     expect(TEST_MAKER_DISPLAY).toBeTruthy();
+    expect(TEST_THIN_AUTHOR).toBeTruthy();
+    expect(TEST_UNPROFILED_RICH_AUTHOR).toBeTruthy();
   });
 });
 
@@ -234,10 +243,21 @@ describe("SSR render — search and author pages", () => {
   });
 
   it("includes curated biographies in prerendered author content", () => {
-    const { html } = render(`/authors/${TEST_PROFILED_AUTHOR.slug}`);
+    const { helmet, html } = render(`/authors/${TEST_PROFILED_AUTHOR.slug}`);
+    expect(helmet.meta.toString()).not.toContain('name="robots" content="noindex');
     expect(html).toContain("Biography");
     expect(html).toContain("foundational designers of modern photographic objectives");
     expect(html).toContain("ZEISS — History of camera and cine lenses");
+  });
+
+  it("marks biography-less one-patent, one-lens author pages noindex", () => {
+    const { helmet } = render(`/authors/${TEST_THIN_AUTHOR.slug}`);
+    expect(helmet.meta.toString()).toContain('name="robots" content="noindex,follow"');
+  });
+
+  it("keeps richer biography-less author collections indexable", () => {
+    const { helmet } = render(`/authors/${TEST_UNPROFILED_RICH_AUTHOR.slug}`);
+    expect(helmet.meta.toString()).not.toContain('name="robots" content="noindex');
   });
 });
 

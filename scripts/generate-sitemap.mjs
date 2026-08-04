@@ -10,9 +10,15 @@
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import { canonicalPageUrl } from "./site-url.mjs";
+import { htmlHasNoindexDirective } from "./sitemap-lib.mjs";
 
 const META_PATH = join(import.meta.dirname, "..", "src", "generated", "build-metadata.json");
 const DIST_DIR = join(import.meta.dirname, "..", "dist");
+
+/** Resolve a prerender route to its generated HTML file. */
+function routeToFile(route) {
+  return route === "/" ? join(DIST_DIR, "index.html") : join(DIST_DIR, route.slice(1), "index.html");
+}
 
 /** Assign sitemap priority based on route path prefix. */
 function routePriority(route) {
@@ -52,7 +58,13 @@ function generateSitemap() {
   }
 
   const buildMeta = JSON.parse(readFileSync(META_PATH, "utf-8"));
-  const routes = buildMeta.routes;
+  const routes = buildMeta.routes.filter((route) => {
+    const htmlPath = routeToFile(route);
+    if (!existsSync(htmlPath)) {
+      throw new Error(`Prerendered route missing while generating sitemap: ${route}`);
+    }
+    return !htmlHasNoindexDirective(readFileSync(htmlPath, "utf-8"));
+  });
   const routeFreshness = buildMeta.routeFreshness || {};
 
   const urls = routes.map((route) => ({
@@ -74,7 +86,8 @@ function generateSitemap() {
 
   const outPath = join(DIST_DIR, "sitemap.xml");
   writeFileSync(outPath, xml, "utf-8");
-  console.log(`Sitemap written to ${outPath} (${urls.length} URLs)`);
+  const excludedCount = buildMeta.routes.length - routes.length;
+  console.log(`Sitemap written to ${outPath} (${urls.length} URLs, ${excludedCount} noindex routes excluded)`);
 }
 
 generateSitemap();
