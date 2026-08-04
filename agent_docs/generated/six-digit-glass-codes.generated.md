@@ -9,10 +9,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **510** lenses scanned
-- **591** total code-only elements found
-- **591** elements in this report
-- **165** distinct lens files affected
+- **513** lenses scanned
+- **594** total code-only elements found
+- **594** elements in this report
+- **167** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -229,6 +229,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 683309 | 1 | 1 | patents/US2983193.pdf | All rows explicitly disposed |
 | 683447 | 1 | 1 | patents/US4708445.pdf | All rows explicitly disposed |
 | 683548 | 1 | 1 | patents/WO2021039813A1.pdf | All rows have review records |
+| 684316 | 1 | 1 | patents/US20100149663A1.pdf | All rows explicitly disposed |
 | 685309 | 1 | 1 | patents/US20160154221A1.pdf | All rows explicitly disposed |
 | 689311 | 1 | 1 | patents/US5734508.pdf | No review-record hit |
 | 691536 | 1 | 1 | patents/JP2021076829A.pdf | All rows explicitly disposed |
@@ -273,6 +274,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 760492 | 1 | 1 | patents/JP2015041012A.pdf | All rows explicitly disposed |
 | 762271 | 1 | 1 | patents/US3743387.pdf | All rows have review records |
 | 764491 | 1 | 1 | patents/JP2023183894A.pdf | All rows have review records |
+| 765249 | 1 | 1 | patents/US20130314588A1.pdf | All rows explicitly disposed |
 | 767462 | 1 | 1 | patents/US3507558.pdf | All rows have review records |
 | 768465 | 1 | 1 | patents/US3524697.pdf | All rows have review records |
 | 769497 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | All rows have review records |
@@ -334,6 +336,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 856323 | 1 | 1 | patents/WO2021200206A1.pdf | All rows explicitly disposed |
 | 866450 | 1 | 1 | patents/CN116520542A.pdf | All rows have review records |
 | 871407 | 1 | 1 | patents/JP2020118738A.pdf | No review-record hit |
+| 874287 | 1 | 1 | patents/US20130314588A1.pdf | All rows explicitly disposed |
 | 876363 | 1 | 1 | patents/JPA 2021076740-000000.pdf | All rows explicitly disposed |
 | 877370 | 1 | 1 | patents/US20160266350A1.pdf | All rows have review records |
 | 882408 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | All rows have review records |
@@ -1522,6 +1525,19 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L1 (Element 1) | 1 | `Unmatched (520642 patent-rounded crown; no unique catalog identity)` | 1.52000 / 64.20 | No catalog entry | abbe | patents/DE_3907928_A1.pdf | Explicit disposition in data |
 | L6 (Element 6) | 9 | `Unmatched (460658 patent-rounded fluor-crown; no unique catalog identity)` | 1.46000 / 65.80 | No catalog entry | abbe | patents/DE_3907928_A1.pdf | Explicit disposition in data |
 | L7 (Element 7) | 11 | `Unmatched (650396 patent-rounded short flint; no unique catalog identity)` | 1.65000 / 39.60 | No catalog entry | abbe | patents/DE_3907928_A1.pdf | Explicit disposition in data |
+
+### [SAMSUNG 30mm f/2](../../src/lens-data/samsung/Samsung30mmf2.data.ts) - US 2010/0149663 A1
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L2 (Element 2) | 3 | `Unmatched (684316 dense-flint class; vendor unresolved)` | 1.68384 / 31.60 | No catalog entry | abbe | patents/US20100149663A1.pdf | Explicit disposition in data |
+
+### [SAMSUNG 45mm f/1.8](../../src/lens-data/samsung/Samsung45mmf18.data.ts) - US 2013/0314588 A1
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L1 (Element 1) | 1 | `Unmatched (874287; nd=1.87387, νd=28.7)` | 1.87387 / 28.70 | No catalog entry | abbe | patents/US20130314588A1.pdf | Explicit disposition in data |
+| L7 (Element 7) | 13 | `Unmatched (765249; nd=1.76495, νd=24.9)` | 1.76495 / 24.90 | No catalog entry | abbe | patents/US20130314588A1.pdf | Explicit disposition in data |
 
 ### [SAMYANG AF 18mm f/2.8 FE](../../src/lens-data/samyang/SamyangAF18mmf28.data.ts) - WO 2021/246545 A1
 

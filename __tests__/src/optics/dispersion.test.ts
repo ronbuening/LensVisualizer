@@ -348,6 +348,17 @@ describe("glass catalog", () => {
     }
   });
 
+  it("evaluates HOYA MP-LAC8-30 and accepts the Samsung 45mm coordinate", () => {
+    const entry = resolveGlass("MP-LAC8-30 catalog equivalent");
+    expect(entry?.name).toBe("MP-LAC8-30");
+    expect(entry?.vendor).toBe("Hoya");
+    expect(entry?.code6).toBe("713539");
+    expect(evaluateSellmeier(entry!, LINE_NM.d)).toBeCloseTo(1.7133, 5);
+    expect(evaluateCatalogAbbeNumber(entry!)).toBeCloseTo(53.95, 2);
+    expect(assessCatalogGlassCompatibility(entry!, 1.7139, 53.2).compatible).toBe(true);
+    expect(resolveGlass("713539")?.name).toBe("LAC8");
+  });
+
   it("evaluates the 2026 vendor named-glass coverage additions", () => {
     const expected: Array<[glass: string, nd: number]> = [
       ["BACD14", 1.60311],
