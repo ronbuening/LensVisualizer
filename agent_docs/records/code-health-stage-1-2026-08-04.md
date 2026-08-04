@@ -118,6 +118,35 @@ and no `getGitFileFreshnessSafe` references remain.
 Verification: gate passed (222 files / 2613 tests — one file and one test fewer, matching the deletion);
 `grep -rn ChangelogBox src __tests__` returns no hits.
 
+### D10 — glass shard housekeeping
+
+- (a) Removed the hand-bumped entry count from `glassCatalog.ts`'s header (it happened to read 463, which is
+  currently correct) and from `agent_docs/glass-relabel-followup.md` (which read a stale 443); both now point at
+  `catalogSize()`.
+- (b) Normalized nine CDGM canonical names to the vendor's mixed case: `H-LaF3B`, `H-LaF4`, `H-LaK12`, `H-LaK6A`,
+  `H-ZBaF52`, `H-ZLaF50D`, `H-ZLaF52A`, `H-ZLaF68C`, `D-ZLaF81-25`.
+- **Beyond the spec's named files:** the canonical name appears in three places that must agree, not one.
+  `GLASS_CATALOG_SOURCE_ORDER` is looked up by exact name (`entryByName` throws on a miss), and
+  `DUPLICATE_CODE6_PRECEDENCE` is compared with `===` in `glassCatalog.ts` (~368) — leaving either uppercase would
+  have thrown at import or silently broken duplicate-code precedence for 744449/750350. Both updated with `cdgm.ts`.
+- `source:` provenance strings keep the uppercase spelling of the refractiveindex.info page they cite; only the
+  `name:` fields changed.
+- `dispersion.test.ts`: updated the two pins that asserted `H-LAF4`, and added a case-insensitive resolution test so
+  the "existing all-caps lens annotations still resolve" guarantee stays enforced rather than assumed.
+- (c) Added source dates to the two undated shard phase comments in `cdgm.ts` (Phase 45 → July 29, 2026; Phase 14 →
+  May 2026, both taken from `agent_docs/glass-catalog-buildout.md`).
+
+Verification: gate passed (222 files / 2614 tests); `npm run generate:glass-reports` run from a checkout with
+`patents/` populated (505 files, per `agent_docs/gotchas.md:46`) changed only `glass-ambiguities.generated.md` and
+`six-digit-glass-codes.generated.md`, and a line-by-line pairing check confirms the diff is casing-only —
+resolution winners, criteria, deltas, and duplicate-code "preferred/alternate" markers are all unchanged.
+
 ## Follow-ups
 
-- Remaining Stage 1 items tracked in the plan; later stages untouched.
+- Stage 1 is complete (D1, N10, D2, D3, D4, D7, D9, D8, D10). Stage 2 onward untouched.
+- New item **D11** filed during D8: 36 committed `src/**/readme.md` folder docs are stale and 5 were never
+  generated. Deliberately not fixed here.
+- Not touched, noticed in passing and left alone: `getFirstGitFileFreshnessAsync` relies on
+  `getGitFileFreshnessAsync` being called without `fallbackDate` so it returns `null` and the loop can try the next
+  path. That is correct today but fragile — adding a default `fallbackDate` there would silently disable the
+  moved-file fallback. Not filed as a plan item; noting it here.

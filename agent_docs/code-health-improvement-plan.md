@@ -805,7 +805,7 @@ Verification: gate passes; `grep -n "exec(" scripts/build-metadata-lib.mjs` show
 
 ### D10. Glass shard housekeeping: stale counts, CDGM casing, phase-comment provenance
 
-- [ ] Effort: S · Impact: low · Risk: low
+- [x] Effort: S · Impact: low · Risk: low
 
 Three cheap consistency fixes: (a) hand-bumped count comments are stale
 (`glassCatalog.ts` ~14 says 463; `agent_docs/glass-relabel-followup.md` ~26 says 443) — delete the

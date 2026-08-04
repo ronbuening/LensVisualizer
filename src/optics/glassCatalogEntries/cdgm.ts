@@ -5,7 +5,7 @@
 import type { GlassEntry } from "../glassCatalogTypes.js";
 
 export const CDGM_GLASS_ENTRIES: readonly GlassEntry[] = [
-  /* Phase 45: first-party named-token audit additions. */
+  /* Phase 45 first-party named-token audit additions (July 29, 2026). */
   {
     name: "H-BaF6",
     vendor: "CDGM",
@@ -142,7 +142,7 @@ export const CDGM_GLASS_ENTRIES: readonly GlassEntry[] = [
     code6: "497816",
     source: "CDGM Zemax catalog 2022-06 via refractiveindex.info; H-FK61 page.",
   },
-  /* Phase 14 catalog expansion: CDGM, current Ohara, Hoya, and Schott unresolved-token pass. */
+  /* Phase 14 catalog expansion (May 2026): CDGM, current Ohara, Hoya, and Schott unresolved-token pass. */
   {
     name: "H-QK3L",
     vendor: "CDGM",
@@ -166,7 +166,7 @@ export const CDGM_GLASS_ENTRIES: readonly GlassEntry[] = [
     source: "CDGM Zemax catalog 2022-06 via refractiveindex.info; H-ZF6 page.",
   },
   {
-    name: "H-ZLAF50D",
+    name: "H-ZLaF50D",
     vendor: "CDGM",
     B: [0.497440659, 1.67780264, 1.32327423],
     C: [0.0285446966, 0.00788379288, 94.0514342],
@@ -243,7 +243,7 @@ export const CDGM_GLASS_ENTRIES: readonly GlassEntry[] = [
     source: "CDGM Zemax catalog 2022-06 via refractiveindex.info; H-ZF7LA page.",
   },
   {
-    name: "H-ZLAF52A",
+    name: "H-ZLaF52A",
     vendor: "CDGM",
     B: [1.85313688, 0.317938591, 1.16396318],
     C: [0.00985534639, 0.0392611678, 93.1032763],
@@ -254,7 +254,7 @@ export const CDGM_GLASS_ENTRIES: readonly GlassEntry[] = [
     source: "CDGM Zemax catalog 2022-06 via refractiveindex.info; H-ZLAF52A page.",
   },
   {
-    name: "H-ZLAF68C",
+    name: "H-ZLaF68C",
     vendor: "CDGM",
     B: [1.58833884, 0.851761035, 1.58277416],
     C: [0.00689365045, 0.0288290435, 125.035659],
@@ -265,7 +265,7 @@ export const CDGM_GLASS_ENTRIES: readonly GlassEntry[] = [
     source: "CDGM Zemax catalog 2022-06 via refractiveindex.info; H-ZLAF68C page.",
   },
   {
-    name: "H-LAK6A",
+    name: "H-LaK6A",
     vendor: "CDGM",
     B: [1.13018444, 1.60589, 0.207868982],
     C: [81.4541493, 0.00817222723, 0.030380314],
@@ -276,7 +276,7 @@ export const CDGM_GLASS_ENTRIES: readonly GlassEntry[] = [
     source: "CDGM Zemax catalog 2022-06 via refractiveindex.info; H-LAK6A page.",
   },
   {
-    name: "H-LAF3B",
+    name: "H-LaF3B",
     vendor: "CDGM",
     B: [1.66486969, 0.30162248, 1.1973888],
     C: [0.00895646712, 0.0350299695, 123.334438],
@@ -287,7 +287,7 @@ export const CDGM_GLASS_ENTRIES: readonly GlassEntry[] = [
     source: "CDGM Zemax catalog 2022-06 via refractiveindex.info; H-LAF3B page.",
   },
   {
-    name: "H-LAK12",
+    name: "H-LaK12",
     vendor: "CDGM",
     B: [0.786703112, 1.04086924, 1.21770392],
     C: [0.00202073208, 0.0163643393, 86.703479],
@@ -298,7 +298,7 @@ export const CDGM_GLASS_ENTRIES: readonly GlassEntry[] = [
       "CDGM Zemax catalog 2022-06 via refractiveindex.info; public CDGM cross-reference lists old Ohara LAL64 as the 697565 equivalent.",
   },
   {
-    name: "D-ZLAF81-25",
+    name: "D-ZLaF81-25",
     vendor: "CDGM",
     B: [1.90958888, 0.266893034, 1.26585975],
     C: [0.0102182926, 0.0421328894, 97.0733228],
@@ -308,7 +308,7 @@ export const CDGM_GLASS_ENTRIES: readonly GlassEntry[] = [
     source: "CDGM Zemax catalog 2022-06 via refractiveindex.info; D-ZLAF81-25 page.",
   },
   {
-    name: "H-LAF4",
+    name: "H-LaF4",
     vendor: "CDGM",
     B: [0.210645313, 1.75547352, 1.28979005],
     C: [0.0542759294, 0.0112370777, 119.852069],
@@ -331,7 +331,7 @@ export const CDGM_GLASS_ENTRIES: readonly GlassEntry[] = [
   },
   /* ────── Phase 35 Fujifilm GF 250mm coverage addition (July 2026) ────── */
   {
-    name: "H-ZBAF52",
+    name: "H-ZBaF52",
     vendor: "CDGM",
     B: [1.51688354, 0.211371553, 1.35763017],
     C: [0.00857006565, 0.0370160061, 144.349229],

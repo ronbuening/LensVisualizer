@@ -509,7 +509,7 @@ describe("glass catalog", () => {
       ["S-LAM7", 1.7495],
       ["L-LAM69", 1.73077],
       ["N-SF8", 1.68894],
-      ["H-LAF4", 1.7495],
+      ["H-LaF4", 1.7495],
     ];
     for (const [glass, nd] of expected) {
       const entry = resolveGlass(glass);
@@ -595,6 +595,18 @@ describe("glass catalog", () => {
     expect(resolveGlass("626391")?.name).toBe("H-BaF8");
     expect(resolveGlass("667331")?.name).toBe("H-ZF39");
     expect(resolveGlass("625356")?.name).toBe("H-F6");
+  });
+
+  it("resolves CDGM names regardless of the annotation's casing", () => {
+    // Canonical names use the vendor's mixed case (H-ZLaF50D); lens annotations
+    // authored in all caps must keep resolving to the same entry.
+    for (const [annotated, canonical] of [
+      ["H-ZLAF50D", "H-ZLaF50D"],
+      ["H-LAK12", "H-LaK12"],
+      ["D-ZLAF81-25", "D-ZLaF81-25"],
+    ] as const) {
+      expect(resolveGlass(annotated)?.name).toBe(canonical);
+    }
   });
 
   it("evaluates the source-verified exact-name sweep entries", () => {
@@ -743,7 +755,7 @@ describe("resolveGlass", () => {
 
   it("resolves phase 21 additions by alias and six-digit code", () => {
     expect(resolveGlass("SF8 dense flint")?.name).toBe("N-SF8");
-    expect(resolveGlass("Lanthanum flint 750/350")?.name).toBe("H-LAF4");
+    expect(resolveGlass("Lanthanum flint 750/350")?.name).toBe("H-LaF4");
     expect(resolveGlass("OHARA L-LAM69 PGM")?.name).toBe("L-LAM69");
     expect(resolveGlass("S-BSM10 (OHARA; 623/570)")?.name).toBe("S-BSM10");
   });
