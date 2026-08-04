@@ -5,7 +5,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║           LENS DATA — NIKON UV-NIKKOR AUTO 55mm f/4                ║
  * ╠══════════════════════════════════════════════════════════════════════╣
  * ║  Data source: JP S42-9417 / JPB 1967009417, sole numerical example. ║
- * ║  Wakimoto Zenji / Nippon Kogaku Kogyo K.K. ultraviolet triplet.      ║
+ * ║  Wakimoto Zenji / Nippon Kogaku K.K. ultraviolet triplet.            ║
  * ║  3 elements / 3 groups, all spherical.                              ║
  * ║  Focus: unit focus; only the final back-focus gap varies.            ║
  * ║                                                                      ║
@@ -49,7 +49,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "JP S42-9417",
   patentAuthors: ["Zenji Wakimoto"],
-  patentAssignees: ["Nippon Kogaku Kogyo K.K."],
+  patentAssignees: ["Nippon Kogaku K.K."],
   patentYear: 1967,
   elementCount: 3,
   groupCount: 3,

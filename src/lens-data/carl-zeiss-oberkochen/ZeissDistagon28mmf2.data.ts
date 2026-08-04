@@ -44,7 +44,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "DE 2359156 A1",
   patentAuthors: ["Erhard Glatzel"],
-  patentAssignees: ["Carl Zeiss SMT GmbH"],
+  patentAssignees: ["Carl-Zeiss-Stiftung"],
   patentYear: 1975,
   elementCount: 9,
   groupCount: 8,

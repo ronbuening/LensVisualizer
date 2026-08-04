@@ -46,7 +46,7 @@ const LENS_DATA = {
   imageFormat: "645",
   patentNumber: "US 2002/0075570 A1",
   patentAuthors: ["Hiromitsu Yamakawa"],
-  patentAssignees: [],
+  patentAssignees: ["Fuji Photo Optical Co., Ltd."],
   patentYear: 2002,
   elementCount: 9,
   groupCount: 8,

@@ -47,7 +47,7 @@ const LENS_DATA = {
   imageFormat: "aps-c",
   patentNumber: "US 2019/0154946 A1",
   patentAuthors: ["Kazuyasu Ohashi"],
-  patentAssignees: [],
+  patentAssignees: ["Ricoh Co., Ltd."],
   patentYear: 2019,
   elementCount: 6,
   groupCount: 4,

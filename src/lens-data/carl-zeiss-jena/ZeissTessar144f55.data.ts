@@ -48,7 +48,7 @@ const LENS_DATA = {
   imageFormat: "4x5",
   patentNumber: "US 721,240",
   patentAuthors: ["Paul Rudolph"],
-  patentAssignees: ["Carl Zeiss SMT GmbH"],
+  patentAssignees: ["Carl-Zeiss-Stiftung"],
   patentYear: 1903,
   elementCount: 4,
   groupCount: 3,

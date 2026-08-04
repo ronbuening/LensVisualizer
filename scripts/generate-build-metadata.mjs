@@ -34,6 +34,7 @@ import {
 import { collectLensDataAsync } from "./lens-data-lib.mjs";
 import { MAKER_PREFIXES } from "./maker-prefixes.mjs";
 import { buildAuthorMetadata, buildAssigneeMetadata } from "./author-metadata.mjs";
+import { assertPatentAssigneeValidity } from "./patent-assignee-validity.mjs";
 
 const ROOT = join(import.meta.dirname, "..");
 const README_FILE = join(ROOT, "README.md");
@@ -247,6 +248,7 @@ async function main() {
     collectLensSummaries(),
   ]);
 
+  assertPatentAssigneeValidity(lensSummaries);
   const lenses = allLenses.filter((lens) => lens.visible !== false);
   assertFreshnessDiversity({ lenses, articles });
   const lensKeys = lenses.map((l) => l.key).sort();

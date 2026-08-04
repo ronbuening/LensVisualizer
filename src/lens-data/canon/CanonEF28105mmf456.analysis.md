@@ -8,7 +8,7 @@
 **Filed:** April 26, 2004  
 **Published:** November 11, 2004  
 **Inventor:** Takashi Shirasuna  
-**Applicant/Assignee:** None printed on the US publication  
+**Assignee:** Canon Inc. (assigned to Canon Kabushiki Kaisha on the filing date)\
 **Title:** _Zoom Lens System_  
 **Embodiment analyzed:** Numerical Example 4 / Embodiment 4 (Figure 10; ¶0085)  
 **Production correlation:** Canon EF 28–105mm f/4–5.6 and EF 28–105mm f/4–5.6 USM; their official block diagrams match Example 4 at published resolution, but literal production-prescription identity is not proved

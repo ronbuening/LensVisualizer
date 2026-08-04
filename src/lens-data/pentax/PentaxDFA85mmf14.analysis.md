@@ -8,13 +8,14 @@
 **Published:** September 24, 2020  
 **Priority:** JP 2019-050685, March 19, 2019  
 **Inventor / Applicant:** Yoichi Nomura, Tokyo, Japan  
+**Assignee:** Ricoh Co., Ltd. (assignment recorded on the filing date)\
 **Classification:** G02B 9/06; G02B 9/60; H04N 5/2254  
 **Worked examples:** 11 numerical examples  
 **Embodiment analyzed:** Numerical Example 3, FIG. 7 and Tables 7-9
 
 The transcribed prescription is Numerical Example 3 of US 2020/0301101 A1. The patent describes a large-aperture medium-telephoto single-focus lens for a digital single-lens reflex camera, built from a positive first lens group and a positive second lens group (¶0002, ¶0045, ¶0082). Example 3 is the embodiment whose drawing and tables align most closely with the production **HD PENTAX-D FA★ 85 mm F1.4 ED SDM AW**.
 
-The identification is convergent rather than formally assigned in the patent. The publication names Yoichi Nomura as inventor/applicant, not Ricoh or Pentax as assignee. The optical evidence nevertheless points to the production lens:
+The publication names Yoichi Nomura as inventor/applicant, while the USPTO assignment record documents transfer to Ricoh Co., Ltd. on the filing date. The optical evidence also points to the production lens:
 
 1. Example 3 is a twelve-element, ten-group formula: four elements in G1, three air-spaced elements in G2a, and five elements in G2b as two cemented doublets plus a double-aspheric rear singlet (¶0124-0125). Ricoh publishes the production lens as 12 elements in 10 groups.
 2. The patent places three very-low-dispersion elements at $n_d = 1.43875$, $\nu_d = 95.0$ in elements 12, 14, and 22, and it places the only aspherical glass element at 28′. Ricoh states that the production lens uses three Super ED elements and one glass-molded aspherical element.

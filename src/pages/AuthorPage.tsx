@@ -148,6 +148,7 @@ export default function AuthorPage() {
   const route = `/authors/${author.slug}`;
   const canonicalURL = `${SITE_URL}${route}`;
   const seoDescription = `Explore ${patents.length} optical ${patents.length === 1 ? "patent" : "patents"} credited to ${author.name}, with links to related interactive lens diagrams.`;
+  const isThinBibliographicPage = !biography && patents.length === 1 && author.lensKeys.length === 1;
   const anchorRole = groupMode === "assignee" ? "assignee" : "inventor";
 
   const setGroupMode = (mode: AuthorGroupMode) => {
@@ -160,6 +161,7 @@ export default function AuthorPage() {
         title={`${author.name} — Lens Patent Author | ${SITE_NAME}`}
         description={seoDescription}
         canonicalURL={canonicalURL}
+        robots={isThinBibliographicPage ? "noindex,follow" : undefined}
         jsonLd={[
           collectionPageJsonLd({
             name: `${author.name} Patents`,

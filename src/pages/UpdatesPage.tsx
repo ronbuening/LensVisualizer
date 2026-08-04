@@ -8,7 +8,7 @@ import { SITE_NAME, SITE_URL } from "../utils/catalog/lensMetadata.js";
 import { collectionPageJsonLd } from "../utils/seo/structuredData.js";
 import { ALL_LENSES_BY_DATE, LENS_SUMMARIES } from "../utils/catalog/lensSummaries.js";
 import { formatDisplayDate } from "../utils/content/changelogHelpers.js";
-import { LENS_FEED_PATH } from "../utils/content/feedMetadata.js";
+import { CHANGELOG_FEED_PATH, LENS_FEED_PATH } from "../utils/content/feedMetadata.js";
 
 export default function UpdatesPage() {
   const isWide = useMediaQuery("(min-width: 720px)");
@@ -67,6 +67,19 @@ export default function UpdatesPage() {
               >
                 Changelog
               </h2>
+              <a
+                href={CHANGELOG_FEED_PATH}
+                type="application/rss+xml"
+                style={{
+                  display: "inline-block",
+                  color: t.descLinkColor,
+                  textDecoration: "none",
+                  fontSize: "0.8rem",
+                  marginBottom: "0.75rem",
+                }}
+              >
+                Subscribe to Changelog
+              </a>
               <ChangelogList theme={t} maxHeight={isWide ? "72vh" : "60vh"} />
             </section>
 

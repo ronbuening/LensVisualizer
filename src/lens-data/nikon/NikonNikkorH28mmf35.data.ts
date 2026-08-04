@@ -33,7 +33,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "JP S38-26133",
   patentAuthors: ["Zenji Wakimoto"],
-  patentAssignees: ["Nippon Kogaku Kogyo K.K."],
+  patentAssignees: ["Nippon Kogaku K.K."],
   patentYear: 1963,
   elementCount: 6,
   groupCount: 6,

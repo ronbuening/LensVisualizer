@@ -3,13 +3,16 @@
 import { describe, expect, it } from "vitest";
 import {
   buildArticleFeedItems,
+  buildChangelogFeedItems,
   buildLensFeedItems,
   formatRssDate,
   generateRssFeeds,
   renderRssFeed,
   type FeedBuildMetadata,
+  type FeedChangelogEntry,
   type FeedLensSummary,
 } from "../../scripts/generate-rss-feeds.mjs";
+import { changelogEntryId } from "../../src/utils/content/changelogHelpers.js";
 
 const freshness = (publishedOn: string, lastModified = publishedOn) => ({ publishedOn, lastModified });
 
@@ -63,11 +66,18 @@ const lensSummaries: FeedLensSummary[] = [
   { key: "lens-a", name: "Lens A", visible: true },
 ];
 
+const changelogEntries: FeedChangelogEntry[] = [
+  { date: "2026-04-03", type: "feature", summary: "Added feed discovery & exact entry links" },
+  { date: "2026-04-03", type: "fix", summary: "Fixed invalid <feed> characters\u0001" },
+  { date: "2026-04-02", type: "lens", summary: "Added another lens" },
+];
+
 describe("RSS feed generation", () => {
   it("emits valid RSS with self links, escaped text, stable GUIDs, and every series member", () => {
-    const feeds = generateRssFeeds(buildMeta, lensSummaries);
+    const feeds = generateRssFeeds(buildMeta, lensSummaries, { changelogEntries });
     const lenses = parseXml(feeds.lenses);
     const articles = parseXml(feeds.articles);
+    const changelog = parseXml(feeds.changelog);
 
     expect(lenses.documentElement.getAttribute("version")).toBe("2.0");
     expect(lenses.querySelector("channel > title")?.textContent).toBe("Surface & Stop — New Lenses");
@@ -97,6 +107,17 @@ describe("RSS feed generation", () => {
     expect(fallbackDescription?.querySelector("description")?.textContent).toBe(
       "Read Surface & Stop <Primer> on Surface & Stop.",
     );
+
+    expect(changelog.querySelector("channel > title")?.textContent).toBe("Surface & Stop — Changelog");
+    expect(changelog.getElementsByTagName("atom:link")[0]?.getAttribute("href")).toBe(
+      "https://surfaceandstop.com/feeds/changelog.xml",
+    );
+    expect(itemLinks(changelog)).toEqual(
+      changelogEntries.map((entry) => `https://surfaceandstop.com/updates/#${changelogEntryId(entry)}`),
+    );
+    expect(changelog.querySelector("item category")?.textContent).toBe("feature");
+    expect(feeds.changelog).toContain("discovery &amp; exact entry links");
+    expect(feeds.changelog).not.toContain("\u0001");
   });
 
   it("caps feeds at the requested limit after deterministic ordering", () => {
@@ -112,6 +133,12 @@ describe("RSS feed generation", () => {
     expect(items).toHaveLength(50);
     expect(items[0].url).toBe("https://surfaceandstop.com/articles/article-00/");
     expect(items.at(-1)?.url).toBe("https://surfaceandstop.com/articles/article-49/");
+
+    const changelogItems = buildChangelogFeedItems(changelogEntries, 2);
+    expect(changelogItems.map((item) => item.title)).toEqual([
+      "Added feed discovery & exact entry links",
+      "Fixed invalid <feed> characters\u0001",
+    ]);
   });
 
   it("uses commit timestamps for ordering and alphabetizes items from the same commit", () => {
@@ -176,7 +203,7 @@ describe("RSS feed generation", () => {
   });
 
   it("keeps GUID and publication date stable when an item is edited", () => {
-    const original = generateRssFeeds(buildMeta, lensSummaries).articles;
+    const original = generateRssFeeds(buildMeta, lensSummaries, { changelogEntries }).articles;
     const editedMeta: FeedBuildMetadata = {
       ...buildMeta,
       articles: buildMeta.articles.map((article) =>
@@ -185,7 +212,7 @@ describe("RSS feed generation", () => {
           : article,
       ),
     };
-    const edited = generateRssFeeds(editedMeta, lensSummaries).articles;
+    const edited = generateRssFeeds(editedMeta, lensSummaries, { changelogEntries }).articles;
     const originalItem = parseXml(original).querySelector("item")!;
     const editedItem = parseXml(edited).querySelector("item")!;
 
@@ -205,6 +232,9 @@ describe("RSS feed generation", () => {
       }),
     ).toThrow(/article title/);
     expect(() => formatRssDate("2026-02-30")).toThrow(/valid calendar date/);
+    expect(() => buildChangelogFeedItems([{ date: "2026-04-02", type: "fix", summary: "" }])).toThrow(
+      /changelog entry/,
+    );
     expect(() =>
       renderRssFeed({
         title: "Feed",

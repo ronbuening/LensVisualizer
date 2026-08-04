@@ -38,7 +38,7 @@ const LENS_DATA = {
   imageFormat: "aps-c",
   patentNumber: "US 2005/0286139 A1",
   patentAuthors: ["Takeshi Nishimura"],
-  patentAssignees: [],
+  patentAssignees: ["Canon Inc."],
   patentYear: 2005,
   elementCount: 13,
   groupCount: 10,

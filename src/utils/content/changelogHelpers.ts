@@ -21,6 +21,18 @@ export function formatDisplayDate(iso: string): string {
   return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
 }
 
+export function changelogEntryId(entry: ChangelogEntry): string {
+  const identity = `${entry.date.trim()}|${entry.type.trim()}|${entry.summary.trim()}`;
+  let hash = 0x811c9dc5;
+
+  for (const character of identity) {
+    hash ^= character.codePointAt(0) ?? 0;
+    hash = Math.imul(hash, 0x01000193);
+  }
+
+  return `changelog-${entry.date.trim()}-${entry.type.trim()}-${(hash >>> 0).toString(36)}`;
+}
+
 export function groupChangelogByDate(entries: readonly ChangelogEntry[]): Map<string, ChangelogEntry[]> {
   const grouped = new Map<string, ChangelogEntry[]>();
   for (const entry of entries) {

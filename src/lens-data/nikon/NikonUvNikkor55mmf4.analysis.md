@@ -5,7 +5,7 @@
 **Filed:** February 29, 1964
 **Published:** May 13, 1967
 **Inventor:** Wakimoto Zenji (脇本善司)
-**Applicant:** Nippon Kogaku Kogyo K.K. (日本光学工業株式会社)
+**Applicant:** Nippon Kogaku K.K. (日本光学工業株式会社; source romanization: Nippon Kogaku Kogyo K.K.)
 **Title:** Lens for Ultraviolet Photography (紫外線撮影用レンズ)
 **Embodiment analyzed:** Sole numerical example
 

@@ -42,7 +42,7 @@ const LENS_DATA = {
   imageFormat: "aps-c",
   patentNumber: "US 2022/0026670 A1",
   patentAuthors: ["Kazuyasu Ohashi"],
-  patentAssignees: [],
+  patentAssignees: ["Ricoh Co., Ltd."],
   patentYear: 2022,
   elementCount: 7,
   groupCount: 5, // air-separated count (patent uses 4 power-groups; marketing counts 5)

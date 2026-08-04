@@ -5,7 +5,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║ LENS DATA — NIKON NIKKOR-S AUTO 5cm f/2                                ║
  * ╠════════════════════════════════════════════════════════════════════════════╣
  * ║ Data source: JP 1964-025754, Embodiment 1 (Saburo Murakami /            ║
- * ║ Nippon Kogaku Kogyo Kabushiki Kaisha).                                  ║
+ * ║ Nippon Kogaku K.K.).                                                     ║
  * ║ Five groups / seven elements, all spherical.                            ║
  * ║ Focus status: INFERRED UNIT FOCUS. The patent publishes infinity only;  ║
  * ║ the production linear helicoid supports rigid-unit extension to 0.6 m.  ║
@@ -50,7 +50,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "JP 1964-025754",
   patentAuthors: ["Saburo Murakami"],
-  patentAssignees: ["Nippon Kogaku Kogyo Kabushiki Kaisha"],
+  patentAssignees: ["Nippon Kogaku K.K."],
   patentYear: 1964,
   elementCount: 7,
   groupCount: 5,

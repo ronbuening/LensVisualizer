@@ -7,7 +7,7 @@
 **Filed:** October 9, 1984
 **Published:** May 8, 1986
 **Inventor:** Wakamiya Koichi (若宮 孝一)
-**Applicant:** Nippon Kogaku Kogyo K.K. (日本光学工業株式会社; now Nikon Corporation)
+**Applicant:** Nippon Kogaku K.K. (日本光学工業株式会社; source romanization: Nippon Kogaku Kogyo K.K.; now Nikon Corporation)
 **Title:** 結像用対物レンズ (Imaging Objective Lens)
 **Embodiment analyzed:** Example 4 (第4実施例, Table 4)
 

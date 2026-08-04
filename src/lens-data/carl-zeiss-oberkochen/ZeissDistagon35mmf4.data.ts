@@ -42,7 +42,7 @@ const LENS_DATA = {
   imageFormat: "135-full-frame",
   patentNumber: "US 3,038,380",
   patentAuthors: ["Helmut Eismann", "Günther Lange"],
-  patentAssignees: ["Carl Zeiss AG"],
+  patentAssignees: ["Carl-Zeiss-Stiftung"],
   patentYear: 1962,
   elementCount: 7,
   groupCount: 4,
