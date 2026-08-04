@@ -780,7 +780,7 @@ message naming the file.
 
 ### D8. Delete dead `ChangelogBox` component
 
-- [ ] Effort: S · Impact: low · Risk: low
+- [x] Effort: S · Impact: low · Risk: low
 
 `src/components/content/ChangelogBox.tsx` has zero production importers (its own generated readme
 records "Imported by: none"); `UpdatesPage` re-implements the composition inline. Its only
@@ -816,6 +816,26 @@ case-insensitive, so no annotation breaks; `dispersion.test.ts` ~604 pins one sp
 it); (c) when touching a shard "Phase NN" comment, append its source date.
 
 Verification: gate passes; `npm run generate:glass-reports` diff shows only casing changes.
+
+### D11. Refresh the stale generated `src/**/readme.md` folder documentation
+
+- [ ] Effort: S · Impact: low-med · Risk: low
+
+Filed during D8 execution (2026-08-04), not part of the original audit. Running
+`node scripts/generate-src-readmes.mjs` rewrites 36 committed folder readmes and creates 5 files
+that were never generated at all (`src/components/relationshipMap/`, `src/components/search/`,
+`src/content/manufacturer-lens-stories/`, `src/optics/glassCatalogEntries/`) — the July expansion
+landed without regenerating them, so every import graph, consumer list, and file table under `src/`
+is stale. D8 committed only `src/components/content/readme.md` (the folder it changed) and reverted
+the rest to keep the branch scoped.
+
+Steps:
+1. Run `node scripts/generate-src-readmes.mjs` and commit the whole sweep in one mechanical commit.
+2. Consider adding it to `npm run generate:metadata` or a test guard so it cannot drift again — it
+   is not currently an npm script, which is why it drifts (decide separately; a guard that rewrites
+   files during `npm run test` would be wrong).
+
+Verification: gate passes; a second generator run produces no diff.
 
 ---
 

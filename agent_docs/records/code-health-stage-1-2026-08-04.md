@@ -103,6 +103,21 @@ URLs, feeds written); regenerated `build-metadata.json` is byte-identical to the
 Verification: gate passed (223 files / 2614 tests); `grep -n "exec(" scripts/build-metadata-lib.mjs` returns nothing
 and no `getGitFileFreshnessSafe` references remain.
 
+### D8 — delete the dead `ChangelogBox`
+
+- Deleted `src/components/content/ChangelogBox.tsx` and its only consumer,
+  `__tests__/src/components/content/ChangelogBox.test.tsx`.
+- Removed its rows from `agent_docs/changelog.md` (prose + Component Reference) and
+  `agent_docs/architecture/ui-components.md`; both now point at `ChangelogList.tsx`, the component `/updates`
+  actually renders.
+- Regenerated `src/components/content/readme.md` via `node scripts/generate-src-readmes.mjs`.
+- **Deviation/scope call:** that generator rewrote 36 other committed readmes and created 5 new ones, because the
+  July expansion never regenerated them. Committing that sweep here would bury the deletion in unrelated churn, so
+  those files were reverted/removed and the staleness is filed as new plan item **D11**.
+
+Verification: gate passed (222 files / 2613 tests — one file and one test fewer, matching the deletion);
+`grep -rn ChangelogBox src __tests__` returns no hits.
+
 ## Follow-ups
 
 - Remaining Stage 1 items tracked in the plan; later stages untouched.
