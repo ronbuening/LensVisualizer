@@ -116,6 +116,8 @@ Read only the relevant focused doc before changing that area:
 - `FEATURE_ADDITION_PLAN.md` - single source of truth for planned features (absorbed the analysis-options and mirror-lens backlogs; archives under `agent_docs/records/`)
 - `agent_docs/relationship-map-plan.md` - self-contained implementation plan for the F25 patent relationship map page
 - `EFFICIENCY_IMPROVEMENT_PLAN.md` - task-by-task redundancy cleanup and performance backlog with verification gates
+- `agent_docs/code-health-improvement-plan.md` - prioritized code-health/refactoring backlog from the 2026-08-04
+  six-subsystem audit of the July expansion (safety nets, bug fixes, docs/hygiene, UI/catalog/engine consolidation)
 - `agent_docs/adding_a_lens.md` - lens data workflow and validation troubleshooting
 - `agent_docs/lens-data-integration-handoff.md` - copy-ready AI handoff for constructing and integrating data/analysis pairs
 - `agent_docs/adding_an_analysis_tab.md` - recipe: the four registration points for a new analysis drawer tab
