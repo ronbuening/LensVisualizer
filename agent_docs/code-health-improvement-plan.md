@@ -760,7 +760,7 @@ Rollback: revert branch; regenerate.
 
 ### D7. Loud failures for silently dropped articles
 
-- [ ] Effort: S · Impact: med · Risk: low
+- [x] Effort: S · Impact: med · Risk: low
 
 `generate-build-metadata.mjs` ~198 silently `return null` for any `src/content/**/*.md` missing
 `slug`/`title` frontmatter; the single-line-regex parser (~104–121) drops fields on stray

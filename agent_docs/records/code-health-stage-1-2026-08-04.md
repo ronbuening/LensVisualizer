@@ -72,6 +72,25 @@ Verification: gate passed (223 files / 2609 tests).
 
 Verification: gate passed (223 files / 2609 tests).
 
+### D7 — loud failures for silently dropped articles
+
+- Moved `parseFrontmatterContent`, `collectTrackedArticlePathsBySlug`, and `collectArticles` out of
+  `generate-build-metadata.mjs` into `build-metadata-lib.mjs`. `collectArticles` now takes
+  `{ contentDir, cwd, fallbackDate, contentRepoPath?, concurrency?, execFileImpl? }` so it is unit-testable without
+  the repo layout; declarations added to `build-metadata-lib.d.mts`.
+- New `articleFrontmatterError` / `isGeneratedContentDoc` exports plus a collect-then-throw `assertArticleFrontmatter`
+  (modeled on `assertFreshnessDiversity`). Metadata generation now fails and lists each offending file and reason.
+- **Draft/skip convention decided from evidence, not invented:** `git log` and a sweep of `src/content/` showed the
+  only three files relying on being skipped are the generated folder docs `readme.md` (×3), written by
+  `scripts/generate-src-readmes.mjs`. So the exemption is exactly that generator's `generatedDocNames` set
+  (`readme.md`, `improvementsuggestions.md`); everything else throws. No opt-out marker was added — nothing needed it.
+- Tests added to `buildMetadataHelpers.test.ts`: frontmatter parsing incl. quoted values and indented keys, each
+  failure reason, the generated-doc exemption, a successful temp-dir collection, and the throwing cases.
+
+Verification: gate passed (223 files / 2614 tests); `npm run build` passed (1008 routes prerendered, 806 sitemap
+URLs, feeds written); regenerated `build-metadata.json` is byte-identical to the pre-refactor output; a temporary
+`src/content/temp-broken-fixture.md` without `title` failed generation with a message naming the file.
+
 ## Follow-ups
 
 - Remaining Stage 1 items tracked in the plan; later stages untouched.

@@ -103,6 +103,32 @@ export function comparePublicationEntries<
   T extends FreshnessEntry & { name?: string; title?: string; key?: string; slug?: string },
 >(a: T, b: T): number;
 
+export interface ArticleMetadata extends ArticleFreshnessInput {
+  title: string;
+  summary: string;
+  tag?: string;
+  series?: string;
+  seriesOrder?: number;
+  toc?: true;
+  file: string;
+  publicationOrder: number;
+}
+
+export function parseFrontmatterContent(content: string): Record<string, string> | null;
+
+export function articleFrontmatterError(meta: Record<string, string> | null): string | null;
+
+export function isGeneratedContentDoc(file: string): boolean;
+
+export function collectArticles(options: {
+  contentDir: string;
+  cwd: string;
+  fallbackDate: string;
+  contentRepoPath?: string;
+  concurrency?: number;
+  execFileImpl?: ExecFileSyncLike;
+}): Promise<ArticleMetadata[]>;
+
 export function assertFreshnessDiversity(options: {
   lenses: LensFreshnessInput[];
   articles: ArticleFreshnessInput[];

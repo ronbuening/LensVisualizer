@@ -1,15 +1,43 @@
-import { describe, expect, it } from "vitest";
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+import { afterEach, describe, expect, it } from "vitest";
 import {
+  articleFrontmatterError,
   assertFreshnessDiversity,
   assertFullGitHistory,
   buildRouteFreshness,
+  collectArticles,
   comparePublicationEntries,
   combineFreshnessEntries,
   getFirstGitFileFreshness,
   getGitFileFreshness,
+  isGeneratedContentDoc,
   mapLimit,
+  parseFrontmatterContent,
   parseGitLogDates,
 } from "../../scripts/build-metadata-lib.mjs";
+
+const tempContentRoots: string[] = [];
+
+/** Build a throwaway content directory whose files are `[relativePath, contents]` pairs. */
+function createTempContentDir(files: Array<[string, string]>): string {
+  const contentDir = mkdtempSync(join(tmpdir(), "build-metadata-content-"));
+  tempContentRoots.push(contentDir);
+  for (const [file, contents] of files) {
+    const slash = file.lastIndexOf("/");
+    if (slash >= 0) mkdirSync(join(contentDir, file.slice(0, slash)), { recursive: true });
+    writeFileSync(join(contentDir, file), contents, "utf-8");
+  }
+  return contentDir;
+}
+
+afterEach(() => {
+  while (tempContentRoots.length > 0) {
+    const contentDir = tempContentRoots.pop();
+    if (contentDir) rmSync(contentDir, { recursive: true, force: true });
+  }
+});
 
 describe("build metadata helpers", () => {
   it("rejects shallow git history before freshness generation", () => {
@@ -351,5 +379,70 @@ describe("build metadata helpers", () => {
       publishedOn: "2026-03-19",
       lastModified: "2026-03-25",
     });
+  });
+
+  it("parses quoted frontmatter values and ignores indented keys", () => {
+    const meta = parseFrontmatterContent(
+      ["---", 'slug: "optics-primer"', "title: 'Optics Primer'", "  tag: indented", "---", "", "Body"].join("\n"),
+    );
+
+    expect(meta).toEqual({ slug: "optics-primer", title: "Optics Primer" });
+  });
+
+  it("names the reason a content file cannot publish", () => {
+    expect(articleFrontmatterError(null)).toMatch(/no YAML frontmatter/);
+    expect(articleFrontmatterError({ title: "Optics Primer" })).toMatch(/missing frontmatter slug/);
+    expect(articleFrontmatterError({ slug: "optics-primer" })).toMatch(/missing frontmatter title/);
+    expect(articleFrontmatterError({ slug: "optics-primer", title: "Optics Primer" })).toBeNull();
+  });
+
+  it("exempts only the generated per-folder documentation", () => {
+    expect(isGeneratedContentDoc("readme.md")).toBe(true);
+    expect(isGeneratedContentDoc("pupils/improvementsuggestions.md")).toBe(true);
+    expect(isGeneratedContentDoc("pupils/entrance-pupil.md")).toBe(false);
+  });
+
+  it("collects articles and skips generated folder documentation", async () => {
+    const contentDir = createTempContentDir([
+      ["readme.md", "# src/content\n\nGenerated folder documentation.\n"],
+      ["pupils/entrance-pupil.md", '---\nslug: entrance-pupil\ntitle: "Entrance Pupil"\ntoc: true\n---\n\nBody\n'],
+    ]);
+
+    const articles = await collectArticles({
+      contentDir,
+      cwd: contentDir,
+      fallbackDate: "2026-03-27",
+      execFileImpl: () => {
+        throw new Error("no git history in the fixture");
+      },
+    });
+
+    expect(articles).toHaveLength(1);
+    expect(articles[0]).toMatchObject({
+      slug: "entrance-pupil",
+      title: "Entrance Pupil",
+      toc: true,
+      file: "pupils/entrance-pupil.md",
+      publishedOn: "2026-03-27",
+      publicationOrder: 0,
+    });
+  });
+
+  it("fails the build for a content file that cannot publish", async () => {
+    const contentDir = createTempContentDir([
+      ["pupils/no-title.md", "---\nslug: no-title\n---\n\nBody\n"],
+      ["pupils/no-frontmatter.md", "# Heading only\n"],
+      ["pupils/indented.md", "---\n  slug: indented\n  title: Indented\n---\n\nBody\n"],
+    ]);
+
+    await expect(
+      collectArticles({ contentDir, cwd: contentDir, fallbackDate: "2026-03-27", execFileImpl: () => "" }),
+    ).rejects.toThrow(/pupils\/no-title\.md: missing frontmatter title/);
+    await expect(
+      collectArticles({ contentDir, cwd: contentDir, fallbackDate: "2026-03-27", execFileImpl: () => "" }),
+    ).rejects.toThrow(/pupils\/no-frontmatter\.md: no YAML frontmatter/);
+    await expect(
+      collectArticles({ contentDir, cwd: contentDir, fallbackDate: "2026-03-27", execFileImpl: () => "" }),
+    ).rejects.toThrow(/pupils\/indented\.md: missing frontmatter slug and title/);
   });
 });
