@@ -230,7 +230,7 @@ Verification: gate passes. These pins are prerequisites for C4 (single-sourcing 
 
 ### N4. Optical-configuration group invariants + Nikon TC-IN/TC-OUT surface equality
 
-- [ ] Effort: S · Impact: med · Risk: none
+- [x] Effort: S · Impact: med · Risk: none
 
 Nothing validates `opticalConfiguration` groups across files: a hidden variant whose `groupKey`
 matches no visible partner becomes unreachable (excluded by `lensCatalog.ts` ~37); duplicate
@@ -246,6 +246,14 @@ Steps:
    infinity-focus `d`, `nd`, and `sd` of TC-IN equal TC-OUT.
 
 Verification: gate passes; editing one shared surface in only one file fails the parity test.
+
+Correction (2026-08-05, from execution): "assert `R`, infinity-focus `d`, `nd`, and `sd` … equal"
+does not hold as written, and `vd` is not a `SurfaceData` field. Two divergences inside surfaces
+1-45 are correct, not drift: surface 45's `d` collapses 41.203 → 2 mm because that is the air space
+the converter drops into, and the variable gaps agree at infinity focus while differing at close
+focus because each configuration solves close focus separately. Both are now asserted explicitly
+rather than skipped. Labels 47-49 and 52-55 exist in both files but describe *different* physical
+surfaces (Table 8 vs Table 10 renumbering), so parity must stop at 45.
 
 ### N5. Single-source the aspheric coefficient schema; derive sag, slope, validation, and tests
 

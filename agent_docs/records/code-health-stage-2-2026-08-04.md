@@ -66,6 +66,29 @@ Verification: gate passed (224 files / 2661 tests).
 
 Verification: gate passed (225 files / 2682 tests).
 
+### N4 — configuration-group invariants and Nikon TC parity
+
+- New `__tests__/src/utils/catalog/opticalConfigurationGroups.test.ts`: every `opticalConfiguration` group has ≥2
+  members, unique `order` values, exactly one visible member, and non-empty labels. Mutation-checked — repointing
+  the TC-IN `groupKey` at an orphan group fails both the ≥2-members and one-visible-member assertions.
+- New `__tests__/src/lens-data/nikon/nikon180400TcParity.test.ts` pinning the 39 shared front surfaces (patent
+  labels 1-45 minus removed dummy planes) between the TC-OUT and TC-IN prescriptions. Mutation-checked: changing
+  one `R` or `sd` in only the TC-IN file fails it.
+- **Three corrections to the spec, found by reading the data:**
+  1. `vd` is not a field on `SurfaceData` (dispersion lives on elements), so it cannot be compared per surface.
+  2. Surface 45's `d` legitimately differs — 41.203 mm (TC-OUT) vs 2 mm (TC-IN) — because that gap is exactly where
+     the 1.4x converter is inserted. A blanket "assert `d` for surfaces 1-45" fails. The test asserts `d` equality
+     for surfaces ahead of that gap and asserts the gap's specific expected change.
+  3. Labels 47-49 and 52-55 appear in *both* files but are different physical surfaces (Table 8 vs Table 10
+     renumbering after the converter), so parity must stop at 45. Comparing the full shared-label set would produce
+     23 spurious mismatches.
+- The variable gaps are compared at infinity focus only (identical across configurations); close-focus values differ
+  per configuration, and a reverse assertion pins that they have *not* been copied between files.
+- Compares whole surface objects minus `d` rather than an enumerated field list, so fields added to `SurfaceData`
+  later are covered without editing the test. `VarRange`'s prime/zoom union is normalized rather than assumed.
+
+Verification: gate passed (227 files / 2694 tests).
+
 ## Follow-ups
 
 - Runtime-side fallback identity stays untestable until `patentsForParty` stops reading module-level
