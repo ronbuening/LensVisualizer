@@ -479,7 +479,7 @@ Verification: gate passes; Tab across nodes shows visible highlight.
 
 ### X4. Shared nav chrome: toggle/disclosure ARIA attributes
 
-- [ ] Effort: S · Impact: med · Risk: low
+- [x] Effort: S · Impact: med · Risk: low
 
 The early-July a11y pass (commit 25314099) set the standard the new pages follow (`aria-pressed`
 on toggles, `aria-expanded` on disclosure triggers), but the two nav bars rendered on every page

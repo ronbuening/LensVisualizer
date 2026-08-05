@@ -56,3 +56,17 @@ Verification: gate passed (233 files / 2780 tests).
 - Changelog entry added (improvement).
 
 Verification: gate passed (233 files / 2782 tests).
+
+### X4 — nav chrome toggle/disclosure ARIA
+
+- `PageNavBar`: both buttons gained `type="button"`; HC gained `aria-pressed={highContrast}`; the theme
+  button gained an `aria-label` describing the cycle (`Theme: <slot>. Cycle theme`).
+- `BreadcrumbBar`: settings trigger gained `type="button"`, `aria-expanded={settingsOpen}`,
+  `aria-haspopup="true"`, and an `aria-label` (its narrow-viewport ⚙ glyph had no accessible name);
+  the dropdown's HC/theme buttons got the same treatment as PageNavBar's.
+- Deliberately did NOT put an `aria-label` on the HC buttons — the spec assigns labels only to the theme
+  buttons, and an overriding label would break the existing `/HC/i` accessible-name queries.
+- Tests: breadcrumb coverage test now asserts `aria-haspopup`/`aria-expanded` toggling and queries HC via
+  `{ pressed: false }`; homepage render test clicks HC and asserts the pressed state flips.
+
+Verification: gate passed (233 files / 2782 tests).

@@ -229,6 +229,10 @@ export default function BreadcrumbBar({ theme: t, isWide, lensKey }: BreadcrumbB
           </Link>
           <button
             ref={triggerRef}
+            type="button"
+            aria-expanded={settingsOpen}
+            aria-haspopup="true"
+            aria-label="Settings"
             onClick={settingsOpen ? () => setSettingsOpen(false) : openSettings}
             style={{
               ...topBarBtn(t, isWide),
@@ -265,6 +269,8 @@ export default function BreadcrumbBar({ theme: t, isWide, lensKey }: BreadcrumbB
         <div style={{ padding: 10 }}>
           <div style={toggleGroup(t)}>
             <button
+              type="button"
+              aria-pressed={highContrast}
               onClick={() => dispatch({ type: SET_HIGH_CONTRAST, highContrast: !highContrast })}
               style={toggleBtn(t, highContrast)}
             >
@@ -272,6 +278,8 @@ export default function BreadcrumbBar({ theme: t, isWide, lensKey }: BreadcrumbB
               <span>HC</span>
             </button>
             <button
+              type="button"
+              aria-label={`Theme: ${slot.label}. Cycle theme`}
               onClick={() => dispatch({ type: SET_DARK, dark: darkPreferenceFromThemeMode(nextThemeMode(themeMode)) })}
               style={toggleBtn(t, false, { hasRightBorder: false })}
             >

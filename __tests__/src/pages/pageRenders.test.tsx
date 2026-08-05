@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { cleanup, screen, waitFor, within } from "@testing-library/react";
+import { cleanup, fireEvent, screen, waitFor, within } from "@testing-library/react";
 import { HelmetProvider } from "react-helmet-async";
 import type { ReactElement, ReactNode } from "react";
 import { Route, Routes, useLocation } from "react-router";
@@ -83,6 +83,10 @@ describe("static page renders", () => {
     expect(screen.getByRole("link", { name: "New Articles RSS" }).getAttribute("href")).toBe("/feeds/articles.xml");
     expect(screen.getByRole("link", { name: "Changelog RSS" }).getAttribute("href")).toBe("/feeds/changelog.xml");
     expect(screen.getByRole("link", { name: "Sitemap" }).getAttribute("href")).toBe("/sitemap.xml");
+
+    const hcToggle = screen.getByRole("button", { name: /HC/i, pressed: false });
+    fireEvent.click(hcToggle);
+    expect(screen.getByRole("button", { name: /HC/i, pressed: true })).toBeTruthy();
   });
 
   it("redirects legacy lens query URLs on the homepage", async () => {

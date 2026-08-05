@@ -153,8 +153,13 @@ describe("page, markdown, and breadcrumb coverage", () => {
     expect(searchLink.style.width).toBe("30px");
     expect(searchLink.style.height).toBe("30px");
 
-    fireEvent.click(screen.getByRole("button", { name: /settings/i }));
-    fireEvent.click(screen.getByRole("button", { name: /HC/i }));
+    const settingsTrigger = screen.getByRole("button", { name: /settings/i });
+    expect(settingsTrigger.getAttribute("aria-haspopup")).toBe("true");
+    expect(settingsTrigger.getAttribute("aria-expanded")).toBe("false");
+    fireEvent.click(settingsTrigger);
+    expect(settingsTrigger.getAttribute("aria-expanded")).toBe("true");
+
+    fireEvent.click(screen.getByRole("button", { name: /HC/i, pressed: false }));
     fireEvent.click(screen.getByRole("button", { name: /AUTO/i }));
 
     expect(dispatch).toHaveBeenCalledWith({ type: "SET_HIGH_CONTRAST", highContrast: true });
