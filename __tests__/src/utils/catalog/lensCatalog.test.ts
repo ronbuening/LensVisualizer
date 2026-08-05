@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { LENS_CATALOG, CATALOG_KEYS, hasMdForKey, loadMdForKey } from "../../../../src/utils/catalog/lensCatalog.js";
 import buildLens from "../../../../src/optics/buildLens.js";
+import { catalogCollator } from "../../../../src/utils/catalog/collation.js";
 
 describe("lensCatalog", () => {
   it("keeps nested maker-folder lenses discoverable with matching analysis markdown", async () => {
@@ -55,7 +56,7 @@ describe("lensCatalog", () => {
 
   it("CATALOG_KEYS is sorted alphabetically by display name", () => {
     const names = CATALOG_KEYS.map((k) => LENS_CATALOG[k].name);
-    const sorted = [...names].sort((a, b) => a.localeCompare(b));
+    const sorted = [...names].sort((a, b) => catalogCollator.compare(a, b));
     expect(names).toEqual(sorted);
   });
 });

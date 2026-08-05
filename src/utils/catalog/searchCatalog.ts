@@ -10,6 +10,7 @@ import type { AuthorMetadata } from "./authorCatalog.js";
 import { LENS_SUMMARIES, SUMMARY_KEYS } from "./lensSummaries.js";
 import type { LensSummary } from "./lensSummaries.js";
 import { canonicalPagePath } from "../seo/siteUrls.js";
+import { catalogCollator } from "./collation.js";
 
 export interface LensNameSearchMatch {
   type: "lens";
@@ -75,7 +76,8 @@ export function searchCatalog(query: string): CatalogSearchResults {
     .sort(
       (a, b) =>
         matchScore(normalizeSearchText(a.data.name), normalizedQuery) -
-          matchScore(normalizeSearchText(b.data.name), normalizedQuery) || a.data.name.localeCompare(b.data.name),
+          matchScore(normalizeSearchText(b.data.name), normalizedQuery) ||
+        catalogCollator.compare(a.data.name, b.data.name),
     )
     .map(({ key, data }) => ({ type: "lens" as const, key, data }));
 
@@ -92,8 +94,8 @@ export function searchCatalog(query: string): CatalogSearchResults {
       const patentB = normalizeSearchText(b.data.patentNumber ?? "");
       return (
         matchScore(patentA, normalizedQuery) - matchScore(patentB, normalizedQuery) ||
-        patentA.localeCompare(patentB) ||
-        a.data.name.localeCompare(b.data.name)
+        catalogCollator.compare(patentA, patentB) ||
+        catalogCollator.compare(a.data.name, b.data.name)
       );
     })
     .map(({ key, data }) => ({ type: "patent" as const, key, data }));
@@ -102,7 +104,7 @@ export function searchCatalog(query: string): CatalogSearchResults {
     .sort(
       (a, b) =>
         matchScore(normalizeSearchText(a.name), normalizedQuery) -
-          matchScore(normalizeSearchText(b.name), normalizedQuery) || a.name.localeCompare(b.name),
+          matchScore(normalizeSearchText(b.name), normalizedQuery) || catalogCollator.compare(a.name, b.name),
     )
     .map((author) => ({ type: "author" as const, author }));
 

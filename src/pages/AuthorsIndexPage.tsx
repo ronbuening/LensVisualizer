@@ -31,6 +31,7 @@ import {
   type AuthorSort,
 } from "../utils/state/authorSortPreference.js";
 import { usePageThemeToggle } from "../utils/theme/usePageThemeToggle.js";
+import { catalogCollator } from "../utils/catalog/collation.js";
 
 const AUTHOR_ASSIGNEE_FILTER_OPTIONS = [
   { key: ALL_AUTHOR_ASSIGNEES, label: `All companies and assignees (${AUTHORS.length} authors)` },
@@ -56,8 +57,9 @@ export default function AuthorsIndexPage() {
     () =>
       [...filteredAuthors].sort((left, right) =>
         sortBy === "patents"
-          ? right.author.patentCount - left.author.patentCount || left.author.name.localeCompare(right.author.name)
-          : left.author.name.localeCompare(right.author.name),
+          ? right.author.patentCount - left.author.patentCount ||
+            catalogCollator.compare(left.author.name, right.author.name)
+          : catalogCollator.compare(left.author.name, right.author.name),
       ),
     [filteredAuthors, sortBy],
   );

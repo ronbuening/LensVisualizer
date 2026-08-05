@@ -8,6 +8,7 @@
 
 import { LENS_SUMMARIES, SUMMARY_KEYS } from "./lensSummaries.js";
 import type { LensSummary } from "./lensSummaries.js";
+import { catalogCollator } from "./collation.js";
 
 export interface PatentLens {
   key: string;
@@ -126,9 +127,9 @@ export function buildPatentIndex(summaries: readonly LensSummary[]): PatentIndex
       patentNumber: record.patentNumber,
       patentYear: record.patentYear,
       jurisdiction: record.jurisdiction,
-      authors: [...record.authors].sort((a, b) => a.localeCompare(b)),
-      assignees: [...record.assignees].sort((a, b) => a.localeCompare(b)),
-      lenses: [...record.lenses.values()].sort((a, b) => a.name.localeCompare(b.name)),
+      authors: [...record.authors].sort((a, b) => catalogCollator.compare(a, b)),
+      assignees: [...record.assignees].sort((a, b) => catalogCollator.compare(a, b)),
+      lenses: [...record.lenses.values()].sort((a, b) => catalogCollator.compare(a.name, b.name)),
     }))
     .sort((a, b) => patentNumberCollator.compare(a.patentNumber, b.patentNumber));
 
@@ -168,10 +169,10 @@ export function buildPatentIndex(summaries: readonly LensSummary[]): PatentIndex
         jurisdiction: country.jurisdiction,
         patentCount: country.patents.size,
         assignees: [...country.assignees.values()].sort(
-          (a, b) => Number(a.isFallback) - Number(b.isFallback) || a.label.localeCompare(b.label),
+          (a, b) => Number(a.isFallback) - Number(b.isFallback) || catalogCollator.compare(a.label, b.label),
         ),
       }))
-      .sort((a, b) => a.jurisdiction.label.localeCompare(b.jurisdiction.label)),
+      .sort((a, b) => catalogCollator.compare(a.jurisdiction.label, b.jurisdiction.label)),
   };
 }
 

@@ -17,6 +17,7 @@ import {
 import { isSameCustomFilter } from "./urlState.js";
 import type { CatalogLensEntry, CustomFilterState, FilterBounds, NumericFilterField } from "./types.js";
 import type { ImageFormatId, LensMountId } from "../../utils/catalog/lensTaxonomy.js";
+import { catalogCollator } from "../../utils/catalog/collation.js";
 
 export interface NumericFilterConfig {
   min: number;
@@ -125,7 +126,7 @@ export default function useLensIndexFilters({
       ...previous,
       makerSlugs: previous.makerSlugs.includes(makerSlug)
         ? previous.makerSlugs.filter((slug) => slug !== makerSlug)
-        : [...previous.makerSlugs, makerSlug].sort((a, b) => a.localeCompare(b)),
+        : [...previous.makerSlugs, makerSlug].sort((a, b) => catalogCollator.compare(a, b)),
     }));
 
   const clearMakerSelection = () =>
@@ -139,7 +140,7 @@ export default function useLensIndexFilters({
       ...previous,
       lensMountIds: previous.lensMountIds.includes(mountId)
         ? previous.lensMountIds.filter((id) => id !== mountId)
-        : [...previous.lensMountIds, mountId].sort((a, b) => a.localeCompare(b)),
+        : [...previous.lensMountIds, mountId].sort((a, b) => catalogCollator.compare(a, b)),
     }));
 
   const clearMountSelection = () =>
@@ -153,7 +154,7 @@ export default function useLensIndexFilters({
       ...previous,
       imageFormatIds: previous.imageFormatIds.includes(formatId)
         ? previous.imageFormatIds.filter((id) => id !== formatId)
-        : [...previous.imageFormatIds, formatId].sort((a, b) => a.localeCompare(b)),
+        : [...previous.imageFormatIds, formatId].sort((a, b) => catalogCollator.compare(a, b)),
     }));
 
   const clearImageFormatSelection = () =>

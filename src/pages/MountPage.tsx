@@ -24,6 +24,7 @@ import { H1_STYLE, LENS_LINK_BASE_STYLE, PAGE_BASE_STYLE } from "../utils/style/
 import { lensLinkFromMount } from "./lensIndex/clusterLinks.js";
 import { lensesForMount } from "./lensIndex/catalog.js";
 import type { LensSummary } from "../utils/catalog/lensSummaries.js";
+import { catalogCollator } from "../utils/catalog/collation.js";
 
 /** Makers (slug + display label) that have lenses for this mount, alphabetically. */
 function makersForMount(lenses: { data: LensSummary }[]): { slug: string; label: string }[] {
@@ -32,7 +33,9 @@ function makersForMount(lenses: { data: LensSummary }[]): { slug: string; label:
     const { slug } = deriveMaker(data.name, data.maker);
     if (!map.has(slug)) map.set(slug, makerDisplayName(slug) ?? slug);
   }
-  return [...map.entries()].map(([slug, label]) => ({ slug, label })).sort((a, b) => a.label.localeCompare(b.label));
+  return [...map.entries()]
+    .map(([slug, label]) => ({ slug, label }))
+    .sort((a, b) => catalogCollator.compare(a.label, b.label));
 }
 
 export default function MountPage() {

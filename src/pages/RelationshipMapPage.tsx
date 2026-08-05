@@ -27,13 +27,14 @@ import { breadcrumbJsonLd, collectionPageJsonLd } from "../utils/seo/structuredD
 import { H1_STYLE, PAGE_BASE_STYLE } from "../utils/style/pageStyles.js";
 import { usePageThemeToggle } from "../utils/theme/usePageThemeToggle.js";
 import { canonicalPagePath, canonicalPageUrl } from "../utils/seo/siteUrls.js";
+import { catalogCollator } from "../utils/catalog/collation.js";
 
 const TOP_COUNT = 12;
 
 /** Top-N entities of an index by patent count, then name. */
 function topByPatents<T extends { name: string; slug: string; patentCount: number }>(index: T[]): T[] {
   return [...index]
-    .sort((left, right) => right.patentCount - left.patentCount || left.name.localeCompare(right.name))
+    .sort((left, right) => right.patentCount - left.patentCount || catalogCollator.compare(left.name, right.name))
     .slice(0, TOP_COUNT);
 }
 

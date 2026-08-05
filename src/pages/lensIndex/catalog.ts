@@ -34,6 +34,7 @@ import type {
 } from "./types.js";
 import type { LensSummary } from "../../utils/catalog/lensSummaries.js";
 import type { ImageFormatId, LensMountId } from "../../utils/catalog/lensTaxonomy.js";
+import { catalogCollator } from "../../utils/catalog/collation.js";
 
 const FOCAL_BUCKETS: ReadonlyArray<{ label: string; maxFl: number }> = [
   { label: "Ultrawide (≤24mm)", maxFl: 24 },
@@ -145,7 +146,7 @@ export function buildMakerOptions(entries: CatalogLensEntry[]): MakerOption[] {
       counts.set(entry.maker.slug, { display: entry.maker.display, slug: entry.maker.slug, count: 1 });
     }
   }
-  return Array.from(counts.values()).sort((a, b) => a.display.localeCompare(b.display));
+  return Array.from(counts.values()).sort((a, b) => catalogCollator.compare(a.display, b.display));
 }
 
 export function buildMountOptions(entries: CatalogLensEntry[]): MountOption[] {
@@ -161,7 +162,8 @@ export function buildMountOptions(entries: CatalogLensEntry[]): MountOption[] {
     }
   }
   return Array.from(counts.values()).sort(
-    (a, b) => LENS_MOUNT_BY_ID[a.id].sortOrder - LENS_MOUNT_BY_ID[b.id].sortOrder || a.label.localeCompare(b.label),
+    (a, b) =>
+      LENS_MOUNT_BY_ID[a.id].sortOrder - LENS_MOUNT_BY_ID[b.id].sortOrder || catalogCollator.compare(a.label, b.label),
   );
 }
 
@@ -177,7 +179,9 @@ export function buildImageFormatOptions(entries: CatalogLensEntry[]): ImageForma
     }
   }
   return Array.from(counts.values()).sort(
-    (a, b) => IMAGE_FORMAT_BY_ID[a.id].sortOrder - IMAGE_FORMAT_BY_ID[b.id].sortOrder || a.label.localeCompare(b.label),
+    (a, b) =>
+      IMAGE_FORMAT_BY_ID[a.id].sortOrder - IMAGE_FORMAT_BY_ID[b.id].sortOrder ||
+      catalogCollator.compare(a.label, b.label),
   );
 }
 
@@ -250,7 +254,7 @@ export function groupByMaker(entries: CatalogLensEntry[]): MakerGroup[] {
     }
     groups.get(entry.maker.slug)!.lenses.push(entry);
   }
-  return Array.from(groups.values()).sort((a, b) => a.display.localeCompare(b.display));
+  return Array.from(groups.values()).sort((a, b) => catalogCollator.compare(a.display, b.display));
 }
 
 function groupByPatentParty(
@@ -280,7 +284,7 @@ function groupByPatentParty(
 
   return Array.from(groups.values()).sort((a, b) => {
     const rank = (group: PatentPartyGroup) => (group.id.startsWith("named:") ? 0 : group.id === "unnamed" ? 1 : 2);
-    return rank(a) - rank(b) || a.label.localeCompare(b.label);
+    return rank(a) - rank(b) || catalogCollator.compare(a.label, b.label);
   });
 }
 
@@ -348,7 +352,7 @@ export function groupByPatentYear(entries: CatalogLensEntry[], direction: "asc" 
     const yearA = a.patentYear ?? (direction === "asc" ? Infinity : -Infinity);
     const yearB = b.patentYear ?? (direction === "asc" ? Infinity : -Infinity);
     if (yearA !== yearB) return direction === "asc" ? yearA - yearB : yearB - yearA;
-    return a.data.name.localeCompare(b.data.name);
+    return catalogCollator.compare(a.data.name, b.data.name);
   });
 
   const groups = new Map<string, CatalogLensEntry[]>();
@@ -426,13 +430,13 @@ export function groupByImageFormat(entries: CatalogLensEntry[]): ImageFormatGrou
 
 export function lensesForMount(mountId: LensMountId): CatalogLensEntry[] {
   return CATALOG_ENTRIES.filter((entry) => entry.lensMounts.some((mount) => mount.id === mountId)).sort((a, b) =>
-    a.data.name.localeCompare(b.data.name),
+    catalogCollator.compare(a.data.name, b.data.name),
   );
 }
 
 export function lensesForImageFormat(formatId: ImageFormatId): CatalogLensEntry[] {
   return CATALOG_ENTRIES.filter((entry) => entry.imageFormat?.id === formatId).sort((a, b) =>
-    a.data.name.localeCompare(b.data.name),
+    catalogCollator.compare(a.data.name, b.data.name),
   );
 }
 

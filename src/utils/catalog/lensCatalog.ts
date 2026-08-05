@@ -8,6 +8,7 @@
 import LENS_DEFAULTS from "../../lens-data/defaults.js";
 import { loadChunkWithReload } from "../chunkLoadRetry.js";
 import type { LensData } from "../../types/optics.js";
+import { catalogCollator } from "./collation.js";
 
 export interface OpticalConfigurationOption {
   key: string;
@@ -29,7 +30,7 @@ for (const [path, mod] of Object.entries(_modules)) {
   }
 }
 function sortLensKeysByName(keys: string[]): string[] {
-  return keys.sort((a, b) => LENS_CATALOG[a].name.localeCompare(LENS_CATALOG[b].name));
+  return keys.sort((a, b) => catalogCollator.compare(LENS_CATALOG[a].name, LENS_CATALOG[b].name));
 }
 
 function isDebugLensKey(key: string): boolean {
@@ -48,7 +49,7 @@ const ALL_CATALOG_KEYS: string[] = sortLensKeysByName(Object.keys(LENS_CATALOG))
 
 /* Visible lenses sorted alphabetically by display name */
 const CATALOG_KEYS: string[] = ALL_CATALOG_KEYS.filter((k) => LENS_CATALOG[k].visible !== false).sort((a, b) =>
-  LENS_CATALOG[a].name.localeCompare(LENS_CATALOG[b].name),
+  catalogCollator.compare(LENS_CATALOG[a].name, LENS_CATALOG[b].name),
 );
 
 /* Debug/reference lenses sorted alphabetically by display name. */
@@ -63,7 +64,9 @@ for (const key of ALL_CATALOG_KEYS) {
   OPTICAL_CONFIGURATION_OPTIONS_BY_GROUP.set(config.groupKey, options);
 }
 for (const options of OPTICAL_CONFIGURATION_OPTIONS_BY_GROUP.values()) {
-  options.sort((a, b) => a.order - b.order || a.label.localeCompare(b.label) || a.key.localeCompare(b.key));
+  options.sort(
+    (a, b) => a.order - b.order || catalogCollator.compare(a.label, b.label) || catalogCollator.compare(a.key, b.key),
+  );
 }
 
 /** Ordered alternate prescriptions available for the supplied catalog key. */

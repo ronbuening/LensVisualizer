@@ -535,7 +535,7 @@ Verification: gate passes.
 
 ### X7. Pin catalog collation to a fixed locale (hydration-mismatch hazard)
 
-- [ ] Effort: S · Impact: med · Risk: low
+- [x] Effort: S · Impact: med · Risk: low
 
 28 bare `.localeCompare(` calls sort prerendered content (`authorCatalog.ts` ~114/119/158,
 `patentCatalog.ts` ~129–131/171/174, `authorAssignees.ts` ~23/40, `AuthorsIndexPage.tsx` ~59–60,

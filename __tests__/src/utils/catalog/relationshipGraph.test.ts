@@ -13,6 +13,7 @@ import {
   resolveFocusParam,
   type PartyRef,
 } from "../../../../src/utils/catalog/relationshipGraph.js";
+import { catalogCollator } from "../../../../src/utils/catalog/collation.js";
 
 const AUTHOR_REFS: PartyRef[] = AUTHORS.map((a) => ({ role: "author", name: a.name, slug: a.slug }));
 const ASSIGNEE_REFS: PartyRef[] = ASSIGNEES.map((a) => ({ role: "assignee", name: a.name, slug: a.slug }));
@@ -56,7 +57,7 @@ describe("buildRelationshipGraph invariants", () => {
         const cur = graph.patents[i];
         const py = prev.patentYear ?? Number.POSITIVE_INFINITY;
         const cy = cur.patentYear ?? Number.POSITIVE_INFINITY;
-        expect(py < cy || (py === cy && prev.patentNumber.localeCompare(cur.patentNumber) <= 0)).toBe(true);
+        expect(py < cy || (py === cy && catalogCollator.compare(prev.patentNumber, cur.patentNumber) <= 0)).toBe(true);
       }
 
       // Every party has ≥ 1 patentId, all pointing at real patents.

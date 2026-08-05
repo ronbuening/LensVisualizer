@@ -96,3 +96,21 @@ Verification: gate passed (233 files / 2782 tests).
   content), and `searchPages.test.tsx` now queries by text.
 
 Verification: gate passed (233 files / 2782 tests).
+
+### X7 — pinned catalog collation
+
+- New `src/utils/catalog/collation.ts` exporting `catalogCollator = new Intl.Collator("en")` with the
+  hydration-mismatch rationale documented.
+- Mechanically replaced all 38 bare `.localeCompare(` calls across `src/utils/catalog` (relationshipGraph,
+  lensCatalog, authorAssignees, authorCatalog, searchCatalog, patentCatalog) and `src/pages`
+  (RelationshipMapPage, MakersIndexPage, MountPage, AuthorsIndexPage, lensIndex/{useLensIndexFilters,
+  urlState, catalog}) with `catalogCollator.compare`. The verification grep over those two trees now
+  returns zero (patent numbers keep their pinned numeric collator).
+- Left out of scope: `relationshipMap/layout.ts` (audit-verified healthy, client-only), the
+  RelationshipEntityPicker suggestion sort (client-only), benchmark report ISO-timestamp sorts, and the
+  glass-scan test sorts (ASCII names; G8's shared lib touches those).
+- Updated the five test files that derived expected order via default-locale `localeCompare`
+  (assigneeCatalog, lensCatalog, relationshipGraph, authorCatalog, searchPages) to the shared collator so
+  they can actually catch regressions under any test-runner locale.
+
+Verification: gate passed (233 files / 2782 tests).
