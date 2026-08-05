@@ -578,6 +578,50 @@ function shouldUseGeneralizedTrace(lens: ExactTraceLens, stopAt: number | undefi
   );
 }
 
+/* Passive clip classification for a surface the ray does not interact with:
+ * inactive-side block, block surface, or aperture clip. Returns the reason to
+ * record, or null when the ray passes through unrecorded. */
+function passiveClipReason(
+  interaction: SurfaceInteraction,
+  sideActive: boolean,
+  withinAperture: boolean,
+  apertureOutside: boolean,
+  checkSemiDiameter: boolean,
+): "inactive-side-block" | "block-surface" | "semi-diameter" | null {
+  if (!sideActive) {
+    /* Inactive-side behavior is data-driven; a reflective back defaults to
+     * blocking while a passive refractive surface lets the ray continue. */
+    const inactiveSideBehavior = interaction.inactiveSide ?? (interaction.type === "reflect" ? "block" : "ignore");
+    return inactiveSideBehavior === "block" && withinAperture ? "inactive-side-block" : null;
+  }
+  if (interaction.type === "block") return withinAperture ? "block-surface" : null;
+  return checkSemiDiameter && apertureOutside ? "semi-diameter" : null;
+}
+
+/* Record one passively clipped hit: one clip event plus one clipped hit row.
+ * Callers keep their own break/continue control flow. */
+function recordClippedHit(
+  hits: ExactSurfaceTraceHit[],
+  clipEvents: FoldedPathClipEvent[],
+  lens: ExactTraceLens,
+  surfaceIdx: number,
+  geometry: { point: Vector3; normal: Vector3; incidentDirection: Vector3; radius: number },
+  clipReason: "inactive-side-block" | "block-surface" | "semi-diameter",
+): void {
+  pushClipEvent(clipEvents, lens, surfaceIdx, clipReason);
+  hits.push({
+    surfaceIdx,
+    point: geometry.point,
+    normal: geometry.normal,
+    incidentDirection: geometry.incidentDirection,
+    radius: geometry.radius,
+    clipped: true,
+    fallback: false,
+    failureReason: null,
+    clipReason,
+  });
+}
+
 function traceGeneralizedSurfaceStackVector(
   lens: ExactTraceLens,
   { origin: originIn, direction: directionIn }: VectorRayInput,
@@ -730,68 +774,24 @@ function traceGeneralizedSurfaceStackVector(
     const apertureState = traceApertureState(radius, surface, apertureClip);
     const withinAperture = apertureState === "inside";
 
-    if (!sideActive) {
-      const inactiveSideBehavior = interaction.inactiveSide ?? (interaction.type === "reflect" ? "block" : "ignore");
-      const inactiveClipped = inactiveSideBehavior === "block" && withinAperture;
-      if (inactiveClipped) {
+    if (!sideActive || interaction.type === "block" || !withinAperture) {
+      const clipReason = passiveClipReason(
+        interaction,
+        sideActive,
+        withinAperture,
+        apertureState === "outside",
+        checkSemiDiameter,
+      );
+      if (clipReason !== null) {
         clipped = true;
-        pushClipEvent(clipEvents, lens, nextSurfaceIdx, "inactive-side-block");
-        hits.push({
-          surfaceIdx: nextSurfaceIdx,
-          point,
-          normal,
-          incidentDirection,
-          radius,
-          clipped: true,
-          fallback: false,
-          failureReason: null,
-          clipReason: "inactive-side-block",
-        });
-        terminationReason = "clipped";
-        if (stopOnClip && !ghost) break;
-      }
-      origin = advanceOrigin(point, direction);
-      continue;
-    }
-
-    if (interaction.type === "block") {
-      if (withinAperture) {
-        clipped = true;
-        pushClipEvent(clipEvents, lens, nextSurfaceIdx, "block-surface");
-        hits.push({
-          surfaceIdx: nextSurfaceIdx,
-          point,
-          normal,
-          incidentDirection,
-          radius,
-          clipped: true,
-          fallback: false,
-          failureReason: null,
-          clipReason: "block-surface",
-        });
-        terminationReason = "clipped";
-        if (stopOnClip && !ghost) break;
-      }
-      origin = advanceOrigin(point, direction);
-      continue;
-    }
-
-    if (!withinAperture) {
-      const apertureClipped = checkSemiDiameter && apertureState === "outside";
-      if (apertureClipped) {
-        clipped = true;
-        pushClipEvent(clipEvents, lens, nextSurfaceIdx, "semi-diameter");
-        hits.push({
-          surfaceIdx: nextSurfaceIdx,
-          point,
-          normal,
-          incidentDirection,
-          radius,
-          clipped: true,
-          fallback: false,
-          failureReason: null,
-          clipReason: "semi-diameter",
-        });
+        recordClippedHit(
+          hits,
+          clipEvents,
+          lens,
+          nextSurfaceIdx,
+          { point, normal, incidentDirection, radius },
+          clipReason,
+        );
         terminationReason = "clipped";
         if (stopOnClip && !ghost) break;
       }

@@ -183,3 +183,16 @@ Verification: full gate passed after the final conversion (235 files / 2811 test
   deprecated compatibility fields — left as-is.)
 
 Verification: gate passed (235 files / 2811 tests); glass reports byte-identical.
+
+### G10 — readability pass on the generalized-trace loops
+
+- In each file (no cross-stack moves): the three near-identical passive-clip stanzas (inactive-side
+  block, block surface, semi-diameter) collapsed into a file-local `passiveClipReason` classifier plus a
+  `recordClippedHit` helper (one clip event + one clipped hit row); break/continue control flow stays in
+  the loop. `generalizedTrace.ts` keeps its compiled-interaction semantics, `exactSurfaceTrace.ts` keeps
+  its authored-interaction default (`inactiveSide ?? (reflect ? block : ignore)`).
+- The fourth block (intersection-failure fallback) differs structurally (fallback hit, failure reason)
+  and stays inline in each loop.
+
+Verification: gate passed (235 files / 2811 tests); mirrorOptics, exactSurfaceTrace, folded fixture,
+golden, and catalog trace suites green; `npm run generate:mirror-reports` byte-identical.

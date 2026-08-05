@@ -1417,7 +1417,7 @@ Verification: gate passes; reports byte-identical.
 
 ### G10. Readability pass on the two generalized-trace loops
 
-- [ ] Effort: M · Impact: low-med · Risk: low-med
+- [x] Effort: M · Impact: low-med · Risk: low-med
 
 `traceGeneralized` (`trace/generalizedTrace.ts` ~66–391) and `traceGeneralizedSurfaceStackVector`
 (`internal/exactSurfaceTrace.ts` ~570–900) each interleave side-activity, blocking, aperture,
