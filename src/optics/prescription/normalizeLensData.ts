@@ -52,17 +52,35 @@ export function normalizeLensData(data: LensData): EngineLens {
   return normalizeRuntimeLens(buildRuntimeLens(withLensDefaults(data)));
 }
 
+/* Identity-keyed cache: normalization structuredClones the prescription and
+ * re-runs glass matching per surface, so hot callers (chief-ray solves,
+ * cardinal traces, per-field distortion sweeps) must share one EngineLens per
+ * RuntimeLens. Safe because RuntimeLens objects are rebuilt on data change —
+ * the same WeakMap-keyed-on-RuntimeLens pattern the trace adapters and
+ * solveChiefRay rely on (agent_docs/gotchas.md). */
+const ENGINE_LENS_BY_RUNTIME = new WeakMap<RuntimeLens, EngineLens>();
+
 /**
  * Normalize an existing RuntimeLens into immutable engine structures.
  *
  * The resulting EngineLens keeps the original RuntimeLens reference for adapter
  * calls, but compiles labels, interactions, profiles, dispersion, and variable
  * gaps into index-keyed structures used by trace and analysis modules.
+ * Results are cached by RuntimeLens identity; callers must not mutate a
+ * RuntimeLens in place.
  *
  * @param runtime - runtime lens object returned by the public builder
  * @returns frozen normalized engine lens
  */
 export function normalizeRuntimeLens(runtime: RuntimeLens): EngineLens {
+  const cached = ENGINE_LENS_BY_RUNTIME.get(runtime);
+  if (cached) return cached;
+  const engineLens = normalizeRuntimeLensUncached(runtime);
+  ENGINE_LENS_BY_RUNTIME.set(runtime, engineLens);
+  return engineLens;
+}
+
+function normalizeRuntimeLensUncached(runtime: RuntimeLens): EngineLens {
   const source = structuredClone(runtime.data);
   const labelToSurfaceIndex = buildSurfaceLabelMap(source.surfaces);
   const aspheresByIndex = compileAspheres(source.asph, labelToSurfaceIndex);

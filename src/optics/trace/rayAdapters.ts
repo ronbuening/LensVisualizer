@@ -27,7 +27,6 @@ export interface VectorRayTraceInput2 {
   launchBoundT?: number;
 }
 
-const ENGINE_LENS_BY_RUNTIME = new WeakMap<RuntimeLens, ReturnType<typeof normalizeRuntimeLens>>();
 interface PreparedStateCache {
   byKey: Map<string, PreparedOpticalState>;
   lastFocusT?: number;
@@ -469,11 +468,7 @@ function skewDirectionForSlopes(ux: number, uy: number): Vec3 {
 }
 
 function stateForRuntimeLens(L: RuntimeLens, focusT: number, zoomT: number, aberrationT: number): PreparedOpticalState {
-  let engineLens = ENGINE_LENS_BY_RUNTIME.get(L);
-  if (!engineLens) {
-    engineLens = normalizeRuntimeLens(L);
-    ENGINE_LENS_BY_RUNTIME.set(L, engineLens);
-  }
+  const engineLens = normalizeRuntimeLens(L);
   let stateCache = PREPARED_STATE_BY_RUNTIME.get(L);
   if (!stateCache) {
     stateCache = { byKey: new Map() };

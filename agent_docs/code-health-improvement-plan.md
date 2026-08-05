@@ -1251,7 +1251,7 @@ a perf claim is made.
 
 ### G1. Centralize the `normalizeRuntimeLens` cache (5 private WeakMaps → 1)
 
-- [ ] Effort: S · Impact: high · Risk: low
+- [x] Effort: S · Impact: high · Risk: low
 
 `normalizeRuntimeLens` (`prescription/normalizeLensData.ts` ~66–91) structuredClones the full
 prescription and re-runs glass-catalog matching per surface on EVERY call. Five modules each

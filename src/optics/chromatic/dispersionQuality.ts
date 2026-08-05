@@ -10,7 +10,6 @@ import { normalizeRuntimeLens } from "../prescription/normalizeLensData.js";
 import type { EngineLens, PreparedOpticalState } from "../types.js";
 
 const QUALITY_ORDER: DispersionQuality[] = ["sellmeier", "lineIndices", "abbe", "constant"];
-const ENGINE_LENS_BY_RUNTIME = new WeakMap<RuntimeLens, EngineLens>();
 
 /**
  * Report the weakest dispersion data quality used by a normalized engine lens.
@@ -48,10 +47,5 @@ export function summarizeDispersionQualityForState2(state: PreparedOpticalState)
  * @returns worst non-air dispersion quality in the lens
  */
 export function summarizeDispersionQuality2(L: RuntimeLens): DispersionQuality {
-  let engineLens = ENGINE_LENS_BY_RUNTIME.get(L);
-  if (!engineLens) {
-    engineLens = normalizeRuntimeLens(L);
-    ENGINE_LENS_BY_RUNTIME.set(L, engineLens);
-  }
-  return summarizeDispersionQualityForLens2(engineLens);
+  return summarizeDispersionQualityForLens2(normalizeRuntimeLens(L));
 }

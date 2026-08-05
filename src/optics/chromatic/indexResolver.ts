@@ -29,8 +29,6 @@ export const CHANNEL_WAVELENGTH_NM_2: Readonly<Record<ChromaticChannel, number>>
  */
 export type SurfaceIndexResolver2 = (surfaceIndex: number, dLineIndex: number) => number;
 
-const ENGINE_LENS_BY_RUNTIME = new WeakMap<RuntimeLens, ReturnType<typeof normalizeRuntimeLens>>();
-
 /**
  * Approximate channel refractive index from d-line index and Abbe number.
  *
@@ -93,11 +91,7 @@ export function indexAtRuntimeSurface2(
   const surface = L.S[surfaceIndex];
   if (!surface) return 1;
   if (!channel) return surface.nd === 1 ? 1 : surface.nd;
-  let engineLens = ENGINE_LENS_BY_RUNTIME.get(L);
-  if (!engineLens) {
-    engineLens = normalizeRuntimeLens(L);
-    ENGINE_LENS_BY_RUNTIME.set(L, engineLens);
-  }
+  const engineLens = normalizeRuntimeLens(L);
   return (
     engineLens.dispersion[surfaceIndex]?.indexAt(channel) ?? wavelengthNd2(surface.nd, L.vdByIdx[surfaceIndex], channel)
   );

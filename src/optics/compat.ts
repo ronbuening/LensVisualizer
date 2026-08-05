@@ -12,7 +12,6 @@ import { normalizeRuntimeLens, withLensDefaults } from "./prescription/normalize
 import { prepareState } from "./state/prepareState.js";
 import type { PreparedStateCache } from "./state/cache.js";
 
-const ENGINE_LENS_BY_RUNTIME = new WeakMap<RuntimeLens, EngineLens>();
 const PREPARED_STATE_CACHE_BY_RUNTIME = new WeakMap<RuntimeLens, PreparedStateCache>();
 const PREPARED_STATE_CACHE_LIMIT = 96;
 
@@ -55,7 +54,7 @@ function preparedStateCacheForRuntime(L: RuntimeLens): PreparedStateCache {
  */
 export function buildLens2(data: LensData): RuntimeLens {
   const runtime = buildRuntimeLens(withLensDefaults(data));
-  ENGINE_LENS_BY_RUNTIME.set(runtime, normalizeRuntimeLens(runtime));
+  normalizeRuntimeLens(runtime);
   return runtime;
 }
 
@@ -69,11 +68,7 @@ export function buildLens2(data: LensData): RuntimeLens {
  * @returns normalized engine lens used by prepared-state modules
  */
 export function engineLensFromRuntime(L: RuntimeLens): EngineLens {
-  const cached = ENGINE_LENS_BY_RUNTIME.get(L);
-  if (cached) return cached;
-  const engineLens = normalizeRuntimeLens(L);
-  ENGINE_LENS_BY_RUNTIME.set(L, engineLens);
-  return engineLens;
+  return normalizeRuntimeLens(L);
 }
 
 /**
