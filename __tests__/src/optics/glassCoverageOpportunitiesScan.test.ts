@@ -30,6 +30,7 @@ import {
   resolveGlass,
   type GlassEntry,
   decodeCode6,
+  UNRESOLVED_MARKER,
 } from "../../../src/optics/glassCatalog.js";
 import type { LensData, RefractiveIndexReferenceLine } from "../../../src/types/optics.js";
 
@@ -340,7 +341,7 @@ function isCodeOnlyGlassAnnotation(glassString: string): boolean {
 }
 
 function isExplicitlyUnmatched(glassString: string | undefined): boolean {
-  return /\b(unmatched|unknown|proprietary|unidentified)\b/i.test(glassString ?? "");
+  return UNRESOLVED_MARKER.test(glassString ?? "");
 }
 
 function classifyMissingMaterial(elementLabel: string, glassString: string): MissingMaterialKind {

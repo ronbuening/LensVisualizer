@@ -21,7 +21,13 @@
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import buildLens from "../../../src/optics/buildLens.js";
-import { evaluateSellmeier, LINE_NM, resolveCompatibleGlass, resolveGlass } from "../../../src/optics/glassCatalog.js";
+import {
+  evaluateSellmeier,
+  LINE_NM,
+  resolveCompatibleGlass,
+  resolveGlass,
+  UNRESOLVED_MARKER,
+} from "../../../src/optics/glassCatalog.js";
 import type { DispersionQuality } from "../../../src/optics/dispersion.js";
 import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
 import type { LensData, RefractiveIndexReferenceLine } from "../../../src/types/optics.js";
@@ -206,7 +212,7 @@ function isCodeOnlyGlassAnnotation(glassString: string): boolean {
 }
 
 function isExplicitlyUnmatched(glassString: string): boolean {
-  return /\b(unmatched|unknown|proprietary|unidentified)\b/i.test(glassString);
+  return UNRESOLVED_MARKER.test(glassString);
 }
 
 function formatNdDiff(diff: number | null): string {

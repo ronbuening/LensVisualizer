@@ -126,3 +126,21 @@ Verification: gate passed (235 files / 2811 tests); dispersion + golden suites g
   before the change — modest, as expected for hoisting constant-factor work).
 
 Verification: gate passed (235 files / 2811 tests); `npm run generate:glass-reports` byte-identical.
+
+### G7 — resolveGlass over the shared match pool + UNRESOLVED_MARKER
+
+- Step 1: `UNRESOLVED_MARKER` exported from `glassCatalog.ts` and consumed by both runtime guards and
+  the four scans that had written the regex locally.
+- Step 2: `resolveGlass` is now a ranking (token-rank → source-rank → legacy-code-preference →
+  canonical name) over the shared tokenize/trim/lookup implementation; the hand-maintained first-hit
+  loop is deleted.
+- **The spec's exact proposal diverged and was corrected rather than forced.** Ranking the per-entry
+  deduped `candidateMatches` view fails on strings like `"517642 — N-BK7 (Schott)"`: dedup keeps each
+  entry's best match by SOURCE rank, so N-BK7's token-0 code match was discarded in favor of its token-1
+  name match, letting duplicate-code sibling H-K9L (token 0) win. The fix splits the implementation
+  into `rawCandidateMatches` (every match, encounter order) and the existing deduped `candidateMatches`
+  built over it; `resolveGlass` ranks the raw pool. This is documented at the call site.
+- Equivalence proof: the full `resolveGlass` describe block and `glassAmbiguityScan`'s explain-≡-runtime
+  assertion pass, and all eight regenerated glass reports are byte-identical across the 513-lens corpus.
+
+Verification: gate passed (235 files / 2811 tests); reports byte-identical.

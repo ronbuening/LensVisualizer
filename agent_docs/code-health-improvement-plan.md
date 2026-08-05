@@ -1358,7 +1358,7 @@ scan suites drops (note before/after in the branch record).
 
 ### G7. Reimplement `resolveGlass` over `candidateMatches`; share the unresolved-marker regex
 
-- [ ] Effort: M · Impact: med · Risk: med
+- [x] Effort: M · Impact: med · Risk: med
 
 `glassCatalog.ts` contains two hand-maintained copies of the tokenize/trim/lookup loop
 (~349–371 ranked vs ~567–594 first-hit) with divergent semantics for alias-before-name strings;

@@ -280,6 +280,12 @@ const CODE6_CANDIDATES: ReadonlyMap<string, readonly GlassEntry[]> = (() => {
   return map;
 })();
 
+/**
+ * Annotation markers that mean "explicitly no catalog match" — resolution
+ * skips these strings entirely. Single source for runtime and report scans.
+ */
+export const UNRESOLVED_MARKER = /\b(unmatched|unknown|proprietary|unidentified)\b/i;
+
 function escapeRegExp(value: string): string {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
@@ -335,14 +341,19 @@ const GLASS_MATCH_SOURCE_RANK: Readonly<Record<GlassResolutionMatchSource, numbe
   code: 2,
 };
 
-function candidateMatches(glassString: string): GlassCandidateMatch[] {
-  if (/\b(unmatched|unknown|proprietary|unidentified)\b/i.test(glassString)) return [];
+/**
+ * Every raw tokenize/trim/lookup match in encounter order, including multiple
+ * matches for the same entry. `resolveGlass` ranks this pool directly;
+ * diagnostic consumers use the per-entry deduped `candidateMatches` view.
+ */
+function rawCandidateMatches(glassString: string): GlassCandidateMatch[] {
+  if (UNRESOLVED_MARKER.test(glassString)) return [];
 
   const upperGlassString = glassString.toUpperCase();
   const mentionedVendors = new Set(
     CATALOG_VENDORS.filter(({ upper }) => upperGlassString.includes(upper)).map(({ vendor }) => vendor),
   );
-  const bestByName = new Map<string, GlassCandidateMatch>();
+  const matches: GlassCandidateMatch[] = [];
   const add = (
     entry: GlassEntry,
     source: GlassResolutionMatchSource,
@@ -351,7 +362,7 @@ function candidateMatches(glassString: string): GlassCandidateMatch[] {
     legacyPreferenceRank = 0,
   ): void => {
     const vendorMatch = mentionedVendors.size === 0 ? null : mentionedVendors.has(entry.vendor);
-    const match: GlassCandidateMatch = {
+    matches.push({
       entry,
       source,
       matchedToken,
@@ -360,22 +371,7 @@ function candidateMatches(glassString: string): GlassCandidateMatch[] {
       vendorRank: vendorMatch === false ? 1 : 0,
       vendorMatch,
       legacyPreferenceRank,
-    };
-    const existing = bestByName.get(entry.name);
-    if (
-      !existing ||
-      match.sourceRank < existing.sourceRank ||
-      (match.sourceRank === existing.sourceRank && match.vendorRank < existing.vendorRank) ||
-      (match.sourceRank === existing.sourceRank &&
-        match.vendorRank === existing.vendorRank &&
-        match.tokenRank < existing.tokenRank) ||
-      (match.sourceRank === existing.sourceRank &&
-        match.vendorRank === existing.vendorRank &&
-        match.tokenRank === existing.tokenRank &&
-        match.legacyPreferenceRank < existing.legacyPreferenceRank)
-    ) {
-      bestByName.set(entry.name, match);
-    }
+    });
   };
 
   for (const [tokenRank, tokRaw] of glassTokens(glassString).entries()) {
@@ -402,6 +398,28 @@ function candidateMatches(glassString: string): GlassCandidateMatch[] {
     }
   }
 
+  return matches;
+}
+
+function candidateMatches(glassString: string): GlassCandidateMatch[] {
+  const bestByName = new Map<string, GlassCandidateMatch>();
+  for (const match of rawCandidateMatches(glassString)) {
+    const existing = bestByName.get(match.entry.name);
+    if (
+      !existing ||
+      match.sourceRank < existing.sourceRank ||
+      (match.sourceRank === existing.sourceRank && match.vendorRank < existing.vendorRank) ||
+      (match.sourceRank === existing.sourceRank &&
+        match.vendorRank === existing.vendorRank &&
+        match.tokenRank < existing.tokenRank) ||
+      (match.sourceRank === existing.sourceRank &&
+        match.vendorRank === existing.vendorRank &&
+        match.tokenRank === existing.tokenRank &&
+        match.legacyPreferenceRank < existing.legacyPreferenceRank)
+    ) {
+      bestByName.set(match.entry.name, match);
+    }
+  }
   return [...bestByName.values()];
 }
 
@@ -584,47 +602,27 @@ export function resolveCompatibleGlass(
  *   "S-FPL51 / N-PK52A (universal)"
  *   "Unmatched (likely Sumita proprietary)"
  *
- * Strategy: tokenize the string, try each token as a canonical name or alias,
- * then try as a Schott 6-digit code. First hit wins. Returns null when nothing
- * resolves (the caller falls back to the next dispersion-model layer).
+ * Strategy: rank the shared `candidateMatches` pool by earliest token, then
+ * name > alias > code within a token, then legacy duplicate-code preference,
+ * then canonical name — the same order the old hand-maintained first-hit loop
+ * walked, now expressed over one tokenize/trim/lookup implementation. Returns
+ * null when nothing resolves (the caller falls back to the next
+ * dispersion-model layer).
  */
 export function resolveGlass(glassString: string | undefined): GlassEntry | null {
   if (!glassString) return null;
-  // Reject explicit "no match" markers up front.
-  if (/\b(unmatched|unknown|proprietary|unidentified)\b/i.test(glassString)) return null;
-
-  // Pull out candidate tokens. We accept hyphenated catalog names like "S-FPL51"
-  // and bare names like "BK7", plus 6-digit Schott codes.
-  const tokens = glassTokens(glassString);
-  for (const tokRaw of tokens) {
-    const tok = tokRaw.toUpperCase();
-    const candidates = [tok];
-    for (let hyphen = tok.lastIndexOf("-"); hyphen > 0; hyphen = tok.lastIndexOf("-", hyphen - 1)) {
-      candidates.push(tok.slice(0, hyphen));
-    }
-    for (const candidate of candidates) {
-      // Direct canonical match. Progressive suffix trimming preserves support
-      // for prose such as "S-FPL51-class" without losing real names such as
-      // "TAFD40L-W" and "MP-FCD500-20".
-      const direct = CATALOG.get(candidate);
-      if (direct) return direct;
-      // Alias to canonical.
-      const aliased = ALIASES.get(candidate);
-      if (aliased) {
-        const e = CATALOG.get(aliased.toUpperCase());
-        if (e) return e;
-      }
-    }
-    // 6-digit Schott code.
-    if (/^\d{6}$/.test(tok)) {
-      const canonical = CODE6_INDEX.get(tok);
-      if (canonical) {
-        const e = CATALOG.get(canonical.toUpperCase());
-        if (e) return e;
-      }
-    }
-  }
-  return null;
+  // Rank the RAW pool, not the per-entry deduped view: dedup keeps each
+  // entry's best match by source rank, which would discard an entry's
+  // earlier code-token match when a later name token also names it (e.g.
+  // "517642 — N-BK7") and hand the win to a duplicate-code sibling.
+  const ranked = rawCandidateMatches(glassString).sort(
+    (a, b) =>
+      a.tokenRank - b.tokenRank ||
+      a.sourceRank - b.sourceRank ||
+      a.legacyPreferenceRank - b.legacyPreferenceRank ||
+      a.entry.name.localeCompare(b.entry.name),
+  );
+  return ranked[0]?.entry ?? null;
 }
 
 /** Total entries in the catalog (for diagnostics / status badges). */

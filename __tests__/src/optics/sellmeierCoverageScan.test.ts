@@ -19,6 +19,7 @@ import {
   GLASS_VD_TOLERANCE,
   resolveCompatibleGlass,
   resolveGlass,
+  UNRESOLVED_MARKER,
 } from "../../../src/optics/glassCatalog.js";
 import type { DispersionQuality } from "../../../src/optics/dispersion.js";
 import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
@@ -80,7 +81,7 @@ function extractPatentNumber(subtitle: string | undefined): string | null {
 }
 
 function isExplicitlyUnmatched(glassString: string | undefined): boolean {
-  return /\b(unmatched|unknown|proprietary|unidentified)\b/i.test(glassString ?? "");
+  return UNRESOLVED_MARKER.test(glassString ?? "");
 }
 
 function formatPercent(numerator: number, denominator: number): string {

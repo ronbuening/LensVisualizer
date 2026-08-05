@@ -11,7 +11,7 @@
 import { describe, expect, it } from "vitest";
 import { mkdirSync, writeFileSync } from "node:fs";
 import buildLens from "../../../src/optics/buildLens.js";
-import { glassTokens, resolveGlass } from "../../../src/optics/glassCatalog.js";
+import { glassTokens, resolveGlass, UNRESOLVED_MARKER } from "../../../src/optics/glassCatalog.js";
 import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
 import type { LensData } from "../../../src/types/optics.js";
 
@@ -31,7 +31,7 @@ function toRepoRelativeLensPath(modulePath: string): string {
 }
 
 function isExplicitlyUnmatched(glassString: string): boolean {
-  return /\b(unmatched|unknown|proprietary|unidentified)\b/i.test(glassString);
+  return UNRESOLVED_MARKER.test(glassString);
 }
 
 function candidateTokens(glassString: string): string[] {
