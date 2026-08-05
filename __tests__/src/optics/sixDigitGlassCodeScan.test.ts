@@ -31,7 +31,6 @@ import {
   isCodeOnlyGlassAnnotation,
   isExplicitlyUnmatched,
   patentInventory,
-  toRepoRelativeLensPath,
   walkLensSurfaces,
 } from "./glassScanLib.js";
 import type { LensData, RefractiveIndexReferenceLine } from "../../../src/types/optics.js";

@@ -1379,7 +1379,7 @@ Verification: gate passes; report byte-diff empty (or divergence documented and 
 
 ### G8. Shared library for the 8 glass report scans
 
-- [ ] Effort: M · Impact: high (maintenance) · Risk: low
+- [x] Effort: M · Impact: high (maintenance) · Risk: low
 
 Eight scan files under `__tests__/src/optics/` re-implement the same harness:
 `toRepoRelativeLensPath` ×8, `extractPatentNumber` ×5, the ~60-line patent-PDF inventory matcher
