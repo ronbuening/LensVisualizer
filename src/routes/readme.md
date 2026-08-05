@@ -14,6 +14,8 @@ flowchart LR
   n_external_pkg_react["pkg:react"]
   n_external_src_pages_ArticlePage_tsx["src/pages/ArticlePage.tsx"]
   n_external_src_pages_ArticlesPage_tsx["src/pages/ArticlesPage.tsx"]
+  n_external_src_pages_AuthorPage_tsx["src/pages/AuthorPage.tsx"]
+  n_external_src_pages_AuthorsIndexPage_tsx["src/pages/AuthorsIndexPage.tsx"]
   n_external_src_pages_ComparePage_tsx["src/pages/ComparePage.tsx"]
   n_external_src_pages_FormatPage_tsx["src/pages/FormatPage.tsx"]
   n_external_src_pages_FormatsIndexPage_tsx["src/pages/FormatsIndexPage.tsx"]
@@ -25,10 +27,15 @@ flowchart LR
   n_external_src_pages_MountPage_tsx["src/pages/MountPage.tsx"]
   n_external_src_pages_MountsIndexPage_tsx["src/pages/MountsIndexPage.tsx"]
   n_external_src_pages_NotFoundPage_tsx["src/pages/NotFoundPage.tsx"]
+  n_external_src_pages_PatentsIndexPage_tsx["src/pages/PatentsIndexPage.tsx"]
+  n_external_src_pages_RelationshipMapPage_tsx["src/pages/RelationshipMapPage.tsx"]
+  n_external_src_pages_SearchPage_tsx["src/pages/SearchPage.tsx"]
   n_external_src_pages_UpdatesPage_tsx["src/pages/UpdatesPage.tsx"]
   n_src_routes_src_routes_routeManifest_tsx --> n_external_pkg_react
   n_src_routes_src_routes_routeManifest_tsx --> n_external_src_pages_ArticlePage_tsx
   n_src_routes_src_routes_routeManifest_tsx --> n_external_src_pages_ArticlesPage_tsx
+  n_src_routes_src_routes_routeManifest_tsx --> n_external_src_pages_AuthorPage_tsx
+  n_src_routes_src_routes_routeManifest_tsx --> n_external_src_pages_AuthorsIndexPage_tsx
   n_src_routes_src_routes_routeManifest_tsx --> n_external_src_pages_ComparePage_tsx
   n_src_routes_src_routes_routeManifest_tsx --> n_external_src_pages_FormatPage_tsx
   n_src_routes_src_routes_routeManifest_tsx --> n_external_src_pages_FormatsIndexPage_tsx
@@ -40,6 +47,9 @@ flowchart LR
   n_src_routes_src_routes_routeManifest_tsx --> n_external_src_pages_MountPage_tsx
   n_src_routes_src_routes_routeManifest_tsx --> n_external_src_pages_MountsIndexPage_tsx
   n_src_routes_src_routes_routeManifest_tsx --> n_external_src_pages_NotFoundPage_tsx
+  n_src_routes_src_routes_routeManifest_tsx --> n_external_src_pages_PatentsIndexPage_tsx
+  n_src_routes_src_routes_routeManifest_tsx --> n_external_src_pages_RelationshipMapPage_tsx
+  n_src_routes_src_routes_routeManifest_tsx --> n_external_src_pages_SearchPage_tsx
   n_src_routes_src_routes_routeManifest_tsx --> n_external_src_pages_UpdatesPage_tsx
 ```
 
@@ -47,12 +57,12 @@ flowchart LR
 
 - Direct source files: 1
 - Direct subfolders: 0
-- Main outbound areas: package:react, src/pages/ArticlePage.tsx, src/pages/ArticlesPage.tsx, src/pages/ComparePage.tsx, src/pages/FormatPage.tsx, src/pages/FormatsIndexPage.tsx, src/pages/HomePage.tsx, src/pages/LensIndexPage.tsx, +7 more
+- Main outbound areas: package:react, src/pages/ArticlePage.tsx, src/pages/ArticlesPage.tsx, src/pages/AuthorPage.tsx, src/pages/AuthorsIndexPage.tsx, src/pages/ComparePage.tsx, src/pages/FormatPage.tsx, src/pages/FormatsIndexPage.tsx, +12 more
 - External consumers: src/entry-server.tsx, src/router.tsx
 
 ## Files
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
-| `routeManifest.tsx` | React component module | package:react, src/pages/ArticlePage.tsx, src/pages/ArticlesPage.tsx, src/pages/ComparePage.tsx, src/pages/FormatPage.tsx, +10 more | src/entry-server.tsx, src/router.tsx | RouteManifestEntry, default |
+| `routeManifest.tsx` | React component module | package:react, src/pages/ArticlePage.tsx, src/pages/ArticlesPage.tsx, src/pages/AuthorPage.tsx, src/pages/AuthorsIndexPage.tsx, +15 more | src/entry-server.tsx, src/router.tsx | RouteManifestEntry, default |
 

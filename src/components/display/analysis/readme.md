@@ -52,7 +52,7 @@ flowchart LR
 - Direct source files: 29
 - Direct subfolders: 2
 - Main outbound areas: src/components/display (56), src/types (40), src/optics/compat.ts (18), package:react (13), src/optics/aberrationAnalysis.ts (11), src/optics/types.ts (10), src/optics/optics.ts (9), src/utils/perfProbe.ts (4), +4 more
-- External consumers: src/benchmarks, src/components/display, src/components/layout
+- External consumers: src/benchmarks, src/components/diagram, src/components/display, src/components/layout
 
 ## Subfolders
 
@@ -84,7 +84,7 @@ flowchart LR
 | `FocusBreathingTab.tsx` | React component module | src/types (2), package:react, src/optics/optics.ts | src/components/layout | default, FocusBreathingTab |
 | `LateralColorChart.tsx` | React component module | src/components/display (4), src/types (2), src/optics/compat.ts | src/components/display | default, LateralColorChart |
 | `LongitudinalChromaticFocusChart.tsx` | React component module | src/components/display (4), src/optics/compat.ts, src/types | src/components/display | default, LongitudinalChromaticFocusChart |
-| `MeridionalComaPlot.tsx` | React component module | src/components/display, src/optics/aberrationAnalysis.ts, src/types | src/components/display (2) | default, MeridionalComaPlot |
+| `MeridionalComaPlot.tsx` | React component module | src/components/display, src/optics/aberrationAnalysis.ts, src/types | src/components/display | default, MeridionalComaPlot |
 | `OpticalSummaryTab.tsx` | React component module | src/components/display (2), src/optics/compat.ts (2), src/types (2), package:react, src/optics/optics.ts, +1 more | src/components/layout | default, OpticalSummaryTab |
 | `PupilAberrationChart.tsx` | React component module | src/components/display (3), src/optics/pupilAberration.ts, src/types | src/components/display | default, PupilAberrationChart |
 | `PupilAberrationTab.tsx` | React component module | src/components/display (3), src/optics/compat.ts (2), src/types (2), package:react, src/optics/optics.ts, +1 more | src/components/layout | default, PupilAberrationTab |
@@ -94,3 +94,4 @@ flowchart LR
 | `usePreparedAnalysisState.ts` | React hook module | package:react, src/optics/compat.ts, src/optics/types.ts, src/types | src/components/display (6), src/components/layout | default, usePreparedAnalysisState |
 | `VignettingChart.tsx` | React component module | src/components/display (3), src/optics/vignetteAnalysis.ts, src/types | src/components/display | default, VignettingChart |
 | `VignettingTab.tsx` | React component module | src/components/display (3), src/optics/compat.ts (2), src/types (2), package:react, src/optics/optics.ts, +2 more | src/components/layout | default, VignettingTab |
+

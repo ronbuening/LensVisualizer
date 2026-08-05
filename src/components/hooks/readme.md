@@ -16,7 +16,9 @@ flowchart LR
     n_src_components_hooks_src_components_hooks_useFlashOverlay_ts["useFlashOverlay.ts"]
     n_src_components_hooks_src_components_hooks_useHeaderHeight_ts["useHeaderHeight.ts"]
     n_src_components_hooks_src_components_hooks_useInteractionSignal_ts["useInteractionSignal.ts"]
+    n_src_components_hooks_src_components_hooks_useLensAnalysisMarkdown_ts["useLensAnalysisMarkdown.ts"]
     n_src_components_hooks_src_components_hooks_useLensComputation_ts["useLensComputation.ts"]
+    n_src_components_hooks_src_components_hooks_useModalDialog_ts["useModalDialog.ts"]
     n_src_components_hooks_src_components_hooks_useOffAxisRays_ts["useOffAxisRays.ts"]
     n_src_components_hooks_src_components_hooks_useOnAxisRays_ts["useOnAxisRays.ts"]
     n_src_components_hooks_src_components_hooks_useOverlays_ts["useOverlays.ts"]
@@ -51,7 +53,9 @@ flowchart LR
   n_src_components_hooks_src_components_hooks_useDispatchAdapters_ts --> n_external_pkg_react
   n_src_components_hooks_src_components_hooks_useFlashOverlay_ts --> n_external_pkg_react
   n_src_components_hooks_src_components_hooks_useInteractionSignal_ts --> n_external_pkg_react
+  n_src_components_hooks_src_components_hooks_useLensAnalysisMarkdown_ts --> n_external_pkg_react
   n_src_components_hooks_src_components_hooks_useLensComputation_ts --> n_external_pkg_react
+  n_src_components_hooks_src_components_hooks_useModalDialog_ts --> n_external_pkg_react
   n_src_components_hooks_src_components_hooks_useOffAxisRays_ts --> n_external_pkg_react
   n_src_components_hooks_src_components_hooks_useOnAxisRays_ts --> n_external_pkg_react
   n_src_components_hooks_src_components_hooks_useOverlays_ts --> n_external_pkg_react
@@ -68,17 +72,15 @@ flowchart LR
   n_src_components_hooks_src_components_hooks_useRayTracing_ts --> n_external_src_optics_lensMovement_ts
   n_src_components_hooks_src_components_hooks_offAxisRayUtils_ts --> n_external_src_optics_optics_ts
   n_src_components_hooks_src_components_hooks_useChromaticRays_ts --> n_external_src_optics_optics_ts
-  n_src_components_hooks_src_components_hooks_useOffAxisRays_ts --> n_external_src_optics_optics_ts
-  n_src_components_hooks_src_components_hooks_useOnAxisRays_ts --> n_external_src_optics_optics_ts
   n_src_components_hooks_truncated["additional relationships omitted"]
 ```
 
 ## Directory Overview
 
-- Direct source files: 15
+- Direct source files: 17
 - Direct subfolders: 0
-- Main outbound areas: package:react (15), src/types (15), same folder (13), src/optics/optics.ts (7), src/optics/lensMovement.ts (6), src/optics/raySampling.ts (3), src/utils/state (3), src/optics/aberration, +6 more
-- External consumers: src/benchmarks, src/components/controls, src/components/display, src/components/layout
+- Main outbound areas: package:react (17), src/types (15), same folder (13), src/optics/optics.ts (7), src/optics/lensMovement.ts (6), src/optics/raySampling.ts (3), src/utils/state (3), src/utils/catalog (2), +6 more
+- External consumers: src/benchmarks, src/components/controls, src/components/display, src/components/layout, src/components/relationshipMap
 
 ## Files
 
@@ -91,12 +93,14 @@ flowchart LR
 | `useFlashOverlay.ts` | React hook module | package:react | src/components/layout | default, useFlashOverlay |
 | `useHeaderHeight.ts` | React hook module | package:react (2) | src/components/layout | default, useHeaderHeight |
 | `useInteractionSignal.ts` | React hook module | package:react | src/components/controls | InteractionSignal, default, useInteractionSignal |
+| `useLensAnalysisMarkdown.ts` | React hook module | package:react, src/utils/catalog, src/utils/featureFlags.ts | src/components/layout | default, useLensAnalysisMarkdown |
 | `useLensComputation.ts` | React hook module | src/optics/lensMovement.ts (2), src/optics/optics.ts (2), package:react, src/optics/buildLens.ts, src/optics/cardinalElements.ts, +3 more | src/components/layout | default, useLensComputation |
+| `useModalDialog.ts` | React hook module | package:react | src/components/layout (2) | default, useModalDialog |
 | `useOffAxisRays.ts` | React hook module | same folder (3), src/types (2), package:react, src/optics/lensMovement.ts, src/optics/optics.ts, +1 more | same folder | default, useOffAxisRays |
 | `useOnAxisRays.ts` | React hook module | src/types (2), package:react, same folder, src/optics/lensMovement.ts, src/optics/optics.ts, +1 more | same folder (4), src/benchmarks, src/components/layout | RaySegment, default, useOnAxisRays |
 | `useOverlays.ts` | React hook module | package:react, src/types, src/utils/state | src/components/layout | default, useOverlays |
 | `useOverlayState.ts` | React hook module | package:react | src/components/layout | OverlayState, default, useOverlayState |
 | `useRayTracing.ts` | React hook module | same folder (5), src/types (2), package:react, src/optics/lensMovement.ts, src/optics/optics.ts | src/components/layout | default, useRayTracing |
 | `useSideLayoutDetection.ts` | React hook module | package:react (2) | src/components/layout | default, useSideLayoutDetection |
-| `useViewBoxZoom.ts` | React hook module | package:react | src/components/display, src/components/layout | ViewBoxState, ViewBoxZoomResult, default, useViewBoxZoom |
+| `useViewBoxZoom.ts` | React hook module | package:react | src/components/display, src/components/layout, src/components/relationshipMap | ViewBoxState, ViewBoxZoomResult, default, useViewBoxZoom |
 
