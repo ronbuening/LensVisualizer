@@ -583,4 +583,16 @@ export const SCHOTT_GLASS_ENTRIES: readonly GlassEntry[] = [
     code6: "904313",
     source: "Schott Zemax catalog 2017-01-20b via refractiveindex.info; N-LASF46B page.",
   },
+  /* ────── Phase 80 Voigtländer vintage-prime coverage addition (August 2026) ────── */
+  {
+    name: "LF5",
+    vendor: "Schott",
+    B: [1.28035628, 0.163505973, 0.893930112],
+    C: [0.00929854416, 0.0449135769, 110.493685],
+    nd: 1.58144,
+    vd: 40.85,
+    PgF: 0.5748,
+    code6: "581409",
+    source: "Schott Zemax catalog 2017-01-20b via refractiveindex.info; LF5 page.",
+  },
 ];

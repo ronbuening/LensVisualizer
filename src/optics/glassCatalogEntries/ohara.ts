@@ -1823,4 +1823,15 @@ export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source:
       "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF); vendor Sellmeier coefficients for special-order L-TIM28P.",
   },
+  /* ────── Phase 80 Voigtländer vintage-prime coverage addition (August 2026) ────── */
+  {
+    name: "FTM8",
+    vendor: "Ohara",
+    polynomial: [2.3063389, -0.009299434, 0.014148541, 0.00061944948, -0.00003542134, 0.0000043560988],
+    nd: 1.532565,
+    vd: 45.914102,
+    PgF: 0.5743,
+    code6: "533459",
+    source: "Ohara Zemax catalog 2017-11-30 via refractiveindex.info; FTM8 page (formula 3 polynomial).",
+  },
 ];

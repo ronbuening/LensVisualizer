@@ -19,6 +19,12 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  // ── 2026-08-05 ─────────────────────────────────
+  {
+    date: "2026-08-05",
+    type: "lens",
+    summary: "Added six classic Voigtländer Heliar, Nokton, Skopar, Dynar, and Telomar designs",
+  },
   // ── 2026-08-04 ─────────────────────────────────
   {
     date: "2026-08-04",

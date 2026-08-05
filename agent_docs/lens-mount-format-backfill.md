@@ -7,19 +7,19 @@ the fields unset and add a note here until a source check resolves it.
 
 ## Current Coverage
 
-- Total lens data files: **418**
-- Files with both `lensMounts` and `imageFormat`: **394**
-- Files missing `lensMounts`: **18**
-- Files missing `imageFormat`: **23**
-- Files missing both fields: **17**
+- Total lens data files: **520**
+- Files with both `lensMounts` and `imageFormat`: **483**
+- Files missing `lensMounts`: **29**
+- Files missing `imageFormat`: **28**
+- Files missing both fields: **20**
 - Seeded formats currently in use: `1-inch-type`, `110`, `135-full-frame`, `44x33`, `4x5`, `5x7`, `645`,
   `6x6`, `6x7`, `6x9`, `aps-c`, `four-thirds`
 - Seeded mounts currently in use: `agfa-ambi-silette`, `canon-ef`, `canon-ef-m`, `canon-ef-s`, `canon-fd`,
   `canon-rf`, `contax-rf`, `contax-yashica`, `enlarging-lens`, `exakta`, `fixed-lens-camera`, `four-thirds`,
   `fujifilm-g`, `fujifilm-x`, `hasselblad-h`, `hasselblad-xcd`, `konica-ar`, `l-mount`,
   `large-format-lens-board`, `leica-ltm`, `leica-m`, `leica-r`, `m42`, `micro-four-thirds`, `minolta-sr`,
-  `nikon-1`, `nikon-f`, `nikon-s`, `nikon-z`, `olympus-om`, `pentax-110`, `pentax-645`, `pentax-67`,
-  `pentax-k`, `praktina`, `sigma-sa`, `sony-a`, `sony-fe`, `zeiss-contaflex`, `zeiss-contarex`
+  `nikon-1`, `nikon-f`, `nikon-s`, `nikon-z`, `nikonos-rs`, `olympus-om`, `pentax-110`, `pentax-645`, `pentax-67`,
+  `pentax-k`, `praktina`, `samsung-nx`, `sigma-sa`, `sony-a`, `sony-fe`, `zeiss-contaflex`, `zeiss-contarex`
 
 ## Source-Review Queue
 
@@ -35,8 +35,9 @@ Do not seed these from filename alone:
   - `Laowa12mmf28ZeroD` has `imageFormat` but no mount. Confirm represented production mounts before seeding.
 - Voigtländer:
   - `VoigtlanderUltron28f2`, `VoigtlanderUltron50f2` — verify historical or multi-mount variants before seeding.
-  - `VoigtlanderHeliar` is tagged as `large-format-lens-board`; leave `imageFormat` unset until a specific production
-    focal length/frame-size interpretation is chosen for the normalized patent example.
+  - `VoigtlanderHeliar` and `VoigtlanderHeliarF45SecondAsymmetric` are tagged as `large-format-lens-board`; leave
+    `imageFormat` unset until a specific production focal length/frame-size interpretation is chosen for either
+    normalized patent example.
 - Vivitar:
   - `VivitarSeries1200mmf3`, `VivitarSeries13585mmf28`, `VivitarSeries170210mmf284` — Series 1 lenses were
     sold in multiple mounts; need source review before choosing one or more ids.
