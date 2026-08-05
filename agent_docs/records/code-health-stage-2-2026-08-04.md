@@ -30,6 +30,23 @@
 
 Verification: gate passed (223 files / 2621 tests).
 
+### N2 — lens-index URL contract
+
+- New `__tests__/src/pages/lensIndex/urlState.test.ts` (40 cases) covering all five previously untested exports:
+  `parseLensIndexViewMode`, `parseLensIndexUrlState`, `serializeLensIndexUrlState`, `isSameCustomFilter`,
+  `isValidLensLibraryReturnPath`.
+- Uses a fixed synthetic `FilterBounds` and an explicit `knownMakerSlugs` list so assertions do not drift as the
+  catalog grows.
+- Covers: view-mode fallbacks, all eight group modes, unknown maker/mount/format rejection, list dedup and
+  taxonomy-`sortOrder` ordering, numeric clamping, non-numeric fallback, swapped min/max normalization, the
+  `filters=open` flag, empty/default serialization, and a full round trip.
+- Validator table extends the spec's list with two path-traversal cases (`/lenses/../authors`, `/lenses/..`) and a
+  `javascript:` scheme, since this is the open-redirect-adjacent surface. All reject correctly — the
+  `startsWith("/lenses")` prefix check plus the post-normalization `pathname` equality check together also reject
+  the `/lenses-extra` sibling-route trap.
+
+Verification: gate passed (224 files / 2661 tests).
+
 ## Follow-ups
 
 - Runtime-side fallback identity stays untestable until `patentsForParty` stops reading module-level

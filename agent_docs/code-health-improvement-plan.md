@@ -194,7 +194,7 @@ while `patentsForParty` reads module-level `LENS_SUMMARIES`, and is C1's to fix.
 
 ### N2. Lens-index URL parser/serializer and return-path validator tests
 
-- [ ] Effort: S · Impact: high · Risk: none
+- [x] Effort: S · Impact: high · Risk: none
 
 `src/pages/lensIndex/urlState.ts` — modified by #604 and #635 — has zero tests for
 `parseLensIndexViewMode` (~54), `parseLensIndexUrlState` (~95), `serializeLensIndexUrlState`
