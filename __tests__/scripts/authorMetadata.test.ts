@@ -4,6 +4,7 @@
 
 import { describe, expect, it } from "vitest";
 import { buildAuthorMetadata, buildAssigneeMetadata } from "../../scripts/author-metadata.mjs";
+import { AUTHORS } from "../../src/utils/catalog/authorCatalog.js";
 
 describe("author metadata generation", () => {
   it("deduplicates authors and counts unique patents", () => {
@@ -24,6 +25,58 @@ describe("author metadata generation", () => {
     ]);
 
     expect(authors[0]).toMatchObject({ lensKeys: ["a", "b"], patentCount: 2 });
+  });
+
+  /**
+   * Public URL contract: `/authors/:slug`. These are the real catalog names whose
+   * transliteration is non-obvious, pinned as exact strings — a change relocates
+   * already-published author URLs.
+   */
+  it.each([
+    ["Josef Weiß", "josef-weiss"],
+    ["Hiltrud Ebbesmeier née Schitthof", "hiltrud-ebbesmeier-nee-schitthof"],
+    ["Günter Klemt", "gunter-klemt"],
+    ["Aurélien Dodoc", "aurelien-dodoc"],
+    ["Harry Zöllner", "harry-zollner"],
+    ["Jérôme Ø. Håkonsen", "jerome-o-hakonsen"],
+    ["Łukasz Đurić", "lukasz-duric"],
+  ])("slugifies %j to %j", (name, expected) => {
+    const [author] = buildAuthorMetadata([{ key: "a", patentNumber: "US 1", patentAuthors: [name], visible: true }]);
+    expect(author.slug).toBe(expected);
+  });
+
+  it("pins the stableHash suffix used by collision-disambiguated slugs", () => {
+    // Both names share the base "josef-weiss", so each slug carries its FNV-1a hash.
+    const authors = buildAuthorMetadata([
+      { key: "a", patentNumber: "US 1", patentAuthors: ["Josef Weiß"], visible: true },
+      { key: "b", patentNumber: "US 2", patentAuthors: ["Josef Weiss"], visible: true },
+    ]);
+    const slugByName = Object.fromEntries(
+      authors.map((author: { name: string; slug: string }) => [author.name, author.slug]),
+    );
+
+    expect(slugByName["Josef Weiß"]).toBe("josef-weiss-1fd43f8");
+    expect(slugByName["Josef Weiss"]).toBe("josef-weiss-1249fdl");
+  });
+
+  it("matches the slugs actually shipped for those authors", () => {
+    // Ties the unit pins above to the live /authors/:slug URLs in generated metadata.
+    for (const [name, expected] of [
+      ["Josef Weiß", "josef-weiss"],
+      ["Hiltrud Ebbesmeier née Schitthof", "hiltrud-ebbesmeier-nee-schitthof"],
+      ["Günter Klemt", "gunter-klemt"],
+      ["Aurélien Dodoc", "aurelien-dodoc"],
+      ["Harry Zöllner", "harry-zollner"],
+    ]) {
+      expect(AUTHORS.find((author) => author.name === name)?.slug, name).toBe(expected);
+    }
+  });
+
+  it("pins the unslugifiable-name fallback base and hash", () => {
+    const [author] = buildAuthorMetadata([
+      { key: "a", patentNumber: "US 1", patentAuthors: ["郑艺丹"], visible: true },
+    ]);
+    expect(author.slug).toBe("author-7c9tsh");
   });
 
   it("adds stable suffixes for colliding and non-ASCII slug bases", () => {

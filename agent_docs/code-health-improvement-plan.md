@@ -212,7 +212,7 @@ Verification: gate passes.
 
 ### N3. Pin the public URL contracts: group-anchor ids and author slugs
 
-- [ ] Effort: S · Impact: med-high · Risk: none
+- [x] Effort: S · Impact: med-high · Risk: none
 
 `src/pages/lensIndex/groupAnchors.ts` (all 8 exports, ~10–34) generates `#group-…` fragment ids
 that author/patent pages deep-link to; `scripts/author-metadata.mjs` (`authorSlugBase`,

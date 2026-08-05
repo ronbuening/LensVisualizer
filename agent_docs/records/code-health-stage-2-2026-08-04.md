@@ -47,6 +47,25 @@ Verification: gate passed (223 files / 2621 tests).
 
 Verification: gate passed (224 files / 2661 tests).
 
+### N3 — pinned public URL contracts
+
+- New `__tests__/src/pages/lensIndex/groupAnchors.test.ts` covering all 8 exports with exact-string pins, including
+  the FNV-1a hash suffix: `group-inventor-g-nter-klemt-rpuixk`, `group-assignee-canon-inc-1chmmri`,
+  `group-assignee-asahi-kogaku-pentax-h35uay`, the `No named assignee or applicant` fallback bucket, and the
+  empty-key `party` stem. Also asserts roles stay in separate namespaces and that the hash still separates keys
+  that slugify identically (`Günter`/`Gunter`).
+- Noted in the test that `slugifyGroupKey` collapses non-ASCII to a separator (`Günter Klemt` → `g-nter-klemt`)
+  rather than transliterating — different from the author-slug path, and intentional to pin as-is.
+- Extended `__tests__/scripts/authorMetadata.test.ts` with exact slug pins for the real catalog's tricky names
+  (`Josef Weiß` → `josef-weiss`, `Hiltrud Ebbesmeier née Schitthof`, `Günter Klemt`, `Aurélien Dodoc`,
+  `Harry Zöllner`) plus synthetic `Jérôme Ø. Håkonsen` and `Łukasz Đurić` to cover the ø/ł/đ replacement rules.
+- `stableHash` is module-private, so it is pinned through its observable output: a colliding pair yields
+  `josef-weiss-1fd43f8` / `josef-weiss-1249fdl`, and the unslugifiable-name fallback yields `author-7c9tsh`.
+- Added a cross-check tying those unit pins to the slugs actually shipped in generated metadata, so the test
+  covers the live `/authors/:slug` URLs rather than only the function in isolation.
+
+Verification: gate passed (225 files / 2682 tests).
+
 ## Follow-ups
 
 - Runtime-side fallback identity stays untestable until `patentsForParty` stops reading module-level
