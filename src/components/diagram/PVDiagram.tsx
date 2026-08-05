@@ -4,6 +4,7 @@
 // Glass positions are schematic, not computed from precise catalog data.
 
 import { memo } from "react";
+import { normalLinePgF } from "../../optics/dispersion.js";
 
 interface Colors {
   bg: string;
@@ -67,10 +68,9 @@ function yp(pgf: number): number {
   return PB - ((pgf - PGF_LO) / (PGF_HI - PGF_LO)) * (PB - PT);
 }
 
-// Buchdahl–Abbe normal-line formula (Schott TIE-29 approximation)
-function normalPgf(vd: number): number {
-  return 0.6438 - 0.001682 * vd;
-}
+// Buchdahl–Abbe normal-line formula (Schott TIE-29 approximation), shared
+// with the engine's dispersion cascade.
+const normalPgf = normalLinePgF;
 
 // Normal line runs from Vd=100 (left edge) to Vd=20 (right edge)
 const NLX1 = xv(100);

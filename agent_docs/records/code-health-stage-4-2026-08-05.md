@@ -90,3 +90,18 @@ fixture, mirror suites all green.
 
 Verification: gate passed (235 files / 2811 tests); golden + catalog trace suites green; benchmark
 within noise.
+
+### G4 — deduplicated chromatic fallback math
+
+- `normalLinePgF(vd, dPgF = 0)` is now exported from `dispersion.ts` (the previously private
+  `partialDispersionPgF`, with the dPgF asymmetry documented at the single implementation: only the
+  dispersion cascade has per-element ΔP_g,F; the fallbacks fire without element context and use the
+  normal line via the default). `chromatic/indexResolver.ts` and `PVDiagram.tsx` now import it; the
+  scan-local copies wait for G8's shared lib as the spec sequences it.
+- Deleted `rayTrace.ts`'s verbatim `wavelengthNd` and its line-identical `computeChromaticRayFanSpread`
+  (+ private `MarginalRayData`/`spanOf` helpers); both are aliased re-exports of the chromatic-module
+  implementations, mirroring the `optics.ts` alias pattern, so direct `rayTrace.js` imports (tests)
+  keep working.
+
+Verification: gate passed (235 files / 2811 tests); chromaticRayFanScaling, dispersion, golden, and
+skewRay suites green; `npm run generate:glass-reports` byte-identical.

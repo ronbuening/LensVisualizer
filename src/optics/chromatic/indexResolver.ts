@@ -7,6 +7,7 @@
 import type { ChromaticChannel, RuntimeLens } from "../../types/optics.js";
 import type { PreparedOpticalState } from "../types.js";
 import { normalizeRuntimeLens } from "../prescription/normalizeLensData.js";
+import { normalLinePgF } from "../dispersion.js";
 import { CHROMATIC_CHANNEL_METADATA, CHROMATIC_CHANNEL_ORDER } from "./channels.js";
 
 /** Chromatic channels traced by the engine: C, d, F, and g spectral lines. */
@@ -49,7 +50,7 @@ export function wavelengthNd2(nd: number, vd: number | undefined, channel: Chrom
   if (channel === "B") return nd + delta;
   const nC = nd - delta;
   const nF = nd + delta;
-  const PgF = 0.6438 - 0.001682 * vd;
+  const PgF = normalLinePgF(vd);
   return nF + PgF * (nF - nC);
 }
 

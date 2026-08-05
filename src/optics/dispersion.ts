@@ -45,8 +45,14 @@ const CHANNEL_NM: Record<ChromaticChannel, number> = {
  * `dPgF` field on ElementData), which is what makes apochromatic correction
  * possible. Adding ΔP_g,F to the normal-line baseline gives the corrected
  * partial dispersion used by the Abbe-channel cascade for the V channel.
+ *
+ * Single source of the formula. The dPgF asymmetry is intentional: only this
+ * module's dispersion cascade has per-element ΔP_g,F available, so it passes
+ * dPgF explicitly; the runtime fallbacks (`wavelengthNd2`, PV diagram) fire
+ * only for out-of-range probes with no element context and use the normal
+ * line alone via the default.
  */
-function partialDispersionPgF(vd: number, dPgF: number): number {
+export function normalLinePgF(vd: number, dPgF = 0): number {
   return 0.6438 - 0.001682 * vd + dPgF;
 }
 
@@ -80,7 +86,7 @@ function makeLineIndicesDispersion(
   if (ngMeasured !== undefined) {
     nVfallback = ngMeasured;
   } else if (element?.vd !== undefined) {
-    const PgF = partialDispersionPgF(element.vd, element.dPgF ?? 0);
+    const PgF = normalLinePgF(element.vd, element.dPgF ?? 0);
     nVfallback = nF + PgF * (nF - nC);
   } else {
     nVfallback = nF;
@@ -145,7 +151,7 @@ export function makeSurfaceDispersion(
     const delta = (nd - 1) / (2 * vd);
     const nC = nd - delta;
     const nF = nd + delta;
-    const PgF = partialDispersionPgF(vd, element?.dPgF ?? 0);
+    const PgF = normalLinePgF(vd, element?.dPgF ?? 0);
     const ng = nF + PgF * (nF - nC);
     const fn: SurfaceIndexFn = (ch) => (ch === "R" ? nC : ch === "B" ? nF : ch === "V" ? ng : nd);
     return { fn, quality: "abbe" };

@@ -1308,7 +1308,7 @@ Rollback: revert; the twin returns.
 
 ### G4. Deduplicate chromatic fallback math (`wavelengthNd`, fan spread, PgF formula)
 
-- [ ] Effort: S · Impact: med · Risk: low
+- [x] Effort: S · Impact: med · Risk: low
 
 `wavelengthNd` (`rayTrace.ts` ~76–87) ≡ `wavelengthNd2` (`chromatic/indexResolver.ts` ~46–56)
 verbatim (verified); `computeChromaticRayFanSpread` ≡ `…2` line-identical with private helper
