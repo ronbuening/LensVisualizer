@@ -23,6 +23,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-08-05",
     type: "fix",
+    summary: "Fixed RSS changelog links so they scroll to the linked entry on the Updates page",
+  },
+  {
+    date: "2026-08-05",
+    type: "fix",
     summary: "Fixed missing tinted backgrounds behind changelog, article, and series badges",
   },
   {

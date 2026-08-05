@@ -428,7 +428,7 @@ wanted; requires `agent_docs/theme_tokens.md` four-variant procedure).
 
 ### X2. Make `/updates#entry` RSS deep links hash-safe **[changelog]**
 
-- [ ] Effort: S · Impact: med · Risk: low
+- [x] Effort: S · Impact: med · Risk: low
 
 The #644 changelog feed links to `/updates#<entryId>` (`scripts/generate-rss-feeds.mjs` ~221), but
 `src/pages/UpdatesPage.tsx:16-18` unconditionally calls `window.scrollTo({top: 0})` on mount,

@@ -72,6 +72,10 @@ the `CHANGELOG` array (before the first existing entry):
 The array must remain sorted **newest-first**. `UpdatesPage.tsx` handles
 grouping by date, so no other code needs updating.
 
+Shipped entries are **append-only**: editing an entry's date, type, or summary
+changes its public `/updates#…` anchor and RSS GUID (`changelogEntryId` hashes
+`date|type|summary`), breaking existing feed links.
+
 ---
 
 ## Consolidating Multiple PRs

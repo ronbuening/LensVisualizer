@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 import useMediaQuery from "../utils/useMediaQuery.js";
 import SEOHead from "../components/SEOHead.js";
 import ChangelogList from "../components/content/ChangelogList.js";
@@ -12,10 +12,30 @@ import { CHANGELOG_FEED_PATH, LENS_FEED_PATH } from "../utils/content/feedMetada
 
 export default function UpdatesPage() {
   const isWide = useMediaQuery("(min-width: 720px)");
+  const { hash } = useLocation();
 
+  // RSS feed items deep-link to /updates#<changelogEntryId>. The browser's
+  // native anchor scroll fires before React commits the page, so the target
+  // is located after commit instead; without a hash the page keeps its
+  // original scroll-to-top behavior.
   useEffect(() => {
-    window.scrollTo({ top: 0, left: 0 });
-  }, []);
+    let fragment = hash.startsWith("#") ? hash.slice(1) : hash;
+    if (fragment) {
+      try {
+        fragment = decodeURIComponent(fragment);
+      } catch {
+        // Malformed percent-encoding: fall back to the raw fragment.
+      }
+    }
+    if (!fragment) {
+      window.scrollTo({ top: 0, left: 0 });
+      return;
+    }
+    const frame = requestAnimationFrame(() => {
+      document.getElementById(fragment)?.scrollIntoView();
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [hash]);
 
   const seoDescription =
     "Full update history for Surface & Stop — recently added lenses and a complete changelog of features, fixes, and improvements.";

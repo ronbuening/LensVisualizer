@@ -27,3 +27,19 @@
 
 Verification: gate passed (232 files / 2775 tests after readme regeneration; the doc-drift readme check
 initially flagged the new imports, resolved by `npm run generate:readmes` — diffs committed with the item).
+
+### X2 — hash-safe /updates#entry deep links
+
+- `UpdatesPage` now reads `useLocation().hash`: with no hash it keeps the original scroll-to-top; with a
+  hash it decodes the fragment (malformed percent-encoding falls back to the raw string) and calls
+  `scrollIntoView()` on the matching entry inside a `requestAnimationFrame` queued after commit, cancelled
+  on cleanup. Effect is keyed on the hash so same-page navigation between entries re-fires it. The fix is
+  local to the page — `main.tsx`'s GoatCounter subscription and other routes untouched, per the spec.
+- Added the append-only warning to `agent_docs/changelog.md`: editing a shipped entry changes its public
+  anchor and RSS GUID (`changelogEntryId` hashes `date|type|summary`).
+- New `__tests__/src/pages/updatesPage.test.tsx` (5 cases): no-hash scroll-to-top, cold feed-link load
+  asserting the *target's* `scrollIntoView` (identified via `this.id` in the mock), same-page hash
+  navigation to a second entry, percent-encoded fragment decoding, and malformed-encoding survival.
+- Changelog entry added (fix).
+
+Verification: gate passed (233 files / 2780 tests).
