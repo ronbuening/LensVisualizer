@@ -105,3 +105,12 @@ within noise.
 
 Verification: gate passed (235 files / 2811 tests); chromaticRayFanScaling, dispersion, golden, and
 skewRay suites green; `npm run generate:glass-reports` byte-identical.
+
+### G5 — precomputed Sellmeier channel indices
+
+- `makeSurfaceDispersion`'s Sellmeier tier now evaluates the four channel wavelengths once at build time
+  and returns the same constant-lookup shape as the lineIndices tier, instead of re-running the Sellmeier
+  series on every refraction event. Bit-identical outputs (same function, same wavelengths, evaluated
+  once instead of repeatedly).
+
+Verification: gate passed (235 files / 2811 tests); dispersion + golden suites green.

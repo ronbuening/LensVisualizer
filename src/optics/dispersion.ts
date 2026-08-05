@@ -126,7 +126,15 @@ export function makeSurfaceDispersion(
   if (element?.glass) {
     const entry = resolveCompatibleGlass(element.glass, surface.nd, element.vd, element.indexReference);
     if (entry) {
-      const fn: SurfaceIndexFn = (ch) => evaluateSellmeier(entry, CHANNEL_NM[ch]);
+      // Evaluate all four channels once at build time (same lookup shape as
+      // the lineIndices tier): re-running the Sellmeier series on every
+      // refraction event contradicted this module's no-repeated-overhead
+      // contract for the hot trace loop.
+      const nR = evaluateSellmeier(entry, CHANNEL_NM.R);
+      const nG = evaluateSellmeier(entry, CHANNEL_NM.G);
+      const nB = evaluateSellmeier(entry, CHANNEL_NM.B);
+      const nV = evaluateSellmeier(entry, CHANNEL_NM.V);
+      const fn: SurfaceIndexFn = (ch) => (ch === "R" ? nR : ch === "B" ? nB : ch === "V" ? nV : nG);
       return { fn, quality: "sellmeier", glassEntry: entry };
     }
     // Catalog match disagrees with the authored optical coordinates, or an

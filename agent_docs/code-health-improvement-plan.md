@@ -1330,7 +1330,7 @@ green; generated glass reports byte-identical (`npm run generate:glass-reports`)
 
 ### G5. Precompute Sellmeier channel indices per surface
 
-- [ ] Effort: S · Impact: med-low · Risk: low
+- [x] Effort: S · Impact: med-low · Risk: low
 
 `dispersion.ts` ~122–124 returns `(ch) => evaluateSellmeier(entry, CHANNEL_NM[ch])` — re-running
 sqrt/divisions (or a 7-term power series for 109 entries) on every refraction event, contradicting
