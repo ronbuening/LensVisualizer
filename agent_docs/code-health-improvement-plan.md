@@ -55,6 +55,10 @@ stage, follow the listed order unless an item's own verification uncovers a bloc
 5. **D8** — remove the dead changelog component before page-shell consolidation touches the same
    area.
 6. **D10** — settle glass naming/report output before byte-diff-gated glass refactors.
+7. **D11** — refresh the stale `src/**/readme.md` folder documentation and stop it drifting again.
+   Filed during D8 execution rather than by the original audit. It belongs in this stage because it
+   is repository/generator baseline work, and it goes last within the stage so the sweep captures
+   D7–D10's structural edits in one pass instead of being invalidated by them.
 
 ### Stage 2 — Land regression nets before behavior or structure changes
 
@@ -819,7 +823,7 @@ Verification: gate passes; `npm run generate:glass-reports` diff shows only casi
 
 ### D11. Refresh the stale generated `src/**/readme.md` folder documentation
 
-- [ ] Effort: S · Impact: low-med · Risk: low
+- [x] Effort: S · Impact: low-med · Risk: low
 
 Filed during D8 execution (2026-08-04), not part of the original audit. Running
 `node scripts/generate-src-readmes.mjs` rewrites 36 committed folder readmes and creates 5 files
@@ -835,7 +839,31 @@ Steps:
    is not currently an npm script, which is why it drifts (decide separately; a guard that rewrites
    files during `npm run test` would be wrong).
 
+Resolution (2026-08-04): chained into `generate:metadata` and `build`, and exposed as
+`npm run generate:readmes`. Deliberately NOT wired into `pretest`/`pretypecheck`, which run
+`generate-build-metadata.mjs` only — a test run must not rewrite source files.
+
+Residual gap, not closed: this makes drift *visible* (any local `generate:metadata`/`build` leaves an
+uncommitted readme diff) but not *impossible* — CI regenerates without committing, so a PR can still
+merge with stale readmes. Closing it needs a `--check` mode on `generate-src-readmes.mjs` that exits
+nonzero on drift, called from a test or a CI step. Filed as **D12**.
+
 Verification: gate passes; a second generator run produces no diff.
+
+### D12. Add a `--check` mode to `generate-src-readmes.mjs` and enforce it
+
+- [ ] Effort: S · Impact: low · Risk: none
+
+Filed 2026-08-04 out of D11. The readme generator only ever writes; there is no way to assert the
+committed docs match the source tree without mutating it, so CI cannot fail on drift.
+
+Steps:
+1. Add a `--check` flag that renders the same output in memory and diffs it against what is on disk,
+   exiting nonzero and listing stale/missing paths instead of writing.
+2. Call it from `__tests__/docDrift.test.ts` (the natural home — it already owns doc-vs-tree
+   invariants) or as a CI step in `quality.yml`. Prefer the test if the ~0.5 s cost is acceptable.
+
+Verification: gate passes; deleting a line from any `src/**/readme.md` fails the check.
 
 ---
 

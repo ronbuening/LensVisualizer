@@ -57,7 +57,7 @@ src/lens-data/            - Auto-registered `*.data.ts` prescriptions and `*.ana
 src/mounts/               - Mount diagram `*.mount.ts` specs, barrel, schema, and authoring guide
 src/content/              - Auto-registered markdown articles and static content
 src/benchmarks/           - Optics/render benchmark harness (npm run benchmark:optics-rendering)
-scripts/                  - Metadata, prerender, sitemap, SEO, and lens-data build helpers
+scripts/                  - Metadata, folder-readme, prerender, sitemap, SEO, and lens-data build helpers
 __tests__/                - Vitest unit/component/script tests
 agent_docs/               - Focused architecture, workflow, generated-report, and historical guidance
 ```
@@ -67,8 +67,9 @@ agent_docs/               - Focused architecture, workflow, generated-report, an
 ```bash
 npm install
 npm run dev                # Generate metadata, then start Vite on http://localhost:5173
-npm run build              # Organize lens data, generate metadata, build, prerender, sitemap, RSS feeds
-npm run generate:metadata  # Organize lens data and refresh src/generated/build-metadata.json
+npm run build              # Organize lens data, generate metadata + folder readmes, build, prerender, sitemap, RSS feeds
+npm run generate:metadata  # Organize lens data, refresh src/generated/build-metadata.json, rewrite src/**/readme.md
+npm run generate:readmes   # Rewrite the src/**/readme.md folder docs alone (also runs inside generate:metadata)
 npm run generate:feeds     # Rebuild dist/feeds/ RSS from metadata, lens summaries, changelog
 npm run organize:lens-data # Move stray root-level lens files into maker folders
 npm run preview
@@ -208,6 +209,9 @@ npm run typecheck && npm run format:check && npm run lint && npm run test
 `typecheck` and `test` regenerate `src/generated/` automatically via `pretypecheck`/`pretest` hooks, so they work on a
 fresh clone. Run `npm run generate:metadata` first only when running lint alone (type-aware ESLint needs the generated
 files) or when stray root-level lens files need organizing.
+
+`generate:metadata` and `build` also rewrite the per-folder `src/**/readme.md` docs, so adding, moving, or
+re-importing a source file surfaces readme diffs — commit them with the change that caused them.
 
 Run `npm run build` for route, metadata, lens-data organization, SEO, article, or sitemap changes. Production deploys
 through Cloudflare Pages, with a GitHub Pages mirror that serves without the `public/_headers` security headers; see

@@ -141,11 +141,27 @@ Verification: gate passed (222 files / 2614 tests); `npm run generate:glass-repo
 `six-digit-glass-codes.generated.md`, and a line-by-line pairing check confirms the diff is casing-only —
 resolution winners, criteria, deltas, and duplicate-code "preferred/alternate" markers are all unchanged.
 
+### D11 — refresh the generated folder readmes and stop them drifting
+
+- Sweep commit: ran `scripts/generate-src-readmes.mjs` with no hand edits — 35 stale files refreshed, 5 created
+  (`src/components/relationshipMap/`, `src/components/search/`, `src/optics/glassCatalogEntries/`,
+  `src/content/manufacturer-lens-stories/`). Verified deterministic and idempotent first: a second run produces no
+  further diff, and it runs in ~0.5 s.
+- Wiring commit: added `npm run generate:readmes` and chained the generator into `generate:metadata` and `build`.
+- **Deliberately not wired into `pretest`/`pretypecheck`.** Those hooks run `generate-build-metadata.mjs` only, so
+  `npm run test` still never rewrites source files. CI has no clean-tree assertion, so the three `generate:metadata`
+  jobs in `quality.yml` just regenerate harmlessly.
+- Placed as Stage 1 item 7 in the Implementation Order — it is baseline work, and running it last let the sweep
+  absorb D7–D10's structural edits in one pass.
+- **Residual gap, stated rather than papered over:** this makes drift visible, not impossible. CI regenerates but
+  never commits, so a PR can still merge with stale readmes. A real guard needs a `--check` mode on the generator;
+  filed as **D12**.
+
 ## Follow-ups
 
-- Stage 1 is complete (D1, N10, D2, D3, D4, D7, D9, D8, D10). Stage 2 onward untouched.
-- New item **D11** filed during D8: 36 committed `src/**/readme.md` folder docs are stale and 5 were never
-  generated. Deliberately not fixed here.
+- Stage 1 is complete (D1, N10, D2, D3, D4, D7, D9, D8, D10, D11). Stage 2 onward untouched.
+- New item **D12** filed out of D11: `--check` mode for `generate-src-readmes.mjs` so drift can actually fail a
+  build rather than only showing up as an uncommitted diff.
 - Not touched, noticed in passing and left alone: `getFirstGitFileFreshnessAsync` relies on
   `getGitFileFreshnessAsync` being called without `fallbackDate` so it returns `null` and the loop can try the next
   path. That is correct today but fragile — adding a default `fallbackDate` there would silently disable the
