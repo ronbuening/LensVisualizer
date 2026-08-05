@@ -1,4 +1,5 @@
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
+import { execFileSync } from "node:child_process";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
@@ -78,6 +79,15 @@ function isLifecycleHook(name: string, scripts: Record<string, string>): boolean
 }
 
 describe("doc drift guards", () => {
+  it("keeps generated src folder documentation synchronized", () => {
+    expect(() =>
+      execFileSync("node", ["scripts/generate-src-readmes.mjs", "--check"], {
+        cwd: repoRoot,
+        encoding: "utf8",
+      }),
+    ).not.toThrow();
+  });
+
   it("keeps agents.md byte-identical to CLAUDE.md", () => {
     const claudeMd = readFileSync(join(repoRoot, "CLAUDE.md"), "utf-8");
     const agentsMd = readFileSync(join(repoRoot, "agents.md"), "utf-8");

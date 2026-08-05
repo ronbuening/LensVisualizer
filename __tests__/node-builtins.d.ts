@@ -1,3 +1,11 @@
+declare module "node:child_process" {
+  export function execFileSync(
+    file: string,
+    args: readonly string[],
+    options: { cwd?: string; encoding: "utf8" },
+  ): string;
+}
+
 declare module "node:fs" {
   export function existsSync(path: string): boolean;
   export function mkdirSync(path: string, options?: { recursive?: boolean }): string | undefined;

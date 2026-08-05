@@ -3,12 +3,22 @@
 ## Summary
 
 - Executes Stage 2 of `agent_docs/code-health-improvement-plan.md` in the documented order:
-  N1 → N2 → N3 → N4, N6 → N7 → N8 → N9, G12.
+  D12 → N1 → N2 → N3 → N4, N6 → N7 → N8 → N9, G12.
 - One commit per item; the full gate
   (`npm run typecheck && npm run format:check && npm run lint && npm run test`) runs before each commit.
 - Stage 1 record: `agent_docs/records/code-health-stage-1-2026-08-04.md`.
 
 ## Changes
+
+### D12 — generated folder-documentation drift guard
+
+- Added a non-mutating `--check` mode to `scripts/generate-src-readmes.mjs`. It renders the same expected content as
+  write mode, reports all stale, missing, or unexpected generated files, and exits nonzero without changing disk.
+- Added the check to `__tests__/docDrift.test.ts`. Removed the test job's redundant `generate:metadata` step because
+  `pretest` already generates the required JSON without rewriting readmes, leaving committed drift visible to the test.
+- Added strict argument validation so misspelled generator flags fail rather than silently running write mode.
+
+Verification: focused doc-drift tests and the full gate pass; a deliberately stale readme makes `--check` fail.
 
 ### N1 — author/assignee patent-count parity
 
@@ -199,7 +209,7 @@ existing mirror fixtures), with **no** new distinct unresolved tokens.
 
 ## Follow-ups
 
-- Stage 2 is complete (N1, N2, N3, N4, N6, N7, N8, N9, G12). Stage 3 onward untouched.
+- Stage 2 is complete (D12, N1, N2, N3, N4, N6, N7, N8, N9, G12). Stage 3 onward untouched.
 - Runtime-side fallback identity stays untestable until `patentsForParty` stops reading module-level
   `LENS_SUMMARIES` — that is plan item **C1**.
 - Noticed, not filed as a plan item: `RuntimeLens.EFL` echoes `focalLengthDesign` rather than deriving the Gaussian

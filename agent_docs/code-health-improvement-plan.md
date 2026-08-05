@@ -871,7 +871,7 @@ Verification: gate passes; a second generator run produces no diff.
 
 ### D12. Add a `--check` mode to `generate-src-readmes.mjs` and enforce it
 
-- [ ] Effort: S · Impact: low · Risk: none
+- [x] Effort: S · Impact: low · Risk: none
 
 Filed 2026-08-04 out of D11. The readme generator only ever writes; there is no way to assert the
 committed docs match the source tree without mutating it, so CI cannot fail on drift.
@@ -883,6 +883,11 @@ Steps:
    invariants) or as a CI step in `quality.yml`. Prefer the test if the ~0.5 s cost is acceptable.
 
 Verification: gate passes; deleting a line from any `src/**/readme.md` fails the check.
+
+Resolution (2026-08-05): `generate-src-readmes.mjs --check` now renders the expected readmes and
+improvement-suggestion files without mutating disk, reports all stale/missing/unexpected paths, and
+exits nonzero on drift. `docDrift.test.ts` invokes the check; the quality test job relies on the
+existing `pretest` metadata generation so it does not rewrite stale readmes before that guard runs.
 
 ---
 

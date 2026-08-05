@@ -47,7 +47,6 @@ jobs:
           node-version: "24.15.0"
           cache: npm
       - run: npm ci
-      - run: npm run generate:metadata
       - run: npm run test
 
   audit:
