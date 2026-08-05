@@ -13,7 +13,6 @@
  */
 import { mkdirSync, writeFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import buildLens from "../../../src/optics/buildLens.js";
 import {
   explainCompatibleGlassResolution,
   GLASS_ND_TOLERANCE,
@@ -22,7 +21,7 @@ import {
   type CompatibleGlassCandidate,
   type GlassResolutionCriterion,
 } from "../../../src/optics/glassCatalog.js";
-import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
+import { walkLensSurfaces } from "./glassScanLib.js";
 import type { LensData } from "../../../src/types/optics.js";
 
 const REPORT_DIR = "agent_docs/generated";
@@ -55,11 +54,6 @@ const CRITERION_LABELS: Readonly<Record<GlassResolutionCriterion, string>> = {
   "duplicate-code-precedence": "Duplicate-code precedence",
   "canonical-name-order": "Stable canonical-name order",
 };
-
-function toRepoRelativeLensPath(modulePath: string): string {
-  const lensDataIndex = modulePath.indexOf("src/lens-data/");
-  return lensDataIndex >= 0 ? modulePath.slice(lensDataIndex) : modulePath.replace(/^(\.\.\/)+/, "");
-}
 
 function escapeMarkdownCell(value: string): string {
   return value.replace(/\|/g, "\\|").replace(/\r?\n/g, " ");
@@ -111,20 +105,7 @@ describe("glass ambiguity scan", () => {
     let totalLenses = 0;
     let totalGlassElements = 0;
 
-    for (const [path, mod] of Object.entries(modules)) {
-      const raw = mod.default;
-      if (!raw?.key) continue;
-      const data: LensData = { ...LENS_DEFAULTS, ...raw } as LensData;
-      totalLenses++;
-
-      let lens;
-      try {
-        lens = buildLens(data);
-      } catch {
-        continue;
-      }
-
-      const filePath = toRepoRelativeLensPath(path);
+    totalLenses = walkLensSurfaces(modules, ({ filePath, data, L: lens }) => {
       for (const element of lens.elements) {
         if (!element.glass || element.nd === 1) continue;
         totalGlassElements++;
@@ -157,7 +138,7 @@ describe("glass ambiguity scan", () => {
           candidates: explanation.candidates,
         });
       }
-    }
+    });
 
     rows.sort(
       (a, b) =>
