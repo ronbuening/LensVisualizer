@@ -39,7 +39,7 @@ import {
   decodeCode6,
 } from "../../../src/optics/glassCatalog.js";
 import { normalLinePgF } from "../../../src/optics/dispersion.js";
-import { findCandidates, walkLensSurfaces, type GlassScanCandidate } from "./glassScanLib.js";
+import { findCandidates, walkLensSurfaces } from "./glassScanLib.js";
 import type { LensData, RefractiveIndexReferenceLine } from "../../../src/types/optics.js";
 
 const REPORT_DIR = "agent_docs/generated";
@@ -75,8 +75,6 @@ interface Mismatch {
   referenceLine: RefractiveIndexReferenceLine;
   embeddedCode: { raw: string; nd: number; vd: number } | null;
 }
-
-type Candidate = GlassScanCandidate;
 
 const modules = import.meta.glob<{ default: LensData }>("../../../src/lens-data/**/*.data.ts", { eager: true });
 

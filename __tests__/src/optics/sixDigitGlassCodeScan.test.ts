@@ -18,34 +18,32 @@
  * inventory, so the rewrite is skipped when that inventory is empty (fresh
  * worktrees, CI); the checked-in reports stay authoritative there.
  */
-import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import buildLens from "../../../src/optics/buildLens.js";
-import {
-  evaluateSellmeier,
-  LINE_NM,
-  resolveCompatibleGlass,
-  resolveGlass,
-  UNRESOLVED_MARKER,
-} from "../../../src/optics/glassCatalog.js";
+import { evaluateSellmeier, LINE_NM, resolveCompatibleGlass, resolveGlass } from "../../../src/optics/glassCatalog.js";
 import type { DispersionQuality } from "../../../src/optics/dispersion.js";
-import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
+import {
+  extractPatentNumber,
+  patentSearchTokens,
+  type PatentMatch,
+  extractSixDigitCodes,
+  findLocalPatent,
+  isCodeOnlyGlassAnnotation,
+  isExplicitlyUnmatched,
+  patentInventory,
+  toRepoRelativeLensPath,
+  walkLensSurfaces,
+} from "./glassScanLib.js";
 import type { LensData, RefractiveIndexReferenceLine } from "../../../src/types/optics.js";
 
 const modules = import.meta.glob<{ default: LensData }>("../../../src/lens-data/**/*.data.ts", { eager: true });
 const REPORT_DIR = "agent_docs/generated";
-const PATENTS_DIR = "patents";
 const REVIEWED_SIDECAR = "agent_docs/generated/six-digit-glass-codes-missing-sellmeier-reviewed.md";
 const MAX_RELEVANT_PATENTS = 4;
 
 interface SurfaceRef {
   label: string;
   quality: DispersionQuality;
-}
-
-interface PatentMatch {
-  path: string | null;
-  status: string;
 }
 
 interface CodeOnlyElement {
@@ -85,134 +83,6 @@ interface PrioritizedCode {
   strictSurfaceGain: number;
   completionCandidates: string[];
   nearCompleteCandidates: string[];
-}
-
-function toRepoRelativeLensPath(modulePath: string): string {
-  const lensDataIndex = modulePath.indexOf("src/lens-data/");
-  return lensDataIndex >= 0 ? modulePath.slice(lensDataIndex) : modulePath.replace(/^(\.\.\/)+/, "");
-}
-
-function extractPatentNumber(subtitle: string | undefined): string | null {
-  const match = subtitle?.match(patentReferencePattern);
-  return match?.[1].replace(/\s+/g, " ").trim() ?? null;
-}
-
-const patentReferencePattern =
-  /\b(?:Patent\s+)?((?:JPWO|WO|US|JP|DE|GB|FR|CH|CN)\s*\d(?:[\d,./-]|\s+(?=\d))*(?:\s*(?:A1|A|B2|B1|B|C\d?|U))?)/i;
-
-function extractPatentReference(value: string): string | null {
-  const match = value.match(patentReferencePattern);
-  return match?.[1].replace(/\s+/g, " ").trim() ?? null;
-}
-
-function normalizePatentToken(value: string): string {
-  return value.toUpperCase().replace(/[^A-Z0-9]/g, "");
-}
-
-function stripPatentKind(value: string): string {
-  return value.replace(/(?:A1|A|B2|B1|B|C\d?|U)$/i, "");
-}
-
-function patentSearchTokens(patentNumber: string | null): string[] {
-  if (!patentNumber) return [];
-  const patentReference = extractPatentReference(patentNumber);
-  if (!patentReference) return [];
-  const normalized = normalizePatentToken(patentReference);
-  const stripped = stripPatentKind(normalized);
-  const noCountry = stripped.replace(/^(?:JPWO|WO|US|JP|DE|GB|FR|CH|CN)/, "");
-  const tokens = [normalized, stripped, noCountry];
-
-  for (const token of [normalized, stripped]) {
-    const publicationMatch = token.match(/^(JP|CN)(\d{4})(\d{1,5})((?:A1|A|B2|B1|B|C\d?|U)?)$/);
-    if (!publicationMatch) continue;
-    const [, country, year, serial, kind] = publicationMatch;
-    const padded = `${country}${year}${serial.padStart(6, "0")}${kind}`;
-    tokens.push(padded, stripPatentKind(padded), stripPatentKind(padded).replace(/^(?:JP|CN)/, ""));
-  }
-
-  return [...new Set(tokens)];
-}
-
-function patentInventory(): string[] {
-  if (!existsSync(PATENTS_DIR)) return [];
-  return readdirSync(PATENTS_DIR)
-    .filter((name) => name.toLowerCase().endsWith(".pdf"))
-    .sort((a, b) => a.localeCompare(b));
-}
-
-function findLocalPatent(patentNumber: string | null, files: readonly string[]): PatentMatch {
-  const tokens = patentSearchTokens(patentNumber);
-  if (tokens.length === 0) {
-    return { path: null, status: "No patent number parsed from lens metadata" };
-  }
-
-  const scored = files
-    .map((file) => {
-      const normalizedFile = normalizePatentToken(file.replace(/\.pdf$/i, ""));
-      let score = 0;
-      for (const token of tokens) {
-        if (normalizedFile === token) score = Math.max(score, 100);
-        else if (normalizedFile.includes(token)) score = Math.max(score, 75);
-        else if (token.includes(normalizedFile)) score = Math.max(score, 60);
-      }
-      return { file, score };
-    })
-    .filter((match) => match.score > 0)
-    .sort((a, b) => b.score - a.score || a.file.localeCompare(b.file));
-
-  if (scored.length === 0) {
-    return {
-      path: null,
-      status: `Missing from untracked local ${PATENTS_DIR}/ references (${tokens.join(", ")})`,
-    };
-  }
-
-  const best = scored[0];
-  if (scored.length > 1 && scored[1].score === best.score) {
-    return {
-      path: `${PATENTS_DIR}/${best.file}`,
-      status: `Ambiguous untracked local match; also see ${scored
-        .slice(1, MAX_RELEVANT_PATENTS)
-        .map((match) => `${PATENTS_DIR}/${match.file}`)
-        .join(", ")}`,
-    };
-  }
-
-  return {
-    path: `${PATENTS_DIR}/${best.file}`,
-    status: "Matched untracked local patent PDF",
-  };
-}
-
-function extractSixDigitCodes(glassString: string): string[] {
-  const codes = new Set<string>();
-  const codePattern = /(?<![\d.])(\d{3})[/\-\s]?(\d{3})(?![\d.])/g;
-  for (const match of glassString.matchAll(codePattern)) {
-    codes.add(`${match[1]}${match[2]}`);
-  }
-  return [...codes];
-}
-
-function hasActualGlassTypeToken(glassString: string): boolean {
-  const tokens = glassString.match(/[A-Za-z][A-Za-z0-9-]*\d[A-Za-z0-9]*/g) ?? [];
-  return tokens.some((tokenRaw) => {
-    const token = tokenRaw.toUpperCase();
-    if (/^L\d+$/.test(token)) return false;
-    if (/^S\d+$/.test(token)) return false;
-    if (/^D\d+$/.test(token)) return false;
-    if (/^G\d+$/.test(token)) return false;
-    if (/^A\d+$/.test(token)) return false;
-    if (/^F\d+$/.test(token)) return true;
-    return (token.match(/[A-Z]/g) ?? []).length >= 2;
-  });
-}
-
-function isCodeOnlyGlassAnnotation(glassString: string): boolean {
-  return extractSixDigitCodes(glassString).length > 0 && !hasActualGlassTypeToken(glassString);
-}
-
-function isExplicitlyUnmatched(glassString: string): boolean {
-  return UNRESOLVED_MARKER.test(glassString);
 }
 
 function formatNdDiff(diff: number | null): string {
@@ -562,23 +432,10 @@ describe("six-digit glass-code scan", () => {
     const reviewedSidecarText = existsSync(REVIEWED_SIDECAR) ? readFileSync(REVIEWED_SIDECAR, "utf8") : "";
     let totalLenses = 0;
 
-    for (const [path, mod] of Object.entries(modules)) {
-      const raw = mod.default;
-      if (!raw?.key) continue;
-      const data: LensData = { ...LENS_DEFAULTS, ...raw } as LensData;
+    totalLenses = walkLensSurfaces(modules, ({ filePath, data, L }) => {
       const visible = data.visible !== false;
       const patentNumber = extractPatentNumber(data.subtitle);
       const localPatent = findLocalPatent(patentNumber, patentFiles);
-      totalLenses++;
-
-      let L;
-      try {
-        L = buildLens(data);
-      } catch {
-        continue;
-      }
-
-      const filePath = toRepoRelativeLensPath(path);
       const lensNonAirSurfaces = L.S.filter((surface) => surface.nd !== 1.0).length;
       const lensSellmeierSurfaces = L.S.filter(
         (surface, index) => surface.nd !== 1.0 && L.indexByIdx?.[index]?.quality === "sellmeier",
@@ -634,7 +491,7 @@ describe("six-digit glass-code scan", () => {
           auditReviewed: hasAuditRecord(filePath, extractSixDigitCodes(element.glass)),
         });
       }
-    }
+    });
 
     const noSellmeierRows = rows.filter((row) => !row.hasSellmeier);
 
