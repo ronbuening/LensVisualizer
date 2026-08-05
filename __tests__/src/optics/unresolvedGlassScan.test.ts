@@ -10,9 +10,8 @@
  */
 import { describe, expect, it } from "vitest";
 import { mkdirSync, writeFileSync } from "node:fs";
-import buildLens from "../../../src/optics/buildLens.js";
-import { glassTokens, resolveGlass, UNRESOLVED_MARKER } from "../../../src/optics/glassCatalog.js";
-import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
+import { glassTokens, resolveGlass } from "../../../src/optics/glassCatalog.js";
+import { isExplicitlyUnmatched, walkLensSurfaces } from "./glassScanLib.js";
 import type { LensData } from "../../../src/types/optics.js";
 
 const modules = import.meta.glob<{ default: LensData }>("../../../src/lens-data/**/*.data.ts", { eager: true });
@@ -23,15 +22,6 @@ interface Occurrence {
   lensName: string;
   surfaceLabels: string[];
   glassString: string;
-}
-
-function toRepoRelativeLensPath(modulePath: string): string {
-  const lensDataIndex = modulePath.indexOf("src/lens-data/");
-  return lensDataIndex >= 0 ? modulePath.slice(lensDataIndex) : modulePath.replace(/^(\.\.\/)+/, "");
-}
-
-function isExplicitlyUnmatched(glassString: string): boolean {
-  return UNRESOLVED_MARKER.test(glassString);
 }
 
 function candidateTokens(glassString: string): string[] {
@@ -52,21 +42,8 @@ describe("unresolved glass scan", () => {
     let totalGlassDeclarations = 0;
     let totalUnresolvedAnnotations = 0;
 
-    for (const [path, mod] of Object.entries(modules)) {
-      const raw = mod.default;
-      if (!raw?.key) continue;
-      const data: LensData = { ...LENS_DEFAULTS, ...raw } as LensData;
-      totalLenses++;
-
-      let L;
-      try {
-        L = buildLens(data);
-      } catch {
-        continue;
-      }
-
+    totalLenses = walkLensSurfaces(modules, ({ filePath, data, L }) => {
       const elementById = new Map(L.elements.map((element) => [element.id, element]));
-      const filePath = toRepoRelativeLensPath(path);
       totalSurfaces += L.S.filter((surface) => surface.nd !== 1.0).length;
 
       for (const element of L.elements) {
@@ -92,7 +69,7 @@ describe("unresolved glass scan", () => {
           byToken.set(token, occurrences);
         }
       }
-    }
+    });
 
     const sorted = [...byToken.entries()].sort((a, b) => {
       const countDiff = b[1].length - a[1].length;
