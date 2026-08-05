@@ -140,6 +140,25 @@ Verification: gate passed (227 files / 2704 tests).
 
 Verification: gate passed (227 files / 2713 tests).
 
+### N9 — unit-test backfill
+
+- New `__tests__/src/utils/content/` directory (previously nonexistent) with `changelogHelpers.test.ts`: date
+  formatting incl. a negative-offset timezone case, `changelogEntryId` pinned as the public anchor/RSS GUID
+  (`changelog-2026-08-04-feature-1hncxzp`), whitespace-insensitive identity, summary sensitivity, uniqueness across
+  every shipped entry, grouping order, and the type label/color maps. Also covers `stripFrontmatter` including CRLF
+  input and the "don't eat a later horizontal rule" case.
+- New `authorCatalog.test.ts` and `assigneeCatalog.test.ts`: slug/name round trips over all real generated entries,
+  unknown-key `undefined`, slug uniqueness, `patentsForParty` ordering for both roles, per-record party credit,
+  lens-name sorting inside records, and `groupAuthorPatents` reachability in both modes. The assignee suite also
+  asserts the role switch is real — an assignee name must return nothing through the `"author"` branch.
+- New `catalogSearchResults.test.tsx`: empty-query prompt, whitespace-only query, polite empty state, lens and
+  author link targets, match-count pluralization, section omission, and the 40-result truncation notice.
+- Both data-dependent cases assert their precondition (`expect(query).toBeDefined()`) instead of early-returning, so
+  they fail loudly rather than passing vacuously if the catalog shifts. Verified non-vacuous today: `"e"` yields 292
+  lens matches (exercises truncation) and `"Klemt"` yields authors only (exercises section omission).
+
+Verification: gate passed (231 files / 2757 tests).
+
 ## Follow-ups
 
 - Runtime-side fallback identity stays untestable until `patentsForParty` stops reading module-level

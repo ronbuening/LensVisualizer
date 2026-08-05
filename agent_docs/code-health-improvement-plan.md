@@ -350,7 +350,7 @@ Verification: gate passes; each criterion string appears in exactly one new asse
 
 ### N9. Unit-test backfill: changelog helpers, author/assignee slug lookups, search results
 
-- [ ] Effort: S · Impact: med · Risk: none
+- [x] Effort: S · Impact: med · Risk: none
 
 Three small July-adjacent modules power public routes with no direct tests:
 `src/utils/content/changelogHelpers.ts` (`formatDisplayDate` ~19, `groupChangelogByDate` ~36 —
