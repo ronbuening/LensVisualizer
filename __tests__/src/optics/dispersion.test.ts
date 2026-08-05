@@ -16,6 +16,14 @@ import {
 } from "../../../src/optics/glassCatalog.js";
 import { ALIAS_RECORDS } from "../../../src/optics/glassCatalogAliases.js";
 import { DUPLICATE_CODE6_PRECEDENCE } from "../../../src/optics/glassCatalogData.js";
+import { CDGM_GLASS_ENTRIES } from "../../../src/optics/glassCatalogEntries/cdgm.js";
+import { HIKARI_GLASS_ENTRIES } from "../../../src/optics/glassCatalogEntries/hikari.js";
+import { HOYA_GLASS_ENTRIES } from "../../../src/optics/glassCatalogEntries/hoya.js";
+import { NHG_GLASS_ENTRIES } from "../../../src/optics/glassCatalogEntries/nhg.js";
+import { OHARA_GLASS_ENTRIES } from "../../../src/optics/glassCatalogEntries/ohara.js";
+import { SCHOTT_GLASS_ENTRIES } from "../../../src/optics/glassCatalogEntries/schott.js";
+import { SPECIAL_GLASS_ENTRIES } from "../../../src/optics/glassCatalogEntries/special.js";
+import { SUMITA_GLASS_ENTRIES } from "../../../src/optics/glassCatalogEntries/sumita.js";
 import { makeSurfaceDispersion, summarizeDispersionQuality } from "../../../src/optics/dispersion.js";
 import buildLens from "../../../src/optics/buildLens.js";
 import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
@@ -174,8 +182,45 @@ describe("glass catalog", () => {
     expect(assessCatalogGlassCompatibility(nbk7, 1.5168, 66.5).compatible).toBe(false);
   });
 
+  /**
+   * `RAW_CATALOG` is `GLASS_CATALOG_SOURCE_ORDER.map(entryByName)`, so the shipped
+   * catalog is exactly the hand-maintained order list. The reverse direction is
+   * already guarded — `entryByName` throws for a listed name with no shard entry —
+   * but a shard entry missing FROM the list silently never enters the catalog and
+   * the glass just disappears from the resolver and every report.
+   */
+  it("ships every vendor shard entry exactly once", () => {
+    const shardEntries = [
+      ...SCHOTT_GLASS_ENTRIES,
+      ...OHARA_GLASS_ENTRIES,
+      ...HOYA_GLASS_ENTRIES,
+      ...HIKARI_GLASS_ENTRIES,
+      ...SUMITA_GLASS_ENTRIES,
+      ...CDGM_GLASS_ENTRIES,
+      ...NHG_GLASS_ENTRIES,
+      ...SPECIAL_GLASS_ENTRIES,
+    ];
+    const shardNames = shardEntries.map((entry) => entry.name);
+    const catalogNames = allEntries().map((entry) => entry.name);
+
+    // No shard defines the same glass twice.
+    expect([...shardNames].sort()).toEqual([...new Set(shardNames)].sort());
+    // The source-order list names no glass twice.
+    expect(catalogNames.length, "duplicate name in GLASS_CATALOG_SOURCE_ORDER").toBe(new Set(catalogNames).size);
+
+    const missingFromOrder = shardNames.filter((name) => !new Set(catalogNames).has(name)).sort();
+    expect(missingFromOrder, "shard entries absent from GLASS_CATALOG_SOURCE_ORDER never reach the resolver").toEqual(
+      [],
+    );
+
+    // Exact set equality both ways; the reverse also re-states entryByName's guard.
+    expect([...catalogNames].sort()).toEqual([...shardNames].sort());
+  });
+
   it("catalog has at least the verified seed entries", () => {
-    expect(catalogSize()).toBeGreaterThanOrEqual(414);
+    // Floor only — the exact count is asserted structurally by the shard-parity
+    // test above, so this does not need bumping with every catalog addition.
+    expect(catalogSize()).toBeGreaterThanOrEqual(460);
     expect(allEntries().some((e) => e.name === "N-BK7")).toBe(true);
     expect(allEntries().some((e) => e.name === "S-BSL7")).toBe(true);
     expect(allEntries().some((e) => e.name === "CaF2")).toBe(true);

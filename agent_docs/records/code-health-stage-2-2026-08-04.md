@@ -107,6 +107,20 @@ Verification: gate passed (227 files / 2694 tests).
 
 Verification: gate passed (227 files / 2703 tests).
 
+### N7 — glass catalog source-order completeness
+
+- New "ships every vendor shard entry exactly once" guard in `dispersion.test.ts`: exact set equality between the
+  union of all eight exported shard arrays and the shipped catalog, plus no-duplicate checks on both sides.
+- **No source change needed.** The spec assumed `GLASS_CATALOG_SOURCE_ORDER` would have to be exported; it does not,
+  because `RAW_CATALOG = GLASS_CATALOG_SOURCE_ORDER.map(entryByName)` means `allEntries()` already exposes exactly
+  the order list with names resolved. Duplicates in the order list surface as duplicate catalog entries.
+- Mutation-checked: deleting the `"H-ZLaF76"` line from the order list fails with
+  `shard entries absent from GLASS_CATALOG_SOURCE_ORDER never reach the resolver: [ 'H-ZLaF76' ]`.
+- Also raised the stale `catalogSize() >= 414` floor to 460 and noted inline that it is a floor only — the exact
+  count is now asserted structurally, so it does not need bumping per catalog addition.
+
+Verification: gate passed (227 files / 2704 tests).
+
 ## Follow-ups
 
 - Runtime-side fallback identity stays untestable until `patentsForParty` stops reading module-level

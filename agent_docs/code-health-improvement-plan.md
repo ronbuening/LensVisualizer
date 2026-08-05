@@ -311,7 +311,7 @@ Verification: gate passes; new golden entries carry pinned numeric values.
 
 ### N7. Glass catalog completeness guard for `GLASS_CATALOG_SOURCE_ORDER`
 
-- [ ] Effort: S · Impact: high · Risk: none
+- [x] Effort: S · Impact: high · Risk: none
 
 `src/optics/glassCatalogData.ts` hand-maintains a 463-name order list (~21–485). A shard entry
 missing from the list silently never enters `RAW_CATALOG` (~593) — the glass just vanishes from
