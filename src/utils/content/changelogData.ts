@@ -22,6 +22,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-08-05 ─────────────────────────────────
   {
     date: "2026-08-05",
+    type: "improvement",
+    summary: "Improved relationship map accessibility with visible keyboard focus highlights",
+  },
+  {
+    date: "2026-08-05",
     type: "fix",
     summary: "Fixed RSS changelog links so they scroll to the linked entry on the Updates page",
   },

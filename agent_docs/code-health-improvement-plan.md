@@ -458,7 +458,7 @@ PUSH/REPLACE/POP navigation, lazy-route commit timing, and saved-position behavi
 
 ### X3. Relationship map SVG: `role="group"` + keyboard-focus visibility **[changelog]**
 
-- [ ] Effort: S · Impact: med · Risk: low
+- [x] Effort: S · Impact: med · Risk: low
 
 Found independently by two reviewers. `src/components/relationshipMap/RelationshipMap.tsx:98` sets
 `role="img"` on the `<svg>` while its children are interactive `role="button" tabIndex={0}` `<g>`

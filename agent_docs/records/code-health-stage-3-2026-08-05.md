@@ -43,3 +43,16 @@ initially flagged the new imports, resolved by `npm run generate:readmes` — di
 - Changelog entry added (fix).
 
 Verification: gate passed (233 files / 2780 tests).
+
+### X3 — relationship map role="group" + keyboard-focus visibility
+
+- `RelationshipMap`'s `<svg>` is now `role="group"` (aria-label kept) — descendants of `role="img"` are
+  presentational, which could hide the interactive patent/party buttons from assistive tech.
+- Both interactive `<g>` variants gained `onFocus`/`onBlur` mirroring the pointer-enter/leave handlers,
+  so the existing stroke-width hover treatment doubles as the keyboard focus indicator.
+- Tests: new "svg is a group" and focus/blur stroke-width cases in `relationshipMap.test.tsx`; the three
+  `role="img"` queries in `relationshipMapPage.test.tsx` updated to `role="group"` with an accessible-name
+  filter so unrelated implicit group roles cannot match.
+- Changelog entry added (improvement).
+
+Verification: gate passed (233 files / 2782 tests).
