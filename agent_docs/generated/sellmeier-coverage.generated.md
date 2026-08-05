@@ -294,7 +294,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [PENTAX F 85mm f/2.8 Soft](../../src/lens-data/pentax/PentaxF85mmf28Soft.data.ts) | 5/5 | 5 | 5/5 |
 | [PENTAX SMC PENTAX-FA 28mm f/2.8 Soft](../../src/lens-data/pentax/PentaxFA28mmf28Soft.data.ts) | 5/5 | 5 | 5/5 |
 | [PENTAX ULTRA-ACHROMATIC-TAKUMAR 85mm f/4.5](../../src/lens-data/pentax/PentaxUltraAchromaticTakumar85mmf45.data.ts) | 5/5 | 5 | 5/5 |
-| [VOIGTLÄNDER COLOR-HELIAR 105mm f/3.5](../../src/lens-data/voigtlander/VoigtlanderColorHeliar105mmf35.data.ts) | 5/5 | 5 | 5/5 |
+| [VOIGTLÄNDER COLOR-HELIAR 105mm f/3.5 (Voigtländer Bessa II)](../../src/lens-data/voigtlander/VoigtlanderColorHeliar105mmf35.data.ts) | 5/5 | 5 | 5/5 |
 | [VOIGTLÄNDER TELOMAR 100mm f/5.5](../../src/lens-data/voigtlander/VoigtlanderTelomar100mmf55.data.ts) | 5/5 | 5 | 5/5 |
 | [CARL ZEISS OLYMPIA-SONNAR 180mm f/2.8](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissOlympiaSonnar180mmf28.data.ts) | 4/4 | 4 | 4/4 |
 | [CARL ZEISS TESSAR 50mm f/3.5](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissTessar50mmf35.data.ts) | 4/4 | 4 | 4/4 |
@@ -302,7 +302,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [NIKON AI NIKKOR 45mm f/2.8 P](../../src/lens-data/nikon/NikonAINikkor45mmf28.data.ts) | 4/4 | 4 | 4/4 |
 | [NIKON SERIES E 100mm f/2.8](../../src/lens-data/nikon/NikonSeriesE100mmf28.data.ts) | 4/4 | 4 | 4/4 |
 | [RODENSTOCK ROGONAR-S 50mm f/2.8](../../src/lens-data/rodenstock/RodenstockRogonarS50mmf28.data.ts) | 4/4 | 4 | 4/4 |
-| [VOIGTLÄNDER COLOR-SKOPAR 105mm f/3.5](../../src/lens-data/voigtlander/VoigtlanderColorSkopar105mmf35.data.ts) | 4/4 | 4 | 4/4 |
+| [VOIGTLÄNDER COLOR-SKOPAR 105mm f/3.5 (Voigtländer Bessa II)](../../src/lens-data/voigtlander/VoigtlanderColorSkopar105mmf35.data.ts) | 4/4 | 4 | 4/4 |
 | [NIKON Gugutto Macro 120mm f/4.5](../../src/lens-data/nikon/NikonGugotto120mmf45.data.ts) | 3/3 | 3 | 3/3 |
 | [RODENSTOCK GERONAR 210mm f/6.8](../../src/lens-data/rodenstock/RodenstockGeronar210mmf68.data.ts) | 3/3 | 3 | 3/3 |
 | [NIKON Fuwatto Soft 90mm f/4.8](../../src/lens-data/nikon/NikonFuwattoSoft90mmf48.data.ts) | 2/2 | 2 | 2/2 |

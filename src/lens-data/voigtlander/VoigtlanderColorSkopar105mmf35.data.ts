@@ -39,7 +39,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "voigtlander-color-skopar-105mm-f35",
   maker: "Voigtländer",
-  name: "VOIGTLÄNDER COLOR-SKOPAR 105mm f/3.5",
+  name: "VOIGTLÄNDER COLOR-SKOPAR 105mm f/3.5 (Voigtländer Bessa II)",
   subtitle: "US 2,573,511 A Example 1 — uniformly scaled ×1.05 production correlation",
   specs: ["4 ELEMENTS / 3 GROUPS", "f = 104.999mm", "F/3.5", "2ω ≈ 51.35°", "ALL-SPHERICAL"],
 

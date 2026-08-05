@@ -3,14 +3,14 @@
 **Patent:** DE 143889 C<br>
 **Effective patent date:** 10 June 1902<br>
 **Granted / issued:** 7 September 1903<br>
-**Inventor:** No individual inventor is named in the publication<br>
+**Inventor / catalog attribution:** Carl August Hans Harting<br>
 **Applicant / assignee:** Voigtländer & Sohn AG<br>
 **Title:** *Chromatisch, sphärisch und astigmatisch korrigiertes Objektiv*<br>
 **Embodiment analyzed:** The patent's single worked numerical example (job-card Example 1)
 
-DE 143889 C is a supplement to German patent 124934 of 1 December 1900. The earlier design is described as symmetric in arrangement, dimensions, and the absolute and relative optical constants. The supplement retains symmetry in the broad arrangement and in the relative relationships of refractive power and dispersion, while allowing the dimensions and absolute optical constants of corresponding front and rear components to differ. The patent states that this additional freedom improves correction of astigmatism, image curvature, and off-axis spherical aberration or coma without surrendering the principal advantages of the earlier symmetric form [DE 143889 C, p. 1].
+DE 143889 C is a supplement to German patent 124934 of 1 December 1900. The publication names Voigtländer & Sohn AG rather than printing an individual inventor, while the project catalog attributes the Heliar design lineage and this worked example to Carl August Hans Harting. The earlier design is described as symmetric in arrangement, dimensions, and the absolute and relative optical constants. The supplement retains symmetry in the broad arrangement and in the relative relationships of refractive power and dispersion, while allowing the dimensions and absolute optical constants of corresponding front and rear components to differ. The patent states that this additional freedom improves correction of astigmatism, image curvature, and off-axis spherical aberration or coma without surrendering the principal advantages of the earlier symmetric form [DE 143889 C, p. 1].
 
-The project job card fixes the production correlation as the **Voigtländer Heliar f/4.5 – second asymmetric form**. The patent itself does not print the Heliar trade name, a production barrel, a mount, or a specific camera format. The correlation is therefore treated as the selected project identification rather than as a manufacturer-confirmed one-to-one production match. The displayed 100 mm focal length is the patent example's published nominal scale; the independently computed design focal length is 99.858 mm.
+The project job card fixes the production correlation as the **Voigtländer Heliar f/4.5 – second asymmetric form**. The patent itself does not print the Heliar trade name, a production barrel, a mount, or a specific camera format. The correlation is therefore treated as the selected project identification rather than as a manufacturer-confirmed one-to-one production match. The generic `large-format-lens-board` catalog tag follows the plate-camera Heliar family rather than claiming a patent-specific barrel. The displayed 100 mm focal length is the patent example's published nominal scale; the independently computed design focal length is 99.858 mm.
 
 ## Optical Architecture
 
@@ -84,7 +84,7 @@ The patent states that the opening may be 23 mm for the 100 mm example and that 
 
 The exact stop coordinate is not published. The data model places it 1.70 mm after surface 5 and 4.07 mm before surface 6, preserving the patent's total 5.77 mm air space. This is a figure-guided, geometry-constrained inference. The physical stop semi-diameter, 9.4018 mm, is solved so that the paraxial entrance-pupil diameter is 23.000 mm. Under that explicit interpretation, the modeled maximum aperture is f/4.34166. The Heliar f/4.5 designation remains separate and is not used to alter the prescription.
 
-The patent publishes no clear apertures. Every surface semi-diameter in the data file is inferred from the modeled pupil, the 92 mm image diameter, exact meridional ray containment, and a 600 dpi audit of the drawing sheet. The front and central groups use 12.7–14.0 mm rims and the rear group 11.5 mm rims, following the drawing's relatively even group heights. Positive edge thickness, actual spherical rim slope, and shared-gap clearance were rechecked. None is presented as a patent or production barrel dimension.
+The patent publishes no clear apertures. Every surface semi-diameter in the data file is inferred from the modeled pupil, the 92 mm image diameter, exact meridional ray containment, and a 600 dpi audit of the drawing sheet. The front group uses a 12.7 mm envelope, the central group 12.5 mm, and the rear group 11.5 mm, following the drawing's near-equal group heights while respecting the rear positive element's edge-thickness ceiling. Positive edge thickness, actual spherical rim slope, shared-gap clearance, and the viewer's default exact-ray bundles were rechecked. None is presented as a patent or production barrel dimension.
 
 No sensor cover glass, filter, dummy plane, flare cutter, or mechanical surface is present in the patent prescription or added to the model. No uniform scaling was applied, and there are no aspherical coefficients to transform.
 

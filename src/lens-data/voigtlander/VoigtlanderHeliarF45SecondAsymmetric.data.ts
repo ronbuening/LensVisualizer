@@ -17,9 +17,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║   pupil diameter is exactly 23 mm in the paraxial model.                                             ║
  * ║ - Surface semi-diameters are inferred from the full on-axis pupil, the 92 mm image-circle field,     ║
  * ║   exact meridional ray probes, the patent section, and current geometry limits. A 600 dpi figure     ║
- * ║   audit enlarged the central and rear groups toward the drawing's nearly equal-height silhouette;    ║
- * ║   the rear group stops at its positive-element edge-thickness limit. The full on-axis pupil, default ║
- * ║   off-axis ray bundle, and full-field chief rays are contained by the declared clear apertures.      ║
+ * ║   audit set the three groups to a near-equal-height silhouette; the rear group stops at its positive ║
+ * ║   element's edge-thickness limit. The full on-axis pupil, default off-axis ray bundle, and full-field ║
+ * ║   chief rays are contained by the declared clear apertures.                                         ║
  * ║ - The schema's nd slot directly retains the patent's sodium-D values. The printed historical G′-line ║
  * ║   values are preserved in comments but are not authored as the schema's modern mercury-g `ng`.       ║
  * ║   The source supplies no vd, nC, nF, modern ng, dPgF, or defensible catalog glass identity.          ║
@@ -46,8 +46,9 @@ const LENS_DATA = {
   focalLengthDesign: 99.8581705817869,
   apertureMarketing: 4.5,
   apertureDesign: 4.3416595905124735,
+  lensMounts: ["large-format-lens-board"],
   patentNumber: "DE 143889 C",
-  patentAuthors: [],
+  patentAuthors: ["Carl August Hans Harting"],
   patentAssignees: ["Voigtländer & Sohn AG"],
   patentYear: 1903,
   elementCount: 5,
@@ -122,11 +123,11 @@ const LENS_DATA = {
   ],
 
   surfaces: [
-    { label: "1", R: 40.38, d: 1.61, nd: 1.5499, elemId: 1, sd: 14.0 },
+    { label: "1", R: 40.38, d: 1.61, nd: 1.5499, elemId: 1, sd: 12.7 },
     { label: "2", R: 18.49, d: 4.82, nd: 1.61294, elemId: 2, sd: 12.7 },
     { label: "3", R: 123.4, d: 11.22, nd: 1.0, elemId: 0, sd: 12.7 },
-    { label: "4", R: -38.46, d: 0.64, nd: 1.53644, elemId: 3, sd: 14.0 },
-    { label: "5", R: 31.01, d: 1.7, nd: 1.0, elemId: 0, sd: 14.0 },
+    { label: "4", R: -38.46, d: 0.64, nd: 1.53644, elemId: 3, sd: 12.5 },
+    { label: "5", R: 31.01, d: 1.7, nd: 1.0, elemId: 0, sd: 12.5 },
     // STO location inferred from the patent drawing; d5 remains exactly 1.70 + 4.07 = 5.77 mm.
     { label: "STO", R: 1e15, d: 4.07, nd: 1.0, elemId: 0, sd: 9.40182409422752 },
     { label: "6", R: 67.63, d: 4.82, nd: 1.61294, elemId: 4, sd: 11.5 },

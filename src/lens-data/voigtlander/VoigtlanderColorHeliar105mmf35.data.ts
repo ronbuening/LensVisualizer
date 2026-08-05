@@ -45,7 +45,7 @@ const LENS_DATA = {
   /* ── Identity ── */
   key: "voigtlander-color-heliar-105mm-f35",
   maker: "Voigtländer",
-  name: "VOIGTLÄNDER COLOR-HELIAR 105mm f/3.5",
+  name: "VOIGTLÄNDER COLOR-HELIAR 105mm f/3.5 (Voigtländer Bessa II)",
   subtitle: "US 2,645,156 A — Example 1; normalized prescription scaled to 105 mm",
   specs: ["5 ELEMENTS / 3 GROUPS", "f = 104.999 mm (MODELED)", "f/3.5", "6×9 FORMAT", "ALL-SPHERICAL"],
 
