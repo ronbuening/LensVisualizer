@@ -6,8 +6,22 @@
  */
 
 import { FLAT_R_THRESHOLD } from "../constants.js";
-import type { CompiledStateSurface } from "../types.js";
+import type { CompiledDiffractivePhase } from "../types.js";
+import type { DiffractivePhaseSurface } from "../../types/optics.js";
 import { diffractiveParaxialPower } from "./diffractivePhase.js";
+
+/**
+ * Minimal structural surface for first-order stepping. Both authored surfaces
+ * (runtime-lens construction, where `interaction` may be absent and defaults
+ * to plain refraction) and prepared engine surfaces satisfy it, so this module
+ * is the single paraxial implementation for both stacks.
+ */
+export interface ParaxialSurface {
+  R: number;
+  nd: number;
+  interaction?: { type?: "refract" | "reflect" | "block" };
+  diffractive?: DiffractivePhaseSurface | CompiledDiffractivePhase | null;
+}
 
 /**
  * First-order ray state at a surface vertex plane.
@@ -63,13 +77,13 @@ export function transferParaxialRay2({ y, u, n }: ParaxialState, distance: numbe
  */
 export function interactParaxialSurface2(
   { y, u, n }: ParaxialState,
-  surface: Pick<CompiledStateSurface, "R" | "nd" | "interaction" | "diffractive">,
+  surface: ParaxialSurface,
   {
     allowReflect = false,
     requireSameIndexRefraction = false,
   }: { allowReflect?: boolean; requireSameIndexRefraction?: boolean } = {},
 ): ParaxialState | null {
-  const interactionType = surface.interaction.type;
+  const interactionType = surface.interaction?.type ?? "refract";
   if (interactionType === "block") return null;
 
   if (interactionType === "reflect") {
@@ -101,7 +115,7 @@ export function interactParaxialSurface2(
  * @returns final paraxial state and optional per-surface height samples
  */
 export function traceParaxialSurfaces2(
-  surfaces: readonly CompiledStateSurface[],
+  surfaces: readonly (ParaxialSurface & { d: number })[],
   y0: number,
   u0: number,
   {

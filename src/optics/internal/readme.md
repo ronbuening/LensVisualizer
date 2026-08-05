@@ -21,25 +21,23 @@ flowchart LR
   n_external_src_optics_prescription["src/optics/prescription"]
   n_external_src_optics_trace["src/optics/trace"]
   n_src_optics_internal_src_optics_internal_surfaceMath_ts --> |3| n_external_src_types
+  n_src_optics_internal_src_optics_internal_traceSurfaces_ts --> |2| n_external_src_optics_math
   n_src_optics_internal_src_optics_internal_exactSurfaceTrace_ts --> |2| n_src_optics_internal_src_optics_internal_surfaceIntersection_ts
   n_src_optics_internal_src_optics_internal_exactSurfaceTrace_ts --> n_external_src_optics_math
-  n_src_optics_internal_src_optics_internal_traceSurfaces_ts --> n_external_src_optics_math
   n_src_optics_internal_src_optics_internal_lensState_ts --> n_external_src_optics_prescription
   n_src_optics_internal_src_optics_internal_exactSurfaceTrace_ts --> n_external_src_optics_trace
   n_src_optics_internal_src_optics_internal_exactSurfaceTrace_ts --> n_external_src_types
   n_src_optics_internal_src_optics_internal_lensState_ts --> n_external_src_types
   n_src_optics_internal_src_optics_internal_surfaceIntersection_ts --> n_external_src_types
-  n_src_optics_internal_src_optics_internal_traceSurfaces_ts --> n_external_src_types
   n_src_optics_internal_src_optics_internal_exactSurfaceTrace_ts --> n_src_optics_internal_src_optics_internal_surfaceMath_ts
   n_src_optics_internal_src_optics_internal_surfaceIntersection_ts --> n_src_optics_internal_src_optics_internal_surfaceMath_ts
-  n_src_optics_internal_src_optics_internal_traceSurfaces_ts --> n_src_optics_internal_src_optics_internal_surfaceMath_ts
 ```
 
 ## Directory Overview
 
 - Direct source files: 6
 - Direct subfolders: 0
-- Main outbound areas: src/types (7), same folder (5), src/optics/math (2), src/optics/prescription, src/optics/trace
+- Main outbound areas: src/types (6), same folder (4), src/optics/math (3), src/optics/prescription, src/optics/trace
 - External consumers: src/components/display, src/optics/asphericComparison.ts, src/optics/constants.ts, src/optics/diagram, src/optics/layout.ts, src/optics/math, src/optics/optics.ts, src/optics/pupilAberration.ts, +3 more
 
 ## Files
@@ -50,5 +48,5 @@ flowchart LR
 | `exactSurfaceTrace.ts` | Exact Surface Trace helper module | same folder (3), src/optics/math, src/optics/trace, src/types | src/optics/pupilAberration.ts, src/optics/rayTrace.ts, src/optics/runtimeLens.ts, src/optics/validateLensData.ts | Vector3, ExactTraceSurface, ExactTraceLens, ExactSurfaceTraceInput, VectorRayInput, ExactSurfaceTraceOptions, ExactSurfaceTraceHit, ExactSurfaceTraceResult, +10 more |
 | `lensState.ts` | Lens State helper module | src/optics/prescription, src/types | src/optics/layout.ts, src/optics/runtimeLens.ts, src/optics/validateLensData.ts | buildLabelIndex, buildAsphereIndex, buildVarIndex, resolveAnnotations, buildElementSpans, buildVdIndex, buildSpectralIndex, firstInfinityThickness, +5 more |
 | `surfaceIntersection.ts` | Surface Intersection helper module | same folder, src/types | same folder | SurfaceIntersectionFailureReason, Vector3, SurfaceIntersectionRay, SurfaceIntersectionOptions, SurfaceIntersectionLens, SurfaceIntersectionSuccess, SurfaceIntersectionFailure, SurfaceIntersectionResult, +3 more |
-| `surfaceMath.ts` | Surface Math helper module | src/types (3) | same folder (3), src/components/display, src/optics/asphericComparison.ts, src/optics/constants.ts, src/optics/layout.ts, +4 more | FLAT_R_THRESHOLD, MAX_RIM_SLOPE_TAN, DEFAULT_MAX_RIM_ANGLE_DEG, sag, conicPolySag, sagSlopeRaw |
-| `traceSurfaces.ts` | Trace Surfaces helper module | same folder, src/optics/math, src/types | src/optics/layout.ts, src/optics/pupilAberration.ts, src/optics/rayTrace.ts, src/optics/runtimeLens.ts | ParaxialRayState, ParaxialSurfaceTraceOptions, RealSurfaceTraceOptions, RealSurfaceTraceResult, transferParaxialRay, interactParaxialSurface, traceSurfacesParaxial |
+| `surfaceMath.ts` | Surface Math helper module | src/types (3) | same folder (2), src/components/display, src/optics/asphericComparison.ts, src/optics/constants.ts, src/optics/layout.ts, +4 more | FLAT_R_THRESHOLD, MAX_RIM_SLOPE_TAN, DEFAULT_MAX_RIM_ANGLE_DEG, sag, conicPolySag, sagSlopeRaw |
+| `traceSurfaces.ts` | Trace Surfaces helper module | src/optics/math (2) | src/optics/layout.ts, src/optics/pupilAberration.ts, src/optics/rayTrace.ts, src/optics/runtimeLens.ts | transferParaxialRay, interactParaxialSurface, traceSurfacesParaxial, ParaxialRayState, ParaxialSurfaceTraceOptions, RealSurfaceTraceOptions, RealSurfaceTraceResult |

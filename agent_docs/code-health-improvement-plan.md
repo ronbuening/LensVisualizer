@@ -1292,7 +1292,7 @@ Verification: gate passes; golden suite + Nikon PF parity test
 
 ### G3. Unify the twin paraxial engines
 
-- [ ] Effort: M · Impact: med · Risk: low-med
+- [x] Effort: M · Impact: med · Risk: low-med
 
 `internal/traceSurfaces.ts` ~68–93 and `math/paraxial.ts` ~64–89 are line-for-line identical
 (verified) including the July diffractive additions — the plan's "both paths must remain in

@@ -74,3 +74,19 @@ Verification: gate passed (235 files / 2811 tests); golden suite green; benchmar
 
 Verification: gate passed (235 files / 2811 tests); golden suite, Nikon PF parity, folded-diffractive
 fixture, mirror suites all green.
+
+### G3 — unified paraxial engines
+
+- `math/paraxial.ts` is now the single first-order implementation. Its surface parameter widened to a
+  structural `ParaxialSurface` (R, nd, optional `interaction`, optional authored-or-compiled
+  `diffractive`) with the type gap closed by `surface.interaction?.type ?? "refract"` — exactly the
+  adaptation the spec called for. Both authored surfaces (runtime-lens construction) and prepared
+  engine surfaces satisfy it.
+- `internal/traceSurfaces.ts` is reduced to thin aliased re-exports
+  (`transferParaxialRay2 as transferParaxialRay`, etc., mirroring the `constants.ts` style) plus the two
+  real-ray option/result interfaces its consumers still import. The line-for-line twin — previously kept
+  in lockstep by double-edit, including the July diffractive additions — is gone.
+- Golden values bit-identical (the shared body is byte-equivalent math to both twins).
+
+Verification: gate passed (235 files / 2811 tests); golden + catalog trace suites green; benchmark
+within noise.
