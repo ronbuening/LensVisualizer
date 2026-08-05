@@ -82,7 +82,7 @@ flowchart LR
 
 - Direct source files: 19
 - Direct subfolders: 1
-- Main outbound areas: src/utils/catalog (54), package:react-router (19), src/components/layout (19), src/components/SEOHead.tsx (19), src/utils/seo (19), src/pages/lensIndex (18), src/utils/style (17), src/utils/theme (16), +16 more
+- Main outbound areas: src/utils/catalog (54), package:react-router (19), src/components/layout (19), src/components/SEOHead.tsx (19), src/utils/seo (19), src/pages/lensIndex (18), src/utils/style (17), src/utils/theme (16), +17 more
 - External consumers: src/routes
 
 ## Subfolders
@@ -111,6 +111,6 @@ flowchart LR
 | `MountsIndexPage.tsx` | Route-level React page | src/utils/catalog (2), package:react-router, src/components/layout, src/components/SEOHead.tsx, src/pages/lensIndex, +3 more | src/routes | default, MountsIndexPage |
 | `NotFoundPage.tsx` | Route-level React page | package:react-router, src/components/layout, src/components/SEOHead.tsx, src/utils/catalog, src/utils/theme | src/routes | default, NotFoundPage |
 | `PatentsIndexPage.tsx` | Route-level React page | src/utils/catalog (3), src/components/content (2), package:react-router, src/components/layout, src/components/SEOHead.tsx, +5 more | src/routes | default, PatentsIndexPage |
-| `RelationshipMapPage.tsx` | Route-level React page | src/utils/catalog (5), src/components/relationshipMap (3), src/utils/seo (2), package:react, package:react-router, +4 more | src/routes | default, RelationshipMapPage |
+| `RelationshipMapPage.tsx` | Route-level React page | src/utils/catalog (5), src/components/relationshipMap (3), src/utils/seo (2), package:react, package:react-router, +5 more | src/routes | default, RelationshipMapPage |
 | `SearchPage.tsx` | Route-level React page | src/components/search (2), package:react, package:react-router, src/components/layout, src/components/SEOHead.tsx, +4 more | src/routes | default, SearchPage |
 | `UpdatesPage.tsx` | Route-level React page | src/utils/catalog (2), src/utils/content (2), package:react, package:react-router, src/components/content, +5 more | src/routes | default, UpdatesPage |

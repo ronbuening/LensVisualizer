@@ -658,7 +658,7 @@ hits or the fixed implementation plus its test.
 
 ### X13. Wrap the relationship map in `PanelErrorBoundary`
 
-- [ ] Effort: S · Impact: low-med · Risk: low
+- [x] Effort: S · Impact: low-med · Risk: low
 
 The most algorithmically complex new UI renders bare inside `RelationshipMapPage.tsx` ~152–159;
 any render throw escalates to the route boundary and blanks the whole page including the picker

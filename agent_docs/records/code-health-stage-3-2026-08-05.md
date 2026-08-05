@@ -185,3 +185,13 @@ Verification: gate passed (233 files / 2786 tests).
 - `grep -rn traceEngineRayChromatic2 src __tests__` → no hits.
 
 Verification: gate passed (233 files / 2786 tests).
+
+### X13 — relationship map wrapped in PanelErrorBoundary
+
+- `RelationshipMap` and `PatentDetailCard` now render inside one `PanelErrorBoundary` keyed on
+  `graph.center.id`, so a map render throw shows the panel-level error display while the heading and
+  entity picker stay usable, and refocusing via the picker resets the boundary.
+- New `__tests__/src/pages/relationshipMapPageError.test.tsx` (separate file because the map module is
+  mocked to throw file-wide): asserts the error message renders AND the h1 + picker searchbox survive.
+
+Verification: gate passed (234 files / 2787 tests). **Stage 3 complete.**

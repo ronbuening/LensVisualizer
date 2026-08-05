@@ -16,6 +16,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import SEOHead from "../components/SEOHead.js";
 import PageNavBar from "../components/layout/PageNavBar.js";
+import PanelErrorBoundary from "../components/errors/PanelErrorBoundary.js";
 import RelationshipMap from "../components/relationshipMap/RelationshipMap.js";
 import RelationshipEntityPicker from "../components/relationshipMap/RelationshipEntityPicker.js";
 import PatentDetailCard from "../components/relationshipMap/PatentDetailCard.js";
@@ -152,24 +153,29 @@ export default function RelationshipMapPage() {
               <RelationshipEntityPicker theme={t} onPick={setFocusParty} compact />
             </div>
 
-            <RelationshipMap
-              key={graph.center.id}
-              graph={graph}
-              theme={t}
-              selectedPatentId={selectedPatentId}
-              onSelectPatent={setSelectedPatentId}
-              onFocusParty={setFocusParty}
-            />
-
-            {selectedPatent && (
-              <PatentDetailCard
-                patent={selectedPatent}
-                centerRef={focus}
+            {/* A render throw inside the map must not blank the page: the
+             * boundary keeps the picker above usable, and its center-id key
+             * resets the error state when the user refocuses. */}
+            <PanelErrorBoundary lensKey={graph.center.id}>
+              <RelationshipMap
+                key={graph.center.id}
+                graph={graph}
                 theme={t}
+                selectedPatentId={selectedPatentId}
+                onSelectPatent={setSelectedPatentId}
                 onFocusParty={setFocusParty}
-                onClose={() => setSelectedPatentId(null)}
               />
-            )}
+
+              {selectedPatent && (
+                <PatentDetailCard
+                  patent={selectedPatent}
+                  centerRef={focus}
+                  theme={t}
+                  onFocusParty={setFocusParty}
+                  onClose={() => setSelectedPatentId(null)}
+                />
+              )}
+            </PanelErrorBoundary>
           </>
         ) : (
           <>
