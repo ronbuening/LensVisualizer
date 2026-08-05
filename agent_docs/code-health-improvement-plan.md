@@ -1343,7 +1343,7 @@ Verification: gate passes; `dispersion.test.ts` ~779–791 + golden suite green.
 
 ### G6. Hoist per-call vendor/alias work in `candidateMatches`
 
-- [ ] Effort: S · Impact: med · Risk: low
+- [x] Effort: S · Impact: med · Risk: low
 
 `glassCatalog.ts` ~309–312 rebuilds a 463-element vendor scan per resolution call; ~280–285
 compiles up to 42 alias RegExps per call. Called per glass surface per normalize (×2 per lens:

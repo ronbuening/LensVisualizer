@@ -284,6 +284,17 @@ function escapeRegExp(value: string): string {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
+/* Hoisted per-call work (pattern: the precomputed CATALOG/CODE6_INDEX above).
+ * Alias boundary patterns were previously compiled per resolution call, and
+ * the vendor list re-derived by scanning all catalog entries per call —
+ * multiplied across every glass surface of every lens in the report scans. */
+const ALIAS_PATTERNS: ReadonlyMap<string, RegExp> = new Map(
+  [...ALIASES.keys()].map((alias) => [alias, new RegExp(`(^|[^A-Z0-9-])${escapeRegExp(alias)}(?=$|[^A-Z0-9-])`)]),
+);
+const CATALOG_VENDORS: readonly { vendor: string; upper: string }[] = [
+  ...new Set(RAW_CATALOG.map((entry) => entry.vendor)),
+].map((vendor) => ({ vendor, upper: vendor.toUpperCase() }));
+
 /**
  * Tokenize a glass annotation exactly the way the resolver does. Exported so
  * report scans stay aligned with the real tokenizer instead of maintaining
@@ -298,9 +309,9 @@ export function glassTokens(glassString: string): string[] {
     tokens.push(`${match[2]}${match[3]}`);
   }
   const upperGlassString = glassString.toUpperCase();
-  for (const alias of ALIASES.keys()) {
+  for (const [alias, pattern] of ALIAS_PATTERNS) {
     if (tokens.some((token) => token.toUpperCase() === alias)) continue;
-    if (new RegExp(`(^|[^A-Z0-9-])${escapeRegExp(alias)}(?=$|[^A-Z0-9-])`).test(upperGlassString)) {
+    if (pattern.test(upperGlassString)) {
       tokens.push(alias);
     }
   }
@@ -329,7 +340,7 @@ function candidateMatches(glassString: string): GlassCandidateMatch[] {
 
   const upperGlassString = glassString.toUpperCase();
   const mentionedVendors = new Set(
-    RAW_CATALOG.map((entry) => entry.vendor).filter((vendor) => upperGlassString.includes(vendor.toUpperCase())),
+    CATALOG_VENDORS.filter(({ upper }) => upperGlassString.includes(upper)).map(({ vendor }) => vendor),
   );
   const bestByName = new Map<string, GlassCandidateMatch>();
   const add = (

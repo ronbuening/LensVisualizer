@@ -114,3 +114,15 @@ skewRay suites green; `npm run generate:glass-reports` byte-identical.
   once instead of repeatedly).
 
 Verification: gate passed (235 files / 2811 tests); dispersion + golden suites green.
+
+### G6 — hoisted vendor/alias work in the glass resolver
+
+- Module-level `ALIAS_PATTERNS: ReadonlyMap<string, RegExp>` (42 alias boundary regexes previously
+  compiled per resolution call in `glassTokens`) and `CATALOG_VENDORS` (distinct vendor names with
+  precomputed uppercase, previously re-derived by scanning all 464 catalog entries per
+  `candidateMatches` call), next to the existing precomputed `CATALOG`/`CODE6_INDEX` as the spec's
+  pattern to mimic. Behavior-identical.
+- Glass-report regeneration wall time after: 3.4 s (vitest had reported ~3.8 s for the same 8 scan files
+  before the change — modest, as expected for hoisting constant-factor work).
+
+Verification: gate passed (235 files / 2811 tests); `npm run generate:glass-reports` byte-identical.
