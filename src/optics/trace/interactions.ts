@@ -4,7 +4,8 @@
  * Encapsulates Snell/reflection conventions for generalized tracing across refractive, mirrored, and passive surfaces.
  */
 
-import type { CompiledStateSurface, Vec3 } from "../types.js";
+import type { CompiledDiffractivePhase, CompiledStateSurface, Vec3 } from "../types.js";
+import type { DiffractivePhaseSurface } from "../../types/optics.js";
 import { dot, normalize, reflect, refract, scale } from "../math/vector.js";
 import { diffractiveRefractedDirection } from "../math/diffractivePhase.js";
 
@@ -73,6 +74,65 @@ export function phaseRefractedDirection(
 ): Vec3 | null {
   if (!surface.diffractive) return refractedDirection(direction, normal, nFrom, nTo);
   return diffractiveRefractedDirection(direction, normal, point, nFrom, nTo, surface.diffractive, wavelengthNm);
+}
+
+/** Failure classification when a refractive interaction cannot propagate. */
+export interface RefractiveInteractionFailure {
+  failureReason: "totalInternalReflection" | "nonPropagatingDiffractionOrder";
+  clipReason: "total-internal-reflection" | "non-propagating-diffraction-order";
+}
+
+/** Outcome of a phase-aware refract-or-fail interaction. */
+export type RefractiveInteractionResult =
+  | { direction: Vec3; failure?: undefined }
+  | { direction?: undefined; failure: RefractiveInteractionFailure };
+
+/**
+ * Apply the phase-aware refract-or-fail interaction shared by every tracer.
+ *
+ * Refracts through the surface (via its diffractive phase when present) and
+ * maps a null kernel result to the matching failure/clip reason pair, so the
+ * classification physics lives in exactly one place. Callers keep their own
+ * hit/clip-event bookkeeping.
+ *
+ * @param direction - normalized incoming ray direction
+ * @param normal - normal oriented toward the outgoing medium
+ * @param point - surface intersection point (phase term evaluation)
+ * @param nFrom - incident refractive index
+ * @param nTo - transmitted refractive index
+ * @param surface - surface carrying an optional authored/compiled phase term
+ * @param wavelengthNm - wavelength the phase kick is evaluated at
+ * @param refractKernel - plain-refraction kernel; the internal exact stack
+ *   passes its own Snell implementation so its numerics stay untouched
+ * @returns outgoing direction, or the failure/clip reason pair
+ */
+export function interactRefractiveSurface(
+  direction: Vec3,
+  normal: Vec3,
+  point: Vec3,
+  nFrom: number,
+  nTo: number,
+  surface: { diffractive?: DiffractivePhaseSurface | CompiledDiffractivePhase | null },
+  wavelengthNm: number,
+  refractKernel: (direction: Vec3, normal: Vec3, nFrom: number, nTo: number) => Vec3 | null = refractedDirection,
+): RefractiveInteractionResult {
+  const refracted = surface.diffractive
+    ? diffractiveRefractedDirection(direction, normal, point, nFrom, nTo, surface.diffractive, wavelengthNm)
+    : refractKernel(direction, normal, nFrom, nTo);
+  if (refracted !== null) return { direction: refracted };
+  return surface.diffractive
+    ? {
+        failure: {
+          failureReason: "nonPropagatingDiffractionOrder",
+          clipReason: "non-propagating-diffraction-order",
+        },
+      }
+    : {
+        failure: {
+          failureReason: "totalInternalReflection",
+          clipReason: "total-internal-reflection",
+        },
+      };
 }
 
 /**

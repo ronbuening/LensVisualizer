@@ -57,3 +57,20 @@ Verification: gate passed (234 files / 2787 tests) including the spec's named su
   deleted since its code never shipped.
 
 Verification: gate passed (235 files / 2811 tests); golden suite green; benchmark within noise.
+
+### G2 — shared refract-or-fail interaction
+
+- New `interactRefractiveSurface(direction, normal, point, n, nn, surface, wavelengthNm, refractKernel?)`
+  in `trace/interactions.ts` returning `{ direction } | { failure: { failureReason, clipReason } }`; the
+  four duplicated blocks (`sequentialTrace`, `generalizedTrace`, and both `exactSurfaceTrace` loops) now
+  call it, keeping only their own hit/clip-event bookkeeping.
+- The `refractKernel` parameter (defaulting to the trace stack's `refractedDirection`) is how the internal
+  exact stack keeps its own Snell implementation bit-for-bit: the two stacks' plain-refraction kernels
+  differ in input normalization, and G2 explicitly does not unify tracer stacks. `refractDirection`'s
+  parameters widened to `Readonly<Vector3>` so it satisfies the kernel type; the diffractive branch was
+  already shared via `diffractiveRefractedDirection`.
+- The pre-existing drift (two sites bypassing `phaseRefractedDirection`) is resolved — the phase-aware
+  branch now exists exactly once.
+
+Verification: gate passed (235 files / 2811 tests); golden suite, Nikon PF parity, folded-diffractive
+fixture, mirror suites all green.

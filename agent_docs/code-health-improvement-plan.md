@@ -1275,7 +1275,7 @@ Rollback: revert branch.
 
 ### G2. Extract the 4×-duplicated diffractive refract-or-fail block
 
-- [ ] Effort: S · Impact: high · Risk: low
+- [x] Effort: S · Impact: high · Risk: low
 
 The identical "phase-aware refract, map null to
 `nonPropagatingDiffractionOrder`/`totalInternalReflection` + clip reason" block exists at

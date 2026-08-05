@@ -18,7 +18,8 @@ import type {
   SurfaceInteraction,
   DiffractivePhaseSurface,
 } from "../../types/optics.js";
-import { DEFAULT_PHASE_WAVELENGTH_NM, diffractiveRefractedDirection } from "../math/diffractivePhase.js";
+import { DEFAULT_PHASE_WAVELENGTH_NM } from "../math/diffractivePhase.js";
+import { interactRefractiveSurface } from "../trace/interactions.js";
 import { FLAT_R_THRESHOLD, conicPolySag } from "./surfaceMath.js";
 import {
   intersectSagSurface,
@@ -217,7 +218,12 @@ export function projectCoordinateToZ(
  * @param nn - transmitted refractive index
  * @returns normalized transmitted direction, or null for total internal reflection
  */
-export function refractDirection(direction: Vector3, normal: Vector3, n: number, nn: number): Vector3 | null {
+export function refractDirection(
+  direction: Readonly<Vector3>,
+  normal: Readonly<Vector3>,
+  n: number,
+  nn: number,
+): Vector3 | null {
   const eta = n / nn;
   const cosIncident = direction[0] * normal[0] + direction[1] * normal[1] + direction[2] * normal[2];
   const tangentX = direction[0] - cosIncident * normal[0];
@@ -390,24 +396,29 @@ export function traceExactSurfaceStackVector(
       if (hitClipped && Math.abs(surface.R) < FLAT_R_THRESHOLD && radius * radius > surface.R * surface.R) {
         // Ghost ray beyond the mathematical sphere extent: propagate straight.
       } else {
-        const refracted = surface.diffractive
-          ? diffractiveRefractedDirection(direction, normal, point, n, nn, surface.diffractive, wavelengthNm)
-          : refractDirection(direction, normal, n, nn);
-        if (refracted === null) {
+        const interaction = interactRefractiveSurface(
+          direction,
+          normal,
+          point,
+          n,
+          nn,
+          surface,
+          wavelengthNm,
+          refractDirection,
+        );
+        if (interaction.failure) {
           clipped = true;
-          failureReason = surface.diffractive ? "nonPropagatingDiffractionOrder" : "totalInternalReflection";
-          const failureClipReason = surface.diffractive
-            ? "non-propagating-diffraction-order"
-            : "total-internal-reflection";
-          pushClipEvent(clipEvents, lens, i, failureClipReason, failureReason);
+          failureReason = interaction.failure.failureReason;
+          pushClipEvent(clipEvents, lens, i, interaction.failure.clipReason, failureReason);
           hits[hits.length - 1] = {
             ...hits[hits.length - 1],
             clipped: true,
             failureReason,
-            clipReason: failureClipReason,
+            clipReason: interaction.failure.clipReason,
           };
           if (!ghost) break;
         } else {
+          const refracted = interaction.direction;
           direction = [refracted[0], refracted[1], refracted[2]];
         }
       }
@@ -806,25 +817,30 @@ function traceGeneralizedSurfaceStackVector(
       const nn = resolvedNextIndex(nextSurfaceIdx, incidentSide, surface, lens, indexAtSurface);
       if (nn !== n || surface.diffractive) {
         const orientedNormal = incidentSide === "front" ? normal : ([-normal[0], -normal[1], -normal[2]] as Vector3);
-        const refracted = surface.diffractive
-          ? diffractiveRefractedDirection(direction, orientedNormal, point, n, nn, surface.diffractive, wavelengthNm)
-          : refractDirection(direction, orientedNormal, n, nn);
-        if (refracted === null) {
+        const interaction = interactRefractiveSurface(
+          direction,
+          orientedNormal,
+          point,
+          n,
+          nn,
+          surface,
+          wavelengthNm,
+          refractDirection,
+        );
+        if (interaction.failure) {
           clipped = true;
-          failureReason = surface.diffractive ? "nonPropagatingDiffractionOrder" : "totalInternalReflection";
+          failureReason = interaction.failure.failureReason;
           terminationReason = "trace-failure";
-          const failureClipReason = surface.diffractive
-            ? "non-propagating-diffraction-order"
-            : "total-internal-reflection";
-          pushClipEvent(clipEvents, lens, nextSurfaceIdx, failureClipReason, failureReason);
+          pushClipEvent(clipEvents, lens, nextSurfaceIdx, interaction.failure.clipReason, failureReason);
           hits[hits.length - 1] = {
             ...hits[hits.length - 1],
             clipped: true,
             failureReason,
-            clipReason: failureClipReason,
+            clipReason: interaction.failure.clipReason,
           };
           if (!ghost) break;
         } else {
+          const refracted = interaction.direction;
           direction = [refracted[0], refracted[1], refracted[2]];
         }
       }

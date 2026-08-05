@@ -16,11 +16,10 @@ import { pushClipEvent, surfaceLabel } from "./foldedDiagnostics.js";
 import {
   advanceOrigin,
   incidentSideFor,
+  interactRefractiveSurface,
   isSurfaceSideActive,
   orientedRefractionNormal,
   reflectedDirection,
-  phaseRefractedDirection,
-  refractedDirection,
   resolvedNextIndex,
 } from "./interactions.js";
 import { DEFAULT_PHASE_WAVELENGTH_NM } from "../math/diffractivePhase.js";
@@ -317,26 +316,21 @@ export function traceGeneralized(
       const nn = resolvedNextIndex(nextSurfaceIndex, side, surface, state.surfaces, indexAtSurface);
       if (nn !== n || surface.diffractive) {
         const orientedNormal = orientedRefractionNormal(normal, side);
-        const refracted = surface.diffractive
-          ? phaseRefractedDirection(direction, orientedNormal, point, n, nn, surface, wavelengthNm)
-          : refractedDirection(direction, orientedNormal, n, nn);
-        if (refracted === null) {
+        const interaction = interactRefractiveSurface(direction, orientedNormal, point, n, nn, surface, wavelengthNm);
+        if (interaction.failure) {
           clipped = true;
-          failureReason = surface.diffractive ? "nonPropagatingDiffractionOrder" : "totalInternalReflection";
+          failureReason = interaction.failure.failureReason;
           terminationReason = "trace-failure";
-          const failureClipReason = surface.diffractive
-            ? "non-propagating-diffraction-order"
-            : "total-internal-reflection";
-          pushClipEvent(clipEvents, state, nextSurfaceIndex, failureClipReason, failureReason);
+          pushClipEvent(clipEvents, state, nextSurfaceIndex, interaction.failure.clipReason, failureReason);
           hits[hits.length - 1] = {
             ...hits[hits.length - 1],
             clipped: true,
             failureReason,
-            clipReason: failureClipReason,
+            clipReason: interaction.failure.clipReason,
           };
           if (!ghost) break;
         } else {
-          direction = refracted;
+          direction = interaction.direction;
         }
       }
       n = nn;
