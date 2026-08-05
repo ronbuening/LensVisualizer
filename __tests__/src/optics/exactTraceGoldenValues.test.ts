@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
 import buildLens from "../../../src/optics/buildLens.js";
 import { solveChiefRay } from "../../../src/optics/fieldGeometry.js";
-import { doLayout, traceRay, traceRayVector, traceSkewRay } from "../../../src/optics/optics.js";
+import { doLayout, traceRay, traceRayChromatic, traceRayVector, traceSkewRay } from "../../../src/optics/optics.js";
 import type { LensData, RuntimeLens } from "../../../src/types/optics.js";
 import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 
@@ -14,7 +14,8 @@ import { LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
  * convention, a wrong refraction law, a broken transfer — could stay green
  * across the whole catalog. This suite pins absolute numbers for a small set
  * of reference designs spanning design types: a double Gauss, a telephoto, a
- * projection-aware fisheye, and a folded mirror fixture.
+ * diffractive Phase Fresnel telephoto, an odd-order asphere, a projection-aware
+ * fisheye, and a folded mirror fixture.
  *
  * Values were captured from the verified exact-trace output (2026-07) and
  * sanity-checked against design nominals: each EFL sits at its patent value,
@@ -75,6 +76,42 @@ const GOLDEN_LENSES: GoldenLens[] = [
     },
   },
   {
+    key: "nikon-af-s-nikkor-500mm-f56e-pf-ed-vr",
+    design: "diffractive (Phase Fresnel telephoto)",
+    efl: 489.7123536778453,
+    epSD: 42.58227586200154,
+    stopPhysSD: 11.784660898973346,
+    imgZ: 279.32417999999996,
+    zLast: 214.92760999999996,
+    marginal: { h: 29.8076, y: 3.9277260192817036, u: -0.060974169984543934 },
+    skew: {
+      x0: 14.3076,
+      y0: 11.923,
+      x: 1.8830442421106488,
+      y: 1.5692035350922298,
+      ux: -0.029236105709222554,
+      uy: -0.024363421424351845,
+    },
+  },
+  {
+    key: "zeiss-touit-50mm-f28-macro",
+    design: "odd-order asphere (A3/A5/A7 terms)",
+    efl: 51.50581892028711,
+    epSD: 9.197467664336985,
+    stopPhysSD: 9.15243124498173,
+    imgZ: 94.9543248945,
+    zLast: 70.34,
+    marginal: { h: 6.4382, y: 3.102289011436177, u: -0.12605083196312913 },
+    skew: {
+      x0: 3.0903,
+      y0: 2.5753,
+      x: 1.4812269534854747,
+      y: 1.2343797603181395,
+      ux: -0.06021965588711908,
+      uy: -0.05018402090609257,
+    },
+  },
+  {
     key: "nikon-fisheye-nikkor-6mm-f28",
     design: "fisheye (equidistant projection)",
     efl: 37.41323793170968,
@@ -103,6 +140,8 @@ const GOLDEN_LENSES: GoldenLens[] = [
 const REFOCUS_BOUND_MM: Record<string, number> = {
   "olympus-zuiko-auto-s-50f14": 0.05,
   "canon-fd-300mm-f4-ssc": 0.05,
+  "nikon-af-s-nikkor-500mm-f56e-pf-ed-vr": 0.05,
+  "zeiss-touit-50mm-f28-macro": 0.05,
 };
 
 function buildCatalogLens(key: string): RuntimeLens {
@@ -157,6 +196,46 @@ describe("exact trace golden values — refractive designs", () => {
     // The launch is meridionally symmetric in x/y, so exit slopes must keep
     // the launch aspect ratio; a skew-axis mixup would break this exactly.
     expect(trace.ux / trace.uy).toBeCloseTo(g.skew.x0 / g.skew.y0, 8);
+  });
+});
+
+describe("exact trace golden values — diffractive phase surface", () => {
+  const PF_KEY = "nikon-af-s-nikkor-500mm-f56e-pf-ed-vr";
+  const PF_MARGINAL_H = 29.8076;
+
+  /**
+   * The d-line entry above would stay green even if the phase term ignored
+   * wavelength entirely, so the diffractive physics is pinned per channel here.
+   */
+  it("propagates wavelength through the phase term", () => {
+    const L = buildCatalogLens(PF_KEY);
+    const layout = doLayout(0, 0, L);
+    const slopes = (["R", "G", "B"] as const).map((channel) => {
+      const trace = traceRayChromatic(PF_MARGINAL_H, 0, layout.z, 0, 0, L.stopPhysSD, true, L, channel);
+      expect(trace.clipped, channel).toBe(false);
+      return trace.u;
+    });
+
+    expect(slopes[0]).toBeCloseTo(-0.060977497009293086, 8);
+    expect(slopes[1]).toBeCloseTo(-0.060974169984543934, 8);
+    expect(slopes[2]).toBeCloseTo(-0.06098385934050328, 8);
+    // Distinct per channel: identical slopes would mean wavelength never
+    // reached the glass indices or the phase kick.
+    expect(new Set(slopes).size).toBe(3);
+  });
+
+  it("keeps all three channels focused, as the Phase Fresnel element intends", () => {
+    const L = buildCatalogLens(PF_KEY);
+    const layout = doLayout(0, 0, L);
+    const zLast = layout.z[layout.z.length - 1];
+
+    for (const channel of ["R", "G", "B"] as const) {
+      const trace = traceRayChromatic(PF_MARGINAL_H, 0, layout.z, 0, 0, L.stopPhysSD, true, L, channel);
+      const yImg = trace.y + trace.u * (layout.imgZ - zLast);
+      // A PF element cancels most residual chromatic spread; without its
+      // negative dispersion this axial bundle separates by far more than 5 µm.
+      expect(Math.abs(yImg), channel).toBeLessThan(0.005);
+    }
   });
 });
 

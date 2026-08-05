@@ -89,6 +89,24 @@ Verification: gate passed (225 files / 2682 tests).
 
 Verification: gate passed (227 files / 2694 tests).
 
+### N6 — golden trace coverage for July's physics
+
+- Two `GOLDEN_LENSES` entries appended: `nikon-af-s-nikkor-500mm-f56e-pf-ed-vr` (diffractive Phase Fresnel) and
+  `zeiss-touit-50mm-f28-macro` (odd-order A3/A5/A7 asphere), captured via the file's documented capture-and-pin
+  procedure and both added to `REFOCUS_BOUND_MM`.
+- Sanity-checked against patent nominals rather than pinned blind: computed EFL 489.7124 vs the data file's stated
+  "f = 489.704 mm design", and 51.5058 vs "f' = 51.52 mm patent design". Marginal rays refocus to 1.2 µm and
+  0.37 µm respectively — well inside the suite's ~20 µm expectation.
+- **Added beyond the spec:** a per-channel diffractive block. The d-line-only entry would stay green even if the
+  phase term ignored wavelength entirely, which is precisely the trap X12 describes elsewhere in this plan. The new
+  test pins R/G/B exit slopes, asserts all three differ, and asserts all three still focus within 5 µm — the Phase
+  Fresnel element's whole purpose.
+- `exactTraceCatalog.test.ts` gained a hidden-`opticalConfiguration` smoke loop. The 59-surface TC-IN prescription
+  was built at import time but never traced in CI; it now runs the same meridional/skew checks as visible lenses at
+  every zoom sample. The loop asserts it found at least one such key, so it cannot pass vacuously.
+
+Verification: gate passed (227 files / 2703 tests).
+
 ## Follow-ups
 
 - Runtime-side fallback identity stays untestable until `patentsForParty` stops reading module-level

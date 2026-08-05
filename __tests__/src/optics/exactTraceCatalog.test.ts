@@ -12,7 +12,7 @@ import { obstructionAwareRayFractionsForDensity } from "../../../src/optics/rayS
  */
 const EXACT_TRACE_FIXTURE_KEYS = ["apo-lanthar-50f2", "nokton-50f1", "sonnar-50f15"] as const;
 import type { LensData, RuntimeLens } from "../../../src/types/optics.js";
-import { CATALOG_KEYS, LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
+import { ALL_CATALOG_KEYS, CATALOG_KEYS, LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 
 const REPRESENTATIVE_KEYS = [
   "apo-lanthar-50f2",
@@ -134,6 +134,35 @@ describe("exact surface trace catalog smoke coverage", () => {
     expect(CATALOG_KEYS.length).toBeGreaterThan(0);
 
     for (const key of CATALOG_KEYS) {
+      const L = buildCatalogLens(key);
+      for (const zoomT of zoomSamples(L)) {
+        const layout = doLayout(0, zoomT, L);
+        const y0 = catalogSmokeTraceHeight(L, zoomT);
+        const meridional = traceRay(y0, 0, layout.z, 0, zoomT, L.stopPhysSD, true, L);
+        const skew = traceSkewRay(0, y0, 0, 0, 0, zoomT, L.stopPhysSD, true, L);
+
+        expect(meridional.clipped, `${key} zoomT=${zoomT} meridional`).toBe(false);
+        expect(skew.clipped, `${key} zoomT=${zoomT} skew`).toBe(false);
+        expectFiniteTraceResult(meridional);
+        expectFiniteTraceResult(skew);
+      }
+    }
+  });
+
+  it("traces hidden optical-configuration members the visible smoke loop skips", () => {
+    /**
+     * A switchable variant such as the TC-IN prescription is built at import
+     * time but never appears in CATALOG_KEYS, so the loop above never traced
+     * it — the 59-surface converter path had no CI coverage at all.
+     */
+    const hiddenConfigurationKeys = ALL_CATALOG_KEYS.filter(
+      (key) => LENS_CATALOG[key].visible === false && LENS_CATALOG[key].opticalConfiguration !== undefined,
+    );
+    expect(hiddenConfigurationKeys.length, "expected at least one hidden configuration variant").toBeGreaterThan(0);
+
+    for (const key of hiddenConfigurationKeys) {
+      expect(CATALOG_KEYS, key).not.toContain(key);
+
       const L = buildCatalogLens(key);
       for (const zoomT of zoomSamples(L)) {
         const layout = doLayout(0, zoomT, L);

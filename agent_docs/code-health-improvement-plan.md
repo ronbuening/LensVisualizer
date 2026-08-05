@@ -294,7 +294,7 @@ fails its term-isolation case; benchmark change is within noise or documented an
 
 ### N6. Golden-value trace coverage for July's new physics; trace hidden configuration members
 
-- [ ] Effort: S · Impact: med · Risk: none
+- [x] Effort: S · Impact: med · Risk: none
 
 `__tests__/src/optics/exactTraceGoldenValues.test.ts` (~42–78) pins 3 designs — none diffractive,
 none odd-asphere. The catalog trace smoke (`exactTraceCatalog.test.ts` ~136) iterates only visible
