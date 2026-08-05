@@ -331,7 +331,7 @@ iteration order — decide separately).
 
 ### N8. Direct tests for the glass resolution precedence criteria
 
-- [ ] Effort: S · Impact: med · Risk: none
+- [x] Effort: S · Impact: med · Risk: none
 
 `explainCompatibleGlassResolution` criteria (`src/optics/glassCatalog.ts` ~67–76, decided
 ~432–489): `source-priority`, `abbe-residual`, and `duplicate-code-precedence` have no direct unit

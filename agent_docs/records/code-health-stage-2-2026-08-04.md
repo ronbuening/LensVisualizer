@@ -121,6 +121,25 @@ Verification: gate passed (227 files / 2703 tests).
 
 Verification: gate passed (227 files / 2704 tests).
 
+### N8 — direct glass-resolution criterion tests
+
+- New `describe("glass resolution criteria")` in `dispersion.test.ts` with one case per rung of
+  `candidateSelectionReason`, plus a guard asserting the eight criteria are mutually distinct. With the existing
+  `vendor-context` test at ~866, all nine criterion strings now have direct coverage.
+- Cases were **derived by probing the real resolver**, not invented — the spec's suggested fixtures do not behave as
+  described:
+  - `abbe-residual` needs the index residuals to tie *exactly*, which requires byte-identical Sellmeier
+    coefficients, not merely identical listed `nd`. Only two such pairs exist in the catalog; `S-TIH53`/`S-TIH53W`
+    is the one whose listed Abbe numbers differ (23.7779 vs 23.77794), so it is the only usable case.
+  - The spec's `H-K9L`/`H-K9LGT` (code 517642) pin lands on `canonical-name-order`, not
+    `duplicate-code-precedence` — 517642's configured winner is `N-BK7`, so neither CDGM twin is preferred and
+    every earlier rung ties. It is pinned as the `canonical-name-order` case instead.
+  - `duplicate-code-precedence` is reachable only through code `847238` with **no** Abbe number supplied and a
+    stored index equal to the twins' evaluated `nd`; otherwise the third row (`H-ZF52`) wins on index residual, or
+    the Abbe rung fires first.
+
+Verification: gate passed (227 files / 2713 tests).
+
 ## Follow-ups
 
 - Runtime-side fallback identity stays untestable until `patentsForParty` stops reading module-level

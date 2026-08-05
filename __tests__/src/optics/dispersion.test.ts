@@ -713,6 +713,93 @@ describe("glass catalog", () => {
   });
 });
 
+/**
+ * One case per tie-breaking rung of `candidateSelectionReason`, in the order the
+ * resolver applies them. The multi-name test elsewhere in this file accepts any
+ * of four criteria, so before these each rung could have silently stopped
+ * working. Cases were derived from real catalog rows rather than invented, so a
+ * failure here means the ranking changed, not that a fixture drifted.
+ */
+describe("glass resolution criteria", () => {
+  it("reports none when there is no annotation", () => {
+    const resolution = explainCompatibleGlassResolution(undefined, 1.5168, 64.17);
+    expect(resolution.criterion).toBe("none");
+    expect(resolution.selected).toBeNull();
+  });
+
+  it("reports only-compatible for a single candidate", () => {
+    const resolution = explainCompatibleGlassResolution("N-BK7", 1.5168, 64.17);
+    expect(resolution.criterion).toBe("only-compatible");
+    expect(resolution.selected?.name).toBe("N-BK7");
+  });
+
+  it("reports source-priority when a direct name competes with a six-digit code", () => {
+    // 517642 also matches H-K9L/H-K9LGT, but the spelled-out name outranks them.
+    const resolution = explainCompatibleGlassResolution("N-BK7 517642 borosilicate", 1.5168, 64.17);
+    expect(resolution.criterion).toBe("source-priority");
+    expect(resolution.selected?.name).toBe("N-BK7");
+    expect(resolution.reason).toContain("direct name evidence outranks six-digit code evidence");
+  });
+
+  it("reports index-residual when two named candidates differ in d-line fit", () => {
+    const resolution = explainCompatibleGlassResolution("N-BK7 / H-K9L", 1.5168, 64.2);
+    expect(resolution.criterion).toBe("index-residual");
+    expect(resolution.selected?.name).toBe("H-K9L");
+  });
+
+  it("reports abbe-residual when the index residuals tie exactly", () => {
+    // S-TIH53 and S-TIH53W carry byte-identical coefficients, so only their
+    // listed Abbe numbers (23.7779 vs 23.77794) can separate them.
+    const resolution = explainCompatibleGlassResolution("S-TIH53 / S-TIH53W", 1.846659679775239, 23.7779);
+    expect(resolution.criterion).toBe("abbe-residual");
+    expect(resolution.selected?.name).toBe("S-TIH53");
+  });
+
+  it("reports token-order when annotation position is the only difference", () => {
+    // Identical coefficients, identical nd/vd — only which name appears first.
+    const resolution = explainCompatibleGlassResolution("H-K9L / H-K9LGT", 1.5168, 64.2);
+    expect(resolution.criterion).toBe("token-order");
+    expect(resolution.selected?.name).toBe("H-K9L");
+
+    const reversed = explainCompatibleGlassResolution("H-K9LGT / H-K9L", 1.5168, 64.2);
+    expect(reversed.criterion).toBe("token-order");
+    expect(reversed.selected?.name).toBe("H-K9LGT");
+  });
+
+  it("reports duplicate-code-precedence when the configured winner breaks an exact tie", () => {
+    // Code-only annotation with no Abbe number: S-TIH53/S-TIH53W tie on source,
+    // index, Abbe, and token, so only DUPLICATE_CODE6_PRECEDENCE separates them.
+    const resolution = explainCompatibleGlassResolution("847238", 1.846659679775239, undefined);
+    expect(resolution.criterion).toBe("duplicate-code-precedence");
+    expect(resolution.selected?.name).toBe(DUPLICATE_CODE6_PRECEDENCE.get("847238"));
+    expect(resolution.candidates[0].legacyCodePreferred).toBe(true);
+  });
+
+  it("reports canonical-name-order as the final deterministic fallback", () => {
+    // 517642's configured winner is N-BK7, so neither CDGM twin is preferred and
+    // every earlier rung ties — stable name ordering is all that remains.
+    const resolution = explainCompatibleGlassResolution("517642", 1.5168, 64.2);
+    expect(resolution.criterion).toBe("canonical-name-order");
+    expect(resolution.selected?.name).toBe("H-K9L");
+    expect(resolution.reason).toContain("H-K9L before H-K9LGT");
+  });
+
+  it("uses each criterion string in exactly one of these cases", () => {
+    const criteria = [
+      explainCompatibleGlassResolution(undefined, 1.5168, 64.17).criterion,
+      explainCompatibleGlassResolution("N-BK7", 1.5168, 64.17).criterion,
+      explainCompatibleGlassResolution("N-BK7 517642 borosilicate", 1.5168, 64.17).criterion,
+      explainCompatibleGlassResolution("N-BK7 / H-K9L", 1.5168, 64.2).criterion,
+      explainCompatibleGlassResolution("S-TIH53 / S-TIH53W", 1.846659679775239, 23.7779).criterion,
+      explainCompatibleGlassResolution("H-K9L / H-K9LGT", 1.5168, 64.2).criterion,
+      explainCompatibleGlassResolution("847238", 1.846659679775239, undefined).criterion,
+      explainCompatibleGlassResolution("517642", 1.5168, 64.2).criterion,
+    ];
+
+    expect(new Set(criteria).size).toBe(criteria.length);
+  });
+});
+
 describe("resolveGlass", () => {
   it("resolves an exact canonical name", () => {
     expect(resolveGlass("N-BK7")?.name).toBe("N-BK7");
