@@ -27,7 +27,7 @@ flowchart LR
   n_external_src_types["src/types"]
   n_external_src_utils_catalog["src/utils/catalog"]
   n_external_src_utils_featureFlags_ts["src/utils/featureFlags.ts"]
-  n_src_optics_TypeScript_modules --> |22| n_external_src_types
+  n_src_optics_TypeScript_modules --> |23| n_external_src_types
   n_src_optics_TypeScript_modules --> |21| n_src_optics_src_optics_internal
   n_src_optics_TypeScript_modules --> |15| n_src_optics_src_optics_analysis
   n_src_optics_TypeScript_modules --> |8| n_src_optics_src_optics_glassCatalogEntries
@@ -48,7 +48,7 @@ flowchart LR
 
 - Direct source files: 34
 - Direct subfolders: 13
-- Main outbound areas: src/types (22), src/optics/internal (21), src/optics/analysis (15), src/optics/compat.ts (11), src/optics/glassCatalogEntries (8), src/optics/optics.ts (8), src/optics/aberration (6), src/optics/chromatic (4), +25 more
+- Main outbound areas: src/types (23), src/optics/internal (21), src/optics/analysis (15), src/optics/compat.ts (11), src/optics/glassCatalogEntries (8), src/optics/optics.ts (8), src/optics/aberration (6), src/optics/chromatic (4), +25 more
 - External consumers: src/benchmarks, src/comparison, src/components/controls, src/components/diagram, src/components/display, src/components/hooks, src/components/layout, src/optics/aberration, +11 more
 
 ## Subfolders
@@ -105,5 +105,5 @@ flowchart LR
 | `spectralLines.ts` | Spectral Lines helper module | none | src/optics/chromatic, src/optics/constants.ts, src/optics/glassCatalog.ts, src/optics/math | LINE_NM |
 | `stopObstruction.ts` | Stop Obstruction helper module | src/types | src/optics/optics.ts, src/optics/raySampling.ts | stopInnerBlockedSemiDiameter |
 | `types.ts` | Shared TypeScript types | src/optics/dispersion.ts, src/optics/glassCatalog.ts, src/types | src/components/display (13), src/optics/analysis (11), src/optics/trace (11), src/optics/math (5), src/optics/diagram (4), +9 more | Vec3, Ray3, Plane3, SurfaceProfile, CompiledSurfaceInteraction, CompiledRadialPhaseTerm, CompiledDiffractivePhase, CompiledSurface, +16 more |
-| `validateLensData.ts` | Validate Lens Data module with default export | src/optics/internal (5), src/types, src/utils/catalog | src/optics/runtimeLens.ts | default, validateLensData |
+| `validateLensData.ts` | Validate Lens Data module with default export | src/optics/internal (5), src/types (2), src/utils/catalog | src/optics/runtimeLens.ts | default, validateLensData |
 | `vignetteAnalysis.ts` | Vignette Analysis helper module | src/optics/optics.ts (2), src/optics/analysis, src/optics/projection.ts, src/optics/raySampling.ts, src/types | src/components/display, src/optics/analysis | VignettingSample, computeVignettingCurve |

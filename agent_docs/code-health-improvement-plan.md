@@ -257,7 +257,7 @@ surfaces (Table 8 vs Table 10 renumbering), so parity must stop at 45.
 
 ### N5. Single-source the aspheric coefficient schema; derive sag, slope, validation, and tests
 
-- [ ] Effort: M · Impact: high · Risk: med (runtime math refactor; golden/benchmark gated)
+- [x] Effort: M · Impact: high · Risk: med (runtime math refactor; golden/benchmark gated)
 
 The A3–A20 coefficient set is hand-synchronized across four expansions: the type
 (`src/types/optics.ts` ~148–172), validator lists (`src/optics/validateLensData.ts` ~37–55), the

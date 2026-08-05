@@ -6,6 +6,7 @@
 /* ── Raw lens data types (as declared in .data.ts files) ── */
 
 import type { ImageFormatId, LensMountId } from "../utils/catalog/lensTaxonomy.js";
+import type { AsphericCoefficients } from "./asphericSchema.js";
 
 /** One sparse coefficient in a rotationally symmetric optical-path polynomial W(h). */
 export interface RadialPhaseTerm {
@@ -145,31 +146,9 @@ export interface FoldedPathTraceDiagnostics {
   loopKey: string | null;
 }
 
-export interface AsphericCoefficients {
-  K: number;
-  A4: number;
-  A6: number;
-  A8: number;
-  A10: number;
-  A12: number;
-  A14: number;
-  A16?: number;
-  A18?: number;
-  A20?: number;
-  /**
-   * Odd-order coefficients in the radial height h >= 0, so they stay rotationally
-   * symmetric. Optional — omit when the patent does not list them.
-   */
-  A3?: number;
-  A5?: number;
-  A7?: number;
-  A9?: number;
-  A11?: number;
-  A13?: number;
-  A15?: number;
-  A17?: number;
-  A19?: number;
-}
+/* Derived from the single-source schema in asphericSchema.ts; re-exported
+ * here so existing `types/optics.js` imports keep working. */
+export type { AsphericCoefficients } from "./asphericSchema.js";
 
 /** Spectral reference used by an element's authored refractive index and Abbe number. */
 export type RefractiveIndexReferenceLine = "d" | "e";
