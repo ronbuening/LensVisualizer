@@ -130,3 +130,13 @@ Verification: gate passed (233 files / 2782 tests).
 
 Verification: gate passed (233 files / 2783 tests); `npm run build` succeeds (1014 routes prerendered,
 sitemap + feeds written).
+
+### X9 — patent jurisdiction labels
+
+- Extended `JURISDICTION_LABELS` with the seven spec'd authorities: EP (European Patent Office),
+  DD (East Germany (GDR)), AT (Austria), SU (Soviet Union), IT (Italy), NL (Netherlands), CA (Canada).
+- New walk-the-real-data guard in `patentCatalog.test.ts`: every visible summary's
+  `patentJurisdiction(...).code` must have a curated label (label ≠ raw code), with a message pointing at
+  the map; plus direct pins for EP/DD/SU label strings.
+
+Verification: gate passed (233 files / 2784 tests).

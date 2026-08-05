@@ -577,7 +577,7 @@ card date for the spot-checked entries.
 
 ### X9. Complete the patent jurisdiction label map + real-data guard
 
-- [ ] Effort: S · Impact: low-med · Risk: low
+- [x] Effort: S · Impact: low-med · Risk: low
 
 `patentCatalog.ts` ~50–59 labels CH/CN/DE/FR/GB/JP/US/WO only; any other authority falls back to
 the raw code as a prerendered page heading ("DD"). `lensPatentMetadata.ts` ~44 already recognizes

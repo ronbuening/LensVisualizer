@@ -49,12 +49,19 @@ export interface PatentIndex {
 }
 
 const JURISDICTION_LABELS: Record<string, string> = {
+  AT: "Austria",
+  CA: "Canada",
   CH: "Switzerland",
   CN: "China",
+  DD: "East Germany (GDR)",
   DE: "Germany",
+  EP: "European Patent Office",
   FR: "France",
   GB: "United Kingdom",
+  IT: "Italy",
   JP: "Japan",
+  NL: "Netherlands",
+  SU: "Soviet Union",
   US: "United States",
   WO: "International (WIPO)",
 };
