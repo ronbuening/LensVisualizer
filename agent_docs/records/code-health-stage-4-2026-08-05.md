@@ -196,3 +196,18 @@ Verification: gate passed (235 files / 2811 tests); glass reports byte-identical
 
 Verification: gate passed (235 files / 2811 tests); mirrorOptics, exactSurfaceTrace, folded fixture,
 golden, and catalog trace suites green; `npm run generate:mirror-reports` byte-identical.
+
+### G11 — hardened audit scripts
+
+- `audit:image-circle` and `audit:patent-figure` package.json entries now carry
+  `--import ./scripts/ts-js-specifier-hook-register.mjs` (matching `audit:surface`), so adding a value
+  import to `surfaceMath.ts` can no longer break them with a far-from-cause `ERR_MODULE_NOT_FOUND`.
+- All three scripts use `resolve()` instead of `join(process.cwd(), …)` (absolute paths no longer
+  mangled); verified with one lens via both a relative and an absolute path.
+- Arg validation: patent-figure requires an integer page ≥ 1, four crop fractions in [0,1], and a
+  positive `--dpi`; surface-probe rejects non-finite/non-positive `--sd` overrides — each with a
+  usage-style message instead of NaN geometry and a misleading "no element edges found".
+- New `__tests__/scripts/auditImageCircle.test.ts`: runs the real command line against a known lens
+  (locks the loader contract) and asserts the `--sd` rejection.
+
+Verification: gate passed (236 files / 2813 tests).

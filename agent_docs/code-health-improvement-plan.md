@@ -1432,7 +1432,7 @@ suites, golden values all green; `npm run generate:mirror-reports` byte-identica
 
 ### G11. Harden the three audit scripts (loader hook, absolute paths, arg validation)
 
-- [ ] Effort: S · Impact: med-low · Risk: low
+- [x] Effort: S · Impact: med-low · Risk: low
 
 `audit:image-circle` and `audit:patent-figure` run plain `node` yet import `.ts` sources — they
 work only because those specific modules currently have zero value imports (adding one exported

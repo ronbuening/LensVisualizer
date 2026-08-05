@@ -24,7 +24,7 @@
  * with a ".js" specifier, which plain Node cannot resolve to the ".ts" source.
  */
 
-import { join } from "node:path";
+import { join, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 
 const ROOT = join(import.meta.dirname, "..");
@@ -42,7 +42,7 @@ if (!dataFile) {
   );
   process.exit(2);
 }
-const lens = (await import(pathToFileURL(join(process.cwd(), dataFile)).href)).default;
+const lens = (await import(pathToFileURL(resolve(dataFile)).href)).default;
 
 /* ── --scan: how far can this surface be drawn? ── */
 const scanIndex = argv.indexOf("--scan");
@@ -82,7 +82,12 @@ for (let index = 0; index < argv.length; index++) {
   if (argv[index] !== "--sd") continue;
   for (let next = index + 1; next < argv.length && !argv[next].startsWith("--"); next++) {
     const [label, value] = argv[next].split("=");
-    overrides.set(label, Number(value));
+    const sd = Number(value);
+    if (!label || !Number.isFinite(sd) || sd <= 0) {
+      console.error(`--sd expects <label>=<mm> with a finite positive value, got "${argv[next]}"`);
+      process.exit(2);
+    }
+    overrides.set(label, sd);
   }
 }
 

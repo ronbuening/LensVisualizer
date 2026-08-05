@@ -45,7 +45,7 @@
 import { execFileSync } from "node:child_process";
 import { readFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { join } from "node:path";
+import { join, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 
 const ROOT = join(import.meta.dirname, "..");
@@ -57,10 +57,22 @@ if (!dataFile || !pdf || !pageArg || !cropArg) {
   process.exit(2);
 }
 const page = Number(pageArg);
+if (!Number.isInteger(page) || page < 1) {
+  console.error(`<page> must be a finite integer >= 1, got "${pageArg}"`);
+  process.exit(2);
+}
 const dpi = Number((flags.find((flag) => flag.startsWith("--dpi=")) ?? "--dpi=300").split("=")[1]);
+if (!Number.isFinite(dpi) || dpi <= 0) {
+  console.error("--dpi must be a finite positive number");
+  process.exit(2);
+}
 const flip = flags.includes("--flip");
 const rotation = flags.includes("--rot90") ? 90 : flags.includes("--rot270") ? 270 : 0;
 const crop = cropArg.split(",").map(Number);
+if (crop.length !== 4 || crop.some((value) => !Number.isFinite(value) || value < 0 || value > 1)) {
+  console.error(`<x0,y0,x1,y1> must be four page fractions in [0,1], got "${cropArg}"`);
+  process.exit(2);
+}
 
 /* ── render and parse the page as binary PGM ── */
 const prefix = join(tmpdir(), `patentfig_${process.pid}`);
@@ -191,7 +203,7 @@ const rightX = inked[inked.length - 1].x;
 const truncated = leftX <= cropX0 + 1 || rightX >= cropX1 - 2;
 
 /* ── the data file's own silhouette ── */
-const lens = (await import(pathToFileURL(join(process.cwd(), dataFile)).href)).default;
+const lens = (await import(pathToFileURL(resolve(dataFile)).href)).default;
 const aspheres = lens.asph ?? {};
 let vertexZ = 0;
 const surfaces = lens.surfaces.map((surface) => {
