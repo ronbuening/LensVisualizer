@@ -12,42 +12,25 @@
  */
 import { describe, expect, it } from "vitest";
 import { mkdirSync, writeFileSync } from "node:fs";
-import buildLens from "../../../src/optics/buildLens.js";
 import {
   allEntries,
   assessCatalogGlassCompatibility,
-  evaluateCatalogAbbeNumber,
-  GLASS_ND_TOLERANCE,
-  GLASS_VD_TOLERANCE,
+  decodeCode6,
   resolveCompatibleGlass,
   resolveGlass,
-  type GlassEntry,
-  decodeCode6,
 } from "../../../src/optics/glassCatalog.js";
-import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
+import {
+  extractPatentNumber,
+  findCandidates,
+  walkLensSurfaces,
+  type EmbeddedCode,
+  type GlassScanCandidate,
+} from "./glassScanLib.js";
 import type { LensData, RefractiveIndexReferenceLine } from "../../../src/types/optics.js";
 
-const ND_TOLERANCE = GLASS_ND_TOLERANCE;
-const VD_TOLERANCE = GLASS_VD_TOLERANCE;
-const PGF_TOLERANCE = 0.02;
 const REPORT_DIR = "agent_docs/generated";
 
-interface EmbeddedCode {
-  raw: string;
-  nd: number;
-  vd: number;
-}
-
-interface Candidate {
-  name: string;
-  nd: number;
-  vd: number;
-  pgf: number | undefined;
-  ndDiff: number;
-  vdDiff: number | null;
-  pgfDiff: number | null;
-  codeDistance: number | null;
-}
+type Candidate = GlassScanCandidate;
 
 interface RelabelRow {
   lensKey: string;
@@ -69,18 +52,6 @@ interface RelabelRow {
 
 const modules = import.meta.glob<{ default: LensData }>("../../../src/lens-data/**/*.data.ts", { eager: true });
 
-function toRepoRelativeLensPath(modulePath: string): string {
-  const lensDataIndex = modulePath.indexOf("src/lens-data/");
-  return lensDataIndex >= 0 ? modulePath.slice(lensDataIndex) : modulePath.replace(/^(\.\.\/)+/, "");
-}
-
-function extractPatentNumber(subtitle: string | undefined): string | null {
-  const match = subtitle?.match(
-    /\b(?:Patent\s+)?((?:JPWO|WO|US|JP|DE|GB|FR|CH|CN)\s*\d(?:[\d,./-]|\s+(?=\d))*(?:\s*(?:A1|A|B2|B1|B|C\d?|U))?)/i,
-  );
-  return match?.[1].replace(/\s+/g, " ").trim() ?? null;
-}
-
 function extractGlassCode(annotation: string): EmbeddedCode | null {
   const match = annotation.match(/\b(\d{3})[/\-\s](\d{3})\b/) ?? annotation.match(/\b(\d{3})(\d{3})\b/);
   if (!match) return null;
@@ -90,51 +61,6 @@ function extractGlassCode(annotation: string): EmbeddedCode | null {
   // rejected outright.
   if (nd < 1.4 || nd > 2.15) return null;
   return { raw: `${match[1]}/${match[2]}`, nd, vd };
-}
-
-function partialDispersionPgF(vd: number, dPgF: number): number {
-  return 0.6438 - 0.001682 * vd + dPgF;
-}
-
-function findCandidates(
-  entries: readonly GlassEntry[],
-  storedNd: number,
-  storedVd: number | undefined,
-  storedDPgF: number | undefined,
-  embeddedCode: EmbeddedCode | null,
-  referenceLine: RefractiveIndexReferenceLine,
-): Candidate[] {
-  const lensPgF =
-    referenceLine === "d" && storedVd !== undefined && storedDPgF !== undefined
-      ? partialDispersionPgF(storedVd, storedDPgF)
-      : null;
-
-  return entries
-    .map<Candidate>((entry) => {
-      const compatibility = assessCatalogGlassCompatibility(entry, storedNd, storedVd, referenceLine);
-      const nd = compatibility.catalogIndex;
-      const candidateAbbe = referenceLine === "d" ? entry.vd : evaluateCatalogAbbeNumber(entry, "e");
-      const ndDiff = compatibility.indexDiff;
-      const vdDiff = compatibility.abbeDiff;
-      const pgfDiff = lensPgF !== null && entry.PgF !== undefined ? entry.PgF - lensPgF : null;
-      const codeDistance =
-        referenceLine === "e" || embeddedCode === null
-          ? null
-          : Math.abs(nd - embeddedCode.nd) * 1000 + Math.abs(candidateAbbe - embeddedCode.vd) * 10;
-
-      return { name: entry.name, nd, vd: candidateAbbe, pgf: entry.PgF, ndDiff, vdDiff, pgfDiff, codeDistance };
-    })
-    .filter(
-      (candidate) =>
-        Math.abs(candidate.ndDiff) <= ND_TOLERANCE &&
-        (candidate.vdDiff === null || Math.abs(candidate.vdDiff) <= VD_TOLERANCE),
-    )
-    .filter((candidate) => candidate.pgfDiff === null || Math.abs(candidate.pgfDiff) <= PGF_TOLERANCE)
-    .sort((a, b) => {
-      if (a.codeDistance !== null && b.codeDistance !== null) return a.codeDistance - b.codeDistance;
-      return Math.abs(a.ndDiff) - Math.abs(b.ndDiff);
-    })
-    .slice(0, 5);
 }
 
 function candidateSummary(candidates: readonly Candidate[]): string {
@@ -193,20 +119,8 @@ describe("glass relabel by lens scan", () => {
     const entries = allEntries();
     const rows: RelabelRow[] = [];
 
-    for (const [path, mod] of Object.entries(modules)) {
-      const raw = mod.default;
-      if (!raw?.key) continue;
-      const data: LensData = { ...LENS_DEFAULTS, ...raw } as LensData;
+    walkLensSurfaces(modules, ({ filePath, data, L }) => {
       const patentNumber = extractPatentNumber(data.subtitle);
-
-      let L;
-      try {
-        L = buildLens(data);
-      } catch {
-        continue;
-      }
-
-      const filePath = toRepoRelativeLensPath(path);
       const elementById = new Map(L.elements.map((element) => [element.id, element]));
 
       for (let i = 0; i < L.S.length; i++) {
@@ -250,7 +164,7 @@ describe("glass relabel by lens scan", () => {
           ),
         });
       }
-    }
+    });
 
     const lensKeys = sortRowsByLens(rows);
     const actionableSurfaceCount = rows.filter((row) => row.candidates.length > 0).length;
