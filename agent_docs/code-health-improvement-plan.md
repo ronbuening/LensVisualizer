@@ -163,7 +163,7 @@ goldens, rather than with the test-only items.
 
 ### N1. Author/assignee patent-count parity test (the #639 bug class)
 
-- [ ] Effort: S · Impact: high · Risk: none (test-only)
+- [x] Effort: S · Impact: high · Risk: none (test-only)
 
 PR #639 fixed a mismatch between build-time `patentCount` (baked into `build-metadata.json` by
 `scripts/author-metadata.mjs`) and the patents actually listed by `patentsForParty` at runtime. The
@@ -182,6 +182,15 @@ Steps:
 Verification: gate passes; deliberately breaking the fallback identity in `authorCatalog.ts`
 (e.g. drop the `lens:` prefix) makes the new test fail.
 Out of scope: fixing the duplication itself (that is C1).
+
+Correction (2026-08-04, from execution): the stated verification does not hold and was not
+achievable. All 504 visible lenses currently carry an explicit `patentNumber`, so the
+`lens:${key}` fallback branch is never reached — dropping the prefix, or even `continue`-ing on a
+missing number, leaves every parity assertion green. What the walk does catch is any divergence in
+the aggregation identity that real data exercises: keying per lens instead of per patent fails 15
+parties immediately (verified). The generator half of the fallback convention is covered with
+synthetic input in `__tests__/scripts/authorMetadata.test.ts`; the runtime half cannot be injected
+while `patentsForParty` reads module-level `LENS_SUMMARIES`, and is C1's to fix.
 
 ### N2. Lens-index URL parser/serializer and return-path validator tests
 
