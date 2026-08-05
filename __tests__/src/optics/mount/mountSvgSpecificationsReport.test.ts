@@ -179,6 +179,24 @@ function openQuestions(spec: MountSpec): string[] {
   return lines;
 }
 
+/* FNV-1a over the SVG markup: a stable fingerprint so figure changes are
+ * reviewable without committing megabytes of inline path data — the full
+ * markup lives in the linked standalone .svg files. */
+function svgContentHash(markup: string): string {
+  let hash = 0x811c9dc5;
+  for (const character of markup) {
+    hash ^= character.codePointAt(0) ?? 0;
+    hash = Math.imul(hash, 0x01000193);
+  }
+  return (hash >>> 0).toString(16).padStart(8, "0");
+}
+
+function svgContentSummary(markup: string): string {
+  const elementCount = (markup.match(/<(path|circle|line|rect|text|polygon|polyline)\b/g) ?? []).length;
+  const layerCount = (markup.match(/<g data-layer=/g) ?? []).length;
+  return `${elementCount} elements in ${layerCount} layers · hash \`${svgContentHash(markup)}\``;
+}
+
 function mountSection(spec: MountSpec, svgRelPaths: Record<string, string>): string[] {
   const lines: string[] = [];
   lines.push(`### \`${spec.mountId}\` — ${spec.displayLabel}`);
@@ -190,9 +208,11 @@ function mountSection(spec: MountSpec, svgRelPaths: Record<string, string>): str
   lines.push("");
   for (const v of VIEWS) {
     const doc = buildMountSvgDoc(spec, spec.mvp.profileModel.selectedMvpProfileId, v.view);
-    lines.push(`**${v.label}** — viewBox \`${doc.viewBox}\` ([standalone SVG](${svgRelPaths[v.file]}))`);
-    lines.push("");
-    lines.push(mountSvgDocToString(doc));
+    // Figures are summarized, not embedded: the diffable geometry lives in
+    // src/mounts/ and the full markup in the committed standalone .svg file.
+    lines.push(
+      `**${v.label}** — viewBox \`${doc.viewBox}\` · ${svgContentSummary(mountSvgDocToString(doc))} ([standalone SVG](${svgRelPaths[v.file]}))`,
+    );
     lines.push("");
   }
   lines.push(...geometryTable("Camera-side front-view geometry", spec.cameraSideFeatures));
@@ -200,11 +220,14 @@ function mountSection(spec: MountSpec, svgRelPaths: Record<string, string>): str
   lines.push(...contactsTable(spec.contacts));
   lines.push(...couplingsTable(spec));
   lines.push(...axialTable(spec));
+  const machineJson = emitMountJsonString(spec);
   lines.push(`#### Machine-readable mount block`);
   lines.push("");
-  lines.push("```json");
-  lines.push(emitMountJsonString(spec));
-  lines.push("```");
+  lines.push(
+    `Summarized, not embedded: the block is emitted by construction from \`src/mounts/${spec.mountId}.mount.ts\` ` +
+      `(${machineJson.length} bytes, content hash \`${svgContentHash(machineJson)}\`). Read the typed source for the ` +
+      `diffable geometry, or regenerate the full JSON with \`emitMountJsonString\`.`,
+  );
   lines.push("");
   lines.push(...sourcesTable(spec));
   lines.push(...openQuestions(spec));
@@ -248,7 +271,7 @@ function buildReport(specs: MountSpec[], svgRelPathsByMount: Record<string, Reco
   lines.push(`## Appendix — JSON Schema reference`);
   lines.push("");
   lines.push(
-    `The machine block of each mount validates against \`src/mounts/lens-mount.schema.json\` (schema version 1.3). In this project the contract is enforced through TypeScript (\`src/types/mount.ts\` + \`satisfies MountSpecInput\` + \`validateMountSpec.ts\`); the JSON block is emitted from the typed object, so it conforms by construction.`,
+    `The machine block of each mount validates against \`src/mounts/lens-mount.schema.json\` (schema version 1.3). In this project the contract is enforced through TypeScript (\`src/types/mount.ts\` + \`satisfies MountSpecInput\` + \`validateMountSpec.ts\`); the JSON is emitted from the typed object, so it conforms by construction. This report records each block's size and content hash rather than the full JSON — the diffable source of truth is \`src/mounts/*.mount.ts\`.`,
   );
   lines.push("");
   return lines.join("\n");
@@ -280,6 +303,7 @@ describe("lens mount SVG specifications report", () => {
     expect(specs.length).toBeGreaterThanOrEqual(3);
     expect(report).toContain("# Lens Mount SVG Specifications");
     expect(report).toContain("nikon-f");
-    expect(report).toContain('"schemaVersion": "1.3"');
+    expect(report).toContain("Machine-readable mount block");
+    expect(report).toMatch(/content hash `[0-9a-f]{8}`/);
   });
 });
