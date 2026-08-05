@@ -11,6 +11,7 @@ import type { Theme } from "../../types/theme.js";
 import { formatDisplayDate } from "../../utils/content/changelogHelpers.js";
 import type { SeriesSummary } from "../../utils/content/homepageContent.js";
 import { canonicalPagePath } from "../../utils/seo/siteUrls.js";
+import { withAlpha } from "../../utils/style/styles.js";
 
 interface SeriesCardProps {
   series: SeriesSummary;
@@ -39,7 +40,7 @@ export default function SeriesCard({ series, theme: t }: SeriesCardProps) {
               fontSize: "0.6rem",
               padding: "1px 6px",
               borderRadius: 3,
-              background: `${t.toggleActiveBg}22`,
+              background: withAlpha(t.toggleActiveBg, "22"),
               color: t.toggleActiveText,
               letterSpacing: "0.06em",
               textTransform: "uppercase",

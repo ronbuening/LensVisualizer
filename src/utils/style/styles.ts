@@ -21,6 +21,34 @@ import type { CSSProperties } from "react";
 import type { Theme } from "../../types/theme.js";
 
 /* =====================================================================
+ * §0  COLOR HELPERS
+ * ===================================================================== */
+
+/**
+ * Apply a two-digit hex alpha to a CSS color, returning valid CSS for the
+ * color forms theme tokens actually use. Appending the alpha digits raw only
+ * works on 6-digit hex; `#rgb` and `rgba(...)` inputs would produce invalid
+ * CSS that browsers silently drop, so those forms are converted first.
+ */
+export function withAlpha(color: string, alphaHex: string): string {
+  const shortHex = /^#([0-9a-f])([0-9a-f])([0-9a-f])$/i.exec(color);
+  if (shortHex) {
+    const [, r, g, b] = shortHex;
+    return `#${r}${r}${g}${g}${b}${b}${alphaHex}`;
+  }
+  if (/^#[0-9a-f]{6}$/i.test(color)) {
+    return `${color}${alphaHex}`;
+  }
+  const rgbaMatch = /^rgba?\(\s*([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)\s*(?:,\s*[\d.]+\s*)?\)$/i.exec(color);
+  if (rgbaMatch) {
+    const [, r, g, b] = rgbaMatch;
+    const alpha = Number((parseInt(alphaHex, 16) / 255).toFixed(3));
+    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+  }
+  return color;
+}
+
+/* =====================================================================
  * §1  STATIC CONSTANTS — no theme parameter, frozen for safety
  * ===================================================================== */
 

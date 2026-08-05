@@ -398,7 +398,7 @@ already cover it.
 
 ### X1. Render the badge tint backgrounds (invalid hex alpha) **[changelog]**
 
-- [ ] Effort: S · Impact: med · Risk: low
+- [x] Effort: S · Impact: med · Risk: low
 
 The ~13%-alpha tints behind changelog type badges, article tag chips, and series badges have never
 rendered: the code appends a hex alpha to 3-digit hex or `rgba()` colors, producing invalid CSS

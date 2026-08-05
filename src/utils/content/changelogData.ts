@@ -22,6 +22,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-08-05 ─────────────────────────────────
   {
     date: "2026-08-05",
+    type: "fix",
+    summary: "Fixed missing tinted backgrounds behind changelog, article, and series badges",
+  },
+  {
+    date: "2026-08-05",
     type: "lens",
     summary: "Added six classic Voigtländer Heliar, Nokton, Skopar, Dynar, and Telomar designs",
   },

@@ -35,11 +35,11 @@ Add an entry when merging a PR that does any of the following:
 
 | Type | Color | Use for |
 |------|-------|---------|
-| `feature` | blue (`#58c`) | New capability the user can interact with |
-| `fix` | red-orange (`#c65`) | Corrects incorrect behavior or rendering |
-| `lens` | green (`#2a7`) | New lens added to the catalog |
-| `improvement` | amber (`#c84`) | Enhancement to an existing feature, SEO, or performance |
-| `article` | purple (`#a5c`) | New article or guide published in Articles & Guides |
+| `feature` | blue (`#5588cc`) | New capability the user can interact with |
+| `fix` | red-orange (`#cc6655`) | Corrects incorrect behavior or rendering |
+| `lens` | green (`#22aa77`) | New lens added to the catalog |
+| `improvement` | amber (`#cc8844`) | Enhancement to an existing feature, SEO, or performance |
+| `article` | purple (`#aa55cc`) | New article or guide published in Articles & Guides |
 
 ---
 
