@@ -284,7 +284,12 @@ function escapeRegExp(value: string): string {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
-function glassTokens(glassString: string): string[] {
+/**
+ * Tokenize a glass annotation exactly the way the resolver does. Exported so
+ * report scans stay aligned with the real tokenizer instead of maintaining
+ * their own approximations.
+ */
+export function glassTokens(glassString: string): string[] {
   // The bare 6-digit alternative carries digit/decimal boundary guards so a
   // refractive index written to six decimals ("nd=1.516330") cannot shed its
   // integer part and masquerade as the Schott code 516330.

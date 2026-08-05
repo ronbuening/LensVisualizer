@@ -621,7 +621,7 @@ checkout with `patents/` populated.
 
 ### X11. Align `unresolvedGlassScan` with the real resolver tokenizer
 
-- [ ] Effort: S · Impact: med · Risk: low
+- [x] Effort: S · Impact: med · Risk: low
 
 `__tests__/src/optics/unresolvedGlassScan.test.ts` ~37–45 filters candidate tokens through a
 vendor-prefix whitelist written before the Hikari-era expansion — unresolved `J-`, `Q-`, `M-`,

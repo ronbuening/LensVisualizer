@@ -160,3 +160,18 @@ Verification: gate passed (233 files / 2784 tests).
   shielded by `unresolvedGlassScan`'s vendor-prefix whitelist, which X11 removes next.
 
 Verification: gate passed (233 files / 2786 tests).
+
+### X11 — unresolvedGlassScan aligned with the resolver tokenizer
+
+- Exported `glassTokens` from `glassCatalog.ts` (documented as the alignment point for scans).
+- `candidateTokens` in the scan now tokenizes via `glassTokens` and keeps digit-bearing tokens that
+  themselves fail `resolveGlass`; the pre-Hikari vendor-prefix whitelist is gone.
+- Regenerated report: 122 → 202 distinct unresolved tokens. Newly surfaced rows are exactly the
+  predicted classes (`J-LASFH13`, LAK/LAF/PK families, `E48R`, `BASF6-CLASS`, more six-digit codes).
+- **One nuance vs the spec's "only ADDS rows" expectation:** two rows disappeared — phantom tokens
+  `552981` and `854505` from six-decimal indices (`nd=1.552981`, `nd=1.854505`). X10's regeneration could
+  not remove them because they came from the scan's own unguarded local regex, not the runtime tokenizer;
+  switching the scan onto the guarded tokenizer removed them here. Both are X10's intended fix, one item
+  late, and both annotations' real codes (553555, 855399) remain in the queue.
+
+Verification: gate passed (233 files / 2786 tests).

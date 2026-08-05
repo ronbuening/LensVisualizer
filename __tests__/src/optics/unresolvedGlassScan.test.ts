@@ -11,7 +11,7 @@
 import { describe, expect, it } from "vitest";
 import { mkdirSync, writeFileSync } from "node:fs";
 import buildLens from "../../../src/optics/buildLens.js";
-import { resolveGlass } from "../../../src/optics/glassCatalog.js";
+import { glassTokens, resolveGlass } from "../../../src/optics/glassCatalog.js";
 import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
 import type { LensData } from "../../../src/types/optics.js";
 
@@ -35,13 +35,13 @@ function isExplicitlyUnmatched(glassString: string): boolean {
 }
 
 function candidateTokens(glassString: string): string[] {
-  const tokens = glassString.match(/[A-Za-z][A-Za-z0-9-]*\d[A-Za-z0-9]*|\d{6}/g) ?? [];
-  return tokens
+  // Tokenize with the resolver's own tokenizer, then keep every digit-bearing
+  // token that itself fails to resolve. No vendor-prefix whitelist: the old
+  // list predated the Hikari-era expansion and silently hid unresolved J-/Q-/
+  // M-/MC-/D-/PBH/TAC-style tokens from the catalog-expansion queue.
+  return glassTokens(glassString)
     .map((token) => token.toUpperCase())
-    .filter((token) => {
-      if (/^\d{6}$/.test(token)) return true;
-      return /^(S-|N-|L-|H-|K-|TAF|TAFD|NBFD|FCD|FC|BACD|BSC|E-FD|E-F|SF\d|BK\d|F\d|CAF2|CAFD|FK|SK)/.test(token);
-    });
+    .filter((token) => /\d/.test(token) && !resolveGlass(token));
 }
 
 describe("unresolved glass scan", () => {
