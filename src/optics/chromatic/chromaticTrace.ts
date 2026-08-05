@@ -5,17 +5,13 @@
  */
 
 import type { ChromaticChannel, ChromaticRayFanSpread, RayTraceResult, RuntimeLens } from "../../types/optics.js";
-import type { Ray3, PreparedOpticalState } from "../types.js";
 import {
-  traceEngineRay2,
   traceRayChromatic2,
   traceRayVectorChromatic2,
   traceSkewRayChromatic2,
   traceSkewRayVectorChromatic2,
 } from "../trace/rayAdapters.js";
-import type { TraceOptions, EngineTraceResult } from "../trace/types.js";
 import type { VectorRayTraceInput2 } from "../trace/rayAdapters.js";
-import { channelIndexResolverForState2 } from "./indexResolver.js";
 
 interface MarginalRayData {
   y: number;
@@ -27,31 +23,6 @@ interface MarginalRayData {
 function spanOf(values: number[]): number {
   if (values.length < 2) return 0;
   return Math.max(...values) - Math.min(...values);
-}
-
-/**
- * Trace one engine ray with wavelength-specific refractive indices.
- *
- * The input ray is in optical millimeters with a normalized 3D direction. The
- * supplied channel replaces each surface's d-line index with its resolved index
- * for C/d/F/g spectral lines before exact surface tracing.
- *
- * @param state - prepared optical state for the current lens controls
- * @param input - 3D ray origin/direction in optical coordinates
- * @param channel - chromatic channel to trace
- * @param options - trace limits such as stop/image-plane termination
- * @returns exact engine trace result for the selected wavelength
- */
-export function traceEngineRayChromatic2(
-  state: PreparedOpticalState,
-  input: Ray3,
-  channel: ChromaticChannel,
-  options: TraceOptions = {},
-): EngineTraceResult {
-  return traceEngineRay2(state, input, {
-    ...options,
-    indexAtSurface: channelIndexResolverForState2(state, channel),
-  });
 }
 
 /**

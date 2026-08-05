@@ -175,3 +175,13 @@ Verification: gate passed (233 files / 2786 tests).
   late, and both annotations' real codes (553555, 855399) remain in the queue.
 
 Verification: gate passed (233 files / 2786 tests).
+
+### X12 — traceEngineRayChromatic2 deleted
+
+- Took the spec's delete option: the function had zero callers (only a `compat.ts` re-export), and its
+  per-channel glass indices without `wavelengthNm` were exactly the mixed diffractive state the
+  diffractive plan forbids. Removed the function, its now-unused imports, and its half of the compat
+  re-export line (`computeChromaticRayFanSpread2` has real callers and stays).
+- `grep -rn traceEngineRayChromatic2 src __tests__` → no hits.
+
+Verification: gate passed (233 files / 2786 tests).

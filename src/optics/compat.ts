@@ -258,7 +258,7 @@ export {
   wavelengthNd2,
   type SurfaceIndexResolver2,
 } from "./chromatic/indexResolver.js";
-export { computeChromaticRayFanSpread2, traceEngineRayChromatic2 } from "./chromatic/chromaticTrace.js";
+export { computeChromaticRayFanSpread2 } from "./chromatic/chromaticTrace.js";
 export { dispersionTableFromRuntime2, makeSurfaceDispersion2 } from "./chromatic/dispersionAdapter.js";
 export {
   summarizeDispersionQuality2,

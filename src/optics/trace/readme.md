@@ -86,5 +86,5 @@ flowchart LR
 | `runtimeRayResult.ts` | Runtime Ray Result helper module | same folder, src/optics/types.ts, src/types | same folder | RuntimeSkewRayTraceResult, engineTraceToRuntimeRayResult, engineTraceToRuntimeSkewResult, vectorLeadPoint |
 | `sequentialTrace.ts` | Sequential Trace helper module | same folder (6), src/optics/constants.ts, src/optics/math, src/optics/types.ts, src/types | same folder | traceSequential |
 | `stopTrace.ts` | Stop Trace helper module | same folder (4), src/optics/types.ts | src/optics/compat.ts, src/optics/field | StopTraceOptions, TraceToStopResult, traceToStopViaGeneralized2 |
-| `types.ts` | Shared TypeScript types | src/optics/math, src/optics/types.ts, src/types | same folder (7), src/optics/chromatic, src/optics/field | TraceFailureReason, TraceHit, EngineTraceResult, TraceOptions, TraceDiagnosticsInput |
+| `types.ts` | Shared TypeScript types | src/optics/math, src/optics/types.ts, src/types | same folder (7), src/optics/field | TraceFailureReason, TraceHit, EngineTraceResult, TraceOptions, TraceDiagnosticsInput |
 | `utils.ts` | Utils helper module | same folder (2), src/optics/math, src/optics/types.ts, src/types | same folder (3) | directionSlopes, projectCoordinateToZ, normalizeTraceDirection, finalizeTraceResult, clampTraceCount, resolveReturnVertexIndex |

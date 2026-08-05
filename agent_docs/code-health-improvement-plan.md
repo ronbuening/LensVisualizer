@@ -640,7 +640,7 @@ Verification: gate passes; `npm run generate:glass-reports`; diff of
 
 ### X12. Defuse the `traceEngineRayChromatic2` wavelength trap
 
-- [ ] Effort: S · Impact: med · Risk: low
+- [x] Effort: S · Impact: med · Risk: low
 
 `src/optics/chromatic/chromaticTrace.ts:45-55` sets per-channel glass indices but not
 `wavelengthNm`, so any caller gets diffractive phase power at d-line while glass disperses per
