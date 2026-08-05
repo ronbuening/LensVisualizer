@@ -5,7 +5,7 @@
  * anchor and the RSS GUID, so its output is pinned exactly.
  */
 
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import {
   CHANGELOG_TYPE_COLORS,
   CHANGELOG_TYPE_LABELS,
@@ -30,9 +30,13 @@ describe("formatDisplayDate", () => {
   });
 
   it("does not shift the calendar day in negative-offset timezones", () => {
-    // The helper appends T00:00:00 so the date is parsed as local, not UTC;
-    // parsing "2026-01-01" as UTC would render Dec 31 west of Greenwich.
-    expect(formatDisplayDate("2026-01-01")).toContain("Jan 1");
+    try {
+      vi.stubEnv("TZ", "America/New_York");
+      // Parsing the bare ISO date as UTC would render Dec 31 in this timezone.
+      expect(formatDisplayDate("2026-01-01")).toBe("Jan 1, 2026");
+    } finally {
+      vi.unstubAllEnvs();
+    }
   });
 });
 
