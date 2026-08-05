@@ -114,3 +114,19 @@ Verification: gate passed (233 files / 2782 tests).
   they can actually catch regressions under any test-runner locale.
 
 Verification: gate passed (233 files / 2782 tests).
+
+### X8 — publication dates UTC everywhere
+
+- `parseGitLogDates` now derives the calendar date from the UTC instant
+  (`timestamp.toISOString().slice(0, 10)`) instead of slicing the committer-local `%cI` string, so site
+  cards, JSON-LD, sitemap, and RSS `pubDate` all agree on one day. `fallbackDate` in the generator was
+  already UTC-today and is now consistent rather than divergent — no change needed there.
+- New test case pinning the evening-EDT boundary: `2026-08-03T21:14:12-04:00` → publishedOn `2026-08-04`.
+- Measured impact on regeneration: 1172 of 3124 publishedOn/lastModified fields shift forward one day
+  (all evening-ET commits). Spot-check: `canon-ef-14mm-f28-l` card date moved 2026-07-18 → 2026-07-19,
+  matching its `publishedAt` of `2026-07-19T02:51:49Z`; current-feed items' pubDate calendar dates equal
+  their card dates.
+- Changelog entry added (fix).
+
+Verification: gate passed (233 files / 2783 tests); `npm run build` succeeds (1014 routes prerendered,
+sitemap + feeds written).

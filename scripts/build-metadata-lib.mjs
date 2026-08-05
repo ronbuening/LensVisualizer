@@ -64,7 +64,9 @@ export function parseGitLogDates(raw) {
     const timestamp = new Date(committedAt);
     if (Number.isNaN(timestamp.valueOf())) return null;
     return {
-      on: committedAt.slice(0, 10),
+      // UTC calendar date, not the committer-local date embedded in %cI:
+      // site cards, JSON-LD, and RSS pubDate must all agree on one day.
+      on: timestamp.toISOString().slice(0, 10),
       at: timestamp.toISOString(),
       commit: commit || null,
     };

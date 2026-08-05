@@ -557,7 +557,7 @@ drops to ~0 (patent-number collator remains).
 
 ### X8. Publication dates: UTC everywhere **[changelog]**
 
-- [ ] Effort: S · Impact: low-med · Risk: low-med (some displayed dates shift by one day)
+- [x] Effort: S · Impact: low-med · Risk: low-med (some displayed dates shift by one day)
 
 `parseGitLogDates` (`scripts/build-metadata-lib.mjs` ~60–69) keeps the committer-LOCAL calendar
 date as `publishedOn` (shown on site cards, JSON-LD, sitemap) while `publishedAt` is UTC (drives
