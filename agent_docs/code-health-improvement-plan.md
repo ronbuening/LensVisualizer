@@ -1403,7 +1403,7 @@ Verification: per-commit byte-identical reports; gate passes; combined scan wall
 
 ### G9. Type/dead-code cleanup: `SurfaceDispersion` name collision, dead `indexAt`, deprecated trio
 
-- [ ] Effort: S · Impact: low-med · Risk: low
+- [x] Effort: S · Impact: low-med · Risk: low
 
 Two exported `SurfaceDispersion` types with different shapes (`dispersion.ts` ~60–65 vs
 `types.ts` ~162–167, converted between in `prescription/dispersion.ts` ~23–41); dead export

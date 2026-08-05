@@ -167,3 +167,19 @@ Verification: gate passed (235 files / 2811 tests); reports byte-identical.
   `agent_docs/gotchas.md`.
 
 Verification: full gate passed after the final conversion (235 files / 2811 tests).
+
+### G9 — type/dead-code cleanup
+
+- Renamed the engine-side `SurfaceDispersion` (`optics/types.ts`, the `{surfaceIndex, quality,
+  indexAt(), glassEntry}` shape) to `CompiledSurfaceDispersion` across its consumers
+  (`chromatic/dispersionAdapter.ts`, `prescription/dispersion.ts`); `dispersion.ts`'s legacy
+  `{fn, quality, glassEntry?}` shape keeps the original name, ending the two-types-one-name collision.
+- Deleted the dead `dispersion.indexAt` export (zero importers; its fallback semantics differed from
+  the live resolver path — the X12-adjacent trap class).
+- Migrated the five deprecated-trio accesses (`compatibility.catalogNd`/`.ndDiff`/`.vdDiff` in
+  catalogMismatchScan ×3 and glassRelabelByLensScan ×2) to `catalogIndex`/`indexDiff`/`abbeDiff` and
+  dropped the trio from `CatalogGlassCompatibility`. (The audit's "5 scan usages" include row fields
+  named `catalogNd`/`ndDiff` in sixDigitGlassCodeScan that are scan-local computed values, not the
+  deprecated compatibility fields — left as-is.)
+
+Verification: gate passed (235 files / 2811 tests); glass reports byte-identical.

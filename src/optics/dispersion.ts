@@ -192,20 +192,6 @@ export function buildSurfaceDispersionIndex(
 }
 
 /**
- * Look up the refractive index at a surface for a given chromatic channel.
- * Convenience wrapper that delegates to the pre-resolved closure on the
- * runtime lens. Returns the legacy d-line `nd` if no dispersion entry exists
- * at the requested index (e.g. an out-of-range probe).
- */
-export function indexAt(L: RuntimeLens, surfIdx: number, channel: ChromaticChannel | undefined): number {
-  const surf = L.S[surfIdx];
-  if (!channel) return surf.nd === 1.0 ? 1.0 : surf.nd;
-  const entry = L.indexByIdx?.[surfIdx];
-  if (!entry) return surf.nd === 1.0 ? 1.0 : surf.nd;
-  return entry.fn(channel);
-}
-
-/**
  * Aggregate dispersion-quality summary for a whole lens — the "weakest link"
  * across all glass surfaces. Used to flag the LoCA readout as approximate when
  * any traced glass lacks richer-than-Abbe data.

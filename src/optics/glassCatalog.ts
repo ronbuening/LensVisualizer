@@ -56,12 +56,6 @@ export interface CatalogGlassCompatibility {
   readonly indexDiff: number;
   /** Catalog Abbe number minus the authored vd or ve. */
   readonly abbeDiff: number | null;
-  /** @deprecated Use catalogIndex. Kept for report compatibility. */
-  readonly catalogNd: number;
-  /** @deprecated Use indexDiff. Kept for report compatibility. */
-  readonly ndDiff: number;
-  /** @deprecated Use abbeDiff. Kept for report compatibility. */
-  readonly vdDiff: number | null;
 }
 
 export type GlassResolutionMatchSource = "name" | "alias" | "code";
@@ -177,9 +171,6 @@ export function assessCatalogGlassCompatibility(
     catalogIndex,
     indexDiff,
     abbeDiff,
-    catalogNd: catalogIndex,
-    ndDiff: indexDiff,
-    vdDiff: abbeDiff,
   };
 }
 

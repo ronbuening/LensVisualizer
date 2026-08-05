@@ -159,7 +159,7 @@ export interface AnnotationSpec {
 }
 
 /** Per-surface chromatic index resolver and data-quality marker. */
-export interface SurfaceDispersion {
+export interface CompiledSurfaceDispersion {
   surfaceIndex: number;
   quality: DispersionQuality;
   indexAt(channel: ChromaticChannel): number;
@@ -216,7 +216,7 @@ export interface EngineLens {
   variables: VariableSpec;
   aberrationControl: AberrationControlSpec | null;
   annotations: AnnotationSpec;
-  dispersion: readonly SurfaceDispersion[];
+  dispersion: readonly CompiledSurfaceDispersion[];
   display: DisplaySpec;
   authoredRayFans: AuthoredRayFans;
   perspectiveControl: PerspectiveControlConfig | null;

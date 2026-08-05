@@ -108,10 +108,10 @@ describe("catalog-mismatch scan", () => {
             referenceLine,
             storedNd: surface.nd,
             storedVd: element.vd,
-            catalogNd: compatibility.catalogNd,
+            catalogNd: compatibility.catalogIndex,
             catalogVd: evaluateCatalogAbbeNumber(entry, referenceLine),
-            ndDiff: compatibility.ndDiff,
-            vdDiff: compatibility.vdDiff,
+            ndDiff: compatibility.indexDiff,
+            vdDiff: compatibility.abbeDiff,
           });
         }
       }
