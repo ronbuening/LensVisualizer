@@ -79,6 +79,9 @@ describe("RelationshipMapPage", () => {
       const map = screen.getByRole("group", { name: /Relationship map centered on/ });
       expect(map.getAttribute("aria-label")).toContain(author.name);
     });
+    // The focused state must still expose a document h1 for the outline.
+    const h1 = screen.getByRole("heading", { level: 1 });
+    expect(h1.textContent).toContain(author.name);
   });
 
   it("falls back to the intro for a garbage focus", async () => {

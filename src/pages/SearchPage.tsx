@@ -14,7 +14,7 @@ import CatalogSearchBox from "../components/search/CatalogSearchBox.js";
 import CatalogSearchResults from "../components/search/CatalogSearchResults.js";
 import { SITE_NAME, SITE_URL } from "../utils/catalog/lensMetadata.js";
 import { collectionPageJsonLd } from "../utils/seo/structuredData.js";
-import { PAGE_BASE_STYLE } from "../utils/style/pageStyles.js";
+import { H1_STYLE, PAGE_BASE_STYLE } from "../utils/style/pageStyles.js";
 import { usePageThemeToggle } from "../utils/theme/usePageThemeToggle.js";
 
 export default function SearchPage() {
@@ -55,7 +55,7 @@ export default function SearchPage() {
       </PageNavBar>
 
       <main style={PAGE_BASE_STYLE}>
-        <h1 style={{ fontSize: "1.5rem", fontWeight: 600, margin: "1.5rem 0 0.5rem" }}>Search the Catalog</h1>
+        <h1 style={H1_STYLE}>Search the Catalog</h1>
         <p style={{ color: t.muted, fontSize: "0.8rem", lineHeight: 1.5, marginBottom: "1rem" }}>
           Find an interactive lens diagram by name or patent number, or open an author’s related patent list.
         </p>

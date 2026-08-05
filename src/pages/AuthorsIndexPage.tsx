@@ -22,7 +22,7 @@ import {
 } from "../utils/catalog/authorAssignees.js";
 import { SITE_NAME, SITE_URL } from "../utils/catalog/lensMetadata.js";
 import { collectionPageJsonLd, itemListJsonLd } from "../utils/seo/structuredData.js";
-import { PAGE_BASE_STYLE } from "../utils/style/pageStyles.js";
+import { H1_STYLE, PAGE_BASE_STYLE } from "../utils/style/pageStyles.js";
 import { toggleBtn, toggleGroup } from "../utils/style/styles.js";
 import {
   DEFAULT_AUTHOR_SORT,
@@ -111,7 +111,7 @@ export default function AuthorsIndexPage() {
       </PageNavBar>
 
       <main style={PAGE_BASE_STYLE}>
-        <h1 style={{ fontSize: "1.5rem", fontWeight: 600, margin: "1.5rem 0 0.5rem" }}>Lens Patent Authors</h1>
+        <h1 style={H1_STYLE}>Lens Patent Authors</h1>
         <p style={{ color: t.muted, fontSize: "0.8rem", lineHeight: 1.5, marginBottom: "1.5rem" }}>
           {AUTHORS.length} named inventors represented in the Surface &amp; Stop catalog. Explore how they connect
           through shared patents in the{" "}
@@ -122,6 +122,7 @@ export default function AuthorsIndexPage() {
         </p>
 
         <div
+          role="group"
           aria-label="Author directory controls"
           style={{ display: "flex", alignItems: "flex-end", flexWrap: "wrap", gap: "1rem", marginBottom: "0.65rem" }}
         >
@@ -211,7 +212,6 @@ export default function AuthorsIndexPage() {
                 </Link>
                 {getAuthorBiography(author.name) && (
                   <span
-                    aria-label="Curated biography available"
                     style={{
                       background: t.toggleActiveBg,
                       border: `1px solid ${t.toggleActiveBorder}`,

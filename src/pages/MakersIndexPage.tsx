@@ -12,7 +12,7 @@ import { deriveMaker, SITE_NAME, SITE_URL } from "../utils/catalog/lensMetadata.
 import { getMakerDetails } from "../utils/catalog/makerDetails.js";
 import { collectionPageJsonLd, itemListJsonLd } from "../utils/seo/structuredData.js";
 import { usePageThemeToggle } from "../utils/theme/usePageThemeToggle.js";
-import { PAGE_BASE_STYLE } from "../utils/style/pageStyles.js";
+import { H1_STYLE, PAGE_BASE_STYLE } from "../utils/style/pageStyles.js";
 
 interface MakerEntry {
   display: string;
@@ -79,9 +79,7 @@ export default function MakersIndexPage() {
       </PageNavBar>
 
       <div style={PAGE_BASE_STYLE}>
-        <h1 style={{ fontSize: "1.5rem", fontWeight: 600, marginTop: "1.5rem", marginBottom: "1.5rem" }}>
-          Lens Makers
-        </h1>
+        <h1 style={{ ...H1_STYLE, marginBottom: "1.5rem" }}>Lens Makers</h1>
 
         {makers.map((maker) => {
           const details = getMakerDetails(maker.slug);

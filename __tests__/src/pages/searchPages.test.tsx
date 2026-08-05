@@ -292,8 +292,8 @@ describe("search, author, and patent pages", () => {
     expect(unprofiledCard).toBeTruthy();
     if (!profiledCard || !unprofiledCard) return;
 
-    expect(within(profiledCard).getByLabelText("Curated biography available").textContent).toBe("Biography");
-    expect(within(unprofiledCard).queryByLabelText("Curated biography available")).toBeNull();
+    expect(within(profiledCard).getByText("Biography")).toBeTruthy();
+    expect(within(unprofiledCard).queryByText("Biography")).toBeNull();
   });
 
   it("renders patents in Country → Assignee sections with lens links", () => {

@@ -24,7 +24,7 @@ import { ASSIGNEES } from "../utils/catalog/assigneeCatalog.js";
 import { buildRelationshipGraph, resolveFocusParam, type PartyRef } from "../utils/catalog/relationshipGraph.js";
 import { SITE_NAME, SITE_URL } from "../utils/catalog/lensMetadata.js";
 import { breadcrumbJsonLd, collectionPageJsonLd } from "../utils/seo/structuredData.js";
-import { PAGE_BASE_STYLE } from "../utils/style/pageStyles.js";
+import { H1_STYLE, PAGE_BASE_STYLE } from "../utils/style/pageStyles.js";
 import { usePageThemeToggle } from "../utils/theme/usePageThemeToggle.js";
 import { canonicalPagePath, canonicalPageUrl } from "../utils/seo/siteUrls.js";
 
@@ -116,7 +116,9 @@ export default function RelationshipMapPage() {
         {graph && focus ? (
           <>
             <div style={{ margin: "1.25rem 0 1rem" }}>
-              <h2 style={{ fontSize: "1.3rem", fontWeight: 600, margin: "0 0 0.35rem" }}>
+              {/* h1: the focused view renders no other h1, so this heading must
+               * be the document heading for the outline to stay intact. */}
+              <h1 style={{ fontSize: "1.3rem", fontWeight: 600, margin: "0 0 0.35rem" }}>
                 {focus.name}
                 <span
                   style={{
@@ -134,7 +136,7 @@ export default function RelationshipMapPage() {
                 >
                   {focus.role === "assignee" ? "assignee" : "inventor"}
                 </span>
-              </h2>
+              </h1>
               {graph.center.hasPage && (
                 <Link
                   to={`/authors/${focus.slug}/`}
@@ -170,7 +172,7 @@ export default function RelationshipMapPage() {
           </>
         ) : (
           <>
-            <h1 style={{ fontSize: "1.5rem", fontWeight: 600, margin: "1.5rem 0 0.5rem" }}>Patent Relationship Map</h1>
+            <h1 style={H1_STYLE}>Patent Relationship Map</h1>
             <p
               style={{
                 color: t.muted,

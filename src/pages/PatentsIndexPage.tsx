@@ -21,7 +21,12 @@ import {
   type PatentRecord,
 } from "../utils/catalog/patentCatalog.js";
 import { collectionPageJsonLd, itemListJsonLd } from "../utils/seo/structuredData.js";
-import { LENS_LINK_BASE_STYLE, PAGE_BASE_STYLE, STICKY_NAV_SCROLL_MARGIN } from "../utils/style/pageStyles.js";
+import {
+  H1_STYLE,
+  LENS_LINK_BASE_STYLE,
+  PAGE_BASE_STYLE,
+  STICKY_NAV_SCROLL_MARGIN,
+} from "../utils/style/pageStyles.js";
 import { usePageThemeToggle } from "../utils/theme/usePageThemeToggle.js";
 import { patentPartyGroupAnchorId } from "./lensIndex/groupAnchors.js";
 
@@ -152,9 +157,7 @@ export default function PatentsIndexPage() {
       </PageNavBar>
 
       <main style={PAGE_BASE_STYLE}>
-        <h1 style={{ fontSize: "1.5rem", fontWeight: 600, margin: "1.5rem 0 0.5rem" }}>
-          Lens Patents by Country and Assignee
-        </h1>
+        <h1 style={H1_STYLE}>Lens Patents by Country and Assignee</h1>
         <p style={{ color: t.muted, fontSize: "0.8rem", lineHeight: 1.6, marginBottom: "0.5rem" }}>
           {PATENTS.length} unique source patents represented in the Surface &amp; Stop catalog. Country identifies the
           publication authority at the start of each patent number; WO publications appear under International (WIPO).

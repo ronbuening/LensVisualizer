@@ -82,3 +82,17 @@ Verification: gate passed (233 files / 2782 tests).
   pipeline already correct); they can move to the constant during U-series consolidation.
 
 Verification: gate passed (233 files / 2782 tests).
+
+### X6 — heading fixes
+
+- Focused relationship-map heading is now an `<h1>` keeping its 1.3rem styling, so `#focus=` views have
+  an intact document outline; `relationshipMapPage.test.tsx` asserts a level-1 heading in both states.
+- Adopted `H1_STYLE` on the 13 pages that re-typed the literal (Articles, Author, AuthorsIndex, Format,
+  FormatsIndex, Maker, MakersIndex, Mount, MountsIndex, RelationshipMap intro, PatentsIndex, Search,
+  Updates). Intentional variants are spreads: `marginBottom: "1.5rem"` on the three index pages,
+  `"0.35rem"` on AuthorPage.
+- `AuthorsIndexPage`: controls div gained `role="group"` (making its existing aria-label effective); the
+  non-interactive Biography badge span lost its ignored `aria-label` (visible text "Biography" is the
+  content), and `searchPages.test.tsx` now queries by text.
+
+Verification: gate passed (233 files / 2782 tests).

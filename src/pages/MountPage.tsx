@@ -20,7 +20,7 @@ import { MOUNT_SPECS } from "../mounts/index.js";
 import MountDiagramPanel from "../components/mount/MountDiagramPanel.js";
 import LinkListSidebar from "../components/content/LinkListSidebar.js";
 import SidebarLayout from "../components/content/SidebarLayout.js";
-import { LENS_LINK_BASE_STYLE, PAGE_BASE_STYLE } from "../utils/style/pageStyles.js";
+import { H1_STYLE, LENS_LINK_BASE_STYLE, PAGE_BASE_STYLE } from "../utils/style/pageStyles.js";
 import { lensLinkFromMount } from "./lensIndex/clusterLinks.js";
 import { lensesForMount } from "./lensIndex/catalog.js";
 import type { LensSummary } from "../utils/catalog/lensSummaries.js";
@@ -93,9 +93,7 @@ export default function MountPage() {
       </PageNavBar>
 
       <div style={PAGE_BASE_STYLE}>
-        <h1 style={{ fontSize: "1.5rem", fontWeight: 600, marginTop: "1.5rem", marginBottom: "0.5rem" }}>
-          {mount.label} Lenses
-        </h1>
+        <h1 style={H1_STYLE}>{mount.label} Lenses</h1>
         <p style={{ fontSize: "0.875rem", color: t.muted, marginBottom: "1.5rem" }}>
           {lenses.length} interactive lens {lenses.length === 1 ? "diagram" : "diagrams"}
         </p>

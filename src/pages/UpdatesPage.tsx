@@ -9,6 +9,7 @@ import { collectionPageJsonLd } from "../utils/seo/structuredData.js";
 import { ALL_LENSES_BY_DATE, LENS_SUMMARIES } from "../utils/catalog/lensSummaries.js";
 import { formatDisplayDate } from "../utils/content/changelogHelpers.js";
 import { CHANGELOG_FEED_PATH, LENS_FEED_PATH } from "../utils/content/feedMetadata.js";
+import { H1_STYLE } from "../utils/style/pageStyles.js";
 
 export default function UpdatesPage() {
   const isWide = useMediaQuery("(min-width: 720px)");
@@ -58,7 +59,7 @@ export default function UpdatesPage() {
             ]}
           />
 
-          <h1 style={{ fontSize: "1.5rem", fontWeight: 600, marginTop: "1.5rem", marginBottom: "0.5rem" }}>Updates</h1>
+          <h1 style={H1_STYLE}>Updates</h1>
           <p style={{ fontSize: "0.875rem", color: t.muted, marginBottom: "2rem" }}>
             Recently added lenses and a complete development changelog.
           </p>

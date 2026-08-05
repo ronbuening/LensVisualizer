@@ -516,7 +516,7 @@ Verification: gate passes; cold-load `/patents#<country-anchor>` shows the headi
 
 ### X6. Heading fixes: focused relationship map h1; adopt `H1_STYLE`; drop ineffective aria-labels
 
-- [ ] Effort: S · Impact: low-med · Risk: low
+- [x] Effort: S · Impact: low-med · Risk: low
 
 `RelationshipMapPage.tsx` ~116–137: in the focused state the top heading is an `<h2>` — no `<h1>`
 exists in that branch, so every `#focus=` view has a broken outline. Separately `H1_STYLE`

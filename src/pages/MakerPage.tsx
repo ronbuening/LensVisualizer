@@ -18,7 +18,7 @@ import {
 import { getMakerDetails } from "../utils/catalog/makerDetails.js";
 import { breadcrumbJsonLd, collectionPageJsonLd } from "../utils/seo/structuredData.js";
 import { usePageThemeToggle } from "../utils/theme/usePageThemeToggle.js";
-import { LENS_LINK_BASE_STYLE, PAGE_BASE_STYLE } from "../utils/style/pageStyles.js";
+import { H1_STYLE, LENS_LINK_BASE_STYLE, PAGE_BASE_STYLE } from "../utils/style/pageStyles.js";
 import { LENS_MOUNT_BY_ID } from "../utils/catalog/lensTaxonomy.js";
 import type { LensMountId, LensMountMetadata } from "../utils/catalog/lensTaxonomy.js";
 import LinkListSidebar from "../components/content/LinkListSidebar.js";
@@ -97,9 +97,7 @@ export default function MakerPage() {
       </PageNavBar>
 
       <div style={PAGE_BASE_STYLE}>
-        <h1 style={{ fontSize: "1.5rem", fontWeight: 600, marginTop: "1.5rem", marginBottom: "0.5rem" }}>
-          {displayName} Lenses
-        </h1>
+        <h1 style={H1_STYLE}>{displayName} Lenses</h1>
 
         {details && (
           <div style={{ marginBottom: "1.5rem" }}>
