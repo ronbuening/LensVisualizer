@@ -94,7 +94,9 @@ describe("page, markdown, and breadcrumb coverage", () => {
       "/feeds/changelog.xml",
     );
     expect(screen.getByText(CHANGELOG[0].summary)).toBeTruthy();
-    expect(screen.getByText(CHANGELOG[0].summary).parentElement?.id).toMatch(/^changelog-2026-08-04-feature-/);
+    expect(screen.getByText(CHANGELOG[0].summary).parentElement?.id).toMatch(
+      new RegExp(`^changelog-${CHANGELOG[0].date}-${CHANGELOG[0].type}-`),
+    );
     expect(screen.getByRole("link", { name: "Lens Library" })).toBeTruthy();
     if (firstLensEntry) {
       expect(screen.getByText(LENS_CATALOG[firstLensEntry.key].name)).toBeTruthy();

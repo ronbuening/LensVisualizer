@@ -7,7 +7,15 @@ available, it falls back to partial measured `nC`/`nF` line indices, dPgF-correc
 approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **463 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **465 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+
+The August 5, 2026 Phase 80 pass audited six newly added vintage Voigtländer prescriptions. Schott LF5 and Ohara
+FTM8 were added from their vendor Zemax catalogs as mirrored by refractiveindex.info; the LF5 coordinate duplicates
+HOYA E-FL5's six-digit code, so the resolver explicitly preserves E-FL5 as the code-only winner while direct `LF5`
+labels select Schott. Compatible catalog equivalents raise the Color-Heliar from 2/5 to 5/5, Color-Skopar from 1/4
+to 4/4, Nokton from 4/7 to 7/7, and Telomar from 3/5 to 5/5 strict coverage. The Dynar and second-asymmetric Heliar
+remain 0/5 because their patents publish only historical D/G′ pairs, which cannot support modern Sellmeier assignments.
+Regenerated global coverage is 5031/5721 strict and 5042/5721 trusted, with zero catalog-coordinate mismatches.
 
 The August 4, 2026 Phase 79 pass audited the three new Samsung primes and added HOYA MP-LAC8-30 from the
 manufacturer's 2017 Zemax catalog mirrored by refractiveindex.info. Its formula-3 polynomial supplies a compatible
