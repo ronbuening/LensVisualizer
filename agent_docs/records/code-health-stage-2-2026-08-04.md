@@ -159,7 +159,50 @@ Verification: gate passed (227 files / 2713 tests).
 
 Verification: gate passed (231 files / 2757 tests).
 
+### G12 — folded-diffractive fixture
+
+- New hidden fixture `src/lens-data/reference/ReferenceFoldedDiffractivePlate.data.ts`: a flat same-index plate whose
+  only power is a single quadratic phase term (C2 = -0.0025 /mm² → phiD = 0.005 /mm, f = 200 mm), a 45° first-surface
+  fold 100 mm downstream, and a side image plane 100 mm past that with an explicit
+  `surfaceOrder: ["STO", "PF", "FOLD"]`. A collimated axial bundle therefore focuses on the image-plane origin —
+  verified analytically before pinning, and the traced terminal points land within 6 µm of z = 120 mm.
+- New `__tests__/src/optics/foldedDiffractiveTrace.test.ts` (11 cases): validation passes as authored, the
+  reflect-surface rejection still fires, the phase kick matches the kernel, the fold is traversed with
+  `["STO","PF","FOLD"]`, the bundle focuses, and `traceRay` / `traceRayVector` agree to 9 decimals.
+- Registered in `HIDDEN_FOLDED_TRACE_CASES` and in the regenerated mirror report (one reviewed new row; the fixture
+  count moves 8 → 9 and tilted-plane count 1 → 2).
+
+**Four spec corrections, each found by the code pushing back:**
+
+1. Step 3's zero-phase-order control is impossible — `validateLensData` rejects `diffractionOrder: 0`. The control
+   is the same fixture with `diffractive` deleted.
+2. A literal reverse-ray control trace is unavailable: with an explicit `surfaceOrder` the generalized tracer
+   rejects a reversed ray (`failureReason: "noBracket"`). Reversibility is asserted as the property that defines it
+   here — the inert plate deviates the ray by exactly zero. Documented in the test rather than silently skipped.
+3. **`RuntimeLens.EFL` is authored metadata, not a computed value** — `focalLengthDesign ?? focalLengthMarketing ??
+   axialExtent` (`runtimeLens.ts` ~410). My first draft asserted `EFL === 200` "from the phase term alone"; setting
+   `focalLengthDesign: 999` yields `EFL 999`, and the control with no phase term still reports 200. Replaced with a
+   `diffractiveParaxialPower` measurement. Worth knowing generally: EFL assertions elsewhere may be weaker than
+   they look.
+4. The monochrome tracer evaluates the phase at `LINE_NM.d` = 587.5618 nm, not the 587.6 nm the fixture quotes as
+   its reference wavelength. The ~65 ppm ratio is exactly the residual that made the first slope assertion fail;
+   the test now uses `DEFAULT_PHASE_WAVELENGTH_NM` and matches to 9 decimals.
+
+Also learned from validator feedback while authoring: reference elements need a trailing back surface
+(`PF`→`PFB`, `FOLD`→`FOLDB`) or `renderDiagnostics` dereferences past the surface array; mirror elements need
+nonzero edge thickness; and a tilted mirror's backing plane must repeat `interaction.normal`.
+
+Verification: gate passed (232 files / 2768 tests). `npm run generate:mirror-reports` adds only the reviewed
+fixture row. The glass reports also move by the expected fixture-inventory growth: 513 → 514 lenses scanned and
++2 element glass declarations (the fixture's two descriptive non-catalog glass names, same convention as the
+existing mirror fixtures), with **no** new distinct unresolved tokens.
+
 ## Follow-ups
 
+- Stage 2 is complete (N1, N2, N3, N4, N6, N7, N8, N9, G12). Stage 3 onward untouched.
 - Runtime-side fallback identity stays untestable until `patentsForParty` stops reading module-level
   `LENS_SUMMARIES` — that is plan item **C1**.
+- Noticed, not filed as a plan item: `RuntimeLens.EFL` echoes `focalLengthDesign` rather than deriving the Gaussian
+  focal length. `assertRectilinearFocalReference` cross-checks the two for rectilinear designs, but any test or
+  analysis reading `L.EFL` as a *computed* result is weaker than it appears. Flagged here because it changed how
+  G12's central assertion had to be written.

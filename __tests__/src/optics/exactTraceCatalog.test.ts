@@ -29,6 +29,13 @@ const HIDDEN_FOLDED_TRACE_CASES = [
     expectedHitLabels: ["STO", "M1"],
   },
   {
+    // Diffractive phase surface ahead of a fold; detailed assertions live in
+    // foldedDiffractiveTrace.test.ts.
+    key: "reference-folded-diffractive-plate",
+    y0: 8,
+    expectedHitLabels: ["STO", "PF", "FOLD"],
+  },
+  {
     key: "reference-annular-obscured-mirror",
     y0: 12,
     expectedHitLabels: ["STO", "M1"],

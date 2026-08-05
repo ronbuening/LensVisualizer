@@ -1443,7 +1443,7 @@ Verification: gate passes; each script runs against one lens with a relative AND
 
 ### G12. Fixture-validate diffractive surfaces in folded systems
 
-- [ ] Effort: M · Impact: med · Risk: low-med (test fixture may expose an existing trace defect)
+- [x] Effort: M · Impact: med · Risk: low-med (test fixture may expose an existing trace defect)
 
 `validateLensData.ts` ~732–737 correctly rejects diffractive data on reflect/block surfaces while
 allowing a refracting phase surface in a folded `opticalPath`. The generalized tracers implement
@@ -1472,6 +1472,19 @@ Verification: gate passes; focused generalized-trace and mirror suites pass;
 `npm run generate:mirror-reports` contains only the reviewed fixture addition. Land this before
 G2 so the fixture protects extraction of the shared phase-aware interaction block.
 Out of scope: adding a production folded DOE lens or broadening complex folded-system analysis.
+
+Notes from execution (2026-08-05):
+- Step 3's "zero-phase-order" control is not constructible: `validateLensData` rejects
+  `diffractionOrder: 0` outright. The control is the same fixture with `diffractive` removed.
+- A literal reverse-ray control trace is also unavailable. With an explicit `surfaceOrder`, the
+  generalized tracer rejects a ray arriving in the opposite order (`failureReason: "noBracket"`).
+  Reversibility is asserted as zero deviation through the inert plate instead.
+- `RuntimeLens.EFL` is **not** derived — it is
+  `focalLengthDesign ?? focalLengthMarketing ?? axialExtent` (`runtimeLens.ts` ~410). Any fixture
+  assertion "the phase term produces f = X" must measure `diffractiveParaxialPower` or the traced
+  ray, never `L.EFL`, which reports the authored number even with the phase term deleted.
+- The monochrome tracer applies the phase at `LINE_NM.d` = 587.5618 nm, not the conventional
+  587.6 nm a data file quotes as `referenceWavelengthNm`; the kick carries that ~65 ppm ratio.
 
 ---
 
