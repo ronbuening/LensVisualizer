@@ -55,16 +55,18 @@ stage, follow the listed order unless an item's own verification uncovers a bloc
 5. **D8** — remove the dead changelog component before page-shell consolidation touches the same
    area.
 6. **D10** — settle glass naming/report output before byte-diff-gated glass refactors.
-7. **D11** — refresh the stale `src/**/readme.md` folder documentation and stop it drifting again.
+7. **D11** — refresh the stale `src/**/readme.md` folder documentation and wire regeneration into
+   the metadata/build workflows.
    Filed during D8 execution rather than by the original audit. It belongs in this stage because it
    is repository/generator baseline work, and it goes last within the stage so the sweep captures
    D7–D10's structural edits in one pass instead of being invalidated by them.
 
 ### Stage 2 — Land regression nets before behavior or structure changes
 
-1. **N1 → N2 → N3 → N4** — catalog parity, URL contracts, and configuration invariants.
-2. **N6 → N7 → N8 → N9** — trace goldens and direct catalog/content coverage.
-3. **G12** — add the folded-diffractive fixture and generalized-trace assertions before changing
+1. **D12** — make generated folder-readme drift fail CI before further source changes accumulate.
+2. **N1 → N2 → N3 → N4** — catalog parity, URL contracts, and configuration invariants.
+3. **N6 → N7 → N8 → N9** — trace goldens and direct catalog/content coverage.
+4. **G12** — add the folded-diffractive fixture and generalized-trace assertions before changing
    the shared interaction code.
 
 The aspheric schema item deliberately moves out of this stage: single-sourcing the coefficient

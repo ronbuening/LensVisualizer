@@ -76,4 +76,3 @@ flowchart LR
 | `types.ts` | Shared TypeScript types | src/utils/catalog (2) | same folder (5), src/pages/LensIndexPage.tsx | GroupMode, LensIndexViewMode, CatalogLensEntry, MakerOption, MountOption, ImageFormatOption, MakerGroup, MountGroup, +8 more |
 | `urlState.ts` | Url State helper module | same folder (2), src/generated, src/utils/catalog | same folder, src/components/layout, src/pages/LensIndexPage.tsx | LensIndexUrlState, parseLensIndexViewMode, parseLensIndexUrlState, serializeLensIndexUrlState, isSameCustomFilter, isValidLensLibraryReturnPath |
 | `useLensIndexFilters.ts` | React hook module | same folder (3), package:react, src/utils/catalog | src/pages/LensIndexPage.tsx | NumericFilterConfig, default, useLensIndexFilters |
-

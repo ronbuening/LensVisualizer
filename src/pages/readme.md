@@ -114,4 +114,3 @@ flowchart LR
 | `RelationshipMapPage.tsx` | Route-level React page | src/utils/catalog (4), src/components/relationshipMap (3), src/utils/seo (2), package:react, package:react-router, +4 more | src/routes | default, RelationshipMapPage |
 | `SearchPage.tsx` | Route-level React page | src/components/search (2), package:react, package:react-router, src/components/layout, src/components/SEOHead.tsx, +4 more | src/routes | default, SearchPage |
 | `UpdatesPage.tsx` | Route-level React page | src/utils/catalog (2), src/utils/content (2), package:react, package:react-router, src/components/content, +4 more | src/routes | default, UpdatesPage |
-

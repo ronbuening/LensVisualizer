@@ -58,4 +58,3 @@ flowchart LR
 | `paraxial.ts` | Paraxial helper module | same folder, src/optics/constants.ts, src/optics/types.ts | src/optics/first-order (4), src/optics/field | ParaxialState, ParaxialTraceOptions, ParaxialTraceResult, transferParaxialRay2, interactParaxialSurface2, traceParaxialSurfaces2 |
 | `surfaceProfile.ts` | Surface Profile helper module | same folder, src/optics/constants.ts, src/optics/internal, src/optics/types.ts, src/types | src/optics/analysis, src/optics/prescription | createSurfaceProfile, createFlatProfile, createSphericalProfile, createAsphericProfile, createTiltedPlaneProfile |
 | `vector.ts` | Vector helper module | src/optics/constants.ts, src/optics/types.ts | same folder (3), src/optics/trace (3), src/optics/prescription | vec3, add, subtract, scale, dot, cross, length, normalize, +5 more |
-

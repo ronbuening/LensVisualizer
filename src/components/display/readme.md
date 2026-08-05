@@ -72,4 +72,3 @@ flowchart LR
 | `asphericElementUtils.ts` | Aspheric Element Utils helper module | src/types | same folder, src/components/layout | ElementAsphereEntry, getAsphericEntriesForElement, elementHasAsphericSurface |
 | `DiagramLegend.tsx` | React component module | src/types (3), package:react, same folder, src/components/controls, src/optics/optics.ts, +2 more | src/components/layout | default, DiagramLegend |
 | `ElementInspector.tsx` | React component module | src/types (2), package:react, same folder, src/optics/chromatic, src/optics/dispersion.ts | src/components/layout | default, ElementInspector |
-

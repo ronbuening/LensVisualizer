@@ -56,4 +56,3 @@ flowchart LR
 | `OpticsPrimerIntermediate.md` | Markdown content: Optics In More Detail | none | none | content |
 | `OpticsPrimerSimple.md` | Markdown content: How Camera Lenses Work | none | none | content |
 | `StartHere.md` | Markdown content: Getting Started | none | none | content |
-

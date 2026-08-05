@@ -111,4 +111,3 @@ flowchart LR
 | `RayPolylines.tsx` | React component module | package:react, same folder | same folder | default |
 | `TelecentricityDiagram.tsx` | React component module | package:react | src/components/markdown | default |
 | `WorkingFNumberDiagram.tsx` | React component module | package:react | src/components/markdown | default |
-

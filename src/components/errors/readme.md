@@ -43,4 +43,3 @@ flowchart LR
 | `ErrorBoundary.tsx` | React component module | package:react (2), src/utils/errorBeacon.ts, src/utils/errorReporting.ts | same folder (2), src/comparison, src/components/layout, src/entry-server.tsx, src/main.tsx | ErrorDisplay, FullPageErrorDisplay, default, ErrorBoundary |
 | `PanelErrorBoundary.tsx` | React component module | package:react (2), same folder, src/utils/errorBeacon.ts | src/components/layout | default, PanelErrorBoundary |
 | `RouteErrorBoundary.tsx` | React component module | package:react, package:react-router, same folder, src/utils/errorBeacon.ts | src/router.tsx | normalizeRouteError, default, RouteErrorBoundary |
-

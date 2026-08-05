@@ -54,4 +54,3 @@ flowchart LR
 | `ViewerChrome.tsx` | React component module | src/components/layout (4), src/types (2), package:react, src/components/controls, src/utils/catalog, +3 more | src/components/layout | default, ViewerChrome |
 | `ViewerContent.tsx` | React component module | src/comparison (3), src/types (2), package:react, src/components/layout | src/components/layout | default, ViewerContent |
 | `ViewerOverlays.tsx` | React component module | src/components/layout (3), src/components/display, src/types | src/components/layout | default, ViewerOverlays |
-

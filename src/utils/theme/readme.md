@@ -66,4 +66,3 @@ flowchart LR
 | `useActiveHoliday.ts` | React hook module | package:react, package:react-router, same folder, src/utils/holidays.ts | src/components/layout (3), same folder | useActiveHoliday |
 | `usePageTheme.ts` | React hook module | package:react, same folder, src/types, src/utils/state | none | usePageTheme |
 | `usePageThemeToggle.ts` | React hook module | same folder (4), package:react, src/types, src/utils/mediaQuery.ts, src/utils/state | src/components/layout, src/pages/ArticlePage.tsx, src/pages/ArticlesPage.tsx, src/pages/AuthorPage.tsx, src/pages/AuthorsIndexPage.tsx, +12 more | usePageThemeToggle, ThemeMode |
-

@@ -48,4 +48,3 @@ flowchart LR
 | `schott.ts` | Schott helper module | src/optics/glassCatalogTypes.ts | src/optics/glassCatalogData.ts | SCHOTT_GLASS_ENTRIES |
 | `special.ts` | Special helper module | src/optics/glassCatalogTypes.ts | src/optics/glassCatalogData.ts | SPECIAL_GLASS_ENTRIES |
 | `sumita.ts` | Sumita helper module | src/optics/glassCatalogTypes.ts | src/optics/glassCatalogData.ts | SUMITA_GLASS_ENTRIES |
-

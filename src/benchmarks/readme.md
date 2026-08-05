@@ -62,4 +62,3 @@ flowchart LR
 | --- | --- | --- | --- | --- |
 | `benchmarkReport.ts` | Benchmark Report helper module | none | same folder | BENCHMARK_SCHEMA_VERSION, BenchmarkStatus, MainBenchmarkCategory, LegacyMainBenchmarkCategory, AnalysisBenchmarkCategory, NumericSummary, BenchmarkStats, BenchmarkEntry, +13 more |
 | `opticsRenderingBenchmark.tsx` | React component module | src/components/display (8), src/components/hooks (4), same folder (2), src/optics/compat.ts (2), src/optics/optics.ts (2), +13 more | none | buildBenchmarkReport, formatRunFileName, OpticsRenderingBenchmarkOptions, runOpticsRenderingBenchmark |
-

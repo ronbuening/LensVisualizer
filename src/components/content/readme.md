@@ -68,4 +68,3 @@ flowchart LR
 | `LinkListSidebar.tsx` | React component module | package:react, package:react-router, src/types, src/utils/seo | src/pages/AuthorPage.tsx, src/pages/LensIndexPage.tsx, src/pages/MakerPage.tsx, src/pages/MountPage.tsx, src/pages/PatentsIndexPage.tsx | LinkListSidebarItem, default, LinkListSidebar |
 | `SeriesCard.tsx` | React component module | src/utils/content (2), package:react-router, src/types, src/utils/seo | src/pages/ArticlesPage.tsx | default, SeriesCard |
 | `SidebarLayout.tsx` | React component module | package:react, src/utils/mediaQuery.ts | src/pages/AuthorPage.tsx, src/pages/LensIndexPage.tsx, src/pages/MakerPage.tsx, src/pages/MountPage.tsx, src/pages/PatentsIndexPage.tsx | default, SidebarLayout |
-

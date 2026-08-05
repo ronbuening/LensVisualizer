@@ -36,4 +36,3 @@ flowchart LR
 | `serializeJsonLd.ts` | Serialize Json Ld helper module | src/components/SEOHead.tsx | src/components/SEOHead.tsx | serializeJsonLd |
 | `siteUrls.ts` | Site Urls helper module | none | src/components/content (3), src/components/homepage (3), src/components/layout (3), src/utils/catalog (3), src/comparison (2), +9 more | SITE_URL, canonicalPagePath, canonicalPageUrl, normalizeSitePageUrl |
 | `structuredData.ts` | Structured Data helper module | same folder, src/generated, src/utils/catalog | src/pages/ArticlePage.tsx, src/pages/ArticlesPage.tsx, src/pages/AuthorPage.tsx, src/pages/AuthorsIndexPage.tsx, src/pages/FormatPage.tsx, +12 more | ListItemEntry, BreadcrumbEntry, publisherJsonLd, websiteJsonLd, webApplicationJsonLd, datasetJsonLd, collectionPageJsonLd, itemListJsonLd, +4 more |
-

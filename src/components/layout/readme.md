@@ -112,4 +112,3 @@ flowchart LR
 | `StaticPageShell.tsx` | React component module | package:react, package:react-router, same folder, src/types, src/utils/seo, +2 more | src/pages/UpdatesPage.tsx | default, StaticPageShell |
 | `TopBar.tsx` | React component module | src/components/controls, src/components/display, src/types, src/utils/catalog, src/utils/style | same folder | default, TopBar |
 | `ViewToggleBar.tsx` | React component module | src/types, src/utils/style | same folder | default, ViewToggleBar |
-

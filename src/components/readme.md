@@ -73,4 +73,3 @@ flowchart LR
 | `ClientOnly.tsx` | React component module | package:react | src/pages/ComparePage.tsx, src/pages/LensPage.tsx | default, ClientOnly |
 | `HolidayFavicon.tsx` | React component module | package:react, src/utils/holidays.ts, src/utils/state, src/utils/theme | src/main.tsx | default, HolidayFavicon |
 | `SEOHead.tsx` | React component module | src/utils/seo (2), package:react-helmet-async, src/utils/catalog | src/pages/ArticlePage.tsx, src/pages/ArticlesPage.tsx, src/pages/AuthorPage.tsx, src/pages/AuthorsIndexPage.tsx, src/pages/ComparePage.tsx, +15 more | JsonLdSchema, default, SEOHead |
-

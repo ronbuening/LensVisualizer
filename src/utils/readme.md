@@ -64,4 +64,3 @@ flowchart LR
 | `perfProbe.ts` | Perf Probe helper module | none | src/components/display (6), src/benchmarks | probe, resetPerfProbe |
 | `useMediaQuery.ts` | React hook module | package:react, src/utils/mediaQuery.ts | src/components/homepage (3), src/components/layout (3), src/pages/HomePage.tsx, src/pages/UpdatesPage.tsx, src/utils/state, +1 more | default, useMediaQuery |
 | `usePrefersReducedMotion.ts` | React hook module | src/utils/useMediaQuery.ts | src/components/layout (4), src/components/diagram (2) | REDUCED_MOTION_QUERY, default, usePrefersReducedMotion |
-

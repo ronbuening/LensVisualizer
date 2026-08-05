@@ -44,6 +44,31 @@ function topLevelDirectories(relativeDir: string): string[] {
     .sort();
 }
 
+function documentedProjectMapDirectories(projectMap: string): {
+  src: Set<string>;
+  components: Set<string>;
+} {
+  const lines = projectMap.split("\n");
+  const src = new Set(
+    lines.flatMap((line) => {
+      const match = /^src\/([^/\s]+)\/(?:\s|$)/.exec(line);
+      return match ? [match[1]] : [];
+    }),
+  );
+
+  const componentsIndex = lines.findIndex((line) => /^src\/components\/(?:\s|$)/.test(line));
+  expect(componentsIndex, "CLAUDE.md's Project Map is missing the src/components/ root").toBeGreaterThanOrEqual(0);
+
+  const components = new Set<string>();
+  for (const line of lines.slice(componentsIndex + 1)) {
+    if (line && !line.startsWith(" ")) break;
+    const match = /^ {2}([^/\s]+)\/(?:\s|$)/.exec(line);
+    if (match) components.add(match[1]);
+  }
+
+  return { src, components };
+}
+
 /**
  * `pretest`/`pretypecheck`-style lifecycle hooks run implicitly and are not documented;
  * `preview` only looks like one, so match on the hooked script actually existing.
@@ -78,12 +103,31 @@ describe("doc drift guards", () => {
       expect(undocumented, "package.json scripts missing from CLAUDE.md's Commands fence").toEqual([]);
     });
 
+    it("keeps component directory names scoped to the components subtree", () => {
+      const documented = documentedProjectMapDirectories(
+        [
+          "src/components/           - UI components",
+          "  controls/               - shared controls",
+          "src/optics/               - optical engine",
+          "  mount/                  - mount renderer",
+          "src/content/              - article content",
+        ].join("\n"),
+      );
+
+      expect([...documented.components]).toEqual(["controls"]);
+    });
+
     it("lists every src/ and src/components/ directory in the Project Map fence", () => {
       const projectMap = fencedBlockUnderHeading(claudeMd, "Project Map");
+      const documented = documentedProjectMapDirectories(projectMap);
       const missing = [
-        ...topLevelDirectories("src").map((name) => `src/${name}/`),
-        ...topLevelDirectories(join("src", "components")).map((name) => `${name}/`),
-      ].filter((entry) => !projectMap.includes(entry));
+        ...topLevelDirectories("src")
+          .filter((name) => !documented.src.has(name))
+          .map((name) => `src/${name}/`),
+        ...topLevelDirectories(join("src", "components"))
+          .filter((name) => !documented.components.has(name))
+          .map((name) => `src/components/${name}/`),
+      ];
       expect(missing, "directories missing from CLAUDE.md's Project Map fence").toEqual([]);
     });
   });

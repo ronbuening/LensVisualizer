@@ -38,4 +38,3 @@ flowchart LR
 | `changelogHelpers.ts` | Changelog Helpers helper module | same folder | src/components/content (3), src/components/homepage, src/pages/UpdatesPage.tsx | CHANGELOG_TYPE_COLORS, CHANGELOG_TYPE_LABELS, formatDisplayDate, changelogEntryId, groupChangelogByDate |
 | `feedMetadata.ts` | Feed Metadata helper module | none | src/components/homepage, src/pages/ArticlesPage.tsx, src/pages/LensIndexPage.tsx, src/pages/UpdatesPage.tsx | LENS_FEED_PATH, ARTICLE_FEED_PATH, CHANGELOG_FEED_PATH |
 | `homepageContent.ts` | Homepage Content helper module | glob:../../content/**/*.md, src/generated, src/utils/seo | src/components/content (3), src/components/homepage, src/components/layout, src/pages/ArticlePage.tsx, src/pages/ArticlesPage.tsx, +1 more | HomepageArticle, ArticleContentEntry, SeriesSummary, HOMEPAGE_ARTICLE_LIMIT, stripFrontmatter, ARTICLES, ARTICLE_SERIES, HOMEPAGE_ARTICLES, +1 more |
-

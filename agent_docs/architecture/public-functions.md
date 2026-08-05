@@ -128,8 +128,9 @@ state. Keep slider-dependent analysis out of `buildLens()`.
 
 ## Search And Patent-Attribution APIs
 
-Derived entirely from generated metadata (`src/generated/build-metadata.json`, `lens-summaries.json`), so index,
-author, patent, search, and relationship-map pages never load full prescriptions.
+Catalog indexes, search, and relationship graphs consume generated lightweight metadata
+(`src/generated/build-metadata.json`, `lens-summaries.json`) instead of full prescriptions. Curated biographies live
+separately, while the patent-display helpers operate on the small attribution fields shared by both data shapes.
 
 | Module | Public Function Or Surface | Use |
 | --- | --- | --- |
@@ -195,8 +196,9 @@ These modules are ESM script helpers used by tests and build commands. They are 
 | `scripts/lens-data-lib.mjs` | `deriveMakerSlug`, `extractLensIdentityContent`, `extractLensIdentity` | Lens identity and maker-slug parsing for organization scripts. |
 | `scripts/lens-data-lib.mjs` | `analysisRelativePathForDataPath`, `rewriteLensDataTypesImport` | Companion analysis paths and import rewriting for moved lens files. |
 | `scripts/lens-data-lib.mjs` | `collectTrackedLensRecordsByKey`, `collectLensData`, `collectLensDataAsync`, `collectRootLensMovePlan`, `organizeRootLensFiles` | Lens-data collection and root-file organization. |
-| `scripts/build-metadata-lib.mjs` | `assertFullGitHistory`, `parseGitLogDates`, `getGitFileFreshness`, `getGitFileFreshnessSafe` | Git freshness helpers for build metadata. |
-| `scripts/build-metadata-lib.mjs` | `getFirstGitFileFreshness`, `combineFreshnessEntries`, `assertFreshnessDiversity`, `buildRouteFreshness` | Route/article/lens freshness aggregation. |
+| `scripts/build-metadata-lib.mjs` | `assertFullGitHistory`, `parseGitLogDates`, `getGitFileFreshness`, `getGitFileFreshnessAsync` | Git freshness helpers for build metadata. |
+| `scripts/build-metadata-lib.mjs` | `getFirstGitFileFreshness`, `getFirstGitFileFreshnessAsync`, `combineFreshnessEntries`, `assertFreshnessDiversity`, `buildRouteFreshness` | Route/article/lens freshness aggregation. |
+| `scripts/build-metadata-lib.mjs` | `parseFrontmatterContent`, `articleFrontmatterError`, `isGeneratedContentDoc`, `collectArticles`, `comparePublicationEntries`, `mapLimit` | Article metadata parsing, validation, collection, and bounded-concurrency ordering helpers. |
 | `scripts/maker-prefixes.mjs` | `MAKER_PREFIXES` | Canonical maker prefix list used to generate `src/generated/maker-prefixes.json`. |
 
 ## Adding Or Changing Public Functions

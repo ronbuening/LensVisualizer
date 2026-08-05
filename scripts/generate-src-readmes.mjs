@@ -662,7 +662,7 @@ const writeReadme = async (dirRel) => {
   }
   lines.push("");
 
-  await fs.writeFile(path.join(repoRoot, dirRel, "readme.md"), `${lines.join("\n")}\n`);
+  await fs.writeFile(path.join(repoRoot, dirRel, "readme.md"), `${lines.join("\n").trimEnd()}\n`);
 };
 
 const findCycleSuggestions = () => {
@@ -811,7 +811,7 @@ const writeSuggestions = async (dirRel, suggestions) => {
     lines.push(`- Downstream considerations: ${suggestion.downstream}`);
     lines.push("");
   }
-  await fs.writeFile(target, `${lines.join("\n")}\n`);
+  await fs.writeFile(target, `${lines.join("\n").trimEnd()}\n`);
 };
 
 await readDirRecursive(srcRoot);

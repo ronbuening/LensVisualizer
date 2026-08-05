@@ -41,4 +41,3 @@ flowchart LR
 | --- | --- | --- | --- | --- |
 | `CatalogSearchBox.tsx` | React component module | package:react (2), src/utils/catalog (2), package:react-router, src/types, src/utils/seo | src/pages/HomePage.tsx, src/pages/SearchPage.tsx | default, CatalogSearchBox |
 | `CatalogSearchResults.tsx` | React component module | package:react, package:react-router, src/types, src/utils/catalog | src/pages/SearchPage.tsx | default, CatalogSearchResults |
-

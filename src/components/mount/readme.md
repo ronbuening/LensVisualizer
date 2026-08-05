@@ -35,4 +35,3 @@ flowchart LR
 | --- | --- | --- | --- | --- |
 | `MountDiagram.tsx` | React component module | src/optics/mount (3) | same folder | default, MountDiagram |
 | `MountDiagramPanel.tsx` | React component module | src/optics/mount (4), src/types (2), package:react, same folder | src/pages/MountPage.tsx | default, MountDiagramPanel |
-

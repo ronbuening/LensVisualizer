@@ -89,4 +89,3 @@ flowchart LR
 | `patentCatalog.ts` | Patent Catalog helper module | same folder (2) | src/pages/PatentsIndexPage.tsx | PatentLens, PatentJurisdiction, PatentRecord, PatentAssigneeGroup, PatentCountryGroup, PatentIndex, PATENT_ASSIGNEE_FALLBACK, espacenetPatentUrl, +4 more |
 | `relationshipGraph.ts` | Relationship Graph helper module | same folder (2) | src/components/relationshipMap (4), src/pages/RelationshipMapPage.tsx | PartyRole, PartyRef, GraphPatentNode, GraphPartyNode, RelationshipGraph, resolveFocusParam, buildRelationshipGraph |
 | `searchCatalog.ts` | Search Catalog helper module | same folder (4), src/utils/seo | src/components/search (2), src/components/relationshipMap | LensNameSearchMatch, PatentSearchMatch, AuthorSearchMatch, CatalogSearchResults, CatalogSearchMatch, normalizeSearchText, searchCatalog, exactSearchTarget |
-

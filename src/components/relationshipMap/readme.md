@@ -51,4 +51,3 @@ flowchart LR
 | `PatentDetailCard.tsx` | React component module | src/utils/catalog (3), package:react-router, src/types, src/utils/style | src/pages/RelationshipMapPage.tsx | default, PatentDetailCard |
 | `RelationshipEntityPicker.tsx` | React component module | src/utils/catalog (4), package:react, src/types | src/pages/RelationshipMapPage.tsx | default, RelationshipEntityPicker |
 | `RelationshipMap.tsx` | React component module | package:react, same folder, src/components/hooks, src/types, src/utils/catalog, +1 more | src/pages/RelationshipMapPage.tsx | default, RelationshipMap |
-

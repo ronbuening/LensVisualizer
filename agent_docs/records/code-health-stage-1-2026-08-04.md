@@ -157,6 +157,21 @@ resolution winners, criteria, deltas, and duplicate-code "preferred/alternate" m
   never commits, so a PR can still merge with stale readmes. A real guard needs a `--check` mode on the generator;
   filed as **D12**.
 
+## Post-review fixes
+
+- Made N10's Project Map guard parse the `src/components/` subtree structurally. Bare names such as `content/` and
+  `mount/` can no longer be falsely satisfied by `src/content/` or `src/optics/mount/` elsewhere in the fence.
+- Corrected the public build-script API inventory after D7/D9 and clarified which patent/catalog APIs use generated
+  metadata versus curated biography data.
+- Scheduled the open D12 readme-drift guard first in Stage 2, preserving Stage 1's completed baseline while keeping
+  the authoritative implementation order complete.
+- Changed the folder-readme generator to emit exactly one trailing newline and regenerated all 51 readmes plus the
+  generated improvement-suggestion files.
+
+Verification: focused doc-drift/build-metadata tests passed (36 tests); mutation-equivalent checks detect both
+previously masked Project Map omissions; the full gate passed (222 files / 2615 tests); `npm run build` passed (1008
+routes prerendered, 806 sitemap URLs); `git diff --check` passed.
+
 ## Follow-ups
 
 - Stage 1 is complete (D1, N10, D2, D3, D4, D7, D9, D8, D10, D11). Stage 2 onward untouched.

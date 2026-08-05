@@ -37,4 +37,3 @@ flowchart LR
 | --- | --- | --- | --- | --- |
 | `cache.ts` | Cache helper module | src/optics/types.ts | same folder, src/optics/compat.ts | PreparedStateCache, createPreparedStateCache |
 | `prepareState.ts` | Prepare State helper module | src/optics/types.ts (2), same folder, src/optics/math, src/optics/prescription, src/types | src/optics/first-order (2), src/optics/compat.ts, src/optics/diagram, src/optics/field, src/optics/trace | PrepareStateOptions, preparedStateCacheKey, prepareState |
-

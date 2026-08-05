@@ -43,4 +43,3 @@ flowchart LR
 | --- | --- | --- | --- | --- |
 | `AsphericComparisonOverlay.tsx` | React component module | package:react (2), src/types (2), src/components/hooks, src/optics/asphericComparison.ts, src/optics/internal | src/components/layout | default, AsphericComparisonOverlay |
 | `LensGroupMovementOverlay.tsx` | React component module | src/components/display (3), src/types (3), package:react, src/optics/groupMovement.ts | src/components/layout | default, LensGroupMovementOverlay |
-

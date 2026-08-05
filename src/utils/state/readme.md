@@ -91,4 +91,3 @@ flowchart LR
 | `usePreferences.ts` | React hook module | package:react, same folder, src/types | src/components/layout | default, usePreferences |
 | `useURLSync.ts` | React hook module | same folder (3), package:react, src/types | src/components/layout | default, useURLSync |
 | `zoomConversion.ts` | Zoom Conversion helper module | none | same folder (2) | ZoomConvertibleLens, focalLengthToZoomT, zoomTToFocalLength |
-

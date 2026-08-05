@@ -59,4 +59,3 @@ flowchart LR
 | --- | --- | --- | --- | --- |
 | `extractHeadingsFromAst.ts` | Extract Headings From Ast helper module | package:github-slugger, package:mdast, package:mdast-util-from-markdown, package:mdast-util-gfm, package:micromark-extension-gfm | src/components/content | ASTHeading, extractHeadingsFromAst |
 | `ThemedMarkdown.tsx` | React component module | src/components/diagram (7), package:react (2), package:katex, package:react-markdown, package:react-router, +6 more | src/components/layout, src/pages/ArticlePage.tsx | default, ThemedMarkdown |
-

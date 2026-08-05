@@ -63,4 +63,3 @@ flowchart LR
 | `QuickNavCards.tsx` | React component module | src/utils/catalog (2), package:react-router, src/types, src/utils/seo, src/utils/useMediaQuery.ts | src/pages/HomePage.tsx | default, QuickNavCards |
 | `RecentLenses.tsx` | React component module | src/utils/catalog (2), package:react-router, src/types, src/utils/content | src/pages/HomePage.tsx | default, RecentLenses |
 | `TrustStrip.tsx` | React component module | package:react-router, src/types, src/utils/content, src/utils/seo, src/utils/useMediaQuery.ts | src/pages/HomePage.tsx | default, TrustStrip |
-

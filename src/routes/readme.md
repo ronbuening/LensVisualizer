@@ -65,4 +65,3 @@ flowchart LR
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
 | `routeManifest.tsx` | React component module | package:react, src/pages/ArticlePage.tsx, src/pages/ArticlesPage.tsx, src/pages/AuthorPage.tsx, src/pages/AuthorsIndexPage.tsx, +15 more | src/entry-server.tsx, src/router.tsx | RouteManifestEntry, default |
-

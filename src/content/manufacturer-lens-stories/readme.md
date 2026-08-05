@@ -41,4 +41,3 @@ flowchart LR
 | `PentaxLensDevelopmentStoriesIndex.md` | Markdown content: Pentax: Lens Development Stories | none | none | content |
 | `SigmaOhsonesAnecdotesIndex.md` | Markdown content: SIGMA: Ohsone's Anecdotes | none | none | content |
 | `TamronLensDevelopmentHistoriesIndex.md` | Markdown content: Tamron: Lens Development Histories | none | none | content |
-

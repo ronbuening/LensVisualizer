@@ -41,4 +41,3 @@ flowchart LR
 | `PupilGeometryIndex.md` | Markdown content: Pupil Geometry in Photographic Lenses | none | none | content |
 | `Telecentricity.md` | Markdown content: Telecentricity Explained — What It Actually Means and What It Costs | none | none | content |
 | `WorkingFNumber.md` | Markdown content: Working f-Number — Why Macro Photographers Lose Light | none | none | content |
-

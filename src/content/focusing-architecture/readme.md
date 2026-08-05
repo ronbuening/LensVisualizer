@@ -41,4 +41,3 @@ flowchart LR
 | `FocusingUnitFloating.md` | Markdown content: Unit Focusing with Floating Elements | none | none | content |
 | `FocusingUnitFocusing.md` | Markdown content: Unit Focusing | none | none | content |
 | `InternalFocusingMonograph.md` | Markdown content: Internal Focusing Architectures — Aberration Theory and Design Tradeoffs | none | none | content |
-

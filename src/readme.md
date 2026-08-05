@@ -73,4 +73,3 @@ flowchart LR
 | `main.tsx` | React component module | package:react-dom, package:react-helmet-async, package:react-router, src/components/errors, src/components/HolidayFavicon.tsx, +2 more | none | none |
 | `router.tsx` | React component module | package:react-router, src/components/errors, src/routes, src/utils/chunkLoadRetry.ts | src/main.tsx | default |
 | `vite-env.d.ts` | Ambient/type declaration surface | none | none | none |
-
