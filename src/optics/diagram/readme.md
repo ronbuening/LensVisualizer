@@ -58,4 +58,3 @@ flowchart LR
 | `renderDiagnostics.ts` | Render Diagnostics helper module | same folder, src/optics/constants.ts, src/optics/internal, src/optics/types.ts, src/types | same folder (2), src/optics/compat.ts | computeElementRenderDiagnosticsForState2 |
 | `runtimeDiagramAdapter.ts` | Runtime Diagram Adapter helper module | same folder (4), src/optics/prescription, src/optics/state, src/optics/types.ts, src/types | src/optics/compat.ts | createCoordinateTransforms2, computeElementRenderDiagnostics2, computeElementShapes2, stateForRuntimeDiagram2 |
 | `surfaceOutline.ts` | Surface Outline helper module | src/optics/types.ts | same folder (3), src/optics/compat.ts | SVG_PATH_SUBDIVISIONS_2, DiagramPointTransform2, surfaceSag2, renderedSurfaceZ2, surfacePathD2 |
-

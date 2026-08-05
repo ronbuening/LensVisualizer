@@ -16,6 +16,14 @@ import {
 } from "../../../src/optics/glassCatalog.js";
 import { ALIAS_RECORDS } from "../../../src/optics/glassCatalogAliases.js";
 import { DUPLICATE_CODE6_PRECEDENCE } from "../../../src/optics/glassCatalogData.js";
+import { CDGM_GLASS_ENTRIES } from "../../../src/optics/glassCatalogEntries/cdgm.js";
+import { HIKARI_GLASS_ENTRIES } from "../../../src/optics/glassCatalogEntries/hikari.js";
+import { HOYA_GLASS_ENTRIES } from "../../../src/optics/glassCatalogEntries/hoya.js";
+import { NHG_GLASS_ENTRIES } from "../../../src/optics/glassCatalogEntries/nhg.js";
+import { OHARA_GLASS_ENTRIES } from "../../../src/optics/glassCatalogEntries/ohara.js";
+import { SCHOTT_GLASS_ENTRIES } from "../../../src/optics/glassCatalogEntries/schott.js";
+import { SPECIAL_GLASS_ENTRIES } from "../../../src/optics/glassCatalogEntries/special.js";
+import { SUMITA_GLASS_ENTRIES } from "../../../src/optics/glassCatalogEntries/sumita.js";
 import { makeSurfaceDispersion, summarizeDispersionQuality } from "../../../src/optics/dispersion.js";
 import buildLens from "../../../src/optics/buildLens.js";
 import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
@@ -174,8 +182,45 @@ describe("glass catalog", () => {
     expect(assessCatalogGlassCompatibility(nbk7, 1.5168, 66.5).compatible).toBe(false);
   });
 
+  /**
+   * `RAW_CATALOG` is `GLASS_CATALOG_SOURCE_ORDER.map(entryByName)`, so the shipped
+   * catalog is exactly the hand-maintained order list. The reverse direction is
+   * already guarded — `entryByName` throws for a listed name with no shard entry —
+   * but a shard entry missing FROM the list silently never enters the catalog and
+   * the glass just disappears from the resolver and every report.
+   */
+  it("ships every vendor shard entry exactly once", () => {
+    const shardEntries = [
+      ...SCHOTT_GLASS_ENTRIES,
+      ...OHARA_GLASS_ENTRIES,
+      ...HOYA_GLASS_ENTRIES,
+      ...HIKARI_GLASS_ENTRIES,
+      ...SUMITA_GLASS_ENTRIES,
+      ...CDGM_GLASS_ENTRIES,
+      ...NHG_GLASS_ENTRIES,
+      ...SPECIAL_GLASS_ENTRIES,
+    ];
+    const shardNames = shardEntries.map((entry) => entry.name);
+    const catalogNames = allEntries().map((entry) => entry.name);
+
+    // No shard defines the same glass twice.
+    expect([...shardNames].sort()).toEqual([...new Set(shardNames)].sort());
+    // The source-order list names no glass twice.
+    expect(catalogNames.length, "duplicate name in GLASS_CATALOG_SOURCE_ORDER").toBe(new Set(catalogNames).size);
+
+    const missingFromOrder = shardNames.filter((name) => !new Set(catalogNames).has(name)).sort();
+    expect(missingFromOrder, "shard entries absent from GLASS_CATALOG_SOURCE_ORDER never reach the resolver").toEqual(
+      [],
+    );
+
+    // Exact set equality both ways; the reverse also re-states entryByName's guard.
+    expect([...catalogNames].sort()).toEqual([...shardNames].sort());
+  });
+
   it("catalog has at least the verified seed entries", () => {
-    expect(catalogSize()).toBeGreaterThanOrEqual(414);
+    // Floor only — the exact count is asserted structurally by the shard-parity
+    // test above, so this does not need bumping with every catalog addition.
+    expect(catalogSize()).toBeGreaterThanOrEqual(460);
     expect(allEntries().some((e) => e.name === "N-BK7")).toBe(true);
     expect(allEntries().some((e) => e.name === "S-BSL7")).toBe(true);
     expect(allEntries().some((e) => e.name === "CaF2")).toBe(true);
@@ -509,7 +554,7 @@ describe("glass catalog", () => {
       ["S-LAM7", 1.7495],
       ["L-LAM69", 1.73077],
       ["N-SF8", 1.68894],
-      ["H-LAF4", 1.7495],
+      ["H-LaF4", 1.7495],
     ];
     for (const [glass, nd] of expected) {
       const entry = resolveGlass(glass);
@@ -597,6 +642,18 @@ describe("glass catalog", () => {
     expect(resolveGlass("625356")?.name).toBe("H-F6");
   });
 
+  it("resolves CDGM names regardless of the annotation's casing", () => {
+    // Canonical names use the vendor's mixed case (H-ZLaF50D); lens annotations
+    // authored in all caps must keep resolving to the same entry.
+    for (const [annotated, canonical] of [
+      ["H-ZLAF50D", "H-ZLaF50D"],
+      ["H-LAK12", "H-LaK12"],
+      ["D-ZLAF81-25", "D-ZLaF81-25"],
+    ] as const) {
+      expect(resolveGlass(annotated)?.name).toBe(canonical);
+    }
+  });
+
   it("evaluates the source-verified exact-name sweep entries", () => {
     const expected = [
       { glass: "J-BAF3", vendor: "Hikari", code: "583465", nd: 1.58267, vd: 46.48 },
@@ -653,6 +710,93 @@ describe("glass catalog", () => {
     expect(hikariPskh1?.name).toBe("J-PSKH1");
     expect(evaluateSellmeier(hikariPskh1!, LINE_NM.d)).toBeCloseTo(1.59319, 5);
     expect(evaluateSellmeier(hikariPskh1!, LINE_NM.C)).toBeLessThan(evaluateSellmeier(hikariPskh1!, LINE_NM.F));
+  });
+});
+
+/**
+ * One case per tie-breaking rung of `candidateSelectionReason`, in the order the
+ * resolver applies them. The multi-name test elsewhere in this file accepts any
+ * of four criteria, so before these each rung could have silently stopped
+ * working. Cases were derived from real catalog rows rather than invented, so a
+ * failure here means the ranking changed, not that a fixture drifted.
+ */
+describe("glass resolution criteria", () => {
+  it("reports none when there is no annotation", () => {
+    const resolution = explainCompatibleGlassResolution(undefined, 1.5168, 64.17);
+    expect(resolution.criterion).toBe("none");
+    expect(resolution.selected).toBeNull();
+  });
+
+  it("reports only-compatible for a single candidate", () => {
+    const resolution = explainCompatibleGlassResolution("N-BK7", 1.5168, 64.17);
+    expect(resolution.criterion).toBe("only-compatible");
+    expect(resolution.selected?.name).toBe("N-BK7");
+  });
+
+  it("reports source-priority when a direct name competes with a six-digit code", () => {
+    // 517642 also matches H-K9L/H-K9LGT, but the spelled-out name outranks them.
+    const resolution = explainCompatibleGlassResolution("N-BK7 517642 borosilicate", 1.5168, 64.17);
+    expect(resolution.criterion).toBe("source-priority");
+    expect(resolution.selected?.name).toBe("N-BK7");
+    expect(resolution.reason).toContain("direct name evidence outranks six-digit code evidence");
+  });
+
+  it("reports index-residual when two named candidates differ in d-line fit", () => {
+    const resolution = explainCompatibleGlassResolution("N-BK7 / H-K9L", 1.5168, 64.2);
+    expect(resolution.criterion).toBe("index-residual");
+    expect(resolution.selected?.name).toBe("H-K9L");
+  });
+
+  it("reports abbe-residual when the index residuals tie exactly", () => {
+    // S-TIH53 and S-TIH53W carry byte-identical coefficients, so only their
+    // listed Abbe numbers (23.7779 vs 23.77794) can separate them.
+    const resolution = explainCompatibleGlassResolution("S-TIH53 / S-TIH53W", 1.846659679775239, 23.7779);
+    expect(resolution.criterion).toBe("abbe-residual");
+    expect(resolution.selected?.name).toBe("S-TIH53");
+  });
+
+  it("reports token-order when annotation position is the only difference", () => {
+    // Identical coefficients, identical nd/vd — only which name appears first.
+    const resolution = explainCompatibleGlassResolution("H-K9L / H-K9LGT", 1.5168, 64.2);
+    expect(resolution.criterion).toBe("token-order");
+    expect(resolution.selected?.name).toBe("H-K9L");
+
+    const reversed = explainCompatibleGlassResolution("H-K9LGT / H-K9L", 1.5168, 64.2);
+    expect(reversed.criterion).toBe("token-order");
+    expect(reversed.selected?.name).toBe("H-K9LGT");
+  });
+
+  it("reports duplicate-code-precedence when the configured winner breaks an exact tie", () => {
+    // Code-only annotation with no Abbe number: S-TIH53/S-TIH53W tie on source,
+    // index, Abbe, and token, so only DUPLICATE_CODE6_PRECEDENCE separates them.
+    const resolution = explainCompatibleGlassResolution("847238", 1.846659679775239, undefined);
+    expect(resolution.criterion).toBe("duplicate-code-precedence");
+    expect(resolution.selected?.name).toBe(DUPLICATE_CODE6_PRECEDENCE.get("847238"));
+    expect(resolution.candidates[0].legacyCodePreferred).toBe(true);
+  });
+
+  it("reports canonical-name-order as the final deterministic fallback", () => {
+    // 517642's configured winner is N-BK7, so neither CDGM twin is preferred and
+    // every earlier rung ties — stable name ordering is all that remains.
+    const resolution = explainCompatibleGlassResolution("517642", 1.5168, 64.2);
+    expect(resolution.criterion).toBe("canonical-name-order");
+    expect(resolution.selected?.name).toBe("H-K9L");
+    expect(resolution.reason).toContain("H-K9L before H-K9LGT");
+  });
+
+  it("uses each criterion string in exactly one of these cases", () => {
+    const criteria = [
+      explainCompatibleGlassResolution(undefined, 1.5168, 64.17).criterion,
+      explainCompatibleGlassResolution("N-BK7", 1.5168, 64.17).criterion,
+      explainCompatibleGlassResolution("N-BK7 517642 borosilicate", 1.5168, 64.17).criterion,
+      explainCompatibleGlassResolution("N-BK7 / H-K9L", 1.5168, 64.2).criterion,
+      explainCompatibleGlassResolution("S-TIH53 / S-TIH53W", 1.846659679775239, 23.7779).criterion,
+      explainCompatibleGlassResolution("H-K9L / H-K9LGT", 1.5168, 64.2).criterion,
+      explainCompatibleGlassResolution("847238", 1.846659679775239, undefined).criterion,
+      explainCompatibleGlassResolution("517642", 1.5168, 64.2).criterion,
+    ];
+
+    expect(new Set(criteria).size).toBe(criteria.length);
   });
 });
 
@@ -743,7 +887,7 @@ describe("resolveGlass", () => {
 
   it("resolves phase 21 additions by alias and six-digit code", () => {
     expect(resolveGlass("SF8 dense flint")?.name).toBe("N-SF8");
-    expect(resolveGlass("Lanthanum flint 750/350")?.name).toBe("H-LAF4");
+    expect(resolveGlass("Lanthanum flint 750/350")?.name).toBe("H-LaF4");
     expect(resolveGlass("OHARA L-LAM69 PGM")?.name).toBe("L-LAM69");
     expect(resolveGlass("S-BSM10 (OHARA; 623/570)")?.name).toBe("S-BSM10");
   });

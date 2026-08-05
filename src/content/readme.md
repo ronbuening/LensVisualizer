@@ -10,6 +10,7 @@ Generated `readme.md` and `improvementsuggestions.md` files are intentionally om
 flowchart LR
   subgraph n_src_content["src/content"]
     n_src_content_src_content_focusing_architecture["focusing-architecture/"]
+    n_src_content_src_content_manufacturer_lens_stories["manufacturer-lens-stories/"]
     n_src_content_src_content_pupils["pupils/"]
     n_src_content_src_content_AberrationsPrimerIntermediate_md["AberrationsPrimerIntermediate.md"]
     n_src_content_src_content_AberrationsPrimerSimple_md["AberrationsPrimerSimple.md"]
@@ -28,7 +29,7 @@ flowchart LR
 ## Directory Overview
 
 - Direct source files: 11
-- Direct subfolders: 2
+- Direct subfolders: 3
 - Main outbound areas: none
 - External consumers: none
 
@@ -37,6 +38,7 @@ flowchart LR
 | Folder | Role |
 | --- | --- |
 | [focusing-architecture/](focusing-architecture/readme.md) | article series content about focusing architecture patterns |
+| [manufacturer-lens-stories/](manufacturer-lens-stories/readme.md) | src/content/manufacturer-lens-stories source folder |
 | [pupils/](pupils/readme.md) | article series content about aperture stops, pupils, telecentricity, and illumination |
 
 ## Files
@@ -54,4 +56,3 @@ flowchart LR
 | `OpticsPrimerIntermediate.md` | Markdown content: Optics In More Detail | none | none | content |
 | `OpticsPrimerSimple.md` | Markdown content: How Camera Lenses Work | none | none | content |
 | `StartHere.md` | Markdown content: Getting Started | none | none | content |
-

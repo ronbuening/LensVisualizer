@@ -32,4 +32,3 @@ flowchart LR
 | --- | --- | --- | --- | --- |
 | `chartMath.ts` | Chart Math helper module | none | src/components/display (13) | ChartMargin, PlotArea, DEFAULT_ANALYSIS_CHART_MARGIN, createPlotArea, linearScale, symmetricDomain, niceTicks, angleTicks, +16 more |
 | `SvgChartFrame.tsx` | React component module | package:react, src/components/display, src/types | src/components/display (6) | SvgChartFrame, ChartLegend |
-

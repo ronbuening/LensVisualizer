@@ -1,4 +1,6 @@
 import { execFile, execFileSync } from "node:child_process";
+import { readdirSync, readFileSync } from "node:fs";
+import { join } from "node:path";
 import { promisify } from "node:util";
 
 const execFileAsync = promisify(execFile);
@@ -98,26 +100,11 @@ function fallbackFreshness(fallbackDate) {
 
 /**
  * Read published + modified dates for a file from git history.
+ *
+ * Always execFile, so file paths are passed as arguments rather than
+ * interpolated into a shell command.
  */
-export function getGitFileFreshness(filePath, { cwd, fallbackDate, exec, execFileImpl = execFileSync } = {}) {
-  try {
-    const raw = exec
-      ? exec(`git log --follow --format=%cI%x09%H -- "${filePath}"`, { cwd, encoding: "utf-8" }).trim()
-      : execFileImpl("git", ["log", "--follow", "--format=%cI%x09%H", "--", filePath], {
-          cwd,
-          encoding: "utf-8",
-        }).trim();
-    return parseGitLogDates(raw) ?? fallbackFreshness(fallbackDate);
-  } catch {
-    return fallbackFreshness(fallbackDate);
-  }
-}
-
-/**
- * Read published + modified dates with execFile so file paths are passed as
- * arguments rather than interpolated into a shell command.
- */
-export function getGitFileFreshnessSafe(filePath, { cwd, fallbackDate, execFileImpl = execFileSync } = {}) {
+export function getGitFileFreshness(filePath, { cwd, fallbackDate, execFileImpl = execFileSync } = {}) {
   try {
     const raw = execFileImpl("git", ["log", "--follow", "--format=%cI%x09%H", "--", filePath], {
       cwd,
@@ -148,9 +135,9 @@ export async function getGitFileFreshnessAsync(filePath, { cwd, fallbackDate } =
  * has not been committed yet: the new path has no git history, while the old
  * tracked path still carries the original publication date.
  */
-export function getFirstGitFileFreshness(filePaths, { cwd, fallbackDate, exec, execFileImpl = execFileSync } = {}) {
+export function getFirstGitFileFreshness(filePaths, { cwd, fallbackDate, execFileImpl = execFileSync } = {}) {
   for (const filePath of filePaths) {
-    const freshness = getGitFileFreshness(filePath, { cwd, exec, execFileImpl });
+    const freshness = getGitFileFreshness(filePath, { cwd, execFileImpl });
     if (freshness) return freshness;
   }
 
@@ -272,6 +259,162 @@ export function assertFreshnessDiversity({
     minimumEntries: minimumArticleEntries,
     minimumDistinctDates: minimumDistinctPublishedDates,
   });
+}
+
+/* ── Article frontmatter and collection ───────────────────────────────── */
+
+/**
+ * Folder documentation written by scripts/generate-src-readmes.mjs. It lives
+ * next to article markdown under src/content/ but is never publishable, so it
+ * is the one legitimate reason for a content file to carry no frontmatter.
+ */
+const GENERATED_DOC_NAMES = new Set(["readme.md", "improvementsuggestions.md"]);
+
+/** Parse simple YAML frontmatter from markdown content. */
+export function parseFrontmatterContent(content) {
+  const match = content.match(/^---\r?\n([\s\S]*?)\r?\n---/);
+  if (!match) return null;
+
+  const meta = {};
+  for (const line of match[1].split("\n")) {
+    const m = line.match(/^(\w+):\s*(.+)$/);
+    if (m) {
+      let value = m[2].trim();
+      // Strip surrounding quotes if present (e.g., "value" → value)
+      if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) {
+        value = value.slice(1, -1);
+      }
+      meta[m[1]] = value;
+    }
+  }
+  return meta;
+}
+
+/** Reason a content file cannot publish, or `null` when its frontmatter is usable. */
+export function articleFrontmatterError(meta) {
+  if (!meta) return "no YAML frontmatter block";
+  const missing = ["slug", "title"].filter((field) => !meta[field]);
+  if (missing.length > 0) {
+    return `missing frontmatter ${missing.join(" and ")} (fields must start at column 1)`;
+  }
+  return null;
+}
+
+/** True for the generated per-folder documentation that is intentionally not an article. */
+export function isGeneratedContentDoc(file) {
+  return GENERATED_DOC_NAMES.has(file.slice(file.lastIndexOf("/") + 1).toLowerCase());
+}
+
+/**
+ * Fail the build for content files that are neither generated folder docs nor
+ * publishable articles. Such a file used to vanish from the site, feeds, and
+ * sitemap with no signal at all.
+ */
+function assertArticleFrontmatter(invalid) {
+  if (invalid.length === 0) return;
+
+  throw new Error(
+    `Build metadata found ${invalid.length} markdown file(s) under src/content/ that cannot publish:\n` +
+      invalid.map((entry) => `  - ${entry.file}: ${entry.reason}`).join("\n") +
+      "\nEvery article needs `slug` and `title` frontmatter. Generated folder documentation is exempt only when " +
+      `named ${[...GENERATED_DOC_NAMES].join(" or ")}.`,
+  );
+}
+
+/**
+ * Index tracked article paths by slug from HEAD so working-tree moves can
+ * preserve their original git-derived publication dates before the rename is
+ * committed.
+ */
+function collectTrackedArticlePathsBySlug({ cwd, contentRepoPath, execFileImpl = execFileSync }) {
+  try {
+    const trackedFilesRaw = execFileImpl("git", ["ls-tree", "-r", "--name-only", "HEAD", "--", contentRepoPath], {
+      cwd,
+      encoding: "utf-8",
+    }).trim();
+
+    if (!trackedFilesRaw) return {};
+
+    const bySlug = {};
+    for (const repoPath of trackedFilesRaw
+      .split("\n")
+      .map((file) => file.trim())
+      .filter((file) => file.endsWith(".md"))) {
+      const content = execFileImpl("git", ["show", `HEAD:${repoPath}`], {
+        cwd,
+        encoding: "utf-8",
+      });
+      const meta = parseFrontmatterContent(content);
+      if (!meta?.slug || bySlug[meta.slug]) continue;
+      bySlug[meta.slug] = join(cwd, repoPath);
+    }
+
+    return bySlug;
+  } catch {
+    return {};
+  }
+}
+
+/**
+ * Collect publishable article metadata from a content directory, throwing when
+ * a non-generated markdown file cannot publish.
+ */
+export async function collectArticles({
+  contentDir,
+  cwd,
+  fallbackDate,
+  contentRepoPath = "src/content",
+  concurrency = 8,
+  execFileImpl = execFileSync,
+}) {
+  const mdFiles = readdirSync(contentDir, { recursive: true })
+    .filter((f) => typeof f === "string" && f.endsWith(".md"))
+    .map((f) => f.replace(/\\/g, "/"));
+
+  const parsed = [];
+  const invalid = [];
+  for (const file of mdFiles) {
+    const meta = parseFrontmatterContent(readFileSync(join(contentDir, file), "utf-8"));
+    const reason = articleFrontmatterError(meta);
+    if (!reason) {
+      parsed.push({ file, meta });
+    } else if (!isGeneratedContentDoc(file)) {
+      invalid.push({ file, reason });
+    }
+  }
+  assertArticleFrontmatter(invalid);
+
+  const trackedArticlePathsBySlug = collectTrackedArticlePathsBySlug({ cwd, contentRepoPath, execFileImpl });
+
+  const articles = await mapLimit(parsed, concurrency, async ({ file, meta }) => {
+    const filePath = join(contentDir, file);
+    const trackedPath = trackedArticlePathsBySlug[meta.slug];
+    const freshness = await getFirstGitFileFreshnessAsync(
+      trackedPath && trackedPath !== filePath ? [filePath, trackedPath] : [filePath],
+      { cwd, fallbackDate },
+    );
+    const seriesOrder = meta.seriesOrder !== undefined ? Number.parseInt(meta.seriesOrder, 10) : undefined;
+    return {
+      slug: meta.slug,
+      title: meta.title,
+      summary: meta.summary || "",
+      tag: meta.tag || undefined,
+      series: meta.series || undefined,
+      seriesOrder: Number.isFinite(seriesOrder) ? seriesOrder : undefined,
+      toc: meta.toc === "true" || undefined,
+      publishedOn: freshness.publishedOn,
+      publishedAt: freshness.publishedAt,
+      publishedCommit: freshness.publishedCommit,
+      lastModified: freshness.lastModified,
+      lastModifiedAt: freshness.lastModifiedAt,
+      lastModifiedCommit: freshness.lastModifiedCommit,
+      file,
+    };
+  });
+
+  return articles
+    .sort(comparePublicationEntries)
+    .map((article, publicationOrder) => ({ ...article, publicationOrder }));
 }
 
 /**

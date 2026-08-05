@@ -126,6 +126,27 @@ state. Keep slider-dependent analysis out of `buildLens()`.
 | `src/utils/seo/structuredData.ts` | `getLensFreshness`, `getRouteFreshness` | Build-metadata freshness lookup for SEO. |
 | `src/utils/seo/siteUrls.ts` | `canonicalPagePath`, `canonicalPageUrl`, `normalizeSitePageUrl` | Normalize application-page paths and absolute URLs to Cloudflare Pages' trailing-slash direct-`200` form while preserving static-file URLs. |
 
+## Search And Patent-Attribution APIs
+
+Catalog indexes, search, and relationship graphs consume generated lightweight metadata
+(`src/generated/build-metadata.json`, `lens-summaries.json`) instead of full prescriptions. Curated biographies live
+separately, while the patent-display helpers operate on the small attribution fields shared by both data shapes.
+
+| Module | Public Function Or Surface | Use |
+| --- | --- | --- |
+| `src/utils/catalog/searchCatalog.ts` | `searchCatalog(query)`, `CatalogSearchResults`, `CatalogSearchMatch` | Ranked lens-name, patent-number, and author matches for the search box and `/search`. |
+| `src/utils/catalog/searchCatalog.ts` | `normalizeSearchText`, `exactSearchTarget` | Diacritic/punctuation-insensitive query normalization and exact-hit route shortcut. |
+| `src/utils/catalog/authorCatalog.ts` | `AUTHORS`, `AuthorMetadata` | Generated inventor directory (name, slug, patent/lens counts, lens keys). |
+| `src/utils/catalog/authorCatalog.ts` | `getAuthorBySlug`, `getAuthorByName`, `authorPathForName` | Author lookups and `/authors/:slug` path derivation. |
+| `src/utils/catalog/authorCatalog.ts` | `patentsForParty(name, role)`, `patentsForAuthor`, `groupAuthorPatents`, `AuthorPatent`, `AuthorGroupMode` | Patents credited to an inventor or assignee, grouped by assignee or co-author. |
+| `src/utils/catalog/assigneeCatalog.ts` | `ASSIGNEES`, `getAssigneeBySlug`, `getAssigneeByName`, `AssigneeMetadata` | Generated assignee directory and lookups. |
+| `src/utils/catalog/authorAssignees.ts` | `AUTHOR_DIRECTORY_ENTRIES`, `AUTHOR_ASSIGNEE_STRATA`, `filterAuthorsByAssignee`, `ALL_AUTHOR_ASSIGNEES`, `UNASSIGNED_AUTHORS` | Assignee-stratified author directory and its filter vocabulary for `/authors`. |
+| `src/utils/catalog/authorBiographies.ts` | `AUTHOR_BIOGRAPHIES`, `getAuthorBiography`, `AuthorBiography` | Curated inventor biographies with citation sources. |
+| `src/utils/catalog/patentCatalog.ts` | `PATENTS`, `PATENT_COUNTRY_GROUPS`, `PatentRecord`, `buildPatentIndex` | Patent index derived from lens summaries, grouped by jurisdiction and assignee. |
+| `src/utils/catalog/patentCatalog.ts` | `patentJurisdiction`, `espacenetPatentUrl`, `PATENT_ASSIGNEE_FALLBACK` | Jurisdiction code/label parsing, Espacenet deep links, and the unnamed-assignee bucket label. |
+| `src/utils/catalog/lensPatentMetadata.ts` | `lensPatentAttribution`, `lensDisplaySubtitle`, `lensPatentReference` | Patent subtitle/attribution derivation shared by lens pages and cards (also re-exported by `lensMetadata.ts`). |
+| `src/utils/catalog/relationshipGraph.ts` | `buildRelationshipGraph(focus)`, `resolveFocusParam`, `RelationshipGraph`, `PartyRef` | Focus-party patent/party graph and `#focus=` parameter parsing for `/relationships`. |
+
 ## Routing And SSR APIs
 
 | Module | Public Function Or Surface | Use |
@@ -175,8 +196,9 @@ These modules are ESM script helpers used by tests and build commands. They are 
 | `scripts/lens-data-lib.mjs` | `deriveMakerSlug`, `extractLensIdentityContent`, `extractLensIdentity` | Lens identity and maker-slug parsing for organization scripts. |
 | `scripts/lens-data-lib.mjs` | `analysisRelativePathForDataPath`, `rewriteLensDataTypesImport` | Companion analysis paths and import rewriting for moved lens files. |
 | `scripts/lens-data-lib.mjs` | `collectTrackedLensRecordsByKey`, `collectLensData`, `collectLensDataAsync`, `collectRootLensMovePlan`, `organizeRootLensFiles` | Lens-data collection and root-file organization. |
-| `scripts/build-metadata-lib.mjs` | `assertFullGitHistory`, `parseGitLogDates`, `getGitFileFreshness`, `getGitFileFreshnessSafe` | Git freshness helpers for build metadata. |
-| `scripts/build-metadata-lib.mjs` | `getFirstGitFileFreshness`, `combineFreshnessEntries`, `assertFreshnessDiversity`, `buildRouteFreshness` | Route/article/lens freshness aggregation. |
+| `scripts/build-metadata-lib.mjs` | `assertFullGitHistory`, `parseGitLogDates`, `getGitFileFreshness`, `getGitFileFreshnessAsync` | Git freshness helpers for build metadata. |
+| `scripts/build-metadata-lib.mjs` | `getFirstGitFileFreshness`, `getFirstGitFileFreshnessAsync`, `combineFreshnessEntries`, `assertFreshnessDiversity`, `buildRouteFreshness` | Route/article/lens freshness aggregation. |
+| `scripts/build-metadata-lib.mjs` | `parseFrontmatterContent`, `articleFrontmatterError`, `isGeneratedContentDoc`, `collectArticles`, `comparePublicationEntries`, `mapLimit` | Article metadata parsing, validation, collection, and bounded-concurrency ordering helpers. |
 | `scripts/maker-prefixes.mjs` | `MAKER_PREFIXES` | Canonical maker prefix list used to generate `src/generated/maker-prefixes.json`. |
 
 ## Adding Or Changing Public Functions

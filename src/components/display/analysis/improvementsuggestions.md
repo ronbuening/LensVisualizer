@@ -15,4 +15,3 @@ These notes were created while mapping imports, exports, and file relationships 
 - Implementation overview: Keep new analysis features behind one folder-local hook or adapter per tab, then expose only chart-ready data to presentational components.
 - Upstream considerations: Moving computation too far into UI components can duplicate prepared-state work and slow slider interactions.
 - Downstream considerations: Moving display formatting into optics helpers would make the pure engine depend on UI concerns; keep that boundary intact.
-

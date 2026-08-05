@@ -23,7 +23,8 @@ This file tracks the second bucket plus any cases from the first bucket that nee
 
 ## Current Status (July 2026, current catalog)
 
-- Catalog: **443 verified entries** in `src/optics/glassCatalogData.ts`.
+- Catalog: verified entries in `src/optics/glassCatalogData.ts` — `catalogSize()` is the live count; the
+  generated glass reports carry the number at their generation date. (A hand-bumped figure here went stale.)
 - `catalog-mismatches.generated.md` and `glass-relabel-by-lens.generated.md` report **0** remaining
   dispersion-coordinate mismatches across **0** lens files. The mismatch report separately records **17 / 75**
   native e-line surfaces resolved through explicit names or aliases.

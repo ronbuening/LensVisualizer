@@ -89,4 +89,3 @@ flowchart LR
 | `validateMountSpec.ts` | Validate Mount Spec module with default export | same folder, src/types, src/utils/catalog | none | default, validateMountSpec |
 | `value.ts` | Value helper module | src/types | same folder (3) | isKnown, numberOr, isKnownList, combineStatus |
 | `viewBox.ts` | View Box helper module | none | same folder (2) | BBox, MOUNT_MARGIN_FRACTION, emptyBBox, includePoint, includeCircle, isEmptyBBox, computeViewBox |
-

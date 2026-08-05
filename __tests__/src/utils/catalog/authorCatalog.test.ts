@@ -1,0 +1,92 @@
+/**
+ * Author-catalog lookups behind `/authors` and `/authors/:slug`.
+ *
+ * Exercised against the real generated metadata, so a slug-shape or lookup-map
+ * regression fails here rather than as a 404 on a prerendered page.
+ */
+
+import { describe, expect, it } from "vitest";
+import {
+  AUTHORS,
+  authorPathForName,
+  getAuthorByName,
+  getAuthorBySlug,
+  groupAuthorPatents,
+  patentsForAuthor,
+} from "../../../../src/utils/catalog/authorCatalog.js";
+
+const sample = AUTHORS[0];
+
+describe("author lookups", () => {
+  it("has a populated generated directory", () => {
+    expect(AUTHORS.length).toBeGreaterThan(0);
+  });
+
+  it("round-trips every author through its slug", () => {
+    const broken = AUTHORS.filter((author) => getAuthorBySlug(author.slug)?.name !== author.name).map((a) => a.slug);
+    expect(broken).toEqual([]);
+  });
+
+  it("round-trips every author through its name", () => {
+    const broken = AUTHORS.filter((author) => getAuthorByName(author.name)?.slug !== author.slug).map((a) => a.name);
+    expect(broken).toEqual([]);
+  });
+
+  it("returns undefined for unknown slugs and names", () => {
+    expect(getAuthorBySlug("not-a-real-author-slug")).toBeUndefined();
+    expect(getAuthorByName("Not A Real Author")).toBeUndefined();
+    expect(getAuthorBySlug("")).toBeUndefined();
+  });
+
+  it("builds a canonical /authors path only for known names", () => {
+    expect(authorPathForName(sample.name)).toContain(`/authors/${sample.slug}`);
+    expect(authorPathForName("Not A Real Author")).toBeUndefined();
+  });
+
+  it("keeps slugs unique across the directory", () => {
+    const slugs = AUTHORS.map((author) => author.slug);
+    expect(new Set(slugs).size).toBe(slugs.length);
+  });
+});
+
+describe("patentsForAuthor", () => {
+  it("returns records ordered by patent year then number", () => {
+    const patents = patentsForAuthor(sample.name);
+    expect(patents.length).toBeGreaterThan(0);
+
+    const sortKeys = patents.map((p) => [p.patentYear ?? Number.POSITIVE_INFINITY, p.patentNumber] as const);
+    const resorted = [...sortKeys].sort((a, b) => a[0] - b[0] || a[1].localeCompare(b[1]));
+    expect(sortKeys).toEqual(resorted);
+  });
+
+  it("credits the requested author on every returned record", () => {
+    for (const patent of patentsForAuthor(sample.name)) {
+      expect(patent.authors, patent.patentNumber).toContain(sample.name);
+    }
+  });
+
+  it("returns nothing for an unknown author", () => {
+    expect(patentsForAuthor("Not A Real Author")).toEqual([]);
+  });
+});
+
+describe("groupAuthorPatents", () => {
+  it("keeps every patent reachable in both grouping modes", () => {
+    const patents = patentsForAuthor(sample.name);
+
+    for (const mode of ["assignee", "coauthor"] as const) {
+      const groups = groupAuthorPatents(patents, sample.name, mode);
+      expect(groups.length, mode).toBeGreaterThan(0);
+
+      const grouped = new Set(groups.flatMap((group) => group.patents.map((p) => p.patentNumber)));
+      // Multi-party patents intentionally appear in several groups, so compare
+      // as sets rather than by count.
+      expect(grouped, mode).toEqual(new Set(patents.map((p) => p.patentNumber)));
+      expect(new Set(groups.map((group) => group.id)).size, `${mode} group ids unique`).toBe(groups.length);
+    }
+  });
+
+  it("returns no groups for an empty patent list", () => {
+    expect(groupAuthorPatents([], sample.name, "assignee")).toEqual([]);
+  });
+});

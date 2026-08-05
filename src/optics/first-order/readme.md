@@ -59,4 +59,3 @@ flowchart LR
 | `focusBreathing.ts` | Focus Breathing helper module | src/optics/layout.ts, src/optics/math, src/optics/prescription, src/optics/state, src/types | same folder, src/optics/compat.ts | eflAtFocus2 |
 | `pupils.ts` | Pupils helper module | src/optics/math, src/optics/types.ts | none | FirstOrderPupilState, entrancePupilFromStop2, paraxialPupilGeometry2 |
 | `systemMatrix.ts` | System Matrix helper module | src/optics/math, src/optics/types.ts | same folder | FirstOrderSystemMatrix, computeSystemMatrix2 |
-

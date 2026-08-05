@@ -18,7 +18,6 @@
  * Run before `vite build` so the generated file is available to the bundler.
  */
 
-import { execFileSync } from "node:child_process";
 import { readdirSync, readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import { pathToFileURL } from "node:url";
@@ -26,10 +25,9 @@ import {
   assertFreshnessDiversity,
   assertFullGitHistory,
   buildRouteFreshness,
+  collectArticles,
   comparePublicationEntries,
-  getFirstGitFileFreshnessAsync,
   getGitFileFreshnessAsync,
-  mapLimit,
 } from "./build-metadata-lib.mjs";
 import { collectLensDataAsync } from "./lens-data-lib.mjs";
 import { MAKER_PREFIXES } from "./maker-prefixes.mjs";
@@ -100,65 +98,6 @@ async function collectLensSummaries() {
   return summaries.sort((a, b) => a.name.localeCompare(b.name));
 }
 
-/** Parse simple YAML frontmatter from a markdown file. */
-function parseFrontmatterContent(content) {
-  const match = content.match(/^---\r?\n([\s\S]*?)\r?\n---/);
-  if (!match) return null;
-
-  const meta = {};
-  for (const line of match[1].split("\n")) {
-    const m = line.match(/^(\w+):\s*(.+)$/);
-    if (m) {
-      let value = m[2].trim();
-      // Strip surrounding quotes if present (e.g., "value" → value)
-      if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) {
-        value = value.slice(1, -1);
-      }
-      meta[m[1]] = value;
-    }
-  }
-  return meta;
-}
-
-/** Parse simple YAML frontmatter from a markdown file. */
-function parseFrontmatter(filePath) {
-  return parseFrontmatterContent(readFileSync(filePath, "utf-8"));
-}
-
-/**
- * Index tracked article paths by slug from HEAD so working-tree moves can
- * preserve their original git-derived publication dates before the rename is
- * committed.
- */
-function collectTrackedArticlePathsBySlug() {
-  try {
-    const trackedFilesRaw = execFileSync("git", ["ls-tree", "-r", "--name-only", "HEAD", "--", "src/content"], {
-      cwd: ROOT,
-      encoding: "utf-8",
-    }).trim();
-
-    if (!trackedFilesRaw) return {};
-
-    const bySlug = {};
-    for (const repoPath of trackedFilesRaw
-      .split("\n")
-      .map((file) => file.trim())
-      .filter((file) => file.endsWith(".md"))) {
-      const content = execFileSync("git", ["show", `HEAD:${repoPath}`], {
-        cwd: ROOT,
-        encoding: "utf-8",
-      });
-      const meta = parseFrontmatterContent(content);
-      if (!meta?.slug || bySlug[meta.slug]) continue;
-      bySlug[meta.slug] = join(ROOT, repoPath);
-    }
-
-    return bySlug;
-  } catch {
-    return {};
-  }
-}
-
 /* ── Route collection ────────────────────────────────────────────────── */
 
 /** Build the flat array of all concrete routes to pre-render. */
@@ -184,49 +123,6 @@ function collectRoutes(lenses, articles, makerSlugs, mountIds, formatIds, author
   ];
 }
 
-/* ── Article metadata ─────────────────────────────────────────────────── */
-
-async function collectArticles(fallbackDate) {
-  const trackedArticlePathsBySlug = collectTrackedArticlePathsBySlug();
-  const mdFiles = readdirSync(CONTENT_DIR, { recursive: true })
-    .filter((f) => typeof f === "string" && f.endsWith(".md"))
-    .map((f) => f.replace(/\\/g, "/"));
-
-  const articles = await mapLimit(mdFiles, GIT_FRESHNESS_CONCURRENCY, async (file) => {
-    const filePath = join(CONTENT_DIR, file);
-    const meta = parseFrontmatter(filePath);
-    if (!meta || !meta.slug || !meta.title) return null;
-
-    const trackedPath = trackedArticlePathsBySlug[meta.slug];
-    const freshness = await getFirstGitFileFreshnessAsync(
-      trackedPath && trackedPath !== filePath ? [filePath, trackedPath] : [filePath],
-      { cwd: ROOT, fallbackDate },
-    );
-    const seriesOrder = meta.seriesOrder !== undefined ? Number.parseInt(meta.seriesOrder, 10) : undefined;
-    return {
-      slug: meta.slug,
-      title: meta.title,
-      summary: meta.summary || "",
-      tag: meta.tag || undefined,
-      series: meta.series || undefined,
-      seriesOrder: Number.isFinite(seriesOrder) ? seriesOrder : undefined,
-      toc: meta.toc === "true" || undefined,
-      publishedOn: freshness.publishedOn,
-      publishedAt: freshness.publishedAt,
-      publishedCommit: freshness.publishedCommit,
-      lastModified: freshness.lastModified,
-      lastModifiedAt: freshness.lastModifiedAt,
-      lastModifiedCommit: freshness.lastModifiedCommit,
-      file,
-    };
-  });
-
-  return articles
-    .filter(Boolean)
-    .sort(comparePublicationEntries)
-    .map((article, publicationOrder) => ({ ...article, publicationOrder }));
-}
-
 /* ── Main ─────────────────────────────────────────────────────────────── */
 
 async function main() {
@@ -243,7 +139,12 @@ async function main() {
       fallbackDate,
       concurrency: GIT_FRESHNESS_CONCURRENCY,
     }),
-    collectArticles(fallbackDate),
+    collectArticles({
+      contentDir: CONTENT_DIR,
+      cwd: ROOT,
+      fallbackDate,
+      concurrency: GIT_FRESHNESS_CONCURRENCY,
+    }),
     getGitFileFreshnessAsync(MAKER_DETAILS_FILE, { cwd: ROOT, fallbackDate }),
     collectLensSummaries(),
   ]);

@@ -13,6 +13,11 @@ const maxCellItems = 5;
 const maxExportItems = 8;
 const maxDiagramChildren = 24;
 const maxDiagramEdges = 36;
+const args = process.argv.slice(2);
+const unknownArgs = args.filter((arg) => arg !== "--check");
+if (unknownArgs.length > 0) throw new Error(`Unknown argument(s): ${unknownArgs.join(", ")}`);
+const checkMode = args.includes("--check");
+const staleGeneratedDocs = [];
 
 const folderRoleOverrides = new Map([
   [
@@ -454,6 +459,33 @@ const folderRole = (dirRel) => {
 
 const filesInDir = (dirRel) => (childrenByDir.get(dirRel) ?? []).sort((a, b) => a.localeCompare(b));
 
+const syncGeneratedDoc = async (target, expectedContent) => {
+  const relativeTarget = toPosix(path.relative(repoRoot, target));
+
+  if (checkMode) {
+    try {
+      const actualContent = await fs.readFile(target, "utf8");
+      if (expectedContent === null) staleGeneratedDocs.push(`${relativeTarget} (unexpected file)`);
+      else if (actualContent !== expectedContent) staleGeneratedDocs.push(`${relativeTarget} (stale)`);
+    } catch (error) {
+      if (error.code !== "ENOENT") throw error;
+      if (expectedContent !== null) staleGeneratedDocs.push(`${relativeTarget} (missing)`);
+    }
+    return;
+  }
+
+  if (expectedContent === null) {
+    try {
+      await fs.unlink(target);
+    } catch (error) {
+      if (error.code !== "ENOENT") throw error;
+    }
+    return;
+  }
+
+  await fs.writeFile(target, expectedContent);
+};
+
 const subdirsInDir = (dirRel) => {
   const prefix = `${dirRel}/`;
   return [...dirs]
@@ -598,7 +630,7 @@ const outboundAreasForDir = (dirRel) => {
   return summarizeTargets(targets, dirRel);
 };
 
-const writeReadme = async (dirRel) => {
+const syncReadme = async (dirRel) => {
   const directFiles = filesInDir(dirRel);
   const directSubdirs = subdirsInDir(dirRel);
   const role = folderRole(dirRel);
@@ -662,7 +694,7 @@ const writeReadme = async (dirRel) => {
   }
   lines.push("");
 
-  await fs.writeFile(path.join(repoRoot, dirRel, "readme.md"), `${lines.join("\n")}\n`);
+  await syncGeneratedDoc(path.join(repoRoot, dirRel, "readme.md"), `${lines.join("\n").trimEnd()}\n`);
 };
 
 const findCycleSuggestions = () => {
@@ -789,14 +821,10 @@ const suggestForDir = (dirRel, cycles) => {
   return suggestions;
 };
 
-const writeSuggestions = async (dirRel, suggestions) => {
+const syncSuggestions = async (dirRel, suggestions) => {
   const target = path.join(repoRoot, dirRel, "improvementsuggestions.md");
   if (suggestions.length === 0) {
-    try {
-      await fs.unlink(target);
-    } catch (error) {
-      if (error.code !== "ENOENT") throw error;
-    }
+    await syncGeneratedDoc(target, null);
     return;
   }
   const lines = [`# Improvement Suggestions for ${dirRel}`, ""];
@@ -811,7 +839,7 @@ const writeSuggestions = async (dirRel, suggestions) => {
     lines.push(`- Downstream considerations: ${suggestion.downstream}`);
     lines.push("");
   }
-  await fs.writeFile(target, `${lines.join("\n")}\n`);
+  await syncGeneratedDoc(target, `${lines.join("\n").trimEnd()}\n`);
 };
 
 await readDirRecursive(srcRoot);
@@ -822,12 +850,21 @@ buildInboundMap();
 const cycles = findCycleSuggestions();
 
 for (const dirRel of [...dirs].sort((a, b) => a.localeCompare(b))) {
-  await writeReadme(dirRel);
+  await syncReadme(dirRel);
 }
 
 for (const dirRel of [...dirs].sort((a, b) => a.localeCompare(b))) {
-  await writeSuggestions(dirRel, suggestForDir(dirRel, cycles));
+  await syncSuggestions(dirRel, suggestForDir(dirRel, cycles));
 }
 
-console.log(`Wrote ${dirs.size} readme.md files under src/.`);
+if (checkMode) {
+  if (staleGeneratedDocs.length > 0) {
+    console.error(`Generated src folder documentation is out of date:\n${staleGeneratedDocs.join("\n")}`);
+    process.exitCode = 1;
+  } else {
+    console.log(`Checked generated folder documentation under src/ (${dirs.size} directories).`);
+  }
+} else {
+  console.log(`Wrote ${dirs.size} readme.md files under src/.`);
+}
 console.log(`Detected ${cycles.length} unique internal import cycles for suggestion generation.`);

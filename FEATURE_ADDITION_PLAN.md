@@ -378,7 +378,7 @@ derived lens diagrams. Requires build-generated assignee slugs alongside the exi
 index. No new dependencies; deterministic radial layout, no force simulation.
 
 Full self-contained spec (milestones, files, data contracts, layout math, tests, verification):
-`agent_docs/relationship-map-plan.md`. Follow that document; this entry only tracks status.
+`agent_docs/records/relationship-map-plan.md`. Follow that document; this entry only tracks status.
 
 ---
 

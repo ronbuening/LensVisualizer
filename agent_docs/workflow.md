@@ -35,10 +35,17 @@ CI enforces the same checks via `.github/workflows/quality.yml` — failing them
 
 ## Deployment
 
-- **Current production path:** Cloudflare Pages builds with `npm run build` and serves `dist/`.
-- The former GitHub Pages deploy workflow is legacy infrastructure and should not be treated as the production deploy
-  path unless a future task explicitly reactivates it.
-- Cloudflare Pages deploys from the connected production branch after a successful build.
+The site deploys to two targets from the same `npm run build` output. Cloudflare Pages is canonical production;
+GitHub Pages is an active mirror/backup.
+
+- **Cloudflare Pages (canonical production, surfaceandstop.com):** builds with `npm run build` and serves `dist/`
+  from the connected production branch after a successful build.
+- **GitHub Pages (mirror/backup):** `.github/workflows/deploy.yml` runs after Quality Checks pass on `main` (or on
+  manual dispatch), rebuilds, and publishes the same `dist/`. `public/CNAME` exists for this target.
+- **Cloudflare-only artifacts:** `public/_headers` and `public/_redirects` are read by Cloudflare Pages only. The
+  security headers they set (CSP, COOP/CORP, Permissions-Policy, Referrer-Policy, `X-Content-Type-Options`,
+  `X-Frame-Options`) and the SPA `200` rewrites therefore do **not** apply on the GitHub Pages mirror. Canonical URLs
+  point at surfaceandstop.com, which mitigates duplicate-content SEO from the mirror.
 - Builds use the normal pipeline and deploy the generated `dist/` output.
 - Base path set to `/` in `vite.config.js` because Cloudflare Pages serves the production site from the domain root
 - Quality checks run on PRs via `.github/workflows/quality.yml` (lint, format, typecheck, test, npm audit, build)

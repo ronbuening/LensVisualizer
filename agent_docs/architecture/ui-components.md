@@ -76,8 +76,7 @@ a center label use signed `-1..1` travel with the center/default at `0`; control
 | `ArticleCard.tsx` / `ArticleList.tsx` | Article cards and lists used by homepage and archives. |
 | `ArticleTOC.tsx` | Floating article table-of-contents with scrollspy; opt-in via `toc: true`. |
 | `SeriesCard.tsx` | Archive card for article series. |
-| `ChangelogBox.tsx` | Compact changelog panel grouped by date/type. |
-| `ChangelogList.tsx` | Full changelog list for `/updates`. |
+| `ChangelogList.tsx` | Date-grouped changelog list with type badges, rendered by `/updates`. |
 | `LinkListSidebar.tsx` | Bordered navigational panel of router/`#anchor` links (maker↔mount cross-links, lens-library group nav). Renders the panel only. |
 | `SidebarLayout.tsx` | Places a sidebar beside the content as a sticky column on wide viewports (≥1200 px) and stacks it above the content on narrow ones; stacked layout is the SSR/first-render default for crawlable links. |
 

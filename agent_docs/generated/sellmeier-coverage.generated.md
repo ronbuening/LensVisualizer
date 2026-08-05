@@ -11,7 +11,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **513** lenses scanned
+- **514** lenses scanned
 - **504** visible lenses scanned
 - **251** lenses fully covered by trusted chromatic data
 - **251** visible lenses fully covered by trusted chromatic data

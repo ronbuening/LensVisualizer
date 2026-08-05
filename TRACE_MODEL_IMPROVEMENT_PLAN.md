@@ -119,8 +119,6 @@ path at/above it only when explicitly asked.
 The engine currently has several trace layers:
 
 - Paraxial first-order tracing for EFL, principal planes, pupils, and other first-order references.
-- Legacy vertex-plane real tracing that propagates meridional rays by slope and `tan(U)`. Retained only as a
-  test/debug `"legacy"` mode in [traceMode.ts](src/optics/traceMode.ts) — exact is the production default.
 - Exact surface tracing that intersects spherical/aspheric surfaces and refracts by local normals. Now
   exposed through both slope and vector entries in
   [exactSurfaceTrace.ts](src/optics/internal/exactSurfaceTrace.ts) (`traceExactSurfaceStack` for slope launch,
@@ -1035,7 +1033,6 @@ Already covered by tests in tree (post commits `be230d1`, `7ca5706`, `0a2442c`):
   ([chiefRaySolver.test.ts](__tests__/src/optics/chiefRaySolver.test.ts)).
 - Vector trace equals slope trace for rectilinear lenses ([exactSurfaceTraceVector.test.ts](__tests__/src/optics/exactSurfaceTraceVector.test.ts)).
 - Heavy-lens classification ([raySampling.test.ts](__tests__/src/optics/raySampling.test.ts)).
-- Trace-mode resolution defaults to exact ([traceMode.test.ts](__tests__/src/optics/traceMode.test.ts)).
 - Existing full-catalog smoke traces ([exactTraceCatalog.test.ts](__tests__/src/optics/exactTraceCatalog.test.ts)).
 - 2D angular launch helper for rectilinear and fisheye projections, on-axis + out-of-domain
   ([projectionLaunchVector.test.ts](__tests__/src/optics/projectionLaunchVector.test.ts)).

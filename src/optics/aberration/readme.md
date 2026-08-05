@@ -81,4 +81,3 @@ flowchart LR
 | `shared.ts` | Shared helper module | src/optics/trace, src/types | same folder (4) | MARGINAL_FRACS, PROFILE_FRACS, SymmetricRealSample, TransverseFocusHit, RealRayHit, axialIntercept, imagePlaneIntercept, meridionalImagePlaneCoordinate, +9 more |
 | `spherical.ts` | Spherical helper module | same folder (6), src/optics/analysis, src/optics/field, src/optics/layout.ts, src/optics/rayTrace.ts, +1 more | src/optics/aberrationAnalysis.ts | computeSphericalAberration, computeSAProfile, computeSphericalAberrationBlurCharacter |
 | `types.ts` | Shared TypeScript types | src/optics/rayTrace.ts, src/types | same folder (4), src/optics/aberrationAnalysis.ts, src/optics/analysis | SAProfilePoint, SphericalAberrationBlurCharacterSample, SphericalAberrationBlurCharacterResult, SphericalAberrationResult, MeridionalComaSample, MeridionalComaResult, SagittalComaSample, SagittalComaResult, +34 more |
-

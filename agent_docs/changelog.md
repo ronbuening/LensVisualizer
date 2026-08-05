@@ -8,8 +8,7 @@ on `/updates`. The data lives in `src/utils/content/changelogData.ts` as a flat 
 
 `src/pages/UpdatesPage.tsx` groups entries by date automatically and renders
 them with color-coded type badges. No other file needs to be updated when adding
-entries. `src/components/content/ChangelogBox.tsx` is a reusable compact
-version, but it is not currently mounted on the home page.
+entries.
 
 ---
 
@@ -115,6 +114,6 @@ The initial entries cover **2026-03-26 through 2026-03-28** and include:
 |------|------|
 | `src/utils/content/changelogData.ts` | Data - `CHANGELOG` array, `ChangelogEntry` type |
 | `src/pages/UpdatesPage.tsx` | Main UI - renders changelog plus full lens-addition history |
-| `src/components/content/ChangelogBox.tsx` | Reusable compact changelog panel, currently not mounted |
+| `src/components/content/ChangelogList.tsx` | Date-grouped changelog list with type badges, used by `UpdatesPage` |
 
 The homepage links to `/updates` from the "Recently Added" section.

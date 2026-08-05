@@ -20,8 +20,10 @@ flowchart LR
     n_src_components_controls_src_components_controls_SliderControl_tsx["SliderControl.tsx"]
   end
   n_external_src_types["src/types"]
+  n_external_src_utils_catalog["src/utils/catalog"]
   n_external_pkg_react["pkg:react"]
   n_external_pkg_react_dom["pkg:react-dom"]
+  n_external_pkg_react_router["pkg:react-router"]
   n_external_src_components_hooks["src/components/hooks"]
   n_external_src_components_layout["src/components/layout"]
   n_external_src_optics_chromatic["src/optics/chromatic"]
@@ -35,6 +37,7 @@ flowchart LR
   n_src_components_controls_src_components_controls_DiagramHeader_tsx --> |3| n_external_src_types
   n_src_components_controls_src_components_controls_ChromaticControls_tsx --> |2| n_external_src_types
   n_src_components_controls_src_components_controls_RayToggles_tsx --> |2| n_external_src_types
+  n_src_components_controls_src_components_controls_DiagramHeader_tsx --> |2| n_external_src_utils_catalog
   n_src_components_controls_src_components_controls_CollapseButton_tsx --> n_external_pkg_react
   n_src_components_controls_src_components_controls_DiagramControls_tsx --> n_external_pkg_react
   n_src_components_controls_src_components_controls_DiagramHeader_tsx --> n_external_pkg_react
@@ -43,6 +46,7 @@ flowchart LR
   n_src_components_controls_src_components_controls_RayToggles_tsx --> n_external_pkg_react
   n_src_components_controls_src_components_controls_SliderControl_tsx --> n_external_pkg_react
   n_src_components_controls_src_components_controls_HelpTooltipButton_tsx --> n_external_pkg_react_dom
+  n_src_components_controls_src_components_controls_DiagramHeader_tsx --> n_external_pkg_react_router
   n_src_components_controls_src_components_controls_DiagramControls_tsx --> n_external_src_components_hooks
   n_src_components_controls_src_components_controls_LensSelector_tsx --> n_external_src_components_layout
   n_src_components_controls_src_components_controls_ChromaticControls_tsx --> n_external_src_optics_chromatic
@@ -65,8 +69,6 @@ flowchart LR
   n_src_components_controls_src_components_controls_DiagramControls_tsx --> n_external_src_utils_style
   n_src_components_controls_src_components_controls_DiagramHeader_tsx --> n_external_src_utils_style
   n_src_components_controls_src_components_controls_LensSelector_tsx --> n_external_src_utils_style
-  n_src_components_controls_src_components_controls_RayToggles_tsx --> n_external_src_utils_style
-  n_src_components_controls_src_components_controls_SliderControl_tsx --> n_external_src_utils_style
   n_src_components_controls_truncated["additional relationships omitted"]
 ```
 
@@ -74,8 +76,8 @@ flowchart LR
 
 - Direct source files: 9
 - Direct subfolders: 0
-- Main outbound areas: src/types (15), src/utils/style (8), package:react (7), same folder (6), src/optics/optics.ts (2), src/optics/projection.ts (2), src/utils/featureFlags.ts (2), package:react-dom, +5 more
-- External consumers: src/components/display, src/components/layout
+- Main outbound areas: src/types (15), src/utils/style (8), package:react (7), same folder (6), src/optics/optics.ts (2), src/optics/projection.ts (2), src/utils/catalog (2), src/utils/featureFlags.ts (2), +7 more
+- External consumers: src/components/display, src/components/layout, src/pages/AuthorsIndexPage.tsx
 
 ## Files
 
@@ -85,9 +87,8 @@ flowchart LR
 | `ChromaticControls.tsx` | React component module | src/types (2), src/optics/chromatic, src/utils/style | same folder | default, ChromaticControls |
 | `CollapseButton.tsx` | React component module | package:react, src/types, src/utils/style | same folder (2), src/components/display (2) | default, CollapseButton |
 | `DiagramControls.tsx` | React component module | src/types (3), package:react, same folder, src/components/hooks, src/optics/groupMovement.ts, +4 more | src/components/layout | default, DiagramControls |
-| `DiagramHeader.tsx` | React component module | same folder (4), src/types (3), package:react, src/optics/optics.ts, src/optics/projection.ts, +2 more | src/components/layout | default |
+| `DiagramHeader.tsx` | React component module | same folder (4), src/types (3), src/utils/catalog (2), package:react, package:react-router, +4 more | src/components/layout | default |
 | `HelpTooltipButton.tsx` | React component module | package:react, package:react-dom, src/types | src/components/display | default, HelpTooltipButton |
-| `LensSelector.tsx` | React component module | package:react, src/components/layout, src/types, src/utils/style | src/components/layout | default, LensSelector |
+| `LensSelector.tsx` | React component module | package:react, src/components/layout, src/types, src/utils/style | src/components/layout, src/pages/AuthorsIndexPage.tsx | default, LensSelector |
 | `RayToggles.tsx` | React component module | src/types (2), package:react, src/utils/featureFlags.ts, src/utils/style | same folder | default, RayToggles |
 | `SliderControl.tsx` | React component module | package:react, same folder, src/types, src/utils/style | same folder | default, SliderControl |
-

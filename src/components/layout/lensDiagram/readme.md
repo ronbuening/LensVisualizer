@@ -84,4 +84,3 @@ flowchart LR
 | `LensDiagramErrorState.tsx` | React component module | src/components/errors | src/components/layout | default, LensDiagramErrorState |
 | `LensDiagramLoadedState.tsx` | React component module | src/components/layout (4), src/components/display (2) | src/components/layout | default, LensDiagramLoadedState |
 | `panelModel.ts` | Panel Model helper module | src/types (4), src/components/hooks (2), package:react, src/optics/cardinalElements.ts, src/optics/lensMovement.ts | src/components/layout | VarReadout, PanelComputedModel, PanelRayDataModel, PanelDisplayFlagsModel, PanelOverlaysModel, PanelAdaptersModel, PanelZoomHookModel, PanelInteractionsModel, +1 more |
-

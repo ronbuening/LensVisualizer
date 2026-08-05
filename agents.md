@@ -44,6 +44,7 @@ src/components/           - React UI components and hooks
   markdown/               - Shared markdown renderer
   mount/                  - Mount interface diagram components (MountDiagram, panel)
   relationshipMap/        - patent relationship map (radial layout engine + SVG renderer + picker)
+  search/                 - Catalog search box and results list
 src/comparison/           - Comparison mode feature module
 src/optics/               - Pure optical engine and analysis helpers
   math/ trace/ field/     - Vector math, exact tracing, projection-aware field launch
@@ -55,7 +56,8 @@ src/utils/                - State, URL sync, themes, catalog, SEO, metadata util
 src/lens-data/            - Auto-registered `*.data.ts` prescriptions and `*.analysis.md` notes
 src/mounts/               - Mount diagram `*.mount.ts` specs, barrel, schema, and authoring guide
 src/content/              - Auto-registered markdown articles and static content
-scripts/                  - Metadata, prerender, sitemap, SEO, and lens-data build helpers
+src/benchmarks/           - Optics/render benchmark harness (npm run benchmark:optics-rendering)
+scripts/                  - Metadata, folder-readme, prerender, sitemap, SEO, and lens-data build helpers
 __tests__/                - Vitest unit/component/script tests
 agent_docs/               - Focused architecture, workflow, generated-report, and historical guidance
 ```
@@ -65,8 +67,10 @@ agent_docs/               - Focused architecture, workflow, generated-report, an
 ```bash
 npm install
 npm run dev                # Generate metadata, then start Vite on http://localhost:5173
-npm run build              # Organize lens data, generate metadata, build, prerender, sitemap
-npm run generate:metadata  # Organize lens data and refresh src/generated/build-metadata.json
+npm run build              # Organize lens data, generate metadata + folder readmes, build, prerender, sitemap, RSS feeds
+npm run generate:metadata  # Organize lens data, refresh src/generated/build-metadata.json, rewrite src/**/readme.md
+npm run generate:readmes   # Rewrite the src/**/readme.md folder docs alone (also runs inside generate:metadata)
+npm run generate:feeds     # Rebuild dist/feeds/ RSS from metadata, lens summaries, changelog
 npm run organize:lens-data # Move stray root-level lens files into maker folders
 npm run preview
 npm run test
@@ -74,9 +78,12 @@ npm run test:coverage
 npm run generate:glass-reports
 npm run generate:mirror-reports
 npm run generate:mount-svgs
-npm run audit:image-circle      # semi-diameters that cannot cover their own image circle
-npm run audit:patent-figure     # measure a patent cross-section against a lens data file
-npm run audit:surface           # aspheric domain scan + validator with trial semi-diameters
+npm run generate:holiday-branding   # Recolor the base marks into public/branding/holiday/
+npm run audit:dependencies          # Fail on non-allowlisted high/critical npm advisories
+npm run audit:image-circle          # semi-diameters that cannot cover their own image circle
+npm run audit:patent-figure         # measure a patent cross-section against a lens data file
+npm run audit:surface               # aspheric domain scan + validator with trial semi-diameters
+npm run benchmark:optics-rendering  # On-demand optics/render benchmark (not part of build or test)
 npm run typecheck
 npm run lint
 npm run lint:fix
@@ -112,10 +119,12 @@ Read only the relevant focused doc before changing that area:
   `npm run generate:glass-reports`, hidden mirror fixture reports with `npm run generate:mirror-reports`, and the
   mount SVG specifications with `npm run generate:mount-svgs`
 - `agent_docs/records/exact-surface-trace.md` - historical staged implementation notes for the exact trace rollout
+- `agent_docs/records/relationship-map-plan.md` - shipped implementation record (2026-07-22) for the F25 patent relationship map page
 - `TRACE_MODEL_IMPROVEMENT_PLAN.md` - current/historical fisheye projection, vector launch, and bounding-sphere trace status
 - `FEATURE_ADDITION_PLAN.md` - single source of truth for planned features (absorbed the analysis-options and mirror-lens backlogs; archives under `agent_docs/records/`)
-- `agent_docs/relationship-map-plan.md` - self-contained implementation plan for the F25 patent relationship map page
 - `EFFICIENCY_IMPROVEMENT_PLAN.md` - task-by-task redundancy cleanup and performance backlog with verification gates
+- `agent_docs/code-health-improvement-plan.md` - prioritized code-health/refactoring backlog from the 2026-08-04
+  six-subsystem audit of the July expansion (safety nets, bug fixes, docs/hygiene, UI/catalog/engine consolidation)
 - `agent_docs/adding_a_lens.md` - lens data workflow and validation troubleshooting
 - `agent_docs/lens-data-integration-handoff.md` - copy-ready AI handoff for constructing and integrating data/analysis pairs
 - `agent_docs/adding_an_analysis_tab.md` - recipe: the four registration points for a new analysis drawer tab
@@ -201,8 +210,12 @@ npm run typecheck && npm run format:check && npm run lint && npm run test
 fresh clone. Run `npm run generate:metadata` first only when running lint alone (type-aware ESLint needs the generated
 files) or when stray root-level lens files need organizing.
 
+`generate:metadata` and `build` also rewrite the per-folder `src/**/readme.md` docs, so adding, moving, or
+re-importing a source file surfaces readme diffs — commit them with the change that caused them.
+
 Run `npm run build` for route, metadata, lens-data organization, SEO, article, or sitemap changes. Production deploys
-through Cloudflare Pages; see `agent_docs/workflow.md`.
+through Cloudflare Pages, with a GitHub Pages mirror that serves without the `public/_headers` security headers; see
+`agent_docs/workflow.md`.
 
 ## Compaction Instructions
 
