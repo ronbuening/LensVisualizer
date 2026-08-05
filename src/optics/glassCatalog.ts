@@ -229,9 +229,7 @@ export function assertCatalogConsistent(
     }
 
     if (entry.code6) {
-      const encodedIndex = Number(entry.code6.slice(0, 3));
-      const encodedNd = (encodedIndex < 300 ? 2 : 1) + encodedIndex / 1000;
-      const encodedVd = Number(entry.code6.slice(3)) / 10;
+      const { nd: encodedNd, vd: encodedVd } = decodeCode6(entry.code6);
       if (Math.abs(entry.nd - encodedNd) > 0.0015 || Math.abs(entry.vd - encodedVd) > 0.15) {
         throw new Error(
           `Glass catalog inconsistency: ${entry.name} (${entry.vendor}) — code ${entry.code6} encodes ` +
@@ -241,6 +239,20 @@ export function assertCatalogConsistent(
       }
     }
   }
+}
+
+/**
+ * Decode a 6-digit glass code into its approximate optical coordinates.
+ * The first three digits encode nd − 1 in thousandths, wrapping below 300
+ * to nd ≥ 2.0 (e.g. "001255" → nd ≈ 2.001); the last three encode vd × 10.
+ * Single source for the wrap rule — scans must not reimplement it.
+ */
+export function decodeCode6(code: string): { nd: number; vd: number } {
+  const encodedIndex = Number(code.slice(0, 3));
+  return {
+    nd: (encodedIndex < 300 ? 2 : 1) + encodedIndex / 1000,
+    vd: Number(code.slice(3)) / 10,
+  };
 }
 
 /**
@@ -273,7 +285,10 @@ function escapeRegExp(value: string): string {
 }
 
 function glassTokens(glassString: string): string[] {
-  const tokens = [...(glassString.match(/[A-Za-z][A-Za-z0-9-]*\d[A-Za-z0-9-]*|\d{6}/g) ?? [])];
+  // The bare 6-digit alternative carries digit/decimal boundary guards so a
+  // refractive index written to six decimals ("nd=1.516330") cannot shed its
+  // integer part and masquerade as the Schott code 516330.
+  const tokens = [...(glassString.match(/[A-Za-z][A-Za-z0-9-]*\d[A-Za-z0-9-]*|(?<![\d.])\d{6}(?![\d.])/g) ?? [])];
   for (const match of glassString.matchAll(/(^|[^\d])(\d{3})\s*[/-]\s*(\d{3})(?!\d)/g)) {
     tokens.push(`${match[2]}${match[3]}`);
   }

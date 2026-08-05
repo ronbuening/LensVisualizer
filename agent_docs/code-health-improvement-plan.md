@@ -593,7 +593,7 @@ Verification: gate passes.
 
 ### X10. Glass tokenizer: decimal-boundary guards + one shared `decodeCode6`
 
-- [ ] Effort: S · Impact: med · Risk: low-med
+- [x] Effort: S · Impact: med · Risk: low-med
 
 The runtime tokenizer's bare `\d{6}` alternative (`src/optics/glassCatalog.ts:275`) has no
 digit/decimal boundary guards: `"Crown 1.516330 index note"` tokenizes to `["516330"]` — 19 lens

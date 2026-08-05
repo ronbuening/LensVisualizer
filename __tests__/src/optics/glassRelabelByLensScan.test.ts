@@ -22,6 +22,7 @@ import {
   resolveCompatibleGlass,
   resolveGlass,
   type GlassEntry,
+  decodeCode6,
 } from "../../../src/optics/glassCatalog.js";
 import LENS_DEFAULTS from "../../../src/lens-data/defaults.js";
 import type { LensData, RefractiveIndexReferenceLine } from "../../../src/types/optics.js";
@@ -83,10 +84,12 @@ function extractPatentNumber(subtitle: string | undefined): string | null {
 function extractGlassCode(annotation: string): EmbeddedCode | null {
   const match = annotation.match(/\b(\d{3})[/\-\s](\d{3})\b/) ?? annotation.match(/\b(\d{3})(\d{3})\b/);
   if (!match) return null;
-  const ndCode = parseInt(match[1], 10);
-  const vdCode = parseInt(match[2], 10);
-  if (ndCode < 400 || ndCode > 1100) return null;
-  return { raw: `${match[1]}/${match[2]}`, nd: 1 + ndCode / 1000, vd: vdCode / 10 };
+  const { nd, vd } = decodeCode6(`${match[1]}${match[2]}`);
+  // Sanity-check: plausible refractive-index range for optical glass. The
+  // shared decoder handles the <300 → nd ≥ 2.0 wrap the old local decoders
+  // rejected outright.
+  if (nd < 1.4 || nd > 2.15) return null;
+  return { raw: `${match[1]}/${match[2]}`, nd, vd };
 }
 
 function partialDispersionPgF(vd: number, dPgF: number): number {

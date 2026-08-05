@@ -140,3 +140,23 @@ sitemap + feeds written).
   the map; plus direct pins for EP/DD/SU label strings.
 
 Verification: gate passed (233 files / 2784 tests).
+
+### X10 — glass tokenizer decimal guards + shared decodeCode6
+
+- `glassTokens`'s bare `\d{6}` alternative gained `(?<![\d.])` / `(?![\d.])` boundary guards, so a
+  six-decimal refractive index ("nd=1.516330") can no longer shed its integer part and resolve as the
+  phantom Schott code 516330. Both resolution paths (`candidateMatches` ranked and `resolveGlass`
+  first-hit) share the tokenizer, so one edit covers both.
+- Exported `decodeCode6(code)` from `glassCatalog.ts` as the single source of the `<300 → nd ≥ 2.0` wrap
+  rule; the catalog-consistency check now uses it, and the three scan-local decoders
+  (`glassRelabelCandidatesScan`, `glassRelabelByLensScan`, `glassCoverageOpportunitiesScan`) were
+  replaced with it. Their old `ndCode < 400` gate silently rejected nd ≥ 2.0 codes like `001255` that the
+  runtime decodes correctly; the shared decoder plus an nd ∈ [1.4, 2.15] plausibility gate fixes that.
+- Tests: decimal-adjacent false-positive cases (`"Crown 1.516330 index note"` and `"nd=1.720467
+  measured"` resolve to null; standalone `517642` still resolves) and `decodeCode6("001255")` ≈
+  2.001/25.5.
+- `npm run generate:glass-reports` (with the local `patents/` inventory populated, 508 PDFs): reports are
+  byte-identical. No current report row was produced by a phantom token — the unresolved-token queue was
+  shielded by `unresolvedGlassScan`'s vendor-prefix whitelist, which X11 removes next.
+
+Verification: gate passed (233 files / 2786 tests).

@@ -12,6 +12,7 @@ import {
   LINE_NM,
   resolveCompatibleGlass,
   resolveGlass,
+  decodeCode6,
   resolveGlassCandidates,
 } from "../../../src/optics/glassCatalog.js";
 import { ALIAS_RECORDS } from "../../../src/optics/glassCatalogAliases.js";
@@ -838,6 +839,22 @@ describe("resolveGlass", () => {
 
   it("resolves a 6-digit Schott CID", () => {
     expect(resolveGlass("517642")?.name).toBe("N-BK7");
+  });
+
+  it("does not mistake decimal digits for a 6-digit code", () => {
+    // Six-decimal indices in annotations previously tokenized to phantom
+    // codes: "1.516330" shed its integer part and resolved as 516330.
+    expect(resolveGlass("Crown 1.516330 index note")).toBeNull();
+    expect(resolveGlass("nd=1.720467 measured")).toBeNull();
+    // Boundary guards must not break genuine standalone codes.
+    expect(resolveGlass("crown 517642 annotation")?.name).toBe("N-BK7");
+  });
+
+  it("decodes 6-digit codes including the nd ≥ 2.0 wrap", () => {
+    expect(decodeCode6("517642")).toEqual({ nd: 1.517, vd: 64.2 });
+    const highIndex = decodeCode6("001255");
+    expect(highIndex.nd).toBeCloseTo(2.001, 9);
+    expect(highIndex.vd).toBeCloseTo(25.5, 9);
   });
 
   it("preserves explicit duplicate-code precedence for legacy resolution", () => {
