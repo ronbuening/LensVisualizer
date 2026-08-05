@@ -21,7 +21,7 @@ import {
   type PatentRecord,
 } from "../utils/catalog/patentCatalog.js";
 import { collectionPageJsonLd, itemListJsonLd } from "../utils/seo/structuredData.js";
-import { LENS_LINK_BASE_STYLE, PAGE_BASE_STYLE } from "../utils/style/pageStyles.js";
+import { LENS_LINK_BASE_STYLE, PAGE_BASE_STYLE, STICKY_NAV_SCROLL_MARGIN } from "../utils/style/pageStyles.js";
 import { usePageThemeToggle } from "../utils/theme/usePageThemeToggle.js";
 import { patentPartyGroupAnchorId } from "./lensIndex/groupAnchors.js";
 
@@ -187,7 +187,7 @@ export default function PatentsIndexPage() {
             <section
               key={country.jurisdiction.code}
               id={countryAnchorId(country.jurisdiction.code)}
-              style={{ marginBottom: "2.25rem" }}
+              style={{ marginBottom: "2.25rem", scrollMarginTop: STICKY_NAV_SCROLL_MARGIN }}
             >
               <h2
                 style={{
@@ -214,6 +214,7 @@ export default function PatentsIndexPage() {
                     borderRadius: 6,
                     marginBottom: "1rem",
                     overflow: "hidden",
+                    scrollMarginTop: STICKY_NAV_SCROLL_MARGIN,
                   }}
                 >
                   <h3

@@ -498,7 +498,7 @@ Verification: gate passes.
 
 ### X5. Anchor targets under the sticky navbar: shared `scrollMarginTop`
 
-- [ ] Effort: S · Impact: med · Risk: low
+- [x] Effort: S · Impact: med · Risk: low
 
 `PageNavBar` is sticky (`~52–54`, `zIndex: 100`). Direct loads of `/patents#patent-country-us`
 etc. use native fragment scroll and hide the heading under the bar. The article pipeline already

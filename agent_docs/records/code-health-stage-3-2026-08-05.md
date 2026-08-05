@@ -70,3 +70,15 @@ Verification: gate passed (233 files / 2782 tests).
   `{ pressed: false }`; homepage render test clicks HC and asserts the pressed state flips.
 
 Verification: gate passed (233 files / 2782 tests).
+
+### X5 — shared scrollMarginTop under the sticky navbar
+
+- Exported `STICKY_NAV_SCROLL_MARGIN = 88` from `src/utils/style/pageStyles.ts`.
+- Applied `scrollMarginTop` to every anchor-target section: the country and per-assignee sections on
+  `PatentsIndexPage`, the group sections on `AuthorPage`, and all seven anchored section/subgroup sites
+  in `LensIndexResults` (maker, focal section + focal subgroup, patent party, year, mount, format).
+- `LinkListSidebar`'s default `offsetTop = 88` and `ArticleTOC`'s `ARTICLE_SCROLL_MARGIN_TOP` now derive
+  from the shared constant. `ThemedMarkdown`'s inline 88s were left as the spec scoped them (article
+  pipeline already correct); they can move to the constant during U-series consolidation.
+
+Verification: gate passed (233 files / 2782 tests).

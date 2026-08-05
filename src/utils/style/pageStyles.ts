@@ -1,5 +1,11 @@
 import type { CSSProperties } from "react";
 
+/**
+ * Scroll offset for anchor targets on pages with the sticky PageNavBar:
+ * without it, native fragment scrolls hide the target heading under the bar.
+ */
+export const STICKY_NAV_SCROLL_MARGIN = 88;
+
 export const PAGE_BASE_STYLE = {
   maxWidth: 960,
   margin: "0 auto",

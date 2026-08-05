@@ -22,7 +22,7 @@ import {
 import type { AuthorGroupMode, AuthorPatent } from "../utils/catalog/authorCatalog.js";
 import { SITE_NAME, SITE_URL } from "../utils/catalog/lensMetadata.js";
 import { breadcrumbJsonLd, collectionPageJsonLd, itemListJsonLd } from "../utils/seo/structuredData.js";
-import { LENS_LINK_BASE_STYLE, PAGE_BASE_STYLE } from "../utils/style/pageStyles.js";
+import { LENS_LINK_BASE_STYLE, PAGE_BASE_STYLE, STICKY_NAV_SCROLL_MARGIN } from "../utils/style/pageStyles.js";
 import { toggleBtn, toggleGroup } from "../utils/style/styles.js";
 import { usePageThemeToggle } from "../utils/theme/usePageThemeToggle.js";
 import { patentPartyGroupAnchorId } from "./lensIndex/groupAnchors.js";
@@ -266,7 +266,7 @@ export default function AuthorPage() {
               <section
                 key={group.id}
                 id={patentPartyGroupAnchorId(anchorRole, group.id)}
-                style={{ marginBottom: "1.75rem" }}
+                style={{ marginBottom: "1.75rem", scrollMarginTop: STICKY_NAV_SCROLL_MARGIN }}
               >
                 <h2
                   style={{
