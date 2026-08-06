@@ -23,6 +23,9 @@ interface GroupByNamedPartyOptions {
 /**
  * Group each item under every unique named party, or under a fallback metadata bucket.
  *
+ * A party listed twice on one item is deliberately counted once — an item never
+ * appears twice in the same group, and group counts are not inflated.
+ *
  * @param items - records to distribute across groups
  * @param partiesOf - named parties, an empty list, or undefined when metadata is absent
  * @param options - consumer-owned fallback IDs and labels

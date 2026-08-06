@@ -13,6 +13,33 @@ function summary(overrides: Partial<LensSummary> & Pick<LensSummary, "key" | "na
   return { visible: true, ...overrides };
 }
 
+describe("aggregatePatentRecords — party display order", () => {
+  /* Sanctioned by the code-health plan (C1 step 3 / U3 step 4): per-patent
+     inventor/assignee display order is lens-file source order, first occurrence
+     wins across merged lenses. Only identity-level lists sort. */
+  it("preserves lens-file source order for merged authors and assignees", () => {
+    const records = aggregatePatentRecords([
+      summary({
+        key: "lens-a",
+        name: "Lens A",
+        patentNumber: "US 1,000,000",
+        patentAuthors: ["Zoe Zenith", "Adam Alpha"],
+        patentAssignees: ["Zeiss", "Arri"],
+      }),
+      summary({
+        key: "lens-b",
+        name: "Lens B",
+        patentNumber: "US 1,000,000",
+        patentAuthors: ["Adam Alpha", "Mia Middling"],
+      }),
+    ]);
+
+    expect(records).toHaveLength(1);
+    expect(records[0].authors).toEqual(["Zoe Zenith", "Adam Alpha", "Mia Middling"]);
+    expect(records[0].assignees).toEqual(["Zeiss", "Arri"]);
+  });
+});
+
 describe("patent catalog", () => {
   it("builds Espacenet publication-number searches from catalog display formats", () => {
     expect(espacenetPatentUrl("US 2,819,651")).toBe("https://worldwide.espacenet.com/patent/search?q=pn%3DUS2819651");
