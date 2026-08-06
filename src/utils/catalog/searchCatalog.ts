@@ -59,48 +59,49 @@ function matchScore(candidate: string, query: string): number {
   return 3;
 }
 
+const SEARCH_LENSES = SUMMARY_KEYS.map((key) => {
+  const data = LENS_SUMMARIES[key];
+  const normalizedPatent = data.patentNumber ? normalizeSearchText(data.patentNumber) : undefined;
+  return {
+    key,
+    data,
+    normalizedName: normalizeSearchText(data.name),
+    normalizedPatent,
+    compactPatent: normalizedPatent?.replaceAll(" ", ""),
+  };
+});
+
+const SEARCH_AUTHORS = AUTHORS.map((author) => ({ author, normalizedName: normalizeSearchText(author.name) }));
+
 /** Return all ranked catalog matches for a query, separated by destination type. */
 export function searchCatalog(query: string): CatalogSearchResults {
   const normalizedQuery = normalizeSearchText(query);
   if (!normalizedQuery) return { lenses: [], patents: [], authors: [] };
   const compactQuery = normalizedQuery.replaceAll(" ", "");
 
-  const lenses = SUMMARY_KEYS.map((key) => ({ key, data: LENS_SUMMARIES[key] }))
-    .filter(({ data }) => matchesWords(normalizeSearchText(data.name), normalizedQuery))
-    .sort(
-      (a, b) =>
-        matchScore(normalizeSearchText(a.data.name), normalizedQuery) -
-          matchScore(normalizeSearchText(b.data.name), normalizedQuery) ||
-        catalogCollator.compare(a.data.name, b.data.name),
-    )
+  const lenses = SEARCH_LENSES.filter(({ normalizedName }) => matchesWords(normalizedName, normalizedQuery))
+    .map((entry) => ({ ...entry, score: matchScore(entry.normalizedName, normalizedQuery) }))
+    .sort((a, b) => a.score - b.score || catalogCollator.compare(a.data.name, b.data.name))
     .map(({ key, data }) => ({ type: "lens" as const, key, data }));
 
-  const patents = SUMMARY_KEYS.map((key) => ({ key, data: LENS_SUMMARIES[key] }))
-    .filter(({ data }) => {
-      if (!data.patentNumber) return false;
-      const normalizedPatent = normalizeSearchText(data.patentNumber);
-      return (
-        matchesWords(normalizedPatent, normalizedQuery) || normalizedPatent.replaceAll(" ", "").includes(compactQuery)
-      );
-    })
+  const patents = SEARCH_LENSES.filter(({ normalizedPatent, compactPatent }) => {
+    if (!normalizedPatent || !compactPatent) return false;
+    return matchesWords(normalizedPatent, normalizedQuery) || compactPatent.includes(compactQuery);
+  })
+    .map((entry) => ({ ...entry, score: matchScore(entry.normalizedPatent!, normalizedQuery) }))
     .sort((a, b) => {
-      const patentA = normalizeSearchText(a.data.patentNumber ?? "");
-      const patentB = normalizeSearchText(b.data.patentNumber ?? "");
       return (
-        matchScore(patentA, normalizedQuery) - matchScore(patentB, normalizedQuery) ||
-        catalogCollator.compare(patentA, patentB) ||
+        a.score - b.score ||
+        catalogCollator.compare(a.normalizedPatent!, b.normalizedPatent!) ||
         catalogCollator.compare(a.data.name, b.data.name)
       );
     })
     .map(({ key, data }) => ({ type: "patent" as const, key, data }));
 
-  const authors = AUTHORS.filter((author) => matchesWords(normalizeSearchText(author.name), normalizedQuery))
-    .sort(
-      (a, b) =>
-        matchScore(normalizeSearchText(a.name), normalizedQuery) -
-          matchScore(normalizeSearchText(b.name), normalizedQuery) || catalogCollator.compare(a.name, b.name),
-    )
-    .map((author) => ({ type: "author" as const, author }));
+  const authors = SEARCH_AUTHORS.filter(({ normalizedName }) => matchesWords(normalizedName, normalizedQuery))
+    .map((entry) => ({ ...entry, score: matchScore(entry.normalizedName, normalizedQuery) }))
+    .sort((a, b) => a.score - b.score || catalogCollator.compare(a.author.name, b.author.name))
+    .map(({ author }) => ({ type: "author" as const, author }));
 
   return { lenses, patents, authors };
 }
@@ -111,15 +112,14 @@ export function exactSearchTarget(query: string): string | null {
   if (!normalizedQuery) return null;
   const compactQuery = normalizedQuery.replaceAll(" ", "");
 
-  const lensMatches = SUMMARY_KEYS.filter(
-    (key) => normalizeSearchText(LENS_SUMMARIES[key].name) === normalizedQuery,
-  ).map((key) => canonicalPagePath(`/lens/${key}`));
-  const patentMatches = SUMMARY_KEYS.filter((key) => {
-    const patent = LENS_SUMMARIES[key].patentNumber;
-    return patent ? normalizeSearchText(patent).replaceAll(" ", "") === compactQuery : false;
-  }).map((key) => canonicalPagePath(`/lens/${key}`));
-  const authorMatches = AUTHORS.filter((author) => normalizeSearchText(author.name) === normalizedQuery).map((author) =>
-    canonicalPagePath(`/authors/${author.slug}`),
+  const lensMatches = SEARCH_LENSES.filter(({ normalizedName }) => normalizedName === normalizedQuery).map(({ key }) =>
+    canonicalPagePath(`/lens/${key}`),
+  );
+  const patentMatches = SEARCH_LENSES.filter(({ compactPatent }) => compactPatent === compactQuery).map(({ key }) =>
+    canonicalPagePath(`/lens/${key}`),
+  );
+  const authorMatches = SEARCH_AUTHORS.filter(({ normalizedName }) => normalizedName === normalizedQuery).map(
+    ({ author }) => canonicalPagePath(`/authors/${author.slug}`),
   );
   const targets = [...new Set([...lensMatches, ...patentMatches, ...authorMatches])];
   return targets.length === 1 ? targets[0] : null;

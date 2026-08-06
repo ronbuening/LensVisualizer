@@ -1168,7 +1168,7 @@ Verification: gate passes; `node scripts/generate-build-metadata.mjs` produces b
 
 ### C5. Precompute search normalization; skip disabled suggestion scans
 
-- [ ] Effort: S · Impact: low-med (grows with catalog) · Risk: low
+- [x] Effort: S · Impact: low-med (grows with catalog) · Risk: low
 
 `searchCatalog()` re-normalizes all 504 names per call — inside filter AND sort comparators
 (`searchCatalog.ts` ~73–107); `/search` runs two full scans per keystroke because

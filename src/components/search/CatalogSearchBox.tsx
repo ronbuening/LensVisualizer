@@ -59,15 +59,14 @@ export default function CatalogSearchBox({
   const [internalQuery, setInternalQuery] = useState("");
   const currentQuery = query ?? internalQuery;
   const normalizedQuery = currentQuery.trim();
-  const results = useMemo(() => searchCatalog(currentQuery), [currentQuery]);
-  const suggestions = useMemo(
-    () =>
-      [...results.lenses.slice(0, 3), ...results.patents.slice(0, 3), ...results.authors.slice(0, 3)].slice(
-        0,
-        suggestionLimit,
-      ),
-    [results, suggestionLimit],
-  );
+  const suggestions = useMemo(() => {
+    if (!showSuggestions) return [];
+    const results = searchCatalog(currentQuery);
+    return [...results.lenses.slice(0, 3), ...results.patents.slice(0, 3), ...results.authors.slice(0, 3)].slice(
+      0,
+      suggestionLimit,
+    );
+  }, [currentQuery, showSuggestions, suggestionLimit]);
 
   const setQuery = (value: string) => {
     if (onQueryChange) onQueryChange(value);
