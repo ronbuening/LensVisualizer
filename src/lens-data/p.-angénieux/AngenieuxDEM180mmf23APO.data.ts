@@ -36,10 +36,9 @@ import type { LensDataInput } from "../../types/optics.js";
  * ║  cross-gap clearance. Full-field peripheral rays are intentionally vignetted ║
  * ║  at the front and rear groups rather than allowed to create invalid rims.    ║
  * ║                                                                              ║
- * ║  GLASS LABELS: The patent gives nd/νd but no vendor. Generic coordinate      ║
- * ║  classes are used. L2 carries line indices evaluated from OHARA S-FPL51      ║
- * ║  Sellmeier data because its 497816 coordinate is a close catalog match; this ║
- * ║  does not identify the Angénieux production melt.                            ║
+ * ║  GLASS LABELS: The patent gives nd/νd but no vendor. Compatible published  ║
+ * ║  catalog curves are used as optical equivalents while the stored patent       ║
+ * ║  coordinates remain authoritative. No label identifies the production melt.  ║
  * ║                                                                              ║
  * ║  No sensor cover, filter, inactive dummy plane, flare cutter, or mechanical  ║
  * ║  part is included.                                                           ║
@@ -83,7 +82,7 @@ const LENS_DATA = {
       nd: 1.589,
       vd: 61.2,
       fl: 139.8057822716505,
-      glass: "589612 barium-crown coordinate class (vendor unspecified)",
+      glass: "SK5 (Sumita catalog equivalent to patent 589612; production supplier unspecified)",
       apd: false,
       role: "Positive front collector forming Component I.",
     },
@@ -95,7 +94,7 @@ const LENS_DATA = {
       nd: 1.497,
       vd: 81.6,
       fl: 125.6928014713203,
-      glass: "S-FPL51-class 497816 low-dispersion ED crown (vendor unspecified)",
+      glass: "S-FPL51 (OHARA catalog equivalent to patent 497816; production supplier unspecified)",
       apd: "patent",
       apdNote:
         "Patent condition (6) requires ED/APD glass; nC/nF/ng are evaluated from current OHARA S-FPL51 Sellmeier data and dPgF uses the patent normal-line formula. This is a class match, not a melt identification.",
@@ -113,7 +112,7 @@ const LENS_DATA = {
       nd: 1.785,
       vd: 25.9,
       fl: -166.9849681528663,
-      glass: "785259 dense-flint coordinate class (vendor unspecified)",
+      glass: "K-SFLD11 (Sumita catalog equivalent to patent 785259; production supplier unspecified)",
       apd: false,
       role: "Negative partner in Component II, separated from L2 by a 0.108 mm air gap.",
     },
@@ -125,7 +124,7 @@ const LENS_DATA = {
       nd: 1.772,
       vd: 49.7,
       fl: -53.2662218216995,
-      glass: "772497 high-index crown coordinate class (vendor unspecified)",
+      glass: "S-LAH66 (OHARA catalog equivalent to patent 772497; production supplier unspecified)",
       apd: false,
       role: "Front, strongly negative part of nominally fixed Component III.",
     },
@@ -137,8 +136,14 @@ const LENS_DATA = {
       nd: 1.806,
       vd: 40.9,
       fl: 48.28355174404824,
-      glass: "806409 lanthanum dense-crown coordinate class (vendor unspecified)",
-      apd: false,
+      glass: "P-LASF47 (Schott catalog equivalent to patent 806409; production supplier unspecified)",
+      apd: "inferred",
+      apdNote:
+        "Representative Schott P-LASF47 line indices and ΔPgF are retained because its published 806409 coordinate exactly matches the patent row. This is a catalog-equivalent curve, not a production-melt identification.",
+      dPgF: -0.0079,
+      nC: 1.80023,
+      nF: 1.81994,
+      ng: 1.83112,
       role: "Positive member of the near-afocal L5/L6 cemented correction doublet.",
       cemented: "D1",
     },
@@ -150,7 +155,7 @@ const LENS_DATA = {
       nd: 1.772,
       vd: 49.7,
       fl: -51.89848444163154,
-      glass: "772497 high-index crown coordinate class (vendor unspecified)",
+      glass: "S-LAH66 (OHARA catalog equivalent to patent 772497; production supplier unspecified)",
       apd: false,
       role: "Negative member of the near-afocal L5/L6 cemented correction doublet.",
       cemented: "D1",
@@ -163,7 +168,7 @@ const LENS_DATA = {
       nd: 1.728,
       vd: 28.4,
       fl: -156.6975460444766,
-      glass: "728284 dense-flint coordinate class (vendor unspecified)",
+      glass: "S-TIH10 (OHARA catalog equivalent to patent 728284; production supplier unspecified)",
       apd: false,
       role: "Negative front member of the moving Component IV cemented doublet.",
       cemented: "D2",
@@ -176,7 +181,7 @@ const LENS_DATA = {
       nd: 1.772,
       vd: 49.7,
       fl: 61.75525221683669,
-      glass: "772497 high-index crown coordinate class (vendor unspecified)",
+      glass: "S-LAH66 (OHARA catalog equivalent to patent 772497; production supplier unspecified)",
       apd: false,
       role: "Positive rear member of the moving Component IV cemented doublet.",
       cemented: "D2",

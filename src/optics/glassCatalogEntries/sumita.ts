@@ -5,6 +5,29 @@
 import type { GlassEntry } from "../glassCatalogTypes.js";
 
 export const SUMITA_GLASS_ENTRIES: readonly GlassEntry[] = [
+  /* Phase 82: discontinued-inclusive first-party catalog rows recovered during
+   * the Angénieux patent-glass audit.
+   */
+  {
+    name: "K-SFLD11",
+    vendor: "Sumita",
+    polynomial: [3.052913, -0.012276955, 0.041487837, 0.0019043764, -0.000031653157, 0.000017320425],
+    nd: 1.78472,
+    vd: 25.9,
+    code6: "785259",
+    source:
+      "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor formula-3 polynomial for K-SFLD11.",
+  },
+  {
+    name: "SSK2",
+    vendor: "Sumita",
+    polynomial: [2.583873, -0.00933743, 0.01666236, 0.0003569082, -0.000004730077, 0.0000008454233],
+    nd: 1.6223,
+    vd: 53.1,
+    code6: "622531",
+    source:
+      "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor formula-3 polynomial for SSK2.",
+  },
   /* Phase 70: exact first-party datasheet opportunity found during the
    * Panasonic LUMIX S 16-35mm f/4 glass audit.
    */

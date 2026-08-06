@@ -60,6 +60,7 @@ describe("glass catalog", () => {
   it.each([
     { name: "N-BK7", nC: 1.51432, nd: 1.5168, nF: 1.52238, ng: 1.52668, vd: 64.17 },
     { name: "SF6", nC: 1.79609, nd: 1.80518, nF: 1.82775, ng: 1.84707, vd: 25.43 },
+    { name: "P-LASF47", nC: 1.80023, nd: 1.8061, nF: 1.81994, ng: 1.83112, vd: 40.9 },
   ])("$name reproduces the published Schott datasheet indices at the C/d/F/g lines", (datasheet) => {
     const entry = resolveGlass(datasheet.name);
     expect(entry?.name).toBe(datasheet.name);
@@ -72,6 +73,18 @@ describe("glass catalog", () => {
     expect(nF).toBeCloseTo(datasheet.nF, 5);
     expect(ng).toBeCloseTo(datasheet.ng, 5);
     expect((nd - 1) / (nF - nC)).toBeCloseTo(datasheet.vd, 2);
+  });
+
+  it.each([
+    { name: "K-SFLD11", code: "785259", nd: 1.78472, vd: 25.9 },
+    { name: "SSK2", code: "622531", nd: 1.6223, vd: 53.1 },
+  ])("$name reproduces the published Sumita catalog coordinate", (datasheet) => {
+    const entry = resolveGlass(datasheet.name);
+    expect(entry?.name).toBe(datasheet.name);
+    expect(entry?.vendor).toBe("Sumita");
+    expect(entry?.code6).toBe(datasheet.code);
+    expect(Math.abs(evaluateSellmeier(entry!, LINE_NM.d) - datasheet.nd)).toBeLessThan(1e-4);
+    expect(Math.abs(evaluateCatalogAbbeNumber(entry!) - datasheet.vd)).toBeLessThan(0.05);
   });
 
   it("S-TIH53WN reproduces the published OHARA 25-04 line indices", () => {

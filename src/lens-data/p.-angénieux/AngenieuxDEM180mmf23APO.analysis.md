@@ -42,15 +42,15 @@ The focal lengths in this section are **standalone-in-air** values computed from
 
 ### L1 — Biconvex Positive
 
-$n_d=1.589$, $\nu_d=61.2$. Glass: 589612 barium-crown coordinate class, vendor unspecified. Standalone $f=+139.806$ mm.
+$n_d=1.589$, $\nu_d=61.2$. Glass: SK5 (Sumita catalog equivalent to patent 589612; production supplier unspecified). Standalone $f=+139.806$ mm.
 
 L1 forms Component I and provides the principal front collecting action. Its strongly convex front surface and extremely weak rear curvature produce substantial positive power without placing a strongly curved air interface immediately behind the element. The moderate index and crown-like dispersion make it a conventional positive front member rather than the lens's special chromatic-correction glass.
 
-The authored $\nu_d=61.2$ is the corrected interpretation of the patent's erroneous `6.12` entry. No vendor-specific glass identity is claimed.
+The authored $\nu_d=61.2$ is the corrected interpretation of the patent's erroneous `6.12` entry. Sumita SK5 supplies a compatible coefficient curve at $1.58913/61.2$; it is an optical equivalent, not a vendor-specific production identity.
 
 ### L2 — Positive Meniscus
 
-$n_d=1.497$, $\nu_d=81.6$. Glass: S-FPL51-class 497816 low-dispersion ED crown, vendor unspecified. Standalone $f=+125.693$ mm.
+$n_d=1.497$, $\nu_d=81.6$. Glass: S-FPL51 (OHARA catalog equivalent to patent 497816; production supplier unspecified). Standalone $f=+125.693$ mm.
 
 L2 is the positive member of moving Component II. Its low index and very high Abbe number identify it as the prescription's special low-dispersion glass. The data file stores line indices evaluated from the current OHARA S-FPL51 Sellmeier constants, $n_C=1.495136$, $n_F=1.501231$, and $n_g=1.504507$, together with $\Delta P_{gF}=+0.030941$ computed with the patent's normal-line formula and the authored $\nu_d=81.6$. The current catalog value is $\nu_d=81.54$, a residual of $+0.06$ from the patent row. These values satisfy the patent's anomalous-partial-dispersion condition, but they establish a catalog class rather than the production melt used by Angénieux.
 
@@ -58,7 +58,7 @@ The element's high front curvature supplies most of Component II's positive cont
 
 ### L3 — Plano-Concave Negative
 
-$n_d=1.785$, $\nu_d=25.9$. Glass: 785259 dense-flint coordinate class, vendor unspecified. Standalone $f=-166.985$ mm.
+$n_d=1.785$, $\nu_d=25.9$. Glass: K-SFLD11 (Sumita catalog equivalent to patent 785259; production supplier unspecified). Standalone $f=-166.985$ mm.
 
 L3 is the negative partner in Component II. It follows L2 across a 0.108 mm air gap in the scaled model. The high refractive index and low Abbe number oppose L2's positive power and dispersion, leaving the complete L2/L3 component weakly positive rather than strongly converging.
 
@@ -66,7 +66,7 @@ Component II has a computed net focal length of $+395.443$ mm in its infinity co
 
 ### L4 — Negative Meniscus
 
-$n_d=1.772$, $\nu_d=49.7$. Glass: 772497 high-index crown coordinate class, vendor unspecified. Standalone $f=-53.266$ mm.
+$n_d=1.772$, $\nu_d=49.7$. Glass: S-LAH66 (OHARA catalog equivalent to patent 772497; production supplier unspecified). Standalone $f=-53.266$ mm.
 
 L4 forms the front part of fixed Component III and supplies most of that component's negative power. Its weak front surface and strongly curved rear surface concentrate the negative refraction at the boundary leading into the diaphragm-containing air space. The radius of this rear surface is also the quantity used by the patent's fifth conditional expression.
 
@@ -74,15 +74,15 @@ The complete Component III has a computed focal length of $-57.117$ mm. Its prox
 
 ### L5 — Positive Meniscus, Front Member of D1
 
-$n_d=1.806$, $\nu_d=40.9$. Glass: 806409 lanthanum dense-crown coordinate class, vendor unspecified. Standalone $f=+48.284$ mm.
+$n_d=1.806$, $\nu_d=40.9$. Glass: P-LASF47 (Schott catalog equivalent to patent 806409; production supplier unspecified). Standalone $f=+48.284$ mm.
 
 L5 begins the cemented L5/L6 doublet in the rear part of Component III. Both physical radii are negative in the adopted sign convention, but the rear surface is more strongly curved; the resulting meniscus has positive standalone power. The high index permits substantial surface action within a compact axial thickness.
 
-Its standalone focal length describes a hypothetical air-bounded element. In the actual lens, the rear surface is cemented directly to L6, so the interface changes from $n_d=1.806$ to $n_d=1.772$ rather than from glass to air.
+Its standalone focal length describes a hypothetical air-bounded element. In the actual lens, the rear surface is cemented directly to L6, so the interface changes from $n_d=1.806$ to $n_d=1.772$ rather than from glass to air. The representative P-LASF47 data also retain $n_C=1.80023$, $n_F=1.81994$, $n_g=1.83112$, and $\Delta P_{gF}=-0.0079$, improving secondary-spectrum modeling without asserting the production melt.
 
 ### L6 — Negative Meniscus, Rear Member of D1
 
-$n_d=1.772$, $\nu_d=49.7$. Glass: 772497 high-index crown coordinate class, vendor unspecified. Standalone $f=-51.898$ mm.
+$n_d=1.772$, $\nu_d=49.7$. Glass: S-LAH66 (OHARA catalog equivalent to patent 772497; production supplier unspecified). Standalone $f=-51.898$ mm.
 
 L6 nearly cancels L5's standalone positive power. The actual cemented D1 doublet has a computed net focal length of approximately $-10{,}247.429$ mm, making it weakly negative and effectively near-afocal compared with the complete lens.
 
@@ -90,13 +90,13 @@ This distinction is central to the component's function. L5 and L6 are individua
 
 ### L7 — Negative Meniscus, Front Member of D2
 
-$n_d=1.728$, $\nu_d=28.4$. Glass: 728284 dense-flint coordinate class, vendor unspecified. Standalone $f=-156.698$ mm.
+$n_d=1.728$, $\nu_d=28.4$. Glass: S-TIH10 (OHARA catalog equivalent to patent 728284; production supplier unspecified). Standalone $f=-156.698$ mm.
 
 L7 is the negative front member of the moving rear doublet. Its relatively low Abbe number gives the cemented pair a dispersive counterweight to L8. The element is weakly negative as an isolated air-bounded lens, but its cemented interface with L8 is part of the actual group power and chromatic balance.
 
 ### L8 — Biconvex Positive, Rear Member of D2
 
-$n_d=1.772$, $\nu_d=49.7$. Glass: 772497 high-index crown coordinate class, vendor unspecified. Standalone $f=+61.755$ mm.
+$n_d=1.772$, $\nu_d=49.7$. Glass: S-LAH66 (OHARA catalog equivalent to patent 772497; production supplier unspecified). Standalone $f=+61.755$ mm.
 
 L8 supplies the dominant positive power in Component IV. Its positive front radius and weak negative rear radius make it biconvex in the adopted sign convention, with the rear surface only gently curved.
 
@@ -104,15 +104,15 @@ The cemented L7/L8 doublet has a computed net focal length of $+103.573$ mm. Unl
 
 ## Glass Identification and Selection
 
-The patent supplies $n_d$ and $\nu_d$ coordinates but names no glass manufacturer. The data file therefore uses vendor-neutral coordinate classes except for the L2 class cross-reference, whose stored line data are explicitly identified as representative rather than as production provenance.
+The patent supplies $n_d$ and $\nu_d$ coordinates but names no glass manufacturer. Each element now uses a coordinate-compatible published curve as an optical equivalent while retaining the patent coordinate and leaving the production supplier unspecified. The L2 and L5 line data are explicitly representative rather than production provenance.
 
-| Stored coordinate class | Nearest current OHARA reference | $\Delta n_d$ | $\Delta \nu_d$ | Elements |
+| Patent coordinate | Catalog-equivalent curve | Patent-minus-catalog $\Delta n_d$ | $\Delta \nu_d$ | Elements |
 |---|---|---:|---:|---|
-| 589612 barium crown | S-BAL35 (589612) | −0.00013 | +0.06 | L1 |
+| 589612 crown | Sumita SK5 | −0.00013 | 0.00 | L1 |
 | 497816 low-dispersion ED crown | S-FPL51 (497816) | 0.00000 | +0.06 | L2 |
-| 785259 dense flint | S-TIH11 (785257) | +0.00028 | +0.22 | L3 |
-| 772497 high-index crown | S-LAH66N (773496) | −0.00050 | +0.15 | L4, L6, L8 |
-| 806409 lanthanum dense crown | S-LAH53 (806409) | −0.00010 | −0.02 | L5 |
+| 785259 dense flint | Sumita K-SFLD11 | +0.00028 | 0.00 | L3 |
+| 772497 high-index crown | OHARA S-LAH66 | −0.00050 | +0.10 | L4, L6, L8 |
+| 806409 lanthanum dense crown | Schott P-LASF47 | −0.00010 | 0.00 | L5 |
 | 728284 dense flint | S-TIH10 (728285) | −0.00025 | −0.06 | L7 |
 
 The chromatic strategy is concentrated in Component II and reinforced by the rear cemented pair. L2 combines very high $\nu_d$ with positive anomalous partial dispersion, while L3 supplies high-index, low-$\nu_d$ negative power. This allows the moving component to remain net positive while addressing secondary spectrum. The L7/L8 pair uses a lower-$\nu_d$ negative front member and a higher-$\nu_d$ positive rear member to provide a conventional cemented chromatic balance in the strongly positive rear component.
@@ -209,3 +209,5 @@ The patent publishes no semi-diameters. The modeled values are inferred from the
 2. Angénieux, “History Timeline,” 1986 entry for the 180mm f/2.3 fixed lens. <https://www.angenieux.com/about-us/history/history-timeline/>
 3. Angénieux, “Zooms and/or primes? The answer by Kees van Oostrum,” discussion of the 180mm f/2.3 and 200mm f/2.8 full-frame still-photography primes. <https://www.angenieux.com/zooms-and-or-primes-the-answer-by-kees-van-oostrum-asc-president-of-the-american-society-of-cinematographers/>
 4. OHARA, S-FPL51 datasheet and current optical-glass tables, including Sellmeier constants and the nearest catalog-coordinate references used in the glass audit. <https://www.ohara-inc.co.jp/en/product/01000/>
+5. SCHOTT, *Optical Glass Collection Datasheets*, March 2018, P-LASF47 data page.
+6. SUMITA, all-glass Zemax catalog, 7 November 2025, including discontinued SK5 and K-SFLD11 rows.

@@ -36,7 +36,7 @@ The patent publishes no clear apertures. Surface semi-diameters were therefore i
 
 ### L1 — Positive Meniscus
 
-**nd = 1.6751, νd = 32.3. Glass: 675323 — dense-flint class (catalog identity unresolved). Standalone f = +158.4023 mm.**
+**nd = 1.6751, νd = 32.3. Glass: SF5 (Schott catalog equivalent to patent 675323 dense-flint coordinate; production supplier unspecified). Standalone f = +158.4023 mm.**
 
 L1 is the weak positive member at the front of the dispersive section. The patent requires this first lens to be convergent and places limits on its focal length, front radius, refractive index, and dispersive power [1, pp. 1–3]. Its comparatively weak positive power moderates the action of L1′ while presenting a large front aperture to the wide field.
 
@@ -68,7 +68,7 @@ The element contributes positive power while shaping ray height at the stop. The
 
 ### L4 — Biconcave Negative
 
-**nd = 1.6287, νd = 35.3. Glass: Unmatched (nd 1.6287, νd 35.3; nearest F1/S-TIM1 class). Standalone f = −16.0307 mm.**
+**nd = 1.6287, νd = 35.3. Glass: F1 (Sumita catalog equivalent to patent 629353 flint coordinate; production supplier unspecified). Standalone f = −16.0307 mm.**
 
 L4 is a thin, strongly negative biconcave element directly behind the stop. It is the most powerful isolated element in magnitude and is the only negative member of the four-element rear collective section. The patent identifies the third collective member as biconcave [1, pp. 1–3].
 
@@ -84,15 +84,15 @@ The isolated element has the strongest positive standalone power in the design. 
 
 ## Glass Identification and Selection
 
-The patent gives only d-line refractive index and Abbe number. It does not name manufacturers or catalog glasses, and it supplies no `nC`, `nF`, `ng`, `Pg,F`, or `dPgF` values. The data therefore treats J-SK16 as a modern coefficient-backed optical equivalent, not an historical supplier or melt assignment. The remaining class-level comparisons were rechecked against current SCHOTT N-SF5 and the OHARA S-TIM1 coordinate [6–8].
+The patent gives only d-line refractive index and Abbe number. It does not name manufacturers or catalog glasses, and it supplies no `nC`, `nF`, `ng`, `Pg,F`, or `dPgF` values. The data therefore treats SF5, J-SK16, and F1 as modern coefficient-backed optical equivalents, not historical supplier or melt assignments [6–9].
 
 | Stored glass annotation | nd | νd | Elements | Evidential status |
 |---|---:|---:|---|---|
-| 675323 — dense-flint class | 1.6751 | 32.3 | L1 | Catalog identity unresolved; class-level annotation only |
+| SF5; patent 675323 | 1.6751 | 32.3 | L1 | Schott equivalent at 1.67270 / 32.21; production supplier unspecified |
 | J-SK16; patent 620602 | 1.6204 | 60.2 | L1′, L2, L3, L5 | HIKARI formula-3 equivalent at 1.62041 / 60.25; production supplier unspecified |
-| Unmatched; nearest F1/S-TIM1 class | 1.6287 | 35.3 | L4 | No exact catalog identity defended by the stored coordinates |
+| F1; patent 629353 | 1.6287 | 35.3 | L4 | Sumita equivalent at 1.62588 / 35.6; production supplier unspecified |
 
-The front pair deliberately combines the lower-Abbe positive L1 with the higher-Abbe negative L1′, matching the patent’s glass conditions. The rear section largely reuses the 1.6204/60.2 crown coordinate around the lower-Abbe L4. This supports discussion of ordinary achromatic balancing, but not APO performance, anomalous partial dispersion, or secondary-spectrum correction. Chromatic calculations based on this file necessarily use the stored Abbe coordinates rather than verified Sellmeier or line-index data.
+The front pair deliberately combines the lower-Abbe positive L1 with the higher-Abbe negative L1′, matching the patent’s glass conditions. The rear section largely reuses the 1.6204/60.2 crown coordinate around the lower-Abbe L4. This supports discussion of ordinary achromatic balancing, but not APO performance, anomalous partial dispersion, or secondary-spectrum correction. All six elements now have compatible published dispersion curves; the source still provides no production-glass provenance or measured line indices.
 
 ## Focus Mechanism
 
@@ -149,3 +149,4 @@ The inferred geometry was also checked for positive edge thickness, actual spher
 6. SCHOTT, “Optical Glass Datasheet N-SF5,” https://media.schott.com/api/public/content/f8d4ac6649594677ab1b17b05ebd6a8f?v=c75caf58.
 7. HIKARI Glass, *Optical Glass Catalog*, June 2025, J-SK16 formula-3 data page.
 8. OHARA, “S-TIM1 (NR),” https://oharacorp.com/glass/s-tim1/.
+9. SUMITA, *Optical Glass Catalog*, discontinued-inclusive all-glass Zemax file dated 7 November 2025, F1 formula-3 row.

@@ -26,16 +26,25 @@ This file tracks the second bucket plus any cases from the first bucket that nee
 - Catalog: verified entries in `src/optics/glassCatalogData.ts` — `catalogSize()` is the live count; the
   generated glass reports carry the number at their generation date. (A hand-bumped figure here went stale.)
 - `catalog-mismatches.generated.md` and `glass-relabel-by-lens.generated.md` report **0** remaining
-  dispersion-coordinate mismatches across **0** lens files. The mismatch report separately records **17 / 75**
+  dispersion-coordinate mismatches across **0** lens files. The mismatch report separately records **18 / 75**
   native e-line surfaces resolved through explicit names or aliases.
-- `sellmeier-coverage.generated.md` reports **526** lenses, **5774** non-air surfaces, **5072** strict catalog
-  Sellmeier surfaces (**87.8%**), and **5083** trusted chromatic surfaces (**88.0%**).
-- **255** lenses are fully covered by strict Sellmeier data and **260** are fully covered by trusted chromatic data.
-- `unresolvedGlassScan` reports **370** non-explicit-unmatched annotations and **205** distinct unresolved glass-like
+- `sellmeier-coverage.generated.md` reports **526** lenses, **5774** non-air surfaces, **5085** strict catalog
+  Sellmeier surfaces (**88.1%**), and **5096** trusted chromatic surfaces (**88.3%**).
+- **258** lenses are fully covered by strict Sellmeier data and **263** are fully covered by trusted chromatic data.
+- `unresolvedGlassScan` reports **364** non-explicit-unmatched annotations and **201** distinct unresolved glass-like
   tokens. The residual total is code/prose inventory rather than a catalog-coordinate mismatch queue.
-- The missing-Sellmeier six-digit report contains **302** code-only elements, with **17** active unreviewed rows,
-  **133** self-recording explicit unmatched/unidentified dispositions, and **0** dispositions missing a review record.
+- The missing-Sellmeier six-digit report contains **291** code-only elements, with **17** active unreviewed rows,
+  **127** self-recording explicit unmatched/unidentified dispositions, and **0** dispositions missing a review record.
 - The Phase 2/3 resolved tables below are historical audit trail. Use the generated reports above for the current queue before starting new relabel work; for patent-by-patent execution, start from [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md).
+
+## Resolved Phase 82 — August 2026 Angénieux glass audit
+
+- Added Sumita K-SFLD11 and SSK2 from the manufacturer's discontinued-inclusive 2025 all-glass catalog and Schott
+  P-LASF47 from the official March 2018 collection datasheet.
+- Applied class-consistent catalog-equivalent labels throughout the Angénieux R1, R11, and DEM 180mm APO while
+  preserving each patent coordinate and leaving every production supplier unspecified.
+- The three lenses are now fully strict-covered; global coverage is 5085/5774 strict and 5096/5774 trusted, with
+  zero catalog-coordinate mismatches.
 
 ## Resolved Phase 81 — August 2026 Hikari new-lens coverage
 

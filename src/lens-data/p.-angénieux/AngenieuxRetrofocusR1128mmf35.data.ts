@@ -29,8 +29,8 @@ import type { LensDataInput } from "../../types/optics.js";
  * thickness, actual rim slope, shared-gap intrusion, full-aperture off-axis
  * containment at ±22.5°, and equivalent render geometry were checked.
  *
- * Glass: The source supplies only nd and νd. No nC, nF, ng, PgF, or dPgF
- * values are available, so none are synthesized from modern equivalents.
+ * Glass: The source supplies only nd and νd. Compatible published catalog
+ * curves are used as optical equivalents; no production supplier is asserted.
  *
  * Product metadata: Angénieux identifies the 1953 28mm f/3.5 Retrofocus with
  * a 75° field. A 0.6 m minimum focus is reported consistently by surviving
@@ -73,7 +73,7 @@ const LENS_DATA = {
       vd: 32.3,
       indexReference: "d",
       fl: 158.402327902,
-      glass: "675323 — dense flint class (catalog identity unresolved)",
+      glass: "SF5 (Schott catalog equivalent to patent 675323 dense-flint coordinate; production supplier unspecified)",
       apd: false,
       role: "Front positive member of the air-spaced dispersive pair.",
     },
@@ -123,7 +123,7 @@ const LENS_DATA = {
       vd: 35.3,
       indexReference: "d",
       fl: -16.030700601,
-      glass: "Unmatched (nd 1.6287, vd 35.3; nearest F1/S-TIM1 class)",
+      glass: "F1 (Sumita catalog equivalent to patent 629353 flint coordinate; production supplier unspecified)",
       apd: false,
       role: "Negative element immediately behind the stop.",
     },

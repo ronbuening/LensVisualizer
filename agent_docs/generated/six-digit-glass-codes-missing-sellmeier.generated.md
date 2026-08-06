@@ -10,11 +10,11 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **526** lenses scanned
-- **608** total code-only elements found
-- **302** elements in this report
-- **124** distinct lens files affected
+- **594** total code-only elements found
+- **291** elements in this report
+- **121** distinct lens files affected
 - **17** active unreviewed elements have no review-record hit or explicit disposition
-- **133** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
+- **127** explicitly unmatched/unknown/proprietary/unidentified elements are self-recording review dispositions
 - **0** dispositions lack any review record
 
 ## Prioritized Unreviewed Queue
@@ -51,7 +51,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 516565 | 3 | 1 | patents/CN216772097U.pdf | All rows have review records |
 | 585587 | 3 | 1 | patents/WO2024195273A1.pdf | All rows have review records |
 | 748523 | 3 | 3 | patents/US5640277.pdf<br>patents/US5717527.pdf<br>patents/US5490012.pdf | All rows explicitly disposed |
-| 772497 | 3 | 1 | patents/US4726669.pdf | All rows have review records |
 | 777297 | 3 | 3 | patents/WO2021199923A1.pdf<br>patents/WO_2025263124_A1.pdf<br>patents/JP2023039817A.pdf | All rows have review records |
 | 856401 | 3 | 2 | patents/WO2021199923A1.pdf<br>patents/WO_2025263124_A1.pdf | All rows have review records |
 | 863248 | 3 | 1 | patents/JP2023039817A.pdf | All rows have review records |
@@ -136,22 +135,16 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 607403 | 1 | 1 | patents/US5257137.pdf | All rows explicitly disposed |
 | 611572 | 1 | 1 | patents/US2279384.pdf | All rows explicitly disposed |
 | 612313 | 1 | 1 | patents/US20210026133A1.pdf | All rows have review records |
-| 614370 | 1 | 1 | patents/GB_673358_A.pdf | All rows explicitly disposed |
 | 614563 | 1 | 1 | patents/US3376091.pdf | All rows have review records |
-| 615598 | 1 | 1 | patents/GB_673358_A.pdf | All rows explicitly disposed |
 | 617443 | 1 | 1 | patents/JP2023039817A.pdf | All rows have review records |
 | 617540 | 1 | 1 | patents/US5717527.pdf | All rows explicitly disposed |
 | 621380 | 1 | 1 | patents/US2896506.pdf | All rows explicitly disposed |
 | 622639 | 1 | 1 | patents/WO2021199923A1.pdf | All rows explicitly disposed |
-| 623530 | 1 | 1 | patents/GB_673358_A.pdf | All rows explicitly disposed |
-| 624468 | 1 | 1 | patents/GB_673358_A.pdf | All rows explicitly disposed |
 | 624584 | 1 | 1 | patents/JP2025052870A.pdf | All rows have review records |
 | 625533 | 1 | 1 | patents/US2721499.pdf | All rows have review records |
-| 629353 | 1 | 1 | patents/GB_673358_A.pdf | All rows explicitly disposed |
 | 630346 | 1 | 1 | patents/JP2015041012A.pdf | All rows have review records |
 | 630581 | 1 | 1 | patents/JP2022100641A.pdf | All rows explicitly disposed |
 | 635232 | 1 | 1 | patents/US8081392.pdf | All rows explicitly disposed |
-| 639558 | 1 | 1 | patents/GB_673358_A.pdf | All rows explicitly disposed |
 | 640353 | 1 | 1 | patents/US4277149.pdf | All rows have review records |
 | 642581 | 1 | 1 | patents/US2721499.pdf | All rows have review records |
 | 650396 | 1 | 1 | patents/DE_3907928_A1.pdf | All rows explicitly disposed |
@@ -165,7 +158,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 670575 | 1 | 1 | patents/US5949588.pdf | All rows have review records |
 | 672323 | 1 | 1 | patents/GB_850117_A.pdf | All rows have review records |
 | 672389 | 1 | 1 | patents/US4497547.pdf | All rows explicitly disposed |
-| 675323 | 1 | 1 | patents/GB_720808_A.pdf | All rows have review records |
 | 675348 | 1 | 1 | patents/JP2018180366A.pdf | All rows explicitly disposed |
 | 676440 | 1 | 1 | patents/US7542219.pdf | All rows explicitly disposed |
 | 678322 | 1 | 1 | patents/WO2021200206A1.pdf | All rows explicitly disposed |
@@ -227,7 +219,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | 776496 | 1 | 1 | patents/JP2023039817A.pdf | All rows explicitly disposed |
 | 780509 | 1 | 1 | patents/US20180164556A1.pdf | All rows explicitly disposed |
 | 781446 | 1 | 1 | patents/JP2004109559A.pdf | All rows have review records |
-| 785259 | 1 | 1 | patents/US4726669.pdf | All rows have review records |
 | 786275 | 1 | 1 | Missing from untracked local patents/ references (US20150268449A1, US20150268449, 20150268449) | All rows have review records |
 | 786406 | 1 | 1 | patents/WO2019131993A1.pdf | No review-record hit |
 | 787501 | 1 | 1 | patents/DE_2157160_A1.pdf | All rows have review records |
@@ -917,32 +908,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
 | L18 (Element 18) | 35 | `Unmatched proprietary short flint (635/232, condition-b APD glass)` | 1.63494 / 23.22 | No catalog entry | abbe | patents/US8081392.pdf | Explicit disposition in data |
-
-### [P. ANGÉNIEUX DEM 180mm f/2.3 APO](../../src/lens-data/p.-angénieux/AngenieuxDEM180mmf23APO.data.ts) - US 4,726,669,
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L3 (Element 3) | 5 | `785259 dense-flint coordinate class (vendor unspecified)` | 1.78500 / 25.90 | No catalog entry | abbe | patents/US4726669.pdf | Audit-log hit |
-| L4 (Element 4) | 7 | `772497 high-index crown coordinate class (vendor unspecified)` | 1.77200 / 49.70 | No catalog entry | abbe | patents/US4726669.pdf | Audit-log hit |
-| L6 (Element 6) | 10 | `772497 high-index crown coordinate class (vendor unspecified)` | 1.77200 / 49.70 | No catalog entry | abbe | patents/US4726669.pdf | Audit-log hit |
-| L8 (Element 8) | 13 | `772497 high-index crown coordinate class (vendor unspecified)` | 1.77200 / 49.70 | No catalog entry | abbe | patents/US4726669.pdf | Audit-log hit |
-
-### [P. ANGÉNIEUX RETROFOCUS TYPE R1 35mm f/2.5](../../src/lens-data/p.-angénieux/AngenieuxRetrofocusR135mmf25.data.ts) - GB 673,358 A
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L1 (Element 1) | 1 | `Unmatched (615598 coordinate; vintage vendor unresolved)` | 1.61450 / 59.80 | No catalog entry | abbe | patents/GB_673358_A.pdf | Explicit disposition in data |
-| L2 (Element 2) | 3 | `Unmatched (624468 coordinate; vintage vendor unresolved)` | 1.62430 / 46.80 | No catalog entry | abbe | patents/GB_673358_A.pdf | Explicit disposition in data |
-| L3 (Element 3) | 5 | `Unmatched (623530 coordinate; vintage vendor unresolved)` | 1.62260 / 53.00 | No catalog entry | abbe | patents/GB_673358_A.pdf | Explicit disposition in data |
-| L4 (Element 4) | 7 | `Unmatched (614370 coordinate; vintage vendor unresolved)` | 1.61410 / 37.00 | No catalog entry | abbe | patents/GB_673358_A.pdf | Explicit disposition in data |
-| L5a (Element 5a) | 9 | `Unmatched (629353 coordinate; vintage vendor unresolved)` | 1.62870 / 35.30 | No catalog entry | abbe | patents/GB_673358_A.pdf | Explicit disposition in data |
-| L5b (Element 5b) | 10 | `Unmatched (639558 coordinate; vintage vendor unresolved)` | 1.63910 / 55.80 | No catalog entry | abbe | patents/GB_673358_A.pdf | Explicit disposition in data |
-
-### [P. ANGÉNIEUX RETROFOCUS TYPE R11 28mm f/3.5](../../src/lens-data/p.-angénieux/AngenieuxRetrofocusR1128mmf35.data.ts) - GB 720,808
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L1 (Element 1) | 1 | `675323 — dense flint class (catalog identity unresolved)` | 1.67510 / 32.30 | No catalog entry | abbe | patents/GB_720808_A.pdf | Audit-log hit |
 
 ### [PANASONIC LEICA DG SUMMILUX 15mm f/1.7 ASPH](../../src/lens-data/panasonic/PanasonicLeicaDG15mmf17.data.ts) - US 2015/0268449 A1
 

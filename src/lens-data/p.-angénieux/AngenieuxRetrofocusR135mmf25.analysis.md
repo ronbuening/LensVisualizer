@@ -77,7 +77,7 @@ objective.
 
 ### L1 — Negative Meniscus, convex toward the object
 
-**$n_d=1.6145$, $\nu_d=59.8$. Glass: Unmatched (615598 coordinate; vintage vendor unresolved). Standalone
+**$n_d=1.6145$, $\nu_d=59.8$. Glass: BACD4 (HOYA catalog equivalent to patent 615598 barium-crown coordinate; production supplier unspecified). Standalone
 $f=-91.9152$mm.**
 
 L1 is the defining front negative component. Its large diameter and long separation from L2 expand the back focal
@@ -85,26 +85,26 @@ clearance required by a reflex camera while allowing the following positive memb
 makes the separation between this meniscus and the rear member a central condition of the design and requires it to
 exceed one-half of the equivalent focal length.
 
-The element has moderate refractive index and the highest Abbe number in the prescription. Its glass annotation records
-only the patent coordinate pair; it is not a modern catalog identification. The large front semi-diameter is an inferred
+The element has moderate refractive index and the highest Abbe number in the prescription. HOYA BACD4 is used as a
+coefficient-backed barium-crown equivalent, not as a historical production identification. The large front semi-diameter is an inferred
 clear aperture chosen to contain useful wide-field rays while keeping the steep rear surface within the modeled
 rim-slope limit.
 
 ### L2 — Biconvex Positive Singlet
 
-**$n_d=1.6243$, $\nu_d=46.8$. Glass: Unmatched (624468 coordinate; vintage vendor unresolved). Standalone $f=+50.6180$mm.**
+**$n_d=1.6243$, $\nu_d=46.8$. Glass: E-BAF8 (Hikari catalog equivalent to patent 624468 barium-flint coordinate; production supplier unspecified). Standalone $f=+50.6180$mm.**
 
 L2 begins the rear convergent member. Its biconvex form supplies positive power after the long front air space, turning
 the diverging bundle from L1 back toward convergence. The short following air gap separates it from L3 without creating
 a cemented pair.
 
-Its Abbe value lies between L1 and the lower-$\nu_d$ negative elements farther rearward. The patent does not identify a
-historical melt or vendor, and the reviewed current catalogs do not provide a sufficiently close, unique coordinate
-match, so the data file assigns no modern trade name or glass family.
+Its Abbe value lies between L1 and the lower-$\nu_d$ negative elements farther rearward. The patent's barium-flint
+context and the compatible Hikari E-BAF8 curve support a class-consistent optical equivalent, while the historical
+melt and supplier remain unknown.
 
 ### L3 — Positive Meniscus, convex toward the object
 
-**$n_d=1.6226$, $\nu_d=53.0$. Glass: Unmatched (623530 coordinate; vintage vendor unresolved). Standalone
+**$n_d=1.6226$, $\nu_d=53.0$. Glass: SSK2 (Sumita catalog equivalent to patent 623530 dense-crown coordinate; production supplier unspecified). Standalone
 $f=+52.8054$mm.**
 
 L3 is the second positive singlet of the convergent member and the last glass element before the diaphragm. Its front
@@ -117,7 +117,7 @@ dependent.
 
 ### L4 — Biconcave Negative Singlet
 
-**$n_d=1.6141$, $\nu_d=37.0$. Glass: Unmatched (614370 coordinate; vintage vendor unresolved). Standalone
+**$n_d=1.6141$, $\nu_d=37.0$. Glass: F3 (Sumita catalog equivalent to patent 614370 flint coordinate; production supplier unspecified). Standalone
 $f=-18.4865$mm.**
 
 L4 is the strongest negative standalone element in the objective and lies immediately behind the stop. It interrupts
@@ -133,7 +133,7 @@ I does not employ that preferred condition, so the value is not a transcription 
 
 #### L5a — Negative Meniscus, front member
 
-**$n_d=1.6287$, $\nu_d=35.3$. Glass: Unmatched (629353 coordinate; vintage vendor unresolved). Standalone
+**$n_d=1.6287$, $\nu_d=35.3$. Glass: F1 (Sumita catalog equivalent to patent 629353 flint coordinate; production supplier unspecified). Standalone
 $f=-23.9090$mm.**
 
 L5a is a thin negative meniscus with the lowest Abbe number in the prescription. Its rear surface is cemented directly
@@ -141,7 +141,7 @@ to L5b. The standalone focal length describes L5a isolated in air and must not b
 
 #### L5b — Biconvex Positive, rear member
 
-**$n_d=1.6391$, $\nu_d=55.8$. Glass: Unmatched (639558 coordinate; vintage vendor unresolved).
+**$n_d=1.6391$, $\nu_d=55.8$. Glass: K-SK18 (Sumita catalog equivalent to patent 639558 dense-crown coordinate; production supplier unspecified).
 Standalone $f=+13.3653$mm.**
 
 L5b is the strongest positive standalone element. Its biconvex form supplies the dominant positive contribution of the
@@ -155,24 +155,23 @@ claim.
 
 ## Glass Identification and Selection
 
-The patent supplies only $n_d$ and $\nu_d$. It gives no manufacturer names, historical melt designations, Sellmeier
-coefficients, line indices, partial-dispersion ratios, or $\Delta P_{g,F}$ values. The data therefore retains the patent
-coordinates in six-digit form and uses explicit `Unmatched (...)` annotations. Current manufacturer catalogs were
-searched independently as coordinate references, not as proof of the glasses used in France in 1950.
+The patent supplies only $n_d$ and $\nu_d$. It gives no manufacturer names, historical melt designations, line indices,
+or $\Delta P_{g,F}$ values. The surrounding patent text does identify crown, barium-crown, barium-flint, and flint
+roles. Those class cues and the coordinate audit support the following coefficient-backed optical equivalents; none
+is evidence of the glasses actually sourced in France in 1950.
 
-| Element | Patent $n_d$, $\nu_d$ | Authored annotation | Nearest reviewed current coordinate analogue | Residual $(\Delta n_d, \Delta \nu_d)$ |
-|---|---:|---|---|---:|
-| L1 | 1.6145, 59.8 | 615598 coordinate | CDGM H-ZK7A | $(-0.001410,+0.556)$ |
-| L2 | 1.6243, 46.8 | 624468 coordinate | SCHOTT N-SSK20 | $(+0.001380,+3.400)$; outside the $\Delta\nu_d\leq2$ window |
-| L3 | 1.6226, 53.0 | 623530 coordinate | CDGM H-ZBAF1 / SCHOTT N-SSK2 | $(-0.000300,+0.171)$ / $(-0.000310,+0.270)$ |
-| L4 | 1.6141, 37.0 | 614370 coordinate | CDGM H-F2 | $(-0.001170,+0.004)$ |
-| L5a | 1.6287, 35.3 | 629353 coordinate | CDGM H-F13 / HIKARI J-F1 | $(-0.002820,+0.399)$ / $(-0.002820,+0.420)$ |
-| L5b | 1.6391, 55.8 | 639558 coordinate | CDGM H-ZK11 / OHARA S-BSM18 / HIKARI J-SK18 | $(-0.000560,-0.353)$ / $(-0.000560,-0.400)$ / $(-0.000560,-0.460)$ |
+| Element | Patent $n_d$, $\nu_d$ | Catalog-equivalent curve | Patent-minus-catalog residual $(\Delta n_d, \Delta \nu_d)$ |
+|---|---:|---|---:|
+| L1 | 1.6145, 59.8 | HOYA BACD4, barium crown | $(+0.001780,+1.220)$ |
+| L2 | 1.6243, 46.8 | Hikari E-BAF8, barium flint | $(+0.000560,-0.244)$ |
+| L3 | 1.6226, 53.0 | Sumita SSK2, dense crown | $(+0.000300,-0.100)$ |
+| L4 | 1.6141, 37.0 | Sumita F3, flint | $(+0.001170,+0.100)$ |
+| L5a | 1.6287, 35.3 | Sumita F1, flint | $(+0.002820,-0.300)$ |
+| L5b | 1.6391, 55.8 | Sumita K-SK18, dense crown | $(+0.000560,+0.300)$ |
 
-Several coordinates have close modern analogues, especially L3 and L5b, but the alternatives span manufacturers and
-naming systems. L2 has no reviewed entry inside the project's ordinary catalog-resolution window. These results support
-coordinate classes only; they do not establish historical vendor identities or justify substituting modern Sellmeier
-data. The relative Abbe-number pattern is consistent with ordinary cemented chromatic compensation, most clearly in the
+All six selected curves fall inside the project's catalog-resolution window and agree with the patent's stated glass
+classes. They improve wavelength-dependent tracing while leaving the patent's authored d-line coordinates unchanged.
+The relative Abbe-number pattern is consistent with ordinary cemented chromatic compensation, most clearly in the
 final doublet, but it does not establish apochromatic correction or anomalous partial dispersion.
 
 ## Focus Mechanism

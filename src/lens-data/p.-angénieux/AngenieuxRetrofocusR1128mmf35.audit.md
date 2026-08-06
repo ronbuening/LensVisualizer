@@ -9,3 +9,9 @@ Patent: GB 720,808 A, sole numerical example / optical section.
 - Relabeled the four repeated `1.6204 / 60.2` rows as HIKARI J-SK16 optical equivalents. The first-party formula-3 entry is `1.62041 / 60.25`; the annotation preserves patent coordinate `620602` and leaves the production supplier unspecified.
 - L1 (`675323`) and L4 (`1.6287 / 35.3`) remain unresolved because their compatible modern neighbors are not unique historical identities.
 - Corrected the maker identity and route prefix to `P. Angénieux`; the display name is `P. ANGÉNIEUX RETROFOCUS TYPE R11 28mm f/3.5`.
+
+## 2026-08-06 — Catalog-equivalent glass follow-up
+
+- Rechecked the sole numerical example's six glass rows. Schott SF5 is a compatible dense-flint curve for L1, and Sumita F1 is a compatible flint curve for L4; neither is asserted as the historical production glass.
+- Together with the four existing J-SK16 equivalents, the prescription now has 6/6 strict and trusted chromatic coverage, up from 4/6.
+- The `L1′` patent element notation, viewer labels, and display name remain consistent with GB 720,808 and require no correction.

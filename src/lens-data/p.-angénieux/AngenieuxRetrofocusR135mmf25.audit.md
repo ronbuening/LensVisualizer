@@ -8,3 +8,10 @@ Patent: GB 673,358 A, Example I / Figure 1.
 - All stored SDs pass the image-circle floor and surface-geometry checks.
 - The six 1950 patent glass coordinates have several plausible modern neighbors but no unique coefficient-backed historical identity. They remain explicit unmatched coordinate classes rather than acquiring arbitrary vendor labels.
 - Corrected the maker identity and route prefix to `P. Angénieux`; the display name is `P. ANGÉNIEUX RETROFOCUS TYPE R1 35mm f/2.5`.
+
+## 2026-08-06 — Catalog-equivalent glass follow-up
+
+- Rechecked Example I's six `nd` / `νd` rows against the patent's crown, barium-crown, barium-flint, and flint context plus complete vendor catalogs.
+- Added discontinued Sumita SSK2 and assigned compatible BACD4, E-BAF8, SSK2, F3, F1, and K-SK18 curves as optical equivalents. Each annotation retains the patent coordinate and leaves the production supplier unspecified.
+- Strict and trusted chromatic coverage both rose from 0/6 to 6/6 elements with zero coordinate mismatches.
+- The `L5a` / `L5b` patent notation, viewer labels, and display name remain consistent with GB 673,358 A and require no correction.

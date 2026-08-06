@@ -18,6 +18,11 @@ export interface ChangelogEntry {
 }
 
 export const CHANGELOG: ChangelogEntry[] = [
+  {
+    date: "2026-08-06",
+    type: "improvement",
+    summary: "Improved dispersion accuracy across all three P. Angénieux lens models",
+  },
   // ── 2026-08-06 ─────────────────────────────────
   {
     date: "2026-08-06",

@@ -5,6 +5,20 @@
 import type { GlassEntry } from "../glassCatalogTypes.js";
 
 export const SCHOTT_GLASS_ENTRIES: readonly GlassEntry[] = [
+  /* Phase 82: official legacy datasheet row recovered during the Angénieux
+   * patent-glass audit.
+   */
+  {
+    name: "P-LASF47",
+    vendor: "Schott",
+    B: [1.85543101, 0.315854649, 1.28561839],
+    C: [0.0100328203, 0.0387095168, 94.5421507],
+    nd: 1.8061,
+    vd: 40.9,
+    PgF: 0.5671,
+    code6: "806409",
+    source: "Schott Optical Glass Collection Datasheets, March 2018, P-LASF47 data page.",
+  },
   /* ────── Universal crowns (BK7-class) ──────
    * N-BK7 is the universal reference crown; S-BSL7 is Ohara's near-equivalent.
    * Both are present in nearly every lens design somewhere in the rear group.
