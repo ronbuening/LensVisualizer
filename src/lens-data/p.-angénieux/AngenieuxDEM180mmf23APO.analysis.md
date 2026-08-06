@@ -74,11 +74,11 @@ The complete Component III has a computed focal length of $-57.117$ mm. Its prox
 
 ### L5 — Positive Meniscus, Front Member of D1
 
-$n_d=1.806$, $\nu_d=40.9$. Glass: P-LASF47 (Schott catalog equivalent to patent 806409; production supplier unspecified). Standalone $f=+48.284$ mm.
+$n_d=1.806$, $\nu_d=40.9$. Glass: S-LAH53 (OHARA catalog equivalent to patent 806409; production supplier unspecified). Standalone $f=+48.284$ mm.
 
 L5 begins the cemented L5/L6 doublet in the rear part of Component III. Both physical radii are negative in the adopted sign convention, but the rear surface is more strongly curved; the resulting meniscus has positive standalone power. The high index permits substantial surface action within a compact axial thickness.
 
-Its standalone focal length describes a hypothetical air-bounded element. In the actual lens, the rear surface is cemented directly to L6, so the interface changes from $n_d=1.806$ to $n_d=1.772$ rather than from glass to air. The representative P-LASF47 data also retain $n_C=1.80023$, $n_F=1.81994$, $n_g=1.83112$, and $\Delta P_{gF}=-0.0079$, improving secondary-spectrum modeling without asserting the production melt.
+Its standalone focal length describes a hypothetical air-bounded element. In the actual lens, the rear surface is cemented directly to L6, so the interface changes from $n_d=1.806$ to $n_d=1.772$ rather than from glass to air. Schott P-LASF47 shares the same nominal `806409` coordinate but has materially negative partial dispersion; because the patent publishes no L5 line indices or partial-dispersion condition, the model conservatively uses the normal-dispersion S-LAH53 curve and does not classify L5 as APD.
 
 ### L6 — Negative Meniscus, Rear Member of D1
 
@@ -104,7 +104,7 @@ The cemented L7/L8 doublet has a computed net focal length of $+103.573$ mm. Unl
 
 ## Glass Identification and Selection
 
-The patent supplies $n_d$ and $\nu_d$ coordinates but names no glass manufacturer. Each element now uses a coordinate-compatible published curve as an optical equivalent while retaining the patent coordinate and leaving the production supplier unspecified. The L2 and L5 line data are explicitly representative rather than production provenance.
+The patent supplies $n_d$ and $\nu_d$ coordinates but names no glass manufacturer. Each element now uses a coordinate-compatible published curve as an optical equivalent while retaining the patent coordinate and leaving the production supplier unspecified. The L2 line data are explicitly representative rather than production provenance.
 
 | Patent coordinate | Catalog-equivalent curve | Patent-minus-catalog $\Delta n_d$ | $\Delta \nu_d$ | Elements |
 |---|---|---:|---:|---|
@@ -112,7 +112,7 @@ The patent supplies $n_d$ and $\nu_d$ coordinates but names no glass manufacture
 | 497816 low-dispersion ED crown | S-FPL51 (497816) | 0.00000 | +0.06 | L2 |
 | 785259 dense flint | Sumita K-SFLD11 | +0.00028 | 0.00 | L3 |
 | 772497 high-index crown | OHARA S-LAH66 | −0.00050 | +0.10 | L4, L6, L8 |
-| 806409 lanthanum dense crown | Schott P-LASF47 | −0.00010 | 0.00 | L5 |
+| 806409 lanthanum dense crown | OHARA S-LAH53 | −0.00010 | −0.03 | L5 |
 | 728284 dense flint | S-TIH10 (728285) | −0.00025 | −0.06 | L7 |
 
 The chromatic strategy is concentrated in Component II and reinforced by the rear cemented pair. L2 combines very high $\nu_d$ with positive anomalous partial dispersion, while L3 supplies high-index, low-$\nu_d$ negative power. This allows the moving component to remain net positive while addressing secondary spectrum. The L7/L8 pair uses a lower-$\nu_d$ negative front member and a higher-$\nu_d$ positive rear member to provide a conventional cemented chromatic balance in the strongly positive rear component.

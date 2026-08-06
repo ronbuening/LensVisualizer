@@ -15,3 +15,9 @@ Patent: US 4,726,669 A, Example 1 / Figure 1.
 - Added Sumita K-SFLD11 for the exact `785259` family and Schott P-LASF47 for the exact `806409` family. Existing SK5, S-FPL51, S-LAH66, and S-TIH10 curves cover the remaining rows.
 - Retained representative Schott P-LASF47 `nC`, `nF`, `ng`, and `ΔPgF = -0.0079` data on L5 as an inferred catalog-equivalent property, not a patent or production-melt claim.
 - Strict and trusted chromatic coverage both rose from 4/8 to 8/8 elements. The display name and element labels were rechecked and require no further correction.
+
+## 2026-08-06 — L5 APD evidence correction
+
+- Re-read claim 6 and the Example 1 table. The patent requires an ED/APD positive element in Component II, which identifies L2; it publishes no partial-dispersion requirement or line indices for Component III element L5.
+- Changed L5 from inferred P-LASF47 APD data to the coordinate-equivalent, normal-dispersion S-LAH53 curve. Removed the representative P-LASF47 `nC`, `nF`, `ng`, and `dPgF = -0.0079` fields and restored `apd: false`.
+- Schott P-LASF47 remains a valid catalog entry and an `806409` coordinate alternative, but `nd` / `νd` alone cannot distinguish its anomalous curve from S-LAH53. Full 8/8 catalog coverage is retained without asserting unsupported L5 secondary-spectrum behavior.
