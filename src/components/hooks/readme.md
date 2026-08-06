@@ -12,6 +12,7 @@ flowchart LR
     n_src_components_hooks_src_components_hooks_offAxisRayUtils_ts["offAxisRayUtils.ts"]
     n_src_components_hooks_src_components_hooks_raySegmentUtils_ts["raySegmentUtils.ts"]
     n_src_components_hooks_src_components_hooks_useChromaticRays_ts["useChromaticRays.ts"]
+    n_src_components_hooks_src_components_hooks_useDismissableDropdown_ts["useDismissableDropdown.ts"]
     n_src_components_hooks_src_components_hooks_useDispatchAdapters_ts["useDispatchAdapters.ts"]
     n_src_components_hooks_src_components_hooks_useFlashOverlay_ts["useFlashOverlay.ts"]
     n_src_components_hooks_src_components_hooks_useHeaderHeight_ts["useHeaderHeight.ts"]
@@ -50,6 +51,7 @@ flowchart LR
   n_src_components_hooks_src_components_hooks_useRayTracing_ts --> |2| n_src_components_hooks_src_components_hooks_useChromaticRays_ts
   n_src_components_hooks_src_components_hooks_useRayTracing_ts --> |2| n_src_components_hooks_src_components_hooks_useOnAxisRays_ts
   n_src_components_hooks_src_components_hooks_useChromaticRays_ts --> n_external_pkg_react
+  n_src_components_hooks_src_components_hooks_useDismissableDropdown_ts --> n_external_pkg_react
   n_src_components_hooks_src_components_hooks_useDispatchAdapters_ts --> n_external_pkg_react
   n_src_components_hooks_src_components_hooks_useFlashOverlay_ts --> n_external_pkg_react
   n_src_components_hooks_src_components_hooks_useInteractionSignal_ts --> n_external_pkg_react
@@ -71,15 +73,14 @@ flowchart LR
   n_src_components_hooks_src_components_hooks_useOnAxisRays_ts --> n_external_src_optics_lensMovement_ts
   n_src_components_hooks_src_components_hooks_useRayTracing_ts --> n_external_src_optics_lensMovement_ts
   n_src_components_hooks_src_components_hooks_offAxisRayUtils_ts --> n_external_src_optics_optics_ts
-  n_src_components_hooks_src_components_hooks_useChromaticRays_ts --> n_external_src_optics_optics_ts
   n_src_components_hooks_truncated["additional relationships omitted"]
 ```
 
 ## Directory Overview
 
-- Direct source files: 17
+- Direct source files: 18
 - Direct subfolders: 0
-- Main outbound areas: package:react (17), src/types (15), same folder (13), src/optics/optics.ts (7), src/optics/lensMovement.ts (6), src/optics/raySampling.ts (3), src/utils/state (3), src/utils/catalog (2), +6 more
+- Main outbound areas: package:react (18), src/types (15), same folder (13), src/optics/optics.ts (7), src/optics/lensMovement.ts (6), src/optics/raySampling.ts (3), src/utils/state (3), src/utils/catalog (2), +6 more
 - External consumers: src/benchmarks, src/components/controls, src/components/display, src/components/layout, src/components/relationshipMap
 
 ## Files
@@ -89,6 +90,7 @@ flowchart LR
 | `offAxisRayUtils.ts` | Off Axis Ray Utils helper module | src/types (2), src/optics/aberration, src/optics/optics.ts, src/optics/projection.ts, src/utils/featureFlags.ts | same folder (2), src/benchmarks | OffAxisTraceGeometry, computeOffAxisTraceGeometry |
 | `raySegmentUtils.ts` | Ray Segment Utils helper module | same folder, src/types | same folder (3), src/benchmarks | compileRaySegment, filterChannels |
 | `useChromaticRays.ts` | React hook module | same folder (3), src/types (2), package:react, src/optics/lensMovement.ts, src/optics/optics.ts, +1 more | same folder, src/benchmarks, src/components/layout | ChromaticRaySegment, default, useChromaticRays |
+| `useDismissableDropdown.ts` | React hook module | package:react | src/components/layout, src/components/relationshipMap | default, useDismissableDropdown |
 | `useDispatchAdapters.ts` | React hook module | src/types (2), src/utils/state (2), package:react | src/components/layout | DispatchAdapters, default, useDispatchAdapters |
 | `useFlashOverlay.ts` | React hook module | package:react | src/components/layout | default, useFlashOverlay |
 | `useHeaderHeight.ts` | React hook module | package:react (2) | src/components/layout | default, useHeaderHeight |

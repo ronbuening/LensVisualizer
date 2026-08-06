@@ -84,6 +84,26 @@ describe("RelationshipMapPage", () => {
     expect(h1.textContent).toContain(author.name);
   });
 
+  it("dismisses compact picker suggestions with Escape and an outside click", async () => {
+    const slug = connectedAuthorSlug();
+    renderRoutes(`/relationships/#focus=author:${slug}`, PAGE_ROUTE);
+    const searchbox = await screen.findByRole("searchbox", { name: "Search inventors and assignees" });
+
+    fireEvent.change(searchbox, { target: { value: AUTHORS[0].name } });
+    expect(screen.getByRole("listbox", { name: "Inventor and assignee suggestions" })).toBeDefined();
+    expect(searchbox.getAttribute("aria-expanded")).toBe("true");
+
+    fireEvent.keyDown(document, { key: "Escape" });
+    expect(screen.queryByRole("listbox", { name: "Inventor and assignee suggestions" })).toBeNull();
+    expect(searchbox.getAttribute("aria-expanded")).toBe("false");
+
+    fireEvent.focus(searchbox);
+    expect(screen.getByRole("listbox", { name: "Inventor and assignee suggestions" })).toBeDefined();
+    fireEvent.mouseDown(document.body);
+    expect(screen.queryByRole("listbox", { name: "Inventor and assignee suggestions" })).toBeNull();
+    expect(searchbox.getAttribute("aria-expanded")).toBe("false");
+  });
+
   it("falls back to the intro for a garbage focus", async () => {
     renderRoutes("/relationships/#focus=nonsense", PAGE_ROUTE);
     await waitFor(() => {

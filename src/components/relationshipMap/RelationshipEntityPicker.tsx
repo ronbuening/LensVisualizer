@@ -8,7 +8,7 @@
  * map.
  */
 
-import { useMemo, useState, type CSSProperties } from "react";
+import { useMemo, useRef, useState, type CSSProperties } from "react";
 import { AUTHORS } from "../../utils/catalog/authorCatalog.js";
 import { ASSIGNEES } from "../../utils/catalog/assigneeCatalog.js";
 import { normalizeSearchText } from "../../utils/catalog/searchCatalog.js";
@@ -17,6 +17,7 @@ import type { PartyRef } from "../../utils/catalog/relationshipGraph.js";
 import { panelCard, searchInput, VISUALLY_HIDDEN } from "../../utils/style/styles.js";
 import roleChip from "./roleChip.js";
 import { pluralize } from "../../utils/text.js";
+import useDismissableDropdown from "../hooks/useDismissableDropdown.js";
 
 interface RelationshipEntityPickerProps {
   theme: Theme;
@@ -57,6 +58,11 @@ function buildOptions(): PickerOption[] {
 
 export default function RelationshipEntityPicker({ theme: t, onPick, compact = false }: RelationshipEntityPickerProps) {
   const [query, setQuery] = useState("");
+  const [suggestionsOpen, setSuggestionsOpen] = useState(false);
+  const compactInputRef = useRef<HTMLInputElement>(null);
+  const compactListRef = useDismissableDropdown<HTMLUListElement>(suggestionsOpen, compactInputRef, () =>
+    setSuggestionsOpen(false),
+  );
   const options = useMemo(buildOptions, []);
 
   const limit = compact ? COMPACT_LIMIT : FULL_LIMIT;
@@ -66,6 +72,7 @@ export default function RelationshipEntityPicker({ theme: t, onPick, compact = f
     [options, normalizedQuery],
   );
   const shown = filtered.slice(0, limit);
+  const compactListOpen = suggestionsOpen && normalizedQuery.length > 0 && shown.length > 0;
 
   const inputStyle: CSSProperties = {
     ...searchInput(t),
@@ -80,15 +87,28 @@ export default function RelationshipEntityPicker({ theme: t, onPick, compact = f
           Search inventors and assignees
         </label>
         <input
+          ref={compactInputRef}
           id="relationship-picker-compact"
           type="search"
           value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          onChange={(event) => {
+            setQuery(event.target.value);
+            setSuggestionsOpen(event.target.value.trim().length > 0);
+          }}
+          onFocus={() => setSuggestionsOpen(normalizedQuery.length > 0)}
           placeholder="Change focus — search inventors or assignees"
+          aria-autocomplete="list"
+          aria-controls="relationship-picker-options"
+          aria-expanded={compactListOpen}
+          aria-haspopup="listbox"
           style={inputStyle}
         />
-        {query && shown.length > 0 && (
+        {compactListOpen && (
           <ul
+            ref={compactListRef}
+            id="relationship-picker-options"
+            role="listbox"
+            aria-label="Inventor and assignee suggestions"
             style={{
               position: "absolute",
               zIndex: 5,
@@ -107,8 +127,11 @@ export default function RelationshipEntityPicker({ theme: t, onPick, compact = f
               <li key={option.ref.role + ":" + option.ref.slug}>
                 <button
                   type="button"
+                  role="option"
+                  aria-selected="false"
                   onClick={() => {
                     setQuery("");
+                    setSuggestionsOpen(false);
                     onPick(option.ref);
                   }}
                   style={{

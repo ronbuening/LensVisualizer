@@ -82,7 +82,7 @@ flowchart LR
 
 - Direct source files: 16
 - Direct subfolders: 2
-- Main outbound areas: src/types (22), package:react (12), src/components/hooks (12), same folder (11), src/utils/state (10), src/utils/theme (10), src/utils/style (9), src/utils/catalog (5), +21 more
+- Main outbound areas: src/types (22), src/components/hooks (13), package:react (12), same folder (11), src/utils/state (10), src/utils/theme (10), src/utils/style (9), src/utils/catalog (5), +21 more
 - External consumers: src/comparison, src/components/controls, src/components/layout, src/pages/ArticlePage.tsx, src/pages/ArticlesPage.tsx, src/pages/AuthorPage.tsx, src/pages/AuthorsIndexPage.tsx, src/pages/ComparePage.tsx, +14 more
 
 ## Subfolders
@@ -101,7 +101,7 @@ flowchart LR
 | `ControlsBar.tsx` | React component module | src/types (2), package:react, src/components/controls, src/utils/featureFlags.ts, src/utils/state, +1 more | same folder | default, ControlsBar |
 | `DescriptionPanel.tsx` | React component module | package:react, src/components/markdown, src/types | same folder (2) | default, DescriptionPanel |
 | `DiagramControlPanel.tsx` | React component module | src/types (4), src/components/display (2), src/components/controls | same folder | default, DiagramControlPanel |
-| `DropdownPanel.tsx` | React component module | package:react (2), package:react-dom, src/types | same folder, src/components/controls | DropdownPanelPos, default |
+| `DropdownPanel.tsx` | React component module | package:react (2), package:react-dom, src/components/hooks, src/types | same folder, src/components/controls | DropdownPanelPos, default |
 | `LensDiagramPanel.tsx` | React component module | src/components/hooks (8), same folder (3), src/types (2), src/utils/state (2), package:react, +8 more | same folder, src/comparison | default, LensDiagramPanel |
 | `LensViewer.tsx` | React component module | src/utils/state (5), same folder (3), src/components/hooks (2), src/utils/theme (2), package:react, +13 more | src/pages/ComparePage.tsx, src/pages/LensPage.tsx | default, LensVisualization |
 | `OverlayModal.tsx` | React component module | package:react, src/components/hooks, src/types, src/utils/style, src/utils/usePrefersReducedMotion.ts | same folder (2) | default, OverlayModal |
