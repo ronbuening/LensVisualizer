@@ -63,6 +63,7 @@ describe("lens-data scripts", () => {
     expect(deriveMakerSlug("Venus Optics Laowa 24mm f/14 2X Macro Probe")).toBe("laowa");
     expect(deriveMakerSlug("Rodenstock Grandagon-N 90mm f/4.5")).toBe("rodenstock");
     expect(deriveMakerSlug("G. Rodenstock Eurynar 165mm f/4.5")).toBe("rodenstock");
+    expect(deriveMakerSlug("P. Angénieux Retrofocus Type R1 35mm f/2.5")).toBe("p.-angénieux");
     expect(deriveMakerSlug("Agfa Color-Solinar 50mm f/2.8")).toBe("agfa");
     expect(deriveMakerSlug("Enna Munchen Lithagon 35mm f/2.8")).toBe("enna-munchen");
     expect(deriveMakerSlug("Meyer Optic Goerlitz Trioplan 100mm f/2.8")).toBe("meyer-optik-goerlitz");

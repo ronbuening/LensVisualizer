@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **520** lenses scanned
-- **5721** non-air surfaces examined
-- **5728** element glass declarations examined
-- **365** non-explicit-unmatched annotations did not resolve
-- **202** distinct unresolved glass-like tokens found
+- **526** lenses scanned
+- **5774** non-air surfaces examined
+- **5781** element glass declarations examined
+- **370** non-explicit-unmatched annotations did not resolve
+- **205** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -27,6 +27,7 @@ or per-lens patent backfills.
 | 516565 | 3 | 1 | |
 | 585587 | 3 | 1 | |
 | 744495 | 3 | 3 | |
+| 772497 | 3 | 1 | |
 | 856401 | 3 | 2 | |
 | 863248 | 3 | 1 | |
 | LAF10 | 3 | 2 | |
@@ -106,6 +107,7 @@ or per-lens patent backfills.
 | 670574 | 1 | 1 | |
 | 670575 | 1 | 1 | |
 | 672323 | 1 | 1 | |
+| 675323 | 1 | 1 | |
 | 680312 | 1 | 1 | |
 | 682366 | 1 | 1 | |
 | 683548 | 1 | 1 | |
@@ -141,6 +143,7 @@ or per-lens patent backfills.
 | 774494 | 1 | 1 | |
 | 781445 | 1 | 1 | |
 | 781446 | 1 | 1 | |
+| 785259 | 1 | 1 | |
 | 786275 | 1 | 1 | |
 | 786406 | 1 | 1 | |
 | 787501 | 1 | 1 | |
@@ -286,6 +289,12 @@ or per-lens patent backfills.
 - [NIKON AF-S NIKKOR 24-70mm f/2.8 E ED VR](../../src/lens-data/nikon/NikonNikkorAFS2470mmf28E.data.ts) 1: `744495 — lanthanum crown (patent nd=1.74389, νd=49.50; no exact public catalog match)`
 - [NIKON NIKKOR Z 24-70mm f/4 S](../../src/lens-data/nikon/NikonNikkorZ2470mmf4S.data.ts) 4: `744495 — PGM low-Tg lanthanum crown (patent nd=1.74353, νd=49.5; no exact public catalog match)`
 - [NIKON NIKKOR Z 24-70mm f/2.8 S](../../src/lens-data/nikon/NikonZ2470f28.data.ts) 6A: `744495 — moldable lanthanum crown (patent nd=1.74389, νd=49.53; no exact public catalog match)`
+
+### 772497 — 3 occurrences
+
+- [P. ANGÉNIEUX DEM 180mm f/2.3 APO](../../src/lens-data/p.-angénieux/AngenieuxDEM180mmf23APO.data.ts) 7: `772497 high-index crown coordinate class (vendor unspecified)`
+- [P. ANGÉNIEUX DEM 180mm f/2.3 APO](../../src/lens-data/p.-angénieux/AngenieuxDEM180mmf23APO.data.ts) 10: `772497 high-index crown coordinate class (vendor unspecified)`
+- [P. ANGÉNIEUX DEM 180mm f/2.3 APO](../../src/lens-data/p.-angénieux/AngenieuxDEM180mmf23APO.data.ts) 13: `772497 high-index crown coordinate class (vendor unspecified)`
 
 ### 856401 — 3 occurrences
 
@@ -641,6 +650,10 @@ or per-lens patent backfills.
 
 - [CARL ZEISS JENA PANCOLAR 50mm f/2](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaPancolar50mmf2.data.ts) 4: `Dense flint (672/323, Jena in-house; no exact public catalog match)`
 
+### 675323 — 1 occurrence
+
+- [P. ANGÉNIEUX RETROFOCUS TYPE R11 28mm f/3.5](../../src/lens-data/p.-angénieux/AngenieuxRetrofocusR1128mmf35.data.ts) 1: `675323 — dense flint class (catalog identity unresolved)`
+
 ### 680312 — 1 occurrence
 
 - [SONY SONNAR T* FE 35mm f/2.8 ZA](../../src/lens-data/sony/SonyFE35mmf28ZA.data.ts) 12A: `680312 - dense flint (patent nd=1.68000, vd=31.16; no exact public catalog match)`
@@ -780,6 +793,10 @@ or per-lens patent backfills.
 ### 781446 — 1 occurrence
 
 - [MINOLTA AF 70-200mm f/2.8 APO G (D) SSM](../../src/lens-data/minolta/MinoltaAF70200mmf28APO.data.ts) 25: `781446 - high-index mid-dispersion glass (unresolved)`
+
+### 785259 — 1 occurrence
+
+- [P. ANGÉNIEUX DEM 180mm f/2.3 APO](../../src/lens-data/p.-angénieux/AngenieuxDEM180mmf23APO.data.ts) 5: `785259 dense-flint coordinate class (vendor unspecified)`
 
 ### 786275 — 1 occurrence
 

@@ -21,6 +21,11 @@ export const CHANGELOG: ChangelogEntry[] = [
   // ── 2026-08-06 ─────────────────────────────────
   {
     date: "2026-08-06",
+    type: "lens",
+    summary: "Added six P. Angénieux and Nikon retrofocus, DC, and fisheye lens designs",
+  },
+  {
+    date: "2026-08-06",
     type: "fix",
     summary: "Fixed publication dates so site cards, feeds, and sitemaps agree on the UTC day",
   },

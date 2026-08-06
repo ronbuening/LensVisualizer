@@ -52,4 +52,16 @@ describe("lensSummaries parity with lensCatalog", () => {
       expect(summary.visible).toBe(data.visible !== false);
     }
   });
+
+  it("keeps every patent author name romanized", () => {
+    const nonRomanized = ALL_CATALOG_KEYS.flatMap((key) =>
+      (LENS_CATALOG[key].patentAuthors ?? [])
+        .filter((name) =>
+          [...name].some((character) => /\p{Letter}/u.test(character) && !/\p{Script=Latin}/u.test(character)),
+        )
+        .map((name) => `${key}: ${name}`),
+    );
+
+    expect(nonRomanized).toEqual([]);
+  });
 });
