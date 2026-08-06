@@ -9,7 +9,7 @@
  * result; this module is only nodes and edges.
  */
 
-import { AuthorPatent, getAuthorBySlug, getAuthorByName, patentsForParty } from "./authorCatalog.js";
+import { getAuthorBySlug, getAuthorByName, patentsForParty } from "./authorCatalog.js";
 import { getAssigneeBySlug, getAssigneeByName } from "./assigneeCatalog.js";
 import { catalogCollator } from "./collation.js";
 import type { PatentLensRef, PatentPartyRole } from "../../types/catalog.js";
@@ -24,9 +24,10 @@ export interface GraphPatentNode {
   id: string; // `patent:${patentNumber}`
   patentNumber: string; // may be the fallback "Patent source for <lens name>"
   patentYear?: number;
-  authors: string[];
-  assignees: string[];
-  lenses: PatentLensRef[];
+  /* readonly: these alias the shared catalog records — copy before reordering */
+  authors: readonly string[];
+  assignees: readonly string[];
+  lenses: readonly PatentLensRef[];
 }
 
 export interface GraphPartyNode {
@@ -83,7 +84,7 @@ export function resolveFocusParam(raw: string | null): PartyRef | undefined {
 
 /** Build the two-ring ego graph for a focus party. */
 export function buildRelationshipGraph(focus: PartyRef): RelationshipGraph {
-  const records: AuthorPatent[] = patentsForParty(focus.name, focus.role);
+  const records = patentsForParty(focus.name, focus.role);
   const centerId = partyId(focus.role, focus.slug);
 
   const patents: GraphPatentNode[] = records.map((record) => ({

@@ -19,22 +19,24 @@ export type { PatentJurisdiction, PatentRecord } from "./patentRecords.js";
 
 export type PatentLens = PatentLensRef;
 
+/* Group and index arrays are readonly for the same reason as PatentRecord's
+   fields: PATENTS / PATENT_COUNTRY_GROUPS are shared module-scope state. */
 export interface PatentAssigneeGroup {
   id: string;
   label: string;
   isFallback: boolean;
-  patents: PatentRecord[];
+  patents: readonly PatentRecord[];
 }
 
 export interface PatentCountryGroup {
   jurisdiction: PatentJurisdiction;
   patentCount: number;
-  assignees: PatentAssigneeGroup[];
+  assignees: readonly PatentAssigneeGroup[];
 }
 
 export interface PatentIndex {
-  patents: PatentRecord[];
-  countries: PatentCountryGroup[];
+  patents: readonly PatentRecord[];
+  countries: readonly PatentCountryGroup[];
 }
 
 export const PATENT_ASSIGNEE_FALLBACK = "No named assignee or applicant";

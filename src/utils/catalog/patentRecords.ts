@@ -16,13 +16,16 @@ export interface PatentJurisdiction {
   label: string;
 }
 
+/* Array fields are readonly because aggregated records are shared module-scope
+   state (PATENTS, the author directory) — an in-place sort in one page would
+   corrupt every other consumer. Copy before reordering. */
 export interface PatentRecord {
   patentNumber: string;
   patentYear?: number;
   jurisdiction: PatentJurisdiction;
-  authors: string[];
-  assignees: string[];
-  lenses: PatentLensRef[];
+  authors: readonly string[];
+  assignees: readonly string[];
+  lenses: readonly PatentLensRef[];
 }
 
 export interface AggregatePatentOptions {

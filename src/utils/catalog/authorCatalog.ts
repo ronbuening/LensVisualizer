@@ -19,12 +19,14 @@ export type AuthorMetadata = PatentPartyMetadata;
 
 export type AuthorPatentLens = PatentLensRef;
 
+/* Array fields mirror PatentRecord's readonly contract: the records behind them
+   are shared module-scope state — copy before reordering. */
 export interface AuthorPatent {
   patentNumber: string;
   patentYear?: number;
-  authors: string[];
-  assignees: string[];
-  lenses: AuthorPatentLens[];
+  authors: readonly string[];
+  assignees: readonly string[];
+  lenses: readonly AuthorPatentLens[];
 }
 
 export type AuthorGroupMode = "assignee" | "coauthor";
@@ -111,7 +113,7 @@ export function patentsForParty(
   name: string,
   role: PatentPartyRole,
   summaries?: readonly LensSummary[],
-): AuthorPatent[] {
+): readonly AuthorPatent[] {
   if (summaries === undefined) return PATENTS_BY_PARTY[role].get(name) ?? [];
 
   return aggregatePatentRecords(summaries, { includeFallbackRecords: true })
@@ -121,7 +123,7 @@ export function patentsForParty(
 }
 
 /** Aggregate one record per patent for an inventor (see {@link patentsForParty}). */
-export function patentsForAuthor(name: string): AuthorPatent[] {
+export function patentsForAuthor(name: string): readonly AuthorPatent[] {
   return patentsForParty(name, "author");
 }
 
@@ -132,7 +134,7 @@ export function patentsForAuthor(name: string): AuthorPatent[] {
  * co-author section, matching the library's existing patent-party grouping.
  */
 export function groupAuthorPatents(
-  patents: AuthorPatent[],
+  patents: readonly AuthorPatent[],
   authorName: string,
   mode: AuthorGroupMode,
 ): AuthorPatentGroup[] {
