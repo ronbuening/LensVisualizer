@@ -97,6 +97,10 @@ export default function useURLSync(
           stateRef.current.lens.lensKeyA,
           parsed.configurationKey,
         );
+      } else {
+        /* Compare identity lives in /compare/:slugA/:slugB — a cfg param must not
+           reach the lens slice (mirrors the init path in useLensState). */
+        delete urlState.configurationKey;
       }
       dispatch({ type: APPLY_URL_VIEW_STATE, state: urlState });
       const zoomAction = zoomActionFromFocalLength(parsed.zoom ?? null, stateRef.current, comparisonLenses);

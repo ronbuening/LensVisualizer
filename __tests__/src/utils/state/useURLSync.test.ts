@@ -309,6 +309,21 @@ describe("useURLSync — updateURLWithSliders (debounced)", () => {
     });
   });
 
+  it("strips configuration params from compare-mode history navigation", () => {
+    const dispatchMock = vi.fn();
+    const dispatch = dispatchMock as unknown as Dispatch<LensAction>;
+    const base = makeState();
+    const state: LensState = { ...base, lens: { ...base.lens, comparing: true } };
+    renderHook(() => useURLSync(state, dispatch, null, false, true));
+
+    window.history.replaceState({}, "", `?v=1&cfg=${alternateConfigurationKey}`);
+    act(() => window.dispatchEvent(new PopStateEvent("popstate")));
+
+    const applied = dispatchMock.mock.calls.find(([action]) => action.type === "APPLY_URL_VIEW_STATE");
+    expect(applied).toBeDefined();
+    expect(applied![0].state).not.toHaveProperty("configurationKey");
+  });
+
   it("does not call replaceState immediately when invoked", () => {
     const dispatch = vi.fn() as unknown as Dispatch<LensAction>;
     const state = makeState();
