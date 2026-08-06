@@ -959,7 +959,7 @@ Rollback: pages are migrated one commit each — revert individually.
 
 ### U3. Shared patent-attribution components: `LensEntryLink`, `InventorLinks`/`PatentPartyList`
 
-- [ ] Effort: M · Impact: med-high · Risk: low
+- [x] Effort: M · Impact: med-high · Risk: low
 
 Found independently by two reviewers. Three near-identical PatentCards
 (`AuthorPage.tsx` ~78–134, `PatentsIndexPage.tsx` ~38–110, `PatentDetailCard.tsx` ~67–130 — whose

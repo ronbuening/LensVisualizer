@@ -4,8 +4,9 @@
  * Shows all lenses from a specific maker with crawlable links.
  */
 
-import { useParams, Navigate, Link } from "react-router";
+import { useParams, Navigate } from "react-router";
 import SEOHead from "../components/SEOHead.js";
+import LensEntryLink from "../components/content/LensEntryLink.js";
 import StaticPageShell from "../components/layout/StaticPageShell.js";
 import { LENS_SUMMARIES, SUMMARY_KEYS } from "../utils/catalog/lensSummaries.js";
 import {
@@ -17,7 +18,7 @@ import {
 } from "../utils/catalog/lensMetadata.js";
 import { getMakerDetails } from "../utils/catalog/makerDetails.js";
 import { breadcrumbJsonLd, collectionPageJsonLd } from "../utils/seo/structuredData.js";
-import { H1_STYLE, LENS_LINK_BASE_STYLE } from "../utils/style/pageStyles.js";
+import { H1_STYLE } from "../utils/style/pageStyles.js";
 import { LENS_MOUNT_BY_ID } from "../utils/catalog/lensTaxonomy.js";
 import type { LensMountId, LensMountMetadata } from "../utils/catalog/lensTaxonomy.js";
 import LinkListSidebar from "../components/content/LinkListSidebar.js";
@@ -123,14 +124,7 @@ export default function MakerPage() {
             <div style={{ borderTop: `1px solid ${t.panelBorder}`, paddingTop: "1rem" }}>
               {lenses.length > 0 ? (
                 lenses.map(({ key, data }) => (
-                  <Link key={key} to={`/lens/${key}/`} style={{ ...LENS_LINK_BASE_STYLE, color: t.descLinkColor }}>
-                    {data.name}
-                    {data.specs && data.specs.length > 0 && (
-                      <span style={{ color: t.label, fontSize: "0.75rem", marginLeft: "0.5rem" }}>
-                        — {data.specs.slice(0, 3).join(", ")}
-                      </span>
-                    )}
-                  </Link>
+                  <LensEntryLink key={key} lensKey={key} text={data.name} specs={data.specs} specsCount={3} theme={t} />
                 ))
               ) : (
                 <p style={{ fontSize: "0.85rem", color: t.muted, margin: 0 }}>

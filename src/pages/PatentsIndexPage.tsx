@@ -5,13 +5,13 @@
  * first by publication country/jurisdiction and then by named assignee.
  */
 
-import { Link } from "react-router";
 import SEOHead from "../components/SEOHead.js";
+import InventorLinks from "../components/content/InventorLinks.js";
+import LensEntryLink from "../components/content/LensEntryLink.js";
 import LinkListSidebar from "../components/content/LinkListSidebar.js";
 import SidebarLayout from "../components/content/SidebarLayout.js";
 import StaticPageShell from "../components/layout/StaticPageShell.js";
 import type { Theme } from "../types/theme.js";
-import { authorPathForName } from "../utils/catalog/authorCatalog.js";
 import { SITE_NAME, SITE_URL } from "../utils/catalog/lensMetadata.js";
 import {
   PATENTS,
@@ -21,7 +21,7 @@ import {
   type PatentRecord,
 } from "../utils/catalog/patentCatalog.js";
 import { collectionPageJsonLd, itemListJsonLd } from "../utils/seo/structuredData.js";
-import { H1_STYLE, LENS_LINK_BASE_STYLE, STICKY_NAV_SCROLL_MARGIN } from "../utils/style/pageStyles.js";
+import { H1_STYLE, STICKY_NAV_SCROLL_MARGIN } from "../utils/style/pageStyles.js";
 import { patentPartyGroupAnchorId } from "./lensIndex/groupAnchors.js";
 
 interface PatentCardProps {
@@ -73,35 +73,20 @@ function PatentCard({ patent, groupedAssignee, theme: t }: PatentCardProps) {
 
       {patent.authors.length > 0 && (
         <p style={{ color: t.muted, fontSize: "0.7rem", lineHeight: 1.5, margin: "0.2rem 0 0.4rem" }}>
-          Inventors:{" "}
-          {patent.authors.map((name, index) => {
-            const path = authorPathForName(name);
-            return (
-              <span key={name}>
-                {index > 0 && ", "}
-                {path ? (
-                  <Link to={path} style={{ color: t.descLinkColor, textDecoration: "none" }}>
-                    {name}
-                  </Link>
-                ) : (
-                  name
-                )}
-              </span>
-            );
-          })}
+          Inventors: <InventorLinks names={patent.authors} theme={t} />
         </p>
       )}
 
       <div style={{ paddingTop: "0.15rem" }}>
         {patent.lenses.map((lens) => (
-          <Link key={lens.key} to={`/lens/${lens.key}/`} style={{ ...LENS_LINK_BASE_STYLE, color: t.descLinkColor }}>
-            {lens.name}
-            {lens.specs?.length ? (
-              <span style={{ color: t.label, fontSize: "0.68rem", marginLeft: "0.5rem" }}>
-                — {lens.specs.slice(0, 2).join(", ")}
-              </span>
-            ) : null}
-          </Link>
+          <LensEntryLink
+            key={lens.key}
+            lensKey={lens.key}
+            text={lens.name}
+            specs={lens.specs}
+            theme={t}
+            metaStyle={{ fontSize: "0.68rem" }}
+          />
         ))}
       </div>
     </article>
