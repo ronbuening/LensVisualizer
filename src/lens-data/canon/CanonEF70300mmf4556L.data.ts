@@ -16,7 +16,7 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
-  key: "canon-ef-70-300mm-f4-5.6l-is-usm",
+  key: "canon-ef-70-300mm-f4-56l-is-usm",
   maker: "Canon",
   name: "CANON EF 70-300mm f/4-5.6 L IS USM",
   subtitle: "JP 2013-140404 A — Numerical Example 1",

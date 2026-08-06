@@ -11,6 +11,7 @@
 import { isAnalysisTabId, type LensState, type URLState } from "../../types/state.js";
 import { isGroupMovementMode } from "../../types/groupMovement.js";
 import { MOVEMENT_SHIFT_ENVELOPE_MM, MOVEMENT_TILT_ENVELOPE_DEG } from "../../optics/lensMovement.js";
+import { LENS_KEY_PATTERN } from "../../optics/validateLensData.js";
 
 type LensViewQueryKey =
   | "focus"
@@ -117,12 +118,14 @@ function parseBooleanParam(params: URLSearchParams, key: string): boolean | unde
   return undefined;
 }
 
-const CONFIGURATION_KEY_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+/* Syntactic bound only — catalog-aware validation happens at the lens-aware
+   boundaries. The shape is the validator's LENS_KEY_PATTERN, so every key
+   validateLensData accepts is representable as a cfg value. */
 const CONFIGURATION_KEY_MAX_LENGTH = 128;
 
 function parseConfigurationKey(params: URLSearchParams): string | undefined {
   const key = params.get("cfg");
-  if (!key || key.length > CONFIGURATION_KEY_MAX_LENGTH || !CONFIGURATION_KEY_PATTERN.test(key)) return undefined;
+  if (!key || key.length > CONFIGURATION_KEY_MAX_LENGTH || !LENS_KEY_PATTERN.test(key)) return undefined;
   return key;
 }
 

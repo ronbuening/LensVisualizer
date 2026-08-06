@@ -1,1 +1,17 @@
+# 2026-08-06: lens keys renamed to drop "." so every key round-trips through the
+# cfg URL parser (LENS_KEY_PATTERN). 301s preserve links indexed under the old URLs.
+/lens/canon-ef-24mm-f1.4-l-usm /lens/canon-ef-24mm-f14-l-usm/ 301
+/lens/canon-ef-24mm-f1.4-l-usm/ /lens/canon-ef-24mm-f14-l-usm/ 301
+/lens/canon-ef-28-105mm-f4-5.6 /lens/canon-ef-28-105mm-f4-56/ 301
+/lens/canon-ef-28-105mm-f4-5.6/ /lens/canon-ef-28-105mm-f4-56/ 301
+/lens/canon-ef-28-200mm-f3.5-5.6-usm /lens/canon-ef-28-200mm-f35-56-usm/ 301
+/lens/canon-ef-28-200mm-f3.5-5.6-usm/ /lens/canon-ef-28-200mm-f35-56-usm/ 301
+/lens/canon-ef-70-300mm-f4-5.6l-is-usm /lens/canon-ef-70-300mm-f4-56l-is-usm/ 301
+/lens/canon-ef-70-300mm-f4-5.6l-is-usm/ /lens/canon-ef-70-300mm-f4-56l-is-usm/ 301
+/lens/canon-efs-17-55-f2.8-is /lens/canon-efs-17-55-f28-is/ 301
+/lens/canon-efs-17-55-f2.8-is/ /lens/canon-efs-17-55-f28-is/ 301
+/lens/nikon-af-zoom-micro-70-180mm-f4.5-5.6d /lens/nikon-af-zoom-micro-70-180mm-f45-56d/ 301
+/lens/nikon-af-zoom-micro-70-180mm-f4.5-5.6d/ /lens/nikon-af-zoom-micro-70-180mm-f45-56d/ 301
+/lens/sony-sal-70-400mm-f4-5.6-g /lens/sony-sal-70-400mm-f4-56-g/ 301
+/lens/sony-sal-70-400mm-f4-5.6-g/ /lens/sony-sal-70-400mm-f4-56-g/ 301
 /compare/* /index.html 200

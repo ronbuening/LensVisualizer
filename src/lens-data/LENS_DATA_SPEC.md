@@ -52,7 +52,7 @@ rear spacing to the documented air-equivalent distance instead of leaving the pr
 
 | Field | Type | Description |
 |-------|------|-------------|
-| `key` | `string` | Unique identifier (e.g. `"nokton-50f1"`). Used as catalog key. |
+| `key` | `string` | Unique identifier (e.g. `"nokton-50f1"`). Used as catalog key. Lowercase `a-z`/`0-9` words separated by single hyphens — no periods or other punctuation (the key becomes the `/lens/` URL and the `cfg` query value; write f-numbers like `f14`, `f35-56`). |
 | `name` | `string` | Full UI display name following the display-name convention below (e.g. `"NIKON NIKKOR Z 50mm f/1.8 S"`) |
 | `elements` | `array` | Physical glass/mirror elements (min 1); ordinary lenses list front to rear, while folded models document their stable model order |
 | `surfaces` | `array` | Optical surfaces (min 1); ordinary lenses list front to rear, while folded models may use signed displacements and explicit path order |

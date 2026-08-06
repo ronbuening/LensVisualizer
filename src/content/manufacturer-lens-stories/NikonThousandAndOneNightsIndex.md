@@ -96,7 +96,7 @@ Nikon does not display a publication date on the current index or individual Eng
 | No. 21 | [Nikkor-T 10.5cm F4](https://imaging.nikon.com/imaging/information/story/0021/) | — |
 | No. 20 | [Nikkor Auto 20mm f/4 from New Nikkor-UD Auto 20mm f/3.5](https://imaging.nikon.com/imaging/information/story/0020/) | — |
 | No. 19 | [Nikkor-S·C 8.5cm F1.5](https://imaging.nikon.com/imaging/information/story/0019/) | — |
-| No. 18 | [AF Zoom-Micro Nikkor ED 70–180mm F4.5–5.6D](https://imaging.nikon.com/imaging/information/story/0018/) | [AF Zoom-Micro 70–180mm](/lens/nikon-af-zoom-micro-70-180mm-f4.5-5.6d) |
+| No. 18 | [AF Zoom-Micro Nikkor ED 70–180mm F4.5–5.6D](https://imaging.nikon.com/imaging/information/story/0018/) | [AF Zoom-Micro 70–180mm](/lens/nikon-af-zoom-micro-70-180mm-f45-56d) |
 | No. 17 | [New PC-Nikkor 28mm F4](https://imaging.nikon.com/imaging/information/story/0017/) | — |
 | No. 16 | [AI Noct Nikkor 58mm F1.2](https://imaging.nikon.com/imaging/information/story/0016/) | — |
 | No. 15 | [New Zoom Nikkor 28–45mm F4.5](https://imaging.nikon.com/imaging/information/story/0015/) | — |

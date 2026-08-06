@@ -66,6 +66,14 @@ describe("validateLensData", () => {
     expect(validateLensData(makeValid())).toEqual([]);
   });
 
+  it("rejects keys that are not URL- and cfg-safe", () => {
+    for (const key of ["canon-ef-24mm-f1.4-l-usm", "Test-Lens", "double--hyphen", "-leading", "trailing-"]) {
+      const errors = validateLensData(makeValid({ key }));
+      expect(errors.some((error) => error.includes('"key" must be lowercase'))).toBe(true);
+    }
+    expect(validateLensData(makeValid({ key: "canon-ef-24mm-f14-l-usm" }))).toEqual([]);
+  });
+
   it("accepts a canonical radial diffractive phase surface", () => {
     const data = makeValid();
     (data.surfaces as Record<string, unknown>[])[0].diffractive = {
