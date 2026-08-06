@@ -12,6 +12,7 @@ export interface PublicationEntry extends FreshnessEntry {
   title?: string;
   key?: string;
   slug?: string;
+  url?: string;
 }
 
 export interface LensFreshnessInput {
