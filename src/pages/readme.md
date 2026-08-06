@@ -82,7 +82,7 @@ flowchart LR
 
 - Direct source files: 19
 - Direct subfolders: 1
-- Main outbound areas: src/utils/catalog (54), src/components/layout (19), src/components/SEOHead.tsx (19), src/utils/seo (19), package:react-router (18), src/pages/lensIndex (18), src/utils/style (17), src/components/content (15), +17 more
+- Main outbound areas: src/utils/catalog (54), src/components/layout (19), src/components/SEOHead.tsx (19), src/utils/seo (19), package:react-router (18), src/pages/lensIndex (18), src/utils/style (16), src/components/content (15), +17 more
 - External consumers: src/routes
 
 ## Subfolders
@@ -95,7 +95,7 @@ flowchart LR
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
-| `ArticlePage.tsx` | Route-level React page | package:react (2), package:react-router, src/components/content, src/components/layout, src/components/markdown, +6 more | src/routes | default, ArticlePage |
+| `ArticlePage.tsx` | Route-level React page | package:react (2), package:react-router, src/components/content, src/components/layout, src/components/markdown, +4 more | src/routes | default, ArticlePage |
 | `ArticlesPage.tsx` | Route-level React page | src/components/content (2), src/utils/content (2), package:react, src/components/layout, src/components/SEOHead.tsx, +3 more | src/routes | default, ArticlesPage |
 | `AuthorPage.tsx` | Route-level React page | src/utils/catalog (5), src/components/content (2), src/utils/style (2), package:react, package:react-router, +5 more | src/routes | default, AuthorPage |
 | `AuthorsIndexPage.tsx` | Route-level React page | src/utils/catalog (5), src/utils/style (2), package:react, package:react-router, src/components/controls, +4 more | src/routes | default, AuthorsIndexPage |
