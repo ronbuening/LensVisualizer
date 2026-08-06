@@ -928,7 +928,7 @@ Rollback: revert; the private copies return.
 
 ### U2. Adopt `StaticPageShell` across the 15 hand-rolled pages
 
-- [ ] Effort: M · Impact: high · Risk: low-med
+- [x] Effort: M · Impact: high · Risk: low-med
 
 `src/components/layout/StaticPageShell.tsx` ~25–54 already implements the full page chrome (theme
 wrapper, `PageNavBar`, data-driven breadcrumbs, `PAGE_BASE_STYLE` container) but has ONE consumer
