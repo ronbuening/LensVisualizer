@@ -172,6 +172,7 @@ describe("page, markdown, and breadcrumb coverage", () => {
       lens: {
         lensKeyA,
         lensKeyB,
+        selectedConfigurationKey: lensKeyA,
         comparing: true,
         scaleMode: "independent",
       },

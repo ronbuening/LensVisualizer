@@ -34,6 +34,7 @@ function buildState(overrides?: Partial<LensState["lens"]>): LensState {
       comparing: false,
       scaleMode: "independent",
       ...overrides,
+      selectedConfigurationKey: overrides?.selectedConfigurationKey ?? overrides?.lensKeyA ?? "lens-a",
     },
     display: {
       dark: null,

@@ -28,6 +28,7 @@ import { VIEW_STATE_FIELDS } from "./lensViewUrlState.js";
 /* ── Action type constants ── */
 export const SET_LENS_A = "SET_LENS_A";
 export const SET_LENS_B = "SET_LENS_B";
+export const SET_OPTICAL_CONFIGURATION = "SET_OPTICAL_CONFIGURATION";
 export const SWAP_LENSES = "SWAP_LENSES";
 export const SET_DARK = "SET_DARK";
 export const SET_HIGH_CONTRAST = "SET_HIGH_CONTRAST";
@@ -115,11 +116,13 @@ export function createInitialState(
   const showOffAxis = !ENABLE_EDGE_PROJECTION && showOffAxisRaw === "edge" ? "trueAngle" : showOffAxisRaw;
   const rayDensity = isRayDensity(prefs.rayDensity) ? prefs.rayDensity : "normal";
   const systemThemePrefs = readSystemThemePreferences();
+  const lensKeyA = urlState.singleLens || urlState.lensKeyA || catalogKeys[0];
 
   return {
     lens: {
-      lensKeyA: urlState.singleLens || urlState.lensKeyA || catalogKeys[0],
+      lensKeyA,
       lensKeyB: urlState.lensKeyB || catalogKeys[Math.min(1, catalogKeys.length - 1)],
+      selectedConfigurationKey: urlState.configurationKey ?? lensKeyA,
       comparing: urlState.comparing || false,
       scaleMode: prefs.scaleMode || "independent",
     },
@@ -212,7 +215,10 @@ export default function lensReducer(state: LensState, action: LensAction): LensS
   switch (action.type) {
     /* ── Lens selection ── */
     case SET_LENS_A: {
-      const next = { ...state, lens: { ...state.lens, lensKeyA: action.key } };
+      const next = {
+        ...state,
+        lens: { ...state.lens, lensKeyA: action.key, selectedConfigurationKey: action.key },
+      };
       /* In single mode, reset sliders and close analysis drawer when switching lenses */
       if (!state.lens.comparing) {
         next.sliders = { focusT: 0, zoomT: 0, aberrationT: 0, stopdownT: 0, shiftMm: 0, tiltDeg: 0 };
@@ -237,8 +243,22 @@ export default function lensReducer(state: LensState, action: LensAction): LensS
         lens: { ...state.lens, lensKeyB: action.key },
         panels: { ...state.panels, selectedElementIdB: null },
       };
+    case SET_OPTICAL_CONFIGURATION:
+      return {
+        ...state,
+        lens: { ...state.lens, selectedConfigurationKey: action.key },
+        panels: { ...state.panels, selectedElementId: null },
+      };
     case SWAP_LENSES:
-      return { ...state, lens: { ...state.lens, lensKeyA: state.lens.lensKeyB, lensKeyB: state.lens.lensKeyA } };
+      return {
+        ...state,
+        lens: {
+          ...state.lens,
+          lensKeyA: state.lens.lensKeyB,
+          lensKeyB: state.lens.lensKeyA,
+          selectedConfigurationKey: state.lens.lensKeyB,
+        },
+      };
 
     /* ── Display ── */
     case SET_DARK:
@@ -301,6 +321,10 @@ export default function lensReducer(state: LensState, action: LensAction): LensS
 
     case APPLY_URL_VIEW_STATE: {
       const urlState = action.state;
+      const lens =
+        urlState.configurationKey !== undefined
+          ? { ...state.lens, selectedConfigurationKey: urlState.configurationKey }
+          : state.lens;
       const panels = { ...state.panels };
       for (const { key, default: fallback } of VIEW_STATE_FIELDS) {
         if (key in urlState) {
@@ -334,7 +358,7 @@ export default function lensReducer(state: LensState, action: LensAction): LensS
         else sliders.tiltDeg = urlState.tilt ?? 0;
       }
 
-      return { ...state, panels, sliders, sharedSliders };
+      return { ...state, lens, panels, sliders, sharedSliders };
     }
 
     /* ── Overlays ── */
