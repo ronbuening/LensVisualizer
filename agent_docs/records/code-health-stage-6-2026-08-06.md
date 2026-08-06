@@ -31,6 +31,26 @@
 - The in-app browser had no active browser instance for U1's optional narrow-viewport console spot-check; deterministic
   hydration coverage and the production prerender/build completed successfully instead.
 
+## Post-review fixes (2026-08-06)
+
+A branch review after the stage records were written surfaced three items, fixed in follow-up commits:
+
+- `useMediaQuery` gained a `clientOnly` option. U1's deterministic `ssrDefault` had regressed the
+  `ClientOnly` viewer tree, which never prerenders and so needs the live `matchMedia` read: first-visit
+  desktop users got collapsed Focus/Aperture panels (the one-shot reducer initializer saw `false`), and
+  auto-theme users on light systems painted a dark first frame. `useLensState`, `LensViewer`, and
+  `LensDiagramPanel` now pass `clientOnly: true`.
+- Seven lens keys containing periods were renamed to the catalog's dot-free f-number convention
+  (e.g. `canon-ef-24mm-f1.4-l-usm` → `canon-ef-24mm-f14-l-usm`); U7's `cfg` parser rejects `.`, so a
+  future `opticalConfiguration` group on one of those lenses would have written an unparseable URL.
+  Old `/lens/` URLs 301-redirect via `public/_redirects` (Cloudflare production only — the GitHub Pages
+  mirror does not read that file). `validateLensData` now enforces the shared `LENS_KEY_PATTERN`, which
+  the `cfg` parser imports, so the validator and parser cannot diverge again. No changelog entry:
+  redirects make the rename invisible to users.
+- The popstate path in `useURLSync` now strips `cfg` in compare mode, mirroring the init path in
+  `useLensState`, so the documented "cfg is ignored in compare mode" contract holds on history
+  navigation too.
+
 ## Follow-ups
 
 - Optionally repeat the U1 narrow-viewport console spot-check when an in-app browser instance is available.
