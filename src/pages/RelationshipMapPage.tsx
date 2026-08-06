@@ -28,6 +28,7 @@ import { breadcrumbJsonLd, collectionPageJsonLd } from "../utils/seo/structuredD
 import { H1_STYLE } from "../utils/style/pageStyles.js";
 import { canonicalPagePath, canonicalPageUrl } from "../utils/seo/siteUrls.js";
 import { catalogCollator } from "../utils/catalog/collation.js";
+import roleChip from "../components/relationshipMap/roleChip.js";
 
 const TOP_COUNT = 12;
 
@@ -107,22 +108,7 @@ export default function RelationshipMapPage() {
                  * be the document heading for the outline to stay intact. */}
                 <h1 style={{ fontSize: "1.3rem", fontWeight: 600, margin: "0 0 0.35rem" }}>
                   {focus.name}
-                  <span
-                    style={{
-                      display: "inline-block",
-                      fontSize: "0.62rem",
-                      textTransform: "uppercase",
-                      letterSpacing: "0.06em",
-                      padding: "0.12rem 0.4rem",
-                      borderRadius: 3,
-                      border: `1px solid ${focus.role === "assignee" ? t.rayCool : t.rayWarm}`,
-                      color: t.muted,
-                      marginLeft: "0.5rem",
-                      verticalAlign: "middle",
-                    }}
-                  >
-                    {focus.role === "assignee" ? "assignee" : "inventor"}
-                  </span>
+                  <span style={roleChip(t, focus.role)}>{focus.role === "assignee" ? "assignee" : "inventor"}</span>
                 </h1>
                 {graph.center.hasPage && (
                   <Link

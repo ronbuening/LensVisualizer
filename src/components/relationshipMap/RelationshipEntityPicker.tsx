@@ -15,6 +15,7 @@ import { normalizeSearchText } from "../../utils/catalog/searchCatalog.js";
 import type { Theme } from "../../types/theme.js";
 import type { PartyRef } from "../../utils/catalog/relationshipGraph.js";
 import { panelCard, searchInput, VISUALLY_HIDDEN } from "../../utils/style/styles.js";
+import roleChip from "./roleChip.js";
 
 interface RelationshipEntityPickerProps {
   theme: Theme;
@@ -71,18 +72,6 @@ export default function RelationshipEntityPicker({ theme: t, onPick, compact = f
     boxSizing: "border-box",
   };
 
-  const roleChip = (role: PartyRef["role"]): CSSProperties => ({
-    display: "inline-block",
-    fontSize: "0.6rem",
-    textTransform: "uppercase",
-    letterSpacing: "0.06em",
-    padding: "0.1rem 0.35rem",
-    borderRadius: 3,
-    border: `1px solid ${role === "assignee" ? t.rayCool : t.rayWarm}`,
-    color: t.muted,
-    marginLeft: "0.4rem",
-  });
-
   if (compact) {
     return (
       <div style={{ position: "relative" }}>
@@ -136,7 +125,7 @@ export default function RelationshipEntityPicker({ theme: t, onPick, compact = f
                   }}
                 >
                   {option.ref.name}
-                  <span style={roleChip(option.ref.role)}>{option.ref.role}</span>
+                  <span style={roleChip(t, option.ref.role)}>{option.ref.role}</span>
                 </button>
               </li>
             ))}
@@ -182,7 +171,7 @@ export default function RelationshipEntityPicker({ theme: t, onPick, compact = f
           >
             <span style={{ color: t.descLinkColor, fontSize: "0.85rem", fontWeight: 600 }}>
               {option.ref.name}
-              <span style={roleChip(option.ref.role)}>{option.ref.role}</span>
+              <span style={roleChip(t, option.ref.role)}>{option.ref.role}</span>
             </span>
             <span style={{ display: "block", color: t.label, fontSize: "0.7rem", marginTop: "0.3rem" }}>
               {option.patentCount} {option.patentCount === 1 ? "patent" : "patents"} · {option.lensCount}{" "}
