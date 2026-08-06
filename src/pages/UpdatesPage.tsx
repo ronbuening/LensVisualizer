@@ -42,23 +42,26 @@ export default function UpdatesPage() {
     "Full update history for Surface & Stop — recently added lenses and a complete changelog of features, fixes, and improvements.";
 
   return (
-    <StaticPageShell breadcrumbs={[{ label: "Home", to: "/" }, { label: "Updates" }]}>
+    <StaticPageShell
+      breadcrumbs={[{ label: "Home", to: "/" }, { label: "Updates" }]}
+      seo={
+        <SEOHead
+          title={`Updates — ${SITE_NAME}`}
+          description={seoDescription}
+          canonicalURL={`${SITE_URL}/updates`}
+          jsonLd={[
+            collectionPageJsonLd({
+              name: "Updates",
+              description: seoDescription,
+              url: `${SITE_URL}/updates`,
+              route: "/updates",
+            }),
+          ]}
+        />
+      }
+    >
       {({ theme: t }) => (
         <>
-          <SEOHead
-            title={`Updates — ${SITE_NAME}`}
-            description={seoDescription}
-            canonicalURL={`${SITE_URL}/updates`}
-            jsonLd={[
-              collectionPageJsonLd({
-                name: "Updates",
-                description: seoDescription,
-                url: `${SITE_URL}/updates`,
-                route: "/updates",
-              }),
-            ]}
-          />
-
           <h1 style={H1_STYLE}>Updates</h1>
           <p style={{ fontSize: "0.875rem", color: t.muted, marginBottom: "2rem" }}>
             Recently added lenses and a complete development changelog.
