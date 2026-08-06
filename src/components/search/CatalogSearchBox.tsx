@@ -10,7 +10,7 @@ import { useMemo, useState } from "react";
 import type { SyntheticEvent } from "react";
 import { Link, useNavigate } from "react-router";
 import type { Theme } from "../../types/theme.js";
-import { VISUALLY_HIDDEN } from "../../utils/style/styles.js";
+import { searchInput, VISUALLY_HIDDEN } from "../../utils/style/styles.js";
 import { exactSearchTarget, searchCatalog } from "../../utils/catalog/searchCatalog.js";
 import type { CatalogSearchMatch } from "../../utils/catalog/searchCatalog.js";
 import { canonicalPagePath } from "../../utils/seo/siteUrls.js";
@@ -114,16 +114,9 @@ export default function CatalogSearchBox({
           placeholder="Lens name, patent number, or author"
           autoComplete="off"
           style={{
+            ...searchInput(t),
             flex: 1,
             minWidth: 0,
-            background: t.selectorBg,
-            color: t.selectorText,
-            border: `1px solid ${t.selectorBorder}`,
-            borderRadius: 6,
-            padding: "0.7rem 0.8rem",
-            font: "inherit",
-            /* iOS Safari zooms focused form controls whose rendered text is below 16px. */
-            fontSize: "16px",
             outlineColor: t.sliderAccent,
           }}
         />

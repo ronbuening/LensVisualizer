@@ -8,6 +8,7 @@ import {
   VISUALLY_HIDDEN,
   panelCard,
   countSuffix,
+  searchInput,
   toggleGroup,
   toggleBtn,
   chromChannelBtn,
@@ -46,6 +47,7 @@ const mockTheme = {
   panelBg: "#121820",
   panelBorder: "#345",
   label: "#789",
+  selectorBorder: "#456",
 } as unknown as Theme;
 
 /* ── Color helpers ── */
@@ -157,6 +159,20 @@ describe("countSuffix(t, opts)", () => {
     expect(countSuffix(mockTheme, { fontSize: "0.7rem", marginLeft: "0.4rem" })).toMatchObject({
       fontSize: "0.7rem",
       marginLeft: "0.4rem",
+    });
+  });
+});
+
+describe("searchInput(t)", () => {
+  it("uses theme input chrome and an iOS-safe text size", () => {
+    expect(searchInput(mockTheme)).toEqual({
+      background: mockTheme.selectorBg,
+      color: mockTheme.selectorText,
+      border: `1px solid ${mockTheme.selectorBorder}`,
+      borderRadius: 6,
+      padding: "0.7rem 0.8rem",
+      font: "inherit",
+      fontSize: "16px",
     });
   });
 });

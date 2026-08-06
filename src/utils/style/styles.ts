@@ -137,6 +137,22 @@ export function countSuffix(
 }
 
 /**
+ * Theme-aware search input chrome. Keep text at 16px because iOS Safari
+ * zooms focused form controls whose rendered text is smaller.
+ */
+export function searchInput(t: Theme): CSSProperties {
+  return {
+    background: t.selectorBg,
+    color: t.selectorText,
+    border: `1px solid ${t.selectorBorder}`,
+    borderRadius: 6,
+    padding: "0.7rem 0.8rem",
+    font: "inherit",
+    fontSize: "16px",
+  };
+}
+
+/**
  * Toggle button group container (rounded pill wrapping multiple buttons).
  */
 export function toggleGroup(t: Theme, opts?: { width?: number | string }): CSSProperties {

@@ -14,7 +14,7 @@ import { ASSIGNEES } from "../../utils/catalog/assigneeCatalog.js";
 import { normalizeSearchText } from "../../utils/catalog/searchCatalog.js";
 import type { Theme } from "../../types/theme.js";
 import type { PartyRef } from "../../utils/catalog/relationshipGraph.js";
-import { panelCard, VISUALLY_HIDDEN } from "../../utils/style/styles.js";
+import { panelCard, searchInput, VISUALLY_HIDDEN } from "../../utils/style/styles.js";
 
 interface RelationshipEntityPickerProps {
   theme: Theme;
@@ -66,15 +66,9 @@ export default function RelationshipEntityPicker({ theme: t, onPick, compact = f
   const shown = filtered.slice(0, limit);
 
   const inputStyle: CSSProperties = {
+    ...searchInput(t),
     width: "100%",
     boxSizing: "border-box",
-    background: t.selectorBg,
-    color: t.selectorText,
-    border: `1px solid ${t.selectorBorder}`,
-    borderRadius: 6,
-    padding: "0.7rem 0.8rem",
-    fontFamily: "inherit",
-    fontSize: "16px",
   };
 
   const roleChip = (role: PartyRef["role"]): CSSProperties => ({
