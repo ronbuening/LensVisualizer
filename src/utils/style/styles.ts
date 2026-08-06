@@ -102,6 +102,14 @@ export const SLIDER_VALUE_BASE: Readonly<CSSProperties> = Object.freeze({
   transition: "color 0.3s",
 });
 
+/** Keep accessible text in the document while removing it from visual layout. */
+export const VISUALLY_HIDDEN: Readonly<CSSProperties> = Object.freeze({
+  position: "absolute",
+  width: 1,
+  height: 1,
+  overflow: "hidden",
+});
+
 /* =====================================================================
  * §2  THEME-AWARE FACTORIES — each returns a fresh style object
  * ===================================================================== */

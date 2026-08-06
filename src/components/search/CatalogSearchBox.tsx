@@ -10,6 +10,7 @@ import { useMemo, useState } from "react";
 import type { SyntheticEvent } from "react";
 import { Link, useNavigate } from "react-router";
 import type { Theme } from "../../types/theme.js";
+import { VISUALLY_HIDDEN } from "../../utils/style/styles.js";
 import { exactSearchTarget, searchCatalog } from "../../utils/catalog/searchCatalog.js";
 import type { CatalogSearchMatch } from "../../utils/catalog/searchCatalog.js";
 import { canonicalPagePath } from "../../utils/seo/siteUrls.js";
@@ -102,7 +103,7 @@ export default function CatalogSearchBox({
         <p style={{ color: t.muted, fontSize: "0.75rem", lineHeight: 1.5, margin: "0 0 0.8rem" }}>{description}</p>
       )}
       <form onSubmit={handleSubmit} role="search" style={{ display: "flex", gap: "0.5rem" }}>
-        <label htmlFor="catalog-search-input" style={{ position: "absolute", width: 1, height: 1, overflow: "hidden" }}>
+        <label htmlFor="catalog-search-input" style={VISUALLY_HIDDEN}>
           Search lenses, patents, and authors
         </label>
         <input

@@ -5,6 +5,7 @@ import {
   PANEL_OVERLAY_BACKDROP,
   SLIDER_LABEL,
   SLIDER_VALUE_BASE,
+  VISUALLY_HIDDEN,
   panelCard,
   toggleGroup,
   toggleBtn,
@@ -116,6 +117,11 @@ describe("static constants", () => {
     expect(SLIDER_VALUE_BASE.fontWeight).toBe(700);
     expect(SLIDER_VALUE_BASE.fontVariantNumeric).toBe("tabular-nums");
     expect(SLIDER_VALUE_BASE.transition).toBe("color 0.3s");
+  });
+
+  it("VISUALLY_HIDDEN is frozen with the established accessible-label clipping", () => {
+    expect(Object.isFrozen(VISUALLY_HIDDEN)).toBe(true);
+    expect(VISUALLY_HIDDEN).toEqual({ position: "absolute", width: 1, height: 1, overflow: "hidden" });
   });
 });
 

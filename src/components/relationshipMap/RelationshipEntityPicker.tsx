@@ -14,7 +14,7 @@ import { ASSIGNEES } from "../../utils/catalog/assigneeCatalog.js";
 import { normalizeSearchText } from "../../utils/catalog/searchCatalog.js";
 import type { Theme } from "../../types/theme.js";
 import type { PartyRef } from "../../utils/catalog/relationshipGraph.js";
-import { panelCard } from "../../utils/style/styles.js";
+import { panelCard, VISUALLY_HIDDEN } from "../../utils/style/styles.js";
 
 interface RelationshipEntityPickerProps {
   theme: Theme;
@@ -92,10 +92,7 @@ export default function RelationshipEntityPicker({ theme: t, onPick, compact = f
   if (compact) {
     return (
       <div style={{ position: "relative" }}>
-        <label
-          htmlFor="relationship-picker-compact"
-          style={{ position: "absolute", width: 1, height: 1, overflow: "hidden" }}
-        >
+        <label htmlFor="relationship-picker-compact" style={VISUALLY_HIDDEN}>
           Search inventors and assignees
         </label>
         <input
@@ -157,7 +154,7 @@ export default function RelationshipEntityPicker({ theme: t, onPick, compact = f
 
   return (
     <div>
-      <label htmlFor="relationship-picker" style={{ position: "absolute", width: 1, height: 1, overflow: "hidden" }}>
+      <label htmlFor="relationship-picker" style={VISUALLY_HIDDEN}>
         Search inventors and assignees
       </label>
       <input
