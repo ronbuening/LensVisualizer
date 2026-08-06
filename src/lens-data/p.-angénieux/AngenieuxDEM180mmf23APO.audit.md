@@ -14,10 +14,16 @@ Patent: US 4,726,669 A, Example 1 / Figure 1.
 - Rechecked Example 1's complete `nd` / `νd` table against first-party, discontinued-inclusive vendor catalogs. Compatible curves now cover all eight elements while retaining the patent coordinates and leaving every production supplier unspecified.
 - Added Sumita K-SFLD11 for the exact `785259` family and Schott P-LASF47 for the exact `806409` family. Existing SK5, S-FPL51, S-LAH66, and S-TIH10 curves cover the remaining rows.
 - Retained representative Schott P-LASF47 `nC`, `nF`, `ng`, and `ΔPgF = -0.0079` data on L5 as an inferred catalog-equivalent property, not a patent or production-melt claim.
-- Strict and trusted chromatic coverage both rose from 4/8 to 8/8 elements. The display name and element labels were rechecked and require no further correction.
+- Strict and trusted chromatic coverage both rose from 4/8 to 8/8 elements. The display name and inspector metadata were rechecked and remain source-consistent.
 
 ## 2026-08-06 — L5 APD evidence correction
 
 - Re-read claim 6 and the Example 1 table. The patent requires an ED/APD positive element in Component II, which identifies L2; it publishes no partial-dispersion requirement or line indices for Component III element L5.
 - Changed L5 from inferred P-LASF47 APD data to the coordinate-equivalent, normal-dispersion S-LAH53 curve. Removed the representative P-LASF47 `nC`, `nF`, `ng`, and `dPgF = -0.0079` fields and restored `apd: false`.
 - Schott P-LASF47 remains a valid catalog entry and an `806409` coordinate alternative, but `nd` / `νd` alone cannot distinguish its anomalous curve from S-LAH53. Full 8/8 catalog coverage is retained without asserting unsupported L5 secondary-spectrum behavior.
+
+## 2026-08-06 — Screenshot display and element-label audit
+
+- Rechecked the supplied viewer screenshot against Example 1 / Figure 1a. The eight surface forms, two cemented junctions, all-spherical flag, and stored semi-diameters match the source drawing within the documented raster limits; both focused geometry audits pass.
+- Added the patent identifiers `L1` through `L8` to the diagram. Removed the source-foreign displayed `D1` / `D2` cemented-pair shorthands; inspector badges identify the pairs as `L5/L6` and `L7/L8`, while the patent's published spacing symbols `D2`, `D6`, and `D11` remain unchanged.
+- Reconfirmed `P. ANGÉNIEUX DEM 180mm f/2.3 APO`, the romanized inventor name `Pierre Angénieux`, and L2 as the only patent-supported APD element.

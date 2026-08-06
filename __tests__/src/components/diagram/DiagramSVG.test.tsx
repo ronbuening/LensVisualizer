@@ -180,6 +180,20 @@ describe("DiagramSVG", () => {
     expect(desc).toContain("on-axis rays");
   });
 
+  it("does not repeat the maker when the display name already begins with it", () => {
+    const namedLens = {
+      ...baseLens,
+      data: { ...baseLens.data, maker: "Nikon", name: "NIKON AF DC-NIKKOR 135mm f/2D" },
+    } as RuntimeLens;
+    const { container } = render(
+      <DiagramSVG {...baseDiagramSvgProps({ L: namedLens, shapes: [baseShape], onHover, onSelect })} />,
+    );
+
+    expect(container.querySelector("svg")?.getAttribute("aria-label")).toBe(
+      "Lens cross-section diagram of NIKON AF DC-NIKKOR 135mm f/2D",
+    );
+  });
+
   it("uses the marketed physical element count in the accessible description", () => {
     const physicalCountLens = {
       ...baseLens,

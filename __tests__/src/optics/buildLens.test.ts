@@ -572,6 +572,13 @@ describe("scaleRatio for normalized comparison", () => {
       expect(lyGroupPx).toBeLessThan(L.svgH);
     }
   });
+
+  it("keeps element, Abbe, and group annotation rows vertically separated", () => {
+    const L = buildLens(ApoLanthar);
+    expect(L.lyElemNum).toBeLessThan(L.lyVdBadge);
+    expect(L.lyVdBadge).toBeLessThan(L.lyGroup);
+    expect(L.lyVdBadge - L.lyElemNum).toBeCloseTo(L.lyGroup - L.lyVdBadge, 10);
+  });
 });
 
 /* ═══════════════════════════════════════════════════════════════════

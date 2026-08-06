@@ -77,6 +77,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
+      diagramLabel: "L1",
       label: "Element 1",
       type: "Biconvex Positive",
       nd: 1.589,
@@ -89,6 +90,7 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L2",
+      diagramLabel: "L2",
       label: "Element 2",
       type: "Positive Meniscus",
       nd: 1.497,
@@ -107,6 +109,7 @@ const LENS_DATA = {
     {
       id: 3,
       name: "L3",
+      diagramLabel: "L3",
       label: "Element 3",
       type: "Plano-Concave Negative",
       nd: 1.785,
@@ -119,6 +122,7 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L4",
+      diagramLabel: "L4",
       label: "Element 4",
       type: "Negative Meniscus",
       nd: 1.772,
@@ -131,6 +135,7 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L5",
+      diagramLabel: "L5",
       label: "Element 5",
       type: "Positive Meniscus",
       nd: 1.806,
@@ -139,11 +144,12 @@ const LENS_DATA = {
       glass: "S-LAH53 (OHARA catalog equivalent to patent 806409; production supplier unspecified)",
       apd: false,
       role: "Positive member of the near-afocal L5/L6 cemented correction doublet.",
-      cemented: "D1",
+      cemented: "L5/L6",
     },
     {
       id: 6,
       name: "L6",
+      diagramLabel: "L6",
       label: "Element 6",
       type: "Negative Meniscus",
       nd: 1.772,
@@ -152,11 +158,12 @@ const LENS_DATA = {
       glass: "S-LAH66 (OHARA catalog equivalent to patent 772497; production supplier unspecified)",
       apd: false,
       role: "Negative member of the near-afocal L5/L6 cemented correction doublet.",
-      cemented: "D1",
+      cemented: "L5/L6",
     },
     {
       id: 7,
       name: "L7",
+      diagramLabel: "L7",
       label: "Element 7",
       type: "Negative Meniscus",
       nd: 1.728,
@@ -165,11 +172,12 @@ const LENS_DATA = {
       glass: "S-TIH10 (OHARA catalog equivalent to patent 728284; production supplier unspecified)",
       apd: false,
       role: "Negative front member of the moving Component IV cemented doublet.",
-      cemented: "D2",
+      cemented: "L7/L8",
     },
     {
       id: 8,
       name: "L8",
+      diagramLabel: "L8",
       label: "Element 8",
       type: "Biconvex Positive",
       nd: 1.772,
@@ -178,7 +186,7 @@ const LENS_DATA = {
       glass: "S-LAH66 (OHARA catalog equivalent to patent 772497; production supplier unspecified)",
       apd: false,
       role: "Positive rear member of the moving Component IV cemented doublet.",
-      cemented: "D2",
+      cemented: "L7/L8",
     },
   ],
 
@@ -226,10 +234,7 @@ const LENS_DATA = {
     { text: "III", fromSurface: "7", toSurface: "11" },
     { text: "IV", fromSurface: "12", toSurface: "14" },
   ],
-  doublets: [
-    { text: "D1", fromSurface: "9", toSurface: "11" },
-    { text: "D2", fromSurface: "12", toSurface: "14" },
-  ],
+  doublets: [],
 
   closeFocusM: 1.7886507000747824,
   focusDescription:

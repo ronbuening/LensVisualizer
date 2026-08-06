@@ -74,6 +74,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
+      diagramLabel: "L1",
       label: "Element 1",
       type: "Biconvex Positive",
       nd: 1.620409,
@@ -84,12 +85,13 @@ const LENS_DATA = {
       nF: 1.627562,
       ng: 1.633125,
       dPgF: -0.0031,
-      cemented: "D1",
+      cemented: "L1/L2",
       role: "Front positive member of the cemented G1 collector and achromatizing pair.",
     },
     {
       id: 2,
       name: "L2",
+      diagramLabel: "L2",
       label: "Element 2",
       type: "Biconcave Negative",
       nd: 1.648311,
@@ -100,12 +102,13 @@ const LENS_DATA = {
       nF: 1.661263,
       ng: 1.672645,
       dPgF: 0.007,
-      cemented: "D1",
+      cemented: "L1/L2",
       role: "Weak negative cemented partner that moderates G1 power and longitudinal color.",
     },
     {
       id: 3,
       name: "L3",
+      diagramLabel: "L3",
       label: "Element 3",
       type: "Positive Meniscus",
       nd: 1.713,
@@ -121,6 +124,7 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L4",
+      diagramLabel: "L4",
       label: "Element 4",
       type: "Negative Meniscus",
       nd: 1.749501,
@@ -136,6 +140,7 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L5",
+      diagramLabel: "L5",
       label: "Element 5",
       type: "Negative Meniscus",
       nd: 1.68893,
@@ -151,6 +156,7 @@ const LENS_DATA = {
     {
       id: 6,
       name: "L6",
+      diagramLabel: "L6",
       label: "Element 6",
       type: "Positive Meniscus",
       nd: 1.76684,
@@ -166,6 +172,7 @@ const LENS_DATA = {
     {
       id: 7,
       name: "L7",
+      diagramLabel: "L7",
       label: "Element 7",
       type: "Biconvex Positive",
       nd: 1.796681,
@@ -231,7 +238,7 @@ const LENS_DATA = {
     { text: "G2", fromSurface: "4", toSurface: "7" },
     { text: "GR", fromSurface: "8", toSurface: "13" },
   ],
-  doublets: [{ text: "D1", fromSurface: "1", toSurface: "3" }],
+  doublets: [],
 
   closeFocusM: 4.0967736,
   focusDescription:

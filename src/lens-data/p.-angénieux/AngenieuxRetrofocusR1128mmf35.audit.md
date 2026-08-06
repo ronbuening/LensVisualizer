@@ -14,4 +14,10 @@ Patent: GB 720,808 A, sole numerical example / optical section.
 
 - Rechecked the sole numerical example's six glass rows. Schott SF5 is a compatible dense-flint curve for L1, and Sumita F1 is a compatible flint curve for L4; neither is asserted as the historical production glass.
 - Together with the four existing J-SK16 equivalents, the prescription now has 6/6 strict and trusted chromatic coverage, up from 4/6.
-- The `L1′` patent element notation, viewer labels, and display name remain consistent with GB 720,808 and require no correction.
+- The `L1′` patent element notation, inspector metadata, and display name remain consistent with GB 720,808.
+
+## 2026-08-06 — Screenshot display and element-label audit
+
+- Rechecked the supplied viewer screenshot against the page-5 section. The radii, air spaces, element types, all-spherical flag, and stored semi-diameters follow the source silhouette; both focused geometry audits pass, so the SDs remain unchanged.
+- Added the patent's visible element sequence `1`, `1′`, `2`, `3`, `4`, `5` to the diagram instead of exposing the internal runtime ids `1` through `6`.
+- Reconfirmed `P. ANGÉNIEUX RETROFOCUS TYPE R11 28mm f/3.5` and the romanized inventor name `Pierre Angénieux`.

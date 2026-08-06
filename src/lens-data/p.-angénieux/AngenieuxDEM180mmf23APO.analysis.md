@@ -72,7 +72,7 @@ L4 forms the front part of fixed Component III and supplies most of that compone
 
 The complete Component III has a computed focal length of $-57.117$ mm. Its proximity to L4's standalone value confirms that the component's first-order negative power is dominated by L4 rather than by the rear cemented doublet.
 
-### L5 — Positive Meniscus, Front Member of D1
+### L5 — Positive Meniscus, Front Member of L5/L6
 
 $n_d=1.806$, $\nu_d=40.9$. Glass: S-LAH53 (OHARA catalog equivalent to patent 806409; production supplier unspecified). Standalone $f=+48.284$ mm.
 
@@ -80,27 +80,27 @@ L5 begins the cemented L5/L6 doublet in the rear part of Component III. Both phy
 
 Its standalone focal length describes a hypothetical air-bounded element. In the actual lens, the rear surface is cemented directly to L6, so the interface changes from $n_d=1.806$ to $n_d=1.772$ rather than from glass to air. Schott P-LASF47 shares the same nominal `806409` coordinate but has materially negative partial dispersion; because the patent publishes no L5 line indices or partial-dispersion condition, the model conservatively uses the normal-dispersion S-LAH53 curve and does not classify L5 as APD.
 
-### L6 — Negative Meniscus, Rear Member of D1
+### L6 — Negative Meniscus, Rear Member of L5/L6
 
 $n_d=1.772$, $\nu_d=49.7$. Glass: S-LAH66 (OHARA catalog equivalent to patent 772497; production supplier unspecified). Standalone $f=-51.898$ mm.
 
-L6 nearly cancels L5's standalone positive power. The actual cemented D1 doublet has a computed net focal length of approximately $-10{,}247.429$ mm, making it weakly negative and effectively near-afocal compared with the complete lens.
+L6 nearly cancels L5's standalone positive power. The actual cemented L5/L6 doublet has a computed net focal length of approximately $-10{,}247.429$ mm, making it weakly negative and effectively near-afocal compared with the complete lens.
 
-This distinction is central to the component's function. L5 and L6 are individually strong in isolation, but their cemented combination contributes little net first-order power. In situ, D1 therefore serves mainly as an aberration-balancing structure behind L4 while Component III remains strongly negative because of L4.
+This distinction is central to the component's function. L5 and L6 are individually strong in isolation, but their cemented combination contributes little net first-order power. In situ, the L5/L6 pair therefore serves mainly as an aberration-balancing structure behind L4 while Component III remains strongly negative because of L4.
 
-### L7 — Negative Meniscus, Front Member of D2
+### L7 — Negative Meniscus, Front Member of L7/L8
 
 $n_d=1.728$, $\nu_d=28.4$. Glass: S-TIH10 (OHARA catalog equivalent to patent 728284; production supplier unspecified). Standalone $f=-156.698$ mm.
 
 L7 is the negative front member of the moving rear doublet. Its relatively low Abbe number gives the cemented pair a dispersive counterweight to L8. The element is weakly negative as an isolated air-bounded lens, but its cemented interface with L8 is part of the actual group power and chromatic balance.
 
-### L8 — Biconvex Positive, Rear Member of D2
+### L8 — Biconvex Positive, Rear Member of L7/L8
 
 $n_d=1.772$, $\nu_d=49.7$. Glass: S-LAH66 (OHARA catalog equivalent to patent 772497; production supplier unspecified). Standalone $f=+61.755$ mm.
 
 L8 supplies the dominant positive power in Component IV. Its positive front radius and weak negative rear radius make it biconvex in the adopted sign convention, with the rear surface only gently curved.
 
-The cemented L7/L8 doublet has a computed net focal length of $+103.573$ mm. Unlike D1, this pair is decisively positive. It is also the fourth functional component, so the cemented net power and the component power are the same. During close focusing it moves much farther than Component II and carries most of the change in image magnification.
+The cemented L7/L8 doublet has a computed net focal length of $+103.573$ mm. Unlike the nearly afocal L5/L6 pair, this pair is decisively positive. It is also the fourth functional component, so the cemented net power and the component power are the same. During close focusing it moves much farther than Component II and carries most of the change in image magnification.
 
 ## Glass Identification and Selection
 
@@ -162,7 +162,7 @@ The patent's principal design objective is to preserve correction, particularly 
 
 Component II has low net power and short travel. Its function is therefore primarily corrective: it changes ray bending and pupil relationships around the front positive section while limiting the focus-induced coma shift. Component IV has stronger positive power and far greater travel, so it supplies most of the conjugate change. Component III is fixed by the stated mechanism; the literal rounded endpoint produces only the disclosed 0.018 mm coordinate residual.
 
-Within Component III, L4 provides nearly all of the negative first-order power. The nearly afocal D1 doublet behind it contributes little net power but adds four refracting transitions, including a cemented index step, at a strategically important location around the stop. This allows aberration control without materially changing the component's power distribution.
+Within Component III, L4 provides nearly all of the negative first-order power. The nearly afocal L5/L6 doublet behind it contributes little net power but adds four refracting transitions, including a cemented index step, at a strategically important location around the stop. This allows aberration control without materially changing the component's power distribution.
 
 The patent supplies separate spherical-aberration, sine-condition, astigmatism, and distortion plots for infinity and $\beta=-0.12$ in Figures 3a and 3b. Those plots establish the intended correction targets but do not provide sufficient numerical data for independent high-order aberration reconstruction. The present model therefore limits quantitative claims to the verified paraxial, dispersion, movement, pupil, Petzval, and geometry results.
 

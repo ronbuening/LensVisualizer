@@ -495,6 +495,7 @@ Each entry in the `elements` array describes one physical glass element.
 {
   id:       1,                              // REQUIRED: unique integer, referenced by surfaces
   name:     "L1",                           // REQUIRED: short name
+  diagramLabel: "L1",                       // optional: patent/source identifier rendered below the element
   label:    "Element 1",                    // REQUIRED: display label
   type:     "Biconvex Positive",            // REQUIRED: optical shape/type description
   nd:       1.90525,                        // REQUIRED: refractive index at indexReference (d-line by default)
@@ -514,6 +515,11 @@ Each entry in the `elements` array describes one physical glass element.
   cemented: "D1",                           // optional: doublet/triplet group name
 }
 ```
+
+Use `diagramLabel` when the source identifies physical elements differently from the runtime sequence—for example
+`L11` through `L213`, `L5a` / `L5b`, or a primed identifier such as `1′`. When omitted, the diagram displays the
+element's numeric `id`. Keep the label short enough for the cross-section; dense groups are automatically packed into
+two rows.
 
 **Spectral-data notes (chromatic modeling).** Store `nC`, `nF`, `ng`, and `dPgF` directly on the
 element; there is no authored `spectral` wrapper. The chromatic-aberration ray trace consults

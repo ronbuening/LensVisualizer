@@ -124,7 +124,7 @@ L22 is a weak negative singlet within the translating positive subgroup. Its hig
 
 The `J-LASF08A class` wording records a close coordinate match with a small Abbe residual; it does not assert the exact commercial melt.
 
-#### D1 — Cemented L23 + L24
+#### Cemented L23/L24 Pair
 
 **Cemented component net f = +59.171468 mm.** The pair is positive as a cemented component in air even though its individual members have much stronger and opposing standalone powers. The junction at surface 16 carries the downstream element identity L24 and introduces no synthetic cement layer.
 
@@ -132,19 +132,19 @@ The `J-LASF08A class` wording records a close coordinate match with a small Abbe
 
 **nd = 1.88300, νd = 40.66. Glass: J-LASF08A class (HIKARI). Standalone f = −13.270741 mm.**
 
-L23 is the strongly negative front member of D1. Its standalone focal length is not the power of the finished doublet; the following positive element and the cemented interface substantially change the component result.
+L23 is the strongly negative front member of the L23/L24 pair. Its standalone focal length is not the power of the finished doublet; the following positive element and the cemented interface substantially change the component result.
 
 ##### L24 — Biconvex Positive
 
 **nd = 1.67003, νd = 47.14. Glass: J-BAF10 (HIKARI). Standalone f = +11.728183 mm.**
 
-L24 is the strong positive rear member of D1 and the last element of G2A. Its opposing power and higher Abbe number yield a moderately positive cemented net. Surface 17 then opens into the variable D2 gap leading to the fixed stop.
+L24 is the strong positive rear member of the L23/L24 pair and the last element of G2A. Its opposing power and higher Abbe number yield a moderately positive cemented net. Surface 17 then opens into the variable D2 gap leading to the fixed stop.
 
 ### G2B — Positive Rear Imaging Subgroup
 
 G2B begins after the stop and contains four cemented doublets followed by one singlet. Its in-situ focal length is +44.000038 mm. The succession of alternating positive and negative cemented components redistributes power and dispersion through the rear half of the lens while retaining a positive subgroup total.
 
-#### D2 — Cemented L25 + L26
+#### Cemented L25/L26 Pair
 
 **Cemented component net f = −75.180446 mm.** This is a weakly negative cemented component in air, despite the strong negative standalone power of L25 and positive standalone power of L26.
 
@@ -152,7 +152,7 @@ G2B begins after the stop and contains four cemented doublets followed by one si
 
 **nd = 1.88300, νd = 40.66. Glass: J-LASF08A class (HIKARI). Standalone f = −20.754214 mm.**
 
-L25 is the first glass element after the stop and the negative front member of D2. Its position near the aperture gives it substantial leverage over axial and pupil-dependent aberrations, although the patent does not assign a unique aberration to this element.
+L25 is the first glass element after the stop and the negative front member of the L25/L26 pair. Its position near the aperture gives it substantial leverage over axial and pupil-dependent aberrations, although the patent does not assign a unique aberration to this element.
 
 ##### L26 — Positive Meniscus, Concave to Object
 
@@ -160,9 +160,9 @@ L25 is the first glass element after the stop and the negative front member of D
 
 L26 provides the lower-index, higher-Abbe positive partner. The cemented pair remains net negative because the negative member and interface geometry dominate the component power.
 
-#### D3 — Cemented L27 + L28
+#### Cemented L27/L28 Pair
 
-**Cemented component net f = +22.221738 mm.** D3 is the strongest positive cemented component in G2B by net power.
+**Cemented component net f = +22.221738 mm.** L27/L28 is the strongest positive cemented component in G2B by net power.
 
 ##### L27 — Biconvex Positive
 
@@ -174,17 +174,17 @@ L27 supplies strong positive power in the middle of G2B. Its edge thickness is t
 
 **nd = 1.88300, νd = 40.66. Glass: J-LASF08A class (HIKARI). Standalone f = −45.226735 mm.**
 
-L28 moderates L27’s positive power and forms the cemented rear portion of D3. The two elements have relatively close Abbe numbers, so this component should not be described as an isolated high-order chromatic corrector from `νd` alone.
+L28 moderates L27’s positive power and forms the cemented rear portion of the pair. The two elements have relatively close Abbe numbers, so this component should not be described as an isolated high-order chromatic corrector from `νd` alone.
 
-#### D4 — Cemented L29 + L210
+#### Cemented L29/L210 Pair
 
-**Cemented component net f = −26.600437 mm.** D4 is a net negative component formed from a strong high-index negative element and a very high-Abbe positive element.
+**Cemented component net f = −26.600437 mm.** L29/L210 is a net negative component formed from a strong high-index negative element and a very high-Abbe positive element.
 
 ##### L29 — Biconcave Negative
 
 **nd = 1.88300, νd = 40.66. Glass: J-LASF08A class (HIKARI). Standalone f = −15.336887 mm.**
 
-L29 supplies the negative portion of D4. Its high index concentrates negative surface power in a thin 0.7000 mm element.
+L29 supplies the negative portion of the pair. Its high index concentrates negative surface power in a thin 0.7000 mm element.
 
 ##### L210 — Positive Meniscus, Convex to Object
 
@@ -192,9 +192,9 @@ L29 supplies the negative portion of D4. Its high index concentrates negative su
 
 L210 is the first of two J-FKH1-coordinate elements. Its unusually high Abbe number provides low-dispersion positive power against the dense negative partner. This supports an achromatizing interpretation, but the data contain no `nC`, `nF`, `ng`, or `dPgF`; the element is therefore not used to claim apochromatic or anomalous-partial-dispersion behavior.
 
-#### D5 — Cemented L211 + L212
+#### Cemented L211/L212 Pair
 
-**Cemented component net f = +76.542496 mm.** D5 is a weakly positive cemented component in air.
+**Cemented component net f = +76.542496 mm.** L211/L212 is a weakly positive cemented component in air.
 
 ##### L211 — Negative Meniscus, Convex to Object
 
@@ -206,7 +206,7 @@ L211 is the negative front member of the fourth rear doublet. Its meniscus orien
 
 **nd = 1.49782, νd = 82.57. Glass: J-FKH1 (HIKARI). Standalone f = +26.968738 mm.**
 
-L212 is the second J-FKH1-coordinate positive element. It yields the positive net sign of D5 and continues the low-dispersion positive/high-index negative pairing used in D4.
+L212 is the second J-FKH1-coordinate positive element. It yields the positive net sign of L211/L212 and continues the low-dispersion positive/high-index negative pairing used in L29/L210.
 
 #### L213 — Final Biconvex Positive
 
@@ -274,7 +274,7 @@ At the accepted modeled semi-diameter of 10.7 mm, the polynomial departure from 
 
 ## Chromatic Correction Strategy
 
-The first-order chromatic structure alternates glass power and dispersion rather than concentrating all low-dispersion material in one group. G1 combines high-Abbe negative elements L12, L13, and L15 with the low-Abbe, high-index positive L14. G2A uses opposing dense negative and positive glasses in D1. G2B repeats high-index negative members, then introduces the two highest-Abbe positive elements in D4 and D5.
+The first-order chromatic structure alternates glass power and dispersion rather than concentrating all low-dispersion material in one group. G1 combines high-Abbe negative elements L12, L13, and L15 with the low-Abbe, high-index positive L14. G2A uses opposing dense negative and positive glasses in L23/L24. G2B repeats high-index negative members, then introduces the two highest-Abbe positive elements in L29/L210 and L211/L212.
 
 The two J-FKH1-coordinate elements have `νd = 82.57` and are defensibly described as low-dispersion or ED-class coordinates. The production lens is marketed with three ED elements, but Example 1 contains only two such obvious coordinate matches. That difference is another reason the patent example is treated as an approximate correlation rather than the production formula.
 

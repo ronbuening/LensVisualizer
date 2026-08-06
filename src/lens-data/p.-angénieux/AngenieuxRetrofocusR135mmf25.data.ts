@@ -70,6 +70,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
+      diagramLabel: "1",
       label: "Element 1",
       type: "Negative Meniscus",
       nd: 1.6145,
@@ -82,6 +83,7 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L2",
+      diagramLabel: "2",
       label: "Element 2",
       type: "Biconvex Positive",
       nd: 1.6243,
@@ -94,6 +96,7 @@ const LENS_DATA = {
     {
       id: 3,
       name: "L3",
+      diagramLabel: "3",
       label: "Element 3",
       type: "Positive Meniscus",
       nd: 1.6226,
@@ -106,6 +109,7 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L4",
+      diagramLabel: "4",
       label: "Element 4",
       type: "Biconcave Negative",
       nd: 1.6141,
@@ -118,6 +122,7 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L5a",
+      diagramLabel: "5a",
       label: "Element 5a",
       type: "Negative Meniscus",
       nd: 1.6287,
@@ -126,11 +131,12 @@ const LENS_DATA = {
       glass: "F1 (Sumita catalog equivalent to patent 629353 flint coordinate; production supplier unspecified)",
       apd: false,
       role: "Negative front member of the final cemented positive doublet.",
-      cemented: "D1",
+      cemented: "L5",
     },
     {
       id: 6,
       name: "L5b",
+      diagramLabel: "5b",
       label: "Element 5b",
       type: "Biconvex Positive",
       nd: 1.6391,
@@ -139,7 +145,7 @@ const LENS_DATA = {
       glass: "K-SK18 (Sumita catalog equivalent to patent 639558 dense-crown coordinate; production supplier unspecified)",
       apd: false,
       role: "Strong positive rear member of the final cemented doublet.",
-      cemented: "D1",
+      cemented: "L5",
     },
   ],
 
@@ -169,7 +175,7 @@ const LENS_DATA = {
     { text: "FRONT NEGATIVE", fromSurface: "1", toSurface: "2" },
     { text: "REAR CONVERGENT", fromSurface: "3", toSurface: "11" },
   ],
-  doublets: [{ text: "D1", fromSurface: "9", toSurface: "11" }],
+  doublets: [{ text: "L5", fromSurface: "9", toSurface: "11" }],
 
   closeFocusM: 0.914,
   focusDescription:

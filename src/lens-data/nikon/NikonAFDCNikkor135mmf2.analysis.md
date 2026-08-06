@@ -77,7 +77,7 @@ contains no aspheric surfaces or aspheric coefficients requiring transformation.
 The focal length stated for each element below is its thick-lens focal length when isolated in air. It does not represent
 the element's in-situ contribution inside the complete lens.
 
-### L1 - Biconvex Positive, front member of D1
+### L1 - Biconvex Positive, front member of L1/L2
 
 **nd = 1.620409, νd = 60.14. Glass: J-SK16 (HIKARI; coordinate-compatible current-catalog match). Standalone f = +85.608194 mm.**
 
@@ -86,10 +86,10 @@ large f/2 entrance bundle, while its much weaker rear curvature forms the cement
 Abbe number makes it the crown-like member of the pair.
 
 Nikon's retrospective attributes improved longitudinal chromatic correction to the cemented front configuration. That
-statement supports an achromatizing role for D1, but it does not establish the present-day J-SK16 designation as the
+statement supports an achromatizing role for the L1/L2 pair, but it does not establish the present-day J-SK16 designation as the
 historical production melt. [2]
 
-### L2 - Biconcave Negative, rear member of D1
+### L2 - Biconcave Negative, rear member of L1/L2
 
 **nd = 1.648311, νd = 33.75. Glass: S-TIM22 (OHARA special-order; code 648338 coordinate match). Standalone f = -537.323355 mm.**
 

@@ -64,6 +64,33 @@ describe("ElementAnnotations", () => {
     expect(texts[2].textContent).toBe("3");
   });
 
+  it("prefers authored patent element identifiers and staggers crowded labels", () => {
+    const sourceLabelLens = {
+      ...mockLens,
+      elements: mockElements.map((element, index) => ({ ...element, diagramLabel: `L2${index + 10}` })),
+    } as unknown as RuntimeLens;
+    const crowdedShapes = mockShapes.map((shape, index) => ({ ...shape, z1: index, z2: index + 0.5 }));
+    const { container } = render(
+      <svg>
+        <ElementAnnotations
+          L={sourceLabelLens}
+          t={mockTheme}
+          shapes={crowdedShapes}
+          sx={identity}
+          sy={identity}
+          zPos={[0, 5, 6, 11, 12, 17]}
+          act={null}
+          showChromatic={false}
+        />
+      </svg>,
+    );
+
+    const texts = container.querySelectorAll("text");
+    expect(texts[0].textContent).toBe("L210");
+    expect(texts[1].textContent).toBe("L211");
+    expect(texts[0].getAttribute("y")).not.toBe(texts[1].getAttribute("y"));
+  });
+
   it("highlights the active element", () => {
     const { container } = render(
       <svg>
