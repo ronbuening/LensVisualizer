@@ -98,7 +98,7 @@ flowchart LR
 | `ArticlePage.tsx` | Route-level React page | package:react (2), package:react-router, src/components/content, src/components/layout, src/components/markdown, +6 more | src/routes | default, ArticlePage |
 | `ArticlesPage.tsx` | Route-level React page | src/components/content (2), src/utils/content (2), package:react, package:react-router, src/components/layout, +5 more | src/routes | default, ArticlesPage |
 | `AuthorPage.tsx` | Route-level React page | src/utils/catalog (5), src/components/content (2), src/utils/style (2), package:react, package:react-router, +6 more | src/routes | default, AuthorPage |
-| `AuthorsIndexPage.tsx` | Route-level React page | src/utils/catalog (5), src/utils/style (2), package:react, package:react-router, src/components/controls, +5 more | src/routes | default, AuthorsIndexPage |
+| `AuthorsIndexPage.tsx` | Route-level React page | src/utils/catalog (5), src/utils/style (2), package:react, package:react-router, src/components/controls, +4 more | src/routes | default, AuthorsIndexPage |
 | `ComparePage.tsx` | Route-level React page | src/utils/catalog (2), package:react-router, src/comparison, src/components/ClientOnly.tsx, src/components/layout, +1 more | src/routes | default, ComparePage |
 | `FormatPage.tsx` | Route-level React page | src/utils/catalog (3), src/pages/lensIndex (2), package:react-router, src/components/layout, src/components/SEOHead.tsx, +3 more | src/routes | default, FormatPage |
 | `FormatsIndexPage.tsx` | Route-level React page | src/utils/catalog (2), package:react-router, src/components/layout, src/components/SEOHead.tsx, src/pages/lensIndex, +3 more | src/routes | default, FormatsIndexPage |
