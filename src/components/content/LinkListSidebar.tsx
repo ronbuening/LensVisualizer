@@ -16,6 +16,7 @@
 import { useState } from "react";
 import { Link } from "react-router";
 import type { Theme } from "../../types/theme.js";
+import { panelCard } from "../../utils/style/styles.js";
 import { canonicalPagePath } from "../../utils/seo/siteUrls.js";
 import { STICKY_NAV_SCROLL_MARGIN } from "../../utils/style/pageStyles.js";
 
@@ -72,9 +73,7 @@ export default function LinkListSidebar({
   };
 
   const panelStyle: React.CSSProperties = {
-    background: t.panelBg,
-    border: `1px solid ${t.panelBorder}`,
-    borderRadius: 6,
+    ...panelCard(t),
     padding: "12px 14px",
     fontFamily: "'JetBrains Mono','SF Mono','Fira Code', monospace",
     maxHeight: `calc(100vh - ${offsetTop + 40}px)`,

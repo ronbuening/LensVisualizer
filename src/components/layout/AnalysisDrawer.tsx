@@ -9,6 +9,7 @@
 import { useEffect, useCallback, type ReactNode, type CSSProperties } from "react";
 import usePrefersReducedMotion from "../../utils/usePrefersReducedMotion.js";
 import type { Theme } from "../../types/theme.js";
+import { panelCard } from "../../utils/style/styles.js";
 import type { AnalysisTabId } from "../../types/state.js";
 
 export interface AnalysisTab {
@@ -61,9 +62,7 @@ export default function AnalysisDrawer({
     display: "flex",
     flexDirection: isWide ? "row" : "column",
     minHeight: 0,
-    background: t.panelBg,
-    border: `1px solid ${t.panelBorder}`,
-    borderRadius: 8,
+    ...panelCard(t, { borderRadius: 8 }),
     boxShadow: "0 4px 24px rgba(0,0,0,0.25)",
     transition: reducedMotion ? undefined : "transform 0.3s ease, opacity 0.3s ease",
     transform: open ? "translate(0, 0)" : isWide ? "translateX(-100%)" : "translateY(-100%)",

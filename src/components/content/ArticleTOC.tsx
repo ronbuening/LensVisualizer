@@ -14,6 +14,7 @@ import { extractHeadingsFromAst } from "../markdown/extractHeadingsFromAst.js";
 import type { Theme } from "../../types/theme.js";
 import useMediaQuery from "../../utils/useMediaQuery.js";
 import { STICKY_NAV_SCROLL_MARGIN } from "../../utils/style/pageStyles.js";
+import { panelCard } from "../../utils/style/styles.js";
 
 export interface TOCHeading {
   /** 2 or 3 — h2 vs h3 nesting level */
@@ -151,9 +152,7 @@ export default function ArticleTOC({
   };
 
   const panelStyle: React.CSSProperties = {
-    background: t.panelBg,
-    border: `1px solid ${t.panelBorder}`,
-    borderRadius: 6,
+    ...panelCard(t),
     padding: "12px 14px",
     fontFamily: "'JetBrains Mono','SF Mono','Fira Code', monospace",
     maxHeight: `calc(100vh - ${offsetTop + 40}px)`,

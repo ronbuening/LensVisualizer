@@ -14,6 +14,7 @@ import { getAssigneeByName } from "../../utils/catalog/assigneeCatalog.js";
 import type { Theme } from "../../types/theme.js";
 import type { GraphPatentNode, PartyRef } from "../../utils/catalog/relationshipGraph.js";
 import type { PatentPartyRole } from "../../types/catalog.js";
+import { panelCard } from "../../utils/style/styles.js";
 
 interface PatentDetailCardProps {
   patent: GraphPatentNode;
@@ -60,9 +61,7 @@ export default function PatentDetailCard({
     <article
       style={{
         position: "relative",
-        background: t.panelBg,
-        border: `1px solid ${t.panelBorder}`,
-        borderRadius: 6,
+        ...panelCard(t),
         padding: "0.85rem",
         marginTop: "1rem",
       }}

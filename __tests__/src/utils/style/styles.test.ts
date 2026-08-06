@@ -5,6 +5,7 @@ import {
   PANEL_OVERLAY_BACKDROP,
   SLIDER_LABEL,
   SLIDER_VALUE_BASE,
+  panelCard,
   toggleGroup,
   toggleBtn,
   chromChannelBtn,
@@ -40,6 +41,8 @@ const mockTheme = {
   headerBgImage: "none",
   descBg: "#101010",
   descBorder: "#333",
+  panelBg: "#121820",
+  panelBorder: "#345",
 } as unknown as Theme;
 
 /* ── Color helpers ── */
@@ -117,6 +120,20 @@ describe("static constants", () => {
 });
 
 /* ── Theme-aware factories ── */
+
+describe("panelCard(t, opts)", () => {
+  it("returns the standard themed panel chrome", () => {
+    expect(panelCard(mockTheme)).toEqual({
+      background: mockTheme.panelBg,
+      border: `1px solid ${mockTheme.panelBorder}`,
+      borderRadius: 6,
+    });
+  });
+
+  it("supports the existing eight-pixel card radius", () => {
+    expect(panelCard(mockTheme, { borderRadius: 8 }).borderRadius).toBe(8);
+  });
+});
 
 describe("toggleGroup(t, opts)", () => {
   it("returns a style object with theme border", () => {

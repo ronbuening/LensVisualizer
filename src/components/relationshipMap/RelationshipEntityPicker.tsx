@@ -14,6 +14,7 @@ import { ASSIGNEES } from "../../utils/catalog/assigneeCatalog.js";
 import { normalizeSearchText } from "../../utils/catalog/searchCatalog.js";
 import type { Theme } from "../../types/theme.js";
 import type { PartyRef } from "../../utils/catalog/relationshipGraph.js";
+import { panelCard } from "../../utils/style/styles.js";
 
 interface RelationshipEntityPickerProps {
   theme: Theme;
@@ -116,9 +117,7 @@ export default function RelationshipEntityPicker({ theme: t, onPick, compact = f
               margin: "0.25rem 0 0",
               padding: 0,
               listStyle: "none",
-              background: t.panelBg,
-              border: `1px solid ${t.panelBorder}`,
-              borderRadius: 6,
+              ...panelCard(t),
               maxHeight: 320,
               overflowY: "auto",
             }}
@@ -184,9 +183,7 @@ export default function RelationshipEntityPicker({ theme: t, onPick, compact = f
             onClick={() => onPick(option.ref)}
             style={{
               textAlign: "left",
-              background: t.panelBg,
-              border: `1px solid ${t.panelBorder}`,
-              borderRadius: 6,
+              ...panelCard(t),
               padding: "0.7rem",
               cursor: "pointer",
               font: "inherit",

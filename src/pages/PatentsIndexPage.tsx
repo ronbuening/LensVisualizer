@@ -22,6 +22,7 @@ import {
 } from "../utils/catalog/patentCatalog.js";
 import { collectionPageJsonLd, itemListJsonLd } from "../utils/seo/structuredData.js";
 import { H1_STYLE, STICKY_NAV_SCROLL_MARGIN } from "../utils/style/pageStyles.js";
+import { panelCard } from "../utils/style/styles.js";
 import { patentPartyGroupAnchorId } from "./lensIndex/groupAnchors.js";
 
 interface PatentCardProps {
@@ -181,9 +182,7 @@ export default function PatentsIndexPage() {
                     key={assignee.id}
                     id={assigneeAnchorId(country.jurisdiction.code, assignee.id)}
                     style={{
-                      background: t.panelBg,
-                      border: `1px solid ${t.panelBorder}`,
-                      borderRadius: 6,
+                      ...panelCard(t),
                       marginBottom: "1rem",
                       overflow: "hidden",
                       scrollMarginTop: STICKY_NAV_SCROLL_MARGIN,

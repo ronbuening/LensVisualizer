@@ -26,7 +26,7 @@ import type { AuthorGroupMode, AuthorPatent } from "../utils/catalog/authorCatal
 import { SITE_NAME, SITE_URL } from "../utils/catalog/lensMetadata.js";
 import { breadcrumbJsonLd, collectionPageJsonLd, itemListJsonLd } from "../utils/seo/structuredData.js";
 import { H1_STYLE, STICKY_NAV_SCROLL_MARGIN } from "../utils/style/pageStyles.js";
-import { toggleBtn, toggleGroup } from "../utils/style/styles.js";
+import { panelCard, toggleBtn, toggleGroup } from "../utils/style/styles.js";
 import { patentPartyGroupAnchorId } from "./lensIndex/groupAnchors.js";
 import type { Theme } from "../types/theme.js";
 
@@ -46,9 +46,7 @@ function AuthorBiographySection({ biography, theme: t }: AuthorBiographySectionP
     <section
       aria-labelledby="author-biography-heading"
       style={{
-        background: t.panelBg,
-        border: `1px solid ${t.panelBorder}`,
-        borderRadius: 6,
+        ...panelCard(t),
         padding: "0.9rem 1rem",
         margin: "1rem 0",
       }}
@@ -81,9 +79,7 @@ function PatentCard({ patent, currentAuthor, theme: t }: PatentCardProps) {
   return (
     <article
       style={{
-        background: t.panelBg,
-        border: `1px solid ${t.panelBorder}`,
-        borderRadius: 6,
+        ...panelCard(t),
         padding: "0.85rem",
         marginBottom: "0.75rem",
       }}

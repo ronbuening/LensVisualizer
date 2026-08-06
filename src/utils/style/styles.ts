@@ -106,6 +106,15 @@ export const SLIDER_VALUE_BASE: Readonly<CSSProperties> = Object.freeze({
  * §2  THEME-AWARE FACTORIES — each returns a fresh style object
  * ===================================================================== */
 
+/** Standard themed panel surface used by cards, sidebars, and popovers. */
+export function panelCard(t: Theme, opts?: { borderRadius?: number }): CSSProperties {
+  return {
+    background: t.panelBg,
+    border: `1px solid ${t.panelBorder}`,
+    borderRadius: opts?.borderRadius ?? 6,
+  };
+}
+
 /**
  * Toggle button group container (rounded pill wrapping multiple buttons).
  */

@@ -82,7 +82,7 @@ flowchart LR
 
 - Direct source files: 16
 - Direct subfolders: 2
-- Main outbound areas: src/types (22), package:react (12), src/components/hooks (12), same folder (11), src/utils/state (10), src/utils/theme (10), src/utils/style (8), src/utils/catalog (5), +21 more
+- Main outbound areas: src/types (22), package:react (12), src/components/hooks (12), same folder (11), src/utils/state (10), src/utils/theme (10), src/utils/style (9), src/utils/catalog (5), +21 more
 - External consumers: src/comparison, src/components/controls, src/components/layout, src/pages/ArticlePage.tsx, src/pages/ArticlesPage.tsx, src/pages/AuthorPage.tsx, src/pages/AuthorsIndexPage.tsx, src/pages/ComparePage.tsx, +14 more
 
 ## Subfolders
@@ -96,7 +96,7 @@ flowchart LR
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
-| `AnalysisDrawer.tsx` | React component module | src/types (2), package:react, src/utils/usePrefersReducedMotion.ts | same folder (2) | AnalysisTab, default, AnalysisDrawer |
+| `AnalysisDrawer.tsx` | React component module | src/types (2), package:react, src/utils/style, src/utils/usePrefersReducedMotion.ts | same folder (2) | AnalysisTab, default, AnalysisDrawer |
 | `BreadcrumbBar.tsx` | React component module | src/pages/lensIndex (3), src/utils/catalog (3), src/utils/theme (3), same folder (2), src/utils/state (2), +6 more | same folder | default, BreadcrumbBar |
 | `ControlsBar.tsx` | React component module | src/types (2), package:react, src/components/controls, src/utils/featureFlags.ts, src/utils/state, +1 more | same folder | default, ControlsBar |
 | `DescriptionPanel.tsx` | React component module | package:react, src/components/markdown, src/types | same folder (2) | default, DescriptionPanel |

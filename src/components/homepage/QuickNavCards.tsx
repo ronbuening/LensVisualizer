@@ -11,6 +11,7 @@ import { SUMMARY_KEYS, LENS_SUMMARIES, RECENT_LENS_KEYS } from "../../utils/cata
 import { deriveMaker } from "../../utils/catalog/lensMetadata.js";
 import useMediaQuery from "../../utils/useMediaQuery.js";
 import { canonicalPagePath } from "../../utils/seo/siteUrls.js";
+import { panelCard } from "../../utils/style/styles.js";
 
 interface QuickNavCardsProps {
   theme: Theme;
@@ -43,9 +44,7 @@ export default function QuickNavCards({ theme: t }: QuickNavCardsProps) {
   ];
 
   const cardStyle = (): React.CSSProperties => ({
-    background: t.panelBg,
-    border: `1px solid ${t.panelBorder}`,
-    borderRadius: 8,
+    ...panelCard(t, { borderRadius: 8 }),
     padding: isWide ? "1.25rem 1.5rem" : "1rem 1.25rem",
     textDecoration: "none",
     display: "block",

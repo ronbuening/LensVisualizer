@@ -23,7 +23,7 @@ import {
 import { SITE_NAME, SITE_URL } from "../utils/catalog/lensMetadata.js";
 import { collectionPageJsonLd, itemListJsonLd } from "../utils/seo/structuredData.js";
 import { H1_STYLE } from "../utils/style/pageStyles.js";
-import { toggleBtn, toggleGroup } from "../utils/style/styles.js";
+import { panelCard, toggleBtn, toggleGroup } from "../utils/style/styles.js";
 import {
   DEFAULT_AUTHOR_SORT,
   loadAuthorSortPreference,
@@ -187,9 +187,7 @@ export default function AuthorsIndexPage() {
               <div
                 key={author.slug}
                 style={{
-                  background: t.panelBg,
-                  border: `1px solid ${t.panelBorder}`,
-                  borderRadius: 6,
+                  ...panelCard(t),
                   padding: "0.8rem",
                 }}
               >
