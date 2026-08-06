@@ -44,10 +44,14 @@ export default function comparisonReducer(state: LensState, action: LensAction):
 
     /* ── Comparison mode transitions ── */
     case ENTER_COMPARE: {
-      const lens = { ...state.lens, comparing: true as const };
+      const lens = {
+        ...state.lens,
+        lensKeyA: state.lens.selectedConfigurationKey,
+        comparing: true as const,
+      };
       /* Pick next lens if A===B */
-      if (state.lens.lensKeyA === state.lens.lensKeyB && action.catalogKeys && action.catalogKeys.length > 1) {
-        const idx = action.catalogKeys.indexOf(state.lens.lensKeyA);
+      if (lens.lensKeyA === lens.lensKeyB && action.catalogKeys && action.catalogKeys.length > 1) {
+        const idx = action.catalogKeys.indexOf(lens.lensKeyA);
         lens.lensKeyB = action.catalogKeys[(idx + 1) % action.catalogKeys.length];
       }
       return {

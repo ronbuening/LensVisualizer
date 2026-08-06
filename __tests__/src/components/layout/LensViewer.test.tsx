@@ -165,6 +165,14 @@ vi.mock("../../../../src/components/layout/lensViewer/ViewerChrome.js", () => ({
         </button>
       ))}
       <button onClick={() => onSwitchLensA("sonnar-50f15")}>switch A</button>
+      <button
+        onClick={() => {
+          const configuredKey = catalogKeys.find((key) => key.endsWith("-tc-in"));
+          if (configuredKey) onSwitchLensA(configuredKey);
+        }}
+      >
+        switch configured A
+      </button>
       <button onClick={() => onSwitchLensB("apo-lanthar-50f2")}>switch B</button>
       <button onClick={onSwapLenses}>swap</button>
       <button onClick={onToggleCompare}>compare</button>
@@ -223,7 +231,7 @@ vi.mock("../../../../src/components/layout/lensViewer/ViewerOverlays.js", () => 
 }));
 
 import LensViewer from "../../../../src/components/layout/LensViewer.js";
-import { ALL_CATALOG_KEYS, CATALOG_KEYS } from "../../../../src/utils/catalog/lensCatalog.js";
+import { ALL_CATALOG_KEYS, CATALOG_KEYS, COMPARISON_CATALOG_KEYS } from "../../../../src/utils/catalog/lensCatalog.js";
 import { createInitialState } from "../../../../src/utils/state/lensReducer.js";
 
 function makeState(overrides: Partial<LensState> = {}): LensState {
@@ -329,6 +337,26 @@ describe("LensViewer", () => {
 
     expect(mocks.navigate).toHaveBeenCalledWith("/compare/apo-lanthar-50f2/apo-lanthar-50f2/", { replace: true });
     expect(mocks.navigate).toHaveBeenCalledWith("/compare/sonnar-50f15/apo-lanthar-50f2/", { replace: true });
+  });
+
+  it("offers configuration variants in compare without exposing debug fixtures", () => {
+    const configuredKey = COMPARISON_CATALOG_KEYS.find((key) => key.endsWith("-tc-in"));
+    expect(configuredKey).toBeDefined();
+    mocks.state = makeState({
+      lens: {
+        ...makeState().lens,
+        lensKeyA: "apo-lanthar-50f2",
+        lensKeyB: "sonnar-50f15",
+        comparing: true,
+      },
+    });
+
+    render(<LensViewer initialLensKey="apo-lanthar-50f2" initialLensKeyB="sonnar-50f15" />);
+
+    expect(mocks.capturedCatalogKeys).toEqual(COMPARISON_CATALOG_KEYS);
+    expect(mocks.capturedCatalogKeys).not.toContain("reference-newtonian-side-focus");
+    fireEvent.click(screen.getByText("switch configured A"));
+    expect(mocks.navigate).toHaveBeenCalledWith(`/compare/${configuredKey}/sonnar-50f15/`, { replace: true });
   });
 
   it("falls back from invalid desktop views before passing props to chrome and content", () => {

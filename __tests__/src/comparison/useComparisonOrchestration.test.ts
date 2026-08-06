@@ -183,6 +183,48 @@ describe("useComparisonOrchestration", () => {
     expect(prevStopdownT.current).toBe(expectedCommonPoint);
   });
 
+  it("enters comparison with the active optical configuration in the route", () => {
+    const dispatch = vi.fn();
+    const navigate = vi.fn();
+
+    useComparisonModeMock.mockReturnValue({
+      comparisonLenses: null,
+      scaleRatios: null,
+      focusPair: null,
+      aperturePair: null,
+      zoomPair: null,
+      movementPair: null,
+      handleHeaderHeight: vi.fn(),
+      maxHeaderHeight: 0,
+    });
+    useStickySlidersMock.mockReturnValue({
+      handleSharedFocusChange: vi.fn(),
+      handleSharedStopdownChange: vi.fn(),
+      handleFocusPointerDown: vi.fn(),
+      handleAperturePointerDown: vi.fn(),
+      flashPanel: null,
+      resetSticky: vi.fn(),
+      prevStopdownT: { current: 0 },
+    });
+
+    const state = buildState({
+      lensKeyA: "lens-a",
+      lensKeyB: "lens-b",
+      selectedConfigurationKey: "lens-a-variant",
+    });
+    const { result } = renderHook(() =>
+      useComparisonOrchestration({
+        state,
+        dispatch,
+        navigate,
+        catalogKeys: ["lens-a", "lens-a-variant", "lens-b"],
+      }),
+    );
+
+    act(() => result.current.toggleCompare());
+    expect(navigate).toHaveBeenCalledWith("/compare/lens-a-variant/lens-b/", { replace: false });
+  });
+
   it("exits comparison mode and restores lens A slider values", () => {
     const dispatch = vi.fn();
     const navigate = vi.fn();

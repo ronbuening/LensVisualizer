@@ -127,11 +127,12 @@ export default function useComparisonOrchestration({
       dispatch({ type: ENTER_COMPARE, catalogKeys });
       resetSticky();
       justEnteredCompare.current = true;
+      const comparisonKeyA = lens.selectedConfigurationKey;
       const autoB =
-        lensKeyA === lensKeyB && catalogKeys.length > 1
-          ? catalogKeys[(catalogKeys.indexOf(lensKeyA) + 1) % catalogKeys.length]
+        comparisonKeyA === lensKeyB && catalogKeys.length > 1
+          ? catalogKeys[(catalogKeys.indexOf(comparisonKeyA) + 1) % catalogKeys.length]
           : lensKeyB;
-      void navigate(canonicalPagePath(`/compare/${lensKeyA}/${autoB}`), { replace: false });
+      void navigate(canonicalPagePath(`/compare/${comparisonKeyA}/${autoB}`), { replace: false });
     } else {
       dispatch({
         type: EXIT_COMPARE,
@@ -145,6 +146,7 @@ export default function useComparisonOrchestration({
     comparing,
     lensKeyA,
     lensKeyB,
+    lens.selectedConfigurationKey,
     focusPair,
     aperturePair,
     movementPair,

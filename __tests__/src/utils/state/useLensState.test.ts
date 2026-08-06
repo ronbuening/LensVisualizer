@@ -3,7 +3,7 @@ import { describe, it, expect, beforeEach } from "vitest";
 import { renderHook, act } from "@testing-library/react";
 import useLensState from "../../../../src/utils/state/useLensState.js";
 import { PREFS_KEY } from "../../../../src/utils/state/preferences.js";
-import { CATALOG_KEYS } from "../../../../src/utils/catalog/lensCatalog.js";
+import { CATALOG_KEYS, COMPARISON_CATALOG_KEYS } from "../../../../src/utils/catalog/lensCatalog.js";
 import { clearBrowserState, installMatchMediaMock } from "../../../testUtils.js";
 
 /* ── Mock window.matchMedia (not implemented in jsdom) ── */
@@ -99,6 +99,17 @@ describe("useLensState — URL params override defaults", () => {
     const { result } = renderHook(() => useLensState(CATALOG_KEYS, canonicalConfigurationKey));
 
     expect(result.current[0].lens.selectedConfigurationKey).toBe(canonicalConfigurationKey);
+  });
+
+  it("initializes a configuration variant from compare route identity and ignores cfg", () => {
+    window.history.replaceState({}, "", `?v=1&cfg=${canonicalConfigurationKey}`);
+    const { result } = renderHook(() =>
+      useLensState(COMPARISON_CATALOG_KEYS, alternateConfigurationKey, CATALOG_KEYS[0]),
+    );
+
+    expect(result.current[0].lens.comparing).toBe(true);
+    expect(result.current[0].lens.lensKeyA).toBe(alternateConfigurationKey);
+    expect(result.current[0].lens.selectedConfigurationKey).toBe(alternateConfigurationKey);
   });
 });
 

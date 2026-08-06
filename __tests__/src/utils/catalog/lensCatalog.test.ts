@@ -2,6 +2,7 @@ import { describe, it, expect } from "vitest";
 import {
   LENS_CATALOG,
   CATALOG_KEYS,
+  COMPARISON_CATALOG_KEYS,
   hasMdForKey,
   loadMdForKey,
   resolveOpticalConfigurationKey,
@@ -74,6 +75,14 @@ describe("lensCatalog", () => {
     expect(resolveOpticalConfigurationKey(canonicalKey, "reference-newtonian-side-focus")).toBe(canonicalKey);
     expect(resolveOpticalConfigurationKey(canonicalKey, "stale-configuration-key")).toBe(canonicalKey);
     expect(resolveOpticalConfigurationKey(canonicalKey, undefined)).toBe(canonicalKey);
+  });
+
+  it("exposes configuration variants to compare without exposing debug fixtures", () => {
+    const canonicalKey = "nikon-af-s-nikkor-180-400mm-f4e-tc14-fl-ed-vr";
+    expect(COMPARISON_CATALOG_KEYS).toContain(canonicalKey);
+    expect(COMPARISON_CATALOG_KEYS).toContain(`${canonicalKey}-tc-in`);
+    expect(COMPARISON_CATALOG_KEYS).not.toContain("reference-newtonian-side-focus");
+    expect(COMPARISON_CATALOG_KEYS).toEqual(expect.arrayContaining(CATALOG_KEYS));
   });
 });
 

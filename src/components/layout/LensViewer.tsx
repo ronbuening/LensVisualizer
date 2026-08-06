@@ -23,6 +23,7 @@ import {
   ALL_CATALOG_KEYS,
   LENS_CATALOG,
   CATALOG_KEYS,
+  COMPARISON_CATALOG_KEYS,
   opticalConfigurationOptionsForKey,
 } from "../../utils/catalog/lensCatalog.js";
 import useLensAnalysisMarkdown from "../hooks/useLensAnalysisMarkdown.js";
@@ -85,11 +86,12 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
   const isComparePage = !!initialLensKey && !!initialLensKeyB;
   const isLensPage = !!initialLensKey && !initialLensKeyB;
   const viewerCatalogKeys = useMemo(() => {
+    if (isComparePage) return COMPARISON_CATALOG_KEYS;
     const needsHiddenCatalog =
       (initialLensKey !== undefined && !CATALOG_KEYS.includes(initialLensKey)) ||
       (initialLensKeyB !== undefined && !CATALOG_KEYS.includes(initialLensKeyB));
     return needsHiddenCatalog ? ALL_CATALOG_KEYS : CATALOG_KEYS;
-  }, [initialLensKey, initialLensKeyB]);
+  }, [isComparePage, initialLensKey, initialLensKeyB]);
   const [state, dispatch, isWide] = useLensState(viewerCatalogKeys, initialLensKey, initialLensKeyB);
 
   /* ── Destructure state slices for convenient access ── */
@@ -155,7 +157,7 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
     handleFocusPointerDown,
     handleAperturePointerDown,
     toggleCompare,
-  } = useComparisonOrchestration({ state, dispatch, navigate, catalogKeys: viewerCatalogKeys });
+  } = useComparisonOrchestration({ state, dispatch, navigate, catalogKeys: COMPARISON_CATALOG_KEYS });
 
   /* ── Overlay management: primer level, escape key, open/close callbacks ── */
   const {

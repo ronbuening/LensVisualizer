@@ -651,6 +651,13 @@ describe("lensReducer", () => {
       });
     });
 
+    it("promotes the active optical configuration to compare lens A", () => {
+      state.lens.selectedConfigurationKey = "nikon_58_tc_in";
+      const next = lensReducer(state, { type: ENTER_COMPARE, catalogKeys: [...CATALOG_KEYS, "nikon_58_tc_in"] });
+      expect(next.lens.lensKeyA).toBe("nikon_58_tc_in");
+      expect(next.lens.selectedConfigurationKey).toBe("nikon_58_tc_in");
+    });
+
     it("picks next lens if A===B", () => {
       state.lens.lensKeyA = "nikon_58";
       state.lens.lensKeyB = "nikon_58";
@@ -661,6 +668,7 @@ describe("lensReducer", () => {
     it("wraps around catalog if A is last entry", () => {
       state.lens.lensKeyA = "zeiss_35";
       state.lens.lensKeyB = "zeiss_35";
+      state.lens.selectedConfigurationKey = "zeiss_35";
       const next = lensReducer(state, { type: ENTER_COMPARE, catalogKeys: CATALOG_KEYS });
       expect(next.lens.lensKeyB).toBe("nikon_58"); // wraps to 0
     });
