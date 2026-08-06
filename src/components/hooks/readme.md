@@ -81,7 +81,7 @@ flowchart LR
 - Direct source files: 18
 - Direct subfolders: 0
 - Main outbound areas: package:react (18), src/types (15), same folder (13), src/optics/optics.ts (7), src/optics/lensMovement.ts (6), src/optics/raySampling.ts (3), src/utils/state (3), src/utils/catalog (2), +6 more
-- External consumers: src/benchmarks, src/components/controls, src/components/display, src/components/layout, src/components/relationshipMap
+- External consumers: src/benchmarks, src/components/controls, src/components/display, src/components/layout, src/components/relationshipMap, src/components/search
 
 ## Files
 
@@ -90,7 +90,7 @@ flowchart LR
 | `offAxisRayUtils.ts` | Off Axis Ray Utils helper module | src/types (2), src/optics/aberration, src/optics/optics.ts, src/optics/projection.ts, src/utils/featureFlags.ts | same folder (2), src/benchmarks | OffAxisTraceGeometry, computeOffAxisTraceGeometry |
 | `raySegmentUtils.ts` | Ray Segment Utils helper module | same folder, src/types | same folder (3), src/benchmarks | compileRaySegment, filterChannels |
 | `useChromaticRays.ts` | React hook module | same folder (3), src/types (2), package:react, src/optics/lensMovement.ts, src/optics/optics.ts, +1 more | same folder, src/benchmarks, src/components/layout | ChromaticRaySegment, default, useChromaticRays |
-| `useDismissableDropdown.ts` | React hook module | package:react | src/components/layout, src/components/relationshipMap | default, useDismissableDropdown |
+| `useDismissableDropdown.ts` | React hook module | package:react | src/components/layout, src/components/relationshipMap, src/components/search | default, useDismissableDropdown |
 | `useDispatchAdapters.ts` | React hook module | src/types (2), src/utils/state (2), package:react | src/components/layout | DispatchAdapters, default, useDispatchAdapters |
 | `useFlashOverlay.ts` | React hook module | package:react | src/components/layout | default, useFlashOverlay |
 | `useHeaderHeight.ts` | React hook module | package:react (2) | src/components/layout | default, useHeaderHeight |

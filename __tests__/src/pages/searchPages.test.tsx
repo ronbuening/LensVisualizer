@@ -85,6 +85,25 @@ describe("search, author, and patent pages", () => {
     await waitFor(() => expect(screen.getByText("/lens/agfa-color-telinear-90mm-f4/")).toBeTruthy());
   });
 
+  it("dismisses catalog suggestions with Escape and an outside click", () => {
+    renderWithRouter(<CatalogSearchBox theme={themes.dark} showSuggestions />);
+    const searchbox = screen.getByRole("searchbox");
+
+    fireEvent.change(searchbox, { target: { value: "AGFA COLOR" } });
+    expect(screen.getByLabelText("Catalog suggestions")).toBeDefined();
+    expect(searchbox.getAttribute("aria-expanded")).toBe("true");
+
+    fireEvent.keyDown(document, { key: "Escape" });
+    expect(screen.queryByLabelText("Catalog suggestions")).toBeNull();
+    expect(searchbox.getAttribute("aria-expanded")).toBe("false");
+
+    fireEvent.change(searchbox, { target: { value: "AGFA COLOR-TELINEAR" } });
+    expect(screen.getByLabelText("Catalog suggestions")).toBeDefined();
+    fireEvent.mouseDown(document.body);
+    expect(screen.queryByLabelText("Catalog suggestions")).toBeNull();
+    expect(searchbox.getAttribute("aria-expanded")).toBe("false");
+  });
+
   it("skips catalog suggestion scans when suggestions are disabled", () => {
     const searchSpy = vi.spyOn(searchCatalogModule, "searchCatalog");
     renderWithRouter(<CatalogSearchBox theme={themes.dark} query="nikon" />);

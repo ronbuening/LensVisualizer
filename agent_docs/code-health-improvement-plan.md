@@ -1010,7 +1010,7 @@ replaced literals drop to ~0.
 
 ### U5. Dismissable dropdowns for the two hand-rolled suggestion lists
 
-- [ ] Effort: S · Impact: med · Risk: low-med
+- [x] Effort: S · Impact: med · Risk: low-med
 
 `RelationshipEntityPicker.tsx` ~108–154 hand-rolls a suggestion dropdown with no Escape close, no
 outside-click close, no `aria-expanded`/listbox semantics — it floats over the map and cannot be
