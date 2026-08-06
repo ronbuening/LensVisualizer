@@ -1029,7 +1029,7 @@ Verification: gate passes; Escape and outside-click dismiss both lists.
 
 ### U6. Extract the thrice-repeated filter-section template in `LensIndexFilterPanel`
 
-- [ ] Effort: S · Impact: low · Risk: low
+- [x] Effort: S · Impact: low · Risk: low
 
 `LensIndexFilterPanel.tsx` ~384–480: the Maker, Mount, and Image Format sections are structurally
 identical (h3 + "N selected" + "All X" clear chip + `aria-pressed` option chips), differing only

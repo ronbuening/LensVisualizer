@@ -55,6 +55,31 @@ interface NumericControlDefinition {
   inputMode: "decimal" | "numeric";
 }
 
+interface FilterChipSectionProps<TOption, TId extends string> {
+  theme: Theme;
+  title: string;
+  allLabel: string;
+  options: readonly TOption[];
+  selectedIds: readonly TId[];
+  onToggle: (id: TId) => void;
+  onClear: () => void;
+  getId: (option: TOption) => TId;
+  getLabel: (option: TOption) => string;
+}
+
+const FILTER_TITLE_STYLE: CSSProperties = {
+  fontSize: "0.9rem",
+  fontWeight: 600,
+  marginTop: 0,
+  marginBottom: "0.6rem",
+};
+
+const FILTER_CHIP_GROUP_STYLE: CSSProperties = {
+  display: "flex",
+  gap: "0.5rem",
+  flexWrap: "wrap",
+};
+
 function buildToggleButtonStyle(theme: Theme, active: boolean): CSSProperties {
   return {
     padding: "0.25rem 0.75rem",
@@ -67,6 +92,55 @@ function buildToggleButtonStyle(theme: Theme, active: boolean): CSSProperties {
     color: active ? theme.toggleActiveText : theme.toggleInactiveText,
     fontWeight: active ? 600 : 400,
   };
+}
+
+function FilterChipSection<TOption, TId extends string>({
+  theme: t,
+  title,
+  allLabel,
+  options,
+  selectedIds,
+  onToggle,
+  onClear,
+  getId,
+  getLabel,
+}: FilterChipSectionProps<TOption, TId>) {
+  const allSelected = selectedIds.length === 0;
+  const chipStyle = (active: boolean): CSSProperties => ({
+    ...buildToggleButtonStyle(t, active),
+    textAlign: "left",
+  });
+
+  return (
+    <section>
+      <h3 style={FILTER_TITLE_STYLE}>
+        {title}
+        <span style={countSuffix(t, { fontSize: "0.78rem" })}>
+          {allSelected ? allLabel : `${selectedIds.length} selected`}
+        </span>
+      </h3>
+      <div style={FILTER_CHIP_GROUP_STYLE}>
+        <button type="button" style={chipStyle(allSelected)} onClick={onClear} aria-pressed={allSelected}>
+          {allLabel}
+        </button>
+        {options.map((option) => {
+          const id = getId(option);
+          const selected = selectedIds.includes(id);
+          return (
+            <button
+              key={id}
+              type="button"
+              style={chipStyle(selected)}
+              onClick={() => onToggle(id)}
+              aria-pressed={selected}
+            >
+              {getLabel(option)}
+            </button>
+          );
+        })}
+      </div>
+    </section>
+  );
 }
 
 function NumericFilterControl({
@@ -189,23 +263,11 @@ export default function LensIndexFilterPanel({
     marginBottom: "1.5rem",
   };
 
-  const filterTitleStyle: CSSProperties = {
-    fontSize: "0.9rem",
-    fontWeight: 600,
-    marginTop: 0,
-    marginBottom: "0.6rem",
-  };
-
   const rangeGridStyle: CSSProperties = {
     display: "grid",
     gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
     gap: "0.75rem 1rem",
   };
-
-  const makerSelectorStyle = (active: boolean): CSSProperties => ({
-    ...buildToggleButtonStyle(t, active),
-    textAlign: "left",
-  });
 
   const focalControls: NumericControlDefinition[] = [
     {
@@ -297,7 +359,7 @@ export default function LensIndexFilterPanel({
         }}
       >
         <div>
-          <h2 style={{ ...filterTitleStyle, marginBottom: "0.25rem" }}>Custom Filter</h2>
+          <h2 style={{ ...FILTER_TITLE_STYLE, marginBottom: "0.25rem" }}>Custom Filter</h2>
           <p style={{ margin: 0, fontSize: "0.78rem", color: t.muted }}>
             Adjust the ranges below and optionally select makers, mounts, or image formats.
           </p>
@@ -314,7 +376,7 @@ export default function LensIndexFilterPanel({
 
       <div style={{ display: "grid", gap: "1rem" }}>
         <section>
-          <h3 style={filterTitleStyle}>
+          <h3 style={FILTER_TITLE_STYLE}>
             Focal Length
             <span style={countSuffix(t, { fontSize: "0.78rem" })}>
               {formatFilterValue(customFilter.focalMin)}–{formatFilterValue(customFilter.focalMax)}mm
@@ -337,7 +399,7 @@ export default function LensIndexFilterPanel({
         </section>
 
         <section>
-          <h3 style={filterTitleStyle}>
+          <h3 style={FILTER_TITLE_STYLE}>
             Aperture
             <span style={countSuffix(t, { fontSize: "0.78rem" })}>
               f/{formatFilterValue(customFilter.apertureMin)}–f/{formatFilterValue(customFilter.apertureMax)}
@@ -360,7 +422,7 @@ export default function LensIndexFilterPanel({
         </section>
 
         <section>
-          <h3 style={filterTitleStyle}>
+          <h3 style={FILTER_TITLE_STYLE}>
             Patent Date
             <span style={countSuffix(t, { fontSize: "0.78rem" })}>
               {customFilter.patentYearMin}–{customFilter.patentYearMax}
@@ -382,106 +444,41 @@ export default function LensIndexFilterPanel({
           </div>
         </section>
 
-        <section>
-          <h3 style={filterTitleStyle}>
-            Maker
-            <span style={countSuffix(t, { fontSize: "0.78rem" })}>
-              {customFilter.makerSlugs.length === 0 ? "All Makers" : `${customFilter.makerSlugs.length} selected`}
-            </span>
-          </h3>
-          <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
-            <button
-              type="button"
-              style={makerSelectorStyle(customFilter.makerSlugs.length === 0)}
-              onClick={onClearMakerSelection}
-              aria-pressed={customFilter.makerSlugs.length === 0}
-            >
-              All Makers
-            </button>
-            {makerOptions.map((maker) => {
-              const selected = customFilter.makerSlugs.includes(maker.slug);
-              return (
-                <button
-                  key={maker.slug}
-                  type="button"
-                  style={makerSelectorStyle(selected)}
-                  onClick={() => onToggleMaker(maker.slug)}
-                  aria-pressed={selected}
-                >
-                  {maker.display} ({maker.count})
-                </button>
-              );
-            })}
-          </div>
-        </section>
+        <FilterChipSection
+          theme={t}
+          title="Maker"
+          allLabel="All Makers"
+          options={makerOptions}
+          selectedIds={customFilter.makerSlugs}
+          onToggle={onToggleMaker}
+          onClear={onClearMakerSelection}
+          getId={(maker) => maker.slug}
+          getLabel={(maker) => `${maker.display} (${maker.count})`}
+        />
 
-        <section>
-          <h3 style={filterTitleStyle}>
-            Mount
-            <span style={countSuffix(t, { fontSize: "0.78rem" })}>
-              {customFilter.lensMountIds.length === 0 ? "All Mounts" : `${customFilter.lensMountIds.length} selected`}
-            </span>
-          </h3>
-          <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
-            <button
-              type="button"
-              style={makerSelectorStyle(customFilter.lensMountIds.length === 0)}
-              onClick={onClearMountSelection}
-              aria-pressed={customFilter.lensMountIds.length === 0}
-            >
-              All Mounts
-            </button>
-            {mountOptions.map((mount) => {
-              const selected = customFilter.lensMountIds.includes(mount.id);
-              return (
-                <button
-                  key={mount.id}
-                  type="button"
-                  style={makerSelectorStyle(selected)}
-                  onClick={() => onToggleMount(mount.id)}
-                  aria-pressed={selected}
-                >
-                  {mount.label} ({mount.count})
-                </button>
-              );
-            })}
-          </div>
-        </section>
+        <FilterChipSection
+          theme={t}
+          title="Mount"
+          allLabel="All Mounts"
+          options={mountOptions}
+          selectedIds={customFilter.lensMountIds}
+          onToggle={onToggleMount}
+          onClear={onClearMountSelection}
+          getId={(mount) => mount.id}
+          getLabel={(mount) => `${mount.label} (${mount.count})`}
+        />
 
-        <section>
-          <h3 style={filterTitleStyle}>
-            Image Format
-            <span style={countSuffix(t, { fontSize: "0.78rem" })}>
-              {customFilter.imageFormatIds.length === 0
-                ? "All Formats"
-                : `${customFilter.imageFormatIds.length} selected`}
-            </span>
-          </h3>
-          <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
-            <button
-              type="button"
-              style={makerSelectorStyle(customFilter.imageFormatIds.length === 0)}
-              onClick={onClearImageFormatSelection}
-              aria-pressed={customFilter.imageFormatIds.length === 0}
-            >
-              All Formats
-            </button>
-            {imageFormatOptions.map((format) => {
-              const selected = customFilter.imageFormatIds.includes(format.id);
-              return (
-                <button
-                  key={format.id}
-                  type="button"
-                  style={makerSelectorStyle(selected)}
-                  onClick={() => onToggleImageFormat(format.id)}
-                  aria-pressed={selected}
-                >
-                  {format.label} ({format.count})
-                </button>
-              );
-            })}
-          </div>
-        </section>
+        <FilterChipSection
+          theme={t}
+          title="Image Format"
+          allLabel="All Formats"
+          options={imageFormatOptions}
+          selectedIds={customFilter.imageFormatIds}
+          onToggle={onToggleImageFormat}
+          onClear={onClearImageFormatSelection}
+          getId={(format) => format.id}
+          getLabel={(format) => `${format.label} (${format.count})`}
+        />
       </div>
     </section>
   );
