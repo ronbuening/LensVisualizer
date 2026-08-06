@@ -13,6 +13,7 @@ import { canonicalPagePath } from "../seo/siteUrls.js";
 import { catalogCollator } from "./collation.js";
 import type { PatentLensRef, PatentPartyMetadata, PatentPartyRole } from "../../types/catalog.js";
 import { groupByNamedParty } from "./groupByNamedParty.js";
+import { aggregatePatentRecords } from "./patentCatalog.js";
 
 export type AuthorMetadata = PatentPartyMetadata;
 
@@ -65,47 +66,19 @@ export function authorPathForName(name: string): string | undefined {
  * test switches between the inventor (`patentAuthors`) and assignee
  * (`patentAssignees`) name lists based on `role`.
  */
-export function patentsForParty(name: string, role: PatentPartyRole): AuthorPatent[] {
-  const patents = new Map<
-    string,
-    {
-      patentNumber: string;
-      patentYear?: number;
-      authors: Set<string>;
-      assignees: Set<string>;
-      lenses: AuthorPatentLens[];
-    }
-  >();
-
-  for (const key of SUMMARY_KEYS) {
-    const lens: LensSummary = LENS_SUMMARIES[key];
-    const names = role === "author" ? lens.patentAuthors : lens.patentAssignees;
-    if (!names?.includes(name)) continue;
-
-    const explicitPatentNumber = lens.patentNumber?.trim();
-    const patentIdentity = explicitPatentNumber || `lens:${key}`;
-    const patentNumber = explicitPatentNumber || `Patent source for ${lens.name}`;
-    const record = patents.get(patentIdentity) ?? {
+export function patentsForParty(
+  name: string,
+  role: PatentPartyRole,
+  summaries: readonly LensSummary[] = SUMMARY_KEYS.map((key) => LENS_SUMMARIES[key]),
+): AuthorPatent[] {
+  return aggregatePatentRecords(summaries, { includeFallbackRecords: true })
+    .filter((patent) => (role === "author" ? patent.authors : patent.assignees).includes(name))
+    .map(({ patentNumber, patentYear, authors, assignees, lenses }) => ({
       patentNumber,
-      patentYear: lens.patentYear,
-      authors: new Set<string>(),
-      assignees: new Set<string>(),
-      lenses: [],
-    };
-
-    for (const author of lens.patentAuthors ?? []) record.authors.add(author);
-    for (const assignee of lens.patentAssignees ?? []) record.assignees.add(assignee);
-    record.lenses.push({ key, name: lens.name, specs: lens.specs });
-    patents.set(patentIdentity, record);
-  }
-
-  return [...patents.values()]
-    .map((patent) => ({
-      patentNumber: patent.patentNumber,
-      patentYear: patent.patentYear,
-      authors: [...patent.authors],
-      assignees: [...patent.assignees],
-      lenses: patent.lenses.sort((a, b) => catalogCollator.compare(a.name, b.name)),
+      patentYear,
+      authors,
+      assignees,
+      lenses,
     }))
     .sort(
       (a, b) =>

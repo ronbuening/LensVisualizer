@@ -3,6 +3,7 @@ import { LENS_SUMMARIES } from "../../../../src/utils/catalog/lensSummaries.js";
 import type { LensSummary } from "../../../../src/utils/catalog/lensSummaries.js";
 import {
   PATENT_ASSIGNEE_FALLBACK,
+  aggregatePatentRecords,
   buildPatentIndex,
   espacenetPatentUrl,
   patentJurisdiction,
@@ -109,5 +110,48 @@ describe("patent catalog", () => {
     expect(unitedStates.assignees.find((assignee) => assignee.label === "Acme")?.patents).toHaveLength(1);
     expect(unitedStates.assignees.find((assignee) => assignee.label === "Beta")?.patents).toHaveLength(1);
     expect(unitedStates.assignees.find((assignee) => assignee.isFallback)?.patents[0].patentNumber).toBe("US 2");
+  });
+
+  it("merges shared records defensively while preserving source party order", () => {
+    const records = aggregatePatentRecords(
+      [
+        summary({
+          key: "shared-b",
+          name: "Shared Lens B",
+          patentNumber: "US 20",
+          patentAuthors: ["Zoe", "Ada"],
+          patentAssignees: ["Beta", "Acme"],
+        }),
+        summary({
+          key: "shared-a",
+          name: "Shared Lens A",
+          patentNumber: "US 20",
+          patentYear: 1999,
+          patentAuthors: ["Ada", "Ben"],
+          patentAssignees: ["Acme"],
+        }),
+        summary({
+          key: "shared-b",
+          name: "Shared Lens B",
+          patentNumber: "US 20",
+          patentAuthors: ["Zoe", "Ada"],
+          patentAssignees: ["Beta", "Acme"],
+        }),
+        summary({ key: "fallback", name: "Fallback Lens", patentAuthors: ["Zoe"] }),
+      ],
+      { includeFallbackRecords: true },
+    );
+
+    expect(records).toHaveLength(2);
+    expect(records.find((record) => record.patentNumber === "US 20")).toMatchObject({
+      patentYear: 1999,
+      authors: ["Zoe", "Ada", "Ben"],
+      assignees: ["Beta", "Acme"],
+      lenses: [
+        { key: "shared-a", name: "Shared Lens A" },
+        { key: "shared-b", name: "Shared Lens B" },
+      ],
+    });
+    expect(records.find((record) => record.patentNumber === "Patent source for Fallback Lens")).toBeDefined();
   });
 });

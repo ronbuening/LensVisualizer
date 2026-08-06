@@ -46,6 +46,10 @@ export interface PatentIndex {
   countries: PatentCountryGroup[];
 }
 
+interface AggregatePatentOptions {
+  includeFallbackRecords?: boolean;
+}
+
 const JURISDICTION_LABELS: Record<string, string> = {
   AT: "Austria",
   CA: "Canada",
@@ -90,12 +94,16 @@ export function patentJurisdiction(patentNumber: string): PatentJurisdiction {
 }
 
 /**
- * Build the unique patent records and their Country → Assignee hierarchy.
+ * Aggregate visible lens summaries into one defensively merged record per source patent.
  *
- * Exact patent-number strings are the identity key because the source data
- * stores the displayed publication or grant identifier in canonical form.
+ * @param summaries - lightweight catalog records to aggregate
+ * @param options - whether attributed lenses without a patent number become fallback records
+ * @returns unique patent records ordered by their displayed patent number
  */
-export function buildPatentIndex(summaries: readonly LensSummary[]): PatentIndex {
+export function aggregatePatentRecords(
+  summaries: readonly LensSummary[],
+  options: AggregatePatentOptions = {},
+): PatentRecord[] {
   const records = new Map<
     string,
     {
@@ -109,12 +117,16 @@ export function buildPatentIndex(summaries: readonly LensSummary[]): PatentIndex
   >();
 
   for (const lens of summaries) {
-    if (!lens.visible || !lens.patentNumber) continue;
+    if (!lens.visible) continue;
+    const explicitPatentNumber = lens.patentNumber?.trim();
+    if (!explicitPatentNumber && !options.includeFallbackRecords) continue;
+    const patentIdentity = explicitPatentNumber || `lens:${lens.key}`;
+    const patentNumber = explicitPatentNumber || `Patent source for ${lens.name}`;
 
-    const record = records.get(lens.patentNumber) ?? {
-      patentNumber: lens.patentNumber,
+    const record = records.get(patentIdentity) ?? {
+      patentNumber,
       patentYear: lens.patentYear,
-      jurisdiction: patentJurisdiction(lens.patentNumber),
+      jurisdiction: patentJurisdiction(patentNumber),
       authors: new Set<string>(),
       assignees: new Set<string>(),
       lenses: new Map<string, PatentLens>(),
@@ -124,19 +136,29 @@ export function buildPatentIndex(summaries: readonly LensSummary[]): PatentIndex
     for (const author of lens.patentAuthors ?? []) record.authors.add(author);
     for (const assignee of lens.patentAssignees ?? []) record.assignees.add(assignee);
     record.lenses.set(lens.key, { key: lens.key, name: lens.name, specs: lens.specs });
-    records.set(lens.patentNumber, record);
+    records.set(patentIdentity, record);
   }
 
-  const patents: PatentRecord[] = [...records.values()]
+  return [...records.values()]
     .map((record) => ({
       patentNumber: record.patentNumber,
       patentYear: record.patentYear,
       jurisdiction: record.jurisdiction,
-      authors: [...record.authors].sort((a, b) => catalogCollator.compare(a, b)),
-      assignees: [...record.assignees].sort((a, b) => catalogCollator.compare(a, b)),
+      authors: [...record.authors],
+      assignees: [...record.assignees],
       lenses: [...record.lenses.values()].sort((a, b) => catalogCollator.compare(a.name, b.name)),
     }))
     .sort((a, b) => patentNumberCollator.compare(a.patentNumber, b.patentNumber));
+}
+
+/**
+ * Build the unique patent records and their Country → Assignee hierarchy.
+ *
+ * Exact patent-number strings are the identity key because the source data
+ * stores the displayed publication or grant identifier in canonical form.
+ */
+export function buildPatentIndex(summaries: readonly LensSummary[]): PatentIndex {
+  const patents = aggregatePatentRecords(summaries);
 
   const countries = new Map<
     string,

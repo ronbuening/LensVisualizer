@@ -79,7 +79,7 @@ flowchart LR
 
 - Direct source files: 18
 - Direct subfolders: 0
-- Main outbound areas: same folder (27), src/types (8), src/generated (6), src/utils/seo (3), glob:../../lens-data/**/*.analysis.md, glob:../../lens-data/**/*.data.ts, src/comparison, src/lens-data/defaults.ts, +1 more
+- Main outbound areas: same folder (28), src/types (8), src/generated (6), src/utils/seo (3), glob:../../lens-data/**/*.analysis.md, glob:../../lens-data/**/*.data.ts, src/comparison, src/lens-data/defaults.ts, +1 more
 - External consumers: src/benchmarks, src/comparison, src/components/controls, src/components/homepage, src/components/hooks, src/components/layout, src/components/relationshipMap, src/components/search, +27 more
 
 ## Files
@@ -89,7 +89,7 @@ flowchart LR
 | `assigneeCatalog.ts` | Assignee Catalog helper module | src/generated, src/types | same folder (2), src/components/relationshipMap (2), src/pages/RelationshipMapPage.tsx | AssigneeMetadata, ASSIGNEES, getAssigneeBySlug, getAssigneeByName |
 | `authorAssignees.ts` | Author Assignees helper module | same folder (3) | src/pages/AuthorsIndexPage.tsx | ALL_AUTHOR_ASSIGNEES, UNASSIGNED_AUTHORS, AuthorDirectoryEntry, AuthorAssigneeStratum, AUTHOR_DIRECTORY_ENTRIES, AUTHOR_ASSIGNEE_STRATA, UNASSIGNED_AUTHOR_COUNT, filterAuthorsByAssignee |
 | `authorBiographies.ts` | Author Biographies helper module | none | src/pages/AuthorPage.tsx, src/pages/AuthorsIndexPage.tsx | AuthorBiographySource, AuthorBiography, AUTHOR_BIOGRAPHIES, getAuthorBiography |
-| `authorCatalog.ts` | Author Catalog helper module | same folder (4), src/generated, src/types, src/utils/seo | same folder (3), src/components/relationshipMap (2), src/components/controls, src/pages/AuthorPage.tsx, src/pages/AuthorsIndexPage.tsx, +2 more | AuthorMetadata, AuthorPatentLens, AuthorPatent, AuthorGroupMode, AuthorPatentGroup, AUTHORS, getAuthorBySlug, getAuthorByName, +4 more |
+| `authorCatalog.ts` | Author Catalog helper module | same folder (5), src/generated, src/types, src/utils/seo | same folder (3), src/components/relationshipMap (2), src/components/controls, src/pages/AuthorPage.tsx, src/pages/AuthorsIndexPage.tsx, +2 more | AuthorMetadata, AuthorPatentLens, AuthorPatent, AuthorGroupMode, AuthorPatentGroup, AUTHORS, getAuthorBySlug, getAuthorByName, +4 more |
 | `collation.ts` | Collation helper module | none | same folder (7), src/pages/lensIndex (3), src/pages/AuthorsIndexPage.tsx, src/pages/MakersIndexPage.tsx, src/pages/MountPage.tsx, +1 more | catalogCollator |
 | `groupByNamedParty.ts` | Group By Named Party helper module | same folder | same folder (2), src/pages/lensIndex | NamedPartyGroup, groupByNamedParty |
 | `imageFormatDetails.ts` | Image Format Details helper module | same folder | src/pages/FormatPage.tsx, src/pages/FormatsIndexPage.tsx | ImageFormatDetails, IMAGE_FORMAT_DETAILS, getImageFormatDetails |
@@ -100,7 +100,7 @@ flowchart LR
 | `lensTaxonomy.ts` | Lens Taxonomy helper module | none | src/pages/lensIndex (7), same folder (3), src/types (3), src/components/layout, src/optics/field, +5 more | LENS_MOUNTS, LensMountId, LensMountMetadata, LENS_MOUNT_BY_ID, isLensMountId, IMAGE_FORMATS, ImageFormatId, ImageFormatMetadata, +4 more |
 | `makerDetails.ts` | Maker Details helper module | none | src/pages/lensIndex, src/pages/MakerPage.tsx, src/pages/MakersIndexPage.tsx | MakerDetails, MAKER_DETAILS, getMakerDetails |
 | `mountDetails.ts` | Mount Details helper module | same folder | src/pages/MountPage.tsx, src/pages/MountsIndexPage.tsx | MountDetails, MOUNT_DETAILS, getMountDetails |
-| `patentCatalog.ts` | Patent Catalog helper module | same folder (4), src/types | src/pages/PatentsIndexPage.tsx | PatentLens, PatentJurisdiction, PatentRecord, PatentAssigneeGroup, PatentCountryGroup, PatentIndex, PATENT_ASSIGNEE_FALLBACK, espacenetPatentUrl, +4 more |
+| `patentCatalog.ts` | Patent Catalog helper module | same folder (4), src/types | same folder, src/pages/PatentsIndexPage.tsx | PatentLens, PatentJurisdiction, PatentRecord, PatentAssigneeGroup, PatentCountryGroup, PatentIndex, PATENT_ASSIGNEE_FALLBACK, espacenetPatentUrl, +5 more |
 | `relationshipGraph.ts` | Relationship Graph helper module | same folder (3), src/types | src/components/relationshipMap (4), src/pages/RelationshipMapPage.tsx | PartyRef, GraphPatentNode, GraphPartyNode, RelationshipGraph, resolveFocusParam, buildRelationshipGraph |
 | `searchCatalog.ts` | Search Catalog helper module | same folder (6), src/utils/seo | src/components/search (2), src/components/relationshipMap | LensNameSearchMatch, PatentSearchMatch, AuthorSearchMatch, CatalogSearchResults, CatalogSearchMatch, normalizeSearchText, searchCatalog, exactSearchTarget |
 | `slugText.ts` | Slug Text helper module | none | same folder, src/pages/lensIndex | transliterateCatalogText, stableHash |

@@ -1084,7 +1084,7 @@ Do C1 before C3; N3's pin tests before C4.
 
 ### C1. One patent aggregator (fixes divergent year/order semantics)
 
-- [ ] Effort: M · Impact: high · Risk: low-med
+- [x] Effort: M · Impact: high · Risk: low-med
 
 Two parallel "one record per patent" aggregators with divergent semantics:
 `patentsForParty` (`authorCatalog.ts` ~74–121) sets `patentYear` from the FIRST matching lens and

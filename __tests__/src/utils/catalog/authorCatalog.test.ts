@@ -13,8 +13,10 @@ import {
   getAuthorBySlug,
   groupAuthorPatents,
   patentsForAuthor,
+  patentsForParty,
 } from "../../../../src/utils/catalog/authorCatalog.js";
 import { catalogCollator } from "../../../../src/utils/catalog/collation.js";
+import type { LensSummary } from "../../../../src/utils/catalog/lensSummaries.js";
 
 const sample = AUTHORS[0];
 
@@ -68,6 +70,40 @@ describe("patentsForAuthor", () => {
 
   it("returns nothing for an unknown author", () => {
     expect(patentsForAuthor("Not A Real Author")).toEqual([]);
+  });
+
+  it("derives merged, fallback, and missing-year records from synthetic summaries", () => {
+    const summaries: LensSummary[] = [
+      {
+        key: "shared-b",
+        name: "Shared Lens B",
+        patentNumber: "US 20",
+        patentAuthors: ["Ada", "Zoe"],
+        visible: true,
+      },
+      {
+        key: "shared-a",
+        name: "Shared Lens A",
+        patentNumber: "US 20",
+        patentYear: 1999,
+        patentAuthors: ["Ada", "Ben"],
+        visible: true,
+      },
+      { key: "fallback", name: "Fallback Lens", patentAuthors: ["Ada"], visible: true },
+      { key: "other", name: "Other Lens", patentAuthors: ["Zoe"], visible: true },
+    ];
+
+    const patents = patentsForParty("Ada", "author", summaries);
+
+    expect(patents.map((patent) => patent.patentNumber)).toEqual(["US 20", "Patent source for Fallback Lens"]);
+    expect(patents[0]).toMatchObject({
+      patentYear: 1999,
+      authors: ["Ada", "Zoe", "Ben"],
+      lenses: [
+        { key: "shared-a", name: "Shared Lens A" },
+        { key: "shared-b", name: "Shared Lens B" },
+      ],
+    });
   });
 });
 
