@@ -11,6 +11,7 @@
 import { isAnalysisTabId, type LensState, type URLState } from "../../types/state.js";
 import { isGroupMovementMode } from "../../types/groupMovement.js";
 import { MOVEMENT_SHIFT_ENVELOPE_MM, MOVEMENT_TILT_ENVELOPE_DEG } from "../../optics/lensMovement.js";
+import { LENS_KEY_PATTERN } from "../../optics/validateLensData.js";
 
 type LensViewQueryKey =
   | "focus"
@@ -19,6 +20,7 @@ type LensViewQueryKey =
   | "zoom"
   | "shift"
   | "tilt"
+  | "configurationKey"
   | "selectedElementId"
   | "selectedElementIdA"
   | "selectedElementIdB"
@@ -116,6 +118,17 @@ function parseBooleanParam(params: URLSearchParams, key: string): boolean | unde
   return undefined;
 }
 
+/* Syntactic bound only — catalog-aware validation happens at the lens-aware
+   boundaries. The shape is the validator's LENS_KEY_PATTERN, so every key
+   validateLensData accepts is representable as a cfg value. */
+const CONFIGURATION_KEY_MAX_LENGTH = 128;
+
+function parseConfigurationKey(params: URLSearchParams): string | undefined {
+  const key = params.get("cfg");
+  if (!key || key.length > CONFIGURATION_KEY_MAX_LENGTH || !LENS_KEY_PATTERN.test(key)) return undefined;
+  return key;
+}
+
 export function parseLensViewQuery(search: string): LensViewQueryState {
   const params = new URLSearchParams(search);
   const state: LensViewQueryState = {
@@ -141,6 +154,7 @@ export function parseLensViewQuery(search: string): LensViewQueryState {
   const analysisDrawerOpen = parseBooleanParam(params, "ad");
   const movementMode = params.get("mv");
   const tab = params.get("tab");
+  const configurationKey = version === "1" ? parseConfigurationKey(params) : undefined;
 
   if (selectedElementId != null) state.selectedElementId = selectedElementId;
   if (selectedElementIdA != null) state.selectedElementIdA = selectedElementIdA;
@@ -149,6 +163,7 @@ export function parseLensViewQuery(search: string): LensViewQueryState {
   if (chromaticOverlayOpen !== undefined) state.chromaticOverlayOpen = chromaticOverlayOpen;
   if (petzvalOverlayOpen !== undefined) state.petzvalOverlayOpen = petzvalOverlayOpen;
   if (analysisDrawerOpen !== undefined) state.analysisDrawerOpen = analysisDrawerOpen;
+  if (configurationKey) state.configurationKey = configurationKey;
   if (isAnalysisTabId(tab)) state.analysisDrawerTab = tab;
   if (isGroupMovementMode(movementMode)) {
     state.groupMovementOpen = true;
@@ -166,6 +181,7 @@ export function buildLensViewQuery({
   aberration,
   shift,
   tilt,
+  configurationKey,
   selectedElementId,
   selectedElementIdA,
   selectedElementIdB,
@@ -183,7 +199,8 @@ export function buildLensViewQuery({
     Boolean(chromaticOverlayOpen) ||
     Boolean(petzvalOverlayOpen) ||
     Boolean(analysisDrawerOpen) ||
-    Boolean(groupMovementOpen);
+    Boolean(groupMovementOpen) ||
+    (!comparing && Boolean(configurationKey));
 
   const params = new URLSearchParams();
   if (usesV1ViewState) params.set("v", "1");
@@ -193,6 +210,7 @@ export function buildLensViewQuery({
   if (aperture != null && aperture > 0) params.set("aperture", aperture.toFixed(3));
   if (shift != null && Math.abs(shift) > 1e-9) params.set("shift", shift.toFixed(2));
   if (tilt != null && Math.abs(tilt) > 1e-9) params.set("tilt", tilt.toFixed(2));
+  if (!comparing && configurationKey) params.set("cfg", configurationKey);
 
   if (comparing) {
     if (selectedElementIdA != null) params.set("a_el", String(selectedElementIdA));
@@ -234,6 +252,10 @@ export function buildLensViewQueryFromState(state: LensState, zoom: number | nul
     comparing,
     ...sliders,
     zoom,
+    configurationKey:
+      !comparing && state.lens.selectedConfigurationKey !== state.lens.lensKeyA
+        ? state.lens.selectedConfigurationKey
+        : undefined,
     selectedElementId: state.panels.selectedElementId,
     selectedElementIdA: state.panels.selectedElementIdA,
     selectedElementIdB: state.panels.selectedElementIdB,
@@ -255,6 +277,7 @@ export function lensViewQueryToUrlState(state: LensViewQueryState, includeViewDe
   if (state.zoom != null) urlState.zoom = state.zoom;
   if (state.shift != null) urlState.shift = state.shift;
   if (state.tilt != null) urlState.tilt = state.tilt;
+  if (state.configurationKey) urlState.configurationKey = state.configurationKey;
   for (const { key, default: fallback } of VIEW_STATE_FIELDS) {
     if (includeViewDefaults || key in state) {
       (urlState as Record<string, unknown>)[key] = state[key] ?? fallback;

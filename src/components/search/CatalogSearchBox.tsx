@@ -6,13 +6,16 @@
  * direct lens, patent, and author links as the visitor types.
  */
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import type { SyntheticEvent } from "react";
 import { Link, useNavigate } from "react-router";
 import type { Theme } from "../../types/theme.js";
+import { searchInput, VISUALLY_HIDDEN } from "../../utils/style/styles.js";
 import { exactSearchTarget, searchCatalog } from "../../utils/catalog/searchCatalog.js";
 import type { CatalogSearchMatch } from "../../utils/catalog/searchCatalog.js";
 import { canonicalPagePath } from "../../utils/seo/siteUrls.js";
+import { pluralize } from "../../utils/text.js";
+import useDismissableDropdown from "../hooks/useDismissableDropdown.js";
 
 interface CatalogSearchBoxProps {
   theme: Theme;
@@ -28,7 +31,7 @@ function suggestionDetails(match: CatalogSearchMatch): { label: string; meta: st
   if (match.type === "author") {
     return {
       label: match.author.name,
-      meta: `Author · ${match.author.patentCount} ${match.author.patentCount === 1 ? "patent" : "patents"}`,
+      meta: `Author · ${match.author.patentCount} ${pluralize(match.author.patentCount, "patent")}`,
       to: canonicalPagePath(`/authors/${match.author.slug}`),
     };
   }
@@ -57,16 +60,21 @@ export default function CatalogSearchBox({
 }: CatalogSearchBoxProps) {
   const navigate = useNavigate();
   const [internalQuery, setInternalQuery] = useState("");
+  const [suggestionsOpen, setSuggestionsOpen] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
   const currentQuery = query ?? internalQuery;
   const normalizedQuery = currentQuery.trim();
-  const results = useMemo(() => searchCatalog(currentQuery), [currentQuery]);
-  const suggestions = useMemo(
-    () =>
-      [...results.lenses.slice(0, 3), ...results.patents.slice(0, 3), ...results.authors.slice(0, 3)].slice(
-        0,
-        suggestionLimit,
-      ),
-    [results, suggestionLimit],
+  const suggestions = useMemo(() => {
+    if (!showSuggestions) return [];
+    const results = searchCatalog(currentQuery);
+    return [...results.lenses.slice(0, 3), ...results.patents.slice(0, 3), ...results.authors.slice(0, 3)].slice(
+      0,
+      suggestionLimit,
+    );
+  }, [currentQuery, showSuggestions, suggestionLimit]);
+  const suggestionsVisible = showSuggestions && suggestionsOpen && normalizedQuery.length > 0;
+  const suggestionsRef = useDismissableDropdown<HTMLDivElement>(suggestionsVisible, inputRef, () =>
+    setSuggestionsOpen(false),
   );
 
   const setQuery = (value: string) => {
@@ -103,27 +111,28 @@ export default function CatalogSearchBox({
         <p style={{ color: t.muted, fontSize: "0.75rem", lineHeight: 1.5, margin: "0 0 0.8rem" }}>{description}</p>
       )}
       <form onSubmit={handleSubmit} role="search" style={{ display: "flex", gap: "0.5rem" }}>
-        <label htmlFor="catalog-search-input" style={{ position: "absolute", width: 1, height: 1, overflow: "hidden" }}>
+        <label htmlFor="catalog-search-input" style={VISUALLY_HIDDEN}>
           Search lenses, patents, and authors
         </label>
         <input
+          ref={inputRef}
           id="catalog-search-input"
           type="search"
           value={currentQuery}
-          onChange={(event) => setQuery(event.target.value)}
+          onChange={(event) => {
+            setQuery(event.target.value);
+            setSuggestionsOpen(event.target.value.trim().length > 0);
+          }}
+          onFocus={() => setSuggestionsOpen(normalizedQuery.length > 0)}
           placeholder="Lens name, patent number, or author"
           autoComplete="off"
+          /* aria-expanded belongs on a combobox role this input does not claim;
+             aria-controls only renders while its target exists. */
+          aria-controls={suggestionsVisible ? "catalog-search-suggestions" : undefined}
           style={{
+            ...searchInput(t),
             flex: 1,
             minWidth: 0,
-            background: t.selectorBg,
-            color: t.selectorText,
-            border: `1px solid ${t.selectorBorder}`,
-            borderRadius: 6,
-            padding: "0.7rem 0.8rem",
-            font: "inherit",
-            /* iOS Safari zooms focused form controls whose rendered text is below 16px. */
-            fontSize: "16px",
             outlineColor: t.sliderAccent,
           }}
         />
@@ -145,10 +154,14 @@ export default function CatalogSearchBox({
         </button>
       </form>
 
-      {showSuggestions && normalizedQuery.length > 0 && (
-        <div style={{ borderTop: `1px solid ${t.panelDivider}`, marginTop: "0.75rem", paddingTop: "0.5rem" }}>
+      {suggestionsVisible && (
+        <div
+          ref={suggestionsRef}
+          id="catalog-search-suggestions"
+          style={{ borderTop: `1px solid ${t.panelDivider}`, marginTop: "0.75rem", paddingTop: "0.5rem" }}
+        >
           {suggestions.length > 0 ? (
-            <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+            <ul aria-label="Catalog suggestions" style={{ listStyle: "none", padding: 0, margin: 0 }}>
               {suggestions.map((match) => {
                 const item = suggestionDetails(match);
                 const id = match.type === "author" ? `author-${match.author.slug}` : `${match.type}-${match.key}`;

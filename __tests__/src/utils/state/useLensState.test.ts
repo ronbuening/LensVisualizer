@@ -3,7 +3,7 @@ import { describe, it, expect, beforeEach } from "vitest";
 import { renderHook, act } from "@testing-library/react";
 import useLensState from "../../../../src/utils/state/useLensState.js";
 import { PREFS_KEY } from "../../../../src/utils/state/preferences.js";
-import { CATALOG_KEYS } from "../../../../src/utils/catalog/lensCatalog.js";
+import { CATALOG_KEYS, COMPARISON_CATALOG_KEYS } from "../../../../src/utils/catalog/lensCatalog.js";
 import { clearBrowserState, installMatchMediaMock } from "../../../testUtils.js";
 
 /* ── Mock window.matchMedia (not implemented in jsdom) ── */
@@ -39,6 +39,21 @@ describe("useLensState — defaults", () => {
     expect(result.current[0].lens.comparing).toBe(false);
   });
 
+  /* The reducer initializer runs once, so it must see the real viewport width on the
+     first render — not the SSR default (the viewer tree mounts inside ClientOnly). */
+  it("expands the focus and aperture panels on a first visit at desktop width", () => {
+    const { result } = renderHook(() => useLensState(CATALOG_KEYS));
+    expect(result.current[0].panels.focusExpanded).toBe(true);
+    expect(result.current[0].panels.apertureExpanded).toBe(true);
+  });
+
+  it("collapses the focus and aperture panels on a first visit at narrow width", () => {
+    installMatchMediaMock(false);
+    const { result } = renderHook(() => useLensState(CATALOG_KEYS));
+    expect(result.current[0].panels.focusExpanded).toBe(false);
+    expect(result.current[0].panels.apertureExpanded).toBe(false);
+  });
+
   it("defaults sliders to zero", () => {
     const { result } = renderHook(() => useLensState(CATALOG_KEYS));
     const { focusT, zoomT, aberrationT, stopdownT } = result.current[0].sliders;
@@ -52,6 +67,9 @@ describe("useLensState — defaults", () => {
 /* ── URL param initialization ── */
 
 describe("useLensState — URL params override defaults", () => {
+  const canonicalConfigurationKey = "nikon-af-s-nikkor-180-400mm-f4e-tc14-fl-ed-vr";
+  const alternateConfigurationKey = `${canonicalConfigurationKey}-tc-in`;
+
   it("uses ?lens= to set lensKeyA when key is valid", () => {
     window.history.replaceState({}, "", `?lens=${CATALOG_KEYS[1]}`);
     const { result } = renderHook(() => useLensState(CATALOG_KEYS));
@@ -81,6 +99,32 @@ describe("useLensState — URL params override defaults", () => {
     const { result } = renderHook(() => useLensState(CATALOG_KEYS));
     // Falls back to default (first key)
     expect(result.current[0].lens.lensKeyA).toBe(CATALOG_KEYS[0]);
+  });
+
+  it("hydrates a valid optical configuration on the first render", () => {
+    window.history.replaceState({}, "", `/lens/${canonicalConfigurationKey}/?v=1&cfg=${alternateConfigurationKey}`);
+    const { result } = renderHook(() => useLensState(CATALOG_KEYS, canonicalConfigurationKey));
+
+    expect(result.current[0].lens.lensKeyA).toBe(canonicalConfigurationKey);
+    expect(result.current[0].lens.selectedConfigurationKey).toBe(alternateConfigurationKey);
+  });
+
+  it("falls back to the canonical key for a cross-group configuration", () => {
+    window.history.replaceState({}, "", `/lens/${canonicalConfigurationKey}/?v=1&cfg=reference-newtonian-side-focus`);
+    const { result } = renderHook(() => useLensState(CATALOG_KEYS, canonicalConfigurationKey));
+
+    expect(result.current[0].lens.selectedConfigurationKey).toBe(canonicalConfigurationKey);
+  });
+
+  it("initializes a configuration variant from compare route identity and ignores cfg", () => {
+    window.history.replaceState({}, "", `?v=1&cfg=${canonicalConfigurationKey}`);
+    const { result } = renderHook(() =>
+      useLensState(COMPARISON_CATALOG_KEYS, alternateConfigurationKey, CATALOG_KEYS[0]),
+    );
+
+    expect(result.current[0].lens.comparing).toBe(true);
+    expect(result.current[0].lens.lensKeyA).toBe(alternateConfigurationKey);
+    expect(result.current[0].lens.selectedConfigurationKey).toBe(alternateConfigurationKey);
   });
 });
 

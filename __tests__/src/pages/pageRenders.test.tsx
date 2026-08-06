@@ -12,7 +12,7 @@ import LensPage from "../../../src/pages/LensPage.js";
 import ComparePage from "../../../src/pages/ComparePage.js";
 import NotFoundPage from "../../../src/pages/NotFoundPage.js";
 import { ARTICLE_CONTENT, ARTICLES, HOMEPAGE_ARTICLES } from "../../../src/utils/content/homepageContent.js";
-import { CATALOG_KEYS, LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
+import { CATALOG_KEYS, COMPARISON_CATALOG_KEYS, LENS_CATALOG } from "../../../src/utils/catalog/lensCatalog.js";
 import { lensDisplaySubtitle } from "../../../src/utils/catalog/lensPatentMetadata.js";
 import { clearBrowserState, installMatchMediaMock, renderWithRouter } from "../../testUtils.js";
 
@@ -192,6 +192,34 @@ describe("static page renders", () => {
 
     expect(screen.getByText(`${LENS_CATALOG[slugA].name} vs ${LENS_CATALOG[slugB].name}`)).toBeTruthy();
     expect(screen.getByText(/Interactive side-by-side comparison available in the viewer above/i)).toBeTruthy();
+  });
+
+  it("reloads compare fallback content for a hidden configuration variant", () => {
+    const variantKey = COMPARISON_CATALOG_KEYS.find((key) => key.endsWith("-tc-in"));
+    expect(variantKey).toBeDefined();
+    if (!variantKey) return;
+    const otherKey = CATALOG_KEYS.find((key) => key !== variantKey)!;
+
+    renderRoutes(
+      `/compare/${variantKey}/${otherKey}`,
+      <Routes>
+        <Route path="/compare/:slugA/:slugB" element={<ComparePage />} />
+      </Routes>,
+    );
+
+    expect(screen.getByText(`${LENS_CATALOG[variantKey].name} vs ${LENS_CATALOG[otherKey].name}`)).toBeTruthy();
+  });
+
+  it("does not expose unrelated hidden fixtures as compare identities", async () => {
+    renderRoutes(
+      `/compare/reference-newtonian-side-focus/${CATALOG_KEYS[0]}`,
+      <Routes>
+        <Route path="/compare/:slugA/:slugB" element={<ComparePage />} />
+        <Route path="/lenses" element={<div>lens archive</div>} />
+      </Routes>,
+    );
+
+    await waitFor(() => expect(screen.getByText("lens archive")).toBeTruthy());
   });
 
   it("renders structured patent attribution in the lens-page fallback", () => {

@@ -7,11 +7,12 @@
  */
 
 import { Link } from "react-router";
+import LensEntryLink from "../../components/content/LensEntryLink.js";
 import { getMakerDetails } from "../../utils/catalog/makerDetails.js";
 import { isImageFormatId, isLensMountId } from "../../utils/catalog/lensTaxonomy.js";
 import type { LensLibraryBreadcrumbContext, LensLinkTarget } from "./clusterLinks.js";
 import { canonicalPagePath } from "../../utils/seo/siteUrls.js";
-import { LENS_LINK_BASE_STYLE, SECTION_HEADING_BASE_STYLE } from "./styles.js";
+import { SECTION_HEADING_BASE_STYLE } from "./styles.js";
 import { STICKY_NAV_SCROLL_MARGIN } from "../../utils/style/pageStyles.js";
 import {
   focalSectionAnchorId,
@@ -32,33 +33,8 @@ import type {
   YearGroup,
 } from "./types.js";
 import type { Theme } from "../../types/theme.js";
-
-function LensEntryLink({
-  lensKey,
-  text,
-  meta,
-  theme,
-  hrefForLens,
-}: {
-  lensKey: string;
-  text: string;
-  meta: string | null;
-  theme: Theme;
-  hrefForLens: (lensKey: string, context?: LensLibraryBreadcrumbContext) => LensLinkTarget;
-}) {
-  const target = hrefForLens(lensKey);
-  return (
-    <Link
-      key={lensKey}
-      to={target.to}
-      state={target.state}
-      style={{ ...LENS_LINK_BASE_STYLE, color: theme.descLinkColor }}
-    >
-      {text}
-      {meta && <span style={{ color: theme.label, fontSize: "0.75rem", marginLeft: "0.5rem" }}>— {meta}</span>}
-    </Link>
-  );
-}
+import type { PatentPartyRole } from "../../types/catalog.js";
+import { countSuffix } from "../../utils/style/styles.js";
 
 function MakerSections({
   groups,
@@ -83,9 +59,7 @@ function MakerSections({
               <Link to={`/makers/${group.slug}/`} style={{ color: "inherit", textDecoration: "none" }}>
                 {group.display}
               </Link>
-              <span style={{ color: theme.label, fontSize: "0.75rem", marginLeft: "0.5rem", fontWeight: 400 }}>
-                ({group.lenses.length})
-              </span>
+              <span style={countSuffix(theme)}>({group.lenses.length})</span>
             </h2>
             {details && (
               <p
@@ -143,7 +117,7 @@ function FocalSections({
             }}
           >
             {section.label}
-            <span style={{ color: theme.label, fontSize: "0.75rem", marginLeft: "0.5rem", fontWeight: 400 }}>
+            <span style={countSuffix(theme)}>
               ({section.subGroups.reduce((count, group) => count + group.lenses.length, 0)})
             </span>
           </h2>
@@ -163,9 +137,7 @@ function FocalSections({
                 }}
               >
                 {group.label}
-                <span style={{ color: theme.label, fontSize: "0.75rem", marginLeft: "0.5rem", fontWeight: 400 }}>
-                  ({group.lenses.length})
-                </span>
+                <span style={countSuffix(theme)}>({group.lenses.length})</span>
               </h3>
               {group.lenses.map((entry) => (
                 <LensEntryLink
@@ -194,7 +166,7 @@ function PatentPartySections({
   hrefForLens,
 }: {
   groups: PatentPartyGroup[];
-  role: "inventor" | "assignee";
+  role: PatentPartyRole;
   theme: Theme;
   hrefForLens: (lensKey: string, context?: LensLibraryBreadcrumbContext) => LensLinkTarget;
 }) {
@@ -208,9 +180,7 @@ function PatentPartySections({
         >
           <h2 style={{ ...SECTION_HEADING_BASE_STYLE, borderBottom: `1px solid ${theme.panelBorder}` }}>
             {group.label}
-            <span style={{ color: theme.label, fontSize: "0.75rem", marginLeft: "0.5rem", fontWeight: 400 }}>
-              ({group.lenses.length})
-            </span>
+            <span style={countSuffix(theme)}>({group.lenses.length})</span>
           </h2>
           {group.lenses.map((entry) => (
             <LensEntryLink
@@ -247,9 +217,7 @@ function PatentYearSections({
         >
           <h2 style={{ ...SECTION_HEADING_BASE_STYLE, borderBottom: `1px solid ${theme.panelBorder}` }}>
             {group.decade}
-            <span style={{ color: theme.label, fontSize: "0.75rem", marginLeft: "0.5rem", fontWeight: 400 }}>
-              ({group.lenses.length})
-            </span>
+            <span style={countSuffix(theme)}>({group.lenses.length})</span>
           </h2>
           {group.lenses.map((entry) => (
             <LensEntryLink
@@ -288,9 +256,7 @@ function MountSections({
             ) : (
               group.label
             )}
-            <span style={{ color: theme.label, fontSize: "0.75rem", marginLeft: "0.5rem", fontWeight: 400 }}>
-              ({group.lenses.length})
-            </span>
+            <span style={countSuffix(theme)}>({group.lenses.length})</span>
           </h2>
           {group.lenses.map((entry) => (
             <LensEntryLink
@@ -335,9 +301,7 @@ function ImageFormatSections({
             ) : (
               group.label
             )}
-            <span style={{ color: theme.label, fontSize: "0.75rem", marginLeft: "0.5rem", fontWeight: 400 }}>
-              ({group.lenses.length})
-            </span>
+            <span style={countSuffix(theme)}>({group.lenses.length})</span>
           </h2>
           {group.lenses.map((entry) => (
             <LensEntryLink
@@ -381,8 +345,8 @@ export default function LensIndexResults({
   hrefForLens?: (lensKey: string, context?: LensLibraryBreadcrumbContext) => LensLinkTarget;
 }) {
   if (groupMode === "maker") return <MakerSections groups={makerGroups} theme={theme} hrefForLens={hrefForLens} />;
-  if (groupMode === "inventor") {
-    return <PatentPartySections groups={inventorGroups} role="inventor" theme={theme} hrefForLens={hrefForLens} />;
+  if (groupMode === "author") {
+    return <PatentPartySections groups={inventorGroups} role="author" theme={theme} hrefForLens={hrefForLens} />;
   }
   if (groupMode === "assignee") {
     return <PatentPartySections groups={assigneeGroups} role="assignee" theme={theme} hrefForLens={hrefForLens} />;

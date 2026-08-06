@@ -16,6 +16,9 @@ Recipe for making a piece of lens-view state shareable in the URL. The single so
 - Non-boolean fields with custom encoding (like `analysisDrawerTab` → `tab`,
   `groupMovementMode` → `mv`) additionally need explicit parse/build branches — use those two as
   the worked examples in the file.
+- `configurationKey` → `cfg` is a lens-slice custom field with a lens-dependent default. It deliberately stays out of
+  `VIEW_STATE_FIELDS`: generic parsing enforces only a bounded key syntax, while `useLensState` and `useURLSync`
+  validate group membership against the canonical lens before reducer hydration.
 
 ## Steps for a Simple Boolean Field (e.g. a new overlay open-state)
 
@@ -50,6 +53,8 @@ omits the param at its default value, and an explicit line in `lensViewQueryToUr
 - Never rename existing param keys; shared links in the wild depend on them.
 - Comparison mode uses `a_`/`b_`-prefixed variants for per-panel fields — check whether your field
   needs per-panel treatment (`selectedElementIdA/B` is the model).
+- Optical configuration is the counterexample: single-lens URLs use `cfg`, while compare routes carry each variant in
+  `/compare/:slugA/:slugB` and never serialize `cfg`.
 
 ## Verification
 

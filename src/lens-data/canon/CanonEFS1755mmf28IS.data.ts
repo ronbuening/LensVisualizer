@@ -43,7 +43,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
-  key: "canon-efs-17-55-f2.8-is",
+  key: "canon-efs-17-55-f28-is",
   maker: "Canon",
   name: "CANON EF-S 17-55mm f/2.8 IS USM",
   subtitle: "JP 2007-108398 A Example 1 — Canon / Endo",

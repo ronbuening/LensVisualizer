@@ -6,6 +6,9 @@
  * stable key (maker slug, mount/format id, decade, focal section/sub-bucket label).
  */
 
+import { stableHash } from "../../utils/catalog/slugText.js";
+import type { PatentPartyRole } from "../../types/catalog.js";
+
 /** Lowercase, hyphenate, and trim a free-text group label into an id-safe slug. */
 export function slugifyGroupKey(value: string): string {
   return value
@@ -15,18 +18,16 @@ export function slugifyGroupKey(value: string): string {
 }
 
 function stableAnchorKey(value: string): string {
-  let hash = 2166136261;
-  for (let index = 0; index < value.length; index++) {
-    hash ^= value.charCodeAt(index);
-    hash = Math.imul(hash, 16777619);
-  }
   const readable = slugifyGroupKey(value).slice(0, 48) || "party";
-  return `${readable}-${(hash >>> 0).toString(36)}`;
+  return `${readable}-${stableHash(value)}`;
 }
 
 export const makerGroupAnchorId = (slug: string): string => `group-maker-${slug}`;
-export const patentPartyGroupAnchorId = (role: "inventor" | "assignee", id: string): string =>
-  `group-${role}-${stableAnchorKey(id)}`;
+export const patentPartyGroupAnchorId = (role: PatentPartyRole, id: string): string => {
+  /* Public anchors predate the shared role vocabulary, so authors retain the legacy "inventor" namespace. */
+  const anchorRole = role === "author" ? "inventor" : role;
+  return `group-${anchorRole}-${stableAnchorKey(id)}`;
+};
 export const mountGroupAnchorId = (id: string): string => `group-mount-${id}`;
 export const formatGroupAnchorId = (id: string): string => `group-format-${id}`;
 export const yearGroupAnchorId = (decade: string): string => `group-year-${slugifyGroupKey(decade)}`;

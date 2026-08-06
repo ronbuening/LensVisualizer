@@ -40,7 +40,7 @@ import type { LensDataInput } from "../../types/optics.js";
 
 const LENS_DATA = {
   /* ── Identity ── */
-  key: "canon-ef-28-200mm-f3.5-5.6-usm",
+  key: "canon-ef-28-200mm-f35-56-usm",
   maker: "Canon",
   name: "CANON EF 28-200mm f/3.5-5.6 USM",
   subtitle: "JP 2001-350095 A, Numerical Example 1 — constrained G2 close-focus reconstruction",

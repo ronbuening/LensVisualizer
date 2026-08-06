@@ -8,13 +8,9 @@
  */
 
 import buildMeta from "../../generated/build-metadata.json";
+import type { PatentPartyMetadata } from "../../types/catalog.js";
 
-export interface AssigneeMetadata {
-  name: string;
-  slug: string;
-  lensKeys: string[];
-  patentCount: number;
-}
+export type AssigneeMetadata = PatentPartyMetadata;
 
 export const ASSIGNEES = buildMeta.assignees as AssigneeMetadata[];
 

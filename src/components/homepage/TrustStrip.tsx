@@ -9,7 +9,7 @@ interface TrustStripProps {
 }
 
 export default function TrustStrip({ theme: t }: TrustStripProps) {
-  const isWide = useMediaQuery("(min-width: 720px)");
+  const isWide = useMediaQuery("(min-width: 720px)", { ssrDefault: false });
 
   const stats = ["Patent-derived optical models", `${ARTICLES.length} articles & guides on numerous topics`];
 

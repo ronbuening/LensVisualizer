@@ -22,7 +22,7 @@ describe("site URL normalization", () => {
   });
 
   it("does not mistake decimal values in route slugs for file extensions", () => {
-    expect(canonicalPagePath("/lens/canon-ef-24mm-f1.4-l-usm")).toBe("/lens/canon-ef-24mm-f1.4-l-usm/");
+    expect(canonicalPagePath("/lens/example-24mm-f1.4-lens")).toBe("/lens/example-24mm-f1.4-lens/");
     expect(canonicalPagePath("/articles/lens-design.v2")).toBe("/articles/lens-design.v2/");
   });
 

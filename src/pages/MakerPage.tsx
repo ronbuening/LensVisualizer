@@ -4,9 +4,10 @@
  * Shows all lenses from a specific maker with crawlable links.
  */
 
-import { useParams, Navigate, Link } from "react-router";
+import { useParams, Navigate } from "react-router";
 import SEOHead from "../components/SEOHead.js";
-import PageNavBar from "../components/layout/PageNavBar.js";
+import LensEntryLink from "../components/content/LensEntryLink.js";
+import StaticPageShell from "../components/layout/StaticPageShell.js";
 import { LENS_SUMMARIES, SUMMARY_KEYS } from "../utils/catalog/lensSummaries.js";
 import {
   deriveMaker,
@@ -17,13 +18,13 @@ import {
 } from "../utils/catalog/lensMetadata.js";
 import { getMakerDetails } from "../utils/catalog/makerDetails.js";
 import { breadcrumbJsonLd, collectionPageJsonLd } from "../utils/seo/structuredData.js";
-import { usePageThemeToggle } from "../utils/theme/usePageThemeToggle.js";
-import { H1_STYLE, LENS_LINK_BASE_STYLE, PAGE_BASE_STYLE } from "../utils/style/pageStyles.js";
+import { H1_STYLE } from "../utils/style/pageStyles.js";
 import { LENS_MOUNT_BY_ID } from "../utils/catalog/lensTaxonomy.js";
 import type { LensMountId, LensMountMetadata } from "../utils/catalog/lensTaxonomy.js";
 import LinkListSidebar from "../components/content/LinkListSidebar.js";
 import SidebarLayout from "../components/content/SidebarLayout.js";
 import type { LensSummary } from "../utils/catalog/lensSummaries.js";
+import { pluralize } from "../utils/text.js";
 
 function lensesForMaker(makerSlug: string): { key: string; data: LensSummary }[] {
   return SUMMARY_KEYS.filter(
@@ -43,7 +44,6 @@ function mountsForMaker(lenses: { key: string; data: LensSummary }[]): LensMount
 
 export default function MakerPage() {
   const { maker } = useParams<{ maker: string }>();
-  const { theme: t, themeMode, highContrast, toggleTheme, toggleHC } = usePageThemeToggle();
 
   if (!maker) return <Navigate to="/makers/" replace />;
 
@@ -58,104 +58,83 @@ export default function MakerPage() {
   const seoDescription = details ? `${details.summary} ${lensCountText}` : lensCountText;
 
   return (
-    <div style={{ backgroundColor: t.bg, color: t.body, minHeight: "100vh" }}>
-      <SEOHead
-        title={`${displayName} Lens Cross-Sections | ${SITE_NAME}`}
-        description={seoDescription}
-        canonicalURL={makerCanonicalURL(maker)}
-        jsonLd={[
-          collectionPageJsonLd({
-            name: `${displayName} Lenses`,
-            description: seoDescription,
-            url: makerCanonicalURL(maker),
-            route: `/makers/${maker}`,
-          }),
-          breadcrumbJsonLd([
-            { name: "Home", url: SITE_URL },
-            { name: "Makers", url: `${SITE_URL}/makers` },
-            { name: displayName, url: makerCanonicalURL(maker) },
-          ]),
-        ]}
-      />
+    <StaticPageShell
+      breadcrumbs={[{ label: "Home", to: "/" }, { label: "Makers", to: "/makers/" }, { label: displayName }]}
+      seo={
+        <SEOHead
+          title={`${displayName} Lens Cross-Sections | ${SITE_NAME}`}
+          description={seoDescription}
+          canonicalURL={makerCanonicalURL(maker)}
+          jsonLd={[
+            collectionPageJsonLd({
+              name: `${displayName} Lenses`,
+              description: seoDescription,
+              url: makerCanonicalURL(maker),
+              route: `/makers/${maker}`,
+            }),
+            breadcrumbJsonLd([
+              { name: "Home", url: SITE_URL },
+              { name: "Makers", url: `${SITE_URL}/makers` },
+              { name: displayName, url: makerCanonicalURL(maker) },
+            ]),
+          ]}
+        />
+      }
+    >
+      {({ theme: t }) => (
+        <>
+          <h1 style={H1_STYLE}>{displayName} Lenses</h1>
 
-      <PageNavBar
-        theme={t}
-        themeMode={themeMode}
-        highContrast={highContrast}
-        onToggleTheme={toggleTheme}
-        onToggleHC={toggleHC}
-      >
-        <Link to="/" style={{ color: t.descLinkColor, textDecoration: "none" }}>
-          Home
-        </Link>
-        <span style={{ color: t.muted, margin: "0 0.35em" }}>/</span>
-        <Link to="/makers/" style={{ color: t.descLinkColor, textDecoration: "none" }}>
-          Makers
-        </Link>
-        <span style={{ color: t.muted, margin: "0 0.35em" }}>/</span>
-        <span style={{ color: t.body }}>{displayName}</span>
-      </PageNavBar>
+          {details && (
+            <div style={{ marginBottom: "1.5rem" }}>
+              <p style={{ fontSize: "0.8rem", color: t.label, marginBottom: "0.75rem" }}>
+                Est. {details.founded} · {details.headquarters} · {lenses.length} {pluralize(lenses.length, "lens")}
+              </p>
+              {details.history.split("\n\n").map((paragraph, i) => (
+                <p key={i} style={{ fontSize: "0.85rem", color: t.desc, lineHeight: 1.6, marginBottom: "0.75rem" }}>
+                  {paragraph}
+                </p>
+              ))}
+              {details.notableDesigns && (
+                <p style={{ fontSize: "0.8rem", color: t.muted, fontStyle: "italic", marginBottom: "0.5rem" }}>
+                  Notable designs: {details.notableDesigns}
+                </p>
+              )}
+            </div>
+          )}
 
-      <div style={PAGE_BASE_STYLE}>
-        <h1 style={H1_STYLE}>{displayName} Lenses</h1>
-
-        {details && (
-          <div style={{ marginBottom: "1.5rem" }}>
-            <p style={{ fontSize: "0.8rem", color: t.label, marginBottom: "0.75rem" }}>
-              Est. {details.founded} · {details.headquarters} · {lenses.length}{" "}
-              {lenses.length === 1 ? "lens" : "lenses"}
+          {!details && (
+            <p style={{ fontSize: "0.875rem", color: t.muted, marginBottom: "1.5rem" }}>
+              {lenses.length} interactive lens {pluralize(lenses.length, "diagram")}
             </p>
-            {details.history.split("\n\n").map((paragraph, i) => (
-              <p key={i} style={{ fontSize: "0.85rem", color: t.desc, lineHeight: 1.6, marginBottom: "0.75rem" }}>
-                {paragraph}
-              </p>
-            ))}
-            {details.notableDesigns && (
-              <p style={{ fontSize: "0.8rem", color: t.muted, fontStyle: "italic", marginBottom: "0.5rem" }}>
-                Notable designs: {details.notableDesigns}
-              </p>
-            )}
-          </div>
-        )}
+          )}
 
-        {!details && (
-          <p style={{ fontSize: "0.875rem", color: t.muted, marginBottom: "1.5rem" }}>
-            {lenses.length} interactive lens {lenses.length === 1 ? "diagram" : "diagrams"}
-          </p>
-        )}
-
-        <SidebarLayout
-          sidebar={
-            makerMounts.length > 0 ? (
-              <LinkListSidebar
-                title="Mounts"
-                ariaLabel="Mounts used by this maker"
-                items={makerMounts.map((m) => ({ id: m.id, label: m.label, to: `/mounts/${m.id}` }))}
-                theme={t}
-              />
-            ) : null
-          }
-        >
-          <div style={{ borderTop: `1px solid ${t.panelBorder}`, paddingTop: "1rem" }}>
-            {lenses.length > 0 ? (
-              lenses.map(({ key, data }) => (
-                <Link key={key} to={`/lens/${key}/`} style={{ ...LENS_LINK_BASE_STYLE, color: t.descLinkColor }}>
-                  {data.name}
-                  {data.specs && data.specs.length > 0 && (
-                    <span style={{ color: t.label, fontSize: "0.75rem", marginLeft: "0.5rem" }}>
-                      — {data.specs.slice(0, 3).join(", ")}
-                    </span>
-                  )}
-                </Link>
-              ))
-            ) : (
-              <p style={{ fontSize: "0.85rem", color: t.muted, margin: 0 }}>
-                No patent-derived lens diagrams have been published for {displayName} yet.
-              </p>
-            )}
-          </div>
-        </SidebarLayout>
-      </div>
-    </div>
+          <SidebarLayout
+            sidebar={
+              makerMounts.length > 0 ? (
+                <LinkListSidebar
+                  title="Mounts"
+                  ariaLabel="Mounts used by this maker"
+                  items={makerMounts.map((m) => ({ id: m.id, label: m.label, to: `/mounts/${m.id}` }))}
+                  theme={t}
+                />
+              ) : null
+            }
+          >
+            <div style={{ borderTop: `1px solid ${t.panelBorder}`, paddingTop: "1rem" }}>
+              {lenses.length > 0 ? (
+                lenses.map(({ key, data }) => (
+                  <LensEntryLink key={key} lensKey={key} text={data.name} specs={data.specs} specsCount={3} theme={t} />
+                ))
+              ) : (
+                <p style={{ fontSize: "0.85rem", color: t.muted, margin: 0 }}>
+                  No patent-derived lens diagrams have been published for {displayName} yet.
+                </p>
+              )}
+            </div>
+          </SidebarLayout>
+        </>
+      )}
+    </StaticPageShell>
   );
 }

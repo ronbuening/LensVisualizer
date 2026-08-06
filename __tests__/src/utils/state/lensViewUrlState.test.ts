@@ -34,6 +34,24 @@ describe("lensViewUrlState", () => {
     expect(state.glassMapOpen).toBe(true);
   });
 
+  it("round-trips a bounded v1 optical configuration key", () => {
+    const configurationKey = "nikon-af-s-nikkor-180-400mm-f4e-tc14-fl-ed-vr-tc-in";
+    const params = buildLensViewQuery({ configurationKey });
+
+    expect(params.toString()).toBe(`v=1&cfg=${configurationKey}`);
+    expect(parseLensViewQuery(`?${params.toString()}`).configurationKey).toBe(configurationKey);
+    expect(lensViewQueryToUrlState(parseLensViewQuery(`?${params.toString()}`)).configurationKey).toBe(
+      configurationKey,
+    );
+  });
+
+  it("rejects malformed, oversized, unversioned, and comparison configuration params", () => {
+    expect(parseLensViewQuery("?v=1&cfg=../other-lens").configurationKey).toBeUndefined();
+    expect(parseLensViewQuery(`?v=1&cfg=${"a".repeat(129)}`).configurationKey).toBeUndefined();
+    expect(parseLensViewQuery("?cfg=valid-looking-key").configurationKey).toBeUndefined();
+    expect(buildLensViewQuery({ comparing: true, configurationKey: "valid-looking-key" }).toString()).toBe("");
+  });
+
   it("clamps sliders and ignores invalid v1 values", () => {
     const state = parseLensViewQuery(
       "?v=1&focus=-1&aberration=2&aperture=2&zoom=0&el=1.5&a_el=-2&gm=yes&bo=maybe&ad=no&tab=bogus&mv=bogus",
@@ -207,6 +225,7 @@ describe("lensViewUrlState", () => {
       zoom: 70,
       shift: -4.5,
       tilt: 3.25,
+      configurationKey: "example-configuration",
       selectedElementId: 4,
       selectedElementIdA: 2,
       selectedElementIdB: 9,

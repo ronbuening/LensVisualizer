@@ -26,7 +26,7 @@ import type { LensDataInput } from "../../types/optics.js";
  * metadata, but no unsupported finite-focus variable gaps are synthesized.
  */
 const LENS_DATA = {
-  key: "canon-ef-24mm-f1.4-l-usm",
+  key: "canon-ef-24mm-f14-l-usm",
   maker: "Canon",
   name: "CANON EF 24mm f/1.4 L USM",
   subtitle: "JP 1999-030743 A Numerical Example 6 — Canon / Makoto Misaka",

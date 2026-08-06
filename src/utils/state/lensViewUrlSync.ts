@@ -41,7 +41,9 @@ export function getCatalogZoomLens(lensKey: string): ZoomConvertibleLens | null 
 }
 
 export function getUrlZoomLens(state: LensState, comparisonLenses: ComparisonLensesParam): ZoomConvertibleLens | null {
-  return state.lens.comparing ? getComparisonZoomLens(comparisonLenses) : getCatalogZoomLens(state.lens.lensKeyA);
+  return state.lens.comparing
+    ? getComparisonZoomLens(comparisonLenses)
+    : getCatalogZoomLens(state.lens.selectedConfigurationKey);
 }
 
 export function getStateZoom(

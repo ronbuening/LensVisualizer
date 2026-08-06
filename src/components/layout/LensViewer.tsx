@@ -16,13 +16,13 @@
  * ╚══════════════════════════════════════════════════════════════════════╝
  */
 
-import { useMemo, useCallback, useEffect, useState } from "react";
+import { useMemo, useCallback } from "react";
 import { useNavigate } from "react-router";
 
 import {
-  ALL_CATALOG_KEYS,
   LENS_CATALOG,
   CATALOG_KEYS,
+  COMPARISON_CATALOG_KEYS,
   opticalConfigurationOptionsForKey,
 } from "../../utils/catalog/lensCatalog.js";
 import useLensAnalysisMarkdown from "../hooks/useLensAnalysisMarkdown.js";
@@ -51,7 +51,7 @@ import {
   SWAP_LENSES,
   SET_MOBILE_VIEW,
   SET_DESKTOP_VIEW,
-  SET_SELECTED_ELEMENT,
+  SET_OPTICAL_CONFIGURATION,
 } from "../../utils/state/lensReducer.js";
 import useComparisonOrchestration from "../../comparison/useComparisonOrchestration.js";
 import useOverlays from "../hooks/useOverlays.js";
@@ -85,16 +85,23 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
   const isComparePage = !!initialLensKey && !!initialLensKeyB;
   const isLensPage = !!initialLensKey && !initialLensKeyB;
   const viewerCatalogKeys = useMemo(() => {
-    const needsHiddenCatalog =
-      (initialLensKey !== undefined && !CATALOG_KEYS.includes(initialLensKey)) ||
-      (initialLensKeyB !== undefined && !CATALOG_KEYS.includes(initialLensKeyB));
-    return needsHiddenCatalog ? ALL_CATALOG_KEYS : CATALOG_KEYS;
-  }, [initialLensKey, initialLensKeyB]);
+    if (isComparePage) return COMPARISON_CATALOG_KEYS;
+    /* A hand-typed hidden lens URL (e.g. a reference fixture, or exiting compare
+       on a configuration variant) must still render, but the selector should not
+       list unrelated hidden debug fixtures — append only the current key.
+       Configuration-group variants are already comparison keys. */
+    if (initialLensKey !== undefined && !CATALOG_KEYS.includes(initialLensKey)) {
+      return COMPARISON_CATALOG_KEYS.includes(initialLensKey)
+        ? COMPARISON_CATALOG_KEYS
+        : [...COMPARISON_CATALOG_KEYS, initialLensKey];
+    }
+    return CATALOG_KEYS;
+  }, [isComparePage, initialLensKey]);
   const [state, dispatch, isWide] = useLensState(viewerCatalogKeys, initialLensKey, initialLensKeyB);
 
   /* ── Destructure state slices for convenient access ── */
   const { lens, display, rays, sharedSliders, panels, overlays } = state;
-  const { lensKeyA, lensKeyB, comparing, scaleMode } = lens;
+  const { lensKeyA, lensKeyB, selectedConfigurationKey, comparing, scaleMode } = lens;
   const { dark, highContrast, mobileView, desktopView } = display;
   const {
     showOnAxis,
@@ -121,21 +128,18 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
   const { sharedFocusT, sharedStopdownT, sharedZoomT, sharedShiftMm, sharedTiltDeg } = sharedSliders;
   const { showAbout, showAboutSite, showOpticsPrimer, showAberrationsPrimer } = overlays;
 
-  /* Alternate prescriptions are viewer-local: the canonical catalog lens and URL remain unchanged. */
+  /* Single-lens alternate prescriptions retain their canonical route and use cfg for identity. */
   const configurationOptions = useMemo(
     () => (comparing ? [] : opticalConfigurationOptionsForKey(lensKeyA)),
     [comparing, lensKeyA],
   );
-  const [selectedConfigurationKey, setSelectedConfigurationKey] = useState(lensKeyA);
-  useEffect(() => setSelectedConfigurationKey(lensKeyA), [lensKeyA]);
   const diagramLensKey = configurationOptions.some((option) => option.key === selectedConfigurationKey)
     ? selectedConfigurationKey
     : lensKeyA;
   const switchOpticalConfiguration = useCallback(
     (key: string) => {
       if (!configurationOptions.some((option) => option.key === key)) return;
-      setSelectedConfigurationKey(key);
-      dispatch({ type: SET_SELECTED_ELEMENT, panelId: "main", elementId: null });
+      dispatch({ type: SET_OPTICAL_CONFIGURATION, key });
     },
     [configurationOptions, dispatch],
   );
@@ -158,7 +162,7 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
     handleFocusPointerDown,
     handleAperturePointerDown,
     toggleCompare,
-  } = useComparisonOrchestration({ state, dispatch, navigate, catalogKeys: viewerCatalogKeys });
+  } = useComparisonOrchestration({ state, dispatch, navigate, catalogKeys: COMPARISON_CATALOG_KEYS });
 
   /* ── Overlay management: primer level, escape key, open/close callbacks ── */
   const {
@@ -204,7 +208,7 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
 
   /* Theme selection: 2×2 matrix of dark/light × normal/high-contrast.
      dark===null means "auto" — resolved reactively via system media query. */
-  const systemDark = useMediaQuery("(prefers-color-scheme: dark)");
+  const systemDark = useMediaQuery("(prefers-color-scheme: dark)", { ssrDefault: true, clientOnly: true });
   const resolvedDark = resolveDarkPreference(dark, systemDark);
   const holiday = useActiveHoliday();
   const t = resolveActiveTheme(themeModeFromDarkPreference(dark), resolvedDark, highContrast, holiday);

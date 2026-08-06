@@ -5,6 +5,7 @@ import {
   buildArticleFeedItems,
   buildChangelogFeedItems,
   buildLensFeedItems,
+  FEED_DEFINITIONS,
   formatRssDate,
   generateRssFeeds,
   renderRssFeed,
@@ -13,6 +14,7 @@ import {
   type FeedLensSummary,
 } from "../../scripts/generate-rss-feeds.mjs";
 import { changelogEntryId } from "../../src/utils/content/changelogHelpers.js";
+import { ARTICLE_FEED_PATH, CHANGELOG_FEED_PATH, LENS_FEED_PATH } from "../../src/utils/content/feedMetadata.js";
 
 const freshness = (publishedOn: string, lastModified = publishedOn) => ({ publishedOn, lastModified });
 
@@ -73,6 +75,18 @@ const changelogEntries: FeedChangelogEntry[] = [
 ];
 
 describe("RSS feed generation", () => {
+  it("derives every generated feed path from runtime feed metadata", () => {
+    expect({
+      lenses: FEED_DEFINITIONS.lenses.feedPath,
+      articles: FEED_DEFINITIONS.articles.feedPath,
+      changelog: FEED_DEFINITIONS.changelog.feedPath,
+    }).toEqual({
+      lenses: LENS_FEED_PATH,
+      articles: ARTICLE_FEED_PATH,
+      changelog: CHANGELOG_FEED_PATH,
+    });
+  });
+
   it("emits valid RSS with self links, escaped text, stable GUIDs, and every series member", () => {
     const feeds = generateRssFeeds(buildMeta, lensSummaries, { changelogEntries });
     const lenses = parseXml(feeds.lenses);
@@ -200,6 +214,33 @@ describe("RSS feed generation", () => {
       "Early Article",
     ]);
     expect(formatRssDate(items[0].publishedAt!)).toBe("Thu, 02 Apr 2026 18:00:00 GMT");
+  });
+
+  it("uses the shared untracked-first fallback when publicationOrder is absent", () => {
+    const metadata: FeedBuildMetadata = {
+      lensFreshness: {
+        committed: {
+          ...freshness("2026-04-02"),
+          publishedAt: "2026-04-02T18:00:00.000Z",
+          publishedCommit: "commit-late",
+        },
+        untracked: {
+          ...freshness("2026-04-02"),
+          publishedAt: "2026-04-02T00:00:00.000Z",
+          publishedCommit: null,
+        },
+      },
+      articles: [],
+    };
+    const summaries: FeedLensSummary[] = [
+      { key: "committed", name: "Committed Lens", visible: true },
+      { key: "untracked", name: "Untracked Lens", visible: true },
+    ];
+
+    expect(buildLensFeedItems(metadata, summaries).map((item) => item.title)).toEqual([
+      "Untracked Lens",
+      "Committed Lens",
+    ]);
   });
 
   it("keeps GUID and publication date stable when an item is edited", () => {

@@ -165,6 +165,14 @@ vi.mock("../../../../src/components/layout/lensViewer/ViewerChrome.js", () => ({
         </button>
       ))}
       <button onClick={() => onSwitchLensA("sonnar-50f15")}>switch A</button>
+      <button
+        onClick={() => {
+          const configuredKey = catalogKeys.find((key) => key.endsWith("-tc-in"));
+          if (configuredKey) onSwitchLensA(configuredKey);
+        }}
+      >
+        switch configured A
+      </button>
       <button onClick={() => onSwitchLensB("apo-lanthar-50f2")}>switch B</button>
       <button onClick={onSwapLenses}>swap</button>
       <button onClick={onToggleCompare}>compare</button>
@@ -223,7 +231,7 @@ vi.mock("../../../../src/components/layout/lensViewer/ViewerOverlays.js", () => 
 }));
 
 import LensViewer from "../../../../src/components/layout/LensViewer.js";
-import { ALL_CATALOG_KEYS, CATALOG_KEYS } from "../../../../src/utils/catalog/lensCatalog.js";
+import { ALL_CATALOG_KEYS, CATALOG_KEYS, COMPARISON_CATALOG_KEYS } from "../../../../src/utils/catalog/lensCatalog.js";
 import { createInitialState } from "../../../../src/utils/state/lensReducer.js";
 
 function makeState(overrides: Partial<LensState> = {}): LensState {
@@ -262,25 +270,29 @@ describe("LensViewer", () => {
     expect(mocks.updateURLWithSliders).toHaveBeenCalledTimes(1);
   });
 
-  it("switches a configured diagram without changing the canonical lens", () => {
+  it("switches a configured diagram through reducer-owned identity", () => {
     const baseKey = "apo-lanthar-50f2";
     const alternateKey = `${baseKey}-optic-b`;
     mocks.state = makeState({ lens: { ...makeState().lens, lensKeyA: baseKey } });
 
-    render(<LensViewer initialLensKey={baseKey} />);
+    const { rerender } = render(<LensViewer initialLensKey={baseKey} />);
 
     expect(screen.getByTestId("active-configuration").textContent).toBe(baseKey);
     expect(screen.getByTestId("diagram-lens-key").textContent).toBe(baseKey);
     fireEvent.click(screen.getByRole("button", { name: "OPTIC B" }));
 
-    expect(screen.getByTestId("active-configuration").textContent).toBe(alternateKey);
-    expect(screen.getByTestId("diagram-lens-key").textContent).toBe(alternateKey);
     expect(mocks.dispatch).toHaveBeenCalledWith({
-      type: "SET_SELECTED_ELEMENT",
-      panelId: "main",
-      elementId: null,
+      type: "SET_OPTICAL_CONFIGURATION",
+      key: alternateKey,
     });
     expect(mocks.navigate).not.toHaveBeenCalled();
+
+    mocks.state = makeState({
+      lens: { ...makeState().lens, lensKeyA: baseKey, selectedConfigurationKey: alternateKey },
+    });
+    rerender(<LensViewer initialLensKey={baseKey} />);
+    expect(screen.getByTestId("active-configuration").textContent).toBe(alternateKey);
+    expect(screen.getByTestId("diagram-lens-key").textContent).toBe(alternateKey);
   });
 
   it("uses a fixed-height desktop app shell with a scroll-contained content slot", () => {
@@ -327,6 +339,26 @@ describe("LensViewer", () => {
     expect(mocks.navigate).toHaveBeenCalledWith("/compare/sonnar-50f15/apo-lanthar-50f2/", { replace: true });
   });
 
+  it("offers configuration variants in compare without exposing debug fixtures", () => {
+    const configuredKey = COMPARISON_CATALOG_KEYS.find((key) => key.endsWith("-tc-in"));
+    expect(configuredKey).toBeDefined();
+    mocks.state = makeState({
+      lens: {
+        ...makeState().lens,
+        lensKeyA: "apo-lanthar-50f2",
+        lensKeyB: "sonnar-50f15",
+        comparing: true,
+      },
+    });
+
+    render(<LensViewer initialLensKey="apo-lanthar-50f2" initialLensKeyB="sonnar-50f15" />);
+
+    expect(mocks.capturedCatalogKeys).toEqual(COMPARISON_CATALOG_KEYS);
+    expect(mocks.capturedCatalogKeys).not.toContain("reference-newtonian-side-focus");
+    fireEvent.click(screen.getByText("switch configured A"));
+    expect(mocks.navigate).toHaveBeenCalledWith(`/compare/${configuredKey}/sonnar-50f15/`, { replace: true });
+  });
+
   it("falls back from invalid desktop views before passing props to chrome and content", () => {
     mocks.state = makeState({
       display: { ...makeState().display, desktopView: "invalid-view" as LensState["display"]["desktopView"] },
@@ -338,13 +370,24 @@ describe("LensViewer", () => {
     expect(screen.getByTestId("content-desktop").textContent).toBe("both");
   });
 
-  it("uses the hidden catalog key set when a route key is not in the visible catalog", () => {
-    const hiddenKey = ALL_CATALOG_KEYS.find((key) => !CATALOG_KEYS.includes(key));
-    expect(hiddenKey).toBeDefined();
+  it("appends only the current hidden fixture instead of the full hidden catalog", () => {
+    const fixtureKey = ALL_CATALOG_KEYS.find(
+      (key) => !CATALOG_KEYS.includes(key) && !COMPARISON_CATALOG_KEYS.includes(key),
+    );
+    expect(fixtureKey).toBeDefined();
 
-    render(<LensViewer initialLensKey={hiddenKey} />);
+    render(<LensViewer initialLensKey={fixtureKey} />);
 
-    expect(mocks.capturedCatalogKeys).toEqual(ALL_CATALOG_KEYS);
+    expect(mocks.capturedCatalogKeys).toEqual([...COMPARISON_CATALOG_KEYS, fixtureKey]);
+  });
+
+  it("uses the comparison catalog for a hidden configuration-variant route", () => {
+    const variantKey = COMPARISON_CATALOG_KEYS.find((key) => !CATALOG_KEYS.includes(key));
+    expect(variantKey).toBeDefined();
+
+    render(<LensViewer initialLensKey={variantKey} />);
+
+    expect(mocks.capturedCatalogKeys).toEqual(COMPARISON_CATALOG_KEYS);
   });
 
   it("hides desktop-only view controls on mobile", () => {

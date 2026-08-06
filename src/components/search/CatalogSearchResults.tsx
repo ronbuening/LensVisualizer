@@ -7,8 +7,11 @@
 
 import { Link } from "react-router";
 import type { ReactNode } from "react";
+import LensEntryLink from "../content/LensEntryLink.js";
 import type { Theme } from "../../types/theme.js";
 import { searchCatalog } from "../../utils/catalog/searchCatalog.js";
+import { countSuffix } from "../../utils/style/styles.js";
+import { pluralize } from "../../utils/text.js";
 
 interface CatalogSearchResultsProps {
   query: string;
@@ -38,7 +41,7 @@ function ResultSection({ title, count, theme: t, children }: ResultSectionProps)
         }}
       >
         {title}
-        <span style={{ color: t.label, fontSize: "0.72rem", marginLeft: "0.5rem", fontWeight: 400 }}>({count})</span>
+        <span style={countSuffix(t, { fontSize: "0.72rem" })}>({count})</span>
       </h2>
       {children}
       {count > RESULT_LIMIT && (
@@ -84,28 +87,34 @@ export default function CatalogSearchResults({ query, theme: t }: CatalogSearchR
   return (
     <div aria-live="polite">
       <p style={{ color: t.muted, fontSize: "0.75rem", margin: 0 }}>
-        {total} {total === 1 ? "match" : "matches"} for “{trimmedQuery}”
+        {total} {pluralize(total, "match")} for “{trimmedQuery}”
       </p>
 
       <ResultSection title="Lens names" count={results.lenses.length} theme={t}>
         {results.lenses.slice(0, RESULT_LIMIT).map((match) => (
-          <Link key={match.key} to={`/lens/${match.key}/`} style={resultLinkStyle(t)}>
-            <span>{match.data.name}</span>
-            {match.data.specs?.length ? (
-              <span style={{ color: t.label, fontSize: "0.7rem", marginLeft: "0.5rem" }}>
-                — {match.data.specs.slice(0, 2).join(", ")}
-              </span>
-            ) : null}
-          </Link>
+          <LensEntryLink
+            key={match.key}
+            lensKey={match.key}
+            text={match.data.name}
+            specs={match.data.specs}
+            theme={t}
+            style={resultLinkStyle(t)}
+            metaStyle={{ fontSize: "0.7rem" }}
+          />
         ))}
       </ResultSection>
 
       <ResultSection title="Patent numbers" count={results.patents.length} theme={t}>
         {results.patents.slice(0, RESULT_LIMIT).map((match) => (
-          <Link key={match.key} to={`/lens/${match.key}/`} style={resultLinkStyle(t)}>
-            <span>{match.data.patentNumber}</span>
-            <span style={{ color: t.label, fontSize: "0.7rem", marginLeft: "0.5rem" }}>— {match.data.name}</span>
-          </Link>
+          <LensEntryLink
+            key={match.key}
+            lensKey={match.key}
+            text={match.data.patentNumber ?? match.data.name}
+            meta={match.data.name}
+            theme={t}
+            style={resultLinkStyle(t)}
+            metaStyle={{ fontSize: "0.7rem" }}
+          />
         ))}
       </ResultSection>
 
@@ -114,7 +123,7 @@ export default function CatalogSearchResults({ query, theme: t }: CatalogSearchR
           <Link key={author.slug} to={`/authors/${author.slug}/`} style={resultLinkStyle(t)}>
             <span>{author.name}</span>
             <span style={{ color: t.label, fontSize: "0.7rem", marginLeft: "0.5rem" }}>
-              — {author.patentCount} {author.patentCount === 1 ? "patent" : "patents"}
+              — {author.patentCount} {pluralize(author.patentCount, "patent")}
             </span>
           </Link>
         ))}

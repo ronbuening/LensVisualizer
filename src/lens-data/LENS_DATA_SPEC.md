@@ -52,7 +52,7 @@ rear spacing to the documented air-equivalent distance instead of leaving the pr
 
 | Field | Type | Description |
 |-------|------|-------------|
-| `key` | `string` | Unique identifier (e.g. `"nokton-50f1"`). Used as catalog key. |
+| `key` | `string` | Unique identifier (e.g. `"nokton-50f1"`). Used as catalog key. Lowercase `a-z`/`0-9` words separated by single hyphens — no periods or other punctuation (the key becomes the `/lens/` URL and the `cfg` query value; write f-numbers like `f14`, `f35-56`). |
 | `name` | `string` | Full UI display name following the display-name convention below (e.g. `"NIKON NIKKOR Z 50mm f/1.8 S"`) |
 | `elements` | `array` | Physical glass/mirror elements (min 1); ordinary lenses list front to rear, while folded models document their stable model order |
 | `surfaces` | `array` | Optical surfaces (min 1); ordinary lenses list front to rear, while folded models may use signed displacements and explicit path order |
@@ -163,8 +163,9 @@ opticalConfiguration: {
 - Author each member as a complete, independently valid prescription. Do not store only a surface delta or combine
   numerical groups from different patent examples unless the source explicitly defines that combination.
 - Keep exactly one member catalog-visible. Set `visible: false` on alternate data-only members so they do not appear as
-  separate lenses, patents, debug fixtures, routes, or SEO entries. The visible member remains the canonical page and
-  supplies the shared analysis prose.
+  separate lenses, patents, debug fixtures, or index/SEO entries. The visible member remains the canonical single-lens
+  page and supplies the shared analysis prose; hidden members may appear as noindex compare-route identities so two
+  configurations can be selected independently.
 - Record material source differences between configurations in each file's header and `subtitle`. A shared
   `groupKey` communicates a UI relationship, not that the source necessarily publishes a matched before/after pair.
 

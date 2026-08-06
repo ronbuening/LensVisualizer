@@ -3,6 +3,7 @@ import { LENS_SUMMARIES } from "../../../../src/utils/catalog/lensSummaries.js";
 import type { LensSummary } from "../../../../src/utils/catalog/lensSummaries.js";
 import {
   PATENT_ASSIGNEE_FALLBACK,
+  aggregatePatentRecords,
   buildPatentIndex,
   espacenetPatentUrl,
   patentJurisdiction,
@@ -11,6 +12,33 @@ import {
 function summary(overrides: Partial<LensSummary> & Pick<LensSummary, "key" | "name">): LensSummary {
   return { visible: true, ...overrides };
 }
+
+describe("aggregatePatentRecords — party display order", () => {
+  /* Sanctioned by the code-health plan (C1 step 3 / U3 step 4): per-patent
+     inventor/assignee display order is lens-file source order, first occurrence
+     wins across merged lenses. Only identity-level lists sort. */
+  it("preserves lens-file source order for merged authors and assignees", () => {
+    const records = aggregatePatentRecords([
+      summary({
+        key: "lens-a",
+        name: "Lens A",
+        patentNumber: "US 1,000,000",
+        patentAuthors: ["Zoe Zenith", "Adam Alpha"],
+        patentAssignees: ["Zeiss", "Arri"],
+      }),
+      summary({
+        key: "lens-b",
+        name: "Lens B",
+        patentNumber: "US 1,000,000",
+        patentAuthors: ["Adam Alpha", "Mia Middling"],
+      }),
+    ]);
+
+    expect(records).toHaveLength(1);
+    expect(records[0].authors).toEqual(["Zoe Zenith", "Adam Alpha", "Mia Middling"]);
+    expect(records[0].assignees).toEqual(["Zeiss", "Arri"]);
+  });
+});
 
 describe("patent catalog", () => {
   it("builds Espacenet publication-number searches from catalog display formats", () => {
@@ -105,8 +133,52 @@ describe("patent catalog", () => {
       "Beta",
       PATENT_ASSIGNEE_FALLBACK,
     ]);
+    expect(unitedStates.assignees.map((assignee) => assignee.id)).toEqual(["named:Acme", "named:Beta", "fallback"]);
     expect(unitedStates.assignees.find((assignee) => assignee.label === "Acme")?.patents).toHaveLength(1);
     expect(unitedStates.assignees.find((assignee) => assignee.label === "Beta")?.patents).toHaveLength(1);
     expect(unitedStates.assignees.find((assignee) => assignee.isFallback)?.patents[0].patentNumber).toBe("US 2");
+  });
+
+  it("merges shared records defensively while preserving source party order", () => {
+    const records = aggregatePatentRecords(
+      [
+        summary({
+          key: "shared-b",
+          name: "Shared Lens B",
+          patentNumber: "US 20",
+          patentAuthors: ["Zoe", "Ada"],
+          patentAssignees: ["Beta", "Acme"],
+        }),
+        summary({
+          key: "shared-a",
+          name: "Shared Lens A",
+          patentNumber: "US 20",
+          patentYear: 1999,
+          patentAuthors: ["Ada", "Ben"],
+          patentAssignees: ["Acme"],
+        }),
+        summary({
+          key: "shared-b",
+          name: "Shared Lens B",
+          patentNumber: "US 20",
+          patentAuthors: ["Zoe", "Ada"],
+          patentAssignees: ["Beta", "Acme"],
+        }),
+        summary({ key: "fallback", name: "Fallback Lens", patentAuthors: ["Zoe"] }),
+      ],
+      { includeFallbackRecords: true },
+    );
+
+    expect(records).toHaveLength(2);
+    expect(records.find((record) => record.patentNumber === "US 20")).toMatchObject({
+      patentYear: 1999,
+      authors: ["Zoe", "Ada", "Ben"],
+      assignees: ["Beta", "Acme"],
+      lenses: [
+        { key: "shared-a", name: "Shared Lens A" },
+        { key: "shared-b", name: "Shared Lens B" },
+      ],
+    });
+    expect(records.find((record) => record.patentNumber === "Patent source for Fallback Lens")).toBeDefined();
   });
 });

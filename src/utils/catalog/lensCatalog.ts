@@ -76,6 +76,23 @@ function opticalConfigurationOptionsForKey(key: string): ReadonlyArray<OpticalCo
   return OPTICAL_CONFIGURATION_OPTIONS_BY_GROUP.get(groupKey) ?? [];
 }
 
+/** Resolve a requested configuration within the canonical lens's group. */
+function resolveOpticalConfigurationKey(key: string, requestedKey: string | undefined): string {
+  if (!requestedKey) return key;
+  return opticalConfigurationOptionsForKey(key).some((option) => option.key === requestedKey) ? requestedKey : key;
+}
+
+/** Visible catalog keys plus hidden prescriptions belonging to their configuration groups. */
+function catalogKeysWithOpticalConfigurations(keys: readonly string[]): string[] {
+  const expanded = new Set(keys);
+  for (const key of keys) {
+    for (const option of opticalConfigurationOptionsForKey(key)) expanded.add(option.key);
+  }
+  return sortLensKeysByName([...expanded]);
+}
+
+const COMPARISON_CATALOG_KEYS = catalogKeysWithOpticalConfigurations(CATALOG_KEYS);
+
 /* Analysis markdown is code-split: the non-eager glob maps each file to a
  * dynamic importer, so ~10 MB of prose is fetched per lens on demand instead
  * of shipping inside the main bundle. */
@@ -141,9 +158,12 @@ export {
   LENS_CATALOG,
   ALL_CATALOG_KEYS,
   CATALOG_KEYS,
+  COMPARISON_CATALOG_KEYS,
   DEBUG_CATALOG_KEYS,
   isDebugLensKey,
   opticalConfigurationOptionsForKey,
+  resolveOpticalConfigurationKey,
+  catalogKeysWithOpticalConfigurations,
   hasMdForKey,
   cachedMdForKey,
   loadMdForKey,

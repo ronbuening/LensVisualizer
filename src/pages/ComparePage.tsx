@@ -9,7 +9,7 @@ import { useParams, Navigate, Link } from "react-router";
 import LensVisualization from "../components/layout/LensViewer.js";
 import SEOHead from "../components/SEOHead.js";
 import ClientOnly from "../components/ClientOnly.js";
-import { LENS_CATALOG } from "../utils/catalog/lensCatalog.js";
+import { COMPARISON_CATALOG_KEYS, LENS_CATALOG } from "../utils/catalog/lensCatalog.js";
 import { deriveMaker, lensDisplaySubtitle } from "../utils/catalog/lensMetadata.js";
 import { comparePageTitle, comparePageDescription, compareCanonicalURL } from "../comparison/comparisonURLSync.js";
 
@@ -50,7 +50,7 @@ function LensSummary({ lensKey }: { lensKey: string }) {
 export default function ComparePage() {
   const { slugA, slugB } = useParams<{ slugA: string; slugB: string }>();
 
-  if (!slugA || !slugB || !LENS_CATALOG[slugA] || !LENS_CATALOG[slugB]) {
+  if (!slugA || !slugB || !COMPARISON_CATALOG_KEYS.includes(slugA) || !COMPARISON_CATALOG_KEYS.includes(slugB)) {
     return <Navigate to="/lenses/" replace />;
   }
 

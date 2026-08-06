@@ -9,14 +9,13 @@
  * result; this module is only nodes and edges.
  */
 
-import { AuthorPatent, getAuthorBySlug, getAuthorByName, patentsForParty } from "./authorCatalog.js";
+import { getAuthorBySlug, getAuthorByName, patentsForParty } from "./authorCatalog.js";
 import { getAssigneeBySlug, getAssigneeByName } from "./assigneeCatalog.js";
 import { catalogCollator } from "./collation.js";
-
-export type PartyRole = "author" | "assignee";
+import type { PatentLensRef, PatentPartyRole } from "../../types/catalog.js";
 
 export interface PartyRef {
-  role: PartyRole;
+  role: PatentPartyRole;
   name: string; // display name as it appears in patent metadata
   slug: string; // from AUTHORS / ASSIGNEES index
 }
@@ -25,9 +24,10 @@ export interface GraphPatentNode {
   id: string; // `patent:${patentNumber}`
   patentNumber: string; // may be the fallback "Patent source for <lens name>"
   patentYear?: number;
-  authors: string[];
-  assignees: string[];
-  lenses: { key: string; name: string; specs?: string[] }[];
+  /* readonly: these alias the shared catalog records — copy before reordering */
+  authors: readonly string[];
+  assignees: readonly string[];
+  lenses: readonly PatentLensRef[];
 }
 
 export interface GraphPartyNode {
@@ -45,7 +45,7 @@ export interface RelationshipGraph {
 }
 
 /** Namespaced node id for a party (`author:<slug>` / `assignee:<slug>`). */
-function partyId(role: PartyRole, slug: string): string {
+function partyId(role: PatentPartyRole, slug: string): string {
   return `${role}:${slug}`;
 }
 
@@ -55,7 +55,7 @@ function patentId(patentNumber: string): string {
 }
 
 /** Look a party name up in the index matching its role, if present. */
-function lookupPartyRef(name: string, role: PartyRole): PartyRef | undefined {
+function lookupPartyRef(name: string, role: PatentPartyRole): PartyRef | undefined {
   const meta = role === "author" ? getAuthorByName(name) : getAssigneeByName(name);
   return meta ? { role, name, slug: meta.slug } : undefined;
 }
@@ -84,7 +84,7 @@ export function resolveFocusParam(raw: string | null): PartyRef | undefined {
 
 /** Build the two-ring ego graph for a focus party. */
 export function buildRelationshipGraph(focus: PartyRef): RelationshipGraph {
-  const records: AuthorPatent[] = patentsForParty(focus.name, focus.role);
+  const records = patentsForParty(focus.name, focus.role);
   const centerId = partyId(focus.role, focus.slug);
 
   const patents: GraphPatentNode[] = records.map((record) => ({

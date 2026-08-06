@@ -59,9 +59,22 @@ describe("parseLensIndexUrlState", () => {
   });
 
   it("parses each group mode", () => {
-    for (const group of ["maker", "inventor", "assignee", "focal", "year-asc", "year-desc", "mount", "format"]) {
-      expect(parse(`?group=${group}`).groupMode).toBe(group);
+    for (const [queryValue, groupMode] of [
+      ["maker", "maker"],
+      ["inventor", "author"],
+      ["assignee", "assignee"],
+      ["focal", "focal"],
+      ["year-asc", "year-asc"],
+      ["year-desc", "year-desc"],
+      ["mount", "mount"],
+      ["format", "format"],
+    ] as const) {
+      expect(parse(`?group=${queryValue}`).groupMode).toBe(groupMode);
     }
+  });
+
+  it("preserves the public inventor query spelling for the internal author role", () => {
+    expect(serialize(parse("?group=inventor"))).toBe("group=inventor");
   });
 
   it("drops unknown makers, mounts, and formats", () => {

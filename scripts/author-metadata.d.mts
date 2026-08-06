@@ -1,3 +1,5 @@
+import type { PatentPartyMetadata } from "../src/types/catalog.js";
+
 export interface AuthorMetadataInput {
   key: string;
   patentNumber?: string;
@@ -6,12 +8,7 @@ export interface AuthorMetadataInput {
   visible?: boolean;
 }
 
-export interface GeneratedAuthorMetadata {
-  name: string;
-  slug: string;
-  lensKeys: string[];
-  patentCount: number;
-}
+export type GeneratedAuthorMetadata = PatentPartyMetadata;
 
 export function buildAuthorMetadata(lensSummaries: AuthorMetadataInput[]): GeneratedAuthorMetadata[];
 export function buildAssigneeMetadata(lensSummaries: AuthorMetadataInput[]): GeneratedAuthorMetadata[];

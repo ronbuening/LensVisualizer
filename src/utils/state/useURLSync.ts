@@ -20,6 +20,7 @@ import {
   type ComparisonLensesParam,
 } from "./lensViewUrlSync.js";
 import type { LensState, LensAction } from "../../types/state.js";
+import { resolveOpticalConfigurationKey } from "../catalog/lensCatalog.js";
 
 const URL_UPDATE_DEBOUNCE_MS = 100;
 
@@ -90,7 +91,18 @@ export default function useURLSync(
   const applyUrlViewState = useCallback(
     (search: string): void => {
       const parsed = parseLensViewQuery(search);
-      dispatch({ type: APPLY_URL_VIEW_STATE, state: lensViewQueryToUrlState(parsed, true) });
+      const urlState = lensViewQueryToUrlState(parsed, true);
+      if (!stateRef.current.lens.comparing) {
+        urlState.configurationKey = resolveOpticalConfigurationKey(
+          stateRef.current.lens.lensKeyA,
+          parsed.configurationKey,
+        );
+      } else {
+        /* Compare identity lives in /compare/:slugA/:slugB — a cfg param must not
+           reach the lens slice (mirrors the init path in useLensState). */
+        delete urlState.configurationKey;
+      }
+      dispatch({ type: APPLY_URL_VIEW_STATE, state: urlState });
       const zoomAction = zoomActionFromFocalLength(parsed.zoom ?? null, stateRef.current, comparisonLenses);
       if (zoomAction) dispatch(zoomAction);
     },
@@ -124,6 +136,7 @@ export default function useURLSync(
     updateURLWithSliders();
   }, [
     comparing,
+    lens.selectedConfigurationKey,
     panels.selectedElementId,
     panels.selectedElementIdA,
     panels.selectedElementIdB,

@@ -7,6 +7,14 @@ export interface FreshnessEntry {
   lastModifiedCommit?: string | null;
 }
 
+export interface PublicationEntry extends FreshnessEntry {
+  name?: string;
+  title?: string;
+  key?: string;
+  slug?: string;
+  url?: string;
+}
+
 export interface LensFreshnessInput {
   key: string;
   makerSlug: string;
@@ -88,9 +96,7 @@ export function combineFreshnessEntries(
   fallbackDate: string,
 ): FreshnessEntry;
 
-export function comparePublicationEntries<
-  T extends FreshnessEntry & { name?: string; title?: string; key?: string; slug?: string },
->(a: T, b: T): number;
+export function comparePublicationEntries<T extends PublicationEntry>(a: T, b: T): number;
 
 export interface ArticleMetadata extends ArticleFreshnessInput {
   title: string;

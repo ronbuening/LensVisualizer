@@ -11,7 +11,7 @@
  */
 
 import { forwardRef, memo } from "react";
-import { Link } from "react-router";
+import InventorLinks from "../content/InventorLinks.js";
 import { eflAtZoom, formatDist } from "../../optics/optics.js";
 import { fisheyeProjectionFocalLengthAtZoom, isFisheyeProjection } from "../../optics/projection.js";
 import { toggleGroup, toggleBtn, headerStrip } from "../../utils/style/styles.js";
@@ -20,7 +20,6 @@ import CardinalControls from "./CardinalControls.js";
 import RayToggles from "./RayToggles.js";
 import ChromaticControls from "./ChromaticControls.js";
 import { ENABLE_CARDINAL_ELEMENTS } from "../../utils/featureFlags.js";
-import { authorPathForName } from "../../utils/catalog/authorCatalog.js";
 import { lensDisplaySubtitle, lensPatentAttribution } from "../../utils/catalog/lensPatentMetadata.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { Theme } from "../../types/theme.js";
@@ -204,30 +203,15 @@ const DiagramHeader = memo(
                     {patentAttribution.authors.length > 0 && (
                       <>
                         {" — "}
-                        {patentAttribution.authors.map((author, index) => {
-                          const authorPath = authorPathForName(author);
-                          return (
-                            <span key={`${author}-${index}`}>
-                              {index > 0 && ", "}
-                              {authorPath ? (
-                                <Link
-                                  to={authorPath}
-                                  title={`View patents by ${author}`}
-                                  style={{
-                                    color: t.descLinkColor,
-                                    textDecoration: "none",
-                                    borderBottom: `1px solid ${t.descLinkColor}60`,
-                                    transition: "color 0.3s, border-color 0.3s",
-                                  }}
-                                >
-                                  {author}
-                                </Link>
-                              ) : (
-                                author
-                              )}
-                            </span>
-                          );
-                        })}
+                        <InventorLinks
+                          names={patentAttribution.authors}
+                          theme={t}
+                          titleForName={(author) => `View patents by ${author}`}
+                          linkStyle={{
+                            borderBottom: `1px solid ${t.descLinkColor}60`,
+                            transition: "color 0.3s, border-color 0.3s",
+                          }}
+                        />
                       </>
                     )}
                   </>

@@ -5,6 +5,10 @@ import {
   PANEL_OVERLAY_BACKDROP,
   SLIDER_LABEL,
   SLIDER_VALUE_BASE,
+  VISUALLY_HIDDEN,
+  panelCard,
+  countSuffix,
+  searchInput,
   toggleGroup,
   toggleBtn,
   chromChannelBtn,
@@ -40,6 +44,10 @@ const mockTheme = {
   headerBgImage: "none",
   descBg: "#101010",
   descBorder: "#333",
+  panelBg: "#121820",
+  panelBorder: "#345",
+  label: "#789",
+  selectorBorder: "#456",
 } as unknown as Theme;
 
 /* ── Color helpers ── */
@@ -114,9 +122,60 @@ describe("static constants", () => {
     expect(SLIDER_VALUE_BASE.fontVariantNumeric).toBe("tabular-nums");
     expect(SLIDER_VALUE_BASE.transition).toBe("color 0.3s");
   });
+
+  it("VISUALLY_HIDDEN is frozen with the established accessible-label clipping", () => {
+    expect(Object.isFrozen(VISUALLY_HIDDEN)).toBe(true);
+    expect(VISUALLY_HIDDEN).toEqual({ position: "absolute", width: 1, height: 1, overflow: "hidden" });
+  });
 });
 
 /* ── Theme-aware factories ── */
+
+describe("panelCard(t, opts)", () => {
+  it("returns the standard themed panel chrome", () => {
+    expect(panelCard(mockTheme)).toEqual({
+      background: mockTheme.panelBg,
+      border: `1px solid ${mockTheme.panelBorder}`,
+      borderRadius: 6,
+    });
+  });
+
+  it("supports the existing eight-pixel card radius", () => {
+    expect(panelCard(mockTheme, { borderRadius: 8 }).borderRadius).toBe(8);
+  });
+});
+
+describe("countSuffix(t, opts)", () => {
+  it("returns the shared muted heading suffix", () => {
+    expect(countSuffix(mockTheme)).toEqual({
+      color: mockTheme.label,
+      fontSize: "0.75rem",
+      marginLeft: "0.5rem",
+      fontWeight: 400,
+    });
+  });
+
+  it("preserves caller-specific typography", () => {
+    expect(countSuffix(mockTheme, { fontSize: "0.7rem", marginLeft: "0.4rem" })).toMatchObject({
+      fontSize: "0.7rem",
+      marginLeft: "0.4rem",
+    });
+  });
+});
+
+describe("searchInput(t)", () => {
+  it("uses theme input chrome and an iOS-safe text size", () => {
+    expect(searchInput(mockTheme)).toEqual({
+      background: mockTheme.selectorBg,
+      color: mockTheme.selectorText,
+      border: `1px solid ${mockTheme.selectorBorder}`,
+      borderRadius: 6,
+      padding: "0.7rem 0.8rem",
+      font: "inherit",
+      fontSize: "16px",
+    });
+  });
+});
 
 describe("toggleGroup(t, opts)", () => {
   it("returns a style object with theme border", () => {

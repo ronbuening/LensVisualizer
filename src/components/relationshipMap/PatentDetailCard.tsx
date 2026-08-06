@@ -7,12 +7,14 @@
  * pages, so this stays a separate component rather than a shared extraction.
  */
 
-import { Link } from "react-router";
+import LensEntryLink from "../content/LensEntryLink.js";
+import PatentPartyList from "../content/PatentPartyList.js";
 import { getAuthorByName } from "../../utils/catalog/authorCatalog.js";
 import { getAssigneeByName } from "../../utils/catalog/assigneeCatalog.js";
-import { LENS_LINK_BASE_STYLE } from "../../utils/style/pageStyles.js";
 import type { Theme } from "../../types/theme.js";
-import type { GraphPatentNode, PartyRef, PartyRole } from "../../utils/catalog/relationshipGraph.js";
+import type { GraphPatentNode, PartyRef } from "../../utils/catalog/relationshipGraph.js";
+import type { PatentPartyRole } from "../../types/catalog.js";
+import { panelCard } from "../../utils/style/styles.js";
 
 interface PatentDetailCardProps {
   patent: GraphPatentNode;
@@ -29,38 +31,29 @@ export default function PatentDetailCard({
   onFocusParty,
   onClose,
 }: PatentDetailCardProps) {
-  const isCenter = (name: string, role: PartyRole) => role === centerRef.role && name === centerRef.name;
+  const isCenter = (name: string, role: PatentPartyRole) => role === centerRef.role && name === centerRef.name;
 
-  const renderParty = (name: string, role: PartyRole, index: number) => {
+  const renderParty = (name: string, role: PatentPartyRole) => {
     const meta = role === "author" ? getAuthorByName(name) : getAssigneeByName(name);
-    const separator = index > 0 ? ", " : "";
     if (isCenter(name, role) || !meta) {
-      return (
-        <span key={`${role}:${name}`}>
-          {separator}
-          {name}
-        </span>
-      );
+      return <span>{name}</span>;
     }
     return (
-      <span key={`${role}:${name}`}>
-        {separator}
-        <button
-          type="button"
-          onClick={() => onFocusParty({ role, name, slug: meta.slug })}
-          style={{
-            background: "none",
-            border: "none",
-            padding: 0,
-            font: "inherit",
-            color: t.descLinkColor,
-            cursor: "pointer",
-            textDecoration: "none",
-          }}
-        >
-          {name}
-        </button>
-      </span>
+      <button
+        type="button"
+        onClick={() => onFocusParty({ role, name, slug: meta.slug })}
+        style={{
+          background: "none",
+          border: "none",
+          padding: 0,
+          font: "inherit",
+          color: t.descLinkColor,
+          cursor: "pointer",
+          textDecoration: "none",
+        }}
+      >
+        {name}
+      </button>
     );
   };
 
@@ -68,9 +61,7 @@ export default function PatentDetailCard({
     <article
       style={{
         position: "relative",
-        background: t.panelBg,
-        border: `1px solid ${t.panelBorder}`,
-        borderRadius: 6,
+        ...panelCard(t),
         padding: "0.85rem",
         marginTop: "1rem",
       }}
@@ -104,26 +95,26 @@ export default function PatentDetailCard({
 
       {patent.assignees.length > 0 && (
         <p style={{ color: t.muted, fontSize: "0.72rem", margin: "0.2rem 0" }}>
-          Assignee: {patent.assignees.map((name, index) => renderParty(name, "assignee", index))}
+          Assignee: <PatentPartyList names={patent.assignees} renderName={(name) => renderParty(name, "assignee")} />
         </p>
       )}
 
       {patent.authors.length > 0 && (
         <p style={{ color: t.muted, fontSize: "0.72rem", margin: "0.2rem 0 0.55rem" }}>
-          Inventors: {patent.authors.map((name, index) => renderParty(name, "author", index))}
+          Inventors: <PatentPartyList names={patent.authors} renderName={(name) => renderParty(name, "author")} />
         </p>
       )}
 
       <div style={{ borderTop: `1px solid ${t.panelDivider}`, paddingTop: "0.35rem" }}>
         {patent.lenses.map((lens) => (
-          <Link key={lens.key} to={`/lens/${lens.key}/`} style={{ ...LENS_LINK_BASE_STYLE, color: t.descLinkColor }}>
-            {lens.name}
-            {lens.specs?.length ? (
-              <span style={{ color: t.label, fontSize: "0.68rem", marginLeft: "0.5rem" }}>
-                — {lens.specs.slice(0, 2).join(", ")}
-              </span>
-            ) : null}
-          </Link>
+          <LensEntryLink
+            key={lens.key}
+            lensKey={lens.key}
+            text={lens.name}
+            specs={lens.specs}
+            theme={t}
+            metaStyle={{ fontSize: "0.68rem" }}
+          />
         ))}
       </div>
     </article>

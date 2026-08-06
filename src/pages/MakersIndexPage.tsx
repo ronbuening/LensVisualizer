@@ -6,14 +6,14 @@
 
 import { Link } from "react-router";
 import SEOHead from "../components/SEOHead.js";
-import PageNavBar from "../components/layout/PageNavBar.js";
+import StaticPageShell from "../components/layout/StaticPageShell.js";
 import { LENS_SUMMARIES, SUMMARY_KEYS } from "../utils/catalog/lensSummaries.js";
 import { deriveMaker, SITE_NAME, SITE_URL } from "../utils/catalog/lensMetadata.js";
 import { getMakerDetails } from "../utils/catalog/makerDetails.js";
 import { collectionPageJsonLd, itemListJsonLd } from "../utils/seo/structuredData.js";
-import { usePageThemeToggle } from "../utils/theme/usePageThemeToggle.js";
-import { H1_STYLE, PAGE_BASE_STYLE } from "../utils/style/pageStyles.js";
+import { H1_STYLE } from "../utils/style/pageStyles.js";
 import { catalogCollator } from "../utils/catalog/collation.js";
+import { pluralize } from "../utils/text.js";
 
 interface MakerEntry {
   display: string;
@@ -38,82 +38,71 @@ function getAllMakers(): MakerEntry[] {
 
 export default function MakersIndexPage() {
   const makers = getAllMakers();
-  const { theme: t, themeMode, highContrast, toggleTheme, toggleHC } = usePageThemeToggle();
   const seoDescription = `Browse patent-derived lens cross-sections by maker: ${makers.map((m) => m.display).join(", ")}. Includes ray tracing and optical analysis.`;
 
   return (
-    <div style={{ backgroundColor: t.bg, color: t.body, minHeight: "100vh" }}>
-      <SEOHead
-        title={`Lens Makers — ${SITE_NAME}`}
-        description={seoDescription}
-        canonicalURL={`${SITE_URL}/makers`}
-        jsonLd={[
-          collectionPageJsonLd({
-            name: "Lens Makers",
-            description: seoDescription,
-            url: `${SITE_URL}/makers`,
-            route: "/makers",
-          }),
-          itemListJsonLd({
-            name: "Lens Makers",
-            url: `${SITE_URL}/makers`,
-            items: makers.map((maker) => ({
-              name: maker.display,
-              url: `${SITE_URL}/makers/${maker.slug}`,
-            })),
-          }),
-        ]}
-      />
+    <StaticPageShell
+      breadcrumbs={[{ label: "Home", to: "/" }, { label: "Makers" }]}
+      seo={
+        <SEOHead
+          title={`Lens Makers — ${SITE_NAME}`}
+          description={seoDescription}
+          canonicalURL={`${SITE_URL}/makers`}
+          jsonLd={[
+            collectionPageJsonLd({
+              name: "Lens Makers",
+              description: seoDescription,
+              url: `${SITE_URL}/makers`,
+              route: "/makers",
+            }),
+            itemListJsonLd({
+              name: "Lens Makers",
+              url: `${SITE_URL}/makers`,
+              items: makers.map((maker) => ({
+                name: maker.display,
+                url: `${SITE_URL}/makers/${maker.slug}`,
+              })),
+            }),
+          ]}
+        />
+      }
+    >
+      {({ theme: t }) => (
+        <>
+          <h1 style={{ ...H1_STYLE, marginBottom: "1.5rem" }}>Lens Makers</h1>
 
-      <PageNavBar
-        theme={t}
-        themeMode={themeMode}
-        highContrast={highContrast}
-        onToggleTheme={toggleTheme}
-        onToggleHC={toggleHC}
-      >
-        <Link to="/" style={{ color: t.descLinkColor, textDecoration: "none" }}>
-          Home
-        </Link>
-        <span style={{ color: t.muted, margin: "0 0.35em" }}>/</span>
-        <span style={{ color: t.body }}>Makers</span>
-      </PageNavBar>
-
-      <div style={PAGE_BASE_STYLE}>
-        <h1 style={{ ...H1_STYLE, marginBottom: "1.5rem" }}>Lens Makers</h1>
-
-        {makers.map((maker) => {
-          const details = getMakerDetails(maker.slug);
-          return (
-            <div
-              key={maker.slug}
-              style={{ padding: "1rem 0.75rem", marginBottom: "0.75rem", borderBottom: `1px solid ${t.panelBorder}` }}
-            >
-              <Link
-                to={`/makers/${maker.slug}/`}
-                style={{ color: t.descLinkColor, textDecoration: "none", fontSize: "1rem", fontWeight: 600 }}
+          {makers.map((maker) => {
+            const details = getMakerDetails(maker.slug);
+            return (
+              <div
+                key={maker.slug}
+                style={{ padding: "1rem 0.75rem", marginBottom: "0.75rem", borderBottom: `1px solid ${t.panelBorder}` }}
               >
-                {maker.display}
-              </Link>
-              {details ? (
-                <>
-                  <div style={{ fontSize: "0.8rem", color: t.label, marginTop: "0.25rem" }}>
-                    Est. {details.founded} · {details.headquarters} · {maker.count}{" "}
-                    {maker.count === 1 ? "lens" : "lenses"}
-                  </div>
-                  <p style={{ fontSize: "0.8rem", color: t.subtitle, lineHeight: 1.5, marginTop: "0.5rem" }}>
-                    {details.summary}
-                  </p>
-                </>
-              ) : (
-                <span style={{ color: t.label, fontSize: "0.8rem", marginLeft: "0.5rem" }}>
-                  ({maker.count} {maker.count === 1 ? "lens" : "lenses"})
-                </span>
-              )}
-            </div>
-          );
-        })}
-      </div>
-    </div>
+                <Link
+                  to={`/makers/${maker.slug}/`}
+                  style={{ color: t.descLinkColor, textDecoration: "none", fontSize: "1rem", fontWeight: 600 }}
+                >
+                  {maker.display}
+                </Link>
+                {details ? (
+                  <>
+                    <div style={{ fontSize: "0.8rem", color: t.label, marginTop: "0.25rem" }}>
+                      Est. {details.founded} · {details.headquarters} · {maker.count} {pluralize(maker.count, "lens")}
+                    </div>
+                    <p style={{ fontSize: "0.8rem", color: t.subtitle, lineHeight: 1.5, marginTop: "0.5rem" }}>
+                      {details.summary}
+                    </p>
+                  </>
+                ) : (
+                  <span style={{ color: t.label, fontSize: "0.8rem", marginLeft: "0.5rem" }}>
+                    ({maker.count} {pluralize(maker.count, "lens")})
+                  </span>
+                )}
+              </div>
+            );
+          })}
+        </>
+      )}
+    </StaticPageShell>
   );
 }

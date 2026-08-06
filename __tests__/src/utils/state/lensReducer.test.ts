@@ -11,6 +11,7 @@ import lensReducer, {
   createInitialState,
   SET_LENS_A,
   SET_LENS_B,
+  SET_OPTICAL_CONFIGURATION,
   SET_SCALE_MODE,
   SET_DARK,
   SET_HIGH_CONTRAST,
@@ -57,6 +58,7 @@ describe("createInitialState", () => {
     const state = createInitialState({}, {}, true, CATALOG_KEYS);
     expect(state.lens.lensKeyA).toBe("nikon_58");
     expect(state.lens.lensKeyB).toBe("canon_50");
+    expect(state.lens.selectedConfigurationKey).toBe("nikon_58");
     expect(state.lens.comparing).toBe(false);
     expect(state.lens.scaleMode).toBe("independent");
     expect(state.sliders.focusT).toBe(0);
@@ -87,6 +89,16 @@ describe("createInitialState", () => {
     expect(state.sliders.stopdownT).toBe(0.3);
     expect(state.sliders.shiftMm).toBe(-4);
     expect(state.sliders.tiltDeg).toBe(2);
+  });
+
+  it("hydrates an already-validated optical configuration key", () => {
+    const state = createInitialState(
+      {},
+      { singleLens: "nikon_58", configurationKey: "nikon_58_tc_in" },
+      true,
+      CATALOG_KEYS,
+    );
+    expect(state.lens.selectedConfigurationKey).toBe("nikon_58_tc_in");
   });
 
   it("hydrates shareable panel state from URL params", () => {
@@ -180,6 +192,7 @@ describe("lensReducer", () => {
     it("updates lensKeyA", () => {
       const next = lensReducer(state, { type: SET_LENS_A, key: "canon_50" });
       expect(next.lens.lensKeyA).toBe("canon_50");
+      expect(next.lens.selectedConfigurationKey).toBe("canon_50");
     });
 
     it("resets sliders in single mode", () => {
@@ -244,6 +257,15 @@ describe("lensReducer", () => {
       state.panels = { ...state.panels, selectedElementIdB: 3 };
       const next = lensReducer(state, { type: SET_LENS_B, key: "zeiss_35" });
       expect(next.panels.selectedElementIdB).toBeNull();
+    });
+  });
+
+  describe("SET_OPTICAL_CONFIGURATION", () => {
+    it("updates the configuration identity and clears the selected element", () => {
+      state.panels = { ...state.panels, selectedElementId: 3 };
+      const next = lensReducer(state, { type: SET_OPTICAL_CONFIGURATION, key: "nikon_58_tc_in" });
+      expect(next.lens.selectedConfigurationKey).toBe("nikon_58_tc_in");
+      expect(next.panels.selectedElementId).toBeNull();
     });
   });
 
@@ -536,6 +558,7 @@ describe("lensReducer", () => {
       const next = lensReducer(state, {
         type: APPLY_URL_VIEW_STATE,
         state: {
+          configurationKey: "nikon_58_tc_in",
           focus: 0.4,
           aberration: 0.7,
           aperture: 0.2,
@@ -549,6 +572,7 @@ describe("lensReducer", () => {
           groupMovementMode: "combined",
         },
       });
+      expect(next.lens.selectedConfigurationKey).toBe("nikon_58_tc_in");
       expect(next.sliders.focusT).toBe(0.4);
       expect(next.sliders.aberrationT).toBe(0.7);
       expect(next.sliders.stopdownT).toBe(0.2);
@@ -627,6 +651,13 @@ describe("lensReducer", () => {
       });
     });
 
+    it("promotes the active optical configuration to compare lens A", () => {
+      state.lens.selectedConfigurationKey = "nikon_58_tc_in";
+      const next = lensReducer(state, { type: ENTER_COMPARE, catalogKeys: [...CATALOG_KEYS, "nikon_58_tc_in"] });
+      expect(next.lens.lensKeyA).toBe("nikon_58_tc_in");
+      expect(next.lens.selectedConfigurationKey).toBe("nikon_58_tc_in");
+    });
+
     it("picks next lens if A===B", () => {
       state.lens.lensKeyA = "nikon_58";
       state.lens.lensKeyB = "nikon_58";
@@ -637,6 +668,7 @@ describe("lensReducer", () => {
     it("wraps around catalog if A is last entry", () => {
       state.lens.lensKeyA = "zeiss_35";
       state.lens.lensKeyB = "zeiss_35";
+      state.lens.selectedConfigurationKey = "zeiss_35";
       const next = lensReducer(state, { type: ENTER_COMPARE, catalogKeys: CATALOG_KEYS });
       expect(next.lens.lensKeyB).toBe("nikon_58"); // wraps to 0
     });

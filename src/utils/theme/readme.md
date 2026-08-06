@@ -21,8 +21,8 @@ flowchart LR
   n_external_pkg_react["pkg:react"]
   n_external_pkg_react_router["pkg:react-router"]
   n_external_src_utils_holidays_ts["src/utils/holidays.ts"]
-  n_external_src_utils_mediaQuery_ts["src/utils/mediaQuery.ts"]
   n_external_src_utils_state["src/utils/state"]
+  n_external_src_utils_useMediaQuery_ts["src/utils/useMediaQuery.ts"]
   n_src_utils_theme_src_utils_theme_themePreferences_ts --> |2| n_external_src_types
   n_src_utils_theme_src_utils_theme_usePageThemeToggle_ts --> |2| n_src_utils_theme_src_utils_theme_themePreferences_ts
   n_src_utils_theme_src_utils_theme_useActiveHoliday_ts --> n_external_pkg_react
@@ -35,9 +35,9 @@ flowchart LR
   n_src_utils_theme_src_utils_theme_usePageThemeToggle_ts --> n_external_src_types
   n_src_utils_theme_src_utils_theme_holidayThemes_ts --> n_external_src_utils_holidays_ts
   n_src_utils_theme_src_utils_theme_useActiveHoliday_ts --> n_external_src_utils_holidays_ts
-  n_src_utils_theme_src_utils_theme_usePageThemeToggle_ts --> n_external_src_utils_mediaQuery_ts
   n_src_utils_theme_src_utils_theme_usePageTheme_ts --> n_external_src_utils_state
   n_src_utils_theme_src_utils_theme_usePageThemeToggle_ts --> n_external_src_utils_state
+  n_src_utils_theme_src_utils_theme_usePageThemeToggle_ts --> n_external_src_utils_useMediaQuery_ts
   n_src_utils_theme_src_utils_theme_themeConstants_ts --> n_src_utils_theme_src_utils_theme_holidayThemes_ts
   n_src_utils_theme_src_utils_theme_themePreferences_ts --> n_src_utils_theme_src_utils_theme_holidayThemes_ts
   n_src_utils_theme_src_utils_theme_useActiveHoliday_ts --> n_src_utils_theme_src_utils_theme_holidayThemes_ts
@@ -52,8 +52,8 @@ flowchart LR
 
 - Direct source files: 7
 - Direct subfolders: 0
-- Main outbound areas: same folder (10), src/types (6), package:react (3), src/utils/holidays.ts (2), src/utils/state (2), package:react-router, src/utils/mediaQuery.ts
-- External consumers: src/benchmarks, src/components/HolidayFavicon.tsx, src/components/layout, src/pages/ArticlePage.tsx, src/pages/ArticlesPage.tsx, src/pages/AuthorPage.tsx, src/pages/AuthorsIndexPage.tsx, src/pages/FormatPage.tsx, +12 more
+- Main outbound areas: same folder (10), src/types (6), package:react (3), src/utils/holidays.ts (2), src/utils/state (2), package:react-router, src/utils/useMediaQuery.ts
+- External consumers: src/benchmarks, src/components/HolidayFavicon.tsx, src/components/layout, src/pages/HomePage.tsx, src/pages/LensIndexPage.tsx, src/utils/state
 
 ## Files
 
@@ -65,4 +65,4 @@ flowchart LR
 | `themes.ts` | Themes module with default export | src/types | same folder, src/benchmarks | createTheme, default |
 | `useActiveHoliday.ts` | React hook module | package:react, package:react-router, same folder, src/utils/holidays.ts | src/components/layout (3), same folder | useActiveHoliday |
 | `usePageTheme.ts` | React hook module | package:react, same folder, src/types, src/utils/state | none | usePageTheme |
-| `usePageThemeToggle.ts` | React hook module | same folder (4), package:react, src/types, src/utils/mediaQuery.ts, src/utils/state | src/components/layout, src/pages/ArticlePage.tsx, src/pages/ArticlesPage.tsx, src/pages/AuthorPage.tsx, src/pages/AuthorsIndexPage.tsx, +12 more | usePageThemeToggle, ThemeMode |
+| `usePageThemeToggle.ts` | React hook module | same folder (4), package:react, src/types, src/utils/state, src/utils/useMediaQuery.ts | src/components/layout, src/pages/HomePage.tsx, src/pages/LensIndexPage.tsx | usePageThemeToggle, ThemeMode |

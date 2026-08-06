@@ -12,13 +12,16 @@ import { parseLensKeysFromSearch } from "./parseComparisonParams.js";
 import { lensViewQueryToUrlState, parseLensViewQuery } from "./lensViewUrlState.js";
 import useMediaQuery from "../useMediaQuery.js";
 import type { LensState, LensAction, URLState } from "../../types/state.js";
+import { resolveOpticalConfigurationKey } from "../catalog/lensCatalog.js";
 
 export default function useLensState(
   catalogKeys: string[],
   initialLensKey?: string,
   initialLensKeyB?: string,
 ): [LensState, Dispatch<LensAction>, boolean] {
-  const isWide = useMediaQuery("(min-width: 900px)");
+  /* The viewer tree mounts inside ClientOnly, so the live match is safe and required:
+     this value feeds the one-shot reducer initializer (panel expansion defaults). */
+  const isWide = useMediaQuery("(min-width: 900px)", { ssrDefault: false, clientOnly: true });
 
   const [state, dispatch] = useReducer(
     lensReducer,
@@ -36,7 +39,8 @@ export default function useLensState(
     }) => {
       const prefs = loadPrefs();
       const search = typeof window !== "undefined" ? window.location.search : "";
-      const viewState = lensViewQueryToUrlState(parseLensViewQuery(search));
+      const parsedViewState = parseLensViewQuery(search);
+      const viewState = lensViewQueryToUrlState(parsedViewState);
       let urlState: Partial<URLState>;
       if (initKeyA && initKeyB && keys.includes(initKeyA) && keys.includes(initKeyB)) {
         urlState = { ...viewState, comparing: true, lensKeyA: initKeyA, lensKeyB: initKeyB };
@@ -46,6 +50,12 @@ export default function useLensState(
         urlState = viewState;
       } else {
         urlState = { ...viewState, ...parseLensKeysFromSearch(search, keys) };
+      }
+      const canonicalLensKey = urlState.singleLens ?? urlState.lensKeyA ?? keys[0];
+      if (urlState.comparing) {
+        delete urlState.configurationKey;
+      } else if (canonicalLensKey) {
+        urlState.configurationKey = resolveOpticalConfigurationKey(canonicalLensKey, parsedViewState.configurationKey);
       }
       return createInitialState(prefs, urlState, wide, keys);
     },

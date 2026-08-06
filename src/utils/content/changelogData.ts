@@ -20,6 +20,11 @@ export interface ChangelogEntry {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     date: "2026-08-06",
+    type: "feature",
+    summary: "Added shareable optical configurations to lens URLs and comparison selectors",
+  },
+  {
+    date: "2026-08-06",
     type: "improvement",
     summary: "Improved dispersion accuracy across all three P. Angénieux lens models",
   },

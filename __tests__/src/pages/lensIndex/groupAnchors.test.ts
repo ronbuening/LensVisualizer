@@ -43,7 +43,7 @@ describe("group anchor ids", () => {
   });
 
   it("pins hashed patent-party anchors, including the FNV-1a suffix", () => {
-    expect(patentPartyGroupAnchorId("inventor", "Günter Klemt")).toBe("group-inventor-g-nter-klemt-rpuixk");
+    expect(patentPartyGroupAnchorId("author", "Günter Klemt")).toBe("group-inventor-g-nter-klemt-rpuixk");
     expect(patentPartyGroupAnchorId("assignee", "Canon Inc.")).toBe("group-assignee-canon-inc-1chmmri");
     expect(patentPartyGroupAnchorId("assignee", "Asahi Kogaku / Pentax")).toBe(
       "group-assignee-asahi-kogaku-pentax-h35uay",
@@ -54,19 +54,19 @@ describe("group anchor ids", () => {
   });
 
   it("falls back to a readable stem when the key slugifies to nothing", () => {
-    expect(patentPartyGroupAnchorId("inventor", "")).toBe("group-inventor-party-ztntfp");
+    expect(patentPartyGroupAnchorId("author", "")).toBe("group-inventor-party-ztntfp");
   });
 
   it("keeps the hash suffix distinguishing keys that slugify identically", () => {
     // Both readable stems are "g-nter-klemt"; only the hash separates them.
-    const a = patentPartyGroupAnchorId("inventor", "Günter Klemt");
-    const b = patentPartyGroupAnchorId("inventor", "Gunter Klemt");
+    const a = patentPartyGroupAnchorId("author", "Günter Klemt");
+    const b = patentPartyGroupAnchorId("author", "Gunter Klemt");
     expect(a).not.toBe(b);
     expect(a.startsWith("group-inventor-g-nter-klemt-")).toBe(true);
   });
 
   it("keeps roles in separate anchor namespaces", () => {
-    expect(patentPartyGroupAnchorId("inventor", "Canon Inc.")).not.toBe(
+    expect(patentPartyGroupAnchorId("author", "Canon Inc.")).not.toBe(
       patentPartyGroupAnchorId("assignee", "Canon Inc."),
     );
   });

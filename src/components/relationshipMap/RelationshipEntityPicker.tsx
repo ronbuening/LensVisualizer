@@ -8,12 +8,16 @@
  * map.
  */
 
-import { useMemo, useState, type CSSProperties } from "react";
+import { useMemo, useRef, useState, type CSSProperties } from "react";
 import { AUTHORS } from "../../utils/catalog/authorCatalog.js";
 import { ASSIGNEES } from "../../utils/catalog/assigneeCatalog.js";
 import { normalizeSearchText } from "../../utils/catalog/searchCatalog.js";
 import type { Theme } from "../../types/theme.js";
 import type { PartyRef } from "../../utils/catalog/relationshipGraph.js";
+import { panelCard, searchInput, VISUALLY_HIDDEN } from "../../utils/style/styles.js";
+import roleChip from "./roleChip.js";
+import { pluralize } from "../../utils/text.js";
+import useDismissableDropdown from "../hooks/useDismissableDropdown.js";
 
 interface RelationshipEntityPickerProps {
   theme: Theme;
@@ -54,6 +58,11 @@ function buildOptions(): PickerOption[] {
 
 export default function RelationshipEntityPicker({ theme: t, onPick, compact = false }: RelationshipEntityPickerProps) {
   const [query, setQuery] = useState("");
+  const [suggestionsOpen, setSuggestionsOpen] = useState(false);
+  const compactInputRef = useRef<HTMLInputElement>(null);
+  const compactListRef = useDismissableDropdown<HTMLUListElement>(suggestionsOpen, compactInputRef, () =>
+    setSuggestionsOpen(false),
+  );
   const options = useMemo(buildOptions, []);
 
   const limit = compact ? COMPACT_LIMIT : FULL_LIMIT;
@@ -63,50 +72,43 @@ export default function RelationshipEntityPicker({ theme: t, onPick, compact = f
     [options, normalizedQuery],
   );
   const shown = filtered.slice(0, limit);
+  const compactListOpen = suggestionsOpen && normalizedQuery.length > 0 && shown.length > 0;
 
   const inputStyle: CSSProperties = {
+    ...searchInput(t),
     width: "100%",
     boxSizing: "border-box",
-    background: t.selectorBg,
-    color: t.selectorText,
-    border: `1px solid ${t.selectorBorder}`,
-    borderRadius: 6,
-    padding: "0.7rem 0.8rem",
-    fontFamily: "inherit",
-    fontSize: "16px",
   };
-
-  const roleChip = (role: PartyRef["role"]): CSSProperties => ({
-    display: "inline-block",
-    fontSize: "0.6rem",
-    textTransform: "uppercase",
-    letterSpacing: "0.06em",
-    padding: "0.1rem 0.35rem",
-    borderRadius: 3,
-    border: `1px solid ${role === "assignee" ? t.rayCool : t.rayWarm}`,
-    color: t.muted,
-    marginLeft: "0.4rem",
-  });
 
   if (compact) {
     return (
       <div style={{ position: "relative" }}>
-        <label
-          htmlFor="relationship-picker-compact"
-          style={{ position: "absolute", width: 1, height: 1, overflow: "hidden" }}
-        >
+        <label htmlFor="relationship-picker-compact" style={VISUALLY_HIDDEN}>
           Search inventors and assignees
         </label>
         <input
+          ref={compactInputRef}
           id="relationship-picker-compact"
           type="search"
           value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          onChange={(event) => {
+            setQuery(event.target.value);
+            setSuggestionsOpen(event.target.value.trim().length > 0);
+          }}
+          onFocus={() => setSuggestionsOpen(normalizedQuery.length > 0)}
           placeholder="Change focus — search inventors or assignees"
+          /* Plain labeled list of buttons, not an APG combobox: without
+             aria-activedescendant keyboard navigation, listbox/option roles
+             would promise interaction semantics the widget does not have.
+             aria-controls only renders while its target exists. */
+          aria-controls={compactListOpen ? "relationship-picker-options" : undefined}
           style={inputStyle}
         />
-        {query && shown.length > 0 && (
+        {compactListOpen && (
           <ul
+            ref={compactListRef}
+            id="relationship-picker-options"
+            aria-label="Inventor and assignee suggestions"
             style={{
               position: "absolute",
               zIndex: 5,
@@ -116,9 +118,7 @@ export default function RelationshipEntityPicker({ theme: t, onPick, compact = f
               margin: "0.25rem 0 0",
               padding: 0,
               listStyle: "none",
-              background: t.panelBg,
-              border: `1px solid ${t.panelBorder}`,
-              borderRadius: 6,
+              ...panelCard(t),
               maxHeight: 320,
               overflowY: "auto",
             }}
@@ -129,6 +129,7 @@ export default function RelationshipEntityPicker({ theme: t, onPick, compact = f
                   type="button"
                   onClick={() => {
                     setQuery("");
+                    setSuggestionsOpen(false);
                     onPick(option.ref);
                   }}
                   style={{
@@ -146,7 +147,7 @@ export default function RelationshipEntityPicker({ theme: t, onPick, compact = f
                   }}
                 >
                   {option.ref.name}
-                  <span style={roleChip(option.ref.role)}>{option.ref.role}</span>
+                  <span style={roleChip(t, option.ref.role)}>{option.ref.role}</span>
                 </button>
               </li>
             ))}
@@ -158,7 +159,7 @@ export default function RelationshipEntityPicker({ theme: t, onPick, compact = f
 
   return (
     <div>
-      <label htmlFor="relationship-picker" style={{ position: "absolute", width: 1, height: 1, overflow: "hidden" }}>
+      <label htmlFor="relationship-picker" style={VISUALLY_HIDDEN}>
         Search inventors and assignees
       </label>
       <input
@@ -184,9 +185,7 @@ export default function RelationshipEntityPicker({ theme: t, onPick, compact = f
             onClick={() => onPick(option.ref)}
             style={{
               textAlign: "left",
-              background: t.panelBg,
-              border: `1px solid ${t.panelBorder}`,
-              borderRadius: 6,
+              ...panelCard(t),
               padding: "0.7rem",
               cursor: "pointer",
               font: "inherit",
@@ -194,11 +193,11 @@ export default function RelationshipEntityPicker({ theme: t, onPick, compact = f
           >
             <span style={{ color: t.descLinkColor, fontSize: "0.85rem", fontWeight: 600 }}>
               {option.ref.name}
-              <span style={roleChip(option.ref.role)}>{option.ref.role}</span>
+              <span style={roleChip(t, option.ref.role)}>{option.ref.role}</span>
             </span>
             <span style={{ display: "block", color: t.label, fontSize: "0.7rem", marginTop: "0.3rem" }}>
-              {option.patentCount} {option.patentCount === 1 ? "patent" : "patents"} · {option.lensCount}{" "}
-              {option.lensCount === 1 ? "lens" : "lenses"}
+              {option.patentCount} {pluralize(option.patentCount, "patent")} · {option.lensCount}{" "}
+              {pluralize(option.lensCount, "lens")}
             </span>
           </button>
         ))}

@@ -6,6 +6,6 @@
  * re-sort at hydration and trigger a React hydration mismatch. Every
  * catalog comparator and page-level sort must use this collator instead of
  * bare `localeCompare` so server and client always agree. Patent numbers
- * keep their own numeric-aware collator in `patentCatalog.ts`.
+ * keep their own numeric-aware collator in `patentRecords.ts`.
  */
 export const catalogCollator = new Intl.Collator("en");

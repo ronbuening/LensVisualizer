@@ -38,7 +38,7 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
-  key: "sony-sal-70-400mm-f4-5.6-g",
+  key: "sony-sal-70-400mm-f4-56-g",
   maker: "Sony",
   name: "SONY 70-400mm f/4-5.6 G SSM II",
   subtitle: "US 8,049,968 B2 — Embodiment 6 (candidate production match)",

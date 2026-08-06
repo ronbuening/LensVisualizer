@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { ASSIGNEES } from "../../../../src/utils/catalog/assigneeCatalog.js";
 import { AUTHORS, patentsForParty } from "../../../../src/utils/catalog/authorCatalog.js";
-import type { AuthorMetadata } from "../../../../src/utils/catalog/authorCatalog.js";
+import type { PatentPartyMetadata } from "../../../../src/types/catalog.js";
 
 /**
  * Build-time `patentCount`/`lensKeys` (scripts/author-metadata.mjs) and runtime
@@ -11,10 +11,24 @@ import type { AuthorMetadata } from "../../../../src/utils/catalog/authorCatalog
  */
 const PARTY_STRATA = [
   { role: "author", label: "inventors", entries: AUTHORS },
-  { role: "assignee", label: "assignees", entries: ASSIGNEES as AuthorMetadata[] },
+  { role: "assignee", label: "assignees", entries: ASSIGNEES },
 ] as const;
 
+function expectPatentPartyMetadata(entry: PatentPartyMetadata | undefined): void {
+  expect(entry).toEqual({
+    name: expect.any(String),
+    slug: expect.any(String),
+    lensKeys: expect.arrayContaining([expect.any(String)]),
+    patentCount: expect.any(Number),
+  });
+}
+
 describe("party patent parity", () => {
+  it("keeps generated author and assignee entries aligned with the shared runtime contract", () => {
+    expectPatentPartyMetadata(AUTHORS[0]);
+    expectPatentPartyMetadata(ASSIGNEES[0]);
+  });
+
   for (const { role, label, entries } of PARTY_STRATA) {
     it(`agrees with the generated patent count for all ${label}`, () => {
       expect(entries.length).toBeGreaterThan(0);

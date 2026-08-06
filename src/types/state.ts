@@ -55,6 +55,7 @@ export function isAnalysisTabId(value: unknown): value is AnalysisTabId {
 export interface LensSlice {
   lensKeyA: string;
   lensKeyB: string;
+  selectedConfigurationKey: string;
   comparing: boolean;
   scaleMode: "independent" | "normalized";
 }
@@ -183,6 +184,7 @@ export interface LensState {
 export type LensAction =
   | { type: "SET_LENS_A"; key: string }
   | { type: "SET_LENS_B"; key: string }
+  | { type: "SET_OPTICAL_CONFIGURATION"; key: string }
   | { type: "SET_DARK"; dark: boolean | null }
   | { type: "SET_HIGH_CONTRAST"; highContrast: boolean }
   | { type: "SET_MOBILE_VIEW"; mobileView: MobileView }
@@ -252,6 +254,7 @@ export interface URLState {
   lensKeyA?: string;
   lensKeyB?: string;
   comparing?: boolean;
+  configurationKey?: string;
   focus?: number;
   aberration?: number;
   aperture?: number;

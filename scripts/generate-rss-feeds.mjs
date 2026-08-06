@@ -6,10 +6,12 @@
  */
 
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
-import { join, resolve } from "node:path";
+import { basename, join, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 import { CHANGELOG } from "../src/utils/content/changelogData.ts";
 import { changelogEntryId } from "../src/utils/content/changelogHelpers.ts";
+import { ARTICLE_FEED_PATH, CHANGELOG_FEED_PATH, LENS_FEED_PATH } from "../src/utils/content/feedMetadata.ts";
+import { comparePublicationEntries } from "./build-metadata-lib.mjs";
 import { SITE_URL, canonicalPageUrl } from "./site-url.mjs";
 
 const SITE_NAME = "Surface & Stop";
@@ -23,19 +25,19 @@ const FEED_DEFINITIONS = {
   lenses: {
     title: `${SITE_NAME} — New Lenses`,
     description: "Recently published patent-derived camera lens diagrams and interactive optical models.",
-    feedPath: "/feeds/lenses.xml",
+    feedPath: LENS_FEED_PATH,
     homePath: "/updates",
   },
   articles: {
     title: `${SITE_NAME} — New Articles`,
     description: "Recently published articles and guides about optical design, lens history, and lens engineering.",
-    feedPath: "/feeds/articles.xml",
+    feedPath: ARTICLE_FEED_PATH,
     homePath: "/articles",
   },
   changelog: {
     title: `${SITE_NAME} — Changelog`,
     description: "New features, fixes, improvements, articles, and catalog updates from Surface & Stop.",
-    feedPath: "/feeds/changelog.xml",
+    feedPath: CHANGELOG_FEED_PATH,
     homePath: "/updates",
   },
 };
@@ -87,23 +89,13 @@ function formatRssDate(isoDate, label = "date") {
   return date.toUTCString();
 }
 
-function compareStrings(a, b) {
-  if (a < b) return -1;
-  if (a > b) return 1;
-  return 0;
-}
-
 function newestFirst(a, b) {
   if (Number.isInteger(a.publicationOrder) && Number.isInteger(b.publicationOrder)) {
     const byGeneratedOrder = a.publicationOrder - b.publicationOrder;
     if (byGeneratedOrder) return byGeneratedOrder;
   }
 
-  const byTimestamp = compareStrings(b.publishedAt ?? b.publishedOn, a.publishedAt ?? a.publishedOn);
-  if (byTimestamp) return byTimestamp;
-  const byCommit = compareStrings(b.publishedCommit ?? "", a.publishedCommit ?? "");
-  if (byCommit) return byCommit;
-  return compareStrings(a.title, b.title) || compareStrings(a.url, b.url);
+  return comparePublicationEntries(a, b);
 }
 
 function normalizeLimit(limit) {
@@ -329,9 +321,9 @@ function writeRssFeeds({ distDir = DIST_DIR, metadataPath = META_PATH, lensSumma
   const feeds = generateRssFeeds(buildMeta, lensSummaries);
   const feedsDir = join(distDir, "feeds");
   mkdirSync(feedsDir, { recursive: true });
-  writeFileSync(join(feedsDir, "lenses.xml"), feeds.lenses, "utf-8");
-  writeFileSync(join(feedsDir, "articles.xml"), feeds.articles, "utf-8");
-  writeFileSync(join(feedsDir, "changelog.xml"), feeds.changelog, "utf-8");
+  writeFileSync(join(feedsDir, basename(FEED_DEFINITIONS.lenses.feedPath)), feeds.lenses, "utf-8");
+  writeFileSync(join(feedsDir, basename(FEED_DEFINITIONS.articles.feedPath)), feeds.articles, "utf-8");
+  writeFileSync(join(feedsDir, basename(FEED_DEFINITIONS.changelog.feedPath)), feeds.changelog, "utf-8");
   console.log(`RSS feeds written to ${feedsDir} (${DEFAULT_FEED_LIMIT} entries maximum per feed)`);
 }
 

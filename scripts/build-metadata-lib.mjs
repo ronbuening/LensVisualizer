@@ -225,7 +225,12 @@ export function comparePublicationEntries(a, b) {
 
   const aLabel = a.name ?? a.title ?? a.key ?? a.slug ?? "";
   const bLabel = b.name ?? b.title ?? b.key ?? b.slug ?? "";
-  return aLabel.localeCompare(bLabel) || String(a.key ?? a.slug ?? "").localeCompare(String(b.key ?? b.slug ?? ""));
+  return (
+    aLabel.localeCompare(bLabel) ||
+    String(a.key ?? a.slug ?? "").localeCompare(String(b.key ?? b.slug ?? "")) ||
+    /* RSS feed items carry title/url but no key/slug — url is their stable id */
+    String(a.url ?? "").localeCompare(String(b.url ?? ""))
+  );
 }
 
 function assertPublishedDateDiversity(label, entries, { minimumEntries, minimumDistinctDates }) {

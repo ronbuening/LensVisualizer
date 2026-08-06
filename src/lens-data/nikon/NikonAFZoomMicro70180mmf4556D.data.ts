@@ -32,7 +32,7 @@ import type { LensDataInput } from "../../types/optics.js";
  */
 
 const LENS_DATA = {
-  key: "nikon-af-zoom-micro-70-180mm-f4.5-5.6d",
+  key: "nikon-af-zoom-micro-70-180mm-f45-56d",
   maker: "Nikon",
   name: "NIKON AF ZOOM-MICRO NIKKOR ED 70-180mm f/4.5-5.6D",
   subtitle: "US 5,717,527 Table 8 — Nikon / Shibayama",

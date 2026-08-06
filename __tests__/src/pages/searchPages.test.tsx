@@ -25,6 +25,7 @@ import { AUTHOR_SORT_PREFERENCE_KEY } from "../../../src/utils/state/authorSortP
 import themes from "../../../src/utils/theme/themes.js";
 import { clearBrowserState, installMatchMediaMock, renderWithRouter } from "../../testUtils.js";
 import { catalogCollator } from "../../../src/utils/catalog/collation.js";
+import * as searchCatalogModule from "../../../src/utils/catalog/searchCatalog.js";
 
 vi.mock("../../../src/components/SEOHead.js", () => ({
   default: function SEOHead() {
@@ -82,6 +83,34 @@ describe("search, author, and patent pages", () => {
     fireEvent.submit(screen.getByRole("search"));
 
     await waitFor(() => expect(screen.getByText("/lens/agfa-color-telinear-90mm-f4/")).toBeTruthy());
+  });
+
+  it("dismisses catalog suggestions with Escape and an outside click", () => {
+    renderWithRouter(<CatalogSearchBox theme={themes.dark} showSuggestions />);
+    const searchbox = screen.getByRole("searchbox");
+
+    fireEvent.change(searchbox, { target: { value: "AGFA COLOR" } });
+    expect(screen.getByRole("list", { name: "Catalog suggestions" })).toBeDefined();
+    /* aria-controls must reference the suggestions only while they exist */
+    expect(searchbox.getAttribute("aria-controls")).toBe("catalog-search-suggestions");
+
+    fireEvent.keyDown(document, { key: "Escape" });
+    expect(screen.queryByRole("list", { name: "Catalog suggestions" })).toBeNull();
+    expect(searchbox.getAttribute("aria-controls")).toBeNull();
+
+    fireEvent.change(searchbox, { target: { value: "AGFA COLOR-TELINEAR" } });
+    expect(screen.getByRole("list", { name: "Catalog suggestions" })).toBeDefined();
+    fireEvent.mouseDown(document.body);
+    expect(screen.queryByRole("list", { name: "Catalog suggestions" })).toBeNull();
+    expect(searchbox.getAttribute("aria-controls")).toBeNull();
+  });
+
+  it("skips catalog suggestion scans when suggestions are disabled", () => {
+    const searchSpy = vi.spyOn(searchCatalogModule, "searchCatalog");
+    renderWithRouter(<CatalogSearchBox theme={themes.dark} query="nikon" />);
+
+    expect(searchSpy).not.toHaveBeenCalled();
+    expect(screen.queryByText("View all results →")).toBeNull();
   });
 
   it("renders an author patent page and switches to co-author sections", () => {

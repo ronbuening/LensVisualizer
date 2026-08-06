@@ -19,14 +19,16 @@ interface StaticPageShellContext {
 
 interface StaticPageShellProps {
   breadcrumbs: readonly StaticPageBreadcrumb[];
+  seo?: ReactNode;
   children: (context: StaticPageShellContext) => ReactNode;
 }
 
-export default function StaticPageShell({ breadcrumbs, children }: StaticPageShellProps) {
+export default function StaticPageShell({ breadcrumbs, seo, children }: StaticPageShellProps) {
   const { theme: t, themeMode, dark, highContrast, toggleTheme, toggleHC } = usePageThemeToggle();
 
   return (
     <div style={{ backgroundColor: t.bg, color: t.body, minHeight: "100vh" }}>
+      {seo}
       <PageNavBar
         theme={t}
         themeMode={themeMode}
@@ -48,7 +50,7 @@ export default function StaticPageShell({ breadcrumbs, children }: StaticPageShe
         ))}
       </PageNavBar>
 
-      <div style={PAGE_BASE_STYLE}>{children({ theme: t, dark, highContrast })}</div>
+      <main style={PAGE_BASE_STYLE}>{children({ theme: t, dark, highContrast })}</main>
     </div>
   );
 }

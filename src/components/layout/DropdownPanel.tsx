@@ -7,10 +7,11 @@
  * so callers can imperatively scroll within the panel (e.g. LensSelector).
  */
 
-import { forwardRef, useEffect, useRef } from "react";
+import { forwardRef } from "react";
 import ReactDOM from "react-dom";
 import type { RefObject } from "react";
 import type { Theme } from "../../types/theme.js";
+import useDismissableDropdown from "../hooks/useDismissableDropdown.js";
 
 export interface DropdownPanelPos {
   top: number;
@@ -38,7 +39,7 @@ const DropdownPanel = forwardRef<HTMLDivElement, DropdownPanelProps>(function Dr
   { open, pos, triggerRef, onClose, theme: t, children },
   ref,
 ) {
-  const innerRef = useRef<HTMLDivElement | null>(null);
+  const innerRef = useDismissableDropdown<HTMLDivElement>(open, triggerRef, onClose);
 
   // Merge forwarded ref with local ref so we can use both
   const setRef = (el: HTMLDivElement | null) => {
@@ -49,29 +50,6 @@ const DropdownPanel = forwardRef<HTMLDivElement, DropdownPanelProps>(function Dr
       ref.current = el;
     }
   };
-
-  // Close on Escape
-  useEffect(() => {
-    if (!open) return;
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [open, onClose]);
-
-  // Close on outside mousedown (excluding trigger and panel itself)
-  useEffect(() => {
-    if (!open) return;
-    const handleMouseDown = (e: MouseEvent) => {
-      const target = e.target as Node;
-      if (triggerRef.current?.contains(target)) return;
-      if (innerRef.current?.contains(target)) return;
-      onClose();
-    };
-    document.addEventListener("mousedown", handleMouseDown);
-    return () => document.removeEventListener("mousedown", handleMouseDown);
-  }, [open, onClose, triggerRef]);
 
   if (!open || !pos) return null;
 

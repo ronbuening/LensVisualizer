@@ -176,6 +176,25 @@ describe("build metadata helpers", () => {
     expect(entries.sort(comparePublicationEntries).map((entry) => entry.key)).toEqual(["untracked", "committed"]);
   });
 
+  it("breaks full ties on url for feed items without key or slug", () => {
+    const shared = {
+      title: "Same Title",
+      publishedOn: "2026-03-27",
+      publishedAt: "2026-03-27T18:00:00.000Z",
+      publishedCommit: "commit-late",
+      lastModified: "2026-03-27",
+    };
+    const entries = [
+      { ...shared, url: "https://example.com/b/" },
+      { ...shared, url: "https://example.com/a/" },
+    ];
+
+    expect(entries.sort(comparePublicationEntries).map((entry) => entry.url)).toEqual([
+      "https://example.com/a/",
+      "https://example.com/b/",
+    ]);
+  });
+
   it("falls back when git history is unavailable", () => {
     const dates = getGitFileFreshness("missing-file.ts", {
       fallbackDate: "2026-03-27",

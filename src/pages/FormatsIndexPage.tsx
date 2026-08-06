@@ -6,86 +6,76 @@
 
 import { Link } from "react-router";
 import SEOHead from "../components/SEOHead.js";
-import PageNavBar from "../components/layout/PageNavBar.js";
+import StaticPageShell from "../components/layout/StaticPageShell.js";
 import { SITE_NAME, SITE_URL } from "../utils/catalog/lensMetadata.js";
 import { collectionPageJsonLd, itemListJsonLd } from "../utils/seo/structuredData.js";
-import { usePageThemeToggle } from "../utils/theme/usePageThemeToggle.js";
 import { getImageFormatDetails } from "../utils/catalog/imageFormatDetails.js";
-import { H1_STYLE, PAGE_BASE_STYLE } from "../utils/style/pageStyles.js";
+import { H1_STYLE } from "../utils/style/pageStyles.js";
 import { IMAGE_FORMAT_OPTIONS } from "./lensIndex/catalog.js";
+import { pluralize } from "../utils/text.js";
 
 export default function FormatsIndexPage() {
-  const { theme: t, themeMode, highContrast, toggleTheme, toggleHC } = usePageThemeToggle();
   const seoDescription = `Browse patent-derived camera lens diagrams by image format, including ${IMAGE_FORMAT_OPTIONS.map(
     (format) => format.label,
   ).join(", ")}.`;
 
   return (
-    <div style={{ backgroundColor: t.bg, color: t.body, minHeight: "100vh" }}>
-      <SEOHead
-        title={`Lens Image Formats — ${SITE_NAME}`}
-        description={seoDescription}
-        canonicalURL={`${SITE_URL}/formats`}
-        jsonLd={[
-          collectionPageJsonLd({
-            name: "Lens Image Formats",
-            description: seoDescription,
-            url: `${SITE_URL}/formats`,
-            route: "/formats",
-          }),
-          itemListJsonLd({
-            name: "Lens Image Formats",
-            url: `${SITE_URL}/formats`,
-            items: IMAGE_FORMAT_OPTIONS.map((format) => ({
-              name: format.label,
-              url: `${SITE_URL}/formats/${format.id}`,
-            })),
-          }),
-        ]}
-      />
+    <StaticPageShell
+      breadcrumbs={[{ label: "Home", to: "/" }, { label: "Formats" }]}
+      seo={
+        <SEOHead
+          title={`Lens Image Formats — ${SITE_NAME}`}
+          description={seoDescription}
+          canonicalURL={`${SITE_URL}/formats`}
+          jsonLd={[
+            collectionPageJsonLd({
+              name: "Lens Image Formats",
+              description: seoDescription,
+              url: `${SITE_URL}/formats`,
+              route: "/formats",
+            }),
+            itemListJsonLd({
+              name: "Lens Image Formats",
+              url: `${SITE_URL}/formats`,
+              items: IMAGE_FORMAT_OPTIONS.map((format) => ({
+                name: format.label,
+                url: `${SITE_URL}/formats/${format.id}`,
+              })),
+            }),
+          ]}
+        />
+      }
+    >
+      {({ theme: t }) => (
+        <>
+          <h1 style={{ ...H1_STYLE, marginBottom: "1.5rem" }}>Lens Image Formats</h1>
 
-      <PageNavBar
-        theme={t}
-        themeMode={themeMode}
-        highContrast={highContrast}
-        onToggleTheme={toggleTheme}
-        onToggleHC={toggleHC}
-      >
-        <Link to="/" style={{ color: t.descLinkColor, textDecoration: "none" }}>
-          Home
-        </Link>
-        <span style={{ color: t.muted, margin: "0 0.35em" }}>/</span>
-        <span style={{ color: t.body }}>Formats</span>
-      </PageNavBar>
-
-      <div style={PAGE_BASE_STYLE}>
-        <h1 style={{ ...H1_STYLE, marginBottom: "1.5rem" }}>Lens Image Formats</h1>
-
-        {IMAGE_FORMAT_OPTIONS.map((format) => {
-          const details = getImageFormatDetails(format.id);
-          return (
-            <div
-              key={format.id}
-              style={{ padding: "1rem 0.75rem", marginBottom: "0.75rem", borderBottom: `1px solid ${t.panelBorder}` }}
-            >
-              <Link
-                to={`/formats/${format.id}/`}
-                style={{ color: t.descLinkColor, textDecoration: "none", fontSize: "1rem", fontWeight: 600 }}
+          {IMAGE_FORMAT_OPTIONS.map((format) => {
+            const details = getImageFormatDetails(format.id);
+            return (
+              <div
+                key={format.id}
+                style={{ padding: "1rem 0.75rem", marginBottom: "0.75rem", borderBottom: `1px solid ${t.panelBorder}` }}
               >
-                {format.label}
-              </Link>
-              <span style={{ color: t.label, fontSize: "0.8rem", marginLeft: "0.5rem" }}>
-                ({format.count} {format.count === 1 ? "lens" : "lenses"})
-              </span>
-              {details && (
-                <p style={{ fontSize: "0.8rem", color: t.subtitle, lineHeight: 1.5, marginTop: "0.5rem" }}>
-                  {details.summary}
-                </p>
-              )}
-            </div>
-          );
-        })}
-      </div>
-    </div>
+                <Link
+                  to={`/formats/${format.id}/`}
+                  style={{ color: t.descLinkColor, textDecoration: "none", fontSize: "1rem", fontWeight: 600 }}
+                >
+                  {format.label}
+                </Link>
+                <span style={{ color: t.label, fontSize: "0.8rem", marginLeft: "0.5rem" }}>
+                  ({format.count} {pluralize(format.count, "lens")})
+                </span>
+                {details && (
+                  <p style={{ fontSize: "0.8rem", color: t.subtitle, lineHeight: 1.5, marginTop: "0.5rem" }}>
+                    {details.summary}
+                  </p>
+                )}
+              </div>
+            );
+          })}
+        </>
+      )}
+    </StaticPageShell>
   );
 }

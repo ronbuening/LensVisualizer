@@ -587,6 +587,11 @@ function validateImageFormat(value: unknown, errors: string[]): void {
  * @param data  — LENS_DATA object (after defaults merging)
  * @returns       array of human-readable error messages (empty = valid)
  */
+/* Lens keys become public /lens/<key> URLs and `cfg` query values, so they must
+   stay URL-safe. lensViewUrlState.ts parses `cfg` against this same pattern —
+   a key this validator accepts must round-trip through that parser. */
+export const LENS_KEY_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+
 export default function validateLensData(data: UntrustedLensData): string[] {
   const errors: string[] = [];
 
@@ -612,6 +617,11 @@ export default function validateLensData(data: UntrustedLensData): string[] {
 
   for (const f of requiredStrings) {
     if (typeof data[f] !== "string" || !data[f]) errors.push(`Missing or empty required string field: "${f}"`);
+  }
+  if (typeof data.key === "string" && data.key && !LENS_KEY_PATTERN.test(data.key)) {
+    errors.push(
+      `"key" must be lowercase a-z/0-9 words separated by single hyphens (it becomes the /lens/ URL and cfg query value), got "${data.key}"`,
+    );
   }
   for (const f of requiredNumbers) {
     if (typeof data[f] !== "number" || !isFinite(data[f]))

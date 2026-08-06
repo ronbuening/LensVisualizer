@@ -102,9 +102,55 @@ export const SLIDER_VALUE_BASE: Readonly<CSSProperties> = Object.freeze({
   transition: "color 0.3s",
 });
 
+/** Keep accessible text in the document while removing it from visual layout. */
+export const VISUALLY_HIDDEN: Readonly<CSSProperties> = Object.freeze({
+  position: "absolute",
+  width: 1,
+  height: 1,
+  overflow: "hidden",
+});
+
 /* =====================================================================
  * §2  THEME-AWARE FACTORIES — each returns a fresh style object
  * ===================================================================== */
+
+/** Standard themed panel surface used by cards, sidebars, and popovers. */
+export function panelCard(t: Theme, opts?: { borderRadius?: number }): CSSProperties {
+  return {
+    background: t.panelBg,
+    border: `1px solid ${t.panelBorder}`,
+    borderRadius: opts?.borderRadius ?? 6,
+  };
+}
+
+/** Muted inline value/count appended to a section or filter heading. */
+export function countSuffix(
+  t: Theme,
+  opts?: { fontSize?: CSSProperties["fontSize"]; marginLeft?: CSSProperties["marginLeft"] },
+): CSSProperties {
+  return {
+    color: t.label,
+    fontSize: opts?.fontSize ?? "0.75rem",
+    marginLeft: opts?.marginLeft ?? "0.5rem",
+    fontWeight: 400,
+  };
+}
+
+/**
+ * Theme-aware search input chrome. Keep text at 16px because iOS Safari
+ * zooms focused form controls whose rendered text is smaller.
+ */
+export function searchInput(t: Theme): CSSProperties {
+  return {
+    background: t.selectorBg,
+    color: t.selectorText,
+    border: `1px solid ${t.selectorBorder}`,
+    borderRadius: 6,
+    padding: "0.7rem 0.8rem",
+    font: "inherit",
+    fontSize: "16px",
+  };
+}
 
 /**
  * Toggle button group container (rounded pill wrapping multiple buttons).

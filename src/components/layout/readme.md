@@ -82,7 +82,7 @@ flowchart LR
 
 - Direct source files: 16
 - Direct subfolders: 2
-- Main outbound areas: src/types (22), package:react (12), src/components/hooks (12), same folder (11), src/utils/state (10), src/utils/theme (10), src/utils/style (8), src/utils/catalog (5), +21 more
+- Main outbound areas: src/types (22), src/components/hooks (13), package:react (12), same folder (11), src/utils/state (10), src/utils/theme (10), src/utils/style (9), src/utils/catalog (5), +21 more
 - External consumers: src/comparison, src/components/controls, src/components/layout, src/pages/ArticlePage.tsx, src/pages/ArticlesPage.tsx, src/pages/AuthorPage.tsx, src/pages/AuthorsIndexPage.tsx, src/pages/ComparePage.tsx, +14 more
 
 ## Subfolders
@@ -96,19 +96,19 @@ flowchart LR
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
-| `AnalysisDrawer.tsx` | React component module | src/types (2), package:react, src/utils/usePrefersReducedMotion.ts | same folder (2) | AnalysisTab, default, AnalysisDrawer |
+| `AnalysisDrawer.tsx` | React component module | src/types (2), package:react, src/utils/style, src/utils/usePrefersReducedMotion.ts | same folder (2) | AnalysisTab, default, AnalysisDrawer |
 | `BreadcrumbBar.tsx` | React component module | src/pages/lensIndex (3), src/utils/catalog (3), src/utils/theme (3), same folder (2), src/utils/state (2), +6 more | same folder | default, BreadcrumbBar |
 | `ControlsBar.tsx` | React component module | src/types (2), package:react, src/components/controls, src/utils/featureFlags.ts, src/utils/state, +1 more | same folder | default, ControlsBar |
 | `DescriptionPanel.tsx` | React component module | package:react, src/components/markdown, src/types | same folder (2) | default, DescriptionPanel |
 | `DiagramControlPanel.tsx` | React component module | src/types (4), src/components/display (2), src/components/controls | same folder | default, DiagramControlPanel |
-| `DropdownPanel.tsx` | React component module | package:react (2), package:react-dom, src/types | same folder, src/components/controls | DropdownPanelPos, default |
+| `DropdownPanel.tsx` | React component module | package:react (2), package:react-dom, src/components/hooks, src/types | same folder, src/components/controls | DropdownPanelPos, default |
 | `LensDiagramPanel.tsx` | React component module | src/components/hooks (8), same folder (3), src/types (2), src/utils/state (2), package:react, +8 more | same folder, src/comparison | default, LensDiagramPanel |
 | `LensViewer.tsx` | React component module | src/utils/state (5), same folder (3), src/components/hooks (2), src/utils/theme (2), package:react, +13 more | src/pages/ComparePage.tsx, src/pages/LensPage.tsx | default, LensVisualization |
 | `OverlayModal.tsx` | React component module | package:react, src/components/hooks, src/types, src/utils/style, src/utils/usePrefersReducedMotion.ts | same folder (2) | default, OverlayModal |
-| `PageNavBar.tsx` | React component module | src/utils/theme (3), package:react, package:react-router, src/types, src/utils/style, +1 more | same folder, src/pages/ArticlePage.tsx, src/pages/ArticlesPage.tsx, src/pages/AuthorPage.tsx, src/pages/AuthorsIndexPage.tsx, +12 more | default, PageNavBar |
+| `PageNavBar.tsx` | React component module | src/utils/theme (3), package:react, package:react-router, src/types, src/utils/style, +1 more | same folder, src/pages/HomePage.tsx, src/pages/LensIndexPage.tsx | default, PageNavBar |
 | `PanelOverlay.tsx` | React component module | package:react, src/components/hooks, src/types, src/utils/style, src/utils/usePrefersReducedMotion.ts | same folder | default, PanelOverlay |
 | `PrimerToggleButton.tsx` | React component module | src/types | same folder | default, PrimerToggleButton |
 | `SingleLensContent.tsx` | React component module | same folder (2), src/types (2), src/utils/featureFlags.ts | same folder | default, SingleLensContent |
-| `StaticPageShell.tsx` | React component module | package:react, package:react-router, same folder, src/types, src/utils/seo, +2 more | src/pages/UpdatesPage.tsx | default, StaticPageShell |
+| `StaticPageShell.tsx` | React component module | package:react, package:react-router, same folder, src/types, src/utils/seo, +2 more | src/pages/ArticlePage.tsx, src/pages/ArticlesPage.tsx, src/pages/AuthorPage.tsx, src/pages/AuthorsIndexPage.tsx, src/pages/FormatPage.tsx, +10 more | default, StaticPageShell |
 | `TopBar.tsx` | React component module | src/components/controls, src/components/display, src/types, src/utils/catalog, src/utils/style | same folder | default, TopBar |
 | `ViewToggleBar.tsx` | React component module | src/types, src/utils/style | same folder | default, ViewToggleBar |

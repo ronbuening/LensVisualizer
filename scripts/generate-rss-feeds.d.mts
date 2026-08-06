@@ -1,10 +1,6 @@
-export interface FeedFreshness {
-  publishedOn: string;
-  publishedAt?: string;
-  publishedCommit?: string | null;
-  lastModified: string;
-  lastModifiedAt?: string;
-  lastModifiedCommit?: string | null;
+import type { FreshnessEntry } from "./build-metadata-lib.mjs";
+
+export interface FeedFreshness extends FreshnessEntry {
   publicationOrder?: number;
 }
 

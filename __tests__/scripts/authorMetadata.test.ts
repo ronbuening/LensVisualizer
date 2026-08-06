@@ -5,6 +5,7 @@
 import { describe, expect, it } from "vitest";
 import { buildAuthorMetadata, buildAssigneeMetadata } from "../../scripts/author-metadata.mjs";
 import { AUTHORS } from "../../src/utils/catalog/authorCatalog.js";
+import { normalizeSearchText } from "../../src/utils/catalog/searchCatalog.js";
 
 describe("author metadata generation", () => {
   it("deduplicates authors and counts unique patents", () => {
@@ -44,6 +45,14 @@ describe("author metadata generation", () => {
     const [author] = buildAuthorMetadata([{ key: "a", patentNumber: "US 1", patentAuthors: [name], visible: true }]);
     expect(author.slug).toBe(expected);
   });
+
+  it.each(["Josef Weiß", "Günter Klemt", "Jérôme Ø. Håkonsen", "Łukasz Đurić"])(
+    "keeps slug and search transliteration aligned for %j",
+    (name) => {
+      const [author] = buildAuthorMetadata([{ key: "a", patentNumber: "US 1", patentAuthors: [name], visible: true }]);
+      expect(author.slug).toBe(normalizeSearchText(name).replaceAll(" ", "-"));
+    },
+  );
 
   it("pins the stableHash suffix used by collision-disambiguated slugs", () => {
     // Both names share the base "josef-weiss", so each slug carries its FNV-1a hash.

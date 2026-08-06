@@ -6,7 +6,7 @@ Read this for reducer state, preferences, URL sync, contexts, theme tokens, meta
 
 Lens viewer state is split into these slices:
 
-- `lens` - selected lens and comparison identity.
+- `lens` - selected lens, single-lens optical configuration, and comparison identity.
 - `display` - mobile/desktop view, theme, high contrast, scale behavior.
 - `rays` - on-axis/off-axis/chromatic display toggles, ray tracing mode, and persisted ray density.
 - `sliders` - focus, zoom, optional aberration-control, aperture, optional PC shift/tilt, and related numeric UI state.
@@ -45,9 +45,12 @@ Canonical lens identity stays in route paths: `/lens/:slug` and `/compare/:slugA
 shareable view state:
 
 - Stable slider params remain unversioned: `focus`, `aberration`, `aperture`, `zoom`, `shift`, and `tilt`.
-- Versioned v1 view params are `v=1`, `el`, `a_el`, `b_el`, `gm`, `lca`, `ptz`, `mv`, `ad`, and `tab`.
+- Versioned v1 view params are `v=1`, `el`, `a_el`, `b_el`, `gm`, `chr`, `ptz`, `mv`, `ad`, `tab`, and `cfg`.
+- Single-lens optical configuration uses `cfg`; the parser accepts only a bounded catalog-key shape, and lens-aware
+  initialization/popstate handling validates it against the canonical lens's `opticalConfiguration` group. Invalid,
+  stale, and cross-group values fall back to the canonical prescription and disappear on the next URL write.
 - Single-lens selection uses `el`; comparison selection uses `a_el` and `b_el`.
-- Overlay flags: `gm` (Abbe/glass-map modal), `lca` (chromatic-aberration overlay), `ptz` (Petzval-curvature overlay),
+- Overlay flags: `gm` (Abbe/glass-map modal), `chr` (chromatic-aberration overlay), `ptz` (Petzval-curvature overlay),
   `mv` (lens-group movement overlay mode: `focus`, `zoom`, or `combined`), `ad` (analysis drawer); `tab` names the
   active analysis drawer tab.
 - Boolean params decode strictly as `1` for true and `0` or omitted for false. Invalid values fall back to defaults.
@@ -59,6 +62,7 @@ shareable view state:
   because the cam meaning is lens-specific.
 - `ai` is reserved for future analysis-tab item state and should not be used until a concrete tab item UI exists.
 - Ray density intentionally stays out of this URL surface and persists only through localStorage preferences.
+- Comparison configuration identity stays in `/compare/:slugA/:slugB`, so `cfg` is ignored and omitted in compare mode.
 
 `useOverlayState` keeps only the aspheric-comparison element open state (per-element modal lifecycle that does not
 belong in a shareable URL). All other diagram overlays live in the panels slice.
@@ -105,7 +109,8 @@ JSON-LD helpers live under `src/utils/seo/`.
 | `assigneeCatalog.ts` | Generated assignee directory with slug and name lookup. |
 | `authorAssignees.ts` | Author directory entries stratified by assignee, plus the assignee filter used by `/authors`. |
 | `authorBiographies.ts` | Curated inventor biographies with sources, keyed by author name. |
-| `patentCatalog.ts` | Patent index built from lens summaries: records, jurisdiction labels, country/assignee groups, Espacenet URLs. |
+| `patentRecords.ts` | Pure patent-record aggregation and jurisdiction labels — the shared leaf under `patentCatalog.ts` and `authorCatalog.ts` (no module-scope index). |
+| `patentCatalog.ts` | Patent index built from lens summaries: records, country/assignee groups, Espacenet URLs (re-exports the leaf's aggregator). |
 | `searchCatalog.ts` | Ranked lens-name/patent-number/author search over generated metadata. |
 | `relationshipGraph.ts` | Focus-party patent relationship graph consumed by the relationship map page. |
 | `makerDetails.ts` | Maker display names, descriptions, and metadata. |

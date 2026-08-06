@@ -898,7 +898,7 @@ feature lands once, not three times. Follow the Stage 6 order after the catalog 
 
 ### U1. One media-query hook (the #639 four-file bug, fixed structurally)
 
-- [ ] Effort: M · Impact: high · Risk: med
+- [x] Effort: M · Impact: high · Risk: med
 
 Three-plus implementations with three SSR/hydration strategies:
 `src/utils/useMediaQuery.ts` ~12–14 (initial read from `window`, server default `true`);
@@ -928,7 +928,7 @@ Rollback: revert; the private copies return.
 
 ### U2. Adopt `StaticPageShell` across the 15 hand-rolled pages
 
-- [ ] Effort: M · Impact: high · Risk: low-med
+- [x] Effort: M · Impact: high · Risk: low-med
 
 `src/components/layout/StaticPageShell.tsx` ~25–54 already implements the full page chrome (theme
 wrapper, `PageNavBar`, data-driven breadcrumbs, `PAGE_BASE_STYLE` container) but has ONE consumer
@@ -959,7 +959,7 @@ Rollback: pages are migrated one commit each — revert individually.
 
 ### U3. Shared patent-attribution components: `LensEntryLink`, `InventorLinks`/`PatentPartyList`
 
-- [ ] Effort: M · Impact: med-high · Risk: low
+- [x] Effort: M · Impact: med-high · Risk: low
 
 Found independently by two reviewers. Three near-identical PatentCards
 (`AuthorPage.tsx` ~78–134, `PatentsIndexPage.tsx` ~38–110, `PatentDetailCard.tsx` ~67–130 — whose
@@ -988,7 +988,7 @@ Out of scope: full card unification (the two blocks above are the safe 80%).
 
 ### U4. Shared style vocabulary: panel card, visually-hidden, role chip, count suffix, search input, pluralize
 
-- [ ] Effort: M · Impact: med · Risk: low
+- [x] Effort: M · Impact: med · Risk: low
 
 `src/utils/style/styles.ts` declares itself the home for patterns used by 2+ components, yet July
 re-typed: the panel-card literal (12 sites, 8 byte-compatible: `AuthorsIndexPage` ~198–203,
@@ -1010,7 +1010,7 @@ replaced literals drop to ~0.
 
 ### U5. Dismissable dropdowns for the two hand-rolled suggestion lists
 
-- [ ] Effort: S · Impact: med · Risk: low-med
+- [x] Effort: S · Impact: med · Risk: low-med
 
 `RelationshipEntityPicker.tsx` ~108–154 hand-rolls a suggestion dropdown with no Escape close, no
 outside-click close, no `aria-expanded`/listbox semantics — it floats over the map and cannot be
@@ -1029,7 +1029,7 @@ Verification: gate passes; Escape and outside-click dismiss both lists.
 
 ### U6. Extract the thrice-repeated filter-section template in `LensIndexFilterPanel`
 
-- [ ] Effort: S · Impact: low · Risk: low
+- [x] Effort: S · Impact: low · Risk: low
 
 `LensIndexFilterPanel.tsx` ~384–480: the Maker, Mount, and Image Format sections are structurally
 identical (h3 + "N selected" + "All X" clear chip + `aria-pressed` option chips), differing only
@@ -1042,7 +1042,7 @@ Verification: gate passes.
 
 ### U7. Make TC/optical-configuration state URL-shareable and compare-reachable **[changelog]**
 
-- [ ] Effort: M · Impact: med · Risk: med (lens identity, URL hydration, hidden catalog keys)
+- [x] Effort: M · Impact: med · Risk: med (lens identity, URL hydration, hidden catalog keys)
 
 Maintainer decision: change the deliberate viewer-local design. Today
 `LensViewer.tsx` ~124–141 keeps `selectedConfigurationKey` in component state (comment: "the
@@ -1084,7 +1084,7 @@ Do C1 before C3; N3's pin tests before C4.
 
 ### C1. One patent aggregator (fixes divergent year/order semantics)
 
-- [ ] Effort: M · Impact: high · Risk: low-med
+- [x] Effort: M · Impact: high · Risk: low-med
 
 Two parallel "one record per patent" aggregators with divergent semantics:
 `patentsForParty` (`authorCatalog.ts` ~74–121) sets `patentYear` from the FIRST matching lens and
@@ -1112,7 +1112,7 @@ fixes (year now backfills on author pages).
 
 ### C2. One "group under named parties + fallback bucket" implementation
 
-- [ ] Effort: S · Impact: med · Risk: low-med
+- [x] Effort: S · Impact: med · Risk: low-med
 
 Three implementations with three fallback vocabularies: `groupAuthorPatents`
 (`authorCatalog.ts` ~134–160, ids `named:${party}`/`fallback`), inline assignee grouping
@@ -1127,7 +1127,7 @@ Verification: gate passes; N3 anchor pins unchanged; all three existing grouping
 
 ### C3. Precompute the author directory; memoize AuthorPage derivations
 
-- [ ] Effort: S · Impact: med · Risk: low
+- [x] Effort: S · Impact: med · Risk: low
 
 `authorAssignees.ts` ~18–26 runs 375 × full-504-summary scans at module evaluation of the
 `/authors` chunk (~11 ms Node, 30–50 ms low-end mobile, on the load path); `AuthorPage.tsx`
@@ -1146,7 +1146,7 @@ Verification: gate passes; `searchPages.test.tsx` unchanged.
 
 ### C4. Single-source slug transliteration + FNV-1a hash (script ↔ runtime)
 
-- [ ] Effort: S · Impact: med · Risk: low-med
+- [x] Effort: S · Impact: med · Risk: low-med
 
 The diacritic transliteration table exists twice (`scripts/author-metadata.mjs` ~22–36 vs
 `searchCatalog.ts` `normalizeSearchText` ~40–53) and the FNV-1a hash twice
@@ -1168,7 +1168,7 @@ Verification: gate passes; `node scripts/generate-build-metadata.mjs` produces b
 
 ### C5. Precompute search normalization; skip disabled suggestion scans
 
-- [ ] Effort: S · Impact: low-med (grows with catalog) · Risk: low
+- [x] Effort: S · Impact: low-med (grows with catalog) · Risk: low
 
 `searchCatalog()` re-normalizes all 504 names per call — inside filter AND sort comparators
 (`searchCatalog.ts` ~73–107); `/search` runs two full scans per keystroke because
@@ -1182,7 +1182,7 @@ Verification: gate passes; `searchCatalog.test.ts` + `searchPages.test.tsx` pin 
 
 ### C6. One metadata type + one lens-ref type for generated JSON; guard the casts
 
-- [ ] Effort: S · Impact: low-med · Risk: low
+- [x] Effort: S · Impact: low-med · Risk: low
 
 `AuthorMetadata`/`AssigneeMetadata`/`GeneratedAuthorMetadata` declare the same shape thrice;
 the lens-ref shape thrice (`authorCatalog.ts` ~21–25, `patentCatalog.ts` ~12–16,
@@ -1197,7 +1197,7 @@ Verification: gate passes.
 
 ### C7. One role vocabulary: `PatentPartyRole`
 
-- [ ] Effort: S · Impact: low · Risk: low
+- [x] Effort: S · Impact: low · Risk: low
 
 `"author" | "assignee"` (authorCatalog, relationshipGraph) vs `"inventor" | "assignee"`
 (groupAnchors, lensIndex GroupMode) forces seam translations (`AuthorPage.tsx` ~152). Standardize
@@ -1209,7 +1209,7 @@ Verification: gate passes; N3 pins unchanged.
 
 ### C9. One publication-order comparator
 
-- [ ] Effort: S · Impact: med · Risk: low
+- [x] Effort: S · Impact: med · Risk: low
 
 `comparePublicationEntries` (`build-metadata-lib.mjs` ~221–240) vs `newestFirst`
 (`generate-rss-feeds.mjs` ~96–107) re-implement the timestamp/commit/name fallback chain with
@@ -1225,7 +1225,7 @@ regenerated feeds byte-identical.
 
 ### C10. Derive feed paths from one definition
 
-- [ ] Effort: S · Impact: low-med · Risk: low
+- [x] Effort: S · Impact: low-med · Risk: low
 
 `/feeds/{lenses,articles,changelog}.xml` is hardcoded in five places: `feedMetadata.ts` ~1–3,
 `FEED_DEFINITIONS` (`generate-rss-feeds.mjs` ~22–41), AGAIN as raw filenames in `writeRssFeeds`
