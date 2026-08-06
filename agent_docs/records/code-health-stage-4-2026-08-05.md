@@ -211,3 +211,28 @@ golden, and catalog trace suites green; `npm run generate:mirror-reports` byte-i
   (locks the loader contract) and asserts the `--sd` rejection.
 
 Verification: gate passed (236 files / 2813 tests).
+
+### D5 — slimmed generated reports (2 commits, one per report)
+
+- Of the audit's four targets, only two still exceeded the 300 KiB floor in the current checkout
+  (`sellmeier-coverage` at 220 KB and the six-digit scans at ≤195 KB were already under it; the audit's
+  MB figures were cumulative git-history blobs).
+- `lens-mount-svg-specifications.md` 2.17 MB → 228 KB: inline per-view SVG markup (already committed as
+  standalone `generated/mounts/*.svg`) replaced with element/layer counts + an FNV-1a content hash; the
+  per-mount machine-readable JSON blocks (emitted by construction from `src/mounts/*.mount.ts`) replaced
+  with byte counts + hashes. Coverage matrix and all dimensional/geometry/coupling/source tables intact.
+- `glass-ambiguities.generated.md` 796 KB → 305 KB: per-element rows (1367) collapsed to one rollup row
+  per distinct (annotation, stored coordinates) ambiguity (1033) with occurrence count and one example
+  locator; runner-up candidates listed by name/vendor/evidence (per-candidate Δn/Δν residuals dropped —
+  the deciding residual stays in the reason, full numbers via `explainCompatibleGlassResolution`);
+  index-residual reasons compressed to two-significant-digit magnitudes. Note: 305 KB sits close under
+  the 300 KiB (307,200 B) floor — if catalog growth pushes it over, the next lever is plain-text example
+  locators instead of markdown links.
+- Consumer check before each change: no doc cites the inline SVG markup or the JSON blocks; the
+  relabel-followup/buildout docs cite "selected row + tie-break explanation + candidates in resolver
+  order," all preserved. `agent_docs/README.md`'s generated-report index describes both new shapes.
+- Deterministic-skip preserved: with `patents/` hidden, both patent-inventory scans pass without
+  rewriting their reports (verified directly).
+
+Verification: gate passed (236 files / 2813 tests);
+`find agent_docs/generated -type f -size +300k` returns nothing. **Stage 4 complete.**

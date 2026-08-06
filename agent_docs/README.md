@@ -61,14 +61,19 @@ Individual report commands:
 - [`generated/catalog-mismatches.generated.md`](generated/catalog-mismatches.generated.md) — `npm test -- catalogMismatchScan`
 - [`generated/glass-relabel-candidates.generated.md`](generated/glass-relabel-candidates.generated.md) — `npm test -- glassRelabelCandidatesScan`
 - [`generated/glass-relabel-by-lens.generated.md`](generated/glass-relabel-by-lens.generated.md) — `npm test -- glassRelabelByLensScan`
-- [`generated/glass-ambiguities.generated.md`](generated/glass-ambiguities.generated.md) — `npm test -- glassAmbiguityScan`
+- [`generated/glass-ambiguities.generated.md`](generated/glass-ambiguities.generated.md) — `npm test -- glassAmbiguityScan`;
+  one rollup row per distinct (annotation, stored coordinates) ambiguity with an occurrence count, the
+  selected row + tie-break reason, and runner-up names — per-candidate residuals come from
+  `explainCompatibleGlassResolution`, not the committed report
 - [`generated/six-digit-glass-codes.generated.md`](generated/six-digit-glass-codes.generated.md) — `npm test -- sixDigitGlassCodeScan`
 - [`generated/six-digit-glass-codes-missing-sellmeier.generated.md`](generated/six-digit-glass-codes-missing-sellmeier.generated.md) — `npm test -- sixDigitGlassCodeScan`
 - [`generated/six-digit-glass-codes-missing-sellmeier-reviewed.md`](generated/six-digit-glass-codes-missing-sellmeier-reviewed.md) — manual review sidecar; preserve it when regenerating reports
 - [`generated/sellmeier-coverage.generated.md`](generated/sellmeier-coverage.generated.md) — `npm test -- sellmeierCoverageScan`
 - [`generated/glass-coverage-opportunities.generated.md`](generated/glass-coverage-opportunities.generated.md) — `npm test -- glassCoverageOpportunitiesScan`
 - [`generated/mirror-fixtures.generated.md`](generated/mirror-fixtures.generated.md) — `npm test -- mirrorFixtureAuthoringReport`
-- [`generated/lens-mount-svg-specifications.md`](generated/lens-mount-svg-specifications.md) + [`generated/mounts/`](generated/mounts/) — `npm test -- mountSvgSpecificationsReport`
+- [`generated/lens-mount-svg-specifications.md`](generated/lens-mount-svg-specifications.md) + [`generated/mounts/`](generated/mounts/) — `npm test -- mountSvgSpecificationsReport`;
+  the spec records figure element counts + content hashes and machine-block sizes + hashes — full SVG
+  markup lives in the committed `generated/mounts/*.svg` files and diffable geometry in `src/mounts/`
 
 The `sixDigitGlassCodeScan` and `glassCoverageOpportunitiesScan` reports embed match statuses against the untracked
 local `patents/` PDF inventory. Those scans skip the rewrite when the inventory is empty (fresh worktrees, CI), so

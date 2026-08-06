@@ -754,7 +754,7 @@ Verification: gate passes (docDrift validates moved path references).
 
 ### D5. Slim the largest generated reports (keep committed)
 
-- [ ] Effort: M · Impact: high · Risk: low-med
+- [x] Effort: M · Impact: high · Risk: low-med
 
 Maintainer decision: keep everything agents read committed; shrink payloads. Regenerated reports
 account for ~110 MB of git blob history: `sellmeier-coverage.generated.md` 28.6 MB across 156
