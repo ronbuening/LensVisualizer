@@ -25,7 +25,7 @@ import {
 import { useActiveHoliday } from "./useActiveHoliday.js";
 import type { HolidayTheme } from "./holidayThemes.js";
 import type { Theme } from "../../types/theme.js";
-import { subscribeToMediaQuery } from "../mediaQuery.js";
+import useMediaQuery from "../useMediaQuery.js";
 
 interface PageThemeToggle {
   theme: Theme;
@@ -41,18 +41,13 @@ interface PageThemeToggle {
 export function usePageThemeToggle(): PageThemeToggle {
   const [themeMode, setThemeMode] = useState<ThemeMode>("auto");
   const [highContrast, setHighContrast] = useState(false);
-  const [systemDark, setSystemDark] = useState(true); // SSR-safe default
+  const systemDark = useMediaQuery("(prefers-color-scheme: dark)", { ssrDefault: true });
 
-  /* On mount: load prefs and subscribe to system preference changes */
+  /* On mount: load the stored theme preferences. */
   useEffect(() => {
     const resolved = resolveThemePreferences(loadPrefs(), readSystemThemePreferences());
     setThemeMode(resolved.themeMode);
     setHighContrast(resolved.highContrast);
-
-    const mq = window.matchMedia("(prefers-color-scheme: dark)");
-    setSystemDark(mq.matches);
-    const handler = (e: MediaQueryListEvent) => setSystemDark(e.matches);
-    return subscribeToMediaQuery(mq, handler);
   }, []);
 
   const persist = useCallback((mode: ThemeMode, hc: boolean) => {

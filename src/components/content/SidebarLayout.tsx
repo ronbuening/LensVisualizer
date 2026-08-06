@@ -17,8 +17,7 @@
  * full-width with no reserved column.
  */
 
-import { useEffect, useState } from "react";
-import { subscribeToMediaQuery } from "../../utils/mediaQuery.js";
+import useMediaQuery from "../../utils/useMediaQuery.js";
 
 interface SidebarLayoutProps {
   /** The sidebar panel, or `null`/`false` to render the content full-width. */
@@ -36,19 +35,6 @@ interface SidebarLayoutProps {
   stackedMaxWidth?: number;
 }
 
-/** Returns `false` on the server and first client render, then tracks `query`. */
-function useMediaQueryMatch(query: string): boolean {
-  const [matches, setMatches] = useState(false);
-  useEffect(() => {
-    if (typeof window === "undefined" || !window.matchMedia) return;
-    const mql = window.matchMedia(query);
-    const handler = () => setMatches(mql.matches);
-    handler();
-    return subscribeToMediaQuery(mql, handler);
-  }, [query]);
-  return matches;
-}
-
 export default function SidebarLayout({
   sidebar,
   children,
@@ -58,7 +44,7 @@ export default function SidebarLayout({
   offsetTop = 88,
   stackedMaxWidth = 360,
 }: SidebarLayoutProps) {
-  const sideBySide = useMediaQueryMatch(sideBySideQuery);
+  const sideBySide = useMediaQuery(sideBySideQuery, { ssrDefault: false });
 
   if (!sidebar) return <>{children}</>;
 

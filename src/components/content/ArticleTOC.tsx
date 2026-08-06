@@ -12,7 +12,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { extractHeadingsFromAst } from "../markdown/extractHeadingsFromAst.js";
 import type { Theme } from "../../types/theme.js";
-import { subscribeToMediaQuery } from "../../utils/mediaQuery.js";
+import useMediaQuery from "../../utils/useMediaQuery.js";
 import { STICKY_NAV_SCROLL_MARGIN } from "../../utils/style/pageStyles.js";
 
 export interface TOCHeading {
@@ -49,18 +49,6 @@ export const TOC_OBSERVER_BOTTOM_ROOT_MARGIN = "-35%";
  */
 export function extractTOCHeadings(markdown: string): TOCHeading[] {
   return extractHeadingsFromAst(markdown);
-}
-
-function useMediaQueryMatch(query: string): boolean {
-  const [matches, setMatches] = useState(false);
-  useEffect(() => {
-    if (typeof window === "undefined" || !window.matchMedia) return;
-    const mql = window.matchMedia(query);
-    const handler = () => setMatches(mql.matches);
-    handler();
-    return subscribeToMediaQuery(mql, handler);
-  }, [query]);
-  return matches;
 }
 
 /** Track the currently-active heading using the document positions. */
@@ -144,7 +132,7 @@ export default function ArticleTOC({
   wideQuery = "(min-width: 1200px)",
 }: ArticleTOCProps) {
   const headings = useMemo(() => extractTOCHeadings(markdown), [markdown]);
-  const isWide = useMediaQueryMatch(wideQuery);
+  const isWide = useMediaQuery(wideQuery, { ssrDefault: false });
   const [narrowOpen, setNarrowOpen] = useState(false);
   const headingIds = useMemo(() => headings.map((h) => h.id), [headings]);
   const activeId = useActiveHeading(headingIds, offsetTop);

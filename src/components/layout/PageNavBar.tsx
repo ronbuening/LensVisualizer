@@ -35,7 +35,7 @@ export default function PageNavBar({
   onToggleHC,
   children,
 }: PageNavBarProps) {
-  const isWide = useMediaQuery("(min-width: 720px)");
+  const isWide = useMediaQuery("(min-width: 720px)", { ssrDefault: false });
   const padding = isWide ? "6px 24px" : "6px 12px";
   const holiday = useActiveHoliday();
   const slot = themeSlotDisplay(themeMode, holiday);

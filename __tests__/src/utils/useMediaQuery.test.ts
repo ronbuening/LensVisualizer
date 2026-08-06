@@ -1,6 +1,9 @@
 // @vitest-environment jsdom
 
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
+import { createElement } from "react";
+import { renderToString } from "react-dom/server";
+import { hydrateRoot } from "react-dom/client";
 import { renderHook, act } from "@testing-library/react";
 import useMediaQuery from "../../../src/utils/useMediaQuery.js";
 
@@ -40,6 +43,33 @@ afterEach(() => {
 });
 
 describe("useMediaQuery", () => {
+  it.each([true, false])("renders the explicit server default %s before effects run", (ssrDefault) => {
+    currentMatches = !ssrDefault;
+    const html = renderToString(
+      createElement(() => (useMediaQuery("(min-width: 900px)", { ssrDefault }) ? "match" : "no match")),
+    );
+
+    expect(html).toBe(ssrDefault ? "match" : "no match");
+  });
+
+  it("hydrates with the server default before syncing a narrow viewport", async () => {
+    currentMatches = false;
+    const ResponsiveProbe = () =>
+      useMediaQuery("(min-width: 720px)", { ssrDefault: true }) ? "wide layout" : "narrow layout";
+    const container = document.createElement("div");
+    container.innerHTML = renderToString(createElement(ResponsiveProbe));
+    const consoleError = vi.spyOn(console, "error").mockImplementation(() => undefined);
+
+    let root: ReturnType<typeof hydrateRoot> | undefined;
+    await act(async () => {
+      root = hydrateRoot(container, createElement(ResponsiveProbe));
+    });
+
+    expect(container.textContent).toBe("narrow layout");
+    expect(consoleError.mock.calls.flat().join(" ")).not.toMatch(/hydration|did not match/i);
+    act(() => root?.unmount());
+  });
+
   it("returns initial match state", () => {
     currentMatches = true;
     // Re-stub with updated currentMatches
@@ -47,19 +77,19 @@ describe("useMediaQuery", () => {
       "matchMedia",
       vi.fn((query: string) => createMockMQL(query)),
     );
-    const { result } = renderHook(() => useMediaQuery("(min-width: 900px)"));
+    const { result } = renderHook(() => useMediaQuery("(min-width: 900px)", { ssrDefault: false }));
     expect(result.current).toBe(true);
   });
 
   it("returns false when media query does not match", () => {
     currentMatches = false;
-    const { result } = renderHook(() => useMediaQuery("(min-width: 900px)"));
+    const { result } = renderHook(() => useMediaQuery("(min-width: 900px)", { ssrDefault: true }));
     expect(result.current).toBe(false);
   });
 
   it("updates when media query changes", () => {
     currentMatches = false;
-    const { result } = renderHook(() => useMediaQuery("(min-width: 900px)"));
+    const { result } = renderHook(() => useMediaQuery("(min-width: 900px)", { ssrDefault: false }));
     expect(result.current).toBe(false);
 
     /* Simulate viewport change */
@@ -73,7 +103,7 @@ describe("useMediaQuery", () => {
 
   it("cleans up listener on unmount", () => {
     currentMatches = false;
-    const { unmount } = renderHook(() => useMediaQuery("(min-width: 900px)"));
+    const { unmount } = renderHook(() => useMediaQuery("(min-width: 900px)", { ssrDefault: false }));
     expect(listeners.length).toBe(1);
     unmount();
     expect(listeners.length).toBe(0);
@@ -81,7 +111,7 @@ describe("useMediaQuery", () => {
 
   it("re-subscribes when query string changes", () => {
     currentMatches = false;
-    const { rerender } = renderHook(({ q }: { q: string }) => useMediaQuery(q), {
+    const { rerender } = renderHook(({ q }: { q: string }) => useMediaQuery(q, { ssrDefault: false }), {
       initialProps: { q: "(min-width: 900px)" },
     });
     expect(listeners.length).toBe(1);
@@ -92,7 +122,7 @@ describe("useMediaQuery", () => {
 
   it("re-syncs matches when the query string changes", () => {
     currentMatches = false;
-    const { result, rerender } = renderHook(({ q }: { q: string }) => useMediaQuery(q), {
+    const { result, rerender } = renderHook(({ q }: { q: string }) => useMediaQuery(q, { ssrDefault: false }), {
       initialProps: { q: "(min-width: 900px)" },
     });
     expect(result.current).toBe(false);
@@ -121,7 +151,7 @@ describe("useMediaQuery", () => {
       })),
     );
 
-    const { result, unmount } = renderHook(() => useMediaQuery("(min-width: 900px)"));
+    const { result, unmount } = renderHook(() => useMediaQuery("(min-width: 900px)", { ssrDefault: false }));
     expect(addListener).toHaveBeenCalledTimes(1);
     act(() => legacyListeners[0]({ matches: true } as MediaQueryListEvent));
     expect(result.current).toBe(true);

@@ -8,10 +8,13 @@
 import { useState, useEffect } from "react";
 import { subscribeToMediaQuery } from "./mediaQuery.js";
 
-export default function useMediaQuery(query: string): boolean {
-  const [matches, setMatches] = useState<boolean>(() =>
-    typeof window !== "undefined" ? window.matchMedia(query).matches : true,
-  );
+interface UseMediaQueryOptions {
+  /** Value rendered on the server and during the client's hydration pass. */
+  ssrDefault: boolean;
+}
+
+export default function useMediaQuery(query: string, { ssrDefault }: UseMediaQueryOptions): boolean {
+  const [matches, setMatches] = useState(ssrDefault);
   useEffect(() => {
     const mql = window.matchMedia(query);
     /* Re-sync on query change — the lazy initial state only runs for the first query */

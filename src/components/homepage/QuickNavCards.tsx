@@ -27,7 +27,7 @@ interface CardDef {
 }
 
 export default function QuickNavCards({ theme: t }: QuickNavCardsProps) {
-  const isWide = useMediaQuery("(min-width: 720px)");
+  const isWide = useMediaQuery("(min-width: 720px)", { ssrDefault: false });
   const makerCount = countMakers();
   const viewerLens = RECENT_LENS_KEYS.length > 0 ? RECENT_LENS_KEYS[0].key : SUMMARY_KEYS[0];
 

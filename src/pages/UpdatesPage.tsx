@@ -12,7 +12,7 @@ import { CHANGELOG_FEED_PATH, LENS_FEED_PATH } from "../utils/content/feedMetada
 import { H1_STYLE } from "../utils/style/pageStyles.js";
 
 export default function UpdatesPage() {
-  const isWide = useMediaQuery("(min-width: 720px)");
+  const isWide = useMediaQuery("(min-width: 720px)", { ssrDefault: false });
   const { hash } = useLocation();
 
   // RSS feed items deep-link to /updates#<changelogEntryId>. The browser's

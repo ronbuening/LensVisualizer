@@ -898,7 +898,7 @@ feature lands once, not three times. Follow the Stage 6 order after the catalog 
 
 ### U1. One media-query hook (the #639 four-file bug, fixed structurally)
 
-- [ ] Effort: M · Impact: high · Risk: med
+- [x] Effort: M · Impact: high · Risk: med
 
 Three-plus implementations with three SSR/hydration strategies:
 `src/utils/useMediaQuery.ts` ~12–14 (initial read from `window`, server default `true`);

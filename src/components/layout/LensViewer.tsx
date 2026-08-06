@@ -204,7 +204,7 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
 
   /* Theme selection: 2×2 matrix of dark/light × normal/high-contrast.
      dark===null means "auto" — resolved reactively via system media query. */
-  const systemDark = useMediaQuery("(prefers-color-scheme: dark)");
+  const systemDark = useMediaQuery("(prefers-color-scheme: dark)", { ssrDefault: true });
   const resolvedDark = resolveDarkPreference(dark, systemDark);
   const holiday = useActiveHoliday();
   const t = resolveActiveTheme(themeModeFromDarkPreference(dark), resolvedDark, highContrast, holiday);

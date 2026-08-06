@@ -18,7 +18,7 @@ export default function useLensState(
   initialLensKey?: string,
   initialLensKeyB?: string,
 ): [LensState, Dispatch<LensAction>, boolean] {
-  const isWide = useMediaQuery("(min-width: 900px)");
+  const isWide = useMediaQuery("(min-width: 900px)", { ssrDefault: false });
 
   const [state, dispatch] = useReducer(
     lensReducer,

@@ -113,7 +113,7 @@ export default function LensDiagramPanel({
     showCardinalHiatus,
     showCardinalTotalTrack,
   } = raysState;
-  const systemDark = useMediaQuery("(prefers-color-scheme: dark)");
+  const systemDark = useMediaQuery("(prefers-color-scheme: dark)", { ssrDefault: true });
   const dark = resolveDarkPreference(display.dark, systemDark);
   const {
     focusExpanded,

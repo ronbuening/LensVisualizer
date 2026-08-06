@@ -30,7 +30,7 @@ export default function HomePage() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const { theme: t, themeMode, highContrast, holiday, toggleTheme, toggleHC } = usePageThemeToggle();
-  const prefersDark = useMediaQuery("(prefers-color-scheme: dark)");
+  const prefersDark = useMediaQuery("(prefers-color-scheme: dark)", { ssrDefault: true });
 
   /* Redirect legacy ?lens=KEY URLs to /lens/KEY */
   useEffect(() => {
@@ -53,7 +53,6 @@ export default function HomePage() {
     }
   }, [searchParams, navigate]);
 
-  const isDesktop = useMediaQuery("(min-width: 720px)");
   const useDarkBrandAssets = themeMode === "auto" ? prefersDark : themeMode === "dark";
   const activeHoliday = themeMode === "auto" ? holiday : null;
   const heroBrandMark = activeHoliday?.brandMark ?? "/branding/mark-card.svg";
@@ -92,11 +91,18 @@ export default function HomePage() {
         />
         <QuickNavCards theme={t} />
         <IndexNavBar theme={t} />
-        <div style={isDesktop ? { display: "flex", gap: "2rem", alignItems: "flex-start" } : {}}>
-          <div style={isDesktop ? { flex: "1 1 0", minWidth: 0 } : {}}>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 320px), 1fr))",
+            gap: "2rem",
+            alignItems: "start",
+          }}
+        >
+          <div style={{ minWidth: 0 }}>
             <ArticleList articles={displayedArticles} theme={t} showMoreLink={showMoreLink} />
           </div>
-          <div style={isDesktop ? { flex: "1 1 0", minWidth: 0 } : {}}>
+          <div style={{ minWidth: 0 }}>
             <RecentLenses entries={RECENT_LENS_KEYS} theme={t} showUpdatesLink />
           </div>
         </div>

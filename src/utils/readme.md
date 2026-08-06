@@ -60,7 +60,7 @@ flowchart LR
 | `errorReporting.ts` | Error Reporting helper module | none | src/components/errors | REPO_URL, buildIssueURL |
 | `featureFlags.ts` | Feature Flags helper module | none | src/components/layout (5), src/components/controls (2), src/components/diagram (2), src/components/display (2), src/components/hooks (2), +3 more | ENABLE_UNIFORM_SCALING, ENABLE_ASPH_DIAMOND_FILL, ENABLE_EDGE_PROJECTION, ENABLE_REAL_RAY_LSA_DIAGNOSTIC, ENABLE_ANALYSIS_VIEW, ENABLE_CARDINAL_ELEMENTS |
 | `holidays.ts` | Holidays helper module | none | src/utils/theme (2), src/components/HolidayFavicon.tsx | HolidayId, HOLIDAY_IDS, isHolidayId, nthWeekdayOfMonth, computeEaster, getActiveHoliday, HolidayOverride, holidayOverrideFromSearch |
-| `mediaQuery.ts` | Media Query helper module | none | src/components/content (2), src/utils/theme, src/utils/useMediaQuery.ts | subscribeToMediaQuery |
+| `mediaQuery.ts` | Media Query helper module | none | src/utils/useMediaQuery.ts | subscribeToMediaQuery |
 | `perfProbe.ts` | Perf Probe helper module | none | src/components/display (6), src/benchmarks | probe, resetPerfProbe |
-| `useMediaQuery.ts` | React hook module | package:react, src/utils/mediaQuery.ts | src/components/homepage (3), src/components/layout (3), src/pages/HomePage.tsx, src/pages/UpdatesPage.tsx, src/utils/state, +1 more | default, useMediaQuery |
+| `useMediaQuery.ts` | React hook module | package:react, src/utils/mediaQuery.ts | src/components/homepage (3), src/components/layout (3), src/components/content (2), src/pages/HomePage.tsx, src/pages/UpdatesPage.tsx, +3 more | default, useMediaQuery |
 | `usePrefersReducedMotion.ts` | React hook module | src/utils/useMediaQuery.ts | src/components/layout (4), src/components/diagram (2) | REDUCED_MOTION_QUERY, default, usePrefersReducedMotion |

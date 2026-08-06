@@ -12,7 +12,7 @@ interface HeroSectionProps {
 }
 
 export default function HeroSection({ theme: t, brandMarkSrc, useDarkBrandFrame }: HeroSectionProps) {
-  const isWide = useMediaQuery("(min-width: 720px)");
+  const isWide = useMediaQuery("(min-width: 720px)", { ssrDefault: false });
 
   return (
     <section style={{ padding: isWide ? "3rem 1rem 2rem" : "2rem 0.5rem 1.5rem" }}>
