@@ -115,13 +115,13 @@ export default function LensIndexPage() {
           to: `#${makerGroupAnchorId(g.slug)}`,
         })),
       };
-    if (groupMode === "inventor")
+    if (groupMode === "author")
       return {
         title: "Inventors",
         items: inventorGroups.map((g) => ({
           id: g.id,
           label: `${g.label} (${g.lenses.length})`,
-          to: `#${patentPartyGroupAnchorId("inventor", g.id)}`,
+          to: `#${patentPartyGroupAnchorId("author", g.id)}`,
         })),
       };
     if (groupMode === "assignee")
@@ -345,8 +345,8 @@ export default function LensIndexPage() {
             </button>
             <button
               type="button"
-              style={toggleButtonStyle(groupMode === "inventor")}
-              onClick={() => setGroupMode("inventor")}
+              style={toggleButtonStyle(groupMode === "author")}
+              onClick={() => setGroupMode("author")}
             >
               By Inventor
             </button>

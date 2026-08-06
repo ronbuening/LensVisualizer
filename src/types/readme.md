@@ -47,10 +47,10 @@ flowchart LR
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
 | `asphericSchema.ts` | Shared TypeScript types | none | same folder, src/optics/internal, src/optics/validateLensData.ts | AsphericCoefficientDescriptor, ASPHERIC_COEFFICIENT_SCHEMA, AsphericPolynomialDescriptor, ASPHERIC_POLYNOMIAL_TERMS, AsphericCoefficients |
-| `catalog.ts` | Shared TypeScript types | none | src/utils/catalog (4), same folder | PatentPartyMetadata, PatentLensRef |
+| `catalog.ts` | Shared TypeScript types | none | src/utils/catalog (4), src/pages/lensIndex (3), same folder, src/components/relationshipMap | PatentPartyMetadata, PatentLensRef, PatentPartyRole |
 | `goatcounter.d.ts` | Ambient/type declaration surface | none | none | none |
 | `groupMovement.ts` | Shared TypeScript types | none | src/components/layout (2), src/utils/state (2), same folder, src/comparison, src/components/controls, +4 more | GROUP_MOVEMENT_MODES, GroupMovementMode, isGroupMovementMode |
-| `index.ts` | Shared TypeScript types | same folder (6), src/utils/catalog | none | ImageFormatId, ImageFormatMetadata, LensMountId, LensMountMetadata, SurfaceData, AsphericCoefficients, ElementData, AnnotationData, +87 more |
+| `index.ts` | Shared TypeScript types | same folder (6), src/utils/catalog | none | ImageFormatId, ImageFormatMetadata, LensMountId, LensMountMetadata, SurfaceData, AsphericCoefficients, ElementData, AnnotationData, +88 more |
 | `mount.ts` | Shared TypeScript types | src/utils/catalog | src/optics/mount (9), same folder, src/components/mount | MOUNT_SCHEMA_VERSION, MountSchemaVersion, MountProfileId, ResearchStatus, MvpStatus, DiagramStatus, MountMechanism, MountLockType, +40 more |
 | `optics.ts` | Shared TypeScript types | same folder (2), src/utils/catalog | src/components/display (22), src/components/diagram (13), src/optics/analysis (9), src/optics/trace (9), src/components/hooks (7), +36 more | RadialPhaseTerm, DiffractivePhaseSurface, SurfaceData, SurfaceIncidentSide, SurfaceInactiveSideBehavior, SurfaceInteractionType, MirrorKind, SurfaceInteraction, +50 more |
 | `state.ts` | Shared TypeScript types | src/comparison (2), same folder | src/components/layout (11), src/utils/state (8), src/components/hooks (7), src/comparison (4), src/components/controls (2), +6 more | SharedSlidersSlice, ComparisonAction, OFF_AXIS_MODES, RAY_DENSITIES, MOBILE_VIEWS, DESKTOP_VIEWS, ANALYSIS_TAB_IDS, OffAxisMode, +27 more |

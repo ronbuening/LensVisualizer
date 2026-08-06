@@ -32,6 +32,7 @@ import type {
   YearGroup,
 } from "./types.js";
 import type { Theme } from "../../types/theme.js";
+import type { PatentPartyRole } from "../../types/catalog.js";
 
 function LensEntryLink({
   lensKey,
@@ -194,7 +195,7 @@ function PatentPartySections({
   hrefForLens,
 }: {
   groups: PatentPartyGroup[];
-  role: "inventor" | "assignee";
+  role: PatentPartyRole;
   theme: Theme;
   hrefForLens: (lensKey: string, context?: LensLibraryBreadcrumbContext) => LensLinkTarget;
 }) {
@@ -381,8 +382,8 @@ export default function LensIndexResults({
   hrefForLens?: (lensKey: string, context?: LensLibraryBreadcrumbContext) => LensLinkTarget;
 }) {
   if (groupMode === "maker") return <MakerSections groups={makerGroups} theme={theme} hrefForLens={hrefForLens} />;
-  if (groupMode === "inventor") {
-    return <PatentPartySections groups={inventorGroups} role="inventor" theme={theme} hrefForLens={hrefForLens} />;
+  if (groupMode === "author") {
+    return <PatentPartySections groups={inventorGroups} role="author" theme={theme} hrefForLens={hrefForLens} />;
   }
   if (groupMode === "assignee") {
     return <PatentPartySections groups={assigneeGroups} role="assignee" theme={theme} hrefForLens={hrefForLens} />;

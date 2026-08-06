@@ -25,7 +25,7 @@ export interface LensIndexUrlState {
 
 const GROUP_MODES = new Set<GroupMode>([
   "maker",
-  "inventor",
+  "author",
   "assignee",
   "focal",
   "year-asc",
@@ -102,8 +102,10 @@ export function parseLensIndexUrlState(
   const viewMode = parseLensIndexViewMode(search);
   const defaultFilter = defaultCustomFilter(bounds);
   const requestedGroup = params.get("group");
+  /* Keep the shipped `group=inventor` query while using `author` at catalog seams. */
+  const normalizedGroup = requestedGroup === "inventor" ? "author" : requestedGroup;
   const groupMode =
-    requestedGroup && GROUP_MODES.has(requestedGroup as GroupMode) ? (requestedGroup as GroupMode) : "maker";
+    normalizedGroup && GROUP_MODES.has(normalizedGroup as GroupMode) ? (normalizedGroup as GroupMode) : "maker";
 
   const customFilter: CustomFilterState = {
     ...defaultFilter,
@@ -142,7 +144,7 @@ export function serializeLensIndexUrlState({
 }: LensIndexUrlState & { bounds: FilterBounds }): string {
   const params = new URLSearchParams();
 
-  if (groupMode !== "maker") params.set("group", groupMode);
+  if (groupMode !== "maker") params.set("group", groupMode === "author" ? "inventor" : groupMode);
   if (viewMode !== "visible") params.set("view", viewMode);
   if (customFilter.makerSlugs.length > 0) params.set("makers", customFilter.makerSlugs.join(","));
   if (customFilter.lensMountIds.length > 0) params.set("mounts", customFilter.lensMountIds.join(","));

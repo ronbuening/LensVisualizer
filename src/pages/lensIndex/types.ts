@@ -13,8 +13,9 @@ import type {
   LensMountId,
   LensMountMetadata,
 } from "../../utils/catalog/lensTaxonomy.js";
+import type { PatentPartyRole } from "../../types/catalog.js";
 
-export type GroupMode = "maker" | "inventor" | "assignee" | "focal" | "year-asc" | "year-desc" | "mount" | "format";
+export type GroupMode = "maker" | PatentPartyRole | "focal" | "year-asc" | "year-desc" | "mount" | "format";
 export type LensIndexViewMode = "visible" | "all" | "debug";
 
 export interface CatalogLensEntry {

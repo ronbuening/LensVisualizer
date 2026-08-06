@@ -154,7 +154,7 @@ export default function AuthorPage() {
   const canonicalURL = `${SITE_URL}${route}`;
   const seoDescription = `Explore ${patents.length} optical ${patents.length === 1 ? "patent" : "patents"} credited to ${author.name}, with links to related interactive lens diagrams.`;
   const isThinBibliographicPage = !biography && patents.length === 1 && author.lensKeys.length === 1;
-  const anchorRole = groupMode === "assignee" ? "assignee" : "inventor";
+  const anchorRole = groupMode === "assignee" ? "assignee" : "author";
 
   const setGroupMode = (mode: AuthorGroupMode) => {
     setSearchParams(mode === "coauthor" ? { group: "coauthor" } : {}, { replace: true });

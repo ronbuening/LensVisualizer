@@ -12,7 +12,8 @@ import { getAuthorByName } from "../../utils/catalog/authorCatalog.js";
 import { getAssigneeByName } from "../../utils/catalog/assigneeCatalog.js";
 import { LENS_LINK_BASE_STYLE } from "../../utils/style/pageStyles.js";
 import type { Theme } from "../../types/theme.js";
-import type { GraphPatentNode, PartyRef, PartyRole } from "../../utils/catalog/relationshipGraph.js";
+import type { GraphPatentNode, PartyRef } from "../../utils/catalog/relationshipGraph.js";
+import type { PatentPartyRole } from "../../types/catalog.js";
 
 interface PatentDetailCardProps {
   patent: GraphPatentNode;
@@ -29,9 +30,9 @@ export default function PatentDetailCard({
   onFocusParty,
   onClose,
 }: PatentDetailCardProps) {
-  const isCenter = (name: string, role: PartyRole) => role === centerRef.role && name === centerRef.name;
+  const isCenter = (name: string, role: PatentPartyRole) => role === centerRef.role && name === centerRef.name;
 
-  const renderParty = (name: string, role: PartyRole, index: number) => {
+  const renderParty = (name: string, role: PatentPartyRole, index: number) => {
     const meta = role === "author" ? getAuthorByName(name) : getAssigneeByName(name);
     const separator = index > 0 ? ", " : "";
     if (isCenter(name, role) || !meta) {

@@ -11,7 +11,7 @@ import { LENS_SUMMARIES, SUMMARY_KEYS } from "./lensSummaries.js";
 import type { LensSummary } from "./lensSummaries.js";
 import { canonicalPagePath } from "../seo/siteUrls.js";
 import { catalogCollator } from "./collation.js";
-import type { PatentLensRef, PatentPartyMetadata } from "../../types/catalog.js";
+import type { PatentLensRef, PatentPartyMetadata, PatentPartyRole } from "../../types/catalog.js";
 
 export type AuthorMetadata = PatentPartyMetadata;
 
@@ -64,7 +64,7 @@ export function authorPathForName(name: string): string | undefined {
  * test switches between the inventor (`patentAuthors`) and assignee
  * (`patentAssignees`) name lists based on `role`.
  */
-export function patentsForParty(name: string, role: "author" | "assignee"): AuthorPatent[] {
+export function patentsForParty(name: string, role: PatentPartyRole): AuthorPatent[] {
   const patents = new Map<
     string,
     {

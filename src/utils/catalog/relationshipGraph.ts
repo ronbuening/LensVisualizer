@@ -12,12 +12,10 @@
 import { AuthorPatent, getAuthorBySlug, getAuthorByName, patentsForParty } from "./authorCatalog.js";
 import { getAssigneeBySlug, getAssigneeByName } from "./assigneeCatalog.js";
 import { catalogCollator } from "./collation.js";
-import type { PatentLensRef } from "../../types/catalog.js";
-
-export type PartyRole = "author" | "assignee";
+import type { PatentLensRef, PatentPartyRole } from "../../types/catalog.js";
 
 export interface PartyRef {
-  role: PartyRole;
+  role: PatentPartyRole;
   name: string; // display name as it appears in patent metadata
   slug: string; // from AUTHORS / ASSIGNEES index
 }
@@ -46,7 +44,7 @@ export interface RelationshipGraph {
 }
 
 /** Namespaced node id for a party (`author:<slug>` / `assignee:<slug>`). */
-function partyId(role: PartyRole, slug: string): string {
+function partyId(role: PatentPartyRole, slug: string): string {
   return `${role}:${slug}`;
 }
 
@@ -56,7 +54,7 @@ function patentId(patentNumber: string): string {
 }
 
 /** Look a party name up in the index matching its role, if present. */
-function lookupPartyRef(name: string, role: PartyRole): PartyRef | undefined {
+function lookupPartyRef(name: string, role: PatentPartyRole): PartyRef | undefined {
   const meta = role === "author" ? getAuthorByName(name) : getAssigneeByName(name);
   return meta ? { role, name, slug: meta.slug } : undefined;
 }

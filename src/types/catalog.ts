@@ -17,3 +17,5 @@ export interface PatentLensRef {
   name: string;
   specs?: string[];
 }
+
+export type PatentPartyRole = "author" | "assignee";

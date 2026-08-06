@@ -1197,7 +1197,7 @@ Verification: gate passes.
 
 ### C7. One role vocabulary: `PatentPartyRole`
 
-- [ ] Effort: S · Impact: low · Risk: low
+- [x] Effort: S · Impact: low · Risk: low
 
 `"author" | "assignee"` (authorCatalog, relationshipGraph) vs `"inventor" | "assignee"`
 (groupAnchors, lensIndex GroupMode) forces seam translations (`AuthorPage.tsx` ~152). Standardize
