@@ -10,6 +10,7 @@ import { join, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 import { CHANGELOG } from "../src/utils/content/changelogData.ts";
 import { changelogEntryId } from "../src/utils/content/changelogHelpers.ts";
+import { comparePublicationEntries } from "./build-metadata-lib.mjs";
 import { SITE_URL, canonicalPageUrl } from "./site-url.mjs";
 
 const SITE_NAME = "Surface & Stop";
@@ -87,23 +88,13 @@ function formatRssDate(isoDate, label = "date") {
   return date.toUTCString();
 }
 
-function compareStrings(a, b) {
-  if (a < b) return -1;
-  if (a > b) return 1;
-  return 0;
-}
-
 function newestFirst(a, b) {
   if (Number.isInteger(a.publicationOrder) && Number.isInteger(b.publicationOrder)) {
     const byGeneratedOrder = a.publicationOrder - b.publicationOrder;
     if (byGeneratedOrder) return byGeneratedOrder;
   }
 
-  const byTimestamp = compareStrings(b.publishedAt ?? b.publishedOn, a.publishedAt ?? a.publishedOn);
-  if (byTimestamp) return byTimestamp;
-  const byCommit = compareStrings(b.publishedCommit ?? "", a.publishedCommit ?? "");
-  if (byCommit) return byCommit;
-  return compareStrings(a.title, b.title) || compareStrings(a.url, b.url);
+  return comparePublicationEntries(a, b);
 }
 
 function normalizeLimit(limit) {

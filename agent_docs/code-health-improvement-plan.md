@@ -1209,7 +1209,7 @@ Verification: gate passes; N3 pins unchanged.
 
 ### C9. One publication-order comparator
 
-- [ ] Effort: S · Impact: med · Risk: low
+- [x] Effort: S · Impact: med · Risk: low
 
 `comparePublicationEntries` (`build-metadata-lib.mjs` ~221–240) vs `newestFirst`
 (`generate-rss-feeds.mjs` ~96–107) re-implement the timestamp/commit/name fallback chain with

@@ -202,6 +202,33 @@ describe("RSS feed generation", () => {
     expect(formatRssDate(items[0].publishedAt!)).toBe("Thu, 02 Apr 2026 18:00:00 GMT");
   });
 
+  it("uses the shared untracked-first fallback when publicationOrder is absent", () => {
+    const metadata: FeedBuildMetadata = {
+      lensFreshness: {
+        committed: {
+          ...freshness("2026-04-02"),
+          publishedAt: "2026-04-02T18:00:00.000Z",
+          publishedCommit: "commit-late",
+        },
+        untracked: {
+          ...freshness("2026-04-02"),
+          publishedAt: "2026-04-02T00:00:00.000Z",
+          publishedCommit: null,
+        },
+      },
+      articles: [],
+    };
+    const summaries: FeedLensSummary[] = [
+      { key: "committed", name: "Committed Lens", visible: true },
+      { key: "untracked", name: "Untracked Lens", visible: true },
+    ];
+
+    expect(buildLensFeedItems(metadata, summaries).map((item) => item.title)).toEqual([
+      "Untracked Lens",
+      "Committed Lens",
+    ]);
+  });
+
   it("keeps GUID and publication date stable when an item is edited", () => {
     const original = generateRssFeeds(buildMeta, lensSummaries, { changelogEntries }).articles;
     const editedMeta: FeedBuildMetadata = {
