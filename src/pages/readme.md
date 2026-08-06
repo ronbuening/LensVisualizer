@@ -107,7 +107,7 @@ flowchart LR
 | `LensPage.tsx` | Route-level React page | src/utils/catalog (2), package:react-router, src/components/ClientOnly.tsx, src/components/layout, src/components/SEOHead.tsx, +2 more | src/routes | default, LensPage |
 | `MakerPage.tsx` | Route-level React page | src/utils/catalog (6), src/components/content (2), package:react-router, src/components/layout, src/components/SEOHead.tsx, +2 more | src/routes | default, MakerPage |
 | `MakersIndexPage.tsx` | Route-level React page | src/utils/catalog (4), package:react-router, src/components/layout, src/components/SEOHead.tsx, src/utils/seo, +1 more | src/routes | default, MakersIndexPage |
-| `MountPage.tsx` | Route-level React page | src/utils/catalog (5), src/components/content (2), src/pages/lensIndex (2), package:react-router, src/components/layout, +6 more | src/routes | default, MountPage |
+| `MountPage.tsx` | Route-level React page | src/utils/catalog (5), src/components/content (2), src/pages/lensIndex (2), package:react-router, src/components/layout, +5 more | src/routes | default, MountPage |
 | `MountsIndexPage.tsx` | Route-level React page | src/utils/catalog (2), package:react-router, src/components/layout, src/components/SEOHead.tsx, src/pages/lensIndex, +2 more | src/routes | default, MountsIndexPage |
 | `NotFoundPage.tsx` | Route-level React page | package:react-router, src/components/layout, src/components/SEOHead.tsx, src/utils/catalog, src/utils/theme | src/routes | default, NotFoundPage |
 | `PatentsIndexPage.tsx` | Route-level React page | src/utils/catalog (3), src/components/content (2), package:react-router, src/components/layout, src/components/SEOHead.tsx, +4 more | src/routes | default, PatentsIndexPage |

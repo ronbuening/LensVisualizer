@@ -4,7 +4,7 @@
 
 import { Navigate, Link, useParams } from "react-router";
 import SEOHead from "../components/SEOHead.js";
-import PageNavBar from "../components/layout/PageNavBar.js";
+import StaticPageShell from "../components/layout/StaticPageShell.js";
 import { LENS_MOUNT_BY_ID, isLensMountId } from "../utils/catalog/lensTaxonomy.js";
 import {
   deriveMaker,
@@ -14,13 +14,12 @@ import {
   SITE_URL,
 } from "../utils/catalog/lensMetadata.js";
 import { breadcrumbJsonLd, collectionPageJsonLd } from "../utils/seo/structuredData.js";
-import { usePageThemeToggle } from "../utils/theme/usePageThemeToggle.js";
 import { getMountDetails } from "../utils/catalog/mountDetails.js";
 import { MOUNT_SPECS } from "../mounts/index.js";
 import MountDiagramPanel from "../components/mount/MountDiagramPanel.js";
 import LinkListSidebar from "../components/content/LinkListSidebar.js";
 import SidebarLayout from "../components/content/SidebarLayout.js";
-import { H1_STYLE, LENS_LINK_BASE_STYLE, PAGE_BASE_STYLE } from "../utils/style/pageStyles.js";
+import { H1_STYLE, LENS_LINK_BASE_STYLE } from "../utils/style/pageStyles.js";
 import { lensLinkFromMount } from "./lensIndex/clusterLinks.js";
 import { lensesForMount } from "./lensIndex/catalog.js";
 import type { LensSummary } from "../utils/catalog/lensSummaries.js";
@@ -40,7 +39,6 @@ function makersForMount(lenses: { data: LensSummary }[]): { slug: string; label:
 
 export default function MountPage() {
   const { mountId } = useParams<{ mountId: string }>();
-  const { theme: t, themeMode, highContrast, toggleTheme, toggleHC } = usePageThemeToggle();
 
   if (!isLensMountId(mountId)) return <Navigate to="/mounts/" replace />;
 
@@ -57,101 +55,88 @@ export default function MountPage() {
     : `Explore ${lenses.length} patent-derived ${mount.label} lens diagrams with ray tracing and optical analysis.`;
 
   return (
-    <div style={{ backgroundColor: t.bg, color: t.body, minHeight: "100vh" }}>
-      <SEOHead
-        title={`${mount.label} Lens Diagrams | ${SITE_NAME}`}
-        description={seoDescription}
-        canonicalURL={mountCanonicalURL(mountId)}
-        jsonLd={[
-          collectionPageJsonLd({
-            name: `${mount.label} Lenses`,
-            description: seoDescription,
-            url: mountCanonicalURL(mountId),
-            route: `/mounts/${mountId}`,
-          }),
-          breadcrumbJsonLd([
-            { name: "Home", url: SITE_URL },
-            { name: "Mounts", url: `${SITE_URL}/mounts` },
-            { name: mount.label, url: mountCanonicalURL(mountId) },
-          ]),
-        ]}
-      />
+    <StaticPageShell
+      breadcrumbs={[{ label: "Home", to: "/" }, { label: "Mounts", to: "/mounts/" }, { label: mount.label }]}
+      seo={
+        <SEOHead
+          title={`${mount.label} Lens Diagrams | ${SITE_NAME}`}
+          description={seoDescription}
+          canonicalURL={mountCanonicalURL(mountId)}
+          jsonLd={[
+            collectionPageJsonLd({
+              name: `${mount.label} Lenses`,
+              description: seoDescription,
+              url: mountCanonicalURL(mountId),
+              route: `/mounts/${mountId}`,
+            }),
+            breadcrumbJsonLd([
+              { name: "Home", url: SITE_URL },
+              { name: "Mounts", url: `${SITE_URL}/mounts` },
+              { name: mount.label, url: mountCanonicalURL(mountId) },
+            ]),
+          ]}
+        />
+      }
+    >
+      {({ theme: t }) => (
+        <>
+          <h1 style={H1_STYLE}>{mount.label} Lenses</h1>
+          <p style={{ fontSize: "0.875rem", color: t.muted, marginBottom: "1.5rem" }}>
+            {lenses.length} interactive lens {lenses.length === 1 ? "diagram" : "diagrams"}
+          </p>
 
-      <PageNavBar
-        theme={t}
-        themeMode={themeMode}
-        highContrast={highContrast}
-        onToggleTheme={toggleTheme}
-        onToggleHC={toggleHC}
-      >
-        <Link to="/" style={{ color: t.descLinkColor, textDecoration: "none" }}>
-          Home
-        </Link>
-        <span style={{ color: t.muted, margin: "0 0.35em" }}>/</span>
-        <Link to="/mounts/" style={{ color: t.descLinkColor, textDecoration: "none" }}>
-          Mounts
-        </Link>
-        <span style={{ color: t.muted, margin: "0 0.35em" }}>/</span>
-        <span style={{ color: t.body }}>{mount.label}</span>
-      </PageNavBar>
+          {details && (
+            <section style={{ marginBottom: "1.5rem" }}>
+              {(details.era || details.formatNotes) && (
+                <p style={{ fontSize: "0.8rem", color: t.label, marginBottom: "0.75rem" }}>
+                  {[details.era, details.formatNotes].filter(Boolean).join(" | ")}
+                </p>
+              )}
+              {details.description.split("\n\n").map((paragraph, i) => (
+                <p key={i} style={{ fontSize: "0.85rem", color: t.desc, lineHeight: 1.6, marginBottom: "0.75rem" }}>
+                  {paragraph}
+                </p>
+              ))}
+            </section>
+          )}
 
-      <div style={PAGE_BASE_STYLE}>
-        <h1 style={H1_STYLE}>{mount.label} Lenses</h1>
-        <p style={{ fontSize: "0.875rem", color: t.muted, marginBottom: "1.5rem" }}>
-          {lenses.length} interactive lens {lenses.length === 1 ? "diagram" : "diagrams"}
-        </p>
+          {diagramSpec && (
+            <section style={{ marginBottom: "1.5rem" }}>
+              <MountDiagramPanel spec={diagramSpec} theme={t} />
+            </section>
+          )}
 
-        {details && (
-          <section style={{ marginBottom: "1.5rem" }}>
-            {(details.era || details.formatNotes) && (
-              <p style={{ fontSize: "0.8rem", color: t.label, marginBottom: "0.75rem" }}>
-                {[details.era, details.formatNotes].filter(Boolean).join(" | ")}
-              </p>
-            )}
-            {details.description.split("\n\n").map((paragraph, i) => (
-              <p key={i} style={{ fontSize: "0.85rem", color: t.desc, lineHeight: 1.6, marginBottom: "0.75rem" }}>
-                {paragraph}
-              </p>
-            ))}
-          </section>
-        )}
-
-        {diagramSpec && (
-          <section style={{ marginBottom: "1.5rem" }}>
-            <MountDiagramPanel spec={diagramSpec} theme={t} />
-          </section>
-        )}
-
-        <SidebarLayout
-          sidebar={
-            mountMakers.length > 0 ? (
-              <LinkListSidebar
-                title="Makers"
-                ariaLabel="Makers with lenses for this mount"
-                items={mountMakers.map((m) => ({ id: m.slug, label: m.label, to: `/makers/${m.slug}` }))}
-                theme={t}
-              />
-            ) : null
-          }
-        >
-          <div style={{ borderTop: `1px solid ${t.panelBorder}`, paddingTop: "1rem" }}>
-            {lenses.map((entry) => (
-              <Link
-                key={entry.key}
-                {...lensLinkFromMount(entry.key, mountId)}
-                style={{ ...LENS_LINK_BASE_STYLE, color: t.descLinkColor }}
-              >
-                {entry.data.name}
-                {entry.data.specs && entry.data.specs.length > 0 && (
-                  <span style={{ color: t.label, fontSize: "0.75rem", marginLeft: "0.5rem" }}>
-                    — {entry.data.specs.slice(0, 3).join(", ")}
-                  </span>
-                )}
-              </Link>
-            ))}
-          </div>
-        </SidebarLayout>
-      </div>
-    </div>
+          <SidebarLayout
+            sidebar={
+              mountMakers.length > 0 ? (
+                <LinkListSidebar
+                  title="Makers"
+                  ariaLabel="Makers with lenses for this mount"
+                  items={mountMakers.map((m) => ({ id: m.slug, label: m.label, to: `/makers/${m.slug}` }))}
+                  theme={t}
+                />
+              ) : null
+            }
+          >
+            <div style={{ borderTop: `1px solid ${t.panelBorder}`, paddingTop: "1rem" }}>
+              {lenses.map((entry) => (
+                <Link
+                  key={entry.key}
+                  {...lensLinkFromMount(entry.key, mountId)}
+                  style={{ ...LENS_LINK_BASE_STYLE, color: t.descLinkColor }}
+                >
+                  {entry.data.name}
+                  {entry.data.specs && entry.data.specs.length > 0 && (
+                    <span style={{ color: t.label, fontSize: "0.75rem", marginLeft: "0.5rem" }}>
+                      — {entry.data.specs.slice(0, 3).join(", ")}
+                    </span>
+                  )}
+                </Link>
+              ))}
+            </div>
+          </SidebarLayout>
+        </>
+      )}
+    </StaticPageShell>
   );
 }
