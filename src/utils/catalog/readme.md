@@ -25,6 +25,7 @@ flowchart LR
     n_src_utils_catalog_src_utils_catalog_patentCatalog_ts["patentCatalog.ts"]
     n_src_utils_catalog_src_utils_catalog_relationshipGraph_ts["relationshipGraph.ts"]
     n_src_utils_catalog_src_utils_catalog_searchCatalog_ts["searchCatalog.ts"]
+    n_src_utils_catalog_src_utils_catalog_slugText_ts["slugText.ts"]
   end
   n_external_src_generated["src/generated"]
   n_external_glob_______lens_data______analysis_md["glob:../../lens-data/**/*.analysis.md"]
@@ -75,9 +76,9 @@ flowchart LR
 
 ## Directory Overview
 
-- Direct source files: 16
+- Direct source files: 17
 - Direct subfolders: 0
-- Main outbound areas: same folder (23), src/types (8), src/generated (6), src/utils/seo (3), glob:../../lens-data/**/*.analysis.md, glob:../../lens-data/**/*.data.ts, src/comparison, src/lens-data/defaults.ts, +1 more
+- Main outbound areas: same folder (24), src/types (8), src/generated (6), src/utils/seo (3), glob:../../lens-data/**/*.analysis.md, glob:../../lens-data/**/*.data.ts, src/comparison, src/lens-data/defaults.ts, +1 more
 - External consumers: src/benchmarks, src/comparison, src/components/controls, src/components/homepage, src/components/hooks, src/components/layout, src/components/relationshipMap, src/components/search, +27 more
 
 ## Files
@@ -99,4 +100,5 @@ flowchart LR
 | `mountDetails.ts` | Mount Details helper module | same folder | src/pages/MountPage.tsx, src/pages/MountsIndexPage.tsx | MountDetails, MOUNT_DETAILS, getMountDetails |
 | `patentCatalog.ts` | Patent Catalog helper module | same folder (3), src/types | src/pages/PatentsIndexPage.tsx | PatentLens, PatentJurisdiction, PatentRecord, PatentAssigneeGroup, PatentCountryGroup, PatentIndex, PATENT_ASSIGNEE_FALLBACK, espacenetPatentUrl, +4 more |
 | `relationshipGraph.ts` | Relationship Graph helper module | same folder (3), src/types | src/components/relationshipMap (4), src/pages/RelationshipMapPage.tsx | PartyRole, PartyRef, GraphPatentNode, GraphPartyNode, RelationshipGraph, resolveFocusParam, buildRelationshipGraph |
-| `searchCatalog.ts` | Search Catalog helper module | same folder (5), src/utils/seo | src/components/search (2), src/components/relationshipMap | LensNameSearchMatch, PatentSearchMatch, AuthorSearchMatch, CatalogSearchResults, CatalogSearchMatch, normalizeSearchText, searchCatalog, exactSearchTarget |
+| `searchCatalog.ts` | Search Catalog helper module | same folder (6), src/utils/seo | src/components/search (2), src/components/relationshipMap | LensNameSearchMatch, PatentSearchMatch, AuthorSearchMatch, CatalogSearchResults, CatalogSearchMatch, normalizeSearchText, searchCatalog, exactSearchTarget |
+| `slugText.ts` | Slug Text helper module | none | same folder, src/pages/lensIndex | transliterateCatalogText, stableHash |

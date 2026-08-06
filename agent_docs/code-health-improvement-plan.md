@@ -1146,7 +1146,7 @@ Verification: gate passes; `searchPages.test.tsx` unchanged.
 
 ### C4. Single-source slug transliteration + FNV-1a hash (script ↔ runtime)
 
-- [ ] Effort: S · Impact: med · Risk: low-med
+- [x] Effort: S · Impact: med · Risk: low-med
 
 The diacritic transliteration table exists twice (`scripts/author-metadata.mjs` ~22–36 vs
 `searchCatalog.ts` `normalizeSearchText` ~40–53) and the FNV-1a hash twice

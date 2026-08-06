@@ -8,28 +8,13 @@
  * `buildAssigneeMetadata` are thin wrappers over the same parameterized scan.
  */
 
-/** Return a deterministic unsigned FNV-1a hash encoded compactly for URLs. */
-function stableHash(value) {
-  let hash = 2166136261;
-  for (let index = 0; index < value.length; index++) {
-    hash ^= value.charCodeAt(index);
-    hash = Math.imul(hash, 16777619);
-  }
-  return (hash >>> 0).toString(36);
-}
+import { stableHash, transliterateCatalogText } from "../src/utils/catalog/slugText.ts";
 
 /** Convert a display name to a readable ASCII URL segment when possible. */
 function authorSlugBase(name) {
   return (
-    name
-      .normalize("NFKD")
-      .replace(/[\u0300-\u036f]/g, "")
+    transliterateCatalogText(name)
       .toLowerCase()
-      .replaceAll("ß", "ss")
-      .replaceAll("æ", "ae")
-      .replaceAll("ø", "o")
-      .replaceAll("ł", "l")
-      .replaceAll("đ", "d")
       .replace(/[^a-z0-9]+/g, "-")
       .replace(/(^-|-$)/g, "") || "author"
   );

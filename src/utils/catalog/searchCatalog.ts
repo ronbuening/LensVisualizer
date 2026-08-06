@@ -11,6 +11,7 @@ import { LENS_SUMMARIES, SUMMARY_KEYS } from "./lensSummaries.js";
 import type { LensSummary } from "./lensSummaries.js";
 import { canonicalPagePath } from "../seo/siteUrls.js";
 import { catalogCollator } from "./collation.js";
+import { transliterateCatalogText } from "./slugText.js";
 
 export interface LensNameSearchMatch {
   type: "lens";
@@ -39,15 +40,8 @@ export type CatalogSearchMatch = LensNameSearchMatch | PatentSearchMatch | Autho
 
 /** Normalize punctuation, case, and diacritics while preserving word boundaries. */
 export function normalizeSearchText(value: string): string {
-  return value
-    .normalize("NFKD")
-    .replace(/[\u0300-\u036f]/g, "")
+  return transliterateCatalogText(value)
     .toLocaleLowerCase()
-    .replaceAll("ß", "ss")
-    .replaceAll("æ", "ae")
-    .replaceAll("ø", "o")
-    .replaceAll("ł", "l")
-    .replaceAll("đ", "d")
     .replace(/[^\p{L}\p{N}]+/gu, " ")
     .trim()
     .replace(/\s+/g, " ");
