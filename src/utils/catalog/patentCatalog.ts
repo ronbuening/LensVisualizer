@@ -11,22 +11,13 @@ import type { LensSummary } from "./lensSummaries.js";
 import { catalogCollator } from "./collation.js";
 import type { PatentLensRef } from "../../types/catalog.js";
 import { groupByNamedParty } from "./groupByNamedParty.js";
+import { aggregatePatentRecords } from "./patentRecords.js";
+import type { PatentJurisdiction, PatentRecord } from "./patentRecords.js";
+
+export { aggregatePatentRecords, patentJurisdiction } from "./patentRecords.js";
+export type { PatentJurisdiction, PatentRecord } from "./patentRecords.js";
 
 export type PatentLens = PatentLensRef;
-
-export interface PatentJurisdiction {
-  code: string;
-  label: string;
-}
-
-export interface PatentRecord {
-  patentNumber: string;
-  patentYear?: number;
-  jurisdiction: PatentJurisdiction;
-  authors: string[];
-  assignees: string[];
-  lenses: PatentLens[];
-}
 
 export interface PatentAssigneeGroup {
   id: string;
@@ -46,31 +37,7 @@ export interface PatentIndex {
   countries: PatentCountryGroup[];
 }
 
-interface AggregatePatentOptions {
-  includeFallbackRecords?: boolean;
-}
-
-const JURISDICTION_LABELS: Record<string, string> = {
-  AT: "Austria",
-  CA: "Canada",
-  CH: "Switzerland",
-  CN: "China",
-  DD: "East Germany (GDR)",
-  DE: "Germany",
-  EP: "European Patent Office",
-  FR: "France",
-  GB: "United Kingdom",
-  IT: "Italy",
-  JP: "Japan",
-  NL: "Netherlands",
-  SU: "Soviet Union",
-  US: "United States",
-  WO: "International (WIPO)",
-};
-
 export const PATENT_ASSIGNEE_FALLBACK = "No named assignee or applicant";
-
-const patentNumberCollator = new Intl.Collator("en", { numeric: true, sensitivity: "base" });
 
 /**
  * Build a worldwide Espacenet publication-number search URL.
@@ -82,73 +49,6 @@ const patentNumberCollator = new Intl.Collator("en", { numeric: true, sensitivit
 export function espacenetPatentUrl(patentNumber: string): string {
   const publicationNumber = patentNumber.toUpperCase().replace(/[^A-Z0-9]/g, "");
   return `https://worldwide.espacenet.com/patent/search?q=${encodeURIComponent(`pn=${publicationNumber}`)}`;
-}
-
-/** Resolve the publication authority encoded at the start of a patent number. */
-export function patentJurisdiction(patentNumber: string): PatentJurisdiction {
-  const code = patentNumber.trim().match(/^([A-Z]{2})\b/)?.[1] ?? "OTHER";
-  return {
-    code,
-    label: JURISDICTION_LABELS[code] ?? (code === "OTHER" ? "Other jurisdictions" : code),
-  };
-}
-
-/**
- * Aggregate visible lens summaries into one defensively merged record per source patent.
- *
- * @param summaries - lightweight catalog records to aggregate
- * @param options - whether attributed lenses without a patent number become fallback records
- * @returns unique patent records ordered by their displayed patent number
- */
-export function aggregatePatentRecords(
-  summaries: readonly LensSummary[],
-  options: AggregatePatentOptions = {},
-): PatentRecord[] {
-  const records = new Map<
-    string,
-    {
-      patentNumber: string;
-      patentYear?: number;
-      jurisdiction: PatentJurisdiction;
-      authors: Set<string>;
-      assignees: Set<string>;
-      lenses: Map<string, PatentLens>;
-    }
-  >();
-
-  for (const lens of summaries) {
-    if (!lens.visible) continue;
-    const explicitPatentNumber = lens.patentNumber?.trim();
-    if (!explicitPatentNumber && !options.includeFallbackRecords) continue;
-    const patentIdentity = explicitPatentNumber || `lens:${lens.key}`;
-    const patentNumber = explicitPatentNumber || `Patent source for ${lens.name}`;
-
-    const record = records.get(patentIdentity) ?? {
-      patentNumber,
-      patentYear: lens.patentYear,
-      jurisdiction: patentJurisdiction(patentNumber),
-      authors: new Set<string>(),
-      assignees: new Set<string>(),
-      lenses: new Map<string, PatentLens>(),
-    };
-
-    record.patentYear ??= lens.patentYear;
-    for (const author of lens.patentAuthors ?? []) record.authors.add(author);
-    for (const assignee of lens.patentAssignees ?? []) record.assignees.add(assignee);
-    record.lenses.set(lens.key, { key: lens.key, name: lens.name, specs: lens.specs });
-    records.set(patentIdentity, record);
-  }
-
-  return [...records.values()]
-    .map((record) => ({
-      patentNumber: record.patentNumber,
-      patentYear: record.patentYear,
-      jurisdiction: record.jurisdiction,
-      authors: [...record.authors],
-      assignees: [...record.assignees],
-      lenses: [...record.lenses.values()].sort((a, b) => catalogCollator.compare(a.name, b.name)),
-    }))
-    .sort((a, b) => patentNumberCollator.compare(a.patentNumber, b.patentNumber));
 }
 
 /**

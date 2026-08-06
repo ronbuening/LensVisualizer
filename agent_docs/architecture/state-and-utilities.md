@@ -109,7 +109,8 @@ JSON-LD helpers live under `src/utils/seo/`.
 | `assigneeCatalog.ts` | Generated assignee directory with slug and name lookup. |
 | `authorAssignees.ts` | Author directory entries stratified by assignee, plus the assignee filter used by `/authors`. |
 | `authorBiographies.ts` | Curated inventor biographies with sources, keyed by author name. |
-| `patentCatalog.ts` | Patent index built from lens summaries: records, jurisdiction labels, country/assignee groups, Espacenet URLs. |
+| `patentRecords.ts` | Pure patent-record aggregation and jurisdiction labels — the shared leaf under `patentCatalog.ts` and `authorCatalog.ts` (no module-scope index). |
+| `patentCatalog.ts` | Patent index built from lens summaries: records, country/assignee groups, Espacenet URLs (re-exports the leaf's aggregator). |
 | `searchCatalog.ts` | Ranked lens-name/patent-number/author search over generated metadata. |
 | `relationshipGraph.ts` | Focus-party patent relationship graph consumed by the relationship map page. |
 | `makerDetails.ts` | Maker display names, descriptions, and metadata. |

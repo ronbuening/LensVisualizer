@@ -13,7 +13,7 @@ import { canonicalPagePath } from "../seo/siteUrls.js";
 import { catalogCollator } from "./collation.js";
 import type { PatentLensRef, PatentPartyMetadata, PatentPartyRole } from "../../types/catalog.js";
 import { groupByNamedParty } from "./groupByNamedParty.js";
-import { aggregatePatentRecords } from "./patentCatalog.js";
+import { aggregatePatentRecords } from "./patentRecords.js";
 
 export type AuthorMetadata = PatentPartyMetadata;
 
