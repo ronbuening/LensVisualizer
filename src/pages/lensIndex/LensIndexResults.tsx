@@ -34,6 +34,7 @@ import type {
 } from "./types.js";
 import type { Theme } from "../../types/theme.js";
 import type { PatentPartyRole } from "../../types/catalog.js";
+import { countSuffix } from "../../utils/style/styles.js";
 
 function MakerSections({
   groups,
@@ -58,9 +59,7 @@ function MakerSections({
               <Link to={`/makers/${group.slug}/`} style={{ color: "inherit", textDecoration: "none" }}>
                 {group.display}
               </Link>
-              <span style={{ color: theme.label, fontSize: "0.75rem", marginLeft: "0.5rem", fontWeight: 400 }}>
-                ({group.lenses.length})
-              </span>
+              <span style={countSuffix(theme)}>({group.lenses.length})</span>
             </h2>
             {details && (
               <p
@@ -118,7 +117,7 @@ function FocalSections({
             }}
           >
             {section.label}
-            <span style={{ color: theme.label, fontSize: "0.75rem", marginLeft: "0.5rem", fontWeight: 400 }}>
+            <span style={countSuffix(theme)}>
               ({section.subGroups.reduce((count, group) => count + group.lenses.length, 0)})
             </span>
           </h2>
@@ -138,9 +137,7 @@ function FocalSections({
                 }}
               >
                 {group.label}
-                <span style={{ color: theme.label, fontSize: "0.75rem", marginLeft: "0.5rem", fontWeight: 400 }}>
-                  ({group.lenses.length})
-                </span>
+                <span style={countSuffix(theme)}>({group.lenses.length})</span>
               </h3>
               {group.lenses.map((entry) => (
                 <LensEntryLink
@@ -183,9 +180,7 @@ function PatentPartySections({
         >
           <h2 style={{ ...SECTION_HEADING_BASE_STYLE, borderBottom: `1px solid ${theme.panelBorder}` }}>
             {group.label}
-            <span style={{ color: theme.label, fontSize: "0.75rem", marginLeft: "0.5rem", fontWeight: 400 }}>
-              ({group.lenses.length})
-            </span>
+            <span style={countSuffix(theme)}>({group.lenses.length})</span>
           </h2>
           {group.lenses.map((entry) => (
             <LensEntryLink
@@ -222,9 +217,7 @@ function PatentYearSections({
         >
           <h2 style={{ ...SECTION_HEADING_BASE_STYLE, borderBottom: `1px solid ${theme.panelBorder}` }}>
             {group.decade}
-            <span style={{ color: theme.label, fontSize: "0.75rem", marginLeft: "0.5rem", fontWeight: 400 }}>
-              ({group.lenses.length})
-            </span>
+            <span style={countSuffix(theme)}>({group.lenses.length})</span>
           </h2>
           {group.lenses.map((entry) => (
             <LensEntryLink
@@ -263,9 +256,7 @@ function MountSections({
             ) : (
               group.label
             )}
-            <span style={{ color: theme.label, fontSize: "0.75rem", marginLeft: "0.5rem", fontWeight: 400 }}>
-              ({group.lenses.length})
-            </span>
+            <span style={countSuffix(theme)}>({group.lenses.length})</span>
           </h2>
           {group.lenses.map((entry) => (
             <LensEntryLink
@@ -310,9 +301,7 @@ function ImageFormatSections({
             ) : (
               group.label
             )}
-            <span style={{ color: theme.label, fontSize: "0.75rem", marginLeft: "0.5rem", fontWeight: 400 }}>
-              ({group.lenses.length})
-            </span>
+            <span style={countSuffix(theme)}>({group.lenses.length})</span>
           </h2>
           {group.lenses.map((entry) => (
             <LensEntryLink

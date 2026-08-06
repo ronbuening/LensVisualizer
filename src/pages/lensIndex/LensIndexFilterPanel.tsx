@@ -18,6 +18,7 @@ import type {
 } from "./types.js";
 import type { Theme } from "../../types/theme.js";
 import type { ImageFormatId, LensMountId } from "../../utils/catalog/lensTaxonomy.js";
+import { countSuffix } from "../../utils/style/styles.js";
 
 interface LensIndexFilterPanelProps {
   theme: Theme;
@@ -315,7 +316,7 @@ export default function LensIndexFilterPanel({
         <section>
           <h3 style={filterTitleStyle}>
             Focal Length
-            <span style={{ color: t.label, fontSize: "0.78rem", fontWeight: 400, marginLeft: "0.5rem" }}>
+            <span style={countSuffix(t, { fontSize: "0.78rem" })}>
               {formatFilterValue(customFilter.focalMin)}–{formatFilterValue(customFilter.focalMax)}mm
             </span>
           </h3>
@@ -338,7 +339,7 @@ export default function LensIndexFilterPanel({
         <section>
           <h3 style={filterTitleStyle}>
             Aperture
-            <span style={{ color: t.label, fontSize: "0.78rem", fontWeight: 400, marginLeft: "0.5rem" }}>
+            <span style={countSuffix(t, { fontSize: "0.78rem" })}>
               f/{formatFilterValue(customFilter.apertureMin)}–f/{formatFilterValue(customFilter.apertureMax)}
             </span>
           </h3>
@@ -361,7 +362,7 @@ export default function LensIndexFilterPanel({
         <section>
           <h3 style={filterTitleStyle}>
             Patent Date
-            <span style={{ color: t.label, fontSize: "0.78rem", fontWeight: 400, marginLeft: "0.5rem" }}>
+            <span style={countSuffix(t, { fontSize: "0.78rem" })}>
               {customFilter.patentYearMin}–{customFilter.patentYearMax}
             </span>
           </h3>
@@ -384,7 +385,7 @@ export default function LensIndexFilterPanel({
         <section>
           <h3 style={filterTitleStyle}>
             Maker
-            <span style={{ color: t.label, fontSize: "0.78rem", fontWeight: 400, marginLeft: "0.5rem" }}>
+            <span style={countSuffix(t, { fontSize: "0.78rem" })}>
               {customFilter.makerSlugs.length === 0 ? "All Makers" : `${customFilter.makerSlugs.length} selected`}
             </span>
           </h3>
@@ -417,7 +418,7 @@ export default function LensIndexFilterPanel({
         <section>
           <h3 style={filterTitleStyle}>
             Mount
-            <span style={{ color: t.label, fontSize: "0.78rem", fontWeight: 400, marginLeft: "0.5rem" }}>
+            <span style={countSuffix(t, { fontSize: "0.78rem" })}>
               {customFilter.lensMountIds.length === 0 ? "All Mounts" : `${customFilter.lensMountIds.length} selected`}
             </span>
           </h3>
@@ -450,7 +451,7 @@ export default function LensIndexFilterPanel({
         <section>
           <h3 style={filterTitleStyle}>
             Image Format
-            <span style={{ color: t.label, fontSize: "0.78rem", fontWeight: 400, marginLeft: "0.5rem" }}>
+            <span style={countSuffix(t, { fontSize: "0.78rem" })}>
               {customFilter.imageFormatIds.length === 0
                 ? "All Formats"
                 : `${customFilter.imageFormatIds.length} selected`}

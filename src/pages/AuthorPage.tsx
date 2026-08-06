@@ -26,7 +26,7 @@ import type { AuthorGroupMode, AuthorPatent } from "../utils/catalog/authorCatal
 import { SITE_NAME, SITE_URL } from "../utils/catalog/lensMetadata.js";
 import { breadcrumbJsonLd, collectionPageJsonLd, itemListJsonLd } from "../utils/seo/structuredData.js";
 import { H1_STYLE, STICKY_NAV_SCROLL_MARGIN } from "../utils/style/pageStyles.js";
-import { panelCard, toggleBtn, toggleGroup } from "../utils/style/styles.js";
+import { countSuffix, panelCard, toggleBtn, toggleGroup } from "../utils/style/styles.js";
 import { patentPartyGroupAnchorId } from "./lensIndex/groupAnchors.js";
 import type { Theme } from "../types/theme.js";
 
@@ -256,9 +256,7 @@ export default function AuthorPage() {
                     ) : (
                       group.label
                     )}
-                    <span style={{ color: t.label, fontSize: "0.7rem", marginLeft: "0.5rem", fontWeight: 400 }}>
-                      ({group.patents.length})
-                    </span>
+                    <span style={countSuffix(t, { fontSize: "0.7rem" })}>({group.patents.length})</span>
                   </h2>
                   {group.patents.map((patent) => (
                     <PatentCard

@@ -7,6 +7,7 @@ import {
   SLIDER_VALUE_BASE,
   VISUALLY_HIDDEN,
   panelCard,
+  countSuffix,
   toggleGroup,
   toggleBtn,
   chromChannelBtn,
@@ -44,6 +45,7 @@ const mockTheme = {
   descBorder: "#333",
   panelBg: "#121820",
   panelBorder: "#345",
+  label: "#789",
 } as unknown as Theme;
 
 /* ── Color helpers ── */
@@ -138,6 +140,24 @@ describe("panelCard(t, opts)", () => {
 
   it("supports the existing eight-pixel card radius", () => {
     expect(panelCard(mockTheme, { borderRadius: 8 }).borderRadius).toBe(8);
+  });
+});
+
+describe("countSuffix(t, opts)", () => {
+  it("returns the shared muted heading suffix", () => {
+    expect(countSuffix(mockTheme)).toEqual({
+      color: mockTheme.label,
+      fontSize: "0.75rem",
+      marginLeft: "0.5rem",
+      fontWeight: 400,
+    });
+  });
+
+  it("preserves caller-specific typography", () => {
+    expect(countSuffix(mockTheme, { fontSize: "0.7rem", marginLeft: "0.4rem" })).toMatchObject({
+      fontSize: "0.7rem",
+      marginLeft: "0.4rem",
+    });
   });
 });
 

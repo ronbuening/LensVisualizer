@@ -123,6 +123,19 @@ export function panelCard(t: Theme, opts?: { borderRadius?: number }): CSSProper
   };
 }
 
+/** Muted inline value/count appended to a section or filter heading. */
+export function countSuffix(
+  t: Theme,
+  opts?: { fontSize?: CSSProperties["fontSize"]; marginLeft?: CSSProperties["marginLeft"] },
+): CSSProperties {
+  return {
+    color: t.label,
+    fontSize: opts?.fontSize ?? "0.75rem",
+    marginLeft: opts?.marginLeft ?? "0.5rem",
+    fontWeight: 400,
+  };
+}
+
 /**
  * Toggle button group container (rounded pill wrapping multiple buttons).
  */

@@ -22,7 +22,7 @@ import {
 } from "../utils/catalog/patentCatalog.js";
 import { collectionPageJsonLd, itemListJsonLd } from "../utils/seo/structuredData.js";
 import { H1_STYLE, STICKY_NAV_SCROLL_MARGIN } from "../utils/style/pageStyles.js";
-import { panelCard } from "../utils/style/styles.js";
+import { countSuffix, panelCard } from "../utils/style/styles.js";
 import { patentPartyGroupAnchorId } from "./lensIndex/groupAnchors.js";
 
 interface PatentCardProps {
@@ -198,9 +198,7 @@ export default function PatentsIndexPage() {
                       }}
                     >
                       {assignee.label}
-                      <span style={{ color: t.label, fontSize: "0.68rem", marginLeft: "0.5rem", fontWeight: 400 }}>
-                        ({assignee.patents.length})
-                      </span>
+                      <span style={countSuffix(t, { fontSize: "0.68rem" })}>({assignee.patents.length})</span>
                     </h3>
                     {assignee.patents.map((patent) => (
                       <PatentCard

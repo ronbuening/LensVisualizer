@@ -10,6 +10,7 @@ import type { ReactNode } from "react";
 import LensEntryLink from "../content/LensEntryLink.js";
 import type { Theme } from "../../types/theme.js";
 import { searchCatalog } from "../../utils/catalog/searchCatalog.js";
+import { countSuffix } from "../../utils/style/styles.js";
 
 interface CatalogSearchResultsProps {
   query: string;
@@ -39,7 +40,7 @@ function ResultSection({ title, count, theme: t, children }: ResultSectionProps)
         }}
       >
         {title}
-        <span style={{ color: t.label, fontSize: "0.72rem", marginLeft: "0.5rem", fontWeight: 400 }}>({count})</span>
+        <span style={countSuffix(t, { fontSize: "0.72rem" })}>({count})</span>
       </h2>
       {children}
       {count > RESULT_LIMIT && (
