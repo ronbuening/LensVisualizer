@@ -126,8 +126,9 @@ export default function CatalogSearchBox({
           onFocus={() => setSuggestionsOpen(normalizedQuery.length > 0)}
           placeholder="Lens name, patent number, or author"
           autoComplete="off"
-          aria-controls={showSuggestions ? "catalog-search-suggestions" : undefined}
-          aria-expanded={showSuggestions ? suggestionsVisible : undefined}
+          /* aria-expanded belongs on a combobox role this input does not claim;
+             aria-controls only renders while its target exists. */
+          aria-controls={suggestionsVisible ? "catalog-search-suggestions" : undefined}
           style={{
             ...searchInput(t),
             flex: 1,
@@ -157,11 +158,10 @@ export default function CatalogSearchBox({
         <div
           ref={suggestionsRef}
           id="catalog-search-suggestions"
-          aria-label="Catalog suggestions"
           style={{ borderTop: `1px solid ${t.panelDivider}`, marginTop: "0.75rem", paddingTop: "0.5rem" }}
         >
           {suggestions.length > 0 ? (
-            <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+            <ul aria-label="Catalog suggestions" style={{ listStyle: "none", padding: 0, margin: 0 }}>
               {suggestions.map((match) => {
                 const item = suggestionDetails(match);
                 const id = match.type === "author" ? `author-${match.author.slug}` : `${match.type}-${match.key}`;

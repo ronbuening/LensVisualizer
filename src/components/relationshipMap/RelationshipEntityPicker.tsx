@@ -97,17 +97,17 @@ export default function RelationshipEntityPicker({ theme: t, onPick, compact = f
           }}
           onFocus={() => setSuggestionsOpen(normalizedQuery.length > 0)}
           placeholder="Change focus — search inventors or assignees"
-          aria-autocomplete="list"
-          aria-controls="relationship-picker-options"
-          aria-expanded={compactListOpen}
-          aria-haspopup="listbox"
+          /* Plain labeled list of buttons, not an APG combobox: without
+             aria-activedescendant keyboard navigation, listbox/option roles
+             would promise interaction semantics the widget does not have.
+             aria-controls only renders while its target exists. */
+          aria-controls={compactListOpen ? "relationship-picker-options" : undefined}
           style={inputStyle}
         />
         {compactListOpen && (
           <ul
             ref={compactListRef}
             id="relationship-picker-options"
-            role="listbox"
             aria-label="Inventor and assignee suggestions"
             style={{
               position: "absolute",
@@ -127,8 +127,6 @@ export default function RelationshipEntityPicker({ theme: t, onPick, compact = f
               <li key={option.ref.role + ":" + option.ref.slug}>
                 <button
                   type="button"
-                  role="option"
-                  aria-selected="false"
                   onClick={() => {
                     setQuery("");
                     setSuggestionsOpen(false);

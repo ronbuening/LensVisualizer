@@ -90,18 +90,19 @@ describe("search, author, and patent pages", () => {
     const searchbox = screen.getByRole("searchbox");
 
     fireEvent.change(searchbox, { target: { value: "AGFA COLOR" } });
-    expect(screen.getByLabelText("Catalog suggestions")).toBeDefined();
-    expect(searchbox.getAttribute("aria-expanded")).toBe("true");
+    expect(screen.getByRole("list", { name: "Catalog suggestions" })).toBeDefined();
+    /* aria-controls must reference the suggestions only while they exist */
+    expect(searchbox.getAttribute("aria-controls")).toBe("catalog-search-suggestions");
 
     fireEvent.keyDown(document, { key: "Escape" });
-    expect(screen.queryByLabelText("Catalog suggestions")).toBeNull();
-    expect(searchbox.getAttribute("aria-expanded")).toBe("false");
+    expect(screen.queryByRole("list", { name: "Catalog suggestions" })).toBeNull();
+    expect(searchbox.getAttribute("aria-controls")).toBeNull();
 
     fireEvent.change(searchbox, { target: { value: "AGFA COLOR-TELINEAR" } });
-    expect(screen.getByLabelText("Catalog suggestions")).toBeDefined();
+    expect(screen.getByRole("list", { name: "Catalog suggestions" })).toBeDefined();
     fireEvent.mouseDown(document.body);
-    expect(screen.queryByLabelText("Catalog suggestions")).toBeNull();
-    expect(searchbox.getAttribute("aria-expanded")).toBe("false");
+    expect(screen.queryByRole("list", { name: "Catalog suggestions" })).toBeNull();
+    expect(searchbox.getAttribute("aria-controls")).toBeNull();
   });
 
   it("skips catalog suggestion scans when suggestions are disabled", () => {

@@ -90,18 +90,19 @@ describe("RelationshipMapPage", () => {
     const searchbox = await screen.findByRole("searchbox", { name: "Search inventors and assignees" });
 
     fireEvent.change(searchbox, { target: { value: AUTHORS[0].name } });
-    expect(screen.getByRole("listbox", { name: "Inventor and assignee suggestions" })).toBeDefined();
-    expect(searchbox.getAttribute("aria-expanded")).toBe("true");
+    expect(screen.getByRole("list", { name: "Inventor and assignee suggestions" })).toBeDefined();
+    /* aria-controls must reference the list only while it exists */
+    expect(searchbox.getAttribute("aria-controls")).toBe("relationship-picker-options");
 
     fireEvent.keyDown(document, { key: "Escape" });
-    expect(screen.queryByRole("listbox", { name: "Inventor and assignee suggestions" })).toBeNull();
-    expect(searchbox.getAttribute("aria-expanded")).toBe("false");
+    expect(screen.queryByRole("list", { name: "Inventor and assignee suggestions" })).toBeNull();
+    expect(searchbox.getAttribute("aria-controls")).toBeNull();
 
     fireEvent.focus(searchbox);
-    expect(screen.getByRole("listbox", { name: "Inventor and assignee suggestions" })).toBeDefined();
+    expect(screen.getByRole("list", { name: "Inventor and assignee suggestions" })).toBeDefined();
     fireEvent.mouseDown(document.body);
-    expect(screen.queryByRole("listbox", { name: "Inventor and assignee suggestions" })).toBeNull();
-    expect(searchbox.getAttribute("aria-expanded")).toBe("false");
+    expect(screen.queryByRole("list", { name: "Inventor and assignee suggestions" })).toBeNull();
+    expect(searchbox.getAttribute("aria-controls")).toBeNull();
   });
 
   it("falls back to the intro for a garbage focus", async () => {
