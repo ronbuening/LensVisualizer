@@ -26,7 +26,7 @@ flowchart LR
   n_external_src_generated["src/generated"]
   n_external_src_utils_seo["src/utils/seo"]
   n_external_src_utils_style["src/utils/style"]
-  n_src_pages_lensIndex_src_pages_lensIndex_catalog_ts --> |6| n_external_src_utils_catalog
+  n_src_pages_lensIndex_src_pages_lensIndex_catalog_ts --> |7| n_external_src_utils_catalog
   n_src_pages_lensIndex_src_pages_lensIndex_LensIndexResults_tsx --> |2| n_external_src_types
   n_src_pages_lensIndex_src_pages_lensIndex_LensIndexResults_tsx --> |2| n_external_src_utils_catalog
   n_src_pages_lensIndex_src_pages_lensIndex_types_ts --> |2| n_external_src_utils_catalog
@@ -64,14 +64,14 @@ flowchart LR
 
 - Direct source files: 9
 - Direct subfolders: 0
-- Main outbound areas: src/utils/catalog (17), same folder (12), src/types (5), package:react (2), src/utils/seo (2), src/utils/style (2), package:react-router, src/generated
+- Main outbound areas: src/utils/catalog (18), same folder (12), src/types (5), package:react (2), src/utils/seo (2), src/utils/style (2), package:react-router, src/generated
 - External consumers: src/components/layout, src/pages/AuthorPage.tsx, src/pages/FormatPage.tsx, src/pages/FormatsIndexPage.tsx, src/pages/LensIndexPage.tsx, src/pages/MountPage.tsx, src/pages/MountsIndexPage.tsx, src/pages/PatentsIndexPage.tsx
 
 ## Files
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
-| `catalog.ts` | Catalog helper module | src/utils/catalog (6), same folder | same folder (3), src/components/layout, src/pages/FormatPage.tsx, src/pages/FormatsIndexPage.tsx, src/pages/LensIndexPage.tsx, +2 more | buildFilterBounds, defaultCustomFilter, buildMakerOptions, buildMountOptions, buildImageFormatOptions, matchesCustomFilter, hasActiveCustomFilters, groupByMaker, +19 more |
+| `catalog.ts` | Catalog helper module | src/utils/catalog (7), same folder | same folder (3), src/components/layout, src/pages/FormatPage.tsx, src/pages/FormatsIndexPage.tsx, src/pages/LensIndexPage.tsx, +2 more | buildFilterBounds, defaultCustomFilter, buildMakerOptions, buildMountOptions, buildImageFormatOptions, matchesCustomFilter, hasActiveCustomFilters, groupByMaker, +19 more |
 | `clusterLinks.ts` | Cluster Links helper module | src/utils/catalog, src/utils/seo | same folder, src/components/layout, src/pages/FormatPage.tsx, src/pages/LensIndexPage.tsx, src/pages/MountPage.tsx | LensLibraryBreadcrumbContext, LensBreadcrumbSource, LensNavigationState, LensLinkTarget, lensLinkFromLibrary, lensLinkFromMount, lensLinkFromFormat |
 | `groupAnchors.ts` | Group Anchors helper module | src/types, src/utils/catalog | same folder, src/pages/AuthorPage.tsx, src/pages/LensIndexPage.tsx, src/pages/PatentsIndexPage.tsx | slugifyGroupKey, makerGroupAnchorId, patentPartyGroupAnchorId, mountGroupAnchorId, formatGroupAnchorId, yearGroupAnchorId, focalSectionAnchorId, focalSubGroupAnchorId |
 | `LensIndexFilterPanel.tsx` | Route-level React page | same folder (2), package:react, src/types, src/utils/catalog | src/pages/LensIndexPage.tsx | default, LensIndexFilterPanel |

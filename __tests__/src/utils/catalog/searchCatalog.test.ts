@@ -63,9 +63,11 @@ describe("author catalog", () => {
       "Optics LLC",
       "No named assignee or applicant",
     ]);
+    expect(assignees.map((group) => group.id)).toEqual(["named:Example Corp", "named:Optics LLC", "fallback"]);
 
     const coauthors = groupAuthorPatents(patents, "Ada", "coauthor");
     expect(coauthors.map((group) => group.label)).toEqual(["Ben", "Cy", "Sole inventor"]);
+    expect(coauthors.map((group) => group.id)).toEqual(["named:Ben", "named:Cy", "fallback"]);
     expect(coauthors.find((group) => group.label === "Ben")?.patents[0].patentNumber).toBe("US 1");
   });
 });

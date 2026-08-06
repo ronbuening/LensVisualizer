@@ -10,6 +10,7 @@ import { LENS_SUMMARIES, SUMMARY_KEYS } from "./lensSummaries.js";
 import type { LensSummary } from "./lensSummaries.js";
 import { catalogCollator } from "./collation.js";
 import type { PatentLensRef } from "../../types/catalog.js";
+import { groupByNamedParty } from "./groupByNamedParty.js";
 
 export type PatentLens = PatentLensRef;
 
@@ -141,28 +142,16 @@ export function buildPatentIndex(summaries: readonly LensSummary[]): PatentIndex
     string,
     {
       jurisdiction: PatentJurisdiction;
-      patents: Set<string>;
-      assignees: Map<string, PatentAssigneeGroup>;
+      patents: PatentRecord[];
     }
   >();
 
   for (const patent of patents) {
     const country = countries.get(patent.jurisdiction.code) ?? {
       jurisdiction: patent.jurisdiction,
-      patents: new Set<string>(),
-      assignees: new Map<string, PatentAssigneeGroup>(),
+      patents: [],
     };
-    country.patents.add(patent.patentNumber);
-
-    const assignees = patent.assignees.length > 0 ? patent.assignees : [PATENT_ASSIGNEE_FALLBACK];
-    for (const assignee of assignees) {
-      const isFallback = assignee === PATENT_ASSIGNEE_FALLBACK;
-      const id = isFallback ? "fallback" : `named:${assignee}`;
-      const group = country.assignees.get(id) ?? { id, label: assignee, isFallback, patents: [] };
-      group.patents.push(patent);
-      country.assignees.set(id, group);
-    }
-
+    country.patents.push(patent);
     countries.set(patent.jurisdiction.code, country);
   }
 
@@ -171,10 +160,11 @@ export function buildPatentIndex(summaries: readonly LensSummary[]): PatentIndex
     countries: [...countries.values()]
       .map((country) => ({
         jurisdiction: country.jurisdiction,
-        patentCount: country.patents.size,
-        assignees: [...country.assignees.values()].sort(
-          (a, b) => Number(a.isFallback) - Number(b.isFallback) || catalogCollator.compare(a.label, b.label),
-        ),
+        patentCount: country.patents.length,
+        assignees: groupByNamedParty(country.patents, (patent) => patent.assignees, {
+          fallbackId: "fallback",
+          fallbackLabel: PATENT_ASSIGNEE_FALLBACK,
+        }).map(({ id, label, items, isFallback }) => ({ id, label, patents: items, isFallback })),
       }))
       .sort((a, b) => catalogCollator.compare(a.jurisdiction.label, b.jurisdiction.label)),
   };

@@ -12,6 +12,7 @@ import type { LensSummary } from "./lensSummaries.js";
 import { canonicalPagePath } from "../seo/siteUrls.js";
 import { catalogCollator } from "./collation.js";
 import type { PatentLensRef, PatentPartyMetadata, PatentPartyRole } from "../../types/catalog.js";
+import { groupByNamedParty } from "./groupByNamedParty.js";
 
 export type AuthorMetadata = PatentPartyMetadata;
 
@@ -129,25 +130,10 @@ export function groupAuthorPatents(
   authorName: string,
   mode: AuthorGroupMode,
 ): AuthorPatentGroup[] {
-  const groups = new Map<string, AuthorPatentGroup>();
   const fallbackLabel = mode === "assignee" ? "No named assignee or applicant" : "Sole inventor";
-
-  const addPatent = (id: string, label: string, patent: AuthorPatent, isFallback = false) => {
-    const group = groups.get(id) ?? { id, label, patents: [], isFallback };
-    group.patents.push(patent);
-    groups.set(id, group);
-  };
-
-  for (const patent of patents) {
-    const parties = mode === "assignee" ? patent.assignees : patent.authors.filter((author) => author !== authorName);
-    if (parties.length === 0) {
-      addPatent("fallback", fallbackLabel, patent, true);
-      continue;
-    }
-    for (const party of new Set(parties)) addPatent(`named:${party}`, party, patent);
-  }
-
-  return [...groups.values()].sort(
-    (a, b) => Number(a.isFallback) - Number(b.isFallback) || catalogCollator.compare(a.label, b.label),
-  );
+  return groupByNamedParty(
+    patents,
+    (patent) => (mode === "assignee" ? patent.assignees : patent.authors.filter((author) => author !== authorName)),
+    { fallbackId: "fallback", fallbackLabel },
+  ).map(({ id, label, items, isFallback }) => ({ id, label, patents: items, isFallback }));
 }

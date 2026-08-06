@@ -35,6 +35,7 @@ import type {
 import type { LensSummary } from "../../utils/catalog/lensSummaries.js";
 import type { ImageFormatId, LensMountId } from "../../utils/catalog/lensTaxonomy.js";
 import { catalogCollator } from "../../utils/catalog/collation.js";
+import { groupByNamedParty } from "../../utils/catalog/groupByNamedParty.js";
 
 const FOCAL_BUCKETS: ReadonlyArray<{ label: string; maxFl: number }> = [
   { label: "Ultrawide (≤24mm)", maxFl: 24 },
@@ -262,30 +263,11 @@ function groupByPatentParty(
   field: "patentAuthors" | "patentAssignees",
   unnamedLabel: string,
 ): PatentPartyGroup[] {
-  const groups = new Map<string, PatentPartyGroup>();
-
-  const addToGroup = (id: string, label: string, entry: CatalogLensEntry) => {
-    if (!groups.has(id)) groups.set(id, { id, label, lenses: [] });
-    groups.get(id)!.lenses.push(entry);
-  };
-
-  for (const entry of entries) {
-    const parties = entry.data[field];
-    if (parties === undefined) {
-      addToGroup("missing-metadata", "No patent metadata", entry);
-      continue;
-    }
-    if (parties.length === 0) {
-      addToGroup("unnamed", unnamedLabel, entry);
-      continue;
-    }
-    for (const party of parties) addToGroup(`named:${party}`, party, entry);
-  }
-
-  return Array.from(groups.values()).sort((a, b) => {
-    const rank = (group: PatentPartyGroup) => (group.id.startsWith("named:") ? 0 : group.id === "unnamed" ? 1 : 2);
-    return rank(a) - rank(b) || catalogCollator.compare(a.label, b.label);
-  });
+  return groupByNamedParty(entries, (entry) => entry.data[field], {
+    fallbackId: "unnamed",
+    fallbackLabel: unnamedLabel,
+    missingLabel: "No patent metadata",
+  }).map(({ id, label, items }) => ({ id, label, lenses: items }));
 }
 
 /**

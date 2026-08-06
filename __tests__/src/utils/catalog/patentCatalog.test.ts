@@ -105,6 +105,7 @@ describe("patent catalog", () => {
       "Beta",
       PATENT_ASSIGNEE_FALLBACK,
     ]);
+    expect(unitedStates.assignees.map((assignee) => assignee.id)).toEqual(["named:Acme", "named:Beta", "fallback"]);
     expect(unitedStates.assignees.find((assignee) => assignee.label === "Acme")?.patents).toHaveLength(1);
     expect(unitedStates.assignees.find((assignee) => assignee.label === "Beta")?.patents).toHaveLength(1);
     expect(unitedStates.assignees.find((assignee) => assignee.isFallback)?.patents[0].patentNumber).toBe("US 2");

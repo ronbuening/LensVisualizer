@@ -110,6 +110,12 @@ describe("lens index catalog metadata grouping", () => {
       "No named inventor",
       "No patent metadata",
     ]);
+    expect(groups.map((group) => group.id)).toEqual([
+      "named:Ada Inventor",
+      "named:Grace Inventor",
+      "unnamed",
+      "missing-metadata",
+    ]);
     expect(groups[0].lenses).toEqual([multiInventor]);
     expect(groups[1].lenses).toEqual([multiInventor]);
     expect(groups[2].lenses).toEqual([unnamedInventor]);

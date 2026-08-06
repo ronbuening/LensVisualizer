@@ -1112,7 +1112,7 @@ fixes (year now backfills on author pages).
 
 ### C2. One "group under named parties + fallback bucket" implementation
 
-- [ ] Effort: S · Impact: med · Risk: low-med
+- [x] Effort: S · Impact: med · Risk: low-med
 
 Three implementations with three fallback vocabularies: `groupAuthorPatents`
 (`authorCatalog.ts` ~134–160, ids `named:${party}`/`fallback`), inline assignee grouping
