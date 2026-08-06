@@ -12,6 +12,7 @@
 import { AuthorPatent, getAuthorBySlug, getAuthorByName, patentsForParty } from "./authorCatalog.js";
 import { getAssigneeBySlug, getAssigneeByName } from "./assigneeCatalog.js";
 import { catalogCollator } from "./collation.js";
+import type { PatentLensRef } from "../../types/catalog.js";
 
 export type PartyRole = "author" | "assignee";
 
@@ -27,7 +28,7 @@ export interface GraphPatentNode {
   patentYear?: number;
   authors: string[];
   assignees: string[];
-  lenses: { key: string; name: string; specs?: string[] }[];
+  lenses: PatentLensRef[];
 }
 
 export interface GraphPartyNode {

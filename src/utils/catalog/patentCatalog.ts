@@ -9,12 +9,9 @@
 import { LENS_SUMMARIES, SUMMARY_KEYS } from "./lensSummaries.js";
 import type { LensSummary } from "./lensSummaries.js";
 import { catalogCollator } from "./collation.js";
+import type { PatentLensRef } from "../../types/catalog.js";
 
-export interface PatentLens {
-  key: string;
-  name: string;
-  specs?: string[];
-}
+export type PatentLens = PatentLensRef;
 
 export interface PatentJurisdiction {
   code: string;

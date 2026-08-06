@@ -1182,7 +1182,7 @@ Verification: gate passes; `searchCatalog.test.ts` + `searchPages.test.tsx` pin 
 
 ### C6. One metadata type + one lens-ref type for generated JSON; guard the casts
 
-- [ ] Effort: S · Impact: low-med · Risk: low
+- [x] Effort: S · Impact: low-med · Risk: low
 
 `AuthorMetadata`/`AssigneeMetadata`/`GeneratedAuthorMetadata` declare the same shape thrice;
 the lens-ref shape thrice (`authorCatalog.ts` ~21–25, `patentCatalog.ts` ~12–16,
