@@ -70,6 +70,33 @@ describe("useMediaQuery", () => {
     act(() => root?.unmount());
   });
 
+  it("clientOnly reads the live match on the first render, before effects", () => {
+    currentMatches = true;
+    const html = renderToString(
+      createElement(() =>
+        useMediaQuery("(min-width: 900px)", { ssrDefault: false, clientOnly: true }) ? "match" : "no match",
+      ),
+    );
+
+    expect(html).toBe("match");
+  });
+
+  it("clientOnly falls back to the server default when no window exists", () => {
+    currentMatches = true;
+    vi.stubGlobal("window", undefined);
+    try {
+      const html = renderToString(
+        createElement(() =>
+          useMediaQuery("(min-width: 900px)", { ssrDefault: false, clientOnly: true }) ? "match" : "no match",
+        ),
+      );
+
+      expect(html).toBe("no match");
+    } finally {
+      vi.unstubAllGlobals();
+    }
+  });
+
   it("returns initial match state", () => {
     currentMatches = true;
     // Re-stub with updated currentMatches

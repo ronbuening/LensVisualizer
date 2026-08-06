@@ -39,6 +39,21 @@ describe("useLensState — defaults", () => {
     expect(result.current[0].lens.comparing).toBe(false);
   });
 
+  /* The reducer initializer runs once, so it must see the real viewport width on the
+     first render — not the SSR default (the viewer tree mounts inside ClientOnly). */
+  it("expands the focus and aperture panels on a first visit at desktop width", () => {
+    const { result } = renderHook(() => useLensState(CATALOG_KEYS));
+    expect(result.current[0].panels.focusExpanded).toBe(true);
+    expect(result.current[0].panels.apertureExpanded).toBe(true);
+  });
+
+  it("collapses the focus and aperture panels on a first visit at narrow width", () => {
+    installMatchMediaMock(false);
+    const { result } = renderHook(() => useLensState(CATALOG_KEYS));
+    expect(result.current[0].panels.focusExpanded).toBe(false);
+    expect(result.current[0].panels.apertureExpanded).toBe(false);
+  });
+
   it("defaults sliders to zero", () => {
     const { result } = renderHook(() => useLensState(CATALOG_KEYS));
     const { focusT, zoomT, aberrationT, stopdownT } = result.current[0].sliders;

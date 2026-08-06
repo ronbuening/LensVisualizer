@@ -19,7 +19,9 @@ export default function useLensState(
   initialLensKey?: string,
   initialLensKeyB?: string,
 ): [LensState, Dispatch<LensAction>, boolean] {
-  const isWide = useMediaQuery("(min-width: 900px)", { ssrDefault: false });
+  /* The viewer tree mounts inside ClientOnly, so the live match is safe and required:
+     this value feeds the one-shot reducer initializer (panel expansion defaults). */
+  const isWide = useMediaQuery("(min-width: 900px)", { ssrDefault: false, clientOnly: true });
 
   const [state, dispatch] = useReducer(
     lensReducer,
