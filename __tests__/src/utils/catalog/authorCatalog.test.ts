@@ -62,6 +62,10 @@ describe("patentsForAuthor", () => {
     expect(sortKeys).toEqual(resorted);
   });
 
+  it("reuses the precomputed directory entry for repeated catalog lookups", () => {
+    expect(patentsForAuthor(sample.name)).toBe(patentsForAuthor(sample.name));
+  });
+
   it("credits the requested author on every returned record", () => {
     for (const patent of patentsForAuthor(sample.name)) {
       expect(patent.authors, patent.patentNumber).toContain(sample.name);

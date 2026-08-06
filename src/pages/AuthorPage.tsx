@@ -6,6 +6,7 @@
  * sticky sidebar providing in-page jumps to each group.
  */
 
+import { useMemo } from "react";
 import { Link, Navigate, useParams, useSearchParams } from "react-router";
 import SEOHead from "../components/SEOHead.js";
 import LinkListSidebar from "../components/content/LinkListSidebar.js";
@@ -143,13 +144,17 @@ export default function AuthorPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const { theme: t, themeMode, highContrast, toggleTheme, toggleHC } = usePageThemeToggle();
   const author = authorSlug ? getAuthorBySlug(authorSlug) : undefined;
+  const groupMode: AuthorGroupMode = searchParams.get("group") === "coauthor" ? "coauthor" : "assignee";
+  const authorName = author?.name;
+  const patents = useMemo(() => (authorName ? patentsForAuthor(authorName) : []), [authorName]);
+  const groups = useMemo(
+    () => (authorName ? groupAuthorPatents(patents, authorName, groupMode) : []),
+    [authorName, groupMode, patents],
+  );
 
   if (!author) return <Navigate to="/authors/" replace />;
 
   const biography = getAuthorBiography(author.name);
-  const patents = patentsForAuthor(author.name);
-  const groupMode: AuthorGroupMode = searchParams.get("group") === "coauthor" ? "coauthor" : "assignee";
-  const groups = groupAuthorPatents(patents, author.name, groupMode);
   const route = `/authors/${author.slug}`;
   const canonicalURL = `${SITE_URL}${route}`;
   const seoDescription = `Explore ${patents.length} optical ${patents.length === 1 ? "patent" : "patents"} credited to ${author.name}, with links to related interactive lens diagrams.`;

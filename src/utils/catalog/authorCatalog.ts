@@ -40,6 +40,47 @@ export const AUTHORS = buildMeta.authors as AuthorMetadata[];
 
 const AUTHORS_BY_SLUG = new Map(AUTHORS.map((author) => [author.slug, author]));
 const AUTHORS_BY_NAME = new Map(AUTHORS.map((author) => [author.name, author]));
+const CATALOG_PATENT_RECORDS = aggregatePatentRecords(
+  SUMMARY_KEYS.map((key) => LENS_SUMMARIES[key]),
+  { includeFallbackRecords: true },
+);
+
+function toAuthorPatent(record: (typeof CATALOG_PATENT_RECORDS)[number]): AuthorPatent {
+  const { patentNumber, patentYear, authors, assignees, lenses } = record;
+  return { patentNumber, patentYear, authors, assignees, lenses };
+}
+
+function compareAuthorPatents(a: AuthorPatent, b: AuthorPatent): number {
+  return (
+    (a.patentYear ?? Number.POSITIVE_INFINITY) - (b.patentYear ?? Number.POSITIVE_INFINITY) ||
+    catalogCollator.compare(a.patentNumber, b.patentNumber)
+  );
+}
+
+function buildPartyPatentDirectory(records: typeof CATALOG_PATENT_RECORDS) {
+  const directory: Record<PatentPartyRole, Map<string, AuthorPatent[]>> = {
+    author: new Map(),
+    assignee: new Map(),
+  };
+
+  const addRecord = (role: PatentPartyRole, name: string, patent: AuthorPatent) => {
+    const patents = directory[role].get(name) ?? [];
+    patents.push(patent);
+    directory[role].set(name, patents);
+  };
+
+  for (const record of records) {
+    const patent = toAuthorPatent(record);
+    for (const author of record.authors) addRecord("author", author, patent);
+    for (const assignee of record.assignees) addRecord("assignee", assignee, patent);
+  }
+  for (const role of ["author", "assignee"] as const) {
+    for (const patents of directory[role].values()) patents.sort(compareAuthorPatents);
+  }
+  return directory;
+}
+
+const PATENTS_BY_PARTY = buildPartyPatentDirectory(CATALOG_PATENT_RECORDS);
 
 /** Find build-generated author metadata by its stable URL slug. */
 export function getAuthorBySlug(slug: string): AuthorMetadata | undefined {
@@ -69,22 +110,14 @@ export function authorPathForName(name: string): string | undefined {
 export function patentsForParty(
   name: string,
   role: PatentPartyRole,
-  summaries: readonly LensSummary[] = SUMMARY_KEYS.map((key) => LENS_SUMMARIES[key]),
+  summaries?: readonly LensSummary[],
 ): AuthorPatent[] {
+  if (summaries === undefined) return PATENTS_BY_PARTY[role].get(name) ?? [];
+
   return aggregatePatentRecords(summaries, { includeFallbackRecords: true })
     .filter((patent) => (role === "author" ? patent.authors : patent.assignees).includes(name))
-    .map(({ patentNumber, patentYear, authors, assignees, lenses }) => ({
-      patentNumber,
-      patentYear,
-      authors,
-      assignees,
-      lenses,
-    }))
-    .sort(
-      (a, b) =>
-        (a.patentYear ?? Number.POSITIVE_INFINITY) - (b.patentYear ?? Number.POSITIVE_INFINITY) ||
-        catalogCollator.compare(a.patentNumber, b.patentNumber),
-    );
+    .map(toAuthorPatent)
+    .sort(compareAuthorPatents);
 }
 
 /** Aggregate one record per patent for an inventor (see {@link patentsForParty}). */

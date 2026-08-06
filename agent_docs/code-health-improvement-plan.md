@@ -1127,7 +1127,7 @@ Verification: gate passes; N3 anchor pins unchanged; all three existing grouping
 
 ### C3. Precompute the author directory; memoize AuthorPage derivations
 
-- [ ] Effort: S · Impact: med · Risk: low
+- [x] Effort: S · Impact: med · Risk: low
 
 `authorAssignees.ts` ~18–26 runs 375 × full-504-summary scans at module evaluation of the
 `/authors` chunk (~11 ms Node, 30–50 ms low-end mobile, on the load path); `AuthorPage.tsx`
