@@ -1,0 +1,23 @@
+# Audit Log — P. Angénieux Retrofocus Type R1 35mm f/2.5
+
+Patent: GB 673,358 A, Example I / Figure 1.
+
+## 2026-08-06 — New-lens patent-figure and glass audit
+
+- Rendered patent page 5 and compared the stored section with Figure 1. The front-group figure/data differences remain below the procedure's approximately 25% action threshold after normalization, and the compact rear group follows the printed silhouette. No SD changed.
+- All stored SDs pass the image-circle floor and surface-geometry checks.
+- The six 1950 patent glass coordinates have several plausible modern neighbors but no unique coefficient-backed historical identity. They remain explicit unmatched coordinate classes rather than acquiring arbitrary vendor labels.
+- Corrected the maker identity and route prefix to `P. Angénieux`; the display name is `P. ANGÉNIEUX RETROFOCUS TYPE R1 35mm f/2.5`.
+
+## 2026-08-06 — Catalog-equivalent glass follow-up
+
+- Rechecked Example I's six `nd` / `νd` rows against the patent's crown, barium-crown, barium-flint, and flint context plus complete vendor catalogs.
+- Added discontinued Sumita SSK2 and assigned compatible BACD4, E-BAF8, SSK2, F3, F1, and K-SK18 curves as optical equivalents. Each annotation retains the patent coordinate and leaves the production supplier unspecified.
+- Strict and trusted chromatic coverage both rose from 0/6 to 6/6 elements with zero coordinate mismatches.
+- The `L5a` / `L5b` patent notation, inspector metadata, and display name remain consistent with GB 673,358 A.
+
+## 2026-08-06 — Screenshot display and element-label audit
+
+- Rechecked the supplied viewer screenshot against Example I / Figure 1. The prescription, element types, cemented topology, all-spherical flag, and stored semi-diameters remain source-consistent; both focused geometry audits pass.
+- Added source-facing diagram identifiers `1`, `2`, `3`, `4`, `5a`, and `5b`. Renamed the displayed cemented pair from the internal `D1` shorthand to the patent-derived component label `L5`.
+- Reconfirmed `P. ANGÉNIEUX RETROFOCUS TYPE R1 35mm f/2.5` and the romanized inventor name `Pierre Angénieux`.

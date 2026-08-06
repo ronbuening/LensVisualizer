@@ -506,7 +506,7 @@ export default function buildLens(data: LensData): RuntimeLens {
     const lyImgLine = 1.133 * maxSD;
     const lyImgLabel = -1.233 * maxSD;
     const lyElemNum = 1.2 * maxSD;
-    const lyVdBadge = 1.36 * maxSD;
+    const lyVdBadge = 1.285 * maxSD;
     const lyGroup = 1.37 * maxSD;
     const lyStoPad = 0.12 * maxSD;
     const rayHeights = data.rayFractions.map((f: number) => f * EP.epSD);
@@ -835,7 +835,7 @@ export default function buildLens(data: LensData): RuntimeLens {
   const lyImgLine = 1.133 * maxSD;
   const lyImgLabel = -1.233 * maxSD;
   const lyElemNum = 1.2 * maxSD;
-  const lyVdBadge = 1.36 * maxSD;
+  const lyVdBadge = 1.285 * maxSD;
   const lyGroup = 1.37 * maxSD;
   const lyStoPad = 0.12 * maxSD;
 

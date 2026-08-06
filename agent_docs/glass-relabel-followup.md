@@ -21,22 +21,41 @@ The candidate scan splits mismatches into two buckets:
 
 This file tracks the second bucket plus any cases from the first bucket that need authorial judgment (multiple candidates, or relabeling would change the lens-data file's narrative — e.g. the analysis.md companion file says "S-LAH79" and the candidate suggestion would invalidate that).
 
-## Current Status (July 2026, current catalog)
+## Current Status (August 2026, current catalog)
 
 - Catalog: verified entries in `src/optics/glassCatalogData.ts` — `catalogSize()` is the live count; the
   generated glass reports carry the number at their generation date. (A hand-bumped figure here went stale.)
 - `catalog-mismatches.generated.md` and `glass-relabel-by-lens.generated.md` report **0** remaining
-  dispersion-coordinate mismatches across **0** lens files. The mismatch report separately records **17 / 75**
+  dispersion-coordinate mismatches across **0** lens files. The mismatch report separately records **18 / 75**
   native e-line surfaces resolved through explicit names or aliases.
-- `sellmeier-coverage.generated.md` reports **494** lenses, **5469** non-air surfaces, **4814** strict catalog
-  Sellmeier surfaces (**88.0%**), and **4824** trusted chromatic surfaces (**88.2%**).
-- **238** lenses are fully covered by strict Sellmeier data and **242** are fully covered by trusted chromatic data.
-- `unresolvedGlassScan` reports **356** non-explicit-unmatched annotations and **113** distinct unresolved glass-like
-  tokens. Sweep 2B reports **0** remaining unresolved catalog-style names; the residual total is code/prose inventory.
-- The missing-Sellmeier six-digit report contains **265** code-only elements, with **0** active unreviewed rows,
-  **118** self-recording explicit unmatched/unidentified dispositions, **147** other rows covered by sidecar or
-  companion-audit records, and **0** dispositions missing a review record.
+- `sellmeier-coverage.generated.md` reports **526** lenses, **5774** non-air surfaces, **5085** strict catalog
+  Sellmeier surfaces (**88.1%**), and **5096** trusted chromatic surfaces (**88.3%**).
+- **258** lenses are fully covered by strict Sellmeier data and **263** are fully covered by trusted chromatic data.
+- `unresolvedGlassScan` reports **364** non-explicit-unmatched annotations and **201** distinct unresolved glass-like
+  tokens. The residual total is code/prose inventory rather than a catalog-coordinate mismatch queue.
+- The missing-Sellmeier six-digit report contains **291** code-only elements, with **17** active unreviewed rows,
+  **127** self-recording explicit unmatched/unidentified dispositions, and **0** dispositions missing a review record.
 - The Phase 2/3 resolved tables below are historical audit trail. Use the generated reports above for the current queue before starting new relabel work; for patent-by-patent execution, start from [glass-relabel-by-lens.generated.md](generated/glass-relabel-by-lens.generated.md).
+
+## Resolved Phase 82 — August 2026 Angénieux glass audit
+
+- Added Sumita K-SFLD11 and SSK2 from the manufacturer's discontinued-inclusive 2025 all-glass catalog and Schott
+  P-LASF47 from the official March 2018 collection datasheet.
+- Applied class-consistent catalog-equivalent labels throughout the Angénieux R1, R11, and DEM 180mm APO while
+  preserving each patent coordinate and leaving every production supplier unspecified.
+- The three lenses are now fully strict-covered; global coverage is 5085/5774 strict and 5096/5774 trusted, with
+  zero catalog-coordinate mismatches.
+
+## Resolved Phase 81 — August 2026 Hikari new-lens coverage
+
+- Added J-BAF10, J-SK16, J-F5, J-SF8, J-LAF2, J-LAF7, and J-LASFH2 from Hikari's first-party June 2025
+  formula-3 pages.
+- Closed the named-glass gaps in the new Nikon 8-15mm fisheye zoom and DC-Nikkor 135mm prescriptions.
+- Applied compatible existing Hikari curves to the Nikon 16mm fisheye's four code-only rows, the DC-Nikkor's final
+  `797454` row, and the Angénieux R11's repeated `620602` rows. Every label retains its patent coordinate and leaves
+  production-supplier identity unspecified.
+- The three new Nikon lenses are fully strict-covered, global coverage is 5072/5774 strict and 5083/5774 trusted,
+  and the mismatch queue remains empty.
 
 ## Resolved Phase 70 — July 2026 K-LaSFn23 catalog addition
 

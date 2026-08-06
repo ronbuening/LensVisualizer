@@ -8,11 +8,11 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **520** lenses scanned
-- **5721** non-air surfaces examined
-- **5728** element glass declarations examined
-- **365** non-explicit-unmatched annotations did not resolve
-- **202** distinct unresolved glass-like tokens found
+- **526** lenses scanned
+- **5774** non-air surfaces examined
+- **5781** element glass declarations examined
+- **364** non-explicit-unmatched annotations did not resolve
+- **201** distinct unresolved glass-like tokens found
 
 ## Tokens by Frequency
 
@@ -217,7 +217,6 @@ or per-lens patent backfills.
 | PKH1-CLASS | 1 | 1 | |
 | QF2 | 1 | 1 | |
 | SSK1-CLASS | 1 | 1 | |
-| SSK2 | 1 | 1 | |
 | TACD5 | 1 | 1 | |
 | ZBAF17 | 1 | 1 | |
 
@@ -1084,10 +1083,6 @@ or per-lens patent backfills.
 ### SSK1-CLASS — 1 occurrence
 
 - [ENNA MÜNCHEN ULTRA-LITHAGON 28mm f/3.5](../../src/lens-data/enna-munchen/EnnaMunchenUltraLithagon28mmf35.data.ts) 11: `J-SSK1 equivalent (HIKARI; legacy SSK1-class, patent nd/vd)`
-
-### SSK2 — 1 occurrence
-
-- [RODENSTOCK GRANDAGON-N 65mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN65mmf45.data.ts) 4: `SSK2 class (Schott dense special crown; patent e-line values)`
 
 ### TACD5 — 1 occurrence
 

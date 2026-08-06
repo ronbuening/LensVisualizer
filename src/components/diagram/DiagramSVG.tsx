@@ -162,7 +162,10 @@ const DiagramSVG = memo(function DiagramSVG({
   const reducedMotion = usePrefersReducedMotion();
 
   /* ── Accessible name/description for the primary diagram ── */
-  const lensDisplayName = [L.data.maker, L.data.name].filter(Boolean).join(" ");
+  const maker = L.data.maker?.trim();
+  const name = L.data.name?.trim();
+  const nameIncludesMaker = maker && name?.toLocaleLowerCase().startsWith(maker.toLocaleLowerCase());
+  const lensDisplayName = nameIncludesMaker ? name : [maker, name].filter(Boolean).join(" ");
   const ariaLabel = `Lens cross-section diagram of ${lensDisplayName}`;
   const shownLayers = [
     showOnAxis ? "on-axis rays" : null,

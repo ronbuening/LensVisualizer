@@ -7,7 +7,24 @@ available, it falls back to partial measured `nC`/`nF` line indices, dPgF-correc
 approximation. Current optics-engine boundaries are summarized in
 [architecture/optics-engine.md](architecture/optics-engine.md).
 
-The catalog currently has **465 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+The catalog currently has **475 verified entries** in source as of August 2026. This document is the playbook for further expansion. The bottleneck is not infrastructure — the dispersion engine, resolver, validator, generated reports, and tests are all in place — it is the careful sourcing of published dispersion coefficients.
+
+The August 6, 2026 Phase 82 pass revisited all three Angénieux prescriptions. Sumita K-SFLD11 and SSK2 were
+recovered from the manufacturer's discontinued-inclusive 2025 all-glass catalog, and Schott P-LASF47 was added from
+the official March 2018 collection datasheet. Class-consistent existing curves completed the remaining elements while
+every label preserved the patent coordinate and left the production supplier unspecified. The R1 rose from 0/6 to
+6/6, the R11 from 4/6 to 6/6, and the DEM 180mm APO from 4/8 to 8/8 strict/trusted coverage. A follow-up claim review
+kept L2 as the patent-required ED/APD element but moved the ambiguous `806409` L5 row to the normal-dispersion
+S-LAH53 curve; the P-LASF47 row remains available for explicitly identified glasses. Regenerated global coverage is
+5085/5774 strict and 5096/5774 trusted, with zero catalog-coordinate mismatches.
+
+The August 6, 2026 Phase 81 pass added seven first-party curves from Hikari's June 2025 optical-glass catalog:
+J-BAF10, J-SK16, J-F5, J-SF8, J-LAF2, J-LAF7, and J-LASFH2. These close every named-glass gap in the new
+Nikon AF-S Fisheye 8-15mm and AF DC-Nikkor 135mm prescriptions. Compatible existing Hikari curves also classify
+four previously code-only glasses in the AF Fisheye-Nikkor 16mm and the repeated SK16-family rows in the Angénieux
+R11, with every annotation leaving the production supplier unspecified. The three new Nikon prescriptions are now
+fully strict-covered; regenerated global coverage is 5072/5774 strict and 5083/5774 trusted, with zero catalog
+coordinate mismatches.
 
 The August 5, 2026 Phase 80 pass audited six newly added vintage Voigtländer prescriptions. Schott LF5 and Ohara
 FTM8 were added from their vendor Zemax catalogs as mirrored by refractiveindex.info; the LF5 coordinate duplicates

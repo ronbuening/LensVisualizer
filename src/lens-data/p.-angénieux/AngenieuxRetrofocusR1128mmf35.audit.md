@@ -1,0 +1,23 @@
+# Audit Log — P. Angénieux Retrofocus Type R11 28mm f/3.5
+
+Patent: GB 720,808 A, sole numerical example / optical section.
+
+## 2026-08-06 — New-lens patent-figure and glass audit
+
+- Rendered patent page 5 and compared the stored section with the optical drawing. The sloped printed axis makes the front pair unsuitable for automatic edge measurement; the measurable rear envelopes normalize within approximately 11% of the stored shape. Visual inspection found no SD change above the audit threshold.
+- All stored SDs pass the image-circle floor and surface-geometry checks.
+- Relabeled the four repeated `1.6204 / 60.2` rows as HIKARI J-SK16 optical equivalents. The first-party formula-3 entry is `1.62041 / 60.25`; the annotation preserves patent coordinate `620602` and leaves the production supplier unspecified.
+- L1 (`675323`) and L4 (`1.6287 / 35.3`) remain unresolved because their compatible modern neighbors are not unique historical identities.
+- Corrected the maker identity and route prefix to `P. Angénieux`; the display name is `P. ANGÉNIEUX RETROFOCUS TYPE R11 28mm f/3.5`.
+
+## 2026-08-06 — Catalog-equivalent glass follow-up
+
+- Rechecked the sole numerical example's six glass rows. Schott SF5 is a compatible dense-flint curve for L1, and Sumita F1 is a compatible flint curve for L4; neither is asserted as the historical production glass.
+- Together with the four existing J-SK16 equivalents, the prescription now has 6/6 strict and trusted chromatic coverage, up from 4/6.
+- The `L1′` patent element notation, inspector metadata, and display name remain consistent with GB 720,808.
+
+## 2026-08-06 — Screenshot display and element-label audit
+
+- Rechecked the supplied viewer screenshot against the page-5 section. The radii, air spaces, element types, all-spherical flag, and stored semi-diameters follow the source silhouette; both focused geometry audits pass, so the SDs remain unchanged.
+- Added the patent's visible element sequence `1`, `1′`, `2`, `3`, `4`, `5` to the diagram instead of exposing the internal runtime ids `1` through `6`.
+- Reconfirmed `P. ANGÉNIEUX RETROFOCUS TYPE R11 28mm f/3.5` and the romanized inventor name `Pierre Angénieux`.

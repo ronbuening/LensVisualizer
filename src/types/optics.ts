@@ -156,6 +156,8 @@ export type RefractiveIndexReferenceLine = "d" | "e";
 export interface ElementData {
   id: number;
   name: string;
+  /** Optional patent/source identifier shown beneath the element in the diagram. */
+  diagramLabel?: string;
   label: string;
   type: string;
   nd: number;

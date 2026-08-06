@@ -60,6 +60,7 @@ describe("glass catalog", () => {
   it.each([
     { name: "N-BK7", nC: 1.51432, nd: 1.5168, nF: 1.52238, ng: 1.52668, vd: 64.17 },
     { name: "SF6", nC: 1.79609, nd: 1.80518, nF: 1.82775, ng: 1.84707, vd: 25.43 },
+    { name: "P-LASF47", nC: 1.80023, nd: 1.8061, nF: 1.81994, ng: 1.83112, vd: 40.9 },
   ])("$name reproduces the published Schott datasheet indices at the C/d/F/g lines", (datasheet) => {
     const entry = resolveGlass(datasheet.name);
     expect(entry?.name).toBe(datasheet.name);
@@ -72,6 +73,18 @@ describe("glass catalog", () => {
     expect(nF).toBeCloseTo(datasheet.nF, 5);
     expect(ng).toBeCloseTo(datasheet.ng, 5);
     expect((nd - 1) / (nF - nC)).toBeCloseTo(datasheet.vd, 2);
+  });
+
+  it.each([
+    { name: "K-SFLD11", code: "785259", nd: 1.78472, vd: 25.9 },
+    { name: "SSK2", code: "622531", nd: 1.6223, vd: 53.1 },
+  ])("$name reproduces the published Sumita catalog coordinate", (datasheet) => {
+    const entry = resolveGlass(datasheet.name);
+    expect(entry?.name).toBe(datasheet.name);
+    expect(entry?.vendor).toBe("Sumita");
+    expect(entry?.code6).toBe(datasheet.code);
+    expect(Math.abs(evaluateSellmeier(entry!, LINE_NM.d) - datasheet.nd)).toBeLessThan(1e-4);
+    expect(Math.abs(evaluateCatalogAbbeNumber(entry!) - datasheet.vd)).toBeLessThan(0.05);
   });
 
   it("S-TIH53WN reproduces the published OHARA 25-04 line indices", () => {
@@ -106,18 +119,25 @@ describe("glass catalog", () => {
   });
 
   it.each([
+    { name: "J-BAF10", code: "670471", nd: 1.67003, vd: 47.14 },
+    { name: "J-SK16", code: "620603", nd: 1.62041, vd: 60.25 },
+    { name: "J-F5", code: "603380", nd: 1.60342, vd: 38.03 },
+    { name: "J-SF8", code: "689312", nd: 1.68893, vd: 31.16 },
+    { name: "J-LAF2", code: "744448", nd: 1.744, vd: 44.81 },
+    { name: "J-LAF7", code: "750353", nd: 1.7495, vd: 35.25 },
+    { name: "J-LASFH2", code: "767468", nd: 1.76684, vd: 46.78 },
     { name: "J-SK12", code: "583594", nd: 1.58313, vd: 59.42 },
     { name: "J-LAK14", code: "697555", nd: 1.6968, vd: 55.52 },
     { name: "J-LAK18", code: "729546", nd: 1.72916, vd: 54.61 },
     { name: "J-LASF016", code: "773496", nd: 1.7725, vd: 49.62 },
     { name: "J-LASFH24", code: "902253", nd: 1.902, vd: 25.26 },
-  ])("$name reproduces the Nikon/Hikari workbook coordinate", (datasheet) => {
+  ])("$name reproduces the published Hikari coordinate", (datasheet) => {
     const entry = resolveGlass(datasheet.name);
     expect(entry?.name).toBe(datasheet.name);
     expect(entry?.vendor).toBe("Hikari");
     expect(entry?.code6).toBe(datasheet.code);
     expect(evaluateSellmeier(entry!, LINE_NM.d)).toBeCloseTo(datasheet.nd, 5);
-    expect(evaluateCatalogAbbeNumber(entry!)).toBeCloseTo(datasheet.vd, 2);
+    expect(Math.abs(evaluateCatalogAbbeNumber(entry!) - datasheet.vd)).toBeLessThan(0.01);
   });
 
   it("L-TIM28P reproduces the published OHARA line indices and Abbe number", () => {
