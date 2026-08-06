@@ -14,6 +14,7 @@ import { toggleBtn } from "../../utils/style/styles.js";
 import type { Theme } from "../../types/theme.js";
 import type { PartyRef, RelationshipGraph } from "../../utils/catalog/relationshipGraph.js";
 import { layoutRelationshipGraph } from "./layout.js";
+import { pluralize } from "../../utils/text.js";
 
 interface RelationshipMapProps {
   graph: RelationshipGraph;
@@ -58,9 +59,10 @@ export default function RelationshipMap({
   const activeNodeId = hoveredNodeId ?? selectedPatentId;
 
   const centerName = graph.center.ref.name;
-  const ariaLabel = `Relationship map centered on ${centerName}: ${graph.patents.length} ${
-    graph.patents.length === 1 ? "patent" : "patents"
-  }, ${graph.parties.length} related ${graph.parties.length === 1 ? "inventor or assignee" : "inventors and assignees"}`;
+  const ariaLabel = `Relationship map centered on ${centerName}: ${graph.patents.length} ${pluralize(
+    graph.patents.length,
+    "patent",
+  )}, ${graph.parties.length} related ${graph.parties.length === 1 ? "inventor or assignee" : "inventors and assignees"}`;
 
   const legendItemStyle: CSSProperties = { display: "flex", alignItems: "center", gap: 6 };
   const legendSwatch = (stroke: string, square: boolean): CSSProperties => ({

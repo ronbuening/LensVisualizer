@@ -12,6 +12,7 @@ import { collectionPageJsonLd, itemListJsonLd } from "../utils/seo/structuredDat
 import { getImageFormatDetails } from "../utils/catalog/imageFormatDetails.js";
 import { H1_STYLE } from "../utils/style/pageStyles.js";
 import { IMAGE_FORMAT_OPTIONS } from "./lensIndex/catalog.js";
+import { pluralize } from "../utils/text.js";
 
 export default function FormatsIndexPage() {
   const seoDescription = `Browse patent-derived camera lens diagrams by image format, including ${IMAGE_FORMAT_OPTIONS.map(
@@ -63,7 +64,7 @@ export default function FormatsIndexPage() {
                   {format.label}
                 </Link>
                 <span style={{ color: t.label, fontSize: "0.8rem", marginLeft: "0.5rem" }}>
-                  ({format.count} {format.count === 1 ? "lens" : "lenses"})
+                  ({format.count} {pluralize(format.count, "lens")})
                 </span>
                 {details && (
                   <p style={{ fontSize: "0.8rem", color: t.subtitle, lineHeight: 1.5, marginTop: "0.5rem" }}>

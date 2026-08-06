@@ -24,6 +24,7 @@ import type { LensMountId, LensMountMetadata } from "../utils/catalog/lensTaxono
 import LinkListSidebar from "../components/content/LinkListSidebar.js";
 import SidebarLayout from "../components/content/SidebarLayout.js";
 import type { LensSummary } from "../utils/catalog/lensSummaries.js";
+import { pluralize } from "../utils/text.js";
 
 function lensesForMaker(makerSlug: string): { key: string; data: LensSummary }[] {
   return SUMMARY_KEYS.filter(
@@ -87,8 +88,7 @@ export default function MakerPage() {
           {details && (
             <div style={{ marginBottom: "1.5rem" }}>
               <p style={{ fontSize: "0.8rem", color: t.label, marginBottom: "0.75rem" }}>
-                Est. {details.founded} · {details.headquarters} · {lenses.length}{" "}
-                {lenses.length === 1 ? "lens" : "lenses"}
+                Est. {details.founded} · {details.headquarters} · {lenses.length} {pluralize(lenses.length, "lens")}
               </p>
               {details.history.split("\n\n").map((paragraph, i) => (
                 <p key={i} style={{ fontSize: "0.85rem", color: t.desc, lineHeight: 1.6, marginBottom: "0.75rem" }}>
@@ -105,7 +105,7 @@ export default function MakerPage() {
 
           {!details && (
             <p style={{ fontSize: "0.875rem", color: t.muted, marginBottom: "1.5rem" }}>
-              {lenses.length} interactive lens {lenses.length === 1 ? "diagram" : "diagrams"}
+              {lenses.length} interactive lens {pluralize(lenses.length, "diagram")}
             </p>
           )}
 

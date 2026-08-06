@@ -988,7 +988,7 @@ Out of scope: full card unification (the two blocks above are the safe 80%).
 
 ### U4. Shared style vocabulary: panel card, visually-hidden, role chip, count suffix, search input, pluralize
 
-- [ ] Effort: M · Impact: med · Risk: low
+- [x] Effort: M · Impact: med · Risk: low
 
 `src/utils/style/styles.ts` declares itself the home for patterns used by 2+ components, yet July
 re-typed: the panel-card literal (12 sites, 8 byte-compatible: `AuthorsIndexPage` ~198–203,

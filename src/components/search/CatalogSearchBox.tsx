@@ -14,6 +14,7 @@ import { searchInput, VISUALLY_HIDDEN } from "../../utils/style/styles.js";
 import { exactSearchTarget, searchCatalog } from "../../utils/catalog/searchCatalog.js";
 import type { CatalogSearchMatch } from "../../utils/catalog/searchCatalog.js";
 import { canonicalPagePath } from "../../utils/seo/siteUrls.js";
+import { pluralize } from "../../utils/text.js";
 
 interface CatalogSearchBoxProps {
   theme: Theme;
@@ -29,7 +30,7 @@ function suggestionDetails(match: CatalogSearchMatch): { label: string; meta: st
   if (match.type === "author") {
     return {
       label: match.author.name,
-      meta: `Author · ${match.author.patentCount} ${match.author.patentCount === 1 ? "patent" : "patents"}`,
+      meta: `Author · ${match.author.patentCount} ${pluralize(match.author.patentCount, "patent")}`,
       to: canonicalPagePath(`/authors/${match.author.slug}`),
     };
   }

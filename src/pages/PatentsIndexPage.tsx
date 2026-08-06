@@ -24,6 +24,7 @@ import { collectionPageJsonLd, itemListJsonLd } from "../utils/seo/structuredDat
 import { H1_STYLE, STICKY_NAV_SCROLL_MARGIN } from "../utils/style/pageStyles.js";
 import { countSuffix, panelCard } from "../utils/style/styles.js";
 import { patentPartyGroupAnchorId } from "./lensIndex/groupAnchors.js";
+import { pluralize } from "../utils/text.js";
 
 interface PatentCardProps {
   patent: PatentRecord;
@@ -172,8 +173,7 @@ export default function PatentsIndexPage() {
                 >
                   {country.jurisdiction.label}
                   <span style={{ color: t.label, fontSize: "0.7rem", marginLeft: "0.5rem", fontWeight: 400 }}>
-                    {country.jurisdiction.code} · {country.patentCount}{" "}
-                    {country.patentCount === 1 ? "patent" : "patents"}
+                    {country.jurisdiction.code} · {country.patentCount} {pluralize(country.patentCount, "patent")}
                   </span>
                 </h2>
 

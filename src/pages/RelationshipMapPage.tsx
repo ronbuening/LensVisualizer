@@ -29,6 +29,7 @@ import { H1_STYLE } from "../utils/style/pageStyles.js";
 import { canonicalPagePath, canonicalPageUrl } from "../utils/seo/siteUrls.js";
 import { catalogCollator } from "../utils/catalog/collation.js";
 import roleChip from "../components/relationshipMap/roleChip.js";
+import { pluralize } from "../utils/text.js";
 
 const TOP_COUNT = 12;
 
@@ -189,7 +190,7 @@ export default function RelationshipMapPage() {
                           {author.name}
                         </Link>
                         <span style={{ color: t.label, fontSize: "0.7rem", marginLeft: "0.4rem" }}>
-                          {author.patentCount} {author.patentCount === 1 ? "patent" : "patents"}
+                          {author.patentCount} {pluralize(author.patentCount, "patent")}
                         </span>
                       </li>
                     ))}
@@ -210,7 +211,7 @@ export default function RelationshipMapPage() {
                           {assignee.name}
                         </Link>
                         <span style={{ color: t.label, fontSize: "0.7rem", marginLeft: "0.4rem" }}>
-                          {assignee.patentCount} {assignee.patentCount === 1 ? "patent" : "patents"}
+                          {assignee.patentCount} {pluralize(assignee.patentCount, "patent")}
                         </span>
                       </li>
                     ))}

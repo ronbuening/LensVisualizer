@@ -31,12 +31,13 @@ import {
   type AuthorSort,
 } from "../utils/state/authorSortPreference.js";
 import { catalogCollator } from "../utils/catalog/collation.js";
+import { pluralize } from "../utils/text.js";
 
 const AUTHOR_ASSIGNEE_FILTER_OPTIONS = [
   { key: ALL_AUTHOR_ASSIGNEES, label: `All companies and assignees (${AUTHORS.length} authors)` },
   ...AUTHOR_ASSIGNEE_STRATA.map((assignee) => ({
     key: assignee.slug,
-    label: `${assignee.name} (${assignee.authorCount} ${assignee.authorCount === 1 ? "author" : "authors"} · ${assignee.patentCount} ${assignee.patentCount === 1 ? "patent" : "patents"})`,
+    label: `${assignee.name} (${assignee.authorCount} ${pluralize(assignee.authorCount, "author")} · ${assignee.patentCount} ${pluralize(assignee.patentCount, "patent")})`,
   })),
   ...(UNASSIGNED_AUTHOR_COUNT > 0
     ? [{ key: UNASSIGNED_AUTHORS, label: `No named assignee (${UNASSIGNED_AUTHOR_COUNT} authors)` }]
@@ -217,15 +218,15 @@ export default function AuthorsIndexPage() {
                   )}
                 </div>
                 <div style={{ color: t.label, fontSize: "0.7rem", marginTop: "0.3rem" }}>
-                  {author.patentCount} {author.patentCount === 1 ? "patent" : "patents"} · {author.lensKeys.length}{" "}
-                  {author.lensKeys.length === 1 ? "lens diagram" : "lens diagrams"}
+                  {author.patentCount} {pluralize(author.patentCount, "patent")} · {author.lensKeys.length}{" "}
+                  {pluralize(author.lensKeys.length, "lens diagram")}
                 </div>
                 <div style={{ color: t.muted, fontSize: "0.68rem", lineHeight: 1.5, marginTop: "0.35rem" }}>
                   {assignees.length === 0 ? (
                     "No named patent assignee"
                   ) : (
                     <>
-                      {assignees.length === 1 ? "Assignee: " : "Assignees: "}
+                      {pluralize(assignees.length, "Assignee")}:{" "}
                       {assignees.map((assignee, index) => (
                         <span key={assignee.slug}>
                           {index > 0 && " · "}

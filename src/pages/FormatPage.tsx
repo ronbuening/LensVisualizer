@@ -12,6 +12,7 @@ import { getImageFormatDetails } from "../utils/catalog/imageFormatDetails.js";
 import { H1_STYLE, LENS_LINK_BASE_STYLE } from "../utils/style/pageStyles.js";
 import { lensLinkFromFormat } from "./lensIndex/clusterLinks.js";
 import { lensesForImageFormat } from "./lensIndex/catalog.js";
+import { pluralize } from "../utils/text.js";
 
 export default function FormatPage() {
   const { formatId } = useParams<{ formatId: string }>();
@@ -56,7 +57,7 @@ export default function FormatPage() {
           <h1 style={H1_STYLE}>{format.label} Lenses</h1>
           <p style={{ fontSize: "0.875rem", color: t.muted, marginBottom: "1.5rem" }}>
             {format.widthMm} x {format.heightMm} mm image area · {lenses.length} interactive lens{" "}
-            {lenses.length === 1 ? "diagram" : "diagrams"}
+            {pluralize(lenses.length, "diagram")}
           </p>
 
           {details && (

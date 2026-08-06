@@ -29,6 +29,7 @@ import { H1_STYLE, STICKY_NAV_SCROLL_MARGIN } from "../utils/style/pageStyles.js
 import { countSuffix, panelCard, toggleBtn, toggleGroup } from "../utils/style/styles.js";
 import { patentPartyGroupAnchorId } from "./lensIndex/groupAnchors.js";
 import type { Theme } from "../types/theme.js";
+import { pluralize } from "../utils/text.js";
 
 interface PatentCardProps {
   patent: AuthorPatent;
@@ -133,7 +134,7 @@ export default function AuthorPage() {
   const biography = getAuthorBiography(author.name);
   const route = `/authors/${author.slug}`;
   const canonicalURL = `${SITE_URL}${route}`;
-  const seoDescription = `Explore ${patents.length} optical ${patents.length === 1 ? "patent" : "patents"} credited to ${author.name}, with links to related interactive lens diagrams.`;
+  const seoDescription = `Explore ${patents.length} optical ${pluralize(patents.length, "patent")} credited to ${author.name}, with links to related interactive lens diagrams.`;
   const isThinBibliographicPage = !biography && patents.length === 1 && author.lensKeys.length === 1;
   const anchorRole = groupMode === "assignee" ? "assignee" : "author";
 
@@ -180,8 +181,8 @@ export default function AuthorPage() {
         <>
           <h1 style={{ ...H1_STYLE, marginBottom: "0.35rem" }}>{author.name}</h1>
           <p style={{ color: t.muted, fontSize: "0.8rem", lineHeight: 1.5, marginBottom: "0.4rem" }}>
-            {patents.length} related {patents.length === 1 ? "patent" : "patents"} across {author.lensKeys.length}{" "}
-            interactive lens {author.lensKeys.length === 1 ? "diagram" : "diagrams"}.
+            {patents.length} related {pluralize(patents.length, "patent")} across {author.lensKeys.length} interactive
+            lens {pluralize(author.lensKeys.length, "diagram")}.
           </p>
           {biography && <AuthorBiographySection biography={biography} theme={t} />}
           <p style={{ marginBottom: "1rem" }}>

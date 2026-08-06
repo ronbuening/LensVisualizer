@@ -12,6 +12,7 @@ import { collectionPageJsonLd, itemListJsonLd } from "../utils/seo/structuredDat
 import { getMountDetails } from "../utils/catalog/mountDetails.js";
 import { H1_STYLE } from "../utils/style/pageStyles.js";
 import { MOUNT_OPTIONS } from "./lensIndex/catalog.js";
+import { pluralize } from "../utils/text.js";
 
 export default function MountsIndexPage() {
   const seoDescription = `Browse patent-derived camera lens diagrams by mount, including ${MOUNT_OPTIONS.map(
@@ -63,7 +64,7 @@ export default function MountsIndexPage() {
                   {mount.label}
                 </Link>
                 <span style={{ color: t.label, fontSize: "0.8rem", marginLeft: "0.5rem" }}>
-                  ({mount.count} {mount.count === 1 ? "lens" : "lenses"})
+                  ({mount.count} {pluralize(mount.count, "lens")})
                 </span>
                 {details && (
                   <p style={{ fontSize: "0.8rem", color: t.subtitle, lineHeight: 1.5, marginTop: "0.5rem" }}>

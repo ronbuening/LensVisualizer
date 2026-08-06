@@ -13,6 +13,7 @@ import { getMakerDetails } from "../utils/catalog/makerDetails.js";
 import { collectionPageJsonLd, itemListJsonLd } from "../utils/seo/structuredData.js";
 import { H1_STYLE } from "../utils/style/pageStyles.js";
 import { catalogCollator } from "../utils/catalog/collation.js";
+import { pluralize } from "../utils/text.js";
 
 interface MakerEntry {
   display: string;
@@ -86,8 +87,7 @@ export default function MakersIndexPage() {
                 {details ? (
                   <>
                     <div style={{ fontSize: "0.8rem", color: t.label, marginTop: "0.25rem" }}>
-                      Est. {details.founded} · {details.headquarters} · {maker.count}{" "}
-                      {maker.count === 1 ? "lens" : "lenses"}
+                      Est. {details.founded} · {details.headquarters} · {maker.count} {pluralize(maker.count, "lens")}
                     </div>
                     <p style={{ fontSize: "0.8rem", color: t.subtitle, lineHeight: 1.5, marginTop: "0.5rem" }}>
                       {details.summary}
@@ -95,7 +95,7 @@ export default function MakersIndexPage() {
                   </>
                 ) : (
                   <span style={{ color: t.label, fontSize: "0.8rem", marginLeft: "0.5rem" }}>
-                    ({maker.count} {maker.count === 1 ? "lens" : "lenses"})
+                    ({maker.count} {pluralize(maker.count, "lens")})
                   </span>
                 )}
               </div>

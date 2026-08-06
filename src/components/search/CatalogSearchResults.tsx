@@ -11,6 +11,7 @@ import LensEntryLink from "../content/LensEntryLink.js";
 import type { Theme } from "../../types/theme.js";
 import { searchCatalog } from "../../utils/catalog/searchCatalog.js";
 import { countSuffix } from "../../utils/style/styles.js";
+import { pluralize } from "../../utils/text.js";
 
 interface CatalogSearchResultsProps {
   query: string;
@@ -86,7 +87,7 @@ export default function CatalogSearchResults({ query, theme: t }: CatalogSearchR
   return (
     <div aria-live="polite">
       <p style={{ color: t.muted, fontSize: "0.75rem", margin: 0 }}>
-        {total} {total === 1 ? "match" : "matches"} for “{trimmedQuery}”
+        {total} {pluralize(total, "match")} for “{trimmedQuery}”
       </p>
 
       <ResultSection title="Lens names" count={results.lenses.length} theme={t}>
@@ -122,7 +123,7 @@ export default function CatalogSearchResults({ query, theme: t }: CatalogSearchR
           <Link key={author.slug} to={`/authors/${author.slug}/`} style={resultLinkStyle(t)}>
             <span>{author.name}</span>
             <span style={{ color: t.label, fontSize: "0.7rem", marginLeft: "0.5rem" }}>
-              — {author.patentCount} {author.patentCount === 1 ? "patent" : "patents"}
+              — {author.patentCount} {pluralize(author.patentCount, "patent")}
             </span>
           </Link>
         ))}

@@ -24,6 +24,7 @@ import { lensLinkFromMount } from "./lensIndex/clusterLinks.js";
 import { lensesForMount } from "./lensIndex/catalog.js";
 import type { LensSummary } from "../utils/catalog/lensSummaries.js";
 import { catalogCollator } from "../utils/catalog/collation.js";
+import { pluralize } from "../utils/text.js";
 
 /** Makers (slug + display label) that have lenses for this mount, alphabetically. */
 function makersForMount(lenses: { data: LensSummary }[]): { slug: string; label: string }[] {
@@ -82,7 +83,7 @@ export default function MountPage() {
         <>
           <h1 style={H1_STYLE}>{mount.label} Lenses</h1>
           <p style={{ fontSize: "0.875rem", color: t.muted, marginBottom: "1.5rem" }}>
-            {lenses.length} interactive lens {lenses.length === 1 ? "diagram" : "diagrams"}
+            {lenses.length} interactive lens {pluralize(lenses.length, "diagram")}
           </p>
 
           {details && (
