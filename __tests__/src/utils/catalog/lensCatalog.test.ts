@@ -1,5 +1,11 @@
 import { describe, it, expect } from "vitest";
-import { LENS_CATALOG, CATALOG_KEYS, hasMdForKey, loadMdForKey } from "../../../../src/utils/catalog/lensCatalog.js";
+import {
+  LENS_CATALOG,
+  CATALOG_KEYS,
+  hasMdForKey,
+  loadMdForKey,
+  resolveOpticalConfigurationKey,
+} from "../../../../src/utils/catalog/lensCatalog.js";
 import buildLens from "../../../../src/optics/buildLens.js";
 import { catalogCollator } from "../../../../src/utils/catalog/collation.js";
 
@@ -58,6 +64,16 @@ describe("lensCatalog", () => {
     const names = CATALOG_KEYS.map((k) => LENS_CATALOG[k].name);
     const sorted = [...names].sort((a, b) => catalogCollator.compare(a, b));
     expect(names).toEqual(sorted);
+  });
+
+  it("accepts only configurations from the canonical lens's group", () => {
+    const canonicalKey = "nikon-af-s-nikkor-180-400mm-f4e-tc14-fl-ed-vr";
+    const variantKey = `${canonicalKey}-tc-in`;
+
+    expect(resolveOpticalConfigurationKey(canonicalKey, variantKey)).toBe(variantKey);
+    expect(resolveOpticalConfigurationKey(canonicalKey, "reference-newtonian-side-focus")).toBe(canonicalKey);
+    expect(resolveOpticalConfigurationKey(canonicalKey, "stale-configuration-key")).toBe(canonicalKey);
+    expect(resolveOpticalConfigurationKey(canonicalKey, undefined)).toBe(canonicalKey);
   });
 });
 

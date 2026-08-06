@@ -76,6 +76,12 @@ function opticalConfigurationOptionsForKey(key: string): ReadonlyArray<OpticalCo
   return OPTICAL_CONFIGURATION_OPTIONS_BY_GROUP.get(groupKey) ?? [];
 }
 
+/** Resolve a requested configuration within the canonical lens's group. */
+function resolveOpticalConfigurationKey(key: string, requestedKey: string | undefined): string {
+  if (!requestedKey) return key;
+  return opticalConfigurationOptionsForKey(key).some((option) => option.key === requestedKey) ? requestedKey : key;
+}
+
 /* Analysis markdown is code-split: the non-eager glob maps each file to a
  * dynamic importer, so ~10 MB of prose is fetched per lens on demand instead
  * of shipping inside the main bundle. */
@@ -144,6 +150,7 @@ export {
   DEBUG_CATALOG_KEYS,
   isDebugLensKey,
   opticalConfigurationOptionsForKey,
+  resolveOpticalConfigurationKey,
   hasMdForKey,
   cachedMdForKey,
   loadMdForKey,
