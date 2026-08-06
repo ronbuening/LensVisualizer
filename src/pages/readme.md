@@ -113,4 +113,4 @@ flowchart LR
 | `PatentsIndexPage.tsx` | Route-level React page | src/components/content (4), src/utils/catalog (2), src/utils/style (2), src/components/layout, src/components/SEOHead.tsx, +4 more | src/routes | default, PatentsIndexPage |
 | `RelationshipMapPage.tsx` | Route-level React page | src/utils/catalog (5), src/components/relationshipMap (4), src/utils/seo (2), package:react, package:react-router, +5 more | src/routes | default, RelationshipMapPage |
 | `SearchPage.tsx` | Route-level React page | src/components/search (2), package:react, package:react-router, src/components/layout, src/components/SEOHead.tsx, +3 more | src/routes | default, SearchPage |
-| `UpdatesPage.tsx` | Route-level React page | src/utils/catalog (2), src/utils/content (2), package:react, package:react-router, src/components/content, +5 more | src/routes | default, UpdatesPage |
+| `UpdatesPage.tsx` | Route-level React page | src/utils/catalog (2), src/utils/content (2), package:react, package:react-router, src/components/content, +4 more | src/routes | default, UpdatesPage |

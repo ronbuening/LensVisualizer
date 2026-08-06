@@ -51,6 +51,35 @@ A branch review after the stage records were written surfaced three items, fixed
   `useLensState`, so the documented "cfg is ignored in compare mode" contract holds on history
   navigation too.
 
+## Post-review follow-up batch (2026-08-06, second pass)
+
+Maintainer-approved fixes for the remaining review findings, one commit each:
+
+- Extracted `src/utils/catalog/patentRecords.ts` as a pure-function leaf so the search/homepage
+  path no longer evaluates the module-scope patent index; `patentCatalog` re-exports the moved
+  aggregator, jurisdiction resolver, and record types, keeping every import path stable.
+- Marked shared patent-record arrays (`PATENTS`, `patentsForParty` results, graph nodes) readonly —
+  an in-place sort in one page can no longer corrupt the other subsystems.
+- Pinned per-patent author/assignee lens-file source order with a synthetic test and declared
+  `groupByNamedParty`'s per-item party de-duplication intentional in its doc.
+- Restored the `url` final tie-break in `comparePublicationEntries` (RSS items carry no key/slug);
+  regenerated feeds byte-identical.
+- `feedDiscovery.test.ts` now asserts index.html's discovery links against the imported
+  `feedMetadata.ts` constants, closing C10's last hardcoded site.
+- Reworked both suggestion dropdowns to plain labeled button lists (ARIA option A): removed the
+  unowned `listbox`/`option` roles and the combobox-less `aria-expanded`; `aria-controls` renders
+  only while its target exists. The APG combobox pattern with arrow-key navigation remains a
+  possible future feature.
+- Replaced the QuickNavCards and Updates-page JS breakpoints with an auto-fit grid / wrap-flex
+  (prerendered layout now correct at every viewport; the Updates scroll panes use one 72vh height
+  at all widths) and clamped HeroSection font sizes across its structural breakpoint.
+- Constrained the hidden-key viewer catalog to the comparison allow-list plus the current key, so
+  reference fixtures no longer appear in the single-lens selector; removed the dead
+  `initialLensKeyB` half of that check.
+- NotFoundPage's U2 migration onto `PAGE_BASE_STYLE` (minHeight 100vh, shell padding rhythm) is a
+  reviewed, deliberate deviation from the old bespoke `4rem 1.5rem` container — shell-consistent
+  chrome on the 404 page is preferred over byte-level visual parity.
+
 ## Follow-ups
 
 - Optionally repeat the U1 narrow-viewport console spot-check when an in-app browser instance is available.
