@@ -370,13 +370,24 @@ describe("LensViewer", () => {
     expect(screen.getByTestId("content-desktop").textContent).toBe("both");
   });
 
-  it("uses the hidden catalog key set when a route key is not in the visible catalog", () => {
-    const hiddenKey = ALL_CATALOG_KEYS.find((key) => !CATALOG_KEYS.includes(key));
-    expect(hiddenKey).toBeDefined();
+  it("appends only the current hidden fixture instead of the full hidden catalog", () => {
+    const fixtureKey = ALL_CATALOG_KEYS.find(
+      (key) => !CATALOG_KEYS.includes(key) && !COMPARISON_CATALOG_KEYS.includes(key),
+    );
+    expect(fixtureKey).toBeDefined();
 
-    render(<LensViewer initialLensKey={hiddenKey} />);
+    render(<LensViewer initialLensKey={fixtureKey} />);
 
-    expect(mocks.capturedCatalogKeys).toEqual(ALL_CATALOG_KEYS);
+    expect(mocks.capturedCatalogKeys).toEqual([...COMPARISON_CATALOG_KEYS, fixtureKey]);
+  });
+
+  it("uses the comparison catalog for a hidden configuration-variant route", () => {
+    const variantKey = COMPARISON_CATALOG_KEYS.find((key) => !CATALOG_KEYS.includes(key));
+    expect(variantKey).toBeDefined();
+
+    render(<LensViewer initialLensKey={variantKey} />);
+
+    expect(mocks.capturedCatalogKeys).toEqual(COMPARISON_CATALOG_KEYS);
   });
 
   it("hides desktop-only view controls on mobile", () => {

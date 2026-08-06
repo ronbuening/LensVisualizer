@@ -20,7 +20,6 @@ import { useMemo, useCallback } from "react";
 import { useNavigate } from "react-router";
 
 import {
-  ALL_CATALOG_KEYS,
   LENS_CATALOG,
   CATALOG_KEYS,
   COMPARISON_CATALOG_KEYS,
@@ -87,11 +86,17 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
   const isLensPage = !!initialLensKey && !initialLensKeyB;
   const viewerCatalogKeys = useMemo(() => {
     if (isComparePage) return COMPARISON_CATALOG_KEYS;
-    const needsHiddenCatalog =
-      (initialLensKey !== undefined && !CATALOG_KEYS.includes(initialLensKey)) ||
-      (initialLensKeyB !== undefined && !CATALOG_KEYS.includes(initialLensKeyB));
-    return needsHiddenCatalog ? ALL_CATALOG_KEYS : CATALOG_KEYS;
-  }, [isComparePage, initialLensKey, initialLensKeyB]);
+    /* A hand-typed hidden lens URL (e.g. a reference fixture, or exiting compare
+       on a configuration variant) must still render, but the selector should not
+       list unrelated hidden debug fixtures — append only the current key.
+       Configuration-group variants are already comparison keys. */
+    if (initialLensKey !== undefined && !CATALOG_KEYS.includes(initialLensKey)) {
+      return COMPARISON_CATALOG_KEYS.includes(initialLensKey)
+        ? COMPARISON_CATALOG_KEYS
+        : [...COMPARISON_CATALOG_KEYS, initialLensKey];
+    }
+    return CATALOG_KEYS;
+  }, [isComparePage, initialLensKey]);
   const [state, dispatch, isWide] = useLensState(viewerCatalogKeys, initialLensKey, initialLensKeyB);
 
   /* ── Destructure state slices for convenient access ── */
