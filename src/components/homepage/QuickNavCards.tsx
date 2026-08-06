@@ -9,7 +9,6 @@ import { Link } from "react-router";
 import type { Theme } from "../../types/theme.js";
 import { SUMMARY_KEYS, LENS_SUMMARIES, RECENT_LENS_KEYS } from "../../utils/catalog/lensSummaries.js";
 import { deriveMaker } from "../../utils/catalog/lensMetadata.js";
-import useMediaQuery from "../../utils/useMediaQuery.js";
 import { canonicalPagePath } from "../../utils/seo/siteUrls.js";
 import { panelCard } from "../../utils/style/styles.js";
 
@@ -28,7 +27,6 @@ interface CardDef {
 }
 
 export default function QuickNavCards({ theme: t }: QuickNavCardsProps) {
-  const isWide = useMediaQuery("(min-width: 720px)", { ssrDefault: false });
   const makerCount = countMakers();
   const viewerLens = RECENT_LENS_KEYS.length > 0 ? RECENT_LENS_KEYS[0].key : SUMMARY_KEYS[0];
 
@@ -45,7 +43,7 @@ export default function QuickNavCards({ theme: t }: QuickNavCardsProps) {
 
   const cardStyle = (): React.CSSProperties => ({
     ...panelCard(t, { borderRadius: 8 }),
-    padding: isWide ? "1.25rem 1.5rem" : "1rem 1.25rem",
+    padding: "clamp(1rem, 2vw, 1.25rem) clamp(1.25rem, 2.5vw, 1.5rem)",
     textDecoration: "none",
     display: "block",
     transition: "border-color 0.2s, box-shadow 0.2s",
@@ -55,8 +53,11 @@ export default function QuickNavCards({ theme: t }: QuickNavCardsProps) {
     <section
       style={{
         display: "grid",
-        gridTemplateColumns: isWide ? "1fr 1fr" : "1fr",
-        gap: isWide ? "1rem" : "0.75rem",
+        /* 340px minimum caps this at two columns inside the 960px page
+           container — pure CSS replaces the old JS breakpoint, so the
+           prerendered layout is already correct at every viewport. */
+        gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 340px), 1fr))",
+        gap: "1rem",
         margin: "0 0 0.75rem",
       }}
     >

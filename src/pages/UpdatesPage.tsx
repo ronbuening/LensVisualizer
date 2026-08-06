@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { Link, useLocation } from "react-router";
-import useMediaQuery from "../utils/useMediaQuery.js";
 import SEOHead from "../components/SEOHead.js";
 import ChangelogList from "../components/content/ChangelogList.js";
 import StaticPageShell from "../components/layout/StaticPageShell.js";
@@ -11,8 +10,11 @@ import { formatDisplayDate } from "../utils/content/changelogHelpers.js";
 import { CHANGELOG_FEED_PATH, LENS_FEED_PATH } from "../utils/content/feedMetadata.js";
 import { H1_STYLE } from "../utils/style/pageStyles.js";
 
+/* One viewport-relative height for both scroll panes at every width — vh already
+   scales with the shorter phone viewports the old 60vh narrow case served. */
+const SCROLL_PANE_MAX_HEIGHT = "72vh";
+
 export default function UpdatesPage() {
-  const isWide = useMediaQuery("(min-width: 720px)", { ssrDefault: false });
   const { hash } = useLocation();
 
   // RSS feed items deep-link to /updates#<changelogEntryId>. The browser's
@@ -67,18 +69,20 @@ export default function UpdatesPage() {
             Recently added lenses and a complete development changelog.
           </p>
 
-          {/* ── Two-column layout (changelog left on mobile / lenses right) ── */}
+          {/* ── Two-column layout (changelog left on mobile / lenses right):
+                 flex-wrap with a 340px basis replaces the old JS breakpoint,
+                 so the prerendered layout is already correct at every viewport ── */}
           <div
             style={{
               display: "flex",
-              flexDirection: isWide ? "row" : "column",
-              gap: isWide ? "1.5rem" : "1.25rem",
+              flexWrap: "wrap",
+              gap: "1.5rem",
               alignItems: "flex-start",
               marginBottom: "2.5rem",
             }}
           >
             {/* ── Changelog ─────────────────────────────────────────────── */}
-            <section style={{ flex: isWide ? "1 1 0" : undefined, minWidth: 0, width: isWide ? undefined : "100%" }}>
+            <section style={{ flex: "1 1 340px", minWidth: 0 }}>
               <h2
                 style={{
                   fontSize: "1.125rem",
@@ -104,11 +108,11 @@ export default function UpdatesPage() {
               >
                 Subscribe to Changelog
               </a>
-              <ChangelogList theme={t} maxHeight={isWide ? "72vh" : "60vh"} />
+              <ChangelogList theme={t} maxHeight={SCROLL_PANE_MAX_HEIGHT} />
             </section>
 
             {/* ── Lenses Added ──────────────────────────────────────────── */}
-            <section style={{ flex: isWide ? "1 1 0" : undefined, minWidth: 0, width: isWide ? undefined : "100%" }}>
+            <section style={{ flex: "1 1 340px", minWidth: 0 }}>
               <h2
                 style={{
                   fontSize: "1.125rem",
@@ -134,7 +138,7 @@ export default function UpdatesPage() {
               >
                 Subscribe to New Lenses
               </a>
-              <div style={{ maxHeight: isWide ? "72vh" : "60vh", overflowY: "auto", paddingRight: "0.25rem" }}>
+              <div style={{ maxHeight: SCROLL_PANE_MAX_HEIGHT, overflowY: "auto", paddingRight: "0.25rem" }}>
                 {ALL_LENSES_BY_DATE.map((e) => {
                   const lens = LENS_SUMMARIES[e.key];
                   if (!lens) return null;

@@ -53,9 +53,11 @@ export default function HeroSection({ theme: t, brandMarkSrc, useDarkBrandFrame 
         </div>
 
         <div style={{ textAlign: isWide ? "left" : "center" }}>
+          {/* clamp() keeps the text scale continuous across the breakpoint so the
+              post-hydration layout switch never jumps font sizes */}
           <h1
             style={{
-              fontSize: isWide ? "2.25rem" : "1.75rem",
+              fontSize: "clamp(1.75rem, 1rem + 2.5vw, 2.25rem)",
               fontWeight: 700,
               color: t.title,
               margin: "0 0 0.5rem",
@@ -66,7 +68,7 @@ export default function HeroSection({ theme: t, brandMarkSrc, useDarkBrandFrame 
           </h1>
           <p
             style={{
-              fontSize: isWide ? "1rem" : "0.875rem",
+              fontSize: "clamp(0.875rem, 0.8rem + 0.35vw, 1rem)",
               color: t.subtitle,
               margin: "0 0 1.25rem",
               letterSpacing: "0.04em",
@@ -77,7 +79,7 @@ export default function HeroSection({ theme: t, brandMarkSrc, useDarkBrandFrame 
           </p>
           <p
             style={{
-              fontSize: isWide ? "0.85rem" : "0.8rem",
+              fontSize: "clamp(0.8rem, 0.77rem + 0.15vw, 0.85rem)",
               color: t.muted,
               maxWidth: isWide ? 560 : 600,
               margin: isWide ? 0 : "0 auto",
