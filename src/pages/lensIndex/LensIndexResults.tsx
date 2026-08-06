@@ -7,11 +7,12 @@
  */
 
 import { Link } from "react-router";
+import LensEntryLink from "../../components/content/LensEntryLink.js";
 import { getMakerDetails } from "../../utils/catalog/makerDetails.js";
 import { isImageFormatId, isLensMountId } from "../../utils/catalog/lensTaxonomy.js";
 import type { LensLibraryBreadcrumbContext, LensLinkTarget } from "./clusterLinks.js";
 import { canonicalPagePath } from "../../utils/seo/siteUrls.js";
-import { LENS_LINK_BASE_STYLE, SECTION_HEADING_BASE_STYLE } from "./styles.js";
+import { SECTION_HEADING_BASE_STYLE } from "./styles.js";
 import { STICKY_NAV_SCROLL_MARGIN } from "../../utils/style/pageStyles.js";
 import {
   focalSectionAnchorId,
@@ -33,33 +34,6 @@ import type {
 } from "./types.js";
 import type { Theme } from "../../types/theme.js";
 import type { PatentPartyRole } from "../../types/catalog.js";
-
-function LensEntryLink({
-  lensKey,
-  text,
-  meta,
-  theme,
-  hrefForLens,
-}: {
-  lensKey: string;
-  text: string;
-  meta: string | null;
-  theme: Theme;
-  hrefForLens: (lensKey: string, context?: LensLibraryBreadcrumbContext) => LensLinkTarget;
-}) {
-  const target = hrefForLens(lensKey);
-  return (
-    <Link
-      key={lensKey}
-      to={target.to}
-      state={target.state}
-      style={{ ...LENS_LINK_BASE_STYLE, color: theme.descLinkColor }}
-    >
-      {text}
-      {meta && <span style={{ color: theme.label, fontSize: "0.75rem", marginLeft: "0.5rem" }}>— {meta}</span>}
-    </Link>
-  );
-}
 
 function MakerSections({
   groups,

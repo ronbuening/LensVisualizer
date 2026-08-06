@@ -31,6 +31,6 @@ flowchart LR
 
 | File | Role | Imports from | Imported by | Exports |
 | --- | --- | --- | --- | --- |
-| `pageStyles.ts` | Page Styles helper module | package:react | src/components/content (2), src/pages/lensIndex (2), src/components/layout, src/components/relationshipMap, src/pages/ArticlesPage.tsx, +13 more | STICKY_NAV_SCROLL_MARGIN, PAGE_BASE_STYLE, H1_STYLE, SECTION_HEADING_BASE_STYLE, LENS_LINK_BASE_STYLE |
+| `pageStyles.ts` | Page Styles helper module | package:react | src/components/content (3), src/pages/lensIndex (2), src/components/layout, src/components/relationshipMap, src/pages/ArticlesPage.tsx, +13 more | STICKY_NAV_SCROLL_MARGIN, PAGE_BASE_STYLE, H1_STYLE, SECTION_HEADING_BASE_STYLE, LENS_LINK_BASE_STYLE |
 | `sliderStops.ts` | Slider Stops helper module | none | src/comparison (2), src/components/controls | snapToStop, snapToZeroStop |
 | `styles.ts` | Styles helper module | package:react, src/types | src/components/layout (8), src/components/controls (7), src/components/display (5), src/components/content (3), src/comparison, +3 more | withAlpha, OVERLAY_BACKDROP, OVERLAY_MODAL_BASE, PANEL_OVERLAY_BACKDROP, SLIDER_LABEL, SLIDER_VALUE_BASE, toggleGroup, toggleBtn, +11 more |
